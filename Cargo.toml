@@ -14,10 +14,5 @@ anyhow = "1.0"
 thiserror = "1.0.31"
 url = "2.2.2"
 log = "0.4.17"
-
-[dev-dependencies]
-criterion = "0.3.6"
-
-[[bench]]
-name = "my_benchmark"
-harness = false
+reqwest = "0.11.11"
+tokio = {version = "1.20.0", features = ["macros"]}

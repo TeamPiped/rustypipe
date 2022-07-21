@@ -1,18 +1,3 @@
-/// Aggressively prints to the terminal. Useful for rapid debugging in a sea of
-/// terminal output.
-#[allow(unused_macros)]
-macro_rules! highlight {
-    ($($arg:tt)+) => (
-      {
-        let indent = ">>>>>";
-        let focus = ">>>>>>";
-        let start = ">>>";
-        let end =   ">>>";
-        println!("{}\n{}\n{} {}\n{}\n{}", start,indent,focus,format!($($arg)+),indent,end);
-      }
-    )
-}
-
 /// Returns an unwrapped Option if Some() otherwise returns the passed expression
 #[allow(unused_macros)]
 macro_rules! some_or_bail {
