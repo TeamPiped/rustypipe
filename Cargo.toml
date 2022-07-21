@@ -1,0 +1,23 @@
+[package]
+name = "rusty-pipe"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+quick-js = "0.4.1"
+once_cell = "1.12.0"
+regex = "1.6.0"
+fancy-regex = "0.10.0"
+anyhow = "1.0"
+thiserror = "1.0.31"
+url = "2.2.2"
+log = "0.4.17"
+
+[dev-dependencies]
+criterion = "0.3.6"
+
+[[bench]]
+name = "my_benchmark"
+harness = false
