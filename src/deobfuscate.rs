@@ -1,30 +1,79 @@
-use anyhow::{anyhow, bail, Result};
+use anyhow::{anyhow, bail, Context, Result};
 use fancy_regex::Regex;
 use once_cell::sync::Lazy;
-use quick_js::Context;
+use reqwest::Client;
 use std::result::Result::Ok;
+use std::time::Instant;
+use tokio::sync::RwLock;
 
 pub struct Deobfuscator {
-    // js_url: String,
-    // last_update
+    client: Client,
+    cache: RwLock<JSCache>,
+}
+
+struct JSCache {
+    js_url: Option<String>,
+    last_update: Instant,
     sig_fn: String,
     nsig_fn: String,
 }
 
 impl Deobfuscator {
-    pub fn from_js(player_js: &str) -> Result<Self> {
-        Ok(Self {
-            sig_fn: get_sig_fn(player_js)?,
-            nsig_fn: get_nsig_fn(player_js)?,
-        })
+    pub fn new(client: Client) -> Self {
+        Self {
+            client: client,
+            cache: RwLock::new(JSCache {
+                js_url: None,
+                last_update: Instant::now(),
+                sig_fn: "".to_owned(),
+                nsig_fn: "".to_owned(),
+            }),
+        }
     }
 
-    pub fn deobfuscate_sig(&self, sig: &str) -> Result<String> {
-        deobfuscate_sig(sig, &self.sig_fn)
+    async fn update(&self) -> Result<()> {
+        let mut cache = self.cache.write().await;
+
+        if cache.is_stale() {
+            let url = get_player_js_url(&self.client)
+                .await
+                .context("Failed to retrieve player.js URL")?;
+
+            let player_js = get_website(&self.client, &url)
+                .await
+                .context("Failed to download player.js")?;
+
+            println!("Downloaded player.js from {}", url);
+
+            let sig_fn = get_sig_fn(&player_js)?;
+            let nsig_fn = get_nsig_fn(&player_js)?;
+
+            *cache = JSCache {
+                js_url: Some(url.to_owned()),
+                last_update: Instant::now(),
+                sig_fn,
+                nsig_fn,
+            };
+        }
+        Ok(())
     }
 
-    pub fn deobfuscate_nsig(&self, nsig: &str) -> Result<String> {
-        deobfuscate_nsig(nsig, &self.nsig_fn)
+    pub async fn deobfuscate_sig(&self, sig: &str) -> Result<String> {
+        self.update().await?;
+        let cache = self.cache.read().await;
+        deobfuscate_sig(sig, &cache.sig_fn)
+    }
+
+    pub async fn deobfuscate_nsig(&self, nsig: &str) -> Result<String> {
+        self.update().await?;
+        let cache = self.cache.read().await;
+        deobfuscate_nsig(nsig, &cache.nsig_fn)
+    }
+}
+
+impl JSCache {
+    fn is_stale(&self) -> bool {
+        self.js_url.is_none() || Instant::now().duration_since(self.last_update).as_secs() > 3600
     }
 }
 
@@ -45,26 +94,25 @@ fn get_sig_fn_name(player_js: &str) -> Result<String> {
     FUNCTION_PATTERNS
         .iter()
         .find_map(|pattern| pattern.captures(player_js).ok().flatten())
-        .map(|c| c.get(1).unwrap().as_str().to_string())
+        .map(|c| c.get(1).unwrap().as_str().to_owned())
         .ok_or_else(|| anyhow!("could not find deobf function name"))
 }
 
 fn caller_function(fn_name: &str) -> String {
-    "function ".to_string() + DEOBFUSCATION_FUNC_NAME + "(a){return " + &fn_name + "(a);}"
+    "function ".to_owned() + DEOBFUSCATION_FUNC_NAME + "(a){return " + &fn_name + "(a);}"
 }
 
 fn get_sig_fn(player_js: &str) -> Result<String> {
     let dfunc_name = get_sig_fn_name(player_js)?;
 
-    let function_pattern_str = "(".to_string()
-        + &dfunc_name.replace('$', "\\$")
-        + "=function\\([a-zA-Z0-9_]+\\)\\{.+?\\})";
+    let function_pattern_str =
+        "(".to_owned() + &dfunc_name.replace('$', "\\$") + "=function\\([a-zA-Z0-9_]+\\)\\{.+?\\})";
     let function_pattern = ok_or_bail!(
         Regex::new(&function_pattern_str),
         Err(anyhow!("could not parse function pattern regex"))
     );
 
-    let deobfuscate_function = "var ".to_string()
+    let deobfuscate_function = "var ".to_owned()
         + some_or_bail!(
             function_pattern.captures(player_js).ok().flatten(),
             Err(anyhow!("could not find deobf function"))
@@ -87,7 +135,7 @@ fn get_sig_fn(player_js: &str) -> Result<String> {
     .as_str();
 
     let helper_pattern_str =
-        "(var ".to_string() + &helper_object_name.replace('$', "\\$") + "=\\{.+?\\}\\};)";
+        "(var ".to_owned() + &helper_object_name.replace('$', "\\$") + "=\\{.+?\\}\\};)";
     let helper_pattern = ok_or_bail!(
         Regex::new(&helper_pattern_str),
         Err(anyhow!("could not parse helper pattern regex"))
@@ -101,16 +149,16 @@ fn get_sig_fn(player_js: &str) -> Result<String> {
     .unwrap()
     .as_str();
 
-    Ok(helper_object.to_string() + &deobfuscate_function + &caller_function(&dfunc_name))
+    Ok(helper_object.to_owned() + &deobfuscate_function + &caller_function(&dfunc_name))
 }
 
 fn deobfuscate_sig(sig: &str, sig_fn: &str) -> Result<String> {
-    let context = Context::new()?;
+    let context = quick_js::Context::new()?;
     context.eval(sig_fn)?;
     let res = context.call_function(DEOBFUSCATION_FUNC_NAME, vec![sig])?;
 
     match res.as_str() {
-        Some(res) => Ok(res.to_string()),
+        Some(res) => Ok(res.to_owned()),
         None => bail!("deobfuscation func returned null"),
     }
 }
@@ -128,12 +176,12 @@ fn get_nsig_fn_name(player_js: &str) -> Result<String> {
     let function_name = fname_match.get(1).unwrap().as_str();
 
     if fname_match.len() == 1 {
-        return Ok(function_name.to_string());
+        return Ok(function_name.to_owned());
     }
 
     let array_num = fname_match.get(2).unwrap().as_str().parse::<u32>()?;
     let array_pattern_str =
-        "var ".to_string() + &fancy_regex::escape(function_name) + "\\s*=\\s*\\[(.+?)];";
+        "var ".to_owned() + &fancy_regex::escape(function_name) + "\\s*=\\s*\\[(.+?)];";
     let array_pattern = Regex::new(&array_pattern_str)?;
     let array_str = some_or_bail!(
         array_pattern.captures(player_js).ok().flatten(),
@@ -151,7 +199,7 @@ fn get_nsig_fn_name(player_js: &str) -> Result<String> {
             array_str
         ))
     );
-    Ok(name.to_string())
+    Ok(name.to_owned())
 }
 
 fn match_to_closing_parenthesis(string: &str, start: &str) -> Option<String> {
@@ -187,14 +235,14 @@ fn get_nsig_fn(player_js: &str) -> Result<String> {
     let function_name = get_nsig_fn_name(player_js)?;
 
     // Find using parentheses
-    let function_base = function_name.to_string() + "=function";
+    let function_base = function_name.to_owned() + "=function";
     let nsig_fn_code = match match_to_closing_parenthesis(player_js, &function_base) {
         Some(m) => function_base.clone() + &m + ";",
         None => {
             // Find using regex
             let player_js_nonl = player_js.replace('\n', "");
 
-            let function_pattern_str = function_name.to_string() + "=function(.*?}};)\n";
+            let function_pattern_str = function_name.to_owned() + "=function(.*?}};)\n";
             let function_pattern = Regex::new(&function_pattern_str)?;
             let function = some_or_bail!(
                 function_pattern.captures(&player_js_nonl)?,
@@ -204,7 +252,7 @@ fn get_nsig_fn(player_js: &str) -> Result<String> {
             .unwrap()
             .as_str();
 
-            "function ".to_string() + function
+            "function ".to_owned() + function
         }
     };
 
@@ -217,22 +265,45 @@ fn deobfuscate_nsig(sig: &str, nsig_fn: &str) -> Result<String> {
     let res = context.call_function(DEOBFUSCATION_FUNC_NAME, vec![sig])?;
 
     match res.as_str() {
-        Some(res) => Ok(res.to_string()),
+        Some(res) => Ok(res.to_owned()),
         None => bail!("deobfuscation func returned null"),
     }
 }
 
-async fn get_player_js_url() -> Result<String> {
-    let resp = reqwest::get("https://www.youtube.com/iframe_api").await?;
+async fn get_player_js_url(client: &Client) -> Result<String> {
+    let resp = client
+        .get("https://www.youtube.com/iframe_api")
+        .send()
+        .await?
+        .error_for_status()?;
     let text = resp.text().await?;
-    println!("{}", text);
 
-    Ok("x".to_string())
+    let player_hash_pattern =
+        Regex::new(r#"https:\\\/\\\/www\.youtube\.com\\\/s\\\/player\\\/([a-z0-9]{8})\\\/"#)
+            .unwrap();
+    let player_hash = some_or_bail!(
+        player_hash_pattern.captures(&text)?,
+        Err(anyhow!("could not find player hash"))
+    )
+    .get(1)
+    .unwrap()
+    .as_str();
+
+    Ok(format!(
+        "https://www.youtube.com/s/player/{}/player_ias.vflset/en_US/base.js",
+        player_hash
+    ))
+}
+
+async fn get_website(client: &Client, url: &str) -> Result<String> {
+    let resp = client.get(url).send().await?.error_for_status()?;
+    Ok(resp.text().await?)
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
+    use std::sync::Arc;
 
     const TEST_JS: &str = include_str!("../notes/base.js");
     const N_DEOBF_FUNC: &str = r#"Vo=function(a){var b=a.split(""),c=[function(d,e,f){var h=f.length;d.forEach(function(l,m,n){this.push(n[m]=f[(f.indexOf(l)-f.indexOf(this[m])+m+h--)%f.length])},e.split(""))},
@@ -298,6 +369,33 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
 
     #[tokio::test]
     async fn test_get_player_js_url() {
-        let x = get_player_js_url().await.unwrap();
+        let client = Client::new();
+        let url = get_player_js_url(&client).await.unwrap();
+        assert!(url.starts_with("https://www.youtube.com/s/player"));
+        assert_eq!(url.len(), 73);
+    }
+
+    #[tokio::test]
+    async fn test_update() {
+        let client = Client::new();
+        let deobf = Deobfuscator::new(client);
+
+        let deobf_sig = deobf.deobfuscate_sig("GOqGOqGOq0QJ8wRAIgaryQHfplJ9xJSKFywyaSMHuuwZYsoMTAvRvfm51qIGECIA5061zWeyfMPX9hEl_U6f9J0tr7GTJMKyPf5XNrJb5fb5i").await.unwrap();
+        println!("{}", deobf_sig);
+    }
+
+    #[tokio::test]
+    async fn test_parallel() {
+        let client = Client::new();
+        let deobf = Deobfuscator::new(client);
+        let deobf_arc = Arc::new(deobf);
+
+        let (deobf_sig, deobf_nsig) = tokio::join!(
+            deobf_arc.deobfuscate_sig("GOqGOqGOq0QJ8wRAIgaryQHfplJ9xJSKFywyaSMHuuwZYsoMTAvRvfm51qIGECIA5061zWeyfMPX9hEl_U6f9J0tr7GTJMKyPf5XNrJb5fb5i"),
+            deobf_arc.deobfuscate_nsig("BI_n4PxQ22is-KKajKUW"),
+        );
+
+        println!("{}", deobf_sig.unwrap());
+        println!("{}", deobf_nsig.unwrap());
     }
 }
