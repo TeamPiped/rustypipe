@@ -1,3 +1,9 @@
-#[macro_use] mod macros;
+#[allow(dead_code)]
 
+#[macro_use]
+mod macros;
+
+mod util;
 mod deobfuscate;
+
+pub mod client;

@@ -1,0 +1,90 @@
+{
+  "context": {
+    "client": {
+      "hl": "de",
+      "gl": "DE",
+      "remoteHost": "2003:de:af47:2200:1f01:5e28:c1a1:55b9",
+      "deviceMake": "",
+      "deviceModel": "",
+      "visitorData": "CgtfZGdNenp4Z1JVRSjItfSWBg%3D%3D",
+      "userAgent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.5060.134 Safari/537.36,gzip(gfe)",
+      "clientName": "WEB_REMIX",
+      "clientVersion": "1.20220715.04.00",
+      "osName": "X11",
+      "osVersion": "",
+      "originalUrl": "https://music.youtube.com/?cbrd=1",
+      "platform": "DESKTOP",
+      "clientFormFactor": "UNKNOWN_FORM_FACTOR",
+      "configInfo": {
+        "appInstallData": "CMi19JYGENSDrgUQxPb9EhCurK4FEP24_RIQlK-uBRC3y60FENCtrgUQ5vj9EhDLoq4FELiLrgUQpvP9EhDYvq0F"
+      },
+      "browserName": "Chrome",
+      "browserVersion": "103.0.5060.134",
+      "screenWidthPoints": 759,
+      "screenHeightPoints": 1010,
+      "screenPixelDensity": 1,
+      "screenDensityFloat": 1,
+      "utcOffsetMinutes": 120,
+      "userInterfaceTheme": "USER_INTERFACE_THEME_DARK",
+      "timeZone": "Europe/Berlin",
+      "musicAppInfo": {
+        "pwaInstallabilityStatus": "PWA_INSTALLABILITY_STATUS_UNKNOWN",
+        "webDisplayMode": "WEB_DISPLAY_MODE_BROWSER",
+        "storeDigitalGoodsApiSupportStatus": {
+          "playStoreDigitalGoodsApiSupportStatus": "DIGITAL_GOODS_API_SUPPORT_STATUS_UNSUPPORTED"
+        },
+        "musicActivityMasterSwitch": "MUSIC_ACTIVITY_MASTER_SWITCH_INDETERMINATE",
+        "musicLocationMasterSwitch": "MUSIC_LOCATION_MASTER_SWITCH_INDETERMINATE"
+      }
+    },
+    "user": { "lockedSafetyMode": false },
+    "request": {
+      "useSsl": true,
+      "internalExperimentFlags": [],
+      "consistencyTokenJars": []
+    },
+    "adSignalsInfo": {
+      "params": [
+        { "key": "dt", "value": "1658657481372" },
+        { "key": "flash", "value": "0" },
+        { "key": "frm", "value": "0" },
+        { "key": "u_tz", "value": "120" },
+        { "key": "u_his", "value": "4" },
+        { "key": "u_h", "value": "1080" },
+        { "key": "u_w", "value": "1920" },
+        { "key": "u_ah", "value": "1080" },
+        { "key": "u_aw", "value": "1920" },
+        { "key": "u_cd", "value": "24" },
+        { "key": "bc", "value": "31" },
+        { "key": "bih", "value": "1010" },
+        { "key": "biw", "value": "759" },
+        { "key": "brdim", "value": "2560,0,2560,0,1920,0,1920,1080,759,1010" },
+        { "key": "vis", "value": "1" },
+        { "key": "wgl", "value": "true" },
+        { "key": "ca_type", "value": "image" }
+      ]
+    },
+    "activePlayers": [{ "playerContextParams": "Q0FFU0FnZ0I=" }]
+  },
+  "query": "test",
+  "suggestStats": {
+    "validationStatus": "VALID",
+    "parameterValidationStatus": "VALID_PARAMETERS",
+    "clientName": "youtube-music",
+    "searchMethod": "ENTER_KEY",
+    "inputMethod": "KEYBOARD",
+    "originalQuery": "test",
+    "availableSuggestions": [
+      { "index": 0, "suggestionType": 0 },
+      { "index": 1, "suggestionType": 0 },
+      { "index": 2, "suggestionType": 0 },
+      { "index": 3, "suggestionType": 0 },
+      { "index": 4, "suggestionType": 0 },
+      { "index": 5, "suggestionType": 0 },
+      { "index": 6, "suggestionType": 0 }
+    ],
+    "zeroPrefixEnabled": true,
+    "firstEditTimeMsec": 240405,
+    "lastEditTimeMsec": 243276
+  }
+}

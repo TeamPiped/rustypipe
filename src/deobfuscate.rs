@@ -1,13 +1,16 @@
 use anyhow::{anyhow, bail, Context, Result};
 use fancy_regex::Regex;
+use log::debug;
 use once_cell::sync::Lazy;
 use reqwest::Client;
 use std::result::Result::Ok;
 use std::time::Instant;
 use tokio::sync::RwLock;
 
+use crate::util;
+
 pub struct Deobfuscator {
-    client: Client,
+    http: Client,
     cache: RwLock<JSCache>,
 }
 
@@ -19,9 +22,10 @@ struct JSCache {
 }
 
 impl Deobfuscator {
-    pub fn new(client: Client) -> Self {
+    #[must_use]
+    pub fn new(http: Client) -> Self {
         Self {
-            client: client,
+            http,
             cache: RwLock::new(JSCache {
                 js_url: None,
                 last_update: Instant::now(),
@@ -35,15 +39,15 @@ impl Deobfuscator {
         let mut cache = self.cache.write().await;
 
         if cache.is_stale() {
-            let url = get_player_js_url(&self.client)
+            let url = get_player_js_url(&self.http)
                 .await
                 .context("Failed to retrieve player.js URL")?;
 
-            let player_js = get_website(&self.client, &url)
+            let player_js = get_response(&self.http, &url)
                 .await
                 .context("Failed to download player.js")?;
 
-            println!("Downloaded player.js from {}", url);
+            debug!("Downloaded player.js from {}", url);
 
             let sig_fn = get_sig_fn(&player_js)?;
             let nsig_fn = get_nsig_fn(&player_js)?;
@@ -91,10 +95,7 @@ fn get_sig_fn_name(player_js: &str) -> Result<String> {
     ]
     });
 
-    FUNCTION_PATTERNS
-        .iter()
-        .find_map(|pattern| pattern.captures(player_js).ok().flatten())
-        .map(|c| c.get(1).unwrap().as_str().to_owned())
+    util::get_cg_from_regexes(FUNCTION_PATTERNS.iter(), player_js, 1)
         .ok_or_else(|| anyhow!("could not find deobf function name"))
 }
 
@@ -270,8 +271,8 @@ fn deobfuscate_nsig(sig: &str, nsig_fn: &str) -> Result<String> {
     }
 }
 
-async fn get_player_js_url(client: &Client) -> Result<String> {
-    let resp = client
+async fn get_player_js_url(http: &Client) -> Result<String> {
+    let resp = http
         .get("https://www.youtube.com/iframe_api")
         .send()
         .await?
@@ -295,8 +296,8 @@ async fn get_player_js_url(client: &Client) -> Result<String> {
     ))
 }
 
-async fn get_website(client: &Client, url: &str) -> Result<String> {
-    let resp = client.get(url).send().await?.error_for_status()?;
+async fn get_response(http: &Client, url: &str) -> Result<String> {
+    let resp = http.get(url).send().await?.error_for_status()?;
     Ok(resp.text().await?)
 }
 
@@ -304,6 +305,7 @@ async fn get_website(client: &Client, url: &str) -> Result<String> {
 mod tests {
     use super::*;
     use std::sync::Arc;
+    use test_log::test;
 
     const TEST_JS: &str = include_str!("../notes/base.js");
     const N_DEOBF_FUNC: &str = r#"Vo=function(a){var b=a.split(""),c=[function(d,e,f){var h=f.length;d.forEach(function(l,m,n){this.push(n[m]=f[(f.indexOf(l)-f.indexOf(this[m])+m+h--)%f.length])},e.split(""))},
@@ -321,13 +323,13 @@ c[30]=c;c[40]=c;c[46]=c;try{c[43](c[34]),c[45](c[40],c[47]),c[46](c[51],c[33]),c
 c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c[47],c[49]),c[1](c[44],c[28]),c[39](c[16]),c[32](c[42],c[22]),c[46](c[14],c[48]),c[26](c[29],c[10]),c[46](c[9],c[3]),c[32](c[45])}catch(d){return"enhanced_except_85UBjOr-_w8_"+a}return b.join("")};function deobfuscate(a){return Vo(a);}"#;
 
     #[test]
-    fn test_get_sig_fn_name() {
+    fn t_get_sig_fn_name() {
         let dfunc_name = get_sig_fn_name(TEST_JS).unwrap();
         assert_eq!(dfunc_name, "Rva");
     }
 
     #[test]
-    fn test_get_sig_fn() {
+    fn t_get_sig_fn() {
         let dcode = get_sig_fn(TEST_JS).unwrap();
         assert_eq!(
             dcode,
@@ -336,47 +338,47 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
     }
 
     #[test]
-    fn test_deobfuscate_sig() {
+    fn t_deobfuscate_sig() {
         let dcode = get_sig_fn(TEST_JS).unwrap();
         let deobf = deobfuscate_sig("GOqGOqGOq0QJ8wRAIgaryQHfplJ9xJSKFywyaSMHuuwZYsoMTAvRvfm51qIGECIA5061zWeyfMPX9hEl_U6f9J0tr7GTJMKyPf5XNrJb5fb5i", &dcode).unwrap();
         assert_eq!(deobf, "AOq0QJ8wRAIgaryQHmplJ9xJSKFywyaSMHuuwZYsoMTfvRviG51qIGECIA5061zWeyfMPX9hEl_U6f9J0tr7GTJMKyPf5XNrJb5f");
     }
 
     #[test]
-    fn test_get_nsig_fn_name() {
+    fn t_get_nsig_fn_name() {
         let name = get_nsig_fn_name(TEST_JS).unwrap();
         assert_eq!(name, "Vo");
     }
 
     #[test]
-    fn test_match_to_closing_parenthesis() {
+    fn t_match_to_closing_parenthesis() {
         let res =
             match_to_closing_parenthesis("Kx Hello { Thx { Bye } } Wut {Tst {}}", "Hello").unwrap();
         assert_eq!(res, " { Thx { Bye } }")
     }
 
     #[test]
-    fn test_get_nsig_fn() {
+    fn t_get_nsig_fn() {
         let res = get_nsig_fn(TEST_JS).unwrap();
         assert_eq!(res, N_DEOBF_FUNC);
     }
 
     #[test]
-    fn test_deobfuscate_nsig() {
+    fn t_deobfuscate_nsig() {
         let res = deobfuscate_nsig("BI_n4PxQ22is-KKajKUW", N_DEOBF_FUNC).unwrap();
         assert_eq!(res, "nrkec0fwgTWolw");
     }
 
-    #[tokio::test]
-    async fn test_get_player_js_url() {
+    #[test(tokio::test)]
+    async fn t_get_player_js_url() {
         let client = Client::new();
         let url = get_player_js_url(&client).await.unwrap();
         assert!(url.starts_with("https://www.youtube.com/s/player"));
         assert_eq!(url.len(), 73);
     }
 
-    #[tokio::test]
-    async fn test_update() {
+    #[test(tokio::test)]
+    async fn t_update() {
         let client = Client::new();
         let deobf = Deobfuscator::new(client);
 
@@ -384,8 +386,8 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
         println!("{}", deobf_sig);
     }
 
-    #[tokio::test]
-    async fn test_parallel() {
+    #[test(tokio::test)]
+    async fn t_parallel() {
         let client = Client::new();
         let deobf = Deobfuscator::new(client);
         let deobf_arc = Arc::new(deobf);
