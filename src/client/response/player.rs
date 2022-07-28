@@ -5,8 +5,6 @@ use serde::Deserialize;
 use serde_with::serde_as;
 use serde_with::{json::JsonString, DefaultOnError, VecSkipError};
 
-use crate::serializer::mime_type::MimeType;
-
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Player {
@@ -76,8 +74,7 @@ pub struct Format {
     #[serde(default, rename = "type")]
     pub format_type: FormatType,
 
-    #[serde(with = "crate::serializer::mime_type")]
-    pub mime_type: MimeType,
+    pub mime_type: String,
 
     pub bitrate: Option<u64>,
 
