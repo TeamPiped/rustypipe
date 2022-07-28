@@ -1,0 +1,44 @@
+Endpoint: www.youtube.com/youtubei/v1/search
+Endpoint (YTM): music.youtube.com/youtubei/v1/search
+Method: POST
+
+Search:
+{
+    context: ...,
+
+    query: "hello"
+    params: <optional>
+}
+
+Search params:
+Videos "EgIQAQ%3D%3D"
+Channels "EgIQAg%3D%3"
+Playlists "EgIQAw%3D%3D"
+
+-- from YTM web app ---
+Music tracks "EgWKAQIIAWoKEAMQBBAFEAkQCg%3D%3D"
+Music videos "EgWKAQIQAWoKEAMQBBAFEAkQCg%3D%3D"
+Music artists "EgWKAQIgAWoKEAMQBBAFEAkQCg%3D%3D"
+Music albums "EgWKAQIYAWoKEAMQBBAFEAkQCg%3D%3D"
+Music community playlists "EgeKAQQoAEABagoQAxAEEAUQCRAK"
+Music official playlists "EgeKAQQoADgBagwQDhAKEAMQBBAJEAU%3D"
+
+-- from NewPipe ---
+Music tracks "Eg-KAQwIARAAGAAgACgAMABqChAEEAUQAxAKEAk%3D"
+Music videos "Eg-KAQwIABABGAAgACgAMABqChAEEAUQAxAKEAk%3D"
+Music artists "Eg-KAQwIABAAGAAgASgAMABqChAEEAUQAxAKEAk%3D"
+Music albums "Eg-KAQwIABAAGAEgACgAMABqChAEEAUQAxAKEAk%3D"
+Music playlists "Eg-KAQwIABAAGAAgACgBMABqChAEEAUQAxAKEAk%3D"
+
+More search items:
+{
+    context: ...,
+
+    continuation: "ErAFEgR0ZXN0GoQDU0JT..."
+}
+
+More search items (YTM)
+Query params:
+ctoken=EqMDEgpkZXV0c2NocG9wGpQDRWdXS0FRS... (=continuation, not necessary)
+continuation=EqMDEgpkZXV0c2NocG9wGpQDRWdXS0FRS...
+type=next

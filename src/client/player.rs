@@ -16,7 +16,7 @@ struct QPlayer {
     #[serde(skip_serializing_if = "Option::is_none")]
     playback_context: Option<QPlaybackContext>,
     /// Content playback nonce (16 random chars)
-    cpn: String,
+    // cpn: String,
     /// YouTube video ID
     video_id: String,
     /// Set to true to allow extraction of streams with sensitive content
@@ -52,7 +52,7 @@ impl RustyTube {
                     referer: format!("https://www.youtube.com/watch?v={}", video_id),
                 },
             }),
-            cpn: util::generate_content_playback_nonce(),
+            // cpn: util::generate_content_playback_nonce(),
             video_id: video_id.to_owned(),
             content_check_ok: true,
             racy_check_ok: true,

@@ -1,0 +1,20 @@
+Endpoint: https://suggestqueries.google.com/complete/search
+Method: GET
+
+URL-Parameter:
+client=youtube
+jsonp=JP (JSON padding)
+ds=yt
+hl=de (language)
+gl=DE (counry)
+q=hello (query)
+
+
+YouTube Music:
+Endpoint: https://music.youtube.com/youtubei/v1/music/get_search_suggestions?key=AIzaSyC9XL3ZjWddXya6X74dJoCTL-WEYFDNX30&prettyPrint=false
+
+Request:
+{
+    context: ...,
+    input: "hello"
+}

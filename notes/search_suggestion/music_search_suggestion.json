@@ -1,0 +1,238 @@
+{
+  "responseContext": {
+    "serviceTrackingParams": [
+      {
+        "service": "CSI",
+        "params": [
+          {
+            "key": "c",
+            "value": "WEB_REMIX"
+          },
+          {
+            "key": "cver",
+            "value": "1.20220725.01.00"
+          },
+          {
+            "key": "yt_li",
+            "value": "0"
+          },
+          {
+            "key": "GetMusicSearchSuggestions_rid",
+            "value": "0xbb02d280b8d7f87c"
+          }
+        ]
+      },
+      {
+        "service": "GFEEDBACK",
+        "params": [
+          {
+            "key": "logged_in",
+            "value": "0"
+          },
+          {
+            "key": "e",
+            "value": "24114244,24164186,24135310,24248085,24191629,24251386,23848212,23934970,24187043,23827034,39321934,24007246,24085811,24245609,24215196,24199709,23882685,24246427,24233639,23998056,23843507,24244808,24246469,24004644,24184893,24077266,23940247,24245719,24181174,24034168,24230625,24190483,24241936,24169501,24186125,24198739,24002025,24227844,24238983,23744176,24080738,23918597,24248385,24219713,24002022,24246938,23946420,24199774,24222379,24001373,24245161,24241377,24241679,24077241,24591006,24161116,24226335,23966208,1714254,24252017,23804281,24113425,23983296,9405963,24187377,24140247,24120820,24245745,24185614,24199724,24036947"
+          }
+        ]
+      },
+      {
+        "service": "ECATCHER",
+        "params": [
+          {
+            "key": "client.version",
+            "value": "1.20000101"
+          },
+          {
+            "key": "client.name",
+            "value": "WEB_REMIX"
+          },
+          {
+            "key": "client.fexp",
+            "value": "24114244,24164186,24135310,24248085,24191629,24251386,23848212,23934970,24187043,23827034,39321934,24007246,24085811,24245609,24215196,24199709,23882685,24246427,24233639,23998056,23843507,24244808,24246469,24004644,24184893,24077266,23940247,24245719,24181174,24034168,24230625,24190483,24241936,24169501,24186125,24198739,24002025,24227844,24238983,23744176,24080738,23918597,24248385,24219713,24002022,24246938,23946420,24199774,24222379,24001373,24245161,24241377,24241679,24077241,24591006,24161116,24226335,23966208,1714254,24252017,23804281,24113425,23983296,9405963,24187377,24140247,24120820,24245745,24185614,24199724,24036947"
+          }
+        ]
+      }
+    ]
+  },
+  "contents": [
+    {
+      "searchSuggestionsSectionRenderer": {
+        "contents": [
+          {
+            "searchSuggestionRenderer": {
+              "suggestion": {
+                "runs": [
+                  {
+                    "text": "deutschpop",
+                    "bold": true
+                  }
+                ]
+              },
+              "navigationEndpoint": {
+                "clickTrackingParams": "CAcQpWEYASITCKn08KfMnPkCFZfUEQgdMeoO2A==",
+                "searchEndpoint": {
+                  "query": "deutschpop"
+                }
+              },
+              "trackingParams": "CAcQpWEYASITCKn08KfMnPkCFZfUEQgdMeoO2A==",
+              "icon": {
+                "iconType": "SEARCH"
+              }
+            }
+          },
+          {
+            "searchSuggestionRenderer": {
+              "suggestion": {
+                "runs": [
+                  {
+                    "text": "deutschpop",
+                    "bold": true
+                  },
+                  {
+                    "text": " mix 2022"
+                  }
+                ]
+              },
+              "navigationEndpoint": {
+                "clickTrackingParams": "CAYQpWEYAiITCKn08KfMnPkCFZfUEQgdMeoO2A==",
+                "searchEndpoint": {
+                  "query": "deutschpop mix 2022"
+                }
+              },
+              "trackingParams": "CAYQpWEYAiITCKn08KfMnPkCFZfUEQgdMeoO2A==",
+              "icon": {
+                "iconType": "SEARCH"
+              }
+            }
+          },
+          {
+            "searchSuggestionRenderer": {
+              "suggestion": {
+                "runs": [
+                  {
+                    "text": "deutschpop",
+                    "bold": true
+                  },
+                  {
+                    "text": " mix 2021"
+                  }
+                ]
+              },
+              "navigationEndpoint": {
+                "clickTrackingParams": "CAUQpWEYAyITCKn08KfMnPkCFZfUEQgdMeoO2A==",
+                "searchEndpoint": {
+                  "query": "deutschpop mix 2021"
+                }
+              },
+              "trackingParams": "CAUQpWEYAyITCKn08KfMnPkCFZfUEQgdMeoO2A==",
+              "icon": {
+                "iconType": "SEARCH"
+              }
+            }
+          },
+          {
+            "searchSuggestionRenderer": {
+              "suggestion": {
+                "runs": [
+                  {
+                    "text": "deutschpop",
+                    "bold": true
+                  },
+                  {
+                    "text": " mix"
+                  }
+                ]
+              },
+              "navigationEndpoint": {
+                "clickTrackingParams": "CAQQpWEYBCITCKn08KfMnPkCFZfUEQgdMeoO2A==",
+                "searchEndpoint": {
+                  "query": "deutschpop mix"
+                }
+              },
+              "trackingParams": "CAQQpWEYBCITCKn08KfMnPkCFZfUEQgdMeoO2A==",
+              "icon": {
+                "iconType": "SEARCH"
+              }
+            }
+          },
+          {
+            "searchSuggestionRenderer": {
+              "suggestion": {
+                "runs": [
+                  {
+                    "text": "deutschpop",
+                    "bold": true
+                  },
+                  {
+                    "text": " playlist"
+                  }
+                ]
+              },
+              "navigationEndpoint": {
+                "clickTrackingParams": "CAMQpWEYBSITCKn08KfMnPkCFZfUEQgdMeoO2A==",
+                "searchEndpoint": {
+                  "query": "deutschpop playlist"
+                }
+              },
+              "trackingParams": "CAMQpWEYBSITCKn08KfMnPkCFZfUEQgdMeoO2A==",
+              "icon": {
+                "iconType": "SEARCH"
+              }
+            }
+          },
+          {
+            "searchSuggestionRenderer": {
+              "suggestion": {
+                "runs": [
+                  {
+                    "text": "deutschpop",
+                    "bold": true
+                  },
+                  {
+                    "text": " songs"
+                  }
+                ]
+              },
+              "navigationEndpoint": {
+                "clickTrackingParams": "CAIQpWEYBiITCKn08KfMnPkCFZfUEQgdMeoO2A==",
+                "searchEndpoint": {
+                  "query": "deutschpop songs"
+                }
+              },
+              "trackingParams": "CAIQpWEYBiITCKn08KfMnPkCFZfUEQgdMeoO2A==",
+              "icon": {
+                "iconType": "SEARCH"
+              }
+            }
+          },
+          {
+            "searchSuggestionRenderer": {
+              "suggestion": {
+                "runs": [
+                  {
+                    "text": "deutschpop",
+                    "bold": true
+                  },
+                  {
+                    "text": " 00"
+                  }
+                ]
+              },
+              "navigationEndpoint": {
+                "clickTrackingParams": "CAEQpWEYByITCKn08KfMnPkCFZfUEQgdMeoO2A==",
+                "searchEndpoint": {
+                  "query": "deutschpop 00"
+                }
+              },
+              "trackingParams": "CAEQpWEYByITCKn08KfMnPkCFZfUEQgdMeoO2A==",
+              "icon": {
+                "iconType": "SEARCH"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "trackingParams": "CAAQi24iEwip9PCnzJz5AhWX1BEIHTHqDtg="
+}

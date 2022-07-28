@@ -1,0 +1,16 @@
+Endpoint: www.youtube.com/youtubei/v1/player
+Method: POST
+
+{
+    context: ...,
+
+    playbackContext: {
+        contentPlaybackContext: {
+            signatureTimestamp: "19187",
+            referer: "https://www.youtube.com/watch?v=iQfSvIgIs_M"
+        }
+    },
+    videoId: iQfSvIgIs_M
+    contentCheckOk: false,
+    racyCheckOk: false
+}
