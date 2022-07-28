@@ -1,0 +1,100 @@
+{
+  "responseContext": {
+    "serviceTrackingParams": [
+      {
+        "service": "GFEEDBACK",
+        "params": [
+          { "key": "is_viewed_live", "value": "False" },
+          { "key": "logged_in", "value": "0" },
+          {
+            "key": "e",
+            "value": "24166867,24247767,24244808,24140247,24234835,24135692,24246750,23735347,24215797,23918597,23983296,23946420,23804281,23966208,24252017,24152443,23986032,24199774,24219713,24080738,24004644,24135310,24222953,24238983,24248384,24187377,24164186,24229161,24219034,24248296,39321934,23998056,24185614,24036947,24007246,23934970,24114244,24230625,24245746,24187043,24248085,24241936,24191629,24251607,24220892,24230151,24037231,24199724,24215196,24241708,24161116,24226334,24245161,23882685,24246938,1714256,24002025,24251538,24198982,24210567,24242720,24085811,24233755,24034168,24181174,24108447,24233639,24199709,24002022,24227843,24077241,24001373,24222379,24225188,24225483,24169501,24077266,23744176,24198739,24228637,24252146,24220209,24120820"
+          }
+        ]
+      },
+      {
+        "service": "CSI",
+        "params": [
+          { "key": "c", "value": "WEB" },
+          { "key": "cver", "value": "2.20220721.05.00" },
+          { "key": "yt_li", "value": "0" },
+          { "key": "GetPlayer_rid", "value": "0xd25273734a9b032c" }
+        ]
+      },
+      { "service": "GUIDED_HELP", "params": [{ "key": "logged_in", "value": "0" }] },
+      {
+        "service": "ECATCHER",
+        "params": [
+          { "key": "client.version", "value": "2.20220721" },
+          { "key": "client.name", "value": "WEB" },
+          {
+            "key": "client.fexp",
+            "value": "24166867,24247767,24244808,24140247,24234835,24135692,24246750,23735347,24215797,23918597,23983296,23946420,23804281,23966208,24252017,24152443,23986032,24199774,24219713,24080738,24004644,24135310,24222953,24238983,24248384,24187377,24164186,24229161,24219034,24248296,39321934,23998056,24185614,24036947,24007246,23934970,24114244,24230625,24245746,24187043,24248085,24241936,24191629,24251607,24220892,24230151,24037231,24199724,24215196,24241708,24161116,24226334,24245161,23882685,24246938,1714256,24002025,24251538,24198982,24210567,24242720,24085811,24233755,24034168,24181174,24108447,24233639,24199709,24002022,24227843,24077241,24001373,24222379,24225188,24225483,24169501,24077266,23744176,24198739,24228637,24252146,24220209,24120820"
+          }
+        ]
+      }
+    ],
+    "mainAppWebResponseContext": { "loggedOut": true },
+    "webResponseContextExtensionData": { "hasDecorated": true }
+  },
+  "playabilityStatus": {
+    "status": "ERROR",
+    "reason": "This video has been removed for violating YouTube's policy on hate speech. Learn more about combating hate speech in your country.",
+    "errorScreen": {
+      "playerErrorMessageRenderer": {
+        "learnMore": {
+          "runs": [
+            {
+              "text": "Learn more",
+              "navigationEndpoint": {
+                "clickTrackingParams": "CAAQu2kiEwjhrsW72ZT5AhWMOvEFHTEXDe4=",
+                "commandMetadata": {
+                  "webCommandMetadata": {
+                    "url": "//support.google.com/youtube/answer/2801939?hl=en",
+                    "webPageType": "WEB_PAGE_TYPE_UNKNOWN",
+                    "rootVe": 83769
+                  }
+                },
+                "urlEndpoint": {
+                  "url": "//support.google.com/youtube/answer/2801939?hl=en"
+                }
+              }
+            }
+          ]
+        },
+        "reason": {
+          "simpleText": "This video has been removed for violating YouTube's policy on hate speech. Learn more about combating hate speech in your country."
+        },
+        "thumbnail": {
+          "thumbnails": [
+            {
+              "url": "//s.ytimg.com/yts/img/meh7-vflGevej7.png",
+              "width": 140,
+              "height": 100
+            }
+          ]
+        },
+        "icon": { "iconType": "ERROR_OUTLINE" }
+      }
+    },
+    "contextParams": "Q0FBU0FnZ0E="
+  },
+  "trackingParams": "CAAQu2kiEwjhrsW72ZT5AhWMOvEFHTEXDe4=",
+  "frameworkUpdates": {
+    "entityBatchUpdate": {
+      "mutations": [
+        {
+          "entityKey": "Eg0KCzZTSk5WYjBHblBJIPYBKAE%3D",
+          "type": "ENTITY_MUTATION_TYPE_REPLACE",
+          "payload": {
+            "offlineabilityEntity": {
+              "key": "Eg0KCzZTSk5WYjBHblBJIPYBKAE%3D",
+              "addToOfflineButtonState": "ADD_TO_OFFLINE_BUTTON_STATE_UNKNOWN"
+            }
+          }
+        }
+      ],
+      "timestamp": { "seconds": "1658774745", "nanos": 123096088 }
+    }
+  }
+}

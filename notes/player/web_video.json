@@ -1744,9 +1744,7 @@
                                       }
                                     },
                                     "unsubscribeEndpoint": {
-                                      "channelIds": [
-                                        "UCe52oeb7Xv_KaJsEzcKXJJg"
-                                      ],
+                                      "channelIds": ["UCe52oeb7Xv_KaJsEzcKXJJg"],
                                       "params": "CgIIBBgA"
                                     }
                                   },

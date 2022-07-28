@@ -1,15 +1,19 @@
-use std::time::Instant;
+mod player;
+mod response;
+
+use std::{sync::Arc, time::Instant};
 
 use anyhow::{anyhow, bail, Context, Result};
+use async_trait::async_trait;
 use fancy_regex::Regex;
 use log::{debug, error, info, warn};
 use once_cell::sync::Lazy;
 use rand::Rng;
-use reqwest::{header, Client, ClientBuilder, Request};
-use serde::Serialize;
+use reqwest::{header, Client, ClientBuilder, Method, Request, RequestBuilder, Response};
+use serde::{Serialize};
 use tokio::sync::Mutex;
 
-use crate::util;
+use crate::{deobfuscate::Deobfuscator, util};
 
 pub enum ClientType {
     Desktop,
@@ -19,14 +23,14 @@ pub enum ClientType {
     Ios,
 }
 
-#[derive(Serialize, Debug)]
-#[serde(rename = "camelCase")]
-struct BaseRequest {
+#[derive(Clone, Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct BaseRequest {
     context: ContextYT,
 }
 
-#[derive(Serialize, Debug)]
-#[serde(rename = "camelCase")]
+#[derive(Clone, Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
 struct ContextYT {
     client: ClientInfo,
     /// only used on desktop
@@ -38,8 +42,8 @@ struct ContextYT {
     third_party: Option<ThirdParty>,
 }
 
-#[derive(Serialize, Debug)]
-#[serde(rename = "camelCase")]
+#[derive(Clone, Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
 struct ClientInfo {
     client_name: String,
     client_version: String,
@@ -54,8 +58,8 @@ struct ClientInfo {
     gl: String,
 }
 
-#[derive(Serialize, Debug)]
-#[serde(rename = "camelCase")]
+#[derive(Clone, Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
 struct RequestYT {
     internal_experiment_flags: Vec<String>,
     use_ssl: bool,
@@ -70,20 +74,98 @@ impl Default for RequestYT {
     }
 }
 
-#[derive(Serialize, Debug, Default)]
-#[serde(rename = "camelCase")]
+#[derive(Clone, Debug, Serialize, Default)]
+#[serde(rename_all = "camelCase")]
 struct User {
     // TO DO: provide a way to enable restricted mode with:
     // "enableSafetyMode": true
     locked_safety_mode: bool,
 }
 
-#[derive(Serialize, Debug)]
-#[serde(rename = "camelCase")]
+#[derive(Clone, Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
 struct ThirdParty {
     embed_url: String,
 }
 
+const DEFAULT_UA: &str =
+    "Mozilla/5.0 (Windows NT 10.0; Win64; rv:107.0) Gecko/20100101 Firefox/107.0";
+
+const CONSENT_COOKIE: &str = "CONSENT";
+const CONSENT_COOKIE_YES: &str = "YES+yt.462272069.de+FX+";
+const CONSENT_COOKIE_NO: &str = "PENDING+";
+
+const DESKTOP_CLIENT_VERSION: &str = "2.20220721.05.00_1";
+const DESKTOP_API_KEY: &str = "AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8";
+
+const YOUTUBEI_V1_URL: &str = "https://www.youtube.com/youtubei/v1/";
+const YOUTUBEI_V1_GAPIS_URL: &str = "https://youtubei.googleapis.com/youtubei/v1/";
+
+const DISABLE_PRETTY_PRINT_PARAMETER: &str = "&prettyPrint=false";
+
+pub struct RustyTube {
+    pub locale: Arc<Locale>,
+    pub desktop_client: DesktopClient,
+}
+
+#[derive(Clone)]
+pub struct Locale {
+    lang: String,
+    country: String,
+}
+
+impl RustyTube {
+    #[must_use]
+    pub fn new() -> Self {
+        Self::new_with_ua("en", "US")
+    }
+
+    #[must_use]
+    pub fn new_with_ua(lang: &str, country: &str) -> Self {
+        let locale = Arc::new(Locale {
+            lang: lang.to_owned(),
+            country: country.to_owned(),
+        });
+
+        Self {
+            locale: locale.clone(),
+            desktop_client: DesktopClient::new(locale),
+        }
+    }
+
+    /*
+    pub fn get_ytclient(&self, client_type: ClientType) -> impl YTClient {
+        match client_type {
+            ClientType::Desktop => self.desktop_client,
+            ClientType::DesktopMusic => todo!(),
+            ClientType::TvHtml5Embed => todo!(),
+            ClientType::Android => todo!(),
+            ClientType::Ios => todo!(),
+        }
+    }
+    */
+}
+
+#[async_trait]
+pub trait YTClient {
+    fn new(locale: Arc<Locale>) -> Self;
+
+    async fn get_base_request_body(&self, localized: bool) -> BaseRequest;
+    async fn request_builder(&self, method: Method, url: &str) -> RequestBuilder;
+    async fn exec_request(&self, request: Request) -> Result<Response>;
+    async fn exec_request_text(&self, request: Request) -> Result<String>;
+}
+
+pub struct DesktopClient {
+    locale: Arc<Locale>,
+    http: Client,
+    data: Mutex<DesktopClientData>,
+    consent_cookie_yes: String,
+    consent_cookie_no: String,
+    deobf: Deobfuscator,
+}
+
+#[derive(Debug)]
 struct DesktopClientData {
     last_update: Option<Instant>,
     client_version: String,
@@ -108,50 +190,24 @@ impl DesktopClientData {
     }
 }
 
-const DEFAULT_UA: &str =
-    "Mozilla/5.0 (Windows NT 10.0; Win64; rv:107.0) Gecko/20100101 Firefox/107.0";
+#[async_trait]
+impl YTClient for DesktopClient {
+    fn new(locale: Arc<Locale>) -> Self {
+        let mut rng = rand::thread_rng();
 
-const CONSENT_COOKIE: &str = "CONSENT";
-const CONSENT_COOKIE_YES: &str = "YES+yt.462272069.de+FX+";
-const CONSENT_COOKIE_NO: &str = "PENDING+";
-
-const DESKTOP_CLIENT_VERSION: &str = "2.20220721.05.00_1";
-const DESKTOP_API_KEY: &str = "AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8";
-
-const CONTENT_PLAYBACK_NONCE_ALPHABET: &[u8; 64] =
-    b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
-
-pub struct RustyTube {
-    http: Client,
-    desktop_client_data: Mutex<DesktopClientData>,
-
-    lang: String,
-    country: String,
-
-    consent_cookie_yes: String,
-    consent_cookie_no: String,
-}
-
-impl RustyTube {
-    #[must_use]
-    pub fn new() -> Self {
-        Self::new_with_ua("en", "US", DEFAULT_UA)
-    }
-
-    #[must_use]
-    pub fn new_with_ua(lang: &str, country: &str, user_agent: &str) -> Self {
         let http = ClientBuilder::new()
-            .user_agent(user_agent)
+            .user_agent(DEFAULT_UA)
+            .gzip(true)
+            .brotli(true)
             .build()
             .expect("unable to build the HTTP client");
 
-        let mut rng = rand::thread_rng();
+        let deobf = Deobfuscator::new(http.clone());
 
         Self {
+            locale,
             http,
-            desktop_client_data: Mutex::new(DesktopClientData::default()),
-            lang: lang.to_owned(),
-            country: country.to_owned(),
+            data: Mutex::new(DesktopClientData::default()),
             consent_cookie_yes: format!(
                 "{}={}{}",
                 CONSENT_COOKIE,
@@ -164,11 +220,92 @@ impl RustyTube {
                 CONSENT_COOKIE_NO,
                 rng.gen_range(100..1000)
             ),
+            deobf,
         }
     }
 
+    async fn get_base_request_body(&self, localized: bool) -> BaseRequest {
+        BaseRequest {
+            context: ContextYT {
+                client: ClientInfo {
+                    client_name: "WEB".to_owned(),
+                    client_version: self.get_client_version().await,
+                    client_screen: None,
+                    platform: "DESKTOP".to_owned(),
+                    original_url: Some("https://www.youtube.com".to_owned()),
+                    hl: match localized {
+                        true => self.locale.lang.to_owned(),
+                        false => "en".to_owned(),
+                    },
+                    gl: match localized {
+                        true => self.locale.country.to_owned(),
+                        false => "US".to_owned(),
+                    },
+                },
+                request: Some(RequestYT::default()),
+                user: User::default(),
+                third_party: None,
+            },
+        }
+    }
+
+    async fn request_builder(&self, method: Method, endpoint: &str) -> RequestBuilder {
+        self.http
+            .request(
+                method,
+                format!(
+                    "{}{}?key={}{}",
+                    YOUTUBEI_V1_URL, endpoint, DESKTOP_API_KEY, DISABLE_PRETTY_PRINT_PARAMETER
+                ),
+            )
+            .header(header::ORIGIN, "https://www.youtube.com")
+            .header(header::REFERER, "https://www.youtube.com")
+            .header(header::COOKIE, self.consent_cookie_no.to_owned())
+            .header("X-YouTube-Client-Name", "1")
+            .header("X-YouTube-Client-Version", self.get_client_version().await)
+    }
+
+    async fn exec_request(&self, request: Request) -> Result<Response> {
+        Ok(self.http.execute(request).await?.error_for_status()?)
+    }
+
+    async fn exec_request_text(&self, request: Request) -> Result<String> {
+        Ok(self.exec_request(request).await?.text().await?)
+    }
+}
+
+impl DesktopClient {
+    async fn extract_client_version_from_swjs(&self) -> Result<Option<String>> {
+        let swjs = self
+            .exec_request_text(
+                self.http
+                    .get("https://www.youtube.com/sw.js")
+                    .header(header::ORIGIN, "https://www.youtube.com")
+                    .header(header::REFERER, "https://www.youtube.com")
+                    .header(header::COOKIE, self.consent_cookie_yes.to_owned())
+                    .build()
+                    .unwrap(),
+            )
+            .await
+            .context("Failed to download sw.js")?;
+
+        static CLIENT_VERSION_PATTERNS: Lazy<[Regex; 3]> = Lazy::new(|| {
+            [
+                Regex::new("INNERTUBE_CONTEXT_CLIENT_VERSION\":\"([0-9\\.]+?)\"").unwrap(),
+                Regex::new("innertube_context_client_version\":\"([0-9\\.]+?)\"").unwrap(),
+                Regex::new("client.version=([0-9\\.]+)").unwrap(),
+            ]
+        });
+
+        Ok(util::get_cg_from_regexes(
+            CLIENT_VERSION_PATTERNS.iter(),
+            &swjs,
+            1,
+        ))
+    }
+
     async fn get_client_version(&self) -> String {
-        let mut client_data = self.desktop_client_data.lock().await;
+        let mut client_data = self.data.lock().await;
 
         if client_data.is_old() {
             let client_version = self.extract_client_version_from_swjs().await;
@@ -194,58 +331,7 @@ impl RustyTube {
                 last_update: Some(Instant::now()),
             }
         }
-
-        client_data.client_version.to_string()
-    }
-
-    async fn extract_client_version_from_swjs(&self) -> Result<Option<String>> {
-        let swjs = self
-            .exec_request(
-                self.http
-                    .get("https://www.youtube.com/sw.js")
-                    .header(header::ORIGIN, "https://www.youtube.com")
-                    .header(header::REFERER, "https://www.youtube.com")
-                    .header(header::COOKIE, self.consent_cookie_yes.to_owned())
-                    .build()
-                    .unwrap(),
-            )
-            .await
-            .context("Failed to download sw.js")?;
-
-        static CLIENT_VERSION_PATTERNS: Lazy<[Regex; 3]> = Lazy::new(|| {
-            [
-                Regex::new("INNERTUBE_CONTEXT_CLIENT_VERSION\":\"([0-9\\.]+?)\"").unwrap(),
-                Regex::new("innertube_context_client_version\":\"([0-9\\.]+?)\"").unwrap(),
-                Regex::new("client.version=([0-9\\.]+)").unwrap(),
-            ]
-        });
-
-        /*
-        static API_KEY_PATTERNS: Lazy<[Regex; 2]> = Lazy::new(|| {
-            [
-                Regex::new("INNERTUBE_API_KEY\":\"([0-9a-zA-Z_-]+?)\"").unwrap(),
-                Regex::new("innertubeApiKey\":\"([0-9a-zA-Z_-]+?)\"").unwrap(),
-            ]
-        });*/
-
-        Ok(util::get_cg_from_regexes(
-            CLIENT_VERSION_PATTERNS.iter(),
-            &swjs,
-            1,
-        ))
-    }
-
-    fn generate_content_playback_nonce() -> String {
-        util::random_string(CONTENT_PLAYBACK_NONCE_ALPHABET, 16)
-    }
-
-    fn generate_t_parameter() -> String {
-        util::random_string(CONTENT_PLAYBACK_NONCE_ALPHABET, 12)
-    }
-
-    async fn exec_request(&self, request: Request) -> Result<String> {
-        let resp = self.http.execute(request).await?.error_for_status()?;
-        Ok(resp.text().await?)
+        client_data.client_version.to_owned()
     }
 }
 
@@ -254,6 +340,7 @@ mod tests {
     use super::*;
     use test_log::test;
 
+    /*
     #[test(tokio::test)]
     async fn t_extract_client_version_from_swjs() {
         let rt = RustyTube::new();
@@ -300,4 +387,5 @@ mod tests {
         let request_str = serde_json::to_string_pretty(&request).unwrap();
         println!("{}", request_str);
     }
+    */
 }

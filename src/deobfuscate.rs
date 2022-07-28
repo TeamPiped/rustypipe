@@ -14,11 +14,13 @@ pub struct Deobfuscator {
     cache: RwLock<JSCache>,
 }
 
+#[derive(Default)]
 struct JSCache {
-    js_url: Option<String>,
-    last_update: Instant,
+    last_update: Option<Instant>,
+    js_url: String,
     sig_fn: String,
     nsig_fn: String,
+    sts: String,
 }
 
 impl Deobfuscator {
@@ -26,12 +28,7 @@ impl Deobfuscator {
     pub fn new(http: Client) -> Self {
         Self {
             http,
-            cache: RwLock::new(JSCache {
-                js_url: None,
-                last_update: Instant::now(),
-                sig_fn: "".to_owned(),
-                nsig_fn: "".to_owned(),
-            }),
+            cache: RwLock::new(JSCache::default()),
         }
     }
 
@@ -51,12 +48,14 @@ impl Deobfuscator {
 
             let sig_fn = get_sig_fn(&player_js)?;
             let nsig_fn = get_nsig_fn(&player_js)?;
+            let sts = get_sts(&player_js)?;
 
             *cache = JSCache {
-                js_url: Some(url.to_owned()),
-                last_update: Instant::now(),
+                last_update: Some(Instant::now()),
+                js_url: url.to_owned(),
                 sig_fn,
                 nsig_fn,
+                sts,
             };
         }
         Ok(())
@@ -73,11 +72,20 @@ impl Deobfuscator {
         let cache = self.cache.read().await;
         deobfuscate_nsig(nsig, &cache.nsig_fn)
     }
+
+    pub async fn get_sts(&self) -> Result<String> {
+        self.update().await?;
+        let cache = self.cache.read().await;
+        Ok(cache.sts.to_owned())
+    }
 }
 
 impl JSCache {
     fn is_stale(&self) -> bool {
-        self.js_url.is_none() || Instant::now().duration_since(self.last_update).as_secs() > 3600
+        match self.last_update {
+            Some(last_update) => Instant::now().duration_since(last_update).as_secs() > 3600,
+            None => true,
+        }
     }
 }
 
@@ -301,6 +309,19 @@ async fn get_response(http: &Client, url: &str) -> Result<String> {
     Ok(resp.text().await?)
 }
 
+fn get_sts(player_js: &str) -> Result<String> {
+    let sts_pattern = Regex::new("signatureTimestamp[=:](\\d+)").unwrap();
+
+    Ok(some_or_bail!(
+        sts_pattern.captures(&player_js)?,
+        Err(anyhow!("could not find sts"))
+    )
+    .get(1)
+    .unwrap()
+    .as_str()
+    .to_owned())
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -361,6 +382,12 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
     fn t_get_nsig_fn() {
         let res = get_nsig_fn(TEST_JS).unwrap();
         assert_eq!(res, N_DEOBF_FUNC);
+    }
+
+    #[test]
+    fn t_get_sts() {
+        let res = get_sts(TEST_JS).unwrap();
+        assert_eq!(res, "19187")
     }
 
     #[test]

@@ -4,6 +4,7 @@
 mod macros;
 
 mod util;
+mod serializer;
 mod deobfuscate;
 
 pub mod client;
