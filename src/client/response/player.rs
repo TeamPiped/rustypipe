@@ -171,7 +171,6 @@ pub struct Captions {
 #[serde(rename_all = "camelCase")]
 pub struct PlayerCaptionsTracklistRenderer {
     pub caption_tracks: Vec<CaptionTrack>,
-    pub translation_languages: Vec<TranslationLanguage>,
 }
 
 #[serde_as]
@@ -182,15 +181,6 @@ pub struct CaptionTrack {
     #[serde_as(as = "crate::serializer::text::Text")]
     pub name: String,
     pub language_code: String,
-}
-
-#[serde_as]
-#[derive(Clone, Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct TranslationLanguage {
-    pub language_code: String,
-    #[serde_as(as = "crate::serializer::text::Text")]
-    pub language_name: String
 }
 
 #[serde_as]

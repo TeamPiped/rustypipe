@@ -5,6 +5,7 @@ mod macros;
 
 mod util;
 mod serializer;
+mod cache;
 mod deobfuscate;
 
 pub mod client;

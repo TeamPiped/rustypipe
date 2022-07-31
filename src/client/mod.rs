@@ -6,15 +6,16 @@ use std::{sync::Arc, time::Instant};
 use anyhow::{anyhow, bail, Context, Result};
 use async_trait::async_trait;
 use fancy_regex::Regex;
-use log::{debug, error, info, warn};
+use log::{debug, warn};
 use once_cell::sync::Lazy;
 use rand::Rng;
 use reqwest::{header, Client, ClientBuilder, Method, Request, RequestBuilder, Response};
-use serde::{Serialize};
+use serde::Serialize;
 use tokio::sync::Mutex;
 
 use crate::{deobfuscate::Deobfuscator, util};
 
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 pub enum ClientType {
     Desktop,
     DesktopMusic,
@@ -23,15 +24,15 @@ pub enum ClientType {
     Ios,
 }
 
-#[derive(Clone, Debug, Serialize)]
-#[serde(rename_all = "camelCase")]
-pub struct BaseRequest {
-    context: ContextYT,
+impl ClientType {
+    pub fn is_web(self) -> bool {
+        self == Self::Desktop || self == Self::DesktopMusic || self == Self::TvHtml5Embed
+    }
 }
 
 #[derive(Clone, Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
-struct ContextYT {
+pub struct ContextYT {
     client: ClientInfo,
     /// only used on desktop
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -49,6 +50,8 @@ struct ClientInfo {
     client_version: String,
     #[serde(skip_serializing_if = "Option::is_none")]
     client_screen: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    device_model: Option<String>,
     platform: String,
     #[serde(skip_serializing_if = "Option::is_none")]
     original_url: Option<String>,
@@ -95,17 +98,25 @@ const CONSENT_COOKIE: &str = "CONSENT";
 const CONSENT_COOKIE_YES: &str = "YES+yt.462272069.de+FX+";
 const CONSENT_COOKIE_NO: &str = "PENDING+";
 
-const DESKTOP_CLIENT_VERSION: &str = "2.20220721.05.00_1";
-const DESKTOP_API_KEY: &str = "AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8";
-
 const YOUTUBEI_V1_URL: &str = "https://www.youtube.com/youtubei/v1/";
 const YOUTUBEI_V1_GAPIS_URL: &str = "https://youtubei.googleapis.com/youtubei/v1/";
 
 const DISABLE_PRETTY_PRINT_PARAMETER: &str = "&prettyPrint=false";
 
+const DESKTOP_CLIENT_VERSION: &str = "2.20220721.05.00_1";
+const DESKTOP_API_KEY: &str = "AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8";
+const TVHTML5_CLIENT_VERSION: &str = "2.0";
+
+const MOBILE_CLIENT_VERSION: &str = "17.10.35";
+const ANDROID_API_KEY: &str = "AIzaSyA8eiZmM1FaDVjRy-df2KTyQ_vz_yYM39w";
+const IOS_API_KEY: &str = "AIzaSyB-63vPrdThhKuerbB2N_l7Kwwcxj6yUAc";
+const IOS_DEVICE_MODEL: &str = "iPhone14,5";
+
 pub struct RustyTube {
     pub locale: Arc<Locale>,
-    pub desktop_client: DesktopClient,
+    desktop_client: Arc<DesktopClient>,
+    android_client: Arc<AndroidClient>,
+    ios_client: Arc<IosClient>,
 }
 
 #[derive(Clone)]
@@ -129,28 +140,28 @@ impl RustyTube {
 
         Self {
             locale: locale.clone(),
-            desktop_client: DesktopClient::new(locale),
+            desktop_client: Arc::new(DesktopClient::new(locale.clone())),
+            android_client: Arc::new(AndroidClient::new(locale.clone())),
+            ios_client: Arc::new(IosClient::new(locale)),
         }
     }
 
-    /*
-    pub fn get_ytclient(&self, client_type: ClientType) -> impl YTClient {
+    pub fn get_ytclient(&self, client_type: ClientType) -> Arc<dyn YTClient> {
         match client_type {
-            ClientType::Desktop => self.desktop_client,
+            ClientType::Desktop => self.desktop_client.clone(),
             ClientType::DesktopMusic => todo!(),
             ClientType::TvHtml5Embed => todo!(),
-            ClientType::Android => todo!(),
-            ClientType::Ios => todo!(),
+            ClientType::Android => self.android_client.clone(),
+            ClientType::Ios => self.ios_client.clone(),
         }
     }
-    */
 }
 
 #[async_trait]
 pub trait YTClient {
-    fn new(locale: Arc<Locale>) -> Self;
+    // fn new(locale: Arc<Locale>) -> Self;
 
-    async fn get_base_request_body(&self, localized: bool) -> BaseRequest;
+    async fn get_context(&self, localized: bool) -> ContextYT;
     async fn request_builder(&self, method: Method, url: &str) -> RequestBuilder;
     async fn exec_request(&self, request: Request) -> Result<Response>;
     async fn exec_request_text(&self, request: Request) -> Result<String>;
@@ -192,6 +203,56 @@ impl DesktopClientData {
 
 #[async_trait]
 impl YTClient for DesktopClient {
+    async fn get_context(&self, localized: bool) -> ContextYT {
+        ContextYT {
+            client: ClientInfo {
+                client_name: "WEB".to_owned(),
+                client_version: self.get_client_version().await,
+                client_screen: None,
+                device_model: None,
+                platform: "DESKTOP".to_owned(),
+                original_url: Some("https://www.youtube.com".to_owned()),
+                hl: match localized {
+                    true => self.locale.lang.to_owned(),
+                    false => "en".to_owned(),
+                },
+                gl: match localized {
+                    true => self.locale.country.to_owned(),
+                    false => "US".to_owned(),
+                },
+            },
+            request: Some(RequestYT::default()),
+            user: User::default(),
+            third_party: None,
+        }
+    }
+
+    async fn request_builder(&self, method: Method, endpoint: &str) -> RequestBuilder {
+        self.http
+            .request(
+                method,
+                format!(
+                    "{}{}?key={}{}",
+                    YOUTUBEI_V1_URL, endpoint, DESKTOP_API_KEY, DISABLE_PRETTY_PRINT_PARAMETER
+                ),
+            )
+            .header(header::ORIGIN, "https://www.youtube.com")
+            .header(header::REFERER, "https://www.youtube.com")
+            .header(header::COOKIE, self.consent_cookie_no.to_owned())
+            .header("X-YouTube-Client-Name", "1")
+            .header("X-YouTube-Client-Version", self.get_client_version().await)
+    }
+
+    async fn exec_request(&self, request: Request) -> Result<Response> {
+        Ok(self.http.execute(request).await?.error_for_status()?)
+    }
+
+    async fn exec_request_text(&self, request: Request) -> Result<String> {
+        Ok(self.exec_request(request).await?.text().await?)
+    }
+}
+
+impl DesktopClient {
     fn new(locale: Arc<Locale>) -> Self {
         let mut rng = rand::thread_rng();
 
@@ -224,57 +285,6 @@ impl YTClient for DesktopClient {
         }
     }
 
-    async fn get_base_request_body(&self, localized: bool) -> BaseRequest {
-        BaseRequest {
-            context: ContextYT {
-                client: ClientInfo {
-                    client_name: "WEB".to_owned(),
-                    client_version: self.get_client_version().await,
-                    client_screen: None,
-                    platform: "DESKTOP".to_owned(),
-                    original_url: Some("https://www.youtube.com".to_owned()),
-                    hl: match localized {
-                        true => self.locale.lang.to_owned(),
-                        false => "en".to_owned(),
-                    },
-                    gl: match localized {
-                        true => self.locale.country.to_owned(),
-                        false => "US".to_owned(),
-                    },
-                },
-                request: Some(RequestYT::default()),
-                user: User::default(),
-                third_party: None,
-            },
-        }
-    }
-
-    async fn request_builder(&self, method: Method, endpoint: &str) -> RequestBuilder {
-        self.http
-            .request(
-                method,
-                format!(
-                    "{}{}?key={}{}",
-                    YOUTUBEI_V1_URL, endpoint, DESKTOP_API_KEY, DISABLE_PRETTY_PRINT_PARAMETER
-                ),
-            )
-            .header(header::ORIGIN, "https://www.youtube.com")
-            .header(header::REFERER, "https://www.youtube.com")
-            .header(header::COOKIE, self.consent_cookie_no.to_owned())
-            .header("X-YouTube-Client-Name", "1")
-            .header("X-YouTube-Client-Version", self.get_client_version().await)
-    }
-
-    async fn exec_request(&self, request: Request) -> Result<Response> {
-        Ok(self.http.execute(request).await?.error_for_status()?)
-    }
-
-    async fn exec_request_text(&self, request: Request) -> Result<String> {
-        Ok(self.exec_request(request).await?.text().await?)
-    }
-}
-
-impl DesktopClient {
     async fn extract_client_version_from_swjs(&self) -> Result<Option<String>> {
         let swjs = self
             .exec_request_text(
@@ -332,6 +342,148 @@ impl DesktopClient {
             }
         }
         client_data.client_version.to_owned()
+    }
+}
+
+pub struct AndroidClient {
+    locale: Arc<Locale>,
+    http: Client,
+}
+
+#[async_trait]
+impl YTClient for AndroidClient {
+    async fn get_context(&self, localized: bool) -> ContextYT {
+        ContextYT {
+            client: ClientInfo {
+                client_name: "ANDROID".to_owned(),
+                client_version: MOBILE_CLIENT_VERSION.to_owned(),
+                client_screen: None,
+                device_model: None,
+                platform: "MOBILE".to_owned(),
+                original_url: None,
+                hl: match localized {
+                    true => self.locale.lang.to_owned(),
+                    false => "en".to_owned(),
+                },
+                gl: match localized {
+                    true => self.locale.country.to_owned(),
+                    false => "US".to_owned(),
+                },
+            },
+            request: None,
+            user: User::default(),
+            third_party: None,
+        }
+    }
+
+    async fn request_builder(&self, method: Method, endpoint: &str) -> RequestBuilder {
+        self.http
+            .request(
+                method,
+                format!(
+                    "{}{}?key={}{}",
+                    YOUTUBEI_V1_GAPIS_URL,
+                    endpoint,
+                    ANDROID_API_KEY,
+                    DISABLE_PRETTY_PRINT_PARAMETER
+                ),
+            )
+            .header("X-Goog-Api-Format-Version", "2")
+    }
+
+    async fn exec_request(&self, request: Request) -> Result<Response> {
+        Ok(self.http.execute(request).await?.error_for_status()?)
+    }
+
+    async fn exec_request_text(&self, request: Request) -> Result<String> {
+        Ok(self.exec_request(request).await?.text().await?)
+    }
+}
+
+impl AndroidClient {
+    fn new(locale: Arc<Locale>) -> Self {
+        let http = ClientBuilder::new()
+            .user_agent(format!(
+                "com.google.android.youtube/{} (Linux; U; Android 12; {}) gzip",
+                MOBILE_CLIENT_VERSION, locale.country
+            ))
+            .gzip(true)
+            .brotli(true)
+            .build()
+            .expect("unable to build the HTTP client");
+
+        Self { locale, http }
+    }
+}
+
+pub struct IosClient {
+    locale: Arc<Locale>,
+    http: Client,
+}
+
+#[async_trait]
+impl YTClient for IosClient {
+    async fn get_context(&self, localized: bool) -> ContextYT {
+        ContextYT {
+            client: ClientInfo {
+                client_name: "IOS".to_owned(),
+                client_version: MOBILE_CLIENT_VERSION.to_owned(),
+                client_screen: None,
+                device_model: Some(IOS_DEVICE_MODEL.to_owned()),
+                platform: "MOBILE".to_owned(),
+                original_url: None,
+                hl: match localized {
+                    true => self.locale.lang.to_owned(),
+                    false => "en".to_owned(),
+                },
+                gl: match localized {
+                    true => self.locale.country.to_owned(),
+                    false => "US".to_owned(),
+                },
+            },
+            request: None,
+            user: User::default(),
+            third_party: None,
+        }
+    }
+
+    async fn request_builder(&self, method: Method, endpoint: &str) -> RequestBuilder {
+        self.http
+            .request(
+                method,
+                format!(
+                    "{}{}?key={}{}",
+                    YOUTUBEI_V1_GAPIS_URL,
+                    endpoint,
+                    ANDROID_API_KEY,
+                    DISABLE_PRETTY_PRINT_PARAMETER
+                ),
+            )
+            .header("X-Goog-Api-Format-Version", "2")
+    }
+
+    async fn exec_request(&self, request: Request) -> Result<Response> {
+        Ok(self.http.execute(request).await?.error_for_status()?)
+    }
+
+    async fn exec_request_text(&self, request: Request) -> Result<String> {
+        Ok(self.exec_request(request).await?.text().await?)
+    }
+}
+
+impl IosClient {
+    fn new(locale: Arc<Locale>) -> Self {
+        let http = ClientBuilder::new()
+            .user_agent(format!(
+                "com.google.ios.youtube/{} ({}; U; CPU iOS 15_4 like Mac OS X; {})",
+                MOBILE_CLIENT_VERSION, IOS_DEVICE_MODEL, locale.country
+            ))
+            .gzip(true)
+            .brotli(true)
+            .build()
+            .expect("unable to build the HTTP client");
+
+        Self { locale, http }
     }
 }
 
