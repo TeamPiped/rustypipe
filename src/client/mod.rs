@@ -1,17 +1,16 @@
 mod player;
 mod response;
 
-use std::{sync::Arc, time::Instant};
+use std::sync::Arc;
 
 use anyhow::{anyhow, Context, Result};
 use async_trait::async_trait;
 use fancy_regex::Regex;
-use log::{debug, warn};
+use log::warn;
 use once_cell::sync::Lazy;
 use rand::Rng;
 use reqwest::{header, Client, ClientBuilder, Method, Request, RequestBuilder, Response};
 use serde::Serialize;
-use tokio::sync::Mutex;
 
 use crate::{
     cache::{Cache, DesktopClientData},
@@ -122,6 +121,7 @@ pub struct RustyTube {
     desktop_client: Arc<DesktopClient>,
     android_client: Arc<AndroidClient>,
     ios_client: Arc<IosClient>,
+    tvhtml5embed_client: Arc<TvHtml5EmbedClient>,
 }
 
 #[derive(Clone)]
@@ -153,7 +153,8 @@ impl RustyTube {
             cache: cache.clone(),
             desktop_client: Arc::new(DesktopClient::new(locale.clone(), cache)),
             android_client: Arc::new(AndroidClient::new(locale.clone())),
-            ios_client: Arc::new(IosClient::new(locale)),
+            ios_client: Arc::new(IosClient::new(locale.clone())),
+            tvhtml5embed_client: Arc::new(TvHtml5EmbedClient::new(locale))
         }
     }
 
@@ -161,7 +162,7 @@ impl RustyTube {
         match client_type {
             ClientType::Desktop => self.desktop_client.clone(),
             ClientType::DesktopMusic => todo!(),
-            ClientType::TvHtml5Embed => todo!(),
+            ClientType::TvHtml5Embed => self.tvhtml5embed_client.clone(),
             ClientType::Android => self.android_client.clone(),
             ClientType::Ios => self.ios_client.clone(),
         }
@@ -172,8 +173,6 @@ impl RustyTube {
 pub trait YTClient {
     async fn get_context(&self, localized: bool) -> ContextYT;
     async fn request_builder(&self, method: Method, url: &str) -> RequestBuilder;
-    async fn exec_request(&self, request: Request) -> Result<Response>;
-    async fn exec_request_text(&self, request: Request) -> Result<String>;
 }
 
 async fn exec_request(http: Client, request: Request) -> Result<Response> {
@@ -233,14 +232,6 @@ impl YTClient for DesktopClient {
             .header(header::COOKIE, self.consent_cookie_no.to_owned())
             .header("X-YouTube-Client-Name", "1")
             .header("X-YouTube-Client-Version", self.get_client_version().await)
-    }
-
-    async fn exec_request(&self, request: Request) -> Result<Response> {
-        Ok(self.http.execute(request).await?.error_for_status()?)
-    }
-
-    async fn exec_request_text(&self, request: Request) -> Result<String> {
-        Ok(self.exec_request(request).await?.text().await?)
     }
 }
 
@@ -373,14 +364,6 @@ impl YTClient for AndroidClient {
             )
             .header("X-Goog-Api-Format-Version", "2")
     }
-
-    async fn exec_request(&self, request: Request) -> Result<Response> {
-        Ok(self.http.execute(request).await?.error_for_status()?)
-    }
-
-    async fn exec_request_text(&self, request: Request) -> Result<String> {
-        Ok(self.exec_request(request).await?.text().await?)
-    }
 }
 
 impl AndroidClient {
@@ -444,14 +427,6 @@ impl YTClient for IosClient {
             )
             .header("X-Goog-Api-Format-Version", "2")
     }
-
-    async fn exec_request(&self, request: Request) -> Result<Response> {
-        Ok(self.http.execute(request).await?.error_for_status()?)
-    }
-
-    async fn exec_request_text(&self, request: Request) -> Result<String> {
-        Ok(self.exec_request(request).await?.text().await?)
-    }
 }
 
 impl IosClient {
@@ -461,6 +436,69 @@ impl IosClient {
                 "com.google.ios.youtube/{} ({}; U; CPU iOS 15_4 like Mac OS X; {})",
                 MOBILE_CLIENT_VERSION, IOS_DEVICE_MODEL, locale.country
             ))
+            .gzip(true)
+            .brotli(true)
+            .build()
+            .expect("unable to build the HTTP client");
+
+        Self { locale, http }
+    }
+}
+
+pub struct TvHtml5EmbedClient {
+    locale: Arc<Locale>,
+    http: Client,
+}
+
+#[async_trait]
+impl YTClient for TvHtml5EmbedClient {
+    async fn get_context(&self, localized: bool) -> ContextYT {
+        ContextYT {
+            client: ClientInfo {
+                client_name: "TVHTML5_SIMPLY_EMBEDDED_PLAYER".to_owned(),
+                client_version: TVHTML5_CLIENT_VERSION.to_owned(),
+                client_screen: Some("EMBED".to_owned()),
+                device_model: None,
+                platform: "TV".to_owned(),
+                original_url: None,
+                hl: match localized {
+                    true => self.locale.lang.to_owned(),
+                    false => "en".to_owned(),
+                },
+                gl: match localized {
+                    true => self.locale.country.to_owned(),
+                    false => "US".to_owned(),
+                },
+            },
+            request: Some(RequestYT::default()),
+            user: User::default(),
+            third_party: Some(ThirdParty {
+                embed_url: "https://www.youtube.com/".to_owned()
+            }),
+        }
+    }
+
+    async fn request_builder(&self, method: Method, endpoint: &str) -> RequestBuilder {
+        self.http
+            .request(
+                method,
+                format!(
+                    "{}{}?key={}{}",
+                    YOUTUBEI_V1_URL, endpoint, DESKTOP_API_KEY, DISABLE_PRETTY_PRINT_PARAMETER
+                ),
+            )
+            .header(header::ORIGIN, "https://www.youtube.com")
+            .header(header::REFERER, "https://www.youtube.com")
+            // .header(header::COOKIE, self.consent_cookie_no.to_owned())
+            .header("X-YouTube-Client-Name", "1")
+            .header("X-YouTube-Client-Version", TVHTML5_CLIENT_VERSION)
+    }
+}
+
+impl TvHtml5EmbedClient {
+    fn new(locale: Arc<Locale>) -> Self {
+        let http = ClientBuilder::new()
+            .user_agent(DEFAULT_UA)
             .gzip(true)
             .brotli(true)
             .build()
