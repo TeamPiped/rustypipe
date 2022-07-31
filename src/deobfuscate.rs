@@ -4,88 +4,63 @@ use log::debug;
 use once_cell::sync::Lazy;
 use reqwest::Client;
 use std::result::Result::Ok;
-use std::time::Instant;
-use tokio::sync::RwLock;
 
+use crate::cache::{Cache, DeobfData};
 use crate::util;
 
 pub struct Deobfuscator {
     http: Client,
-    cache: RwLock<JSCache>,
-}
-
-#[derive(Default)]
-struct JSCache {
-    last_update: Option<Instant>,
-    js_url: String,
-    sig_fn: String,
-    nsig_fn: String,
-    sts: String,
+    cache: Cache,
 }
 
 impl Deobfuscator {
     #[must_use]
-    pub fn new(http: Client) -> Self {
-        Self {
-            http,
-            cache: RwLock::new(JSCache::default()),
-        }
+    pub fn new(http: Client, cache: Cache) -> Self {
+        Self { http, cache }
     }
 
-    async fn update(&self) -> Result<()> {
-        let mut cache = self.cache.write().await;
+    async fn get_deobf_data(&self) -> Result<DeobfData> {
+        let http = self.http.clone();
 
-        if cache.is_stale() {
-            let url = get_player_js_url(&self.http)
-                .await
-                .context("Failed to retrieve player.js URL")?;
+        self.cache
+            .get_deobf_data(async move {
+                let js_url = get_player_js_url(&http)
+                    .await
+                    .context("Failed to retrieve player.js URL")?;
 
-            let player_js = get_response(&self.http, &url)
-                .await
-                .context("Failed to download player.js")?;
+                let player_js = get_response(&http, &js_url)
+                    .await
+                    .context("Failed to download player.js")?;
 
-            debug!("Downloaded player.js from {}", url);
+                debug!("Downloaded player.js from {}", js_url);
 
-            let sig_fn = get_sig_fn(&player_js)?;
-            let nsig_fn = get_nsig_fn(&player_js)?;
-            let sts = get_sts(&player_js)?;
+                let sig_fn = get_sig_fn(&player_js)?;
+                let nsig_fn = get_nsig_fn(&player_js)?;
+                let sts = get_sts(&player_js)?;
 
-            *cache = JSCache {
-                last_update: Some(Instant::now()),
-                js_url: url.to_owned(),
-                sig_fn,
-                nsig_fn,
-                sts,
-            };
-        }
-        Ok(())
+                Ok(DeobfData {
+                    js_url,
+                    nsig_fn,
+                    sig_fn,
+                    sts,
+                })
+            })
+            .await
     }
 
     pub async fn deobfuscate_sig(&self, sig: &str) -> Result<String> {
-        self.update().await?;
-        let cache = self.cache.read().await;
-        deobfuscate_sig(sig, &cache.sig_fn)
+        let deobf_data = self.get_deobf_data().await?;
+        deobfuscate_sig(sig, &deobf_data.sig_fn)
     }
 
     pub async fn deobfuscate_nsig(&self, nsig: &str) -> Result<String> {
-        self.update().await?;
-        let cache = self.cache.read().await;
-        deobfuscate_nsig(nsig, &cache.nsig_fn)
+        let deobf_data = self.get_deobf_data().await?;
+        deobfuscate_nsig(nsig, &deobf_data.nsig_fn)
     }
 
     pub async fn get_sts(&self) -> Result<String> {
-        self.update().await?;
-        let cache = self.cache.read().await;
-        Ok(cache.sts.to_owned())
-    }
-}
-
-impl JSCache {
-    fn is_stale(&self) -> bool {
-        match self.last_update {
-            Some(last_update) => Instant::now().duration_since(last_update).as_secs() > 3600,
-            None => true,
-        }
+        let deobf_data = self.get_deobf_data().await?;
+        Ok(deobf_data.sts)
     }
 }
 
@@ -407,7 +382,8 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
     #[test(tokio::test)]
     async fn t_update() {
         let client = Client::new();
-        let deobf = Deobfuscator::new(client);
+        let cache = Cache::default();
+        let deobf = Deobfuscator::new(client, cache);
 
         let deobf_sig = deobf.deobfuscate_sig("GOqGOqGOq0QJ8wRAIgaryQHfplJ9xJSKFywyaSMHuuwZYsoMTAvRvfm51qIGECIA5061zWeyfMPX9hEl_U6f9J0tr7GTJMKyPf5XNrJb5fb5i").await.unwrap();
         println!("{}", deobf_sig);
@@ -416,7 +392,8 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
     #[test(tokio::test)]
     async fn t_parallel() {
         let client = Client::new();
-        let deobf = Deobfuscator::new(client);
+        let cache = Cache::default();
+        let deobf = Deobfuscator::new(client, cache);
         let deobf_arc = Arc::new(deobf);
 
         let (deobf_sig, deobf_nsig) = tokio::join!(

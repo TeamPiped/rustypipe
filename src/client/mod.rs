@@ -3,7 +3,7 @@ mod response;
 
 use std::{sync::Arc, time::Instant};
 
-use anyhow::{anyhow, bail, Context, Result};
+use anyhow::{anyhow, Context, Result};
 use async_trait::async_trait;
 use fancy_regex::Regex;
 use log::{debug, warn};
@@ -13,7 +13,11 @@ use reqwest::{header, Client, ClientBuilder, Method, Request, RequestBuilder, Re
 use serde::Serialize;
 use tokio::sync::Mutex;
 
-use crate::{deobfuscate::Deobfuscator, util};
+use crate::{
+    cache::{Cache, DesktopClientData},
+    deobfuscate::Deobfuscator,
+    util,
+};
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
 pub enum ClientType {
@@ -114,6 +118,7 @@ const IOS_DEVICE_MODEL: &str = "iPhone14,5";
 
 pub struct RustyTube {
     pub locale: Arc<Locale>,
+    cache: Cache,
     desktop_client: Arc<DesktopClient>,
     android_client: Arc<AndroidClient>,
     ios_client: Arc<IosClient>,
@@ -128,19 +133,25 @@ pub struct Locale {
 impl RustyTube {
     #[must_use]
     pub fn new() -> Self {
-        Self::new_with_ua("en", "US")
+        Self::new_with_ua("en", "US", Some("rusty-tube.json".to_owned()))
     }
 
     #[must_use]
-    pub fn new_with_ua(lang: &str, country: &str) -> Self {
+    pub fn new_with_ua(lang: &str, country: &str, cache_file: Option<String>) -> Self {
         let locale = Arc::new(Locale {
             lang: lang.to_owned(),
             country: country.to_owned(),
         });
 
+        let cache = match cache_file.as_ref() {
+            Some(cache_file) => Cache::from_json_file(cache_file),
+            None => Cache::default(),
+        };
+
         Self {
             locale: locale.clone(),
-            desktop_client: Arc::new(DesktopClient::new(locale.clone())),
+            cache: cache.clone(),
+            desktop_client: Arc::new(DesktopClient::new(locale.clone(), cache)),
             android_client: Arc::new(AndroidClient::new(locale.clone())),
             ios_client: Arc::new(IosClient::new(locale)),
         }
@@ -159,46 +170,27 @@ impl RustyTube {
 
 #[async_trait]
 pub trait YTClient {
-    // fn new(locale: Arc<Locale>) -> Self;
-
     async fn get_context(&self, localized: bool) -> ContextYT;
     async fn request_builder(&self, method: Method, url: &str) -> RequestBuilder;
     async fn exec_request(&self, request: Request) -> Result<Response>;
     async fn exec_request_text(&self, request: Request) -> Result<String>;
 }
 
+async fn exec_request(http: Client, request: Request) -> Result<Response> {
+    Ok(http.execute(request).await?.error_for_status()?)
+}
+
+async fn exec_request_text(http: Client, request: Request) -> Result<String> {
+    Ok(exec_request(http, request).await?.text().await?)
+}
+
 pub struct DesktopClient {
     locale: Arc<Locale>,
     http: Client,
-    data: Mutex<DesktopClientData>,
+    cache: Cache,
     consent_cookie_yes: String,
     consent_cookie_no: String,
     deobf: Deobfuscator,
-}
-
-#[derive(Debug)]
-struct DesktopClientData {
-    last_update: Option<Instant>,
-    client_version: String,
-}
-
-impl Default for DesktopClientData {
-    fn default() -> Self {
-        Self {
-            last_update: None,
-            client_version: DESKTOP_CLIENT_VERSION.to_owned(),
-        }
-    }
-}
-
-impl DesktopClientData {
-    fn is_old(&self) -> bool {
-        self.last_update.is_none()
-            || Instant::now()
-                .duration_since(self.last_update.unwrap())
-                .as_secs()
-                > 86400
-    }
 }
 
 #[async_trait]
@@ -253,7 +245,7 @@ impl YTClient for DesktopClient {
 }
 
 impl DesktopClient {
-    fn new(locale: Arc<Locale>) -> Self {
+    fn new(locale: Arc<Locale>, cache: Cache) -> Self {
         let mut rng = rand::thread_rng();
 
         let http = ClientBuilder::new()
@@ -263,12 +255,12 @@ impl DesktopClient {
             .build()
             .expect("unable to build the HTTP client");
 
-        let deobf = Deobfuscator::new(http.clone());
+        let deobf = Deobfuscator::new(http.clone(), cache.clone());
 
         Self {
             locale,
             http,
-            data: Mutex::new(DesktopClientData::default()),
+            cache,
             consent_cookie_yes: format!(
                 "{}={}{}",
                 CONSENT_COOKIE,
@@ -285,19 +277,21 @@ impl DesktopClient {
         }
     }
 
-    async fn extract_client_version_from_swjs(&self) -> Result<Option<String>> {
-        let swjs = self
-            .exec_request_text(
-                self.http
-                    .get("https://www.youtube.com/sw.js")
-                    .header(header::ORIGIN, "https://www.youtube.com")
-                    .header(header::REFERER, "https://www.youtube.com")
-                    .header(header::COOKIE, self.consent_cookie_yes.to_owned())
-                    .build()
-                    .unwrap(),
-            )
-            .await
-            .context("Failed to download sw.js")?;
+    async fn extract_client_version_from_swjs(
+        http: Client,
+        consent_cookie: &str,
+    ) -> Result<String> {
+        let swjs = exec_request_text(
+            http.clone(),
+            http.get("https://www.youtube.com/sw.js")
+                .header(header::ORIGIN, "https://www.youtube.com")
+                .header(header::REFERER, "https://www.youtube.com")
+                .header(header::COOKIE, consent_cookie)
+                .build()
+                .unwrap(),
+        )
+        .await
+        .context("Failed to download sw.js")?;
 
         static CLIENT_VERSION_PATTERNS: Lazy<[Regex; 3]> = Lazy::new(|| {
             [
@@ -307,41 +301,30 @@ impl DesktopClient {
             ]
         });
 
-        Ok(util::get_cg_from_regexes(
-            CLIENT_VERSION_PATTERNS.iter(),
-            &swjs,
-            1,
-        ))
+        util::get_cg_from_regexes(CLIENT_VERSION_PATTERNS.iter(), &swjs, 1)
+            .ok_or(anyhow!("Could not find desktop client version in sw.js"))
     }
 
     async fn get_client_version(&self) -> String {
-        let mut client_data = self.data.lock().await;
+        let http = self.http.clone();
+        let consent_cookie = self.consent_cookie_yes.clone();
 
-        if client_data.is_old() {
-            let client_version = self.extract_client_version_from_swjs().await;
-            let new_version = match client_version {
-                Ok(client_version) => match client_version {
-                    Some(client_version) => {
-                        debug!("Updated desktop client version to {}", client_version);
-                        client_version
-                    }
-                    None => {
-                        warn!("Could not find desktop client version in sw.js");
-                        DESKTOP_CLIENT_VERSION.to_owned()
-                    }
-                },
-                Err(e) => {
-                    warn!("Could not extract desktop client version, Error: {}", e);
-                    DESKTOP_CLIENT_VERSION.to_owned()
-                }
-            };
+        let client_data = self
+            .cache
+            .get_desktop_client_data(async move {
+                let client_version =
+                    Self::extract_client_version_from_swjs(http, &consent_cookie).await?;
+                Ok(DesktopClientData { client_version })
+            })
+            .await;
 
-            *client_data = DesktopClientData {
-                client_version: new_version,
-                last_update: Some(Instant::now()),
+        match client_data {
+            Ok(client_data) => client_data.client_version,
+            Err(e) => {
+                warn!("{}", e);
+                DESKTOP_CLIENT_VERSION.to_owned()
             }
         }
-        client_data.client_version.to_owned()
     }
 }
 

@@ -2,7 +2,7 @@ use anyhow::{anyhow, bail, Context, Result};
 use reqwest::Method;
 use serde::Serialize;
 
-use super::{response, ContextYT, ClientType, RustyTube, YTClient};
+use super::{response, ClientType, ContextYT, RustyTube, YTClient};
 use crate::util;
 
 // REQUEST
@@ -74,8 +74,7 @@ impl RustyTube {
             }
         };
 
-        let resp = self
-            .desktop_client
+        let resp = client
             .request_builder(Method::POST, "player")
             .await
             .json(&request_body)
@@ -97,7 +96,10 @@ mod tests {
     #[test(tokio::test)]
     async fn t_fetch_stream() {
         let rt = RustyTube::new();
-        let stream = rt.fetch_player("ZeerrnuLi5E", ClientType::Desktop).await.unwrap();
+        let stream = rt
+            .fetch_player("ZeerrnuLi5E", ClientType::Android)
+            .await
+            .unwrap();
 
         dbg!(stream);
     }
