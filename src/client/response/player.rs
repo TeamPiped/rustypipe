@@ -118,10 +118,7 @@ pub struct Format {
 
 impl Format {
     pub fn is_audio(&self) -> bool {
-        self.audio_quality.is_some()
-            && self.audio_sample_rate.is_some()
-            && self.audio_channels.is_some()
-            && self.loudness_db.is_some()
+        self.audio_quality.is_some() && self.audio_sample_rate.is_some()
     }
 
     pub fn is_video(&self) -> bool {

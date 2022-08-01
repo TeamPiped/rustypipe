@@ -1,10 +1,13 @@
 use std::{
     borrow::Cow,
+    cmp::Ordering,
     collections::{BTreeMap, HashMap},
 };
 
 use anyhow::{anyhow, bail, Context, Result};
+use fancy_regex::Regex;
 use log::error;
+use once_cell::sync::Lazy;
 use reqwest::Method;
 use serde::Serialize;
 use url::Url;
@@ -14,7 +17,7 @@ use super::{
     ClientType, ContextYT, RustyTube,
 };
 use crate::{
-    client::response::player::{self, FormatType},
+    client::response::player,
     deobfuscate::Deobfuscator,
     model::{AudioCodec, AudioStream, PlayerData, Thumbnail, VideoCodec, VideoInfo, VideoStream},
     util,
@@ -197,7 +200,7 @@ fn map_video_stream(
         hdr: f.color_info.clone().unwrap_or_default().primaries
             == player::Primaries::ColorPrimariesBt2020,
         mime: f.mime_type.to_owned(),
-        codec: VideoCodec::Av01,
+        codec: get_video_codec(&f.mime_type),
     })
 }
 
@@ -215,8 +218,57 @@ fn map_audio_stream(
         index_range: f.index_range.to_owned(),
         init_range: f.init_range.to_owned(),
         mime: f.mime_type.to_owned(),
-        codec: AudioCodec::Mp4A,
+        codec: get_audio_codec(&f.mime_type),
     })
+}
+
+fn codecs_from_mime(mime: &str) -> Vec<&str> {
+    static PATTERN: Lazy<Regex> =
+        Lazy::new(|| Regex::new(r#"(\w+/\w+);\scodecs="([a-zA-Z-0-9.,\s]*)""#).unwrap());
+
+    let captures = some_or_bail!(PATTERN.captures(&mime).ok().flatten(), vec![]);
+    captures
+        .get(2)
+        .unwrap()
+        .as_str()
+        .split(", ")
+        .collect::<Vec<&str>>()
+}
+
+fn get_video_codec(mime: &str) -> VideoCodec {
+    for codec in codecs_from_mime(mime) {
+        if codec.starts_with("avc1") {
+            return VideoCodec::Avc1;
+        } else if codec.starts_with("vp9") {
+            return VideoCodec::Vp9;
+        } else if codec.starts_with("av01") {
+            return VideoCodec::Av01;
+        }
+    }
+    VideoCodec::Unknown
+}
+
+fn get_audio_codec(mime: &str) -> AudioCodec {
+    for codec in codecs_from_mime(mime) {
+        if codec.starts_with("mp4a") {
+            return AudioCodec::Mp4a;
+        } else if codec.starts_with("opus") {
+            return AudioCodec::Opus;
+        }
+    }
+    AudioCodec::Unknown
+}
+
+fn cmp_video_streams(a: &VideoStream, b: &VideoStream) -> Ordering {
+    match (a.width * a.height).cmp(&(b.width * b.height)) {
+        Ordering::Less => Ordering::Less,
+        Ordering::Greater => Ordering::Greater,
+        Ordering::Equal => match a.codec.cmp(&b.codec) {
+            Ordering::Less => Ordering::Less,
+            Ordering::Greater => Ordering::Greater,
+            Ordering::Equal => a.average_bitrate.cmp(&b.average_bitrate),
+        },
+    }
 }
 
 fn map_player_data(response: Player, deobf: &Deobfuscator) -> Result<PlayerData> {
@@ -311,8 +363,9 @@ fn map_player_data(response: Player, deobf: &Deobfuscator) -> Result<PlayerData>
         }
     }
 
-    video_streams.sort_by_key(|s| s.average_bitrate);
-    video_only_streams.sort_by_key(|s| s.average_bitrate);
+    // Sort streams by quality
+    video_streams.sort_by(cmp_video_streams);
+    video_only_streams.sort_by(cmp_video_streams);
     audio_streams.sort_by_key(|s| s.average_bitrate);
 
     Ok(PlayerData {

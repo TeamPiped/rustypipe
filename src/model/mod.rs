@@ -68,6 +68,7 @@ pub struct AudioStream {
 }
 
 #[derive(Default, Copy, Clone, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[serde(rename_all = "snake_case")]
 #[non_exhaustive]
 pub enum VideoCodec {
     #[default]
@@ -81,12 +82,13 @@ pub enum VideoCodec {
 }
 
 #[derive(Default, Copy, Clone, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[serde(rename_all = "snake_case")]
 #[non_exhaustive]
 pub enum AudioCodec {
     #[default]
     Unknown,
     /// MP4A aka AAC: https://en.wikipedia.org/wiki/Advanced_Audio_Coding
-    Mp4A,
+    Mp4a,
     /// Opus: https://en.wikipedia.org/wiki/Opus_(audio_format)
     Opus
 }
