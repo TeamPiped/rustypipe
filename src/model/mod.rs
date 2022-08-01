@@ -80,13 +80,6 @@ pub enum VideoCodec {
     Av01,
 }
 
-/*
-impl VideoCodec {
-    pub fn from_mime_type(mime_type: &str) -> Self {
-
-    }
-}*/
-
 #[derive(Default, Copy, Clone, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[non_exhaustive]
 pub enum AudioCodec {

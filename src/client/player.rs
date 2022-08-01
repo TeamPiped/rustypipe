@@ -4,6 +4,7 @@ use std::{
 };
 
 use anyhow::{anyhow, bail, Context, Result};
+use log::error;
 use reqwest::Method;
 use serde::Serialize;
 use url::Url;
@@ -106,65 +107,116 @@ impl RustyTube {
     }
 }
 
-fn map_stream_url(
-    f: &player::Format,
+fn cipher_to_url(
+    signature_cipher: &str,
     deobf: &Deobfuscator,
     last_nsig: &mut [String; 2],
 ) -> Result<String> {
-    match &f.url {
-        Some(f) => Ok(f.to_owned()),
-        None => {
-            match &f.signature_cipher {
-                Some(signature_cipher) => {
-                    let params: HashMap<Cow<str>, Cow<str>> =
-                        url::form_urlencoded::parse(signature_cipher.as_bytes()).collect();
+    let params: HashMap<Cow<str>, Cow<str>> =
+        url::form_urlencoded::parse(signature_cipher.as_bytes()).collect();
 
-                    // Parameters:
-                    // `s`: Obfuscated signature
-                    // `sp`: Signature parameter
-                    // `url`: URL that is missing the signature parameter
+    // Parameters:
+    // `s`: Obfuscated signature
+    // `sp`: Signature parameter
+    // `url`: URL that is missing the signature parameter
 
-                    let sig = some_or_bail!(params.get("s"), Err(anyhow!("no s param")));
-                    let sp = some_or_bail!(params.get("sp"), Err(anyhow!("no sp param")));
-                    let raw_url = some_or_bail!(params.get("url"), Err(anyhow!("no url param")));
-                    let parsed_url = Url::parse(raw_url)?;
+    let sig = some_or_bail!(params.get("s"), Err(anyhow!("no s param")));
+    let sp = some_or_bail!(params.get("sp"), Err(anyhow!("no sp param")));
+    let raw_url = some_or_bail!(params.get("url"), Err(anyhow!("no url param")));
+    let parsed_url = Url::parse(raw_url)?;
 
-                    // println!("sig: {}", sig);
-                    let deobf_sig = deobf.deobfuscate_sig(sig)?;
+    // println!("sig: {}", sig);
+    let deobf_sig = deobf.deobfuscate_sig(sig)?;
 
-                    // Use BTreeMap to get reproducible ordering
-                    let mut url_params: BTreeMap<Cow<str>, Cow<str>> =
-                        parsed_url.query_pairs().collect();
-                    url_params.insert(Cow::Borrowed(sp), Cow::Borrowed(&deobf_sig));
+    // Use BTreeMap to get reproducible ordering
+    let mut url_params: BTreeMap<Cow<str>, Cow<str>> = parsed_url.query_pairs().collect();
+    url_params.insert(Cow::Borrowed(sp), Cow::Borrowed(&deobf_sig));
 
-                    let nsig: String;
-                    match url_params.get("n") {
-                        Some(n) => {
-                            // println!("n: {}", n);
+    let nsig: String;
+    match url_params.get("n") {
+        Some(n) => {
+            // println!("n: {}", n);
 
-                            nsig = if n.to_owned() == last_nsig[0] {
-                                last_nsig[1].to_owned()
-                            } else {
-                                let nsig = deobf.deobfuscate_nsig(n)?;
-                                last_nsig[0] = n.to_string();
-                                last_nsig[1] = nsig.to_owned();
-                                nsig
-                            };
+            nsig = if n.to_owned() == last_nsig[0] {
+                last_nsig[1].to_owned()
+            } else {
+                let nsig = deobf.deobfuscate_nsig(n)?;
+                last_nsig[0] = n.to_string();
+                last_nsig[1] = nsig.to_owned();
+                nsig
+            };
 
-                            url_params.insert(Cow::Borrowed("n"), Cow::Borrowed(&nsig));
-                        }
-                        None => {}
-                    }
-
-                    let mut url_base = parsed_url.clone();
-                    url_base.set_query(None);
-                    let new_url = Url::parse_with_params(url_base.as_str(), url_params.iter())?;
-                    Ok(new_url.to_string())
-                }
-                None => Err(anyhow!("stream contains no url or signatureCipher")),
-            }
+            url_params.insert(Cow::Borrowed("n"), Cow::Borrowed(&nsig));
         }
+        None => {}
     }
+
+    let mut url_base = parsed_url.clone();
+    url_base.set_query(None);
+    let new_url = Url::parse_with_params(url_base.as_str(), url_params.iter())?;
+    Ok(new_url.to_string())
+}
+
+fn map_url(
+    f: &player::Format,
+    deobf: &Deobfuscator,
+    last_nsig: &mut [String; 2],
+) -> Option<String> {
+    match &f.url {
+        Some(url) => Some(url.to_owned()),
+        None => match &f.signature_cipher {
+            Some(signature_cipher) => match cipher_to_url(signature_cipher, deobf, last_nsig) {
+                Ok(url) => Some(url),
+                Err(e) => {
+                    error!("Could not decrypt signatureCipher: {}", e);
+                    None
+                }
+            },
+            None => None,
+        },
+    }
+}
+
+fn map_video_stream(
+    f: &player::Format,
+    deobf: &Deobfuscator,
+    last_nsig: &mut [String; 2],
+) -> Option<VideoStream> {
+    Some(VideoStream {
+        url: some_or_bail!(map_url(f, deobf, last_nsig), None),
+        itag: f.itag,
+        bitrate: f.bitrate,
+        average_bitrate: f.average_bitrate,
+        size: f.content_length,
+        index_range: f.index_range.clone(),
+        init_range: f.init_range.clone(),
+        width: some_or_bail!(f.width, None),
+        height: some_or_bail!(f.height, None),
+        fps: some_or_bail!(f.fps, None),
+        quality: some_or_bail!(f.quality_label.clone(), None),
+        hdr: f.color_info.clone().unwrap_or_default().primaries
+            == player::Primaries::ColorPrimariesBt2020,
+        mime: f.mime_type.to_owned(),
+        codec: VideoCodec::Av01,
+    })
+}
+
+fn map_audio_stream(
+    f: &player::Format,
+    deobf: &Deobfuscator,
+    last_nsig: &mut [String; 2],
+) -> Option<AudioStream> {
+    Some(AudioStream {
+        url: some_or_bail!(map_url(f, deobf, last_nsig), None),
+        itag: f.itag,
+        bitrate: f.bitrate,
+        average_bitrate: f.average_bitrate,
+        size: f.content_length,
+        index_range: f.index_range.to_owned(),
+        init_range: f.init_range.to_owned(),
+        mime: f.mime_type.to_owned(),
+        codec: AudioCodec::Mp4A,
+    })
 }
 
 fn map_player_data(response: Player, deobf: &Deobfuscator) -> Result<PlayerData> {
@@ -233,89 +285,35 @@ fn map_player_data(response: Player, deobf: &Deobfuscator) -> Result<PlayerData>
 
     let mut last_nsig: [String; 2] = ["".to_owned(), "".to_owned()];
 
-    let video_streams = formats
-        .iter()
-        .filter_map(|f| {
-            if f.format_type != FormatType::FormatStreamTypeOtf && f.is_video() && f.is_audio() {
-                match map_stream_url(&f, deobf, &mut last_nsig) {
-                    Ok(url) => Some(VideoStream {
-                        url,
-                        itag: f.itag,
-                        bitrate: f.bitrate,
-                        average_bitrate: f.average_bitrate,
-                        size: f.content_length,
-                        index_range: f.index_range.clone(),
-                        init_range: f.init_range.clone(),
-                        width: f.width.unwrap(),
-                        height: f.height.unwrap(),
-                        fps: f.fps.unwrap(),
-                        quality: f.quality_label.clone().unwrap(),
-                        hdr: f.color_info.clone().unwrap_or_default().primaries
-                            == player::Primaries::ColorPrimariesBt2020,
-                        mime: f.mime_type.to_owned(),
-                        codec: VideoCodec::Av01,
-                    }),
-                    Err(_) => None,
-                }
-            } else {
-                None
-            }
-        })
-        .collect::<Vec<VideoStream>>();
+    let mut video_streams: Vec<VideoStream> = Vec::new();
+    let mut video_only_streams: Vec<VideoStream> = Vec::new();
+    let mut audio_streams: Vec<AudioStream> = Vec::new();
 
-    let video_only_streams = formats
-        .iter()
-        .filter_map(|f| {
-            if f.format_type != FormatType::FormatStreamTypeOtf && f.is_video() && !f.is_audio() {
-                match map_stream_url(&f, deobf, &mut last_nsig) {
-                    Ok(url) => Some(VideoStream {
-                        url,
-                        itag: f.itag,
-                        bitrate: f.bitrate,
-                        average_bitrate: f.average_bitrate,
-                        size: f.content_length,
-                        index_range: f.index_range.clone(),
-                        init_range: f.init_range.clone(),
-                        width: f.width.unwrap(),
-                        height: f.height.unwrap(),
-                        fps: f.fps.unwrap(),
-                        quality: f.quality_label.clone().unwrap(),
-                        hdr: f.color_info.clone().unwrap_or_default().primaries
-                            == player::Primaries::ColorPrimariesBt2020,
-                        mime: f.mime_type.to_owned(),
-                        codec: VideoCodec::Av01,
-                    }),
-                    Err(_) => None,
-                }
-            } else {
-                None
-            }
-        })
-        .collect::<Vec<VideoStream>>();
+    for f in formats {
+        if f.format_type == player::FormatType::FormatStreamTypeOtf {
+            continue;
+        }
 
-    let audio_streams = formats
-        .iter()
-        .filter_map(|f| {
-            if f.format_type != FormatType::FormatStreamTypeOtf && !f.is_video() && f.is_audio() {
-                match map_stream_url(&f, deobf, &mut last_nsig) {
-                    Ok(url) => Some(AudioStream {
-                        url,
-                        itag: f.itag,
-                        bitrate: f.bitrate,
-                        average_bitrate: f.average_bitrate,
-                        size: f.content_length,
-                        index_range: f.index_range.to_owned(),
-                        init_range: f.init_range.to_owned(),
-                        mime: f.mime_type.to_owned(),
-                        codec: AudioCodec::Mp4A,
-                    }),
-                    Err(_) => todo!(),
-                }
-            } else {
-                None
-            }
-        })
-        .collect::<Vec<AudioStream>>();
+        match (f.is_video(), f.is_audio()) {
+            (true, true) => match map_video_stream(&f, deobf, &mut last_nsig) {
+                Some(stream) => video_streams.push(stream),
+                None => {}
+            },
+            (true, false) => match map_video_stream(&f, deobf, &mut last_nsig) {
+                Some(stream) => video_only_streams.push(stream),
+                None => {}
+            },
+            (false, true) => match map_audio_stream(&f, deobf, &mut last_nsig) {
+                Some(stream) => audio_streams.push(stream),
+                None => {}
+            },
+            (false, false) => {}
+        }
+    }
+
+    video_streams.sort_by_key(|s| s.average_bitrate);
+    video_only_streams.sort_by_key(|s| s.average_bitrate);
+    audio_streams.sort_by_key(|s| s.average_bitrate);
 
     Ok(PlayerData {
         info: video_info,
@@ -329,7 +327,7 @@ fn map_player_data(response: Player, deobf: &Deobfuscator) -> Result<PlayerData>
 
 #[cfg(test)]
 mod tests {
-    use crate::{cache::DeobfData, client::response::player};
+    use crate::cache::DeobfData;
 
     use super::*;
     use test_log::test;
@@ -346,7 +344,7 @@ mod tests {
     }
 
     #[test]
-    fn t_map_stream_url() {
+    fn t_cipher_to_url() {
         let deobf = Deobfuscator::from(DeobfData {
             js_url: "https://www.youtube.com/s/player/c8b8a173/player_ias.vflset/en_US/base.js".to_owned(),
             sig_fn: "var oB={B4:function(a){a.reverse()},xm:function(a,b){a.splice(0,b)},dC:function(a,b){var c=a[0];a[0]=a[b%a.length];a[b%a.length]=c}};var Vva=function(a){a=a.split(\"\");oB.dC(a,42);oB.xm(a,3);oB.dC(a,48);oB.B4(a,68);return a.join(\"\")};function deobfuscate(a){return Vva(a);}".to_owned(),
@@ -354,30 +352,13 @@ mod tests {
             sts: "19201".to_owned(),
         });
 
-        let fmt = player::Format {
-            itag: 1,
-            url: None,
-            format_type: player::FormatType::Default,
-            mime_type: "".to_owned(),
-            bitrate: 10,
-            width: Some(1920),
-            height: Some(1080),
-            index_range: None,
-            init_range: None,
-            content_length: 1000,
-            quality: Some(player::Quality::Hd1080),
-            fps: Some(24),
-            quality_label: Some("".to_owned()),
-            average_bitrate: 100,
-            color_info: Some(player::ColorInfo::default()),
-            audio_quality: None,
-            audio_sample_rate: None,
-            audio_channels: None,
-            loudness_db: None,
-            signature_cipher: Some("s=w%3DAe%3DA6aDNQLkViKS7LOm9QtxZJHKwb53riq9qEFw-ecBWJCAiA%3DcEg0tn3dty9jEHszfzh4Ud__bg9CEHVx4ix-7dKsIPAhIQRw8JQ0qOA&sp=sig&url=https://rr5---sn-h0jelnez.googlevideo.com/videoplayback%3Fexpire%3D1659376413%26ei%3Dvb7nYvH5BMK8gAfBj7ToBQ%26ip%3D2003%253Ade%253Aaf06%253A6300%253Ac750%253A1b77%253Ac74a%253A80e3%26id%3Do-AB_BABwrXZJN428ZwDxq5ScPn2AbcGODnRlTVhCQ3mj2%26itag%3D251%26source%3Dyoutube%26requiressl%3Dyes%26mh%3DhH%26mm%3D31%252C26%26mn%3Dsn-h0jelnez%252Csn-4g5ednsl%26ms%3Dau%252Conr%26mv%3Dm%26mvi%3D5%26pl%3D37%26initcwndbps%3D1588750%26spc%3DlT-Khi831z8dTejFIRCvCEwx_6romtM%26vprv%3D1%26mime%3Daudio%252Fwebm%26ns%3Db_Mq_qlTFcSGlG9RpwpM9xQH%26gir%3Dyes%26clen%3D3781277%26dur%3D229.301%26lmt%3D1655510291473933%26mt%3D1659354538%26fvip%3D5%26keepalive%3Dyes%26fexp%3D24001373%252C24007246%26c%3DWEB%26rbqsm%3Dfr%26txp%3D4532434%26n%3Dd2g6G2hVqWIXxedQ%26sparams%3Dexpire%252Cei%252Cip%252Cid%252Citag%252Csource%252Crequiressl%252Cspc%252Cvprv%252Cmime%252Cns%252Cgir%252Cclen%252Cdur%252Clmt%26lsparams%3Dmh%252Cmm%252Cmn%252Cms%252Cmv%252Cmvi%252Cpl%252Cinitcwndbps%26lsig%3DAG3C_xAwRQIgCKCGJ1iu4wlaGXy3jcJyU3inh9dr1FIfqYOZEG_MdmACIQCbungkQYFk7EhD6K2YvLaHFMjKOFWjw001_tLb0lPDtg%253D%253D".to_owned())
-        };
-
-        let url = map_stream_url(&fmt, &deobf, &mut ["".to_string(), "".to_string()]).unwrap();
-        assert_eq!(url, "https://rr5---sn-h0jelnez.googlevideo.com/videoplayback?c=WEB&clen=3781277&dur=229.301&ei=vb7nYvH5BMK8gAfBj7ToBQ&expire=1659376413&fexp=24001373%2C24007246&fvip=5&gir=yes&id=o-AB_BABwrXZJN428ZwDxq5ScPn2AbcGODnRlTVhCQ3mj2&initcwndbps=1588750&ip=2003%3Ade%3Aaf06%3A6300%3Ac750%3A1b77%3Ac74a%3A80e3&itag=251&keepalive=yes&lmt=1655510291473933&lsig=AG3C_xAwRQIgCKCGJ1iu4wlaGXy3jcJyU3inh9dr1FIfqYOZEG_MdmACIQCbungkQYFk7EhD6K2YvLaHFMjKOFWjw001_tLb0lPDtg%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=hH&mime=audio%2Fwebm&mm=31%2C26&mn=sn-h0jelnez%2Csn-4g5ednsl&ms=au%2Conr&mt=1659354538&mv=m&mvi=5&n=Qde6XdWqVh2Gx&ns=b_Mq_qlTFcSGlG9RpwpM9xQH&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRQIhAPIsKd7-xi4xVHEC9gb__dU4hzfzsHEj9ytd3nt0gEceAiACJWBcw-wFEq9qir35bwKHJZxtQ9mOL7SKiVkLQNDa6A%3D%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cspc%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&spc=lT-Khi831z8dTejFIRCvCEwx_6romtM&txp=4532434&vprv=1");
+        let signature_cipher = "s=w%3DAe%3DA6aDNQLkViKS7LOm9QtxZJHKwb53riq9qEFw-ecBWJCAiA%3DcEg0tn3dty9jEHszfzh4Ud__bg9CEHVx4ix-7dKsIPAhIQRw8JQ0qOA&sp=sig&url=https://rr5---sn-h0jelnez.googlevideo.com/videoplayback%3Fexpire%3D1659376413%26ei%3Dvb7nYvH5BMK8gAfBj7ToBQ%26ip%3D2003%253Ade%253Aaf06%253A6300%253Ac750%253A1b77%253Ac74a%253A80e3%26id%3Do-AB_BABwrXZJN428ZwDxq5ScPn2AbcGODnRlTVhCQ3mj2%26itag%3D251%26source%3Dyoutube%26requiressl%3Dyes%26mh%3DhH%26mm%3D31%252C26%26mn%3Dsn-h0jelnez%252Csn-4g5ednsl%26ms%3Dau%252Conr%26mv%3Dm%26mvi%3D5%26pl%3D37%26initcwndbps%3D1588750%26spc%3DlT-Khi831z8dTejFIRCvCEwx_6romtM%26vprv%3D1%26mime%3Daudio%252Fwebm%26ns%3Db_Mq_qlTFcSGlG9RpwpM9xQH%26gir%3Dyes%26clen%3D3781277%26dur%3D229.301%26lmt%3D1655510291473933%26mt%3D1659354538%26fvip%3D5%26keepalive%3Dyes%26fexp%3D24001373%252C24007246%26c%3DWEB%26rbqsm%3Dfr%26txp%3D4532434%26n%3Dd2g6G2hVqWIXxedQ%26sparams%3Dexpire%252Cei%252Cip%252Cid%252Citag%252Csource%252Crequiressl%252Cspc%252Cvprv%252Cmime%252Cns%252Cgir%252Cclen%252Cdur%252Clmt%26lsparams%3Dmh%252Cmm%252Cmn%252Cms%252Cmv%252Cmvi%252Cpl%252Cinitcwndbps%26lsig%3DAG3C_xAwRQIgCKCGJ1iu4wlaGXy3jcJyU3inh9dr1FIfqYOZEG_MdmACIQCbungkQYFk7EhD6K2YvLaHFMjKOFWjw001_tLb0lPDtg%253D%253D";
+        let url = cipher_to_url(
+            signature_cipher,
+            &deobf,
+            &mut ["".to_string(), "".to_string()],
+        )
+        .unwrap();
+        assert_eq!(url, "https://rr5---sn-h0jelnez.googlevideo.com/videoplayback?c=WEB&clen=3781277&dur=229.301&ei=vb7nYvH5BMK8gAfBj7ToBQ&expire=1659376413&fexp=24001373%2C24007246&fvip=5&gir=yes&id=o-AB_BABwrXZJN428ZwDxq5ScPn2AbcGODnRlTVhCQ3mj2&initcwndbps=1588750&ip=2003%3Ade%3Aaf06%3A6300%3Ac750%3A1b77%3Ac74a%3A80e3&itag=251&keepalive=yes&lmt=1655510291473933&lsig=AG3C_xAwRQIgCKCGJ1iu4wlaGXy3jcJyU3inh9dr1FIfqYOZEG_MdmACIQCbungkQYFk7EhD6K2YvLaHFMjKOFWjw001_tLb0lPDtg%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=hH&mime=audio%2Fwebm&mm=31%2C26&mn=sn-h0jelnez%2Csn-4g5ednsl&ms=au%2Conr&mt=1659354538&mv=m&mvi=5&n=XzXGSfGusw6OCQ&ns=b_Mq_qlTFcSGlG9RpwpM9xQH&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRQIhAPIsKd7-xi4xVHEC9gb__dU4hzfzsHEj9ytd3nt0gEceAiACJWBcw-wFEq9qir35bwKHJZxtQ9mOL7SKiVkLQNDa6A%3D%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cspc%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&spc=lT-Khi831z8dTejFIRCvCEwx_6romtM&txp=4532434&vprv=1");
     }
 }
