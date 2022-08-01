@@ -9,20 +9,12 @@ use crate::cache::{Cache, DeobfData};
 use crate::util;
 
 pub struct Deobfuscator {
-    http: Client,
-    cache: Cache,
+    data: DeobfData,
 }
 
 impl Deobfuscator {
-    #[must_use]
-    pub fn new(http: Client, cache: Cache) -> Self {
-        Self { http, cache }
-    }
-
-    async fn get_deobf_data(&self) -> Result<DeobfData> {
-        let http = self.http.clone();
-
-        self.cache
+    pub async fn from_fetched_info(http: Client, cache: Cache) -> Result<Self> {
+        let data = cache
             .get_deobf_data(async move {
                 let js_url = get_player_js_url(&http)
                     .await
@@ -45,22 +37,27 @@ impl Deobfuscator {
                     sts,
                 })
             })
-            .await
+            .await?;
+
+        Ok(Self { data })
     }
 
-    pub async fn deobfuscate_sig(&self, sig: &str) -> Result<String> {
-        let deobf_data = self.get_deobf_data().await?;
-        deobfuscate_sig(sig, &deobf_data.sig_fn)
+    pub fn deobfuscate_sig(&self, sig: &str) -> Result<String> {
+        deobfuscate_sig(sig, &self.data.sig_fn)
     }
 
-    pub async fn deobfuscate_nsig(&self, nsig: &str) -> Result<String> {
-        let deobf_data = self.get_deobf_data().await?;
-        deobfuscate_nsig(nsig, &deobf_data.nsig_fn)
+    pub fn deobfuscate_nsig(&self, nsig: &str) -> Result<String> {
+        deobfuscate_sig(nsig, &self.data.sig_fn)
     }
 
-    pub async fn get_sts(&self) -> Result<String> {
-        let deobf_data = self.get_deobf_data().await?;
-        Ok(deobf_data.sts)
+    pub fn get_sts(&self) -> String {
+        self.data.sts.to_owned()
+    }
+}
+
+impl From<DeobfData> for Deobfuscator {
+    fn from(data: DeobfData) -> Self {
+        Self {data}
     }
 }
 
@@ -383,25 +380,9 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
     async fn t_update() {
         let client = Client::new();
         let cache = Cache::default();
-        let deobf = Deobfuscator::new(client, cache);
+        let mut deobf = Deobfuscator::from_fetched_info(client, cache).await.unwrap();
 
-        let deobf_sig = deobf.deobfuscate_sig("GOqGOqGOq0QJ8wRAIgaryQHfplJ9xJSKFywyaSMHuuwZYsoMTAvRvfm51qIGECIA5061zWeyfMPX9hEl_U6f9J0tr7GTJMKyPf5XNrJb5fb5i").await.unwrap();
+        let deobf_sig = deobf.deobfuscate_sig("GOqGOqGOq0QJ8wRAIgaryQHfplJ9xJSKFywyaSMHuuwZYsoMTAvRvfm51qIGECIA5061zWeyfMPX9hEl_U6f9J0tr7GTJMKyPf5XNrJb5fb5i").unwrap();
         println!("{}", deobf_sig);
-    }
-
-    #[test(tokio::test)]
-    async fn t_parallel() {
-        let client = Client::new();
-        let cache = Cache::default();
-        let deobf = Deobfuscator::new(client, cache);
-        let deobf_arc = Arc::new(deobf);
-
-        let (deobf_sig, deobf_nsig) = tokio::join!(
-            deobf_arc.deobfuscate_sig("GOqGOqGOq0QJ8wRAIgaryQHfplJ9xJSKFywyaSMHuuwZYsoMTAvRvfm51qIGECIA5061zWeyfMPX9hEl_U6f9J0tr7GTJMKyPf5XNrJb5fb5i"),
-            deobf_arc.deobfuscate_nsig("BI_n4PxQ22is-KKajKUW"),
-        );
-
-        println!("{}", deobf_sig.unwrap());
-        println!("{}", deobf_nsig.unwrap());
     }
 }

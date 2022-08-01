@@ -1,6 +1,6 @@
 https://rr3---sn-h0jeened.googlevideo.com/videoplayback?expire=1658232063&ei=n0jWYuCAFIz3gAeAx4nIAw&ip=93.235.185.61&id=o-AHnSNPNCkequX39D-ysNUiDKYmbe-a8EplrOAV2LQylr&itag=18&source=youtube&requiressl=yes&mh=a7&mm=31%2C29&mn=sn-h0jeened%2Csn-h0jelnez&ms=au%2Crdu&mv=m&mvi=3&pl=26&initcwndbps=1416250&spc=lT-KhsYr92Phls7wH9GQiLWRR-MGnTE&vprv=1&mime=video%2Fmp4&ns=AMUzTf9OiCSKRVVVRqr1VqMH&gir=yes&clen=17923723&ratebypass=yes&dur=208.027&lmt=1641514704547595&mt=1658209972&fvip=4&fexp=24001373%2C24007246&beids=23886220&c=WEB&txp=4538322&n=BI_n4PxQ22is-KKajKUW&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cspc%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cratebypass%2Cdur%2Clmt&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&lsig=AG3C_xAwRgIhAOxJLTqKCFUwInEHtxtsH13V0i_fDws_vgCuilecqHa6AiEAhHMFv4WqPrFNZvxsBx3ee5GdVw_7_hMu0yebsClRfw8%3D&sig=AOq0QJ8wRAIgaryQHmplJ9xJSKFywyaSMHuuwZYsoMTfvRviG51qIGECIA5061zWeyfMPX9hEl_U6f9J0tr7GTJMKyPf5XNrJb5f&cpn=uGaaNCVq9tAJ9K8j
 
-# Signature `(? => sig)`
+# Signature `(s => sig)`
 
 deobfuscationFunctionName = Rva
 functionPattern = (Rva=function\([a-zA-Z0-9_]+\)\{.+?\})

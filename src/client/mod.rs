@@ -14,7 +14,7 @@ use serde::Serialize;
 
 use crate::{
     cache::{Cache, DesktopClientData},
-    deobfuscate::Deobfuscator,
+    model::Locale,
     util,
 };
 
@@ -124,12 +124,6 @@ pub struct RustyTube {
     tvhtml5embed_client: Arc<TvHtml5EmbedClient>,
 }
 
-#[derive(Clone)]
-pub struct Locale {
-    lang: String,
-    country: String,
-}
-
 impl RustyTube {
     #[must_use]
     pub fn new() -> Self {
@@ -154,7 +148,7 @@ impl RustyTube {
             desktop_client: Arc::new(DesktopClient::new(locale.clone(), cache)),
             android_client: Arc::new(AndroidClient::new(locale.clone())),
             ios_client: Arc::new(IosClient::new(locale.clone())),
-            tvhtml5embed_client: Arc::new(TvHtml5EmbedClient::new(locale))
+            tvhtml5embed_client: Arc::new(TvHtml5EmbedClient::new(locale)),
         }
     }
 
@@ -173,6 +167,7 @@ impl RustyTube {
 pub trait YTClient {
     async fn get_context(&self, localized: bool) -> ContextYT;
     async fn request_builder(&self, method: Method, url: &str) -> RequestBuilder;
+    fn http_client(&self) -> Client;
 }
 
 async fn exec_request(http: Client, request: Request) -> Result<Response> {
@@ -189,7 +184,6 @@ pub struct DesktopClient {
     cache: Cache,
     consent_cookie_yes: String,
     consent_cookie_no: String,
-    deobf: Deobfuscator,
 }
 
 #[async_trait]
@@ -233,6 +227,10 @@ impl YTClient for DesktopClient {
             .header("X-YouTube-Client-Name", "1")
             .header("X-YouTube-Client-Version", self.get_client_version().await)
     }
+
+    fn http_client(&self) -> Client {
+        self.http.clone()
+    }
 }
 
 impl DesktopClient {
@@ -245,8 +243,6 @@ impl DesktopClient {
             .brotli(true)
             .build()
             .expect("unable to build the HTTP client");
-
-        let deobf = Deobfuscator::new(http.clone(), cache.clone());
 
         Self {
             locale,
@@ -264,7 +260,6 @@ impl DesktopClient {
                 CONSENT_COOKIE_NO,
                 rng.gen_range(100..1000)
             ),
-            deobf,
         }
     }
 
@@ -364,6 +359,10 @@ impl YTClient for AndroidClient {
             )
             .header("X-Goog-Api-Format-Version", "2")
     }
+
+    fn http_client(&self) -> Client {
+        self.http.clone()
+    }
 }
 
 impl AndroidClient {
@@ -427,6 +426,10 @@ impl YTClient for IosClient {
             )
             .header("X-Goog-Api-Format-Version", "2")
     }
+
+    fn http_client(&self) -> Client {
+        self.http.clone()
+    }
 }
 
 impl IosClient {
@@ -473,7 +476,7 @@ impl YTClient for TvHtml5EmbedClient {
             request: Some(RequestYT::default()),
             user: User::default(),
             third_party: Some(ThirdParty {
-                embed_url: "https://www.youtube.com/".to_owned()
+                embed_url: "https://www.youtube.com/".to_owned(),
             }),
         }
     }
@@ -492,6 +495,10 @@ impl YTClient for TvHtml5EmbedClient {
             // .header(header::COOKIE, self.consent_cookie_no.to_owned())
             .header("X-YouTube-Client-Name", "1")
             .header("X-YouTube-Client-Version", TVHTML5_CLIENT_VERSION)
+    }
+
+    fn http_client(&self) -> Client {
+        self.http.clone()
     }
 }
 

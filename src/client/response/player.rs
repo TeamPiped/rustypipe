@@ -53,11 +53,13 @@ pub struct Empty {}
 #[serde(rename_all = "camelCase")]
 pub struct StreamingData {
     #[serde_as(as = "JsonString")]
-    pub expires_in_seconds: u64,
-    #[serde_as(as = "Option<VecSkipError<_>>")]
-    pub formats: Option<Vec<Format>>,
-    #[serde_as(as = "Option<VecSkipError<_>>")]
-    pub adaptive_formats: Option<Vec<Format>>,
+    pub expires_in_seconds: u32,
+    #[serde(default)]
+    #[serde_as(as = "VecSkipError<_>")]
+    pub formats: Vec<Format>,
+    #[serde(default)]
+    #[serde_as(as = "VecSkipError<_>")]
+    pub adaptive_formats: Vec<Format>,
     /// Only on livestreams
     pub dash_manifest_url: Option<String>,
     /// Only on livestreams
@@ -76,25 +78,25 @@ pub struct Format {
 
     pub mime_type: String,
 
-    pub bitrate: Option<u64>,
+    pub bitrate: u32,
 
-    pub width: Option<u64>,
-    pub height: Option<u64>,
+    pub width: Option<u32>,
+    pub height: Option<u32>,
 
     #[serde_as(as = "Option<crate::serializer::range::Range>")]
     pub index_range: Option<Range<u32>>,
     #[serde_as(as = "Option<crate::serializer::range::Range>")]
     pub init_range: Option<Range<u32>>,
 
-    #[serde_as(as = "Option<JsonString>")]
-    pub content_length: Option<u32>,
+    #[serde_as(as = "JsonString")]
+    pub content_length: u64,
 
     #[serde(default)]
     #[serde_as(deserialize_as = "DefaultOnError")]
     pub quality: Option<Quality>,
     pub fps: Option<u8>,
     pub quality_label: Option<String>,
-    pub average_bitrate: Option<u32>,
+    pub average_bitrate: u32,
     pub color_info: Option<ColorInfo>,
 
     // Audio only
@@ -112,6 +114,23 @@ pub struct Format {
     pub loudness_db: Option<f64>,
 
     pub signature_cipher: Option<String>,
+}
+
+impl Format {
+    pub fn is_audio(&self) -> bool {
+        self.audio_quality.is_some()
+            && self.audio_sample_rate.is_some()
+            && self.audio_channels.is_some()
+            && self.loudness_db.is_some()
+    }
+
+    pub fn is_video(&self) -> bool {
+        self.quality.is_some()
+            && self.quality_label.is_some()
+            && self.fps.is_some()
+            && self.height.is_some()
+            && self.width.is_some()
+    }
 }
 
 #[derive(Clone, Copy, Debug, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -203,7 +222,7 @@ pub struct VideoDetails {
     pub is_live_content: bool,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Default, Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Thumbnails {
     pub thumbnails: Vec<Thumbnail>,

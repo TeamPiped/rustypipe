@@ -8,4 +8,5 @@ mod serializer;
 mod cache;
 mod deobfuscate;
 
+pub mod model;
 pub mod client;
