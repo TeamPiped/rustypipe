@@ -104,7 +104,8 @@ pub struct Thumbnail {
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
 pub struct Subtitle {
     pub url: String,
-    pub locale: Locale,
+    pub lang: String,
+    pub lang_name: String,
     pub auto_generated: bool,
 }
 

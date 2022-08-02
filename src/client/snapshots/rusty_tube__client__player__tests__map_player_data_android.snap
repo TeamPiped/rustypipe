@@ -289,6 +289,10 @@ audio_streams:
       end: 631
     mime: "audio/mp4; codecs=\"mp4a.40.2\""
     codec: mp4a
-subtitles: []
+subtitles:
+  - url: "https://www.youtube.com/api/timedtext?v=pPvd8UxmSbQ&caps=asr&xoaf=5&hl=en&ip=0.0.0.0&ipbits=0&expire=1659484955&sparams=ip,ipbits,expire,v,caps,xoaf&signature=EBFE9BB6A8D01D674157DE1F45A3BEDCAB35496B.3ED931CA7233F0FF5B19062AA22F803CC3D78215&key=yt8&lang=en&fmt=srv3"
+    lang: en
+    lang_name: English
+    auto_generated: false
 expires_in_seconds: 21540
 

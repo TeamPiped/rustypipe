@@ -21,7 +21,10 @@ use super::{
 use crate::{
     client::response::player,
     deobfuscate::Deobfuscator,
-    model::{AudioCodec, AudioStream, PlayerData, Thumbnail, VideoCodec, VideoInfo, VideoStream},
+    model::{
+        AudioCodec, AudioStream, PlayerData, Subtitle, Thumbnail, VideoCodec, VideoInfo,
+        VideoStream,
+    },
     util,
 };
 
@@ -384,12 +387,30 @@ fn map_player_data(response: Player, deobf: &Deobfuscator) -> Result<PlayerData>
     video_only_streams.sort_by(cmp_video_streams);
     audio_streams.sort_by_key(|s| s.average_bitrate);
 
+    let subtitles = response.captions.map_or(vec![], |captions| {
+        captions
+            .player_captions_tracklist_renderer
+            .caption_tracks
+            .iter()
+            .map(|caption| {
+                let lang_auto = caption.name.strip_suffix(" (auto-generated)");
+
+                Subtitle {
+                    url: caption.base_url.to_owned(),
+                    lang: caption.language_code.to_owned(),
+                    lang_name: lang_auto.unwrap_or(&caption.name).to_owned(),
+                    auto_generated: lang_auto.is_some(),
+                }
+            })
+            .collect()
+    });
+
     Ok(PlayerData {
         info: video_info,
         video_streams,
         video_only_streams,
         audio_streams,
-        subtitles: vec![],
+        subtitles,
         expires_in_seconds: streaming_data.expires_in_seconds,
     })
 }
