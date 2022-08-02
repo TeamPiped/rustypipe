@@ -2,6 +2,7 @@ use std::{
     borrow::Cow,
     cmp::Ordering,
     collections::{BTreeMap, HashMap},
+    sync::Arc,
 };
 
 use anyhow::{anyhow, bail, Result};
@@ -15,7 +16,7 @@ use url::Url;
 
 use super::{
     response::{self, Player},
-    ClientType, ContextYT, RustyTube,
+    ClientType, ContextYT, RustyTube, YTClient,
 };
 use crate::{
     client::response::player,
@@ -71,43 +72,50 @@ impl RustyTube {
             Deobfuscator::from_fetched_info(client.http_client(), self.cache.clone())
         );
         let deobf = deobf?;
-
-        let request_body = if client_type.is_web() {
-            QPlayer {
-                context,
-                playback_context: Some(QPlaybackContext {
-                    content_playback_context: QContentPlaybackContext {
-                        signature_timestamp: deobf.get_sts(),
-                        referer: format!("https://www.youtube.com/watch?v={}", video_id),
-                    },
-                }),
-                cpn: None,
-                video_id: video_id.to_owned(),
-                content_check_ok: true,
-                racy_check_ok: true,
-            }
-        } else {
-            QPlayer {
-                context,
-                playback_context: None,
-                cpn: Some(util::generate_content_playback_nonce()),
-                video_id: video_id.to_owned(),
-                content_check_ok: true,
-                racy_check_ok: true,
-            }
-        };
+        let request_body = build_request_body(client.clone(), &deobf, context, video_id);
 
         let resp = client
             .request_builder(Method::POST, "player")
             .await
             .json(&request_body)
             .send()
-            .await?;
+            .await?
+            .error_for_status()?;
 
-        // println!("{}", resp.text().await?);
-        // todo!();
         let player_response = resp.json::<response::Player>().await?;
         map_player_data(player_response, &deobf)
+    }
+}
+
+fn build_request_body(
+    client: Arc<dyn YTClient>,
+    deobf: &Deobfuscator,
+    context: ContextYT,
+    video_id: &str,
+) -> QPlayer {
+    if client.get_type().is_web() {
+        QPlayer {
+            context,
+            playback_context: Some(QPlaybackContext {
+                content_playback_context: QContentPlaybackContext {
+                    signature_timestamp: deobf.get_sts(),
+                    referer: format!("https://www.youtube.com/watch?v={}", video_id),
+                },
+            }),
+            cpn: None,
+            video_id: video_id.to_owned(),
+            content_check_ok: true,
+            racy_check_ok: true,
+        }
+    } else {
+        QPlayer {
+            context,
+            playback_context: None,
+            cpn: Some(util::generate_content_playback_nonce()),
+            video_id: video_id.to_owned(),
+            content_check_ok: true,
+            racy_check_ok: true,
+        }
     }
 }
 
@@ -385,10 +393,71 @@ fn map_player_data(response: Player, deobf: &Deobfuscator) -> Result<PlayerData>
 
 #[cfg(test)]
 mod tests {
+    use std::{any::Any, fs, io::Cursor, path::Path};
+
     use crate::cache::DeobfData;
 
     use super::*;
     use rstest::rstest;
+
+    static DEOBFUSCATOR: Lazy<Deobfuscator> = Lazy::new(|| {
+        Deobfuscator::from(DeobfData {
+        js_url: "https://www.youtube.com/s/player/c8b8a173/player_ias.vflset/en_US/base.js".to_owned(),
+        sig_fn: "var oB={B4:function(a){a.reverse()},xm:function(a,b){a.splice(0,b)},dC:function(a,b){var c=a[0];a[0]=a[b%a.length];a[b%a.length]=c}};var Vva=function(a){a=a.split(\"\");oB.dC(a,42);oB.xm(a,3);oB.dC(a,48);oB.B4(a,68);return a.join(\"\")};function deobfuscate(a){return Vva(a);}".to_owned(),
+        nsig_fn: "Ska=function(a){var b=a.split(\"\"),c=[-1505243983,function(d,e){e=(e%d.length+d.length)%d.length;d.splice(-e).reverse().forEach(function(f){d.unshift(f)})},\n-1692381986,function(d,e){e=(e%d.length+d.length)%d.length;var f=d[0];d[0]=d[e];d[e]=f},\n-262444939,\"unshift\",function(d){for(var e=d.length;e;)d.push(d.splice(--e,1)[0])},\n1201502951,-546377604,-504264123,-1978377336,1042456724,function(d,e){for(e=(e%d.length+d.length)%d.length;e--;)d.unshift(d.pop())},\n711986897,406699922,-1842537993,-1678108293,1803491779,1671716087,12778705,-718839990,null,null,-1617525823,342523552,-1338406651,-399705108,-696713950,b,function(d,e){e=(e%d.length+d.length)%d.length;d.splice(0,1,d.splice(e,1,d[0])[0])},\nfunction(d,e){e=(e%d.length+d.length)%d.length;d.splice(e,1)},\n-980602034,356396192,null,-1617525823,function(d,e,f){var h=f.length;d.forEach(function(l,m,n){this.push(n[m]=f[(f.indexOf(l)-f.indexOf(this[m])+m+h--)%f.length])},e.split(\"\"))},\n-1029864222,-641353250,-1681901809,-1391247867,1707415199,-1957855835,b,function(){for(var d=64,e=[];++d-e.length-32;)switch(d){case 58:d=96;continue;case 91:d=44;break;case 65:d=47;continue;case 46:d=153;case 123:d-=58;default:e.push(String.fromCharCode(d))}return e},\n-1936558978,-1505243983,function(d){d.reverse()},\n1296889058,-1813915420,-943019300,function(d,e,f){var h=f.length;d.forEach(function(l,m,n){this.push(n[m]=f[(f.indexOf(l)-f.indexOf(this[m])+m+h--)%f.length])},e.split(\"\"))},\n\"join\",b,-2061642263];c[21]=c;c[22]=c;c[33]=c;try{c[3](c[33],c[9]),c[29](c[22],c[25]),c[29](c[22],c[19]),c[29](c[33],c[17]),c[29](c[21],c[2]),c[29](c[42],c[10]),c[1](c[52],c[40]),c[12](c[28],c[8]),c[29](c[21],c[45]),c[1](c[21],c[48]),c[44](c[26]),c[39](c[5],c[2]),c[31](c[53],c[16]),c[30](c[29],c[8]),c[51](c[29],c[6],c[44]()),c[4](c[43],c[1]),c[2](c[23],c[42]),c[2](c[0],c[46]),c[38](c[14],c[52]),c[32](c[5]),c[26](c[29],c[46]),c[26](c[5],c[13]),c[28](c[1],c[37]),c[26](c[31],c[13]),c[26](c[1],c[34]),\nc[46](c[1],c[32],c[40]()),c[26](c[50],c[44]),c[17](c[50],c[51]),c[0](c[3],c[24]),c[32](c[13]),c[43](c[3],c[51]),c[0](c[34],c[17]),c[16](c[45],c[53]),c[29](c[44],c[13]),c[42](c[1],c[50]),c[47](c[22],c[53]),c[37](c[22]),c[13](c[52],c[21]),c[6](c[43],c[34]),c[6](c[31],c[46])}catch(d){return\"enhanced_except_gZYB_un-_w8_\"+a}return b.join(\"\")};function deobfuscate(a){return Ska(a);}".to_owned(),
+        sts: "19201".to_owned(),
+    })
+    });
+
+    #[allow(dead_code)]
+    // #[test_log::test(tokio::test)]
+    async fn download_testfiles() {
+        let tf_dir = Path::new("testfiles/player");
+        let video_id = "pPvd8UxmSbQ";
+
+        let rt = RustyTube::new();
+
+        for client_type in [
+            ClientType::Desktop,
+            ClientType::Android,
+            ClientType::Ios,
+            ClientType::TvHtml5Embed,
+        ] {
+            let client = rt.get_ytclient(client_type);
+            let context = client.get_context(false).await;
+
+            let request_body = build_request_body(client.clone(), &DEOBFUSCATOR, context, video_id);
+
+            let resp = client
+                .request_builder(Method::POST, "player")
+                .await
+                .json(&request_body)
+                .send()
+                .await
+                .unwrap()
+                .error_for_status()
+                .unwrap();
+
+            let mut json_path = tf_dir.to_path_buf();
+            json_path.push(format!("{:?}_video.json", client_type).to_lowercase());
+
+            let mut file = fs::File::create(json_path).unwrap();
+            let mut content = Cursor::new(resp.bytes().await.unwrap());
+            std::io::copy(&mut content, &mut file).unwrap();
+        }
+    }
+
+    #[rstest]
+    #[case::desktop("desktop", include_str!("../../testfiles/player/desktop_video.json"))]
+    // #[case::desktop_music("desktop_music", include_str!("../../testfiles/player/desktop_music_video.json"))]
+    #[case::tv_html5_embed("tvhtml5embed", include_str!("../../testfiles/player/tvhtml5embed_video.json"))]
+    #[case::android("android", include_str!("../../testfiles/player/android_video.json"))]
+    #[case::ios("ios", include_str!("../../testfiles/player/ios_video.json"))]
+    fn t_map_player_data(#[case] name: &str, #[case] json_str: &str) {
+        let resp = serde_json::from_str::<response::Player>(json_str).unwrap();
+        let player_data = map_player_data(resp, &DEOBFUSCATOR).unwrap();
+        insta::assert_yaml_snapshot!(format!("map_player_data_{}", name), player_data)
+    }
 
     #[rstest]
     #[case::desktop(ClientType::Desktop)]
@@ -417,7 +486,10 @@ mod tests {
         assert_eq!(player_data.info.is_live_content, false);
 
         if client_type == ClientType::Desktop || client_type == ClientType::DesktopMusic {
-            assert_eq!(player_data.info.publish_date.unwrap().to_string(), "2013-05-05 00:00:00 UTC");
+            assert_eq!(
+                player_data.info.publish_date.unwrap().to_string(),
+                "2013-05-05 00:00:00 UTC"
+            );
             assert_eq!(player_data.info.category.unwrap(), "Music");
             assert_eq!(player_data.info.is_family_safe.unwrap(), true);
         }
@@ -485,17 +557,10 @@ mod tests {
 
     #[test]
     fn t_cipher_to_url() {
-        let deobf = Deobfuscator::from(DeobfData {
-            js_url: "https://www.youtube.com/s/player/c8b8a173/player_ias.vflset/en_US/base.js".to_owned(),
-            sig_fn: "var oB={B4:function(a){a.reverse()},xm:function(a,b){a.splice(0,b)},dC:function(a,b){var c=a[0];a[0]=a[b%a.length];a[b%a.length]=c}};var Vva=function(a){a=a.split(\"\");oB.dC(a,42);oB.xm(a,3);oB.dC(a,48);oB.B4(a,68);return a.join(\"\")};function deobfuscate(a){return Vva(a);}".to_owned(),
-            nsig_fn: "Ska=function(a){var b=a.split(\"\"),c=[-1505243983,function(d,e){e=(e%d.length+d.length)%d.length;d.splice(-e).reverse().forEach(function(f){d.unshift(f)})},\n-1692381986,function(d,e){e=(e%d.length+d.length)%d.length;var f=d[0];d[0]=d[e];d[e]=f},\n-262444939,\"unshift\",function(d){for(var e=d.length;e;)d.push(d.splice(--e,1)[0])},\n1201502951,-546377604,-504264123,-1978377336,1042456724,function(d,e){for(e=(e%d.length+d.length)%d.length;e--;)d.unshift(d.pop())},\n711986897,406699922,-1842537993,-1678108293,1803491779,1671716087,12778705,-718839990,null,null,-1617525823,342523552,-1338406651,-399705108,-696713950,b,function(d,e){e=(e%d.length+d.length)%d.length;d.splice(0,1,d.splice(e,1,d[0])[0])},\nfunction(d,e){e=(e%d.length+d.length)%d.length;d.splice(e,1)},\n-980602034,356396192,null,-1617525823,function(d,e,f){var h=f.length;d.forEach(function(l,m,n){this.push(n[m]=f[(f.indexOf(l)-f.indexOf(this[m])+m+h--)%f.length])},e.split(\"\"))},\n-1029864222,-641353250,-1681901809,-1391247867,1707415199,-1957855835,b,function(){for(var d=64,e=[];++d-e.length-32;)switch(d){case 58:d=96;continue;case 91:d=44;break;case 65:d=47;continue;case 46:d=153;case 123:d-=58;default:e.push(String.fromCharCode(d))}return e},\n-1936558978,-1505243983,function(d){d.reverse()},\n1296889058,-1813915420,-943019300,function(d,e,f){var h=f.length;d.forEach(function(l,m,n){this.push(n[m]=f[(f.indexOf(l)-f.indexOf(this[m])+m+h--)%f.length])},e.split(\"\"))},\n\"join\",b,-2061642263];c[21]=c;c[22]=c;c[33]=c;try{c[3](c[33],c[9]),c[29](c[22],c[25]),c[29](c[22],c[19]),c[29](c[33],c[17]),c[29](c[21],c[2]),c[29](c[42],c[10]),c[1](c[52],c[40]),c[12](c[28],c[8]),c[29](c[21],c[45]),c[1](c[21],c[48]),c[44](c[26]),c[39](c[5],c[2]),c[31](c[53],c[16]),c[30](c[29],c[8]),c[51](c[29],c[6],c[44]()),c[4](c[43],c[1]),c[2](c[23],c[42]),c[2](c[0],c[46]),c[38](c[14],c[52]),c[32](c[5]),c[26](c[29],c[46]),c[26](c[5],c[13]),c[28](c[1],c[37]),c[26](c[31],c[13]),c[26](c[1],c[34]),\nc[46](c[1],c[32],c[40]()),c[26](c[50],c[44]),c[17](c[50],c[51]),c[0](c[3],c[24]),c[32](c[13]),c[43](c[3],c[51]),c[0](c[34],c[17]),c[16](c[45],c[53]),c[29](c[44],c[13]),c[42](c[1],c[50]),c[47](c[22],c[53]),c[37](c[22]),c[13](c[52],c[21]),c[6](c[43],c[34]),c[6](c[31],c[46])}catch(d){return\"enhanced_except_gZYB_un-_w8_\"+a}return b.join(\"\")};function deobfuscate(a){return Ska(a);}".to_owned(),
-            sts: "19201".to_owned(),
-        });
-
         let signature_cipher = "s=w%3DAe%3DA6aDNQLkViKS7LOm9QtxZJHKwb53riq9qEFw-ecBWJCAiA%3DcEg0tn3dty9jEHszfzh4Ud__bg9CEHVx4ix-7dKsIPAhIQRw8JQ0qOA&sp=sig&url=https://rr5---sn-h0jelnez.googlevideo.com/videoplayback%3Fexpire%3D1659376413%26ei%3Dvb7nYvH5BMK8gAfBj7ToBQ%26ip%3D2003%253Ade%253Aaf06%253A6300%253Ac750%253A1b77%253Ac74a%253A80e3%26id%3Do-AB_BABwrXZJN428ZwDxq5ScPn2AbcGODnRlTVhCQ3mj2%26itag%3D251%26source%3Dyoutube%26requiressl%3Dyes%26mh%3DhH%26mm%3D31%252C26%26mn%3Dsn-h0jelnez%252Csn-4g5ednsl%26ms%3Dau%252Conr%26mv%3Dm%26mvi%3D5%26pl%3D37%26initcwndbps%3D1588750%26spc%3DlT-Khi831z8dTejFIRCvCEwx_6romtM%26vprv%3D1%26mime%3Daudio%252Fwebm%26ns%3Db_Mq_qlTFcSGlG9RpwpM9xQH%26gir%3Dyes%26clen%3D3781277%26dur%3D229.301%26lmt%3D1655510291473933%26mt%3D1659354538%26fvip%3D5%26keepalive%3Dyes%26fexp%3D24001373%252C24007246%26c%3DWEB%26rbqsm%3Dfr%26txp%3D4532434%26n%3Dd2g6G2hVqWIXxedQ%26sparams%3Dexpire%252Cei%252Cip%252Cid%252Citag%252Csource%252Crequiressl%252Cspc%252Cvprv%252Cmime%252Cns%252Cgir%252Cclen%252Cdur%252Clmt%26lsparams%3Dmh%252Cmm%252Cmn%252Cms%252Cmv%252Cmvi%252Cpl%252Cinitcwndbps%26lsig%3DAG3C_xAwRQIgCKCGJ1iu4wlaGXy3jcJyU3inh9dr1FIfqYOZEG_MdmACIQCbungkQYFk7EhD6K2YvLaHFMjKOFWjw001_tLb0lPDtg%253D%253D";
         let url = cipher_to_url(
             signature_cipher,
-            &deobf,
+            &DEOBFUSCATOR,
             &mut ["".to_string(), "".to_string()],
         )
         .unwrap();

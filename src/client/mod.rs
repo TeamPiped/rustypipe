@@ -10,7 +10,7 @@ use log::warn;
 use once_cell::sync::Lazy;
 use rand::Rng;
 use reqwest::{header, Client, ClientBuilder, Method, Request, RequestBuilder, Response};
-use serde::Serialize;
+use serde::{Serialize, Deserialize};
 
 use crate::{
     cache::{Cache, DesktopClientData},
@@ -18,7 +18,8 @@ use crate::{
     util,
 };
 
-#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash)]
+#[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq, Eq, Hash)]
+#[serde(rename_all = "snake_case")]
 pub enum ClientType {
     Desktop,
     DesktopMusic,
@@ -168,6 +169,7 @@ pub trait YTClient {
     async fn get_context(&self, localized: bool) -> ContextYT;
     async fn request_builder(&self, method: Method, url: &str) -> RequestBuilder;
     fn http_client(&self) -> Client;
+    fn get_type(&self) -> ClientType;
 }
 
 async fn exec_request(http: Client, request: Request) -> Result<Response> {
@@ -230,6 +232,10 @@ impl YTClient for DesktopClient {
 
     fn http_client(&self) -> Client {
         self.http.clone()
+    }
+
+    fn get_type(&self)-> ClientType {
+        ClientType::Desktop
     }
 }
 
@@ -363,6 +369,10 @@ impl YTClient for AndroidClient {
     fn http_client(&self) -> Client {
         self.http.clone()
     }
+
+    fn get_type(&self)-> ClientType {
+        ClientType::Android
+    }
 }
 
 impl AndroidClient {
@@ -429,6 +439,10 @@ impl YTClient for IosClient {
 
     fn http_client(&self) -> Client {
         self.http.clone()
+    }
+
+    fn get_type(&self)-> ClientType {
+        ClientType::Ios
     }
 }
 
@@ -499,6 +513,10 @@ impl YTClient for TvHtml5EmbedClient {
 
     fn http_client(&self) -> Client {
         self.http.clone()
+    }
+
+    fn get_type(&self)-> ClientType {
+        ClientType::TvHtml5Embed
     }
 }
 
