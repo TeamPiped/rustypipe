@@ -420,7 +420,7 @@ impl YTClient for IosClient {
                     "{}{}?key={}{}",
                     YOUTUBEI_V1_GAPIS_URL,
                     endpoint,
-                    ANDROID_API_KEY,
+                    IOS_API_KEY,
                     DISABLE_PRETTY_PRINT_PARAMETER
                 ),
             )
