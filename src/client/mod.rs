@@ -18,6 +18,14 @@ use crate::{
     util,
 };
 
+pub const CLIENT_TYPES: [ClientType; 5] = [
+    ClientType::Desktop,
+    ClientType::DesktopMusic,
+    ClientType::TvHtml5Embed,
+    ClientType::Android,
+    ClientType::Ios,
+];
+
 #[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq, Eq, Hash)]
 #[serde(rename_all = "snake_case")]
 pub enum ClientType {
@@ -577,7 +585,10 @@ impl YTClient for DesktopMusicClient {
                 method,
                 format!(
                     "{}{}?key={}{}",
-                    YOUTUBE_MUSIC_V1_URL, endpoint, DESKTOP_MUSIC_API_KEY, DISABLE_PRETTY_PRINT_PARAMETER
+                    YOUTUBE_MUSIC_V1_URL,
+                    endpoint,
+                    DESKTOP_MUSIC_API_KEY,
+                    DISABLE_PRETTY_PRINT_PARAMETER
                 ),
             )
             .header(header::ORIGIN, "https://music.youtube.com")

@@ -339,7 +339,10 @@ fn map_player_data(response: Player, deobf: &Deobfuscator) -> Result<PlayerData>
             DateTime::from_utc(ndt, Utc)
         }),
         view_count: video_details.view_count,
-        keywords: video_details.keywords,
+        keywords: video_details
+            .keywords
+            .or_else(|| microformat.as_ref().map_or(None, |mf| mf.tags.clone()))
+            .unwrap_or_default(),
         category: microformat.as_ref().map(|m| m.category.to_owned()),
         is_live_content: video_details.is_live_content,
         is_family_safe: microformat.as_ref().map(|m| m.is_family_safe),
@@ -395,7 +398,7 @@ fn map_player_data(response: Player, deobf: &Deobfuscator) -> Result<PlayerData>
 mod tests {
     use std::{fs, io::Cursor, path::Path};
 
-    use crate::cache::DeobfData;
+    use crate::{cache::DeobfData, client::CLIENT_TYPES};
 
     use super::*;
     use rstest::rstest;
@@ -417,12 +420,7 @@ mod tests {
 
         let rt = RustyTube::new();
 
-        for client_type in [
-            ClientType::Desktop,
-            ClientType::Android,
-            ClientType::Ios,
-            ClientType::TvHtml5Embed,
-        ] {
+        for client_type in CLIENT_TYPES {
             let client = rt.get_ytclient(client_type);
             let context = client.get_context(false).await;
 
@@ -449,7 +447,7 @@ mod tests {
 
     #[rstest]
     #[case::desktop("desktop", include_str!("../../testfiles/player/desktop_video.json"))]
-    // #[case::desktop_music("desktop_music", include_str!("../../testfiles/player/desktop_music_video.json"))]
+    #[case::desktop_music("desktop_music", include_str!("../../testfiles/player/desktopmusic_video.json"))]
     #[case::tv_html5_embed("tvhtml5embed", include_str!("../../testfiles/player/tvhtml5embed_video.json"))]
     #[case::android("android", include_str!("../../testfiles/player/android_video.json"))]
     #[case::ios("ios", include_str!("../../testfiles/player/ios_video.json"))]
@@ -474,9 +472,13 @@ mod tests {
 
         assert_eq!(player_data.info.id, "n4tK7LYFxI0");
         assert_eq!(player_data.info.title, "Spektrem - Shine [NCS Release]");
-        assert!(player_data.info.description.starts_with(
-            "NCS (NoCopyrightSounds): Empowering Creators through Copyright / Royalty Free Music"
-        ));
+        if client_type == ClientType::DesktopMusic {
+            assert!(player_data.info.description.is_none());
+        } else {
+            assert!(player_data.info.description.unwrap().starts_with(
+                "NCS (NoCopyrightSounds): Empowering Creators through Copyright / Royalty Free Music"
+            ));
+        }
         assert_eq!(player_data.info.length, 259);
         assert!(!player_data.info.thumbnails.is_empty());
         assert_eq!(player_data.info.channel_id, "UC_aEa8K-EOJ3D6gOs7HcyNg");

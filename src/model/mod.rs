@@ -17,7 +17,7 @@ pub struct PlayerData {
 pub struct VideoInfo {
     pub id: String,
     pub title: String,
-    pub description: String,
+    pub description: Option<String>,
     pub length: u32,
     pub thumbnails: Vec<Thumbnail>,
 

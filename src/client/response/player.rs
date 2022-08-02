@@ -207,11 +207,9 @@ pub struct VideoDetails {
     pub title: String,
     #[serde_as(as = "JsonString")]
     pub length_seconds: u32,
-    #[serde(default)]
-    pub keywords: Vec<String>,
+    pub keywords: Option<Vec<String>>,
     pub channel_id: String,
-    #[serde(default)]
-    pub short_description: String,
+    pub short_description: Option<String>,
     pub thumbnail: Option<Thumbnails>,
     #[serde_as(as = "JsonString")]
     pub view_count: u64,
@@ -236,13 +234,18 @@ pub struct Thumbnail {
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Microformat {
+    #[serde(alias = "microformatDataRenderer")]
     pub player_microformat_renderer: PlayerMicroformatRenderer,
 }
 
+#[serde_as]
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct PlayerMicroformatRenderer {
+    #[serde(alias = "familySafe")]
     pub is_family_safe: bool,
     pub category: String,
     pub publish_date: NaiveDate,
+    // Only on YT Music
+    pub tags: Option<Vec<String>>
 }
