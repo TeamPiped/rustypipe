@@ -10,10 +10,10 @@ use log::warn;
 use once_cell::sync::Lazy;
 use rand::Rng;
 use reqwest::{header, Client, ClientBuilder, Method, Request, RequestBuilder, Response};
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
 use crate::{
-    cache::{Cache, DesktopClientData},
+    cache::{Cache, ClientData},
     model::Locale,
     util,
 };
@@ -104,22 +104,34 @@ const CONSENT_COOKIE_NO: &str = "PENDING+";
 
 const YOUTUBEI_V1_URL: &str = "https://www.youtube.com/youtubei/v1/";
 const YOUTUBEI_V1_GAPIS_URL: &str = "https://youtubei.googleapis.com/youtubei/v1/";
+const YOUTUBE_MUSIC_V1_URL: &str = "https://music.youtube.com/youtubei/v1/";
 
 const DISABLE_PRETTY_PRINT_PARAMETER: &str = "&prettyPrint=false";
 
-const DESKTOP_CLIENT_VERSION: &str = "2.20220721.05.00_1";
+const DESKTOP_CLIENT_VERSION: &str = "2.20220801.00.00";
 const DESKTOP_API_KEY: &str = "AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8";
 const TVHTML5_CLIENT_VERSION: &str = "2.0";
+const DESKTOP_MUSIC_API_KEY: &str = "AIzaSyC9XL3ZjWddXya6X74dJoCTL-WEYFDNX30";
+const DESKTOP_MUSIC_CLIENT_VERSION: &str = "1.20220727.01.00";
 
 const MOBILE_CLIENT_VERSION: &str = "17.10.35";
 const ANDROID_API_KEY: &str = "AIzaSyA8eiZmM1FaDVjRy-df2KTyQ_vz_yYM39w";
 const IOS_API_KEY: &str = "AIzaSyB-63vPrdThhKuerbB2N_l7Kwwcxj6yUAc";
 const IOS_DEVICE_MODEL: &str = "iPhone14,5";
 
+const CLIENT_VERSION_REGEXES: Lazy<[Regex; 3]> = Lazy::new(|| {
+    [
+        Regex::new("INNERTUBE_CONTEXT_CLIENT_VERSION\":\"([0-9\\.]+?)\"").unwrap(),
+        Regex::new("innertube_context_client_version\":\"([0-9\\.]+?)\"").unwrap(),
+        Regex::new("client.version=([0-9\\.]+)").unwrap(),
+    ]
+});
+
 pub struct RustyTube {
     pub locale: Arc<Locale>,
     cache: Cache,
     desktop_client: Arc<DesktopClient>,
+    desktop_music_client: Arc<DesktopMusicClient>,
     android_client: Arc<AndroidClient>,
     ios_client: Arc<IosClient>,
     tvhtml5embed_client: Arc<TvHtml5EmbedClient>,
@@ -146,7 +158,8 @@ impl RustyTube {
         Self {
             locale: locale.clone(),
             cache: cache.clone(),
-            desktop_client: Arc::new(DesktopClient::new(locale.clone(), cache)),
+            desktop_client: Arc::new(DesktopClient::new(locale.clone(), cache.clone())),
+            desktop_music_client: Arc::new(DesktopMusicClient::new(locale.clone(), cache)),
             android_client: Arc::new(AndroidClient::new(locale.clone())),
             ios_client: Arc::new(IosClient::new(locale.clone())),
             tvhtml5embed_client: Arc::new(TvHtml5EmbedClient::new(locale)),
@@ -156,7 +169,7 @@ impl RustyTube {
     pub fn get_ytclient(&self, client_type: ClientType) -> Arc<dyn YTClient> {
         match client_type {
             ClientType::Desktop => self.desktop_client.clone(),
-            ClientType::DesktopMusic => todo!(),
+            ClientType::DesktopMusic => self.desktop_music_client.clone(),
             ClientType::TvHtml5Embed => self.tvhtml5embed_client.clone(),
             ClientType::Android => self.android_client.clone(),
             ClientType::Ios => self.ios_client.clone(),
@@ -198,7 +211,7 @@ impl YTClient for DesktopClient {
                 client_screen: None,
                 device_model: None,
                 platform: "DESKTOP".to_owned(),
-                original_url: Some("https://www.youtube.com".to_owned()),
+                original_url: Some("https://www.youtube.com/".to_owned()),
                 hl: match localized {
                     true => self.locale.lang.to_owned(),
                     false => "en".to_owned(),
@@ -234,7 +247,7 @@ impl YTClient for DesktopClient {
         self.http.clone()
     }
 
-    fn get_type(&self)-> ClientType {
+    fn get_type(&self) -> ClientType {
         ClientType::Desktop
     }
 }
@@ -285,15 +298,7 @@ impl DesktopClient {
         .await
         .context("Failed to download sw.js")?;
 
-        static CLIENT_VERSION_PATTERNS: Lazy<[Regex; 3]> = Lazy::new(|| {
-            [
-                Regex::new("INNERTUBE_CONTEXT_CLIENT_VERSION\":\"([0-9\\.]+?)\"").unwrap(),
-                Regex::new("innertube_context_client_version\":\"([0-9\\.]+?)\"").unwrap(),
-                Regex::new("client.version=([0-9\\.]+)").unwrap(),
-            ]
-        });
-
-        util::get_cg_from_regexes(CLIENT_VERSION_PATTERNS.iter(), &swjs, 1)
+        util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &swjs, 1)
             .ok_or(anyhow!("Could not find desktop client version in sw.js"))
     }
 
@@ -306,12 +311,14 @@ impl DesktopClient {
             .get_desktop_client_data(async move {
                 let client_version =
                     Self::extract_client_version_from_swjs(http, &consent_cookie).await?;
-                Ok(DesktopClientData { client_version })
+                Ok(ClientData {
+                    version: client_version,
+                })
             })
             .await;
 
         match client_data {
-            Ok(client_data) => client_data.client_version,
+            Ok(client_data) => client_data.version,
             Err(e) => {
                 warn!("{}", e);
                 DESKTOP_CLIENT_VERSION.to_owned()
@@ -370,7 +377,7 @@ impl YTClient for AndroidClient {
         self.http.clone()
     }
 
-    fn get_type(&self)-> ClientType {
+    fn get_type(&self) -> ClientType {
         ClientType::Android
     }
 }
@@ -428,10 +435,7 @@ impl YTClient for IosClient {
                 method,
                 format!(
                     "{}{}?key={}{}",
-                    YOUTUBEI_V1_GAPIS_URL,
-                    endpoint,
-                    IOS_API_KEY,
-                    DISABLE_PRETTY_PRINT_PARAMETER
+                    YOUTUBEI_V1_GAPIS_URL, endpoint, IOS_API_KEY, DISABLE_PRETTY_PRINT_PARAMETER
                 ),
             )
             .header("X-Goog-Api-Format-Version", "2")
@@ -441,7 +445,7 @@ impl YTClient for IosClient {
         self.http.clone()
     }
 
-    fn get_type(&self)-> ClientType {
+    fn get_type(&self) -> ClientType {
         ClientType::Ios
     }
 }
@@ -515,7 +519,7 @@ impl YTClient for TvHtml5EmbedClient {
         self.http.clone()
     }
 
-    fn get_type(&self)-> ClientType {
+    fn get_type(&self) -> ClientType {
         ClientType::TvHtml5Embed
     }
 }
@@ -533,20 +537,163 @@ impl TvHtml5EmbedClient {
     }
 }
 
+pub struct DesktopMusicClient {
+    locale: Arc<Locale>,
+    http: Client,
+    cache: Cache,
+    consent_cookie_yes: String,
+    consent_cookie_no: String,
+}
+
+#[async_trait]
+impl YTClient for DesktopMusicClient {
+    async fn get_context(&self, localized: bool) -> ContextYT {
+        ContextYT {
+            client: ClientInfo {
+                client_name: "WEB_REMIX".to_owned(),
+                client_version: self.get_client_version().await,
+                client_screen: None,
+                device_model: None,
+                platform: "DESKTOP".to_owned(),
+                original_url: Some("https://music.youtube.com/".to_owned()),
+                hl: match localized {
+                    true => self.locale.lang.to_owned(),
+                    false => "en".to_owned(),
+                },
+                gl: match localized {
+                    true => self.locale.country.to_owned(),
+                    false => "US".to_owned(),
+                },
+            },
+            request: Some(RequestYT::default()),
+            user: User::default(),
+            third_party: None,
+        }
+    }
+
+    async fn request_builder(&self, method: Method, endpoint: &str) -> RequestBuilder {
+        self.http
+            .request(
+                method,
+                format!(
+                    "{}{}?key={}{}",
+                    YOUTUBE_MUSIC_V1_URL, endpoint, DESKTOP_MUSIC_API_KEY, DISABLE_PRETTY_PRINT_PARAMETER
+                ),
+            )
+            .header(header::ORIGIN, "https://music.youtube.com")
+            .header(header::REFERER, "https://music.youtube.com")
+            .header(header::COOKIE, self.consent_cookie_no.to_owned())
+            .header("X-YouTube-Client-Name", "67")
+            .header("X-YouTube-Client-Version", self.get_client_version().await)
+    }
+
+    fn http_client(&self) -> Client {
+        self.http.clone()
+    }
+
+    fn get_type(&self) -> ClientType {
+        ClientType::DesktopMusic
+    }
+}
+
+impl DesktopMusicClient {
+    fn new(locale: Arc<Locale>, cache: Cache) -> Self {
+        let mut rng = rand::thread_rng();
+
+        let http = ClientBuilder::new()
+            .user_agent(DEFAULT_UA)
+            .gzip(true)
+            .brotli(true)
+            .build()
+            .expect("unable to build the HTTP client");
+
+        Self {
+            locale,
+            http,
+            cache,
+            consent_cookie_yes: format!(
+                "{}={}{}",
+                CONSENT_COOKIE,
+                CONSENT_COOKIE_YES,
+                rng.gen_range(100..1000)
+            ),
+            consent_cookie_no: format!(
+                "{}={}{}",
+                CONSENT_COOKIE,
+                CONSENT_COOKIE_NO,
+                rng.gen_range(100..1000)
+            ),
+        }
+    }
+
+    async fn extract_client_version_from_swjs(
+        http: Client,
+        consent_cookie: &str,
+    ) -> Result<String> {
+        let swjs = exec_request_text(
+            http.clone(),
+            http.get("https://music.youtube.com/sw.js")
+                .header(header::ORIGIN, "https://www.youtube.com")
+                .header(header::REFERER, "https://www.youtube.com")
+                .header(header::COOKIE, consent_cookie)
+                .build()
+                .unwrap(),
+        )
+        .await
+        .context("Failed to download sw.js")?;
+
+        util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &swjs, 1)
+            .ok_or(anyhow!("Could not find music client version in sw.js"))
+    }
+
+    async fn get_client_version(&self) -> String {
+        let http = self.http.clone();
+        let consent_cookie = self.consent_cookie_yes.clone();
+
+        let client_data = self
+            .cache
+            .get_music_client_data(async move {
+                let client_version =
+                    Self::extract_client_version_from_swjs(http, &consent_cookie).await?;
+                Ok(ClientData {
+                    version: client_version,
+                })
+            })
+            .await;
+
+        match client_data {
+            Ok(client_data) => client_data.version,
+            Err(e) => {
+                warn!("{}", e);
+                DESKTOP_MUSIC_CLIENT_VERSION.to_owned()
+            }
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
     use test_log::test;
 
-    /*
+    static CLIENT_VERSION_REGEX: Lazy<Regex> =
+        Lazy::new(|| Regex::new(r#"^\d+\.\d{8}\.\d{2}\.\d{2}"#).unwrap());
+
     #[test(tokio::test)]
-    async fn t_extract_client_version_from_swjs() {
+    async fn t_extract_desktop_client_version() {
         let rt = RustyTube::new();
-        let version = rt.extract_client_version_from_swjs().await.unwrap();
+        let client = rt.desktop_client;
+        let version = DesktopClient::extract_client_version_from_swjs(
+            client.http.clone(),
+            &client.consent_cookie_yes,
+        )
+        .await
+        .unwrap();
 
-        let version = version.unwrap();
+        assert!(CLIENT_VERSION_REGEX.is_match(&version).unwrap());
 
-        // Client version changes often, notify during test so the hardcoded version can be updated
+        // Client version changes often,
+        // notify during test so the hardcoded version can be updated
         if version != DESKTOP_CLIENT_VERSION {
             println!(
                 "INFO: YT Desktop Client was updated, new version: {}",
@@ -556,34 +703,25 @@ mod tests {
     }
 
     #[test(tokio::test)]
-    async fn t_get_client_version() {
-        error!("Checking whether it still works...");
+    async fn t_extract_desktop_music_client_version() {
         let rt = RustyTube::new();
-        let client_version = rt.get_client_version().await;
-        assert!(client_version.len() > 10);
-    }
+        let client = rt.desktop_music_client;
+        let version = DesktopMusicClient::extract_client_version_from_swjs(
+            client.http.clone(),
+            &client.consent_cookie_yes,
+        )
+        .await
+        .unwrap();
 
-    #[test]
-    fn json_test() {
-        let request = BaseRequest {
-            context: ContextYT {
-                client: ClientInfo {
-                    client_name: "WEB".to_owned(),
-                    client_version: "x".to_owned(),
-                    client_screen: None,
-                    platform: "DESKTOP".to_owned(),
-                    original_url: Some("https://www.youtube.com".to_owned()),
-                    hl: "de".to_owned(),
-                    gl: "DE".to_owned(),
-                },
-                request: Some(RequestYT::default()),
-                user: User::default(),
-                third_party: None,
-            },
-        };
+        assert!(CLIENT_VERSION_REGEX.is_match(&version).unwrap());
 
-        let request_str = serde_json::to_string_pretty(&request).unwrap();
-        println!("{}", request_str);
+        // Client version changes often,
+        // notify during test so the hardcoded version can be updated
+        if version != DESKTOP_MUSIC_CLIENT_VERSION {
+            println!(
+                "INFO: YT Desktop Music Client was updated, new version: {}",
+                version
+            );
+        }
     }
-    */
 }

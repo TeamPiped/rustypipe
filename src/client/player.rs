@@ -393,7 +393,7 @@ fn map_player_data(response: Player, deobf: &Deobfuscator) -> Result<PlayerData>
 
 #[cfg(test)]
 mod tests {
-    use std::{any::Any, fs, io::Cursor, path::Path};
+    use std::{fs, io::Cursor, path::Path};
 
     use crate::cache::DeobfData;
 

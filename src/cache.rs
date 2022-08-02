@@ -20,7 +20,8 @@ pub struct Cache {
 
 #[derive(Default, Debug, Clone, Serialize, Deserialize)]
 struct CacheData {
-    desktop_client: Option<CacheEntry<DesktopClientData>>,
+    desktop_client: Option<CacheEntry<ClientData>>,
+    music_client: Option<CacheEntry<ClientData>>,
     deobf: Option<CacheEntry<DeobfData>>,
 }
 
@@ -40,8 +41,8 @@ impl<T> From<T> for CacheEntry<T> {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
-pub struct DesktopClientData {
-    pub client_version: String,
+pub struct ClientData {
+    pub version: String,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
@@ -53,9 +54,9 @@ pub struct DeobfData {
 }
 
 impl Cache {
-    pub async fn get_desktop_client_data<F>(&self, updater: F) -> Result<DesktopClientData>
+    pub async fn get_desktop_client_data<F>(&self, updater: F) -> Result<ClientData>
     where
-        F: Future<Output = Result<DesktopClientData>> + Send + 'static,
+        F: Future<Output = Result<ClientData>> + Send + 'static,
     {
         let mut cache = self.data.lock().await;
 
@@ -68,6 +69,24 @@ impl Cache {
             Ok(cdata)
         } else {
             Ok(cache.desktop_client.as_ref().unwrap().data.clone())
+        }
+    }
+
+    pub async fn get_music_client_data<F>(&self, updater: F) -> Result<ClientData>
+    where
+        F: Future<Output = Result<ClientData>> + Send + 'static,
+    {
+        let mut cache = self.data.lock().await;
+
+        if cache.music_client.is_none()
+            || cache.music_client.as_ref().unwrap().last_update < Utc::now() - Duration::hours(24)
+        {
+            let cdata = updater.await?;
+            cache.music_client = Some(CacheEntry::from(cdata.clone()));
+            self.save(&cache);
+            Ok(cdata)
+        } else {
+            Ok(cache.music_client.as_ref().unwrap().data.clone())
         }
     }
 
@@ -179,19 +198,35 @@ mod tests {
     async fn test() {
         let cache = Cache::default();
 
-        let cdata = cache
+        let desktop_c = cache
             .get_desktop_client_data(async {
-                Ok(DesktopClientData {
-                    client_version: "1.2.3".to_owned(),
+                Ok(ClientData {
+                    version: "1.2.3".to_owned(),
                 })
             })
             .await
             .unwrap();
 
         assert_eq!(
-            cdata,
-            DesktopClientData {
-                client_version: "1.2.3".to_owned()
+            desktop_c,
+            ClientData {
+                version: "1.2.3".to_owned()
+            }
+        );
+
+        let music_c = cache
+            .get_music_client_data(async {
+                Ok(ClientData {
+                    version: "4.5.6".to_owned(),
+                })
+            })
+            .await
+            .unwrap();
+
+        assert_eq!(
+            music_c,
+            ClientData {
+                version: "4.5.6".to_owned()
             }
         );
 
@@ -220,19 +255,33 @@ mod tests {
             }
         );
 
+        // Create a new cache from the first one's json
+        // and check if it returns the same cached data
         let json = cache.to_json().await.unwrap();
         let new_cache = Cache::from_json(&json);
 
         assert_eq!(
             new_cache
                 .get_desktop_client_data(async {
-                    Ok(DesktopClientData {
-                        client_version: "".to_owned(),
+                    Ok(ClientData {
+                        version: "".to_owned(),
                     })
                 })
                 .await
                 .unwrap(),
-            cdata
+            desktop_c
+        );
+
+        assert_eq!(
+            new_cache
+                .get_music_client_data(async {
+                    Ok(ClientData {
+                        version: "".to_owned(),
+                    })
+                })
+                .await
+                .unwrap(),
+            music_c
         );
 
         assert_eq!(
@@ -261,8 +310,8 @@ mod tests {
 
         let cdata = cache
             .get_desktop_client_data(async {
-                Ok(DesktopClientData {
-                    client_version: "1.2.3".to_owned(),
+                Ok(ClientData {
+                    version: "1.2.3".to_owned(),
                 })
             })
             .await
@@ -288,8 +337,8 @@ mod tests {
         assert_eq!(
             new_cache
                 .get_desktop_client_data(async {
-                    Ok(DesktopClientData {
-                        client_version: "".to_owned(),
+                    Ok(ClientData {
+                        version: "".to_owned(),
                     })
                 })
                 .await
