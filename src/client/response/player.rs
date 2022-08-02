@@ -245,5 +245,4 @@ pub struct PlayerMicroformatRenderer {
     pub is_family_safe: bool,
     pub category: String,
     pub publish_date: NaiveDate,
-    pub upload_date: NaiveDate,
 }

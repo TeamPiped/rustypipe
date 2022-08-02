@@ -1,6 +1,6 @@
 use std::ops::Range;
 
-use chrono::NaiveDate;
+use chrono::{DateTime, Utc};
 use serde::{Serialize, Deserialize};
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -24,8 +24,7 @@ pub struct VideoInfo {
     pub channel_id: String,
     pub channel_name: String,
 
-    pub publish_date: Option<NaiveDate>,
-    pub upload_date: Option<NaiveDate>,
+    pub publish_date: Option<DateTime<Utc>>,
     pub view_count: u64,
     pub keywords: Vec<String>,
     pub category: Option<String>,
@@ -73,6 +72,8 @@ pub struct AudioStream {
 pub enum VideoCodec {
     #[default]
     Unknown,
+    /// MPEG-4 Part 14 https://en.wikipedia.org/wiki/MPEG-4_Part_14
+    Mp4v,
     /// avc1 aka H.264: https://en.wikipedia.org/wiki/Advanced_Video_Coding
     Avc1,
     /// VP9: https://en.wikipedia.org/wiki/VP9

@@ -4,7 +4,8 @@ use std::{
     collections::{BTreeMap, HashMap},
 };
 
-use anyhow::{anyhow, bail, Context, Result};
+use anyhow::{anyhow, bail, Result};
+use chrono::{DateTime, NaiveDateTime, NaiveTime, Utc};
 use fancy_regex::Regex;
 use log::error;
 use once_cell::sync::Lazy;
@@ -239,10 +240,12 @@ fn get_video_codec(mime: &str) -> VideoCodec {
     for codec in codecs_from_mime(mime) {
         if codec.starts_with("avc1") {
             return VideoCodec::Avc1;
-        } else if codec.starts_with("vp9") {
+        } else if codec.starts_with("vp9") || codec.starts_with("vp09") {
             return VideoCodec::Vp9;
         } else if codec.starts_with("av01") {
             return VideoCodec::Av01;
+        } else if codec.starts_with("mp4v") {
+            return VideoCodec::Mp4v;
         }
     }
     VideoCodec::Unknown
@@ -323,8 +326,10 @@ fn map_player_data(response: Player, deobf: &Deobfuscator) -> Result<PlayerData>
         channel_id: video_details.channel_id,
         channel_name: video_details.author,
 
-        publish_date: microformat.as_ref().map(|m| m.publish_date),
-        upload_date: microformat.as_ref().map(|m| m.upload_date),
+        publish_date: microformat.as_ref().map(|m| {
+            let ndt = NaiveDateTime::new(m.publish_date, NaiveTime::from_hms(0, 0, 0));
+            DateTime::from_utc(ndt, Utc)
+        }),
         view_count: video_details.view_count,
         keywords: video_details.keywords,
         category: microformat.as_ref().map(|m| m.category.to_owned()),
@@ -383,17 +388,99 @@ mod tests {
     use crate::cache::DeobfData;
 
     use super::*;
-    use test_log::test;
+    use rstest::rstest;
 
-    #[test(tokio::test)]
-    async fn t_fetch_stream() {
+    #[rstest]
+    #[case::desktop(ClientType::Desktop)]
+    // #[case::desktop_music(ClientType::DesktopMusic)]
+    #[case::tv_html5_embed(ClientType::TvHtml5Embed)]
+    #[case::android(ClientType::Android)]
+    #[case::ios(ClientType::Ios)]
+    #[test_log::test(tokio::test)]
+    async fn t_fetch_stream(#[case] client_type: ClientType) {
         let rt = RustyTube::new();
-        let player_data = rt
-            .fetch_player("ZeerrnuLi5E", ClientType::Desktop)
-            .await
-            .unwrap();
+        let player_data = rt.fetch_player("n4tK7LYFxI0", client_type).await.unwrap();
 
-        dbg!(player_data);
+        // dbg!(player_data.clone());
+
+        assert_eq!(player_data.info.id, "n4tK7LYFxI0");
+        assert_eq!(player_data.info.title, "Spektrem - Shine [NCS Release]");
+        assert!(player_data.info.description.starts_with(
+            "NCS (NoCopyrightSounds): Empowering Creators through Copyright / Royalty Free Music"
+        ));
+        assert_eq!(player_data.info.length, 259);
+        assert!(!player_data.info.thumbnails.is_empty());
+        assert_eq!(player_data.info.channel_id, "UC_aEa8K-EOJ3D6gOs7HcyNg");
+        assert_eq!(player_data.info.channel_name, "NoCopyrightSounds");
+        assert!(player_data.info.view_count > 146818808);
+        assert_eq!(player_data.info.keywords[0], "spektrem");
+        assert_eq!(player_data.info.is_live_content, false);
+
+        if client_type == ClientType::Desktop || client_type == ClientType::DesktopMusic {
+            assert_eq!(player_data.info.publish_date.unwrap().to_string(), "2013-05-05 00:00:00 UTC");
+            assert_eq!(player_data.info.category.unwrap(), "Music");
+            assert_eq!(player_data.info.is_family_safe.unwrap(), true);
+        }
+
+        if client_type == ClientType::Ios {
+            let video = player_data
+                .video_only_streams
+                .iter()
+                .find(|s| s.itag == 247)
+                .unwrap();
+            let audio = player_data
+                .audio_streams
+                .iter()
+                .find(|s| s.itag == 140)
+                .unwrap();
+
+            assert_eq!(video.bitrate, 1507068);
+            assert_eq!(video.average_bitrate, 1345149);
+            assert_eq!(video.size, 43553412);
+            assert_eq!(video.width, 1280);
+            assert_eq!(video.height, 720);
+            assert_eq!(video.fps, 30);
+            assert_eq!(video.quality, "720p");
+            assert_eq!(video.hdr, false);
+            assert_eq!(video.mime, "video/webm; codecs=\"vp09.00.31.08\"");
+            assert_eq!(video.codec, VideoCodec::Vp9);
+
+            assert_eq!(audio.bitrate, 130685);
+            assert_eq!(audio.average_bitrate, 129496);
+            assert_eq!(audio.size, 4193863);
+            assert_eq!(audio.mime, "audio/mp4; codecs=\"mp4a.40.2\"");
+            assert_eq!(audio.codec, AudioCodec::Mp4a);
+        } else {
+            let video = player_data
+                .video_only_streams
+                .iter()
+                .find(|s| s.itag == 398)
+                .unwrap();
+            let audio = player_data
+                .audio_streams
+                .iter()
+                .find(|s| s.itag == 251)
+                .unwrap();
+
+            assert_eq!(video.bitrate, 1340829);
+            assert_eq!(video.average_bitrate, 1233444);
+            assert_eq!(video.size, 39936630);
+            assert_eq!(video.width, 1280);
+            assert_eq!(video.height, 720);
+            assert_eq!(video.fps, 30);
+            assert_eq!(video.quality, "720p");
+            assert_eq!(video.hdr, false);
+            assert_eq!(video.mime, "video/mp4; codecs=\"av01.0.05M.08\"");
+            assert_eq!(video.codec, VideoCodec::Av01);
+
+            assert_eq!(audio.bitrate, 142718);
+            assert_eq!(audio.average_bitrate, 130708);
+            assert_eq!(audio.size, 4232344);
+            assert_eq!(audio.mime, "audio/webm; codecs=\"opus\"");
+            assert_eq!(audio.codec, AudioCodec::Opus);
+        }
+
+        assert!(player_data.expires_in_seconds > 10000);
     }
 
     #[test]
