@@ -15,7 +15,7 @@ use serde::Serialize;
 use url::Url;
 
 use super::{
-    response::{self, Player},
+    response,
     ClientType, ContextYT, RustyTube, YTClient,
 };
 use crate::{
@@ -64,11 +64,7 @@ struct QContentPlaybackContext {
 }
 
 impl RustyTube {
-    pub async fn fetch_player(
-        &self,
-        video_id: &str,
-        client_type: ClientType,
-    ) -> Result<PlayerData> {
+    pub async fn get_player(&self, video_id: &str, client_type: ClientType) -> Result<PlayerData> {
         let client = self.get_ytclient(client_type);
         let (context, deobf) = tokio::join!(
             client.get_context(false),
@@ -285,7 +281,7 @@ fn cmp_video_streams(a: &VideoStream, b: &VideoStream) -> Ordering {
     }
 }
 
-fn map_player_data(response: Player, deobf: &Deobfuscator) -> Result<PlayerData> {
+fn map_player_data(response: response::Player, deobf: &Deobfuscator) -> Result<PlayerData> {
     // Check playability status
     match response.playability_status {
         response::player::PlayabilityStatus::Ok { live_streamability } => {
@@ -417,7 +413,7 @@ fn map_player_data(response: Player, deobf: &Deobfuscator) -> Result<PlayerData>
 
 #[cfg(test)]
 mod tests {
-    use std::{fs, io::Cursor, path::Path};
+    use std::path::Path;
 
     use crate::{cache::DeobfData, client::CLIENT_TYPES};
 
@@ -460,8 +456,8 @@ mod tests {
             let mut json_path = tf_dir.to_path_buf();
             json_path.push(format!("{:?}_video.json", client_type).to_lowercase());
 
-            let mut file = fs::File::create(json_path).unwrap();
-            let mut content = Cursor::new(resp.bytes().await.unwrap());
+            let mut file = std::fs::File::create(json_path).unwrap();
+            let mut content = std::io::Cursor::new(resp.bytes().await.unwrap());
             std::io::copy(&mut content, &mut file).unwrap();
         }
     }
@@ -485,9 +481,9 @@ mod tests {
     #[case::android(ClientType::Android)]
     #[case::ios(ClientType::Ios)]
     #[test_log::test(tokio::test)]
-    async fn t_fetch_stream(#[case] client_type: ClientType) {
+    async fn t_get_player(#[case] client_type: ClientType) {
         let rt = RustyTube::new();
-        let player_data = rt.fetch_player("n4tK7LYFxI0", client_type).await.unwrap();
+        let player_data = rt.get_player("n4tK7LYFxI0", client_type).await.unwrap();
 
         // dbg!(player_data.clone());
 

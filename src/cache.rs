@@ -96,7 +96,7 @@ impl Cache {
     {
         let mut cache = self.data.lock().await;
         if cache.deobf.is_none()
-            || cache.deobf.as_ref().unwrap().last_update < Utc::now() - Duration::hours(1)
+            || cache.deobf.as_ref().unwrap().last_update < Utc::now() - Duration::hours(24)
         {
             let deobf_data = updater.await?;
             cache.deobf = Some(CacheEntry::from(deobf_data.clone()));

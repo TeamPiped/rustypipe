@@ -5,6 +5,8 @@ use serde::Deserialize;
 use serde_with::serde_as;
 use serde_with::{json::JsonString, DefaultOnError, VecSkipError};
 
+use super::Thumbnails;
+
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Player {
@@ -215,20 +217,6 @@ pub struct VideoDetails {
     pub view_count: u64,
     pub author: String,
     pub is_live_content: bool,
-}
-
-#[derive(Default, Clone, Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct Thumbnails {
-    pub thumbnails: Vec<Thumbnail>,
-}
-
-#[derive(Clone, Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct Thumbnail {
-    pub url: String,
-    pub width: u32,
-    pub height: u32,
 }
 
 #[derive(Clone, Debug, Deserialize)]

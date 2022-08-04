@@ -1,4 +1,5 @@
-mod player;
+pub mod player;
+pub mod playlist;
 mod response;
 
 use std::sync::Arc;
@@ -122,7 +123,7 @@ const TVHTML5_CLIENT_VERSION: &str = "2.0";
 const DESKTOP_MUSIC_API_KEY: &str = "AIzaSyC9XL3ZjWddXya6X74dJoCTL-WEYFDNX30";
 const DESKTOP_MUSIC_CLIENT_VERSION: &str = "1.20220727.01.00";
 
-const MOBILE_CLIENT_VERSION: &str = "17.10.35";
+const MOBILE_CLIENT_VERSION: &str = "17.29.35";
 const ANDROID_API_KEY: &str = "AIzaSyA8eiZmM1FaDVjRy-df2KTyQ_vz_yYM39w";
 const IOS_API_KEY: &str = "AIzaSyB-63vPrdThhKuerbB2N_l7Kwwcxj6yUAc";
 const IOS_DEVICE_MODEL: &str = "iPhone14,5";
@@ -174,7 +175,7 @@ impl RustyTube {
         }
     }
 
-    pub fn get_ytclient(&self, client_type: ClientType) -> Arc<dyn YTClient> {
+    fn get_ytclient(&self, client_type: ClientType) -> Arc<dyn YTClient> {
         match client_type {
             ClientType::Desktop => self.desktop_client.clone(),
             ClientType::DesktopMusic => self.desktop_music_client.clone(),
@@ -205,8 +206,7 @@ pub struct DesktopClient {
     locale: Arc<Locale>,
     http: Client,
     cache: Cache,
-    consent_cookie_yes: String,
-    consent_cookie_no: String,
+    consent_cookie: String,
 }
 
 #[async_trait]
@@ -246,7 +246,7 @@ impl YTClient for DesktopClient {
             )
             .header(header::ORIGIN, "https://www.youtube.com")
             .header(header::REFERER, "https://www.youtube.com")
-            .header(header::COOKIE, self.consent_cookie_no.to_owned())
+            .header(header::COOKIE, self.consent_cookie.to_owned())
             .header("X-YouTube-Client-Name", "1")
             .header("X-YouTube-Client-Version", self.get_client_version().await)
     }
@@ -275,16 +275,10 @@ impl DesktopClient {
             locale,
             http,
             cache,
-            consent_cookie_yes: format!(
+            consent_cookie: format!(
                 "{}={}{}",
                 CONSENT_COOKIE,
                 CONSENT_COOKIE_YES,
-                rng.gen_range(100..1000)
-            ),
-            consent_cookie_no: format!(
-                "{}={}{}",
-                CONSENT_COOKIE,
-                CONSENT_COOKIE_NO,
                 rng.gen_range(100..1000)
             ),
         }
@@ -312,7 +306,7 @@ impl DesktopClient {
 
     async fn get_client_version(&self) -> String {
         let http = self.http.clone();
-        let consent_cookie = self.consent_cookie_yes.clone();
+        let consent_cookie = self.consent_cookie.clone();
 
         let client_data = self
             .cache
@@ -549,8 +543,7 @@ pub struct DesktopMusicClient {
     locale: Arc<Locale>,
     http: Client,
     cache: Cache,
-    consent_cookie_yes: String,
-    consent_cookie_no: String,
+    consent_cookie: String,
 }
 
 #[async_trait]
@@ -593,7 +586,7 @@ impl YTClient for DesktopMusicClient {
             )
             .header(header::ORIGIN, "https://music.youtube.com")
             .header(header::REFERER, "https://music.youtube.com")
-            .header(header::COOKIE, self.consent_cookie_no.to_owned())
+            .header(header::COOKIE, self.consent_cookie.to_owned())
             .header("X-YouTube-Client-Name", "67")
             .header("X-YouTube-Client-Version", self.get_client_version().await)
     }
@@ -622,16 +615,10 @@ impl DesktopMusicClient {
             locale,
             http,
             cache,
-            consent_cookie_yes: format!(
+            consent_cookie: format!(
                 "{}={}{}",
                 CONSENT_COOKIE,
                 CONSENT_COOKIE_YES,
-                rng.gen_range(100..1000)
-            ),
-            consent_cookie_no: format!(
-                "{}={}{}",
-                CONSENT_COOKIE,
-                CONSENT_COOKIE_NO,
                 rng.gen_range(100..1000)
             ),
         }
@@ -659,7 +646,7 @@ impl DesktopMusicClient {
 
     async fn get_client_version(&self) -> String {
         let http = self.http.clone();
-        let consent_cookie = self.consent_cookie_yes.clone();
+        let consent_cookie = self.consent_cookie.clone();
 
         let client_data = self
             .cache
@@ -696,7 +683,7 @@ mod tests {
         let client = rt.desktop_client;
         let version = DesktopClient::extract_client_version_from_swjs(
             client.http.clone(),
-            &client.consent_cookie_yes,
+            &client.consent_cookie,
         )
         .await
         .unwrap();
@@ -719,7 +706,7 @@ mod tests {
         let client = rt.desktop_music_client;
         let version = DesktopMusicClient::extract_client_version_from_swjs(
             client.http.clone(),
-            &client.consent_cookie_yes,
+            &client.consent_cookie,
         )
         .await
         .unwrap();
