@@ -29,32 +29,32 @@ pub struct Thumbnail {
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct MusicItem {
-    thumbnail: MusicThumbnailRenderer,
-    playlist_item_data: PlaylistItemData,
+    pub thumbnail: MusicThumbnailRenderer,
+    pub playlist_item_data: PlaylistItemData,
     #[serde(default)]
     #[serde_as(as = "VecSkipError<_>")]
-    flex_columns: Vec<MusicColumn>,
+    pub flex_columns: Vec<MusicColumn>,
     #[serde(default)]
     #[serde_as(as = "VecSkipError<_>")]
-    fixed_columns: Vec<MusicColumn>,
+    pub fixed_columns: Vec<MusicColumn>,
 }
 
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct MusicThumbnailRenderer {
-    music_thumbnail_renderer: MusicThumbnailRenderer2,
+    pub music_thumbnail_renderer: MusicThumbnailRenderer2,
 }
 
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct MusicThumbnailRenderer2 {
-    thumbnail: Thumbnails,
+    pub thumbnail: Thumbnails,
 }
 
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct PlaylistItemData {
-    video_id: String,
+    pub video_id: String,
 }
 
 #[derive(Clone, Debug, Deserialize)]
@@ -63,12 +63,12 @@ pub struct MusicColumn {
         rename = "musicResponsiveListItemFlexColumnRenderer",
         alias = "musicResponsiveListItemFixedColumnRenderer"
     )]
-    renderer: MusicColumnRenderer,
+    pub renderer: MusicColumnRenderer,
 }
 
 #[serde_as]
 #[derive(Clone, Debug, Deserialize)]
 pub struct MusicColumnRenderer {
     #[serde_as(as = "crate::serializer::text::TextLink")]
-    text: TextLink,
+    pub text: TextLink,
 }

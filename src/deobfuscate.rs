@@ -57,7 +57,7 @@ impl Deobfuscator {
 
 impl From<DeobfData> for Deobfuscator {
     fn from(data: DeobfData) -> Self {
-        Self {data}
+        Self { data }
     }
 }
 
@@ -379,7 +379,9 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
     async fn t_update() {
         let client = Client::new();
         let cache = Cache::default();
-        let deobf = Deobfuscator::from_fetched_info(client, cache).await.unwrap();
+        let deobf = Deobfuscator::from_fetched_info(client, cache)
+            .await
+            .unwrap();
 
         let deobf_sig = deobf.deobfuscate_sig("GOqGOqGOq0QJ8wRAIgaryQHfplJ9xJSKFywyaSMHuuwZYsoMTAvRvfm51qIGECIA5061zWeyfMPX9hEl_U6f9J0tr7GTJMKyPf5XNrJb5fb5i").unwrap();
         println!("{}", deobf_sig);

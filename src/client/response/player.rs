@@ -235,5 +235,5 @@ pub struct PlayerMicroformatRenderer {
     pub category: String,
     pub publish_date: NaiveDate,
     // Only on YT Music
-    pub tags: Option<Vec<String>>
+    pub tags: Option<Vec<String>>,
 }

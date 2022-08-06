@@ -3,11 +3,11 @@
 #[macro_use]
 mod macros;
 
-mod util;
-mod serializer;
 mod cache;
 mod deobfuscate;
+mod serializer;
+mod util;
 
-pub mod model;
 pub mod client;
 pub mod download;
+pub mod model;

@@ -1,7 +1,11 @@
 use std::ops::Range;
 
 use chrono::{DateTime, Utc};
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
+
+pub trait FileFormat {
+    fn extension(&self) -> &str;
+}
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct PlayerData {
@@ -30,7 +34,6 @@ pub struct VideoInfo {
     pub category: Option<String>,
     pub is_live_content: bool,
     pub is_family_safe: Option<bool>,
-
     // pub like_count: Option<u32>,
     // pub dislike_count: Option<u32>
 }
@@ -50,6 +53,7 @@ pub struct VideoStream {
     pub quality: String,
     pub hdr: bool,
     pub mime: String,
+    pub format: VideoFormat,
     pub codec: VideoCodec,
 }
 
@@ -63,10 +67,13 @@ pub struct AudioStream {
     pub index_range: Option<Range<u32>>,
     pub init_range: Option<Range<u32>>,
     pub mime: String,
+    pub format: AudioFormat,
     pub codec: AudioCodec,
 }
 
-#[derive(Default, Copy, Clone, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(
+    Default, Copy, Clone, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash,
+)]
 #[serde(rename_all = "snake_case")]
 #[non_exhaustive]
 pub enum VideoCodec {
@@ -82,7 +89,9 @@ pub enum VideoCodec {
     Av01,
 }
 
-#[derive(Default, Copy, Clone, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(
+    Default, Copy, Clone, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash,
+)]
 #[serde(rename_all = "snake_case")]
 #[non_exhaustive]
 pub enum AudioCodec {
@@ -91,7 +100,45 @@ pub enum AudioCodec {
     /// MP4A aka AAC: https://en.wikipedia.org/wiki/Advanced_Audio_Coding
     Mp4a,
     /// Opus: https://en.wikipedia.org/wiki/Opus_(audio_format)
-    Opus
+    Opus,
+}
+
+/// The video file format
+#[derive(Copy, Clone, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[serde(rename_all = "snake_case")]
+#[non_exhaustive]
+pub enum VideoFormat {
+    #[serde(rename = "3gp")]
+    ThreeGp,
+    Mp4,
+    Webm,
+}
+
+impl FileFormat for VideoFormat {
+    fn extension(&self) -> &str {
+        match self {
+            VideoFormat::ThreeGp => ".3gp",
+            VideoFormat::Mp4 => ".mp4",
+            VideoFormat::Webm => ".webm",
+        }
+    }
+}
+
+#[derive(Copy, Clone, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[serde(rename_all = "snake_case")]
+#[non_exhaustive]
+pub enum AudioFormat {
+    M4a,
+    Webm,
+}
+
+impl FileFormat for AudioFormat {
+    fn extension(&self) -> &str {
+        match self {
+            AudioFormat::M4a => ".m4a",
+            AudioFormat::Webm => ".webm",
+        }
+    }
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]

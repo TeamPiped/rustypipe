@@ -14,19 +14,8 @@ use reqwest::Method;
 use serde::Serialize;
 use url::Url;
 
-use super::{
-    response,
-    ClientType, ContextYT, RustyTube, YTClient,
-};
-use crate::{
-    client::response::player,
-    deobfuscate::Deobfuscator,
-    model::{
-        AudioCodec, AudioStream, PlayerData, Subtitle, Thumbnail, VideoCodec, VideoInfo,
-        VideoStream,
-    },
-    util,
-};
+use super::{response, ClientType, ContextYT, RustyTube, YTClient};
+use crate::{client::response::player, deobfuscate::Deobfuscator, model::*, util};
 
 // REQUEST
 
@@ -193,6 +182,8 @@ fn map_video_stream(
     deobf: &Deobfuscator,
     last_nsig: &mut [String; 2],
 ) -> Option<VideoStream> {
+    let (mtype, codecs) = some_or_bail!(parse_mime(&f.mime_type), None);
+
     Some(VideoStream {
         url: some_or_bail!(map_url(f, deobf, last_nsig), None),
         itag: f.itag,
@@ -208,7 +199,8 @@ fn map_video_stream(
         hdr: f.color_info.clone().unwrap_or_default().primaries
             == player::Primaries::ColorPrimariesBt2020,
         mime: f.mime_type.to_owned(),
-        codec: get_video_codec(&f.mime_type),
+        format: some_or_bail!(get_video_format(mtype), None),
+        codec: get_video_codec(codecs),
     })
 }
 
@@ -217,6 +209,8 @@ fn map_audio_stream(
     deobf: &Deobfuscator,
     last_nsig: &mut [String; 2],
 ) -> Option<AudioStream> {
+    let (mtype, codecs) = some_or_bail!(parse_mime(&f.mime_type), None);
+
     Some(AudioStream {
         url: some_or_bail!(map_url(f, deobf, last_nsig), None),
         itag: f.itag,
@@ -226,25 +220,38 @@ fn map_audio_stream(
         index_range: f.index_range.to_owned(),
         init_range: f.init_range.to_owned(),
         mime: f.mime_type.to_owned(),
-        codec: get_audio_codec(&f.mime_type),
+        format: some_or_bail!(get_audio_format(mtype), None),
+        codec: get_audio_codec(codecs),
     })
 }
 
-fn codecs_from_mime(mime: &str) -> Vec<&str> {
+fn parse_mime(mime: &str) -> Option<(&str, Vec<&str>)> {
     static PATTERN: Lazy<Regex> =
         Lazy::new(|| Regex::new(r#"(\w+/\w+);\scodecs="([a-zA-Z-0-9.,\s]*)""#).unwrap());
 
-    let captures = some_or_bail!(PATTERN.captures(&mime).ok().flatten(), vec![]);
-    captures
-        .get(2)
-        .unwrap()
-        .as_str()
-        .split(", ")
-        .collect::<Vec<&str>>()
+    let captures = some_or_bail!(PATTERN.captures(&mime).ok().flatten(), None);
+    Some((
+        captures.get(1).unwrap().as_str(),
+        captures
+            .get(2)
+            .unwrap()
+            .as_str()
+            .split(", ")
+            .collect::<Vec<&str>>(),
+    ))
 }
 
-fn get_video_codec(mime: &str) -> VideoCodec {
-    for codec in codecs_from_mime(mime) {
+fn get_video_format(mtype: &str) -> Option<VideoFormat> {
+    match mtype {
+        "video/3gpp" => Some(VideoFormat::ThreeGp),
+        "video/mp4" => Some(VideoFormat::Mp4),
+        "video/webm" => Some(VideoFormat::Webm),
+        _ => None,
+    }
+}
+
+fn get_video_codec(codecs: Vec<&str>) -> VideoCodec {
+    for codec in codecs {
         if codec.starts_with("avc1") {
             return VideoCodec::Avc1;
         } else if codec.starts_with("vp9") || codec.starts_with("vp09") {
@@ -258,8 +265,16 @@ fn get_video_codec(mime: &str) -> VideoCodec {
     VideoCodec::Unknown
 }
 
-fn get_audio_codec(mime: &str) -> AudioCodec {
-    for codec in codecs_from_mime(mime) {
+fn get_audio_format(mtype: &str) -> Option<AudioFormat> {
+    match mtype {
+        "audio/mp4" => Some(AudioFormat::M4a),
+        "audio/webm" => Some(AudioFormat::Webm),
+        _ => None,
+    }
+}
+
+fn get_audio_codec(codecs: Vec<&str>) -> AudioCodec {
+    for codec in codecs {
         if codec.starts_with("mp4a") {
             return AudioCodec::Mp4a;
         } else if codec.starts_with("opus") {
@@ -534,12 +549,14 @@ mod tests {
             assert_eq!(video.quality, "720p");
             assert_eq!(video.hdr, false);
             assert_eq!(video.mime, "video/webm; codecs=\"vp09.00.31.08\"");
+            assert_eq!(video.format, VideoFormat::Webm);
             assert_eq!(video.codec, VideoCodec::Vp9);
 
             assert_eq!(audio.bitrate, 130685);
             assert_eq!(audio.average_bitrate, 129496);
             assert_eq!(audio.size, 4193863);
             assert_eq!(audio.mime, "audio/mp4; codecs=\"mp4a.40.2\"");
+            assert_eq!(audio.format, AudioFormat::M4a);
             assert_eq!(audio.codec, AudioCodec::Mp4a);
         } else {
             let video = player_data
@@ -562,12 +579,14 @@ mod tests {
             assert_eq!(video.quality, "720p");
             assert_eq!(video.hdr, false);
             assert_eq!(video.mime, "video/mp4; codecs=\"av01.0.05M.08\"");
+            assert_eq!(video.format, VideoFormat::Mp4);
             assert_eq!(video.codec, VideoCodec::Av01);
 
             assert_eq!(audio.bitrate, 142718);
             assert_eq!(audio.average_bitrate, 130708);
             assert_eq!(audio.size, 4232344);
             assert_eq!(audio.mime, "audio/webm; codecs=\"opus\"");
+            assert_eq!(audio.format, AudioFormat::Webm);
             assert_eq!(audio.codec, AudioCodec::Opus);
         }
 

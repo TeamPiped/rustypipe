@@ -13,12 +13,18 @@ struct QPlaylist {
     browse_id: String,
 }
 
+#[derive(Clone, Debug)]
+pub struct TmpEntry {
+    title: String,
+    video_id: String,
+}
+
 impl RustyTube {
     pub async fn get_playlist(
         &self,
         playlist_id: &str,
         client_type: ClientType,
-    ) -> Result<response::Playlist> {
+    ) -> Result<Vec<TmpEntry>> {
         // let client = self.desktop_client.clone();
         let client = self.get_ytclient(client_type);
         let context = client.get_context(true).await;
@@ -38,7 +44,31 @@ impl RustyTube {
 
         let playlist_response = resp.json::<response::Playlist>().await?;
 
-        Ok(playlist_response)
+        Ok(map_playlist_tmp(playlist_response))
+    }
+}
+
+fn map_playlist_tmp(response: response::Playlist) -> Vec<TmpEntry> {
+    let content = &response
+        .contents
+        .two_column_browse_results_renderer
+        .contents[0]
+        .tab_renderer
+        .content
+        .section_list_renderer
+        .contents[0];
+
+    match &content.item_section_renderer {
+        Some(items) => items.contents[0]
+            .playlist_video_list_renderer
+            .contents
+            .iter()
+            .map(|it| TmpEntry {
+                title: it.playlist_video_renderer.title.to_owned(),
+                video_id: it.playlist_video_renderer.video_id.to_owned(),
+            })
+            .collect(),
+        None => todo!(),
     }
 }
 
@@ -51,7 +81,7 @@ mod tests {
     use super::*;
 
     #[allow(dead_code)]
-    // #[test_log::test(tokio::test)]
+    #[test_log::test(tokio::test)]
     async fn download_testfiles() {
         let tf_dir = Path::new("testfiles/playlist");
         let playlist_id = "RDCLAK5uy_mHW5bcduhjB-PkTePAe6EoRMj1xNT8gzY";
@@ -106,7 +136,7 @@ mod tests {
         let playlist = rt
             .get_playlist(
                 "RDCLAK5uy_mHW5bcduhjB-PkTePAe6EoRMj1xNT8gzY",
-                ClientType::DesktopMusic,
+                ClientType::Desktop,
             )
             .await
             .unwrap();

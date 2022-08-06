@@ -4,7 +4,7 @@ use serde_with::{json::JsonString, DefaultOnError, VecSkipError};
 
 use crate::serializer::text::TextLink;
 
-use super::{Thumbnails, MusicItem};
+use super::{MusicItem, Thumbnails};
 
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -42,19 +42,19 @@ pub struct ItemSection {
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct PlaylistVideoList {
-    pub playlist_video_list_renderer: ContentsRenderer<PlaylistVideoItem>
+    pub playlist_video_list_renderer: ContentsRenderer<PlaylistVideoItem>,
 }
 
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct PlaylistVideoItem {
-    playlist_video_renderer: PlaylistVideo,
+    pub playlist_video_renderer: PlaylistVideo,
 }
 
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct PlaylistMusicItem {
-    music_responsive_list_item_renderer: MusicItem,
+    pub music_responsive_list_item_renderer: MusicItem,
 }
 
 #[serde_as]
@@ -94,12 +94,12 @@ pub struct HeaderRenderer {
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ContentRenderer<T> {
-    pub content: T
+    pub content: T,
 }
 
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ContentsRenderer<T> {
     #[serde(alias = "tabs")]
-    pub contents: Vec<T>
+    pub contents: Vec<T>,
 }
