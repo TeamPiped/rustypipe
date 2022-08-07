@@ -15,8 +15,8 @@ struct QPlaylist {
 
 #[derive(Clone, Debug)]
 pub struct TmpEntry {
-    title: String,
-    video_id: String,
+    pub title: String,
+    pub video_id: String,
 }
 
 impl RustyTube {

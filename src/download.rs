@@ -1,9 +1,9 @@
-use std::{cmp::Ordering, ffi::OsString, ops::Range, path::PathBuf};
+use std::{cmp::Ordering, ffi::OsString, fmt::format, ops::Range, path::PathBuf};
 
 use anyhow::{anyhow, bail, Result};
 use fancy_regex::Regex;
 use futures::stream::{self, StreamExt};
-use indicatif::{ProgressBar, ProgressStyle};
+use indicatif::{MultiProgress, ProgressBar, ProgressStyle};
 use log::debug;
 use once_cell::sync::Lazy;
 use rand::Rng;
@@ -13,7 +13,7 @@ use tokio::{fs, io::AsyncWriteExt, process::Command};
 use crate::model::{AudioCodec, FileFormat, PlayerData, VideoCodec};
 
 const CHUNK_SIZE_MIN: u64 = 9000000;
-const CHUNK_SIZE_MAX: u64 = 11000000;
+const CHUNK_SIZE_MAX: u64 = 10000000;
 
 fn get_download_range(offset: u64, size: Option<u64>) -> Range<u64> {
     let mut rng = rand::thread_rng();
@@ -120,11 +120,6 @@ async fn download_single_file<S: Into<String>, P: Into<PathBuf>>(
         .open(output_path_tmp.to_owned())
         .await?;
 
-    pb.set_style(ProgressStyle::default_bar()
-        .template("{msg}\n{spinner:.green} [{elapsed_precise}] [{wide_bar:.cyan/blue}] {bytes}/{total_bytes} ({bytes_per_sec}, {eta})").unwrap()
-        .progress_chars("#>-"));
-    pb.set_message("Downloading");
-
     loop {
         let range = get_download_range(offset, size);
         debug!("Fetching range {}-{}", range.start, range.end);
@@ -182,7 +177,7 @@ struct StreamDownload {
     video_codec: Option<VideoCodec>,
 }
 
-async fn download_video(
+pub async fn download_video(
     player_data: &PlayerData,
     output_dir: &str,
     resolution: Option<u32>,
@@ -210,12 +205,12 @@ async fn download_video(
     );
 
     let download_dir = PathBuf::from(output_dir);
-    let title_fname = player_data.info.title.to_owned(); // TODO: slugify
+    let title = player_data.info.title.to_owned();
+    let title_fname = slug::slugify(&title); // TODO: slugify
 
     let mut downloads: Vec<StreamDownload> = Vec::new();
 
     video.map(|v| {
-        println!("Video: {}", v.url);
         downloads.push(StreamDownload {
             file: download_dir.join(format!("{}.video{}", title_fname, v.format.extension())),
             url: v.url.to_owned(),
@@ -223,7 +218,6 @@ async fn download_video(
             audio_codec: None,
         });
     });
-    println!("Audio: {}", audio.url);
     downloads.push(StreamDownload {
         file: download_dir.join(format!("{}.audio{}", title_fname, audio.format.extension())),
         url: audio.url.to_owned(),
@@ -231,11 +225,23 @@ async fn download_video(
         audio_codec: Some(audio.codec),
     });
 
-    download_streams(&downloads, http, pb).await?;
+    pb.set_message(format!("Downloading {}", title));
+    download_streams(&downloads, http, pb.clone()).await?;
 
-    let output_file = download_dir.join(format!("{}.mp4", title_fname));
-    convert_streams(&downloads, output_file, ffmpeg).await?;
+    pb.set_message(format!("Converting {}", title));
+    // let output_file = download_dir.join(format!("{}.mp4", title_fname));
+    convert_streams(&downloads, download_dir.join(title_fname), ffmpeg).await?;
 
+    // Delete original files
+    stream::iter(&downloads)
+        .map(|d| fs::remove_file(d.file.to_owned()))
+        .buffer_unordered(downloads.len())
+        .collect::<Vec<_>>()
+        .await
+        .into_iter()
+        .collect::<Result<_, _>>()?;
+
+    pb.finish_and_clear();
     Ok(())
 }
 
@@ -273,7 +279,22 @@ async fn convert_streams<P: Into<PathBuf>>(
     output: P,
     ffmpeg: &str,
 ) -> Result<()> {
-    let output: PathBuf = output.into();
+    let format = if downloads.len() == 1
+        && downloads[0].video_codec.is_none()
+        && downloads[0].audio_codec.is_some()
+    {
+        match downloads[0].audio_codec.unwrap_or_default() {
+            AudioCodec::Unknown => bail!("unknown audio codec"),
+            AudioCodec::Mp4a => "m4a",
+            AudioCodec::Opus => "opus",
+        }
+    } else {
+        "mp4"
+    };
+
+    let mut output: PathBuf = output.into();
+    output.set_extension(format);
+
     let mut args: Vec<OsString> = vec![];
     let mut mapping_args: Vec<OsString> = vec![];
     // let mut meta_args: Vec<OsString> = vec![];
@@ -311,10 +332,8 @@ mod tests {
     use indicatif::{ProgressDrawTarget, ProgressStyle};
     use reqwest::ClientBuilder;
 
-    const TEST_URL_AUDIO: &str = "https://rr2---sn-h0jelnes.googlevideo.com/videoplayback?c=WEB&clen=3548576&dur=217.281&ei=XLTsYqrjBZWI6dsPpN2piAM&expire=1659701436&fexp=24001373%2C24007246&fvip=3&gir=yes&id=o-ADzcOIYmmZUru2VQVa-K0lhP_Uwt-YB868WY1tQpxP29&initcwndbps=1550000&ip=2003%3Ade%3Aaf09%3A3800%3Adf03%3Aff5b%3A9fbd%3Aef0b&itag=251&keepalive=yes&lmt=1655066322398609&lsig=AG3C_xAwRQIhAPWzFISUntnQVCePCtbi3PwsrztgOM_ACh3OQX333boNAiBHcu5TJj8oQGmgz8sfm_I9jkbiCM1VOq_vW-wN0ARlMg%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=0P&mime=audio%2Fwebm&mm=31%2C29&mn=sn-h0jelnes%2Csn-h0jeened&ms=au%2Crdu&mt=1659679486&mv=m&mvi=2&n=9-E5diT6ORysAQ&ns=z1W4YnCGd7nB7ajH1gDgfDkH&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRgIhAKd-cnF7ZCwKCi2J4_4R032sNFzquZUsgr0EStdolqETAiEAgBd-yD8HhXKiqll9_Pn_z2aWGBi1rcvqpO-KOsgaTZQ%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cspc%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&spc=lT-Khvvt1xML3EE5f7dUNGCF9edAhhQ&txp=5532434&vp";
-    const TEST_URL_VIDEO: &str = "https://rr2---sn-h0jelnes.googlevideo.com/videoplayback?aitags=133%2C134%2C135%2C136%2C137%2C160%2C242%2C243%2C244%2C247%2C248%2C271%2C278%2C313%2C394%2C395%2C396%2C397%2C398%2C399%2C400%2C401&c=WEB&clen=53812383&dur=217.258&ei=XLTsYqrjBZWI6dsPpN2piAM&expire=1659701436&fexp=24001373%2C24007246&fvip=3&gir=yes&id=o-ADzcOIYmmZUru2VQVa-K0lhP_Uwt-YB868WY1tQpxP29&initcwndbps=1550000&ip=2003%3Ade%3Aaf09%3A3800%3Adf03%3Aff5b%3A9fbd%3Aef0b&itag=399&keepalive=yes&lmt=1655077485544227&lsig=AG3C_xAwRAIgYASOFHKLHNDlad52_t29Vem3WMdSI4n2cDkW_GxxGB0CICb1D5TmmApvKZQP-tf7Mq4pgYyA9ihm7Bx152GjrrFf&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=0P&mime=video%2Fmp4&mm=31%2C29&mn=sn-h0jelnes%2Csn-h0jeened&ms=au%2Crdu&mt=1659679486&mv=m&mvi=2&n=9-E5diT6ORysAQ&ns=z1W4YnCGd7nB7ajH1gDgfDkH&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRQIgHo0czKIjgbtGJS9yQHRMHZyZ8tzRhgbxBAl2N39Ms0ICIQCSTqPrsewj0qYDxjXnp6nIuRkYZU6WTiHPeaXVz1-eEw%3D%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cspc%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&spc=lT-Khvvt1xML3EE5f7dUNGCF9edAhhQ&txp=5532434&vprv=1";
-
-    #[test_log::test(tokio::test)]
+    // #[test_log::test(tokio::test)]
+    #[tokio::test]
     async fn t_download_video() {
         let http = ClientBuilder::new()
             .user_agent(
@@ -334,8 +353,8 @@ mod tests {
             .await
             .unwrap();
 
-        download_video(&player_data, "tmp", Some(1080), "ffmpeg", http, pb)
-            .await
-            .unwrap();
+        // download_video(&player_data, "tmp", "INVU", Some(1080), "ffmpeg", http, pb)
+        //     .await
+        //     .unwrap();
     }
 }
