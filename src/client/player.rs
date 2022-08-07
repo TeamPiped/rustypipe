@@ -107,11 +107,23 @@ fn build_request_body(
     }
 }
 
-fn cipher_to_url(
+fn url_to_params(url: &str) -> Result<(String, BTreeMap<String, String>)> {
+    let parsed_url = Url::parse(url)?;
+    let url_params: BTreeMap<String, String> = parsed_url
+        .query_pairs()
+        .map(|(k, v)| (k.to_string(), v.to_string()))
+        .collect();
+
+    let mut url_base = parsed_url.clone();
+    url_base.set_query(None);
+
+    Ok((url_base.to_string(), url_params))
+}
+
+fn cipher_to_url_params(
     signature_cipher: &str,
     deobf: &Deobfuscator,
-    last_nsig: &mut [String; 2],
-) -> Result<String> {
+) -> Result<(String, BTreeMap<String, String>)> {
     let params: HashMap<Cow<str>, Cow<str>> =
         url::form_urlencoded::parse(signature_cipher.as_bytes()).collect();
 
@@ -123,15 +135,20 @@ fn cipher_to_url(
     let sig = some_or_bail!(params.get("s"), Err(anyhow!("no s param")));
     let sp = some_or_bail!(params.get("sp"), Err(anyhow!("no sp param")));
     let raw_url = some_or_bail!(params.get("url"), Err(anyhow!("no url param")));
-    let parsed_url = Url::parse(raw_url)?;
+    let (url_base, mut url_params) = url_to_params(raw_url)?;
 
     // println!("sig: {}", sig);
     let deobf_sig = deobf.deobfuscate_sig(sig)?;
+    url_params.insert(sp.to_string(), deobf_sig);
 
-    // Use BTreeMap to get reproducible ordering
-    let mut url_params: BTreeMap<Cow<str>, Cow<str>> = parsed_url.query_pairs().collect();
-    url_params.insert(Cow::Borrowed(sp), Cow::Borrowed(&deobf_sig));
+    Ok((url_base, url_params))
+}
 
+fn deobf_nsig(
+    url_params: &mut BTreeMap<String, String>,
+    deobf: &Deobfuscator,
+    last_nsig: &mut [String; 2],
+) -> Result<()> {
     let nsig: String;
     match url_params.get("n") {
         Some(n) => {
@@ -146,15 +163,11 @@ fn cipher_to_url(
                 nsig
             };
 
-            url_params.insert(Cow::Borrowed("n"), Cow::Borrowed(&nsig));
+            url_params.insert("n".to_owned(), nsig);
         }
         None => {}
-    }
-
-    let mut url_base = parsed_url.clone();
-    url_base.set_query(None);
-    let new_url = Url::parse_with_params(url_base.as_str(), url_params.iter())?;
-    Ok(new_url.to_string())
+    };
+    Ok(())
 }
 
 fn map_url(
@@ -162,18 +175,32 @@ fn map_url(
     deobf: &Deobfuscator,
     last_nsig: &mut [String; 2],
 ) -> Option<String> {
-    match &f.url {
-        Some(url) => Some(url.to_owned()),
+    let (url_base, mut url_params) = match &f.url {
+        Some(url) => ok_or_bail!(url_to_params(url), None),
         None => match &f.signature_cipher {
-            Some(signature_cipher) => match cipher_to_url(signature_cipher, deobf, last_nsig) {
-                Ok(url) => Some(url),
+            Some(signature_cipher) => match cipher_to_url_params(signature_cipher, deobf) {
+                Ok(res) => res,
                 Err(e) => {
-                    error!("Could not decrypt signatureCipher: {}", e);
-                    None
+                    error!("Could not deobfuscate signatureCipher: {}", e);
+                    return None;
                 }
             },
-            None => None,
+            None => return None,
         },
+    };
+
+    match deobf_nsig(&mut url_params, deobf, last_nsig) {
+        Ok(_) => Some(
+            ok_or_bail!(
+                Url::parse_with_params(url_base.as_str(), url_params.iter()),
+                None
+            )
+            .to_string(),
+        ),
+        Err(e) => {
+            error!("Could not deobfuscate nsig: {}", e);
+            None
+        }
     }
 }
 
@@ -596,12 +623,17 @@ mod tests {
     #[test]
     fn t_cipher_to_url() {
         let signature_cipher = "s=w%3DAe%3DA6aDNQLkViKS7LOm9QtxZJHKwb53riq9qEFw-ecBWJCAiA%3DcEg0tn3dty9jEHszfzh4Ud__bg9CEHVx4ix-7dKsIPAhIQRw8JQ0qOA&sp=sig&url=https://rr5---sn-h0jelnez.googlevideo.com/videoplayback%3Fexpire%3D1659376413%26ei%3Dvb7nYvH5BMK8gAfBj7ToBQ%26ip%3D2003%253Ade%253Aaf06%253A6300%253Ac750%253A1b77%253Ac74a%253A80e3%26id%3Do-AB_BABwrXZJN428ZwDxq5ScPn2AbcGODnRlTVhCQ3mj2%26itag%3D251%26source%3Dyoutube%26requiressl%3Dyes%26mh%3DhH%26mm%3D31%252C26%26mn%3Dsn-h0jelnez%252Csn-4g5ednsl%26ms%3Dau%252Conr%26mv%3Dm%26mvi%3D5%26pl%3D37%26initcwndbps%3D1588750%26spc%3DlT-Khi831z8dTejFIRCvCEwx_6romtM%26vprv%3D1%26mime%3Daudio%252Fwebm%26ns%3Db_Mq_qlTFcSGlG9RpwpM9xQH%26gir%3Dyes%26clen%3D3781277%26dur%3D229.301%26lmt%3D1655510291473933%26mt%3D1659354538%26fvip%3D5%26keepalive%3Dyes%26fexp%3D24001373%252C24007246%26c%3DWEB%26rbqsm%3Dfr%26txp%3D4532434%26n%3Dd2g6G2hVqWIXxedQ%26sparams%3Dexpire%252Cei%252Cip%252Cid%252Citag%252Csource%252Crequiressl%252Cspc%252Cvprv%252Cmime%252Cns%252Cgir%252Cclen%252Cdur%252Clmt%26lsparams%3Dmh%252Cmm%252Cmn%252Cms%252Cmv%252Cmvi%252Cpl%252Cinitcwndbps%26lsig%3DAG3C_xAwRQIgCKCGJ1iu4wlaGXy3jcJyU3inh9dr1FIfqYOZEG_MdmACIQCbungkQYFk7EhD6K2YvLaHFMjKOFWjw001_tLb0lPDtg%253D%253D";
-        let url = cipher_to_url(
-            signature_cipher,
+        let (url_base, mut url_params) =
+            cipher_to_url_params(signature_cipher, &DEOBFUSCATOR).unwrap();
+        deobf_nsig(
+            &mut url_params,
             &DEOBFUSCATOR,
-            &mut ["".to_string(), "".to_string()],
-        )
-        .unwrap();
+            &mut ["".to_owned(), "".to_owned()],
+        ).unwrap();
+        let url = Url::parse_with_params(url_base.as_str(), url_params.iter())
+            .unwrap()
+            .to_string();
+
         assert_eq!(url, "https://rr5---sn-h0jelnez.googlevideo.com/videoplayback?c=WEB&clen=3781277&dur=229.301&ei=vb7nYvH5BMK8gAfBj7ToBQ&expire=1659376413&fexp=24001373%2C24007246&fvip=5&gir=yes&id=o-AB_BABwrXZJN428ZwDxq5ScPn2AbcGODnRlTVhCQ3mj2&initcwndbps=1588750&ip=2003%3Ade%3Aaf06%3A6300%3Ac750%3A1b77%3Ac74a%3A80e3&itag=251&keepalive=yes&lmt=1655510291473933&lsig=AG3C_xAwRQIgCKCGJ1iu4wlaGXy3jcJyU3inh9dr1FIfqYOZEG_MdmACIQCbungkQYFk7EhD6K2YvLaHFMjKOFWjw001_tLb0lPDtg%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=hH&mime=audio%2Fwebm&mm=31%2C26&mn=sn-h0jelnez%2Csn-4g5ednsl&ms=au%2Conr&mt=1659354538&mv=m&mvi=5&n=XzXGSfGusw6OCQ&ns=b_Mq_qlTFcSGlG9RpwpM9xQH&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRQIhAPIsKd7-xi4xVHEC9gb__dU4hzfzsHEj9ytd3nt0gEceAiACJWBcw-wFEq9qir35bwKHJZxtQ9mOL7SKiVkLQNDa6A%3D%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cspc%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&spc=lT-Khi831z8dTejFIRCvCEwx_6romtM&txp=4532434&vprv=1");
     }
 }

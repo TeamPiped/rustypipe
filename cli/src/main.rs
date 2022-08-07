@@ -22,7 +22,7 @@ async fn download_video(
     pb.set_message("Fetching player data");
 
     let player_data = rt
-        .get_player(video_id.as_str(), ClientType::Android)
+        .get_player(video_id.as_str(), ClientType::Desktop)
         .await?;
 
     rusty_tube::download::download_video(
