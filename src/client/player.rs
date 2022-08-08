@@ -323,6 +323,18 @@ fn cmp_video_streams(a: &VideoStream, b: &VideoStream) -> Ordering {
     }
 }
 
+fn cmp_audio_streams(a: &AudioStream, b: &AudioStream) -> Ordering {
+    fn cmp_bitrate(s: &AudioStream) -> u32 {
+        match s.codec {
+            // Opus is more efficient
+            AudioCodec::Opus => (s.average_bitrate as f32 * 1.3) as u32,
+            _ => s.average_bitrate,
+        }
+    }
+
+    cmp_bitrate(a).cmp(&cmp_bitrate(b))
+}
+
 fn map_player_data(response: response::Player, deobf: &Deobfuscator) -> Result<PlayerData> {
     // Check playability status
     match response.playability_status {
@@ -423,7 +435,7 @@ fn map_player_data(response: response::Player, deobf: &Deobfuscator) -> Result<P
     // Sort streams by quality
     video_streams.sort_by(cmp_video_streams);
     video_only_streams.sort_by(cmp_video_streams);
-    audio_streams.sort_by_key(|s| s.average_bitrate);
+    audio_streams.sort_by(cmp_audio_streams);
 
     let subtitles = response.captions.map_or(vec![], |captions| {
         captions
@@ -629,7 +641,8 @@ mod tests {
             &mut url_params,
             &DEOBFUSCATOR,
             &mut ["".to_owned(), "".to_owned()],
-        ).unwrap();
+        )
+        .unwrap();
         let url = Url::parse_with_params(url_base.as_str(), url_params.iter())
             .unwrap()
             .to_string();

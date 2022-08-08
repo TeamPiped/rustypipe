@@ -4,7 +4,7 @@ use anyhow::{anyhow, bail, Result};
 use fancy_regex::Regex;
 use futures::stream::{self, StreamExt};
 use indicatif::ProgressBar;
-use log::debug;
+use log::{debug, info};
 use once_cell::sync::Lazy;
 use rand::Rng;
 use reqwest::{header, Client};
@@ -189,6 +189,7 @@ pub async fn download_video(
     // Download filepath
     let download_dir = PathBuf::from(output_dir);
     let title = player_data.info.title.to_owned();
+    let output_fname_set = output_fname.is_some();
     let output_fname = output_fname
         .unwrap_or_else(|| filenamify::filenamify(format!("{} [{}]", title, player_data.info.id)));
 
@@ -199,7 +200,7 @@ pub async fn download_video(
                 .video_only_streams
                 .iter()
                 .rev()
-                .find(|s| s.height == r && !s.hdr)
+                .find(|s| s.height <= r && !s.hdr)
                 .clone(),
             Err(anyhow!("no video stream matching res"))
         )),
@@ -207,9 +208,35 @@ pub async fn download_video(
     };
 
     let audio = some_or_bail!(
-        player_data.audio_streams.iter().rev().next(),
+        player_data
+            .audio_streams
+            .iter()
+            .rev()
+            .filter(|a| a.codec != AudioCodec::Unknown)
+            .next(),
         Err(anyhow!("no audio stream"))
     );
+
+    let format = match video {
+        Some(_) => "mp4",
+        None => match audio.codec {
+            AudioCodec::Unknown => panic!(),
+            AudioCodec::Mp4a => "m4a",
+            AudioCodec::Opus => "opus",
+        },
+    };
+
+    let output_path = download_dir.join(&output_fname).with_extension(format);
+    if output_path.exists() {
+        // If the downloaded video already exists, only error if the download path was
+        // chosen explicitly.
+        if output_fname_set {
+            bail!("File {} already exists", output_path.to_string_lossy());
+        } else {
+            info!("Downloaded video {} already exists", output_path.to_string_lossy());
+            return Ok(());
+        }
+    }
 
     let mut downloads: Vec<StreamDownload> = Vec::new();
 
@@ -236,8 +263,7 @@ pub async fn download_video(
     download_streams(&downloads, http, pb.clone()).await?;
 
     pb.set_message(format!("Converting {}", title));
-    // let output_file = download_dir.join(format!("{}.mp4", title_fname));
-    convert_streams(&downloads, download_dir.join(output_fname), ffmpeg).await?;
+    convert_streams(&downloads, output_path, ffmpeg).await?;
 
     // Delete original files
     stream::iter(&downloads)
@@ -286,21 +312,7 @@ async fn convert_streams<P: Into<PathBuf>>(
     output: P,
     ffmpeg: &str,
 ) -> Result<()> {
-    let format = if downloads.len() == 1
-        && downloads[0].video_codec.is_none()
-        && downloads[0].audio_codec.is_some()
-    {
-        match downloads[0].audio_codec.unwrap_or_default() {
-            AudioCodec::Unknown => bail!("unknown audio codec"),
-            AudioCodec::Mp4a => "m4a",
-            AudioCodec::Opus => "opus",
-        }
-    } else {
-        "mp4"
-    };
-
-    let mut output: PathBuf = output.into();
-    output.set_extension(format);
+    let output_path: PathBuf = output.into();
 
     let mut args: Vec<OsString> = vec![];
     let mut mapping_args: Vec<OsString> = vec![];
@@ -318,7 +330,7 @@ async fn convert_streams<P: Into<PathBuf>>(
 
     args.push("-c".into());
     args.push("copy".into());
-    args.push(output.into());
+    args.push(output_path.into());
 
     let res = Command::new(ffmpeg).args(args).output().await?;
 
