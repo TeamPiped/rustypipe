@@ -1,4 +1,4 @@
-use anyhow::Result;
+use anyhow::{Context, Result};
 use futures::stream::{self, StreamExt};
 use indicatif::{MultiProgress, ProgressBar, ProgressStyle};
 use reqwest::{Client, ClientBuilder};
@@ -7,7 +7,7 @@ use rusty_tube::client::{ClientType, RustyTube};
 async fn download_video(
     video_id: String,
     output_dir: &str,
-    output_fname: &str,
+    output_fname: Option<String>,
     resolution: Option<u32>,
     ffmpeg: &str,
     rt: &RustyTube,
@@ -23,18 +23,26 @@ async fn download_video(
 
     let player_data = rt
         .get_player(video_id.as_str(), ClientType::Desktop)
-        .await?;
+        .await
+        .context(format!(
+            "Failed to fetch player data for video {}",
+            video_id
+        ))?;
 
     rusty_tube::download::download_video(
         &player_data,
         output_dir,
-        // output_fname,
+        output_fname,
         resolution,
         ffmpeg,
         http,
         pb,
     )
-    .await?;
+    .await
+    .context(format!(
+        "Failed to download video '{}' [{}]",
+        player_data.info.title, video_id
+    ))?;
 
     main.inc(1);
     Ok(())
@@ -73,7 +81,7 @@ async fn main() {
             download_video(
                 item.video_id.to_owned(),
                 "tmp",
-                "xyz",
+                None,
                 None,
                 "ffmpeg",
                 &rt,

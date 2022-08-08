@@ -1,9 +1,9 @@
-use std::{cmp::Ordering, ffi::OsString, fmt::format, ops::Range, path::PathBuf};
+use std::{cmp::Ordering, ffi::OsString, ops::Range, path::PathBuf};
 
 use anyhow::{anyhow, bail, Result};
 use fancy_regex::Regex;
 use futures::stream::{self, StreamExt};
-use indicatif::{MultiProgress, ProgressBar, ProgressStyle};
+use indicatif::ProgressBar;
 use log::debug;
 use once_cell::sync::Lazy;
 use rand::Rng;
@@ -180,11 +180,18 @@ struct StreamDownload {
 pub async fn download_video(
     player_data: &PlayerData,
     output_dir: &str,
+    output_fname: Option<String>,
     resolution: Option<u32>,
     ffmpeg: &str,
     http: Client,
     pb: ProgressBar,
 ) -> Result<()> {
+    // Download filepath
+    let download_dir = PathBuf::from(output_dir);
+    let title = player_data.info.title.to_owned();
+    let output_fname = output_fname
+        .unwrap_or_else(|| filenamify::filenamify(format!("{} [{}]", title, player_data.info.id)));
+
     // Select streams to download
     let video = match resolution {
         Some(r) => Some(some_or_bail!(
@@ -204,22 +211,22 @@ pub async fn download_video(
         Err(anyhow!("no audio stream"))
     );
 
-    let download_dir = PathBuf::from(output_dir);
-    let title = player_data.info.title.to_owned();
-    let title_fname = slug::slugify(&title); // TODO: slugify
-
     let mut downloads: Vec<StreamDownload> = Vec::new();
 
     video.map(|v| {
         downloads.push(StreamDownload {
-            file: download_dir.join(format!("{}.video{}", title_fname, v.format.extension())),
+            file: download_dir.join(format!("{}.video{}", output_fname, v.format.extension())),
             url: v.url.to_owned(),
             video_codec: Some(v.codec),
             audio_codec: None,
         });
     });
     downloads.push(StreamDownload {
-        file: download_dir.join(format!("{}.audio{}", title_fname, audio.format.extension())),
+        file: download_dir.join(format!(
+            "{}.audio{}",
+            output_fname,
+            audio.format.extension()
+        )),
         url: audio.url.to_owned(),
         video_codec: None,
         audio_codec: Some(audio.codec),
@@ -230,7 +237,7 @@ pub async fn download_video(
 
     pb.set_message(format!("Converting {}", title));
     // let output_file = download_dir.join(format!("{}.mp4", title_fname));
-    convert_streams(&downloads, download_dir.join(title_fname), ffmpeg).await?;
+    convert_streams(&downloads, download_dir.join(output_fname), ffmpeg).await?;
 
     // Delete original files
     stream::iter(&downloads)
@@ -324,6 +331,7 @@ async fn convert_streams<P: Into<PathBuf>>(
     Ok(())
 }
 
+/*
 #[cfg(test)]
 mod tests {
     use crate::client::RustyTube;
@@ -358,3 +366,4 @@ mod tests {
         //     .unwrap();
     }
 }
+*/
