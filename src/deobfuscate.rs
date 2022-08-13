@@ -80,7 +80,7 @@ fn get_sig_fn_name(player_js: &str) -> Result<String> {
 }
 
 fn caller_function(fn_name: &str) -> String {
-    "function ".to_owned() + DEOBFUSCATION_FUNC_NAME + "(a){return " + &fn_name + "(a);}"
+    "var ".to_owned() + DEOBFUSCATION_FUNC_NAME + "=" + &fn_name + ";"
 }
 
 fn get_sig_fn(player_js: &str) -> Result<String> {
@@ -188,26 +188,49 @@ fn match_to_closing_parenthesis(string: &str, start: &str) -> Option<String> {
     start_index += start.len();
 
     let mut visited_par = false;
-    let mut open_par = 0;
+    let mut nesting = 0;
+    let mut last_escaped = false;
+    let mut quote = ' ';
     let mut res = String::new();
 
     for c in string[start_index..].chars() {
         res.push(c);
 
+        let mut this_escaped = false;
         match c {
             '{' => {
-                visited_par = true;
-                open_par += 1;
+                if quote == ' ' {
+                    visited_par = true;
+                    nesting += 1;
+                }
             }
             '}' => {
-                open_par -= 1;
+                if quote == ' ' {
+                    nesting -= 1;
+                }
+            }
+            '\\' => {
+                if !last_escaped {
+                    this_escaped = true;
+                }
+            }
+            '\'' | '"' | '`' => {
+                if !last_escaped {
+                    if quote == ' ' {
+                        quote = c;
+                    } else if quote == c {
+                        quote = ' ';
+                    }
+                }
             }
             _ => {}
         };
 
-        if visited_par && open_par == 0 {
+        if visited_par && nesting == 0 {
             break;
         }
+
+        last_escaped = this_escaped;
     }
     Some(res)
 }
@@ -312,7 +335,7 @@ null,497372841,-1912651541,function(d,e){d.push(e)},
 function(d,e){e=(e%d.length+d.length)%d.length;d.splice(-e).reverse().forEach(function(f){d.unshift(f)})},
 function(d,e){e=(e%d.length+d.length)%d.length;var f=d[0];d[0]=d[e];d[e]=f}];
 c[30]=c;c[40]=c;c[46]=c;try{c[43](c[34]),c[45](c[40],c[47]),c[46](c[51],c[33]),c[16](c[47],c[36]),c[38](c[31],c[49]),c[16](c[11],c[39]),c[0](c[11]),c[35](c[0],c[30]),c[35](c[4],c[17]),c[34](c[48],c[7],c[11]()),c[35](c[4],c[23]),c[35](c[4],c[9]),c[5](c[48],c[28]),c[36](c[46],c[16]),c[4](c[41],c[1]),c[4](c[16],c[28]),c[3](c[40],c[17]),c[9](c[8],c[23]),c[45](c[30],c[4]),c[50](c[3],c[28]),c[36](c[51],c[23]),c[14](c[0],c[24]),c[14](c[35],c[1]),c[20](c[51],c[41]),c[15](c[8],c[0]),c[31](c[35]),c[29](c[26]),
-c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c[47],c[49]),c[1](c[44],c[28]),c[39](c[16]),c[32](c[42],c[22]),c[46](c[14],c[48]),c[26](c[29],c[10]),c[46](c[9],c[3]),c[32](c[45])}catch(d){return"enhanced_except_85UBjOr-_w8_"+a}return b.join("")};function deobfuscate(a){return Vo(a);}"#;
+c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c[47],c[49]),c[1](c[44],c[28]),c[39](c[16]),c[32](c[42],c[22]),c[46](c[14],c[48]),c[26](c[29],c[10]),c[46](c[9],c[3]),c[32](c[45])}catch(d){return"enhanced_except_85UBjOr-_w8_"+a}return b.join("")};var deobfuscate=Vo;"#;
 
     #[test]
     fn t_get_sig_fn_name() {
@@ -325,7 +348,7 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
         let dcode = get_sig_fn(TEST_JS).unwrap();
         assert_eq!(
             dcode,
-            r#"var qB={w8:function(a){a.reverse()},EC:function(a,b){var c=a[0];a[0]=a[b%a.length];a[b%a.length]=c},Np:function(a,b){a.splice(0,b)}};var Rva=function(a){a=a.split("");qB.Np(a,3);qB.w8(a,41);qB.EC(a,55);qB.Np(a,3);qB.w8(a,33);qB.Np(a,3);qB.EC(a,48);qB.EC(a,17);qB.EC(a,43);return a.join("")};function deobfuscate(a){return Rva(a);}"#
+            r#"var qB={w8:function(a){a.reverse()},EC:function(a,b){var c=a[0];a[0]=a[b%a.length];a[b%a.length]=c},Np:function(a,b){a.splice(0,b)}};var Rva=function(a){a=a.split("");qB.Np(a,3);qB.w8(a,41);qB.EC(a,55);qB.Np(a,3);qB.w8(a,33);qB.Np(a,3);qB.EC(a,48);qB.EC(a,17);qB.EC(a,43);return a.join("")};var deobfuscate=Rva;"#
         );
     }
 
@@ -347,6 +370,13 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
         let res =
             match_to_closing_parenthesis("Kx Hello { Thx { Bye } } Wut {Tst {}}", "Hello").unwrap();
         assert_eq!(res, " { Thx { Bye } }")
+    }
+
+    #[test]
+    fn t_match_to_closing_parenthesis2() {
+        let res =
+            match_to_closing_parenthesis("function(d){return \",}\\\"/\"}", "function(d)").unwrap();
+        assert_eq!(res, "{return \",}\\\"/\"}")
     }
 
     #[test]

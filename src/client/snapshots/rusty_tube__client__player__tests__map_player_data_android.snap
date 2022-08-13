@@ -234,20 +234,6 @@ video_only_streams:
     format: mp4
     codec: av01
 audio_streams:
-  - url: "https://rr5---sn-h0jeenek.googlevideo.com/videoplayback?c=ANDROID&clen=934449&dur=163.061&ei=q1jpYtOPEYSBgQeHmqbwAQ&expire=1659481355&fexp=24001373%2C24007246&fvip=4&gir=yes&id=o-AEDMTCojVtwpIKOdhBaxEHE5s322qnAJHGqa2r1F46BM&initcwndbps=1527500&ip=2003%3Ade%3Aaf0e%3A2f00%3Ade47%3A297%3Aa6db%3A774e&itag=249&keepalive=yes&lmt=1608509101590706&lsig=AG3C_xAwRgIhAOiL-qJ04sA8FSOkEJfOYl3gFe4SzwYu_rAf3DMLHYigAiEA0Upi1HqqIu7NH_LTDL0jT1R5TTozQypL5FiSP9RoqtU%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=mQ&mime=audio%2Fwebm&mm=31%2C29&mn=sn-h0jeenek%2Csn-h0jelnez&ms=au%2Crdu&mt=1659459429&mv=m&mvi=5&otfp=1&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRAIgPmadKd9As393GMRmu1Ow4RfQkDQhY6SbPRnkLMYyZOoCIE9AIgMMJ7n5HD2gKv3c8-HrnkMeakq_uWUOivnWquJX&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cgir%2Cclen%2Cotfp%2Cdur%2Clmt&txp=1311222&vprv=1"
-    itag: 249
-    bitrate: 53039
-    average_bitrate: 45845
-    size: 934449
-    index_range:
-      start: 266
-      end: 551
-    init_range:
-      start: 0
-      end: 265
-    mime: "audio/webm; codecs=\"opus\""
-    format: webm
-    codec: opus
   - url: "https://rr5---sn-h0jeenek.googlevideo.com/videoplayback?c=ANDROID&clen=995840&dur=163.189&ei=q1jpYtOPEYSBgQeHmqbwAQ&expire=1659481355&fexp=24001373%2C24007246&fvip=4&gir=yes&id=o-AEDMTCojVtwpIKOdhBaxEHE5s322qnAJHGqa2r1F46BM&initcwndbps=1527500&ip=2003%3Ade%3Aaf0e%3A2f00%3Ade47%3A297%3Aa6db%3A774e&itag=139&keepalive=yes&lmt=1580005582214385&lsig=AG3C_xAwRgIhAOiL-qJ04sA8FSOkEJfOYl3gFe4SzwYu_rAf3DMLHYigAiEA0Upi1HqqIu7NH_LTDL0jT1R5TTozQypL5FiSP9RoqtU%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=mQ&mime=audio%2Fmp4&mm=31%2C29&mn=sn-h0jeenek%2Csn-h0jelnez&ms=au%2Crdu&mt=1659459429&mv=m&mvi=5&otfp=1&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRQIhALhtrbIL9_CQBeXsEwxFqyPY1XqBCOceQc7y00h7XBS9AiAH9VkMnkuFCU1ACkYU__uApTwcYeDoYNU74VYmKED3Gw%3D%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cgir%2Cclen%2Cotfp%2Cdur%2Clmt&txp=2211222&vprv=1"
     itag: 139
     bitrate: 49724
@@ -262,11 +248,11 @@ audio_streams:
     mime: "audio/mp4; codecs=\"mp4a.40.5\""
     format: m4a
     codec: mp4a
-  - url: "https://rr5---sn-h0jeenek.googlevideo.com/videoplayback?c=ANDROID&clen=1245866&dur=163.061&ei=q1jpYtOPEYSBgQeHmqbwAQ&expire=1659481355&fexp=24001373%2C24007246&fvip=4&gir=yes&id=o-AEDMTCojVtwpIKOdhBaxEHE5s322qnAJHGqa2r1F46BM&initcwndbps=1527500&ip=2003%3Ade%3Aaf0e%3A2f00%3Ade47%3A297%3Aa6db%3A774e&itag=250&keepalive=yes&lmt=1608509101111096&lsig=AG3C_xAwRgIhAOiL-qJ04sA8FSOkEJfOYl3gFe4SzwYu_rAf3DMLHYigAiEA0Upi1HqqIu7NH_LTDL0jT1R5TTozQypL5FiSP9RoqtU%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=mQ&mime=audio%2Fwebm&mm=31%2C29&mn=sn-h0jeenek%2Csn-h0jelnez&ms=au%2Crdu&mt=1659459429&mv=m&mvi=5&otfp=1&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRQIge8uetzhejNg3DegY9EQkpvVam1gp8Jm-q6oqtb6Rn9wCIQD_VeQle7Z2H1uXB6qsYMGDU4OWA4h6YTTwMDmw5DDvuA%3D%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cgir%2Cclen%2Cotfp%2Cdur%2Clmt&txp=1311222&vprv=1"
-    itag: 250
-    bitrate: 71268
-    average_bitrate: 61123
-    size: 1245866
+  - url: "https://rr5---sn-h0jeenek.googlevideo.com/videoplayback?c=ANDROID&clen=934449&dur=163.061&ei=q1jpYtOPEYSBgQeHmqbwAQ&expire=1659481355&fexp=24001373%2C24007246&fvip=4&gir=yes&id=o-AEDMTCojVtwpIKOdhBaxEHE5s322qnAJHGqa2r1F46BM&initcwndbps=1527500&ip=2003%3Ade%3Aaf0e%3A2f00%3Ade47%3A297%3Aa6db%3A774e&itag=249&keepalive=yes&lmt=1608509101590706&lsig=AG3C_xAwRgIhAOiL-qJ04sA8FSOkEJfOYl3gFe4SzwYu_rAf3DMLHYigAiEA0Upi1HqqIu7NH_LTDL0jT1R5TTozQypL5FiSP9RoqtU%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=mQ&mime=audio%2Fwebm&mm=31%2C29&mn=sn-h0jeenek%2Csn-h0jelnez&ms=au%2Crdu&mt=1659459429&mv=m&mvi=5&otfp=1&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRAIgPmadKd9As393GMRmu1Ow4RfQkDQhY6SbPRnkLMYyZOoCIE9AIgMMJ7n5HD2gKv3c8-HrnkMeakq_uWUOivnWquJX&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cgir%2Cclen%2Cotfp%2Cdur%2Clmt&txp=1311222&vprv=1"
+    itag: 249
+    bitrate: 53039
+    average_bitrate: 45845
+    size: 934449
     index_range:
       start: 266
       end: 551
@@ -276,11 +262,11 @@ audio_streams:
     mime: "audio/webm; codecs=\"opus\""
     format: webm
     codec: opus
-  - url: "https://rr5---sn-h0jeenek.googlevideo.com/videoplayback?c=ANDROID&clen=2476314&dur=163.061&ei=q1jpYtOPEYSBgQeHmqbwAQ&expire=1659481355&fexp=24001373%2C24007246&fvip=4&gir=yes&id=o-AEDMTCojVtwpIKOdhBaxEHE5s322qnAJHGqa2r1F46BM&initcwndbps=1527500&ip=2003%3Ade%3Aaf0e%3A2f00%3Ade47%3A297%3Aa6db%3A774e&itag=251&keepalive=yes&lmt=1608509101894140&lsig=AG3C_xAwRgIhAOiL-qJ04sA8FSOkEJfOYl3gFe4SzwYu_rAf3DMLHYigAiEA0Upi1HqqIu7NH_LTDL0jT1R5TTozQypL5FiSP9RoqtU%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=mQ&mime=audio%2Fwebm&mm=31%2C29&mn=sn-h0jeenek%2Csn-h0jelnez&ms=au%2Crdu&mt=1659459429&mv=m&mvi=5&otfp=1&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRQIgErpt4HOgIybMGrMD2qg9JB4O53n0jsCxkiI9JBxbz8ECIQDixyFJ54m4NsxhyFtIYPscMVp_G6RyvwrfKzdoya-62Q%3D%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cgir%2Cclen%2Cotfp%2Cdur%2Clmt&txp=1311222&vprv=1"
-    itag: 251
-    bitrate: 140633
-    average_bitrate: 121491
-    size: 2476314
+  - url: "https://rr5---sn-h0jeenek.googlevideo.com/videoplayback?c=ANDROID&clen=1245866&dur=163.061&ei=q1jpYtOPEYSBgQeHmqbwAQ&expire=1659481355&fexp=24001373%2C24007246&fvip=4&gir=yes&id=o-AEDMTCojVtwpIKOdhBaxEHE5s322qnAJHGqa2r1F46BM&initcwndbps=1527500&ip=2003%3Ade%3Aaf0e%3A2f00%3Ade47%3A297%3Aa6db%3A774e&itag=250&keepalive=yes&lmt=1608509101111096&lsig=AG3C_xAwRgIhAOiL-qJ04sA8FSOkEJfOYl3gFe4SzwYu_rAf3DMLHYigAiEA0Upi1HqqIu7NH_LTDL0jT1R5TTozQypL5FiSP9RoqtU%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=mQ&mime=audio%2Fwebm&mm=31%2C29&mn=sn-h0jeenek%2Csn-h0jelnez&ms=au%2Crdu&mt=1659459429&mv=m&mvi=5&otfp=1&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRQIge8uetzhejNg3DegY9EQkpvVam1gp8Jm-q6oqtb6Rn9wCIQD_VeQle7Z2H1uXB6qsYMGDU4OWA4h6YTTwMDmw5DDvuA%3D%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cgir%2Cclen%2Cotfp%2Cdur%2Clmt&txp=1311222&vprv=1"
+    itag: 250
+    bitrate: 71268
+    average_bitrate: 61123
+    size: 1245866
     index_range:
       start: 266
       end: 551
@@ -304,6 +290,20 @@ audio_streams:
     mime: "audio/mp4; codecs=\"mp4a.40.2\""
     format: m4a
     codec: mp4a
+  - url: "https://rr5---sn-h0jeenek.googlevideo.com/videoplayback?c=ANDROID&clen=2476314&dur=163.061&ei=q1jpYtOPEYSBgQeHmqbwAQ&expire=1659481355&fexp=24001373%2C24007246&fvip=4&gir=yes&id=o-AEDMTCojVtwpIKOdhBaxEHE5s322qnAJHGqa2r1F46BM&initcwndbps=1527500&ip=2003%3Ade%3Aaf0e%3A2f00%3Ade47%3A297%3Aa6db%3A774e&itag=251&keepalive=yes&lmt=1608509101894140&lsig=AG3C_xAwRgIhAOiL-qJ04sA8FSOkEJfOYl3gFe4SzwYu_rAf3DMLHYigAiEA0Upi1HqqIu7NH_LTDL0jT1R5TTozQypL5FiSP9RoqtU%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=mQ&mime=audio%2Fwebm&mm=31%2C29&mn=sn-h0jeenek%2Csn-h0jelnez&ms=au%2Crdu&mt=1659459429&mv=m&mvi=5&otfp=1&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRQIgErpt4HOgIybMGrMD2qg9JB4O53n0jsCxkiI9JBxbz8ECIQDixyFJ54m4NsxhyFtIYPscMVp_G6RyvwrfKzdoya-62Q%3D%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cgir%2Cclen%2Cotfp%2Cdur%2Clmt&txp=1311222&vprv=1"
+    itag: 251
+    bitrate: 140633
+    average_bitrate: 121491
+    size: 2476314
+    index_range:
+      start: 266
+      end: 551
+    init_range:
+      start: 0
+      end: 265
+    mime: "audio/webm; codecs=\"opus\""
+    format: webm
+    codec: opus
 subtitles:
   - url: "https://www.youtube.com/api/timedtext?v=pPvd8UxmSbQ&caps=asr&xoaf=5&hl=en&ip=0.0.0.0&ipbits=0&expire=1659484955&sparams=ip,ipbits,expire,v,caps,xoaf&signature=EBFE9BB6A8D01D674157DE1F45A3BEDCAB35496B.3ED931CA7233F0FF5B19062AA22F803CC3D78215&key=yt8&lang=en&fmt=srv3"
     lang: en
