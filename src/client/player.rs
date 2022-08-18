@@ -107,19 +107,6 @@ fn build_request_body(
     }
 }
 
-fn url_to_params(url: &str) -> Result<(String, BTreeMap<String, String>)> {
-    let parsed_url = Url::parse(url)?;
-    let url_params: BTreeMap<String, String> = parsed_url
-        .query_pairs()
-        .map(|(k, v)| (k.to_string(), v.to_string()))
-        .collect();
-
-    let mut url_base = parsed_url.clone();
-    url_base.set_query(None);
-
-    Ok((url_base.to_string(), url_params))
-}
-
 fn cipher_to_url_params(
     signature_cipher: &str,
     deobf: &Deobfuscator,
@@ -135,7 +122,7 @@ fn cipher_to_url_params(
     let sig = some_or_bail!(params.get("s"), Err(anyhow!("no s param")));
     let sp = some_or_bail!(params.get("sp"), Err(anyhow!("no sp param")));
     let raw_url = some_or_bail!(params.get("url"), Err(anyhow!("no url param")));
-    let (url_base, mut url_params) = url_to_params(raw_url)?;
+    let (url_base, mut url_params) = util::url_to_params(raw_url)?;
 
     // println!("sig: {}", sig);
     let deobf_sig = deobf.deobfuscate_sig(sig)?;
@@ -176,7 +163,7 @@ fn map_url(
     last_nsig: &mut [String; 2],
 ) -> Option<String> {
     let (url_base, mut url_params) = match &f.url {
-        Some(url) => ok_or_bail!(url_to_params(url), None),
+        Some(url) => ok_or_bail!(util::url_to_params(url), None),
         None => match &f.signature_cipher {
             Some(signature_cipher) => match cipher_to_url_params(signature_cipher, deobf) {
                 Ok(res) => res,
@@ -189,19 +176,16 @@ fn map_url(
         },
     };
 
-    match deobf_nsig(&mut url_params, deobf, last_nsig) {
-        Ok(_) => Some(
-            ok_or_bail!(
-                Url::parse_with_params(url_base.as_str(), url_params.iter()),
-                None
-            )
-            .to_string(),
-        ),
-        Err(e) => {
-            error!("Could not deobfuscate nsig: {}", e);
+    deobf_nsig(&mut url_params, deobf, last_nsig)
+        .unwrap_or_else(|e| error!("Could not deobfuscate nsig: {}", e));
+
+    Some(
+        ok_or_bail!(
+            Url::parse_with_params(url_base.as_str(), url_params.iter()),
             None
-        }
-    }
+        )
+        .to_string(),
+    )
 }
 
 fn map_video_stream(
@@ -539,7 +523,7 @@ mod tests {
         let rt = RustyTube::new();
         let player_data = rt.get_player("n4tK7LYFxI0", client_type).await.unwrap();
 
-        // dbg!(player_data.clone());
+        // dbg!(&player_data);
 
         assert_eq!(player_data.info.id, "n4tK7LYFxI0");
         assert_eq!(player_data.info.title, "Spektrem - Shine [NCS Release]");

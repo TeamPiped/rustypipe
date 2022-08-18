@@ -3,9 +3,9 @@ use std::path::PathBuf;
 use anyhow::{Context, Result};
 use clap::{Parser, Subcommand};
 use futures::stream::{self, StreamExt};
-use indicatif::{MultiProgress, ProgressBar, ProgressStyle};
+use indicatif::{MultiProgress, ProgressBar, ProgressStyle, ProgressDrawTarget};
 use reqwest::{Client, ClientBuilder};
-use rusty_tube::client::{ClientType, RustyTube};
+use rustypipe::client::{ClientType, RustyTube};
 
 #[derive(Parser)]
 #[clap(author, version, about, long_about = None)]
@@ -16,6 +16,8 @@ struct Cli {
     output: PathBuf,
     #[clap(long, value_parser, global = true)]
     resolution: Option<u32>,
+    #[clap(short, long, value_parser, default_value = "8", global = true)]
+    parallel: usize,
 }
 
 #[derive(Subcommand)]
@@ -55,7 +57,7 @@ async fn download_video(
                 video_id
             ))?;
 
-        rusty_tube::download::download_video(
+        rustypipe::download::download_video(
             &player_data,
             output_dir,
             output_fname,
@@ -81,6 +83,7 @@ async fn download_playlist(
     output_dir: &str,
     output_fname: Option<String>,
     resolution: Option<u32>,
+    parallel: usize,
 ) {
     let http = ClientBuilder::new()
         .user_agent("Mozilla/5.0 (Windows NT 10.0; Win64; rv:107.0) Gecko/20100101 Firefox/107.0")
@@ -97,6 +100,7 @@ async fn download_playlist(
     let main = multi.add(ProgressBar::new(
         playlist.len().try_into().unwrap_or_default(),
     ));
+
     main.set_style(
         ProgressStyle::default_bar()
             .template("Downloaded {pos:>}/{len} Videos [{wide_bar:.blue}]")
@@ -120,7 +124,7 @@ async fn download_playlist(
                 main.clone(),
             )
         })
-        .buffer_unordered(8)
+        .buffer_unordered(parallel)
         .collect::<Vec<_>>()
         .await
         .into_iter()
@@ -134,6 +138,8 @@ async fn download_playlist(
 
 #[tokio::main]
 async fn main() {
+    env_logger::init();
+
     let cli = Cli::parse();
 
     // Cases: Existing folder, non-existing file with existing parent folder,
@@ -169,7 +175,7 @@ async fn main() {
 
     match cli.command {
         Commands::Playlist { id } => {
-            download_playlist(&id, &output_dir, output_fname, cli.resolution).await
+            download_playlist(&id, &output_dir, output_fname, cli.resolution, cli.parallel).await
         }
     };
 }

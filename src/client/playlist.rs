@@ -81,7 +81,7 @@ mod tests {
     use super::*;
 
     #[allow(dead_code)]
-    #[test_log::test(tokio::test)]
+    // #[test_log::test(tokio::test)]
     async fn download_testfiles() {
         let tf_dir = Path::new("testfiles/playlist");
         let playlist_id = "RDCLAK5uy_mHW5bcduhjB-PkTePAe6EoRMj1xNT8gzY";

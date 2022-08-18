@@ -1,5 +1,5 @@
 [package]
-name = "rusty-tube"
+name = "rustypipe"
 version = "0.1.0"
 edition = "2021"
 
@@ -9,6 +9,7 @@ edition = "2021"
 members = [".", "cli"]
 
 [dependencies]
+# quick-js = "0.4.1"
 quick-js = { path = "../quickjs-rs" }
 once_cell = "1.12.0"
 fancy-regex = "0.10.0"

@@ -8,9 +8,16 @@ use log::{debug, info};
 use once_cell::sync::Lazy;
 use rand::Rng;
 use reqwest::{header, Client};
-use tokio::{fs, io::AsyncWriteExt, process::Command};
+use tokio::{
+    fs::{self, File},
+    io::AsyncWriteExt,
+    process::Command,
+};
 
-use crate::model::{AudioCodec, FileFormat, PlayerData, VideoCodec};
+use crate::{
+    model::{AudioCodec, FileFormat, PlayerData, VideoCodec},
+    util,
+};
 
 const CHUNK_SIZE_MIN: u64 = 9000000;
 const CHUNK_SIZE_MAX: u64 = 10000000;
@@ -47,29 +54,34 @@ fn parse_cr_header(cr_header: &str) -> Result<(u64, u64)> {
     ))
 }
 
-async fn download_single_file<S: Into<String>, P: Into<PathBuf>>(
-    url: S,
+async fn download_single_file<P: Into<PathBuf>>(
+    url: &str,
     output: P,
     http: Client,
     pb: ProgressBar,
 ) -> Result<()> {
     // Check if file is already downloaded
     let output_path: PathBuf = output.into();
-    let url: String = url.into();
 
     if output_path.exists() {
         return Ok(());
     }
 
-    let output_path_tmp = output_path.with_extension(format!(
-        "{}.part",
-        output_path
-            .extension()
-            .unwrap_or_default()
-            .to_string_lossy()
-    ));
+    let mut extension = OsString::from(output_path.extension().unwrap_or_default());
+    extension.push(".part");
+    let output_path_tmp = output_path.with_extension(extension);
     let mut offset: u64 = 0;
     let mut size: Option<u64> = None;
+
+    // If the url is from googlevideo, extract file size from clen parameter
+    let (url_base, url_params) = util::url_to_params(url)?;
+    let is_gvideo = url_base.ends_with(".googlevideo.com/videoplayback");
+    if is_gvideo {
+        size = url_params
+            .get("clen")
+            .map(|s| s.parse::<u64>().ok())
+            .flatten();
+    }
 
     // Check if file is partially downloaded
     if output_path_tmp.exists() {
@@ -120,6 +132,30 @@ async fn download_single_file<S: Into<String>, P: Into<PathBuf>>(
         .open(output_path_tmp.to_owned())
         .await?;
 
+    if is_gvideo && size.is_some() {
+        download_chunks_by_param(http, &mut file, url, size.unwrap(), offset, pb).await?;
+    } else {
+        download_chunks_by_header(http, &mut file, url, size, offset, pb).await?;
+    }
+
+    fs::rename(output_path_tmp, output_path).await?;
+    Ok(())
+}
+
+// Use the HTTP range header to download a stream in chunks.
+// This is the standardized method that works on all web servers,
+// but I have observed throttling using this method.
+async fn download_chunks_by_header(
+    http: Client,
+    file: &mut File,
+    url: &str,
+    size: Option<u64>,
+    offset: u64,
+    pb: ProgressBar,
+) -> Result<()> {
+    let mut offset = offset;
+    let mut size = size;
+
     loop {
         let range = get_download_range(offset, size);
         debug!("Fetching range {}-{}", range.start, range.end);
@@ -164,8 +200,51 @@ async fn download_single_file<S: Into<String>, P: Into<PathBuf>>(
             break;
         }
     }
+    Ok(())
+}
 
-    fs::rename(output_path_tmp, output_path).await?;
+// Use the `range` url parameter to download a stream in chunks.
+// This ist used by YouTube's web player. The file size
+// must be known beforehand (it is included in the stream url).
+async fn download_chunks_by_param(
+    http: Client,
+    file: &mut File,
+    url: &str,
+    size: u64,
+    offset: u64,
+    pb: ProgressBar,
+) -> Result<()> {
+    let mut offset = offset;
+
+    loop {
+        let range = get_download_range(offset, Some(size));
+        debug!("Fetching range {}-{}", range.start, range.end);
+
+        let res = http
+            .get(format!("{}&range={}-{}", url, range.start, range.end))
+            .header(header::ORIGIN, "https://www.youtube.com")
+            .header(header::REFERER, "https://www.youtube.com/")
+            .send()
+            .await?
+            .error_for_status()?;
+
+        let clen = res.content_length().unwrap();
+
+        debug!("Retrieving chunks...");
+        let mut stream = res.bytes_stream();
+        while let Some(item) = stream.next().await {
+            // Retrieve chunk.
+            let mut chunk = item?;
+            pb.inc(chunk.len() as u64);
+            file.write_all_buf(&mut chunk).await?;
+        }
+
+        offset += clen;
+        debug!("offset inc by {}, new: {}", clen, offset);
+        if offset >= size {
+            break;
+        }
+    }
     Ok(())
 }
 
@@ -233,7 +312,10 @@ pub async fn download_video(
         if output_fname_set {
             bail!("File {} already exists", output_path.to_string_lossy());
         } else {
-            info!("Downloaded video {} already exists", output_path.to_string_lossy());
+            info!(
+                "Downloaded video {} already exists",
+                output_path.to_string_lossy()
+            );
             return Ok(());
         }
     }
@@ -286,14 +368,7 @@ async fn download_streams(
     let n = downloads.len();
 
     stream::iter(downloads)
-        .map(|d| {
-            download_single_file(
-                d.url.to_owned(),
-                d.file.to_owned(),
-                http.clone(),
-                pb.clone(),
-            )
-        })
+        .map(|d| download_single_file(&d.url, d.file.to_owned(), http.clone(), pb.clone()))
         .buffer_unordered(n)
         .collect::<Vec<_>>()
         .await
