@@ -71,6 +71,7 @@ pub struct AudioStream {
     pub format: AudioFormat,
     pub codec: AudioCodec,
     pub throttled: bool,
+    pub track: Option<AudioTrack>,
 }
 
 #[derive(
@@ -114,6 +115,13 @@ pub enum VideoFormat {
     ThreeGp,
     Mp4,
     Webm,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
+pub struct AudioTrack {
+    pub id: String,
+    pub name: String,
+    pub is_default: bool,
 }
 
 impl FileFormat for VideoFormat {

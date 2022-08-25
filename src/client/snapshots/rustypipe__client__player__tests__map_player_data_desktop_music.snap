@@ -260,6 +260,7 @@ audio_streams:
     format: webm
     codec: opus
     throttled: false
+    track: ~
   - url: "https://rr5---sn-h0jeenek.googlevideo.com/videoplayback?c=WEB_REMIX&clen=1245866&dur=163.061&ei=knDpYub6BojEgAf6jbLgDw&expire=1659487474&fexp=24001373%2C24007246&fvip=4&gir=yes&id=o-AM-wcJVO-yYYbVFnuifnzM4eRnD-AG1bS1AhLoDqi_is&initcwndbps=1418750&ip=2003%3Ade%3Aaf0e%3A2f00%3Ade47%3A297%3Aa6db%3A774e&itag=250&keepalive=yes&lmt=1608509101111096&lsig=AG3C_xAwRgIhAMwYJqxve8BSujC-oaSFBbq67p-rFi7saU5V8Yb3qrjLAiEAlrMKR_sadHrkFpy7o7lGzKOCmU1OQazCNBbXjDT2a-o%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=mQ&mime=audio%2Fwebm&mm=31%2C29&mn=sn-h0jeenek%2Csn-h0jelnez&ms=au%2Crdu&mt=1659465669&mv=m&mvi=5&n=1taQMNHGExb_Vg&ns=UTT8RXHZNhPYTw6NgkzWMWEH&otfp=1&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRQIhAIflUU4t4Ukf4CXW3ttB5c8SnP4z4z3ef-7EFVMFv4U8AiAlcKmmofCTzzr2NRRsRVosQdpDBphUqWyVzS7noGrixw%3D%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cspc%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cotfp%2Cdur%2Clmt&spc=lT-Khox4YuJQ2wmH79zYALRvsWTPCUc&txp=1311222&vprv=1"
     itag: 250
     bitrate: 71268
@@ -275,6 +276,7 @@ audio_streams:
     format: webm
     codec: opus
     throttled: false
+    track: ~
   - url: "https://rr5---sn-h0jeenek.googlevideo.com/videoplayback?c=WEB_REMIX&clen=2640283&dur=163.096&ei=knDpYub6BojEgAf6jbLgDw&expire=1659487474&fexp=24001373%2C24007246&fvip=4&gir=yes&id=o-AM-wcJVO-yYYbVFnuifnzM4eRnD-AG1bS1AhLoDqi_is&initcwndbps=1418750&ip=2003%3Ade%3Aaf0e%3A2f00%3Ade47%3A297%3Aa6db%3A774e&itag=140&keepalive=yes&lmt=1580005579712232&lsig=AG3C_xAwRgIhAMwYJqxve8BSujC-oaSFBbq67p-rFi7saU5V8Yb3qrjLAiEAlrMKR_sadHrkFpy7o7lGzKOCmU1OQazCNBbXjDT2a-o%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=mQ&mime=audio%2Fmp4&mm=31%2C29&mn=sn-h0jeenek%2Csn-h0jelnez&ms=au%2Crdu&mt=1659465669&mv=m&mvi=5&n=1taQMNHGExb_Vg&ns=UTT8RXHZNhPYTw6NgkzWMWEH&otfp=1&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRgIhALBveArAZ7DP9r1BIpNz6ZXst5MtzvUM72jhtYMrildCAiEArvwqaqcowZwR_UrRM-O7jq2CMxgBtbnmul27AEcBqEI%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cspc%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cotfp%2Cdur%2Clmt&spc=lT-Khox4YuJQ2wmH79zYALRvsWTPCUc&txp=2211222&vprv=1"
     itag: 140
     bitrate: 130268
@@ -290,6 +292,7 @@ audio_streams:
     format: m4a
     codec: mp4a
     throttled: false
+    track: ~
   - url: "https://rr5---sn-h0jeenek.googlevideo.com/videoplayback?c=WEB_REMIX&clen=2476314&dur=163.061&ei=knDpYub6BojEgAf6jbLgDw&expire=1659487474&fexp=24001373%2C24007246&fvip=4&gir=yes&id=o-AM-wcJVO-yYYbVFnuifnzM4eRnD-AG1bS1AhLoDqi_is&initcwndbps=1418750&ip=2003%3Ade%3Aaf0e%3A2f00%3Ade47%3A297%3Aa6db%3A774e&itag=251&keepalive=yes&lmt=1608509101894140&lsig=AG3C_xAwRgIhAMwYJqxve8BSujC-oaSFBbq67p-rFi7saU5V8Yb3qrjLAiEAlrMKR_sadHrkFpy7o7lGzKOCmU1OQazCNBbXjDT2a-o%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=mQ&mime=audio%2Fwebm&mm=31%2C29&mn=sn-h0jeenek%2Csn-h0jelnez&ms=au%2Crdu&mt=1659465669&mv=m&mvi=5&n=1taQMNHGExb_Vg&ns=UTT8RXHZNhPYTw6NgkzWMWEH&otfp=1&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRAIgARPqD-6172OshMHeV8DpONV7tnPvdsxcg8QlaIGxcuMCICSe8LWvhRTEO2bdAQ43OzOoc5XfJcj3veyhScVXVz8O&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cspc%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cotfp%2Cdur%2Clmt&spc=lT-Khox4YuJQ2wmH79zYALRvsWTPCUc&txp=1311222&vprv=1"
     itag: 251
     bitrate: 140633
@@ -305,6 +308,7 @@ audio_streams:
     format: webm
     codec: opus
     throttled: false
+    track: ~
 subtitles:
   - url: "https://www.youtube.com/api/timedtext?v=pPvd8UxmSbQ&caps=asr&xoaf=5&hl=en&ip=0.0.0.0&ipbits=0&expire=1659491074&sparams=ip,ipbits,expire,v,caps,xoaf&signature=3CE2AD03E73FC43D83E992060A96D7B12F8E08E5.66CE90B1F3337004848429E1091E8423497239BF&key=yt8&lang=en"
     lang: en

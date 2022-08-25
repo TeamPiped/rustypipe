@@ -197,7 +197,8 @@ fn map_video_stream(
     last_nsig: &mut [String; 2],
 ) -> Option<VideoStream> {
     let (mtype, codecs) = some_or_bail!(parse_mime(&f.mime_type), None);
-    let (url, throttled) = some_or_bail!(map_url(&f.url, &f.signature_cipher, deobf, last_nsig), None);
+    let (url, throttled) =
+        some_or_bail!(map_url(&f.url, &f.signature_cipher, deobf, last_nsig), None);
 
     Some(VideoStream {
         url,
@@ -226,7 +227,8 @@ fn map_audio_stream(
     last_nsig: &mut [String; 2],
 ) -> Option<AudioStream> {
     let (mtype, codecs) = some_or_bail!(parse_mime(&f.mime_type), None);
-    let (url, throttled) = some_or_bail!(map_url(&f.url, &f.signature_cipher, deobf, last_nsig), None);
+    let (url, throttled) =
+        some_or_bail!(map_url(&f.url, &f.signature_cipher, deobf, last_nsig), None);
 
     Some(AudioStream {
         url,
@@ -240,6 +242,11 @@ fn map_audio_stream(
         format: some_or_bail!(get_audio_format(mtype), None),
         codec: get_audio_codec(codecs),
         throttled,
+        track: f.audio_track.as_ref().map(|t| AudioTrack {
+            id: t.id.to_owned(),
+            name: t.display_name.to_owned(),
+            is_default: t.audio_is_default,
+        }),
     })
 }
 
@@ -628,7 +635,13 @@ mod tests {
     fn t_cipher_to_url() {
         let signature_cipher = "s=w%3DAe%3DA6aDNQLkViKS7LOm9QtxZJHKwb53riq9qEFw-ecBWJCAiA%3DcEg0tn3dty9jEHszfzh4Ud__bg9CEHVx4ix-7dKsIPAhIQRw8JQ0qOA&sp=sig&url=https://rr5---sn-h0jelnez.googlevideo.com/videoplayback%3Fexpire%3D1659376413%26ei%3Dvb7nYvH5BMK8gAfBj7ToBQ%26ip%3D2003%253Ade%253Aaf06%253A6300%253Ac750%253A1b77%253Ac74a%253A80e3%26id%3Do-AB_BABwrXZJN428ZwDxq5ScPn2AbcGODnRlTVhCQ3mj2%26itag%3D251%26source%3Dyoutube%26requiressl%3Dyes%26mh%3DhH%26mm%3D31%252C26%26mn%3Dsn-h0jelnez%252Csn-4g5ednsl%26ms%3Dau%252Conr%26mv%3Dm%26mvi%3D5%26pl%3D37%26initcwndbps%3D1588750%26spc%3DlT-Khi831z8dTejFIRCvCEwx_6romtM%26vprv%3D1%26mime%3Daudio%252Fwebm%26ns%3Db_Mq_qlTFcSGlG9RpwpM9xQH%26gir%3Dyes%26clen%3D3781277%26dur%3D229.301%26lmt%3D1655510291473933%26mt%3D1659354538%26fvip%3D5%26keepalive%3Dyes%26fexp%3D24001373%252C24007246%26c%3DWEB%26rbqsm%3Dfr%26txp%3D4532434%26n%3Dd2g6G2hVqWIXxedQ%26sparams%3Dexpire%252Cei%252Cip%252Cid%252Citag%252Csource%252Crequiressl%252Cspc%252Cvprv%252Cmime%252Cns%252Cgir%252Cclen%252Cdur%252Clmt%26lsparams%3Dmh%252Cmm%252Cmn%252Cms%252Cmv%252Cmvi%252Cpl%252Cinitcwndbps%26lsig%3DAG3C_xAwRQIgCKCGJ1iu4wlaGXy3jcJyU3inh9dr1FIfqYOZEG_MdmACIQCbungkQYFk7EhD6K2YvLaHFMjKOFWjw001_tLb0lPDtg%253D%253D";
         let mut last_nsig: [String; 2] = ["".to_owned(), "".to_owned()];
-        let (url, throttled) = map_url(&None, &Some(signature_cipher.to_owned()), &DEOBFUSCATOR, &mut last_nsig).unwrap();
+        let (url, throttled) = map_url(
+            &None,
+            &Some(signature_cipher.to_owned()),
+            &DEOBFUSCATOR,
+            &mut last_nsig,
+        )
+        .unwrap();
 
         assert_eq!(url, "https://rr5---sn-h0jelnez.googlevideo.com/videoplayback?c=WEB&clen=3781277&dur=229.301&ei=vb7nYvH5BMK8gAfBj7ToBQ&expire=1659376413&fexp=24001373%2C24007246&fvip=5&gir=yes&id=o-AB_BABwrXZJN428ZwDxq5ScPn2AbcGODnRlTVhCQ3mj2&initcwndbps=1588750&ip=2003%3Ade%3Aaf06%3A6300%3Ac750%3A1b77%3Ac74a%3A80e3&itag=251&keepalive=yes&lmt=1655510291473933&lsig=AG3C_xAwRQIgCKCGJ1iu4wlaGXy3jcJyU3inh9dr1FIfqYOZEG_MdmACIQCbungkQYFk7EhD6K2YvLaHFMjKOFWjw001_tLb0lPDtg%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=hH&mime=audio%2Fwebm&mm=31%2C26&mn=sn-h0jelnez%2Csn-4g5ednsl&ms=au%2Conr&mt=1659354538&mv=m&mvi=5&n=XzXGSfGusw6OCQ&ns=b_Mq_qlTFcSGlG9RpwpM9xQH&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRQIhAPIsKd7-xi4xVHEC9gb__dU4hzfzsHEj9ytd3nt0gEceAiACJWBcw-wFEq9qir35bwKHJZxtQ9mOL7SKiVkLQNDa6A%3D%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cspc%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&spc=lT-Khi831z8dTejFIRCvCEwx_6romtM&txp=4532434&vprv=1");
         assert_eq!(throttled, false);

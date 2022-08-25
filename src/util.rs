@@ -1,8 +1,8 @@
 use std::collections::BTreeMap;
 
+use anyhow::Result;
 use fancy_regex::Regex;
 use rand::Rng;
-use anyhow::Result;
 use url::Url;
 
 const CONTENT_PLAYBACK_NONCE_ALPHABET: &[u8; 64] =

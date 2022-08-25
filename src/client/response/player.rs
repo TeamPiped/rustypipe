@@ -105,15 +105,11 @@ pub struct Format {
     #[serde(default)]
     #[serde_as(deserialize_as = "DefaultOnError")]
     pub audio_quality: Option<AudioQuality>,
-
-    // #[serde_as(as = "Option<JsonString>")]
-    // pub approx_duration_ms: Option<u32>,
-
-    // Audio only
     #[serde_as(as = "Option<JsonString>")]
     pub audio_sample_rate: Option<u32>,
     pub audio_channels: Option<u8>,
     pub loudness_db: Option<f64>,
+    pub audio_track: Option<AudioTrack>,
 
     pub signature_cipher: Option<String>,
 }
@@ -177,6 +173,14 @@ pub enum Primaries {
     #[default]
     ColorPrimariesBt709,
     ColorPrimariesBt2020,
+}
+
+#[derive(Default, Clone, Debug, Deserialize)]
+#[serde(default, rename_all = "camelCase")]
+pub struct AudioTrack {
+    pub id: String,
+    pub display_name: String,
+    pub audio_is_default: bool,
 }
 
 #[derive(Clone, Debug, Deserialize)]
