@@ -55,6 +55,7 @@ pub struct VideoStream {
     pub mime: String,
     pub format: VideoFormat,
     pub codec: VideoCodec,
+    pub throttled: bool,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
@@ -69,6 +70,7 @@ pub struct AudioStream {
     pub mime: String,
     pub format: AudioFormat,
     pub codec: AudioCodec,
+    pub throttled: bool,
 }
 
 #[derive(

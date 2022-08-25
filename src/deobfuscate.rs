@@ -235,32 +235,65 @@ fn match_to_closing_parenthesis(string: &str, start: &str) -> Option<String> {
     Some(res)
 }
 
+fn extract_js_fn(js: &str, name: &str) -> Result<String> {
+    let scan = ress::Scanner::new(js);
+    let mut state = 0;
+    let mut level = 0;
+
+    let mut start = 0;
+    let mut end = 0;
+
+    for item in scan {
+        let it = item?;
+        let token = it.token;
+        match state {
+            // Looking for fn name
+            0 => {
+                if token.matches_ident_str(name) {
+                    state = 1;
+                    start = it.span.start;
+                }
+            }
+            // Looking for equals
+            1 => {
+                if token.matches_punct(ress::tokens::Punct::Equal) {
+                    state = 2;
+                } else {
+                    state = 0;
+                }
+            }
+            // Looking for begin/end braces
+            2 => {
+                if token.matches_punct(ress::tokens::Punct::OpenBrace) {
+                    level += 1;
+                } else if token.matches_punct(ress::tokens::Punct::CloseBrace) {
+                    level -= 1;
+
+                    if level == 0 {
+                        end = it.span.end;
+                        state = 3;
+                        break;
+                    }
+                }
+            }
+            _ => break,
+        };
+    }
+
+    if state != 3 {
+        return Err(anyhow!("could not extract js fn"));
+    }
+
+    Ok(js[start..end].to_owned())
+}
+
 fn get_nsig_fn(player_js: &str) -> Result<String> {
     let function_name = get_nsig_fn_name(player_js)?;
-
-    // Find using parentheses
     let function_base = function_name.to_owned() + "=function";
-    let nsig_fn_code = match match_to_closing_parenthesis(player_js, &function_base) {
-        Some(m) => function_base.clone() + &m + ";",
-        None => {
-            // Find using regex
-            let player_js_nonl = player_js.replace('\n', "");
+    let offset = player_js.find(&function_base).unwrap_or_default();
 
-            let function_pattern_str = function_name.to_owned() + "=function(.*?}};)\n";
-            let function_pattern = Regex::new(&function_pattern_str)?;
-            let function = some_or_bail!(
-                function_pattern.captures(&player_js_nonl)?,
-                Err(anyhow!("could not find n_decode function"))
-            )
-            .get(1)
-            .unwrap()
-            .as_str();
-
-            "function ".to_owned() + function
-        }
-    };
-
-    Ok(nsig_fn_code + &caller_function(&function_name))
+    extract_js_fn(&player_js[offset..], &function_name)
+        .map(|s| s + ";" + &caller_function(&function_name))
 }
 
 fn deobfuscate_nsig(sig: &str, nsig_fn: &str) -> Result<String> {
@@ -375,8 +408,29 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
     #[test]
     fn t_match_to_closing_parenthesis2() {
         let res =
-            match_to_closing_parenthesis("function(d){return \",}\\\"/\"}", "function(d)").unwrap();
+            match_to_closing_parenthesis("function(d){return \",}\\\"/\"}abcdef", "function(d)")
+                .unwrap();
         assert_eq!(res, "{return \",}\\\"/\"}")
+    }
+
+    #[test]
+    fn t_extract_js_fn() {
+        let base_js = "Wka = function(d){let x=10/2;return /,,[/,913,/](,)}/}let a = 42;";
+        let res = extract_js_fn(base_js, "Wka").unwrap();
+        assert_eq!(
+            res,
+            "Wka = function(d){let x=10/2;return /,,[/,913,/](,)}/}"
+        );
+    }
+
+    #[test]
+    fn t_extract_js_fn_eviljs() {
+        let base_js = "Wka = function(d){var x = [/,,/,913,/(,)}/,\"abcdef}\\\"\",];var y = 10/2/1;return x[1][y];}//some={}random-padding+;";
+        let res = extract_js_fn(base_js, "Wka").unwrap();
+        assert_eq!(
+            res,
+            "Wka = function(d){var x = [/,,/,913,/(,)}/,\"abcdef}\\\"\",];var y = 10/2/1;return x[1][y];}"
+        );
     }
 
     #[test]
@@ -415,5 +469,7 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
 
         let deobf_sig = deobf.deobfuscate_sig("GOqGOqGOq0QJ8wRAIgaryQHfplJ9xJSKFywyaSMHuuwZYsoMTAvRvfm51qIGECIA5061zWeyfMPX9hEl_U6f9J0tr7GTJMKyPf5XNrJb5fb5i").unwrap();
         println!("{}", deobf_sig);
+        let deobf_nsig = deobf.deobfuscate_nsig("WHbZ-Nj2TSJxder").unwrap();
+        println!("{}", deobf_nsig);
     }
 }
