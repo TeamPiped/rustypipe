@@ -109,7 +109,6 @@ const DEFAULT_UA: &str =
 
 const CONSENT_COOKIE: &str = "CONSENT";
 const CONSENT_COOKIE_YES: &str = "YES+yt.462272069.de+FX+";
-const CONSENT_COOKIE_NO: &str = "PENDING+";
 
 const YOUTUBEI_V1_URL: &str = "https://www.youtube.com/youtubei/v1/";
 const YOUTUBEI_V1_GAPIS_URL: &str = "https://youtubei.googleapis.com/youtubei/v1/";
@@ -392,7 +391,6 @@ impl AndroidClient {
                 MOBILE_CLIENT_VERSION, locale.country
             ))
             .gzip(true)
-            .brotli(true)
             .build()
             .expect("unable to build the HTTP client");
 
@@ -460,7 +458,6 @@ impl IosClient {
                 MOBILE_CLIENT_VERSION, IOS_DEVICE_MODEL, locale.country
             ))
             .gzip(true)
-            .brotli(true)
             .build()
             .expect("unable to build the HTTP client");
 
@@ -512,7 +509,6 @@ impl YTClient for TvHtml5EmbedClient {
             )
             .header(header::ORIGIN, "https://www.youtube.com")
             .header(header::REFERER, "https://www.youtube.com")
-            // .header(header::COOKIE, self.consent_cookie_no.to_owned())
             .header("X-YouTube-Client-Name", "1")
             .header("X-YouTube-Client-Version", TVHTML5_CLIENT_VERSION)
     }

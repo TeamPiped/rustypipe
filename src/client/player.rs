@@ -1,6 +1,5 @@
 use std::{
     borrow::Cow,
-    cmp::Ordering,
     collections::{BTreeMap, HashMap},
     sync::Arc,
 };
@@ -33,7 +32,7 @@ struct QPlayer {
     video_id: String,
     /// Set to true to allow extraction of streams with sensitive content
     content_check_ok: bool,
-    /// Probably refers to allowing sensitive content, too
+    /// Probably refers to allowin&g sensitive content, too
     racy_check_ok: bool,
 }
 
@@ -226,6 +225,8 @@ fn map_audio_stream(
     deobf: &Deobfuscator,
     last_nsig: &mut [String; 2],
 ) -> Option<AudioStream> {
+    static LANG_PATTERN: Lazy<Regex> = Lazy::new(|| Regex::new(r#"^([a-z]{2})\."#).unwrap());
+
     let (mtype, codecs) = some_or_bail!(parse_mime(&f.mime_type), None);
     let (url, throttled) =
         some_or_bail!(map_url(&f.url, &f.signature_cipher, deobf, last_nsig), None);
@@ -244,7 +245,12 @@ fn map_audio_stream(
         throttled,
         track: f.audio_track.as_ref().map(|t| AudioTrack {
             id: t.id.to_owned(),
-            name: t.display_name.to_owned(),
+            lang: LANG_PATTERN
+                .captures(&t.id)
+                .ok()
+                .flatten()
+                .map(|m| m.get(1).unwrap().as_str().to_owned()),
+            lang_name: t.display_name.to_owned(),
             is_default: t.audio_is_default,
         }),
     })
@@ -307,30 +313,6 @@ fn get_audio_codec(codecs: Vec<&str>) -> AudioCodec {
         }
     }
     AudioCodec::Unknown
-}
-
-fn cmp_video_streams(a: &VideoStream, b: &VideoStream) -> Ordering {
-    match (a.width * a.height).cmp(&(b.width * b.height)) {
-        Ordering::Less => Ordering::Less,
-        Ordering::Greater => Ordering::Greater,
-        Ordering::Equal => match a.codec.cmp(&b.codec) {
-            Ordering::Less => Ordering::Less,
-            Ordering::Greater => Ordering::Greater,
-            Ordering::Equal => a.average_bitrate.cmp(&b.average_bitrate),
-        },
-    }
-}
-
-fn cmp_audio_streams(a: &AudioStream, b: &AudioStream) -> Ordering {
-    fn cmp_bitrate(s: &AudioStream) -> u32 {
-        match s.codec {
-            // Opus is more efficient
-            AudioCodec::Opus => (s.average_bitrate as f32 * 1.3) as u32,
-            _ => s.average_bitrate,
-        }
-    }
-
-    cmp_bitrate(a).cmp(&cmp_bitrate(b))
 }
 
 fn map_player_data(response: response::Player, deobf: &Deobfuscator) -> Result<PlayerData> {
@@ -430,10 +412,9 @@ fn map_player_data(response: response::Player, deobf: &Deobfuscator) -> Result<P
         }
     }
 
-    // Sort streams by quality
-    video_streams.sort_by(cmp_video_streams);
-    video_only_streams.sort_by(cmp_video_streams);
-    audio_streams.sort_by(cmp_audio_streams);
+    video_streams.sort();
+    video_only_streams.sort();
+    audio_streams.sort();
 
     let subtitles = response.captions.map_or(vec![], |captions| {
         captions
@@ -481,15 +462,20 @@ mod tests {
     })
     });
 
-    #[allow(dead_code)]
-    // #[test_log::test(tokio::test)]
-    async fn download_testfiles() {
+    #[test_log::test(tokio::test)]
+    async fn download_response_testfiles() {
         let tf_dir = Path::new("testfiles/player");
         let video_id = "pPvd8UxmSbQ";
 
         let rt = RustyTube::new();
 
         for client_type in CLIENT_TYPES {
+            let mut json_path = tf_dir.to_path_buf();
+            json_path.push(format!("{:?}_video.json", client_type).to_lowercase());
+            if json_path.exists() {
+                continue;
+            }
+
             let client = rt.get_ytclient(client_type);
             let context = client.get_context(false).await;
 
@@ -505,12 +491,27 @@ mod tests {
                 .error_for_status()
                 .unwrap();
 
-            let mut json_path = tf_dir.to_path_buf();
-            json_path.push(format!("{:?}_video.json", client_type).to_lowercase());
-
             let mut file = std::fs::File::create(json_path).unwrap();
             let mut content = std::io::Cursor::new(resp.bytes().await.unwrap());
             std::io::copy(&mut content, &mut file).unwrap();
+        }
+    }
+
+    #[test_log::test(tokio::test)]
+    async fn download_model_testfiles() {
+        let tf_dir = Path::new("testfiles/player_model");
+        let rt = RustyTube::new();
+
+        for (name, id) in [("multilanguage", "tVWWp1PqDus"), ("hdr", "LXb3EKWsInQ")] {
+            let mut json_path = tf_dir.to_path_buf();
+            json_path.push(format!("{}.json", name).to_lowercase());
+            if json_path.exists() {
+                continue;
+            }
+
+            let player_data = rt.get_player(id, ClientType::Desktop).await.unwrap();
+            let file = std::fs::File::create(json_path).unwrap();
+            serde_json::to_writer_pretty(file, &player_data).unwrap();
         }
     }
 

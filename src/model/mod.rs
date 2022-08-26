@@ -1,3 +1,6 @@
+pub mod stream_filter;
+mod ordering;
+
 use std::ops::Range;
 
 use chrono::{DateTime, Utc};
@@ -120,7 +123,8 @@ pub enum VideoFormat {
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
 pub struct AudioTrack {
     pub id: String,
-    pub name: String,
+    pub lang: Option<String>,
+    pub lang_name: String,
     pub is_default: bool,
 }
 
