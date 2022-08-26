@@ -15,7 +15,7 @@ use tokio::{
 };
 
 use crate::{
-    model::{AudioCodec, FileFormat, PlayerData, VideoCodec},
+    model::{stream_filter::Filter, AudioCodec, FileFormat, PlayerData, VideoCodec},
     util,
 };
 
@@ -215,6 +215,7 @@ async fn download_chunks_by_param(
     pb: ProgressBar,
 ) -> Result<()> {
     let mut offset = offset;
+    pb.inc_length(size);
 
     loop {
         let range = get_download_range(offset, Some(size));
@@ -260,7 +261,8 @@ pub async fn download_video(
     player_data: &PlayerData,
     output_dir: &str,
     output_fname: Option<String>,
-    resolution: Option<u32>,
+    output_format: Option<String>,
+    filter: &Filter,
     ffmpeg: &str,
     http: Client,
     pb: ProgressBar,
@@ -273,39 +275,28 @@ pub async fn download_video(
         .unwrap_or_else(|| filenamify::filenamify(format!("{} [{}]", title, player_data.info.id)));
 
     // Select streams to download
-    let video = match resolution {
-        Some(r) => Some(some_or_bail!(
-            player_data
-                .video_only_streams
-                .iter()
-                .rev()
-                .find(|s| s.height <= r && !s.hdr)
-                .clone(),
-            Err(anyhow!("no video stream matching res"))
-        )),
-        None => None,
-    };
+    let (video, audio) = player_data.select_video_audio_stream(filter);
 
-    let audio = some_or_bail!(
-        player_data
-            .audio_streams
-            .iter()
-            .rev()
-            .filter(|a| a.codec != AudioCodec::Unknown)
-            .next(),
-        Err(anyhow!("no audio stream"))
+    if video.is_none() && audio.is_none() {
+        return Err(anyhow!("no stream found"));
+    }
+
+    let format = output_format.unwrap_or(
+        match video {
+            Some(_) => "mp4",
+            None => match audio {
+                Some(audio) => match audio.codec {
+                    AudioCodec::Unknown => return Err(anyhow!("unknown audio codec")),
+                    AudioCodec::Mp4a => "m4a",
+                    AudioCodec::Opus => "opus",
+                },
+                None => unreachable!(),
+            },
+        }
+        .to_owned(),
     );
 
-    let format = match video {
-        Some(_) => "mp4",
-        None => match audio.codec {
-            AudioCodec::Unknown => panic!(),
-            AudioCodec::Mp4a => "m4a",
-            AudioCodec::Opus => "opus",
-        },
-    };
-
-    let output_path = download_dir.join(&output_fname).with_extension(format);
+    let output_path = download_dir.join(&output_fname).with_extension(&format);
     if output_path.exists() {
         // If the downloaded video already exists, only error if the download path was
         // chosen explicitly.
@@ -320,41 +311,63 @@ pub async fn download_video(
         }
     }
 
-    let mut downloads: Vec<StreamDownload> = Vec::new();
+    match (video, audio) {
+        // Downloading combined video/audio stream (no conversion)
+        (Some(video), None) => {
+            pb.set_message(format!("Downloading {}", title));
+            download_single_file(
+                &video.url,
+                download_dir.join(output_fname).with_extension(&format),
+                http,
+                pb.clone(),
+            )
+            .await?;
+        }
+        // Downloading split video/audio streams (requires conversion with ffmpeg)
+        _ => {
+            let mut downloads: Vec<StreamDownload> = Vec::new();
 
-    video.map(|v| {
-        downloads.push(StreamDownload {
-            file: download_dir.join(format!("{}.video{}", output_fname, v.format.extension())),
-            url: v.url.to_owned(),
-            video_codec: Some(v.codec),
-            audio_codec: None,
-        });
-    });
-    downloads.push(StreamDownload {
-        file: download_dir.join(format!(
-            "{}.audio{}",
-            output_fname,
-            audio.format.extension()
-        )),
-        url: audio.url.to_owned(),
-        video_codec: None,
-        audio_codec: Some(audio.codec),
-    });
+            video.map(|v| {
+                downloads.push(StreamDownload {
+                    file: download_dir.join(format!(
+                        "{}.video{}",
+                        output_fname,
+                        v.format.extension()
+                    )),
+                    url: v.url.to_owned(),
+                    video_codec: Some(v.codec),
+                    audio_codec: None,
+                });
+            });
+            audio.map(|a| {
+                downloads.push(StreamDownload {
+                    file: download_dir.join(format!(
+                        "{}.audio{}",
+                        output_fname,
+                        a.format.extension()
+                    )),
+                    url: a.url.to_owned(),
+                    video_codec: None,
+                    audio_codec: Some(a.codec),
+                })
+            });
 
-    pb.set_message(format!("Downloading {}", title));
-    download_streams(&downloads, http, pb.clone()).await?;
+            pb.set_message(format!("Downloading {}", title));
+            download_streams(&downloads, http, pb.clone()).await?;
 
-    pb.set_message(format!("Converting {}", title));
-    convert_streams(&downloads, output_path, ffmpeg).await?;
+            pb.set_message(format!("Converting {}", title));
+            convert_streams(&downloads, output_path, ffmpeg).await?;
 
-    // Delete original files
-    stream::iter(&downloads)
-        .map(|d| fs::remove_file(d.file.to_owned()))
-        .buffer_unordered(downloads.len())
-        .collect::<Vec<_>>()
-        .await
-        .into_iter()
-        .collect::<Result<_, _>>()?;
+            // Delete original files
+            stream::iter(&downloads)
+                .map(|d| fs::remove_file(d.file.to_owned()))
+                .buffer_unordered(downloads.len())
+                .collect::<Vec<_>>()
+                .await
+                .into_iter()
+                .collect::<Result<_, _>>()?;
+        }
+    }
 
     pb.finish_and_clear();
     Ok(())
@@ -378,10 +391,6 @@ async fn download_streams(
     Ok(())
 }
 
-// ffmpeg -i TAEYEON\ 태연\ \'INVU\'\ MV.video.mp4
-// -i TAEYEON\ 태연\ \'INVU\'\ MV.audio.webm -i hypa_audio.webm
-// -map 0:v -map 1:a -map 2:a -metadata:s:a:1 language=en
-// -metadata:s:a:2 language=de -c copy multiaudio.mp4
 async fn convert_streams<P: Into<PathBuf>>(
     downloads: &Vec<StreamDownload>,
     output: P,
@@ -391,7 +400,6 @@ async fn convert_streams<P: Into<PathBuf>>(
 
     let mut args: Vec<OsString> = vec![];
     let mut mapping_args: Vec<OsString> = vec![];
-    // let mut meta_args: Vec<OsString> = vec![];
 
     downloads.iter().enumerate().for_each(|(i, d)| {
         args.push("-i".into());
@@ -403,8 +411,12 @@ async fn convert_streams<P: Into<PathBuf>>(
 
     args.append(&mut mapping_args);
 
-    args.push("-c".into());
-    args.push("copy".into());
+    // Combining multiple streams, keep codecs
+    if downloads.len() > 1 {
+        args.push("-c".into());
+        args.push("copy".into());
+    }
+
     args.push(output_path.into());
 
     let res = Command::new(ffmpeg).args(args).output().await?;

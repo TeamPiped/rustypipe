@@ -5,7 +5,10 @@ use clap::{Parser, Subcommand};
 use futures::stream::{self, StreamExt};
 use indicatif::{MultiProgress, ProgressBar, ProgressStyle};
 use reqwest::{Client, ClientBuilder};
-use rustypipe::client::{ClientType, RustyTube};
+use rustypipe::{
+    client::{ClientType, RustyTube},
+    model::stream_filter::Filter,
+};
 
 #[derive(Parser)]
 #[clap(author, version, about, long_about = None)]
@@ -28,9 +31,15 @@ enum Commands {
         #[clap(value_parser)]
         id: String,
     },
+    /// Download a video
+    Video {
+        /// Video ID
+        #[clap(value_parser)]
+        id: String,
+    },
 }
 
-async fn download_video(
+async fn download_single_video(
     video_id: String,
     video_title: String,
     output_dir: &str,
@@ -40,7 +49,7 @@ async fn download_video(
     rt: &RustyTube,
     http: Client,
     multi: MultiProgress,
-    main: ProgressBar,
+    main: Option<ProgressBar>,
 ) -> Result<()> {
     let pb = multi.add(ProgressBar::new(1));
     pb.set_style(ProgressStyle::default_bar()
@@ -57,11 +66,21 @@ async fn download_video(
                 video_id
             ))?;
 
+        let mut filter = Filter::default();
+        if let Some(res) = resolution {
+            if res == 0 {
+                filter.no_video();
+            } else {
+                filter.video_max_res(res);
+            }
+        }
+
         rustypipe::download::download_video(
             &player_data,
             output_dir,
             output_fname,
-            resolution,
+            None,
+            &filter,
             ffmpeg,
             http,
             pb,
@@ -74,8 +93,44 @@ async fn download_video(
     }
     .await;
 
-    main.inc(1);
+    if let Some(main) = main {
+        main.inc(1);
+    }
     res
+}
+
+async fn download_video(
+    id: &str,
+    output_dir: &str,
+    output_fname: Option<String>,
+    resolution: Option<u32>,
+) {
+    let http = ClientBuilder::new()
+        .user_agent("Mozilla/5.0 (Windows NT 10.0; Win64; rv:107.0) Gecko/20100101 Firefox/107.0")
+        .gzip(true)
+        .brotli(true)
+        .build()
+        .expect("unable to build the HTTP client");
+
+    let rt = RustyTube::new();
+
+    // Indicatif setup
+    let multi = MultiProgress::new();
+
+    download_single_video(
+        id.to_owned(),
+        id.to_owned(),
+        output_dir,
+        output_fname,
+        resolution,
+        "ffmpeg",
+        &rt,
+        http,
+        multi,
+        None,
+    )
+    .await
+    .unwrap_or_else(|e| println!("ERROR: {:?}", e));
 }
 
 async fn download_playlist(
@@ -111,7 +166,7 @@ async fn download_playlist(
 
     stream::iter(playlist)
         .map(|item| {
-            download_video(
+            download_single_video(
                 item.video_id.to_owned(),
                 item.title.to_owned(),
                 output_dir,
@@ -121,7 +176,7 @@ async fn download_playlist(
                 &rt,
                 http.clone(),
                 multi.clone(),
-                main.clone(),
+                Some(main.clone()),
             )
         })
         .buffer_unordered(parallel)
@@ -176,6 +231,9 @@ async fn main() {
     match cli.command {
         Commands::Playlist { id } => {
             download_playlist(&id, &output_dir, output_fname, cli.resolution, cli.parallel).await
+        }
+        Commands::Video { id } => {
+            download_video(&id, &output_dir, output_fname, cli.resolution).await
         }
     };
 }

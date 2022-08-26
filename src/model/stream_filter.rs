@@ -15,6 +15,7 @@ pub struct Filter {
     video_formats: Option<HashSet<VideoFormat>>,
     video_codecs: Option<HashSet<VideoCodec>>,
     video_hdr: bool,
+    video_none: bool,
 }
 
 #[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
@@ -204,6 +205,12 @@ impl Filter {
         }
     }
 
+    /// Output no video stream (audio only)
+    pub fn no_video(&mut self) -> &mut Self {
+        self.video_none = true;
+        self
+    }
+
     fn apply_audio(&self, stream: &AudioStream) -> FilterResult {
         self.apply_audio_max_bitrate(stream).join(
             self.apply_audio_formats(stream).join(
@@ -253,6 +260,10 @@ impl PlayerData {
         streams: &'a [VideoStream],
         filter: &Filter,
     ) -> Option<&'a VideoStream> {
+        if filter.video_none {
+            return None;
+        }
+
         let mut fallback: Option<&VideoStream> = None;
 
         streams
@@ -286,26 +297,26 @@ impl PlayerData {
     pub fn select_video_audio_stream(
         &self,
         filter: &Filter,
-    ) -> Option<(&VideoStream, Option<&AudioStream>)> {
+    ) -> (Option<&VideoStream>, Option<&AudioStream>) {
         let video_stream = self.select_video_stream(filter);
         let video_only_stream = self.select_video_only_stream(filter);
 
         match (video_stream, video_only_stream) {
-            (None, None) => None,
+            (None, None) => (None, self.select_audio_stream(filter)),
             (None, Some(video_only_stream)) => {
-                Some((video_only_stream, self.select_audio_stream(filter)))
+                (Some(video_only_stream), self.select_audio_stream(filter))
             }
-            (Some(video_stream), None) => Some((video_stream, None)),
+            (Some(video_stream), None) => (Some(video_stream), None),
             (Some(video_stream), Some(video_only_stream)) => match video_only_stream > video_stream
             {
-                true => Some((
-                    video_only_stream,
+                true => (
+                    Some(video_only_stream),
                     Some(some_or_bail!(
                         self.select_audio_stream(filter),
-                        Some((video_stream, None))
+                        (Some(video_stream), None)
                     )),
-                )),
-                false => Some((video_stream, None)),
+                ),
+                false => (Some(video_stream), None),
             },
         }
     }
@@ -386,6 +397,11 @@ mod tests {
         Some("https://rr5---sn-h0jelne7.googlevideo.com/videoplayback?c=WEB&clen=23544588&dur=313.834&ei=eckIY72IKcGZ8gOMt6CwDg&expire=1661541849&fexp=24001373%2C24007246&fvip=2&gir=yes&id=o-AOqXE9lVS424yszv6LN5V_gaevdHxenJl-tYNy3Drs6g&initcwndbps=1428750&ip=2003%3Ade%3Aaf05%3A2500%3A5dad%3A319b%3Aca30%3Ae212&itag=18&lmt=1647456546485912&lsig=AG3C_xAwRQIhAMioKyc-dqs-6uvAwLViCcCTXKHn9sIbo0cbSSBXGG4kAiBQNsRBAvQrbWdOjZIsQXYrfPEb1KDpE_AlSEGQZXB9uA%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=NH&mime=video%2Fmp4&mm=31%2C29&mn=sn-h0jelne7%2Csn-h0jeenl6&ms=au%2Crdu&mt=1661519833&mv=m&mvi=5&n=HWZNhARNT_nJgg&ns=pLFQxzhiCbZ9F2HJmDLveKoH&pl=37&ratebypass=yes&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRQIgeCEjusAq6p33rH0NHyTAbPIRaaEkjDE32AXBFzDvR-ICIQD0LI8hQVH8oCMWu6OuADzc1FSQhIqYs5RLkxBmObIdsw%3D%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cspc%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cratebypass%2Cdur%2Clmt&spc=lT-KhuPtxVzL5-QbZ7S9zNeOHsWTdms&txp=4530434&vprv=1"),
         None
     )]
+    #[case::novideo(
+        Filter::default().no_video().to_owned(),
+        None,
+        Some("https://rr5---sn-h0jelne7.googlevideo.com/videoplayback?c=WEB&clen=5199784&dur=313.801&ei=eckIY72IKcGZ8gOMt6CwDg&expire=1661541849&fexp=24001373%2C24007246&fvip=2&gir=yes&id=o-AOqXE9lVS424yszv6LN5V_gaevdHxenJl-tYNy3Drs6g&initcwndbps=1428750&ip=2003%3Ade%3Aaf05%3A2500%3A5dad%3A319b%3Aca30%3Ae212&itag=251&keepalive=yes&lmt=1647453650291076&lsig=AG3C_xAwRQIhAMioKyc-dqs-6uvAwLViCcCTXKHn9sIbo0cbSSBXGG4kAiBQNsRBAvQrbWdOjZIsQXYrfPEb1KDpE_AlSEGQZXB9uA%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=NH&mime=audio%2Fwebm&mm=31%2C29&mn=sn-h0jelne7%2Csn-h0jeenl6&ms=au%2Crdu&mt=1661519833&mv=m&mvi=5&n=Zd7nrOM1B2C6PA&ns=426LxLap5MonJD_YWdS4lSYH&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRQIhALtI3j8ZChpNb0LcyDZ3yosbWnSpqaO0-jKAe_UM_RQyAiAMwrpdeNbJEnQn3q1eveaAcRcNIwy5iJ4fIjeBW_MUfg%3D%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cspc%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&spc=lT-KhuPtxVzL5-QbZ7S9zNeOHsWTdms&txp=4532434&vprv=1")
+    )]
     #[case::noformat(Filter::default().audio_formats(hash_set!()).video_formats(hash_set!()).to_owned(), None, None)]
     fn t_select_video_audio_stream(
         #[case] filter: Filter,
@@ -393,21 +409,16 @@ mod tests {
         #[case] expect_audio_url: Option<&str>,
     ) {
         let player_data = PLAYER_HDR;
-        let selection = player_data.select_video_audio_stream(&filter);
+        let (video, audio) = player_data.select_video_audio_stream(&filter);
 
         match expect_video_url {
-            Some(expect_video_url) => {
-                let selection = selection.unwrap();
-                assert_eq!(selection.0.url, expect_video_url);
+            Some(expect_url) => assert_eq!(video.unwrap().url, expect_url),
+            None => assert_eq!(video, None),
+        }
 
-                match expect_audio_url {
-                    Some(expect_audio_url) => {
-                        assert_eq!(selection.1.unwrap().url, expect_audio_url)
-                    }
-                    None => assert_eq!(selection.1, None),
-                }
-            }
-            None => assert_eq!(selection, None),
+        match expect_audio_url {
+            Some(expect_url) => assert_eq!(audio.unwrap().url, expect_url),
+            None => assert_eq!(audio, None),
         }
     }
 }
