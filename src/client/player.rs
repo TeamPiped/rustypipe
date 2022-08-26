@@ -32,7 +32,7 @@ struct QPlayer {
     video_id: String,
     /// Set to true to allow extraction of streams with sensitive content
     content_check_ok: bool,
-    /// Probably refers to allowin&g sensitive content, too
+    /// Probably refers to allowing sensitive content, too
     racy_check_ok: bool,
 }
 
