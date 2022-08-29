@@ -15,7 +15,7 @@ use tokio::{
 };
 
 use crate::{
-    model::{stream_filter::Filter, AudioCodec, FileFormat, PlayerData, VideoCodec},
+    model::{stream_filter::Filter, AudioCodec, FileFormat, VideoPlayer, VideoCodec},
     util,
 };
 
@@ -258,7 +258,7 @@ struct StreamDownload {
 }
 
 pub async fn download_video(
-    player_data: &PlayerData,
+    player_data: &VideoPlayer,
     output_dir: &str,
     output_fname: Option<String>,
     output_format: Option<String>,

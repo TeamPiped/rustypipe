@@ -1,5 +1,5 @@
-pub mod stream_filter;
 mod ordering;
+pub mod stream_filter;
 
 use std::ops::Range;
 
@@ -11,13 +11,24 @@ pub trait FileFormat {
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
-pub struct PlayerData {
+pub struct VideoPlayer {
     pub info: VideoInfo,
     pub video_streams: Vec<VideoStream>,
     pub video_only_streams: Vec<VideoStream>,
     pub audio_streams: Vec<AudioStream>,
     pub subtitles: Vec<Subtitle>,
     pub expires_in_seconds: u32,
+}
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct Playlist {
+    pub videos: Vec<Video>,
+    pub n_videos: u32,
+    pub ctoken: Option<String>,
+    pub name: String,
+    pub thumbnails: Vec<Thumbnail>,
+    pub description: Option<String>,
+    pub channel: Option<Channel>,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
@@ -27,18 +38,13 @@ pub struct VideoInfo {
     pub description: Option<String>,
     pub length: u32,
     pub thumbnails: Vec<Thumbnail>,
-
-    pub channel_id: String,
-    pub channel_name: String,
-
+    pub channel: Channel,
     pub publish_date: Option<DateTime<Utc>>,
     pub view_count: u64,
     pub keywords: Vec<String>,
     pub category: Option<String>,
     pub is_live_content: bool,
     pub is_family_safe: Option<bool>,
-    // pub like_count: Option<u32>,
-    // pub dislike_count: Option<u32>
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
@@ -85,13 +91,13 @@ pub struct AudioStream {
 pub enum VideoCodec {
     #[default]
     Unknown,
-    /// MPEG-4 Part 14 https://en.wikipedia.org/wiki/MPEG-4_Part_14
+    /// MPEG-4 Part 14 <https://en.wikipedia.org/wiki/MPEG-4_Part_14>
     Mp4v,
-    /// avc1 aka H.264: https://en.wikipedia.org/wiki/Advanced_Video_Coding
+    /// avc1 aka H.264: <https://en.wikipedia.org/wiki/Advanced_Video_Coding>
     Avc1,
-    /// VP9: https://en.wikipedia.org/wiki/VP9
+    /// VP9: <https://en.wikipedia.org/wiki/VP9>
     Vp9,
-    /// AV1, the latest codec: https://en.wikipedia.org/wiki/AV1
+    /// AV1, the latest codec: <https://en.wikipedia.org/wiki/AV1>
     Av01,
 }
 
@@ -103,9 +109,9 @@ pub enum VideoCodec {
 pub enum AudioCodec {
     #[default]
     Unknown,
-    /// MP4A aka AAC: https://en.wikipedia.org/wiki/Advanced_Audio_Coding
+    /// MP4A aka AAC: <https://en.wikipedia.org/wiki/Advanced_Audio_Coding>
     Mp4a,
-    /// Opus: https://en.wikipedia.org/wiki/Opus_(audio_format)
+    /// Opus: <https://en.wikipedia.org/wiki/Opus_(audio_format)>
     Opus,
 }
 
@@ -174,4 +180,19 @@ pub struct Subtitle {
 pub struct Locale {
     pub lang: String,
     pub country: String,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+pub struct Video {
+    pub id: String,
+    pub title: String,
+    pub length: u32,
+    pub thumbnails: Vec<Thumbnail>,
+    pub channel: Channel,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+pub struct Channel {
+    pub id: String,
+    pub name: String,
 }

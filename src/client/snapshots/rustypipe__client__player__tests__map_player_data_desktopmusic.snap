@@ -17,8 +17,9 @@ info:
     - url: "https://i.ytimg.com/vi/pPvd8UxmSbQ/hq720.jpg?sqp=-oaymwEXCNUGEOADIAQqCwjVARCqCBh4INgESFo&rs=AOn4CLA1wPf8NLXqHitgwoNBp4ydFCtDiA"
       width: 853
       height: 480
-  channel_id: UCbxxEi-ImPlbLx5F-fHetEg
-  channel_name: Romansenykmusic
+  channel:
+    id: UCbxxEi-ImPlbLx5F-fHetEg
+    name: Romansenykmusic
   publish_date: "2019-05-30T00:00:00Z"
   view_count: 426583
   keywords:

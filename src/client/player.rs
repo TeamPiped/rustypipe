@@ -52,7 +52,7 @@ struct QContentPlaybackContext {
 }
 
 impl RustyTube {
-    pub async fn get_player(&self, video_id: &str, client_type: ClientType) -> Result<PlayerData> {
+    pub async fn get_player(&self, video_id: &str, client_type: ClientType) -> Result<VideoPlayer> {
         let client = self.get_ytclient(client_type);
         let (context, deobf) = tokio::join!(
             client.get_context(false),
@@ -315,7 +315,7 @@ fn get_audio_codec(codecs: Vec<&str>) -> AudioCodec {
     AudioCodec::Unknown
 }
 
-fn map_player_data(response: response::Player, deobf: &Deobfuscator) -> Result<PlayerData> {
+fn map_player_data(response: response::Player, deobf: &Deobfuscator) -> Result<VideoPlayer> {
     // Check playability status
     match response.playability_status {
         response::player::PlayabilityStatus::Ok { live_streamability } => {
@@ -363,10 +363,10 @@ fn map_player_data(response: response::Player, deobf: &Deobfuscator) -> Result<P
                 width: t.width,
             })
             .collect(),
-
-        channel_id: video_details.channel_id,
-        channel_name: video_details.author,
-
+        channel: Channel {
+            id: video_details.channel_id,
+            name: video_details.author,
+        },
         publish_date: microformat.as_ref().map(|m| {
             let ndt = NaiveDateTime::new(m.publish_date, NaiveTime::from_hms(0, 0, 0));
             DateTime::from_utc(ndt, Utc)
@@ -434,7 +434,7 @@ fn map_player_data(response: response::Player, deobf: &Deobfuscator) -> Result<P
             .collect()
     });
 
-    Ok(PlayerData {
+    Ok(VideoPlayer {
         info: video_info,
         video_streams,
         video_only_streams,
@@ -446,7 +446,7 @@ fn map_player_data(response: response::Player, deobf: &Deobfuscator) -> Result<P
 
 #[cfg(test)]
 mod tests {
-    use std::path::Path;
+    use std::{fs::File, io::BufReader, path::Path};
 
     use crate::{cache::DeobfData, client::CLIENT_TYPES};
 
@@ -491,7 +491,7 @@ mod tests {
                 .error_for_status()
                 .unwrap();
 
-            let mut file = std::fs::File::create(json_path).unwrap();
+            let mut file = File::create(json_path).unwrap();
             let mut content = std::io::Cursor::new(resp.bytes().await.unwrap());
             std::io::copy(&mut content, &mut file).unwrap();
         }
@@ -510,21 +510,38 @@ mod tests {
             }
 
             let player_data = rt.get_player(id, ClientType::Desktop).await.unwrap();
-            let file = std::fs::File::create(json_path).unwrap();
+            let file = File::create(json_path).unwrap();
             serde_json::to_writer_pretty(file, &player_data).unwrap();
         }
     }
 
     #[rstest]
-    #[case::desktop("desktop", include_str!("../../testfiles/player/desktop_video.json"))]
-    #[case::desktop_music("desktop_music", include_str!("../../testfiles/player/desktopmusic_video.json"))]
-    #[case::tv_html5_embed("tvhtml5embed", include_str!("../../testfiles/player/tvhtml5embed_video.json"))]
-    #[case::android("android", include_str!("../../testfiles/player/android_video.json"))]
-    #[case::ios("ios", include_str!("../../testfiles/player/ios_video.json"))]
-    fn t_map_player_data(#[case] name: &str, #[case] json_str: &str) {
-        let resp = serde_json::from_str::<response::Player>(json_str).unwrap();
+    #[case::desktop("desktop")]
+    #[case::desktop_music("desktopmusic")]
+    #[case::tv_html5_embed("tvhtml5embed")]
+    #[case::android("android")]
+    #[case::ios("ios")]
+    fn t_map_player_data(#[case] name: &str) {
+        let filename = format!("testfiles/player/{}_video.json", name);
+        let json_path = Path::new(&filename);
+        let json_file = File::open(json_path).unwrap();
+
+        let resp: response::Player = serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let player_data = map_player_data(resp, &DEOBFUSCATOR).unwrap();
         insta::assert_yaml_snapshot!(format!("map_player_data_{}", name), player_data)
+    }
+
+    /// Assert equality within 10% margin
+    fn assert_approx(left: u32, right: u32) {
+        if left != right {
+            let f = left as f64 / right as f64;
+            assert!(
+                0.9 < f && f < 1.1,
+                "{} not within 10% margin of {}",
+                left,
+                right
+            );
+        }
     }
 
     #[rstest]
@@ -550,8 +567,8 @@ mod tests {
         }
         assert_eq!(player_data.info.length, 259);
         assert!(!player_data.info.thumbnails.is_empty());
-        assert_eq!(player_data.info.channel_id, "UC_aEa8K-EOJ3D6gOs7HcyNg");
-        assert_eq!(player_data.info.channel_name, "NoCopyrightSounds");
+        assert_eq!(player_data.info.channel.id, "UC_aEa8K-EOJ3D6gOs7HcyNg");
+        assert_eq!(player_data.info.channel.name, "NoCopyrightSounds");
         assert!(player_data.info.view_count > 146818808);
         assert_eq!(player_data.info.keywords[0], "spektrem");
         assert_eq!(player_data.info.is_live_content, false);
@@ -577,7 +594,8 @@ mod tests {
                 .find(|s| s.itag == 140)
                 .unwrap();
 
-            assert_eq!(video.bitrate, 1507068);
+            // Bitrates may change between requests
+            assert_approx(video.bitrate, 1507068);
             assert_eq!(video.average_bitrate, 1345149);
             assert_eq!(video.size, 43553412);
             assert_eq!(video.width, 1280);
@@ -589,7 +607,7 @@ mod tests {
             assert_eq!(video.format, VideoFormat::Webm);
             assert_eq!(video.codec, VideoCodec::Vp9);
 
-            assert_eq!(audio.bitrate, 130685);
+            assert_approx(audio.bitrate, 130685);
             assert_eq!(audio.average_bitrate, 129496);
             assert_eq!(audio.size, 4193863);
             assert_eq!(audio.mime, "audio/mp4; codecs=\"mp4a.40.2\"");
@@ -607,7 +625,7 @@ mod tests {
                 .find(|s| s.itag == 251)
                 .unwrap();
 
-            assert_eq!(video.bitrate, 1340829);
+            assert_approx(video.bitrate, 1340829);
             assert_eq!(video.average_bitrate, 1233444);
             assert_eq!(video.size, 39936630);
             assert_eq!(video.width, 1280);
@@ -620,7 +638,7 @@ mod tests {
             assert_eq!(video.codec, VideoCodec::Av01);
             assert_eq!(video.throttled, false);
 
-            assert_eq!(audio.bitrate, 142718);
+            assert_approx(audio.bitrate, 142718);
             assert_eq!(audio.average_bitrate, 130708);
             assert_eq!(audio.size, 4232344);
             assert_eq!(audio.mime, "audio/webm; codecs=\"opus\"");

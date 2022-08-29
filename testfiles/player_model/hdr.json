@@ -31,8 +31,7 @@
         "height": 1080
       }
     ],
-    "channel_id": "UCYq-iAOSZBvoUxvfzwKIZWA",
-    "channel_name": "Jacob + Katie Schwarz",
+    "channel": { "id": "UCYq-iAOSZBvoUxvfzwKIZWA", "name": "Jacob + Katie Schwarz" },
     "publish_date": "2018-06-12T00:00:00Z",
     "view_count": 216221243,
     "keywords": [

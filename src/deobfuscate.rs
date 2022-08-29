@@ -352,10 +352,16 @@ fn get_sts(player_js: &str) -> Result<String> {
 
 #[cfg(test)]
 mod tests {
+    use std::path::Path;
+
     use super::*;
     use test_log::test;
 
-    const TEST_JS: &str = include_str!("../notes/base.js");
+    const TEST_JS: Lazy<String> = Lazy::new(|| {
+        let js_path = Path::new("testfiles/deobf/dummy_player.js");
+        std::fs::read_to_string(js_path).unwrap()
+    });
+
     const N_DEOBF_FUNC: &str = r#"Vo=function(a){var b=a.split(""),c=[function(d,e,f){var h=f.length;d.forEach(function(l,m,n){this.push(n[m]=f[(f.indexOf(l)-f.indexOf(this[m])+m+h--)%f.length])},e.split(""))},
 928409064,-595856984,1403221911,653089124,-168714481,-1883008765,158931990,1346921902,361518508,1403221911,-362174697,-233641452,function(){for(var d=64,e=[];++d-e.length-32;){switch(d){case 91:d=44;continue;case 123:d=65;break;case 65:d-=18;continue;case 58:d=96;continue;case 46:d=95}e.push(String.fromCharCode(d))}return e},
 b,158931990,791141857,-907319795,-1776185924,1595027902,-829736173,function(d,e){e=(e%d.length+d.length)%d.length;d.splice(0,1,d.splice(e,1,d[0])[0])},
@@ -372,13 +378,13 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
 
     #[test]
     fn t_get_sig_fn_name() {
-        let dfunc_name = get_sig_fn_name(TEST_JS).unwrap();
+        let dfunc_name = get_sig_fn_name(&TEST_JS).unwrap();
         assert_eq!(dfunc_name, "Rva");
     }
 
     #[test]
     fn t_get_sig_fn() {
-        let dcode = get_sig_fn(TEST_JS).unwrap();
+        let dcode = get_sig_fn(&TEST_JS).unwrap();
         assert_eq!(
             dcode,
             r#"var qB={w8:function(a){a.reverse()},EC:function(a,b){var c=a[0];a[0]=a[b%a.length];a[b%a.length]=c},Np:function(a,b){a.splice(0,b)}};var Rva=function(a){a=a.split("");qB.Np(a,3);qB.w8(a,41);qB.EC(a,55);qB.Np(a,3);qB.w8(a,33);qB.Np(a,3);qB.EC(a,48);qB.EC(a,17);qB.EC(a,43);return a.join("")};var deobfuscate=Rva;"#
@@ -387,14 +393,14 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
 
     #[test]
     fn t_deobfuscate_sig() {
-        let dcode = get_sig_fn(TEST_JS).unwrap();
+        let dcode = get_sig_fn(&TEST_JS).unwrap();
         let deobf = deobfuscate_sig("GOqGOqGOq0QJ8wRAIgaryQHfplJ9xJSKFywyaSMHuuwZYsoMTAvRvfm51qIGECIA5061zWeyfMPX9hEl_U6f9J0tr7GTJMKyPf5XNrJb5fb5i", &dcode).unwrap();
         assert_eq!(deobf, "AOq0QJ8wRAIgaryQHmplJ9xJSKFywyaSMHuuwZYsoMTfvRviG51qIGECIA5061zWeyfMPX9hEl_U6f9J0tr7GTJMKyPf5XNrJb5f");
     }
 
     #[test]
     fn t_get_nsig_fn_name() {
-        let name = get_nsig_fn_name(TEST_JS).unwrap();
+        let name = get_nsig_fn_name(&TEST_JS).unwrap();
         assert_eq!(name, "Vo");
     }
 
@@ -435,13 +441,13 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
 
     #[test]
     fn t_get_nsig_fn() {
-        let res = get_nsig_fn(TEST_JS).unwrap();
+        let res = get_nsig_fn(&TEST_JS).unwrap();
         assert_eq!(res, N_DEOBF_FUNC);
     }
 
     #[test]
     fn t_get_sts() {
-        let res = get_sts(TEST_JS).unwrap();
+        let res = get_sts(&TEST_JS).unwrap();
         assert_eq!(res, "19187")
     }
 

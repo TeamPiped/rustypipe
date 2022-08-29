@@ -23,8 +23,9 @@ info:
     - url: "https://i.ytimg.com/vi/pPvd8UxmSbQ/maxresdefault.jpg"
       width: 1920
       height: 1080
-  channel_id: UCbxxEi-ImPlbLx5F-fHetEg
-  channel_name: RomanSenykMusic - Royalty Free Music
+  channel:
+    id: UCbxxEi-ImPlbLx5F-fHetEg
+    name: RomanSenykMusic - Royalty Free Music
   publish_date: ~
   view_count: 426567
   keywords:

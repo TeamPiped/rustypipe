@@ -31,8 +31,7 @@
         "height": 1080
       }
     ],
-    "channel_id": "UCX6OQ3DkcsbYNE6H8uQQuVA",
-    "channel_name": "MrBeast",
+    "channel": { "id": "UCX6OQ3DkcsbYNE6H8uQQuVA", "name": "MrBeast" },
     "publish_date": "2022-07-23T00:00:00Z",
     "view_count": 71877575,
     "keywords": [],

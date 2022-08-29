@@ -1,13 +1,34 @@
 pub mod player;
 pub mod playlist;
+pub mod playlist_music;
 
 pub use player::Player;
 pub use playlist::Playlist;
+pub use playlist_music::PlaylistMusic;
 
 use serde::Deserialize;
-use serde_with::{serde_as, VecSkipError};
+use serde_with::{serde_as, DefaultOnError, VecSkipError};
 
 use crate::serializer::text::TextLink;
+
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ContentRenderer<T> {
+    pub content: T,
+}
+
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ContentsRenderer<T> {
+    #[serde(alias = "tabs")]
+    pub contents: Vec<T>,
+}
+
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ThumbnailsWrap {
+    pub thumbnail: Thumbnails,
+}
 
 #[derive(Default, Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -23,6 +44,24 @@ pub struct Thumbnail {
     pub height: u32,
 }
 
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ContinuationItemRenderer {
+    pub continuation_endpoint: ContinuationEndpoint,
+}
+
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ContinuationEndpoint {
+    pub continuation_command: ContinuationCommand,
+}
+
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ContinuationCommand {
+    pub token: String,
+}
+
 // YouTube Music
 
 #[serde_as]
@@ -30,7 +69,9 @@ pub struct Thumbnail {
 #[serde(rename_all = "camelCase")]
 pub struct MusicItem {
     pub thumbnail: MusicThumbnailRenderer,
-    pub playlist_item_data: PlaylistItemData,
+    #[serde(default)]
+    #[serde_as(deserialize_as = "DefaultOnError")]
+    pub playlist_item_data: Option<PlaylistItemData>,
     #[serde(default)]
     #[serde_as(as = "VecSkipError<_>")]
     pub flex_columns: Vec<MusicColumn>,
@@ -42,19 +83,23 @@ pub struct MusicItem {
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct MusicThumbnailRenderer {
-    pub music_thumbnail_renderer: MusicThumbnailRenderer2,
-}
-
-#[derive(Clone, Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct MusicThumbnailRenderer2 {
-    pub thumbnail: Thumbnails,
+    #[serde(alias = "croppedSquareThumbnailRenderer")]
+    pub music_thumbnail_renderer: ThumbnailsWrap,
 }
 
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct PlaylistItemData {
     pub video_id: String,
+}
+
+#[serde_as]
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct MusicContentsRenderer<T> {
+    pub contents: Vec<T>,
+    #[serde_as(as = "Option<VecSkipError<_>>")]
+    pub continuations: Option<Vec<MusicContinuation>>,
 }
 
 #[derive(Clone, Debug, Deserialize)]
@@ -69,6 +114,18 @@ pub struct MusicColumn {
 #[serde_as]
 #[derive(Clone, Debug, Deserialize)]
 pub struct MusicColumnRenderer {
-    #[serde_as(as = "crate::serializer::text::TextLink")]
-    pub text: TextLink,
+    #[serde_as(as = "crate::serializer::text::TextLinks")]
+    pub text: Vec<TextLink>,
+}
+
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct MusicContinuation {
+    pub next_continuation_data: MusicContinuationData,
+}
+
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct MusicContinuationData {
+    pub continuation: String,
 }

@@ -1,7 +1,7 @@
 use std::collections::HashSet;
 
 use super::{
-    AudioCodec, AudioFormat, AudioStream, PlayerData, VideoCodec, VideoFormat, VideoStream,
+    AudioCodec, AudioFormat, AudioStream, VideoCodec, VideoFormat, VideoPlayer, VideoStream,
 };
 
 #[derive(Debug, Default, Clone)]
@@ -108,7 +108,7 @@ impl Filter {
 
     /// Set the preferred audio language (2 letter ISO 639-1 code, e.g. `en`, `fr`).
     /// Some YouTube videos feature multiple audio streams in
-    /// different languages (e.g. https://www.youtube.com/watch?v=tVWWp1PqDus).
+    /// different languages (e.g. <https://www.youtube.com/watch?v=tVWWp1PqDus>).
     ///
     /// If this filter is unset or no stream matches,
     /// the filter returns the default audio stream.
@@ -232,7 +232,7 @@ impl Filter {
     }
 }
 
-impl PlayerData {
+impl VideoPlayer {
     pub fn select_audio_stream(&self, filter: &Filter) -> Option<&AudioStream> {
         let mut fallback: Option<&AudioStream> = None;
 
@@ -324,21 +324,25 @@ impl PlayerData {
 
 #[cfg(test)]
 mod tests {
+    use std::{fs::File, io::BufReader, path::Path};
+
     use super::*;
     use once_cell::sync::Lazy;
     use rstest::rstest;
     use velcro::hash_set;
 
-    const PLAYER_ML: Lazy<PlayerData> = Lazy::new(|| {
-        serde_json::from_str::<PlayerData>(include_str!(
-            "../../testfiles/player_model/multilanguage.json"
-        ))
-        .unwrap()
+    const PLAYER_ML: Lazy<VideoPlayer> = Lazy::new(|| {
+        let json_path = Path::new("testfiles/player_model/multilanguage.json");
+        let json_file = File::open(json_path).unwrap();
+
+        serde_json::from_reader(BufReader::new(json_file)).unwrap()
     });
 
-    const PLAYER_HDR: Lazy<PlayerData> = Lazy::new(|| {
-        serde_json::from_str::<PlayerData>(include_str!("../../testfiles/player_model/hdr.json"))
-            .unwrap()
+    const PLAYER_HDR: Lazy<VideoPlayer> = Lazy::new(|| {
+        let json_path = Path::new("testfiles/player_model/hdr.json");
+        let json_file = File::open(json_path).unwrap();
+
+        serde_json::from_reader(BufReader::new(json_file)).unwrap()
     });
 
     #[rstest]

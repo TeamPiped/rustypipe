@@ -20,8 +20,9 @@ info:
     - url: "https://i.ytimg.com/vi_webp/pPvd8UxmSbQ/sddefault.webp"
       width: 640
       height: 480
-  channel_id: UCbxxEi-ImPlbLx5F-fHetEg
-  channel_name: RomanSenykMusic - Royalty Free Music
+  channel:
+    id: UCbxxEi-ImPlbLx5F-fHetEg
+    name: RomanSenykMusic - Royalty Free Music
   publish_date: ~
   view_count: 426567
   keywords:
