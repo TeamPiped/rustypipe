@@ -2,6 +2,8 @@
 source: src/client/playlist.rs
 expression: playlist_data
 ---
+id: PL5dDx681T4bR7ZF1IuWzOv1omlRbE7PiJ
+name: Die schönsten deutschen Lieder | Beliebteste Lieder | Beste Deutsche Musik 2022
 videos:
   - id: Bkj3IVIO2Os
     title: Stereoact feat. Kerstin Ott - Die Immer Lacht (Official Video HD)
@@ -1905,7 +1907,6 @@ videos:
       name: KMNGANG
 n_videos: 495
 ctoken: 4qmFsgJhEiRWTFBMNWREeDY4MVQ0YlI3WkYxSXVXek92MW9tbFJiRTdQaUoaFENBRjZCbEJVT2tOSFdRJTNEJTNEmgIiUEw1ZER4NjgxVDRiUjdaRjFJdVd6T3Yxb21sUmJFN1BpSg%3D%3D
-name: Die schönsten deutschen Lieder | Beliebteste Lieder | Beste Deutsche Musik 2022
 thumbnails:
   - url: "https://i.ytimg.com/vi/Bkj3IVIO2Os/hqdefault.jpg?sqp=-oaymwEWCKgBEF5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLBShlXfy9oWvTy2ntoHxmuhBlZP3g"
     width: 168
@@ -1923,4 +1924,5 @@ description: ~
 channel:
   id: UCIekuFeMaV78xYfvpmoCnPg
   name: Best Music
+last_update: ~
 

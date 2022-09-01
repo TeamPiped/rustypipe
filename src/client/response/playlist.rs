@@ -4,7 +4,7 @@ use serde_with::{json::JsonString, DefaultOnError, VecSkipError};
 
 use crate::serializer::text::{Text, TextLink};
 
-use super::{ContentRenderer, ContentsRenderer, ContinuationEndpoint, Thumbnails, ThumbnailsWrap};
+use super::{ContentRenderer, ContentsRenderer, Thumbnails, ThumbnailsWrap, VideoListItem};
 
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -12,6 +12,14 @@ pub struct Playlist {
     pub contents: Contents,
     pub header: Header,
     pub sidebar: Sidebar,
+}
+
+#[serde_as]
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct PlaylistCont {
+    #[serde_as(as = "VecSkipError<_>")]
+    pub on_response_received_actions: Vec<OnResponseReceivedAction>,
 }
 
 #[derive(Clone, Debug, Deserialize)]
@@ -49,21 +57,7 @@ pub struct PlaylistVideoListRenderer {
 #[serde(rename_all = "camelCase")]
 pub struct PlaylistVideoList {
     #[serde_as(as = "VecSkipError<_>")]
-    pub contents: Vec<PlaylistVideoItem>,
-}
-
-#[serde_as]
-#[derive(Clone, Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub enum PlaylistVideoItem {
-    PlaylistVideoRenderer {
-        #[serde(flatten)]
-        video: PlaylistVideo,
-    },
-    #[serde(rename_all = "camelCase")]
-    ContinuationItemRenderer {
-        continuation_endpoint: ContinuationEndpoint,
-    },
+    pub contents: Vec<VideoListItem<PlaylistVideo>>,
 }
 
 #[serde_as]
@@ -151,4 +145,19 @@ pub struct VideoOwnerWrap {
 pub struct VideoOwner {
     #[serde_as(as = "crate::serializer::text::TextLink")]
     pub title: TextLink,
+}
+
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct OnResponseReceivedAction {
+    pub append_continuation_items_action: AppendAction,
+}
+
+#[serde_as]
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct AppendAction {
+    #[serde_as(as = "VecSkipError<_>")]
+    pub continuation_items: Vec<VideoListItem<PlaylistVideo>>,
+    pub target_id: String,
 }

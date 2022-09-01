@@ -1,7 +1,8 @@
-use std::collections::BTreeMap;
+use std::{collections::BTreeMap, str::FromStr};
 
 use anyhow::Result;
 use fancy_regex::Regex;
+use once_cell::sync::Lazy;
 use rand::Rng;
 use url::Url;
 
@@ -18,26 +19,28 @@ where
         .map(|c| c.get(cg).unwrap().as_str().to_owned())
 }
 
-/// Generates a random string with given length and byte charset.
+/// Generate a random string with given length and byte charset.
 fn random_string(charset: &[u8], length: usize) -> String {
     let mut result = String::with_capacity(length);
     let mut rng = rand::thread_rng();
 
-    unsafe {
-        for _ in 0..length {
-            result.push(char::from(
-                *charset.get_unchecked(rng.gen_range(0..charset.len())),
-            ));
-        }
+    for _ in 0..length {
+        result.push(char::from(charset[rng.gen_range(0..charset.len())]));
     }
 
     result
 }
 
+/// Generate a 16 characters long random string used as a CPN (Content Playback Nonce)
 pub fn generate_content_playback_nonce() -> String {
     random_string(CONTENT_PLAYBACK_NONCE_ALPHABET, 16)
 }
 
+/// Split an URL into its base string and parameter map
+///
+/// Example:
+///
+/// `example.com/api?k1=v1&k2=v2 => example.com/api; {k1: v1, k2: v2}`
 pub fn url_to_params(url: &str) -> Result<(String, BTreeMap<String, String>)> {
     let parsed_url = Url::parse(url)?;
     let url_params: BTreeMap<String, String> = parsed_url
@@ -49,4 +52,28 @@ pub fn url_to_params(url: &str) -> Result<(String, BTreeMap<String, String>)> {
     url_base.set_query(None);
 
     Ok((url_base.to_string(), url_params))
+}
+
+/// Parse a string after removing all non-numeric characters
+pub fn parse_numeric<F>(string: &str) -> Result<F, F::Err>
+where
+    F: FromStr,
+{
+    static NUM_PATTERN: Lazy<Regex> = Lazy::new(|| Regex::new("\\D+").unwrap());
+    NUM_PATTERN.replace_all(string, "").parse()
+}
+
+#[cfg(test)]
+mod tests {
+    use rstest::rstest;
+
+    use super::*;
+
+    #[rstest]
+    #[case("1.000", 1000)]
+    #[case("4 Hello World 2", 42)]
+    fn t_parse_num(#[case] string: &str, #[case] expect: u32) {
+        let n = parse_numeric::<u32>(string).unwrap();
+        assert_eq!(n, expect);
+    }
 }

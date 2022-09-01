@@ -59,7 +59,7 @@ async fn download_single_video(
 
     let res = async {
         let player_data = rt
-            .get_player(video_id.as_str(), ClientType::Desktop)
+            .get_player(video_id.as_str(), ClientType::TvHtml5Embed)
             .await
             .context(format!(
                 "Failed to fetch player data for video {}",

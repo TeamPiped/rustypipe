@@ -2,6 +2,8 @@
 source: src/client/playlist.rs
 expression: playlist_data
 ---
+id: PL1J-6JOckZtE_P9Xx8D3b2O6w0idhuKBe
+name: Minecraft SHINE
 videos:
   - id: X82TrticM4A
     title: Minecraft SHINE (Trailer)
@@ -1259,7 +1261,6 @@ videos:
       name: Chaosflo44
 n_videos: 66
 ctoken: ~
-name: Minecraft SHINE
 thumbnails:
   - url: "https://i.ytimg.com/vi/X82TrticM4A/hqdefault.jpg?sqp=-oaymwEWCKgBEF5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLBeSNDZEaBoP0KX9_Ayn3VO3X8rkw"
     width: 168
@@ -1277,4 +1278,5 @@ description: "SHINE - Survival Hardcore in New Environment: Auf einem Server mac
 channel:
   id: UCQM0bS4_04-Y4JuYrgmnpZQ
   name: Chaosflo44
+last_update: ~
 

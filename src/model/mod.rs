@@ -1,5 +1,8 @@
+mod locale;
 mod ordering;
 pub mod stream_filter;
+
+pub use locale::{Country, Language};
 
 use std::ops::Range;
 
@@ -22,13 +25,15 @@ pub struct VideoPlayer {
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Playlist {
+    pub id: String,
+    pub name: String,
     pub videos: Vec<Video>,
     pub n_videos: u32,
     pub ctoken: Option<String>,
-    pub name: String,
     pub thumbnails: Vec<Thumbnail>,
     pub description: Option<String>,
     pub channel: Option<Channel>,
+    pub last_update: Option<DateTime<Utc>>,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
@@ -174,12 +179,6 @@ pub struct Subtitle {
     pub lang: String,
     pub lang_name: String,
     pub auto_generated: bool,
-}
-
-#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
-pub struct Locale {
-    pub lang: String,
-    pub country: String,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]

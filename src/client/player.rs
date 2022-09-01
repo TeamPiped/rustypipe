@@ -5,7 +5,7 @@ use std::{
 };
 
 use anyhow::{anyhow, bail, Result};
-use chrono::{DateTime, NaiveDateTime, NaiveTime, Utc};
+use chrono::{NaiveDateTime, NaiveTime, TimeZone, Utc};
 use fancy_regex::Regex;
 use log::{error, warn};
 use once_cell::sync::Lazy;
@@ -15,8 +15,6 @@ use url::Url;
 
 use super::{response, ClientType, ContextYT, RustyTube, YTClient};
 use crate::{client::response::player, deobfuscate::Deobfuscator, model::*, util};
-
-// REQUEST
 
 #[derive(Clone, Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
@@ -369,7 +367,7 @@ fn map_player_data(response: response::Player, deobf: &Deobfuscator) -> Result<V
         },
         publish_date: microformat.as_ref().map(|m| {
             let ndt = NaiveDateTime::new(m.publish_date, NaiveTime::from_hms(0, 0, 0));
-            DateTime::from_utc(ndt, Utc)
+            Utc.from_local_datetime(&ndt).unwrap()
         }),
         view_count: video_details.view_count,
         keywords: video_details

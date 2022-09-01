@@ -1,7 +1,9 @@
+pub mod channel;
 pub mod player;
 pub mod playlist;
 pub mod playlist_music;
 
+pub use channel::Channel;
 pub use player::Player;
 pub use playlist::Playlist;
 pub use playlist_music::PlaylistMusic;
@@ -44,10 +46,19 @@ pub struct Thumbnail {
     pub height: u32,
 }
 
+#[serde_as]
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct ContinuationItemRenderer {
-    pub continuation_endpoint: ContinuationEndpoint,
+pub enum VideoListItem<T> {
+    #[serde(alias = "playlistVideoRenderer")]
+    GridVideoRenderer {
+        #[serde(flatten)]
+        video: T,
+    },
+    #[serde(rename_all = "camelCase")]
+    ContinuationItemRenderer {
+        continuation_endpoint: ContinuationEndpoint,
+    },
 }
 
 #[derive(Clone, Debug, Deserialize)]

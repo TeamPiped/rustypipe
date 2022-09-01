@@ -1,5 +1,3 @@
-// REQUEST
-
 use anyhow::{anyhow, Result};
 use reqwest::Method;
 use serde::Serialize;
@@ -18,10 +16,11 @@ struct QPlaylist {
     browse_id: String,
 }
 
-#[derive(Clone, Debug)]
-pub struct TmpEntry {
-    pub title: String,
-    pub video_id: String,
+#[derive(Clone, Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+struct QPlaylistCont {
+    context: ContextYT,
+    continuation: String,
 }
 
 impl RustyTube {
@@ -45,6 +44,51 @@ impl RustyTube {
         let playlist_response = resp.json::<response::Playlist>().await?;
 
         map_playlist(&playlist_response)
+    }
+
+    pub async fn get_playlist_cont(&self, playlist: &mut Playlist) -> Result<()> {
+        match &playlist.ctoken {
+            Some(ctoken) => {
+                let client = self.get_ytclient(ClientType::Desktop);
+                let context = client.get_context(true).await;
+
+                let request_body = QPlaylistCont {
+                    context,
+                    continuation: ctoken.to_owned(),
+                };
+
+                let resp = client
+                    .request_builder(Method::POST, "browse")
+                    .await
+                    .json(&request_body)
+                    .send()
+                    .await?
+                    .error_for_status()?;
+
+                let cont_response = resp.json::<response::playlist::PlaylistCont>().await?;
+
+                let action = some_or_bail!(
+                    cont_response
+                        .on_response_received_actions
+                        .iter()
+                        .find(|a| a.append_continuation_items_action.target_id == playlist.id),
+                    Err(anyhow!("no continuation action"))
+                );
+
+                let (mut videos, ctoken) =
+                    map_playlist_items(&action.append_continuation_items_action.continuation_items);
+
+                playlist.videos.append(&mut videos);
+                playlist.ctoken = ctoken;
+
+                if playlist.ctoken.is_none() {
+                    playlist.n_videos = playlist.videos.len() as u32;
+                }
+
+                Ok(())
+            }
+            None => Err(anyhow!("no ctoken")),
+        }
     }
 }
 
@@ -74,49 +118,7 @@ fn map_playlist(response: &response::Playlist) -> Result<Playlist> {
     .playlist_video_list_renderer
     .contents;
 
-    let mut ctoken: Option<String> = None;
-    let videos = video_items
-        .iter()
-        .filter_map(|it| match it {
-            response::playlist::PlaylistVideoItem::PlaylistVideoRenderer { video } => {
-                match &video.channel {
-                    TextLink::Browse {
-                        text,
-                        page_type,
-                        browse_id,
-                    } => match page_type {
-                        PageType::Channel => Some(Video {
-                            id: video.video_id.to_owned(),
-                            title: video.title.to_owned(),
-                            length: video.length_seconds,
-                            thumbnails: video
-                                .thumbnail
-                                .thumbnails
-                                .iter()
-                                .map(|t| Thumbnail {
-                                    url: t.url.to_owned(),
-                                    width: t.width,
-                                    height: t.height,
-                                })
-                                .collect(),
-                            channel: Channel {
-                                id: browse_id.to_string(),
-                                name: text.to_owned(),
-                            },
-                        }),
-                        _ => None,
-                    },
-                    _ => None,
-                }
-            }
-            response::playlist::PlaylistVideoItem::ContinuationItemRenderer {
-                continuation_endpoint,
-            } => {
-                ctoken = Some(continuation_endpoint.continuation_command.token.to_owned());
-                None
-            }
-        })
-        .collect::<Vec<_>>();
+    let (videos, ctoken) = map_playlist_items(video_items);
 
     let thumbnail_renderer = some_or_bail!(
         response
@@ -151,7 +153,7 @@ fn map_playlist(response: &response::Playlist) -> Result<Playlist> {
                 match &response.header.playlist_header_renderer.num_videos_text {
                     Text::Multiple { runs } =>
                         if runs.len() == 2 && runs[1] == " videos" {
-                            runs[0].parse().ok()
+                            runs[0].replace(",", "").replace(".", "").parse().ok()
                         } else {
                             None
                         },
@@ -175,6 +177,11 @@ fn map_playlist(response: &response::Playlist) -> Result<Playlist> {
         })
         .collect::<Vec<_>>();
 
+    let id = response
+        .header
+        .playlist_header_renderer
+        .playlist_id
+        .to_owned();
     let name = response.header.playlist_header_renderer.title.to_owned();
     let description = response
         .header
@@ -201,14 +208,63 @@ fn map_playlist(response: &response::Playlist) -> Result<Playlist> {
     };
 
     Ok(Playlist {
+        id,
+        name,
         videos,
         n_videos,
         ctoken,
-        name,
         thumbnails,
         description,
         channel,
+        last_update: None,
     })
+}
+
+fn map_playlist_items(
+    items: &Vec<response::VideoListItem<response::playlist::PlaylistVideo>>,
+) -> (Vec<Video>, Option<String>) {
+    let mut ctoken: Option<String> = None;
+    let videos = items
+        .iter()
+        .filter_map(|it| match it {
+            response::VideoListItem::GridVideoRenderer { video } => match &video.channel {
+                TextLink::Browse {
+                    text,
+                    page_type,
+                    browse_id,
+                } => match page_type {
+                    PageType::Channel => Some(Video {
+                        id: video.video_id.to_owned(),
+                        title: video.title.to_owned(),
+                        length: video.length_seconds,
+                        thumbnails: video
+                            .thumbnail
+                            .thumbnails
+                            .iter()
+                            .map(|t| Thumbnail {
+                                url: t.url.to_owned(),
+                                width: t.width,
+                                height: t.height,
+                            })
+                            .collect(),
+                        channel: Channel {
+                            id: browse_id.to_string(),
+                            name: text.to_owned(),
+                        },
+                    }),
+                    _ => None,
+                },
+                _ => None,
+            },
+            response::VideoListItem::ContinuationItemRenderer {
+                continuation_endpoint,
+            } => {
+                ctoken = Some(continuation_endpoint.continuation_command.token.to_owned());
+                None
+            }
+        })
+        .collect::<Vec<_>>();
+    (videos, ctoken)
 }
 
 #[cfg(test)]
@@ -299,6 +355,7 @@ mod tests {
         let rt = RustyTube::new();
         let playlist = rt.get_playlist(id).await.unwrap();
 
+        assert_eq!(playlist.id, id);
         assert_eq!(playlist.name, name);
         assert!(!playlist.videos.is_empty());
         assert_eq!(playlist.ctoken.is_some(), is_long);
@@ -322,5 +379,20 @@ mod tests {
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let playlist_data = map_playlist(&playlist).unwrap();
         insta::assert_yaml_snapshot!(format!("map_playlist_data_{}", name), playlist_data);
+    }
+
+    #[test_log::test(tokio::test)]
+    async fn t_playlist_cont() {
+        let rt = RustyTube::new();
+        let mut playlist = rt
+            .get_playlist("PLbZIPy20-1pN7mqjckepWF78ndb6ci_qi")
+            .await
+            .unwrap();
+
+        while playlist.ctoken.is_some() {
+            rt.get_playlist_cont(&mut playlist).await.unwrap();
+        }
+
+        assert!(playlist.videos.len() > 100);
     }
 }

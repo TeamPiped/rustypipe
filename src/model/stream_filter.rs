@@ -331,14 +331,14 @@ mod tests {
     use rstest::rstest;
     use velcro::hash_set;
 
-    const PLAYER_ML: Lazy<VideoPlayer> = Lazy::new(|| {
+    static PLAYER_ML: Lazy<VideoPlayer> = Lazy::new(|| {
         let json_path = Path::new("testfiles/player_model/multilanguage.json");
         let json_file = File::open(json_path).unwrap();
 
         serde_json::from_reader(BufReader::new(json_file)).unwrap()
     });
 
-    const PLAYER_HDR: Lazy<VideoPlayer> = Lazy::new(|| {
+    static PLAYER_HDR: Lazy<VideoPlayer> = Lazy::new(|| {
         let json_path = Path::new("testfiles/player_model/hdr.json");
         let json_file = File::open(json_path).unwrap();
 
@@ -356,8 +356,7 @@ mod tests {
     #[case::noformat(Filter::default().audio_formats(hash_set!()).to_owned(), None)]
     #[case::nocodec(Filter::default().audio_codecs(hash_set!()).to_owned(), None)]
     fn t_select_audio_stream(#[case] filter: Filter, #[case] expect_url: Option<&str>) {
-        let player_data = PLAYER_ML;
-        let selection = player_data.select_audio_stream(&filter);
+        let selection = PLAYER_ML.select_audio_stream(&filter);
 
         match expect_url {
             Some(expect_url) => assert_eq!(selection.unwrap().url, expect_url),
@@ -376,8 +375,7 @@ mod tests {
     #[case::noformat(Filter::default().video_formats(hash_set!()).to_owned(), None)]
     #[case::nocodec(Filter::default().video_codecs(hash_set!()).to_owned(), None)]
     fn t_select_video_only_stream(#[case] filter: Filter, #[case] expect_url: Option<&str>) {
-        let player_data = PLAYER_HDR;
-        let selection = player_data.select_video_only_stream(&filter);
+        let selection = PLAYER_HDR.select_video_only_stream(&filter);
 
         match expect_url {
             Some(expect_url) => assert_eq!(selection.unwrap().url, expect_url),
@@ -412,8 +410,7 @@ mod tests {
         #[case] expect_video_url: Option<&str>,
         #[case] expect_audio_url: Option<&str>,
     ) {
-        let player_data = PLAYER_HDR;
-        let (video, audio) = player_data.select_video_audio_stream(&filter);
+        let (video, audio) = PLAYER_HDR.select_video_audio_stream(&filter);
 
         match expect_video_url {
             Some(expect_url) => assert_eq!(video.unwrap().url, expect_url),

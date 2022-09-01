@@ -103,9 +103,10 @@ fn get_sig_fn(player_js: &str) -> Result<String> {
         .as_str()
         + ";";
 
-    let helper_object_name_pattern = Regex::new(";([A-Za-z0-9_\\$]{2})\\...\\(").unwrap();
+    static HELPER_OBJECT_NAME_PATTERN: Lazy<Regex> =
+        Lazy::new(|| Regex::new(";([A-Za-z0-9_\\$]{2})\\...\\(").unwrap());
     let helper_object_name = some_or_bail!(
-        helper_object_name_pattern
+        HELPER_OBJECT_NAME_PATTERN
             .captures(&deobfuscate_function)
             .ok()
             .flatten(),
@@ -145,12 +146,13 @@ fn deobfuscate_sig(sig: &str, sig_fn: &str) -> Result<String> {
 }
 
 fn get_nsig_fn_name(player_js: &str) -> Result<String> {
-    let function_name_pattern =
+    static FUNCTION_NAME_PATTERN: Lazy<Regex> = Lazy::new(|| {
         Regex::new("\\.get\\(\"n\"\\)\\)&&\\(b=([a-zA-Z0-9$]+)(?:\\[(\\d+)])?\\([a-zA-Z0-9]\\)")
-            .unwrap();
+            .unwrap()
+    });
 
     let fname_match = some_or_bail!(
-        function_name_pattern.captures(player_js).ok().flatten(),
+        FUNCTION_NAME_PATTERN.captures(player_js).ok().flatten(),
         Err(anyhow!("could not find n_deobf function"))
     );
 
@@ -315,11 +317,12 @@ async fn get_player_js_url(http: &Client) -> Result<String> {
         .error_for_status()?;
     let text = resp.text().await?;
 
-    let player_hash_pattern =
+    static PLAYER_HASH_PATTERN: Lazy<Regex> = Lazy::new(|| {
         Regex::new(r#"https:\\\/\\\/www\.youtube\.com\\\/s\\\/player\\\/([a-z0-9]{8})\\\/"#)
-            .unwrap();
+            .unwrap()
+    });
     let player_hash = some_or_bail!(
-        player_hash_pattern.captures(&text)?,
+        PLAYER_HASH_PATTERN.captures(&text)?,
         Err(anyhow!("could not find player hash"))
     )
     .get(1)
@@ -338,10 +341,11 @@ async fn get_response(http: &Client, url: &str) -> Result<String> {
 }
 
 fn get_sts(player_js: &str) -> Result<String> {
-    let sts_pattern = Regex::new("signatureTimestamp[=:](\\d+)").unwrap();
+    static STS_PATTERN: Lazy<Regex> =
+        Lazy::new(|| Regex::new("signatureTimestamp[=:](\\d+)").unwrap());
 
     Ok(some_or_bail!(
-        sts_pattern.captures(&player_js)?,
+        STS_PATTERN.captures(&player_js)?,
         Err(anyhow!("could not find sts"))
     )
     .get(1)
@@ -357,7 +361,7 @@ mod tests {
     use super::*;
     use test_log::test;
 
-    const TEST_JS: Lazy<String> = Lazy::new(|| {
+    static TEST_JS: Lazy<String> = Lazy::new(|| {
         let js_path = Path::new("testfiles/deobf/dummy_player.js");
         std::fs::read_to_string(js_path).unwrap()
     });

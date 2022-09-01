@@ -2,6 +2,8 @@
 source: src/client/playlist.rs
 expression: playlist_data
 ---
+id: RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk
+name: Easy Pop
 videos:
   - id: psuRGfAaju4
     title: Owl City - Fireflies (Official Music Video)
@@ -1848,7 +1850,6 @@ videos:
       name: Diaven - Topic
 n_videos: 97
 ctoken: ~
-name: Easy Pop
 thumbnails:
   - url: "https://i9.ytimg.com/s_p/RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk/mqdefault.jpg?sqp=CPDmr5gGir7X7AMGCLaHmpgG&rs=AOn4CLDg9xLeJDPeMtbWfp19VFd6vCQzqQ&v=1661371318"
     width: 180
@@ -1861,4 +1862,5 @@ thumbnails:
     height: 1200
 description: ~
 channel: ~
+last_update: ~
 

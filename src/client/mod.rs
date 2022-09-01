@@ -2,6 +2,9 @@ pub mod player;
 pub mod playlist;
 mod response;
 
+#[cfg(test)]
+mod scripts;
+
 use std::sync::Arc;
 
 use anyhow::{anyhow, Context, Result};
@@ -15,7 +18,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::{
     cache::{Cache, ClientData},
-    model::Locale,
+    model::{Country, Language},
     util,
 };
 
@@ -68,10 +71,8 @@ struct ClientInfo {
     platform: String,
     #[serde(skip_serializing_if = "Option::is_none")]
     original_url: Option<String>,
-    /// Language (`en`, `de`)
-    hl: String,
-    /// Country (`US`, `DE`)
-    gl: String,
+    hl: Language,
+    gl: Country,
 }
 
 #[derive(Clone, Debug, Serialize)]
@@ -127,7 +128,7 @@ const ANDROID_API_KEY: &str = "AIzaSyA8eiZmM1FaDVjRy-df2KTyQ_vz_yYM39w";
 const IOS_API_KEY: &str = "AIzaSyB-63vPrdThhKuerbB2N_l7Kwwcxj6yUAc";
 const IOS_DEVICE_MODEL: &str = "iPhone14,5";
 
-const CLIENT_VERSION_REGEXES: Lazy<[Regex; 3]> = Lazy::new(|| {
+static CLIENT_VERSION_REGEXES: Lazy<[Regex; 3]> = Lazy::new(|| {
     [
         Regex::new("INNERTUBE_CONTEXT_CLIENT_VERSION\":\"([0-9\\.]+?)\"").unwrap(),
         Regex::new("innertube_context_client_version\":\"([0-9\\.]+?)\"").unwrap(),
@@ -136,7 +137,7 @@ const CLIENT_VERSION_REGEXES: Lazy<[Regex; 3]> = Lazy::new(|| {
 });
 
 pub struct RustyTube {
-    pub locale: Arc<Locale>,
+    localization: Arc<Localization>,
     cache: Cache,
     desktop_client: Arc<DesktopClient>,
     desktop_music_client: Arc<DesktopMusicClient>,
@@ -145,17 +146,30 @@ pub struct RustyTube {
     tvhtml5embed_client: Arc<TvHtml5EmbedClient>,
 }
 
+struct Localization {
+    language: Language,
+    content_country: Country,
+}
+
 impl RustyTube {
     #[must_use]
     pub fn new() -> Self {
-        Self::new_with_ua("en", "US", Some("rusty-tube.json".to_owned()))
+        Self::new_with_ua(
+            Language::En,
+            Country::Us,
+            Some("rusty-tube.json".to_owned()),
+        )
     }
 
     #[must_use]
-    pub fn new_with_ua(lang: &str, country: &str, cache_file: Option<String>) -> Self {
-        let locale = Arc::new(Locale {
-            lang: lang.to_owned(),
-            country: country.to_owned(),
+    pub fn new_with_ua(
+        language: Language,
+        content_country: Country,
+        cache_file: Option<String>,
+    ) -> Self {
+        let loc = Arc::new(Localization {
+            language,
+            content_country,
         });
 
         let cache = match cache_file.as_ref() {
@@ -164,13 +178,13 @@ impl RustyTube {
         };
 
         Self {
-            locale: locale.clone(),
+            localization: loc.clone(),
             cache: cache.clone(),
-            desktop_client: Arc::new(DesktopClient::new(locale.clone(), cache.clone())),
-            desktop_music_client: Arc::new(DesktopMusicClient::new(locale.clone(), cache)),
-            android_client: Arc::new(AndroidClient::new(locale.clone())),
-            ios_client: Arc::new(IosClient::new(locale.clone())),
-            tvhtml5embed_client: Arc::new(TvHtml5EmbedClient::new(locale)),
+            desktop_client: Arc::new(DesktopClient::new(loc.clone(), cache.clone())),
+            desktop_music_client: Arc::new(DesktopMusicClient::new(loc.clone(), cache)),
+            android_client: Arc::new(AndroidClient::new(loc.clone())),
+            ios_client: Arc::new(IosClient::new(loc.clone())),
+            tvhtml5embed_client: Arc::new(TvHtml5EmbedClient::new(loc)),
         }
     }
 
@@ -202,7 +216,7 @@ async fn exec_request_text(http: Client, request: Request) -> Result<String> {
 }
 
 pub struct DesktopClient {
-    locale: Arc<Locale>,
+    localization: Arc<Localization>,
     http: Client,
     cache: Cache,
     consent_cookie: String,
@@ -220,12 +234,12 @@ impl YTClient for DesktopClient {
                 platform: "DESKTOP".to_owned(),
                 original_url: Some("https://www.youtube.com/".to_owned()),
                 hl: match localized {
-                    true => self.locale.lang.to_owned(),
-                    false => "en".to_owned(),
+                    true => self.localization.language,
+                    false => Language::En,
                 },
                 gl: match localized {
-                    true => self.locale.country.to_owned(),
-                    false => "US".to_owned(),
+                    true => self.localization.content_country,
+                    false => Country::Us,
                 },
             },
             request: Some(RequestYT::default()),
@@ -260,7 +274,7 @@ impl YTClient for DesktopClient {
 }
 
 impl DesktopClient {
-    fn new(locale: Arc<Locale>, cache: Cache) -> Self {
+    fn new(localization: Arc<Localization>, cache: Cache) -> Self {
         let mut rng = rand::thread_rng();
 
         let http = ClientBuilder::new()
@@ -271,7 +285,7 @@ impl DesktopClient {
             .expect("unable to build the HTTP client");
 
         Self {
-            locale,
+            localization,
             http,
             cache,
             consent_cookie: format!(
@@ -329,7 +343,7 @@ impl DesktopClient {
 }
 
 pub struct AndroidClient {
-    locale: Arc<Locale>,
+    localization: Arc<Localization>,
     http: Client,
 }
 
@@ -345,12 +359,12 @@ impl YTClient for AndroidClient {
                 platform: "MOBILE".to_owned(),
                 original_url: None,
                 hl: match localized {
-                    true => self.locale.lang.to_owned(),
-                    false => "en".to_owned(),
+                    true => self.localization.language,
+                    false => Language::En,
                 },
                 gl: match localized {
-                    true => self.locale.country.to_owned(),
-                    false => "US".to_owned(),
+                    true => self.localization.content_country,
+                    false => Country::Us,
                 },
             },
             request: None,
@@ -384,22 +398,22 @@ impl YTClient for AndroidClient {
 }
 
 impl AndroidClient {
-    fn new(locale: Arc<Locale>) -> Self {
+    fn new(localization: Arc<Localization>) -> Self {
         let http = ClientBuilder::new()
             .user_agent(format!(
                 "com.google.android.youtube/{} (Linux; U; Android 12; {}) gzip",
-                MOBILE_CLIENT_VERSION, locale.country
+                MOBILE_CLIENT_VERSION, localization.content_country
             ))
             .gzip(true)
             .build()
             .expect("unable to build the HTTP client");
 
-        Self { locale, http }
+        Self { localization, http }
     }
 }
 
 pub struct IosClient {
-    locale: Arc<Locale>,
+    localization: Arc<Localization>,
     http: Client,
 }
 
@@ -415,12 +429,12 @@ impl YTClient for IosClient {
                 platform: "MOBILE".to_owned(),
                 original_url: None,
                 hl: match localized {
-                    true => self.locale.lang.to_owned(),
-                    false => "en".to_owned(),
+                    true => self.localization.language,
+                    false => Language::En,
                 },
                 gl: match localized {
-                    true => self.locale.country.to_owned(),
-                    false => "US".to_owned(),
+                    true => self.localization.content_country,
+                    false => Country::Us,
                 },
             },
             request: None,
@@ -451,22 +465,22 @@ impl YTClient for IosClient {
 }
 
 impl IosClient {
-    fn new(locale: Arc<Locale>) -> Self {
+    fn new(localization: Arc<Localization>) -> Self {
         let http = ClientBuilder::new()
             .user_agent(format!(
                 "com.google.ios.youtube/{} ({}; U; CPU iOS 15_4 like Mac OS X; {})",
-                MOBILE_CLIENT_VERSION, IOS_DEVICE_MODEL, locale.country
+                MOBILE_CLIENT_VERSION, IOS_DEVICE_MODEL, localization.content_country
             ))
             .gzip(true)
             .build()
             .expect("unable to build the HTTP client");
 
-        Self { locale, http }
+        Self { localization, http }
     }
 }
 
 pub struct TvHtml5EmbedClient {
-    locale: Arc<Locale>,
+    localization: Arc<Localization>,
     http: Client,
 }
 
@@ -482,12 +496,12 @@ impl YTClient for TvHtml5EmbedClient {
                 platform: "TV".to_owned(),
                 original_url: None,
                 hl: match localized {
-                    true => self.locale.lang.to_owned(),
-                    false => "en".to_owned(),
+                    true => self.localization.language,
+                    false => Language::En,
                 },
                 gl: match localized {
-                    true => self.locale.country.to_owned(),
-                    false => "US".to_owned(),
+                    true => self.localization.content_country,
+                    false => Country::Us,
                 },
             },
             request: Some(RequestYT::default()),
@@ -523,7 +537,7 @@ impl YTClient for TvHtml5EmbedClient {
 }
 
 impl TvHtml5EmbedClient {
-    fn new(locale: Arc<Locale>) -> Self {
+    fn new(localization: Arc<Localization>) -> Self {
         let http = ClientBuilder::new()
             .user_agent(DEFAULT_UA)
             .gzip(true)
@@ -531,12 +545,12 @@ impl TvHtml5EmbedClient {
             .build()
             .expect("unable to build the HTTP client");
 
-        Self { locale, http }
+        Self { localization, http }
     }
 }
 
 pub struct DesktopMusicClient {
-    locale: Arc<Locale>,
+    localization: Arc<Localization>,
     http: Client,
     cache: Cache,
     consent_cookie: String,
@@ -554,12 +568,12 @@ impl YTClient for DesktopMusicClient {
                 platform: "DESKTOP".to_owned(),
                 original_url: Some("https://music.youtube.com/".to_owned()),
                 hl: match localized {
-                    true => self.locale.lang.to_owned(),
-                    false => "en".to_owned(),
+                    true => self.localization.language,
+                    false => Language::En,
                 },
                 gl: match localized {
-                    true => self.locale.country.to_owned(),
-                    false => "US".to_owned(),
+                    true => self.localization.content_country,
+                    false => Country::Us,
                 },
             },
             request: Some(RequestYT::default()),
@@ -597,7 +611,7 @@ impl YTClient for DesktopMusicClient {
 }
 
 impl DesktopMusicClient {
-    fn new(locale: Arc<Locale>, cache: Cache) -> Self {
+    fn new(localization: Arc<Localization>, cache: Cache) -> Self {
         let mut rng = rand::thread_rng();
 
         let http = ClientBuilder::new()
@@ -608,7 +622,7 @@ impl DesktopMusicClient {
             .expect("unable to build the HTTP client");
 
         Self {
-            locale,
+            localization,
             http,
             cache,
             consent_cookie: format!(

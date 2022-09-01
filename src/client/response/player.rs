@@ -24,27 +24,15 @@ pub enum PlayabilityStatus {
     Ok { live_streamability: Option<Empty> },
     /// Video cant be played because of DRM / Geoblock
     #[serde(rename_all = "camelCase")]
-    Unplayable {
-        reason: String,
-        // error_screen: Option<ErrorScreen>,
-    },
+    Unplayable { reason: String },
     /// Age limit / Private video
     #[serde(rename_all = "camelCase")]
-    LoginRequired {
-        reason: String,
-        // error_screen: Option<ErrorScreen>
-    },
+    LoginRequired { reason: String },
     #[serde(rename_all = "camelCase")]
-    LiveStreamOffline {
-        reason: String,
-        // error_screen: Option<ErrorScreen>
-    },
+    LiveStreamOffline { reason: String },
     /// Video was censored / deleted
     #[serde(rename_all = "camelCase")]
-    Error {
-        reason: String,
-        // error_screen: Option<ErrorScreen>
-    },
+    Error { reason: String },
 }
 
 #[derive(Clone, Debug, Deserialize)]

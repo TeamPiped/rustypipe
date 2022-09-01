@@ -15,7 +15,7 @@ use tokio::{
 };
 
 use crate::{
-    model::{stream_filter::Filter, AudioCodec, FileFormat, VideoPlayer, VideoCodec},
+    model::{stream_filter::Filter, AudioCodec, FileFormat, VideoCodec, VideoPlayer},
     util,
 };
 
