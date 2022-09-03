@@ -2,6 +2,7 @@ use serde::Deserialize;
 use serde_with::serde_as;
 use serde_with::VecSkipError;
 
+use super::TimeOverlay;
 use super::{ContentRenderer, ContentsRenderer, Thumbnails, VideoListItem};
 
 #[derive(Clone, Debug, Deserialize)]
@@ -64,24 +65,10 @@ pub struct ChannelVideo {
     pub thumbnail: Thumbnails,
     #[serde_as(as = "crate::serializer::text::Text")]
     pub title: String,
-    #[serde_as(as = "crate::serializer::text::Text")]
-    pub published_time_text: String,
+    #[serde_as(as = "Option<crate::serializer::text::Text>")]
+    pub published_time_text: Option<String>,
     #[serde_as(as = "crate::serializer::text::Text")]
     pub view_count_text: String,
     #[serde_as(as = "VecSkipError<_>")]
-    pub thumbnail_overlays: Vec<TimeOverlayWrap>,
-}
-
-#[derive(Clone, Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct TimeOverlayWrap {
-    pub thumbnail_overlay_time_status_renderer: TimeOverlay,
-}
-
-#[serde_as]
-#[derive(Clone, Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct TimeOverlay {
-    #[serde_as(as = "crate::serializer::text::Text")]
-    pub text: String,
+    pub thumbnail_overlays: Vec<TimeOverlay>,
 }

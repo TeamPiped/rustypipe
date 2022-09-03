@@ -4,7 +4,9 @@ use serde_with::{json::JsonString, DefaultOnError, VecSkipError};
 
 use crate::serializer::text::{Text, TextLink};
 
-use super::{ContentRenderer, ContentsRenderer, Thumbnails, ThumbnailsWrap, VideoListItem};
+use super::{
+    ContentRenderer, ContentsRenderer, Thumbnails, ThumbnailsWrap, VideoListItem, VideoOwner,
+};
 
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -73,7 +75,6 @@ pub struct PlaylistVideo {
     pub channel: TextLink,
     #[serde_as(as = "JsonString")]
     pub length_seconds: u32,
-    pub is_playable: bool,
 }
 
 #[derive(Clone, Debug, Deserialize)]
@@ -89,7 +90,6 @@ pub struct HeaderRenderer {
     pub playlist_id: String,
     #[serde_as(as = "crate::serializer::text::Text")]
     pub title: String,
-    #[serde(default)]
     #[serde_as(as = "DefaultOnError<Option<crate::serializer::text::Text>>")]
     pub description_text: Option<String>,
     /// `"495", " videos"`
@@ -122,7 +122,7 @@ pub enum SidebarRendererItem {
         // stats: Vec<Text>,
     },
     #[serde(rename_all = "camelCase")]
-    PlaylistSidebarSecondaryInfoRenderer { video_owner: VideoOwnerWrap },
+    PlaylistSidebarSecondaryInfoRenderer { video_owner: VideoOwner },
 }
 
 #[derive(Clone, Debug, Deserialize)]
@@ -131,20 +131,6 @@ pub struct PlaylistThumbnailRenderer {
     // the alternative field name is used by YTM playlists
     #[serde(alias = "playlistCustomThumbnailRenderer")]
     pub playlist_video_thumbnail_renderer: ThumbnailsWrap,
-}
-
-#[derive(Clone, Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct VideoOwnerWrap {
-    pub video_owner_renderer: VideoOwner,
-}
-
-#[serde_as]
-#[derive(Clone, Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct VideoOwner {
-    #[serde_as(as = "crate::serializer::text::TextLink")]
-    pub title: TextLink,
 }
 
 #[derive(Clone, Debug, Deserialize)]

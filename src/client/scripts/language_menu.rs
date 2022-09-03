@@ -8,9 +8,8 @@ use serde::{Deserialize, Serialize};
 use serde_with::serde_as;
 use serde_with::VecSkipError;
 
-use crate::client::ClientType;
-use crate::client::ContextYT;
-use crate::client::RustyTube;
+use crate::client::response::Icon;
+use crate::client::{ClientType, ContextYT, RustyTube};
 
 #[derive(Clone, Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
@@ -75,12 +74,6 @@ struct CompactLinkRendererWrap {
 struct CompactLinkRenderer {
     icon: Icon,
     service_endpoint: ServiceEndpoint<MenuAction>,
-}
-
-#[derive(Clone, Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct Icon {
-    icon_type: String,
 }
 
 #[derive(Clone, Debug, Deserialize)]
@@ -161,7 +154,7 @@ async fn generate_locales() {
         code.push_str(&format!("    /// {}\n    ", n));
 
         if c.contains('-') {
-            code.push_str(&format!("#[serde(rename=\"{}\")]\n    ", c));
+            code.push_str(&format!("#[serde(rename = \"{}\")]\n    ", c));
         }
 
         c.split('-').for_each(|c| {

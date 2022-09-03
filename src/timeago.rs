@@ -2,6 +2,7 @@ use std::{borrow::Cow, str::FromStr, vec};
 
 use anyhow::Result;
 use fancy_regex::Regex;
+use serde::{Deserialize, Serialize};
 
 use crate::{model::Language, util};
 
@@ -91,6 +92,24 @@ pub const LANGUAGES: [Language; 83] = [
     Language::Zu,
 ];
 
+#[derive(Debug, Copy, Clone, Serialize, Deserialize, PartialEq, Eq)]
+pub struct TimeAgo {
+    pub n: u32,
+    pub unit: TimeUnit,
+}
+
+#[derive(Copy, Clone, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[serde(rename_all = "lowercase")]
+pub enum TimeUnit {
+    Second,
+    Minute,
+    Hour,
+    Day,
+    Week,
+    Month,
+    Year,
+}
+
 #[derive(Debug)]
 pub struct TimeagoPattern<'a> {
     word_separator: &'a str,
@@ -101,7 +120,7 @@ pub struct TimeagoPattern<'a> {
     weeks: Vec<&'a str>,
     months: Vec<&'a str>,
     years: Vec<&'a str>,
-    special_cases: Vec<(&'a str, u64)>,
+    special_cases: Vec<(&'a str, TimeAgo)>,
 }
 
 impl From<Language> for TimeagoPattern<'_> {
@@ -140,11 +159,41 @@ impl From<Language> for TimeagoPattern<'_> {
                 months: vec!["أشهر", "شهر", "شهرين", "شهرًا"],
                 years: vec!["سنة", "سنتين", "سنوات"],
                 special_cases: vec![
-                    ("ساعتين", 2 * 3600),
-                    ("يومين", 2 * 3600 * 24),
-                    ("أسبوعين", 2 * 3600 * 24 * 7),
-                    ("شهرين", 2 * 3600 * 24 * 30),
-                    ("سنتين", 2 * 3600 * 24 * 365),
+                    (
+                        "ساعتين",
+                        TimeAgo {
+                            n: 2,
+                            unit: TimeUnit::Hour,
+                        },
+                    ),
+                    (
+                        "يومين",
+                        TimeAgo {
+                            n: 2,
+                            unit: TimeUnit::Day,
+                        },
+                    ),
+                    (
+                        "أسبوعين",
+                        TimeAgo {
+                            n: 2,
+                            unit: TimeUnit::Week,
+                        },
+                    ),
+                    (
+                        "شهرين",
+                        TimeAgo {
+                            n: 2,
+                            unit: TimeUnit::Month,
+                        },
+                    ),
+                    (
+                        "سنتين",
+                        TimeAgo {
+                            n: 2,
+                            unit: TimeUnit::Year,
+                        },
+                    ),
                 ],
             },
             // INFO: newly added
@@ -472,11 +521,41 @@ impl From<Language> for TimeagoPattern<'_> {
                 months: vec!["חודש", "חודשים"],
                 years: vec!["שנה", "שנים"],
                 special_cases: vec![
-                    ("שעתיים", 2 * 3600),
-                    ("יומיים", 2 * 3600 * 24),
-                    ("שבועיים", 2 * 3600 * 24 * 7),
-                    ("חודשיים", 2 * 3600 * 24 * 30),
-                    ("שנתיים", 2 * 3600 * 24 * 365),
+                    (
+                        "שעתיים",
+                        TimeAgo {
+                            n: 2,
+                            unit: TimeUnit::Hour,
+                        },
+                    ),
+                    (
+                        "יומיים",
+                        TimeAgo {
+                            n: 2,
+                            unit: TimeUnit::Day,
+                        },
+                    ),
+                    (
+                        "שבועיים",
+                        TimeAgo {
+                            n: 2,
+                            unit: TimeUnit::Week,
+                        },
+                    ),
+                    (
+                        "חודשיים",
+                        TimeAgo {
+                            n: 2,
+                            unit: TimeUnit::Month,
+                        },
+                    ),
+                    (
+                        "שנתיים",
+                        TimeAgo {
+                            n: 2,
+                            unit: TimeUnit::Year,
+                        },
+                    ),
                 ],
             },
             Language::Ja => TimeagoPattern {
@@ -513,7 +592,7 @@ impl From<Language> for TimeagoPattern<'_> {
                 special_cases: vec![],
             },
             Language::Km => TimeagoPattern {
-                word_separator: "",
+                word_separator: " ",
                 seconds: vec!["វិនាទីមុន"],
                 minutes: vec!["នាទីមុន"],
                 hours: vec!["ម៉ោងមុន"],
@@ -558,7 +637,7 @@ impl From<Language> for TimeagoPattern<'_> {
                 special_cases: vec![],
             },
             Language::Lo => TimeagoPattern {
-                word_separator: "",
+                word_separator: " ",
                 seconds: vec!["ວິນາທີກ່ອນ"],
                 minutes: vec!["ນາທີກ່ອນ"],
                 hours: vec!["ຊົ່ວໂມງກ່ອນ"],
@@ -604,7 +683,7 @@ impl From<Language> for TimeagoPattern<'_> {
                 special_cases: vec![],
             },
             Language::Ml => TimeagoPattern {
-                word_separator: "",
+                word_separator: " ",
                 seconds: vec!["സെക്കന്റ്", "സെക്കൻഡ്"],
                 minutes: vec!["മിനിറ്റ്"],
                 hours: vec!["മണിക്കൂർ"],
@@ -627,7 +706,7 @@ impl From<Language> for TimeagoPattern<'_> {
                 special_cases: vec![],
             },
             Language::Mr => TimeagoPattern {
-                word_separator: "",
+                word_separator: " ",
                 seconds: vec!["सेकंदांपूर्वी", "सेकंदापूर्वी"],
                 minutes: vec!["मिनिटांपूर्वी", "मिनिटापूर्वी"],
                 hours: vec!["तासांपूर्वी", "तासापूर्वी"],
@@ -1005,7 +1084,7 @@ impl TryFrom<&str> for TimeagoPattern<'_> {
 }
 
 impl TimeagoPattern<'_> {
-    pub fn parse(&self, textual_date: &str) -> Option<u64> {
+    pub fn parse(&self, textual_date: &str) -> Option<TimeAgo> {
         self.special_cases
             .iter()
             .find_map(|case| {
@@ -1016,26 +1095,29 @@ impl TimeagoPattern<'_> {
                 }
             })
             .or_else(|| match self.parse_time_unit(textual_date) {
-                Some(tu) => Some(util::parse_numeric::<u64>(textual_date).unwrap_or(1) * tu),
+                Some(tu) => Some(TimeAgo {
+                    n: util::parse_numeric(textual_date).unwrap_or(1),
+                    unit: tu,
+                }),
                 None => None,
             })
     }
 
-    fn parse_time_unit(&self, textual_date: &str) -> Option<u64> {
+    fn parse_time_unit(&self, textual_date: &str) -> Option<TimeUnit> {
         match self.is_time_unit(textual_date, &self.seconds) {
-            true => Some(1),
+            true => Some(TimeUnit::Second),
             false => match self.is_time_unit(textual_date, &self.minutes) {
-                true => Some(60),
+                true => Some(TimeUnit::Minute),
                 false => match self.is_time_unit(textual_date, &self.hours) {
-                    true => Some(3600),
+                    true => Some(TimeUnit::Hour),
                     false => match self.is_time_unit(textual_date, &self.days) {
-                        true => Some(24 * 3600),
+                        true => Some(TimeUnit::Day),
                         false => match self.is_time_unit(textual_date, &self.weeks) {
-                            true => Some(7 * 24 * 3600),
+                            true => Some(TimeUnit::Week),
                             false => match self.is_time_unit(textual_date, &self.months) {
-                                true => Some(30 * 24 * 3600),
+                                true => Some(TimeUnit::Month),
                                 false => match self.is_time_unit(textual_date, &self.years) {
-                                    true => Some(365 * 24 * 3600),
+                                    true => Some(TimeUnit::Year),
                                     false => None,
                                 },
                             },
@@ -1090,9 +1172,13 @@ mod tests {
     use super::*;
 
     #[rstest]
-    #[case(Language::De, "vor 1 Sekunde", Some(1))]
-    #[case(Language::Ar, "قبل ساعة واحدة", Some(3600))]
-    fn t_parse(#[case] lang: Language, #[case] textual_date: &str, #[case] expect: Option<u64>) {
+    #[case(Language::De, "vor 1 Sekunde", Some(TimeAgo { n: 1, unit: TimeUnit::Second }))]
+    #[case(Language::Ar, "قبل ساعة واحدة", Some(TimeAgo { n: 1, unit: TimeUnit::Hour }))]
+    fn t_parse(
+        #[case] lang: Language,
+        #[case] textual_date: &str,
+        #[case] expect: Option<TimeAgo>,
+    ) {
         let pat = TimeagoPattern::try_from(lang).unwrap();
         let secs_ago = pat.parse(textual_date);
         assert_eq!(secs_ago, expect);
@@ -1103,43 +1189,154 @@ mod tests {
         let json_path = Path::new("testfiles/date/timeago.json");
 
         let expect = [
-            10 * 60,
-            20 * 60,
-            1 * 3600,
-            2 * 3600,
-            7 * 3600,
-            8 * 3600,
-            9 * 3600,
-            10 * 3600,
-            11 * 3600,
-            12 * 3600,
-            13 * 3600,
-            14 * 3600,
-            15 * 3600,
-            3 * 3600,
-            4 * 3600,
-            4 * 3600,
-            5 * 3600,
-            6 * 3600,
-            6 * 3600,
-            20 * 3600,
-            2 * 3600 * 24,
-            3 * 3600 * 24,
-            5 * 3600 * 24,
-            6 * 3600 * 24,
-            8 * 3600 * 24,
-            10 * 3600 * 24,
-            12 * 3600 * 24,
-            2 * 3600 * 24 * 7,
-            3 * 3600 * 24 * 7,
-            4 * 3600 * 24 * 7,
-            1 * 3600 * 24 * 30,
-            8 * 3600 * 24 * 30,
-            11 * 3600 * 24 * 30,
-            1 * 3600 * 24 * 365,
-            2 * 3600 * 24 * 365,
-            3 * 3600 * 24 * 365,
-            4 * 3600 * 24 * 365,
+            TimeAgo {
+                n: 10,
+                unit: TimeUnit::Minute,
+            },
+            TimeAgo {
+                n: 20,
+                unit: TimeUnit::Minute,
+            },
+            TimeAgo {
+                n: 1,
+                unit: TimeUnit::Hour,
+            },
+            TimeAgo {
+                n: 2,
+                unit: TimeUnit::Hour,
+            },
+            TimeAgo {
+                n: 7,
+                unit: TimeUnit::Hour,
+            },
+            TimeAgo {
+                n: 8,
+                unit: TimeUnit::Hour,
+            },
+            TimeAgo {
+                n: 9,
+                unit: TimeUnit::Hour,
+            },
+            TimeAgo {
+                n: 10,
+                unit: TimeUnit::Hour,
+            },
+            TimeAgo {
+                n: 11,
+                unit: TimeUnit::Hour,
+            },
+            TimeAgo {
+                n: 12,
+                unit: TimeUnit::Hour,
+            },
+            TimeAgo {
+                n: 13,
+                unit: TimeUnit::Hour,
+            },
+            TimeAgo {
+                n: 14,
+                unit: TimeUnit::Hour,
+            },
+            TimeAgo {
+                n: 15,
+                unit: TimeUnit::Hour,
+            },
+            TimeAgo {
+                n: 3,
+                unit: TimeUnit::Hour,
+            },
+            TimeAgo {
+                n: 4,
+                unit: TimeUnit::Hour,
+            },
+            TimeAgo {
+                n: 4,
+                unit: TimeUnit::Hour,
+            },
+            TimeAgo {
+                n: 5,
+                unit: TimeUnit::Hour,
+            },
+            TimeAgo {
+                n: 6,
+                unit: TimeUnit::Hour,
+            },
+            TimeAgo {
+                n: 6,
+                unit: TimeUnit::Hour,
+            },
+            TimeAgo {
+                n: 20,
+                unit: TimeUnit::Hour,
+            },
+            TimeAgo {
+                n: 2,
+                unit: TimeUnit::Day,
+            },
+            TimeAgo {
+                n: 3,
+                unit: TimeUnit::Day,
+            },
+            TimeAgo {
+                n: 5,
+                unit: TimeUnit::Day,
+            },
+            TimeAgo {
+                n: 6,
+                unit: TimeUnit::Day,
+            },
+            TimeAgo {
+                n: 8,
+                unit: TimeUnit::Day,
+            },
+            TimeAgo {
+                n: 10,
+                unit: TimeUnit::Day,
+            },
+            TimeAgo {
+                n: 12,
+                unit: TimeUnit::Day,
+            },
+            TimeAgo {
+                n: 2,
+                unit: TimeUnit::Week,
+            },
+            TimeAgo {
+                n: 3,
+                unit: TimeUnit::Week,
+            },
+            TimeAgo {
+                n: 4,
+                unit: TimeUnit::Week,
+            },
+            TimeAgo {
+                n: 1,
+                unit: TimeUnit::Month,
+            },
+            TimeAgo {
+                n: 8,
+                unit: TimeUnit::Month,
+            },
+            TimeAgo {
+                n: 11,
+                unit: TimeUnit::Month,
+            },
+            TimeAgo {
+                n: 1,
+                unit: TimeUnit::Year,
+            },
+            TimeAgo {
+                n: 2,
+                unit: TimeUnit::Year,
+            },
+            TimeAgo {
+                n: 3,
+                unit: TimeUnit::Year,
+            },
+            TimeAgo {
+                n: 4,
+                unit: TimeUnit::Year,
+            },
         ];
 
         let json_file = File::open(json_path).unwrap();

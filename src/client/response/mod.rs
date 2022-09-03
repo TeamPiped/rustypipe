@@ -2,11 +2,15 @@ pub mod channel;
 pub mod player;
 pub mod playlist;
 pub mod playlist_music;
+pub mod video;
 
 pub use channel::Channel;
 pub use player::Player;
 pub use playlist::Playlist;
 pub use playlist_music::PlaylistMusic;
+pub use video::Video;
+pub use video::VideoComments;
+pub use video::VideoRecommendations;
 
 use serde::Deserialize;
 use serde_with::{serde_as, DefaultOnError, VecSkipError};
@@ -50,7 +54,7 @@ pub struct Thumbnail {
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub enum VideoListItem<T> {
-    #[serde(alias = "playlistVideoRenderer")]
+    #[serde(alias = "playlistVideoRenderer", alias = "compactVideoRenderer")]
     GridVideoRenderer {
         #[serde(flatten)]
         video: T,
@@ -73,6 +77,77 @@ pub struct ContinuationCommand {
     pub token: String,
 }
 
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct Icon {
+    pub icon_type: String,
+}
+
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct VideoOwner {
+    pub video_owner_renderer: VideoOwnerRenderer,
+}
+
+#[serde_as]
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct VideoOwnerRenderer {
+    #[serde_as(as = "crate::serializer::text::TextLink")]
+    pub title: TextLink,
+    pub thumbnail: Thumbnails,
+    #[serde_as(as = "Option<crate::serializer::text::Text>")]
+    pub subscriber_count_text: Option<String>,
+    #[serde(default)]
+    #[serde_as(as = "VecSkipError<_>")]
+    pub badges: Vec<UserBadge>,
+}
+
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct UserBadge {
+    pub metadata_badge_renderer: UserBadgeRenderer,
+}
+
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct UserBadgeRenderer {
+    pub style: UserBadgeStyle,
+}
+
+#[derive(Clone, Copy, Debug, Deserialize, PartialEq, Eq, Hash)]
+#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+pub enum UserBadgeStyle {
+    BadgeStyleTypeVerified,
+    BadgeStyleTypeVerifiedArtist,
+}
+
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct TimeOverlay {
+    pub thumbnail_overlay_time_status_renderer: TimeOverlayRenderer,
+}
+
+#[serde_as]
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct TimeOverlayRenderer {
+    #[serde_as(as = "crate::serializer::text::Text")]
+    pub text: String,
+    #[serde(default)]
+    #[serde_as(deserialize_as = "DefaultOnError")]
+    pub style: TimeOverlayStyle,
+}
+
+#[derive(Default, Clone, Copy, Debug, Deserialize, PartialEq, Eq, Hash)]
+#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+pub enum TimeOverlayStyle {
+    #[default]
+    Default,
+    Live,
+    Shorts,
+}
+
 // YouTube Music
 
 #[serde_as]
@@ -80,13 +155,10 @@ pub struct ContinuationCommand {
 #[serde(rename_all = "camelCase")]
 pub struct MusicItem {
     pub thumbnail: MusicThumbnailRenderer,
-    #[serde(default)]
     #[serde_as(deserialize_as = "DefaultOnError")]
     pub playlist_item_data: Option<PlaylistItemData>,
-    #[serde(default)]
     #[serde_as(as = "VecSkipError<_>")]
     pub flex_columns: Vec<MusicColumn>,
-    #[serde(default)]
     #[serde_as(as = "VecSkipError<_>")]
     pub fixed_columns: Vec<MusicColumn>,
 }

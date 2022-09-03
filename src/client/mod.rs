@@ -1,5 +1,7 @@
 pub mod player;
 pub mod playlist;
+pub mod video;
+
 mod response;
 
 #[cfg(test)]

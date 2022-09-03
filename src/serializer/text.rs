@@ -65,12 +65,16 @@ pub enum TextLink {
         page_type: PageType,
         browse_id: String,
     },
+    Web {
+        text: String,
+        url: String,
+    },
     None {
         text: String,
     },
 }
 
-pub struct TextLinks {}
+pub struct TextLinks;
 
 #[derive(Deserialize)]
 struct TextLinkInternal {
@@ -97,6 +101,9 @@ struct NavigationEndpoint {
     browse_endpoint: Option<BrowseEndpoint>,
     #[serde(default)]
     #[serde_as(deserialize_as = "DefaultOnError")]
+    url_endpoint: Option<UrlEndpoint>,
+    #[serde(default)]
+    #[serde_as(deserialize_as = "DefaultOnError")]
     command_metadata: Option<CommandMetadata>,
 }
 
@@ -111,6 +118,12 @@ struct WatchEndpoint {
 struct BrowseEndpoint {
     browse_id: String,
     browse_endpoint_context_supported_configs: Option<BrowseEndpointConfig>,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct UrlEndpoint {
+    url: String,
 }
 
 #[derive(Deserialize)]
@@ -173,7 +186,13 @@ fn map_text_linkrun(lr: &TextLinkRun) -> Option<TextLink> {
                 },
                 browse_id: b.browse_id.to_owned(),
             },
-            None => TextLink::None { text },
+            None => match &nav.url_endpoint {
+                Some(u) => TextLink::Web {
+                    text,
+                    url: u.url.to_owned(),
+                },
+                None => TextLink::None { text },
+            },
         },
     })
 }
@@ -393,6 +412,42 @@ mod tests {
         SLink {
             ln: None {
                 text: "Hello World",
+            },
+        }
+        "###);
+    }
+
+    #[test]
+    fn t_link_web() {
+        let test_json = r#"{
+            "ln": {
+                "runs": [
+                    {
+                        "text": "Creative Commons",
+                        "navigationEndpoint": {
+                            "clickTrackingParams": "CJsBEM2rARgBIhMImKz9y6Oc-QIVTJpVCh3VrAYM",
+                            "commandMetadata": {
+                              "webCommandMetadata": {
+                                "url": "https://www.youtube.com/t/creative_commons",
+                                "webPageType": "WEB_PAGE_TYPE_UNKNOWN",
+                                "rootVe": 83769
+                              }
+                            },
+                            "urlEndpoint": {
+                              "url": "https://www.youtube.com/t/creative_commons"
+                            }
+                        }
+                    }
+                ]
+            }
+        }"#;
+
+        let res = serde_json::from_str::<SLink>(&test_json).unwrap();
+        insta::assert_debug_snapshot!(res, @r###"
+        SLink {
+            ln: Web {
+                text: "Creative Commons",
+                url: "https://www.youtube.com/t/creative_commons",
             },
         }
         "###);
