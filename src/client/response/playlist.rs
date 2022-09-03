@@ -90,6 +90,7 @@ pub struct HeaderRenderer {
     pub playlist_id: String,
     #[serde_as(as = "crate::serializer::text::Text")]
     pub title: String,
+    #[serde(default)]
     #[serde_as(as = "DefaultOnError<Option<crate::serializer::text::Text>>")]
     pub description_text: Option<String>,
     /// `"495", " videos"`

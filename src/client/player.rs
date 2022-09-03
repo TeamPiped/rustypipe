@@ -530,9 +530,9 @@ mod tests {
     }
 
     /// Assert equality within 10% margin
-    fn assert_approx(left: u32, right: u32) {
+    fn assert_approx(left: f64, right: f64) {
         if left != right {
-            let f = left as f64 / right as f64;
+            let f = left / right;
             assert!(
                 0.9 < f && f < 1.1,
                 "{} not within 10% margin of {}",
@@ -593,7 +593,7 @@ mod tests {
                 .unwrap();
 
             // Bitrates may change between requests
-            assert_approx(video.bitrate, 1507068);
+            assert_approx(video.bitrate as f64, 1507068.0);
             assert_eq!(video.average_bitrate, 1345149);
             assert_eq!(video.size, 43553412);
             assert_eq!(video.width, 1280);
@@ -605,7 +605,7 @@ mod tests {
             assert_eq!(video.format, VideoFormat::Webm);
             assert_eq!(video.codec, VideoCodec::Vp9);
 
-            assert_approx(audio.bitrate, 130685);
+            assert_approx(audio.bitrate as f64, 130685.0);
             assert_eq!(audio.average_bitrate, 129496);
             assert_eq!(audio.size, 4193863);
             assert_eq!(audio.mime, "audio/mp4; codecs=\"mp4a.40.2\"");
@@ -623,9 +623,9 @@ mod tests {
                 .find(|s| s.itag == 251)
                 .unwrap();
 
-            assert_approx(video.bitrate, 1340829);
-            assert_eq!(video.average_bitrate, 1233444);
-            assert_eq!(video.size, 39936630);
+            assert_approx(video.bitrate as f64, 1340829.0);
+            assert_approx(video.average_bitrate as f64, 1233444.0);
+            assert_approx(video.size as f64, 39936630.0);
             assert_eq!(video.width, 1280);
             assert_eq!(video.height, 720);
             assert_eq!(video.fps, 30);
@@ -636,9 +636,9 @@ mod tests {
             assert_eq!(video.codec, VideoCodec::Av01);
             assert_eq!(video.throttled, false);
 
-            assert_approx(audio.bitrate, 142718);
-            assert_eq!(audio.average_bitrate, 130708);
-            assert_eq!(audio.size, 4232344);
+            assert_approx(audio.bitrate as f64, 142718.0);
+            assert_approx(audio.average_bitrate as f64, 130708.0);
+            assert_approx(audio.size as f64, 4232344.0);
             assert_eq!(audio.mime, "audio/webm; codecs=\"opus\"");
             assert_eq!(audio.format, AudioFormat::Webm);
             assert_eq!(audio.codec, AudioCodec::Opus);

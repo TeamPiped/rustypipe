@@ -155,6 +155,7 @@ pub enum TimeOverlayStyle {
 #[serde(rename_all = "camelCase")]
 pub struct MusicItem {
     pub thumbnail: MusicThumbnailRenderer,
+    #[serde(default)]
     #[serde_as(deserialize_as = "DefaultOnError")]
     pub playlist_item_data: Option<PlaylistItemData>,
     #[serde_as(as = "VecSkipError<_>")]

@@ -77,6 +77,7 @@ pub enum VideoResultsItem {
         owner: VideoOwner,
         #[serde_as(as = "crate::serializer::text::Text")]
         description: String,
+        #[serde(default)]
         #[serde_as(deserialize_as = "DefaultOnError")]
         metadata_row_container: Option<MetadataRowContainer>,
     },
@@ -337,16 +338,12 @@ pub struct Comment {
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CommentRenderer {
-    /*
-    #[serde_as(as = "crate::serializer::text::Text")]
-    pub author_text: String,
-    pub author_thumbnail: Thumbnails,
-    pub author_endpoint: AuthorEndpoint,
-    */
     // There may be comments with missing authors (possibly deleted users?)
+    #[serde(default)]
     #[serde_as(as = "DefaultOnError<Option<crate::serializer::text::Text>>")]
     pub author_text: Option<String>,
     pub author_thumbnail: Thumbnails,
+    #[serde(default)]
     #[serde_as(as = "DefaultOnError")]
     pub author_endpoint: Option<AuthorEndpoint>,
 

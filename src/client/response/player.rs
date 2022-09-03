@@ -81,6 +81,7 @@ pub struct Format {
     #[serde_as(as = "JsonString")]
     pub content_length: u64,
 
+    #[serde(default)]
     #[serde_as(deserialize_as = "DefaultOnError")]
     pub quality: Option<Quality>,
     pub fps: Option<u8>,
@@ -89,6 +90,7 @@ pub struct Format {
     pub color_info: Option<ColorInfo>,
 
     // Audio only
+    #[serde(default)]
     #[serde_as(deserialize_as = "DefaultOnError")]
     pub audio_quality: Option<AudioQuality>,
     #[serde_as(as = "Option<JsonString>")]
