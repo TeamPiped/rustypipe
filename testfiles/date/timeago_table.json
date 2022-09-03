@@ -1,0 +1,3951 @@
+{
+  "entries": {
+    "af": {
+      "second": {
+        "cases": {
+          "1 sekonde gelede": 1,
+          "26 sekondes gelede": 26
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 minuut gelede": 1,
+          "2 minute gelede": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 uur gelede": 1,
+          "2 uur gelede": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "1 dag gelede": 1,
+          "2 dae gelede": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 weke gelede": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 maand gelede": 1,
+          "2 maande gelede": 2
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "1 jaar gelede": 1,
+          "4 jaar gelede": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "am": {
+      "second": {
+        "cases": {
+          "ከ1 ሰከንድ በፊት": 1,
+          "ከ15 ሰከንዶች በፊት": 15
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "ከ1 ደቂቃ በፊት": 1,
+          "ከ2 ደቂቃዎች በፊት": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "ከ1 ሰዓት በፊት": 1,
+          "ከ3 ሰዓቶች በፊት": 3
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "ከ1 ቀን በፊት": 1,
+          "ከ2 ቀናት በፊት": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "ከ2 ሳምንታት በፊት": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "ከ1 ወር በፊት": 1,
+          "ከ2 ወራት በፊት": 2
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "ከ1 ዓመት በፊት": 1,
+          "ከ4 ዓመታት በፊት": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "ar": {
+      "second": {
+        "cases": {
+          "قبل 32 ثانية": 32,
+          "قبل 9 ثوانِ": 9,
+          "قبل ثانية واحدة": 1,
+          "قبل ثانيتين": 2
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "قبل 11 دقيقة": 11,
+          "قبل 3 دقائق": 3,
+          "قبل دقيقة واحدة": 1,
+          "قبل دقيقتين": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "قبل 13 ساعة": 13,
+          "قبل 3 ساعات": 3,
+          "قبل ساعة واحدة": 1,
+          "قبل ساعتين": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "قبل 11 يومًا": 11,
+          "قبل 3 أيام": 3,
+          "قبل يوم واحد": 1,
+          "قبل يومين": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "قبل 3 أسابيع": 3,
+          "قبل أسبوعين": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "قبل 11 شهرًا": 11,
+          "قبل 3 أشهر": 3,
+          "قبل شهر واحد": 1,
+          "قبل شهرين": 2
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "قبل 13 سنة": 13,
+          "قبل 4 سنوات": 4,
+          "قبل سنة واحدة": 1,
+          "قبل سنتين": 2
+        },
+        "missing_plurals": []
+      }
+    },
+    "as": {
+      "second": {
+        "cases": {
+          "1 ছেকেণ্ড পূৰ্বে": 1,
+          "35 ছেকেণ্ড পূৰ্বে": 35
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 মিনিট পূৰ্বে": 1,
+          "2 মিনিট পূৰ্বে": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 ঘণ্টা পূৰ্বে": 1,
+          "3 ঘণ্টা পূৰ্বে": 3
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "1 দিন পূৰ্বে": 1,
+          "2 দিন পূৰ্বে": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 সপ্তাহ পূৰ্বে": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 মাহ পূৰ্বে": 1,
+          "2 মাহ পূৰ্বে": 2
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "1 বছৰৰ পূৰ্বে": 1,
+          "4 বছৰৰ পূৰ্বে": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "az": {
+      "second": {
+        "cases": {
+          "1 saniyə öncə": 1,
+          "9 saniyə öncə": 9
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 dəqiqə öncə": 1,
+          "2 dəqiqə öncə": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 saat öncə": 1,
+          "3 saat öncə": 3
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "1 gün öncə": 1,
+          "2 gün öncə": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 həftə öncə": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 ay öncə": 1,
+          "2 ay öncə": 2
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "1 il öncə": 1,
+          "4 il öncə": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "be": {
+      "second": {
+        "cases": {
+          "21 секунду таму": 21,
+          "3 секунды таму": 3,
+          "44 секунды таму": 44,
+          "50 секунд таму": 50
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 хвіліну таму": 1,
+          "15 хвілін таму": 15,
+          "2 хвіліны таму": 2,
+          "5 хвілін таму": 5
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "13 гадзін таму": 13,
+          "21 гадзіну таму": 21,
+          "22 гадзіны таму": 22,
+          "3 гадзіны таму": 3
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "1 дзень таму": 1,
+          "2 дні таму": 2,
+          "5 дзён таму": 5
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 тыдні таму": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 месяц таму": 1,
+          "2 месяцы таму": 2,
+          "8 месяцаў таму": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "1 год таму": 1,
+          "13 гадоў таму": 13,
+          "4 гады таму": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "bg": {
+      "second": {
+        "cases": {
+          "преди 1 секунда": 1,
+          "преди 24 секунди": 24
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "преди 1 минута": 1,
+          "преди 2 минути": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "преди 1 час": 1,
+          "преди 3 часа": 3
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "преди 1 ден": 1,
+          "преди 2 дни": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "преди 2 седмици": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "преди 1 месец": 1,
+          "преди 2 месеца": 2
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "преди 1 година": 1,
+          "преди 4 години": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "bn": {
+      "second": {
+        "cases": {
+          "1 সেকেন্ড পূর্বে": 1,
+          "38 সেকেন্ড পূর্বে": 38
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 মিনিট আগে": 1,
+          "2 মিনিট আগে": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 ঘন্টা আগে": 1,
+          "3 ঘন্টা আগে": 3
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "1 দিন আগে": 1,
+          "2 দিন আগে": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 সপ্তাহ আগে": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 মাস আগে": 1,
+          "2 মাস আগে": 2
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "1 বছর পূর্বে": 1,
+          "4 বছর পূর্বে": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "bs": {
+      "second": {
+        "cases": {
+          "prije 20 sekundi": 20,
+          "prije 21 sekundu": 21,
+          "prije 34 sekunde": 34
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "prije 1 minutu": 1,
+          "prije 2 minute": 2,
+          "prije 5 minuta": 5
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "prije 13 sati": 13,
+          "prije 21 sat": 21,
+          "prije 3 sata": 3
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "prije 1 dan": 1,
+          "prije 2 dana": 2,
+          "prije 5 dana": 5
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "prije 2 sedmice": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "prije 1 mjesec": 1,
+          "prije 2 mjeseca": 2,
+          "prije 8 mjeseci": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "prije 1 godinu": 1,
+          "prije 13 godina": 13,
+          "prije 4 godine": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "ca": {
+      "second": {
+        "cases": {
+          "fa 1 segon": 1,
+          "fa 24 segons": 24
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "fa 1 minut": 1,
+          "fa 2 minuts": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "fa 1 hora": 1,
+          "fa 3 hores": 3
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "fa 1 dia": 1,
+          "fa 2 dies": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "fa 2 setmanes": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "fa 1 mes": 1,
+          "fa 2 mesos": 2
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "fa 1 any": 1,
+          "fa 4 anys": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "cs": {
+      "second": {
+        "cases": {
+          "před 1 sekundou": 1,
+          "před 2 sekundami": 2
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "před 1 minutou": 1,
+          "před 2 minutami": 2,
+          "před 5 minutami": 5
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "před 1 hodinou": 1,
+          "před 13 hodinami": 13,
+          "před 4 hodinami": 4
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "před 1 dnem": 1,
+          "před 2 dny": 2,
+          "před 5 dny": 5
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "před 2 týdny": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "před 1 měsícem": 1,
+          "před 2 měsíci": 2,
+          "před 8 měsíci": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "před 1 rokem": 1,
+          "před 13 lety": 13,
+          "před 4 lety": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "da": {
+      "second": {
+        "cases": {
+          "for 1 sekund siden": 1,
+          "for 14 sekunder siden": 14
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "for 1 minut siden": 1,
+          "for 2 minutter siden": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "for 1 time siden": 1,
+          "for 2 timer siden": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "for 1 dag siden": 1,
+          "for 2 dage siden": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "for 2 uger siden": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "for 1 måned siden": 1,
+          "for 8 måneder siden": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "for 1 år siden": 1,
+          "for 4 år siden": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "de": {
+      "second": {
+        "cases": {
+          "vor 1 Sekunde": 1,
+          "vor 18 Sekunden": 18
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "vor 1 Minute": 1,
+          "vor 2 Minuten": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "vor 1 Stunde": 1,
+          "vor 2 Stunden": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "vor 1 Tag": 1,
+          "vor 2 Tagen": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "vor 2 Wochen": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "vor 1 Monat": 1,
+          "vor 8 Monaten": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "vor 1 Jahr": 1,
+          "vor 4 Jahren": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "el": {
+      "second": {
+        "cases": {
+          "πριν από 1 δευτερόλεπτο": 1,
+          "πριν από 23 δευτερόλεπτα": 23
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "πριν από 1 λεπτό": 1,
+          "πριν από 2 λεπτά": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "πριν από 1 ώρα": 1,
+          "πριν από 2 ώρες": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "πριν από 1 ημέρα": 1,
+          "πριν από 2 ημέρες": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "πριν από 2 εβδομάδες": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "πριν από 1 μήνα": 1,
+          "πριν από 8 μήνες": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "πριν από 1 έτος": 1,
+          "πριν από 4 έτη": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "en": {
+      "second": {
+        "cases": {
+          "1 second ago": 1,
+          "5 seconds ago": 5
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 minute ago": 1,
+          "2 minutes ago": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 hour ago": 1,
+          "2 hours ago": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "1 day ago": 1,
+          "2 days ago": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 weeks ago": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 month ago": 1,
+          "2 months ago": 2
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "1 year ago": 1,
+          "4 years ago": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "es": {
+      "second": {
+        "cases": {
+          "hace 1 segundo": 1,
+          "hace 27 segundos": 27
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "hace 1 minuto": 1,
+          "hace 2 minutos": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "hace 1 hora": 1,
+          "hace 2 horas": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "hace 1 día": 1,
+          "hace 2 días": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "hace 2 semanas": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "hace 1 mes": 1,
+          "hace 8 meses": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "hace 1 año": 1,
+          "hace 4 años": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "et": {
+      "second": {
+        "cases": {
+          "1 sekundi eest": 1,
+          "32 sekundi eest": 32
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 minuti eest": 1,
+          "2 minuti eest": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 tunni eest": 1,
+          "2 tunni eest": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "1 päeva eest": 1,
+          "2 päeva eest": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 nädala eest": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 kuu eest": 1,
+          "8 kuu eest": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "1 aasta eest": 1,
+          "4 aasta eest": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "eu": {
+      "second": {
+        "cases": {
+          "Duela 1 segundo": 1,
+          "Duela 37 segundo": 37
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "Duela 1 minutu": 1,
+          "Duela 2 minutu": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "Duela 1 ordu": 1,
+          "Duela 2 ordu": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "Duela 1 egun": 1,
+          "Duela 2 egun": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "Duela 2 aste": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "Duela 1 hilabete": 1,
+          "Duela 8 hilabete": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "Duela 1 urte": 1,
+          "Duela 4 urte": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "fa": {
+      "second": {
+        "cases": {
+          "1 ثانیه پیش": 1,
+          "41 ثانیه پیش": 41
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 دقیقه پیش": 1,
+          "2 دقیقه پیش": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 ساعت پیش": 1,
+          "2 ساعت پیش": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "1 روز پیش": 1,
+          "2 روز پیش": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 هفته پیش": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 ماه پیش": 1,
+          "8 ماه پیش": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "1 سال پیش": 1,
+          "4 سال پیش": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "fi": {
+      "second": {
+        "cases": {
+          "1 sekunti sitten": 1,
+          "9 sekuntia sitten": 9
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 minuutti sitten": 1,
+          "2 minuuttia sitten": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 tunti sitten": 1,
+          "2 tuntia sitten": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "1 päivä sitten": 1,
+          "2 päivää sitten": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 viikkoa sitten": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 kuukausi sitten": 1,
+          "8 kuukautta sitten": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "1 vuosi sitten": 1,
+          "4 vuotta sitten": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "fil": {
+      "second": {
+        "cases": {
+          "14  segundo ang nakalipas": 14
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 minuto ang nakalipas": 1,
+          "2 minuto ang nakalipas": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 oras ang nakalipas": 1,
+          "2 oras ang nakalipas": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "1 araw ang nakalipas": 1,
+          "2 araw ang nakalipas": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 linggo ang nakalipas": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 buwan ang nakalipas": 1,
+          "8 buwan ang nakalipas": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "1 taon ang nakalipas": 1,
+          "4  taon ang nakalipas": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "fr": {
+      "second": {
+        "cases": {
+          "il y a 1 seconde": 1,
+          "il y a 5 secondes": 5
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "il y a 1 minute": 1,
+          "il y a 2 minutes": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "il y a 1 heure": 1,
+          "il y a 2 heures": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "il y a 1 jour": 1,
+          "il y a 2 jours": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "il y a 2 semaines": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "il y a 1 mois": 1,
+          "il y a 8 mois": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "il y a 1 an": 1,
+          "il y a 4 ans": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "gl": {
+      "second": {
+        "cases": {
+          "hai 1 segundo": 1,
+          "hai 10 segundos": 10
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "hai 1 minuto": 1,
+          "hai 2 minutos": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "hai 1 hora": 1,
+          "hai 2 horas": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "hai 1 día": 1,
+          "hai 2 días": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "hai 2 semanas": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "hai 1 mes": 1,
+          "hai 8 meses": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "hai 1 ano": 1,
+          "hai 4 anos": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "gu": {
+      "second": {
+        "cases": {
+          "1 સેકંડ પહેલાં": 1,
+          "14 સેકંડ પહેલાં": 14
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 મિનિટ પહેલાં": 1,
+          "2 મિનિટ પહેલાં": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 કલાક પહેલાં": 1,
+          "2 કલાક પહેલાં": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "1 દિવસ પહેલાં": 1,
+          "2 દિવસ પહેલાં": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 અઠવાડિયા પહેલાં": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 મહિના પહેલાં": 1,
+          "8 મહિના પહેલાં": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "1 વર્ષ પહેલાં": 1,
+          "4 વર્ષ પહેલાં": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "hi": {
+      "second": {
+        "cases": {
+          "1 सेकंड पहले": 1,
+          "15 सेकंड पहले": 15
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 मिनट पहले": 1,
+          "2 मिनट पहले": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 घंटे पहले": 1,
+          "2 घंटे पहले": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "1 दिन पहले": 1,
+          "2 दिन पहले": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 सप्ताह पहले": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 माह पहले": 1,
+          "8 माह पहले": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "1 वर्ष पहले": 1,
+          "4 वर्ष पहले": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "hr": {
+      "second": {
+        "cases": {
+          "prije 20 sekundi": 20,
+          "prije 21 sekundu": 21,
+          "prije 24 sekunde": 24
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "prije 1 minutu": 1,
+          "prije 2 minute": 2,
+          "prije 5 minuta": 5
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "prije 1 sat": 1,
+          "prije 2 sata": 2,
+          "prije 5 sati": 5
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "prije 1 dan": 1,
+          "prije 2 dana": 2,
+          "prije 5 dana": 5
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "prije 2 tjedna": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "prije 1 mjesec": 1,
+          "prije 2 mjeseca": 2,
+          "prije 8 mjeseci": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "prije 1 godinu": 1,
+          "prije 13 godina": 13,
+          "prije 4 godine": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "hu": {
+      "second": {
+        "cases": {
+          "1 másodperccel ezelőtt": 1,
+          "26 másodperccel ezelőtt": 26
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 perccel ezelőtt": 1,
+          "2 perccel ezelőtt": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 órával ezelőtt": 1,
+          "2 órával ezelőtt": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "1 nappal ezelőtt": 1,
+          "2 nappal ezelőtt": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 héttel ezelőtt": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 hónappal ezelőtt": 1,
+          "8 hónappal ezelőtt": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "1 évvel ezelőtt": 1,
+          "4 évvel ezelőtt": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "hy": {
+      "second": {
+        "cases": {
+          "1 վայրկյան առաջ": 1,
+          "15 վայրկյան առաջ": 15
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 րոպե առաջ": 1,
+          "2 րոպե առաջ": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 ժամ առաջ": 1,
+          "2 ժամ առաջ": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "1 օր առաջ": 1,
+          "2 օր առաջ": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 շաբաթ առաջ": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 ամիս առաջ": 1,
+          "8 ամիս առաջ": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "1 տարի առաջ": 1,
+          "4 տարի առաջ": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "id": {
+      "second": {
+        "cases": {
+          "3 detik yang lalu": 3
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 menit yang lalu": 1
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 jam yang lalu": 1
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "1 hari yang lalu": 1
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 minggu yang lalu": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 bulan yang lalu": 1
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "4 tahun yang lalu": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "is": {
+      "second": {
+        "cases": {
+          "fyrir 41 sekúndu": 41,
+          "fyrir 7 sekúndum": 7
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "fyrir 1 mínútu": 1,
+          "fyrir 2 mínútum": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "fyrir 1 klukkustund": 1,
+          "fyrir 2 klukkustundum": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "fyrir 1 degi": 1,
+          "fyrir 2 dögum": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "fyrir 2 vikum": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "fyrir 1 mánuði": 1,
+          "fyrir 8 mánuðum": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "fyrir 1 ári": 1,
+          "fyrir 4 árum": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "it": {
+      "second": {
+        "cases": {
+          "1 secondo fa": 1,
+          "11 secondi fa": 11
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 minuto fa": 1,
+          "2 minuti fa": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 ora fa": 1,
+          "2 ore fa": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "1 giorno fa": 1,
+          "2 giorni fa": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 settimane fa": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 mese fa": 1,
+          "8 mesi fa": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "1 anno fa": 1,
+          "4 anni fa": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "iw": {
+      "second": {
+        "cases": {
+          "לפני 50 שניות": 50,
+          "לפני 6 שניות": 6,
+          "לפני שנייה": 1,
+          "לפני שתי שניות": 2
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "לפני 20 דקות": 20,
+          "לפני 3 דקות": 3,
+          "לפני דקה": 1,
+          "לפני שתי דקות": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "לפני 20 שעות": 20,
+          "לפני 3 שעות": 3,
+          "לפני שעה": 1,
+          "לפני שעתיים": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "לפני 3 ימים": 3,
+          "לפני יום 1": 1,
+          "לפני יומיים": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "לפני 3 שבועות": 3,
+          "לפני שבועיים": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "לפני 3 חודשים": 3,
+          "לפני חודש": 1,
+          "לפני חודשיים": 2
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "לפני 4 שנים": 4,
+          "לפני שנה": 1,
+          "לפני שנתיים": 2
+        },
+        "missing_plurals": []
+      }
+    },
+    "ja": {
+      "second": {
+        "cases": {
+          "3 秒前": 3
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 分前": 1
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 時間前": 1
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "1 日前": 1
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 週間前": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 か月前": 1
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "4 年前": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "ka": {
+      "second": {
+        "cases": {
+          "1 წამის წინ": 1,
+          "8 წამის წინ": 8
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 წუთის წინ": 1,
+          "2 წუთის წინ": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 საათის წინ": 1,
+          "2 საათის წინ": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "1 დღის წინ": 1,
+          "2 დღის წინ": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 კვირის წინ": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 თვის წინ": 1,
+          "8 თვის წინ": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "1 წლის წინ": 1,
+          "4 წლის წინ": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "kk": {
+      "second": {
+        "cases": {
+          "1 секунд бұрын": 1,
+          "13 секунд бұрын": 13
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 минут бұрын": 1,
+          "2 минут бұрын": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 сағат бұрын": 1,
+          "2 сағат бұрын": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "1 күн бұрын": 1,
+          "2 күн бұрын": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 апта бұрын": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 ай бұрын": 1,
+          "8 ай бұрын": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "1 жыл бұрын": 1,
+          "4 жыл бұрын": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "km": {
+      "second": {
+        "cases": {
+          "18 វិនាទីមុន": 18
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 នាទីមុន": 1
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 ម៉ោងមុន": 1
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "1 ថ្ងៃមុន": 1
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 សប្ដាហ៍មុន": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 ខែមុន": 1
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "4 ឆ្នាំមុន": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "kn": {
+      "second": {
+        "cases": {
+          "1 ಸೆಕೆಂಡ್ ಹಿಂದೆ": 1,
+          "23 ಸೆಕೆಂಡುಗಳ ಹಿಂದೆ": 23
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 ನಿಮಿಷದ ಹಿಂದೆ": 1,
+          "2 ನಿಮಿಷಗಳ ಹಿಂದೆ": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 ಗಂಟೆ ಹಿಂದೆ": 1,
+          "2 ಗಂಟೆಗಳ ಹಿಂದೆ": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "1 ದಿನದ ಹಿಂದೆ": 1,
+          "2 ದಿನಗಳ ಹಿಂದೆ": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 ವಾರಗಳ ಹಿಂದೆ": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 ತಿಂಗಳ ಹಿಂದೆ": 1,
+          "8 ತಿಂಗಳುಗಳ ಹಿಂದೆ": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "1 ವರ್ಷದ ಹಿಂದೆ": 1,
+          "4 ವರ್ಷಗಳ ಹಿಂದೆ": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "ko": {
+      "second": {
+        "cases": {
+          "28초 전": 28
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1분 전": 1
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1시간 전": 1
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "1일 전": 1
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2주 전": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1개월 전": 1
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "4년 전": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "ky": {
+      "second": {
+        "cases": {
+          "1 секунд мурун": 1,
+          "33 секунд мурун": 33
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 мүнөт мурун": 1,
+          "2 мүнөт мурун": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 саат мурун": 1,
+          "2 саат мурун": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "1 күн мурун": 1,
+          "2 күн мурун": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 апта мурун": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 ай мурун": 1,
+          "8 ай мурун": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "1 жыл мурун": 1,
+          "4 жыл мурун": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "lo": {
+      "second": {
+        "cases": {
+          "38 ວິນາທີກ່ອນ": 38
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 ນາທີກ່ອນ": 1
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 ຊົ່ວໂມງກ່ອນ": 1
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "1 ມື້ກ່ອນ": 1
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 ອາທິດກ່ອນ": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 ເດືອນກ່ອນ": 1
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "4 ປີກ່ອນ": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "lt": {
+      "second": {
+        "cases": {
+          "prieš 21 sekundę": 21,
+          "prieš 4 sekundes": 4,
+          "prieš 40 sekundžių": 40,
+          "prieš 42 sekundes": 42,
+          "prieš 51 sekundę": 51
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "prieš 1 minutę": 1,
+          "prieš 10 minučių": 10,
+          "prieš 2 minutes": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "prieš 1 valandą": 1,
+          "prieš 10 valandų": 10,
+          "prieš 2 valandas": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "prieš 1 dieną": 1,
+          "prieš 10 dienų": 10,
+          "prieš 2 dienas": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "prieš 2 savaites": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "prieš 1 mėnesį": 1,
+          "prieš 10 mėnesių": 10,
+          "prieš 2 mėnesius": 2
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "prieš 1 metus": 1,
+          "prieš 13 metų": 13,
+          "prieš 4 metus": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "lv": {
+      "second": {
+        "cases": {
+          "pirms 13 sekundēm": 13,
+          "pirms 21 sekundes": 21,
+          "pirms 8 sekundēm": 8
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "pirms 1 minūtes": 1,
+          "pirms 10 minūtēm": 10,
+          "pirms 2 minūtēm": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "pirms 1 stundas": 1,
+          "pirms 10 stundām": 10,
+          "pirms 2 stundām": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "pirms 1 dienas": 1,
+          "pirms 10 dienām": 10,
+          "pirms 2 dienām": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "pirms 2 nedēļām": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "pirms 1 mēneša": 1,
+          "pirms 10 mēnešiem": 10,
+          "pirms 2 mēnešiem": 2
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "pirms 1 gada": 1,
+          "pirms 13 gadiem": 13,
+          "pirms 4 gadiem": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "mk": {
+      "second": {
+        "cases": {
+          "пред 10 секунди": 10,
+          "пред 41 секунда": 41
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "пред 1 минута": 1,
+          "пред 2 минути": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "пред 1 час": 1,
+          "пред 2 часа": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "пред 1 ден": 1,
+          "пред 2 дена": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "пред 2 седмици": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "пред 1 месец": 1,
+          "пред 8 месеци": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "пред 1 година": 1,
+          "пред 4 години": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "ml": {
+      "second": {
+        "cases": {
+          "1 സെക്കൻഡ് മുമ്പ്": 1,
+          "16 സെക്കൻഡ് മുമ്പ്": 16
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 മിനിറ്റ് മുമ്പ്": 1,
+          "2 മിനിറ്റ് മുമ്പ്": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 മണിക്കൂർ മുമ്പ്": 1,
+          "2 മണിക്കൂർ മുമ്പ്": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "1 ദിവസം മുമ്പ്": 1,
+          "2 ദിവസം മുമ്പ്": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 ആഴ്ച മുമ്പ്": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 മാസം മുമ്പ്": 1,
+          "8 മാസം മുമ്പ്": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "1 വർഷം മുമ്പ്": 1,
+          "4 വർഷം മുമ്പ്": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "mn": {
+      "second": {
+        "cases": {
+          "1 секундын өмнө": 1,
+          "23 секундын өмнө": 23
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 минутын өмнө": 1,
+          "2 минутын өмнө": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 цагийн өмнө": 1,
+          "2 цагийн өмнө": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "1 өдрийн өмнө": 1,
+          "2 өдрийн өмнө": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 долоо хоногийн өмнө": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 сарын өмнө": 1,
+          "8 сарын өмнө": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "1 жилийн өмнө": 1,
+          "4 жилийн өмнө": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "mr": {
+      "second": {
+        "cases": {
+          "1 सेकंदापूर्वी": 1,
+          "28 सेकंदांपूर्वी": 28
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 मिनिटापूर्वी": 1,
+          "2 मिनिटांपूर्वी": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 तासापूर्वी": 1,
+          "2 तासांपूर्वी": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "1 दिवसापूर्वी": 1,
+          "2 दिवसांपूर्वी": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 आठवड्यांपूर्वी": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 महिन्यापूर्वी": 1,
+          "8 महिन्यांपूर्वी": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "1 वर्षापूर्वी": 1,
+          "4 वर्षांपूर्वी": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "ms": {
+      "second": {
+        "cases": {
+          "35 saat lalu": 35
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 minit lalu": 1
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 jam lalu": 1
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "2 hari lalu": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 minggu lalu": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 bulan lalu": 1
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "4 tahun lalu": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "my": {
+      "second": {
+        "cases": {
+          "ပြီးခဲ့သည့် 41 စက္ကန့်": 41
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "ပြီးခဲ့သည့် 1 မိနစ်": 1
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "ပြီးခဲ့သည့် 1 နာရီ": 1
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "ပြီးခဲ့သည့် 2 ရက်": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "ပြီးခဲ့သည့် 2 ပတ်": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "ပြီးခဲ့သည့် 1 လ": 1
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "ပြီးခဲ့သည့် 4 နှစ်": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "ne": {
+      "second": {
+        "cases": {
+          "1 सेकेन्ड पहिले": 1,
+          "47 सेकेन्ड पहिले": 47
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 मिनेट पहिले": 1,
+          "2 मिनेट पहिले": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 घण्टा पहिले": 1,
+          "2 घण्टा पहिले": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "1 दिन पहिले": 1,
+          "2 दिन पहिले": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 हप्ता पहिले": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 महिना पहिले": 1,
+          "8 महिना पहिले": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "1 वर्ष अघि": 1,
+          "4 वर्ष अघि": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "nl": {
+      "second": {
+        "cases": {
+          "1 seconde geleden": 1,
+          "53 seconden geleden": 53
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 minuut geleden": 1,
+          "2 minuten geleden": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 uur geleden": 1,
+          "2 uur geleden": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "1 dag geleden": 1,
+          "2 dagen geleden": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 weken geleden": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 maand geleden": 1,
+          "8 maanden geleden": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "1 jaar geleden": 1,
+          "4 jaar geleden": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "no": {
+      "second": {
+        "cases": {
+          "for 1 sekund siden": 1,
+          "for 33 sekunder siden": 33
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "for 1 minutt siden": 1,
+          "for 2 minutter siden": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "for 1 time siden": 1,
+          "for 2 timer siden": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "for 1 døgn siden": 1,
+          "for 2 døgn siden": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "for 2 uker siden": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "for 1 måned siden": 1,
+          "for 8 måneder siden": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "for 1 år siden": 1,
+          "for 4 år siden": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "or": {
+      "second": {
+        "cases": {
+          "1 ସେକେଣ୍ଡ ପୂର୍ବେ": 1,
+          "40 ସେକେଣ୍ଡ ପୂର୍ବେ": 40
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 ମିନିଟ୍ ପୂର୍ବେ": 1,
+          "2 ମିନିଟ୍ ପୂର୍ବେ": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 ଘଣ୍ଟା ପୂର୍ବେ": 1,
+          "2 ଘଣ୍ଟା ପୂର୍ବେ": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "1 ଦିନ ପୂର୍ବେ": 1,
+          "2 ଦିନ ପୂର୍ବେ": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 ସପ୍ତାହ ପୂର୍ବେ": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 ମାସ ପୂର୍ବେ": 1,
+          "8 ମାସ ପୂର୍ବେ": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "1 ବର୍ଷ ପୂର୍ବେ": 1,
+          "4 ବର୍ଷ ପୂର୍ବେ": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "pa": {
+      "second": {
+        "cases": {
+          "1 ਸਕਿੰਟ ਪਹਿਲਾਂ": 1,
+          "46 ਸਕਿੰਟ ਪਹਿਲਾਂ": 46
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 ਮਿੰਟ ਪਹਿਲਾਂ": 1,
+          "2 ਮਿੰਟ ਪਹਿਲਾਂ": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 ਘੰਟਾ ਪਹਿਲਾਂ": 1,
+          "2 ਘੰਟੇ ਪਹਿਲਾਂ": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "1 ਦਿਨ ਪਹਿਲਾਂ": 1,
+          "2 ਦਿਨ ਪਹਿਲਾਂ": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 ਹਫ਼ਤੇ ਪਹਿਲਾਂ": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 ਮਹੀਨਾ ਪਹਿਲਾਂ": 1,
+          "8 ਮਹੀਨੇ ਪਹਿਲਾਂ": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "1 ਸਾਲ ਪਹਿਲਾਂ": 1,
+          "4 ਸਾਲ ਪਹਿਲਾਂ": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "pl": {
+      "second": {
+        "cases": {
+          "1 sekundę temu": 1,
+          "10 sekund temu": 10,
+          "2 sekundy temu": 2,
+          "6 sekund temu": 6
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 minutę temu": 1,
+          "2 minuty temu": 2,
+          "5 minut temu": 5
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 godzinę temu": 1,
+          "2 godziny temu": 2,
+          "5 godzin temu": 5
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "1 dzień temu": 1,
+          "2 dni temu": 2,
+          "5 dni temu": 5
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 tygodnie temu": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 miesiąc temu": 1,
+          "2 miesiące temu": 2,
+          "8 miesięcy temu": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "1 rok temu": 1,
+          "13 lat temu": 13,
+          "4 lata temu": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "pt": {
+      "second": {
+        "cases": {
+          "há 0 segundo": 0,
+          "há 26 segundos": 26
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "há 1 minuto": 1,
+          "há 2 minutos": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "há 1 hora": 1,
+          "há 2 horas": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "há 1 dia": 1,
+          "há 2 dias": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "há 2 semanas": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "há 1 mês": 1,
+          "há 8 meses": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "há 1 ano": 1,
+          "há 4 anos": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "pt-PT": {
+      "second": {
+        "cases": {
+          "há 1 segundo": 1,
+          "há 32 segundos": 32
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "há 1 minuto": 1,
+          "há 2 minutos": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "há 1 hora": 1,
+          "há 2 horas": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "há 1 dia": 1,
+          "há 2 dias": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "há 2 semanas": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "há 1 mês": 1,
+          "há 8 meses": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "há 1 ano": 1,
+          "há 4 anos": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "ro": {
+      "second": {
+        "cases": {
+          "acum 1 secundă": 1,
+          "acum 2 secunde": 2,
+          "acum 38 de secunde": 38
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "acum 1 minut": 1,
+          "acum 2 minute": 2,
+          "acum 20 de minute": 20
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "acum 1 oră": 1,
+          "acum 2 ore": 2,
+          "acum 20 de ore": 20
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "acum 1 zi": 1,
+          "acum 2 zile": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "acum 2 săptămâni": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "acum 1 lună": 1,
+          "acum 2 luni": 2
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "acum 1 an": 1,
+          "acum 4 ani": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "ru": {
+      "second": {
+        "cases": {
+          "1 секунду назад": 1,
+          "21 секунду назад": 21,
+          "31 секунду назад": 31,
+          "33 секунды назад": 33,
+          "35 секунд назад": 35,
+          "51 секунду назад": 51
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 минуту назад": 1,
+          "2 минуты назад": 2,
+          "5 минут назад": 5
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 час назад": 1,
+          "2 часа назад": 2,
+          "5 часов назад": 5
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "1 день назад": 1,
+          "2 дня назад": 2,
+          "5 дней назад": 5
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 недели назад": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 месяц назад": 1,
+          "2 месяца назад": 2,
+          "8 месяцев назад": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "1 год назад": 1,
+          "13 лет назад": 13,
+          "4 года назад": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "si": {
+      "second": {
+        "cases": {
+          "තත්පර 1කට පෙර": 1,
+          "තත්පර 42කට පෙර": 42
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "මිනිත්තු 1කට පෙර": 1,
+          "මිනිත්තු 2කට පෙර": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "පැය 1කට පෙර": 1,
+          "පැය 2කට පෙර": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "දින 1කට පෙර": 1,
+          "දින 2කට පෙර": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "සති 2කට පෙර": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "මාස 1කට පෙර": 1,
+          "මාස 8කට පෙර": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "වසර 1කට පෙර": 1,
+          "වසර 4කට පෙර": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "sk": {
+      "second": {
+        "cases": {
+          "pred 1 sekundou": 1,
+          "pred 3 sekundami": 3,
+          "pred 47 sekundami": 47
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "pred 1 minútou": 1,
+          "pred 2 minútami": 2,
+          "pred 5 minútami": 5
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "pred 1 hodinou": 1,
+          "pred 2 hodinami": 2,
+          "pred 5 hodinami": 5
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "pred 1 dňom": 1,
+          "pred 2 dňami": 2,
+          "pred 5 dňami": 5
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "pred 2 týždňami": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "pred 1 mesiacom": 1,
+          "pred 2 mesiacmi": 2,
+          "pred 8 mesiacmi": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "pred 1 rokom": 1,
+          "pred 13 rokmi": 13,
+          "pred 4 rokmi": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "sl": {
+      "second": {
+        "cases": {
+          "pred 1 sekundo": 1,
+          "pred 10 sekundami": 10,
+          "pred 2 sekundama": 2,
+          "pred 4 sekundami": 4
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "pred 1 minuto": 1,
+          "pred 2 minutama": 2,
+          "pred 3 minutami": 3,
+          "pred 5 minutami": 5
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "pred 1 uro": 1,
+          "pred 2 urama": 2,
+          "pred 3 urami": 3,
+          "pred 5 urami": 5
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "pred 1 dnevom": 1,
+          "pred 2 dnevoma": 2,
+          "pred 3 dnevi": 3,
+          "pred 5 dnevi": 5
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "pred 2 tednoma": 2,
+          "pred 3 tedni": 3
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "pred 1 mesecem": 1,
+          "pred 2 mesecema": 2,
+          "pred 3 meseci": 3,
+          "pred 5 meseci": 5
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "pred 1 letom": 1,
+          "pred 13 leti": 13,
+          "pred 2 letoma": 2,
+          "pred 4 leti": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "sq": {
+      "second": {
+        "cases": {
+          "1 sekondë më parë": 1,
+          "20 sekonda më parë": 20
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 minutë më parë": 1,
+          "2 minuta më parë": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 orë më parë": 1,
+          "2 orë më parë": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "1 ditë më parë": 1,
+          "2 ditë më parë": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 javë më parë": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 muaj më parë": 1,
+          "8 muaj më parë": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "1 vit më parë": 1,
+          "4 vjet më parë": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "sr": {
+      "second": {
+        "cases": {
+          "пре 31 секунде": 31,
+          "пре 52 секунде": 52,
+          "пре 8 секунди": 8
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "пре 1 минута": 1,
+          "пре 2 минута": 2,
+          "пре 5 минута": 5
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "пре 1 сата": 1,
+          "пре 2 сата": 2,
+          "пре 5 сати": 5
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "пре 1 дана": 1,
+          "пре 2 дана": 2,
+          "пре 5 дана": 5
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "пре 2 недеље": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "пре 1 месеца": 1,
+          "пре 2 месеца": 2,
+          "пре 8 месеци": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "пре 1 године": 1,
+          "пре 13 година": 13,
+          "пре 4 године": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "sr-Latn": {
+      "second": {
+        "cases": {
+          "pre 15 sekundi": 15,
+          "pre 33 sekunde": 33,
+          "pre 51 sekunde": 51
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "pre 1 minuta": 1,
+          "pre 2 minuta": 2,
+          "pre 5 minuta": 5
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "pre 1 sata": 1,
+          "pre 2 sata": 2,
+          "pre 5 sati": 5
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "pre 1 dana": 1,
+          "pre 2 dana": 2,
+          "pre 5 dana": 5
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "pre 2 nedelje": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "pre 1 meseca": 1,
+          "pre 2 meseca": 2,
+          "pre 8 meseci": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "pre 1 godine": 1,
+          "pre 13 godina": 13,
+          "pre 4 godine": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "sv": {
+      "second": {
+        "cases": {
+          "för 1 sekund sedan": 1,
+          "för 6 sekunder sedan": 6
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "för 1 minut sedan": 1,
+          "för 2 minuter sedan": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "för 1 timme sedan": 1,
+          "för 2 timmar sedan": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "för 1 dag sedan": 1,
+          "för 2 dagar sedan": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "för 2 veckor sedan": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "för 1 månad sedan": 1,
+          "för 8 månader sedan": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "för 1 år sedan": 1,
+          "för 4 år sedan": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "sw": {
+      "second": {
+        "cases": {
+          "Sekunde 1 iliyopita": 1,
+          "Sekunde 12 zilizopita": 12
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "dakika 1 iliyopita": 1,
+          "dakika 2 zilizopita": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "saa 1 iliyopita": 1,
+          "saa 2 zilizopita": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "siku 1 iliyopita": 1,
+          "siku 2 zilizopita": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "wiki 2 zilizopita": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "miezi 8 iliyopita": 8,
+          "mwezi 1 uliopita": 1
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "miaka 4 iliyopita": 4,
+          "mwaka 1 uliopita": 1
+        },
+        "missing_plurals": []
+      }
+    },
+    "ta": {
+      "second": {
+        "cases": {
+          "1 விநாடிக்கு முன்": 1,
+          "2 விநாடிகளுக்கு முன்": 2
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 நிமிடத்திற்கு முன்": 1,
+          "2 நிமிடங்களுக்கு முன்": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 மணிநேரம் முன்": 1,
+          "2 மணிநேரம் முன்": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "1 நாளுக்கு முன்": 1,
+          "2 நாட்களுக்கு முன்": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 வாரங்களுக்கு முன்": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 மாதத்துக்கு முன்": 1,
+          "2 மாதங்களுக்கு முன்": 2
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "1 ஆண்டிற்கு முன்": 1,
+          "4 ஆண்டுகளுக்கு முன்": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "te": {
+      "second": {
+        "cases": {
+          "1 సెకను క్రితం": 1,
+          "26 సెకన్ల క్రితం": 26
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 నిమిషం క్రితం": 1,
+          "2 నిమిషాల క్రితం": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 గంట క్రితం": 1,
+          "2 గంటల క్రితం": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "1 రోజు క్రితం": 1,
+          "2 రోజుల క్రితం": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 వారాల క్రితం": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 నెల క్రితం": 1,
+          "8 నెలల క్రితం": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "1 సంవత్సరం క్రితం": 1,
+          "4 సంవత్సరాల క్రితం": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "th": {
+      "second": {
+        "cases": {
+          "32 วินาทีที่ผ่านมา": 32
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 นาทีที่ผ่านมา": 1
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 ชั่วโมงที่ผ่านมา": 1
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "2 วันที่ผ่านมา": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 สัปดาห์ที่ผ่านมา": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 เดือนที่ผ่านมา": 1
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "4 ปีที่แล้ว": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "tr": {
+      "second": {
+        "cases": {
+          "1 saniye önce": 1,
+          "37 saniye önce": 37
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 dakika önce": 1,
+          "2 dakika önce": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 saat önce": 1,
+          "2 saat önce": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "1 gün önce": 1,
+          "2 gün önce": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 hafta önce": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 ay önce": 1,
+          "8 ay önce": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "1 yıl önce": 1,
+          "4 yıl önce": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "uk": {
+      "second": {
+        "cases": {
+          "23 секунди тому": 23,
+          "46 секунд тому": 46,
+          "51 секунду тому": 51
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 хвилину тому": 1,
+          "2 хвилини тому": 2,
+          "5 хвилин тому": 5
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 годину тому": 1,
+          "2 години тому": 2,
+          "5 годин тому": 5
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "1 день тому": 1,
+          "2 дні тому": 2,
+          "5 днів тому": 5
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 тижні тому": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 місяць тому": 1,
+          "2 місяці тому": 2,
+          "8 місяців тому": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "1 рік тому": 1,
+          "13 років тому": 13,
+          "4 роки тому": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "ur": {
+      "second": {
+        "cases": {
+          "1 سیکنڈ پہلے": 1,
+          "30 سیکنڈ پہلے": 30
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 منٹ پہلے": 1,
+          "2 منٹ پہلے": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 گھنٹہ پہلے": 1,
+          "2 گھنٹے پہلے": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "1 دن پہلے": 1,
+          "2 دنوں پہلے": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 ہفتے پہلے": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 مہینہ پہلے": 1,
+          "8 مہینے پہلے": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "1 سال پہلے": 1,
+          "4 سال پہلے": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "uz": {
+      "second": {
+        "cases": {
+          "1 soniya oldin": 1,
+          "7 soniya oldin": 7
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 daqiqa oldin": 1,
+          "2 daqiqa oldin": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 soat oldin": 1,
+          "2 soat oldin": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "1 kun oldin": 1,
+          "2 kun oldin": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 hafta oldin": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 oy oldin": 1,
+          "8 oy oldin": 8
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "1 yil oldin": 1,
+          "4 yil oldin": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "vi": {
+      "second": {
+        "cases": {
+          "13 giây trước": 13
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 phút trước": 1
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 giờ trước": 1
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "2 ngày trước": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 tuần trước": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 tháng trước": 1
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "4 năm trước": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "zh-CN": {
+      "second": {
+        "cases": {
+          "6秒钟前": 6
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1分钟前": 1
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1小时前": 1
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "2天前": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2周前": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1个月前": 1
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "4年前": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "zh-HK": {
+      "second": {
+        "cases": {
+          "11 秒前": 11
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 分鐘前": 1
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 小時前": 1
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "2 日前": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 星期前": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 個月前": 1
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "4 年前": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "zh-TW": {
+      "second": {
+        "cases": {
+          "16 秒前": 16
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 分鐘前": 1
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 小時前": 1
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "2 天前": 2
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "2 週前": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 個月前": 1
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "4 年前": 4
+        },
+        "missing_plurals": []
+      }
+    },
+    "zu": {
+      "second": {
+        "cases": {
+          "1 isekhondi eledlule": 1,
+          "21 amasekhondi edlule": 21
+        },
+        "missing_plurals": []
+      },
+      "minute": {
+        "cases": {
+          "1 iminithi eledlule": 1,
+          "2 amaminithi edlule": 2
+        },
+        "missing_plurals": []
+      },
+      "hour": {
+        "cases": {
+          "1 ihora eledlule": 1,
+          "emahoreni angu-2 edlule": 2
+        },
+        "missing_plurals": []
+      },
+      "day": {
+        "cases": {
+          "ezinsukwini ezingu-2 ezedlule.": 2,
+          "osukwini olungu-1 olwedlule": 1
+        },
+        "missing_plurals": []
+      },
+      "week": {
+        "cases": {
+          "amaviki angu-2 edlule": 2
+        },
+        "missing_plurals": []
+      },
+      "month": {
+        "cases": {
+          "1 inyanga edlule": 1,
+          "2 izinyanga ezedlule": 2
+        },
+        "missing_plurals": []
+      },
+      "year": {
+        "cases": {
+          "1 unyaka odlule": 1,
+          "4 iminyaka edlule": 4
+        },
+        "missing_plurals": []
+      }
+    }
+  },
+  "errors": {}
+}

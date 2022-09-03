@@ -1,4 +1,4 @@
-use std::{borrow::Cow, str::FromStr, vec};
+use std::{borrow::Cow, str::FromStr, vec, cmp::Ordering};
 
 use anyhow::Result;
 use fancy_regex::Regex;
@@ -92,7 +92,7 @@ pub const LANGUAGES: [Language; 83] = [
     Language::Zu,
 ];
 
-#[derive(Debug, Copy, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[derive(Debug, Copy, Clone, Serialize, Deserialize, Eq)]
 pub struct TimeAgo {
     pub n: u32,
     pub unit: TimeUnit,
@@ -139,7 +139,7 @@ impl From<Language> for TimeagoPattern<'_> {
             },
             Language::Am => TimeagoPattern {
                 word_separator: " ",
-                seconds: vec!["ሰኮንዶች", "ሴኮንድ"],
+                seconds: vec!["ሰኮንዶች", "ሴኮንድ", "ሰከንድ", "ሰከንዶች"],
                 minutes: vec!["ደቂቃ", "ደቂቃዎች"],
                 hours: vec!["ሰዓት", "ሰዓቶች"],
                 // INFO: add days[0]
@@ -151,14 +151,28 @@ impl From<Language> for TimeagoPattern<'_> {
             },
             Language::Ar => TimeagoPattern {
                 word_separator: " ",
-                seconds: vec!["ثانية", "ثانيتين", "ثوانٍ"],
+                seconds: vec!["ثانية", "ثوانٍ", "ثوانِ"],
                 minutes: vec!["دقائق", "دقيقة", "دقيقتين"],
-                hours: vec!["ساعات", "ساعة", "ساعتين"],
-                days: vec!["أيام", "يوم", "يومين", "يومًا"],
-                weeks: vec!["أسابيع", "أسبوع", "أسبوعين"],
-                months: vec!["أشهر", "شهر", "شهرين", "شهرًا"],
-                years: vec!["سنة", "سنتين", "سنوات"],
+                hours: vec!["ساعات", "ساعة"],
+                days: vec!["أيام", "يوم", "يومًا"],
+                weeks: vec!["أسابيع", "أسبوع"],
+                months: vec!["أشهر", "شهر", "شهرًا"],
+                years: vec!["سنة", "سنوات"],
                 special_cases: vec![
+                    (
+                        "ثانيتين",
+                        TimeAgo {
+                            n: 2,
+                            unit: TimeUnit::Second,
+                        },
+                    ),
+                    (
+                        "دقيقتين",
+                        TimeAgo {
+                            n: 2,
+                            unit: TimeUnit::Minute,
+                        },
+                    ),
                     (
                         "ساعتين",
                         TimeAgo {
@@ -281,7 +295,7 @@ impl From<Language> for TimeagoPattern<'_> {
                 seconds: vec!["sekundami", "sekundou"],
                 minutes: vec!["minutami", "minutou"],
                 hours: vec!["hodinami", "hodinou"],
-                days: vec!["dny", "včera"],
+                days: vec!["dny", "dnem"],
                 weeks: vec!["týdnem", "týdny"],
                 months: vec!["měsícem", "měsíci"],
                 years: vec!["rokem", "roky", "lety"],
@@ -522,6 +536,20 @@ impl From<Language> for TimeagoPattern<'_> {
                 years: vec!["שנה", "שנים"],
                 special_cases: vec![
                     (
+                        "שתי שניות",
+                        TimeAgo {
+                            n: 2,
+                            unit: TimeUnit::Second,
+                        },
+                    ),
+                    (
+                        "שתי דקות",
+                        TimeAgo {
+                            n: 2,
+                            unit: TimeUnit::Minute,
+                        },
+                    ),
+                    (
                         "שעתיים",
                         TimeAgo {
                             n: 2,
@@ -662,7 +690,7 @@ impl From<Language> for TimeagoPattern<'_> {
             Language::Lv => TimeagoPattern {
                 word_separator: " ",
                 seconds: vec!["sekundes", "sekundēm"],
-                minutes: vec!["minūtes", "minūtēm", "minūtes"],
+                minutes: vec!["minūtes", "minūtēm"],
                 hours: vec!["stundas", "stundām"],
                 days: vec!["dienas", "dienām"],
                 weeks: vec!["nedēļas", "nedēļām"],
@@ -867,7 +895,7 @@ impl From<Language> for TimeagoPattern<'_> {
                 seconds: vec!["sekundama", "sekundami", "sekundo"],
                 minutes: vec!["minutama", "minutami", "minuto"],
                 hours: vec!["urama", "urami", "uro"],
-                days: vec!["dnem", "dnevi", "dnevoma"],
+                days: vec!["dnem", "dnevi", "dnevoma", "dnevom"],
                 weeks: vec!["tedni", "tednom", "tednoma"],
                 months: vec!["mesecem", "mesecema", "meseci"],
                 years: vec!["leti", "letom", "letoma"],
@@ -932,9 +960,9 @@ impl From<Language> for TimeagoPattern<'_> {
             },
             Language::Ta => TimeagoPattern {
                 word_separator: " ",
-                // INFO: fixed minutes hours months, TODO: 1 second
+                // INFO: fixed minutes hours months
                 //  2 விநாடிகளுக்கு முன்
-                seconds: vec!["வினாடி", "வினாடிகளுக்கு"],
+                seconds: vec!["வினாடி", "வினாடிகளுக்கு", "விநாடிகளுக்கு", "விநாடிக்கு"],
                 // 1 நிமிடத்திற்கு முன் 2 நிமிடங்களுக்கு முன்
                 minutes: vec!["நிமிடங்களுக்கு", "நிமிடத்திற்கு", "நிமிடங்கள்", "நிமிடம்"],
                 hours: vec!["மணிநேரம்"],
@@ -1065,7 +1093,7 @@ impl From<Language> for TimeagoPattern<'_> {
                 seconds: vec!["amasekhondi", "isekhondi"],
                 minutes: vec!["amaminithi", "iminithi"],
                 hours: vec!["emahoreni", "amahora", "ihora"],
-                days: vec!["ezinsukwini", "izinsuku", "usuku"],
+                days: vec!["ezinsukwini", "izinsuku", "usuku", "osukwini"],
                 weeks: vec!["amaviki", "iviki"],
                 months: vec!["inyanga", "izinyanga"],
                 years: vec!["iminyaka", "unyaka"],
@@ -1160,6 +1188,44 @@ impl TimeagoPattern<'_> {
         ok_or_bail!(Regex::new(&pattern), false)
             .is_match(&text_lower)
             .unwrap_or_default()
+    }
+}
+
+impl TimeUnit {
+    fn seconds(&self) -> u64 {
+        match self {
+            TimeUnit::Second => 1,
+            TimeUnit::Minute => 60,
+            TimeUnit::Hour => 3600,
+            TimeUnit::Day => 24 * 3600,
+            TimeUnit::Week => 7 * 24 * 3600,
+            TimeUnit::Month => 30 * 24 * 3600,
+            TimeUnit::Year => 365 * 24 * 3600,
+        }
+    }
+}
+
+impl TimeAgo {
+    fn seconds(&self) -> u64 {
+        self.n as u64 * self.unit.seconds()
+    }
+}
+
+impl PartialEq for TimeAgo {
+    fn eq(&self, other: &Self) -> bool {
+        self.seconds() == other.seconds()
+    }
+}
+
+impl Ord for TimeAgo {
+    fn cmp(&self, other: &Self) -> Ordering {
+        self.seconds().cmp(&other.seconds())
+    }
+}
+
+impl PartialOrd for TimeAgo {
+    fn partial_cmp(&self, other: &Self) -> Option<Ordering> {
+        Some(self.cmp(other))
     }
 }
 
