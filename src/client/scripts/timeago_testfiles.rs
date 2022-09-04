@@ -161,7 +161,8 @@ async fn get_comment_datestrings(rp: &RustyTube, ctoken: &str) -> (Vec<String>, 
     (datestrings, next_ctoken)
 }
 
-#[test_log::test(tokio::test)]
+// #[test_log::test(tokio::test)]
+#[allow(dead_code)]
 async fn download_timeago_testfiles() {
     let json_path = Path::new("testfiles/date/timeago.json").to_path_buf();
     if json_path.exists() {
@@ -526,7 +527,8 @@ async fn insert_timeago_table_datestrings_channel(
         });
 }
 
-#[test_log::test(tokio::test)]
+// #[test_log::test(tokio::test)]
+#[allow(dead_code)]
 async fn t_build_timeago_table() {
     let mut timeago_table = read_timeago_table();
     let ignore_1s = false;

@@ -1036,34 +1036,39 @@
     "fil": {
       "second": {
         "cases": {
-          "14  segundo ang nakalipas": 14
+          "1 segundo ang nakalipas": 1,
+          "14 (na) segundo ang nakalipas": 14
         },
         "missing_plurals": []
       },
       "minute": {
         "cases": {
           "1 minuto ang nakalipas": 1,
-          "2 minuto ang nakalipas": 2
+          "2 minuto ang nakalipas": 2,
+          "10 (na) minuto ang nakalipas": 10
         },
         "missing_plurals": []
       },
       "hour": {
         "cases": {
           "1 oras ang nakalipas": 1,
-          "2 oras ang nakalipas": 2
+          "2 oras ang nakalipas": 2,
+          "10 (na) oras ang nakalipas": 10
         },
         "missing_plurals": []
       },
       "day": {
         "cases": {
           "1 araw ang nakalipas": 1,
-          "2 araw ang nakalipas": 2
+          "2 araw ang nakalipas": 2,
+          "5 (na) araw ang nakalipas": 5
         },
         "missing_plurals": []
       },
       "week": {
         "cases": {
-          "2 linggo ang nakalipas": 2
+          "2 linggo ang nakalipas": 2,
+          "3 (na) linggo ang nakalipas": 3
         },
         "missing_plurals": []
       },
@@ -1077,7 +1082,7 @@
       "year": {
         "cases": {
           "1 taon ang nakalipas": 1,
-          "4  taon ang nakalipas": 4
+          "4 (na) taon ang nakalipas": 4
         },
         "missing_plurals": []
       }

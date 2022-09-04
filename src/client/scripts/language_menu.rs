@@ -140,7 +140,8 @@ struct LanguageCountryCommand {
     hl: String,
 }
 
-#[test_log::test(tokio::test)]
+// #[test_log::test(tokio::test)]
+#[allow(dead_code)]
 async fn generate_locales() {
     let (languages, countries) = get_locales().await;
 
