@@ -4,9 +4,6 @@ pub mod video;
 
 mod response;
 
-#[cfg(test)]
-mod scripts;
-
 use std::sync::Arc;
 
 use anyhow::{anyhow, Context, Result};
@@ -190,7 +187,7 @@ impl RustyTube {
         }
     }
 
-    fn get_ytclient(&self, client_type: ClientType) -> Arc<dyn YTClient> {
+    pub(crate) fn get_ytclient(&self, client_type: ClientType) -> Arc<dyn YTClient> {
         match client_type {
             ClientType::Desktop => self.desktop_client.clone(),
             ClientType::DesktopMusic => self.desktop_music_client.clone(),

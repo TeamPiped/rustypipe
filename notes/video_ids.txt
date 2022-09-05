@@ -29,12 +29,12 @@ Throttling issue: Y8JFxS1HlDo
 4.657 Songs: PLI_eFW8NAFzYAXZ5DrU6E6mQ_XfhaLBUX
 186 Songs: PLbZIPy20-1pN7mqjckepWF78ndb6ci_qi
 
-Playlist update dates:
+Playlist update dates (05.09.2022):
 today: RDCLAK5uy_kj3rhiar1LINmyDcuFnXihEO0K1NQa2jI
-yesterday: PL3-sRm8xAzY9sDilvaWjCwCI0TkUzYdOG
-2 days ago: PL3qHjxSSl7AER3rxfEr4SiHNr-ihbQyqU
-3 days ago: PLHr0jWPfopte182N54r1ra7tkRJC1fmPu
-5 days ago: PLF7B92F492FDAE703
+yesterday: PL4C44E2875308A280
+2 days ago: PL7zsB-C3aNu2yRY2869T0zj1FhtRIu5am
+5 days ago: PL3-sRm8xAzY9sDilvaWjCwCI0TkUzYdOG
+7 days ago: PLHr0jWPfopte182N54r1ra7tkRJC1fmPu
 
 Jan PL1J-6JOckZtHxTA3hN5SK7gBQaFfKzeXr 01.01.2016
 Feb PL1J-6JOckZtETrbzwZE7mRIIK6BzWNLAs 07.02.2016

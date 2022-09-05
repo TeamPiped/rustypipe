@@ -4,92 +4,6 @@ use serde::{Deserialize, Serialize};
 
 use crate::{dictionary, model::Language, util};
 
-pub const LANGUAGES: [Language; 83] = [
-    Language::Af,
-    Language::Am,
-    Language::Ar,
-    Language::As,
-    Language::Az,
-    Language::Be,
-    Language::Bg,
-    Language::Bn,
-    Language::Bs,
-    Language::Ca,
-    Language::Cs,
-    Language::Da,
-    Language::De,
-    Language::El,
-    Language::En,
-    Language::EnGb,
-    Language::EnIn,
-    Language::Es,
-    Language::Es419,
-    Language::EsUs,
-    Language::Et,
-    Language::Eu,
-    Language::Fa,
-    Language::Fi,
-    Language::Fil,
-    Language::Fr,
-    Language::FrCa,
-    Language::Gl,
-    Language::Gu,
-    Language::Hi,
-    Language::Hr,
-    Language::Hu,
-    Language::Hy,
-    Language::Id,
-    Language::Is,
-    Language::It,
-    Language::Iw,
-    Language::Ja,
-    Language::Ka,
-    Language::Kk,
-    Language::Km,
-    Language::Kn,
-    Language::Ko,
-    Language::Ky,
-    Language::Lo,
-    Language::Lt,
-    Language::Lv,
-    Language::Mk,
-    Language::Ml,
-    Language::Mn,
-    Language::Mr,
-    Language::Ms,
-    Language::My,
-    Language::Ne,
-    Language::Nl,
-    Language::No,
-    Language::Or,
-    Language::Pa,
-    Language::Pl,
-    Language::Pt,
-    Language::PtPt,
-    Language::Ro,
-    Language::Ru,
-    Language::Si,
-    Language::Sk,
-    Language::Sl,
-    Language::Sq,
-    Language::Sr,
-    Language::SrLatn,
-    Language::Sv,
-    Language::Sw,
-    Language::Ta,
-    Language::Te,
-    Language::Th,
-    Language::Tr,
-    Language::Uk,
-    Language::Ur,
-    Language::Uz,
-    Language::Vi,
-    Language::ZhCn,
-    Language::ZhHk,
-    Language::ZhTw,
-    Language::Zu,
-];
-
 #[derive(Debug, Copy, Clone, Serialize, Deserialize, Eq)]
 pub struct TimeAgo {
     pub n: u8,
@@ -162,18 +76,35 @@ pub fn parse(lang: Language, textual_date: &str) -> Option<TimeAgo> {
         .collect::<String>();
 
     let mut qu: u8 = util::parse_numeric(&textual_date).unwrap_or(1);
-    filtered_str.split(' ').find_map(|word| {
-        mappings
-            .get(word)
-            .map(|t| match t.unit {
-                Some(unit) => Some(TimeAgo { n: t.n * qu, unit }),
-                None => {
-                    qu = t.n;
-                    None
-                }
+
+    match lang {
+        Language::Ja | Language::ZhCn | Language::ZhHk | Language::ZhTw => {
+            filtered_str.chars().find_map(|word| {
+                mappings
+                    .get(&word.to_string())
+                    .map(|t| match t.unit {
+                        Some(unit) => Some(TimeAgo { n: t.n * qu, unit }),
+                        None => {
+                            qu = t.n;
+                            None
+                        }
+                    })
+                    .flatten()
             })
-            .flatten()
-    })
+        }
+        _ => filtered_str.split(' ').find_map(|word| {
+            mappings
+                .get(word)
+                .map(|t| match t.unit {
+                    Some(unit) => Some(TimeAgo { n: t.n * qu, unit }),
+                    None => {
+                        qu = t.n;
+                        None
+                    }
+                })
+                .flatten()
+        }),
+    }
 }
 
 #[cfg(test)]

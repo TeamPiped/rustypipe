@@ -3,11 +3,14 @@
 #[macro_use]
 mod macros;
 
+#[cfg(test)]
+mod codegen;
+
 mod cache;
 mod deobfuscate;
+mod dictionary;
 mod serializer;
 mod util;
-mod dictionary;
 
 pub mod client;
 pub mod download;
