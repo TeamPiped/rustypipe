@@ -164,7 +164,7 @@ async fn get_comment_datestrings(rp: &RustyTube, ctoken: &str) -> (Vec<String>, 
 // #[test_log::test(tokio::test)]
 #[allow(dead_code)]
 async fn download_timeago_testfiles() {
-    let json_path = Path::new("testfiles/date/timeago.json").to_path_buf();
+    let json_path = Path::new("testfiles/date/timeago_samples.json").to_path_buf();
     if json_path.exists() {
         return;
     }
@@ -312,7 +312,7 @@ struct TimeagoTable {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 struct TimeagoTableEntry {
-    cases: BTreeMap<String, u32>,
+    cases: BTreeMap<String, u8>,
     missing_plurals: HashSet<PluralCat>,
 }
 
