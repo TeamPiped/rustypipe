@@ -92,7 +92,7 @@ pub fn parse(lang: Language, textual_date: &str) -> Option<TimeAgo> {
                     .flatten()
             })
         }
-        _ => filtered_str.split(' ').find_map(|word| {
+        _ => filtered_str.split_whitespace().find_map(|word| {
             mappings
                 .get(word)
                 .map(|t| match t.unit {
@@ -111,7 +111,23 @@ pub fn parse(lang: Language, textual_date: &str) -> Option<TimeAgo> {
 mod tests {
     use std::{collections::BTreeMap, fs::File, io::BufReader, path::Path};
 
+    use rstest::rstest;
+
     use super::*;
+
+    #[rstest]
+    #[case(Language::De, "vor 1 Sekunde", Some(TimeAgo { n: 1, unit: TimeUnit::Second }))]
+    #[case(Language::Ar, "قبل ساعة واحدة", Some(TimeAgo { n: 1, unit: TimeUnit::Hour }))]
+    // No-break space
+    #[case(Language::De, "Vor 3\u{a0}Tagen aktualisiert", Some(TimeAgo { n: 3, unit: TimeUnit::Day }))]
+    fn t_parse(
+        #[case] lang: Language,
+        #[case] textual_date: &str,
+        #[case] expect: Option<TimeAgo>,
+    ) {
+        let secs_ago = parse(lang, textual_date);
+        assert_eq!(secs_ago, expect);
+    }
 
     #[test]
     fn t_testfile() {

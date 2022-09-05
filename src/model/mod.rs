@@ -1,4 +1,4 @@
-mod locale;
+pub mod locale;
 mod ordering;
 pub mod stream_filter;
 
@@ -34,6 +34,7 @@ pub struct Playlist {
     pub description: Option<String>,
     pub channel: Option<Channel>,
     pub last_update: Option<DateTime<Utc>>,
+    pub last_update_txt: Option<String>,
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]

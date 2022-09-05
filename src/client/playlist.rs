@@ -1,10 +1,11 @@
-use anyhow::{anyhow, Result};
+use anyhow::{anyhow, Context, Result};
 use reqwest::Method;
 use serde::Serialize;
 
 use crate::{
     model::{Channel, Playlist, Thumbnail, Video},
-    serializer::text::{PageType, Text, TextLink},
+    serializer::text::{PageType, TextLink},
+    util,
 };
 
 use super::{response, ClientType, ContextYT, RustyTube};
@@ -41,7 +42,9 @@ impl RustyTube {
             .await?
             .error_for_status()?;
 
-        let playlist_response = resp.json::<response::Playlist>().await?;
+        let resp_body = resp.text().await?;
+        let playlist_response =
+            serde_json::from_str::<response::Playlist>(&resp_body).context(resp_body)?;
 
         map_playlist(&playlist_response)
     }
@@ -120,55 +123,54 @@ fn map_playlist(response: &response::Playlist) -> Result<Playlist> {
 
     let (videos, ctoken) = map_playlist_items(video_items);
 
-    let thumbnail_renderer = some_or_bail!(
-        response
-            .sidebar
-            .playlist_sidebar_renderer
-            .items
-            .iter()
-            .find_map(|s| match s {
-                response::playlist::SidebarRendererItem::PlaylistSidebarPrimaryInfoRenderer {
-                    thumbnail_renderer,
-                } => Some(thumbnail_renderer),
-                _ => None,
-            }),
-        Err(anyhow!("no primary sidebar"))
-    );
+    let (thumbnails, last_update_txt) = match &response.sidebar {
+        Some(sidebar) => {
+            let primary = some_or_bail!(
+                sidebar.playlist_sidebar_renderer.items.get(0),
+                Err(anyhow!("no primary sidebar"))
+            );
 
-    let video_owner_wrap = response
-        .sidebar
-        .playlist_sidebar_renderer
-        .items
-        .iter()
-        .find_map(|s| match s {
-            response::playlist::SidebarRendererItem::PlaylistSidebarSecondaryInfoRenderer {
-                video_owner,
-            } => Some(video_owner),
-            _ => None,
-        });
-
-    let n_videos = match ctoken {
-        Some(_) => {
-            some_or_bail!(
-                match &response.header.playlist_header_renderer.num_videos_text {
-                    Text::Multiple { runs } =>
-                        if runs.len() == 2 && runs[1] == " videos" {
-                            runs[0].replace(",", "").replace(".", "").parse().ok()
-                        } else {
-                            None
-                        },
-                    _ => None,
-                },
-                Err(anyhow!("no video count"))
+            (
+                &primary
+                    .playlist_sidebar_primary_info_renderer
+                    .thumbnail_renderer
+                    .playlist_video_thumbnail_renderer
+                    .thumbnail
+                    .thumbnails,
+                primary
+                    .playlist_sidebar_primary_info_renderer
+                    .stats
+                    .get(2)
+                    .map(|t| t.to_owned()),
             )
         }
-        None => videos.len() as u32,
+        None => {
+            let header_banner = some_or_bail!(
+                &response
+                    .header
+                    .playlist_header_renderer
+                    .playlist_header_banner,
+                Err(anyhow!("no thumbnail found"))
+            );
+
+            let last_update_txt = response
+                .header
+                .playlist_header_renderer
+                .byline
+                .get(1)
+                .map(|b| b.playlist_byline_renderer.text.to_owned());
+
+            (
+                &header_banner
+                    .hero_playlist_thumbnail_renderer
+                    .thumbnail
+                    .thumbnails,
+                last_update_txt,
+            )
+        }
     };
 
-    let thumbnails = thumbnail_renderer
-        .playlist_video_thumbnail_renderer
-        .thumbnail
-        .thumbnails
+    let thumbnails = thumbnails
         .iter()
         .map(|t| Thumbnail {
             url: t.url.to_owned(),
@@ -176,6 +178,16 @@ fn map_playlist(response: &response::Playlist) -> Result<Playlist> {
             height: t.height,
         })
         .collect::<Vec<_>>();
+
+    let n_videos = match ctoken {
+        Some(_) => {
+            ok_or_bail!(
+                util::parse_numeric(&response.header.playlist_header_renderer.num_videos_text),
+                Err(anyhow!("no video count"))
+            )
+        }
+        None => videos.len() as u32,
+    };
 
     let id = response
         .header
@@ -189,8 +201,8 @@ fn map_playlist(response: &response::Playlist) -> Result<Playlist> {
         .description_text
         .to_owned();
 
-    let channel = match video_owner_wrap {
-        Some(o) => match &o.video_owner_renderer.title {
+    let channel = match &response.header.playlist_header_renderer.owner_text {
+        Some(owner_text) => match owner_text {
             TextLink::Browse {
                 text,
                 page_type,
@@ -217,6 +229,7 @@ fn map_playlist(response: &response::Playlist) -> Result<Playlist> {
         description,
         channel,
         last_update: None,
+        last_update_txt,
     })
 }
 

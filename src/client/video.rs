@@ -22,7 +22,7 @@ struct QVideoCont {
 }
 
 impl RustyTube {
-    pub async fn get_video_response(&self, video_id: &str) -> Result<response::Video> {
+    async fn get_video_response(&self, video_id: &str) -> Result<response::Video> {
         let client = self.get_ytclient(ClientType::Desktop);
         let context = client.get_context(true).await;
         let request_body = QVideo {
@@ -43,7 +43,7 @@ impl RustyTube {
         Ok(resp.json::<response::Video>().await?)
     }
 
-    pub async fn get_comments_response(&self, ctoken: &str) -> Result<response::VideoComments> {
+    async fn get_comments_response(&self, ctoken: &str) -> Result<response::VideoComments> {
         let client = self.get_ytclient(ClientType::Desktop);
         let context = client.get_context(true).await;
         let request_body = QVideoCont {
@@ -62,7 +62,7 @@ impl RustyTube {
         Ok(resp.json::<response::VideoComments>().await?)
     }
 
-    pub async fn get_recommendations_response(
+    async fn get_recommendations_response(
         &self,
         ctoken: &str,
     ) -> Result<response::VideoRecommendations> {

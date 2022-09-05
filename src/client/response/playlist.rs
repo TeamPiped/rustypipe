@@ -2,18 +2,16 @@ use serde::Deserialize;
 use serde_with::serde_as;
 use serde_with::{json::JsonString, DefaultOnError, VecSkipError};
 
-use crate::serializer::text::{Text, TextLink};
+use crate::serializer::text::TextLink;
 
-use super::{
-    ContentRenderer, ContentsRenderer, Thumbnails, ThumbnailsWrap, VideoListItem, VideoOwner,
-};
+use super::{ContentRenderer, ContentsRenderer, Thumbnails, ThumbnailsWrap, VideoListItem};
 
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Playlist {
     pub contents: Contents,
     pub header: Header,
-    pub sidebar: Sidebar,
+    pub sidebar: Option<Sidebar>,
 }
 
 #[serde_as]
@@ -93,8 +91,35 @@ pub struct HeaderRenderer {
     #[serde(default)]
     #[serde_as(as = "DefaultOnError<Option<crate::serializer::text::Text>>")]
     pub description_text: Option<String>,
-    /// `"495", " videos"`
-    pub num_videos_text: Text,
+    #[serde_as(as = "crate::serializer::text::Text")]
+    pub num_videos_text: String,
+    #[serde_as(as = "Option<crate::serializer::text::TextLink>")]
+    pub owner_text: Option<TextLink>,
+
+    // Alternative layout
+    pub playlist_header_banner: Option<PlaylistHeaderBanner>,
+    #[serde(default)]
+    pub byline: Vec<Byline>,
+}
+
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct PlaylistHeaderBanner {
+    pub hero_playlist_thumbnail_renderer: ThumbnailsWrap,
+}
+
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct Byline {
+    pub playlist_byline_renderer: BylineRenderer,
+}
+
+#[serde_as]
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct BylineRenderer {
+    #[serde_as(as = "crate::serializer::text::Text")]
+    pub text: String,
 }
 
 #[derive(Clone, Debug, Deserialize)]
@@ -108,22 +133,25 @@ pub struct Sidebar {
 #[serde(rename_all = "camelCase")]
 pub struct SidebarRenderer {
     #[serde_as(as = "VecSkipError<_>")]
-    pub items: Vec<SidebarRendererItem>,
+    pub items: Vec<SidebarItemPrimary>,
 }
 
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub enum SidebarRendererItem {
-    #[serde(rename_all = "camelCase")]
-    PlaylistSidebarPrimaryInfoRenderer {
-        thumbnail_renderer: PlaylistThumbnailRenderer,
-        // - `"495", " videos"`
-        // - `"3,310,996 views"`
-        // - `"Last updated on ", "Aug 7, 2022"`
-        // stats: Vec<Text>,
-    },
-    #[serde(rename_all = "camelCase")]
-    PlaylistSidebarSecondaryInfoRenderer { video_owner: VideoOwner },
+pub struct SidebarItemPrimary {
+    pub playlist_sidebar_primary_info_renderer: SidebarPrimaryInfoRenderer,
+}
+
+#[serde_as]
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct SidebarPrimaryInfoRenderer {
+    pub thumbnail_renderer: PlaylistThumbnailRenderer,
+    // - `"495", " videos"`
+    // - `"3,310,996 views"`
+    // - `"Last updated on ", "Aug 7, 2022"`
+    #[serde_as(as = "Vec<crate::serializer::text::Text>")]
+    pub stats: Vec<String>,
 }
 
 #[derive(Clone, Debug, Deserialize)]
