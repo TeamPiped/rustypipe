@@ -59,8 +59,36 @@ pub fn parse_numeric<F>(string: &str) -> Result<F, F::Err>
 where
     F: FromStr,
 {
-    static NUM_PATTERN: Lazy<Regex> = Lazy::new(|| Regex::new("\\D+").unwrap());
-    NUM_PATTERN.replace_all(string, "").parse()
+    let mut buf = String::new();
+    for c in string.chars() {
+        if c.is_ascii_digit() {
+            buf.push(c);
+        }
+    }
+    buf.parse()
+}
+
+/// Parse all numbers occurring in a string and reurn them as a vec
+pub fn parse_numeric_vec<F>(string: &str) -> Vec<F>
+where
+    F: FromStr,
+{
+    let mut numbers = vec![];
+
+    let mut buf = String::new();
+    for c in string.chars() {
+        if c.is_ascii_digit() {
+            buf.push(c);
+        } else if !buf.is_empty() {
+            buf.parse::<F>().map_or((), |n| numbers.push(n));
+            buf.clear();
+        }
+    }
+    if !buf.is_empty() {
+        buf.parse::<F>().map_or((), |n| numbers.push(n));
+    }
+
+    numbers
 }
 
 #[cfg(test)]
@@ -74,6 +102,15 @@ mod tests {
     #[case("4 Hello World 2", 42)]
     fn t_parse_num(#[case] string: &str, #[case] expect: u32) {
         let n = parse_numeric::<u32>(string).unwrap();
+        assert_eq!(n, expect);
+    }
+
+    #[rstest]
+    #[case("15.03.2022", vec![15, 3, 2022])]
+    #[case("4 Hello World 2", vec![4, 2])]
+    #[case("最后更新时间：2020年1月3日", vec![2020, 1, 3])]
+    fn t_parse_numeric_vec(#[case] string: &str, #[case] expect: Vec<u32>) {
+        let n = parse_numeric_vec::<u32>(string);
         assert_eq!(n, expect);
     }
 }

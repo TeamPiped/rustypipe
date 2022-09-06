@@ -1,5 +1,7 @@
 {
   "af": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "dae": "D",
       "dag": "D",
@@ -14,9 +16,26 @@
       "uur": "h",
       "week": "W",
       "weke": "W"
+    },
+    "date_order": "DY",
+    "months": {
+      "Apr.": 4,
+      "Aug.": 8,
+      "Des.": 12,
+      "Feb.": 2,
+      "Jan.": 1,
+      "Jul.": 7,
+      "Jun.": 6,
+      "Mei": 5,
+      "Mrt.": 3,
+      "Nov.": 11,
+      "Okt.": 10,
+      "Sep.": 9
     }
   },
   "am": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "ሰከንድ": "s",
       "ሰከንዶች": "s",
@@ -32,9 +51,26 @@
       "ዓመት": "Y",
       "ደቂቃ": "m",
       "ደቂቃዎች": "m"
+    },
+    "date_order": "DY",
+    "months": {
+      "ማርች": 3,
+      "ሜይ": 5,
+      "ሴፕቴ": 9,
+      "ኖቬም": 11,
+      "ኤፕሪ": 4,
+      "ኦክቶ": 10,
+      "ኦገስ": 8,
+      "ዲሴም": 12,
+      "ጁላይ": 7,
+      "ጁን": 6,
+      "ጃንዩ": 1,
+      "ፌብሩ": 2
     }
   },
   "ar": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "أسابيع": "W",
       "أسبوع": "W",
@@ -60,9 +96,13 @@
       "يوم": "D",
       "يومين": "2D",
       "يومًا": "D"
-    }
+    },
+    "date_order": "DMY",
+    "months": {}
   },
   "as": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "ঘণ্টা": "h",
       "ছেকেণ্ড": "s",
@@ -71,9 +111,13 @@
       "মাহ": "M",
       "মিনিট": "m",
       "সপ্তাহ": "W"
-    }
+    },
+    "date_order": "DMY",
+    "months": {}
   },
   "az": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "ay": "M",
       "dəqiqə": "m",
@@ -82,9 +126,26 @@
       "il": "Y",
       "saat": "h",
       "saniyə": "s"
+    },
+    "date_order": "DY",
+    "months": {
+      "apr": 4,
+      "avq": 8,
+      "dek": 12,
+      "fev": 2,
+      "iyl": 7,
+      "iyn": 6,
+      "mar": 3,
+      "may": 5,
+      "noy": 11,
+      "okt": 10,
+      "sen": 9,
+      "yan": 1
     }
   },
   "be": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "гадзін": "h",
       "гадзіну": "h",
@@ -110,9 +171,26 @@
       "хвілін": "m",
       "хвіліну": "m",
       "хвіліны": "m"
+    },
+    "date_order": "DY",
+    "months": {
+      "вер": 9,
+      "жні": 8,
+      "кас": 10,
+      "кра": 4,
+      "лют": 2,
+      "ліп": 7,
+      "ліс": 11,
+      "мая": 5,
+      "сак": 3,
+      "сне": 12,
+      "сту": 1,
+      "чэр": 6
     }
   },
   "bg": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "година": "Y",
       "години": "Y",
@@ -128,9 +206,13 @@
       "секунди": "s",
       "час": "h",
       "часа": "h"
-    }
+    },
+    "date_order": "DMY",
+    "months": {}
   },
   "bn": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "ঘন্টা": "h",
       "দিন": "D",
@@ -139,9 +221,26 @@
       "মিনিট": "m",
       "সপ্তাহ": "W",
       "সেকেন্ড": "s"
+    },
+    "date_order": "DY",
+    "months": {
+      "অক্টোবর,": 10,
+      "আগস্ট,": 8,
+      "এপ্রিল,": 4,
+      "জানু,": 1,
+      "জুন,": 6,
+      "জুলাই,": 7,
+      "ডিসেম্বর,": 12,
+      "নভেম্বর,": 11,
+      "ফেব,": 2,
+      "মার্চ,": 3,
+      "মে,": 5,
+      "সেপ্টেম্বর,": 9
     }
   },
   "bs": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "dan": "D",
       "dana": "D",
@@ -162,9 +261,26 @@
       "sekunde": "s",
       "sekundi": "s",
       "sekundu": "s"
+    },
+    "date_order": "DY",
+    "months": {
+      "apr": 4,
+      "aug": 8,
+      "dec": 12,
+      "feb": 2,
+      "jan": 1,
+      "jul": 7,
+      "jun": 6,
+      "maj": 5,
+      "mar": 3,
+      "nov": 11,
+      "okt": 10,
+      "sep": 9
     }
   },
   "ca": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "any": "Y",
       "anys": "Y",
@@ -180,9 +296,26 @@
       "segons": "s",
       "setmana": "W",
       "setmanes": "W"
+    },
+    "date_order": "DY",
+    "months": {
+      "des.": 12,
+      "d’abr.": 4,
+      "d’ag.": 8,
+      "d’oct.": 10,
+      "febr.": 2,
+      "gen.": 1,
+      "jul.": 7,
+      "juny": 6,
+      "maig": 5,
+      "març": 3,
+      "nov.": 11,
+      "set.": 9
     }
   },
   "cs": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "dnem": "D",
       "dny": "D",
@@ -199,9 +332,13 @@
       "sekundou": "s",
       "týdnem": "W",
       "týdny": "W"
-    }
+    },
+    "date_order": "DMY",
+    "months": {}
   },
   "da": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "dag": "D",
       "dage": "D",
@@ -216,9 +353,26 @@
       "uge": "W",
       "uger": "W",
       "år": "Y"
+    },
+    "date_order": "DY",
+    "months": {
+      "apr.": 4,
+      "aug.": 8,
+      "dec.": 12,
+      "feb.": 2,
+      "jan.": 1,
+      "jul.": 7,
+      "jun.": 6,
+      "maj": 5,
+      "mar.": 3,
+      "nov.": 11,
+      "okt.": 10,
+      "sep.": 9
     }
   },
   "de": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "jahr": "Y",
       "jahren": "Y",
@@ -234,9 +388,13 @@
       "tagen": "D",
       "woche": "W",
       "wochen": "W"
-    }
+    },
+    "date_order": "DMY",
+    "months": {}
   },
   "el": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "έτη": "Y",
       "έτος": "Y",
@@ -252,10 +410,29 @@
       "μήνες": "M",
       "ώρα": "h",
       "ώρες": "h"
+    },
+    "date_order": "DY",
+    "months": {
+      "Απρ": 4,
+      "Αυγ": 8,
+      "Δεκ": 12,
+      "Ιαν": 1,
+      "Ιουλ": 7,
+      "Ιουν": 6,
+      "Μαΐ": 5,
+      "Μαρ": 3,
+      "Νοε": 11,
+      "Οκτ": 10,
+      "Σεπ": 9,
+      "Φεβ": 2
     }
   },
   "en": {
-    "equivalent": ["en-GB", "en-IN"],
+    "equivalent": [
+      "en-GB",
+      "en-IN"
+    ],
+    "by_char": false,
     "timeago_tokens": {
       "day": "D",
       "days": "D",
@@ -271,10 +448,29 @@
       "weeks": "W",
       "year": "Y",
       "years": "Y"
+    },
+    "date_order": "DY",
+    "months": {
+      "Apr": 4,
+      "Aug": 8,
+      "Dec": 12,
+      "Feb": 2,
+      "Jan": 1,
+      "Jul": 7,
+      "Jun": 6,
+      "Mar": 3,
+      "May": 5,
+      "Nov": 11,
+      "Oct": 10,
+      "Sep": 9
     }
   },
   "es": {
-    "equivalent": ["es-US", "es-419"],
+    "equivalent": [
+      "es-US",
+      "es-419"
+    ],
+    "by_char": false,
     "timeago_tokens": {
       "año": "Y",
       "años": "Y",
@@ -290,9 +486,26 @@
       "segundos": "s",
       "semana": "W",
       "semanas": "W"
+    },
+    "date_order": "DY",
+    "months": {
+      "abr": 4,
+      "ago": 8,
+      "dic": 12,
+      "ene": 1,
+      "feb": 2,
+      "jul": 7,
+      "jun": 6,
+      "mar": 3,
+      "may": 5,
+      "nov": 11,
+      "oct": 10,
+      "sept": 9
     }
   },
   "et": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "aasta": "Y",
       "aastat": "Y",
@@ -310,9 +523,26 @@
       "sekundi": "s",
       "sekundit": "s",
       "tunni": "h"
+    },
+    "date_order": "DY",
+    "months": {
+      "apr": 4,
+      "aug": 8,
+      "dets": 12,
+      "jaan": 1,
+      "juuli": 7,
+      "juuni": 6,
+      "mai": 5,
+      "märts": 3,
+      "nov": 11,
+      "okt": 10,
+      "sept": 9,
+      "veebr": 2
     }
   },
   "eu": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "aste": "W",
       "astebete": "W",
@@ -324,9 +554,26 @@
       "segundo": "s",
       "urte": "Y",
       "urtebete": "Y"
+    },
+    "date_order": "YD",
+    "months": {
+      "abe.": 12,
+      "abu.": 8,
+      "api.": 4,
+      "aza.": 11,
+      "eka.": 6,
+      "ira.": 9,
+      "mai.": 5,
+      "mar.": 3,
+      "ots.": 2,
+      "urr.": 10,
+      "urt.": 1,
+      "uzt.": 7
     }
   },
   "fa": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "ثانیه": "s",
       "دقیقه": "m",
@@ -335,9 +582,26 @@
       "سال": "Y",
       "ماه": "M",
       "هفته": "W"
+    },
+    "date_order": "DY",
+    "months": {
+      "آوریل": 4,
+      "اوت": 8,
+      "اکتبر": 10,
+      "دسامبر": 12,
+      "سپتامبر": 9,
+      "فوریه": 2,
+      "مارس": 3,
+      "مه": 5,
+      "نوامبر": 11,
+      "ژانویه": 1,
+      "ژوئن": 6,
+      "ژوئیه": 7
     }
   },
   "fi": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "kuukausi": "M",
       "kuukautta": "M",
@@ -353,9 +617,13 @@
       "viikkoa": "W",
       "vuosi": "Y",
       "vuotta": "Y"
-    }
+    },
+    "date_order": "DMY",
+    "months": {}
   },
   "fil": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "araw": "D",
       "buwan": "M",
@@ -364,10 +632,28 @@
       "oras": "h",
       "segundo": "s",
       "taon": "Y"
+    },
+    "date_order": "DY",
+    "months": {
+      "Abr": 4,
+      "Ago": 8,
+      "Dis": 12,
+      "Ene": 1,
+      "Hul": 7,
+      "Hun": 6,
+      "Mar": 3,
+      "May": 5,
+      "Nob": 11,
+      "Okt": 10,
+      "Peb": 2,
+      "Set": 9
     }
   },
   "fr": {
-    "equivalent": ["fr-CA"],
+    "equivalent": [
+      "fr-CA"
+    ],
+    "by_char": false,
     "timeago_tokens": {
       "an": "Y",
       "ans": "Y",
@@ -382,9 +668,26 @@
       "secondes": "s",
       "semaine": "W",
       "semaines": "W"
+    },
+    "date_order": "DY",
+    "months": {
+      "août": 8,
+      "avr.": 4,
+      "déc.": 12,
+      "févr.": 2,
+      "janv.": 1,
+      "juil.": 7,
+      "juin": 6,
+      "mai": 5,
+      "mars": 3,
+      "nov.": 11,
+      "oct.": 10,
+      "sept.": 9
     }
   },
   "gl": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "ano": "Y",
       "anos": "Y",
@@ -400,9 +703,26 @@
       "segundos": "s",
       "semana": "W",
       "semanas": "W"
+    },
+    "date_order": "DY",
+    "months": {
+      "abr.": 4,
+      "ago.": 8,
+      "dec.": 12,
+      "feb.": 2,
+      "maio": 5,
+      "mar.": 3,
+      "nov.": 11,
+      "out.": 10,
+      "set.": 9,
+      "xan.": 1,
+      "xul.": 7,
+      "xuño": 6
     }
   },
   "gu": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "અઠવાડિયા": "W",
       "કલાક": "h",
@@ -411,9 +731,26 @@
       "મિનિટ": "m",
       "વર્ષ": "Y",
       "સેકંડ": "s"
+    },
+    "date_order": "DY",
+    "months": {
+      "એપ્રિલ,": 4,
+      "ઑક્ટો,": 10,
+      "ઑગસ્ટ,": 8,
+      "જાન્યુ,": 1,
+      "જુલાઈ,": 7,
+      "જૂન,": 6,
+      "ડિસે,": 12,
+      "નવે,": 11,
+      "ફેબ્રુ,": 2,
+      "માર્ચ,": 3,
+      "મે,": 5,
+      "સપ્ટે,": 9
     }
   },
   "hi": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "घंटे": "h",
       "दिन": "D",
@@ -422,9 +759,26 @@
       "वर्ष": "Y",
       "सप्ताह": "W",
       "सेकंड": "s"
+    },
+    "date_order": "DY",
+    "months": {
+      "अक्तू॰": 10,
+      "अग॰": 8,
+      "अप्रैल": 4,
+      "जन॰": 1,
+      "जुल॰": 7,
+      "जून": 6,
+      "दिस॰": 12,
+      "नव॰": 11,
+      "फ़र॰": 2,
+      "मई": 5,
+      "मार्च": 3,
+      "सित॰": 9
     }
   },
   "hr": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "dan": "D",
       "dana": "D",
@@ -445,9 +799,26 @@
       "sekundu": "s",
       "tjedan": "W",
       "tjedna": "W"
+    },
+    "date_order": "DY",
+    "months": {
+      "kol": 8,
+      "lip": 6,
+      "lis": 10,
+      "ožu": 3,
+      "pro": 12,
+      "ruj": 9,
+      "sij": 1,
+      "srp": 7,
+      "stu": 11,
+      "svi": 5,
+      "tra": 4,
+      "velj": 2
     }
   },
   "hu": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "hete": "W",
       "héttel": "W",
@@ -463,9 +834,26 @@
       "évvel": "Y",
       "órája": "h",
       "órával": "h"
+    },
+    "date_order": "YD",
+    "months": {
+      "aug.": 8,
+      "dec.": 12,
+      "febr.": 2,
+      "jan.": 1,
+      "júl.": 7,
+      "jún.": 6,
+      "máj.": 5,
+      "márc.": 3,
+      "nov.": 11,
+      "okt.": 10,
+      "szept.": 9,
+      "ápr.": 4
     }
   },
   "hy": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "ամիս": "M",
       "ժամ": "h",
@@ -474,9 +862,26 @@
       "տարի": "Y",
       "րոպե": "m",
       "օր": "D"
+    },
+    "date_order": "DY",
+    "months": {
+      "ապր,": 4,
+      "դեկ,": 12,
+      "հլս,": 7,
+      "հնս,": 6,
+      "հնվ,": 1,
+      "հոկ,": 10,
+      "մյս,": 5,
+      "մրտ,": 3,
+      "նոյ,": 11,
+      "սեպ,": 9,
+      "փտվ,": 2,
+      "օգս,": 8
     }
   },
   "id": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "bulan": "M",
       "detik": "s",
@@ -485,9 +890,26 @@
       "menit": "m",
       "minggu": "W",
       "tahun": "Y"
+    },
+    "date_order": "DY",
+    "months": {
+      "Agu": 8,
+      "Apr": 4,
+      "Des": 12,
+      "Feb": 2,
+      "Jan": 1,
+      "Jul": 7,
+      "Jun": 6,
+      "Mar": 3,
+      "Mei": 5,
+      "Nov": 11,
+      "Okt": 10,
+      "Sep": 9
     }
   },
   "is": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "degi": "D",
       "dögum": "D",
@@ -503,9 +925,26 @@
       "vikum": "W",
       "ári": "Y",
       "árum": "Y"
+    },
+    "date_order": "DY",
+    "months": {
+      "apr.": 4,
+      "des.": 12,
+      "feb.": 2,
+      "jan.": 1,
+      "júl.": 7,
+      "jún.": 6,
+      "mar.": 3,
+      "maí": 5,
+      "nóv.": 11,
+      "okt.": 10,
+      "sep.": 9,
+      "ágú.": 8
     }
   },
   "it": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "anni": "Y",
       "anno": "Y",
@@ -521,9 +960,26 @@
       "secondo": "s",
       "settimana": "W",
       "settimane": "W"
+    },
+    "date_order": "DY",
+    "months": {
+      "ago": 8,
+      "apr": 4,
+      "dic": 12,
+      "feb": 2,
+      "gen": 1,
+      "giu": 6,
+      "lug": 7,
+      "mag": 5,
+      "mar": 3,
+      "nov": 11,
+      "ott": 10,
+      "set": 9
     }
   },
   "iw": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "דקה": "m",
       "דקות": "m",
@@ -545,21 +1001,41 @@
       "שעות": "h",
       "שעתיים": "2h",
       "שתי": "2"
+    },
+    "date_order": "DY",
+    "months": {
+      "באוג׳": 8,
+      "באוק׳": 10,
+      "באפר׳": 4,
+      "בדצמ׳": 12,
+      "ביולי": 7,
+      "ביוני": 6,
+      "בינו׳": 1,
+      "במאי": 5,
+      "במרץ": 3,
+      "בנוב׳": 11,
+      "בספט׳": 9,
+      "בפבר׳": 2
     }
   },
   "ja": {
+    "equivalent": [],
     "by_char": true,
     "timeago_tokens": {
-      "月": "M",
       "分": "m",
       "年": "Y",
       "日": "D",
       "時": "h",
+      "月": "M",
       "秒": "s",
       "週": "W"
-    }
+    },
+    "date_order": "YMD",
+    "months": {}
   },
   "ka": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "დღის": "D",
       "თვის": "M",
@@ -568,9 +1044,26 @@
       "წამის": "s",
       "წლის": "Y",
       "წუთის": "m"
+    },
+    "date_order": "DY",
+    "months": {
+      "აგვ.": 8,
+      "აპრ.": 4,
+      "დეკ.": 12,
+      "თებ.": 2,
+      "იან.": 1,
+      "ივლ.": 7,
+      "ივნ.": 6,
+      "მაი.": 5,
+      "მარ.": 3,
+      "ნოე.": 11,
+      "ოქტ.": 10,
+      "სექ.": 9
     }
   },
   "kk": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "ай": "M",
       "апта": "W",
@@ -579,9 +1072,26 @@
       "минут": "m",
       "сағат": "h",
       "секунд": "s"
+    },
+    "date_order": "YD",
+    "months": {
+      "ақп.": 2,
+      "жел.": 12,
+      "мам.": 5,
+      "мау.": 6,
+      "нау.": 3,
+      "сәу.": 4,
+      "там.": 8,
+      "шіл.": 7,
+      "қаз.": 10,
+      "қар.": 11,
+      "қаң.": 1,
+      "қыр.": 9
     }
   },
   "km": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "ខែមុន": "M",
       "ឆ្នាំមុន": "Y",
@@ -590,9 +1100,26 @@
       "ម៉ោងមុន": "h",
       "វិនាទីមុន": "s",
       "សប្ដាហ៍មុន": "W"
+    },
+    "date_order": "DY",
+    "months": {
+      "កក្កដា": 7,
+      "កញ្ញា": 9,
+      "កុម្ភៈ": 2,
+      "តុលា": 10,
+      "ធ្នូ": 12,
+      "មករា": 1,
+      "មិថុនា": 6,
+      "មីនា": 3,
+      "មេសា": 4,
+      "វិច្ឆិកា": 11,
+      "សីហា": 8,
+      "ឧសភា": 5
     }
   },
   "kn": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "ಗಂಟೆ": "h",
       "ಗಂಟೆಗಳ": "h",
@@ -608,9 +1135,26 @@
       "ವಾರದ": "W",
       "ಸೆಕೆಂಡುಗಳ": "s",
       "ಸೆಕೆಂಡ್": "s"
+    },
+    "date_order": "DY",
+    "months": {
+      "ಅಕ್ಟೋ": 10,
+      "ಆಗ": 8,
+      "ಏಪ್ರಿ": 4,
+      "ಜನವರಿ": 1,
+      "ಜುಲೈ": 7,
+      "ಜೂನ್": 6,
+      "ಡಿಸೆಂ": 12,
+      "ನವೆಂ": 11,
+      "ಫೆಬ್ರವರಿ": 2,
+      "ಮಾರ್ಚ್": 3,
+      "ಮೇ": 5,
+      "ಸೆಪ್ಟೆಂ": 9
     }
   },
   "ko": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "개월": "M",
       "년": "Y",
@@ -619,9 +1163,13 @@
       "일": "D",
       "주": "W",
       "초": "s"
-    }
+    },
+    "date_order": "YMD",
+    "months": {}
   },
   "ky": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "ай": "M",
       "апта": "W",
@@ -630,9 +1178,26 @@
       "мүнөт": "m",
       "саат": "h",
       "секунд": "s"
+    },
+    "date_order": "YD",
+    "months": {
+      "-авг.": 8,
+      "-апр.": 4,
+      "-дек.": 12,
+      "-июл.": 7,
+      "-июн.": 6,
+      "-май": 5,
+      "-мар.": 3,
+      "-ноя.": 11,
+      "-окт.": 10,
+      "-сен.": 9,
+      "-фев.": 2,
+      "-янв.": 1
     }
   },
   "lo": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "ຊົ່ວໂມງກ່ອນ": "h",
       "ນາທີກ່ອນ": "m",
@@ -641,9 +1206,26 @@
       "ວິນາທີກ່ອນ": "s",
       "ອາທິດກ່ອນ": "W",
       "ເດືອນກ່ອນ": "M"
+    },
+    "date_order": "DY",
+    "months": {
+      "ກ.ຍ.": 9,
+      "ກ.ພ.": 2,
+      "ກ.ລ.": 7,
+      "ຕ.ລ.": 10,
+      "ທ.ວ.": 12,
+      "ພ.ຈ.": 11,
+      "ພ.ພ.": 5,
+      "ມ.ກ.": 1,
+      "ມ.ນ.": 3,
+      "ມ.ສ.": 4,
+      "ມິ.ຖ.": 6,
+      "ສ.ຫ.": 8
     }
   },
   "lt": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "dienas": "D",
       "dieną": "D",
@@ -665,9 +1247,13 @@
       "valandas": "h",
       "valandą": "h",
       "valandų": "h"
-    }
+    },
+    "date_order": "YMD",
+    "months": {}
   },
   "lv": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "dienas": "D",
       "dienām": "D",
@@ -683,9 +1269,26 @@
       "sekundēm": "s",
       "stundas": "h",
       "stundām": "h"
+    },
+    "date_order": "YD",
+    "months": {
+      "apr.": 4,
+      "aug.": 8,
+      "dec.": 12,
+      "febr.": 2,
+      "janv.": 1,
+      "jūl.": 7,
+      "jūn.": 6,
+      "maijs": 5,
+      "marts": 3,
+      "nov.": 11,
+      "okt.": 10,
+      "sept.": 9
     }
   },
   "mk": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "година": "Y",
       "години": "Y",
@@ -701,9 +1304,13 @@
       "секунди": "s",
       "час": "h",
       "часа": "h"
-    }
+    },
+    "date_order": "DMY",
+    "months": {}
   },
   "ml": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "ആഴ്ച": "W",
       "ദിവസം": "D",
@@ -712,20 +1319,41 @@
       "മിനിറ്റ്": "m",
       "വർഷം": "Y",
       "സെക്കൻഡ്": "s"
+    },
+    "date_order": "YD",
+    "months": {
+      "ഏപ്രി": 4,
+      "ഒക്ടോ": 10,
+      "ഓഗ": 8,
+      "ജനു": 1,
+      "ജൂലൈ": 7,
+      "ജൂൺ": 6,
+      "ഡിസം": 12,
+      "നവം": 11,
+      "ഫെബ്രു": 2,
+      "മാർ": 3,
+      "മേയ്": 5,
+      "സെപ്റ്റം": 9
     }
   },
   "mn": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
-      "хоногийн": "W",
       "жилийн": "Y",
       "минутын": "m",
       "сарын": "M",
       "секундын": "s",
+      "хоногийн": "W",
       "цагийн": "h",
       "өдрийн": "D"
-    }
+    },
+    "date_order": "YMD",
+    "months": {}
   },
   "mr": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "आठवड्यांपूर्वी": "W",
       "आठवड्यापूर्वी": "W",
@@ -741,9 +1369,26 @@
       "वर्षापूर्वी": "Y",
       "सेकंदांपूर्वी": "s",
       "सेकंदापूर्वी": "s"
+    },
+    "date_order": "DY",
+    "months": {
+      "एप्रि,": 4,
+      "ऑक्टो,": 10,
+      "ऑग,": 8,
+      "जाने,": 1,
+      "जुलै,": 7,
+      "जून,": 6,
+      "डिसें,": 12,
+      "नोव्हें,": 11,
+      "फेब्रु,": 2,
+      "मार्च,": 3,
+      "मे,": 5,
+      "सप्टें,": 9
     }
   },
   "ms": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "bulan": "M",
       "hari": "D",
@@ -752,9 +1397,26 @@
       "minit": "m",
       "saat": "s",
       "tahun": "Y"
+    },
+    "date_order": "DY",
+    "months": {
+      "Apr": 4,
+      "Dis": 12,
+      "Feb": 2,
+      "Jan": 1,
+      "Jul": 7,
+      "Jun": 6,
+      "Mac": 3,
+      "Mei": 5,
+      "Nov": 11,
+      "Ogo": 8,
+      "Okt": 10,
+      "Sep": 9
     }
   },
   "my": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "စက္ကန့်": "s",
       "နာရီ": "h",
@@ -763,9 +1425,26 @@
       "မိနစ်": "m",
       "ရက်": "D",
       "လ": "M"
+    },
+    "date_order": "YD",
+    "months": {
+      "စက်": 9,
+      "ဇန်": 1,
+      "ဇူ": 7,
+      "ဇွန်": 6,
+      "ဒီ": 12,
+      "နို": 11,
+      "ဖေ": 2,
+      "မတ်": 3,
+      "မေ": 5,
+      "အောက်": 10,
+      "ဧ": 4,
+      "ဩ": 8
     }
   },
   "ne": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "घण्टा": "h",
       "दिन": "D",
@@ -774,9 +1453,26 @@
       "वर्ष": "Y",
       "सेकेन्ड": "s",
       "हप्ता": "W"
+    },
+    "date_order": "YD",
+    "months": {
+      "अक्टोबर": 10,
+      "अगस्ट": 8,
+      "अप्रिल": 4,
+      "जनवरी": 1,
+      "जुन": 6,
+      "जुलाई": 7,
+      "डिसेम्बर": 12,
+      "नोभेम्बर": 11,
+      "फेब्रुअरी": 2,
+      "मार्च": 3,
+      "मे": 5,
+      "सेप्टेम्बर": 9
     }
   },
   "nl": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "dag": "D",
       "dagen": "D",
@@ -790,9 +1486,26 @@
       "uur": "h",
       "week": "W",
       "weken": "W"
+    },
+    "date_order": "DY",
+    "months": {
+      "apr.": 4,
+      "aug.": 8,
+      "dec.": 12,
+      "feb.": 2,
+      "jan.": 1,
+      "jul.": 7,
+      "jun.": 6,
+      "mei": 5,
+      "mrt.": 3,
+      "nov.": 11,
+      "okt.": 10,
+      "sep.": 9
     }
   },
   "no": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "dag": "D",
       "dager": "D",
@@ -808,9 +1521,26 @@
       "uke": "W",
       "uker": "W",
       "år": "Y"
+    },
+    "date_order": "DY",
+    "months": {
+      "apr.": 4,
+      "aug.": 8,
+      "des.": 12,
+      "feb.": 2,
+      "jan.": 1,
+      "jul.": 7,
+      "jun.": 6,
+      "mai": 5,
+      "mar.": 3,
+      "nov.": 11,
+      "okt.": 10,
+      "sep.": 9
     }
   },
   "or": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "ଘଣ୍ଟା": "h",
       "ଦିନ": "D",
@@ -819,9 +1549,26 @@
       "ମିନିଟ୍": "m",
       "ସପ୍ତାହ": "W",
       "ସେକେଣ୍ଡ": "s"
+    },
+    "date_order": "DY",
+    "months": {
+      "ଅକ୍ଟୋବର": 10,
+      "ଅଗଷ୍ଟ": 8,
+      "ଅପ୍ରେଲ": 4,
+      "ଜାନୁଆରୀ": 1,
+      "ଜୁନ": 6,
+      "ଜୁଲାଇ": 7,
+      "ଡିସେମ୍ବର": 12,
+      "ନଭେମ୍ବର": 11,
+      "ଫେବୃଆରୀ": 2,
+      "ମଇ": 5,
+      "ମାର୍ଚ୍ଚ": 3,
+      "ସେପ୍ଟେମ୍ବର": 9
     }
   },
   "pa": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "ਘੰਟਾ": "h",
       "ਘੰਟੇ": "h",
@@ -833,9 +1580,26 @@
       "ਸਾਲ": "Y",
       "ਹਫ਼ਤਾ": "W",
       "ਹਫ਼ਤੇ": "W"
+    },
+    "date_order": "DY",
+    "months": {
+      "ਅਕਤੂ": 10,
+      "ਅਗ": 8,
+      "ਅਪ੍ਰੈ": 4,
+      "ਜਨ": 1,
+      "ਜੁਲਾ": 7,
+      "ਜੂਨ": 6,
+      "ਦਸੰ": 12,
+      "ਨਵੰ": 11,
+      "ਫ਼ਰ": 2,
+      "ਮਈ": 5,
+      "ਮਾਰਚ": 3,
+      "ਸਤੰ": 9
     }
   },
   "pl": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "dni": "D",
       "dzień": "D",
@@ -856,10 +1620,28 @@
       "sekundę": "s",
       "tydzień": "W",
       "tygodnie": "W"
+    },
+    "date_order": "DY",
+    "months": {
+      "cze": 6,
+      "gru": 12,
+      "kwi": 4,
+      "lip": 7,
+      "lis": 11,
+      "lut": 2,
+      "maj": 5,
+      "mar": 3,
+      "paź": 10,
+      "sie": 8,
+      "sty": 1,
+      "wrz": 9
     }
   },
   "pt": {
-    "equivalent": ["pt-PT"],
+    "equivalent": [
+      "pt-PT"
+    ],
+    "by_char": false,
     "timeago_tokens": {
       "ano": "Y",
       "anos": "Y",
@@ -875,9 +1657,26 @@
       "segundos": "s",
       "semana": "W",
       "semanas": "W"
+    },
+    "date_order": "DY",
+    "months": {
+      "abr.": 4,
+      "ago.": 8,
+      "dez.": 12,
+      "fev.": 2,
+      "jan.": 1,
+      "jul.": 7,
+      "jun.": 6,
+      "mai.": 5,
+      "mar.": 3,
+      "nov.": 11,
+      "out.": 10,
+      "set.": 9
     }
   },
   "ro": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "an": "Y",
       "ani": "Y",
@@ -893,9 +1692,26 @@
       "săptămână": "W",
       "zi": "D",
       "zile": "D"
+    },
+    "date_order": "DY",
+    "months": {
+      "apr.": 4,
+      "aug.": 8,
+      "dec.": 12,
+      "feb.": 2,
+      "ian.": 1,
+      "iul.": 7,
+      "iun.": 6,
+      "mai": 5,
+      "mar.": 3,
+      "nov.": 11,
+      "oct.": 10,
+      "sept.": 9
     }
   },
   "ru": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "год": "Y",
       "года": "Y",
@@ -917,9 +1733,26 @@
       "час": "h",
       "часа": "h",
       "часов": "h"
+    },
+    "date_order": "DY",
+    "months": {
+      "авг.": 8,
+      "апр.": 4,
+      "дек.": 12,
+      "июл.": 7,
+      "июн.": 6,
+      "мар.": 3,
+      "мая": 5,
+      "нояб.": 11,
+      "окт.": 10,
+      "сент.": 9,
+      "февр.": 2,
+      "янв.": 1
     }
   },
   "si": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "තත්පර": "s",
       "දින": "D",
@@ -928,9 +1761,26 @@
       "මිනිත්තු": "m",
       "වසර": "Y",
       "සති": "W"
+    },
+    "date_order": "YD",
+    "months": {
+      "අගෝ": 8,
+      "අප්‍රේල්": 4,
+      "ඔක්": 10,
+      "ජන": 1,
+      "ජූනි": 6,
+      "ජූලි": 7,
+      "දෙසැ": 12,
+      "නොවැ": 11,
+      "පෙබ": 2,
+      "මාර්තු": 3,
+      "මැයි": 5,
+      "සැප්": 9
     }
   },
   "sk": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "dňami": "D",
       "dňom": "D",
@@ -946,9 +1796,13 @@
       "sekundou": "s",
       "týždňami": "W",
       "týždňom": "W"
-    }
+    },
+    "date_order": "DMY",
+    "months": {}
   },
   "sl": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "dnem": "D",
       "dnevi": "D",
@@ -972,9 +1826,26 @@
       "urama": "h",
       "urami": "h",
       "uro": "h"
+    },
+    "date_order": "DY",
+    "months": {
+      "apr.": 4,
+      "avg.": 8,
+      "dec.": 12,
+      "feb.": 2,
+      "jan.": 1,
+      "jul.": 7,
+      "jun.": 6,
+      "maj": 5,
+      "mar.": 3,
+      "nov.": 11,
+      "okt.": 10,
+      "sep.": 9
     }
   },
   "sq": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "ditë": "D",
       "javë": "W",
@@ -986,9 +1857,26 @@
       "sekondë": "s",
       "vit": "Y",
       "vjet": "Y"
+    },
+    "date_order": "DY",
+    "months": {
+      "dhj": 12,
+      "gush": 8,
+      "jan": 1,
+      "korr": 7,
+      "maj": 5,
+      "mar": 3,
+      "nën": 11,
+      "pri": 4,
+      "qer": 6,
+      "shk": 2,
+      "sht": 9,
+      "tet": 10
     }
   },
   "sr": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "година": "Y",
       "године": "Y",
@@ -1006,9 +1894,13 @@
       "сати": "h",
       "секунде": "s",
       "секунди": "s"
-    }
+    },
+    "date_order": "DMY",
+    "months": {}
   },
   "sr-Latn": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "dan": "D",
       "dana": "D",
@@ -1027,9 +1919,13 @@
       "sati": "h",
       "sekunde": "s",
       "sekundi": "s"
-    }
+    },
+    "date_order": "DMY",
+    "months": {}
   },
   "sv": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "dag": "D",
       "dagar": "D",
@@ -1044,9 +1940,26 @@
       "vecka": "W",
       "veckor": "W",
       "år": "Y"
+    },
+    "date_order": "DY",
+    "months": {
+      "apr.": 4,
+      "aug.": 8,
+      "dec.": 12,
+      "feb.": 2,
+      "jan.": 1,
+      "juli": 7,
+      "juni": 6,
+      "maj": 5,
+      "mars": 3,
+      "nov.": 11,
+      "okt.": 10,
+      "sep.": 9
     }
   },
   "sw": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "dakika": "m",
       "miaka": "Y",
@@ -1057,9 +1970,26 @@
       "sekunde": "s",
       "siku": "D",
       "wiki": "W"
+    },
+    "date_order": "DY",
+    "months": {
+      "Ago": 8,
+      "Apr": 4,
+      "Des": 12,
+      "Feb": 2,
+      "Jan": 1,
+      "Jul": 7,
+      "Jun": 6,
+      "Mac": 3,
+      "Mei": 5,
+      "Nov": 11,
+      "Okt": 10,
+      "Sep": 9
     }
   },
   "ta": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "ஆண்டிற்கு": "Y",
       "ஆண்டுகளுக்கு": "Y",
@@ -1074,9 +2004,26 @@
       "வாரம்": "W",
       "விநாடிகளுக்கு": "s",
       "விநாடிக்கு": "s"
+    },
+    "date_order": "DY",
+    "months": {
+      "அக்.,": 10,
+      "ஆக.,": 8,
+      "ஏப்.,": 4,
+      "செப்.,": 9,
+      "ஜன.,": 1,
+      "ஜூன்,": 6,
+      "ஜூலை,": 7,
+      "டிச.,": 12,
+      "நவ.,": 11,
+      "பிப்.,": 2,
+      "மார்.,": 3,
+      "மே,": 5
     }
   },
   "te": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "గంట": "h",
       "గంటల": "h",
@@ -1092,9 +2039,26 @@
       "సంవత్సరాల": "Y",
       "సెకను": "s",
       "సెకన్ల": "s"
+    },
+    "date_order": "DY",
+    "months": {
+      "అక్టో,": 10,
+      "ఆగ,": 8,
+      "ఏప్రి,": 4,
+      "జన,": 1,
+      "జులై,": 7,
+      "జూన్,": 6,
+      "డిసెం,": 12,
+      "నవం,": 11,
+      "ఫిబ్ర,": 2,
+      "మార్చి,": 3,
+      "మే,": 5,
+      "సెప్టెం,": 9
     }
   },
   "th": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "ชั่วโมงที่ผ่านมา": "h",
       "นาทีที่ผ่านมา": "m",
@@ -1103,9 +2067,26 @@
       "วินาทีที่ผ่านมา": "s",
       "สัปดาห์ที่ผ่านมา": "W",
       "เดือนที่ผ่านมา": "M"
+    },
+    "date_order": "DY",
+    "months": {
+      "ก.ค.": 7,
+      "ก.พ.": 2,
+      "ก.ย.": 9,
+      "ต.ค.": 10,
+      "ธ.ค.": 12,
+      "พ.ค.": 5,
+      "พ.ย.": 11,
+      "ม.ค.": 1,
+      "มิ.ย.": 6,
+      "มี.ค.": 3,
+      "ส.ค.": 8,
+      "เม.ย.": 4
     }
   },
   "tr": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "ay": "M",
       "dakika": "m",
@@ -1114,9 +2095,26 @@
       "saat": "h",
       "saniye": "s",
       "yıl": "Y"
+    },
+    "date_order": "DY",
+    "months": {
+      "Ara": 12,
+      "Ağu": 8,
+      "Eki": 10,
+      "Eyl": 9,
+      "Haz": 6,
+      "Kas": 11,
+      "Mar": 3,
+      "May": 5,
+      "Nis": 4,
+      "Oca": 1,
+      "Tem": 7,
+      "Şub": 2
     }
   },
   "uk": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "годин": "h",
       "години": "h",
@@ -1138,9 +2136,26 @@
       "хвилин": "m",
       "хвилини": "m",
       "хвилину": "m"
+    },
+    "date_order": "DY",
+    "months": {
+      "бер.": 3,
+      "вер.": 9,
+      "груд.": 12,
+      "жовт.": 10,
+      "квіт.": 4,
+      "лип.": 7,
+      "лист.": 11,
+      "лют.": 2,
+      "серп.": 8,
+      "січ.": 1,
+      "трав.": 5,
+      "черв.": 6
     }
   },
   "ur": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "دن": "D",
       "دنوں": "D",
@@ -1155,9 +2170,26 @@
       "گھنٹے": "h",
       "ہفتہ": "W",
       "ہفتے": "W"
+    },
+    "date_order": "DY",
+    "months": {
+      "اپریل،": 4,
+      "اکتوبر،": 10,
+      "اگست،": 8,
+      "جنوری،": 1,
+      "جولائی،": 7,
+      "جون،": 6,
+      "دسمبر،": 12,
+      "ستمبر،": 9,
+      "فروری،": 2,
+      "مئی،": 5,
+      "مارچ،": 3,
+      "نومبر،": 11
     }
   },
   "uz": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "daqiqa": "m",
       "hafta": "W",
@@ -1166,9 +2198,26 @@
       "soat": "h",
       "soniya": "s",
       "yil": "Y"
+    },
+    "date_order": "DY",
+    "months": {
+      "-apr,": 4,
+      "-avg,": 8,
+      "-dek,": 12,
+      "-fev,": 2,
+      "-iyl,": 7,
+      "-iyn,": 6,
+      "-mar,": 3,
+      "-may,": 5,
+      "-noy,": 11,
+      "-okt,": 10,
+      "-sen,": 9,
+      "-yan,": 1
     }
   },
   "vi": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "giây": "s",
       "giờ": "h",
@@ -1178,45 +2227,58 @@
       "tháng": "M",
       "tiếng": "h",
       "tuần": "W"
-    }
+    },
+    "date_order": "DMY",
+    "months": {}
   },
   "zh-CN": {
+    "equivalent": [],
     "by_char": true,
     "timeago_tokens": {
-      "月": "M",
       "分": "m",
       "周": "W",
       "天": "D",
       "小": "h",
       "年": "Y",
+      "月": "M",
       "秒": "s"
-    }
+    },
+    "date_order": "YMD",
+    "months": {}
   },
   "zh-HK": {
+    "equivalent": [],
     "by_char": true,
     "timeago_tokens": {
-      "月": "M",
       "分": "m",
       "小": "h",
       "年": "Y",
       "日": "D",
+      "月": "M",
       "期": "W",
       "秒": "s"
-    }
+    },
+    "date_order": "YMD",
+    "months": {}
   },
   "zh-TW": {
+    "equivalent": [],
     "by_char": true,
     "timeago_tokens": {
-      "月": "M",
       "分": "m",
       "天": "D",
       "小": "h",
       "年": "Y",
+      "月": "M",
       "秒": "s",
       "週": "W"
-    }
+    },
+    "date_order": "YMD",
+    "months": {}
   },
   "zu": {
+    "equivalent": [],
+    "by_char": false,
     "timeago_tokens": {
       "amaminithi": "m",
       "amasekhondi": "s",
@@ -1232,6 +2294,21 @@
       "izinyanga": "M",
       "osukwini": "D",
       "unyaka": "Y"
+    },
+    "date_order": "DY",
+    "months": {
+      "ka-Aga": 8,
+      "ka-Dis": 12,
+      "ka-Eph": 4,
+      "ka-Feb": 2,
+      "ka-Jan": 1,
+      "ka-Jul": 7,
+      "ka-Jun": 6,
+      "ka-Mas": 3,
+      "ka-Mey": 5,
+      "ka-Nov": 11,
+      "ka-Okt": 10,
+      "ka-Sep": 9
     }
   }
 }

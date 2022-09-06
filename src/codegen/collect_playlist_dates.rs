@@ -1,12 +1,19 @@
 #![cfg(test)]
 
-use std::{collections::BTreeMap, fs::File, path::Path};
+use std::{
+    collections::{BTreeMap, HashMap},
+    fs::File,
+    hash::Hash,
+    io::BufReader,
+    path::Path,
+};
 
 use serde::{Deserialize, Serialize};
 
 use crate::{
     client::RustyTube,
     model::{locale::LANGUAGES, Country, Language},
+    util,
 };
 
 type CollectedDates = BTreeMap<Language, BTreeMap<DateCase, String>>;
@@ -30,7 +37,7 @@ enum DateCase {
     Dec,
 }
 
-#[test_log::test(tokio::test)]
+// #[test_log::test(tokio::test)]
 async fn collect_dates() {
     let json_path = Path::new("testfiles/date/playlist_samples.json").to_path_buf();
     if json_path.exists() {
@@ -44,7 +51,7 @@ async fn collect_dates() {
         ),
         (DateCase::Yesterday, "PLmB6td997u3kUOrfFwkULZ910ho44oQSy"),
         (DateCase::Ago, "PL7zsB-C3aNu2yRY2869T0zj1FhtRIu5am"),
-        (DateCase::Jan, "PL1J-6JOckZtHxTA3hN5SK7gBQaFfKzeXr"),
+        (DateCase::Jan, "PL1J-6JOckZtFjcni6Xj1pLYglJp6JCpKD"),
         (DateCase::Feb, "PL1J-6JOckZtETrbzwZE7mRIIK6BzWNLAs"),
         (DateCase::Mar, "PL1J-6JOckZtG3AVdvBXhMO64mB2k3BtKi"),
         (DateCase::Apr, "PL1J-6JOckZtE_rUpK24S6X5hOE4eQoprN"),
@@ -74,4 +81,103 @@ async fn collect_dates() {
 
     let file = File::create(json_path).unwrap();
     serde_json::to_writer_pretty(file, &collected_dates).unwrap();
+}
+
+// #[test]
+fn parse_months() {
+    let json_path = Path::new("testfiles/date/playlist_samples.json").to_path_buf();
+    let json_file = File::open(json_path).unwrap();
+    let collected_dates: CollectedDates =
+        serde_json::from_reader(BufReader::new(json_file)).unwrap();
+    let mut dict = super::read_dict();
+    let langs = dict.keys().map(|k| k.to_owned()).collect::<Vec<_>>();
+
+    let months = [
+        DateCase::Jan,
+        DateCase::Feb,
+        DateCase::Mar,
+        DateCase::Apr,
+        DateCase::May,
+        DateCase::Jun,
+        DateCase::Jul,
+        DateCase::Aug,
+        DateCase::Sep,
+        DateCase::Oct,
+        DateCase::Nov,
+        DateCase::Dec,
+    ];
+
+    let dates: [(u32, u32, u32); 12] = [
+        (2020, 1, 3),
+        (2016, 2, 7),
+        (2015, 3, 9),
+        (2017, 4, 2),
+        (2014, 5, 22),
+        (2014, 6, 28),
+        (2014, 7, 2),
+        (2015, 8, 23),
+        (2018, 9, 16),
+        (2014, 10, 31),
+        (2016, 11, 3),
+        (2021, 12, 24),
+    ];
+
+    for lang in langs {
+        let mut month_words: HashMap<String, usize> = HashMap::new();
+        let mut num_order = "".to_owned();
+
+        months.iter().enumerate().for_each(|(n, m)| {
+            let datestr = collected_dates.get(&lang).unwrap().get(m).unwrap();
+
+            // Get order of numbers
+            let nums = util::parse_numeric_vec::<u32>(&datestr);
+            let date = dates[n];
+
+            let this_num_order = nums
+                .iter()
+                .map(|n| {
+                    if n == &date.0 {
+                        "Y"
+                    } else if n == &date.1 {
+                        "M"
+                    } else if n == &date.2 {
+                        "D"
+                    } else {
+                        panic!("invalid number {} in {}", n, datestr);
+                    }
+                })
+                .collect::<String>();
+
+            if num_order == "" {
+                num_order = this_num_order;
+            } else {
+                assert_eq!(this_num_order, num_order);
+            }
+
+            // Insert words into the map
+            let filtered_str = datestr
+                .chars()
+                .filter(|c| !c.is_ascii_digit())
+                .collect::<String>();
+
+            filtered_str.split_whitespace().for_each(|word| {
+                month_words
+                    .entry(word.to_owned())
+                    .and_modify(|e| *e = 0)
+                    .or_insert(n + 1);
+            });
+        });
+
+        let dict_entry = dict.entry(lang).or_default();
+        dict_entry.date_order = num_order;
+        dict_entry.months = month_words.iter().filter_map(|(word, m)| {
+            if *m == 0 {
+                None
+            } else {
+                Some((word.to_owned(), *m as u8))
+            }
+        }).collect();
+    }
+
+    super::write_dict(&dict);
 }

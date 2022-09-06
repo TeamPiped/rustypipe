@@ -11,7 +11,7 @@ pub struct TimeAgo {
 }
 
 #[derive(Debug, Copy, Clone, PartialEq, Eq)]
-pub(crate) struct TaToken {
+pub struct TaToken {
     pub n: u8,
     pub unit: Option<TimeUnit>,
 }
@@ -67,7 +67,7 @@ impl PartialOrd for TimeAgo {
 }
 
 pub fn parse(lang: Language, textual_date: &str) -> Option<TimeAgo> {
-    let mappings = dictionary::get_timeago_tokens(lang);
+    let mappings = dictionary::entry(lang).timeago_tokens;
 
     let filtered_str = textual_date
         .to_lowercase()
