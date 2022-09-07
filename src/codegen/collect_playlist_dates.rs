@@ -13,6 +13,7 @@ use serde::{Deserialize, Serialize};
 use crate::{
     client::RustyTube,
     model::{locale::LANGUAGES, Country, Language},
+    timeago::{self, TimeAgo},
     util,
 };
 
@@ -83,8 +84,16 @@ async fn collect_dates() {
     serde_json::to_writer_pretty(file, &collected_dates).unwrap();
 }
 
-// #[test]
-fn parse_months() {
+fn filter_str(string: &str) -> String {
+    string
+        .to_lowercase()
+        .chars()
+        .filter(|c| c != &'\u{200b}' && !c.is_ascii_digit())
+        .collect()
+}
+
+#[test]
+fn write_samples_to_dict() {
     let json_path = Path::new("testfiles/date/playlist_samples.json").to_path_buf();
     let json_file = File::open(json_path).unwrap();
     let collected_dates: CollectedDates =
@@ -123,11 +132,47 @@ fn parse_months() {
     ];
 
     for lang in langs {
+        let datestr_table = collected_dates.get(&lang).unwrap();
         let mut month_words: HashMap<String, usize> = HashMap::new();
         let mut num_order = "".to_owned();
 
+        // Today/Yesterday
+        let mut td_words: HashMap<String, i8> = HashMap::new();
+        {
+            let mut parse = |string: &str, n: i8| {
+                filter_str(string).split_whitespace().for_each(|word| {
+                    td_words
+                        .entry(word.to_owned())
+                        .and_modify(|e| *e = 0)
+                        .or_insert(n);
+                });
+            };
+
+            parse(datestr_table.get(&DateCase::Today).unwrap(), 1);
+            parse(datestr_table.get(&DateCase::Yesterday).unwrap(), 2);
+            parse(datestr_table.get(&DateCase::Ago).unwrap(), 0);
+            parse(datestr_table.get(&DateCase::Jan).unwrap(), 0);
+        }
+
+        // n days ago
+        {
+            let datestr = datestr_table.get(&DateCase::Ago).unwrap();
+            let tago = timeago::parse(lang, &datestr);
+            assert_eq!(
+                tago,
+                Some(TimeAgo {
+                    n: 3,
+                    unit: timeago::TimeUnit::Day
+                }),
+                "lang: {}, txt: {}",
+                lang,
+                datestr
+            );
+        }
+
+        // Absolute dates (Jan 3, 2020)
         months.iter().enumerate().for_each(|(n, m)| {
-            let datestr = collected_dates.get(&lang).unwrap().get(m).unwrap();
+            let datestr = datestr_table.get(m).unwrap();
 
             // Get order of numbers
             let nums = util::parse_numeric_vec::<u32>(&datestr);
@@ -155,12 +200,7 @@ fn parse_months() {
             }
 
             // Insert words into the map
-            let filtered_str = datestr
-                .chars()
-                .filter(|c| !c.is_ascii_digit())
-                .collect::<String>();
-
-            filtered_str.split_whitespace().for_each(|word| {
+            filter_str(&datestr).split_whitespace().for_each(|word| {
                 month_words
                     .entry(word.to_owned())
                     .and_modify(|e| *e = 0)
@@ -170,13 +210,47 @@ fn parse_months() {
 
         let dict_entry = dict.entry(lang).or_default();
         dict_entry.date_order = num_order;
-        dict_entry.months = month_words.iter().filter_map(|(word, m)| {
-            if *m == 0 {
-                None
-            } else {
-                Some((word.to_owned(), *m as u8))
+        dict_entry.months = month_words
+            .iter()
+            .filter_map(|(word, m)| {
+                if *m == 0 {
+                    None
+                } else {
+                    Some((word.to_owned(), *m as u8))
+                }
+            })
+            .collect();
+
+        match lang {
+            Language::Ja
+            | Language::ZhCn
+            | Language::ZhHk
+            | Language::ZhTw
+            | Language::Ko
+            | Language::Gu
+            | Language::Pa
+            | Language::Ur
+            | Language::Uz
+            | Language::Te
+            // Singhalese YT translation is broken (today == tomorrow)
+            | Language::Si => {}
+            _ => {
+                dict_entry.timeago_nd_tokens = td_words
+                    .iter()
+                    .filter_map(|(word, n)| {
+                        match n {
+                            // Today
+                            1 => Some((word.to_owned(), "0D".to_owned())),
+                            // Yesterday
+                            2 => Some((word.to_owned(), "1D".to_owned())),
+                            _ => None,
+                        }
+                    })
+                    .collect();
+
+                assert_eq!(dict_entry.timeago_nd_tokens.len(), 2, "lang: {}, nd_tokens: {:?}", lang, &dict_entry.timeago_nd_tokens);
             }
-        }).collect();
+        }
     }
 
     super::write_dict(&dict);

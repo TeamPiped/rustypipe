@@ -19,18 +19,22 @@
     },
     "date_order": "DY",
     "months": {
-      "Apr.": 4,
-      "Aug.": 8,
-      "Des.": 12,
-      "Feb.": 2,
-      "Jan.": 1,
-      "Jul.": 7,
-      "Jun.": 6,
-      "Mei": 5,
-      "Mrt.": 3,
-      "Nov.": 11,
-      "Okt.": 10,
-      "Sep.": 9
+      "apr.": 4,
+      "aug.": 8,
+      "des.": 12,
+      "feb.": 2,
+      "jan.": 1,
+      "jul.": 7,
+      "jun.": 6,
+      "mei": 5,
+      "mrt.": 3,
+      "nov.": 11,
+      "okt.": 10,
+      "sep.": 9
+    },
+    "timeago_nd_tokens": {
+      "gister": "1D",
+      "vandag": "0D"
     }
   },
   "am": {
@@ -66,6 +70,10 @@
       "ጁን": 6,
       "ጃንዩ": 1,
       "ፌብሩ": 2
+    },
+    "timeago_nd_tokens": {
+      "ትላንት": "1D",
+      "ዛሬ": "0D"
     }
   },
   "ar": {
@@ -98,7 +106,11 @@
       "يومًا": "D"
     },
     "date_order": "DMY",
-    "months": {}
+    "months": {},
+    "timeago_nd_tokens": {
+      "اليوم": "0D",
+      "بالأمس": "1D"
+    }
   },
   "as": {
     "equivalent": [],
@@ -113,7 +125,11 @@
       "সপ্তাহ": "W"
     },
     "date_order": "DMY",
-    "months": {}
+    "months": {},
+    "timeago_nd_tokens": {
+      "আজি": "0D",
+      "কালি": "1D"
+    }
   },
   "az": {
     "equivalent": [],
@@ -141,6 +157,10 @@
       "okt": 10,
       "sen": 9,
       "yan": 1
+    },
+    "timeago_nd_tokens": {
+      "bugün": "0D",
+      "dünən": "1D"
     }
   },
   "be": {
@@ -186,6 +206,10 @@
       "сне": 12,
       "сту": 1,
       "чэр": 6
+    },
+    "timeago_nd_tokens": {
+      "сёння": "0D",
+      "ўчора": "1D"
     }
   },
   "bg": {
@@ -208,7 +232,11 @@
       "часа": "h"
     },
     "date_order": "DMY",
-    "months": {}
+    "months": {},
+    "timeago_nd_tokens": {
+      "вчера": "1D",
+      "днес": "0D"
+    }
   },
   "bn": {
     "equivalent": [],
@@ -236,6 +264,10 @@
       "মার্চ,": 3,
       "মে,": 5,
       "সেপ্টেম্বর,": 9
+    },
+    "timeago_nd_tokens": {
+      "আজ": "0D",
+      "গতকাল": "1D"
     }
   },
   "bs": {
@@ -276,6 +308,10 @@
       "nov": 11,
       "okt": 10,
       "sep": 9
+    },
+    "timeago_nd_tokens": {
+      "danas": "0D",
+      "jučer": "1D"
     }
   },
   "ca": {
@@ -311,6 +347,10 @@
       "març": 3,
       "nov.": 11,
       "set.": 9
+    },
+    "timeago_nd_tokens": {
+      "ahir": "1D",
+      "avui": "0D"
     }
   },
   "cs": {
@@ -334,7 +374,11 @@
       "týdny": "W"
     },
     "date_order": "DMY",
-    "months": {}
+    "months": {},
+    "timeago_nd_tokens": {
+      "dnes": "0D",
+      "včera": "1D"
+    }
   },
   "da": {
     "equivalent": [],
@@ -368,6 +412,10 @@
       "nov.": 11,
       "okt.": 10,
       "sep.": 9
+    },
+    "timeago_nd_tokens": {
+      "dag": "0D",
+      "går": "1D"
     }
   },
   "de": {
@@ -390,7 +438,11 @@
       "wochen": "W"
     },
     "date_order": "DMY",
-    "months": {}
+    "months": {},
+    "timeago_nd_tokens": {
+      "gestern": "1D",
+      "heute": "0D"
+    }
   },
   "el": {
     "equivalent": [],
@@ -413,18 +465,22 @@
     },
     "date_order": "DY",
     "months": {
-      "Απρ": 4,
-      "Αυγ": 8,
-      "Δεκ": 12,
-      "Ιαν": 1,
-      "Ιουλ": 7,
-      "Ιουν": 6,
-      "Μαΐ": 5,
-      "Μαρ": 3,
-      "Νοε": 11,
-      "Οκτ": 10,
-      "Σεπ": 9,
-      "Φεβ": 2
+      "απρ": 4,
+      "αυγ": 8,
+      "δεκ": 12,
+      "ιαν": 1,
+      "ιουλ": 7,
+      "ιουν": 6,
+      "μαΐ": 5,
+      "μαρ": 3,
+      "νοε": 11,
+      "οκτ": 10,
+      "σεπ": 9,
+      "φεβ": 2
+    },
+    "timeago_nd_tokens": {
+      "σήμερα": "0D",
+      "χτες": "1D"
     }
   },
   "en": {
@@ -451,18 +507,22 @@
     },
     "date_order": "DY",
     "months": {
-      "Apr": 4,
-      "Aug": 8,
-      "Dec": 12,
-      "Feb": 2,
-      "Jan": 1,
-      "Jul": 7,
-      "Jun": 6,
-      "Mar": 3,
-      "May": 5,
-      "Nov": 11,
-      "Oct": 10,
-      "Sep": 9
+      "apr": 4,
+      "aug": 8,
+      "dec": 12,
+      "feb": 2,
+      "jan": 1,
+      "jul": 7,
+      "jun": 6,
+      "mar": 3,
+      "may": 5,
+      "nov": 11,
+      "oct": 10,
+      "sep": 9
+    },
+    "timeago_nd_tokens": {
+      "today": "0D",
+      "yesterday": "1D"
     }
   },
   "es": {
@@ -501,6 +561,10 @@
       "nov": 11,
       "oct": 10,
       "sept": 9
+    },
+    "timeago_nd_tokens": {
+      "ayer": "1D",
+      "hoy": "0D"
     }
   },
   "et": {
@@ -538,6 +602,10 @@
       "okt": 10,
       "sept": 9,
       "veebr": 2
+    },
+    "timeago_nd_tokens": {
+      "eile": "1D",
+      "täna": "0D"
     }
   },
   "eu": {
@@ -569,6 +637,10 @@
       "urr.": 10,
       "urt.": 1,
       "uzt.": 7
+    },
+    "timeago_nd_tokens": {
+      "atzo": "1D",
+      "gaur": "0D"
     }
   },
   "fa": {
@@ -597,6 +669,10 @@
       "ژانویه": 1,
       "ژوئن": 6,
       "ژوئیه": 7
+    },
+    "timeago_nd_tokens": {
+      "امروز": "0D",
+      "دیروز": "1D"
     }
   },
   "fi": {
@@ -619,7 +695,11 @@
       "vuotta": "Y"
     },
     "date_order": "DMY",
-    "months": {}
+    "months": {},
+    "timeago_nd_tokens": {
+      "eilen": "1D",
+      "tänään": "0D"
+    }
   },
   "fil": {
     "equivalent": [],
@@ -635,18 +715,22 @@
     },
     "date_order": "DY",
     "months": {
-      "Abr": 4,
-      "Ago": 8,
-      "Dis": 12,
-      "Ene": 1,
-      "Hul": 7,
-      "Hun": 6,
-      "Mar": 3,
-      "May": 5,
-      "Nob": 11,
-      "Okt": 10,
-      "Peb": 2,
-      "Set": 9
+      "abr": 4,
+      "ago": 8,
+      "dis": 12,
+      "ene": 1,
+      "hul": 7,
+      "hun": 6,
+      "mar": 3,
+      "may": 5,
+      "nob": 11,
+      "okt": 10,
+      "peb": 2,
+      "set": 9
+    },
+    "timeago_nd_tokens": {
+      "kahapon": "1D",
+      "ngayong": "0D"
     }
   },
   "fr": {
@@ -683,6 +767,10 @@
       "nov.": 11,
       "oct.": 10,
       "sept.": 9
+    },
+    "timeago_nd_tokens": {
+      "aujourd'hui": "0D",
+      "hier": "1D"
     }
   },
   "gl": {
@@ -718,6 +806,10 @@
       "xan.": 1,
       "xul.": 7,
       "xuño": 6
+    },
+    "timeago_nd_tokens": {
+      "hoxe": "0D",
+      "onte": "1D"
     }
   },
   "gu": {
@@ -746,6 +838,10 @@
       "માર્ચ,": 3,
       "મે,": 5,
       "સપ્ટે,": 9
+    },
+    "timeago_nd_tokens": {
+      "આજે": "0D",
+      "ગઈ": "1D"
     }
   },
   "hi": {
@@ -774,6 +870,10 @@
       "मई": 5,
       "मार्च": 3,
       "सित॰": 9
+    },
+    "timeago_nd_tokens": {
+      "आज": "0D",
+      "कल": "1D"
     }
   },
   "hr": {
@@ -814,6 +914,10 @@
       "svi": 5,
       "tra": 4,
       "velj": 2
+    },
+    "timeago_nd_tokens": {
+      "danas": "0D",
+      "jučer": "1D"
     }
   },
   "hu": {
@@ -849,6 +953,10 @@
       "okt.": 10,
       "szept.": 9,
       "ápr.": 4
+    },
+    "timeago_nd_tokens": {
+      "ma": "0D",
+      "tegnap": "1D"
     }
   },
   "hy": {
@@ -877,6 +985,10 @@
       "սեպ,": 9,
       "փտվ,": 2,
       "օգս,": 8
+    },
+    "timeago_nd_tokens": {
+      "այսօր": "0D",
+      "երեկ": "1D"
     }
   },
   "id": {
@@ -893,18 +1005,22 @@
     },
     "date_order": "DY",
     "months": {
-      "Agu": 8,
-      "Apr": 4,
-      "Des": 12,
-      "Feb": 2,
-      "Jan": 1,
-      "Jul": 7,
-      "Jun": 6,
-      "Mar": 3,
-      "Mei": 5,
-      "Nov": 11,
-      "Okt": 10,
-      "Sep": 9
+      "agu": 8,
+      "apr": 4,
+      "des": 12,
+      "feb": 2,
+      "jan": 1,
+      "jul": 7,
+      "jun": 6,
+      "mar": 3,
+      "mei": 5,
+      "nov": 11,
+      "okt": 10,
+      "sep": 9
+    },
+    "timeago_nd_tokens": {
+      "ini": "0D",
+      "kemarin": "1D"
     }
   },
   "is": {
@@ -940,6 +1056,10 @@
       "okt.": 10,
       "sep.": 9,
       "ágú.": 8
+    },
+    "timeago_nd_tokens": {
+      "dag": "0D",
+      "gær": "1D"
     }
   },
   "it": {
@@ -975,6 +1095,10 @@
       "nov": 11,
       "ott": 10,
       "set": 9
+    },
+    "timeago_nd_tokens": {
+      "ieri": "1D",
+      "oggi": "0D"
     }
   },
   "iw": {
@@ -1016,6 +1140,10 @@
       "בנוב׳": 11,
       "בספט׳": 9,
       "בפבר׳": 2
+    },
+    "timeago_nd_tokens": {
+      "אתמול": "1D",
+      "היום": "0D"
     }
   },
   "ja": {
@@ -1031,7 +1159,11 @@
       "週": "W"
     },
     "date_order": "YMD",
-    "months": {}
+    "months": {},
+    "timeago_nd_tokens": {
+      "日": "1D",
+      "本": "0D"
+    }
   },
   "ka": {
     "equivalent": [],
@@ -1059,6 +1191,10 @@
       "ნოე.": 11,
       "ოქტ.": 10,
       "სექ.": 9
+    },
+    "timeago_nd_tokens": {
+      "გუშინ": "1D",
+      "დღეს": "0D"
     }
   },
   "kk": {
@@ -1087,6 +1223,10 @@
       "қар.": 11,
       "қаң.": 1,
       "қыр.": 9
+    },
+    "timeago_nd_tokens": {
+      "бүгін": "0D",
+      "кеше": "1D"
     }
   },
   "km": {
@@ -1115,6 +1255,10 @@
       "វិច្ឆិកា": 11,
       "សីហា": 8,
       "ឧសភា": 5
+    },
+    "timeago_nd_tokens": {
+      "បានធ្វើបច្ចុប្បន្នភាពថ្ងៃនេះ": "0D",
+      "បានធ្វើបច្ចុប្បន្នភាពម្សិលមិញ": "1D"
     }
   },
   "kn": {
@@ -1150,6 +1294,10 @@
       "ಮಾರ್ಚ್": 3,
       "ಮೇ": 5,
       "ಸೆಪ್ಟೆಂ": 9
+    },
+    "timeago_nd_tokens": {
+      "ಇಂದು": "0D",
+      "ನಿನ್ನೆ": "1D"
     }
   },
   "ko": {
@@ -1165,7 +1313,10 @@
       "초": "s"
     },
     "date_order": "YMD",
-    "months": {}
+    "months": {},
+    "timeago_nd_tokens": {
+      "오늘": "0D"
+    }
   },
   "ky": {
     "equivalent": [],
@@ -1193,6 +1344,10 @@
       "-сен.": 9,
       "-фев.": 2,
       "-янв.": 1
+    },
+    "timeago_nd_tokens": {
+      "бүгүн": "0D",
+      "кечээ": "1D"
     }
   },
   "lo": {
@@ -1221,12 +1376,17 @@
       "ມ.ສ.": 4,
       "ມິ.ຖ.": 6,
       "ສ.ຫ.": 8
+    },
+    "timeago_nd_tokens": {
+      "ອັບເດດມື້ນີ້": "0D",
+      "ອັບເດດມື້ວານນີ້": "1D"
     }
   },
   "lt": {
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
+      "d.": "D",
       "dienas": "D",
       "dieną": "D",
       "dienų": "D",
@@ -1249,7 +1409,11 @@
       "valandų": "h"
     },
     "date_order": "YMD",
-    "months": {}
+    "months": {},
+    "timeago_nd_tokens": {
+      "vakar": "1D",
+      "šiandien": "0D"
+    }
   },
   "lv": {
     "equivalent": [],
@@ -1284,6 +1448,10 @@
       "nov.": 11,
       "okt.": 10,
       "sept.": 9
+    },
+    "timeago_nd_tokens": {
+      "vakar": "1D",
+      "šodien": "0D"
     }
   },
   "mk": {
@@ -1306,7 +1474,11 @@
       "часа": "h"
     },
     "date_order": "DMY",
-    "months": {}
+    "months": {},
+    "timeago_nd_tokens": {
+      "вчера": "1D",
+      "денес": "0D"
+    }
   },
   "ml": {
     "equivalent": [],
@@ -1334,6 +1506,10 @@
       "മാർ": 3,
       "മേയ്": 5,
       "സെപ്റ്റം": 9
+    },
+    "timeago_nd_tokens": {
+      "ഇന്നലെ": "1D",
+      "ഇന്ന്": "0D"
     }
   },
   "mn": {
@@ -1349,7 +1525,11 @@
       "өдрийн": "D"
     },
     "date_order": "YMD",
-    "months": {}
+    "months": {},
+    "timeago_nd_tokens": {
+      "өнөөдөр": "0D",
+      "өчигдөр": "1D"
+    }
   },
   "mr": {
     "equivalent": [],
@@ -1384,6 +1564,10 @@
       "मार्च,": 3,
       "मे,": 5,
       "सप्टें,": 9
+    },
+    "timeago_nd_tokens": {
+      "आज": "0D",
+      "काल": "1D"
     }
   },
   "ms": {
@@ -1400,18 +1584,22 @@
     },
     "date_order": "DY",
     "months": {
-      "Apr": 4,
-      "Dis": 12,
-      "Feb": 2,
-      "Jan": 1,
-      "Jul": 7,
-      "Jun": 6,
-      "Mac": 3,
-      "Mei": 5,
-      "Nov": 11,
-      "Ogo": 8,
-      "Okt": 10,
-      "Sep": 9
+      "apr": 4,
+      "dis": 12,
+      "feb": 2,
+      "jan": 1,
+      "jul": 7,
+      "jun": 6,
+      "mac": 3,
+      "mei": 5,
+      "nov": 11,
+      "ogo": 8,
+      "okt": 10,
+      "sep": 9
+    },
+    "timeago_nd_tokens": {
+      "ini": "0D",
+      "semalam": "1D"
     }
   },
   "my": {
@@ -1424,6 +1612,7 @@
       "ပတ်": "W",
       "မိနစ်": "m",
       "ရက်": "D",
+      "ရက်က": "D",
       "လ": "M"
     },
     "date_order": "YD",
@@ -1440,6 +1629,10 @@
       "အောက်": 10,
       "ဧ": 4,
       "ဩ": 8
+    },
+    "timeago_nd_tokens": {
+      "မနေ့က": "1D",
+      "ယနေ့": "0D"
     }
   },
   "ne": {
@@ -1468,6 +1661,10 @@
       "मार्च": 3,
       "मे": 5,
       "सेप्टेम्बर": 9
+    },
+    "timeago_nd_tokens": {
+      "आज": "0D",
+      "हिजो": "1D"
     }
   },
   "nl": {
@@ -1501,6 +1698,10 @@
       "nov.": 11,
       "okt.": 10,
       "sep.": 9
+    },
+    "timeago_nd_tokens": {
+      "gisteren": "1D",
+      "vandaag": "0D"
     }
   },
   "no": {
@@ -1536,6 +1737,10 @@
       "nov.": 11,
       "okt.": 10,
       "sep.": 9
+    },
+    "timeago_nd_tokens": {
+      "dag": "0D",
+      "går": "1D"
     }
   },
   "or": {
@@ -1564,6 +1769,10 @@
       "ମଇ": 5,
       "ମାର୍ଚ୍ଚ": 3,
       "ସେପ୍ଟେମ୍ବର": 9
+    },
+    "timeago_nd_tokens": {
+      "ଆଜି": "0D",
+      "ଗତକାଲି": "1D"
     }
   },
   "pa": {
@@ -1595,6 +1804,10 @@
       "ਮਈ": 5,
       "ਮਾਰਚ": 3,
       "ਸਤੰ": 9
+    },
+    "timeago_nd_tokens": {
+      "ਅੱਜ": "0D",
+      "ਬੀੇਤੇ": "1D"
     }
   },
   "pl": {
@@ -1635,6 +1848,10 @@
       "sie": 8,
       "sty": 1,
       "wrz": 9
+    },
+    "timeago_nd_tokens": {
+      "dzisiaj": "0D",
+      "wczoraj": "1D"
     }
   },
   "pt": {
@@ -1672,6 +1889,10 @@
       "nov.": 11,
       "out.": 10,
       "set.": 9
+    },
+    "timeago_nd_tokens": {
+      "hoje": "0D",
+      "ontem": "1D"
     }
   },
   "ro": {
@@ -1707,6 +1928,10 @@
       "nov.": 11,
       "oct.": 10,
       "sept.": 9
+    },
+    "timeago_nd_tokens": {
+      "astăzi": "0D",
+      "ieri": "1D"
     }
   },
   "ru": {
@@ -1748,6 +1973,10 @@
       "сент.": 9,
       "февр.": 2,
       "янв.": 1
+    },
+    "timeago_nd_tokens": {
+      "вчера": "1D",
+      "сегодня": "0D"
     }
   },
   "si": {
@@ -1776,6 +2005,11 @@
       "මාර්තු": 3,
       "මැයි": 5,
       "සැප්": 9
+    },
+    "timeago_nd_tokens": {
+      "අද": "0D",
+      "ඊයෙ": "1D",
+      "ඊයේ": "1D"
     }
   },
   "sk": {
@@ -1798,7 +2032,11 @@
       "týždňom": "W"
     },
     "date_order": "DMY",
-    "months": {}
+    "months": {},
+    "timeago_nd_tokens": {
+      "dnes": "0D",
+      "včera": "1D"
+    }
   },
   "sl": {
     "equivalent": [],
@@ -1841,6 +2079,10 @@
       "nov.": 11,
       "okt.": 10,
       "sep.": 9
+    },
+    "timeago_nd_tokens": {
+      "danes": "0D",
+      "včeraj": "1D"
     }
   },
   "sq": {
@@ -1872,6 +2114,10 @@
       "shk": 2,
       "sht": 9,
       "tet": 10
+    },
+    "timeago_nd_tokens": {
+      "dje": "1D",
+      "sot": "0D"
     }
   },
   "sr": {
@@ -1896,7 +2142,11 @@
       "секунди": "s"
     },
     "date_order": "DMY",
-    "months": {}
+    "months": {},
+    "timeago_nd_tokens": {
+      "данас": "0D",
+      "јуче": "1D"
+    }
   },
   "sr-Latn": {
     "equivalent": [],
@@ -1921,7 +2171,11 @@
       "sekundi": "s"
     },
     "date_order": "DMY",
-    "months": {}
+    "months": {},
+    "timeago_nd_tokens": {
+      "danas": "0D",
+      "juče": "1D"
+    }
   },
   "sv": {
     "equivalent": [],
@@ -1955,6 +2209,10 @@
       "nov.": 11,
       "okt.": 10,
       "sep.": 9
+    },
+    "timeago_nd_tokens": {
+      "idag": "0D",
+      "igår": "1D"
     }
   },
   "sw": {
@@ -1973,18 +2231,22 @@
     },
     "date_order": "DY",
     "months": {
-      "Ago": 8,
-      "Apr": 4,
-      "Des": 12,
-      "Feb": 2,
-      "Jan": 1,
-      "Jul": 7,
-      "Jun": 6,
-      "Mac": 3,
-      "Mei": 5,
-      "Nov": 11,
-      "Okt": 10,
-      "Sep": 9
+      "ago": 8,
+      "apr": 4,
+      "des": 12,
+      "feb": 2,
+      "jan": 1,
+      "jul": 7,
+      "jun": 6,
+      "mac": 3,
+      "mei": 5,
+      "nov": 11,
+      "okt": 10,
+      "sep": 9
+    },
+    "timeago_nd_tokens": {
+      "jana": "1D",
+      "leo": "0D"
     }
   },
   "ta": {
@@ -2019,6 +2281,10 @@
       "பிப்.,": 2,
       "மார்.,": 3,
       "மே,": 5
+    },
+    "timeago_nd_tokens": {
+      "இன்று": "0D",
+      "நேற்று": "1D"
     }
   },
   "te": {
@@ -2054,6 +2320,10 @@
       "మార్చి,": 3,
       "మే,": 5,
       "సెప్టెం,": 9
+    },
+    "timeago_nd_tokens": {
+      "ఈ": "0D",
+      "నిన్న": "1D"
     }
   },
   "th": {
@@ -2082,6 +2352,10 @@
       "มี.ค.": 3,
       "ส.ค.": 8,
       "เม.ย.": 4
+    },
+    "timeago_nd_tokens": {
+      "อัปเดตแล้ววันนี้": "0D",
+      "อัปเดตแล้วเมื่อวาน": "1D"
     }
   },
   "tr": {
@@ -2098,18 +2372,22 @@
     },
     "date_order": "DY",
     "months": {
-      "Ara": 12,
-      "Ağu": 8,
-      "Eki": 10,
-      "Eyl": 9,
-      "Haz": 6,
-      "Kas": 11,
-      "Mar": 3,
-      "May": 5,
-      "Nis": 4,
-      "Oca": 1,
-      "Tem": 7,
-      "Şub": 2
+      "ara": 12,
+      "ağu": 8,
+      "eki": 10,
+      "eyl": 9,
+      "haz": 6,
+      "kas": 11,
+      "mar": 3,
+      "may": 5,
+      "nis": 4,
+      "oca": 1,
+      "tem": 7,
+      "şub": 2
+    },
+    "timeago_nd_tokens": {
+      "bugün": "0D",
+      "dün": "1D"
     }
   },
   "uk": {
@@ -2151,6 +2429,10 @@
       "січ.": 1,
       "трав.": 5,
       "черв.": 6
+    },
+    "timeago_nd_tokens": {
+      "вчора": "1D",
+      "сьогодні": "0D"
     }
   },
   "ur": {
@@ -2185,6 +2467,10 @@
       "مئی،": 5,
       "مارچ،": 3,
       "نومبر،": 11
+    },
+    "timeago_nd_tokens": {
+      "آج": "0D",
+      "کل": "1D"
     }
   },
   "uz": {
@@ -2213,6 +2499,10 @@
       "-okt,": 10,
       "-sen,": 9,
       "-yan,": 1
+    },
+    "timeago_nd_tokens": {
+      "bugun": "0D",
+      "kecha": "1D"
     }
   },
   "vi": {
@@ -2229,7 +2519,11 @@
       "tuần": "W"
     },
     "date_order": "DMY",
-    "months": {}
+    "months": {},
+    "timeago_nd_tokens": {
+      "nay": "0D",
+      "qua": "1D"
+    }
   },
   "zh-CN": {
     "equivalent": [],
@@ -2244,13 +2538,18 @@
       "秒": "s"
     },
     "date_order": "YMD",
-    "months": {}
+    "months": {},
+    "timeago_nd_tokens": {
+      "今": "0D",
+      "日": "1D"
+    }
   },
   "zh-HK": {
     "equivalent": [],
     "by_char": true,
     "timeago_tokens": {
       "分": "m",
+      "天": "D",
       "小": "h",
       "年": "Y",
       "日": "D",
@@ -2259,7 +2558,11 @@
       "秒": "s"
     },
     "date_order": "YMD",
-    "months": {}
+    "months": {},
+    "timeago_nd_tokens": {
+      "今": "0D",
+      "天": "1D"
+    }
   },
   "zh-TW": {
     "equivalent": [],
@@ -2274,7 +2577,11 @@
       "週": "W"
     },
     "date_order": "YMD",
-    "months": {}
+    "months": {},
+    "timeago_nd_tokens": {
+      "今": "0D",
+      "天": "1D"
+    }
   },
   "zu": {
     "equivalent": [],
@@ -2297,18 +2604,22 @@
     },
     "date_order": "DY",
     "months": {
-      "ka-Aga": 8,
-      "ka-Dis": 12,
-      "ka-Eph": 4,
-      "ka-Feb": 2,
-      "ka-Jan": 1,
-      "ka-Jul": 7,
-      "ka-Jun": 6,
-      "ka-Mas": 3,
-      "ka-Mey": 5,
-      "ka-Nov": 11,
-      "ka-Okt": 10,
-      "ka-Sep": 9
+      "ka-aga": 8,
+      "ka-dis": 12,
+      "ka-eph": 4,
+      "ka-feb": 2,
+      "ka-jan": 1,
+      "ka-jul": 7,
+      "ka-jun": 6,
+      "ka-mas": 3,
+      "ka-mey": 5,
+      "ka-nov": 11,
+      "ka-okt": 10,
+      "ka-sep": 9
+    },
+    "timeago_nd_tokens": {
+      "izolo": "1D",
+      "namuhla": "0D"
     }
   }
 }

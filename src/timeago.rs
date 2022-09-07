@@ -1,5 +1,6 @@
-use std::cmp::Ordering;
+use std::{cmp::Ordering, ops::Mul};
 
+use chrono::NaiveDate;
 use serde::{Deserialize, Serialize};
 
 use crate::{dictionary, model::Language, util};
@@ -16,6 +17,12 @@ pub struct TaToken {
     pub unit: Option<TimeUnit>,
 }
 
+#[derive(Copy, Clone, Debug, PartialEq, Eq)]
+enum ParsedDate {
+    Absolute(NaiveDate),
+    Relative(TimeAgo),
+}
+
 #[derive(Copy, Clone, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[serde(rename_all = "lowercase")]
 pub enum TimeUnit {
@@ -26,6 +33,12 @@ pub enum TimeUnit {
     Week,
     Month,
     Year,
+}
+
+pub enum DateCmp {
+    Y,
+    M,
+    D,
 }
 
 impl TimeUnit {
@@ -66,34 +79,48 @@ impl PartialOrd for TimeAgo {
     }
 }
 
-pub fn parse(lang: Language, textual_date: &str) -> Option<TimeAgo> {
-    let mappings = dictionary::entry(lang).timeago_tokens;
+impl Mul<u8> for TimeAgo {
+    type Output = Self;
 
-    let filtered_str = textual_date
+    fn mul(self, rhs: u8) -> Self::Output {
+        TimeAgo {
+            n: self.n * rhs,
+            unit: self.unit,
+        }
+    }
+}
+
+fn filter_str(string: &str) -> String {
+    string
         .to_lowercase()
         .chars()
         .filter(|c| c != &'\u{200b}' && !c.is_ascii_digit())
-        .collect::<String>();
+        .collect()
+}
 
-    let mut qu: u8 = util::parse_numeric(&textual_date).unwrap_or(1);
+fn parse_ta_token(entry: &dictionary::Entry, nd: bool, filtered_str: &str) -> Option<TimeAgo> {
+    let tokens = match nd {
+        true => &entry.timeago_nd_tokens,
+        false => &entry.timeago_tokens,
+    };
+    let mut qu = 1;
 
-    match lang {
-        Language::Ja | Language::ZhCn | Language::ZhHk | Language::ZhTw => {
-            filtered_str.chars().find_map(|word| {
-                mappings
-                    .get(&word.to_string())
-                    .map(|t| match t.unit {
-                        Some(unit) => Some(TimeAgo { n: t.n * qu, unit }),
-                        None => {
-                            qu = t.n;
-                            None
-                        }
-                    })
-                    .flatten()
-            })
-        }
-        _ => filtered_str.split_whitespace().find_map(|word| {
-            mappings
+    if entry.by_char {
+        filtered_str.chars().find_map(|word| {
+            tokens
+                .get(&word.to_string())
+                .map(|t| match t.unit {
+                    Some(unit) => Some(TimeAgo { n: t.n * qu, unit }),
+                    None => {
+                        qu = t.n;
+                        None
+                    }
+                })
+                .flatten()
+        })
+    } else {
+        filtered_str.split_whitespace().find_map(|word| {
+            tokens
                 .get(word)
                 .map(|t| match t.unit {
                     Some(unit) => Some(TimeAgo { n: t.n * qu, unit }),
@@ -103,7 +130,75 @@ pub fn parse(lang: Language, textual_date: &str) -> Option<TimeAgo> {
                     }
                 })
                 .flatten()
-        }),
+        })
+    }
+}
+
+fn parse_textual_month(entry: &dictionary::Entry, filtered_str: &str) -> Option<u8> {
+    if entry.by_char {
+        // Chinese/Japanese dont use textual months
+        None
+    } else {
+        filtered_str
+            .split_whitespace()
+            .find_map(|word| entry.months.get(word).map(|n| *n))
+    }
+}
+
+pub fn parse(lang: Language, textual_date: &str) -> Option<TimeAgo> {
+    let entry = dictionary::entry(lang);
+    let filtered_str = filter_str(textual_date);
+
+    let qu: u8 = util::parse_numeric(&textual_date).unwrap_or(1);
+
+    parse_ta_token(&entry, false, &filtered_str).map(|ta| ta * qu)
+}
+
+fn parse_date(lang: Language, textual_date: &str) -> Option<ParsedDate> {
+    let entry = dictionary::entry(lang);
+    let filtered_str = filter_str(textual_date);
+
+    let nums = util::parse_numeric_vec::<u16>(textual_date);
+
+    match nums.len() {
+        0 => match parse_ta_token(&entry, true, &filtered_str) {
+            Some(timeago) => Some(ParsedDate::Relative(timeago)),
+            None => parse_ta_token(&entry, false, &filtered_str)
+                .map(|timeago| ParsedDate::Relative(timeago)),
+        },
+        1 => parse_ta_token(&entry, false, &filtered_str)
+            .map(|timeago| ParsedDate::Relative(timeago * nums[0] as u8)),
+        2..=3 => {
+            if nums.len() == entry.date_order.len() {
+                let mut y: Option<u16> = None;
+                let mut m: Option<u16> = None;
+                let mut d: Option<u16> = None;
+
+                nums.iter()
+                    .enumerate()
+                    .for_each(|(i, n)| match entry.date_order[i] {
+                        DateCmp::Y => y = Some(*n),
+                        DateCmp::M => m = Some(*n),
+                        DateCmp::D => d = Some(*n),
+                    });
+
+                if m.is_none() {
+                    m = parse_textual_month(&entry, &filtered_str).map(|n| n as u16);
+                }
+
+                match (y, m, d) {
+                    (Some(y), Some(m), Some(d)) => Some(ParsedDate::Absolute(NaiveDate::from_ymd(
+                        y.into(),
+                        m.into(),
+                        d.into(),
+                    ))),
+                    _ => None,
+                }
+            } else {
+                None
+            }
+        }
+        _ => None,
     }
 }
 
@@ -125,8 +220,8 @@ mod tests {
         #[case] textual_date: &str,
         #[case] expect: Option<TimeAgo>,
     ) {
-        let secs_ago = parse(lang, textual_date);
-        assert_eq!(secs_ago, expect);
+        let time_ago = parse(lang, textual_date);
+        assert_eq!(time_ago, expect);
     }
 
     #[test]
@@ -338,5 +433,133 @@ mod tests {
         });
 
         assert_eq!(n_cases, 1065)
+    }
+
+    #[rstest]
+    #[case(Language::En, "Updated today", Some(ParsedDate::Relative(TimeAgo { n: 0, unit: TimeUnit::Day })))]
+    #[case(Language::En, "Updated yesterday", Some(ParsedDate::Relative(TimeAgo { n: 1, unit: TimeUnit::Day })))]
+    #[case(Language::En, "Updated 2 days ago", Some(ParsedDate::Relative(TimeAgo { n: 2, unit: TimeUnit::Day })))]
+    #[case(
+        Language::En,
+        "Last updated on Jun 04, 2003",
+        Some(ParsedDate::Absolute(NaiveDate::from_ymd(2003, 6, 4)))
+    )]
+    fn t_parse_date(
+        #[case] lang: Language,
+        #[case] textual_date: &str,
+        #[case] expect: Option<ParsedDate>,
+    ) {
+        let parsed_date = parse_date(lang, textual_date);
+        assert_eq!(parsed_date, expect);
+    }
+
+    #[test]
+    fn t_parse_date_samples() {
+        let json_path = Path::new("testfiles/date/playlist_samples.json");
+        let json_file = File::open(json_path).unwrap();
+        let date_samples: BTreeMap<Language, BTreeMap<String, String>> =
+            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+
+        date_samples.iter().for_each(|(lang, samples)| {
+            assert_eq!(
+                parse_date(*lang, samples.get("Today").unwrap()),
+                Some(ParsedDate::Relative(TimeAgo {
+                    n: 0,
+                    unit: TimeUnit::Day
+                })),
+                "lang: {}",
+                lang
+            );
+            assert_eq!(
+                parse_date(*lang, samples.get("Yesterday").unwrap()),
+                Some(ParsedDate::Relative(TimeAgo {
+                    n: 1,
+                    unit: TimeUnit::Day
+                })),
+                "lang: {}",
+                lang
+            );
+            assert_eq!(
+                parse_date(*lang, samples.get("Ago").unwrap()),
+                Some(ParsedDate::Relative(TimeAgo {
+                    n: 3,
+                    unit: TimeUnit::Day
+                })),
+                "lang: {}",
+                lang
+            );
+            assert_eq!(
+                parse_date(*lang, samples.get("Jan").unwrap()),
+                Some(ParsedDate::Absolute(NaiveDate::from_ymd(2020, 1, 3))),
+                "lang: {}",
+                lang
+            );
+            assert_eq!(
+                parse_date(*lang, samples.get("Feb").unwrap()),
+                Some(ParsedDate::Absolute(NaiveDate::from_ymd(2016, 2, 7))),
+                "lang: {}",
+                lang
+            );
+            assert_eq!(
+                parse_date(*lang, samples.get("Mar").unwrap()),
+                Some(ParsedDate::Absolute(NaiveDate::from_ymd(2015, 3, 9))),
+                "lang: {}",
+                lang
+            );
+            assert_eq!(
+                parse_date(*lang, samples.get("Apr").unwrap()),
+                Some(ParsedDate::Absolute(NaiveDate::from_ymd(2017, 4, 2))),
+                "lang: {}",
+                lang
+            );
+            assert_eq!(
+                parse_date(*lang, samples.get("May").unwrap()),
+                Some(ParsedDate::Absolute(NaiveDate::from_ymd(2014, 5, 22))),
+                "lang: {}",
+                lang
+            );
+            assert_eq!(
+                parse_date(*lang, samples.get("Jun").unwrap()),
+                Some(ParsedDate::Absolute(NaiveDate::from_ymd(2014, 6, 28))),
+                "lang: {}",
+                lang
+            );
+            assert_eq!(
+                parse_date(*lang, samples.get("Jul").unwrap()),
+                Some(ParsedDate::Absolute(NaiveDate::from_ymd(2014, 7, 2))),
+                "lang: {}",
+                lang
+            );
+            assert_eq!(
+                parse_date(*lang, samples.get("Aug").unwrap()),
+                Some(ParsedDate::Absolute(NaiveDate::from_ymd(2015, 8, 23))),
+                "lang: {}",
+                lang
+            );
+            assert_eq!(
+                parse_date(*lang, samples.get("Sep").unwrap()),
+                Some(ParsedDate::Absolute(NaiveDate::from_ymd(2018, 9, 16))),
+                "lang: {}",
+                lang
+            );
+            assert_eq!(
+                parse_date(*lang, samples.get("Oct").unwrap()),
+                Some(ParsedDate::Absolute(NaiveDate::from_ymd(2014, 10, 31))),
+                "lang: {}",
+                lang
+            );
+            assert_eq!(
+                parse_date(*lang, samples.get("Nov").unwrap()),
+                Some(ParsedDate::Absolute(NaiveDate::from_ymd(2016, 11, 3))),
+                "lang: {}",
+                lang
+            );
+            assert_eq!(
+                parse_date(*lang, samples.get("Dec").unwrap()),
+                Some(ParsedDate::Absolute(NaiveDate::from_ymd(2021, 12, 24))),
+                "lang: {}",
+                lang
+            );
+        })
     }
 }

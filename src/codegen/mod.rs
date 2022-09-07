@@ -21,6 +21,7 @@ struct DictEntry {
     timeago_tokens: BTreeMap<String, String>,
     date_order: String,
     months: BTreeMap<String, u8>,
+    timeago_nd_tokens: BTreeMap<String, String>,
 }
 
 fn read_dict() -> Dictionary {

@@ -2,7 +2,6 @@ use std::{collections::BTreeMap, str::FromStr};
 
 use anyhow::Result;
 use fancy_regex::Regex;
-use once_cell::sync::Lazy;
 use rand::Rng;
 use url::Url;
 
