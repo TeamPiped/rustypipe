@@ -90,11 +90,19 @@ impl Mul<u8> for TimeAgo {
     }
 }
 
-fn filter_str(string: &str) -> String {
+pub fn filter_str(string: &str) -> String {
     string
         .to_lowercase()
         .chars()
-        .filter(|c| c != &'\u{200b}' && !c.is_ascii_digit())
+        .filter_map(|c| {
+            if c == '\u{200b}' || c.is_ascii_digit() {
+                None
+            } else if c == '-' {
+                Some(' ')
+            } else {
+                Some(c)
+            }
+        })
         .collect()
 }
 
@@ -439,6 +447,7 @@ mod tests {
     #[case(Language::En, "Updated today", Some(ParsedDate::Relative(TimeAgo { n: 0, unit: TimeUnit::Day })))]
     #[case(Language::En, "Updated yesterday", Some(ParsedDate::Relative(TimeAgo { n: 1, unit: TimeUnit::Day })))]
     #[case(Language::En, "Updated 2 days ago", Some(ParsedDate::Relative(TimeAgo { n: 2, unit: TimeUnit::Day })))]
+    #[case(Language::Si, "ඊයේ යාවත්කාලීන කරන ලදී", Some(ParsedDate::Relative(TimeAgo { n: 1, unit: TimeUnit::Day })))]
     #[case(
         Language::En,
         "Last updated on Jun 04, 2003",
@@ -473,7 +482,11 @@ mod tests {
             assert_eq!(
                 parse_date(*lang, samples.get("Yesterday").unwrap()),
                 Some(ParsedDate::Relative(TimeAgo {
-                    n: 1,
+                    // YT's Singhalese translation has an error (yesterday == today)
+                    n: match lang {
+                        Language::Si => 0,
+                        _ => 1,
+                    },
                     unit: TimeUnit::Day
                 })),
                 "lang: {}",

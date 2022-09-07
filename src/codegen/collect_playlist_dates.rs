@@ -84,15 +84,7 @@ async fn collect_dates() {
     serde_json::to_writer_pretty(file, &collected_dates).unwrap();
 }
 
-fn filter_str(string: &str) -> String {
-    string
-        .to_lowercase()
-        .chars()
-        .filter(|c| c != &'\u{200b}' && !c.is_ascii_digit())
-        .collect()
-}
-
-#[test]
+// #[test]
 fn write_samples_to_dict() {
     let json_path = Path::new("testfiles/date/playlist_samples.json").to_path_buf();
     let json_file = File::open(json_path).unwrap();
@@ -132,96 +124,17 @@ fn write_samples_to_dict() {
     ];
 
     for lang in langs {
-        let datestr_table = collected_dates.get(&lang).unwrap();
-        let mut month_words: HashMap<String, usize> = HashMap::new();
-        let mut num_order = "".to_owned();
-
-        // Today/Yesterday
-        let mut td_words: HashMap<String, i8> = HashMap::new();
-        {
-            let mut parse = |string: &str, n: i8| {
-                filter_str(string).split_whitespace().for_each(|word| {
-                    td_words
-                        .entry(word.to_owned())
-                        .and_modify(|e| *e = 0)
-                        .or_insert(n);
-                });
-            };
-
-            parse(datestr_table.get(&DateCase::Today).unwrap(), 1);
-            parse(datestr_table.get(&DateCase::Yesterday).unwrap(), 2);
-            parse(datestr_table.get(&DateCase::Ago).unwrap(), 0);
-            parse(datestr_table.get(&DateCase::Jan).unwrap(), 0);
-        }
-
-        // n days ago
-        {
-            let datestr = datestr_table.get(&DateCase::Ago).unwrap();
-            let tago = timeago::parse(lang, &datestr);
-            assert_eq!(
-                tago,
-                Some(TimeAgo {
-                    n: 3,
-                    unit: timeago::TimeUnit::Day
-                }),
-                "lang: {}, txt: {}",
-                lang,
-                datestr
-            );
-        }
-
-        // Absolute dates (Jan 3, 2020)
-        months.iter().enumerate().for_each(|(n, m)| {
-            let datestr = datestr_table.get(m).unwrap();
-
-            // Get order of numbers
-            let nums = util::parse_numeric_vec::<u32>(&datestr);
-            let date = dates[n];
-
-            let this_num_order = nums
-                .iter()
-                .map(|n| {
-                    if n == &date.0 {
-                        "Y"
-                    } else if n == &date.1 {
-                        "M"
-                    } else if n == &date.2 {
-                        "D"
-                    } else {
-                        panic!("invalid number {} in {}", n, datestr);
-                    }
-                })
-                .collect::<String>();
-
-            if num_order == "" {
-                num_order = this_num_order;
-            } else {
-                assert_eq!(this_num_order, num_order);
-            }
-
-            // Insert words into the map
-            filter_str(&datestr).split_whitespace().for_each(|word| {
-                month_words
-                    .entry(word.to_owned())
-                    .and_modify(|e| *e = 0)
-                    .or_insert(n + 1);
-            });
-        });
+        let mut datestr_tables = vec![collected_dates.get(&lang).unwrap()];
+        dict.get(&lang)
+            .unwrap()
+            .equivalent
+            .iter()
+            .for_each(|l| datestr_tables.push(collected_dates.get(l).unwrap()));
 
         let dict_entry = dict.entry(lang).or_default();
-        dict_entry.date_order = num_order;
-        dict_entry.months = month_words
-            .iter()
-            .filter_map(|(word, m)| {
-                if *m == 0 {
-                    None
-                } else {
-                    Some((word.to_owned(), *m as u8))
-                }
-            })
-            .collect();
+        let mut num_order = "".to_owned();
 
-        match lang {
+        let collect_nd_tokens = match lang {
             Language::Ja
             | Language::ZhCn
             | Language::ZhHk
@@ -232,25 +145,134 @@ fn write_samples_to_dict() {
             | Language::Ur
             | Language::Uz
             | Language::Te
+            | Language::PtPt
             // Singhalese YT translation is broken (today == tomorrow)
-            | Language::Si => {}
-            _ => {
-                dict_entry.timeago_nd_tokens = td_words
+            | Language::Si => false,
+            _ => true,
+        };
+
+        dict_entry.months = BTreeMap::new();
+
+        if collect_nd_tokens {
+            dict_entry.timeago_nd_tokens = BTreeMap::new();
+        }
+
+        for datestr_table in &datestr_tables {
+            let mut month_words: HashMap<String, usize> = HashMap::new();
+            let mut td_words: HashMap<String, i8> = HashMap::new();
+
+            // Today/Yesterday
+            {
+                let mut parse = |string: &str, n: i8| {
+                    timeago::filter_str(string)
+                        .split_whitespace()
+                        .for_each(|word| {
+                            td_words
+                                .entry(word.to_owned())
+                                .and_modify(|e| *e = 0)
+                                .or_insert(n);
+                        });
+                };
+
+                parse(datestr_table.get(&DateCase::Today).unwrap(), 1);
+                parse(datestr_table.get(&DateCase::Yesterday).unwrap(), 2);
+                parse(datestr_table.get(&DateCase::Ago).unwrap(), 0);
+                parse(datestr_table.get(&DateCase::Jan).unwrap(), 0);
+            }
+
+            // n days ago
+            {
+                let datestr = datestr_table.get(&DateCase::Ago).unwrap();
+                let tago = timeago::parse(lang, &datestr);
+                assert_eq!(
+                    tago,
+                    Some(TimeAgo {
+                        n: 3,
+                        unit: timeago::TimeUnit::Day
+                    }),
+                    "lang: {}, txt: {}",
+                    lang,
+                    datestr
+                );
+            }
+
+            // Absolute dates (Jan 3, 2020)
+            months.iter().enumerate().for_each(|(n, m)| {
+                let datestr = datestr_table.get(m).unwrap();
+
+                // Get order of numbers
+                let nums = util::parse_numeric_vec::<u32>(&datestr);
+                let date = dates[n];
+
+                let this_num_order = nums
                     .iter()
-                    .filter_map(|(word, n)| {
-                        match n {
-                            // Today
-                            1 => Some((word.to_owned(), "0D".to_owned())),
-                            // Yesterday
-                            2 => Some((word.to_owned(), "1D".to_owned())),
-                            _ => None,
+                    .map(|n| {
+                        if n == &date.0 {
+                            "Y"
+                        } else if n == &date.1 {
+                            "M"
+                        } else if n == &date.2 {
+                            "D"
+                        } else {
+                            panic!("invalid number {} in {}", n, datestr);
                         }
                     })
-                    .collect();
+                    .collect::<String>();
 
-                assert_eq!(dict_entry.timeago_nd_tokens.len(), 2, "lang: {}, nd_tokens: {:?}", lang, &dict_entry.timeago_nd_tokens);
+                if num_order == "" {
+                    num_order = this_num_order;
+                } else {
+                    assert_eq!(this_num_order, num_order, "lang: {}", lang);
+                }
+
+                // Insert words into the map
+                timeago::filter_str(&datestr)
+                    .split_whitespace()
+                    .for_each(|word| {
+                        month_words
+                            .entry(word.to_owned())
+                            .and_modify(|e| *e = 0)
+                            .or_insert(n + 1);
+                    });
+            });
+
+            month_words.iter().for_each(|(word, m)| {
+                if *m != 0 {
+                    dict_entry.months.insert(word.to_owned(), *m as u8);
+                };
+            });
+
+            if collect_nd_tokens {
+                td_words.iter().for_each(|(word, n)| {
+                    match n {
+                        // Today
+                        1 => {
+                            dict_entry
+                                .timeago_nd_tokens
+                                .insert(word.to_owned(), "0D".to_owned());
+                        }
+                        // Yesterday
+                        2 => {
+                            dict_entry
+                                .timeago_nd_tokens
+                                .insert(word.to_owned(), "1D".to_owned());
+                        }
+                        _ => {}
+                    };
+                });
+
+                if datestr_tables.len() == 1 {
+                    assert_eq!(
+                        dict_entry.timeago_nd_tokens.len(),
+                        2,
+                        "lang: {}, nd_tokens: {:?}",
+                        lang,
+                        &dict_entry.timeago_nd_tokens
+                    );
+                }
             }
         }
+        dict_entry.date_order = num_order;
     }
 
     super::write_dict(&dict);

@@ -518,7 +518,8 @@
       "may": 5,
       "nov": 11,
       "oct": 10,
-      "sep": 9
+      "sep": 9,
+      "sept": 9
     },
     "timeago_nd_tokens": {
       "today": "0D",
@@ -761,6 +762,7 @@
       "févr.": 2,
       "janv.": 1,
       "juil.": 7,
+      "juill.": 7,
       "juin": 6,
       "mai": 5,
       "mars": 3,
@@ -1332,18 +1334,18 @@
     },
     "date_order": "YD",
     "months": {
-      "-авг.": 8,
-      "-апр.": 4,
-      "-дек.": 12,
-      "-июл.": 7,
-      "-июн.": 6,
-      "-май": 5,
-      "-мар.": 3,
-      "-ноя.": 11,
-      "-окт.": 10,
-      "-сен.": 9,
-      "-фев.": 2,
-      "-янв.": 1
+      "авг.": 8,
+      "апр.": 4,
+      "дек.": 12,
+      "июл.": 7,
+      "июн.": 6,
+      "май": 5,
+      "мар.": 3,
+      "ноя.": 11,
+      "окт.": 10,
+      "сен.": 9,
+      "фев.": 2,
+      "янв.": 1
     },
     "timeago_nd_tokens": {
       "бүгүн": "0D",
@@ -1855,9 +1857,7 @@
     }
   },
   "pt": {
-    "equivalent": [
-      "pt-PT"
-    ],
+    "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
       "ano": "Y",
@@ -1890,6 +1890,32 @@
       "out.": 10,
       "set.": 9
     },
+    "timeago_nd_tokens": {
+      "hoje": "0D",
+      "ontem": "1D"
+    }
+  },
+  "pt-PT": {
+    "equivalent": [],
+    "by_char": false,
+    "timeago_tokens": {
+      "ano": "Y",
+      "anos": "Y",
+      "dia": "D",
+      "dias": "D",
+      "hora": "h",
+      "horas": "h",
+      "meses": "M",
+      "minuto": "m",
+      "minutos": "m",
+      "mês": "M",
+      "segundo": "s",
+      "segundos": "s",
+      "semana": "W",
+      "semanas": "W"
+    },
+    "date_order": "DMY",
+    "months": {},
     "timeago_nd_tokens": {
       "hoje": "0D",
       "ontem": "1D"
@@ -2487,18 +2513,18 @@
     },
     "date_order": "DY",
     "months": {
-      "-apr,": 4,
-      "-avg,": 8,
-      "-dek,": 12,
-      "-fev,": 2,
-      "-iyl,": 7,
-      "-iyn,": 6,
-      "-mar,": 3,
-      "-may,": 5,
-      "-noy,": 11,
-      "-okt,": 10,
-      "-sen,": 9,
-      "-yan,": 1
+      "apr,": 4,
+      "avg,": 8,
+      "dek,": 12,
+      "fev,": 2,
+      "iyl,": 7,
+      "iyn,": 6,
+      "mar,": 3,
+      "may,": 5,
+      "noy,": 11,
+      "okt,": 10,
+      "sen,": 9,
+      "yan,": 1
     },
     "timeago_nd_tokens": {
       "bugun": "0D",
@@ -2604,18 +2630,18 @@
     },
     "date_order": "DY",
     "months": {
-      "ka-aga": 8,
-      "ka-dis": 12,
-      "ka-eph": 4,
-      "ka-feb": 2,
-      "ka-jan": 1,
-      "ka-jul": 7,
-      "ka-jun": 6,
-      "ka-mas": 3,
-      "ka-mey": 5,
-      "ka-nov": 11,
-      "ka-okt": 10,
-      "ka-sep": 9
+      "aga": 8,
+      "dis": 12,
+      "eph": 4,
+      "feb": 2,
+      "jan": 1,
+      "jul": 7,
+      "jun": 6,
+      "mas": 3,
+      "mey": 5,
+      "nov": 11,
+      "okt": 10,
+      "sep": 9
     },
     "timeago_nd_tokens": {
       "izolo": "1D",

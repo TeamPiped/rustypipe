@@ -27,7 +27,7 @@ fn parse_tu(tu: &str) -> (u8, Option<TimeUnit>) {
     }
 }
 
-#[test]
+// #[test]
 fn generate_dictionary() {
     let dict = super::read_dict();
 
