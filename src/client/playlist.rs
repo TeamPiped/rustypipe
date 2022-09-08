@@ -3,9 +3,9 @@ use reqwest::Method;
 use serde::Serialize;
 
 use crate::{
-    model::{Channel, Playlist, Thumbnail, Video},
+    model::{Channel, Language, Playlist, Thumbnail, Video},
     serializer::text::{PageType, TextLink},
-    util,
+    timeago, util,
 };
 
 use super::{response, ClientType, ContextYT, RustyTube};
@@ -46,7 +46,7 @@ impl RustyTube {
         let playlist_response =
             serde_json::from_str::<response::Playlist>(&resp_body).context(resp_body)?;
 
-        map_playlist(&playlist_response)
+        map_playlist(&playlist_response, self.localization.language)
     }
 
     pub async fn get_playlist_cont(&self, playlist: &mut Playlist) -> Result<()> {
@@ -95,7 +95,7 @@ impl RustyTube {
     }
 }
 
-fn map_playlist(response: &response::Playlist) -> Result<Playlist> {
+fn map_playlist(response: &response::Playlist, lang: Language) -> Result<Playlist> {
     let video_items = &some_or_bail!(
         some_or_bail!(
             some_or_bail!(
@@ -228,7 +228,10 @@ fn map_playlist(response: &response::Playlist) -> Result<Playlist> {
         thumbnails,
         description,
         channel,
-        last_update: None,
+        last_update: match &last_update_txt {
+            Some(textual_date) => timeago::parse_textual_date_to_dt(lang, textual_date),
+            None => None,
+        },
         last_update_txt,
     })
 }
@@ -383,15 +386,17 @@ mod tests {
     #[case::long("long")]
     #[case::short("short")]
     #[case::nomusic("nomusic")]
-    fn t_map_player_data(#[case] name: &str) {
+    fn t_map_playlist_data(#[case] name: &str) {
         let filename = format!("testfiles/playlist/playlist_{}.json", name);
         let json_path = Path::new(&filename);
         let json_file = File::open(json_path).unwrap();
 
         let playlist: response::Playlist =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let playlist_data = map_playlist(&playlist).unwrap();
-        insta::assert_yaml_snapshot!(format!("map_playlist_data_{}", name), playlist_data);
+        let playlist_data = map_playlist(&playlist, Language::En).unwrap();
+        insta::assert_yaml_snapshot!(format!("map_playlist_data_{}", name), playlist_data, {
+            ".last_update" => "[date]"
+        });
     }
 
     #[test_log::test(tokio::test)]

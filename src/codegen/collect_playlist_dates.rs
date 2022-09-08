@@ -183,7 +183,7 @@ fn write_samples_to_dict() {
             // n days ago
             {
                 let datestr = datestr_table.get(&DateCase::Ago).unwrap();
-                let tago = timeago::parse(lang, &datestr);
+                let tago = timeago::parse_timeago(lang, &datestr);
                 assert_eq!(
                     tago,
                     Some(TimeAgo {

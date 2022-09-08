@@ -25,6 +25,7 @@ serde_with = {version = "2.0.0", features = ["json"] }
 rand = "0.8.5"
 async-trait = "0.1.56"
 chrono = {version = "0.4.19", features = ["serde"]}
+chronoutil = "0.2.3"
 futures = "0.3.21"
 indicatif = "0.17.0"
 filenamify = "0.1.0"
@@ -36,8 +37,6 @@ env_logger = "0.9.0"
 test-log = "0.2.11"
 rstest = "0.15.0"
 temp_testdir = "0.2.3"
-insta = "1.17.1"
+insta = {version = "1.17.1", features = ["redactions"]}
 velcro = "0.5.3"
-unic-langid = "0.9.0"
-intl_pluralrules = "7.0.1"
 phf_codegen = "0.11.1"

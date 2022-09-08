@@ -1862,6 +1862,6 @@ thumbnails:
     height: 1200
 description: ~
 channel: ~
-last_update: ~
+last_update: "[date]"
 last_update_txt: Updated today
 

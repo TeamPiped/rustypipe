@@ -5,7 +5,7 @@ use std::{
 };
 
 use anyhow::{anyhow, bail, Result};
-use chrono::{NaiveDateTime, NaiveTime, TimeZone, Utc};
+use chrono::{Local, NaiveDateTime, NaiveTime, TimeZone};
 use fancy_regex::Regex;
 use log::{error, warn};
 use once_cell::sync::Lazy;
@@ -367,7 +367,7 @@ fn map_player_data(response: response::Player, deobf: &Deobfuscator) -> Result<V
         },
         publish_date: microformat.as_ref().map(|m| {
             let ndt = NaiveDateTime::new(m.publish_date, NaiveTime::from_hms(0, 0, 0));
-            Utc.from_local_datetime(&ndt).unwrap()
+            Local.from_local_datetime(&ndt).unwrap()
         }),
         view_count: video_details.view_count,
         keywords: video_details
@@ -526,7 +526,19 @@ mod tests {
 
         let resp: response::Player = serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let player_data = map_player_data(resp, &DEOBFUSCATOR).unwrap();
-        insta::assert_yaml_snapshot!(format!("map_player_data_{}", name), player_data)
+
+        let is_desktop = name == "desktop" || name == "desktopmusic";
+        insta::assert_yaml_snapshot!(format!("map_player_data_{}", name), player_data, {
+            ".info.publish_date" => insta::dynamic_redaction(move |value, _path| {
+                if is_desktop {
+                    assert!(value.as_str().unwrap().starts_with("2019-05-30T00:00:00"));
+                    "2019-05-30T00:00:00"
+                } else {
+                    assert_eq!(value, insta::internals::Content::None);
+                    "~"
+                }
+            }),
+        });
     }
 
     /// Assert equality within 10% margin
@@ -572,10 +584,7 @@ mod tests {
         assert_eq!(player_data.info.is_live_content, false);
 
         if client_type == ClientType::Desktop || client_type == ClientType::DesktopMusic {
-            assert_eq!(
-                player_data.info.publish_date.unwrap().to_string(),
-                "2013-05-05 00:00:00 UTC"
-            );
+            assert!(player_data.info.publish_date.unwrap().to_string().starts_with("2013-05-05 00:00:00"));
             assert_eq!(player_data.info.category.unwrap(), "Music");
             assert_eq!(player_data.info.is_family_safe.unwrap(), true);
         }

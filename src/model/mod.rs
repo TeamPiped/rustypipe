@@ -6,7 +6,7 @@ pub use locale::{Country, Language};
 
 use std::ops::Range;
 
-use chrono::{DateTime, Utc};
+use chrono::{DateTime, Local};
 use serde::{Deserialize, Serialize};
 
 pub trait FileFormat {
@@ -33,7 +33,7 @@ pub struct Playlist {
     pub thumbnails: Vec<Thumbnail>,
     pub description: Option<String>,
     pub channel: Option<Channel>,
-    pub last_update: Option<DateTime<Utc>>,
+    pub last_update: Option<DateTime<Local>>,
     pub last_update_txt: Option<String>,
 }
 
@@ -45,7 +45,7 @@ pub struct VideoInfo {
     pub length: u32,
     pub thumbnails: Vec<Thumbnail>,
     pub channel: Channel,
-    pub publish_date: Option<DateTime<Utc>>,
+    pub publish_date: Option<DateTime<Local>>,
     pub view_count: u64,
     pub keywords: Vec<String>,
     pub category: Option<String>,
