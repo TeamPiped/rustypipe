@@ -116,24 +116,19 @@ const YOUTUBE_MUSIC_V1_URL: &str = "https://music.youtube.com/youtubei/v1/";
 
 const DISABLE_PRETTY_PRINT_PARAMETER: &str = "&prettyPrint=false";
 
-const DESKTOP_CLIENT_VERSION: &str = "2.20220801.00.00";
+const DESKTOP_CLIENT_VERSION: &str = "2.20220909.00.00";
 const DESKTOP_API_KEY: &str = "AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8";
 const TVHTML5_CLIENT_VERSION: &str = "2.0";
 const DESKTOP_MUSIC_API_KEY: &str = "AIzaSyC9XL3ZjWddXya6X74dJoCTL-WEYFDNX30";
-const DESKTOP_MUSIC_CLIENT_VERSION: &str = "1.20220727.01.00";
+const DESKTOP_MUSIC_CLIENT_VERSION: &str = "1.20220831.01.02";
 
 const MOBILE_CLIENT_VERSION: &str = "17.29.35";
 const ANDROID_API_KEY: &str = "AIzaSyA8eiZmM1FaDVjRy-df2KTyQ_vz_yYM39w";
 const IOS_API_KEY: &str = "AIzaSyB-63vPrdThhKuerbB2N_l7Kwwcxj6yUAc";
 const IOS_DEVICE_MODEL: &str = "iPhone14,5";
 
-static CLIENT_VERSION_REGEXES: Lazy<[Regex; 3]> = Lazy::new(|| {
-    [
-        Regex::new("INNERTUBE_CONTEXT_CLIENT_VERSION\":\"([0-9\\.]+?)\"").unwrap(),
-        Regex::new("innertube_context_client_version\":\"([0-9\\.]+?)\"").unwrap(),
-        Regex::new("client.version=([0-9\\.]+)").unwrap(),
-    ]
-});
+static CLIENT_VERSION_REGEXES: Lazy<[Regex; 1]> =
+    Lazy::new(|| [Regex::new("INNERTUBE_CONTEXT_CLIENT_VERSION\":\"([0-9\\.]+?)\"").unwrap()]);
 
 pub struct RustyTube {
     localization: Arc<Localization>,
@@ -296,24 +291,46 @@ impl DesktopClient {
         }
     }
 
-    async fn extract_client_version_from_swjs(
-        http: Client,
-        consent_cookie: &str,
-    ) -> Result<String> {
-        let swjs = exec_request_text(
-            http.clone(),
-            http.get("https://www.youtube.com/sw.js")
-                .header(header::ORIGIN, "https://www.youtube.com")
-                .header(header::REFERER, "https://www.youtube.com")
-                .header(header::COOKIE, consent_cookie)
-                .build()
-                .unwrap(),
-        )
-        .await
-        .context("Failed to download sw.js")?;
+    async fn extract_client_version(http: Client, consent_cookie: &str) -> Result<String> {
+        async fn extract_client_version_from_swjs(
+            http: Client,
+            consent_cookie: &str,
+        ) -> Result<String> {
+            let swjs = exec_request_text(
+                http.clone(),
+                http.get("https://www.youtube.com/sw.js")
+                    .header(header::ORIGIN, "https://www.youtube.com")
+                    .header(header::REFERER, "https://www.youtube.com")
+                    .header(header::COOKIE, consent_cookie)
+                    .build()
+                    .unwrap(),
+            )
+            .await
+            .context("Failed to download sw.js")?;
 
-        util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &swjs, 1)
-            .ok_or(anyhow!("Could not find desktop client version in sw.js"))
+            util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &swjs, 1)
+                .ok_or(anyhow!("Could not find desktop client version in sw.js"))
+        }
+
+        async fn extract_client_version_from_html(http: Client) -> Result<String> {
+            let html = exec_request_text(
+                http.clone(),
+                http.get("https://www.youtube.com/results?search_query=")
+                    .build()
+                    .unwrap(),
+            )
+            .await
+            .context("Failed to get YT Desktop page")?;
+
+            util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &html, 1).ok_or(anyhow!(
+                "Could not find desktop client version on html page"
+            ))
+        }
+
+        match extract_client_version_from_swjs(http.clone(), consent_cookie).await {
+            Ok(client_version) => Ok(client_version),
+            Err(_) => extract_client_version_from_html(http).await,
+        }
     }
 
     async fn get_client_version(&self) -> String {
@@ -323,8 +340,7 @@ impl DesktopClient {
         let client_data = self
             .cache
             .get_desktop_client_data(async move {
-                let client_version =
-                    Self::extract_client_version_from_swjs(http, &consent_cookie).await?;
+                let client_version = Self::extract_client_version(http, &consent_cookie).await?;
                 Ok(ClientData {
                     version: client_version,
                 })
@@ -633,24 +649,43 @@ impl DesktopMusicClient {
         }
     }
 
-    async fn extract_client_version_from_swjs(
-        http: Client,
-        consent_cookie: &str,
-    ) -> Result<String> {
-        let swjs = exec_request_text(
-            http.clone(),
-            http.get("https://music.youtube.com/sw.js")
-                .header(header::ORIGIN, "https://www.youtube.com")
-                .header(header::REFERER, "https://www.youtube.com")
-                .header(header::COOKIE, consent_cookie)
-                .build()
-                .unwrap(),
-        )
-        .await
-        .context("Failed to download sw.js")?;
+    async fn extract_client_version(http: Client, consent_cookie: &str) -> Result<String> {
+        async fn extract_client_version_from_swjs(
+            http: Client,
+            consent_cookie: &str,
+        ) -> Result<String> {
+            let swjs = exec_request_text(
+                http.clone(),
+                http.get("https://music.youtube.com/sw.js")
+                    .header(header::ORIGIN, "https://www.youtube.com")
+                    .header(header::REFERER, "https://www.youtube.com")
+                    .header(header::COOKIE, consent_cookie)
+                    .build()
+                    .unwrap(),
+            )
+            .await
+            .context("Failed to download sw.js")?;
 
-        util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &swjs, 1)
-            .ok_or(anyhow!("Could not find music client version in sw.js"))
+            util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &swjs, 1)
+                .ok_or(anyhow!("Could not find music client version in sw.js"))
+        }
+
+        async fn extract_client_version_from_html(http: Client) -> Result<String> {
+            let html = exec_request_text(
+                http.clone(),
+                http.get("https://music.youtube.com").build().unwrap(),
+            )
+            .await
+            .context("Failed to get YT Music page")?;
+
+            util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &html, 1)
+                .ok_or(anyhow!("Could not find music client version on html page"))
+        }
+
+        match extract_client_version_from_swjs(http.clone(), consent_cookie).await {
+            Ok(client_version) => Ok(client_version),
+            Err(_) => extract_client_version_from_html(http).await,
+        }
     }
 
     async fn get_client_version(&self) -> String {
@@ -660,8 +695,7 @@ impl DesktopMusicClient {
         let client_data = self
             .cache
             .get_music_client_data(async move {
-                let client_version =
-                    Self::extract_client_version_from_swjs(http, &consent_cookie).await?;
+                let client_version = Self::extract_client_version(http, &consent_cookie).await?;
                 Ok(ClientData {
                     version: client_version,
                 })
@@ -690,12 +724,10 @@ mod tests {
     async fn t_extract_desktop_client_version() {
         let rt = RustyTube::new();
         let client = rt.desktop_client;
-        let version = DesktopClient::extract_client_version_from_swjs(
-            client.http.clone(),
-            &client.consent_cookie,
-        )
-        .await
-        .unwrap();
+        let version =
+            DesktopClient::extract_client_version(client.http.clone(), &client.consent_cookie)
+                .await
+                .unwrap();
 
         assert!(CLIENT_VERSION_REGEX.is_match(&version).unwrap());
 
@@ -713,12 +745,10 @@ mod tests {
     async fn t_extract_desktop_music_client_version() {
         let rt = RustyTube::new();
         let client = rt.desktop_music_client;
-        let version = DesktopMusicClient::extract_client_version_from_swjs(
-            client.http.clone(),
-            &client.consent_cookie,
-        )
-        .await
-        .unwrap();
+        let version =
+            DesktopMusicClient::extract_client_version(client.http.clone(), &client.consent_cookie)
+                .await
+                .unwrap();
 
         assert!(CLIENT_VERSION_REGEX.is_match(&version).unwrap());
 
