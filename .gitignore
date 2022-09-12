@@ -1,4 +1,6 @@
 /target
 /Cargo.lock
 
+RustyPipeReports
+RustyPipeCache.json
 rusty-tube.json
