@@ -3,43 +3,47 @@ use fancy_regex::Regex;
 use log::debug;
 use once_cell::sync::Lazy;
 use reqwest::Client;
+use serde::{Serialize, Deserialize};
 use std::result::Result::Ok;
 
-use crate::cache::{Cache, DeobfData};
 use crate::util;
 
 pub struct Deobfuscator {
     data: DeobfData,
 }
 
+#[derive(Debug, Default, Clone, Serialize, Deserialize, PartialEq, Eq)]
+pub struct DeobfData {
+    pub js_url: String,
+    pub sig_fn: String,
+    pub nsig_fn: String,
+    pub sts: String,
+}
+
 impl Deobfuscator {
-    pub async fn from_fetched_info(http: Client, cache: Cache) -> Result<Self> {
-        let data = cache
-            .get_deobf_data(async move {
-                let js_url = get_player_js_url(&http)
-                    .await
-                    .context("Failed to retrieve player.js URL")?;
+    pub async fn new(http: Client) -> Result<Self> {
+        let js_url = get_player_js_url(&http)
+            .await
+            .context("Failed to retrieve player.js URL")?;
 
-                let player_js = get_response(&http, &js_url)
-                    .await
-                    .context("Failed to download player.js")?;
+        let player_js = get_response(&http, &js_url)
+            .await
+            .context("Failed to download player.js")?;
 
-                debug!("Downloaded player.js from {}", js_url);
+        debug!("Downloaded player.js from {}", js_url);
 
-                let sig_fn = get_sig_fn(&player_js)?;
-                let nsig_fn = get_nsig_fn(&player_js)?;
-                let sts = get_sts(&player_js)?;
+        let sig_fn = get_sig_fn(&player_js)?;
+        let nsig_fn = get_nsig_fn(&player_js)?;
+        let sts = get_sts(&player_js)?;
 
-                Ok(DeobfData {
-                    js_url,
-                    nsig_fn,
-                    sig_fn,
-                    sts,
-                })
-            })
-            .await?;
-
-        Ok(Self { data })
+        Ok(Self {
+            data: DeobfData {
+                js_url,
+                nsig_fn,
+                sig_fn,
+                sts,
+            },
+       })
     }
 
     pub fn deobfuscate_sig(&self, sig: &str) -> Result<String> {
@@ -52,6 +56,10 @@ impl Deobfuscator {
 
     pub fn get_sts(&self) -> String {
         self.data.sts.to_owned()
+    }
+
+    pub fn get_data(&self) -> DeobfData {
+        self.data.to_owned()
     }
 }
 
@@ -472,8 +480,7 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
     #[test(tokio::test)]
     async fn t_update() {
         let client = Client::new();
-        let cache = Cache::default();
-        let deobf = Deobfuscator::from_fetched_info(client, cache)
+        let deobf = Deobfuscator::new(client)
             .await
             .unwrap();
 

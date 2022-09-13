@@ -9,6 +9,8 @@ use chrono::{DateTime, Local};
 use log::error;
 use serde::{Deserialize, Serialize};
 
+use crate::deobfuscate::DeobfData;
+
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Report {
     /// Rust package name (`rustypipe`)
@@ -25,9 +27,9 @@ pub struct Report {
     pub error: Option<String>,
     /// Detailed error/warning messages
     pub msgs: Vec<String>,
-    // /// Deobfuscation data (only for player requests)
-    // #[serde(skip_serializing_if = "Option::is_none")]
-    // pub deobf_data: Option<DeobfData>,
+    /// Deobfuscation data (only for player requests)
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub deobf_data: Option<DeobfData>,
     /// HTTP request data
     pub http_request: HTTPRequest,
 }
@@ -96,10 +98,12 @@ impl Reporter for JsonFileReporter {
     }
 }
 
+#[cfg(feature="yaml")]
 pub struct YamlFileReporter {
     path: PathBuf,
 }
 
+#[cfg(feature="yaml")]
 impl YamlFileReporter {
     pub fn new<P: AsRef<Path>>(path: P) -> Self {
         Self {
@@ -114,6 +118,7 @@ impl YamlFileReporter {
     }
 }
 
+#[cfg(feature="yaml")]
 impl Default for YamlFileReporter {
     fn default() -> Self {
         Self {
@@ -122,6 +127,7 @@ impl Default for YamlFileReporter {
     }
 }
 
+#[cfg(feature="yaml")]
 impl Reporter for YamlFileReporter {
     fn report(&self, report: &Report) {
         self._report(report)

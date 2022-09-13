@@ -40,7 +40,6 @@ impl RustyPipe {
             "browse",
             playlist_id,
             &request_body,
-            None,
         )
         .await
     }
@@ -62,7 +61,6 @@ impl RustyPipe {
                         "browse",
                         &playlist.id,
                         &request_body,
-                        None,
                     )
                     .await?;
 
@@ -350,7 +348,7 @@ mod tests {
         #[case] description: Option<String>,
         #[case] channel: Option<Channel>,
     ) {
-        let rp = RustyPipe::default();
+        let rp = RustyPipe::new_test();
         let playlist = rp.get_playlist(id).await.unwrap();
 
         assert_eq!(playlist.id, id);
@@ -412,7 +410,7 @@ mod tests {
 
     #[test_log::test(tokio::test)]
     async fn t_playlist_cont() {
-        let rp = RustyPipe::default();
+        let rp = RustyPipe::new_test();
         let mut playlist = rp
             .get_playlist("PLbZIPy20-1pN7mqjckepWF78ndb6ci_qi")
             .await

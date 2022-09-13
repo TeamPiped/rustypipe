@@ -7,11 +7,15 @@ edition = "2021"
 members = [".", "cli"]
 
 [features]
-default = ["default-tls"]
+default = ["default-tls", "yaml"]
 
+# Reqwest TLS
 default-tls = ["reqwest/default-tls"]
 rustls-tls-webpki-roots = ["reqwest/rustls-tls-webpki-roots"]
 rustls-tls-native-roots = ["reqwest/rustls-tls-native-roots"]
+
+# Error reports in yaml format
+yaml = ["serde_yaml"]
 
 [dependencies]
 # quick-js = "0.4.1"
@@ -26,10 +30,9 @@ reqwest = {version = "0.11.11", default-features = false, features = ["json", "g
 tokio = {version = "1.20.0", features = ["macros", "fs", "process"]}
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0.82"
-serde_yaml = "0.9.11"
+serde_yaml = {version = "0.9.11", optional = true}
 serde_with = {version = "2.0.0", features = ["json"] }
 rand = "0.8.5"
-async-trait = "0.1.56"
 chrono = {version = "0.4.19", features = ["serde"]}
 chronoutil = "0.2.3"
 futures = "0.3.21"

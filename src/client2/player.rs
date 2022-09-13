@@ -59,10 +59,10 @@ struct QContentPlaybackContext {
 
 impl RustyPipe {
     pub async fn get_player(&self, video_id: &str, client_type: ClientType) -> Result<VideoPlayer> {
-        let (context, deobf) = tokio::join!(
-            self.get_context(client_type, false),
-            Deobfuscator::from_fetched_info(self.inner.http.clone(), self.inner.cache.clone())
-        );
+        let (context, deobf) = tokio::join!(self.get_context(client_type, false), self.get_deobf());
+        // let context = self.get_context(client_type, false).await;
+        // let deobf = self.get_deobf().await;
+
         let deobf = deobf?;
 
         let request_body = if client_type.is_web() {
@@ -90,7 +90,7 @@ impl RustyPipe {
             }
         };
 
-        self.execute_request::<response::Player, _, _>(
+        self.execute_request_deobf::<response::Player, _, _>(
             client_type,
             "get_player",
             Method::POST,
@@ -575,10 +575,11 @@ fn get_audio_codec(codecs: Vec<&str>) -> AudioCodec {
 }
 
 #[cfg(test)]
+#[cfg(feature = "yaml")]
 mod tests {
     use std::{fs::File, io::BufReader, path::Path};
 
-    use crate::{cache::DeobfData, client2::CLIENT_TYPES, report::TestFileReporter};
+    use crate::{deobfuscate::DeobfData, client2::CLIENT_TYPES, report::TestFileReporter};
 
     use super::*;
     use rstest::rstest;
@@ -613,7 +614,7 @@ mod tests {
     #[test_log::test(tokio::test)]
     async fn download_model_testfiles() {
         let tf_dir = Path::new("testfiles/player_model");
-        let rp = RustyPipe::default();
+        let rp = RustyPipe::new_test();
 
         for (name, id) in [("multilanguage", "tVWWp1PqDus"), ("hdr", "LXb3EKWsInQ")] {
             let mut json_path = tf_dir.to_path_buf();
@@ -683,7 +684,7 @@ mod tests {
     #[case::ios(ClientType::Ios)]
     #[test_log::test(tokio::test)]
     async fn t_get_player(#[case] client_type: ClientType) {
-        let rp = RustyPipe::default();
+        let rp = RustyPipe::new_test();
         let player_data = rp.get_player("n4tK7LYFxI0", client_type).await.unwrap();
 
         // dbg!(&player_data);
