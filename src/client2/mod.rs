@@ -1,3 +1,4 @@
+pub mod player;
 pub mod playlist;
 
 mod response;
@@ -14,8 +15,9 @@ use serde::{de::DeserializeOwned, Deserialize, Serialize};
 
 use crate::{
     cache::Cache,
+    deobfuscate::Deobfuscator,
     model::{Country, Language},
-    report::{YamlFileReporter, Level, Report, Reporter},
+    report::{Level, Report, Reporter, YamlFileReporter},
 };
 
 #[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq, Eq, Hash)]
@@ -26,6 +28,23 @@ pub enum ClientType {
     TvHtml5Embed,
     Android,
     Ios,
+}
+
+const CLIENT_TYPES: [ClientType; 5] = [
+    ClientType::Desktop,
+    ClientType::DesktopMusic,
+    ClientType::TvHtml5Embed,
+    ClientType::Android,
+    ClientType::Ios,
+];
+
+impl ClientType {
+    fn is_web(&self) -> bool {
+        match self {
+            ClientType::Desktop | ClientType::DesktopMusic | ClientType::TvHtml5Embed => true,
+            ClientType::Android | ClientType::Ios => false,
+        }
+    }
 }
 
 #[derive(Clone, Debug, Serialize)]
@@ -163,6 +182,7 @@ impl RustyPipe {
         let user_agent = user_agent.unwrap_or(DEFAULT_UA.to_owned());
 
         let http = ClientBuilder::new()
+            .user_agent(user_agent.to_owned())
             .gzip(true)
             .brotli(true)
             .build()
@@ -201,6 +221,15 @@ impl RustyPipe {
     }
 
     async fn get_context(&self, ctype: ClientType, localized: bool) -> ContextYT {
+        let hl = match localized {
+            true => self.opts.lang,
+            false => Language::En,
+        };
+        let gl = match localized {
+            true => self.opts.country,
+            false => Country::Us,
+        };
+
         match ctype {
             ClientType::Desktop => ContextYT {
                 client: ClientInfo {
@@ -210,23 +239,75 @@ impl RustyPipe {
                     device_model: None,
                     platform: "DESKTOP".to_owned(),
                     original_url: Some("https://www.youtube.com/".to_owned()),
-                    hl: match localized {
-                        true => self.opts.lang,
-                        false => Language::En,
-                    },
-                    gl: match localized {
-                        true => self.opts.country,
-                        false => Country::Us,
-                    },
+                    hl,
+                    gl,
                 },
                 request: Some(RequestYT::default()),
                 user: User::default(),
                 third_party: None,
             },
-            ClientType::DesktopMusic => todo!(),
-            ClientType::TvHtml5Embed => todo!(),
-            ClientType::Android => todo!(),
-            ClientType::Ios => todo!(),
+            ClientType::DesktopMusic => ContextYT {
+                client: ClientInfo {
+                    client_name: "WEB_REMIX".to_owned(),
+                    client_version: DESKTOP_MUSIC_CLIENT_VERSION.to_owned(),
+                    client_screen: None,
+                    device_model: None,
+                    platform: "DESKTOP".to_owned(),
+                    original_url: Some("https://music.youtube.com/".to_owned()),
+                    hl,
+                    gl,
+                },
+                request: Some(RequestYT::default()),
+                user: User::default(),
+                third_party: None,
+            },
+            ClientType::TvHtml5Embed => ContextYT {
+                client: ClientInfo {
+                    client_name: "TVHTML5_SIMPLY_EMBEDDED_PLAYER".to_owned(),
+                    client_version: TVHTML5_CLIENT_VERSION.to_owned(),
+                    client_screen: Some("EMBED".to_owned()),
+                    device_model: None,
+                    platform: "TV".to_owned(),
+                    original_url: None,
+                    hl,
+                    gl,
+                },
+                request: Some(RequestYT::default()),
+                user: User::default(),
+                third_party: Some(ThirdParty {
+                    embed_url: "https://www.youtube.com/".to_owned(),
+                }),
+            },
+            ClientType::Android => ContextYT {
+                client: ClientInfo {
+                    client_name: "ANDROID".to_owned(),
+                    client_version: MOBILE_CLIENT_VERSION.to_owned(),
+                    client_screen: None,
+                    device_model: None,
+                    platform: "MOBILE".to_owned(),
+                    original_url: None,
+                    hl,
+                    gl,
+                },
+                request: None,
+                user: User::default(),
+                third_party: None,
+            },
+            ClientType::Ios => ContextYT {
+                client: ClientInfo {
+                    client_name: "IOS".to_owned(),
+                    client_version: MOBILE_CLIENT_VERSION.to_owned(),
+                    client_screen: None,
+                    device_model: Some(IOS_DEVICE_MODEL.to_owned()),
+                    platform: "MOBILE".to_owned(),
+                    original_url: None,
+                    hl,
+                    gl,
+                },
+                request: None,
+                user: User::default(),
+                third_party: None,
+            },
         }
     }
 
@@ -252,10 +333,80 @@ impl RustyPipe {
                 .header(header::COOKIE, self.inner.consent_cookie.to_owned())
                 .header("X-YouTube-Client-Name", "1")
                 .header("X-YouTube-Client-Version", DESKTOP_CLIENT_VERSION),
-            ClientType::DesktopMusic => todo!(),
-            ClientType::TvHtml5Embed => todo!(),
-            ClientType::Android => todo!(),
-            ClientType::Ios => todo!(),
+            ClientType::DesktopMusic => self
+                .inner
+                .http
+                .request(
+                    method,
+                    format!(
+                        "{}{}?key={}{}",
+                        YOUTUBE_MUSIC_V1_URL,
+                        endpoint,
+                        DESKTOP_MUSIC_API_KEY,
+                        DISABLE_PRETTY_PRINT_PARAMETER
+                    ),
+                )
+                .header(header::ORIGIN, "https://music.youtube.com")
+                .header(header::REFERER, "https://music.youtube.com")
+                .header(header::COOKIE, self.inner.consent_cookie.to_owned())
+                .header("X-YouTube-Client-Name", "67")
+                .header("X-YouTube-Client-Version", DESKTOP_MUSIC_CLIENT_VERSION),
+            ClientType::TvHtml5Embed => self
+                .inner
+                .http
+                .request(
+                    method,
+                    format!(
+                        "{}{}?key={}{}",
+                        YOUTUBEI_V1_URL, endpoint, DESKTOP_API_KEY, DISABLE_PRETTY_PRINT_PARAMETER
+                    ),
+                )
+                .header(header::ORIGIN, "https://www.youtube.com")
+                .header(header::REFERER, "https://www.youtube.com")
+                .header("X-YouTube-Client-Name", "1")
+                .header("X-YouTube-Client-Version", TVHTML5_CLIENT_VERSION),
+            ClientType::Android => self
+                .inner
+                .http
+                .request(
+                    method,
+                    format!(
+                        "{}{}?key={}{}",
+                        YOUTUBEI_V1_GAPIS_URL,
+                        endpoint,
+                        ANDROID_API_KEY,
+                        DISABLE_PRETTY_PRINT_PARAMETER
+                    ),
+                )
+                .header(
+                    header::USER_AGENT,
+                    format!(
+                        "com.google.android.youtube/{} (Linux; U; Android 12; {}) gzip",
+                        MOBILE_CLIENT_VERSION, self.opts.country
+                    ),
+                )
+                .header("X-Goog-Api-Format-Version", "2"),
+            ClientType::Ios => self
+                .inner
+                .http
+                .request(
+                    method,
+                    format!(
+                        "{}{}?key={}{}",
+                        YOUTUBEI_V1_GAPIS_URL,
+                        endpoint,
+                        IOS_API_KEY,
+                        DISABLE_PRETTY_PRINT_PARAMETER
+                    ),
+                )
+                .header(
+                    header::USER_AGENT,
+                    format!(
+                        "com.google.ios.youtube/{} ({}; U; CPU iOS 15_4 like Mac OS X; {})",
+                        MOBILE_CLIENT_VERSION, IOS_DEVICE_MODEL, self.opts.country
+                    ),
+                )
+                .header("X-Goog-Api-Format-Version", "2"),
         }
     }
 
@@ -271,6 +422,7 @@ impl RustyPipe {
         endpoint: &str,
         id: &str,
         body: &B,
+        deobf: Option<&Deobfuscator>,
     ) -> Result<M> {
         let request = self
             .request_builder(ctype, method.clone(), endpoint)
@@ -286,80 +438,77 @@ impl RustyPipe {
         let status = response.status();
         let resp_str = response.text().await?;
 
-        let create_report =
-            |level: Level, error: Option<String>, msgs: Vec<String>, deserialized: Option<&R>| {
-                if let Some(reporter) = &self.inner.reporter {
-                    let report = Report {
-                        package: "rustypipe".to_owned(),
-                        version: "0.1.0".to_owned(),
-                        date: chrono::Local::now(),
-                        level,
-                        operation: operation.to_owned(),
-                        error,
-                        msgs,
-                        http_request: crate::report::HTTPRequest {
-                            url: request_url,
-                            method: method.to_string(),
-                            req_header: request_headers
-                                .iter()
-                                .map(|(k, v)| {
-                                    (k.to_string(), v.to_str().unwrap_or_default().to_owned())
-                                })
-                                .collect(),
-                            req_body: serde_json::to_string(body).unwrap_or_default(),
-                            status: status.into(),
-                            resp_body: resp_str.to_owned(),
-                        },
-                        deserialized: deserialized.map(|d| format!("{:?}", d)),
-                    };
+        let create_report = |level: Level, error: Option<String>, msgs: Vec<String>| {
+            if let Some(reporter) = &self.inner.reporter {
+                let report = Report {
+                    package: "rustypipe".to_owned(),
+                    version: "0.1.0".to_owned(),
+                    date: chrono::Local::now(),
+                    level,
+                    operation: operation.to_owned(),
+                    error,
+                    msgs,
+                    http_request: crate::report::HTTPRequest {
+                        url: request_url,
+                        method: method.to_string(),
+                        req_header: request_headers
+                            .iter()
+                            .map(|(k, v)| {
+                                (k.to_string(), v.to_str().unwrap_or_default().to_owned())
+                            })
+                            .collect(),
+                        req_body: serde_json::to_string(body).unwrap_or_default(),
+                        status: status.into(),
+                        resp_body: resp_str.to_owned(),
+                    },
+                };
 
-                    reporter.report(&report);
-                }
-            };
+                reporter.report(&report);
+            }
+        };
 
         if status.is_client_error() || status.is_server_error() {
             let e = anyhow!("Server responded with error code {}", status);
-            create_report(Level::ERR, Some(e.to_string()), vec![], None);
+            create_report(Level::ERR, Some(e.to_string()), vec![]);
             return Err(e);
         }
 
         match serde_json::from_str::<R>(&resp_str) {
-            Ok(deserialized) => match deserialized.map_response(self.opts.lang, id) {
+            Ok(deserialized) => match deserialized.map_response(id, self.opts.lang, deobf) {
                 Ok(mapres) => {
                     if !mapres.warnings.is_empty() {
                         create_report(
                             Level::WRN,
                             Some("Warnings during deserialization/mapping".to_owned()),
                             mapres.warnings,
-                            Some(&deserialized),
                         );
                     } else if self.opts.report {
-                        create_report(Level::DBG, None, vec![], Some(&deserialized));
+                        create_report(Level::DBG, None, vec![]);
                     }
                     Ok(mapres.c)
                 }
                 Err(e) => {
                     let emsg = "Could not map reponse";
-                    create_report(
-                        Level::ERR,
-                        Some(emsg.to_owned()),
-                        vec![e.to_string()],
-                        Some(&deserialized),
-                    );
+                    create_report(Level::ERR, Some(emsg.to_owned()), vec![e.to_string()]);
                     Err(e).context(emsg)
                 }
             },
             Err(e) => {
                 let emsg = "Could not deserialize response";
-                create_report(Level::ERR, Some(emsg.to_owned()), vec![e.to_string()], None);
+                create_report(Level::ERR, Some(emsg.to_owned()), vec![e.to_string()]);
                 Err(e).context(emsg)
             }
         }
     }
 }
 
-pub trait MapResponse<T> {
-    fn map_response(&self, lang: Language, id: &str) -> Result<MapResult<T>>;
+trait MapResponse<T> {
+    fn map_response(
+        self,
+        id: &str,
+        lang: Language,
+        deobf: Option<&Deobfuscator>,
+    ) -> Result<MapResult<T>>;
 }
 
 #[derive(Clone)]
@@ -368,7 +517,10 @@ pub struct MapResult<T> {
     pub warnings: Vec<String>,
 }
 
-impl<T> Debug for MapResult<T> where T: Debug {
+impl<T> Debug for MapResult<T>
+where
+    T: Debug,
+{
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         self.c.fmt(f)
     }

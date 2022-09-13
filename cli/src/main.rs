@@ -6,7 +6,7 @@ use futures::stream::{self, StreamExt};
 use indicatif::{MultiProgress, ProgressBar, ProgressStyle};
 use reqwest::{Client, ClientBuilder};
 use rustypipe::{
-    client::{ClientType, RustyTube},
+    client2::{ClientType, RustyPipe},
     model::stream_filter::Filter,
 };
 
@@ -46,7 +46,7 @@ async fn download_single_video(
     output_fname: Option<String>,
     resolution: Option<u32>,
     ffmpeg: &str,
-    rt: &RustyTube,
+    rp: &RustyPipe,
     http: Client,
     multi: MultiProgress,
     main: Option<ProgressBar>,
@@ -58,7 +58,7 @@ async fn download_single_video(
     pb.set_message(format!("Fetching player data for {}", video_title));
 
     let res = async {
-        let player_data = rt
+        let player_data = rp
             .get_player(video_id.as_str(), ClientType::TvHtml5Embed)
             .await
             .context(format!(
@@ -112,7 +112,7 @@ async fn download_video(
         .build()
         .expect("unable to build the HTTP client");
 
-    let rt = RustyTube::new();
+    let rp = RustyPipe::default();
 
     // Indicatif setup
     let multi = MultiProgress::new();
@@ -124,7 +124,7 @@ async fn download_video(
         output_fname,
         resolution,
         "ffmpeg",
-        &rt,
+        &rp,
         http,
         multi,
         None,
@@ -147,8 +147,8 @@ async fn download_playlist(
         .build()
         .expect("unable to build the HTTP client");
 
-    let rt = RustyTube::new();
-    let playlist = rt.get_playlist(id).await.unwrap();
+    let rp = RustyPipe::default();
+    let playlist = rp.get_playlist(id).await.unwrap();
 
     // Indicatif setup
     let multi = MultiProgress::new();
@@ -173,7 +173,7 @@ async fn download_playlist(
                 output_fname.to_owned(),
                 resolution,
                 "ffmpeg",
-                &rt,
+                &rp,
                 http.clone(),
                 multi.clone(),
                 Some(main.clone()),

@@ -30,8 +30,6 @@ pub struct Report {
     // pub deobf_data: Option<DeobfData>,
     /// HTTP request data
     pub http_request: HTTPRequest,
-    /// Debug print of deserialized response object
-    pub deserialized: Option<String>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

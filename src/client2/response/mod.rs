@@ -214,3 +214,23 @@ pub struct MusicContinuation {
 pub struct MusicContinuationData {
     pub continuation: String,
 }
+
+impl Into<crate::model::Thumbnail> for Thumbnail {
+    fn into(self) -> crate::model::Thumbnail {
+        crate::model::Thumbnail {
+            url: self.url,
+            width: self.width,
+            height: self.height,
+        }
+    }
+}
+
+impl Into<Vec<crate::model::Thumbnail>> for Thumbnails {
+    fn into(self) -> Vec<crate::model::Thumbnail> {
+        let mut thumbnails = vec![];
+        for t in self.thumbnails {
+            thumbnails.push(t.into());
+        }
+        thumbnails
+    }
+}

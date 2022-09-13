@@ -1,8 +1,9 @@
-use anyhow::{anyhow, Result};
+use anyhow::{anyhow, bail, Result};
 use reqwest::Method;
 use serde::Serialize;
 
 use crate::{
+    deobfuscate::Deobfuscator,
     model::{Channel, Language, Playlist, Thumbnail, Video},
     serializer::text::{PageType, TextLink},
     timeago, util,
@@ -39,6 +40,7 @@ impl RustyPipe {
             "browse",
             playlist_id,
             &request_body,
+            None,
         )
         .await
     }
@@ -60,6 +62,7 @@ impl RustyPipe {
                         "browse",
                         &playlist.id,
                         &request_body,
+                        None,
                     )
                     .await?;
 
@@ -78,7 +81,12 @@ impl RustyPipe {
 }
 
 impl MapResponse<Playlist> for response::Playlist {
-    fn map_response(&self, lang: Language, id: &str) -> Result<super::MapResult<Playlist>> {
+    fn map_response(
+        self,
+        id: &str,
+        lang: Language,
+        _deobf: Option<&Deobfuscator>,
+    ) -> Result<MapResult<Playlist>> {
         let video_items = &some_or_bail!(
             some_or_bail!(
                 some_or_bail!(
@@ -168,19 +176,15 @@ impl MapResponse<Playlist> for response::Playlist {
             None => videos.len() as u32,
         };
 
-        let playlist_id = self.header.playlist_header_renderer.playlist_id.to_owned();
+        let playlist_id = self.header.playlist_header_renderer.playlist_id;
         if playlist_id != id {
-            return Err(anyhow!("got wrong playlist id {}, expected {}", playlist_id, id));
+            bail!("got wrong playlist id {}, expected {}", playlist_id, id);
         }
 
-        let name = self.header.playlist_header_renderer.title.to_owned();
-        let description = self
-            .header
-            .playlist_header_renderer
-            .description_text
-            .to_owned();
+        let name = self.header.playlist_header_renderer.title;
+        let description = self.header.playlist_header_renderer.description_text;
 
-        let channel = match &self.header.playlist_header_renderer.owner_text {
+        let channel = match self.header.playlist_header_renderer.owner_text {
             Some(owner_text) => match owner_text {
                 TextLink::Browse {
                     text,
@@ -188,13 +192,25 @@ impl MapResponse<Playlist> for response::Playlist {
                     browse_id,
                 } => match page_type {
                     PageType::Channel => Some(Channel {
-                        id: browse_id.to_owned(),
-                        name: text.to_owned(),
+                        id: browse_id,
+                        name: text,
                     }),
                     _ => None,
                 },
                 _ => None,
             },
+            None => None,
+        };
+
+        let mut warnings = video_items.warnings.to_owned();
+        let last_update = match &last_update_txt {
+            Some(textual_date) => {
+                let parsed = timeago::parse_textual_date_to_dt(lang, textual_date);
+                if parsed.is_none() {
+                    warnings.push(format!("could not parse textual date `{}`", textual_date));
+                }
+                parsed
+            }
             None => None,
         };
 
@@ -208,22 +224,20 @@ impl MapResponse<Playlist> for response::Playlist {
                 thumbnails,
                 description,
                 channel,
-                last_update: match &last_update_txt {
-                    Some(textual_date) => timeago::parse_textual_date_to_dt(lang, textual_date),
-                    None => None,
-                },
+                last_update,
                 last_update_txt,
             },
-            warnings: video_items.warnings.to_owned(),
+            warnings,
         })
     }
 }
 
 impl MapResponse<(Vec<Video>, Option<String>)> for response::PlaylistCont {
     fn map_response(
-        &self,
-        _lang: Language,
+        self,
         id: &str,
+        _lang: Language,
+        _deobf: Option<&Deobfuscator>,
     ) -> Result<MapResult<(Vec<Video>, Option<String>)>> {
         let action = some_or_bail!(
             self.on_response_received_actions
@@ -237,7 +251,8 @@ impl MapResponse<(Vec<Video>, Option<String>)> for response::PlaylistCont {
             warnings: action
                 .append_continuation_items_action
                 .continuation_items
-                .warnings.to_owned(),
+                .warnings
+                .to_owned(),
         })
     }
 }
@@ -383,7 +398,7 @@ mod tests {
 
         let playlist: response::Playlist =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res = playlist.map_response(Language::En, id).unwrap();
+        let map_res = playlist.map_response(id, Language::En, None).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
