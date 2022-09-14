@@ -3,9 +3,11 @@ use std::ops::Range;
 use chrono::NaiveDate;
 use serde::Deserialize;
 use serde_with::serde_as;
-use serde_with::{json::JsonString, DefaultOnError, VecSkipError};
+use serde_with::{json::JsonString, DefaultOnError};
 
 use super::Thumbnails;
+use crate::client2::MapResult;
+use crate::serializer::{text::Text, VecLogError};
 
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -45,11 +47,11 @@ pub struct StreamingData {
     #[serde_as(as = "JsonString")]
     pub expires_in_seconds: u32,
     #[serde(default)]
-    #[serde_as(as = "VecSkipError<_>")]
-    pub formats: Vec<Format>,
+    #[serde_as(as = "VecLogError<_>")]
+    pub formats: MapResult<Vec<Format>>,
     #[serde(default)]
-    #[serde_as(as = "VecSkipError<_>")]
-    pub adaptive_formats: Vec<Format>,
+    #[serde_as(as = "VecLogError<_>")]
+    pub adaptive_formats: MapResult<Vec<Format>>,
     /// Only on livestreams
     pub dash_manifest_url: Option<String>,
     /// Only on livestreams
@@ -73,9 +75,9 @@ pub struct Format {
     pub width: Option<u32>,
     pub height: Option<u32>,
 
-    #[serde_as(as = "Option<crate::serializer::range::Range>")]
+    #[serde_as(as = "Option<crate::serializer::Range>")]
     pub index_range: Option<Range<u32>>,
-    #[serde_as(as = "Option<crate::serializer::range::Range>")]
+    #[serde_as(as = "Option<crate::serializer::Range>")]
     pub init_range: Option<Range<u32>>,
 
     #[serde_as(as = "JsonString")]
@@ -188,7 +190,7 @@ pub struct PlayerCaptionsTracklistRenderer {
 #[serde(rename_all = "camelCase")]
 pub struct CaptionTrack {
     pub base_url: String,
-    #[serde_as(as = "crate::serializer::text::Text")]
+    #[serde_as(as = "Text")]
     pub name: String,
     pub language_code: String,
 }

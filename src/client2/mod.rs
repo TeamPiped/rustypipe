@@ -154,13 +154,12 @@ static CLIENT_VERSION_REGEXES: Lazy<[Regex; 1]> =
 #[derive(Clone)]
 pub struct RustyPipe {
     inner: Arc<RustyPipeRef>,
-    opts: RustyPipeOpts,
 }
 
 struct RustyPipeRef {
     http: Client,
-    storage: Option<Box<dyn CacheStorage>>,
-    reporter: Option<Box<dyn Reporter>>,
+    storage: Option<Box<dyn CacheStorage + Sync + Send>>,
+    reporter: Option<Box<dyn Reporter + Sync + Send>>,
     user_agent: String,
     consent_cookie: String,
     cache: Mutex<CacheData>,
@@ -172,6 +171,12 @@ struct RustyPipeOpts {
     country: Country,
     report: bool,
     strict: bool,
+}
+
+#[derive(Clone)]
+pub struct RustyPipeQuery {
+    client: RustyPipe,
+    opts: RustyPipeOpts,
 }
 
 impl Default for RustyPipe {
@@ -244,8 +249,8 @@ impl<T> From<T> for CacheEntry<T> {
 impl RustyPipe {
     /// Create a new RustyPipe instance
     pub fn new(
-        storage: Option<Box<dyn CacheStorage>>,
-        reporter: Option<Box<dyn Reporter>>,
+        storage: Option<Box<dyn CacheStorage + Sync + Send>>,
+        reporter: Option<Box<dyn Reporter + Sync + Send>>,
         user_agent: Option<String>,
     ) -> Self {
         let user_agent = user_agent.unwrap_or(DEFAULT_UA.to_owned());
@@ -287,7 +292,6 @@ impl RustyPipe {
                 ),
                 cache: Mutex::new(cache),
             }),
-            opts: RustyPipeOpts::default(),
         }
     }
 
@@ -300,9 +304,35 @@ impl RustyPipe {
             Some(Box::new(crate::report::YamlFileReporter::default())),
             None,
         )
-        .strict(true)
     }
 
+    pub fn query(&self) -> RustyPipeQuery {
+        RustyPipeQuery {
+            client: self.clone(),
+            opts: RustyPipeOpts {
+                lang: Language::En,
+                country: Country::Us,
+                report: false,
+                strict: false,
+            },
+        }
+    }
+
+    #[cfg(test)]
+    pub fn test_query(&self) -> RustyPipeQuery {
+        RustyPipeQuery {
+            client: self.clone(),
+            opts: RustyPipeOpts {
+                lang: Language::En,
+                country: Country::Us,
+                report: false,
+                strict: true,
+            },
+        }
+    }
+}
+
+impl RustyPipeQuery {
     /// Set the language parameter used when accessing the YouTube API
     /// This will change multilanguage video titles, descriptions and textual dates
     pub fn lang(mut self, lang: Language) -> Self {
@@ -431,6 +461,7 @@ impl RustyPipe {
     ) -> RequestBuilder {
         match ctype {
             ClientType::Desktop => self
+                .client
                 .inner
                 .http
                 .request(
@@ -442,10 +473,14 @@ impl RustyPipe {
                 )
                 .header(header::ORIGIN, "https://www.youtube.com")
                 .header(header::REFERER, "https://www.youtube.com")
-                .header(header::COOKIE, self.inner.consent_cookie.to_owned())
+                .header(header::COOKIE, self.client.inner.consent_cookie.to_owned())
                 .header("X-YouTube-Client-Name", "1")
-                .header("X-YouTube-Client-Version", self.get_desktop_client_version().await),
+                .header(
+                    "X-YouTube-Client-Version",
+                    self.get_desktop_client_version().await,
+                ),
             ClientType::DesktopMusic => self
+                .client
                 .inner
                 .http
                 .request(
@@ -460,10 +495,14 @@ impl RustyPipe {
                 )
                 .header(header::ORIGIN, "https://music.youtube.com")
                 .header(header::REFERER, "https://music.youtube.com")
-                .header(header::COOKIE, self.inner.consent_cookie.to_owned())
+                .header(header::COOKIE, self.client.inner.consent_cookie.to_owned())
                 .header("X-YouTube-Client-Name", "67")
-                .header("X-YouTube-Client-Version", self.get_music_client_version().await),
+                .header(
+                    "X-YouTube-Client-Version",
+                    self.get_music_client_version().await,
+                ),
             ClientType::TvHtml5Embed => self
+                .client
                 .inner
                 .http
                 .request(
@@ -478,6 +517,7 @@ impl RustyPipe {
                 .header("X-YouTube-Client-Name", "1")
                 .header("X-YouTube-Client-Version", TVHTML5_CLIENT_VERSION),
             ClientType::Android => self
+                .client
                 .inner
                 .http
                 .request(
@@ -499,6 +539,7 @@ impl RustyPipe {
                 )
                 .header("X-Goog-Api-Format-Version", "2"),
             ClientType::Ios => self
+                .client
                 .inner
                 .http
                 .request(
@@ -545,13 +586,13 @@ impl RustyPipe {
         let request_url = request.url().to_string();
         let request_headers = request.headers().to_owned();
 
-        let response = self.inner.http.execute(request).await?;
+        let response = self.client.inner.http.execute(request).await?;
 
         let status = response.status();
         let resp_str = response.text().await?;
 
         let create_report = |level: Level, error: Option<String>, msgs: Vec<String>| {
-            if let Some(reporter) = &self.inner.reporter {
+            if let Some(reporter) = &self.client.inner.reporter {
                 let report = Report {
                     package: "rustypipe".to_owned(),
                     version: "0.1.0".to_owned(),
@@ -636,11 +677,16 @@ impl RustyPipe {
     }
 
     async fn get_desktop_client_version(&self) -> String {
-        let mut cache = self.inner.cache.lock().await;
+        let mut cache = self.client.inner.cache.lock().await;
 
         match cache.desktop_client.get() {
             Some(cdata) => cdata.version.to_owned(),
-            None => match self.extract_desktop_client_version().await {
+            None => match extract_desktop_client_version(
+                self.client.inner.http.clone(),
+                self.client.inner.consent_cookie.to_owned(),
+            )
+            .await
+            {
                 Ok(version) => {
                     cache.desktop_client = CacheEntry::from(ClientData {
                         version: version.to_owned(),
@@ -657,11 +703,16 @@ impl RustyPipe {
     }
 
     async fn get_music_client_version(&self) -> String {
-        let mut cache = self.inner.cache.lock().await;
+        let mut cache = self.client.inner.cache.lock().await;
 
         match cache.music_client.get() {
             Some(cdata) => cdata.version.to_owned(),
-            None => match self.extract_music_client_version().await {
+            None => match extract_music_client_version(
+                self.client.inner.http.clone(),
+                self.client.inner.consent_cookie.to_owned(),
+            )
+            .await
+            {
                 Ok(version) => {
                     cache.music_client = CacheEntry::from(ClientData {
                         version: version.to_owned(),
@@ -678,115 +729,111 @@ impl RustyPipe {
     }
 
     async fn get_deobf(&self) -> Result<Deobfuscator> {
-        let mut cache = self.inner.cache.lock().await;
-        let deobf = Deobfuscator::new(self.inner.http.clone()).await?;
-        cache.deobf = CacheEntry::from(deobf.get_data());
-        self.write_cache(&cache);
-        Ok(deobf)
-    }
+        let mut cache = self.client.inner.cache.lock().await;
 
-    async fn extract_desktop_client_version(&self) -> Result<String> {
-        let from_swjs = async {
-            let swjs = self
-                .exec_request_text(
-                    self.inner
-                        .http
-                        .get("https://www.youtube.com/sw.js")
-                        .header(header::ORIGIN, "https://www.youtube.com")
-                        .header(header::REFERER, "https://www.youtube.com")
-                        .header(header::COOKIE, self.inner.consent_cookie.to_owned())
-                        .build()
-                        .unwrap(),
-                )
-                .await
-                .context("Failed to download sw.js")?;
-
-            util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &swjs, 1)
-                .ok_or(anyhow!("Could not find desktop client version in sw.js"))
-        };
-
-        let from_html = async {
-            let html = self
-                .exec_request_text(
-                    self.inner
-                        .http
-                        .get("https://www.youtube.com/results?search_query=")
-                        .build()
-                        .unwrap(),
-                )
-                .await
-                .context("Failed to get YT Desktop page")?;
-
-            util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &html, 1).ok_or(anyhow!(
-                "Could not find desktop client version on html page"
-            ))
-        };
-
-        match from_swjs.await {
-            Ok(client_version) => Ok(client_version),
-            Err(_) => from_html.await,
+        match cache.deobf.get() {
+            Some(deobf) => Ok(Deobfuscator::from(deobf.to_owned())),
+            None => {
+                let deobf = Deobfuscator::new(self.client.inner.http.clone()).await?;
+                cache.deobf = CacheEntry::from(deobf.get_data());
+                self.write_cache(&cache);
+                Ok(deobf)
+            }
         }
-    }
-
-    async fn extract_music_client_version(&self) -> Result<String> {
-        let from_swjs = async {
-            let swjs = self
-                .exec_request_text(
-                    self.inner
-                        .http
-                        .get("https://music.youtube.com/sw.js")
-                        .header(header::ORIGIN, "https://music.youtube.com")
-                        .header(header::REFERER, "https://music.youtube.com")
-                        .header(header::COOKIE, self.inner.consent_cookie.to_owned())
-                        .build()
-                        .unwrap(),
-                )
-                .await
-                .context("Failed to download sw.js")?;
-
-            util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &swjs, 1)
-                .ok_or(anyhow!("Could not find desktop client version in sw.js"))
-        };
-
-        let from_html = async {
-            let html = self
-                .exec_request_text(
-                    self.inner
-                        .http
-                        .get("https://music.youtube.com")
-                        .build()
-                        .unwrap(),
-                )
-                .await
-                .context("Failed to get YT Desktop page")?;
-
-            util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &html, 1).ok_or(anyhow!(
-                "Could not find desktop client version on html page"
-            ))
-        };
-
-        match from_swjs.await {
-            Ok(client_version) => Ok(client_version),
-            Err(_) => from_html.await,
-        }
-    }
-
-    async fn exec_request(&self, request: Request) -> Result<Response> {
-        Ok(self.inner.http.execute(request).await?.error_for_status()?)
-    }
-
-    async fn exec_request_text(&self, request: Request) -> Result<String> {
-        Ok(self.exec_request(request).await?.text().await?)
     }
 
     fn write_cache(&self, cache: &CacheData) {
-        if let Some(storage) = &self.inner.storage {
+        if let Some(storage) = &self.client.inner.storage {
             match serde_json::to_string(cache) {
                 Ok(data) => storage.write(&data),
                 Err(e) => error!("Could not serialize cache. Error: {}", e),
             }
         }
     }
+}
+
+async fn extract_desktop_client_version(http: Client, consent_cookie: String) -> Result<String> {
+    let from_swjs = async {
+        let swjs = exec_request_text(
+            http.clone(),
+            http.get("https://www.youtube.com/sw.js")
+                .header(header::ORIGIN, "https://www.youtube.com")
+                .header(header::REFERER, "https://www.youtube.com")
+                .header(header::COOKIE, consent_cookie)
+                .build()
+                .unwrap(),
+        )
+        .await
+        .context("Failed to download sw.js")?;
+
+        util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &swjs, 1)
+            .ok_or(anyhow!("Could not find desktop client version in sw.js"))
+    };
+
+    let from_html = async {
+        let html = exec_request_text(
+            http.clone(),
+            http.get("https://www.youtube.com/results?search_query=")
+                .build()
+                .unwrap(),
+        )
+        .await
+        .context("Failed to get YT Desktop page")?;
+
+        util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &html, 1).ok_or(anyhow!(
+            "Could not find desktop client version on html page"
+        ))
+    };
+
+    match from_swjs.await {
+        Ok(client_version) => Ok(client_version),
+        Err(_) => from_html.await,
+    }
+}
+
+async fn extract_music_client_version(http: Client, consent_cookie: String) -> Result<String> {
+    let from_swjs = async {
+        let swjs = exec_request_text(
+            http.clone(),
+            http.get("https://music.youtube.com/sw.js")
+                .header(header::ORIGIN, "https://music.youtube.com")
+                .header(header::REFERER, "https://music.youtube.com")
+                .header(header::COOKIE, consent_cookie)
+                .build()
+                .unwrap(),
+        )
+        .await
+        .context("Failed to download sw.js")?;
+
+        util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &swjs, 1)
+            .ok_or(anyhow!("Could not find desktop client version in sw.js"))
+    };
+
+    let from_html = async {
+        let html = exec_request_text(
+            http.clone(),
+            http.get("https://music.youtube.com").build().unwrap(),
+        )
+        .await
+        .context("Failed to get YT Desktop page")?;
+
+        util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &html, 1).ok_or(anyhow!(
+            "Could not find desktop client version on html page"
+        ))
+    };
+
+    match from_swjs.await {
+        Ok(client_version) => Ok(client_version),
+        Err(_) => from_html.await,
+    }
+}
+
+async fn exec_request(http: Client, request: Request) -> Result<Response> {
+    Ok(http.execute(request).await?.error_for_status()?)
+}
+
+async fn exec_request_text(http: Client, request: Request) -> Result<String> {
+    Ok(exec_request(http, request).await?.text().await?)
 }
 
 trait MapResponse<T> {
@@ -811,4 +858,22 @@ where
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         self.c.fmt(f)
     }
+}
+
+impl<T> Default for MapResult<T>
+where
+    T: Default,
+{
+    fn default() -> Self {
+        Self {
+            c: Default::default(),
+            warnings: Vec::new(),
+        }
+    }
+}
+
+#[cfg(test)]
+#[cfg(feature = "yaml")]
+mod tests {
+    // use super::*;
 }

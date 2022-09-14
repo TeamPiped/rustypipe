@@ -16,7 +16,7 @@ pub use video::VideoRecommendations;
 use serde::Deserialize;
 use serde_with::{serde_as, DefaultOnError, VecSkipError};
 
-use crate::serializer::text::TextLink;
+use crate::serializer::text::{Text, TextLink, TextLinks};
 
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -94,10 +94,10 @@ pub struct VideoOwner {
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct VideoOwnerRenderer {
-    #[serde_as(as = "crate::serializer::text::TextLink")]
+    #[serde_as(as = "TextLink")]
     pub title: TextLink,
     pub thumbnail: Thumbnails,
-    #[serde_as(as = "Option<crate::serializer::text::Text>")]
+    #[serde_as(as = "Option<Text>")]
     pub subscriber_count_text: Option<String>,
     #[serde(default)]
     #[serde_as(as = "VecSkipError<_>")]
@@ -133,7 +133,7 @@ pub struct TimeOverlay {
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct TimeOverlayRenderer {
-    #[serde_as(as = "crate::serializer::text::Text")]
+    #[serde_as(as = "Text")]
     pub text: String,
     #[serde(default)]
     #[serde_as(deserialize_as = "DefaultOnError")]
@@ -199,7 +199,7 @@ pub struct MusicColumn {
 #[serde_as]
 #[derive(Clone, Debug, Deserialize)]
 pub struct MusicColumnRenderer {
-    #[serde_as(as = "crate::serializer::text::TextLinks")]
+    #[serde_as(as = "TextLinks")]
     pub text: Vec<TextLink>,
 }
 

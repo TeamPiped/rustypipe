@@ -3,7 +3,8 @@ use serde_with::serde_as;
 use serde_with::{json::JsonString, DefaultOnError, VecSkipError};
 
 use crate::client2::MapResult;
-use crate::serializer::text::TextLink;
+use crate::serializer::text::{Text, TextLink};
+use crate::serializer::VecLogError;
 
 use super::{ContentRenderer, ContentsRenderer, Thumbnails, ThumbnailsWrap, VideoListItem};
 
@@ -57,7 +58,7 @@ pub struct PlaylistVideoListRenderer {
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct PlaylistVideoList {
-    #[serde_as(as = "crate::serializer::VecLogError<_>")]
+    #[serde_as(as = "VecLogError<_>")]
     pub contents: MapResult<Vec<VideoListItem<PlaylistVideo>>>,
 }
 
@@ -67,10 +68,10 @@ pub struct PlaylistVideoList {
 pub struct PlaylistVideo {
     pub video_id: String,
     pub thumbnail: Thumbnails,
-    #[serde_as(as = "crate::serializer::text::Text")]
+    #[serde_as(as = "Text")]
     pub title: String,
     #[serde(rename = "shortBylineText")]
-    #[serde_as(as = "crate::serializer::text::TextLink")]
+    #[serde_as(as = "TextLink")]
     pub channel: TextLink,
     #[serde_as(as = "JsonString")]
     pub length_seconds: u32,
@@ -87,14 +88,14 @@ pub struct Header {
 #[serde(rename_all = "camelCase")]
 pub struct HeaderRenderer {
     pub playlist_id: String,
-    #[serde_as(as = "crate::serializer::text::Text")]
+    #[serde_as(as = "Text")]
     pub title: String,
     #[serde(default)]
-    #[serde_as(as = "DefaultOnError<Option<crate::serializer::text::Text>>")]
+    #[serde_as(as = "DefaultOnError<Option<Text>>")]
     pub description_text: Option<String>,
-    #[serde_as(as = "crate::serializer::text::Text")]
+    #[serde_as(as = "Text")]
     pub num_videos_text: String,
-    #[serde_as(as = "Option<crate::serializer::text::TextLink>")]
+    #[serde_as(as = "Option<TextLink>")]
     pub owner_text: Option<TextLink>,
 
     // Alternative layout
@@ -119,7 +120,7 @@ pub struct Byline {
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct BylineRenderer {
-    #[serde_as(as = "crate::serializer::text::Text")]
+    #[serde_as(as = "Text")]
     pub text: String,
 }
 
@@ -151,7 +152,7 @@ pub struct SidebarPrimaryInfoRenderer {
     // - `"495", " videos"`
     // - `"3,310,996 views"`
     // - `"Last updated on ", "Aug 7, 2022"`
-    #[serde_as(as = "Vec<crate::serializer::text::Text>")]
+    #[serde_as(as = "Vec<Text>")]
     pub stats: Vec<String>,
 }
 
@@ -173,7 +174,7 @@ pub struct OnResponseReceivedAction {
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct AppendAction {
-    #[serde_as(as = "crate::serializer::VecLogError<_>")]
+    #[serde_as(as = "VecLogError<_>")]
     pub continuation_items: MapResult<Vec<VideoListItem<PlaylistVideo>>>,
     pub target_id: String,
 }

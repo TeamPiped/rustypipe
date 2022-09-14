@@ -9,7 +9,7 @@ use crate::{
     timeago, util,
 };
 
-use super::{response, ClientType, ContextYT, MapResponse, MapResult, RustyPipe};
+use super::{response, ClientType, ContextYT, MapResponse, MapResult, RustyPipeQuery};
 
 #[derive(Clone, Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
@@ -25,8 +25,8 @@ struct QPlaylistCont {
     continuation: String,
 }
 
-impl RustyPipe {
-    pub async fn get_playlist(&self, playlist_id: &str) -> Result<Playlist> {
+impl RustyPipeQuery {
+    pub async fn get_playlist(self, playlist_id: &str) -> Result<Playlist> {
         let context = self.get_context(ClientType::Desktop, true).await;
         let request_body = QPlaylist {
             context,
@@ -44,7 +44,7 @@ impl RustyPipe {
         .await
     }
 
-    pub async fn get_playlist_cont(&self, playlist: &mut Playlist) -> Result<()> {
+    pub async fn get_playlist_cont(self, playlist: &mut Playlist) -> Result<()> {
         match &playlist.ctoken {
             Some(ctoken) => {
                 let context = self.get_context(ClientType::Desktop, true).await;
@@ -308,7 +308,7 @@ mod tests {
 
     use rstest::rstest;
 
-    use crate::report::TestFileReporter;
+    use crate::{client2::RustyPipe, report::TestFileReporter};
 
     use super::*;
 
@@ -349,7 +349,7 @@ mod tests {
         #[case] channel: Option<Channel>,
     ) {
         let rp = RustyPipe::new_test();
-        let playlist = rp.get_playlist(id).await.unwrap();
+        let playlist = rp.test_query().get_playlist(id).await.unwrap();
 
         assert_eq!(playlist.id, id);
         assert_eq!(playlist.name, name);
@@ -380,8 +380,8 @@ mod tests {
             }
 
             let reporter = TestFileReporter::new(json_path);
-            let rp = RustyPipe::new(None, Some(Box::new(reporter)), None).report(true);
-            rp.get_playlist(id).await.unwrap();
+            let rp = RustyPipe::new(None, Some(Box::new(reporter)), None);
+            rp.test_query().report(true).get_playlist(id).await.unwrap();
         }
     }
 
@@ -412,12 +412,16 @@ mod tests {
     async fn t_playlist_cont() {
         let rp = RustyPipe::new_test();
         let mut playlist = rp
+            .test_query()
             .get_playlist("PLbZIPy20-1pN7mqjckepWF78ndb6ci_qi")
             .await
             .unwrap();
 
         while playlist.ctoken.is_some() {
-            rp.get_playlist_cont(&mut playlist).await.unwrap();
+            rp.test_query()
+                .get_playlist_cont(&mut playlist)
+                .await
+                .unwrap();
         }
 
         assert!(playlist.videos.len() > 100);

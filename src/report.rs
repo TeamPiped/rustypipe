@@ -86,7 +86,7 @@ impl JsonFileReporter {
 impl Default for JsonFileReporter {
     fn default() -> Self {
         Self {
-            path: Path::new("RustyPipeReports").to_path_buf(),
+            path: Path::new("rustypipe_reports").to_path_buf(),
         }
     }
 }
@@ -98,12 +98,12 @@ impl Reporter for JsonFileReporter {
     }
 }
 
-#[cfg(feature="yaml")]
+#[cfg(feature = "yaml")]
 pub struct YamlFileReporter {
     path: PathBuf,
 }
 
-#[cfg(feature="yaml")]
+#[cfg(feature = "yaml")]
 impl YamlFileReporter {
     pub fn new<P: AsRef<Path>>(path: P) -> Self {
         Self {
@@ -118,7 +118,7 @@ impl YamlFileReporter {
     }
 }
 
-#[cfg(feature="yaml")]
+#[cfg(feature = "yaml")]
 impl Default for YamlFileReporter {
     fn default() -> Self {
         Self {
@@ -127,7 +127,7 @@ impl Default for YamlFileReporter {
     }
 }
 
-#[cfg(feature="yaml")]
+#[cfg(feature = "yaml")]
 impl Reporter for YamlFileReporter {
     fn report(&self, report: &Report) {
         self._report(report)

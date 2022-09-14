@@ -21,7 +21,7 @@ use crate::{
 
 use super::{
     response::{self, player},
-    ClientType, ContextYT, MapResponse, MapResult, RustyPipe,
+    ClientType, ContextYT, MapResponse, MapResult, RustyPipeQuery,
 };
 
 #[derive(Clone, Debug, Serialize)]
@@ -57,13 +57,21 @@ struct QContentPlaybackContext {
     referer: String,
 }
 
-impl RustyPipe {
-    pub async fn get_player(&self, video_id: &str, client_type: ClientType) -> Result<VideoPlayer> {
-        let (context, deobf) = tokio::join!(self.get_context(client_type, false), self.get_deobf());
-        // let context = self.get_context(client_type, false).await;
-        // let deobf = self.get_deobf().await;
+impl RustyPipeQuery {
+    pub async fn get_player(self, video_id: &str, client_type: ClientType) -> Result<VideoPlayer> {
+        // let (context, deobf) = tokio::join!(self.get_context(client_type, false), self.get_deobf());
+        // let deobf = deobf?;
 
-        let deobf = deobf?;
+        let q1 = self.clone();
+        let t_context = tokio::spawn(async move { q1.get_context(client_type, false).await });
+        let q2 = self.clone();
+        let t_deobf = tokio::spawn(async move { q2.get_deobf().await });
+        // let context = t_context.await.unwrap();
+        // let deobf = t_deobf.await.unwrap()?;
+
+        let (context, deobf) = tokio::join!(t_context, t_deobf);
+        let context = context.unwrap();
+        let deobf = deobf.unwrap()?;
 
         let request_body = if client_type.is_web() {
             QPlayer {
@@ -187,8 +195,11 @@ impl MapResponse<VideoPlayer> for response::Player {
             is_family_safe,
         };
 
-        let mut formats = streaming_data.formats;
-        formats.append(&mut streaming_data.adaptive_formats);
+        let mut formats = streaming_data.formats.c;
+        formats.append(&mut streaming_data.adaptive_formats.c);
+
+        warnings.append(&mut streaming_data.formats.warnings);
+        warnings.append(&mut streaming_data.adaptive_formats.warnings);
 
         let mut last_nsig: [String; 2] = ["".to_owned(), "".to_owned()];
 
@@ -579,7 +590,11 @@ fn get_audio_codec(codecs: Vec<&str>) -> AudioCodec {
 mod tests {
     use std::{fs::File, io::BufReader, path::Path};
 
-    use crate::{deobfuscate::DeobfData, client2::CLIENT_TYPES, report::TestFileReporter};
+    use crate::{
+        client2::{RustyPipe, CLIENT_TYPES},
+        deobfuscate::DeobfData,
+        report::TestFileReporter,
+    };
 
     use super::*;
     use rstest::rstest;
@@ -606,8 +621,12 @@ mod tests {
             }
 
             let reporter = TestFileReporter::new(json_path);
-            let rp = RustyPipe::new(None, Some(Box::new(reporter)), None).report(true);
-            rp.get_player(video_id, client_type).await.unwrap();
+            let rp = RustyPipe::new(None, Some(Box::new(reporter)), None);
+            rp.test_query()
+                .report(true)
+                .get_player(video_id, client_type)
+                .await
+                .unwrap();
         }
     }
 
@@ -623,7 +642,11 @@ mod tests {
                 continue;
             }
 
-            let player_data = rp.get_player(id, ClientType::Desktop).await.unwrap();
+            let player_data = rp
+                .test_query()
+                .get_player(id, ClientType::Desktop)
+                .await
+                .unwrap();
             let file = File::create(json_path).unwrap();
             serde_json::to_writer_pretty(file, &player_data).unwrap();
         }
@@ -685,7 +708,11 @@ mod tests {
     #[test_log::test(tokio::test)]
     async fn t_get_player(#[case] client_type: ClientType) {
         let rp = RustyPipe::new_test();
-        let player_data = rp.get_player("n4tK7LYFxI0", client_type).await.unwrap();
+        let player_data = rp
+            .test_query()
+            .get_player("n4tK7LYFxI0", client_type)
+            .await
+            .unwrap();
 
         // dbg!(&player_data);
 

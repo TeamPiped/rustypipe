@@ -3,7 +3,7 @@ use fancy_regex::Regex;
 use log::debug;
 use once_cell::sync::Lazy;
 use reqwest::Client;
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 use std::result::Result::Ok;
 
 use crate::util;
@@ -43,7 +43,7 @@ impl Deobfuscator {
                 sig_fn,
                 sts,
             },
-       })
+        })
     }
 
     pub fn deobfuscate_sig(&self, sig: &str) -> Result<String> {
@@ -480,9 +480,7 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
     #[test(tokio::test)]
     async fn t_update() {
         let client = Client::new();
-        let deobf = Deobfuscator::new(client)
-            .await
-            .unwrap();
+        let deobf = Deobfuscator::new(client).await.unwrap();
 
         let deobf_sig = deobf.deobfuscate_sig("GOqGOqGOq0QJ8wRAIgaryQHfplJ9xJSKFywyaSMHuuwZYsoMTAvRvfm51qIGECIA5061zWeyfMPX9hEl_U6f9J0tr7GTJMKyPf5XNrJb5fb5i").unwrap();
         println!("{}", deobf_sig);
