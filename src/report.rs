@@ -122,7 +122,7 @@ impl YamlFileReporter {
 impl Default for YamlFileReporter {
     fn default() -> Self {
         Self {
-            path: Path::new("RustyPipeReports").to_path_buf(),
+            path: Path::new("rustypipe_reports").to_path_buf(),
         }
     }
 }

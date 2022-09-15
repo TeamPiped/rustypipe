@@ -80,15 +80,15 @@ pub struct Format {
     #[serde_as(as = "Option<crate::serializer::Range>")]
     pub init_range: Option<Range<u32>>,
 
-    #[serde_as(as = "JsonString")]
-    pub content_length: u64,
+    #[serde_as(as = "Option<JsonString>")]
+    pub content_length: Option<u64>,
 
     #[serde(default)]
     #[serde_as(deserialize_as = "DefaultOnError")]
     pub quality: Option<Quality>,
     pub fps: Option<u8>,
     pub quality_label: Option<String>,
-    pub average_bitrate: u32,
+    pub average_bitrate: Option<u32>,
     pub color_info: Option<ColorInfo>,
 
     // Audio only
@@ -106,7 +106,9 @@ pub struct Format {
 
 impl Format {
     pub fn is_audio(&self) -> bool {
-        self.audio_quality.is_some() && self.audio_sample_rate.is_some()
+        self.content_length.is_some()
+            && self.audio_quality.is_some()
+            && self.audio_sample_rate.is_some()
     }
 
     pub fn is_video(&self) -> bool {

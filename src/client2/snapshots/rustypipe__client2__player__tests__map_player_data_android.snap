@@ -1,6 +1,6 @@
 ---
-source: src/client/player.rs
-expression: player_data
+source: src/client2/player.rs
+expression: map_res.c
 ---
 info:
   id: pPvd8UxmSbQ
@@ -183,6 +183,22 @@ video_only_streams:
     mime: "video/mp4; codecs=\"av01.0.04M.08\""
     format: mp4
     codec: av01
+    throttled: false
+  - url: "https://rr5---sn-h0jeenek.googlevideo.com/videoplayback?c=ANDROID&dur=163.096&ei=q1jpYtOPEYSBgQeHmqbwAQ&expire=1659481355&fexp=24001373%2C24007246&fvip=4&id=o-AEDMTCojVtwpIKOdhBaxEHE5s322qnAJHGqa2r1F46BM&initcwndbps=1527500&ip=2003%3Ade%3Aaf0e%3A2f00%3Ade47%3A297%3Aa6db%3A774e&itag=22&lmt=1580005750956837&lsig=AG3C_xAwRgIhAOiL-qJ04sA8FSOkEJfOYl3gFe4SzwYu_rAf3DMLHYigAiEA0Upi1HqqIu7NH_LTDL0jT1R5TTozQypL5FiSP9RoqtU%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=mQ&mime=video%2Fmp4&mm=31%2C29&mn=sn-h0jeenek%2Csn-h0jelnez&ms=au%2Crdu&mt=1659459429&mv=m&mvi=5&pl=37&ratebypass=yes&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRAIgFlQZgR63Yz9UgY9gVqiyGDVkZmSmACRP3-MmKN7CRzQCIAMHAwZbHmWL1qNH4Nu3A0pXZwErXMVPzMIt-PyxeZqa&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cratebypass%2Cdur%2Clmt&txp=2211222&vprv=1"
+    itag: 22
+    bitrate: 1574434
+    average_bitrate: 1574434
+    size: ~
+    index_range: ~
+    init_range: ~
+    width: 1280
+    height: 720
+    fps: 30
+    quality: 720p
+    hdr: false
+    mime: "video/mp4; codecs=\"avc1.64001F, mp4a.40.2\""
+    format: mp4
+    codec: avc1
     throttled: false
   - url: "https://rr5---sn-h0jeenek.googlevideo.com/videoplayback?c=ANDROID&clen=22365208&dur=163.046&ei=q1jpYtOPEYSBgQeHmqbwAQ&expire=1659481355&fexp=24001373%2C24007246&fvip=4&gir=yes&id=o-AEDMTCojVtwpIKOdhBaxEHE5s322qnAJHGqa2r1F46BM&initcwndbps=1527500&ip=2003%3Ade%3Aaf0e%3A2f00%3Ade47%3A297%3Aa6db%3A774e&itag=398&keepalive=yes&lmt=1608048380553749&lsig=AG3C_xAwRgIhAOiL-qJ04sA8FSOkEJfOYl3gFe4SzwYu_rAf3DMLHYigAiEA0Upi1HqqIu7NH_LTDL0jT1R5TTozQypL5FiSP9RoqtU%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=mQ&mime=video%2Fmp4&mm=31%2C29&mn=sn-h0jeenek%2Csn-h0jelnez&ms=au%2Crdu&mt=1659459429&mv=m&mvi=5&otfp=1&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRAIgR6KqCOoig_FMl2tWKa7qHSmCjIZa9S7ABzEI16qdO2sCIFXccwql4bqV9CHlqXY4tgxyMFUsp7vW4XUjxs3AyG6H&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cgir%2Cclen%2Cotfp%2Cdur%2Clmt&txp=1311222&vprv=1"
     itag: 398

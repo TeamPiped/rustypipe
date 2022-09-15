@@ -59,15 +59,10 @@ struct QContentPlaybackContext {
 
 impl RustyPipeQuery {
     pub async fn get_player(self, video_id: &str, client_type: ClientType) -> Result<VideoPlayer> {
-        // let (context, deobf) = tokio::join!(self.get_context(client_type, false), self.get_deobf());
-        // let deobf = deobf?;
-
         let q1 = self.clone();
         let t_context = tokio::spawn(async move { q1.get_context(client_type, false).await });
         let q2 = self.clone();
         let t_deobf = tokio::spawn(async move { q2.get_deobf().await });
-        // let context = t_context.await.unwrap();
-        // let deobf = t_deobf.await.unwrap()?;
 
         let (context, deobf) = tokio::join!(t_context, t_deobf);
         let context = context.unwrap();
@@ -234,7 +229,7 @@ impl MapResponse<VideoPlayer> for response::Player {
                         audio_streams.push(c);
                     };
                 }
-                (false, false) => warnings.push(format!("invalid format: {}", f.itag)),
+                (false, false) => warnings.push(format!("invalid stream: itag {}", f.itag)),
             }
         }
 
@@ -406,38 +401,16 @@ fn map_video_stream(
                 url,
                 itag: f.itag,
                 bitrate: f.bitrate,
-                average_bitrate: f.average_bitrate,
+                average_bitrate: f.average_bitrate.unwrap_or(f.bitrate),
                 size: f.content_length,
                 index_range: f.index_range,
                 init_range: f.init_range,
-                width: some_or_bail!(
-                    f.width,
-                    MapResult {
-                        c: None,
-                        warnings: map_res.warnings
-                    }
-                ),
-                height: some_or_bail!(
-                    f.height,
-                    MapResult {
-                        c: None,
-                        warnings: map_res.warnings
-                    }
-                ),
-                fps: some_or_bail!(
-                    f.fps,
-                    MapResult {
-                        c: None,
-                        warnings: map_res.warnings
-                    }
-                ),
-                quality: some_or_bail!(
-                    f.quality_label,
-                    MapResult {
-                        c: None,
-                        warnings: map_res.warnings
-                    }
-                ),
+                // Note that the format has already been verified using
+                // is_video(), so these unwraps are safe
+                width: f.width.unwrap(),
+                height: f.height.unwrap(),
+                fps: f.fps.unwrap(),
+                quality: f.quality_label.unwrap(),
                 hdr: f.color_info.unwrap_or_default().primaries
                     == player::Primaries::ColorPrimariesBt2020,
                 mime: f.mime_type.to_owned(),
@@ -445,7 +418,7 @@ fn map_video_stream(
                     get_video_format(mtype),
                     MapResult {
                         c: None,
-                        warnings: vec![format!("no valid format in video format")]
+                        warnings: vec![format!("invalid video format. itag: {}", f.itag)]
                     }
                 ),
                 codec: get_video_codec(codecs),
@@ -485,8 +458,8 @@ fn map_audio_stream(
                 url,
                 itag: f.itag,
                 bitrate: f.bitrate,
-                average_bitrate: f.average_bitrate,
-                size: f.content_length,
+                average_bitrate: f.average_bitrate.unwrap_or(f.bitrate),
+                size: f.content_length.unwrap(),
                 index_range: f.index_range,
                 init_range: f.init_range,
                 mime: f.mime_type.to_owned(),
@@ -494,7 +467,7 @@ fn map_audio_stream(
                     get_audio_format(mtype),
                     MapResult {
                         c: None,
-                        warnings: vec![format!("invalid format in audio format {}", f.itag)]
+                        warnings: vec![format!("invalid audio format. itag: {}", f.itag)]
                     }
                 ),
                 codec: get_audio_codec(codecs),
@@ -759,7 +732,7 @@ mod tests {
             // Bitrates may change between requests
             assert_approx(video.bitrate as f64, 1507068.0);
             assert_eq!(video.average_bitrate, 1345149);
-            assert_eq!(video.size, 43553412);
+            assert_eq!(video.size.unwrap(), 43553412);
             assert_eq!(video.width, 1280);
             assert_eq!(video.height, 720);
             assert_eq!(video.fps, 30);
@@ -789,7 +762,7 @@ mod tests {
 
             assert_approx(video.bitrate as f64, 1340829.0);
             assert_approx(video.average_bitrate as f64, 1233444.0);
-            assert_approx(video.size as f64, 39936630.0);
+            assert_approx(video.size.unwrap() as f64, 39936630.0);
             assert_eq!(video.width, 1280);
             assert_eq!(video.height, 720);
             assert_eq!(video.fps, 30);

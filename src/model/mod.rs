@@ -59,7 +59,7 @@ pub struct VideoStream {
     pub itag: u32,
     pub bitrate: u32,
     pub average_bitrate: u32,
-    pub size: u64,
+    pub size: Option<u64>,
     pub index_range: Option<Range<u32>>,
     pub init_range: Option<Range<u32>>,
     pub width: u32,
