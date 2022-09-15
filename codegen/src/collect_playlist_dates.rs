@@ -1,5 +1,3 @@
-#![cfg(test)]
-
 use std::{
     collections::{BTreeMap, HashMap},
     fs::File,
@@ -8,14 +6,15 @@ use std::{
     path::Path,
 };
 
+use futures::{stream, StreamExt};
+use rustypipe::{
+    client::RustyPipe,
+    model::{locale::LANGUAGES, Language},
+    timeago::{self, TimeAgo},
+};
 use serde::{Deserialize, Serialize};
 
-use crate::{
-    client::RustyTube,
-    model::{locale::LANGUAGES, Country, Language},
-    timeago::{self, TimeAgo},
-    util,
-};
+use crate::util;
 
 type CollectedDates = BTreeMap<Language, BTreeMap<DateCase, String>>;
 
@@ -38,20 +37,40 @@ enum DateCase {
     Dec,
 }
 
-// #[test_log::test(tokio::test)]
-async fn collect_dates() {
-    let json_path = Path::new("testfiles/date/playlist_samples.json").to_path_buf();
-    if json_path.exists() {
-        return;
-    }
+/// Collect 'Playlist updated' dates in every supported language
+/// and write them to `testfiles/date/playlist_samples.json`.
+///
+/// YouTube's API outputs the update date of playlists only in a
+/// textual format (e.g. *Last updated on Jan 3, 2020*), which varies
+/// by language.
+///
+/// For recently updated playlists YouTube shows 'today', 'yesterday'
+/// and 'x<=7 days ago' instead of the literal date.
+///
+/// To parse these dates correctly we need to collect a sample set
+/// in every language.
+///
+/// This set includes
+/// - one playlist updated today
+/// - one playlist updated yesterday
+/// - one playlist updated 2-7 days ago
+/// - one playlist from every month. Note that there should not
+/// be any dates which include the same number twice (e.g. 01.01.2020).
+///
+/// Because the relative dates change with time, the first three playlists
+/// should be checked and eventually changed before running the program.
+pub async fn collect_dates(project_root: &Path, concurrency: usize) {
+    let mut json_path = project_root.to_path_buf();
+    json_path.push("testfiles/date/playlist_samples.json");
 
+    // These are the sample playlists
     let cases = [
         (
             DateCase::Today,
             "RDCLAK5uy_kj3rhiar1LINmyDcuFnXihEO0K1NQa2jI",
         ),
-        (DateCase::Yesterday, "PLmB6td997u3kUOrfFwkULZ910ho44oQSy"),
-        (DateCase::Ago, "PL7zsB-C3aNu2yRY2869T0zj1FhtRIu5am"),
+        (DateCase::Yesterday, "PL7zsB-C3aNu2yRY2869T0zj1FhtRIu5am"),
+        (DateCase::Ago, "PLmB6td997u3kUOrfFwkULZ910ho44oQSy"),
         (DateCase::Jan, "PL1J-6JOckZtFjcni6Xj1pLYglJp6JCpKD"),
         (DateCase::Feb, "PL1J-6JOckZtETrbzwZE7mRIIK6BzWNLAs"),
         (DateCase::Mar, "PL1J-6JOckZtG3AVdvBXhMO64mB2k3BtKi"),
@@ -66,31 +85,42 @@ async fn collect_dates() {
         (DateCase::Dec, "PL1J-6JOckZtHo91uApeb10Qlf2XhkfM-9"),
     ];
 
-    let mut collected_dates = CollectedDates::new();
+    let rp = RustyPipe::default();
+    let collected_dates = stream::iter(LANGUAGES)
+        .map(|lang| {
+            let rp = rp.clone();
+            async move {
+                let mut map: BTreeMap<DateCase, String> = BTreeMap::new();
 
-    for lang in LANGUAGES {
-        let rp = RustyTube::new_with_ua(lang, Country::Us, None);
-        let mut map: BTreeMap<DateCase, String> = BTreeMap::new();
+                for (case, pl_id) in cases {
+                    let playlist = rp.query().lang(lang).get_playlist(pl_id).await.unwrap();
+                    map.insert(case, playlist.last_update_txt.unwrap());
+                }
 
-        for (case, pl_id) in cases {
-            let playlist = rp.get_playlist(pl_id).await.unwrap();
-            map.insert(case, playlist.last_update_txt.unwrap());
-        }
-
-        collected_dates.insert(lang, map);
-    }
+                (lang, map)
+            }
+        })
+        .buffer_unordered(concurrency)
+        .collect::<BTreeMap<_, _>>()
+        .await;
 
     let file = File::create(json_path).unwrap();
     serde_json::to_writer_pretty(file, &collected_dates).unwrap();
 }
 
-// #[test]
-fn write_samples_to_dict() {
-    let json_path = Path::new("testfiles/date/playlist_samples.json").to_path_buf();
+/// Attempt to parse the dates collected by `collect-playlist-dates`
+/// and write the results to `dictionary.json`.
+///
+/// The ND (no digit) tokens (today, tomorrow) of some languages cannot be
+/// parsed automatically and require manual work.
+pub fn write_samples_to_dict(project_root: &Path) {
+    let mut json_path = project_root.to_path_buf();
+    json_path.push("testfiles/date/playlist_samples.json");
+
     let json_file = File::open(json_path).unwrap();
     let collected_dates: CollectedDates =
         serde_json::from_reader(BufReader::new(json_file)).unwrap();
-    let mut dict = super::read_dict();
+    let mut dict = util::read_dict(project_root);
     let langs = dict.keys().map(|k| k.to_owned()).collect::<Vec<_>>();
 
     let months = [
@@ -134,7 +164,9 @@ fn write_samples_to_dict() {
         let dict_entry = dict.entry(lang).or_default();
         let mut num_order = "".to_owned();
 
-        let collect_nd_tokens = match lang {
+        let collect_nd_tokens = !matches!(
+            lang,
+            // ND tokens of these languages must be edited manually
             Language::Ja
             | Language::ZhCn
             | Language::ZhHk
@@ -146,10 +178,9 @@ fn write_samples_to_dict() {
             | Language::Uz
             | Language::Te
             | Language::PtPt
-            // Singhalese YT translation is broken (today == tomorrow)
-            | Language::Si => false,
-            _ => true,
-        };
+            // Singhalese YT translation has an error (today == tomorrow)
+            | Language::Si
+        );
 
         dict_entry.months = BTreeMap::new();
 
@@ -164,7 +195,7 @@ fn write_samples_to_dict() {
             // Today/Yesterday
             {
                 let mut parse = |string: &str, n: i8| {
-                    timeago::filter_str(string)
+                    util::filter_datestr(string)
                         .split_whitespace()
                         .for_each(|word| {
                             td_words
@@ -183,7 +214,7 @@ fn write_samples_to_dict() {
             // n days ago
             {
                 let datestr = datestr_table.get(&DateCase::Ago).unwrap();
-                let tago = timeago::parse_timeago(lang, &datestr);
+                let tago = timeago::parse_timeago(lang, datestr);
                 assert_eq!(
                     tago,
                     Some(TimeAgo {
@@ -201,7 +232,7 @@ fn write_samples_to_dict() {
                 let datestr = datestr_table.get(m).unwrap();
 
                 // Get order of numbers
-                let nums = util::parse_numeric_vec::<u32>(&datestr);
+                let nums = util::parse_numeric_vec::<u32>(datestr);
                 let date = dates[n];
 
                 let this_num_order = nums
@@ -219,14 +250,14 @@ fn write_samples_to_dict() {
                     })
                     .collect::<String>();
 
-                if num_order == "" {
+                if num_order.is_empty() {
                     num_order = this_num_order;
                 } else {
                     assert_eq!(this_num_order, num_order, "lang: {}", lang);
                 }
 
                 // Insert words into the map
-                timeago::filter_str(&datestr)
+                util::filter_datestr(datestr)
                     .split_whitespace()
                     .for_each(|word| {
                         month_words
@@ -275,5 +306,5 @@ fn write_samples_to_dict() {
         dict_entry.date_order = num_order;
     }
 
-    super::write_dict(&dict);
+    util::write_dict(project_root, &dict);
 }

@@ -135,27 +135,6 @@ impl Reporter for YamlFileReporter {
     }
 }
 
-#[cfg(test)]
-pub struct TestFileReporter {
-    path: PathBuf,
-}
-
-#[cfg(test)]
-impl TestFileReporter {
-    pub fn new<P: AsRef<Path>>(path: P) -> Self {
-        Self {
-            path: path.as_ref().to_path_buf(),
-        }
-    }
-}
-
-#[cfg(test)]
-impl Reporter for TestFileReporter {
-    fn report(&self, report: &Report) {
-        std::fs::write(&self.path, &report.http_request.resp_body).unwrap();
-    }
-}
-
 fn get_report_path(root: &Path, report: &Report) -> Result<PathBuf> {
     if !root.is_dir() {
         std::fs::create_dir_all(root)?;

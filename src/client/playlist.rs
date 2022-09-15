@@ -299,7 +299,7 @@ mod tests {
 
     use rstest::rstest;
 
-    use crate::{client::RustyPipe, report::TestFileReporter};
+    use crate::client::RustyPipe;
 
     use super::*;
 
@@ -353,27 +353,6 @@ mod tests {
             assert_eq!(playlist.channel, channel);
         }
         assert!(!playlist.thumbnails.is_empty());
-    }
-
-    #[test_log::test(tokio::test)]
-    async fn download_testfiles() {
-        let tf_dir = Path::new("testfiles/playlist");
-
-        for (name, id) in [
-            ("short", "RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk"),
-            ("long", "PL5dDx681T4bR7ZF1IuWzOv1omlRbE7PiJ"),
-            ("nomusic", "PL1J-6JOckZtE_P9Xx8D3b2O6w0idhuKBe"),
-        ] {
-            let mut json_path = tf_dir.to_path_buf();
-            json_path.push(format!("playlist_{}.json", name));
-            if json_path.exists() {
-                continue;
-            }
-
-            let reporter = TestFileReporter::new(json_path);
-            let rp = RustyPipe::new(None, Some(Box::new(reporter)), None);
-            rp.test_query().report(true).get_playlist(id).await.unwrap();
-        }
     }
 
     #[rstest]

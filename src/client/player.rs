@@ -563,11 +563,7 @@ fn get_audio_codec(codecs: Vec<&str>) -> AudioCodec {
 mod tests {
     use std::{fs::File, io::BufReader, path::Path};
 
-    use crate::{
-        client::{RustyPipe, CLIENT_TYPES},
-        deobfuscate::DeobfData,
-        report::TestFileReporter,
-    };
+    use crate::{client::RustyPipe, deobfuscate::DeobfData};
 
     use super::*;
     use rstest::rstest;
@@ -580,50 +576,6 @@ mod tests {
         sts: "19201".to_owned(),
     })
     });
-
-    #[test_log::test(tokio::test)]
-    async fn download_response_testfiles() {
-        let tf_dir = Path::new("testfiles/player");
-        let video_id = "pPvd8UxmSbQ";
-
-        for client_type in CLIENT_TYPES {
-            let mut json_path = tf_dir.to_path_buf();
-            json_path.push(format!("{:?}_video.json", client_type).to_lowercase());
-            if json_path.exists() {
-                continue;
-            }
-
-            let reporter = TestFileReporter::new(json_path);
-            let rp = RustyPipe::new(None, Some(Box::new(reporter)), None);
-            rp.test_query()
-                .report(true)
-                .get_player(video_id, client_type)
-                .await
-                .unwrap();
-        }
-    }
-
-    #[test_log::test(tokio::test)]
-    async fn download_model_testfiles() {
-        let tf_dir = Path::new("testfiles/player_model");
-        let rp = RustyPipe::new_test();
-
-        for (name, id) in [("multilanguage", "tVWWp1PqDus"), ("hdr", "LXb3EKWsInQ")] {
-            let mut json_path = tf_dir.to_path_buf();
-            json_path.push(format!("{}.json", name).to_lowercase());
-            if json_path.exists() {
-                continue;
-            }
-
-            let player_data = rp
-                .test_query()
-                .get_player(id, ClientType::Desktop)
-                .await
-                .unwrap();
-            let file = File::create(json_path).unwrap();
-            serde_json::to_writer_pretty(file, &player_data).unwrap();
-        }
-    }
 
     #[rstest]
     #[case::desktop("desktop")]

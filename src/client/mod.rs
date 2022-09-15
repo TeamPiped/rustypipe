@@ -65,7 +65,7 @@ impl ClientType {
 
 #[derive(Clone, Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
-pub struct ContextYT {
+struct ContextYT {
     client: ClientInfo,
     /// only used on desktop
     #[serde(skip_serializing_if = "Option::is_none")]

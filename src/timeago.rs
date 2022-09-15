@@ -78,7 +78,7 @@ impl From<ParsedDate> for DateTime<Local> {
     }
 }
 
-pub fn filter_str(string: &str) -> String {
+fn filter_str(string: &str) -> String {
     string
         .to_lowercase()
         .chars()
