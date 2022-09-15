@@ -183,21 +183,15 @@ impl MapResponse<Playlist> for response::Playlist {
         let description = self.header.playlist_header_renderer.description_text;
 
         let channel = match self.header.playlist_header_renderer.owner_text {
-            Some(owner_text) => match owner_text {
-                TextLink::Browse {
-                    text,
-                    page_type,
-                    browse_id,
-                } => match page_type {
-                    PageType::Channel => Some(Channel {
-                        id: browse_id,
-                        name: text,
-                    }),
-                    _ => None,
-                },
-                _ => None,
-            },
-            None => None,
+            Some(TextLink::Browse {
+                text,
+                page_type: PageType::Channel,
+                browse_id,
+            }) => Some(Channel {
+                id: browse_id,
+                name: text,
+            }),
+            _ => None,
         };
 
         let mut warnings = video_items.warnings.to_owned();
@@ -256,7 +250,7 @@ impl MapResponse<(Vec<Video>, Option<String>)> for response::PlaylistCont {
 }
 
 fn map_playlist_items(
-    items: &Vec<response::VideoListItem<response::playlist::PlaylistVideo>>,
+    items: &[response::VideoListItem<response::playlist::PlaylistVideo>],
 ) -> (Vec<Video>, Option<String>) {
     let mut ctoken: Option<String> = None;
     let videos = items
@@ -265,30 +259,27 @@ fn map_playlist_items(
             response::VideoListItem::GridVideoRenderer { video } => match &video.channel {
                 TextLink::Browse {
                     text,
-                    page_type,
+                    page_type: PageType::Channel,
                     browse_id,
-                } => match page_type {
-                    PageType::Channel => Some(Video {
-                        id: video.video_id.to_owned(),
-                        title: video.title.to_owned(),
-                        length: video.length_seconds,
-                        thumbnails: video
-                            .thumbnail
-                            .thumbnails
-                            .iter()
-                            .map(|t| Thumbnail {
-                                url: t.url.to_owned(),
-                                width: t.width,
-                                height: t.height,
-                            })
-                            .collect(),
-                        channel: Channel {
-                            id: browse_id.to_string(),
-                            name: text.to_owned(),
-                        },
-                    }),
-                    _ => None,
-                },
+                } => Some(Video {
+                    id: video.video_id.to_owned(),
+                    title: video.title.to_owned(),
+                    length: video.length_seconds,
+                    thumbnails: video
+                        .thumbnail
+                        .thumbnails
+                        .iter()
+                        .map(|t| Thumbnail {
+                            url: t.url.to_owned(),
+                            width: t.width,
+                            height: t.height,
+                        })
+                        .collect(),
+                    channel: Channel {
+                        id: browse_id.to_string(),
+                        name: text.to_owned(),
+                    },
+                }),
                 _ => None,
             },
             response::VideoListItem::ContinuationItemRenderer {

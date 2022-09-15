@@ -253,7 +253,7 @@ impl RustyPipe {
         reporter: Option<Box<dyn Reporter + Sync + Send>>,
         user_agent: Option<String>,
     ) -> Self {
-        let user_agent = user_agent.unwrap_or(DEFAULT_UA.to_owned());
+        let user_agent = user_agent.unwrap_or_else(|| DEFAULT_UA.to_owned());
 
         let http = ClientBuilder::new()
             .user_agent(user_agent.to_owned())
@@ -563,6 +563,7 @@ impl RustyPipeQuery {
         }
     }
 
+    #[allow(clippy::too_many_arguments)]
     async fn execute_request_deobf<
         R: DeserializeOwned + MapResponse<M> + Debug,
         M,
@@ -767,7 +768,7 @@ async fn extract_desktop_client_version(http: Client, consent_cookie: String) ->
         .context("Failed to download sw.js")?;
 
         util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &swjs, 1)
-            .ok_or(anyhow!("Could not find desktop client version in sw.js"))
+            .ok_or_else(|| anyhow!("Could not find desktop client version in sw.js"))
     };
 
     let from_html = async {
@@ -780,9 +781,8 @@ async fn extract_desktop_client_version(http: Client, consent_cookie: String) ->
         .await
         .context("Failed to get YT Desktop page")?;
 
-        util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &html, 1).ok_or(anyhow!(
-            "Could not find desktop client version on html page"
-        ))
+        util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &html, 1)
+            .ok_or_else(|| anyhow!("Could not find desktop client version on html page"))
     };
 
     match from_swjs.await {
@@ -806,7 +806,7 @@ async fn extract_music_client_version(http: Client, consent_cookie: String) -> R
         .context("Failed to download sw.js")?;
 
         util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &swjs, 1)
-            .ok_or(anyhow!("Could not find desktop client version in sw.js"))
+            .ok_or_else(|| anyhow!("Could not find desktop client version in sw.js"))
     };
 
     let from_html = async {
@@ -817,9 +817,8 @@ async fn extract_music_client_version(http: Client, consent_cookie: String) -> R
         .await
         .context("Failed to get YT Desktop page")?;
 
-        util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &html, 1).ok_or(anyhow!(
-            "Could not find desktop client version on html page"
-        ))
+        util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &html, 1)
+            .ok_or_else(|| anyhow!("Could not find desktop client version on html page"))
     };
 
     match from_swjs.await {

@@ -215,20 +215,20 @@ pub struct MusicContinuationData {
     pub continuation: String,
 }
 
-impl Into<crate::model::Thumbnail> for Thumbnail {
-    fn into(self) -> crate::model::Thumbnail {
+impl From<Thumbnail> for crate::model::Thumbnail {
+    fn from(tn: Thumbnail) -> Self {
         crate::model::Thumbnail {
-            url: self.url,
-            width: self.width,
-            height: self.height,
+            url: tn.url,
+            width: tn.width,
+            height: tn.height,
         }
     }
 }
 
-impl Into<Vec<crate::model::Thumbnail>> for Thumbnails {
-    fn into(self) -> Vec<crate::model::Thumbnail> {
+impl From<Thumbnails> for Vec<crate::model::Thumbnail> {
+    fn from(ts: Thumbnails) -> Self {
         let mut thumbnails = vec![];
-        for t in self.thumbnails {
+        for t in ts.thumbnails {
             thumbnails.push(t.into());
         }
         thumbnails

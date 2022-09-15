@@ -1,3 +1,5 @@
+#![allow(clippy::enum_variant_names)]
+
 use serde::Deserialize;
 use serde_with::serde_as;
 use serde_with::{DefaultOnError, VecSkipError};

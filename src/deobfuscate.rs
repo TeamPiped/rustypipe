@@ -88,7 +88,7 @@ fn get_sig_fn_name(player_js: &str) -> Result<String> {
 }
 
 fn caller_function(fn_name: &str) -> String {
-    "var ".to_owned() + DEOBFUSCATION_FUNC_NAME + "=" + &fn_name + ";"
+    format!("var {}={};", DEOBFUSCATION_FUNC_NAME, fn_name)
 }
 
 fn get_sig_fn(player_js: &str) -> Result<String> {
@@ -353,7 +353,7 @@ fn get_sts(player_js: &str) -> Result<String> {
         Lazy::new(|| Regex::new("signatureTimestamp[=:](\\d+)").unwrap());
 
     Ok(some_or_bail!(
-        STS_PATTERN.captures(&player_js)?,
+        STS_PATTERN.captures(player_js)?,
         Err(anyhow!("could not find sts"))
     )
     .get(1)

@@ -1,4 +1,5 @@
 #![allow(dead_code)]
+#![warn(clippy::todo)]
 
 #[macro_use]
 mod macros;

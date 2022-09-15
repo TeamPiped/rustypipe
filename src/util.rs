@@ -41,16 +41,15 @@ pub fn generate_content_playback_nonce() -> String {
 ///
 /// `example.com/api?k1=v1&k2=v2 => example.com/api; {k1: v1, k2: v2}`
 pub fn url_to_params(url: &str) -> Result<(String, BTreeMap<String, String>)> {
-    let parsed_url = Url::parse(url)?;
+    let mut parsed_url = Url::parse(url)?;
     let url_params: BTreeMap<String, String> = parsed_url
         .query_pairs()
         .map(|(k, v)| (k.to_string(), v.to_string()))
         .collect();
 
-    let mut url_base = parsed_url.clone();
-    url_base.set_query(None);
+    parsed_url.set_query(None);
 
-    Ok((url_base.to_string(), url_params))
+    Ok((parsed_url.to_string(), url_params))
 }
 
 /// Parse a string after removing all non-numeric characters

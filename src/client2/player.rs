@@ -297,7 +297,7 @@ fn deobf_nsig(
     let nsig: String;
     match url_params.get("n") {
         Some(n) => {
-            nsig = if n.to_owned() == last_nsig[0] {
+            nsig = if n == &last_nsig[0] {
                 last_nsig[1].to_owned()
             } else {
                 let nsig = deobf.deobfuscate_nsig(n)?;
@@ -503,7 +503,7 @@ fn parse_mime(mime: &str) -> Option<(&str, Vec<&str>)> {
     static PATTERN: Lazy<Regex> =
         Lazy::new(|| Regex::new(r#"(\w+/\w+);\scodecs="([a-zA-Z-0-9.,\s]*)""#).unwrap());
 
-    let captures = some_or_bail!(PATTERN.captures(&mime).ok().flatten(), None);
+    let captures = some_or_bail!(PATTERN.captures(mime).ok().flatten(), None);
     Some((
         captures.get(1).unwrap().as_str(),
         captures

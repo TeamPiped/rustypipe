@@ -52,24 +52,24 @@ impl Mul<u8> for TimeAgo {
     }
 }
 
-impl Into<DateTime<Local>> for TimeAgo {
-    fn into(self) -> DateTime<Local> {
+impl From<TimeAgo> for DateTime<Local> {
+    fn from(ta: TimeAgo) -> Self {
         let ts = Local::now();
-        match self.unit {
-            TimeUnit::Second => ts - Duration::seconds(self.n as i64),
-            TimeUnit::Minute => ts - Duration::minutes(self.n as i64),
-            TimeUnit::Hour => ts - Duration::hours(self.n as i64),
-            TimeUnit::Day => ts - Duration::days(self.n as i64),
-            TimeUnit::Week => ts - Duration::weeks(self.n as i64),
-            TimeUnit::Month => chronoutil::shift_months(ts, -(self.n as i32)),
-            TimeUnit::Year => chronoutil::shift_years(ts, -(self.n as i32)),
+        match ta.unit {
+            TimeUnit::Second => ts - Duration::seconds(ta.n as i64),
+            TimeUnit::Minute => ts - Duration::minutes(ta.n as i64),
+            TimeUnit::Hour => ts - Duration::hours(ta.n as i64),
+            TimeUnit::Day => ts - Duration::days(ta.n as i64),
+            TimeUnit::Week => ts - Duration::weeks(ta.n as i64),
+            TimeUnit::Month => chronoutil::shift_months(ts, -(ta.n as i32)),
+            TimeUnit::Year => chronoutil::shift_years(ts, -(ta.n as i32)),
         }
     }
 }
 
-impl Into<DateTime<Local>> for ParsedDate {
-    fn into(self) -> DateTime<Local> {
-        match self {
+impl From<ParsedDate> for DateTime<Local> {
+    fn from(date: ParsedDate) -> Self {
+        match date {
             ParsedDate::Absolute(date) => Local
                 .from_local_datetime(&NaiveDateTime::new(date, NaiveTime::from_hms(0, 0, 0)))
                 .unwrap(),
@@ -103,29 +103,23 @@ fn parse_ta_token(entry: &dictionary::Entry, nd: bool, filtered_str: &str) -> Op
 
     if entry.by_char {
         filtered_str.chars().find_map(|word| {
-            tokens
-                .get(&word.to_string())
-                .map(|t| match t.unit {
-                    Some(unit) => Some(TimeAgo { n: t.n * qu, unit }),
-                    None => {
-                        qu = t.n;
-                        None
-                    }
-                })
-                .flatten()
+            tokens.get(&word.to_string()).and_then(|t| match t.unit {
+                Some(unit) => Some(TimeAgo { n: t.n * qu, unit }),
+                None => {
+                    qu = t.n;
+                    None
+                }
+            })
         })
     } else {
         filtered_str.split_whitespace().find_map(|word| {
-            tokens
-                .get(word)
-                .map(|t| match t.unit {
-                    Some(unit) => Some(TimeAgo { n: t.n * qu, unit }),
-                    None => {
-                        qu = t.n;
-                        None
-                    }
-                })
-                .flatten()
+            tokens.get(word).and_then(|t| match t.unit {
+                Some(unit) => Some(TimeAgo { n: t.n * qu, unit }),
+                None => {
+                    qu = t.n;
+                    None
+                }
+            })
         })
     }
 }
@@ -137,7 +131,7 @@ fn parse_textual_month(entry: &dictionary::Entry, filtered_str: &str) -> Option<
     } else {
         filtered_str
             .split_whitespace()
-            .find_map(|word| entry.months.get(word).map(|n| *n))
+            .find_map(|word| entry.months.get(word).copied())
     }
 }
 
@@ -145,7 +139,7 @@ pub fn parse_timeago(lang: Language, textual_date: &str) -> Option<TimeAgo> {
     let entry = dictionary::entry(lang);
     let filtered_str = filter_str(textual_date);
 
-    let qu: u8 = util::parse_numeric(&textual_date).unwrap_or(1);
+    let qu: u8 = util::parse_numeric(textual_date).unwrap_or(1);
 
     parse_ta_token(&entry, false, &filtered_str).map(|ta| ta * qu)
 }
@@ -163,8 +157,7 @@ pub fn parse_textual_date(lang: Language, textual_date: &str) -> Option<ParsedDa
     match nums.len() {
         0 => match parse_ta_token(&entry, true, &filtered_str) {
             Some(timeago) => Some(ParsedDate::Relative(timeago)),
-            None => parse_ta_token(&entry, false, &filtered_str)
-                .map(|timeago| ParsedDate::Relative(timeago)),
+            None => parse_ta_token(&entry, false, &filtered_str).map(ParsedDate::Relative),
         },
         1 => parse_ta_token(&entry, false, &filtered_str)
             .map(|timeago| ParsedDate::Relative(timeago * nums[0] as u8)),
@@ -189,7 +182,7 @@ pub fn parse_textual_date(lang: Language, textual_date: &str) -> Option<ParsedDa
                 match (y, m, d) {
                     (Some(y), Some(m), Some(d)) => {
                         NaiveDate::from_ymd_opt(y.into(), m.into(), d.into())
-                            .map(|d| ParsedDate::Absolute(d))
+                            .map(ParsedDate::Absolute)
                     }
                     _ => None,
                 }

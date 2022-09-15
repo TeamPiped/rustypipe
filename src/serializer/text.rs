@@ -223,11 +223,7 @@ impl<'de> DeserializeAs<'de, Vec<TextLink>> for TextLinks {
         D: Deserializer<'de>,
     {
         let link = TextLinkInternal::deserialize(deserializer)?;
-        Ok(link
-            .runs
-            .iter()
-            .filter_map(|r| map_text_linkrun(r))
-            .collect())
+        Ok(link.runs.iter().filter_map(map_text_linkrun).collect())
     }
 }
 

@@ -27,8 +27,8 @@ fn get_download_range(offset: u64, size: Option<u64>) -> Range<u64> {
     let chunk_size = rng.gen_range(CHUNK_SIZE_MIN..CHUNK_SIZE_MAX);
     let mut chunk_end = offset + chunk_size;
 
-    if size.is_some() {
-        chunk_end = chunk_end.min(size.unwrap() - 1)
+    if let Some(size) = size {
+        chunk_end = chunk_end.min(size - 1)
     }
 
     Range {
@@ -41,7 +41,7 @@ fn parse_cr_header(cr_header: &str) -> Result<(u64, u64)> {
     static PATTERN: Lazy<Regex> = Lazy::new(|| Regex::new(r#"bytes (\d+)-(\d+)/(\d+)"#).unwrap());
 
     let captures = some_or_bail!(
-        PATTERN.captures(&cr_header).ok().flatten(),
+        PATTERN.captures(cr_header).ok().flatten(),
         Err(anyhow!(
             "Content-Range header '{}' does not match pattern.",
             cr_header
@@ -77,10 +77,7 @@ async fn download_single_file<P: Into<PathBuf>>(
     let (url_base, url_params) = util::url_to_params(url)?;
     let is_gvideo = url_base.ends_with(".googlevideo.com/videoplayback");
     if is_gvideo {
-        size = url_params
-            .get("clen")
-            .map(|s| s.parse::<u64>().ok())
-            .flatten();
+        size = url_params.get("clen").and_then(|s| s.parse::<u64>().ok());
     }
 
     // Check if file is partially downloaded
@@ -257,6 +254,7 @@ struct StreamDownload {
     video_codec: Option<VideoCodec>,
 }
 
+#[allow(clippy::too_many_arguments)]
 pub async fn download_video(
     player_data: &VideoPlayer,
     output_dir: &str,
@@ -327,7 +325,7 @@ pub async fn download_video(
         _ => {
             let mut downloads: Vec<StreamDownload> = Vec::new();
 
-            video.map(|v| {
+            if let Some(v) = video {
                 downloads.push(StreamDownload {
                     file: download_dir.join(format!(
                         "{}.video{}",
@@ -338,8 +336,8 @@ pub async fn download_video(
                     video_codec: Some(v.codec),
                     audio_codec: None,
                 });
-            });
-            audio.map(|a| {
+            }
+            if let Some(a) = audio {
                 downloads.push(StreamDownload {
                     file: download_dir.join(format!(
                         "{}.audio{}",
@@ -350,7 +348,7 @@ pub async fn download_video(
                     video_codec: None,
                     audio_codec: Some(a.codec),
                 })
-            });
+            }
 
             pb.set_message(format!("Downloading {}", title));
             download_streams(&downloads, http, pb.clone()).await?;
