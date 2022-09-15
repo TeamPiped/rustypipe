@@ -4,6 +4,7 @@ use serde_with::VecSkipError;
 
 use super::TimeOverlay;
 use super::{ContentRenderer, ContentsRenderer, Thumbnails, VideoListItem};
+use crate::serializer::text::Text;
 
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -63,11 +64,11 @@ pub struct GridRenderer {
 pub struct ChannelVideo {
     pub video_id: String,
     pub thumbnail: Thumbnails,
-    #[serde_as(as = "crate::serializer::text::Text")]
+    #[serde_as(as = "Text")]
     pub title: String,
-    #[serde_as(as = "Option<crate::serializer::text::Text>")]
+    #[serde_as(as = "Option<Text>")]
     pub published_time_text: Option<String>,
-    #[serde_as(as = "crate::serializer::text::Text")]
+    #[serde_as(as = "Text")]
     pub view_count_text: String,
     #[serde_as(as = "VecSkipError<_>")]
     pub thumbnail_overlays: Vec<TimeOverlay>,

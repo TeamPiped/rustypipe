@@ -6,7 +6,7 @@ use serde::{
 };
 use serde_with::{de::DeserializeAsWrap, DeserializeAs};
 
-use crate::client2::MapResult;
+use super::MapResult;
 
 pub struct VecLogError<T>(PhantomData<T>);
 
@@ -89,7 +89,7 @@ mod tests {
     use serde::Deserialize;
     use serde_with::serde_as;
 
-    use crate::client2::MapResult;
+    use crate::serializer::MapResult;
 
     #[serde_as]
     #[derive(Debug, Deserialize)]

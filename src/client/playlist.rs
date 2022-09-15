@@ -1,14 +1,15 @@
-use anyhow::{anyhow, Context, Result};
+use anyhow::{anyhow, bail, Result};
 use reqwest::Method;
 use serde::Serialize;
 
 use crate::{
+    deobfuscate::Deobfuscator,
     model::{Channel, Language, Playlist, Thumbnail, Video},
     serializer::text::{PageType, TextLink},
     timeago, util,
 };
 
-use super::{response, ClientType, ContextYT, RustyTube};
+use super::{response, ClientType, ContextYT, MapResponse, MapResult, RustyPipeQuery};
 
 #[derive(Clone, Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
@@ -24,62 +25,44 @@ struct QPlaylistCont {
     continuation: String,
 }
 
-impl RustyTube {
-    pub async fn get_playlist(&self, playlist_id: &str) -> Result<Playlist> {
-        let client = self.get_ytclient(ClientType::Desktop);
-        let context = client.get_context(true).await;
-
+impl RustyPipeQuery {
+    pub async fn get_playlist(self, playlist_id: &str) -> Result<Playlist> {
+        let context = self.get_context(ClientType::Desktop, true).await;
         let request_body = QPlaylist {
             context,
             browse_id: "VL".to_owned() + playlist_id,
         };
 
-        let resp = client
-            .request_builder(Method::POST, "browse")
-            .await
-            .json(&request_body)
-            .send()
-            .await?
-            .error_for_status()?;
-
-        let resp_body = resp.text().await?;
-        let playlist_response =
-            serde_json::from_str::<response::Playlist>(&resp_body).context(resp_body)?;
-
-        map_playlist(&playlist_response, self.localization.language)
+        self.execute_request::<response::Playlist, _, _>(
+            ClientType::Desktop,
+            "get_playlist",
+            Method::POST,
+            "browse",
+            playlist_id,
+            &request_body,
+        )
+        .await
     }
 
-    pub async fn get_playlist_cont(&self, playlist: &mut Playlist) -> Result<()> {
+    pub async fn get_playlist_cont(self, playlist: &mut Playlist) -> Result<()> {
         match &playlist.ctoken {
             Some(ctoken) => {
-                let client = self.get_ytclient(ClientType::Desktop);
-                let context = client.get_context(true).await;
-
+                let context = self.get_context(ClientType::Desktop, true).await;
                 let request_body = QPlaylistCont {
                     context,
                     continuation: ctoken.to_owned(),
                 };
 
-                let resp = client
-                    .request_builder(Method::POST, "browse")
-                    .await
-                    .json(&request_body)
-                    .send()
-                    .await?
-                    .error_for_status()?;
-
-                let cont_response = resp.json::<response::playlist::PlaylistCont>().await?;
-
-                let action = some_or_bail!(
-                    cont_response
-                        .on_response_received_actions
-                        .iter()
-                        .find(|a| a.append_continuation_items_action.target_id == playlist.id),
-                    Err(anyhow!("no continuation action"))
-                );
-
-                let (mut videos, ctoken) =
-                    map_playlist_items(&action.append_continuation_items_action.continuation_items);
+                let (mut videos, ctoken) = self
+                    .execute_request::<response::PlaylistCont, _, _>(
+                        ClientType::Desktop,
+                        "get_playlist_cont",
+                        Method::POST,
+                        "browse",
+                        &playlist.id,
+                        &request_body,
+                    )
+                    .await?;
 
                 playlist.videos.append(&mut videos);
                 playlist.ctoken = ctoken;
@@ -95,149 +78,179 @@ impl RustyTube {
     }
 }
 
-fn map_playlist(response: &response::Playlist, lang: Language) -> Result<Playlist> {
-    let video_items = &some_or_bail!(
-        some_or_bail!(
+impl MapResponse<Playlist> for response::Playlist {
+    fn map_response(
+        self,
+        id: &str,
+        lang: Language,
+        _deobf: Option<&Deobfuscator>,
+    ) -> Result<MapResult<Playlist>> {
+        let video_items = &some_or_bail!(
             some_or_bail!(
-                response
-                    .contents
-                    .two_column_browse_results_renderer
-                    .contents
-                    .get(0),
-                Err(anyhow!("twoColumnBrowseResultsRenderer empty"))
+                some_or_bail!(
+                    self.contents
+                        .two_column_browse_results_renderer
+                        .contents
+                        .get(0),
+                    Err(anyhow!("twoColumnBrowseResultsRenderer empty"))
+                )
+                .tab_renderer
+                .content
+                .section_list_renderer
+                .contents
+                .get(0),
+                Err(anyhow!("sectionListRenderer empty"))
             )
-            .tab_renderer
-            .content
-            .section_list_renderer
+            .item_section_renderer
             .contents
             .get(0),
-            Err(anyhow!("sectionListRenderer empty"))
+            Err(anyhow!("itemSectionRenderer empty"))
         )
-        .item_section_renderer
-        .contents
-        .get(0),
-        Err(anyhow!("itemSectionRenderer empty"))
-    )
-    .playlist_video_list_renderer
-    .contents;
+        .playlist_video_list_renderer
+        .contents;
 
-    let (videos, ctoken) = map_playlist_items(video_items);
+        let (videos, ctoken) = map_playlist_items(&video_items.c);
 
-    let (thumbnails, last_update_txt) = match &response.sidebar {
-        Some(sidebar) => {
-            let primary = some_or_bail!(
-                sidebar.playlist_sidebar_renderer.items.get(0),
-                Err(anyhow!("no primary sidebar"))
-            );
+        let (thumbnails, last_update_txt) = match &self.sidebar {
+            Some(sidebar) => {
+                let primary = some_or_bail!(
+                    sidebar.playlist_sidebar_renderer.items.get(0),
+                    Err(anyhow!("no primary sidebar"))
+                );
 
-            (
-                &primary
-                    .playlist_sidebar_primary_info_renderer
-                    .thumbnail_renderer
-                    .playlist_video_thumbnail_renderer
-                    .thumbnail
-                    .thumbnails,
-                primary
-                    .playlist_sidebar_primary_info_renderer
-                    .stats
-                    .get(2)
-                    .map(|t| t.to_owned()),
-            )
-        }
-        None => {
-            let header_banner = some_or_bail!(
-                &response
+                (
+                    &primary
+                        .playlist_sidebar_primary_info_renderer
+                        .thumbnail_renderer
+                        .playlist_video_thumbnail_renderer
+                        .thumbnail
+                        .thumbnails,
+                    primary
+                        .playlist_sidebar_primary_info_renderer
+                        .stats
+                        .get(2)
+                        .map(|t| t.to_owned()),
+                )
+            }
+            None => {
+                let header_banner = some_or_bail!(
+                    &self.header.playlist_header_renderer.playlist_header_banner,
+                    Err(anyhow!("no thumbnail found"))
+                );
+
+                let last_update_txt = self
                     .header
                     .playlist_header_renderer
-                    .playlist_header_banner,
-                Err(anyhow!("no thumbnail found"))
-            );
+                    .byline
+                    .get(1)
+                    .map(|b| b.playlist_byline_renderer.text.to_owned());
 
-            let last_update_txt = response
-                .header
-                .playlist_header_renderer
-                .byline
-                .get(1)
-                .map(|b| b.playlist_byline_renderer.text.to_owned());
+                (
+                    &header_banner
+                        .hero_playlist_thumbnail_renderer
+                        .thumbnail
+                        .thumbnails,
+                    last_update_txt,
+                )
+            }
+        };
 
-            (
-                &header_banner
-                    .hero_playlist_thumbnail_renderer
-                    .thumbnail
-                    .thumbnails,
-                last_update_txt,
-            )
+        let thumbnails = thumbnails
+            .iter()
+            .map(|t| Thumbnail {
+                url: t.url.to_owned(),
+                width: t.width,
+                height: t.height,
+            })
+            .collect::<Vec<_>>();
+
+        let n_videos = match ctoken {
+            Some(_) => {
+                ok_or_bail!(
+                    util::parse_numeric(&self.header.playlist_header_renderer.num_videos_text),
+                    Err(anyhow!("no video count"))
+                )
+            }
+            None => videos.len() as u32,
+        };
+
+        let playlist_id = self.header.playlist_header_renderer.playlist_id;
+        if playlist_id != id {
+            bail!("got wrong playlist id {}, expected {}", playlist_id, id);
         }
-    };
 
-    let thumbnails = thumbnails
-        .iter()
-        .map(|t| Thumbnail {
-            url: t.url.to_owned(),
-            width: t.width,
-            height: t.height,
-        })
-        .collect::<Vec<_>>();
+        let name = self.header.playlist_header_renderer.title;
+        let description = self.header.playlist_header_renderer.description_text;
 
-    let n_videos = match ctoken {
-        Some(_) => {
-            ok_or_bail!(
-                util::parse_numeric(&response.header.playlist_header_renderer.num_videos_text),
-                Err(anyhow!("no video count"))
-            )
-        }
-        None => videos.len() as u32,
-    };
-
-    let id = response
-        .header
-        .playlist_header_renderer
-        .playlist_id
-        .to_owned();
-    let name = response.header.playlist_header_renderer.title.to_owned();
-    let description = response
-        .header
-        .playlist_header_renderer
-        .description_text
-        .to_owned();
-
-    let channel = match &response.header.playlist_header_renderer.owner_text {
-        Some(owner_text) => match owner_text {
-            TextLink::Browse {
+        let channel = match self.header.playlist_header_renderer.owner_text {
+            Some(TextLink::Browse {
                 text,
-                page_type,
+                page_type: PageType::Channel,
                 browse_id,
-            } => match page_type {
-                PageType::Channel => Some(Channel {
-                    id: browse_id.to_owned(),
-                    name: text.to_owned(),
-                }),
-                _ => None,
-            },
+            }) => Some(Channel {
+                id: browse_id,
+                name: text,
+            }),
             _ => None,
-        },
-        None => None,
-    };
+        };
 
-    Ok(Playlist {
-        id,
-        name,
-        videos,
-        n_videos,
-        ctoken,
-        thumbnails,
-        description,
-        channel,
-        last_update: match &last_update_txt {
-            Some(textual_date) => timeago::parse_textual_date_to_dt(lang, textual_date),
+        let mut warnings = video_items.warnings.to_owned();
+        let last_update = match &last_update_txt {
+            Some(textual_date) => {
+                let parsed = timeago::parse_textual_date_to_dt(lang, textual_date);
+                if parsed.is_none() {
+                    warnings.push(format!("could not parse textual date `{}`", textual_date));
+                }
+                parsed
+            }
             None => None,
-        },
-        last_update_txt,
-    })
+        };
+
+        Ok(MapResult {
+            c: Playlist {
+                id: playlist_id,
+                name,
+                videos,
+                n_videos,
+                ctoken,
+                thumbnails,
+                description,
+                channel,
+                last_update,
+                last_update_txt,
+            },
+            warnings,
+        })
+    }
+}
+
+impl MapResponse<(Vec<Video>, Option<String>)> for response::PlaylistCont {
+    fn map_response(
+        self,
+        id: &str,
+        _lang: Language,
+        _deobf: Option<&Deobfuscator>,
+    ) -> Result<MapResult<(Vec<Video>, Option<String>)>> {
+        let action = some_or_bail!(
+            self.on_response_received_actions
+                .iter()
+                .find(|a| a.append_continuation_items_action.target_id == id),
+            Err(anyhow!("no continuation action"))
+        );
+
+        Ok(MapResult {
+            c: map_playlist_items(&action.append_continuation_items_action.continuation_items.c),
+            warnings: action
+                .append_continuation_items_action
+                .continuation_items
+                .warnings
+                .to_owned(),
+        })
+    }
 }
 
 fn map_playlist_items(
-    items: &Vec<response::VideoListItem<response::playlist::PlaylistVideo>>,
+    items: &[response::VideoListItem<response::playlist::PlaylistVideo>],
 ) -> (Vec<Video>, Option<String>) {
     let mut ctoken: Option<String> = None;
     let videos = items
@@ -246,30 +259,27 @@ fn map_playlist_items(
             response::VideoListItem::GridVideoRenderer { video } => match &video.channel {
                 TextLink::Browse {
                     text,
-                    page_type,
+                    page_type: PageType::Channel,
                     browse_id,
-                } => match page_type {
-                    PageType::Channel => Some(Video {
-                        id: video.video_id.to_owned(),
-                        title: video.title.to_owned(),
-                        length: video.length_seconds,
-                        thumbnails: video
-                            .thumbnail
-                            .thumbnails
-                            .iter()
-                            .map(|t| Thumbnail {
-                                url: t.url.to_owned(),
-                                width: t.width,
-                                height: t.height,
-                            })
-                            .collect(),
-                        channel: Channel {
-                            id: browse_id.to_string(),
-                            name: text.to_owned(),
-                        },
-                    }),
-                    _ => None,
-                },
+                } => Some(Video {
+                    id: video.video_id.to_owned(),
+                    title: video.title.to_owned(),
+                    length: video.length_seconds,
+                    thumbnails: video
+                        .thumbnail
+                        .thumbnails
+                        .iter()
+                        .map(|t| Thumbnail {
+                            url: t.url.to_owned(),
+                            width: t.width,
+                            height: t.height,
+                        })
+                        .collect(),
+                    channel: Channel {
+                        id: browse_id.to_string(),
+                        name: text.to_owned(),
+                    },
+                }),
                 _ => None,
             },
             response::VideoListItem::ContinuationItemRenderer {
@@ -289,48 +299,9 @@ mod tests {
 
     use rstest::rstest;
 
+    use crate::{client::RustyPipe, report::TestFileReporter};
+
     use super::*;
-
-    #[test_log::test(tokio::test)]
-    async fn download_testfiles() {
-        let tf_dir = Path::new("testfiles/playlist");
-
-        let rt = RustyTube::new();
-
-        for (name, id) in [
-            ("short", "RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk"),
-            ("long", "PL5dDx681T4bR7ZF1IuWzOv1omlRbE7PiJ"),
-            ("nomusic", "PL1J-6JOckZtE_P9Xx8D3b2O6w0idhuKBe"),
-        ] {
-            let mut json_path = tf_dir.to_path_buf();
-            json_path.push(format!("playlist_{}.json", name));
-            if json_path.exists() {
-                continue;
-            }
-
-            let client = rt.get_ytclient(ClientType::Desktop);
-            let context = client.get_context(false).await;
-
-            let request_body = QPlaylist {
-                context,
-                browse_id: "VL".to_owned() + id,
-            };
-
-            let resp = client
-                .request_builder(Method::POST, "browse")
-                .await
-                .json(&request_body)
-                .send()
-                .await
-                .unwrap()
-                .error_for_status()
-                .unwrap();
-
-            let mut file = std::fs::File::create(json_path).unwrap();
-            let mut content = std::io::Cursor::new(resp.bytes().await.unwrap());
-            std::io::copy(&mut content, &mut file).unwrap();
-        }
-    }
 
     #[rstest]
     #[case::long(
@@ -368,8 +339,8 @@ mod tests {
         #[case] description: Option<String>,
         #[case] channel: Option<Channel>,
     ) {
-        let rt = RustyTube::new();
-        let playlist = rt.get_playlist(id).await.unwrap();
+        let rp = RustyPipe::new_test();
+        let playlist = rp.test_query().get_playlist(id).await.unwrap();
 
         assert_eq!(playlist.id, id);
         assert_eq!(playlist.name, name);
@@ -378,37 +349,70 @@ mod tests {
         assert!(playlist.n_videos > 10);
         assert_eq!(playlist.n_videos > 100, is_long);
         assert_eq!(playlist.description, description);
-        assert_eq!(playlist.channel, channel);
+        if channel.is_some() {
+            assert_eq!(playlist.channel, channel);
+        }
         assert!(!playlist.thumbnails.is_empty());
     }
 
+    #[test_log::test(tokio::test)]
+    async fn download_testfiles() {
+        let tf_dir = Path::new("testfiles/playlist");
+
+        for (name, id) in [
+            ("short", "RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk"),
+            ("long", "PL5dDx681T4bR7ZF1IuWzOv1omlRbE7PiJ"),
+            ("nomusic", "PL1J-6JOckZtE_P9Xx8D3b2O6w0idhuKBe"),
+        ] {
+            let mut json_path = tf_dir.to_path_buf();
+            json_path.push(format!("playlist_{}.json", name));
+            if json_path.exists() {
+                continue;
+            }
+
+            let reporter = TestFileReporter::new(json_path);
+            let rp = RustyPipe::new(None, Some(Box::new(reporter)), None);
+            rp.test_query().report(true).get_playlist(id).await.unwrap();
+        }
+    }
+
     #[rstest]
-    #[case::long("long")]
-    #[case::short("short")]
-    #[case::nomusic("nomusic")]
-    fn t_map_playlist_data(#[case] name: &str) {
+    #[case::short("short", "RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk")]
+    #[case::long("long", "PL5dDx681T4bR7ZF1IuWzOv1omlRbE7PiJ")]
+    #[case::nomusic("nomusic", "PL1J-6JOckZtE_P9Xx8D3b2O6w0idhuKBe")]
+    fn t_map_playlist_data(#[case] name: &str, #[case] id: &str) {
         let filename = format!("testfiles/playlist/playlist_{}.json", name);
         let json_path = Path::new(&filename);
         let json_file = File::open(json_path).unwrap();
 
         let playlist: response::Playlist =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let playlist_data = map_playlist(&playlist, Language::En).unwrap();
-        insta::assert_yaml_snapshot!(format!("map_playlist_data_{}", name), playlist_data, {
+        let map_res = playlist.map_response(id, Language::En, None).unwrap();
+
+        assert!(
+            map_res.warnings.is_empty(),
+            "deserialization/mapping warnings: {:?}",
+            map_res.warnings
+        );
+        insta::assert_yaml_snapshot!(format!("map_playlist_data_{}", name), map_res.c, {
             ".last_update" => "[date]"
         });
     }
 
     #[test_log::test(tokio::test)]
     async fn t_playlist_cont() {
-        let rt = RustyTube::new();
-        let mut playlist = rt
+        let rp = RustyPipe::new_test();
+        let mut playlist = rp
+            .test_query()
             .get_playlist("PLbZIPy20-1pN7mqjckepWF78ndb6ci_qi")
             .await
             .unwrap();
 
         while playlist.ctoken.is_some() {
-            rt.get_playlist_cont(&mut playlist).await.unwrap();
+            rp.test_query()
+                .get_playlist_cont(&mut playlist)
+                .await
+                .unwrap();
         }
 
         assert!(playlist.videos.len() > 100);

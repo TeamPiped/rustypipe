@@ -6,7 +6,7 @@ use futures::stream::{self, StreamExt};
 use indicatif::{MultiProgress, ProgressBar, ProgressStyle};
 use reqwest::{Client, ClientBuilder};
 use rustypipe::{
-    client2::{ClientType, RustyPipe},
+    client::{ClientType, RustyPipe},
     model::stream_filter::Filter,
 };
 

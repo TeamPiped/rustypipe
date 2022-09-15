@@ -3,9 +3,10 @@ use std::ops::Range;
 use chrono::NaiveDate;
 use serde::Deserialize;
 use serde_with::serde_as;
-use serde_with::{json::JsonString, DefaultOnError, VecSkipError};
+use serde_with::{json::JsonString, DefaultOnError};
 
 use super::Thumbnails;
+use crate::serializer::{text::Text, MapResult, VecLogError};
 
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -45,11 +46,11 @@ pub struct StreamingData {
     #[serde_as(as = "JsonString")]
     pub expires_in_seconds: u32,
     #[serde(default)]
-    #[serde_as(as = "VecSkipError<_>")]
-    pub formats: Vec<Format>,
+    #[serde_as(as = "VecLogError<_>")]
+    pub formats: MapResult<Vec<Format>>,
     #[serde(default)]
-    #[serde_as(as = "VecSkipError<_>")]
-    pub adaptive_formats: Vec<Format>,
+    #[serde_as(as = "VecLogError<_>")]
+    pub adaptive_formats: MapResult<Vec<Format>>,
     /// Only on livestreams
     pub dash_manifest_url: Option<String>,
     /// Only on livestreams
@@ -73,20 +74,20 @@ pub struct Format {
     pub width: Option<u32>,
     pub height: Option<u32>,
 
-    #[serde_as(as = "Option<crate::serializer::range::Range>")]
+    #[serde_as(as = "Option<crate::serializer::Range>")]
     pub index_range: Option<Range<u32>>,
-    #[serde_as(as = "Option<crate::serializer::range::Range>")]
+    #[serde_as(as = "Option<crate::serializer::Range>")]
     pub init_range: Option<Range<u32>>,
 
-    #[serde_as(as = "JsonString")]
-    pub content_length: u64,
+    #[serde_as(as = "Option<JsonString>")]
+    pub content_length: Option<u64>,
 
     #[serde(default)]
     #[serde_as(deserialize_as = "DefaultOnError")]
     pub quality: Option<Quality>,
     pub fps: Option<u8>,
     pub quality_label: Option<String>,
-    pub average_bitrate: u32,
+    pub average_bitrate: Option<u32>,
     pub color_info: Option<ColorInfo>,
 
     // Audio only
@@ -104,7 +105,9 @@ pub struct Format {
 
 impl Format {
     pub fn is_audio(&self) -> bool {
-        self.audio_quality.is_some() && self.audio_sample_rate.is_some()
+        self.content_length.is_some()
+            && self.audio_quality.is_some()
+            && self.audio_sample_rate.is_some()
     }
 
     pub fn is_video(&self) -> bool {
@@ -188,7 +191,7 @@ pub struct PlayerCaptionsTracklistRenderer {
 #[serde(rename_all = "camelCase")]
 pub struct CaptionTrack {
     pub base_url: String,
-    #[serde_as(as = "crate::serializer::text::Text")]
+    #[serde_as(as = "Text")]
     pub name: String,
     pub language_code: String,
 }
