@@ -8,6 +8,11 @@ use serde_with::{de::DeserializeAsWrap, DeserializeAs};
 
 use super::MapResult;
 
+/// Deserializes a list of arbitrary items into a `MapResult`,
+/// creating warnings for items that could not be deserialized.
+///
+/// This is similar to `VecSkipError`, but it does not silently ignore
+/// faulty items.
 pub struct VecLogError<T>(PhantomData<T>);
 
 impl<'de, T, U> DeserializeAs<'de, MapResult<Vec<T>>> for VecLogError<U>

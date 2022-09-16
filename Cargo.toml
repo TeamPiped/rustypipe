@@ -7,7 +7,7 @@ edition = "2021"
 members = [".", "codegen", "cli"]
 
 [features]
-default = ["default-tls", "yaml"]
+default = ["default-tls"]
 
 # Reqwest TLS
 default-tls = ["reqwest/default-tls"]
@@ -15,7 +15,7 @@ rustls-tls-webpki-roots = ["reqwest/rustls-tls-webpki-roots"]
 rustls-tls-native-roots = ["reqwest/rustls-tls-native-roots"]
 
 # Error reports in yaml format
-yaml = ["serde_yaml"]
+report-yaml = ["serde_yaml"]
 
 [dependencies]
 # quick-js = "0.4.1"
@@ -27,7 +27,7 @@ thiserror = "1.0.31"
 url = "2.2.2"
 log = "0.4.17"
 reqwest = {version = "0.11.11", default-features = false, features = ["json", "gzip", "brotli", "stream"]}
-tokio = {version = "1.20.0", features = ["macros", "fs", "process"]}
+tokio = {version = "1.20.0", features = ["macros", "time", "fs", "process"]}
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0.82"
 serde_yaml = {version = "0.9.11", optional = true}

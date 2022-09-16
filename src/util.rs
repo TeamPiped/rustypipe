@@ -89,6 +89,21 @@ where
     numbers
 }
 
+pub fn retry_delay(
+    n_past_retries: u32,
+    min_retry_interval: u32,
+    max_retry_interval: u32,
+    backoff_base: u32,
+) -> u32 {
+    let unjittered_delay = backoff_base.checked_pow(n_past_retries).unwrap_or(u32::MAX);
+    let jitter_factor = rand::thread_rng().gen_range(800..1500);
+    let jittered_delay = unjittered_delay
+        .checked_mul(jitter_factor)
+        .unwrap_or(u32::MAX);
+
+    min_retry_interval.max(jittered_delay.min(max_retry_interval))
+}
+
 #[cfg(test)]
 mod tests {
     use rstest::rstest;
@@ -110,5 +125,21 @@ mod tests {
     fn t_parse_numeric_vec(#[case] string: &str, #[case] expect: Vec<u32>) {
         let n = parse_numeric_vec::<u32>(string);
         assert_eq!(n, expect);
+    }
+
+    #[rstest]
+    #[case(0, 800, 1500)]
+    #[case(1, 2400, 4500)]
+    #[case(2, 7200, 13500)]
+    #[case(100, 60000, 60000)]
+    fn t_retry_delay(#[case] n: u32, #[case] expect_min: u32, #[case] expect_max: u32) {
+        let res = retry_delay(n, 1000, 60000, 3);
+        assert!(
+            res >= expect_min && res <= expect_max,
+            "res: {} not within {} and {}",
+            res,
+            expect_min,
+            expect_max
+        );
     }
 }

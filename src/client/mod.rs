@@ -12,7 +12,9 @@ use fancy_regex::Regex;
 use log::{error, warn};
 use once_cell::sync::Lazy;
 use rand::Rng;
-use reqwest::{header, Client, ClientBuilder, Method, Request, RequestBuilder, Response};
+use reqwest::{
+    header, Client, ClientBuilder, Method, Request, RequestBuilder, Response, StatusCode,
+};
 use serde::{de::DeserializeOwned, Deserialize, Serialize};
 use tokio::sync::Mutex;
 
@@ -20,7 +22,7 @@ use crate::{
     cache::{CacheStorage, FileStorage},
     deobfuscate::{DeobfData, Deobfuscator},
     model::{Country, Language},
-    report::{JsonFileReporter, Level, Report, Reporter},
+    report::{FileReporter, Level, Report, Reporter},
     serializer::MapResult,
     util,
 };
@@ -64,8 +66,15 @@ impl ClientType {
 }
 
 #[derive(Clone, Debug, Serialize)]
+struct YTQuery<T> {
+    context: YTContext,
+    #[serde(flatten)]
+    data: T,
+}
+
+#[derive(Clone, Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
-struct ContextYT {
+struct YTContext {
     client: ClientInfo,
     /// only used on desktop
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -161,9 +170,11 @@ struct RustyPipeRef {
     http: Client,
     storage: Option<Box<dyn CacheStorage + Sync + Send>>,
     reporter: Option<Box<dyn Reporter + Sync + Send>>,
+    n_retries: u32,
     user_agent: String,
     consent_cookie: String,
     cache: Mutex<CacheData>,
+    default_opts: RustyPipeOpts,
 }
 
 #[derive(Clone)]
@@ -174,20 +185,18 @@ struct RustyPipeOpts {
     strict: bool,
 }
 
+pub struct RustyPipeBuilder {
+    storage: Option<Box<dyn CacheStorage + Sync + Send>>,
+    reporter: Option<Box<dyn Reporter + Sync + Send>>,
+    n_retries: u32,
+    user_agent: String,
+    default_opts: RustyPipeOpts,
+}
+
 #[derive(Clone)]
 pub struct RustyPipeQuery {
     client: RustyPipe,
     opts: RustyPipeOpts,
-}
-
-impl Default for RustyPipe {
-    fn default() -> Self {
-        Self::new(
-            Some(Box::new(FileStorage::default())),
-            Some(Box::new(JsonFileReporter::default())),
-            None,
-        )
-    }
 }
 
 impl Default for RustyPipeOpts {
@@ -247,23 +256,36 @@ impl<T> From<T> for CacheEntry<T> {
     }
 }
 
-impl RustyPipe {
-    /// Create a new RustyPipe instance
-    pub fn new(
-        storage: Option<Box<dyn CacheStorage + Sync + Send>>,
-        reporter: Option<Box<dyn Reporter + Sync + Send>>,
-        user_agent: Option<String>,
-    ) -> Self {
-        let user_agent = user_agent.unwrap_or_else(|| DEFAULT_UA.to_owned());
+impl Default for RustyPipeBuilder {
+    fn default() -> Self {
+        Self::new()
+    }
+}
 
+impl RustyPipeBuilder {
+    /// Constructs a new `RustyPipeBuilder`.
+    ///
+    /// This is the same as `RustyPipe::builder()`
+    pub fn new() -> Self {
+        RustyPipeBuilder {
+            default_opts: RustyPipeOpts::default(),
+            storage: Some(Box::new(FileStorage::default())),
+            reporter: Some(Box::new(FileReporter::default())),
+            n_retries: 3,
+            user_agent: DEFAULT_UA.to_owned(),
+        }
+    }
+
+    /// Returns a new, configured RustyPipe instance.
+    pub fn build(self) -> RustyPipe {
         let http = ClientBuilder::new()
-            .user_agent(user_agent.to_owned())
+            .user_agent(self.user_agent.to_owned())
             .gzip(true)
             .brotli(true)
             .build()
-            .expect("unable to build the HTTP client");
+            .unwrap();
 
-        let cache = if let Some(storage) = &storage {
+        let cache = if let Some(storage) = &self.storage {
             if let Some(data) = storage.read() {
                 match serde_json::from_str::<CacheData>(&data) {
                     Ok(data) => data,
@@ -282,9 +304,10 @@ impl RustyPipe {
         RustyPipe {
             inner: Arc::new(RustyPipeRef {
                 http,
-                storage,
-                reporter,
-                user_agent,
+                storage: self.storage,
+                reporter: self.reporter,
+                n_retries: self.n_retries,
+                user_agent: self.user_agent,
                 consent_cookie: format!(
                     "{}={}{}",
                     CONSENT_COOKIE,
@@ -292,43 +315,339 @@ impl RustyPipe {
                     rand::thread_rng().gen_range(100..1000)
                 ),
                 cache: Mutex::new(cache),
+                default_opts: RustyPipeOpts::default(),
             }),
         }
     }
 
-    /// Create a new RustyPipe instance configured for testing
-    #[cfg(test)]
-    #[cfg(feature = "yaml")]
-    pub fn new_test() -> Self {
-        Self::new(
-            Some(Box::new(FileStorage::default())),
-            Some(Box::new(crate::report::YamlFileReporter::default())),
-            None,
-        )
+    /// Add a `CacheStorage` backend for persisting cached information
+    /// (YouTube client versions, deobfuscation code) between
+    /// program executions.
+    ///
+    /// **Default value**: `FileStorage` in `rustypipe_cache.json`
+    pub fn storage(mut self, storage: Box<dyn CacheStorage + Sync + Send>) -> Self {
+        self.storage = Some(storage);
+        self
     }
 
+    /// Disable cache storage
+    pub fn no_storage(mut self) -> Self {
+        self.storage = None;
+        self
+    }
+
+    /// Add a `Reporter` to collect error details
+    ///
+    ///  **Default value**: `FileReporter` creating reports in `./rustypipe_reports`
+    pub fn reporter(mut self, reporter: Box<dyn Reporter + Sync + Send>) -> Self {
+        self.reporter = Some(reporter);
+        self
+    }
+
+    /// Disable the creation of report files in case of errors and warnings.
+    pub fn no_reporter(mut self) -> Self {
+        self.reporter = None;
+        self
+    }
+
+    /// Set the number of retries for HTTP requests.
+    ///
+    /// If a HTTP requests fails and retries are enabled,
+    /// RustyPipe waits 1 second before the next attempt.
+    /// The waiting time is doubled for subsequent attempts (including a bit of
+    /// random jitter to be less predictable).
+    ///
+    /// **Default value**: 3
+    pub fn n_retries(mut self, n_retries: u32) -> Self {
+        self.n_retries = n_retries;
+        self
+    }
+
+    /// Set the user agent used for making requests to the web API.
+    ///
+    /// **Default value**: `Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0`
+    /// (Firefox ESR on Debian)
+    pub fn user_agent(mut self, user_agent: &str) -> Self {
+        self.user_agent = user_agent.to_owned();
+        self
+    }
+
+    /// Set the language parameter used when accessing the YouTube API.
+    /// This will change multilanguage video titles, descriptions and textual dates
+    ///
+    /// **Default value**: `Language::En` (English)
+    ///
+    /// **Info**: you can set this option for individual queries, too
+    pub fn lang(mut self, lang: Language) -> Self {
+        self.default_opts.lang = lang;
+        self
+    }
+
+    /// Set the country parameter used when accessing the YouTube API.
+    /// This will change trends and recommended content.
+    ///
+    /// **Default value**: `Country::Us` (USA)
+    ///
+    /// **Info**: you can set this option for individual queries, too
+    pub fn country(mut self, country: Country) -> Self {
+        self.default_opts.country = country;
+        self
+    }
+
+    /// Generate a report on every operation.
+    /// This should only be used for debugging.
+    ///
+    /// **Info**: you can set this option for individual queries, too
+    pub fn report(mut self) -> Self {
+        self.default_opts.report = true;
+        self
+    }
+
+    /// Enable strict mode, causing operations to fail if there
+    /// are warnings during deserialization (e.g. invalid items).
+    /// This should only be used for testing.
+    ///
+    /// **Info**: you can set this option for individual queries, too
+    pub fn strict(mut self) -> Self {
+        self.default_opts.strict = true;
+        self
+    }
+}
+
+impl Default for RustyPipe {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
+impl RustyPipe {
+    /// Create a new RustyPipe instance with default settings.
+    ///
+    /// To create an instance with custom options, use `RustyPipeBuilder` instead.
+    pub fn new() -> Self {
+        RustyPipeBuilder::new().build()
+    }
+
+    /// Constructs a new `RustyPipeBuilder`.
+    ///
+    /// This is the same as `RustyPipeBuilder::new()`
+    pub fn builder() -> RustyPipeBuilder {
+        RustyPipeBuilder::new()
+    }
+
+    /// Constructs a new `RustyPipeQuery`.
     pub fn query(&self) -> RustyPipeQuery {
         RustyPipeQuery {
             client: self.clone(),
-            opts: RustyPipeOpts {
-                lang: Language::En,
-                country: Country::Us,
-                report: false,
-                strict: false,
+            opts: self.inner.default_opts.clone(),
+        }
+    }
+
+    /// Execute the given http request.
+    async fn http_request(&self, request: Request) -> Result<Response, reqwest::Error> {
+        let mut last_res: Option<Result<Response, reqwest::Error>> = None;
+        for n in 0..self.inner.n_retries {
+            let res = self.inner.http.execute(request.try_clone().unwrap()).await;
+            let emsg = match &res {
+                Ok(response) => {
+                    let status = response.status();
+                    // Immediately return in case of success or unrecoverable status code
+                    if status.is_success() || !status.is_server_error() {
+                        return res;
+                    }
+                    status.to_string()
+                }
+                Err(e) => {
+                    // Immediately return in case of unrecoverable error
+                    if !e.is_timeout() && !e.is_connect() {
+                        return res;
+                    }
+                    e.to_string()
+                }
+            };
+
+            let ms = util::retry_delay(n, 1000, 60000, 3);
+            warn!("Retry attempt #{}. Error: {}. Waiting {} ms", n, emsg, ms);
+            tokio::time::sleep(std::time::Duration::from_millis(ms.into())).await;
+
+            last_res = Some(res);
+        }
+        last_res.unwrap()
+    }
+
+    /// Execute the given http request, returning an error in case of a
+    /// non-successful status code.
+    async fn http_request_estatus(&self, request: Request) -> Result<Response> {
+        Ok(self.http_request(request).await?.error_for_status()?)
+    }
+
+    /// Execute the given http request, returning the response body as a string.
+    async fn http_request_txt(&self, request: Request) -> Result<String> {
+        Ok(self.http_request_estatus(request).await?.text().await?)
+    }
+
+    /// Extract the current version of the YouTube desktop client from the website.
+    async fn extract_desktop_client_version(&self) -> Result<String> {
+        let from_swjs = async {
+            let swjs = self
+                .http_request_txt(
+                    self.inner
+                        .http
+                        .get("https://www.youtube.com/sw.js")
+                        .header(header::ORIGIN, "https://www.youtube.com")
+                        .header(header::REFERER, "https://www.youtube.com")
+                        .header(header::COOKIE, self.inner.consent_cookie.to_owned())
+                        .build()
+                        .unwrap(),
+                )
+                .await
+                .context("Failed to download sw.js")?;
+
+            util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &swjs, 1)
+                .ok_or_else(|| anyhow!("Could not find desktop client version in sw.js"))
+        };
+
+        let from_html = async {
+            let html = self
+                .http_request_txt(
+                    self.inner
+                        .http
+                        .get("https://www.youtube.com/results?search_query=")
+                        .build()
+                        .unwrap(),
+                )
+                .await
+                .context("Failed to get YT Desktop page")?;
+
+            util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &html, 1)
+                .ok_or_else(|| anyhow!("Could not find desktop client version on html page"))
+        };
+
+        match from_swjs.await {
+            Ok(client_version) => Ok(client_version),
+            Err(_) => from_html.await,
+        }
+    }
+
+    /// Extract the current version of the YouTube Music desktop client from the website.
+    async fn extract_music_client_version(&self) -> Result<String> {
+        let from_swjs = async {
+            let swjs = self
+                .http_request_txt(
+                    self.inner
+                        .http
+                        .get("https://music.youtube.com/sw.js")
+                        .header(header::ORIGIN, "https://music.youtube.com")
+                        .header(header::REFERER, "https://music.youtube.com")
+                        .header(header::COOKIE, self.inner.consent_cookie.to_owned())
+                        .build()
+                        .unwrap(),
+                )
+                .await
+                .context("Failed to download sw.js")?;
+
+            util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &swjs, 1)
+                .ok_or_else(|| anyhow!("Could not find desktop client version in sw.js"))
+        };
+
+        let from_html = async {
+            let html = self
+                .http_request_txt(
+                    self.inner
+                        .http
+                        .get("https://music.youtube.com")
+                        .build()
+                        .unwrap(),
+                )
+                .await
+                .context("Failed to get YT Desktop page")?;
+
+            util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &html, 1)
+                .ok_or_else(|| anyhow!("Could not find desktop client version on html page"))
+        };
+
+        match from_swjs.await {
+            Ok(client_version) => Ok(client_version),
+            Err(_) => from_html.await,
+        }
+    }
+
+    /// Get the current version of the YouTube web client from the following sources
+    ///
+    /// 1. from cache
+    /// 2. from YouTube's service worker script (`sw.js`)
+    /// 3. from the YouTube website
+    /// 4. fall back to the hardcoded version
+    async fn get_desktop_client_version(&self) -> String {
+        let mut cache = self.inner.cache.lock().await;
+
+        match cache.desktop_client.get() {
+            Some(cdata) => cdata.version.to_owned(),
+            None => match self.extract_desktop_client_version().await {
+                Ok(version) => {
+                    cache.desktop_client = CacheEntry::from(ClientData {
+                        version: version.to_owned(),
+                    });
+                    self.store_cache(&cache);
+                    version
+                }
+                Err(e) => {
+                    warn!("{}, falling back to hardcoded version", e);
+                    DESKTOP_CLIENT_VERSION.to_owned()
+                }
             },
         }
     }
 
-    #[cfg(test)]
-    pub fn test_query(&self) -> RustyPipeQuery {
-        RustyPipeQuery {
-            client: self.clone(),
-            opts: RustyPipeOpts {
-                lang: Language::En,
-                country: Country::Us,
-                report: false,
-                strict: true,
+    /// Get the current version of the YouTube Music web client from the following sources
+    ///
+    /// 1. from cache
+    /// 2. from YouTube Music's service worker script (`sw.js`)
+    /// 3. from the YouTube Music website
+    /// 4. fall back to the hardcoded version
+    async fn get_music_client_version(&self) -> String {
+        let mut cache = self.inner.cache.lock().await;
+
+        match cache.music_client.get() {
+            Some(cdata) => cdata.version.to_owned(),
+            None => match self.extract_music_client_version().await {
+                Ok(version) => {
+                    cache.music_client = CacheEntry::from(ClientData {
+                        version: version.to_owned(),
+                    });
+                    self.store_cache(&cache);
+                    version
+                }
+                Err(e) => {
+                    warn!("{}, falling back to hardcoded version", e);
+                    DESKTOP_MUSIC_CLIENT_VERSION.to_owned()
+                }
             },
+        }
+    }
+
+    /// Instantiate a new deobfuscator from either cached or extracted YouTube JavaScript code.
+    async fn get_deobf(&self) -> Result<Deobfuscator> {
+        let mut cache = self.inner.cache.lock().await;
+
+        match cache.deobf.get() {
+            Some(deobf) => Ok(Deobfuscator::from(deobf.to_owned())),
+            None => {
+                let deobf = Deobfuscator::new(self.inner.http.clone()).await?;
+                cache.deobf = CacheEntry::from(deobf.get_data());
+                self.store_cache(&cache);
+                Ok(deobf)
+            }
+        }
+    }
+
+    /// Write the given cache data to the storage backend.
+    fn store_cache(&self, cache: &CacheData) {
+        if let Some(storage) = &self.inner.storage {
+            match serde_json::to_string(cache) {
+                Ok(data) => storage.write(&data),
+                Err(e) => error!("Could not serialize cache. Error: {}", e),
+            }
         }
     }
 }
@@ -350,20 +669,26 @@ impl RustyPipeQuery {
 
     /// Generate a report on every operation.
     /// This should only be used for debugging.
-    pub fn report(mut self, report: bool) -> Self {
-        self.opts.report = report;
+    pub fn report(mut self) -> Self {
+        self.opts.report = true;
         self
     }
 
     /// Enable strict mode, causing operations to fail if there
     /// are warnings during deserialization (e.g. invalid items).
     /// This should only be used for testing.
-    pub fn strict(mut self, strict: bool) -> Self {
-        self.opts.strict = strict;
+    pub fn strict(mut self) -> Self {
+        self.opts.strict = true;
         self
     }
 
-    async fn get_context(&self, ctype: ClientType, localized: bool) -> ContextYT {
+    /// Create a new context object, which is included in every request to
+    /// the YouTube API and contains language, country and device parameters.
+    ///
+    /// # Parameters
+    /// - `ctype`: Client type (`Desktop`, `DesktopMusic`, `Android`, ...)
+    /// - `localized`: Whether to include the configured language and country
+    async fn get_context(&self, ctype: ClientType, localized: bool) -> YTContext {
         let hl = match localized {
             true => self.opts.lang,
             false => Language::En,
@@ -374,10 +699,10 @@ impl RustyPipeQuery {
         };
 
         match ctype {
-            ClientType::Desktop => ContextYT {
+            ClientType::Desktop => YTContext {
                 client: ClientInfo {
                     client_name: "WEB".to_owned(),
-                    client_version: self.get_desktop_client_version().await,
+                    client_version: self.client.get_desktop_client_version().await,
                     client_screen: None,
                     device_model: None,
                     platform: "DESKTOP".to_owned(),
@@ -389,10 +714,10 @@ impl RustyPipeQuery {
                 user: User::default(),
                 third_party: None,
             },
-            ClientType::DesktopMusic => ContextYT {
+            ClientType::DesktopMusic => YTContext {
                 client: ClientInfo {
                     client_name: "WEB_REMIX".to_owned(),
-                    client_version: self.get_music_client_version().await,
+                    client_version: self.client.get_music_client_version().await,
                     client_screen: None,
                     device_model: None,
                     platform: "DESKTOP".to_owned(),
@@ -404,7 +729,7 @@ impl RustyPipeQuery {
                 user: User::default(),
                 third_party: None,
             },
-            ClientType::TvHtml5Embed => ContextYT {
+            ClientType::TvHtml5Embed => YTContext {
                 client: ClientInfo {
                     client_name: "TVHTML5_SIMPLY_EMBEDDED_PLAYER".to_owned(),
                     client_version: TVHTML5_CLIENT_VERSION.to_owned(),
@@ -421,7 +746,7 @@ impl RustyPipeQuery {
                     embed_url: "https://www.youtube.com/".to_owned(),
                 }),
             },
-            ClientType::Android => ContextYT {
+            ClientType::Android => YTContext {
                 client: ClientInfo {
                     client_name: "ANDROID".to_owned(),
                     client_version: MOBILE_CLIENT_VERSION.to_owned(),
@@ -436,7 +761,7 @@ impl RustyPipeQuery {
                 user: User::default(),
                 third_party: None,
             },
-            ClientType::Ios => ContextYT {
+            ClientType::Ios => YTContext {
                 client: ClientInfo {
                     client_name: "IOS".to_owned(),
                     client_version: MOBILE_CLIENT_VERSION.to_owned(),
@@ -454,6 +779,13 @@ impl RustyPipeQuery {
         }
     }
 
+    /// Create a new Reqwest HTTP request builder with the URL and headers required
+    /// for accessing the YouTube API
+    ///
+    /// # Parameters
+    /// - `ctype`: Client type (`Desktop`, `DesktopMusic`, `Android`, ...)
+    /// - `method`: HTTP method
+    /// - `endpoint`: YouTube API endpoint (`https://www.youtube.com/youtubei/v1/<XYZ>?key=...`)
     async fn request_builder(
         &self,
         ctype: ClientType,
@@ -478,7 +810,7 @@ impl RustyPipeQuery {
                 .header("X-YouTube-Client-Name", "1")
                 .header(
                     "X-YouTube-Client-Version",
-                    self.get_desktop_client_version().await,
+                    self.client.get_desktop_client_version().await,
                 ),
             ClientType::DesktopMusic => self
                 .client
@@ -500,7 +832,7 @@ impl RustyPipeQuery {
                 .header("X-YouTube-Client-Name", "67")
                 .header(
                     "X-YouTube-Client-Version",
-                    self.get_music_client_version().await,
+                    self.client.get_music_client_version().await,
                 ),
             ClientType::TvHtml5Embed => self
                 .client
@@ -564,6 +896,20 @@ impl RustyPipeQuery {
         }
     }
 
+    /// Execute a request to the YouTube API, then deobfuscate and map the response.
+    ///
+    /// Creates a report in case of failure for easy debugging.
+    ///
+    /// # Parameters
+    /// - `ctype`: Client type (`Desktop`, `DesktopMusic`, `Android`, ...)
+    /// - `operation`: Name of the RustyPipe operation (only for reporting, e.g. `get_player`)
+    /// - `id`: ID of the requested entity (Video ID, Channel ID, ...).
+    ///   The ID is included in reports and is also passed to the mapper for validating the response.
+    ///   Set it to an empty string if you are not requesting an entity with an ID.
+    /// - `method`: HTTP method
+    /// - `endpoint`: YouTube API endpoint (`https://www.youtube.com/youtubei/v1/<XYZ>?key=...`)
+    /// - `body`: Serializable request body to be sent in json format
+    /// - `deobf`: Deobfuscator (is passed to the mapper to deobfuscate stream URLs).
     #[allow(clippy::too_many_arguments)]
     async fn execute_request_deobf<
         R: DeserializeOwned + MapResponse<M> + Debug,
@@ -573,9 +919,9 @@ impl RustyPipeQuery {
         &self,
         ctype: ClientType,
         operation: &str,
+        id: &str,
         method: Method,
         endpoint: &str,
-        id: &str,
         body: &B,
         deobf: Option<&Deobfuscator>,
     ) -> Result<M> {
@@ -600,7 +946,7 @@ impl RustyPipeQuery {
                     version: "0.1.0".to_owned(),
                     date: chrono::Local::now(),
                     level,
-                    operation: operation.to_owned(),
+                    operation: format!("{}({})", operation, id),
                     error,
                     msgs,
                     deobf_data: deobf.map(Deobfuscator::get_data),
@@ -661,6 +1007,19 @@ impl RustyPipeQuery {
         }
     }
 
+    /// Execute a request to the YouTube API, then map the response.
+    ///
+    /// Creates a report in case of failure for easy debugging.
+    ///
+    /// # Parameters
+    /// - `ctype`: Client type (`Desktop`, `DesktopMusic`, `Android`, ...)
+    /// - `operation`: Name of the RustyPipe operation (only for reporting, e.g. `get_player`)
+    /// - `id`: ID of the requested entity (Video ID, Channel ID, ...).
+    ///   The ID is included in reports and is also passed to the mapper for validating the response.
+    ///   Set it to an empty string if you are not requesting an entity with an ID.
+    /// - `method`: HTTP method
+    /// - `endpoint`: YouTube API endpoint (`https://www.youtube.com/youtubei/v1/<XYZ>?key=...`)
+    /// - `body`: Serializable request body to be sent in json format
     async fn execute_request<
         R: DeserializeOwned + MapResponse<M> + Debug,
         M,
@@ -669,174 +1028,31 @@ impl RustyPipeQuery {
         &self,
         ctype: ClientType,
         operation: &str,
+        id: &str,
         method: Method,
         endpoint: &str,
-        id: &str,
         body: &B,
     ) -> Result<M> {
-        self.execute_request_deobf::<R, M, B>(ctype, operation, method, endpoint, id, body, None)
+        self.execute_request_deobf::<R, M, B>(ctype, operation, id, method, endpoint, body, None)
             .await
     }
-
-    async fn get_desktop_client_version(&self) -> String {
-        let mut cache = self.client.inner.cache.lock().await;
-
-        match cache.desktop_client.get() {
-            Some(cdata) => cdata.version.to_owned(),
-            None => match extract_desktop_client_version(
-                self.client.inner.http.clone(),
-                self.client.inner.consent_cookie.to_owned(),
-            )
-            .await
-            {
-                Ok(version) => {
-                    cache.desktop_client = CacheEntry::from(ClientData {
-                        version: version.to_owned(),
-                    });
-                    self.write_cache(&cache);
-                    version
-                }
-                Err(e) => {
-                    warn!("{}, falling back to hardcoded version", e);
-                    DESKTOP_CLIENT_VERSION.to_owned()
-                }
-            },
-        }
-    }
-
-    async fn get_music_client_version(&self) -> String {
-        let mut cache = self.client.inner.cache.lock().await;
-
-        match cache.music_client.get() {
-            Some(cdata) => cdata.version.to_owned(),
-            None => match extract_music_client_version(
-                self.client.inner.http.clone(),
-                self.client.inner.consent_cookie.to_owned(),
-            )
-            .await
-            {
-                Ok(version) => {
-                    cache.music_client = CacheEntry::from(ClientData {
-                        version: version.to_owned(),
-                    });
-                    self.write_cache(&cache);
-                    version
-                }
-                Err(e) => {
-                    warn!("{}, falling back to hardcoded version", e);
-                    DESKTOP_MUSIC_CLIENT_VERSION.to_owned()
-                }
-            },
-        }
-    }
-
-    async fn get_deobf(&self) -> Result<Deobfuscator> {
-        let mut cache = self.client.inner.cache.lock().await;
-
-        match cache.deobf.get() {
-            Some(deobf) => Ok(Deobfuscator::from(deobf.to_owned())),
-            None => {
-                let deobf = Deobfuscator::new(self.client.inner.http.clone()).await?;
-                cache.deobf = CacheEntry::from(deobf.get_data());
-                self.write_cache(&cache);
-                Ok(deobf)
-            }
-        }
-    }
-
-    fn write_cache(&self, cache: &CacheData) {
-        if let Some(storage) = &self.client.inner.storage {
-            match serde_json::to_string(cache) {
-                Ok(data) => storage.write(&data),
-                Err(e) => error!("Could not serialize cache. Error: {}", e),
-            }
-        }
-    }
 }
 
-async fn extract_desktop_client_version(http: Client, consent_cookie: String) -> Result<String> {
-    let from_swjs = async {
-        let swjs = exec_request_text(
-            http.clone(),
-            http.get("https://www.youtube.com/sw.js")
-                .header(header::ORIGIN, "https://www.youtube.com")
-                .header(header::REFERER, "https://www.youtube.com")
-                .header(header::COOKIE, consent_cookie)
-                .build()
-                .unwrap(),
-        )
-        .await
-        .context("Failed to download sw.js")?;
-
-        util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &swjs, 1)
-            .ok_or_else(|| anyhow!("Could not find desktop client version in sw.js"))
-    };
-
-    let from_html = async {
-        let html = exec_request_text(
-            http.clone(),
-            http.get("https://www.youtube.com/results?search_query=")
-                .build()
-                .unwrap(),
-        )
-        .await
-        .context("Failed to get YT Desktop page")?;
-
-        util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &html, 1)
-            .ok_or_else(|| anyhow!("Could not find desktop client version on html page"))
-    };
-
-    match from_swjs.await {
-        Ok(client_version) => Ok(client_version),
-        Err(_) => from_html.await,
-    }
-}
-
-async fn extract_music_client_version(http: Client, consent_cookie: String) -> Result<String> {
-    let from_swjs = async {
-        let swjs = exec_request_text(
-            http.clone(),
-            http.get("https://music.youtube.com/sw.js")
-                .header(header::ORIGIN, "https://music.youtube.com")
-                .header(header::REFERER, "https://music.youtube.com")
-                .header(header::COOKIE, consent_cookie)
-                .build()
-                .unwrap(),
-        )
-        .await
-        .context("Failed to download sw.js")?;
-
-        util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &swjs, 1)
-            .ok_or_else(|| anyhow!("Could not find desktop client version in sw.js"))
-    };
-
-    let from_html = async {
-        let html = exec_request_text(
-            http.clone(),
-            http.get("https://music.youtube.com").build().unwrap(),
-        )
-        .await
-        .context("Failed to get YT Desktop page")?;
-
-        util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &html, 1)
-            .ok_or_else(|| anyhow!("Could not find desktop client version on html page"))
-    };
-
-    match from_swjs.await {
-        Ok(client_version) => Ok(client_version),
-        Err(_) => from_html.await,
-    }
-}
-
-async fn exec_request(http: Client, request: Request) -> Result<Response> {
-    Ok(http.execute(request).await?.error_for_status()?)
-}
-
-async fn exec_request_text(http: Client, request: Request) -> Result<String> {
-    Ok(exec_request(http, request).await?.text().await?)
-}
-
+/// Implement this for YouTube API response structs that need to be mapped to
+/// RustyPipe models.
 trait MapResponse<T> {
+    /// Map the YouTube API response structs to a RustyPipe model.
+    ///
+    /// Returns an error if crucial data required for the model could not be extracted.
+    ///
+    /// Returns a `MapResult` with warnings if there were issues with the deserializing/mapping,
+    /// but the resulting data is still usable.
+    ///
+    /// # Parameters
+    /// - `id`: The ID of the requested entity (Video ID, Channel ID, ...). If possible, assert
+    ///   that the returned entity matches this ID and return an error instead.
+    /// - `lang`: Language of the request. Used for mapping localized information like dates.
+    /// - `deobf`: Deobfuscator (if passed to the `execute_request_deobf` method)
     fn map_response(
         self,
         id: &str,
@@ -846,7 +1062,6 @@ trait MapResponse<T> {
 }
 
 #[cfg(test)]
-#[cfg(feature = "yaml")]
 mod tests {
     // use super::*;
 }

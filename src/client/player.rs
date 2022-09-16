@@ -21,13 +21,13 @@ use crate::{
 
 use super::{
     response::{self, player},
-    ClientType, ContextYT, MapResponse, MapResult, RustyPipeQuery,
+    ClientType, MapResponse, MapResult, RustyPipeQuery, YTContext,
 };
 
 #[derive(Clone, Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 struct QPlayer {
-    context: ContextYT,
+    context: YTContext,
     /// Website playback context
     #[serde(skip_serializing_if = "Option::is_none")]
     playback_context: Option<QPlaybackContext>,
@@ -61,7 +61,7 @@ impl RustyPipeQuery {
     pub async fn get_player(self, video_id: &str, client_type: ClientType) -> Result<VideoPlayer> {
         let q1 = self.clone();
         let t_context = tokio::spawn(async move { q1.get_context(client_type, false).await });
-        let q2 = self.clone();
+        let q2 = self.client.clone();
         let t_deobf = tokio::spawn(async move { q2.get_deobf().await });
 
         let (context, deobf) = tokio::join!(t_context, t_deobf);
@@ -96,9 +96,9 @@ impl RustyPipeQuery {
         self.execute_request_deobf::<response::Player, _, _>(
             client_type,
             "get_player",
+            video_id,
             Method::POST,
             "player",
-            video_id,
             &request_body,
             Some(&deobf),
         )
@@ -559,7 +559,6 @@ fn get_audio_codec(codecs: Vec<&str>) -> AudioCodec {
 }
 
 #[cfg(test)]
-#[cfg(feature = "yaml")]
 mod tests {
     use std::{fs::File, io::BufReader, path::Path};
 
@@ -632,9 +631,9 @@ mod tests {
     #[case::ios(ClientType::Ios)]
     #[test_log::test(tokio::test)]
     async fn t_get_player(#[case] client_type: ClientType) {
-        let rp = RustyPipe::new_test();
+        let rp = RustyPipe::builder().strict().build();
         let player_data = rp
-            .test_query()
+            .query()
             .get_player("n4tK7LYFxI0", client_type)
             .await
             .unwrap();

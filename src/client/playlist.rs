@@ -9,19 +9,19 @@ use crate::{
     timeago, util,
 };
 
-use super::{response, ClientType, ContextYT, MapResponse, MapResult, RustyPipeQuery};
+use super::{response, ClientType, MapResponse, MapResult, RustyPipeQuery, YTContext};
 
 #[derive(Clone, Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 struct QPlaylist {
-    context: ContextYT,
+    context: YTContext,
     browse_id: String,
 }
 
 #[derive(Clone, Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 struct QPlaylistCont {
-    context: ContextYT,
+    context: YTContext,
     continuation: String,
 }
 
@@ -36,9 +36,9 @@ impl RustyPipeQuery {
         self.execute_request::<response::Playlist, _, _>(
             ClientType::Desktop,
             "get_playlist",
+            playlist_id,
             Method::POST,
             "browse",
-            playlist_id,
             &request_body,
         )
         .await
@@ -57,9 +57,9 @@ impl RustyPipeQuery {
                     .execute_request::<response::PlaylistCont, _, _>(
                         ClientType::Desktop,
                         "get_playlist_cont",
+                        &playlist.id,
                         Method::POST,
                         "browse",
-                        &playlist.id,
                         &request_body,
                     )
                     .await?;
@@ -339,8 +339,8 @@ mod tests {
         #[case] description: Option<String>,
         #[case] channel: Option<Channel>,
     ) {
-        let rp = RustyPipe::new_test();
-        let playlist = rp.test_query().get_playlist(id).await.unwrap();
+        let rp = RustyPipe::builder().strict().build();
+        let playlist = rp.query().get_playlist(id).await.unwrap();
 
         assert_eq!(playlist.id, id);
         assert_eq!(playlist.name, name);
@@ -380,18 +380,15 @@ mod tests {
 
     #[test_log::test(tokio::test)]
     async fn t_playlist_cont() {
-        let rp = RustyPipe::new_test();
+        let rp = RustyPipe::builder().strict().build();
         let mut playlist = rp
-            .test_query()
+            .query()
             .get_playlist("PLbZIPy20-1pN7mqjckepWF78ndb6ci_qi")
             .await
             .unwrap();
 
         while playlist.ctoken.is_some() {
-            rp.test_query()
-                .get_playlist_cont(&mut playlist)
-                .await
-                .unwrap();
+            rp.query().get_playlist_cont(&mut playlist).await.unwrap();
         }
 
         assert!(playlist.videos.len() > 100);

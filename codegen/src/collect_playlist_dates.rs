@@ -85,7 +85,7 @@ pub async fn collect_dates(project_root: &Path, concurrency: usize) {
         (DateCase::Dec, "PL1J-6JOckZtHo91uApeb10Qlf2XhkfM-9"),
     ];
 
-    let rp = RustyPipe::default();
+    let rp = RustyPipe::new();
     let collected_dates = stream::iter(LANGUAGES)
         .map(|lang| {
             let rp = rp.clone();

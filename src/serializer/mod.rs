@@ -8,6 +8,10 @@ pub use vec_log_err::VecLogError;
 
 use std::fmt::Debug;
 
+/// This represents a result from a deserializing/mapping operation.
+/// It holds the desired content (`c`) and a list of warning messages,
+/// if there occurred minor error during the deserializing or mapping
+/// (e.g. certain list items could not be deserialized).
 #[derive(Clone)]
 pub struct MapResult<T> {
     pub c: T,

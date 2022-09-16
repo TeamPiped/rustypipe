@@ -4,7 +4,6 @@ use std::{
 };
 
 use rustypipe::{
-    cache::FileStorage,
     client::{ClientType, RustyPipe},
     report::{Report, Reporter},
 };
@@ -43,11 +42,11 @@ impl Reporter for TestFileReporter {
 
 fn rp_testfile(json_path: &Path) -> RustyPipe {
     let reporter = TestFileReporter::new(json_path);
-    RustyPipe::new(
-        Some(Box::new(FileStorage::default())),
-        Some(Box::new(reporter)),
-        None,
-    )
+    RustyPipe::builder()
+        .reporter(Box::new(reporter))
+        .report()
+        .strict()
+        .build()
 }
 
 pub async fn download_testfiles(project_root: &Path) {
@@ -74,17 +73,12 @@ async fn player(testfiles: &Path) {
         }
 
         let rp = rp_testfile(&json_path);
-        rp.query()
-            .report(true)
-            .strict(true)
-            .get_player(video_id, client_type)
-            .await
-            .unwrap();
+        rp.query().get_player(video_id, client_type).await.unwrap();
     }
 }
 
 async fn player_model(testfiles: &Path) {
-    let rp = RustyPipe::default();
+    let rp = RustyPipe::builder().strict().build();
 
     for (name, id) in [("multilanguage", "tVWWp1PqDus"), ("hdr", "LXb3EKWsInQ")] {
         let mut json_path = testfiles.to_path_buf();
@@ -97,7 +91,6 @@ async fn player_model(testfiles: &Path) {
 
         let player_data = rp
             .query()
-            .strict(true)
             .get_player(id, ClientType::Desktop)
             .await
             .unwrap();
@@ -122,11 +115,6 @@ async fn playlist(testfiles: &Path) {
         }
 
         let rp = rp_testfile(&json_path);
-        rp.query()
-            .report(true)
-            .strict(true)
-            .get_playlist(id)
-            .await
-            .unwrap();
+        rp.query().get_playlist(id).await.unwrap();
     }
 }

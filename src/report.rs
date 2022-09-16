@@ -65,11 +65,11 @@ pub trait Reporter {
     fn report(&self, report: &Report);
 }
 
-pub struct JsonFileReporter {
+pub struct FileReporter {
     path: PathBuf,
 }
 
-impl JsonFileReporter {
+impl FileReporter {
     pub fn new<P: AsRef<Path>>(path: P) -> Self {
         Self {
             path: path.as_ref().to_path_buf(),
@@ -77,13 +77,21 @@ impl JsonFileReporter {
     }
 
     fn _report(&self, report: &Report) -> Result<()> {
-        let report_path = get_report_path(&self.path, report)?;
-        serde_json::to_writer_pretty(&File::create(report_path)?, &report)?;
+        #[cfg(not(feature = "report-yaml"))]
+        {
+            let report_path = get_report_path(&self.path, report, "json")?;
+            serde_json::to_writer_pretty(&File::create(report_path)?, &report)?;
+        }
+        #[cfg(feature = "report-yaml")]
+        {
+            let report_path = get_report_path(&self.path, report, "yaml")?;
+            serde_yaml::to_writer(&File::create(report_path)?, &report)?;
+        }
         Ok(())
     }
 }
 
-impl Default for JsonFileReporter {
+impl Default for FileReporter {
     fn default() -> Self {
         Self {
             path: Path::new("rustypipe_reports").to_path_buf(),
@@ -91,51 +99,14 @@ impl Default for JsonFileReporter {
     }
 }
 
-impl Reporter for JsonFileReporter {
+impl Reporter for FileReporter {
     fn report(&self, report: &Report) {
         self._report(report)
             .unwrap_or_else(|e| error!("Could not store report file. Err: {}", e));
     }
 }
 
-#[cfg(feature = "yaml")]
-pub struct YamlFileReporter {
-    path: PathBuf,
-}
-
-#[cfg(feature = "yaml")]
-impl YamlFileReporter {
-    pub fn new<P: AsRef<Path>>(path: P) -> Self {
-        Self {
-            path: path.as_ref().to_path_buf(),
-        }
-    }
-
-    fn _report(&self, report: &Report) -> Result<()> {
-        let report_path = get_report_path(&self.path, report)?;
-        serde_yaml::to_writer(&File::create(report_path)?, &report)?;
-        Ok(())
-    }
-}
-
-#[cfg(feature = "yaml")]
-impl Default for YamlFileReporter {
-    fn default() -> Self {
-        Self {
-            path: Path::new("rustypipe_reports").to_path_buf(),
-        }
-    }
-}
-
-#[cfg(feature = "yaml")]
-impl Reporter for YamlFileReporter {
-    fn report(&self, report: &Report) {
-        self._report(report)
-            .unwrap_or_else(|e| error!("Could not store report file. Err: {}", e));
-    }
-}
-
-fn get_report_path(root: &Path, report: &Report) -> Result<PathBuf> {
+fn get_report_path(root: &Path, report: &Report, ext: &str) -> Result<PathBuf> {
     if !root.is_dir() {
         std::fs::create_dir_all(root)?;
     }
@@ -143,13 +114,13 @@ fn get_report_path(root: &Path, report: &Report) -> Result<PathBuf> {
     let filename_prefix = format!("{}_{:?}", report.date.format("%F_%H-%M-%S"), report.level);
 
     let mut report_path = root.to_path_buf();
-    report_path.push(format!("{}.yaml", filename_prefix));
+    report_path.push(format!("{}.{}", filename_prefix, ext));
 
     // ensure unique filename
     for i in 1..u32::MAX {
         if report_path.exists() {
             report_path = root.to_path_buf();
-            report_path.push(format!("{}_{}.yaml", filename_prefix, i));
+            report_path.push(format!("{}_{}.{}", filename_prefix, i, ext));
         } else {
             break;
         }
