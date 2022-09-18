@@ -14,9 +14,6 @@ default-tls = ["reqwest/default-tls"]
 rustls-tls-webpki-roots = ["reqwest/rustls-tls-webpki-roots"]
 rustls-tls-native-roots = ["reqwest/rustls-tls-native-roots"]
 
-# Error reports in yaml format
-report-yaml = ["serde_yaml"]
-
 [dependencies]
 # quick-js = "0.4.1"
 quick-js = { path = "../quickjs-rs" }
@@ -30,7 +27,6 @@ reqwest = {version = "0.11.11", default-features = false, features = ["json", "g
 tokio = {version = "1.20.0", features = ["macros", "time", "fs", "process"]}
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0.82"
-serde_yaml = {version = "0.9.11", optional = true}
 serde_with = {version = "2.0.0", features = ["json"] }
 rand = "0.8.5"
 chrono = {version = "0.4.19", features = ["serde"]}

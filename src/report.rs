@@ -77,16 +77,8 @@ impl FileReporter {
     }
 
     fn _report(&self, report: &Report) -> Result<()> {
-        #[cfg(not(feature = "report-yaml"))]
-        {
-            let report_path = get_report_path(&self.path, report, "json")?;
-            serde_json::to_writer_pretty(&File::create(report_path)?, &report)?;
-        }
-        #[cfg(feature = "report-yaml")]
-        {
-            let report_path = get_report_path(&self.path, report, "yaml")?;
-            serde_yaml::to_writer(&File::create(report_path)?, &report)?;
-        }
+        let report_path = get_report_path(&self.path, report, "json")?;
+        serde_json::to_writer_pretty(&File::create(report_path)?, &report)?;
         Ok(())
     }
 }
