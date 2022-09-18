@@ -54,6 +54,19 @@ impl<'de> DeserializeAs<'de, String> for Text {
     }
 }
 
+impl<'de> DeserializeAs<'de, Vec<String>> for Text {
+    fn deserialize_as<D>(deserializer: D) -> Result<Vec<String>, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        let text = Text::deserialize(deserializer)?;
+        match text {
+            Text::Simple { text } => Ok(vec![text]),
+            Text::Multiple { runs } => Ok(runs),
+        }
+    }
+}
+
 #[derive(Debug, Clone)]
 pub enum TextLink {
     Video {
@@ -227,6 +240,26 @@ impl<'de> DeserializeAs<'de, Vec<TextLink>> for TextLinks {
     }
 }
 
+#[derive(Deserialize)]
+pub struct AccessibilityText {
+    accessibility: AccessibilityData,
+}
+
+#[derive(Deserialize)]
+struct AccessibilityData {
+    label: String,
+}
+
+impl<'de> DeserializeAs<'de, String> for AccessibilityText {
+    fn deserialize_as<D>(deserializer: D) -> Result<String, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        let text = AccessibilityText::deserialize(deserializer)?;
+        Ok(text.accessibility.label)
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::TextLink;
@@ -241,7 +274,7 @@ mod tests {
                 "text": "Hello World"
             }
         }"#,
-        "Hello World"
+        vec!["Hello World"]
     )]
     #[case(
         r#"{
@@ -249,7 +282,7 @@ mod tests {
                 "simpleText": "Hello World"
             }
         }"#,
-        "Hello World"
+        vec!["Hello World"]
     )]
     #[case(
         r#"{
@@ -267,9 +300,9 @@ mod tests {
                 ]
             }
         }"#,
-        "Abo für MBCkpop beenden?"
+        vec!["Abo für ", "MBCkpop", " beenden?"]
     )]
-    fn t_deserialize_text(#[case] test_json: &str, #[case] exp: &str) {
+    fn t_deserialize_text(#[case] test_json: &str, #[case] exp: Vec<&str>) {
         #[serde_as]
         #[derive(Deserialize)]
         struct S {
@@ -277,8 +310,18 @@ mod tests {
             txt: String,
         }
 
-        let res = serde_json::from_str::<S>(&test_json).unwrap();
-        assert_eq!(res.txt, exp)
+        #[serde_as]
+        #[derive(Deserialize)]
+        struct SVec {
+            #[serde_as(as = "crate::serializer::text::Text")]
+            txt: Vec<String>,
+        }
+
+        let res_str = serde_json::from_str::<S>(&test_json).unwrap();
+        let res_vec = serde_json::from_str::<SVec>(&test_json).unwrap();
+
+        assert_eq!(res_str.txt, exp.join(""));
+        assert_eq!(res_vec.txt, exp);
     }
 
     #[serde_as]

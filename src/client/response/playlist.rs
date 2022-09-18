@@ -148,9 +148,9 @@ pub struct SidebarItemPrimary {
 #[serde(rename_all = "camelCase")]
 pub struct SidebarPrimaryInfoRenderer {
     pub thumbnail_renderer: PlaylistThumbnailRenderer,
-    // - `"495", " videos"`
-    // - `"3,310,996 views"`
-    // - `"Last updated on ", "Aug 7, 2022"`
+    /// - `"495", " videos"`
+    /// - `"3,310,996 views"`
+    /// - `"Last updated on ", "Aug 7, 2022"`
     #[serde_as(as = "Vec<Text>")]
     pub stats: Vec<String>,
 }
@@ -175,5 +175,4 @@ pub struct OnResponseReceivedAction {
 pub struct AppendAction {
     #[serde_as(as = "VecLogError<_>")]
     pub continuation_items: MapResult<Vec<VideoListItem<PlaylistVideo>>>,
-    pub target_id: String,
 }

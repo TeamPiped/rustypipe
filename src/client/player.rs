@@ -13,8 +13,8 @@ use serde::Serialize;
 use crate::{
     deobfuscate::Deobfuscator,
     model::{
-        AudioCodec, AudioFormat, AudioStream, AudioTrack, Channel, Language, Subtitle, VideoCodec,
-        VideoFormat, VideoInfo, VideoPlayer, VideoStream,
+        AudioCodec, AudioFormat, AudioStream, AudioTrack, ChannelId, Language, Subtitle,
+        VideoCodec, VideoFormat, VideoPlayer, VideoPlayerDetails, VideoStream,
     },
     util,
 };
@@ -58,7 +58,7 @@ struct QContentPlaybackContext {
 }
 
 impl RustyPipeQuery {
-    pub async fn get_player(self, video_id: &str, client_type: ClientType) -> Result<VideoPlayer> {
+    pub async fn player(self, video_id: &str, client_type: ClientType) -> Result<VideoPlayer> {
         let q1 = self.clone();
         let t_context = tokio::spawn(async move { q1.get_context(client_type, false).await });
         let q2 = self.client.clone();
@@ -95,7 +95,7 @@ impl RustyPipeQuery {
 
         self.execute_request_deobf::<response::Player, _, _>(
             client_type,
-            "get_player",
+            "player",
             video_id,
             Method::POST,
             "player",
@@ -169,13 +169,13 @@ impl MapResponse<VideoPlayer> for response::Player {
             );
         }
 
-        let video_info = VideoInfo {
+        let video_info = VideoPlayerDetails {
             id: video_details.video_id,
             title: video_details.title,
             description: video_details.short_description,
             length: video_details.length_seconds,
             thumbnails: video_details.thumbnail.unwrap_or_default().into(),
-            channel: Channel {
+            channel: ChannelId {
                 id: video_details.channel_id,
                 name: video_details.author,
             },
@@ -196,7 +196,7 @@ impl MapResponse<VideoPlayer> for response::Player {
         warnings.append(&mut streaming_data.formats.warnings);
         warnings.append(&mut streaming_data.adaptive_formats.warnings);
 
-        let mut last_nsig: [String; 2] = ["".to_owned(), "".to_owned()];
+        let mut last_nsig: [String; 2] = [String::new(), String::new()];
 
         let mut video_streams: Vec<VideoStream> = Vec::new();
         let mut video_only_streams: Vec<VideoStream> = Vec::new();
@@ -237,23 +237,26 @@ impl MapResponse<VideoPlayer> for response::Player {
         video_only_streams.sort();
         audio_streams.sort();
 
-        let mut subtitles = vec![];
-        if let Some(captions) = self.captions {
-            for c in captions.player_captions_tracklist_renderer.caption_tracks {
-                let lang_auto = c.name.strip_suffix(" (auto-generated)");
-
-                subtitles.push(Subtitle {
-                    url: c.base_url,
-                    lang: c.language_code,
-                    lang_name: lang_auto.unwrap_or(&c.name).to_owned(),
-                    auto_generated: lang_auto.is_some(),
+        let subtitles = self.captions.map_or(Vec::new(), |captions| {
+            captions
+                .player_captions_tracklist_renderer
+                .caption_tracks
+                .into_iter()
+                .map(|c| {
+                    let lang_auto = c.name.strip_suffix(" (auto-generated)");
+                    Subtitle {
+                        url: c.base_url,
+                        lang: c.language_code,
+                        lang_name: lang_auto.unwrap_or(&c.name).to_owned(),
+                        auto_generated: lang_auto.is_some(),
+                    }
                 })
-            }
-        }
+                .collect()
+        });
 
         Ok(MapResult {
             c: VideoPlayer {
-                info: video_info,
+                details: video_info,
                 video_streams,
                 video_only_streams,
                 audio_streams,
@@ -599,7 +602,7 @@ mod tests {
         );
         let is_desktop = name == "desktop" || name == "desktopmusic";
         insta::assert_yaml_snapshot!(format!("map_player_data_{}", name), map_res.c, {
-            ".info.publish_date" => insta::dynamic_redaction(move |value, _path| {
+            ".details.publish_date" => insta::dynamic_redaction(move |value, _path| {
                 if is_desktop {
                     assert!(value.as_str().unwrap().starts_with("2019-05-30T00:00:00"));
                     "2019-05-30T00:00:00"
@@ -632,40 +635,36 @@ mod tests {
     #[test_log::test(tokio::test)]
     async fn t_get_player(#[case] client_type: ClientType) {
         let rp = RustyPipe::builder().strict().build();
-        let player_data = rp
-            .query()
-            .get_player("n4tK7LYFxI0", client_type)
-            .await
-            .unwrap();
+        let player_data = rp.query().player("n4tK7LYFxI0", client_type).await.unwrap();
 
         // dbg!(&player_data);
 
-        assert_eq!(player_data.info.id, "n4tK7LYFxI0");
-        assert_eq!(player_data.info.title, "Spektrem - Shine [NCS Release]");
+        assert_eq!(player_data.details.id, "n4tK7LYFxI0");
+        assert_eq!(player_data.details.title, "Spektrem - Shine [NCS Release]");
         if client_type == ClientType::DesktopMusic {
-            assert!(player_data.info.description.is_none());
+            assert!(player_data.details.description.is_none());
         } else {
-            assert!(player_data.info.description.unwrap().starts_with(
+            assert!(player_data.details.description.unwrap().starts_with(
                 "NCS (NoCopyrightSounds): Empowering Creators through Copyright / Royalty Free Music"
             ));
         }
-        assert_eq!(player_data.info.length, 259);
-        assert!(!player_data.info.thumbnails.is_empty());
-        assert_eq!(player_data.info.channel.id, "UC_aEa8K-EOJ3D6gOs7HcyNg");
-        assert_eq!(player_data.info.channel.name, "NoCopyrightSounds");
-        assert!(player_data.info.view_count > 146818808);
-        assert_eq!(player_data.info.keywords[0], "spektrem");
-        assert_eq!(player_data.info.is_live_content, false);
+        assert_eq!(player_data.details.length, 259);
+        assert!(!player_data.details.thumbnails.is_empty());
+        assert_eq!(player_data.details.channel.id, "UC_aEa8K-EOJ3D6gOs7HcyNg");
+        assert_eq!(player_data.details.channel.name, "NoCopyrightSounds");
+        assert!(player_data.details.view_count > 146818808);
+        assert_eq!(player_data.details.keywords[0], "spektrem");
+        assert_eq!(player_data.details.is_live_content, false);
 
         if client_type == ClientType::Desktop || client_type == ClientType::DesktopMusic {
             assert!(player_data
-                .info
+                .details
                 .publish_date
                 .unwrap()
                 .to_string()
                 .starts_with("2013-05-05 00:00:00"));
-            assert_eq!(player_data.info.category.unwrap(), "Music");
-            assert_eq!(player_data.info.is_family_safe.unwrap(), true);
+            assert_eq!(player_data.details.category.unwrap(), "Music");
+            assert_eq!(player_data.details.is_family_safe.unwrap(), true);
         }
 
         if client_type == ClientType::Ios {

@@ -1,8 +1,7 @@
-use url;
-
-/// Errors that can occur during the id extraction or the video download process.   
+/// Errors that can occur during the id extraction or the video download process.
 #[derive(thiserror::Error, Debug)]
 pub enum Error {
+    /*
     #[error("the provided raw Id does not match any known Id-pattern")]
     BadIdFormat,
     #[cfg(feature = "fetch")]
@@ -41,4 +40,11 @@ pub enum Error {
     #[error("The internal channel has been closed")]
     #[cfg(feature = "callback")]
     ChannelClosed,
+    */
+    #[error("paginator is exhausted")]
+    PaginatorExhausted,
+
+    // TODO: Remove anyhow
+    #[error(transparent)]
+    Anyhow(#[from] anyhow::Error),
 }

@@ -8,6 +8,18 @@ use rustypipe::{
     report::{Report, Reporter},
 };
 
+pub async fn download_testfiles(project_root: &Path) {
+    let mut testfiles = project_root.to_path_buf();
+    testfiles.push("testfiles");
+
+    tokio::join!(
+        player(&testfiles),
+        player_model(&testfiles),
+        playlist(&testfiles),
+        video_details(&testfiles),
+    );
+}
+
 const CLIENT_TYPES: [ClientType; 5] = [
     ClientType::Desktop,
     ClientType::DesktopMusic,
@@ -31,6 +43,10 @@ impl TestFileReporter {
 
 impl Reporter for TestFileReporter {
     fn report(&self, report: &Report) {
+        let mut root = self.path.clone();
+        root.set_file_name("");
+        std::fs::create_dir_all(root).unwrap();
+
         let data =
             serde_json::from_str::<serde_json::Value>(&report.http_request.resp_body).unwrap();
         let file = File::create(&self.path).unwrap();
@@ -49,17 +65,6 @@ fn rp_testfile(json_path: &Path) -> RustyPipe {
         .build()
 }
 
-pub async fn download_testfiles(project_root: &Path) {
-    let mut testfiles = project_root.to_path_buf();
-    testfiles.push("testfiles");
-
-    tokio::join!(
-        player(&testfiles),
-        player_model(&testfiles),
-        playlist(&testfiles)
-    );
-}
-
 async fn player(testfiles: &Path) {
     let video_id = "pPvd8UxmSbQ";
 
@@ -73,7 +78,7 @@ async fn player(testfiles: &Path) {
         }
 
         let rp = rp_testfile(&json_path);
-        rp.query().get_player(video_id, client_type).await.unwrap();
+        rp.query().player(video_id, client_type).await.unwrap();
     }
 }
 
@@ -89,11 +94,7 @@ async fn player_model(testfiles: &Path) {
             continue;
         }
 
-        let player_data = rp
-            .query()
-            .get_player(id, ClientType::Desktop)
-            .await
-            .unwrap();
+        let player_data = rp.query().player(id, ClientType::Desktop).await.unwrap();
         let file = File::create(&json_path).unwrap();
         serde_json::to_writer_pretty(file, &player_data).unwrap();
 
@@ -115,6 +116,32 @@ async fn playlist(testfiles: &Path) {
         }
 
         let rp = rp_testfile(&json_path);
-        rp.query().get_playlist(id).await.unwrap();
+        rp.query().playlist(id).await.unwrap();
     }
+}
+
+
+async fn video_details(testfiles: &Path) {
+    for (name, id) in [
+        ("music", "MZOgTu2dMTg"),
+        ("mv", "ZeerrnuLi5E"),
+        ("ccommons", "0rb9CfOvojk"),
+        ("chapters", "nFDBxBUfE74"),
+    ] {
+        let mut json_path = testfiles.to_path_buf();
+        json_path.push("video_details");
+        json_path.push(format!("video_details_{}.json", name));
+        println!("{}", json_path.display());
+        if json_path.exists() {
+            continue;
+        }
+
+        let rp = rp_testfile(&json_path);
+        rp.query().video_details(id).await.unwrap();
+    }
+}
+
+#[tokio::test]
+async fn x() {
+    video_details(Path::new("../testfiles")).await;
 }

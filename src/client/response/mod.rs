@@ -2,21 +2,24 @@ pub mod channel;
 pub mod player;
 pub mod playlist;
 pub mod playlist_music;
-pub mod video;
+pub mod video_details;
 
 pub use channel::Channel;
 pub use player::Player;
 pub use playlist::Playlist;
 pub use playlist::PlaylistCont;
 pub use playlist_music::PlaylistMusic;
-pub use video::Video;
-pub use video::VideoComments;
-pub use video::VideoRecommendations;
+pub use video_details::VideoComments;
+pub use video_details::VideoDetails;
+pub use video_details::VideoRecommendations;
 
 use serde::Deserialize;
 use serde_with::{serde_as, DefaultOnError, VecSkipError};
 
-use crate::serializer::text::{Text, TextLink, TextLinks};
+use crate::serializer::{
+    ignore_any,
+    text::{Text, TextLink, TextLinks},
+};
 
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -64,6 +67,9 @@ pub enum VideoListItem<T> {
     ContinuationItemRenderer {
         continuation_endpoint: ContinuationEndpoint,
     },
+    /// No video list item (e.g. ad)
+    #[serde(other, deserialize_with = "ignore_any")]
+    None,
 }
 
 #[derive(Clone, Debug, Deserialize)]
@@ -215,6 +221,10 @@ pub struct MusicContinuationData {
     pub continuation: String,
 }
 
+/*
+#MAPPING
+*/
+
 impl From<Thumbnail> for crate::model::Thumbnail {
     fn from(tn: Thumbnail) -> Self {
         crate::model::Thumbnail {
@@ -227,10 +237,13 @@ impl From<Thumbnail> for crate::model::Thumbnail {
 
 impl From<Thumbnails> for Vec<crate::model::Thumbnail> {
     fn from(ts: Thumbnails) -> Self {
-        let mut thumbnails = vec![];
-        for t in ts.thumbnails {
-            thumbnails.push(t.into());
-        }
-        thumbnails
+        ts.thumbnails
+            .into_iter()
+            .map(|t| crate::model::Thumbnail {
+                url: t.url,
+                width: t.width,
+                height: t.height,
+            })
+            .collect()
     }
 }

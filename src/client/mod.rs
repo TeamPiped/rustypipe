@@ -1,5 +1,6 @@
 pub mod player;
 pub mod playlist;
+pub mod video_details;
 
 mod response;
 
@@ -12,9 +13,7 @@ use fancy_regex::Regex;
 use log::{error, warn};
 use once_cell::sync::Lazy;
 use rand::Rng;
-use reqwest::{
-    header, Client, ClientBuilder, Method, Request, RequestBuilder, Response, StatusCode,
-};
+use reqwest::{header, Client, ClientBuilder, Method, Request, RequestBuilder, Response};
 use serde::{de::DeserializeOwned, Deserialize, Serialize};
 use tokio::sync::Mutex;
 
@@ -315,7 +314,7 @@ impl RustyPipeBuilder {
                     rand::thread_rng().gen_range(100..1000)
                 ),
                 cache: Mutex::new(cache),
-                default_opts: RustyPipeOpts::default(),
+                default_opts: self.default_opts,
             }),
         }
     }
@@ -455,6 +454,7 @@ impl RustyPipe {
                     if status.is_success() || !status.is_server_error() {
                         return res;
                     }
+                    // TODO: handle 429 (captcha)
                     status.to_string()
                 }
                 Err(e) => {

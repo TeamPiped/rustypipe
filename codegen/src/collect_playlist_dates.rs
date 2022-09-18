@@ -93,7 +93,7 @@ pub async fn collect_dates(project_root: &Path, concurrency: usize) {
                 let mut map: BTreeMap<DateCase, String> = BTreeMap::new();
 
                 for (case, pl_id) in cases {
-                    let playlist = rp.query().lang(lang).get_playlist(pl_id).await.unwrap();
+                    let playlist = rp.query().lang(lang).playlist(pl_id).await.unwrap();
                     map.insert(case, playlist.last_update_txt.unwrap());
                 }
 

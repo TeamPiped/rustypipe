@@ -104,6 +104,38 @@ pub fn retry_delay(
     min_retry_interval.max(jittered_delay.min(max_retry_interval))
 }
 
+/// Removes and returns the element at position `index` within the vector,
+/// shifting all elements after it to the left.
+///
+/// Returns None if the index is out of bounds.
+///
+/// Note: Because this shifts over the remaining elements, it has a
+/// worst-case performance of *O*(*n*). If you don't need the order of elements
+/// to be preserved, use [`vec_try_swap_remove`] instead.
+pub fn vec_try_remove<T>(vec: &mut Vec<T>, index: usize) -> Option<T> {
+    if index < vec.len() {
+        Some(vec.remove(index))
+    } else {
+        None
+    }
+}
+
+/// Removes an element from the vector and returns it.
+///
+/// The removed element is replaced by the last element of the vector.
+///
+/// Returns None if the index is out of bounds.
+///
+/// This does not preserve ordering, but is *O*(1).
+/// If you need to preserve the element order, use [`vec_try_remove`] instead.
+pub fn vec_try_swap_remove<T>(vec: &mut Vec<T>, index: usize) -> Option<T> {
+    if index < vec.len() {
+        Some(vec.swap_remove(index))
+    } else {
+        None
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use rstest::rstest;

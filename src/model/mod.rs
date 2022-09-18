@@ -1,13 +1,19 @@
 pub mod locale;
 mod ordering;
+mod paginator;
 pub mod stream_filter;
 
 pub use locale::{Country, Language};
+pub use paginator::Paginator;
 
 use std::ops::Range;
 
 use chrono::{DateTime, Local};
 use serde::{Deserialize, Serialize};
+
+/*
+#PLAYER
+*/
 
 pub trait FileFormat {
     fn extension(&self) -> &str;
@@ -15,7 +21,7 @@ pub trait FileFormat {
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct VideoPlayer {
-    pub info: VideoInfo,
+    pub details: VideoPlayerDetails,
     pub video_streams: Vec<VideoStream>,
     pub video_only_streams: Vec<VideoStream>,
     pub audio_streams: Vec<AudioStream>,
@@ -23,28 +29,14 @@ pub struct VideoPlayer {
     pub expires_in_seconds: u32,
 }
 
-#[derive(Clone, Debug, Serialize, Deserialize)]
-pub struct Playlist {
-    pub id: String,
-    pub name: String,
-    pub videos: Vec<Video>,
-    pub n_videos: u32,
-    pub ctoken: Option<String>,
-    pub thumbnails: Vec<Thumbnail>,
-    pub description: Option<String>,
-    pub channel: Option<Channel>,
-    pub last_update: Option<DateTime<Local>>,
-    pub last_update_txt: Option<String>,
-}
-
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
-pub struct VideoInfo {
+pub struct VideoPlayerDetails {
     pub id: String,
     pub title: String,
     pub description: Option<String>,
     pub length: u32,
     pub thumbnails: Vec<Thumbnail>,
-    pub channel: Channel,
+    pub channel: ChannelId,
     pub publish_date: Option<DateTime<Local>>,
     pub view_count: u64,
     pub keywords: Vec<String>,
@@ -182,17 +174,81 @@ pub struct Subtitle {
     pub auto_generated: bool,
 }
 
+/*
+#PLAYLIST
+*/
+
+#[derive(Clone, Debug, Serialize, Deserialize)]
+pub struct Playlist {
+    pub id: String,
+    pub name: String,
+    pub videos: Paginator<PlaylistVideo>,
+    pub n_videos: u32,
+    pub thumbnails: Vec<Thumbnail>,
+    pub description: Option<String>,
+    pub channel: Option<ChannelId>,
+    pub last_update: Option<DateTime<Local>>,
+    pub last_update_txt: Option<String>,
+}
+
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
-pub struct Video {
+pub struct PlaylistVideo {
     pub id: String,
     pub title: String,
     pub length: u32,
     pub thumbnails: Vec<Thumbnail>,
-    pub channel: Channel,
+    pub channel: ChannelId,
 }
 
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+pub struct ChannelId {
+    pub id: String,
+    pub name: String,
+}
+
+/*
+#VIDEO DETAILS
+*/
+
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+pub struct VideoDetails {
+    pub id: String,
+    pub title: String,
+    pub description: String,
+}
+
+/*
+@COMMENTS
+*/
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct Channel {
     pub id: String,
     pub name: String,
+    pub avatars: Vec<Thumbnail>,
+    pub verified: bool,
+}
+
+// TODO: impl popularity comparison
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct Comment {
+    /// Unique YouTube Comment-ID (e.g. `UgynScMrsqGSL8qvePl4AaABAg`)
+    pub id: String,
+    /// Comment text
+    pub text: String,
+    /// Comment author
+    ///
+    /// There may be comments with missing authors (possibly deleted users?).
+    pub author: Option<Channel>,
+    /// Number of upvotes
+    pub upvotes: u32,
+    /// Number of replies
+    pub n_replies: u32,
+    /// Paginator to fetch comment replies
+    pub replies: Paginator<Comment>,
+    /// Is the comment from the channel owner?
+    pub by_owner: bool,
+    /// Has the channel owner pinned the comment to the top?
+    pub pinned: bool,
+    /// Has the channel owner marked the comment with a ❤️ ?
+    pub hearted: bool,
 }

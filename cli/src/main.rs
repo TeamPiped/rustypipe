@@ -60,7 +60,7 @@ async fn download_single_video(
     let res = async {
         let player_data = rp
             .query()
-            .get_player(video_id.as_str(), ClientType::TvHtml5Embed)
+            .player(video_id.as_str(), ClientType::TvHtml5Embed)
             .await
             .context(format!(
                 "Failed to fetch player data for video {}",
@@ -89,7 +89,7 @@ async fn download_single_video(
         .await
         .context(format!(
             "Failed to download video '{}' [{}]",
-            player_data.info.title, video_id
+            player_data.details.title, video_id
         ))
     }
     .await;
@@ -149,7 +149,7 @@ async fn download_playlist(
         .expect("unable to build the HTTP client");
 
     let rp = RustyPipe::default();
-    let playlist = rp.query().get_playlist(id).await.unwrap();
+    let playlist = rp.query().playlist(id).await.unwrap();
 
     // Indicatif setup
     let multi = MultiProgress::new();

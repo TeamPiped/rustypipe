@@ -2,7 +2,7 @@
 source: src/client/player.rs
 expression: map_res.c
 ---
-info:
+details:
   id: pPvd8UxmSbQ
   title: Inspiring Cinematic Uplifting
   description: ~
