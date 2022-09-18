@@ -2,6 +2,12 @@
 name = "rustypipe"
 version = "0.1.0"
 edition = "2021"
+authors = ["ThetaDev"]
+license = "GPL-3.0"
+description = "Client for the public YouTube / YouTube Music API (Innertube), inspired by NewPipe"
+keywords = ["youtube", "video", "music"]
+
+include = ["/src", "README.md", "LICENSE", "!snapshots"]
 
 [workspace]
 members = [".", "codegen", "cli"]
