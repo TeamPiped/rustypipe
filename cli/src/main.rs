@@ -149,12 +149,13 @@ async fn download_playlist(
         .expect("unable to build the HTTP client");
 
     let rp = RustyPipe::default();
-    let playlist = rp.query().playlist(id).await.unwrap();
+    let mut playlist = rp.query().playlist(id).await.unwrap();
+    playlist.videos.extend_pages(rp.query(), usize::MAX).await.unwrap();
 
     // Indicatif setup
     let multi = MultiProgress::new();
     let main = multi.add(ProgressBar::new(
-        playlist.videos.len().try_into().unwrap_or_default(),
+        playlist.videos.items.len().try_into().unwrap_or_default(),
     ));
 
     main.set_style(
@@ -165,11 +166,11 @@ async fn download_playlist(
     );
     main.tick();
 
-    stream::iter(playlist.videos)
+    stream::iter(playlist.videos.items)
         .map(|video| {
             download_single_video(
-                video.id.to_owned(),
-                video.title.to_owned(),
+                video.id,
+                video.title,
                 output_dir,
                 output_fname.to_owned(),
                 resolution,
