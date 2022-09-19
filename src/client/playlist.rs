@@ -6,7 +6,8 @@ use crate::{
     deobfuscate::Deobfuscator,
     model::{ChannelId, Language, Paginator, Playlist, PlaylistVideo},
     serializer::text::{PageType, TextLink},
-    timeago, util,
+    timeago,
+    util::{self, TryRemove},
 };
 
 use super::{response, ClientType, MapResponse, MapResult, RustyPipeQuery, YTContext};
@@ -73,25 +74,21 @@ impl MapResponse<Playlist> for response::Playlist {
         // TODO: think about a deserializer that deserializes only first list item
         let mut tcbr_contents = self.contents.two_column_browse_results_renderer.contents;
         let video_items = some_or_bail!(
-            util::vec_try_swap_remove(
-                &mut some_or_bail!(
-                    util::vec_try_swap_remove(
-                        &mut some_or_bail!(
-                            util::vec_try_swap_remove(&mut tcbr_contents, 0),
-                            Err(anyhow!("twoColumnBrowseResultsRenderer empty"))
-                        )
-                        .tab_renderer
-                        .content
-                        .section_list_renderer
-                        .contents,
-                        0,
-                    ),
-                    Err(anyhow!("sectionListRenderer empty"))
+            some_or_bail!(
+                some_or_bail!(
+                    tcbr_contents.try_swap_remove(0),
+                    Err(anyhow!("twoColumnBrowseResultsRenderer empty"))
                 )
-                .item_section_renderer
-                .contents,
-                0
-            ),
+                .tab_renderer
+                .content
+                .section_list_renderer
+                .contents
+                .try_swap_remove(0),
+                Err(anyhow!("sectionListRenderer empty"))
+            )
+            .item_section_renderer
+            .contents
+            .try_swap_remove(0),
             Err(anyhow!("itemSectionRenderer empty"))
         )
         .playlist_video_list_renderer
@@ -103,7 +100,7 @@ impl MapResponse<Playlist> for response::Playlist {
             Some(sidebar) => {
                 let mut sidebar_items = sidebar.playlist_sidebar_renderer.items;
                 let mut primary = some_or_bail!(
-                    util::vec_try_swap_remove(&mut sidebar_items, 0),
+                    sidebar_items.try_swap_remove(0),
                     Err(anyhow!("no primary sidebar"))
                 );
 
@@ -113,10 +110,10 @@ impl MapResponse<Playlist> for response::Playlist {
                         .thumbnail_renderer
                         .playlist_video_thumbnail_renderer
                         .thumbnail,
-                    util::vec_try_swap_remove(
-                        &mut primary.playlist_sidebar_primary_info_renderer.stats,
-                        2,
-                    ),
+                    primary
+                        .playlist_sidebar_primary_info_renderer
+                        .stats
+                        .try_swap_remove(2),
                 )
             }
             None => {
@@ -126,7 +123,8 @@ impl MapResponse<Playlist> for response::Playlist {
                 );
 
                 let mut byline = self.header.playlist_header_renderer.byline;
-                let last_update_txt = util::vec_try_swap_remove(&mut byline, 1)
+                let last_update_txt = byline
+                    .try_swap_remove(1)
                     .map(|b| b.playlist_byline_renderer.text);
 
                 (
@@ -207,7 +205,7 @@ impl MapResponse<Paginator<PlaylistVideo>> for response::PlaylistCont {
     ) -> Result<MapResult<Paginator<PlaylistVideo>>> {
         let mut actions = self.on_response_received_actions;
         let action = some_or_bail!(
-            util::vec_try_swap_remove(&mut actions, 0),
+            actions.try_swap_remove(0),
             Err(anyhow!("no continuation action"))
         );
 
@@ -422,11 +420,7 @@ mod tests {
             .await
             .unwrap();
 
-        playlist
-            .videos
-            .extend_limit(rp.query(), 101)
-            .await
-            .unwrap();
+        playlist.videos.extend_limit(rp.query(), 101).await.unwrap();
         assert!(playlist.videos.items.len() > 100);
     }
 }

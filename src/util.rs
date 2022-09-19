@@ -104,35 +104,43 @@ pub fn retry_delay(
     min_retry_interval.max(jittered_delay.min(max_retry_interval))
 }
 
-/// Removes and returns the element at position `index` within the vector,
-/// shifting all elements after it to the left.
-///
-/// Returns None if the index is out of bounds.
-///
-/// Note: Because this shifts over the remaining elements, it has a
-/// worst-case performance of *O*(*n*). If you don't need the order of elements
-/// to be preserved, use [`vec_try_swap_remove`] instead.
-pub fn vec_try_remove<T>(vec: &mut Vec<T>, index: usize) -> Option<T> {
-    if index < vec.len() {
-        Some(vec.remove(index))
-    } else {
-        None
-    }
+pub trait TryRemove<T> {
+    /// Removes and returns the element at position `index` within the vector,
+    /// shifting all elements after it to the left.
+    ///
+    /// Returns None if the index is out of bounds.
+    ///
+    /// Note: Because this shifts over the remaining elements, it has a
+    /// worst-case performance of *O*(*n*). If you don't need the order of elements
+    /// to be preserved, use [`vec_try_swap_remove`] instead.
+    fn try_remove(&mut self, index: usize) -> Option<T>;
+
+    /// Removes an element from the vector and returns it.
+    ///
+    /// The removed element is replaced by the last element of the vector.
+    ///
+    /// Returns None if the index is out of bounds.
+    ///
+    /// This does not preserve ordering, but is *O*(1).
+    /// If you need to preserve the element order, use [`vec_try_remove`] instead.
+    fn try_swap_remove(&mut self, index: usize) -> Option<T>;
 }
 
-/// Removes an element from the vector and returns it.
-///
-/// The removed element is replaced by the last element of the vector.
-///
-/// Returns None if the index is out of bounds.
-///
-/// This does not preserve ordering, but is *O*(1).
-/// If you need to preserve the element order, use [`vec_try_remove`] instead.
-pub fn vec_try_swap_remove<T>(vec: &mut Vec<T>, index: usize) -> Option<T> {
-    if index < vec.len() {
-        Some(vec.swap_remove(index))
-    } else {
-        None
+impl<T> TryRemove<T> for Vec<T> {
+    fn try_remove(&mut self, index: usize) -> Option<T> {
+        if index < self.len() {
+            Some(self.remove(index))
+        } else {
+            None
+        }
+    }
+
+    fn try_swap_remove(&mut self, index: usize) -> Option<T> {
+        if index < self.len() {
+            Some(self.swap_remove(index))
+        } else {
+            None
+        }
     }
 }
 
@@ -173,5 +181,21 @@ mod tests {
             expect_min,
             expect_max
         );
+    }
+
+    #[test]
+    fn t_vec_try_remove() {
+        let mut v = vec![1, 2, 3];
+        assert_eq!(v.try_remove(0).unwrap(), 1);
+        assert_eq!(v.try_remove(1).unwrap(), 3);
+        assert_eq!(v.try_remove(1), None);
+    }
+
+    #[test]
+    fn t_vec_try_swap_remove() {
+        let mut v = vec![1, 2, 3];
+        assert_eq!(v.try_swap_remove(0).unwrap(), 1);
+        assert_eq!(v.try_swap_remove(1).unwrap(), 2);
+        assert_eq!(v.try_swap_remove(1), None);
     }
 }
