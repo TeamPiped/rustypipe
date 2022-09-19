@@ -259,21 +259,22 @@ fn map_playlist_items(
 }
 
 impl Paginator<PlaylistVideo> {
-    pub async fn next(&self, query: RustyPipeQuery) -> Result<Self, crate::error::Error> {
-        match &self.ctoken {
-            Some(ctoken) => Ok(query.get_playlist_continuation(ctoken).await?),
-            None => Err(crate::error::Error::PaginatorExhausted),
-        }
+    pub async fn next(&self, query: RustyPipeQuery) -> Result<Option<Self>> {
+        Ok(match &self.ctoken {
+            Some(ctoken) => Some(query.get_playlist_continuation(ctoken).await?),
+            None => None,
+        })
     }
 
-    pub async fn extend(&mut self, query: RustyPipeQuery) -> Result<(), crate::error::Error> {
+    pub async fn extend(&mut self, query: RustyPipeQuery) -> Result<bool> {
         match self.next(query).await {
-            Ok(paginator) => {
+            Ok(Some(paginator)) => {
                 let mut items = paginator.items;
                 self.items.append(&mut items);
                 self.ctoken = paginator.ctoken;
-                Ok(())
+                Ok(true)
             }
+            Ok(None) => Ok(false),
             Err(e) => Err(e),
         }
     }
@@ -281,11 +282,11 @@ impl Paginator<PlaylistVideo> {
     pub async fn extend_pages(&mut self, query: RustyPipeQuery, n_pages: usize) -> Result<()> {
         for _ in 0..n_pages {
             match self.extend(query.clone()).await {
-                Err(crate::error::Error::PaginatorExhausted) => {
+                Ok(false) => {
                     break;
                 }
                 Err(e) => {
-                    return Err(e.into());
+                    return Err(e);
                 }
                 _ => {}
             }
@@ -296,11 +297,11 @@ impl Paginator<PlaylistVideo> {
     pub async fn extend_limit(&mut self, query: RustyPipeQuery, n_items: usize) -> Result<()> {
         while self.items.len() < n_items {
             match self.extend(query.clone()).await {
-                Err(crate::error::Error::PaginatorExhausted) => {
+                Ok(false) => {
                     break;
                 }
                 Err(e) => {
-                    return Err(e.into());
+                    return Err(e);
                 }
                 _ => {}
             }
