@@ -47,7 +47,9 @@ pub struct TwoColumnWatchNextResults {
     /// Metadata about the video
     pub results: VideoResultsWrap,
     /// Video recommendations
-    pub secondary_results: RecommendationResultsWrap,
+    ///
+    /// Can be `None` for age-restricted videos
+    pub secondary_results: Option<RecommendationResultsWrap>,
 }
 
 /// Metadata about the video
@@ -85,6 +87,7 @@ pub enum VideoResultsItem {
     #[serde(rename_all = "camelCase")]
     VideoSecondaryInfoRenderer {
         owner: VideoOwner,
+        #[serde(default)]
         #[serde_as(as = "Text")]
         description: String,
         /// Additional metadata (e.g. Creative Commons License)
@@ -114,6 +117,8 @@ pub struct ViewCountRenderer {
     /// View count (`232,975,196 views`)
     #[serde_as(as = "Text")]
     pub view_count: String,
+    #[serde(default)]
+    pub is_live: bool,
 }
 
 /// Like/Dislike buttons
@@ -129,7 +134,23 @@ pub struct VideoActions {
 #[serde(rename_all = "camelCase")]
 pub struct VideoActionsMenu {
     #[serde_as(as = "VecSkipError<_>")]
-    pub top_level_buttons: Vec<ToggleButtonWrap>,
+    pub top_level_buttons: Vec<TopLevelButton>,
+}
+
+/// The different TopLevelButtons
+///
+/// YouTube seems to be A/B testing the SegmentedLikeDislikeButtonRenderer
+///
+/// See: https://github.com/TeamNewPipe/NewPipeExtractor/pull/926
+#[serde_as]
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub enum TopLevelButton {
+    ToggleButtonRenderer(ToggleButton),
+    #[serde(rename_all = "camelCase")]
+    SegmentedLikeDislikeButtonRenderer {
+        like_button: ToggleButtonWrap,
+    },
 }
 
 /// Like/Dislike button
@@ -147,6 +168,8 @@ pub struct ToggleButton {
     /// Icon type: `LIKE` / `DISLIKE`
     pub default_icon: Icon,
     /// Number of likes (`like this video along with 4,010,156 other people`)
+    ///
+    /// Contains no digits (e.g. `I like this`) if likes are hidden by the creator.
     #[serde_as(as = "AccessibilityText")]
     pub accessibility_data: String,
 }
@@ -257,8 +280,9 @@ pub struct RecommendationResultsWrap {
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct RecommendationResults {
-    #[serde_as(as = "VecLogError<_>")]
-    pub results: MapResult<Vec<VideoListItem<RecommendedVideo>>>,
+    /// Can be `None` for age-restricted videos
+    #[serde_as(as = "Option<VecLogError<_>>")]
+    pub results: Option<MapResult<Vec<VideoListItem<RecommendedVideo>>>>,
 }
 
 /// Video recommendation item
@@ -313,7 +337,7 @@ pub enum EngagementPanelRenderer {
     /// Ignored items:
     /// - `engagement-panel-ads`
     /// - `engagement-panel-structured-description`
-    ///   (Desctiption already included in `VideoSecondaryInfoRenderer`)
+    ///   (Description already included in `VideoSecondaryInfoRenderer`)
     /// - `engagement-panel-searchable-transcript`
     ///   (basically video subtitles in a different format)
     #[serde(other, deserialize_with = "ignore_any")]
@@ -378,11 +402,13 @@ pub struct CommentItemSectionHeader {
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CommentItemSectionHeaderRenderer {
-    /// Average comment count (e.g. `81`, `2.2K`, `705K`)
+    /// Approximate comment count (e.g. `81`, `2.2K`, `705K`)
     ///
     /// The accurate count is included in the first comment response.
-    #[serde_as(as = "Text")]
-    pub contextual_info: String,
+    ///
+    /// Is `None` if there are no comments.
+    #[serde_as(as = "Option<Text>")]
+    pub contextual_info: Option<String>,
     pub menu: CommentItemSectionHeaderMenu,
 }
 

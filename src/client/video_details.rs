@@ -138,33 +138,41 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
             response::video_details::VideoResultsItem::None => {}
         });
 
-        let (title, view_count, like_count, publish_date, publish_date_txt) = match primary_info {
-            Some(response::video_details::VideoResultsItem::VideoPrimaryInfoRenderer {
-                title,
-                view_count,
-                video_actions,
-                date_text,
-            }) => {
-                let like_btn = some_or_bail!(
-                    video_actions
-                        .menu_renderer
-                        .top_level_buttons
-                        .into_iter()
-                        .find(|button| {
-                            button.toggle_button_renderer.default_icon.icon_type == IconType::Like
-                        }),
-                    Err(anyhow!("could not find like button"))
-                );
-                (
+        let (title, view_count, like_count, publish_date, publish_date_txt, is_live) =
+            match primary_info {
+                Some(response::video_details::VideoResultsItem::VideoPrimaryInfoRenderer {
                     title,
-                    util::parse_numeric(&view_count.video_view_count_renderer.view_count)?,
-                    util::parse_numeric(&like_btn.toggle_button_renderer.accessibility_data)?,
-                    timeago::parse_textual_date_or_warn(lang, &date_text, &mut warnings),
+                    view_count,
+                    video_actions,
                     date_text,
-                )
-            }
-            _ => bail!("could not find primary_info"),
-        };
+                }) => {
+                    let like_btn = video_actions
+                    .menu_renderer
+                    .top_level_buttons
+                    .into_iter()
+                    .find_map(|button| {
+                        let btn = match button {
+                            response::video_details::TopLevelButton::ToggleButtonRenderer(btn) => btn,
+                            response::video_details::TopLevelButton::SegmentedLikeDislikeButtonRenderer { like_button } => like_button.toggle_button_renderer,
+                        };
+                        match btn.default_icon.icon_type {
+                            IconType::Like => Some(btn),
+                            _ => None
+                        }
+                    });
+                    (
+                        title,
+                        util::parse_numeric(&view_count.video_view_count_renderer.view_count)?,
+                        // accessibility_data contains no digits if the like count is hidden,
+                        // so we ignore parse errors here for now
+                        like_btn.and_then(|btn| util::parse_numeric(&btn.accessibility_data).ok()),
+                        timeago::parse_textual_date_or_warn(lang, &date_text, &mut warnings),
+                        date_text,
+                        view_count.video_view_count_renderer.is_live,
+                    )
+                }
+                _ => bail!("could not find primary_info"),
+            };
 
         /*
         TODO: use large number parser for this
@@ -220,15 +228,19 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
             _ => bail!("invalid channel link"),
         };
 
-        let mut recommended = map_recommendations(
-            self.contents
-                .two_column_watch_next_results
-                .secondary_results
-                .secondary_results
-                .results,
-            lang,
-        );
-        warnings.append(&mut recommended.warnings);
+        let recommended = self
+            .contents
+            .two_column_watch_next_results
+            .secondary_results
+            .map(|sr| {
+                sr.secondary_results.results.map(|r| {
+                    let mut res = map_recommendations(r, lang);
+                    warnings.append(&mut res.warnings);
+                    res.c
+                })
+            })
+            .flatten()
+            .unwrap_or_default();
 
         let mut engagement_panels = self.engagement_panels;
         warnings.append(&mut engagement_panels.warnings);
@@ -273,8 +285,9 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                 like_count,
                 publish_date,
                 publish_date_txt,
+                is_live,
                 is_ccommons,
-                recommended: recommended.c,
+                recommended,
                 top_comments: Paginator {
                     count: None,
                     items: Vec::new(),
@@ -521,9 +534,9 @@ fn map_comment(
                 })
                 .unwrap_or_default(),
             by_owner: c.author_is_channel_owner,
-            is_pinned: priority
+            pinned: priority
                 == response::video_details::CommentPriority::RenderingPriorityPinnedComment,
-            is_hearted: c
+            hearted: c
                 .action_buttons
                 .comment_action_buttons_renderer
                 .creator_heart
@@ -541,7 +554,7 @@ mod tests {
     #[test_log::test(tokio::test)]
     async fn get_video_details() {
         let rp = RustyPipe::builder().strict().build();
-        let details = rp.query().video_details("ZeerrnuLi5E").await.unwrap();
+        let details = rp.query().video_details("HRKu0cvrr_o").await.unwrap();
 
         dbg!(&details);
     }

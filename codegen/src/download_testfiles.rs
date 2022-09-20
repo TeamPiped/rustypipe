@@ -123,10 +123,12 @@ async fn playlist(testfiles: &Path) {
 
 async fn video_details(testfiles: &Path) {
     for (name, id) in [
-        ("music", "MZOgTu2dMTg"),
+        ("music", "XuM2onMGvTI"),
         ("mv", "ZeerrnuLi5E"),
         ("ccommons", "0rb9CfOvojk"),
         ("chapters", "nFDBxBUfE74"),
+        ("agegate", "XuM2onMGvTI"),
+        ("live", "86YLFOog4GM"),
     ] {
         let mut json_path = testfiles.to_path_buf();
         json_path.push("video_details");
@@ -156,33 +158,4 @@ async fn comments_top(testfiles: &Path) {
         .video_comments(&details.top_comments.ctoken.unwrap())
         .await
         .unwrap();
-    // rp.query().video_comments("Eg0SC0lITnpPSGk4c0pzGAYyJSIRIgtJSE56T0hpOHNKczAAeAJCEGNvbW1lbnRzLXNlY3Rpb24%3D").await.unwrap();
-
-    // Desktop 1
-    // top:    Eg0SC0lITnpPSGk4c0pzGAYyJSIRIgtJSE56T0hpOHNKczAAeAJCEGNvbW1lbnRzLXNlY3Rpb24%3D
-    // latest: Eg0SC0lITnpPSGk4c0pzGAYyJSIRIgtJSE56T0hpOHNKczABeAJCEGNvbW1lbnRzLXNlY3Rpb24%3D
-    // shows count
-
-    // Desktop 2
-    // top:    Eg0SC0lITnpPSGk4c0pzGAYyVSIuIgtJSE56T0hpOHNKczAAeAKqAhpVZ3lVZG5WQnBNR09tMnVMR3o1NEFhQUJBZzABQiFlbmdhZ2VtZW50LXBhbmVsLWNvbW1lbnRzLXNlY3Rpb24%3D
-    // shows no count
-
-    // latest: Eg0SC0lITnpPSGk4c0pzGAYyOCIRIgtJSE56T0hpOHNKczABeAIwAUIhZW5nYWdlbWVudC1wYW5lbC1jb21tZW50cy1zZWN0aW9u
-    // shows no count
-
-    // cont:   Eg0SC0lITnpPSGk4c0pzGAYyJSIRIgtJSE56T0hpOHNKczAAeAJCEGNvbW1lbnRzLXNlY3Rpb24%3D
-    // shows count
-}
-
-#[tokio::test]
-async fn test() {
-    let id = "IHNzOHi8sJs";
-    let rp = RustyPipe::new();
-    let details = rp.query().video_details(id).await.unwrap();
-
-    let ctoken_top = details.top_comments.ctoken;
-    let ctoken_latest = details.latest_comments.ctoken;
-
-    dbg!(ctoken_top);
-    dbg!(ctoken_latest);
 }

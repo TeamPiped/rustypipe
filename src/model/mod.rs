@@ -218,16 +218,22 @@ pub struct VideoDetails {
     pub title: String,
     /// Video description
     pub description: String,
-    /// Channel owning the video
+    /// Channel of the video
     pub channel: Channel,
     /// Number of views
     pub view_count: u64,
     /// Number of likes
-    pub like_count: u32,
-    /// Video publish date. `None` if the date could not be parsed.
+    ///
+    /// `None` if the like count was hidden by the creator.
+    pub like_count: Option<u32>,
+    /// Video publishing date. Start date in case of a livestream.
+    ///
+    /// `None` if the date could not be parsed.
     pub publish_date: Option<DateTime<Local>>,
-    /// Textual video publish date (e.g. `Aug 2, 2013`, depends on language)
+    /// Textual video publishing date (e.g. `Aug 2, 2013`, depends on language)
     pub publish_date_txt: String,
+    /// Is the video a livestream?
+    pub is_live: bool,
     /// Is the video published under the Creative Commons BY 3.0 license?
     ///
     /// Information about the license:
@@ -237,6 +243,8 @@ pub struct VideoDetails {
     /// https://creativecommons.org/licenses/by/3.0/
     pub is_ccommons: bool,
     /// Recommended videos
+    ///
+    /// Note: Recommendations are not available for age-restricted videos
     pub recommended: Paginator<RecommendedVideo>,
     /// Paginator to fetch comments (most liked first)
     pub top_comments: Paginator<Comment>,
@@ -260,9 +268,11 @@ pub struct RecommendedVideo {
     pub length: Option<u32>,
     /// Video thumbnail
     pub thumbnail: Vec<Thumbnail>,
-    /// Channel owning the video
+    /// Channel of the video
     pub channel: Channel,
-    /// Video publish date. `None` if the date could not be parsed.
+    /// Video publishing date.
+    ///
+    /// `None` if the date could not be parsed.
     pub publish_date: Option<DateTime<Local>>,
     /// Textual video publish date (e.g. `11 months ago`, depends on language)
     ///
@@ -327,7 +337,9 @@ pub struct Comment {
     ///
     /// There may be comments with missing authors (possibly deleted users?).
     pub author: Option<Channel>,
-    /// Comment publish date. `None` if the date could not be parsed.
+    /// Comment publishing date.
+    ///
+    /// `None` if the date could not be parsed.
     pub publish_date: Option<DateTime<Local>>,
     /// Textual comment publish date (e.g. `14 hours ago`), depends on language setting
     pub publish_date_txt: String,
@@ -340,7 +352,7 @@ pub struct Comment {
     /// Is the comment from the channel owner?
     pub by_owner: bool,
     /// Has the channel owner pinned the comment to the top?
-    pub is_pinned: bool,
+    pub pinned: bool,
     /// Has the channel owner marked the comment with a ❤️ heart ?
-    pub is_hearted: bool,
+    pub hearted: bool,
 }
