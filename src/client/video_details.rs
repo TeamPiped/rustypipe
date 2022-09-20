@@ -133,6 +133,7 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                     response::video_details::ItemSection::CommentItemSection { mut contents } => {
                         comment_ctoken_section = contents.try_swap_remove(0);
                     }
+                    response::video_details::ItemSection::None => {},
                 }
             }
             response::video_details::VideoResultsItem::None => {}

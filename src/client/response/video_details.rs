@@ -99,7 +99,7 @@ pub enum VideoResultsItem {
     ///
     /// 1. sectionIdentifier: "comments-entry-point", contains number of comments
     /// 2. sectionIdentifier: "comment-item-section", contains continuation token
-    ItemSectionRenderer(ItemSection),
+    ItemSectionRenderer(#[serde_as(deserialize_as = "DefaultOnError")] ItemSection),
     #[serde(other, deserialize_with = "ignore_any")]
     None,
 }
@@ -232,7 +232,7 @@ pub struct CurrentVideoWatchEndpoint {
 /// 1. CommentsEntryPointHeaderRenderer: contains number of comments
 /// 2. ContinuationItemRenderer: contains continuation token
 #[serde_as]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Default, Clone, Debug, Deserialize)]
 #[serde(rename_all = "kebab-case", tag = "sectionIdentifier")]
 pub enum ItemSection {
     CommentsEntryPoint {
@@ -243,6 +243,8 @@ pub enum ItemSection {
         #[serde_as(as = "VecSkipError<_>")]
         contents: Vec<ItemSectionComments>,
     },
+    #[default]
+    None,
 }
 
 /// Item section containing comment count
