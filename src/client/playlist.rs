@@ -1,3 +1,5 @@
+use std::convert::TryFrom;
+
 use anyhow::{anyhow, bail, Result};
 use reqwest::Method;
 use serde::Serialize;
@@ -5,7 +7,6 @@ use serde::Serialize;
 use crate::{
     deobfuscate::Deobfuscator,
     model::{ChannelId, Language, Paginator, Playlist, PlaylistVideo},
-    serializer::text::{PageType, TextLink},
     timeago,
     util::{self, TryRemove},
 };
@@ -45,7 +46,7 @@ impl RustyPipeQuery {
         .await
     }
 
-    pub async fn get_playlist_continuation(self, ctoken: &str) -> Result<Paginator<PlaylistVideo>> {
+    pub async fn playlist_continuation(self, ctoken: &str) -> Result<Paginator<PlaylistVideo>> {
         let context = self.get_context(ClientType::Desktop, true).await;
         let request_body = QPlaylistCont {
             context,
@@ -151,41 +152,28 @@ impl MapResponse<Playlist> for response::Playlist {
 
         let name = self.header.playlist_header_renderer.title;
         let description = self.header.playlist_header_renderer.description_text;
-
-        let channel = match self.header.playlist_header_renderer.owner_text {
-            Some(TextLink::Browse {
-                text,
-                page_type: PageType::Channel,
-                browse_id,
-            }) => Some(ChannelId {
-                id: browse_id,
-                name: text,
-            }),
-            _ => None,
-        };
+        let channel = self
+            .header
+            .playlist_header_renderer
+            .owner_text
+            .and_then(|link| ChannelId::try_from(link).ok());
 
         let mut warnings = video_items.warnings;
-        let last_update = match &last_update_txt {
-            Some(textual_date) => {
-                let parsed = timeago::parse_textual_date_to_dt(lang, textual_date);
-                if parsed.is_none() {
-                    warnings.push(format!("could not parse textual date `{}`", textual_date));
-                }
-                parsed
-            }
-            None => None,
-        };
+        let last_update = last_update_txt
+            .as_ref()
+            .and_then(|txt| timeago::parse_textual_date_or_warn(lang, txt, &mut warnings));
 
         Ok(MapResult {
             c: Playlist {
                 id: playlist_id,
                 name,
                 videos: Paginator {
+                    count: Some(n_videos),
                     items: videos,
                     ctoken,
                 },
-                n_videos,
-                thumbnails: thumbnails.into(),
+                video_count: n_videos,
+                thumbnail: thumbnails.into(),
                 description,
                 channel,
                 last_update,
@@ -213,7 +201,11 @@ impl MapResponse<Paginator<PlaylistVideo>> for response::PlaylistCont {
             map_playlist_items(action.append_continuation_items_action.continuation_items.c);
 
         Ok(MapResult {
-            c: Paginator { items, ctoken },
+            c: Paginator {
+                count: None,
+                items,
+                ctoken,
+            },
             warnings: action
                 .append_continuation_items_action
                 .continuation_items
@@ -229,23 +221,18 @@ fn map_playlist_items(
     let videos = items
         .into_iter()
         .filter_map(|it| match it {
-            response::VideoListItem::GridVideoRenderer { video } => match video.channel {
-                TextLink::Browse {
-                    text,
-                    page_type: PageType::Channel,
-                    browse_id,
-                } => Some(PlaylistVideo {
-                    id: video.video_id,
-                    title: video.title,
-                    length: video.length_seconds,
-                    thumbnails: video.thumbnail.into(),
-                    channel: ChannelId {
-                        id: browse_id,
-                        name: text,
-                    },
-                }),
-                _ => None,
-            },
+            response::VideoListItem::GridVideoRenderer { video } => {
+                match ChannelId::try_from(video.channel) {
+                    Ok(channel) => Some(PlaylistVideo {
+                        id: video.video_id,
+                        title: video.title,
+                        length: video.length_seconds,
+                        thumbnail: video.thumbnail.into(),
+                        channel,
+                    }),
+                    Err(_) => None,
+                }
+            }
             response::VideoListItem::ContinuationItemRenderer {
                 continuation_endpoint,
             } => {
@@ -261,7 +248,7 @@ fn map_playlist_items(
 impl Paginator<PlaylistVideo> {
     pub async fn next(&self, query: RustyPipeQuery) -> Result<Option<Self>> {
         Ok(match &self.ctoken {
-            Some(ctoken) => Some(query.get_playlist_continuation(ctoken).await?),
+            Some(ctoken) => Some(query.playlist_continuation(ctoken).await?),
             None => None,
         })
     }
@@ -282,12 +269,8 @@ impl Paginator<PlaylistVideo> {
     pub async fn extend_pages(&mut self, query: RustyPipeQuery, n_pages: usize) -> Result<()> {
         for _ in 0..n_pages {
             match self.extend(query.clone()).await {
-                Ok(false) => {
-                    break;
-                }
-                Err(e) => {
-                    return Err(e);
-                }
+                Ok(false) => break,
+                Err(e) => return Err(e),
                 _ => {}
             }
         }
@@ -297,12 +280,8 @@ impl Paginator<PlaylistVideo> {
     pub async fn extend_limit(&mut self, query: RustyPipeQuery, n_items: usize) -> Result<()> {
         while self.items.len() < n_items {
             match self.extend(query.clone()).await {
-                Ok(false) => {
-                    break;
-                }
-                Err(e) => {
-                    return Err(e);
-                }
+                Ok(false) => break,
+                Err(e) => return Err(e),
                 _ => {}
             }
         }
@@ -363,13 +342,13 @@ mod tests {
         assert_eq!(playlist.name, name);
         assert!(!playlist.videos.is_empty());
         assert_eq!(!playlist.videos.is_exhausted(), is_long);
-        assert!(playlist.n_videos > 10);
-        assert_eq!(playlist.n_videos > 100, is_long);
+        assert!(playlist.video_count > 10);
+        assert_eq!(playlist.video_count > 100, is_long);
         assert_eq!(playlist.description, description);
         if channel.is_some() {
             assert_eq!(playlist.channel, channel);
         }
-        assert!(!playlist.thumbnails.is_empty());
+        assert!(!playlist.thumbnail.is_empty());
     }
 
     #[rstest]
@@ -410,6 +389,7 @@ mod tests {
             .await
             .unwrap();
         assert!(playlist.videos.items.len() > 100);
+        assert!(playlist.videos.count.unwrap() > 100);
     }
 
     #[test_log::test(tokio::test)]
@@ -423,5 +403,6 @@ mod tests {
 
         playlist.videos.extend_limit(rp.query(), 101).await.unwrap();
         assert!(playlist.videos.items.len() > 100);
+        assert!(playlist.videos.count.unwrap() > 100);
     }
 }

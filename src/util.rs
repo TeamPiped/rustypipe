@@ -2,6 +2,7 @@ use std::{collections::BTreeMap, str::FromStr};
 
 use anyhow::Result;
 use fancy_regex::Regex;
+use once_cell::sync::Lazy;
 use rand::Rng;
 use url::Url;
 
@@ -89,6 +90,48 @@ where
     numbers
 }
 
+/// Parse textual video length (e.g. `0:49`, `2:02` or `1:48:18`)
+/// and return the duration in seconds.
+pub fn parse_video_length(text: &str) -> Option<u32> {
+    static VIDEO_LENGTH_REGEX: Lazy<Regex> =
+        Lazy::new(|| Regex::new(r#"(?:(\d+):)?(\d{1,2}):(\d{2})"#).unwrap());
+    VIDEO_LENGTH_REGEX.captures(text).ok().flatten().map(|cap| {
+        let hrs = cap
+            .get(1)
+            .and_then(|x| x.as_str().parse::<u32>().ok())
+            .unwrap_or_default();
+        let min = cap
+            .get(2)
+            .and_then(|x| x.as_str().parse::<u32>().ok())
+            .unwrap_or_default();
+        let sec = cap
+            .get(3)
+            .and_then(|x| x.as_str().parse::<u32>().ok())
+            .unwrap_or_default();
+
+        hrs * 3600 + min * 60 + sec
+    })
+}
+
+pub fn parse_numeric_or_warn<F>(string: &str, warnings: &mut Vec<String>) -> Option<F>
+where
+    F: FromStr,
+{
+    let res = parse_numeric::<F>(string);
+    if res.is_err() {
+        warnings.push(format!("could not parse number `{}`", string));
+    }
+    res.ok()
+}
+
+pub fn parse_video_length_or_warn(text: &str, warnings: &mut Vec<String>) -> Option<u32> {
+    let res = parse_video_length(text);
+    if res.is_none() {
+        warnings.push(format!("could not parse video length `{}`", text));
+    }
+    res
+}
+
 pub fn retry_delay(
     n_past_retries: u32,
     min_retry_interval: u32,
@@ -164,6 +207,18 @@ mod tests {
     #[case("最后更新时间：2020年1月3日", vec![2020, 1, 3])]
     fn t_parse_numeric_vec(#[case] string: &str, #[case] expect: Vec<u32>) {
         let n = parse_numeric_vec::<u32>(string);
+        assert_eq!(n, expect);
+    }
+
+    #[rstest]
+    #[case("0:49", Some(49))]
+    #[case("bla 2:02 h3llo w0rld", Some(122))]
+    #[case("18:22", Some(1102))]
+    #[case("1:48:18", Some(6498))]
+    #[case("102:12:39", Some(367959))]
+    #[case("42", None)]
+    fn t_parse_video_length(#[case] text: &str, #[case] expect: Option<u32>) {
+        let n = parse_video_length(text);
         assert_eq!(n, expect);
     }
 

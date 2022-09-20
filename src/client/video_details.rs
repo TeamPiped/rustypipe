@@ -1,10 +1,20 @@
-use anyhow::Result;
+use std::convert::TryFrom;
+
+use anyhow::{anyhow, bail, Result};
 use reqwest::Method;
 use serde::Serialize;
 
-use crate::{model::VideoDetails, serializer::MapResult};
+use crate::{
+    model::{Channel, ChannelId, Comment, Language, Paginator, RecommendedVideo, VideoDetails},
+    serializer::MapResult,
+    timeago,
+    util::{self, TryRemove},
+};
 
-use super::{response, ClientType, MapResponse, RustyPipeQuery, YTContext};
+use super::{
+    response::{self, IconType, IsLive},
+    ClientType, MapResponse, RustyPipeQuery, YTContext,
+};
 
 #[derive(Clone, Debug, Serialize)]
 struct QVideo {
@@ -44,48 +54,41 @@ impl RustyPipeQuery {
         .await
     }
 
-    /*
-    async fn get_comments_response(&self, ctoken: &str) -> Result<response::VideoComments> {
-        let client = self.get_ytclient(ClientType::Desktop);
-        let context = client.get_context(true).await;
+    pub async fn video_recommendations(self, ctoken: &str) -> Result<Paginator<RecommendedVideo>> {
+        let context = self.get_context(ClientType::Desktop, true).await;
         let request_body = QVideoCont {
             context,
             continuation: ctoken.to_owned(),
         };
 
-        let resp = client
-            .request_builder(Method::POST, "next")
-            .await
-            .json(&request_body)
-            .send()
-            .await?
-            .error_for_status()?;
-
-        Ok(resp.json::<response::VideoComments>().await?)
+        self.execute_request::<response::VideoRecommendations, _, _>(
+            ClientType::Desktop,
+            "video_recommendations",
+            ctoken,
+            Method::POST,
+            "next",
+            &request_body,
+        )
+        .await
     }
 
-    async fn get_recommendations_response(
-        &self,
-        ctoken: &str,
-    ) -> Result<response::VideoRecommendations> {
-        let client = self.get_ytclient(ClientType::Desktop);
-        let context = client.get_context(true).await;
+    pub async fn video_comments(self, ctoken: &str) -> Result<Paginator<Comment>> {
+        let context = self.get_context(ClientType::Desktop, true).await;
         let request_body = QVideoCont {
             context,
             continuation: ctoken.to_owned(),
         };
 
-        let resp = client
-            .request_builder(Method::POST, "next")
-            .await
-            .json(&request_body)
-            .send()
-            .await?
-            .error_for_status()?;
-
-        Ok(resp.json::<response::VideoRecommendations>().await?)
+        self.execute_request::<response::VideoComments, _, _>(
+            ClientType::Desktop,
+            "video_comments",
+            ctoken,
+            Method::POST,
+            "next",
+            &request_body,
+        )
+        .await
     }
-    */
 }
 
 impl MapResponse<VideoDetails> for response::VideoDetails {
@@ -95,18 +98,457 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
         lang: crate::model::Language,
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
     ) -> Result<MapResult<VideoDetails>> {
+        let mut warnings = Vec::new();
+
+        let video_id = self.current_video_endpoint.watch_endpoint.video_id;
+        if id != video_id {
+            bail!("got wrong playlist id {}, expected {}", video_id, id);
+        }
+
+        let mut primary_results = self
+            .contents
+            .two_column_watch_next_results
+            .results
+            .results
+            .contents;
+        warnings.append(&mut primary_results.warnings);
+
+        let mut primary_info = None;
+        let mut secondary_info = None;
+        primary_results.c.into_iter().for_each(|r| match r {
+            response::video_details::VideoResultsItem::VideoPrimaryInfoRenderer { .. } => {
+                primary_info = Some(r);
+            }
+            response::video_details::VideoResultsItem::VideoSecondaryInfoRenderer { .. } => {
+                secondary_info = Some(r);
+            }
+            response::video_details::VideoResultsItem::None => {}
+        });
+
+        let (title, view_count, like_count, publish_date, publish_date_txt) = match primary_info {
+            Some(response::video_details::VideoResultsItem::VideoPrimaryInfoRenderer {
+                title,
+                view_count,
+                video_actions,
+                date_text,
+            }) => {
+                let like_btn = some_or_bail!(
+                    video_actions
+                        .menu_renderer
+                        .top_level_buttons
+                        .into_iter()
+                        .find(|button| {
+                            button.toggle_button_renderer.default_icon.icon_type == IconType::Like
+                        }),
+                    Err(anyhow!("could not find like button"))
+                );
+                (
+                    title,
+                    util::parse_numeric(&view_count.video_view_count_renderer.view_count)?,
+                    util::parse_numeric(&like_btn.toggle_button_renderer.accessibility_data)?,
+                    timeago::parse_textual_date_or_warn(lang, &date_text, &mut warnings),
+                    date_text,
+                )
+            }
+            _ => bail!("could not find primary_info"),
+        };
+
+        if publish_date.is_none() {
+            warnings.push(format!("could not parse date: {}", publish_date_txt));
+        }
+
+        let (owner, description, is_ccommons) = match secondary_info {
+            Some(response::video_details::VideoResultsItem::VideoSecondaryInfoRenderer {
+                owner,
+                description,
+                metadata_row_container,
+            }) => {
+                let is_ccommons = metadata_row_container
+                    .map(|c| {
+                        c.metadata_row_container_renderer.rows.iter().any(|cr| {
+                            cr.metadata_row_renderer.contents.iter().any(|links| {
+                                links.iter().any(|link| match link {
+                                    crate::serializer::text::TextLink::Web { text: _, url } => {
+                                        url == "https://www.youtube.com/t/creative_commons"
+                                    }
+                                    _ => false,
+                                })
+                            })
+                        })
+                    })
+                    .unwrap_or_default();
+
+                (owner.video_owner_renderer, description, is_ccommons)
+            }
+            _ => bail!("could not find secondary_info"),
+        };
+
+        let (channel_id, channel_name) = match owner.title {
+            crate::serializer::text::TextLink::Browse {
+                text,
+                page_type,
+                browse_id,
+            } => match page_type {
+                crate::serializer::text::PageType::Channel => (browse_id, text),
+                _ => bail!("invalid channel link type"),
+            },
+            _ => bail!("invalid channel link"),
+        };
+
+        let mut recommended = map_recommendations(
+            self.contents
+                .two_column_watch_next_results
+                .secondary_results
+                .secondary_results
+                .results,
+            lang,
+        );
+        warnings.append(&mut recommended.warnings);
+
+        let mut engagement_panels = self.engagement_panels;
+        warnings.append(&mut engagement_panels.warnings);
+
+        let mut chapter_panel = None;
+        let mut comment_panel = None;
+        engagement_panels.c.into_iter().for_each(|panel| match panel.engagement_panel_section_list_renderer {
+            response::video_details::EngagementPanelRenderer::EngagementPanelMacroMarkersDescriptionChapters { content } => {
+                chapter_panel = Some(content);
+            },
+            response::video_details::EngagementPanelRenderer::EngagementPanelCommentsSection { header } => {
+                comment_panel = Some(header);
+            },
+            response::video_details::EngagementPanelRenderer::None => {},
+        });
+
+        let (top_comments_ctoken, latest_comments_ctoken) = match comment_panel {
+            Some(comments) => {
+                let mut items = comments
+                    .engagement_panel_title_header_renderer
+                    .menu
+                    .sort_filter_sub_menu_renderer
+                    .sub_menu_items;
+                let latest = items.try_swap_remove(1);
+                let top = items.try_swap_remove(0);
+
+                (
+                    top.map(|c| c.service_endpoint.continuation_command.token),
+                    latest.map(|c| c.service_endpoint.continuation_command.token),
+                )
+            }
+            None => (None, None),
+        };
+
         Ok(MapResult {
             c: VideoDetails {
-                id: id.to_owned(),
-                title: "".to_owned(),
-                description: "".to_owned(),
+                id: video_id,
+                title,
+                description,
+                channel: Channel {
+                    id: channel_id,
+                    name: channel_name,
+                    avatar: owner.thumbnail.into(),
+                    verification: owner.badges.into(),
+                    subscriber_count: None,
+                    subscriber_count_txt: owner.subscriber_count_text,
+                },
+                view_count,
+                like_count,
+                publish_date,
+                publish_date_txt,
+                is_ccommons,
+                recommended: recommended.c,
+                top_comments: Paginator {
+                    ctoken: top_comments_ctoken,
+                    ..Default::default()
+                },
+                latest_comments: Paginator {
+                    ctoken: latest_comments_ctoken,
+                    ..Default::default()
+                },
             },
-            warnings: vec![],
+            warnings,
         })
+    }
+}
+
+impl MapResponse<Paginator<RecommendedVideo>> for response::VideoRecommendations {
+    fn map_response(
+        self,
+        _id: &str,
+        lang: crate::model::Language,
+        _deobf: Option<&crate::deobfuscate::Deobfuscator>,
+    ) -> Result<MapResult<Paginator<RecommendedVideo>>> {
+        let mut endpoints = self.on_response_received_endpoints;
+        let cont = some_or_bail!(
+            endpoints.try_swap_remove(0),
+            Err(anyhow!("no continuation endpoint"))
+        );
+
+        Ok(map_recommendations(
+            cont.append_continuation_items_action.continuation_items,
+            lang,
+        ))
+    }
+}
+
+impl MapResponse<Paginator<Comment>> for response::VideoComments {
+    fn map_response(
+        self,
+        _id: &str,
+        lang: crate::model::Language,
+        _deobf: Option<&crate::deobfuscate::Deobfuscator>,
+    ) -> Result<MapResult<Paginator<Comment>>> {
+        let mut warnings = self.on_response_received_endpoints.warnings;
+
+        let mut comments = Vec::new();
+        let mut comment_count = None;
+        let mut ctoken = None;
+
+        self.on_response_received_endpoints
+            .c
+            .into_iter()
+            .for_each(|citem| {
+                let mut items = citem.append_continuation_items_action.continuation_items;
+                warnings.append(&mut items.warnings);
+                items.c.into_iter().for_each(|item| match item {
+                    response::video_details::CommentListItem::CommentThreadRenderer {
+                        comment,
+                        replies,
+                        rendering_priority,
+                    } => {
+                        let mut res = map_comment(
+                            comment.comment_renderer,
+                            Some(replies),
+                            rendering_priority,
+                            lang,
+                        );
+                        comments.push(res.c);
+                        warnings.append(&mut res.warnings)
+                    }
+                    response::video_details::CommentListItem::CommentRenderer { comment } => {
+                        let mut res = map_comment(
+                            comment,
+                            None,
+                            response::video_details::CommentPriority::RenderingPriorityUnknown,
+                            lang,
+                        );
+                        comments.push(res.c);
+                        warnings.append(&mut res.warnings)
+                    }
+                    response::video_details::CommentListItem::ContinuationItemRenderer {
+                        continuation_endpoint,
+                    } => {
+                        ctoken = Some(continuation_endpoint.continuation_command.token);
+                    }
+                    response::video_details::CommentListItem::CommentsHeaderRenderer {
+                        count_text,
+                    } => {
+                        comment_count = count_text.and_then(|txt| {
+                            util::parse_numeric_or_warn::<u32>(&txt, &mut warnings)
+                        });
+                    }
+                });
+            });
+
+        Ok(MapResult {
+            c: Paginator {
+                count: comment_count,
+                items: comments,
+                ctoken,
+            },
+            warnings,
+        })
+    }
+}
+
+fn map_recommendations(
+    r: MapResult<Vec<response::VideoListItem<response::video_details::RecommendedVideo>>>,
+    lang: Language,
+) -> MapResult<Paginator<RecommendedVideo>> {
+    let mut warnings = r.warnings;
+    let mut ctoken = None;
+
+    let items =
+        r.c.into_iter()
+            .filter_map(|item| match item {
+                response::VideoListItem::GridVideoRenderer { video } => {
+                    match ChannelId::try_from(video.channel) {
+                        Ok(channel) => Some(RecommendedVideo {
+                            id: video.video_id,
+                            title: video.title,
+                            length: video.length_text.and_then(|txt| {
+                                util::parse_video_length_or_warn(&txt, &mut warnings)
+                            }),
+                            thumbnail: video.thumbnail.into(),
+                            channel: Channel {
+                                id: channel.id,
+                                name: channel.name,
+                                avatar: video.channel_thumbnail.into(),
+                                verification: video.owner_badges.into(),
+                                subscriber_count: None,
+                                subscriber_count_txt: None,
+                            },
+                            publish_date: video.published_time_text.as_ref().and_then(|txt| {
+                                timeago::parse_timeago_or_warn(lang, txt, &mut warnings)
+                            }),
+                            publish_date_txt: video.published_time_text,
+                            view_count: util::parse_numeric_or_warn(
+                                &video.view_count_text,
+                                &mut warnings,
+                            ),
+                            is_live: video.badges.is_live(),
+                        }),
+                        Err(e) => {
+                            warnings.push(e.to_string());
+                            None
+                        }
+                    }
+                }
+                response::VideoListItem::ContinuationItemRenderer {
+                    continuation_endpoint,
+                } => {
+                    ctoken = Some(continuation_endpoint.continuation_command.token);
+                    None
+                }
+                response::VideoListItem::None => None,
+            })
+            .collect::<Vec<_>>();
+
+    MapResult {
+        c: Paginator {
+            count: None,
+            items,
+            ctoken,
+        },
+        warnings,
+    }
+}
+
+fn map_comment(
+    c: response::video_details::CommentRenderer,
+    replies: Option<response::video_details::Replies>,
+    priority: response::video_details::CommentPriority,
+    lang: Language,
+) -> MapResult<Comment> {
+    let mut warnings = Vec::new();
+
+    let mut reply_ctoken = None;
+    let replies = replies.map(|replies| {
+        replies
+            .comment_replies_renderer
+            .contents
+            .into_iter()
+            .filter_map(|item| match item {
+                response::video_details::CommentListItem::CommentRenderer { comment } => {
+                    let mut res = map_comment(
+                        comment,
+                        None,
+                        response::video_details::CommentPriority::default(),
+                        lang,
+                    );
+                    warnings.append(&mut res.warnings);
+                    Some(res.c)
+                }
+                response::video_details::CommentListItem::ContinuationItemRenderer {
+                    continuation_endpoint,
+                } => {
+                    reply_ctoken = Some(continuation_endpoint.continuation_command.token);
+                    None
+                }
+                _ => None,
+            })
+            .collect::<Vec<_>>()
+    });
+
+    MapResult {
+        c: Comment {
+            id: c.comment_id,
+            text: c.content_text,
+            author: match (c.author_endpoint, c.author_text) {
+                (Some(aep), Some(name)) => Some(Channel {
+                    id: aep.browse_endpoint.browse_id,
+                    name,
+                    avatar: c.author_thumbnail.into(),
+                    verification: c
+                        .author_comment_badge
+                        .map(|b| b.author_comment_badge_renderer.icon.into())
+                        .unwrap_or_default(),
+                    subscriber_count: None,
+                    subscriber_count_txt: None,
+                }),
+                _ => None,
+            },
+            publish_date: timeago::parse_timeago_or_warn(
+                lang,
+                &c.published_time_text,
+                &mut warnings,
+            ),
+            publish_date_txt: c.published_time_text,
+            like_count: util::parse_numeric_or_warn(
+                &c.action_buttons
+                    .comment_action_buttons_renderer
+                    .like_button
+                    .toggle_button_renderer
+                    .accessibility_data,
+                &mut warnings,
+            ),
+            reply_count: c.reply_count,
+            replies: replies
+                .map(|items| Paginator {
+                    count: Some(c.reply_count),
+                    items,
+                    ctoken: reply_ctoken,
+                })
+                .unwrap_or_default(),
+            by_owner: c.author_is_channel_owner,
+            is_pinned: priority
+                == response::video_details::CommentPriority::RenderingPriorityPinnedComment,
+            is_hearted: c
+                .action_buttons
+                .comment_action_buttons_renderer
+                .creator_heart
+                .map(|h| h.creator_heart_renderer.is_hearted)
+                .unwrap_or_default(),
+        },
+        warnings,
     }
 }
 
 #[cfg(test)]
 mod tests {
-    use super::*;
+    use crate::client::RustyPipe;
+
+    #[test_log::test(tokio::test)]
+    async fn get_video_details() {
+        let rp = RustyPipe::builder().strict().build();
+        let details = rp.query().video_details("ZeerrnuLi5E").await.unwrap();
+
+        dbg!(&details);
+    }
+
+    #[test_log::test(tokio::test)]
+    async fn get_video_recommendations() {
+        let rp = RustyPipe::builder().strict().build();
+        let details = rp.query().video_details("ZeerrnuLi5E").await.unwrap();
+        let rec = rp
+            .query()
+            .video_recommendations(&details.recommended.ctoken.unwrap())
+            .await
+            .unwrap();
+
+        dbg!(&rec);
+    }
+
+    #[test_log::test(tokio::test)]
+    async fn get_video_comments() {
+        let rp = RustyPipe::builder().strict().build();
+        let details = rp.query().video_details("3pv_rHKnwAs").await.unwrap();
+        let rec = rp
+            .query()
+            .video_comments(&details.top_comments.ctoken.unwrap())
+            .await
+            .unwrap();
+
+        dbg!(&rec);
+    }
 }

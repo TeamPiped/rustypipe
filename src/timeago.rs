@@ -148,6 +148,18 @@ pub fn parse_timeago_to_dt(lang: Language, textual_date: &str) -> Option<DateTim
     parse_timeago(lang, textual_date).map(|ta| ta.into())
 }
 
+pub(crate) fn parse_timeago_or_warn(
+    lang: Language,
+    textual_date: &str,
+    warnings: &mut Vec<String>,
+) -> Option<DateTime<Local>> {
+    let res = parse_timeago_to_dt(lang, textual_date);
+    if res.is_none() {
+        warnings.push(format!("could not parse timeago `{}`", textual_date));
+    }
+    res
+}
+
 pub fn parse_textual_date(lang: Language, textual_date: &str) -> Option<ParsedDate> {
     let entry = dictionary::entry(lang);
     let filtered_str = filter_str(textual_date);
@@ -196,6 +208,18 @@ pub fn parse_textual_date(lang: Language, textual_date: &str) -> Option<ParsedDa
 
 pub fn parse_textual_date_to_dt(lang: Language, textual_date: &str) -> Option<DateTime<Local>> {
     parse_textual_date(lang, textual_date).map(|ta| ta.into())
+}
+
+pub(crate) fn parse_textual_date_or_warn(
+    lang: Language,
+    textual_date: &str,
+    warnings: &mut Vec<String>,
+) -> Option<DateTime<Local>> {
+    let res = parse_textual_date_to_dt(lang, textual_date);
+    if res.is_none() {
+        warnings.push(format!("could not parse timeago `{}`", textual_date));
+    }
+    res
 }
 
 #[cfg(test)]

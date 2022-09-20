@@ -1,3 +1,6 @@
+use std::convert::TryFrom;
+
+use anyhow::anyhow;
 use serde::{Deserialize, Deserializer};
 use serde_with::{serde_as, DefaultOnError, DeserializeAs};
 
@@ -240,12 +243,32 @@ impl<'de> DeserializeAs<'de, Vec<TextLink>> for TextLinks {
     }
 }
 
-#[derive(Deserialize)]
-pub struct AccessibilityText {
-    accessibility: AccessibilityData,
+impl TryFrom<TextLink> for crate::model::ChannelId {
+    type Error = anyhow::Error;
+
+    fn try_from(value: TextLink) -> Result<Self, Self::Error> {
+        match value {
+            TextLink::Browse {
+                text,
+                page_type,
+                browse_id,
+            } => match page_type {
+                PageType::Channel => Ok(crate::model::ChannelId { id: browse_id, name: text }),
+                _ => Err(anyhow!("invalid channel link type")),
+            },
+            _ => Err(anyhow!("invalid channel link")),
+        }
+    }
 }
 
 #[derive(Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct AccessibilityText {
+    accessibility_data: AccessibilityData,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase")]
 struct AccessibilityData {
     label: String,
 }
@@ -256,7 +279,7 @@ impl<'de> DeserializeAs<'de, String> for AccessibilityText {
         D: Deserializer<'de>,
     {
         let text = AccessibilityText::deserialize(deserializer)?;
-        Ok(text.accessibility.label)
+        Ok(text.accessibility_data.label)
     }
 }
 

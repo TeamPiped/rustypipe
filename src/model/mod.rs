@@ -183,8 +183,8 @@ pub struct Playlist {
     pub id: String,
     pub name: String,
     pub videos: Paginator<PlaylistVideo>,
-    pub n_videos: u32,
-    pub thumbnails: Vec<Thumbnail>,
+    pub video_count: u32,
+    pub thumbnail: Vec<Thumbnail>,
     pub description: Option<String>,
     pub channel: Option<ChannelId>,
     pub last_update: Option<DateTime<Local>>,
@@ -196,7 +196,7 @@ pub struct PlaylistVideo {
     pub id: String,
     pub title: String,
     pub length: u32,
-    pub thumbnails: Vec<Thumbnail>,
+    pub thumbnail: Vec<Thumbnail>,
     pub channel: ChannelId,
 }
 
@@ -212,24 +212,112 @@ pub struct ChannelId {
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct VideoDetails {
+    /// Unique YouTube video ID
     pub id: String,
+    /// Video title
     pub title: String,
+    /// Video description
     pub description: String,
+    /// Channel owning the video
+    pub channel: Channel,
+    /// Number of views
+    pub view_count: u64,
+    /// Number of likes
+    pub like_count: u32,
+    /// Video publish date. `None` if the date could not be parsed.
+    pub publish_date: Option<DateTime<Local>>,
+    /// Textual video publish date (e.g. `Aug 2, 2013`, depends on language)
+    pub publish_date_txt: String,
+    /// Is the video published under the Creative Commons BY 3.0 license?
+    ///
+    /// Information about the license:
+    ///
+    /// https://www.youtube.com/t/creative_commons
+    ///
+    /// https://creativecommons.org/licenses/by/3.0/
+    pub is_ccommons: bool,
+    /// Recommended videos
+    pub recommended: Paginator<RecommendedVideo>,
+    /// Paginator to fetch comments (most liked first)
+    pub top_comments: Paginator<Comment>,
+    /// Paginator to fetch comments (latest first)
+    pub latest_comments: Paginator<Comment>,
+}
+
+/*
+@RECOMMENDATIONS
+*/
+
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+pub struct RecommendedVideo {
+    /// Unique YouTube video ID
+    pub id: String,
+    /// Video title
+    pub title: String,
+    /// Video length in seconds.
+    ///
+    /// Is `None` for livestreams.
+    pub length: Option<u32>,
+    /// Video thumbnail
+    pub thumbnail: Vec<Thumbnail>,
+    /// Channel owning the video
+    pub channel: Channel,
+    /// Video publish date. `None` if the date could not be parsed.
+    pub publish_date: Option<DateTime<Local>>,
+    /// Textual video publish date (e.g. `11 months ago`, depends on language)
+    ///
+    /// Is `None` for livestreams.
+    pub publish_date_txt: Option<String>,
+    /// View count
+    ///
+    /// Is `None` if it could not be parsed
+    pub view_count: Option<u64>,
+    /// Is the video an active livestream?
+    pub is_live: bool,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+pub struct Channel {
+    /// Unique YouTube channel ID
+    pub id: String,
+    /// Channel name
+    pub name: String,
+    /// Channel avatar/profile picture
+    pub avatar: Vec<Thumbnail>,
+    /// Channel verification mark
+    pub verification: Verification,
+    /// Approximate number of subscribers
+    ///
+    /// Info: This is only present in the `VideoDetails` response
+    pub subscriber_count: Option<u32>,
+    /// Textual subscriber count (e.g `1.41M subscribers`, depends on language)
+    pub subscriber_count_txt: Option<String>,
 }
 
 /*
 @COMMENTS
 */
-#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
-pub struct Channel {
-    pub id: String,
-    pub name: String,
-    pub avatars: Vec<Thumbnail>,
-    pub verified: bool,
+
+#[derive(Default, Copy, Clone, Debug, Serialize, Deserialize, PartialEq, Eq, Hash)]
+#[serde(rename_all = "snake_case")]
+pub enum Verification {
+    #[default]
+    /// Unverified channel (default)
+    None,
+    /// Verified channel (✓ checkmark symbol)
+    Verified,
+    /// Verified music artist (♪ music note symbol)
+    Artist,
+}
+
+impl Verification {
+    pub fn verified(&self) -> bool {
+        self != &Self::None
+    }
 }
 
 // TODO: impl popularity comparison
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct Comment {
     /// Unique YouTube Comment-ID (e.g. `UgynScMrsqGSL8qvePl4AaABAg`)
     pub id: String,
@@ -239,16 +327,20 @@ pub struct Comment {
     ///
     /// There may be comments with missing authors (possibly deleted users?).
     pub author: Option<Channel>,
-    /// Number of upvotes
-    pub upvotes: u32,
+    /// Comment publish date. `None` if the date could not be parsed.
+    pub publish_date: Option<DateTime<Local>>,
+    /// Textual comment publish date (e.g. `14 hours ago`), depends on language setting
+    pub publish_date_txt: String,
+    /// Number of comment likes
+    pub like_count: Option<u32>,
     /// Number of replies
-    pub n_replies: u32,
+    pub reply_count: u32,
     /// Paginator to fetch comment replies
     pub replies: Paginator<Comment>,
     /// Is the comment from the channel owner?
     pub by_owner: bool,
     /// Has the channel owner pinned the comment to the top?
-    pub pinned: bool,
-    /// Has the channel owner marked the comment with a ❤️ ?
-    pub hearted: bool,
+    pub is_pinned: bool,
+    /// Has the channel owner marked the comment with a ❤️ heart ?
+    pub is_hearted: bool,
 }

@@ -68,6 +68,9 @@ pub enum VideoListItem<T> {
         continuation_endpoint: ContinuationEndpoint,
     },
     /// No video list item (e.g. ad)
+    ///
+    /// Note that there are sometimes playlists among the recommended
+    /// videos. They are currently ignored.
     #[serde(other, deserialize_with = "ignore_any")]
     None,
 }
@@ -84,10 +87,22 @@ pub struct ContinuationCommand {
     pub token: String,
 }
 
+#[serde_as]
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Icon {
-    pub icon_type: String,
+    pub icon_type: IconType,
+}
+
+#[derive(Clone, Copy, Debug, Deserialize, PartialEq, Eq, Hash)]
+#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+pub enum IconType {
+    /// Checkmark for verified channels
+    Check,
+    /// Music note for verified artists
+    OfficialArtistBadge,
+    /// Like button
+    Like,
 }
 
 #[derive(Clone, Debug, Deserialize)]
@@ -107,24 +122,24 @@ pub struct VideoOwnerRenderer {
     pub subscriber_count_text: Option<String>,
     #[serde(default)]
     #[serde_as(as = "VecSkipError<_>")]
-    pub badges: Vec<UserBadge>,
+    pub badges: Vec<ChannelBadge>,
 }
 
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct UserBadge {
-    pub metadata_badge_renderer: UserBadgeRenderer,
+pub struct ChannelBadge {
+    pub metadata_badge_renderer: ChannelBadgeRenderer,
 }
 
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct UserBadgeRenderer {
-    pub style: UserBadgeStyle,
+pub struct ChannelBadgeRenderer {
+    pub style: ChannelBadgeStyle,
 }
 
 #[derive(Clone, Copy, Debug, Deserialize, PartialEq, Eq, Hash)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
-pub enum UserBadgeStyle {
+pub enum ChannelBadgeStyle {
     BadgeStyleTypeVerified,
     BadgeStyleTypeVerifiedArtist,
 }
@@ -153,6 +168,29 @@ pub enum TimeOverlayStyle {
     Default,
     Live,
     Shorts,
+}
+
+/// Badges are displayed on the video thumbnail and
+/// show certain video properties (e.g. active livestream)
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct VideoBadge {
+    pub metadata_badge_renderer: VideoBadgeRenderer,
+}
+
+/// Badges are displayed on the video thumbnail and
+/// show certain video properties (e.g. active livestream)
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct VideoBadgeRenderer {
+    pub style: VideoBadgeStyle,
+}
+
+#[derive(Clone, Copy, Debug, Deserialize, PartialEq, Eq, Hash)]
+#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+pub enum VideoBadgeStyle {
+    /// Active livestream
+    BadgeStyleTypeLiveNow,
 }
 
 // YouTube Music
@@ -245,5 +283,38 @@ impl From<Thumbnails> for Vec<crate::model::Thumbnail> {
                 height: t.height,
             })
             .collect()
+    }
+}
+
+impl From<Vec<ChannelBadge>> for crate::model::Verification {
+    fn from(badges: Vec<ChannelBadge>) -> Self {
+        badges.get(0).map_or(crate::model::Verification::None, |b| {
+            match b.metadata_badge_renderer.style {
+                ChannelBadgeStyle::BadgeStyleTypeVerified => Self::Verified,
+                ChannelBadgeStyle::BadgeStyleTypeVerifiedArtist => Self::Artist,
+            }
+        })
+    }
+}
+
+impl From<Icon> for crate::model::Verification {
+    fn from(icon: Icon) -> Self {
+        match icon.icon_type {
+            IconType::Check => Self::Verified,
+            IconType::OfficialArtistBadge => Self::Artist,
+            _ => Self::None,
+        }
+    }
+}
+
+pub trait IsLive {
+    fn is_live(&self) -> bool;
+}
+
+impl IsLive for Vec<VideoBadge> {
+    fn is_live(&self) -> bool {
+        self.iter().any(|badge| {
+            badge.metadata_badge_renderer.style == VideoBadgeStyle::BadgeStyleTypeLiveNow
+        })
     }
 }

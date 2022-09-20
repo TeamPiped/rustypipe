@@ -11,7 +11,10 @@ use crate::serializer::{
     VecLogError,
 };
 
-use super::{ContentsRenderer, ContinuationEndpoint, Icon, Thumbnails, VideoListItem, VideoOwner};
+use super::{
+    ChannelBadge, ContentsRenderer, ContinuationEndpoint, Icon, Thumbnails, VideoBadge,
+    VideoListItem, VideoOwner,
+};
 
 /*
 #VIDEO DETAILS
@@ -24,6 +27,8 @@ use super::{ContentsRenderer, ContinuationEndpoint, Icon, Thumbnails, VideoListI
 pub struct VideoDetails {
     /// Video metadata + recommended videos
     pub contents: Contents,
+    /// Video ID
+    pub current_video_endpoint: CurrentVideoEndpoint,
     #[serde_as(as = "VecLogError<_>")]
     /// Video chapters + comment section
     pub engagement_panels: MapResult<Vec<EngagementPanel>>,
@@ -113,6 +118,7 @@ pub struct ViewCount {
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ViewCountRenderer {
+    /// View count (`232,975,196 views`)
     #[serde_as(as = "Text")]
     pub view_count: String,
 }
@@ -147,9 +153,9 @@ pub struct ToggleButtonWrap {
 pub struct ToggleButton {
     /// Icon type: `LIKE` / `DISLIKE`
     pub default_icon: Icon,
-    /// Number of likes (`4,010,157 likes`)
+    /// Number of likes (`like this video along with 4,010,156 other people`)
     #[serde_as(as = "AccessibilityText")]
-    pub default_text: String,
+    pub accessibility_data: String,
 }
 
 /// Shows additional video metadata. Its only known use is for
@@ -192,22 +198,18 @@ pub struct MetadataRowRenderer {
     pub contents: Vec<Vec<TextLink>>,
 }
 
-/*
-#[serde_as]
+/// Contains current video ID
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub enum ItemSection {
-    #[serde(rename_all = "camelCase")]
-    CommentsEntryPointHeaderRenderer {
-        #[serde_as(as = "Text")]
-        comment_count: String,
-    },
-    #[serde(rename_all = "camelCase")]
-    ContinuationItemRenderer {
-        continuation_endpoint: ContinuationEndpoint,
-    },
+pub struct CurrentVideoEndpoint {
+    pub watch_endpoint: CurrentVideoWatchEndpoint,
 }
-*/
+/// Contains current video ID
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct CurrentVideoWatchEndpoint {
+    pub video_id: String,
+}
 
 /// Video recommendations
 #[derive(Clone, Debug, Deserialize)]
@@ -237,38 +239,23 @@ pub struct RecommendedVideo {
     #[serde(rename = "shortBylineText")]
     #[serde_as(as = "TextLink")]
     pub channel: TextLink,
+    pub channel_thumbnail: Thumbnails,
+    /// Channel verification badge
+    #[serde(default)]
+    #[serde_as(as = "VecSkipError<_>")]
+    pub owner_badges: Vec<ChannelBadge>,
     #[serde_as(as = "Option<Text>")]
     pub length_text: Option<String>,
+    /// (e.g. `11 months ago`)
     #[serde_as(as = "Option<Text>")]
     pub published_time_text: Option<String>,
     #[serde_as(as = "Text")]
     pub view_count_text: String,
+    /// Badges are displayed on the video thumbnail and
+    /// show certain video properties (e.g. active livestream)
     #[serde(default)]
     #[serde_as(as = "VecSkipError<_>")]
     pub badges: Vec<VideoBadge>,
-}
-
-/// Badges are displayed on the video thumbnail and
-/// show certain video properties (e.g. active livestream)
-#[derive(Clone, Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct VideoBadge {
-    pub metadata_badge_renderer: VideoBadgeRenderer,
-}
-
-/// Badges are displayed on the video thumbnail and
-/// show certain video properties (e.g. active livestream)
-#[derive(Clone, Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct VideoBadgeRenderer {
-    pub style: VideoBadgeStyle,
-}
-
-#[derive(Clone, Copy, Debug, Deserialize, PartialEq, Eq, Hash)]
-#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
-pub enum VideoBadgeStyle {
-    /// Active livestream
-    BadgeStyleTypeLiveNow,
 }
 
 /// The engagement panels are displayed below the video and contain chapter markers
@@ -282,13 +269,13 @@ pub struct EngagementPanel {
 /// The engagement panels are displayed below the video and contain chapter markers
 /// and the comment section.
 #[derive(Clone, Debug, Deserialize)]
-#[serde(rename_all = "kebab-case", tag = "panelIdentifier")]
+#[serde(rename_all = "kebab-case", tag = "targetId")]
 pub enum EngagementPanelRenderer {
     /// Chapter markers
     EngagementPanelMacroMarkersDescriptionChapters { content: ChapterMarkersContent },
     /// Comment section (contains no comments, but the
     /// continuation tokens for fetching top/latest comments)
-    CommentItemSection { header: CommentItemSectionHeader },
+    EngagementPanelCommentsSection { header: CommentItemSectionHeader },
     /// Ignored items:
     /// - `engagement-panel-ads`
     /// - `engagement-panel-structured-description`
@@ -486,8 +473,9 @@ pub enum CommentListItem {
     /// Header of the comment section (contains number of comments)
     #[serde(rename_all = "camelCase")]
     CommentsHeaderRenderer {
-        #[serde_as(as = "Text")]
-        count_text: Vec<String>
+        /// `4,238,993 Comments`
+        #[serde_as(as = "Option<Text>")]
+        count_text: Option<String>,
     },
 }
 
@@ -520,11 +508,12 @@ pub struct CommentRenderer {
     pub published_time_text: String,
     pub comment_id: String,
     pub author_is_channel_owner: bool,
-    #[serde_as(as = "Option<Text>")]
-    pub vote_count: Option<String>,
+    // #[serde_as(as = "Option<Text>")]
+    // pub vote_count: Option<String>,
     pub author_comment_badge: Option<AuthorCommentBadge>,
     #[serde(default)]
     pub reply_count: u32,
+    /// Buttons for comment interaction (Like/Dislike/Reply)
     pub action_buttons: CommentActionButtons,
 }
 
@@ -568,17 +557,20 @@ pub struct RepliesRenderer {
     pub contents: Vec<CommentListItem>,
 }
 
-/// These are the buttons for comment interaction. Contains the CreatorHeart.
+/// These are the buttons for comment interaction (Like/Dislike/Reply).
+/// Contains the CreatorHeart.
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CommentActionButtons {
     pub comment_action_buttons_renderer: CommentActionButtonsRenderer,
 }
 
-/// These are the buttons for comment interaction. Contains the CreatorHeart.
+/// These are the buttons for comment interaction (Like/Dislike/Reply).
+/// Contains the CreatorHeart.
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CommentActionButtonsRenderer {
+    pub like_button: ToggleButtonWrap,
     pub creator_heart: Option<CreatorHeart>,
 }
 
@@ -607,5 +599,7 @@ pub struct AuthorCommentBadge {
 #[serde(rename_all = "camelCase")]
 pub struct AuthorCommentBadgeRenderer {
     /// Verified: `CHECK`
+    ///
+    /// Artist: `OFFICIAL_ARTIST_BADGE`
     pub icon: Icon,
 }

@@ -4,9 +4,8 @@ use serde::{Deserialize, Serialize};
 /// The paginator is a wrapper around a list of items that are fetched
 /// in pages from the YouTube API (e.g. playlist items,
 /// video recommendations or comments).
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct Paginator<T> {
-    /*
     /// Total number of items if finite and known.
     ///
     /// Note that this number may not be 100% accurate, as this is the
@@ -18,7 +17,6 @@ pub struct Paginator<T> {
     /// Don't use this number to check if all items were fetched or for
     /// iterating over the items.
     pub count: Option<u32>,
-    */
     /// Content of the paginator
     pub items: Vec<T>,
     /// The continuation token is passed to the YouTube API to fetch
@@ -31,6 +29,7 @@ pub struct Paginator<T> {
 impl<T> Default for Paginator<T> {
     fn default() -> Self {
         Self {
+            count: None,
             items: Vec::new(),
             ctoken: None,
         }
