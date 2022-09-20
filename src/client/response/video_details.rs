@@ -12,8 +12,8 @@ use crate::serializer::{
 };
 
 use super::{
-    ChannelBadge, ContentsRenderer, ContinuationEndpoint, Icon, Thumbnails, VideoBadge,
-    VideoListItem, VideoOwner,
+    ChannelBadge, ContentsRenderer, ContinuationEndpoint, ContinuationItemRenderer, Icon,
+    Thumbnails, VideoBadge, VideoListItem, VideoOwner,
 };
 
 /*
@@ -92,18 +92,11 @@ pub enum VideoResultsItem {
         #[serde_as(deserialize_as = "DefaultOnError")]
         metadata_row_container: Option<MetadataRowContainer>,
     },
-    /*
     /// The comment section consists of 2 ItemSectionRenderers:
     ///
     /// 1. sectionIdentifier: "comments-entry-point", contains number of comments
     /// 2. sectionIdentifier: "comment-item-section", contains continuation token
-    #[serde(rename_all = "camelCase")]
-    ItemSectionRenderer {
-        #[serde_as(as = "VecSkipError<_>")]
-        contents: Vec<ItemSection>,
-        section_identifier: String,
-    },
-    */
+    ItemSectionRenderer(ItemSection),
     #[serde(other, deserialize_with = "ignore_any")]
     None,
 }
@@ -209,6 +202,47 @@ pub struct CurrentVideoEndpoint {
 #[serde(rename_all = "camelCase")]
 pub struct CurrentVideoWatchEndpoint {
     pub video_id: String,
+}
+
+/// The comment section consists of 2 ItemSections:
+///
+/// 1. CommentsEntryPointHeaderRenderer: contains number of comments
+/// 2. ContinuationItemRenderer: contains continuation token
+#[serde_as]
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "kebab-case", tag = "sectionIdentifier")]
+pub enum ItemSection {
+    CommentsEntryPoint {
+        #[serde_as(as = "VecSkipError<_>")]
+        contents: Vec<ItemSectionCommentCount>,
+    },
+    CommentItemSection {
+        #[serde_as(as = "VecSkipError<_>")]
+        contents: Vec<ItemSectionComments>,
+    },
+}
+
+/// Item section containing comment count
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ItemSectionCommentCount {
+    pub comments_entry_point_header_renderer: CommentsEntryPointHeaderRenderer,
+}
+
+/// Renderer of item section containing comment count
+#[serde_as]
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct CommentsEntryPointHeaderRenderer {
+    #[serde_as(as = "Text")]
+    pub comment_count: String,
+}
+
+/// Item section containing comments ctoken
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ItemSectionComments {
+    pub continuation_item_renderer: ContinuationItemRenderer,
 }
 
 /// Video recommendations
@@ -461,10 +495,7 @@ pub enum CommentListItem {
         rendering_priority: CommentPriority,
     },
     /// Reply comment
-    CommentRenderer {
-        #[serde(flatten)]
-        comment: CommentRenderer,
-    },
+    CommentRenderer(CommentRenderer),
     /// Continuation token to fetch more comments
     #[serde(rename_all = "camelCase")]
     ContinuationItemRenderer {

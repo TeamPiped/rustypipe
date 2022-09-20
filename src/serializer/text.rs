@@ -253,7 +253,10 @@ impl TryFrom<TextLink> for crate::model::ChannelId {
                 page_type,
                 browse_id,
             } => match page_type {
-                PageType::Channel => Ok(crate::model::ChannelId { id: browse_id, name: text }),
+                PageType::Channel => Ok(crate::model::ChannelId {
+                    id: browse_id,
+                    name: text,
+                }),
                 _ => Err(anyhow!("invalid channel link type")),
             },
             _ => Err(anyhow!("invalid channel link")),

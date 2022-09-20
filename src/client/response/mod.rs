@@ -77,6 +77,12 @@ pub enum VideoListItem<T> {
 
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
+pub struct ContinuationItemRenderer {
+    pub continuation_endpoint: ContinuationEndpoint,
+}
+
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub struct ContinuationEndpoint {
     pub continuation_command: ContinuationCommand,
 }

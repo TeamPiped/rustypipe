@@ -269,8 +269,9 @@ pub async fn download_video(
     let download_dir = PathBuf::from(output_dir);
     let title = player_data.details.title.to_owned();
     let output_fname_set = output_fname.is_some();
-    let output_fname = output_fname
-        .unwrap_or_else(|| filenamify::filenamify(format!("{} [{}]", title, player_data.details.id)));
+    let output_fname = output_fname.unwrap_or_else(|| {
+        filenamify::filenamify(format!("{} [{}]", title, player_data.details.id))
+    });
 
     // Select streams to download
     let (video, audio) = player_data.select_video_audio_stream(filter);

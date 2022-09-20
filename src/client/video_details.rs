@@ -115,12 +115,25 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
 
         let mut primary_info = None;
         let mut secondary_info = None;
+        let mut comment_count_section = None;
+        let mut comment_ctoken_section = None;
+
         primary_results.c.into_iter().for_each(|r| match r {
             response::video_details::VideoResultsItem::VideoPrimaryInfoRenderer { .. } => {
                 primary_info = Some(r);
             }
             response::video_details::VideoResultsItem::VideoSecondaryInfoRenderer { .. } => {
                 secondary_info = Some(r);
+            }
+            response::video_details::VideoResultsItem::ItemSectionRenderer(section) => {
+                match section {
+                    response::video_details::ItemSection::CommentsEntryPoint { mut contents } => {
+                        comment_count_section = contents.try_swap_remove(0);
+                    }
+                    response::video_details::ItemSection::CommentItemSection { mut contents } => {
+                        comment_ctoken_section = contents.try_swap_remove(0);
+                    }
+                }
             }
             response::video_details::VideoResultsItem::None => {}
         });
@@ -153,9 +166,21 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
             _ => bail!("could not find primary_info"),
         };
 
-        if publish_date.is_none() {
-            warnings.push(format!("could not parse date: {}", publish_date_txt));
-        }
+        /*
+        TODO: use large number parser for this
+        let comment_count = comment_count_section.and_then(|s| {
+            util::parse_numeric_or_warn::<u32>(
+                &s.comments_entry_point_header_renderer.comment_count,
+                &mut warnings,
+            )
+        });*/
+
+        let comment_ctoken = comment_ctoken_section.map(|s| {
+            s.continuation_item_renderer
+                .continuation_endpoint
+                .continuation_command
+                .token
+        });
 
         let (owner, description, is_ccommons) = match secondary_info {
             Some(response::video_details::VideoResultsItem::VideoSecondaryInfoRenderer {
@@ -220,23 +245,16 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
             response::video_details::EngagementPanelRenderer::None => {},
         });
 
-        let (top_comments_ctoken, latest_comments_ctoken) = match comment_panel {
-            Some(comments) => {
-                let mut items = comments
-                    .engagement_panel_title_header_renderer
-                    .menu
-                    .sort_filter_sub_menu_renderer
-                    .sub_menu_items;
-                let latest = items.try_swap_remove(1);
-                let top = items.try_swap_remove(0);
-
-                (
-                    top.map(|c| c.service_endpoint.continuation_command.token),
-                    latest.map(|c| c.service_endpoint.continuation_command.token),
-                )
-            }
-            None => (None, None),
-        };
+        let latest_comments_ctoken = comment_panel.and_then(|comments| {
+            let mut items = comments
+                .engagement_panel_title_header_renderer
+                .menu
+                .sort_filter_sub_menu_renderer
+                .sub_menu_items;
+            items
+                .try_swap_remove(1)
+                .map(|c| c.service_endpoint.continuation_command.token)
+        });
 
         Ok(MapResult {
             c: VideoDetails {
@@ -258,12 +276,14 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                 is_ccommons,
                 recommended: recommended.c,
                 top_comments: Paginator {
-                    ctoken: top_comments_ctoken,
-                    ..Default::default()
+                    count: None,
+                    items: Vec::new(),
+                    ctoken: comment_ctoken,
                 },
                 latest_comments: Paginator {
+                    count: None,
+                    items: Vec::new(),
                     ctoken: latest_comments_ctoken,
-                    ..Default::default()
                 },
             },
             warnings,
@@ -325,7 +345,7 @@ impl MapResponse<Paginator<Comment>> for response::VideoComments {
                         comments.push(res.c);
                         warnings.append(&mut res.warnings)
                     }
-                    response::video_details::CommentListItem::CommentRenderer { comment } => {
+                    response::video_details::CommentListItem::CommentRenderer(comment) => {
                         let mut res = map_comment(
                             comment,
                             None,
@@ -439,7 +459,7 @@ fn map_comment(
             .contents
             .into_iter()
             .filter_map(|item| match item {
-                response::video_details::CommentListItem::CommentRenderer { comment } => {
+                response::video_details::CommentListItem::CommentRenderer(comment) => {
                     let mut res = map_comment(
                         comment,
                         None,
@@ -542,7 +562,7 @@ mod tests {
     #[test_log::test(tokio::test)]
     async fn get_video_comments() {
         let rp = RustyPipe::builder().strict().build();
-        let details = rp.query().video_details("3pv_rHKnwAs").await.unwrap();
+        let details = rp.query().video_details("ZeerrnuLi5E").await.unwrap();
         let rec = rp
             .query()
             .video_comments(&details.top_comments.ctoken.unwrap())

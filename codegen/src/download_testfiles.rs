@@ -152,7 +152,10 @@ async fn comments_top(testfiles: &Path) {
     let details = rp.query().video_details("ZeerrnuLi5E").await.unwrap();
 
     let rp = rp_testfile(&json_path);
-    rp.query().video_comments(&details.top_comments.ctoken.unwrap()).await.unwrap();
+    rp.query()
+        .video_comments(&details.top_comments.ctoken.unwrap())
+        .await
+        .unwrap();
     // rp.query().video_comments("Eg0SC0lITnpPSGk4c0pzGAYyJSIRIgtJSE56T0hpOHNKczAAeAJCEGNvbW1lbnRzLXNlY3Rpb24%3D").await.unwrap();
 
     // Desktop 1

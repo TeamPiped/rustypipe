@@ -150,7 +150,11 @@ async fn download_playlist(
 
     let rp = RustyPipe::default();
     let mut playlist = rp.query().playlist(id).await.unwrap();
-    playlist.videos.extend_pages(rp.query(), usize::MAX).await.unwrap();
+    playlist
+        .videos
+        .extend_pages(rp.query(), usize::MAX)
+        .await
+        .unwrap();
 
     // Indicatif setup
     let multi = MultiProgress::new();

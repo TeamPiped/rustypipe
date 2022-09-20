@@ -1,6 +1,5 @@
 use serde::{Deserialize, Serialize};
 
-
 /// The paginator is a wrapper around a list of items that are fetched
 /// in pages from the YouTube API (e.g. playlist items,
 /// video recommendations or comments).
