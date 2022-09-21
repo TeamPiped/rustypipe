@@ -86,8 +86,9 @@ pub struct TextComponents(pub Vec<TextComponent>);
 #[derive(Debug, Clone)]
 pub enum TextComponent {
     Video {
-        title: String,
+        text: String,
         video_id: String,
+        start_time: u32,
     },
     Browse {
         text: String,
@@ -141,6 +142,8 @@ struct NavigationEndpoint {
 #[serde(rename_all = "camelCase")]
 struct WatchEndpoint {
     video_id: String,
+    #[serde(default)]
+    start_time_seconds: u32,
 }
 
 #[derive(Deserialize)]
@@ -202,8 +205,9 @@ fn map_richtext_run(lr: &RichTextRun) -> Option<TextComponent> {
 
     Some(match &nav.watch_endpoint {
         Some(w) => TextComponent::Video {
-            title: text,
+            text,
             video_id: w.video_id.to_owned(),
+            start_time: w.start_time_seconds,
         },
         None => match &nav.browse_endpoint {
             Some(b) => TextComponent::Browse {
@@ -284,9 +288,14 @@ impl TryFrom<TextComponent> for crate::model::ChannelId {
 impl From<TextComponent> for crate::model::richtext::TextComponent {
     fn from(component: TextComponent) -> Self {
         match component {
-            TextComponent::Video { title, video_id } => Self::Video {
-                title,
+            TextComponent::Video {
+                text,
+                video_id,
+                start_time,
+            } => Self::Video {
+                text,
                 id: video_id,
+                start_time,
             },
             TextComponent::Browse {
                 text,
@@ -294,19 +303,19 @@ impl From<TextComponent> for crate::model::richtext::TextComponent {
                 browse_id,
             } => match page_type {
                 PageType::Artist => Self::Artist {
-                    name: text,
+                    text,
                     id: browse_id,
                 },
                 PageType::Album => Self::Album {
-                    name: text,
+                    text,
                     id: browse_id,
                 },
                 PageType::Channel => Self::Channel {
-                    name: text,
+                    text,
                     id: browse_id,
                 },
                 PageType::Playlist => Self::Playlist {
-                    name: text,
+                    text,
                     id: browse_id,
                 },
             },
@@ -443,8 +452,9 @@ mod tests {
         insta::assert_debug_snapshot!(res, @r###"
         SLink {
             ln: Video {
-                title: "DEEP",
+                text: "DEEP",
                 video_id: "wZIoIgz5mbs",
+                start_time: 0,
             },
         }
         "###);

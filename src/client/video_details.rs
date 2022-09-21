@@ -573,8 +573,9 @@ mod tests {
             url: "https://smarturl.it/aespa_BlackMamba"
         - Text: "\n🐍The Debut Stage "
         - Video:
-            title: "https://youtu.be/Ky5RT5oGg0w"
+            text: "https://youtu.be/Ky5RT5oGg0w"
             id: Ky5RT5oGg0w
+            start_time: 0
         - Text: "\n\n🎟️ aespa Showcase SYNK in LA! Tickets now on sale: "
         - Web:
             text: "https://www.ticketmaster.com/event/0A..."
@@ -843,8 +844,9 @@ mod tests {
             url: "https://www.twitch.tv/linustech"
         - Text: "\n\nMUSIC CREDIT\n---------------------------------------------------\nIntro: Laszlo - Supernova\nVideo Link: "
         - Video:
-            title: "https://www.youtube.com/watch?v=PKfxm..."
+            text: "https://www.youtube.com/watch?v=PKfxm..."
             id: PKfxmFU3lWY
+            start_time: 0
         - Text: "\niTunes Download Link: "
         - Web:
             text: "https://itunes.apple.com/us/album/sup..."
@@ -855,8 +857,9 @@ mod tests {
             url: "https://soundcloud.com/laszlomusic"
         - Text: "\n\nOutro: Approaching Nirvana - Sugar High\nVideo Link: "
         - Video:
-            title: "https://www.youtube.com/watch?v=ngsGB..."
+            text: "https://www.youtube.com/watch?v=ngsGB..."
             id: ngsGBSCDwcI
+            start_time: 0
         - Text: "\nListen on Spotify: "
         - Web:
             text: "http://spoti.fi/UxWkUw"
@@ -883,60 +886,74 @@ mod tests {
             url: "https://geni.us/Ps3XfE"
         - Text: "\n\nCHAPTERS\n---------------------------------------------------\n"
         - Video:
-            title: "0:00"
+            text: "0:00"
             id: nFDBxBUfE74
+            start_time: 0
         - Text: " Intro\n"
         - Video:
-            title: "0:42"
+            text: "0:42"
             id: nFDBxBUfE74
+            start_time: 42
         - Text: " The PC Built for Super Efficiency\n"
         - Video:
-            title: "2:41"
+            text: "2:41"
             id: nFDBxBUfE74
+            start_time: 161
         - Text: " Our BURIAL ENCLOSURE?!\n"
         - Video:
-            title: "3:31"
+            text: "3:31"
             id: nFDBxBUfE74
+            start_time: 211
         - Text: " Our Power Solution (Thanks Jackery!)\n"
         - Video:
-            title: "4:47"
+            text: "4:47"
             id: nFDBxBUfE74
+            start_time: 287
         - Text: " Diggin' Holes\n"
         - Video:
-            title: "5:30"
+            text: "5:30"
             id: nFDBxBUfE74
+            start_time: 330
         - Text: " Colonoscopy?\n"
         - Video:
-            title: "7:04"
+            text: "7:04"
             id: nFDBxBUfE74
+            start_time: 424
         - Text: " Diggin' like a man\n"
         - Video:
-            title: "8:29"
+            text: "8:29"
             id: nFDBxBUfE74
+            start_time: 509
         - Text: " The world's worst woodsman\n"
         - Video:
-            title: "9:03"
+            text: "9:03"
             id: nFDBxBUfE74
+            start_time: 543
         - Text: " Backyard cable management\n"
         - Video:
-            title: "10:02"
+            text: "10:02"
             id: nFDBxBUfE74
+            start_time: 602
         - Text: " Time to bury this boy\n"
         - Video:
-            title: "10:46"
+            text: "10:46"
             id: nFDBxBUfE74
+            start_time: 646
         - Text: " Solar Power Generation\n"
         - Video:
-            title: "11:37"
+            text: "11:37"
             id: nFDBxBUfE74
+            start_time: 697
         - Text: " Issues\n"
         - Video:
-            title: "12:08"
+            text: "12:08"
             id: nFDBxBUfE74
+            start_time: 728
         - Text: " First Play Test\n"
         - Video:
-            title: "13:20"
+            text: "13:20"
             id: nFDBxBUfE74
+            start_time: 800
         - Text: " Conclusion"
         "###);
 
@@ -1045,8 +1062,9 @@ mod tests {
         ---
         - Text: "Live NASA - Views Of Earth from Space\nLive video feed of Earth from the International Space Station (ISS) Cameras\n-----------------------------------------------------------------------------------------------------\nWatch our latest video - The Sun - 4K Video / Solar Flares\n"
         - Video:
-            title: "https://www.youtube.com/watch?v=SEzK4..."
+            text: "https://www.youtube.com/watch?v=SEzK4..."
             id: SEzK4ZfMvUQ
+            start_time: 0
         - Text: "\n-----------------------------------------------------------------------------------------------------\nNasa ISS live stream from aboard the International Space Station  as it circles the earth at 240 miles above the planet, on the edge of space in low earth orbit. \n\nThe station is crewed by NASA astronauts as well as Russian Cosmonauts and a mixture of Japanese, Canadian and European astronauts as well.\n\n"
         - Text: " "
         - Text: " "
