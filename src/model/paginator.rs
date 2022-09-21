@@ -6,6 +6,7 @@ use serde::{Deserialize, Serialize};
 /// in pages from the YouTube API (e.g. playlist items,
 /// video recommendations or comments).
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
 pub struct Paginator<T> {
     /// Total number of items if finite and known.
     ///

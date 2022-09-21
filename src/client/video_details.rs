@@ -18,7 +18,7 @@ use super::{
     ClientType, MapResponse, RustyPipeQuery, YTContext,
 };
 
-#[derive(Clone, Debug, Serialize)]
+#[derive(Debug, Serialize)]
 struct QVideo {
     context: YTContext,
     /// YouTube video ID
@@ -29,7 +29,7 @@ struct QVideo {
     racy_check_ok: bool,
 }
 
-#[derive(Clone, Debug, Serialize)]
+#[derive(Debug, Serialize)]
 struct QVideoCont {
     context: YTContext,
     continuation: String,
@@ -407,7 +407,7 @@ impl MapResponse<Paginator<Comment>> for response::VideoComments {
 }
 
 fn map_recommendations(
-    r: MapResult<Vec<response::VideoListItem<response::video_details::RecommendedVideo>>>,
+    r: MapResult<Vec<response::VideoListItem>>,
     lang: Language,
 ) -> MapResult<Paginator<RecommendedVideo>> {
     let mut warnings = r.warnings;
@@ -416,7 +416,7 @@ fn map_recommendations(
     let items =
         r.c.into_iter()
             .filter_map(|item| match item {
-                response::VideoListItem::GridVideoRenderer { video } => {
+                response::VideoListItem::CompactVideoRenderer(video) => {
                     match ChannelId::try_from(video.channel) {
                         Ok(channel) => Some(RecommendedVideo {
                             id: video.video_id,
@@ -454,7 +454,7 @@ fn map_recommendations(
                     ctoken = Some(continuation_endpoint.continuation_command.token);
                     None
                 }
-                response::VideoListItem::None => None,
+                _ => None,
             })
             .collect::<Vec<_>>();
 

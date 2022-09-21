@@ -23,6 +23,7 @@ pub trait FileFormat {
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
+#[non_exhaustive]
 pub struct VideoPlayer {
     pub details: VideoPlayerDetails,
     pub video_streams: Vec<VideoStream>,
@@ -33,6 +34,7 @@ pub struct VideoPlayer {
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
 pub struct VideoPlayerDetails {
     pub id: String,
     pub title: String,
@@ -49,6 +51,7 @@ pub struct VideoPlayerDetails {
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
 pub struct VideoStream {
     pub url: String,
     pub itag: u32,
@@ -69,6 +72,7 @@ pub struct VideoStream {
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
 pub struct AudioStream {
     pub url: String,
     pub itag: u32,
@@ -128,6 +132,7 @@ pub enum VideoFormat {
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
 pub struct AudioTrack {
     pub id: String,
     pub lang: Option<String>,
@@ -163,6 +168,7 @@ impl FileFormat for AudioFormat {
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
 pub struct Thumbnail {
     pub url: String,
     pub width: u32,
@@ -170,6 +176,7 @@ pub struct Thumbnail {
 }
 
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
 pub struct Subtitle {
     pub url: String,
     pub lang: String,
@@ -182,6 +189,7 @@ pub struct Subtitle {
 */
 
 #[derive(Clone, Debug, Serialize, Deserialize)]
+#[non_exhaustive]
 pub struct Playlist {
     pub id: String,
     pub name: String,
@@ -195,6 +203,7 @@ pub struct Playlist {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
 pub struct PlaylistVideo {
     pub id: String,
     pub title: String,
@@ -204,6 +213,7 @@ pub struct PlaylistVideo {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
 pub struct ChannelId {
     pub id: String,
     pub name: String,
@@ -214,6 +224,7 @@ pub struct ChannelId {
 */
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
 pub struct VideoDetails {
     /// Unique YouTube video ID
     pub id: String,
@@ -260,6 +271,7 @@ pub struct VideoDetails {
 /// Videos can consist of different chapters, which YouTube shows
 /// on the seek bar and below the description text.
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
 pub struct Chapter {
     /// Chapter title
     pub title: String,
@@ -274,6 +286,7 @@ pub struct Chapter {
 */
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
 pub struct RecommendedVideo {
     /// Unique YouTube video ID
     pub id: String,
@@ -304,6 +317,7 @@ pub struct RecommendedVideo {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
 pub struct Channel {
     /// Unique YouTube channel ID
     pub id: String,
@@ -327,6 +341,7 @@ pub struct Channel {
 
 #[derive(Default, Copy, Clone, Debug, Serialize, Deserialize, PartialEq, Eq, Hash)]
 #[serde(rename_all = "snake_case")]
+#[non_exhaustive]
 pub enum Verification {
     #[default]
     /// Unverified channel (default)
@@ -343,8 +358,8 @@ impl Verification {
     }
 }
 
-// TODO: impl popularity comparison
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
 pub struct Comment {
     /// Unique YouTube Comment-ID (e.g. `UgynScMrsqGSL8qvePl4AaABAg`)
     pub id: String,
@@ -372,4 +387,19 @@ pub struct Comment {
     pub pinned: bool,
     /// Has the channel owner marked the comment with a ❤️ heart ?
     pub hearted: bool,
+}
+
+/*
+#CHANNEL
+*/
+
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
+pub struct ChannelVideos {
+    /// Unique YouTube Channel-ID (e.g. `UC-lHJZR3Gqxm24_Vd_AJ5Yw`)
+    pub id: String,
+    /// Channel name
+    pub name: String,
+    /// Textual subscriber count (e.g. `2.3M subscribers`), depends on language setting
+    pub subscriber_count_txt: String,
 }

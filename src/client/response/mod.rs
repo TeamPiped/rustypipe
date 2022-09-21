@@ -14,7 +14,7 @@ pub use video_details::VideoDetails;
 pub use video_details::VideoRecommendations;
 
 use serde::Deserialize;
-use serde_with::{serde_as, DefaultOnError, VecSkipError};
+use serde_with::{json::JsonString, serde_as, DefaultOnError, VecSkipError};
 
 use crate::serializer::{
     ignore_any,
@@ -40,6 +40,8 @@ pub struct ThumbnailsWrap {
     pub thumbnail: Thumbnails,
 }
 
+/// List of images in different resolutions.
+/// Not only used for thumbnails, but also for avatars and banners.
 #[derive(Default, Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Thumbnails {
@@ -54,25 +56,105 @@ pub struct Thumbnail {
     pub height: u32,
 }
 
-#[serde_as]
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub enum VideoListItem<T> {
-    #[serde(alias = "playlistVideoRenderer", alias = "compactVideoRenderer")]
-    GridVideoRenderer {
-        #[serde(flatten)]
-        video: T,
-    },
+pub enum VideoListItem {
+    GridVideoRenderer(GridVideoRenderer),
+    CompactVideoRenderer(CompactVideoRenderer),
+    PlaylistVideoRenderer(PlaylistVideoRenderer),
+
+    GridPlaylistRenderer(GridPlaylistRenderer),
+
+    /// Continauation items are located at the end of a list
+    /// and contain the continuation token for progressive loading
     #[serde(rename_all = "camelCase")]
     ContinuationItemRenderer {
         continuation_endpoint: ContinuationEndpoint,
     },
-    /// No video list item (e.g. ad)
+    /// No video list item (e.g. ad) or unimplemented item
     ///
-    /// Note that there are sometimes playlists among the recommended
-    /// videos. They are currently ignored.
+    /// Unimplemented:
+    /// - compactPlaylistRenderer (recommended playlists)
+    /// - compactRadioRenderer (recommended mix)
     #[serde(other, deserialize_with = "ignore_any")]
     None,
+}
+
+/// Video displayed on a channel page
+#[serde_as]
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct GridVideoRenderer {
+    pub video_id: String,
+    pub thumbnail: Thumbnails,
+    #[serde_as(as = "Text")]
+    pub title: String,
+    #[serde_as(as = "Option<Text>")]
+    pub published_time_text: Option<String>,
+    #[serde_as(as = "Option<Text>")]
+    pub view_count_text: Option<String>,
+    #[serde_as(as = "VecSkipError<_>")]
+    pub thumbnail_overlays: Vec<TimeOverlay>,
+}
+
+/// Video displayed in recommendations
+#[serde_as]
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct CompactVideoRenderer {
+    pub video_id: String,
+    pub thumbnail: Thumbnails,
+    #[serde_as(as = "Text")]
+    pub title: String,
+    #[serde(rename = "shortBylineText")]
+    pub channel: TextComponent,
+    pub channel_thumbnail: Thumbnails,
+    /// Channel verification badge
+    #[serde(default)]
+    #[serde_as(as = "VecSkipError<_>")]
+    pub owner_badges: Vec<ChannelBadge>,
+    #[serde_as(as = "Option<Text>")]
+    pub length_text: Option<String>,
+    /// (e.g. `11 months ago`)
+    #[serde_as(as = "Option<Text>")]
+    pub published_time_text: Option<String>,
+    #[serde_as(as = "Option<Text>")]
+    pub view_count_text: Option<String>,
+    /// Badges are displayed on the video thumbnail and
+    /// show certain video properties (e.g. active livestream)
+    #[serde(default)]
+    #[serde_as(as = "VecSkipError<_>")]
+    pub badges: Vec<VideoBadge>,
+}
+
+/// Video displayed in a playlist
+#[serde_as]
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct PlaylistVideoRenderer {
+    pub video_id: String,
+    pub thumbnail: Thumbnails,
+    #[serde_as(as = "Text")]
+    pub title: String,
+    #[serde(rename = "shortBylineText")]
+    pub channel: TextComponent,
+    #[serde_as(as = "JsonString")]
+    pub length_seconds: u32,
+}
+
+/// Playlist displayed on a channel page
+#[serde_as]
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct GridPlaylistRenderer {
+    pub playlist_id: String,
+    #[serde_as(as = "Text")]
+    pub title: String,
+    pub thumbnail: Thumbnails,
+    #[serde_as(as = "Text")]
+    pub published_time_text: String,
+    #[serde_as(as = "Text")]
+    pub video_count_short_text: String,
 }
 
 #[derive(Clone, Debug, Deserialize)]

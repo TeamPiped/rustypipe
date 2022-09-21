@@ -24,7 +24,7 @@ use super::{
     ClientType, MapResponse, MapResult, RustyPipeQuery, YTContext,
 };
 
-#[derive(Clone, Debug, Serialize)]
+#[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 struct QPlayer {
     context: YTContext,
@@ -42,13 +42,13 @@ struct QPlayer {
     racy_check_ok: bool,
 }
 
-#[derive(Clone, Debug, Serialize)]
+#[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 struct QPlaybackContext {
     content_playback_context: QContentPlaybackContext,
 }
 
-#[derive(Clone, Debug, Serialize)]
+#[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 struct QContentPlaybackContext {
     /// Signature timestamp extracted from player.js

@@ -1,9 +1,9 @@
-pub mod pagination;
-pub mod player;
-pub mod playlist;
-pub mod video_details;
-
+mod channel;
+mod pagination;
+mod player;
+mod playlist;
 mod response;
+mod video_details;
 
 use std::fmt::Debug;
 use std::sync::Arc;

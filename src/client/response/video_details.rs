@@ -8,13 +8,12 @@ use crate::serializer::text::TextComponents;
 use crate::serializer::MapResult;
 use crate::serializer::{
     ignore_any,
-    text::{AccessibilityText, Text, TextComponent},
+    text::{AccessibilityText, Text},
     VecLogError,
 };
 
 use super::{
-    ChannelBadge, ContinuationEndpoint, ContinuationItemRenderer, Icon, Thumbnails, VideoBadge,
-    VideoListItem, VideoOwner,
+    ContinuationEndpoint, ContinuationItemRenderer, Icon, Thumbnails, VideoListItem, VideoOwner,
 };
 
 /*
@@ -283,37 +282,7 @@ pub struct RecommendationResultsWrap {
 pub struct RecommendationResults {
     /// Can be `None` for age-restricted videos
     #[serde_as(as = "Option<VecLogError<_>>")]
-    pub results: Option<MapResult<Vec<VideoListItem<RecommendedVideo>>>>,
-}
-
-/// Video recommendation item
-#[serde_as]
-#[derive(Clone, Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct RecommendedVideo {
-    pub video_id: String,
-    pub thumbnail: Thumbnails,
-    #[serde_as(as = "Text")]
-    pub title: String,
-    #[serde(rename = "shortBylineText")]
-    pub channel: TextComponent,
-    pub channel_thumbnail: Thumbnails,
-    /// Channel verification badge
-    #[serde(default)]
-    #[serde_as(as = "VecSkipError<_>")]
-    pub owner_badges: Vec<ChannelBadge>,
-    #[serde_as(as = "Option<Text>")]
-    pub length_text: Option<String>,
-    /// (e.g. `11 months ago`)
-    #[serde_as(as = "Option<Text>")]
-    pub published_time_text: Option<String>,
-    #[serde_as(as = "Option<Text>")]
-    pub view_count_text: Option<String>,
-    /// Badges are displayed on the video thumbnail and
-    /// show certain video properties (e.g. active livestream)
-    #[serde(default)]
-    #[serde_as(as = "VecSkipError<_>")]
-    pub badges: Vec<VideoBadge>,
+    pub results: Option<MapResult<Vec<VideoListItem>>>,
 }
 
 /// The engagement panels are displayed below the video and contain chapter markers
@@ -468,7 +437,7 @@ pub struct RecommendationsContItem {
 #[serde(rename_all = "camelCase")]
 pub struct AppendRecommendations {
     #[serde_as(as = "VecLogError<_>")]
-    pub continuation_items: MapResult<Vec<VideoListItem<RecommendedVideo>>>,
+    pub continuation_items: MapResult<Vec<VideoListItem>>,
 }
 
 /*

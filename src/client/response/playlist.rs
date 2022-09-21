@@ -1,11 +1,11 @@
 use serde::Deserialize;
 use serde_with::serde_as;
-use serde_with::{json::JsonString, DefaultOnError, VecSkipError};
+use serde_with::{DefaultOnError, VecSkipError};
 
 use crate::serializer::text::{Text, TextComponent};
 use crate::serializer::{MapResult, VecLogError};
 
-use super::{ContentRenderer, ContentsRenderer, Thumbnails, ThumbnailsWrap, VideoListItem};
+use super::{ContentRenderer, ContentsRenderer, ThumbnailsWrap, VideoListItem};
 
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -58,21 +58,7 @@ pub struct PlaylistVideoListRenderer {
 #[serde(rename_all = "camelCase")]
 pub struct PlaylistVideoList {
     #[serde_as(as = "VecLogError<_>")]
-    pub contents: MapResult<Vec<VideoListItem<PlaylistVideo>>>,
-}
-
-#[serde_as]
-#[derive(Clone, Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct PlaylistVideo {
-    pub video_id: String,
-    pub thumbnail: Thumbnails,
-    #[serde_as(as = "Text")]
-    pub title: String,
-    #[serde(rename = "shortBylineText")]
-    pub channel: TextComponent,
-    #[serde_as(as = "JsonString")]
-    pub length_seconds: u32,
+    pub contents: MapResult<Vec<VideoListItem>>,
 }
 
 #[derive(Clone, Debug, Deserialize)]
@@ -172,5 +158,5 @@ pub struct OnResponseReceivedAction {
 #[serde(rename_all = "camelCase")]
 pub struct AppendAction {
     #[serde_as(as = "VecLogError<_>")]
-    pub continuation_items: MapResult<Vec<VideoListItem<PlaylistVideo>>>,
+    pub continuation_items: MapResult<Vec<VideoListItem>>,
 }

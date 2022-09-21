@@ -13,14 +13,14 @@ use crate::{
 
 use super::{response, ClientType, MapResponse, MapResult, RustyPipeQuery, YTContext};
 
-#[derive(Clone, Debug, Serialize)]
+#[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 struct QPlaylist {
     context: YTContext,
     browse_id: String,
 }
 
-#[derive(Clone, Debug, Serialize)]
+#[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 struct QPlaylistCont {
     context: YTContext,
@@ -206,14 +206,12 @@ impl MapResponse<Paginator<PlaylistVideo>> for response::PlaylistCont {
     }
 }
 
-fn map_playlist_items(
-    items: Vec<response::VideoListItem<response::playlist::PlaylistVideo>>,
-) -> (Vec<PlaylistVideo>, Option<String>) {
+fn map_playlist_items(items: Vec<response::VideoListItem>) -> (Vec<PlaylistVideo>, Option<String>) {
     let mut ctoken: Option<String> = None;
     let videos = items
         .into_iter()
         .filter_map(|it| match it {
-            response::VideoListItem::GridVideoRenderer { video } => {
+            response::VideoListItem::PlaylistVideoRenderer(video) => {
                 match ChannelId::try_from(video.channel) {
                     Ok(channel) => Some(PlaylistVideo {
                         id: video.video_id,
@@ -231,7 +229,7 @@ fn map_playlist_items(
                 ctoken = Some(continuation_endpoint.continuation_command.token);
                 None
             }
-            response::VideoListItem::None => None,
+            _ => None,
         })
         .collect::<Vec<_>>();
     (videos, ctoken)
