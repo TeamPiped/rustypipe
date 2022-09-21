@@ -245,6 +245,8 @@ pub struct VideoDetails {
     ///
     /// https://creativecommons.org/licenses/by/3.0/
     pub is_ccommons: bool,
+    /// Chapters of the video
+    pub chapters: Vec<Chapter>,
     /// Recommended videos
     ///
     /// Note: Recommendations are not available for age-restricted videos
@@ -253,6 +255,18 @@ pub struct VideoDetails {
     pub top_comments: Paginator<Comment>,
     /// Paginator to fetch comments (latest first)
     pub latest_comments: Paginator<Comment>,
+}
+
+/// Videos can consist of different chapters, which YouTube shows
+/// on the seek bar and below the description text.
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+pub struct Chapter {
+    /// Chapter title
+    pub title: String,
+    /// Chapter position in seconds
+    pub position: u32,
+    /// Chapter thumbnail
+    pub thumbnail: Vec<Thumbnail>,
 }
 
 /*

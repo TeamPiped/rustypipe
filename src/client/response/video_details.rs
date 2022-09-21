@@ -13,8 +13,8 @@ use crate::serializer::{
 };
 
 use super::{
-    ChannelBadge, ContentsRenderer, ContinuationEndpoint, ContinuationItemRenderer, Icon,
-    Thumbnails, VideoBadge, VideoListItem, VideoOwner,
+    ChannelBadge, ContinuationEndpoint, ContinuationItemRenderer, Icon, Thumbnails, VideoBadge,
+    VideoListItem, VideoOwner,
 };
 
 /*
@@ -348,7 +348,16 @@ pub enum EngagementPanelRenderer {
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ChapterMarkersContent {
-    pub macro_markers_list_renderer: ContentsRenderer<MacroMarkersListItem>,
+    pub macro_markers_list_renderer: MacroMarkersListRenderer,
+}
+
+/// Chapter markers
+#[serde_as]
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct MacroMarkersListRenderer {
+    #[serde_as(as = "VecLogError<_>")]
+    pub contents: MapResult<Vec<MacroMarkersListItem>>,
 }
 
 /// Chapter marker
@@ -366,9 +375,6 @@ pub struct MacroMarkersListItemRenderer {
     /// Contains chapter start time in seconds
     pub on_tap: MacroMarkersListItemOnTap,
     pub thumbnail: Thumbnails,
-    /// Textual time (`1:42`)
-    #[serde_as(as = "Text")]
-    pub time_description: String,
     /// Chapter title
     #[serde_as(as = "Text")]
     pub title: String,

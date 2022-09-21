@@ -5,7 +5,9 @@ use reqwest::Method;
 use serde::Serialize;
 
 use crate::{
-    model::{Channel, ChannelId, Comment, Language, Paginator, RecommendedVideo, VideoDetails},
+    model::{
+        Channel, ChannelId, Chapter, Comment, Language, Paginator, RecommendedVideo, VideoDetails,
+    },
     serializer::MapResult,
     timeago,
     util::{self, TryRemove},
@@ -258,6 +260,26 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
             response::video_details::EngagementPanelRenderer::None => {},
         });
 
+        let chapters = chapter_panel
+            .map(|chapters| {
+                let mut content = chapters.macro_markers_list_renderer.contents;
+                warnings.append(&mut content.warnings);
+                content
+                    .c
+                    .into_iter()
+                    .map(|item| Chapter {
+                        title: item.macro_markers_list_item_renderer.title,
+                        position: item
+                            .macro_markers_list_item_renderer
+                            .on_tap
+                            .watch_endpoint
+                            .start_time_seconds,
+                        thumbnail: item.macro_markers_list_item_renderer.thumbnail.into(),
+                    })
+                    .collect::<Vec<_>>()
+            })
+            .unwrap_or_default();
+
         let latest_comments_ctoken = comment_panel.and_then(|comments| {
             let mut items = comments
                 .engagement_panel_title_header_renderer
@@ -288,6 +310,7 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                 publish_date_txt,
                 is_live,
                 is_ccommons,
+                chapters,
                 recommended,
                 top_comments: Paginator::new(None, Vec::new(), comment_ctoken),
                 latest_comments: Paginator::new(None, Vec::new(), latest_comments_ctoken),
@@ -942,6 +965,57 @@ mod tests {
         assert!(!details.is_live);
         assert!(!details.is_ccommons);
 
+        insta::assert_yaml_snapshot!(details.chapters, {
+            "[].thumbnail" => insta::dynamic_redaction(move |value, _path| {
+                assert!(!value.as_slice().unwrap().is_empty());
+                "[ok]"
+            }),
+        }, @r###"
+        ---
+        - title: Intro
+          position: 0
+          thumbnail: "[ok]"
+        - title: The PC Built for Super Efficiency
+          position: 42
+          thumbnail: "[ok]"
+        - title: Our BURIAL ENCLOSURE?!
+          position: 161
+          thumbnail: "[ok]"
+        - title: Our Power Solution (Thanks Jackery!)
+          position: 211
+          thumbnail: "[ok]"
+        - title: "Diggin' Holes"
+          position: 287
+          thumbnail: "[ok]"
+        - title: Colonoscopy?
+          position: 330
+          thumbnail: "[ok]"
+        - title: "Diggin' like a man"
+          position: 424
+          thumbnail: "[ok]"
+        - title: "The world's worst woodsman"
+          position: 509
+          thumbnail: "[ok]"
+        - title: Backyard cable management
+          position: 543
+          thumbnail: "[ok]"
+        - title: Time to bury this boy
+          position: 602
+          thumbnail: "[ok]"
+        - title: Solar Power Generation
+          position: 646
+          thumbnail: "[ok]"
+        - title: Issues
+          position: 697
+          thumbnail: "[ok]"
+        - title: First Play Test
+          position: 728
+          thumbnail: "[ok]"
+        - title: Conclusion
+          position: 800
+          thumbnail: "[ok]"
+        "###);
+
         assert!(!details.recommended.items.is_empty());
         assert!(!details.recommended.is_exhausted());
 
@@ -1032,7 +1106,7 @@ mod tests {
         let rp = RustyPipe::builder().strict().build();
         let details = rp.query().video_details("HRKu0cvrr_o").await.unwrap();
 
-        dbg!(&details);
+        // dbg!(&details);
 
         assert_eq!(details.id, "HRKu0cvrr_o");
         assert_eq!(
