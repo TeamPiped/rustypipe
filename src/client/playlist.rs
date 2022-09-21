@@ -237,50 +237,6 @@ fn map_playlist_items(
     (videos, ctoken)
 }
 
-impl Paginator<PlaylistVideo> {
-    pub async fn next(&self, query: RustyPipeQuery) -> Result<Option<Self>> {
-        Ok(match &self.ctoken {
-            Some(ctoken) => Some(query.playlist_continuation(ctoken).await?),
-            None => None,
-        })
-    }
-
-    pub async fn extend(&mut self, query: RustyPipeQuery) -> Result<bool> {
-        match self.next(query).await {
-            Ok(Some(paginator)) => {
-                let mut items = paginator.items;
-                self.items.append(&mut items);
-                self.ctoken = paginator.ctoken;
-                Ok(true)
-            }
-            Ok(None) => Ok(false),
-            Err(e) => Err(e),
-        }
-    }
-
-    pub async fn extend_pages(&mut self, query: RustyPipeQuery, n_pages: usize) -> Result<()> {
-        for _ in 0..n_pages {
-            match self.extend(query.clone()).await {
-                Ok(false) => break,
-                Err(e) => return Err(e),
-                _ => {}
-            }
-        }
-        Ok(())
-    }
-
-    pub async fn extend_limit(&mut self, query: RustyPipeQuery, n_items: usize) -> Result<()> {
-        while self.items.len() < n_items {
-            match self.extend(query.clone()).await {
-                Ok(false) => break,
-                Err(e) => return Err(e),
-                _ => {}
-            }
-        }
-        Ok(())
-    }
-}
-
 #[cfg(test)]
 mod tests {
     use std::{fs::File, io::BufReader, path::Path};

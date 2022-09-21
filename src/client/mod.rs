@@ -1,3 +1,4 @@
+pub mod pagination;
 pub mod player;
 pub mod playlist;
 pub mod video_details;

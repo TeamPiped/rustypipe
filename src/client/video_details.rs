@@ -1162,31 +1162,59 @@ mod tests {
         assert!(details.recommended.items.is_empty());
     }
 
-    /*
-    #[test_log::test(tokio::test)]
+    #[tokio::test]
     async fn get_video_recommendations() {
         let rp = RustyPipe::builder().strict().build();
         let details = rp.query().video_details("ZeerrnuLi5E").await.unwrap();
-        let rec = rp
-            .query()
-            .video_recommendations(&details.recommended.ctoken.unwrap())
-            .await
-            .unwrap();
+        let next_recommendations = details.recommended.next(rp.query()).await.unwrap().unwrap();
+        dbg!(&next_recommendations);
 
-        dbg!(&rec);
+        assert!(
+            next_recommendations.items.len() > 10,
+            "expected > 10 next recommendations, got {}",
+            next_recommendations.items.len()
+        );
+        assert!(!next_recommendations.is_exhausted());
     }
 
-    #[test_log::test(tokio::test)]
+    #[tokio::test]
     async fn get_video_comments() {
         let rp = RustyPipe::builder().strict().build();
         let details = rp.query().video_details("ZeerrnuLi5E").await.unwrap();
-        let rec = rp
-            .query()
-            .video_comments(&details.top_comments.ctoken.unwrap())
-            .await
-            .unwrap();
 
-        dbg!(&rec);
+        let top_comments = details
+            .top_comments
+            .next(rp.query())
+            .await
+            .unwrap()
+            .unwrap();
+        assert!(
+            top_comments.items.len() > 10,
+            "expected > 10 next comments, got {}",
+            top_comments.items.len()
+        );
+        assert!(!top_comments.is_exhausted());
+
+        let n_comments = top_comments.count.unwrap();
+        assert!(
+            n_comments > 700000,
+            "expected > 700k comments, got {}",
+            n_comments
+        );
+        // Comment count should be exact after fetching first page
+        assert!(n_comments % 1000 != 0);
+
+        let latest_comments = details
+            .latest_comments
+            .next(rp.query())
+            .await
+            .unwrap()
+            .unwrap();
+        assert!(
+            latest_comments.items.len() > 10,
+            "expected > 10 next comments, got {}",
+            latest_comments.items.len()
+        );
+        assert!(!latest_comments.is_exhausted());
     }
-    */
 }
