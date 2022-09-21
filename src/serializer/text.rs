@@ -4,6 +4,10 @@ use anyhow::anyhow;
 use serde::{Deserialize, Deserializer};
 use serde_with::{serde_as, DefaultOnError, DeserializeAs};
 
+use crate::util;
+
+/// # Text
+///
 /// The YouTube API has multiple ways of outputting text. This deserializer
 /// is an attempt to unify them.
 ///
@@ -19,12 +23,12 @@ use serde_with::{serde_as, DefaultOnError, DeserializeAs};
 /// }
 /// ```
 ///
-/// Multiple "runs" of text should be joined with spaces
+/// Multiple "runs" aka components of text should be joined together
 /// ```json
 /// {
 ///   "runs": [
 ///     {"text": "Hello"},
-///     {"text": "World"},
+///     {"text": " World"},
 ///   ]
 /// }
 /// ```
@@ -39,7 +43,7 @@ pub enum Text {
         text: String,
     },
     Multiple {
-        #[serde_as(as = "Vec<crate::serializer::text::Text>")]
+        #[serde_as(as = "Vec<Text>")]
         runs: Vec<String>,
     },
 }
@@ -70,8 +74,17 @@ impl<'de> DeserializeAs<'de, Vec<String>> for Text {
     }
 }
 
+/// # TextComponent
+///
+/// Some texts on the YouTube website include links. These can be links to
+/// other YouTube entities (Channels, Videos) as well as websites.
+///
+/// Texts with links are mapped as a list of text components.
+#[derive(Default, Debug, Clone)]
+pub struct TextComponents(pub Vec<TextComponent>);
+
 #[derive(Debug, Clone)]
-pub enum TextLink {
+pub enum TextComponent {
     Video {
         title: String,
         video_id: String,
@@ -85,21 +98,22 @@ pub enum TextLink {
         text: String,
         url: String,
     },
-    None {
+    Text {
         text: String,
     },
 }
 
-pub struct TextLinks;
-
+/// YouTube's representation of a text with links. It consists of multiple
+/// runs aka components, which can be simple strings or links.
 #[derive(Deserialize)]
-struct TextLinkInternal {
-    runs: Vec<TextLinkRun>,
+struct RichTextInternal {
+    runs: Vec<RichTextRun>,
 }
 
+/// TextLinkRun is a single component from a YouTube text with links
 #[derive(Deserialize)]
 #[serde(rename_all = "camelCase")]
-struct TextLinkRun {
+struct RichTextRun {
     text: String,
     #[serde(default)]
     navigation_endpoint: NavigationEndpoint,
@@ -166,7 +180,7 @@ struct WebCommandMetadata {
     web_page_type: PageType,
 }
 
-#[derive(Clone, Copy, Debug, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(Clone, Copy, Debug, Deserialize, PartialEq, Eq)]
 pub enum PageType {
     #[serde(rename = "MUSIC_PAGE_TYPE_ARTIST")]
     Artist,
@@ -181,17 +195,18 @@ pub enum PageType {
     Playlist,
 }
 
-fn map_text_linkrun(lr: &TextLinkRun) -> Option<TextLink> {
+/// Map a single component of a rich text
+fn map_richtext_run(lr: &RichTextRun) -> Option<TextComponent> {
     let text = lr.text.to_owned();
     let nav = &lr.navigation_endpoint;
 
     Some(match &nav.watch_endpoint {
-        Some(w) => TextLink::Video {
+        Some(w) => TextComponent::Video {
             title: text,
             video_id: w.video_id.to_owned(),
         },
         None => match &nav.browse_endpoint {
-            Some(b) => TextLink::Browse {
+            Some(b) => TextComponent::Browse {
                 text,
                 page_type: match &b.browse_endpoint_context_supported_configs {
                     Some(bc) => bc.browse_endpoint_context_music_config.page_type,
@@ -203,52 +218,54 @@ fn map_text_linkrun(lr: &TextLinkRun) -> Option<TextLink> {
                 browse_id: b.browse_id.to_owned(),
             },
             None => match &nav.url_endpoint {
-                Some(u) => TextLink::Web {
+                Some(u) => TextComponent::Web {
                     text,
                     url: u.url.to_owned(),
                 },
-                None => TextLink::None { text },
+                None => TextComponent::Text { text },
             },
         },
     })
 }
 
-impl<'de> DeserializeAs<'de, TextLink> for TextLink {
-    fn deserialize_as<D>(deserializer: D) -> Result<TextLink, D::Error>
+impl<'de> Deserialize<'de> for TextComponent {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
-        let link = TextLinkInternal::deserialize(deserializer)?;
+        let link = RichTextInternal::deserialize(deserializer)?;
         if link.runs.len() != 1 {
             return Err(serde::de::Error::invalid_length(
                 link.runs.len(),
-                &"1 run, use TextLinks for more",
+                &"1 run, use RichText for more",
             ));
         }
 
         Ok(some_or_bail!(
-            map_text_linkrun(&link.runs[0]),
+            map_richtext_run(&link.runs[0]),
             Err(serde::de::Error::custom("missing/invalid browse endpoint"))
         ))
     }
 }
 
-impl<'de> DeserializeAs<'de, Vec<TextLink>> for TextLinks {
-    fn deserialize_as<D>(deserializer: D) -> Result<Vec<TextLink>, D::Error>
+impl<'de> Deserialize<'de> for TextComponents {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
         D: Deserializer<'de>,
     {
-        let link = TextLinkInternal::deserialize(deserializer)?;
-        Ok(link.runs.iter().filter_map(map_text_linkrun).collect())
+        let link = RichTextInternal::deserialize(deserializer)?;
+        Ok(Self(
+            link.runs.iter().filter_map(map_richtext_run).collect(),
+        ))
     }
 }
 
-impl TryFrom<TextLink> for crate::model::ChannelId {
+impl TryFrom<TextComponent> for crate::model::ChannelId {
     type Error = anyhow::Error;
 
-    fn try_from(value: TextLink) -> Result<Self, Self::Error> {
+    fn try_from(value: TextComponent) -> Result<Self, Self::Error> {
         match value {
-            TextLink::Browse {
+            TextComponent::Browse {
                 text,
                 page_type,
                 browse_id,
@@ -261,6 +278,50 @@ impl TryFrom<TextLink> for crate::model::ChannelId {
             },
             _ => Err(anyhow!("invalid channel link")),
         }
+    }
+}
+
+impl From<TextComponent> for crate::model::richtext::TextComponent {
+    fn from(component: TextComponent) -> Self {
+        match component {
+            TextComponent::Video { title, video_id } => Self::Video {
+                title,
+                id: video_id,
+            },
+            TextComponent::Browse {
+                text,
+                page_type,
+                browse_id,
+            } => match page_type {
+                PageType::Artist => Self::Artist {
+                    name: text,
+                    id: browse_id,
+                },
+                PageType::Album => Self::Album {
+                    name: text,
+                    id: browse_id,
+                },
+                PageType::Channel => Self::Channel {
+                    name: text,
+                    id: browse_id,
+                },
+                PageType::Playlist => Self::Playlist {
+                    name: text,
+                    id: browse_id,
+                },
+            },
+            TextComponent::Web { text, url } => Self::Web {
+                text,
+                url: util::sanitize_yt_url(&url),
+            },
+            TextComponent::Text { text } => Self::Text(text),
+        }
+    }
+}
+
+impl From<TextComponents> for crate::model::richtext::RichText {
+    fn from(components: TextComponents) -> Self {
+        Self(components.0.into_iter().map(TextComponent::into).collect())
     }
 }
 
@@ -288,7 +349,8 @@ impl<'de> DeserializeAs<'de, String> for AccessibilityText {
 
 #[cfg(test)]
 mod tests {
-    use super::TextLink;
+    use super::*;
+
     use rstest::rstest;
     use serde::Deserialize;
     use serde_with::serde_as;
@@ -332,14 +394,14 @@ mod tests {
         #[serde_as]
         #[derive(Deserialize)]
         struct S {
-            #[serde_as(as = "crate::serializer::text::Text")]
+            #[serde_as(as = "Text")]
             txt: String,
         }
 
         #[serde_as]
         #[derive(Deserialize)]
         struct SVec {
-            #[serde_as(as = "crate::serializer::text::Text")]
+            #[serde_as(as = "Text")]
             txt: Vec<String>,
         }
 
@@ -350,18 +412,14 @@ mod tests {
         assert_eq!(res_vec.txt, exp);
     }
 
-    #[serde_as]
     #[derive(Debug, Deserialize)]
     struct SLink {
-        #[serde_as(as = "crate::serializer::text::TextLink")]
-        ln: TextLink,
+        ln: TextComponent,
     }
 
-    #[serde_as]
     #[derive(Debug, Deserialize)]
     struct SLinks {
-        #[serde_as(as = "crate::serializer::text::TextLinks")]
-        ln: Vec<TextLink>,
+        ln: TextComponents,
     }
 
     #[test]
@@ -475,7 +533,7 @@ mod tests {
         let res = serde_json::from_str::<SLink>(&test_json).unwrap();
         insta::assert_debug_snapshot!(res, @r###"
         SLink {
-            ln: None {
+            ln: Text {
                 text: "Hello World",
             },
         }
@@ -559,21 +617,23 @@ mod tests {
         let res = serde_json::from_str::<SLinks>(&test_json).unwrap();
         insta::assert_debug_snapshot!(res, @r###"
         SLinks {
-            ln: [
-                Browse {
-                    text: "Roland Kaiser",
-                    page_type: Artist,
-                    browse_id: "UCtqi0viP-suK-okUQfaw8Ew",
-                },
-                None {
-                    text: " & ",
-                },
-                Browse {
-                    text: "Maite Kelly",
-                    page_type: Artist,
-                    browse_id: "UCY06CayCwdaOd1CnDgjy6uw",
-                },
-            ],
+            ln: TextComponents(
+                [
+                    Browse {
+                        text: "Roland Kaiser",
+                        page_type: Artist,
+                        browse_id: "UCtqi0viP-suK-okUQfaw8Ew",
+                    },
+                    Text {
+                        text: " & ",
+                    },
+                    Browse {
+                        text: "Maite Kelly",
+                        page_type: Artist,
+                        browse_id: "UCY06CayCwdaOd1CnDgjy6uw",
+                    },
+                ],
+            ),
         }
         "###);
     }

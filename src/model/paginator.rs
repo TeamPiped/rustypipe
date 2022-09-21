@@ -1,3 +1,5 @@
+use std::convert::TryInto;
+
 use serde::{Deserialize, Serialize};
 
 /// The paginator is a wrapper around a list of items that are fetched
@@ -28,7 +30,7 @@ pub struct Paginator<T> {
 impl<T> Default for Paginator<T> {
     fn default() -> Self {
         Self {
-            count: None,
+            count: Some(0),
             items: Vec::new(),
             ctoken: None,
         }
@@ -36,6 +38,17 @@ impl<T> Default for Paginator<T> {
 }
 
 impl<T> Paginator<T> {
+    pub(crate) fn new(count: Option<u32>, items: Vec<T>, ctoken: Option<String>) -> Self {
+        Self {
+            count: match ctoken {
+                Some(_) => count,
+                None => items.len().try_into().ok(),
+            },
+            items,
+            ctoken,
+        }
+    }
+
     /// Check if the paginator is exhausted, meaning that no more
     /// items can be fetched.
     ///

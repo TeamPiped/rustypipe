@@ -18,7 +18,7 @@ use serde_with::{serde_as, DefaultOnError, VecSkipError};
 
 use crate::serializer::{
     ignore_any,
-    text::{Text, TextLink, TextLinks},
+    text::{Text, TextComponent},
 };
 
 #[derive(Clone, Debug, Deserialize)]
@@ -121,8 +121,7 @@ pub struct VideoOwner {
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct VideoOwnerRenderer {
-    #[serde_as(as = "TextLink")]
-    pub title: TextLink,
+    pub title: TextComponent,
     pub thumbnail: Thumbnails,
     #[serde_as(as = "Option<Text>")]
     pub subscriber_count_text: Option<String>,
@@ -249,8 +248,7 @@ pub struct MusicColumn {
 #[serde_as]
 #[derive(Clone, Debug, Deserialize)]
 pub struct MusicColumnRenderer {
-    #[serde_as(as = "TextLinks")]
-    pub text: Vec<TextLink>,
+    pub text: TextComponent,
 }
 
 #[derive(Clone, Debug, Deserialize)]

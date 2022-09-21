@@ -5,11 +5,12 @@ expression: map_res.c
 id: PL1J-6JOckZtE_P9Xx8D3b2O6w0idhuKBe
 name: Minecraft SHINE
 videos:
+  count: 66
   items:
     - id: X82TrticM4A
       title: Minecraft SHINE (Trailer)
       length: 80
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/X82TrticM4A/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDaqqikBYqqsuVR1SPVW1HPS7a0sA"
           width: 168
           height: 94
@@ -28,7 +29,7 @@ videos:
     - id: RPGLMuxkLCs
       title: "DAS LAGERFEUERLIED - Minecraft SHINE #001 [Deutsch/HD]"
       length: 1356
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/RPGLMuxkLCs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCLYpK285ZyD2y-ipNU2fC_HzhiRg"
           width: 168
           height: 94
@@ -47,7 +48,7 @@ videos:
     - id: z-ALpnnQLrk
       title: "MAGISCHES FURZMONSTER - Minecraft SHINE #002 [Deutsch/HD]"
       length: 1039
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/z-ALpnnQLrk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBLDDABxzfLeE-dQaBBNKG0CJdOWw"
           width: 168
           height: 94
@@ -66,7 +67,7 @@ videos:
     - id: _rrbTTv8zcQ
       title: "UNTERIRDISCHE RIESENPILZHÖHLEN - Minecraft SHINE #003 [Deutsch/HD]"
       length: 1447
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/_rrbTTv8zcQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD0Br8sAmhv9UlFtwHaK6y3PlxIpQ"
           width: 168
           height: 94
@@ -85,7 +86,7 @@ videos:
     - id: JE16OKTawLw
       title: "BESTE AXT IM SPIEL GEFUNDEN?! - Minecraft SHINE #004 [Deutsch/HD]"
       length: 1238
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/JE16OKTawLw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDRk4X8dtihNq68ay7rpARzN9peiQ"
           width: 168
           height: 94
@@ -104,7 +105,7 @@ videos:
     - id: RQNY0Wzm7DQ
       title: "ERZERAUSCH IM MINENSCHACHT - Minecraft SHINE #005 [Deutsch/HD]"
       length: 1405
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/RQNY0Wzm7DQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDMKr2vJvhKw6bxFVsgfR9p5kRuCQ"
           width: 168
           height: 94
@@ -123,7 +124,7 @@ videos:
     - id: uhy24PKBkd0
       title: "FUSIONSOFEN & ERSTER IM NETHER?! - Minecraft SHINE #006 [Deutsch/HD]"
       length: 1569
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/uhy24PKBkd0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA-pynU_AAsgCDh38L8QmHXXryZfg"
           width: 168
           height: 94
@@ -142,7 +143,7 @@ videos:
     - id: OL1hQadBHfs
       title: "EPISCHER ROGUEDUNGEON - Minecraft SHINE #007 [Deutsch/HD]"
       length: 1534
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/OL1hQadBHfs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBeyicluHNPCNdAKEUTLrHE9Rfmtg"
           width: 168
           height: 94
@@ -161,7 +162,7 @@ videos:
     - id: Zge_SUfk0r8
       title: "DIAMANTZOMBIES auf NETHEREBENE - Minecraft SHINE #008 [Deutsch/HD]"
       length: 1726
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/Zge_SUfk0r8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD9jHtok-baqRLQPZowWsXeVQBA6Q"
           width: 168
           height: 94
@@ -180,7 +181,7 @@ videos:
     - id: yFGIeU_IDE4
       title: "HÖLLISCHE SCHLACHT um 2 DIAMANTBLÖCKE - Minecraft SHINE #009 [Deutsch/HD]"
       length: 1669
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/yFGIeU_IDE4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCx02JGJneEQtn_YD7K8KOt3vC26w"
           width: 168
           height: 94
@@ -199,7 +200,7 @@ videos:
     - id: P6MVqfQzPIg
       title: "MAGISCHER OBSIDIANTOTEM?! - Minecraft SHINE #010 [Deutsch/HD]"
       length: 1526
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/P6MVqfQzPIg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCLRzxVNwZaMeOU1ls17wlYDsnvZA"
           width: 168
           height: 94
@@ -218,7 +219,7 @@ videos:
     - id: 9n0pLDn8Z_I
       title: "GRÜNER FEUEROGER & WITHERWARZEN - Minecraft SHINE #011 [Deutsch/HD]"
       length: 1482
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/9n0pLDn8Z_I/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBq9_4Ov8kvuTP3uuI7ie8kSCySyw"
           width: 168
           height: 94
@@ -237,7 +238,7 @@ videos:
     - id: oXbx2YtIkeQ
       title: "MYSTERIÖSES Grab & ONYX ohne ENDE!! - Minecraft SHINE #012 [Deutsch/HD]"
       length: 1518
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/oXbx2YtIkeQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBaTkueS0xkMnM6mdCK7vVmH0C-XQ"
           width: 168
           height: 94
@@ -256,7 +257,7 @@ videos:
     - id: pfBBTTwxo8Q
       title: "ATLANTIS ENTDECKT!! - Minecraft SHINE #013 [Deutsch/HD]"
       length: 1479
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/pfBBTTwxo8Q/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCAyzmwdAwcL_ryhGWUi1AB59h8lA"
           width: 168
           height: 94
@@ -275,7 +276,7 @@ videos:
     - id: WxtRqzxSAh0
       title: "ZUSAMMENFASSUNG & Nodop's ANGRIFF - Minecraft SHINE #014 [Deutsch/HD]"
       length: 1902
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/WxtRqzxSAh0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBqT5FSFwps0oUUjwVYqrDMYhC5Nw"
           width: 168
           height: 94
@@ -294,7 +295,7 @@ videos:
     - id: ianUckvxtLw
       title: "FRIEDHOFDUNGEON mit NODÖPCHEN - Minecraft SHINE #016 [Deutsch/HD]"
       length: 1766
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/ianUckvxtLw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBIR3LJOBV1CWi3qKugn4d_x8lAEg"
           width: 168
           height: 94
@@ -313,7 +314,7 @@ videos:
     - id: eb2Ghj1g1ic
       title: "Die BESTE FALLE aller ZEITEN!! - Minecraft SHINE #015 [Deutsch/HD]"
       length: 1324
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/eb2Ghj1g1ic/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDiXr6emf5xDnVWPBJvi3lVWa_Khg"
           width: 168
           height: 94
@@ -332,7 +333,7 @@ videos:
     - id: 8TpEsyVtCog
       title: "MEGAGEMETZEL zu FÜNFT - Minecraft SHINE #017 [Deutsch/HD]"
       length: 1629
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/8TpEsyVtCog/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAclomWqvh1OIkMf0TxPEhjNVrSNQ"
           width: 168
           height: 94
@@ -351,7 +352,7 @@ videos:
     - id: KD_WAei4LMg
       title: "WITHER BOSSFIGHT - Minecraft SHINE #018 [Deutsch/HD]"
       length: 1645
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/KD_WAei4LMg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAEQDBO22V46yEk4yBwkE0IuVjEVA"
           width: 168
           height: 94
@@ -370,7 +371,7 @@ videos:
     - id: qfpOCrtweKk
       title: "LABERSTUNDE mit ArazhulHD - Minecraft SHINE #019 [Deutsch/HD]"
       length: 1052
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/qfpOCrtweKk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC9xRR01wPaSTq0vL4_L6G-CS5KVw"
           width: 168
           height: 94
@@ -389,7 +390,7 @@ videos:
     - id: 6gv3nrOA_bQ
       title: "BUSRITUALE & Seltsame LEHRER - Minecraft SHINE #021 [Deutsch/HD]"
       length: 1769
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/6gv3nrOA_bQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB43mXOVwQ4mRzqakDHn0kHKoY0qA"
           width: 168
           height: 94
@@ -408,7 +409,7 @@ videos:
     - id: waaic6UnkU8
       title: "LEHM, LEHM und mehr LEEEHM!! - Minecraft SHINE #022  [Deutsch/HD]"
       length: 1081
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/waaic6UnkU8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC1k7ynTJNnCRrfImHqEBaTTi85Kw"
           width: 168
           height: 94
@@ -427,7 +428,7 @@ videos:
     - id: lSy4MLC_uV4
       title: "Neue DIMENSIONEN?? - Minecraft SHINE #023 [Deutsch/HD]"
       length: 1682
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/lSy4MLC_uV4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB2wug5u6lgdChlnqxRHcqFN7l0LA"
           width: 168
           height: 94
@@ -446,7 +447,7 @@ videos:
     - id: BuN8-U_quok
       title: "DUNGEONSTATUEN - Minecraft SHINE #024 [Deutsch/HD]"
       length: 1597
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/BuN8-U_quok/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAJe8jzy_ccxC-Z-k4-rVVTLT4HOw"
           width: 168
           height: 94
@@ -465,7 +466,7 @@ videos:
     - id: g_UTG10nzaQ
       title: "THYRIUMBOGEN & Dimensional DOORS - Minecraft SHINE #025 [Deutsch/HD]"
       length: 1852
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/g_UTG10nzaQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB90DMVKNRWSPO51zupoYxPoFmI8Q"
           width: 168
           height: 94
@@ -484,7 +485,7 @@ videos:
     - id: kNykFWaDbGw
       title: "MEIN ERSTER PVP KILL?! - Minecraft SHINE #026 [Deutsch/HD]"
       length: 1869
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/kNykFWaDbGw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA9gJtMx-vjG3LDYC6Mog9JJ62EYw"
           width: 168
           height: 94
@@ -503,7 +504,7 @@ videos:
     - id: gJF7vxCYTgY
       title: "SPELLBOUND FARM - Minecraft SHINE #027 [Deutsch/HD]"
       length: 2161
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/gJF7vxCYTgY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBKzKHEYjsk4GnAxw1jhzHI_opNEQ"
           width: 168
           height: 94
@@ -522,7 +523,7 @@ videos:
     - id: CodZMQ_Anc0
       title: "VIEEELE bunte ZAUBERPILZE - Minecraft SHINE #028 [Deutsch/HD]"
       length: 1768
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/CodZMQ_Anc0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDNdgtoMcy-lYPmsnYVOcxJnCck8g"
           width: 168
           height: 94
@@ -541,7 +542,7 @@ videos:
     - id: oKHMTKJdZ_M
       title: "STREAMUPDATE & BIOMREISE - Minecraft SHINE #029 [Deutsch/HD]"
       length: 1771
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/oKHMTKJdZ_M/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDlNghAFoCRrLzfippQtyfBiDtG-A"
           width: 168
           height: 94
@@ -560,7 +561,7 @@ videos:
     - id: "--O_Eyok_eE"
       title: "AUF NACH TROPICRAFT - Minecraft SHINE #030 [Deutsch/HD]"
       length: 1661
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/--O_Eyok_eE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAjgm528b0H8-NGsHGFQSh0AA4GVw"
           width: 168
           height: 94
@@ -579,7 +580,7 @@ videos:
     - id: 2bT3ljKMSo8
       title: "SCHATZTRUHE GEFUNDEN!! - Minecraft SHINE #031 [Deutsch/HD]"
       length: 1429
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/2bT3ljKMSo8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC_TanSk3-kj26i-m-433iBP893TA"
           width: 168
           height: 94
@@ -598,7 +599,7 @@ videos:
     - id: YRAX_slrbsI
       title: "ZAUBERWALD und TROPISCHER DSCHUNGEL - Minecraft SHINE #032 [Deutsch/HD]"
       length: 1257
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/YRAX_slrbsI/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCQenXFcDnthdi95vSgMUNontlYhA"
           width: 168
           height: 94
@@ -617,7 +618,7 @@ videos:
     - id: aRRbCEwUSuw
       title: "MESABIOM & JOUSTS - Minecraft SHINE #033 [Deutsch/HD]"
       length: 1131
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/aRRbCEwUSuw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDxqJBg6ejA-m-emBnzhKuSw7PH0w"
           width: 168
           height: 94
@@ -636,7 +637,7 @@ videos:
     - id: 5sV8SzTbJS8
       title: "Komplette SMELTERY GEFUNDEN!! - Minecraft SHINE #034 [Deutsch/HD]"
       length: 1405
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/5sV8SzTbJS8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCQvHJJ0CEAzp9ZOT2Wt84vEFNg8A"
           width: 168
           height: 94
@@ -655,7 +656,7 @@ videos:
     - id: ZxxZlU2o1TE
       title: "ROGUEDUNGEON EXTREME - Minecraft SHINE #035 [Deutsch/HD]"
       length: 1555
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/ZxxZlU2o1TE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD5Ol6GW-ybn_4pkMWAKhy0ALAMXA"
           width: 168
           height: 94
@@ -674,7 +675,7 @@ videos:
     - id: gIjo5at4AxE
       title: "LEGENDÄRER LOOT - Minecraft SHINE #036 [Deutsch/HD]"
       length: 1405
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/gIjo5at4AxE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCBinkghbbcWN5isNzwxekTYfpABQ"
           width: 168
           height: 94
@@ -693,7 +694,7 @@ videos:
     - id: NSGk7-kyeEU
       title: "I BELIEVE I CAN FLY - Minecraft SHINE #037 [Deutsch/HD]"
       length: 829
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/NSGk7-kyeEU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDzQVO8fGvLFYxX31s1x14XsR2YAw"
           width: 168
           height: 94
@@ -712,7 +713,7 @@ videos:
     - id: cgJtZ7Otc4Y
       title: "ROGUEFRIEDHOF mit WITHERBOSS - Minecraft SHINE #038 [Deutsch/HD]"
       length: 1392
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/cgJtZ7Otc4Y/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDK12gzYlhFnRvOaKPfBwCe3ShVCA"
           width: 168
           height: 94
@@ -731,7 +732,7 @@ videos:
     - id: l5LQu3Q0nWY
       title: "MONSTERCALYPSE & RETTUNGSAKTION - Minecraft SHINE #039 [Deutsch/HD]"
       length: 1580
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/l5LQu3Q0nWY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAp9sggZ7r8Drcdso3H8mja_pPjOg"
           width: 168
           height: 94
@@ -750,7 +751,7 @@ videos:
     - id: YX4Z3ZlWUFc
       title: "HINTERHALT von GEGNERN!!  - Minecraft SHINE #040 [Deutsch/HD]"
       length: 1847
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/YX4Z3ZlWUFc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCiPRQyCDwv4Hg1TOyAx_JQbhgYZA"
           width: 168
           height: 94
@@ -769,7 +770,7 @@ videos:
     - id: LoyvqR41lKw
       title: "CARPENTER's BLOCKS - Minecraft SHINE #041 [Deutsch/HD]"
       length: 1524
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/LoyvqR41lKw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDwYtpWH35Zh5fLrJeDYW0A1GlJUg"
           width: 168
           height: 94
@@ -788,7 +789,7 @@ videos:
     - id: HbQtMZbtx_Q
       title: "DER ETERNAL FROST!! - Minecraft SHINE #043 [Deutsch/HD]"
       length: 1514
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/HbQtMZbtx_Q/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLByqCDZ6hojgwcvO8ykf1EKOCAyMw"
           width: 168
           height: 94
@@ -807,7 +808,7 @@ videos:
     - id: 0DHRbP9ecgw
       title: "FROSTDUNGEONS in der OVERWORLD!! - Minecraft SHINE #044 [Deutsch/HD]"
       length: 1567
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/0DHRbP9ecgw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD9v_vTHy1VOEM3VGQ30lhEJLfmvw"
           width: 168
           height: 94
@@ -826,7 +827,7 @@ videos:
     - id: rFOFkvk-xus
       title: "BOSSRÜSTUNG XXL - Minecraft SHINE #045 [Deutsch/HD]"
       length: 2050
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/rFOFkvk-xus/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAOHW34k4C5B4IDkKsphKd7RpKJEw"
           width: 168
           height: 94
@@ -845,7 +846,7 @@ videos:
     - id: P8zxnSihJ_8
       title: "ZAUBERN & TROLLEN mit Nodop - Minecraft SHINE #046 [Deutsch/HD]"
       length: 1828
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/P8zxnSihJ_8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDKgLUdVybxHwVoOxNFvVBz2QI0aQ"
           width: 168
           height: 94
@@ -864,7 +865,7 @@ videos:
     - id: RWgeHl9XkCY
       title: "NACHHILFE für BALUI - Minecraft SHINE #047 [Deutsch/HD]"
       length: 1926
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/RWgeHl9XkCY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBktMkUzztN_VwIMmZ-icbRUrED3w"
           width: 168
           height: 94
@@ -883,7 +884,7 @@ videos:
     - id: I1n539enNNY
       title: "SPIELER GETÖTET!! - Minecraft SHINE #048 [Deutsch/HD]"
       length: 1836
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/I1n539enNNY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA6GMQFFds97Lr4obHmFRuKi5pscQ"
           width: 168
           height: 94
@@ -902,7 +903,7 @@ videos:
     - id: 70VKekyZz5g
       title: "VORBEREITUNG auf den DRACHEN - Minecraft SHINE #049 [Deutsch/HD]"
       length: 1916
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/70VKekyZz5g/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD7nTUSM_8kz82LsnWCRNjPRv3fvA"
           width: 168
           height: 94
@@ -921,7 +922,7 @@ videos:
     - id: 2OWJ1bwFu6Y
       title: "Donnernder ENDERDRACHENKAMPF - Minecraft SHINE #050 [Deutsch/HD]"
       length: 1718
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/2OWJ1bwFu6Y/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDj9YAqHRFD2Zwi9Kvr69EjDnVEBw"
           width: 168
           height: 94
@@ -940,7 +941,7 @@ videos:
     - id: zLiSA2i-niw
       title: "Superspitzhacke & Necrotic Bones - Minecraft SHINE #051 [Deutsch/HD]"
       length: 1253
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/zLiSA2i-niw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC1WmiMQp3vCS3mPRS5LfmHhDlPpw"
           width: 168
           height: 94
@@ -959,7 +960,7 @@ videos:
     - id: wyXlw7nMpko
       title: "TREMEP, das ENDERAUGE!! - Minecraft SHINE #052 [Deutsch/HD]"
       length: 1924
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/wyXlw7nMpko/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDCplxVSv6_-SIcPEPqgudEk5q30A"
           width: 168
           height: 94
@@ -978,7 +979,7 @@ videos:
     - id: NrU4fhzvFpA
       title: "TORNADO & ENDERPOKALYPSE!! - Minecraft SHINE #053 [Deutsch/HD]"
       length: 1654
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/NrU4fhzvFpA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDur1k61uW8f9d8UOA6yqSdCNWvfg"
           width: 168
           height: 94
@@ -997,7 +998,7 @@ videos:
     - id: 1xhKegaA1hQ
       title: "RIESIGE SMELTERY - Minecraft SHINE #054 [Deutsch/HD]"
       length: 1796
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/1xhKegaA1hQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCM_UOeSqAu0ykS6gTds3NJ901u8Q"
           width: 168
           height: 94
@@ -1016,7 +1017,7 @@ videos:
     - id: 9F4lZ8psBtg
       title: "TINKER's CONSTRUCT - Minecraft SHINE #055 [Deutsch/HD]"
       length: 1514
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/9F4lZ8psBtg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBGmpBmXNSZP0X0rQSKWFzlM7DGMw"
           width: 168
           height: 94
@@ -1035,7 +1036,7 @@ videos:
     - id: G3uUtejX9to
       title: "CUTLASS und HAMMERACTION - Minecraft SHINE #056 [Deutsch/HD]"
       length: 1615
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/G3uUtejX9to/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCrz9L2HWwY3_6J01GwQWs-sivnNw"
           width: 168
           height: 94
@@ -1054,7 +1055,7 @@ videos:
     - id: "-0Xn5pViCss"
       title: "QUARZFESTIVAL - Minecraft SHINE #057 [Deutsch/HD]"
       length: 1353
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/-0Xn5pViCss/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC-QHkwmzqNW4mhuE7oJslYUtReRQ"
           width: 168
           height: 94
@@ -1073,7 +1074,7 @@ videos:
     - id: a7u71Fco99I
       title: "DUALWITHERKAMPF & EXOSUIT - Minecraft SHINE  #058 [Deutsch/HD]"
       length: 1377
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/a7u71Fco99I/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC1iNJdmqZHK-ZHSre6MiBKzuPMMw"
           width: 168
           height: 94
@@ -1092,7 +1093,7 @@ videos:
     - id: H6uUbvcgKdk
       title: "ALLE GETROLLT?! 1. APRIL!! - Minecraft SHINE #060 [Deutsch/HD]"
       length: 1751
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/H6uUbvcgKdk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBzSJjNn7zgtAF2kMOHcyBsbS1l-Q"
           width: 168
           height: 94
@@ -1111,7 +1112,7 @@ videos:
     - id: tPRTCauHtkw
       title: "THAUMELONE - Minecraft SHINE #061 [Deutsch/HD]"
       length: 1604
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/tPRTCauHtkw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCbTexd_3GA4grOauyJYk_HY9OQ8Q"
           width: 168
           height: 94
@@ -1130,7 +1131,7 @@ videos:
     - id: pMKAQExcarM
       title: "ICH BIN EIN MAGIER!! - Minecraft SHINE #062 [Deutsch/HD]"
       length: 1202
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/pMKAQExcarM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDd_6WaCpRHtqRugrmQn7gFNo9_LQ"
           width: 168
           height: 94
@@ -1149,7 +1150,7 @@ videos:
     - id: 7E-z-7KCdBI
       title: "ENDER PORTER und SPELLBOUND - Minecraft SHINE #063 [Deutsch/HD]"
       length: 1715
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/7E-z-7KCdBI/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBGUzE-YGbouV7fglH5XM9xIFS5mA"
           width: 168
           height: 94
@@ -1168,7 +1169,7 @@ videos:
     - id: EPtbC0ZVddo
       title: "PORTABLE HOLE & Melonenstatuen - Minecraft SHINE #064 [Deutsch/HD]"
       length: 1696
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/EPtbC0ZVddo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDGPl3HlQLwqnYRjxskV1EFD3pAvA"
           width: 168
           height: 94
@@ -1187,7 +1188,7 @@ videos:
     - id: TpPHng0eGJs
       title: "ZUKUNFT des PROJEKTS - Minecraft SHINE #065 [Deutsch/HD]"
       length: 1215
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/TpPHng0eGJs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDrapGS714wjdb3XLYg9KsMQBQwig"
           width: 168
           height: 94
@@ -1206,7 +1207,7 @@ videos:
     - id: rt2QFQwJYcs
       title: "GIGANTISCHER METEOR!! - Minecraft SHINE #066 [Deutsch/HD]"
       length: 1593
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/rt2QFQwJYcs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBf_L_ob5qiPVaGJdyQFyoFEwIstg"
           width: 168
           height: 94
@@ -1225,7 +1226,7 @@ videos:
     - id: WPyfaztFDQ4
       title: "Der EREBUS und die GHAST QUEEN - Minecraft SHINE #067 [Deutsch/HD]"
       length: 1687
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/WPyfaztFDQ4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAeaQHeQX9MUHyne6tlJW9JeycB3A"
           width: 168
           height: 94
@@ -1244,7 +1245,7 @@ videos:
     - id: 5lmumP0DaUw
       title: "MINI-BEST OF und KABOOM!! - Minecraft SHINE #069 (Finale) [Deutsch/HD]"
       length: 1044
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/5lmumP0DaUw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDys9BQ_BHV7BhDkYphDT72uJBebQ"
           width: 168
           height: 94
@@ -1261,8 +1262,8 @@ videos:
         id: UCQM0bS4_04-Y4JuYrgmnpZQ
         name: Chaosflo44
   ctoken: ~
-n_videos: 66
-thumbnails:
+video_count: 66
+thumbnail:
   - url: "https://i.ytimg.com/vi/X82TrticM4A/hqdefault.jpg?sqp=-oaymwEWCKgBEF5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLBeSNDZEaBoP0KX9_Ayn3VO3X8rkw"
     width: 168
     height: 94

@@ -5,11 +5,12 @@ expression: map_res.c
 id: RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk
 name: Easy Pop
 videos:
+  count: 97
   items:
     - id: psuRGfAaju4
       title: Owl City - Fireflies (Official Music Video)
       length: 233
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/psuRGfAaju4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD9bUyhPoTTV2wN8BSQ1GCiZfEHRg"
           width: 168
           height: 94
@@ -28,7 +29,7 @@ videos:
     - id: PMGY8fLwess
       title: James Arthur - Falling Like The Stars
       length: 256
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/PMGY8fLwess/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCET20Nd4_3twDEy-t_LBeJFI5Lng"
           width: 168
           height: 94
@@ -47,7 +48,7 @@ videos:
     - id: 2n5GKLdrTfk
       title: Benson Boone -  In the Stars (Official Lyric Video)
       length: 217
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/2n5GKLdrTfk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBgZfqXCaEvs5iiS7Uf8_th3FHi0Q"
           width: 168
           height: 94
@@ -66,7 +67,7 @@ videos:
     - id: EptPhiK_q0E
       title: Coldplay X Selena Gomez - Let Somebody Go (Official Lyric Video)
       length: 242
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/EptPhiK_q0E/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDTeIH-1FQK933u9jM7C9HHRxOZyQ"
           width: 168
           height: 94
@@ -85,7 +86,7 @@ videos:
     - id: qHm9MG9xw1o
       title: OneRepublic - Secrets (Official Music Video)
       length: 233
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/qHm9MG9xw1o/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAEc7ChL1aU4sWnM23BEdbqUfYpoA"
           width: 168
           height: 94
@@ -104,7 +105,7 @@ videos:
     - id: XPpTgCho5ZA
       title: Maroon 5 - This Love (Official Music Video)
       length: 206
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/XPpTgCho5ZA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAJLr7-wCPWd1_-QSELXsmZxsuUQA"
           width: 168
           height: 94
@@ -123,7 +124,7 @@ videos:
     - id: 1YUBbF24H44
       title: Sabrina Carpenter - because i liked a boy (Official Video)
       length: 206
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/1YUBbF24H44/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB_FDT3RYF6Db3q5vW9KsL9RCIcUA"
           width: 168
           height: 94
@@ -142,7 +143,7 @@ videos:
     - id: UAWcs5H-qgQ
       title: "Ed Sheeran - The A Team [Official Music Video]"
       length: 290
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/UAWcs5H-qgQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAQe32l8lKUCEYlEu3qvN61HJfhZQ"
           width: 168
           height: 94
@@ -161,7 +162,7 @@ videos:
     - id: bqO3Y5e4Dow
       title: Michele Morrone - Hard For Me (Official Music Video)
       length: 173
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/bqO3Y5e4Dow/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCP6Zgm-3gvaYxZkCT5OS3GjJM2vQ"
           width: 168
           height: 94
@@ -180,7 +181,7 @@ videos:
     - id: NgsWGfUlwJI
       title: Joji - Glimpse of Us (Official Video)
       length: 235
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/NgsWGfUlwJI/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBjgFP8evTpUA81K98aQOBPFxSk7g"
           width: 168
           height: 94
@@ -199,7 +200,7 @@ videos:
     - id: AcTDlsUej2w
       title: "Sofia Carson - Come Back Home (From \"Purple Hearts\")"
       length: 204
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/AcTDlsUej2w/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBZ4neL2CBKzCLMIK_-dU9jcjgU7g"
           width: 168
           height: 94
@@ -218,7 +219,7 @@ videos:
     - id: k6ZoE4RrcDs
       title: "Ed Sheeran - Overpass Graffiti [Official Video]"
       length: 287
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/k6ZoE4RrcDs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLClylvwlo7lJP-guD59zx46AJ-FhA"
           width: 168
           height: 94
@@ -237,7 +238,7 @@ videos:
     - id: _JGGLJMpVks
       title: Billie Eilish - TV (Official Lyric Video)
       length: 282
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/_JGGLJMpVks/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD2M9JavMUXxkoqzNoTG-W4y8f6ng"
           width: 168
           height: 94
@@ -256,7 +257,7 @@ videos:
     - id: mqiH0ZSkM9I
       title: James Bay - Hold Back The River
       length: 247
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/mqiH0ZSkM9I/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDL1DI86uhS0N-7Iln6wBSdwxzSTw"
           width: 168
           height: 94
@@ -275,7 +276,7 @@ videos:
     - id: c0wUKCekI34
       title: Michele Morrone - Another Day (Official Music Video)
       length: 188
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/c0wUKCekI34/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDnIgpAY_IWghMmR2H5lMfpPJhhKQ"
           width: 168
           height: 94
@@ -294,7 +295,7 @@ videos:
     - id: c4BLVznuWnU
       title: "Ed Sheeran - Lego House [Official Music Video]"
       length: 246
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/c4BLVznuWnU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCGv3Z17ZP7qUJBjyKS6XqEfd6vFA"
           width: 168
           height: 94
@@ -313,7 +314,7 @@ videos:
     - id: ouEezpuPc3A
       title: "Andy Grammer - \"Don't Give Up On Me\" [Official Video from the Five Feet Apart Film]"
       length: 216
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/ouEezpuPc3A/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLATK7bjvuTcCR3tLGpTByugeeApBw"
           width: 168
           height: 94
@@ -332,7 +333,7 @@ videos:
     - id: i-qT5n_5Mys
       title: "Jaymes Young - Happiest Year [Official Music Video]"
       length: 278
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/i-qT5n_5Mys/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBVoIW7CvV2T6J4lKS4ke0oG5T76Q"
           width: 168
           height: 94
@@ -351,7 +352,7 @@ videos:
     - id: CA1VHbdq5hY
       title: Giveon - Lie Again (Official Music Video)
       length: 236
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/CA1VHbdq5hY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDxIcgCqYhMN-NtLCF7P9SvaZF5ag"
           width: 168
           height: 94
@@ -370,7 +371,7 @@ videos:
     - id: 74NhLkjIeMs
       title: Conan Gray - Yours
       length: 201
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/74NhLkjIeMs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA2yej0cyHG33At8O7nYsh0W0CjWQ"
           width: 168
           height: 94
@@ -389,7 +390,7 @@ videos:
     - id: vNfgVjZF8_4
       title: OneRepublic - Someday (Official Music Video)
       length: 192
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/vNfgVjZF8_4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAiolwWxGplthlYKy2jJkAxw_-u2Q"
           width: 168
           height: 94
@@ -408,7 +409,7 @@ videos:
     - id: 2ebfSItB0oM
       title: "Jess Glynne - Take Me Home [Official Video]"
       length: 273
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/2ebfSItB0oM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA9pxJZqzDeCmbUTo-6OXV1XZ8apg"
           width: 168
           height: 94
@@ -427,7 +428,7 @@ videos:
     - id: ilut9TzMfXs
       title: Rag’n’Bone Man & P!nk – Anywhere Away From Here (Official Video)
       length: 244
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/ilut9TzMfXs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCchkk9Vv4Ricblm2o1jBEWoaxsSg"
           width: 168
           height: 94
@@ -446,7 +447,7 @@ videos:
     - id: "-oqAU5VxFWs"
       title: Counting Crows - Mr. Jones (Official Music Video)
       length: 270
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/-oqAU5VxFWs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAOiV1ty7HPrBwp-3zZq3x_VY9YbQ"
           width: 168
           height: 94
@@ -465,7 +466,7 @@ videos:
     - id: aNzCDt2eidg
       title: "Birdy - Skinny Love [Official Music Video]"
       length: 214
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/aNzCDt2eidg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB33o_fslw86LZxcC1Jf8Oy8X94tg"
           width: 168
           height: 94
@@ -484,7 +485,7 @@ videos:
     - id: fvXn3rmhdc4
       title: Benson Boone - Better Alone (Official Music Video)
       length: 209
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/fvXn3rmhdc4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBXyC7NRsIpcSf-3xM6lJpRjufFBg"
           width: 168
           height: 94
@@ -503,7 +504,7 @@ videos:
     - id: A48hOToMuRE
       title: Dermot Kennedy - Outnumbered
       length: 247
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/A48hOToMuRE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD331J7kou1P60yR_eWHyDtzD6ATQ"
           width: 168
           height: 94
@@ -522,7 +523,7 @@ videos:
     - id: goqqohUitmw
       title: Conan Gray - People Watching (Official Video)
       length: 210
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/goqqohUitmw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBctikDTiHTYFwrnwU3twVrMoMg0w"
           width: 168
           height: 94
@@ -541,7 +542,7 @@ videos:
     - id: 8uD6s-X3590
       title: Harry Styles - Sweet Creature (Audio)
       length: 226
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/8uD6s-X3590/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAp_XOxJrJkE_utqlgE20n5FcGS4w"
           width: 168
           height: 94
@@ -560,7 +561,7 @@ videos:
     - id: ljXSjIph5ZM
       title: Niall Horan - Too Much To Ask (Official)
       length: 226
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/ljXSjIph5ZM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBswSaH9Elc6hO18X9NQnbcnCTTrw"
           width: 168
           height: 94
@@ -579,7 +580,7 @@ videos:
     - id: E87oYUfI3WY
       title: "Maisie Peters - Good Enough [Official Video]"
       length: 232
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/E87oYUfI3WY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC3IhuUtf83DwUvPuQyuJbVgtAhEQ"
           width: 168
           height: 94
@@ -598,7 +599,7 @@ videos:
     - id: DJFMRLIe-0o
       title: Tate McRae x Ali Gatie - lie to me
       length: 191
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/DJFMRLIe-0o/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBxB2LhvsmbZFj8u3HHpZqw_QLQYQ"
           width: 168
           height: 94
@@ -617,7 +618,7 @@ videos:
     - id: tMsbeyeTtpk
       title: "Michael Bublé  - I'll Never Not Love You (Official Music Video)"
       length: 245
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/tMsbeyeTtpk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDAr49jYgSm566rAeQY2EDCJf8TiA"
           width: 168
           height: 94
@@ -636,7 +637,7 @@ videos:
     - id: _LwX7GCE5rI
       title: Miley Cyrus - Slide Away (Audio)
       length: 236
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/_LwX7GCE5rI/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDARZ6g8GJ5ZQJKLBn_f7EUz5zQbw"
           width: 168
           height: 94
@@ -655,7 +656,7 @@ videos:
     - id: flv8AEWrRMI
       title: "Taylor Swift - Run (Taylor's Version) (From The Vault) (Lyric Video) ft. Ed Sheeran"
       length: 241
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/flv8AEWrRMI/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAM8x4zzYsoPuR89FVQpqw4LYzbZQ"
           width: 168
           height: 94
@@ -674,7 +675,7 @@ videos:
     - id: bO3S8CKafbE
       title: Niall Horan - Put A Little Love On Me (Official)
       length: 235
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/bO3S8CKafbE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBkGMciyWKUevmBLwdIEfdyEUGtLQ"
           width: 168
           height: 94
@@ -693,7 +694,7 @@ videos:
     - id: 26PAgklYYvo
       title: James Morrison - Broken Strings ft. Nelly Furtado (Official Video)
       length: 261
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/26PAgklYYvo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBBWaF5iUZuRhd5CXJczxE_uIhvuQ"
           width: 168
           height: 94
@@ -712,7 +713,7 @@ videos:
     - id: KS2Ho8aICMk
       title: "Bazzi - Heaven [Official Audio]"
       length: 154
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/KS2Ho8aICMk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAs7ctW1niNC-sIH0bD-b52ghfhNg"
           width: 168
           height: 94
@@ -731,7 +732,7 @@ videos:
     - id: HtNS1afUOnE
       title: OneRepublic - Stop And Stare (Official Music Video)
       length: 295
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/HtNS1afUOnE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAxlKe00QtM12L4lSRNPFQwpSMyVA"
           width: 168
           height: 94
@@ -750,7 +751,7 @@ videos:
     - id: h_m-BjrxmgI
       title: "Plain White T's - Hey There Delilah (Official Video)"
       length: 243
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/h_m-BjrxmgI/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCeY3aiz1d4DhTh2-WsPKTE-II4kQ"
           width: 168
           height: 94
@@ -769,7 +770,7 @@ videos:
     - id: ELPOCJvDz3w
       title: Leon Bridges - Beyond (Official Video)
       length: 250
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/ELPOCJvDz3w/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDzr6OL-r-WnVx3G45MWBIVoCjCgg"
           width: 168
           height: 94
@@ -788,7 +789,7 @@ videos:
     - id: 7Lna4Hu4-AQ
       title: MAX & Ali Gatie - Butterflies (Official Music Video)
       length: 195
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/7Lna4Hu4-AQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCwk82yvmb0b2bT2LQdLDCm7AdPVw"
           width: 168
           height: 94
@@ -807,7 +808,7 @@ videos:
     - id: 5qHRMFQ0pLg
       title: Dermot Kennedy - Dreamer
       length: 182
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/5qHRMFQ0pLg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA0CeUiMuMAYUlwd6OSvfGbV2fiyA"
           width: 168
           height: 94
@@ -826,7 +827,7 @@ videos:
     - id: 9f-1VOEUeDY
       title: "Maddie Zahm - If It's Not God (Official Music Video)"
       length: 243
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/9f-1VOEUeDY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDLXzcoQoO_5Cd2JYIavP2hnjeoPg"
           width: 168
           height: 94
@@ -845,7 +846,7 @@ videos:
     - id: K9qu2QMBguw
       title: "I See Fire (From \"The Hobbit - The Desolation Of Smaug\")"
       length: 301
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/K9qu2QMBguw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCws9zOceVajoYy1goACyhUMpUp0A"
           width: 168
           height: 94
@@ -864,7 +865,7 @@ videos:
     - id: X_ZOGHUWwqE
       title: Sam Smith - Kids Again
       length: 214
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/X_ZOGHUWwqE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA07XEXQDNHBEgYBzrUaFeuuOhgYw"
           width: 168
           height: 94
@@ -883,7 +884,7 @@ videos:
     - id: uWeqeQkjLto
       title: James Blunt - 1973 (Official Music Video)
       length: 234
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/uWeqeQkjLto/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCj5uZSFhpivKoRJhgbZl1GJ4CoAg"
           width: 168
           height: 94
@@ -902,7 +903,7 @@ videos:
     - id: Ghl_vkEV3tc
       title: Noah Cyrus - Mr. Percocet (Official Video)
       length: 193
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/Ghl_vkEV3tc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDoZ_f8kKEnHOjHUaQOuGK_2rFEzA"
           width: 168
           height: 94
@@ -921,7 +922,7 @@ videos:
     - id: mHeK0Cwr9sg
       title: Family of the Year - Hero (Official Music Video)
       length: 197
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/mHeK0Cwr9sg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBNQKaAvQ3wiH3m5VvXJqLq7evrcw"
           width: 168
           height: 94
@@ -940,7 +941,7 @@ videos:
     - id: WLoWBe9BRP4
       title: Mimi Webb - Good Without (Official Music Video)
       length: 187
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/WLoWBe9BRP4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCXfMk1yjQeGOIv-JWTLz_Sv-fneA"
           width: 168
           height: 94
@@ -959,7 +960,7 @@ videos:
     - id: 7TCncxWNcPU
       title: "David Kushner - Mr. Forgettable [Official Music Video]"
       length: 188
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/7TCncxWNcPU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBUjrfYGwMuSGUQXZ8S5NpzULk04A"
           width: 168
           height: 94
@@ -978,7 +979,7 @@ videos:
     - id: 0Bf3CJZ4hvg
       title: James TW - When You Love Someone (Official Video)
       length: 227
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/0Bf3CJZ4hvg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDcZtU4lYU7SoyX-KWmY83qSZpKNA"
           width: 168
           height: 94
@@ -997,7 +998,7 @@ videos:
     - id: PxNYvk_0Onw
       title: "Gabrielle Aplin - Please Don't Say You Love Me (Official Video)"
       length: 208
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/PxNYvk_0Onw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAzBncBZkxQA-sIftjEl-so3MFXDQ"
           width: 168
           height: 94
@@ -1016,7 +1017,7 @@ videos:
     - id: 9JnLIQ5Th9s
       title: Maddie Zahm - Inevitable (Official Music Video)
       length: 228
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/9JnLIQ5Th9s/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDLj8KVI_KadpQ6cCVyQNEbmNpJbQ"
           width: 168
           height: 94
@@ -1035,7 +1036,7 @@ videos:
     - id: 1XYLKoEETVA
       title: Zoe Wees - Hold Me Like You Used To
       length: 193
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/1XYLKoEETVA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA1vOD1X-dWXRvJME8Rbamezkj3zQ"
           width: 168
           height: 94
@@ -1054,7 +1055,7 @@ videos:
     - id: T8lWjQRhQXY
       title: Lady Gaga - Your Song (Official Audio)
       length: 259
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/T8lWjQRhQXY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDEnBx6NPWqKoysV_9diDiMUzsZ2g"
           width: 168
           height: 94
@@ -1073,7 +1074,7 @@ videos:
     - id: iEtGv8Ha6ck
       title: Diana Ross - All Is Well
       length: 273
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/iEtGv8Ha6ck/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDm5feXTZloBCNI93I0PluWjzoUFA"
           width: 168
           height: 94
@@ -1092,7 +1093,7 @@ videos:
     - id: hCjcgoubkPM
       title: Amy Shark - Mess Her Up (Official Video)
       length: 226
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/hCjcgoubkPM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCJ7TmHDCPS_O4TuOcjvPGrH9uQig"
           width: 168
           height: 94
@@ -1111,7 +1112,7 @@ videos:
     - id: Nlg3l4MCM7k
       title: ILIRA - Flowers (Official Music Video)
       length: 215
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/Nlg3l4MCM7k/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBYvh54ULaak8HAB1pb0u4Vnd9UGQ"
           width: 168
           height: 94
@@ -1130,7 +1131,7 @@ videos:
     - id: nwXlRq_QyTI
       title: JP Saxe - A Little Bit Yours (Official Music Video)
       length: 246
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/nwXlRq_QyTI/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAeMKBjb-xLVknOBO0jnBI0nKGRrw"
           width: 168
           height: 94
@@ -1149,7 +1150,7 @@ videos:
     - id: qIh5QvjiF28
       title: Milow - How Love Works (Official Video)
       length: 179
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/qIh5QvjiF28/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCfjNE3fPbYbMKYjmfnXKtFph26rQ"
           width: 168
           height: 94
@@ -1168,7 +1169,7 @@ videos:
     - id: HRsWSIxYBBA
       title: Noah Cyrus – Ready To Go (Official Visualizer)
       length: 188
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/HRsWSIxYBBA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLApNEWE6Cxt3y-aGgkSH675OJLt1w"
           width: 168
           height: 94
@@ -1187,7 +1188,7 @@ videos:
     - id: 1le0xDbrVj8
       title: Oh Wonder - True Romance
       length: 244
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/1le0xDbrVj8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLACfT_oOjcoB51P7qdJBdRJqMk6Bg"
           width: 168
           height: 94
@@ -1206,7 +1207,7 @@ videos:
     - id: YJ4vr53hMuo
       title: Cat Burns ‘Go’ ft. Sam Smith (Hyde Park)
       length: 199
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/YJ4vr53hMuo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBarHpZGSNkIms8h9_3KONzZSOTnA"
           width: 168
           height: 94
@@ -1225,7 +1226,7 @@ videos:
     - id: ws-li4Fy1kY
       title: "Alexander 23 - The Hardest Part [Official Lyric Video]"
       length: 204
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/ws-li4Fy1kY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAb7HJhYuNtJsHtVXj817i3k7hKOA"
           width: 168
           height: 94
@@ -1244,7 +1245,7 @@ videos:
     - id: fyrsExw_LUg
       title: James Bay - Bad
       length: 243
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/fyrsExw_LUg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAIYoOZeb6YLJs-k7q7gUYDyEw5hQ"
           width: 168
           height: 94
@@ -1263,7 +1264,7 @@ videos:
     - id: ZdsER1S3t8k
       title: Noah Kahan - Hurt Somebody (Official Video)
       length: 175
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/ZdsER1S3t8k/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCMXZbK3xM4AVAHT-1INttn80orFg"
           width: 168
           height: 94
@@ -1282,7 +1283,7 @@ videos:
     - id: BS4t017LSoA
       title: Bad Habits (Acoustic Version)
       length: 233
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/BS4t017LSoA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAoxqVY-e_4hIjPTQ2FLvQTy2e5KQ"
           width: 168
           height: 94
@@ -1301,7 +1302,7 @@ videos:
     - id: 0AYzzzBaPBI
       title: flora cash - They Own This Town (Official Video)
       length: 246
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/0AYzzzBaPBI/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDw2F7ryxqDLcERqtiIuz0pokrhcQ"
           width: 168
           height: 94
@@ -1320,7 +1321,7 @@ videos:
     - id: zM0K3LC7Aak
       title: James Arthur - Avalanche (Live Session)
       length: 220
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/zM0K3LC7Aak/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLACABCozlS3B9tiR0oHa3A13tsKzg"
           width: 168
           height: 94
@@ -1339,7 +1340,7 @@ videos:
     - id: 35VK8yonvsc
       title: James Bay -  Everybody Needs Someone (Official Lyric Video)
       length: 216
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/35VK8yonvsc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBm5zTCEBdVI4kL94VNJsrVw_D7Sg"
           width: 168
           height: 94
@@ -1358,7 +1359,7 @@ videos:
     - id: RdFaKz71-5M
       title: Ruel - LET THE GRASS GROW (Visualizer)
       length: 181
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/RdFaKz71-5M/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB2vXg0jRY42m1wZOLaDw8uhUIUvQ"
           width: 168
           height: 94
@@ -1377,7 +1378,7 @@ videos:
     - id: IPOC8KuYu7Q
       title: "Leon Bridges, Kevin Kaarl - Summer Moon (Official Lyric Video)"
       length: 177
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/IPOC8KuYu7Q/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDyrEi4-cQhrVny1wwVocNKV8GMKw"
           width: 168
           height: 94
@@ -1396,7 +1397,7 @@ videos:
     - id: "-4szr0EMrgk"
       title: Låpsley - 32 Floors (Official Audio)
       length: 185
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/-4szr0EMrgk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDLhtl3Y4FPzUXDhDbg8grAAJciKg"
           width: 168
           height: 94
@@ -1415,7 +1416,7 @@ videos:
     - id: WJJLfUwIVR4
       title: "christina perri - home [official audio]"
       length: 219
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/WJJLfUwIVR4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCjZfLCHDk9PES_FolWuRH8CosyZg"
           width: 168
           height: 94
@@ -1434,7 +1435,7 @@ videos:
     - id: "-uxeu0MbNR0"
       title: "Jeremy Zucker - oh, mexico (Official Lyric Video)"
       length: 191
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/-uxeu0MbNR0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAh2ApdiwlYs3vSs_rNVURKcwVjOw"
           width: 168
           height: 94
@@ -1453,7 +1454,7 @@ videos:
     - id: ELD3aRzbVQg
       title: Tom Gregory - Run To You (Official Video HD)
       length: 201
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/ELD3aRzbVQg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA9S7vhfJ0vZ9jFNIPnuhZ47IV5VA"
           width: 168
           height: 94
@@ -1472,7 +1473,7 @@ videos:
     - id: 726I7op9iq0
       title: AURORA - Cure For Me (Acoustic / Audio)
       length: 214
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/726I7op9iq0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBNtkXA8U9ien4iRiYTob8eCt4Bvw"
           width: 168
           height: 94
@@ -1491,7 +1492,7 @@ videos:
     - id: 8CqQ47SzNU0
       title: "Sigrid, Bring Me The Horizon – Bad Life (Stripped Back)"
       length: 221
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/8CqQ47SzNU0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAn0R2h1qr__o7jbufrNQVEUaR_dQ"
           width: 168
           height: 94
@@ -1510,7 +1511,7 @@ videos:
     - id: NjW1S0WIiJw
       title: John Legend -  Free (Official Lyric Video)
       length: 223
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/NjW1S0WIiJw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCoe2g-AJhPWV6uGi_Cb5BgOA9ggA"
           width: 168
           height: 94
@@ -1529,7 +1530,7 @@ videos:
     - id: C7LUFn66OeQ
       title: Joy Oladokun with Maren Morris - Bigger Man (Official Visualizer)
       length: 187
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/C7LUFn66OeQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC0AfcbW8PtTZKyYxdUqYmAOtmqyA"
           width: 168
           height: 94
@@ -1548,7 +1549,7 @@ videos:
     - id: CY0fLYnw59M
       title: "dodie - If I'm Being Honest"
       length: 310
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/CY0fLYnw59M/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBZBA3Xtoc9Zmqo9sDVki-9i3FWLQ"
           width: 168
           height: 94
@@ -1567,7 +1568,7 @@ videos:
     - id: BxqtS-7GxFM
       title: TONES AND I - NEVER SEEN THE RAIN (ALTERNATE VERSION)
       length: 296
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/BxqtS-7GxFM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAzNbc2LI1u0U7MJeDbYJ7CGcRsOg"
           width: 168
           height: 94
@@ -1586,7 +1587,7 @@ videos:
     - id: KUKt_LbaBnM
       title: Oh Wonder - Better Now (Official Audio)
       length: 200
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/KUKt_LbaBnM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBqi7ONpAild4T_KUgenSVpZnINJQ"
           width: 168
           height: 94
@@ -1605,7 +1606,7 @@ videos:
     - id: teHOy47KAMM
       title: "christina perri - back in time (featuring ben rector) [official audio]"
       length: 237
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/teHOy47KAMM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAlxs66GbB2CjvEMRGLdxzFMjHUlA"
           width: 168
           height: 94
@@ -1624,7 +1625,7 @@ videos:
     - id: W8c224B8mV0
       title: Kina - only in the night (Official Lyric Video) ft. Sarcastic Sounds
       length: 134
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/W8c224B8mV0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAVZN8NunTIC3uHhjjewpZ76bvAaA"
           width: 168
           height: 94
@@ -1643,7 +1644,7 @@ videos:
     - id: bhL7A8k6kU8
       title: Anderson East - Madelyn (Official Video)
       length: 203
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/bhL7A8k6kU8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDjFwOL3uhYgUyn9Y_lCG9Obu_VLw"
           width: 168
           height: 94
@@ -1662,7 +1663,7 @@ videos:
     - id: mUN36hFtazE
       title: LÉON – All My Heroes (Official Audio)
       length: 206
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/mUN36hFtazE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDd5SGGSRacULlBtTL2EvVqg_7-Qw"
           width: 168
           height: 94
@@ -1681,7 +1682,7 @@ videos:
     - id: Od8FfxY5mXc
       title: Love Runs Deeper (Disney supporting Make-A-Wish)
       length: 163
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/Od8FfxY5mXc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLChWrr6gzvdV-G5g4Uu6bvAPDraCQ"
           width: 168
           height: 94
@@ -1700,7 +1701,7 @@ videos:
     - id: fNR_abEgDBQ
       title: "Chris James - Don't Forget About Me (Official Music Video)"
       length: 209
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/fNR_abEgDBQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLChZEkMF4jpDFbNxGZSGwm32ApPqg"
           width: 168
           height: 94
@@ -1719,7 +1720,7 @@ videos:
     - id: NwoW26zPhLs
       title: Blake Rose - Confidence (Official Audio)
       length: 156
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/NwoW26zPhLs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAyT8JSdKlQ7i1BGrAkQIqefCPy0Q"
           width: 168
           height: 94
@@ -1738,7 +1739,7 @@ videos:
     - id: dcBZP_pt0uY
       title: "Tom Grennan - Little Bit Of Love (Strings) [Audio]"
       length: 231
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/dcBZP_pt0uY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCkKdl0vdveGOQRTVcDQSjM39eaNA"
           width: 168
           height: 94
@@ -1757,7 +1758,7 @@ videos:
     - id: m342B1Vv3tM
       title: Matt Simons ft. Betty Who - Dust (Official Lyric Video)
       length: 202
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/m342B1Vv3tM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCtlnYdNrjQmFoSByaqszmoizosdw"
           width: 168
           height: 94
@@ -1776,7 +1777,7 @@ videos:
     - id: ufxjiU7BgR4
       title: Fall Into Me
       length: 225
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/ufxjiU7BgR4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCukjpfKjBu1BlRU6okhJcCeO33vQ"
           width: 168
           height: 94
@@ -1795,7 +1796,7 @@ videos:
     - id: 7OfB_8rrtug
       title: Grace (We All Try)
       length: 206
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/7OfB_8rrtug/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC007M9IO9aWRv-SNVJkBxaGXzm-w"
           width: 168
           height: 94
@@ -1814,7 +1815,7 @@ videos:
     - id: QDULTFB8gSY
       title: Words as Weapons
       length: 199
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/QDULTFB8gSY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCfNJGl46bsXtx8TaG9S1dGBP5CSg"
           width: 168
           height: 94
@@ -1833,7 +1834,7 @@ videos:
     - id: Ge2q8a3lXnM
       title: "Enough, Enough, Enough"
       length: 164
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/Ge2q8a3lXnM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBPK6rDDcqCT82Ua3sMf_Mgp6w7gg"
           width: 168
           height: 94
@@ -1850,8 +1851,8 @@ videos:
         id: UCEgHfSqMyjn8joKaIcW_ASA
         name: Diaven - Topic
   ctoken: ~
-n_videos: 97
-thumbnails:
+video_count: 97
+thumbnail:
   - url: "https://i9.ytimg.com/s_p/RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk/mqdefault.jpg?sqp=CPDmr5gGir7X7AMGCLaHmpgG&rs=AOn4CLDg9xLeJDPeMtbWfp19VFd6vCQzqQ&v=1661371318"
     width: 180
     height: 180

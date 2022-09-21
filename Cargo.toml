@@ -15,6 +15,8 @@ members = [".", "codegen", "cli"]
 [features]
 default = ["default-tls"]
 
+html = ["askama_escape"]
+
 # Reqwest TLS
 default-tls = ["reqwest/default-tls"]
 rustls-tls-webpki-roots = ["reqwest/rustls-tls-webpki-roots"]
@@ -41,6 +43,7 @@ indicatif = "0.17.0"
 filenamify = "0.1.0"
 ress = "0.11.4"
 phf  = "0.11.1"
+askama_escape = {version = "0.10.3", optional = true}
 
 [dev-dependencies]
 env_logger = "0.9.0"

@@ -1,6 +1,7 @@
 pub mod locale;
 mod ordering;
 mod paginator;
+pub mod richtext;
 pub mod stream_filter;
 
 pub use locale::{Country, Language};
@@ -10,6 +11,8 @@ use std::ops::Range;
 
 use chrono::{DateTime, Local};
 use serde::{Deserialize, Serialize};
+
+use self::richtext::RichText;
 
 /*
 #PLAYER
@@ -217,10 +220,10 @@ pub struct VideoDetails {
     /// Video title
     pub title: String,
     /// Video description
-    pub description: String,
+    pub description: RichText,
     /// Channel of the video
     pub channel: Channel,
-    /// Number of views
+    /// Number of views / current viewers in case of a livestream.
     pub view_count: u64,
     /// Number of likes
     ///
@@ -332,7 +335,7 @@ pub struct Comment {
     /// Unique YouTube Comment-ID (e.g. `UgynScMrsqGSL8qvePl4AaABAg`)
     pub id: String,
     /// Comment text
-    pub text: String,
+    pub text: RichText,
     /// Comment author
     ///
     /// There may be comments with missing authors (possibly deleted users?).

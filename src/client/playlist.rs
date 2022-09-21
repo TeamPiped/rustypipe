@@ -167,11 +167,7 @@ impl MapResponse<Playlist> for response::Playlist {
             c: Playlist {
                 id: playlist_id,
                 name,
-                videos: Paginator {
-                    count: Some(n_videos),
-                    items: videos,
-                    ctoken,
-                },
+                videos: Paginator::new(Some(n_videos), videos, ctoken),
                 video_count: n_videos,
                 thumbnail: thumbnails.into(),
                 description,
@@ -201,11 +197,7 @@ impl MapResponse<Paginator<PlaylistVideo>> for response::PlaylistCont {
             map_playlist_items(action.append_continuation_items_action.continuation_items.c);
 
         Ok(MapResult {
-            c: Paginator {
-                count: None,
-                items,
-                ctoken,
-            },
+            c: Paginator::new(None, items, ctoken),
             warnings: action
                 .append_continuation_items_action
                 .continuation_items

@@ -4,10 +4,11 @@ use serde::Deserialize;
 use serde_with::serde_as;
 use serde_with::{DefaultOnError, VecSkipError};
 
+use crate::serializer::text::TextComponents;
 use crate::serializer::MapResult;
 use crate::serializer::{
     ignore_any,
-    text::{AccessibilityText, Text, TextLink, TextLinks},
+    text::{AccessibilityText, Text, TextComponent},
     VecLogError,
 };
 
@@ -88,8 +89,7 @@ pub enum VideoResultsItem {
     VideoSecondaryInfoRenderer {
         owner: VideoOwner,
         #[serde(default)]
-        #[serde_as(as = "Text")]
-        description: String,
+        description: TextComponents,
         /// Additional metadata (e.g. Creative Commons License)
         #[serde(default)]
         #[serde_as(deserialize_as = "DefaultOnError")]
@@ -210,8 +210,7 @@ pub struct MetadataRowRenderer {
     /// Text (en): `Creative Commons Attribution license (reuse allowed)`
     ///
     /// URL: `https://www.youtube.com/t/creative_commons`
-    #[serde_as(as = "Vec<TextLinks>")]
-    pub contents: Vec<Vec<TextLink>>,
+    pub contents: Vec<TextComponents>,
 }
 
 /// Contains current video ID
@@ -297,8 +296,7 @@ pub struct RecommendedVideo {
     #[serde_as(as = "Text")]
     pub title: String,
     #[serde(rename = "shortBylineText")]
-    #[serde_as(as = "TextLink")]
-    pub channel: TextLink,
+    pub channel: TextComponent,
     pub channel_thumbnail: Thumbnails,
     /// Channel verification badge
     #[serde(default)]
@@ -309,8 +307,8 @@ pub struct RecommendedVideo {
     /// (e.g. `11 months ago`)
     #[serde_as(as = "Option<Text>")]
     pub published_time_text: Option<String>,
-    #[serde_as(as = "Text")]
-    pub view_count_text: String,
+    #[serde_as(as = "Option<Text>")]
+    pub view_count_text: Option<String>,
     /// Badges are displayed on the video thumbnail and
     /// show certain video properties (e.g. active livestream)
     #[serde(default)]
@@ -560,8 +558,7 @@ pub struct CommentRenderer {
     #[serde_as(as = "DefaultOnError")]
     pub author_endpoint: Option<AuthorEndpoint>,
     /// Comment text
-    #[serde_as(as = "Text")]
-    pub content_text: String,
+    pub content_text: TextComponents,
     /// Textual publish date (e.g. `15 minutes ago`, `2 days ago`)
     #[serde_as(as = "Text")]
     pub published_time_text: String,

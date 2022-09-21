@@ -133,7 +133,7 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                     response::video_details::ItemSection::CommentItemSection { mut contents } => {
                         comment_ctoken_section = contents.try_swap_remove(0);
                     }
-                    response::video_details::ItemSection::None => {},
+                    response::video_details::ItemSection::None => {}
                 }
             }
             response::video_details::VideoResultsItem::None => {}
@@ -201,10 +201,11 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                     .map(|c| {
                         c.metadata_row_container_renderer.rows.iter().any(|cr| {
                             cr.metadata_row_renderer.contents.iter().any(|links| {
-                                links.iter().any(|link| match link {
-                                    crate::serializer::text::TextLink::Web { text: _, url } => {
-                                        url == "https://www.youtube.com/t/creative_commons"
-                                    }
+                                links.0.iter().any(|link| match link {
+                                    crate::serializer::text::TextComponent::Web {
+                                        text: _,
+                                        url,
+                                    } => url == "https://www.youtube.com/t/creative_commons",
                                     _ => false,
                                 })
                             })
@@ -212,13 +213,13 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                     })
                     .unwrap_or_default();
 
-                (owner.video_owner_renderer, description, is_ccommons)
+                (owner.video_owner_renderer, description.into(), is_ccommons)
             }
             _ => bail!("could not find secondary_info"),
         };
 
         let (channel_id, channel_name) = match owner.title {
-            crate::serializer::text::TextLink::Browse {
+            crate::serializer::text::TextComponent::Browse {
                 text,
                 page_type,
                 browse_id,
@@ -233,14 +234,13 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
             .contents
             .two_column_watch_next_results
             .secondary_results
-            .map(|sr| {
+            .and_then(|sr| {
                 sr.secondary_results.results.map(|r| {
                     let mut res = map_recommendations(r, lang);
                     warnings.append(&mut res.warnings);
                     res.c
                 })
             })
-            .flatten()
             .unwrap_or_default();
 
         let mut engagement_panels = self.engagement_panels;
@@ -289,16 +289,8 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                 is_live,
                 is_ccommons,
                 recommended,
-                top_comments: Paginator {
-                    count: None,
-                    items: Vec::new(),
-                    ctoken: comment_ctoken,
-                },
-                latest_comments: Paginator {
-                    count: None,
-                    items: Vec::new(),
-                    ctoken: latest_comments_ctoken,
-                },
+                top_comments: Paginator::new(None, Vec::new(), comment_ctoken),
+                latest_comments: Paginator::new(None, Vec::new(), latest_comments_ctoken),
             },
             warnings,
         })
@@ -385,11 +377,7 @@ impl MapResponse<Paginator<Comment>> for response::VideoComments {
             });
 
         Ok(MapResult {
-            c: Paginator {
-                count: comment_count,
-                items: comments,
-                ctoken,
-            },
+            c: Paginator::new(comment_count, comments, ctoken),
             warnings,
         })
     }
@@ -426,10 +414,9 @@ fn map_recommendations(
                                 timeago::parse_timeago_or_warn(lang, txt, &mut warnings)
                             }),
                             publish_date_txt: video.published_time_text,
-                            view_count: util::parse_numeric_or_warn(
-                                &video.view_count_text,
-                                &mut warnings,
-                            ),
+                            view_count: video
+                                .view_count_text
+                                .and_then(|txt| util::parse_numeric_or_warn(&txt, &mut warnings)),
                             is_live: video.badges.is_live(),
                         }),
                         Err(e) => {
@@ -449,11 +436,7 @@ fn map_recommendations(
             .collect::<Vec<_>>();
 
     MapResult {
-        c: Paginator {
-            count: None,
-            items,
-            ctoken,
-        },
+        c: Paginator::new(None, items, ctoken),
         warnings,
     }
 }
@@ -497,7 +480,7 @@ fn map_comment(
     MapResult {
         c: Comment {
             id: c.comment_id,
-            text: c.content_text,
+            text: c.content_text.into(),
             author: match (c.author_endpoint, c.author_text) {
                 (Some(aep), Some(name)) => Some(Channel {
                     id: aep.browse_endpoint.browse_id,
@@ -528,11 +511,7 @@ fn map_comment(
             ),
             reply_count: c.reply_count,
             replies: replies
-                .map(|items| Paginator {
-                    count: Some(c.reply_count),
-                    items,
-                    ctoken: reply_ctoken,
-                })
+                .map(|items| Paginator::new(Some(c.reply_count), items, reply_ctoken))
                 .unwrap_or_default(),
             by_owner: c.author_is_channel_owner,
             pinned: priority
@@ -550,16 +529,548 @@ fn map_comment(
 
 #[cfg(test)]
 mod tests {
-    use crate::client::RustyPipe;
+    use chrono::Datelike;
 
-    #[test_log::test(tokio::test)]
+    use crate::{client::RustyPipe, model::Verification};
+
+    #[tokio::test]
     async fn get_video_details() {
+        let rp = RustyPipe::builder().strict().build();
+        let details = rp.query().video_details("ZeerrnuLi5E").await.unwrap();
+
+        // dbg!(&details);
+
+        assert_eq!(details.id, "ZeerrnuLi5E");
+        assert_eq!(details.title, "aespa 에스파 'Black Mamba' MV");
+        insta::assert_yaml_snapshot!(details.description, @r###"
+        ---
+        - Text: "🎧Listen and download aespa's debut single \"Black Mamba\": "
+        - Web:
+            text: "https://smarturl.it/aespa_BlackMamba"
+            url: "https://smarturl.it/aespa_BlackMamba"
+        - Text: "\n🐍The Debut Stage "
+        - Video:
+            title: "https://youtu.be/Ky5RT5oGg0w"
+            id: Ky5RT5oGg0w
+        - Text: "\n\n🎟️ aespa Showcase SYNK in LA! Tickets now on sale: "
+        - Web:
+            text: "https://www.ticketmaster.com/event/0A..."
+            url: "https://www.ticketmaster.com/event/0A005CCD9E871F6E"
+        - Text: "\n\nSubscribe to aespa Official YouTube Channel!\n"
+        - Web:
+            text: "https://www.youtube.com/aespa?sub_con..."
+            url: "https://www.youtube.com/aespa?sub_confirmation=1"
+        - Text: "\n\naespa official\n"
+        - Web:
+            text: "https://www.youtube.com/c/aespa"
+            url: "https://www.youtube.com/c/aespa"
+        - Text: "\n"
+        - Web:
+            text: "https://www.instagram.com/aespa_official"
+            url: "https://www.instagram.com/aespa_official"
+        - Text: "\n"
+        - Web:
+            text: "https://www.tiktok.com/@aespa_official"
+            url: "https://www.tiktok.com/@aespa_official"
+        - Text: "\n"
+        - Web:
+            text: "https://twitter.com/aespa_Official"
+            url: "https://twitter.com/aespa_Official"
+        - Text: "\n"
+        - Web:
+            text: "https://www.facebook.com/aespa.official"
+            url: "https://www.facebook.com/aespa.official"
+        - Text: "\n"
+        - Web:
+            text: "https://weibo.com/aespa"
+            url: "https://weibo.com/aespa"
+        - Text: "\n\n"
+        - Text: " "
+        - Text: " "
+        - Text: " "
+        - Text: " "
+        - Text: "\naespa 에스파 'Black Mamba' MV ℗ SM Entertainment"
+        "###);
+
+        assert_eq!(details.channel.id, "UCEf_Bc-KVd7onSeifS3py9g");
+        assert_eq!(details.channel.name, "SMTOWN");
+        assert!(!details.channel.avatar.is_empty(), "no channel avatars");
+        assert_eq!(details.channel.verification, Verification::Verified);
+        // TODO: assert!(details.channel.subscriber_count.unwrap() > 30000000, "expected >30M subs, got {}", details.channel.subscriber_count);
+
+        assert!(
+            details.view_count > 232000000,
+            "expected > 232M views, got {}",
+            details.view_count
+        );
+        assert!(
+            details.like_count.unwrap() > 4000000,
+            "expected > 4M likes, got {}",
+            details.like_count.unwrap()
+        );
+
+        let date = details.publish_date.unwrap();
+        assert_eq!(date.year(), 2020);
+        assert_eq!(date.month(), 11);
+        assert_eq!(date.day(), 17);
+
+        assert!(!details.is_live);
+        assert!(!details.is_ccommons);
+
+        assert!(!details.recommended.items.is_empty());
+        assert!(!details.recommended.is_exhausted());
+
+        // assert!(
+        //     details.top_comments.count.unwrap() > 700000,
+        //     "expected > 700K comments, got {}",
+        //     details.top_comments.count.unwrap()
+        // );
+        assert!(!details.top_comments.is_exhausted());
+        assert!(!details.latest_comments.is_exhausted());
+    }
+
+    #[tokio::test]
+    async fn get_video_details_music() {
+        let rp = RustyPipe::builder().strict().build();
+        let details = rp.query().video_details("XuM2onMGvTI").await.unwrap();
+
+        // dbg!(&details);
+
+        assert_eq!(details.id, "XuM2onMGvTI");
+        assert_eq!(details.title, "Gäa");
+        insta::assert_yaml_snapshot!(details.description, @r###"
+        ---
+        - Text: "Provided to YouTube by Universal Music Group\n\nGäa · Oonagh\n\nBest Of\n\n℗ An Airforce1 Records / We Love Music recording; ℗ 2014 Universal Music GmbH\n\nReleased on: 2020-08-07\n\nProducer, Associated  Performer, Background  Vocalist: Hardy Krech\nProducer: Mark Nissen\nAssociated  Performer, Background  Vocalist: Andreas Fahnert\nAssociated  Performer, Background  Vocalist: Velile Mchunu\nAssociated  Performer, Background  Vocalist: Billy King\nAssociated  Performer, Background  Vocalist: Alex Prince\nAssociated  Performer, Flute: Sandro Friedrich\nProgrammer: Hartmut Krech\nEditor: Severin Zahler\nComposer  Lyricist: Hartmut Krech\nComposer  Lyricist: Mark Nissen\nAuthor: Lukas Hainer\nAuthor: Michael Boden\n\nAuto-generated by YouTube."
+        "###);
+
+        assert_eq!(details.channel.id, "UCVGvnqB-5znqPSbMGlhF4Pw");
+        assert_eq!(details.channel.name, "Sentamusic");
+        assert!(!details.channel.avatar.is_empty(), "no channel avatars");
+        assert_eq!(details.channel.verification, Verification::Artist);
+        // TODO: assert!(details.channel.subscriber_count.unwrap() > 33000, "expected >33K subs, got {}", details.channel.subscriber_count);
+
+        assert!(
+            details.view_count > 20309,
+            "expected > 20309 views, got {}",
+            details.view_count
+        );
+        assert!(
+            details.like_count.unwrap() > 145,
+            "expected > 145 likes, got {}",
+            details.like_count.unwrap()
+        );
+
+        let date = details.publish_date.unwrap();
+        assert_eq!(date.year(), 2020);
+        assert_eq!(date.month(), 8);
+        assert_eq!(date.day(), 6);
+
+        assert!(!details.is_live);
+        assert!(!details.is_ccommons);
+
+        assert!(!details.recommended.items.is_empty());
+        assert!(!details.recommended.is_exhausted());
+
+        // Comments are disabled for this video
+        assert_eq!(details.top_comments.count, Some(0));
+        assert_eq!(details.latest_comments.count, Some(0));
+        assert!(details.top_comments.is_empty());
+        assert!(details.latest_comments.is_empty());
+    }
+
+    #[tokio::test]
+    async fn get_video_details_ccommons() {
+        let rp = RustyPipe::builder().strict().build();
+        let details = rp.query().video_details("0rb9CfOvojk").await.unwrap();
+
+        // dbg!(&details);
+
+        assert_eq!(details.id, "0rb9CfOvojk");
+        assert_eq!(
+            details.title,
+            "BahnMining - Pünktlichkeit ist eine Zier (David Kriesel)"
+        );
+        insta::assert_yaml_snapshot!(details.description, @r###"
+        ---
+        - Web:
+            text: "https://media.ccc.de/v/36c3-10652-bah..."
+            url: "https://media.ccc.de/v/36c3-10652-bahnmining_-_punktlichkeit_ist_eine_zier"
+        - Text: "\n\n\n\nSeit Anfang 2019 hat David jeden einzelnen Halt jeder einzelnen Zugfahrt auf jedem einzelnen Fernbahnhof in ganz Deutschland systematisch gespeichert. Inklusive Verspätungen und allem drum und dran. Und die werden wir in einem bunten Vortrag erforschen und endlich mal wieder ein bisschen Spaß mit Daten haben.\n\nRechtlicher Hinweis: Es liegt eine schriftliche Genehmigung der Bahn vor, von ihr abgerufene Rohdaten aggregieren und für Vorträge nutzen zu dürfen. Inhaltliche Absprachen oder gar Auflagen existieren nicht.\n\nDie Bahn gibt ihre Verspätungen in \"Prozent pünktlicher Züge pro Monat\" an. Das ist so radikal zusammengefasst, dass man daraus natürlich nichts interessantes lesen kann. Jetzt stellt euch mal vor, man könnte da mal ein bisschen genauer reingucken.\n\nStellt sich raus: Das geht! Davids Datensatz umfasst knapp 25 Millionen Halte - mehr als 50.000 pro Tag. Wir haben die Rohdaten und sind in unserer Betrachtung völlig frei. \n\nDer Vortrag hat wieder mehrere rote Fäden.\n\n 1) Wir vermessen ein fast komplettes Fernverkehrsjahr der deutschen Bahn.   Hier etwas Erwartungsmanagement: Sinn ist keinesfalls Bahn-Bashing oder Sensationsheischerei - wer einen Hassvortrag gegen die Bahn erwartet, ist in dieser Veranstaltung falsch. Wir werden die Daten aber nutzen, um die Bahn einmal ein bisschen kennenzulernen. Die Bahn ist eine riesige Maschine mit Millionen beweglicher Teile. Wie viele Zugfahrten gibt es überhaupt? Was sind die größten Bahnhöfe? Wir werden natürlich auch die unerfreulichen Themen ansprechen, für die sich im Moment viele interessieren: Ist das Problem mit den Zugverspätungen wirklich so schlimm, wie alle sagen? Gibt es Orte und Zeiten, an denen es besonders hapert? Und wo fallen Züge einfach aus?\n\n 2) Es gibt wieder mehrere Blicke über den Tellerrand, wie bei Davids vorherigen Vorträgen auch. Ihr werdet wieder ganz automatisch und nebenher einen allgemeinverständlichen Einblick in die heutige Datenauswerterei bekommen. (Eine verbreitete Verschwörungstheorie sagt, euch zur Auswertung öffentlicher Daten zu inspirieren, wäre sogar der Hauptzweck von Davids Vorträgen. :-) )Die Welt braucht Leute mit Ratio, die Analyse wichtiger als Kreischerei finden. Und darum beschreibt David auch, wie man so ein durchaus aufwändiges Hobbyprojekt technisch angeht, Anfängerfehler vermeidet, und verantwortungsvoll handelt.\n\nDavid Kriesel\n\n"
+        - Web:
+            text: "https://fahrplan.events.ccc.de/congre..."
+            url: "https://fahrplan.events.ccc.de/congress/2019/Fahrplan/events/10652.html"
+        - Text: "\n\n"
+        "###);
+
+        assert_eq!(details.channel.id, "UC2TXq_t06Hjdr2g_KdKpHQg");
+        assert_eq!(details.channel.name, "media.ccc.de");
+        assert!(!details.channel.avatar.is_empty(), "no channel avatars");
+        assert_eq!(details.channel.verification, Verification::None);
+        // TODO: assert!(details.channel.subscriber_count.unwrap() > 170000, "expected >170K subs, got {}", details.channel.subscriber_count);
+
+        assert!(
+            details.view_count > 2517358,
+            "expected > 2517358 views, got {}",
+            details.view_count
+        );
+        assert!(
+            details.like_count.unwrap() > 52330,
+            "expected > 52330 likes, got {}",
+            details.like_count.unwrap()
+        );
+
+        let date = details.publish_date.unwrap();
+        assert_eq!(date.year(), 2019);
+        assert_eq!(date.month(), 12);
+        assert_eq!(date.day(), 29);
+
+        assert!(!details.is_live);
+        assert!(details.is_ccommons);
+
+        assert!(!details.recommended.items.is_empty());
+        assert!(!details.recommended.is_exhausted());
+
+        // assert!(
+        //     details.top_comments.count.unwrap() > 700000,
+        //     "expected > 700K comments, got {}",
+        //     details.top_comments.count.unwrap()
+        // );
+        assert!(!details.top_comments.is_exhausted());
+        assert!(!details.latest_comments.is_exhausted());
+    }
+
+    #[tokio::test]
+    async fn get_video_details_chapters() {
+        let rp = RustyPipe::builder().strict().build();
+        let details = rp.query().video_details("nFDBxBUfE74").await.unwrap();
+
+        // dbg!(&details);
+
+        assert_eq!(details.id, "nFDBxBUfE74");
+        assert_eq!(details.title, "The Prepper PC");
+        insta::assert_yaml_snapshot!(details.description, @r###"
+        ---
+        - Text: "Thanks to Jackery for sponsoring today's video! Check out Jackery's Solar Generator 2000 Pro and get 10% off with code LinusTechTips at "
+        - Web:
+            text: "https://lmg.gg/SG2000PROLTT"
+            url: "https://lmg.gg/SG2000PROLTT"
+        - Text: "\n\nThese days, you can game almost anywhere on the planet, anytime. But what if that planet was in the middle of an apocalypse? After you’ve stashed years of food, water, and toilet paper away, how will you pass the time? With this PC, you can be prepared to game until the whole mess to sort itself out. \n\nDiscuss on the forum: "
+        - Web:
+            text: "https://linustechtips.com/topic/14554..."
+            url: "https://linustechtips.com/topic/1455447-the-prepper-pc-sponsored/"
+        - Text: "\n\nBuy a Jackery Solar Generator 2000 Pro: "
+        - Web:
+            text: "https://geni.us/034L"
+            url: "https://geni.us/034L"
+        - Text: "\n\nBuy a Jackery Explorer 2000 Pro: "
+        - Web:
+            text: "https://lmg.gg/1dyF4"
+            url: "https://lmg.gg/1dyF4"
+        - Text: "\n\nBuy a Seasonic Fanless TX: "
+        - Web:
+            text: "https://geni.us/S0Wt76G"
+            url: "https://geni.us/S0Wt76G"
+        - Text: "\n\nBuy an Intel Core i3 (12th Gen) i3-12100: "
+        - Web:
+            text: "https://geni.us/hLZvxa"
+            url: "https://geni.us/hLZvxa"
+        - Text: "\n\nBuy an RTX 3050: "
+        - Web:
+            text: "https://geni.us/6A6hl"
+            url: "https://geni.us/6A6hl"
+        - Text: "\n\nBuy an RX 6500XT: "
+        - Web:
+            text: "https://geni.us/fUF1p"
+            url: "https://geni.us/fUF1p"
+        - Text: "\n\nPurchases made through some store links may provide some compensation to Linus Media Group.\n\n► GET MERCH: "
+        - Web:
+            text: "https://lttstore.com"
+            url: "https://lttstore.com/"
+        - Text: "\n► SUPPORT US ON FLOATPLANE: "
+        - Web:
+            text: "https://www.floatplane.com/ltt"
+            url: "https://www.floatplane.com/ltt"
+        - Text: "\n► AFFILIATES, SPONSORS & REFERRALS: "
+        - Web:
+            text: "https://lmg.gg/sponsors"
+            url: "https://lmg.gg/sponsors"
+        - Text: "\n► PODCAST GEAR: "
+        - Web:
+            text: "https://lmg.gg/podcastgear"
+            url: "https://lmg.gg/podcastgear"
+        - Text: "\n\n\nFOLLOW US \n---------------------------------------------------  \nTwitter: "
+        - Web:
+            text: "https://twitter.com/linustech"
+            url: "https://twitter.com/linustech"
+        - Text: "\nFacebook: "
+        - Web:
+            text: "http://www.facebook.com/LinusTech"
+            url: "http://www.facebook.com/LinusTech"
+        - Text: "\nInstagram: "
+        - Web:
+            text: "https://www.instagram.com/linustech"
+            url: "https://www.instagram.com/linustech"
+        - Text: "\nTikTok: "
+        - Web:
+            text: "https://www.tiktok.com/@linustech"
+            url: "https://www.tiktok.com/@linustech"
+        - Text: "\nTwitch: "
+        - Web:
+            text: "https://www.twitch.tv/linustech"
+            url: "https://www.twitch.tv/linustech"
+        - Text: "\n\nMUSIC CREDIT\n---------------------------------------------------\nIntro: Laszlo - Supernova\nVideo Link: "
+        - Video:
+            title: "https://www.youtube.com/watch?v=PKfxm..."
+            id: PKfxmFU3lWY
+        - Text: "\niTunes Download Link: "
+        - Web:
+            text: "https://itunes.apple.com/us/album/sup..."
+            url: "https://itunes.apple.com/us/album/supernova/id936805712"
+        - Text: "\nArtist Link: "
+        - Web:
+            text: "https://soundcloud.com/laszlomusic"
+            url: "https://soundcloud.com/laszlomusic"
+        - Text: "\n\nOutro: Approaching Nirvana - Sugar High\nVideo Link: "
+        - Video:
+            title: "https://www.youtube.com/watch?v=ngsGB..."
+            id: ngsGBSCDwcI
+        - Text: "\nListen on Spotify: "
+        - Web:
+            text: "http://spoti.fi/UxWkUw"
+            url: "http://spoti.fi/UxWkUw"
+        - Text: "\nArtist Link: "
+        - Web:
+            text: "http://www.youtube.com/approachingnir..."
+            url: "http://www.youtube.com/approachingnirvana"
+        - Text: "\n\nIntro animation by MBarek Abdelwassaa "
+        - Web:
+            text: "https://www.instagram.com/mbarek_abdel/"
+            url: "https://www.instagram.com/mbarek_abdel/"
+        - Text: "\nMonitor And Keyboard by vadimmihalkevich / CC BY 4.0  "
+        - Web:
+            text: "https://geni.us/PgGWp"
+            url: "https://geni.us/PgGWp"
+        - Text: "\nMechanical RGB Keyboard by BigBrotherECE / CC BY 4.0 "
+        - Web:
+            text: "https://geni.us/mj6pHk4"
+            url: "https://geni.us/mj6pHk4"
+        - Text: "\nMouse Gamer free Model By Oscar Creativo / CC BY 4.0 "
+        - Web:
+            text: "https://geni.us/Ps3XfE"
+            url: "https://geni.us/Ps3XfE"
+        - Text: "\n\nCHAPTERS\n---------------------------------------------------\n"
+        - Video:
+            title: "0:00"
+            id: nFDBxBUfE74
+        - Text: " Intro\n"
+        - Video:
+            title: "0:42"
+            id: nFDBxBUfE74
+        - Text: " The PC Built for Super Efficiency\n"
+        - Video:
+            title: "2:41"
+            id: nFDBxBUfE74
+        - Text: " Our BURIAL ENCLOSURE?!\n"
+        - Video:
+            title: "3:31"
+            id: nFDBxBUfE74
+        - Text: " Our Power Solution (Thanks Jackery!)\n"
+        - Video:
+            title: "4:47"
+            id: nFDBxBUfE74
+        - Text: " Diggin' Holes\n"
+        - Video:
+            title: "5:30"
+            id: nFDBxBUfE74
+        - Text: " Colonoscopy?\n"
+        - Video:
+            title: "7:04"
+            id: nFDBxBUfE74
+        - Text: " Diggin' like a man\n"
+        - Video:
+            title: "8:29"
+            id: nFDBxBUfE74
+        - Text: " The world's worst woodsman\n"
+        - Video:
+            title: "9:03"
+            id: nFDBxBUfE74
+        - Text: " Backyard cable management\n"
+        - Video:
+            title: "10:02"
+            id: nFDBxBUfE74
+        - Text: " Time to bury this boy\n"
+        - Video:
+            title: "10:46"
+            id: nFDBxBUfE74
+        - Text: " Solar Power Generation\n"
+        - Video:
+            title: "11:37"
+            id: nFDBxBUfE74
+        - Text: " Issues\n"
+        - Video:
+            title: "12:08"
+            id: nFDBxBUfE74
+        - Text: " First Play Test\n"
+        - Video:
+            title: "13:20"
+            id: nFDBxBUfE74
+        - Text: " Conclusion"
+        "###);
+
+        assert_eq!(details.channel.id, "UCXuqSBlHAE6Xw-yeJA0Tunw");
+        assert_eq!(details.channel.name, "Linus Tech Tips");
+        assert!(!details.channel.avatar.is_empty(), "no channel avatars");
+        assert_eq!(details.channel.verification, Verification::Verified);
+        // TODO: assert!(details.channel.subscriber_count.unwrap() > 14700000, "expected >14.7M subs, got {}", details.channel.subscriber_count);
+
+        assert!(
+            details.view_count > 1157262,
+            "expected > 1157262 views, got {}",
+            details.view_count
+        );
+        assert!(
+            details.like_count.unwrap() > 54670,
+            "expected > 54670 likes, got {}",
+            details.like_count.unwrap()
+        );
+
+        let date = details.publish_date.unwrap();
+        assert_eq!(date.year(), 2022);
+        assert_eq!(date.month(), 9);
+        assert_eq!(date.day(), 15);
+
+        assert!(!details.is_live);
+        assert!(!details.is_ccommons);
+
+        assert!(!details.recommended.items.is_empty());
+        assert!(!details.recommended.is_exhausted());
+
+        // assert!(
+        //     details.top_comments.count.unwrap() > 700000,
+        //     "expected > 700K comments, got {}",
+        //     details.top_comments.count.unwrap()
+        // );
+        assert!(!details.top_comments.is_exhausted());
+        assert!(!details.latest_comments.is_exhausted());
+    }
+
+    #[tokio::test]
+    async fn get_video_details_live() {
+        let rp = RustyPipe::builder().strict().build();
+        let details = rp.query().video_details("86YLFOog4GM").await.unwrap();
+
+        // dbg!(&details);
+
+        assert_eq!(details.id, "86YLFOog4GM");
+        assert_eq!(
+            details.title,
+            "🌎 Nasa Live Stream  - Earth From Space :  Live Views from the ISS"
+        );
+        // TODO: not full description
+        insta::assert_yaml_snapshot!(details.description, @r###"
+        ---
+        - Text: "Live NASA - Views Of Earth from Space\nLive video feed of Earth from the International Space Station (ISS) Cameras\n-----------------------------------------------------------------------------------------------------\nWatch our latest video - The Sun - 4K Video / Solar Flares\n"
+        - Video:
+            title: "https://www.youtube.com/watch?v=SEzK4..."
+            id: SEzK4ZfMvUQ
+        - Text: "\n-----------------------------------------------------------------------------------------------------\nNasa ISS live stream from aboard the International Space Station  as it circles the earth at 240 miles above the planet, on the edge of space in low earth orbit. \n\nThe station is crewed by NASA astronauts as well as Russian Cosmonauts and a mixture of Japanese, Canadian and European astronauts as well.\n\n"
+        - Text: " "
+        - Text: " "
+        - Text: " "
+        - Text: " "
+        - Text: "\n\nThe  Expedition 67 Crew are: \n Sergey Korsakov\nOleg Artemyev\nDenis Matveev\nKjell Lindgren\nRobert Hines\nJessica Watkins\nSamantha Cristoforetti\n\nYulia Peresild\nKlim Shipenko - onboard as part of a film.\n\nTHIS WILL SHOW LIVE and  PRE-RECORDED FOOTAGE - depending on signal from the station or if the ISS is on the night side of Earth.\n\nWhen the feed is live the words LIVE NOW will appear in the top left hand corner of the screen.\nAs the Space Station passes into a period of night every 45 mins video is unavailable - during this time, and other breaks in transmission,  recorded footage is shown .\nWhen back in daylight the live stream of earth will recommence\n\nIf you are here to talk about a flat earth then please don't bother. You can stay and watch our beautiful globe earth as it spins in space , but please don't share your nonsense beliefs in our chat.\n\nGot a question about this feed? Read our FAQ's\n"
+        - Web:
+            text: "https://spacevideosfaq.tumblr.com/"
+            url: "https://spacevideosfaq.tumblr.com/"
+        - Text: "\n\nWatch the earth roll by courtesy of the NASA Live cameras\nInternational Space Station Live Feed: Thanks to NASA for this\n"
+        - Web:
+            text: "http://www.nasa.gov"
+            url: "http://www.nasa.gov/"
+        - Text: " The ISS passes into the dark side of the earth for roughly half of each of its 90 minute orbits. During this time no video is available.\n\nMusic by Kevin Macleod \n"
+        - Web:
+            text: "http://incompetech.com/music/royalty-..."
+            url: "http://incompetech.com/music/royalty-free/"
+        "###);
+
+        assert_eq!(details.channel.id, "UCakgsb0w7QB0VHdnCc-OVEA");
+        assert_eq!(details.channel.name, "Space Videos");
+        assert!(!details.channel.avatar.is_empty(), "no channel avatars");
+        assert_eq!(details.channel.verification, Verification::Verified);
+        // TODO: assert!(details.channel.subscriber_count.unwrap() > 5500000, "expected >5.5M subs, got {}", details.channel.subscriber_count);
+
+        assert!(
+            details.view_count > 10,
+            "expected > 10 views, got {}",
+            details.view_count
+        );
+        assert!(
+            details.like_count.unwrap() > 872290,
+            "expected > 872290 likes, got {}",
+            details.like_count.unwrap()
+        );
+
+        let date = details.publish_date.unwrap();
+        assert_eq!(date.year(), 2021);
+        assert_eq!(date.month(), 9);
+        assert_eq!(date.day(), 23);
+
+        assert!(details.is_live);
+        assert!(!details.is_ccommons);
+
+        assert!(!details.recommended.items.is_empty());
+        assert!(!details.recommended.is_exhausted());
+
+        // No comments because livestream
+        assert_eq!(details.top_comments.count, Some(0));
+        assert_eq!(details.latest_comments.count, Some(0));
+        assert!(details.top_comments.is_empty());
+        assert!(details.latest_comments.is_empty());
+    }
+
+    #[tokio::test]
+    async fn get_video_details_agegate() {
         let rp = RustyPipe::builder().strict().build();
         let details = rp.query().video_details("HRKu0cvrr_o").await.unwrap();
 
         dbg!(&details);
+
+        assert_eq!(details.id, "HRKu0cvrr_o");
+        assert_eq!(
+            details.title,
+            "AlphaOmegaSin Fanboy Logic: Likes/Dislikes Disabled = Point Invalid Lol wtf?"
+        );
+        insta::assert_yaml_snapshot!(details.description, @r###"
+        ---
+        []
+        "###);
+
+        assert_eq!(details.channel.id, "UCQT2yul0lr6Ie9qNQNmw-sg");
+        assert_eq!(details.channel.name, "PrinceOfFALLEN");
+        assert!(!details.channel.avatar.is_empty(), "no channel avatars");
+        assert_eq!(details.channel.verification, Verification::None);
+        // TODO: assert!(details.channel.subscriber_count.unwrap() > 1400, "expected >1400 subs, got {}", details.channel.subscriber_count);
+
+        assert!(
+            details.view_count > 200,
+            "expected > 200 views, got {}",
+            details.view_count
+        );
+        assert!(details.like_count.is_none(), "like count not hidden");
+
+        let date = details.publish_date.unwrap();
+        assert_eq!(date.year(), 2019);
+        assert_eq!(date.month(), 1);
+        assert_eq!(date.day(), 2);
+
+        assert!(!details.is_live);
+        assert!(!details.is_ccommons);
+
+        // No recommendations because agegate
+        assert_eq!(details.recommended.count, Some(0));
+        assert!(details.recommended.items.is_empty());
     }
 
+    /*
     #[test_log::test(tokio::test)]
     async fn get_video_recommendations() {
         let rp = RustyPipe::builder().strict().build();
@@ -585,4 +1096,5 @@ mod tests {
 
         dbg!(&rec);
     }
+    */
 }

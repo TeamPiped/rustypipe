@@ -2,7 +2,7 @@ use serde::Deserialize;
 use serde_with::serde_as;
 use serde_with::{json::JsonString, DefaultOnError, VecSkipError};
 
-use crate::serializer::text::{Text, TextLink};
+use crate::serializer::text::{Text, TextComponent};
 use crate::serializer::{MapResult, VecLogError};
 
 use super::{ContentRenderer, ContentsRenderer, Thumbnails, ThumbnailsWrap, VideoListItem};
@@ -70,8 +70,7 @@ pub struct PlaylistVideo {
     #[serde_as(as = "Text")]
     pub title: String,
     #[serde(rename = "shortBylineText")]
-    #[serde_as(as = "TextLink")]
-    pub channel: TextLink,
+    pub channel: TextComponent,
     #[serde_as(as = "JsonString")]
     pub length_seconds: u32,
 }
@@ -94,8 +93,7 @@ pub struct HeaderRenderer {
     pub description_text: Option<String>,
     #[serde_as(as = "Text")]
     pub num_videos_text: String,
-    #[serde_as(as = "Option<TextLink>")]
-    pub owner_text: Option<TextLink>,
+    pub owner_text: Option<TextComponent>,
 
     // Alternative layout
     pub playlist_header_banner: Option<PlaylistHeaderBanner>,

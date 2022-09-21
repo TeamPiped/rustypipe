@@ -1,4 +1,4 @@
-use std::{collections::BTreeMap, str::FromStr};
+use std::{borrow::Borrow, collections::BTreeMap, str::FromStr};
 
 use anyhow::Result;
 use fancy_regex::Regex;
@@ -147,6 +147,47 @@ pub fn retry_delay(
     min_retry_interval.max(jittered_delay.min(max_retry_interval))
 }
 
+/// Convert YouTube redirect URLs (`https://www.youtube.com/redirect?`) into regular URLs.
+///
+/// Also strips google analytics tracking parameters
+/// (`utm_source`, `utm_medium`, `utm_campaign`, `utm_content`) because google analytics is bad.
+pub fn sanitize_yt_url(url: &str) -> String {
+    let mut parsed_url = ok_or_bail!(Url::parse(url), url.to_owned());
+
+    // Convert redirect url
+    if parsed_url.host_str().unwrap_or_default() == "www.youtube.com"
+        && parsed_url.path() == "/redirect"
+    {
+        if let Some((_, url)) = parsed_url.query_pairs().find(|(k, _)| k == "q") {
+            parsed_url = ok_or_bail!(Url::parse(url.as_ref()), url.to_string());
+        }
+    }
+
+    // Remove GA tracking params
+    if parsed_url.query().is_some() {
+        let params = parsed_url
+            .query_pairs()
+            .filter_map(|(k, v)| match k.borrow() {
+                "utm_source" | "utm_medium" | "utm_campaign" | "utm_content" => None,
+                _ => Some((k.to_string(), v.to_string())),
+            })
+            .collect::<Vec<_>>();
+
+        // Set empty query string if there are no parameters to prevent urls from ending with /?
+        if params.is_empty() {
+            parsed_url.set_query(None);
+        } else {
+            parsed_url
+                .query_pairs_mut()
+                .clear()
+                .extend_pairs(params)
+                .finish();
+        }
+    }
+
+    parsed_url.to_string()
+}
+
 pub trait TryRemove<T> {
     /// Removes and returns the element at position `index` within the vector,
     /// shifting all elements after it to the left.
@@ -189,9 +230,9 @@ impl<T> TryRemove<T> for Vec<T> {
 
 #[cfg(test)]
 mod tests {
-    use rstest::rstest;
-
     use super::*;
+
+    use rstest::rstest;
 
     #[rstest]
     #[case("1.000", 1000)]
@@ -252,5 +293,24 @@ mod tests {
         assert_eq!(v.try_swap_remove(0).unwrap(), 1);
         assert_eq!(v.try_swap_remove(1).unwrap(), 2);
         assert_eq!(v.try_swap_remove(1), None);
+    }
+
+    #[rstest]
+    #[case(
+        "https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbXFjbjZ6bWdHc1VFLVNBN1NiRGR1QmRuR0lGZ3xBQ3Jtc0trcG1fWHpRNlE2eGNER0ZGczFlZXM5ZlctZzFSbl8wcHdieTlTb1ktSUc5OTZxVDVQamcxdS0yRjJJelFWTGdOS09nUk8xRExqbWhOSG5MTm83WG1QQzJqZTJuT2d6cGp0cEZTWmdsal80ODk0WkNESQ&q=http%3A%2F%2Fincompetech.com%2Fmusic%2Froyalty-free%2F&v=86YLFOog4GM",
+        "http://incompetech.com/music/royalty-free/",
+    )]
+    #[case("https://www.gnu.org", "https://www.gnu.org/")]
+    #[case(
+        "https://www.youtube.com/watch?v=Rp2V7d69hyM",
+        "https://www.youtube.com/watch?v=Rp2V7d69hyM"
+    )]
+    #[case(
+        "https://www.youtube.com/redirect?event=product_shelf&redir_token=QUFFLUhqbDVUMUF3SndkcDFJbzMxYkNIMDRWSzRVQU84QXxBQ3Jtc0tsQWdpaUlaMzFUQmQwSGYwR3dDRDhHWld1bFFtUmlmMng0MmxtN19iVW1EeV9oSk1Xb1VlQ1UyT2xUOWhPdUZvVEZ6UWE4Unlia3pwZXhpUmd4RVg4eWZtcHFId2RJVkMyMUFIMDhiUVUzc2x6ZVNxbw&q=https%3A%2F%2Flttstore.com%2F%3Futm_medium%3Dproduct_shelf%26utm_source%3Dyoutube%26utm_content%3DYT-AERwsnLS3vZeiqL7_mR16DPg7FPBWvP7OW-zX2M1UIPlexPS8-gpk-2c3epSZ8lJ5NYbLof0MXDKhRLCSyfOn9BYJrcG8YtpTA9VU2VXUVhhl9AKi87G_-vFhj6jcGN1CWcYYvmZYbIqA93kwkeFuUh46ntDZR1Y8p5WygwVlhfxy_BZiNbzkWw%253D&v=nFDBxBUfE74",
+        "https://lttstore.com/",
+    )]
+    fn t_sanitize_yt_url(#[case] url: &str, #[case] expect: &str) {
+        let res = sanitize_yt_url(url);
+        assert_eq!(res, expect);
     }
 }

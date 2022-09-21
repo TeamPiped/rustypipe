@@ -127,8 +127,8 @@ async fn video_details(testfiles: &Path) {
         ("mv", "ZeerrnuLi5E"),
         ("ccommons", "0rb9CfOvojk"),
         ("chapters", "nFDBxBUfE74"),
-        ("agegate", "XuM2onMGvTI"),
         ("live", "86YLFOog4GM"),
+        ("agegate", "HRKu0cvrr_o"),
     ] {
         let mut json_path = testfiles.to_path_buf();
         json_path.push("video_details");

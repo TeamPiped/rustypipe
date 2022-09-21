@@ -5,11 +5,12 @@ expression: map_res.c
 id: PL5dDx681T4bR7ZF1IuWzOv1omlRbE7PiJ
 name: Die schönsten deutschen Lieder | Beliebteste Lieder | Beste Deutsche Musik 2022
 videos:
+  count: 495
   items:
     - id: Bkj3IVIO2Os
       title: Stereoact feat. Kerstin Ott - Die Immer Lacht (Official Video HD)
       length: 216
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/Bkj3IVIO2Os/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCdvrHLT_gdx5zxxO6SPig0sRLshQ"
           width: 168
           height: 94
@@ -28,7 +29,7 @@ videos:
     - id: lHZtcC67yrY
       title: Andreas Gabalier - Hulapalu
       length: 188
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/lHZtcC67yrY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDEYbpOXNx1VkAE7MDYQxK30ySK3Q"
           width: 168
           height: 94
@@ -47,7 +48,7 @@ videos:
     - id: TSkVVVBS9k8
       title: "BAUSA - Was du Liebe nennst (Official Music Video) [prod. von Bausa, Jugglerz & The Cratez]"
       length: 237
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/TSkVVVBS9k8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCHZwNmGrLnYEsd6H7vzVAl0wDccw"
           width: 168
           height: 94
@@ -66,7 +67,7 @@ videos:
     - id: lc-cnCRhE7c
       title: Kay One feat. Pietro Lombardi - Señorita (prod. by Stard Ova)
       length: 250
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/lc-cnCRhE7c/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAr2qEMqH5qnJkqLU-CRGFgoDN1DQ"
           width: 168
           height: 94
@@ -85,7 +86,7 @@ videos:
     - id: 3ryohiCVq3M
       title: Namika -  Lieblingsmensch (Official Video)
       length: 191
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/3ryohiCVq3M/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAnminoxsvobc_U0CE2lgZm9_0qeQ"
           width: 168
           height: 94
@@ -104,7 +105,7 @@ videos:
     - id: BNHamTwxJ6Q
       title: "Roland Kaiser, Maite Kelly - Warum hast du nicht nein gesagt (Club Mix / Videoclip)"
       length: 217
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/BNHamTwxJ6Q/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA2EhfLWBk74_06c21rrSdz7tOrGQ"
           width: 168
           height: 94
@@ -123,7 +124,7 @@ videos:
     - id: 5mqelmYUcI0
       title: Kay One - Louis Louis (prod. by Stard Ova)
       length: 218
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/5mqelmYUcI0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCwnyUxowXZ244j5y8alOFPC0vX-Q"
           width: 168
           height: 94
@@ -142,7 +143,7 @@ videos:
     - id: k9EYjn5f_nE
       title: Andreas Bourani - Auf uns (Official Video)
       length: 244
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/k9EYjn5f_nE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCyAbU3awWGYzOrjTrmQbVV7ifNXg"
           width: 168
           height: 94
@@ -161,7 +162,7 @@ videos:
     - id: fkMg_X9lHMc
       title: "Marteria - Kids (2 Finger an den Kopf) [Offizielles Video]"
       length: 230
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/fkMg_X9lHMc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC8Ugdq8rK6ypi11IMafwoaTagQ7Q"
           width: 168
           height: 94
@@ -180,7 +181,7 @@ videos:
     - id: 4wOoLLDXbDY
       title: CRO - Easy (Official Version)
       length: 195
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/4wOoLLDXbDY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB8UXJLvwcuTIhh4Vi5GTeC40Up7w"
           width: 168
           height: 94
@@ -199,7 +200,7 @@ videos:
     - id: Z_mf9aCHag8
       title: "KC Rebell feat. Moé ► BIST DU REAL ◄ [ official Video 4K ] | Dagi Bee"
       length: 186
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/Z_mf9aCHag8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAo2HLlXaCQEKzkHjBVsS0yqDQexQ"
           width: 168
           height: 94
@@ -218,7 +219,7 @@ videos:
     - id: cZ58odQo87A
       title: SDP feat. Adel Tawil - Ich will nur dass du weißt
       length: 222
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/cZ58odQo87A/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCO8i1BvBLWn_LuKwvOwyZQNWxZgA"
           width: 168
           height: 94
@@ -237,7 +238,7 @@ videos:
     - id: 1il3RFk5Okw
       title: Mark Forster - Chöre (Willkommen bei den Hartmanns Version)
       length: 209
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/1il3RFk5Okw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDy8VAlVslYo3IXr7Cier_CGEh3aA"
           width: 168
           height: 94
@@ -256,7 +257,7 @@ videos:
     - id: 8WQMBv2deYQ
       title: CRO - Traum (Official Version)
       length: 219
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/8WQMBv2deYQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCeZJ96xE-bI9aQybOxIbOOZj8W5g"
           width: 168
           height: 94
@@ -275,7 +276,7 @@ videos:
     - id: vGrfFzagzHs
       title: CRO - Whatever (Official Version)
       length: 207
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/vGrfFzagzHs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD5eTJevRx2iLio640dzb5l5ViNNA"
           width: 168
           height: 94
@@ -294,7 +295,7 @@ videos:
     - id: 1gDbpWC_9pE
       title: Sarah Connor - Wie schön Du bist (Official Video)
       length: 216
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/1gDbpWC_9pE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDLRfYnE54l7T8UX4HYeIQqpkQJYw"
           width: 168
           height: 94
@@ -313,7 +314,7 @@ videos:
     - id: p-AWcCCbBHw
       title: "Nimo - HEUTE MIT MIR (prod. von PzY) [Official 4K Video]"
       length: 256
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/p-AWcCCbBHw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC7Mf1odYlMKp9fElxeWX5BZ6I-kQ"
           width: 168
           height: 94
@@ -332,7 +333,7 @@ videos:
     - id: RPN88D_HjMU
       title: "Xavier Naidoo - Ich kenne nichts (Das so schön ist wie du) [Official Video]"
       length: 332
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/RPN88D_HjMU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDNkYiCJsMDWsLD8SoTG7fGjA2h1A"
           width: 168
           height: 94
@@ -351,7 +352,7 @@ videos:
     - id: 5PST7Ld4wWU
       title: Max Giesinger - Wenn sie tanzt (Offizielles Video)
       length: 225
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/5PST7Ld4wWU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBd_J44LO8vi882xka68dBcawvkFw"
           width: 168
           height: 94
@@ -370,7 +371,7 @@ videos:
     - id: opoDBF_b-fg
       title: ALLIGATOAH - WILLST DU (OFFICIAL HD VERSION AGGRO.TV)
       length: 307
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/opoDBF_b-fg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAymd4m1ekevbFUIs-zGRuhlpfI-g"
           width: 168
           height: 94
@@ -389,7 +390,7 @@ videos:
     - id: AMT9IOyXmBM
       title: SIDO feat. Mark Forster - Einer dieser Steine (Official Video)
       length: 258
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/AMT9IOyXmBM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDvYWerCDxj5Xrgz6bz5j0Xr7-YOQ"
           width: 168
           height: 94
@@ -408,7 +409,7 @@ videos:
     - id: VP5B1UmgHfc
       title: SDP feat. Sido - Ne Leiche
       length: 328
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/VP5B1UmgHfc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCs9MaUdTbxzvessh6g8U3198NLjQ"
           width: 168
           height: 94
@@ -427,7 +428,7 @@ videos:
     - id: vcuQpbs0yT0
       title: KURDO - YA SALAM (prod. by Kostas Karagiozidis & Dj Tuneruno )
       length: 224
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/vcuQpbs0yT0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCDn8gtSond6Yn5MLlzZDv_IrS-zQ"
           width: 168
           height: 94
@@ -446,7 +447,7 @@ videos:
     - id: LeMLVEJLruQ
       title: Gestört aber GeiL feat. Sebastian Hämer - Ich & Du (Official Video HD)
       length: 229
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/LeMLVEJLruQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDDKCM7JzUUlgc-EgWM4lOn3g6qLw"
           width: 168
           height: 94
@@ -465,7 +466,7 @@ videos:
     - id: MtDPKJSsBgc
       title: Mark Forster - Au Revoir (Videoclip) ft. Sido
       length: 227
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/MtDPKJSsBgc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDFPEql4pa1PPNZMBCe0ZHR7nfh1g"
           width: 168
           height: 94
@@ -484,7 +485,7 @@ videos:
     - id: 4tDpYxNYqPg
       title: Kerstin Ott - Scheissmelodie (Offizielles Musikvideo)
       length: 209
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/4tDpYxNYqPg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBmM1gywMKE8-hbZ42Wdsul8hlleg"
           width: 168
           height: 94
@@ -503,7 +504,7 @@ videos:
     - id: EkWjaoH7k6w
       title: Adel Tawil - Ist da jemand (Official Video)
       length: 251
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/EkWjaoH7k6w/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC4WbamH3V3SpCVPeC4_Rs3v3tF8w"
           width: 168
           height: 94
@@ -522,7 +523,7 @@ videos:
     - id: tERRFWuYG48
       title: Barfuß Am Klavier - AnnenMayKantereit
       length: 202
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/tERRFWuYG48/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCFhWEwvzfax4dm8E1GnztHWxUYuw"
           width: 168
           height: 94
@@ -541,7 +542,7 @@ videos:
     - id: wCcJuN47UcY
       title: Revolverheld feat. Marta Jandová - Halt Dich an mir fest (Offizielles Musikvideo)
       length: 213
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/wCcJuN47UcY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLClJVPqKtfOt9_b3ewmUj0qE5-KnQ"
           width: 168
           height: 94
@@ -560,7 +561,7 @@ videos:
     - id: qdtLCfEcPL4
       title: Peter Fox - Alles neu (offizielles Video)
       length: 272
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/qdtLCfEcPL4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBh-JDA8IaPBQuzf0f4o6ptRbXlTQ"
           width: 168
           height: 94
@@ -579,7 +580,7 @@ videos:
     - id: wjXUBG15eZ8
       title: 257ers - Holz (Official HD Video)
       length: 214
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/wjXUBG15eZ8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAw3Swj8ibFWFcgpsexNE0N_w_BUQ"
           width: 168
           height: 94
@@ -598,7 +599,7 @@ videos:
     - id: HBjDZMJUduo
       title: Laserkraft 3D - Nein Mann (official Video)
       length: 231
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/HBjDZMJUduo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCOR8giEhNzblFrPfgfUqwQ2UEy7g"
           width: 168
           height: 94
@@ -617,7 +618,7 @@ videos:
     - id: xkXQQ0IAbk0
       title: MIAMI YACINE - BON VOYAGE prod. by AriBeatz (Official 4K Video)
       length: 159
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/xkXQQ0IAbk0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAoi1jtQunAO2qbyn9GXNcSrgSEPg"
           width: 168
           height: 94
@@ -636,7 +637,7 @@ videos:
     - id: DraA3PUuoQc
       title: Pocahontas - AnnenMayKantereit
       length: 192
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/DraA3PUuoQc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDq-oBTOdVzgce4FdS5tHTBe3eKlA"
           width: 168
           height: 94
@@ -655,7 +656,7 @@ videos:
     - id: wMIGQp4YhuU
       title: "Xavier Naidoo - Alles kann besser werden [Official Video]"
       length: 269
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/wMIGQp4YhuU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAXuvRD27RqHtAyFm48dMnsYrUlbg"
           width: 168
           height: 94
@@ -674,7 +675,7 @@ videos:
     - id: 38lrK74voaI
       title: "Olexesh - MAGISCH feat. Edin (prod. von PzY) [Official 4K Video]"
       length: 270
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/38lrK74voaI/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAVoqbTLnv6uPAj7t0HrAn5GAK_Jg"
           width: 168
           height: 94
@@ -693,7 +694,7 @@ videos:
     - id: 2qW9rOSFF1M
       title: BONEZ MC & RAF CAMORA - AN IHNEN VORBEI
       length: 220
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/2qW9rOSFF1M/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCLHCbKTgchLUipdthOFsHIMos8eA"
           width: 168
           height: 94
@@ -712,7 +713,7 @@ videos:
     - id: tMILH6UEfPA
       title: Veysel - Kleiner Cabrón  (OFFICIAL HD VIDEO) prod. by Macloud
       length: 213
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/tMILH6UEfPA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBTUsW-P8-fIzLCRb-Xt-2Ky4I58w"
           width: 168
           height: 94
@@ -731,7 +732,7 @@ videos:
     - id: izHB2EdMngg
       title: Vanessa Mai - Ich sterb für dich
       length: 190
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/izHB2EdMngg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC5CFXBJ0W9DQQZ_tiM6gP12e1aug"
           width: 168
           height: 94
@@ -750,7 +751,7 @@ videos:
     - id: haECT-SerHk
       title: Helene Fischer - Atemlos durch die Nacht
       length: 219
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/haECT-SerHk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB5wAkVuIyWU6lEavR0LDUJ-e9G_w"
           width: 168
           height: 94
@@ -769,7 +770,7 @@ videos:
     - id: cVikZ8Oe_XA
       title: Falco - Rock Me Amadeus (Official Video)
       length: 225
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/cVikZ8Oe_XA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBRKYqET6zOciMAnASNDuj_vEWhHA"
           width: 168
           height: 94
@@ -788,7 +789,7 @@ videos:
     - id: drFsXLChrWc
       title: 257ers - Holland (Official HD Video)
       length: 213
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/drFsXLChrWc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDHzQXboNJT9agtNoiAYeGBQT7u9Q"
           width: 168
           height: 94
@@ -807,7 +808,7 @@ videos:
     - id: 1EMFt7m_8yE
       title: SDP - Ich muss immer an dich denken
       length: 217
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/1EMFt7m_8yE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA5XEy3rcpbsnB5SEqfS5rZrz4zyQ"
           width: 168
           height: 94
@@ -826,7 +827,7 @@ videos:
     - id: _yWU0lFghxU
       title: Seeed - Ding (official Video)
       length: 211
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/_yWU0lFghxU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBo9Yn5w6pbo5JylVv3XuhFvz_-jw"
           width: 168
           height: 94
@@ -845,7 +846,7 @@ videos:
     - id: XlD-LO3ogFM
       title: Mark Forster - Wir sind groß (Lyric Video)
       length: 204
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/XlD-LO3ogFM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDtxcZ0KznZi1B8TC_zDO4EAhSi2w"
           width: 168
           height: 94
@@ -864,7 +865,7 @@ videos:
     - id: nAzjWqNfgvc
       title: Gestört aber GeiL & Koby Funk feat. Wincent Weiss - Unter Meiner Haut (Official Video HD)
       length: 218
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/nAzjWqNfgvc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAn2zwZvNQZDxYyEakap6O-qscr_w"
           width: 168
           height: 94
@@ -883,7 +884,7 @@ videos:
     - id: PySC3RGhZJU
       title: CRO - Bad Chick (Official Version)
       length: 218
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/PySC3RGhZJU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDNUnL8j0tGJ2fsmqLaE7WMEkYToQ"
           width: 168
           height: 94
@@ -902,7 +903,7 @@ videos:
     - id: G-iwLoyH6ZE
       title: CAPITAL BRA - NUR NOCH GUCCI (prod. The Cratez x Hoodboyz)
       length: 232
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/G-iwLoyH6ZE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDpKgxunqERPh--nrrwYuuhRgfsgg"
           width: 168
           height: 94
@@ -921,7 +922,7 @@ videos:
     - id: fgCOUO-s8nY
       title: Jupiter Jones - Still (Videoclip)
       length: 238
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/fgCOUO-s8nY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC0_6dsucrR1b1SFRH3mWIW4aG2MA"
           width: 168
           height: 94
@@ -940,7 +941,7 @@ videos:
     - id: m-Ik3yy728Y
       title: Andreas Bourani - Auf anderen Wegen (Official Video)
       length: 245
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/m-Ik3yy728Y/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBdf4h8llXdfJ-OKgHzWj3IOWlnYQ"
           width: 168
           height: 94
@@ -959,7 +960,7 @@ videos:
     - id: U0_UYW5Y4cM
       title: Andreas Gabalier - I sing a Liad für Di
       length: 188
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/U0_UYW5Y4cM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBl8yQKNQcbq4noIXXbagrBI2cuzA"
           width: 168
           height: 94
@@ -978,7 +979,7 @@ videos:
     - id: rsrDYTEicq8
       title: RAF CAMORA - Primo (prod. X-Plosive & RAF Camora)
       length: 214
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/rsrDYTEicq8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAUWuhlHy43NeJWne-7SoaXRm_ctw"
           width: 168
           height: 94
@@ -997,7 +998,7 @@ videos:
     - id: 2aU4wRgl_0E
       title: "Ufo361 - \"Nice Girl 2.0\" (prod. von AT Beatz) [Official HD Video]"
       length: 169
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/2aU4wRgl_0E/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBO3SHMYAWqIxyoA6XXZX9jQT6S9w"
           width: 168
           height: 94
@@ -1016,7 +1017,7 @@ videos:
     - id: FzcJxJAxFtw
       title: VEYSEL & MOZZIK - TI AMO (OFFICIAL VIDEO)
       length: 267
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/FzcJxJAxFtw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC_s-2wvHOLxEip00xsF8rG2H0usA"
           width: 168
           height: 94
@@ -1035,7 +1036,7 @@ videos:
     - id: 2hyibXdOp5w
       title: "XAVAS (Xavier Naidoo & Kool Savas) \"Schau nicht mehr zurück\" (Official HD Video 2012)"
       length: 234
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/2hyibXdOp5w/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAd-py6tq-UGFdYc5FqW5ljYJ8HKw"
           width: 168
           height: 94
@@ -1054,7 +1055,7 @@ videos:
     - id: YaKG5cUVB30
       title: Ali Bumaye - Sex ohne Grund feat. Shindy
       length: 166
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/YaKG5cUVB30/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAbouyvACS_X0A5kQOFK8h-7hBCTQ"
           width: 168
           height: 94
@@ -1073,7 +1074,7 @@ videos:
     - id: Ahwc-ouFeTQ
       title: "ALLIGATOAH - Willst Du (OFFICIAL VIDEO) 'Triebwerke' Album (HITBOX)"
       length: 224
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/Ahwc-ouFeTQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCO4zch0lItASVd_nSl1E2_GBr1QQ"
           width: 168
           height: 94
@@ -1092,7 +1093,7 @@ videos:
     - id: SoImFhORKpg
       title: Bonez MC & RAF Camora feat. Gzuz & Maxwell - Kontrollieren (prod. by Beataura & RAF Camora)
       length: 232
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/SoImFhORKpg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDRnP4vZtk2hUwHQ_hDsfN3iDMe9Q"
           width: 168
           height: 94
@@ -1111,7 +1112,7 @@ videos:
     - id: jP4-XrbGt3M
       title: Mark Forster - Sowieso (Official Video)
       length: 161
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/jP4-XrbGt3M/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAzLDUfpE6upRMnrDEqvp2BZrtCkw"
           width: 168
           height: 94
@@ -1130,7 +1131,7 @@ videos:
     - id: Yy2RsG4lnm4
       title: Anna-Maria Zimmermann - 1000 Träume weit (Tornero)
       length: 254
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/Yy2RsG4lnm4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBsxC15vPGdSZ5kfDo8Ibdl3v3zjQ"
           width: 168
           height: 94
@@ -1149,7 +1150,7 @@ videos:
     - id: 388e_8mu1t4
       title: SDP feat. Sido - Die Nacht von Freitag auf Montag
       length: 241
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/388e_8mu1t4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC1op5KQFtiQ3GJv_yt8lcCojrRWw"
           width: 168
           height: 94
@@ -1168,7 +1169,7 @@ videos:
     - id: dHHtPi-j7dQ
       title: Wolkenfrei - Wolke 7 (Videoclip)
       length: 239
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/dHHtPi-j7dQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCZKYNdCzFGKh8z1XPSXT42h8EegQ"
           width: 168
           height: 94
@@ -1187,7 +1188,7 @@ videos:
     - id: d8ERTCVXIUE
       title: Ali As feat. Namika – Lass sie tanzen (Square Dance) // prod. ELI
       length: 251
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/d8ERTCVXIUE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDRc1pnQEIAdibeOsDU5HUkjq6tEw"
           width: 168
           height: 94
@@ -1206,7 +1207,7 @@ videos:
     - id: vQXn3EzzYY4
       title: "Frei.Wild - Weil Du mich nur verarscht hast (2011) [Offizieller Videoclip]"
       length: 208
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/vQXn3EzzYY4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCqfVJX6ABnvqJSkj7Hyw6f4rV2TA"
           width: 168
           height: 94
@@ -1225,7 +1226,7 @@ videos:
     - id: zA-BTpC-yvI
       title: AZET feat. RAF CAMORA - QA BONE  (Official Audio)
       length: 202
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/zA-BTpC-yvI/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD_asimo6lIm7XZu8P9f2k6ZRxaQw"
           width: 168
           height: 94
@@ -1244,7 +1245,7 @@ videos:
     - id: rnzIN9H_G10
       title: LEA - Leiser (Pseudo Video)
       length: 209
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/rnzIN9H_G10/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA2pFb14I8adKkilycBZCpcF0j5xQ"
           width: 168
           height: 94
@@ -1263,7 +1264,7 @@ videos:
     - id: fcBbT1GTxqM
       title: Kay One - Ich brech die Herzen
       length: 229
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/fcBbT1GTxqM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDPN6rEd3YDQY1_0Z_0-RLe0qr9jQ"
           width: 168
           height: 94
@@ -1282,7 +1283,7 @@ videos:
     - id: wCDsm_dt1cI
       title: KLUBBB3 - Du schaffst das schon (Offizielles Video)
       length: 190
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/wCDsm_dt1cI/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCJisdr1A-P-lXCyrM0RoJRUyPDAQ"
           width: 168
           height: 94
@@ -1301,7 +1302,7 @@ videos:
     - id: 4j3AOJV1J8I
       title: 23 - Bushido & Sido feat. Peter Maffay - Erwachsen sein
       length: 218
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/4j3AOJV1J8I/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBt7kmNDbeo0vtVApiHs2J5zMaylg"
           width: 168
           height: 94
@@ -1320,7 +1321,7 @@ videos:
     - id: RtuW08ZIgvg
       title: "Söhne Mannheims - Und wenn ein Lied [Official Video]"
       length: 249
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/RtuW08ZIgvg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDM7u-sy9EvIS8VMTjJ9cLcM47zQA"
           width: 168
           height: 94
@@ -1339,7 +1340,7 @@ videos:
     - id: cbTXqKBIQ40
       title: Philipp Poisel - Eiserner Steg (Klavier Version) - Offizielles Video
       length: 250
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/cbTXqKBIQ40/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAP3eJjTJsHQ7EHCBcY-MfAdXk3DA"
           width: 168
           height: 94
@@ -1358,7 +1359,7 @@ videos:
     - id: oSd0Lph4luY
       title: MIKE SINGER - DEJA VU (Offizielles Video)
       length: 229
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/oSd0Lph4luY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDUSdlW64Vrr23hmhIBXoXWA5UuhQ"
           width: 168
           height: 94
@@ -1377,7 +1378,7 @@ videos:
     - id: oq0rrYrufYU
       title: JORIS - Herz über Kopf (Official Video)
       length: 209
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/oq0rrYrufYU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBYbbtDe_9DmmmA3qpRrk3NphV69Q"
           width: 168
           height: 94
@@ -1396,7 +1397,7 @@ videos:
     - id: 0-P_YkS0z8s
       title: "KC Rebell feat. Summer Cem ► AUGENBLICK ◄ [ official Video ] 4K"
       length: 208
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/0-P_YkS0z8s/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBo7ZebER3EyU-cxcGJKMYdTZqVXA"
           width: 168
           height: 94
@@ -1415,7 +1416,7 @@ videos:
     - id: 4BAKb2p450Q
       title: Tim Bendzko - Nur Noch Kurz Die Welt Retten (Offizielles Video)
       length: 191
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/4BAKb2p450Q/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAFSTKD33XGKnmNsqH_Ttwwx5xuNg"
           width: 168
           height: 94
@@ -1434,7 +1435,7 @@ videos:
     - id: yqObMM_QzVQ
       title: Casper - Im Ascheregen
       length: 303
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/yqObMM_QzVQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAwLptLmtFUDADM8VlLnD2HjG36eg"
           width: 168
           height: 94
@@ -1453,7 +1454,7 @@ videos:
     - id: dlvStoOyEzE
       title: Alligatoah - Du bist schön (Official Video)
       length: 246
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/dlvStoOyEzE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCfTATo6sXEoKHxikJD9t9Hg3E01g"
           width: 168
           height: 94
@@ -1472,7 +1473,7 @@ videos:
     - id: VNttGAaek2U
       title: Revolverheld - Lass Uns Gehen (Offizielles Musikvideo)
       length: 214
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/VNttGAaek2U/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCwcuHMTixpi0vJg-4G20w5fbqI4w"
           width: 168
           height: 94
@@ -1491,7 +1492,7 @@ videos:
     - id: TxZMfufRJfo
       title: Oft Gefragt - AnnenMayKantereit (Official Video)
       length: 189
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/TxZMfufRJfo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBhWEPjvLiv1Khiuod09arTjc8g7A"
           width: 168
           height: 94
@@ -1510,7 +1511,7 @@ videos:
     - id: 6agT2asF4as
       title: "CAPO - MON CHÉRI ft. NIMO (prod. von Zeeko & Veteran) [Official Audio]"
       length: 230
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/6agT2asF4as/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDTUuExLM1ismMCdg3Bq7mVahWlvA"
           width: 168
           height: 94
@@ -1529,7 +1530,7 @@ videos:
     - id: EcW0n83La5A
       title: DIE LOCHIS - LIEBLINGSLIED (Offizielles Video) | BEREIT FÜR @HE/RO  ?
       length: 212
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/EcW0n83La5A/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDfc1-Y5K_6Jjjs4e7wJRasjkAvqg"
           width: 168
           height: 94
@@ -1548,7 +1549,7 @@ videos:
     - id: _b61hg8UlZM
       title: "CAPO – Lambo Diablo GT feat. Nimo (prod. Von SOTT & Veteran & Zeeko) [Official Audio]"
       length: 285
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/_b61hg8UlZM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA-DoUTVn98IhmGEOzEHPXU2zAWYQ"
           width: 168
           height: 94
@@ -1567,7 +1568,7 @@ videos:
     - id: kDMFranvFuQ
       title: Joel Brandenstein - Diese Liebe (Offizielles Musikvideo)
       length: 359
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/kDMFranvFuQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBVFYsYNdvEy9fuONolAtBkZRvc9A"
           width: 168
           height: 94
@@ -1586,7 +1587,7 @@ videos:
     - id: 1apku0pVDeE
       title: Wincent Weiss - Feuerwerk (Official Video)
       length: 213
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/1apku0pVDeE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAgkN2roTs3SdVc46CRRd4BIi4k7Q"
           width: 168
           height: 94
@@ -1605,7 +1606,7 @@ videos:
     - id: g6JYzOjglBs
       title: Seeed - Aufstehn (official Video)
       length: 231
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/g6JYzOjglBs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCkmBTXk2YaRyjaTgjq4bwcpzWWGA"
           width: 168
           height: 94
@@ -1624,7 +1625,7 @@ videos:
     - id: GYK-NfOo7b4
       title: Seeed - Dickes B (official Video)
       length: 240
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/GYK-NfOo7b4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAavUCF3vlRnCAL2QsfDgMOh5aHaQ"
           width: 168
           height: 94
@@ -1643,7 +1644,7 @@ videos:
     - id: omUuR45iU0g
       title: "KC Rebell feat. Summer Cem: \"HAYVAN\" [official Video]"
       length: 291
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/omUuR45iU0g/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBNyuNT14kxJH-TQe-PUes0vkP2bw"
           width: 168
           height: 94
@@ -1662,7 +1663,7 @@ videos:
     - id: w7BE3inS-NM
       title: "Adel Tawil - Bis hier und noch weiter (Official Video) ft. KC Rebell, Summer Cem"
       length: 228
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/w7BE3inS-NM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAe887jFMndrO7vV9mifoa6a1Ectg"
           width: 168
           height: 94
@@ -1681,7 +1682,7 @@ videos:
     - id: FM-5BPMnhm0
       title: SDP feat. Weekend - Tanz aus der Reihe!
       length: 234
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/FM-5BPMnhm0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBUFO3IacA956tmnSO4Tkq_5bJJDg"
           width: 168
           height: 94
@@ -1700,7 +1701,7 @@ videos:
     - id: MnNZNfixTOw
       title: Philipp Poisel - Wie soll ein Mensch das ertragen
       length: 278
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/MnNZNfixTOw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBO1RS4_u-jFiKcuMOMWlCg9r-HAQ"
           width: 168
           height: 94
@@ -1719,7 +1720,7 @@ videos:
     - id: qe80EeU8cT8
       title: "Xavier Naidoo - Wann (feat. Cassandra Steen) [Official Video]"
       length: 327
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/qe80EeU8cT8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLATTKLPexjqGruzgsU7M3Kldk0J2w"
           width: 168
           height: 94
@@ -1738,7 +1739,7 @@ videos:
     - id: "-s2-6KYgqpQ"
       title: Alligatoah - Narben (Official Video)
       length: 264
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/-s2-6KYgqpQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDWniVg-b300HVTRYrQGrrSK1G8uw"
           width: 168
           height: 94
@@ -1757,7 +1758,7 @@ videos:
     - id: RSlp874hESE
       title: "Kollegah & Farid Bang - \"ZIEH DEN RUCKSACK AUS\" [ official Video ]"
       length: 162
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/RSlp874hESE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAU7YZ5dh9VaC9R5wfTKYMChxTplQ"
           width: 168
           height: 94
@@ -1776,7 +1777,7 @@ videos:
     - id: oTI3tRQ_-3k
       title: SDP - Wenn ich groß bin
       length: 225
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/oTI3tRQ_-3k/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDkk0a9nwy9qYSc-V0ZRSIGS_Wttg"
           width: 168
           height: 94
@@ -1795,7 +1796,7 @@ videos:
     - id: _okA84gaEJw
       title: SXTN - Von Party zu Party (Official Video)
       length: 221
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/_okA84gaEJw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDA6bykIGVF3WqUx3emOpgnuapb0w"
           width: 168
           height: 94
@@ -1814,7 +1815,7 @@ videos:
     - id: pLHnnJRaP7Q
       title: House Rockerz - HerzRasen (Official Video HD)
       length: 207
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/pLHnnJRaP7Q/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDFElTxgC4PWAel2yN43ku_gWpLtw"
           width: 168
           height: 94
@@ -1833,7 +1834,7 @@ videos:
     - id: H2hGrsExuyc
       title: "GZUZ \"Was Hast Du Gedacht\" (WSHH Exclusive - Official Music Video)"
       length: 188
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/H2hGrsExuyc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB_OAq5Mb2xjIZW5dNyKZRWJ7PLsA"
           width: 168
           height: 94
@@ -1852,7 +1853,7 @@ videos:
     - id: RsZvjqG2lec
       title: Tim Bendzko - Wenn Worte meine Sprache wären (Offizielles Video)
       length: 196
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/RsZvjqG2lec/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBh5wlp7smaJJU4TQy1iKD1U2sqQQ"
           width: 168
           height: 94
@@ -1871,7 +1872,7 @@ videos:
     - id: qYRCiQ6d35w
       title: BONEZ MC & RAF CAMORA feat  GZUZ  - MÖRDER
       length: 240
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/qYRCiQ6d35w/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCQ3Po4qJ4Vl1g37HiYjhUn2AWS-Q"
           width: 168
           height: 94
@@ -1890,7 +1891,7 @@ videos:
     - id: zMPIobcM2j0
       title: ZUNA feat. AZET & NOIZY - NUMMER 1 prod. by DJ A-BOOM
       length: 212
-      thumbnails:
+      thumbnail:
         - url: "https://i.ytimg.com/vi/zMPIobcM2j0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCUVzgKNBFY6In3YbZuWpZ60oilnQ"
           width: 168
           height: 94
@@ -1907,8 +1908,8 @@ videos:
         id: UCDLPHv0SrvyUzct8UYQ9R_g
         name: KMNGANG
   ctoken: 4qmFsgJhEiRWTFBMNWREeDY4MVQ0YlI3WkYxSXVXek92MW9tbFJiRTdQaUoaFENBRjZCbEJVT2tOSFdRJTNEJTNEmgIiUEw1ZER4NjgxVDRiUjdaRjFJdVd6T3Yxb21sUmJFN1BpSg%3D%3D
-n_videos: 495
-thumbnails:
+video_count: 495
+thumbnail:
   - url: "https://i.ytimg.com/vi/Bkj3IVIO2Os/hqdefault.jpg?sqp=-oaymwEWCKgBEF5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLBShlXfy9oWvTy2ntoHxmuhBlZP3g"
     width: 168
     height: 94
