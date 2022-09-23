@@ -329,10 +329,10 @@ pub struct Channel {
     pub verification: Verification,
     /// Approximate number of subscribers
     ///
+    /// `None` if hidden by the owner or not present.
+    ///
     /// Info: This is only present in the `VideoDetails` response
-    pub subscriber_count: Option<u32>,
-    /// Textual subscriber count (e.g `1.41M subscribers`, depends on language)
-    pub subscriber_count_txt: Option<String>,
+    pub subscriber_count: Option<u64>,
 }
 
 /*
@@ -400,14 +400,13 @@ pub struct ChannelVideos {
     pub id: String,
     /// Channel name
     pub name: String,
-    /*
     /// Channel subscriber count
     ///
     /// `None` if the subscriber count was hidden by the owner
     /// or could not be parsed.
     pub subscriber_count: Option<u64>,
+    /// Videos fetched from the channel
     pub videos: Paginator<ChannelVideo>,
-    */
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]

@@ -177,14 +177,12 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                 _ => bail!("could not find primary_info"),
             };
 
-        /*
-        TODO: use large number parser for this
         let comment_count = comment_count_section.and_then(|s| {
-            util::parse_numeric_or_warn::<u32>(
+            util::parse_large_numstr::<u32>(
                 &s.comments_entry_point_header_renderer.comment_count,
-                &mut warnings,
+                lang,
             )
-        });*/
+        });
 
         let comment_ctoken = comment_ctoken_section.map(|s| {
             s.continuation_item_renderer
@@ -301,8 +299,9 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                     name: channel_name,
                     avatar: owner.thumbnail.into(),
                     verification: owner.badges.into(),
-                    subscriber_count: None,
-                    subscriber_count_txt: owner.subscriber_count_text,
+                    subscriber_count: owner
+                        .subscriber_count_text
+                        .and_then(|txt| util::parse_large_numstr(&txt, lang)),
                 },
                 view_count,
                 like_count,
@@ -312,8 +311,8 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                 is_ccommons,
                 chapters,
                 recommended,
-                top_comments: Paginator::new(None, Vec::new(), comment_ctoken),
-                latest_comments: Paginator::new(None, Vec::new(), latest_comments_ctoken),
+                top_comments: Paginator::new(comment_count, Vec::new(), comment_ctoken),
+                latest_comments: Paginator::new(comment_count, Vec::new(), latest_comments_ctoken),
             },
             warnings,
         })
@@ -431,7 +430,6 @@ fn map_recommendations(
                                 avatar: video.channel_thumbnail.into(),
                                 verification: video.owner_badges.into(),
                                 subscriber_count: None,
-                                subscriber_count_txt: None,
                             },
                             publish_date: video.published_time_text.as_ref().and_then(|txt| {
                                 timeago::parse_timeago_or_warn(lang, txt, &mut warnings)
@@ -514,7 +512,6 @@ fn map_comment(
                         .map(|b| b.author_comment_badge_renderer.icon.into())
                         .unwrap_or_default(),
                     subscriber_count: None,
-                    subscriber_count_txt: None,
                 }),
                 _ => None,
             },
@@ -620,7 +617,11 @@ mod tests {
         assert_eq!(details.channel.name, "SMTOWN");
         assert!(!details.channel.avatar.is_empty(), "no channel avatars");
         assert_eq!(details.channel.verification, Verification::Verified);
-        // TODO: assert!(details.channel.subscriber_count.unwrap() > 30000000, "expected >30M subs, got {}", details.channel.subscriber_count);
+        assert!(
+            details.channel.subscriber_count.unwrap() > 30000000,
+            "expected >30M subs, got {}",
+            details.channel.subscriber_count.unwrap()
+        );
 
         assert!(
             details.view_count > 232000000,
@@ -644,11 +645,11 @@ mod tests {
         assert!(!details.recommended.items.is_empty());
         assert!(!details.recommended.is_exhausted());
 
-        // assert!(
-        //     details.top_comments.count.unwrap() > 700000,
-        //     "expected > 700K comments, got {}",
-        //     details.top_comments.count.unwrap()
-        // );
+        assert!(
+            details.top_comments.count.unwrap() > 700000,
+            "expected > 700K comments, got {}",
+            details.top_comments.count.unwrap()
+        );
         assert!(!details.top_comments.is_exhausted());
         assert!(!details.latest_comments.is_exhausted());
     }
@@ -671,7 +672,11 @@ mod tests {
         assert_eq!(details.channel.name, "Sentamusic");
         assert!(!details.channel.avatar.is_empty(), "no channel avatars");
         assert_eq!(details.channel.verification, Verification::Artist);
-        // TODO: assert!(details.channel.subscriber_count.unwrap() > 33000, "expected >33K subs, got {}", details.channel.subscriber_count);
+        assert!(
+            details.channel.subscriber_count.unwrap() > 33000,
+            "expected >33K subs, got {}",
+            details.channel.subscriber_count.unwrap()
+        );
 
         assert!(
             details.view_count > 20309,
@@ -730,7 +735,11 @@ mod tests {
         assert_eq!(details.channel.name, "media.ccc.de");
         assert!(!details.channel.avatar.is_empty(), "no channel avatars");
         assert_eq!(details.channel.verification, Verification::None);
-        // TODO: assert!(details.channel.subscriber_count.unwrap() > 170000, "expected >170K subs, got {}", details.channel.subscriber_count);
+        assert!(
+            details.channel.subscriber_count.unwrap() > 170000,
+            "expected >170K subs, got {}",
+            details.channel.subscriber_count.unwrap()
+        );
 
         assert!(
             details.view_count > 2517358,
@@ -754,11 +763,11 @@ mod tests {
         assert!(!details.recommended.items.is_empty());
         assert!(!details.recommended.is_exhausted());
 
-        // assert!(
-        //     details.top_comments.count.unwrap() > 700000,
-        //     "expected > 700K comments, got {}",
-        //     details.top_comments.count.unwrap()
-        // );
+        assert!(
+            details.top_comments.count.unwrap() > 2199,
+            "expected > 2199 comments, got {}",
+            details.top_comments.count.unwrap()
+        );
         assert!(!details.top_comments.is_exhausted());
         assert!(!details.latest_comments.is_exhausted());
     }
@@ -961,7 +970,11 @@ mod tests {
         assert_eq!(details.channel.name, "Linus Tech Tips");
         assert!(!details.channel.avatar.is_empty(), "no channel avatars");
         assert_eq!(details.channel.verification, Verification::Verified);
-        // TODO: assert!(details.channel.subscriber_count.unwrap() > 14700000, "expected >14.7M subs, got {}", details.channel.subscriber_count);
+        assert!(
+            details.channel.subscriber_count.unwrap() > 14700000,
+            "expected >14.7M subs, got {}",
+            details.channel.subscriber_count.unwrap()
+        );
 
         assert!(
             details.view_count > 1157262,
@@ -1036,11 +1049,11 @@ mod tests {
         assert!(!details.recommended.items.is_empty());
         assert!(!details.recommended.is_exhausted());
 
-        // assert!(
-        //     details.top_comments.count.unwrap() > 700000,
-        //     "expected > 700K comments, got {}",
-        //     details.top_comments.count.unwrap()
-        // );
+        assert!(
+            details.top_comments.count.unwrap() > 3199,
+            "expected > 3199 comments, got {}",
+            details.top_comments.count.unwrap()
+        );
         assert!(!details.top_comments.is_exhausted());
         assert!(!details.latest_comments.is_exhausted());
     }
@@ -1057,7 +1070,6 @@ mod tests {
             details.title,
             "🌎 Nasa Live Stream  - Earth From Space :  Live Views from the ISS"
         );
-        // TODO: not full description
         insta::assert_yaml_snapshot!(details.description, @r###"
         ---
         - Text: "Live NASA - Views Of Earth from Space\nLive video feed of Earth from the International Space Station (ISS) Cameras\n-----------------------------------------------------------------------------------------------------\nWatch our latest video - The Sun - 4K Video / Solar Flares\n"
@@ -1088,7 +1100,11 @@ mod tests {
         assert_eq!(details.channel.name, "Space Videos");
         assert!(!details.channel.avatar.is_empty(), "no channel avatars");
         assert_eq!(details.channel.verification, Verification::Verified);
-        // TODO: assert!(details.channel.subscriber_count.unwrap() > 5500000, "expected >5.5M subs, got {}", details.channel.subscriber_count);
+        assert!(
+            details.channel.subscriber_count.unwrap() > 5500000,
+            "expected >5.5M subs, got {}",
+            details.channel.subscriber_count.unwrap()
+        );
 
         assert!(
             details.view_count > 10,
@@ -1140,7 +1156,11 @@ mod tests {
         assert_eq!(details.channel.name, "PrinceOfFALLEN");
         assert!(!details.channel.avatar.is_empty(), "no channel avatars");
         assert_eq!(details.channel.verification, Verification::None);
-        // TODO: assert!(details.channel.subscriber_count.unwrap() > 1400, "expected >1400 subs, got {}", details.channel.subscriber_count);
+        assert!(
+            details.channel.subscriber_count.unwrap() > 1400,
+            "expected >1400 subs, got {}",
+            details.channel.subscriber_count.unwrap()
+        );
 
         assert!(
             details.view_count > 200,

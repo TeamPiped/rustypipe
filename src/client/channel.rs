@@ -2,7 +2,11 @@ use anyhow::{bail, Result};
 use reqwest::Method;
 use serde::Serialize;
 
-use crate::{model::ChannelVideos, serializer::MapResult};
+use crate::{
+    model::{ChannelVideos, Paginator},
+    serializer::MapResult,
+    util,
+};
 
 use super::{response, ClientType, MapResponse, RustyPipeQuery, YTContext};
 
@@ -53,7 +57,7 @@ impl MapResponse<ChannelVideos> for response::Channel {
     fn map_response(
         self,
         id: &str,
-        _lang: crate::model::Language,
+        lang: crate::model::Language,
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
     ) -> Result<MapResult<ChannelVideos>> {
         let warnings = Vec::new();
@@ -72,6 +76,10 @@ impl MapResponse<ChannelVideos> for response::Channel {
             c: ChannelVideos {
                 id: header.channel_id,
                 name: header.title,
+                subscriber_count: header
+                    .subscriber_count_text
+                    .and_then(|txt| util::parse_large_numstr(&txt, lang)),
+                videos: Paginator::default(),
             },
             warnings,
         })

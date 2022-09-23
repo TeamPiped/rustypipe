@@ -230,7 +230,11 @@ impl<T> TryRemove<T> for Vec<T> {
     }
 }
 
-fn parse_large_numstr(string: &str, lang: Language) -> Option<u64> {
+/// Parse a large, textual number (e.g. `1.4M subscribers`, `22K views`)
+pub fn parse_large_numstr<F>(string: &str, lang: Language) -> Option<F>
+where
+    F: TryFrom<u64>,
+{
     let dict_entry = dictionary::entry(lang);
     let decimal_point = match dict_entry.comma_decimal {
         true => ',',
@@ -275,10 +279,14 @@ fn parse_large_numstr(string: &str, lang: Language) -> Option<u64> {
             .sum::<i32>();
     }
 
-    num.checked_mul(some_or_bail!(
-        (10_u64).checked_pow(ok_or_bail!(exp.try_into(), None)),
+    F::try_from(some_or_bail!(
+        num.checked_mul(some_or_bail!(
+            (10_u64).checked_pow(ok_or_bail!(exp.try_into(), None)),
+            None
+        )),
         None
     ))
+    .ok()
 }
 
 #[cfg(test)]
@@ -407,7 +415,7 @@ mod tests {
             (((expect as f64) / factor as f64).floor() as u64) * factor
         };
 
-        let res = parse_large_numstr(string, lang).expect(string);
+        let res = parse_large_numstr::<u64>(string, lang).expect(string);
         assert_eq!(
             res, rounded,
             "{} (lang: {}, exact: {})",
