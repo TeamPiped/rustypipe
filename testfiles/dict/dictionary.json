@@ -125,6 +125,7 @@
     "comma_decimal": false,
     "number_tokens": {
       "ألف": 3,
+      "آلاف": 3,
       "مليار": 9,
       "مليون": 6
     }

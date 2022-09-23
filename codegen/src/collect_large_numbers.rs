@@ -33,6 +33,9 @@ pub async fn collect_large_numbers(project_root: &Path, concurrency: usize) {
     let mut json_path = project_root.to_path_buf();
     json_path.push("testfiles/dict/large_number_samples.json");
 
+    let mut json_path_all = project_root.to_path_buf();
+    json_path_all.push("testfiles/dict/large_number_samples_all.json");
+
     let channels = [
         "UCq-Fj5jknLsUf-MWSy4_brA", // 10e8 (225M)
         "UCcdwLMPsaU2ezNSJU1nFoBQ", // 10e7 (60M)
@@ -40,10 +43,11 @@ pub async fn collect_large_numbers(project_root: &Path, concurrency: usize) {
         "UCD0y51PJfvkZNe3y3FR5riw", // 10e5 (125K)
         "UCNcN0dW43zE0Om3278fjY8A", // 10e4 (27K)
         "UC0QEucPrn0-Ddi3JBTcs5Kw", // 10e3 (5K)
-        "UCGiJh0NZ52wRhYKYnuZI08Q", // 10e1 (37)
+        "UCXvtcj9xUQhaqPaitFf2DqA", // (170)
+        "UCq-XMc01T641v-4P3hQYJWg", // (636)
     ];
 
-    let collected_numbers: CollectedNumbers = stream::iter(LANGUAGES)
+    let collected_numbers_all: BTreeMap<Language, BTreeMap<String, u64>> = stream::iter(LANGUAGES)
         .map(|lang| async move {
             let mut entry = BTreeMap::new();
 
@@ -54,7 +58,7 @@ pub async fn collect_large_numbers(project_root: &Path, concurrency: usize) {
                     .unwrap();
 
                 channel.view_counts.iter().for_each(|(num, txt)| {
-                    entry.insert(get_mag(*num), (txt.to_owned(), *num));
+                    entry.insert(txt.to_owned(), *num);
                 });
 
                 println!("collected {}-{}", lang, n);
@@ -66,32 +70,53 @@ pub async fn collect_large_numbers(project_root: &Path, concurrency: usize) {
         .collect()
         .await;
 
+    let collected_numbers: CollectedNumbers = collected_numbers_all
+        .iter()
+        .map(|(lang, entry)| {
+            let mut e2 = BTreeMap::new();
+            entry.iter().for_each(|(txt, num)| {
+                e2.insert(get_mag(*num), (txt.to_owned(), *num));
+            });
+            (*lang, e2)
+        })
+        .collect();
+
     let file = File::create(json_path).unwrap();
     serde_json::to_writer_pretty(file, &collected_numbers).unwrap();
+
+    let file = File::create(json_path_all).unwrap();
+    serde_json::to_writer_pretty(file, &collected_numbers_all).unwrap();
 }
 
 /// Attempt to parse the numbers collected by `collect-large-numbers`
 /// and write the results to `dictionary.json`.
-///
-/// Manual corrections:
-/// as
-/// "কোঃটা": 9,
-/// "নিঃটা": 6,
-/// "নিযুতটা": 6,
-/// "লাখটা": 5,
-/// "হাজাৰটা": 3
-///
-/// bn
-/// "লাটি": 5,
-/// "শত": 2,
-/// "হাটি": 3,
-/// "কোটি": 7
-///
-/// es/es-US
-/// "mil": 3,
-/// "M": 6
-///
 pub fn write_samples_to_dict(project_root: &Path) {
+    /*
+    Manual corrections:
+    as
+    "কোঃটা": 9,
+    "নিঃটা": 6,
+    "নিযুতটা": 6,
+    "লাখটা": 5,
+    "হাজাৰটা": 3
+
+    ar
+    "ألف": 3,
+    "آلاف": 3,
+    "مليار": 9,
+    "مليون": 6
+
+    bn
+    "লাটি": 5,
+    "শত": 2,
+    "হাটি": 3,
+    "কোটি": 7
+
+    es/es-US
+    "mil": 3,
+    "M": 6
+    */
+
     let mut json_path = project_root.to_path_buf();
     json_path.push("testfiles/dict/large_number_samples.json");
 

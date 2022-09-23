@@ -245,14 +245,15 @@ pub fn entry(lang: Language) -> Entry {
             },
             comma_decimal: false,
             number_tokens: ::phf::Map {
-                key: 12913932095322966823,
+                key: 7485420634051515786,
                 disps: &[
                     (0, 0),
                 ],
                 entries: &[
-                    ("مليار", 9),
+                    ("آلاف", 3),
                     ("مليون", 6),
                     ("ألف", 3),
+                    ("مليار", 9),
                 ],
             },
         },

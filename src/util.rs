@@ -383,6 +383,20 @@ mod tests {
         });
     }
 
+    #[test]
+    fn t_parse_large_numstr_samples2() {
+        let json_path = Path::new("testfiles/dict/large_number_samples_all.json");
+        let json_file = File::open(json_path).unwrap();
+        let number_samples: BTreeMap<Language, BTreeMap<String, u64>> =
+            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+
+        number_samples.iter().for_each(|(lang, entry)| {
+            entry.iter().for_each(|(txt, expect)| {
+                testcase_parse_large_numstr(txt, *lang, *expect);
+            });
+        });
+    }
+
     fn testcase_parse_large_numstr(string: &str, lang: Language, expect: u64) {
         // Round the expected number to the amount of significant digits included
         // in the string.
