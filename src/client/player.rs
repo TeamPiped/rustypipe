@@ -298,20 +298,17 @@ fn deobf_nsig(
     last_nsig: &mut [String; 2],
 ) -> Result<()> {
     let nsig: String;
-    match url_params.get("n") {
-        Some(n) => {
-            nsig = if n == &last_nsig[0] {
-                last_nsig[1].to_owned()
-            } else {
-                let nsig = deobf.deobfuscate_nsig(n)?;
-                last_nsig[0] = n.to_string();
-                last_nsig[1] = nsig.to_owned();
-                nsig
-            };
+    if let Some(n) = url_params.get("n") {
+        nsig = if n == &last_nsig[0] {
+            last_nsig[1].to_owned()
+        } else {
+            let nsig = deobf.deobfuscate_nsig(n)?;
+            last_nsig[0] = n.to_string();
+            last_nsig[1] = nsig.to_owned();
+            nsig
+        };
 
-            url_params.insert("n".to_owned(), nsig);
-        }
-        None => {}
+        url_params.insert("n".to_owned(), nsig);
     };
     Ok(())
 }

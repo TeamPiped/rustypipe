@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 use std::{collections::BTreeMap, fs::File, io::BufReader, path::Path};
 
 use anyhow::{Context, Result};
@@ -72,6 +72,25 @@ pub async fn collect_large_numbers(project_root: &Path, concurrency: usize) {
 
 /// Attempt to parse the numbers collected by `collect-large-numbers`
 /// and write the results to `dictionary.json`.
+///
+/// Manual corrections:
+/// as
+/// "কোঃটা": 9,
+/// "নিঃটা": 6,
+/// "নিযুতটা": 6,
+/// "লাখটা": 5,
+/// "হাজাৰটা": 3
+///
+/// bn
+/// "লাটি": 5,
+/// "শত": 2,
+/// "হাটি": 3,
+/// "কোটি": 7
+///
+/// es/es-US
+/// "mil": 3,
+/// "M": 6
+///
 pub fn write_samples_to_dict(project_root: &Path) {
     let mut json_path = project_root.to_path_buf();
     json_path.push("testfiles/dict/large_number_samples.json");
@@ -160,8 +179,8 @@ pub fn write_samples_to_dict(project_root: &Path) {
                     let known_tmag: u8 = if t.len() == 1 {
                         match t.as_str() {
                             "K" | "k" => 3,
-                            "M" => 6,
                             // 'm' means 10^3 in Catalan, 'B' means 10^3 in Turkish
+                            // 'M' means 10^9 in Indonesian
                             _ => 0,
                         }
                     } else {
@@ -186,6 +205,12 @@ pub fn write_samples_to_dict(project_root: &Path) {
             .filter_map(|(k, v)| v.map(|v| (k, v)))
             .collect();
         dict_entry.comma_decimal = comma_decimal;
+
+        // Check for duplicates
+        let mut uniq = HashSet::new();
+        if !dict_entry.number_tokens.values().all(|x| uniq.insert(x)) {
+            println!("Warning: collected duplicate tokens for {}", lang);
+        }
     }
 
     util::write_dict(project_root, &dict);
@@ -339,20 +364,4 @@ async fn get_channel(channel_id: &str, lang: Language) -> Result<ChannelData> {
             })
             .unwrap_or_default(),
     })
-}
-
-#[tokio::test]
-async fn test() {
-    let channel = get_channel("UCcdwLMPsaU2ezNSJU1nFoBQ", Language::Az)
-        .await
-        .unwrap();
-
-    dbg!(channel);
-}
-
-#[test]
-fn test2() {
-    write_samples_to_dict(Path::new(
-        "/home/thetadev/Documents/Programmieren/Rust/rustypipe",
-    ));
 }

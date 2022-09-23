@@ -6,6 +6,8 @@ use once_cell::sync::Lazy;
 use rand::Rng;
 use url::Url;
 
+use crate::{dictionary, model::Language};
+
 const CONTENT_PLAYBACK_NONCE_ALPHABET: &[u8; 64] =
     b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
 
@@ -228,8 +230,61 @@ impl<T> TryRemove<T> for Vec<T> {
     }
 }
 
+fn parse_large_numstr(string: &str, lang: Language) -> Option<u64> {
+    let dict_entry = dictionary::entry(lang);
+    let decimal_point = match dict_entry.comma_decimal {
+        true => ',',
+        false => '.',
+    };
+
+    let (num, mut exp, filtered) = {
+        let mut buf = String::new();
+        let mut filtered = String::new();
+        let mut exp = 0;
+        let mut after_point = false;
+        for c in string.chars() {
+            if c.is_ascii_digit() {
+                buf.push(c);
+
+                if after_point {
+                    exp -= 1;
+                }
+            } else if c == decimal_point {
+                after_point = true;
+            } else if !matches!(c, '\u{200b}' | '.' | ',') {
+                filtered.push(c);
+            }
+        }
+        (ok_or_bail!(buf.parse::<u64>(), None), exp, filtered)
+    };
+
+    let lookup_token = |token: &str| match token {
+        "K" | "k" => Some(3),
+        _ => dict_entry.number_tokens.get(token).map(|t| *t as i32),
+    };
+
+    if dict_entry.by_char {
+        exp += filtered
+            .chars()
+            .filter_map(|token| lookup_token(&token.to_string()))
+            .sum::<i32>();
+    } else {
+        exp += filtered
+            .split_whitespace()
+            .filter_map(lookup_token)
+            .sum::<i32>();
+    }
+
+    num.checked_mul(some_or_bail!(
+        (10_u64).checked_pow(ok_or_bail!(exp.try_into(), None)),
+        None
+    ))
+}
+
 #[cfg(test)]
 mod tests {
+    use std::{fs::File, io::BufReader, path::Path};
+
     use super::*;
 
     use rstest::rstest;
@@ -312,5 +367,37 @@ mod tests {
     fn t_sanitize_yt_url(#[case] url: &str, #[case] expect: &str) {
         let res = sanitize_yt_url(url);
         assert_eq!(res, expect);
+    }
+
+    #[test]
+    fn t_parse_large_numstr_samples() {
+        let json_path = Path::new("testfiles/dict/large_number_samples.json");
+        let json_file = File::open(json_path).unwrap();
+        let number_samples: BTreeMap<Language, BTreeMap<u8, (String, u64)>> =
+            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+
+        number_samples.iter().for_each(|(lang, entry)| {
+            entry.iter().for_each(|(_, (txt, expect))| {
+                testcase_parse_large_numstr(txt, *lang, *expect);
+            });
+        });
+    }
+
+    fn testcase_parse_large_numstr(string: &str, lang: Language, expect: u64) {
+        // Round the expected number to the amount of significant digits included
+        // in the string.
+        let rounded = {
+            let n_significant_d = string.chars().filter(char::is_ascii_digit).count();
+            let mag = (expect as f64).log10().floor();
+            let factor = 10_u64.pow(1 + mag as u32 - n_significant_d as u32);
+            (((expect as f64) / factor as f64).floor() as u64) * factor
+        };
+
+        let res = parse_large_numstr(string, lang).expect(string);
+        assert_eq!(
+            res, rounded,
+            "{} (lang: {}, exact: {})",
+            string, lang, expect
+        );
     }
 }

@@ -153,7 +153,6 @@
       "নিঃটা": 6,
       "নিযুতটা": 6,
       "লাখটা": 5,
-      "শঃ": 9,
       "হাজাৰটা": 3
     }
   },
@@ -315,8 +314,9 @@
     "comma_decimal": false,
     "number_tokens": {
       "লাটি": 5,
-      "শত": 9,
-      "হাটি": 3
+      "শত": 2,
+      "হাটি": 3,
+      "কোটি": 7
     }
   },
   "bs": {
@@ -409,6 +409,7 @@
     },
     "comma_decimal": true,
     "number_tokens": {
+      "M": 6,
       "m": 3,
       "mM": 9
     }
@@ -610,6 +611,7 @@
     "comma_decimal": false,
     "number_tokens": {
       "B": 9,
+      "M": 6,
       "crore": 7,
       "lakh": 5
     }
@@ -654,7 +656,8 @@
     },
     "comma_decimal": true,
     "number_tokens": {
-      "mil": 9
+      "M": 6,
+      "mil": 3
     }
   },
   "es-US": {
@@ -699,7 +702,8 @@
     },
     "comma_decimal": false,
     "number_tokens": {
-      "mil": 9
+      "M": 6,
+      "mil": 3
     }
   },
   "et": {
@@ -784,7 +788,9 @@
       "gaur": "0D"
     },
     "comma_decimal": true,
-    "number_tokens": {}
+    "number_tokens": {
+      "M": 6
+    }
   },
   "fa": {
     "equivalent": [],
@@ -889,7 +895,8 @@
     },
     "comma_decimal": false,
     "number_tokens": {
-      "B": 9
+      "B": 9,
+      "M": 6
     }
   },
   "fr": {
@@ -935,6 +942,7 @@
     "comma_decimal": true,
     "number_tokens": {
       "G": 9,
+      "M": 6,
       "Md": 9
     }
   },
@@ -977,7 +985,9 @@
       "onte": "1D"
     },
     "comma_decimal": true,
-    "number_tokens": {}
+    "number_tokens": {
+      "M": 6
+    }
   },
   "gu": {
     "equivalent": [],
@@ -1148,6 +1158,7 @@
     "comma_decimal": true,
     "number_tokens": {
       "E": 3,
+      "M": 6,
       "Mrd": 9
     }
   },
@@ -1222,6 +1233,7 @@
     },
     "comma_decimal": true,
     "number_tokens": {
+      "M": 9,
       "jt": 6,
       "rb": 3
     }
@@ -2281,6 +2293,7 @@
     },
     "comma_decimal": true,
     "number_tokens": {
+      "M": 6,
       "mM": 9,
       "mil": 3
     }
@@ -2693,6 +2706,7 @@
     "comma_decimal": false,
     "number_tokens": {
       "B": 9,
+      "M": 6,
       "elfu": 3
     }
   },
@@ -3068,7 +3082,8 @@
     },
     "comma_decimal": false,
     "number_tokens": {
-      "B": 9
+      "B": 9,
+      "M": 6
     }
   },
   "zh-TW": {
@@ -3135,7 +3150,8 @@
     },
     "comma_decimal": false,
     "number_tokens": {
-      "B": 9
+      "B": 9,
+      "M": 6
     }
   }
 }

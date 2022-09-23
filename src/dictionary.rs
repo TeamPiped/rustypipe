@@ -294,18 +294,16 @@ pub fn entry(lang: Language) -> Entry {
             },
             comma_decimal: false,
             number_tokens: ::phf::Map {
-                key: 15467950696543387533,
+                key: 12913932095322966823,
                 disps: &[
-                    (1, 0),
-                    (4, 5),
+                    (3, 0),
                 ],
                 entries: &[
                     ("নিয\u{9c1}তট\u{9be}", 6),
-                    ("নিঃট\u{9be}", 6),
-                    ("ল\u{9be}খট\u{9be}", 5),
-                    ("শঃ", 9),
-                    ("কোঃট\u{9be}", 9),
                     ("হ\u{9be}জ\u{9be}ৰট\u{9be}", 3),
+                    ("নিঃট\u{9be}", 6),
+                    ("কোঃট\u{9be}", 9),
+                    ("ল\u{9be}খট\u{9be}", 5),
                 ],
             },
         },
@@ -568,12 +566,13 @@ pub fn entry(lang: Language) -> Entry {
             number_tokens: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
-                    (1, 0),
+                    (0, 0),
                 ],
                 entries: &[
                     ("ল\u{9be}টি", 5),
-                    ("শত", 9),
+                    ("শত", 2),
                     ("হ\u{9be}টি", 3),
+                    ("কোটি", 7),
                 ],
             },
         },
@@ -716,12 +715,13 @@ pub fn entry(lang: Language) -> Entry {
             },
             comma_decimal: true,
             number_tokens: ::phf::Map {
-                key: 15467950696543387533,
+                key: 12913932095322966823,
                 disps: &[
-                    (0, 0),
+                    (2, 0),
                 ],
                 entries: &[
                     ("mM", 9),
+                    ("M", 6),
                     ("m", 3),
                 ],
             },
@@ -1044,14 +1044,15 @@ pub fn entry(lang: Language) -> Entry {
             },
             comma_decimal: false,
             number_tokens: ::phf::Map {
-                key: 15467950696543387533,
+                key: 14108922650502679131,
                 disps: &[
                     (1, 0),
                 ],
                 entries: &[
-                    ("crore", 7),
-                    ("B", 9),
                     ("lakh", 5),
+                    ("crore", 7),
+                    ("M", 6),
+                    ("B", 9),
                 ],
             },
         },
@@ -1118,10 +1119,11 @@ pub fn entry(lang: Language) -> Entry {
             number_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
-                    (0, 0),
+                    (1, 0),
                 ],
                 entries: &[
-                    ("mil", 9),
+                    ("mil", 3),
+                    ("M", 6),
                 ],
             },
         },
@@ -1188,10 +1190,11 @@ pub fn entry(lang: Language) -> Entry {
             number_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
-                    (0, 0),
+                    (1, 0),
                 ],
                 entries: &[
-                    ("mil", 9),
+                    ("mil", 3),
+                    ("M", 6),
                 ],
             },
         },
@@ -1328,8 +1331,10 @@ pub fn entry(lang: Language) -> Entry {
             number_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
+                    (0, 0),
                 ],
                 entries: &[
+                    ("M", 6),
                 ],
             },
         },
@@ -1512,6 +1517,7 @@ pub fn entry(lang: Language) -> Entry {
                     (0, 0),
                 ],
                 entries: &[
+                    ("M", 6),
                     ("B", 9),
                 ],
             },
@@ -1579,10 +1585,11 @@ pub fn entry(lang: Language) -> Entry {
             number_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
-                    (1, 0),
+                    (2, 0),
                 ],
                 entries: &[
                     ("G", 9),
+                    ("M", 6),
                     ("Md", 9),
                 ],
             },
@@ -1650,8 +1657,10 @@ pub fn entry(lang: Language) -> Entry {
             number_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
+                    (0, 0),
                 ],
                 entries: &[
+                    ("M", 6),
                 ],
             },
         },
@@ -1924,13 +1933,14 @@ pub fn entry(lang: Language) -> Entry {
             },
             comma_decimal: true,
             number_tokens: ::phf::Map {
-                key: 12913932095322966823,
+                key: 15467950696543387533,
                 disps: &[
-                    (0, 0),
+                    (2, 0),
                 ],
                 entries: &[
-                    ("Mrd", 9),
                     ("E", 3),
+                    ("Mrd", 9),
+                    ("M", 6),
                 ],
             },
         },
@@ -2051,12 +2061,13 @@ pub fn entry(lang: Language) -> Entry {
             },
             comma_decimal: true,
             number_tokens: ::phf::Map {
-                key: 12913932095322966823,
+                key: 15467950696543387533,
                 disps: &[
                     (0, 0),
                 ],
                 entries: &[
                     ("jt", 6),
+                    ("M", 9),
                     ("rb", 3),
                 ],
             },
@@ -3820,11 +3831,12 @@ pub fn entry(lang: Language) -> Entry {
             number_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
-                    (0, 0),
+                    (2, 0),
                 ],
                 entries: &[
-                    ("mil", 3),
                     ("mM", 9),
+                    ("M", 6),
+                    ("mil", 3),
                 ],
             },
         },
@@ -4497,11 +4509,12 @@ pub fn entry(lang: Language) -> Entry {
             number_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
-                    (0, 0),
+                    (1, 0),
                 ],
                 entries: &[
-                    ("elfu", 3),
                     ("B", 9),
+                    ("elfu", 3),
+                    ("M", 6),
                 ],
             },
         },
@@ -5136,6 +5149,7 @@ pub fn entry(lang: Language) -> Entry {
                     (0, 0),
                 ],
                 entries: &[
+                    ("M", 6),
                     ("B", 9),
                 ],
             },
@@ -5254,6 +5268,7 @@ pub fn entry(lang: Language) -> Entry {
                     (0, 0),
                 ],
                 entries: &[
+                    ("M", 6),
                     ("B", 9),
                 ],
             },
