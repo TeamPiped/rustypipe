@@ -8,6 +8,8 @@ use serde::Deserialize;
 use serde_with::serde_as;
 use serde_with::VecSkipError;
 
+use crate::util::Text;
+
 #[serde_as]
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -133,12 +135,6 @@ struct LanguageCountryAction {
 struct LanguageCountryCommand {
     #[serde(alias = "gl")]
     hl: String,
-}
-
-#[derive(Clone, Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct Text {
-    simple_text: String,
 }
 
 pub async fn generate_locales(project_root: &Path) {
@@ -284,7 +280,7 @@ pub enum Country {
 async fn get_locales() -> (BTreeMap<String, String>, BTreeMap<String, String>) {
     let client = Client::new();
     let resp = client
-        .post("https://www.youtube.com/youtubei/v1/account/account_menu?key=AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8")
+        .post("https://www.youtube.com/youtubei/v1/account/account_menu?key=AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8&prettyPrint=false")
         .header(header::CONTENT_TYPE, "application/json")
         .body(
             r##"{"context":{"client":{"clientName":"WEB","clientVersion":"2.20220914.06.00","platform":"DESKTOP","originalUrl":"https://www.youtube.com/","hl":"en","gl":"US"},"request":{"internalExperimentFlags":[],"useSsl":true},"user":{"lockedSafetyMode":false}}}"##

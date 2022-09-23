@@ -38,7 +38,7 @@ enum DateCase {
 }
 
 /// Collect 'Playlist updated' dates in every supported language
-/// and write them to `testfiles/date/playlist_samples.json`.
+/// and write them to `testfiles/dict/playlist_samples.json`.
 ///
 /// YouTube's API outputs the update date of playlists only in a
 /// textual format (e.g. *Last updated on Jan 3, 2020*), which varies
@@ -55,13 +55,15 @@ enum DateCase {
 /// - one playlist updated yesterday
 /// - one playlist updated 2-7 days ago
 /// - one playlist from every month. Note that there should not
-/// be any dates which include the same number twice (e.g. 01.01.2020).
+///   be any dates which include the same number twice (e.g. 01.01.2020).
+///
+/// **IMPORTANT:**
 ///
 /// Because the relative dates change with time, the first three playlists
-/// should be checked and eventually changed before running the program.
+/// have to checked and eventually changed before running the program.
 pub async fn collect_dates(project_root: &Path, concurrency: usize) {
     let mut json_path = project_root.to_path_buf();
-    json_path.push("testfiles/date/playlist_samples.json");
+    json_path.push("testfiles/dict/playlist_samples.json");
 
     // These are the sample playlists
     let cases = [
@@ -115,7 +117,7 @@ pub async fn collect_dates(project_root: &Path, concurrency: usize) {
 /// parsed automatically and require manual work.
 pub fn write_samples_to_dict(project_root: &Path) {
     let mut json_path = project_root.to_path_buf();
-    json_path.push("testfiles/date/playlist_samples.json");
+    json_path.push("testfiles/dict/playlist_samples.json");
 
     let json_file = File::open(json_path).unwrap();
     let collected_dates: CollectedDates =

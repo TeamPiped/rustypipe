@@ -310,7 +310,7 @@ pub struct RecommendedVideo {
     pub publish_date_txt: Option<String>,
     /// View count
     ///
-    /// Is `None` if it could not be parsed
+    /// `None` if it could not be extracted.
     pub view_count: Option<u64>,
     /// Is the video an active livestream?
     pub is_live: bool,
@@ -400,6 +400,43 @@ pub struct ChannelVideos {
     pub id: String,
     /// Channel name
     pub name: String,
-    /// Textual subscriber count (e.g. `2.3M subscribers`), depends on language setting
-    pub subscriber_count_txt: String,
+    /*
+    /// Channel subscriber count
+    ///
+    /// `None` if the subscriber count was hidden by the owner
+    /// or could not be parsed.
+    pub subscriber_count: Option<u64>,
+    pub videos: Paginator<ChannelVideo>,
+    */
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
+pub struct ChannelVideo {
+    /// Unique YouTube video ID
+    pub id: String,
+    /// Video title
+    pub title: String,
+    /// Video length in seconds.
+    ///
+    /// Is `None` for livestreams.
+    pub length: Option<u32>,
+    /// Video thumbnail
+    pub thumbnail: Vec<Thumbnail>,
+    /// Video publishing date.
+    ///
+    /// `None` if the date could not be parsed.
+    pub publish_date: Option<DateTime<Local>>,
+    /// Textual video publish date (e.g. `11 months ago`, depends on language)
+    ///
+    /// Is `None` for livestreams.
+    pub publish_date_txt: Option<String>,
+    /// View count
+    ///
+    /// `None` if it could not be extracted.
+    pub view_count: Option<u64>,
+    /// Is the video an active livestream?
+    pub is_live: bool,
+    /// Is the video a YouTube Short video (vertical and <60s)?
+    pub is_short: bool,
 }

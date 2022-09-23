@@ -82,12 +82,14 @@ pub struct HeaderRenderer {
     pub channel_id: String,
     /// Channel name
     pub title: String,
-    /// Approximate subscriber count (e.g. `880K subscribers`), depends on language
-    #[serde_as(as = "Text")]
-    pub subscriber_count_text: String,
+    /// Approximate subscriber count (e.g. `880K subscribers`), depends on language.
+    ///
+    /// `None` if the subscriber count is hidden.
+    #[serde_as(as = "Option<Text>")]
+    pub subscriber_count_text: Option<String>,
     pub avatar: Thumbnails,
-    #[serde_as(as = "VecSkipError<_>")]
-    pub badges: Vec<ChannelBadge>,
+    #[serde_as(as = "Option<VecSkipError<_>>")]
+    pub badges: Option<Vec<ChannelBadge>>,
     pub banner: Thumbnails,
     pub mobile_banner: Thumbnails,
     /// Fullscreen (16:9) channel banner

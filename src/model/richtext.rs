@@ -53,7 +53,7 @@ pub trait ToHtml {
 }
 
 impl TextComponent {
-    pub fn get_text<'a>(&'a self) -> &'a str {
+    pub fn get_text(&self) -> &str {
         match self {
             TextComponent::Text(text) => text,
             TextComponent::Web { text, .. } => text,

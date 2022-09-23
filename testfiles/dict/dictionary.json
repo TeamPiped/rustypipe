@@ -35,6 +35,11 @@
     "timeago_nd_tokens": {
       "gister": "1D",
       "vandag": "0D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "m": 6,
+      "mjd": 9
     }
   },
   "am": {
@@ -74,6 +79,12 @@
     "timeago_nd_tokens": {
       "ትላንት": "1D",
       "ዛሬ": "0D"
+    },
+    "comma_decimal": false,
+    "number_tokens": {
+      "ሚ": 6,
+      "ሺ": 3,
+      "ቢ": 9
     }
   },
   "ar": {
@@ -110,6 +121,12 @@
     "timeago_nd_tokens": {
       "اليوم": "0D",
       "بالأمس": "1D"
+    },
+    "comma_decimal": false,
+    "number_tokens": {
+      "ألف": 3,
+      "مليار": 9,
+      "مليون": 6
     }
   },
   "as": {
@@ -129,6 +146,15 @@
     "timeago_nd_tokens": {
       "আজি": "0D",
       "কালি": "1D"
+    },
+    "comma_decimal": false,
+    "number_tokens": {
+      "কোঃটা": 9,
+      "নিঃটা": 6,
+      "নিযুতটা": 6,
+      "লাখটা": 5,
+      "শঃ": 9,
+      "হাজাৰটা": 3
     }
   },
   "az": {
@@ -161,6 +187,11 @@
     "timeago_nd_tokens": {
       "bugün": "0D",
       "dünən": "1D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "mln": 6,
+      "mlrd": 9
     }
   },
   "be": {
@@ -210,6 +241,12 @@
     "timeago_nd_tokens": {
       "сёння": "0D",
       "ўчора": "1D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "млн": 6,
+      "млрд": 9,
+      "тыс": 3
     }
   },
   "bg": {
@@ -236,6 +273,12 @@
     "timeago_nd_tokens": {
       "вчера": "1D",
       "днес": "0D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "млн": 6,
+      "млрд": 9,
+      "хил": 3
     }
   },
   "bn": {
@@ -268,6 +311,12 @@
     "timeago_nd_tokens": {
       "আজ": "0D",
       "গতকাল": "1D"
+    },
+    "comma_decimal": false,
+    "number_tokens": {
+      "লাটি": 5,
+      "শত": 9,
+      "হাটি": 3
     }
   },
   "bs": {
@@ -312,6 +361,12 @@
     "timeago_nd_tokens": {
       "danas": "0D",
       "jučer": "1D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "hilj": 3,
+      "mil": 6,
+      "mlr": 9
     }
   },
   "ca": {
@@ -351,6 +406,11 @@
     "timeago_nd_tokens": {
       "ahir": "1D",
       "avui": "0D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "m": 3,
+      "mM": 9
     }
   },
   "cs": {
@@ -378,6 +438,12 @@
     "timeago_nd_tokens": {
       "dnes": "0D",
       "včera": "1D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "mil": 6,
+      "mld": 9,
+      "tis": 3
     }
   },
   "da": {
@@ -416,6 +482,11 @@
     "timeago_nd_tokens": {
       "dag": "0D",
       "går": "1D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "mia": 9,
+      "mio": 6
     }
   },
   "de": {
@@ -442,6 +513,11 @@
     "timeago_nd_tokens": {
       "gestern": "1D",
       "heute": "0D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "Mio": 6,
+      "Mrd": 9
     }
   },
   "el": {
@@ -481,6 +557,12 @@
     "timeago_nd_tokens": {
       "σήμερα": "0D",
       "χτες": "1D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "δισ": 9,
+      "εκ": 6,
+      "χιλ": 3
     }
   },
   "en": {
@@ -524,11 +606,59 @@
     "timeago_nd_tokens": {
       "today": "0D",
       "yesterday": "1D"
+    },
+    "comma_decimal": false,
+    "number_tokens": {
+      "B": 9,
+      "crore": 7,
+      "lakh": 5
     }
   },
   "es": {
+    "equivalent": [],
+    "by_char": false,
+    "timeago_tokens": {
+      "año": "Y",
+      "años": "Y",
+      "día": "D",
+      "días": "D",
+      "hora": "h",
+      "horas": "h",
+      "mes": "M",
+      "meses": "M",
+      "minuto": "m",
+      "minutos": "m",
+      "segundo": "s",
+      "segundos": "s",
+      "semana": "W",
+      "semanas": "W"
+    },
+    "date_order": "DY",
+    "months": {
+      "abr": 4,
+      "ago": 8,
+      "dic": 12,
+      "ene": 1,
+      "feb": 2,
+      "jul": 7,
+      "jun": 6,
+      "mar": 3,
+      "may": 5,
+      "nov": 11,
+      "oct": 10,
+      "sept": 9
+    },
+    "timeago_nd_tokens": {
+      "ayer": "1D",
+      "hoy": "0D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "mil": 9
+    }
+  },
+  "es-US": {
     "equivalent": [
-      "es-US",
       "es-419"
     ],
     "by_char": false,
@@ -566,6 +696,10 @@
     "timeago_nd_tokens": {
       "ayer": "1D",
       "hoy": "0D"
+    },
+    "comma_decimal": false,
+    "number_tokens": {
+      "mil": 9
     }
   },
   "et": {
@@ -607,6 +741,12 @@
     "timeago_nd_tokens": {
       "eile": "1D",
       "täna": "0D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "mld": 9,
+      "mln": 6,
+      "tuh": 3
     }
   },
   "eu": {
@@ -642,7 +782,9 @@
     "timeago_nd_tokens": {
       "atzo": "1D",
       "gaur": "0D"
-    }
+    },
+    "comma_decimal": true,
+    "number_tokens": {}
   },
   "fa": {
     "equivalent": [],
@@ -674,6 +816,12 @@
     "timeago_nd_tokens": {
       "امروز": "0D",
       "دیروز": "1D"
+    },
+    "comma_decimal": false,
+    "number_tokens": {
+      "میلیارد": 9,
+      "میلیون": 6,
+      "هزار": 3
     }
   },
   "fi": {
@@ -700,6 +848,12 @@
     "timeago_nd_tokens": {
       "eilen": "1D",
       "tänään": "0D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "milj": 6,
+      "mrd": 9,
+      "t": 3
     }
   },
   "fil": {
@@ -732,6 +886,10 @@
     "timeago_nd_tokens": {
       "kahapon": "1D",
       "ngayong": "0D"
+    },
+    "comma_decimal": false,
+    "number_tokens": {
+      "B": 9
     }
   },
   "fr": {
@@ -773,6 +931,11 @@
     "timeago_nd_tokens": {
       "aujourd'hui": "0D",
       "hier": "1D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "G": 9,
+      "Md": 9
     }
   },
   "gl": {
@@ -812,7 +975,9 @@
     "timeago_nd_tokens": {
       "hoxe": "0D",
       "onte": "1D"
-    }
+    },
+    "comma_decimal": true,
+    "number_tokens": {}
   },
   "gu": {
     "equivalent": [],
@@ -844,6 +1009,13 @@
     "timeago_nd_tokens": {
       "આજે": "0D",
       "ગઈ": "1D"
+    },
+    "comma_decimal": false,
+    "number_tokens": {
+      "અબજ": 9,
+      "કરોડ": 7,
+      "લાખ": 5,
+      "હજાર": 3
     }
   },
   "hi": {
@@ -876,6 +1048,13 @@
     "timeago_nd_tokens": {
       "आज": "0D",
       "कल": "1D"
+    },
+    "comma_decimal": false,
+    "number_tokens": {
+      "अ॰": 9,
+      "क॰": 7,
+      "लाख": 5,
+      "हज़ार": 3
     }
   },
   "hr": {
@@ -920,6 +1099,12 @@
     "timeago_nd_tokens": {
       "danas": "0D",
       "jučer": "1D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "mil": 6,
+      "mlr": 9,
+      "tis": 3
     }
   },
   "hu": {
@@ -959,6 +1144,11 @@
     "timeago_nd_tokens": {
       "ma": "0D",
       "tegnap": "1D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "E": 3,
+      "Mrd": 9
     }
   },
   "hy": {
@@ -991,6 +1181,12 @@
     "timeago_nd_tokens": {
       "այսօր": "0D",
       "երեկ": "1D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "հզր": 3,
+      "մլն": 6,
+      "մլրդ": 9
     }
   },
   "id": {
@@ -1023,6 +1219,11 @@
     "timeago_nd_tokens": {
       "ini": "0D",
       "kemarin": "1D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "jt": 6,
+      "rb": 3
     }
   },
   "is": {
@@ -1062,6 +1263,12 @@
     "timeago_nd_tokens": {
       "dag": "0D",
       "gær": "1D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "m": 6,
+      "ma": 9,
+      "þ": 3
     }
   },
   "it": {
@@ -1101,6 +1308,11 @@
     "timeago_nd_tokens": {
       "ieri": "1D",
       "oggi": "0D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "Mln": 6,
+      "Mrd": 9
     }
   },
   "iw": {
@@ -1146,6 +1358,12 @@
     "timeago_nd_tokens": {
       "אתמול": "1D",
       "היום": "0D"
+    },
+    "comma_decimal": false,
+    "number_tokens": {
+      "‫B‏‬": 9,
+      "‫K‏‬": 3,
+      "‫M‏‬": 6
     }
   },
   "ja": {
@@ -1165,6 +1383,11 @@
     "timeago_nd_tokens": {
       "日": "1D",
       "本": "0D"
+    },
+    "comma_decimal": false,
+    "number_tokens": {
+      "万": 4,
+      "億": 8
     }
   },
   "ka": {
@@ -1197,6 +1420,12 @@
     "timeago_nd_tokens": {
       "გუშინ": "1D",
       "დღეს": "0D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "ათ": 3,
+      "მლნ": 6,
+      "მლრდ": 9
     }
   },
   "kk": {
@@ -1229,6 +1458,13 @@
     "timeago_nd_tokens": {
       "бүгін": "0D",
       "кеше": "1D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "м": 3,
+      "млн": 6,
+      "млрд": 9,
+      "мың": 3
     }
   },
   "km": {
@@ -1261,6 +1497,12 @@
     "timeago_nd_tokens": {
       "បានធ្វើបច្ចុប្បន្នភាពថ្ងៃនេះ": "0D",
       "បានធ្វើបច្ចុប្បន្នភាពម្សិលមិញ": "1D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "ប៊ីលាន": 9,
+      "ពាន់": 3,
+      "លាន": 6
     }
   },
   "kn": {
@@ -1300,6 +1542,11 @@
     "timeago_nd_tokens": {
       "ಇಂದು": "0D",
       "ನಿನ್ನೆ": "1D"
+    },
+    "comma_decimal": false,
+    "number_tokens": {
+      "ಕೋಟಿ": 7,
+      "ಲಕ್ಷ": 5
     }
   },
   "ko": {
@@ -1318,6 +1565,12 @@
     "months": {},
     "timeago_nd_tokens": {
       "오늘": "0D"
+    },
+    "comma_decimal": false,
+    "number_tokens": {
+      "만회": 4,
+      "억회": 8,
+      "천회": 3
     }
   },
   "ky": {
@@ -1350,6 +1603,12 @@
     "timeago_nd_tokens": {
       "бүгүн": "0D",
       "кечээ": "1D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "миң": 3,
+      "млд": 9,
+      "млн": 6
     }
   },
   "lo": {
@@ -1382,6 +1641,13 @@
     "timeago_nd_tokens": {
       "ອັບເດດມື້ນີ້": "0D",
       "ອັບເດດມື້ວານນີ້": "1D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "ກີບ": 3,
+      "ຕື້": 9,
+      "ພັນ": 3,
+      "ລ້ານ": 6
     }
   },
   "lt": {
@@ -1415,6 +1681,12 @@
     "timeago_nd_tokens": {
       "vakar": "1D",
       "šiandien": "0D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "mln": 6,
+      "mlrd": 9,
+      "tūkst": 3
     }
   },
   "lv": {
@@ -1454,6 +1726,12 @@
     "timeago_nd_tokens": {
       "vakar": "1D",
       "šodien": "0D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "milj": 6,
+      "mljrd": 9,
+      "tūkst": 3
     }
   },
   "mk": {
@@ -1480,6 +1758,13 @@
     "timeago_nd_tokens": {
       "вчера": "1D",
       "денес": "0D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "М": 6,
+      "илј": 3,
+      "мил": 6,
+      "милј": 9
     }
   },
   "ml": {
@@ -1512,6 +1797,11 @@
     "timeago_nd_tokens": {
       "ഇന്നലെ": "1D",
       "ഇന്ന്": "0D"
+    },
+    "comma_decimal": false,
+    "number_tokens": {
+      "കോടി": 7,
+      "ലക്ഷം": 5
     }
   },
   "mn": {
@@ -1531,6 +1821,12 @@
     "timeago_nd_tokens": {
       "өнөөдөр": "0D",
       "өчигдөр": "1D"
+    },
+    "comma_decimal": false,
+    "number_tokens": {
+      "мянга": 3,
+      "сая": 6,
+      "тэрбум": 9
     }
   },
   "mr": {
@@ -1570,6 +1866,13 @@
     "timeago_nd_tokens": {
       "आज": "0D",
       "काल": "1D"
+    },
+    "comma_decimal": false,
+    "number_tokens": {
+      "अब्ज": 9,
+      "कोटी": 7,
+      "लाख": 5,
+      "ह": 3
     }
   },
   "ms": {
@@ -1602,6 +1905,11 @@
     "timeago_nd_tokens": {
       "ini": "0D",
       "semalam": "1D"
+    },
+    "comma_decimal": false,
+    "number_tokens": {
+      "B": 9,
+      "J": 6
     }
   },
   "my": {
@@ -1635,6 +1943,15 @@
     "timeago_nd_tokens": {
       "မနေ့က": "1D",
       "ယနေ့": "0D"
+    },
+    "comma_decimal": false,
+    "number_tokens": {
+      "ကုဋေ": 7,
+      "ကုဋေထ": 10,
+      "ထောင်": 3,
+      "သန်း": 6,
+      "သိန်း": 5,
+      "သောင်း": 4
     }
   },
   "ne": {
@@ -1667,6 +1984,13 @@
     "timeago_nd_tokens": {
       "आज": "0D",
       "हिजो": "1D"
+    },
+    "comma_decimal": false,
+    "number_tokens": {
+      "अरब": 9,
+      "करोड": 7,
+      "लाख": 5,
+      "हजार": 3
     }
   },
   "nl": {
@@ -1704,6 +2028,11 @@
     "timeago_nd_tokens": {
       "gisteren": "1D",
       "vandaag": "0D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "mld": 9,
+      "mln": 6
     }
   },
   "no": {
@@ -1743,6 +2072,11 @@
     "timeago_nd_tokens": {
       "dag": "0D",
       "går": "1D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "mill": 6,
+      "mrd": 9
     }
   },
   "or": {
@@ -1775,6 +2109,12 @@
     "timeago_nd_tokens": {
       "ଆଜି": "0D",
       "ଗତକାଲି": "1D"
+    },
+    "comma_decimal": false,
+    "number_tokens": {
+      "ନିଟି": 6,
+      "ବିଟି": 9,
+      "ହଟି": 3
     }
   },
   "pa": {
@@ -1810,6 +2150,13 @@
     "timeago_nd_tokens": {
       "ਅੱਜ": "0D",
       "ਬੀੇਤੇ": "1D"
+    },
+    "comma_decimal": false,
+    "number_tokens": {
+      "ਅਰਬ": 9,
+      "ਕਰੋੜ": 7,
+      "ਲੱਖ": 5,
+      "ਹਜ਼ਾਰ": 3
     }
   },
   "pl": {
@@ -1854,6 +2201,12 @@
     "timeago_nd_tokens": {
       "dzisiaj": "0D",
       "wczoraj": "1D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "mld": 9,
+      "mln": 6,
+      "tys": 3
     }
   },
   "pt": {
@@ -1893,6 +2246,12 @@
     "timeago_nd_tokens": {
       "hoje": "0D",
       "ontem": "1D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "bi": 9,
+      "mi": 6,
+      "mil": 3
     }
   },
   "pt-PT": {
@@ -1919,6 +2278,11 @@
     "timeago_nd_tokens": {
       "hoje": "0D",
       "ontem": "1D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "mM": 9,
+      "mil": 3
     }
   },
   "ro": {
@@ -1958,6 +2322,11 @@
     "timeago_nd_tokens": {
       "astăzi": "0D",
       "ieri": "1D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "mil": 6,
+      "mld": 9
     }
   },
   "ru": {
@@ -2003,6 +2372,12 @@
     "timeago_nd_tokens": {
       "вчера": "1D",
       "сегодня": "0D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "млн": 6,
+      "млрд": 9,
+      "тыс": 3
     }
   },
   "si": {
@@ -2036,6 +2411,12 @@
       "අද": "0D",
       "ඊයෙ": "1D",
       "ඊයේ": "1D"
+    },
+    "comma_decimal": false,
+    "number_tokens": {
+      "ද": 3,
+      "බි": 9,
+      "මි": 6
     }
   },
   "sk": {
@@ -2062,6 +2443,12 @@
     "timeago_nd_tokens": {
       "dnes": "0D",
       "včera": "1D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "mil": 6,
+      "mld": 9,
+      "tis": 3
     }
   },
   "sl": {
@@ -2109,6 +2496,12 @@
     "timeago_nd_tokens": {
       "danes": "0D",
       "včeraj": "1D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "mio": 6,
+      "mrd": 9,
+      "tis": 3
     }
   },
   "sq": {
@@ -2144,6 +2537,12 @@
     "timeago_nd_tokens": {
       "dje": "1D",
       "sot": "0D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "mijë": 3,
+      "mld": 9,
+      "mln": 6
     }
   },
   "sr": {
@@ -2172,6 +2571,12 @@
     "timeago_nd_tokens": {
       "данас": "0D",
       "јуче": "1D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "мил": 6,
+      "млрд": 9,
+      "хиљ": 3
     }
   },
   "sr-Latn": {
@@ -2201,6 +2606,12 @@
     "timeago_nd_tokens": {
       "danas": "0D",
       "juče": "1D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "hilj": 3,
+      "mil": 6,
+      "mlrd": 9
     }
   },
   "sv": {
@@ -2239,6 +2650,11 @@
     "timeago_nd_tokens": {
       "idag": "0D",
       "igår": "1D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "md": 9,
+      "mn": 6
     }
   },
   "sw": {
@@ -2273,6 +2689,11 @@
     "timeago_nd_tokens": {
       "jana": "1D",
       "leo": "0D"
+    },
+    "comma_decimal": false,
+    "number_tokens": {
+      "B": 9,
+      "elfu": 3
     }
   },
   "ta": {
@@ -2311,6 +2732,11 @@
     "timeago_nd_tokens": {
       "இன்று": "0D",
       "நேற்று": "1D"
+    },
+    "comma_decimal": false,
+    "number_tokens": {
+      "கோடி": 7,
+      "லட்சம்": 5
     }
   },
   "te": {
@@ -2350,6 +2776,12 @@
     "timeago_nd_tokens": {
       "ఈ": "0D",
       "నిన్న": "1D"
+    },
+    "comma_decimal": false,
+    "number_tokens": {
+      "కోట్లు": 7,
+      "లక్ష": 5,
+      "లక్షలు": 5
     }
   },
   "th": {
@@ -2382,6 +2814,15 @@
     "timeago_nd_tokens": {
       "อัปเดตแล้ววันนี้": "0D",
       "อัปเดตแล้วเมื่อวาน": "1D"
+    },
+    "comma_decimal": false,
+    "number_tokens": {
+      "พัน": 3,
+      "พันล้าน": 9,
+      "ล้าน": 6,
+      "หมื่น": 4,
+      "หมื่นล้าน": 10,
+      "แสน": 5
     }
   },
   "tr": {
@@ -2414,6 +2855,12 @@
     "timeago_nd_tokens": {
       "bugün": "0D",
       "dün": "1D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "B": 3,
+      "Mn": 6,
+      "Mr": 9
     }
   },
   "uk": {
@@ -2459,6 +2906,12 @@
     "timeago_nd_tokens": {
       "вчора": "1D",
       "сьогодні": "0D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "млн": 6,
+      "млрд": 9,
+      "тис": 3
     }
   },
   "ur": {
@@ -2497,6 +2950,13 @@
     "timeago_nd_tokens": {
       "آج": "0D",
       "کل": "1D"
+    },
+    "comma_decimal": false,
+    "number_tokens": {
+      "ارب": 9,
+      "لاکھ": 5,
+      "کروڑ": 7,
+      "ہزار": 3
     }
   },
   "uz": {
@@ -2529,6 +2989,12 @@
     "timeago_nd_tokens": {
       "bugun": "0D",
       "kecha": "1D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "ming": 3,
+      "mln": 6,
+      "mlrd": 9
     }
   },
   "vi": {
@@ -2549,6 +3015,12 @@
     "timeago_nd_tokens": {
       "nay": "0D",
       "qua": "1D"
+    },
+    "comma_decimal": true,
+    "number_tokens": {
+      "N": 3,
+      "T": 9,
+      "Tr": 6
     }
   },
   "zh-CN": {
@@ -2568,6 +3040,11 @@
     "timeago_nd_tokens": {
       "今": "0D",
       "日": "1D"
+    },
+    "comma_decimal": false,
+    "number_tokens": {
+      "万": 4,
+      "亿": 8
     }
   },
   "zh-HK": {
@@ -2588,6 +3065,10 @@
     "timeago_nd_tokens": {
       "今": "0D",
       "天": "1D"
+    },
+    "comma_decimal": false,
+    "number_tokens": {
+      "B": 9
     }
   },
   "zh-TW": {
@@ -2607,6 +3088,11 @@
     "timeago_nd_tokens": {
       "今": "0D",
       "天": "1D"
+    },
+    "comma_decimal": false,
+    "number_tokens": {
+      "億": 8,
+      "萬": 4
     }
   },
   "zu": {
@@ -2646,6 +3132,10 @@
     "timeago_nd_tokens": {
       "izolo": "1D",
       "namuhla": "0D"
+    },
+    "comma_decimal": false,
+    "number_tokens": {
+      "B": 9
     }
   }
 }

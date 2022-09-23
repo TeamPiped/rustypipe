@@ -1,3 +1,4 @@
+mod collect_large_numbers;
 mod collect_playlist_dates;
 mod download_testfiles;
 mod gen_dictionary;
@@ -21,7 +22,9 @@ struct Cli {
 #[derive(Subcommand)]
 enum Commands {
     CollectPlaylistDates,
-    WritePlaylistDates,
+    CollectLargeNumbers,
+    ParsePlaylistDates,
+    ParseLargeNumbers,
     GenLocales,
     GenDict,
     DownloadTestfiles,
@@ -36,8 +39,14 @@ async fn main() {
         Commands::CollectPlaylistDates => {
             collect_playlist_dates::collect_dates(&cli.project_root, cli.concurrency).await;
         }
-        Commands::WritePlaylistDates => {
-            collect_playlist_dates::write_samples_to_dict(&cli.project_root);
+        Commands::CollectLargeNumbers => {
+            collect_large_numbers::collect_large_numbers(&cli.project_root, cli.concurrency).await;
+        }
+        Commands::ParsePlaylistDates => {
+            collect_playlist_dates::write_samples_to_dict(&cli.project_root)
+        }
+        Commands::ParseLargeNumbers => {
+            collect_large_numbers::write_samples_to_dict(&cli.project_root)
         }
         Commands::GenLocales => {
             gen_locales::generate_locales(&cli.project_root).await;

@@ -72,7 +72,6 @@ impl MapResponse<ChannelVideos> for response::Channel {
             c: ChannelVideos {
                 id: header.channel_id,
                 name: header.title,
-                subscriber_count_txt: header.subscriber_count_text,
             },
             warnings,
         })

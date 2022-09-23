@@ -146,7 +146,7 @@ async fn video_details(testfiles: &Path) {
 async fn comments_top(testfiles: &Path) {
     let mut json_path = testfiles.to_path_buf();
     json_path.push("video_details");
-    json_path.push(format!("comments_top.json"));
+    json_path.push("comments_top.json");
     if json_path.exists() {
         return;
     }

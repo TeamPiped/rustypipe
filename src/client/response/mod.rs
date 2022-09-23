@@ -93,6 +93,7 @@ pub struct GridVideoRenderer {
     pub published_time_text: Option<String>,
     #[serde_as(as = "Option<Text>")]
     pub view_count_text: Option<String>,
+    /// Contains video length
     #[serde_as(as = "VecSkipError<_>")]
     pub thumbnail_overlays: Vec<TimeOverlay>,
 }
@@ -397,10 +398,30 @@ pub trait IsLive {
     fn is_live(&self) -> bool;
 }
 
+pub trait IsShort {
+    fn is_short(&self) -> bool;
+}
+
 impl IsLive for Vec<VideoBadge> {
     fn is_live(&self) -> bool {
         self.iter().any(|badge| {
             badge.metadata_badge_renderer.style == VideoBadgeStyle::BadgeStyleTypeLiveNow
+        })
+    }
+}
+
+impl IsLive for Vec<TimeOverlay> {
+    fn is_live(&self) -> bool {
+        self.iter().any(|overlay| {
+            overlay.thumbnail_overlay_time_status_renderer.style == TimeOverlayStyle::Live
+        })
+    }
+}
+
+impl IsShort for Vec<TimeOverlay> {
+    fn is_short(&self) -> bool {
+        self.iter().any(|overlay| {
+            overlay.thumbnail_overlay_time_status_renderer.style == TimeOverlayStyle::Shorts
         })
     }
 }
