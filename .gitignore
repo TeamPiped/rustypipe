@@ -1,6 +1,7 @@
 /target
 /Cargo.lock
 *.pending-snap
+*.snap.new
 
 rustypipe_reports
 rustypipe_cache.json

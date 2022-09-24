@@ -315,7 +315,7 @@ mod tests {
             "deserialization/mapping warnings: {:?}",
             map_res.warnings
         );
-        insta::assert_yaml_snapshot!(format!("map_playlist_data_{}", name), map_res.c, {
+        insta::assert_ron_snapshot!(format!("map_playlist_data_{}", name), map_res.c, {
             ".last_update" => "[date]"
         });
     }

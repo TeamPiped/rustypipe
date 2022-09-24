@@ -2,40 +2,53 @@
 source: src/client/video_details.rs
 expression: map_res.c
 ---
-id: HRKu0cvrr_o
-title: "AlphaOmegaSin Fanboy Logic: Likes/Dislikes Disabled = Point Invalid Lol wtf?"
-description: []
-channel:
-  id: UCQT2yul0lr6Ie9qNQNmw-sg
-  name: PrinceOfFALLEN
-  avatar:
-    - url: "https://yt3.ggpht.com/kbaVNKl6417ZiU3_oAZB84ozv5E8Nz_ZaPq5nzZLqJJPDzYntvIVrB27aaiSrQK_3ruaMGfGUQ=s48-c-k-c0x00ffffff-no-rj"
-      width: 48
-      height: 48
-    - url: "https://yt3.ggpht.com/kbaVNKl6417ZiU3_oAZB84ozv5E8Nz_ZaPq5nzZLqJJPDzYntvIVrB27aaiSrQK_3ruaMGfGUQ=s88-c-k-c0x00ffffff-no-rj"
-      width: 88
-      height: 88
-    - url: "https://yt3.ggpht.com/kbaVNKl6417ZiU3_oAZB84ozv5E8Nz_ZaPq5nzZLqJJPDzYntvIVrB27aaiSrQK_3ruaMGfGUQ=s176-c-k-c0x00ffffff-no-rj"
-      width: 176
-      height: 176
-  verification: none
-  subscriber_count: 1480
-view_count: 205
-like_count: ~
-publish_date: "[date]"
-publish_date_txt: "Jan 2, 2019"
-is_live: false
-is_ccommons: false
-chapters: []
-recommended:
-  count: 0
-  items: []
-  ctoken: ~
-top_comments:
-  count: ~
-  items: []
-  ctoken: Eg0SC0hSS3UwY3Zycl9vGAYyJSIRIgtIUkt1MGN2cnJfbzABeAJCEGNvbW1lbnRzLXNlY3Rpb24%3D
-latest_comments:
-  count: ~
-  items: []
-  ctoken: Eg0SC0hSS3UwY3Zycl9vGAYyOCIRIgtIUkt1MGN2cnJfbzABeAIwAUIhZW5nYWdlbWVudC1wYW5lbC1jb21tZW50cy1zZWN0aW9u
+VideoDetails(
+  id: "HRKu0cvrr_o",
+  title: "AlphaOmegaSin Fanboy Logic: Likes/Dislikes Disabled = Point Invalid Lol wtf?",
+  description: RichText([]),
+  channel: Channel(
+    id: "UCQT2yul0lr6Ie9qNQNmw-sg",
+    name: "PrinceOfFALLEN",
+    avatar: [
+      Thumbnail(
+        url: "https://yt3.ggpht.com/kbaVNKl6417ZiU3_oAZB84ozv5E8Nz_ZaPq5nzZLqJJPDzYntvIVrB27aaiSrQK_3ruaMGfGUQ=s48-c-k-c0x00ffffff-no-rj",
+        width: 48,
+        height: 48,
+      ),
+      Thumbnail(
+        url: "https://yt3.ggpht.com/kbaVNKl6417ZiU3_oAZB84ozv5E8Nz_ZaPq5nzZLqJJPDzYntvIVrB27aaiSrQK_3ruaMGfGUQ=s88-c-k-c0x00ffffff-no-rj",
+        width: 88,
+        height: 88,
+      ),
+      Thumbnail(
+        url: "https://yt3.ggpht.com/kbaVNKl6417ZiU3_oAZB84ozv5E8Nz_ZaPq5nzZLqJJPDzYntvIVrB27aaiSrQK_3ruaMGfGUQ=s176-c-k-c0x00ffffff-no-rj",
+        width: 176,
+        height: 176,
+      ),
+    ],
+    verification: none,
+    subscriber_count: Some(1480),
+  ),
+  view_count: 205,
+  like_count: None,
+  publish_date: "[date]",
+  publish_date_txt: "Jan 2, 2019",
+  is_live: false,
+  is_ccommons: false,
+  chapters: [],
+  recommended: Paginator(
+    count: Some(0),
+    items: [],
+    ctoken: None,
+  ),
+  top_comments: Paginator(
+    count: None,
+    items: [],
+    ctoken: Some("Eg0SC0hSS3UwY3Zycl9vGAYyJSIRIgtIUkt1MGN2cnJfbzABeAJCEGNvbW1lbnRzLXNlY3Rpb24%3D"),
+  ),
+  latest_comments: Paginator(
+    count: None,
+    items: [],
+    ctoken: Some("Eg0SC0hSS3UwY3Zycl9vGAYyOCIRIgtIUkt1MGN2cnJfbzABeAIwAUIhZW5nYWdlbWVudC1wYW5lbC1jb21tZW50cy1zZWN0aW9u"),
+  ),
+)

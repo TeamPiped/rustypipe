@@ -780,55 +780,84 @@ mod tests {
         assert!(!details.is_live);
         assert!(!details.is_ccommons);
 
-        insta::assert_yaml_snapshot!(details.chapters, {
+        insta::assert_ron_snapshot!(details.chapters, {
             "[].thumbnail" => insta::dynamic_redaction(move |value, _path| {
                 assert!(!value.as_slice().unwrap().is_empty());
                 "[ok]"
             }),
         }, @r###"
-        ---
-        - title: Intro
-          position: 0
-          thumbnail: "[ok]"
-        - title: The PC Built for Super Efficiency
-          position: 42
-          thumbnail: "[ok]"
-        - title: Our BURIAL ENCLOSURE?!
-          position: 161
-          thumbnail: "[ok]"
-        - title: Our Power Solution (Thanks Jackery!)
-          position: 211
-          thumbnail: "[ok]"
-        - title: "Diggin' Holes"
-          position: 287
-          thumbnail: "[ok]"
-        - title: Colonoscopy?
-          position: 330
-          thumbnail: "[ok]"
-        - title: "Diggin' like a man"
-          position: 424
-          thumbnail: "[ok]"
-        - title: "The world's worst woodsman"
-          position: 509
-          thumbnail: "[ok]"
-        - title: Backyard cable management
-          position: 543
-          thumbnail: "[ok]"
-        - title: Time to bury this boy
-          position: 602
-          thumbnail: "[ok]"
-        - title: Solar Power Generation
-          position: 646
-          thumbnail: "[ok]"
-        - title: Issues
-          position: 697
-          thumbnail: "[ok]"
-        - title: First Play Test
-          position: 728
-          thumbnail: "[ok]"
-        - title: Conclusion
-          position: 800
-          thumbnail: "[ok]"
+        [
+          Chapter(
+            title: "Intro",
+            position: 0,
+            thumbnail: "[ok]",
+          ),
+          Chapter(
+            title: "The PC Built for Super Efficiency",
+            position: 42,
+            thumbnail: "[ok]",
+          ),
+          Chapter(
+            title: "Our BURIAL ENCLOSURE?!",
+            position: 161,
+            thumbnail: "[ok]",
+          ),
+          Chapter(
+            title: "Our Power Solution (Thanks Jackery!)",
+            position: 211,
+            thumbnail: "[ok]",
+          ),
+          Chapter(
+            title: "Diggin\' Holes",
+            position: 287,
+            thumbnail: "[ok]",
+          ),
+          Chapter(
+            title: "Colonoscopy?",
+            position: 330,
+            thumbnail: "[ok]",
+          ),
+          Chapter(
+            title: "Diggin\' like a man",
+            position: 424,
+            thumbnail: "[ok]",
+          ),
+          Chapter(
+            title: "The world\'s worst woodsman",
+            position: 509,
+            thumbnail: "[ok]",
+          ),
+          Chapter(
+            title: "Backyard cable management",
+            position: 543,
+            thumbnail: "[ok]",
+          ),
+          Chapter(
+            title: "Time to bury this boy",
+            position: 602,
+            thumbnail: "[ok]",
+          ),
+          Chapter(
+            title: "Solar Power Generation",
+            position: 646,
+            thumbnail: "[ok]",
+          ),
+          Chapter(
+            title: "Issues",
+            position: 697,
+            thumbnail: "[ok]",
+          ),
+          Chapter(
+            title: "First Play Test",
+            position: 728,
+            thumbnail: "[ok]",
+          ),
+          Chapter(
+            title: "Conclusion",
+            position: 800,
+            thumbnail: "[ok]",
+          ),
+        ]
         "###);
 
         assert!(!details.recommended.items.is_empty());
@@ -913,10 +942,7 @@ mod tests {
             details.title,
             "AlphaOmegaSin Fanboy Logic: Likes/Dislikes Disabled = Point Invalid Lol wtf?"
         );
-        insta::assert_yaml_snapshot!(details.description, @r###"
-        ---
-        []
-        "###);
+        insta::assert_ron_snapshot!(details.description, @"RichText([])");
 
         assert_eq!(details.channel.id, "UCQT2yul0lr6Ie9qNQNmw-sg");
         assert_eq!(details.channel.name, "PrinceOfFALLEN");
@@ -1026,12 +1052,13 @@ mod tests {
             "deserialization/mapping warnings: {:?}",
             map_res.warnings
         );
-        insta::assert_yaml_snapshot!(format!("map_video_details_{}", name), map_res.c, {
+        insta::assert_ron_snapshot!(format!("map_video_details_{}", name), map_res.c, {
             ".publish_date" => "[date]",
             ".recommended.items[].publish_date" => "[date]",
         });
     }
 
+    #[test]
     fn t_map_recommendations() {
         let json_path = Path::new("testfiles/video_details/recommendations.json");
         let json_file = File::open(json_path).unwrap();
@@ -1047,7 +1074,7 @@ mod tests {
             "deserialization/mapping warnings: {:?}",
             map_res.warnings
         );
-        insta::assert_yaml_snapshot!("map_recommendations", map_res.c, {
+        insta::assert_ron_snapshot!("map_recommendations", map_res.c, {
             ".items[].publish_date" => "[date]",
         });
     }
@@ -1069,7 +1096,7 @@ mod tests {
             "deserialization/mapping warnings: {:?}",
             map_res.warnings
         );
-        insta::assert_yaml_snapshot!(format!("map_comments_{}", name), map_res.c, {
+        insta::assert_ron_snapshot!(format!("map_comments_{}", name), map_res.c, {
             ".items[].publish_date" => "[date]",
         });
     }

@@ -598,7 +598,7 @@ mod tests {
             map_res.warnings
         );
         let is_desktop = name == "desktop" || name == "desktopmusic";
-        insta::assert_yaml_snapshot!(format!("map_player_data_{}", name), map_res.c, {
+        insta::assert_ron_snapshot!(format!("map_player_data_{}", name), map_res.c, {
             ".details.publish_date" => insta::dynamic_redaction(move |value, _path| {
                 if is_desktop {
                     assert!(value.as_str().unwrap().starts_with("2019-05-30T00:00:00"));

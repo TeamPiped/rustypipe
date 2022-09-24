@@ -2,784 +2,1148 @@
 source: src/client/video_details.rs
 expression: map_res.c
 ---
-id: nFDBxBUfE74
-title: The Prepper PC
-description:
-  - Text: "Thanks to Jackery for sponsoring today's video! Check out Jackery's Solar Generator 2000 Pro and get 10% off with code LinusTechTips at "
-  - Web:
-      text: "https://lmg.gg/SG2000PROLTT"
-      url: "https://lmg.gg/SG2000PROLTT"
-  - Text: "\n\nThese days, you can game almost anywhere on the planet, anytime. But what if that planet was in the middle of an apocalypse? After you’ve stashed years of food, water, and toilet paper away, how will you pass the time? With this PC, you can be prepared to game until the whole mess to sort itself out. \n\nDiscuss on the forum: "
-  - Web:
-      text: "https://linustechtips.com/topic/14554..."
-      url: "https://linustechtips.com/topic/1455447-the-prepper-pc-sponsored/"
-  - Text: "\n\nBuy a Jackery Solar Generator 2000 Pro: "
-  - Web:
-      text: "https://geni.us/034L"
-      url: "https://geni.us/034L"
-  - Text: "\n\nBuy a Jackery Explorer 2000 Pro: "
-  - Web:
-      text: "https://lmg.gg/1dyF4"
-      url: "https://lmg.gg/1dyF4"
-  - Text: "\n\nBuy a Seasonic Fanless TX: "
-  - Web:
-      text: "https://geni.us/S0Wt76G"
-      url: "https://geni.us/S0Wt76G"
-  - Text: "\n\nBuy an Intel Core i3 (12th Gen) i3-12100: "
-  - Web:
-      text: "https://geni.us/hLZvxa"
-      url: "https://geni.us/hLZvxa"
-  - Text: "\n\nBuy an RTX 3050: "
-  - Web:
-      text: "https://geni.us/6A6hl"
-      url: "https://geni.us/6A6hl"
-  - Text: "\n\nBuy an RX 6500XT: "
-  - Web:
-      text: "https://geni.us/fUF1p"
-      url: "https://geni.us/fUF1p"
-  - Text: "\n\nPurchases made through some store links may provide some compensation to Linus Media Group.\n\n► GET MERCH: "
-  - Web:
-      text: "https://lttstore.com"
-      url: "https://lttstore.com/"
-  - Text: "\n► SUPPORT US ON FLOATPLANE: "
-  - Web:
-      text: "https://www.floatplane.com/ltt"
-      url: "https://www.floatplane.com/ltt"
-  - Text: "\n► AFFILIATES, SPONSORS & REFERRALS: "
-  - Web:
-      text: "https://lmg.gg/sponsors"
-      url: "https://lmg.gg/sponsors"
-  - Text: "\n► PODCAST GEAR: "
-  - Web:
-      text: "https://lmg.gg/podcastgear"
-      url: "https://lmg.gg/podcastgear"
-  - Text: "\n\n\nFOLLOW US \n---------------------------------------------------  \nTwitter: "
-  - Web:
-      text: "https://twitter.com/linustech"
-      url: "https://twitter.com/linustech"
-  - Text: "\nFacebook: "
-  - Web:
-      text: "http://www.facebook.com/LinusTech"
-      url: "http://www.facebook.com/LinusTech"
-  - Text: "\nInstagram: "
-  - Web:
-      text: "https://www.instagram.com/linustech"
-      url: "https://www.instagram.com/linustech"
-  - Text: "\nTikTok: "
-  - Web:
-      text: "https://www.tiktok.com/@linustech"
-      url: "https://www.tiktok.com/@linustech"
-  - Text: "\nTwitch: "
-  - Web:
-      text: "https://www.twitch.tv/linustech"
-      url: "https://www.twitch.tv/linustech"
-  - Text: "\n\nMUSIC CREDIT\n---------------------------------------------------\nIntro: Laszlo - Supernova\nVideo Link: "
-  - Video:
-      text: "https://www.youtube.com/watch?v=PKfxm..."
-      id: PKfxmFU3lWY
-      start_time: 0
-  - Text: "\niTunes Download Link: "
-  - Web:
-      text: "https://itunes.apple.com/us/album/sup..."
-      url: "https://itunes.apple.com/us/album/supernova/id936805712"
-  - Text: "\nArtist Link: "
-  - Web:
-      text: "https://soundcloud.com/laszlomusic"
-      url: "https://soundcloud.com/laszlomusic"
-  - Text: "\n\nOutro: Approaching Nirvana - Sugar High\nVideo Link: "
-  - Video:
-      text: "https://www.youtube.com/watch?v=ngsGB..."
-      id: ngsGBSCDwcI
-      start_time: 0
-  - Text: "\nListen on Spotify: "
-  - Web:
-      text: "http://spoti.fi/UxWkUw"
-      url: "http://spoti.fi/UxWkUw"
-  - Text: "\nArtist Link: "
-  - Web:
-      text: "http://www.youtube.com/approachingnir..."
-      url: "http://www.youtube.com/approachingnirvana"
-  - Text: "\n\nIntro animation by MBarek Abdelwassaa "
-  - Web:
-      text: "https://www.instagram.com/mbarek_abdel/"
-      url: "https://www.instagram.com/mbarek_abdel/"
-  - Text: "\nMonitor And Keyboard by vadimmihalkevich / CC BY 4.0  "
-  - Web:
-      text: "https://geni.us/PgGWp"
-      url: "https://geni.us/PgGWp"
-  - Text: "\nMechanical RGB Keyboard by BigBrotherECE / CC BY 4.0 "
-  - Web:
-      text: "https://geni.us/mj6pHk4"
-      url: "https://geni.us/mj6pHk4"
-  - Text: "\nMouse Gamer free Model By Oscar Creativo / CC BY 4.0 "
-  - Web:
-      text: "https://geni.us/Ps3XfE"
-      url: "https://geni.us/Ps3XfE"
-  - Text: "\n\nCHAPTERS\n---------------------------------------------------\n"
-  - Video:
-      text: "0:00"
-      id: nFDBxBUfE74
-      start_time: 0
-  - Text: " Intro\n"
-  - Video:
-      text: "0:42"
-      id: nFDBxBUfE74
-      start_time: 42
-  - Text: " The PC Built for Super Efficiency\n"
-  - Video:
-      text: "2:41"
-      id: nFDBxBUfE74
-      start_time: 161
-  - Text: " Our BURIAL ENCLOSURE?!\n"
-  - Video:
-      text: "3:31"
-      id: nFDBxBUfE74
-      start_time: 211
-  - Text: " Our Power Solution (Thanks Jackery!)\n"
-  - Video:
-      text: "4:47"
-      id: nFDBxBUfE74
-      start_time: 287
-  - Text: " Diggin' Holes\n"
-  - Video:
-      text: "5:30"
-      id: nFDBxBUfE74
-      start_time: 330
-  - Text: " Colonoscopy?\n"
-  - Video:
-      text: "7:04"
-      id: nFDBxBUfE74
-      start_time: 424
-  - Text: " Diggin' like a man\n"
-  - Video:
-      text: "8:29"
-      id: nFDBxBUfE74
-      start_time: 509
-  - Text: " The world's worst woodsman\n"
-  - Video:
-      text: "9:03"
-      id: nFDBxBUfE74
-      start_time: 543
-  - Text: " Backyard cable management\n"
-  - Video:
-      text: "10:02"
-      id: nFDBxBUfE74
-      start_time: 602
-  - Text: " Time to bury this boy\n"
-  - Video:
-      text: "10:46"
-      id: nFDBxBUfE74
-      start_time: 646
-  - Text: " Solar Power Generation\n"
-  - Video:
-      text: "11:37"
-      id: nFDBxBUfE74
-      start_time: 697
-  - Text: " Issues\n"
-  - Video:
-      text: "12:08"
-      id: nFDBxBUfE74
-      start_time: 728
-  - Text: " First Play Test\n"
-  - Video:
-      text: "13:20"
-      id: nFDBxBUfE74
-      start_time: 800
-  - Text: " Conclusion"
-channel:
-  id: UCXuqSBlHAE6Xw-yeJA0Tunw
-  name: Linus Tech Tips
-  avatar:
-    - url: "https://yt3.ggpht.com/ytc/AMLnZu_qOpMK0tGNMCnReaXVp4ZvmNEIXn9eKeBGA_x-wQ=s48-c-k-c0x00ffffff-no-rj"
-      width: 48
-      height: 48
-    - url: "https://yt3.ggpht.com/ytc/AMLnZu_qOpMK0tGNMCnReaXVp4ZvmNEIXn9eKeBGA_x-wQ=s88-c-k-c0x00ffffff-no-rj"
-      width: 88
-      height: 88
-    - url: "https://yt3.ggpht.com/ytc/AMLnZu_qOpMK0tGNMCnReaXVp4ZvmNEIXn9eKeBGA_x-wQ=s176-c-k-c0x00ffffff-no-rj"
-      width: 176
-      height: 176
-  verification: verified
-  subscriber_count: 14800000
-view_count: 971966
-like_count: 48244
-publish_date: "[date]"
-publish_date_txt: "Sep 15, 2022"
-is_live: false
-is_ccommons: false
-chapters:
-  - title: Intro
-    position: 0
-    thumbnail:
-      - url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_21033.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAmmyeYGHR0QO9bfiyG8wi6Fx7u0Q"
-        width: 168
-        height: 94
-      - url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_21033.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBZjQ8_J5DoEAgMpb_i5sUoyEMshQ"
-        width: 336
-        height: 188
-  - title: The PC Built for Super Efficiency
-    position: 42
-    thumbnail:
-      - url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_48966.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDMN7dzaxkOj8ZSt6KGWOfT_8KJvA"
-        width: 168
-        height: 94
-      - url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_48966.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBEZHXfcB7KJDcnXTsexgiUJY4deA"
-        width: 336
-        height: 188
-  - title: Our BURIAL ENCLOSURE?!
-    position: 161
-    thumbnail:
-      - url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_174200.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBvlIKOf9tcaY8EgfKfZj1Q40bqGQ"
-        width: 168
-        height: 94
-      - url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_174200.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA3i-ScJUoziKrq-ueqEMdZ2tGbRw"
-        width: 336
-        height: 188
-  - title: Our Power Solution (Thanks Jackery!)
-    position: 211
-    thumbnail:
-      - url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_220133.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAK5GUZQAAMtqWx5Fze83eMpnjLqQ"
-        width: 168
-        height: 94
-      - url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_220133.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLD74wnlR8O1Kj8dt-iCTVaH_uRU8A"
-        width: 336
-        height: 188
-  - title: "Diggin' Holes"
-    position: 287
-    thumbnail:
-      - url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_294133.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBjfUA0SElEdDWo1IdwQtAUtmzdFw"
-        width: 168
-        height: 94
-      - url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_294133.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDf6v3P4Zga6qUvkQoWBnGb-78dMg"
-        width: 336
-        height: 188
-  - title: Colonoscopy?
-    position: 330
-    thumbnail:
-      - url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_345200.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCowt21lmy7hLyI3S76DP0eZoT9kQ"
-        width: 168
-        height: 94
-      - url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_345200.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAxnuCwW20aOFQ7SHwiC6myAYWNLw"
-        width: 336
-        height: 188
-  - title: "Diggin' like a man"
-    position: 424
-    thumbnail:
-      - url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_429866.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDeFblsML6kbtgHHcHneV7VQ75E4Q"
-        width: 168
-        height: 94
-      - url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_429866.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBO-DBqtlrta4RTcIR8QoCHlWOQdw"
-        width: 336
-        height: 188
-  - title: "The world's worst woodsman"
-    position: 509
-    thumbnail:
-      - url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_532633.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDWZ2K0eHEscA9uWojhnYZ9nY3FYw"
-        width: 168
-        height: 94
-      - url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_532633.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDOQkDs7G4VjuG21yr0bFy9J3Q8-Q"
-        width: 336
-        height: 188
-  - title: Backyard cable management
-    position: 543
-    thumbnail:
-      - url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_559066.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDltGVkjJWqSJcAXdDy_GufUYZq9A"
-        width: 168
-        height: 94
-      - url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_559066.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCyNJC3-9UQs2w7NQQF2UpRO5t2yg"
-        width: 336
-        height: 188
-  - title: Time to bury this boy
-    position: 602
-    thumbnail:
-      - url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_613266.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB5WdMrAdFYrQ5peYU3ghlOkaqEFQ"
-        width: 168
-        height: 94
-      - url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_613266.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLClHhDbgoec3YIkHXv1NEPXdDxOhA"
-        width: 336
-        height: 188
-  - title: Solar Power Generation
-    position: 646
-    thumbnail:
-      - url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_650400.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCMNjDjMpEhOMXzz3UdZrCPHUHlFQ"
-        width: 168
-        height: 94
-      - url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_650400.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAaJQs-GxzJyktP8N2aeNJd4l6L6w"
-        width: 336
-        height: 188
-  - title: Issues
-    position: 697
-    thumbnail:
-      - url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_700033.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCnECVciPbJCNBo-JhF1QHomMdb_A"
-        width: 168
-        height: 94
-      - url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_700033.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDdKP3Xv7CTaTnBHg6cjjCKk8IOmQ"
-        width: 336
-        height: 188
-  - title: First Play Test
-    position: 728
-    thumbnail:
-      - url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_739100.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAJM_EisMsPVqux3KDPVfEvbfklwg"
-        width: 168
-        height: 94
-      - url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_739100.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCu8KYJ2191j3IdS2H_pQVj2o8-pg"
-        width: 336
-        height: 188
-  - title: Conclusion
-    position: 800
-    thumbnail:
-      - url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_809966.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD_pefi9LhK027Rozo_QuijeF7WVg"
-        width: 168
-        height: 94
-      - url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_809966.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBQI_dV0HrlypUb8WjbZvyV1xC9Ug"
-        width: 336
-        height: 188
-recommended:
-  count: ~
-  items:
-    - id: AOdp09SYhCc
-      title: This Is So Embarrassing!
-      length: 1063
-      thumbnail:
-        - url: "https://i.ytimg.com/vi/AOdp09SYhCc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBfBYl-n346B6prZx03Mm7Ww5KNzQ"
-          width: 168
-          height: 94
-        - url: "https://i.ytimg.com/vi/AOdp09SYhCc/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDA-OCr7vnZg2V7H6jeLE7wwLnDgg"
-          width: 336
-          height: 188
-      channel:
-        id: UCXuqSBlHAE6Xw-yeJA0Tunw
-        name: Linus Tech Tips
-        avatar:
-          - url: "https://yt3.ggpht.com/ytc/AMLnZu_qOpMK0tGNMCnReaXVp4ZvmNEIXn9eKeBGA_x-wQ=s68-c-k-c0x00ffffff-no-rj"
-            width: 68
-            height: 68
-        verification: verified
-        subscriber_count: ~
-      publish_date: "[date]"
-      publish_date_txt: 2 days ago
-      view_count: 1862544
-      is_live: false
-    - id: CY3OQh-7wIk
-      title: The Computer I Would Actually BUY
-      length: 6478
-      thumbnail:
-        - url: "https://i.ytimg.com/vi/CY3OQh-7wIk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBIWrkhu20Ak_TnmZIE4ZNnwwJjxg"
-          width: 168
-          height: 94
-        - url: "https://i.ytimg.com/vi/CY3OQh-7wIk/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCbsmb0Vmoe-pLt7oQEckJEfjkbBA"
-          width: 336
-          height: 188
-      channel:
-        id: UCXuqSBlHAE6Xw-yeJA0Tunw
-        name: Linus Tech Tips
-        avatar:
-          - url: "https://yt3.ggpht.com/ytc/AMLnZu_qOpMK0tGNMCnReaXVp4ZvmNEIXn9eKeBGA_x-wQ=s68-c-k-c0x00ffffff-no-rj"
-            width: 68
-            height: 68
-        verification: verified
-        subscriber_count: ~
-      publish_date: "[date]"
-      publish_date_txt: Streamed 8 days ago
-      view_count: 946996
-      is_live: false
-    - id: LQ95XJAwaoc
-      title: My favorite car (sucks)
-      length: 1162
-      thumbnail:
-        - url: "https://i.ytimg.com/vi/LQ95XJAwaoc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCipJpt-2zTzIpJu3bTaXsTai4Avw"
-          width: 168
-          height: 94
-        - url: "https://i.ytimg.com/vi/LQ95XJAwaoc/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAjDEaMiMoEn-t2dMFZ4k44KLWfjg"
-          width: 336
-          height: 188
-      channel:
-        id: UCdBK94H6oZT2Q7l0-b0xmMg
-        name: ShortCircuit
-        avatar:
-          - url: "https://yt3.ggpht.com/ytc/AMLnZu_-v2bzQCks3k_MHJNya5J_TSVpMevRw2-axtLX=s68-c-k-c0x00ffffff-no-rj"
-            width: 68
-            height: 68
-        verification: verified
-        subscriber_count: ~
-      publish_date: "[date]"
-      publish_date_txt: 1 day ago
-      view_count: 349251
-      is_live: false
-    - id: mhMQeJ5Qmp0
-      title: The Apple Newton MessagePad.
-      length: 758
-      thumbnail:
-        - url: "https://i.ytimg.com/vi/mhMQeJ5Qmp0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBUv25424vMzv7t_u2JaFGBUFyzLQ"
-          width: 168
-          height: 94
-        - url: "https://i.ytimg.com/vi/mhMQeJ5Qmp0/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLATdaF71jZM3yd4Co_d9_UmC6micw"
-          width: 336
-          height: 188
-      channel:
-        id: UC7Jwj9fkrf1adN4fMmTkpug
-        name: DankPods
-        avatar:
-          - url: "https://yt3.ggpht.com/ytc/AMLnZu-H36qfi9rEsGTFYSWZQW-uocexE1SgkSBT8PGQ=s68-c-k-c0x00ffffff-no-rj"
-            width: 68
-            height: 68
-        verification: verified
-        subscriber_count: ~
-      publish_date: "[date]"
-      publish_date_txt: 1 day ago
-      view_count: 375458
-      is_live: false
-    - id: 1ctXiZsN6ac
-      title: "The Reviewer Got Reviewed  - WAN Show September 9, 2022"
-      length: 10265
-      thumbnail:
-        - url: "https://i.ytimg.com/vi/1ctXiZsN6ac/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD9wu_ZcDUUeXLmcHsQlyFk2ZGz8w"
-          width: 168
-          height: 94
-        - url: "https://i.ytimg.com/vi/1ctXiZsN6ac/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCuI3gkjk86RgW4EjBNMlpeccMEvA"
-          width: 336
-          height: 188
-      channel:
-        id: UCXuqSBlHAE6Xw-yeJA0Tunw
-        name: Linus Tech Tips
-        avatar:
-          - url: "https://yt3.ggpht.com/ytc/AMLnZu_qOpMK0tGNMCnReaXVp4ZvmNEIXn9eKeBGA_x-wQ=s68-c-k-c0x00ffffff-no-rj"
-            width: 68
-            height: 68
-        verification: verified
-        subscriber_count: ~
-      publish_date: "[date]"
-      publish_date_txt: Streamed 6 days ago
-      view_count: 734463
-      is_live: false
-    - id: CMR9z9Xr8GM
-      title: Storing Solar Power on my ROOF!!!
-      length: 1028
-      thumbnail:
-        - url: "https://i.ytimg.com/vi/CMR9z9Xr8GM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDHV3LspFbeyp3aKgDaga_48rKnhg"
-          width: 168
-          height: 94
-        - url: "https://i.ytimg.com/vi/CMR9z9Xr8GM/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB6dG3UPlxhqAzbffiDLpwkmeJrBg"
-          width: 336
-          height: 188
-      channel:
-        id: UCKd49wwdEdIoM-7Fumhwmog
-        name: Quint BUILDs
-        avatar:
-          - url: "https://yt3.ggpht.com/ytc/AMLnZu9HOVbazftNLzJ_0Lo6B1OLAgVnL3tQyRlLoaOTww=s68-c-k-c0x00ffffff-no-rj"
-            width: 68
-            height: 68
-        verification: verified
-        subscriber_count: ~
-      publish_date: "[date]"
-      publish_date_txt: 11 months ago
-      view_count: 2773698
-      is_live: false
-    - id: fT2KhJ8W-Kg
-      title: How gas pumps know when to turn themselves off
-      length: 836
-      thumbnail:
-        - url: "https://i.ytimg.com/vi/fT2KhJ8W-Kg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAtidUhcZzKU4a3ojinamyCP33ing"
-          width: 168
-          height: 94
-        - url: "https://i.ytimg.com/vi/fT2KhJ8W-Kg/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAzxlBmAaQDQCHOPUG3AmspQLOeQA"
-          width: 336
-          height: 188
-      channel:
-        id: UCEIwxahdLz7bap-VDs9h35A
-        name: Steve Mould
-        avatar:
-          - url: "https://yt3.ggpht.com/_BsIQ_sNpOtu2c9BNGSfGFpNTSwLPTzJpL774Q1v85Sc-uitgp8ouwljeN_6YtDlULLaGFY_6nM=s68-c-k-c0x00ffffff-no-rj"
-            width: 68
-            height: 68
-        verification: verified
-        subscriber_count: ~
-      publish_date: "[date]"
-      publish_date_txt: 8 hours ago
-      view_count: 219605
-      is_live: false
-    - id: 12Hcbx33Rb4
-      title: BREAKING NEWS! - EVGA will no longer do business with NVIDIA
-      length: 1262
-      thumbnail:
-        - url: "https://i.ytimg.com/vi/12Hcbx33Rb4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAM7iCw78-SfuzT5AgSv6ACOVDelQ"
-          width: 168
-          height: 94
-        - url: "https://i.ytimg.com/vi/12Hcbx33Rb4/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBRg70nktuCj2lIqIFqDTgEhu3lJA"
-          width: 336
-          height: 188
-      channel:
-        id: UCkWQ0gDrqOCarmUKmppD7GQ
-        name: JayzTwoCents
-        avatar:
-          - url: "https://yt3.ggpht.com/EAJTcRmRdv3plIT4zRJlyWRnf4cS_zVt6YVtSZ39hQ4ryApK0ZPLEi0YFKdW-eCy6X0CATq9=s68-c-k-c0x00ffffff-no-rj"
-            width: 68
-            height: 68
-        verification: verified
-        subscriber_count: ~
-      publish_date: "[date]"
-      publish_date_txt: 4 hours ago
-      view_count: 145345
-      is_live: false
-    - id: QW1SsqmaIuE
-      title: I Surprised My Subscriber with his Dream Gaming Setup! - Season 8
-      length: 2177
-      thumbnail:
-        - url: "https://i.ytimg.com/vi/QW1SsqmaIuE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLArhaU2nMbylc2HtPaCCFwJmbFduQ"
-          width: 168
-          height: 94
-        - url: "https://i.ytimg.com/vi/QW1SsqmaIuE/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCnQN_nO0yOVu9HrphD4jzUEelWbg"
-          width: 336
-          height: 188
-      channel:
-        id: UChIZGfcnjHI0DG4nweWEduw
-        name: TechSource
-        avatar:
-          - url: "https://yt3.ggpht.com/ytc/AMLnZu_kEO6DQNY3n-hw1-mYfBvEf_oqyShBJ2p07ql-=s68-c-k-c0x00ffffff-no-rj"
-            width: 68
-            height: 68
-        verification: verified
-        subscriber_count: ~
-      publish_date: "[date]"
-      publish_date_txt: 6 hours ago
-      view_count: 50033
-      is_live: false
-    - id: JAcSNL1T3OA
-      title: Why Did I Drill 1756 Holes in This?
-      length: 1293
-      thumbnail:
-        - url: "https://i.ytimg.com/vi/JAcSNL1T3OA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAVN2pIRLDii6QneiJiH7SuohQLLw"
-          width: 168
-          height: 94
-        - url: "https://i.ytimg.com/vi/JAcSNL1T3OA/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAcWDCxSwKzsg9kxKFfmOa2yJmFMQ"
-          width: 336
-          height: 188
-      channel:
-        id: UCVveEFTOd6khhSXXnRhxJmg
-        name: Fireball Tool
-        avatar:
-          - url: "https://yt3.ggpht.com/ytc/AMLnZu-GLwhEAzZm8ig6-gfJOLm9_3IhWa6D3eDMpi6_=s68-c-k-c0x00ffffff-no-rj"
-            width: 68
-            height: 68
-        verification: none
-        subscriber_count: ~
-      publish_date: "[date]"
-      publish_date_txt: 1 month ago
-      view_count: 1163652
-      is_live: false
-    - id: ZVtOss1U7_s
-      title: VW Beetle converted to electric in a day
-      length: 826
-      thumbnail:
-        - url: "https://i.ytimg.com/vi/ZVtOss1U7_s/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD4hPp1mBczpO6sO6vWdZQYakxwyg"
-          width: 168
-          height: 94
-        - url: "https://i.ytimg.com/vi/ZVtOss1U7_s/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDufQtJhG_a0ZCmjhUOn1d7Uqp1KQ"
-          width: 336
-          height: 188
-      channel:
-        id: UCq1Oqk1I7zeYlDiJTFWLoFA
-        name: Electric Classic Cars
-        avatar:
-          - url: "https://yt3.ggpht.com/ytc/AMLnZu8sclYSJWJsD30xRnuUpCCF0c-TGi8XL_3tqqDG=s68-c-k-c0x00ffffff-no-rj"
-            width: 68
-            height: 68
-        verification: none
-        subscriber_count: ~
-      publish_date: "[date]"
-      publish_date_txt: 1 year ago
-      view_count: 3266169
-      is_live: false
-    - id: 2kJDTzFtUr4
-      title: "How ASML, TSMC And Intel Dominate The Chip Market | CNBC Marathon"
-      length: 3399
-      thumbnail:
-        - url: "https://i.ytimg.com/vi/2kJDTzFtUr4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA6X3e701I0PwLNZJamLICU4oJsxg"
-          width: 168
-          height: 94
-        - url: "https://i.ytimg.com/vi/2kJDTzFtUr4/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDdPU3aU4BrLdnlimipOmQhWJDaqQ"
-          width: 336
-          height: 188
-      channel:
-        id: UCvJJ_dzjViJCoLf5uKUTwoA
-        name: CNBC
-        avatar:
-          - url: "https://yt3.ggpht.com/ytc/AMLnZu83DuXBoQ5FLFkw5W5-MkVn6Q4vFnKBPwXcsMOMuLg=s68-c-k-c0x00ffffff-no-rj"
-            width: 68
-            height: 68
-        verification: verified
-        subscriber_count: ~
-      publish_date: "[date]"
-      publish_date_txt: 2 weeks ago
-      view_count: 678935
-      is_live: false
-    - id: 0rCbfsuKdYw
-      title: I bought every Playstation Ever.
-      length: 1046
-      thumbnail:
-        - url: "https://i.ytimg.com/vi/0rCbfsuKdYw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAQvrfQzF3A7fsTrp6uVnunsFrjIA"
-          width: 168
-          height: 94
-        - url: "https://i.ytimg.com/vi/0rCbfsuKdYw/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDYcWPqEmFi0iO4EJF3JG3aGfJVUQ"
-          width: 336
-          height: 188
-      channel:
-        id: UCMiJRAwDNSNzuYeN2uWa0pA
-        name: Mrwhosetheboss
-        avatar:
-          - url: "https://yt3.ggpht.com/Ikb1C4ih2VMvfjma8OO5b39JnHL2CQcQgksB_I7TM-gGA3ERTY589OeLKCYyRQQO0nkE54-f=s68-c-k-c0x00ffffff-no-rj"
-            width: 68
-            height: 68
-        verification: verified
-        subscriber_count: ~
-      publish_date: "[date]"
-      publish_date_txt: 3 weeks ago
-      view_count: 7569956
-      is_live: false
-    - id: sbdU7AkH6QM
-      title: "Reviewing Free Energy Generators.  A Response to My Video \"Nikola Tesla's Greatest Invention\"- 102"
-      length: 1387
-      thumbnail:
-        - url: "https://i.ytimg.com/vi/sbdU7AkH6QM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBDpUTKGdp0-KWb06jcJ1nBcyO6Dw"
-          width: 168
-          height: 94
-        - url: "https://i.ytimg.com/vi/sbdU7AkH6QM/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDVfzVoRh9SthIHGklp2Ij782LEJQ"
-          width: 336
-          height: 188
-      channel:
-        id: UC_SLthyNX_ivd-dmsFgmJVg
-        name: Jeremy Fielding
-        avatar:
-          - url: "https://yt3.ggpht.com/ytc/AMLnZu8vtUASbFcQI_Cz6KD8vTQ0qSGz5SqddjTk9qHhWg=s68-c-k-c0x00ffffff-no-rj"
-            width: 68
-            height: 68
-        verification: verified
-        subscriber_count: ~
-      publish_date: "[date]"
-      publish_date_txt: 5 months ago
-      view_count: 3374461
-      is_live: false
-    - id: zcchDu7KoYs
-      title: AMD’s Victory Lap - HOLY $H!T Threadripper Pro 5995WX
-      length: 872
-      thumbnail:
-        - url: "https://i.ytimg.com/vi/zcchDu7KoYs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAo1iXQgQA0Vdil-2ka_mG7maCGMg"
-          width: 168
-          height: 94
-        - url: "https://i.ytimg.com/vi/zcchDu7KoYs/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAvURFTf6Gc_GYSnwoy9P__dcN7Jg"
-          width: 336
-          height: 188
-      channel:
-        id: UCXuqSBlHAE6Xw-yeJA0Tunw
-        name: Linus Tech Tips
-        avatar:
-          - url: "https://yt3.ggpht.com/ytc/AMLnZu_qOpMK0tGNMCnReaXVp4ZvmNEIXn9eKeBGA_x-wQ=s68-c-k-c0x00ffffff-no-rj"
-            width: 68
-            height: 68
-        verification: verified
-        subscriber_count: ~
-      publish_date: "[date]"
-      publish_date_txt: 5 days ago
-      view_count: 1322625
-      is_live: false
-    - id: pd6DsSjqhFE
-      title: Top Gear Satisfaction Survey Compilation
-      length: 986
-      thumbnail:
-        - url: "https://i.ytimg.com/vi/pd6DsSjqhFE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA5XluAGur-H4y64PT8dtddYidDfQ"
-          width: 168
-          height: 94
-        - url: "https://i.ytimg.com/vi/pd6DsSjqhFE/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCmzY4go1UeDgQ--BsRlRrhWd2gQw"
-          width: 336
-          height: 188
-      channel:
-        id: UCupQghOyPai8Hxg4RqMERvA
-        name: incT
-        avatar:
-          - url: "https://yt3.ggpht.com/ytc/AMLnZu9n19hlUYOQdp4kSQ9LiTGZyinryz6elP1bxeETSQ=s68-c-k-c0x00ffffff-no-rj"
-            width: 68
-            height: 68
-        verification: none
-        subscriber_count: ~
-      publish_date: "[date]"
-      publish_date_txt: 3 weeks ago
-      view_count: 255945
-      is_live: false
-    - id: 2K5Gqp1cEcM
-      title: Why our Screwdriver took 3 YEARS
-      length: 1752
-      thumbnail:
-        - url: "https://i.ytimg.com/vi/2K5Gqp1cEcM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBVNWWFKgajHVbNYGFdRXXNTH7aEg"
-          width: 168
-          height: 94
-        - url: "https://i.ytimg.com/vi/2K5Gqp1cEcM/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDYOzwylXexN6WLLy3V9tTufSusBA"
-          width: 336
-          height: 188
-      channel:
-        id: UCXuqSBlHAE6Xw-yeJA0Tunw
-        name: Linus Tech Tips
-        avatar:
-          - url: "https://yt3.ggpht.com/ytc/AMLnZu_qOpMK0tGNMCnReaXVp4ZvmNEIXn9eKeBGA_x-wQ=s68-c-k-c0x00ffffff-no-rj"
-            width: 68
-            height: 68
-        verification: verified
-        subscriber_count: ~
-      publish_date: "[date]"
-      publish_date_txt: 2 weeks ago
-      view_count: 2930532
-      is_live: false
-    - id: t03rmc-prJo
-      title: This PC took 600 HOURS to Build!
-      length: 1505
-      thumbnail:
-        - url: "https://i.ytimg.com/vi/t03rmc-prJo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDCfqUXpZWf6Gv320YOu1UW02Sv5Q"
-          width: 168
-          height: 94
-        - url: "https://i.ytimg.com/vi/t03rmc-prJo/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB_ZD3qCWvQ96x3iwVAOfHiCODZLg"
-          width: 336
-          height: 188
-      channel:
-        id: UCXuqSBlHAE6Xw-yeJA0Tunw
-        name: Linus Tech Tips
-        avatar:
-          - url: "https://yt3.ggpht.com/ytc/AMLnZu_qOpMK0tGNMCnReaXVp4ZvmNEIXn9eKeBGA_x-wQ=s68-c-k-c0x00ffffff-no-rj"
-            width: 68
-            height: 68
-        verification: verified
-        subscriber_count: ~
-      publish_date: "[date]"
-      publish_date_txt: 12 days ago
-      view_count: 2743664
-      is_live: false
-    - id: QTH9m6MDIfc
-      title: "One Year Ago I Built an Ecosystem, This Happened"
-      length: 485
-      thumbnail:
-        - url: "https://i.ytimg.com/vi/QTH9m6MDIfc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD3ZF3LguKP_5_qUVgX3_FXSA6ABA"
-          width: 168
-          height: 94
-        - url: "https://i.ytimg.com/vi/QTH9m6MDIfc/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB9o3FZCk-tXsE-oLvR7f7BTomz7g"
-          width: 336
-          height: 188
-      channel:
-        id: UCYmna5rFHIesFteksAvFOfg
-        name: Dr. Plants
-        avatar:
-          - url: "https://yt3.ggpht.com/R6sNFqB8QcQPwJvWlQ1q0zKVmszFfHBY_PGBhA7WT9enPBN6GgkOo2sKzF-3PEdSUQ2Vs2Ugwg=s68-c-k-c0x00ffffff-no-rj"
-            width: 68
-            height: 68
-        verification: verified
-        subscriber_count: ~
-      publish_date: "[date]"
-      publish_date_txt: 3 weeks ago
-      view_count: 7958495
-      is_live: false
-  ctoken: CBQSExILbkZEQnhCVWZFNzTAAQHIAQEYACqkBjJzNkw2d3pVQkFyUkJBb0Q4ajRBQ2d6Q1Bna0lwNGppcEwyNjJuTUtBX0ktQUFvTndqNEtDSW1CN18yaHlQUEdDUW9EOGo0QUNnM0NQZ29JaDlYQmdjbXIzb2N0Q2dQeVBnQUtEc0ktQ3dpZHRjTHlpWV9FaVpvQkNnUHlQZ0FLRHNJLUN3aW4wN2ZZbWZIVjVkVUJDZ1B5UGdBS0RjSS1DZ2pqNEstdl9ibWY0Z2dLQV9JLUFBb053ajRLQ0tqeDJfakowT0tlZlFvRDhqNEFDZzdDUGdzSXZvdmQ3X0dOOTdEWEFRb0Q4ajRBQ2czQ1Bnb0k0Y1hvektyVzFMWkJDZ1B5UGdBS0RjSS1DZ2pndWNfcXk4YkVneVFLQV9JLUFBb053ajRLQ1B2ZjAtcXMxdE90WlFvRDhqNEFDaUhTUGg0S0hGSkVRMDFWUTFoMWNWTkNiRWhCUlRaWWR5MTVaVXBCTUZSMWJuY0tBX0ktQUFvT3dqNExDTDZsdFl2ejZaQ2gyZ0VLQV9JLUFBb093ajRMQ0l6cnFkenM3NmJZMGdFS0FfSS1BQW9Pd2o0TENJUFNuOGpBbmRYYnNRRUtBX0ktQUFvT3dqNExDSXZEcXZidW9jamp6UUVLQV9JLUFBb093ajRMQ05HSXFzZVM5cUR2cFFFS0FfSS1BQW9Pd2o0TENNT2o4T3FwMVpIWDJBRUtBX0ktQUFvT3dqNExDSnJacHYyYzhfcW10d0VLQV9JLUFBb053ajRLQ1BmRGpKaTZzXy1ZUVJJVUFBSUVCZ2dLREE0UUVoUVdHQm9jSGlBaUpDWWFCQWdBRUFFYUJBZ0NFQU1hQkFnRUVBVWFCQWdHRUFjYUJBZ0lFQWthQkFnS0VBc2FCQWdNRUEwYUJBZ09FQThhQkFnUUVCRWFCQWdTRUJNYUJBZ1VFQlVhQkFnV0VCY2FCQWdZRUJrYUJBZ2FFQnNhQkFnY0VCMGFCQWdlRUI4YUJBZ2dFQ0VhQkFnaUVDTWFCQWdrRUNVYUJBZ21FQ2NxRkFBQ0JBWUlDZ3dPRUJJVUZoZ2FIQjRnSWlRbWoPd2F0Y2gtbmV4dC1mZWVk
-top_comments:
-  count: 2900
-  items: []
-  ctoken: Eg0SC25GREJ4QlVmRTc0GAYyJSIRIgtuRkRCeEJVZkU3NDAAeAJCEGNvbW1lbnRzLXNlY3Rpb24%3D
-latest_comments:
-  count: 2900
-  items: []
-  ctoken: Eg0SC25GREJ4QlVmRTc0GAYyOCIRIgtuRkRCeEJVZkU3NDABeAIwAUIhZW5nYWdlbWVudC1wYW5lbC1jb21tZW50cy1zZWN0aW9u
+VideoDetails(
+  id: "nFDBxBUfE74",
+  title: "The Prepper PC",
+  description: RichText([
+    Text("Thanks to Jackery for sponsoring today\'s video! Check out Jackery\'s Solar Generator 2000 Pro and get 10% off with code LinusTechTips at "),
+    Web(
+      text: "https://lmg.gg/SG2000PROLTT",
+      url: "https://lmg.gg/SG2000PROLTT",
+    ),
+    Text("\n\nThese days, you can game almost anywhere on the planet, anytime. But what if that planet was in the middle of an apocalypse? After you’ve stashed years of food, water, and toilet paper away, how will you pass the time? With this PC, you can be prepared to game until the whole mess to sort itself out. \n\nDiscuss on the forum: "),
+    Web(
+      text: "https://linustechtips.com/topic/14554...",
+      url: "https://linustechtips.com/topic/1455447-the-prepper-pc-sponsored/",
+    ),
+    Text("\n\nBuy a Jackery Solar Generator 2000 Pro: "),
+    Web(
+      text: "https://geni.us/034L",
+      url: "https://geni.us/034L",
+    ),
+    Text("\n\nBuy a Jackery Explorer 2000 Pro: "),
+    Web(
+      text: "https://lmg.gg/1dyF4",
+      url: "https://lmg.gg/1dyF4",
+    ),
+    Text("\n\nBuy a Seasonic Fanless TX: "),
+    Web(
+      text: "https://geni.us/S0Wt76G",
+      url: "https://geni.us/S0Wt76G",
+    ),
+    Text("\n\nBuy an Intel Core i3 (12th Gen) i3-12100: "),
+    Web(
+      text: "https://geni.us/hLZvxa",
+      url: "https://geni.us/hLZvxa",
+    ),
+    Text("\n\nBuy an RTX 3050: "),
+    Web(
+      text: "https://geni.us/6A6hl",
+      url: "https://geni.us/6A6hl",
+    ),
+    Text("\n\nBuy an RX 6500XT: "),
+    Web(
+      text: "https://geni.us/fUF1p",
+      url: "https://geni.us/fUF1p",
+    ),
+    Text("\n\nPurchases made through some store links may provide some compensation to Linus Media Group.\n\n► GET MERCH: "),
+    Web(
+      text: "https://lttstore.com",
+      url: "https://lttstore.com/",
+    ),
+    Text("\n► SUPPORT US ON FLOATPLANE: "),
+    Web(
+      text: "https://www.floatplane.com/ltt",
+      url: "https://www.floatplane.com/ltt",
+    ),
+    Text("\n► AFFILIATES, SPONSORS & REFERRALS: "),
+    Web(
+      text: "https://lmg.gg/sponsors",
+      url: "https://lmg.gg/sponsors",
+    ),
+    Text("\n► PODCAST GEAR: "),
+    Web(
+      text: "https://lmg.gg/podcastgear",
+      url: "https://lmg.gg/podcastgear",
+    ),
+    Text("\n\n\nFOLLOW US \n---------------------------------------------------  \nTwitter: "),
+    Web(
+      text: "https://twitter.com/linustech",
+      url: "https://twitter.com/linustech",
+    ),
+    Text("\nFacebook: "),
+    Web(
+      text: "http://www.facebook.com/LinusTech",
+      url: "http://www.facebook.com/LinusTech",
+    ),
+    Text("\nInstagram: "),
+    Web(
+      text: "https://www.instagram.com/linustech",
+      url: "https://www.instagram.com/linustech",
+    ),
+    Text("\nTikTok: "),
+    Web(
+      text: "https://www.tiktok.com/@linustech",
+      url: "https://www.tiktok.com/@linustech",
+    ),
+    Text("\nTwitch: "),
+    Web(
+      text: "https://www.twitch.tv/linustech",
+      url: "https://www.twitch.tv/linustech",
+    ),
+    Text("\n\nMUSIC CREDIT\n---------------------------------------------------\nIntro: Laszlo - Supernova\nVideo Link: "),
+    Video(
+      text: "https://www.youtube.com/watch?v=PKfxm...",
+      id: "PKfxmFU3lWY",
+      start_time: 0,
+    ),
+    Text("\niTunes Download Link: "),
+    Web(
+      text: "https://itunes.apple.com/us/album/sup...",
+      url: "https://itunes.apple.com/us/album/supernova/id936805712",
+    ),
+    Text("\nArtist Link: "),
+    Web(
+      text: "https://soundcloud.com/laszlomusic",
+      url: "https://soundcloud.com/laszlomusic",
+    ),
+    Text("\n\nOutro: Approaching Nirvana - Sugar High\nVideo Link: "),
+    Video(
+      text: "https://www.youtube.com/watch?v=ngsGB...",
+      id: "ngsGBSCDwcI",
+      start_time: 0,
+    ),
+    Text("\nListen on Spotify: "),
+    Web(
+      text: "http://spoti.fi/UxWkUw",
+      url: "http://spoti.fi/UxWkUw",
+    ),
+    Text("\nArtist Link: "),
+    Web(
+      text: "http://www.youtube.com/approachingnir...",
+      url: "http://www.youtube.com/approachingnirvana",
+    ),
+    Text("\n\nIntro animation by MBarek Abdelwassaa "),
+    Web(
+      text: "https://www.instagram.com/mbarek_abdel/",
+      url: "https://www.instagram.com/mbarek_abdel/",
+    ),
+    Text("\nMonitor And Keyboard by vadimmihalkevich / CC BY 4.0  "),
+    Web(
+      text: "https://geni.us/PgGWp",
+      url: "https://geni.us/PgGWp",
+    ),
+    Text("\nMechanical RGB Keyboard by BigBrotherECE / CC BY 4.0 "),
+    Web(
+      text: "https://geni.us/mj6pHk4",
+      url: "https://geni.us/mj6pHk4",
+    ),
+    Text("\nMouse Gamer free Model By Oscar Creativo / CC BY 4.0 "),
+    Web(
+      text: "https://geni.us/Ps3XfE",
+      url: "https://geni.us/Ps3XfE",
+    ),
+    Text("\n\nCHAPTERS\n---------------------------------------------------\n"),
+    Video(
+      text: "0:00",
+      id: "nFDBxBUfE74",
+      start_time: 0,
+    ),
+    Text(" Intro\n"),
+    Video(
+      text: "0:42",
+      id: "nFDBxBUfE74",
+      start_time: 42,
+    ),
+    Text(" The PC Built for Super Efficiency\n"),
+    Video(
+      text: "2:41",
+      id: "nFDBxBUfE74",
+      start_time: 161,
+    ),
+    Text(" Our BURIAL ENCLOSURE?!\n"),
+    Video(
+      text: "3:31",
+      id: "nFDBxBUfE74",
+      start_time: 211,
+    ),
+    Text(" Our Power Solution (Thanks Jackery!)\n"),
+    Video(
+      text: "4:47",
+      id: "nFDBxBUfE74",
+      start_time: 287,
+    ),
+    Text(" Diggin\' Holes\n"),
+    Video(
+      text: "5:30",
+      id: "nFDBxBUfE74",
+      start_time: 330,
+    ),
+    Text(" Colonoscopy?\n"),
+    Video(
+      text: "7:04",
+      id: "nFDBxBUfE74",
+      start_time: 424,
+    ),
+    Text(" Diggin\' like a man\n"),
+    Video(
+      text: "8:29",
+      id: "nFDBxBUfE74",
+      start_time: 509,
+    ),
+    Text(" The world\'s worst woodsman\n"),
+    Video(
+      text: "9:03",
+      id: "nFDBxBUfE74",
+      start_time: 543,
+    ),
+    Text(" Backyard cable management\n"),
+    Video(
+      text: "10:02",
+      id: "nFDBxBUfE74",
+      start_time: 602,
+    ),
+    Text(" Time to bury this boy\n"),
+    Video(
+      text: "10:46",
+      id: "nFDBxBUfE74",
+      start_time: 646,
+    ),
+    Text(" Solar Power Generation\n"),
+    Video(
+      text: "11:37",
+      id: "nFDBxBUfE74",
+      start_time: 697,
+    ),
+    Text(" Issues\n"),
+    Video(
+      text: "12:08",
+      id: "nFDBxBUfE74",
+      start_time: 728,
+    ),
+    Text(" First Play Test\n"),
+    Video(
+      text: "13:20",
+      id: "nFDBxBUfE74",
+      start_time: 800,
+    ),
+    Text(" Conclusion"),
+  ]),
+  channel: Channel(
+    id: "UCXuqSBlHAE6Xw-yeJA0Tunw",
+    name: "Linus Tech Tips",
+    avatar: [
+      Thumbnail(
+        url: "https://yt3.ggpht.com/ytc/AMLnZu_qOpMK0tGNMCnReaXVp4ZvmNEIXn9eKeBGA_x-wQ=s48-c-k-c0x00ffffff-no-rj",
+        width: 48,
+        height: 48,
+      ),
+      Thumbnail(
+        url: "https://yt3.ggpht.com/ytc/AMLnZu_qOpMK0tGNMCnReaXVp4ZvmNEIXn9eKeBGA_x-wQ=s88-c-k-c0x00ffffff-no-rj",
+        width: 88,
+        height: 88,
+      ),
+      Thumbnail(
+        url: "https://yt3.ggpht.com/ytc/AMLnZu_qOpMK0tGNMCnReaXVp4ZvmNEIXn9eKeBGA_x-wQ=s176-c-k-c0x00ffffff-no-rj",
+        width: 176,
+        height: 176,
+      ),
+    ],
+    verification: verified,
+    subscriber_count: Some(14800000),
+  ),
+  view_count: 971966,
+  like_count: Some(48244),
+  publish_date: "[date]",
+  publish_date_txt: "Sep 15, 2022",
+  is_live: false,
+  is_ccommons: false,
+  chapters: [
+    Chapter(
+      title: "Intro",
+      position: 0,
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_21033.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAmmyeYGHR0QO9bfiyG8wi6Fx7u0Q",
+          width: 168,
+          height: 94,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_21033.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBZjQ8_J5DoEAgMpb_i5sUoyEMshQ",
+          width: 336,
+          height: 188,
+        ),
+      ],
+    ),
+    Chapter(
+      title: "The PC Built for Super Efficiency",
+      position: 42,
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_48966.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDMN7dzaxkOj8ZSt6KGWOfT_8KJvA",
+          width: 168,
+          height: 94,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_48966.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBEZHXfcB7KJDcnXTsexgiUJY4deA",
+          width: 336,
+          height: 188,
+        ),
+      ],
+    ),
+    Chapter(
+      title: "Our BURIAL ENCLOSURE?!",
+      position: 161,
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_174200.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBvlIKOf9tcaY8EgfKfZj1Q40bqGQ",
+          width: 168,
+          height: 94,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_174200.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA3i-ScJUoziKrq-ueqEMdZ2tGbRw",
+          width: 336,
+          height: 188,
+        ),
+      ],
+    ),
+    Chapter(
+      title: "Our Power Solution (Thanks Jackery!)",
+      position: 211,
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_220133.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAK5GUZQAAMtqWx5Fze83eMpnjLqQ",
+          width: 168,
+          height: 94,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_220133.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLD74wnlR8O1Kj8dt-iCTVaH_uRU8A",
+          width: 336,
+          height: 188,
+        ),
+      ],
+    ),
+    Chapter(
+      title: "Diggin\' Holes",
+      position: 287,
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_294133.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBjfUA0SElEdDWo1IdwQtAUtmzdFw",
+          width: 168,
+          height: 94,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_294133.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDf6v3P4Zga6qUvkQoWBnGb-78dMg",
+          width: 336,
+          height: 188,
+        ),
+      ],
+    ),
+    Chapter(
+      title: "Colonoscopy?",
+      position: 330,
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_345200.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCowt21lmy7hLyI3S76DP0eZoT9kQ",
+          width: 168,
+          height: 94,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_345200.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAxnuCwW20aOFQ7SHwiC6myAYWNLw",
+          width: 336,
+          height: 188,
+        ),
+      ],
+    ),
+    Chapter(
+      title: "Diggin\' like a man",
+      position: 424,
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_429866.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDeFblsML6kbtgHHcHneV7VQ75E4Q",
+          width: 168,
+          height: 94,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_429866.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBO-DBqtlrta4RTcIR8QoCHlWOQdw",
+          width: 336,
+          height: 188,
+        ),
+      ],
+    ),
+    Chapter(
+      title: "The world\'s worst woodsman",
+      position: 509,
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_532633.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDWZ2K0eHEscA9uWojhnYZ9nY3FYw",
+          width: 168,
+          height: 94,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_532633.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDOQkDs7G4VjuG21yr0bFy9J3Q8-Q",
+          width: 336,
+          height: 188,
+        ),
+      ],
+    ),
+    Chapter(
+      title: "Backyard cable management",
+      position: 543,
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_559066.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDltGVkjJWqSJcAXdDy_GufUYZq9A",
+          width: 168,
+          height: 94,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_559066.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCyNJC3-9UQs2w7NQQF2UpRO5t2yg",
+          width: 336,
+          height: 188,
+        ),
+      ],
+    ),
+    Chapter(
+      title: "Time to bury this boy",
+      position: 602,
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_613266.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB5WdMrAdFYrQ5peYU3ghlOkaqEFQ",
+          width: 168,
+          height: 94,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_613266.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLClHhDbgoec3YIkHXv1NEPXdDxOhA",
+          width: 336,
+          height: 188,
+        ),
+      ],
+    ),
+    Chapter(
+      title: "Solar Power Generation",
+      position: 646,
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_650400.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCMNjDjMpEhOMXzz3UdZrCPHUHlFQ",
+          width: 168,
+          height: 94,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_650400.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAaJQs-GxzJyktP8N2aeNJd4l6L6w",
+          width: 336,
+          height: 188,
+        ),
+      ],
+    ),
+    Chapter(
+      title: "Issues",
+      position: 697,
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_700033.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCnECVciPbJCNBo-JhF1QHomMdb_A",
+          width: 168,
+          height: 94,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_700033.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDdKP3Xv7CTaTnBHg6cjjCKk8IOmQ",
+          width: 336,
+          height: 188,
+        ),
+      ],
+    ),
+    Chapter(
+      title: "First Play Test",
+      position: 728,
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_739100.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAJM_EisMsPVqux3KDPVfEvbfklwg",
+          width: 168,
+          height: 94,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_739100.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCu8KYJ2191j3IdS2H_pQVj2o8-pg",
+          width: 336,
+          height: 188,
+        ),
+      ],
+    ),
+    Chapter(
+      title: "Conclusion",
+      position: 800,
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_809966.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD_pefi9LhK027Rozo_QuijeF7WVg",
+          width: 168,
+          height: 94,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/nFDBxBUfE74/hqdefault_809966.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBQI_dV0HrlypUb8WjbZvyV1xC9Ug",
+          width: 336,
+          height: 188,
+        ),
+      ],
+    ),
+  ],
+  recommended: Paginator(
+    count: None,
+    items: [
+      RecommendedVideo(
+        id: "AOdp09SYhCc",
+        title: "This Is So Embarrassing!",
+        length: Some(1063),
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/AOdp09SYhCc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBfBYl-n346B6prZx03Mm7Ww5KNzQ",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/AOdp09SYhCc/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDA-OCr7vnZg2V7H6jeLE7wwLnDgg",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: Channel(
+          id: "UCXuqSBlHAE6Xw-yeJA0Tunw",
+          name: "Linus Tech Tips",
+          avatar: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ytc/AMLnZu_qOpMK0tGNMCnReaXVp4ZvmNEIXn9eKeBGA_x-wQ=s68-c-k-c0x00ffffff-no-rj",
+              width: 68,
+              height: 68,
+            ),
+          ],
+          verification: verified,
+          subscriber_count: None,
+        ),
+        publish_date: "[date]",
+        publish_date_txt: Some("2 days ago"),
+        view_count: Some(1862544),
+        is_live: false,
+      ),
+      RecommendedVideo(
+        id: "CY3OQh-7wIk",
+        title: "The Computer I Would Actually BUY",
+        length: Some(6478),
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/CY3OQh-7wIk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBIWrkhu20Ak_TnmZIE4ZNnwwJjxg",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/CY3OQh-7wIk/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCbsmb0Vmoe-pLt7oQEckJEfjkbBA",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: Channel(
+          id: "UCXuqSBlHAE6Xw-yeJA0Tunw",
+          name: "Linus Tech Tips",
+          avatar: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ytc/AMLnZu_qOpMK0tGNMCnReaXVp4ZvmNEIXn9eKeBGA_x-wQ=s68-c-k-c0x00ffffff-no-rj",
+              width: 68,
+              height: 68,
+            ),
+          ],
+          verification: verified,
+          subscriber_count: None,
+        ),
+        publish_date: "[date]",
+        publish_date_txt: Some("Streamed 8 days ago"),
+        view_count: Some(946996),
+        is_live: false,
+      ),
+      RecommendedVideo(
+        id: "LQ95XJAwaoc",
+        title: "My favorite car (sucks)",
+        length: Some(1162),
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/LQ95XJAwaoc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCipJpt-2zTzIpJu3bTaXsTai4Avw",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/LQ95XJAwaoc/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAjDEaMiMoEn-t2dMFZ4k44KLWfjg",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: Channel(
+          id: "UCdBK94H6oZT2Q7l0-b0xmMg",
+          name: "ShortCircuit",
+          avatar: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ytc/AMLnZu_-v2bzQCks3k_MHJNya5J_TSVpMevRw2-axtLX=s68-c-k-c0x00ffffff-no-rj",
+              width: 68,
+              height: 68,
+            ),
+          ],
+          verification: verified,
+          subscriber_count: None,
+        ),
+        publish_date: "[date]",
+        publish_date_txt: Some("1 day ago"),
+        view_count: Some(349251),
+        is_live: false,
+      ),
+      RecommendedVideo(
+        id: "mhMQeJ5Qmp0",
+        title: "The Apple Newton MessagePad.",
+        length: Some(758),
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/mhMQeJ5Qmp0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBUv25424vMzv7t_u2JaFGBUFyzLQ",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/mhMQeJ5Qmp0/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLATdaF71jZM3yd4Co_d9_UmC6micw",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: Channel(
+          id: "UC7Jwj9fkrf1adN4fMmTkpug",
+          name: "DankPods",
+          avatar: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ytc/AMLnZu-H36qfi9rEsGTFYSWZQW-uocexE1SgkSBT8PGQ=s68-c-k-c0x00ffffff-no-rj",
+              width: 68,
+              height: 68,
+            ),
+          ],
+          verification: verified,
+          subscriber_count: None,
+        ),
+        publish_date: "[date]",
+        publish_date_txt: Some("1 day ago"),
+        view_count: Some(375458),
+        is_live: false,
+      ),
+      RecommendedVideo(
+        id: "1ctXiZsN6ac",
+        title: "The Reviewer Got Reviewed  - WAN Show September 9, 2022",
+        length: Some(10265),
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/1ctXiZsN6ac/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD9wu_ZcDUUeXLmcHsQlyFk2ZGz8w",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/1ctXiZsN6ac/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCuI3gkjk86RgW4EjBNMlpeccMEvA",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: Channel(
+          id: "UCXuqSBlHAE6Xw-yeJA0Tunw",
+          name: "Linus Tech Tips",
+          avatar: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ytc/AMLnZu_qOpMK0tGNMCnReaXVp4ZvmNEIXn9eKeBGA_x-wQ=s68-c-k-c0x00ffffff-no-rj",
+              width: 68,
+              height: 68,
+            ),
+          ],
+          verification: verified,
+          subscriber_count: None,
+        ),
+        publish_date: "[date]",
+        publish_date_txt: Some("Streamed 6 days ago"),
+        view_count: Some(734463),
+        is_live: false,
+      ),
+      RecommendedVideo(
+        id: "CMR9z9Xr8GM",
+        title: "Storing Solar Power on my ROOF!!!",
+        length: Some(1028),
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/CMR9z9Xr8GM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDHV3LspFbeyp3aKgDaga_48rKnhg",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/CMR9z9Xr8GM/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB6dG3UPlxhqAzbffiDLpwkmeJrBg",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: Channel(
+          id: "UCKd49wwdEdIoM-7Fumhwmog",
+          name: "Quint BUILDs",
+          avatar: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ytc/AMLnZu9HOVbazftNLzJ_0Lo6B1OLAgVnL3tQyRlLoaOTww=s68-c-k-c0x00ffffff-no-rj",
+              width: 68,
+              height: 68,
+            ),
+          ],
+          verification: verified,
+          subscriber_count: None,
+        ),
+        publish_date: "[date]",
+        publish_date_txt: Some("11 months ago"),
+        view_count: Some(2773698),
+        is_live: false,
+      ),
+      RecommendedVideo(
+        id: "fT2KhJ8W-Kg",
+        title: "How gas pumps know when to turn themselves off",
+        length: Some(836),
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/fT2KhJ8W-Kg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAtidUhcZzKU4a3ojinamyCP33ing",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/fT2KhJ8W-Kg/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAzxlBmAaQDQCHOPUG3AmspQLOeQA",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: Channel(
+          id: "UCEIwxahdLz7bap-VDs9h35A",
+          name: "Steve Mould",
+          avatar: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/_BsIQ_sNpOtu2c9BNGSfGFpNTSwLPTzJpL774Q1v85Sc-uitgp8ouwljeN_6YtDlULLaGFY_6nM=s68-c-k-c0x00ffffff-no-rj",
+              width: 68,
+              height: 68,
+            ),
+          ],
+          verification: verified,
+          subscriber_count: None,
+        ),
+        publish_date: "[date]",
+        publish_date_txt: Some("8 hours ago"),
+        view_count: Some(219605),
+        is_live: false,
+      ),
+      RecommendedVideo(
+        id: "12Hcbx33Rb4",
+        title: "BREAKING NEWS! - EVGA will no longer do business with NVIDIA",
+        length: Some(1262),
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/12Hcbx33Rb4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAM7iCw78-SfuzT5AgSv6ACOVDelQ",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/12Hcbx33Rb4/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBRg70nktuCj2lIqIFqDTgEhu3lJA",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: Channel(
+          id: "UCkWQ0gDrqOCarmUKmppD7GQ",
+          name: "JayzTwoCents",
+          avatar: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/EAJTcRmRdv3plIT4zRJlyWRnf4cS_zVt6YVtSZ39hQ4ryApK0ZPLEi0YFKdW-eCy6X0CATq9=s68-c-k-c0x00ffffff-no-rj",
+              width: 68,
+              height: 68,
+            ),
+          ],
+          verification: verified,
+          subscriber_count: None,
+        ),
+        publish_date: "[date]",
+        publish_date_txt: Some("4 hours ago"),
+        view_count: Some(145345),
+        is_live: false,
+      ),
+      RecommendedVideo(
+        id: "QW1SsqmaIuE",
+        title: "I Surprised My Subscriber with his Dream Gaming Setup! - Season 8",
+        length: Some(2177),
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/QW1SsqmaIuE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLArhaU2nMbylc2HtPaCCFwJmbFduQ",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/QW1SsqmaIuE/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCnQN_nO0yOVu9HrphD4jzUEelWbg",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: Channel(
+          id: "UChIZGfcnjHI0DG4nweWEduw",
+          name: "TechSource",
+          avatar: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ytc/AMLnZu_kEO6DQNY3n-hw1-mYfBvEf_oqyShBJ2p07ql-=s68-c-k-c0x00ffffff-no-rj",
+              width: 68,
+              height: 68,
+            ),
+          ],
+          verification: verified,
+          subscriber_count: None,
+        ),
+        publish_date: "[date]",
+        publish_date_txt: Some("6 hours ago"),
+        view_count: Some(50033),
+        is_live: false,
+      ),
+      RecommendedVideo(
+        id: "JAcSNL1T3OA",
+        title: "Why Did I Drill 1756 Holes in This?",
+        length: Some(1293),
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/JAcSNL1T3OA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAVN2pIRLDii6QneiJiH7SuohQLLw",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/JAcSNL1T3OA/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAcWDCxSwKzsg9kxKFfmOa2yJmFMQ",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: Channel(
+          id: "UCVveEFTOd6khhSXXnRhxJmg",
+          name: "Fireball Tool",
+          avatar: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ytc/AMLnZu-GLwhEAzZm8ig6-gfJOLm9_3IhWa6D3eDMpi6_=s68-c-k-c0x00ffffff-no-rj",
+              width: 68,
+              height: 68,
+            ),
+          ],
+          verification: none,
+          subscriber_count: None,
+        ),
+        publish_date: "[date]",
+        publish_date_txt: Some("1 month ago"),
+        view_count: Some(1163652),
+        is_live: false,
+      ),
+      RecommendedVideo(
+        id: "ZVtOss1U7_s",
+        title: "VW Beetle converted to electric in a day",
+        length: Some(826),
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/ZVtOss1U7_s/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD4hPp1mBczpO6sO6vWdZQYakxwyg",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/ZVtOss1U7_s/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDufQtJhG_a0ZCmjhUOn1d7Uqp1KQ",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: Channel(
+          id: "UCq1Oqk1I7zeYlDiJTFWLoFA",
+          name: "Electric Classic Cars",
+          avatar: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ytc/AMLnZu8sclYSJWJsD30xRnuUpCCF0c-TGi8XL_3tqqDG=s68-c-k-c0x00ffffff-no-rj",
+              width: 68,
+              height: 68,
+            ),
+          ],
+          verification: none,
+          subscriber_count: None,
+        ),
+        publish_date: "[date]",
+        publish_date_txt: Some("1 year ago"),
+        view_count: Some(3266169),
+        is_live: false,
+      ),
+      RecommendedVideo(
+        id: "2kJDTzFtUr4",
+        title: "How ASML, TSMC And Intel Dominate The Chip Market | CNBC Marathon",
+        length: Some(3399),
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/2kJDTzFtUr4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA6X3e701I0PwLNZJamLICU4oJsxg",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/2kJDTzFtUr4/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDdPU3aU4BrLdnlimipOmQhWJDaqQ",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: Channel(
+          id: "UCvJJ_dzjViJCoLf5uKUTwoA",
+          name: "CNBC",
+          avatar: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ytc/AMLnZu83DuXBoQ5FLFkw5W5-MkVn6Q4vFnKBPwXcsMOMuLg=s68-c-k-c0x00ffffff-no-rj",
+              width: 68,
+              height: 68,
+            ),
+          ],
+          verification: verified,
+          subscriber_count: None,
+        ),
+        publish_date: "[date]",
+        publish_date_txt: Some("2 weeks ago"),
+        view_count: Some(678935),
+        is_live: false,
+      ),
+      RecommendedVideo(
+        id: "0rCbfsuKdYw",
+        title: "I bought every Playstation Ever.",
+        length: Some(1046),
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/0rCbfsuKdYw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAQvrfQzF3A7fsTrp6uVnunsFrjIA",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/0rCbfsuKdYw/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDYcWPqEmFi0iO4EJF3JG3aGfJVUQ",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: Channel(
+          id: "UCMiJRAwDNSNzuYeN2uWa0pA",
+          name: "Mrwhosetheboss",
+          avatar: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/Ikb1C4ih2VMvfjma8OO5b39JnHL2CQcQgksB_I7TM-gGA3ERTY589OeLKCYyRQQO0nkE54-f=s68-c-k-c0x00ffffff-no-rj",
+              width: 68,
+              height: 68,
+            ),
+          ],
+          verification: verified,
+          subscriber_count: None,
+        ),
+        publish_date: "[date]",
+        publish_date_txt: Some("3 weeks ago"),
+        view_count: Some(7569956),
+        is_live: false,
+      ),
+      RecommendedVideo(
+        id: "sbdU7AkH6QM",
+        title: "Reviewing Free Energy Generators.  A Response to My Video \"Nikola Tesla\'s Greatest Invention\"- 102",
+        length: Some(1387),
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/sbdU7AkH6QM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBDpUTKGdp0-KWb06jcJ1nBcyO6Dw",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/sbdU7AkH6QM/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDVfzVoRh9SthIHGklp2Ij782LEJQ",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: Channel(
+          id: "UC_SLthyNX_ivd-dmsFgmJVg",
+          name: "Jeremy Fielding",
+          avatar: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ytc/AMLnZu8vtUASbFcQI_Cz6KD8vTQ0qSGz5SqddjTk9qHhWg=s68-c-k-c0x00ffffff-no-rj",
+              width: 68,
+              height: 68,
+            ),
+          ],
+          verification: verified,
+          subscriber_count: None,
+        ),
+        publish_date: "[date]",
+        publish_date_txt: Some("5 months ago"),
+        view_count: Some(3374461),
+        is_live: false,
+      ),
+      RecommendedVideo(
+        id: "zcchDu7KoYs",
+        title: "AMD’s Victory Lap - HOLY $H!T Threadripper Pro 5995WX",
+        length: Some(872),
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/zcchDu7KoYs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAo1iXQgQA0Vdil-2ka_mG7maCGMg",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/zcchDu7KoYs/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAvURFTf6Gc_GYSnwoy9P__dcN7Jg",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: Channel(
+          id: "UCXuqSBlHAE6Xw-yeJA0Tunw",
+          name: "Linus Tech Tips",
+          avatar: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ytc/AMLnZu_qOpMK0tGNMCnReaXVp4ZvmNEIXn9eKeBGA_x-wQ=s68-c-k-c0x00ffffff-no-rj",
+              width: 68,
+              height: 68,
+            ),
+          ],
+          verification: verified,
+          subscriber_count: None,
+        ),
+        publish_date: "[date]",
+        publish_date_txt: Some("5 days ago"),
+        view_count: Some(1322625),
+        is_live: false,
+      ),
+      RecommendedVideo(
+        id: "pd6DsSjqhFE",
+        title: "Top Gear Satisfaction Survey Compilation",
+        length: Some(986),
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/pd6DsSjqhFE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA5XluAGur-H4y64PT8dtddYidDfQ",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/pd6DsSjqhFE/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCmzY4go1UeDgQ--BsRlRrhWd2gQw",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: Channel(
+          id: "UCupQghOyPai8Hxg4RqMERvA",
+          name: "incT",
+          avatar: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ytc/AMLnZu9n19hlUYOQdp4kSQ9LiTGZyinryz6elP1bxeETSQ=s68-c-k-c0x00ffffff-no-rj",
+              width: 68,
+              height: 68,
+            ),
+          ],
+          verification: none,
+          subscriber_count: None,
+        ),
+        publish_date: "[date]",
+        publish_date_txt: Some("3 weeks ago"),
+        view_count: Some(255945),
+        is_live: false,
+      ),
+      RecommendedVideo(
+        id: "2K5Gqp1cEcM",
+        title: "Why our Screwdriver took 3 YEARS",
+        length: Some(1752),
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/2K5Gqp1cEcM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBVNWWFKgajHVbNYGFdRXXNTH7aEg",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/2K5Gqp1cEcM/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDYOzwylXexN6WLLy3V9tTufSusBA",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: Channel(
+          id: "UCXuqSBlHAE6Xw-yeJA0Tunw",
+          name: "Linus Tech Tips",
+          avatar: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ytc/AMLnZu_qOpMK0tGNMCnReaXVp4ZvmNEIXn9eKeBGA_x-wQ=s68-c-k-c0x00ffffff-no-rj",
+              width: 68,
+              height: 68,
+            ),
+          ],
+          verification: verified,
+          subscriber_count: None,
+        ),
+        publish_date: "[date]",
+        publish_date_txt: Some("2 weeks ago"),
+        view_count: Some(2930532),
+        is_live: false,
+      ),
+      RecommendedVideo(
+        id: "t03rmc-prJo",
+        title: "This PC took 600 HOURS to Build!",
+        length: Some(1505),
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/t03rmc-prJo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDCfqUXpZWf6Gv320YOu1UW02Sv5Q",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/t03rmc-prJo/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB_ZD3qCWvQ96x3iwVAOfHiCODZLg",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: Channel(
+          id: "UCXuqSBlHAE6Xw-yeJA0Tunw",
+          name: "Linus Tech Tips",
+          avatar: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ytc/AMLnZu_qOpMK0tGNMCnReaXVp4ZvmNEIXn9eKeBGA_x-wQ=s68-c-k-c0x00ffffff-no-rj",
+              width: 68,
+              height: 68,
+            ),
+          ],
+          verification: verified,
+          subscriber_count: None,
+        ),
+        publish_date: "[date]",
+        publish_date_txt: Some("12 days ago"),
+        view_count: Some(2743664),
+        is_live: false,
+      ),
+      RecommendedVideo(
+        id: "QTH9m6MDIfc",
+        title: "One Year Ago I Built an Ecosystem, This Happened",
+        length: Some(485),
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/QTH9m6MDIfc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD3ZF3LguKP_5_qUVgX3_FXSA6ABA",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/QTH9m6MDIfc/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB9o3FZCk-tXsE-oLvR7f7BTomz7g",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: Channel(
+          id: "UCYmna5rFHIesFteksAvFOfg",
+          name: "Dr. Plants",
+          avatar: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/R6sNFqB8QcQPwJvWlQ1q0zKVmszFfHBY_PGBhA7WT9enPBN6GgkOo2sKzF-3PEdSUQ2Vs2Ugwg=s68-c-k-c0x00ffffff-no-rj",
+              width: 68,
+              height: 68,
+            ),
+          ],
+          verification: verified,
+          subscriber_count: None,
+        ),
+        publish_date: "[date]",
+        publish_date_txt: Some("3 weeks ago"),
+        view_count: Some(7958495),
+        is_live: false,
+      ),
+    ],
+    ctoken: Some("CBQSExILbkZEQnhCVWZFNzTAAQHIAQEYACqkBjJzNkw2d3pVQkFyUkJBb0Q4ajRBQ2d6Q1Bna0lwNGppcEwyNjJuTUtBX0ktQUFvTndqNEtDSW1CN18yaHlQUEdDUW9EOGo0QUNnM0NQZ29JaDlYQmdjbXIzb2N0Q2dQeVBnQUtEc0ktQ3dpZHRjTHlpWV9FaVpvQkNnUHlQZ0FLRHNJLUN3aW4wN2ZZbWZIVjVkVUJDZ1B5UGdBS0RjSS1DZ2pqNEstdl9ibWY0Z2dLQV9JLUFBb053ajRLQ0tqeDJfakowT0tlZlFvRDhqNEFDZzdDUGdzSXZvdmQ3X0dOOTdEWEFRb0Q4ajRBQ2czQ1Bnb0k0Y1hvektyVzFMWkJDZ1B5UGdBS0RjSS1DZ2pndWNfcXk4YkVneVFLQV9JLUFBb053ajRLQ1B2ZjAtcXMxdE90WlFvRDhqNEFDaUhTUGg0S0hGSkVRMDFWUTFoMWNWTkNiRWhCUlRaWWR5MTVaVXBCTUZSMWJuY0tBX0ktQUFvT3dqNExDTDZsdFl2ejZaQ2gyZ0VLQV9JLUFBb093ajRMQ0l6cnFkenM3NmJZMGdFS0FfSS1BQW9Pd2o0TENJUFNuOGpBbmRYYnNRRUtBX0ktQUFvT3dqNExDSXZEcXZidW9jamp6UUVLQV9JLUFBb093ajRMQ05HSXFzZVM5cUR2cFFFS0FfSS1BQW9Pd2o0TENNT2o4T3FwMVpIWDJBRUtBX0ktQUFvT3dqNExDSnJacHYyYzhfcW10d0VLQV9JLUFBb053ajRLQ1BmRGpKaTZzXy1ZUVJJVUFBSUVCZ2dLREE0UUVoUVdHQm9jSGlBaUpDWWFCQWdBRUFFYUJBZ0NFQU1hQkFnRUVBVWFCQWdHRUFjYUJBZ0lFQWthQkFnS0VBc2FCQWdNRUEwYUJBZ09FQThhQkFnUUVCRWFCQWdTRUJNYUJBZ1VFQlVhQkFnV0VCY2FCQWdZRUJrYUJBZ2FFQnNhQkFnY0VCMGFCQWdlRUI4YUJBZ2dFQ0VhQkFnaUVDTWFCQWdrRUNVYUJBZ21FQ2NxRkFBQ0JBWUlDZ3dPRUJJVUZoZ2FIQjRnSWlRbWoPd2F0Y2gtbmV4dC1mZWVk"),
+  ),
+  top_comments: Paginator(
+    count: Some(2900),
+    items: [],
+    ctoken: Some("Eg0SC25GREJ4QlVmRTc0GAYyJSIRIgtuRkRCeEJVZkU3NDAAeAJCEGNvbW1lbnRzLXNlY3Rpb24%3D"),
+  ),
+  latest_comments: Paginator(
+    count: Some(2900),
+    items: [],
+    ctoken: Some("Eg0SC25GREJ4QlVmRTc0GAYyOCIRIgtuRkRCeEJVZkU3NDABeAIwAUIhZW5nYWdlbWVudC1wYW5lbC1jb21tZW50cy1zZWN0aW9u"),
+  ),
+)
