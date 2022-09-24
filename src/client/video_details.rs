@@ -165,7 +165,9 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                     });
                     (
                         title,
-                        util::parse_numeric(&view_count.video_view_count_renderer.view_count)?,
+                        // view count field contains `No views` if the view count is zero
+                        util::parse_numeric(&view_count.video_view_count_renderer.view_count)
+                            .unwrap_or_default(),
                         // accessibility_data contains no digits if the like count is hidden,
                         // so we ignore parse errors here for now
                         like_btn.and_then(|btn| util::parse_numeric(&btn.accessibility_data).ok()),
@@ -195,6 +197,7 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
             Some(response::video_details::VideoResultsItem::VideoSecondaryInfoRenderer {
                 owner,
                 description,
+                attributed_description,
                 metadata_row_container,
             }) => {
                 let is_ccommons = metadata_row_container
@@ -213,7 +216,12 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                     })
                     .unwrap_or_default();
 
-                (owner.video_owner_renderer, description.into(), is_ccommons)
+                let desc = description
+                    .or(attributed_description)
+                    .unwrap_or_default()
+                    .into();
+
+                (owner.video_owner_renderer, desc, is_ccommons)
             }
             _ => bail!("could not find secondary_info"),
         };
@@ -437,7 +445,7 @@ fn map_recommendations(
                             publish_date_txt: video.published_time_text,
                             view_count: video
                                 .view_count_text
-                                .and_then(|txt| util::parse_numeric_or_warn(&txt, &mut warnings)),
+                                .map(|txt| util::parse_numeric(&txt).unwrap_or_default()),
                             is_live: video.badges.is_live(),
                         }),
                         Err(e) => {
@@ -549,9 +557,15 @@ fn map_comment(
 
 #[cfg(test)]
 mod tests {
-    use chrono::Datelike;
+    use std::{fs::File, io::BufReader, path::Path};
 
-    use crate::{client::RustyPipe, model::Verification};
+    use chrono::Datelike;
+    use rstest::rstest;
+
+    use crate::{
+        client::{response, MapResponse, RustyPipe},
+        model::{richtext::ToPlaintext, Language, Verification},
+    };
 
     #[tokio::test]
     async fn get_video_details() {
@@ -562,56 +576,12 @@ mod tests {
 
         assert_eq!(details.id, "ZeerrnuLi5E");
         assert_eq!(details.title, "aespa 에스파 'Black Mamba' MV");
-        insta::assert_yaml_snapshot!(details.description, @r###"
-        ---
-        - Text: "🎧Listen and download aespa's debut single \"Black Mamba\": "
-        - Web:
-            text: "https://smarturl.it/aespa_BlackMamba"
-            url: "https://smarturl.it/aespa_BlackMamba"
-        - Text: "\n🐍The Debut Stage "
-        - Video:
-            text: "https://youtu.be/Ky5RT5oGg0w"
-            id: Ky5RT5oGg0w
-            start_time: 0
-        - Text: "\n\n🎟️ aespa Showcase SYNK in LA! Tickets now on sale: "
-        - Web:
-            text: "https://www.ticketmaster.com/event/0A..."
-            url: "https://www.ticketmaster.com/event/0A005CCD9E871F6E"
-        - Text: "\n\nSubscribe to aespa Official YouTube Channel!\n"
-        - Web:
-            text: "https://www.youtube.com/aespa?sub_con..."
-            url: "https://www.youtube.com/aespa?sub_confirmation=1"
-        - Text: "\n\naespa official\n"
-        - Web:
-            text: "https://www.youtube.com/c/aespa"
-            url: "https://www.youtube.com/c/aespa"
-        - Text: "\n"
-        - Web:
-            text: "https://www.instagram.com/aespa_official"
-            url: "https://www.instagram.com/aespa_official"
-        - Text: "\n"
-        - Web:
-            text: "https://www.tiktok.com/@aespa_official"
-            url: "https://www.tiktok.com/@aespa_official"
-        - Text: "\n"
-        - Web:
-            text: "https://twitter.com/aespa_Official"
-            url: "https://twitter.com/aespa_Official"
-        - Text: "\n"
-        - Web:
-            text: "https://www.facebook.com/aespa.official"
-            url: "https://www.facebook.com/aespa.official"
-        - Text: "\n"
-        - Web:
-            text: "https://weibo.com/aespa"
-            url: "https://weibo.com/aespa"
-        - Text: "\n\n"
-        - Text: " "
-        - Text: " "
-        - Text: " "
-        - Text: " "
-        - Text: "\naespa 에스파 'Black Mamba' MV ℗ SM Entertainment"
-        "###);
+        let desc = details.description.to_plaintext();
+        assert!(
+            desc.contains("Listen and download aespa's debut single \"Black Mamba\""),
+            "bad description: {}",
+            desc
+        );
 
         assert_eq!(details.channel.id, "UCEf_Bc-KVd7onSeifS3py9g");
         assert_eq!(details.channel.name, "SMTOWN");
@@ -663,10 +633,8 @@ mod tests {
 
         assert_eq!(details.id, "XuM2onMGvTI");
         assert_eq!(details.title, "Gäa");
-        insta::assert_yaml_snapshot!(details.description, @r###"
-        ---
-        - Text: "Provided to YouTube by Universal Music Group\n\nGäa · Oonagh\n\nBest Of\n\n℗ An Airforce1 Records / We Love Music recording; ℗ 2014 Universal Music GmbH\n\nReleased on: 2020-08-07\n\nProducer, Associated  Performer, Background  Vocalist: Hardy Krech\nProducer: Mark Nissen\nAssociated  Performer, Background  Vocalist: Andreas Fahnert\nAssociated  Performer, Background  Vocalist: Velile Mchunu\nAssociated  Performer, Background  Vocalist: Billy King\nAssociated  Performer, Background  Vocalist: Alex Prince\nAssociated  Performer, Flute: Sandro Friedrich\nProgrammer: Hartmut Krech\nEditor: Severin Zahler\nComposer  Lyricist: Hartmut Krech\nComposer  Lyricist: Mark Nissen\nAuthor: Lukas Hainer\nAuthor: Michael Boden\n\nAuto-generated by YouTube."
-        "###);
+        let desc = details.description.to_plaintext();
+        assert!(desc.contains("Gäa · Oonagh"), "bad description: {}", desc);
 
         assert_eq!(details.channel.id, "UCVGvnqB-5znqPSbMGlhF4Pw");
         assert_eq!(details.channel.name, "Sentamusic");
@@ -719,17 +687,12 @@ mod tests {
             details.title,
             "BahnMining - Pünktlichkeit ist eine Zier (David Kriesel)"
         );
-        insta::assert_yaml_snapshot!(details.description, @r###"
-        ---
-        - Web:
-            text: "https://media.ccc.de/v/36c3-10652-bah..."
-            url: "https://media.ccc.de/v/36c3-10652-bahnmining_-_punktlichkeit_ist_eine_zier"
-        - Text: "\n\n\n\nSeit Anfang 2019 hat David jeden einzelnen Halt jeder einzelnen Zugfahrt auf jedem einzelnen Fernbahnhof in ganz Deutschland systematisch gespeichert. Inklusive Verspätungen und allem drum und dran. Und die werden wir in einem bunten Vortrag erforschen und endlich mal wieder ein bisschen Spaß mit Daten haben.\n\nRechtlicher Hinweis: Es liegt eine schriftliche Genehmigung der Bahn vor, von ihr abgerufene Rohdaten aggregieren und für Vorträge nutzen zu dürfen. Inhaltliche Absprachen oder gar Auflagen existieren nicht.\n\nDie Bahn gibt ihre Verspätungen in \"Prozent pünktlicher Züge pro Monat\" an. Das ist so radikal zusammengefasst, dass man daraus natürlich nichts interessantes lesen kann. Jetzt stellt euch mal vor, man könnte da mal ein bisschen genauer reingucken.\n\nStellt sich raus: Das geht! Davids Datensatz umfasst knapp 25 Millionen Halte - mehr als 50.000 pro Tag. Wir haben die Rohdaten und sind in unserer Betrachtung völlig frei. \n\nDer Vortrag hat wieder mehrere rote Fäden.\n\n 1) Wir vermessen ein fast komplettes Fernverkehrsjahr der deutschen Bahn.   Hier etwas Erwartungsmanagement: Sinn ist keinesfalls Bahn-Bashing oder Sensationsheischerei - wer einen Hassvortrag gegen die Bahn erwartet, ist in dieser Veranstaltung falsch. Wir werden die Daten aber nutzen, um die Bahn einmal ein bisschen kennenzulernen. Die Bahn ist eine riesige Maschine mit Millionen beweglicher Teile. Wie viele Zugfahrten gibt es überhaupt? Was sind die größten Bahnhöfe? Wir werden natürlich auch die unerfreulichen Themen ansprechen, für die sich im Moment viele interessieren: Ist das Problem mit den Zugverspätungen wirklich so schlimm, wie alle sagen? Gibt es Orte und Zeiten, an denen es besonders hapert? Und wo fallen Züge einfach aus?\n\n 2) Es gibt wieder mehrere Blicke über den Tellerrand, wie bei Davids vorherigen Vorträgen auch. Ihr werdet wieder ganz automatisch und nebenher einen allgemeinverständlichen Einblick in die heutige Datenauswerterei bekommen. (Eine verbreitete Verschwörungstheorie sagt, euch zur Auswertung öffentlicher Daten zu inspirieren, wäre sogar der Hauptzweck von Davids Vorträgen. :-) )Die Welt braucht Leute mit Ratio, die Analyse wichtiger als Kreischerei finden. Und darum beschreibt David auch, wie man so ein durchaus aufwändiges Hobbyprojekt technisch angeht, Anfängerfehler vermeidet, und verantwortungsvoll handelt.\n\nDavid Kriesel\n\n"
-        - Web:
-            text: "https://fahrplan.events.ccc.de/congre..."
-            url: "https://fahrplan.events.ccc.de/congress/2019/Fahrplan/events/10652.html"
-        - Text: "\n\n"
-        "###);
+        let desc = details.description.to_plaintext();
+        assert!(
+            desc.contains("Seit Anfang 2019 hat David jeden einzelnen Halt jeder einzelnen Zugfahrt auf jedem einzelnen Fernbahnhof in ganz Deutschland"),
+            "bad description: {}",
+            desc
+        );
 
         assert_eq!(details.channel.id, "UC2TXq_t06Hjdr2g_KdKpHQg");
         assert_eq!(details.channel.name, "media.ccc.de");
@@ -781,190 +744,12 @@ mod tests {
 
         assert_eq!(details.id, "nFDBxBUfE74");
         assert_eq!(details.title, "The Prepper PC");
-        insta::assert_yaml_snapshot!(details.description, @r###"
-        ---
-        - Text: "Thanks to Jackery for sponsoring today's video! Check out Jackery's Solar Generator 2000 Pro and get 10% off with code LinusTechTips at "
-        - Web:
-            text: "https://lmg.gg/SG2000PROLTT"
-            url: "https://lmg.gg/SG2000PROLTT"
-        - Text: "\n\nThese days, you can game almost anywhere on the planet, anytime. But what if that planet was in the middle of an apocalypse? After you’ve stashed years of food, water, and toilet paper away, how will you pass the time? With this PC, you can be prepared to game until the whole mess to sort itself out. \n\nDiscuss on the forum: "
-        - Web:
-            text: "https://linustechtips.com/topic/14554..."
-            url: "https://linustechtips.com/topic/1455447-the-prepper-pc-sponsored/"
-        - Text: "\n\nBuy a Jackery Solar Generator 2000 Pro: "
-        - Web:
-            text: "https://geni.us/034L"
-            url: "https://geni.us/034L"
-        - Text: "\n\nBuy a Jackery Explorer 2000 Pro: "
-        - Web:
-            text: "https://lmg.gg/1dyF4"
-            url: "https://lmg.gg/1dyF4"
-        - Text: "\n\nBuy a Seasonic Fanless TX: "
-        - Web:
-            text: "https://geni.us/S0Wt76G"
-            url: "https://geni.us/S0Wt76G"
-        - Text: "\n\nBuy an Intel Core i3 (12th Gen) i3-12100: "
-        - Web:
-            text: "https://geni.us/hLZvxa"
-            url: "https://geni.us/hLZvxa"
-        - Text: "\n\nBuy an RTX 3050: "
-        - Web:
-            text: "https://geni.us/6A6hl"
-            url: "https://geni.us/6A6hl"
-        - Text: "\n\nBuy an RX 6500XT: "
-        - Web:
-            text: "https://geni.us/fUF1p"
-            url: "https://geni.us/fUF1p"
-        - Text: "\n\nPurchases made through some store links may provide some compensation to Linus Media Group.\n\n► GET MERCH: "
-        - Web:
-            text: "https://lttstore.com"
-            url: "https://lttstore.com/"
-        - Text: "\n► SUPPORT US ON FLOATPLANE: "
-        - Web:
-            text: "https://www.floatplane.com/ltt"
-            url: "https://www.floatplane.com/ltt"
-        - Text: "\n► AFFILIATES, SPONSORS & REFERRALS: "
-        - Web:
-            text: "https://lmg.gg/sponsors"
-            url: "https://lmg.gg/sponsors"
-        - Text: "\n► PODCAST GEAR: "
-        - Web:
-            text: "https://lmg.gg/podcastgear"
-            url: "https://lmg.gg/podcastgear"
-        - Text: "\n\n\nFOLLOW US \n---------------------------------------------------  \nTwitter: "
-        - Web:
-            text: "https://twitter.com/linustech"
-            url: "https://twitter.com/linustech"
-        - Text: "\nFacebook: "
-        - Web:
-            text: "http://www.facebook.com/LinusTech"
-            url: "http://www.facebook.com/LinusTech"
-        - Text: "\nInstagram: "
-        - Web:
-            text: "https://www.instagram.com/linustech"
-            url: "https://www.instagram.com/linustech"
-        - Text: "\nTikTok: "
-        - Web:
-            text: "https://www.tiktok.com/@linustech"
-            url: "https://www.tiktok.com/@linustech"
-        - Text: "\nTwitch: "
-        - Web:
-            text: "https://www.twitch.tv/linustech"
-            url: "https://www.twitch.tv/linustech"
-        - Text: "\n\nMUSIC CREDIT\n---------------------------------------------------\nIntro: Laszlo - Supernova\nVideo Link: "
-        - Video:
-            text: "https://www.youtube.com/watch?v=PKfxm..."
-            id: PKfxmFU3lWY
-            start_time: 0
-        - Text: "\niTunes Download Link: "
-        - Web:
-            text: "https://itunes.apple.com/us/album/sup..."
-            url: "https://itunes.apple.com/us/album/supernova/id936805712"
-        - Text: "\nArtist Link: "
-        - Web:
-            text: "https://soundcloud.com/laszlomusic"
-            url: "https://soundcloud.com/laszlomusic"
-        - Text: "\n\nOutro: Approaching Nirvana - Sugar High\nVideo Link: "
-        - Video:
-            text: "https://www.youtube.com/watch?v=ngsGB..."
-            id: ngsGBSCDwcI
-            start_time: 0
-        - Text: "\nListen on Spotify: "
-        - Web:
-            text: "http://spoti.fi/UxWkUw"
-            url: "http://spoti.fi/UxWkUw"
-        - Text: "\nArtist Link: "
-        - Web:
-            text: "http://www.youtube.com/approachingnir..."
-            url: "http://www.youtube.com/approachingnirvana"
-        - Text: "\n\nIntro animation by MBarek Abdelwassaa "
-        - Web:
-            text: "https://www.instagram.com/mbarek_abdel/"
-            url: "https://www.instagram.com/mbarek_abdel/"
-        - Text: "\nMonitor And Keyboard by vadimmihalkevich / CC BY 4.0  "
-        - Web:
-            text: "https://geni.us/PgGWp"
-            url: "https://geni.us/PgGWp"
-        - Text: "\nMechanical RGB Keyboard by BigBrotherECE / CC BY 4.0 "
-        - Web:
-            text: "https://geni.us/mj6pHk4"
-            url: "https://geni.us/mj6pHk4"
-        - Text: "\nMouse Gamer free Model By Oscar Creativo / CC BY 4.0 "
-        - Web:
-            text: "https://geni.us/Ps3XfE"
-            url: "https://geni.us/Ps3XfE"
-        - Text: "\n\nCHAPTERS\n---------------------------------------------------\n"
-        - Video:
-            text: "0:00"
-            id: nFDBxBUfE74
-            start_time: 0
-        - Text: " Intro\n"
-        - Video:
-            text: "0:42"
-            id: nFDBxBUfE74
-            start_time: 42
-        - Text: " The PC Built for Super Efficiency\n"
-        - Video:
-            text: "2:41"
-            id: nFDBxBUfE74
-            start_time: 161
-        - Text: " Our BURIAL ENCLOSURE?!\n"
-        - Video:
-            text: "3:31"
-            id: nFDBxBUfE74
-            start_time: 211
-        - Text: " Our Power Solution (Thanks Jackery!)\n"
-        - Video:
-            text: "4:47"
-            id: nFDBxBUfE74
-            start_time: 287
-        - Text: " Diggin' Holes\n"
-        - Video:
-            text: "5:30"
-            id: nFDBxBUfE74
-            start_time: 330
-        - Text: " Colonoscopy?\n"
-        - Video:
-            text: "7:04"
-            id: nFDBxBUfE74
-            start_time: 424
-        - Text: " Diggin' like a man\n"
-        - Video:
-            text: "8:29"
-            id: nFDBxBUfE74
-            start_time: 509
-        - Text: " The world's worst woodsman\n"
-        - Video:
-            text: "9:03"
-            id: nFDBxBUfE74
-            start_time: 543
-        - Text: " Backyard cable management\n"
-        - Video:
-            text: "10:02"
-            id: nFDBxBUfE74
-            start_time: 602
-        - Text: " Time to bury this boy\n"
-        - Video:
-            text: "10:46"
-            id: nFDBxBUfE74
-            start_time: 646
-        - Text: " Solar Power Generation\n"
-        - Video:
-            text: "11:37"
-            id: nFDBxBUfE74
-            start_time: 697
-        - Text: " Issues\n"
-        - Video:
-            text: "12:08"
-            id: nFDBxBUfE74
-            start_time: 728
-        - Text: " First Play Test\n"
-        - Video:
-            text: "13:20"
-            id: nFDBxBUfE74
-            start_time: 800
-        - Text: " Conclusion"
-        "###);
+        let desc = details.description.to_plaintext();
+        assert!(
+            desc.contains("These days, you can game almost anywhere on the planet, anytime. But what if that planet was in the middle of an apocalypse"),
+            "bad description: {}",
+            desc
+        );
 
         assert_eq!(details.channel.id, "UCXuqSBlHAE6Xw-yeJA0Tunw");
         assert_eq!(details.channel.name, "Linus Tech Tips");
@@ -1070,31 +855,12 @@ mod tests {
             details.title,
             "🌎 Nasa Live Stream  - Earth From Space :  Live Views from the ISS"
         );
-        insta::assert_yaml_snapshot!(details.description, @r###"
-        ---
-        - Text: "Live NASA - Views Of Earth from Space\nLive video feed of Earth from the International Space Station (ISS) Cameras\n-----------------------------------------------------------------------------------------------------\nWatch our latest video - The Sun - 4K Video / Solar Flares\n"
-        - Video:
-            text: "https://www.youtube.com/watch?v=SEzK4..."
-            id: SEzK4ZfMvUQ
-            start_time: 0
-        - Text: "\n-----------------------------------------------------------------------------------------------------\nNasa ISS live stream from aboard the International Space Station  as it circles the earth at 240 miles above the planet, on the edge of space in low earth orbit. \n\nThe station is crewed by NASA astronauts as well as Russian Cosmonauts and a mixture of Japanese, Canadian and European astronauts as well.\n\n"
-        - Text: " "
-        - Text: " "
-        - Text: " "
-        - Text: " "
-        - Text: "\n\nThe  Expedition 67 Crew are: \n Sergey Korsakov\nOleg Artemyev\nDenis Matveev\nKjell Lindgren\nRobert Hines\nJessica Watkins\nSamantha Cristoforetti\n\nYulia Peresild\nKlim Shipenko - onboard as part of a film.\n\nTHIS WILL SHOW LIVE and  PRE-RECORDED FOOTAGE - depending on signal from the station or if the ISS is on the night side of Earth.\n\nWhen the feed is live the words LIVE NOW will appear in the top left hand corner of the screen.\nAs the Space Station passes into a period of night every 45 mins video is unavailable - during this time, and other breaks in transmission,  recorded footage is shown .\nWhen back in daylight the live stream of earth will recommence\n\nIf you are here to talk about a flat earth then please don't bother. You can stay and watch our beautiful globe earth as it spins in space , but please don't share your nonsense beliefs in our chat.\n\nGot a question about this feed? Read our FAQ's\n"
-        - Web:
-            text: "https://spacevideosfaq.tumblr.com/"
-            url: "https://spacevideosfaq.tumblr.com/"
-        - Text: "\n\nWatch the earth roll by courtesy of the NASA Live cameras\nInternational Space Station Live Feed: Thanks to NASA for this\n"
-        - Web:
-            text: "http://www.nasa.gov"
-            url: "http://www.nasa.gov/"
-        - Text: " The ISS passes into the dark side of the earth for roughly half of each of its 90 minute orbits. During this time no video is available.\n\nMusic by Kevin Macleod \n"
-        - Web:
-            text: "http://incompetech.com/music/royalty-..."
-            url: "http://incompetech.com/music/royalty-free/"
-        "###);
+        let desc = details.description.to_plaintext();
+        assert!(
+            desc.contains("Live NASA - Views Of Earth from Space"),
+            "bad description: {}",
+            desc
+        );
 
         assert_eq!(details.channel.id, "UCakgsb0w7QB0VHdnCc-OVEA");
         assert_eq!(details.channel.name, "Space Videos");
@@ -1236,5 +1002,75 @@ mod tests {
             latest_comments.items.len()
         );
         assert!(!latest_comments.is_exhausted());
+    }
+
+    #[rstest]
+    #[case::mv("mv", "ZeerrnuLi5E")]
+    #[case::music("music", "XuM2onMGvTI")]
+    #[case::ccommons("ccommons", "0rb9CfOvojk")]
+    #[case::chapters("chapters", "nFDBxBUfE74")]
+    #[case::live("live", "86YLFOog4GM")]
+    #[case::agegate("agegate", "HRKu0cvrr_o")]
+    #[case::newdesc("newdesc", "ZeerrnuLi5E")]
+    fn t_map_video_details(#[case] name: &str, #[case] id: &str) {
+        let filename = format!("testfiles/video_details/video_details_{}.json", name);
+        let json_path = Path::new(&filename);
+        let json_file = File::open(json_path).unwrap();
+
+        let details: response::VideoDetails =
+            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let map_res = details.map_response(id, Language::En, None).unwrap();
+
+        assert!(
+            map_res.warnings.is_empty(),
+            "deserialization/mapping warnings: {:?}",
+            map_res.warnings
+        );
+        insta::assert_yaml_snapshot!(format!("map_video_details_{}", name), map_res.c, {
+            ".publish_date" => "[date]",
+            ".recommended.items[].publish_date" => "[date]",
+        });
+    }
+
+    fn t_map_recommendations() {
+        let json_path = Path::new("testfiles/video_details/recommendations.json");
+        let json_file = File::open(json_path).unwrap();
+
+        let recommendations: response::VideoRecommendations =
+            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let map_res = recommendations
+            .map_response("", Language::En, None)
+            .unwrap();
+
+        assert!(
+            map_res.warnings.is_empty(),
+            "deserialization/mapping warnings: {:?}",
+            map_res.warnings
+        );
+        insta::assert_yaml_snapshot!("map_recommendations", map_res.c, {
+            ".items[].publish_date" => "[date]",
+        });
+    }
+
+    #[rstest]
+    #[case::top("top")]
+    #[case::latest("latest")]
+    fn t_map_comments(#[case] name: &str) {
+        let filename = format!("testfiles/video_details/comments_{}.json", name);
+        let json_path = Path::new(&filename);
+        let json_file = File::open(json_path).unwrap();
+
+        let comments: response::VideoComments =
+            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let map_res = comments.map_response("", Language::En, None).unwrap();
+
+        assert!(
+            map_res.warnings.is_empty(),
+            "deserialization/mapping warnings: {:?}",
+            map_res.warnings
+        );
+        insta::assert_yaml_snapshot!(format!("map_comments_{}", name), map_res.c, {
+            ".items[].publish_date" => "[date]",
+        });
     }
 }

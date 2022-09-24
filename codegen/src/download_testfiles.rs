@@ -18,6 +18,8 @@ pub async fn download_testfiles(project_root: &Path) {
         playlist(&testfiles),
         video_details(&testfiles),
         comments_top(&testfiles),
+        comments_latest(&testfiles),
+        recommendations(&testfiles),
         channel_videos(&testfiles),
     );
 }
@@ -159,6 +161,39 @@ async fn comments_top(testfiles: &Path) {
         .video_comments(&details.top_comments.ctoken.unwrap())
         .await
         .unwrap();
+}
+
+async fn comments_latest(testfiles: &Path) {
+    let mut json_path = testfiles.to_path_buf();
+    json_path.push("video_details");
+    json_path.push("comments_latest.json");
+    if json_path.exists() {
+        return;
+    }
+
+    let rp = RustyPipe::new();
+    let details = rp.query().video_details("ZeerrnuLi5E").await.unwrap();
+
+    let rp = rp_testfile(&json_path);
+    rp.query()
+        .video_comments(&details.latest_comments.ctoken.unwrap())
+        .await
+        .unwrap();
+}
+
+async fn recommendations(testfiles: &Path) {
+    let mut json_path = testfiles.to_path_buf();
+    json_path.push("video_details");
+    json_path.push("recommendations.json");
+    if json_path.exists() {
+        return;
+    }
+
+    let rp = RustyPipe::new();
+    let details = rp.query().video_details("ZeerrnuLi5E").await.unwrap();
+
+    let rp = rp_testfile(&json_path);
+    details.recommended.next(rp.query()).await.unwrap();
 }
 
 async fn channel_videos(testfiles: &Path) {

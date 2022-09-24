@@ -91,6 +91,7 @@ pub struct GridVideoRenderer {
     pub title: String,
     #[serde_as(as = "Option<Text>")]
     pub published_time_text: Option<String>,
+    /// Contains `No views` if the view count is zero
     #[serde_as(as = "Option<Text>")]
     pub view_count_text: Option<String>,
     /// Contains video length
@@ -119,6 +120,7 @@ pub struct CompactVideoRenderer {
     /// (e.g. `11 months ago`)
     #[serde_as(as = "Option<Text>")]
     pub published_time_text: Option<String>,
+    /// Contains `No views` if the view count is zero
     #[serde_as(as = "Option<Text>")]
     pub view_count_text: Option<String>,
     /// Badges are displayed on the video thumbnail and

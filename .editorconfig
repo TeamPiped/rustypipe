@@ -12,6 +12,3 @@ indent_style = tab
 
 [*.{json,md,rst,ini,yml,yaml,xml,html,js,jsx,ts,tsx,vue,kt}]
 indent_size = 2
-
-[*.json]
-insert_final_newline = false

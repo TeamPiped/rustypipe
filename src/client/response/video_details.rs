@@ -8,7 +8,7 @@ use crate::serializer::text::TextComponents;
 use crate::serializer::MapResult;
 use crate::serializer::{
     ignore_any,
-    text::{AccessibilityText, Text},
+    text::{AccessibilityText, AttributedText, Text},
     VecLogError,
 };
 
@@ -87,8 +87,9 @@ pub enum VideoResultsItem {
     #[serde(rename_all = "camelCase")]
     VideoSecondaryInfoRenderer {
         owner: VideoOwner,
-        #[serde(default)]
-        description: TextComponents,
+        description: Option<TextComponents>,
+        #[serde_as(as = "Option<AttributedText>")]
+        attributed_description: Option<TextComponents>,
         /// Additional metadata (e.g. Creative Commons License)
         #[serde(default)]
         #[serde_as(deserialize_as = "DefaultOnError")]

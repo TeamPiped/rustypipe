@@ -1,0 +1,487 @@
+---
+source: src/client/video_details.rs
+expression: map_res.c
+---
+id: 0rb9CfOvojk
+title: BahnMining - Pünktlichkeit ist eine Zier (David Kriesel)
+description:
+  - Web:
+      text: "https://media.ccc.de/v/36c3-10652-bah..."
+      url: "https://media.ccc.de/v/36c3-10652-bahnmining_-_punktlichkeit_ist_eine_zier"
+  - Text: "\n\n\n\nSeit Anfang 2019 hat David jeden einzelnen Halt jeder einzelnen Zugfahrt auf jedem einzelnen Fernbahnhof in ganz Deutschland systematisch gespeichert. Inklusive Verspätungen und allem drum und dran. Und die werden wir in einem bunten Vortrag erforschen und endlich mal wieder ein bisschen Spaß mit Daten haben.\n\nRechtlicher Hinweis: Es liegt eine schriftliche Genehmigung der Bahn vor, von ihr abgerufene Rohdaten aggregieren und für Vorträge nutzen zu dürfen. Inhaltliche Absprachen oder gar Auflagen existieren nicht.\n\nDie Bahn gibt ihre Verspätungen in \"Prozent pünktlicher Züge pro Monat\" an. Das ist so radikal zusammengefasst, dass man daraus natürlich nichts interessantes lesen kann. Jetzt stellt euch mal vor, man könnte da mal ein bisschen genauer reingucken.\n\nStellt sich raus: Das geht! Davids Datensatz umfasst knapp 25 Millionen Halte - mehr als 50.000 pro Tag. Wir haben die Rohdaten und sind in unserer Betrachtung völlig frei. \n\nDer Vortrag hat wieder mehrere rote Fäden.\n\n 1) Wir vermessen ein fast komplettes Fernverkehrsjahr der deutschen Bahn.   Hier etwas Erwartungsmanagement: Sinn ist keinesfalls Bahn-Bashing oder Sensationsheischerei - wer einen Hassvortrag gegen die Bahn erwartet, ist in dieser Veranstaltung falsch. Wir werden die Daten aber nutzen, um die Bahn einmal ein bisschen kennenzulernen. Die Bahn ist eine riesige Maschine mit Millionen beweglicher Teile. Wie viele Zugfahrten gibt es überhaupt? Was sind die größten Bahnhöfe? Wir werden natürlich auch die unerfreulichen Themen ansprechen, für die sich im Moment viele interessieren: Ist das Problem mit den Zugverspätungen wirklich so schlimm, wie alle sagen? Gibt es Orte und Zeiten, an denen es besonders hapert? Und wo fallen Züge einfach aus?\n\n 2) Es gibt wieder mehrere Blicke über den Tellerrand, wie bei Davids vorherigen Vorträgen auch. Ihr werdet wieder ganz automatisch und nebenher einen allgemeinverständlichen Einblick in die heutige Datenauswerterei bekommen. (Eine verbreitete Verschwörungstheorie sagt, euch zur Auswertung öffentlicher Daten zu inspirieren, wäre sogar der Hauptzweck von Davids Vorträgen. :-) )Die Welt braucht Leute mit Ratio, die Analyse wichtiger als Kreischerei finden. Und darum beschreibt David auch, wie man so ein durchaus aufwändiges Hobbyprojekt technisch angeht, Anfängerfehler vermeidet, und verantwortungsvoll handelt.\n\nDavid Kriesel\n\n"
+  - Web:
+      text: "https://fahrplan.events.ccc.de/congre..."
+      url: "https://fahrplan.events.ccc.de/congress/2019/Fahrplan/events/10652.html"
+  - Text: "\n\n"
+  - Text: "#36C3"
+channel:
+  id: UC2TXq_t06Hjdr2g_KdKpHQg
+  name: media.ccc.de
+  avatar:
+    - url: "https://yt3.ggpht.com/c1jcNSbPuOMDUieixkWIlXc82kMNJ8pCDmq5KtL8hjt74rAXLobsT9Y078-w5DK7ymKyDaqr=s48-c-k-c0x00ffffff-no-rj"
+      width: 48
+      height: 48
+    - url: "https://yt3.ggpht.com/c1jcNSbPuOMDUieixkWIlXc82kMNJ8pCDmq5KtL8hjt74rAXLobsT9Y078-w5DK7ymKyDaqr=s88-c-k-c0x00ffffff-no-rj"
+      width: 88
+      height: 88
+    - url: "https://yt3.ggpht.com/c1jcNSbPuOMDUieixkWIlXc82kMNJ8pCDmq5KtL8hjt74rAXLobsT9Y078-w5DK7ymKyDaqr=s176-c-k-c0x00ffffff-no-rj"
+      width: 176
+      height: 176
+  verification: none
+  subscriber_count: 172000
+view_count: 2493983
+like_count: 52274
+publish_date: "[date]"
+publish_date_txt: "Dec 29, 2019"
+is_live: false
+is_ccommons: true
+chapters: []
+recommended:
+  count: ~
+  items:
+    - id: "-YpwsdRKt8Q"
+      title: SpiegelMining – Reverse Engineering von Spiegel-Online (33c3)
+      length: 3526
+      thumbnail:
+        - url: "https://i.ytimg.com/vi/-YpwsdRKt8Q/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAitMEufI5dstlwxmzUBy5R55YqvA"
+          width: 168
+          height: 94
+        - url: "https://i.ytimg.com/vi/-YpwsdRKt8Q/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAGMPtap2tQO0_vevn655FYKvaDbA"
+          width: 336
+          height: 188
+      channel:
+        id: UC2TXq_t06Hjdr2g_KdKpHQg
+        name: media.ccc.de
+        avatar:
+          - url: "https://yt3.ggpht.com/c1jcNSbPuOMDUieixkWIlXc82kMNJ8pCDmq5KtL8hjt74rAXLobsT9Y078-w5DK7ymKyDaqr=s68-c-k-c0x00ffffff-no-rj"
+            width: 68
+            height: 68
+        verification: none
+        subscriber_count: ~
+      publish_date: "[date]"
+      publish_date_txt: 5 years ago
+      view_count: 2749364
+      is_live: false
+    - id: 4z3mu63yxII
+      title: Gregor Gysi & Martin Sonneborn
+      length: 5272
+      thumbnail:
+        - url: "https://i.ytimg.com/vi/4z3mu63yxII/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDreV7oQC-p3dvg_goG62wPliIS9Q"
+          width: 168
+          height: 94
+        - url: "https://i.ytimg.com/vi/4z3mu63yxII/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCFn7qNDQLIGRHeodvHwRdPgspGLg"
+          width: 336
+          height: 188
+      channel:
+        id: UCBWSgdr27NcLig0XzWLq2gQ
+        name: MISS-VERSTEHEN SIE MICH RICHTIG
+        avatar:
+          - url: "https://yt3.ggpht.com/IO68Mspie9OT2mfrkDY4uXIX6-8lWx-AOH81P9ANmB4D0-IV4DeHFZIpb0i06vE9aFM2v--U0g=s68-c-k-c0x00ffffff-no-rj"
+            width: 68
+            height: 68
+        verification: none
+        subscriber_count: ~
+      publish_date: "[date]"
+      publish_date_txt: 2 years ago
+      view_count: 2266658
+      is_live: false
+    - id: WhgRRpA3b2c
+      title: 36C3 -  Verkehrswende selber hacken
+      length: 3176
+      thumbnail:
+        - url: "https://i.ytimg.com/vi/WhgRRpA3b2c/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDvqwVUjB6Xurm8rFTueHcWHuPfZA"
+          width: 168
+          height: 94
+        - url: "https://i.ytimg.com/vi/WhgRRpA3b2c/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAkzuVJmt0wRTBNRsa3UU7NJImZ9A"
+          width: 336
+          height: 188
+      channel:
+        id: UC2TXq_t06Hjdr2g_KdKpHQg
+        name: media.ccc.de
+        avatar:
+          - url: "https://yt3.ggpht.com/c1jcNSbPuOMDUieixkWIlXc82kMNJ8pCDmq5KtL8hjt74rAXLobsT9Y078-w5DK7ymKyDaqr=s68-c-k-c0x00ffffff-no-rj"
+            width: 68
+            height: 68
+        verification: none
+        subscriber_count: ~
+      publish_date: "[date]"
+      publish_date_txt: 2 years ago
+      view_count: 260941
+      is_live: false
+    - id: 5qNHtdN07FM
+      title: "GPN16: Wie baut man eigentlich Raumschiffe (urs)"
+      length: 5172
+      thumbnail:
+        - url: "https://i.ytimg.com/vi/5qNHtdN07FM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDpjJM0fDLemesPUcU3VcN_gv9lHQ"
+          width: 168
+          height: 94
+        - url: "https://i.ytimg.com/vi/5qNHtdN07FM/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCZzl74sM8qC7oC_XDxrg6467wk3A"
+          width: 336
+          height: 188
+      channel:
+        id: UC2TXq_t06Hjdr2g_KdKpHQg
+        name: media.ccc.de
+        avatar:
+          - url: "https://yt3.ggpht.com/c1jcNSbPuOMDUieixkWIlXc82kMNJ8pCDmq5KtL8hjt74rAXLobsT9Y078-w5DK7ymKyDaqr=s68-c-k-c0x00ffffff-no-rj"
+            width: 68
+            height: 68
+        verification: none
+        subscriber_count: ~
+      publish_date: "[date]"
+      publish_date_txt: 6 years ago
+      view_count: 1229987
+      is_live: false
+    - id: 7FeqF1-Z1g0
+      title: "David Kriesel: Traue keinem Scan, den du nicht selbst gefälscht hast"
+      length: 3820
+      thumbnail:
+        - url: "https://i.ytimg.com/vi/7FeqF1-Z1g0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDlpdGFYSadvgkHzSGulKmjV3wokQ"
+          width: 168
+          height: 94
+        - url: "https://i.ytimg.com/vi/7FeqF1-Z1g0/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDsRGV2Lyl3OVIYQ5SGzMvlOUFO1w"
+          width: 336
+          height: 188
+      channel:
+        id: UC2TXq_t06Hjdr2g_KdKpHQg
+        name: media.ccc.de
+        avatar:
+          - url: "https://yt3.ggpht.com/c1jcNSbPuOMDUieixkWIlXc82kMNJ8pCDmq5KtL8hjt74rAXLobsT9Y078-w5DK7ymKyDaqr=s68-c-k-c0x00ffffff-no-rj"
+            width: 68
+            height: 68
+        verification: none
+        subscriber_count: ~
+      publish_date: "[date]"
+      publish_date_txt: 7 years ago
+      view_count: 6095028
+      is_live: false
+    - id: 1vcP9UWrWBI
+      title: Easterhegg 2019 - Kernreaktoren
+      length: 7263
+      thumbnail:
+        - url: "https://i.ytimg.com/vi/1vcP9UWrWBI/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBUQVIIaiRE6GWywG8JwHDYAJpnZg"
+          width: 168
+          height: 94
+        - url: "https://i.ytimg.com/vi/1vcP9UWrWBI/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBjqJvwceT7xX97mIqTKeuT_8b-iA"
+          width: 336
+          height: 188
+      channel:
+        id: UC2TXq_t06Hjdr2g_KdKpHQg
+        name: media.ccc.de
+        avatar:
+          - url: "https://yt3.ggpht.com/c1jcNSbPuOMDUieixkWIlXc82kMNJ8pCDmq5KtL8hjt74rAXLobsT9Y078-w5DK7ymKyDaqr=s68-c-k-c0x00ffffff-no-rj"
+            width: 68
+            height: 68
+        verification: none
+        subscriber_count: ~
+      publish_date: "[date]"
+      publish_date_txt: 3 years ago
+      view_count: 46470
+      is_live: false
+    - id: jnp1veXQf7U
+      title: "Blockchain - Ein außer Kontrolle geratenes Laborexperiment? #GPN19"
+      length: 3362
+      thumbnail:
+        - url: "https://i.ytimg.com/vi/jnp1veXQf7U/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAPdUkK2Ck1bwqQKZyMKKtAP4AMdA"
+          width: 168
+          height: 94
+        - url: "https://i.ytimg.com/vi/jnp1veXQf7U/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLC0L_zKrFJMqS4V_JaGndht6e3gPA"
+          width: 336
+          height: 188
+      channel:
+        id: UC2TXq_t06Hjdr2g_KdKpHQg
+        name: media.ccc.de
+        avatar:
+          - url: "https://yt3.ggpht.com/c1jcNSbPuOMDUieixkWIlXc82kMNJ8pCDmq5KtL8hjt74rAXLobsT9Y078-w5DK7ymKyDaqr=s68-c-k-c0x00ffffff-no-rj"
+            width: 68
+            height: 68
+        verification: none
+        subscriber_count: ~
+      publish_date: "[date]"
+      publish_date_txt: 3 years ago
+      view_count: 25136
+      is_live: false
+    - id: 77OlKRkaixo
+      title: "leyrer, MacLemon: E-Mail. Hässlich, aber es funktioniert #eh16"
+      length: 6998
+      thumbnail:
+        - url: "https://i.ytimg.com/vi/77OlKRkaixo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD4xyH2Wm3PRfFNYPGKLO69SFfcYw"
+          width: 168
+          height: 94
+        - url: "https://i.ytimg.com/vi/77OlKRkaixo/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDHXMZi8FdNWSpRUqpHplNqtYBIJA"
+          width: 336
+          height: 188
+      channel:
+        id: UC2TXq_t06Hjdr2g_KdKpHQg
+        name: media.ccc.de
+        avatar:
+          - url: "https://yt3.ggpht.com/c1jcNSbPuOMDUieixkWIlXc82kMNJ8pCDmq5KtL8hjt74rAXLobsT9Y078-w5DK7ymKyDaqr=s68-c-k-c0x00ffffff-no-rj"
+            width: 68
+            height: 68
+        verification: none
+        subscriber_count: ~
+      publish_date: "[date]"
+      publish_date_txt: 6 years ago
+      view_count: 44410
+      is_live: false
+    - id: u29--YNGMyg
+      title: Physikalisches Kolloquium 22. Juli 2011 - Vortrag von Prof. Dr. Harald Lesch
+      length: 6715
+      thumbnail:
+        - url: "https://i.ytimg.com/vi/u29--YNGMyg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCykSwmdalE18JSUKAH4PLZ54YpzQ"
+          width: 168
+          height: 94
+        - url: "https://i.ytimg.com/vi/u29--YNGMyg/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB2dRRKXplJc0IkNXMNCMJvc7xa4A"
+          width: 336
+          height: 188
+      channel:
+        id: UCvZLsBb-8Og4FvBUom9zPHQ
+        name: Universität Bayreuth
+        avatar:
+          - url: "https://yt3.ggpht.com/ytc/AMLnZu8a3DDqsS3DCfqZCMYgWfRvRA1n7Zus7VRf0VKNJg=s68-c-k-c0x00ffffff-no-rj"
+            width: 68
+            height: 68
+        verification: none
+        subscriber_count: ~
+      publish_date: "[date]"
+      publish_date_txt: 11 years ago
+      view_count: 4184357
+      is_live: false
+    - id: urt2_ACal9A
+      title: CCC-Jahresrückblick 2016 (33c3)
+      length: 8170
+      thumbnail:
+        - url: "https://i.ytimg.com/vi/urt2_ACal9A/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLChs8FeQ4a0ab1PeF0yFI58lHD2Ew"
+          width: 168
+          height: 94
+        - url: "https://i.ytimg.com/vi/urt2_ACal9A/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDfnkj8OAxZGnhKlRvm6ODLcqs61w"
+          width: 336
+          height: 188
+      channel:
+        id: UC2TXq_t06Hjdr2g_KdKpHQg
+        name: media.ccc.de
+        avatar:
+          - url: "https://yt3.ggpht.com/c1jcNSbPuOMDUieixkWIlXc82kMNJ8pCDmq5KtL8hjt74rAXLobsT9Y078-w5DK7ymKyDaqr=s68-c-k-c0x00ffffff-no-rj"
+            width: 68
+            height: 68
+        verification: none
+        subscriber_count: ~
+      publish_date: "[date]"
+      publish_date_txt: 5 years ago
+      view_count: 36111
+      is_live: false
+    - id: PnBs9oH2Lx8
+      title: Easterhegg 2019 - Wie ich die Regierung gehackt habe
+      length: 3147
+      thumbnail:
+        - url: "https://i.ytimg.com/vi/PnBs9oH2Lx8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDCYEqGF-6ovzXSwysiuU3EPQPBBQ"
+          width: 168
+          height: 94
+        - url: "https://i.ytimg.com/vi/PnBs9oH2Lx8/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDiqJ0wHQWRM-JtxFYez9xuL6XAmw"
+          width: 336
+          height: 188
+      channel:
+        id: UC2TXq_t06Hjdr2g_KdKpHQg
+        name: media.ccc.de
+        avatar:
+          - url: "https://yt3.ggpht.com/c1jcNSbPuOMDUieixkWIlXc82kMNJ8pCDmq5KtL8hjt74rAXLobsT9Y078-w5DK7ymKyDaqr=s68-c-k-c0x00ffffff-no-rj"
+            width: 68
+            height: 68
+        verification: none
+        subscriber_count: ~
+      publish_date: "[date]"
+      publish_date_txt: 3 years ago
+      view_count: 20322
+      is_live: false
+    - id: yaCiVvBD-xc
+      title: "Mathias Dalheimer: Wie man einen Blackout verursacht"
+      length: 3748
+      thumbnail:
+        - url: "https://i.ytimg.com/vi/yaCiVvBD-xc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD0kgmNW_38RP2zrFbHZ8yMaeltXw"
+          width: 168
+          height: 94
+        - url: "https://i.ytimg.com/vi/yaCiVvBD-xc/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCoR_7TBRXhIbLOszmC_s1BeXTGIg"
+          width: 336
+          height: 188
+      channel:
+        id: UC2TXq_t06Hjdr2g_KdKpHQg
+        name: media.ccc.de
+        avatar:
+          - url: "https://yt3.ggpht.com/c1jcNSbPuOMDUieixkWIlXc82kMNJ8pCDmq5KtL8hjt74rAXLobsT9Y078-w5DK7ymKyDaqr=s68-c-k-c0x00ffffff-no-rj"
+            width: 68
+            height: 68
+        verification: none
+        subscriber_count: ~
+      publish_date: "[date]"
+      publish_date_txt: 6 years ago
+      view_count: 482258
+      is_live: false
+    - id: 1PJnEwoFSXo
+      title: Das Geheimnis der Hieroglyphen | Doku HD | ARTE
+      length: 5541
+      thumbnail:
+        - url: "https://i.ytimg.com/vi/1PJnEwoFSXo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBECHmEUHzkloG0szufbTTPeQxJcg"
+          width: 168
+          height: 94
+        - url: "https://i.ytimg.com/vi/1PJnEwoFSXo/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB1m1AxjNvcCRau32ERmvlJr_hD_A"
+          width: 336
+          height: 188
+      channel:
+        id: UCLLibJTCy3sXjHLVaDimnpQ
+        name: ARTEde
+        avatar:
+          - url: "https://yt3.ggpht.com/ytc/AMLnZu-1i2jxeXFISJhBbpWWv5vVX2xE5yQbjpaZZP3HPg=s68-c-k-c0x00ffffff-no-rj"
+            width: 68
+            height: 68
+        verification: verified
+        subscriber_count: ~
+      publish_date: "[date]"
+      publish_date_txt: 12 days ago
+      view_count: 427756
+      is_live: false
+    - id: iIDZ8pJKLZA
+      title: "36C3 ChaosWest:  Bahn API Chaos"
+      length: 3056
+      thumbnail:
+        - url: "https://i.ytimg.com/vi/iIDZ8pJKLZA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD4Yav7T6P0SXZSw0mhg9jL1aot7A"
+          width: 168
+          height: 94
+        - url: "https://i.ytimg.com/vi/iIDZ8pJKLZA/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLC6hKLv4gvu1z51zbWSf3yM46WLyg"
+          width: 336
+          height: 188
+      channel:
+        id: UC2TXq_t06Hjdr2g_KdKpHQg
+        name: media.ccc.de
+        avatar:
+          - url: "https://yt3.ggpht.com/c1jcNSbPuOMDUieixkWIlXc82kMNJ8pCDmq5KtL8hjt74rAXLobsT9Y078-w5DK7ymKyDaqr=s68-c-k-c0x00ffffff-no-rj"
+            width: 68
+            height: 68
+        verification: none
+        subscriber_count: ~
+      publish_date: "[date]"
+      publish_date_txt: 2 years ago
+      view_count: 26926
+      is_live: false
+    - id: PhUQN6fd5O4
+      title: 35C3 -  Jahresrückblick des CCC 2018
+      length: 8102
+      thumbnail:
+        - url: "https://i.ytimg.com/vi/PhUQN6fd5O4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAO_0bZOBr6aGmQdiA-5bUOxNeTaQ"
+          width: 168
+          height: 94
+        - url: "https://i.ytimg.com/vi/PhUQN6fd5O4/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBdrKX1UCW7kDjPnigmPcHufxNBSA"
+          width: 336
+          height: 188
+      channel:
+        id: UC2TXq_t06Hjdr2g_KdKpHQg
+        name: media.ccc.de
+        avatar:
+          - url: "https://yt3.ggpht.com/c1jcNSbPuOMDUieixkWIlXc82kMNJ8pCDmq5KtL8hjt74rAXLobsT9Y078-w5DK7ymKyDaqr=s68-c-k-c0x00ffffff-no-rj"
+            width: 68
+            height: 68
+        verification: none
+        subscriber_count: ~
+      publish_date: "[date]"
+      publish_date_txt: 3 years ago
+      view_count: 126093
+      is_live: false
+    - id: bzr0c8qzQoc
+      title: GPN19 - Beton
+      length: 3972
+      thumbnail:
+        - url: "https://i.ytimg.com/vi/bzr0c8qzQoc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCY6DB5oe1CQxUXIc9wpl_WyB9REA"
+          width: 168
+          height: 94
+        - url: "https://i.ytimg.com/vi/bzr0c8qzQoc/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCfjwVlO-SUmHxgxnYZOlmj0QYkdg"
+          width: 336
+          height: 188
+      channel:
+        id: UC2TXq_t06Hjdr2g_KdKpHQg
+        name: media.ccc.de
+        avatar:
+          - url: "https://yt3.ggpht.com/c1jcNSbPuOMDUieixkWIlXc82kMNJ8pCDmq5KtL8hjt74rAXLobsT9Y078-w5DK7ymKyDaqr=s68-c-k-c0x00ffffff-no-rj"
+            width: 68
+            height: 68
+        verification: none
+        subscriber_count: ~
+      publish_date: "[date]"
+      publish_date_txt: 3 years ago
+      view_count: 13243
+      is_live: false
+    - id: IeX1F-Jjq9E
+      title: "Lars “Pylon” Weiler (DC4LW): Weltraumkommunikation"
+      length: 5075
+      thumbnail:
+        - url: "https://i.ytimg.com/vi/IeX1F-Jjq9E/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDHnqHZmt01FMVG1lPBXYtZXWWY9Q"
+          width: 168
+          height: 94
+        - url: "https://i.ytimg.com/vi/IeX1F-Jjq9E/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCckA99a_PXusk5plW2RIvXXOl2SQ"
+          width: 336
+          height: 188
+      channel:
+        id: UC2TXq_t06Hjdr2g_KdKpHQg
+        name: media.ccc.de
+        avatar:
+          - url: "https://yt3.ggpht.com/c1jcNSbPuOMDUieixkWIlXc82kMNJ8pCDmq5KtL8hjt74rAXLobsT9Y078-w5DK7ymKyDaqr=s68-c-k-c0x00ffffff-no-rj"
+            width: 68
+            height: 68
+        verification: none
+        subscriber_count: ~
+      publish_date: "[date]"
+      publish_date_txt: 6 years ago
+      view_count: 80624
+      is_live: false
+    - id: gsnL4m57MCM
+      title: "David Kriesel: SpiegelMining – Reverse Engineering von Spiegel-Online"
+      length: 3526
+      thumbnail:
+        - url: "https://i.ytimg.com/vi/gsnL4m57MCM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAzdNK5qr49otzmiOcFYQGCAcoIBA"
+          width: 168
+          height: 94
+        - url: "https://i.ytimg.com/vi/gsnL4m57MCM/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCNJfvei-EqF-gl0c5W1ypzgSv-VQ"
+          width: 336
+          height: 188
+      channel:
+        id: UCeO-zvUfuEdPMDoNST6hy1A
+        name: Killuminati ∆
+        avatar:
+          - url: "https://yt3.ggpht.com/ytc/AMLnZu9BVAMHSQs1Cm764Q0lcVCPgfbwH8nrDavZkx5V=s68-c-k-c0x00ffffff-no-rj"
+            width: 68
+            height: 68
+        verification: none
+        subscriber_count: ~
+      publish_date: "[date]"
+      publish_date_txt: 5 years ago
+      view_count: 29009
+      is_live: false
+    - id: uEEHq6f8RsM
+      title: "Leyrer: Moderne Linux Kommandozeilenwerkzeuge - Edition \"Allein zu Haus\""
+      length: 3716
+      thumbnail:
+        - url: "https://i.ytimg.com/vi/uEEHq6f8RsM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAEBt4P-qj4seCLNwABBxmHbSjFXQ"
+          width: 168
+          height: 94
+        - url: "https://i.ytimg.com/vi/uEEHq6f8RsM/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLC1M-eW5tvduvxDyhsj3dC0F3eeUA"
+          width: 336
+          height: 188
+      channel:
+        id: UC2TXq_t06Hjdr2g_KdKpHQg
+        name: media.ccc.de
+        avatar:
+          - url: "https://yt3.ggpht.com/c1jcNSbPuOMDUieixkWIlXc82kMNJ8pCDmq5KtL8hjt74rAXLobsT9Y078-w5DK7ymKyDaqr=s68-c-k-c0x00ffffff-no-rj"
+            width: 68
+            height: 68
+        verification: none
+        subscriber_count: ~
+      publish_date: "[date]"
+      publish_date_txt: 3 months ago
+      view_count: 67538
+      is_live: false
+  ctoken: CBQSExILMHJiOUNmT3ZvamvAAQHIAQEYACqrBjJzNkw2d3paQkFyV0JBb0Q4ajRBQ2c3Q1Bnc0l4Ty1xb3AyV25NWDVBUW9EOGo0QUNnN0NQZ3NJZ29uTDc3clgtWjdqQVFvRDhqNEFDZzNDUGdvSTU5N2RnZW1vaEl4YUNnUHlQZ0FLSWRJLUhnb2NVa1JEVFZWRE1sUlljVjkwTURaSWFtUnlNbWRmUzJSTGNFaFJad29EOGo0QUNnN0NQZ3NJMDlqVG05MzIwZEhtQVFvRDhqNEFDZzdDUGdzSWphem5fUFhDNnF2c0FRb0Q4ajRBQ2c3Q1Bnc0lrckN0cmRULXdfdldBUW9EOGo0QUNnN0NQZ3NJdGZfQnJ0NjNuYjJPQVFvRDhqNEFDZzdDUGdzSW1wYnF5SkdsNmRudkFRb0Q4ajRBQ2c3Q1Bnc0lxT2FZbXBqZjM3ZTdBUW9EOGo0QUNnN0NQZ3NJMEtfcWhNRGYzZDI2QVFvRDhqNEFDZzNDUGdvSW45N1lqLWllbTdnLUNnUHlQZ0FLRHNJLUN3aVg5by1DNzhxbzBNa0JDZ1B5UGdBS0RzSS1Dd2o2a3BYUXNPS1otZFFCQ2dQeVBnQUtEc0ktQ3dpUTI2aVNxYjYyd0lnQkNnUHlQZ0FLRGNJLUNnanV5ZmUtLW9iRWlqNEtBX0ktQUFvTndqNEtDSWVGemRXOGpyMmRid29EOGo0QUNnM0NQZ29JMGRlT2tfNmlfZkloQ2dQeVBnQUtEc0ktQ3dpajRPenpwdnp5NUlJQkNnUHlQZ0FLRHNJLUN3akRqZkdfdXZYQm9MZ0JFaFFBQWdRR0NBb01EaEFTRkJZWUdod2VJQ0lrSmhvRUNBQVFBUm9FQ0FJUUF4b0VDQVFRQlJvRUNBWVFCeG9FQ0FnUUNSb0VDQW9RQ3hvRUNBd1FEUm9FQ0E0UUR4b0VDQkFRRVJvRUNCSVFFeG9FQ0JRUUZSb0VDQllRRnhvRUNCZ1FHUm9FQ0JvUUd4b0VDQndRSFJvRUNCNFFIeG9FQ0NBUUlSb0VDQ0lRSXhvRUNDUVFKUm9FQ0NZUUp5b1VBQUlFQmdnS0RBNFFFaFFXR0JvY0hpQWlKQ1lqD3dhdGNoLW5leHQtZmVlZA%3D%3D
+top_comments:
+  count: 2200
+  items: []
+  ctoken: Eg0SCzByYjlDZk92b2prGAYyJSIRIgswcmI5Q2ZPdm9qazAAeAJCEGNvbW1lbnRzLXNlY3Rpb24%3D
+latest_comments:
+  count: 2200
+  items: []
+  ctoken: Eg0SCzByYjlDZk92b2prGAYyOCIRIgswcmI5Q2ZPdm9qazABeAIwAUIhZW5nYWdlbWVudC1wYW5lbC1jb21tZW50cy1zZWN0aW9u
