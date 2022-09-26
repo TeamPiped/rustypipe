@@ -18,7 +18,7 @@ VideoDetails(
     Text("\n\n"),
     Text("#36C3"),
   ]),
-  channel: Channel(
+  channel: ChannelTag(
     id: "UC2TXq_t06Hjdr2g_KdKpHQg",
     name: "media.ccc.de",
     avatar: [
@@ -67,7 +67,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UC2TXq_t06Hjdr2g_KdKpHQg",
           name: "media.ccc.de",
           avatar: [
@@ -101,7 +101,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCBWSgdr27NcLig0XzWLq2gQ",
           name: "MISS-VERSTEHEN SIE MICH RICHTIG",
           avatar: [
@@ -135,7 +135,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UC2TXq_t06Hjdr2g_KdKpHQg",
           name: "media.ccc.de",
           avatar: [
@@ -169,7 +169,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UC2TXq_t06Hjdr2g_KdKpHQg",
           name: "media.ccc.de",
           avatar: [
@@ -203,7 +203,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UC2TXq_t06Hjdr2g_KdKpHQg",
           name: "media.ccc.de",
           avatar: [
@@ -237,7 +237,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UC2TXq_t06Hjdr2g_KdKpHQg",
           name: "media.ccc.de",
           avatar: [
@@ -271,7 +271,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UC2TXq_t06Hjdr2g_KdKpHQg",
           name: "media.ccc.de",
           avatar: [
@@ -305,7 +305,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UC2TXq_t06Hjdr2g_KdKpHQg",
           name: "media.ccc.de",
           avatar: [
@@ -339,7 +339,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCvZLsBb-8Og4FvBUom9zPHQ",
           name: "Universität Bayreuth",
           avatar: [
@@ -373,7 +373,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UC2TXq_t06Hjdr2g_KdKpHQg",
           name: "media.ccc.de",
           avatar: [
@@ -407,7 +407,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UC2TXq_t06Hjdr2g_KdKpHQg",
           name: "media.ccc.de",
           avatar: [
@@ -441,7 +441,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UC2TXq_t06Hjdr2g_KdKpHQg",
           name: "media.ccc.de",
           avatar: [
@@ -475,7 +475,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCLLibJTCy3sXjHLVaDimnpQ",
           name: "ARTEde",
           avatar: [
@@ -509,7 +509,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UC2TXq_t06Hjdr2g_KdKpHQg",
           name: "media.ccc.de",
           avatar: [
@@ -543,7 +543,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UC2TXq_t06Hjdr2g_KdKpHQg",
           name: "media.ccc.de",
           avatar: [
@@ -577,7 +577,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UC2TXq_t06Hjdr2g_KdKpHQg",
           name: "media.ccc.de",
           avatar: [
@@ -611,7 +611,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UC2TXq_t06Hjdr2g_KdKpHQg",
           name: "media.ccc.de",
           avatar: [
@@ -645,7 +645,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCeO-zvUfuEdPMDoNST6hy1A",
           name: "Killuminati ∆",
           avatar: [
@@ -679,7 +679,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UC2TXq_t06Hjdr2g_KdKpHQg",
           name: "media.ccc.de",
           avatar: [

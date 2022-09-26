@@ -38,7 +38,7 @@ VideoDetails(
       url: "http://incompetech.com/music/royalty-free/",
     ),
   ]),
-  channel: Channel(
+  channel: ChannelTag(
     id: "UCakgsb0w7QB0VHdnCc-OVEA",
     name: "Space Videos",
     avatar: [
@@ -87,7 +87,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UC_sXrcURB-Dh4az_FveeQ0Q",
           name: "DOCUMENTARY TUBE",
           avatar: [
@@ -121,7 +121,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCakgsb0w7QB0VHdnCc-OVEA",
           name: "Space Videos",
           avatar: [
@@ -155,7 +155,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCZepiiyNNbD2XL5sWnJBC_A",
           name: "Videotizer",
           avatar: [
@@ -189,7 +189,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCNrGOnduIS9BXIRmDcHasZA",
           name: "WorldCam",
           avatar: [
@@ -223,7 +223,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCelk6aHijZq-GJBBB9YpReA",
           name: "BBC News عربي",
           avatar: [
@@ -257,7 +257,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UC_sXrcURB-Dh4az_FveeQ0Q",
           name: "DOCUMENTARY TUBE",
           avatar: [
@@ -291,7 +291,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCj-Xm8j6WBgKY8OG7s9r2vQ",
           name: "RailCowGirl",
           avatar: [
@@ -325,7 +325,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCR9sFzaG9Ia_kXJhfxtFMBA",
           name: "melodysheep",
           avatar: [
@@ -359,7 +359,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCakgsb0w7QB0VHdnCc-OVEA",
           name: "Space Videos",
           avatar: [
@@ -393,7 +393,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCRI_rCIV69l-PmT3oyD64kw",
           name: "Afraz Explores",
           avatar: [
@@ -427,7 +427,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCZvxw99l3xDC6BIHb8nJKGg",
           name: "ElderFox Documentaries",
           avatar: [
@@ -461,7 +461,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UC2ccm1GajfSujz7T18d7cKA",
           name: "BBC Studios",
           avatar: [
@@ -495,7 +495,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCyrM5blUZAQoX9UvObdjtig",
           name: "Valdemar Gomes",
           avatar: [
@@ -529,7 +529,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCgP30k64HHZ0OY1QkEgS6Pw",
           name: "Waa Sop",
           avatar: [
@@ -563,7 +563,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCBuDzfvztEJvNll_w1E9xFw",
           name: "The Random Theorizer",
           avatar: [
@@ -597,7 +597,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCIBaDdAbGlFDeS33shmlD0A",
           name: "European Space Agency, ESA",
           avatar: [
@@ -631,7 +631,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCakgsb0w7QB0VHdnCc-OVEA",
           name: "Space Videos",
           avatar: [
@@ -665,7 +665,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UC1znqKFL3jeR0eoA0pHpzvw",
           name: "SpaceRip",
           avatar: [
@@ -699,7 +699,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UC28l88GMXXqZYfY0Ru9h50w",
           name: "Seán Doran",
           avatar: [
@@ -733,7 +733,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCDyeuRnxf_hxEyH1B7aoDQQ",
           name: "thebhp",
           avatar: [

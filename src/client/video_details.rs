@@ -6,7 +6,8 @@ use serde::Serialize;
 
 use crate::{
     model::{
-        Channel, ChannelId, Chapter, Comment, Language, Paginator, RecommendedVideo, VideoDetails,
+        ChannelId, ChannelTag, Chapter, Comment, Language, Paginator, RecommendedVideo,
+        VideoDetails,
     },
     serializer::MapResult,
     timeago,
@@ -302,7 +303,7 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                 id: video_id,
                 title,
                 description,
-                channel: Channel {
+                channel: ChannelTag {
                     id: channel_id,
                     name: channel_name,
                     avatar: owner.thumbnail.into(),
@@ -432,7 +433,7 @@ fn map_recommendations(
                                 util::parse_video_length_or_warn(&txt, &mut warnings)
                             }),
                             thumbnail: video.thumbnail.into(),
-                            channel: Channel {
+                            channel: ChannelTag {
                                 id: channel.id,
                                 name: channel.name,
                                 avatar: video.channel_thumbnail.into(),
@@ -511,7 +512,7 @@ fn map_comment(
             id: c.comment_id,
             text: c.content_text.into(),
             author: match (c.author_endpoint, c.author_text) {
-                (Some(aep), Some(name)) => Some(Channel {
+                (Some(aep), Some(name)) => Some(ChannelTag {
                     id: aep.browse_endpoint.browse_id,
                     name,
                     avatar: c.author_thumbnail.into(),

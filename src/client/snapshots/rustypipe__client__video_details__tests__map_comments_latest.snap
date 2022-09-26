@@ -14,7 +14,7 @@ Paginator(
         Text("🏻"),
         Text("💗"),
       ]),
-      author: Some(Channel(
+      author: Some(ChannelTag(
         id: "UCKv2ITDFlBf8sCaM4bGAq9w",
         name: "rüyaabiee",
         avatar: [
@@ -55,7 +55,7 @@ Paginator(
       text: RichText([
         Text("Mys, spotify wraps comes in a few months..so start str3ming Aespa all songs on spotify."),
       ]),
-      author: Some(Channel(
+      author: Some(ChannelTag(
         id: "UCpO0iV02gvz1zY0xaEip-Lw",
         name: "Ashdeep Sidashi",
         avatar: [
@@ -97,7 +97,7 @@ Paginator(
         Text("Cerita black mamba kan udah tutup buku. Kira2 nanti konsep comebacknya apa yaa? "),
         Text("😍"),
       ]),
-      author: Some(Channel(
+      author: Some(ChannelTag(
         id: "UC8Uu90kmT1uBXMuylOe5F2g",
         name: "Ini Aku",
         avatar: [
@@ -142,7 +142,7 @@ Paginator(
         Text("\n"),
         Text("👇"),
       ]),
-      author: Some(Channel(
+      author: Some(ChannelTag(
         id: "UCKBVxnCV35xZ9Oe1U6DLENQ",
         name: "Brian Kenneth",
         avatar: [
@@ -183,7 +183,7 @@ Paginator(
       text: RichText([
         Text("Love this song so much"),
       ]),
-      author: Some(Channel(
+      author: Some(ChannelTag(
         id: "UCsJS5T1NM3Ra7HLmiPjxeGg",
         name: "milky way",
         avatar: [
@@ -224,7 +224,7 @@ Paginator(
       text: RichText([
         Text("They are the background of our karaoke"),
       ]),
-      author: Some(Channel(
+      author: Some(ChannelTag(
         id: "UCh6Qqw1NFPNi6l7kfU1b4PA",
         name: "ae 💜",
         avatar: [
@@ -265,7 +265,7 @@ Paginator(
       text: RichText([
         Text("AESPA"),
       ]),
-      author: Some(Channel(
+      author: Some(ChannelTag(
         id: "UCh6Qqw1NFPNi6l7kfU1b4PA",
         name: "ae 💜",
         avatar: [
@@ -306,7 +306,7 @@ Paginator(
       text: RichText([
         Text("AVATAR EXPERIENCE ASPECT"),
       ]),
-      author: Some(Channel(
+      author: Some(ChannelTag(
         id: "UCh6Qqw1NFPNi6l7kfU1b4PA",
         name: "ae 💜",
         avatar: [
@@ -347,7 +347,7 @@ Paginator(
       text: RichText([
         Text("HEIHH!!"),
       ]),
-      author: Some(Channel(
+      author: Some(ChannelTag(
         id: "UCgTOQ5KTAurWso9Hw2IGVow",
         name: "WinterMyUniverse",
         avatar: [
@@ -388,7 +388,7 @@ Paginator(
       text: RichText([
         Text("Road to 234M!"),
       ]),
-      author: Some(Channel(
+      author: Some(ChannelTag(
         id: "UCuTNUUpUzXVljMSEy1YooZw",
         name: "The Ultimate 1",
         avatar: [
@@ -429,7 +429,7 @@ Paginator(
       text: RichText([
         Text("Happy 4m likes!"),
       ]),
-      author: Some(Channel(
+      author: Some(ChannelTag(
         id: "UCbfj_QOoelszMm1JlXpY7nw",
         name: "Sim Layla",
         avatar: [
@@ -470,7 +470,7 @@ Paginator(
       text: RichText([
         Text("MY\'s and aespa go fighting!"),
       ]),
-      author: Some(Channel(
+      author: Some(ChannelTag(
         id: "UCh6Qqw1NFPNi6l7kfU1b4PA",
         name: "ae 💜",
         avatar: [
@@ -511,7 +511,7 @@ Paginator(
       text: RichText([
         Text("I hope they bring back this colorful set for the next comeback"),
       ]),
-      author: Some(Channel(
+      author: Some(ChannelTag(
         id: "UCh6Qqw1NFPNi6l7kfU1b4PA",
         name: "ae 💜",
         avatar: [
@@ -552,7 +552,7 @@ Paginator(
       text: RichText([
         Text("Keep str3aming MY\'s"),
       ]),
-      author: Some(Channel(
+      author: Some(ChannelTag(
         id: "UCh6Qqw1NFPNi6l7kfU1b4PA",
         name: "ae 💜",
         avatar: [
@@ -593,7 +593,7 @@ Paginator(
       text: RichText([
         Text("Ji-min-jeong Cross!"),
       ]),
-      author: Some(Channel(
+      author: Some(ChannelTag(
         id: "UCh6Qqw1NFPNi6l7kfU1b4PA",
         name: "ae 💜",
         avatar: [
@@ -634,7 +634,7 @@ Paginator(
       text: RichText([
         Text("BEST DEBUT EVER !!!"),
       ]),
-      author: Some(Channel(
+      author: Some(ChannelTag(
         id: "UC-wGUUnJO1gTAw011kCGwfQ",
         name: "darkangel",
         avatar: [
@@ -675,7 +675,7 @@ Paginator(
       text: RichText([
         Text("เพลงโครตน\u{e48}าเบ\u{e37}\u{e48}อ  ด\u{e35}แค\u{e48} cg"),
       ]),
-      author: Some(Channel(
+      author: Some(ChannelTag(
         id: "UCE7UmaNfXFkZ8iO8SZnx1_g",
         name: "Hopi your",
         avatar: [
@@ -716,7 +716,7 @@ Paginator(
       text: RichText([
         Text("233230"),
       ]),
-      author: Some(Channel(
+      author: Some(ChannelTag(
         id: "UCTV1SSSkB8Rr9Y5pD1tN8eA",
         name: "Agus Sudrajat",
         avatar: [

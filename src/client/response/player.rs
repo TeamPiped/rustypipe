@@ -207,7 +207,8 @@ pub struct VideoDetails {
     pub keywords: Option<Vec<String>>,
     pub channel_id: String,
     pub short_description: Option<String>,
-    pub thumbnail: Option<Thumbnails>,
+    #[serde(default)]
+    pub thumbnail: Thumbnails,
     #[serde_as(as = "JsonString")]
     pub view_count: u64,
     pub author: String,

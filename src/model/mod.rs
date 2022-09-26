@@ -1,11 +1,13 @@
 pub mod locale;
 mod ordering;
 mod paginator;
+mod param;
 pub mod richtext;
 pub mod stream_filter;
 
 pub use locale::{Country, Language};
 pub use paginator::Paginator;
+pub use param::ChannelOrder;
 
 use std::ops::Range;
 
@@ -233,7 +235,7 @@ pub struct VideoDetails {
     /// Video description
     pub description: RichText,
     /// Channel of the video
-    pub channel: Channel,
+    pub channel: ChannelTag,
     /// Number of views / current viewers in case of a livestream.
     pub view_count: u64,
     /// Number of likes
@@ -299,7 +301,7 @@ pub struct RecommendedVideo {
     /// Video thumbnail
     pub thumbnail: Vec<Thumbnail>,
     /// Channel of the video
-    pub channel: Channel,
+    pub channel: ChannelTag,
     /// Video publishing date.
     ///
     /// `None` if the date could not be parsed.
@@ -318,7 +320,7 @@ pub struct RecommendedVideo {
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[non_exhaustive]
-pub struct Channel {
+pub struct ChannelTag {
     /// Unique YouTube channel ID
     pub id: String,
     /// Channel name
@@ -368,7 +370,7 @@ pub struct Comment {
     /// Comment author
     ///
     /// There may be comments with missing authors (possibly deleted users?).
-    pub author: Option<Channel>,
+    pub author: Option<ChannelTag>,
     /// Comment publishing date.
     ///
     /// `None` if the date could not be parsed.
@@ -395,7 +397,7 @@ pub struct Comment {
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[non_exhaustive]
-pub struct ChannelVideos {
+pub struct Channel<T> {
     /// Unique YouTube Channel-ID (e.g. `UC-lHJZR3Gqxm24_Vd_AJ5Yw`)
     pub id: String,
     /// Channel name
@@ -405,8 +407,23 @@ pub struct ChannelVideos {
     /// `None` if the subscriber count was hidden by the owner
     /// or could not be parsed.
     pub subscriber_count: Option<u64>,
-    /// Videos fetched from the channel
-    pub videos: Paginator<ChannelVideo>,
+    /// Channel avatar / profile picture
+    pub avatar: Vec<Thumbnail>,
+    /// Channel description text
+    pub description: String,
+    /// List of words to describe the topic of the channel
+    pub tags: Vec<String>,
+    /// Custom URL set by the channel owner
+    /// (e.g. <https://www.youtube.com/c/EevblogDave>)
+    pub vanity_url: Option<String>,
+    /// Banner image shown above the channel
+    pub banner: Vec<Thumbnail>,
+    /// Banner image shown above the channel (small format for mobile)
+    pub mobile_banner: Vec<Thumbnail>,
+    /// Banner image shown above the channel (16:9 fullscreen format for TV)
+    pub tv_banner: Vec<Thumbnail>,
+    /// Content fetched from the channel
+    pub content: T,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
@@ -438,4 +455,28 @@ pub struct ChannelVideo {
     pub is_live: bool,
     /// Is the video a YouTube Short video (vertical and <60s)?
     pub is_short: bool,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
+pub struct ChannelPlaylist {
+    /// Unique YouTube Playlist-ID (e.g. `PL5dDx681T4bR7ZF1IuWzOv1omlRbE7PiJ`)
+    pub id: String,
+    /// Playlist name
+    pub name: String,
+    /// Playlist thumbnail
+    pub thumbnail: Vec<Thumbnail>,
+    /// Number of playlist videos
+    pub video_count: Option<u32>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
+pub struct ChannelInfo {
+    /// Channel creation date
+    pub create_date: Option<DateTime<Local>>,
+    /// Channel view count
+    pub view_count: Option<u64>,
+    /// Links to other websites or social media profiles
+    pub links: Vec<(String, String)>,
 }

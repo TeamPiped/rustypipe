@@ -229,7 +229,7 @@ VideoDetails(
     ),
     Text(" Conclusion"),
   ]),
-  channel: Channel(
+  channel: ChannelTag(
     id: "UCXuqSBlHAE6Xw-yeJA0Tunw",
     name: "Linus Tech Tips",
     avatar: [
@@ -503,7 +503,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCXuqSBlHAE6Xw-yeJA0Tunw",
           name: "Linus Tech Tips",
           avatar: [
@@ -537,7 +537,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCXuqSBlHAE6Xw-yeJA0Tunw",
           name: "Linus Tech Tips",
           avatar: [
@@ -571,7 +571,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCdBK94H6oZT2Q7l0-b0xmMg",
           name: "ShortCircuit",
           avatar: [
@@ -605,7 +605,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UC7Jwj9fkrf1adN4fMmTkpug",
           name: "DankPods",
           avatar: [
@@ -639,7 +639,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCXuqSBlHAE6Xw-yeJA0Tunw",
           name: "Linus Tech Tips",
           avatar: [
@@ -673,7 +673,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCKd49wwdEdIoM-7Fumhwmog",
           name: "Quint BUILDs",
           avatar: [
@@ -707,7 +707,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCEIwxahdLz7bap-VDs9h35A",
           name: "Steve Mould",
           avatar: [
@@ -741,7 +741,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCkWQ0gDrqOCarmUKmppD7GQ",
           name: "JayzTwoCents",
           avatar: [
@@ -775,7 +775,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UChIZGfcnjHI0DG4nweWEduw",
           name: "TechSource",
           avatar: [
@@ -809,7 +809,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCVveEFTOd6khhSXXnRhxJmg",
           name: "Fireball Tool",
           avatar: [
@@ -843,7 +843,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCq1Oqk1I7zeYlDiJTFWLoFA",
           name: "Electric Classic Cars",
           avatar: [
@@ -877,7 +877,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCvJJ_dzjViJCoLf5uKUTwoA",
           name: "CNBC",
           avatar: [
@@ -911,7 +911,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCMiJRAwDNSNzuYeN2uWa0pA",
           name: "Mrwhosetheboss",
           avatar: [
@@ -945,7 +945,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UC_SLthyNX_ivd-dmsFgmJVg",
           name: "Jeremy Fielding",
           avatar: [
@@ -979,7 +979,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCXuqSBlHAE6Xw-yeJA0Tunw",
           name: "Linus Tech Tips",
           avatar: [
@@ -1013,7 +1013,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCupQghOyPai8Hxg4RqMERvA",
           name: "incT",
           avatar: [
@@ -1047,7 +1047,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCXuqSBlHAE6Xw-yeJA0Tunw",
           name: "Linus Tech Tips",
           avatar: [
@@ -1081,7 +1081,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCXuqSBlHAE6Xw-yeJA0Tunw",
           name: "Linus Tech Tips",
           avatar: [
@@ -1115,7 +1115,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCYmna5rFHIesFteksAvFOfg",
           name: "Dr. Plants",
           avatar: [

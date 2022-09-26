@@ -1,0 +1,37 @@
+---
+source: src/client/channel.rs
+expression: map_res.c
+---
+Channel(
+  id: "UCxBa895m48H5idw5li7h-0g",
+  name: "Sebastian Figurroa",
+  subscriber_count: None,
+  avatar: [
+    Thumbnail(
+      url: "https://yt3.ggpht.com/ytc/AMLnZu_hsZ1XlUXHzXsGNHJw0np79WhWZcC4j8eFdy-tiUCDBKAjJyJOzE5kXFRiqL2S=s48-c-k-c0x00ffffff-no-rj",
+      width: 48,
+      height: 48,
+    ),
+    Thumbnail(
+      url: "https://yt3.ggpht.com/ytc/AMLnZu_hsZ1XlUXHzXsGNHJw0np79WhWZcC4j8eFdy-tiUCDBKAjJyJOzE5kXFRiqL2S=s88-c-k-c0x00ffffff-no-rj",
+      width: 88,
+      height: 88,
+    ),
+    Thumbnail(
+      url: "https://yt3.ggpht.com/ytc/AMLnZu_hsZ1XlUXHzXsGNHJw0np79WhWZcC4j8eFdy-tiUCDBKAjJyJOzE5kXFRiqL2S=s176-c-k-c0x00ffffff-no-rj",
+      width: 176,
+      height: 176,
+    ),
+  ],
+  description: "",
+  tags: [],
+  vanity_url: None,
+  banner: [],
+  mobile_banner: [],
+  tv_banner: [],
+  content: Paginator(
+    count: Some(0),
+    items: [],
+    ctoken: None,
+  ),
+)

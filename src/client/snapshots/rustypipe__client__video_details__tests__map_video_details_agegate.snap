@@ -6,7 +6,7 @@ VideoDetails(
   id: "HRKu0cvrr_o",
   title: "AlphaOmegaSin Fanboy Logic: Likes/Dislikes Disabled = Point Invalid Lol wtf?",
   description: RichText([]),
-  channel: Channel(
+  channel: ChannelTag(
     id: "UCQT2yul0lr6Ie9qNQNmw-sg",
     name: "PrinceOfFALLEN",
     avatar: [

@@ -13,7 +13,7 @@ Paginator(
         Text("\n"),
         Text("👇"),
       ]),
-      author: Some(Channel(
+      author: Some(ChannelTag(
         id: "UC--QwZHg12dkw8UKw5yB1MQ",
         name: "Agalla, Andre",
         avatar: [
@@ -54,7 +54,7 @@ Paginator(
       text: RichText([
         Text("Chicas vamos por los 300M, démosle a todas esas haters chorrillo masivo fulminante de la envidia. Vamos, Mys puede a llegar a  ser poderoso si nos unimos. Vamos por los 300M solo nos falta poco para llegar!!!!!!! Vamos Mys, alcemos nuestro teléfonos y brindemos por lo que puede hacer las Mys por Aespa"),
       ]),
-      author: Some(Channel(
+      author: Some(ChannelTag(
         id: "UCqT9iACjb69o254SFlUjcDQ",
         name: "Camila paz",
         avatar: [
@@ -95,7 +95,7 @@ Paginator(
       text: RichText([
         Text("The best 4th gen group debut for me. Camerawork, artistic value, choreography, concept, make up and styling, this one nailed ALL."),
       ]),
-      author: Some(Channel(
+      author: Some(ChannelTag(
         id: "UC00F5JjCjDDum6MlP3eloxw",
         name: "The Charging Knight of Amarapura",
         avatar: [
@@ -136,7 +136,7 @@ Paginator(
       text: RichText([
         Text("Black Manba o MV mais icônico do aespa amooooi"),
       ]),
-      author: Some(Channel(
+      author: Some(ChannelTag(
         id: "UCbfGo61YSYOlfyF1cWejhng",
         name: "Kim Jamily Sun",
         avatar: [
@@ -177,7 +177,7 @@ Paginator(
       text: RichText([
         Text("MYs if we want to make Black Mamba the most debut MV for 4th gen- let us keep on strêaming. Consistency is the key."),
       ]),
-      author: Some(Channel(
+      author: Some(ChannelTag(
         id: "UCITMz9SiXQrV-cltI-9Auuw",
         name: "Stream Girls, Savage, Next Level and Black Mamba",
         avatar: [
@@ -223,7 +223,7 @@ Paginator(
         Text("\n"),
         Text("(ps. Winter is my love <3)"),
       ]),
-      author: Some(Channel(
+      author: Some(ChannelTag(
         id: "UCDaOL1lsanMlpbzaQunz47Q",
         name: "ehe",
         avatar: [
@@ -270,7 +270,7 @@ Paginator(
         Text("\n"),
         Text("Forever, Dreams come true --> 50 M"),
       ]),
-      author: Some(Channel(
+      author: Some(ChannelTag(
         id: "UC2P4Zx1o4D3VQIjA_MIToQQ",
         name: "edits&fun",
         avatar: [
@@ -311,7 +311,7 @@ Paginator(
       text: RichText([
         Text("Logremos más de 250M Antes de que se termine el año ♡"),
       ]),
-      author: Some(Channel(
+      author: Some(ChannelTag(
         id: "UC5cxR3XtdfVR_XT3sfIKdNg",
         name: "Black mamba 🐍💜",
         avatar: [
@@ -352,7 +352,7 @@ Paginator(
       text: RichText([
         Text("Llevemos está Masterpiece a los 300M!! ಥ‿ಥ♡ Don\'t stop My, 230M soon"),
       ]),
-      author: Some(Channel(
+      author: Some(ChannelTag(
         id: "UC5cxR3XtdfVR_XT3sfIKdNg",
         name: "Black mamba 🐍💜",
         avatar: [
@@ -393,7 +393,7 @@ Paginator(
       text: RichText([
         Text("Keep streaming my\'s let\'s reach 300 million views before aespa\'s full album comeback."),
       ]),
-      author: Some(Channel(
+      author: Some(ChannelTag(
         id: "UCfQOeizIiPTG3hgKa-6MOeA",
         name: "K-POP",
         avatar: [
@@ -436,7 +436,7 @@ Paginator(
         Text("\n"),
         Text("Vamos que si se puede"),
       ]),
-      author: Some(Channel(
+      author: Some(ChannelTag(
         id: "UCgRWbRJqUHCvWv6xOuB4few",
         name: "Karina González",
         avatar: [
@@ -477,7 +477,7 @@ Paginator(
       text: RichText([
         Text("DENLE LIKE AL MV Q FALTA POCO PARA LOS 4M DE LIKES ¡!¡!¡"),
       ]),
-      author: Some(Channel(
+      author: Some(ChannelTag(
         id: "UCBqR9kJhtiHLE6dP-Oo_DMQ",
         name: "yujiminemo",
         avatar: [
@@ -518,7 +518,7 @@ Paginator(
       text: RichText([
         Text("146 millones vamos por 147 millones si se puede vamos a por mas GO"),
       ]),
-      author: Some(Channel(
+      author: Some(ChannelTag(
         id: "UCjbUNOs6PAAAAo3_feDwLQA",
         name: "OLIVER79K",
         avatar: [
@@ -559,7 +559,7 @@ Paginator(
       text: RichText([
         Text("Best MV debut for this gen!"),
       ]),
-      author: Some(Channel(
+      author: Some(ChannelTag(
         id: "UCjXq-4-e-OKn1S3SB52wHRQ",
         name: "viclusiv",
         avatar: [
@@ -600,7 +600,7 @@ Paginator(
       text: RichText([
         Text("Ya es 2022 y aún no superó este M/V, stream mys para los 300M!"),
       ]),
-      author: Some(Channel(
+      author: Some(ChannelTag(
         id: "UCwan9APGANDUfYdYBbU6OeQ",
         name: "mynlemus",
         avatar: [
@@ -641,7 +641,7 @@ Paginator(
       text: RichText([
         Text("I get goosebump every single time it comes to NingNing’s high note. Baby you’re amazingggg"),
       ]),
-      author: Some(Channel(
+      author: Some(ChannelTag(
         id: "UC3IEDx0AQiUOP8FtC_MlyFQ",
         name: "Yến Anh",
         avatar: [
@@ -682,7 +682,7 @@ Paginator(
       text: RichText([
         Text("This is still the best K-pop debut <3 MYS LETS STREAM HARD FOR GIRLS"),
       ]),
-      author: Some(Channel(
+      author: Some(ChannelTag(
         id: "UC2vbH7mtFRTiPGLRt9l_OSw",
         name: "Flavia",
         avatar: [
@@ -723,7 +723,7 @@ Paginator(
       text: RichText([
         Text("Don\'t be shy SM Entertainment! Give the girls another legendary comeback!"),
       ]),
-      author: Some(Channel(
+      author: Some(ChannelTag(
         id: "UCWgL2cewcYnsIqwN1tMikJg",
         name: "⇮ æluvieyou ⇮",
         avatar: [
@@ -764,7 +764,7 @@ Paginator(
       text: RichText([
         Text("aespa\'s debut song is really powerful. I\'ve been listening to this song many times since its release. But, the energy the song is sending me is just as powerful"),
       ]),
-      author: Some(Channel(
+      author: Some(ChannelTag(
         id: "UCN4tkZuSBXlZ5b9E8CETBUw",
         name: "MYSoneluvie",
         avatar: [
@@ -807,7 +807,7 @@ Paginator(
         Text("🔥"),
         Text("💎"),
       ]),
-      author: Some(Channel(
+      author: Some(ChannelTag(
         id: "UCoU9ZmBOV-CB2Mjl_JM3-ZA",
         name: "Melodies_Memory of exy",
         avatar: [

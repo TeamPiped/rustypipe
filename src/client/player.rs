@@ -7,8 +7,9 @@ use anyhow::{anyhow, bail, Result};
 use chrono::{Local, NaiveDateTime, NaiveTime, TimeZone};
 use fancy_regex::Regex;
 use once_cell::sync::Lazy;
-use reqwest::{Method, Url};
+use reqwest::Method;
 use serde::Serialize;
+use url::Url;
 
 use crate::{
     deobfuscate::Deobfuscator,
@@ -174,7 +175,7 @@ impl MapResponse<VideoPlayer> for response::Player {
             title: video_details.title,
             description: video_details.short_description,
             length: video_details.length_seconds,
-            thumbnails: video_details.thumbnail.unwrap_or_default().into(),
+            thumbnails: video_details.thumbnail.into(),
             channel: ChannelId {
                 id: video_details.channel_id,
                 name: video_details.author,

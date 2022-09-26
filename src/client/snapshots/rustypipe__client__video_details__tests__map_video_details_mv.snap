@@ -69,7 +69,7 @@ VideoDetails(
     Text("#에스파"),
     Text("\naespa 에스파 \'Black Mamba\' MV ℗ SM Entertainment"),
   ]),
-  channel: Channel(
+  channel: ChannelTag(
     id: "UCEf_Bc-KVd7onSeifS3py9g",
     name: "SMTOWN",
     avatar: [
@@ -118,7 +118,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCEf_Bc-KVd7onSeifS3py9g",
           name: "SMTOWN",
           avatar: [
@@ -152,7 +152,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCEf_Bc-KVd7onSeifS3py9g",
           name: "SMTOWN",
           avatar: [
@@ -186,7 +186,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UC_pwIXKXNm5KGhdEVzmY60A",
           name: "Stone Music Entertainment",
           avatar: [
@@ -220,7 +220,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCuhAUMLzJxlP1W7mEk0_6lA",
           name: "MAMAMOO",
           avatar: [
@@ -254,7 +254,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCritGVo7pLJLUS8wEu32vow",
           name: "(G)I-DLE (여자)아이들 (Official YouTube Channel)",
           avatar: [
@@ -288,7 +288,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCaO6TYtlC8U5ttz62hTrZgg",
           name: "JYP Entertainment",
           avatar: [
@@ -322,7 +322,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCEf_Bc-KVd7onSeifS3py9g",
           name: "SMTOWN",
           avatar: [
@@ -356,7 +356,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCEf_Bc-KVd7onSeifS3py9g",
           name: "SMTOWN",
           avatar: [
@@ -390,7 +390,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCaO6TYtlC8U5ttz62hTrZgg",
           name: "JYP Entertainment",
           avatar: [
@@ -424,7 +424,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCaO6TYtlC8U5ttz62hTrZgg",
           name: "JYP Entertainment",
           avatar: [
@@ -458,7 +458,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCEf_Bc-KVd7onSeifS3py9g",
           name: "SMTOWN",
           avatar: [
@@ -492,7 +492,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCOmHUn--16B90oW2L6FRR3A",
           name: "BLACKPINK",
           avatar: [
@@ -526,7 +526,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCEf_Bc-KVd7onSeifS3py9g",
           name: "SMTOWN",
           avatar: [
@@ -560,7 +560,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCOmHUn--16B90oW2L6FRR3A",
           name: "BLACKPINK",
           avatar: [
@@ -594,7 +594,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCEf_Bc-KVd7onSeifS3py9g",
           name: "SMTOWN",
           avatar: [
@@ -628,7 +628,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCYDmx2Sfpnaxg488yBpZIGg",
           name: "starshipTV",
           avatar: [
@@ -662,7 +662,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UCK8S6QMrTk1G8TYQwIyDo-w",
           name: "𝙇𝙌 𝙆𝙋𝙊𝙋",
           avatar: [
@@ -696,7 +696,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: Channel(
+        channel: ChannelTag(
           id: "UC9GtSLeksfK4yuJ_g1lgQbg",
           name: "aespa",
           avatar: [

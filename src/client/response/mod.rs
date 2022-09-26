@@ -37,6 +37,7 @@ pub struct ContentsRenderer<T> {
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ThumbnailsWrap {
+    #[serde(default)]
     pub thumbnail: Thumbnails,
 }
 
@@ -45,6 +46,7 @@ pub struct ThumbnailsWrap {
 #[derive(Default, Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Thumbnails {
+    #[serde(default)]
     pub thumbnails: Vec<Thumbnail>,
 }
 
@@ -155,8 +157,6 @@ pub struct GridPlaylistRenderer {
     pub title: String,
     pub thumbnail: Thumbnails,
     #[serde_as(as = "Text")]
-    pub published_time_text: String,
-    #[serde_as(as = "Text")]
     pub video_count_short_text: String,
 }
 
@@ -244,6 +244,9 @@ pub struct TimeOverlay {
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct TimeOverlayRenderer {
+    /// `29:54`
+    ///
+    /// Is `LIVE` in case of a livestream
     #[serde_as(as = "Text")]
     pub text: String,
     #[serde(default)]

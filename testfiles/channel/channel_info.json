@@ -1,0 +1,2732 @@
+{
+  "contents": {
+    "twoColumnBrowseResultsRenderer": {
+      "tabs": [
+        {
+          "tabRenderer": {
+            "endpoint": {
+              "browseEndpoint": {
+                "browseId": "UC2DjFE7Xf11URZqWBigcVOQ",
+                "canonicalBaseUrl": "/c/EevblogDave",
+                "params": "EghmZWF0dXJlZPIGBAoCMgA%3D"
+              },
+              "clickTrackingParams": "CCsQ8JMBGAUiEwjQl_Lpj676AhXF6FEKHcpNBwM=",
+              "commandMetadata": {
+                "webCommandMetadata": {
+                  "apiUrl": "/youtubei/v1/browse",
+                  "rootVe": 3611,
+                  "url": "/c/EevblogDave/featured",
+                  "webPageType": "WEB_PAGE_TYPE_CHANNEL"
+                }
+              }
+            },
+            "title": "Home",
+            "trackingParams": "CCsQ8JMBGAUiEwjQl_Lpj676AhXF6FEKHcpNBwM="
+          }
+        },
+        {
+          "tabRenderer": {
+            "endpoint": {
+              "browseEndpoint": {
+                "browseId": "UC2DjFE7Xf11URZqWBigcVOQ",
+                "canonicalBaseUrl": "/c/EevblogDave",
+                "params": "EgZ2aWRlb3PyBgQKAjoA"
+              },
+              "clickTrackingParams": "CCoQ8JMBGAYiEwjQl_Lpj676AhXF6FEKHcpNBwM=",
+              "commandMetadata": {
+                "webCommandMetadata": {
+                  "apiUrl": "/youtubei/v1/browse",
+                  "rootVe": 3611,
+                  "url": "/c/EevblogDave/videos",
+                  "webPageType": "WEB_PAGE_TYPE_CHANNEL"
+                }
+              }
+            },
+            "title": "Videos",
+            "trackingParams": "CCoQ8JMBGAYiEwjQl_Lpj676AhXF6FEKHcpNBwM="
+          }
+        },
+        {
+          "tabRenderer": {
+            "endpoint": {
+              "browseEndpoint": {
+                "browseId": "UC2DjFE7Xf11URZqWBigcVOQ",
+                "canonicalBaseUrl": "/c/EevblogDave",
+                "params": "EglwbGF5bGlzdHPyBgQKAkIA"
+              },
+              "clickTrackingParams": "CCkQ8JMBGAciEwjQl_Lpj676AhXF6FEKHcpNBwM=",
+              "commandMetadata": {
+                "webCommandMetadata": {
+                  "apiUrl": "/youtubei/v1/browse",
+                  "rootVe": 3611,
+                  "url": "/c/EevblogDave/playlists",
+                  "webPageType": "WEB_PAGE_TYPE_CHANNEL"
+                }
+              }
+            },
+            "title": "Playlists",
+            "trackingParams": "CCkQ8JMBGAciEwjQl_Lpj676AhXF6FEKHcpNBwM="
+          }
+        },
+        {
+          "tabRenderer": {
+            "endpoint": {
+              "browseEndpoint": {
+                "browseId": "UC2DjFE7Xf11URZqWBigcVOQ",
+                "canonicalBaseUrl": "/c/EevblogDave",
+                "params": "Egljb21tdW5pdHnyBgQKAkoA"
+              },
+              "clickTrackingParams": "CCgQ8JMBGAgiEwjQl_Lpj676AhXF6FEKHcpNBwM=",
+              "commandMetadata": {
+                "webCommandMetadata": {
+                  "apiUrl": "/youtubei/v1/browse",
+                  "rootVe": 3611,
+                  "url": "/c/EevblogDave/community",
+                  "webPageType": "WEB_PAGE_TYPE_CHANNEL"
+                }
+              }
+            },
+            "title": "Community",
+            "trackingParams": "CCgQ8JMBGAgiEwjQl_Lpj676AhXF6FEKHcpNBwM="
+          }
+        },
+        {
+          "tabRenderer": {
+            "endpoint": {
+              "browseEndpoint": {
+                "browseId": "UC2DjFE7Xf11URZqWBigcVOQ",
+                "canonicalBaseUrl": "/c/EevblogDave",
+                "params": "EgVzdG9yZfIGBAoCGgA%3D"
+              },
+              "clickTrackingParams": "CCcQ8JMBGAkiEwjQl_Lpj676AhXF6FEKHcpNBwM=",
+              "commandMetadata": {
+                "webCommandMetadata": {
+                  "apiUrl": "/youtubei/v1/browse",
+                  "rootVe": 3611,
+                  "url": "/c/EevblogDave/store",
+                  "webPageType": "WEB_PAGE_TYPE_CHANNEL"
+                }
+              }
+            },
+            "title": "Store",
+            "trackingParams": "CCcQ8JMBGAkiEwjQl_Lpj676AhXF6FEKHcpNBwM="
+          }
+        },
+        {
+          "tabRenderer": {
+            "endpoint": {
+              "browseEndpoint": {
+                "browseId": "UC2DjFE7Xf11URZqWBigcVOQ",
+                "canonicalBaseUrl": "/c/EevblogDave",
+                "params": "EghjaGFubmVsc_IGBAoCUgA%3D"
+              },
+              "clickTrackingParams": "CCYQ8JMBGAoiEwjQl_Lpj676AhXF6FEKHcpNBwM=",
+              "commandMetadata": {
+                "webCommandMetadata": {
+                  "apiUrl": "/youtubei/v1/browse",
+                  "rootVe": 3611,
+                  "url": "/c/EevblogDave/channels",
+                  "webPageType": "WEB_PAGE_TYPE_CHANNEL"
+                }
+              }
+            },
+            "title": "Channels",
+            "trackingParams": "CCYQ8JMBGAoiEwjQl_Lpj676AhXF6FEKHcpNBwM="
+          }
+        },
+        {
+          "tabRenderer": {
+            "content": {
+              "sectionListRenderer": {
+                "contents": [
+                  {
+                    "itemSectionRenderer": {
+                      "contents": [
+                        {
+                          "channelAboutFullMetadataRenderer": {
+                            "avatar": {
+                              "thumbnails": [
+                                {
+                                  "height": 48,
+                                  "url": "https://yt3.ggpht.com/ytc/AMLnZu9eKk4Nd16fX4Rn1TF1G7ReluwOl6M5558FTYAM=s48-c-k-c0x00ffffff-no-rj",
+                                  "width": 48
+                                },
+                                {
+                                  "height": 88,
+                                  "url": "https://yt3.ggpht.com/ytc/AMLnZu9eKk4Nd16fX4Rn1TF1G7ReluwOl6M5558FTYAM=s88-c-k-c0x00ffffff-no-rj",
+                                  "width": 88
+                                },
+                                {
+                                  "height": 176,
+                                  "url": "https://yt3.ggpht.com/ytc/AMLnZu9eKk4Nd16fX4Rn1TF1G7ReluwOl6M5558FTYAM=s176-c-k-c0x00ffffff-no-rj",
+                                  "width": 176
+                                }
+                              ]
+                            },
+                            "businessEmailLabel": {
+                              "runs": [
+                                {
+                                  "text": "For business inquiries:"
+                                }
+                              ]
+                            },
+                            "bypassBusinessEmailCaptcha": false,
+                            "canonicalChannelUrl": "http://www.youtube.com/c/EevblogDave",
+                            "channelId": "UC2DjFE7Xf11URZqWBigcVOQ",
+                            "country": {
+                              "simpleText": "Australia"
+                            },
+                            "countryLabel": {
+                              "runs": [
+                                {
+                                  "deemphasize": true,
+                                  "text": "\nLocation:\n  "
+                                }
+                              ]
+                            },
+                            "description": {
+                              "simpleText": "NO SCRIPT, NO FEAR, ALL OPINION\nAn off-the-cuff Video Blog about Electronics Engineering, for engineers, hobbyists, enthusiasts, hackers and Makers\nHosted by Dave Jones from Sydney Australia\n\nDONATIONS:\nBitcoin: 3KqyH1U3qrMPnkLufM2oHDU7YB4zVZeFyZ\nEthereum: 0x99ccc4d2654ba40744a1f678d9868ecb15e91206\nPayPal: david@alternatezone.com\n\nPatreon: https://www.patreon.com/eevblog\n\nEEVblog2: http://www.youtube.com/EEVblog2\nEEVdiscover: https://www.youtube.com/channel/UCkGvUEt8iQLmq3aJIMjT2qQ\n\nEMAIL:\nAdvertising/Commercial: eevblog+business@gmail.com\nFan mail: eevblog+fan@gmail.com\nHate Mail: eevblog+hate@gmail.com\n\nI DON'T DO PAID VIDEO SPONSORSHIPS, DON'T ASK!\n\nPLEASE:\nDo NOT ask for personal advice on something, post it in the EEVblog forum.\nI read ALL email, but please don't be offended if I don't have time to reply, I get a LOT of email.\n\nMailbag\nPO Box 7949\nBaulkham Hills NSW 2153\nAUSTRALIA"
+                            },
+                            "descriptionLabel": {
+                              "runs": [
+                                {
+                                  "text": "Description"
+                                }
+                              ]
+                            },
+                            "detailsLabel": {
+                              "runs": [
+                                {
+                                  "text": "Details"
+                                }
+                              ]
+                            },
+                            "joinedDateText": {
+                              "runs": [
+                                {
+                                  "text": "Joined "
+                                },
+                                {
+                                  "text": "Apr 4, 2009"
+                                }
+                              ]
+                            },
+                            "onBusinessEmailRevealClickCommand": {
+                              "clickTrackingParams": "CBgQuy8YACITCNCX8umPrvoCFcXoUQodyk0HAw==",
+                              "commandMetadata": {
+                                "webCommandMetadata": {
+                                  "apiUrl": "/youtubei/v1/channel/reveal_business_email",
+                                  "sendPost": true
+                                }
+                              },
+                              "revealBusinessEmailCommand": {}
+                            },
+                            "primaryLinks": [
+                              {
+                                "icon": {
+                                  "thumbnails": [
+                                    {
+                                      "url": "https://encrypted-tbn2.gstatic.com/favicon-tbn?q=tbn:ANd9GcSeeYHqSanvu-1kS8-j8snFjPciLtknpI1FBXBB6ChDhHFlCRCjevwoP5AOW1u3m9HaeGexWOI4DJeisvRR1YK_jsARgDOrkbO3qWsfWQFxBaEkSQ"
+                                    }
+                                  ]
+                                },
+                                "navigationEndpoint": {
+                                  "clickTrackingParams": "CCUQobIHGAEiEwjQl_Lpj676AhXF6FEKHcpNBwM=",
+                                  "commandMetadata": {
+                                    "webCommandMetadata": {
+                                      "rootVe": 83769,
+                                      "url": "https://www.youtube.com/redirect?event=channel_description&redir_token=QUFFLUhqbWtPX3hfT29YN05DV0hLbnllb1dVV0Rsb29ZQXxBQ3Jtc0tuX1ZTVW9IZExYdkpMcTQwTUxENWphU3R1dWx2RG1xVkIxNkY0Qk5qa2RRZ21kRy15YzI4Z2lOcFNoM3RiOVZNSVczNTRhRnprZFNFWmdITTNzNDItRUc4WEhzcEtKZjgtLWZGNllpbjNReW85SGtJbw&q=http%3A%2F%2Fwww.eevblog.com",
+                                      "webPageType": "WEB_PAGE_TYPE_UNKNOWN"
+                                    }
+                                  },
+                                  "urlEndpoint": {
+                                    "nofollow": true,
+                                    "target": "TARGET_NEW_WINDOW",
+                                    "url": "https://www.youtube.com/redirect?event=channel_description&redir_token=QUFFLUhqbWtPX3hfT29YN05DV0hLbnllb1dVV0Rsb29ZQXxBQ3Jtc0tuX1ZTVW9IZExYdkpMcTQwTUxENWphU3R1dWx2RG1xVkIxNkY0Qk5qa2RRZ21kRy15YzI4Z2lOcFNoM3RiOVZNSVczNTRhRnprZFNFWmdITTNzNDItRUc4WEhzcEtKZjgtLWZGNllpbjNReW85SGtJbw&q=http%3A%2F%2Fwww.eevblog.com"
+                                  }
+                                },
+                                "title": {
+                                  "simpleText": "EEVblog Web Site"
+                                },
+                                "trackingParams": "CCUQobIHGAEiEwjQl_Lpj676AhXF6FEKHcpNBwM="
+                              },
+                              {
+                                "icon": {
+                                  "thumbnails": [
+                                    {
+                                      "url": "https://encrypted-tbn1.gstatic.com/favicon-tbn?q=tbn:ANd9GcSnyfGgzwnk19b891nCqykpMzr3jlkKm0Z65gNVJbtXsk9-gzW5EiqqEvM02nZyYKmI2x1JQI9OuGsWU69bgq9_rNrHCYrXLP6HqhP9iVwr0bm2IQ"
+                                    }
+                                  ]
+                                },
+                                "navigationEndpoint": {
+                                  "clickTrackingParams": "CCQQobIHGAIiEwjQl_Lpj676AhXF6FEKHcpNBwM=",
+                                  "commandMetadata": {
+                                    "webCommandMetadata": {
+                                      "rootVe": 83769,
+                                      "url": "https://www.youtube.com/redirect?event=channel_description&redir_token=QUFFLUhqa0NBT2M1UkV5ejJZbXNITWdaRFh4QmNaQ0Rxd3xBQ3Jtc0tscXlScUJZWjFVUGNwampKUGwxbWVoQU9HRHFfdGZpTmxuMEY3bGlEV000em15bExiZGhiM09WSlp4cXlpWVk0OWFMdE1Wei1vYzh4aGgtS1gtUDFCb2tsOFZyU3BFSW1HdXh6OU1peThJWTBrNnZlbw&q=http%3A%2F%2Fwww.twitter.com%2Feevblog",
+                                      "webPageType": "WEB_PAGE_TYPE_UNKNOWN"
+                                    }
+                                  },
+                                  "urlEndpoint": {
+                                    "nofollow": true,
+                                    "target": "TARGET_NEW_WINDOW",
+                                    "url": "https://www.youtube.com/redirect?event=channel_description&redir_token=QUFFLUhqa0NBT2M1UkV5ejJZbXNITWdaRFh4QmNaQ0Rxd3xBQ3Jtc0tscXlScUJZWjFVUGNwampKUGwxbWVoQU9HRHFfdGZpTmxuMEY3bGlEV000em15bExiZGhiM09WSlp4cXlpWVk0OWFMdE1Wei1vYzh4aGgtS1gtUDFCb2tsOFZyU3BFSW1HdXh6OU1peThJWTBrNnZlbw&q=http%3A%2F%2Fwww.twitter.com%2Feevblog"
+                                  }
+                                },
+                                "title": {
+                                  "simpleText": "Twitter"
+                                },
+                                "trackingParams": "CCQQobIHGAIiEwjQl_Lpj676AhXF6FEKHcpNBwM="
+                              },
+                              {
+                                "icon": {
+                                  "thumbnails": [
+                                    {
+                                      "url": "https://encrypted-tbn3.gstatic.com/favicon-tbn?q=tbn:ANd9GcRmQS0-yT-68TopCQcxwbvtkTB0rdiUtc7g4WFZBVWFT4tJ8tSTon4n5uCmm9_b69_7bgTNZNmFw3-zyF-kWNXXZJEBTm_-r1qZrKLyDfCYxiEXY50"
+                                    }
+                                  ]
+                                },
+                                "navigationEndpoint": {
+                                  "clickTrackingParams": "CCMQobIHGAMiEwjQl_Lpj676AhXF6FEKHcpNBwM=",
+                                  "commandMetadata": {
+                                    "webCommandMetadata": {
+                                      "rootVe": 83769,
+                                      "url": "https://www.youtube.com/redirect?event=channel_description&redir_token=QUFFLUhqbEZNRmEzZ05TbUxQaE1lVzRhOUd3MktPcmM0Z3xBQ3Jtc0ttck5kdXFBMGlWc3E3aTh1UTc2UWV5YXJFeVozbkl3enV6bXJsZ3huRmgtaTFXcDdXcG1pVWgycWg1NzdEMDQ3bEdSMzVjRWFkQjVQWnVsQ3FyYmRNOUN2RGkzLS0yYW9VTFNISDFqYjg4enNwRWExWQ&q=http%3A%2F%2Fwww.facebook.com%2FEEVblog",
+                                      "webPageType": "WEB_PAGE_TYPE_UNKNOWN"
+                                    }
+                                  },
+                                  "urlEndpoint": {
+                                    "nofollow": true,
+                                    "target": "TARGET_NEW_WINDOW",
+                                    "url": "https://www.youtube.com/redirect?event=channel_description&redir_token=QUFFLUhqbEZNRmEzZ05TbUxQaE1lVzRhOUd3MktPcmM0Z3xBQ3Jtc0ttck5kdXFBMGlWc3E3aTh1UTc2UWV5YXJFeVozbkl3enV6bXJsZ3huRmgtaTFXcDdXcG1pVWgycWg1NzdEMDQ3bEdSMzVjRWFkQjVQWnVsQ3FyYmRNOUN2RGkzLS0yYW9VTFNISDFqYjg4enNwRWExWQ&q=http%3A%2F%2Fwww.facebook.com%2FEEVblog"
+                                  }
+                                },
+                                "title": {
+                                  "simpleText": "Facebook"
+                                },
+                                "trackingParams": "CCMQobIHGAMiEwjQl_Lpj676AhXF6FEKHcpNBwM="
+                              },
+                              {
+                                "icon": {
+                                  "thumbnails": [
+                                    {
+                                      "url": "https://encrypted-tbn0.gstatic.com/favicon-tbn?q=tbn:ANd9GcRY4no9kYJtEAHXBEY2GDprV__HH1zc94olyS6G6fT5isS71bPyqvIi7-9VE1MMy3_3vsNOQLAerwcSQqGNyADWfxKpd2hLc8HuacZdgEjgZc_WLN8"
+                                    }
+                                  ]
+                                },
+                                "navigationEndpoint": {
+                                  "clickTrackingParams": "CCIQobIHGAQiEwjQl_Lpj676AhXF6FEKHcpNBwM=",
+                                  "commandMetadata": {
+                                    "webCommandMetadata": {
+                                      "rootVe": 83769,
+                                      "url": "https://www.youtube.com/channel/UCkGvUEt8iQLmq3aJIMjT2qQ",
+                                      "webPageType": "WEB_PAGE_TYPE_UNKNOWN"
+                                    }
+                                  },
+                                  "urlEndpoint": {
+                                    "nofollow": true,
+                                    "url": "https://www.youtube.com/channel/UCkGvUEt8iQLmq3aJIMjT2qQ"
+                                  }
+                                },
+                                "title": {
+                                  "simpleText": "EEVdiscover"
+                                },
+                                "trackingParams": "CCIQobIHGAQiEwjQl_Lpj676AhXF6FEKHcpNBwM="
+                              },
+                              {
+                                "icon": {
+                                  "thumbnails": [
+                                    {
+                                      "url": "https://encrypted-tbn2.gstatic.com/favicon-tbn?q=tbn:ANd9GcSeeYHqSanvu-1kS8-j8snFjPciLtknpI1FBXBB6ChDhHFlCRCjevwoP5AOW1u3m9HaeGexWOI4DJeisvRR1YK_jsARgDOrkbO3qWsfWQFxBaEkSQ"
+                                    }
+                                  ]
+                                },
+                                "navigationEndpoint": {
+                                  "clickTrackingParams": "CCEQobIHGAUiEwjQl_Lpj676AhXF6FEKHcpNBwM=",
+                                  "commandMetadata": {
+                                    "webCommandMetadata": {
+                                      "rootVe": 83769,
+                                      "url": "https://www.youtube.com/redirect?event=channel_description&redir_token=QUFFLUhqa3lZaE8tLVBneVh2R3Z5TXplU2wzbUVRcVJ1Z3xBQ3Jtc0trQnl4NVltWkFDa3hXVUZzQ0o4UHo2dENwX3ZYaklNQzZNNDJrUFBtOVVFemVsSU4zaTd6UmZJYWRWck9mU0d1UEtZYXBQSUxkc1k0Zi1fU1BmQWVnY09NSU1KXzN1M2RsaDVnT1hsbHk0YmRLNWNlTQ&q=http%3A%2F%2Fwww.eevblog.com%2Fforum",
+                                      "webPageType": "WEB_PAGE_TYPE_UNKNOWN"
+                                    }
+                                  },
+                                  "urlEndpoint": {
+                                    "nofollow": true,
+                                    "target": "TARGET_NEW_WINDOW",
+                                    "url": "https://www.youtube.com/redirect?event=channel_description&redir_token=QUFFLUhqa3lZaE8tLVBneVh2R3Z5TXplU2wzbUVRcVJ1Z3xBQ3Jtc0trQnl4NVltWkFDa3hXVUZzQ0o4UHo2dENwX3ZYaklNQzZNNDJrUFBtOVVFemVsSU4zaTd6UmZJYWRWck9mU0d1UEtZYXBQSUxkc1k0Zi1fU1BmQWVnY09NSU1KXzN1M2RsaDVnT1hsbHk0YmRLNWNlTQ&q=http%3A%2F%2Fwww.eevblog.com%2Fforum"
+                                  }
+                                },
+                                "title": {
+                                  "simpleText": "The EEVblog Forum"
+                                },
+                                "trackingParams": "CCEQobIHGAUiEwjQl_Lpj676AhXF6FEKHcpNBwM="
+                              },
+                              {
+                                "icon": {
+                                  "thumbnails": [
+                                    {
+                                      "url": "https://encrypted-tbn2.gstatic.com/favicon-tbn?q=tbn:ANd9GcSeeYHqSanvu-1kS8-j8snFjPciLtknpI1FBXBB6ChDhHFlCRCjevwoP5AOW1u3m9HaeGexWOI4DJeisvRR1YK_jsARgDOrkbO3qWsfWQFxBaEkSQ"
+                                    }
+                                  ]
+                                },
+                                "navigationEndpoint": {
+                                  "clickTrackingParams": "CCAQobIHGAYiEwjQl_Lpj676AhXF6FEKHcpNBwM=",
+                                  "commandMetadata": {
+                                    "webCommandMetadata": {
+                                      "rootVe": 83769,
+                                      "url": "https://www.youtube.com/redirect?event=channel_description&redir_token=QUFFLUhqbHY3a0x2WU5BMTJ0SmlqVEVVay1pMW9Jc2c2Z3xBQ3Jtc0tsYktFRk4xLXNJQ1NfZDZlcVZrSVN0QWlidjcxZEY2bFpSTWVGNTJIUXJGdkhDeEJMX2lFLTVBaHNXSXlvUTVQcUhTNUcwVUktRVJuUVdCc3Ftd2F5T3VNNnRfelYtR05ENGFPaTFHOGpuajh5YzlEQQ&q=http%3A%2F%2Fwww.eevblog.com%2Fmerch",
+                                      "webPageType": "WEB_PAGE_TYPE_UNKNOWN"
+                                    }
+                                  },
+                                  "urlEndpoint": {
+                                    "nofollow": true,
+                                    "target": "TARGET_NEW_WINDOW",
+                                    "url": "https://www.youtube.com/redirect?event=channel_description&redir_token=QUFFLUhqbHY3a0x2WU5BMTJ0SmlqVEVVay1pMW9Jc2c2Z3xBQ3Jtc0tsYktFRk4xLXNJQ1NfZDZlcVZrSVN0QWlidjcxZEY2bFpSTWVGNTJIUXJGdkhDeEJMX2lFLTVBaHNXSXlvUTVQcUhTNUcwVUktRVJuUVdCc3Ftd2F5T3VNNnRfelYtR05ENGFPaTFHOGpuajh5YzlEQQ&q=http%3A%2F%2Fwww.eevblog.com%2Fmerch"
+                                  }
+                                },
+                                "title": {
+                                  "simpleText": "EEVblog Merchandise (T-Shirts)"
+                                },
+                                "trackingParams": "CCAQobIHGAYiEwjQl_Lpj676AhXF6FEKHcpNBwM="
+                              },
+                              {
+                                "icon": {
+                                  "thumbnails": [
+                                    {
+                                      "url": "https://encrypted-tbn2.gstatic.com/favicon-tbn?q=tbn:ANd9GcSeeYHqSanvu-1kS8-j8snFjPciLtknpI1FBXBB6ChDhHFlCRCjevwoP5AOW1u3m9HaeGexWOI4DJeisvRR1YK_jsARgDOrkbO3qWsfWQFxBaEkSQ"
+                                    }
+                                  ]
+                                },
+                                "navigationEndpoint": {
+                                  "clickTrackingParams": "CB8QobIHGAciEwjQl_Lpj676AhXF6FEKHcpNBwM=",
+                                  "commandMetadata": {
+                                    "webCommandMetadata": {
+                                      "rootVe": 83769,
+                                      "url": "https://www.youtube.com/redirect?event=channel_description&redir_token=QUFFLUhqblZ3bHNZVy11YW1IWjhHR0FIdEpQMVJoWVpOd3xBQ3Jtc0ttbnVFV2JHWnRBVUhLaE83WmpKZU4xYi1GVS0tSTVjYUtGck5zUkgyVl94VXQtakNYU0xsOER1SWdjcVhSVlQ0TWszUWNHT3pFNzVKVGZESzBRcGwwdVVlb1k2cm5LaklXcDBMN3NSdjZ5NTk5S2JGSQ&q=http%3A%2F%2Fwww.eevblog.com%2Fdonations%2F",
+                                      "webPageType": "WEB_PAGE_TYPE_UNKNOWN"
+                                    }
+                                  },
+                                  "urlEndpoint": {
+                                    "nofollow": true,
+                                    "target": "TARGET_NEW_WINDOW",
+                                    "url": "https://www.youtube.com/redirect?event=channel_description&redir_token=QUFFLUhqblZ3bHNZVy11YW1IWjhHR0FIdEpQMVJoWVpOd3xBQ3Jtc0ttbnVFV2JHWnRBVUhLaE83WmpKZU4xYi1GVS0tSTVjYUtGck5zUkgyVl94VXQtakNYU0xsOER1SWdjcVhSVlQ0TWszUWNHT3pFNzVKVGZESzBRcGwwdVVlb1k2cm5LaklXcDBMN3NSdjZ5NTk5S2JGSQ&q=http%3A%2F%2Fwww.eevblog.com%2Fdonations%2F"
+                                  }
+                                },
+                                "title": {
+                                  "simpleText": "EEVblog Donations"
+                                },
+                                "trackingParams": "CB8QobIHGAciEwjQl_Lpj676AhXF6FEKHcpNBwM="
+                              },
+                              {
+                                "icon": {
+                                  "thumbnails": [
+                                    {
+                                      "url": "https://encrypted-tbn2.gstatic.com/favicon-tbn?q=tbn:ANd9GcRNePy1H3QW5dJzuE2mHt-ObVgw6hqhXf2AjZ0DoWRBGk1XNRiGO-okaP7raQeazic8D4yZgoYSQsT3WmYKNXCZf0rk6Pc4KqozGcSQDWt7jGXeYeA"
+                                    }
+                                  ]
+                                },
+                                "navigationEndpoint": {
+                                  "clickTrackingParams": "CB4QobIHGAgiEwjQl_Lpj676AhXF6FEKHcpNBwM=",
+                                  "commandMetadata": {
+                                    "webCommandMetadata": {
+                                      "rootVe": 83769,
+                                      "url": "https://www.youtube.com/redirect?event=channel_description&redir_token=QUFFLUhqa3VOaGVjWmc4amtOdThCSGp3QXdQSkZYSWhQQXxBQ3Jtc0tsS29ENFZBRWJ1UkZCVUhTeWRIbWw2V1FKNnZGblJJZUhzRlRXaVd5NjNyakJXOWwtbzVIZTdLV3poYk4ya0djeXZwZi1BYnhYSjRUMHJtWkdNVzQya1AtQ0hDcGRCXzk2Tlpxa3dTVHdoNmZnNjR1dw&q=https%3A%2F%2Fwww.patreon.com%2Feevblog",
+                                      "webPageType": "WEB_PAGE_TYPE_UNKNOWN"
+                                    }
+                                  },
+                                  "urlEndpoint": {
+                                    "nofollow": true,
+                                    "target": "TARGET_NEW_WINDOW",
+                                    "url": "https://www.youtube.com/redirect?event=channel_description&redir_token=QUFFLUhqa3VOaGVjWmc4amtOdThCSGp3QXdQSkZYSWhQQXxBQ3Jtc0tsS29ENFZBRWJ1UkZCVUhTeWRIbWw2V1FKNnZGblJJZUhzRlRXaVd5NjNyakJXOWwtbzVIZTdLV3poYk4ya0djeXZwZi1BYnhYSjRUMHJtWkdNVzQya1AtQ0hDcGRCXzk2Tlpxa3dTVHdoNmZnNjR1dw&q=https%3A%2F%2Fwww.patreon.com%2Feevblog"
+                                  }
+                                },
+                                "title": {
+                                  "simpleText": "Patreon"
+                                },
+                                "trackingParams": "CB4QobIHGAgiEwjQl_Lpj676AhXF6FEKHcpNBwM="
+                              },
+                              {
+                                "icon": {
+                                  "thumbnails": [
+                                    {
+                                      "url": "https://encrypted-tbn3.gstatic.com/favicon-tbn?q=tbn:ANd9GcT-8_XQ6FFFUhxPG6nO8fXwP8nLrLo1gEtxRF_P1hQjbuDENZeK3-2W5bUaDp8oWDpP0PEdTBO5MsLEtmSucmSL0PMvOUOgYIWi8-_A7I9ANgBBhnemRCe8cOc"
+                                    }
+                                  ]
+                                },
+                                "navigationEndpoint": {
+                                  "clickTrackingParams": "CB0QobIHGAkiEwjQl_Lpj676AhXF6FEKHcpNBwM=",
+                                  "commandMetadata": {
+                                    "webCommandMetadata": {
+                                      "rootVe": 83769,
+                                      "url": "https://www.youtube.com/redirect?event=channel_description&redir_token=QUFFLUhqbW56T0MweUZyVVdFRmlpcUtJZ0VrZHFvbUZwZ3xBQ3Jtc0ttZEp5bnNtMWlSTHg3aVF1b19jV2hVYzZRQWtpbDdjcHB2OHd5VEZNRkxQY3hSeWZsN0pIVU94cnNSMjVGWjVJNTRHQVpaNmtfWnZaTEgzQmdQMk44S3pLWFFoRnVmbEwtLVViSmdjTjVpS1c4M1F2bw&q=https%3A%2F%2Fwww.subscribestar.com%2Feevblog",
+                                      "webPageType": "WEB_PAGE_TYPE_UNKNOWN"
+                                    }
+                                  },
+                                  "urlEndpoint": {
+                                    "nofollow": true,
+                                    "target": "TARGET_NEW_WINDOW",
+                                    "url": "https://www.youtube.com/redirect?event=channel_description&redir_token=QUFFLUhqbW56T0MweUZyVVdFRmlpcUtJZ0VrZHFvbUZwZ3xBQ3Jtc0ttZEp5bnNtMWlSTHg3aVF1b19jV2hVYzZRQWtpbDdjcHB2OHd5VEZNRkxQY3hSeWZsN0pIVU94cnNSMjVGWjVJNTRHQVpaNmtfWnZaTEgzQmdQMk44S3pLWFFoRnVmbEwtLVViSmdjTjVpS1c4M1F2bw&q=https%3A%2F%2Fwww.subscribestar.com%2Feevblog"
+                                  }
+                                },
+                                "title": {
+                                  "simpleText": "SubscribeStar"
+                                },
+                                "trackingParams": "CB0QobIHGAkiEwjQl_Lpj676AhXF6FEKHcpNBwM="
+                              },
+                              {
+                                "icon": {
+                                  "thumbnails": [
+                                    {
+                                      "url": "https://encrypted-tbn2.gstatic.com/favicon-tbn?q=tbn:ANd9GcQM5g9rHwU86NCDHZAnvIGK40lhLrquyZVKRCGft0DGiGrzrooBQXjgRtUY4xqEBgwe57w7ytbX7kUubPHTmsWL1wIqcW8XkaoYfuC4ENqJjMhOsX592A"
+                                    }
+                                  ]
+                                },
+                                "navigationEndpoint": {
+                                  "clickTrackingParams": "CBwQobIHGAoiEwjQl_Lpj676AhXF6FEKHcpNBwM=",
+                                  "commandMetadata": {
+                                    "webCommandMetadata": {
+                                      "rootVe": 83769,
+                                      "url": "https://www.youtube.com/redirect?event=channel_description&redir_token=QUFFLUhqbF9Mb0tHaDVHSmlJSXNNaVZRVHFHRnR0Nl9MUXxBQ3Jtc0tuYTgxUlluQV9Ga0tra09Id3N4RndoRm9zTXlzYV9qT3JEMHJNQzJoVDFBd2EydlpTWUpXTGpfb19iU2xhT1YzVzFjd2NGb2NwQnBnckJfQ3ZxRWdPTV84dE1OOVhlV2FjWjdCX1JDenA4YnFOVEVVUQ&q=http%3A%2F%2Fwww.theamphour.com",
+                                      "webPageType": "WEB_PAGE_TYPE_UNKNOWN"
+                                    }
+                                  },
+                                  "urlEndpoint": {
+                                    "nofollow": true,
+                                    "target": "TARGET_NEW_WINDOW",
+                                    "url": "https://www.youtube.com/redirect?event=channel_description&redir_token=QUFFLUhqbF9Mb0tHaDVHSmlJSXNNaVZRVHFHRnR0Nl9MUXxBQ3Jtc0tuYTgxUlluQV9Ga0tra09Id3N4RndoRm9zTXlzYV9qT3JEMHJNQzJoVDFBd2EydlpTWUpXTGpfb19iU2xhT1YzVzFjd2NGb2NwQnBnckJfQ3ZxRWdPTV84dE1OOVhlV2FjWjdCX1JDenA4YnFOVEVVUQ&q=http%3A%2F%2Fwww.theamphour.com"
+                                  }
+                                },
+                                "title": {
+                                  "simpleText": "The AmpHour Radio Show"
+                                },
+                                "trackingParams": "CBwQobIHGAoiEwjQl_Lpj676AhXF6FEKHcpNBwM="
+                              },
+                              {
+                                "icon": {
+                                  "thumbnails": [
+                                    {
+                                      "url": "https://encrypted-tbn2.gstatic.com/favicon-tbn?q=tbn:ANd9GcRnAk_yQ7EPRR2O8YSDZ2dxHZpw2jM7tVeWXkyrWjjZsD-p7OcxqNNuTKvuIuc0rT97_DrMTvP4x0mu4npuOrlZEJLkffDBAiHYCWdze4lZy3Lu"
+                                    }
+                                  ]
+                                },
+                                "navigationEndpoint": {
+                                  "clickTrackingParams": "CBsQobIHGAsiEwjQl_Lpj676AhXF6FEKHcpNBwM=",
+                                  "commandMetadata": {
+                                    "webCommandMetadata": {
+                                      "rootVe": 83769,
+                                      "url": "https://www.youtube.com/redirect?event=channel_description&redir_token=QUFFLUhqa0dlTkt6c0Y3NXZSTGdhNHZ5TmpQbmNvSW12UXxBQ3Jtc0ttNDBjYjZtdnZpWDRXaXJJelB5bXltOXUwSGNFYTNaeFBHYXpqemZZTk9PajhaNnlEcHRwWE5qNGJRNFhhX2t6a1BmbmE2TW5LX0NuUHNrdFA4dXdySDlqR3ZtUXhaMFNRMkN4RDM0RWxaUVpIUXZLdw&q=http%3A%2F%2Fwww.flickr.com%2Fphotos%2Feevblog",
+                                      "webPageType": "WEB_PAGE_TYPE_UNKNOWN"
+                                    }
+                                  },
+                                  "urlEndpoint": {
+                                    "nofollow": true,
+                                    "target": "TARGET_NEW_WINDOW",
+                                    "url": "https://www.youtube.com/redirect?event=channel_description&redir_token=QUFFLUhqa0dlTkt6c0Y3NXZSTGdhNHZ5TmpQbmNvSW12UXxBQ3Jtc0ttNDBjYjZtdnZpWDRXaXJJelB5bXltOXUwSGNFYTNaeFBHYXpqemZZTk9PajhaNnlEcHRwWE5qNGJRNFhhX2t6a1BmbmE2TW5LX0NuUHNrdFA4dXdySDlqR3ZtUXhaMFNRMkN4RDM0RWxaUVpIUXZLdw&q=http%3A%2F%2Fwww.flickr.com%2Fphotos%2Feevblog"
+                                  }
+                                },
+                                "title": {
+                                  "simpleText": "Flickr"
+                                },
+                                "trackingParams": "CBsQobIHGAsiEwjQl_Lpj676AhXF6FEKHcpNBwM="
+                              },
+                              {
+                                "icon": {
+                                  "thumbnails": [
+                                    {
+                                      "url": "https://encrypted-tbn1.gstatic.com/favicon-tbn?q=tbn:ANd9GcTIK5avaVK_PPYPc2I3QDvcmXC-GidHELAcxYo4dfKL8R-W2_Q-InaaYXGbq1PHHBdA9IYwpBXt9jPhUp85jdINIk0Q8Le1oZwpm_2BTK-aVU8W"
+                                    }
+                                  ]
+                                },
+                                "navigationEndpoint": {
+                                  "clickTrackingParams": "CBoQobIHGAwiEwjQl_Lpj676AhXF6FEKHcpNBwM=",
+                                  "commandMetadata": {
+                                    "webCommandMetadata": {
+                                      "rootVe": 83769,
+                                      "url": "https://www.youtube.com/redirect?event=channel_description&redir_token=QUFFLUhqa2Ruc0trel90SDR6cDFCdXk3TWRQQ2U2Y3UwQXxBQ3Jtc0tsdFNaUmFwbGF1NktBczd5Q3RIbGdTcDRzOXdWclJYaEp2YmlvNjdOejJfaGk5cktZQ1BiVDNsVHQ0bHFyM213QzRXeUtwZ3NLeTB1WExzZktSTmY1TTBWYnhqNENnY2ZyUTVfS2ZWN0EwRzcyY0xkdw&q=http%3A%2F%2Fwww.amazon.com%2Fgp%2Fredirect.html%3Fie%3DUTF8%26location%3Dhttp%253A%252F%252Fwww.amazon.com%252F%26tag%3Dee04-20%26linkCode%3Dur2%26camp%3D1789%26creative%3D390957",
+                                      "webPageType": "WEB_PAGE_TYPE_UNKNOWN"
+                                    }
+                                  },
+                                  "urlEndpoint": {
+                                    "nofollow": true,
+                                    "target": "TARGET_NEW_WINDOW",
+                                    "url": "https://www.youtube.com/redirect?event=channel_description&redir_token=QUFFLUhqa2Ruc0trel90SDR6cDFCdXk3TWRQQ2U2Y3UwQXxBQ3Jtc0tsdFNaUmFwbGF1NktBczd5Q3RIbGdTcDRzOXdWclJYaEp2YmlvNjdOejJfaGk5cktZQ1BiVDNsVHQ0bHFyM213QzRXeUtwZ3NLeTB1WExzZktSTmY1TTBWYnhqNENnY2ZyUTVfS2ZWN0EwRzcyY0xkdw&q=http%3A%2F%2Fwww.amazon.com%2Fgp%2Fredirect.html%3Fie%3DUTF8%26location%3Dhttp%253A%252F%252Fwww.amazon.com%252F%26tag%3Dee04-20%26linkCode%3Dur2%26camp%3D1789%26creative%3D390957"
+                                  }
+                                },
+                                "title": {
+                                  "simpleText": "EEVblog AMAZON Store"
+                                },
+                                "trackingParams": "CBoQobIHGAwiEwjQl_Lpj676AhXF6FEKHcpNBwM="
+                              },
+                              {
+                                "icon": {
+                                  "thumbnails": [
+                                    {
+                                      "url": "https://encrypted-tbn1.gstatic.com/favicon-tbn?q=tbn:ANd9GcSeGSb_XctA25lE585p4Y1gzQGccBu6OcsQiaOYtMv9dElpdpPFW4MYRTO7v8N1BcnPcQxrWkcJ7N6BVSj0k5sUwpGD7MI3S-Aiyghi8eF8Zy2_7Q"
+                                    }
+                                  ]
+                                },
+                                "navigationEndpoint": {
+                                  "clickTrackingParams": "CBkQobIHGA0iEwjQl_Lpj676AhXF6FEKHcpNBwM=",
+                                  "commandMetadata": {
+                                    "webCommandMetadata": {
+                                      "rootVe": 83769,
+                                      "url": "http://www.youtube.com/EEVblog2",
+                                      "webPageType": "WEB_PAGE_TYPE_UNKNOWN"
+                                    }
+                                  },
+                                  "urlEndpoint": {
+                                    "nofollow": true,
+                                    "url": "http://www.youtube.com/EEVblog2"
+                                  }
+                                },
+                                "title": {
+                                  "simpleText": "2nd EEVblog Channel"
+                                },
+                                "trackingParams": "CBkQobIHGA0iEwjQl_Lpj676AhXF6FEKHcpNBwM="
+                              }
+                            ],
+                            "primaryLinksLabel": {
+                              "runs": [
+                                {
+                                  "text": "Links"
+                                }
+                              ]
+                            },
+                            "showDescription": true,
+                            "signInForBusinessEmail": {
+                              "runs": [
+                                {
+                                  "navigationEndpoint": {
+                                    "clickTrackingParams": "CBgQuy8YACITCNCX8umPrvoCFcXoUQodyk0HAw==",
+                                    "commandMetadata": {
+                                      "webCommandMetadata": {
+                                        "rootVe": 83769,
+                                        "url": "https://accounts.google.com/ServiceLogin?service=youtube&uilel=3&passive=true&continue=https%3A%2F%2Fwww.youtube.com%2Fsignin%3Faction_handle_signin%3Dtrue%26app%3Ddesktop%26hl%3Den%26next%3D%252Fc%252FEevblogDave%252Fabout&hl=en",
+                                        "webPageType": "WEB_PAGE_TYPE_UNKNOWN"
+                                      }
+                                    },
+                                    "signInEndpoint": {
+                                      "nextEndpoint": {
+                                        "browseEndpoint": {
+                                          "browseId": "UC2DjFE7Xf11URZqWBigcVOQ",
+                                          "canonicalBaseUrl": "/c/EevblogDave",
+                                          "params": "EgVhYm91dA%3D%3D"
+                                        },
+                                        "clickTrackingParams": "CBgQuy8YACITCNCX8umPrvoCFcXoUQodyk0HAw==",
+                                        "commandMetadata": {
+                                          "webCommandMetadata": {
+                                            "apiUrl": "/youtubei/v1/browse",
+                                            "rootVe": 3611,
+                                            "url": "/c/EevblogDave/about",
+                                            "webPageType": "WEB_PAGE_TYPE_CHANNEL"
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "text": "Sign in"
+                                },
+                                {
+                                  "text": " to see email address"
+                                }
+                              ]
+                            },
+                            "statsLabel": {
+                              "runs": [
+                                {
+                                  "text": "Stats"
+                                }
+                              ]
+                            },
+                            "title": {
+                              "simpleText": "EEVblog"
+                            },
+                            "viewCountText": {
+                              "simpleText": "186,854,342 views"
+                            }
+                          }
+                        }
+                      ],
+                      "trackingParams": "CBgQuy8YACITCNCX8umPrvoCFcXoUQodyk0HAw=="
+                    }
+                  }
+                ],
+                "disablePullToRefresh": true,
+                "trackingParams": "CBcQui8iEwjQl_Lpj676AhXF6FEKHcpNBwM="
+              }
+            },
+            "endpoint": {
+              "browseEndpoint": {
+                "browseId": "UC2DjFE7Xf11URZqWBigcVOQ",
+                "canonicalBaseUrl": "/c/EevblogDave",
+                "params": "EgVhYm91dPIGBAoCEgA%3D"
+              },
+              "clickTrackingParams": "CBYQ8JMBGAsiEwjQl_Lpj676AhXF6FEKHcpNBwM=",
+              "commandMetadata": {
+                "webCommandMetadata": {
+                  "apiUrl": "/youtubei/v1/browse",
+                  "rootVe": 3611,
+                  "url": "/c/EevblogDave/about",
+                  "webPageType": "WEB_PAGE_TYPE_CHANNEL"
+                }
+              }
+            },
+            "selected": true,
+            "title": "About",
+            "trackingParams": "CBYQ8JMBGAsiEwjQl_Lpj676AhXF6FEKHcpNBwM="
+          }
+        },
+        {
+          "expandableTabRenderer": {
+            "endpoint": {
+              "browseEndpoint": {
+                "browseId": "UC2DjFE7Xf11URZqWBigcVOQ",
+                "canonicalBaseUrl": "/c/EevblogDave",
+                "params": "EgZzZWFyY2jyBgQKAloA"
+              },
+              "clickTrackingParams": "CAAQhGciEwjQl_Lpj676AhXF6FEKHcpNBwM=",
+              "commandMetadata": {
+                "webCommandMetadata": {
+                  "apiUrl": "/youtubei/v1/browse",
+                  "rootVe": 3611,
+                  "url": "/c/EevblogDave/search",
+                  "webPageType": "WEB_PAGE_TYPE_CHANNEL"
+                }
+              }
+            },
+            "selected": false,
+            "title": "Search"
+          }
+        }
+      ]
+    }
+  },
+  "header": {
+    "c4TabbedHeaderRenderer": {
+      "avatar": {
+        "thumbnails": [
+          {
+            "height": 48,
+            "url": "https://yt3.ggpht.com/ytc/AMLnZu9eKk4Nd16fX4Rn1TF1G7ReluwOl6M5558FTYAM=s48-c-k-c0x00ffffff-no-rj",
+            "width": 48
+          },
+          {
+            "height": 88,
+            "url": "https://yt3.ggpht.com/ytc/AMLnZu9eKk4Nd16fX4Rn1TF1G7ReluwOl6M5558FTYAM=s88-c-k-c0x00ffffff-no-rj",
+            "width": 88
+          },
+          {
+            "height": 176,
+            "url": "https://yt3.ggpht.com/ytc/AMLnZu9eKk4Nd16fX4Rn1TF1G7ReluwOl6M5558FTYAM=s176-c-k-c0x00ffffff-no-rj",
+            "width": 176
+          }
+        ]
+      },
+      "badges": [
+        {
+          "metadataBadgeRenderer": {
+            "accessibilityData": {
+              "label": "Verified"
+            },
+            "icon": {
+              "iconType": "CHECK_CIRCLE_THICK"
+            },
+            "style": "BADGE_STYLE_TYPE_VERIFIED",
+            "tooltip": "Verified",
+            "trackingParams": "CBAQ8DsiEwjQl_Lpj676AhXF6FEKHcpNBwM="
+          }
+        }
+      ],
+      "banner": {
+        "thumbnails": [
+          {
+            "height": 175,
+            "url": "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w1060-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj",
+            "width": 1060
+          },
+          {
+            "height": 188,
+            "url": "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w1138-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj",
+            "width": 1138
+          },
+          {
+            "height": 283,
+            "url": "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w1707-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj",
+            "width": 1707
+          },
+          {
+            "height": 351,
+            "url": "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w2120-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj",
+            "width": 2120
+          },
+          {
+            "height": 377,
+            "url": "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w2276-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj",
+            "width": 2276
+          },
+          {
+            "height": 424,
+            "url": "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w2560-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj",
+            "width": 2560
+          }
+        ]
+      },
+      "channelId": "UC2DjFE7Xf11URZqWBigcVOQ",
+      "headerLinks": {
+        "channelHeaderLinksRenderer": {
+          "primaryLinks": [
+            {
+              "icon": {
+                "thumbnails": [
+                  {
+                    "url": "https://encrypted-tbn2.gstatic.com/favicon-tbn?q=tbn:ANd9GcSeeYHqSanvu-1kS8-j8snFjPciLtknpI1FBXBB6ChDhHFlCRCjevwoP5AOW1u3m9HaeGexWOI4DJeisvRR1YK_jsARgDOrkbO3qWsfWQFxBaEkSQ"
+                  }
+                ]
+              },
+              "navigationEndpoint": {
+                "clickTrackingParams": "CBAQ8DsiEwjQl_Lpj676AhXF6FEKHcpNBwM=",
+                "commandMetadata": {
+                  "webCommandMetadata": {
+                    "rootVe": 83769,
+                    "url": "https://www.youtube.com/redirect?event=channel_banner&redir_token=QUFFLUhqbUZRdjQ1dHlkMWJjdDRoRHNGcDNBaGpiRTJDZ3xBQ3Jtc0tuSVJrXzlCS2lRRXo0dEozRmx3cXhzY1pKcld5ajBHZmRtNm93TnAwUEs4ZUUtMFE0a3dNQXFHVThGNGwyYW4ycWRGamZXOEstQ0VEUTNReVNuT2hyclVkeXN0WnVBM3RHbzJxaGh2SzhoSzlWUlpDcw&q=http%3A%2F%2Fwww.eevblog.com",
+                    "webPageType": "WEB_PAGE_TYPE_UNKNOWN"
+                  }
+                },
+                "urlEndpoint": {
+                  "nofollow": true,
+                  "target": "TARGET_NEW_WINDOW",
+                  "url": "https://www.youtube.com/redirect?event=channel_banner&redir_token=QUFFLUhqbUZRdjQ1dHlkMWJjdDRoRHNGcDNBaGpiRTJDZ3xBQ3Jtc0tuSVJrXzlCS2lRRXo0dEozRmx3cXhzY1pKcld5ajBHZmRtNm93TnAwUEs4ZUUtMFE0a3dNQXFHVThGNGwyYW4ycWRGamZXOEstQ0VEUTNReVNuT2hyclVkeXN0WnVBM3RHbzJxaGh2SzhoSzlWUlpDcw&q=http%3A%2F%2Fwww.eevblog.com"
+                }
+              },
+              "title": {
+                "simpleText": "EEVblog Web Site"
+              }
+            }
+          ],
+          "secondaryLinks": [
+            {
+              "icon": {
+                "thumbnails": [
+                  {
+                    "url": "https://encrypted-tbn1.gstatic.com/favicon-tbn?q=tbn:ANd9GcSnyfGgzwnk19b891nCqykpMzr3jlkKm0Z65gNVJbtXsk9-gzW5EiqqEvM02nZyYKmI2x1JQI9OuGsWU69bgq9_rNrHCYrXLP6HqhP9iVwr0bm2IQ"
+                  }
+                ]
+              },
+              "navigationEndpoint": {
+                "clickTrackingParams": "CBAQ8DsiEwjQl_Lpj676AhXF6FEKHcpNBwM=",
+                "commandMetadata": {
+                  "webCommandMetadata": {
+                    "rootVe": 83769,
+                    "url": "https://www.youtube.com/redirect?event=channel_banner&redir_token=QUFFLUhqbTdwZlF0dFZiNGlBWnRydFNTY2RmaVZRbk9qZ3xBQ3Jtc0trSFRFcnE5bFNTQ0VocEdmNTE5Rks0Yng2WHV1TGR4R01CczM1RndsdjNuTExDUWNDeVc3TXlFMEpEc3ZpYXZTejRaZG1XQUZjd01rN3Q3cWwwcEdCNjNrUE9xc3JZUDZqM1lIUHlBbV9FenhJU1kxUQ&q=http%3A%2F%2Fwww.twitter.com%2Feevblog",
+                    "webPageType": "WEB_PAGE_TYPE_UNKNOWN"
+                  }
+                },
+                "urlEndpoint": {
+                  "nofollow": true,
+                  "target": "TARGET_NEW_WINDOW",
+                  "url": "https://www.youtube.com/redirect?event=channel_banner&redir_token=QUFFLUhqbTdwZlF0dFZiNGlBWnRydFNTY2RmaVZRbk9qZ3xBQ3Jtc0trSFRFcnE5bFNTQ0VocEdmNTE5Rks0Yng2WHV1TGR4R01CczM1RndsdjNuTExDUWNDeVc3TXlFMEpEc3ZpYXZTejRaZG1XQUZjd01rN3Q3cWwwcEdCNjNrUE9xc3JZUDZqM1lIUHlBbV9FenhJU1kxUQ&q=http%3A%2F%2Fwww.twitter.com%2Feevblog"
+                }
+              },
+              "title": {
+                "simpleText": "Twitter"
+              }
+            },
+            {
+              "icon": {
+                "thumbnails": [
+                  {
+                    "url": "https://encrypted-tbn3.gstatic.com/favicon-tbn?q=tbn:ANd9GcRmQS0-yT-68TopCQcxwbvtkTB0rdiUtc7g4WFZBVWFT4tJ8tSTon4n5uCmm9_b69_7bgTNZNmFw3-zyF-kWNXXZJEBTm_-r1qZrKLyDfCYxiEXY50"
+                  }
+                ]
+              },
+              "navigationEndpoint": {
+                "clickTrackingParams": "CBAQ8DsiEwjQl_Lpj676AhXF6FEKHcpNBwM=",
+                "commandMetadata": {
+                  "webCommandMetadata": {
+                    "rootVe": 83769,
+                    "url": "https://www.youtube.com/redirect?event=channel_banner&redir_token=QUFFLUhqbGtDd3d0T2ltbkxFTVRaT3lBOUtKTHRPaEZTQXxBQ3Jtc0tuR0FkTG5ZOUhrLXhUQjdXU0tWeV95WWZyRzZFcEN6TkVGbU9OSFpETGkyNjU2a2xiS1o3Um5UVEVPWFNKYS00WFBFMTN6aHdmNGZQOTg4V1Z3T00tVG03ZWdyR3dsZ0ZHXzlCRlBQZTdTY2hiNGJBRQ&q=http%3A%2F%2Fwww.facebook.com%2FEEVblog",
+                    "webPageType": "WEB_PAGE_TYPE_UNKNOWN"
+                  }
+                },
+                "urlEndpoint": {
+                  "nofollow": true,
+                  "target": "TARGET_NEW_WINDOW",
+                  "url": "https://www.youtube.com/redirect?event=channel_banner&redir_token=QUFFLUhqbGtDd3d0T2ltbkxFTVRaT3lBOUtKTHRPaEZTQXxBQ3Jtc0tuR0FkTG5ZOUhrLXhUQjdXU0tWeV95WWZyRzZFcEN6TkVGbU9OSFpETGkyNjU2a2xiS1o3Um5UVEVPWFNKYS00WFBFMTN6aHdmNGZQOTg4V1Z3T00tVG03ZWdyR3dsZ0ZHXzlCRlBQZTdTY2hiNGJBRQ&q=http%3A%2F%2Fwww.facebook.com%2FEEVblog"
+                }
+              },
+              "title": {
+                "simpleText": "Facebook"
+              }
+            },
+            {
+              "icon": {
+                "thumbnails": [
+                  {
+                    "url": "https://encrypted-tbn0.gstatic.com/favicon-tbn?q=tbn:ANd9GcRY4no9kYJtEAHXBEY2GDprV__HH1zc94olyS6G6fT5isS71bPyqvIi7-9VE1MMy3_3vsNOQLAerwcSQqGNyADWfxKpd2hLc8HuacZdgEjgZc_WLN8"
+                  }
+                ]
+              },
+              "navigationEndpoint": {
+                "clickTrackingParams": "CBAQ8DsiEwjQl_Lpj676AhXF6FEKHcpNBwM=",
+                "commandMetadata": {
+                  "webCommandMetadata": {
+                    "rootVe": 83769,
+                    "url": "https://www.youtube.com/channel/UCkGvUEt8iQLmq3aJIMjT2qQ",
+                    "webPageType": "WEB_PAGE_TYPE_UNKNOWN"
+                  }
+                },
+                "urlEndpoint": {
+                  "nofollow": true,
+                  "url": "https://www.youtube.com/channel/UCkGvUEt8iQLmq3aJIMjT2qQ"
+                }
+              },
+              "title": {
+                "simpleText": "EEVdiscover"
+              }
+            },
+            {
+              "icon": {
+                "thumbnails": [
+                  {
+                    "url": "https://encrypted-tbn2.gstatic.com/favicon-tbn?q=tbn:ANd9GcSeeYHqSanvu-1kS8-j8snFjPciLtknpI1FBXBB6ChDhHFlCRCjevwoP5AOW1u3m9HaeGexWOI4DJeisvRR1YK_jsARgDOrkbO3qWsfWQFxBaEkSQ"
+                  }
+                ]
+              },
+              "navigationEndpoint": {
+                "clickTrackingParams": "CBAQ8DsiEwjQl_Lpj676AhXF6FEKHcpNBwM=",
+                "commandMetadata": {
+                  "webCommandMetadata": {
+                    "rootVe": 83769,
+                    "url": "https://www.youtube.com/redirect?event=channel_banner&redir_token=QUFFLUhqa3BMOGVzZmd3TzJ0dzdrV0xYdEIyLTZ5a0NXd3xBQ3Jtc0trdHRYRWxaMmxzV0E2Ymw1THp3SDBoRUNhY0ZTeVlCV2t6WWJCckxQc1dwdXlfakRCeFZfa2tLazF0OUtOUmZWemFKYlFjYXV6T0p4VV9xNG1CRFpjcXJnenRneHpMQmhpZHNmRDY4ZExvNWxaQWFWZw&q=http%3A%2F%2Fwww.eevblog.com%2Fforum",
+                    "webPageType": "WEB_PAGE_TYPE_UNKNOWN"
+                  }
+                },
+                "urlEndpoint": {
+                  "nofollow": true,
+                  "target": "TARGET_NEW_WINDOW",
+                  "url": "https://www.youtube.com/redirect?event=channel_banner&redir_token=QUFFLUhqa3BMOGVzZmd3TzJ0dzdrV0xYdEIyLTZ5a0NXd3xBQ3Jtc0trdHRYRWxaMmxzV0E2Ymw1THp3SDBoRUNhY0ZTeVlCV2t6WWJCckxQc1dwdXlfakRCeFZfa2tLazF0OUtOUmZWemFKYlFjYXV6T0p4VV9xNG1CRFpjcXJnenRneHpMQmhpZHNmRDY4ZExvNWxaQWFWZw&q=http%3A%2F%2Fwww.eevblog.com%2Fforum"
+                }
+              },
+              "title": {
+                "simpleText": "The EEVblog Forum"
+              }
+            }
+          ]
+        }
+      },
+      "mobileBanner": {
+        "thumbnails": [
+          {
+            "height": 88,
+            "url": "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w320-fcrop64=1,32b75a57cd48a5a8-k-c0xffffffff-no-nd-rj",
+            "width": 320
+          },
+          {
+            "height": 175,
+            "url": "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w640-fcrop64=1,32b75a57cd48a5a8-k-c0xffffffff-no-nd-rj",
+            "width": 640
+          },
+          {
+            "height": 263,
+            "url": "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w960-fcrop64=1,32b75a57cd48a5a8-k-c0xffffffff-no-nd-rj",
+            "width": 960
+          },
+          {
+            "height": 351,
+            "url": "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w1280-fcrop64=1,32b75a57cd48a5a8-k-c0xffffffff-no-nd-rj",
+            "width": 1280
+          },
+          {
+            "height": 395,
+            "url": "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w1440-fcrop64=1,32b75a57cd48a5a8-k-c0xffffffff-no-nd-rj",
+            "width": 1440
+          }
+        ]
+      },
+      "navigationEndpoint": {
+        "browseEndpoint": {
+          "browseId": "UC2DjFE7Xf11URZqWBigcVOQ",
+          "canonicalBaseUrl": "/c/EevblogDave"
+        },
+        "clickTrackingParams": "CBAQ8DsiEwjQl_Lpj676AhXF6FEKHcpNBwM=",
+        "commandMetadata": {
+          "webCommandMetadata": {
+            "apiUrl": "/youtubei/v1/browse",
+            "rootVe": 3611,
+            "url": "/c/EevblogDave",
+            "webPageType": "WEB_PAGE_TYPE_CHANNEL"
+          }
+        }
+      },
+      "sponsorButton": {
+        "buttonRenderer": {
+          "accessibilityData": {
+            "accessibilityData": {
+              "label": "Join this channel"
+            }
+          },
+          "hint": {
+            "hintRenderer": {
+              "dwellTimeMs": "60000",
+              "hintCap": {
+                "impressionCap": "1"
+              },
+              "hintId": "sponsor-pre-purchase",
+              "trackingParams": "CBIQpecFIhMI0Jfy6Y-u-gIVxehRCh3KTQcD"
+            }
+          },
+          "isDisabled": false,
+          "navigationEndpoint": {
+            "clickTrackingParams": "CBEQqGAiEwjQl_Lpj676AhXF6FEKHcpNBwM=",
+            "commandMetadata": {
+              "webCommandMetadata": {
+                "ignoreNavigation": true
+              }
+            },
+            "modalEndpoint": {
+              "modal": {
+                "modalWithTitleAndButtonRenderer": {
+                  "button": {
+                    "buttonRenderer": {
+                      "isDisabled": false,
+                      "navigationEndpoint": {
+                        "clickTrackingParams": "CBMQ8FsiEwjQl_Lpj676AhXF6FEKHcpNBwM=",
+                        "commandMetadata": {
+                          "webCommandMetadata": {
+                            "rootVe": 83769,
+                            "url": "https://accounts.google.com/ServiceLogin?service=youtube&uilel=3&passive=true&continue=https%3A%2F%2Fwww.youtube.com%2Fsignin%3Faction_handle_signin%3Dtrue%26app%3Ddesktop%26hl%3Den%26next%3Dhttps%253A%252F%252Fwww.youtube.com%252Fyoutubei%252Fv1%252Fbrowse%253Fkey%253DAIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8%2526prettyPrint%253Dfalse&hl=en",
+                            "webPageType": "WEB_PAGE_TYPE_UNKNOWN"
+                          }
+                        },
+                        "signInEndpoint": {
+                          "hack": true
+                        }
+                      },
+                      "size": "SIZE_DEFAULT",
+                      "style": "STYLE_BRAND",
+                      "text": {
+                        "simpleText": "Sign in"
+                      },
+                      "trackingParams": "CBMQ8FsiEwjQl_Lpj676AhXF6FEKHcpNBwM="
+                    }
+                  },
+                  "content": {
+                    "runs": [
+                      {
+                        "text": "Sign in to become a member."
+                      }
+                    ]
+                  },
+                  "title": {
+                    "runs": [
+                      {
+                        "text": "Want to join this channel?"
+                      }
+                    ]
+                  }
+                }
+              }
+            }
+          },
+          "size": "SIZE_DEFAULT",
+          "style": "STYLE_SUGGESTIVE",
+          "targetId": "sponsorships-button",
+          "text": {
+            "runs": [
+              {
+                "text": "Join"
+              }
+            ]
+          },
+          "trackingParams": "CBEQqGAiEwjQl_Lpj676AhXF6FEKHcpNBwM="
+        }
+      },
+      "subscribeButton": {
+        "buttonRenderer": {
+          "isDisabled": false,
+          "navigationEndpoint": {
+            "clickTrackingParams": "CBQQ8FsiEwjQl_Lpj676AhXF6FEKHcpNBwM=",
+            "commandMetadata": {
+              "webCommandMetadata": {
+                "ignoreNavigation": true
+              }
+            },
+            "modalEndpoint": {
+              "modal": {
+                "modalWithTitleAndButtonRenderer": {
+                  "button": {
+                    "buttonRenderer": {
+                      "isDisabled": false,
+                      "navigationEndpoint": {
+                        "clickTrackingParams": "CBUQ_YYEIhMI0Jfy6Y-u-gIVxehRCh3KTQcDMglzdWJzY3JpYmU=",
+                        "commandMetadata": {
+                          "webCommandMetadata": {
+                            "rootVe": 83769,
+                            "url": "https://accounts.google.com/ServiceLogin?service=youtube&uilel=3&passive=true&continue=https%3A%2F%2Fwww.youtube.com%2Fsignin%3Faction_handle_signin%3Dtrue%26app%3Ddesktop%26hl%3Den%26next%3D%252Fc%252FEevblogDave%252Fabout%26continue_action%3DQUFFLUhqbXowa0I5U2RLaG1pZTNLakhsbk1mUXRnODAxUXxBQ3Jtc0tuQXVsdjY1RTMybnVMT1lfNEQtMm5ZVWctZ2Y5dWxzc2RqQzlseHVpOXE3dExXUmI2YUZGalJuZVdZV2VHZjNDMFI5eVVwOHg5R09sSDVfRHA4RFg3YjF5YzBkSE83T0ZMUXZLLUV5X2Y1QklIb2k2TlNaRTlVZXRnSHNqRUN2czg2RGtBZWdSNmRUNy1xZnFhTGx5YkdXR294QU9wdmZYQUE0bTBBLU9hQkp1Smh3STdCYnltSS1ONUZjc3pBazVPNkFsZklmdXJBU19YcXJTVFo1SGhpTFQ5TFJB&hl=en&ec=66429",
+                            "webPageType": "WEB_PAGE_TYPE_UNKNOWN"
+                          }
+                        },
+                        "signInEndpoint": {
+                          "continueAction": "QUFFLUhqbXowa0I5U2RLaG1pZTNLakhsbk1mUXRnODAxUXxBQ3Jtc0tuQXVsdjY1RTMybnVMT1lfNEQtMm5ZVWctZ2Y5dWxzc2RqQzlseHVpOXE3dExXUmI2YUZGalJuZVdZV2VHZjNDMFI5eVVwOHg5R09sSDVfRHA4RFg3YjF5YzBkSE83T0ZMUXZLLUV5X2Y1QklIb2k2TlNaRTlVZXRnSHNqRUN2czg2RGtBZWdSNmRUNy1xZnFhTGx5YkdXR294QU9wdmZYQUE0bTBBLU9hQkp1Smh3STdCYnltSS1ONUZjc3pBazVPNkFsZklmdXJBU19YcXJTVFo1SGhpTFQ5TFJB",
+                          "idamTag": "66429",
+                          "nextEndpoint": {
+                            "browseEndpoint": {
+                              "browseId": "UC2DjFE7Xf11URZqWBigcVOQ",
+                              "canonicalBaseUrl": "/c/EevblogDave",
+                              "params": "EgVhYm91dA%3D%3D"
+                            },
+                            "clickTrackingParams": "CBUQ_YYEIhMI0Jfy6Y-u-gIVxehRCh3KTQcD",
+                            "commandMetadata": {
+                              "webCommandMetadata": {
+                                "apiUrl": "/youtubei/v1/browse",
+                                "rootVe": 3611,
+                                "url": "/c/EevblogDave/about",
+                                "webPageType": "WEB_PAGE_TYPE_CHANNEL"
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "size": "SIZE_DEFAULT",
+                      "style": "STYLE_BLUE_TEXT",
+                      "text": {
+                        "simpleText": "Sign in"
+                      },
+                      "trackingParams": "CBUQ_YYEIhMI0Jfy6Y-u-gIVxehRCh3KTQcD"
+                    }
+                  },
+                  "content": {
+                    "simpleText": "Sign in to subscribe to this channel."
+                  },
+                  "title": {
+                    "simpleText": "Want to subscribe to this channel?"
+                  }
+                }
+              }
+            }
+          },
+          "size": "SIZE_DEFAULT",
+          "style": "STYLE_DESTRUCTIVE",
+          "text": {
+            "runs": [
+              {
+                "text": "Subscribe"
+              }
+            ]
+          },
+          "trackingParams": "CBQQ8FsiEwjQl_Lpj676AhXF6FEKHcpNBwM="
+        }
+      },
+      "subscriberCountText": {
+        "accessibility": {
+          "accessibilityData": {
+            "label": "881K subscribers"
+          }
+        },
+        "simpleText": "881K subscribers"
+      },
+      "title": "EEVblog",
+      "trackingParams": "CBAQ8DsiEwjQl_Lpj676AhXF6FEKHcpNBwM=",
+      "tvBanner": {
+        "thumbnails": [
+          {
+            "height": 180,
+            "url": "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w320-fcrop64=1,00000000ffffffff-k-c0xffffffff-no-nd-rj",
+            "width": 320
+          },
+          {
+            "height": 480,
+            "url": "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w854-fcrop64=1,00000000ffffffff-k-c0xffffffff-no-nd-rj",
+            "width": 854
+          },
+          {
+            "height": 720,
+            "url": "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w1280-fcrop64=1,00000000ffffffff-k-c0xffffffff-no-nd-rj",
+            "width": 1280
+          },
+          {
+            "height": 1080,
+            "url": "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w1920-fcrop64=1,00000000ffffffff-k-c0xffffffff-no-nd-rj",
+            "width": 1920
+          },
+          {
+            "height": 1192,
+            "url": "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w2120-fcrop64=1,00000000ffffffff-k-c0xffffffff-no-nd-rj",
+            "width": 2120
+          }
+        ]
+      },
+      "visitTracking": {
+        "remarketingPing": "https://www.youtube.com/pagead/viewthroughconversion/962985656/?backend=innertube&cname=1&cver=2_20220921_08_00&foc_id=2DjFE7Xf11URZqWBigcVOQ&label=followon_cvisit&ptype=no_rmkt&utuid=2DjFE7Xf11URZqWBigcVOQ"
+      }
+    }
+  },
+  "metadata": {
+    "channelMetadataRenderer": {
+      "androidAppindexingLink": "android-app://com.google.android.youtube/http/www.youtube.com/channel/UC2DjFE7Xf11URZqWBigcVOQ",
+      "androidDeepLink": "android-app://com.google.android.youtube/http/www.youtube.com/channel/UC2DjFE7Xf11URZqWBigcVOQ",
+      "availableCountryCodes": [
+        "LV",
+        "IE",
+        "OM",
+        "PF",
+        "IS",
+        "RS",
+        "SB",
+        "TR",
+        "ML",
+        "KY",
+        "TM",
+        "DK",
+        "TJ",
+        "GS",
+        "BT",
+        "AF",
+        "BA",
+        "HN",
+        "LC",
+        "SK",
+        "ZA",
+        "MZ",
+        "CY",
+        "MY",
+        "UY",
+        "GD",
+        "NC",
+        "CI",
+        "CM",
+        "GI",
+        "CC",
+        "QA",
+        "TV",
+        "BD",
+        "LB",
+        "SS",
+        "SY",
+        "MX",
+        "NL",
+        "SV",
+        "LS",
+        "GW",
+        "NI",
+        "VG",
+        "NP",
+        "HT",
+        "UG",
+        "AS",
+        "YE",
+        "KG",
+        "NO",
+        "MK",
+        "RE",
+        "BQ",
+        "ES",
+        "CO",
+        "CK",
+        "VE",
+        "ID",
+        "AR",
+        "FJ",
+        "IL",
+        "KE",
+        "UZ",
+        "GG",
+        "SA",
+        "CH",
+        "PL",
+        "AT",
+        "TW",
+        "BY",
+        "PW",
+        "KM",
+        "DE",
+        "VI",
+        "VN",
+        "MQ",
+        "PH",
+        "PS",
+        "SZ",
+        "FR",
+        "JM",
+        "PE",
+        "GR",
+        "NF",
+        "SI",
+        "ER",
+        "AX",
+        "EG",
+        "GY",
+        "CU",
+        "CZ",
+        "MN",
+        "GU",
+        "BL",
+        "LY",
+        "GH",
+        "SG",
+        "MU",
+        "AI",
+        "GT",
+        "TF",
+        "NA",
+        "SX",
+        "DM",
+        "ZM",
+        "JP",
+        "GQ",
+        "MF",
+        "PN",
+        "YT",
+        "PT",
+        "KN",
+        "AO",
+        "ET",
+        "SM",
+        "AL",
+        "BR",
+        "KZ",
+        "IQ",
+        "ZW",
+        "VU",
+        "MH",
+        "GA",
+        "AW",
+        "DZ",
+        "WS",
+        "KH",
+        "RW",
+        "CX",
+        "LU",
+        "MT",
+        "NZ",
+        "CF",
+        "SO",
+        "EH",
+        "BF",
+        "IO",
+        "ME",
+        "MO",
+        "PG",
+        "FK",
+        "GE",
+        "SE",
+        "ST",
+        "WF",
+        "BJ",
+        "HM",
+        "KP",
+        "LI",
+        "BB",
+        "UM",
+        "CN",
+        "SJ",
+        "BG",
+        "CD",
+        "MP",
+        "DO",
+        "GM",
+        "BO",
+        "NE",
+        "VA",
+        "LR",
+        "BV",
+        "BI",
+        "TD",
+        "CL",
+        "MS",
+        "HR",
+        "KW",
+        "MA",
+        "AU",
+        "AD",
+        "SD",
+        "IN",
+        "IT",
+        "DJ",
+        "NU",
+        "FO",
+        "KI",
+        "GN",
+        "TL",
+        "BZ",
+        "VC",
+        "MC",
+        "CG",
+        "EE",
+        "BS",
+        "SL",
+        "HU",
+        "LT",
+        "NR",
+        "AG",
+        "CR",
+        "GL",
+        "LA",
+        "PY",
+        "KR",
+        "MG",
+        "BW",
+        "BH",
+        "PM",
+        "US",
+        "FI",
+        "FM",
+        "IM",
+        "GB",
+        "MW",
+        "BE",
+        "BM",
+        "MR",
+        "SC",
+        "NG",
+        "CW",
+        "CA",
+        "TT",
+        "AE",
+        "JO",
+        "AM",
+        "TH",
+        "MD",
+        "CV",
+        "TZ",
+        "PR",
+        "UA",
+        "SH",
+        "AQ",
+        "EC",
+        "IR",
+        "LK",
+        "TO",
+        "SR",
+        "TK",
+        "BN",
+        "GP",
+        "MM",
+        "PA",
+        "HK",
+        "SN",
+        "TN",
+        "JE",
+        "PK",
+        "TC",
+        "GF",
+        "TG",
+        "RO",
+        "RU",
+        "MV",
+        "AZ"
+      ],
+      "avatar": {
+        "thumbnails": [
+          {
+            "height": 900,
+            "url": "https://yt3.ggpht.com/ytc/AMLnZu9eKk4Nd16fX4Rn1TF1G7ReluwOl6M5558FTYAM=s900-c-k-c0x00ffffff-no-rj",
+            "width": 900
+          }
+        ]
+      },
+      "channelConversionUrl": "https://www.youtube.com/pagead/viewthroughconversion/962985656/?backend=innertube&cname=1&cver=2_20220921_08_00&foc_id=2DjFE7Xf11URZqWBigcVOQ&label=followon_cvisit&ptype=no_rmkt&utuid=2DjFE7Xf11URZqWBigcVOQ",
+      "channelUrl": "https://www.youtube.com/channel/UC2DjFE7Xf11URZqWBigcVOQ",
+      "description": "NO SCRIPT, NO FEAR, ALL OPINION\nAn off-the-cuff Video Blog about Electronics Engineering, for engineers, hobbyists, enthusiasts, hackers and Makers\nHosted by Dave Jones from Sydney Australia\n\nDONATIONS:\nBitcoin: 3KqyH1U3qrMPnkLufM2oHDU7YB4zVZeFyZ\nEthereum: 0x99ccc4d2654ba40744a1f678d9868ecb15e91206\nPayPal: david@alternatezone.com\n\nPatreon: https://www.patreon.com/eevblog\n\nEEVblog2: http://www.youtube.com/EEVblog2\nEEVdiscover: https://www.youtube.com/channel/UCkGvUEt8iQLmq3aJIMjT2qQ\n\nEMAIL:\nAdvertising/Commercial: eevblog+business@gmail.com\nFan mail: eevblog+fan@gmail.com\nHate Mail: eevblog+hate@gmail.com\n\nI DON'T DO PAID VIDEO SPONSORSHIPS, DON'T ASK!\n\nPLEASE:\nDo NOT ask for personal advice on something, post it in the EEVblog forum.\nI read ALL email, but please don't be offended if I don't have time to reply, I get a LOT of email.\n\nMailbag\nPO Box 7949\nBaulkham Hills NSW 2153\nAUSTRALIA",
+      "doubleclickTrackingUsername": "EEVblog",
+      "externalId": "UC2DjFE7Xf11URZqWBigcVOQ",
+      "facebookProfileId": "EEVblog",
+      "iosAppindexingLink": "ios-app://544007664/vnd.youtube/www.youtube.com/channel/UC2DjFE7Xf11URZqWBigcVOQ",
+      "isFamilySafe": true,
+      "keywords": "electronics engineering maker hacker design circuit hardware pic atmel oscilloscope multimeter diy hobby review teardown microcontroller arduino video blog tutorial how-to interview rant industry news mailbag \"dumpster diving\" debunking",
+      "ownerUrls": [
+        "http://www.youtube.com/c/EevblogDave"
+      ],
+      "rssUrl": "https://www.youtube.com/feeds/videos.xml?channel_id=UC2DjFE7Xf11URZqWBigcVOQ",
+      "title": "EEVblog",
+      "vanityChannelUrl": "http://www.youtube.com/c/EevblogDave"
+    }
+  },
+  "microformat": {
+    "microformatDataRenderer": {
+      "androidPackage": "com.google.android.youtube",
+      "appName": "YouTube",
+      "availableCountries": [
+        "LV",
+        "IE",
+        "OM",
+        "PF",
+        "IS",
+        "RS",
+        "SB",
+        "TR",
+        "ML",
+        "KY",
+        "TM",
+        "DK",
+        "TJ",
+        "GS",
+        "BT",
+        "AF",
+        "BA",
+        "HN",
+        "LC",
+        "SK",
+        "ZA",
+        "MZ",
+        "CY",
+        "MY",
+        "UY",
+        "GD",
+        "NC",
+        "CI",
+        "CM",
+        "GI",
+        "CC",
+        "QA",
+        "TV",
+        "BD",
+        "LB",
+        "SS",
+        "SY",
+        "MX",
+        "NL",
+        "SV",
+        "LS",
+        "GW",
+        "NI",
+        "VG",
+        "NP",
+        "HT",
+        "UG",
+        "AS",
+        "YE",
+        "KG",
+        "NO",
+        "MK",
+        "RE",
+        "BQ",
+        "ES",
+        "CO",
+        "CK",
+        "VE",
+        "ID",
+        "AR",
+        "FJ",
+        "IL",
+        "KE",
+        "UZ",
+        "GG",
+        "SA",
+        "CH",
+        "PL",
+        "AT",
+        "TW",
+        "BY",
+        "PW",
+        "KM",
+        "DE",
+        "VI",
+        "VN",
+        "MQ",
+        "PH",
+        "PS",
+        "SZ",
+        "FR",
+        "JM",
+        "PE",
+        "GR",
+        "NF",
+        "SI",
+        "ER",
+        "AX",
+        "EG",
+        "GY",
+        "CU",
+        "CZ",
+        "MN",
+        "GU",
+        "BL",
+        "LY",
+        "GH",
+        "SG",
+        "MU",
+        "AI",
+        "GT",
+        "TF",
+        "NA",
+        "SX",
+        "DM",
+        "ZM",
+        "JP",
+        "GQ",
+        "MF",
+        "PN",
+        "YT",
+        "PT",
+        "KN",
+        "AO",
+        "ET",
+        "SM",
+        "AL",
+        "BR",
+        "KZ",
+        "IQ",
+        "ZW",
+        "VU",
+        "MH",
+        "GA",
+        "AW",
+        "DZ",
+        "WS",
+        "KH",
+        "RW",
+        "CX",
+        "LU",
+        "MT",
+        "NZ",
+        "CF",
+        "SO",
+        "EH",
+        "BF",
+        "IO",
+        "ME",
+        "MO",
+        "PG",
+        "FK",
+        "GE",
+        "SE",
+        "ST",
+        "WF",
+        "BJ",
+        "HM",
+        "KP",
+        "LI",
+        "BB",
+        "UM",
+        "CN",
+        "SJ",
+        "BG",
+        "CD",
+        "MP",
+        "DO",
+        "GM",
+        "BO",
+        "NE",
+        "VA",
+        "LR",
+        "BV",
+        "BI",
+        "TD",
+        "CL",
+        "MS",
+        "HR",
+        "KW",
+        "MA",
+        "AU",
+        "AD",
+        "SD",
+        "IN",
+        "IT",
+        "DJ",
+        "NU",
+        "FO",
+        "KI",
+        "GN",
+        "TL",
+        "BZ",
+        "VC",
+        "MC",
+        "CG",
+        "EE",
+        "BS",
+        "SL",
+        "HU",
+        "LT",
+        "NR",
+        "AG",
+        "CR",
+        "GL",
+        "LA",
+        "PY",
+        "KR",
+        "MG",
+        "BW",
+        "BH",
+        "PM",
+        "US",
+        "FI",
+        "FM",
+        "IM",
+        "GB",
+        "MW",
+        "BE",
+        "BM",
+        "MR",
+        "SC",
+        "NG",
+        "CW",
+        "CA",
+        "TT",
+        "AE",
+        "JO",
+        "AM",
+        "TH",
+        "MD",
+        "CV",
+        "TZ",
+        "PR",
+        "UA",
+        "SH",
+        "AQ",
+        "EC",
+        "IR",
+        "LK",
+        "TO",
+        "SR",
+        "TK",
+        "BN",
+        "GP",
+        "MM",
+        "PA",
+        "HK",
+        "SN",
+        "TN",
+        "JE",
+        "PK",
+        "TC",
+        "GF",
+        "TG",
+        "RO",
+        "RU",
+        "MV",
+        "AZ"
+      ],
+      "description": "NO SCRIPT, NO FEAR, ALL OPINION An off-the-cuff Video Blog about Electronics Engineering, for engineers, hobbyists, enthusiasts, hackers and Makers Hosted by...",
+      "familySafe": true,
+      "iosAppArguments": "https://www.youtube.com/channel/UC2DjFE7Xf11URZqWBigcVOQ",
+      "iosAppStoreId": "544007664",
+      "linkAlternates": [
+        {
+          "hrefUrl": "https://m.youtube.com/channel/UC2DjFE7Xf11URZqWBigcVOQ"
+        },
+        {
+          "hrefUrl": "android-app://com.google.android.youtube/http/youtube.com/channel/UC2DjFE7Xf11URZqWBigcVOQ"
+        },
+        {
+          "hrefUrl": "ios-app://544007664/http/youtube.com/channel/UC2DjFE7Xf11URZqWBigcVOQ"
+        }
+      ],
+      "noindex": false,
+      "ogType": "yt-fb-app:channel",
+      "schemaDotOrgType": "http://schema.org/http://schema.org/YoutubeChannelV2",
+      "siteName": "YouTube",
+      "tags": [
+        "electronics",
+        "engineering",
+        "maker",
+        "hacker",
+        "design",
+        "circuit",
+        "hardware",
+        "pic",
+        "atmel",
+        "oscilloscope",
+        "multimeter",
+        "diy",
+        "hobby",
+        "review",
+        "teardown",
+        "microcontroller",
+        "arduino",
+        "video",
+        "blog",
+        "tutorial",
+        "how-to",
+        "interview",
+        "rant",
+        "industry",
+        "news",
+        "mailbag",
+        "dumpster diving",
+        "debunking"
+      ],
+      "thumbnail": {
+        "thumbnails": [
+          {
+            "height": 200,
+            "url": "https://yt3.ggpht.com/ytc/AMLnZu9eKk4Nd16fX4Rn1TF1G7ReluwOl6M5558FTYAM=s200-c-k-c0x00ffffff-no-rj?days_since_epoch=19259",
+            "width": 200
+          }
+        ]
+      },
+      "title": "EEVblog",
+      "twitterCardType": "summary",
+      "twitterSiteHandle": "@YouTube",
+      "unlisted": false,
+      "urlApplinksAndroid": "vnd.youtube://www.youtube.com/channel/UC2DjFE7Xf11URZqWBigcVOQ?feature=applinks",
+      "urlApplinksIos": "vnd.youtube://www.youtube.com/channel/UC2DjFE7Xf11URZqWBigcVOQ?feature=applinks",
+      "urlApplinksWeb": "https://www.youtube.com/channel/UC2DjFE7Xf11URZqWBigcVOQ?feature=applinks",
+      "urlCanonical": "https://www.youtube.com/channel/UC2DjFE7Xf11URZqWBigcVOQ",
+      "urlTwitterAndroid": "vnd.youtube://www.youtube.com/channel/UC2DjFE7Xf11URZqWBigcVOQ?feature=twitter-deep-link",
+      "urlTwitterIos": "vnd.youtube://www.youtube.com/channel/UC2DjFE7Xf11URZqWBigcVOQ?feature=twitter-deep-link"
+    }
+  },
+  "responseContext": {
+    "mainAppWebResponseContext": {
+      "loggedOut": true
+    },
+    "maxAgeSeconds": 300,
+    "serviceTrackingParams": [
+      {
+        "params": [
+          {
+            "key": "route",
+            "value": "channel.about"
+          },
+          {
+            "key": "is_casual",
+            "value": "false"
+          },
+          {
+            "key": "is_owner",
+            "value": "false"
+          },
+          {
+            "key": "is_monetization_enabled",
+            "value": "true"
+          },
+          {
+            "key": "num_shelves",
+            "value": "3"
+          },
+          {
+            "key": "is_alc_surface",
+            "value": "false"
+          },
+          {
+            "key": "browse_id",
+            "value": "UC2DjFE7Xf11URZqWBigcVOQ"
+          },
+          {
+            "key": "logged_in",
+            "value": "0"
+          },
+          {
+            "key": "e",
+            "value": "1714240,23804281,23858057,23882685,23918597,23934970,23946420,23966208,23983296,23986025,23998056,24001373,24002022,24002025,24004644,24007246,24034168,24036947,24077241,24080738,24120820,24135310,24140247,24152442,24160837,24161116,24164186,24166867,24169501,24175559,24181174,24185614,24187043,24187377,24191629,24197275,24199724,24199774,24211178,24211242,24219713,24225483,24226335,24227844,24228637,24229161,24238596,24241378,24243988,24246430,24248385,24249085,24254502,24255165,24255543,24255545,24260441,24260783,24260844,24262346,24263796,24264860,24265820,24267564,24267570,24268142,24268870,24268936,24272785,24275322,24276632,24277923,24277989,24278489,24280256,24280303,24281190,24283093,24283281,24286003,24286010,24286017,24286396,24287795,24288047,24289901,24290131,24290276,24292296,24292715,24293107,39322278,39322357,39322382,39322386,39322399,39322456,45686551"
+          }
+        ],
+        "service": "GFEEDBACK"
+      },
+      {
+        "params": [
+          {
+            "key": "browse_id",
+            "value": "UC2DjFE7Xf11URZqWBigcVOQ"
+          }
+        ],
+        "service": "GOOGLE_HELP"
+      },
+      {
+        "params": [
+          {
+            "key": "c",
+            "value": "WEB"
+          },
+          {
+            "key": "cver",
+            "value": "2.20220921.08.00"
+          },
+          {
+            "key": "yt_li",
+            "value": "0"
+          },
+          {
+            "key": "GetChannelPage_rid",
+            "value": "0xaada99e22093f27c"
+          }
+        ],
+        "service": "CSI"
+      },
+      {
+        "params": [
+          {
+            "key": "logged_in",
+            "value": "0"
+          }
+        ],
+        "service": "GUIDED_HELP"
+      },
+      {
+        "params": [
+          {
+            "key": "client.version",
+            "value": "2.20220921"
+          },
+          {
+            "key": "client.name",
+            "value": "WEB"
+          },
+          {
+            "key": "client.fexp",
+            "value": "23966208,24140247,24272785,24286010,24161116,24286017,23983296,24267570,39322456,24226335,24268936,24286396,23882685,24243988,24277989,24255543,1714240,39322386,24280303,24185614,24283281,24199724,24036947,24268142,24187377,24260441,24290276,24248385,39322382,24120820,24293107,24211242,23858057,24169501,39322399,24219713,24002022,24080738,39322357,24225483,24249085,24199774,24265820,23918597,45686551,24260844,24254502,24246430,24255545,24077241,24175559,24290131,23946420,23804281,24001373,24152442,24276632,24197275,24181174,24228637,24280256,24034168,24275322,24160837,24238596,24281190,24292715,24002025,24262346,24166867,24283093,24227844,24287795,24278489,24255165,24263796,24267564,24264860,24191629,24292296,24260783,24229161,24241378,24187043,23986025,24164186,39322278,23934970,24007246,24277923,23998056,24135310,24288047,24004644,24211178,24286003,24268870,24289901"
+          }
+        ],
+        "service": "ECATCHER"
+      }
+    ],
+    "visitorData": "CgszMUUzZDlGLWxiRSipqr2ZBg%3D%3D",
+    "webResponseContextExtensionData": {
+      "hasDecorated": true
+    }
+  },
+  "topbar": {
+    "desktopTopbarRenderer": {
+      "a11ySkipNavigationButton": {
+        "buttonRenderer": {
+          "command": {
+            "clickTrackingParams": "CAUQ8FsiEwjQl_Lpj676AhXF6FEKHcpNBwM=",
+            "commandMetadata": {
+              "webCommandMetadata": {
+                "sendPost": true
+              }
+            },
+            "signalServiceEndpoint": {
+              "actions": [
+                {
+                  "clickTrackingParams": "CAUQ8FsiEwjQl_Lpj676AhXF6FEKHcpNBwM=",
+                  "signalAction": {
+                    "signal": "SKIP_NAVIGATION"
+                  }
+                }
+              ],
+              "signal": "CLIENT_SIGNAL"
+            }
+          },
+          "isDisabled": false,
+          "size": "SIZE_DEFAULT",
+          "style": "STYLE_DEFAULT",
+          "text": {
+            "runs": [
+              {
+                "text": "Skip navigation"
+              }
+            ]
+          },
+          "trackingParams": "CAUQ8FsiEwjQl_Lpj676AhXF6FEKHcpNBwM="
+        }
+      },
+      "backButton": {
+        "buttonRenderer": {
+          "command": {
+            "clickTrackingParams": "CAcQvIYDIhMI0Jfy6Y-u-gIVxehRCh3KTQcD",
+            "commandMetadata": {
+              "webCommandMetadata": {
+                "sendPost": true
+              }
+            },
+            "signalServiceEndpoint": {
+              "actions": [
+                {
+                  "clickTrackingParams": "CAcQvIYDIhMI0Jfy6Y-u-gIVxehRCh3KTQcD",
+                  "signalAction": {
+                    "signal": "HISTORY_BACK"
+                  }
+                }
+              ],
+              "signal": "CLIENT_SIGNAL"
+            }
+          },
+          "trackingParams": "CAcQvIYDIhMI0Jfy6Y-u-gIVxehRCh3KTQcD"
+        }
+      },
+      "forwardButton": {
+        "buttonRenderer": {
+          "command": {
+            "clickTrackingParams": "CAYQvYYDIhMI0Jfy6Y-u-gIVxehRCh3KTQcD",
+            "commandMetadata": {
+              "webCommandMetadata": {
+                "sendPost": true
+              }
+            },
+            "signalServiceEndpoint": {
+              "actions": [
+                {
+                  "clickTrackingParams": "CAYQvYYDIhMI0Jfy6Y-u-gIVxehRCh3KTQcD",
+                  "signalAction": {
+                    "signal": "HISTORY_FORWARD"
+                  }
+                }
+              ],
+              "signal": "CLIENT_SIGNAL"
+            }
+          },
+          "trackingParams": "CAYQvYYDIhMI0Jfy6Y-u-gIVxehRCh3KTQcD"
+        }
+      },
+      "hotkeyDialog": {
+        "hotkeyDialogRenderer": {
+          "dismissButton": {
+            "buttonRenderer": {
+              "isDisabled": false,
+              "size": "SIZE_DEFAULT",
+              "style": "STYLE_BLUE_TEXT",
+              "text": {
+                "runs": [
+                  {
+                    "text": "Dismiss"
+                  }
+                ]
+              },
+              "trackingParams": "CAkQ8FsiEwjQl_Lpj676AhXF6FEKHcpNBwM="
+            }
+          },
+          "sections": [
+            {
+              "hotkeyDialogSectionRenderer": {
+                "options": [
+                  {
+                    "hotkeyDialogSectionOptionRenderer": {
+                      "hotkey": "k",
+                      "label": {
+                        "runs": [
+                          {
+                            "text": "Toggle play/pause"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "hotkeyDialogSectionOptionRenderer": {
+                      "hotkey": "j",
+                      "label": {
+                        "runs": [
+                          {
+                            "text": "Rewind 10 seconds"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "hotkeyDialogSectionOptionRenderer": {
+                      "hotkey": "l",
+                      "label": {
+                        "runs": [
+                          {
+                            "text": "Fast forward 10 seconds"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "hotkeyDialogSectionOptionRenderer": {
+                      "hotkey": "P (SHIFT+p)",
+                      "label": {
+                        "runs": [
+                          {
+                            "text": "Previous video"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "hotkeyDialogSectionOptionRenderer": {
+                      "hotkey": "N (SHIFT+n)",
+                      "label": {
+                        "runs": [
+                          {
+                            "text": "Next video"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "hotkeyDialogSectionOptionRenderer": {
+                      "hotkey": ",",
+                      "hotkeyAccessibilityLabel": {
+                        "accessibilityData": {
+                          "label": "Comma"
+                        }
+                      },
+                      "label": {
+                        "runs": [
+                          {
+                            "text": "Previous frame (while paused)"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "hotkeyDialogSectionOptionRenderer": {
+                      "hotkey": ".",
+                      "hotkeyAccessibilityLabel": {
+                        "accessibilityData": {
+                          "label": "Period"
+                        }
+                      },
+                      "label": {
+                        "runs": [
+                          {
+                            "text": "Next frame (while paused)"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "hotkeyDialogSectionOptionRenderer": {
+                      "hotkey": "< (SHIFT+,)",
+                      "hotkeyAccessibilityLabel": {
+                        "accessibilityData": {
+                          "label": "Less than or SHIFT + comma"
+                        }
+                      },
+                      "label": {
+                        "runs": [
+                          {
+                            "text": "Decrease playback rate"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "hotkeyDialogSectionOptionRenderer": {
+                      "hotkey": "> (SHIFT+.)",
+                      "hotkeyAccessibilityLabel": {
+                        "accessibilityData": {
+                          "label": "Greater than or SHIFT + period"
+                        }
+                      },
+                      "label": {
+                        "runs": [
+                          {
+                            "text": "Increase playback rate"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "hotkeyDialogSectionOptionRenderer": {
+                      "hotkey": "0..9",
+                      "label": {
+                        "runs": [
+                          {
+                            "text": "Seek to specific point in the video (7 advances to 70% of duration)"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "hotkeyDialogSectionOptionRenderer": {
+                      "hotkey": "CONTROL + ←",
+                      "label": {
+                        "runs": [
+                          {
+                            "text": "Seek to previous chapter"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "hotkeyDialogSectionOptionRenderer": {
+                      "hotkey": "CONTROL + →",
+                      "label": {
+                        "runs": [
+                          {
+                            "text": "Seek to next chapter"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ],
+                "title": {
+                  "runs": [
+                    {
+                      "text": "Playback"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "hotkeyDialogSectionRenderer": {
+                "options": [
+                  {
+                    "hotkeyDialogSectionOptionRenderer": {
+                      "hotkey": "f",
+                      "label": {
+                        "runs": [
+                          {
+                            "text": "Toggle full screen"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "hotkeyDialogSectionOptionRenderer": {
+                      "hotkey": "t",
+                      "label": {
+                        "runs": [
+                          {
+                            "text": "Toggle theater mode"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "hotkeyDialogSectionOptionRenderer": {
+                      "hotkey": "i",
+                      "label": {
+                        "runs": [
+                          {
+                            "text": "Toggle miniplayer"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "hotkeyDialogSectionOptionRenderer": {
+                      "hotkey": "ESCAPE",
+                      "label": {
+                        "runs": [
+                          {
+                            "text": "Close miniplayer or current dialog"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "hotkeyDialogSectionOptionRenderer": {
+                      "hotkey": "m",
+                      "label": {
+                        "runs": [
+                          {
+                            "text": "Toggle mute"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ],
+                "title": {
+                  "runs": [
+                    {
+                      "text": "General"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "hotkeyDialogSectionRenderer": {
+                "options": [
+                  {
+                    "hotkeyDialogSectionOptionRenderer": {
+                      "hotkey": "c",
+                      "label": {
+                        "runs": [
+                          {
+                            "text": "If the video supports captions, toggle captions ON/OFF"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "hotkeyDialogSectionOptionRenderer": {
+                      "hotkey": "o",
+                      "label": {
+                        "runs": [
+                          {
+                            "text": "Rotate through different text opacity levels"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "hotkeyDialogSectionOptionRenderer": {
+                      "hotkey": "w",
+                      "label": {
+                        "runs": [
+                          {
+                            "text": "Rotate through different window opacity levels"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "hotkeyDialogSectionOptionRenderer": {
+                      "hotkey": "+",
+                      "label": {
+                        "runs": [
+                          {
+                            "text": "Rotate through font sizes (increasing)"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "hotkeyDialogSectionOptionRenderer": {
+                      "hotkey": "-",
+                      "hotkeyAccessibilityLabel": {
+                        "accessibilityData": {
+                          "label": "Minus"
+                        }
+                      },
+                      "label": {
+                        "runs": [
+                          {
+                            "text": "Rotate through font sizes (decreasing)"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ],
+                "title": {
+                  "runs": [
+                    {
+                      "text": "Subtitles and closed captions"
+                    }
+                  ]
+                }
+              }
+            },
+            {
+              "hotkeyDialogSectionRenderer": {
+                "options": [
+                  {
+                    "hotkeyDialogSectionOptionRenderer": {
+                      "hotkey": "w",
+                      "label": {
+                        "runs": [
+                          {
+                            "text": "Pan up"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "hotkeyDialogSectionOptionRenderer": {
+                      "hotkey": "a",
+                      "label": {
+                        "runs": [
+                          {
+                            "text": "Pan left"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "hotkeyDialogSectionOptionRenderer": {
+                      "hotkey": "s",
+                      "label": {
+                        "runs": [
+                          {
+                            "text": "Pan down"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "hotkeyDialogSectionOptionRenderer": {
+                      "hotkey": "d",
+                      "label": {
+                        "runs": [
+                          {
+                            "text": "Pan right"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "hotkeyDialogSectionOptionRenderer": {
+                      "hotkey": "+ on numpad or ]",
+                      "hotkeyAccessibilityLabel": {
+                        "accessibilityData": {
+                          "label": "Plus on number pad or right bracket"
+                        }
+                      },
+                      "label": {
+                        "runs": [
+                          {
+                            "text": "Zoom in"
+                          }
+                        ]
+                      }
+                    }
+                  },
+                  {
+                    "hotkeyDialogSectionOptionRenderer": {
+                      "hotkey": "- on numpad or [",
+                      "hotkeyAccessibilityLabel": {
+                        "accessibilityData": {
+                          "label": "Minus on number pad or left bracket"
+                        }
+                      },
+                      "label": {
+                        "runs": [
+                          {
+                            "text": "Zoom out"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ],
+                "title": {
+                  "runs": [
+                    {
+                      "text": "Spherical Videos"
+                    }
+                  ]
+                }
+              }
+            }
+          ],
+          "title": {
+            "runs": [
+              {
+                "text": "Keyboard shortcuts"
+              }
+            ]
+          },
+          "trackingParams": "CAgQteYDIhMI0Jfy6Y-u-gIVxehRCh3KTQcD"
+        }
+      },
+      "logo": {
+        "topbarLogoRenderer": {
+          "endpoint": {
+            "browseEndpoint": {
+              "browseId": "FEwhat_to_watch"
+            },
+            "clickTrackingParams": "CA8QsV4iEwjQl_Lpj676AhXF6FEKHcpNBwM=",
+            "commandMetadata": {
+              "webCommandMetadata": {
+                "apiUrl": "/youtubei/v1/browse",
+                "rootVe": 3854,
+                "url": "/",
+                "webPageType": "WEB_PAGE_TYPE_BROWSE"
+              }
+            }
+          },
+          "iconImage": {
+            "iconType": "YOUTUBE_LOGO"
+          },
+          "overrideEntityKey": "EgZ0b3BiYXIg9QEoAQ%3D%3D",
+          "tooltipText": {
+            "runs": [
+              {
+                "text": "YouTube Home"
+              }
+            ]
+          },
+          "trackingParams": "CA8QsV4iEwjQl_Lpj676AhXF6FEKHcpNBwM="
+        }
+      },
+      "searchbox": {
+        "fusionSearchboxRenderer": {
+          "clearButton": {
+            "buttonRenderer": {
+              "accessibilityData": {
+                "accessibilityData": {
+                  "label": "Clear search query"
+                }
+              },
+              "icon": {
+                "iconType": "CLOSE"
+              },
+              "isDisabled": false,
+              "size": "SIZE_DEFAULT",
+              "style": "STYLE_DEFAULT",
+              "trackingParams": "CA4Q8FsiEwjQl_Lpj676AhXF6FEKHcpNBwM="
+            }
+          },
+          "config": {
+            "webSearchboxConfig": {
+              "focusSearchbox": true,
+              "hasOnscreenKeyboard": false,
+              "requestDomain": "us",
+              "requestLanguage": "en"
+            }
+          },
+          "icon": {
+            "iconType": "SEARCH"
+          },
+          "placeholderText": {
+            "runs": [
+              {
+                "text": "Search"
+              }
+            ]
+          },
+          "searchEndpoint": {
+            "clickTrackingParams": "CA0Q7VAiEwjQl_Lpj676AhXF6FEKHcpNBwM=",
+            "commandMetadata": {
+              "webCommandMetadata": {
+                "rootVe": 4724,
+                "url": "/results?search_query=",
+                "webPageType": "WEB_PAGE_TYPE_SEARCH"
+              }
+            },
+            "searchEndpoint": {
+              "query": ""
+            }
+          },
+          "trackingParams": "CA0Q7VAiEwjQl_Lpj676AhXF6FEKHcpNBwM="
+        }
+      },
+      "topbarButtons": [
+        {
+          "topbarMenuButtonRenderer": {
+            "accessibility": {
+              "accessibilityData": {
+                "label": "Settings"
+              }
+            },
+            "icon": {
+              "iconType": "MORE_VERT"
+            },
+            "menuRequest": {
+              "clickTrackingParams": "CAsQ_qsBGAAiEwjQl_Lpj676AhXF6FEKHcpNBwM=",
+              "commandMetadata": {
+                "webCommandMetadata": {
+                  "apiUrl": "/youtubei/v1/account/account_menu",
+                  "sendPost": true
+                }
+              },
+              "signalServiceEndpoint": {
+                "actions": [
+                  {
+                    "clickTrackingParams": "CAsQ_qsBGAAiEwjQl_Lpj676AhXF6FEKHcpNBwM=",
+                    "openPopupAction": {
+                      "beReused": true,
+                      "popup": {
+                        "multiPageMenuRenderer": {
+                          "showLoadingSpinner": true,
+                          "style": "MULTI_PAGE_MENU_STYLE_TYPE_SYSTEM",
+                          "trackingParams": "CAwQ_6sBIhMI0Jfy6Y-u-gIVxehRCh3KTQcD"
+                        }
+                      },
+                      "popupType": "DROPDOWN"
+                    }
+                  }
+                ],
+                "signal": "GET_ACCOUNT_MENU"
+              }
+            },
+            "style": "STYLE_DEFAULT",
+            "tooltip": "Settings",
+            "trackingParams": "CAsQ_qsBGAAiEwjQl_Lpj676AhXF6FEKHcpNBwM="
+          }
+        },
+        {
+          "buttonRenderer": {
+            "icon": {
+              "iconType": "AVATAR_LOGGED_OUT"
+            },
+            "navigationEndpoint": {
+              "clickTrackingParams": "CAoQ1IAEGAEiEwjQl_Lpj676AhXF6FEKHcpNBwM=",
+              "commandMetadata": {
+                "webCommandMetadata": {
+                  "rootVe": 83769,
+                  "url": "https://accounts.google.com/ServiceLogin?service=youtube&uilel=3&passive=true&continue=https%3A%2F%2Fwww.youtube.com%2Fsignin%3Faction_handle_signin%3Dtrue%26app%3Ddesktop%26hl%3Den%26next%3Dhttps%253A%252F%252Fwww.youtube.com%252Fyoutubei%252Fv1%252Fbrowse%253Fkey%253DAIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8%2526prettyPrint%253Dfalse&hl=en&ec=65620",
+                  "webPageType": "WEB_PAGE_TYPE_UNKNOWN"
+                }
+              },
+              "signInEndpoint": {
+                "idamTag": "65620"
+              }
+            },
+            "size": "SIZE_SMALL",
+            "style": "STYLE_SUGGESTIVE",
+            "targetId": "topbar-signin",
+            "text": {
+              "runs": [
+                {
+                  "text": "Sign in"
+                }
+              ]
+            },
+            "trackingParams": "CAoQ1IAEGAEiEwjQl_Lpj676AhXF6FEKHcpNBwM="
+          }
+        }
+      ],
+      "trackingParams": "CAEQq6wBIhMI0Jfy6Y-u-gIVxehRCh3KTQcD",
+      "voiceSearchButton": {
+        "buttonRenderer": {
+          "accessibilityData": {
+            "accessibilityData": {
+              "label": "Search with your voice"
+            }
+          },
+          "icon": {
+            "iconType": "MICROPHONE_ON"
+          },
+          "isDisabled": false,
+          "serviceEndpoint": {
+            "clickTrackingParams": "CAIQ8FsiEwjQl_Lpj676AhXF6FEKHcpNBwM=",
+            "commandMetadata": {
+              "webCommandMetadata": {
+                "sendPost": true
+              }
+            },
+            "signalServiceEndpoint": {
+              "actions": [
+                {
+                  "clickTrackingParams": "CAIQ8FsiEwjQl_Lpj676AhXF6FEKHcpNBwM=",
+                  "openPopupAction": {
+                    "popup": {
+                      "voiceSearchDialogRenderer": {
+                        "connectionErrorHeader": {
+                          "runs": [
+                            {
+                              "text": "No connection"
+                            }
+                          ]
+                        },
+                        "connectionErrorMicrophoneLabel": {
+                          "runs": [
+                            {
+                              "text": "Check your connection and try again"
+                            }
+                          ]
+                        },
+                        "disabledHeader": {
+                          "runs": [
+                            {
+                              "text": "Search with your voice"
+                            }
+                          ]
+                        },
+                        "disabledSubtext": {
+                          "runs": [
+                            {
+                              "text": "To search by voice, go to your browser settings and allow access to microphone"
+                            }
+                          ]
+                        },
+                        "exampleQuery1": {
+                          "runs": [
+                            {
+                              "text": "\"Play Dua Lipa\""
+                            }
+                          ]
+                        },
+                        "exampleQuery2": {
+                          "runs": [
+                            {
+                              "text": "\"Show me my subscriptions\""
+                            }
+                          ]
+                        },
+                        "exitButton": {
+                          "buttonRenderer": {
+                            "accessibilityData": {
+                              "accessibilityData": {
+                                "label": "Cancel"
+                              }
+                            },
+                            "icon": {
+                              "iconType": "CLOSE"
+                            },
+                            "isDisabled": false,
+                            "size": "SIZE_DEFAULT",
+                            "style": "STYLE_DEFAULT",
+                            "trackingParams": "CAQQ8FsiEwjQl_Lpj676AhXF6FEKHcpNBwM="
+                          }
+                        },
+                        "loadingHeader": {
+                          "runs": [
+                            {
+                              "text": "Working..."
+                            }
+                          ]
+                        },
+                        "microphoneButtonAriaLabel": {
+                          "runs": [
+                            {
+                              "text": "Cancel"
+                            }
+                          ]
+                        },
+                        "microphoneOffPromptHeader": {
+                          "runs": [
+                            {
+                              "text": "Microphone off. Try again."
+                            }
+                          ]
+                        },
+                        "permissionsHeader": {
+                          "runs": [
+                            {
+                              "text": "Waiting for permission"
+                            }
+                          ]
+                        },
+                        "permissionsSubtext": {
+                          "runs": [
+                            {
+                              "text": "Allow microphone access to search with voice"
+                            }
+                          ]
+                        },
+                        "placeholderHeader": {
+                          "runs": [
+                            {
+                              "text": "Listening..."
+                            }
+                          ]
+                        },
+                        "promptHeader": {
+                          "runs": [
+                            {
+                              "text": "Didn't hear that. Try again."
+                            }
+                          ]
+                        },
+                        "promptMicrophoneLabel": {
+                          "runs": [
+                            {
+                              "text": "Tap microphone to try again"
+                            }
+                          ]
+                        },
+                        "trackingParams": "CAMQ7q8FIhMI0Jfy6Y-u-gIVxehRCh3KTQcD"
+                      }
+                    },
+                    "popupType": "TOP_ALIGNED_DIALOG"
+                  }
+                }
+              ],
+              "signal": "CLIENT_SIGNAL"
+            }
+          },
+          "size": "SIZE_DEFAULT",
+          "style": "STYLE_DEFAULT",
+          "tooltip": "Search with your voice",
+          "trackingParams": "CAIQ8FsiEwjQl_Lpj676AhXF6FEKHcpNBwM="
+        }
+      }
+    }
+  },
+  "trackingParams": "CAAQhGciEwjQl_Lpj676AhXF6FEKHcpNBwM="
+}

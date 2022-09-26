@@ -225,8 +225,10 @@ pub enum PageType {
     Playlist,
 }
 
-fn map_richtext_run(run: RichTextRun) -> TextComponent {
-    map_text_component(run.text, run.navigation_endpoint)
+impl From<RichTextRun> for TextComponent {
+    fn from(run: RichTextRun) -> Self {
+        map_text_component(run.text, run.navigation_endpoint)
+    }
 }
 
 /// Map a single component of a rich text
@@ -270,7 +272,7 @@ impl<'de> Deserialize<'de> for TextComponent {
             ));
         }
 
-        Ok(map_richtext_run(text.runs.swap_remove(0)))
+        Ok(text.runs.swap_remove(0).into())
     }
 }
 
@@ -280,7 +282,9 @@ impl<'de> Deserialize<'de> for TextComponents {
         D: Deserializer<'de>,
     {
         let text = RichTextInternal::deserialize(deserializer)?;
-        Ok(Self(text.runs.into_iter().map(map_richtext_run).collect()))
+        Ok(Self(
+            text.runs.into_iter().map(TextComponent::from).collect(),
+        ))
     }
 }
 
@@ -295,7 +299,7 @@ impl<'de> DeserializeAs<'de, TextComponents> for AttributedText {
         let mut chars = text.content.chars();
 
         // Take a string from the char iterator until the given
-        // UTF-16 index. This mimicks the Javascript substring behavior.
+        // UTF-16 index. This mimics the Javascript substring behavior.
         let mut take_chars = |until: usize| {
             if until <= i_utf16 {
                 return String::new();
@@ -338,7 +342,7 @@ impl<'de> DeserializeAs<'de, TextComponents> for AttributedText {
             let txt_link = txt_link.trim();
             let txt_link = txt_link.replace("\u{a0}", " ");
 
-            static LINK_PREFIX: Lazy<Regex> = Lazy::new(|| Regex::new(r#"^(?:\/|•) *"#).unwrap());
+            static LINK_PREFIX: Lazy<Regex> = Lazy::new(|| Regex::new("^[/•] *").unwrap());
             let txt_link = LINK_PREFIX.replace(&txt_link, "");
 
             if !txt_before.is_empty() {

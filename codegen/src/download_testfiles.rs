@@ -12,16 +12,16 @@ pub async fn download_testfiles(project_root: &Path) {
     let mut testfiles = project_root.to_path_buf();
     testfiles.push("testfiles");
 
-    tokio::join!(
-        player(&testfiles),
-        player_model(&testfiles),
-        playlist(&testfiles),
-        video_details(&testfiles),
-        comments_top(&testfiles),
-        comments_latest(&testfiles),
-        recommendations(&testfiles),
-        channel_videos(&testfiles),
-    );
+    player(&testfiles).await;
+    player_model(&testfiles).await;
+    playlist(&testfiles).await;
+    video_details(&testfiles).await;
+    comments_top(&testfiles).await;
+    comments_latest(&testfiles).await;
+    recommendations(&testfiles).await;
+    channel_videos(&testfiles).await;
+    channel_playlists(&testfiles).await;
+    channel_info(&testfiles).await;
 }
 
 const CLIENT_TYPES: [ClientType; 5] = [
@@ -202,6 +202,7 @@ async fn channel_videos(testfiles: &Path) {
         ("music", "UC_vmjW5e1xEHhYjY2a0kK1A"), // YouTube Music channels have no videos
         ("shorts", "UCh8gHdtzO2tXd593_bjErWg"), // shorts and livestreams are rendered differently
         ("live", "UChs0pSaEoNLV4mevBFGaoKA"),
+        ("empty", "UCxBa895m48H5idw5li7h-0g"),
     ] {
         let mut json_path = testfiles.to_path_buf();
         json_path.push("channel");
@@ -213,4 +214,34 @@ async fn channel_videos(testfiles: &Path) {
         let rp = rp_testfile(&json_path);
         rp.query().channel_videos(id).await.unwrap();
     }
+}
+
+async fn channel_playlists(testfiles: &Path) {
+    let mut json_path = testfiles.to_path_buf();
+    json_path.push("channel");
+    json_path.push("channel_playlists.json");
+    if json_path.exists() {
+        return;
+    }
+
+    let rp = rp_testfile(&json_path);
+    rp.query()
+        .channel_playlists("UC2DjFE7Xf11URZqWBigcVOQ")
+        .await
+        .unwrap();
+}
+
+async fn channel_info(testfiles: &Path) {
+    let mut json_path = testfiles.to_path_buf();
+    json_path.push("channel");
+    json_path.push("channel_info.json");
+    if json_path.exists() {
+        return;
+    }
+
+    let rp = rp_testfile(&json_path);
+    rp.query()
+        .channel_info("UC2DjFE7Xf11URZqWBigcVOQ")
+        .await
+        .unwrap();
 }

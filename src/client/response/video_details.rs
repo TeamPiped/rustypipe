@@ -344,6 +344,7 @@ pub struct MacroMarkersListItem {
 pub struct MacroMarkersListItemRenderer {
     /// Contains chapter start time in seconds
     pub on_tap: MacroMarkersListItemOnTap,
+    #[serde(default)]
     pub thumbnail: Thumbnails,
     /// Chapter title
     #[serde_as(as = "Text")]
@@ -528,6 +529,7 @@ pub struct CommentRenderer {
     #[serde(default)]
     #[serde_as(as = "DefaultOnError<Option<Text>>")]
     pub author_text: Option<String>,
+    #[serde(default)]
     pub author_thumbnail: Thumbnails,
     #[serde(default)]
     /// ID of the author's channel
