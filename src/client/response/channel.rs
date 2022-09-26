@@ -18,6 +18,13 @@ pub struct Channel {
     pub microformat: Microformat,
 }
 
+#[serde_as]
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ChannelCont {
+    pub on_response_received_actions: Vec<OnResponseReceivedAction>,
+}
+
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Contents {
@@ -164,4 +171,18 @@ pub struct NavigationEndpoint {
 #[serde(rename_all = "camelCase")]
 pub struct UrlEndpoint {
     pub url: String,
+}
+
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct OnResponseReceivedAction {
+    pub append_continuation_items_action: AppendAction,
+}
+
+#[serde_as]
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct AppendAction {
+    #[serde_as(as = "VecLogError<_>")]
+    pub continuation_items: MapResult<Vec<VideoListItem>>,
 }

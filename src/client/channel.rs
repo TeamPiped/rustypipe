@@ -1,4 +1,4 @@
-use anyhow::{bail, Result};
+use anyhow::{anyhow, bail, Result};
 use reqwest::Method;
 use serde::Serialize;
 use url::Url;
@@ -14,7 +14,7 @@ use crate::{
 
 use super::{
     response::{self, IsLive, IsShort},
-    ClientType, MapResponse, RustyPipeQuery, YTContext,
+    ClientType, MapResponse, QContinuation, RustyPipeQuery, YTContext,
 };
 
 #[derive(Debug, Serialize)]
@@ -75,6 +75,27 @@ impl RustyPipeQuery {
         .await
     }
 
+    pub async fn channel_videos_continuation(
+        &self,
+        ctoken: &str,
+    ) -> Result<Paginator<ChannelVideo>> {
+        let context = self.get_context(ClientType::Desktop, true).await;
+        let request_body = QContinuation {
+            context,
+            continuation: ctoken.to_owned(),
+        };
+
+        self.execute_request::<response::ChannelCont, _, _>(
+            ClientType::Desktop,
+            "channel_videos_continuation",
+            ctoken,
+            Method::POST,
+            "browse",
+            &request_body,
+        )
+        .await
+    }
+
     pub async fn channel_playlists(
         &self,
         channel_id: &str,
@@ -90,6 +111,27 @@ impl RustyPipeQuery {
             ClientType::Desktop,
             "channel_playlists",
             channel_id,
+            Method::POST,
+            "browse",
+            &request_body,
+        )
+        .await
+    }
+
+    pub async fn channel_playlists_continuation(
+        &self,
+        ctoken: &str,
+    ) -> Result<Paginator<ChannelPlaylist>> {
+        let context = self.get_context(ClientType::Desktop, true).await;
+        let request_body = QContinuation {
+            context,
+            continuation: ctoken.to_owned(),
+        };
+
+        self.execute_request::<response::ChannelCont, _, _>(
+            ClientType::Desktop,
+            "channel_videos_continuation",
+            ctoken,
             Method::POST,
             "browse",
             &request_body,
@@ -232,6 +274,44 @@ impl MapResponse<Channel<ChannelInfo>> for response::Channel {
             )?,
             warnings,
         })
+    }
+}
+
+impl MapResponse<Paginator<ChannelVideo>> for response::ChannelCont {
+    fn map_response(
+        self,
+        _id: &str,
+        lang: Language,
+        _deobf: Option<&crate::deobfuscate::Deobfuscator>,
+    ) -> Result<MapResult<Paginator<ChannelVideo>>> {
+        let mut actions = self.on_response_received_actions;
+        let res = some_or_bail!(
+            actions.try_swap_remove(0),
+            Err(anyhow!("no received action"))
+        )
+        .append_continuation_items_action
+        .continuation_items;
+
+        Ok(map_videos(res, lang))
+    }
+}
+
+impl MapResponse<Paginator<ChannelPlaylist>> for response::ChannelCont {
+    fn map_response(
+        self,
+        _id: &str,
+        _lang: Language,
+        _deobf: Option<&crate::deobfuscate::Deobfuscator>,
+    ) -> Result<MapResult<Paginator<ChannelPlaylist>>> {
+        let mut actions = self.on_response_received_actions;
+        let res = some_or_bail!(
+            actions.try_swap_remove(0),
+            Err(anyhow!("no received action"))
+        )
+        .append_continuation_items_action
+        .continuation_items;
+
+        Ok(map_playlists(res))
     }
 }
 
@@ -413,7 +493,9 @@ mod tests {
 
     use crate::{
         client::{response, MapResponse, RustyPipe},
-        model::{Channel, ChannelOrder, ChannelVideo, Language, Paginator},
+        model::{
+            Channel, ChannelInfo, ChannelOrder, ChannelPlaylist, ChannelVideo, Language, Paginator,
+        },
         serializer::MapResult,
     };
 
@@ -456,6 +538,12 @@ mod tests {
                 )
             }
         }
+
+        let next = channel.content.next(rp.query()).await.unwrap().unwrap();
+        assert!(
+            !next.is_exhausted() && !next.items.is_empty(),
+            "no more videos"
+        );
     }
 
     #[tokio::test]
@@ -473,6 +561,12 @@ mod tests {
         assert!(
             !channel.content.items.is_empty() && !channel.content.is_exhausted(),
             "got no playlists"
+        );
+
+        let next = channel.content.next(rp.query()).await.unwrap().unwrap();
+        assert!(
+            !next.is_exhausted() && !next.items.is_empty(),
+            "no more playlists"
         );
     }
 
@@ -562,5 +656,83 @@ mod tests {
         insta::assert_ron_snapshot!(format!("map_channel_videos_{}", name), map_res.c, {
             ".content.items[].publish_date" => "[date]",
         });
+    }
+
+    #[test]
+    fn t_map_channel_videos_cont() {
+        let json_path = Path::new("testfiles/channel/channel_videos_cont.json");
+        let json_file = File::open(json_path).unwrap();
+
+        let channel: response::ChannelCont =
+            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let map_res: MapResult<Paginator<ChannelVideo>> = channel
+            .map_response("UC2DjFE7Xf11URZqWBigcVOQ", Language::En, None)
+            .unwrap();
+
+        assert!(
+            map_res.warnings.is_empty(),
+            "deserialization/mapping warnings: {:?}",
+            map_res.warnings
+        );
+        insta::assert_ron_snapshot!("map_channel_videos_cont", map_res.c, {
+            ".items[].publish_date" => "[date]",
+        });
+    }
+
+    #[test]
+    fn t_map_channel_playlists() {
+        let json_path = Path::new("testfiles/channel/channel_playlists.json");
+        let json_file = File::open(json_path).unwrap();
+
+        let channel: response::Channel =
+            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let map_res: MapResult<Channel<Paginator<ChannelPlaylist>>> = channel
+            .map_response("UC2DjFE7Xf11URZqWBigcVOQ", Language::En, None)
+            .unwrap();
+
+        assert!(
+            map_res.warnings.is_empty(),
+            "deserialization/mapping warnings: {:?}",
+            map_res.warnings
+        );
+        insta::assert_ron_snapshot!("map_channel_playlists", map_res.c);
+    }
+
+    #[test]
+    fn t_map_channel_playlists_cont() {
+        let json_path = Path::new("testfiles/channel/channel_playlists_cont.json");
+        let json_file = File::open(json_path).unwrap();
+
+        let channel: response::ChannelCont =
+            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let map_res: MapResult<Paginator<ChannelPlaylist>> = channel
+            .map_response("UC2DjFE7Xf11URZqWBigcVOQ", Language::En, None)
+            .unwrap();
+
+        assert!(
+            map_res.warnings.is_empty(),
+            "deserialization/mapping warnings: {:?}",
+            map_res.warnings
+        );
+        insta::assert_ron_snapshot!("map_channel_playlists_cont", map_res.c);
+    }
+
+    #[test]
+    fn t_map_channel_info() {
+        let json_path = Path::new("testfiles/channel/channel_info.json");
+        let json_file = File::open(json_path).unwrap();
+
+        let channel: response::Channel =
+            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let map_res: MapResult<Channel<ChannelInfo>> = channel
+            .map_response("UC2DjFE7Xf11URZqWBigcVOQ", Language::En, None)
+            .unwrap();
+
+        assert!(
+            map_res.warnings.is_empty(),
+            "deserialization/mapping warnings: {:?}",
+            map_res.warnings
+        );
+        insta::assert_ron_snapshot!("map_channel_info", map_res.c);
     }
 }

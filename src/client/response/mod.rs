@@ -5,6 +5,7 @@ pub mod playlist_music;
 pub mod video_details;
 
 pub use channel::Channel;
+pub use channel::ChannelCont;
 pub use player::Player;
 pub use playlist::Playlist;
 pub use playlist::PlaylistCont;

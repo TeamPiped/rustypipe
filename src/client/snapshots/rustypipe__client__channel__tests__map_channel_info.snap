@@ -1,0 +1,163 @@
+---
+source: src/client/channel.rs
+expression: map_res.c
+---
+Channel(
+  id: "UC2DjFE7Xf11URZqWBigcVOQ",
+  name: "EEVblog",
+  subscriber_count: Some(881000),
+  avatar: [
+    Thumbnail(
+      url: "https://yt3.ggpht.com/ytc/AMLnZu9eKk4Nd16fX4Rn1TF1G7ReluwOl6M5558FTYAM=s48-c-k-c0x00ffffff-no-rj",
+      width: 48,
+      height: 48,
+    ),
+    Thumbnail(
+      url: "https://yt3.ggpht.com/ytc/AMLnZu9eKk4Nd16fX4Rn1TF1G7ReluwOl6M5558FTYAM=s88-c-k-c0x00ffffff-no-rj",
+      width: 88,
+      height: 88,
+    ),
+    Thumbnail(
+      url: "https://yt3.ggpht.com/ytc/AMLnZu9eKk4Nd16fX4Rn1TF1G7ReluwOl6M5558FTYAM=s176-c-k-c0x00ffffff-no-rj",
+      width: 176,
+      height: 176,
+    ),
+  ],
+  description: "NO SCRIPT, NO FEAR, ALL OPINION\nAn off-the-cuff Video Blog about Electronics Engineering, for engineers, hobbyists, enthusiasts, hackers and Makers\nHosted by Dave Jones from Sydney Australia\n\nDONATIONS:\nBitcoin: 3KqyH1U3qrMPnkLufM2oHDU7YB4zVZeFyZ\nEthereum: 0x99ccc4d2654ba40744a1f678d9868ecb15e91206\nPayPal: david@alternatezone.com\n\nPatreon: https://www.patreon.com/eevblog\n\nEEVblog2: http://www.youtube.com/EEVblog2\nEEVdiscover: https://www.youtube.com/channel/UCkGvUEt8iQLmq3aJIMjT2qQ\n\nEMAIL:\nAdvertising/Commercial: eevblog+business@gmail.com\nFan mail: eevblog+fan@gmail.com\nHate Mail: eevblog+hate@gmail.com\n\nI DON\'T DO PAID VIDEO SPONSORSHIPS, DON\'T ASK!\n\nPLEASE:\nDo NOT ask for personal advice on something, post it in the EEVblog forum.\nI read ALL email, but please don\'t be offended if I don\'t have time to reply, I get a LOT of email.\n\nMailbag\nPO Box 7949\nBaulkham Hills NSW 2153\nAUSTRALIA",
+  tags: [
+    "electronics",
+    "engineering",
+    "maker",
+    "hacker",
+    "design",
+    "circuit",
+    "hardware",
+    "pic",
+    "atmel",
+    "oscilloscope",
+    "multimeter",
+    "diy",
+    "hobby",
+    "review",
+    "teardown",
+    "microcontroller",
+    "arduino",
+    "video",
+    "blog",
+    "tutorial",
+    "how-to",
+    "interview",
+    "rant",
+    "industry",
+    "news",
+    "mailbag",
+    "dumpster diving",
+    "debunking",
+  ],
+  vanity_url: Some("https://www.youtube.com/c/EevblogDave"),
+  banner: [
+    Thumbnail(
+      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w1060-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj",
+      width: 1060,
+      height: 175,
+    ),
+    Thumbnail(
+      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w1138-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj",
+      width: 1138,
+      height: 188,
+    ),
+    Thumbnail(
+      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w1707-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj",
+      width: 1707,
+      height: 283,
+    ),
+    Thumbnail(
+      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w2120-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj",
+      width: 2120,
+      height: 351,
+    ),
+    Thumbnail(
+      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w2276-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj",
+      width: 2276,
+      height: 377,
+    ),
+    Thumbnail(
+      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w2560-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj",
+      width: 2560,
+      height: 424,
+    ),
+  ],
+  mobile_banner: [
+    Thumbnail(
+      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w320-fcrop64=1,32b75a57cd48a5a8-k-c0xffffffff-no-nd-rj",
+      width: 320,
+      height: 88,
+    ),
+    Thumbnail(
+      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w640-fcrop64=1,32b75a57cd48a5a8-k-c0xffffffff-no-nd-rj",
+      width: 640,
+      height: 175,
+    ),
+    Thumbnail(
+      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w960-fcrop64=1,32b75a57cd48a5a8-k-c0xffffffff-no-nd-rj",
+      width: 960,
+      height: 263,
+    ),
+    Thumbnail(
+      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w1280-fcrop64=1,32b75a57cd48a5a8-k-c0xffffffff-no-nd-rj",
+      width: 1280,
+      height: 351,
+    ),
+    Thumbnail(
+      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w1440-fcrop64=1,32b75a57cd48a5a8-k-c0xffffffff-no-nd-rj",
+      width: 1440,
+      height: 395,
+    ),
+  ],
+  tv_banner: [
+    Thumbnail(
+      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w320-fcrop64=1,00000000ffffffff-k-c0xffffffff-no-nd-rj",
+      width: 320,
+      height: 180,
+    ),
+    Thumbnail(
+      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w854-fcrop64=1,00000000ffffffff-k-c0xffffffff-no-nd-rj",
+      width: 854,
+      height: 480,
+    ),
+    Thumbnail(
+      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w1280-fcrop64=1,00000000ffffffff-k-c0xffffffff-no-nd-rj",
+      width: 1280,
+      height: 720,
+    ),
+    Thumbnail(
+      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w1920-fcrop64=1,00000000ffffffff-k-c0xffffffff-no-nd-rj",
+      width: 1920,
+      height: 1080,
+    ),
+    Thumbnail(
+      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w2120-fcrop64=1,00000000ffffffff-k-c0xffffffff-no-nd-rj",
+      width: 2120,
+      height: 1192,
+    ),
+  ],
+  content: ChannelInfo(
+    create_date: Some("2009-04-04T00:00:00+02:00"),
+    view_count: Some(186854342),
+    links: [
+      ("EEVblog Web Site", "http://www.eevblog.com/"),
+      ("Twitter", "http://www.twitter.com/eevblog"),
+      ("Facebook", "http://www.facebook.com/EEVblog"),
+      ("EEVdiscover", "https://www.youtube.com/channel/UCkGvUEt8iQLmq3aJIMjT2qQ"),
+      ("The EEVblog Forum", "http://www.eevblog.com/forum"),
+      ("EEVblog Merchandise (T-Shirts)", "http://www.eevblog.com/merch"),
+      ("EEVblog Donations", "http://www.eevblog.com/donations/"),
+      ("Patreon", "https://www.patreon.com/eevblog"),
+      ("SubscribeStar", "https://www.subscribestar.com/eevblog"),
+      ("The AmpHour Radio Show", "http://www.theamphour.com/"),
+      ("Flickr", "http://www.flickr.com/photos/eevblog"),
+      ("EEVblog AMAZON Store", "http://www.amazon.com/gp/redirect.html?ie=UTF8&location=http%3A%2F%2Fwww.amazon.com%2F&tag=ee04-20&linkCode=ur2&camp=1789&creative=390957"),
+      ("2nd EEVblog Channel", "http://www.youtube.com/EEVblog2"),
+    ],
+  ),
+)

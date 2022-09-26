@@ -11,20 +11,15 @@ use crate::{
     util::{self, TryRemove},
 };
 
-use super::{response, ClientType, MapResponse, MapResult, RustyPipeQuery, YTContext};
+use super::{
+    response, ClientType, MapResponse, MapResult, QContinuation, RustyPipeQuery, YTContext,
+};
 
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 struct QPlaylist {
     context: YTContext,
     browse_id: String,
-}
-
-#[derive(Debug, Serialize)]
-#[serde(rename_all = "camelCase")]
-struct QPlaylistCont {
-    context: YTContext,
-    continuation: String,
 }
 
 impl RustyPipeQuery {
@@ -48,7 +43,7 @@ impl RustyPipeQuery {
 
     pub async fn playlist_continuation(self, ctoken: &str) -> Result<Paginator<PlaylistVideo>> {
         let context = self.get_context(ClientType::Desktop, true).await;
-        let request_body = QPlaylistCont {
+        let request_body = QContinuation {
             context,
             continuation: ctoken.to_owned(),
         };

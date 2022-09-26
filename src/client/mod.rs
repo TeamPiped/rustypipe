@@ -66,13 +66,6 @@ impl ClientType {
 }
 
 #[derive(Clone, Debug, Serialize)]
-struct YTQuery<T> {
-    context: YTContext,
-    #[serde(flatten)]
-    data: T,
-}
-
-#[derive(Clone, Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 struct YTContext {
     client: ClientInfo,
@@ -129,6 +122,13 @@ struct User {
 #[serde(rename_all = "camelCase")]
 struct ThirdParty {
     embed_url: String,
+}
+
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+struct QContinuation {
+    context: YTContext,
+    continuation: String,
 }
 
 const DEFAULT_UA: &str = "Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0";

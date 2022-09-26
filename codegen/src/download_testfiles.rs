@@ -22,6 +22,8 @@ pub async fn download_testfiles(project_root: &Path) {
     channel_videos(&testfiles).await;
     channel_playlists(&testfiles).await;
     channel_info(&testfiles).await;
+    channel_videos_cont(&testfiles).await;
+    channel_playlists_cont(&testfiles).await;
 }
 
 const CLIENT_TYPES: [ClientType; 5] = [
@@ -242,6 +244,50 @@ async fn channel_info(testfiles: &Path) {
     let rp = rp_testfile(&json_path);
     rp.query()
         .channel_info("UC2DjFE7Xf11URZqWBigcVOQ")
+        .await
+        .unwrap();
+}
+
+async fn channel_videos_cont(testfiles: &Path) {
+    let mut json_path = testfiles.to_path_buf();
+    json_path.push("channel");
+    json_path.push("channel_videos_cont.json");
+    if json_path.exists() {
+        return;
+    }
+
+    let rp = RustyPipe::new();
+    let videos = rp
+        .query()
+        .channel_videos("UC2DjFE7Xf11URZqWBigcVOQ")
+        .await
+        .unwrap();
+
+    let rp = rp_testfile(&json_path);
+    rp.query()
+        .channel_videos_continuation(&videos.content.ctoken.unwrap())
+        .await
+        .unwrap();
+}
+
+async fn channel_playlists_cont(testfiles: &Path) {
+    let mut json_path = testfiles.to_path_buf();
+    json_path.push("channel");
+    json_path.push("channel_playlists_cont.json");
+    if json_path.exists() {
+        return;
+    }
+
+    let rp = RustyPipe::new();
+    let playlists = rp
+        .query()
+        .channel_playlists("UC2DjFE7Xf11URZqWBigcVOQ")
+        .await
+        .unwrap();
+
+    let rp = rp_testfile(&json_path);
+    rp.query()
+        .channel_playlists_continuation(&playlists.content.ctoken.unwrap())
         .await
         .unwrap();
 }

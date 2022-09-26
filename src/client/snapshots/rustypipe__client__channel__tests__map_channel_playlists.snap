@@ -1,0 +1,510 @@
+---
+source: src/client/channel.rs
+expression: map_res.c
+---
+Channel(
+  id: "UC2DjFE7Xf11URZqWBigcVOQ",
+  name: "EEVblog",
+  subscriber_count: Some(881000),
+  avatar: [
+    Thumbnail(
+      url: "https://yt3.ggpht.com/ytc/AMLnZu9eKk4Nd16fX4Rn1TF1G7ReluwOl6M5558FTYAM=s48-c-k-c0x00ffffff-no-rj",
+      width: 48,
+      height: 48,
+    ),
+    Thumbnail(
+      url: "https://yt3.ggpht.com/ytc/AMLnZu9eKk4Nd16fX4Rn1TF1G7ReluwOl6M5558FTYAM=s88-c-k-c0x00ffffff-no-rj",
+      width: 88,
+      height: 88,
+    ),
+    Thumbnail(
+      url: "https://yt3.ggpht.com/ytc/AMLnZu9eKk4Nd16fX4Rn1TF1G7ReluwOl6M5558FTYAM=s176-c-k-c0x00ffffff-no-rj",
+      width: 176,
+      height: 176,
+    ),
+  ],
+  description: "NO SCRIPT, NO FEAR, ALL OPINION\nAn off-the-cuff Video Blog about Electronics Engineering, for engineers, hobbyists, enthusiasts, hackers and Makers\nHosted by Dave Jones from Sydney Australia\n\nDONATIONS:\nBitcoin: 3KqyH1U3qrMPnkLufM2oHDU7YB4zVZeFyZ\nEthereum: 0x99ccc4d2654ba40744a1f678d9868ecb15e91206\nPayPal: david@alternatezone.com\n\nPatreon: https://www.patreon.com/eevblog\n\nEEVblog2: http://www.youtube.com/EEVblog2\nEEVdiscover: https://www.youtube.com/channel/UCkGvUEt8iQLmq3aJIMjT2qQ\n\nEMAIL:\nAdvertising/Commercial: eevblog+business@gmail.com\nFan mail: eevblog+fan@gmail.com\nHate Mail: eevblog+hate@gmail.com\n\nI DON\'T DO PAID VIDEO SPONSORSHIPS, DON\'T ASK!\n\nPLEASE:\nDo NOT ask for personal advice on something, post it in the EEVblog forum.\nI read ALL email, but please don\'t be offended if I don\'t have time to reply, I get a LOT of email.\n\nMailbag\nPO Box 7949\nBaulkham Hills NSW 2153\nAUSTRALIA",
+  tags: [
+    "electronics",
+    "engineering",
+    "maker",
+    "hacker",
+    "design",
+    "circuit",
+    "hardware",
+    "pic",
+    "atmel",
+    "oscilloscope",
+    "multimeter",
+    "diy",
+    "hobby",
+    "review",
+    "teardown",
+    "microcontroller",
+    "arduino",
+    "video",
+    "blog",
+    "tutorial",
+    "how-to",
+    "interview",
+    "rant",
+    "industry",
+    "news",
+    "mailbag",
+    "dumpster diving",
+    "debunking",
+  ],
+  vanity_url: Some("https://www.youtube.com/c/EevblogDave"),
+  banner: [
+    Thumbnail(
+      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w1060-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj",
+      width: 1060,
+      height: 175,
+    ),
+    Thumbnail(
+      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w1138-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj",
+      width: 1138,
+      height: 188,
+    ),
+    Thumbnail(
+      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w1707-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj",
+      width: 1707,
+      height: 283,
+    ),
+    Thumbnail(
+      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w2120-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj",
+      width: 2120,
+      height: 351,
+    ),
+    Thumbnail(
+      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w2276-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj",
+      width: 2276,
+      height: 377,
+    ),
+    Thumbnail(
+      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w2560-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj",
+      width: 2560,
+      height: 424,
+    ),
+  ],
+  mobile_banner: [
+    Thumbnail(
+      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w320-fcrop64=1,32b75a57cd48a5a8-k-c0xffffffff-no-nd-rj",
+      width: 320,
+      height: 88,
+    ),
+    Thumbnail(
+      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w640-fcrop64=1,32b75a57cd48a5a8-k-c0xffffffff-no-nd-rj",
+      width: 640,
+      height: 175,
+    ),
+    Thumbnail(
+      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w960-fcrop64=1,32b75a57cd48a5a8-k-c0xffffffff-no-nd-rj",
+      width: 960,
+      height: 263,
+    ),
+    Thumbnail(
+      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w1280-fcrop64=1,32b75a57cd48a5a8-k-c0xffffffff-no-nd-rj",
+      width: 1280,
+      height: 351,
+    ),
+    Thumbnail(
+      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w1440-fcrop64=1,32b75a57cd48a5a8-k-c0xffffffff-no-nd-rj",
+      width: 1440,
+      height: 395,
+    ),
+  ],
+  tv_banner: [
+    Thumbnail(
+      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w320-fcrop64=1,00000000ffffffff-k-c0xffffffff-no-nd-rj",
+      width: 320,
+      height: 180,
+    ),
+    Thumbnail(
+      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w854-fcrop64=1,00000000ffffffff-k-c0xffffffff-no-nd-rj",
+      width: 854,
+      height: 480,
+    ),
+    Thumbnail(
+      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w1280-fcrop64=1,00000000ffffffff-k-c0xffffffff-no-nd-rj",
+      width: 1280,
+      height: 720,
+    ),
+    Thumbnail(
+      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w1920-fcrop64=1,00000000ffffffff-k-c0xffffffff-no-nd-rj",
+      width: 1920,
+      height: 1080,
+    ),
+    Thumbnail(
+      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w2120-fcrop64=1,00000000ffffffff-k-c0xffffffff-no-nd-rj",
+      width: 2120,
+      height: 1192,
+    ),
+  ],
+  content: Paginator(
+    count: None,
+    items: [
+      ChannelPlaylist(
+        id: "PLvOlSehNtuHtOV3AEwhuea4TnviddKfAj",
+        name: "MacGyver Project",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/4yosozyeIP4/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLAkwsCiJjFkWhYxtcg5NgfnQbkZrA",
+            width: 480,
+            height: 270,
+          ),
+        ],
+        video_count: Some(2),
+      ),
+      ChannelPlaylist(
+        id: "PLvOlSehNtuHuvHE5GQrQJxWXHdmW2l5IF",
+        name: "Calculators",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/S3R4r2xvVYQ/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLB7HH5drG-33c1SyRe9kyZBrXvm3A",
+            width: 480,
+            height: 270,
+          ),
+        ],
+        video_count: Some(1),
+      ),
+      ChannelPlaylist(
+        id: "PLvOlSehNtuHs6wRwVSaErU0BEnLiHfnKJ",
+        name: "BM235",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/WPyEFB4cHkA/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLAzBuQFV8T9hM8adlPvv58C9TeDug",
+            width: 480,
+            height: 270,
+          ),
+        ],
+        video_count: Some(9),
+      ),
+      ChannelPlaylist(
+        id: "PLvOlSehNtuHu4k0ZkKFLsysSB5iava6Qu",
+        name: "Vibration Measurement",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/uus_cpZiqsU/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLCqdsjWVFaLOkEcXgbZD2Eca8MnuQ",
+            width: 480,
+            height: 270,
+          ),
+        ],
+        video_count: Some(2),
+      ),
+      ChannelPlaylist(
+        id: "PLvOlSehNtuHtdQF-m5UFZ5GEjABadI3kI",
+        name: "Component Selection",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/uq1DMWtjL2U/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLAbgb1Jdb5P69JGdZQ-a8asLLyYdA",
+            width: 480,
+            height: 270,
+          ),
+        ],
+        video_count: Some(4),
+      ),
+      ChannelPlaylist(
+        id: "PLvOlSehNtuHtlndPUSOPgsujUdq1c5Mr9",
+        name: "Solar Roadways",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/oIImmlfCyzo/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBxApgyGu3dNXRGoqLctVUnESpEIA",
+            width: 480,
+            height: 270,
+          ),
+        ],
+        video_count: Some(18),
+      ),
+      ChannelPlaylist(
+        id: "PLvOlSehNtuHvD6M_7WeN071OVsZFE0_q-",
+        name: "Electronics Tutorials - AC Theory Series",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/rrPtvYYJ2-g/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBEVc71xxSjJ-xlA_dDQaYIjdHyUw",
+            width: 480,
+            height: 270,
+          ),
+        ],
+        video_count: Some(3),
+      ),
+      ChannelPlaylist(
+        id: "PLvOlSehNtuHtVLq2MDPIz82BWMIZcuwhK",
+        name: "Electronics Tutorial - DC Fundamentals",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/xSRe_4TQbuo/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLDP4V24_MG6vzvUZsHep9WFSCCY6Q",
+            width: 480,
+            height: 270,
+          ),
+        ],
+        video_count: Some(8),
+      ),
+      ChannelPlaylist(
+        id: "PLvOlSehNtuHvIDfW3x2p4BY6l4RYgfBJE",
+        name: "Oscilloscope Probing",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/OiAmER1OJh4/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLAXeGAvEc8y3pEsPUxWdsNIP9UmPw",
+            width: 480,
+            height: 270,
+          ),
+        ],
+        video_count: Some(13),
+      ),
+      ChannelPlaylist(
+        id: "PLvOlSehNtuHu6Jjb8U82eKQfvKhJVl0Bu",
+        name: "Thermal Design",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/8ruFVmxf0zs/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLCkE6yS4th9AsfNku19dhbZl4CbXA",
+            width: 480,
+            height: 270,
+          ),
+        ],
+        video_count: Some(9),
+      ),
+      ChannelPlaylist(
+        id: "PLvOlSehNtuHs-X2Awg33PCBNrP2BGFVhC",
+        name: "Electric Cars",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/CPcZm1Tu5VI/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLCsm8De0QaHPaeCZqxMp_F464fWzg",
+            width: 480,
+            height: 270,
+          ),
+        ],
+        video_count: Some(7),
+      ),
+      ChannelPlaylist(
+        id: "PLvOlSehNtuHuLODLTeq3PM-OJRP2nzNUa",
+        name: "Designing a better uCurrent",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/0AEVilxXAAo/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLCjotFuRjPPBHd2LWzt3lviPj9HaA",
+            width: 480,
+            height: 270,
+          ),
+        ],
+        video_count: Some(3),
+      ),
+      ChannelPlaylist(
+        id: "PLvOlSehNtuHtvTKP4RTNW1-08Kmzy1pvA",
+        name: "EMC Compliance & Measurement",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/lYmfVMWbIHQ/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBtygEqMXx7Lwe5SuBWt2q0CSahYA",
+            width: 480,
+            height: 270,
+          ),
+        ],
+        video_count: Some(8),
+      ),
+      ChannelPlaylist(
+        id: "PLvOlSehNtuHuUTpCrTVX7BdU68l2aVqMv",
+        name: "Power Counter Display Project",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/nTpE1Nw3Yy4/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLAbPl28_i7isizY6A1t2_c6gV8BAQ",
+            width: 480,
+            height: 270,
+          ),
+        ],
+        video_count: Some(2),
+      ),
+      ChannelPlaylist(
+        id: "PLvOlSehNtuHvm120Tq40nKrM5SUBlolN3",
+        name: "Live - Ask Dave",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/gQ7TTuiDH1M/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBMnucUil90WeDSIeFz8mZCOtEv9g",
+            width: 480,
+            height: 270,
+          ),
+        ],
+        video_count: Some(3),
+      ),
+      ChannelPlaylist(
+        id: "PLvOlSehNtuHsiF93KOLoF1KAHArmIW9lC",
+        name: "Padauk Microcontroller",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/r45r4rV5JOI/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLCn4kGWcjBOhk3vN8QPMDa9L3mkKA",
+            width: 480,
+            height: 270,
+          ),
+        ],
+        video_count: Some(10),
+      ),
+      ChannelPlaylist(
+        id: "PLvOlSehNtuHvxTzBLwUFw4My4rtrNFzED",
+        name: "Other Debunking Videos",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/WopuF9vD7KE/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBv5buh3qMs4feQaPj6Fy6bxl_vuA",
+            width: 480,
+            height: 270,
+          ),
+        ],
+        video_count: Some(1),
+      ),
+      ChannelPlaylist(
+        id: "PLvOlSehNtuHt2pJ7X5tumuM4Wa3r1OC7Q",
+        name: "Audio & Speakers",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/qHbkw0Gm7pk/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLCJBYXTDttGHTm51j3bfwqxOqVFig",
+            width: 480,
+            height: 270,
+          ),
+        ],
+        video_count: Some(9),
+      ),
+      ChannelPlaylist(
+        id: "PLvOlSehNtuHtX7OearWdmqGzqiu4DHKWi",
+        name: "Cameras",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/g9umAQ1-an4/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLCB5jNm9U-rypnpthK_N321LpYWew",
+            width: 480,
+            height: 270,
+          ),
+        ],
+        video_count: Some(16),
+      ),
+      ChannelPlaylist(
+        id: "PLvOlSehNtuHu-TaNRp27_PiXjBG5wY9Gv",
+        name: "Cryptocurrency",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/ibPgfzd9zd8/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLDe3IXT88HR3XxnxfqrpAxh6pfYMg",
+            width: 480,
+            height: 270,
+          ),
+        ],
+        video_count: Some(7),
+      ),
+      ChannelPlaylist(
+        id: "PLvOlSehNtuHvmK-VGcZ33ZuATmcNB8tvH",
+        name: "LCD Tutorial",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/ZYvxgl-9tNM/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLDv2WT4Chl1_H2G43AjfSFpPcKVoA",
+            width: 480,
+            height: 270,
+          ),
+        ],
+        video_count: Some(6),
+      ),
+      ChannelPlaylist(
+        id: "PLvOlSehNtuHvbV8x_bWQBKEg4IshWjG3U",
+        name: "Guest Videos",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/vr8ROiYs8AQ/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLB3-0simU6JRFu9oztPXxqg_dgpGg",
+            width: 480,
+            height: 270,
+          ),
+        ],
+        video_count: Some(12),
+      ),
+      ChannelPlaylist(
+        id: "PLvOlSehNtuHs5tuhiqdxQeegsLDP7TM8V",
+        name: "Software Development",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/-_rqzsJy_Qs/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBfgyRT22Y0kXITD5pTNU5BkKG31Q",
+            width: 480,
+            height: 270,
+          ),
+        ],
+        video_count: Some(1),
+      ),
+      ChannelPlaylist(
+        id: "PLvOlSehNtuHu328BlpUOUDsv9Kf1Ri8Tg",
+        name: "John Kenny - Keysight",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/ewtdnzlv0Rg/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLAzFf6hh75LI2ldJq-EyV4Ke9WBtg",
+            width: 480,
+            height: 270,
+          ),
+        ],
+        video_count: Some(5),
+      ),
+      ChannelPlaylist(
+        id: "PLvOlSehNtuHvj_E5KUBluJJupXmideiZk",
+        name: "General Tech Information",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/f0uvS80YIGU/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLA4L-gzgcRGOdzbQOV6Wd6hw_d6og",
+            width: 480,
+            height: 270,
+          ),
+        ],
+        video_count: Some(2),
+      ),
+      ChannelPlaylist(
+        id: "PLvOlSehNtuHsWHPg1KlSd8agKbrcn3Dwn",
+        name: "Microscope",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/-JDsRZ4nmbo/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLCnVvEd6IDEuMlyZkP8hpeTkEA4SQ",
+            width: 480,
+            height: 270,
+          ),
+        ],
+        video_count: Some(4),
+      ),
+      ChannelPlaylist(
+        id: "PLvOlSehNtuHuQb5djEVLzwBSTT27p2dXB",
+        name: "The Signal Path",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/g3y_Vr8ZJ7w/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLAx4HS5YSjouN2nc6A40Bp5ffmK1Q",
+            width: 480,
+            height: 270,
+          ),
+        ],
+        video_count: Some(1),
+      ),
+      ChannelPlaylist(
+        id: "PLvOlSehNtuHstMIbtLqlEiidVjj8ob0xp",
+        name: "Thermal Imaging",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/NznO-DVfLd0/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLCUMV2m5W3Y3tzSQipHpoRBqnBqfw",
+            width: 480,
+            height: 270,
+          ),
+        ],
+        video_count: Some(2),
+      ),
+      ChannelPlaylist(
+        id: "PLvOlSehNtuHugqRHdt46SN9Bmoh-D5Gp2",
+        name: "EEVacademy",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/hFvqEfZfMtA/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLCnfuvZnlr0XbuNbDrwF0SVrbTsQg",
+            width: 480,
+            height: 270,
+          ),
+        ],
+        video_count: Some(9),
+      ),
+      ChannelPlaylist(
+        id: "PLvOlSehNtuHtqqYM7ON99sbyiokMKrwwI",
+        name: "Brainstorming",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/p5jpxZbGp0Y/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLC10fWKf9O9VVPVSEpEjioljWzl_Q",
+            width: 480,
+            height: 270,
+          ),
+        ],
+        video_count: Some(1),
+      ),
+    ],
+    ctoken: Some("4qmFsgLCARIYVUMyRGpGRTdYZjExVVJacVdCaWdjVk9RGnRFZ2x3YkdGNWJHbHpkSE1ZQXlBQk1BRTRBZW9EUEVOblRrUlJhbEZUU2tKSmFWVkZlREpVTW5oVVdsZG9UMlJJVmtsa1NFWjRWMVV3TTFRd05EVlBXRTVwWlZkc2RtRXdNVXhqYm1RelUxTm5PQSUzRCUzRJoCL2Jyb3dzZS1mZWVkVUMyRGpGRTdYZjExVVJacVdCaWdjVk9RcGxheWxpc3RzMTA0"),
+  ),
+)

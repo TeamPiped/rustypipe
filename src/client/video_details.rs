@@ -16,7 +16,7 @@ use crate::{
 
 use super::{
     response::{self, IconType, IsLive},
-    ClientType, MapResponse, RustyPipeQuery, YTContext,
+    ClientType, MapResponse, QContinuation, RustyPipeQuery, YTContext,
 };
 
 #[derive(Debug, Serialize)]
@@ -28,12 +28,6 @@ struct QVideo {
     content_check_ok: bool,
     /// Probably refers to allowing sensitive content, too
     racy_check_ok: bool,
-}
-
-#[derive(Debug, Serialize)]
-struct QVideoCont {
-    context: YTContext,
-    continuation: String,
 }
 
 impl RustyPipeQuery {
@@ -59,7 +53,7 @@ impl RustyPipeQuery {
 
     pub async fn video_recommendations(self, ctoken: &str) -> Result<Paginator<RecommendedVideo>> {
         let context = self.get_context(ClientType::Desktop, true).await;
-        let request_body = QVideoCont {
+        let request_body = QContinuation {
             context,
             continuation: ctoken.to_owned(),
         };
@@ -77,7 +71,7 @@ impl RustyPipeQuery {
 
     pub async fn video_comments(self, ctoken: &str) -> Result<Paginator<Comment>> {
         let context = self.get_context(ClientType::Desktop, true).await;
-        let request_body = QVideoCont {
+        let request_body = QContinuation {
             context,
             continuation: ctoken.to_owned(),
         };
