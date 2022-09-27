@@ -8,6 +8,7 @@ mod response;
 mod video_details;
 
 #[cfg(feature = "rss")]
+#[cfg_attr(docsrs, doc(cfg(feature = "rss")))]
 mod channel_rss;
 
 use std::fmt::Debug;

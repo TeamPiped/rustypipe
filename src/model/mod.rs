@@ -465,9 +465,9 @@ pub struct VideoDetails {
     ///
     /// Information about the license:
     ///
-    /// https://www.youtube.com/t/creative_commons
+    /// <https://www.youtube.com/t/creative_commons>
     ///
-    /// https://creativecommons.org/licenses/by/3.0/
+    /// <https://creativecommons.org/licenses/by/3.0/>
     pub is_ccommons: bool,
     /// Chapters of the video
     pub chapters: Vec<Chapter>,

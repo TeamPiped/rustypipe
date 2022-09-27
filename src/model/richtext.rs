@@ -1,3 +1,5 @@
+//! Data model for texts with links
+
 use serde::{Deserialize, Serialize};
 
 #[derive(Default, Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
@@ -41,6 +43,7 @@ pub trait ToPlaintext {
 
 /// Trait for converting rich text to html.
 #[cfg(feature = "html")]
+#[cfg_attr(docsrs, doc(cfg(feature = "html")))]
 pub trait ToHtml {
     /// Convert rich text to html.
     fn to_html(&self) -> String {
@@ -93,6 +96,7 @@ impl ToPlaintext for TextComponent {
 }
 
 #[cfg(feature = "html")]
+#[cfg_attr(docsrs, doc(cfg(feature = "html")))]
 impl ToHtml for TextComponent {
     fn to_html_yt_host(&self, yt_host: &str) -> String {
         match self {
@@ -127,6 +131,7 @@ impl ToPlaintext for RichText {
 }
 
 #[cfg(feature = "html")]
+#[cfg_attr(docsrs, doc(cfg(feature = "html")))]
 impl ToHtml for RichText {
     fn to_html_yt_host(&self, yt_host: &str) -> String {
         self.0.iter().map(|c| c.to_html_yt_host(yt_host)).collect()

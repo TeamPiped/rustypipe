@@ -1,3 +1,5 @@
+//! Filters for selecting audio/video streams
+
 use std::collections::HashSet;
 
 use super::{
