@@ -39,13 +39,6 @@ impl FilterResult {
     fn soft(val: bool) -> Self {
         match val {
             true => Self::Match,
-            false => Self::Allow,
-        }
-    }
-
-    fn soft_lowest(val: bool) -> Self {
-        match val {
-            true => Self::Match,
             false => Self::AllowLowest,
         }
     }
@@ -77,7 +70,7 @@ impl Filter {
 
     fn apply_audio_max_bitrate(&self, stream: &AudioStream) -> FilterResult {
         match self.audio_max_bitrate {
-            Some(max_bitrate) => FilterResult::soft_lowest(stream.average_bitrate <= max_bitrate),
+            Some(max_bitrate) => FilterResult::soft(stream.average_bitrate <= max_bitrate),
             None => FilterResult::Match,
         }
     }
@@ -147,7 +140,7 @@ impl Filter {
 
     fn apply_video_max_res(&self, stream: &VideoStream) -> FilterResult {
         match self.video_max_res {
-            Some(max_res) => FilterResult::soft_lowest(stream.height.min(stream.width) <= max_res),
+            Some(max_res) => FilterResult::soft(stream.height.min(stream.width) <= max_res),
             None => FilterResult::Match,
         }
     }
@@ -163,7 +156,7 @@ impl Filter {
 
     fn apply_video_max_fps(&self, stream: &VideoStream) -> FilterResult {
         match self.video_max_fps {
-            Some(max_fps) => FilterResult::soft_lowest(stream.fps <= max_fps),
+            Some(max_fps) => FilterResult::soft(stream.fps <= max_fps),
             None => FilterResult::Match,
         }
     }

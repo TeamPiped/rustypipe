@@ -193,58 +193,6 @@ fn get_nsig_fn_name(player_js: &str) -> Result<String> {
     Ok(name.to_owned())
 }
 
-fn match_to_closing_parenthesis(string: &str, start: &str) -> Option<String> {
-    let mut start_index = string.find(start)?;
-    start_index += start.len();
-
-    let mut visited_par = false;
-    let mut nesting = 0;
-    let mut last_escaped = false;
-    let mut quote = ' ';
-    let mut res = String::new();
-
-    for c in string[start_index..].chars() {
-        res.push(c);
-
-        let mut this_escaped = false;
-        match c {
-            '{' => {
-                if quote == ' ' {
-                    visited_par = true;
-                    nesting += 1;
-                }
-            }
-            '}' => {
-                if quote == ' ' {
-                    nesting -= 1;
-                }
-            }
-            '\\' => {
-                if !last_escaped {
-                    this_escaped = true;
-                }
-            }
-            '\'' | '"' | '`' => {
-                if !last_escaped {
-                    if quote == ' ' {
-                        quote = c;
-                    } else if quote == c {
-                        quote = ' ';
-                    }
-                }
-            }
-            _ => {}
-        };
-
-        if visited_par && nesting == 0 {
-            break;
-        }
-
-        last_escaped = this_escaped;
-    }
-    Some(res)
-}
-
 fn extract_js_fn(js: &str, name: &str) -> Result<String> {
     let scan = ress::Scanner::new(js);
     let mut state = 0;
@@ -414,21 +362,6 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
     fn t_get_nsig_fn_name() {
         let name = get_nsig_fn_name(&TEST_JS).unwrap();
         assert_eq!(name, "Vo");
-    }
-
-    #[test]
-    fn t_match_to_closing_parenthesis() {
-        let res =
-            match_to_closing_parenthesis("Kx Hello { Thx { Bye } } Wut {Tst {}}", "Hello").unwrap();
-        assert_eq!(res, " { Thx { Bye } }")
-    }
-
-    #[test]
-    fn t_match_to_closing_parenthesis2() {
-        let res =
-            match_to_closing_parenthesis("function(d){return \",}\\\"/\"}abcdef", "function(d)")
-                .unwrap();
-        assert_eq!(res, "{return \",}\\\"/\"}")
     }
 
     #[test]

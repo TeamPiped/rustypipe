@@ -54,14 +54,6 @@ pub enum ClientType {
     Ios,
 }
 
-const CLIENT_TYPES: [ClientType; 5] = [
-    ClientType::Desktop,
-    ClientType::DesktopMusic,
-    ClientType::TvHtml5Embed,
-    ClientType::Android,
-    ClientType::Ios,
-];
-
 impl ClientType {
     fn is_web(&self) -> bool {
         match self {
@@ -177,7 +169,6 @@ struct RustyPipeRef {
     storage: Option<Box<dyn CacheStorage + Sync + Send>>,
     reporter: Option<Box<dyn Reporter + Sync + Send>>,
     n_retries: u32,
-    user_agent: String,
     consent_cookie: String,
     cache: CacheHolder,
     default_opts: RustyPipeOpts,
@@ -293,7 +284,7 @@ impl RustyPipeBuilder {
     /// Returns a new, configured RustyPipe instance.
     pub fn build(self) -> RustyPipe {
         let http = ClientBuilder::new()
-            .user_agent(self.user_agent.to_owned())
+            .user_agent(self.user_agent)
             .gzip(true)
             .brotli(true)
             .build()
@@ -321,7 +312,6 @@ impl RustyPipeBuilder {
                 storage: self.storage,
                 reporter: self.reporter,
                 n_retries: self.n_retries,
-                user_agent: self.user_agent,
                 consent_cookie: format!(
                     "{}={}{}",
                     CONSENT_COOKIE,
