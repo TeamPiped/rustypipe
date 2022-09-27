@@ -44,6 +44,10 @@ impl CacheStorage for FileStorage {
     }
 
     fn read(&self) -> Option<String> {
+        if !self.path.exists() {
+            return None;
+        }
+
         match fs::read_to_string(&self.path) {
             Ok(data) => Some(data),
             Err(e) => {
