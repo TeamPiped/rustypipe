@@ -205,6 +205,7 @@ async fn channel_videos(testfiles: &Path) {
         ("shorts", "UCh8gHdtzO2tXd593_bjErWg"), // shorts and livestreams are rendered differently
         ("live", "UChs0pSaEoNLV4mevBFGaoKA"),
         ("empty", "UCxBa895m48H5idw5li7h-0g"),
+        ("upcoming", "UCcvfHa-GHSOHFAjU0-Ie57A"),
     ] {
         let mut json_path = testfiles.to_path_buf();
         json_path.push("channel");

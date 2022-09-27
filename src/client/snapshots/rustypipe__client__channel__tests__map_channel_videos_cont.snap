@@ -36,6 +36,7 @@ Paginator(
       view_count: Some(80296),
       is_live: false,
       is_short: false,
+      is_upcoming: false,
     ),
     ChannelVideo(
       id: "JDXKrXJloSw",
@@ -68,6 +69,7 @@ Paginator(
       view_count: Some(36294),
       is_live: false,
       is_short: false,
+      is_upcoming: false,
     ),
     ChannelVideo(
       id: "H8ot_YPi6QU",
@@ -100,6 +102,7 @@ Paginator(
       view_count: Some(34736),
       is_live: false,
       is_short: false,
+      is_upcoming: false,
     ),
     ChannelVideo(
       id: "i1Ad5jfk_v4",
@@ -132,6 +135,7 @@ Paginator(
       view_count: Some(73544),
       is_live: false,
       is_short: false,
+      is_upcoming: false,
     ),
     ChannelVideo(
       id: "GHbo4v8pahc",
@@ -164,6 +168,7 @@ Paginator(
       view_count: Some(67231),
       is_live: false,
       is_short: false,
+      is_upcoming: false,
     ),
     ChannelVideo(
       id: "Uds-wLoaZmA",
@@ -196,6 +201,7 @@ Paginator(
       view_count: Some(44946),
       is_live: false,
       is_short: false,
+      is_upcoming: false,
     ),
     ChannelVideo(
       id: "D9J-AmCcf4U",
@@ -228,6 +234,7 @@ Paginator(
       view_count: Some(43264),
       is_live: false,
       is_short: false,
+      is_upcoming: false,
     ),
     ChannelVideo(
       id: "Eoh-JKVQZwg",
@@ -260,6 +267,7 @@ Paginator(
       view_count: Some(98175),
       is_live: false,
       is_short: false,
+      is_upcoming: false,
     ),
     ChannelVideo(
       id: "U81glZBDpIg",
@@ -292,6 +300,7 @@ Paginator(
       view_count: Some(59376),
       is_live: false,
       is_short: false,
+      is_upcoming: false,
     ),
     ChannelVideo(
       id: "gLfxznVJ2q0",
@@ -324,6 +333,7 @@ Paginator(
       view_count: Some(25496),
       is_live: false,
       is_short: false,
+      is_upcoming: false,
     ),
     ChannelVideo(
       id: "GfihUkWPCQQ",
@@ -356,6 +366,7 @@ Paginator(
       view_count: Some(22982),
       is_live: false,
       is_short: false,
+      is_upcoming: false,
     ),
     ChannelVideo(
       id: "yEG6pKUdIlg",
@@ -388,6 +399,7 @@ Paginator(
       view_count: Some(38804),
       is_live: false,
       is_short: false,
+      is_upcoming: false,
     ),
     ChannelVideo(
       id: "wPzzPGzxD00",
@@ -420,6 +432,7 @@ Paginator(
       view_count: Some(25505),
       is_live: false,
       is_short: false,
+      is_upcoming: false,
     ),
     ChannelVideo(
       id: "Tdge8vEODeY",
@@ -452,6 +465,7 @@ Paginator(
       view_count: Some(98432),
       is_live: false,
       is_short: false,
+      is_upcoming: false,
     ),
     ChannelVideo(
       id: "ebQ2Im5zfT0",
@@ -484,6 +498,7 @@ Paginator(
       view_count: Some(53410),
       is_live: false,
       is_short: false,
+      is_upcoming: false,
     ),
     ChannelVideo(
       id: "UrS5ezesA9s",
@@ -516,6 +531,7 @@ Paginator(
       view_count: Some(54771),
       is_live: false,
       is_short: false,
+      is_upcoming: false,
     ),
     ChannelVideo(
       id: "c5M8P6oe9xY",
@@ -548,6 +564,7 @@ Paginator(
       view_count: Some(39823),
       is_live: false,
       is_short: false,
+      is_upcoming: false,
     ),
     ChannelVideo(
       id: "9TDKP9RLlPs",
@@ -580,6 +597,7 @@ Paginator(
       view_count: Some(51596),
       is_live: false,
       is_short: false,
+      is_upcoming: false,
     ),
     ChannelVideo(
       id: "hwggIw2HQuQ",
@@ -612,6 +630,7 @@ Paginator(
       view_count: Some(125391),
       is_live: false,
       is_short: false,
+      is_upcoming: false,
     ),
     ChannelVideo(
       id: "xzSDJRC0F6c",
@@ -644,6 +663,7 @@ Paginator(
       view_count: Some(120457),
       is_live: false,
       is_short: false,
+      is_upcoming: false,
     ),
     ChannelVideo(
       id: "9wuyPZjjR9k",
@@ -676,6 +696,7 @@ Paginator(
       view_count: Some(49062),
       is_live: false,
       is_short: false,
+      is_upcoming: false,
     ),
     ChannelVideo(
       id: "vyJuMGEFbjQ",
@@ -708,6 +729,7 @@ Paginator(
       view_count: Some(49032),
       is_live: false,
       is_short: false,
+      is_upcoming: false,
     ),
     ChannelVideo(
       id: "_pETMto-9iE",
@@ -740,6 +762,7 @@ Paginator(
       view_count: Some(64108),
       is_live: false,
       is_short: false,
+      is_upcoming: false,
     ),
     ChannelVideo(
       id: "MvFf9RSJUhk",
@@ -772,6 +795,7 @@ Paginator(
       view_count: Some(76831),
       is_live: false,
       is_short: false,
+      is_upcoming: false,
     ),
     ChannelVideo(
       id: "E6obq3T71vI",
@@ -804,6 +828,7 @@ Paginator(
       view_count: Some(49961),
       is_live: false,
       is_short: false,
+      is_upcoming: false,
     ),
     ChannelVideo(
       id: "ZTwVQmUm6NY",
@@ -836,6 +861,7 @@ Paginator(
       view_count: Some(17393),
       is_live: false,
       is_short: false,
+      is_upcoming: false,
     ),
     ChannelVideo(
       id: "prQinQ4MWmU",
@@ -868,6 +894,7 @@ Paginator(
       view_count: Some(38281),
       is_live: false,
       is_short: false,
+      is_upcoming: false,
     ),
     ChannelVideo(
       id: "yMIzsFAztv4",
@@ -900,6 +927,7 @@ Paginator(
       view_count: Some(70004),
       is_live: false,
       is_short: false,
+      is_upcoming: false,
     ),
     ChannelVideo(
       id: "QtqljdMwRyk",
@@ -932,6 +960,7 @@ Paginator(
       view_count: Some(93700),
       is_live: false,
       is_short: false,
+      is_upcoming: false,
     ),
     ChannelVideo(
       id: "kcWwAweWjQg",
@@ -964,6 +993,7 @@ Paginator(
       view_count: Some(37515),
       is_live: false,
       is_short: false,
+      is_upcoming: false,
     ),
   ],
   ctoken: Some("4qmFsgKxARIYVUMyRGpGRTdYZjExVVJacVdCaWdjVk9RGmZFZ1oyYVdSbGIzTVlBeUFBTUFFNEFlb0ROME5uVGtSU1JXdFRRM2RwU1cxMGNUaHpTVVJ6TkhCRlFrdEVTWGRCYW1jNFVXZHpTUzFRUkVodFVWbFJhVzloY0VWclowTlZSRWslM0SaAixicm93c2UtZmVlZFVDMkRqRkU3WGYxMVVSWnFXQmlnY1ZPUXZpZGVvczEwMg%3D%3D"),

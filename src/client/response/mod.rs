@@ -105,6 +105,8 @@ pub struct GridVideoRenderer {
     /// Contains video length
     #[serde_as(as = "VecSkipError<_>")]
     pub thumbnail_overlays: Vec<TimeOverlay>,
+    /// Release date for upcoming videos
+    pub upcoming_event_data: Option<UpcomingEventData>,
 }
 
 /// Video displayed in recommendations
@@ -164,6 +166,15 @@ pub struct GridPlaylistRenderer {
     pub thumbnail: Thumbnails,
     #[serde_as(as = "Text")]
     pub video_count_short_text: String,
+}
+
+#[serde_as]
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct UpcomingEventData {
+    /// Unixtime in seconds
+    #[serde_as(as = "JsonString")]
+    pub start_time: i64,
 }
 
 #[derive(Clone, Debug, Deserialize)]

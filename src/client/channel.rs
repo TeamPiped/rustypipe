@@ -1,4 +1,5 @@
 use anyhow::{anyhow, bail, Result};
+use chrono::TimeZone;
 use serde::Serialize;
 use url::Url;
 
@@ -325,6 +326,7 @@ fn map_videos(
                 let is_live = toverlays.is_live();
                 let is_short = toverlays.is_short();
                 let to = toverlays.try_swap_remove(0);
+
                 Some(ChannelVideo {
                     id: video.video_id,
                     title: video.title,
@@ -334,15 +336,26 @@ fn map_videos(
                     }),
                     thumbnail: video.thumbnail.into(),
                     publish_date: video
-                        .published_time_text
+                        .upcoming_event_data
                         .as_ref()
-                        .and_then(|txt| timeago::parse_timeago_or_warn(lang, txt, &mut warnings)),
+                        .map(|upc| {
+                            chrono::Local.from_utc_datetime(&chrono::NaiveDateTime::from_timestamp(
+                                upc.start_time,
+                                0,
+                            ))
+                        })
+                        .or_else(|| {
+                            video.published_time_text.as_ref().and_then(|txt| {
+                                timeago::parse_timeago_or_warn(lang, txt, &mut warnings)
+                            })
+                        }),
                     publish_date_txt: video.published_time_text,
                     view_count: video
                         .view_count_text
                         .map(|txt| util::parse_numeric(&txt).unwrap_or_default()),
                     is_live,
                     is_short,
+                    is_upcoming: video.upcoming_event_data.is_some(),
                 })
             }
             response::VideoListItem::ContinuationItemRenderer {
@@ -632,6 +645,7 @@ mod tests {
     #[case::shorts("shorts", "UCh8gHdtzO2tXd593_bjErWg")]
     #[case::live("live", "UChs0pSaEoNLV4mevBFGaoKA")]
     #[case::empty("empty", "UCxBa895m48H5idw5li7h-0g")]
+    #[case::upcoming("upcoming", "UCcvfHa-GHSOHFAjU0-Ie57A")]
     fn t_map_channel_videos(#[case] name: &str, #[case] id: &str) {
         let filename = format!("testfiles/channel/channel_videos_{}.json", name);
         let json_path = Path::new(&filename);
@@ -647,9 +661,16 @@ mod tests {
             "deserialization/mapping warnings: {:?}",
             map_res.warnings
         );
-        insta::assert_ron_snapshot!(format!("map_channel_videos_{}", name), map_res.c, {
-            ".content.items[].publish_date" => "[date]",
-        });
+
+        if name == "upcoming" {
+            insta::assert_ron_snapshot!(format!("map_channel_videos_{}", name), map_res.c, {
+                ".content.items[1:].publish_date" => "[date]",
+            });
+        } else {
+            insta::assert_ron_snapshot!(format!("map_channel_videos_{}", name), map_res.c, {
+                ".content.items[].publish_date" => "[date]",
+            });
+        }
     }
 
     #[test]

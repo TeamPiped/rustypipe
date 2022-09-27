@@ -670,12 +670,13 @@ pub struct ChannelVideo {
     /// Video publishing date.
     ///
     /// `None` if the date could not be parsed.
+    /// May be in the future for upcoming videos
     pub publish_date: Option<DateTime<Local>>,
     /// Textual video publish date (e.g. `11 months ago`, depends on language)
     ///
-    /// Is `None` for livestreams.
+    /// Is `None` for livestreams and upcoming videos.
     pub publish_date_txt: Option<String>,
-    /// View count
+    /// Number of views / current viewers in case of a livestream.
     ///
     /// `None` if it could not be extracted.
     pub view_count: Option<u64>,
@@ -683,6 +684,8 @@ pub struct ChannelVideo {
     pub is_live: bool,
     /// Is the video a YouTube Short video (vertical and <60s)?
     pub is_short: bool,
+    /// Is the video announced, but not released yet (YouTube Premiere)?
+    pub is_upcoming: bool,
 }
 
 /// Playlist fetched from a YouTube channel
@@ -741,7 +744,7 @@ pub struct ChannelRssVideo {
     pub publish_date: DateTime<Utc>,
     /// Date and time when the RSS feed entry was last updated.
     pub update_date: DateTime<Utc>,
-    /// View count
+    /// Number of views / current viewers in case of a livestream.
     pub view_count: u64,
     /// Number of likes
     ///

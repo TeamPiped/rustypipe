@@ -131,6 +131,7 @@ Channel(
         view_count: Some(443549),
         is_live: false,
         is_short: true,
+        is_upcoming: false,
       ),
       ChannelVideo(
         id: "SRrvxFc2b2c",
@@ -148,6 +149,7 @@ Channel(
         view_count: Some(1154962),
         is_live: false,
         is_short: true,
+        is_upcoming: false,
       ),
       ChannelVideo(
         id: "l9TiwunjzgA",
@@ -180,6 +182,7 @@ Channel(
         view_count: Some(477460),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
       ),
       ChannelVideo(
         id: "cNx0ql9gnf4",
@@ -197,6 +200,7 @@ Channel(
         view_count: Some(1388173),
         is_live: false,
         is_short: true,
+        is_upcoming: false,
       ),
       ChannelVideo(
         id: "fGQUWI4o__A",
@@ -214,6 +218,7 @@ Channel(
         view_count: Some(1738301),
         is_live: false,
         is_short: true,
+        is_upcoming: false,
       ),
       ChannelVideo(
         id: "Q73VTjdqVA8",
@@ -231,6 +236,7 @@ Channel(
         view_count: Some(1316594),
         is_live: false,
         is_short: true,
+        is_upcoming: false,
       ),
       ChannelVideo(
         id: "pRVSdUxdsVw",
@@ -263,6 +269,7 @@ Channel(
         view_count: Some(478703),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
       ),
       ChannelVideo(
         id: "gTG2WDbiYGo",
@@ -280,6 +287,7 @@ Channel(
         view_count: Some(1412213),
         is_live: false,
         is_short: true,
+        is_upcoming: false,
       ),
       ChannelVideo(
         id: "y5JK5YFp92g",
@@ -297,6 +305,7 @@ Channel(
         view_count: Some(1513305),
         is_live: false,
         is_short: true,
+        is_upcoming: false,
       ),
       ChannelVideo(
         id: "pvSWHm4wlxY",
@@ -314,6 +323,7 @@ Channel(
         view_count: Some(8936223),
         is_live: false,
         is_short: true,
+        is_upcoming: false,
       ),
       ChannelVideo(
         id: "2FJVhdOO0F0",
@@ -346,6 +356,7 @@ Channel(
         view_count: Some(987083),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
       ),
       ChannelVideo(
         id: "CqFGACRrWJE",
@@ -363,6 +374,7 @@ Channel(
         view_count: Some(2769717),
         is_live: false,
         is_short: true,
+        is_upcoming: false,
       ),
       ChannelVideo(
         id: "CutR_1SDDzY",
@@ -395,6 +407,7 @@ Channel(
         view_count: Some(497660),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
       ),
       ChannelVideo(
         id: "DdGr6t2NqKc",
@@ -412,6 +425,7 @@ Channel(
         view_count: Some(572107),
         is_live: false,
         is_short: true,
+        is_upcoming: false,
       ),
       ChannelVideo(
         id: "jKS44NMWuXw",
@@ -429,6 +443,7 @@ Channel(
         view_count: Some(1707132),
         is_live: false,
         is_short: true,
+        is_upcoming: false,
       ),
       ChannelVideo(
         id: "kx1YtJM_vbI",
@@ -446,6 +461,7 @@ Channel(
         view_count: Some(933094),
         is_live: false,
         is_short: true,
+        is_upcoming: false,
       ),
       ChannelVideo(
         id: "Sdbzs-1WWH0",
@@ -463,6 +479,7 @@ Channel(
         view_count: Some(5985184),
         is_live: false,
         is_short: true,
+        is_upcoming: false,
       ),
       ChannelVideo(
         id: "9qBHyJIDous",
@@ -480,6 +497,7 @@ Channel(
         view_count: Some(14741387),
         is_live: false,
         is_short: true,
+        is_upcoming: false,
       ),
       ChannelVideo(
         id: "mBeFDb4gp8s",
@@ -497,6 +515,7 @@ Channel(
         view_count: Some(2511322),
         is_live: false,
         is_short: true,
+        is_upcoming: false,
       ),
       ChannelVideo(
         id: "b38r1UYqoBQ",
@@ -514,6 +533,7 @@ Channel(
         view_count: Some(2364408),
         is_live: false,
         is_short: true,
+        is_upcoming: false,
       ),
       ChannelVideo(
         id: "KUz7oArksR4",
@@ -546,6 +566,7 @@ Channel(
         view_count: Some(706059),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
       ),
       ChannelVideo(
         id: "RdFk4WaifEo",
@@ -563,6 +584,7 @@ Channel(
         view_count: Some(1947627),
         is_live: false,
         is_short: true,
+        is_upcoming: false,
       ),
       ChannelVideo(
         id: "GuyGyzZcumI",
@@ -580,6 +602,7 @@ Channel(
         view_count: Some(4763839),
         is_live: false,
         is_short: true,
+        is_upcoming: false,
       ),
       ChannelVideo(
         id: "07Zipsb3-qU",
@@ -597,6 +620,7 @@ Channel(
         view_count: Some(1915695),
         is_live: false,
         is_short: true,
+        is_upcoming: false,
       ),
       ChannelVideo(
         id: "3kaePnU6Clo",
@@ -614,6 +638,7 @@ Channel(
         view_count: Some(7268944),
         is_live: false,
         is_short: true,
+        is_upcoming: false,
       ),
       ChannelVideo(
         id: "rt4rXMftnpg",
@@ -631,6 +656,7 @@ Channel(
         view_count: Some(2539103),
         is_live: false,
         is_short: true,
+        is_upcoming: false,
       ),
       ChannelVideo(
         id: "DTyLUvbf128",
@@ -648,6 +674,7 @@ Channel(
         view_count: Some(5545680),
         is_live: false,
         is_short: true,
+        is_upcoming: false,
       ),
       ChannelVideo(
         id: "DzjLBgIe_aI",
@@ -665,6 +692,7 @@ Channel(
         view_count: Some(2202314),
         is_live: false,
         is_short: true,
+        is_upcoming: false,
       ),
       ChannelVideo(
         id: "sPb2gyN-hnE",
@@ -697,6 +725,7 @@ Channel(
         view_count: Some(613416),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
       ),
       ChannelVideo(
         id: "9JboRKeJ2m4",
@@ -714,6 +743,7 @@ Channel(
         view_count: Some(6443699),
         is_live: false,
         is_short: true,
+        is_upcoming: false,
       ),
     ],
     ctoken: Some("4qmFsgKrARIYVUNoOGdIZHR6TzJ0WGQ1OTNfYmpFcldnGmBFZ1oyYVdSbGIzTVlBeUFBTUFFNEFlb0RNRVZuYzBrM2NsTnVkazF4U1hWemRqQkJVMmQ1VFVGRk5FaHJTVXhEVUhac2NscHJSMFZKWVhWd016RkpRVlpCUVElM0QlM0SaAixicm93c2UtZmVlZFVDaDhnSGR0ek8ydFhkNTkzX2JqRXJXZ3ZpZGVvczEwMg%3D%3D"),
