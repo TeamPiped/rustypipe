@@ -387,4 +387,6 @@ VideoPlayer(
     ),
   ],
   expires_in_seconds: 21540,
+  hls_manifest_url: None,
+  dash_manifest_url: Some("https://manifest.googlevideo.com/api/manifest/dash/expire/1659487474/ei/knDpYub6BojEgAf6jbLgDw/ip/2003%3Ade%3Aaf0e%3A2f00%3Ade47%3A297%3Aa6db%3A774e/id/a4fbddf14c6649b4/source/youtube/requiressl/yes/playback_host/rr5---sn-h0jeenek.googlevideo.com/mh/mQ/mm/31%2C29/mn/sn-h0jeenek%2Csn-h0jelnez/ms/au%2Crdu/mv/m/mvi/5/pl/37/hfr/all/as/fmp4_audio_clear%2Cwebm_audio_clear%2Cwebm2_audio_clear%2Cfmp4_sd_hd_clear%2Cwebm2_sd_hd_clear/initcwndbps/1418750/spc/lT-Khox4YuJQ2wmH79zYALRvsWTPCUc/vprv/1/mt/1659465669/fvip/4/keepalive/yes/fexp/24001373%2C24007246/itag/0/sparams/expire%2Cei%2Cip%2Cid%2Csource%2Crequiressl%2Chfr%2Cas%2Cspc%2Cvprv%2Citag/sig/AOq0QJ8wRAIgErABhAEaoKHUDu9dDbpxE_8gR4b8WWAi61fnu8UKnuICIEYrEKcHvqHdO4V3R7cvSGwi_HGH34IlQsKbziOfMBov/lsparams/playback_host%2Cmh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps/lsig/AG3C_xAwRQIgJxHmH0Sxo3cY_pW_ZzQ3hW9-7oz6K_pZWcUdrDDQ2sQCIQDJYNINQwLgKelgbO3CZYx7sMxdUAFpWdokmRBQ77vwvw%3D%3D"),
 )

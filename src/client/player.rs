@@ -116,11 +116,9 @@ impl MapResponse<VideoPlayer> for response::Player {
         let mut warnings = vec![];
 
         // Check playability status
-        match self.playability_status {
+        let is_live = match self.playability_status {
             response::player::PlayabilityStatus::Ok { live_streamability } => {
-                if live_streamability.is_some() {
-                    bail!("Active livestreams are not supported")
-                }
+                live_streamability.is_some()
             }
             response::player::PlayabilityStatus::Unplayable { reason } => {
                 bail!("Video is unplayable. Reason: {}", reason)
@@ -192,43 +190,45 @@ impl MapResponse<VideoPlayer> for response::Player {
         let mut formats = streaming_data.formats.c;
         formats.append(&mut streaming_data.adaptive_formats.c);
 
-        warnings.append(&mut streaming_data.formats.warnings);
-        warnings.append(&mut streaming_data.adaptive_formats.warnings);
-
-        let mut last_nsig: [String; 2] = [String::new(), String::new()];
-
         let mut video_streams: Vec<VideoStream> = Vec::new();
         let mut video_only_streams: Vec<VideoStream> = Vec::new();
         let mut audio_streams: Vec<AudioStream> = Vec::new();
 
-        for f in formats {
-            if f.format_type == player::FormatType::FormatStreamTypeOtf {
-                continue;
-            }
+        if !is_live {
+            let mut last_nsig: [String; 2] = [String::new(), String::new()];
 
-            match (f.is_video(), f.is_audio()) {
-                (true, true) => {
-                    let mut map_res = map_video_stream(f, deobf, &mut last_nsig);
-                    warnings.append(&mut map_res.warnings);
-                    if let Some(c) = map_res.c {
-                        video_streams.push(c);
-                    };
+            warnings.append(&mut streaming_data.formats.warnings);
+            warnings.append(&mut streaming_data.adaptive_formats.warnings);
+
+            for f in formats {
+                if f.format_type == player::FormatType::FormatStreamTypeOtf {
+                    continue;
                 }
-                (true, false) => {
-                    let mut map_res = map_video_stream(f, deobf, &mut last_nsig);
-                    warnings.append(&mut map_res.warnings);
-                    if let Some(c) = map_res.c {
-                        video_only_streams.push(c);
-                    };
+
+                match (f.is_video(), f.is_audio()) {
+                    (true, true) => {
+                        let mut map_res = map_video_stream(f, deobf, &mut last_nsig);
+                        warnings.append(&mut map_res.warnings);
+                        if let Some(c) = map_res.c {
+                            video_streams.push(c);
+                        };
+                    }
+                    (true, false) => {
+                        let mut map_res = map_video_stream(f, deobf, &mut last_nsig);
+                        warnings.append(&mut map_res.warnings);
+                        if let Some(c) = map_res.c {
+                            video_only_streams.push(c);
+                        };
+                    }
+                    (false, true) => {
+                        let mut map_res = map_audio_stream(f, deobf, &mut last_nsig);
+                        warnings.append(&mut map_res.warnings);
+                        if let Some(c) = map_res.c {
+                            audio_streams.push(c);
+                        };
+                    }
+                    (false, false) => warnings.push(format!("invalid stream: itag {}", f.itag)),
                 }
-                (false, true) => {
-                    let mut map_res = map_audio_stream(f, deobf, &mut last_nsig);
-                    warnings.append(&mut map_res.warnings);
-                    if let Some(c) = map_res.c {
-                        audio_streams.push(c);
-                    };
-                }
-                (false, false) => warnings.push(format!("invalid stream: itag {}", f.itag)),
             }
         }
 
@@ -261,6 +261,8 @@ impl MapResponse<VideoPlayer> for response::Player {
                 audio_streams,
                 subtitles,
                 expires_in_seconds: streaming_data.expires_in_seconds,
+                hls_manifest_url: streaming_data.hls_manifest_url,
+                dash_manifest_url: streaming_data.dash_manifest_url,
             },
             warnings,
         })
@@ -730,6 +732,21 @@ mod tests {
 
         assert!(player_data.expires_in_seconds > 10000);
     }
+
+    /*
+    #[rstest]
+    #[case::desktop(ClientType::Desktop)]
+    // #[case::tv_html5_embed(ClientType::TvHtml5Embed)]
+    // #[case::android(ClientType::Android)]
+    // #[case::ios(ClientType::Ios)]
+    #[test_log::test(tokio::test)]
+    async fn get_player_live(#[case] client_type: ClientType) {
+        let rp = RustyPipe::builder().strict().build();
+        let player_data = rp.query().player("86YLFOog4GM", client_type).await.unwrap();
+
+        dbg!(&player_data);
+    }
+    */
 
     #[test]
     fn t_cipher_to_url() {

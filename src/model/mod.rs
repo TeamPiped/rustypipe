@@ -56,6 +56,8 @@ pub struct VideoPlayer {
     pub subtitles: Vec<Subtitle>,
     /// Lifetime of the stream URLs in seconds
     pub expires_in_seconds: u32,
+    pub hls_manifest_url: Option<String>,
+    pub dash_manifest_url: Option<String>,
 }
 
 /// Video metadata from the player

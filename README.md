@@ -8,7 +8,6 @@ inspired by [NewPipe](https://github.com/TeamNewPipe/NewPipeExtractor).
 ### YouTube
 
 - [X] **Player** (video/audio streams, subtitles)
-  - TODO: Livestream support
 - [X] **Playlist**
 - [X] **VideoDetails** (metadata, comments, recommended videos)
 - [X] **Channel** (videos, playlists, info)
