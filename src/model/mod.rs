@@ -534,6 +534,8 @@ pub struct RecommendedVideo {
     pub view_count: Option<u64>,
     /// Is the video an active livestream?
     pub is_live: bool,
+    /// Is the video a YouTube Short video (vertical and <60s)?
+    pub is_short: bool,
 }
 
 /// Channel information attached to a video or comment

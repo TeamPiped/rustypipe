@@ -102,7 +102,7 @@ pub struct GridVideoRenderer {
     /// Contains `No views` if the view count is zero
     #[serde_as(as = "Option<Text>")]
     pub view_count_text: Option<String>,
-    /// Contains video length
+    /// Contains video length and Short/Live tag
     #[serde_as(as = "VecSkipError<_>")]
     pub thumbnail_overlays: Vec<TimeOverlay>,
     /// Release date for upcoming videos
@@ -138,6 +138,9 @@ pub struct CompactVideoRenderer {
     #[serde(default)]
     #[serde_as(as = "VecSkipError<_>")]
     pub badges: Vec<VideoBadge>,
+    /// Contains Short/Live tag
+    #[serde_as(as = "VecSkipError<_>")]
+    pub thumbnail_overlays: Vec<TimeOverlay>,
 }
 
 /// Video displayed in a playlist

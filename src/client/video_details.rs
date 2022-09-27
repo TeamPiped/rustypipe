@@ -14,7 +14,7 @@ use crate::{
 };
 
 use super::{
-    response::{self, IconType, IsLive},
+    response::{self, IconType, IsLive, IsShort},
     ClientType, MapResponse, QContinuation, RustyPipeQuery, YTContext,
 };
 
@@ -438,6 +438,7 @@ fn map_recommendations(
                                 .view_count_text
                                 .map(|txt| util::parse_numeric(&txt).unwrap_or_default()),
                             is_live: video.badges.is_live(),
+                            is_short: video.thumbnail_overlays.is_short(),
                         }),
                         Err(e) => {
                             warnings.push(e.to_string());

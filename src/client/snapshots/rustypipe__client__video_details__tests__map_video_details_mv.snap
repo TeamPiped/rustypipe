@@ -135,6 +135,7 @@ VideoDetails(
         publish_date_txt: Some("1 year ago"),
         view_count: Some(245412217),
         is_live: false,
+        is_short: false,
       ),
       RecommendedVideo(
         id: "WPdWvnAAurg",
@@ -169,6 +170,7 @@ VideoDetails(
         publish_date_txt: Some("11 months ago"),
         view_count: Some(215292736),
         is_live: false,
+        is_short: false,
       ),
       RecommendedVideo(
         id: "NoYKBAajoyo",
@@ -203,6 +205,7 @@ VideoDetails(
         publish_date_txt: Some("2 years ago"),
         view_count: Some(264670229),
         is_live: false,
+        is_short: false,
       ),
       RecommendedVideo(
         id: "KhTeiaCezwM",
@@ -237,6 +240,7 @@ VideoDetails(
         publish_date_txt: Some("2 years ago"),
         view_count: Some(354281319),
         is_live: false,
+        is_short: false,
       ),
       RecommendedVideo(
         id: "Jh4QFaPmdss",
@@ -271,6 +275,7 @@ VideoDetails(
         publish_date_txt: Some("6 months ago"),
         view_count: Some(167648677),
         is_live: false,
+        is_short: false,
       ),
       RecommendedVideo(
         id: "CM4CkVFmTds",
@@ -305,6 +310,7 @@ VideoDetails(
         publish_date_txt: Some("1 year ago"),
         view_count: Some(455437333),
         is_live: false,
+        is_short: false,
       ),
       RecommendedVideo(
         id: "uR8Mrt1IpXg",
@@ -339,6 +345,7 @@ VideoDetails(
         publish_date_txt: Some("2 years ago"),
         view_count: Some(344730852),
         is_live: false,
+        is_short: false,
       ),
       RecommendedVideo(
         id: "QslJYDX3o8s",
@@ -373,6 +380,7 @@ VideoDetails(
         publish_date_txt: Some("6 years ago"),
         view_count: Some(238321583),
         is_live: false,
+        is_short: false,
       ),
       RecommendedVideo(
         id: "EaswWiwMVs8",
@@ -407,6 +415,7 @@ VideoDetails(
         publish_date_txt: Some("1 year ago"),
         view_count: Some(240527435),
         is_live: false,
+        is_short: false,
       ),
       RecommendedVideo(
         id: "pNfTK39k55U",
@@ -441,6 +450,7 @@ VideoDetails(
         publish_date_txt: Some("3 years ago"),
         view_count: Some(306144594),
         is_live: false,
+        is_short: false,
       ),
       RecommendedVideo(
         id: "dYRITmpFbJ4",
@@ -475,6 +485,7 @@ VideoDetails(
         publish_date_txt: Some("2 months ago"),
         view_count: Some(100128895),
         is_live: false,
+        is_short: false,
       ),
       RecommendedVideo(
         id: "ioNng23DkIM",
@@ -509,6 +520,7 @@ VideoDetails(
         publish_date_txt: Some("2 years ago"),
         view_count: Some(1146631077),
         is_live: false,
+        is_short: false,
       ),
       RecommendedVideo(
         id: "Ujb-gvqsoi0",
@@ -543,6 +555,7 @@ VideoDetails(
         publish_date_txt: Some("2 years ago"),
         view_count: Some(126406160),
         is_live: false,
+        is_short: false,
       ),
       RecommendedVideo(
         id: "bwmSjveL3Lc",
@@ -577,6 +590,7 @@ VideoDetails(
         publish_date_txt: Some("6 years ago"),
         view_count: Some(1476093662),
         is_live: false,
+        is_short: false,
       ),
       RecommendedVideo(
         id: "6uJf2IT2Zh8",
@@ -611,6 +625,7 @@ VideoDetails(
         publish_date_txt: Some("4 years ago"),
         view_count: Some(228968545),
         is_live: false,
+        is_short: false,
       ),
       RecommendedVideo(
         id: "Y8JFxS1HlDo",
@@ -645,6 +660,7 @@ VideoDetails(
         publish_date_txt: Some("5 months ago"),
         view_count: Some(152292435),
         is_live: false,
+        is_short: false,
       ),
       RecommendedVideo(
         id: "2FzSv66c7TQ",
@@ -679,6 +695,7 @@ VideoDetails(
         publish_date_txt: Some("2 months ago"),
         view_count: Some(504562),
         is_live: false,
+        is_short: false,
       ),
       RecommendedVideo(
         id: "NU611fxGyPU",
@@ -713,6 +730,7 @@ VideoDetails(
         publish_date_txt: Some("1 year ago"),
         view_count: Some(34445393),
         is_live: false,
+        is_short: false,
       ),
     ],
     ctoken: Some("CBQSExILWmVlcnJudUxpNUXAAQHIAQEYACq7BjJzNkw2d3psQkFyaUJBb0Q4ajRBQ2c3Q1Bnc0l6cS1tbFBTLTVKcmhBUW9EOGo0QUNoTFNQZzhLRFZKRVdtVmxjbkp1ZFV4cE5VVUtBX0ktQUFvdzBqNHRDaXRTUkVOTVFVczFkWGxmYXpJM2RYVXRSWFJSWDJJMVZUSnlNalpFVGtSYVQyMU9jVWRrWTJOVlNVZFJDZ1B5UGdBS0RjSS1DZ2k0OVlLQTU5ZlYtMWdLQV9JLUFBb053ajRLQ0tyR2pyWEF3SUxETmdvRDhqNEFDZzNDUGdvSWc1NzdoSnJSdDRvcUNnUHlQZ0FLRGNJLUNnakw3Wm1mMm9LRWp5WUtBX0ktQUFvTndqNEtDTnVibVl1VjBvRG5DQW9EOGo0QUNnN0NQZ3NJLU1xaTZ1MlZ3NC01QVFvRDhqNEFDZzNDUGdvSXk4ZmVyNE9zMHVSQ0NnUHlQZ0FLRGNJLUNnalByYkhnb292TTFSRUtBX0ktQUFvT3dqNExDSlhQa191MzVmVHJwQUVLQV9JLUFBb053ajRLQ0o3WmxkTG1pWkxDZFFvRDhqNEFDZzdDUGdzSWc2R083cmJ3MmNHS0FRb0Q4ajRBQ2czQ1Bnb0lyY1N5MWFfUXY1dFNDZ1B5UGdBS0RjSS1DZ2kzdWEtODc5SGtoRzhLQV9JLUFBb093ajRMQ0pfTTJhZUktNWZ4NmdFS0FfSS1BQW9Od2o0S0NMcW9udXJTdUpIaFl3b0Q4ajRBQ2c3Q1Bnc0l0TnJ6OVByWHRLN1lBUW9EOGo0QUNnM0NQZ29JOVpHYjR0LTZyYWMxRWhRQUFnUUdDQW9NRGhBU0ZCWVlHaHdlSUNJa0pob0VDQUFRQVJvRUNBSVFBeG9FQ0FRUUJSb0VDQVlRQnhvRUNBZ1FDUm9FQ0FvUUN4b0VDQXdRRFJvRUNBNFFEeG9FQ0JBUUVSb0VDQklRRXhvRUNCUVFGUm9FQ0JZUUZ4b0VDQmdRR1JvRUNCb1FHeG9FQ0J3UUhSb0VDQjRRSHhvRUNDQVFJUm9FQ0NJUUl4b0VDQ1FRSlJvRUNDWVFKeW9VQUFJRUJnZ0tEQTRRRWhRV0dCb2NIaUFpSkNZag93YXRjaC1uZXh0LWZlZWQ%3D"),
