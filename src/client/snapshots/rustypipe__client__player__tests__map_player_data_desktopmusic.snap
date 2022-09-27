@@ -8,7 +8,7 @@ VideoPlayer(
     title: "Inspiring Cinematic Uplifting",
     description: None,
     length: 163,
-    thumbnails: [
+    thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/pPvd8UxmSbQ/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AOn4CLC-0nIQMyPuy8CtzqTMl6z1rmG_XQ",
         width: 400,

@@ -1,3 +1,5 @@
+//! YouTube audio/video downloader
+
 use std::{cmp::Ordering, ffi::OsString, ops::Range, path::PathBuf};
 
 use anyhow::{anyhow, bail, Result};

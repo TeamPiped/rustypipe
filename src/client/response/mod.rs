@@ -14,6 +14,11 @@ pub use video_details::VideoComments;
 pub use video_details::VideoDetails;
 pub use video_details::VideoRecommendations;
 
+#[cfg(feature = "rss")]
+pub mod channel_rss;
+#[cfg(feature = "rss")]
+pub use channel_rss::ChannelRss;
+
 use serde::Deserialize;
 use serde_with::{json::JsonString, serde_as, DefaultOnError, VecSkipError};
 

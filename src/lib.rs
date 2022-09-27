@@ -1,3 +1,8 @@
+//! # RustyPipe
+//!
+//! Client for the public YouTube / YouTube Music API (Innertube),
+//! inspired by [NewPipe](https://github.com/TeamNewPipe/NewPipeExtractor).
+
 #![allow(dead_code)]
 #![warn(clippy::todo)]
 

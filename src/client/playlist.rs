@@ -1,7 +1,6 @@
 use std::convert::TryFrom;
 
 use anyhow::{anyhow, bail, Result};
-use reqwest::Method;
 use serde::Serialize;
 
 use crate::{
@@ -34,7 +33,6 @@ impl RustyPipeQuery {
             ClientType::Desktop,
             "playlist",
             playlist_id,
-            Method::POST,
             "browse",
             &request_body,
         )
@@ -52,7 +50,6 @@ impl RustyPipeQuery {
             ClientType::Desktop,
             "get_playlist_continuation",
             ctoken,
-            Method::POST,
             "browse",
             &request_body,
         )

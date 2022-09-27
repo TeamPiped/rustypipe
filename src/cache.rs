@@ -1,3 +1,5 @@
+//! Persistent cache storage
+
 use std::{
     fs,
     path::{Path, PathBuf},

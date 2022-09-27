@@ -1,3 +1,5 @@
+//! Error reporting
+
 use std::{
     collections::BTreeMap,
     fs::File,
@@ -12,13 +14,9 @@ use serde::{Deserialize, Serialize};
 use crate::deobfuscate::DeobfData;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[non_exhaustive]
 pub struct Report {
-    /// Rust package name (`rustypipe`)
-    pub package: String,
-    /// Package version (`0.1.0`)
-    pub version: String,
-    /// Date/Time when the event occurred
-    pub date: DateTime<Local>,
+    pub info: Info,
     /// Report level
     pub level: Level,
     /// RustyPipe operation (e.g. `get_player`)
@@ -35,6 +33,18 @@ pub struct Report {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
+#[non_exhaustive]
+pub struct Info {
+    /// Rust package name (`rustypipe`)
+    pub package: String,
+    /// Package version (`0.1.0`)
+    pub version: String,
+    /// Date/Time when the event occurred
+    pub date: DateTime<Local>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[non_exhaustive]
 pub struct HTTPRequest {
     /// Request URL
     pub url: String,
@@ -59,6 +69,16 @@ pub enum Level {
     WRN,
     /// **Error**: Operation failed
     ERR,
+}
+
+impl Default for Info {
+    fn default() -> Self {
+        Self {
+            package: "rustypipe".to_owned(),
+            version: "0.1.0".to_owned(),
+            date: chrono::Local::now(),
+        }
+    }
 }
 
 pub trait Reporter {
@@ -103,7 +123,11 @@ fn get_report_path(root: &Path, report: &Report, ext: &str) -> Result<PathBuf> {
         std::fs::create_dir_all(root)?;
     }
 
-    let filename_prefix = format!("{}_{:?}", report.date.format("%F_%H-%M-%S"), report.level);
+    let filename_prefix = format!(
+        "{}_{:?}",
+        report.info.date.format("%F_%H-%M-%S"),
+        report.level
+    );
 
     let mut report_path = root.to_path_buf();
     report_path.push(format!("{}.{}", filename_prefix, ext));

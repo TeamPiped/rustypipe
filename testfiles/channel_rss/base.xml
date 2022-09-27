@@ -1,0 +1,988 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns:yt="http://www.youtube.com/xml/schemas/2015" xmlns:media="http://search.yahoo.com/mrss/" xmlns="http://www.w3.org/2005/Atom">
+ <link rel="self" href="http://www.youtube.com/feeds/videos.xml?channel_id=UCHnyfMqiRRG1u-2MsSQLbXA"/>
+ <id>yt:channel:UCHnyfMqiRRG1u-2MsSQLbXA</id>
+ <yt:channelId>UCHnyfMqiRRG1u-2MsSQLbXA</yt:channelId>
+ <title>Veritasium</title>
+ <link rel="alternate" href="https://www.youtube.com/channel/UCHnyfMqiRRG1u-2MsSQLbXA"/>
+ <author>
+  <name>Veritasium</name>
+  <uri>https://www.youtube.com/channel/UCHnyfMqiRRG1u-2MsSQLbXA</uri>
+ </author>
+ <published>2010-07-21T07:18:02+00:00</published>
+ <entry>
+  <id>yt:video:daaDuC1kbds</id>
+  <yt:videoId>daaDuC1kbds</yt:videoId>
+  <yt:channelId>UCHnyfMqiRRG1u-2MsSQLbXA</yt:channelId>
+  <title>World's Highest Jumping Robot</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=daaDuC1kbds"/>
+  <author>
+   <name>Veritasium</name>
+   <uri>https://www.youtube.com/channel/UCHnyfMqiRRG1u-2MsSQLbXA</uri>
+  </author>
+  <published>2022-08-31T13:00:16+00:00</published>
+  <updated>2022-09-13T15:21:37+00:00</updated>
+  <media:group>
+   <media:title>World's Highest Jumping Robot</media:title>
+   <media:content url="https://www.youtube.com/v/daaDuC1kbds?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i1.ytimg.com/vi/daaDuC1kbds/hqdefault.jpg" width="480" height="360"/>
+   <media:description>This tiny robot can jump higher than anything else in the world. This video is sponsored by Brilliant. The first 200 people to sign up via https://brilliant.org/veritasium get 20% off a yearly subscription.
+
+Huge thanks to Dr. Elliot Hawkes and the rest of the group - Charles Xiao, Chris Keeley, Dr. Morgan Pope, and Dr. Günter Niemeyer - for having us at UCSB and showing us their high-flying jumper. This work was partially supported by an Early Career Faculty Grant from NASA’s Space Technology Research Grants Program.
+
+▀▀▀
+References:
+
+Hawkes, E.W., Xiao, C., Peloquin, R., Keeley, C., Begley, M.R., Pope, M.T., &amp; Niemeyer, G. (2022). Engineered jumpers overcome biological limits via work multiplication. Nature, 604, 657-661. – https://rdcu.be/cMePc
+https://ve42.co/Hawkes2022
+Fernandez, S. (2022). Hitting New Heights. The Current, UC Santa Barbara. – https://ve42.co/Fernandez2022
+Bushwick, S. (2022). Record-Breaking Jumping Robot Can Leap a 10-Story Building. Engineering, Scientific American. – https://ve42.co/Bushwick2022
+Mack, E. (2022). This Robot Can Leap Nine Stories in One Jump, Will Go Even Higher on Moon. Science, CNET. – https://ve42.co/Mack2022
+Ashby, M. (2020). Materials Selection in Mechanical Design (4th edition). Elsevier. 
+Jumping robot leaps to record heights. Nature Video - https://ve42.co/NatureJumper
+MultiMo-Bat Robot - https://ve42.co/MultiMoBat
+Galago Jump - https://ve42.co/GalagoJump
+Slingshot Spider - https://ve42.co/SlingshotSpider
+
+▀▀▀
+Special thanks to Patreon supporters: RayJ Johnson, Brian Busbee, Jerome Barakos M.D., Amadeo Bee, TTST, Balkrishna Heroor, Chris LaClair, John H. Austin, Jr., OnlineBookClub.org, Matthew Gonzalez, Eric Sexton, john kiehl, Nathan Lanza, Diffbot, Gnare, Dave Kircher, Burt Humburg, Blake Byers, Dumky, Evgeny Skvortsov, Meekay, Bill Linder, Paul Peijzel, Josh Hibschman, Mac Malkawi, Michael Schneider, jim buckmaster, Juan Benet, Robert Blum, Sunil Nagaraj, Richard Sundvall, Lee Redden, Stephen Wilcox, Marinus Kuivenhoven, Michael Krugman, Cy 'kkm' K'Nelson, Sam Lutfi, Ron Neal
+
+▀▀▀
+Written by Emily Zhang and Derek Muller
+Filmed by Derek Muller and Trenton Oliver
+Animation by Mike Radjabov and Ivy Tello
+Edited by Trenton Oliver
+Additional video/photos supplied by Pond5 and Getty Images
+Music from Epidemic Sound
+Produced by Derek Muller, Petr Lebedev, and Emily Zhang</media:description>
+   <media:community>
+    <media:starRating count="146208" average="5.00" min="1" max="5"/>
+    <media:statistics views="6842183"/>
+   </media:community>
+  </media:group>
+ </entry>
+ <entry>
+  <id>yt:video:5eW6Eagr9XA</id>
+  <yt:videoId>5eW6Eagr9XA</yt:videoId>
+  <yt:channelId>UCHnyfMqiRRG1u-2MsSQLbXA</yt:channelId>
+  <title>The 4 things it takes to be an expert</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=5eW6Eagr9XA"/>
+  <author>
+   <name>Veritasium</name>
+   <uri>https://www.youtube.com/channel/UCHnyfMqiRRG1u-2MsSQLbXA</uri>
+  </author>
+  <published>2022-08-02T16:51:13+00:00</published>
+  <updated>2022-08-13T08:54:40+00:00</updated>
+  <media:group>
+   <media:title>The 4 things it takes to be an expert</media:title>
+   <media:content url="https://www.youtube.com/v/5eW6Eagr9XA?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i2.ytimg.com/vi/5eW6Eagr9XA/hqdefault.jpg" width="480" height="360"/>
+   <media:description>Which experts have real expertise? This video is sponsored by Brilliant. The first 200 people to sign up via https://brilliant.org/veritasium get 20% off a yearly subscription.
+
+Thanks to https://www.chess24.com/ and Chessable for the clip of Magnus.
+
+▀▀▀
+Chase, W. G., &amp; Simon, H. A. (1973). Perception in chess. Cognitive psychology, 4(1), 55-81. – https://ve42.co/chess1
+
+Calderwood, R., Klein, G. A., &amp; Crandall, B. W. (1988). Time pressure, skill, and move quality in chess. The American Journal of Psychology, 481-493. – https://ve42.co/chess2
+
+Hogarth, R. M., Lejarraga, T., &amp; Soyer, E. (2015). The two settings of kind and wicked learning environments. Current Directions in Psychological Science, 24(5), 379-385. – https://ve42.co/Hogarth
+
+Ægisdóttir, S., White, M. J., Spengler, P. M., Maugherman, A. S., Anderson, L. A., Cook, R. S., ... &amp; Rush, J. D. (2006). The meta-analysis of clinical judgment project: Fifty-six years of accumulated research on clinical versus statistical prediction. The Counseling Psychologist, 34(3), 341-382. – https://ve42.co/anderson1
+
+Ericsson, K. A. (2015). Acquisition and maintenance of medical expertise: a perspective from the expert-performance approach with deliberate practice. Academic Medicine, 90(11), 1471-1486.  – https://ve42.co/anderson2
+
+Goldberg, S. B., Rousmaniere, T., Miller, S. D., Whipple, J., Nielsen, S. L., Hoyt, W. T., &amp; Wampold, B. E. (2016). Do psychotherapists improve with time and experience? A longitudinal analysis of outcomes in a clinical setting. Journal of Counseling Psychology, 63(1), 1. – https://ve42.co/goldberg1
+
+Ericsson, K. A., Krampe, R. T., &amp; Tesch-Römer, C. (1993). The role of deliberate practice in the acquisition of expert performance. Psychological Review, 100(3), 363. – https://ve42.co/anderson3
+
+Egan, D. E., &amp; Schwartz, B. J. (1979). Chunking in recall of symbolic drawings. Memory &amp; Cognition, 7(2), 149-158. – https://ve42.co/chunking1
+
+Tetlock, P. E. (2017). Expert political judgment. In Expert Political Judgment. Princeton University Press. – https://ve42.co/Tetlock
+
+Melton, R. S. (1952). A comparison of clinical and actuarial methods of prediction with an assessment of the relative accuracy of different clinicians. Unpublished Ph.D. thesis, University of Minnesota. 
+
+Meehl, E. P. (1954). Clinical versus Statistical Prediction: A Theoretical Analysis and a Review of the Evidence. University of Minnesota Press. – https://ve42.co/Meehl1954
+
+Kahneman, D. (2011). Thinking, fast and slow. Farrar, Straus and Giroux. – https://ve42.co/Kahneman
+
+▀▀▀
+Special thanks to Patreon supporters: RayJ Johnson, Brian Busbee, Jerome Barakos M.D., Amadeo Bee, Julian Lee, Inconcision, TTST, Balkrishna Heroor, Chris LaClair, Avi Yashchin, John H. Austin, Jr., OnlineBookClub.org, Matthew Gonzalez, Eric Sexton, john kiehl, Diffbot, Gnare, Dave Kircher, Burt Humburg, Blake Byers, Dumky, Evgeny Skvortsov, Meekay, Bill Linder, Paul Peijzel, Josh Hibschman, Timothy O’Brien, Mac Malkawi, Michael Schneider, jim buckmaster, Juan Benet, Ruslan Khroma, Robert Blum, Richard Sundvall, Lee Redden, Vincent, Stephen Wilcox, Marinus Kuivenhoven, Michael Krugman, Cy 'kkm' K'Nelson, Sam Lutfi, Ron Neal 
+
+▀▀▀
+Written by Derek Muller and Petr Lebedev
+Animation by Ivy Tello and Fabio Albertelli  
+Filmed by Derek Muller and Raquel Nuno
+Additional video/photos supplied by Getty Images
+Music from Epidemic Sound (https://ve42.co/music)
+Produced by Derek Muller, Petr Lebedev, and Emily Zhang</media:description>
+   <media:community>
+    <media:starRating count="348196" average="5.00" min="1" max="5"/>
+    <media:statistics views="6386672"/>
+   </media:community>
+  </media:group>
+ </entry>
+ <entry>
+  <id>yt:video:EvknN89JoWo</id>
+  <yt:videoId>EvknN89JoWo</yt:videoId>
+  <yt:channelId>UCHnyfMqiRRG1u-2MsSQLbXA</yt:channelId>
+  <title>The Man Who Killed Millions and Saved Billions</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=EvknN89JoWo"/>
+  <author>
+   <name>Veritasium</name>
+   <uri>https://www.youtube.com/channel/UCHnyfMqiRRG1u-2MsSQLbXA</uri>
+  </author>
+  <published>2022-07-22T17:03:09+00:00</published>
+  <updated>2022-09-08T20:14:32+00:00</updated>
+  <media:group>
+   <media:title>The Man Who Killed Millions and Saved Billions</media:title>
+   <media:content url="https://www.youtube.com/v/EvknN89JoWo?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i2.ytimg.com/vi/EvknN89JoWo/hqdefault.jpg" width="480" height="360"/>
+   <media:description>Fritz Haber is the scientist who arguably most transformed the world. Part of this video is sponsored by Wren. Offset your carbon footprint on Wren: ​https://www.wren.co/start/veritasium1. For the first 100 people who sign up, I will personally pay for the first month of your subscription!
+
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+A huge thanks to Dan Charles for writing a fantastic biography of Fritz Haber, for taking the time to talk to us about it, and providing valuable feedback. This video would not be what it is without his contributions. http://site.danielcharles.us https://ve42.co/Charles
+
+Thanks to Tom de Prinse from Explosions and Fire for helping us with the chemistry of explosives. If you like explosions and/or fire, you will love his channel. https://www.youtube.com/c/ExplosionsFire2
+
+Thanks to Michael Kuiper of CSIRO for the animation of the composition of air - https://www.youtube.com/watch?v=j9JvX58aRfg
+
+Special thanks to Sonya Pemberton, Karl Kruszelnicki, Mary Dobbie, Olivia McRae, and the patreon supporters for giving us feedback on the earlier version of this video.
+
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+References:
+
+The primary reference used is Vaclav Smil’s excellent book, Enriching The Earth – 
+Smil, V. (2004). Enriching the earth: Fritz Haber, Carl Bosch, and the transformation of world food production. MIT press. – https://ve42.co/Smil
+
+Mastermind: The Rise and Fall of Fritz Haber, the Nobel Laureate Who Launched the Age of Chemical Warfare, by Dan Charles – https://ve42.co/Charles
+
+Stoltzenberg, D. (2004). Fritz Haber: Chemist, Nobel Laureate, German, Jew. Chemical Heritage Foundation. – https://ve42.co/Stoltzenberg
+
+Postgate, J. R. (1982). The fundamentals of nitrogen fixation. CUP Archive. – https://ve42.co/postgate
+
+Miles, A. G. (1992). Biological nitrogen fixation. – https://ve42.co/Miles
+
+Friedrich, B., &amp; Hoffmann, D. (2017). Clara Immerwahr: A life in the shadow of Fritz Haber. In One Hundred Years of Chemical Warfare: Research, Deployment, Consequences(pp. 45-67). Springer, Cham. – https://ve42.co/Friedrich2017
+
+Da Silva, G. (2020). What is ammonium nitrate, the chemical that exploded in Beirut. Sci Am, 5. – https://ve42.co/Silva
+
+Rodrigues, P., &amp; Micael, J. (2021). The importance of guano birds to the Inca Empire and the first conservation measures implemented by humans. – https://ve42.co/rodrigues
+
+Allison, F. E. (1957). Nitrogen and soil fertility. Soil, the, 85-94. – https://ve42.co/Allison
+
+Crookes, W. (1898). Address of the President before the British Association for the Advancement of Science, Bristol, 1898. Science, 8(200), 561-575. – https://ve42.co/Crookes
+
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+Special thanks to Patreon supporters: RayJ Johnson, Brian Busbee, Jerome Barakos M.D., Amadeo Bee, Julian Lee, Inconcision, TTST, Balkrishna Heroor, Chris LaClair, Avi Yashchin, John H. Austin, Jr., OnlineBookClub.org, Matthew Gonzalez, Eric Sexton, john kiehl, Diffbot, Gnare, Dave Kircher, Burt Humburg, Blake Byers, Dumky, Evgeny Skvortsov, Meekay, Bill Linder, Paul Peijzel, Josh Hibschman, Timothy O’Brien, Mac Malkawi, Michael Schneider, jim buckmaster, Juan Benet, Ruslan Khroma, Robert Blum, Richard Sundvall, Lee Redden, Vincent, Stephen Wilcox, Marinus Kuivenhoven, Michael Krugman, Cy 'kkm' K'Nelson, Sam Lutfi, Ron Neal 
+
+▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀▀
+Written by Petr Lebedev, Derek Muller, Felicity Nelson and Kovi Rose
+Edited by Trenton Oliver
+Animation by Jakub Mistek, Fabio Albertelli, Ivy Tello, Alex Drakoulis, Nils Ramses Kullack, and Charlie Davies
+SFX by Shaun Clifford
+Filmed by Petr Lebedev, Derek Muller and Raquel Nuno
+Photo of nitrogen deficiency in rice from https://ve42.co/rice
+Additional video/photos supplied by Getty Images
+Music from Epidemic Sound: https://ve42.co/music</media:description>
+   <media:community>
+    <media:starRating count="472788" average="5.00" min="1" max="5"/>
+    <media:statistics views="12311178"/>
+   </media:community>
+  </media:group>
+ </entry>
+ <entry>
+  <id>yt:video:iSNsgj1OCLA</id>
+  <yt:videoId>iSNsgj1OCLA</yt:videoId>
+  <yt:channelId>UCHnyfMqiRRG1u-2MsSQLbXA</yt:channelId>
+  <title>The Riddle That Seems Impossible Even If You Know The Answer</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=iSNsgj1OCLA"/>
+  <author>
+   <name>Veritasium</name>
+   <uri>https://www.youtube.com/channel/UCHnyfMqiRRG1u-2MsSQLbXA</uri>
+  </author>
+  <published>2022-06-30T12:20:58+00:00</published>
+  <updated>2022-07-27T02:26:52+00:00</updated>
+  <media:group>
+   <media:title>The Riddle That Seems Impossible Even If You Know The Answer</media:title>
+   <media:content url="https://www.youtube.com/v/iSNsgj1OCLA?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i2.ytimg.com/vi/iSNsgj1OCLA/hqdefault.jpg" width="480" height="360"/>
+   <media:description>The 100 Prisoners Riddle feels completely impossible even once you know the answer. This video is sponsored by Brilliant. The first 200 people to sign up via https://brilliant.org/veritasium get 20% off a yearly subscription.
+
+Special thanks to Destin of Smarter Every Day (https://ve42.co/SED), Toby of Tibees (https://ve42.co/Tibees), and Jabril of Jabrils (https://ve42.co/Jabrils) for taking the time to think about this mind bending riddle.
+
+Huge thanks to Luke West for building plots and for his help with the math. 
+Huge thanks to Dr. Eugene Curtin and Dr. Max Warshauer for their great article on the problem and taking the time to help us understand it: https://ve42.co/CurtinWarshauer
+Thanks to Dr. John Baez for his help with finding alternate ways to do the calculations.
+Thanks to Simon Pampena for his input and analysis.
+
+Other 100 Prisoners Riddle videos:
+minutephysics: https://www.youtube.com/watch?v=C5-I0bAuEUE
+Vsauce2: https://www.youtube.com/watch?v=kOnEEeHZp94
+Stand-up Maths: https://www.youtube.com/watch?v=a1DUUnhk3uE
+TED-Ed: https://www.youtube.com/watch?v=vIdStMTgNl0
+
+▀▀▀
+References:
+Original paper: Gál, A., &amp; Miltersen, P.B. (2003). The Cell Probe Complexity of Succinct Data Structures. BRICS, Department of Computer Science, University of Aarhus. All rights reserved. – https://ve42.co/GalMiltersen
+Winkler, P. (2006). Seven Puzzles You Think You Must Not Have Heard Correctly. – https://ve42.co/Winkler2006
+The 100 Prisoners Problem – https://ve42.co/100PWiki 
+Golomb, S. &amp; Gaal, P. (1998). On the Number of Permutations on n Objects with Greatest Cycle Length k. Advances in Applied Mathematics, 20(1), 98-107. – https://ve42.co/Golomb1998
+Lamb, E. (2012). Puzzling Prisoners Presented to Promote North America's Only Museum of Math. Observations, Scientific American. – https://ve42.co/Lamb2012
+Permutations – https://ve42.co/PermutationsWiki
+Probability that a random permutation of n elements has a cycle of length k greater than n/2, Math SE. – https://ve42.co/BaezProbSE
+Counting Cycle Structures in Sn, Math SE. – https://ve42.co/CountCyclesSE
+What is the distribution of cycle lengths in derangements? In particular, expected longest cycle, Math SE. – https://ve42.co/JorikiSE
+The Manim Community Developers. (2021). Manim - Mathematical Animation Framework (Version v0.13.1). – https://www.manim.community/
+
+▀▀▀
+Special thanks to Patreon supporters: RayJ Johnson, Brian Busbee, Jerome Barakos M.D., Amadeo Bee, Julian Lee, Inconcision, TTST, Balkrishna Heroor, Chris LaClair, Avi Yashchin, John H. Austin, Jr., OnlineBookClub.org, Matthew Gonzalez, Eric Sexton, john kiehl, Diffbot, Gnare, Dave Kircher, Burt Humburg, Blake Byers, Dumky, Evgeny Skvortsov, Meekay, Bill Linder, Paul Peijzel, Josh Hibschman, Timothy O’Brien, Mac Malkawi, Michael Schneider, jim buckmaster, Juan Benet, Ruslan Khroma, Robert Blum, Richard Sundvall, Lee Redden, Vincent, Stephen Wilcox, Marinus Kuivenhoven, Michael Krugman, Cy 'kkm' K'Nelson, Sam Lutfi, Ron Neal
+
+▀▀▀
+Written by Derek Muller and Emily Zhang
+Filmed by Derek Muller and Petr Lebedev
+Animation by Ivy Tello and Jesús Rascón
+Edited by Trenton Oliver
+Additional video/photos supplied by Getty Images
+Music from Epidemic Sound and Jonny Hyman
+Produced by Derek Muller, Petr Lebedev, and Emily Zhang</media:description>
+   <media:community>
+    <media:starRating count="286016" average="5.00" min="1" max="5"/>
+    <media:statistics views="7458757"/>
+   </media:community>
+  </media:group>
+ </entry>
+ <entry>
+  <id>yt:video:6etTERFUlUI</id>
+  <yt:videoId>6etTERFUlUI</yt:videoId>
+  <yt:channelId>UCHnyfMqiRRG1u-2MsSQLbXA</yt:channelId>
+  <title>The Absurd Search For Dark Matter</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=6etTERFUlUI"/>
+  <author>
+   <name>Veritasium</name>
+   <uri>https://www.youtube.com/channel/UCHnyfMqiRRG1u-2MsSQLbXA</uri>
+  </author>
+  <published>2022-06-02T12:06:02+00:00</published>
+  <updated>2022-07-17T17:05:49+00:00</updated>
+  <media:group>
+   <media:title>The Absurd Search For Dark Matter</media:title>
+   <media:content url="https://www.youtube.com/v/6etTERFUlUI?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i3.ytimg.com/vi/6etTERFUlUI/hqdefault.jpg" width="480" height="360"/>
+   <media:description>This video is sponsored by Brilliant. The first 200 people to sign up via https://brilliant.org/veritasium get 20% off a yearly subscription. Astronomers think there should be 5 times as much dark matter as ordinary matter – a shadow universe that makes up most of the mass in the universe. But after decades of trying, no experiments have found any trace of dark matter – except one.
+
+A massive thanks to the wonderful people at the ARC Centre of Excellence for Dark Matter Physics  https://www.centredarkmatter.org for showing us around and being on camera – Fleur Morrison, A/Prof Phillip Urquijo, Prof Elisabetta Barberio, Madeleine Zurowski and Grace Lawrence. 
+Thanks to Leo Fincher-Johnson and everyone at the Stawell gold mine for having us.
+Massive thanks to Prof. Geraint Lewis – Geraint has been Veritasium’s go-to expert for anything astrophysics and cosmology related. Please check out his website, and buy his books, they’re great –  https://www.geraintflewis.com
+Thanks to Prof. Timothy Tait for the help to make sure we got the science right.
+Thanks to Ingo Berg for illustrating the effect of dark matter on the rotation of a galaxy https://beltoforion.de/en/spiral_galaxy_renderer/spiral-galaxy-renderer.html
+
+▀▀▀
+Galaxy cluster simulation from IllustrisTNG – https://www.tng-project.org
+Venn Diagram of Dark Matter from Tim Tait –  https://ve42.co/venn
+The Bullet Cluster Image from Magellan, Hubble and Chandra telescopes – https://ve42.co/BC2
+Bullet cluster animation from  Andrew Robertson / Institute for Computational Cosmology / Durham University – https://ve42.co/BC3
+
+▀▀▀
+Bernabei, R., Belli, P., Cappella, F., Cerulli, R., Dai, C. J., d’Angelo, A., ... &amp; Ye, Z. P. (2008). First results from DAMA/LIBRA and the combined results with DAMA/NaI. The European Physical Journal C, 56(3), 333-355. – https://ve42.co/DAMA2008
+
+Zwicky, F. (1933). Die rotverschiebung von extragalaktischen nebeln. Helvetica physica acta, 6, 110-127. – https://ve42.co/Zwicky1
+
+Zwicky, F. (1937). On the Masses of Nebulae and of Clusters of Nebulae. The Astrophysical Journal, 86, 217. – https://ve42.co/Zwicky2
+
+Rubin, V. C., &amp; Ford Jr, W. K. (1970). Rotation of the Andromeda nebula from a spectroscopic survey of emission regions. The Astrophysical Journal, 159, 379. – https://ve42.co/Rubin1
+
+Bosma, A., &amp; Van der Kruit, P. C. (1979). The local mass-to-light ratio in spiral galaxies. Astronomy and Astrophysics, 79, 281-286. – https://ve42.co/Bosma1
+
+Milgrom, M. (1983). A modification of the Newtonian dynamics as a possible alternative to the hidden mass hypothesis. The Astrophysical Journal, 270, 365-370. – https://ve42.co/mond1
+
+Sanders, R. H., &amp; McGaugh, S. S. (2002). Modified Newtonian dynamics as an alternative to dark matter. Annual Review of Astronomy and Astrophysics, 40(1), 263-317. – https://ve42.co/Mond2
+
+M. Markevitch; A. H. Gonzalez; D. Clowe; A. Vikhlinin; L. David; W. Forman; C. Jones; S. Murray &amp; W. Tucker (2004). &quot;Direct constraints on the dark matter self-interaction cross-section from the merging galaxy cluster 1E0657-56&quot;. Astrophys. J. 606 (2): 819–824. – https://ve42.co/BC1
+
+Great website about the CMB – http://background.uchicago.edu/~whu/intermediate/driving2.html
+
+Galli, S., Iocco, F., Bertone, G., &amp; Melchiorri, A. (2009). CMB constraints on dark matter models with large annihilation cross section. Physical Review D, 80(2), 023505. – https://ve42.co/CMB1
+
+Antonello, M., Barberio, E., Baroncelli, T., Benziger, J., Bignell, L. J., Bolognino, I., ... &amp; Xu, J. (2019). The SABRE project and the SABRE Proof-of-Principle. The European Physical Journal C, 79(4), 1-8. – https://ve42.co/SABRE1
+
+
+▀▀▀
+Special thanks to Patreon supporters: Inconcision, Kelly Snook, TTST, Ross McCawley, Balkrishna Heroor, Chris LaClair, Avi Yashchin, John H. Austin, Jr., OnlineBookClub.org, Dmitry Kuzmichev, Matthew Gonzalez, Eric Sexton, john kiehl, Anton Ragin, Diffbot, Micah Mangione, MJP, Gnare, Dave Kircher, Burt Humburg, Blake Byers, Dumky, Evgeny Skvortsov, Meekay, Bill Linder, Paul Peijzel, Josh Hibschman, Mac Malkawi, Michael Schneider, jim buckmaster, Juan Benet, Ruslan Khroma, Robert Blum, Richard Sundvall, Lee Redden, Vincent, Stephen Wilcox, Marinus Kuivenhoven, Clayton Greenwell, Michael Krugman, Cy 'kkm' K'Nelson, Sam Lutfi, Ron Neal
+
+▀▀▀
+Written by Derek Muller and Petr Lebedev
+Edited by Trenton Oliver
+Animation by Ivy Tello and Mike Radjabov
+Filmed by Derek Muller and Petr Lebedev
+Additional video/photos supplied by Getty Image
+B-roll supplied by Stawell Gold Mine
+Music from Epidemic Sound
+Produced by Derek Muller, Petr Lebedev, and Emily Zhang</media:description>
+   <media:community>
+    <media:starRating count="215034" average="5.00" min="1" max="5"/>
+    <media:statistics views="5716470"/>
+   </media:community>
+  </media:group>
+ </entry>
+ <entry>
+  <id>yt:video:Q1bSDnuIPbo</id>
+  <yt:videoId>Q1bSDnuIPbo</yt:videoId>
+  <yt:channelId>UCHnyfMqiRRG1u-2MsSQLbXA</yt:channelId>
+  <title>How did they actually take this picture? (Very Long Baseline Interferometry)</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=Q1bSDnuIPbo"/>
+  <author>
+   <name>Veritasium</name>
+   <uri>https://www.youtube.com/channel/UCHnyfMqiRRG1u-2MsSQLbXA</uri>
+  </author>
+  <published>2022-05-12T14:52:13+00:00</published>
+  <updated>2022-09-06T13:18:59+00:00</updated>
+  <media:group>
+   <media:title>How did they actually take this picture? (Very Long Baseline Interferometry)</media:title>
+   <media:content url="https://www.youtube.com/v/Q1bSDnuIPbo?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i2.ytimg.com/vi/Q1bSDnuIPbo/hqdefault.jpg" width="480" height="360"/>
+   <media:description>This is an image of the supermassive black hole, Sagittarius A*, at the center of our Milky Way galaxy.
+Visit https://www.kiwico.com/veritasium30 to get 30% off your first month of any crate!
+
+▀▀▀
+Image of Sgr A* from EHT collaboration
+Event Horizon Telescope collaboration: https://ve42.co/EHT
+
+Animations from The Relativistic Astrophysics group, Institute for Theoretical Physics,  Goethe-Universität Frankfurt. Massive thanks to Prof. Luciano Rezzolla, Dr Christian Fromm and Dr Alejandro Cruz-Osorio.
+
+A huge thanks to Prof. Peter Tuthill and Dr Manisha Caleb for feedback on earlier versions of this video and helping explain VLBI.
+
+Great video by Thatcher Chamberlin about VLBI here – https://youtu.be/Y8rAHTvpJbk
+
+Animations and simulations with English text:
+L. R. Weih &amp; L. Rezzolla (Goethe University Frankfurt)
+https://youtu.be/jvftAadCFRI
+
+Video of stars going around Sgr A* from European Southern Observatory
+https://www.eso.org/public/videos/eso1825e/
+
+Video zooming into the center of our galaxy from European Southern Observatory
+https://www.youtube.com/watch?v=dXAU0gzsPOw
+
+Video of observation of M87 courtesy of:
+C. M. Fromm, Y. Mizuno &amp; L. Rezzolla (Goethe University Frankfurt)
+https://youtu.be/meOKmzhTcIY
+
+Video of observation of SgrA* courtesy of
+C. M. Fromm, Y. Mizuno &amp; L. Rezzolla (Goethe University Frankfurt)
+Z. Younsi (University College London)
+https://youtu.be/VnsZj9RvhFU
+
+Video of telescopes in the array 2017:
+C. M. Fromm &amp; L. Rezzolla (Goethe University Frankfurt)
+https://youtu.be/Ame7fzBuFnk
+
+Animations and simulations (no text):
+L. R. Weih &amp; L. Rezzolla (Goethe University Frankfurt)
+https://youtu.be/XmvpKFSvB7A
+
+
+▀▀▀
+Special thanks to Patreon supporters: Inconcision, Kelly Snook, TTST, Ross McCawley, Balkrishna Heroor, Chris LaClair, Avi Yashchin, John H. Austin, Jr., OnlineBookClub.org, Dmitry Kuzmichev, Matthew Gonzalez, Eric Sexton, john kiehl, Anton Ragin, Diffbot, Micah Mangione, MJP, Gnare, Dave Kircher, Burt Humburg, Blake Byers, Dumky, Evgeny Skvortsov, Meekay, Bill Linder, Paul Peijzel, Josh Hibschman, Mac Malkawi, Michael Schneider, jim buckmaster, Juan Benet, Ruslan Khroma, Robert Blum, Richard Sundvall, Lee Redden, Vincent, Stephen Wilcox, Marinus Kuivenhoven, Clayton Greenwell, Michael Krugman, Cy 'kkm' K'Nelson, Sam Lutfi, Ron Neal
+
+▀▀▀
+Written by Derek Muller
+Animation by Ivy Tello, Mike Radjabov, Maria Raykova
+Filmed by Petr Lebedev</media:description>
+   <media:community>
+    <media:starRating count="188380" average="5.00" min="1" max="5"/>
+    <media:statistics views="4478525"/>
+   </media:community>
+  </media:group>
+ </entry>
+ <entry>
+  <id>yt:video:oI_X2cMHNe0</id>
+  <yt:videoId>oI_X2cMHNe0</yt:videoId>
+  <yt:channelId>UCHnyfMqiRRG1u-2MsSQLbXA</yt:channelId>
+  <title>How Electricity Actually Works</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=oI_X2cMHNe0"/>
+  <author>
+   <name>Veritasium</name>
+   <uri>https://www.youtube.com/channel/UCHnyfMqiRRG1u-2MsSQLbXA</uri>
+  </author>
+  <published>2022-04-29T13:59:54+00:00</published>
+  <updated>2022-08-03T23:51:20+00:00</updated>
+  <media:group>
+   <media:title>How Electricity Actually Works</media:title>
+   <media:content url="https://www.youtube.com/v/oI_X2cMHNe0?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i4.ytimg.com/vi/oI_X2cMHNe0/hqdefault.jpg" width="480" height="360"/>
+   <media:description>This video is sponsored by Brilliant. The first 200 people to sign up via https://brilliant.org/veritasium get 20% off a yearly subscription.
+
+Special thanks to:
+Bruce Sherwood, Ruth Chabay, Aaron Titus, and Steve Spicklemore
+https://matterandinteractions.org
+VPython simulation: http://tinyurl.com/SurfaceCharge
+
+Thanks to Ansys for help with the simulations: https://www.ansys.com/products/electronics/ansys-hfss
+
+Huge thanks to Richard Abbott from Caltech for all his modeling 
+
+Electrical Engineering YouTubers:
+Electroboom: https://www.youtube.com/c/Electroboom
+Alpha Phoenix: https://www.youtube.com/c/AlphaPhoenixChannel
+eevblog: https://www.youtube.com/c/EevblogDave
+Ben Watson: https://www.youtube.com/channel/UCgZUVIEtBnnBpFWJuxl_E5g
+Big Clive: https://www.youtube.com/c/Bigclive
+Z Y: https://www.youtube.com/user/ZongyiYang
+NYU Quantum Technology Lab
+https://www.youtube.com/channel/UCk7io8SN3ZwKvkpnMCbIGsA
+Dr. Ben Miles
+https://www.youtube.com/channel/UCUeZBocfxALSUdOgNJB5ySA
+Further analysis of the large circuit is available here: https://ve42.co/bigcircuit
+
+Special thanks to Dr Geraint Lewis for bringing up this question in the first place and discussing it with us. Check out his and Dr Chris Ferrie’s new book here: https://ve42.co/Universe2021
+
+▀▀▀
+References:
+A great video about the Poynting vector by the Science Asylum: https://youtu.be/C7tQJ42nGno
+
+Sefton, I. M. (2002). Understanding electricity and circuits: What the text books don’t tell you. In Science Teachers’ Workshop. -- https://ve42.co/Sefton
+
+Feynman, R. P., Leighton, R. B., &amp; Sands, M. (1965). The feynman lectures on physics; vol. Ii, chapter 27. American Journal of Physics, 33(9), 750-752. -- https://ve42.co/Feynman27
+
+Hunt, B. J. (2005). The Maxwellians. Cornell University Press.
+
+Müller, R. (2012). A semiquantitative treatment of surface charges in DC circuits. American Journal of Physics, 80(9), 782-788. -- https://ve42.co/Muller2012
+
+Galili, I., &amp; Goihbarg, E. (2005). Energy transfer in electrical circuits: A qualitative account. American journal of physics, 73(2), 141-144. -- https://ve42.co/Galili2004
+
+Deno, D. W. (1976). Transmission line fields. IEEE Transactions on Power Apparatus and Systems, 95(5), 1600-1611. -- https://ve42.co/Deno76
+
+▀▀▀
+Special thanks to Patreon supporters: Inconcision, Kelly Snook, TTST, Ross McCawley, Balkrishna Heroor, Chris LaClair, Avi Yashchin, John H. Austin, Jr., OnlineBookClub.org, Dmitry Kuzmichev, Matthew Gonzalez, Eric Sexton, john kiehl, Anton Ragin, Diffbot, Micah Mangione, MJP, Gnare, Dave Kircher, Burt Humburg, Blake Byers, Dumky, Evgeny Skvortsov, Meekay, Bill Linder, Paul Peijzel, Josh Hibschman, Mac Malkawi, Michael Schneider, jim buckmaster, Juan Benet, Ruslan Khroma, Robert Blum, Richard Sundvall, Lee Redden, Vincent, Stephen Wilcox, Marinus Kuivenhoven, Clayton Greenwell, Michael Krugman, Cy 'kkm' K'Nelson, Sam Lutfi, Ron Neal
+
+▀▀▀
+Written by Derek Muller
+Edited by Derek Muller
+Filmed by Trenton Oliver and Petr Lebedev
+Animation by Mike Radjabov and Ivy Tello
+Additional video/photos supplied by Getty Images
+Music from Epidemic Sound and Jonny Hyman
+Produced by Derek Muller, Petr Lebedev, and Emily Zhang</media:description>
+   <media:community>
+    <media:starRating count="286572" average="5.00" min="1" max="5"/>
+    <media:statistics views="6793328"/>
+   </media:community>
+  </media:group>
+ </entry>
+ <entry>
+  <id>yt:video:IV3dnLzthDA</id>
+  <yt:videoId>IV3dnLzthDA</yt:videoId>
+  <yt:channelId>UCHnyfMqiRRG1u-2MsSQLbXA</yt:channelId>
+  <title>The Man Who Accidentally Killed The Most People In History</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=IV3dnLzthDA"/>
+  <author>
+   <name>Veritasium</name>
+   <uri>https://www.youtube.com/channel/UCHnyfMqiRRG1u-2MsSQLbXA</uri>
+  </author>
+  <published>2022-04-22T15:37:40+00:00</published>
+  <updated>2022-08-19T15:39:46+00:00</updated>
+  <media:group>
+   <media:title>The Man Who Accidentally Killed The Most People In History</media:title>
+   <media:content url="https://www.youtube.com/v/IV3dnLzthDA?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i2.ytimg.com/vi/IV3dnLzthDA/hqdefault.jpg" width="480" height="360"/>
+   <media:description>One scientist caused two environmental disasters and the deaths of millions. A part of this video is sponsored by Wren. Offset your carbon footprint on Wren: ​https://www.wren.co/start/veritasium. For the first 100 people who sign up, I will personally pay for the first month of your subscription!
+
+Massive thanks to Prof. Francois Tissot for suggesting we make a video on the topic of isotope geochemistry. Huge thanks to Prof. Bruce Lanphear for consulting with us on lead and cardiovascular diseases. Thanks to the Caltech Archives for the audio of Patterson’s interview. Thanks to Vincent Mai for lending us your Snatoms kit. Thanks to Rayner Moss for the help with the fire-piston.
+
+Patterson’s 1995 interview audio courtesy of the Archives, California Institute of Technology.
+
+▀▀▀
+Other great resources you should check out:
+Bill Bryson has a chapter in his fantastic “A Short History of Nearly Everything”
+Radiolab have a wonderful podcast: https://www.wnycstudios.org/podcasts/...
+Cosmos: A Spacetime Odyssey has a wonderful episode – S1E7 which does a great job of telling the story of Clair Patterson
+A fantastic Mental floss article – https://www.mentalfloss.com/article/9...
+
+▀▀▀
+References:
+
+Much of the lead-crime hypothesis data is from Rick Nevin’s work – https://ricknevin.com/
+
+WHO factsheet on lead poisoning – https://www.who.int/news-room/fact-sh...
+
+WHO press release about the end of leaded gasoline https://news.un.org/en/story/2021/08/...
+
+UNICEF report – https://ve42.co/UNICEF
+
+Needleman, H. (2004). Lead poisoning. Annu. Rev. Med., 55, 209-222. https://ve42.co/Needleman1
+
+Needleman, H. L. (1991). Human lead exposure. CRC Press. https://ve42.co/Needleman2
+
+Needleman, H. L. et al. (1979). Deficits in psychologic and classroom performance of children with elevated dentine lead levels. New England journal of medicine, 300(13), 689-695. – https://ve42.co/Needleman3
+
+Needleman, H. L. et al. (1996). Bone lead levels and delinquent behavior. Jama, 275(5), 363-369. https://ve42.co/Needleman4
+
+Kovarik, W. J. (1993). The ethyl controversy: the news media and the public health debate over leaded gasoline, 1924-1926 https://ve42.co/Kovarik2
+
+Edelmann, F. T. (2016). The life and legacy of Thomas Midgley Jr. In Papers and Proceedings of the Royal Society of Tasmania https://ve42.co/Edelmann
+
+More, A. F. et al. (2017). Next‐generation ice core technology reveals true minimum natural levels of lead (Pb) in the atmosphere: Insights from the Black Death. GeoHealth, 1(4), 211-219. https://ve42.co/More1
+
+McFarland, M. J., et al. (2022). PNAS 119(11), e2118631119. https://ve42.co/McFarland
+
+Kovarik, W. (2005). Ethyl-leaded gasoline. International Journal of Occupational and Environmental Health, 11(4), 384-397. https://ve42.co/Kovarik3
+
+Nevin, R. (2007). Understanding international crime trends: the legacy of preschool lead exposure. Environmental research, 104(3), 315-336. – https://ve42.co/Nevin2007
+
+Ericson, J. E., et al. (1979). Skeletal concentrations of lead in ancient Peruvians. New England Journal of Medicine, 300(17), 946-951. – https://ve42.co/Ericson1
+
+Patterson, Claire. The Isotopic Composition of Trace Quantities of Lead and Calcium https://ve42.co/Patterson1
+
+Boutron, C. F., &amp; Patterson, C. C. (1986). Lead concentration changes in Antarctic ice during the Wisconsin/Holocene transition. Nature, 323(6085), 222-225. – https://ve42.co/Boulton1
+
+Patterson, C. (1956). Age of meteorites and the earth. Geochimica et Cosmochimica Acta, 10(4), 230-237. – https://ve42.co/Patterson2
+
+Lanphear, B. P. et al (2018). Low-level lead exposure and mortality in US adults: a population-based cohort study. The Lancet Public Health, 3(4), e177-e184. – https://ve42.co/Lanphear1
+
+Schaule, B. K., &amp; Patterson, C. C. (1981). Lead concentrations in the northeast Pacific: evidence for global anthropogenic perturbations. Earth and Planetary Science Letters, 54(1), 97-116. – https://ve42.co/Schaule1
+
+▀▀▀
+Special thanks to Patreon supporters: Inconcision, Kelly Snook, TTST, Ross McCawley, Balkrishna Heroor, Chris LaClair, Avi Yashchin, John H. Austin, Jr., OnlineBookClub.org, Dmitry Kuzmichev, Matthew Gonzalez, Eric Sexton, john kiehl, Anton Ragin, Diffbot, Micah Mangione, MJP, Gnare, Dave Kircher, Burt Humburg, Blake Byers, Dumky, Evgeny Skvortsov, Meekay, Bill Linder, Paul Peijzel, Josh Hibschman, Mac Malkawi, Michael Schneider, jim buckmaster, Juan Benet, Ruslan Khroma, Robert Blum, Richard Sundvall, Lee Redden, Vincent, Stephen Wilcox, Marinus Kuivenhoven, Clayton Greenwell, Michael Krugman, Cy 'kkm' K'Nelson, Sam Lutfi, Ron Neal
+
+▀▀▀
+Written by Derek Muller, Petr Lebedev, Chris Stewart, and Katie Barnshaw
+Edited by Trenton Oliver
+Filmed by Petr Lebedev
+Animation by Fabio Albertelli, Jakub Misiek, Iván Tello, Mike Radjabov, and Caleb Worcester
+SFX by Shaun Clifford
+Additional video/photos supplied by Getty Images
+Music from Epidemic Sound
+Produced by Derek Muller, Petr Lebedev, and Emily Zhang</media:description>
+   <media:community>
+    <media:starRating count="714272" average="5.00" min="1" max="5"/>
+    <media:statistics views="22611395"/>
+   </media:community>
+  </media:group>
+ </entry>
+ <entry>
+  <id>yt:video:7ziWrneMYss</id>
+  <yt:videoId>7ziWrneMYss</yt:videoId>
+  <yt:channelId>UCHnyfMqiRRG1u-2MsSQLbXA</yt:channelId>
+  <title>How Horses Save Humans From Snakebites</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=7ziWrneMYss"/>
+  <author>
+   <name>Veritasium</name>
+   <uri>https://www.youtube.com/channel/UCHnyfMqiRRG1u-2MsSQLbXA</uri>
+  </author>
+  <published>2022-03-22T11:55:53+00:00</published>
+  <updated>2022-07-23T16:52:53+00:00</updated>
+  <media:group>
+   <media:title>How Horses Save Humans From Snakebites</media:title>
+   <media:content url="https://www.youtube.com/v/7ziWrneMYss?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i4.ytimg.com/vi/7ziWrneMYss/hqdefault.jpg" width="480" height="360"/>
+   <media:description>This video is sponsored by Brilliant. The first 200 people to sign up via https://brilliant.org/veritasium get 20% off a yearly subscription. To make antivenom, you first need to collect venom from the world’s most deadly snakes.
+
+Huge thanks to the Australian Reptile Park for having us over to film – special thanks to Zac Bower for milking all of these snakes for us and Caitlin Vine for organizing the shoot. Absolute legends. https://www.reptilepark.com.au
+
+Huge thanks to Dr Timothy Jackson from the Australian Venom Research Unit for answering our questions, and fact checking the script. This video would not have been the same without you.
+
+Thanks to Seqirus Australia for providing B-roll footage of the horses and the antivenom production.
+
+▀▀▀
+References:
+Calmette, A. (1896). Le venin des serpents: Physiologie de l'envenimation, traitement des morsures venimeuses par le sérum des animaux vaccinés. Paris: Société d'éditions scientifiques.
+
+Broad, A. J., Sutherland, S. K., &amp; Coulter, A. R. (1979). The lethality in mice of dangerous Australian and other snake venom. Toxicon, 17(6), 661-664. – https://ve42.co/Broad79
+
+WHO Expert Committee on Biological Standardization. (2016). WHO guidelines for the production, control and regulation of snake antivenom immunoglobulins. Geneve, Switzerland. – https://ve42.co/WHO2016
+
+Calmette, A. (1896). The treatment of animals poisoned with snake venom by the injection of antivenomous serum. British medical journal, 2(1859), 399. – https://ve42.co/Calmette1896
+
+Hawgood, B. J. (1999). Doctor Albert Calmette 1863–1933: founder of antivenomous serotherapy and of antituberculous BCG vaccination. Toxicon, 37(9), 1241-1258. – https://ve42.co/Hawgood99
+
+Pucca, M. B., Cerni, F. A., Janke, R., Bermúdez-Méndez, E., Ledsgaard, L., Barbosa, J. E., &amp; Laustsen, A. H. (2019). History of envenoming therapy and current perspectives. Frontiers in immunology, 1598. –  https://ve42.co/Pucca19
+
+Kang, T. S., Georgieva, D., Genov, N., Murakami, M. T., Sinha, M., Kumar, R. P., ... &amp; Kini, R. M. (2011). Enzymatic toxins from snake venom: structural characterization and mechanism of catalysis. The FEBS journal, 278(23), 4544-4576. – https://ve42.co/Kang2011
+
+Hawgood, B. J. (2007). Albert Calmette (1863–1933) and Camille Guerin (1872–1961): the C and G of BCG vaccine. Journal of medical biography, 15(3), 139-146. – https://ve42.co/Hawgood2007
+
+Vonk, F. J., Admiraal, J. F., Jackson, K., Reshef, R., de Bakker, M. A., Vanderschoot, K., ... &amp; Richardson, M. K. (2008). Evolutionary origin and development of snake fangs. Nature, 454(7204), 630-633. – https://ve42.co/vonk2008
+
+Bochner, R. (2016). Paths to the discovery of antivenom serotherapy in France. Journal of Venomous Animals and Toxins including Tropical Diseases, 22. – https://ve42.co/Bochner2016
+
+Young, B. A., Herzog, F., Friedel, P., Rammensee, S., Bausch, A., &amp; van Hemmen, J. L. (2011). Tears of venom: hydrodynamics of reptilian envenomation. Physical review letters, 106(19), 198103. – https://ve42.co/Young2011
+
+Madras Medical Journal, Volume Second, July-December 1870. Page 355
+
+▀▀▀
+Special thanks to Patreon supporters: Inconcision, Kelly Snook, TTST, Ross McCawley, Balkrishna Heroor, Chris LaClair, Avi Yashchin, John H. Austin, Jr., OnlineBookClub.org, Dmitry Kuzmichev, Matthew Gonzalez, Eric Sexton, john kiehl, Anton Ragin, Benedikt Heinen, Diffbot, Micah Mangione, MJP, Gnare, Dave Kircher, Burt Humburg, Blake Byers, Dumky, Evgeny Skvortsov, Meekay, Bill Linder, Paul Peijzel, Josh Hibschman, Mac Malkawi, Michael Schneider, jim buckmaster, Juan Benet, Ruslan Khroma, Robert Blum, Richard Sundvall, Lee Redden, Vincent, Stephen Wilcox, Marinus Kuivenhoven, Clayton Greenwell, Michael Krugman, Cy 'kkm' K'Nelson, Sam Lutfi, Ron Neal
+
+▀▀▀
+Written by Petr Lebedev and Derek Muller
+Edited by Trenton Oliver
+Filmed by Jason Tran and Petr Lebedev
+Animation by Fabio Albertelli, Jakub Misiek,  Iván Tello and Mike Radjabov.
+Molecule animation by Reciprocal Space – https://www.reciprocal.space
+Additional video/photos supplied by Getty Image
+B-roll supplied by Seqirus Australia
+Music from Epidemic Sound and Jonny Hyman
+Produced by Derek Muller, Petr Lebedev, and Emily Zhang</media:description>
+   <media:community>
+    <media:starRating count="203454" average="5.00" min="1" max="5"/>
+    <media:statistics views="12244708"/>
+   </media:community>
+  </media:group>
+ </entry>
+ <entry>
+  <id>yt:video:GVsUOuSjvcg</id>
+  <yt:videoId>GVsUOuSjvcg</yt:videoId>
+  <yt:channelId>UCHnyfMqiRRG1u-2MsSQLbXA</yt:channelId>
+  <title>Future Computers Will Be Radically Different (Analog Computing)</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=GVsUOuSjvcg"/>
+  <author>
+   <name>Veritasium</name>
+   <uri>https://www.youtube.com/channel/UCHnyfMqiRRG1u-2MsSQLbXA</uri>
+  </author>
+  <published>2022-03-01T11:37:38+00:00</published>
+  <updated>2022-08-04T14:47:24+00:00</updated>
+  <media:group>
+   <media:title>Future Computers Will Be Radically Different (Analog Computing)</media:title>
+   <media:content url="https://www.youtube.com/v/GVsUOuSjvcg?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i4.ytimg.com/vi/GVsUOuSjvcg/hqdefault.jpg" width="480" height="360"/>
+   <media:description>Visit https://brilliant.org/Veritasium/ to get started learning STEM for free, and the first 200 people will get 20% off their annual premium subscription. Digital computers have served us well for decades, but the rise of artificial intelligence demands a totally new kind of computer: analog.
+
+Thanks to Mike Henry and everyone at Mythic for the analog computing tour! https://www.mythic-ai.com/
+Thanks to Dr. Bernd Ulmann, who created The Analog Thing and taught us how to use it. https://the-analog-thing.org
+Moore’s Law was filmed at the Computer History Museum in Mountain View, CA.
+Welch Labs’ ALVINN video: https://www.youtube.com/watch?v=H0igiP6Hg1k
+
+▀▀▀
+References:
+Crevier, D. (1993). AI: The Tumultuous History Of The Search For Artificial Intelligence. Basic Books. – https://ve42.co/Crevier1993
+Valiant, L. (2013). Probably Approximately Correct. HarperCollins. – https://ve42.co/Valiant2013
+Rosenblatt, F. (1958). The Perceptron: A Probabilistic Model for Information Storage and Organization in the Brain. Psychological Review, 65(6), 386-408. – https://ve42.co/Rosenblatt1958
+NEW NAVY DEVICE LEARNS BY DOING; Psychologist Shows Embryo of Computer Designed to Read and Grow Wiser (1958). The New York Times, p. 25. – https://ve42.co/NYT1958
+Mason, H., Stewart, D., and Gill, B. (1958). Rival. The New Yorker, p. 45. – https://ve42.co/Mason1958
+Alvinn driving NavLab footage – https://ve42.co/NavLab
+Pomerleau, D. (1989). ALVINN: An Autonomous Land Vehicle In a Neural Network. NeurIPS, (2)1, 305-313. – https://ve42.co/Pomerleau1989
+ImageNet website – https://ve42.co/ImageNet
+Russakovsky, O., Deng, J. et al. (2015). ImageNet Large Scale Visual Recognition Challenge. – https://ve42.co/ImageNetChallenge
+AlexNet Paper: Krizhevsky, A., Sutskever, I., Hinton, G. (2012). ImageNet Classification with Deep Convolutional Neural Networks. NeurIPS, (25)1, 1097-1105. – https://ve42.co/AlexNet
+Karpathy, A. (2014). Blog post: What I learned from competing against a ConvNet on ImageNet. – https://ve42.co/Karpathy2014
+Fick, D. (2018). Blog post: Mythic @ Hot Chips 2018. – https://ve42.co/MythicBlog
+Jin, Y. &amp; Lee, B. (2019). 2.2 Basic operations of flash memory. Advances in Computers, 114, 1-69. – https://ve42.co/Jin2019
+Demler, M. (2018). Mythic Multiplies in a Flash. The Microprocessor Report. – https://ve42.co/Demler2018
+Aspinity (2021). Blog post: 5 Myths About AnalogML. – https://ve42.co/Aspinity
+Wright, L. et al. (2022). Deep physical neural networks trained with backpropagation. Nature, 601, 49–555. – https://ve42.co/Wright2022
+Waldrop, M. M. (2016). The chips are down for Moore’s law. Nature, 530, 144–147. – https://ve42.co/Waldrop2016
+
+▀▀▀
+Special thanks to Patreon supporters: Kelly Snook, TTST, Ross McCawley, Balkrishna Heroor, 65square.com, Chris LaClair, Avi Yashchin, John H. Austin, Jr., OnlineBookClub.org, Dmitry Kuzmichev, Matthew Gonzalez, Eric Sexton, john kiehl, Anton Ragin, Benedikt Heinen, Diffbot, Micah Mangione, MJP, Gnare, Dave Kircher, Burt Humburg, Blake Byers, Dumky, Evgeny Skvortsov, Meekay, Bill Linder, Paul Peijzel, Josh Hibschman, Mac Malkawi, Michael Schneider, jim buckmaster, Juan Benet, Ruslan Khroma, Robert Blum, Richard Sundvall, Lee Redden, Vincent, Stephen Wilcox, Marinus Kuivenhoven, Clayton Greenwell, Michael Krugman, Cy 'kkm' K'Nelson, Sam Lutfi, Ron Neal
+
+▀▀▀
+Written by Derek Muller, Stephen Welch, and Emily Zhang
+Filmed by Derek Muller, Petr Lebedev, and Emily Zhang
+Animation by Iván Tello, Mike Radjabov, and Stephen Welch
+Edited by Derek Muller
+Additional video/photos supplied by Getty Images and Pond5
+Music from Epidemic Sound
+Produced by Derek Muller, Petr Lebedev, and Emily Zhang</media:description>
+   <media:community>
+    <media:starRating count="300722" average="5.00" min="1" max="5"/>
+    <media:statistics views="8556995"/>
+   </media:community>
+  </media:group>
+ </entry>
+ <entry>
+  <id>yt:video:IgF3OX8nT0w</id>
+  <yt:videoId>IgF3OX8nT0w</yt:videoId>
+  <yt:channelId>UCHnyfMqiRRG1u-2MsSQLbXA</yt:channelId>
+  <title>The Most Powerful Computers You've Never Heard Of</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=IgF3OX8nT0w"/>
+  <author>
+   <name>Veritasium</name>
+   <uri>https://www.youtube.com/channel/UCHnyfMqiRRG1u-2MsSQLbXA</uri>
+  </author>
+  <published>2021-12-21T19:32:53+00:00</published>
+  <updated>2022-05-19T01:41:04+00:00</updated>
+  <media:group>
+   <media:title>The Most Powerful Computers You've Never Heard Of</media:title>
+   <media:content url="https://www.youtube.com/v/IgF3OX8nT0w?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i2.ytimg.com/vi/IgF3OX8nT0w/hqdefault.jpg" width="480" height="360"/>
+   <media:description>Analog computers were the most powerful computers for thousands of years, relegated to obscurity by the digital revolution. This video is sponsored by Brilliant. The first 200 people to sign up via https://brilliant.org/veritasium get 20% off a yearly subscription.
+
+Thanks to Scott Wiedemann for the lego computer instructions – https://www.youtube.com/watch?v=5X_Ft4YR_wU
+
+Antikythera Archive &amp; Animations ©2005-2020 Images First Ltd. https://www.youtube.com/watch?v=1ebB0tyrMa8 &quot;The Antikythera Cosmos&quot; (2021) follows the latest developments from the UCL Antikythera Research Team as they recreate a dazzling display of the ancient Greek Cosmos at the front of the Antikythera Mechanism.
+
+Tides video from NASA – https://climate.nasa.gov/climate_resources/246/video-global-ocean-tides/
+
+Ship animation from this painting – https://ve42.co/Agamemnon
+
+Moore’s Law, the op-amp, and the Norden bombsight were filmed at the Computer History Museum in Mountain View, CA.
+
+▀▀▀
+References:
+
+Freeth, T., Bitsakis, Y., Moussas, X., Seiradakis, J. H., Tselikas, A., Mangou, H., ... &amp; Edmunds, M. G. (2006). Decoding the ancient Greek astronomical calculator known as the Antikythera Mechanism. Nature, 444(7119), 587-591. – https://ve42.co/Freeth2006
+Freeth, T., &amp; Jones, A. (2012). The cosmos in the Antikythera mechanism. ISAW Papers. – https://ve42.co/Freeth2012
+Cartwright, D. E. (2000). Tides: a scientific history. Cambridge University Press. – https://ve42.co/tides
+Thomson, W. (2017). Mathematical and physical papers. CUP Archive. – https://ve42.co/Kelvinv6
+Parker, B. B. (2007). Tidal analysis and prediction. NOAA NOS Center for Operational Oceanographic Products and Services. - https://ve42.co/Parker2007
+Parker, B. (2011). The tide predictions for D-Day. Physics Today, 64(9), 35-40. – https://ve42.co/Parker2011
+Small, J. (2013). The Analogue Alternative. Routledge. – https://ve42.co/Small2013
+Zorpette, G. (1989). Parkinson's gun director. IEEE Spectrum, 26(4), 43. – https://ve42.co/Zorpette89
+Tremblay, M. (2009). Deconstructing the myth of the Norden Bombsight (Doctoral dissertation). – https://ve42.co/Tremblay
+Gladwell, M. (2021). The Bomber Mafia. Little, Brown and Company. - https://ve42.co/Gladwell2021
+Mindell, D. A. (2000). Automation’s finest hour: Radar and system integration in World War II. Systems, Experts, and Computers: The Systems Approach in Management and Engineering, World War II and After. Edited by A. C. Hughes and T. P. Hughes, 27-56. – https://ve42.co/Mindell
+Haigh, T., Priestley, M., &amp; Rope, C. (2016). ENIAC in Action. The MIT Press. - https://ve42.co/Eniac2016
+Soni, J., &amp; Goodman, R. (2017). A mind at play: how Claude Shannon invented the information age. Simon and Schuster. – https://ve42.co/Soni
+Haigh, T. &amp; Ceruzzi, P. (2021). A New History of Modern Computing. The MIT Press. - https://ve42.co/ModernComputing
+Rid, T. (2016). Rise of the Machines: a Cybernetic History. Highbridge. - https://ve42.co/Rid2016
+Ulmann, B. (2013). Analog computing. Oldenbourg Wissenschaftsverlag. – https://ve42.co/Ulmann2013
+
+▀▀▀
+Special thanks to Patreon supporters: Dmitry Kuzmichev, Matthew Gonzalez, Baranidharan S, Eric Sexton, john kiehl, Daniel Brockman, Anton Ragin, S S, Benedikt Heinen, Diffbot, Micah Mangione, MJP, Gnare, Dave Kircher, Edward Larsen, Burt Humburg, Blak  Byers, Dumky, , Evgeny Skvortsov, Meekay, Bill Linder, Paul Peijzel, Mac Malkawi, Michael Schneider, Ludovic Robillard, jim buckmaster, Juan Benet, Ruslan Khroma, Robert Blum, Richard Sundvall, Lee Redden, Vincent, Stephen Wilcox, Marinus Kuivenhoven, Clayton Greenwell, Michael Krugman, Cy 'kkm' K'Nelson, Sam Lutfi, Ron Neal
+
+Written by Derek Muller, Stephen Welch and Emily Zhang
+Filmed by Derek Muller, Emily Zhang and Raquel Nuno
+Animation by Fabio Albertelli, Jakub Misiek, Mike Radjabov, Iván Tello, Trenton Oliver
+Edited by Derek Muller
+Additional video supplied by Getty Images
+Music from Epidemic Sound and Jonny Hyman
+Produced by Derek Muller, Petr Lebedev and Emily Zhang</media:description>
+   <media:community>
+    <media:starRating count="325475" average="5.00" min="1" max="5"/>
+    <media:statistics views="8076321"/>
+   </media:community>
+  </media:group>
+ </entry>
+ <entry>
+  <id>yt:video:ao2Jfm35XeE</id>
+  <yt:videoId>ao2Jfm35XeE</yt:videoId>
+  <yt:channelId>UCHnyfMqiRRG1u-2MsSQLbXA</yt:channelId>
+  <title>The Snowflake Mystery</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=ao2Jfm35XeE"/>
+  <author>
+   <name>Veritasium</name>
+   <uri>https://www.youtube.com/channel/UCHnyfMqiRRG1u-2MsSQLbXA</uri>
+  </author>
+  <published>2021-12-01T07:35:28+00:00</published>
+  <updated>2022-07-22T03:01:07+00:00</updated>
+  <media:group>
+   <media:title>The Snowflake Mystery</media:title>
+   <media:content url="https://www.youtube.com/v/ao2Jfm35XeE?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i2.ytimg.com/vi/ao2Jfm35XeE/hqdefault.jpg" width="480" height="360"/>
+   <media:description>Dr Ken Libbrecht is the world expert on snowflakes, designer of custom snowflakes, snowflake consultant for the movie Frozen - his photos appear on postage stamps all over the world. This video is sponsored by Brilliant. The first 200 people to sign up via https://brilliant.org/veritasium get 20% off a yearly subscription.
+
+Thanks to Dr Ken Libbrecht for showing us how to grow designer snowflakes. Obviously, this video would not have been possible without his help and his expertise.  His website is full of information about snowflakes http://snowcrystals.com. His new book is also available to purchase from here -- https://ve42.co/SnowCrystalsBook
+
+▀▀▀
+References:
+Libbrecht, K. G. (2019). A Quantitative Physical Model of the Snow Crystal Morphology Diagram. arXiv preprint arXiv:1910.09067. -- https://ve42.co/Libbrecht2019
+
+▀▀▀
+Special thanks to Patreon supporters: Luis Felipe, Anton Ragin, Paul Peijzel, S S, Benedikt Heinen, Diffbot, Micah Mangione, Juan Benet, Ruslan Khroma, Richard Sundvall, Lee Redden, Sam Lutfi, MJP, Gnare, Nick DiCandilo, Dave Kircher, Edward Larsen, Burt Humburg, Blake Byers, Dumky, Mike Tung, Evgeny Skvortsov, Meekay, Ismail Öncü Usta, Crated Comments, Anna, Mac Malkawi, Michael Schneider, Oleksii Leonov, Jim Osmun, Tyson McDowell, Ludovic Robillard, Jim buckmaster, fanime96, Ruslan Khroma, Robert Blum, Vincent, Marinus Kuivenhoven, Alfred Wallace, Arjun Chakroborty, Joar Wandborg, Clayton Greenwell, Michael Krugman, Cy 'kkm' K'Nelson, Ron Neal 
+
+Written by Derek Muller
+Filmed by Derek Muller, Raquel Nuno, Trenton Oliver and Emily Zhang
+Edited by Trenton Oliver
+Animations by Ivàn Tello and Trenton Oliver
+Additional video supplied by Getty Images
+Music from Epidemic Sound
+Produced by Derek Muller, Petr Lebedev and Emily Zhang</media:description>
+   <media:community>
+    <media:starRating count="278006" average="5.00" min="1" max="5"/>
+    <media:statistics views="7562341"/>
+   </media:community>
+  </media:group>
+ </entry>
+ <entry>
+  <id>yt:video:9cNmUNHSBac</id>
+  <yt:videoId>9cNmUNHSBac</yt:videoId>
+  <yt:channelId>UCHnyfMqiRRG1u-2MsSQLbXA</yt:channelId>
+  <title>Most People Don't Know How Bikes Work</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=9cNmUNHSBac"/>
+  <author>
+   <name>Veritasium</name>
+   <uri>https://www.youtube.com/channel/UCHnyfMqiRRG1u-2MsSQLbXA</uri>
+  </author>
+  <published>2021-11-28T15:00:07+00:00</published>
+  <updated>2022-08-02T16:54:23+00:00</updated>
+  <media:group>
+   <media:title>Most People Don't Know How Bikes Work</media:title>
+   <media:content url="https://www.youtube.com/v/9cNmUNHSBac?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i2.ytimg.com/vi/9cNmUNHSBac/hqdefault.jpg" width="480" height="360"/>
+   <media:description>Why are bicycles stable? The most common answer is gyroscopic effects, but this is not right. This video was sponsored by Kiwico. Get 50% off your first month of any crate at https://kiwico.com/veritasium50
+
+Huge thanks to Rick Cavallaro for creating this bike on short notice. Thanks to all the friends who participated in the filming. Rick was also responsible for the Blackbird Faster Than The Wind Downwind Cart. https://youtu.be/jyQwgBAaBag 
+
+Much of the information presented here on the stability of a riderless bicycle stems from original research at
+  Delft       http://bicycle.tudelft.nl/schwab/Bicycle/
+  and
+  Cornell  http://ruina.tam.cornell.edu/research/topics/bicycle_mechanics/overview.html
+
+This line of bicycle-balance research was initiated by Jim Papadopoulos:  https://www.nature.com/articles/535338a
+
+Great videos on bikes and counter-steering:
+
+MinutePhysics: How Do Bikes Stay Up? https://youtu.be/oZAc5t2lkvo
+
+MinutePhysics: The Counterintuitive Physics of Turning a Bike: https://youtu.be/llRkf1fnNDM
+
+Why Bicycles Do Not Fall - Arend Schwab TED talk: https://youtu.be/2Y4mbT3ozcA
+
+Today I Found Out: We Still Don't Know How Bicycles Work https://youtu.be/YWsK6rmsKSI
+
+TU Delft - Smart motor in handlebars prevents bicycles from falling over: https://youtu.be/rBOQp2uY_lk
+
+Andy Ruina Explains How Bicycles Balance Themselves: https://youtu.be/NcZCzr9ExKk
+
+▀▀▀
+More References:
+
+TU Delft Bicycle Site: http://bicycle.tudelft.nl/schwab/Bicycle/
+
+Bicycle stability program: http://ruina.tam.cornell.edu/research/topics/bicycle_mechanics/JBike6_web_folder/index.htm
+
+▀▀▀
+Special thanks to Patreon supporters: Luis Felipe, Anton Ragin, Paul Peijzel, S S, Benedikt Heinen, Diffbot, Micah Mangione, Juan Benet, Ruslan Khroma, Richard Sundvall, Lee Redden, Sam Lutfi, MJP, Gnare, Nick DiCandilo, Dave Kircher, Edward Larsen, Burt Humburg, Blake Byers, Dumky, Mike Tung, Evgeny Skvortsov, Meekay, Ismail Öncü Usta, Crated Comments, Anna, Mac Malkawi, Michael Schneider, Oleksii Leonov, Jim Osmun, Tyson McDowell, Ludovic Robillard, Jim buckmaster, fanime96, Ruslan Khroma, Robert Blum, Vincent, Marinus Kuivenhoven, Alfred Wallace, Arjun Chakroborty, Joar Wandborg, Clayton Greenwell, Michael Krugman, Cy 'kkm' K'Nelson,Ron Neal 
+
+▀▀▀
+Written by Derek Muller
+Filmed by Trenton Oliver, Raquel Nuno and Derek Muller
+Edited by Derek Muller
+Music from Epidemic Sound and Jonny Hyman
+Produced by Derek Muller, Petr Lebedev and Emily Zhang</media:description>
+   <media:community>
+    <media:starRating count="461590" average="5.00" min="1" max="5"/>
+    <media:statistics views="18527727"/>
+   </media:community>
+  </media:group>
+ </entry>
+ <entry>
+  <id>yt:video:bHIhgxav9LY</id>
+  <yt:videoId>bHIhgxav9LY</yt:videoId>
+  <yt:channelId>UCHnyfMqiRRG1u-2MsSQLbXA</yt:channelId>
+  <title>The Big Misconception About Electricity</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=bHIhgxav9LY"/>
+  <author>
+   <name>Veritasium</name>
+   <uri>https://www.youtube.com/channel/UCHnyfMqiRRG1u-2MsSQLbXA</uri>
+  </author>
+  <published>2021-11-19T18:26:03+00:00</published>
+  <updated>2022-01-14T09:22:05+00:00</updated>
+  <media:group>
+   <media:title>The Big Misconception About Electricity</media:title>
+   <media:content url="https://www.youtube.com/v/bHIhgxav9LY?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i3.ytimg.com/vi/bHIhgxav9LY/hqdefault.jpg" width="480" height="360"/>
+   <media:description>The misconception is that electrons carry potential energy around a complete conducting loop, transferring their energy to the load. This video was sponsored by Caséta by Lutron. Learn more at https://Lutron.com/veritasium
+
+Further analysis of the large circuit is available here: https://ve42.co/bigcircuit
+
+Special thanks to Dr Geraint Lewis for bringing up this question in the first place and discussing it with us. Check out his and Dr Chris Ferrie’s new book here: https://ve42.co/Universe2021
+ 
+Special thanks to Dr Robert Olsen for his expertise. He quite literally wrote the book on transmission lines, which you can find here: https://ve42.co/Olsen2018
+ 
+Special thanks to Dr Richard Abbott for running a real-life experiment to test the model.
+ 
+Huge thanks to all of the experts we talked to for this video -- Dr Karl Berggren, Dr Bruce Hunt, Dr Paul Stanley, Dr Joe Steinmeyer, Ian Sefton, and Dr David G Vallancourt.
+
+▀▀▀
+References:
+A great video about the Poynting vector by the Science Asylum: https://youtu.be/C7tQJ42nGno
+
+Sefton, I. M. (2002). Understanding electricity and circuits: What the text books don’t tell you. In Science Teachers’ Workshop. -- https://ve42.co/Sefton
+
+Feynman, R. P., Leighton, R. B., &amp; Sands, M. (1965). The feynman lectures on physics; vol. Ii, chapter 27. American Journal of Physics, 33(9), 750-752. -- https://ve42.co/Feynman27
+
+Hunt, B. J. (2005). The Maxwellians. Cornell University Press.
+
+Müller, R. (2012). A semiquantitative treatment of surface charges in DC circuits. American Journal of Physics, 80(9), 782-788. -- https://ve42.co/Muller2012
+
+Galili, I., &amp; Goihbarg, E. (2005). Energy transfer in electrical circuits: A qualitative account. American journal of physics, 73(2), 141-144. -- https://ve42.co/Galili2004
+
+Deno, D. W. (1976). Transmission line fields. IEEE Transactions on Power Apparatus and Systems, 95(5), 1600-1611. -- https://ve42.co/Deno76
+
+▀▀▀
+Special thanks to Patreon supporters: Luis Felipe, Anton Ragin, Paul Peijzel, S S, Benedikt Heinen, Diffbot, Micah Mangione, Juan Benet, Ruslan Khroma, Richard Sundvall, Lee Redden, Sam Lutfi, MJP, Gnare, Nick DiCandilo, Dave Kircher, Edward Larsen, Burt Humburg, Blake Byers, Dumky, Mike Tung, Evgeny Skvortsov, Meekay, Ismail Öncü Usta, Crated Comments, Anna, Mac Malkawi, Michael Schneider, Oleksii Leonov, Jim Osmun, Tyson McDowell, Ludovic Robillard, Jim buckmaster, fanime96, Ruslan Khroma, Robert Blum, Vincent, Marinus Kuivenhoven, Alfred Wallace, Arjun Chakroborty, Joar Wandborg, Clayton Greenwell, Michael Krugman, Cy 'kkm' K'Nelson,Ron Neal 
+
+
+Written by Derek Muller and Petr Lebedev
+Animation by Mike Radjabov and Iván Tello
+Filmed by Derek Muller and Emily Zhang
+Footage of the sun by Raquel Nuno
+Edited by Derek Muller
+Additional video supplied by Getty Images
+Music from Epidemic Sound
+Produced by Derek Muller, Petr Lebedev and Emily Zhang</media:description>
+   <media:community>
+    <media:starRating count="519073" average="5.00" min="1" max="5"/>
+    <media:statistics views="16291303"/>
+   </media:community>
+  </media:group>
+ </entry>
+ <entry>
+  <id>yt:video:cUzklzVXJwo</id>
+  <yt:videoId>cUzklzVXJwo</yt:videoId>
+  <yt:channelId>UCHnyfMqiRRG1u-2MsSQLbXA</yt:channelId>
+  <title>How Imaginary Numbers Were Invented</title>
+  <link rel="alternate" href="https://www.youtube.com/watch?v=cUzklzVXJwo"/>
+  <author>
+   <name>Veritasium</name>
+   <uri>https://www.youtube.com/channel/UCHnyfMqiRRG1u-2MsSQLbXA</uri>
+  </author>
+  <published>2021-11-01T06:54:16+00:00</published>
+  <updated>2022-04-19T23:30:28+00:00</updated>
+  <media:group>
+   <media:title>How Imaginary Numbers Were Invented</media:title>
+   <media:content url="https://www.youtube.com/v/cUzklzVXJwo?version=3" type="application/x-shockwave-flash" width="640" height="390"/>
+   <media:thumbnail url="https://i4.ytimg.com/vi/cUzklzVXJwo/hqdefault.jpg" width="480" height="360"/>
+   <media:description>A general solution to the cubic equation was long considered impossible, until we gave up the requirement that math reflect reality. This video is sponsored by Brilliant. The first 200 people to sign up via https://brilliant.org/veritasium get 20% off a yearly subscription.
+
+Thanks to Dr Amir Alexander, Dr Alexander Kontorovich, Dr Chris Ferrie, and Dr Adam Becker for the helpful advice and feedback on the earlier versions of the script. 
+
+▀▀▀
+References:
+Some great videos about the cubic:
+
+500 years of not teaching the cubic formula. -- https://youtu.be/N-KXStupwsc
+
+Imaginary Numbers are Real -- https://youtu.be/T647CGsuOVU
+
+Dunham, W. (1990). Journey through genius: The great theorems of mathematics. New York. -- https://ve42.co/Dunham90
+
+Toscano, F. (2020). The Secret Formula. Princeton University Press. -- https://ve42.co/Toscano2020
+
+Bochner, S. (1963). The significance of some basic mathematical conceptions for physics. Isis, 54(2), 179-205. -- https://ve42.co/Bochner63
+
+Muroi, K. (2019). Cubic equations of Babylonian mathematics. arXiv preprint arXiv:1905.08034. -- https://ve42.co/Murio21
+
+Branson, W. Solving the cubic with Cardano, -- https://ve42.co/Branson2014
+
+Rothman, T. (2013). Cardano v Tartaglia: The Great Feud Goes Supernatural. arXiv preprint arXiv:1308.2181. -- https://ve42.co/Rothman
+
+Vali Siadat, M., &amp; Tholen, A. (2021). Omar Khayyam: Geometric Algebra and Cubic Equations. Math Horizons, 28(1), 12-15. -- https://ve42.co/Siadat21
+
+Merino, O. (2006). A short history of complex numbers. University of Rhode Island. -- https://ve42.co/Merino2006
+
+Cardano, G (1545), Ars magna or The Rules of Algebra, Dover (published 1993), ISBN 0-486-67811-3
+
+Bombelli, R (1579) L’Algebra https://ve42.co/Bombelli
+
+The Manim Community Developers. (2021). Manim – Mathematical Animation Framework (Version v0.13.1) [Computer software]. https://www.manim.community/
+
+▀▀▀
+Special thanks to Patreon supporters: Luis Felipe, Anton Ragin, Paul Peijzel, S S, Benedikt Heinen, Diffbot, Micah Mangione, Juan Benet, Ruslan Khroma, Richard Sundvall, Lee Redden, Sam Lutfi, MJP, Gnare, Nick DiCandilo, Dave Kircher, Edward Larsen, Burt Humburg, Blake Byers, Dumky, Mike Tung, Evgeny Skvortsov, Meekay, Ismail Öncü Usta, Crated Comments, Anna, Mac Malkawi, Michael Schneider, Oleksii Leonov, Jim Osmun, Tyson McDowell, Ludovic Robillard, Jim buckmaster, fanime96, Ruslan Khroma, Robert Blum, Vincent, Marinus Kuivenhoven, Alfred Wallace, Arjun Chakroborty, Joar Wandborg, Clayton Greenwell, Pindex, Michael Krugman, Cy 'kkm' K'Nelson,Ron Neal 
+
+Executive Producer: Derek Muller
+Writers: Derek Muller, Alex Kontorovich, Stephen Welch, Petr Lebedev
+Animators: Fabio Albertelli, Jakub Misiek, Iván Tello, Jesús Rascón
+SFX: Shaun Clifford
+Camerapeople: Derek Muller, Emily Zhang
+Editors: Derek Muller, Petr Lebedev
+Producers: Derek Muller, Petr Lebedev, Emily Zhang
+Additional video supplied by Getty Images
+Music from Epidemic Sound and Jonny Hyman</media:description>
+   <media:community>
+    <media:starRating count="537359" average="5.00" min="1" max="5"/>
+    <media:statistics views="13586028"/>
+   </media:community>
+  </media:group>
+ </entry>
+</feed>

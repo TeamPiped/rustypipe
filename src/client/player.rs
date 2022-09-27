@@ -7,7 +7,6 @@ use anyhow::{anyhow, bail, Result};
 use chrono::{Local, NaiveDateTime, NaiveTime, TimeZone};
 use fancy_regex::Regex;
 use once_cell::sync::Lazy;
-use reqwest::Method;
 use serde::Serialize;
 use url::Url;
 
@@ -98,7 +97,6 @@ impl RustyPipeQuery {
             client_type,
             "player",
             video_id,
-            Method::POST,
             "player",
             &request_body,
             Some(&deobf),
@@ -175,7 +173,7 @@ impl MapResponse<VideoPlayer> for response::Player {
             title: video_details.title,
             description: video_details.short_description,
             length: video_details.length_seconds,
-            thumbnails: video_details.thumbnail.into(),
+            thumbnail: video_details.thumbnail.into(),
             channel: ChannelId {
                 id: video_details.channel_id,
                 name: video_details.author,
@@ -439,7 +437,7 @@ fn map_audio_stream(
     deobf: &Deobfuscator,
     last_nsig: &mut [String; 2],
 ) -> MapResult<Option<AudioStream>> {
-    static LANG_PATTERN: Lazy<Regex> = Lazy::new(|| Regex::new(r#"^([a-z]{2})\."#).unwrap());
+    static LANG_PATTERN: Lazy<Regex> = Lazy::new(|| Regex::new(r#"^([a-z]{2,3})\."#).unwrap());
 
     let (mtype, codecs) = some_or_bail!(
         parse_mime(&f.mime_type),
@@ -631,7 +629,7 @@ mod tests {
     #[case::android(ClientType::Android)]
     #[case::ios(ClientType::Ios)]
     #[test_log::test(tokio::test)]
-    async fn t_get_player(#[case] client_type: ClientType) {
+    async fn get_player(#[case] client_type: ClientType) {
         let rp = RustyPipe::builder().strict().build();
         let player_data = rp.query().player("n4tK7LYFxI0", client_type).await.unwrap();
 
@@ -647,7 +645,7 @@ mod tests {
             ));
         }
         assert_eq!(player_data.details.length, 259);
-        assert!(!player_data.details.thumbnails.is_empty());
+        assert!(!player_data.details.thumbnail.is_empty());
         assert_eq!(player_data.details.channel.id, "UC_aEa8K-EOJ3D6gOs7HcyNg");
         assert_eq!(player_data.details.channel.name, "NoCopyrightSounds");
         assert!(player_data.details.view_count > 146818808);
@@ -731,6 +729,18 @@ mod tests {
         }
 
         assert!(player_data.expires_in_seconds > 10000);
+    }
+
+    #[tokio::test]
+    async fn tmp() {
+        let rp = RustyPipe::builder().strict().build();
+        let player_data = rp
+            .query()
+            .player("tVWWp1PqDus", ClientType::Desktop)
+            .await
+            .unwrap();
+
+        dbg!(&player_data);
     }
 
     #[test]

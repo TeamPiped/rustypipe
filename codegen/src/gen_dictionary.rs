@@ -42,7 +42,7 @@ use crate::{
 
 /// The dictionary contains the information required to parse dates and numbers
 /// in all supported languages.
-pub struct Entry {
+pub(crate) struct Entry {
     /// Should the language be parsed by character instead of by word?
     /// (e.g. Chinese/Japanese)
     pub by_char: bool,
@@ -79,7 +79,7 @@ pub struct Entry {
 "#;
 
     let mut code_timeago_tokens = r#"#[rustfmt::skip]
-pub fn entry(lang: Language) -> Entry {
+pub(crate) fn entry(lang: Language) -> Entry {
     match lang {
         "#
     .to_owned();

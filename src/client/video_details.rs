@@ -1,7 +1,6 @@
 use std::convert::TryFrom;
 
 use anyhow::{anyhow, bail, Result};
-use reqwest::Method;
 use serde::Serialize;
 
 use crate::{
@@ -44,7 +43,6 @@ impl RustyPipeQuery {
             ClientType::Desktop,
             "video_details",
             video_id,
-            Method::POST,
             "next",
             &request_body,
         )
@@ -62,7 +60,6 @@ impl RustyPipeQuery {
             ClientType::Desktop,
             "video_recommendations",
             ctoken,
-            Method::POST,
             "next",
             &request_body,
         )
@@ -80,7 +77,6 @@ impl RustyPipeQuery {
             ClientType::Desktop,
             "video_comments",
             ctoken,
-            Method::POST,
             "next",
             &request_body,
         )

@@ -7,7 +7,7 @@ use crate::{
 
 /// The dictionary contains the information required to parse dates and numbers
 /// in all supported languages.
-pub struct Entry {
+pub(crate) struct Entry {
     /// Should the language be parsed by character instead of by word?
     /// (e.g. Chinese/Japanese)
     pub by_char: bool,
@@ -43,7 +43,7 @@ pub struct Entry {
 }
 
 #[rustfmt::skip]
-pub fn entry(lang: Language) -> Entry {
+pub(crate) fn entry(lang: Language) -> Entry {
     match lang {
         Language::Af => Entry {
             by_char: false,

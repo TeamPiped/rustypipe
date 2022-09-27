@@ -1,9 +1,14 @@
+//! YouTube API Client
+
 mod channel;
 mod pagination;
 mod player;
 mod playlist;
 mod response;
 mod video_details;
+
+#[cfg(feature = "rss")]
+mod channel_rss;
 
 use std::fmt::Debug;
 use std::sync::Arc;
@@ -14,7 +19,7 @@ use fancy_regex::Regex;
 use log::{error, warn};
 use once_cell::sync::Lazy;
 use rand::Rng;
-use reqwest::{header, Client, ClientBuilder, Method, Request, RequestBuilder, Response};
+use reqwest::{header, Client, ClientBuilder, Request, RequestBuilder, Response};
 use serde::{de::DeserializeOwned, Deserialize, Serialize};
 use tokio::sync::Mutex;
 
@@ -787,24 +792,16 @@ impl RustyPipeQuery {
     /// - `ctype`: Client type (`Desktop`, `DesktopMusic`, `Android`, ...)
     /// - `method`: HTTP method
     /// - `endpoint`: YouTube API endpoint (`https://www.youtube.com/youtubei/v1/<XYZ>?key=...`)
-    async fn request_builder(
-        &self,
-        ctype: ClientType,
-        method: Method,
-        endpoint: &str,
-    ) -> RequestBuilder {
+    async fn request_builder(&self, ctype: ClientType, endpoint: &str) -> RequestBuilder {
         match ctype {
             ClientType::Desktop => self
                 .client
                 .inner
                 .http
-                .request(
-                    method,
-                    format!(
-                        "{}{}?key={}{}",
-                        YOUTUBEI_V1_URL, endpoint, DESKTOP_API_KEY, DISABLE_PRETTY_PRINT_PARAMETER
-                    ),
-                )
+                .post(format!(
+                    "{}{}?key={}{}",
+                    YOUTUBEI_V1_URL, endpoint, DESKTOP_API_KEY, DISABLE_PRETTY_PRINT_PARAMETER
+                ))
                 .header(header::ORIGIN, "https://www.youtube.com")
                 .header(header::REFERER, "https://www.youtube.com")
                 .header(header::COOKIE, self.client.inner.consent_cookie.to_owned())
@@ -817,16 +814,13 @@ impl RustyPipeQuery {
                 .client
                 .inner
                 .http
-                .request(
-                    method,
-                    format!(
-                        "{}{}?key={}{}",
-                        YOUTUBE_MUSIC_V1_URL,
-                        endpoint,
-                        DESKTOP_MUSIC_API_KEY,
-                        DISABLE_PRETTY_PRINT_PARAMETER
-                    ),
-                )
+                .post(format!(
+                    "{}{}?key={}{}",
+                    YOUTUBE_MUSIC_V1_URL,
+                    endpoint,
+                    DESKTOP_MUSIC_API_KEY,
+                    DISABLE_PRETTY_PRINT_PARAMETER
+                ))
                 .header(header::ORIGIN, "https://music.youtube.com")
                 .header(header::REFERER, "https://music.youtube.com")
                 .header(header::COOKIE, self.client.inner.consent_cookie.to_owned())
@@ -839,13 +833,10 @@ impl RustyPipeQuery {
                 .client
                 .inner
                 .http
-                .request(
-                    method,
-                    format!(
-                        "{}{}?key={}{}",
-                        YOUTUBEI_V1_URL, endpoint, DESKTOP_API_KEY, DISABLE_PRETTY_PRINT_PARAMETER
-                    ),
-                )
+                .post(format!(
+                    "{}{}?key={}{}",
+                    YOUTUBEI_V1_URL, endpoint, DESKTOP_API_KEY, DISABLE_PRETTY_PRINT_PARAMETER
+                ))
                 .header(header::ORIGIN, "https://www.youtube.com")
                 .header(header::REFERER, "https://www.youtube.com")
                 .header("X-YouTube-Client-Name", "1")
@@ -854,16 +845,13 @@ impl RustyPipeQuery {
                 .client
                 .inner
                 .http
-                .request(
-                    method,
-                    format!(
-                        "{}{}?key={}{}",
-                        YOUTUBEI_V1_GAPIS_URL,
-                        endpoint,
-                        ANDROID_API_KEY,
-                        DISABLE_PRETTY_PRINT_PARAMETER
-                    ),
-                )
+                .post(format!(
+                    "{}{}?key={}{}",
+                    YOUTUBEI_V1_GAPIS_URL,
+                    endpoint,
+                    ANDROID_API_KEY,
+                    DISABLE_PRETTY_PRINT_PARAMETER
+                ))
                 .header(
                     header::USER_AGENT,
                     format!(
@@ -876,16 +864,10 @@ impl RustyPipeQuery {
                 .client
                 .inner
                 .http
-                .request(
-                    method,
-                    format!(
-                        "{}{}?key={}{}",
-                        YOUTUBEI_V1_GAPIS_URL,
-                        endpoint,
-                        IOS_API_KEY,
-                        DISABLE_PRETTY_PRINT_PARAMETER
-                    ),
-                )
+                .post(format!(
+                    "{}{}?key={}{}",
+                    YOUTUBEI_V1_GAPIS_URL, endpoint, IOS_API_KEY, DISABLE_PRETTY_PRINT_PARAMETER
+                ))
                 .header(
                     header::USER_AGENT,
                     format!(
@@ -911,7 +893,6 @@ impl RustyPipeQuery {
     /// - `endpoint`: YouTube API endpoint (`https://www.youtube.com/youtubei/v1/<XYZ>?key=...`)
     /// - `body`: Serializable request body to be sent in json format
     /// - `deobf`: Deobfuscator (is passed to the mapper to deobfuscate stream URLs).
-    #[allow(clippy::too_many_arguments)]
     async fn execute_request_deobf<
         R: DeserializeOwned + MapResponse<M> + Debug,
         M,
@@ -921,13 +902,12 @@ impl RustyPipeQuery {
         ctype: ClientType,
         operation: &str,
         id: &str,
-        method: Method,
         endpoint: &str,
         body: &B,
         deobf: Option<&Deobfuscator>,
     ) -> Result<M> {
         let request = self
-            .request_builder(ctype, method.clone(), endpoint)
+            .request_builder(ctype, endpoint)
             .await
             .json(body)
             .build()?;
@@ -943,9 +923,7 @@ impl RustyPipeQuery {
         let create_report = |level: Level, error: Option<String>, msgs: Vec<String>| {
             if let Some(reporter) = &self.client.inner.reporter {
                 let report = Report {
-                    package: "rustypipe".to_owned(),
-                    version: "0.1.0".to_owned(),
-                    date: chrono::Local::now(),
+                    info: Default::default(),
                     level,
                     operation: format!("{}({})", operation, id),
                     error,
@@ -953,7 +931,7 @@ impl RustyPipeQuery {
                     deobf_data: deobf.map(Deobfuscator::get_data),
                     http_request: crate::report::HTTPRequest {
                         url: request_url,
-                        method: method.to_string(),
+                        method: "POST".to_string(),
                         req_header: request_headers
                             .iter()
                             .map(|(k, v)| {
@@ -1030,11 +1008,10 @@ impl RustyPipeQuery {
         ctype: ClientType,
         operation: &str,
         id: &str,
-        method: Method,
         endpoint: &str,
         body: &B,
     ) -> Result<M> {
-        self.execute_request_deobf::<R, M, B>(ctype, operation, id, method, endpoint, body, None)
+        self.execute_request_deobf::<R, M, B>(ctype, operation, id, endpoint, body, None)
             .await
     }
 }

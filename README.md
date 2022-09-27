@@ -11,8 +11,8 @@ inspired by [NewPipe](https://github.com/TeamNewPipe/NewPipeExtractor).
   - TODO: Livestream support
 - [X] **Playlist**
 - [X] **VideoDetails** (metadata, comments, recommended videos)
-- [ ] **Channel**
-- [ ] **ChannelRSS**
+- [X] **Channel** (videos, playlists, info)
+- [X] **ChannelRSS**
 - [ ] **Search**
 - [ ] **Search suggestions**
 - [ ] **Trending**

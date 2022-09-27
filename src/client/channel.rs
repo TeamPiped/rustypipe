@@ -1,5 +1,4 @@
 use anyhow::{anyhow, bail, Result};
-use reqwest::Method;
 use serde::Serialize;
 use url::Url;
 
@@ -68,7 +67,6 @@ impl RustyPipeQuery {
             ClientType::Desktop,
             "channel_videos",
             channel_id,
-            Method::POST,
             "browse",
             &request_body,
         )
@@ -89,7 +87,6 @@ impl RustyPipeQuery {
             ClientType::Desktop,
             "channel_videos_continuation",
             ctoken,
-            Method::POST,
             "browse",
             &request_body,
         )
@@ -111,7 +108,6 @@ impl RustyPipeQuery {
             ClientType::Desktop,
             "channel_playlists",
             channel_id,
-            Method::POST,
             "browse",
             &request_body,
         )
@@ -132,7 +128,6 @@ impl RustyPipeQuery {
             ClientType::Desktop,
             "channel_videos_continuation",
             ctoken,
-            Method::POST,
             "browse",
             &request_body,
         )
@@ -151,7 +146,6 @@ impl RustyPipeQuery {
             ClientType::Desktop,
             "channel_info",
             channel_id,
-            Method::POST,
             "browse",
             &request_body,
         )

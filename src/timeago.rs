@@ -1,3 +1,20 @@
+//! Parser for textual dates and times.
+//!
+//! The YouTube API mostly outputs pre-formatted dates and times
+//! like "18 minutes ago" or "Jul 2, 2014" instead of standardized
+//! machine-readable date and time formats.
+//!
+//! Additionally these formats are localized, meaning they depend
+//! on the configured language.
+//!
+//! This module can parse these dates using an embedded dictionary which
+//! contains date/time unit tokens for all supported languages.
+//!
+//! Note that this module is public so it can be tested from outside
+//! the crate, which is important for including new languages, too.
+//!
+//! It is not intended to be used to parse textual dates that are not from YouTube.
+
 use std::ops::Mul;
 
 use chrono::{DateTime, Duration, Local, NaiveDate, NaiveDateTime, NaiveTime, TimeZone};
@@ -5,18 +22,21 @@ use serde::{Deserialize, Serialize};
 
 use crate::{dictionary, model::Language, util};
 
+/// Parsed TimeAgo string, contains amount and time unit.
+///
+/// Example: "14 hours ago" => `TimeAgo {n: 14, unit: TimeUnit::Hour}`
 #[derive(Debug, Copy, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct TimeAgo {
     pub n: u8,
     pub unit: TimeUnit,
 }
 
-#[derive(Debug, Copy, Clone, PartialEq, Eq)]
-pub struct TaToken {
-    pub n: u8,
-    pub unit: Option<TimeUnit>,
-}
-
+/// Parsed date string that may be relative or absolute.
+///
+/// Examples:
+///
+/// - "Jul 2, 2014" => `ParsedDate::Absolute("2014-07-02")`
+/// - "2 months ago" => `ParsedDate::Relative(TimeAgo {n: 2, unit: TimeUnit::Month})`
 #[derive(Debug, Copy, Clone, PartialEq, Eq)]
 pub enum ParsedDate {
     Absolute(NaiveDate),
@@ -35,7 +55,14 @@ pub enum TimeUnit {
     Year,
 }
 
-pub enum DateCmp {
+/// Value of a parsed TimeAgo token, used in the dictionary
+#[derive(Debug, Copy, Clone, PartialEq, Eq)]
+pub(crate) struct TaToken {
+    pub n: u8,
+    pub unit: Option<TimeUnit>,
+}
+
+pub(crate) enum DateCmp {
     Y,
     M,
     D,
@@ -135,6 +162,9 @@ fn parse_textual_month(entry: &dictionary::Entry, filtered_str: &str) -> Option<
     }
 }
 
+/// Parse a TimeAgo string (e.g. "29 minutes ago") into a TimeAgo object.
+///
+/// Returns None if the date could not be parsed.
 pub fn parse_timeago(lang: Language, textual_date: &str) -> Option<TimeAgo> {
     let entry = dictionary::entry(lang);
     let filtered_str = filter_str(textual_date);
@@ -144,6 +174,9 @@ pub fn parse_timeago(lang: Language, textual_date: &str) -> Option<TimeAgo> {
     parse_ta_token(&entry, false, &filtered_str).map(|ta| ta * qu)
 }
 
+/// Parse a TimeAgo string (e.g. "29 minutes ago") into a Chrono DateTime object.
+///
+/// Returns None if the date could not be parsed.
 pub fn parse_timeago_to_dt(lang: Language, textual_date: &str) -> Option<DateTime<Local>> {
     parse_timeago(lang, textual_date).map(|ta| ta.into())
 }
@@ -160,6 +193,9 @@ pub(crate) fn parse_timeago_or_warn(
     res
 }
 
+/// Parse a textual date (e.g. "29 minutes ago" or "Jul 2, 2014") into a ParsedDate object.
+///
+/// Returns None if the date could not be parsed.
 pub fn parse_textual_date(lang: Language, textual_date: &str) -> Option<ParsedDate> {
     let entry = dictionary::entry(lang);
     let filtered_str = filter_str(textual_date);
@@ -206,6 +242,9 @@ pub fn parse_textual_date(lang: Language, textual_date: &str) -> Option<ParsedDa
     }
 }
 
+/// Parse a textual date (e.g. "29 minutes ago" or "Jul 2, 2014") into a Chrono DateTime object.
+///
+/// Returns None if the date could not be parsed.
 pub fn parse_textual_date_to_dt(lang: Language, textual_date: &str) -> Option<DateTime<Local>> {
     parse_textual_date(lang, textual_date).map(|ta| ta.into())
 }
