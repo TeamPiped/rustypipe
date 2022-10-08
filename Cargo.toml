@@ -13,7 +13,7 @@ include = ["/src", "README.md", "LICENSE", "!snapshots"]
 members = [".", "codegen", "cli"]
 
 [features]
-default = ["default-tls"]
+default = ["default-tls", "rss"]
 all = ["rss", "html"]
 
 rss = ["quick-xml"]
@@ -26,10 +26,10 @@ rustls-tls-native-roots = ["reqwest/rustls-tls-native-roots"]
 
 [dependencies]
 # quick-js = "0.4.1"
-quick-js = { path = "../quickjs-rs" }
+quick-js = { path = "../quickjs-rs", default-features = false }
 once_cell = "1.12.0"
 fancy-regex = "0.10.0"
-anyhow = "1.0"
+thiserror = "1.0.36"
 url = "2.2.2"
 log = "0.4.17"
 reqwest = {version = "0.11.11", default-features = false, features = ["json", "gzip", "brotli", "stream"]}
@@ -38,7 +38,7 @@ serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0.82"
 serde_with = {version = "2.0.0", features = ["json"] }
 rand = "0.8.5"
-chrono = {version = "0.4.19", features = ["serde"]}
+chrono = {version = "0.4.19", default-features = false, features = ["clock", "serde"]}
 chronoutil = "0.2.3"
 futures = "0.3.21"
 indicatif = "0.17.0"

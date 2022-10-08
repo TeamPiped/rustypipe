@@ -1,9 +1,9 @@
 use std::convert::TryFrom;
 
-use anyhow::{anyhow, bail, Result};
 use serde::Serialize;
 
 use crate::{
+    error::{Error, ExtractionError},
     model::{
         ChannelId, ChannelTag, Chapter, Comment, Language, Paginator, RecommendedVideo,
         VideoDetails,
@@ -30,7 +30,7 @@ struct QVideo {
 }
 
 impl RustyPipeQuery {
-    pub async fn video_details(self, video_id: &str) -> Result<VideoDetails> {
+    pub async fn video_details(self, video_id: &str) -> Result<VideoDetails, Error> {
         let context = self.get_context(ClientType::Desktop, true).await;
         let request_body = QVideo {
             context,
@@ -49,7 +49,10 @@ impl RustyPipeQuery {
         .await
     }
 
-    pub async fn video_recommendations(self, ctoken: &str) -> Result<Paginator<RecommendedVideo>> {
+    pub async fn video_recommendations(
+        self,
+        ctoken: &str,
+    ) -> Result<Paginator<RecommendedVideo>, Error> {
         let context = self.get_context(ClientType::Desktop, true).await;
         let request_body = QContinuation {
             context,
@@ -66,7 +69,7 @@ impl RustyPipeQuery {
         .await
     }
 
-    pub async fn video_comments(self, ctoken: &str) -> Result<Paginator<Comment>> {
+    pub async fn video_comments(self, ctoken: &str) -> Result<Paginator<Comment>, Error> {
         let context = self.get_context(ClientType::Desktop, true).await;
         let request_body = QContinuation {
             context,
@@ -90,12 +93,15 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
         id: &str,
         lang: crate::model::Language,
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
-    ) -> Result<MapResult<VideoDetails>> {
+    ) -> Result<MapResult<VideoDetails>, ExtractionError> {
         let mut warnings = Vec::new();
 
         let video_id = self.current_video_endpoint.watch_endpoint.video_id;
         if id != video_id {
-            bail!("got wrong playlist id {}, expected {}", video_id, id);
+            return Err(ExtractionError::WrongResult(format!(
+                "got wrong playlist id {}, expected {}",
+                video_id, id
+            )));
         }
 
         let mut primary_results = self
@@ -167,7 +173,11 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                         view_count.video_view_count_renderer.is_live,
                     )
                 }
-                _ => bail!("could not find primary_info"),
+                _ => {
+                    return Err(ExtractionError::InvalidData(
+                        "could not find primary_info".into(),
+                    ))
+                }
             };
 
         let comment_count = comment_count_section.and_then(|s| {
@@ -214,7 +224,11 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
 
                 (owner.video_owner_renderer, desc, is_ccommons)
             }
-            _ => bail!("could not find secondary_info"),
+            _ => {
+                return Err(ExtractionError::InvalidData(
+                    "could not find secondary_info".into(),
+                ))
+            }
         };
 
         let (channel_id, channel_name) = match owner.title {
@@ -224,9 +238,13 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                 browse_id,
             } => match page_type {
                 crate::serializer::text::PageType::Channel => (browse_id, text),
-                _ => bail!("invalid channel link type"),
+                _ => {
+                    return Err(ExtractionError::InvalidData(
+                        "invalid channel link type".into(),
+                    ))
+                }
             },
-            _ => bail!("invalid channel link"),
+            _ => return Err(ExtractionError::InvalidData("invalid channel link".into())),
         };
 
         let recommended = self
@@ -324,11 +342,13 @@ impl MapResponse<Paginator<RecommendedVideo>> for response::VideoRecommendations
         _id: &str,
         lang: crate::model::Language,
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
-    ) -> Result<MapResult<Paginator<RecommendedVideo>>> {
+    ) -> Result<MapResult<Paginator<RecommendedVideo>>, ExtractionError> {
         let mut endpoints = self.on_response_received_endpoints;
         let cont = some_or_bail!(
             endpoints.try_swap_remove(0),
-            Err(anyhow!("no continuation endpoint"))
+            Err(ExtractionError::InvalidData(
+                "no continuation endpoint".into()
+            ))
         );
 
         Ok(map_recommendations(
@@ -344,7 +364,7 @@ impl MapResponse<Paginator<Comment>> for response::VideoComments {
         _id: &str,
         lang: crate::model::Language,
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
-    ) -> Result<MapResult<Paginator<Comment>>> {
+    ) -> Result<MapResult<Paginator<Comment>>, ExtractionError> {
         let mut warnings = self.on_response_received_endpoints.warnings;
 
         let mut comments = Vec::new();

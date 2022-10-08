@@ -1,12 +1,11 @@
 use std::convert::TryFrom;
 
-use anyhow::anyhow;
 use fancy_regex::Regex;
 use once_cell::sync::Lazy;
 use serde::{Deserialize, Deserializer};
 use serde_with::{serde_as, DefaultOnError, DeserializeAs};
 
-use crate::util;
+use crate::{error::MappingError, util};
 
 /// # Text
 ///
@@ -366,7 +365,7 @@ impl<'de> DeserializeAs<'de, TextComponents> for AttributedText {
 }
 
 impl TryFrom<TextComponent> for crate::model::ChannelId {
-    type Error = anyhow::Error;
+    type Error = MappingError;
 
     fn try_from(value: TextComponent) -> Result<Self, Self::Error> {
         match value {
@@ -379,9 +378,9 @@ impl TryFrom<TextComponent> for crate::model::ChannelId {
                     id: browse_id,
                     name: text,
                 }),
-                _ => Err(anyhow!("invalid channel link type")),
+                _ => Err(MappingError("invalid channel link type".into())),
             },
-            _ => Err(anyhow!("invalid channel link")),
+            _ => Err(MappingError("invalid channel link".into())),
         }
     }
 }

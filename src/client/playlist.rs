@@ -1,10 +1,10 @@
 use std::convert::TryFrom;
 
-use anyhow::{anyhow, bail, Result};
 use serde::Serialize;
 
 use crate::{
     deobfuscate::Deobfuscator,
+    error::{Error, ExtractionError},
     model::{ChannelId, Language, Paginator, Playlist, PlaylistVideo},
     timeago,
     util::{self, TryRemove},
@@ -22,7 +22,7 @@ struct QPlaylist {
 }
 
 impl RustyPipeQuery {
-    pub async fn playlist(self, playlist_id: &str) -> Result<Playlist> {
+    pub async fn playlist(self, playlist_id: &str) -> Result<Playlist, Error> {
         let context = self.get_context(ClientType::Desktop, true).await;
         let request_body = QPlaylist {
             context,
@@ -39,7 +39,10 @@ impl RustyPipeQuery {
         .await
     }
 
-    pub async fn playlist_continuation(self, ctoken: &str) -> Result<Paginator<PlaylistVideo>> {
+    pub async fn playlist_continuation(
+        self,
+        ctoken: &str,
+    ) -> Result<Paginator<PlaylistVideo>, Error> {
         let context = self.get_context(ClientType::Desktop, true).await;
         let request_body = QContinuation {
             context,
@@ -63,26 +66,32 @@ impl MapResponse<Playlist> for response::Playlist {
         id: &str,
         lang: Language,
         _deobf: Option<&Deobfuscator>,
-    ) -> Result<MapResult<Playlist>> {
+    ) -> Result<MapResult<Playlist>, ExtractionError> {
         // TODO: think about a deserializer that deserializes only first list item
         let mut tcbr_contents = self.contents.two_column_browse_results_renderer.contents;
         let video_items = some_or_bail!(
             some_or_bail!(
                 some_or_bail!(
                     tcbr_contents.try_swap_remove(0),
-                    Err(anyhow!("twoColumnBrowseResultsRenderer empty"))
+                    Err(ExtractionError::InvalidData(
+                        "twoColumnBrowseResultsRenderer empty".into()
+                    ))
                 )
                 .tab_renderer
                 .content
                 .section_list_renderer
                 .contents
                 .try_swap_remove(0),
-                Err(anyhow!("sectionListRenderer empty"))
+                Err(ExtractionError::InvalidData(
+                    "sectionListRenderer empty".into()
+                ))
             )
             .item_section_renderer
             .contents
             .try_swap_remove(0),
-            Err(anyhow!("itemSectionRenderer empty"))
+            Err(ExtractionError::InvalidData(
+                "itemSectionRenderer empty".into()
+            ))
         )
         .playlist_video_list_renderer
         .contents;
@@ -94,7 +103,7 @@ impl MapResponse<Playlist> for response::Playlist {
                 let mut sidebar_items = sidebar.playlist_sidebar_renderer.items;
                 let mut primary = some_or_bail!(
                     sidebar_items.try_swap_remove(0),
-                    Err(anyhow!("no primary sidebar"))
+                    Err(ExtractionError::InvalidData("no primary sidebar".into()))
                 );
 
                 (
@@ -112,7 +121,7 @@ impl MapResponse<Playlist> for response::Playlist {
             None => {
                 let header_banner = some_or_bail!(
                     self.header.playlist_header_renderer.playlist_header_banner,
-                    Err(anyhow!("no thumbnail found"))
+                    Err(ExtractionError::InvalidData("no thumbnail found".into()))
                 );
 
                 let mut byline = self.header.playlist_header_renderer.byline;
@@ -131,7 +140,7 @@ impl MapResponse<Playlist> for response::Playlist {
             Some(_) => {
                 ok_or_bail!(
                     util::parse_numeric(&self.header.playlist_header_renderer.num_videos_text),
-                    Err(anyhow!("no video count"))
+                    Err(ExtractionError::InvalidData("no video count".into()))
                 )
             }
             None => videos.len() as u32,
@@ -139,7 +148,10 @@ impl MapResponse<Playlist> for response::Playlist {
 
         let playlist_id = self.header.playlist_header_renderer.playlist_id;
         if playlist_id != id {
-            bail!("got wrong playlist id {}, expected {}", playlist_id, id);
+            return Err(ExtractionError::WrongResult(format!(
+                "got wrong playlist id {}, expected {}",
+                playlist_id, id
+            )));
         }
 
         let name = self.header.playlist_header_renderer.title;
@@ -178,11 +190,13 @@ impl MapResponse<Paginator<PlaylistVideo>> for response::PlaylistCont {
         _id: &str,
         _lang: Language,
         _deobf: Option<&Deobfuscator>,
-    ) -> Result<MapResult<Paginator<PlaylistVideo>>> {
+    ) -> Result<MapResult<Paginator<PlaylistVideo>>, ExtractionError> {
         let mut actions = self.on_response_received_actions;
         let action = some_or_bail!(
             actions.try_swap_remove(0),
-            Err(anyhow!("no continuation action"))
+            Err(ExtractionError::InvalidData(
+                "no continuation action".into()
+            ))
         );
 
         let (items, ctoken) =

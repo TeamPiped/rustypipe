@@ -1,4 +1,3 @@
-use anyhow::{anyhow, bail, Context, Result};
 use fancy_regex::Regex;
 use log::debug;
 use once_cell::sync::Lazy;
@@ -6,7 +5,9 @@ use reqwest::Client;
 use serde::{Deserialize, Serialize};
 use std::result::Result::Ok;
 
-use crate::util;
+use crate::{error::DeobfError, util};
+
+type Result<T> = core::result::Result<T, DeobfError>;
 
 pub struct Deobfuscator {
     data: DeobfData,
@@ -22,13 +23,8 @@ pub struct DeobfData {
 
 impl Deobfuscator {
     pub async fn new(http: Client) -> Result<Self> {
-        let js_url = get_player_js_url(&http)
-            .await
-            .context("Failed to retrieve player.js URL")?;
-
-        let player_js = get_response(&http, &js_url)
-            .await
-            .context("Failed to download player.js")?;
+        let js_url = get_player_js_url(&http).await?;
+        let player_js = get_response(&http, &js_url).await?;
 
         debug!("Downloaded player.js from {}", js_url);
 
@@ -84,7 +80,7 @@ fn get_sig_fn_name(player_js: &str) -> Result<String> {
     });
 
     util::get_cg_from_regexes(FUNCTION_PATTERNS.iter(), player_js, 1)
-        .ok_or_else(|| anyhow!("could not find deobf function name"))
+        .ok_or(DeobfError::Extraction("deobf function name"))
 }
 
 fn caller_function(fn_name: &str) -> String {
@@ -98,13 +94,13 @@ fn get_sig_fn(player_js: &str) -> Result<String> {
         "(".to_owned() + &dfunc_name.replace('$', "\\$") + "=function\\([a-zA-Z0-9_]+\\)\\{.+?\\})";
     let function_pattern = ok_or_bail!(
         Regex::new(&function_pattern_str),
-        Err(anyhow!("could not parse function pattern regex"))
+        Err(DeobfError::Other("could not parse function pattern regex"))
     );
 
     let deobfuscate_function = "var ".to_owned()
         + some_or_bail!(
             function_pattern.captures(player_js).ok().flatten(),
-            Err(anyhow!("could not find deobf function"))
+            Err(DeobfError::Extraction("deobf function"))
         )
         .get(1)
         .unwrap()
@@ -118,7 +114,7 @@ fn get_sig_fn(player_js: &str) -> Result<String> {
             .captures(&deobfuscate_function)
             .ok()
             .flatten(),
-        Err(anyhow!("could not find helper object name"))
+        Err(DeobfError::Extraction("helper object name"))
     )
     .get(1)
     .unwrap()
@@ -128,12 +124,12 @@ fn get_sig_fn(player_js: &str) -> Result<String> {
         "(var ".to_owned() + &helper_object_name.replace('$', "\\$") + "=\\{.+?\\}\\};)";
     let helper_pattern = ok_or_bail!(
         Regex::new(&helper_pattern_str),
-        Err(anyhow!("could not parse helper pattern regex"))
+        Err(DeobfError::Other("could not parse helper pattern regex"))
     );
     let player_js_nonl = player_js.replace('\n', "");
     let helper_object = some_or_bail!(
         helper_pattern.captures(&player_js_nonl).ok().flatten(),
-        Err(anyhow!("could not find helper object"))
+        Err(DeobfError::Extraction("helper object"))
     )
     .get(1)
     .unwrap()
@@ -143,14 +139,15 @@ fn get_sig_fn(player_js: &str) -> Result<String> {
 }
 
 fn deobfuscate_sig(sig: &str, sig_fn: &str) -> Result<String> {
-    let context = quick_js::Context::new()?;
+    let context =
+        quick_js::Context::new().or(Err(DeobfError::Other("could not create QuickJS rt")))?;
     context.eval(sig_fn)?;
     let res = context.call_function(DEOBFUSCATION_FUNC_NAME, vec![sig])?;
 
-    match res.as_str() {
-        Some(res) => Ok(res.to_owned()),
-        None => bail!("deobfuscation func returned null"),
-    }
+    res.as_str().map_or(
+        Err(DeobfError::Other("sig deobfuscation func returned null")),
+        |res| Ok(res.to_owned()),
+    )
 }
 
 fn get_nsig_fn_name(player_js: &str) -> Result<String> {
@@ -161,7 +158,7 @@ fn get_nsig_fn_name(player_js: &str) -> Result<String> {
 
     let fname_match = some_or_bail!(
         FUNCTION_NAME_PATTERN.captures(player_js).ok().flatten(),
-        Err(anyhow!("could not find n_deobf function"))
+        Err(DeobfError::Extraction("n_deobf function"))
     );
 
     let function_name = fname_match.get(1).unwrap().as_str();
@@ -170,25 +167,29 @@ fn get_nsig_fn_name(player_js: &str) -> Result<String> {
         return Ok(function_name.to_owned());
     }
 
-    let array_num = fname_match.get(2).unwrap().as_str().parse::<u32>()?;
+    let array_num = fname_match
+        .get(2)
+        .unwrap()
+        .as_str()
+        .parse::<usize>()
+        .or(Err(DeobfError::Other("could not parse array_num")))?;
     let array_pattern_str =
         "var ".to_owned() + &fancy_regex::escape(function_name) + "\\s*=\\s*\\[(.+?)];";
-    let array_pattern = Regex::new(&array_pattern_str)?;
+    let array_pattern = Regex::new(&array_pattern_str).or(Err(DeobfError::Other(
+        "could not parse helper pattern regex",
+    )))?;
+
     let array_str = some_or_bail!(
         array_pattern.captures(player_js).ok().flatten(),
-        Err(anyhow!("could not find n_deobf array_str"))
+        Err(DeobfError::Extraction("n_deobf array_str"))
     )
     .get(1)
     .unwrap()
     .as_str();
     let mut names = array_str.split(',');
     let name = some_or_bail!(
-        names.nth(array_num.try_into()?),
-        Err(anyhow!(
-            "could not get {}th item from {}",
-            array_num,
-            array_str
-        ))
+        names.nth(array_num),
+        Err(DeobfError::Extraction("n_deobf function name"))
     );
     Ok(name.to_owned())
 }
@@ -239,7 +240,7 @@ fn extract_js_fn(js: &str, name: &str) -> Result<String> {
     }
 
     if state != 3 {
-        return Err(anyhow!("could not extract js fn"));
+        return Err(DeobfError::Extraction("javascript function"));
     }
 
     Ok(js[start..end].to_owned())
@@ -255,14 +256,15 @@ fn get_nsig_fn(player_js: &str) -> Result<String> {
 }
 
 fn deobfuscate_nsig(sig: &str, nsig_fn: &str) -> Result<String> {
-    let context = quick_js::Context::new()?;
+    let context =
+        quick_js::Context::new().or(Err(DeobfError::Other("could not create QuickJS rt")))?;
     context.eval(nsig_fn)?;
     let res = context.call_function(DEOBFUSCATION_FUNC_NAME, vec![sig])?;
 
-    match res.as_str() {
-        Some(res) => Ok(res.to_owned()),
-        None => bail!("deobfuscation func returned null"),
-    }
+    res.as_str().map_or(
+        Err(DeobfError::Other("nsig deobfuscation func returned null")),
+        |res| Ok(res.to_owned()),
+    )
 }
 
 async fn get_player_js_url(http: &Client) -> Result<String> {
@@ -278,8 +280,8 @@ async fn get_player_js_url(http: &Client) -> Result<String> {
             .unwrap()
     });
     let player_hash = some_or_bail!(
-        PLAYER_HASH_PATTERN.captures(&text)?,
-        Err(anyhow!("could not find player hash"))
+        PLAYER_HASH_PATTERN.captures(&text).ok().flatten(),
+        Err(DeobfError::Extraction("player hash"))
     )
     .get(1)
     .unwrap()
@@ -301,8 +303,8 @@ fn get_sts(player_js: &str) -> Result<String> {
         Lazy::new(|| Regex::new("signatureTimestamp[=:](\\d+)").unwrap());
 
     Ok(some_or_bail!(
-        STS_PATTERN.captures(player_js)?,
-        Err(anyhow!("could not find sts"))
+        STS_PATTERN.captures(player_js).ok().flatten(),
+        Err(DeobfError::Extraction("sts"))
     )
     .get(1)
     .unwrap()

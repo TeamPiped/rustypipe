@@ -3,7 +3,6 @@ use std::{
     collections::{BTreeMap, HashMap},
 };
 
-use anyhow::{anyhow, bail, Result};
 use chrono::{Local, NaiveDateTime, NaiveTime, TimeZone};
 use fancy_regex::Regex;
 use once_cell::sync::Lazy;
@@ -12,6 +11,7 @@ use url::Url;
 
 use crate::{
     deobfuscate::Deobfuscator,
+    error::{DeobfError, Error, ExtractionError},
     model::{
         AudioCodec, AudioFormat, AudioStream, AudioTrack, ChannelId, Language, Subtitle,
         VideoCodec, VideoFormat, VideoPlayer, VideoPlayerDetails, VideoStream,
@@ -58,7 +58,11 @@ struct QContentPlaybackContext {
 }
 
 impl RustyPipeQuery {
-    pub async fn player(self, video_id: &str, client_type: ClientType) -> Result<VideoPlayer> {
+    pub async fn player(
+        self,
+        video_id: &str,
+        client_type: ClientType,
+    ) -> Result<VideoPlayer, Error> {
         let q1 = self.clone();
         let t_context = tokio::spawn(async move { q1.get_context(client_type, false).await });
         let q2 = self.client.clone();
@@ -111,7 +115,7 @@ impl MapResponse<VideoPlayer> for response::Player {
         id: &str,
         _lang: Language,
         deobf: Option<&Deobfuscator>,
-    ) -> Result<super::MapResult<VideoPlayer>> {
+    ) -> Result<super::MapResult<VideoPlayer>, ExtractionError> {
         let deobf = deobf.unwrap();
         let mut warnings = vec![];
 
@@ -121,26 +125,36 @@ impl MapResponse<VideoPlayer> for response::Player {
                 live_streamability.is_some()
             }
             response::player::PlayabilityStatus::Unplayable { reason } => {
-                bail!("Video is unplayable. Reason: {}", reason)
+                return Err(ExtractionError::VideoUnavailable("DRM/Geoblock", reason))
             }
             response::player::PlayabilityStatus::LoginRequired { reason } => {
-                bail!("Playback requires login. Reason: {}", reason)
+                // reason: "Sign in to confirm your age"
+                if reason.split_whitespace().any(|word| word == "age") {
+                    return Err(ExtractionError::VideoAgeRestricted);
+                }
+                return Err(ExtractionError::VideoUnavailable("private video", reason));
             }
             response::player::PlayabilityStatus::LiveStreamOffline { reason } => {
-                bail!("Livestream is offline. Reason: {}", reason)
+                return Err(ExtractionError::VideoUnavailable(
+                    "offline livestream",
+                    reason,
+                ))
             }
             response::player::PlayabilityStatus::Error { reason } => {
-                bail!("Video was deleted. Reason: {}", reason)
+                return Err(ExtractionError::VideoUnavailable(
+                    "deletion/censorship",
+                    reason,
+                ))
             }
         };
 
         let mut streaming_data = some_or_bail!(
             self.streaming_data,
-            Err(anyhow!("No streaming data was returned"))
+            Err(ExtractionError::InvalidData("no streaming data".into()))
         );
         let video_details = some_or_bail!(
             self.video_details,
-            Err(anyhow!("No video details were returned"))
+            Err(ExtractionError::InvalidData("no video details".into()))
         );
         let microformat = self.microformat.map(|m| m.player_microformat_renderer);
         let (publish_date, category, tags, is_family_safe) =
@@ -159,11 +173,10 @@ impl MapResponse<VideoPlayer> for response::Player {
             });
 
         if video_details.video_id != id {
-            bail!(
-                "got wrong video id {}, expected {}",
-                video_details.video_id,
-                id
-            );
+            return Err(ExtractionError::WrongResult(format!(
+                "video id {}, expected {}",
+                video_details.video_id, id
+            )));
         }
 
         let video_info = VideoPlayerDetails {
@@ -272,7 +285,7 @@ impl MapResponse<VideoPlayer> for response::Player {
 fn cipher_to_url_params(
     signature_cipher: &str,
     deobf: &Deobfuscator,
-) -> Result<(String, BTreeMap<String, String>)> {
+) -> Result<(String, BTreeMap<String, String>), DeobfError> {
     let params: HashMap<Cow<str>, Cow<str>> =
         url::form_urlencoded::parse(signature_cipher.as_bytes()).collect();
 
@@ -281,12 +294,15 @@ fn cipher_to_url_params(
     // `sp`: Signature parameter
     // `url`: URL that is missing the signature parameter
 
-    let sig = some_or_bail!(params.get("s"), Err(anyhow!("no s param")));
-    let sp = some_or_bail!(params.get("sp"), Err(anyhow!("no sp param")));
-    let raw_url = some_or_bail!(params.get("url"), Err(anyhow!("no url param")));
-    let (url_base, mut url_params) = util::url_to_params(raw_url)?;
+    let sig = some_or_bail!(params.get("s"), Err(DeobfError::Extraction("s param")));
+    let sp = some_or_bail!(params.get("sp"), Err(DeobfError::Extraction("sp param")));
+    let raw_url = some_or_bail!(
+        params.get("url"),
+        Err(DeobfError::Extraction("no url param"))
+    );
+    let (url_base, mut url_params) =
+        util::url_to_params(raw_url).or(Err(DeobfError::Extraction("url params")))?;
 
-    // println!("sig: {}", sig);
     let deobf_sig = deobf.deobfuscate_sig(sig)?;
     url_params.insert(sp.to_string(), deobf_sig);
 
@@ -297,7 +313,7 @@ fn deobf_nsig(
     url_params: &mut BTreeMap<String, String>,
     deobf: &Deobfuscator,
     last_nsig: &mut [String; 2],
-) -> Result<()> {
+) -> Result<(), DeobfError> {
     let nsig: String;
     if let Some(n) = url_params.get("n") {
         nsig = if n == &last_nsig[0] {

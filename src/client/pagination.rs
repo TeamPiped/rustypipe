@@ -1,4 +1,4 @@
-use anyhow::Result;
+use crate::error::Result;
 
 use crate::model::{
     ChannelPlaylist, ChannelVideo, Comment, Paginator, PlaylistVideo, RecommendedVideo,

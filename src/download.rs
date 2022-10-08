@@ -2,7 +2,6 @@
 
 use std::{cmp::Ordering, ffi::OsString, ops::Range, path::PathBuf};
 
-use anyhow::{anyhow, bail, Result};
 use fancy_regex::Regex;
 use futures::stream::{self, StreamExt};
 use indicatif::ProgressBar;
@@ -17,9 +16,12 @@ use tokio::{
 };
 
 use crate::{
+    error::DownloadError,
     model::{stream_filter::Filter, AudioCodec, FileFormat, VideoCodec, VideoPlayer},
     util,
 };
+
+type Result<T> = core::result::Result<T, DownloadError>;
 
 const CHUNK_SIZE_MIN: u64 = 9000000;
 const CHUNK_SIZE_MAX: u64 = 10000000;
@@ -44,15 +46,32 @@ fn parse_cr_header(cr_header: &str) -> Result<(u64, u64)> {
 
     let captures = some_or_bail!(
         PATTERN.captures(cr_header).ok().flatten(),
-        Err(anyhow!(
-            "Content-Range header '{}' does not match pattern.",
-            cr_header
+        Err(DownloadError::Progressive(
+            format!(
+                "Content-Range header '{}' does not match pattern",
+                cr_header
+            )
+            .into()
         ))
     );
 
     Ok((
-        captures.get(2).unwrap().as_str().parse()?,
-        captures.get(3).unwrap().as_str().parse()?,
+        captures
+            .get(2)
+            .unwrap()
+            .as_str()
+            .parse()
+            .or(Err(DownloadError::Progressive(
+                "could not parse range header number".into(),
+            )))?,
+        captures
+            .get(3)
+            .unwrap()
+            .as_str()
+            .parse()
+            .or(Err(DownloadError::Progressive(
+                "could not parse range header number".into(),
+            )))?,
     ))
 }
 
@@ -76,7 +95,8 @@ async fn download_single_file<P: Into<PathBuf>>(
     let mut size: Option<u64> = None;
 
     // If the url is from googlevideo, extract file size from clen parameter
-    let (url_base, url_params) = util::url_to_params(url)?;
+    let (url_base, url_params) =
+        util::url_to_params(url).or_else(|e| Err(DownloadError::Other(e.to_string().into())))?;
     let is_gvideo = url_base.ends_with(".googlevideo.com/videoplayback");
     if is_gvideo {
         size = url_params.get("clen").and_then(|s| s.parse::<u64>().ok());
@@ -95,9 +115,14 @@ async fn download_single_file<P: Into<PathBuf>>(
 
         let cr_header = some_or_bail!(
             res.headers().get(header::CONTENT_RANGE),
-            Err(anyhow!("Did not get Content-Range header"))
+            Err(DownloadError::Progressive(
+                "Did not get Content-Range header".into()
+            ))
         )
-        .to_str()?;
+        .to_str()
+        .or(Err(DownloadError::Progressive(
+            "could not convert Content-Range header to string".into(),
+        )))?;
 
         let (_, original_size) = parse_cr_header(cr_header)?;
 
@@ -117,9 +142,12 @@ async fn download_single_file<P: Into<PathBuf>>(
             }
             Ordering::Greater => {
                 // WTF?
-                return Err(anyhow!(
-                    "Already downloaded file {} is larger than original",
-                    output_path_tmp.to_str().unwrap_or_default()
+                return Err(DownloadError::Other(
+                    format!(
+                        "Already downloaded file {} is larger than original",
+                        output_path_tmp.to_str().unwrap_or_default()
+                    )
+                    .into(),
                 ));
             }
         }
@@ -174,9 +202,14 @@ async fn download_chunks_by_header(
         // Content-Range: bytes 0-100/451368980
         let cr_header = some_or_bail!(
             res.headers().get(header::CONTENT_RANGE),
-            Err(anyhow!("Did not get Content-Range header"))
+            Err(DownloadError::Progressive(
+                "Did not get Content-Range header".into()
+            ))
         )
-        .to_str()?;
+        .to_str()
+        .or(Err(DownloadError::Progressive(
+            "could not convert Content-Range header to string".into(),
+        )))?;
 
         let (parsed_offset, parsed_size) = parse_cr_header(cr_header)?;
 
@@ -279,7 +312,7 @@ pub async fn download_video(
     let (video, audio) = player_data.select_video_audio_stream(filter);
 
     if video.is_none() && audio.is_none() {
-        return Err(anyhow!("no stream found"));
+        return Err(DownloadError::Input("no stream found".into()));
     }
 
     let format = output_format.unwrap_or(
@@ -287,7 +320,9 @@ pub async fn download_video(
             Some(_) => "mp4",
             None => match audio {
                 Some(audio) => match audio.codec {
-                    AudioCodec::Unknown => return Err(anyhow!("unknown audio codec")),
+                    AudioCodec::Unknown => {
+                        return Err(DownloadError::Input("unknown audio codec".into()))
+                    }
                     AudioCodec::Mp4a => "m4a",
                     AudioCodec::Opus => "opus",
                 },
@@ -302,7 +337,9 @@ pub async fn download_video(
         // If the downloaded video already exists, only error if the download path was
         // chosen explicitly.
         if output_fname_set {
-            bail!("File {} already exists", output_path.to_string_lossy());
+            return Err(DownloadError::Input(
+                format!("File {} already exists", output_path.to_string_lossy()).into(),
+            ))?;
         } else {
             info!(
                 "Downloaded video {} already exists",
@@ -366,7 +403,7 @@ pub async fn download_video(
                 .collect::<Vec<_>>()
                 .await
                 .into_iter()
-                .collect::<Result<_, _>>()?;
+                .collect::<core::result::Result<_, _>>()?;
         }
     }
 
@@ -423,10 +460,13 @@ async fn convert_streams<P: Into<PathBuf>>(
     let res = Command::new(ffmpeg).args(args).output().await?;
 
     if !res.status.success() {
-        bail!(
-            "ffmpeg error: {}",
-            std::str::from_utf8(&res.stderr).unwrap_or_default()
-        )
+        return Err(DownloadError::Ffmpeg(
+            format!(
+                "ffmpeg error: {}",
+                std::str::from_utf8(&res.stderr).unwrap_or_default()
+            )
+            .into(),
+        ));
     }
     Ok(())
 }

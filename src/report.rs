@@ -6,12 +6,12 @@ use std::{
     path::{Path, PathBuf},
 };
 
-use anyhow::Result;
 use chrono::{DateTime, Local};
 use log::error;
 use serde::{Deserialize, Serialize};
 
 use crate::deobfuscate::DeobfData;
+use crate::error::{Error, Result};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[non_exhaustive]
@@ -81,7 +81,7 @@ impl Default for Info {
     }
 }
 
-pub trait Reporter {
+pub trait Reporter: Sync + Send {
     fn report(&self, report: &Report);
 }
 
@@ -98,7 +98,11 @@ impl FileReporter {
 
     fn _report(&self, report: &Report) -> Result<()> {
         let report_path = get_report_path(&self.path, report, "json")?;
-        serde_json::to_writer_pretty(&File::create(report_path)?, &report)?;
+        serde_json::to_writer_pretty(&File::create(report_path)?, &report).or_else(|e| {
+            Err(Error::Other(
+                format!("could not serialize report. err: {}", e).into(),
+            ))
+        })?;
         Ok(())
     }
 }

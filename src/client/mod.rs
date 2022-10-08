@@ -14,7 +14,6 @@ mod channel_rss;
 use std::fmt::Debug;
 use std::sync::Arc;
 
-use anyhow::{anyhow, bail, Context, Result};
 use chrono::{DateTime, Duration, Utc};
 use fancy_regex::Regex;
 use log::{debug, error, warn};
@@ -27,6 +26,7 @@ use tokio::sync::RwLock;
 use crate::{
     cache::{CacheStorage, FileStorage},
     deobfuscate::{DeobfData, Deobfuscator},
+    error::{Error, ExtractionError, Result},
     model::{Country, Language},
     report::{FileReporter, Level, Report, Reporter},
     serializer::MapResult,
@@ -166,8 +166,8 @@ pub struct RustyPipe {
 
 struct RustyPipeRef {
     http: Client,
-    storage: Option<Box<dyn CacheStorage + Sync + Send>>,
-    reporter: Option<Box<dyn Reporter + Sync + Send>>,
+    storage: Option<Box<dyn CacheStorage>>,
+    reporter: Option<Box<dyn Reporter>>,
     n_retries: u32,
     consent_cookie: String,
     cache: CacheHolder,
@@ -183,8 +183,8 @@ struct RustyPipeOpts {
 }
 
 pub struct RustyPipeBuilder {
-    storage: Option<Box<dyn CacheStorage + Sync + Send>>,
-    reporter: Option<Box<dyn Reporter + Sync + Send>>,
+    storage: Option<Box<dyn CacheStorage>>,
+    reporter: Option<Box<dyn Reporter>>,
     n_retries: u32,
     user_agent: String,
     default_opts: RustyPipeOpts,
@@ -452,8 +452,11 @@ impl RustyPipe {
     }
 
     /// Execute the given http request.
-    async fn http_request(&self, request: Request) -> Result<Response, reqwest::Error> {
-        let mut last_res: Option<Result<Response, reqwest::Error>> = None;
+    async fn http_request(
+        &self,
+        request: Request,
+    ) -> core::result::Result<Response, reqwest::Error> {
+        let mut last_res = None;
         for n in 0..self.inner.n_retries {
             let res = self.inner.http.execute(request.try_clone().unwrap()).await;
             let emsg = match &res {
@@ -509,11 +512,13 @@ impl RustyPipe {
                         .build()
                         .unwrap(),
                 )
-                .await
-                .context("Failed to download sw.js")?;
+                .await?;
 
-            util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &swjs, 1)
-                .ok_or_else(|| anyhow!("Could not find desktop client version in sw.js"))
+            util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &swjs, 1).ok_or(Error::from(
+                ExtractionError::InvalidData(
+                    "Could not find desktop client version in sw.js".into(),
+                ),
+            ))
         };
 
         let from_html = async {
@@ -525,11 +530,13 @@ impl RustyPipe {
                         .build()
                         .unwrap(),
                 )
-                .await
-                .context("Failed to get YT Desktop page")?;
+                .await?;
 
-            util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &html, 1)
-                .ok_or_else(|| anyhow!("Could not find desktop client version on html page"))
+            util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &html, 1).ok_or(Error::from(
+                ExtractionError::InvalidData(
+                    "Could not find desktop client version in sw.js".into(),
+                ),
+            ))
         };
 
         match from_swjs.await {
@@ -552,11 +559,11 @@ impl RustyPipe {
                         .build()
                         .unwrap(),
                 )
-                .await
-                .context("Failed to download sw.js")?;
+                .await?;
 
-            util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &swjs, 1)
-                .ok_or_else(|| anyhow!("Could not find desktop client version in sw.js"))
+            util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &swjs, 1).ok_or(Error::from(
+                ExtractionError::InvalidData("Could not find music client version in sw.js".into()),
+            ))
         };
 
         let from_html = async {
@@ -568,11 +575,13 @@ impl RustyPipe {
                         .build()
                         .unwrap(),
                 )
-                .await
-                .context("Failed to get YT Desktop page")?;
+                .await?;
 
-            util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &html, 1)
-                .ok_or_else(|| anyhow!("Could not find desktop client version on html page"))
+            util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &html, 1).ok_or(Error::from(
+                ExtractionError::InvalidData(
+                    "Could not find music client version on html page".into(),
+                ),
+            ))
         };
 
         match from_swjs.await {
@@ -971,7 +980,7 @@ impl RustyPipeQuery {
         };
 
         if status.is_client_error() || status.is_server_error() {
-            let e = anyhow!("Server responded with error code {}", status);
+            let e = Error::HttpStatus(status.into());
             create_report(Level::ERR, Some(e.to_string()), vec![]);
             return Err(e);
         }
@@ -982,12 +991,12 @@ impl RustyPipeQuery {
                     if !mapres.warnings.is_empty() {
                         create_report(
                             Level::WRN,
-                            Some("Warnings during deserialization/mapping".to_owned()),
+                            Some(ExtractionError::Warnings.to_string()),
                             mapres.warnings,
                         );
 
                         if self.opts.strict {
-                            bail!("Warnings during deserialization/mapping");
+                            return Err(Error::Extraction(ExtractionError::Warnings));
                         }
                     } else if self.opts.report {
                         create_report(Level::DBG, None, vec![]);
@@ -995,15 +1004,13 @@ impl RustyPipeQuery {
                     Ok(mapres.c)
                 }
                 Err(e) => {
-                    let emsg = "Could not map reponse";
-                    create_report(Level::ERR, Some(emsg.to_owned()), vec![e.to_string()]);
-                    Err(e).context(emsg)
+                    create_report(Level::ERR, Some(e.to_string()), Vec::new());
+                    Err(e.into())
                 }
             },
             Err(e) => {
-                let emsg = "Could not deserialize response";
-                create_report(Level::ERR, Some(emsg.to_owned()), vec![e.to_string()]);
-                Err(e).context(emsg)
+                create_report(Level::ERR, Some(e.to_string()), Vec::new());
+                Err(Error::from(ExtractionError::from(e)))
             }
         }
     }
@@ -1058,7 +1065,7 @@ trait MapResponse<T> {
         id: &str,
         lang: Language,
         deobf: Option<&Deobfuscator>,
-    ) -> Result<MapResult<T>>;
+    ) -> core::result::Result<MapResult<T>, crate::error::ExtractionError>;
 }
 
 #[cfg(test)]

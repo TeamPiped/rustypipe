@@ -1,12 +1,11 @@
 use std::{borrow::Borrow, collections::BTreeMap, str::FromStr};
 
-use anyhow::Result;
 use fancy_regex::Regex;
 use once_cell::sync::Lazy;
 use rand::Rng;
 use url::Url;
 
-use crate::{dictionary, model::Language};
+use crate::{dictionary, error::Error, error::Result, model::Language};
 
 const CONTENT_PLAYBACK_NONCE_ALPHABET: &[u8; 64] =
     b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
@@ -44,7 +43,11 @@ pub fn generate_content_playback_nonce() -> String {
 ///
 /// `example.com/api?k1=v1&k2=v2 => example.com/api; {k1: v1, k2: v2}`
 pub fn url_to_params(url: &str) -> Result<(String, BTreeMap<String, String>)> {
-    let mut parsed_url = Url::parse(url)?;
+    let mut parsed_url = Url::parse(url).or_else(|e| {
+        Err(Error::Other(
+            format!("could not parse url `{}` err: {}", url, e).into(),
+        ))
+    })?;
     let url_params: BTreeMap<String, String> = parsed_url
         .query_pairs()
         .map(|(k, v)| (k.to_string(), v.to_string()))
@@ -56,7 +59,7 @@ pub fn url_to_params(url: &str) -> Result<(String, BTreeMap<String, String>)> {
 }
 
 /// Parse a string after removing all non-numeric characters
-pub fn parse_numeric<F>(string: &str) -> Result<F, F::Err>
+pub fn parse_numeric<F>(string: &str) -> core::result::Result<F, F::Err>
 where
     F: FromStr,
 {

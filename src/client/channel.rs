@@ -1,9 +1,9 @@
-use anyhow::{anyhow, bail, Result};
 use chrono::TimeZone;
 use serde::Serialize;
 use url::Url;
 
 use crate::{
+    error::{Error, ExtractionError},
     model::{
         Channel, ChannelInfo, ChannelOrder, ChannelPlaylist, ChannelVideo, Language, Paginator,
     },
@@ -43,7 +43,7 @@ impl RustyPipeQuery {
     pub async fn channel_videos(
         &self,
         channel_id: &str,
-    ) -> Result<Channel<Paginator<ChannelVideo>>> {
+    ) -> Result<Channel<Paginator<ChannelVideo>>, Error> {
         self.channel_videos_ordered(channel_id, ChannelOrder::default())
             .await
     }
@@ -52,7 +52,7 @@ impl RustyPipeQuery {
         &self,
         channel_id: &str,
         order: ChannelOrder,
-    ) -> Result<Channel<Paginator<ChannelVideo>>> {
+    ) -> Result<Channel<Paginator<ChannelVideo>>, Error> {
         let context = self.get_context(ClientType::Desktop, true).await;
         let request_body = QChannel {
             context,
@@ -77,7 +77,7 @@ impl RustyPipeQuery {
     pub async fn channel_videos_continuation(
         &self,
         ctoken: &str,
-    ) -> Result<Paginator<ChannelVideo>> {
+    ) -> Result<Paginator<ChannelVideo>, Error> {
         let context = self.get_context(ClientType::Desktop, true).await;
         let request_body = QContinuation {
             context,
@@ -97,7 +97,7 @@ impl RustyPipeQuery {
     pub async fn channel_playlists(
         &self,
         channel_id: &str,
-    ) -> Result<Channel<Paginator<ChannelPlaylist>>> {
+    ) -> Result<Channel<Paginator<ChannelPlaylist>>, Error> {
         let context = self.get_context(ClientType::Desktop, true).await;
         let request_body = QChannel {
             context,
@@ -118,7 +118,7 @@ impl RustyPipeQuery {
     pub async fn channel_playlists_continuation(
         &self,
         ctoken: &str,
-    ) -> Result<Paginator<ChannelPlaylist>> {
+    ) -> Result<Paginator<ChannelPlaylist>, Error> {
         let context = self.get_context(ClientType::Desktop, true).await;
         let request_body = QContinuation {
             context,
@@ -135,7 +135,7 @@ impl RustyPipeQuery {
         .await
     }
 
-    pub async fn channel_info(&self, channel_id: &str) -> Result<Channel<ChannelInfo>> {
+    pub async fn channel_info(&self, channel_id: &str) -> Result<Channel<ChannelInfo>, Error> {
         let context = self.get_context(ClientType::Desktop, true).await;
         let request_body = QChannel {
             context,
@@ -160,7 +160,7 @@ impl MapResponse<Channel<Paginator<ChannelVideo>>> for response::Channel {
         id: &str,
         lang: crate::model::Language,
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
-    ) -> Result<MapResult<Channel<Paginator<ChannelVideo>>>> {
+    ) -> Result<MapResult<Channel<Paginator<ChannelVideo>>>, ExtractionError> {
         let content = map_channel_content(self.contents, id);
         let mut warnings = content.warnings;
         let grid = match content.c {
@@ -191,7 +191,7 @@ impl MapResponse<Channel<Paginator<ChannelPlaylist>>> for response::Channel {
         id: &str,
         lang: Language,
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
-    ) -> Result<MapResult<Channel<Paginator<ChannelPlaylist>>>> {
+    ) -> Result<MapResult<Channel<Paginator<ChannelPlaylist>>>, ExtractionError> {
         let content = map_channel_content(self.contents, id);
         let mut warnings = content.warnings;
         let grid = match content.c {
@@ -222,7 +222,7 @@ impl MapResponse<Channel<ChannelInfo>> for response::Channel {
         id: &str,
         lang: Language,
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
-    ) -> Result<MapResult<Channel<ChannelInfo>>> {
+    ) -> Result<MapResult<Channel<ChannelInfo>>, ExtractionError> {
         let content = map_channel_content(self.contents, id);
         let mut warnings = content.warnings;
         let meta = match content.c {
@@ -278,11 +278,11 @@ impl MapResponse<Paginator<ChannelVideo>> for response::ChannelCont {
         _id: &str,
         lang: Language,
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
-    ) -> Result<MapResult<Paginator<ChannelVideo>>> {
+    ) -> Result<MapResult<Paginator<ChannelVideo>>, ExtractionError> {
         let mut actions = self.on_response_received_actions;
         let res = some_or_bail!(
             actions.try_swap_remove(0),
-            Err(anyhow!("no received action"))
+            Err(ExtractionError::InvalidData("no received action".into()))
         )
         .append_continuation_items_action
         .continuation_items;
@@ -297,11 +297,11 @@ impl MapResponse<Paginator<ChannelPlaylist>> for response::ChannelCont {
         _id: &str,
         _lang: Language,
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
-    ) -> Result<MapResult<Paginator<ChannelPlaylist>>> {
+    ) -> Result<MapResult<Paginator<ChannelPlaylist>>, ExtractionError> {
         let mut actions = self.on_response_received_actions;
         let res = some_or_bail!(
             actions.try_swap_remove(0),
-            Err(anyhow!("no received action"))
+            Err(ExtractionError::InvalidData("no received action".into()))
         )
         .append_continuation_items_action
         .continuation_items;
@@ -423,15 +423,14 @@ fn map_channel<T>(
     content: T,
     id: &str,
     lang: Language,
-) -> Result<Channel<T>> {
+) -> Result<Channel<T>, ExtractionError> {
     let header = header.c4_tabbed_header_renderer;
 
     if header.channel_id != id {
-        bail!(
+        return Err(ExtractionError::WrongResult(format!(
             "got wrong channel id {}, expected {}",
-            header.channel_id,
-            id
-        );
+            header.channel_id, id
+        )));
     }
 
     Ok(Channel {

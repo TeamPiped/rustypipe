@@ -7,7 +7,7 @@ use std::{
 
 use log::error;
 
-pub trait CacheStorage {
+pub trait CacheStorage: Sync + Send {
     fn write(&self, data: &str);
     fn read(&self) -> Option<String>;
 }

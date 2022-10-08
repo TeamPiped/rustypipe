@@ -1,13 +1,15 @@
 use std::collections::BTreeMap;
 
-use anyhow::Result;
-
-use crate::{model::ChannelRss, report::Report};
+use crate::{
+    error::{Error, ExtractionError},
+    model::ChannelRss,
+    report::Report,
+};
 
 use super::{response, RustyPipeQuery};
 
 impl RustyPipeQuery {
-    pub async fn channel_rss(&self, channel_id: &str) -> Result<ChannelRss> {
+    pub async fn channel_rss(&self, channel_id: &str) -> Result<ChannelRss, Error> {
         let url = format!(
             "https://www.youtube.com/feeds/videos.xml?channel_id={}",
             channel_id
@@ -41,7 +43,10 @@ impl RustyPipeQuery {
                     reporter.report(&report);
                 }
 
-                Err(e.into())
+                Err(ExtractionError::InvalidData(
+                    format!("could not deserialize xml: {}", e).into(),
+                )
+                .into())
             }
         }
     }
