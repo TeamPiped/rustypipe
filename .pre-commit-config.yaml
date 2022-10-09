@@ -11,3 +11,4 @@ repos:
       - id: cargo-fmt
       - id: cargo-check
       - id: cargo-clippy
+        args: ["--", "-D", "warnings"]
