@@ -82,7 +82,7 @@ pub enum ExtractionError {
     #[error("got wrong result from YT: {0}")]
     WrongResult(String),
     #[error("Warnings during deserialization/mapping")]
-    Warnings,
+    DeserializationWarnings,
 }
 
 /// Internal error

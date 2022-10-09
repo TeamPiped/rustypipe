@@ -453,11 +453,11 @@ pub struct VideoDetails {
     pub view_count: u64,
     /// Number of likes
     ///
-    /// `None` if the like count was hidden by the creator.
+    /// [`None`] if the like count was hidden by the creator.
     pub like_count: Option<u32>,
     /// Video publishing date. Start date in case of a livestream.
     ///
-    /// `None` if the date could not be parsed.
+    /// [`None`] if the date could not be parsed.
     pub publish_date: Option<DateTime<Local>>,
     /// Textual video publishing date (e.g. `Aug 2, 2013`, depends on language)
     pub publish_date_txt: String,
@@ -516,7 +516,7 @@ pub struct RecommendedVideo {
     pub title: String,
     /// Video length in seconds.
     ///
-    /// Is `None` for livestreams.
+    /// Is [`None`] for livestreams.
     pub length: Option<u32>,
     /// Video thumbnail
     pub thumbnail: Vec<Thumbnail>,
@@ -524,15 +524,15 @@ pub struct RecommendedVideo {
     pub channel: ChannelTag,
     /// Video publishing date.
     ///
-    /// `None` if the date could not be parsed.
+    /// [`None`] if the date could not be parsed.
     pub publish_date: Option<DateTime<Local>>,
     /// Textual video publish date (e.g. `11 months ago`, depends on language)
     ///
-    /// Is `None` for livestreams.
+    /// Is [`None`] for livestreams.
     pub publish_date_txt: Option<String>,
     /// View count
     ///
-    /// `None` if it could not be extracted.
+    /// [`None`] if it could not be extracted.
     pub view_count: Option<u64>,
     /// Is the video an active livestream?
     pub is_live: bool,
@@ -554,7 +554,7 @@ pub struct ChannelTag {
     pub verification: Verification,
     /// Approximate number of subscribers
     ///
-    /// `None` if hidden by the owner or not present.
+    /// [`None`] if hidden by the owner or not present.
     ///
     /// Info: This is only present in the `VideoDetails` response
     pub subscriber_count: Option<u64>,
@@ -600,7 +600,7 @@ pub struct Comment {
     pub author: Option<ChannelTag>,
     /// Comment publishing date.
     ///
-    /// `None` if the date could not be parsed.
+    /// [`None`] if the date could not be parsed.
     pub publish_date: Option<DateTime<Local>>,
     /// Textual comment publish date (e.g. `14 hours ago`), depends on language setting
     pub publish_date_txt: String,
@@ -635,7 +635,7 @@ pub struct Channel<T> {
     pub name: String,
     /// Channel subscriber count
     ///
-    /// `None` if the subscriber count was hidden by the owner
+    /// [`None`] if the subscriber count was hidden by the owner
     /// or could not be parsed.
     pub subscriber_count: Option<u64>,
     /// Channel avatar / profile picture
@@ -667,22 +667,22 @@ pub struct ChannelVideo {
     pub title: String,
     /// Video length in seconds.
     ///
-    /// Is `None` for livestreams.
+    /// Is [`None`] for livestreams.
     pub length: Option<u32>,
     /// Video thumbnail
     pub thumbnail: Vec<Thumbnail>,
     /// Video publishing date.
     ///
-    /// `None` if the date could not be parsed.
+    /// [`None`] if the date could not be parsed.
     /// May be in the future for upcoming videos
     pub publish_date: Option<DateTime<Local>>,
     /// Textual video publish date (e.g. `11 months ago`, depends on language)
     ///
-    /// Is `None` for livestreams and upcoming videos.
+    /// Is [`None`] for livestreams and upcoming videos.
     pub publish_date_txt: Option<String>,
     /// Number of views / current viewers in case of a livestream.
     ///
-    /// `None` if it could not be extracted.
+    /// [`None`] if it could not be extracted.
     pub view_count: Option<u64>,
     /// Is the video an active livestream?
     pub is_live: bool,

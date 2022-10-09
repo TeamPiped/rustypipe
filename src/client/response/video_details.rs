@@ -22,7 +22,7 @@ use super::{
 
 /// Video details response
 #[serde_as]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct VideoDetails {
     /// Video metadata + recommended videos
@@ -35,13 +35,13 @@ pub struct VideoDetails {
 }
 
 /// Video details main object, contains video metadata and recommended videos
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Contents {
     pub two_column_watch_next_results: TwoColumnWatchNextResults,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct TwoColumnWatchNextResults {
     /// Metadata about the video
@@ -53,7 +53,7 @@ pub struct TwoColumnWatchNextResults {
 }
 
 /// Metadata about the video
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct VideoResultsWrap {
     pub results: VideoResults,
@@ -61,7 +61,7 @@ pub struct VideoResultsWrap {
 
 /// Video metadata items
 #[serde_as]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct VideoResults {
     #[serde_as(as = "VecLogError<_>")]
@@ -70,7 +70,7 @@ pub struct VideoResults {
 
 /// Video metadata item
 #[serde_as]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub enum VideoResultsItem {
     #[serde(rename_all = "camelCase")]
@@ -104,14 +104,14 @@ pub enum VideoResultsItem {
     None,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ViewCount {
     pub video_view_count_renderer: ViewCountRenderer,
 }
 
 #[serde_as]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ViewCountRenderer {
     /// View count (`232,975,196 views`)
@@ -122,7 +122,7 @@ pub struct ViewCountRenderer {
 }
 
 /// Like/Dislike buttons
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct VideoActions {
     pub menu_renderer: VideoActionsMenu,
@@ -130,7 +130,7 @@ pub struct VideoActions {
 
 /// Like/Dislike buttons
 #[serde_as]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct VideoActionsMenu {
     #[serde_as(as = "VecSkipError<_>")]
@@ -143,7 +143,7 @@ pub struct VideoActionsMenu {
 ///
 /// See: https://github.com/TeamNewPipe/NewPipeExtractor/pull/926
 #[serde_as]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub enum TopLevelButton {
     ToggleButtonRenderer(ToggleButton),
@@ -154,7 +154,7 @@ pub enum TopLevelButton {
 }
 
 /// Like/Dislike button
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ToggleButtonWrap {
     pub toggle_button_renderer: ToggleButton,
@@ -162,7 +162,7 @@ pub struct ToggleButtonWrap {
 
 /// Like/Dislike button
 #[serde_as]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ToggleButton {
     /// Icon type: `LIKE` / `DISLIKE`
@@ -176,7 +176,7 @@ pub struct ToggleButton {
 
 /// Shows additional video metadata. Its only known use is for
 /// the Creative Commonse License.
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct MetadataRowContainer {
     pub metadata_row_container_renderer: MetadataRowContainerRenderer,
@@ -184,14 +184,14 @@ pub struct MetadataRowContainer {
 
 /// Shows additional video metadata. Its only known use is for
 /// the Creative Commonse License.
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct MetadataRowContainerRenderer {
     pub rows: Vec<MetadataRow>,
 }
 
 /// Additional video metadata item (Creative Commons License)
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct MetadataRow {
     pub metadata_row_renderer: MetadataRowRenderer,
@@ -199,7 +199,7 @@ pub struct MetadataRow {
 
 /// Additional video metadata item (Creative Commons License)
 #[serde_as]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct MetadataRowRenderer {
     // `License`
@@ -214,13 +214,13 @@ pub struct MetadataRowRenderer {
 }
 
 /// Contains current video ID
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CurrentVideoEndpoint {
     pub watch_endpoint: CurrentVideoWatchEndpoint,
 }
 /// Contains current video ID
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CurrentVideoWatchEndpoint {
     pub video_id: String,
@@ -231,7 +231,7 @@ pub struct CurrentVideoWatchEndpoint {
 /// 1. CommentsEntryPointHeaderRenderer: contains number of comments
 /// 2. ContinuationItemRenderer: contains continuation token
 #[serde_as]
-#[derive(Default, Clone, Debug, Deserialize)]
+#[derive(Default, Debug, Deserialize)]
 #[serde(rename_all = "kebab-case", tag = "sectionIdentifier")]
 pub enum ItemSection {
     CommentsEntryPoint {
@@ -247,7 +247,7 @@ pub enum ItemSection {
 }
 
 /// Item section containing comment count
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ItemSectionCommentCount {
     pub comments_entry_point_header_renderer: CommentsEntryPointHeaderRenderer,
@@ -255,7 +255,7 @@ pub struct ItemSectionCommentCount {
 
 /// Renderer of item section containing comment count
 #[serde_as]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CommentsEntryPointHeaderRenderer {
     #[serde_as(as = "Text")]
@@ -263,14 +263,14 @@ pub struct CommentsEntryPointHeaderRenderer {
 }
 
 /// Item section containing comments ctoken
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ItemSectionComments {
     pub continuation_item_renderer: ContinuationItemRenderer,
 }
 
 /// Video recommendations
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct RecommendationResultsWrap {
     pub secondary_results: RecommendationResults,
@@ -278,7 +278,7 @@ pub struct RecommendationResultsWrap {
 
 /// Video recommendations
 #[serde_as]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct RecommendationResults {
     /// Can be `None` for age-restricted videos
@@ -288,7 +288,7 @@ pub struct RecommendationResults {
 
 /// The engagement panels are displayed below the video and contain chapter markers
 /// and the comment section.
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct EngagementPanel {
     pub engagement_panel_section_list_renderer: EngagementPanelRenderer,
@@ -296,7 +296,7 @@ pub struct EngagementPanel {
 
 /// The engagement panels are displayed below the video and contain chapter markers
 /// and the comment section.
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "kebab-case", tag = "targetId")]
 pub enum EngagementPanelRenderer {
     /// Chapter markers
@@ -315,7 +315,7 @@ pub enum EngagementPanelRenderer {
 }
 
 /// Chapter markers
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ChapterMarkersContent {
     pub macro_markers_list_renderer: MacroMarkersListRenderer,
@@ -323,7 +323,7 @@ pub struct ChapterMarkersContent {
 
 /// Chapter markers
 #[serde_as]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct MacroMarkersListRenderer {
     #[serde_as(as = "VecLogError<_>")]
@@ -331,7 +331,7 @@ pub struct MacroMarkersListRenderer {
 }
 
 /// Chapter marker
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct MacroMarkersListItem {
     pub macro_markers_list_item_renderer: MacroMarkersListItemRenderer,
@@ -339,7 +339,7 @@ pub struct MacroMarkersListItem {
 
 /// Chapter marker
 #[serde_as]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct MacroMarkersListItemRenderer {
     /// Contains chapter start time in seconds
@@ -352,13 +352,13 @@ pub struct MacroMarkersListItemRenderer {
 }
 
 /// Contains chapter start time in seconds
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct MacroMarkersListItemOnTap {
     pub watch_endpoint: MacroMarkersListItemWatchEndpoint,
 }
 /// Contains chapter start time in seconds
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct MacroMarkersListItemWatchEndpoint {
     /// Chapter start time in seconds
@@ -367,7 +367,7 @@ pub struct MacroMarkersListItemWatchEndpoint {
 
 /// Comment section header
 /// (contains continuation tokens for fetching top/latest comments)
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CommentItemSectionHeader {
     pub engagement_panel_title_header_renderer: CommentItemSectionHeaderRenderer,
@@ -376,7 +376,7 @@ pub struct CommentItemSectionHeader {
 /// Comment section header
 /// (contains continuation tokens for fetching top/latest comments)
 #[serde_as]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CommentItemSectionHeaderRenderer {
     /// Approximate comment count (e.g. `81`, `2.2K`, `705K`)
@@ -390,7 +390,7 @@ pub struct CommentItemSectionHeaderRenderer {
 }
 
 /// Comment section menu
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CommentItemSectionHeaderMenu {
     pub sort_filter_sub_menu_renderer: CommentItemSectionHeaderMenuRenderer,
@@ -401,14 +401,14 @@ pub struct CommentItemSectionHeaderMenu {
 /// Items:
 /// - Top comments
 /// - Latest comments
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CommentItemSectionHeaderMenuRenderer {
     pub sub_menu_items: Vec<CommentItemSectionHeaderMenuItem>,
 }
 
 /// Comment section menu item
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CommentItemSectionHeaderMenuItem {
     /// Continuation token for fetching comments
@@ -420,14 +420,14 @@ pub struct CommentItemSectionHeaderMenuItem {
 */
 
 /// Video recommendations continuation response
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct VideoRecommendations {
     pub on_response_received_endpoints: Vec<RecommendationsContItem>,
 }
 
 /// Video recommendations continuation
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct RecommendationsContItem {
     pub append_continuation_items_action: AppendRecommendations,
@@ -435,7 +435,7 @@ pub struct RecommendationsContItem {
 
 /// Video recommendations continuation
 #[serde_as]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct AppendRecommendations {
     #[serde_as(as = "VecLogError<_>")]
@@ -448,7 +448,7 @@ pub struct AppendRecommendations {
 
 /// Video comments continuation response
 #[serde_as]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct VideoComments {
     /// - Initial response: 2*reloadContinuationItemsCommand
@@ -466,7 +466,7 @@ pub struct VideoComments {
 }
 
 /// Video comments continuation
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CommentsContItem {
     #[serde(alias = "reloadContinuationItemsCommand")]
@@ -475,7 +475,7 @@ pub struct CommentsContItem {
 
 /// Video comments continuation action
 #[serde_as]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct AppendComments {
     #[serde_as(as = "VecLogError<_>")]
@@ -483,7 +483,7 @@ pub struct AppendComments {
 }
 
 #[serde_as]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub enum CommentListItem {
     /// Top-level comment
@@ -513,14 +513,14 @@ pub enum CommentListItem {
     },
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Comment {
     pub comment_renderer: CommentRenderer,
 }
 
 #[serde_as]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CommentRenderer {
     /// Author name
@@ -551,19 +551,19 @@ pub struct CommentRenderer {
     pub action_buttons: CommentActionButtons,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct AuthorEndpoint {
     pub browse_endpoint: BrowseEndpoint,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct BrowseEndpoint {
     pub browse_id: String,
 }
 
-#[derive(Default, Clone, Copy, Debug, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(Default, Clone, Copy, Debug, Deserialize, PartialEq, Eq)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum CommentPriority {
     /// Default rendering priority
@@ -575,7 +575,7 @@ pub enum CommentPriority {
 
 /// Does not contain replies directly but a continuation token
 /// for fetching them.
-#[derive(Default, Clone, Debug, Deserialize)]
+#[derive(Default, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Replies {
     pub comment_replies_renderer: RepliesRenderer,
@@ -584,7 +584,7 @@ pub struct Replies {
 /// Does not contain replies directly but a continuation token
 /// for fetching them.
 #[serde_as]
-#[derive(Default, Clone, Debug, Deserialize)]
+#[derive(Default, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct RepliesRenderer {
     #[serde_as(as = "VecSkipError<_>")]
@@ -593,7 +593,7 @@ pub struct RepliesRenderer {
 
 /// These are the buttons for comment interaction (Like/Dislike/Reply).
 /// Contains the CreatorHeart.
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CommentActionButtons {
     pub comment_action_buttons_renderer: CommentActionButtonsRenderer,
@@ -601,7 +601,7 @@ pub struct CommentActionButtons {
 
 /// These are the buttons for comment interaction (Like/Dislike/Reply).
 /// Contains the CreatorHeart.
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CommentActionButtonsRenderer {
     pub like_button: ToggleButtonWrap,
@@ -609,27 +609,27 @@ pub struct CommentActionButtonsRenderer {
 }
 
 /// Video creators can endorse comments by marking them with a ❤️.
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CreatorHeart {
     pub creator_heart_renderer: CreatorHeartRenderer,
 }
 
 /// Video creators can endorse comments by marking them with a ❤️.
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CreatorHeartRenderer {
     pub is_hearted: bool,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct AuthorCommentBadge {
     pub author_comment_badge_renderer: AuthorCommentBadgeRenderer,
 }
 
 /// YouTube channel badge (verified) of the comment author
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct AuthorCommentBadgeRenderer {
     /// Verified: `CHECK`

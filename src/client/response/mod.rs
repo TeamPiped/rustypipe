@@ -27,20 +27,20 @@ use crate::serializer::{
     text::{Text, TextComponent},
 };
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ContentRenderer<T> {
     pub content: T,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ContentsRenderer<T> {
     #[serde(alias = "tabs")]
     pub contents: Vec<T>,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ThumbnailsWrap {
     #[serde(default)]
@@ -49,14 +49,14 @@ pub struct ThumbnailsWrap {
 
 /// List of images in different resolutions.
 /// Not only used for thumbnails, but also for avatars and banners.
-#[derive(Default, Clone, Debug, Deserialize)]
+#[derive(Default, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Thumbnails {
     #[serde(default)]
     pub thumbnails: Vec<Thumbnail>,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Thumbnail {
     pub url: String,
@@ -64,7 +64,7 @@ pub struct Thumbnail {
     pub height: u32,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub enum VideoListItem {
     GridVideoRenderer(GridVideoRenderer),
@@ -90,7 +90,7 @@ pub enum VideoListItem {
 
 /// Video displayed on a channel page
 #[serde_as]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct GridVideoRenderer {
     pub video_id: String,
@@ -111,7 +111,7 @@ pub struct GridVideoRenderer {
 
 /// Video displayed in recommendations
 #[serde_as]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CompactVideoRenderer {
     pub video_id: String,
@@ -145,7 +145,7 @@ pub struct CompactVideoRenderer {
 
 /// Video displayed in a playlist
 #[serde_as]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct PlaylistVideoRenderer {
     pub video_id: String,
@@ -160,7 +160,7 @@ pub struct PlaylistVideoRenderer {
 
 /// Playlist displayed on a channel page
 #[serde_as]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct GridPlaylistRenderer {
     pub playlist_id: String,
@@ -172,7 +172,7 @@ pub struct GridPlaylistRenderer {
 }
 
 #[serde_as]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct UpcomingEventData {
     /// Unixtime in seconds
@@ -180,26 +180,26 @@ pub struct UpcomingEventData {
     pub start_time: i64,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ContinuationItemRenderer {
     pub continuation_endpoint: ContinuationEndpoint,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ContinuationEndpoint {
     pub continuation_command: ContinuationCommand,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ContinuationCommand {
     pub token: String,
 }
 
 #[serde_as]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Icon {
     pub icon_type: IconType,
@@ -216,14 +216,14 @@ pub enum IconType {
     Like,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct VideoOwner {
     pub video_owner_renderer: VideoOwnerRenderer,
 }
 
 #[serde_as]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct VideoOwnerRenderer {
     pub title: TextComponent,
@@ -235,13 +235,13 @@ pub struct VideoOwnerRenderer {
     pub badges: Vec<ChannelBadge>,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ChannelBadge {
     pub metadata_badge_renderer: ChannelBadgeRenderer,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ChannelBadgeRenderer {
     pub style: ChannelBadgeStyle,
@@ -254,14 +254,14 @@ pub enum ChannelBadgeStyle {
     BadgeStyleTypeVerifiedArtist,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct TimeOverlay {
     pub thumbnail_overlay_time_status_renderer: TimeOverlayRenderer,
 }
 
 #[serde_as]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct TimeOverlayRenderer {
     /// `29:54`
@@ -285,7 +285,7 @@ pub enum TimeOverlayStyle {
 
 /// Badges are displayed on the video thumbnail and
 /// show certain video properties (e.g. active livestream)
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct VideoBadge {
     pub metadata_badge_renderer: VideoBadgeRenderer,
@@ -293,7 +293,7 @@ pub struct VideoBadge {
 
 /// Badges are displayed on the video thumbnail and
 /// show certain video properties (e.g. active livestream)
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct VideoBadgeRenderer {
     pub style: VideoBadgeStyle,
@@ -309,7 +309,7 @@ pub enum VideoBadgeStyle {
 // YouTube Music
 
 #[serde_as]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct MusicItem {
     pub thumbnail: MusicThumbnailRenderer,
@@ -322,21 +322,21 @@ pub struct MusicItem {
     pub fixed_columns: Vec<MusicColumn>,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct MusicThumbnailRenderer {
     #[serde(alias = "croppedSquareThumbnailRenderer")]
     pub music_thumbnail_renderer: ThumbnailsWrap,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct PlaylistItemData {
     pub video_id: String,
 }
 
 #[serde_as]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct MusicContentsRenderer<T> {
     pub contents: Vec<T>,
@@ -344,7 +344,7 @@ pub struct MusicContentsRenderer<T> {
     pub continuations: Option<Vec<MusicContinuation>>,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 pub struct MusicColumn {
     #[serde(
         rename = "musicResponsiveListItemFlexColumnRenderer",
@@ -354,18 +354,18 @@ pub struct MusicColumn {
 }
 
 #[serde_as]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 pub struct MusicColumnRenderer {
     pub text: TextComponent,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct MusicContinuation {
     pub next_continuation_data: MusicContinuationData,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct MusicContinuationData {
     pub continuation: String,

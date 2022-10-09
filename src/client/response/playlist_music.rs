@@ -9,33 +9,33 @@ use super::{
     ContentRenderer, ContentsRenderer, MusicContentsRenderer, MusicContinuation, MusicItem,
 };
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct PlaylistMusic {
     pub contents: Contents,
     pub header: Header,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Contents {
     pub single_column_browse_results_renderer: ContentsRenderer<Tab>,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Tab {
     pub tab_renderer: ContentRenderer<SectionList>,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct SectionList {
     /// Includes a continuation token for fetching recommendations
     pub section_list_renderer: MusicContentsRenderer<ItemSection>,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ItemSection {
     #[serde(alias = "musicPlaylistShelfRenderer")]
@@ -43,7 +43,7 @@ pub struct ItemSection {
 }
 
 #[serde_as]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct MusicShelf {
     /// Playlist ID (only for playlists)
@@ -55,20 +55,20 @@ pub struct MusicShelf {
     pub continuations: Option<Vec<MusicContinuation>>,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct PlaylistMusicItem {
     pub music_responsive_list_item_renderer: MusicItem,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Header {
     pub music_detail_header_renderer: HeaderRenderer,
 }
 
 #[serde_as]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct HeaderRenderer {
     #[serde_as(as = "crate::serializer::text::Text")]

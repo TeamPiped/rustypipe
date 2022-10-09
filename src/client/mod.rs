@@ -991,12 +991,14 @@ impl RustyPipeQuery {
                     if !mapres.warnings.is_empty() {
                         create_report(
                             Level::WRN,
-                            Some(ExtractionError::Warnings.to_string()),
+                            Some(ExtractionError::DeserializationWarnings.to_string()),
                             mapres.warnings,
                         );
 
                         if self.opts.strict {
-                            return Err(Error::Extraction(ExtractionError::Warnings));
+                            return Err(Error::Extraction(
+                                ExtractionError::DeserializationWarnings,
+                            ));
                         }
                     } else if self.opts.report {
                         create_report(Level::DBG, None, vec![]);

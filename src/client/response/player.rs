@@ -8,7 +8,7 @@ use serde_with::{json::JsonString, DefaultOnError};
 use super::Thumbnails;
 use crate::serializer::{text::Text, MapResult, VecLogError};
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Player {
     pub playability_status: PlayabilityStatus,
@@ -18,7 +18,7 @@ pub struct Player {
     pub microformat: Option<Microformat>,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(tag = "status", rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum PlayabilityStatus {
     #[serde(rename_all = "camelCase")]
@@ -36,11 +36,11 @@ pub enum PlayabilityStatus {
     Error { reason: String },
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 pub struct Empty {}
 
 #[serde_as]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct StreamingData {
     #[serde_as(as = "JsonString")]
@@ -58,7 +58,7 @@ pub struct StreamingData {
 }
 
 #[serde_as]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Format {
     pub itag: u32,
@@ -152,7 +152,7 @@ pub enum FormatType {
     FormatStreamTypeOtf,
 }
 
-#[derive(Default, Clone, Debug, Deserialize)]
+#[derive(Default, Debug, Deserialize)]
 #[serde(default, rename_all = "camelCase")]
 pub struct ColorInfo {
     pub primaries: Primaries,
@@ -166,7 +166,7 @@ pub enum Primaries {
     ColorPrimariesBt2020,
 }
 
-#[derive(Default, Clone, Debug, Deserialize)]
+#[derive(Default, Debug, Deserialize)]
 #[serde(default, rename_all = "camelCase")]
 pub struct AudioTrack {
     pub id: String,
@@ -174,20 +174,20 @@ pub struct AudioTrack {
     pub audio_is_default: bool,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Captions {
     pub player_captions_tracklist_renderer: PlayerCaptionsTracklistRenderer,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct PlayerCaptionsTracklistRenderer {
     pub caption_tracks: Vec<CaptionTrack>,
 }
 
 #[serde_as]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CaptionTrack {
     pub base_url: String,
@@ -197,7 +197,7 @@ pub struct CaptionTrack {
 }
 
 #[serde_as]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct VideoDetails {
     pub video_id: String,
@@ -215,7 +215,7 @@ pub struct VideoDetails {
     pub is_live_content: bool,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Microformat {
     #[serde(alias = "microformatDataRenderer")]
@@ -223,7 +223,7 @@ pub struct Microformat {
 }
 
 #[serde_as]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct PlayerMicroformatRenderer {
     #[serde(alias = "familySafe")]
