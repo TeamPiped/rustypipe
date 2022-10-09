@@ -46,7 +46,7 @@ impl RustyPipeQuery {
         let context = self.get_context(ClientType::Desktop, true).await;
         let request_body = QContinuation {
             context,
-            continuation: ctoken.to_owned(),
+            continuation: ctoken,
         };
 
         self.execute_request::<response::PlaylistCont, _, _>(
@@ -143,7 +143,7 @@ impl MapResponse<Playlist> for response::Playlist {
                     Err(ExtractionError::InvalidData("no video count".into()))
                 )
             }
-            None => videos.len() as u32,
+            None => videos.len() as u64,
         };
 
         let playlist_id = self.header.playlist_header_renderer.playlist_id;

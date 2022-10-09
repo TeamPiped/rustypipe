@@ -4,12 +4,10 @@ use serde::Deserialize;
 use serde_with::serde_as;
 use serde_with::{DefaultOnError, VecSkipError};
 
-use crate::serializer::text::TextComponents;
-use crate::serializer::MapResult;
 use crate::serializer::{
     ignore_any,
-    text::{AccessibilityText, AttributedText, Text},
-    VecLogError,
+    text::{AccessibilityText, AttributedText, Text, TextComponents},
+    MapResult, VecLogError,
 };
 
 use super::{
@@ -29,8 +27,8 @@ pub struct VideoDetails {
     pub contents: Contents,
     /// Video ID
     pub current_video_endpoint: CurrentVideoEndpoint,
-    #[serde_as(as = "VecLogError<_>")]
     /// Video chapters + comment section
+    #[serde_as(as = "VecLogError<_>")]
     pub engagement_panels: MapResult<Vec<EngagementPanel>>,
 }
 
@@ -546,7 +544,7 @@ pub struct CommentRenderer {
     // pub vote_count: Option<String>,
     pub author_comment_badge: Option<AuthorCommentBadge>,
     #[serde(default)]
-    pub reply_count: u32,
+    pub reply_count: u64,
     /// Buttons for comment interaction (Like/Dislike/Reply)
     pub action_buttons: CommentActionButtons,
 }

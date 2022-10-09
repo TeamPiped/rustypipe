@@ -26,7 +26,7 @@ use super::{
 
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
-struct QPlayer {
+struct QPlayer<'a> {
     context: YTContext,
     /// Website playback context
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -35,7 +35,7 @@ struct QPlayer {
     #[serde(skip_serializing_if = "Option::is_none")]
     cpn: Option<String>,
     /// YouTube video ID
-    video_id: String,
+    video_id: &'a str,
     /// Set to true to allow extraction of streams with sensitive content
     content_check_ok: bool,
     /// Probably refers to allowing sensitive content, too
@@ -82,7 +82,7 @@ impl RustyPipeQuery {
                     },
                 }),
                 cpn: None,
-                video_id: video_id.to_owned(),
+                video_id,
                 content_check_ok: true,
                 racy_check_ok: true,
             }
@@ -91,7 +91,7 @@ impl RustyPipeQuery {
                 context,
                 playback_context: None,
                 cpn: Some(util::generate_content_playback_nonce()),
-                video_id: video_id.to_owned(),
+                video_id,
                 content_check_ok: true,
                 racy_check_ok: true,
             }

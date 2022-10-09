@@ -56,22 +56,12 @@ fn parse_cr_header(cr_header: &str) -> Result<(u64, u64)> {
     );
 
     Ok((
-        captures
-            .get(2)
-            .unwrap()
-            .as_str()
-            .parse()
-            .or(Err(DownloadError::Progressive(
-                "could not parse range header number".into(),
-            )))?,
-        captures
-            .get(3)
-            .unwrap()
-            .as_str()
-            .parse()
-            .or(Err(DownloadError::Progressive(
-                "could not parse range header number".into(),
-            )))?,
+        captures.get(2).unwrap().as_str().parse().map_err(|_| {
+            DownloadError::Progressive("could not parse range header number".into())
+        })?,
+        captures.get(3).unwrap().as_str().parse().map_err(|_| {
+            DownloadError::Progressive("could not parse range header number".into())
+        })?,
     ))
 }
 
@@ -96,7 +86,7 @@ async fn download_single_file<P: Into<PathBuf>>(
 
     // If the url is from googlevideo, extract file size from clen parameter
     let (url_base, url_params) =
-        util::url_to_params(url).or_else(|e| Err(DownloadError::Other(e.to_string().into())))?;
+        util::url_to_params(url).map_err(|e| DownloadError::Other(e.to_string().into()))?;
     let is_gvideo = url_base.ends_with(".googlevideo.com/videoplayback");
     if is_gvideo {
         size = url_params.get("clen").and_then(|s| s.parse::<u64>().ok());
@@ -120,9 +110,9 @@ async fn download_single_file<P: Into<PathBuf>>(
             ))
         )
         .to_str()
-        .or(Err(DownloadError::Progressive(
-            "could not convert Content-Range header to string".into(),
-        )))?;
+        .map_err(|_| {
+            DownloadError::Progressive("could not convert Content-Range header to string".into())
+        })?;
 
         let (_, original_size) = parse_cr_header(cr_header)?;
 
@@ -207,9 +197,9 @@ async fn download_chunks_by_header(
             ))
         )
         .to_str()
-        .or(Err(DownloadError::Progressive(
-            "could not convert Content-Range header to string".into(),
-        )))?;
+        .map_err(|_| {
+            DownloadError::Progressive("could not convert Content-Range header to string".into())
+        })?;
 
         let (parsed_offset, parsed_size) = parse_cr_header(cr_header)?;
 

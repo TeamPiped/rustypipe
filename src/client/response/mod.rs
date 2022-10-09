@@ -2,6 +2,7 @@ pub mod channel;
 pub mod player;
 pub mod playlist;
 pub mod playlist_music;
+pub mod search;
 pub mod video_details;
 
 pub use channel::Channel;
@@ -10,6 +11,8 @@ pub use player::Player;
 pub use playlist::Playlist;
 pub use playlist::PlaylistCont;
 pub use playlist_music::PlaylistMusic;
+pub use search::Search;
+pub use search::SearchCont;
 pub use video_details::VideoComments;
 pub use video_details::VideoDetails;
 pub use video_details::VideoRecommendations;
@@ -67,10 +70,14 @@ pub struct Thumbnail {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub enum VideoListItem {
+    /// Video on channel page
     GridVideoRenderer(GridVideoRenderer),
+    /// Video in recommendations
     CompactVideoRenderer(CompactVideoRenderer),
+    /// Video in playlist
     PlaylistVideoRenderer(PlaylistVideoRenderer),
 
+    /// Playlist on channel page
     GridPlaylistRenderer(GridPlaylistRenderer),
 
     /// Continauation items are located at the end of a list
@@ -266,7 +273,7 @@ pub struct TimeOverlay {
 pub struct TimeOverlayRenderer {
     /// `29:54`
     ///
-    /// Is `LIVE` in case of a livestream
+    /// Is `LIVE` in case of a livestream and `SHORTS` in case of a short video
     #[serde_as(as = "Text")]
     pub text: String,
     #[serde(default)]
@@ -274,7 +281,7 @@ pub struct TimeOverlayRenderer {
     pub style: TimeOverlayStyle,
 }
 
-#[derive(Default, Clone, Copy, Debug, Deserialize, PartialEq, Eq, Hash)]
+#[derive(Default, Clone, Copy, Debug, Deserialize, PartialEq, Eq)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub enum TimeOverlayStyle {
     #[default]

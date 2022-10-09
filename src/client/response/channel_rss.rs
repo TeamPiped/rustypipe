@@ -48,7 +48,7 @@ pub struct Community {
 
 #[derive(Debug, Deserialize)]
 pub struct Rating {
-    pub count: u32,
+    pub count: u64,
 }
 
 #[derive(Debug, Deserialize)]

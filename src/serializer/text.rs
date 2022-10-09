@@ -305,23 +305,18 @@ impl<'de> DeserializeAs<'de, TextComponents> for AttributedText {
             }
 
             let mut buf = String::with_capacity(until - i_utf16);
-            loop {
-                match chars.next() {
-                    Some(c) => {
-                        buf.push(c);
+            for c in chars.by_ref() {
+                buf.push(c);
 
-                        // is character on Basic Multilingual Plane -> 16bit in UTF-16,
-                        // counts as 1 JS character, otherwise 32bit, counts as 2 JS characters
-                        if (c as u32) > 0xffff {
-                            i_utf16 += 1;
-                        };
-                        i_utf16 += 1;
+                // is character on Basic Multilingual Plane -> 16bit in UTF-16,
+                // counts as 1 JS character, otherwise 32bit, counts as 2 JS characters
+                if (c as u32) > 0xffff {
+                    i_utf16 += 1;
+                };
+                i_utf16 += 1;
 
-                        if i_utf16 >= until {
-                            break;
-                        }
-                    }
-                    None => break,
+                if i_utf16 >= until {
+                    break;
                 }
             }
             buf
@@ -339,7 +334,7 @@ impl<'de> DeserializeAs<'de, TextComponents> for AttributedText {
 
             // Replace no-break spaces, trim off whitespace and prefix character
             let txt_link = txt_link.trim();
-            let txt_link = txt_link.replace("\u{a0}", " ");
+            let txt_link = txt_link.replace('\u{a0}', " ");
 
             static LINK_PREFIX: Lazy<Regex> = Lazy::new(|| Regex::new("^[/•] *").unwrap());
             let txt_link = LINK_PREFIX.replace(&txt_link, "");

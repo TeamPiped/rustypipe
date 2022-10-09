@@ -19,9 +19,9 @@ use super::{
 
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
-struct QChannel {
+struct QChannel<'a> {
     context: YTContext,
-    browse_id: String,
+    browse_id: &'a str,
     params: Params,
 }
 
@@ -56,7 +56,7 @@ impl RustyPipeQuery {
         let context = self.get_context(ClientType::Desktop, true).await;
         let request_body = QChannel {
             context,
-            browse_id: channel_id.to_owned(),
+            browse_id: channel_id,
             params: match order {
                 ChannelOrder::Latest => Params::VideosLatest,
                 ChannelOrder::Oldest => Params::VideosOldest,
@@ -81,7 +81,7 @@ impl RustyPipeQuery {
         let context = self.get_context(ClientType::Desktop, true).await;
         let request_body = QContinuation {
             context,
-            continuation: ctoken.to_owned(),
+            continuation: ctoken,
         };
 
         self.execute_request::<response::ChannelCont, _, _>(
@@ -101,7 +101,7 @@ impl RustyPipeQuery {
         let context = self.get_context(ClientType::Desktop, true).await;
         let request_body = QChannel {
             context,
-            browse_id: channel_id.to_owned(),
+            browse_id: channel_id,
             params: Params::Playlists,
         };
 
@@ -122,7 +122,7 @@ impl RustyPipeQuery {
         let context = self.get_context(ClientType::Desktop, true).await;
         let request_body = QContinuation {
             context,
-            continuation: ctoken.to_owned(),
+            continuation: ctoken,
         };
 
         self.execute_request::<response::ChannelCont, _, _>(
@@ -139,7 +139,7 @@ impl RustyPipeQuery {
         let context = self.get_context(ClientType::Desktop, true).await;
         let request_body = QChannel {
             context,
-            browse_id: channel_id.to_owned(),
+            browse_id: channel_id,
             params: Params::Info,
         };
 
@@ -180,7 +180,7 @@ impl MapResponse<Channel<Paginator<ChannelVideo>>> for response::Channel {
                 id,
                 lang,
             )?,
-            warnings: warnings,
+            warnings,
         })
     }
 }
@@ -211,7 +211,7 @@ impl MapResponse<Channel<Paginator<ChannelPlaylist>>> for response::Channel {
                 id,
                 lang,
             )?,
-            warnings: warnings,
+            warnings,
         })
     }
 }

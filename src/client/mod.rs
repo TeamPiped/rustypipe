@@ -5,6 +5,7 @@ mod pagination;
 mod player;
 mod playlist;
 mod response;
+mod search;
 mod video_details;
 
 #[cfg(feature = "rss")]
@@ -124,9 +125,9 @@ struct ThirdParty {
 
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
-struct QContinuation {
+struct QContinuation<'a> {
     context: YTContext,
-    continuation: String,
+    continuation: &'a str,
 }
 
 const DEFAULT_UA: &str = "Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0";
@@ -514,11 +515,11 @@ impl RustyPipe {
                 )
                 .await?;
 
-            util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &swjs, 1).ok_or(Error::from(
-                ExtractionError::InvalidData(
+            util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &swjs, 1).ok_or_else(|| {
+                Error::from(ExtractionError::InvalidData(
                     "Could not find desktop client version in sw.js".into(),
-                ),
-            ))
+                ))
+            })
         };
 
         let from_html = async {
@@ -532,11 +533,11 @@ impl RustyPipe {
                 )
                 .await?;
 
-            util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &html, 1).ok_or(Error::from(
-                ExtractionError::InvalidData(
+            util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &html, 1).ok_or_else(|| {
+                Error::from(ExtractionError::InvalidData(
                     "Could not find desktop client version in sw.js".into(),
-                ),
-            ))
+                ))
+            })
         };
 
         match from_swjs.await {
@@ -561,9 +562,11 @@ impl RustyPipe {
                 )
                 .await?;
 
-            util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &swjs, 1).ok_or(Error::from(
-                ExtractionError::InvalidData("Could not find music client version in sw.js".into()),
-            ))
+            util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &swjs, 1).ok_or_else(|| {
+                Error::from(ExtractionError::InvalidData(
+                    "Could not find music client version in sw.js".into(),
+                ))
+            })
         };
 
         let from_html = async {
@@ -577,11 +580,11 @@ impl RustyPipe {
                 )
                 .await?;
 
-            util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &html, 1).ok_or(Error::from(
-                ExtractionError::InvalidData(
+            util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &html, 1).ok_or_else(|| {
+                Error::from(ExtractionError::InvalidData(
                     "Could not find music client version on html page".into(),
-                ),
-            ))
+                ))
+            })
         };
 
         match from_swjs.await {

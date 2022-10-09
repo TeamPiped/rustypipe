@@ -19,10 +19,10 @@ use super::{
 };
 
 #[derive(Debug, Serialize)]
-struct QVideo {
+struct QVideo<'a> {
     context: YTContext,
     /// YouTube video ID
-    video_id: String,
+    video_id: &'a str,
     /// Set to true to allow extraction of streams with sensitive content
     content_check_ok: bool,
     /// Probably refers to allowing sensitive content, too
@@ -34,7 +34,7 @@ impl RustyPipeQuery {
         let context = self.get_context(ClientType::Desktop, true).await;
         let request_body = QVideo {
             context,
-            video_id: video_id.to_owned(),
+            video_id,
             content_check_ok: true,
             racy_check_ok: true,
         };
@@ -56,7 +56,7 @@ impl RustyPipeQuery {
         let context = self.get_context(ClientType::Desktop, true).await;
         let request_body = QContinuation {
             context,
-            continuation: ctoken.to_owned(),
+            continuation: ctoken,
         };
 
         self.execute_request::<response::VideoRecommendations, _, _>(
@@ -73,7 +73,7 @@ impl RustyPipeQuery {
         let context = self.get_context(ClientType::Desktop, true).await;
         let request_body = QContinuation {
             context,
-            continuation: ctoken.to_owned(),
+            continuation: ctoken,
         };
 
         self.execute_request::<response::VideoComments, _, _>(
@@ -181,7 +181,7 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
             };
 
         let comment_count = comment_count_section.and_then(|s| {
-            util::parse_large_numstr::<u32>(
+            util::parse_large_numstr::<u64>(
                 &s.comments_entry_point_header_renderer.comment_count,
                 lang,
             )
@@ -411,7 +411,7 @@ impl MapResponse<Paginator<Comment>> for response::VideoComments {
                         count_text,
                     } => {
                         comment_count = count_text.and_then(|txt| {
-                            util::parse_numeric_or_warn::<u32>(&txt, &mut warnings)
+                            util::parse_numeric_or_warn::<u64>(&txt, &mut warnings)
                         });
                     }
                 });

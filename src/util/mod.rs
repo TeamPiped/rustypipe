@@ -43,11 +43,8 @@ pub fn generate_content_playback_nonce() -> String {
 ///
 /// `example.com/api?k1=v1&k2=v2 => example.com/api; {k1: v1, k2: v2}`
 pub fn url_to_params(url: &str) -> Result<(String, BTreeMap<String, String>)> {
-    let mut parsed_url = Url::parse(url).or_else(|e| {
-        Err(Error::Other(
-            format!("could not parse url `{}` err: {}", url, e).into(),
-        ))
-    })?;
+    let mut parsed_url = Url::parse(url)
+        .map_err(|e| Error::Other(format!("could not parse url `{}` err: {}", url, e).into()))?;
     let url_params: BTreeMap<String, String> = parsed_url
         .query_pairs()
         .map(|(k, v)| (k.to_string(), v.to_string()))

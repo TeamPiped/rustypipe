@@ -31,7 +31,7 @@ impl RustyPipeQuery {
                         msgs: Vec::new(),
                         deobf_data: None,
                         http_request: crate::report::HTTPRequest {
-                            url: url,
+                            url,
                             method: "GET".to_owned(),
                             req_header: BTreeMap::new(),
                             req_body: String::new(),

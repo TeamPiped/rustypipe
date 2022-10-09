@@ -20,7 +20,7 @@ pub struct Paginator<T> {
     ///
     /// Don't use this number to check if all items were fetched or for
     /// iterating over the items.
-    pub count: Option<u32>,
+    pub count: Option<u64>,
     /// Content of the paginator
     pub items: Vec<T>,
     /// The continuation token is passed to the YouTube API to fetch
@@ -41,7 +41,7 @@ impl<T> Default for Paginator<T> {
 }
 
 impl<T> Paginator<T> {
-    pub(crate) fn new(count: Option<u32>, items: Vec<T>, ctoken: Option<String>) -> Self {
+    pub(crate) fn new(count: Option<u64>, items: Vec<T>, ctoken: Option<String>) -> Self {
         Self {
             count: match ctoken {
                 Some(_) => count,

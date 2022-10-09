@@ -98,11 +98,8 @@ impl FileReporter {
 
     fn _report(&self, report: &Report) -> Result<()> {
         let report_path = get_report_path(&self.path, report, "json")?;
-        serde_json::to_writer_pretty(&File::create(report_path)?, &report).or_else(|e| {
-            Err(Error::Other(
-                format!("could not serialize report. err: {}", e).into(),
-            ))
-        })?;
+        serde_json::to_writer_pretty(&File::create(report_path)?, &report)
+            .map_err(|e| Error::Other(format!("could not serialize report. err: {}", e).into()))?;
         Ok(())
     }
 }

@@ -81,7 +81,7 @@ pub enum ExtractionError {
     InvalidData(Cow<'static, str>),
     #[error("got wrong result from YT: {0}")]
     WrongResult(String),
-    #[error("Warnings during deserialization/mapping")]
+    #[error("Warnings during deserialization/mapping in strict mode")]
     DeserializationWarnings,
 }
 
