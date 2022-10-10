@@ -271,6 +271,7 @@ async fn download_chunks_by_param(
     Ok(())
 }
 
+#[allow(dead_code)]
 struct StreamDownload {
     file: PathBuf,
     // track_name: String TODO: add for multiple audio languages,

@@ -497,6 +497,7 @@ mod tests {
     fn t_deserialize_text(#[case] test_json: &str, #[case] exp: Vec<&str>) {
         #[serde_as]
         #[derive(Deserialize)]
+        #[allow(dead_code)]
         struct S {
             #[serde_as(as = "Text")]
             txt: String,
@@ -504,6 +505,7 @@ mod tests {
 
         #[serde_as]
         #[derive(Deserialize)]
+        #[allow(dead_code)]
         struct SVec {
             #[serde_as(as = "Text")]
             txt: Vec<String>,
@@ -517,17 +519,20 @@ mod tests {
     }
 
     #[derive(Debug, Deserialize)]
+    #[allow(dead_code)]
     struct SLink {
         ln: TextComponent,
     }
 
     #[derive(Debug, Deserialize)]
+    #[allow(dead_code)]
     struct SLinks {
         ln: TextComponents,
     }
 
     #[serde_as]
     #[derive(Debug, Deserialize)]
+    #[allow(dead_code)]
     struct SAttributed {
         #[serde_as(as = "AttributedText")]
         ln: TextComponents,

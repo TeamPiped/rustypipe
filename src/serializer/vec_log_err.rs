@@ -98,12 +98,14 @@ mod tests {
 
     #[serde_as]
     #[derive(Debug, Deserialize)]
+    #[allow(dead_code)]
     struct S {
         #[serde_as(as = "crate::serializer::VecLogError<_>")]
         items: MapResult<Vec<Item>>,
     }
 
     #[derive(Debug, Deserialize)]
+    #[allow(dead_code)]
     struct Item {
         name: String,
     }
