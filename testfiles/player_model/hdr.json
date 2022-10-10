@@ -32,7 +32,6 @@
       }
     ],
     "channel": { "id": "UCYq-iAOSZBvoUxvfzwKIZWA", "name": "Jacob + Katie Schwarz" },
-    "publish_date": "2018-06-12T00:00:00Z",
     "view_count": 216221243,
     "keywords": [
       "4K",
@@ -55,9 +54,8 @@
       "ultra HD video",
       "red digital cinema"
     ],
-    "category": "Film & Animation",
-    "is_live_content": false,
-    "is_family_safe": true
+    "is_live": false,
+    "is_live_content": false
   },
   "video_streams": [
     {
@@ -1124,5 +1122,7 @@
     }
   ],
   "subtitles": [],
-  "expires_in_seconds": 21540
+  "expires_in_seconds": 21540,
+  "hls_manifest_url": null,
+  "dash_manifest_url": null
 }

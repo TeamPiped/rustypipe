@@ -35,9 +35,8 @@
     "publish_date": "2022-07-23T00:00:00Z",
     "view_count": 71877575,
     "keywords": [],
-    "category": "Entertainment",
-    "is_live_content": false,
-    "is_family_safe": true
+    "is_live": false,
+    "is_live_content": false
   },
   "video_streams": [
     {
@@ -1069,5 +1068,7 @@
       "auto_generated": false
     }
   ],
-  "expires_in_seconds": 21540
+  "expires_in_seconds": 21540,
+  "hls_manifest_url": null,
+  "dash_manifest_url": null
 }

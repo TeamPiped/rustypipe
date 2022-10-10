@@ -1,6 +1,5 @@
 use std::ops::Range;
 
-use chrono::NaiveDate;
 use serde::Deserialize;
 use serde_with::serde_as;
 use serde_with::{json::JsonString, DefaultOnError};
@@ -15,7 +14,6 @@ pub struct Player {
     pub streaming_data: Option<StreamingData>,
     pub captions: Option<Captions>,
     pub video_details: Option<VideoDetails>,
-    pub microformat: Option<Microformat>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -204,7 +202,8 @@ pub struct VideoDetails {
     pub title: String,
     #[serde_as(as = "JsonString")]
     pub length_seconds: u32,
-    pub keywords: Option<Vec<String>>,
+    #[serde(default)]
+    pub keywords: Vec<String>,
     pub channel_id: String,
     pub short_description: Option<String>,
     #[serde(default)]
@@ -213,23 +212,4 @@ pub struct VideoDetails {
     pub view_count: u64,
     pub author: String,
     pub is_live_content: bool,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct Microformat {
-    #[serde(alias = "microformatDataRenderer")]
-    pub player_microformat_renderer: PlayerMicroformatRenderer,
-}
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct PlayerMicroformatRenderer {
-    #[serde(alias = "familySafe")]
-    pub is_family_safe: bool,
-    pub category: String,
-    pub publish_date: NaiveDate,
-    // Only on YT Music
-    pub tags: Option<Vec<String>>,
 }

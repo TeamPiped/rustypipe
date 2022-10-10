@@ -3,7 +3,6 @@ use std::{
     collections::{BTreeMap, HashMap},
 };
 
-use chrono::{Local, NaiveDateTime, NaiveTime, TimeZone};
 use fancy_regex::Regex;
 use once_cell::sync::Lazy;
 use serde::Serialize;
@@ -157,21 +156,6 @@ impl MapResponse<VideoPlayer> for response::Player {
             self.video_details,
             Err(ExtractionError::InvalidData("no video details".into()))
         );
-        let microformat = self.microformat.map(|m| m.player_microformat_renderer);
-        let (publish_date, category, tags, is_family_safe) =
-            microformat.map_or((None, None, None, None), |m| {
-                (
-                    Local
-                        .from_local_datetime(&NaiveDateTime::new(
-                            m.publish_date,
-                            NaiveTime::from_hms(0, 0, 0),
-                        ))
-                        .single(),
-                    Some(m.category),
-                    m.tags,
-                    Some(m.is_family_safe),
-                )
-            });
 
         if video_details.video_id != id {
             return Err(ExtractionError::WrongResult(format!(
@@ -190,15 +174,10 @@ impl MapResponse<VideoPlayer> for response::Player {
                 id: video_details.channel_id,
                 name: video_details.author,
             },
-            publish_date,
             view_count: video_details.view_count,
-            keywords: match video_details.keywords {
-                Some(keywords) => keywords,
-                None => tags.unwrap_or_default(),
-            },
-            category,
+            keywords: video_details.keywords,
+            is_live,
             is_live_content: video_details.is_live_content,
-            is_family_safe,
         };
 
         let mut formats = streaming_data.formats.c;
@@ -670,17 +649,6 @@ mod tests {
         assert!(player_data.details.view_count > 146818808);
         assert_eq!(player_data.details.keywords[0], "spektrem");
         assert_eq!(player_data.details.is_live_content, false);
-
-        if client_type == ClientType::Desktop || client_type == ClientType::DesktopMusic {
-            assert!(player_data
-                .details
-                .publish_date
-                .unwrap()
-                .to_string()
-                .starts_with("2013-05-05 00:00:00"));
-            assert_eq!(player_data.details.category.unwrap(), "Music");
-            assert_eq!(player_data.details.is_family_safe.unwrap(), true);
-        }
 
         if client_type == ClientType::Ios {
             let video = player_data

@@ -39,7 +39,6 @@ VideoPlayer(
       id: "UCbxxEi-ImPlbLx5F-fHetEg",
       name: "RomanSenykMusic - Royalty Free Music",
     ),
-    publish_date: "2019-05-30T00:00:00",
     view_count: 426567,
     keywords: [
       "no copyright music",
@@ -64,9 +63,8 @@ VideoPlayer(
       "motivational music",
       "montage music",
     ],
-    category: Some("Music"),
+    is_live: false,
     is_live_content: false,
-    is_family_safe: Some(true),
   ),
   video_streams: [
     VideoStream(

@@ -71,17 +71,14 @@ pub struct VideoPlayerDetails {
     pub thumbnail: Vec<Thumbnail>,
     /// Channel of the video
     pub channel: ChannelId,
-    /// Video publishing date. Start date in case of a livestream.
-    pub publish_date: Option<DateTime<Local>>,
     /// Number of views / current viewers in case of a livestream.
     pub view_count: u64,
     /// List of words that describe the topic of the video
     pub keywords: Vec<String>,
-    pub category: Option<String>,
+    /// True if the video is an active livestream
+    pub is_live: bool,
     /// True if the video is/was livestreamed
     pub is_live_content: bool,
-    /// True if the video is not age-restricted
-    pub is_family_safe: Option<bool>,
 }
 
 /// Video stream
