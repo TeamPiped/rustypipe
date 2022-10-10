@@ -523,9 +523,7 @@ pub struct RecommendedVideo {
     /// Is [`None`] for livestreams.
     pub publish_date_txt: Option<String>,
     /// View count
-    ///
-    /// [`None`] if it could not be extracted.
-    pub view_count: Option<u64>,
+    pub view_count: u64,
     /// Is the video an active livestream?
     pub is_live: bool,
     /// Is the video a YouTube Short video (vertical and <60s)?
@@ -675,7 +673,7 @@ pub struct ChannelVideo {
     /// Number of views / current viewers in case of a livestream.
     ///
     /// [`None`] if it could not be extracted.
-    pub view_count: Option<u64>,
+    pub view_count: u64,
     /// Is the video an active livestream?
     pub is_live: bool,
     /// Is the video a YouTube Short video (vertical and <60s)?
@@ -788,7 +786,7 @@ pub struct SearchVideo {
     /// View count
     ///
     /// [`None`] if it could not be extracted.
-    pub view_count: Option<u64>,
+    pub view_count: u64,
     /// Is the video an active livestream?
     pub is_live: bool,
     /// Is the video a YouTube Short video (vertical and <60s)?

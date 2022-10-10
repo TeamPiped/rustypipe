@@ -209,7 +209,8 @@ fn map_search_items(
                         publish_date_txt: video.published_time_text,
                         view_count: video
                             .view_count_text
-                            .map(|txt| util::parse_numeric(&txt).unwrap_or_default()),
+                            .and_then(|txt| util::parse_numeric(&txt).ok())
+                            .unwrap_or_default(),
                         is_live: video.thumbnail_overlays.is_live(),
                         is_short: video.thumbnail_overlays.is_short(),
                         short_description: video

@@ -351,7 +351,8 @@ fn map_videos(
                     publish_date_txt: video.published_time_text,
                     view_count: video
                         .view_count_text
-                        .map(|txt| util::parse_numeric(&txt).unwrap_or_default()),
+                        .and_then(|txt| util::parse_numeric(&txt).ok())
+                        .unwrap_or_default(),
                     is_live,
                     is_short,
                     is_upcoming: video.upcoming_event_data.is_some(),
@@ -537,7 +538,7 @@ mod tests {
             }
             ChannelOrder::Popular => {
                 assert!(
-                    first_video.view_count.unwrap() > 2300000,
+                    first_video.view_count > 2300000,
                     "most popular video < 2.3M views"
                 )
             }
