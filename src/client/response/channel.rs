@@ -85,17 +85,16 @@ pub enum ChannelContent {
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct Header {
-    pub c4_tabbed_header_renderer: HeaderRenderer,
+pub enum Header {
+    C4TabbedHeaderRenderer(HeaderRenderer),
+    /// Used for special channels like YouTube Music
+    CarouselHeaderRenderer(ContentsRenderer<CarouselHeaderRendererItem>),
 }
 
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct HeaderRenderer {
-    pub channel_id: String,
-    /// Channel name
-    pub title: String,
     /// Approximate subscriber count (e.g. `880K subscribers`), depends on language.
     ///
     /// `None` if the subscriber count is hidden.
@@ -114,6 +113,21 @@ pub struct HeaderRenderer {
     pub tv_banner: Thumbnails,
 }
 
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub enum CarouselHeaderRendererItem {
+    #[serde(rename_all = "camelCase")]
+    TopicChannelDetailsRenderer {
+        #[serde_as(as = "Option<Text>")]
+        subscriber_count_text: Option<String>,
+        #[serde(default)]
+        avatar: Thumbnails,
+    },
+    #[serde(other, deserialize_with = "ignore_any")]
+    None,
+}
+
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Metadata {
@@ -123,6 +137,9 @@ pub struct Metadata {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ChannelMetadataRenderer {
+    pub title: String,
+    /// Channel ID
+    pub external_id: String,
     pub description: String,
     pub vanity_channel_url: Option<String>,
 }
@@ -146,8 +163,8 @@ pub struct MicroformatDataRenderer {
 pub struct ChannelFullMetadata {
     #[serde_as(as = "Text")]
     pub joined_date_text: String,
-    #[serde_as(as = "Text")]
-    pub view_count_text: String,
+    #[serde_as(as = "Option<Text>")]
+    pub view_count_text: Option<String>,
     #[serde(default)]
     #[serde_as(as = "VecSkipError<_>")]
     pub primary_links: Vec<PrimaryLink>,

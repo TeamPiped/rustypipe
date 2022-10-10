@@ -819,8 +819,7 @@ fn assert_channel_eevblog<T>(channel: &Channel<T>) {
     true,
     true
 )]
-// TODO: fix YouTube Music extraction error
-// #[case::music("UC-9-kyTW8ZkZNDHQJ6FgpwQ", "Music", false, false)]
+#[case::music("UC-9-kyTW8ZkZNDHQJ6FgpwQ", "Music", false, false)]
 #[tokio::test]
 async fn channel_more(
     #[case] id: &str,

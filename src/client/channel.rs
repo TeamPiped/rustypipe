@@ -236,7 +236,9 @@ impl MapResponse<Channel<ChannelInfo>> for response::Channel {
                     &meta.joined_date_text,
                     &mut warnings,
                 ),
-                view_count: util::parse_numeric_or_warn(&meta.view_count_text, &mut warnings),
+                view_count: meta
+                    .view_count_text
+                    .and_then(|txt| util::parse_numeric_or_warn(&txt, &mut warnings)),
                 links: meta
                     .primary_links
                     .into_iter()
@@ -249,7 +251,7 @@ impl MapResponse<Channel<ChannelInfo>> for response::Channel {
                     .collect(),
             })
             .unwrap_or_else(|| {
-                warnings.push("no metadata".to_owned());
+                warnings.push("no aboutFullMetadata".to_owned());
                 ChannelInfo {
                     create_date: None,
                     view_count: None,
@@ -424,33 +426,70 @@ fn map_channel<T>(
     id: &str,
     lang: Language,
 ) -> Result<Channel<T>, ExtractionError> {
-    let header = header.c4_tabbed_header_renderer;
+    let metadata = metadata.channel_metadata_renderer;
 
-    if header.channel_id != id {
+    if metadata.external_id != id {
         return Err(ExtractionError::WrongResult(format!(
             "got wrong channel id {}, expected {}",
-            header.channel_id, id
+            metadata.external_id, id
         )));
     }
 
-    Ok(Channel {
-        id: header.channel_id,
-        name: header.title,
-        subscriber_count: header
-            .subscriber_count_text
-            .and_then(|txt| util::parse_large_numstr(&txt, lang)),
-        avatar: header.avatar.into(),
-        description: metadata.channel_metadata_renderer.description,
-        tags: microformat.microformat_data_renderer.tags,
-        vanity_url: metadata
-            .channel_metadata_renderer
-            .vanity_channel_url
-            .as_ref()
-            .and_then(|url| map_vanity_url(url, id)),
-        banner: header.banner.into(),
-        mobile_banner: header.mobile_banner.into(),
-        tv_banner: header.tv_banner.into(),
-        content,
+    let vanity_url = metadata
+        .vanity_channel_url
+        .as_ref()
+        .and_then(|url| map_vanity_url(url, id));
+
+    Ok(match header {
+        response::channel::Header::C4TabbedHeaderRenderer(header) => Channel {
+            id: metadata.external_id,
+            name: metadata.title,
+            subscriber_count: header
+                .subscriber_count_text
+                .and_then(|txt| util::parse_large_numstr(&txt, lang)),
+            avatar: header.avatar.into(),
+            description: metadata.description,
+            tags: microformat.microformat_data_renderer.tags,
+            vanity_url,
+            banner: header.banner.into(),
+            mobile_banner: header.mobile_banner.into(),
+            tv_banner: header.tv_banner.into(),
+            content,
+        },
+        response::channel::Header::CarouselHeaderRenderer(carousel) => {
+            let hdata = carousel
+                .contents
+                .into_iter()
+                .filter_map(|item| {
+                    match item {
+                response::channel::CarouselHeaderRendererItem::TopicChannelDetailsRenderer {
+                    subscriber_count_text,
+                    avatar,
+                } => Some((subscriber_count_text, avatar)),
+                response::channel::CarouselHeaderRendererItem::None => None,
+            }
+                })
+                .next();
+
+            Channel {
+                id: metadata.external_id,
+                name: metadata.title,
+                subscriber_count: hdata.as_ref().and_then(|hdata| {
+                    hdata
+                        .0
+                        .as_ref()
+                        .and_then(|txt| util::parse_large_numstr(txt, lang))
+                }),
+                avatar: hdata.map(|hdata| hdata.1.into()).unwrap_or_default(),
+                description: metadata.description,
+                tags: microformat.microformat_data_renderer.tags,
+                vanity_url,
+                banner: Vec::new(),
+                mobile_banner: Vec::new(),
+                tv_banner: Vec::new(),
+                content,
+            }
+        }
     })
 }
 
