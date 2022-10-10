@@ -248,67 +248,13 @@ mod tests {
 
     use rstest::rstest;
 
-    use crate::client::RustyPipe;
-
     use super::*;
-
-    #[rstest]
-    #[case::long(
-        "PL5dDx681T4bR7ZF1IuWzOv1omlRbE7PiJ",
-        "Die schönsten deutschen Lieder | Beliebteste Lieder | Beste Deutsche Musik 2022",
-        true,
-        None,
-        Some(ChannelId {
-            id: "UCIekuFeMaV78xYfvpmoCnPg".to_owned(),
-            name: "Best Music".to_owned(),
-        })
-    )]
-    #[case::short(
-        "RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk",
-        "Easy Pop",
-        false,
-        None,
-        None
-    )]
-    #[case::nomusic(
-        "PL1J-6JOckZtE_P9Xx8D3b2O6w0idhuKBe",
-        "Minecraft SHINE",
-        false,
-        Some("SHINE - Survival Hardcore in New Environment: Auf einem Server machen sich tapfere Spieler auf, mystische Welten zu erkunden, magische Technologien zu erforschen und vorallem zu überleben...".to_owned()),
-        Some(ChannelId {
-            id: "UCQM0bS4_04-Y4JuYrgmnpZQ".to_owned(),
-            name: "Chaosflo44".to_owned(),
-        })
-    )]
-    #[test_log::test(tokio::test)]
-    async fn t_get_playlist(
-        #[case] id: &str,
-        #[case] name: &str,
-        #[case] is_long: bool,
-        #[case] description: Option<String>,
-        #[case] channel: Option<ChannelId>,
-    ) {
-        let rp = RustyPipe::builder().strict().build();
-        let playlist = rp.query().playlist(id).await.unwrap();
-
-        assert_eq!(playlist.id, id);
-        assert_eq!(playlist.name, name);
-        assert!(!playlist.videos.is_empty());
-        assert_eq!(!playlist.videos.is_exhausted(), is_long);
-        assert!(playlist.video_count > 10);
-        assert_eq!(playlist.video_count > 100, is_long);
-        assert_eq!(playlist.description, description);
-        if channel.is_some() {
-            assert_eq!(playlist.channel, channel);
-        }
-        assert!(!playlist.thumbnail.is_empty());
-    }
 
     #[rstest]
     #[case::short("short", "RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk")]
     #[case::long("long", "PL5dDx681T4bR7ZF1IuWzOv1omlRbE7PiJ")]
     #[case::nomusic("nomusic", "PL1J-6JOckZtE_P9Xx8D3b2O6w0idhuKBe")]
-    fn t_map_playlist_data(#[case] name: &str, #[case] id: &str) {
+    fn map_playlist_data(#[case] name: &str, #[case] id: &str) {
         let filename = format!("testfiles/playlist/playlist_{}.json", name);
         let json_path = Path::new(&filename);
         let json_file = File::open(json_path).unwrap();
@@ -325,37 +271,5 @@ mod tests {
         insta::assert_ron_snapshot!(format!("map_playlist_data_{}", name), map_res.c, {
             ".last_update" => "[date]"
         });
-    }
-
-    #[test_log::test(tokio::test)]
-    async fn t_playlist_cont() {
-        let rp = RustyPipe::builder().strict().build();
-        let mut playlist = rp
-            .query()
-            .playlist("PLbZIPy20-1pN7mqjckepWF78ndb6ci_qi")
-            .await
-            .unwrap();
-
-        playlist
-            .videos
-            .extend_pages(rp.query(), usize::MAX)
-            .await
-            .unwrap();
-        assert!(playlist.videos.items.len() > 100);
-        assert!(playlist.videos.count.unwrap() > 100);
-    }
-
-    #[test_log::test(tokio::test)]
-    async fn t_playlist_cont2() {
-        let rp = RustyPipe::builder().strict().build();
-        let mut playlist = rp
-            .query()
-            .playlist("PLbZIPy20-1pN7mqjckepWF78ndb6ci_qi")
-            .await
-            .unwrap();
-
-        playlist.videos.extend_limit(rp.query(), 101).await.unwrap();
-        assert!(playlist.videos.items.len() > 100);
-        assert!(playlist.videos.count.unwrap() > 100);
     }
 }

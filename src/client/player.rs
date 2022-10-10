@@ -559,7 +559,7 @@ fn get_audio_codec(codecs: Vec<&str>) -> AudioCodec {
 mod tests {
     use std::{fs::File, io::BufReader, path::Path};
 
-    use crate::{client::RustyPipe, deobfuscate::DeobfData};
+    use crate::deobfuscate::DeobfData;
 
     use super::*;
     use rstest::rstest;
@@ -579,7 +579,7 @@ mod tests {
     #[case::tv_html5_embed("tvhtml5embed")]
     #[case::android("android")]
     #[case::ios("ios")]
-    fn t_map_player_data(#[case] name: &str) {
+    fn map_player_data(#[case] name: &str) {
         let filename = format!("testfiles/player/{}_video.json", name);
         let json_path = Path::new(&filename);
         let json_file = File::open(json_path).unwrap();
@@ -608,133 +608,8 @@ mod tests {
         });
     }
 
-    /// Assert equality within 10% margin
-    fn assert_approx(left: f64, right: f64) {
-        if left != right {
-            let f = left / right;
-            assert!(
-                0.9 < f && f < 1.1,
-                "{} not within 10% margin of {}",
-                left,
-                right
-            );
-        }
-    }
-
-    #[rstest]
-    #[case::desktop(ClientType::Desktop)]
-    #[case::tv_html5_embed(ClientType::TvHtml5Embed)]
-    #[case::android(ClientType::Android)]
-    #[case::ios(ClientType::Ios)]
-    #[test_log::test(tokio::test)]
-    async fn get_player(#[case] client_type: ClientType) {
-        let rp = RustyPipe::builder().strict().build();
-        let player_data = rp.query().player("n4tK7LYFxI0", client_type).await.unwrap();
-
-        // dbg!(&player_data);
-
-        assert_eq!(player_data.details.id, "n4tK7LYFxI0");
-        assert_eq!(player_data.details.title, "Spektrem - Shine [NCS Release]");
-        if client_type == ClientType::DesktopMusic {
-            assert!(player_data.details.description.is_none());
-        } else {
-            assert!(player_data.details.description.unwrap().starts_with(
-                "NCS (NoCopyrightSounds): Empowering Creators through Copyright / Royalty Free Music"
-            ));
-        }
-        assert_eq!(player_data.details.length, 259);
-        assert!(!player_data.details.thumbnail.is_empty());
-        assert_eq!(player_data.details.channel.id, "UC_aEa8K-EOJ3D6gOs7HcyNg");
-        assert_eq!(player_data.details.channel.name, "NoCopyrightSounds");
-        assert!(player_data.details.view_count > 146818808);
-        assert_eq!(player_data.details.keywords[0], "spektrem");
-        assert_eq!(player_data.details.is_live_content, false);
-
-        if client_type == ClientType::Ios {
-            let video = player_data
-                .video_only_streams
-                .iter()
-                .find(|s| s.itag == 247)
-                .unwrap();
-            let audio = player_data
-                .audio_streams
-                .iter()
-                .find(|s| s.itag == 140)
-                .unwrap();
-
-            // Bitrates may change between requests
-            assert_approx(video.bitrate as f64, 1507068.0);
-            assert_eq!(video.average_bitrate, 1345149);
-            assert_eq!(video.size.unwrap(), 43553412);
-            assert_eq!(video.width, 1280);
-            assert_eq!(video.height, 720);
-            assert_eq!(video.fps, 30);
-            assert_eq!(video.quality, "720p");
-            assert_eq!(video.hdr, false);
-            assert_eq!(video.mime, "video/webm; codecs=\"vp09.00.31.08\"");
-            assert_eq!(video.format, VideoFormat::Webm);
-            assert_eq!(video.codec, VideoCodec::Vp9);
-
-            assert_approx(audio.bitrate as f64, 130685.0);
-            assert_eq!(audio.average_bitrate, 129496);
-            assert_eq!(audio.size, 4193863);
-            assert_eq!(audio.mime, "audio/mp4; codecs=\"mp4a.40.2\"");
-            assert_eq!(audio.format, AudioFormat::M4a);
-            assert_eq!(audio.codec, AudioCodec::Mp4a);
-        } else {
-            let video = player_data
-                .video_only_streams
-                .iter()
-                .find(|s| s.itag == 398)
-                .unwrap();
-            let audio = player_data
-                .audio_streams
-                .iter()
-                .find(|s| s.itag == 251)
-                .unwrap();
-
-            assert_approx(video.bitrate as f64, 1340829.0);
-            assert_approx(video.average_bitrate as f64, 1233444.0);
-            assert_approx(video.size.unwrap() as f64, 39936630.0);
-            assert_eq!(video.width, 1280);
-            assert_eq!(video.height, 720);
-            assert_eq!(video.fps, 30);
-            assert_eq!(video.quality, "720p");
-            assert_eq!(video.hdr, false);
-            assert_eq!(video.mime, "video/mp4; codecs=\"av01.0.05M.08\"");
-            assert_eq!(video.format, VideoFormat::Mp4);
-            assert_eq!(video.codec, VideoCodec::Av01);
-            assert_eq!(video.throttled, false);
-
-            assert_approx(audio.bitrate as f64, 142718.0);
-            assert_approx(audio.average_bitrate as f64, 130708.0);
-            assert_approx(audio.size as f64, 4232344.0);
-            assert_eq!(audio.mime, "audio/webm; codecs=\"opus\"");
-            assert_eq!(audio.format, AudioFormat::Webm);
-            assert_eq!(audio.codec, AudioCodec::Opus);
-            assert_eq!(audio.throttled, false);
-        }
-
-        assert!(player_data.expires_in_seconds > 10000);
-    }
-
-    /*
-    #[rstest]
-    #[case::desktop(ClientType::Desktop)]
-    // #[case::tv_html5_embed(ClientType::TvHtml5Embed)]
-    // #[case::android(ClientType::Android)]
-    // #[case::ios(ClientType::Ios)]
-    #[test_log::test(tokio::test)]
-    async fn get_player_live(#[case] client_type: ClientType) {
-        let rp = RustyPipe::builder().strict().build();
-        let player_data = rp.query().player("86YLFOog4GM", client_type).await.unwrap();
-
-        dbg!(&player_data);
-    }
-    */
-
     #[test]
-    fn t_cipher_to_url() {
+    fn cipher_to_url() {
         let signature_cipher = "s=w%3DAe%3DA6aDNQLkViKS7LOm9QtxZJHKwb53riq9qEFw-ecBWJCAiA%3DcEg0tn3dty9jEHszfzh4Ud__bg9CEHVx4ix-7dKsIPAhIQRw8JQ0qOA&sp=sig&url=https://rr5---sn-h0jelnez.googlevideo.com/videoplayback%3Fexpire%3D1659376413%26ei%3Dvb7nYvH5BMK8gAfBj7ToBQ%26ip%3D2003%253Ade%253Aaf06%253A6300%253Ac750%253A1b77%253Ac74a%253A80e3%26id%3Do-AB_BABwrXZJN428ZwDxq5ScPn2AbcGODnRlTVhCQ3mj2%26itag%3D251%26source%3Dyoutube%26requiressl%3Dyes%26mh%3DhH%26mm%3D31%252C26%26mn%3Dsn-h0jelnez%252Csn-4g5ednsl%26ms%3Dau%252Conr%26mv%3Dm%26mvi%3D5%26pl%3D37%26initcwndbps%3D1588750%26spc%3DlT-Khi831z8dTejFIRCvCEwx_6romtM%26vprv%3D1%26mime%3Daudio%252Fwebm%26ns%3Db_Mq_qlTFcSGlG9RpwpM9xQH%26gir%3Dyes%26clen%3D3781277%26dur%3D229.301%26lmt%3D1655510291473933%26mt%3D1659354538%26fvip%3D5%26keepalive%3Dyes%26fexp%3D24001373%252C24007246%26c%3DWEB%26rbqsm%3Dfr%26txp%3D4532434%26n%3Dd2g6G2hVqWIXxedQ%26sparams%3Dexpire%252Cei%252Cip%252Cid%252Citag%252Csource%252Crequiressl%252Cspc%252Cvprv%252Cmime%252Cns%252Cgir%252Cclen%252Cdur%252Clmt%26lsparams%3Dmh%252Cmm%252Cmn%252Cms%252Cmv%252Cmvi%252Cpl%252Cinitcwndbps%26lsig%3DAG3C_xAwRQIgCKCGJ1iu4wlaGXy3jcJyU3inh9dr1FIfqYOZEG_MdmACIQCbungkQYFk7EhD6K2YvLaHFMjKOFWjw001_tLb0lPDtg%253D%253D";
         let mut last_nsig: [String; 2] = ["".to_owned(), "".to_owned()];
         let map_res = map_url(

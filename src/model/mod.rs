@@ -835,6 +835,8 @@ pub struct SearchChannel {
     ///
     /// [`None`] if hidden by the owner or not present.
     pub subscriber_count: Option<u64>,
+    /// Number of videos from the channel
+    pub video_count: u64,
     /// Abbreviated channel description
     pub short_description: String,
 }

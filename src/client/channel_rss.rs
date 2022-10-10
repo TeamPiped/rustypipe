@@ -56,32 +56,7 @@ impl RustyPipeQuery {
 mod tests {
     use std::{fs::File, io::BufReader, path::Path};
 
-    use chrono::{Datelike, Timelike};
-
-    use crate::{
-        client::{response, RustyPipe},
-        model::ChannelRss,
-    };
-
-    #[tokio::test]
-    async fn get_channel_rss() {
-        let rp = RustyPipe::builder().strict().build();
-        let channel = rp
-            .query()
-            .channel_rss("UCHnyfMqiRRG1u-2MsSQLbXA")
-            .await
-            .unwrap();
-
-        assert_eq!(channel.id, "UCHnyfMqiRRG1u-2MsSQLbXA");
-        assert_eq!(channel.name, "Veritasium");
-        assert_eq!(channel.create_date.year(), 2010);
-        assert_eq!(channel.create_date.month(), 7);
-        assert_eq!(channel.create_date.day(), 21);
-        assert_eq!(channel.create_date.hour(), 7);
-        assert_eq!(channel.create_date.minute(), 18);
-
-        assert!(!channel.videos.is_empty());
-    }
+    use crate::{client::response, model::ChannelRss};
 
     #[test]
     fn map_channel_rss() {

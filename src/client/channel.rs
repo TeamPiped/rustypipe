@@ -494,148 +494,14 @@ fn map_channel_content(
 mod tests {
     use std::{fs::File, io::BufReader, path::Path};
 
-    use chrono::Datelike;
     use rstest::rstest;
 
     use crate::{
-        client::{response, MapResponse, RustyPipe},
+        client::{response, MapResponse},
         model::{Channel, ChannelInfo, ChannelPlaylist, ChannelVideo, Paginator},
-        param::{ChannelOrder, Language},
+        param::Language,
         serializer::MapResult,
     };
-
-    #[rstest]
-    #[case::latest(ChannelOrder::Latest)]
-    #[case::oldest(ChannelOrder::Oldest)]
-    #[case::popular(ChannelOrder::Popular)]
-    #[tokio::test]
-    async fn get_videos(#[case] order: ChannelOrder) {
-        let rp = RustyPipe::builder().strict().build();
-        let channel = rp
-            .query()
-            .channel_videos_ordered("UC2DjFE7Xf11URZqWBigcVOQ", order)
-            .await
-            .unwrap();
-
-        // dbg!(&channel);
-        check_channel(&channel);
-
-        assert!(
-            !channel.content.items.is_empty() && !channel.content.is_exhausted(),
-            "got no videos"
-        );
-
-        let first_video = &channel.content.items[0];
-        let first_video_date = first_video.publish_date.unwrap();
-        let age_days = (chrono::Local::now() - first_video_date).num_days();
-
-        match order {
-            ChannelOrder::Latest => {
-                assert!(age_days < 60, "latest video older than 60 days")
-            }
-            ChannelOrder::Oldest => {
-                assert!(age_days > 4700, "oldest video newer than 4700 days")
-            }
-            ChannelOrder::Popular => {
-                assert!(
-                    first_video.view_count > 2300000,
-                    "most popular video < 2.3M views"
-                )
-            }
-        }
-
-        let next = channel.content.next(rp.query()).await.unwrap().unwrap();
-        assert!(
-            !next.is_exhausted() && !next.items.is_empty(),
-            "no more videos"
-        );
-    }
-
-    #[tokio::test]
-    async fn get_playlists() {
-        let rp = RustyPipe::builder().strict().build();
-        let channel = rp
-            .query()
-            .channel_playlists("UC2DjFE7Xf11URZqWBigcVOQ")
-            .await
-            .unwrap();
-
-        // dbg!(&channel);
-        check_channel(&channel);
-
-        assert!(
-            !channel.content.items.is_empty() && !channel.content.is_exhausted(),
-            "got no playlists"
-        );
-
-        let next = channel.content.next(rp.query()).await.unwrap().unwrap();
-        assert!(
-            !next.is_exhausted() && !next.items.is_empty(),
-            "no more playlists"
-        );
-    }
-
-    #[tokio::test]
-    async fn get_info() {
-        let rp = RustyPipe::builder().strict().build();
-        let channel = rp
-            .query()
-            .channel_info("UC2DjFE7Xf11URZqWBigcVOQ")
-            .await
-            .unwrap();
-
-        dbg!(&channel);
-        check_channel(&channel);
-
-        let created = channel.content.create_date.unwrap();
-        assert_eq!(created.year(), 2009);
-        assert_eq!(created.month(), 4);
-        assert_eq!(created.day(), 4);
-
-        assert!(
-            channel.content.view_count.unwrap() > 186854340,
-            "exp >186M views, got {}",
-            channel.content.view_count.unwrap()
-        );
-
-        insta::assert_ron_snapshot!(channel.content.links, @r###"
-        [
-          ("EEVblog Web Site", "http://www.eevblog.com/"),
-          ("Twitter", "http://www.twitter.com/eevblog"),
-          ("Facebook", "http://www.facebook.com/EEVblog"),
-          ("EEVdiscover", "https://www.youtube.com/channel/UCkGvUEt8iQLmq3aJIMjT2qQ"),
-          ("The EEVblog Forum", "http://www.eevblog.com/forum"),
-          ("EEVblog Merchandise (T-Shirts)", "http://www.eevblog.com/merch"),
-          ("EEVblog Donations", "http://www.eevblog.com/donations/"),
-          ("Patreon", "https://www.patreon.com/eevblog"),
-          ("SubscribeStar", "https://www.subscribestar.com/eevblog"),
-          ("The AmpHour Radio Show", "http://www.theamphour.com/"),
-          ("Flickr", "http://www.flickr.com/photos/eevblog"),
-          ("EEVblog AMAZON Store", "http://www.amazon.com/gp/redirect.html?ie=UTF8&location=http%3A%2F%2Fwww.amazon.com%2F&tag=ee04-20&linkCode=ur2&camp=1789&creative=390957"),
-          ("2nd EEVblog Channel", "http://www.youtube.com/EEVblog2"),
-        ]
-        "###);
-    }
-
-    fn check_channel<T>(channel: &Channel<T>) {
-        assert_eq!(channel.id, "UC2DjFE7Xf11URZqWBigcVOQ");
-        assert_eq!(channel.name, "EEVblog");
-        assert!(
-            channel.subscriber_count.unwrap() > 880000,
-            "exp >880K subscribers, got {}",
-            channel.subscriber_count.unwrap()
-        );
-        assert!(!channel.avatar.is_empty(), "got no thumbnails");
-        assert_eq!(channel.description, "NO SCRIPT, NO FEAR, ALL OPINION\nAn off-the-cuff Video Blog about Electronics Engineering, for engineers, hobbyists, enthusiasts, hackers and Makers\nHosted by Dave Jones from Sydney Australia\n\nDONATIONS:\nBitcoin: 3KqyH1U3qrMPnkLufM2oHDU7YB4zVZeFyZ\nEthereum: 0x99ccc4d2654ba40744a1f678d9868ecb15e91206\nPayPal: david@alternatezone.com\n\nPatreon: https://www.patreon.com/eevblog\n\nEEVblog2: http://www.youtube.com/EEVblog2\nEEVdiscover: https://www.youtube.com/channel/UCkGvUEt8iQLmq3aJIMjT2qQ\n\nEMAIL:\nAdvertising/Commercial: eevblog+business@gmail.com\nFan mail: eevblog+fan@gmail.com\nHate Mail: eevblog+hate@gmail.com\n\nI DON'T DO PAID VIDEO SPONSORSHIPS, DON'T ASK!\n\nPLEASE:\nDo NOT ask for personal advice on something, post it in the EEVblog forum.\nI read ALL email, but please don't be offended if I don't have time to reply, I get a LOT of email.\n\nMailbag\nPO Box 7949\nBaulkham Hills NSW 2153\nAUSTRALIA");
-        assert!(!channel.tags.is_empty(), "got no tags");
-        assert_eq!(
-            channel.vanity_url.as_ref().unwrap(),
-            "https://www.youtube.com/c/EevblogDave"
-        );
-        assert!(!channel.banner.is_empty(), "got no banners");
-        assert!(!channel.mobile_banner.is_empty(), "got no mobile banners");
-        assert!(!channel.tv_banner.is_empty(), "got no tv banners");
-    }
 
     #[rstest]
     #[case::base("base", "UC2DjFE7Xf11URZqWBigcVOQ")]
@@ -644,7 +510,7 @@ mod tests {
     #[case::live("live", "UChs0pSaEoNLV4mevBFGaoKA")]
     #[case::empty("empty", "UCxBa895m48H5idw5li7h-0g")]
     #[case::upcoming("upcoming", "UCcvfHa-GHSOHFAjU0-Ie57A")]
-    fn t_map_channel_videos(#[case] name: &str, #[case] id: &str) {
+    fn map_channel_videos(#[case] name: &str, #[case] id: &str) {
         let filename = format!("testfiles/channel/channel_videos_{}.json", name);
         let json_path = Path::new(&filename);
         let json_file = File::open(json_path).unwrap();
@@ -672,7 +538,7 @@ mod tests {
     }
 
     #[test]
-    fn t_map_channel_videos_cont() {
+    fn map_channel_videos_cont() {
         let json_path = Path::new("testfiles/channel/channel_videos_cont.json");
         let json_file = File::open(json_path).unwrap();
 
@@ -693,7 +559,7 @@ mod tests {
     }
 
     #[test]
-    fn t_map_channel_playlists() {
+    fn map_channel_playlists() {
         let json_path = Path::new("testfiles/channel/channel_playlists.json");
         let json_file = File::open(json_path).unwrap();
 
@@ -712,7 +578,7 @@ mod tests {
     }
 
     #[test]
-    fn t_map_channel_playlists_cont() {
+    fn map_channel_playlists_cont() {
         let json_path = Path::new("testfiles/channel/channel_playlists_cont.json");
         let json_file = File::open(json_path).unwrap();
 
@@ -731,7 +597,7 @@ mod tests {
     }
 
     #[test]
-    fn t_map_channel_info() {
+    fn map_channel_info() {
         let json_path = Path::new("testfiles/channel/channel_info.json");
         let json_file = File::open(json_path).unwrap();
 

@@ -3,7 +3,7 @@
 //! Client for the public YouTube / YouTube Music API (Innertube),
 //! inspired by [NewPipe](https://github.com/TeamNewPipe/NewPipeExtractor).
 
-#![warn(clippy::todo)]
+#![warn(clippy::todo, clippy::dbg_macro)]
 
 #[macro_use]
 mod macros;

@@ -165,10 +165,14 @@ pub struct ChannelRenderer {
     pub title: String,
     pub thumbnail: Thumbnails,
     /// Abbreviated channel description
+    ///
+    /// Not present if the channel has no description
+    #[serde(default)]
     #[serde_as(as = "Text")]
     pub description_snippet: String,
-    #[serde_as(as = "Text")]
-    pub video_count_text: String,
+    /// Not present if the channel has no videos
+    #[serde_as(as = "Option<Text>")]
+    pub video_count_text: Option<String>,
     #[serde_as(as = "Option<Text>")]
     pub subscriber_count_text: Option<String>,
     /// Channel verification badge

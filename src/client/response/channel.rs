@@ -148,6 +148,7 @@ pub struct ChannelFullMetadata {
     pub joined_date_text: String,
     #[serde_as(as = "Text")]
     pub view_count_text: String,
+    #[serde(default)]
     #[serde_as(as = "VecSkipError<_>")]
     pub primary_links: Vec<PrimaryLink>,
 }

@@ -23,6 +23,7 @@ SearchResult(
         ],
         verification: verified,
         subscriber_count: Some(292),
+        video_count: 219,
         short_description: "Hi, I\'m Tina, aka Doobydobap! Food is the medium I use to tell stories and connect with people who share the same passion as I\u{a0}...",
       )),
       Video(SearchVideo(

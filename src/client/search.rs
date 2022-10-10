@@ -257,6 +257,10 @@ fn map_search_items(
                     subscriber_count: channel
                         .subscriber_count_text
                         .and_then(|txt| util::parse_numeric_or_warn(&txt, &mut warnings)),
+                    video_count: channel
+                        .video_count_text
+                        .and_then(|txt| util::parse_numeric(&txt).ok())
+                        .unwrap_or_default(),
                     short_description: channel.description_snippet,
                 }))
             }
@@ -281,24 +285,13 @@ mod tests {
     use std::{fs::File, io::BufReader, path::Path};
 
     use crate::{
-        client::{response, MapResponse, RustyPipe},
+        client::{response, MapResponse},
         model::{Paginator, SearchItem, SearchResult},
         param::Language,
         serializer::MapResult,
     };
 
     use rstest::rstest;
-
-    #[tokio::test]
-    async fn t1() {
-        let rp = RustyPipe::builder().strict().build();
-        let result = rp
-            .query()
-            .search("grewhbtrjlrbnerwhlbvuwrkeghurzueg")
-            .await
-            .unwrap();
-        dbg!(&result);
-    }
 
     #[rstest]
     #[case::default("default")]
