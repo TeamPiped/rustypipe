@@ -1,0 +1,536 @@
+---
+source: src/client/search.rs
+expression: map_res.c
+---
+Paginator(
+  count: Some(7250),
+  items: [
+    Video(SearchVideo(
+      id: "N5AKQflK1TU",
+      title: "When you impulse buy...",
+      length: Some(60),
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/N5AKQflK1TU/hq720_2.jpg?sqp=-oaymwEdCJUDENAFSFXyq4qpAw8IARUAAIhCcAHAAQbQAQE=&rs=AOn4CLAsKUEXxvFyA6J9cUPJlYYtRBjxmg",
+          width: 405,
+          height: 720,
+        ),
+      ],
+      channel: ChannelTag(
+        id: "UCh8gHdtzO2tXd593_bjErWg",
+        name: "Doobydobap",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/dm5Aq93xvVJz0NoVO88ieBkDXmuShCujGPlZ7qETMEPTrXvPUCFI3-BB6Xs_P-r6Uk3mnBy9zA=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: verified,
+        subscriber_count: None,
+      ),
+      publish_date: "[date]",
+      publish_date_txt: Some("1 day ago"),
+      view_count: Some(859366),
+      is_live: false,
+      is_short: true,
+      short_description: "shorts #jam https://doobydobap.com/recipe/hongsi_jam Instagram @doobydobap Join my discord!",
+    )),
+    Video(SearchVideo(
+      id: "OzIFALQ_YtA",
+      title: "taste testing gam!",
+      length: Some(60),
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/OzIFALQ_YtA/hq720_2.jpg?sqp=-oaymwEdCJUDENAFSFXyq4qpAw8IARUAAIhCcAHAAQbQAQE=&rs=AOn4CLD1E-eWjZrzHcfzh-DBWeZ6ewxNNg",
+          width: 405,
+          height: 720,
+        ),
+      ],
+      channel: ChannelTag(
+        id: "UCh8gHdtzO2tXd593_bjErWg",
+        name: "Doobydobap",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/dm5Aq93xvVJz0NoVO88ieBkDXmuShCujGPlZ7qETMEPTrXvPUCFI3-BB6Xs_P-r6Uk3mnBy9zA=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: verified,
+        subscriber_count: None,
+      ),
+      publish_date: "[date]",
+      publish_date_txt: Some("3 days ago"),
+      view_count: Some(1000402),
+      is_live: false,
+      is_short: true,
+      short_description: "shorts #fruit #mukbang Instagram @doobydobap Join my discord! https://discord.gg/doobyverse www.doobydobap.com for\u{a0}...",
+    )),
+    Video(SearchVideo(
+      id: "zYHB38UlzE0",
+      title: "Q&A l relationships, burnout, privilege, college advice, living alone, and life after youtube?",
+      length: Some(775),
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/zYHB38UlzE0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLD8--BbjAvsTyJg680DxjOYtxPmgw",
+          width: 360,
+          height: 202,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/zYHB38UlzE0/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBgsMHI2UUVo8pjqRfE2cCre3zf5w",
+          width: 720,
+          height: 404,
+        ),
+      ],
+      channel: ChannelTag(
+        id: "UCh8gHdtzO2tXd593_bjErWg",
+        name: "Doobydobap",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/dm5Aq93xvVJz0NoVO88ieBkDXmuShCujGPlZ7qETMEPTrXvPUCFI3-BB6Xs_P-r6Uk3mnBy9zA=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: verified,
+        subscriber_count: None,
+      ),
+      publish_date: "[date]",
+      publish_date_txt: Some("4 months ago"),
+      view_count: Some(528795),
+      is_live: false,
+      is_short: false,
+      short_description: "So many questions I wasn\'t able to answer, but if you comment below I\'ll try and answer every single one of them!!!! A little bit of\u{a0}...",
+    )),
+    Video(SearchVideo(
+      id: "GvutfmW26JQ",
+      title: "👹stay sour 🍋",
+      length: Some(52),
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/GvutfmW26JQ/hq720_2.jpg?sqp=-oaymwEdCJUDENAFSFXyq4qpAw8IARUAAIhCcAHAAQbQAQE=&rs=AOn4CLATzHy4VrMbKmNT14yfqCUBvElmpQ",
+          width: 405,
+          height: 720,
+        ),
+      ],
+      channel: ChannelTag(
+        id: "UCh8gHdtzO2tXd593_bjErWg",
+        name: "Doobydobap",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/dm5Aq93xvVJz0NoVO88ieBkDXmuShCujGPlZ7qETMEPTrXvPUCFI3-BB6Xs_P-r6Uk3mnBy9zA=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: verified,
+        subscriber_count: None,
+      ),
+      publish_date: "[date]",
+      publish_date_txt: Some("8 days ago"),
+      view_count: Some(1096055),
+      is_live: false,
+      is_short: true,
+      short_description: "Ingredients: ** Citrus Filling** 1 cup mandarin juice or any orange-y citrus in season! 6 eggs 1 1/2 cup sugar ⅓ cup flour zest of 1\u{a0}...",
+    )),
+    Video(SearchVideo(
+      id: "gK-jLnvVsb0",
+      title: "Contradicting myself",
+      length: Some(1381),
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/gK-jLnvVsb0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAuF_YftS_qXHPsyZC38Ghdif_L-A",
+          width: 360,
+          height: 202,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/gK-jLnvVsb0/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLC8d6mJKEt6nsHA3a6YoKPYe_T95w",
+          width: 720,
+          height: 404,
+        ),
+      ],
+      channel: ChannelTag(
+        id: "UCh8gHdtzO2tXd593_bjErWg",
+        name: "Doobydobap",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/dm5Aq93xvVJz0NoVO88ieBkDXmuShCujGPlZ7qETMEPTrXvPUCFI3-BB6Xs_P-r6Uk3mnBy9zA=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: verified,
+        subscriber_count: None,
+      ),
+      publish_date: "[date]",
+      publish_date_txt: Some("8 months ago"),
+      view_count: Some(928968),
+      is_live: false,
+      is_short: false,
+      short_description: "Sesame Granola Recipe 2 cups old-fashioned instant oats 2 cups mixture of seeds / nuts of your choice (I used ½ cup each of\u{a0}...",
+    )),
+    Video(SearchVideo(
+      id: "NudTbo2CJMY",
+      title: "Flying to London",
+      length: Some(1078),
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/NudTbo2CJMY/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDLD0fdpkRaLvP-wJLtDJKt3QPiTQ",
+          width: 360,
+          height: 202,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/NudTbo2CJMY/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAkZmva19aBSwjdA8lVxTWrI13wSQ",
+          width: 720,
+          height: 404,
+        ),
+      ],
+      channel: ChannelTag(
+        id: "UCh8gHdtzO2tXd593_bjErWg",
+        name: "Doobydobap",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/dm5Aq93xvVJz0NoVO88ieBkDXmuShCujGPlZ7qETMEPTrXvPUCFI3-BB6Xs_P-r6Uk3mnBy9zA=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: verified,
+        subscriber_count: None,
+      ),
+      publish_date: "[date]",
+      publish_date_txt: Some("7 months ago"),
+      view_count: Some(1137138),
+      is_live: false,
+      is_short: false,
+      short_description: "Tomato Beef Curry 1 packet Japanese Curry Roux 250g thinly sliced beef 2 large onions 2 tbsp butter 2 tbsp neutral oil 1 can\u{a0}...",
+    )),
+    Video(SearchVideo(
+      id: "Nc0HzyDRjm0",
+      title: "Stekki-don ㅣ After Hours ep.2",
+      length: Some(749),
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/Nc0HzyDRjm0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAwvID8-W_Ap8qGo17-LcvO2EFXUQ",
+          width: 360,
+          height: 202,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/Nc0HzyDRjm0/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBVtRhp7h8xzP9GEonE18HuXHEoGw",
+          width: 720,
+          height: 404,
+        ),
+      ],
+      channel: ChannelTag(
+        id: "UCh8gHdtzO2tXd593_bjErWg",
+        name: "Doobydobap",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/dm5Aq93xvVJz0NoVO88ieBkDXmuShCujGPlZ7qETMEPTrXvPUCFI3-BB6Xs_P-r6Uk3mnBy9zA=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: verified,
+        subscriber_count: None,
+      ),
+      publish_date: "[date]",
+      publish_date_txt: Some("8 months ago"),
+      view_count: Some(462437),
+      is_live: false,
+      is_short: false,
+      short_description: "Stekki-Don (for two, or for one very hungry person) 500g Ribeye 1 tsp Kosher salt 2 tbsp unsalted butter Sauce 4 tbsp light soy\u{a0}...",
+    )),
+    Video(SearchVideo(
+      id: "pvSWHm4wlxY",
+      title: "having kids",
+      length: Some(60),
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/pvSWHm4wlxY/hq720_2.jpg?sqp=-oaymwEdCJUDENAFSFXyq4qpAw8IARUAAIhCcAHAAQbQAQE=&rs=AOn4CLDt7ZAwQoObfa5A7gC_hJnU1WH4Ug",
+          width: 405,
+          height: 720,
+        ),
+      ],
+      channel: ChannelTag(
+        id: "UCh8gHdtzO2tXd593_bjErWg",
+        name: "Doobydobap",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/dm5Aq93xvVJz0NoVO88ieBkDXmuShCujGPlZ7qETMEPTrXvPUCFI3-BB6Xs_P-r6Uk3mnBy9zA=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: verified,
+        subscriber_count: None,
+      ),
+      publish_date: "[date]",
+      publish_date_txt: Some("1 month ago"),
+      view_count: Some(11285067),
+      is_live: false,
+      is_short: true,
+      short_description: "shorts Instagram @doobydobap Join my discord! https://discord.gg/doobyverse www.doobydobap.com for recipes & stories.",
+    )),
+    Video(SearchVideo(
+      id: "fGQUWI4o__A",
+      title: "Baskin Robbins in South Korea",
+      length: Some(53),
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/fGQUWI4o__A/hq720_2.jpg?sqp=-oaymwEdCJUDENAFSFXyq4qpAw8IARUAAIhCcAHAAQbQAQE=&rs=AOn4CLDyPuI762qzLAZM0QikxjFKVpoF9w",
+          width: 405,
+          height: 720,
+        ),
+      ],
+      channel: ChannelTag(
+        id: "UCh8gHdtzO2tXd593_bjErWg",
+        name: "Doobydobap",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/dm5Aq93xvVJz0NoVO88ieBkDXmuShCujGPlZ7qETMEPTrXvPUCFI3-BB6Xs_P-r6Uk3mnBy9zA=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: verified,
+        subscriber_count: None,
+      ),
+      publish_date: "[date]",
+      publish_date_txt: Some("3 weeks ago"),
+      view_count: Some(2415040),
+      is_live: false,
+      is_short: true,
+      short_description: "shorts #icecream Instagram @doobydobap Join my discord! https://discord.gg/doobyverse www.doobydobap.com for recipes\u{a0}...",
+    )),
+    Video(SearchVideo(
+      id: "GuyGyzZcumI",
+      title: "McDonald\'s Michelin Burger",
+      length: Some(59),
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/GuyGyzZcumI/hq720_2.jpg?sqp=-oaymwEdCJUDENAFSFXyq4qpAw8IARUAAIhCcAHAAQbQAQE=&rs=AOn4CLDtmyilZAgMw8VWNy518etIKi4phA",
+          width: 405,
+          height: 720,
+        ),
+      ],
+      channel: ChannelTag(
+        id: "UCh8gHdtzO2tXd593_bjErWg",
+        name: "Doobydobap",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/dm5Aq93xvVJz0NoVO88ieBkDXmuShCujGPlZ7qETMEPTrXvPUCFI3-BB6Xs_P-r6Uk3mnBy9zA=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: verified,
+        subscriber_count: None,
+      ),
+      publish_date: "[date]",
+      publish_date_txt: Some("2 months ago"),
+      view_count: Some(5100787),
+      is_live: false,
+      is_short: true,
+      short_description: "mcdonalds #michelin #fastfood Instagram @doobydobap Join my discord! https://discord.gg/doobyverse\u{a0}...",
+    )),
+    Video(SearchVideo(
+      id: "6VGG19W08UQ",
+      title: "Nostalgia is a powerful ingredient",
+      length: Some(52),
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/6VGG19W08UQ/hq720_2.jpg?sqp=-oaymwEdCI4CEOADSFXyq4qpAw8IARUAAIhCcAHAAQbQAQE=&rs=AOn4CLDMwP_7D3vLsNxwKorwHfB3CH8Ufg",
+          width: 270,
+          height: 480,
+        ),
+      ],
+      channel: ChannelTag(
+        id: "UCh8gHdtzO2tXd593_bjErWg",
+        name: "Doobydobap",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/dm5Aq93xvVJz0NoVO88ieBkDXmuShCujGPlZ7qETMEPTrXvPUCFI3-BB6Xs_P-r6Uk3mnBy9zA=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: verified,
+        subscriber_count: None,
+      ),
+      publish_date: "[date]",
+      publish_date_txt: Some("10 months ago"),
+      view_count: Some(55308394),
+      is_live: false,
+      is_short: true,
+      short_description: "shorts ASMR version on my Instagram @doobydobap Join my discord! https://discord.gg/doobyverse www.doobydobap.com\u{a0}...",
+    )),
+    Video(SearchVideo(
+      id: "p3Xhx6aQEXo",
+      title: "Jjajangmyun ㅣ Doob Gourmand ep.2",
+      length: Some(664),
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/p3Xhx6aQEXo/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBgdlq5Jo12Sh6E6Q5Q7Dt9dcI7Xw",
+          width: 360,
+          height: 202,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/p3Xhx6aQEXo/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB7JXd76hM3M-uqt4PW-3KyOnyqKw",
+          width: 720,
+          height: 404,
+        ),
+      ],
+      channel: ChannelTag(
+        id: "UCh8gHdtzO2tXd593_bjErWg",
+        name: "Doobydobap",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/dm5Aq93xvVJz0NoVO88ieBkDXmuShCujGPlZ7qETMEPTrXvPUCFI3-BB6Xs_P-r6Uk3mnBy9zA=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: verified,
+        subscriber_count: None,
+      ),
+      publish_date: "[date]",
+      publish_date_txt: Some("8 months ago"),
+      view_count: Some(774061),
+      is_live: false,
+      is_short: false,
+      short_description: "Stay on for bloopers! Vlog coming on Tuesday!! Location   의천각 Uicheongag 수정구 신흥동 6907번지 성남시 경기도 KR\u{a0}...",
+    )),
+    Video(SearchVideo(
+      id: "35Gu3Q6qEn4",
+      title: "Deal Breakers",
+      length: Some(60),
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/35Gu3Q6qEn4/hq720_2.jpg?sqp=-oaymwEdCI4CEOADSFXyq4qpAw8IARUAAIhCcAHAAQbQAQE=&rs=AOn4CLAuZwNttZi9nuuNpt4ddruoeyebHg",
+          width: 270,
+          height: 480,
+        ),
+      ],
+      channel: ChannelTag(
+        id: "UCh8gHdtzO2tXd593_bjErWg",
+        name: "Doobydobap",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/dm5Aq93xvVJz0NoVO88ieBkDXmuShCujGPlZ7qETMEPTrXvPUCFI3-BB6Xs_P-r6Uk3mnBy9zA=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: verified,
+        subscriber_count: None,
+      ),
+      publish_date: "[date]",
+      publish_date_txt: Some("8 months ago"),
+      view_count: Some(12314192),
+      is_live: false,
+      is_short: true,
+      short_description: "shorts another deal breaker: people who like chocolate chip banana bread over regular-- you heard me Recipe: Wet: 3 very ripe\u{a0}...",
+    )),
+    Video(SearchVideo(
+      id: "JoUdBrUpBN0",
+      title: "Jjambbong, jjajangmyeon\'s biggest rival",
+      length: Some(56),
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/JoUdBrUpBN0/hq720_2.jpg?sqp=-oaymwEdCI4CEOADSFXyq4qpAw8IARUAAIhCcAHAAQbQAQE=&rs=AOn4CLDgEw8JDViwrHKRTv9wcjolELJgJg",
+          width: 270,
+          height: 480,
+        ),
+      ],
+      channel: ChannelTag(
+        id: "UCh8gHdtzO2tXd593_bjErWg",
+        name: "Doobydobap",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/dm5Aq93xvVJz0NoVO88ieBkDXmuShCujGPlZ7qETMEPTrXvPUCFI3-BB6Xs_P-r6Uk3mnBy9zA=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: verified,
+        subscriber_count: None,
+      ),
+      publish_date: "[date]",
+      publish_date_txt: Some("1 year ago"),
+      view_count: Some(4266748),
+      is_live: false,
+      is_short: true,
+      short_description: "shorts Recipe on my website at www.doobydobap.com/recipe.",
+    )),
+    Video(SearchVideo(
+      id: "l76ovWsPLi8",
+      title: "Jjagglee, Ricotta Persimmon Toast, Plants, and Pringles! l Home Alone All Day Vlog",
+      length: Some(673),
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/l76ovWsPLi8/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDzoSXa3HTC78qSTARfNPUN3PAomA",
+          width: 360,
+          height: 202,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/l76ovWsPLi8/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDITVXNeQk6bi-5o88TVbPKC0wuug",
+          width: 720,
+          height: 404,
+        ),
+      ],
+      channel: ChannelTag(
+        id: "UCh8gHdtzO2tXd593_bjErWg",
+        name: "Doobydobap",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/dm5Aq93xvVJz0NoVO88ieBkDXmuShCujGPlZ7qETMEPTrXvPUCFI3-BB6Xs_P-r6Uk3mnBy9zA=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: verified,
+        subscriber_count: None,
+      ),
+      publish_date: "[date]",
+      publish_date_txt: Some("9 months ago"),
+      view_count: Some(439888),
+      is_live: false,
+      is_short: false,
+      short_description: "Ingredients for jjaglee 1 cup pork belly 1 cup fermented kimchi ½ onion 1 leek 1 firm tofu 1.5 tbsp gochujang 2 tbsp coarse\u{a0}...",
+    )),
+    Video(SearchVideo(
+      id: "zt1Lx9L619w",
+      title: "The biggest privilege my rich friends have",
+      length: Some(58),
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/zt1Lx9L619w/hq720_2.jpg?sqp=-oaymwEdCI4CEOADSFXyq4qpAw8IARUAAIhCcAHAAQbQAQE=&rs=AOn4CLCqMZy8XJJZH_CVWMBkIeDCC98brw",
+          width: 270,
+          height: 480,
+        ),
+      ],
+      channel: ChannelTag(
+        id: "UCh8gHdtzO2tXd593_bjErWg",
+        name: "Doobydobap",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/dm5Aq93xvVJz0NoVO88ieBkDXmuShCujGPlZ7qETMEPTrXvPUCFI3-BB6Xs_P-r6Uk3mnBy9zA=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: verified,
+        subscriber_count: None,
+      ),
+      publish_date: "[date]",
+      publish_date_txt: Some("6 months ago"),
+      view_count: Some(9312774),
+      is_live: false,
+      is_short: true,
+      short_description: "shorts #japanese #curry Tomato Beef Curry 1 packet Japanese Curry Roux 250g thinly sliced beef 2 large onions 2 tbsp butter 2\u{a0}...",
+    )),
+  ],
+  ctoken: Some("EpMDEgpkb29ieWRvYmFwGoQDU0NpQ0FRdE9OVUZMVVdac1N6RlVWWUlCQzA5NlNVWkJURkZmV1hSQmdnRUxjako1WlRaNlZ6QnVZazJDQVF0NldVaENNemhWYkhwRk1JSUJDMGQyZFhSbWJWY3lOa3BSZ2dFTFVuSnZXWEJNZUhoT2FsbUNBUXRzTkRkUmRYVmtjMW96TklJQkMyZExMV3BNYm5aV2MySXdnZ0VMVG5Wa1ZHSnZNa05LVFZtQ0FRdE9ZekJJZW5sRVVtcHRNSUlCQzNCMlUxZEliVFIzYkhoWmdnRUxaa2RSVlZkSk5HOWZYMEdDQVF0UWVFZHRVRFIyWDBFek9JSUJDMGQxZVVkNWVscGpkVzFKZ2dFTE5sWkhSekU1VnpBNFZWR0NBUXR3TTFob2VEWmhVVVZZYjRJQkN6TTFSM1V6VVRaeFJXNDBnZ0VMU205VlpFSnlWWEJDVGpDQ0FRdHNOelp2ZGxkelVFeHBPSUlCQzNwME1VeDRPVXcyTVRsM3NnRUdDZ1FJSnhBRBiB4OgYIgtzZWFyY2gtZmVlZA%3D%3D"),
+)

@@ -254,12 +254,63 @@ fn map_search_items(
 
 #[cfg(test)]
 mod tests {
-    use crate::client::RustyPipe;
+    use std::{fs::File, io::BufReader, path::Path};
 
-    #[tokio::test]
-    async fn t1() {
-        let rp = RustyPipe::builder().strict().build();
-        let result = rp.query().search("doobydoobap").await.unwrap();
-        dbg!(&result);
+    use crate::{
+        client::{response, MapResponse},
+        model::{Language, Paginator, SearchItem, SearchResult},
+        serializer::MapResult,
+    };
+
+    use rstest::rstest;
+
+    // #[tokio::test]
+    // async fn t1() {
+    //     let rp = RustyPipe::builder().strict().build();
+    //     let result = rp.query().search("doobydoobap").await.unwrap();
+    //     dbg!(&result);
+    // }
+
+    #[rstest]
+    #[case::default("default")]
+    fn t_map_search(#[case] name: &str) {
+        let filename = format!("testfiles/search/{}.json", name);
+        let json_path = Path::new(&filename);
+        let json_file = File::open(json_path).unwrap();
+
+        let search: response::Search = serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let map_res: MapResult<SearchResult> = search.map_response("", Language::En, None).unwrap();
+
+        assert!(
+            map_res.warnings.is_empty(),
+            "deserialization/mapping warnings: {:?}",
+            map_res.warnings
+        );
+
+        insta::assert_ron_snapshot!(format!("map_search_{}", name), map_res.c, {
+            ".items.items.*.publish_date" => "[date]",
+        });
+    }
+
+    #[test]
+    fn t_map_search_cont() {
+        let filename = format!("testfiles/search/cont.json");
+        let json_path = Path::new(&filename);
+        let json_file = File::open(json_path).unwrap();
+
+        let search_cont: response::SearchCont =
+            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let map_res: MapResult<Paginator<SearchItem>> =
+            search_cont.map_response("", Language::En, None).unwrap();
+
+        assert!(
+            map_res.warnings.is_empty(),
+            "deserialization/mapping warnings: {:?}",
+            map_res.warnings
+        );
+
+        insta::assert_ron_snapshot!("map_search_cont", map_res.c, {
+            ".items.*.publish_date" => "[date]",
+        });
     }
 }

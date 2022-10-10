@@ -24,6 +24,8 @@ pub async fn download_testfiles(project_root: &Path) {
     channel_info(&testfiles).await;
     channel_videos_cont(&testfiles).await;
     channel_playlists_cont(&testfiles).await;
+    search(&testfiles).await;
+    search_cont(&testfiles).await;
 }
 
 const CLIENT_TYPES: [ClientType; 5] = [
@@ -291,4 +293,31 @@ async fn channel_playlists_cont(testfiles: &Path) {
         .channel_playlists_continuation(&playlists.content.ctoken.unwrap())
         .await
         .unwrap();
+}
+
+async fn search(testfiles: &Path) {
+    let mut json_path = testfiles.to_path_buf();
+    json_path.push("search");
+    json_path.push("default.json");
+    if json_path.exists() {
+        return;
+    }
+
+    let rp = rp_testfile(&json_path);
+    rp.query().search("doobydoobap").await.unwrap();
+}
+
+async fn search_cont(testfiles: &Path) {
+    let mut json_path = testfiles.to_path_buf();
+    json_path.push("search");
+    json_path.push("cont.json");
+    if json_path.exists() {
+        return;
+    }
+
+    let rp = RustyPipe::new();
+    let search = rp.query().search("doobydoobap").await.unwrap();
+
+    let rp = rp_testfile(&json_path);
+    search.items.next(rp.query()).await.unwrap().unwrap();
 }
