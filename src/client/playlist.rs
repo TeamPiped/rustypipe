@@ -52,7 +52,7 @@ impl RustyPipeQuery {
 
         self.execute_request::<response::PlaylistCont, _, _>(
             ClientType::Desktop,
-            "get_playlist_continuation",
+            "playlist_continuation",
             ctoken,
             "browse",
             &request_body,

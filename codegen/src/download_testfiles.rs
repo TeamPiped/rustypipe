@@ -5,6 +5,7 @@ use std::{
 
 use rustypipe::{
     client::{ClientType, RustyPipe},
+    param::search_filter::{self, Entity, SearchFilter},
     report::{Report, Reporter},
 };
 
@@ -26,6 +27,8 @@ pub async fn download_testfiles(project_root: &Path) {
     channel_playlists_cont(&testfiles).await;
     search(&testfiles).await;
     search_cont(&testfiles).await;
+    search_playlists(&testfiles).await;
+    search_empty(&testfiles).await;
 }
 
 const CLIENT_TYPES: [ClientType; 5] = [
@@ -320,4 +323,39 @@ async fn search_cont(testfiles: &Path) {
 
     let rp = rp_testfile(&json_path);
     search.items.next(rp.query()).await.unwrap().unwrap();
+}
+
+async fn search_playlists(testfiles: &Path) {
+    let mut json_path = testfiles.to_path_buf();
+    json_path.push("search");
+    json_path.push("playlists.json");
+    if json_path.exists() {
+        return;
+    }
+
+    let rp = rp_testfile(&json_path);
+    rp.query()
+        .search_filter("pop", &SearchFilter::new().entity(Entity::Playlist))
+        .await
+        .unwrap();
+}
+
+async fn search_empty(testfiles: &Path) {
+    let mut json_path = testfiles.to_path_buf();
+    json_path.push("search");
+    json_path.push("empty.json");
+    if json_path.exists() {
+        return;
+    }
+
+    let rp = rp_testfile(&json_path);
+    rp.query()
+        .search_filter(
+            "test",
+            &SearchFilter::new()
+                .feature(search_filter::Feature::IsLive)
+                .feature(search_filter::Feature::Is3d),
+        )
+        .await
+        .unwrap();
 }

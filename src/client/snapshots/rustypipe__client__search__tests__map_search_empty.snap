@@ -1,0 +1,12 @@
+---
+source: src/client/search.rs
+expression: map_res.c
+---
+SearchResult(
+  items: Paginator(
+    count: Some(0),
+    items: [],
+    ctoken: None,
+  ),
+  corrected_query: None,
+)

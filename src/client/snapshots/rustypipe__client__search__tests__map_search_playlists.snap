@@ -1,0 +1,793 @@
+---
+source: src/client/search.rs
+expression: map_res.c
+---
+SearchResult(
+  items: Paginator(
+    count: Some(18932046),
+    items: [
+      Playlist(SearchPlaylist(
+        id: "RDCLAK5uy_nmS3YoxSwVVQk9lEQJ0UX4ZCjXsW_psU8",
+        name: "Pop\'s Biggest Hits",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/XfEMj-z3TtA/hqdefault.jpg?sqp=-oaymwEWCKgBEF5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLD6gcry37ecDQFM3oT0TSoc09ntYA",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/XfEMj-z3TtA/hqdefault.jpg?sqp=-oaymwEWCMQBEG5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLCaeD58YlI24VrSeEDjRpWFXMknqQ",
+            width: 196,
+            height: 110,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/XfEMj-z3TtA/hqdefault.jpg?sqp=-oaymwEXCPYBEIoBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLA9ELLsWiGSrRDmLJjTxUaqGaDEIg",
+            width: 246,
+            height: 138,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/XfEMj-z3TtA/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBWew-U00eFBCyBRF7oAtNa1PVwag",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        video_count: 225,
+        first_videos: [
+          SearchPlaylistVideo(
+            id: "XfEMj-z3TtA",
+            title: "STAY",
+            length: Some(142),
+          ),
+          SearchPlaylistVideo(
+            id: "MozAXGgC1Mc",
+            title: "Sugar",
+            length: Some(236),
+          ),
+        ],
+      )),
+      Playlist(SearchPlaylist(
+        id: "RDCLAK5uy_mVJ3RRi_YBfUJnZnQxLAedQQcXHujbUcg",
+        name: "Pump-Up Pop",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/J7p4bzqLvCw/hqdefault.jpg?sqp=-oaymwEWCKgBEF5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLDzo4blMvIXnyxUIwUuzuXY_LaWtQ",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/J7p4bzqLvCw/hqdefault.jpg?sqp=-oaymwEWCMQBEG5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLDwSDh4SXRAZ14m9P1b0bdLtpr_QA",
+            width: 196,
+            height: 110,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/J7p4bzqLvCw/hqdefault.jpg?sqp=-oaymwEXCPYBEIoBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLCfABT-JAx1D9GjpgnCYA3KVAJ-Qw",
+            width: 246,
+            height: 138,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/J7p4bzqLvCw/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBsG_bYP9C2JKoX0CiOYzJ88mmT3w",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        video_count: 100,
+        first_videos: [
+          SearchPlaylistVideo(
+            id: "J7p4bzqLvCw",
+            title: "Blinding Lights",
+            length: Some(202),
+          ),
+          SearchPlaylistVideo(
+            id: "G1ej5up7JG0",
+            title: "Shivers",
+            length: Some(208),
+          ),
+        ],
+      )),
+      Playlist(SearchPlaylist(
+        id: "RDCLAK5uy_mfdqvCAl8wodlx2P2_Ai2gNkiRDAufkkI",
+        name: "Happy Pop Hits",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/52QG9C9dnLM/hqdefault.jpg?sqp=-oaymwEWCKgBEF5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLC8G1TTiTHVcGsznlU_TU9U0ceVXg",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/52QG9C9dnLM/hqdefault.jpg?sqp=-oaymwEWCMQBEG5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLDsxPGcyDPoKcTZ7-eCGPAyTOW-Aw",
+            width: 196,
+            height: 110,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/52QG9C9dnLM/hqdefault.jpg?sqp=-oaymwEXCPYBEIoBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLDzAAhSLF6Gk3XE8IFdoq8oB0OKKw",
+            width: 246,
+            height: 138,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/52QG9C9dnLM/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLCjDgkgxLlvyO2v-pOnxeb8o8KZFQ",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        video_count: 59,
+        first_videos: [
+          SearchPlaylistVideo(
+            id: "52QG9C9dnLM",
+            title: "Better Days",
+            length: Some(161),
+          ),
+          SearchPlaylistVideo(
+            id: "ntG3GQdY_Ok",
+            title: "Light Switch",
+            length: Some(186),
+          ),
+        ],
+      )),
+      Playlist(SearchPlaylist(
+        id: "RDCLAK5uy_nHSqCJjDrW9HBhCNdF6tWPdnOMngOv0wA",
+        name: "Pop Gold",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/XqoanTj5pNY/hqdefault.jpg?sqp=-oaymwEWCKgBEF5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLBQcJVJB5X9sPdb3uCD-Y9o45giLQ",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/XqoanTj5pNY/hqdefault.jpg?sqp=-oaymwEWCMQBEG5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLA-iRXIOZjomz0S9VnYXndKKS2EWA",
+            width: 196,
+            height: 110,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/XqoanTj5pNY/hqdefault.jpg?sqp=-oaymwEXCPYBEIoBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLCPkVnFWec-5NlPHNqzra7iMZoydw",
+            width: 246,
+            height: 138,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/XqoanTj5pNY/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLA4Qioq1B2elOa_U3KNWevqiC-uMA",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        video_count: 100,
+        first_videos: [
+          SearchPlaylistVideo(
+            id: "XqoanTj5pNY",
+            title: "Someone Like You",
+            length: Some(286),
+          ),
+          SearchPlaylistVideo(
+            id: "th92jw2CFOA",
+            title: "When I Was Your Man",
+            length: Some(214),
+          ),
+        ],
+      )),
+      Playlist(SearchPlaylist(
+        id: "RDCLAK5uy_lb6CVU6S4uVugLVNTU9WhqfaomWAgnho4",
+        name: "Shout-Out Pop Hits",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/cTr-aGK-LpA/hqdefault.jpg?sqp=-oaymwEWCKgBEF5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLBjrufmdHxcuUBUvCTwuXCKS6bC6Q",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/cTr-aGK-LpA/hqdefault.jpg?sqp=-oaymwEWCMQBEG5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLBt0CXJgodjeqk5CgXpGk4naUsBVA",
+            width: 196,
+            height: 110,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/cTr-aGK-LpA/hqdefault.jpg?sqp=-oaymwEXCPYBEIoBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLDUSFvo2_3JxCdUxYaGFlOFgcWfsQ",
+            width: 246,
+            height: 138,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/cTr-aGK-LpA/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLDGer71A3S7QlPUscodvBJKh_MTwQ",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        video_count: 50,
+        first_videos: [
+          SearchPlaylistVideo(
+            id: "cTr-aGK-LpA",
+            title: "My Head & My Heart",
+            length: Some(175),
+          ),
+          SearchPlaylistVideo(
+            id: "xn0-IZZ6YO4",
+            title: "abcdefu",
+            length: Some(169),
+          ),
+        ],
+      )),
+      Playlist(SearchPlaylist(
+        id: "RDCLAK5uy_nDL8KeBrUagwyISwNmyEiSfYgz1gVCesg",
+        name: "Mellow Pop Classics",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/fdz_cabS9BU/hqdefault.jpg?sqp=-oaymwEWCKgBEF5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLCDJNUcAdZErCdr3NkjHNbTw7bt_g",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/fdz_cabS9BU/hqdefault.jpg?sqp=-oaymwEWCMQBEG5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLBAQ91IZx-Ub2t97AiCFs3cHxDhBQ",
+            width: 196,
+            height: 110,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/fdz_cabS9BU/hqdefault.jpg?sqp=-oaymwEXCPYBEIoBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBNVE1GeVioHg4N506P0V2bv1CveA",
+            width: 246,
+            height: 138,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/fdz_cabS9BU/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLDxsMrG2me6k1GAlY5hol8QsxqFqA",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        video_count: 50,
+        first_videos: [
+          SearchPlaylistVideo(
+            id: "fdz_cabS9BU",
+            title: "Thinking out Loud",
+            length: Some(282),
+          ),
+          SearchPlaylistVideo(
+            id: "BRbTpCrHv4o",
+            title: "Broken Strings",
+            length: Some(251),
+          ),
+        ],
+      )),
+      Playlist(SearchPlaylist(
+        id: "PLDIoUOhQQPlVr3qepMVRsDe4T8vNQsvno",
+        name: "Türkçe Pop Şarkılar 2022 - Yeni Hit Şarkılar 2022",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/zU2_jPxz9q4/hqdefault.jpg?sqp=-oaymwEWCKgBEF5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLAc2NY_eney0z9ZgYYATBps2gZ1sA",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/zU2_jPxz9q4/hqdefault.jpg?sqp=-oaymwEWCMQBEG5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLDPfbqLvp-j8rZnEyID2kZxA0Ut8A",
+            width: 196,
+            height: 110,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/zU2_jPxz9q4/hqdefault.jpg?sqp=-oaymwEXCPYBEIoBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBHmD3bkW2xrHw_3FEOGrHPrBlIcg",
+            width: 246,
+            height: 138,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/zU2_jPxz9q4/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLAx0crY3CtEX4Krg7gE9PUZtNs17g",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        video_count: 220,
+        first_videos: [
+          SearchPlaylistVideo(
+            id: "zU2_jPxz9q4",
+            title: "Ara - Zeynep Bastık (Paro Official ZB Version) | Music Video",
+            length: Some(201),
+          ),
+          SearchPlaylistVideo(
+            id: "vHIf_Gk8GLg",
+            title: "Mustafa Ceceli & Indira Elemes - İlla",
+            length: Some(153),
+          ),
+        ],
+      )),
+      Playlist(SearchPlaylist(
+        id: "RDCLAK5uy_nfs_t4FUu00E5ED6lveEBBX1VMYe1mFjk",
+        name: "Dance-Pop Bangers",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/hJWSZDJb-W4/hqdefault.jpg?sqp=-oaymwEWCKgBEF5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLBsc1uFTo4t_zluA6FSGSqDQtLkZQ",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/hJWSZDJb-W4/hqdefault.jpg?sqp=-oaymwEWCMQBEG5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLAIExDLVAu7bQO5ICO_CoafVFdXbA",
+            width: 196,
+            height: 110,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/hJWSZDJb-W4/hqdefault.jpg?sqp=-oaymwEXCPYBEIoBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLARVclxQLRDl1_us_hEd654fMmbqg",
+            width: 246,
+            height: 138,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/hJWSZDJb-W4/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBKSh5LxXlW2VmREBVqsxFHDIfOdA",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        video_count: 100,
+        first_videos: [
+          SearchPlaylistVideo(
+            id: "hJWSZDJb-W4",
+            title: "Bad Habits",
+            length: Some(231),
+          ),
+          SearchPlaylistVideo(
+            id: "c5l4CGQozWY",
+            title: "Work from Home",
+            length: Some(215),
+          ),
+        ],
+      )),
+      Playlist(SearchPlaylist(
+        id: "RDCLAK5uy_m_0U5VQNyyzwwH1lRi7cPAAGXqNQnAOqY",
+        name: "Laid-Back Sofa Pop",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/T7iuw9Qx7t4/hqdefault.jpg?sqp=-oaymwEWCKgBEF5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLDf4-aQcYM2eQM5ZPNU34uh7TUXZg",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/T7iuw9Qx7t4/hqdefault.jpg?sqp=-oaymwEWCMQBEG5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLDzFtcPgF0ZL8jPx8sSUGMfHqPOGQ",
+            width: 196,
+            height: 110,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/T7iuw9Qx7t4/hqdefault.jpg?sqp=-oaymwEXCPYBEIoBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBpW6VkLHOsaGfEXNJYEzDbRLEBLA",
+            width: 246,
+            height: 138,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/T7iuw9Qx7t4/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLB2lYmRYni-lrDVqAdC7Icng2h_4g",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        video_count: 67,
+        first_videos: [
+          SearchPlaylistVideo(
+            id: "T7iuw9Qx7t4",
+            title: "Astronomy",
+            length: Some(244),
+          ),
+          SearchPlaylistVideo(
+            id: "p-IXgwqhfmg",
+            title: "Love Yourself",
+            length: Some(234),
+          ),
+        ],
+      )),
+      Playlist(SearchPlaylist(
+        id: "RDCLAK5uy_mHW5bcduhjB-PkTePAe6EoRMj1xNT8gzY",
+        name: "K-Pop Girl Crush",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/18nDrsoii5M/hqdefault.jpg?sqp=-oaymwEWCKgBEF5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLAOBRM96oqmk0w6mKp-Fgqs13M18Q",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/18nDrsoii5M/hqdefault.jpg?sqp=-oaymwEWCMQBEG5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLAStndr5MTKCKrmfzqg5UkWq0cmjg",
+            width: 196,
+            height: 110,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/18nDrsoii5M/hqdefault.jpg?sqp=-oaymwEXCPYBEIoBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLCpMHjye8FAGIlmIV1v80bqqJsVSg",
+            width: 246,
+            height: 138,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/18nDrsoii5M/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBnhy03s5D6FVJm5Aq3kPTYTYd0rg",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        video_count: 78,
+        first_videos: [
+          SearchPlaylistVideo(
+            id: "18nDrsoii5M",
+            title: "붐바야 (Boombayah)",
+            length: Some(241),
+          ),
+          SearchPlaylistVideo(
+            id: "miqQAzOXPBo",
+            title: "달라달라 DALLA DALLA",
+            length: Some(200),
+          ),
+        ],
+      )),
+      Playlist(SearchPlaylist(
+        id: "RDCLAK5uy_kPqJ_FiGk-lbXtgM4IF42uokskSJZiVTI",
+        name: "Cardio Pop",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/G1ej5up7JG0/hqdefault.jpg?sqp=-oaymwEWCKgBEF5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLAPxWW2CR__ymYrR3MEfhvJg5TVHw",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/G1ej5up7JG0/hqdefault.jpg?sqp=-oaymwEWCMQBEG5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLCBTy4dco0iIb2PoWAp0_CrcBXmrw",
+            width: 196,
+            height: 110,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/G1ej5up7JG0/hqdefault.jpg?sqp=-oaymwEXCPYBEIoBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBi9mXU8851sFXh8AjGt-O6ep-3CA",
+            width: 246,
+            height: 138,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/G1ej5up7JG0/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLDkhvqyEq--Go-fC75ibDXwjHTiew",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        video_count: 80,
+        first_videos: [
+          SearchPlaylistVideo(
+            id: "G1ej5up7JG0",
+            title: "Shivers",
+            length: Some(208),
+          ),
+          SearchPlaylistVideo(
+            id: "vgn-b0ksX4g",
+            title: "Heaven Takes You Home",
+            length: Some(215),
+          ),
+        ],
+      )),
+      Playlist(SearchPlaylist(
+        id: "PLI_7Mg2Z_-4Lf7IYeiTEOV8HBn-nMqz5N",
+        name: "Pop 2022 ♫ Mix Pop En Ingles (English Pop Songs 2022)",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/a7GITgqwDVg/hqdefault.jpg?sqp=-oaymwEcCKgBEF5IWvKriqkDDwgBFQAAiEIYAe0BPQpXQQ==&rs=AOn4CLC2PiqPsAGSVrGLZpZcbGH3LKmunA",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/a7GITgqwDVg/hqdefault.jpg?sqp=-oaymwEcCMQBEG5IWvKriqkDDwgBFQAAiEIYAe0BR-F6QQ==&rs=AOn4CLAuk5XOTcgcxvhecG76HLW5DlSELA",
+            width: 196,
+            height: 110,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/a7GITgqwDVg/hqdefault.jpg?sqp=-oaymwEdCPYBEIoBSFryq4qpAw8IARUAAIhCGAHtAaRwnUE=&rs=AOn4CLDmm9vUAyQFjUg9bfRqH68ke5kw4Q",
+            width: 246,
+            height: 138,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/a7GITgqwDVg/hqdefault.jpg?sqp=-oaymwEdCNACELwBSFryq4qpAw8IARUAAIhCGAHtAT0K10E=&rs=AOn4CLBhcPJNO6iF0qQJIBZUok1Dmx5c5g",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        video_count: 70,
+        first_videos: [
+          SearchPlaylistVideo(
+            id: "a7GITgqwDVg",
+            title: "Charlie Puth - Left And Right (feat. Jung Kook of BTS) [Official Video]",
+            length: Some(160),
+          ),
+          SearchPlaylistVideo(
+            id: "H5v3kku4y6Q",
+            title: "Harry Styles - As It Was (Official Video)",
+            length: Some(166),
+          ),
+        ],
+      )),
+      Playlist(SearchPlaylist(
+        id: "PLX6L4t7t6ZanfCJ1wBxRdGZ_mk9ygmKqo",
+        name: "Deutsch Pop Hits NEU 2022",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/oE7Fe8QBw1Y/hqdefault.jpg?sqp=-oaymwEWCKgBEF5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLCfW02VI8I7eRoh001A-OJJZMfAPg",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/oE7Fe8QBw1Y/hqdefault.jpg?sqp=-oaymwEWCMQBEG5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLCkeW6auuvAzw_qD8pRNewyTIhLDg",
+            width: 196,
+            height: 110,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/oE7Fe8QBw1Y/hqdefault.jpg?sqp=-oaymwEXCPYBEIoBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLBwk4RdE3b6GG3rWObzmD9EioCSYg",
+            width: 246,
+            height: 138,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/oE7Fe8QBw1Y/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLCgElNnW-8F-sz7jDScGhIq8yHhsA",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        video_count: 164,
+        first_videos: [
+          SearchPlaylistVideo(
+            id: "oE7Fe8QBw1Y",
+            title: "Johannes Oerding - Kaleidoskop",
+            length: Some(217),
+          ),
+          SearchPlaylistVideo(
+            id: "JvqMO-tWlrU",
+            title: "Tim Bendzko - DAS LEBEN WIEDER LIEBEN (Offizielles Musikvideo)",
+            length: Some(169),
+          ),
+        ],
+      )),
+      Playlist(SearchPlaylist(
+        id: "PLMC9KNkIncKtPzgY-5rmhvj7fax8fdxoj",
+        name: "Pop Music Playlist - Timeless Pop Songs (Updated Weekly 2022)",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/U0CGsw6h60k/hqdefault.jpg?sqp=-oaymwEWCKgBEF5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLBUkleZFvnsicoaujx7qyAN3C_FBQ",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/U0CGsw6h60k/hqdefault.jpg?sqp=-oaymwEWCMQBEG5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLBm3rXa0OIOI9UDO4J_imVjU9V8KA",
+            width: 196,
+            height: 110,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/U0CGsw6h60k/hqdefault.jpg?sqp=-oaymwEXCPYBEIoBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLAtkXPojOiNFtkYRGhyae2oDRo46g",
+            width: 246,
+            height: 138,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/U0CGsw6h60k/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLDB6hCUZ36jw45hKMsVJZyLfswiDw",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        video_count: 200,
+        first_videos: [
+          SearchPlaylistVideo(
+            id: "U0CGsw6h60k",
+            title: "Rihanna - What\'s My Name? ft. Drake",
+            length: Some(265),
+          ),
+          SearchPlaylistVideo(
+            id: "OPf0YbXqDm0",
+            title: "Mark Ronson - Uptown Funk (Official Video) ft. Bruno Mars",
+            length: Some(271),
+          ),
+        ],
+      )),
+      Playlist(SearchPlaylist(
+        id: "PLgRdph0qPLy53IhYrQLPpATDDA2TpFey5",
+        name: "Teen-Pop 90-2000",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/4fndeDfaWCg/hqdefault.jpg?sqp=-oaymwEWCKgBEF5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLBDFc1Wy-4gOPj698kspzVo8TewJg",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/4fndeDfaWCg/hqdefault.jpg?sqp=-oaymwEWCMQBEG5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLCrvijkGGx4ap1MYJmoUzb13WVhiw",
+            width: 196,
+            height: 110,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/4fndeDfaWCg/hqdefault.jpg?sqp=-oaymwEXCPYBEIoBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLCd6ZZ56kP5R9LfIgASEHM2HpJUNQ",
+            width: 246,
+            height: 138,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/4fndeDfaWCg/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLDWhGtx6C9zCpMUyy-_1zSis30MTQ",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        video_count: 50,
+        first_videos: [
+          SearchPlaylistVideo(
+            id: "4fndeDfaWCg",
+            title: "Backstreet Boys - I Want It That Way (Official HD Video)",
+            length: Some(220),
+          ),
+          SearchPlaylistVideo(
+            id: "gJLIiF15wjQ",
+            title: "Spice Girls - Wannabe (Official Music Video)",
+            length: Some(236),
+          ),
+        ],
+      )),
+      Playlist(SearchPlaylist(
+        id: "RDCLAK5uy_nCVF_zUZizzRcojIUuYmaXxMoPgg2WMDo",
+        name: "Klangfarbe: German Pop Hits",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/jBFcbfteBDU/hqdefault.jpg?sqp=-oaymwEWCKgBEF5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLAeKKkhVoAeayDTA8ABwmZGiN-cVg",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/jBFcbfteBDU/hqdefault.jpg?sqp=-oaymwEWCMQBEG5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLBkSC01TQ0hR5zrA65JpBzP9cfNhw",
+            width: 196,
+            height: 110,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/jBFcbfteBDU/hqdefault.jpg?sqp=-oaymwEXCPYBEIoBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLCitfVS5YrdJvIEyZ3Q6APdRqoTVQ",
+            width: 246,
+            height: 138,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/jBFcbfteBDU/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLB4TjAg49Zn7WXE8C5TFa8gj3f6Ug",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        video_count: 52,
+        first_videos: [
+          SearchPlaylistVideo(
+            id: "jBFcbfteBDU",
+            title: "Ich hass dich",
+            length: Some(194),
+          ),
+          SearchPlaylistVideo(
+            id: "CjV7rkhQ66I",
+            title: "ROSES",
+            length: Some(148),
+          ),
+        ],
+      )),
+      Playlist(SearchPlaylist(
+        id: "RDCLAK5uy_lY6JFrs7W9yIhFjUN_yxQ_ubkjcrqQaVs",
+        name: "Bedroom Pop",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/r23tQvESL7w/hqdefault.jpg?sqp=-oaymwEWCKgBEF5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLDQNTJgU7RVsA7Hwj1ksVOMyyApig",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/r23tQvESL7w/hqdefault.jpg?sqp=-oaymwEWCMQBEG5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLBWBW5DQORDo1_XbU20aFyIREgHMQ",
+            width: 196,
+            height: 110,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/r23tQvESL7w/hqdefault.jpg?sqp=-oaymwEXCPYBEIoBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLAA2ppE_jZhj3Vp0qzqqZQBB_J2ow",
+            width: 246,
+            height: 138,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/r23tQvESL7w/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLCKs-rHy8CBTLw5bV7MLX1XtRZ01w",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        video_count: 178,
+        first_videos: [
+          SearchPlaylistVideo(
+            id: "r23tQvESL7w",
+            title: "Picture in my mind",
+            length: Some(177),
+          ),
+          SearchPlaylistVideo(
+            id: "4DyV0hWOdQw",
+            title: "we fell in love in october",
+            length: Some(185),
+          ),
+        ],
+      )),
+      Playlist(SearchPlaylist(
+        id: "RDCLAK5uy_l7K78k4EkjcFojhd1617rmUjY-aet6-t0",
+        name: "K-Pop Party Hits",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/LCpjdohpuEE/hqdefault.jpg?sqp=-oaymwEWCKgBEF5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLAlJlXCMdI9uCkuIfP0wXVjb8apdg",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/LCpjdohpuEE/hqdefault.jpg?sqp=-oaymwEWCMQBEG5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLB2V3Fnvk8fs3x41RYIFIrCkKoofg",
+            width: 196,
+            height: 110,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/LCpjdohpuEE/hqdefault.jpg?sqp=-oaymwEXCPYBEIoBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLCwS65N0Ggq7t7E3rBxakaXR4wM1Q",
+            width: 246,
+            height: 138,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/LCpjdohpuEE/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLAc03HST80RT4PPVMaMtZHOpGdWmQ",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        video_count: 87,
+        first_videos: [
+          SearchPlaylistVideo(
+            id: "LCpjdohpuEE",
+            title: "Permission to Dance",
+            length: Some(188),
+          ),
+          SearchPlaylistVideo(
+            id: "8mA6jIeojnk",
+            title: "How You Like That",
+            length: Some(182),
+          ),
+        ],
+      )),
+      Playlist(SearchPlaylist(
+        id: "RDCLAK5uy_lj-zBExVYl7YN_NxXboDIh4A-wKGfgzNY",
+        name: "I-Pop Hits!",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/g-7u06NK1mo/hqdefault.jpg?sqp=-oaymwEWCKgBEF5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLDN0bj3fiMVOcGtKxc7QPIHVIqZNw",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/g-7u06NK1mo/hqdefault.jpg?sqp=-oaymwEWCMQBEG5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLAMSvLx67w7pLKLo_2W9tR3yr3Jiw",
+            width: 196,
+            height: 110,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/g-7u06NK1mo/hqdefault.jpg?sqp=-oaymwEXCPYBEIoBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLDQDoBNUB7r4eiiqmWJIcb9ucZqjA",
+            width: 246,
+            height: 138,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/g-7u06NK1mo/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLB6Imerg1dRaAsvzQlFBWFYJvwCIQ",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        video_count: 50,
+        first_videos: [
+          SearchPlaylistVideo(
+            id: "g-7u06NK1mo",
+            title: "Killer Haseena",
+            length: Some(161),
+          ),
+          SearchPlaylistVideo(
+            id: "v0Q56geMlkk",
+            title: "Kesariyo Rang",
+            length: Some(194),
+          ),
+        ],
+      )),
+      Playlist(SearchPlaylist(
+        id: "PLDIoUOhQQPlXqz5QZ3dx-lh_p6RcPeKjv",
+        name: "POP Music Playlist 2022 - New POP Songs - Pop Songs 2022 Playlist",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/WcIcVapfqXw/hqdefault.jpg?sqp=-oaymwEWCKgBEF5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLCKKU8wU2E0cWO3dVMNSu_yH-qHog",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/WcIcVapfqXw/hqdefault.jpg?sqp=-oaymwEWCMQBEG5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLCDgeI2xFd-tD60KwvLM_ojlkEa7Q",
+            width: 196,
+            height: 110,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/WcIcVapfqXw/hqdefault.jpg?sqp=-oaymwEXCPYBEIoBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLCluJlOCIfcpw3mXS9LoAm42e0NVA",
+            width: 246,
+            height: 138,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/WcIcVapfqXw/hqdefault.jpg?sqp=-oaymwEXCNACELwBSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLDAGNPx-2AfMx5fO8WS185nwTpM7A",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        video_count: 100,
+        first_videos: [
+          SearchPlaylistVideo(
+            id: "WcIcVapfqXw",
+            title: "Rema, Selena Gomez - Calm Down (Official Music Video)",
+            length: Some(240),
+          ),
+          SearchPlaylistVideo(
+            id: "a7GITgqwDVg",
+            title: "Charlie Puth - Left And Right (feat. Jung Kook of BTS) [Official Video]",
+            length: Some(160),
+          ),
+        ],
+      )),
+    ],
+    ctoken: Some("EqIJEgNwb3AamglFZ0lRQTBnVWdnRXJVa1JEVEVGTE5YVjVYMjV0VXpOWmIzaFRkMVpXVVdzNWJFVlJTakJWV0RSYVEycFljMWRmY0hOVk9JSUJLMUpFUTB4QlN6VjFlVjl0VmtvelVsSnBYMWxDWmxWS2JscHVVWGhNUVdWa1VWRmpXRWgxYW1KVlkyZUNBU3RTUkVOTVFVczFkWGxmYldaa2NYWkRRV3c0ZDI5a2JIZ3lVREpmUVdreVowNXJhVkpFUVhWbWEydEpnZ0VyVWtSRFRFRkxOWFY1WDI1SVUzRkRTbXBFY2xjNVNFSm9RMDVrUmpaMFYxQmtiazlOYm1kUGRqQjNRWUlCSzFKRVEweEJTelYxZVY5c1lqWkRWbFUyVXpSMVZuVm5URlpPVkZVNVYyaHhabUZ2YlZkQloyNW9ielNDQVN0U1JFTk1RVXMxZFhsZmJrUk1PRXRsUW5KVllXZDNlVWxUZDA1dGVVVnBVMlpaWjNveFoxWkRaWE5uZ2dFaVVFeEVTVzlWVDJoUlVWQnNWbkl6Y1dWd1RWWlNjMFJsTkZRNGRrNVJjM1p1YjRJQksxSkVRMHhCU3pWMWVWOXVabk5mZERSR1ZYVXdNRVUxUlVRMmJIWmxSVUpDV0RGV1RWbGxNVzFHYW11Q0FTdFNSRU5NUVVzMWRYbGZiVjh3VlRWV1VVNTVlWHAzZDBneGJGSnBOMk5RUVVGSFdIRk9VVzVCVDNGWmdnRXJVa1JEVEVGTE5YVjVYMjFJVnpWaVkyUjFhR3BDTFZCclZHVlFRV1UyUlc5U1RXb3hlRTVVT0dkNldZSUJLMUpFUTB4QlN6VjFlVjlyVUhGS1gwWnBSMnN0YkdKWWRHZE5ORWxHTkRKMWIydHphMU5LV21sV1ZFbUNBU0pRVEVsZk4wMW5NbHBmTFRSTVpqZEpXV1ZwVkVWUFZqaElRbTR0YmsxeGVqVk9nZ0VpVUV4WU5rdzBkRGQwTmxwaGJtWkRTakYzUW5oU1pFZGFYMjFyT1hsbmJVdHhiNElCSWxCTVRVTTVTMDVyU1c1alMzUlFlbWRaTFRWeWJXaDJhamRtWVhnNFptUjRiMnFDQVNKUVRHZFNaSEJvTUhGUVRIazFNMGxvV1hKUlRGQndRVlJFUkVFeVZIQkdaWGsxZ2dFclVrUkRURUZMTlhWNVgyNURWa1pmZWxWYWFYcDZVbU52YWtsVmRWbHRZVmg0VFc5UVoyY3lWMDFFYjRJQksxSkVRMHhCU3pWMWVWOXNXVFpLUm5Kek4xYzVlVWxvUm1wVlRsOTVlRkZmZFdKcmFtTnljVkZoVm5PQ0FTdFNSRU5NUVVzMWRYbGZiRGRMTnpock5FVnJhbU5HYjJwb1pERTJNVGR5YlZWcVdTMWhaWFEyTFhRd2dnRXJVa1JEVEVGTE5YVjVYMnhxTFhwQ1JYaFdXV3czV1U1ZlRuaFlZbTlFU1dnMFFTMTNTMGRtWjNwT1dZSUJJbEJNUkVsdlZVOW9VVkZRYkZoeGVqVlJXak5rZUMxc2FGOXdObEpqVUdWTGFuYXlBUVlLQkFnVkVBSSUzRBiB4OgYIgtzZWFyY2gtZmVlZA%3D%3D"),
+  ),
+  corrected_query: None,
+)

@@ -12,7 +12,7 @@ inspired by [NewPipe](https://github.com/TeamNewPipe/NewPipeExtractor).
 - [X] **VideoDetails** (metadata, comments, recommended videos)
 - [X] **Channel** (videos, playlists, info)
 - [X] **ChannelRSS**
-- [ ] **Search**
+- [X] **Search** (with filters)
 - [ ] **Search suggestions**
 - [ ] **Trending**
 

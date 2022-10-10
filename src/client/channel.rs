@@ -126,7 +126,7 @@ impl RustyPipeQuery {
 
         self.execute_request::<response::ChannelCont, _, _>(
             ClientType::Desktop,
-            "channel_videos_continuation",
+            "channel_playlists_continuation",
             ctoken,
             "browse",
             &request_body,

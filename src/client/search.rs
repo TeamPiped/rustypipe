@@ -7,7 +7,7 @@ use crate::{
         ChannelId, ChannelTag, Paginator, SearchChannel, SearchItem, SearchPlaylist,
         SearchPlaylistVideo, SearchResult, SearchVideo,
     },
-    param::Language,
+    param::{search_filter::SearchFilter, Language},
     timeago,
     util::{self, TryRemove},
 };
@@ -45,6 +45,28 @@ impl RustyPipeQuery {
         .await
     }
 
+    pub async fn search_filter(
+        self,
+        query: &str,
+        filter: &SearchFilter,
+    ) -> Result<SearchResult, Error> {
+        let context = self.get_context(ClientType::Desktop, true).await;
+        let request_body = QSearch {
+            context,
+            query,
+            params: Some(filter.encode()),
+        };
+
+        self.execute_request::<response::Search, _, _>(
+            ClientType::Desktop,
+            "search_filter",
+            query,
+            "search",
+            &request_body,
+        )
+        .await
+    }
+
     pub async fn search_continuation(self, ctoken: &str) -> Result<Paginator<SearchItem>, Error> {
         let context = self.get_context(ClientType::Desktop, true).await;
         let request_body = QContinuation {
@@ -54,7 +76,7 @@ impl RustyPipeQuery {
 
         self.execute_request::<response::SearchCont, _, _>(
             ClientType::Desktop,
-            "search",
+            "search_continuation",
             ctoken,
             "search",
             &request_body,
@@ -187,7 +209,7 @@ fn map_search_items(
                         publish_date_txt: video.published_time_text,
                         view_count: video
                             .view_count_text
-                            .and_then(|txt| util::parse_numeric_or_warn(&txt, &mut warnings)),
+                            .map(|txt| util::parse_numeric(&txt).unwrap_or_default()),
                         is_live: video.thumbnail_overlays.is_live(),
                         is_short: video.thumbnail_overlays.is_short(),
                         short_description: video
@@ -258,7 +280,7 @@ mod tests {
     use std::{fs::File, io::BufReader, path::Path};
 
     use crate::{
-        client::{response, MapResponse},
+        client::{response, MapResponse, RustyPipe},
         model::{Paginator, SearchItem, SearchResult},
         param::Language,
         serializer::MapResult,
@@ -266,15 +288,21 @@ mod tests {
 
     use rstest::rstest;
 
-    // #[tokio::test]
-    // async fn t1() {
-    //     let rp = RustyPipe::builder().strict().build();
-    //     let result = rp.query().search("doobydoobap").await.unwrap();
-    //     dbg!(&result);
-    // }
+    #[tokio::test]
+    async fn t1() {
+        let rp = RustyPipe::builder().strict().build();
+        let result = rp
+            .query()
+            .search("grewhbtrjlrbnerwhlbvuwrkeghurzueg")
+            .await
+            .unwrap();
+        dbg!(&result);
+    }
 
     #[rstest]
     #[case::default("default")]
+    #[case::playlists("playlists")]
+    #[case::playlists("empty")]
     fn t_map_search(#[case] name: &str) {
         let filename = format!("testfiles/search/{}.json", name);
         let json_path = Path::new(&filename);
