@@ -5,7 +5,8 @@ use serde::Serialize;
 use crate::{
     deobfuscate::Deobfuscator,
     error::{Error, ExtractionError},
-    model::{ChannelId, Language, Paginator, Playlist, PlaylistVideo},
+    model::{ChannelId, Paginator, Playlist, PlaylistVideo},
+    param::Language,
     timeago,
     util::{self, TryRemove},
 };

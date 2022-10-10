@@ -21,7 +21,7 @@ use chrono::{DateTime, Duration, Local, NaiveDate, NaiveDateTime, NaiveTime, Tim
 use serde::{Deserialize, Serialize};
 
 use crate::{
-    model::Language,
+    param::Language,
     util::{self, dictionary},
 };
 

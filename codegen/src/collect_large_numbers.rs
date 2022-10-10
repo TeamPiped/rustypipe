@@ -6,7 +6,7 @@ use fancy_regex::Regex;
 use futures::{stream, StreamExt};
 use once_cell::sync::Lazy;
 use reqwest::{header, Client};
-use rustypipe::model::{locale::LANGUAGES, Language};
+use rustypipe::param::{locale::LANGUAGES, Language};
 use serde::Deserialize;
 use serde_with::serde_as;
 use serde_with::VecSkipError;

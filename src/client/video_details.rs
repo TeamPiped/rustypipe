@@ -4,10 +4,8 @@ use serde::Serialize;
 
 use crate::{
     error::{Error, ExtractionError},
-    model::{
-        ChannelId, ChannelTag, Chapter, Comment, Language, Paginator, RecommendedVideo,
-        VideoDetails,
-    },
+    model::{ChannelId, ChannelTag, Chapter, Comment, Paginator, RecommendedVideo, VideoDetails},
+    param::Language,
     serializer::MapResult,
     timeago,
     util::{self, TryRemove},
@@ -91,7 +89,7 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
     fn map_response(
         self,
         id: &str,
-        lang: crate::model::Language,
+        lang: Language,
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
     ) -> Result<MapResult<VideoDetails>, ExtractionError> {
         let mut warnings = Vec::new();
@@ -340,7 +338,7 @@ impl MapResponse<Paginator<RecommendedVideo>> for response::VideoRecommendations
     fn map_response(
         self,
         _id: &str,
-        lang: crate::model::Language,
+        lang: Language,
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
     ) -> Result<MapResult<Paginator<RecommendedVideo>>, ExtractionError> {
         let mut endpoints = self.on_response_received_endpoints;
@@ -362,7 +360,7 @@ impl MapResponse<Paginator<Comment>> for response::VideoComments {
     fn map_response(
         self,
         _id: &str,
-        lang: crate::model::Language,
+        lang: Language,
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
     ) -> Result<MapResult<Paginator<Comment>>, ExtractionError> {
         let mut warnings = self.on_response_received_endpoints.warnings;
@@ -576,7 +574,8 @@ mod tests {
 
     use crate::{
         client::{response, MapResponse, RustyPipe},
-        model::{richtext::ToPlaintext, Language, Verification},
+        model::{richtext::ToPlaintext, Verification},
+        param::Language,
     };
 
     #[tokio::test]

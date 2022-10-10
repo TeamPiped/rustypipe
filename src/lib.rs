@@ -17,5 +17,6 @@ pub mod client;
 pub mod download;
 pub mod error;
 pub mod model;
+pub mod param;
 pub mod report;
 pub mod timeago;

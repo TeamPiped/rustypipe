@@ -289,7 +289,7 @@ pub enum Country {
     );
 
     let mut target_path = project_root.to_path_buf();
-    target_path.push("src/model/locale.rs");
+    target_path.push("src/param/locale.rs");
     std::fs::write(target_path, code).unwrap();
 }
 

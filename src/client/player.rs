@@ -13,9 +13,10 @@ use crate::{
     deobfuscate::Deobfuscator,
     error::{DeobfError, Error, ExtractionError},
     model::{
-        AudioCodec, AudioFormat, AudioStream, AudioTrack, ChannelId, Language, Subtitle,
-        VideoCodec, VideoFormat, VideoPlayer, VideoPlayerDetails, VideoStream,
+        AudioCodec, AudioFormat, AudioStream, AudioTrack, ChannelId, Subtitle, VideoCodec,
+        VideoFormat, VideoPlayer, VideoPlayerDetails, VideoStream,
     },
+    param::Language,
     util,
 };
 

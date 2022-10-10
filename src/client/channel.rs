@@ -4,9 +4,8 @@ use url::Url;
 
 use crate::{
     error::{Error, ExtractionError},
-    model::{
-        Channel, ChannelInfo, ChannelOrder, ChannelPlaylist, ChannelVideo, Language, Paginator,
-    },
+    model::{Channel, ChannelInfo, ChannelPlaylist, ChannelVideo, Paginator},
+    param::{ChannelOrder, Language},
     serializer::MapResult,
     timeago,
     util::{self, TryRemove},
@@ -158,7 +157,7 @@ impl MapResponse<Channel<Paginator<ChannelVideo>>> for response::Channel {
     fn map_response(
         self,
         id: &str,
-        lang: crate::model::Language,
+        lang: Language,
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
     ) -> Result<MapResult<Channel<Paginator<ChannelVideo>>>, ExtractionError> {
         let content = map_channel_content(self.contents, id);
@@ -499,9 +498,8 @@ mod tests {
 
     use crate::{
         client::{response, MapResponse, RustyPipe},
-        model::{
-            Channel, ChannelInfo, ChannelOrder, ChannelPlaylist, ChannelVideo, Language, Paginator,
-        },
+        model::{Channel, ChannelInfo, ChannelPlaylist, ChannelVideo, Paginator},
+        param::{ChannelOrder, Language},
         serializer::MapResult,
     };
 

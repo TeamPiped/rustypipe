@@ -28,7 +28,7 @@ use crate::{
     cache::{CacheStorage, FileStorage},
     deobfuscate::{DeobfData, Deobfuscator},
     error::{Error, ExtractionError, Result},
-    model::{Country, Language},
+    param::{Country, Language},
     report::{FileReporter, Level, Report, Reporter},
     serializer::MapResult,
     util,

@@ -7,7 +7,7 @@ use indicatif::{MultiProgress, ProgressBar, ProgressStyle};
 use reqwest::{Client, ClientBuilder};
 use rustypipe::{
     client::{ClientType, RustyPipe},
-    model::stream_filter::Filter,
+    param::StreamFilter,
 };
 
 #[derive(Parser)]
@@ -67,7 +67,7 @@ async fn download_single_video(
                 video_id
             ))?;
 
-        let mut filter = Filter::default();
+        let mut filter = StreamFilter::default();
         if let Some(res) = resolution {
             if res == 0 {
                 filter.no_video();

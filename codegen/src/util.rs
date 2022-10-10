@@ -1,6 +1,6 @@
 use std::{collections::BTreeMap, fs::File, io::BufReader, path::Path, str::FromStr};
 
-use rustypipe::model::Language;
+use rustypipe::param::Language;
 use serde::{Deserialize, Serialize};
 
 const DICT_PATH: &str = "testfiles/dict/dictionary.json";

@@ -1,4 +1,8 @@
+mod protobuf;
+
 pub mod dictionary;
+
+pub use protobuf::ProtoBuilder;
 
 use std::{borrow::Borrow, collections::BTreeMap, str::FromStr};
 
@@ -7,7 +11,7 @@ use once_cell::sync::Lazy;
 use rand::Rng;
 use url::Url;
 
-use crate::{error::Error, error::Result, model::Language};
+use crate::{error::Error, error::Result, param::Language};
 
 const CONTENT_PLAYBACK_NONCE_ALPHABET: &[u8; 64] =
     b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
@@ -55,6 +59,12 @@ pub fn url_to_params(url: &str) -> Result<(String, BTreeMap<String, String>)> {
     parsed_url.set_query(None);
 
     Ok((parsed_url.to_string(), url_params))
+}
+
+pub fn urlencode(string: &str) -> String {
+    url::form_urlencoded::Serializer::new(String::new())
+        .append_key_only(string)
+        .finish()
 }
 
 /// Parse a string after removing all non-numeric characters

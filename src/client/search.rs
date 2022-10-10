@@ -4,9 +4,10 @@ use crate::{
     deobfuscate::Deobfuscator,
     error::{Error, ExtractionError},
     model::{
-        ChannelId, ChannelTag, Language, Paginator, SearchChannel, SearchItem, SearchPlaylist,
+        ChannelId, ChannelTag, Paginator, SearchChannel, SearchItem, SearchPlaylist,
         SearchPlaylistVideo, SearchResult, SearchVideo,
     },
+    param::Language,
     timeago,
     util::{self, TryRemove},
 };
@@ -258,7 +259,8 @@ mod tests {
 
     use crate::{
         client::{response, MapResponse},
-        model::{Language, Paginator, SearchItem, SearchResult},
+        model::{Paginator, SearchItem, SearchResult},
+        param::Language,
         serializer::MapResult,
     };
 

@@ -9,7 +9,7 @@ use std::{
 use futures::{stream, StreamExt};
 use rustypipe::{
     client::RustyPipe,
-    model::{locale::LANGUAGES, Language},
+    param::{locale::LANGUAGES, Language},
     timeago::{self, TimeAgo},
 };
 use serde::{Deserialize, Serialize};

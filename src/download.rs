@@ -17,7 +17,8 @@ use tokio::{
 
 use crate::{
     error::DownloadError,
-    model::{stream_filter::Filter, AudioCodec, FileFormat, VideoCodec, VideoPlayer},
+    model::{AudioCodec, FileFormat, VideoCodec, VideoPlayer},
+    param::StreamFilter,
     util,
 };
 
@@ -286,7 +287,7 @@ pub async fn download_video(
     output_dir: &str,
     output_fname: Option<String>,
     output_format: Option<String>,
-    filter: &Filter,
+    filter: &StreamFilter,
     ffmpeg: &str,
     http: Client,
     pb: ProgressBar,

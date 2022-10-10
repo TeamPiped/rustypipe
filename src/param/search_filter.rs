@@ -1,0 +1,229 @@
+use std::collections::BTreeSet;
+
+use crate::util::{self, ProtoBuilder};
+
+#[derive(Default, Debug)]
+pub struct SearchFilter {
+    sort: Option<Order>,
+    features: BTreeSet<Feature>,
+    date: Option<Date>,
+    entity: Option<Entity>,
+    length: Option<Length>,
+    verbatim: bool,
+}
+
+/// Video feature to filter by
+#[derive(Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord)]
+pub enum Feature {
+    /// HD resolution
+    IsHd = 4,
+    /// Video with subtitles
+    Subtitles = 5,
+    /// Video published under the Creative Commons BY 3.0 license
+    CCommons = 6,
+    /// 3D Video
+    Is3d = 7,
+    /// Active livestream
+    IsLive = 8,
+    /// 4K resolution
+    Is4k = 14,
+    /// 360° Video
+    Is360 = 15,
+    /// 180° VR-Video
+    IsVr180 = 26,
+    /// HDR Video
+    IsHdr = 25,
+}
+
+/// Sort order of search results
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum Order {
+    /// Sort by Like/Dislike ratio
+    Rating = 1,
+    /// Sort by upload date
+    Date = 2,
+    /// Sort by view count
+    Views = 3,
+}
+
+/// Upload date range to filter by
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum Date {
+    /// 1 hour old or newer
+    Hour = 1,
+    /// 1 day old or newer
+    Day = 2,
+    /// 1 week old or newer
+    Week = 3,
+    /// 1 month old or newer
+    Month = 4,
+    /// 1 year old or newer
+    Year = 5,
+}
+
+/// YouTube entity type to filter by
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum Entity {
+    Video = 1,
+    Channel = 2,
+    Playlist = 3,
+}
+
+/// Video length range to filter by
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum Length {
+    /// < 4min
+    Short = 1,
+    /// 4-20min
+    Medium = 3,
+    /// > 20min
+    Long = 2,
+}
+
+impl SearchFilter {
+    pub fn new() -> Self {
+        Self::default()
+    }
+
+    /// Sort the search results
+    pub fn sort(mut self, sort: Order) -> Self {
+        self.sort = Some(sort);
+        self
+    }
+
+    /// Sort the search results
+    pub fn sort_opt(mut self, sort: Option<Order>) -> Self {
+        self.sort = sort;
+        self
+    }
+
+    /// Filter videos with specific features
+    pub fn feature(mut self, feature: Feature) -> Self {
+        self.features.insert(feature);
+        self
+    }
+
+    /// Filter videos with specific features
+    pub fn features(mut self, features: BTreeSet<Feature>) -> Self {
+        self.features = features;
+        self
+    }
+
+    /// Filter videos by upload date range
+    pub fn date(mut self, date: Date) -> Self {
+        self.date = Some(date);
+        self
+    }
+
+    /// Filter videos by upload date range
+    pub fn date_opt(mut self, date: Option<Date>) -> Self {
+        self.date = date;
+        self
+    }
+
+    /// Filter videos by entity type
+    pub fn entity(mut self, entity: Entity) -> Self {
+        self.entity = Some(entity);
+        self
+    }
+
+    /// Filter videos by entity type
+    pub fn entity_opt(mut self, entity: Option<Entity>) -> Self {
+        self.entity = entity;
+        self
+    }
+
+    /// Filter videos by length range
+    pub fn length(mut self, length: Length) -> Self {
+        self.length = Some(length);
+        self
+    }
+
+    /// Filter videos by length range
+    pub fn length_opt(mut self, length: Option<Length>) -> Self {
+        self.length = length;
+        self
+    }
+
+    /// Disable the automatic correction of mistyped search terms
+    pub fn verbatim(mut self) -> Self {
+        self.verbatim = true;
+        self
+    }
+
+    /// Disable the automatic correction of mistyped search terms
+    pub fn verbatim_set(mut self, verbatim: bool) -> Self {
+        self.verbatim = verbatim;
+        self
+    }
+
+    pub fn encode(&self) -> String {
+        let mut filters = ProtoBuilder::new();
+
+        if let Some(date) = self.date {
+            filters.varint(1, date as u64);
+        }
+        if let Some(entity) = self.entity {
+            filters.varint(2, entity as u64);
+        }
+        if let Some(length) = self.length {
+            filters.varint(3, length as u64);
+        }
+
+        self.features.iter().for_each(|feat| {
+            filters.varint(*feat as u32, 1);
+        });
+
+        let mut pb = ProtoBuilder::new();
+
+        if let Some(sort) = self.sort {
+            pb.varint(1, sort as u64);
+        }
+        if !filters.bytes.is_empty() {
+            pb.embedded(2, filters);
+        }
+        if self.verbatim {
+            let mut extras = ProtoBuilder::new();
+            extras.varint(1, 1);
+            pb.embedded(8, extras)
+        }
+
+        let b64 = base64::encode(pb.bytes);
+        util::urlencode(&b64)
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use rstest::rstest;
+
+    use super::*;
+
+    #[rstest]
+    #[case(SearchFilter::new().entity(Entity::Video), "EgIQAQ%253D%253D")]
+    #[case(SearchFilter::new().entity(Entity::Channel), "EgIQAg%253D%253D")]
+    #[case(SearchFilter::new().entity(Entity::Playlist), "EgIQAw%253D%253D")]
+    #[case(SearchFilter::new().date(Date::Hour), "EgIIAQ%253D%253D")]
+    #[case(SearchFilter::new().date(Date::Day), "EgIIAg%253D%253D")]
+    #[case(SearchFilter::new().date(Date::Week), "EgIIAw%253D%253D")]
+    #[case(SearchFilter::new().date(Date::Month), "EgIIBA%253D%253D")]
+    #[case(SearchFilter::new().date(Date::Year), "EgIIBQ%253D%253D")]
+    #[case(SearchFilter::new().length(Length::Short), "EgIYAQ%253D%253D")]
+    #[case(SearchFilter::new().length(Length::Medium), "EgIYAw%253D%253D")]
+    #[case(SearchFilter::new().length(Length::Long), "EgIYAg%253D%253D")]
+    #[case(SearchFilter::new().feature(Feature::IsLive), "EgJAAQ%253D%253D")]
+    #[case(SearchFilter::new().feature(Feature::Is4k), "EgJwAQ%253D%253D")]
+    #[case(SearchFilter::new().feature(Feature::IsHd), "EgIgAQ%253D%253D")]
+    #[case(SearchFilter::new().feature(Feature::Subtitles), "EgIoAQ%253D%253D")]
+    #[case(SearchFilter::new().feature(Feature::CCommons), "EgIwAQ%253D%253D")]
+    #[case(SearchFilter::new().feature(Feature::Is360), "EgJ4AQ%253D%253D")]
+    #[case(SearchFilter::new().feature(Feature::IsVr180), "EgPQAQE%253D")]
+    #[case(SearchFilter::new().feature(Feature::Is3d), "EgI4AQ%253D%253D")]
+    #[case(SearchFilter::new().feature(Feature::IsHdr), "EgPIAQE%253D")]
+    #[case(SearchFilter::new().sort(Order::Date), "CAI%253D")]
+    #[case(SearchFilter::new().sort(Order::Views), "CAM%253D")]
+    #[case(SearchFilter::new().sort(Order::Rating), "CAE%253D")]
+    fn t_filter(#[case] filter: SearchFilter, #[case] expect: &str) {
+        assert_eq!(util::urlencode(&filter.encode()), expect);
+    }
+}
