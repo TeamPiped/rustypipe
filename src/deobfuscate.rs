@@ -68,7 +68,7 @@ impl From<DeobfData> for Deobfuscator {
 const DEOBFUSCATION_FUNC_NAME: &str = "deobfuscate";
 
 fn get_sig_fn_name(player_js: &str) -> Result<String> {
-    static FUNCTION_PATTERNS: Lazy<[Regex; 6]> = Lazy::new(|| {
+    static FUNCTION_REGEXES: Lazy<[Regex; 6]> = Lazy::new(|| {
         [
         Regex::new("(?:\\b|[^a-zA-Z0-9$])([a-zA-Z0-9$]{2,})\\s*=\\s*function\\(\\s*a\\s*\\)\\s*\\{\\s*a\\s*=\\s*a\\.split\\(\\s*\"\"\\s*\\)").unwrap(),
         Regex::new("\\bm=([a-zA-Z0-9$]{2,})\\(decodeURIComponent\\(h\\.s\\)\\)").unwrap(),
@@ -79,7 +79,7 @@ fn get_sig_fn_name(player_js: &str) -> Result<String> {
     ]
     });
 
-    util::get_cg_from_regexes(FUNCTION_PATTERNS.iter(), player_js, 1)
+    util::get_cg_from_regexes(FUNCTION_REGEXES.iter(), player_js, 1)
         .ok_or(DeobfError::Extraction("deobf function name"))
 }
 
@@ -107,10 +107,10 @@ fn get_sig_fn(player_js: &str) -> Result<String> {
         .as_str()
         + ";";
 
-    static HELPER_OBJECT_NAME_PATTERN: Lazy<Regex> =
+    static HELPER_OBJECT_NAME_REGEX: Lazy<Regex> =
         Lazy::new(|| Regex::new(";([A-Za-z0-9_\\$]{2})\\...\\(").unwrap());
     let helper_object_name = some_or_bail!(
-        HELPER_OBJECT_NAME_PATTERN
+        HELPER_OBJECT_NAME_REGEX
             .captures(&deobfuscate_function)
             .ok()
             .flatten(),
@@ -151,13 +151,13 @@ fn deobfuscate_sig(sig: &str, sig_fn: &str) -> Result<String> {
 }
 
 fn get_nsig_fn_name(player_js: &str) -> Result<String> {
-    static FUNCTION_NAME_PATTERN: Lazy<Regex> = Lazy::new(|| {
-        Regex::new("\\.get\\(\"n\"\\)\\)&&\\(b=([a-zA-Z0-9$]+)(?:\\[(\\d+)])?\\([a-zA-Z0-9]\\)")
+    static FUNCTION_NAME_REGEX: Lazy<Regex> = Lazy::new(|| {
+        Regex::new("\\.get\\(\"n\"\\)\\)&&\\([a-zA-Z0-9$_]=([a-zA-Z0-9$_]+)(?:\\[(\\d+)])?\\([a-zA-Z0-9$_]\\)")
             .unwrap()
     });
 
     let fname_match = some_or_bail!(
-        FUNCTION_NAME_PATTERN.captures(player_js).ok().flatten(),
+        FUNCTION_NAME_REGEX.captures(player_js).ok().flatten(),
         Err(DeobfError::Extraction("n_deobf function"))
     );
 
