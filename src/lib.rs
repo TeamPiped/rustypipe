@@ -10,7 +10,6 @@
 mod macros;
 
 mod deobfuscate;
-mod dictionary;
 mod serializer;
 mod util;
 

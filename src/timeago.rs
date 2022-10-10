@@ -20,7 +20,10 @@ use std::ops::Mul;
 use chrono::{DateTime, Duration, Local, NaiveDate, NaiveDateTime, NaiveTime, TimeZone};
 use serde::{Deserialize, Serialize};
 
-use crate::{dictionary, model::Language, util};
+use crate::{
+    model::Language,
+    util::{self, dictionary},
+};
 
 /// Parsed TimeAgo string, contains amount and time unit.
 ///

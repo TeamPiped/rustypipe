@@ -7,7 +7,7 @@ use rustypipe::timeago::TimeUnit;
 
 use crate::util;
 
-const TARGET_PATH: &str = "src/dictionary.rs";
+const TARGET_PATH: &str = "src/util/dictionary.rs";
 
 fn parse_tu(tu: &str) -> (u8, Option<TimeUnit>) {
     static TU_PATTERN: Lazy<Regex> = Lazy::new(|| Regex::new(r"^(\d*)(\w?)$").unwrap());

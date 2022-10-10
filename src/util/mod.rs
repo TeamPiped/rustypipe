@@ -1,3 +1,5 @@
+pub mod dictionary;
+
 use std::{borrow::Borrow, collections::BTreeMap, str::FromStr};
 
 use fancy_regex::Regex;
@@ -5,7 +7,7 @@ use once_cell::sync::Lazy;
 use rand::Rng;
 use url::Url;
 
-use crate::{dictionary, error::Error, error::Result, model::Language};
+use crate::{error::Error, error::Result, model::Language};
 
 const CONTENT_PLAYBACK_NONCE_ALPHABET: &[u8; 64] =
     b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
