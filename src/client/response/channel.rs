@@ -1,9 +1,9 @@
 use serde::Deserialize;
 use serde_with::serde_as;
-use serde_with::VecSkipError;
+use serde_with::{DefaultOnError, VecSkipError};
 
-use super::ChannelBadge;
 use super::Thumbnails;
+use super::{Alert, ChannelBadge};
 use super::{ContentRenderer, ContentsRenderer, VideoListItem};
 use crate::serializer::ignore_any;
 use crate::serializer::{text::Text, MapResult, VecLogError};
@@ -12,10 +12,13 @@ use crate::serializer::{text::Text, MapResult, VecLogError};
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Channel {
-    pub header: Header,
-    pub contents: Contents,
-    pub metadata: Metadata,
-    pub microformat: Microformat,
+    #[serde_as(as = "DefaultOnError")]
+    pub header: Option<Header>,
+    pub contents: Option<Contents>,
+    pub metadata: Option<Metadata>,
+    pub microformat: Option<Microformat>,
+    #[serde_as(as = "Option<DefaultOnError>")]
+    pub alerts: Option<Vec<Alert>>,
 }
 
 #[serde_as]

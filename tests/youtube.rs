@@ -2,6 +2,7 @@ use chrono::{Datelike, Timelike};
 use rstest::rstest;
 
 use rustypipe::client::{ClientType, RustyPipe};
+use rustypipe::error::{Error, ExtractionError};
 use rustypipe::model::richtext::ToPlaintext;
 use rustypipe::model::{
     AudioCodec, AudioFormat, Channel, SearchItem, Verification, VideoCodec, VideoFormat,
@@ -855,6 +856,24 @@ async fn channel_more(
 
     let channel_info = rp.query().channel_info(&id).await.unwrap();
     assert_channel(&channel_info, id, name);
+}
+
+#[rstest]
+#[case::gaming("UCOpNcN46UbXVtpKMrmU4Abg", false)]
+#[case::not_found("UCOpNcN46UbXVtpKMrmU4Abx", true)]
+#[tokio::test]
+async fn channel_error(#[case] id: &str, #[case] not_found: bool) {
+    let rp = RustyPipe::builder().strict().build();
+    let err = rp.query().channel_videos(&id).await.unwrap_err();
+
+    if not_found {
+        assert!(matches!(
+            err,
+            Error::Extraction(ExtractionError::ContentUnavailable(_))
+        ));
+    } else {
+        assert!(matches!(err, Error::Extraction(ExtractionError::NoData)));
+    }
 }
 
 //#CHANNEL_RSS

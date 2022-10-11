@@ -313,6 +313,20 @@ pub enum VideoBadgeStyle {
     BadgeStyleTypeLiveNow,
 }
 
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct Alert {
+    pub alert_renderer: AlertRenderer,
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct AlertRenderer {
+    #[serde_as(as = "Text")]
+    pub text: String,
+}
+
 // YouTube Music
 
 #[serde_as]

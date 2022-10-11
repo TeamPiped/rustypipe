@@ -75,6 +75,10 @@ pub enum ExtractionError {
     VideoUnavailable(&'static str, String),
     #[error("Video is age restricted")]
     VideoAgeRestricted,
+    #[error("Content is not available. Reason (from YT): {0}")]
+    ContentUnavailable(String),
+    #[error("Got no data from YouTube")]
+    NoData,
     #[error("deserialization error: {0}")]
     Deserialization(#[from] serde_json::Error),
     #[error("got invalid data from YT: {0}")]

@@ -160,7 +160,7 @@ impl MapResponse<Channel<Paginator<ChannelVideo>>> for response::Channel {
         lang: Language,
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
     ) -> Result<MapResult<Channel<Paginator<ChannelVideo>>>, ExtractionError> {
-        let content = map_channel_content(self.contents, id);
+        let content = map_channel_content(self.contents, id, self.alerts)?;
         let mut warnings = content.warnings;
         let grid = match content.c {
             response::channel::ChannelContent::GridRenderer { items } => Some(items),
@@ -191,7 +191,7 @@ impl MapResponse<Channel<Paginator<ChannelPlaylist>>> for response::Channel {
         lang: Language,
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
     ) -> Result<MapResult<Channel<Paginator<ChannelPlaylist>>>, ExtractionError> {
-        let content = map_channel_content(self.contents, id);
+        let content = map_channel_content(self.contents, id, self.alerts)?;
         let mut warnings = content.warnings;
         let grid = match content.c {
             response::channel::ChannelContent::GridRenderer { items } => Some(items),
@@ -222,7 +222,7 @@ impl MapResponse<Channel<ChannelInfo>> for response::Channel {
         lang: Language,
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
     ) -> Result<MapResult<Channel<ChannelInfo>>, ExtractionError> {
-        let content = map_channel_content(self.contents, id);
+        let content = map_channel_content(self.contents, id, self.alerts)?;
         let mut warnings = content.warnings;
         let meta = match content.c {
             response::channel::ChannelContent::ChannelAboutFullMetadataRenderer(meta) => Some(meta),
@@ -419,14 +419,18 @@ fn map_vanity_url(url: &str, id: &str) -> Option<String> {
 }
 
 fn map_channel<T>(
-    header: response::channel::Header,
-    metadata: response::channel::Metadata,
-    microformat: response::channel::Microformat,
+    header: Option<response::channel::Header>,
+    metadata: Option<response::channel::Metadata>,
+    microformat: Option<response::channel::Microformat>,
     content: T,
     id: &str,
     lang: Language,
 ) -> Result<Channel<T>, ExtractionError> {
-    let metadata = metadata.channel_metadata_renderer;
+    let header = header.ok_or(ExtractionError::NoData)?;
+    let metadata = metadata
+        .ok_or(ExtractionError::NoData)?
+        .channel_metadata_renderer;
+    let microformat = microformat.ok_or(ExtractionError::NoData)?;
 
     if metadata.external_id != id {
         return Err(ExtractionError::WrongResult(format!(
@@ -494,39 +498,54 @@ fn map_channel<T>(
 }
 
 fn map_channel_content(
-    contents: response::channel::Contents,
+    contents: Option<response::channel::Contents>,
     id: &str,
-) -> MapResult<response::channel::ChannelContent> {
-    let mut tabs = contents.two_column_browse_results_renderer.tabs;
-    let mut sectionlist = some_or_bail!(
-        tabs.try_swap_remove(0),
-        MapResult::error("no tab".to_owned())
-    )
-    .tab_renderer
-    .content
-    .section_list_renderer;
+    alerts: Option<Vec<response::Alert>>,
+) -> Result<MapResult<response::channel::ChannelContent>, ExtractionError> {
+    match contents {
+        Some(contents) => {
+            let mut tabs = contents.two_column_browse_results_renderer.tabs;
+            let mut sectionlist = some_or_bail!(
+                tabs.try_swap_remove(0),
+                Ok(MapResult::error("no tab".to_owned()))
+            )
+            .tab_renderer
+            .content
+            .section_list_renderer;
 
-    if let Some(target_id) = sectionlist.target_id {
-        // YouTube falls back to the featured page if the channel does not have a "videos" tab.
-        // This is the case for YouTube Music channels.
-        if target_id.starts_with(&format!("browse-feed{}featured", id)) {
-            return MapResult::ok(response::channel::ChannelContent::None);
+            if let Some(target_id) = sectionlist.target_id {
+                // YouTube falls back to the featured page if the channel does not have a "videos" tab.
+                // This is the case for YouTube Music channels.
+                if target_id.starts_with(&format!("browse-feed{}featured", id)) {
+                    return Ok(MapResult::ok(response::channel::ChannelContent::None));
+                }
+            }
+
+            let mut itemsection = some_or_bail!(
+                sectionlist.contents.try_swap_remove(0),
+                Ok(MapResult::error("no sectionlist".to_owned()))
+            )
+            .item_section_renderer
+            .contents;
+
+            let content = some_or_bail!(
+                itemsection.try_swap_remove(0),
+                Ok(MapResult::error("no channel content".to_owned()))
+            );
+
+            Ok(MapResult::ok(content))
         }
+        None => match alerts {
+            Some(alerts) => Err(ExtractionError::ContentUnavailable(
+                alerts
+                    .into_iter()
+                    .map(|a| a.alert_renderer.text)
+                    .collect::<Vec<_>>()
+                    .join(" "),
+            )),
+            None => Err(ExtractionError::InvalidData("no contents".into())),
+        },
     }
-
-    let mut itemsection = some_or_bail!(
-        sectionlist.contents.try_swap_remove(0),
-        MapResult::error("no sectionlist".to_owned())
-    )
-    .item_section_renderer
-    .contents;
-
-    let content = some_or_bail!(
-        itemsection.try_swap_remove(0),
-        MapResult::error("no channel content".to_owned())
-    );
-
-    MapResult::ok(content)
 }
 
 #[cfg(test)]
