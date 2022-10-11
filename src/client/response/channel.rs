@@ -12,6 +12,7 @@ use crate::serializer::{text::Text, MapResult, VecLogError};
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Channel {
+    #[serde(default)]
     #[serde_as(as = "DefaultOnError")]
     pub header: Option<Header>,
     pub contents: Option<Contents>,
@@ -55,25 +56,37 @@ pub struct TabRendererWrap {
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub enum TabContent {
-    #[serde(rename_all = "camelCase")]
-    SectionListRenderer {
-        contents: Vec<ItemSectionRendererWrap>,
-        /// - **Videos**: browse-feedUC2DjFE7Xf11URZqWBigcVOQvideos (...)
-        /// - **Playlists**: browse-feedUC2DjFE7Xf11URZqWBigcVOQplaylists104 (...)
-        /// - **Info**: None
-        target_id: Option<String>,
-    },
+pub struct TabContent {
+    #[serde(default)]
+    #[serde_as(as = "DefaultOnError")]
+    pub section_list_renderer: Option<SectionListRenderer>,
     /// Seems to be currently A/B tested, as of 11.10.2022
-    #[serde(rename_all = "camelCase")]
-    RichGridRenderer {
-        #[serde_as(as = "VecLogError<_>")]
-        contents: MapResult<Vec<VideoListItem>>,
-        /// - **Videos**: browse-feedUC2DjFE7Xf11URZqWBigcVOQvideos (...)
-        /// - **Playlists**: browse-feedUC2DjFE7Xf11URZqWBigcVOQplaylists104 (...)
-        /// - **Info**: None
-        target_id: Option<String>,
-    },
+    #[serde(default)]
+    #[serde_as(as = "DefaultOnError")]
+    pub rich_grid_renderer: Option<RichGridRenderer>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct SectionListRenderer {
+    pub contents: Vec<ItemSectionRendererWrap>,
+    /// - **Videos**: browse-feedUC2DjFE7Xf11URZqWBigcVOQvideos (...)
+    /// - **Playlists**: browse-feedUC2DjFE7Xf11URZqWBigcVOQplaylists104 (...)
+    /// - **Info**: None
+    pub target_id: Option<String>,
+}
+
+/// Seems to be currently A/B tested, as of 11.10.2022
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct RichGridRenderer {
+    #[serde_as(as = "VecLogError<_>")]
+    pub contents: MapResult<Vec<VideoListItem>>,
+    /// - **Videos**: browse-feedUC2DjFE7Xf11URZqWBigcVOQvideos (...)
+    /// - **Playlists**: browse-feedUC2DjFE7Xf11URZqWBigcVOQplaylists104 (...)
+    /// - **Info**: None
+    pub target_id: Option<String>,
 }
 
 #[derive(Debug, Deserialize)]

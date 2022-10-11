@@ -160,14 +160,12 @@ impl MapResponse<Channel<Paginator<ChannelVideo>>> for response::Channel {
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
     ) -> Result<MapResult<Channel<Paginator<ChannelVideo>>>, ExtractionError> {
         let content = map_channel_content(self.contents, id, self.alerts)?;
-        let mut warnings = content.warnings;
-        let grid = match content.c {
+        let grid = match content {
             response::channel::ChannelContent::GridRenderer { items } => Some(items),
             _ => None,
         };
 
-        let mut v_res = grid.map(|g| map_videos(g, lang)).unwrap_or_default();
-        warnings.append(&mut v_res.warnings);
+        let v_res = grid.map(|g| map_videos(g, lang)).unwrap_or_default();
 
         Ok(MapResult {
             c: map_channel(
@@ -178,7 +176,7 @@ impl MapResponse<Channel<Paginator<ChannelVideo>>> for response::Channel {
                 id,
                 lang,
             )?,
-            warnings,
+            warnings: v_res.warnings,
         })
     }
 }
@@ -191,14 +189,12 @@ impl MapResponse<Channel<Paginator<ChannelPlaylist>>> for response::Channel {
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
     ) -> Result<MapResult<Channel<Paginator<ChannelPlaylist>>>, ExtractionError> {
         let content = map_channel_content(self.contents, id, self.alerts)?;
-        let mut warnings = content.warnings;
-        let grid = match content.c {
+        let grid = match content {
             response::channel::ChannelContent::GridRenderer { items } => Some(items),
             _ => None,
         };
 
-        let mut p_res = grid.map(map_playlists).unwrap_or_default();
-        warnings.append(&mut p_res.warnings);
+        let p_res = grid.map(map_playlists).unwrap_or_default();
 
         Ok(MapResult {
             c: map_channel(
@@ -209,7 +205,7 @@ impl MapResponse<Channel<Paginator<ChannelPlaylist>>> for response::Channel {
                 id,
                 lang,
             )?,
-            warnings,
+            warnings: p_res.warnings,
         })
     }
 }
@@ -222,8 +218,8 @@ impl MapResponse<Channel<ChannelInfo>> for response::Channel {
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
     ) -> Result<MapResult<Channel<ChannelInfo>>, ExtractionError> {
         let content = map_channel_content(self.contents, id, self.alerts)?;
-        let mut warnings = content.warnings;
-        let meta = match content.c {
+        let mut warnings = Vec::new();
+        let meta = match content {
             response::channel::ChannelContent::ChannelAboutFullMetadataRenderer(meta) => Some(meta),
             _ => None,
         };
@@ -462,53 +458,48 @@ fn map_channel_content(
     contents: Option<response::channel::Contents>,
     id: &str,
     alerts: Option<Vec<response::Alert>>,
-) -> Result<MapResult<response::channel::ChannelContent>, ExtractionError> {
+) -> Result<response::channel::ChannelContent, ExtractionError> {
     match contents {
         Some(contents) => {
-            let mut tabs = contents.two_column_browse_results_renderer.tabs;
-            let content = some_or_bail!(
-                tabs.try_swap_remove(0),
-                Ok(MapResult::error("no tab".to_owned()))
-            )
-            .tab_renderer
-            .content;
+            let tabs = contents.two_column_browse_results_renderer.tabs;
+            if tabs.is_empty() {
+                return Err(ExtractionError::NoData);
+            }
 
-            let (channel_content, target_id) = match content {
-                response::channel::TabContent::SectionListRenderer {
-                    mut contents,
-                    target_id,
-                } => {
-                    let mut itemsection = some_or_bail!(
-                        contents.try_swap_remove(0),
-                        Ok(MapResult::error("no sectionlist".to_owned()))
-                    )
-                    .item_section_renderer
-                    .contents;
+            let (channel_content, target_id) = tabs
+                .into_iter()
+                .filter_map(|tab| {
+                    let content = tab.tab_renderer.content;
+                    match (content.section_list_renderer, content.rich_grid_renderer) {
+                        (Some(mut section_list_renderer), _) => {
+                            let content =
+                                section_list_renderer.contents.try_swap_remove(0).and_then(
+                                    |mut i| i.item_section_renderer.contents.try_swap_remove(0),
+                                );
 
-                    let content = some_or_bail!(
-                        itemsection.try_swap_remove(0),
-                        Ok(MapResult::error("no channel content".to_owned()))
-                    );
-                    (content, target_id)
-                }
-                response::channel::TabContent::RichGridRenderer {
-                    contents,
-                    target_id,
-                } => (
-                    response::channel::ChannelContent::GridRenderer { items: contents },
-                    target_id,
-                ),
-            };
+                            content.map(|c| (c, section_list_renderer.target_id))
+                        }
+                        (None, Some(rich_grid_renderer)) => Some((
+                            response::channel::ChannelContent::GridRenderer {
+                                items: rich_grid_renderer.contents,
+                            },
+                            rich_grid_renderer.target_id,
+                        )),
+                        (None, None) => None,
+                    }
+                })
+                .next()
+                .ok_or_else(|| ExtractionError::InvalidData("could not extract content".into()))?;
 
             if let Some(target_id) = target_id {
                 // YouTube falls back to the featured page if the channel does not have a "videos" tab.
                 // This is the case for YouTube Music channels.
                 if target_id.starts_with(&format!("browse-feed{}featured", id)) {
-                    return Ok(MapResult::ok(response::channel::ChannelContent::None));
+                    return Ok(response::channel::ChannelContent::None);
                 }
             }
 
-            Ok(MapResult::ok(channel_content))
+            Ok(channel_content)
         }
         None => Err(response::alerts_to_err(alerts)),
     }
@@ -534,7 +525,8 @@ mod tests {
     #[case::live("live", "UChs0pSaEoNLV4mevBFGaoKA")]
     #[case::empty("empty", "UCxBa895m48H5idw5li7h-0g")]
     #[case::upcoming("upcoming", "UCcvfHa-GHSOHFAjU0-Ie57A")]
-    #[case::shorts("20221011_richgrid", "UCh8gHdtzO2tXd593_bjErWg")]
+    #[case::richgrid("20221011_richgrid", "UCh8gHdtzO2tXd593_bjErWg")]
+    #[case::richgrid2("20221011_richgrid2", "UC2DjFE7Xf11URZqWBigcVOQ")]
     fn map_channel_videos(#[case] name: &str, #[case] id: &str) {
         let filename = format!("testfiles/channel/channel_videos_{}.json", name);
         let json_path = Path::new(&filename);

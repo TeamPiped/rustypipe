@@ -535,8 +535,8 @@ pub struct CommentRenderer {
     pub author_text: Option<String>,
     #[serde(default)]
     pub author_thumbnail: Thumbnails,
-    #[serde(default)]
     /// ID of the author's channel
+    #[serde(default)]
     #[serde_as(as = "DefaultOnError")]
     pub author_endpoint: Option<AuthorEndpoint>,
     /// Comment text

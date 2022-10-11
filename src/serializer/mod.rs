@@ -41,25 +41,6 @@ where
     }
 }
 
-impl<T> MapResult<T>
-where
-    T: Default,
-{
-    pub fn error(msg: String) -> Self {
-        Self {
-            c: T::default(),
-            warnings: vec![msg],
-        }
-    }
-
-    pub fn ok(c: T) -> Self {
-        Self {
-            c,
-            warnings: Vec::new(),
-        }
-    }
-}
-
 /// Deserialization method that consumes anything and returns an empty value.
 /// Intended to be used for a wildcard enum option.
 ///

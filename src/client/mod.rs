@@ -983,7 +983,13 @@ impl RustyPipeQuery {
             warn!("{} retry attempt #{}. Error: {}.", operation, n, emsg);
         }
         self._try_execute_request_deobf::<R, M, B>(
-            ctype, operation, id, endpoint, body, deobf, false,
+            ctype,
+            operation,
+            id,
+            endpoint,
+            body,
+            deobf,
+            self.client.inner.n_query_retries < 2,
         )
         .await
     }
