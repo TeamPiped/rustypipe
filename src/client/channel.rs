@@ -281,12 +281,11 @@ impl MapResponse<Paginator<ChannelVideo>> for response::ChannelCont {
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
     ) -> Result<MapResult<Paginator<ChannelVideo>>, ExtractionError> {
         let mut actions = self.on_response_received_actions;
-        let res = some_or_bail!(
-            actions.try_swap_remove(0),
-            Err(ExtractionError::InvalidData("no received action".into()))
-        )
-        .append_continuation_items_action
-        .continuation_items;
+        let res = actions
+            .try_swap_remove(0)
+            .ok_or(ExtractionError::Retry)?
+            .append_continuation_items_action
+            .continuation_items;
 
         Ok(map_videos(res, lang))
     }
@@ -300,12 +299,11 @@ impl MapResponse<Paginator<ChannelPlaylist>> for response::ChannelCont {
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
     ) -> Result<MapResult<Paginator<ChannelPlaylist>>, ExtractionError> {
         let mut actions = self.on_response_received_actions;
-        let res = some_or_bail!(
-            actions.try_swap_remove(0),
-            Err(ExtractionError::InvalidData("no received action".into()))
-        )
-        .append_continuation_items_action
-        .continuation_items;
+        let res = actions
+            .try_swap_remove(0)
+            .ok_or(ExtractionError::Retry)?
+            .append_continuation_items_action
+            .continuation_items;
 
         Ok(map_playlists(res))
     }

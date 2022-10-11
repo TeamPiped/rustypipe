@@ -19,7 +19,7 @@ use rustypipe::param::{
 #[case::tv_html5_embed(ClientType::TvHtml5Embed)]
 #[case::android(ClientType::Android)]
 #[case::ios(ClientType::Ios)]
-#[test_log::test(tokio::test)]
+#[tokio::test]
 async fn get_player(#[case] client_type: ClientType) {
     let rp = RustyPipe::builder().strict().build();
     let player_data = rp.query().player("n4tK7LYFxI0", client_type).await.unwrap();
@@ -179,7 +179,7 @@ async fn get_playlist(
     assert!(!playlist.thumbnail.is_empty());
 }
 
-#[test_log::test(tokio::test)]
+#[tokio::test]
 async fn playlist_cont() {
     let rp = RustyPipe::builder().strict().build();
     let mut playlist = rp
@@ -197,7 +197,7 @@ async fn playlist_cont() {
     assert!(playlist.videos.count.unwrap() > 100);
 }
 
-#[test_log::test(tokio::test)]
+#[tokio::test]
 async fn playlist_cont2() {
     let rp = RustyPipe::builder().strict().build();
     let mut playlist = rp
@@ -311,7 +311,6 @@ async fn get_video_details_music() {
     assert!(!details.is_live);
     assert!(!details.is_ccommons);
 
-    assert!(!details.recommended.items.is_empty());
     assert!(!details.recommended.is_exhausted());
 
     // Comments are disabled for this video
@@ -369,7 +368,6 @@ async fn get_video_details_ccommons() {
     assert!(!details.is_live);
     assert!(details.is_ccommons);
 
-    assert!(!details.recommended.items.is_empty());
     assert!(!details.recommended.is_exhausted());
 
     assert!(
@@ -506,7 +504,6 @@ async fn get_video_details_chapters() {
         ]
         "###);
 
-    assert!(!details.recommended.items.is_empty());
     assert!(!details.recommended.is_exhausted());
 
     assert!(
@@ -566,7 +563,6 @@ async fn get_video_details_live() {
     assert!(details.is_live);
     assert!(!details.is_ccommons);
 
-    assert!(!details.recommended.items.is_empty());
     assert!(!details.recommended.is_exhausted());
 
     // No comments because livestream

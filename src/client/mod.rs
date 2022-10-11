@@ -169,7 +169,8 @@ struct RustyPipeRef {
     http: Client,
     storage: Option<Box<dyn CacheStorage>>,
     reporter: Option<Box<dyn Reporter>>,
-    n_retries: u32,
+    n_http_retries: u32,
+    n_query_retries: u32,
     consent_cookie: String,
     cache: CacheHolder,
     default_opts: RustyPipeOpts,
@@ -186,7 +187,8 @@ struct RustyPipeOpts {
 pub struct RustyPipeBuilder {
     storage: Option<Box<dyn CacheStorage>>,
     reporter: Option<Box<dyn Reporter>>,
-    n_retries: u32,
+    n_http_retries: u32,
+    n_query_retries: u32,
     user_agent: String,
     default_opts: RustyPipeOpts,
 }
@@ -277,7 +279,8 @@ impl RustyPipeBuilder {
             default_opts: RustyPipeOpts::default(),
             storage: Some(Box::new(FileStorage::default())),
             reporter: Some(Box::new(FileReporter::default())),
-            n_retries: 3,
+            n_http_retries: 3,
+            n_query_retries: 2,
             user_agent: DEFAULT_UA.to_owned(),
         }
     }
@@ -312,7 +315,8 @@ impl RustyPipeBuilder {
                 http,
                 storage: self.storage,
                 reporter: self.reporter,
-                n_retries: self.n_retries,
+                n_http_retries: self.n_http_retries,
+                n_query_retries: self.n_query_retries,
                 consent_cookie: format!(
                     "{}={}{}",
                     CONSENT_COOKIE,
@@ -367,8 +371,18 @@ impl RustyPipeBuilder {
     /// random jitter to be less predictable).
     ///
     /// **Default value**: 3
-    pub fn n_retries(mut self, n_retries: u32) -> Self {
-        self.n_retries = n_retries;
+    pub fn n_http_retries(mut self, n_retries: u32) -> Self {
+        self.n_http_retries = n_retries;
+        self
+    }
+
+    /// Set the number of retries for YouTube API queries.
+    ///
+    /// If a YouTube API requests returns invalid data, the request is repeated.
+    ///
+    /// **Default value**: 2
+    pub fn n_query_retries(mut self, n_retries: u32) -> Self {
+        self.n_http_retries = n_retries;
         self
     }
 
@@ -458,7 +472,7 @@ impl RustyPipe {
         request: Request,
     ) -> core::result::Result<Response, reqwest::Error> {
         let mut last_res = None;
-        for n in 0..self.inner.n_retries {
+        for n in 0..self.inner.n_http_retries {
             let res = self.inner.http.execute(request.try_clone().unwrap()).await;
             let emsg = match &res {
                 Ok(response) => {
@@ -940,6 +954,44 @@ impl RustyPipeQuery {
         body: &B,
         deobf: Option<&Deobfuscator>,
     ) -> Result<M> {
+        for n in 0..self.client.inner.n_query_retries.saturating_sub(1) {
+            let res = self
+                ._try_execute_request_deobf::<R, M, B>(ctype, operation, id, endpoint, body, deobf)
+                .await;
+            let emsg = match res {
+                Ok(res) => return Ok(res),
+                Err(error) => match &error {
+                    Error::Extraction(e) => match e {
+                        ExtractionError::Deserialization(_)
+                        | ExtractionError::InvalidData(_)
+                        | ExtractionError::WrongResult(_)
+                        | ExtractionError::Retry => e.to_string(),
+                        _ => return Err(error),
+                    },
+                    _ => return Err(error),
+                },
+            };
+
+            warn!("{} retry attempt #{}. Error: {}.", operation, n, emsg);
+        }
+        self._try_execute_request_deobf::<R, M, B>(ctype, operation, id, endpoint, body, deobf)
+            .await
+    }
+
+    /// Single try of `execute_request_deobf`
+    async fn _try_execute_request_deobf<
+        R: DeserializeOwned + MapResponse<M> + Debug,
+        M,
+        B: Serialize + ?Sized,
+    >(
+        &self,
+        ctype: ClientType,
+        operation: &str,
+        id: &str,
+        endpoint: &str,
+        body: &B,
+        deobf: Option<&Deobfuscator>,
+    ) -> Result<M> {
         let request = self
             .request_builder(ctype, endpoint)
             .await
@@ -949,7 +1001,7 @@ impl RustyPipeQuery {
         let request_url = request.url().to_string();
         let request_headers = request.headers().to_owned();
 
-        let response = self.client.inner.http.execute(request).await?;
+        let response = self.client.http_request(request).await?;
 
         let status = response.status();
         let resp_str = response.text().await?;
@@ -1013,7 +1065,8 @@ impl RustyPipeQuery {
                         ExtractionError::VideoUnavailable(_, _)
                         | ExtractionError::VideoAgeRestricted
                         | ExtractionError::ContentUnavailable(_)
-                        | ExtractionError::NoData => (),
+                        | ExtractionError::NoData
+                        | ExtractionError::Retry => (),
                         _ => create_report(Level::ERR, Some(e.to_string()), Vec::new()),
                     }
                     Err(e.into())

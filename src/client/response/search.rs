@@ -25,6 +25,7 @@ pub struct Search {
 pub struct SearchCont {
     #[serde_as(as = "Option<JsonString>")]
     pub estimated_results: Option<u64>,
+    #[serde_as(as = "VecSkipError<_>")]
     pub on_response_received_commands: Vec<SearchContCommand>,
 }
 

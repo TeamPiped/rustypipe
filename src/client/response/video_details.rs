@@ -11,7 +11,8 @@ use crate::serializer::{
 };
 
 use super::{
-    ContinuationEndpoint, ContinuationItemRenderer, Icon, Thumbnails, VideoListItem, VideoOwner,
+    ContinuationEndpoint, ContinuationItemRenderer, Icon, MusicContinuation, Thumbnails,
+    VideoListItem, VideoOwner,
 };
 
 /*
@@ -282,6 +283,8 @@ pub struct RecommendationResults {
     /// Can be `None` for age-restricted videos
     #[serde_as(as = "Option<VecLogError<_>>")]
     pub results: Option<MapResult<Vec<VideoListItem>>>,
+    #[serde_as(as = "Option<VecSkipError<_>>")]
+    pub continuations: Option<Vec<MusicContinuation>>,
 }
 
 /// The engagement panels are displayed below the video and contain chapter markers
@@ -418,9 +421,12 @@ pub struct CommentItemSectionHeaderMenuItem {
 */
 
 /// Video recommendations continuation response
+#[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct VideoRecommendations {
+    #[serde(default)]
+    #[serde_as(as = "VecSkipError<_>")]
     pub on_response_received_endpoints: Vec<RecommendationsContItem>,
 }
 
@@ -459,8 +465,8 @@ pub struct VideoComments {
     /// - Comment replies: appendContinuationItemsAction
     ///   - n*commentRenderer, continuationItemRenderer:
     ///     replies + continuation
-    #[serde_as(as = "VecLogError<_>")]
-    pub on_response_received_endpoints: MapResult<Vec<CommentsContItem>>,
+    #[serde_as(as = "Option<VecLogError<_>>")]
+    pub on_response_received_endpoints: Option<MapResult<Vec<CommentsContItem>>>,
 }
 
 /// Video comments continuation

@@ -25,6 +25,8 @@ pub struct Channel {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ChannelCont {
+    #[serde(default)]
+    #[serde_as(as = "VecSkipError<_>")]
     pub on_response_received_actions: Vec<OnResponseReceivedAction>,
 }
 

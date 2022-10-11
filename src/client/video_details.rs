@@ -251,7 +251,7 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
             .secondary_results
             .and_then(|sr| {
                 sr.secondary_results.results.map(|r| {
-                    let mut res = map_recommendations(r, lang);
+                    let mut res = map_recommendations(r, sr.secondary_results.continuations, lang);
                     warnings.append(&mut res.warnings);
                     res.c
                 })
@@ -342,15 +342,11 @@ impl MapResponse<Paginator<RecommendedVideo>> for response::VideoRecommendations
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
     ) -> Result<MapResult<Paginator<RecommendedVideo>>, ExtractionError> {
         let mut endpoints = self.on_response_received_endpoints;
-        let cont = some_or_bail!(
-            endpoints.try_swap_remove(0),
-            Err(ExtractionError::InvalidData(
-                "no continuation endpoint".into()
-            ))
-        );
+        let cont = endpoints.try_swap_remove(0).ok_or(ExtractionError::Retry)?;
 
         Ok(map_recommendations(
             cont.append_continuation_items_action.continuation_items,
+            None,
             lang,
         ))
     }
@@ -363,57 +359,54 @@ impl MapResponse<Paginator<Comment>> for response::VideoComments {
         lang: Language,
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
     ) -> Result<MapResult<Paginator<Comment>>, ExtractionError> {
-        let mut warnings = self.on_response_received_endpoints.warnings;
+        let received_endpoints = self
+            .on_response_received_endpoints
+            .ok_or(ExtractionError::Retry)?;
+        let mut warnings = received_endpoints.warnings;
 
         let mut comments = Vec::new();
         let mut comment_count = None;
         let mut ctoken = None;
 
-        self.on_response_received_endpoints
-            .c
-            .into_iter()
-            .for_each(|citem| {
-                let mut items = citem.append_continuation_items_action.continuation_items;
-                warnings.append(&mut items.warnings);
-                items.c.into_iter().for_each(|item| match item {
-                    response::video_details::CommentListItem::CommentThreadRenderer {
-                        comment,
-                        replies,
+        received_endpoints.c.into_iter().for_each(|citem| {
+            let mut items = citem.append_continuation_items_action.continuation_items;
+            warnings.append(&mut items.warnings);
+            items.c.into_iter().for_each(|item| match item {
+                response::video_details::CommentListItem::CommentThreadRenderer {
+                    comment,
+                    replies,
+                    rendering_priority,
+                } => {
+                    let mut res = map_comment(
+                        comment.comment_renderer,
+                        Some(replies),
                         rendering_priority,
-                    } => {
-                        let mut res = map_comment(
-                            comment.comment_renderer,
-                            Some(replies),
-                            rendering_priority,
-                            lang,
-                        );
-                        comments.push(res.c);
-                        warnings.append(&mut res.warnings)
-                    }
-                    response::video_details::CommentListItem::CommentRenderer(comment) => {
-                        let mut res = map_comment(
-                            comment,
-                            None,
-                            response::video_details::CommentPriority::RenderingPriorityUnknown,
-                            lang,
-                        );
-                        comments.push(res.c);
-                        warnings.append(&mut res.warnings)
-                    }
-                    response::video_details::CommentListItem::ContinuationItemRenderer {
-                        continuation_endpoint,
-                    } => {
-                        ctoken = Some(continuation_endpoint.continuation_command.token);
-                    }
-                    response::video_details::CommentListItem::CommentsHeaderRenderer {
-                        count_text,
-                    } => {
-                        comment_count = count_text.and_then(|txt| {
-                            util::parse_numeric_or_warn::<u64>(&txt, &mut warnings)
-                        });
-                    }
-                });
+                        lang,
+                    );
+                    comments.push(res.c);
+                    warnings.append(&mut res.warnings)
+                }
+                response::video_details::CommentListItem::CommentRenderer(comment) => {
+                    let mut res = map_comment(
+                        comment,
+                        None,
+                        response::video_details::CommentPriority::RenderingPriorityUnknown,
+                        lang,
+                    );
+                    comments.push(res.c);
+                    warnings.append(&mut res.warnings)
+                }
+                response::video_details::CommentListItem::ContinuationItemRenderer {
+                    continuation_endpoint,
+                } => {
+                    ctoken = Some(continuation_endpoint.continuation_command.token);
+                }
+                response::video_details::CommentListItem::CommentsHeaderRenderer { count_text } => {
+                    comment_count = count_text
+                        .and_then(|txt| util::parse_numeric_or_warn::<u64>(&txt, &mut warnings));
+                }
             });
+        });
 
         Ok(MapResult {
             c: Paginator::new(comment_count, comments, ctoken),
@@ -424,6 +417,7 @@ impl MapResponse<Paginator<Comment>> for response::VideoComments {
 
 fn map_recommendations(
     r: MapResult<Vec<response::VideoListItem>>,
+    continuations: Option<Vec<response::MusicContinuation>>,
     lang: Language,
 ) -> MapResult<Paginator<RecommendedVideo>> {
     let mut warnings = r.warnings;
@@ -474,6 +468,12 @@ fn map_recommendations(
                 _ => None,
             })
             .collect::<Vec<_>>();
+
+    if let Some(continuations) = continuations {
+        continuations.into_iter().for_each(|c| {
+            ctoken = Some(c.next_continuation_data.continuation);
+        })
+    };
 
     MapResult {
         c: Paginator::new(None, items, ctoken),

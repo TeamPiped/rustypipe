@@ -193,12 +193,7 @@ impl MapResponse<Paginator<PlaylistVideo>> for response::PlaylistCont {
         _deobf: Option<&Deobfuscator>,
     ) -> Result<MapResult<Paginator<PlaylistVideo>>, ExtractionError> {
         let mut actions = self.on_response_received_actions;
-        let action = some_or_bail!(
-            actions.try_swap_remove(0),
-            Err(ExtractionError::InvalidData(
-                "no continuation action".into()
-            ))
-        );
+        let action = actions.try_swap_remove(0).ok_or(ExtractionError::Retry)?;
 
         let (items, ctoken) =
             map_playlist_items(action.append_continuation_items_action.continuation_items.c);
