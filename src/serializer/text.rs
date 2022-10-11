@@ -5,7 +5,7 @@ use once_cell::sync::Lazy;
 use serde::{Deserialize, Deserializer};
 use serde_with::{serde_as, DefaultOnError, DeserializeAs};
 
-use crate::{error::MappingError, util};
+use crate::util;
 
 /// # Text
 ///
@@ -360,7 +360,7 @@ impl<'de> DeserializeAs<'de, TextComponents> for AttributedText {
 }
 
 impl TryFrom<TextComponent> for crate::model::ChannelId {
-    type Error = MappingError;
+    type Error = util::MappingError;
 
     fn try_from(value: TextComponent) -> Result<Self, Self::Error> {
         match value {
@@ -373,9 +373,9 @@ impl TryFrom<TextComponent> for crate::model::ChannelId {
                     id: browse_id,
                     name: text,
                 }),
-                _ => Err(MappingError("invalid channel link type".into())),
+                _ => Err(util::MappingError("invalid channel link type".into())),
             },
-            _ => Err(MappingError("invalid channel link".into())),
+            _ => Err(util::MappingError("invalid channel link".into())),
         }
     }
 }

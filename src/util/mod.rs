@@ -4,7 +4,11 @@ pub mod dictionary;
 
 pub use protobuf::ProtoBuilder;
 
-use std::{borrow::Borrow, collections::BTreeMap, str::FromStr};
+use std::{
+    borrow::{Borrow, Cow},
+    collections::BTreeMap,
+    str::FromStr,
+};
 
 use fancy_regex::Regex;
 use once_cell::sync::Lazy;
@@ -15,6 +19,11 @@ use crate::{error::Error, error::Result, param::Language};
 
 const CONTENT_PLAYBACK_NONCE_ALPHABET: &[u8; 64] =
     b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
+
+/// Internal error
+#[derive(thiserror::Error, Debug)]
+#[error("mapping error: {0}")]
+pub struct MappingError(pub(crate) Cow<'static, str>);
 
 /// Return the given capture group that matches first in a list of regexes
 pub fn get_cg_from_regexes<'a, I>(mut regexes: I, text: &str, cg: usize) -> Option<String>

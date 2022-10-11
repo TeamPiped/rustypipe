@@ -90,8 +90,3 @@ pub enum ExtractionError {
     #[error("Got no data from YouTube, attempt retry")]
     Retry,
 }
-
-/// Internal error
-#[derive(thiserror::Error, Debug)]
-#[error("mapping error: {0}")]
-pub struct MappingError(pub(crate) Cow<'static, str>);

@@ -1,10 +1,8 @@
-use std::convert::TryFrom;
-
 use serde::Serialize;
 
 use crate::{
     error::{Error, ExtractionError},
-    model::{ChannelId, ChannelTag, Chapter, Comment, Paginator, RecommendedVideo, VideoDetails},
+    model::{ChannelTag, Chapter, Comment, Paginator, RecommendedVideo, VideoDetails},
     param::Language,
     serializer::MapResult,
     timeago,
@@ -12,7 +10,7 @@ use crate::{
 };
 
 use super::{
-    response::{self, IconType, IsLive, IsShort},
+    response::{self, IconType, TryFromWLang},
     ClientType, MapResponse, QContinuation, RustyPipeQuery, YTContext,
 };
 
@@ -423,51 +421,30 @@ fn map_recommendations(
     let mut warnings = r.warnings;
     let mut ctoken = None;
 
-    let items =
-        r.c.into_iter()
-            .filter_map(|item| match item {
-                response::VideoListItem::CompactVideoRenderer(video) => {
-                    match ChannelId::try_from(video.channel) {
-                        Ok(channel) => Some(RecommendedVideo {
-                            id: video.video_id,
-                            title: video.title,
-                            length: video.length_text.and_then(|txt| {
-                                util::parse_video_length_or_warn(&txt, &mut warnings)
-                            }),
-                            thumbnail: video.thumbnail.into(),
-                            channel: ChannelTag {
-                                id: channel.id,
-                                name: channel.name,
-                                avatar: video.channel_thumbnail.into(),
-                                verification: video.owner_badges.into(),
-                                subscriber_count: None,
-                            },
-                            publish_date: video.published_time_text.as_ref().and_then(|txt| {
-                                timeago::parse_timeago_or_warn(lang, txt, &mut warnings)
-                            }),
-                            publish_date_txt: video.published_time_text,
-                            view_count: video
-                                .view_count_text
-                                .and_then(|txt| util::parse_numeric(&txt).ok())
-                                .unwrap_or_default(),
-                            is_live: video.badges.is_live(),
-                            is_short: video.thumbnail_overlays.is_short(),
-                        }),
-                        Err(e) => {
-                            warnings.push(e.to_string());
-                            None
-                        }
-                    }
-                }
-                response::VideoListItem::ContinuationItemRenderer {
-                    continuation_endpoint,
-                } => {
-                    ctoken = Some(continuation_endpoint.continuation_command.token);
-                    None
-                }
-                _ => None,
-            })
-            .collect::<Vec<_>>();
+    let mut items = Vec::new();
+
+    r.c.into_iter().for_each(|item| match item {
+        response::VideoListItem::CompactVideoRenderer(video) => {
+            match RecommendedVideo::from_w_lang(video, lang) {
+                Ok(video) => items.push(video),
+                Err(e) => warnings.push(e.to_string()),
+            }
+        }
+        response::VideoListItem::ItemSectionRenderer { contents } => {
+            let mut x = map_recommendations(contents, None, lang);
+            items.append(&mut x.c.items);
+            warnings.append(&mut x.warnings);
+            if let Some(ct) = x.c.ctoken {
+                ctoken = Some(ct)
+            }
+        }
+        response::VideoListItem::ContinuationItemRenderer {
+            continuation_endpoint,
+        } => {
+            ctoken = Some(continuation_endpoint.continuation_command.token);
+        }
+        _ => {}
+    });
 
     if let Some(continuations) = continuations {
         continuations.into_iter().for_each(|c| {
@@ -586,6 +563,7 @@ mod tests {
     #[case::agegate("agegate", "HRKu0cvrr_o")]
     #[case::newdesc("20220924_newdesc", "ZeerrnuLi5E")]
     #[case::new_cont("20221011_new_continuation", "ZeerrnuLi5E")]
+    #[case::no_recommends("20221011_rec_isr", "nFDBxBUfE74")]
     fn map_video_details(#[case] name: &str, #[case] id: &str) {
         let filename = format!("testfiles/video_details/video_details_{}.json", name);
         let json_path = Path::new(&filename);
@@ -593,6 +571,7 @@ mod tests {
 
         let details: response::VideoDetails =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        dbg!(&details);
         let map_res = details.map_response(id, Language::En, None).unwrap();
 
         assert!(

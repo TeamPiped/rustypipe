@@ -29,13 +29,14 @@ use serde_with::{json::JsonString, serde_as, DefaultOnError, VecSkipError};
 use crate::error::ExtractionError;
 use crate::model;
 use crate::param::Language;
+use crate::serializer::MapResult;
 use crate::serializer::{
     ignore_any,
     text::{Text, TextComponent},
+    VecLogError,
 };
 use crate::timeago;
-use crate::util;
-use crate::util::TryRemove;
+use crate::util::{self, TryRemove};
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -74,6 +75,7 @@ pub struct Thumbnail {
     pub height: u32,
 }
 
+#[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub enum VideoListItem {
@@ -90,6 +92,13 @@ pub enum VideoListItem {
     /// Seems to be currently A/B tested on the channel page,
     /// as of 11.10.2022
     RichItemRenderer { content: RichItem },
+
+    /// Seems to be currently A/B tested on the video details page,
+    /// as of 11.10.2022
+    ItemSectionRenderer {
+        #[serde_as(as = "VecLogError<_>")]
+        contents: MapResult<Vec<VideoListItem>>,
+    },
 
     /// Continauation items are located at the end of a list
     /// and contain the continuation token for progressive loading
@@ -507,6 +516,10 @@ pub trait FromWLang<T> {
     fn from_w_lang(from: T, lang: Language) -> Self;
 }
 
+pub trait TryFromWLang<T>: Sized {
+    fn from_w_lang(from: T, lang: Language) -> core::result::Result<Self, util::MappingError>;
+}
+
 impl FromWLang<GridVideoRenderer> for model::ChannelVideo {
     fn from_w_lang(video: GridVideoRenderer, lang: Language) -> Self {
         let mut toverlays = video.thumbnail_overlays;
@@ -557,5 +570,41 @@ impl From<GridPlaylistRenderer> for model::ChannelPlaylist {
             thumbnail: playlist.thumbnail.into(),
             video_count: util::parse_numeric(&playlist.video_count_short_text).ok(),
         }
+    }
+}
+
+impl TryFromWLang<CompactVideoRenderer> for model::RecommendedVideo {
+    fn from_w_lang(
+        video: CompactVideoRenderer,
+        lang: Language,
+    ) -> core::result::Result<Self, util::MappingError> {
+        let channel = model::ChannelId::try_from(video.channel)?;
+
+        Ok(Self {
+            id: video.video_id,
+            title: video.title,
+            length: video
+                .length_text
+                .and_then(|txt| util::parse_video_length(&txt)),
+            thumbnail: video.thumbnail.into(),
+            channel: model::ChannelTag {
+                id: channel.id,
+                name: channel.name,
+                avatar: video.channel_thumbnail.into(),
+                verification: video.owner_badges.into(),
+                subscriber_count: None,
+            },
+            publish_date: video
+                .published_time_text
+                .as_ref()
+                .and_then(|txt| timeago::parse_timeago_to_dt(lang, txt)),
+            publish_date_txt: video.published_time_text,
+            view_count: video
+                .view_count_text
+                .and_then(|txt| util::parse_numeric(&txt).ok())
+                .unwrap_or_default(),
+            is_live: video.badges.is_live(),
+            is_short: video.thumbnail_overlays.is_short(),
+        })
     }
 }

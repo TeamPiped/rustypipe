@@ -1018,6 +1018,9 @@ impl RustyPipeQuery {
         let status = response.status();
         let resp_str = response.text().await?;
 
+        // Uncomment to debug response text
+        // println!("{}", &resp_str);
+
         let create_report = |level: Level, error: Option<String>, msgs: Vec<String>| {
             if report {
                 if let Some(reporter) = &self.client.inner.reporter {
