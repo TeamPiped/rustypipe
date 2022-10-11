@@ -141,13 +141,13 @@ const YOUTUBE_MUSIC_V1_URL: &str = "https://music.youtube.com/youtubei/v1/";
 
 const DISABLE_PRETTY_PRINT_PARAMETER: &str = "&prettyPrint=false";
 
-const DESKTOP_CLIENT_VERSION: &str = "2.20220909.00.00";
+const DESKTOP_CLIENT_VERSION: &str = "2.20221011.00.00";
 const DESKTOP_API_KEY: &str = "AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8";
 const TVHTML5_CLIENT_VERSION: &str = "2.0";
 const DESKTOP_MUSIC_API_KEY: &str = "AIzaSyC9XL3ZjWddXya6X74dJoCTL-WEYFDNX30";
-const DESKTOP_MUSIC_CLIENT_VERSION: &str = "1.20220831.01.02";
+const DESKTOP_MUSIC_CLIENT_VERSION: &str = "1.20221005.01.00";
 
-const MOBILE_CLIENT_VERSION: &str = "17.29.35";
+const MOBILE_CLIENT_VERSION: &str = "17.39.35";
 const ANDROID_API_KEY: &str = "AIzaSyA8eiZmM1FaDVjRy-df2KTyQ_vz_yYM39w";
 const IOS_API_KEY: &str = "AIzaSyB-63vPrdThhKuerbB2N_l7Kwwcxj6yUAc";
 const IOS_DEVICE_MODEL: &str = "iPhone14,5";

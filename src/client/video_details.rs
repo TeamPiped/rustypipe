@@ -92,6 +92,9 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
     ) -> Result<MapResult<VideoDetails>, ExtractionError> {
         let mut warnings = Vec::new();
 
+        let contents = self
+            .contents
+            .ok_or_else(|| ExtractionError::ContentUnavailable("Video not found".into()))?;
         let current_video_endpoint = self
             .current_video_endpoint
             .ok_or_else(|| ExtractionError::ContentUnavailable("Video not found".into()))?;
@@ -104,8 +107,7 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
             )));
         }
 
-        let mut primary_results = self
-            .contents
+        let mut primary_results = contents
             .two_column_watch_next_results
             .results
             .results
@@ -247,8 +249,7 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
             _ => return Err(ExtractionError::InvalidData("invalid channel link".into())),
         };
 
-        let recommended = self
-            .contents
+        let recommended = contents
             .two_column_watch_next_results
             .secondary_results
             .and_then(|sr| {

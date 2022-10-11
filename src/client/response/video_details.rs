@@ -25,7 +25,7 @@ use super::{
 #[serde(rename_all = "camelCase")]
 pub struct VideoDetails {
     /// Video metadata + recommended videos
-    pub contents: Contents,
+    pub contents: Option<Contents>,
     /// Video ID
     pub current_video_endpoint: Option<CurrentVideoEndpoint>,
     /// Video chapters + comment section
