@@ -49,23 +49,31 @@ pub struct TabsRenderer {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct TabRendererWrap {
-    pub tab_renderer: ContentRenderer<SectionListRendererWrap>,
+    pub tab_renderer: ContentRenderer<TabContent>,
 }
 
+#[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct SectionListRendererWrap {
-    pub section_list_renderer: SectionListRenderer,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct SectionListRenderer {
-    pub contents: Vec<ItemSectionRendererWrap>,
-    /// - **Videos**: browse-feedUC2DjFE7Xf11URZqWBigcVOQvideos (...)
-    /// - **Playlists**: browse-feedUC2DjFE7Xf11URZqWBigcVOQplaylists104 (...)
-    /// - **Info**: None
-    pub target_id: Option<String>,
+pub enum TabContent {
+    #[serde(rename_all = "camelCase")]
+    SectionListRenderer {
+        contents: Vec<ItemSectionRendererWrap>,
+        /// - **Videos**: browse-feedUC2DjFE7Xf11URZqWBigcVOQvideos (...)
+        /// - **Playlists**: browse-feedUC2DjFE7Xf11URZqWBigcVOQplaylists104 (...)
+        /// - **Info**: None
+        target_id: Option<String>,
+    },
+    /// Seems to be currently A/B tested, as of 11.10.2022
+    #[serde(rename_all = "camelCase")]
+    RichGridRenderer {
+        #[serde_as(as = "VecLogError<_>")]
+        contents: MapResult<Vec<VideoListItem>>,
+        /// - **Videos**: browse-feedUC2DjFE7Xf11URZqWBigcVOQvideos (...)
+        /// - **Playlists**: browse-feedUC2DjFE7Xf11URZqWBigcVOQplaylists104 (...)
+        /// - **Info**: None
+        target_id: Option<String>,
+    },
 }
 
 #[derive(Debug, Deserialize)]

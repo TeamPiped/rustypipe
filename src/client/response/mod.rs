@@ -7,6 +7,7 @@ pub mod video_details;
 
 pub use channel::Channel;
 pub use channel::ChannelCont;
+use chrono::TimeZone;
 pub use player::Player;
 pub use playlist::Playlist;
 pub use playlist::PlaylistCont;
@@ -26,10 +27,15 @@ use serde::Deserialize;
 use serde_with::{json::JsonString, serde_as, DefaultOnError, VecSkipError};
 
 use crate::error::ExtractionError;
+use crate::model;
+use crate::param::Language;
 use crate::serializer::{
     ignore_any,
     text::{Text, TextComponent},
 };
+use crate::timeago;
+use crate::util;
+use crate::util::TryRemove;
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -80,6 +86,10 @@ pub enum VideoListItem {
 
     /// Playlist on channel page
     GridPlaylistRenderer(GridPlaylistRenderer),
+
+    /// Seems to be currently A/B tested on the channel page,
+    /// as of 11.10.2022
+    RichItemRenderer { content: RichItem },
 
     /// Continauation items are located at the end of a list
     /// and contain the continuation token for progressive loading
@@ -177,6 +187,13 @@ pub struct GridPlaylistRenderer {
     pub thumbnail: Thumbnails,
     #[serde_as(as = "Text")]
     pub video_count_short_text: String,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub enum RichItem {
+    VideoRenderer(GridVideoRenderer),
+    PlaylistRenderer(GridPlaylistRenderer),
 }
 
 #[serde_as]
@@ -483,5 +500,62 @@ pub fn alerts_to_err(alerts: Option<Vec<Alert>>) -> ExtractionError {
                 .join(" "),
         ),
         None => ExtractionError::InvalidData("no contents".into()),
+    }
+}
+
+pub trait FromWLang<T> {
+    fn from_w_lang(from: T, lang: Language) -> Self;
+}
+
+impl FromWLang<GridVideoRenderer> for model::ChannelVideo {
+    fn from_w_lang(video: GridVideoRenderer, lang: Language) -> Self {
+        let mut toverlays = video.thumbnail_overlays;
+        let is_live = toverlays.is_live();
+        let is_short = toverlays.is_short();
+        let to = toverlays.try_swap_remove(0);
+
+        Self {
+            id: video.video_id,
+            title: video.title,
+            // Time text is `LIVE` for livestreams, so we ignore parse errors
+            length: to.and_then(|to| {
+                util::parse_video_length(&to.thumbnail_overlay_time_status_renderer.text)
+            }),
+            thumbnail: video.thumbnail.into(),
+            publish_date: video
+                .upcoming_event_data
+                .as_ref()
+                .map(|upc| {
+                    chrono::Local.from_utc_datetime(&chrono::NaiveDateTime::from_timestamp(
+                        upc.start_time,
+                        0,
+                    ))
+                })
+                .or_else(|| {
+                    video
+                        .published_time_text
+                        .as_ref()
+                        .and_then(|txt| timeago::parse_timeago_to_dt(lang, txt))
+                }),
+            publish_date_txt: video.published_time_text,
+            view_count: video
+                .view_count_text
+                .and_then(|txt| util::parse_numeric(&txt).ok())
+                .unwrap_or_default(),
+            is_live,
+            is_short,
+            is_upcoming: video.upcoming_event_data.is_some(),
+        }
+    }
+}
+
+impl From<GridPlaylistRenderer> for model::ChannelPlaylist {
+    fn from(playlist: GridPlaylistRenderer) -> Self {
+        Self {
+            id: playlist.playlist_id,
+            name: playlist.title,
+            thumbnail: playlist.thumbnail.into(),
+            video_count: util::parse_numeric(&playlist.video_count_short_text).ok(),
+        }
     }
 }

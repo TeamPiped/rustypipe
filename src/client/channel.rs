@@ -1,4 +1,3 @@
-use chrono::TimeZone;
 use serde::Serialize;
 use url::Url;
 
@@ -12,7 +11,7 @@ use crate::{
 };
 
 use super::{
-    response::{self, IsLive, IsShort},
+    response::{self, FromWLang},
     ClientType, MapResponse, QContinuation, RustyPipeQuery, YTContext,
 };
 
@@ -313,51 +312,17 @@ fn map_videos(
     res: MapResult<Vec<response::VideoListItem>>,
     lang: Language,
 ) -> MapResult<Paginator<ChannelVideo>> {
-    let mut warnings = res.warnings;
-
     let mut ctoken = None;
     let videos = res
         .c
         .into_iter()
         .filter_map(|item| match item {
             response::VideoListItem::GridVideoRenderer(video) => {
-                let mut toverlays = video.thumbnail_overlays;
-                let is_live = toverlays.is_live();
-                let is_short = toverlays.is_short();
-                let to = toverlays.try_swap_remove(0);
-
-                Some(ChannelVideo {
-                    id: video.video_id,
-                    title: video.title,
-                    // Time text is `LIVE` for livestreams, so we ignore parse errors
-                    length: to.and_then(|to| {
-                        util::parse_video_length(&to.thumbnail_overlay_time_status_renderer.text)
-                    }),
-                    thumbnail: video.thumbnail.into(),
-                    publish_date: video
-                        .upcoming_event_data
-                        .as_ref()
-                        .map(|upc| {
-                            chrono::Local.from_utc_datetime(&chrono::NaiveDateTime::from_timestamp(
-                                upc.start_time,
-                                0,
-                            ))
-                        })
-                        .or_else(|| {
-                            video.published_time_text.as_ref().and_then(|txt| {
-                                timeago::parse_timeago_or_warn(lang, txt, &mut warnings)
-                            })
-                        }),
-                    publish_date_txt: video.published_time_text,
-                    view_count: video
-                        .view_count_text
-                        .and_then(|txt| util::parse_numeric(&txt).ok())
-                        .unwrap_or_default(),
-                    is_live,
-                    is_short,
-                    is_upcoming: video.upcoming_event_data.is_some(),
-                })
+                Some(ChannelVideo::from_w_lang(video, lang))
             }
+            response::VideoListItem::RichItemRenderer {
+                content: response::RichItem::VideoRenderer(video),
+            } => Some(ChannelVideo::from_w_lang(video, lang)),
             response::VideoListItem::ContinuationItemRenderer {
                 continuation_endpoint,
             } => {
@@ -370,7 +335,7 @@ fn map_videos(
 
     MapResult {
         c: Paginator::new(None, videos, ctoken),
-        warnings,
+        warnings: res.warnings,
     }
 }
 
@@ -382,12 +347,10 @@ fn map_playlists(
         .c
         .into_iter()
         .filter_map(|item| match item {
-            response::VideoListItem::GridPlaylistRenderer(playlist) => Some(ChannelPlaylist {
-                id: playlist.playlist_id,
-                name: playlist.title,
-                thumbnail: playlist.thumbnail.into(),
-                video_count: util::parse_numeric(&playlist.video_count_short_text).ok(),
-            }),
+            response::VideoListItem::GridPlaylistRenderer(playlist) => Some(playlist.into()),
+            response::VideoListItem::RichItemRenderer {
+                content: response::RichItem::PlaylistRenderer(playlist),
+            } => Some(playlist.into()),
             response::VideoListItem::ContinuationItemRenderer {
                 continuation_endpoint,
             } => {
@@ -503,15 +466,41 @@ fn map_channel_content(
     match contents {
         Some(contents) => {
             let mut tabs = contents.two_column_browse_results_renderer.tabs;
-            let mut sectionlist = some_or_bail!(
+            let content = some_or_bail!(
                 tabs.try_swap_remove(0),
                 Ok(MapResult::error("no tab".to_owned()))
             )
             .tab_renderer
-            .content
-            .section_list_renderer;
+            .content;
 
-            if let Some(target_id) = sectionlist.target_id {
+            let (channel_content, target_id) = match content {
+                response::channel::TabContent::SectionListRenderer {
+                    mut contents,
+                    target_id,
+                } => {
+                    let mut itemsection = some_or_bail!(
+                        contents.try_swap_remove(0),
+                        Ok(MapResult::error("no sectionlist".to_owned()))
+                    )
+                    .item_section_renderer
+                    .contents;
+
+                    let content = some_or_bail!(
+                        itemsection.try_swap_remove(0),
+                        Ok(MapResult::error("no channel content".to_owned()))
+                    );
+                    (content, target_id)
+                }
+                response::channel::TabContent::RichGridRenderer {
+                    contents,
+                    target_id,
+                } => (
+                    response::channel::ChannelContent::GridRenderer { items: contents },
+                    target_id,
+                ),
+            };
+
+            if let Some(target_id) = target_id {
                 // YouTube falls back to the featured page if the channel does not have a "videos" tab.
                 // This is the case for YouTube Music channels.
                 if target_id.starts_with(&format!("browse-feed{}featured", id)) {
@@ -519,19 +508,7 @@ fn map_channel_content(
                 }
             }
 
-            let mut itemsection = some_or_bail!(
-                sectionlist.contents.try_swap_remove(0),
-                Ok(MapResult::error("no sectionlist".to_owned()))
-            )
-            .item_section_renderer
-            .contents;
-
-            let content = some_or_bail!(
-                itemsection.try_swap_remove(0),
-                Ok(MapResult::error("no channel content".to_owned()))
-            );
-
-            Ok(MapResult::ok(content))
+            Ok(MapResult::ok(channel_content))
         }
         None => Err(response::alerts_to_err(alerts)),
     }
@@ -557,6 +534,7 @@ mod tests {
     #[case::live("live", "UChs0pSaEoNLV4mevBFGaoKA")]
     #[case::empty("empty", "UCxBa895m48H5idw5li7h-0g")]
     #[case::upcoming("upcoming", "UCcvfHa-GHSOHFAjU0-Ie57A")]
+    #[case::shorts("20221011_richgrid", "UCh8gHdtzO2tXd593_bjErWg")]
     fn map_channel_videos(#[case] name: &str, #[case] id: &str) {
         let filename = format!("testfiles/channel/channel_videos_{}.json", name);
         let json_path = Path::new(&filename);
