@@ -956,7 +956,15 @@ impl RustyPipeQuery {
     ) -> Result<M> {
         for n in 0..self.client.inner.n_query_retries.saturating_sub(1) {
             let res = self
-                ._try_execute_request_deobf::<R, M, B>(ctype, operation, id, endpoint, body, deobf)
+                ._try_execute_request_deobf::<R, M, B>(
+                    ctype,
+                    operation,
+                    id,
+                    endpoint,
+                    body,
+                    deobf,
+                    n == 0,
+                )
                 .await;
             let emsg = match res {
                 Ok(res) => return Ok(res),
@@ -974,11 +982,14 @@ impl RustyPipeQuery {
 
             warn!("{} retry attempt #{}. Error: {}.", operation, n, emsg);
         }
-        self._try_execute_request_deobf::<R, M, B>(ctype, operation, id, endpoint, body, deobf)
-            .await
+        self._try_execute_request_deobf::<R, M, B>(
+            ctype, operation, id, endpoint, body, deobf, false,
+        )
+        .await
     }
 
     /// Single try of `execute_request_deobf`
+    #[allow(clippy::too_many_arguments)]
     async fn _try_execute_request_deobf<
         R: DeserializeOwned + MapResponse<M> + Debug,
         M,
@@ -991,6 +1002,7 @@ impl RustyPipeQuery {
         endpoint: &str,
         body: &B,
         deobf: Option<&Deobfuscator>,
+        report: bool,
     ) -> Result<M> {
         let request = self
             .request_builder(ctype, endpoint)
@@ -1007,30 +1019,32 @@ impl RustyPipeQuery {
         let resp_str = response.text().await?;
 
         let create_report = |level: Level, error: Option<String>, msgs: Vec<String>| {
-            if let Some(reporter) = &self.client.inner.reporter {
-                let report = Report {
-                    info: Default::default(),
-                    level,
-                    operation: format!("{}({})", operation, id),
-                    error,
-                    msgs,
-                    deobf_data: deobf.map(Deobfuscator::get_data),
-                    http_request: crate::report::HTTPRequest {
-                        url: request_url,
-                        method: "POST".to_string(),
-                        req_header: request_headers
-                            .iter()
-                            .map(|(k, v)| {
-                                (k.to_string(), v.to_str().unwrap_or_default().to_owned())
-                            })
-                            .collect(),
-                        req_body: serde_json::to_string(body).unwrap_or_default(),
-                        status: status.into(),
-                        resp_body: resp_str.to_owned(),
-                    },
-                };
+            if report {
+                if let Some(reporter) = &self.client.inner.reporter {
+                    let report = Report {
+                        info: Default::default(),
+                        level,
+                        operation: format!("{}({})", operation, id),
+                        error,
+                        msgs,
+                        deobf_data: deobf.map(Deobfuscator::get_data),
+                        http_request: crate::report::HTTPRequest {
+                            url: request_url,
+                            method: "POST".to_string(),
+                            req_header: request_headers
+                                .iter()
+                                .map(|(k, v)| {
+                                    (k.to_string(), v.to_str().unwrap_or_default().to_owned())
+                                })
+                                .collect(),
+                            req_body: serde_json::to_string(body).unwrap_or_default(),
+                            status: status.into(),
+                            resp_body: resp_str.to_owned(),
+                        },
+                    };
 
-                reporter.report(&report);
+                    reporter.report(&report);
+                }
             }
         };
 
