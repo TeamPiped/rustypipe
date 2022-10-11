@@ -584,8 +584,9 @@ mod tests {
     #[case::chapters("chapters", "nFDBxBUfE74")]
     #[case::live("live", "86YLFOog4GM")]
     #[case::agegate("agegate", "HRKu0cvrr_o")]
-    #[case::newdesc("newdesc", "ZeerrnuLi5E")]
-    fn t_map_video_details(#[case] name: &str, #[case] id: &str) {
+    #[case::newdesc("20220924_newdesc", "ZeerrnuLi5E")]
+    #[case::new_cont("20221011_new_continuation", "ZeerrnuLi5E")]
+    fn map_video_details(#[case] name: &str, #[case] id: &str) {
         let filename = format!("testfiles/video_details/video_details_{}.json", name);
         let json_path = Path::new(&filename);
         let json_file = File::open(json_path).unwrap();
@@ -626,10 +627,25 @@ mod tests {
         });
     }
 
+    #[test]
+    fn map_recommendations_empty() {
+        let filename = format!("testfiles/video_details/recommendations_empty.json");
+        let json_path = Path::new(&filename);
+        let json_file = File::open(json_path).unwrap();
+
+        let recommendations: response::VideoRecommendations =
+            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let err = recommendations
+            .map_response("", Language::En, None)
+            .unwrap_err();
+
+        assert!(matches!(err, crate::error::ExtractionError::Retry));
+    }
+
     #[rstest]
     #[case::top("top")]
     #[case::latest("latest")]
-    fn t_map_comments(#[case] name: &str) {
+    fn map_comments(#[case] name: &str) {
         let filename = format!("testfiles/video_details/comments_{}.json", name);
         let json_path = Path::new(&filename);
         let json_file = File::open(json_path).unwrap();
