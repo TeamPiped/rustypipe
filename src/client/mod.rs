@@ -505,7 +505,14 @@ impl RustyPipe {
     /// Execute the given http request, returning an error in case of a
     /// non-successful status code.
     async fn http_request_estatus(&self, request: Request) -> Result<Response> {
-        Ok(self.http_request(request).await?.error_for_status()?)
+        let res = self.http_request(request).await?;
+        let status = res.status();
+
+        if status.is_client_error() || status.is_server_error() {
+            Err(Error::HttpStatus(status.into()))
+        } else {
+            Ok(res)
+        }
     }
 
     /// Execute the given http request, returning the response body as a string.

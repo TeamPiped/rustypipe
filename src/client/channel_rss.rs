@@ -17,7 +17,13 @@ impl RustyPipeQuery {
         let xml = self
             .client
             .http_request_txt(self.client.inner.http.get(&url).build()?)
-            .await?;
+            .await
+            .map_err(|e| match e {
+                Error::HttpStatus(404) => Error::Extraction(ExtractionError::ContentUnavailable(
+                    "Channel not found".into(),
+                )),
+                _ => e,
+            })?;
 
         match quick_xml::de::from_str::<response::ChannelRss>(&xml) {
             Ok(feed) => Ok(feed.into()),

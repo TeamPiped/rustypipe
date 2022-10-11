@@ -921,6 +921,21 @@ async fn get_channel_rss() {
     assert!(!channel.videos.is_empty());
 }
 
+#[tokio::test]
+async fn get_channel_rss_not_found() {
+    let rp = RustyPipe::builder().strict().build();
+    let err = rp
+        .query()
+        .channel_rss("UCHnyfMqiRRG1u-2MsSQLbXZ")
+        .await
+        .unwrap_err();
+
+    assert!(matches!(
+        err,
+        Error::Extraction(ExtractionError::ContentUnavailable(_))
+    ));
+}
+
 //#SEARCH
 
 #[tokio::test]
