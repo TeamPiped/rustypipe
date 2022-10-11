@@ -27,7 +27,7 @@ pub struct VideoDetails {
     /// Video metadata + recommended videos
     pub contents: Contents,
     /// Video ID
-    pub current_video_endpoint: CurrentVideoEndpoint,
+    pub current_video_endpoint: Option<CurrentVideoEndpoint>,
     /// Video chapters + comment section
     #[serde_as(as = "VecLogError<_>")]
     pub engagement_panels: MapResult<Vec<EngagementPanel>>,

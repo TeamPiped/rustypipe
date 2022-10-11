@@ -633,6 +633,17 @@ async fn get_video_details_agegate() {
 }
 
 #[tokio::test]
+async fn get_video_details_not_found() {
+    let rp = RustyPipe::builder().strict().build();
+    let err = rp.query().video_details("abcdefgLi5X").await.unwrap_err();
+
+    assert!(matches!(
+        err,
+        Error::Extraction(ExtractionError::ContentUnavailable(_))
+    ))
+}
+
+#[tokio::test]
 async fn get_video_recommendations() {
     let rp = RustyPipe::builder().strict().build();
     let details = rp.query().video_details("ZeerrnuLi5E").await.unwrap();

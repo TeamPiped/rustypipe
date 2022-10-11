@@ -92,7 +92,11 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
     ) -> Result<MapResult<VideoDetails>, ExtractionError> {
         let mut warnings = Vec::new();
 
-        let video_id = self.current_video_endpoint.watch_endpoint.video_id;
+        let current_video_endpoint = self
+            .current_video_endpoint
+            .ok_or_else(|| ExtractionError::ContentUnavailable("Video not found".into()))?;
+
+        let video_id = current_video_endpoint.watch_endpoint.video_id;
         if id != video_id {
             return Err(ExtractionError::WrongResult(format!(
                 "got wrong playlist id {}, expected {}",
@@ -571,7 +575,6 @@ mod tests {
 
         let details: response::VideoDetails =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        dbg!(&details);
         let map_res = details.map_response(id, Language::En, None).unwrap();
 
         assert!(
@@ -583,6 +586,21 @@ mod tests {
             ".publish_date" => "[date]",
             ".recommended.items[].publish_date" => "[date]",
         });
+    }
+
+    #[test]
+    fn map_video_details_not_found() {
+        let filename = "testfiles/video_details/video_details_not_found.json";
+        let json_path = Path::new(&filename);
+        let json_file = File::open(json_path).unwrap();
+
+        let details: response::VideoDetails =
+            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let err = details.map_response("", Language::En, None).unwrap_err();
+        assert!(matches!(
+            err,
+            crate::error::ExtractionError::ContentUnavailable(_)
+        ))
     }
 
     #[test]
