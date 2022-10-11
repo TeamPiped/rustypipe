@@ -211,6 +211,21 @@ async fn playlist_cont2() {
     assert!(playlist.videos.count.unwrap() > 100);
 }
 
+#[tokio::test]
+async fn playlist_not_found() {
+    let rp = RustyPipe::builder().strict().build();
+    let err = rp
+        .query()
+        .playlist("PLbZIPy20-1pN7mqjckepWF78ndb6ci_qz")
+        .await
+        .unwrap_err();
+
+    assert!(matches!(
+        err,
+        Error::Extraction(ExtractionError::ContentUnavailable(_))
+    ));
+}
+
 //#VIDEO DETAILS
 
 #[tokio::test]

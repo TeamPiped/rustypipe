@@ -5,14 +5,17 @@ use serde_with::{DefaultOnError, VecSkipError};
 use crate::serializer::text::{Text, TextComponent};
 use crate::serializer::{MapResult, VecLogError};
 
-use super::{ContentRenderer, ContentsRenderer, ThumbnailsWrap, VideoListItem};
+use super::{Alert, ContentRenderer, ContentsRenderer, ThumbnailsWrap, VideoListItem};
 
+#[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Playlist {
-    pub contents: Contents,
-    pub header: Header,
+    pub contents: Option<Contents>,
+    pub header: Option<Header>,
     pub sidebar: Option<Sidebar>,
+    #[serde_as(as = "Option<DefaultOnError>")]
+    pub alerts: Option<Vec<Alert>>,
 }
 
 #[serde_as]

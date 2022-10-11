@@ -25,6 +25,7 @@ pub use channel_rss::ChannelRss;
 use serde::Deserialize;
 use serde_with::{json::JsonString, serde_as, DefaultOnError, VecSkipError};
 
+use crate::error::ExtractionError;
 use crate::serializer::{
     ignore_any,
     text::{Text, TextComponent},
@@ -469,5 +470,18 @@ impl IsShort for Vec<TimeOverlay> {
         self.iter().any(|overlay| {
             overlay.thumbnail_overlay_time_status_renderer.style == TimeOverlayStyle::Shorts
         })
+    }
+}
+
+pub fn alerts_to_err(alerts: Option<Vec<Alert>>) -> ExtractionError {
+    match alerts {
+        Some(alerts) => ExtractionError::ContentUnavailable(
+            alerts
+                .into_iter()
+                .map(|a| a.alert_renderer.text)
+                .collect::<Vec<_>>()
+                .join(" "),
+        ),
+        None => ExtractionError::InvalidData("no contents".into()),
     }
 }

@@ -533,16 +533,7 @@ fn map_channel_content(
 
             Ok(MapResult::ok(content))
         }
-        None => match alerts {
-            Some(alerts) => Err(ExtractionError::ContentUnavailable(
-                alerts
-                    .into_iter()
-                    .map(|a| a.alert_renderer.text)
-                    .collect::<Vec<_>>()
-                    .join(" "),
-            )),
-            None => Err(ExtractionError::InvalidData("no contents".into())),
-        },
+        None => Err(response::alerts_to_err(alerts)),
     }
 }
 

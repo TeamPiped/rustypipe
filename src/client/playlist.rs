@@ -68,8 +68,12 @@ impl MapResponse<Playlist> for response::Playlist {
         lang: Language,
         _deobf: Option<&Deobfuscator>,
     ) -> Result<MapResult<Playlist>, ExtractionError> {
-        // TODO: think about a deserializer that deserializes only first list item
-        let mut tcbr_contents = self.contents.two_column_browse_results_renderer.contents;
+        let (contents, header) = match (self.contents, self.header) {
+            (Some(contents), Some(header)) => (contents, header),
+            _ => return Err(response::alerts_to_err(self.alerts)),
+        };
+
+        let mut tcbr_contents = contents.two_column_browse_results_renderer.contents;
         let video_items = some_or_bail!(
             some_or_bail!(
                 some_or_bail!(
@@ -121,11 +125,11 @@ impl MapResponse<Playlist> for response::Playlist {
             }
             None => {
                 let header_banner = some_or_bail!(
-                    self.header.playlist_header_renderer.playlist_header_banner,
+                    header.playlist_header_renderer.playlist_header_banner,
                     Err(ExtractionError::InvalidData("no thumbnail found".into()))
                 );
 
-                let mut byline = self.header.playlist_header_renderer.byline;
+                let mut byline = header.playlist_header_renderer.byline;
                 let last_update_txt = byline
                     .try_swap_remove(1)
                     .map(|b| b.playlist_byline_renderer.text);
@@ -140,14 +144,14 @@ impl MapResponse<Playlist> for response::Playlist {
         let n_videos = match ctoken {
             Some(_) => {
                 ok_or_bail!(
-                    util::parse_numeric(&self.header.playlist_header_renderer.num_videos_text),
+                    util::parse_numeric(&header.playlist_header_renderer.num_videos_text),
                     Err(ExtractionError::InvalidData("no video count".into()))
                 )
             }
             None => videos.len() as u64,
         };
 
-        let playlist_id = self.header.playlist_header_renderer.playlist_id;
+        let playlist_id = header.playlist_header_renderer.playlist_id;
         if playlist_id != id {
             return Err(ExtractionError::WrongResult(format!(
                 "got wrong playlist id {}, expected {}",
@@ -155,10 +159,9 @@ impl MapResponse<Playlist> for response::Playlist {
             )));
         }
 
-        let name = self.header.playlist_header_renderer.title;
-        let description = self.header.playlist_header_renderer.description_text;
-        let channel = self
-            .header
+        let name = header.playlist_header_renderer.title;
+        let description = header.playlist_header_renderer.description_text;
+        let channel = header
             .playlist_header_renderer
             .owner_text
             .and_then(|link| ChannelId::try_from(link).ok());
