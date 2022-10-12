@@ -383,11 +383,13 @@ fn map_channel<T>(
     id: &str,
     lang: Language,
 ) -> Result<Channel<T>, ExtractionError> {
-    let header = header.ok_or(ExtractionError::NoData)?;
+    let header =
+        header.ok_or_else(|| ExtractionError::ContentUnavailable("channel not found".into()))?;
     let metadata = metadata
-        .ok_or(ExtractionError::NoData)?
+        .ok_or_else(|| ExtractionError::ContentUnavailable("channel not found".into()))?
         .channel_metadata_renderer;
-    let microformat = microformat.ok_or(ExtractionError::NoData)?;
+    let microformat = microformat
+        .ok_or_else(|| ExtractionError::ContentUnavailable("channel not found".into()))?;
 
     if metadata.external_id != id {
         return Err(ExtractionError::WrongResult(format!(
@@ -463,7 +465,9 @@ fn map_channel_content(
         Some(contents) => {
             let tabs = contents.two_column_browse_results_renderer.tabs;
             if tabs.is_empty() {
-                return Err(ExtractionError::NoData);
+                return Err(ExtractionError::ContentUnavailable(
+                    "channel not found".into(),
+                ));
             }
 
             let (channel_content, target_id) = tabs

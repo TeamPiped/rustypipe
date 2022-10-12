@@ -1095,7 +1095,6 @@ impl RustyPipeQuery {
                         ExtractionError::VideoUnavailable(_, _)
                         | ExtractionError::VideoAgeRestricted
                         | ExtractionError::ContentUnavailable(_)
-                        | ExtractionError::NoData
                         | ExtractionError::Retry => (),
                         _ => create_report(Level::ERR, Some(e.to_string()), Vec::new()),
                     }

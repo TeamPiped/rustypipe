@@ -1,4 +1,4 @@
-use chrono::{Datelike, Timelike};
+use chrono::Datelike;
 use rstest::rstest;
 
 use rustypipe::client::{ClientType, RustyPipe};
@@ -218,10 +218,14 @@ async fn playlist_not_found() {
         .await
         .unwrap_err();
 
-    assert!(matches!(
-        err,
-        Error::Extraction(ExtractionError::ContentUnavailable(_))
-    ));
+    assert!(
+        matches!(
+            err,
+            Error::Extraction(ExtractionError::ContentUnavailable(_))
+        ),
+        "got: {}",
+        err
+    );
 }
 
 //#VIDEO DETAILS
@@ -324,6 +328,7 @@ async fn get_video_details_music() {
     assert!(!details.is_live);
     assert!(!details.is_ccommons);
 
+    assert!(!details.recommended.items.is_empty());
     assert!(!details.recommended.is_exhausted());
 
     // Comments are disabled for this video
@@ -381,6 +386,7 @@ async fn get_video_details_ccommons() {
     assert!(!details.is_live);
     assert!(details.is_ccommons);
 
+    assert!(!details.recommended.items.is_empty());
     assert!(!details.recommended.is_exhausted());
 
     assert!(
@@ -520,6 +526,7 @@ async fn get_video_details_chapters() {
         "###);
     }
 
+    assert!(!details.recommended.items.is_empty());
     assert!(!details.recommended.is_exhausted());
 
     assert!(
@@ -579,6 +586,7 @@ async fn get_video_details_live() {
     assert!(details.is_live);
     assert!(!details.is_ccommons);
 
+    assert!(!details.recommended.items.is_empty());
     assert!(!details.recommended.is_exhausted());
 
     // No comments because livestream
@@ -637,10 +645,14 @@ async fn get_video_details_not_found() {
     let rp = RustyPipe::builder().strict().build();
     let err = rp.query().video_details("abcdefgLi5X").await.unwrap_err();
 
-    assert!(matches!(
-        err,
-        Error::Extraction(ExtractionError::ContentUnavailable(_))
-    ))
+    assert!(
+        matches!(
+            err,
+            Error::Extraction(ExtractionError::ContentUnavailable(_))
+        ),
+        "got: {}",
+        err
+    )
 }
 
 #[tokio::test]
@@ -837,13 +849,15 @@ fn assert_channel_eevblog<T>(channel: &Channel<T>) {
 #[rstest]
 #[case::artist("UC_vmjW5e1xEHhYjY2a0kK1A", "Oonagh - Topic", false, false)]
 #[case::shorts("UCh8gHdtzO2tXd593_bjErWg", "Doobydobap", true, true)]
-#[case::live(
+#[case::livestream(
     "UChs0pSaEoNLV4mevBFGaoKA",
     "The Good Life Radio x Sensual Musique",
     true,
     true
 )]
 #[case::music("UC-9-kyTW8ZkZNDHQJ6FgpwQ", "Music", false, false)]
+#[case::live("UC4R8DWoMoI7CAwX8_LjQHig", "Live", false, false)]
+#[case::news("UCYfdidRxbB8Qhf0Nx7ioOYw", "News", false, false)]
 #[tokio::test]
 async fn channel_more(
     #[case] id: &str,
@@ -882,58 +896,72 @@ async fn channel_more(
 }
 
 #[rstest]
-#[case::gaming("UCOpNcN46UbXVtpKMrmU4Abg", false)]
-#[case::not_found("UCOpNcN46UbXVtpKMrmU4Abx", true)]
+#[case::not_exist("UCOpNcN46UbXVtpKMrmU4Abx")]
+#[case::gaming("UCOpNcN46UbXVtpKMrmU4Abg")]
+#[case::movies("UCuJcl0Ju-gPDoksRjK1ya-w")]
+#[case::sports("UCEgdi0XIXXZ-qJOFPf4JSKw")]
+#[case::learning("UCtFRv9O2AHqOZjjynzrv-xg")]
 #[tokio::test]
-async fn channel_error(#[case] id: &str, #[case] not_found: bool) {
+async fn channel_not_found(#[case] id: &str) {
     let rp = RustyPipe::builder().strict().build();
     let err = rp.query().channel_videos(&id).await.unwrap_err();
 
-    if not_found {
-        assert!(matches!(
+    assert!(
+        matches!(
             err,
             Error::Extraction(ExtractionError::ContentUnavailable(_))
-        ));
-    } else {
-        assert!(matches!(err, Error::Extraction(ExtractionError::NoData)));
-    }
+        ),
+        "got: {}",
+        err
+    );
 }
 
 //#CHANNEL_RSS
 
-#[tokio::test]
-async fn get_channel_rss() {
-    let rp = RustyPipe::builder().strict().build();
-    let channel = rp
-        .query()
-        .channel_rss("UCHnyfMqiRRG1u-2MsSQLbXA")
-        .await
-        .unwrap();
+#[cfg(feature = "rss")]
+mod channel_rss {
+    use super::*;
 
-    assert_eq!(channel.id, "UCHnyfMqiRRG1u-2MsSQLbXA");
-    assert_eq!(channel.name, "Veritasium");
-    assert_eq!(channel.create_date.year(), 2010);
-    assert_eq!(channel.create_date.month(), 7);
-    assert_eq!(channel.create_date.day(), 21);
-    assert_eq!(channel.create_date.hour(), 7);
-    assert_eq!(channel.create_date.minute(), 18);
+    use chrono::Timelike;
 
-    assert!(!channel.videos.is_empty());
-}
+    #[tokio::test]
+    async fn get_channel_rss() {
+        let rp = RustyPipe::builder().strict().build();
+        let channel = rp
+            .query()
+            .channel_rss("UCHnyfMqiRRG1u-2MsSQLbXA")
+            .await
+            .unwrap();
 
-#[tokio::test]
-async fn get_channel_rss_not_found() {
-    let rp = RustyPipe::builder().strict().build();
-    let err = rp
-        .query()
-        .channel_rss("UCHnyfMqiRRG1u-2MsSQLbXZ")
-        .await
-        .unwrap_err();
+        assert_eq!(channel.id, "UCHnyfMqiRRG1u-2MsSQLbXA");
+        assert_eq!(channel.name, "Veritasium");
+        assert_eq!(channel.create_date.year(), 2010);
+        assert_eq!(channel.create_date.month(), 7);
+        assert_eq!(channel.create_date.day(), 21);
+        assert_eq!(channel.create_date.hour(), 7);
+        assert_eq!(channel.create_date.minute(), 18);
 
-    assert!(matches!(
-        err,
-        Error::Extraction(ExtractionError::ContentUnavailable(_))
-    ));
+        assert!(!channel.videos.is_empty());
+    }
+
+    #[tokio::test]
+    async fn get_channel_rss_not_found() {
+        let rp = RustyPipe::builder().strict().build();
+        let err = rp
+            .query()
+            .channel_rss("UCHnyfMqiRRG1u-2MsSQLbXZ")
+            .await
+            .unwrap_err();
+
+        assert!(
+            matches!(
+                err,
+                Error::Extraction(ExtractionError::ContentUnavailable(_))
+            ),
+            "got: {}",
+            err
+        );
+    }
 }
 
 //#SEARCH

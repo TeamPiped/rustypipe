@@ -13,7 +13,7 @@ include = ["/src", "README.md", "LICENSE", "!snapshots"]
 members = [".", "codegen", "cli"]
 
 [features]
-default = ["default-tls", "rss"]
+default = ["default-tls"]
 all = ["rss", "html"]
 
 rss = ["quick-xml"]

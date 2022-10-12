@@ -506,9 +506,10 @@ pub fn alerts_to_err(alerts: Option<Vec<Alert>>) -> ExtractionError {
                 .into_iter()
                 .map(|a| a.alert_renderer.text)
                 .collect::<Vec<_>>()
-                .join(" "),
+                .join(" ")
+                .into(),
         ),
-        None => ExtractionError::InvalidData("no contents".into()),
+        None => ExtractionError::ContentUnavailable("content not found".into()),
     }
 }
 
