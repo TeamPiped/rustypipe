@@ -58,7 +58,23 @@ struct QContentPlaybackContext {
 }
 
 impl RustyPipeQuery {
-    pub async fn player(
+    pub async fn player(self, video_id: &str) -> Result<VideoPlayer, Error> {
+        let q1 = self.clone();
+        let android_res = q1.player_from_client(video_id, ClientType::Android).await;
+
+        match android_res {
+            Ok(res) => Ok(res),
+            Err(Error::Extraction(
+                ExtractionError::VideoAgeRestricted | ExtractionError::WrongResult(_),
+            )) => {
+                self.player_from_client(video_id, ClientType::TvHtml5Embed)
+                    .await
+            }
+            Err(e) => Err(e),
+        }
+    }
+
+    pub async fn player_from_client(
         self,
         video_id: &str,
         client_type: ClientType,
@@ -129,7 +145,11 @@ impl MapResponse<VideoPlayer> for response::Player {
             }
             response::player::PlayabilityStatus::LoginRequired { reason } => {
                 // reason: "Sign in to confirm your age"
-                if reason.split_whitespace().any(|word| word == "age") {
+                // or: "This video may be inappropriate for some users."
+                if reason
+                    .split_whitespace()
+                    .any(|word| word == "age" || word == "inappropriate")
+                {
                     return Err(ExtractionError::VideoAgeRestricted);
                 }
                 return Err(ExtractionError::VideoUnavailable("private video", reason));

@@ -15,6 +15,7 @@ inspired by [NewPipe](https://github.com/TeamNewPipe/NewPipeExtractor).
 - [X] **Search** (with filters)
 - [ ] **Search suggestions**
 - [ ] **Trending**
+- [ ] **URL resolver**
 
 ### YouTube Music
 

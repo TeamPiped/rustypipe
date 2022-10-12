@@ -1,3 +1,5 @@
+use std::collections::HashSet;
+
 use chrono::Datelike;
 use rstest::rstest;
 
@@ -20,9 +22,13 @@ use rustypipe::param::{
 #[case::android(ClientType::Android)]
 #[case::ios(ClientType::Ios)]
 #[tokio::test]
-async fn get_player(#[case] client_type: ClientType) {
+async fn get_player_from_client(#[case] client_type: ClientType) {
     let rp = RustyPipe::builder().strict().build();
-    let player_data = rp.query().player("n4tK7LYFxI0", client_type).await.unwrap();
+    let player_data = rp
+        .query()
+        .player_from_client("n4tK7LYFxI0", client_type)
+        .await
+        .unwrap();
 
     // dbg!(&player_data);
 
@@ -39,7 +45,7 @@ async fn get_player(#[case] client_type: ClientType) {
     assert!(!player_data.details.thumbnail.is_empty());
     assert_eq!(player_data.details.channel.id, "UC_aEa8K-EOJ3D6gOs7HcyNg");
     assert_eq!(player_data.details.channel.name, "NoCopyrightSounds");
-    assert!(player_data.details.view_count > 146818808);
+    assert!(player_data.details.view_count > 146_818_808);
     assert_eq!(player_data.details.keywords[0], "spektrem");
     assert_eq!(player_data.details.is_live_content, false);
 
@@ -111,20 +117,163 @@ async fn get_player(#[case] client_type: ClientType) {
     assert!(player_data.expires_in_seconds > 10000);
 }
 
-/*
 #[rstest]
-#[case::desktop(ClientType::Desktop)]
-// #[case::tv_html5_embed(ClientType::TvHtml5Embed)]
-// #[case::android(ClientType::Android)]
-// #[case::ios(ClientType::Ios)]
-#[test_log::test(tokio::test)]
-async fn get_player_live(#[case] client_type: ClientType) {
+#[case::music(
+    "ihUZMeYFZHA",
+    "Oonagh - Nan Úye",
+    "Offizielle AlbumPlaylist:",
+    260,
+    "UC2llNlEM62gU-_fXPHfgbDg",
+    "Oonagh",
+    830900,
+    false,
+    false
+)]
+#[case::hdr(
+    "LXb3EKWsInQ",
+    "COSTA RICA IN 4K 60fps HDR (ULTRA HD)",
+    "We've re-mastered and re-uploaded our favorite video in HDR!",
+    314,
+    "UCYq-iAOSZBvoUxvfzwKIZWA",
+    "Jacob + Katie Schwarz",
+    220_000_000,
+    false,
+    false
+)]
+#[case::multilanguage(
+    "tVWWp1PqDus",
+    "100 Girls Vs 100 Boys For $500,000",
+    "Giving away $25k on Current!",
+    1013,
+    "UCX6OQ3DkcsbYNE6H8uQQuVA",
+    "MrBeast",
+    82_000_000,
+    false,
+    false
+)]
+#[case::live(
+    "86YLFOog4GM",
+    "🌎 Nasa Live Stream  - Earth From Space :  Live Views from the ISS",
+    "Live NASA - Views Of Earth from Space",
+    0,
+    "UCakgsb0w7QB0VHdnCc-OVEA",
+    "Space Videos",
+    10,
+    true,
+    true
+)]
+#[case::was_live(
+    "pxY4OXVyMe4",
+    "Minecraft GENESIS LIVESTREAM!!",
+    "FÜR MEHR LIVESTREAMS AUF YOUTUBE MACHT FOLGENDES",
+    5535,
+    "UCQM0bS4_04-Y4JuYrgmnpZQ",
+    "Chaosflo44",
+    500_000,
+    false,
+    true
+)]
+#[case::agelimit(
+    "laru0QoJUmI",
+    "DJ Robin x Schürze - Layla (Official Video)",
+    "Endlich ist es soweit! Zwei Männer aus dem Schwabenland",
+    188,
+    "UCkJfSrMnLonOZWh-q5os5bg",
+    "Summerfield Records",
+    10_000_000,
+    false,
+    false
+)]
+#[tokio::test]
+async fn get_player(
+    #[case] id: &str,
+    #[case] title: &str,
+    #[case] description: &str,
+    #[case] length: u32,
+    #[case] channel_id: &str,
+    #[case] channel_name: &str,
+    #[case] views: u64,
+    #[case] is_live: bool,
+    #[case] is_live_content: bool,
+) {
     let rp = RustyPipe::builder().strict().build();
-    let player_data = rp.query().player("86YLFOog4GM", client_type).await.unwrap();
+    let player_data = rp.query().player(id).await.unwrap();
+    let details = player_data.details;
 
-    dbg!(&player_data);
+    assert_eq!(details.id, id);
+    assert_eq!(details.title, title);
+    let desc = details.description.unwrap();
+    assert!(desc.contains(description), "description: {}", desc);
+    assert_eq!(details.length, length);
+    assert_eq!(details.channel.id, channel_id);
+    assert_eq!(details.channel.name, channel_name);
+    assert!(
+        details.view_count > views,
+        "expected > {} views, got {}",
+        views,
+        details.view_count
+    );
+    assert_eq!(details.is_live, is_live);
+    assert_eq!(details.is_live_content, is_live_content);
+
+    if is_live {
+        assert!(player_data.hls_manifest_url.is_some());
+        assert!(player_data.dash_manifest_url.is_some());
+    } else {
+        assert!(!player_data.video_only_streams.is_empty());
+        assert!(!player_data.audio_streams.is_empty());
+    }
+
+    match id {
+        // HDR
+        "LXb3EKWsInQ" => {
+            assert!(
+                player_data
+                    .video_only_streams
+                    .iter()
+                    .any(|stream| stream.hdr),
+                "no hdr streams"
+            );
+        }
+        // Multilanguage
+        "tVWWp1PqDus" => {
+            let langs = player_data
+                .audio_streams
+                .iter()
+                .filter_map(|stream| {
+                    stream
+                        .track
+                        .as_ref()
+                        .map(|t| t.lang.as_ref().unwrap().to_owned())
+                })
+                .collect::<HashSet<_>>();
+
+            for l in ["en", "es", "fr", "pt", "ru"] {
+                assert!(langs.contains(l), "missing lang: {}", l);
+            }
+        }
+        _ => {}
+    };
+
+    assert!(player_data.expires_in_seconds > 10000);
 }
-*/
+
+#[rstest]
+#[case::not_found("86abcdefghi", "extraction error: Video cant be played because of deletion/censorship. Reason (from YT): This video is unavailable")]
+#[case::deleted("64DYi_8ESh0", "extraction error: Video cant be played because of deletion/censorship. Reason (from YT): This video is unavailable")]
+#[case::censored("6SJNVb0GnPI", "extraction error: Video cant be played because of deletion/censorship. Reason (from YT): This video has been removed for violating YouTube's policy on hate speech. Learn more about combating hate speech in your country.")]
+// This video is geoblocked outside of Japan, so expect this test case to fail when using a Japanese IP address.
+#[case::geoblock("sJL6WA-aGkQ", "extraction error: Video cant be played because of DRM/Geoblock. Reason (from YT): The uploader has not made this video available in your country")]
+#[case::drm("1bfOsni7EgI", "extraction error: Video cant be played because of DRM/Geoblock. Reason (from YT): This video can only be played on newer versions of Android or other supported devices.")]
+#[case::private("s7_qI6_mIXc", "extraction error: Video cant be played because of private video. Reason (from YT): This video is private")]
+#[case::t1("CUO8secmc0g", "extraction error: Video cant be played because of DRM/Geoblock. Reason (from YT): Playback on other websites has been disabled by the video owner")]
+#[tokio::test]
+async fn get_player_error(#[case] id: &str, #[case] msg: &str) {
+    let rp = RustyPipe::builder().strict().build();
+    let err = rp.query().player(id).await.unwrap_err();
+
+    assert_eq!(err.to_string(), msg);
+}
 
 //#PLAYLIST
 

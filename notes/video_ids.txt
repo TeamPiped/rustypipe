@@ -1,4 +1,4 @@
-CC Video: pPvd8UxmSbQ
+CCommons Video: pPvd8UxmSbQ
 Video: ZeerrnuLi5E
 4K HDR: LXb3EKWsInQ
 8K: Zv11L-ZfrSg
@@ -6,7 +6,7 @@ Music: ihUZMeYFZHA
 Multilanguage: tVWWp1PqDus
 
 # Livestreams
-Live: 64DYi_8ESh0
+Live: 86YLFOog4GM
 Was live: pxY4OXVyMe4
 
 # Errors
@@ -15,6 +15,7 @@ Censored: 6SJNVb0GnPI
 Geoblocked: sJL6WA-aGkQ (Japan only)
 Private: s7_qI6_mIXc
 DRM: 1bfOsni7EgI
+Deleted: 64DYi_8ESh0
 
 Album with unknown artists: https://music.youtube.com/playlist?list=OLAK5uy_mEX9ljZeeEWgTM1xLL1isyiGaWXoPyoOk
 

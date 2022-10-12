@@ -89,7 +89,10 @@ async fn player(testfiles: &Path) {
         }
 
         let rp = rp_testfile(&json_path);
-        rp.query().player(video_id, client_type).await.unwrap();
+        rp.query()
+            .player_from_client(video_id, client_type)
+            .await
+            .unwrap();
     }
 }
 
@@ -105,7 +108,11 @@ async fn player_model(testfiles: &Path) {
             continue;
         }
 
-        let player_data = rp.query().player(id, ClientType::Desktop).await.unwrap();
+        let player_data = rp
+            .query()
+            .player_from_client(id, ClientType::Desktop)
+            .await
+            .unwrap();
         let file = File::create(&json_path).unwrap();
         serde_json::to_writer_pretty(file, &player_data).unwrap();
 

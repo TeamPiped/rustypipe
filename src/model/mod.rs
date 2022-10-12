@@ -66,6 +66,8 @@ pub struct VideoPlayerDetails {
     /// Video description in plaintext format
     pub description: Option<String>,
     /// Video length in seconds
+    ///
+    /// Is zero for livestreams
     pub length: u32,
     /// Video thumbnail
     pub thumbnail: Vec<Thumbnail>,

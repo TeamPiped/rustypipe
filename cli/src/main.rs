@@ -5,10 +5,7 @@ use clap::{Parser, Subcommand};
 use futures::stream::{self, StreamExt};
 use indicatif::{MultiProgress, ProgressBar, ProgressStyle};
 use reqwest::{Client, ClientBuilder};
-use rustypipe::{
-    client::{ClientType, RustyPipe},
-    param::StreamFilter,
-};
+use rustypipe::{client::RustyPipe, param::StreamFilter};
 
 #[derive(Parser)]
 #[clap(author, version, about, long_about = None)]
@@ -58,14 +55,10 @@ async fn download_single_video(
     pb.set_message(format!("Fetching player data for {}", video_title));
 
     let res = async {
-        let player_data = rp
-            .query()
-            .player(video_id.as_str(), ClientType::TvHtml5Embed)
-            .await
-            .context(format!(
-                "Failed to fetch player data for video {}",
-                video_id
-            ))?;
+        let player_data = rp.query().player(video_id.as_str()).await.context(format!(
+            "Failed to fetch player data for video {}",
+            video_id
+        ))?;
 
         let mut filter = StreamFilter::default();
         if let Some(res) = resolution {
