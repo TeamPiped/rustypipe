@@ -11,7 +11,7 @@ use log::error;
 use serde::{Deserialize, Serialize};
 
 use crate::deobfuscate::DeobfData;
-use crate::error::{Error, Result};
+use crate::error::Error;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[non_exhaustive]
@@ -96,7 +96,7 @@ impl FileReporter {
         }
     }
 
-    fn _report(&self, report: &Report) -> Result<()> {
+    fn _report(&self, report: &Report) -> Result<(), Error> {
         let report_path = get_report_path(&self.path, report, "json")?;
         serde_json::to_writer_pretty(&File::create(report_path)?, &report)
             .map_err(|e| Error::Other(format!("could not serialize report. err: {}", e).into()))?;
@@ -119,7 +119,7 @@ impl Reporter for FileReporter {
     }
 }
 
-fn get_report_path(root: &Path, report: &Report, ext: &str) -> Result<PathBuf> {
+fn get_report_path(root: &Path, report: &Report, ext: &str) -> Result<PathBuf, Error> {
     if !root.is_dir() {
         std::fs::create_dir_all(root)?;
     }

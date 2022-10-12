@@ -15,7 +15,7 @@ use once_cell::sync::Lazy;
 use rand::Rng;
 use url::Url;
 
-use crate::{error::Error, error::Result, param::Language};
+use crate::{error::Error, param::Language};
 
 const CONTENT_PLAYBACK_NONCE_ALPHABET: &[u8; 64] =
     b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
@@ -57,7 +57,7 @@ pub fn generate_content_playback_nonce() -> String {
 /// Example:
 ///
 /// `example.com/api?k1=v1&k2=v2 => example.com/api; {k1: v1, k2: v2}`
-pub fn url_to_params(url: &str) -> Result<(String, BTreeMap<String, String>)> {
+pub fn url_to_params(url: &str) -> Result<(String, BTreeMap<String, String>), Error> {
     let mut parsed_url = Url::parse(url)
         .map_err(|e| Error::Other(format!("could not parse url `{}` err: {}", url, e).into()))?;
     let url_params: BTreeMap<String, String> = parsed_url
@@ -77,7 +77,7 @@ pub fn urlencode(string: &str) -> String {
 }
 
 /// Parse a string after removing all non-numeric characters
-pub fn parse_numeric<F>(string: &str) -> core::result::Result<F, F::Err>
+pub fn parse_numeric<F>(string: &str) -> Result<F, F::Err>
 where
     F: FromStr,
 {
@@ -145,14 +145,6 @@ where
         warnings.push(format!("could not parse number `{}`", string));
     }
     res.ok()
-}
-
-pub fn parse_video_length_or_warn(text: &str, warnings: &mut Vec<String>) -> Option<u32> {
-    let res = parse_video_length(text);
-    if res.is_none() {
-        warnings.push(format!("could not parse video length `{}`", text));
-    }
-    res
 }
 
 pub fn retry_delay(

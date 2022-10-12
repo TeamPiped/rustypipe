@@ -1,7 +1,5 @@
 use std::borrow::Cow;
 
-pub(crate) type Result<T> = core::result::Result<T, Error>;
-
 /// Custom error type for the RustyPipe library
 #[derive(thiserror::Error, Debug)]
 #[non_exhaustive]

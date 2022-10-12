@@ -184,18 +184,6 @@ pub fn parse_timeago_to_dt(lang: Language, textual_date: &str) -> Option<DateTim
     parse_timeago(lang, textual_date).map(|ta| ta.into())
 }
 
-pub(crate) fn parse_timeago_or_warn(
-    lang: Language,
-    textual_date: &str,
-    warnings: &mut Vec<String>,
-) -> Option<DateTime<Local>> {
-    let res = parse_timeago_to_dt(lang, textual_date);
-    if res.is_none() {
-        warnings.push(format!("could not parse timeago `{}`", textual_date));
-    }
-    res
-}
-
 /// Parse a textual date (e.g. "29 minutes ago" or "Jul 2, 2014") into a ParsedDate object.
 ///
 /// Returns None if the date could not be parsed.

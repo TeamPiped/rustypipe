@@ -38,6 +38,10 @@ use crate::serializer::{
 use crate::timeago;
 use crate::util::{self, TryRemove};
 
+use self::search::ChannelRenderer;
+use self::search::PlaylistRenderer;
+use self::search::VideoRenderer;
+
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ContentRenderer<T> {
@@ -518,7 +522,7 @@ pub trait FromWLang<T> {
 }
 
 pub trait TryFromWLang<T>: Sized {
-    fn from_w_lang(from: T, lang: Language) -> core::result::Result<Self, util::MappingError>;
+    fn from_w_lang(from: T, lang: Language) -> Result<Self, util::MappingError>;
 }
 
 impl FromWLang<GridVideoRenderer> for model::ChannelVideo {
@@ -578,7 +582,7 @@ impl TryFromWLang<CompactVideoRenderer> for model::RecommendedVideo {
     fn from_w_lang(
         video: CompactVideoRenderer,
         lang: Language,
-    ) -> core::result::Result<Self, util::MappingError> {
+    ) -> Result<Self, util::MappingError> {
         let channel = model::ChannelId::try_from(video.channel)?;
 
         Ok(Self {
@@ -607,5 +611,91 @@ impl TryFromWLang<CompactVideoRenderer> for model::RecommendedVideo {
             is_live: video.badges.is_live(),
             is_short: video.thumbnail_overlays.is_short(),
         })
+    }
+}
+
+impl TryFromWLang<VideoRenderer> for model::SearchVideo {
+    fn from_w_lang(video: VideoRenderer, lang: Language) -> Result<Self, util::MappingError> {
+        let channel = model::ChannelId::try_from(video.channel)?;
+        let mut metadata_snippets = video.detailed_metadata_snippets;
+
+        Ok(Self {
+            id: video.video_id,
+            title: video.title,
+            length: video
+                .length_text
+                .and_then(|txt| util::parse_video_length(&txt)),
+            thumbnail: video.thumbnail.into(),
+            channel: model::ChannelTag {
+                id: channel.id,
+                name: channel.name,
+                avatar: video
+                    .channel_thumbnail_supported_renderers
+                    .channel_thumbnail_with_link_renderer
+                    .thumbnail
+                    .into(),
+                verification: video.owner_badges.into(),
+                subscriber_count: None,
+            },
+            publish_date: video
+                .published_time_text
+                .as_ref()
+                .and_then(|txt| timeago::parse_timeago_to_dt(lang, txt)),
+            publish_date_txt: video.published_time_text,
+            view_count: video
+                .view_count_text
+                .and_then(|txt| util::parse_numeric(&txt).ok())
+                .unwrap_or_default(),
+            is_live: video.thumbnail_overlays.is_live(),
+            is_short: video.thumbnail_overlays.is_short(),
+            short_description: metadata_snippets
+                .try_swap_remove(0)
+                .map(|s| s.snippet_text)
+                .unwrap_or_default(),
+        })
+    }
+}
+
+impl From<PlaylistRenderer> for model::SearchPlaylist {
+    fn from(playlist: PlaylistRenderer) -> Self {
+        let mut thumbnails = playlist.thumbnails;
+
+        Self {
+            id: playlist.playlist_id,
+            name: playlist.title,
+            thumbnail: thumbnails.try_swap_remove(0).unwrap_or_default().into(),
+            video_count: playlist.video_count,
+            first_videos: playlist
+                .videos
+                .into_iter()
+                .map(|v| model::SearchPlaylistVideo {
+                    id: v.child_video_renderer.video_id,
+                    title: v.child_video_renderer.title,
+                    length: v
+                        .child_video_renderer
+                        .length_text
+                        .and_then(|txt| util::parse_video_length(&txt)),
+                })
+                .collect(),
+        }
+    }
+}
+
+impl From<ChannelRenderer> for model::SearchChannel {
+    fn from(channel: ChannelRenderer) -> Self {
+        Self {
+            id: channel.channel_id,
+            name: channel.title,
+            avatar: channel.thumbnail.into(),
+            verification: channel.owner_badges.into(),
+            subscriber_count: channel
+                .subscriber_count_text
+                .and_then(|txt| util::parse_numeric(&txt).ok()),
+            video_count: channel
+                .video_count_text
+                .and_then(|txt| util::parse_numeric(&txt).ok())
+                .unwrap_or_default(),
+            short_description: channel.description_snippet,
+        }
     }
 }

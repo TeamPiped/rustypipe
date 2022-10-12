@@ -3,17 +3,13 @@ use serde::Serialize;
 use crate::{
     deobfuscate::Deobfuscator,
     error::{Error, ExtractionError},
-    model::{
-        ChannelId, ChannelTag, Paginator, SearchChannel, SearchItem, SearchPlaylist,
-        SearchPlaylistVideo, SearchResult, SearchVideo,
-    },
+    model::{Paginator, SearchItem, SearchResult, SearchVideo},
     param::{search_filter::SearchFilter, Language},
-    timeago,
-    util::{self, TryRemove},
+    util::TryRemove,
 };
 
 use super::{
-    response::{self, IsLive, IsShort},
+    response::{self, TryFromWLang},
     ClientType, MapResponse, MapResult, QContinuation, RustyPipeQuery, YTContext,
 };
 
@@ -183,86 +179,20 @@ fn map_search_items(
     let mapped_items = items
         .into_iter()
         .filter_map(|item| match item {
-            response::search::SearchItem::VideoRenderer(mut video) => {
-                match ChannelId::try_from(video.channel) {
-                    Ok(channel) => Some(SearchItem::Video(SearchVideo {
-                        id: video.video_id,
-                        title: video.title,
-                        length: video
-                            .length_text
-                            .and_then(|txt| util::parse_video_length_or_warn(&txt, &mut warnings)),
-                        thumbnail: video.thumbnail.into(),
-                        channel: ChannelTag {
-                            id: channel.id,
-                            name: channel.name,
-                            avatar: video
-                                .channel_thumbnail_supported_renderers
-                                .channel_thumbnail_with_link_renderer
-                                .thumbnail
-                                .into(),
-                            verification: video.owner_badges.into(),
-                            subscriber_count: None,
-                        },
-                        publish_date: video.published_time_text.as_ref().and_then(|txt| {
-                            timeago::parse_timeago_or_warn(lang, txt, &mut warnings)
-                        }),
-                        publish_date_txt: video.published_time_text,
-                        view_count: video
-                            .view_count_text
-                            .and_then(|txt| util::parse_numeric(&txt).ok())
-                            .unwrap_or_default(),
-                        is_live: video.thumbnail_overlays.is_live(),
-                        is_short: video.thumbnail_overlays.is_short(),
-                        short_description: video
-                            .detailed_metadata_snippets
-                            .try_swap_remove(0)
-                            .map(|s| s.snippet_text)
-                            .unwrap_or_default(),
-                    })),
+            response::search::SearchItem::VideoRenderer(video) => {
+                match SearchVideo::from_w_lang(video, lang) {
+                    Ok(video) => Some(SearchItem::Video(video)),
                     Err(e) => {
                         warnings.push(e.to_string());
                         None
                     }
                 }
             }
-            response::search::SearchItem::PlaylistRenderer(mut playlist) => {
-                Some(SearchItem::Playlist(SearchPlaylist {
-                    id: playlist.playlist_id,
-                    name: playlist.title,
-                    thumbnail: playlist
-                        .thumbnails
-                        .try_swap_remove(0)
-                        .unwrap_or_default()
-                        .into(),
-                    video_count: playlist.video_count,
-                    first_videos: playlist
-                        .videos
-                        .into_iter()
-                        .map(|v| SearchPlaylistVideo {
-                            id: v.child_video_renderer.video_id,
-                            title: v.child_video_renderer.title,
-                            length: v.child_video_renderer.length_text.and_then(|txt| {
-                                util::parse_video_length_or_warn(&txt, &mut warnings)
-                            }),
-                        })
-                        .collect(),
-                }))
+            response::search::SearchItem::PlaylistRenderer(playlist) => {
+                Some(SearchItem::Playlist(playlist.into()))
             }
             response::search::SearchItem::ChannelRenderer(channel) => {
-                Some(SearchItem::Channel(SearchChannel {
-                    id: channel.channel_id,
-                    name: channel.title,
-                    avatar: channel.thumbnail.into(),
-                    verification: channel.owner_badges.into(),
-                    subscriber_count: channel
-                        .subscriber_count_text
-                        .and_then(|txt| util::parse_numeric_or_warn(&txt, &mut warnings)),
-                    video_count: channel
-                        .video_count_text
-                        .and_then(|txt| util::parse_numeric(&txt).ok())
-                        .unwrap_or_default(),
-                    short_description: channel.description_snippet,
-                }))
+                Some(SearchItem::Channel(channel.into()))
             }
             response::search::SearchItem::ShowingResultsForRenderer { corrected_query } => {
                 c_query = Some(corrected_query);

@@ -27,7 +27,7 @@ use tokio::sync::RwLock;
 use crate::{
     cache::{CacheStorage, FileStorage},
     deobfuscate::{DeobfData, Deobfuscator},
-    error::{Error, ExtractionError, Result},
+    error::{Error, ExtractionError},
     param::{Country, Language},
     report::{FileReporter, Level, Report, Reporter},
     serializer::MapResult,
@@ -467,10 +467,7 @@ impl RustyPipe {
     }
 
     /// Execute the given http request.
-    async fn http_request(
-        &self,
-        request: Request,
-    ) -> core::result::Result<Response, reqwest::Error> {
+    async fn http_request(&self, request: Request) -> Result<Response, reqwest::Error> {
         let mut last_res = None;
         for n in 0..self.inner.n_http_retries {
             let res = self.inner.http.execute(request.try_clone().unwrap()).await;
@@ -504,7 +501,7 @@ impl RustyPipe {
 
     /// Execute the given http request, returning an error in case of a
     /// non-successful status code.
-    async fn http_request_estatus(&self, request: Request) -> Result<Response> {
+    async fn http_request_estatus(&self, request: Request) -> Result<Response, Error> {
         let res = self.http_request(request).await?;
         let status = res.status();
 
@@ -516,12 +513,12 @@ impl RustyPipe {
     }
 
     /// Execute the given http request, returning the response body as a string.
-    async fn http_request_txt(&self, request: Request) -> Result<String> {
+    async fn http_request_txt(&self, request: Request) -> Result<String, Error> {
         Ok(self.http_request_estatus(request).await?.text().await?)
     }
 
     /// Extract the current version of the YouTube desktop client from the website.
-    async fn extract_desktop_client_version(&self) -> Result<String> {
+    async fn extract_desktop_client_version(&self) -> Result<String, Error> {
         let from_swjs = async {
             let swjs = self
                 .http_request_txt(
@@ -568,7 +565,7 @@ impl RustyPipe {
     }
 
     /// Extract the current version of the YouTube Music desktop client from the website.
-    async fn extract_music_client_version(&self) -> Result<String> {
+    async fn extract_music_client_version(&self) -> Result<String, Error> {
         let from_swjs = async {
             let swjs = self
                 .http_request_txt(
@@ -679,7 +676,7 @@ impl RustyPipe {
     }
 
     /// Instantiate a new deobfuscator from either cached or extracted YouTube JavaScript code.
-    async fn get_deobf(&self) -> Result<Deobfuscator> {
+    async fn get_deobf(&self) -> Result<Deobfuscator, Error> {
         // Write lock here to prevent concurrent tasks from fetching the same data
         let mut deobf = self.inner.cache.deobf.write().await;
 
@@ -960,7 +957,7 @@ impl RustyPipeQuery {
         endpoint: &str,
         body: &B,
         deobf: Option<&Deobfuscator>,
-    ) -> Result<M> {
+    ) -> Result<M, Error> {
         for n in 0..self.client.inner.n_query_retries.saturating_sub(1) {
             let res = self
                 ._try_execute_request_deobf::<R, M, B>(
@@ -1016,7 +1013,7 @@ impl RustyPipeQuery {
         body: &B,
         deobf: Option<&Deobfuscator>,
         report: bool,
-    ) -> Result<M> {
+    ) -> Result<M, Error> {
         let request = self
             .request_builder(ctype, endpoint)
             .await
@@ -1132,7 +1129,7 @@ impl RustyPipeQuery {
         id: &str,
         endpoint: &str,
         body: &B,
-    ) -> Result<M> {
+    ) -> Result<M, Error> {
         self.execute_request_deobf::<R, M, B>(ctype, operation, id, endpoint, body, None)
             .await
     }
@@ -1158,7 +1155,7 @@ trait MapResponse<T> {
         id: &str,
         lang: Language,
         deobf: Option<&Deobfuscator>,
-    ) -> core::result::Result<MapResult<T>, crate::error::ExtractionError>;
+    ) -> Result<MapResult<T>, ExtractionError>;
 }
 
 #[cfg(test)]

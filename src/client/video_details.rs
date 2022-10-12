@@ -516,11 +516,7 @@ fn map_comment(
                 }),
                 _ => None,
             },
-            publish_date: timeago::parse_timeago_or_warn(
-                lang,
-                &c.published_time_text,
-                &mut warnings,
-            ),
+            publish_date: timeago::parse_timeago_to_dt(lang, &c.published_time_text),
             publish_date_txt: c.published_time_text,
             like_count: util::parse_numeric_or_warn(
                 &c.action_buttons
