@@ -1185,6 +1185,26 @@ async fn search_empty() {
     assert!(result.items.is_empty());
 }
 
+#[tokio::test]
+async fn search_suggestion() {
+    let rp = RustyPipe::builder().strict().build();
+    let result = rp.query().search_suggestion("hunger ga").await.unwrap();
+
+    assert!(result.contains(&"hunger games".to_owned()));
+}
+
+#[tokio::test]
+async fn search_suggestion_empty() {
+    let rp = RustyPipe::builder().strict().build();
+    let result = rp
+        .query()
+        .search_suggestion("fjew327%4ifjelwfvnewg49")
+        .await
+        .unwrap();
+
+    assert!(result.is_empty());
+}
+
 //#TESTUTIL
 
 /// Assert equality within 10% margin

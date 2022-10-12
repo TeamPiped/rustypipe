@@ -13,7 +13,7 @@ inspired by [NewPipe](https://github.com/TeamNewPipe/NewPipeExtractor).
 - [X] **Channel** (videos, playlists, info)
 - [X] **ChannelRSS**
 - [X] **Search** (with filters)
-- [ ] **Search suggestions**
+- [X] **Search suggestions**
 - [ ] **Trending**
 - [ ] **URL resolver**
 
