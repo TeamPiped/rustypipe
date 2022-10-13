@@ -3,17 +3,19 @@ pub mod player;
 pub mod playlist;
 pub mod playlist_music;
 pub mod search;
+pub mod trends;
 pub mod video_details;
 
 pub use channel::Channel;
 pub use channel::ChannelCont;
-use chrono::TimeZone;
 pub use player::Player;
 pub use playlist::Playlist;
 pub use playlist::PlaylistCont;
 pub use playlist_music::PlaylistMusic;
 pub use search::Search;
 pub use search::SearchCont;
+pub use trends::Startpage;
+pub use trends::Trending;
 pub use video_details::VideoComments;
 pub use video_details::VideoDetails;
 pub use video_details::VideoRecommendations;
@@ -23,6 +25,7 @@ pub mod channel_rss;
 #[cfg(feature = "rss")]
 pub use channel_rss::ChannelRss;
 
+use chrono::TimeZone;
 use serde::Deserialize;
 use serde_with::{json::JsonString, serde_as, DefaultOnError, VecSkipError};
 
@@ -36,11 +39,8 @@ use crate::serializer::{
     VecLogError,
 };
 use crate::timeago;
+use crate::util::MappingError;
 use crate::util::{self, TryRemove};
-
-use self::search::ChannelRenderer;
-use self::search::PlaylistRenderer;
-use self::search::VideoRenderer;
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -93,6 +93,8 @@ pub enum VideoListItem {
     /// Playlist on channel page
     GridPlaylistRenderer(GridPlaylistRenderer),
 
+    /// Video on startpage
+    ///
     /// Seems to be currently A/B tested on the channel page,
     /// as of 11.10.2022
     RichItemRenderer { content: RichItem },
@@ -174,6 +176,67 @@ pub struct CompactVideoRenderer {
     pub thumbnail_overlays: Vec<TimeOverlay>,
 }
 
+/// Video displayed in search results
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct VideoRenderer {
+    pub video_id: String,
+    pub thumbnail: Thumbnails,
+    #[serde_as(as = "Text")]
+    pub title: String,
+    #[serde(rename = "shortBylineText")]
+    pub channel: Option<TextComponent>,
+    pub channel_thumbnail_supported_renderers: Option<ChannelThumbnailSupportedRenderers>,
+    #[serde_as(as = "Option<Text>")]
+    pub published_time_text: Option<String>,
+    #[serde_as(as = "Option<Text>")]
+    pub length_text: Option<String>,
+    /// Contains `No views` if the view count is zero
+    #[serde_as(as = "Option<Text>")]
+    pub view_count_text: Option<String>,
+    /// Channel verification badge
+    #[serde(default)]
+    #[serde_as(as = "VecSkipError<_>")]
+    pub owner_badges: Vec<ChannelBadge>,
+    /// Contains Short/Live tag
+    #[serde_as(as = "VecSkipError<_>")]
+    pub thumbnail_overlays: Vec<TimeOverlay>,
+    /// Abbreviated video description (on startpage)
+    #[serde_as(as = "Option<Text>")]
+    pub description_snippet: Option<String>,
+    /// Contains abbreviated video description (on search page)
+    #[serde_as(as = "Option<VecSkipError<_>>")]
+    pub detailed_metadata_snippets: Option<Vec<DetailedMetadataSnippet>>,
+    /// Release date for upcoming videos
+    pub upcoming_event_data: Option<UpcomingEventData>,
+}
+
+/// Playlist displayed in search results
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct PlaylistRenderer {
+    pub playlist_id: String,
+    #[serde_as(as = "Text")]
+    pub title: String,
+    /// The first item of this list contains the playlist thumbnail,
+    /// subsequent items contain very small thumbnails of the next playlist videos
+    pub thumbnails: Vec<Thumbnails>,
+    #[serde_as(as = "JsonString")]
+    pub video_count: u64,
+    #[serde(rename = "shortBylineText")]
+    pub channel: TextComponent,
+    /// Channel verification badge
+    #[serde(default)]
+    #[serde_as(as = "VecSkipError<_>")]
+    pub owner_badges: Vec<ChannelBadge>,
+    /// First 2 videos
+    #[serde(default)]
+    #[serde_as(as = "VecSkipError<_>")]
+    pub videos: Vec<ChildVideoRendererWrap>,
+}
+
 /// Video displayed in a playlist
 #[serde_as]
 #[derive(Debug, Deserialize)]
@@ -187,6 +250,32 @@ pub struct PlaylistVideoRenderer {
     pub channel: TextComponent,
     #[serde_as(as = "JsonString")]
     pub length_seconds: u32,
+}
+
+/// Channel displayed in search results
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ChannelRenderer {
+    pub channel_id: String,
+    #[serde_as(as = "Text")]
+    pub title: String,
+    pub thumbnail: Thumbnails,
+    /// Abbreviated channel description
+    ///
+    /// Not present if the channel has no description
+    #[serde(default)]
+    #[serde_as(as = "Text")]
+    pub description_snippet: String,
+    /// Not present if the channel has no videos
+    #[serde_as(as = "Option<Text>")]
+    pub video_count_text: Option<String>,
+    #[serde_as(as = "Option<Text>")]
+    pub subscriber_count_text: Option<String>,
+    /// Channel verification badge
+    #[serde(default)]
+    #[serde_as(as = "VecSkipError<_>")]
+    pub owner_badges: Vec<ChannelBadge>,
 }
 
 /// Playlist displayed on a channel page
@@ -204,8 +293,9 @@ pub struct GridPlaylistRenderer {
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
+#[allow(clippy::large_enum_variant)]
 pub enum RichItem {
-    VideoRenderer(GridVideoRenderer),
+    VideoRenderer(VideoRenderer),
     PlaylistRenderer(GridPlaylistRenderer),
 }
 
@@ -356,6 +446,43 @@ pub struct Alert {
 pub struct AlertRenderer {
     #[serde_as(as = "Text")]
     pub text: String,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ChannelThumbnailSupportedRenderers {
+    pub channel_thumbnail_with_link_renderer: ChannelThumbnailWithLinkRenderer,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ChannelThumbnailWithLinkRenderer {
+    pub thumbnail: Thumbnails,
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct DetailedMetadataSnippet {
+    #[serde_as(as = "Text")]
+    pub snippet_text: String,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ChildVideoRendererWrap {
+    pub child_video_renderer: ChildVideoRenderer,
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ChildVideoRenderer {
+    pub video_id: String,
+    #[serde_as(as = "Text")]
+    pub title: String,
+    #[serde_as(as = "Option<Text>")]
+    pub length_text: Option<String>,
 }
 
 // YouTube Music
@@ -567,6 +694,48 @@ impl FromWLang<GridVideoRenderer> for model::ChannelVideo {
     }
 }
 
+impl FromWLang<VideoRenderer> for model::ChannelVideo {
+    fn from_w_lang(video: VideoRenderer, lang: Language) -> Self {
+        let mut toverlays = video.thumbnail_overlays;
+        let is_live = toverlays.is_live();
+        let is_short = toverlays.is_short();
+        let to = toverlays.try_swap_remove(0);
+
+        Self {
+            id: video.video_id,
+            title: video.title,
+            // Time text is `LIVE` for livestreams, so we ignore parse errors
+            length: to.and_then(|to| {
+                util::parse_video_length(&to.thumbnail_overlay_time_status_renderer.text)
+            }),
+            thumbnail: video.thumbnail.into(),
+            publish_date: video
+                .upcoming_event_data
+                .as_ref()
+                .map(|upc| {
+                    chrono::Local.from_utc_datetime(&chrono::NaiveDateTime::from_timestamp(
+                        upc.start_time,
+                        0,
+                    ))
+                })
+                .or_else(|| {
+                    video
+                        .published_time_text
+                        .as_ref()
+                        .and_then(|txt| timeago::parse_timeago_to_dt(lang, txt))
+                }),
+            publish_date_txt: video.published_time_text,
+            view_count: video
+                .view_count_text
+                .and_then(|txt| util::parse_numeric(&txt).ok())
+                .unwrap_or_default(),
+            is_live,
+            is_short,
+            is_upcoming: video.upcoming_event_data.is_some(),
+        }
+    }
+}
+
 impl From<GridPlaylistRenderer> for model::ChannelPlaylist {
     fn from(playlist: GridPlaylistRenderer) -> Self {
         Self {
@@ -616,8 +785,14 @@ impl TryFromWLang<CompactVideoRenderer> for model::RecommendedVideo {
 
 impl TryFromWLang<VideoRenderer> for model::SearchVideo {
     fn from_w_lang(video: VideoRenderer, lang: Language) -> Result<Self, util::MappingError> {
-        let channel = model::ChannelId::try_from(video.channel)?;
-        let mut metadata_snippets = video.detailed_metadata_snippets;
+        let channel = model::ChannelId::try_from(
+            video
+                .channel
+                .ok_or_else(|| MappingError("no video channel".into()))?,
+        )?;
+        let channel_thumbnail = video
+            .channel_thumbnail_supported_renderers
+            .ok_or_else(|| MappingError("no video channel thumbnail".into()))?;
 
         Ok(Self {
             id: video.video_id,
@@ -629,8 +804,7 @@ impl TryFromWLang<VideoRenderer> for model::SearchVideo {
             channel: model::ChannelTag {
                 id: channel.id,
                 name: channel.name,
-                avatar: video
-                    .channel_thumbnail_supported_renderers
+                avatar: channel_thumbnail
                     .channel_thumbnail_with_link_renderer
                     .thumbnail
                     .into(),
@@ -648,9 +822,10 @@ impl TryFromWLang<VideoRenderer> for model::SearchVideo {
                 .unwrap_or_default(),
             is_live: video.thumbnail_overlays.is_live(),
             is_short: video.thumbnail_overlays.is_short(),
-            short_description: metadata_snippets
-                .try_swap_remove(0)
-                .map(|s| s.snippet_text)
+            short_description: video
+                .detailed_metadata_snippets
+                .and_then(|mut snippets| snippets.try_swap_remove(0).map(|s| s.snippet_text))
+                .or(video.description_snippet)
                 .unwrap_or_default(),
         })
     }

@@ -6,6 +6,7 @@ mod player;
 mod playlist;
 mod response;
 mod search;
+mod trends;
 mod video_details;
 
 #[cfg(feature = "rss")]
@@ -121,6 +122,13 @@ struct User {
 #[serde(rename_all = "camelCase")]
 struct ThirdParty {
     embed_url: String,
+}
+
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+struct QBrowse {
+    context: YTContext,
+    browse_id: String,
 }
 
 #[derive(Debug, Serialize)]

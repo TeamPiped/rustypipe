@@ -1205,6 +1205,33 @@ async fn search_suggestion_empty() {
     assert!(result.is_empty());
 }
 
+//#TRENDS
+
+#[tokio::test]
+async fn startpage() {
+    let rp = RustyPipe::builder().strict().build();
+    let result = rp.query().startpage().await.unwrap();
+
+    assert!(
+        result.items.len() > 20,
+        "expected > 20 items, got {}",
+        result.items.len()
+    );
+    assert!(!result.is_exhausted());
+}
+
+#[tokio::test]
+async fn trending() {
+    let rp = RustyPipe::builder().strict().build();
+    let result = rp.query().trending().await.unwrap();
+
+    assert!(
+        result.len() > 50,
+        "expected > 50 items, got {}",
+        result.len()
+    );
+}
+
 //#TESTUTIL
 
 /// Assert equality within 10% margin

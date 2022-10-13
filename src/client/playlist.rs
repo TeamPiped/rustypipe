@@ -1,7 +1,5 @@
 use std::convert::TryFrom;
 
-use serde::Serialize;
-
 use crate::{
     deobfuscate::Deobfuscator,
     error::{Error, ExtractionError},
@@ -11,21 +9,12 @@ use crate::{
     util::{self, TryRemove},
 };
 
-use super::{
-    response, ClientType, MapResponse, MapResult, QContinuation, RustyPipeQuery, YTContext,
-};
-
-#[derive(Debug, Serialize)]
-#[serde(rename_all = "camelCase")]
-struct QPlaylist {
-    context: YTContext,
-    browse_id: String,
-}
+use super::{response, ClientType, MapResponse, MapResult, QBrowse, QContinuation, RustyPipeQuery};
 
 impl RustyPipeQuery {
     pub async fn playlist(self, playlist_id: &str) -> Result<Playlist, Error> {
         let context = self.get_context(ClientType::Desktop, true).await;
-        let request_body = QPlaylist {
+        let request_body = QBrowse {
             context,
             browse_id: "VL".to_owned() + playlist_id,
         };

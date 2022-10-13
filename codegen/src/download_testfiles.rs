@@ -29,6 +29,8 @@ pub async fn download_testfiles(project_root: &Path) {
     search_cont(&testfiles).await;
     search_playlists(&testfiles).await;
     search_empty(&testfiles).await;
+    startpage(&testfiles).await;
+    trending(&testfiles).await;
 }
 
 const CLIENT_TYPES: [ClientType; 5] = [
@@ -365,4 +367,28 @@ async fn search_empty(testfiles: &Path) {
         )
         .await
         .unwrap();
+}
+
+async fn startpage(testfiles: &Path) {
+    let mut json_path = testfiles.to_path_buf();
+    json_path.push("trends");
+    json_path.push("startpage.json");
+    if json_path.exists() {
+        return;
+    }
+
+    let rp = rp_testfile(&json_path);
+    rp.query().startpage().await.unwrap();
+}
+
+async fn trending(testfiles: &Path) {
+    let mut json_path = testfiles.to_path_buf();
+    json_path.push("trends");
+    json_path.push("trending.json");
+    if json_path.exists() {
+        return;
+    }
+
+    let rp = rp_testfile(&json_path);
+    rp.query().trending().await.unwrap();
 }
