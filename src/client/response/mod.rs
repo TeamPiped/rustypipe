@@ -4,6 +4,7 @@ pub mod playlist;
 pub mod playlist_music;
 pub mod search;
 pub mod trends;
+pub mod url_endpoint;
 pub mod video_details;
 
 pub use channel::Channel;
@@ -17,6 +18,7 @@ pub use search::SearchCont;
 pub use trends::Startpage;
 pub use trends::StartpageCont;
 pub use trends::Trending;
+pub use url_endpoint::ResolvedUrl;
 pub use video_details::VideoComments;
 pub use video_details::VideoDetails;
 pub use video_details::VideoRecommendations;

@@ -7,7 +7,7 @@ use rustypipe::client::{ClientType, RustyPipe};
 use rustypipe::error::{Error, ExtractionError};
 use rustypipe::model::richtext::ToPlaintext;
 use rustypipe::model::{
-    AudioCodec, AudioFormat, Channel, SearchItem, Verification, VideoCodec, VideoFormat,
+    AudioCodec, AudioFormat, Channel, SearchItem, UrlTarget, Verification, VideoCodec, VideoFormat,
 };
 use rustypipe::param::{
     search_filter::{self, SearchFilter},
@@ -1205,6 +1205,66 @@ async fn search_suggestion_empty() {
     assert!(result.is_empty());
 }
 
+//#URL RESOLVER
+
+#[rstest]
+#[case("https://www.youtube.com/LinusTechTips", UrlTarget::Channel {id: "UCXuqSBlHAE6Xw-yeJA0Tunw".to_owned()})]
+#[case("https://www.youtube.com/@AndroidAuthority", UrlTarget::Channel {id: "UCgyqtNWZmIxTx3b6OxTSALw".to_owned()})]
+#[case("https://www.youtube.com/channel/UC5I2hjZYiW9gZPVkvzM8_Cw", UrlTarget::Channel {id: "UC5I2hjZYiW9gZPVkvzM8_Cw".to_owned()})]
+#[case("https://www.youtube.com/c", UrlTarget::Channel {id: "UCXE6F2oZzy_6xEXiJiUFo2w".to_owned()})]
+#[case("https://www.youtube.com/user/MrBeast6000", UrlTarget::Channel {id: "UCX6OQ3DkcsbYNE6H8uQQuVA".to_owned()})]
+#[case("https://www.youtube.com/watch?v=dQw4w9WgXcQ", UrlTarget::Video {id: "dQw4w9WgXcQ".to_owned(), start_time: 0})]
+#[case("https://www.youtube.com/watch?v=dQw4w9WgXcQ&t=60", UrlTarget::Video {id: "dQw4w9WgXcQ".to_owned(), start_time: 60})]
+#[case("https://www.youtube.com/playlist?list=PL4lEESSgxM_5O81EvKCmBIm_JT5Q7JeaI", UrlTarget::Playlist {id: "PL4lEESSgxM_5O81EvKCmBIm_JT5Q7JeaI".to_owned()})]
+#[case("https://www.youtube.com/playlist?list=RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk", UrlTarget::Playlist {id: "RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk".to_owned()})]
+#[case("https://youtu.be/dQw4w9WgXcQ", UrlTarget::Video {id: "dQw4w9WgXcQ".to_owned(), start_time: 0})]
+#[case("https://youtu.be/dQw4w9WgXcQ?t=60", UrlTarget::Video {id: "dQw4w9WgXcQ".to_owned(), start_time: 60})]
+#[case("https://youtu.be/dQw4w9WgXcQ", UrlTarget::Video {id: "dQw4w9WgXcQ".to_owned(), start_time: 0})]
+#[case("https://youtu.be/dQw4w9WgXcQ?t=60", UrlTarget::Video {id: "dQw4w9WgXcQ".to_owned(), start_time: 60})]
+#[case("https://piped.mha.fi/watch?v=dQw4w9WgXcQ", UrlTarget::Video {id: "dQw4w9WgXcQ".to_owned(), start_time: 0})]
+// Both a video ID and a channel name => returns channel
+#[case("https://piped.mha.fi/dQw4w9WgXcQ", UrlTarget::Channel {id: "UCoG6BrhgmivrkcbEHcYtK4Q".to_owned()})]
+// Both a video ID and a channel name + video time param => returns video
+#[case("https://piped.mha.fi/dQw4w9WgXcQ?t=0", UrlTarget::Video {id: "dQw4w9WgXcQ".to_owned(), start_time: 0})]
+#[tokio::test]
+async fn resolve_url(#[case] url: &str, #[case] expect: UrlTarget) {
+    let rp = RustyPipe::builder().strict().build();
+    let target = rp.query().resolve_url(url).await.unwrap();
+    assert_eq!(target, expect);
+}
+
+#[rstest]
+#[case("LinusTechTips", UrlTarget::Channel {id: "UCXuqSBlHAE6Xw-yeJA0Tunw".to_owned()})]
+#[case("@AndroidAuthority", UrlTarget::Channel {id: "UCgyqtNWZmIxTx3b6OxTSALw".to_owned()})]
+#[case("UC5I2hjZYiW9gZPVkvzM8_Cw", UrlTarget::Channel {id: "UC5I2hjZYiW9gZPVkvzM8_Cw".to_owned()})]
+#[case("c", UrlTarget::Channel {id: "UCXE6F2oZzy_6xEXiJiUFo2w".to_owned()})]
+#[case("user/MrBeast6000", UrlTarget::Channel {id: "UCX6OQ3DkcsbYNE6H8uQQuVA".to_owned()})]
+#[case("@AndroidAuthority", UrlTarget::Channel {id: "UCgyqtNWZmIxTx3b6OxTSALw".to_owned()})]
+#[case("dQw4w9WgXcQ", UrlTarget::Video {id: "dQw4w9WgXcQ".to_owned(), start_time: 0})]
+#[case("PL4lEESSgxM_5O81EvKCmBIm_JT5Q7JeaI", UrlTarget::Playlist {id: "PL4lEESSgxM_5O81EvKCmBIm_JT5Q7JeaI".to_owned()})]
+#[case("RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk", UrlTarget::Playlist {id: "RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk".to_owned()})]
+#[tokio::test]
+async fn resolve_string(#[case] string: &str, #[case] expect: UrlTarget) {
+    let rp = RustyPipe::builder().strict().build();
+    let target = rp.query().resolve_string(string).await.unwrap();
+    assert_eq!(target, expect);
+}
+
+#[tokio::test]
+async fn resolve_channel_not_found() {
+    let rp = RustyPipe::builder().strict().build();
+    let err = rp
+        .query()
+        .resolve_url("https://www.youtube.com/feeqegnhq3rkwghjq43ruih43io3")
+        .await
+        .unwrap_err();
+
+    assert!(matches!(
+        err,
+        Error::Extraction(ExtractionError::ContentUnavailable(_))
+    ));
+}
+
 //#TRENDS
 
 #[tokio::test]
@@ -1213,8 +1273,8 @@ async fn startpage() {
     let result = rp.query().startpage().await.unwrap();
 
     assert!(
-        result.items.len() > 20,
-        "expected > 20 items, got {}",
+        result.items.len() >= 20,
+        "expected >= 20 items, got {}",
         result.items.len()
     );
     assert!(!result.is_exhausted());
@@ -1228,8 +1288,8 @@ async fn startpage_cont() {
     let next = startpage.next(rp.query()).await.unwrap().unwrap();
 
     assert!(
-        next.items.len() > 20,
-        "expected > 20 items, got {}",
+        next.items.len() >= 20,
+        "expected >= 20 items, got {}",
         next.items.len()
     );
     assert!(!next.is_exhausted());
@@ -1241,8 +1301,8 @@ async fn trending() {
     let result = rp.query().trending().await.unwrap();
 
     assert!(
-        result.len() > 50,
-        "expected > 50 items, got {}",
+        result.len() >= 50,
+        "expected >= 50 items, got {}",
         result.len()
     );
 }

@@ -11,6 +11,8 @@ use std::ops::Range;
 use chrono::{DateTime, Local, Utc};
 use serde::{Deserialize, Serialize};
 
+use crate::{error::Error, util};
+
 use self::richtext::RichText;
 
 /*
@@ -24,6 +26,64 @@ pub struct Thumbnail {
     pub url: String,
     pub width: u32,
     pub height: u32,
+}
+
+/// Entities extracted from a YouTube URL
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
+pub enum UrlTarget {
+    Video { id: String, start_time: u32 },
+    Channel { id: String },
+    Playlist { id: String },
+}
+
+impl ToString for UrlTarget {
+    fn to_string(&self) -> String {
+        self.to_url()
+    }
+}
+
+impl UrlTarget {
+    pub fn to_url(&self) -> String {
+        self.to_url_yt_host("https://www.youtube.com")
+    }
+
+    pub fn to_url_yt_host(&self, yt_host: &str) -> String {
+        match self {
+            UrlTarget::Video { id, start_time, .. } => match start_time {
+                0 => format!("{}/watch?v={}", yt_host, id),
+                n => format!("{}/watch?v={}&t={}s", yt_host, id, n),
+            },
+            UrlTarget::Channel { id } => {
+                format!("{}/channel/{}", yt_host, id)
+            }
+            UrlTarget::Playlist { id } => {
+                format!("{}/playlist?list={}", yt_host, id)
+            }
+        }
+    }
+
+    pub(crate) fn validate(&self) -> Result<(), Error> {
+        match self {
+            UrlTarget::Video { id, .. } => {
+                match util::VIDEO_ID_REGEX.is_match(id).unwrap_or_default() {
+                    true => Ok(()),
+                    false => Err(Error::Other("invalid video id".into())),
+                }
+            }
+            UrlTarget::Channel { id } => {
+                match util::CHANNEL_ID_REGEX.is_match(id).unwrap_or_default() {
+                    true => Ok(()),
+                    false => Err(Error::Other("invalid channel id".into())),
+                }
+            }
+            UrlTarget::Playlist { id } => {
+                match util::PLAYLIST_ID_REGEX.is_match(id).unwrap_or_default() {
+                    true => Ok(()),
+                    false => Err(Error::Other("invalid playlist id".into())),
+                }
+            }
+        }
+    }
 }
 
 /*

@@ -17,6 +17,14 @@ use url::Url;
 
 use crate::{error::Error, param::Language};
 
+pub static VIDEO_ID_REGEX: Lazy<Regex> = Lazy::new(|| Regex::new(r"^[A-Za-z0-9_-]{11}$").unwrap());
+pub static CHANNEL_ID_REGEX: Lazy<Regex> =
+    Lazy::new(|| Regex::new(r"^UC[A-Za-z0-9_-]{22}$").unwrap());
+pub static PLAYLIST_ID_REGEX: Lazy<Regex> =
+    Lazy::new(|| Regex::new(r"^(?:PL|RD)[A-Za-z0-9_-]{30,}$").unwrap());
+pub static VANITY_PATH_REGEX: Lazy<Regex> =
+    Lazy::new(|| Regex::new(r"^/?(?:(?:c\/|user\/)?[A-z0-9]+)|(?:@[A-z0-9-_.]+)$").unwrap());
+
 const CONTENT_PLAYBACK_NONCE_ALPHABET: &[u8; 64] =
     b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
 
@@ -57,7 +65,7 @@ pub fn generate_content_playback_nonce() -> String {
 /// Example:
 ///
 /// `example.com/api?k1=v1&k2=v2 => example.com/api; {k1: v1, k2: v2}`
-pub fn url_to_params(url: &str) -> Result<(String, BTreeMap<String, String>), Error> {
+pub fn url_to_params(url: &str) -> Result<(Url, BTreeMap<String, String>), Error> {
     let mut parsed_url = Url::parse(url)
         .map_err(|e| Error::Other(format!("could not parse url `{}` err: {}", url, e).into()))?;
     let url_params: BTreeMap<String, String> = parsed_url
@@ -67,7 +75,7 @@ pub fn url_to_params(url: &str) -> Result<(String, BTreeMap<String, String>), Er
 
     parsed_url.set_query(None);
 
-    Ok((parsed_url.to_string(), url_params))
+    Ok((parsed_url, url_params))
 }
 
 pub fn urlencode(string: &str) -> String {

@@ -1,12 +1,14 @@
 //! YouTube API Client
 
+pub(crate) mod response;
+
 mod channel;
 mod pagination;
 mod player;
 mod playlist;
-mod response;
 mod search;
 mod trends;
+mod url_resolver;
 mod video_details;
 
 #[cfg(feature = "rss")]
@@ -1077,9 +1079,16 @@ impl RustyPipeQuery {
         };
 
         if status.is_client_error() || status.is_server_error() {
-            let e = Error::HttpStatus(status.into());
-            create_report(Level::ERR, Some(e.to_string()), vec![]);
-            return Err(e);
+            let status_code = status.as_u16();
+            return if status_code == 404 {
+                Err(Error::Extraction(ExtractionError::ContentUnavailable(
+                    "Not found".into(),
+                )))
+            } else {
+                let e = Error::HttpStatus(status_code);
+                create_report(Level::ERR, Some(e.to_string()), vec![]);
+                Err(e)
+            };
         }
 
         match serde_json::from_str::<R>(&resp_str) {

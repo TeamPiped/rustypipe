@@ -7,10 +7,12 @@ VideoDetails(
   title: "🌎 Nasa Live Stream  - Earth From Space :  Live Views from the ISS",
   description: RichText([
     Text("Live NASA - Views Of Earth from Space\nLive video feed of Earth from the International Space Station (ISS) Cameras\n-----------------------------------------------------------------------------------------------------\nWatch our latest video - The Sun - 4K Video / Solar Flares\n"),
-    Video(
+    YouTube(
       text: "https://www.youtube.com/watch?v=SEzK4...",
-      id: "SEzK4ZfMvUQ",
-      start_time: 0,
+      target: Video(
+        id: "SEzK4ZfMvUQ",
+        start_time: 0,
+      ),
     ),
     Text("\n-----------------------------------------------------------------------------------------------------\nNasa ISS live stream from aboard the International Space Station  as it circles the earth at 240 miles above the planet, on the edge of space in low earth orbit. \n\nThe station is crewed by NASA astronauts as well as Russian Cosmonauts and a mixture of Japanese, Canadian and European astronauts as well.\n\n"),
     Text("#nasalive"),

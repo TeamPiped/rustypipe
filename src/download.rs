@@ -88,7 +88,9 @@ async fn download_single_file<P: Into<PathBuf>>(
     // If the url is from googlevideo, extract file size from clen parameter
     let (url_base, url_params) =
         util::url_to_params(url).map_err(|e| DownloadError::Other(e.to_string().into()))?;
-    let is_gvideo = url_base.ends_with(".googlevideo.com/videoplayback");
+    let is_gvideo = url_base
+        .as_str()
+        .ends_with(".googlevideo.com/videoplayback");
     if is_gvideo {
         size = url_params.get("clen").and_then(|s| s.parse::<u64>().ok());
     }

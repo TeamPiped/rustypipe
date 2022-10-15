@@ -2,6 +2,7 @@ use serde::Deserialize;
 use serde_with::serde_as;
 use serde_with::{DefaultOnError, VecSkipError};
 
+use super::url_endpoint::NavigationEndpoint;
 use super::Thumbnails;
 use super::{Alert, ChannelBadge};
 use super::{ContentRenderer, ContentsRenderer, VideoListItem};
@@ -203,18 +204,6 @@ pub struct PrimaryLink {
     #[serde_as(as = "Text")]
     pub title: String,
     pub navigation_endpoint: NavigationEndpoint,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct NavigationEndpoint {
-    pub url_endpoint: UrlEndpoint,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct UrlEndpoint {
-    pub url: String,
 }
 
 #[derive(Debug, Deserialize)]

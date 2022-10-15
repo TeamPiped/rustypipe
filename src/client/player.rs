@@ -285,7 +285,7 @@ impl MapResponse<VideoPlayer> for response::Player {
 fn cipher_to_url_params(
     signature_cipher: &str,
     deobf: &Deobfuscator,
-) -> Result<(String, BTreeMap<String, String>), DeobfError> {
+) -> Result<(Url, BTreeMap<String, String>), DeobfError> {
     let params: HashMap<Cow<str>, Cow<str>> =
         url::form_urlencoded::parse(signature_cipher.as_bytes()).collect();
 

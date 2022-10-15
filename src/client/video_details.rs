@@ -239,7 +239,7 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                 page_type,
                 browse_id,
             } => match page_type {
-                crate::serializer::text::PageType::Channel => (browse_id, text),
+                response::url_endpoint::PageType::Channel => (browse_id, text),
                 _ => {
                     return Err(ExtractionError::InvalidData(
                         "invalid channel link type".into(),

@@ -96,10 +96,12 @@ VideoDetails(
     Text("\n\nMUSIC CREDIT\n"),
     Text("-------------------------------------------------"),
     Text("\nIntro: Laszlo - Supernova\nVideo Link: "),
-    Video(
+    YouTube(
       text: "https://www.youtube.com/watch?v=PKfxm...",
-      id: "PKfxmFU3lWY",
-      start_time: 0,
+      target: Video(
+        id: "PKfxmFU3lWY",
+        start_time: 0,
+      ),
     ),
     Text("\niTunes Download Link: "),
     Web(
@@ -112,10 +114,12 @@ VideoDetails(
       url: "https://soundcloud.com/laszlomusic",
     ),
     Text("\n\nOutro: Approaching Nirvana - Sugar High\nVideo Link: "),
-    Video(
+    YouTube(
       text: "https://www.youtube.com/watch?v=ngsGB...",
-      id: "ngsGBSCDwcI",
-      start_time: 0,
+      target: Video(
+        id: "ngsGBSCDwcI",
+        start_time: 0,
+      ),
     ),
     Text("\nListen on Spotify: "),
     Web(
@@ -150,88 +154,116 @@ VideoDetails(
     Text("\n\nCHAPTERS\n"),
     Text("-------------------------------------------------"),
     Text("\n"),
-    Video(
+    YouTube(
       text: "0:00",
-      id: "nFDBxBUfE74",
-      start_time: 0,
+      target: Video(
+        id: "nFDBxBUfE74",
+        start_time: 0,
+      ),
     ),
     Text(" Intro\n"),
-    Video(
+    YouTube(
       text: "0:42",
-      id: "nFDBxBUfE74",
-      start_time: 42,
+      target: Video(
+        id: "nFDBxBUfE74",
+        start_time: 42,
+      ),
     ),
     Text(" The PC Built for Super Efficiency\n"),
-    Video(
+    YouTube(
       text: "2:41",
-      id: "nFDBxBUfE74",
-      start_time: 161,
+      target: Video(
+        id: "nFDBxBUfE74",
+        start_time: 161,
+      ),
     ),
     Text(" Our BURIAL ENCLOSURE?!\n"),
-    Video(
+    YouTube(
       text: "3:31",
-      id: "nFDBxBUfE74",
-      start_time: 211,
+      target: Video(
+        id: "nFDBxBUfE74",
+        start_time: 211,
+      ),
     ),
     Text(" Our Power Solution (Thanks Jackery!)\n"),
-    Video(
+    YouTube(
       text: "4:47",
-      id: "nFDBxBUfE74",
-      start_time: 287,
+      target: Video(
+        id: "nFDBxBUfE74",
+        start_time: 287,
+      ),
     ),
     Text(" Diggin\' Holes\n"),
-    Video(
+    YouTube(
       text: "5:30",
-      id: "nFDBxBUfE74",
-      start_time: 330,
+      target: Video(
+        id: "nFDBxBUfE74",
+        start_time: 330,
+      ),
     ),
     Text(" Colonoscopy?\n"),
-    Video(
+    YouTube(
       text: "7:04",
-      id: "nFDBxBUfE74",
-      start_time: 424,
+      target: Video(
+        id: "nFDBxBUfE74",
+        start_time: 424,
+      ),
     ),
     Text(" Diggin\' like a man\n"),
-    Video(
+    YouTube(
       text: "8:29",
-      id: "nFDBxBUfE74",
-      start_time: 509,
+      target: Video(
+        id: "nFDBxBUfE74",
+        start_time: 509,
+      ),
     ),
     Text(" The world\'s worst woodsman\n"),
-    Video(
+    YouTube(
       text: "9:03",
-      id: "nFDBxBUfE74",
-      start_time: 543,
+      target: Video(
+        id: "nFDBxBUfE74",
+        start_time: 543,
+      ),
     ),
     Text(" Backyard cable management\n"),
-    Video(
+    YouTube(
       text: "10:02",
-      id: "nFDBxBUfE74",
-      start_time: 602,
+      target: Video(
+        id: "nFDBxBUfE74",
+        start_time: 602,
+      ),
     ),
     Text(" Time to bury this boy\n"),
-    Video(
+    YouTube(
       text: "10:46",
-      id: "nFDBxBUfE74",
-      start_time: 646,
+      target: Video(
+        id: "nFDBxBUfE74",
+        start_time: 646,
+      ),
     ),
     Text(" Solar Power Generation\n"),
-    Video(
+    YouTube(
       text: "11:37",
-      id: "nFDBxBUfE74",
-      start_time: 697,
+      target: Video(
+        id: "nFDBxBUfE74",
+        start_time: 697,
+      ),
     ),
     Text(" Issues\n"),
-    Video(
+    YouTube(
       text: "12:08",
-      id: "nFDBxBUfE74",
-      start_time: 728,
+      target: Video(
+        id: "nFDBxBUfE74",
+        start_time: 728,
+      ),
     ),
     Text(" First Play Test\n"),
-    Video(
+    YouTube(
       text: "13:20",
-      id: "nFDBxBUfE74",
-      start_time: 800,
+      target: Video(
+        id: "nFDBxBUfE74",
+        start_time: 800,
+      ),
     ),
     Text(" Conclusion"),
   ]),

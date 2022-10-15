@@ -2,6 +2,8 @@
 
 use serde::{Deserialize, Serialize};
 
+use super::UrlTarget;
+
 #[derive(Default, Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[non_exhaustive]
 pub struct RichText(pub Vec<TextComponent>);
@@ -13,20 +15,8 @@ pub enum TextComponent {
     Text(String),
     /// Web link
     Web { text: String, url: String },
-    /// Link to a YouTube video
-    Video {
-        text: String,
-        id: String,
-        start_time: u32,
-    },
-    /// Link to a YouTube channel
-    Channel { text: String, id: String },
-    /// Link to a YouTube playlist
-    Playlist { text: String, id: String },
-    /// Link to a YouTube Music artist
-    Artist { text: String, id: String },
-    /// Link to a YouTube Music album
-    Album { text: String, id: String },
+    /// Link to a YouTube entity
+    YouTube { text: String, target: UrlTarget },
 }
 
 /// Trait for converting rich text to plain text.
@@ -60,11 +50,7 @@ impl TextComponent {
         match self {
             TextComponent::Text(text) => text,
             TextComponent::Web { text, .. } => text,
-            TextComponent::Video { text, .. } => text,
-            TextComponent::Channel { text, .. } => text,
-            TextComponent::Playlist { text, .. } => text,
-            TextComponent::Artist { text, .. } => text,
-            TextComponent::Album { text, .. } => text,
+            TextComponent::YouTube { text, .. } => text,
         }
     }
 
@@ -72,16 +58,7 @@ impl TextComponent {
         match self {
             TextComponent::Text(_) => "".to_owned(),
             TextComponent::Web { url, .. } => url.to_owned(),
-            TextComponent::Video { id, start_time, .. } => match start_time {
-                0 => format!("{}/watch?v={}", yt_host, id),
-                n => format!("{}/watch?v={}&t={}s", yt_host, id, n),
-            },
-            TextComponent::Channel { id, .. } | TextComponent::Artist { id, .. } => {
-                format!("{}/channel/{}", yt_host, id)
-            }
-            TextComponent::Playlist { id, .. } | TextComponent::Album { id, .. } => {
-                format!("{}/playlist?list={}", yt_host, id)
-            }
+            TextComponent::YouTube { target, .. } => target.to_url_yt_host(yt_host),
         }
     }
 }

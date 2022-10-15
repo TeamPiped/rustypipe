@@ -11,8 +11,8 @@ use crate::serializer::{
 };
 
 use super::{
-    ContinuationEndpoint, ContinuationItemRenderer, Icon, MusicContinuation, Thumbnails,
-    VideoListItem, VideoOwner,
+    url_endpoint::BrowseEndpoint, ContinuationEndpoint, ContinuationItemRenderer, Icon,
+    MusicContinuation, Thumbnails, VideoListItem, VideoOwner,
 };
 
 /*
@@ -559,12 +559,6 @@ pub struct CommentRenderer {
 #[serde(rename_all = "camelCase")]
 pub struct AuthorEndpoint {
     pub browse_endpoint: BrowseEndpoint,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct BrowseEndpoint {
-    pub browse_id: String,
 }
 
 #[derive(Default, Clone, Copy, Debug, Deserialize, PartialEq, Eq)]

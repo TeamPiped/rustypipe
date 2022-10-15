@@ -3,9 +3,13 @@ use std::convert::TryFrom;
 use fancy_regex::Regex;
 use once_cell::sync::Lazy;
 use serde::{Deserialize, Deserializer};
-use serde_with::{serde_as, DefaultOnError, DeserializeAs};
+use serde_with::{serde_as, DeserializeAs};
 
-use crate::util;
+use crate::{
+    client::response::url_endpoint::{NavigationEndpoint, PageType},
+    model::UrlTarget,
+    util,
+};
 
 /// # Text
 ///
@@ -144,84 +148,6 @@ struct AttributedTextRun {
 #[serde(rename_all = "camelCase")]
 struct AttributedTextOnTap {
     innertube_command: NavigationEndpoint,
-}
-
-#[serde_as]
-#[derive(Deserialize, Default)]
-#[serde(rename_all = "camelCase")]
-struct NavigationEndpoint {
-    #[serde(default)]
-    #[serde_as(deserialize_as = "DefaultOnError")]
-    watch_endpoint: Option<WatchEndpoint>,
-    #[serde(default)]
-    #[serde_as(deserialize_as = "DefaultOnError")]
-    browse_endpoint: Option<BrowseEndpoint>,
-    #[serde(default)]
-    #[serde_as(deserialize_as = "DefaultOnError")]
-    url_endpoint: Option<UrlEndpoint>,
-    #[serde(default)]
-    #[serde_as(deserialize_as = "DefaultOnError")]
-    command_metadata: Option<CommandMetadata>,
-}
-
-#[derive(Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct WatchEndpoint {
-    video_id: String,
-    #[serde(default)]
-    start_time_seconds: u32,
-}
-
-#[derive(Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct BrowseEndpoint {
-    browse_id: String,
-    browse_endpoint_context_supported_configs: Option<BrowseEndpointConfig>,
-}
-
-#[derive(Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct UrlEndpoint {
-    url: String,
-}
-
-#[derive(Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct BrowseEndpointConfig {
-    browse_endpoint_context_music_config: BrowseEndpointMusicConfig,
-}
-
-#[derive(Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct BrowseEndpointMusicConfig {
-    page_type: PageType,
-}
-
-#[derive(Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct CommandMetadata {
-    web_command_metadata: WebCommandMetadata,
-}
-
-#[derive(Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct WebCommandMetadata {
-    web_page_type: PageType,
-}
-
-#[derive(Clone, Copy, Debug, Deserialize, PartialEq, Eq)]
-pub enum PageType {
-    #[serde(rename = "MUSIC_PAGE_TYPE_ARTIST")]
-    Artist,
-    #[serde(rename = "MUSIC_PAGE_TYPE_ALBUM")]
-    Album,
-    #[serde(
-        rename = "MUSIC_PAGE_TYPE_USER_CHANNEL",
-        alias = "WEB_PAGE_TYPE_CHANNEL"
-    )]
-    Channel,
-    #[serde(rename = "MUSIC_PAGE_TYPE_PLAYLIST", alias = "WEB_PAGE_TYPE_PLAYLIST")]
-    Playlist,
 }
 
 impl From<RichTextRun> for TextComponent {
@@ -387,32 +313,20 @@ impl From<TextComponent> for crate::model::richtext::TextComponent {
                 text,
                 video_id,
                 start_time,
-            } => Self::Video {
+            } => Self::YouTube {
                 text,
-                id: video_id,
-                start_time,
+                target: UrlTarget::Video {
+                    id: video_id,
+                    start_time,
+                },
             },
             TextComponent::Browse {
                 text,
                 page_type,
                 browse_id,
-            } => match page_type {
-                PageType::Artist => Self::Artist {
-                    text,
-                    id: browse_id,
-                },
-                PageType::Album => Self::Album {
-                    text,
-                    id: browse_id,
-                },
-                PageType::Channel => Self::Channel {
-                    text,
-                    id: browse_id,
-                },
-                PageType::Playlist => Self::Playlist {
-                    text,
-                    id: browse_id,
-                },
+            } => Self::YouTube {
+                text,
+                target: page_type.to_url_target(browse_id),
             },
             TextComponent::Web { text, url } => Self::Web {
                 text,

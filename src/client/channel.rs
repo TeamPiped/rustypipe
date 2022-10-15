@@ -237,11 +237,10 @@ impl MapResponse<Channel<ChannelInfo>> for response::Channel {
                 links: meta
                     .primary_links
                     .into_iter()
-                    .map(|l| {
-                        (
-                            l.title,
-                            util::sanitize_yt_url(&l.navigation_endpoint.url_endpoint.url),
-                        )
+                    .filter_map(|l| {
+                        l.navigation_endpoint
+                            .url_endpoint
+                            .map(|url| (l.title, util::sanitize_yt_url(&url.url)))
                     })
                     .collect(),
             })
