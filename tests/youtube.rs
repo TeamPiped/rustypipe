@@ -1221,6 +1221,21 @@ async fn startpage() {
 }
 
 #[tokio::test]
+async fn startpage_cont() {
+    let rp = RustyPipe::builder().strict().build();
+    let startpage = rp.query().startpage().await.unwrap();
+
+    let next = startpage.next(rp.query()).await.unwrap().unwrap();
+
+    assert!(
+        next.items.len() > 20,
+        "expected > 20 items, got {}",
+        next.items.len()
+    );
+    assert!(!next.is_exhausted());
+}
+
+#[tokio::test]
 async fn trending() {
     let rp = RustyPipe::builder().strict().build();
     let result = rp.query().trending().await.unwrap();

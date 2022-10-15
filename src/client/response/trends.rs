@@ -9,6 +9,16 @@ use super::{ContentRenderer, ContentsRenderer, VideoListItem, VideoRenderer};
 #[serde(rename_all = "camelCase")]
 pub struct Startpage {
     pub contents: Contents<BrowseResultsStartpage>,
+    pub response_context: ResponseContext,
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct StartpageCont {
+    #[serde(default)]
+    #[serde_as(as = "VecSkipError<_>")]
+    pub on_response_received_actions: Vec<OnResponseReceivedAction>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -91,6 +101,12 @@ pub struct ShelfContentsRenderer {
     pub items: MapResult<Vec<TrendingListItem>>,
 }
 
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ResponseContext {
+    pub visitor_data: Option<String>,
+}
+
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -100,4 +116,18 @@ pub enum TrendingListItem {
 
     #[serde(other, deserialize_with = "ignore_any")]
     None,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct OnResponseReceivedAction {
+    pub append_continuation_items_action: AppendAction,
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct AppendAction {
+    #[serde_as(as = "VecLogError<_>")]
+    pub continuation_items: MapResult<Vec<VideoListItem>>,
 }

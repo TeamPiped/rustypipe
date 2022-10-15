@@ -90,6 +90,8 @@ struct ClientInfo {
     platform: String,
     #[serde(skip_serializing_if = "Option::is_none")]
     original_url: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    visitor_data: Option<String>,
     hl: Language,
     gl: Country,
 }
@@ -773,6 +775,7 @@ impl RustyPipeQuery {
                     device_model: None,
                     platform: "DESKTOP".to_owned(),
                     original_url: Some("https://www.youtube.com/".to_owned()),
+                    visitor_data: None,
                     hl,
                     gl,
                 },
@@ -788,6 +791,7 @@ impl RustyPipeQuery {
                     device_model: None,
                     platform: "DESKTOP".to_owned(),
                     original_url: Some("https://music.youtube.com/".to_owned()),
+                    visitor_data: None,
                     hl,
                     gl,
                 },
@@ -803,6 +807,7 @@ impl RustyPipeQuery {
                     device_model: None,
                     platform: "TV".to_owned(),
                     original_url: None,
+                    visitor_data: None,
                     hl,
                     gl,
                 },
@@ -820,6 +825,7 @@ impl RustyPipeQuery {
                     device_model: None,
                     platform: "MOBILE".to_owned(),
                     original_url: None,
+                    visitor_data: None,
                     hl,
                     gl,
                 },
@@ -835,6 +841,7 @@ impl RustyPipeQuery {
                     device_model: Some(IOS_DEVICE_MODEL.to_owned()),
                     platform: "MOBILE".to_owned(),
                     original_url: None,
+                    visitor_data: None,
                     hl,
                     gl,
                 },

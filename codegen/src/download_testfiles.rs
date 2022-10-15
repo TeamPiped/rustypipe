@@ -30,6 +30,7 @@ pub async fn download_testfiles(project_root: &Path) {
     search_playlists(&testfiles).await;
     search_empty(&testfiles).await;
     startpage(&testfiles).await;
+    startpage_cont(&testfiles).await;
     trending(&testfiles).await;
 }
 
@@ -379,6 +380,21 @@ async fn startpage(testfiles: &Path) {
 
     let rp = rp_testfile(&json_path);
     rp.query().startpage().await.unwrap();
+}
+
+async fn startpage_cont(testfiles: &Path) {
+    let mut json_path = testfiles.to_path_buf();
+    json_path.push("trends");
+    json_path.push("startpage_cont.json");
+    if json_path.exists() {
+        return;
+    }
+
+    let rp = RustyPipe::new();
+    let startpage = rp.query().startpage().await.unwrap();
+
+    let rp = rp_testfile(&json_path);
+    startpage.next(rp.query()).await.unwrap();
 }
 
 async fn trending(testfiles: &Path) {

@@ -15,6 +15,7 @@ pub use playlist_music::PlaylistMusic;
 pub use search::Search;
 pub use search::SearchCont;
 pub use trends::Startpage;
+pub use trends::StartpageCont;
 pub use trends::Trending;
 pub use video_details::VideoComments;
 pub use video_details::VideoDetails;

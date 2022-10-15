@@ -1,13 +1,14 @@
 use crate::{
     error::{Error, ExtractionError},
     model::{Paginator, SearchVideo},
+    param::Language,
     serializer::MapResult,
     util::TryRemove,
 };
 
 use super::{
     response::{self, TryFromWLang},
-    ClientType, MapResponse, QBrowse, RustyPipeQuery,
+    ClientType, MapResponse, QBrowse, QContinuation, RustyPipeQuery,
 };
 
 impl RustyPipeQuery {
@@ -22,6 +23,31 @@ impl RustyPipeQuery {
             ClientType::Desktop,
             "startpage",
             "",
+            "browse",
+            &request_body,
+        )
+        .await
+    }
+
+    pub async fn startpage_continuation(
+        self,
+        combined_ctoken: &str,
+    ) -> Result<Paginator<SearchVideo>, Error> {
+        let (visitor_data, ctoken) = combined_ctoken
+            .split_once('|')
+            .ok_or_else(|| Error::Other("Invalid ctoken".into()))?;
+
+        let mut context = self.get_context(ClientType::Desktop, true).await;
+        context.client.visitor_data = Some(visitor_data.to_owned());
+        let request_body = QContinuation {
+            context,
+            continuation: ctoken,
+        };
+
+        self.execute_request::<response::StartpageCont, _, _>(
+            ClientType::Desktop,
+            "startpage_continuation",
+            combined_ctoken,
             "browse",
             &request_body,
         )
@@ -62,35 +88,33 @@ impl MapResponse<Paginator<SearchVideo>> for response::Startpage {
             .rich_grid_renderer
             .contents;
 
-        let mut warnings = grid.warnings;
-        let mut ctoken = None;
-        let items = grid
-            .c
-            .into_iter()
-            .filter_map(|item| match item {
-                response::VideoListItem::RichItemRenderer {
-                    content: response::RichItem::VideoRenderer(video),
-                } => match SearchVideo::from_w_lang(video, lang) {
-                    Ok(video) => Some(video),
-                    Err(e) => {
-                        warnings.push(e.to_string());
-                        None
-                    }
-                },
-                response::VideoListItem::ContinuationItemRenderer {
-                    continuation_endpoint,
-                } => {
-                    ctoken = Some(continuation_endpoint.continuation_command.token);
-                    None
-                }
-                _ => None,
-            })
-            .collect();
+        Ok(map_startpage_videos(
+            grid,
+            lang,
+            self.response_context.visitor_data.as_deref(),
+        ))
+    }
+}
 
-        Ok(MapResult {
-            c: Paginator::new(None, items, ctoken),
-            warnings,
-        })
+impl MapResponse<Paginator<SearchVideo>> for response::StartpageCont {
+    fn map_response(
+        self,
+        id: &str,
+        lang: crate::param::Language,
+        _deobf: Option<&crate::deobfuscate::Deobfuscator>,
+    ) -> Result<MapResult<Paginator<SearchVideo>>, ExtractionError> {
+        let (visitor_data, _) = id
+            .split_once('|')
+            .ok_or_else(|| ExtractionError::InvalidData("Invalid ctoken".into()))?;
+
+        let mut received_actions = self.on_response_received_actions;
+        let items = received_actions
+            .try_swap_remove(0)
+            .ok_or_else(|| ExtractionError::InvalidData("no contents".into()))?
+            .append_continuation_items_action
+            .continuation_items;
+
+        Ok(map_startpage_videos(items, lang, Some(visitor_data)))
     }
 }
 
@@ -144,5 +168,44 @@ impl MapResponse<Vec<SearchVideo>> for response::Trending {
         }
 
         Ok(MapResult { c: items, warnings })
+    }
+}
+
+fn map_startpage_videos(
+    videos: MapResult<Vec<response::VideoListItem>>,
+    lang: Language,
+    visitor_data: Option<&str>,
+) -> MapResult<Paginator<SearchVideo>> {
+    let mut warnings = videos.warnings;
+    let mut ctoken = None;
+    let items = videos
+        .c
+        .into_iter()
+        .filter_map(|item| match item {
+            response::VideoListItem::RichItemRenderer {
+                content: response::RichItem::VideoRenderer(video),
+            } => match SearchVideo::from_w_lang(video, lang) {
+                Ok(video) => Some(video),
+                Err(e) => {
+                    warnings.push(e.to_string());
+                    None
+                }
+            },
+            response::VideoListItem::ContinuationItemRenderer {
+                continuation_endpoint,
+            } => {
+                ctoken = Some(continuation_endpoint.continuation_command.token);
+                None
+            }
+            _ => None,
+        })
+        .collect();
+
+    let combined_ctoken = ctoken
+        .and_then(|ctoken| visitor_data.map(|visitor_data| format!("{}|{}", visitor_data, ctoken)));
+
+    MapResult {
+        c: Paginator::new(None, items, combined_ctoken),
+        warnings,
     }
 }

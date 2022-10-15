@@ -1,6 +1,7 @@
 use crate::error::Error;
 use crate::model::{
     ChannelPlaylist, ChannelVideo, Comment, Paginator, PlaylistVideo, RecommendedVideo, SearchItem,
+    SearchVideo,
 };
 
 use super::RustyPipeQuery;
@@ -70,3 +71,4 @@ paginator!(
     RustyPipeQuery::channel_playlists_continuation
 );
 paginator!(SearchItem, RustyPipeQuery::search_continuation);
+paginator!(SearchVideo, RustyPipeQuery::startpage_continuation);
