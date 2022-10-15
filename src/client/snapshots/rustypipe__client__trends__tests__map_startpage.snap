@@ -1,0 +1,762 @@
+---
+source: src/client/trends.rs
+expression: map_res.c
+---
+Paginator(
+  count: None,
+  items: [
+    SearchVideo(
+      id: "_cyJhGsXDDM",
+      title: "Ultimate Criminal Canal Found Magnet Fishing! Police on the Hunt",
+      length: Some(1096),
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/_cyJhGsXDDM/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBBz_ErMMfhKLRZRfcAPTlMTujziw",
+          width: 360,
+          height: 202,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/_cyJhGsXDDM/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDaUGJ6GyTv5vwllztR6mN43dlmxA",
+          width: 720,
+          height: 404,
+        ),
+      ],
+      channel: ChannelTag(
+        id: "UCMLXec9-wpON8tZegnDsYLw",
+        name: "Bondi Treasure Hunter",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/ytc/AMLnZu91VHy_3HvCaMLthYyMSol6zwqxebNQ9GXc7NUB=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: verified,
+        subscriber_count: None,
+      ),
+      publish_date: "[date]",
+      publish_date_txt: Some("1 day ago"),
+      view_count: 700385,
+      is_live: false,
+      is_short: false,
+      short_description: "Subscribe for more Treasure Hunting videos: https://tinyurl.com/yyl3zerk\n\nMy Magnet! (Use Discount code \'BONDI\'): https://magnetarmagnets.com/\nMy Dive System! (Use Bonus code \'BONDI\'): https://lddy...",
+    ),
+    SearchVideo(
+      id: "36YnV9STBqc",
+      title: "The Good Life Radio\u{a0}•\u{a0}24/7 Live Radio | Best Relax House, Chillout, Study, Running, Gym, Happy Music",
+      length: None,
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/36YnV9STBqc/hq720_live.jpg?sqp=COjxqZoG-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLASUZkzmRJDiyIJmcsAdcDGan805Q",
+          width: 360,
+          height: 202,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/36YnV9STBqc/hq720_live.jpg?sqp=COjxqZoG-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBDrl0k5nr9wH-_aosqOimodx0b-w",
+          width: 720,
+          height: 404,
+        ),
+      ],
+      channel: ChannelTag(
+        id: "UChs0pSaEoNLV4mevBFGaoKA",
+        name: "The Good Life Radio x Sensual Musique",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/ytc/AMLnZu_V9mOdHaorjNFqGXCecFeOBZhDWB8tVYG_I8gJwA=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: verified,
+        subscriber_count: None,
+      ),
+      publish_date: "[date]",
+      publish_date_txt: None,
+      view_count: 7202,
+      is_live: false,
+      is_short: false,
+      short_description: "The Good Life is live streaming the best of Relaxing & Chill House Music, Deep House, Tropical House, EDM, Dance & Pop as well as Music for Sleep, Focus, Study, Workout, Gym, Running etc. in...",
+    ),
+    SearchVideo(
+      id: "YYD1qgH5qC4",
+      title: "چند شنبه با سینــا | فصل چهـارم | قسمت 5 | با حضور نازنین انصاری مدیر روزنامه کیهان لندن",
+      length: Some(3261),
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/YYD1qgH5qC4/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBkvD-kVL12hteMVVLRZvJHOdlPzQ",
+          width: 360,
+          height: 202,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/YYD1qgH5qC4/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDpO5WCJiLDPHrXOWH-xk2hTG_S3A",
+          width: 720,
+          height: 404,
+        ),
+      ],
+      channel: ChannelTag(
+        id: "UCzH_7hfL6Jd1H0WpNO_eryQ",
+        name: "MBC PERSIA",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/ytc/AMLnZu9lP4dhb_R_Y7e8Q4sb6dj7ve-YtalnMd2t1qP05A=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: none,
+        subscriber_count: None,
+      ),
+      publish_date: "[date]",
+      publish_date_txt: Some("14 hours ago"),
+      view_count: 104344,
+      is_live: false,
+      is_short: false,
+      short_description: "#mbcpersia\n#chandshanbeh\n#چندشنبه\n\nشبكه ام بى سى پرشيا را از حساب هاى مختلف در شبكه هاى اجتماعى دنبال كنيد\n►MBCPERSIA on Facebook:...",
+    ),
+    SearchVideo(
+      id: "BeJqgI6rw9k",
+      title: "your city is full of fake buildings, here\'s why",
+      length: Some(725),
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/BeJqgI6rw9k/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAvkJGHa6h2vzXrG1ueGQA8JysqEg",
+          width: 360,
+          height: 202,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/BeJqgI6rw9k/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDEJWMD2gUA572p12E7fZ1VX8qJ3A",
+          width: 720,
+          height: 404,
+        ),
+      ],
+      channel: ChannelTag(
+        id: "UCqVEHtQoXHmUCfJ-9smpTSg",
+        name: "Answer in Progress",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/b4TIQdFmoHYvQmcMt1XGH40m8-P5VdjyaZKb2C6nmkezGVk2Ln1csqe1PWg5aefEyk-NEFWhzg=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: verified,
+        subscriber_count: None,
+      ),
+      publish_date: "[date]",
+      publish_date_txt: Some("7 days ago"),
+      view_count: 1447008,
+      is_live: false,
+      is_short: false,
+      short_description: "Save 33% on your first Native Deodorant Pack - normally $39, you’ll get it for $26! Click here https://bit.ly/nativeanswer1 and use my code ANSWER #AD\n\nSomewhere on your street there may...",
+    ),
+    SearchVideo(
+      id: "ma28eWd1oyA",
+      title: "Post Malone, Maroon 5, Adele, Taylor Swift, Ed Sheeran, Shawn Mendes, Pop Hits 2020 Part 6",
+      length: Some(29989),
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/ma28eWd1oyA/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCznoPDMo_F1NCRBWoD4Ps5IjctxQ",
+          width: 480,
+          height: 270,
+        ),
+      ],
+      channel: ChannelTag(
+        id: "UCldQuUMYTUGrjvcU2vaPSFQ",
+        name: "Music Library",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/ytc/AMLnZu-4BJEmOMTfX96bjwu9AQS02gbODk5YQpZWVi5P=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: none,
+        subscriber_count: None,
+      ),
+      publish_date: "[date]",
+      publish_date_txt: Some("Streamed 2 years ago"),
+      view_count: 1861814,
+      is_live: false,
+      is_short: false,
+      short_description: "Post Malone, Maroon 5, Adele, Taylor Swift, Ed Sheeran, Shawn Mendes, Charlie Puth Pop Hits 2020\nPost Malone, Maroon 5, Adele, Taylor Swift, Ed Sheeran, Shawn Mendes, Charlie Puth Pop Hits...",
+    ),
+    SearchVideo(
+      id: "mL2LBRM5GBI",
+      title: "Salahs 6-Minuten-Hattrick & Firmino-Gala: Rangers - FC Liverpool 1:7 | UEFA Champions League | DAZN",
+      length: Some(355),
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/mL2LBRM5GBI/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBhsDaEALJodPurmS3DywUoRRwzwg",
+          width: 360,
+          height: 202,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/mL2LBRM5GBI/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDkvWkbocujg95phnyfNzBB9dhEYA",
+          width: 720,
+          height: 404,
+        ),
+      ],
+      channel: ChannelTag(
+        id: "UCB-GdMjyokO9lZkKU_oIK6g",
+        name: "DAZN UEFA Champions League",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/ytc/AMLnZu-D8LIEj-klO1gvUWMOA987HqMBBX9nn_WJS9Ka=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: verified,
+        subscriber_count: None,
+      ),
+      publish_date: "[date]",
+      publish_date_txt: Some("2 days ago"),
+      view_count: 1471667,
+      is_live: false,
+      is_short: false,
+      short_description: "In der Liga läuft es für die Reds weiterhin nicht rund. Am vergangenen Spieltag gab es gegen Arsenal eine 2:3-Niederlage, am Sonntag trifft man auf Man City. Die Champions League soll für...",
+    ),
+    SearchVideo(
+      id: "Ang18qz2IeQ",
+      title: "Satisfying Videos of Workers Doing Their Job Perfectly",
+      length: Some(1186),
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/Ang18qz2IeQ/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA3Cd49wYUuSEXz2MwhO2aqCMq5ZA",
+          width: 360,
+          height: 202,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/Ang18qz2IeQ/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAWQAks0vkJyJXSiQFIs9zhc2qyTg",
+          width: 720,
+          height: 404,
+        ),
+      ],
+      channel: ChannelTag(
+        id: "UCYenDLnIHsoqQ6smwKXQ7Hg",
+        name: "#Mind Warehouse",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/ytc/AMLnZu8zB2zV3yx2fSYn5zDbv47rZCBr90wX3jW8EC6NBw=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: verified,
+        subscriber_count: None,
+      ),
+      publish_date: "[date]",
+      publish_date_txt: Some("2 days ago"),
+      view_count: 173121,
+      is_live: false,
+      is_short: false,
+      short_description: "TechZone ► https://goo.gl/Gj3wZs   \n\n #incrediblemoments #mindwarehouse   #IncredibleMoments #CaughtOnCamera #InterestingFacts \n\nYou can endlessly watch how others work, but in this selection,...",
+    ),
+    SearchVideo(
+      id: "fjHN4jsJnEU",
+      title: "I Made 200 Players Simulate Survival Island in Minecraft...",
+      length: Some(2361),
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/fjHN4jsJnEU/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDwTosIfmAhNHIzU1sSXrTKT8vjNQ",
+          width: 360,
+          height: 202,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/fjHN4jsJnEU/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA4aFygGqUcm7-Hrkys95U0EAV9xA",
+          width: 720,
+          height: 404,
+        ),
+      ],
+      channel: ChannelTag(
+        id: "UCqt4mmAqLmH-AwXz31URJsw",
+        name: "Sword4000",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/ytc/AMLnZu_q3--WCh9Oc5o4XxAVVxxUz2narAtLR2QKuEw2lQ=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: verified,
+        subscriber_count: None,
+      ),
+      publish_date: "[date]",
+      publish_date_txt: Some("7 days ago"),
+      view_count: 751909,
+      is_live: false,
+      is_short: false,
+      short_description: "200 Players Simulate Survival Island Civilizations in Minecraft...\n-------------------------------------------------------------------\nI invited 200 Players to a Survival Island and let them...",
+    ),
+    SearchVideo(
+      id: "FI1XrdBJIUI",
+      title: "Epic Construction Fails | Expensive Fails Compilation | FailArmy",
+      length: Some(631),
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/FI1XrdBJIUI/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBe2jCnLhTsXmZQefyAe-WqImk6-g",
+          width: 360,
+          height: 202,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/FI1XrdBJIUI/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLD01TnIh1pH7TObDgKzx0GupXXVzw",
+          width: 720,
+          height: 404,
+        ),
+      ],
+      channel: ChannelTag(
+        id: "UCPDis9pjXuqyI7RYLJ-TTSA",
+        name: "FailArmy",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/PLsX6LIg5JbMJR9v7eTD7nQOPmZN16_X7h_uACw5qeWLAewiNfasZFsxQ48Dn8wZ_4McKUPZSA=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: verified,
+        subscriber_count: None,
+      ),
+      publish_date: "[date]",
+      publish_date_txt: Some("2 days ago"),
+      view_count: 2226471,
+      is_live: false,
+      is_short: false,
+      short_description: "I don\'t think so, Tim. ►►► Submit your videos for the chance to be featured 🔗 https://www.failarmy.com/pages/submit-video ▼ Follow us for more fails! https://linktr.ee/failarmy\n#fails...",
+    ),
+    SearchVideo(
+      id: "MXdplejK8vU",
+      title: "Chilly autumn Jazz ☕ Smooth September Jazz & Bossa Nova for a great relaxing weekend",
+      length: Some(86403),
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/MXdplejK8vU/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAIOe93l-1elIK0DfMLk0f3nDWgSA",
+          width: 360,
+          height: 202,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/MXdplejK8vU/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLByGLefQ3I9p2VQ5oZDmc5G_pCTlQ",
+          width: 720,
+          height: 404,
+        ),
+      ],
+      channel: ChannelTag(
+        id: "UCeGJ6v6KQt0s88hGKMfybuw",
+        name: "Cozy Jazz Music",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/tU7x6wNqEM_OIeU-jaaPcdhX3adNhnAY7WaGHsjEMfTLSzVHxm8VVBfaXRjDbf3y_LftGNJ83A=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: none,
+        subscriber_count: None,
+      ),
+      publish_date: "[date]",
+      publish_date_txt: Some("1 month ago"),
+      view_count: 148743,
+      is_live: false,
+      is_short: false,
+      short_description: "Chilly autumn Jazz ☕ Smooth September Jazz & Bossa Nova for a great relaxing weekend\nhttps://youtu.be/MXdplejK8vU\n*******************************************\nSounds available on: Jazz Bossa...",
+    ),
+    SearchVideo(
+      id: "Jri4_9vBFiQ",
+      title: "Top 100 Best Classic Rock Songs Of All Time 🔥 R.E.M, Queen, Metallica,Guns N’ Roses,Bon Jovi, U2,CCR",
+      length: None,
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/Jri4_9vBFiQ/hq720_live.jpg?sqp=COjxqZoG-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA1ZqDfSLi3Mf5qvpUFSYyDIODNQw",
+          width: 360,
+          height: 202,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/Jri4_9vBFiQ/hq720_live.jpg?sqp=COjxqZoG-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDtwgV7RdHmgDlAESZqSYbuZtFrvw",
+          width: 720,
+          height: 404,
+        ),
+      ],
+      channel: ChannelTag(
+        id: "UCiIWdzEVNH8okhlapR9a-xA",
+        name: "Rock Music",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/QIEcTVdBg9A2kE3un-IfjgTPiglDGMBbh9vMSXo2J5ZRICmunnVQkfpbMWNP8Kueac09DZrn=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: none,
+        subscriber_count: None,
+      ),
+      publish_date: "[date]",
+      publish_date_txt: None,
+      view_count: 192,
+      is_live: false,
+      is_short: false,
+      short_description: "Top 100 Best Classic Rock Songs Of All Time 🔥 R.E.M, Queen, Metallica,Guns N’ Roses,Bon Jovi, U2,CCR\nTop 100 Best Classic Rock Songs Of All Time 🔥 R.E.M, Queen, Metallica,Guns N’...",
+    ),
+    SearchVideo(
+      id: "ll4d5Lt-Ie8",
+      title: "Relaxing Music Healing Stress, Anxiety and Depressive States Heal Mind, Body and Soul | Sleep music",
+      length: Some(42896),
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/ll4d5Lt-Ie8/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAqdY2bQaQ3JHl5FYoTPuZFxXRKIQ",
+          width: 360,
+          height: 202,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/ll4d5Lt-Ie8/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA6xc8r38_2ygARU0vOR4kI6ZNz5w",
+          width: 720,
+          height: 404,
+        ),
+      ],
+      channel: ChannelTag(
+        id: "UCNS3dqFGBPhxHmOigehpBeg",
+        name: "Love YourSelf",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/fkgfEL2OtY2mhhyCV3xSOc3OsVK5ylQJmBev7XlBGE548dM6dqS2Z66YF-pdnbQOQpCuvZOlAdk=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: verified,
+        subscriber_count: None,
+      ),
+      publish_date: "[date]",
+      publish_date_txt: Some("Streamed 5 months ago"),
+      view_count: 5363904,
+      is_live: false,
+      is_short: false,
+      short_description: "The study found that listening to relaxing music of the patient\'s choice resulted in \"significant pain relief and increased mobility.\" Researchers believe that music relieves pain because listening...",
+    ),
+    SearchVideo(
+      id: "Dx2wbKLokuQ",
+      title: "W. Putin: Die Sehnsucht nach dem Imperium | Mit offenen Karten | ARTE",
+      length: Some(729),
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/Dx2wbKLokuQ/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBHQXnaEYo6frjkJ3FFuAPkAyOCKQ",
+          width: 360,
+          height: 202,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/Dx2wbKLokuQ/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDFtWV_wy25ohVyBthH8a5HwSj6Kw",
+          width: 720,
+          height: 404,
+        ),
+      ],
+      channel: ChannelTag(
+        id: "UCLLibJTCy3sXjHLVaDimnpQ",
+        name: "ARTEde",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/ytc/AMLnZu-1i2jxeXFISJhBbpWWv5vVX2xE5yQbjpaZZP3HPg=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: verified,
+        subscriber_count: None,
+      ),
+      publish_date: "[date]",
+      publish_date_txt: Some("2 weeks ago"),
+      view_count: 539838,
+      is_live: false,
+      is_short: false,
+      short_description: "Jede Woche untersucht „Mit offenen Karten“ die politischen Kräfteverhältnisse in der ganzen Welt anhand detaillierter geografischer Karten \n\nIm Februar 2022 rechtfertigte Wladimir Putin...",
+    ),
+    SearchVideo(
+      id: "jfKfPfyJRdk",
+      title: "lofi hip hop radio - beats to relax/study to",
+      length: None,
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/jfKfPfyJRdk/hq720_live.jpg?sqp=COjxqZoG-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCR-bHqcvOP14sSUsNt9PTuf3ZI4Q",
+          width: 360,
+          height: 202,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/jfKfPfyJRdk/hq720_live.jpg?sqp=COjxqZoG-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBBVEQQnwSLJFllntNgv2JAAlvSMQ",
+          width: 720,
+          height: 404,
+        ),
+      ],
+      channel: ChannelTag(
+        id: "UCSJ4gkVC6NrvII8umztf0Ow",
+        name: "Lofi Girl",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/KNYElmLFGAOSZoBmxYGKKXhGHrT2e7Hmz3WsBerbam5uaDXFADAmT7htj3OcC-uK1O88lC9fQg=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: verified,
+        subscriber_count: None,
+      ),
+      publish_date: "[date]",
+      publish_date_txt: None,
+      view_count: 21262,
+      is_live: false,
+      is_short: false,
+      short_description: "🤗 Thank you for listening, I hope you will have a good time here\n\n💽 | Get the latest vinyl (limited edition)\n→  https://vinyl-lofirecords.com/\n\n🎼 | Listen on Spotify, Apple music...",
+    ),
+    SearchVideo(
+      id: "qmrzTUmZ4UU",
+      title: "850€ für den Verrat am System - UCS AT-AT LEGO® Star Wars 75313",
+      length: Some(2043),
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/qmrzTUmZ4UU/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAsI3VS-wxnt1s_zS4M_YbVrV1pAg",
+          width: 360,
+          height: 202,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/qmrzTUmZ4UU/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBYk7w0qGeW4kZchFr-tbydELUChQ",
+          width: 720,
+          height: 404,
+        ),
+      ],
+      channel: ChannelTag(
+        id: "UC_EZd3lsmxudu3IQzpTzOgw",
+        name: "Held der Steine Inh. Thomas Panke",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/ytc/AMLnZu8g9hFxZ2HD4P9pDsUxoAvkHwbZoTVNr3yw12i8YA=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: verified,
+        subscriber_count: None,
+      ),
+      publish_date: "[date]",
+      publish_date_txt: Some("6 days ago"),
+      view_count: 600150,
+      is_live: false,
+      is_short: false,
+      short_description: "Star Wars - erschienen 2021 - 6749 Teile\n\nDieses Set bei Amazon*:\nhttps://amzn.to/3yu9dHX\n\nErwähnt im Video*:\nTassen https://bit.ly/HdSBausteinecke\nBig Boy https://bit.ly/BBLokBigBoy\nBurg...",
+    ),
+    SearchVideo(
+      id: "t0Q2otsqC4I",
+      title: "Tom & Jerry | Tom & Jerry in Full Screen | Classic Cartoon Compilation | WB Kids",
+      length: Some(1298),
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/t0Q2otsqC4I/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCFcrz2zM6mPUmJiCsC7c7suOzSug",
+          width: 360,
+          height: 202,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/t0Q2otsqC4I/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCVANFKKXmrdehkf7aM9issiuph5A",
+          width: 720,
+          height: 404,
+        ),
+      ],
+      channel: ChannelTag(
+        id: "UC9trsD1jCTXXtN3xIOIU8gg",
+        name: "WB Kids",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/ytc/AMLnZu80jIF6oehgpUILTaUbqSM5xYHWbPoc_Bz7wddxzg=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: verified,
+        subscriber_count: None,
+      ),
+      publish_date: "[date]",
+      publish_date_txt: Some("10 months ago"),
+      view_count: 252381571,
+      is_live: false,
+      is_short: false,
+      short_description: "Did you know that there are only 25 classic Tom & Jerry episodes that were displayed in a widescreen CinemaScope from the 1950s? Enjoy a compilation filled with some of the best moments from...",
+    ),
+    SearchVideo(
+      id: "zE-a5eqvlv8",
+      title: "Dua Lipa, Coldplay, Martin Garrix & Kygo, The Chainsmokers Style - Feeling Me",
+      length: None,
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/zE-a5eqvlv8/hq720_live.jpg?sqp=COjxqZoG-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCDyvujcpz62sEsL9Ke4ADBpXWqOA",
+          width: 360,
+          height: 202,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/zE-a5eqvlv8/hq720_live.jpg?sqp=COjxqZoG-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCyJ-QdgAD1F-DqcLKivIcalBJOEg",
+          width: 720,
+          height: 404,
+        ),
+      ],
+      channel: ChannelTag(
+        id: "UCX-USfenzQlhrEJR1zD5IYw",
+        name: "Deep Mood.",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/8WO05hff9bGjmlyPFo_PJRMIfHEoUvN_KbTcWRVX2yqeUO3fLgkz0K4MA6W95s3_NKdNUAwjow=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: none,
+        subscriber_count: None,
+      ),
+      publish_date: "[date]",
+      publish_date_txt: None,
+      view_count: 955,
+      is_live: false,
+      is_short: false,
+      short_description: "#Summermix #DeepHouse #DeepHouseSummerMix\nDua Lipa, Coldplay, Martin Garrix & Kygo, The Chainsmokers Style - Feeling Me\n\n🎵 All songs in this spotify playlist: https://spoti.fi/2TJ4Dyj\nSubmit...",
+    ),
+    SearchVideo(
+      id: "HxCcKzRAGWk",
+      title: "(Music for Man ) Relaxing Whiskey Blues Music - Modern Electric Guitar Blues - JAZZ & BLUES",
+      length: Some(42899),
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/HxCcKzRAGWk/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLD5CNX5XaQAKrLpPq0nxmyUjP5yUw",
+          width: 360,
+          height: 202,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/HxCcKzRAGWk/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLANuDaGE9jI_-go6cS_nU3qCu6LRg",
+          width: 720,
+          height: 404,
+        ),
+      ],
+      channel: ChannelTag(
+        id: "UCGr-rTYtP1m-r_-ncspdVQQ",
+        name: "JAZZ & BLUES",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/zqAxVISjt1hyzRzZKxRTvJfgEc5k2Luf-aEE55ohjUvt0QvqIRvmFBNC6UKj2TxlZrzGo8QMNA=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: none,
+        subscriber_count: None,
+      ),
+      publish_date: "[date]",
+      publish_date_txt: Some("Streamed 3 months ago"),
+      view_count: 3156236,
+      is_live: false,
+      is_short: false,
+      short_description: "-----------------------------------------------------------------------------------\n✔Thanks for watching! Have a nice day!\n✔Don\'t forget LIKE - SHARE - COMMENT\n#bluesmusic#slowblues#bluesrock...",
+    ),
+    SearchVideo(
+      id: "HlHYOdZePSE",
+      title: "Healing Music for Anxiety Disorders, Fears, Depression and Eliminate Negative Thoughts",
+      length: None,
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/HlHYOdZePSE/hq720_live.jpg?sqp=COjxqZoG-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBeqmmnli6rVdK1k7vcHlwE3kiNaw",
+          width: 360,
+          height: 202,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/HlHYOdZePSE/hq720_live.jpg?sqp=COjxqZoG-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAk9H5lapp7KBhJCER7uRCr0fDRgg",
+          width: 720,
+          height: 404,
+        ),
+      ],
+      channel: ChannelTag(
+        id: "UCqNYK5QArQRZSIR8v6_FCfA",
+        name: "Tranquil Music",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/YJUUVEayRZKNtFzWEiYgvxp9XOBw9-ioxiYErE0cNDTYNvkxHBCiuUXse4-a_yaYfSS-GfT-MQ=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: none,
+        subscriber_count: None,
+      ),
+      publish_date: "[date]",
+      publish_date_txt: None,
+      view_count: 1585,
+      is_live: false,
+      is_short: false,
+      short_description: "Healing Music for Anxiety Disorders, Fears, Depression and Eliminate Negative Thoughts\n#HealingMusic #RelaxingMusic #TranquilMusic\n__________________________________\nMusic for:\nChakra healing....",
+    ),
+    SearchVideo(
+      id: "CJ2AH3LJeic",
+      title: "Coldplay Greatest Hits Full Album 2022   New Songs of Coldplay 2022",
+      length: Some(7781),
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/CJ2AH3LJeic/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLC3A9sBlWQZmFUI9BYe5KzvATqiqw",
+          width: 360,
+          height: 202,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/CJ2AH3LJeic/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBaKSeSRdcDjEqQxrAfPaQmDJecvg",
+          width: 720,
+          height: 404,
+        ),
+      ],
+      channel: ChannelTag(
+        id: "UCdK2lzwelugXGhR9SCWuEew",
+        name: "PLAY MUSIC",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/ytc/AMLnZu8fIT4MTyobgM_deRkvcWBMIhKpAeIGfgqqob5p=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: none,
+        subscriber_count: None,
+      ),
+      publish_date: "[date]",
+      publish_date_txt: Some("7 months ago"),
+      view_count: 5595965,
+      is_live: false,
+      is_short: false,
+      short_description: "▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬\nSubscribe channel for more videos:\n🔔Subscribe: https://bit.ly/2UbIZFv\n⚡Facebook: https://bitly.com.vn/gXDsC...",
+    ),
+    SearchVideo(
+      id: "KJwzKxQ81iA",
+      title: "Handmade Candy Making Collection / 수제 사탕 만들기 모음 / Korean Candy Store",
+      length: Some(3152),
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/KJwzKxQ81iA/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCtm3YNbp3mK6RjsACZuz7fs-TUYA",
+          width: 360,
+          height: 202,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/KJwzKxQ81iA/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAVzCHCFbAyBRebsCKcSDxaWq0x6A",
+          width: 720,
+          height: 404,
+        ),
+      ],
+      channel: ChannelTag(
+        id: "UCdGwDjTgbSwQDZ8dYOdrplg",
+        name: "Soon Films 순필름",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/ytc/AMLnZu_eXMJm3sINr84rGTr3aiXD-OZ43aqx4yuNq9wjXw=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: none,
+        subscriber_count: None,
+      ),
+      publish_date: "[date]",
+      publish_date_txt: Some("1 month ago"),
+      view_count: 3127238,
+      is_live: false,
+      is_short: false,
+      short_description: "00:00 Handmade Candy Making\n13:43 Delicate Handmade Candy Making\n28:33 Rainbow Lollipop Handmade Candy Making\n39:10 Cute Handmade Candy Making",
+    ),
+  ],
+  ctoken: Some("4qmFsgKbAxIPRkV3aGF0X3RvX3dhdGNoGuoCQ0JoNmlBSk5aMjlKYjB0NmVtOWlTR3hxVFRSdlYyMHdTMkYzYjFwbFdGSm1ZMGRHYmxwV09YcGliVVozWXpKb2RtUkdPWGxhVjJSd1lqSTFhR0pDU1daWFZFSXhUbFpuZDFSV09YSldNRlp0WkRCT1JWTlZPV3BsU0U1WFZHNWtiRXhWY0ZSa1ZrSlRXbmh2ZEVGQlFteGlaMEZDVmxaTlFVRlZVa1pCUVVWQlVtdFdNMkZIUmpCWU0xSjJXRE5rYUdSSFRtOUJRVVZCUVZGRlFVRkJSVUZCVVVGQlFWRkZRVmxyUlVsQlFrbFVZMGRHYmxwV09YcGliVVozWXpKb2RtUkdPVEJpTW5Sc1ltaHZWRU5MVDNJeFpuSjROR1p2UTBaU1YwSm1RVzlrVkZWSlN6RnBTVlJEUzA5eU1XWnllRFJtYjBOR1VsZENaa0Z2WkZSVlNVc3hkbkZqZURjd1NrRm5aMW8lM0SaAhpicm93c2UtZmVlZEZFd2hhdF90b193YXRjaA%3D%3D"),
+  visitor_data: Some("CgtjTXNGWnhNcjdORSiq8qmaBg%3D%3D"),
+)

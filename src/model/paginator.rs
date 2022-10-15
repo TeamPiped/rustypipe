@@ -28,6 +28,9 @@ pub struct Paginator<T> {
     ///
     /// If it is None, it means that no more items can be fetched.
     pub ctoken: Option<String>,
+    /// YouTube visitor data. Required for fetching the startpage
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub visitor_data: Option<String>,
 }
 
 impl<T> Default for Paginator<T> {
@@ -36,12 +39,22 @@ impl<T> Default for Paginator<T> {
             count: Some(0),
             items: Vec::new(),
             ctoken: None,
+            visitor_data: None,
         }
     }
 }
 
 impl<T> Paginator<T> {
     pub(crate) fn new(count: Option<u64>, items: Vec<T>, ctoken: Option<String>) -> Self {
+        Self::new_with_vdata(count, items, ctoken, None)
+    }
+
+    pub(crate) fn new_with_vdata(
+        count: Option<u64>,
+        items: Vec<T>,
+        ctoken: Option<String>,
+        visitor_data: Option<String>,
+    ) -> Self {
         Self {
             count: match ctoken {
                 Some(_) => count,
@@ -49,6 +62,7 @@ impl<T> Paginator<T> {
             },
             items,
             ctoken,
+            visitor_data,
         }
     }
 

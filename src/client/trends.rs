@@ -31,12 +31,9 @@ impl RustyPipeQuery {
 
     pub async fn startpage_continuation(
         self,
-        combined_ctoken: &str,
+        ctoken: &str,
+        visitor_data: &str,
     ) -> Result<Paginator<SearchVideo>, Error> {
-        let (visitor_data, ctoken) = combined_ctoken
-            .split_once('|')
-            .ok_or_else(|| Error::Other("Invalid ctoken".into()))?;
-
         let mut context = self.get_context(ClientType::Desktop, true).await;
         context.client.visitor_data = Some(visitor_data.to_owned());
         let request_body = QContinuation {
@@ -47,11 +44,15 @@ impl RustyPipeQuery {
         self.execute_request::<response::StartpageCont, _, _>(
             ClientType::Desktop,
             "startpage_continuation",
-            combined_ctoken,
+            ctoken,
             "browse",
             &request_body,
         )
         .await
+        .map(|res| Paginator {
+            visitor_data: Some(visitor_data.to_owned()),
+            ..res
+        })
     }
 
     pub async fn trending(self) -> Result<Vec<SearchVideo>, Error> {
@@ -91,7 +92,7 @@ impl MapResponse<Paginator<SearchVideo>> for response::Startpage {
         Ok(map_startpage_videos(
             grid,
             lang,
-            self.response_context.visitor_data.as_deref(),
+            self.response_context.visitor_data,
         ))
     }
 }
@@ -99,14 +100,10 @@ impl MapResponse<Paginator<SearchVideo>> for response::Startpage {
 impl MapResponse<Paginator<SearchVideo>> for response::StartpageCont {
     fn map_response(
         self,
-        id: &str,
+        _id: &str,
         lang: crate::param::Language,
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
     ) -> Result<MapResult<Paginator<SearchVideo>>, ExtractionError> {
-        let (visitor_data, _) = id
-            .split_once('|')
-            .ok_or_else(|| ExtractionError::InvalidData("Invalid ctoken".into()))?;
-
         let mut received_actions = self.on_response_received_actions;
         let items = received_actions
             .try_swap_remove(0)
@@ -114,7 +111,7 @@ impl MapResponse<Paginator<SearchVideo>> for response::StartpageCont {
             .append_continuation_items_action
             .continuation_items;
 
-        Ok(map_startpage_videos(items, lang, Some(visitor_data)))
+        Ok(map_startpage_videos(items, lang, None))
     }
 }
 
@@ -174,7 +171,7 @@ impl MapResponse<Vec<SearchVideo>> for response::Trending {
 fn map_startpage_videos(
     videos: MapResult<Vec<response::VideoListItem>>,
     lang: Language,
-    visitor_data: Option<&str>,
+    visitor_data: Option<String>,
 ) -> MapResult<Paginator<SearchVideo>> {
     let mut warnings = videos.warnings;
     let mut ctoken = None;
@@ -201,11 +198,86 @@ fn map_startpage_videos(
         })
         .collect();
 
-    let combined_ctoken = ctoken
-        .and_then(|ctoken| visitor_data.map(|visitor_data| format!("{}|{}", visitor_data, ctoken)));
-
     MapResult {
-        c: Paginator::new(None, items, combined_ctoken),
+        c: Paginator::new_with_vdata(None, items, ctoken, visitor_data),
         warnings,
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use std::{fs::File, io::BufReader, path::Path};
+
+    use crate::{
+        client::{response, MapResponse},
+        model::{Paginator, SearchVideo},
+        param::Language,
+        serializer::MapResult,
+    };
+
+    #[test]
+    fn map_startpage() {
+        let filename = "testfiles/trends/startpage.json";
+        let json_path = Path::new(&filename);
+        let json_file = File::open(json_path).unwrap();
+
+        let startpage: response::Startpage =
+            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let map_res: MapResult<Paginator<SearchVideo>> =
+            startpage.map_response("", Language::En, None).unwrap();
+
+        assert!(
+            map_res.warnings.is_empty(),
+            "deserialization/mapping warnings: {:?}",
+            map_res.warnings
+        );
+
+        insta::assert_ron_snapshot!("map_startpage", map_res.c, {
+            ".items[].publish_date" => "[date]",
+        });
+    }
+
+    #[test]
+    fn map_startpage_cont() {
+        let filename = "testfiles/trends/startpage_cont.json";
+        let json_path = Path::new(&filename);
+        let json_file = File::open(json_path).unwrap();
+
+        let startpage: response::StartpageCont =
+            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let map_res: MapResult<Paginator<SearchVideo>> =
+            startpage.map_response("", Language::En, None).unwrap();
+
+        assert!(
+            map_res.warnings.is_empty(),
+            "deserialization/mapping warnings: {:?}",
+            map_res.warnings
+        );
+
+        insta::assert_ron_snapshot!("map_startpage_cont", map_res.c, {
+            ".items[].publish_date" => "[date]",
+        });
+    }
+
+    #[test]
+    fn map_trending() {
+        let filename = "testfiles/trends/trending.json";
+        let json_path = Path::new(&filename);
+        let json_file = File::open(json_path).unwrap();
+
+        let startpage: response::Trending =
+            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let map_res: MapResult<Vec<SearchVideo>> =
+            startpage.map_response("", Language::En, None).unwrap();
+
+        assert!(
+            map_res.warnings.is_empty(),
+            "deserialization/mapping warnings: {:?}",
+            map_res.warnings
+        );
+
+        insta::assert_ron_snapshot!("map_trending", map_res.c, {
+            "[].publish_date" => "[date]",
+        });
     }
 }
