@@ -31,6 +31,26 @@ pub struct Paginator<T> {
     /// YouTube visitor data. Required for fetching the startpage
     #[serde(skip_serializing_if = "Option::is_none")]
     pub visitor_data: Option<String>,
+    /// YouTube API endpoint to fetch continuations from
+    pub endpoint: ContinuationEndpoint,
+}
+
+#[derive(Debug, Copy, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[serde(rename_all = "lowercase")]
+pub enum ContinuationEndpoint {
+    Browse,
+    Search,
+    Next,
+}
+
+impl ContinuationEndpoint {
+    pub(crate) fn as_str(self) -> &'static str {
+        match self {
+            ContinuationEndpoint::Browse => "browse",
+            ContinuationEndpoint::Search => "search",
+            ContinuationEndpoint::Next => "next",
+        }
+    }
 }
 
 impl<T> Default for Paginator<T> {
@@ -40,6 +60,7 @@ impl<T> Default for Paginator<T> {
             items: Vec::new(),
             ctoken: None,
             visitor_data: None,
+            endpoint: ContinuationEndpoint::Browse,
         }
     }
 }
@@ -63,6 +84,25 @@ impl<T> Paginator<T> {
             items,
             ctoken,
             visitor_data,
+            endpoint: ContinuationEndpoint::Browse,
+        }
+    }
+
+    pub(crate) fn new_with_endpoint(
+        count: Option<u64>,
+        items: Vec<T>,
+        ctoken: Option<String>,
+        endpoint: ContinuationEndpoint,
+    ) -> Self {
+        Self {
+            count: match ctoken {
+                Some(_) => count,
+                None => items.len().try_into().ok(),
+            },
+            items,
+            ctoken,
+            visitor_data: None,
+            endpoint,
         }
     }
 

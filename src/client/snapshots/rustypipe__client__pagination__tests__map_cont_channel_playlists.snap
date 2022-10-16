@@ -1,11 +1,11 @@
 ---
-source: src/client/channel.rs
+source: src/client/pagination.rs
 expression: map_res.c
 ---
 Paginator(
   count: None,
   items: [
-    ChannelPlaylist(
+    PlaylistItem(
       id: "PLvOlSehNtuHutdg1kZkG7aAYhjoJnk2fc",
       name: "Nixie Tube Display Project",
       thumbnail: [
@@ -15,9 +15,10 @@ Paginator(
           height: 270,
         ),
       ],
+      channel: None,
       video_count: Some(9),
     ),
-    ChannelPlaylist(
+    PlaylistItem(
       id: "PLvOlSehNtuHujYmL_-5CBUg-za2osSUVI",
       name: "Mystery Teardown",
       thumbnail: [
@@ -27,9 +28,10 @@ Paginator(
           height: 270,
         ),
       ],
+      channel: None,
       video_count: Some(16),
     ),
-    ChannelPlaylist(
+    PlaylistItem(
       id: "PLvOlSehNtuHuGQmy-eJgqB28b2AWKteuG",
       name: "EEVsmoke",
       thumbnail: [
@@ -39,9 +41,10 @@ Paginator(
           height: 270,
         ),
       ],
+      channel: None,
       video_count: Some(2),
     ),
-    ChannelPlaylist(
+    PlaylistItem(
       id: "PLvOlSehNtuHuSab0CmpulB2Wv8Kz0985m",
       name: "EEVcomments",
       thumbnail: [
@@ -51,9 +54,10 @@ Paginator(
           height: 270,
         ),
       ],
+      channel: None,
       video_count: Some(1),
     ),
-    ChannelPlaylist(
+    PlaylistItem(
       id: "PLvOlSehNtuHvtQ5FxEivbCGxp4t3W8zKE",
       name: "Spectrum Analyser",
       thumbnail: [
@@ -63,9 +67,10 @@ Paginator(
           height: 270,
         ),
       ],
+      channel: None,
       video_count: Some(11),
     ),
-    ChannelPlaylist(
+    PlaylistItem(
       id: "PLvOlSehNtuHuJUxiTbVKHzWjvIVf1NVOl",
       name: "Space",
       thumbnail: [
@@ -75,9 +80,10 @@ Paginator(
           height: 270,
         ),
       ],
+      channel: None,
       video_count: Some(5),
     ),
-    ChannelPlaylist(
+    PlaylistItem(
       id: "PLvOlSehNtuHtTXTVCXVDIRKV442ynD7Pz",
       name: "Lunar Rover",
       thumbnail: [
@@ -87,9 +93,10 @@ Paginator(
           height: 270,
         ),
       ],
+      channel: None,
       video_count: Some(1),
     ),
-    ChannelPlaylist(
+    PlaylistItem(
       id: "PLvOlSehNtuHsma5qL7piUiM5N4IOyuQyx",
       name: "Wayback Wednesday",
       thumbnail: [
@@ -99,9 +106,10 @@ Paginator(
           height: 270,
         ),
       ],
+      channel: None,
       video_count: Some(1),
     ),
-    ChannelPlaylist(
+    PlaylistItem(
       id: "PLvOlSehNtuHvLb_HJBKqbgZ9IvEX-pVOF",
       name: "Magazines",
       thumbnail: [
@@ -111,9 +119,10 @@ Paginator(
           height: 270,
         ),
       ],
+      channel: None,
       video_count: Some(4),
     ),
-    ChannelPlaylist(
+    PlaylistItem(
       id: "PLvOlSehNtuHugE85Y_LckT4EhrKwo7WQe",
       name: "Embedded Computing",
       thumbnail: [
@@ -123,9 +132,10 @@ Paginator(
           height: 270,
         ),
       ],
+      channel: None,
       video_count: Some(4),
     ),
-    ChannelPlaylist(
+    PlaylistItem(
       id: "PLvOlSehNtuHu3GsTHwHoAXlWVcL3c3dA0",
       name: "High Speed Camera",
       thumbnail: [
@@ -135,9 +145,10 @@ Paginator(
           height: 270,
         ),
       ],
+      channel: None,
       video_count: Some(2),
     ),
-    ChannelPlaylist(
+    PlaylistItem(
       id: "PLvOlSehNtuHvTyDxI-_RDK8UlPbJ5FNf9",
       name: "Announcements  & Misc",
       thumbnail: [
@@ -147,9 +158,10 @@ Paginator(
           height: 270,
         ),
       ],
+      channel: None,
       video_count: Some(28),
     ),
-    ChannelPlaylist(
+    PlaylistItem(
       id: "PLvOlSehNtuHtT17_AeYMe-EOS_GXCBQQ1",
       name: "Interviews",
       thumbnail: [
@@ -159,9 +171,10 @@ Paginator(
           height: 270,
         ),
       ],
+      channel: None,
       video_count: Some(9),
     ),
-    ChannelPlaylist(
+    PlaylistItem(
       id: "PLvOlSehNtuHsCTtj-T_vkpTTbBXW4sB51",
       name: "Oscilloscope Tutorials",
       thumbnail: [
@@ -171,9 +184,10 @@ Paginator(
           height: 270,
         ),
       ],
+      channel: None,
       video_count: Some(38),
     ),
-    ChannelPlaylist(
+    PlaylistItem(
       id: "PLvOlSehNtuHsKCtJJ_rlRP5qE7lN-1EMX",
       name: "Anti-Static ESD",
       thumbnail: [
@@ -183,9 +197,10 @@ Paginator(
           height: 270,
         ),
       ],
+      channel: None,
       video_count: Some(7),
     ),
-    ChannelPlaylist(
+    PlaylistItem(
       id: "PLvOlSehNtuHvFf9a2swL8QVMwji0wT3ha",
       name: "Unboxing",
       thumbnail: [
@@ -195,9 +210,10 @@ Paginator(
           height: 270,
         ),
       ],
+      channel: None,
       video_count: Some(2),
     ),
-    ChannelPlaylist(
+    PlaylistItem(
       id: "PLvOlSehNtuHtn9n6n-uB8VNCTrERwYxLZ",
       name: "Power Supplies",
       thumbnail: [
@@ -207,9 +223,10 @@ Paginator(
           height: 270,
         ),
       ],
+      channel: None,
       video_count: Some(43),
     ),
-    ChannelPlaylist(
+    PlaylistItem(
       id: "PLvOlSehNtuHuo-6paPTh3ji7AEMpnSna6",
       name: "CNC Milling Machine",
       thumbnail: [
@@ -219,9 +236,10 @@ Paginator(
           height: 270,
         ),
       ],
+      channel: None,
       video_count: Some(1),
     ),
-    ChannelPlaylist(
+    PlaylistItem(
       id: "PLvOlSehNtuHvpVeLXSGlS7EBlY3zKfIXh",
       name: "Capacitors",
       thumbnail: [
@@ -231,9 +249,10 @@ Paginator(
           height: 270,
         ),
       ],
+      channel: None,
       video_count: Some(15),
     ),
-    ChannelPlaylist(
+    PlaylistItem(
       id: "PLvOlSehNtuHsNGit9YgkuxsFtFNJxwgot",
       name: "PCB Assembly",
       thumbnail: [
@@ -243,9 +262,10 @@ Paginator(
           height: 270,
         ),
       ],
+      channel: None,
       video_count: Some(5),
     ),
-    ChannelPlaylist(
+    PlaylistItem(
       id: "PLvOlSehNtuHvsggk5TwGdR2BZcoKRkQ2I",
       name: "3D Printing",
       thumbnail: [
@@ -255,9 +275,10 @@ Paginator(
           height: 270,
         ),
       ],
+      channel: None,
       video_count: Some(6),
     ),
-    ChannelPlaylist(
+    PlaylistItem(
       id: "PLvOlSehNtuHtH_DR5hAIGQ-Ty6f9TZWNV",
       name: "Video Editing / PC Builds",
       thumbnail: [
@@ -267,9 +288,10 @@ Paginator(
           height: 270,
         ),
       ],
+      channel: None,
       video_count: Some(3),
     ),
-    ChannelPlaylist(
+    PlaylistItem(
       id: "PLvOlSehNtuHvPZ1-dDC449w_r2M0R4jtc",
       name: "Solar Power Systems",
       thumbnail: [
@@ -279,9 +301,10 @@ Paginator(
           height: 270,
         ),
       ],
+      channel: None,
       video_count: Some(19),
     ),
-    ChannelPlaylist(
+    PlaylistItem(
       id: "PLvOlSehNtuHtolTr61FnHtvZb6tRPrs8m",
       name: "EEVblab",
       thumbnail: [
@@ -291,9 +314,10 @@ Paginator(
           height: 270,
         ),
       ],
+      channel: None,
       video_count: Some(101),
     ),
-    ChannelPlaylist(
+    PlaylistItem(
       id: "PLvOlSehNtuHsc8y1buFPJZaD1kKzIxpWL",
       name: "Repairs",
       thumbnail: [
@@ -303,9 +327,10 @@ Paginator(
           height: 270,
         ),
       ],
+      channel: None,
       video_count: Some(78),
     ),
-    ChannelPlaylist(
+    PlaylistItem(
       id: "PLvOlSehNtuHvBpmbLABRmSKv2b0C4LWV_",
       name: "Debunking",
       thumbnail: [
@@ -315,9 +340,10 @@ Paginator(
           height: 270,
         ),
       ],
+      channel: None,
       video_count: Some(73),
     ),
-    ChannelPlaylist(
+    PlaylistItem(
       id: "PLvOlSehNtuHs_8iObryqVCeqLIo5KTFQ-",
       name: "Lab Bench Builds + ESD Mats",
       thumbnail: [
@@ -327,9 +353,10 @@ Paginator(
           height: 270,
         ),
       ],
+      channel: None,
       video_count: Some(9),
     ),
-    ChannelPlaylist(
+    PlaylistItem(
       id: "PLvOlSehNtuHvatF_8oJ2qpKxi_wWw6YN4",
       name: "Reverse Engineering",
       thumbnail: [
@@ -339,9 +366,10 @@ Paginator(
           height: 270,
         ),
       ],
+      channel: None,
       video_count: Some(10),
     ),
-    ChannelPlaylist(
+    PlaylistItem(
       id: "PLvOlSehNtuHvwQR69zYRyxSkujQs2SgLl",
       name: "Scams",
       thumbnail: [
@@ -351,9 +379,10 @@ Paginator(
           height: 270,
         ),
       ],
+      channel: None,
       video_count: Some(5),
     ),
-    ChannelPlaylist(
+    PlaylistItem(
       id: "PLvOlSehNtuHvRvEU3VebO2JHa1I_iIAQD",
       name: "Hacking / Experiments",
       thumbnail: [
@@ -363,8 +392,10 @@ Paginator(
           height: 270,
         ),
       ],
+      channel: None,
       video_count: Some(63),
     ),
   ],
   ctoken: Some("4qmFsgLCARIYVUMyRGpGRTdYZjExVVJacVdCaWdjVk9RGnRFZ2x3YkdGNWJHbHpkSE1ZQXlBQk1BRTRBZW9EUEVOblRrUlJhbEZUU2tKSmFWVkZlREpVTW5oVVdsZG9UMlJJVmtsa2JFb3lVbFpWZWxadFZtbFVla3BMVTBkRmVGTldPWEJUVlVaU1VrTm5PQSUzRCUzRJoCL2Jyb3dzZS1mZWVkVUMyRGpGRTdYZjExVVJacVdCaWdjVk9RcGxheWxpc3RzMTA0"),
+  endpoint: browse,
 )

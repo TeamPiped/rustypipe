@@ -6,6 +6,7 @@ pub mod search;
 pub mod trends;
 pub mod url_endpoint;
 pub mod video_details;
+pub mod video_item;
 
 pub use channel::Channel;
 pub use channel::ChannelCont;
@@ -22,6 +23,8 @@ pub use url_endpoint::ResolvedUrl;
 pub use video_details::VideoComments;
 pub use video_details::VideoDetails;
 pub use video_details::VideoRecommendations;
+pub use video_item::YouTubeListItem;
+pub use video_item::YouTubeListMapper;
 
 #[cfg(feature = "rss")]
 pub mod channel_rss;
@@ -486,6 +489,34 @@ pub struct ChildVideoRenderer {
     pub title: String,
     #[serde_as(as = "Option<Text>")]
     pub length_text: Option<String>,
+}
+
+// CONTINUATION
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct Continuation {
+    /// Number of search results
+    #[serde_as(as = "Option<JsonString>")]
+    pub estimated_results: Option<u64>,
+    #[serde(alias = "onResponseReceivedCommands")]
+    #[serde_as(as = "VecSkipError<_>")]
+    pub on_response_received_actions: Vec<ContinuationActionWrap>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ContinuationActionWrap {
+    pub append_continuation_items_action: ContinuationAction,
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ContinuationAction {
+    #[serde_as(as = "VecLogError<_>")]
+    pub continuation_items: MapResult<Vec<YouTubeListItem>>,
 }
 
 // YouTube Music

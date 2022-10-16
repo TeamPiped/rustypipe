@@ -2056,6 +2056,7 @@ Playlist(
       ),
     ],
     ctoken: None,
+    endpoint: browse,
   ),
   video_count: 66,
   thumbnail: [

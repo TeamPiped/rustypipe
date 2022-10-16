@@ -4,6 +4,7 @@ mod ordering;
 mod paginator;
 pub mod richtext;
 
+pub use paginator::ContinuationEndpoint;
 pub use paginator::Paginator;
 
 use std::ops::Range;
@@ -810,7 +811,7 @@ pub struct ChannelRssVideo {
 
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct SearchResult {
-    pub items: Paginator<SearchItem>,
+    pub items: Paginator<YouTubeItem>,
     pub corrected_query: Option<String>,
 }
 
@@ -901,4 +902,120 @@ pub struct SearchChannel {
     pub video_count: u64,
     /// Abbreviated channel description
     pub short_description: String,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+pub enum YouTubeItem {
+    Video(VideoItem),
+    Playlist(PlaylistItem),
+    Channel(ChannelItem),
+}
+
+/// YouTube video list item
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
+pub struct VideoItem {
+    /// Unique YouTube video ID
+    pub id: String,
+    /// Video title
+    pub title: String,
+    /// Video length in seconds.
+    ///
+    /// Is [`None`] for livestreams.
+    pub length: Option<u32>,
+    /// Video thumbnail
+    pub thumbnail: Vec<Thumbnail>,
+    /// Channel of the video
+    pub channel: Option<ChannelTag>,
+    /// Video publishing date.
+    ///
+    /// [`None`] if the date could not be parsed.
+    pub publish_date: Option<DateTime<Local>>,
+    /// Textual video publish date (e.g. `11 months ago`, depends on language)
+    ///
+    /// Is [`None`] for livestreams.
+    pub publish_date_txt: Option<String>,
+    /// View count
+    ///
+    /// [`None`] if it could not be extracted.
+    pub view_count: Option<u64>,
+    /// Is the video an active livestream?
+    pub is_live: bool,
+    /// Is the video a YouTube Short video (vertical and <60s)?
+    pub is_short: bool,
+    /// Is the video announced, but not released yet (YouTube Premiere)?
+    pub is_upcoming: bool,
+    /// Abbreviated video description
+    pub short_description: Option<String>,
+}
+
+/// YouTube channel list item
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
+pub struct ChannelItem {
+    /// Unique YouTube channel ID
+    pub id: String,
+    /// Channel name
+    pub name: String,
+    /// Channel avatar/profile picture
+    pub avatar: Vec<Thumbnail>,
+    /// Channel verification mark
+    pub verification: Verification,
+    /// Approximate number of subscribers
+    ///
+    /// [`None`] if hidden by the owner or not present.
+    pub subscriber_count: Option<u64>,
+    /// Number of videos from the channel
+    pub video_count: u64,
+    /// Abbreviated channel description
+    pub short_description: String,
+}
+
+/// YouTube playlist list item
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
+pub struct PlaylistItem {
+    /// Unique YouTube Playlist-ID (e.g. `PL5dDx681T4bR7ZF1IuWzOv1omlRbE7PiJ`)
+    pub id: String,
+    /// Playlist name
+    pub name: String,
+    /// Playlist thumbnail
+    pub thumbnail: Vec<Thumbnail>,
+    /// Channel of the playlist
+    pub channel: Option<ChannelTag>,
+    /// Number of playlist videos
+    pub video_count: Option<u64>,
+}
+
+impl TryFrom<YouTubeItem> for VideoItem {
+    type Error = ();
+
+    fn try_from(value: YouTubeItem) -> Result<Self, Self::Error> {
+        match value {
+            YouTubeItem::Video(video) => Ok(video),
+            _ => Err(()),
+        }
+    }
+}
+
+impl TryFrom<YouTubeItem> for PlaylistItem {
+    type Error = ();
+
+    fn try_from(value: YouTubeItem) -> Result<Self, Self::Error> {
+        match value {
+            YouTubeItem::Playlist(playlist) => Ok(playlist),
+            _ => Err(()),
+        }
+    }
+}
+
+impl TryFrom<YouTubeItem> for ChannelItem {
+    type Error = ();
+
+    fn try_from(value: YouTubeItem) -> Result<Self, Self::Error> {
+        match value {
+            YouTubeItem::Channel(channel) => Ok(channel),
+            _ => Err(()),
+        }
+    }
 }

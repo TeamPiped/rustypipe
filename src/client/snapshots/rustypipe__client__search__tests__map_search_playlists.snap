@@ -6,7 +6,7 @@ SearchResult(
   items: Paginator(
     count: Some(18932046),
     items: [
-      Playlist(SearchPlaylist(
+      Playlist(PlaylistItem(
         id: "RDCLAK5uy_nmS3YoxSwVVQk9lEQJ0UX4ZCjXsW_psU8",
         name: "Pop\'s Biggest Hits",
         thumbnail: [
@@ -31,21 +31,16 @@ SearchResult(
             height: 188,
           ),
         ],
-        video_count: 225,
-        first_videos: [
-          SearchPlaylistVideo(
-            id: "XfEMj-z3TtA",
-            title: "STAY",
-            length: Some(142),
-          ),
-          SearchPlaylistVideo(
-            id: "MozAXGgC1Mc",
-            title: "Sugar",
-            length: Some(236),
-          ),
-        ],
+        channel: Some(ChannelTag(
+          id: "UC-9-kyTW8ZkZNDHQJ6FgpwQ",
+          name: "YouTube Music",
+          avatar: [],
+          verification: none,
+          subscriber_count: None,
+        )),
+        video_count: Some(225),
       )),
-      Playlist(SearchPlaylist(
+      Playlist(PlaylistItem(
         id: "RDCLAK5uy_mVJ3RRi_YBfUJnZnQxLAedQQcXHujbUcg",
         name: "Pump-Up Pop",
         thumbnail: [
@@ -70,21 +65,16 @@ SearchResult(
             height: 188,
           ),
         ],
-        video_count: 100,
-        first_videos: [
-          SearchPlaylistVideo(
-            id: "J7p4bzqLvCw",
-            title: "Blinding Lights",
-            length: Some(202),
-          ),
-          SearchPlaylistVideo(
-            id: "G1ej5up7JG0",
-            title: "Shivers",
-            length: Some(208),
-          ),
-        ],
+        channel: Some(ChannelTag(
+          id: "UC-9-kyTW8ZkZNDHQJ6FgpwQ",
+          name: "YouTube Music",
+          avatar: [],
+          verification: none,
+          subscriber_count: None,
+        )),
+        video_count: Some(100),
       )),
-      Playlist(SearchPlaylist(
+      Playlist(PlaylistItem(
         id: "RDCLAK5uy_mfdqvCAl8wodlx2P2_Ai2gNkiRDAufkkI",
         name: "Happy Pop Hits",
         thumbnail: [
@@ -109,21 +99,16 @@ SearchResult(
             height: 188,
           ),
         ],
-        video_count: 59,
-        first_videos: [
-          SearchPlaylistVideo(
-            id: "52QG9C9dnLM",
-            title: "Better Days",
-            length: Some(161),
-          ),
-          SearchPlaylistVideo(
-            id: "ntG3GQdY_Ok",
-            title: "Light Switch",
-            length: Some(186),
-          ),
-        ],
+        channel: Some(ChannelTag(
+          id: "UC-9-kyTW8ZkZNDHQJ6FgpwQ",
+          name: "YouTube Music",
+          avatar: [],
+          verification: none,
+          subscriber_count: None,
+        )),
+        video_count: Some(59),
       )),
-      Playlist(SearchPlaylist(
+      Playlist(PlaylistItem(
         id: "RDCLAK5uy_nHSqCJjDrW9HBhCNdF6tWPdnOMngOv0wA",
         name: "Pop Gold",
         thumbnail: [
@@ -148,21 +133,16 @@ SearchResult(
             height: 188,
           ),
         ],
-        video_count: 100,
-        first_videos: [
-          SearchPlaylistVideo(
-            id: "XqoanTj5pNY",
-            title: "Someone Like You",
-            length: Some(286),
-          ),
-          SearchPlaylistVideo(
-            id: "th92jw2CFOA",
-            title: "When I Was Your Man",
-            length: Some(214),
-          ),
-        ],
+        channel: Some(ChannelTag(
+          id: "UC-9-kyTW8ZkZNDHQJ6FgpwQ",
+          name: "YouTube Music",
+          avatar: [],
+          verification: none,
+          subscriber_count: None,
+        )),
+        video_count: Some(100),
       )),
-      Playlist(SearchPlaylist(
+      Playlist(PlaylistItem(
         id: "RDCLAK5uy_lb6CVU6S4uVugLVNTU9WhqfaomWAgnho4",
         name: "Shout-Out Pop Hits",
         thumbnail: [
@@ -187,21 +167,16 @@ SearchResult(
             height: 188,
           ),
         ],
-        video_count: 50,
-        first_videos: [
-          SearchPlaylistVideo(
-            id: "cTr-aGK-LpA",
-            title: "My Head & My Heart",
-            length: Some(175),
-          ),
-          SearchPlaylistVideo(
-            id: "xn0-IZZ6YO4",
-            title: "abcdefu",
-            length: Some(169),
-          ),
-        ],
+        channel: Some(ChannelTag(
+          id: "UC-9-kyTW8ZkZNDHQJ6FgpwQ",
+          name: "YouTube Music",
+          avatar: [],
+          verification: none,
+          subscriber_count: None,
+        )),
+        video_count: Some(50),
       )),
-      Playlist(SearchPlaylist(
+      Playlist(PlaylistItem(
         id: "RDCLAK5uy_nDL8KeBrUagwyISwNmyEiSfYgz1gVCesg",
         name: "Mellow Pop Classics",
         thumbnail: [
@@ -226,21 +201,16 @@ SearchResult(
             height: 188,
           ),
         ],
-        video_count: 50,
-        first_videos: [
-          SearchPlaylistVideo(
-            id: "fdz_cabS9BU",
-            title: "Thinking out Loud",
-            length: Some(282),
-          ),
-          SearchPlaylistVideo(
-            id: "BRbTpCrHv4o",
-            title: "Broken Strings",
-            length: Some(251),
-          ),
-        ],
+        channel: Some(ChannelTag(
+          id: "UC-9-kyTW8ZkZNDHQJ6FgpwQ",
+          name: "YouTube Music",
+          avatar: [],
+          verification: none,
+          subscriber_count: None,
+        )),
+        video_count: Some(50),
       )),
-      Playlist(SearchPlaylist(
+      Playlist(PlaylistItem(
         id: "PLDIoUOhQQPlVr3qepMVRsDe4T8vNQsvno",
         name: "Türkçe Pop Şarkılar 2022 - Yeni Hit Şarkılar 2022",
         thumbnail: [
@@ -265,21 +235,16 @@ SearchResult(
             height: 188,
           ),
         ],
-        video_count: 220,
-        first_videos: [
-          SearchPlaylistVideo(
-            id: "zU2_jPxz9q4",
-            title: "Ara - Zeynep Bastık (Paro Official ZB Version) | Music Video",
-            length: Some(201),
-          ),
-          SearchPlaylistVideo(
-            id: "vHIf_Gk8GLg",
-            title: "Mustafa Ceceli & Indira Elemes - İlla",
-            length: Some(153),
-          ),
-        ],
+        channel: Some(ChannelTag(
+          id: "UCX9oPuvJYZsG8wnHTwOBVPA",
+          name: "Chillax",
+          avatar: [],
+          verification: none,
+          subscriber_count: None,
+        )),
+        video_count: Some(220),
       )),
-      Playlist(SearchPlaylist(
+      Playlist(PlaylistItem(
         id: "RDCLAK5uy_nfs_t4FUu00E5ED6lveEBBX1VMYe1mFjk",
         name: "Dance-Pop Bangers",
         thumbnail: [
@@ -304,21 +269,16 @@ SearchResult(
             height: 188,
           ),
         ],
-        video_count: 100,
-        first_videos: [
-          SearchPlaylistVideo(
-            id: "hJWSZDJb-W4",
-            title: "Bad Habits",
-            length: Some(231),
-          ),
-          SearchPlaylistVideo(
-            id: "c5l4CGQozWY",
-            title: "Work from Home",
-            length: Some(215),
-          ),
-        ],
+        channel: Some(ChannelTag(
+          id: "UC-9-kyTW8ZkZNDHQJ6FgpwQ",
+          name: "YouTube Music",
+          avatar: [],
+          verification: none,
+          subscriber_count: None,
+        )),
+        video_count: Some(100),
       )),
-      Playlist(SearchPlaylist(
+      Playlist(PlaylistItem(
         id: "RDCLAK5uy_m_0U5VQNyyzwwH1lRi7cPAAGXqNQnAOqY",
         name: "Laid-Back Sofa Pop",
         thumbnail: [
@@ -343,21 +303,16 @@ SearchResult(
             height: 188,
           ),
         ],
-        video_count: 67,
-        first_videos: [
-          SearchPlaylistVideo(
-            id: "T7iuw9Qx7t4",
-            title: "Astronomy",
-            length: Some(244),
-          ),
-          SearchPlaylistVideo(
-            id: "p-IXgwqhfmg",
-            title: "Love Yourself",
-            length: Some(234),
-          ),
-        ],
+        channel: Some(ChannelTag(
+          id: "UC-9-kyTW8ZkZNDHQJ6FgpwQ",
+          name: "YouTube Music",
+          avatar: [],
+          verification: none,
+          subscriber_count: None,
+        )),
+        video_count: Some(67),
       )),
-      Playlist(SearchPlaylist(
+      Playlist(PlaylistItem(
         id: "RDCLAK5uy_mHW5bcduhjB-PkTePAe6EoRMj1xNT8gzY",
         name: "K-Pop Girl Crush",
         thumbnail: [
@@ -382,21 +337,16 @@ SearchResult(
             height: 188,
           ),
         ],
-        video_count: 78,
-        first_videos: [
-          SearchPlaylistVideo(
-            id: "18nDrsoii5M",
-            title: "붐바야 (Boombayah)",
-            length: Some(241),
-          ),
-          SearchPlaylistVideo(
-            id: "miqQAzOXPBo",
-            title: "달라달라 DALLA DALLA",
-            length: Some(200),
-          ),
-        ],
+        channel: Some(ChannelTag(
+          id: "UC-9-kyTW8ZkZNDHQJ6FgpwQ",
+          name: "YouTube Music",
+          avatar: [],
+          verification: none,
+          subscriber_count: None,
+        )),
+        video_count: Some(78),
       )),
-      Playlist(SearchPlaylist(
+      Playlist(PlaylistItem(
         id: "RDCLAK5uy_kPqJ_FiGk-lbXtgM4IF42uokskSJZiVTI",
         name: "Cardio Pop",
         thumbnail: [
@@ -421,21 +371,16 @@ SearchResult(
             height: 188,
           ),
         ],
-        video_count: 80,
-        first_videos: [
-          SearchPlaylistVideo(
-            id: "G1ej5up7JG0",
-            title: "Shivers",
-            length: Some(208),
-          ),
-          SearchPlaylistVideo(
-            id: "vgn-b0ksX4g",
-            title: "Heaven Takes You Home",
-            length: Some(215),
-          ),
-        ],
+        channel: Some(ChannelTag(
+          id: "UC-9-kyTW8ZkZNDHQJ6FgpwQ",
+          name: "YouTube Music",
+          avatar: [],
+          verification: none,
+          subscriber_count: None,
+        )),
+        video_count: Some(80),
       )),
-      Playlist(SearchPlaylist(
+      Playlist(PlaylistItem(
         id: "PLI_7Mg2Z_-4Lf7IYeiTEOV8HBn-nMqz5N",
         name: "Pop 2022 ♫ Mix Pop En Ingles (English Pop Songs 2022)",
         thumbnail: [
@@ -460,21 +405,16 @@ SearchResult(
             height: 188,
           ),
         ],
-        video_count: 70,
-        first_videos: [
-          SearchPlaylistVideo(
-            id: "a7GITgqwDVg",
-            title: "Charlie Puth - Left And Right (feat. Jung Kook of BTS) [Official Video]",
-            length: Some(160),
-          ),
-          SearchPlaylistVideo(
-            id: "H5v3kku4y6Q",
-            title: "Harry Styles - As It Was (Official Video)",
-            length: Some(166),
-          ),
-        ],
+        channel: Some(ChannelTag(
+          id: "UC8Ojfs-1VLiAO_MosLwvjpQ",
+          name: "Redlist - Ultimate Music",
+          avatar: [],
+          verification: none,
+          subscriber_count: None,
+        )),
+        video_count: Some(70),
       )),
-      Playlist(SearchPlaylist(
+      Playlist(PlaylistItem(
         id: "PLX6L4t7t6ZanfCJ1wBxRdGZ_mk9ygmKqo",
         name: "Deutsch Pop Hits NEU 2022",
         thumbnail: [
@@ -499,21 +439,16 @@ SearchResult(
             height: 188,
           ),
         ],
-        video_count: 164,
-        first_videos: [
-          SearchPlaylistVideo(
-            id: "oE7Fe8QBw1Y",
-            title: "Johannes Oerding - Kaleidoskop",
-            length: Some(217),
-          ),
-          SearchPlaylistVideo(
-            id: "JvqMO-tWlrU",
-            title: "Tim Bendzko - DAS LEBEN WIEDER LIEBEN (Offizielles Musikvideo)",
-            length: Some(169),
-          ),
-        ],
+        channel: Some(ChannelTag(
+          id: "UCesP91XKnuZVd6OJN06hokg",
+          name: "Startup Records",
+          avatar: [],
+          verification: none,
+          subscriber_count: None,
+        )),
+        video_count: Some(164),
       )),
-      Playlist(SearchPlaylist(
+      Playlist(PlaylistItem(
         id: "PLMC9KNkIncKtPzgY-5rmhvj7fax8fdxoj",
         name: "Pop Music Playlist - Timeless Pop Songs (Updated Weekly 2022)",
         thumbnail: [
@@ -538,21 +473,16 @@ SearchResult(
             height: 188,
           ),
         ],
-        video_count: 200,
-        first_videos: [
-          SearchPlaylistVideo(
-            id: "U0CGsw6h60k",
-            title: "Rihanna - What\'s My Name? ft. Drake",
-            length: Some(265),
-          ),
-          SearchPlaylistVideo(
-            id: "OPf0YbXqDm0",
-            title: "Mark Ronson - Uptown Funk (Official Video) ft. Bruno Mars",
-            length: Some(271),
-          ),
-        ],
+        channel: Some(ChannelTag(
+          id: "UCs72iRpTEuwV3y6pdWYLgiw",
+          name: "Redlist - Just Hits",
+          avatar: [],
+          verification: none,
+          subscriber_count: None,
+        )),
+        video_count: Some(200),
       )),
-      Playlist(SearchPlaylist(
+      Playlist(PlaylistItem(
         id: "PLgRdph0qPLy53IhYrQLPpATDDA2TpFey5",
         name: "Teen-Pop 90-2000",
         thumbnail: [
@@ -577,21 +507,16 @@ SearchResult(
             height: 188,
           ),
         ],
-        video_count: 50,
-        first_videos: [
-          SearchPlaylistVideo(
-            id: "4fndeDfaWCg",
-            title: "Backstreet Boys - I Want It That Way (Official HD Video)",
-            length: Some(220),
-          ),
-          SearchPlaylistVideo(
-            id: "gJLIiF15wjQ",
-            title: "Spice Girls - Wannabe (Official Music Video)",
-            length: Some(236),
-          ),
-        ],
+        channel: Some(ChannelTag(
+          id: "UCv9O2E_G8U46Paz8828THJw",
+          name: "Victor Vaz",
+          avatar: [],
+          verification: none,
+          subscriber_count: None,
+        )),
+        video_count: Some(50),
       )),
-      Playlist(SearchPlaylist(
+      Playlist(PlaylistItem(
         id: "RDCLAK5uy_nCVF_zUZizzRcojIUuYmaXxMoPgg2WMDo",
         name: "Klangfarbe: German Pop Hits",
         thumbnail: [
@@ -616,21 +541,16 @@ SearchResult(
             height: 188,
           ),
         ],
-        video_count: 52,
-        first_videos: [
-          SearchPlaylistVideo(
-            id: "jBFcbfteBDU",
-            title: "Ich hass dich",
-            length: Some(194),
-          ),
-          SearchPlaylistVideo(
-            id: "CjV7rkhQ66I",
-            title: "ROSES",
-            length: Some(148),
-          ),
-        ],
+        channel: Some(ChannelTag(
+          id: "UC-9-kyTW8ZkZNDHQJ6FgpwQ",
+          name: "YouTube Music",
+          avatar: [],
+          verification: none,
+          subscriber_count: None,
+        )),
+        video_count: Some(52),
       )),
-      Playlist(SearchPlaylist(
+      Playlist(PlaylistItem(
         id: "RDCLAK5uy_lY6JFrs7W9yIhFjUN_yxQ_ubkjcrqQaVs",
         name: "Bedroom Pop",
         thumbnail: [
@@ -655,21 +575,16 @@ SearchResult(
             height: 188,
           ),
         ],
-        video_count: 178,
-        first_videos: [
-          SearchPlaylistVideo(
-            id: "r23tQvESL7w",
-            title: "Picture in my mind",
-            length: Some(177),
-          ),
-          SearchPlaylistVideo(
-            id: "4DyV0hWOdQw",
-            title: "we fell in love in october",
-            length: Some(185),
-          ),
-        ],
+        channel: Some(ChannelTag(
+          id: "UC-9-kyTW8ZkZNDHQJ6FgpwQ",
+          name: "YouTube Music",
+          avatar: [],
+          verification: none,
+          subscriber_count: None,
+        )),
+        video_count: Some(178),
       )),
-      Playlist(SearchPlaylist(
+      Playlist(PlaylistItem(
         id: "RDCLAK5uy_l7K78k4EkjcFojhd1617rmUjY-aet6-t0",
         name: "K-Pop Party Hits",
         thumbnail: [
@@ -694,21 +609,16 @@ SearchResult(
             height: 188,
           ),
         ],
-        video_count: 87,
-        first_videos: [
-          SearchPlaylistVideo(
-            id: "LCpjdohpuEE",
-            title: "Permission to Dance",
-            length: Some(188),
-          ),
-          SearchPlaylistVideo(
-            id: "8mA6jIeojnk",
-            title: "How You Like That",
-            length: Some(182),
-          ),
-        ],
+        channel: Some(ChannelTag(
+          id: "UC-9-kyTW8ZkZNDHQJ6FgpwQ",
+          name: "YouTube Music",
+          avatar: [],
+          verification: none,
+          subscriber_count: None,
+        )),
+        video_count: Some(87),
       )),
-      Playlist(SearchPlaylist(
+      Playlist(PlaylistItem(
         id: "RDCLAK5uy_lj-zBExVYl7YN_NxXboDIh4A-wKGfgzNY",
         name: "I-Pop Hits!",
         thumbnail: [
@@ -733,21 +643,16 @@ SearchResult(
             height: 188,
           ),
         ],
-        video_count: 50,
-        first_videos: [
-          SearchPlaylistVideo(
-            id: "g-7u06NK1mo",
-            title: "Killer Haseena",
-            length: Some(161),
-          ),
-          SearchPlaylistVideo(
-            id: "v0Q56geMlkk",
-            title: "Kesariyo Rang",
-            length: Some(194),
-          ),
-        ],
+        channel: Some(ChannelTag(
+          id: "UC-9-kyTW8ZkZNDHQJ6FgpwQ",
+          name: "YouTube Music",
+          avatar: [],
+          verification: none,
+          subscriber_count: None,
+        )),
+        video_count: Some(50),
       )),
-      Playlist(SearchPlaylist(
+      Playlist(PlaylistItem(
         id: "PLDIoUOhQQPlXqz5QZ3dx-lh_p6RcPeKjv",
         name: "POP Music Playlist 2022 - New POP Songs - Pop Songs 2022 Playlist",
         thumbnail: [
@@ -772,22 +677,18 @@ SearchResult(
             height: 188,
           ),
         ],
-        video_count: 100,
-        first_videos: [
-          SearchPlaylistVideo(
-            id: "WcIcVapfqXw",
-            title: "Rema, Selena Gomez - Calm Down (Official Music Video)",
-            length: Some(240),
-          ),
-          SearchPlaylistVideo(
-            id: "a7GITgqwDVg",
-            title: "Charlie Puth - Left And Right (feat. Jung Kook of BTS) [Official Video]",
-            length: Some(160),
-          ),
-        ],
+        channel: Some(ChannelTag(
+          id: "UCX9oPuvJYZsG8wnHTwOBVPA",
+          name: "Chillax",
+          avatar: [],
+          verification: none,
+          subscriber_count: None,
+        )),
+        video_count: Some(100),
       )),
     ],
     ctoken: Some("EqIJEgNwb3AamglFZ0lRQTBnVWdnRXJVa1JEVEVGTE5YVjVYMjV0VXpOWmIzaFRkMVpXVVdzNWJFVlJTakJWV0RSYVEycFljMWRmY0hOVk9JSUJLMUpFUTB4QlN6VjFlVjl0VmtvelVsSnBYMWxDWmxWS2JscHVVWGhNUVdWa1VWRmpXRWgxYW1KVlkyZUNBU3RTUkVOTVFVczFkWGxmYldaa2NYWkRRV3c0ZDI5a2JIZ3lVREpmUVdreVowNXJhVkpFUVhWbWEydEpnZ0VyVWtSRFRFRkxOWFY1WDI1SVUzRkRTbXBFY2xjNVNFSm9RMDVrUmpaMFYxQmtiazlOYm1kUGRqQjNRWUlCSzFKRVEweEJTelYxZVY5c1lqWkRWbFUyVXpSMVZuVm5URlpPVkZVNVYyaHhabUZ2YlZkQloyNW9ielNDQVN0U1JFTk1RVXMxZFhsZmJrUk1PRXRsUW5KVllXZDNlVWxUZDA1dGVVVnBVMlpaWjNveFoxWkRaWE5uZ2dFaVVFeEVTVzlWVDJoUlVWQnNWbkl6Y1dWd1RWWlNjMFJsTkZRNGRrNVJjM1p1YjRJQksxSkVRMHhCU3pWMWVWOXVabk5mZERSR1ZYVXdNRVUxUlVRMmJIWmxSVUpDV0RGV1RWbGxNVzFHYW11Q0FTdFNSRU5NUVVzMWRYbGZiVjh3VlRWV1VVNTVlWHAzZDBneGJGSnBOMk5RUVVGSFdIRk9VVzVCVDNGWmdnRXJVa1JEVEVGTE5YVjVYMjFJVnpWaVkyUjFhR3BDTFZCclZHVlFRV1UyUlc5U1RXb3hlRTVVT0dkNldZSUJLMUpFUTB4QlN6VjFlVjlyVUhGS1gwWnBSMnN0YkdKWWRHZE5ORWxHTkRKMWIydHphMU5LV21sV1ZFbUNBU0pRVEVsZk4wMW5NbHBmTFRSTVpqZEpXV1ZwVkVWUFZqaElRbTR0YmsxeGVqVk9nZ0VpVUV4WU5rdzBkRGQwTmxwaGJtWkRTakYzUW5oU1pFZGFYMjFyT1hsbmJVdHhiNElCSWxCTVRVTTVTMDVyU1c1alMzUlFlbWRaTFRWeWJXaDJhamRtWVhnNFptUjRiMnFDQVNKUVRHZFNaSEJvTUhGUVRIazFNMGxvV1hKUlRGQndRVlJFUkVFeVZIQkdaWGsxZ2dFclVrUkRURUZMTlhWNVgyNURWa1pmZWxWYWFYcDZVbU52YWtsVmRWbHRZVmg0VFc5UVoyY3lWMDFFYjRJQksxSkVRMHhCU3pWMWVWOXNXVFpLUm5Kek4xYzVlVWxvUm1wVlRsOTVlRkZmZFdKcmFtTnljVkZoVm5PQ0FTdFNSRU5NUVVzMWRYbGZiRGRMTnpock5FVnJhbU5HYjJwb1pERTJNVGR5YlZWcVdTMWhaWFEyTFhRd2dnRXJVa1JEVEVGTE5YVjVYMnhxTFhwQ1JYaFdXV3czV1U1ZlRuaFlZbTlFU1dnMFFTMTNTMGRtWjNwT1dZSUJJbEJNUkVsdlZVOW9VVkZRYkZoeGVqVlJXak5rZUMxc2FGOXdObEpqVUdWTGFuYXlBUVlLQkFnVkVBSSUzRBiB4OgYIgtzZWFyY2gtZmVlZA%3D%3D"),
+    endpoint: browse,
   ),
   corrected_query: None,
 )

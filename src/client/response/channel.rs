@@ -3,9 +3,9 @@ use serde_with::serde_as;
 use serde_with::{DefaultOnError, VecSkipError};
 
 use super::url_endpoint::NavigationEndpoint;
-use super::Thumbnails;
 use super::{Alert, ChannelBadge};
-use super::{ContentRenderer, ContentsRenderer, VideoListItem};
+use super::{ContentRenderer, ContentsRenderer};
+use super::{Thumbnails, YouTubeListItem};
 use crate::serializer::ignore_any;
 use crate::serializer::{text::Text, MapResult, VecLogError};
 
@@ -83,7 +83,7 @@ pub struct SectionListRenderer {
 #[serde(rename_all = "camelCase")]
 pub struct RichGridRenderer {
     #[serde_as(as = "VecLogError<_>")]
-    pub contents: MapResult<Vec<VideoListItem>>,
+    pub contents: MapResult<Vec<YouTubeListItem>>,
     /// - **Videos**: browse-feedUC2DjFE7Xf11URZqWBigcVOQvideos (...)
     /// - **Playlists**: browse-feedUC2DjFE7Xf11URZqWBigcVOQplaylists104 (...)
     /// - **Info**: None
@@ -102,7 +102,7 @@ pub struct ItemSectionRendererWrap {
 pub enum ChannelContent {
     GridRenderer {
         #[serde_as(as = "VecLogError<_>")]
-        items: MapResult<Vec<VideoListItem>>,
+        items: MapResult<Vec<YouTubeListItem>>,
     },
     ChannelAboutFullMetadataRenderer(ChannelFullMetadata),
     #[default]
@@ -217,5 +217,5 @@ pub struct OnResponseReceivedAction {
 #[serde(rename_all = "camelCase")]
 pub struct AppendAction {
     #[serde_as(as = "VecLogError<_>")]
-    pub continuation_items: MapResult<Vec<VideoListItem>>,
+    pub continuation_items: MapResult<Vec<YouTubeListItem>>,
 }

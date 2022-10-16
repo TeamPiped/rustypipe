@@ -3,15 +3,11 @@ use serde::{de::IgnoredAny, Serialize};
 use crate::{
     deobfuscate::Deobfuscator,
     error::{Error, ExtractionError},
-    model::{Paginator, SearchItem, SearchResult, SearchVideo},
+    model::{Paginator, SearchResult, YouTubeItem},
     param::{search_filter::SearchFilter, Language},
-    util::TryRemove,
 };
 
-use super::{
-    response::{self, TryFromWLang},
-    ClientType, MapResponse, MapResult, QContinuation, RustyPipeQuery, YTContext,
-};
+use super::{response, ClientType, MapResponse, MapResult, RustyPipeQuery, YTContext};
 
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
@@ -63,23 +59,6 @@ impl RustyPipeQuery {
         .await
     }
 
-    pub async fn search_continuation(self, ctoken: &str) -> Result<Paginator<SearchItem>, Error> {
-        let context = self.get_context(ClientType::Desktop, true).await;
-        let request_body = QContinuation {
-            context,
-            continuation: ctoken,
-        };
-
-        self.execute_request::<response::SearchCont, _, _>(
-            ClientType::Desktop,
-            "search_continuation",
-            ctoken,
-            "search",
-            &request_body,
-        )
-        .await
-    }
-
     pub async fn search_suggestion(self, query: &str) -> Result<Vec<String>, Error> {
         let url = url::Url::parse_with_params("https://suggestqueries-clients6.youtube.com/complete/search?client=youtube&gs_rn=64&gs_ri=youtube&ds=yt&cp=1&gs_id=4&xhr=t&xssi=t",
             &[("hl", self.opts.lang.to_string()), ("gl", self.opts.country.to_string()), ("q", query.to_string())]
@@ -123,55 +102,22 @@ impl MapResponse<SearchResult> for response::Search {
 
         let (items, ctoken) = map_section_list_items(section_list_items)?;
 
-        let mut warnings = items.warnings;
-        let (mut mapped, corrected_query) = map_search_items(items.c, lang);
-        warnings.append(&mut mapped.warnings);
+        let mut mapper = response::YouTubeListMapper::<YouTubeItem>::new(lang);
+        mapper.map_response(items);
 
         Ok(MapResult {
             c: SearchResult {
-                items: Paginator::new(self.estimated_results, mapped.c, ctoken),
-                corrected_query,
+                items: Paginator::new(self.estimated_results, mapper.items, ctoken),
+                corrected_query: mapper.corrected_query,
             },
-            warnings,
-        })
-    }
-}
-
-impl MapResponse<Paginator<SearchItem>> for response::SearchCont {
-    fn map_response(
-        self,
-        _id: &str,
-        lang: Language,
-        _deobf: Option<&Deobfuscator>,
-    ) -> Result<MapResult<Paginator<SearchItem>>, ExtractionError> {
-        let mut commands = self.on_response_received_commands;
-        let cont_command = some_or_bail!(
-            commands.try_swap_remove(0),
-            Err(ExtractionError::InvalidData(
-                "no item section renderer".into()
-            ))
-        );
-
-        let (items, ctoken) = map_section_list_items(
-            cont_command
-                .append_continuation_items_action
-                .continuation_items,
-        )?;
-
-        let mut warnings = items.warnings;
-        let (mut mapped, _) = map_search_items(items.c, lang);
-        warnings.append(&mut mapped.warnings);
-
-        Ok(MapResult {
-            c: Paginator::new(self.estimated_results, mapped.c, ctoken),
-            warnings,
+            warnings: mapper.warnings,
         })
     }
 }
 
 fn map_section_list_items(
     section_list_items: Vec<response::search::SectionListItem>,
-) -> Result<(MapResult<Vec<response::search::SearchItem>>, Option<String>), ExtractionError> {
+) -> Result<(MapResult<Vec<response::YouTubeListItem>>, Option<String>), ExtractionError> {
     let mut items = None;
     let mut ctoken = None;
     section_list_items.into_iter().for_each(|item| match item {
@@ -195,54 +141,13 @@ fn map_section_list_items(
     Ok((items, ctoken))
 }
 
-fn map_search_items(
-    items: Vec<response::search::SearchItem>,
-    lang: Language,
-) -> (MapResult<Vec<SearchItem>>, Option<String>) {
-    let mut warnings = Vec::new();
-
-    let mut c_query = None;
-    let mapped_items = items
-        .into_iter()
-        .filter_map(|item| match item {
-            response::search::SearchItem::VideoRenderer(video) => {
-                match SearchVideo::from_w_lang(video, lang) {
-                    Ok(video) => Some(SearchItem::Video(video)),
-                    Err(e) => {
-                        warnings.push(e.to_string());
-                        None
-                    }
-                }
-            }
-            response::search::SearchItem::PlaylistRenderer(playlist) => {
-                Some(SearchItem::Playlist(playlist.into()))
-            }
-            response::search::SearchItem::ChannelRenderer(channel) => {
-                Some(SearchItem::Channel(channel.into()))
-            }
-            response::search::SearchItem::ShowingResultsForRenderer { corrected_query } => {
-                c_query = Some(corrected_query);
-                None
-            }
-            response::search::SearchItem::None => None,
-        })
-        .collect();
-    (
-        MapResult {
-            c: mapped_items,
-            warnings,
-        },
-        c_query,
-    )
-}
-
 #[cfg(test)]
 mod tests {
     use std::{fs::File, io::BufReader, path::Path};
 
     use crate::{
         client::{response, MapResponse},
-        model::{Paginator, SearchItem, SearchResult},
+        model::SearchResult,
         param::Language,
         serializer::MapResult,
     };
@@ -269,28 +174,6 @@ mod tests {
 
         insta::assert_ron_snapshot!(format!("map_search_{}", name), map_res.c, {
             ".items.items.*.publish_date" => "[date]",
-        });
-    }
-
-    #[test]
-    fn t_map_search_cont() {
-        let filename = format!("testfiles/search/cont.json");
-        let json_path = Path::new(&filename);
-        let json_file = File::open(json_path).unwrap();
-
-        let search_cont: response::SearchCont =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res: MapResult<Paginator<SearchItem>> =
-            search_cont.map_response("", Language::En, None).unwrap();
-
-        assert!(
-            map_res.warnings.is_empty(),
-            "deserialization/mapping warnings: {:?}",
-            map_res.warnings
-        );
-
-        insta::assert_ron_snapshot!("map_search_cont", map_res.c, {
-            ".items.*.publish_date" => "[date]",
         });
     }
 }

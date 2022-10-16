@@ -6,7 +6,7 @@ SearchResult(
   items: Paginator(
     count: Some(7499),
     items: [
-      Channel(SearchChannel(
+      Channel(ChannelItem(
         id: "UCh8gHdtzO2tXd593_bjErWg",
         name: "Doobydobap",
         avatar: [
@@ -26,7 +26,7 @@ SearchResult(
         video_count: 219,
         short_description: "Hi, I\'m Tina, aka Doobydobap! Food is the medium I use to tell stories and connect with people who share the same passion as I\u{a0}...",
       )),
-      Video(SearchVideo(
+      Video(VideoItem(
         id: "1VW7iXRIrc8",
         title: "Alone, in the City of Love",
         length: Some(1875),
@@ -42,7 +42,7 @@ SearchResult(
             height: 404,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCh8gHdtzO2tXd593_bjErWg",
           name: "Doobydobap",
           avatar: [
@@ -54,15 +54,16 @@ SearchResult(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("6 months ago"),
-        view_count: 531580,
+        view_count: Some(531580),
         is_live: false,
         is_short: false,
-        short_description: "I know it\'s a little long, but I hope you enjoyed this Paris vlog :} Location   Udon Restaurant: Sanukiya 9 Rue d\'Argenteuil, Paris\u{a0}...",
+        is_upcoming: false,
+        short_description: Some("I know it\'s a little long, but I hope you enjoyed this Paris vlog :} Location   Udon Restaurant: Sanukiya 9 Rue d\'Argenteuil, Paris\u{a0}..."),
       )),
-      Video(SearchVideo(
+      Video(VideoItem(
         id: "9NuhKCv3crg",
         title: "the end.",
         length: Some(982),
@@ -78,7 +79,7 @@ SearchResult(
             height: 404,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCh8gHdtzO2tXd593_bjErWg",
           name: "Doobydobap",
           avatar: [
@@ -90,15 +91,16 @@ SearchResult(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("7 days ago"),
-        view_count: 974475,
+        view_count: Some(974475),
         is_live: false,
         is_short: false,
-        short_description: "or the start of something new~~~~~ Thank you for your patience on the vlog, it took some time to adjust to my new normal. Excited\u{a0}...",
+        is_upcoming: false,
+        short_description: Some("or the start of something new~~~~~ Thank you for your patience on the vlog, it took some time to adjust to my new normal. Excited\u{a0}..."),
       )),
-      Video(SearchVideo(
+      Video(VideoItem(
         id: "hGbQ2WM9nOo",
         title: "Why does everything bad for you taste good ㅣ CHILI OIL RAMEN",
         length: Some(428),
@@ -114,7 +116,7 @@ SearchResult(
             height: 404,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCh8gHdtzO2tXd593_bjErWg",
           name: "Doobydobap",
           avatar: [
@@ -126,15 +128,16 @@ SearchResult(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("4 months ago"),
-        view_count: 1034415,
+        view_count: Some(1034415),
         is_live: false,
         is_short: false,
-        short_description: "https://partner.bokksu.com/doobydobap use code DOOBYDOBAP to get $15 off your first bokksu order! Instagram @doobydobap\u{a0}...",
+        is_upcoming: false,
+        short_description: Some("https://partner.bokksu.com/doobydobap use code DOOBYDOBAP to get $15 off your first bokksu order! Instagram @doobydobap\u{a0}..."),
       )),
-      Video(SearchVideo(
+      Video(VideoItem(
         id: "PxGmP4v_A38",
         title: "Alone and Thriving l late night korean convenience store, muji kitchenware haul, spring cleaning!",
         length: Some(1437),
@@ -150,7 +153,7 @@ SearchResult(
             height: 404,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCh8gHdtzO2tXd593_bjErWg",
           name: "Doobydobap",
           avatar: [
@@ -162,15 +165,16 @@ SearchResult(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("4 months ago"),
-        view_count: 831908,
+        view_count: Some(831908),
         is_live: false,
         is_short: false,
-        short_description: "I could palpably feel how I\'m so much happier than before when I was reviewing my footage All the finalized recipes will be\u{a0}...",
+        is_upcoming: false,
+        short_description: Some("I could palpably feel how I\'m so much happier than before when I was reviewing my footage All the finalized recipes will be\u{a0}..."),
       )),
-      Video(SearchVideo(
+      Video(VideoItem(
         id: "38Gd6TdmNVs",
         title: "KOREAN BARBECUE l doob gourmand ep.3",
         length: Some(525),
@@ -186,7 +190,7 @@ SearchResult(
             height: 404,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCh8gHdtzO2tXd593_bjErWg",
           name: "Doobydobap",
           avatar: [
@@ -198,15 +202,16 @@ SearchResult(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("2 weeks ago"),
-        view_count: 354486,
+        view_count: Some(354486),
         is_live: false,
         is_short: false,
-        short_description: "I haven\'t done a doob gourmand series in so so long! I hope you enjoyed it, let me know what kind of food you\'re interested in\u{a0}...",
+        is_upcoming: false,
+        short_description: Some("I haven\'t done a doob gourmand series in so so long! I hope you enjoyed it, let me know what kind of food you\'re interested in\u{a0}..."),
       )),
-      Video(SearchVideo(
+      Video(VideoItem(
         id: "CutR_1SDDzY",
         title: "feels good to be back",
         length: Some(1159),
@@ -222,7 +227,7 @@ SearchResult(
             height: 404,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCh8gHdtzO2tXd593_bjErWg",
           name: "Doobydobap",
           avatar: [
@@ -234,15 +239,16 @@ SearchResult(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("1 month ago"),
-        view_count: 524950,
+        view_count: Some(524950),
         is_live: false,
         is_short: false,
-        short_description: "I missed you guys. Happy to see you guys back. I\'ve really been working on my mental health, educating myself with different food\u{a0}...",
+        is_upcoming: false,
+        short_description: Some("I missed you guys. Happy to see you guys back. I\'ve really been working on my mental health, educating myself with different food\u{a0}..."),
       )),
-      Video(SearchVideo(
+      Video(VideoItem(
         id: "pRVSdUxdsVw",
         title: "Repairing...",
         length: Some(965),
@@ -258,7 +264,7 @@ SearchResult(
             height: 404,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCh8gHdtzO2tXd593_bjErWg",
           name: "Doobydobap",
           avatar: [
@@ -270,15 +276,16 @@ SearchResult(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("4 weeks ago"),
-        view_count: 528595,
+        view_count: Some(528595),
         is_live: false,
         is_short: false,
-        short_description: "The word repair stems from the Latin word reparare, from re- \'back\' and parare \'make ready.\' And I feel that\'s exactly how I feel\u{a0}...",
+        is_upcoming: false,
+        short_description: Some("The word repair stems from the Latin word reparare, from re- \'back\' and parare \'make ready.\' And I feel that\'s exactly how I feel\u{a0}..."),
       )),
-      Video(SearchVideo(
+      Video(VideoItem(
         id: "KUz7oArksR4",
         title: "running away",
         length: Some(1023),
@@ -294,7 +301,7 @@ SearchResult(
             height: 404,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCh8gHdtzO2tXd593_bjErWg",
           name: "Doobydobap",
           avatar: [
@@ -306,15 +313,16 @@ SearchResult(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("2 months ago"),
-        view_count: 717515,
+        view_count: Some(717515),
         is_live: false,
         is_short: false,
-        short_description: "for now... more adventures to come! Music by Mark Generous - A Summer Day - https://thmatc.co/?l=CF6C5FFF Instagram\u{a0}...",
+        is_upcoming: false,
+        short_description: Some("for now... more adventures to come! Music by Mark Generous - A Summer Day - https://thmatc.co/?l=CF6C5FFF Instagram\u{a0}..."),
       )),
-      Video(SearchVideo(
+      Video(VideoItem(
         id: "sPb2gyN-hnE",
         title: "worth fighting for",
         length: Some(1232),
@@ -330,7 +338,7 @@ SearchResult(
             height: 404,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCh8gHdtzO2tXd593_bjErWg",
           name: "Doobydobap",
           avatar: [
@@ -342,15 +350,16 @@ SearchResult(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("2 months ago"),
-        view_count: 624386,
+        view_count: Some(624386),
         is_live: false,
         is_short: false,
-        short_description: "Please be respectful in the comments section! I will not be tolerating any hateful/derogatory speech *barking noise* Music\u{a0}...",
+        is_upcoming: false,
+        short_description: Some("Please be respectful in the comments section! I will not be tolerating any hateful/derogatory speech *barking noise* Music\u{a0}..."),
       )),
-      Video(SearchVideo(
+      Video(VideoItem(
         id: "rriwHj8U664",
         title: "my seoul apartment tour",
         length: Some(721),
@@ -366,7 +375,7 @@ SearchResult(
             height: 404,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCh8gHdtzO2tXd593_bjErWg",
           name: "Doobydobap",
           avatar: [
@@ -378,15 +387,16 @@ SearchResult(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("3 months ago"),
-        view_count: 696942,
+        view_count: Some(696942),
         is_live: false,
         is_short: false,
-        short_description: "Korea has an interesting rent structure called junseh where you pay a higher security deposit in turn for lower rent! And before\u{a0}...",
+        is_upcoming: false,
+        short_description: Some("Korea has an interesting rent structure called junseh where you pay a higher security deposit in turn for lower rent! And before\u{a0}..."),
       )),
-      Video(SearchVideo(
+      Video(VideoItem(
         id: "PXsK9-CFoH4",
         title: "waiting...",
         length: Some(1455),
@@ -402,7 +412,7 @@ SearchResult(
             height: 404,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCh8gHdtzO2tXd593_bjErWg",
           name: "Doobydobap",
           avatar: [
@@ -414,15 +424,16 @@ SearchResult(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("3 months ago"),
-        view_count: 923749,
+        view_count: Some(923749),
         is_live: false,
         is_short: false,
-        short_description: "tuna kimchi jook 2 cups cooked rice 3 cups water 1 cup kimchi 320g canned tuna 1 tbsp perilla seed oil 1 onion 1 tbsp gochujang\u{a0}...",
+        is_upcoming: false,
+        short_description: Some("tuna kimchi jook 2 cups cooked rice 3 cups water 1 cup kimchi 320g canned tuna 1 tbsp perilla seed oil 1 onion 1 tbsp gochujang\u{a0}..."),
       )),
-      Video(SearchVideo(
+      Video(VideoItem(
         id: "bXbmYelTnhw",
         title: "Doobydobap rates British desserts!",
         length: Some(865),
@@ -438,7 +449,7 @@ SearchResult(
             height: 404,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCOgGAfSUy5LvEyVS_LF5kdw",
           name: "JOLLY",
           avatar: [
@@ -450,15 +461,16 @@ SearchResult(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("6 months ago"),
-        view_count: 1282467,
+        view_count: Some(1282467),
         is_live: false,
         is_short: false,
-        short_description: "Today we introduce @Doobydobap to the best of British desserts! Massive thanks to Dooby for joining us for this episode.",
+        is_upcoming: false,
+        short_description: Some("Today we introduce @Doobydobap to the best of British desserts! Massive thanks to Dooby for joining us for this episode."),
       )),
-      Video(SearchVideo(
+      Video(VideoItem(
         id: "0onVbAuBGWI",
         title: "Out of Control",
         length: Some(1125),
@@ -474,7 +486,7 @@ SearchResult(
             height: 404,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCh8gHdtzO2tXd593_bjErWg",
           name: "Doobydobap",
           avatar: [
@@ -486,15 +498,16 @@ SearchResult(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("8 months ago"),
-        view_count: 1649656,
+        view_count: Some(1649656),
         is_live: false,
         is_short: false,
-        short_description: "Hey doobies, I know I promised a cookie recipe in my last vlog, but I haven\'t yet developed one of my own just yet-- still recipe\u{a0}...",
+        is_upcoming: false,
+        short_description: Some("Hey doobies, I know I promised a cookie recipe in my last vlog, but I haven\'t yet developed one of my own just yet-- still recipe\u{a0}..."),
       )),
-      Video(SearchVideo(
+      Video(VideoItem(
         id: "FKJtrUeol3o",
         title: "with quantity comes quality",
         length: Some(1140),
@@ -510,7 +523,7 @@ SearchResult(
             height: 404,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCh8gHdtzO2tXd593_bjErWg",
           name: "Doobydobap",
           avatar: [
@@ -522,15 +535,16 @@ SearchResult(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("4 months ago"),
-        view_count: 1085725,
+        view_count: Some(1085725),
         is_live: false,
         is_short: false,
-        short_description: "A busy, but calm week for me here in Seoul living alone. Planning on exploring more parts of Korea, please let me know in the\u{a0}...",
+        is_upcoming: false,
+        short_description: Some("A busy, but calm week for me here in Seoul living alone. Planning on exploring more parts of Korea, please let me know in the\u{a0}..."),
       )),
-      Video(SearchVideo(
+      Video(VideoItem(
         id: "dkMtSrjDLO0",
         title: "How to make Naruto\'s favorite ramen",
         length: Some(802),
@@ -546,7 +560,7 @@ SearchResult(
             height: 404,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCh8gHdtzO2tXd593_bjErWg",
           name: "Doobydobap",
           avatar: [
@@ -558,15 +572,16 @@ SearchResult(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("10 months ago"),
-        view_count: 1327833,
+        view_count: Some(1327833),
         is_live: false,
         is_short: false,
-        short_description: "Broth * 1 large chicken * 1 leek & ½ onion charred * 1 leek & ½ onion * 1 tbsp ginger * 6 garlic cloves Tare * leftover cha shu\u{a0}...",
+        is_upcoming: false,
+        short_description: Some("Broth * 1 large chicken * 1 leek & ½ onion charred * 1 leek & ½ onion * 1 tbsp ginger * 6 garlic cloves Tare * leftover cha shu\u{a0}..."),
       )),
-      Video(SearchVideo(
+      Video(VideoItem(
         id: "r2ye6zW0nbM",
         title: "a wedding",
         length: Some(1207),
@@ -582,7 +597,7 @@ SearchResult(
             height: 404,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCh8gHdtzO2tXd593_bjErWg",
           name: "Doobydobap",
           avatar: [
@@ -594,15 +609,16 @@ SearchResult(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("3 months ago"),
-        view_count: 1052801,
+        view_count: Some(1052801),
         is_live: false,
         is_short: false,
-        short_description: "Ginger Pork Recipe! https://doobydobap.com/recipe/ginger-pork-shogayaki - Instagram @doobydobap Join my discord!",
+        is_upcoming: false,
+        short_description: Some("Ginger Pork Recipe! https://doobydobap.com/recipe/ginger-pork-shogayaki - Instagram @doobydobap Join my discord!"),
       )),
-      Video(SearchVideo(
+      Video(VideoItem(
         id: "NudTbo2CJMY",
         title: "Flying to London",
         length: Some(1078),
@@ -618,7 +634,7 @@ SearchResult(
             height: 404,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCh8gHdtzO2tXd593_bjErWg",
           name: "Doobydobap",
           avatar: [
@@ -630,15 +646,16 @@ SearchResult(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("7 months ago"),
-        view_count: 1137136,
+        view_count: Some(1137136),
         is_live: false,
         is_short: false,
-        short_description: "Tomato Beef Curry 1 packet Japanese Curry Roux 250g thinly sliced beef 2 large onions 2 tbsp butter 2 tbsp neutral oil 1 can\u{a0}...",
+        is_upcoming: false,
+        short_description: Some("Tomato Beef Curry 1 packet Japanese Curry Roux 250g thinly sliced beef 2 large onions 2 tbsp butter 2 tbsp neutral oil 1 can\u{a0}..."),
       )),
-      Video(SearchVideo(
+      Video(VideoItem(
         id: "gK-jLnvVsb0",
         title: "Contradicting myself",
         length: Some(1381),
@@ -654,7 +671,7 @@ SearchResult(
             height: 404,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCh8gHdtzO2tXd593_bjErWg",
           name: "Doobydobap",
           avatar: [
@@ -666,15 +683,16 @@ SearchResult(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("8 months ago"),
-        view_count: 928967,
+        view_count: Some(928967),
         is_live: false,
         is_short: false,
-        short_description: "Sesame Granola Recipe 2 cups old-fashioned instant oats 2 cups mixture of seeds / nuts of your choice (I used ½ cup each of\u{a0}...",
+        is_upcoming: false,
+        short_description: Some("Sesame Granola Recipe 2 cups old-fashioned instant oats 2 cups mixture of seeds / nuts of your choice (I used ½ cup each of\u{a0}..."),
       )),
-      Video(SearchVideo(
+      Video(VideoItem(
         id: "fAFFTOpUNWo",
         title: "Come Grocery Shopping with Me",
         length: Some(1126),
@@ -690,7 +708,7 @@ SearchResult(
             height: 404,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCh8gHdtzO2tXd593_bjErWg",
           name: "Doobydobap",
           avatar: [
@@ -702,16 +720,18 @@ SearchResult(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("8 months ago"),
-        view_count: 1077297,
+        view_count: Some(1077297),
         is_live: false,
         is_short: false,
-        short_description: "Pecan Banana Bread with Coffee Liquor Recipe https://doobydobap.com/recipe/pecan-banana-bread-with-coffee-liquor Music\u{a0}...",
+        is_upcoming: false,
+        short_description: Some("Pecan Banana Bread with Coffee Liquor Recipe https://doobydobap.com/recipe/pecan-banana-bread-with-coffee-liquor Music\u{a0}..."),
       )),
     ],
     ctoken: Some("EqsDEgpkb29ieWRvYmFwGpwDU0JTQ0FSaFZRMmc0WjBoa2RIcFBNblJZWkRVNU0xOWlha1Z5VjJlQ0FRc3hWbGMzYVZoU1NYSmpPSUlCQ3psT2RXaExRM1l6WTNKbmdnRUxhRWRpVVRKWFRUbHVUMi1DQVF0UWVFZHRVRFIyWDBFek9JSUJDek00UjJRMlZHUnRUbFp6Z2dFTFEzVjBVbDh4VTBSRWVsbUNBUXR3VWxaVFpGVjRaSE5XZDRJQkMwdFZlamR2UVhKcmMxSTBnZ0VMYzFCaU1tZDVUaTFvYmtXQ0FRdHljbWwzU0dvNFZUWTJOSUlCQzFCWWMwczVMVU5HYjBnMGdnRUxZbGhpYlZsbGJGUnVhSGVDQVFzd2IyNVdZa0YxUWtkWFNZSUJDMFpMU25SeVZXVnZiRE52Z2dFTFpHdE5kRk55YWtSTVR6Q0NBUXR5TW5sbE5ucFhNRzVpVFlJQkMwNTFaRlJpYnpKRFNrMVpnZ0VMWjBzdGFreHVkbFp6WWpDQ0FRdG1RVVpHVkU5d1ZVNVhiN0lCQmdvRUNCY1FBZyUzRCUzRBiB4OgYIgtzZWFyY2gtZmVlZA%3D%3D"),
+    endpoint: browse,
   ),
   corrected_query: Some("doobydobap"),
 )

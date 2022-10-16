@@ -33,5 +33,6 @@ Channel(
     count: Some(0),
     items: [],
     ctoken: None,
+    endpoint: browse,
   ),
 )

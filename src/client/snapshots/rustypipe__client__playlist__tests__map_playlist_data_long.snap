@@ -3110,6 +3110,7 @@ Playlist(
       ),
     ],
     ctoken: Some("4qmFsgJhEiRWTFBMNWREeDY4MVQ0YlI3WkYxSXVXek92MW9tbFJiRTdQaUoaFENBRjZCbEJVT2tOSFdRJTNEJTNEmgIiUEw1ZER4NjgxVDRiUjdaRjFJdVd6T3Yxb21sUmJFN1BpSg%3D%3D"),
+    endpoint: browse,
   ),
   video_count: 495,
   thumbnail: [

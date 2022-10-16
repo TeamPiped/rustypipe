@@ -5,6 +5,7 @@ use serde_with::{serde_as, VecSkipError};
 use crate::serializer::ignore_any;
 use crate::serializer::{text::Text, MapResult, VecLogError};
 
+use super::video_item::YouTubeListItem;
 use super::{
     ChannelRenderer, ContentsRenderer, ContinuationEndpoint, PlaylistRenderer, VideoRenderer,
 };
@@ -65,7 +66,7 @@ pub enum SectionListItem {
     #[serde(rename_all = "camelCase")]
     ItemSectionRenderer {
         #[serde_as(as = "VecLogError<_>")]
-        contents: MapResult<Vec<SearchItem>>,
+        contents: MapResult<Vec<YouTubeListItem>>,
     },
     /// Continuation token to fetch more search results
     #[serde(rename_all = "camelCase")]

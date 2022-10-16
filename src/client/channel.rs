@@ -3,17 +3,14 @@ use url::Url;
 
 use crate::{
     error::{Error, ExtractionError},
-    model::{Channel, ChannelInfo, ChannelPlaylist, ChannelVideo, Paginator},
+    model::{Channel, ChannelInfo, Paginator, PlaylistItem, VideoItem},
     param::{ChannelOrder, Language},
     serializer::MapResult,
     timeago,
     util::{self, TryRemove},
 };
 
-use super::{
-    response::{self, FromWLang},
-    ClientType, MapResponse, QContinuation, RustyPipeQuery, YTContext,
-};
+use super::{response, ClientType, MapResponse, RustyPipeQuery, YTContext};
 
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
@@ -41,7 +38,7 @@ impl RustyPipeQuery {
     pub async fn channel_videos(
         self,
         channel_id: &str,
-    ) -> Result<Channel<Paginator<ChannelVideo>>, Error> {
+    ) -> Result<Channel<Paginator<VideoItem>>, Error> {
         self.channel_videos_ordered(channel_id, ChannelOrder::default())
             .await
     }
@@ -50,7 +47,7 @@ impl RustyPipeQuery {
         self,
         channel_id: &str,
         order: ChannelOrder,
-    ) -> Result<Channel<Paginator<ChannelVideo>>, Error> {
+    ) -> Result<Channel<Paginator<VideoItem>>, Error> {
         let context = self.get_context(ClientType::Desktop, true).await;
         let request_body = QChannel {
             context,
@@ -72,30 +69,10 @@ impl RustyPipeQuery {
         .await
     }
 
-    pub async fn channel_videos_continuation(
-        self,
-        ctoken: &str,
-    ) -> Result<Paginator<ChannelVideo>, Error> {
-        let context = self.get_context(ClientType::Desktop, true).await;
-        let request_body = QContinuation {
-            context,
-            continuation: ctoken,
-        };
-
-        self.execute_request::<response::ChannelCont, _, _>(
-            ClientType::Desktop,
-            "channel_videos_continuation",
-            ctoken,
-            "browse",
-            &request_body,
-        )
-        .await
-    }
-
     pub async fn channel_playlists(
         self,
         channel_id: &str,
-    ) -> Result<Channel<Paginator<ChannelPlaylist>>, Error> {
+    ) -> Result<Channel<Paginator<PlaylistItem>>, Error> {
         let context = self.get_context(ClientType::Desktop, true).await;
         let request_body = QChannel {
             context,
@@ -107,26 +84,6 @@ impl RustyPipeQuery {
             ClientType::Desktop,
             "channel_playlists",
             channel_id,
-            "browse",
-            &request_body,
-        )
-        .await
-    }
-
-    pub async fn channel_playlists_continuation(
-        self,
-        ctoken: &str,
-    ) -> Result<Paginator<ChannelPlaylist>, Error> {
-        let context = self.get_context(ClientType::Desktop, true).await;
-        let request_body = QContinuation {
-            context,
-            continuation: ctoken,
-        };
-
-        self.execute_request::<response::ChannelCont, _, _>(
-            ClientType::Desktop,
-            "channel_playlists_continuation",
-            ctoken,
             "browse",
             &request_body,
         )
@@ -152,13 +109,13 @@ impl RustyPipeQuery {
     }
 }
 
-impl MapResponse<Channel<Paginator<ChannelVideo>>> for response::Channel {
+impl MapResponse<Channel<Paginator<VideoItem>>> for response::Channel {
     fn map_response(
         self,
         id: &str,
         lang: Language,
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
-    ) -> Result<MapResult<Channel<Paginator<ChannelVideo>>>, ExtractionError> {
+    ) -> Result<MapResult<Channel<Paginator<VideoItem>>>, ExtractionError> {
         let content = map_channel_content(self.contents, id, self.alerts)?;
         let grid = match content {
             response::channel::ChannelContent::GridRenderer { items } => Some(items),
@@ -181,20 +138,22 @@ impl MapResponse<Channel<Paginator<ChannelVideo>>> for response::Channel {
     }
 }
 
-impl MapResponse<Channel<Paginator<ChannelPlaylist>>> for response::Channel {
+impl MapResponse<Channel<Paginator<PlaylistItem>>> for response::Channel {
     fn map_response(
         self,
         id: &str,
         lang: Language,
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
-    ) -> Result<MapResult<Channel<Paginator<ChannelPlaylist>>>, ExtractionError> {
+    ) -> Result<MapResult<Channel<Paginator<PlaylistItem>>>, ExtractionError> {
         let content = map_channel_content(self.contents, id, self.alerts)?;
         let grid = match content {
             response::channel::ChannelContent::GridRenderer { items } => Some(items),
             _ => None,
         };
 
-        let p_res = grid.map(map_playlists).unwrap_or_default();
+        let p_res = grid
+            .map(|item| map_playlists(item, lang))
+            .unwrap_or_default();
 
         Ok(MapResult {
             c: map_channel(
@@ -267,98 +226,29 @@ impl MapResponse<Channel<ChannelInfo>> for response::Channel {
     }
 }
 
-impl MapResponse<Paginator<ChannelVideo>> for response::ChannelCont {
-    fn map_response(
-        self,
-        _id: &str,
-        lang: Language,
-        _deobf: Option<&crate::deobfuscate::Deobfuscator>,
-    ) -> Result<MapResult<Paginator<ChannelVideo>>, ExtractionError> {
-        let mut actions = self.on_response_received_actions;
-        let res = actions
-            .try_swap_remove(0)
-            .ok_or(ExtractionError::Retry)?
-            .append_continuation_items_action
-            .continuation_items;
-
-        Ok(map_videos(res, lang))
-    }
-}
-
-impl MapResponse<Paginator<ChannelPlaylist>> for response::ChannelCont {
-    fn map_response(
-        self,
-        _id: &str,
-        _lang: Language,
-        _deobf: Option<&crate::deobfuscate::Deobfuscator>,
-    ) -> Result<MapResult<Paginator<ChannelPlaylist>>, ExtractionError> {
-        let mut actions = self.on_response_received_actions;
-        let res = actions
-            .try_swap_remove(0)
-            .ok_or(ExtractionError::Retry)?
-            .append_continuation_items_action
-            .continuation_items;
-
-        Ok(map_playlists(res))
-    }
-}
-
 fn map_videos(
-    res: MapResult<Vec<response::VideoListItem>>,
+    res: MapResult<Vec<response::YouTubeListItem>>,
     lang: Language,
-) -> MapResult<Paginator<ChannelVideo>> {
-    let mut ctoken = None;
-    let videos = res
-        .c
-        .into_iter()
-        .filter_map(|item| match item {
-            response::VideoListItem::GridVideoRenderer(video) => {
-                Some(ChannelVideo::from_w_lang(video, lang))
-            }
-            response::VideoListItem::RichItemRenderer {
-                content: response::RichItem::VideoRenderer(video),
-            } => Some(ChannelVideo::from_w_lang(video, lang)),
-            response::VideoListItem::ContinuationItemRenderer {
-                continuation_endpoint,
-            } => {
-                ctoken = Some(continuation_endpoint.continuation_command.token);
-                None
-            }
-            _ => None,
-        })
-        .collect();
+) -> MapResult<Paginator<VideoItem>> {
+    let mut mapper = response::YouTubeListMapper::<VideoItem>::new(lang);
+    mapper.map_response(res);
 
     MapResult {
-        c: Paginator::new(None, videos, ctoken),
-        warnings: res.warnings,
+        c: Paginator::new(None, mapper.items, mapper.ctoken),
+        warnings: mapper.warnings,
     }
 }
 
 fn map_playlists(
-    res: MapResult<Vec<response::VideoListItem>>,
-) -> MapResult<Paginator<ChannelPlaylist>> {
-    let mut ctoken = None;
-    let playlists = res
-        .c
-        .into_iter()
-        .filter_map(|item| match item {
-            response::VideoListItem::GridPlaylistRenderer(playlist) => Some(playlist.into()),
-            response::VideoListItem::RichItemRenderer {
-                content: response::RichItem::PlaylistRenderer(playlist),
-            } => Some(playlist.into()),
-            response::VideoListItem::ContinuationItemRenderer {
-                continuation_endpoint,
-            } => {
-                ctoken = Some(continuation_endpoint.continuation_command.token);
-                None
-            }
-            _ => None,
-        })
-        .collect();
+    res: MapResult<Vec<response::YouTubeListItem>>,
+    lang: Language,
+) -> MapResult<Paginator<PlaylistItem>> {
+    let mut mapper = response::YouTubeListMapper::<PlaylistItem>::new(lang);
+    mapper.map_response(res);
 
     MapResult {
-        c: Paginator::new(None, playlists, ctoken),
-        warnings: res.warnings,
+        c: Paginator::new(None, mapper.items, mapper.ctoken),
+        warnings: mapper.warnings,
     }
 }
 
@@ -516,7 +406,7 @@ mod tests {
 
     use crate::{
         client::{response, MapResponse},
-        model::{Channel, ChannelInfo, ChannelPlaylist, ChannelVideo, Paginator},
+        model::{Channel, ChannelInfo, Paginator, PlaylistItem, VideoItem},
         param::Language,
         serializer::MapResult,
     };
@@ -537,7 +427,7 @@ mod tests {
 
         let channel: response::Channel =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res: MapResult<Channel<Paginator<ChannelVideo>>> =
+        let map_res: MapResult<Channel<Paginator<VideoItem>>> =
             channel.map_response(id, Language::En, None).unwrap();
 
         assert!(
@@ -558,34 +448,13 @@ mod tests {
     }
 
     #[test]
-    fn map_channel_videos_cont() {
-        let json_path = Path::new("testfiles/channel/channel_videos_cont.json");
-        let json_file = File::open(json_path).unwrap();
-
-        let channel: response::ChannelCont =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res: MapResult<Paginator<ChannelVideo>> = channel
-            .map_response("UC2DjFE7Xf11URZqWBigcVOQ", Language::En, None)
-            .unwrap();
-
-        assert!(
-            map_res.warnings.is_empty(),
-            "deserialization/mapping warnings: {:?}",
-            map_res.warnings
-        );
-        insta::assert_ron_snapshot!("map_channel_videos_cont", map_res.c, {
-            ".items[].publish_date" => "[date]",
-        });
-    }
-
-    #[test]
     fn map_channel_playlists() {
         let json_path = Path::new("testfiles/channel/channel_playlists.json");
         let json_file = File::open(json_path).unwrap();
 
         let channel: response::Channel =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res: MapResult<Channel<Paginator<ChannelPlaylist>>> = channel
+        let map_res: MapResult<Channel<Paginator<PlaylistItem>>> = channel
             .map_response("UC2DjFE7Xf11URZqWBigcVOQ", Language::En, None)
             .unwrap();
 
@@ -595,25 +464,6 @@ mod tests {
             map_res.warnings
         );
         insta::assert_ron_snapshot!("map_channel_playlists", map_res.c);
-    }
-
-    #[test]
-    fn map_channel_playlists_cont() {
-        let json_path = Path::new("testfiles/channel/channel_playlists_cont.json");
-        let json_file = File::open(json_path).unwrap();
-
-        let channel: response::ChannelCont =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res: MapResult<Paginator<ChannelPlaylist>> = channel
-            .map_response("UC2DjFE7Xf11URZqWBigcVOQ", Language::En, None)
-            .unwrap();
-
-        assert!(
-            map_res.warnings.is_empty(),
-            "deserialization/mapping warnings: {:?}",
-            map_res.warnings
-        );
-        insta::assert_ron_snapshot!("map_channel_playlists_cont", map_res.c);
     }
 
     #[test]

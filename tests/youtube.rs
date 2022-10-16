@@ -7,7 +7,7 @@ use rustypipe::client::{ClientType, RustyPipe};
 use rustypipe::error::{Error, ExtractionError};
 use rustypipe::model::richtext::ToPlaintext;
 use rustypipe::model::{
-    AudioCodec, AudioFormat, Channel, SearchItem, UrlTarget, Verification, VideoCodec, VideoFormat,
+    AudioCodec, AudioFormat, Channel, UrlTarget, Verification, VideoCodec, VideoFormat, YouTubeItem,
 };
 use rustypipe::param::{
     search_filter::{self, SearchFilter},
@@ -75,7 +75,7 @@ async fn get_player_from_client(#[case] client_type: ClientType) {
         assert_eq!(video.codec, VideoCodec::Vp9);
 
         assert_approx(audio.bitrate as f64, 130685.0);
-        assert_eq!(audio.average_bitrate, 129496);
+        assert_approx(audio.average_bitrate as f64, 129496.0);
         assert_eq!(audio.size, 4193863);
         assert_eq!(audio.mime, "audio/mp4; codecs=\"mp4a.40.2\"");
         assert_eq!(audio.format, AudioFormat::M4a);
@@ -154,7 +154,7 @@ async fn get_player_from_client(#[case] client_type: ClientType) {
 #[case::live(
     "86YLFOog4GM",
     "🌎 Nasa Live Stream  - Earth From Space :  Live Views from the ISS",
-    "Live NASA - Views Of Earth from Space",
+    "The station is crewed by NASA astronauts as well as Russian Cosmonauts",
     0,
     "UCakgsb0w7QB0VHdnCc-OVEA",
     "Space Videos",
@@ -701,7 +701,7 @@ async fn get_video_details_live() {
     );
     let desc = details.description.to_plaintext();
     assert!(
-        desc.contains("Live NASA - Views Of Earth from Space"),
+        desc.contains("The station is crewed by NASA astronauts as well as Russian Cosmonauts"),
         "bad description: {}",
         desc
     );
@@ -896,7 +896,7 @@ async fn channel_videos(#[case] order: ChannelOrder) {
         }
         ChannelOrder::Popular => {
             assert!(
-                first_video.view_count > 2300000,
+                first_video.view_count.unwrap() > 2300000,
                 "most popular video < 2.3M views"
             )
         }
@@ -1156,13 +1156,13 @@ async fn search_filter_entity(#[case] entity: search_filter::Entity) {
     assert!(!result.items.is_exhausted());
 
     result.items.items.iter().for_each(|item| match item {
-        SearchItem::Video(_) => {
+        YouTubeItem::Video(_) => {
             assert_eq!(entity, search_filter::Entity::Video);
         }
-        SearchItem::Channel(_) => {
+        YouTubeItem::Channel(_) => {
             assert_eq!(entity, search_filter::Entity::Channel);
         }
-        SearchItem::Playlist(_) => {
+        YouTubeItem::Playlist(_) => {
             assert_eq!(entity, search_filter::Entity::Playlist);
         }
     });

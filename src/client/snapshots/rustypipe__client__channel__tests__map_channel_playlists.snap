@@ -144,7 +144,7 @@ Channel(
   content: Paginator(
     count: None,
     items: [
-      ChannelPlaylist(
+      PlaylistItem(
         id: "PLvOlSehNtuHtOV3AEwhuea4TnviddKfAj",
         name: "MacGyver Project",
         thumbnail: [
@@ -154,9 +154,10 @@ Channel(
             height: 270,
           ),
         ],
+        channel: None,
         video_count: Some(2),
       ),
-      ChannelPlaylist(
+      PlaylistItem(
         id: "PLvOlSehNtuHuvHE5GQrQJxWXHdmW2l5IF",
         name: "Calculators",
         thumbnail: [
@@ -166,9 +167,10 @@ Channel(
             height: 270,
           ),
         ],
+        channel: None,
         video_count: Some(1),
       ),
-      ChannelPlaylist(
+      PlaylistItem(
         id: "PLvOlSehNtuHs6wRwVSaErU0BEnLiHfnKJ",
         name: "BM235",
         thumbnail: [
@@ -178,9 +180,10 @@ Channel(
             height: 270,
           ),
         ],
+        channel: None,
         video_count: Some(9),
       ),
-      ChannelPlaylist(
+      PlaylistItem(
         id: "PLvOlSehNtuHu4k0ZkKFLsysSB5iava6Qu",
         name: "Vibration Measurement",
         thumbnail: [
@@ -190,9 +193,10 @@ Channel(
             height: 270,
           ),
         ],
+        channel: None,
         video_count: Some(2),
       ),
-      ChannelPlaylist(
+      PlaylistItem(
         id: "PLvOlSehNtuHtdQF-m5UFZ5GEjABadI3kI",
         name: "Component Selection",
         thumbnail: [
@@ -202,9 +206,10 @@ Channel(
             height: 270,
           ),
         ],
+        channel: None,
         video_count: Some(4),
       ),
-      ChannelPlaylist(
+      PlaylistItem(
         id: "PLvOlSehNtuHtlndPUSOPgsujUdq1c5Mr9",
         name: "Solar Roadways",
         thumbnail: [
@@ -214,9 +219,10 @@ Channel(
             height: 270,
           ),
         ],
+        channel: None,
         video_count: Some(18),
       ),
-      ChannelPlaylist(
+      PlaylistItem(
         id: "PLvOlSehNtuHvD6M_7WeN071OVsZFE0_q-",
         name: "Electronics Tutorials - AC Theory Series",
         thumbnail: [
@@ -226,9 +232,10 @@ Channel(
             height: 270,
           ),
         ],
+        channel: None,
         video_count: Some(3),
       ),
-      ChannelPlaylist(
+      PlaylistItem(
         id: "PLvOlSehNtuHtVLq2MDPIz82BWMIZcuwhK",
         name: "Electronics Tutorial - DC Fundamentals",
         thumbnail: [
@@ -238,9 +245,10 @@ Channel(
             height: 270,
           ),
         ],
+        channel: None,
         video_count: Some(8),
       ),
-      ChannelPlaylist(
+      PlaylistItem(
         id: "PLvOlSehNtuHvIDfW3x2p4BY6l4RYgfBJE",
         name: "Oscilloscope Probing",
         thumbnail: [
@@ -250,9 +258,10 @@ Channel(
             height: 270,
           ),
         ],
+        channel: None,
         video_count: Some(13),
       ),
-      ChannelPlaylist(
+      PlaylistItem(
         id: "PLvOlSehNtuHu6Jjb8U82eKQfvKhJVl0Bu",
         name: "Thermal Design",
         thumbnail: [
@@ -262,9 +271,10 @@ Channel(
             height: 270,
           ),
         ],
+        channel: None,
         video_count: Some(9),
       ),
-      ChannelPlaylist(
+      PlaylistItem(
         id: "PLvOlSehNtuHs-X2Awg33PCBNrP2BGFVhC",
         name: "Electric Cars",
         thumbnail: [
@@ -274,9 +284,10 @@ Channel(
             height: 270,
           ),
         ],
+        channel: None,
         video_count: Some(7),
       ),
-      ChannelPlaylist(
+      PlaylistItem(
         id: "PLvOlSehNtuHuLODLTeq3PM-OJRP2nzNUa",
         name: "Designing a better uCurrent",
         thumbnail: [
@@ -286,9 +297,10 @@ Channel(
             height: 270,
           ),
         ],
+        channel: None,
         video_count: Some(3),
       ),
-      ChannelPlaylist(
+      PlaylistItem(
         id: "PLvOlSehNtuHtvTKP4RTNW1-08Kmzy1pvA",
         name: "EMC Compliance & Measurement",
         thumbnail: [
@@ -298,9 +310,10 @@ Channel(
             height: 270,
           ),
         ],
+        channel: None,
         video_count: Some(8),
       ),
-      ChannelPlaylist(
+      PlaylistItem(
         id: "PLvOlSehNtuHuUTpCrTVX7BdU68l2aVqMv",
         name: "Power Counter Display Project",
         thumbnail: [
@@ -310,9 +323,10 @@ Channel(
             height: 270,
           ),
         ],
+        channel: None,
         video_count: Some(2),
       ),
-      ChannelPlaylist(
+      PlaylistItem(
         id: "PLvOlSehNtuHvm120Tq40nKrM5SUBlolN3",
         name: "Live - Ask Dave",
         thumbnail: [
@@ -322,9 +336,10 @@ Channel(
             height: 270,
           ),
         ],
+        channel: None,
         video_count: Some(3),
       ),
-      ChannelPlaylist(
+      PlaylistItem(
         id: "PLvOlSehNtuHsiF93KOLoF1KAHArmIW9lC",
         name: "Padauk Microcontroller",
         thumbnail: [
@@ -334,9 +349,10 @@ Channel(
             height: 270,
           ),
         ],
+        channel: None,
         video_count: Some(10),
       ),
-      ChannelPlaylist(
+      PlaylistItem(
         id: "PLvOlSehNtuHvxTzBLwUFw4My4rtrNFzED",
         name: "Other Debunking Videos",
         thumbnail: [
@@ -346,9 +362,10 @@ Channel(
             height: 270,
           ),
         ],
+        channel: None,
         video_count: Some(1),
       ),
-      ChannelPlaylist(
+      PlaylistItem(
         id: "PLvOlSehNtuHt2pJ7X5tumuM4Wa3r1OC7Q",
         name: "Audio & Speakers",
         thumbnail: [
@@ -358,9 +375,10 @@ Channel(
             height: 270,
           ),
         ],
+        channel: None,
         video_count: Some(9),
       ),
-      ChannelPlaylist(
+      PlaylistItem(
         id: "PLvOlSehNtuHtX7OearWdmqGzqiu4DHKWi",
         name: "Cameras",
         thumbnail: [
@@ -370,9 +388,10 @@ Channel(
             height: 270,
           ),
         ],
+        channel: None,
         video_count: Some(16),
       ),
-      ChannelPlaylist(
+      PlaylistItem(
         id: "PLvOlSehNtuHu-TaNRp27_PiXjBG5wY9Gv",
         name: "Cryptocurrency",
         thumbnail: [
@@ -382,9 +401,10 @@ Channel(
             height: 270,
           ),
         ],
+        channel: None,
         video_count: Some(7),
       ),
-      ChannelPlaylist(
+      PlaylistItem(
         id: "PLvOlSehNtuHvmK-VGcZ33ZuATmcNB8tvH",
         name: "LCD Tutorial",
         thumbnail: [
@@ -394,9 +414,10 @@ Channel(
             height: 270,
           ),
         ],
+        channel: None,
         video_count: Some(6),
       ),
-      ChannelPlaylist(
+      PlaylistItem(
         id: "PLvOlSehNtuHvbV8x_bWQBKEg4IshWjG3U",
         name: "Guest Videos",
         thumbnail: [
@@ -406,9 +427,10 @@ Channel(
             height: 270,
           ),
         ],
+        channel: None,
         video_count: Some(12),
       ),
-      ChannelPlaylist(
+      PlaylistItem(
         id: "PLvOlSehNtuHs5tuhiqdxQeegsLDP7TM8V",
         name: "Software Development",
         thumbnail: [
@@ -418,9 +440,10 @@ Channel(
             height: 270,
           ),
         ],
+        channel: None,
         video_count: Some(1),
       ),
-      ChannelPlaylist(
+      PlaylistItem(
         id: "PLvOlSehNtuHu328BlpUOUDsv9Kf1Ri8Tg",
         name: "John Kenny - Keysight",
         thumbnail: [
@@ -430,9 +453,10 @@ Channel(
             height: 270,
           ),
         ],
+        channel: None,
         video_count: Some(5),
       ),
-      ChannelPlaylist(
+      PlaylistItem(
         id: "PLvOlSehNtuHvj_E5KUBluJJupXmideiZk",
         name: "General Tech Information",
         thumbnail: [
@@ -442,9 +466,10 @@ Channel(
             height: 270,
           ),
         ],
+        channel: None,
         video_count: Some(2),
       ),
-      ChannelPlaylist(
+      PlaylistItem(
         id: "PLvOlSehNtuHsWHPg1KlSd8agKbrcn3Dwn",
         name: "Microscope",
         thumbnail: [
@@ -454,9 +479,10 @@ Channel(
             height: 270,
           ),
         ],
+        channel: None,
         video_count: Some(4),
       ),
-      ChannelPlaylist(
+      PlaylistItem(
         id: "PLvOlSehNtuHuQb5djEVLzwBSTT27p2dXB",
         name: "The Signal Path",
         thumbnail: [
@@ -466,9 +492,10 @@ Channel(
             height: 270,
           ),
         ],
+        channel: None,
         video_count: Some(1),
       ),
-      ChannelPlaylist(
+      PlaylistItem(
         id: "PLvOlSehNtuHstMIbtLqlEiidVjj8ob0xp",
         name: "Thermal Imaging",
         thumbnail: [
@@ -478,9 +505,10 @@ Channel(
             height: 270,
           ),
         ],
+        channel: None,
         video_count: Some(2),
       ),
-      ChannelPlaylist(
+      PlaylistItem(
         id: "PLvOlSehNtuHugqRHdt46SN9Bmoh-D5Gp2",
         name: "EEVacademy",
         thumbnail: [
@@ -490,9 +518,10 @@ Channel(
             height: 270,
           ),
         ],
+        channel: None,
         video_count: Some(9),
       ),
-      ChannelPlaylist(
+      PlaylistItem(
         id: "PLvOlSehNtuHtqqYM7ON99sbyiokMKrwwI",
         name: "Brainstorming",
         thumbnail: [
@@ -502,9 +531,11 @@ Channel(
             height: 270,
           ),
         ],
+        channel: None,
         video_count: Some(1),
       ),
     ],
     ctoken: Some("4qmFsgLCARIYVUMyRGpGRTdYZjExVVJacVdCaWdjVk9RGnRFZ2x3YkdGNWJHbHpkSE1ZQXlBQk1BRTRBZW9EUEVOblRrUlJhbEZUU2tKSmFWVkZlREpVTW5oVVdsZG9UMlJJVmtsa1NFWjRWMVV3TTFRd05EVlBXRTVwWlZkc2RtRXdNVXhqYm1RelUxTm5PQSUzRCUzRJoCL2Jyb3dzZS1mZWVkVUMyRGpGRTdYZjExVVJacVdCaWdjVk9RcGxheWxpc3RzMTA0"),
+    endpoint: browse,
   ),
 )
