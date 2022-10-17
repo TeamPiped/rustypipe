@@ -194,9 +194,11 @@ async fn comments_top(testfiles: &Path) {
     let details = rp.query().video_details("ZeerrnuLi5E").await.unwrap();
 
     let rp = rp_testfile(&json_path);
-    rp.query()
-        .video_comments(&details.top_comments.ctoken.unwrap())
+    details
+        .top_comments
+        .next(rp.query())
         .await
+        .unwrap()
         .unwrap();
 }
 
@@ -212,9 +214,11 @@ async fn comments_latest(testfiles: &Path) {
     let details = rp.query().video_details("ZeerrnuLi5E").await.unwrap();
 
     let rp = rp_testfile(&json_path);
-    rp.query()
-        .video_comments(&details.latest_comments.ctoken.unwrap())
+    details
+        .latest_comments
+        .next(rp.query())
         .await
+        .unwrap()
         .unwrap();
 }
 

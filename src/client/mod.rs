@@ -1108,8 +1108,3 @@ trait MapResponse<T> {
         deobf: Option<&Deobfuscator>,
     ) -> Result<MapResult<T>, ExtractionError>;
 }
-
-#[cfg(test)]
-mod tests {
-    // use super::*;
-}
