@@ -16,6 +16,7 @@ pub async fn download_testfiles(project_root: &Path) {
     player(&testfiles).await;
     player_model(&testfiles).await;
     playlist(&testfiles).await;
+    playlist_cont(&testfiles).await;
     video_details(&testfiles).await;
     comments_top(&testfiles).await;
     comments_latest(&testfiles).await;
@@ -139,6 +140,25 @@ async fn playlist(testfiles: &Path) {
         let rp = rp_testfile(&json_path);
         rp.query().playlist(id).await.unwrap();
     }
+}
+
+async fn playlist_cont(testfiles: &Path) {
+    let mut json_path = testfiles.to_path_buf();
+    json_path.push("playlist");
+    json_path.push("playlist_cont.json");
+    if json_path.exists() {
+        return;
+    }
+
+    let rp = RustyPipe::new();
+    let playlist = rp
+        .query()
+        .playlist("PL5dDx681T4bR7ZF1IuWzOv1omlRbE7PiJ")
+        .await
+        .unwrap();
+
+    let rp = rp_testfile(&json_path);
+    playlist.videos.next(rp.query()).await.unwrap().unwrap();
 }
 
 async fn video_details(testfiles: &Path) {

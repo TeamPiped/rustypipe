@@ -252,4 +252,21 @@ mod tests {
             ".last_update" => "[date]"
         });
     }
+
+    #[test]
+    fn map_playlist_cont() {
+        let json_path = Path::new("testfiles/playlist/playlist_cont.json");
+        let json_file = File::open(json_path).unwrap();
+
+        let playlist: response::PlaylistCont =
+            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let map_res = playlist.map_response("", Language::En, None).unwrap();
+
+        assert!(
+            map_res.warnings.is_empty(),
+            "deserialization/mapping warnings: {:?}",
+            map_res.warnings
+        );
+        insta::assert_ron_snapshot!("map_playlist_cont", map_res.c);
+    }
 }
