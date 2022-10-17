@@ -9,13 +9,11 @@ pub mod video_details;
 pub mod video_item;
 
 pub use channel::Channel;
-pub use channel::ChannelCont;
 pub use player::Player;
 pub use playlist::Playlist;
 pub use playlist::PlaylistCont;
 pub use playlist_music::PlaylistMusic;
 pub use search::Search;
-pub use search::SearchCont;
 pub use trends::Startpage;
 pub use trends::Trending;
 pub use url_endpoint::ResolvedUrl;

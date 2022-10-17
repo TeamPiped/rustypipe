@@ -23,15 +23,6 @@ pub struct Channel {
     pub alerts: Option<Vec<Alert>>,
 }
 
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct ChannelCont {
-    #[serde(default)]
-    #[serde_as(as = "VecSkipError<_>")]
-    pub on_response_received_actions: Vec<OnResponseReceivedAction>,
-}
-
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Contents {
@@ -204,18 +195,4 @@ pub struct PrimaryLink {
     #[serde_as(as = "Text")]
     pub title: String,
     pub navigation_endpoint: NavigationEndpoint,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct OnResponseReceivedAction {
-    pub append_continuation_items_action: AppendAction,
-}
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct AppendAction {
-    #[serde_as(as = "VecLogError<_>")]
-    pub continuation_items: MapResult<Vec<YouTubeListItem>>,
 }

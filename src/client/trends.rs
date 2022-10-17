@@ -57,7 +57,7 @@ impl MapResponse<Paginator<VideoItem>> for response::Startpage {
             .ok_or_else(|| ExtractionError::InvalidData("no contents".into()))?
             .tab_renderer
             .content
-            .rich_grid_renderer
+            .section_list_renderer
             .contents;
 
         Ok(map_startpage_videos(

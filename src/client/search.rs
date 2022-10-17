@@ -93,52 +93,24 @@ impl MapResponse<SearchResult> for response::Search {
         lang: Language,
         _deobf: Option<&Deobfuscator>,
     ) -> Result<MapResult<SearchResult>, ExtractionError> {
-        let section_list_items = self
+        let items = self
             .contents
             .two_column_search_results_renderer
             .primary_contents
             .section_list_renderer
             .contents;
 
-        let (items, ctoken) = map_section_list_items(section_list_items)?;
-
         let mut mapper = response::YouTubeListMapper::<YouTubeItem>::new(lang);
         mapper.map_response(items);
 
         Ok(MapResult {
             c: SearchResult {
-                items: Paginator::new(self.estimated_results, mapper.items, ctoken),
+                items: Paginator::new(self.estimated_results, mapper.items, mapper.ctoken),
                 corrected_query: mapper.corrected_query,
             },
             warnings: mapper.warnings,
         })
     }
-}
-
-fn map_section_list_items(
-    section_list_items: Vec<response::search::SectionListItem>,
-) -> Result<(MapResult<Vec<response::YouTubeListItem>>, Option<String>), ExtractionError> {
-    let mut items = None;
-    let mut ctoken = None;
-    section_list_items.into_iter().for_each(|item| match item {
-        response::search::SectionListItem::ItemSectionRenderer { contents } => {
-            items = Some(contents);
-        }
-        response::search::SectionListItem::ContinuationItemRenderer {
-            continuation_endpoint,
-        } => {
-            ctoken = Some(continuation_endpoint.continuation_command.token);
-        }
-    });
-
-    let items = some_or_bail!(
-        items,
-        Err(ExtractionError::InvalidData(
-            "no item section renderer".into()
-        ))
-    );
-
-    Ok((items, ctoken))
 }
 
 #[cfg(test)]
