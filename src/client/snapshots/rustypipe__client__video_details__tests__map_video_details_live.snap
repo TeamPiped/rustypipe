@@ -73,7 +73,7 @@ VideoDetails(
   recommended: Paginator(
     count: None,
     items: [
-      RecommendedVideo(
+      VideoItem(
         id: "SGP6Y0Pnhe4",
         title: "HOW IT WORKS: The International Space Station",
         length: Some(1738),
@@ -89,7 +89,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UC_sXrcURB-Dh4az_FveeQ0Q",
           name: "DOCUMENTARY TUBE",
           avatar: [
@@ -101,14 +101,16 @@ VideoDetails(
           ],
           verification: none,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("7 years ago"),
-        view_count: 90280310,
+        view_count: Some(90280310),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "ddZu_1Z3BAc",
         title: "NASA LIVE Stream From The ISS - Live Earth & Space Station Views & Audio",
         length: None,
@@ -124,7 +126,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCakgsb0w7QB0VHdnCc-OVEA",
           name: "Space Videos",
           avatar: [
@@ -136,14 +138,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: None,
-        view_count: 80,
+        view_count: Some(80),
         is_live: true,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "oDXBMjg9HKU",
         title: "APOD: 2022-09-20 - Star Forming Region NGC 3582 without Stars (Narrated by Amy)",
         length: Some(124),
@@ -159,7 +163,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCZepiiyNNbD2XL5sWnJBC_A",
           name: "Videotizer",
           avatar: [
@@ -171,14 +175,16 @@ VideoDetails(
           ],
           verification: none,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("10 hours ago"),
-        view_count: 13,
+        view_count: Some(13),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "aU0vNvVHXa8",
         title: "🌎 LIVE ASTEROID Watch Tracking",
         length: None,
@@ -194,7 +200,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCNrGOnduIS9BXIRmDcHasZA",
           name: "WorldCam",
           avatar: [
@@ -206,14 +212,16 @@ VideoDetails(
           ],
           verification: none,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: None,
-        view_count: 23,
+        view_count: Some(23),
         is_live: true,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "6scCF_8YN70",
         title: "Dramatic footage of the tsunami that hit Japan",
         length: Some(133),
@@ -229,7 +237,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCelk6aHijZq-GJBBB9YpReA",
           name: "BBC News عربي",
           avatar: [
@@ -241,14 +249,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("11 years ago"),
-        view_count: 118635723,
+        view_count: Some(118635723),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "n4IhCSMkADc",
         title: "EARTH FROM SPACE: Like You\'ve Never Seen Before",
         length: Some(766),
@@ -264,7 +274,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UC_sXrcURB-Dh4az_FveeQ0Q",
           name: "DOCUMENTARY TUBE",
           avatar: [
@@ -276,14 +286,16 @@ VideoDetails(
           ],
           verification: none,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("7 years ago"),
-        view_count: 11226061,
+        view_count: Some(11226061),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "bgbH4FAmAA0",
         title: "Winter Cab View from two of the most SCENIC RAILWAYS in the WORLD",
         length: None,
@@ -299,7 +311,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCj-Xm8j6WBgKY8OG7s9r2vQ",
           name: "RailCowGirl",
           avatar: [
@@ -311,14 +323,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: None,
-        view_count: 108,
+        view_count: Some(108),
         is_live: true,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "uD4izuDMUQA",
         title: "TIMELAPSE OF THE FUTURE: A Journey to the End of Time (4K)",
         length: Some(1761),
@@ -334,7 +348,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCR9sFzaG9Ia_kXJhfxtFMBA",
           name: "melodysheep",
           avatar: [
@@ -346,14 +360,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("3 years ago"),
-        view_count: 85240979,
+        view_count: Some(85240979),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "Z6DpPQ8QdLg",
         title: "Earthrise - Planet Earth Seen From The Moon - Real Time Journey Across The Lunar Surface",
         length: Some(241),
@@ -369,7 +385,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCakgsb0w7QB0VHdnCc-OVEA",
           name: "Space Videos",
           avatar: [
@@ -381,14 +397,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("4 years ago"),
-        view_count: 5405668,
+        view_count: Some(5405668),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "1hNF3Wuw0LI",
         title: "New York City Walk 24/7 Chat Stream",
         length: None,
@@ -404,7 +422,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCRI_rCIV69l-PmT3oyD64kw",
           name: "Afraz Explores",
           avatar: [
@@ -416,14 +434,16 @@ VideoDetails(
           ],
           verification: none,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: None,
-        view_count: 10,
+        view_count: Some(10),
         is_live: true,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "ZEyAs3NWH4A",
         title: "New: Mars In 4K",
         length: Some(609),
@@ -439,7 +459,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCZvxw99l3xDC6BIHb8nJKGg",
           name: "ElderFox Documentaries",
           avatar: [
@@ -451,14 +471,16 @@ VideoDetails(
           ],
           verification: none,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("2 years ago"),
-        view_count: 61247221,
+        view_count: Some(61247221),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "NF4LQaWJRDg",
         title: "Hiroshima: Dropping the Bomb",
         length: Some(276),
@@ -474,7 +496,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UC2ccm1GajfSujz7T18d7cKA",
           name: "BBC Studios",
           avatar: [
@@ -486,14 +508,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("15 years ago"),
-        view_count: 36276575,
+        view_count: Some(36276575),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "qhOe_PxiNo8",
         title: "Imagens, Talvez Inéditas do Tsunami no Japão",
         length: Some(1202),
@@ -509,7 +533,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCyrM5blUZAQoX9UvObdjtig",
           name: "Valdemar Gomes",
           avatar: [
@@ -521,14 +545,16 @@ VideoDetails(
           ],
           verification: none,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("5 years ago"),
-        view_count: 12004917,
+        view_count: Some(12004917),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "zf3bDpdhUNc",
         title: "Astronauts accidentally lose a shield in space (GoPro 8K)",
         length: Some(566),
@@ -544,7 +570,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCgP30k64HHZ0OY1QkEgS6Pw",
           name: "Waa Sop",
           avatar: [
@@ -556,14 +582,16 @@ VideoDetails(
           ],
           verification: none,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("1 year ago"),
-        view_count: 22901662,
+        view_count: Some(22901662),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "mJxsj51d-Pk",
         title: "Record breaking space jump - free fall faster than speed of sound - Red Bull Stratos.",
         length: Some(503),
@@ -579,7 +607,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCBuDzfvztEJvNll_w1E9xFw",
           name: "The Random Theorizer",
           avatar: [
@@ -591,14 +619,16 @@ VideoDetails(
           ],
           verification: none,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("4 years ago"),
-        view_count: 42814880,
+        view_count: Some(42814880),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "fr_hXLDLc38",
         title: "Horizons mission - Soyuz: launch to orbit",
         length: Some(607),
@@ -614,7 +644,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCIBaDdAbGlFDeS33shmlD0A",
           name: "European Space Agency, ESA",
           avatar: [
@@ -626,14 +656,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("4 years ago"),
-        view_count: 9592134,
+        view_count: Some(9592134),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "Jh-qzwdiAGY",
         title: "The Earth 4K - Incredible 4K / UHD Video of Earth From Space",
         length: Some(3594),
@@ -649,7 +681,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCakgsb0w7QB0VHdnCc-OVEA",
           name: "Space Videos",
           avatar: [
@@ -661,14 +693,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("5 years ago"),
-        view_count: 4463605,
+        view_count: Some(4463605),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "EPyl1LgNtoQ",
         title: "The View from Space - Earth\'s Countries and Coastlines",
         length: Some(227),
@@ -684,7 +718,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UC1znqKFL3jeR0eoA0pHpzvw",
           name: "SpaceRip",
           avatar: [
@@ -696,14 +730,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("10 years ago"),
-        view_count: 14094460,
+        view_count: Some(14094460),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "7KXGZAEWzn0",
         title: "ORBIT - Journey Around Earth in Real Time // 4K Remastered",
         length: Some(5560),
@@ -719,7 +755,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UC28l88GMXXqZYfY0Ru9h50w",
           name: "Seán Doran",
           avatar: [
@@ -731,14 +767,16 @@ VideoDetails(
           ],
           verification: none,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("2 years ago"),
-        view_count: 9901163,
+        view_count: Some(9901163),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "KTUa9rG08go",
         title: "NASA Artemis I Mon Rocket Testing and Inspection LIVE From Launch Complex 39B",
         length: None,
@@ -754,7 +792,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCDyeuRnxf_hxEyH1B7aoDQQ",
           name: "thebhp",
           avatar: [
@@ -766,27 +804,29 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: None,
-        view_count: 15,
+        view_count: Some(15),
         is_live: true,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
     ],
     ctoken: Some("CBQSExILODZZTEZPb2c0R03AAQHIAQEYACrgBzJzNkw2d3poQlFyZUJRb0Q4ajRBQ2czQ1Bnb0k3b3VlbjdUTV9yRklDZ1B5UGdBS0RjSS1DZ2lIaU55ejlkLWI2M1VLQV9JLUFBb093ajRMQ0tXNTlNR2pwdkNhb0FFS0FfSS1BQW9Od2o0S0NLLTduYXJ2NXN1bWFRb0Q4ajRBQ2c3Q1Bnc0l2ZV9nLVBfQ3dPUHFBUW9EOGo0QUNnN0NQZ3NJdDRDUW1aS2hpTUdmQVFvRDhqNEFDZzNDUGdvSWpZQ1lnWVg4c1lOdUNnUHlQZ0FLRHNJLUN3aUFvckdHN3RtSW43Z0JDZ1B5UGdBS0RjSS1DZ2k0NmNINDBLZTYwR2NLQV9JLUFBb093ajRMQ0xLaHc5M1d1OUdKMWdFS0FfSS1BQW9Od2o0S0NJQ18ySnEzbHFDbVpBb0Q4ajRBQ2czQ1Bnb0l1SWlsckpyb2dxODBDZ1B5UGdBS0RzSS1Dd2lQN1lqano5X25pYW9CQ2dQeVBnQUtEc0ktQ3dqWG9ZVzc2ZUgyX3MwQkNnUHlQZ0FLRHNJLUN3ajU4ZmZxLVpHYnpwZ0JDZ1B5UGdBS0RjSS1DZ2pfNXEyR3k2djQzMzRLQV9JLUFBb053ajRLQ09hQWlMdncyZXFQSmdvRDhqNEFDZzNDUGdvSWhPMjJ3TXU2cWY0UUNnUHlQZ0FLRHNJLUN3ajluTnVJd016eDB1d0JDZ1B5UGdBS0RjSS1DZ2lLNU5PTjY5N0dtaWtLQV9JLUFBb2FtajhYQ2hWUGZEazRNek0xTXpjMU5ERTJOVGMzT0RnMk1UY0tHNW9fR0FvV1Qzd3hNekF5TXpnek9UY3hPREk0TXpVMU9EUTFNd29ibWo4WUNoWlBmREUxT0RVek5Ua3dPRGczTURVeE1qVTBOemcwQ2dQeVBnQUtBX0ktQUJJWEFBSUVCZ2dLREE0UUVoUVdHQm9jSGlBaUpDWW9MQzBhQkFnQUVBRWFCQWdDRUFNYUJBZ0VFQVVhQkFnR0VBY2FCQWdJRUFrYUJBZ0tFQXNhQkFnTUVBMGFCQWdPRUE4YUJBZ1FFQkVhQkFnU0VCTWFCQWdVRUJVYUJBZ1dFQmNhQkFnWUVCa2FCQWdhRUJzYUJBZ2NFQjBhQkFnZUVCOGFCQWdnRUNFYUJBZ2lFQ01hQkFna0VDVWFCQWdtRUNjYUJBZ29FQ2thQkFnb0VDb2FCQWdvRUNzYUJBZ3NFQ2thQkFnc0VDb2FCQWdzRUNzYUJBZ3RFQ2thQkFndEVDb2FCQWd0RUNzcUZ3QUNCQVlJQ2d3T0VCSVVGaGdhSEI0Z0lpUW1LQ3d0ag93YXRjaC1uZXh0LWZlZWQ%3D"),
-    endpoint: browse,
+    endpoint: next,
   ),
   top_comments: Paginator(
     count: Some(0),
     items: [],
     ctoken: None,
-    endpoint: browse,
+    endpoint: next,
   ),
   latest_comments: Paginator(
     count: Some(0),
     items: [],
     ctoken: None,
-    endpoint: browse,
+    endpoint: next,
   ),
 )

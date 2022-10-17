@@ -531,7 +531,7 @@ pub struct VideoDetails {
     /// Recommended videos
     ///
     /// Note: Recommendations are not available for age-restricted videos
-    pub recommended: Paginator<RecommendedVideo>,
+    pub recommended: Paginator<VideoItem>,
     /// Paginator to fetch comments (most liked first)
     ///
     /// Is initially empty.

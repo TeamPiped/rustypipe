@@ -1,11 +1,11 @@
 ---
-source: src/client/video_details.rs
+source: src/client/pagination.rs
 expression: map_res.c
 ---
 Paginator(
   count: None,
   items: [
-    RecommendedVideo(
+    Video(VideoItem(
       id: "WPdWvnAAurg",
       title: "aespa 에스파 \'Savage\' MV",
       length: Some(259),
@@ -21,7 +21,7 @@ Paginator(
           height: 188,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UCEf_Bc-KVd7onSeifS3py9g",
         name: "SMTOWN",
         avatar: [
@@ -33,14 +33,16 @@ Paginator(
         ],
         verification: verified,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: Some("11 months ago"),
-      view_count: 216222873,
+      view_count: Some(216222873),
       is_live: false,
       is_short: false,
-    ),
-    RecommendedVideo(
+      is_upcoming: false,
+      short_description: None,
+    )),
+    Video(VideoItem(
       id: "Y8JFxS1HlDo",
       title: "IVE 아이브 \'LOVE DIVE\' MV",
       length: Some(179),
@@ -56,7 +58,7 @@ Paginator(
           height: 188,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UCYDmx2Sfpnaxg488yBpZIGg",
         name: "starshipTV",
         avatar: [
@@ -68,14 +70,16 @@ Paginator(
         ],
         verification: verified,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: Some("5 months ago"),
-      view_count: 155106313,
+      view_count: Some(155106313),
       is_live: false,
       is_short: false,
-    ),
-    RecommendedVideo(
+      is_upcoming: false,
+      short_description: None,
+    )),
+    Video(VideoItem(
       id: "NoYKBAajoyo",
       title: "EVERGLOW (에버글로우) - DUN DUN MV",
       length: Some(209),
@@ -91,7 +95,7 @@ Paginator(
           height: 188,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UC_pwIXKXNm5KGhdEVzmY60A",
         name: "Stone Music Entertainment",
         avatar: [
@@ -103,14 +107,16 @@ Paginator(
         ],
         verification: verified,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: Some("2 years ago"),
-      view_count: 265238677,
+      view_count: Some(265238677),
       is_live: false,
       is_short: false,
-    ),
-    RecommendedVideo(
+      is_upcoming: false,
+      short_description: None,
+    )),
+    Video(VideoItem(
       id: "yQUU29NwNF4",
       title: "aespa(에스파) - Black Mamba @인기가요 inkigayo 20201122",
       length: Some(213),
@@ -126,7 +132,7 @@ Paginator(
           height: 188,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UCS_hnpJLQTvBkqALgapi_4g",
         name: "스브스케이팝 X INKIGAYO",
         avatar: [
@@ -138,14 +144,16 @@ Paginator(
         ],
         verification: none,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: Some("1 year ago"),
-      view_count: 9989591,
+      view_count: Some(9989591),
       is_live: false,
       is_short: false,
-    ),
-    RecommendedVideo(
+      is_upcoming: false,
+      short_description: None,
+    )),
+    Video(VideoItem(
       id: "NU611fxGyPU",
       title: "aespa 에스파 \'Black Mamba\' Dance Practice",
       length: Some(175),
@@ -161,7 +169,7 @@ Paginator(
           height: 188,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UC9GtSLeksfK4yuJ_g1lgQbg",
         name: "aespa",
         avatar: [
@@ -173,14 +181,16 @@ Paginator(
         ],
         verification: artist,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: Some("1 year ago"),
-      view_count: 34588526,
+      view_count: Some(34588526),
       is_live: false,
       is_short: false,
-    ),
-    RecommendedVideo(
+      is_upcoming: false,
+      short_description: None,
+    )),
+    Video(VideoItem(
       id: "EaswWiwMVs8",
       title: "Stray Kids \"소리꾼(Thunderous)\" M/V",
       length: Some(199),
@@ -196,7 +206,7 @@ Paginator(
           height: 188,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UCaO6TYtlC8U5ttz62hTrZgg",
         name: "JYP Entertainment",
         avatar: [
@@ -208,14 +218,16 @@ Paginator(
         ],
         verification: verified,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: Some("1 year ago"),
-      view_count: 242737870,
+      view_count: Some(242737870),
       is_live: false,
       is_short: false,
-    ),
-    RecommendedVideo(
+      is_upcoming: false,
+      short_description: None,
+    )),
+    Video(VideoItem(
       id: "Ujb-gvqsoi0",
       title: "Red Velvet - IRENE & SEULGI \'Monster\' MV",
       length: Some(182),
@@ -231,7 +243,7 @@ Paginator(
           height: 188,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UCEf_Bc-KVd7onSeifS3py9g",
         name: "SMTOWN",
         avatar: [
@@ -243,14 +255,16 @@ Paginator(
         ],
         verification: verified,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: Some("2 years ago"),
-      view_count: 126677200,
+      view_count: Some(126677200),
       is_live: false,
       is_short: false,
-    ),
-    RecommendedVideo(
+      is_upcoming: false,
+      short_description: None,
+    )),
+    Video(VideoItem(
       id: "gQlMMD8auMs",
       title: "BLACKPINK - ‘Pink Venom’ M/V",
       length: Some(194),
@@ -266,7 +280,7 @@ Paginator(
           height: 188,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UCOmHUn--16B90oW2L6FRR3A",
         name: "BLACKPINK",
         avatar: [
@@ -278,14 +292,16 @@ Paginator(
         ],
         verification: artist,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: Some("1 month ago"),
-      view_count: 335903776,
+      view_count: Some(335903776),
       is_live: false,
       is_short: false,
-    ),
-    RecommendedVideo(
+      is_upcoming: false,
+      short_description: None,
+    )),
+    Video(VideoItem(
       id: "BL-aIpCLWnU",
       title: "Black Mamba",
       length: Some(175),
@@ -301,7 +317,7 @@ Paginator(
           height: 188,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UC9GtSLeksfK4yuJ_g1lgQbg",
         name: "aespa",
         avatar: [
@@ -313,14 +329,16 @@ Paginator(
         ],
         verification: artist,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: Some("1 year ago"),
-      view_count: 86125645,
+      view_count: Some(86125645),
       is_live: false,
       is_short: false,
-    ),
-    RecommendedVideo(
+      is_upcoming: false,
+      short_description: None,
+    )),
+    Video(VideoItem(
       id: "Jh4QFaPmdss",
       title: "(G)I-DLE - \'TOMBOY\' Official Music Video",
       length: Some(198),
@@ -336,7 +354,7 @@ Paginator(
           height: 188,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UCritGVo7pLJLUS8wEu32vow",
         name: "(G)I-DLE (여자)아이들 (Official YouTube Channel)",
         avatar: [
@@ -348,14 +366,16 @@ Paginator(
         ],
         verification: artist,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: Some("6 months ago"),
-      view_count: 170016610,
+      view_count: Some(170016610),
       is_live: false,
       is_short: false,
-    ),
-    RecommendedVideo(
+      is_upcoming: false,
+      short_description: None,
+    )),
+    Video(VideoItem(
       id: "Fc-fa6cAe2c",
       title: "KAI 카이 \'음 (Mmmh)\' MV",
       length: Some(207),
@@ -371,7 +391,7 @@ Paginator(
           height: 188,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UCEf_Bc-KVd7onSeifS3py9g",
         name: "SMTOWN",
         avatar: [
@@ -383,14 +403,16 @@ Paginator(
         ],
         verification: verified,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: Some("1 year ago"),
-      view_count: 123861096,
+      view_count: Some(123861096),
       is_live: false,
       is_short: false,
-    ),
-    RecommendedVideo(
+      is_upcoming: false,
+      short_description: None,
+    )),
+    Video(VideoItem(
       id: "dYRITmpFbJ4",
       title: "aespa 에스파 \'Girls\' MV",
       length: Some(269),
@@ -406,7 +428,7 @@ Paginator(
           height: 188,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UCEf_Bc-KVd7onSeifS3py9g",
         name: "SMTOWN",
         avatar: [
@@ -418,14 +440,16 @@ Paginator(
         ],
         verification: verified,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: Some("2 months ago"),
-      view_count: 101968219,
+      view_count: Some(101968219),
       is_live: false,
       is_short: false,
-    ),
-    RecommendedVideo(
+      is_upcoming: false,
+      short_description: None,
+    )),
+    Video(VideoItem(
       id: "mH0_XpSHkZo",
       title: "TWICE \"MORE & MORE\" M/V",
       length: Some(241),
@@ -441,7 +465,7 @@ Paginator(
           height: 188,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UCaO6TYtlC8U5ttz62hTrZgg",
         name: "JYP Entertainment",
         avatar: [
@@ -453,14 +477,16 @@ Paginator(
         ],
         verification: verified,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: Some("2 years ago"),
-      view_count: 322510403,
+      view_count: Some(322510403),
       is_live: false,
       is_short: false,
-    ),
-    RecommendedVideo(
+      is_upcoming: false,
+      short_description: None,
+    )),
+    Video(VideoItem(
       id: "uR8Mrt1IpXg",
       title: "Red Velvet 레드벨벳 \'Psycho\' MV",
       length: Some(216),
@@ -476,7 +502,7 @@ Paginator(
           height: 188,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UCEf_Bc-KVd7onSeifS3py9g",
         name: "SMTOWN",
         avatar: [
@@ -488,14 +514,16 @@ Paginator(
         ],
         verification: verified,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: Some("2 years ago"),
-      view_count: 345491789,
+      view_count: Some(345491789),
       is_live: false,
       is_short: false,
-    ),
-    RecommendedVideo(
+      is_upcoming: false,
+      short_description: None,
+    )),
+    Video(VideoItem(
       id: "f5_wn8mexmM",
       title: "TWICE \"The Feels\" M/V",
       length: Some(232),
@@ -511,7 +539,7 @@ Paginator(
           height: 188,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UCaO6TYtlC8U5ttz62hTrZgg",
         name: "JYP Entertainment",
         avatar: [
@@ -523,14 +551,16 @@ Paginator(
         ],
         verification: verified,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: Some("11 months ago"),
-      view_count: 314744776,
+      view_count: Some(314744776),
       is_live: false,
       is_short: false,
-    ),
-    RecommendedVideo(
+      is_upcoming: false,
+      short_description: None,
+    )),
+    Video(VideoItem(
       id: "Ky5RT5oGg0w",
       title: "aespa 에스파 \'Black Mamba\' The Debut Stage",
       length: Some(287),
@@ -546,7 +576,7 @@ Paginator(
           height: 188,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UC9GtSLeksfK4yuJ_g1lgQbg",
         name: "aespa",
         avatar: [
@@ -558,14 +588,16 @@ Paginator(
         ],
         verification: artist,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: Some("1 year ago"),
-      view_count: 18830758,
+      view_count: Some(18830758),
       is_live: false,
       is_short: false,
-    ),
-    RecommendedVideo(
+      is_upcoming: false,
+      short_description: None,
+    )),
+    Video(VideoItem(
       id: "gU2HqP4NxUs",
       title: "BLACKPINK - ‘Pretty Savage’ 1011 SBS Inkigayo",
       length: Some(208),
@@ -581,7 +613,7 @@ Paginator(
           height: 188,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UCOmHUn--16B90oW2L6FRR3A",
         name: "BLACKPINK",
         avatar: [
@@ -593,14 +625,16 @@ Paginator(
         ],
         verification: artist,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: Some("1 year ago"),
-      view_count: 282957370,
+      view_count: Some(282957370),
       is_live: false,
       is_short: false,
-    ),
-    RecommendedVideo(
+      is_upcoming: false,
+      short_description: None,
+    )),
+    Video(VideoItem(
       id: "KhTeiaCezwM",
       title: "[MV] MAMAMOO (마마무) - HIP",
       length: Some(211),
@@ -616,7 +650,7 @@ Paginator(
           height: 188,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UCuhAUMLzJxlP1W7mEk0_6lA",
         name: "MAMAMOO",
         avatar: [
@@ -628,14 +662,16 @@ Paginator(
         ],
         verification: artist,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: Some("2 years ago"),
-      view_count: 355203298,
+      view_count: Some(355203298),
       is_live: false,
       is_short: false,
-    ),
-    RecommendedVideo(
+      is_upcoming: false,
+      short_description: None,
+    )),
+    Video(VideoItem(
       id: "uxmP4b2a0uY",
       title: "EXO 엑소 \'Obsession\' MV",
       length: Some(220),
@@ -651,7 +687,7 @@ Paginator(
           height: 188,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UCEf_Bc-KVd7onSeifS3py9g",
         name: "SMTOWN",
         avatar: [
@@ -663,13 +699,15 @@ Paginator(
         ],
         verification: verified,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: Some("2 years ago"),
-      view_count: 157400947,
+      view_count: Some(157400947),
       is_live: false,
       is_short: false,
-    ),
+      is_upcoming: false,
+      short_description: None,
+    )),
   ],
   ctoken: Some("CCgSExILWmVlcnJudUxpNUXAAQHIAQEYACrLDDJzNkw2d3l4Q1FxdUNRb0Q4ajRBQ2czQ1Bnb0l4LUM1djltdnBwZ3lDZ1B5UGdBS0RjSS1DZ2pxM0xYRXpkNk00VUVLQV9JLUFBb093ajRMQ1Bqc19JLUVsWTI5MWdFS0FfSS1BQW93MGo0dENpdFNSRU5NUVVzMWRYbGZhekkzZFhVdFJYUlJYMkkxVlRKeU1qWkVUa1JhVDIxT2NVZGtZMk5WU1VkUkNnUHlQZ0FLRHNJLUN3amZ2czJMbjRUcG5iUUJDZ1B5UGdBS0V0SS1Ed29OVWtSYVpXVnljbTUxVEdrMVJRb0Q4ajRBQ2c3Q1Bnc0kzYmJTdThMRy1wS1VBUW9EOGo0QUNnN0NQZ3NJX2JYd2lmQzJ0WlczQVFvRDhqNEFDZzdDUGdzSXpZckE3b0RHbzlMUUFRb0Q4ajRBQ2czQ1Bnb0l0N212dk9fUjVJUnZDZ1B5UGdBS0RjSS1DZ2lBcDdMWDBlYWxyaW9LQV9JLUFBb053ajRLQ0luanlmalZ0dUwxWHdvRDhqNEFDZzNDUGdvSXBKZmozYVR5X2MwZkNnUHlQZ0FLRGNJLUNnamJtNW1MbGRLQTV3Z0tBX0ktQUFvT3dqNExDTFRhOF9UNjE3U3UyQUVLQV9JLUFBb053ajRLQ05xMHBhdXZzS1BDZEFvRDhqNEFDZzdDUGdzSTVQR3E5WTIybWNXZ0FRb0Q4ajRBQ2c3Q1Bnc0lnNkdPN3JidzJjR0tBUW9EOGo0QUNnN0NQZ3NJenEtbWxQUy01SnJoQVFvRDhqNEFDZzdDUGdzSXZNbnBqSUtUeXBYX0FRb0Q4ajRBQ2czQ1Bnb0l1UFdDZ09mWDFmdFlDZ1B5UGdBS0g5SS1IQW9hVWtSRlRWUnVTbmxSZDJsamFHMW5lbm96VGxKSlVIVmxWMUVLQV9JLUFBb053ajRLQ0xxb251clN1SkhoWXdvRDhqNEFDZzNDUGdvSXFzYU90Y0RBZ3NNMkNnUHlQZ0FLRHNJLUN3amU2TUNidlp2Rmdza0JDZ1B5UGdBS0RjSS1DZ2oxa1p2aTM3cXRwelVLQV9JLUFBb053ajRLQ00tdHNlQ2lpOHpWRVFvRDhqNEFDZzNDUGdvSXJjU3kxYV9RdjV0U0NnUHlQZ0FLRHNJLUN3akw4ZXI0ZzRiVGhJRUJDZ1B5UGdBS0RjSS1DZ2oxdEsyRXFjVG0zd1FLQV9JLUFBb053ajRLQ012dG1aX2Fnb1NQSmdvRDhqNEFDZzNDUGdvSTVfYUJ1THJ0NS1jVkNnUHlQZ0FLRGNJLUNnaWUyWlhTNW9tU3duVUtBX0ktQUFvT3dqNExDSnFqbnFUcDY4LS1tQUVLQV9JLUFBb093ajRMQ1BqS291cnRsY09QdVFFS0FfSS1BQW9Od2o0S0NPT00tOHo4a196UGZ3b0Q4ajRBQ2czQ1Bnb0l6SWFhMFBtcGxKY3JDZ1B5UGdBS0RzSS1Dd2pMaXJmd2pfWGhwb0VCQ2dQeVBnQUtEY0ktQ2dpRG52dUVtdEczaWlvS0FfSS1BQW9Pd2o0TENPYWw2LXliX09PTXV3RVNLQUFDQkFZSUNnd09FQklVRmhnYUhCNGdJaVFtS0Nvc0xqQXlORFk0T2p3LVFFSkVSa2hLVEU0YUJBZ0FFQUVhQkFnQ0VBTWFCQWdFRUFVYUJBZ0dFQWNhQkFnSUVBa2FCQWdLRUFzYUJBZ01FQTBhQkFnT0VBOGFCQWdRRUJFYUJBZ1NFQk1hQkFnVUVCVWFCQWdXRUJjYUJBZ1lFQmthQkFnYUVCc2FCQWdjRUIwYUJBZ2VFQjhhQkFnZ0VDRWFCQWdpRUNNYUJBZ2tFQ1VhQkFnbUVDY2FCQWdvRUNrYUJBZ3FFQ3NhQkFnc0VDMGFCQWd1RUM4YUJBZ3dFREVhQkFneUVETWFCQWcwRURVYUJBZzJFRGNhQkFnNEVEa2FCQWc2RURzYUJBZzhFRDBhQkFnLUVEOGFCQWhBRUVFYUJBaENFRU1hQkFoRUVFVWFCQWhHRUVjYUJBaElFRWthQkFoS0VFc2FCQWhNRUUwYUJBaE9FRThxS0FBQ0JBWUlDZ3dPRUJJVUZoZ2FIQjRnSWlRbUtDb3NMakF5TkRZNE9qdy1RRUpFUmtoS1RFNGoPd2F0Y2gtbmV4dC1mZWVkcgA%3D"),
   endpoint: browse,

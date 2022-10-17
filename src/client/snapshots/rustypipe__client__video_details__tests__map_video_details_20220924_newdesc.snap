@@ -104,7 +104,7 @@ VideoDetails(
   recommended: Paginator(
     count: None,
     items: [
-      RecommendedVideo(
+      VideoItem(
         id: "aRpkasmB6so",
         title: "18 de setembro de 2022",
         length: Some(184),
@@ -120,7 +120,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCQYl87Oi9aWzz-CLhTw3Rzg",
           name: "Allan Nascimento",
           avatar: [
@@ -132,14 +132,16 @@ VideoDetails(
           ],
           verification: none,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("5 days ago"),
-        view_count: 996,
+        view_count: Some(996),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "lCXqNCd0m10",
         title: "aespa(エスパ) Savage + Next Level + Black Mamba💕Stage Mix Compilation🔥에스파 무대모음 KBS Music Bank",
         length: Some(898),
@@ -155,7 +157,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCgqMjKxRWAKUvgYqgomighw",
           name: "KBS충북",
           avatar: [
@@ -167,14 +169,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("7 months ago"),
-        view_count: 7684395,
+        view_count: Some(7684395),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "tDukIfFzX18",
         title: "[MV] Hwa Sa(화사) _ Maria(마리아)",
         length: Some(231),
@@ -190,7 +194,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCweOkPb1wVVH0Q0Tlj4a5Pw",
           name: "1theK (원더케이)",
           avatar: [
@@ -202,14 +206,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("2 years ago"),
-        view_count: 260984648,
+        view_count: Some(260984648),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "e-ORhEE9VVg",
         title: "Taylor Swift - Blank Space",
         length: Some(273),
@@ -225,7 +231,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCqECaJ8Gagnn7YCbPEzWH6g",
           name: "Taylor Swift",
           avatar: [
@@ -237,14 +243,16 @@ VideoDetails(
           ],
           verification: artist,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("7 years ago"),
-        view_count: 3035220118,
+        view_count: Some(3035220118),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "qfVuRQX0ydQ",
         title: "[MV] Weeekly(위클리) _ After School",
         length: Some(225),
@@ -260,7 +268,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCweOkPb1wVVH0Q0Tlj4a5Pw",
           name: "1theK (원더케이)",
           avatar: [
@@ -272,14 +280,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("1 year ago"),
-        view_count: 138451832,
+        view_count: Some(138451832),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "tyrVtwE8Gv0",
         title: "NCT U 엔시티 유 \'Make A Wish (Birthday Song)\' MV",
         length: Some(249),
@@ -295,7 +305,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCEf_Bc-KVd7onSeifS3py9g",
           name: "SMTOWN",
           avatar: [
@@ -307,14 +317,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("1 year ago"),
-        view_count: 255458628,
+        view_count: Some(255458628),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "X-uJtV8ScYk",
         title: "Stray Kids \"Back Door\" M/V",
         length: Some(218),
@@ -330,7 +342,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCaO6TYtlC8U5ttz62hTrZgg",
           name: "JYP Entertainment",
           avatar: [
@@ -342,14 +354,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("2 years ago"),
-        view_count: 274719671,
+        view_count: Some(274719671),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "MjCZfZfucEc",
         title: "ITZY “LOCO” M/V @ITZY",
         length: Some(233),
@@ -365,7 +379,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCaO6TYtlC8U5ttz62hTrZgg",
           name: "JYP Entertainment",
           avatar: [
@@ -377,14 +391,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("1 year ago"),
-        view_count: 203129706,
+        view_count: Some(203129706),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "2FzSv66c7TQ",
         title: "A E S P A (에스파) ALL SONGS PLAYLIST 2022 | 에스파 노래 모음",
         length: Some(3441),
@@ -400,7 +416,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCK8S6QMrTk1G8TYQwIyDo-w",
           name: "LQ K-POP",
           avatar: [
@@ -412,14 +428,16 @@ VideoDetails(
           ],
           verification: none,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("2 months ago"),
-        view_count: 531757,
+        view_count: Some(531757),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "CevxZvSJLk8",
         title: "Katy Perry - Roar (Official)",
         length: Some(270),
@@ -435,7 +453,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCYvmuw-JtVrTZQ-7Y4kd63Q",
           name: "Katy Perry",
           avatar: [
@@ -447,14 +465,16 @@ VideoDetails(
           ],
           verification: artist,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("9 years ago"),
-        view_count: 3656394146,
+        view_count: Some(3656394146),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "bwmSjveL3Lc",
         title: "BLACKPINK - \'붐바야 (BOOMBAYAH)\' M/V",
         length: Some(244),
@@ -470,7 +490,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCOmHUn--16B90oW2L6FRR3A",
           name: "BLACKPINK",
           avatar: [
@@ -482,14 +502,16 @@ VideoDetails(
           ],
           verification: artist,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("6 years ago"),
-        view_count: 1479871637,
+        view_count: Some(1479871637),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "CM4CkVFmTds",
         title: "TWICE \"I CAN\'T STOP ME\" M/V",
         length: Some(221),
@@ -505,7 +527,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCaO6TYtlC8U5ttz62hTrZgg",
           name: "JYP Entertainment",
           avatar: [
@@ -517,14 +539,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("1 year ago"),
-        view_count: 456763969,
+        view_count: Some(456763969),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "ioNng23DkIM",
         title: "BLACKPINK - \'How You Like That\' M/V",
         length: Some(184),
@@ -540,7 +564,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCOmHUn--16B90oW2L6FRR3A",
           name: "BLACKPINK",
           avatar: [
@@ -552,14 +576,16 @@ VideoDetails(
           ],
           verification: artist,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("2 years ago"),
-        view_count: 1149727787,
+        view_count: Some(1149727787),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "BL-aIpCLWnU",
         title: "Black Mamba",
         length: Some(175),
@@ -575,7 +601,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UC9GtSLeksfK4yuJ_g1lgQbg",
           name: "aespa",
           avatar: [
@@ -587,14 +613,16 @@ VideoDetails(
           ],
           verification: artist,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("1 year ago"),
-        view_count: 86080254,
+        view_count: Some(86080254),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "Jh4QFaPmdss",
         title: "(G)I-DLE - \'TOMBOY\' Official Music Video",
         length: Some(198),
@@ -610,7 +638,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCritGVo7pLJLUS8wEu32vow",
           name: "(G)I-DLE (여자)아이들 (Official YouTube Channel)",
           avatar: [
@@ -622,14 +650,16 @@ VideoDetails(
           ],
           verification: artist,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("6 months ago"),
-        view_count: 169858302,
+        view_count: Some(169858302),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "WPdWvnAAurg",
         title: "aespa 에스파 \'Savage\' MV",
         length: Some(259),
@@ -645,7 +675,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCEf_Bc-KVd7onSeifS3py9g",
           name: "SMTOWN",
           avatar: [
@@ -657,14 +687,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("11 months ago"),
-        view_count: 216164610,
+        view_count: Some(216164610),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "Z7yNvMzz2zg",
         title: "Red Velvet 레드벨벳 \'Psycho\' Performance Video",
         length: Some(216),
@@ -680,7 +712,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCk9GmdlDTBfgGRb7vXeRMoQ",
           name: "Red Velvet",
           avatar: [
@@ -692,27 +724,29 @@ VideoDetails(
           ],
           verification: artist,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("2 years ago"),
-        view_count: 135093083,
+        view_count: Some(135093083),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
     ],
     ctoken: Some("CBQSExILWmVlcnJudUxpNUXAAQHIAQEYACreBjJzNkw2d3pfQkFyOEJBb0Q4ajRBQ2czQ1Bnb0l5dFdIekt5Tm1ZMXBDZ1B5UGdBS0o5SS1KQW9pVUV4eU1UUldiR05sYkRKVE16UlpSMmw1WlZkRU1rOW9jbU4wVGt4Q1psVk9PUW9EOGo0QUNoTFNQZzhLRFZKRVdtVmxjbkp1ZFV4cE5VVUtBX0ktQUFvT3dqNExDTjIyMHJ2Q3h2cVNsQUVLQV9JLUFBb3cwajR0Q2l0U1JFTk1RVXMxZFhsZmF6STNkWFV0UlhSUlgySTFWVEp5TWpaRVRrUmFUMjFPY1Vka1kyTlZTVWRSQ2dQeVBnQUtEc0ktQ3dqZnZzMkxuNFRwbmJRQkNnUHlQZ0FLRGNJLUNnallxdldKeExEazhYc0tBX0ktQUFvT3dqNExDTlNUMDZfUXlOdjZxUUVLQV9JLUFBb093ajRMQ1AyMThJbnd0cldWdHdFS0FfSS1BQW9Od2o0S0NJbmp5ZmpWdHVMMVh3b0Q4ajRBQ2czQ1Bnb0l4LUM1djltdnBwZ3lDZ1B5UGdBS0RzSS1Dd2kwMnZQMC10ZTBydGdCQ2dQeVBnQUtEY0ktQ2dqUDNLU2s3Nno4OVFrS0FfSS1BQW9Od2o0S0NMZTVyN3p2MGVTRWJ3b0Q4ajRBQ2czQ1Bnb0kyNXVaaTVYU2dPY0lDZ1B5UGdBS0RzSS1Dd2lEb1k3dXR2RFp3WW9CQ2dQeVBnQUtEY0ktQ2dqMXRLMkVxY1RtM3dRS0FfSS1BQW9Od2o0S0NNdnRtWl9hZ29TUEpnb0Q4ajRBQ2czQ1Bnb0l1UFdDZ09mWDFmdFlDZ1B5UGdBS0RjSS1DZ2k0dHNfbnpMZWozbWNTRkFBQ0JBWUlDZ3dPRUJJVUZoZ2FIQjRnSWlRbUdnUUlBQkFCR2dRSUFoQURHZ1FJQkJBRkdnUUlCaEFIR2dRSUNCQUpHZ1FJQ2hBTEdnUUlEQkFOR2dRSURoQVBHZ1FJRUJBUkdnUUlFaEFUR2dRSUZCQVZHZ1FJRmhBWEdnUUlHQkFaR2dRSUdoQWJHZ1FJSEJBZEdnUUlIaEFmR2dRSUlCQWhHZ1FJSWhBakdnUUlKQkFsR2dRSUpoQW5LaFFBQWdRR0NBb01EaEFTRkJZWUdod2VJQ0lrSmdqD3dhdGNoLW5leHQtZmVlZA%3D%3D"),
-    endpoint: browse,
+    endpoint: next,
   ),
   top_comments: Paginator(
     count: Some(705000),
     items: [],
     ctoken: Some("Eg0SC1plZXJybnVMaTVFGAYyJSIRIgtaZWVycm51TGk1RTAAeAJCEGNvbW1lbnRzLXNlY3Rpb24%3D"),
-    endpoint: browse,
+    endpoint: next,
   ),
   latest_comments: Paginator(
     count: Some(705000),
     items: [],
     ctoken: Some("Eg0SC1plZXJybnVMaTVFGAYyOCIRIgtaZWVycm51TGk1RTABeAIwAUIhZW5nYWdlbWVudC1wYW5lbC1jb21tZW50cy1zZWN0aW9u"),
-    endpoint: browse,
+    endpoint: next,
   ),
 )

@@ -104,7 +104,7 @@ VideoDetails(
   recommended: Paginator(
     count: None,
     items: [
-      RecommendedVideo(
+      VideoItem(
         id: "WPdWvnAAurg",
         title: "aespa 에스파 \'Savage\' MV",
         length: Some(259),
@@ -120,7 +120,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCEf_Bc-KVd7onSeifS3py9g",
           name: "SMTOWN",
           avatar: [
@@ -132,14 +132,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("1 year ago"),
-        view_count: 218055265,
+        view_count: Some(218055265),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "4TWR90KJl84",
         title: "aespa 에스파 \'Next Level\' MV",
         length: Some(236),
@@ -155,7 +157,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCEf_Bc-KVd7onSeifS3py9g",
           name: "SMTOWN",
           avatar: [
@@ -167,14 +169,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("1 year ago"),
-        view_count: 248023999,
+        view_count: Some(248023999),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "uR8Mrt1IpXg",
         title: "Red Velvet 레드벨벳 \'Psycho\' MV",
         length: Some(216),
@@ -190,7 +194,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCEf_Bc-KVd7onSeifS3py9g",
           name: "SMTOWN",
           avatar: [
@@ -202,14 +206,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("2 years ago"),
-        view_count: 347102621,
+        view_count: Some(347102621),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "UUUWIGx3hDE",
         title: "ITZY \"WANNABE\" Performance Video",
         length: Some(198),
@@ -225,7 +231,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCDhM2k2Cua-JdobAh5moMFg",
           name: "ITZY",
           avatar: [
@@ -237,14 +243,16 @@ VideoDetails(
           ],
           verification: artist,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("2 years ago"),
-        view_count: 97453393,
+        view_count: Some(97453393),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "NoYKBAajoyo",
         title: "EVERGLOW (에버글로우) - DUN DUN MV",
         length: Some(209),
@@ -260,7 +268,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UC_pwIXKXNm5KGhdEVzmY60A",
           name: "Stone Music Entertainment",
           avatar: [
@@ -272,14 +280,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("2 years ago"),
-        view_count: 266364690,
+        view_count: Some(266364690),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "32si5cfrCNc",
         title: "BLACKPINK - \'How You Like That\' DANCE PERFORMANCE VIDEO",
         length: Some(181),
@@ -295,7 +305,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCOmHUn--16B90oW2L6FRR3A",
           name: "BLACKPINK",
           avatar: [
@@ -307,14 +317,16 @@ VideoDetails(
           ],
           verification: artist,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("2 years ago"),
-        view_count: 1254749733,
+        view_count: Some(1254749733),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "CM4CkVFmTds",
         title: "TWICE \"I CAN\'T STOP ME\" M/V",
         length: Some(221),
@@ -330,7 +342,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCaO6TYtlC8U5ttz62hTrZgg",
           name: "JYP Entertainment",
           avatar: [
@@ -342,14 +354,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("1 year ago"),
-        view_count: 459831562,
+        view_count: Some(459831562),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "UZPZyd5vE1c",
         title: "Shut Down",
         length: Some(176),
@@ -365,7 +379,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCOmHUn--16B90oW2L6FRR3A",
           name: "BLACKPINK",
           avatar: [
@@ -377,14 +391,16 @@ VideoDetails(
           ],
           verification: artist,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("3 weeks ago"),
-        view_count: 7118730,
+        view_count: Some(7118730),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "CKZvWhCqx1s",
         title: "ROSÉ - \'On The Ground\' M/V",
         length: Some(189),
@@ -400,7 +416,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCOmHUn--16B90oW2L6FRR3A",
           name: "BLACKPINK",
           avatar: [
@@ -412,14 +428,16 @@ VideoDetails(
           ],
           verification: artist,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("1 year ago"),
-        view_count: 300492226,
+        view_count: Some(300492226),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "fE2h3lGlOsk",
         title: "ITZY \"WANNABE\" M/V @ITZY",
         length: Some(219),
@@ -435,7 +453,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCaO6TYtlC8U5ttz62hTrZgg",
           name: "JYP Entertainment",
           avatar: [
@@ -447,14 +465,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("2 years ago"),
-        view_count: 469178299,
+        view_count: Some(469178299),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "Y8JFxS1HlDo",
         title: "IVE 아이브 \'LOVE DIVE\' MV",
         length: Some(179),
@@ -470,7 +490,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCYDmx2Sfpnaxg488yBpZIGg",
           name: "starshipTV",
           avatar: [
@@ -482,14 +502,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("6 months ago"),
-        view_count: 161053206,
+        view_count: Some(161053206),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "dNCWe_6HAM8",
         title: "LISA - \'MONEY\' EXCLUSIVE PERFORMANCE VIDEO",
         length: Some(171),
@@ -505,7 +527,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCOmHUn--16B90oW2L6FRR3A",
           name: "BLACKPINK",
           avatar: [
@@ -517,14 +539,16 @@ VideoDetails(
           ],
           verification: artist,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("1 year ago"),
-        view_count: 694135299,
+        view_count: Some(694135299),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "tyrVtwE8Gv0",
         title: "NCT U 엔시티 유 \'Make A Wish (Birthday Song)\' MV",
         length: Some(249),
@@ -540,7 +564,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCEf_Bc-KVd7onSeifS3py9g",
           name: "SMTOWN",
           avatar: [
@@ -552,14 +576,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("1 year ago"),
-        view_count: 256797155,
+        view_count: Some(256797155),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "gU2HqP4NxUs",
         title: "BLACKPINK - ‘Pretty Savage’ 1011 SBS Inkigayo",
         length: Some(208),
@@ -575,7 +601,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCOmHUn--16B90oW2L6FRR3A",
           name: "BLACKPINK",
           avatar: [
@@ -587,14 +613,16 @@ VideoDetails(
           ],
           verification: artist,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("2 years ago"),
-        view_count: 285625201,
+        view_count: Some(285625201),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "Ujb-gvqsoi0",
         title: "Red Velvet - IRENE & SEULGI \'Monster\' MV",
         length: Some(182),
@@ -610,7 +638,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCEf_Bc-KVd7onSeifS3py9g",
           name: "SMTOWN",
           avatar: [
@@ -622,14 +650,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("2 years ago"),
-        view_count: 127297352,
+        view_count: Some(127297352),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "KhTeiaCezwM",
         title: "[MV] MAMAMOO (마마무) - HIP",
         length: Some(211),
@@ -645,7 +675,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCuhAUMLzJxlP1W7mEk0_6lA",
           name: "MAMAMOO",
           avatar: [
@@ -657,14 +687,16 @@ VideoDetails(
           ],
           verification: artist,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("2 years ago"),
-        view_count: 357346135,
+        view_count: Some(357346135),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "XJDPzNzQ3RE",
         title: "Run BTS! 2022 Special Episode - Fly BTS Fly Part 1",
         length: Some(2070),
@@ -680,7 +712,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCLkAepWjdylmXSltofFvsYQ",
           name: "BANGTANTV",
           avatar: [
@@ -692,14 +724,16 @@ VideoDetails(
           ],
           verification: artist,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("2 hours ago"),
-        view_count: 748983,
+        view_count: Some(748983),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "0lXwMdnpoFQ",
         title: "aespa 에스파 \'도깨비불 (Illusion)\' Dance Practice",
         length: Some(210),
@@ -715,7 +749,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UC473RoZQE2gtgZJ61ZW0ZDQ",
           name: "SMP FLOOR",
           avatar: [
@@ -727,14 +761,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("3 months ago"),
-        view_count: 12347702,
+        view_count: Some(12347702),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "IHNzOHi8sJs",
         title: "BLACKPINK - ‘뚜두뚜두 (DDU-DU DDU-DU)’ M/V",
         length: Some(216),
@@ -750,7 +786,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCOmHUn--16B90oW2L6FRR3A",
           name: "BLACKPINK",
           avatar: [
@@ -762,27 +798,29 @@ VideoDetails(
           ],
           verification: artist,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("4 years ago"),
-        view_count: 1964840790,
+        view_count: Some(1964840790),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
     ],
     ctoken: Some("CBQSExILWmVlcnJudUxpNUXAAQHIAQEYACqiDDJzNkw2d3lTQ1FxUENRb0Q4ajRBQ2czQ1Bnb0l1UFdDZ09mWDFmdFlDZ1B5UGdBS0RzSS1Dd2pPcjZhVTlMN2ttdUVCQ2dQeVBnQUtFdEktRHdvTlVrUmFaV1Z5Y201MVRHazFSUW9EOGo0QUNnN0NQZ3NJLU1xaTZ1MlZ3NC01QVFvRDhqNEFDZzNDUGdvSXNZamU0NGJFeGFKUkNnUHlQZ0FLRGNJLUNnaXF4bzYxd01DQ3d6WUtBX0ktQUFvT3dqNExDTmVSckxfYzNNaTEzd0VLQV9JLUFBb053ajRLQ051Ym1ZdVYwb0RuQ0FvRDhqNEFDZzNDUGdvSTE2YTg4NTI1OXNsUkNnUHlQZ0FLRGNJLUNnamJqcXVGb2V1YjB3Z0tBX0ktQUFvTndqNEtDTW4xbEkzbHUtaW1mQW9EOGo0QUNnM0NQZ29JdXFpZTZ0SzRrZUZqQ2dQeVBnQUtEY0ktQ2dqUGdaejB2OC1sNkhRS0FfSS1BQW9Pd2o0TENQMjE4SW53dHJXVnR3RUtBX0ktQUFvT3dqNExDTXVLdF9DUDllR21nUUVLQV9JLUFBb053ajRLQ0szRXN0V3YwTC1iVWdvRDhqNEFDZzNDUGdvSWc1NzdoSnJSdDRvcUNnUHlQZ0FLRGNJLUNnaVJ1c1BtemZtenlGd0tBX0ktQUFvT3dqNExDTlRBcHMtZGh2eXEwZ0VLQV9JLUFBb053ajRLQ0p2aDhzV0g1OXk1SUFvRDhqNEFDaF9TUGh3S0dsSkVRVTk2ZFZaM1JWbDNZMUZFTkhWMmNHZEJUbU5JU0ZWM0NoX1NQaHdLR2xKRVFVOWZjQzFWYmpCSGVUbHVXRlZ0Wm1kaE0xTlNYMXAzQ2hfU1Bod0tHbEpFUVU5cFEwaENhR3R1VTBSd09HcFZWekJPUzFoWU9FMVJDaF9TUGh3S0dsSkVRVTlYWjBsd1lVbDZha1p6UVhkeE5GOXhWR2hyTlROQkNoX1NQaHdLR2xKRVFVOXFNVkpuZEhkZmVtZHJibWxSWkdkTU5XTnlVRmxCQ2hfU1Bod0tHbEpFUVU4NWExbHRhMU5KVG5CVGFYVldTalEzUjNkT1RWSm5DaF9TUGh3S0dsSkVRVTlGYjNOTlVtbHlhM1ZKTjNvNE1tSmZia0oyUjNoQkNoX1NQaHdLR2xKRVFVOW1PRlExTURaUVZGcFVWRmxDWm01RVRVNURiR0ZSQ2hfU1Bod0tHbEpFUVU5UllqSlhRWGxLYTBwMlRURmhaMGRYZEhkRkxVOUJDaF9TUGh3S0dsSkVRVTlNWDFGNk1scFJRbUZNUkROTFExTnFWalpYZG5wM0NoX1NQaHdLR2xKRVFVOXpjeTFGWVdSRFpHZzBUVmxYV0hsMGFtWkpabFYzQ2hfU1Bod0tHbEpFUVU4MVRraFVXblJGV0ROSGJIWlhRMjgyYTJOdGFrdDNDaF9TUGh3S0dsSkVRVTlMWDBjMVRVZzFaM0ZJUTNRd1VXdENZVlZJTjJwUkNoX1NQaHdLR2xKRVFVOVpUWEZhWlV4U1RXMXhaRW8zZGs5b09UQXRhME5CQ2hfU1Bod0tHbEpFUVU4eVNGbEJhMFpIYzBGSmFWVmthRE5NVUhGRE5UZG5FaFVBQWdRR0NBb01EaEFTRkJZWUdod2VJQ0lrSmlnYUJBZ0FFQUVhQkFnQ0VBTWFCQWdFRUFVYUJBZ0dFQWNhQkFnSUVBa2FCQWdLRUFzYUJBZ01FQTBhQkFnT0VBOGFCQWdRRUJFYUJBZ1NFQk1hQkFnVUVCVWFCQWdXRUJjYUJBZ1lFQmthQkFnYUVCc2FCQWdjRUIwYUJBZ2VFQjhhQkFnZ0VDRWFCQWdpRUNNYUJBZ2tFQ1VhQkFnbUVDY2FCQWdvRUNrYUJBZ29FQ29hQkFnb0VDc2FCQWdvRUN3YUJBZ29FQzBhQkFnb0VDNGFCQWdvRUM4YUJBZ29FREFhQkFnb0VERWFCQWdvRURJYUJBZ29FRE1hQkFnb0VEUWFCQWdvRURVYUJBZ29FRFlhQkFnb0VEY3FGUUFDQkFZSUNnd09FQklVRmhnYUhCNGdJaVFtS0FqD3dhdGNoLW5leHQtZmVlZA%3D%3D"),
-    endpoint: browse,
+    endpoint: next,
   ),
   top_comments: Paginator(
     count: Some(705000),
     items: [],
     ctoken: Some("Eg0SC1plZXJybnVMaTVFGAYyJSIRIgtaZWVycm51TGk1RTAAeAJCEGNvbW1lbnRzLXNlY3Rpb24%3D"),
-    endpoint: browse,
+    endpoint: next,
   ),
   latest_comments: Paginator(
     count: Some(705000),
     items: [],
     ctoken: Some("Eg0SC1plZXJybnVMaTVFGAYyOCIRIgtaZWVycm51TGk1RTABeAIwAUIhZW5nYWdlbWVudC1wYW5lbC1jb21tZW50cy1zZWN0aW9u"),
-    endpoint: browse,
+    endpoint: next,
   ),
 )

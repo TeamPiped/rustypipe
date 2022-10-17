@@ -10,9 +10,10 @@ use crate::serializer::{
     MapResult, VecLogError,
 };
 
+use super::YouTubeListItem;
 use super::{
     url_endpoint::BrowseEndpoint, ContinuationEndpoint, ContinuationItemRenderer, Icon,
-    MusicContinuation, Thumbnails, VideoListItem, VideoOwner,
+    MusicContinuation, Thumbnails, VideoOwner,
 };
 
 /*
@@ -282,7 +283,7 @@ pub struct RecommendationResultsWrap {
 pub struct RecommendationResults {
     /// Can be `None` for age-restricted videos
     #[serde_as(as = "Option<VecLogError<_>>")]
-    pub results: Option<MapResult<Vec<VideoListItem>>>,
+    pub results: Option<MapResult<Vec<YouTubeListItem>>>,
     #[serde_as(as = "Option<VecSkipError<_>>")]
     pub continuations: Option<Vec<MusicContinuation>>,
 }
@@ -414,36 +415,6 @@ pub struct CommentItemSectionHeaderMenuRenderer {
 pub struct CommentItemSectionHeaderMenuItem {
     /// Continuation token for fetching comments
     pub service_endpoint: ContinuationEndpoint,
-}
-
-/*
-#RECOMMENDATIONS CONTINUATION
-*/
-
-/// Video recommendations continuation response
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct VideoRecommendations {
-    #[serde(default)]
-    #[serde_as(as = "VecSkipError<_>")]
-    pub on_response_received_endpoints: Vec<RecommendationsContItem>,
-}
-
-/// Video recommendations continuation
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct RecommendationsContItem {
-    pub append_continuation_items_action: AppendRecommendations,
-}
-
-/// Video recommendations continuation
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct AppendRecommendations {
-    #[serde_as(as = "VecLogError<_>")]
-    pub continuation_items: MapResult<Vec<VideoListItem>>,
 }
 
 /*

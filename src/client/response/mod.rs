@@ -19,7 +19,6 @@ pub use trends::Trending;
 pub use url_endpoint::ResolvedUrl;
 pub use video_details::VideoComments;
 pub use video_details::VideoDetails;
-pub use video_details::VideoRecommendations;
 pub use video_item::YouTubeListItem;
 pub use video_item::YouTubeListMapper;
 
@@ -497,9 +496,12 @@ pub struct Continuation {
     /// Number of search results
     #[serde_as(as = "Option<JsonString>")]
     pub estimated_results: Option<u64>,
-    #[serde(alias = "onResponseReceivedCommands")]
-    #[serde_as(as = "VecSkipError<_>")]
-    pub on_response_received_actions: Vec<ContinuationActionWrap>,
+    #[serde(
+        alias = "onResponseReceivedCommands",
+        alias = "onResponseReceivedEndpoints"
+    )]
+    #[serde_as(as = "Option<VecSkipError<_>>")]
+    pub on_response_received_actions: Option<Vec<ContinuationActionWrap>>,
 }
 
 #[derive(Debug, Deserialize)]

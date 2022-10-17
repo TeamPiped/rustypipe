@@ -46,12 +46,12 @@ VideoDetails(
     count: None,
     items: [],
     ctoken: Some("Eg0SC0hSS3UwY3Zycl9vGAYyJSIRIgtIUkt1MGN2cnJfbzABeAJCEGNvbW1lbnRzLXNlY3Rpb24%3D"),
-    endpoint: browse,
+    endpoint: next,
   ),
   latest_comments: Paginator(
     count: None,
     items: [],
     ctoken: Some("Eg0SC0hSS3UwY3Zycl9vGAYyOCIRIgtIUkt1MGN2cnJfbzABeAIwAUIhZW5nYWdlbWVudC1wYW5lbC1jb21tZW50cy1zZWN0aW9u"),
-    endpoint: browse,
+    endpoint: next,
   ),
 )

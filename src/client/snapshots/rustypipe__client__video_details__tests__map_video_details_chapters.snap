@@ -519,7 +519,7 @@ VideoDetails(
   recommended: Paginator(
     count: None,
     items: [
-      RecommendedVideo(
+      VideoItem(
         id: "AOdp09SYhCc",
         title: "This Is So Embarrassing!",
         length: Some(1063),
@@ -535,7 +535,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCXuqSBlHAE6Xw-yeJA0Tunw",
           name: "Linus Tech Tips",
           avatar: [
@@ -547,14 +547,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("2 days ago"),
-        view_count: 1862544,
+        view_count: Some(1862544),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "CY3OQh-7wIk",
         title: "The Computer I Would Actually BUY",
         length: Some(6478),
@@ -570,7 +572,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCXuqSBlHAE6Xw-yeJA0Tunw",
           name: "Linus Tech Tips",
           avatar: [
@@ -582,14 +584,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("Streamed 8 days ago"),
-        view_count: 946996,
+        view_count: Some(946996),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "LQ95XJAwaoc",
         title: "My favorite car (sucks)",
         length: Some(1162),
@@ -605,7 +609,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCdBK94H6oZT2Q7l0-b0xmMg",
           name: "ShortCircuit",
           avatar: [
@@ -617,14 +621,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("1 day ago"),
-        view_count: 349251,
+        view_count: Some(349251),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "mhMQeJ5Qmp0",
         title: "The Apple Newton MessagePad.",
         length: Some(758),
@@ -640,7 +646,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UC7Jwj9fkrf1adN4fMmTkpug",
           name: "DankPods",
           avatar: [
@@ -652,14 +658,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("1 day ago"),
-        view_count: 375458,
+        view_count: Some(375458),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "1ctXiZsN6ac",
         title: "The Reviewer Got Reviewed  - WAN Show September 9, 2022",
         length: Some(10265),
@@ -675,7 +683,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCXuqSBlHAE6Xw-yeJA0Tunw",
           name: "Linus Tech Tips",
           avatar: [
@@ -687,14 +695,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("Streamed 6 days ago"),
-        view_count: 734463,
+        view_count: Some(734463),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "CMR9z9Xr8GM",
         title: "Storing Solar Power on my ROOF!!!",
         length: Some(1028),
@@ -710,7 +720,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCKd49wwdEdIoM-7Fumhwmog",
           name: "Quint BUILDs",
           avatar: [
@@ -722,14 +732,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("11 months ago"),
-        view_count: 2773698,
+        view_count: Some(2773698),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "fT2KhJ8W-Kg",
         title: "How gas pumps know when to turn themselves off",
         length: Some(836),
@@ -745,7 +757,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCEIwxahdLz7bap-VDs9h35A",
           name: "Steve Mould",
           avatar: [
@@ -757,14 +769,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("8 hours ago"),
-        view_count: 219605,
+        view_count: Some(219605),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "12Hcbx33Rb4",
         title: "BREAKING NEWS! - EVGA will no longer do business with NVIDIA",
         length: Some(1262),
@@ -780,7 +794,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCkWQ0gDrqOCarmUKmppD7GQ",
           name: "JayzTwoCents",
           avatar: [
@@ -792,14 +806,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("4 hours ago"),
-        view_count: 145345,
+        view_count: Some(145345),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "QW1SsqmaIuE",
         title: "I Surprised My Subscriber with his Dream Gaming Setup! - Season 8",
         length: Some(2177),
@@ -815,7 +831,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UChIZGfcnjHI0DG4nweWEduw",
           name: "TechSource",
           avatar: [
@@ -827,14 +843,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("6 hours ago"),
-        view_count: 50033,
+        view_count: Some(50033),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "JAcSNL1T3OA",
         title: "Why Did I Drill 1756 Holes in This?",
         length: Some(1293),
@@ -850,7 +868,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCVveEFTOd6khhSXXnRhxJmg",
           name: "Fireball Tool",
           avatar: [
@@ -862,14 +880,16 @@ VideoDetails(
           ],
           verification: none,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("1 month ago"),
-        view_count: 1163652,
+        view_count: Some(1163652),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "ZVtOss1U7_s",
         title: "VW Beetle converted to electric in a day",
         length: Some(826),
@@ -885,7 +905,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCq1Oqk1I7zeYlDiJTFWLoFA",
           name: "Electric Classic Cars",
           avatar: [
@@ -897,14 +917,16 @@ VideoDetails(
           ],
           verification: none,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("1 year ago"),
-        view_count: 3266169,
+        view_count: Some(3266169),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "2kJDTzFtUr4",
         title: "How ASML, TSMC And Intel Dominate The Chip Market | CNBC Marathon",
         length: Some(3399),
@@ -920,7 +942,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCvJJ_dzjViJCoLf5uKUTwoA",
           name: "CNBC",
           avatar: [
@@ -932,14 +954,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("2 weeks ago"),
-        view_count: 678935,
+        view_count: Some(678935),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "0rCbfsuKdYw",
         title: "I bought every Playstation Ever.",
         length: Some(1046),
@@ -955,7 +979,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCMiJRAwDNSNzuYeN2uWa0pA",
           name: "Mrwhosetheboss",
           avatar: [
@@ -967,14 +991,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("3 weeks ago"),
-        view_count: 7569956,
+        view_count: Some(7569956),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "sbdU7AkH6QM",
         title: "Reviewing Free Energy Generators.  A Response to My Video \"Nikola Tesla\'s Greatest Invention\"- 102",
         length: Some(1387),
@@ -990,7 +1016,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UC_SLthyNX_ivd-dmsFgmJVg",
           name: "Jeremy Fielding",
           avatar: [
@@ -1002,14 +1028,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("5 months ago"),
-        view_count: 3374461,
+        view_count: Some(3374461),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "zcchDu7KoYs",
         title: "AMD’s Victory Lap - HOLY $H!T Threadripper Pro 5995WX",
         length: Some(872),
@@ -1025,7 +1053,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCXuqSBlHAE6Xw-yeJA0Tunw",
           name: "Linus Tech Tips",
           avatar: [
@@ -1037,14 +1065,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("5 days ago"),
-        view_count: 1322625,
+        view_count: Some(1322625),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "pd6DsSjqhFE",
         title: "Top Gear Satisfaction Survey Compilation",
         length: Some(986),
@@ -1060,7 +1090,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCupQghOyPai8Hxg4RqMERvA",
           name: "incT",
           avatar: [
@@ -1072,14 +1102,16 @@ VideoDetails(
           ],
           verification: none,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("3 weeks ago"),
-        view_count: 255945,
+        view_count: Some(255945),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "2K5Gqp1cEcM",
         title: "Why our Screwdriver took 3 YEARS",
         length: Some(1752),
@@ -1095,7 +1127,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCXuqSBlHAE6Xw-yeJA0Tunw",
           name: "Linus Tech Tips",
           avatar: [
@@ -1107,14 +1139,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("2 weeks ago"),
-        view_count: 2930532,
+        view_count: Some(2930532),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "t03rmc-prJo",
         title: "This PC took 600 HOURS to Build!",
         length: Some(1505),
@@ -1130,7 +1164,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCXuqSBlHAE6Xw-yeJA0Tunw",
           name: "Linus Tech Tips",
           avatar: [
@@ -1142,14 +1176,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("12 days ago"),
-        view_count: 2743664,
+        view_count: Some(2743664),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "QTH9m6MDIfc",
         title: "One Year Ago I Built an Ecosystem, This Happened",
         length: Some(485),
@@ -1165,7 +1201,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCYmna5rFHIesFteksAvFOfg",
           name: "Dr. Plants",
           avatar: [
@@ -1177,27 +1213,29 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("3 weeks ago"),
-        view_count: 7958495,
+        view_count: Some(7958495),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
     ],
     ctoken: Some("CBQSExILbkZEQnhCVWZFNzTAAQHIAQEYACqkBjJzNkw2d3pVQkFyUkJBb0Q4ajRBQ2d6Q1Bna0lwNGppcEwyNjJuTUtBX0ktQUFvTndqNEtDSW1CN18yaHlQUEdDUW9EOGo0QUNnM0NQZ29JaDlYQmdjbXIzb2N0Q2dQeVBnQUtEc0ktQ3dpZHRjTHlpWV9FaVpvQkNnUHlQZ0FLRHNJLUN3aW4wN2ZZbWZIVjVkVUJDZ1B5UGdBS0RjSS1DZ2pqNEstdl9ibWY0Z2dLQV9JLUFBb053ajRLQ0tqeDJfakowT0tlZlFvRDhqNEFDZzdDUGdzSXZvdmQ3X0dOOTdEWEFRb0Q4ajRBQ2czQ1Bnb0k0Y1hvektyVzFMWkJDZ1B5UGdBS0RjSS1DZ2pndWNfcXk4YkVneVFLQV9JLUFBb053ajRLQ1B2ZjAtcXMxdE90WlFvRDhqNEFDaUhTUGg0S0hGSkVRMDFWUTFoMWNWTkNiRWhCUlRaWWR5MTVaVXBCTUZSMWJuY0tBX0ktQUFvT3dqNExDTDZsdFl2ejZaQ2gyZ0VLQV9JLUFBb093ajRMQ0l6cnFkenM3NmJZMGdFS0FfSS1BQW9Pd2o0TENJUFNuOGpBbmRYYnNRRUtBX0ktQUFvT3dqNExDSXZEcXZidW9jamp6UUVLQV9JLUFBb093ajRMQ05HSXFzZVM5cUR2cFFFS0FfSS1BQW9Pd2o0TENNT2o4T3FwMVpIWDJBRUtBX0ktQUFvT3dqNExDSnJacHYyYzhfcW10d0VLQV9JLUFBb053ajRLQ1BmRGpKaTZzXy1ZUVJJVUFBSUVCZ2dLREE0UUVoUVdHQm9jSGlBaUpDWWFCQWdBRUFFYUJBZ0NFQU1hQkFnRUVBVWFCQWdHRUFjYUJBZ0lFQWthQkFnS0VBc2FCQWdNRUEwYUJBZ09FQThhQkFnUUVCRWFCQWdTRUJNYUJBZ1VFQlVhQkFnV0VCY2FCQWdZRUJrYUJBZ2FFQnNhQkFnY0VCMGFCQWdlRUI4YUJBZ2dFQ0VhQkFnaUVDTWFCQWdrRUNVYUJBZ21FQ2NxRkFBQ0JBWUlDZ3dPRUJJVUZoZ2FIQjRnSWlRbWoPd2F0Y2gtbmV4dC1mZWVk"),
-    endpoint: browse,
+    endpoint: next,
   ),
   top_comments: Paginator(
     count: Some(2900),
     items: [],
     ctoken: Some("Eg0SC25GREJ4QlVmRTc0GAYyJSIRIgtuRkRCeEJVZkU3NDAAeAJCEGNvbW1lbnRzLXNlY3Rpb24%3D"),
-    endpoint: browse,
+    endpoint: next,
   ),
   latest_comments: Paginator(
     count: Some(2900),
     items: [],
     ctoken: Some("Eg0SC25GREJ4QlVmRTc0GAYyOCIRIgtuRkRCeEJVZkU3NDABeAIwAUIhZW5nYWdlbWVudC1wYW5lbC1jb21tZW50cy1zZWN0aW9u"),
-    endpoint: browse,
+    endpoint: next,
   ),
 )

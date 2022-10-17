@@ -84,6 +84,7 @@ pub struct VideoRenderer {
     pub title: String,
     #[serde(rename = "shortBylineText")]
     pub channel: Option<TextComponent>,
+    pub channel_thumbnail: Option<Thumbnails>,
     pub channel_thumbnail_supported_renderers: Option<ChannelThumbnailSupportedRenderers>,
     #[serde_as(as = "Option<Text>")]
     pub published_time_text: Option<String>,
@@ -221,8 +222,10 @@ impl<T> YouTubeListMapper<T> {
                     name: c.name,
                     avatar: video
                         .channel_thumbnail_supported_renderers
-                        .map(|tn| tn.channel_thumbnail_with_link_renderer.thumbnail.into())
-                        .unwrap_or_default(),
+                        .map(|tn| tn.channel_thumbnail_with_link_renderer.thumbnail)
+                        .or(video.channel_thumbnail)
+                        .unwrap_or_default()
+                        .into(),
                     verification: video.owner_badges.into(),
                     subscriber_count: None,
                 })

@@ -51,7 +51,7 @@ VideoDetails(
   recommended: Paginator(
     count: None,
     items: [
-      RecommendedVideo(
+      VideoItem(
         id: "-YpwsdRKt8Q",
         title: "SpiegelMining – Reverse Engineering von Spiegel-Online (33c3)",
         length: Some(3526),
@@ -67,7 +67,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UC2TXq_t06Hjdr2g_KdKpHQg",
           name: "media.ccc.de",
           avatar: [
@@ -79,14 +79,16 @@ VideoDetails(
           ],
           verification: none,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("5 years ago"),
-        view_count: 2749364,
+        view_count: Some(2749364),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "4z3mu63yxII",
         title: "Gregor Gysi & Martin Sonneborn",
         length: Some(5272),
@@ -102,7 +104,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCBWSgdr27NcLig0XzWLq2gQ",
           name: "MISS-VERSTEHEN SIE MICH RICHTIG",
           avatar: [
@@ -114,14 +116,16 @@ VideoDetails(
           ],
           verification: none,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("2 years ago"),
-        view_count: 2266658,
+        view_count: Some(2266658),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "WhgRRpA3b2c",
         title: "36C3 -  Verkehrswende selber hacken",
         length: Some(3176),
@@ -137,7 +141,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UC2TXq_t06Hjdr2g_KdKpHQg",
           name: "media.ccc.de",
           avatar: [
@@ -149,14 +153,16 @@ VideoDetails(
           ],
           verification: none,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("2 years ago"),
-        view_count: 260941,
+        view_count: Some(260941),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "5qNHtdN07FM",
         title: "GPN16: Wie baut man eigentlich Raumschiffe (urs)",
         length: Some(5172),
@@ -172,7 +178,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UC2TXq_t06Hjdr2g_KdKpHQg",
           name: "media.ccc.de",
           avatar: [
@@ -184,14 +190,16 @@ VideoDetails(
           ],
           verification: none,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("6 years ago"),
-        view_count: 1229987,
+        view_count: Some(1229987),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "7FeqF1-Z1g0",
         title: "David Kriesel: Traue keinem Scan, den du nicht selbst gefälscht hast",
         length: Some(3820),
@@ -207,7 +215,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UC2TXq_t06Hjdr2g_KdKpHQg",
           name: "media.ccc.de",
           avatar: [
@@ -219,14 +227,16 @@ VideoDetails(
           ],
           verification: none,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("7 years ago"),
-        view_count: 6095028,
+        view_count: Some(6095028),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "1vcP9UWrWBI",
         title: "Easterhegg 2019 - Kernreaktoren",
         length: Some(7263),
@@ -242,7 +252,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UC2TXq_t06Hjdr2g_KdKpHQg",
           name: "media.ccc.de",
           avatar: [
@@ -254,14 +264,16 @@ VideoDetails(
           ],
           verification: none,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("3 years ago"),
-        view_count: 46470,
+        view_count: Some(46470),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "jnp1veXQf7U",
         title: "Blockchain - Ein außer Kontrolle geratenes Laborexperiment? #GPN19",
         length: Some(3362),
@@ -277,7 +289,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UC2TXq_t06Hjdr2g_KdKpHQg",
           name: "media.ccc.de",
           avatar: [
@@ -289,14 +301,16 @@ VideoDetails(
           ],
           verification: none,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("3 years ago"),
-        view_count: 25136,
+        view_count: Some(25136),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "77OlKRkaixo",
         title: "leyrer, MacLemon: E-Mail. Hässlich, aber es funktioniert #eh16",
         length: Some(6998),
@@ -312,7 +326,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UC2TXq_t06Hjdr2g_KdKpHQg",
           name: "media.ccc.de",
           avatar: [
@@ -324,14 +338,16 @@ VideoDetails(
           ],
           verification: none,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("6 years ago"),
-        view_count: 44410,
+        view_count: Some(44410),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "u29--YNGMyg",
         title: "Physikalisches Kolloquium 22. Juli 2011 - Vortrag von Prof. Dr. Harald Lesch",
         length: Some(6715),
@@ -347,7 +363,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCvZLsBb-8Og4FvBUom9zPHQ",
           name: "Universität Bayreuth",
           avatar: [
@@ -359,14 +375,16 @@ VideoDetails(
           ],
           verification: none,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("11 years ago"),
-        view_count: 4184357,
+        view_count: Some(4184357),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "urt2_ACal9A",
         title: "CCC-Jahresrückblick 2016 (33c3)",
         length: Some(8170),
@@ -382,7 +400,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UC2TXq_t06Hjdr2g_KdKpHQg",
           name: "media.ccc.de",
           avatar: [
@@ -394,14 +412,16 @@ VideoDetails(
           ],
           verification: none,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("5 years ago"),
-        view_count: 36111,
+        view_count: Some(36111),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "PnBs9oH2Lx8",
         title: "Easterhegg 2019 - Wie ich die Regierung gehackt habe",
         length: Some(3147),
@@ -417,7 +437,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UC2TXq_t06Hjdr2g_KdKpHQg",
           name: "media.ccc.de",
           avatar: [
@@ -429,14 +449,16 @@ VideoDetails(
           ],
           verification: none,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("3 years ago"),
-        view_count: 20322,
+        view_count: Some(20322),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "yaCiVvBD-xc",
         title: "Mathias Dalheimer: Wie man einen Blackout verursacht",
         length: Some(3748),
@@ -452,7 +474,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UC2TXq_t06Hjdr2g_KdKpHQg",
           name: "media.ccc.de",
           avatar: [
@@ -464,14 +486,16 @@ VideoDetails(
           ],
           verification: none,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("6 years ago"),
-        view_count: 482258,
+        view_count: Some(482258),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "1PJnEwoFSXo",
         title: "Das Geheimnis der Hieroglyphen | Doku HD | ARTE",
         length: Some(5541),
@@ -487,7 +511,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCLLibJTCy3sXjHLVaDimnpQ",
           name: "ARTEde",
           avatar: [
@@ -499,14 +523,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("12 days ago"),
-        view_count: 427756,
+        view_count: Some(427756),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "iIDZ8pJKLZA",
         title: "36C3 ChaosWest:  Bahn API Chaos",
         length: Some(3056),
@@ -522,7 +548,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UC2TXq_t06Hjdr2g_KdKpHQg",
           name: "media.ccc.de",
           avatar: [
@@ -534,14 +560,16 @@ VideoDetails(
           ],
           verification: none,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("2 years ago"),
-        view_count: 26926,
+        view_count: Some(26926),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "PhUQN6fd5O4",
         title: "35C3 -  Jahresrückblick des CCC 2018",
         length: Some(8102),
@@ -557,7 +585,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UC2TXq_t06Hjdr2g_KdKpHQg",
           name: "media.ccc.de",
           avatar: [
@@ -569,14 +597,16 @@ VideoDetails(
           ],
           verification: none,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("3 years ago"),
-        view_count: 126093,
+        view_count: Some(126093),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "bzr0c8qzQoc",
         title: "GPN19 - Beton",
         length: Some(3972),
@@ -592,7 +622,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UC2TXq_t06Hjdr2g_KdKpHQg",
           name: "media.ccc.de",
           avatar: [
@@ -604,14 +634,16 @@ VideoDetails(
           ],
           verification: none,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("3 years ago"),
-        view_count: 13243,
+        view_count: Some(13243),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "IeX1F-Jjq9E",
         title: "Lars “Pylon” Weiler (DC4LW): Weltraumkommunikation",
         length: Some(5075),
@@ -627,7 +659,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UC2TXq_t06Hjdr2g_KdKpHQg",
           name: "media.ccc.de",
           avatar: [
@@ -639,14 +671,16 @@ VideoDetails(
           ],
           verification: none,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("6 years ago"),
-        view_count: 80624,
+        view_count: Some(80624),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "gsnL4m57MCM",
         title: "David Kriesel: SpiegelMining – Reverse Engineering von Spiegel-Online",
         length: Some(3526),
@@ -662,7 +696,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCeO-zvUfuEdPMDoNST6hy1A",
           name: "Killuminati ∆",
           avatar: [
@@ -674,14 +708,16 @@ VideoDetails(
           ],
           verification: none,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("5 years ago"),
-        view_count: 29009,
+        view_count: Some(29009),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "uEEHq6f8RsM",
         title: "Leyrer: Moderne Linux Kommandozeilenwerkzeuge - Edition \"Allein zu Haus\"",
         length: Some(3716),
@@ -697,7 +733,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UC2TXq_t06Hjdr2g_KdKpHQg",
           name: "media.ccc.de",
           avatar: [
@@ -709,27 +745,29 @@ VideoDetails(
           ],
           verification: none,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("3 months ago"),
-        view_count: 67538,
+        view_count: Some(67538),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
     ],
     ctoken: Some("CBQSExILMHJiOUNmT3ZvamvAAQHIAQEYACqrBjJzNkw2d3paQkFyV0JBb0Q4ajRBQ2c3Q1Bnc0l4Ty1xb3AyV25NWDVBUW9EOGo0QUNnN0NQZ3NJZ29uTDc3clgtWjdqQVFvRDhqNEFDZzNDUGdvSTU5N2RnZW1vaEl4YUNnUHlQZ0FLSWRJLUhnb2NVa1JEVFZWRE1sUlljVjkwTURaSWFtUnlNbWRmUzJSTGNFaFJad29EOGo0QUNnN0NQZ3NJMDlqVG05MzIwZEhtQVFvRDhqNEFDZzdDUGdzSWphem5fUFhDNnF2c0FRb0Q4ajRBQ2c3Q1Bnc0lrckN0cmRULXdfdldBUW9EOGo0QUNnN0NQZ3NJdGZfQnJ0NjNuYjJPQVFvRDhqNEFDZzdDUGdzSW1wYnF5SkdsNmRudkFRb0Q4ajRBQ2c3Q1Bnc0lxT2FZbXBqZjM3ZTdBUW9EOGo0QUNnN0NQZ3NJMEtfcWhNRGYzZDI2QVFvRDhqNEFDZzNDUGdvSW45N1lqLWllbTdnLUNnUHlQZ0FLRHNJLUN3aVg5by1DNzhxbzBNa0JDZ1B5UGdBS0RzSS1Dd2o2a3BYUXNPS1otZFFCQ2dQeVBnQUtEc0ktQ3dpUTI2aVNxYjYyd0lnQkNnUHlQZ0FLRGNJLUNnanV5ZmUtLW9iRWlqNEtBX0ktQUFvTndqNEtDSWVGemRXOGpyMmRid29EOGo0QUNnM0NQZ29JMGRlT2tfNmlfZkloQ2dQeVBnQUtEc0ktQ3dpajRPenpwdnp5NUlJQkNnUHlQZ0FLRHNJLUN3akRqZkdfdXZYQm9MZ0JFaFFBQWdRR0NBb01EaEFTRkJZWUdod2VJQ0lrSmhvRUNBQVFBUm9FQ0FJUUF4b0VDQVFRQlJvRUNBWVFCeG9FQ0FnUUNSb0VDQW9RQ3hvRUNBd1FEUm9FQ0E0UUR4b0VDQkFRRVJvRUNCSVFFeG9FQ0JRUUZSb0VDQllRRnhvRUNCZ1FHUm9FQ0JvUUd4b0VDQndRSFJvRUNCNFFIeG9FQ0NBUUlSb0VDQ0lRSXhvRUNDUVFKUm9FQ0NZUUp5b1VBQUlFQmdnS0RBNFFFaFFXR0JvY0hpQWlKQ1lqD3dhdGNoLW5leHQtZmVlZA%3D%3D"),
-    endpoint: browse,
+    endpoint: next,
   ),
   top_comments: Paginator(
     count: Some(2200),
     items: [],
     ctoken: Some("Eg0SCzByYjlDZk92b2prGAYyJSIRIgswcmI5Q2ZPdm9qazAAeAJCEGNvbW1lbnRzLXNlY3Rpb24%3D"),
-    endpoint: browse,
+    endpoint: next,
   ),
   latest_comments: Paginator(
     count: Some(2200),
     items: [],
     ctoken: Some("Eg0SCzByYjlDZk92b2prGAYyOCIRIgswcmI5Q2ZPdm9qazABeAIwAUIhZW5nYWdlbWVudC1wYW5lbC1jb21tZW50cy1zZWN0aW9u"),
-    endpoint: browse,
+    endpoint: next,
   ),
 )

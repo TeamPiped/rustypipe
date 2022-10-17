@@ -1,7 +1,5 @@
 use crate::error::{Error, ExtractionError};
-use crate::model::{
-    Comment, ContinuationEndpoint, Paginator, PlaylistVideo, RecommendedVideo, YouTubeItem,
-};
+use crate::model::{Comment, ContinuationEndpoint, Paginator, PlaylistVideo, YouTubeItem};
 use crate::serializer::MapResult;
 use crate::util::TryRemove;
 
@@ -52,7 +50,9 @@ impl<T: TryFrom<YouTubeItem>> MapResponse<Paginator<T>> for response::Continuati
         lang: crate::param::Language,
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
     ) -> Result<MapResult<Paginator<T>>, ExtractionError> {
-        let mut actions = self.on_response_received_actions;
+        let mut actions = self
+            .on_response_received_actions
+            .ok_or(ExtractionError::Retry)?;
         let items = some_or_bail!(
             actions.try_swap_remove(0),
             Err(ExtractionError::InvalidData(
@@ -137,9 +137,7 @@ macro_rules! paginator {
 }
 
 paginator!(Comment, RustyPipeQuery::video_comments);
-
 paginator!(PlaylistVideo, RustyPipeQuery::playlist_continuation);
-paginator!(RecommendedVideo, RustyPipeQuery::video_recommendations);
 
 impl<T: TryFrom<YouTubeItem>> Paginator<T> {
     pub async fn next(&self, query: RustyPipeQuery) -> Result<Option<Self>, Error> {
@@ -205,6 +203,7 @@ mod tests {
 
     use crate::{
         client::{response, MapResponse},
+        error::ExtractionError,
         model::{Paginator, PlaylistItem, YouTubeItem},
         param::Language,
         serializer::MapResult,
@@ -213,6 +212,7 @@ mod tests {
     #[rstest]
     #[case("search", "search/cont")]
     #[case("startpage", "trends/startpage_cont")]
+    #[case("recommendations", "video_details/recommendations")]
     fn map_continuation_items(#[case] name: &str, #[case] path: &str) {
         let filename = format!("testfiles/{}.json", path);
         let json_path = Path::new(&filename);
@@ -228,7 +228,7 @@ mod tests {
             "deserialization/mapping warnings: {:?}",
             map_res.warnings
         );
-        insta::assert_ron_snapshot!(format!("map_cont_{}", name), map_res.c, {
+        insta::assert_ron_snapshot!(format!("map_{}", name), map_res.c, {
             ".items.*.publish_date" => "[date]",
         });
     }
@@ -250,6 +250,21 @@ mod tests {
             "deserialization/mapping warnings: {:?}",
             map_res.warnings
         );
-        insta::assert_ron_snapshot!(format!("map_cont_{}", name), map_res.c);
+        insta::assert_ron_snapshot!(format!("map_{}", name), map_res.c);
+    }
+
+    #[test]
+    fn map_recommendations_empty() {
+        let filename = format!("testfiles/video_details/recommendations_empty.json");
+        let json_path = Path::new(&filename);
+        let json_file = File::open(json_path).unwrap();
+
+        let recommendations: response::Continuation =
+            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let map_res: Result<MapResult<Paginator<YouTubeItem>>, ExtractionError> =
+            recommendations.map_response("", Language::En, None);
+        let err = map_res.unwrap_err();
+
+        assert!(matches!(err, crate::error::ExtractionError::Retry));
     }
 }

@@ -525,7 +525,7 @@ VideoDetails(
   recommended: Paginator(
     count: None,
     items: [
-      RecommendedVideo(
+      VideoItem(
         id: "t03rmc-prJo",
         title: "This PC took 600 HOURS to Build!",
         length: Some(1505),
@@ -541,7 +541,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCXuqSBlHAE6Xw-yeJA0Tunw",
           name: "Linus Tech Tips",
           avatar: [
@@ -553,14 +553,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("1 month ago"),
-        view_count: 3449572,
+        view_count: Some(3449572),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "4ozYlgOuYis",
         title: "They told me I was stupid - heating my pool with computers",
         length: Some(691),
@@ -576,7 +578,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCXuqSBlHAE6Xw-yeJA0Tunw",
           name: "Linus Tech Tips",
           avatar: [
@@ -588,14 +590,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("3 months ago"),
-        view_count: 3209930,
+        view_count: Some(3209930),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "THxkY59_xko",
         title: "Is the fastest GPU ALWAYS the best?",
         length: Some(979),
@@ -611,7 +615,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCXuqSBlHAE6Xw-yeJA0Tunw",
           name: "Linus Tech Tips",
           avatar: [
@@ -623,14 +627,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("6 hours ago"),
-        view_count: 640179,
+        view_count: Some(640179),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "UJ-KZzVUV7U",
         title: "This toaster cost HOW MUCH?? - Revolution InstaGLO R270 Toaster",
         length: Some(880),
@@ -646,7 +652,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCdBK94H6oZT2Q7l0-b0xmMg",
           name: "ShortCircuit",
           avatar: [
@@ -658,14 +664,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("1 month ago"),
-        view_count: 905709,
+        view_count: Some(905709),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "yayAQAC1XiE",
         title: "Intel PLEASE let me Overclock this!",
         length: Some(799),
@@ -681,7 +689,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCXuqSBlHAE6Xw-yeJA0Tunw",
           name: "Linus Tech Tips",
           avatar: [
@@ -693,14 +701,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("7 days ago"),
-        view_count: 998245,
+        view_count: Some(998245),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "y4T374GtKLI",
         title: "When The Grid Goes Down: How To Power Essential Devices (i.e., Refrigerator)",
         length: Some(1239),
@@ -716,7 +726,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCmb2QRAjdnkse21CtxAQ-cA",
           name: "City Prepping",
           avatar: [
@@ -728,14 +738,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("3 weeks ago"),
-        view_count: 132460,
+        view_count: Some(132460),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "b3x28s61q3c",
         title: "The most EXPENSIVE thing I own.",
         length: Some(887),
@@ -751,7 +763,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCXuqSBlHAE6Xw-yeJA0Tunw",
           name: "Linus Tech Tips",
           avatar: [
@@ -763,14 +775,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("1 month ago"),
-        view_count: 2372992,
+        view_count: Some(2372992),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "LQ95XJAwaoc",
         title: "My favorite car (sucks) - Lucid Air GT",
         length: Some(1162),
@@ -786,7 +800,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCdBK94H6oZT2Q7l0-b0xmMg",
           name: "ShortCircuit",
           avatar: [
@@ -798,14 +812,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("3 weeks ago"),
-        view_count: 565416,
+        view_count: Some(565416),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "WVjtK71qqXU",
         title: "I bought a SECOND GPU… but NOT for gaming…",
         length: Some(754),
@@ -821,7 +837,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCXuqSBlHAE6Xw-yeJA0Tunw",
           name: "Linus Tech Tips",
           avatar: [
@@ -833,14 +849,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("1 day ago"),
-        view_count: 1199845,
+        view_count: Some(1199845),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "vtvFVH9JdNI",
         title: "I bought every Nintendo Console EVER.",
         length: Some(1381),
@@ -856,7 +874,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCMiJRAwDNSNzuYeN2uWa0pA",
           name: "Mrwhosetheboss",
           avatar: [
@@ -868,14 +886,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("2 days ago"),
-        view_count: 1379793,
+        view_count: Some(1379793),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "J6Ga4wciA2k",
         title: "THIS Wish.com Gaming PC is WORSE!",
         length: Some(1545),
@@ -891,7 +911,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCXuqSBlHAE6Xw-yeJA0Tunw",
           name: "Linus Tech Tips",
           avatar: [
@@ -903,14 +923,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("2 months ago"),
-        view_count: 2775764,
+        view_count: Some(2775764),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "CsoKWsZ-Tyw",
         title: "The Personal Gaming Theater - HOLY $H!T Samsung Odyssey Ark",
         length: Some(1182),
@@ -926,7 +948,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCXuqSBlHAE6Xw-yeJA0Tunw",
           name: "Linus Tech Tips",
           avatar: [
@@ -938,14 +960,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("1 month ago"),
-        view_count: 2449262,
+        view_count: Some(2449262),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "9T98VsMe3oo",
         title: "How are we going to do this?",
         length: Some(1124),
@@ -961,7 +985,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCXuqSBlHAE6Xw-yeJA0Tunw",
           name: "Linus Tech Tips",
           avatar: [
@@ -973,14 +997,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("1 year ago"),
-        view_count: 4321218,
+        view_count: Some(4321218),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "5Hxr9k5Vdc4",
         title: "Building the $1,000,000 Computer",
         length: Some(1659),
@@ -996,7 +1022,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCXuqSBlHAE6Xw-yeJA0Tunw",
           name: "Linus Tech Tips",
           avatar: [
@@ -1008,14 +1034,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("6 months ago"),
-        view_count: 3270062,
+        view_count: Some(3270062),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "12Hcbx33Rb4",
         title: "BREAKING NEWS! - EVGA will no longer do business with NVIDIA",
         length: Some(1262),
@@ -1031,7 +1059,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCkWQ0gDrqOCarmUKmppD7GQ",
           name: "JayzTwoCents",
           avatar: [
@@ -1043,14 +1071,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("3 weeks ago"),
-        view_count: 1274410,
+        view_count: Some(1274410),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "EHkkwCjQzsc",
         title: "Prepper (2016) | Full Post-Apocalyptic Thriller Movie HD",
         length: Some(5982),
@@ -1066,7 +1096,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCRX7UEyE8kp35mPrgC2sosA",
           name: "JoBlo Movies",
           avatar: [
@@ -1078,14 +1108,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("3 months ago"),
-        view_count: 209854,
+        view_count: Some(209854),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "AOdp09SYhCc",
         title: "This Is So Embarrassing! - Building a PC with My Sister",
         length: Some(1063),
@@ -1101,7 +1133,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCXuqSBlHAE6Xw-yeJA0Tunw",
           name: "Linus Tech Tips",
           avatar: [
@@ -1113,14 +1145,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("3 weeks ago"),
-        view_count: 2453269,
+        view_count: Some(2453269),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "CTIpNtHWVtQ",
         title: "Why Pay $1000 for a 25 year old PC! - NIXSYS Windows 98 PC",
         length: Some(1112),
@@ -1136,7 +1170,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCXuqSBlHAE6Xw-yeJA0Tunw",
           name: "Linus Tech Tips",
           avatar: [
@@ -1148,14 +1182,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("1 month ago"),
-        view_count: 1478434,
+        view_count: Some(1478434),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "3RIp7CwkBeA",
         title: "I Hope You Have a LOT of Money... RTX 4000 Announced",
         length: Some(569),
@@ -1171,7 +1207,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCXuqSBlHAE6Xw-yeJA0Tunw",
           name: "Linus Tech Tips",
           avatar: [
@@ -1183,14 +1219,16 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("2 weeks ago"),
-        view_count: 1816036,
+        view_count: Some(1816036),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      RecommendedVideo(
+      VideoItem(
         id: "HZiaHEmE9PQ",
         title: "Buying a Chromebook was a BIG MISTAKE",
         length: Some(880),
@@ -1206,7 +1244,7 @@ VideoDetails(
             height: 188,
           ),
         ],
-        channel: ChannelTag(
+        channel: Some(ChannelTag(
           id: "UCXuqSBlHAE6Xw-yeJA0Tunw",
           name: "Linus Tech Tips",
           avatar: [
@@ -1218,27 +1256,29 @@ VideoDetails(
           ],
           verification: verified,
           subscriber_count: None,
-        ),
+        )),
         publish_date: "[date]",
         publish_date_txt: Some("9 days ago"),
-        view_count: 1625226,
+        view_count: Some(1625226),
         is_live: false,
         is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
     ],
     ctoken: Some("CBQSExILbkZEQnhCVWZFNzTAAQHIAQEYACqIBjJzNkw2d3lfQkFxOEJBb0Q4ajRBQ2c3Q1Bnc0ltdG1tX1p6ei1xYTNBUW9EOGo0QUNnN0NQZ3NJcThTNW5lQ1N0c2JpQVFvRDhqNEFDZzNDUGdvSXlvel8tN21NbWI1TUNnUHlQZ0FLRGNJLUNnaTFyOUdxODh6aXoxQUtBX0ktQUFvT3dqNExDS0c4MVlXQWlLRFd5UUVLQV9JLUFBb093ajRMQ0xMUnRJMzRfYjNDeXdFS0FfSS1BQW9Od2o0S0NQZlcxdldzM3AyLWJ3b0Q4ajRBQ2czQ1Bnb0loOVhCZ2NtcjNvY3RDZ1B5UGdBS0RjSS1DZ2oxMHFycnU2VzdyRmtLQV9JLUFBb093ajRMQ05McHBmckhxdkh0dmdFS0FfSS1BQW9Od2o0S0NPbUdpTG13M09iUUp3b0Q4ajRBQ2czQ1Bnb0lySjc1czZ6TGd1VUtDZ1B5UGdBS0RzSS1Dd2lLdmZ1WTdJcmZuX1VCQ2dQeVBnQUtEc0ktQ3dqTzY5WHk1UDZhdnVRQkNnUHlQZ0FLRHNJLUN3aS1pOTN2OFkzM3NOY0JDZ1B5UGdBS0RjSS1DZ2pIbmNQR2dwakp2QkFLQV9JLUFBb013ajRKQ0tlSTRxUzl1dHB6Q2dQeVBnQUtEY0ktQ2dqVXJkbU83YWFLbVFrS0FfSS1BQW9Pd2o0TENPQ0xrT0hDdllxSjNRRUtBX0ktQUFvTndqNEtDUFRwazh6RXc2Yk1IUklVQUFJRUJnZ0tEQTRRRWhRV0dCb2NIaUFpSkNZYUJBZ0FFQUVhQkFnQ0VBTWFCQWdFRUFVYUJBZ0dFQWNhQkFnSUVBa2FCQWdLRUFzYUJBZ01FQTBhQkFnT0VBOGFCQWdRRUJFYUJBZ1NFQk1hQkFnVUVCVWFCQWdXRUJjYUJBZ1lFQmthQkFnYUVCc2FCQWdjRUIwYUJBZ2VFQjhhQkFnZ0VDRWFCQWdpRUNNYUJBZ2tFQ1VhQkFnbUVDY3FGQUFDQkFZSUNnd09FQklVRmhnYUhCNGdJaVFtag93YXRjaC1uZXh0LWZlZWQ%3D"),
-    endpoint: browse,
+    endpoint: next,
   ),
   top_comments: Paginator(
     count: Some(3200),
     items: [],
     ctoken: Some("Eg0SC25GREJ4QlVmRTc0GAYyJSIRIgtuRkRCeEJVZkU3NDAAeAJCEGNvbW1lbnRzLXNlY3Rpb24%3D"),
-    endpoint: browse,
+    endpoint: next,
   ),
   latest_comments: Paginator(
     count: Some(3200),
     items: [],
     ctoken: Some("Eg0SC25GREJ4QlVmRTc0GAYyOCIRIgtuRkRCeEJVZkU3NDABeAIwAUIhZW5nYWdlbWVudC1wYW5lbC1jb21tZW50cy1zZWN0aW9u"),
-    endpoint: browse,
+    endpoint: next,
   ),
 )

@@ -2,7 +2,7 @@ use serde::Serialize;
 
 use crate::{
     error::{Error, ExtractionError},
-    model::{ChannelTag, Chapter, Comment, Paginator, RecommendedVideo, VideoDetails},
+    model::{ChannelTag, Chapter, Comment, Paginator, VideoDetails, VideoItem},
     param::Language,
     serializer::MapResult,
     timeago,
@@ -10,7 +10,7 @@ use crate::{
 };
 
 use super::{
-    response::{self, IconType, TryFromWLang},
+    response::{self, IconType},
     ClientType, MapResponse, QContinuation, RustyPipeQuery, YTContext,
 };
 
@@ -39,26 +39,6 @@ impl RustyPipeQuery {
             ClientType::Desktop,
             "video_details",
             video_id,
-            "next",
-            &request_body,
-        )
-        .await
-    }
-
-    pub async fn video_recommendations(
-        self,
-        ctoken: &str,
-    ) -> Result<Paginator<RecommendedVideo>, Error> {
-        let context = self.get_context(ClientType::Desktop, true).await;
-        let request_body = QContinuation {
-            context,
-            continuation: ctoken,
-        };
-
-        self.execute_request::<response::VideoRecommendations, _, _>(
-            ClientType::Desktop,
-            "video_recommendations",
-            ctoken,
             "next",
             &request_body,
         )
@@ -329,29 +309,21 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                 is_ccommons,
                 chapters,
                 recommended,
-                top_comments: Paginator::new(comment_count, Vec::new(), comment_ctoken),
-                latest_comments: Paginator::new(comment_count, Vec::new(), latest_comments_ctoken),
+                top_comments: Paginator::new_with_endpoint(
+                    comment_count,
+                    Vec::new(),
+                    comment_ctoken,
+                    crate::model::ContinuationEndpoint::Next,
+                ),
+                latest_comments: Paginator::new_with_endpoint(
+                    comment_count,
+                    Vec::new(),
+                    latest_comments_ctoken,
+                    crate::model::ContinuationEndpoint::Next,
+                ),
             },
             warnings,
         })
-    }
-}
-
-impl MapResponse<Paginator<RecommendedVideo>> for response::VideoRecommendations {
-    fn map_response(
-        self,
-        _id: &str,
-        lang: Language,
-        _deobf: Option<&crate::deobfuscate::Deobfuscator>,
-    ) -> Result<MapResult<Paginator<RecommendedVideo>>, ExtractionError> {
-        let mut endpoints = self.on_response_received_endpoints;
-        let cont = endpoints.try_swap_remove(0).ok_or(ExtractionError::Retry)?;
-
-        Ok(map_recommendations(
-            cont.append_continuation_items_action.continuation_items,
-            None,
-            lang,
-        ))
     }
 }
 
@@ -419,47 +391,27 @@ impl MapResponse<Paginator<Comment>> for response::VideoComments {
 }
 
 fn map_recommendations(
-    r: MapResult<Vec<response::VideoListItem>>,
+    r: MapResult<Vec<response::YouTubeListItem>>,
     continuations: Option<Vec<response::MusicContinuation>>,
     lang: Language,
-) -> MapResult<Paginator<RecommendedVideo>> {
-    let mut warnings = r.warnings;
-    let mut ctoken = None;
-
-    let mut items = Vec::new();
-
-    r.c.into_iter().for_each(|item| match item {
-        response::VideoListItem::CompactVideoRenderer(video) => {
-            match RecommendedVideo::from_w_lang(video, lang) {
-                Ok(video) => items.push(video),
-                Err(e) => warnings.push(e.to_string()),
-            }
-        }
-        response::VideoListItem::ItemSectionRenderer { contents } => {
-            let mut x = map_recommendations(contents, None, lang);
-            items.append(&mut x.c.items);
-            warnings.append(&mut x.warnings);
-            if let Some(ct) = x.c.ctoken {
-                ctoken = Some(ct)
-            }
-        }
-        response::VideoListItem::ContinuationItemRenderer {
-            continuation_endpoint,
-        } => {
-            ctoken = Some(continuation_endpoint.continuation_command.token);
-        }
-        _ => {}
-    });
+) -> MapResult<Paginator<VideoItem>> {
+    let mut mapper = response::YouTubeListMapper::<VideoItem>::new(lang);
+    mapper.map_response(r);
 
     if let Some(continuations) = continuations {
         continuations.into_iter().for_each(|c| {
-            ctoken = Some(c.next_continuation_data.continuation);
+            mapper.ctoken = Some(c.next_continuation_data.continuation);
         })
     };
 
     MapResult {
-        c: Paginator::new(None, items, ctoken),
-        warnings,
+        c: Paginator::new_with_endpoint(
+            None,
+            mapper.items,
+            mapper.ctoken,
+            crate::model::ContinuationEndpoint::Next,
+        ),
+        warnings: mapper.warnings,
     }
 }
 
@@ -598,42 +550,6 @@ mod tests {
             err,
             crate::error::ExtractionError::ContentUnavailable(_)
         ))
-    }
-
-    #[test]
-    fn t_map_recommendations() {
-        let json_path = Path::new("testfiles/video_details/recommendations.json");
-        let json_file = File::open(json_path).unwrap();
-
-        let recommendations: response::VideoRecommendations =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res = recommendations
-            .map_response("", Language::En, None)
-            .unwrap();
-
-        assert!(
-            map_res.warnings.is_empty(),
-            "deserialization/mapping warnings: {:?}",
-            map_res.warnings
-        );
-        insta::assert_ron_snapshot!("map_recommendations", map_res.c, {
-            ".items[].publish_date" => "[date]",
-        });
-    }
-
-    #[test]
-    fn map_recommendations_empty() {
-        let filename = format!("testfiles/video_details/recommendations_empty.json");
-        let json_path = Path::new(&filename);
-        let json_file = File::open(json_path).unwrap();
-
-        let recommendations: response::VideoRecommendations =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let err = recommendations
-            .map_response("", Language::En, None)
-            .unwrap_err();
-
-        assert!(matches!(err, crate::error::ExtractionError::Retry));
     }
 
     #[rstest]
