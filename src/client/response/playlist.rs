@@ -1,11 +1,13 @@
 use serde::Deserialize;
-use serde_with::serde_as;
-use serde_with::{DefaultOnError, VecSkipError};
+use serde_with::{json::JsonString, serde_as, DefaultOnError, VecSkipError};
 
 use crate::serializer::text::{Text, TextComponent};
-use crate::serializer::{MapResult, VecLogError};
+use crate::serializer::{ignore_any, MapResult, VecLogError};
+use crate::util::MappingError;
 
-use super::{Alert, ContentRenderer, ContentsRenderer, ThumbnailsWrap, VideoListItem};
+use super::{
+    Alert, ContentRenderer, ContentsRenderer, ContinuationEndpoint, Thumbnails, ThumbnailsWrap,
+};
 
 #[serde_as]
 #[derive(Debug, Deserialize)]
@@ -62,7 +64,7 @@ pub struct PlaylistVideoListRenderer {
 #[serde(rename_all = "camelCase")]
 pub struct PlaylistVideoList {
     #[serde_as(as = "VecLogError<_>")]
-    pub contents: MapResult<Vec<VideoListItem>>,
+    pub contents: MapResult<Vec<PlaylistItem>>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -151,6 +153,54 @@ pub struct PlaylistThumbnailRenderer {
     pub playlist_video_thumbnail_renderer: ThumbnailsWrap,
 }
 
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub enum PlaylistItem {
+    /// Video in playlist
+    PlaylistVideoRenderer(PlaylistVideoRenderer),
+    /// Continauation items are located at the end of a list
+    /// and contain the continuation token for progressive loading
+    #[serde(rename_all = "camelCase")]
+    ContinuationItemRenderer {
+        continuation_endpoint: ContinuationEndpoint,
+    },
+    /// No video list item (e.g. ad) or unimplemented item
+    #[serde(other, deserialize_with = "ignore_any")]
+    None,
+}
+
+/// Video displayed in a playlist
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct PlaylistVideoRenderer {
+    pub video_id: String,
+    pub thumbnail: Thumbnails,
+    #[serde_as(as = "Text")]
+    pub title: String,
+    #[serde(rename = "shortBylineText")]
+    pub channel: TextComponent,
+    #[serde_as(as = "JsonString")]
+    pub length_seconds: u32,
+}
+
+impl TryFrom<PlaylistVideoRenderer> for crate::model::PlaylistVideo {
+    type Error = MappingError;
+
+    fn try_from(video: PlaylistVideoRenderer) -> Result<Self, Self::Error> {
+        Ok(Self {
+            id: video.video_id,
+            title: video.title,
+            length: video.length_seconds,
+            thumbnail: video.thumbnail.into(),
+            channel: crate::model::ChannelId::try_from(video.channel)?,
+        })
+    }
+}
+
+// Continuation
+
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct OnResponseReceivedAction {
@@ -162,5 +212,5 @@ pub struct OnResponseReceivedAction {
 #[serde(rename_all = "camelCase")]
 pub struct AppendAction {
     #[serde_as(as = "VecLogError<_>")]
-    pub continuation_items: MapResult<Vec<VideoListItem>>,
+    pub continuation_items: MapResult<Vec<PlaylistItem>>,
 }

@@ -1,12 +1,8 @@
 use chrono::TimeZone;
 use serde::Deserialize;
-use serde_with::{json::JsonString, serde_as, VecSkipError};
+use serde_with::{json::JsonString, serde_as, DefaultOnError, VecSkipError};
 
-use super::{
-    ChannelBadge, ChannelThumbnailSupportedRenderers, ContinuationEndpoint,
-    DetailedMetadataSnippet, IsLive, IsShort, Thumbnails, TimeOverlay, UpcomingEventData,
-    VideoBadge,
-};
+use super::{ChannelBadge, ContinuationEndpoint, Thumbnails};
 use crate::{
     model::{ChannelId, ChannelItem, ChannelTag, PlaylistItem, VideoItem, YouTubeItem},
     param::Language,
@@ -179,6 +175,119 @@ pub struct YouTubeListRendererWrap {
 pub struct YouTubeListRenderer {
     #[serde_as(as = "VecLogError<_>")]
     pub contents: MapResult<Vec<YouTubeListItem>>,
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct UpcomingEventData {
+    /// Unixtime in seconds
+    #[serde_as(as = "JsonString")]
+    pub start_time: i64,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct TimeOverlay {
+    pub thumbnail_overlay_time_status_renderer: TimeOverlayRenderer,
+}
+
+/// Badges are displayed on the video thumbnail and
+/// show certain video properties (e.g. active livestream)
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct VideoBadge {
+    pub metadata_badge_renderer: VideoBadgeRenderer,
+}
+
+/// Badges are displayed on the video thumbnail and
+/// show certain video properties (e.g. active livestream)
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct VideoBadgeRenderer {
+    pub style: VideoBadgeStyle,
+}
+
+#[derive(Clone, Copy, Debug, Deserialize, PartialEq, Eq, Hash)]
+#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+pub enum VideoBadgeStyle {
+    /// Active livestream
+    BadgeStyleTypeLiveNow,
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct TimeOverlayRenderer {
+    /// `29:54`
+    ///
+    /// Is `LIVE` in case of a livestream and `SHORTS` in case of a short video
+    #[serde_as(as = "Text")]
+    pub text: String,
+    #[serde(default)]
+    #[serde_as(deserialize_as = "DefaultOnError")]
+    pub style: TimeOverlayStyle,
+}
+
+#[derive(Default, Clone, Copy, Debug, Deserialize, PartialEq, Eq)]
+#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+pub enum TimeOverlayStyle {
+    #[default]
+    Default,
+    Live,
+    Shorts,
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct DetailedMetadataSnippet {
+    #[serde_as(as = "Text")]
+    pub snippet_text: String,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ChannelThumbnailSupportedRenderers {
+    pub channel_thumbnail_with_link_renderer: ChannelThumbnailWithLinkRenderer,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ChannelThumbnailWithLinkRenderer {
+    pub thumbnail: Thumbnails,
+}
+
+trait IsLive {
+    fn is_live(&self) -> bool;
+}
+
+trait IsShort {
+    fn is_short(&self) -> bool;
+}
+
+impl IsLive for Vec<VideoBadge> {
+    fn is_live(&self) -> bool {
+        self.iter().any(|badge| {
+            badge.metadata_badge_renderer.style == VideoBadgeStyle::BadgeStyleTypeLiveNow
+        })
+    }
+}
+
+impl IsLive for Vec<TimeOverlay> {
+    fn is_live(&self) -> bool {
+        self.iter().any(|overlay| {
+            overlay.thumbnail_overlay_time_status_renderer.style == TimeOverlayStyle::Live
+        })
+    }
+}
+
+impl IsShort for Vec<TimeOverlay> {
+    fn is_short(&self) -> bool {
+        self.iter().any(|overlay| {
+            overlay.thumbnail_overlay_time_status_renderer.style == TimeOverlayStyle::Shorts
+        })
+    }
 }
 
 /// Result of mapping a list of different YouTube enities

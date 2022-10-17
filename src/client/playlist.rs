@@ -200,30 +200,23 @@ impl MapResponse<Paginator<PlaylistVideo>> for response::PlaylistCont {
     }
 }
 
-fn map_playlist_items(items: Vec<response::VideoListItem>) -> (Vec<PlaylistVideo>, Option<String>) {
+fn map_playlist_items(
+    items: Vec<response::playlist::PlaylistItem>,
+) -> (Vec<PlaylistVideo>, Option<String>) {
     let mut ctoken: Option<String> = None;
     let videos = items
         .into_iter()
         .filter_map(|it| match it {
-            response::VideoListItem::PlaylistVideoRenderer(video) => {
-                match ChannelId::try_from(video.channel) {
-                    Ok(channel) => Some(PlaylistVideo {
-                        id: video.video_id,
-                        title: video.title,
-                        length: video.length_seconds,
-                        thumbnail: video.thumbnail.into(),
-                        channel,
-                    }),
-                    Err(_) => None,
-                }
+            response::playlist::PlaylistItem::PlaylistVideoRenderer(video) => {
+                PlaylistVideo::try_from(video).ok()
             }
-            response::VideoListItem::ContinuationItemRenderer {
+            response::playlist::PlaylistItem::ContinuationItemRenderer {
                 continuation_endpoint,
             } => {
                 ctoken = Some(continuation_endpoint.continuation_command.token);
                 None
             }
-            _ => None,
+            response::playlist::PlaylistItem::None => None,
         })
         .collect::<Vec<_>>();
     (videos, ctoken)

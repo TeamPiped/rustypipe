@@ -557,42 +557,6 @@ pub struct Chapter {
     pub thumbnail: Vec<Thumbnail>,
 }
 
-/*
-@RECOMMENDATIONS
-*/
-
-/// YouTube video fetched from the recommendations next to a video
-#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
-#[non_exhaustive]
-pub struct RecommendedVideo {
-    /// Unique YouTube video ID
-    pub id: String,
-    /// Video title
-    pub title: String,
-    /// Video length in seconds.
-    ///
-    /// Is [`None`] for livestreams.
-    pub length: Option<u32>,
-    /// Video thumbnail
-    pub thumbnail: Vec<Thumbnail>,
-    /// Channel of the video
-    pub channel: ChannelTag,
-    /// Video publishing date.
-    ///
-    /// [`None`] if the date could not be parsed.
-    pub publish_date: Option<DateTime<Local>>,
-    /// Textual video publish date (e.g. `11 months ago`, depends on language)
-    ///
-    /// Is [`None`] for livestreams.
-    pub publish_date_txt: Option<String>,
-    /// View count
-    pub view_count: u64,
-    /// Is the video an active livestream?
-    pub is_live: bool,
-    /// Is the video a YouTube Short video (vertical and <60s)?
-    pub is_short: bool,
-}
-
 /// Channel information attached to a video or comment
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[non_exhaustive]
@@ -710,55 +674,6 @@ pub struct Channel<T> {
     pub content: T,
 }
 
-/// Video fetched from a YouTube channel
-#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
-#[non_exhaustive]
-pub struct ChannelVideo {
-    /// Unique YouTube video ID
-    pub id: String,
-    /// Video title
-    pub title: String,
-    /// Video length in seconds.
-    ///
-    /// Is [`None`] for livestreams.
-    pub length: Option<u32>,
-    /// Video thumbnail
-    pub thumbnail: Vec<Thumbnail>,
-    /// Video publishing date.
-    ///
-    /// [`None`] if the date could not be parsed.
-    /// May be in the future for upcoming videos
-    pub publish_date: Option<DateTime<Local>>,
-    /// Textual video publish date (e.g. `11 months ago`, depends on language)
-    ///
-    /// Is [`None`] for livestreams and upcoming videos.
-    pub publish_date_txt: Option<String>,
-    /// Number of views / current viewers in case of a livestream.
-    ///
-    /// [`None`] if it could not be extracted.
-    pub view_count: u64,
-    /// Is the video an active livestream?
-    pub is_live: bool,
-    /// Is the video a YouTube Short video (vertical and <60s)?
-    pub is_short: bool,
-    /// Is the video announced, but not released yet (YouTube Premiere)?
-    pub is_upcoming: bool,
-}
-
-/// Playlist fetched from a YouTube channel
-#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
-#[non_exhaustive]
-pub struct ChannelPlaylist {
-    /// Unique YouTube Playlist-ID (e.g. `PL5dDx681T4bR7ZF1IuWzOv1omlRbE7PiJ`)
-    pub id: String,
-    /// Playlist name
-    pub name: String,
-    /// Playlist thumbnail
-    pub thumbnail: Vec<Thumbnail>,
-    /// Number of playlist videos
-    pub video_count: Option<u64>,
-}
-
 /// Additional channel metadata fetched from the "About" tab.
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[non_exhaustive]
@@ -809,105 +724,27 @@ pub struct ChannelRssVideo {
     pub like_count: u64,
 }
 
+/// YouTube search result
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct SearchResult {
+    /// Search result items
     pub items: Paginator<YouTubeItem>,
+    /// Corrected search query
+    ///
+    /// If the search term containes a typo, YouTube instead searches
+    /// for the corrected search term and displays it on top of the
+    /// search results page.
     pub corrected_query: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
-pub enum SearchItem {
-    Video(SearchVideo),
-    Playlist(SearchPlaylist),
-    Channel(SearchChannel),
-}
-
-/// YouTube video from the search results
-#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
-#[non_exhaustive]
-pub struct SearchVideo {
-    /// Unique YouTube video ID
-    pub id: String,
-    /// Video title
-    pub title: String,
-    /// Video length in seconds.
-    ///
-    /// Is [`None`] for livestreams.
-    pub length: Option<u32>,
-    /// Video thumbnail
-    pub thumbnail: Vec<Thumbnail>,
-    /// Channel of the video
-    pub channel: ChannelTag,
-    /// Video publishing date.
-    ///
-    /// [`None`] if the date could not be parsed.
-    pub publish_date: Option<DateTime<Local>>,
-    /// Textual video publish date (e.g. `11 months ago`, depends on language)
-    ///
-    /// Is [`None`] for livestreams.
-    pub publish_date_txt: Option<String>,
-    /// View count
-    ///
-    /// [`None`] if it could not be extracted.
-    pub view_count: u64,
-    /// Is the video an active livestream?
-    pub is_live: bool,
-    /// Is the video a YouTube Short video (vertical and <60s)?
-    pub is_short: bool,
-    /// Abbreviated video description
-    pub short_description: String,
-}
-
-/// Playlist from the search results
-#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
-#[non_exhaustive]
-pub struct SearchPlaylist {
-    /// Unique YouTube Playlist-ID (e.g. `PL5dDx681T4bR7ZF1IuWzOv1omlRbE7PiJ`)
-    pub id: String,
-    /// Playlist name
-    pub name: String,
-    /// Playlist thumbnail
-    pub thumbnail: Vec<Thumbnail>,
-    /// Number of playlist videos
-    pub video_count: u64,
-    /// First 2 videos
-    pub first_videos: Vec<SearchPlaylistVideo>,
-}
-
-#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
-#[non_exhaustive]
-pub struct SearchPlaylistVideo {
-    pub id: String,
-    pub title: String,
-    pub length: Option<u32>,
-}
-
-/// Channel from the search results
-#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
-#[non_exhaustive]
-pub struct SearchChannel {
-    /// Unique YouTube channel ID
-    pub id: String,
-    /// Channel name
-    pub name: String,
-    /// Channel avatar/profile picture
-    pub avatar: Vec<Thumbnail>,
-    /// Channel verification mark
-    pub verification: Verification,
-    /// Approximate number of subscribers
-    ///
-    /// [`None`] if hidden by the owner or not present.
-    pub subscriber_count: Option<u64>,
-    /// Number of videos from the channel
-    pub video_count: u64,
-    /// Abbreviated channel description
-    pub short_description: String,
-}
-
+/// YouTube item (Video/Channel/Playlist)
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub enum YouTubeItem {
+    /// YouTube video item
     Video(VideoItem),
+    /// YouTube playlist item
     Playlist(PlaylistItem),
+    /// YouTube channel item
     Channel(ChannelItem),
 }
 
