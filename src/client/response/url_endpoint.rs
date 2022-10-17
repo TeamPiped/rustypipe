@@ -6,14 +6,14 @@ use crate::model::UrlTarget;
 /// navigation/resolve_url response model
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct ResolvedUrl {
+pub(crate) struct ResolvedUrl {
     pub endpoint: NavigationEndpoint,
 }
 
 #[serde_as]
 #[derive(Debug, Deserialize, Default)]
 #[serde(rename_all = "camelCase")]
-pub struct NavigationEndpoint {
+pub(crate) struct NavigationEndpoint {
     #[serde(default)]
     #[serde_as(deserialize_as = "DefaultOnError")]
     pub watch_endpoint: Option<WatchEndpoint>,
@@ -30,7 +30,7 @@ pub struct NavigationEndpoint {
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct WatchEndpoint {
+pub(crate) struct WatchEndpoint {
     pub video_id: String,
     #[serde(default)]
     pub start_time_seconds: u32,
@@ -38,43 +38,43 @@ pub struct WatchEndpoint {
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct BrowseEndpoint {
+pub(crate) struct BrowseEndpoint {
     pub browse_id: String,
     pub browse_endpoint_context_supported_configs: Option<BrowseEndpointConfig>,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct UrlEndpoint {
+pub(crate) struct UrlEndpoint {
     pub url: String,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct BrowseEndpointConfig {
+pub(crate) struct BrowseEndpointConfig {
     pub browse_endpoint_context_music_config: BrowseEndpointMusicConfig,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct BrowseEndpointMusicConfig {
+pub(crate) struct BrowseEndpointMusicConfig {
     pub page_type: PageType,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct CommandMetadata {
+pub(crate) struct CommandMetadata {
     pub web_command_metadata: WebCommandMetadata,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct WebCommandMetadata {
+pub(crate) struct WebCommandMetadata {
     pub web_page_type: PageType,
 }
 
 #[derive(Debug, Clone, Copy, Deserialize, PartialEq, Eq)]
-pub enum PageType {
+pub(crate) enum PageType {
     #[serde(rename = "MUSIC_PAGE_TYPE_ARTIST")]
     Artist,
     #[serde(rename = "MUSIC_PAGE_TYPE_ALBUM")]
@@ -89,7 +89,7 @@ pub enum PageType {
 }
 
 impl PageType {
-    pub fn to_url_target(self, id: String) -> UrlTarget {
+    pub(crate) fn to_url_target(self, id: String) -> UrlTarget {
         match self {
             PageType::Artist => UrlTarget::Channel { id },
             PageType::Album => UrlTarget::Playlist { id },

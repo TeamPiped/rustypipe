@@ -9,7 +9,7 @@ use crate::serializer::{text::Text, MapResult, VecLogError};
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct Player {
+pub(crate) struct Player {
     pub playability_status: PlayabilityStatus,
     pub streaming_data: Option<StreamingData>,
     pub captions: Option<Captions>,
@@ -18,7 +18,7 @@ pub struct Player {
 
 #[derive(Debug, Deserialize)]
 #[serde(tag = "status", rename_all = "SCREAMING_SNAKE_CASE")]
-pub enum PlayabilityStatus {
+pub(crate) enum PlayabilityStatus {
     #[serde(rename_all = "camelCase")]
     Ok { live_streamability: Option<Empty> },
     /// Video cant be played because of DRM / Geoblock
@@ -35,12 +35,12 @@ pub enum PlayabilityStatus {
 }
 
 #[derive(Debug, Deserialize)]
-pub struct Empty {}
+pub(crate) struct Empty {}
 
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct StreamingData {
+pub(crate) struct StreamingData {
     #[serde_as(as = "JsonString")]
     pub expires_in_seconds: u32,
     #[serde(default)]
@@ -58,7 +58,7 @@ pub struct StreamingData {
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct Format {
+pub(crate) struct Format {
     pub itag: u32,
     pub url: Option<String>,
 
@@ -119,7 +119,7 @@ impl Format {
 
 #[derive(Clone, Copy, Debug, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[serde(rename_all = "lowercase")]
-pub enum Quality {
+pub(crate) enum Quality {
     Tiny,
     Small,
     Medium,
@@ -132,7 +132,7 @@ pub enum Quality {
 }
 
 #[derive(Clone, Copy, Debug, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
-pub enum AudioQuality {
+pub(crate) enum AudioQuality {
     #[serde(rename = "AUDIO_QUALITY_LOW", alias = "low")]
     Low,
     #[serde(rename = "AUDIO_QUALITY_MEDIUM", alias = "medium")]
@@ -143,7 +143,7 @@ pub enum AudioQuality {
 
 #[derive(Default, Clone, Copy, Debug, Deserialize, PartialEq, Eq, Hash)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
-pub enum FormatType {
+pub(crate) enum FormatType {
     #[default]
     Default,
     /// This stream only works via DASH and not via progressive HTTP.
@@ -152,13 +152,13 @@ pub enum FormatType {
 
 #[derive(Default, Debug, Deserialize)]
 #[serde(default, rename_all = "camelCase")]
-pub struct ColorInfo {
+pub(crate) struct ColorInfo {
     pub primaries: Primaries,
 }
 
 #[derive(Default, Clone, Copy, Debug, Deserialize, PartialEq, Eq, Hash)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
-pub enum Primaries {
+pub(crate) enum Primaries {
     #[default]
     ColorPrimariesBt709,
     ColorPrimariesBt2020,
@@ -166,7 +166,7 @@ pub enum Primaries {
 
 #[derive(Default, Debug, Deserialize)]
 #[serde(default, rename_all = "camelCase")]
-pub struct AudioTrack {
+pub(crate) struct AudioTrack {
     pub id: String,
     pub display_name: String,
     pub audio_is_default: bool,
@@ -174,20 +174,20 @@ pub struct AudioTrack {
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct Captions {
+pub(crate) struct Captions {
     pub player_captions_tracklist_renderer: PlayerCaptionsTracklistRenderer,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct PlayerCaptionsTracklistRenderer {
+pub(crate) struct PlayerCaptionsTracklistRenderer {
     pub caption_tracks: Vec<CaptionTrack>,
 }
 
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct CaptionTrack {
+pub(crate) struct CaptionTrack {
     pub base_url: String,
     #[serde_as(as = "Text")]
     pub name: String,
@@ -197,7 +197,7 @@ pub struct CaptionTrack {
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct VideoDetails {
+pub(crate) struct VideoDetails {
     pub video_id: String,
     pub title: String,
     #[serde_as(as = "JsonString")]

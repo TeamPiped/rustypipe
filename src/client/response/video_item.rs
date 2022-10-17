@@ -18,7 +18,7 @@ use crate::{
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub enum YouTubeListItem {
+pub(crate) enum YouTubeListItem {
     #[serde(alias = "gridVideoRenderer", alias = "compactVideoRenderer")]
     VideoRenderer(VideoRenderer),
 
@@ -73,7 +73,7 @@ pub enum YouTubeListItem {
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct VideoRenderer {
+pub(crate) struct VideoRenderer {
     pub video_id: String,
     pub thumbnail: Thumbnails,
     #[serde_as(as = "Text")]
@@ -114,7 +114,7 @@ pub struct VideoRenderer {
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct PlaylistRenderer {
+pub(crate) struct PlaylistRenderer {
     pub playlist_id: String,
     #[serde_as(as = "Text")]
     pub title: String,
@@ -140,7 +140,7 @@ pub struct PlaylistRenderer {
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct ChannelRenderer {
+pub(crate) struct ChannelRenderer {
     pub channel_id: String,
     #[serde_as(as = "Text")]
     pub title: String,
@@ -164,7 +164,7 @@ pub struct ChannelRenderer {
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct YouTubeListRendererWrap {
+pub(crate) struct YouTubeListRendererWrap {
     #[serde(alias = "richGridRenderer")]
     pub section_list_renderer: YouTubeListRenderer,
 }
@@ -172,7 +172,7 @@ pub struct YouTubeListRendererWrap {
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct YouTubeListRenderer {
+pub(crate) struct YouTubeListRenderer {
     #[serde_as(as = "VecLogError<_>")]
     pub contents: MapResult<Vec<YouTubeListItem>>,
 }
@@ -180,7 +180,7 @@ pub struct YouTubeListRenderer {
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct UpcomingEventData {
+pub(crate) struct UpcomingEventData {
     /// Unixtime in seconds
     #[serde_as(as = "JsonString")]
     pub start_time: i64,
@@ -188,7 +188,7 @@ pub struct UpcomingEventData {
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct TimeOverlay {
+pub(crate) struct TimeOverlay {
     pub thumbnail_overlay_time_status_renderer: TimeOverlayRenderer,
 }
 
@@ -196,7 +196,7 @@ pub struct TimeOverlay {
 /// show certain video properties (e.g. active livestream)
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct VideoBadge {
+pub(crate) struct VideoBadge {
     pub metadata_badge_renderer: VideoBadgeRenderer,
 }
 
@@ -204,13 +204,13 @@ pub struct VideoBadge {
 /// show certain video properties (e.g. active livestream)
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct VideoBadgeRenderer {
+pub(crate) struct VideoBadgeRenderer {
     pub style: VideoBadgeStyle,
 }
 
 #[derive(Clone, Copy, Debug, Deserialize, PartialEq, Eq, Hash)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
-pub enum VideoBadgeStyle {
+pub(crate) enum VideoBadgeStyle {
     /// Active livestream
     BadgeStyleTypeLiveNow,
 }
@@ -218,7 +218,7 @@ pub enum VideoBadgeStyle {
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct TimeOverlayRenderer {
+pub(crate) struct TimeOverlayRenderer {
     /// `29:54`
     ///
     /// Is `LIVE` in case of a livestream and `SHORTS` in case of a short video
@@ -231,7 +231,7 @@ pub struct TimeOverlayRenderer {
 
 #[derive(Default, Clone, Copy, Debug, Deserialize, PartialEq, Eq)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
-pub enum TimeOverlayStyle {
+pub(crate) enum TimeOverlayStyle {
     #[default]
     Default,
     Live,
@@ -241,20 +241,20 @@ pub enum TimeOverlayStyle {
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct DetailedMetadataSnippet {
+pub(crate) struct DetailedMetadataSnippet {
     #[serde_as(as = "Text")]
     pub snippet_text: String,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct ChannelThumbnailSupportedRenderers {
+pub(crate) struct ChannelThumbnailSupportedRenderers {
     pub channel_thumbnail_with_link_renderer: ChannelThumbnailWithLinkRenderer,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct ChannelThumbnailWithLinkRenderer {
+pub(crate) struct ChannelThumbnailWithLinkRenderer {
     pub thumbnail: Thumbnails,
 }
 
@@ -293,7 +293,7 @@ impl IsShort for Vec<TimeOverlay> {
 /// Result of mapping a list of different YouTube enities
 /// (videos, channels, playlists)
 #[derive(Debug)]
-pub struct YouTubeListMapper<T> {
+pub(crate) struct YouTubeListMapper<T> {
     lang: Language,
     pub items: Vec<T>,
     pub warnings: Vec<String>,
@@ -442,7 +442,7 @@ impl YouTubeListMapper<YouTubeItem> {
         }
     }
 
-    pub fn map_response(&mut self, mut res: MapResult<Vec<YouTubeListItem>>) {
+    pub(crate) fn map_response(&mut self, mut res: MapResult<Vec<YouTubeListItem>>) {
         self.warnings.append(&mut res.warnings);
         res.c.into_iter().for_each(|item| self.map_item(item));
     }
@@ -471,7 +471,7 @@ impl YouTubeListMapper<VideoItem> {
         }
     }
 
-    pub fn map_response(&mut self, mut res: MapResult<Vec<YouTubeListItem>>) {
+    pub(crate) fn map_response(&mut self, mut res: MapResult<Vec<YouTubeListItem>>) {
         self.warnings.append(&mut res.warnings);
         res.c.into_iter().for_each(|item| self.map_item(item));
     }
@@ -500,7 +500,7 @@ impl YouTubeListMapper<PlaylistItem> {
         }
     }
 
-    pub fn map_response(&mut self, mut res: MapResult<Vec<YouTubeListItem>>) {
+    pub(crate) fn map_response(&mut self, mut res: MapResult<Vec<YouTubeListItem>>) {
         self.warnings.append(&mut res.warnings);
         res.c.into_iter().for_each(|item| self.map_item(item));
     }

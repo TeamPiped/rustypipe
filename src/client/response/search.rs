@@ -6,7 +6,7 @@ use super::video_item::YouTubeListRendererWrap;
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct Search {
+pub(crate) struct Search {
     #[serde_as(as = "Option<JsonString>")]
     pub estimated_results: Option<u64>,
     pub contents: Contents,
@@ -14,12 +14,12 @@ pub struct Search {
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct Contents {
+pub(crate) struct Contents {
     pub two_column_search_results_renderer: TwoColumnSearchResultsRenderer,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct TwoColumnSearchResultsRenderer {
+pub(crate) struct TwoColumnSearchResultsRenderer {
     pub primary_contents: YouTubeListRendererWrap,
 }

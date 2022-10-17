@@ -42,7 +42,7 @@ use crate::{
 #[serde_as]
 #[derive(Clone, Debug, Deserialize)]
 #[serde(untagged)]
-pub enum Text {
+pub(crate) enum Text {
     Simple {
         #[serde(alias = "simpleText")]
         text: String,
@@ -86,10 +86,10 @@ impl<'de> DeserializeAs<'de, Vec<String>> for Text {
 ///
 /// Texts with links are mapped as a list of text components.
 #[derive(Default, Debug, Clone)]
-pub struct TextComponents(pub Vec<TextComponent>);
+pub(crate) struct TextComponents(pub Vec<TextComponent>);
 
 #[derive(Debug, Clone)]
-pub enum TextComponent {
+pub(crate) enum TextComponent {
     Video {
         text: String,
         video_id: String,
@@ -130,7 +130,7 @@ struct RichTextRun {
 /// the links.
 #[derive(Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct AttributedText {
+pub(crate) struct AttributedText {
     content: String,
     #[serde(default)]
     command_runs: Vec<AttributedTextRun>,
@@ -345,7 +345,7 @@ impl From<TextComponents> for crate::model::richtext::RichText {
 
 #[derive(Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct AccessibilityText {
+pub(crate) struct AccessibilityText {
     accessibility_data: AccessibilityData,
 }
 

@@ -12,7 +12,7 @@ use super::{
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct Playlist {
+pub(crate) struct Playlist {
     pub contents: Option<Contents>,
     pub header: Option<Header>,
     pub sidebar: Option<Sidebar>,
@@ -23,7 +23,7 @@ pub struct Playlist {
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct PlaylistCont {
+pub(crate) struct PlaylistCont {
     #[serde(default)]
     #[serde_as(as = "VecSkipError<_>")]
     pub on_response_received_actions: Vec<OnResponseReceivedAction>,
@@ -31,52 +31,52 @@ pub struct PlaylistCont {
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct Contents {
+pub(crate) struct Contents {
     pub two_column_browse_results_renderer: ContentsRenderer<Tab>,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct Tab {
+pub(crate) struct Tab {
     pub tab_renderer: ContentRenderer<SectionList>,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct SectionList {
+pub(crate) struct SectionList {
     pub section_list_renderer: ContentsRenderer<ItemSection>,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct ItemSection {
+pub(crate) struct ItemSection {
     pub item_section_renderer: ContentsRenderer<PlaylistVideoListRenderer>,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct PlaylistVideoListRenderer {
+pub(crate) struct PlaylistVideoListRenderer {
     pub playlist_video_list_renderer: PlaylistVideoList,
 }
 
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct PlaylistVideoList {
+pub(crate) struct PlaylistVideoList {
     #[serde_as(as = "VecLogError<_>")]
     pub contents: MapResult<Vec<PlaylistItem>>,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct Header {
+pub(crate) struct Header {
     pub playlist_header_renderer: HeaderRenderer,
 }
 
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct HeaderRenderer {
+pub(crate) struct HeaderRenderer {
     pub playlist_id: String,
     #[serde_as(as = "Text")]
     pub title: String,
@@ -95,48 +95,48 @@ pub struct HeaderRenderer {
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct PlaylistHeaderBanner {
+pub(crate) struct PlaylistHeaderBanner {
     pub hero_playlist_thumbnail_renderer: ThumbnailsWrap,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct Byline {
+pub(crate) struct Byline {
     pub playlist_byline_renderer: BylineRenderer,
 }
 
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct BylineRenderer {
+pub(crate) struct BylineRenderer {
     #[serde_as(as = "Text")]
     pub text: String,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct Sidebar {
+pub(crate) struct Sidebar {
     pub playlist_sidebar_renderer: SidebarRenderer,
 }
 
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct SidebarRenderer {
+pub(crate) struct SidebarRenderer {
     #[serde_as(as = "VecSkipError<_>")]
     pub items: Vec<SidebarItemPrimary>,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct SidebarItemPrimary {
+pub(crate) struct SidebarItemPrimary {
     pub playlist_sidebar_primary_info_renderer: SidebarPrimaryInfoRenderer,
 }
 
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct SidebarPrimaryInfoRenderer {
+pub(crate) struct SidebarPrimaryInfoRenderer {
     pub thumbnail_renderer: PlaylistThumbnailRenderer,
     /// - `"495", " videos"`
     /// - `"3,310,996 views"`
@@ -147,7 +147,7 @@ pub struct SidebarPrimaryInfoRenderer {
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct PlaylistThumbnailRenderer {
+pub(crate) struct PlaylistThumbnailRenderer {
     // the alternative field name is used by YTM playlists
     #[serde(alias = "playlistCustomThumbnailRenderer")]
     pub playlist_video_thumbnail_renderer: ThumbnailsWrap,
@@ -156,7 +156,7 @@ pub struct PlaylistThumbnailRenderer {
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub enum PlaylistItem {
+pub(crate) enum PlaylistItem {
     /// Video in playlist
     PlaylistVideoRenderer(PlaylistVideoRenderer),
     /// Continauation items are located at the end of a list
@@ -174,7 +174,7 @@ pub enum PlaylistItem {
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct PlaylistVideoRenderer {
+pub(crate) struct PlaylistVideoRenderer {
     pub video_id: String,
     pub thumbnail: Thumbnails,
     #[serde_as(as = "Text")]
@@ -203,14 +203,14 @@ impl TryFrom<PlaylistVideoRenderer> for crate::model::PlaylistVideo {
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct OnResponseReceivedAction {
+pub(crate) struct OnResponseReceivedAction {
     pub append_continuation_items_action: AppendAction,
 }
 
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct AppendAction {
+pub(crate) struct AppendAction {
     #[serde_as(as = "VecLogError<_>")]
     pub continuation_items: MapResult<Vec<PlaylistItem>>,
 }

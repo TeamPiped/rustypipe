@@ -1,31 +1,31 @@
-pub mod channel;
-pub mod player;
-pub mod playlist;
-pub mod playlist_music;
-pub mod search;
-pub mod trends;
-pub mod url_endpoint;
-pub mod video_details;
-pub mod video_item;
+pub(crate) mod channel;
+pub(crate) mod player;
+pub(crate) mod playlist;
+pub(crate) mod playlist_music;
+pub(crate) mod search;
+pub(crate) mod trends;
+pub(crate) mod url_endpoint;
+pub(crate) mod video_details;
+pub(crate) mod video_item;
 
-pub use channel::Channel;
-pub use player::Player;
-pub use playlist::Playlist;
-pub use playlist::PlaylistCont;
-pub use playlist_music::PlaylistMusic;
-pub use search::Search;
-pub use trends::Startpage;
-pub use trends::Trending;
-pub use url_endpoint::ResolvedUrl;
-pub use video_details::VideoComments;
-pub use video_details::VideoDetails;
-pub use video_item::YouTubeListItem;
-pub use video_item::YouTubeListMapper;
+pub(crate) use channel::Channel;
+pub(crate) use player::Player;
+pub(crate) use playlist::Playlist;
+pub(crate) use playlist::PlaylistCont;
+pub(crate) use playlist_music::PlaylistMusic;
+pub(crate) use search::Search;
+pub(crate) use trends::Startpage;
+pub(crate) use trends::Trending;
+pub(crate) use url_endpoint::ResolvedUrl;
+pub(crate) use video_details::VideoComments;
+pub(crate) use video_details::VideoDetails;
+pub(crate) use video_item::YouTubeListItem;
+pub(crate) use video_item::YouTubeListMapper;
 
 #[cfg(feature = "rss")]
-pub mod channel_rss;
+pub(crate) mod channel_rss;
 #[cfg(feature = "rss")]
-pub use channel_rss::ChannelRss;
+pub(crate) use channel_rss::ChannelRss;
 
 use serde::Deserialize;
 use serde_with::{json::JsonString, serde_as, DefaultOnError, VecSkipError};
@@ -39,20 +39,20 @@ use crate::serializer::{
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct ContentRenderer<T> {
+pub(crate) struct ContentRenderer<T> {
     pub content: T,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct ContentsRenderer<T> {
+pub(crate) struct ContentsRenderer<T> {
     #[serde(alias = "tabs")]
     pub contents: Vec<T>,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct ThumbnailsWrap {
+pub(crate) struct ThumbnailsWrap {
     #[serde(default)]
     pub thumbnail: Thumbnails,
 }
@@ -61,14 +61,14 @@ pub struct ThumbnailsWrap {
 /// Not only used for thumbnails, but also for avatars and banners.
 #[derive(Default, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct Thumbnails {
+pub(crate) struct Thumbnails {
     #[serde(default)]
     pub thumbnails: Vec<Thumbnail>,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct Thumbnail {
+pub(crate) struct Thumbnail {
     pub url: String,
     pub width: u32,
     pub height: u32,
@@ -76,32 +76,32 @@ pub struct Thumbnail {
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct ContinuationItemRenderer {
+pub(crate) struct ContinuationItemRenderer {
     pub continuation_endpoint: ContinuationEndpoint,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct ContinuationEndpoint {
+pub(crate) struct ContinuationEndpoint {
     pub continuation_command: ContinuationCommand,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct ContinuationCommand {
+pub(crate) struct ContinuationCommand {
     pub token: String,
 }
 
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct Icon {
+pub(crate) struct Icon {
     pub icon_type: IconType,
 }
 
 #[derive(Clone, Copy, Debug, Deserialize, PartialEq, Eq, Hash)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
-pub enum IconType {
+pub(crate) enum IconType {
     /// Checkmark for verified channels
     Check,
     /// Music note for verified artists
@@ -112,14 +112,14 @@ pub enum IconType {
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct VideoOwner {
+pub(crate) struct VideoOwner {
     pub video_owner_renderer: VideoOwnerRenderer,
 }
 
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct VideoOwnerRenderer {
+pub(crate) struct VideoOwnerRenderer {
     pub title: TextComponent,
     pub thumbnail: Thumbnails,
     #[serde_as(as = "Option<Text>")]
@@ -131,33 +131,33 @@ pub struct VideoOwnerRenderer {
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct ChannelBadge {
+pub(crate) struct ChannelBadge {
     pub metadata_badge_renderer: ChannelBadgeRenderer,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct ChannelBadgeRenderer {
+pub(crate) struct ChannelBadgeRenderer {
     pub style: ChannelBadgeStyle,
 }
 
 #[derive(Clone, Copy, Debug, Deserialize, PartialEq, Eq, Hash)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
-pub enum ChannelBadgeStyle {
+pub(crate) enum ChannelBadgeStyle {
     BadgeStyleTypeVerified,
     BadgeStyleTypeVerifiedArtist,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct Alert {
+pub(crate) struct Alert {
     pub alert_renderer: AlertRenderer,
 }
 
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct AlertRenderer {
+pub(crate) struct AlertRenderer {
     #[serde_as(as = "Text")]
     pub text: String,
 }
@@ -167,7 +167,7 @@ pub struct AlertRenderer {
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct Continuation {
+pub(crate) struct Continuation {
     /// Number of search results
     #[serde_as(as = "Option<JsonString>")]
     pub estimated_results: Option<u64>,
@@ -181,21 +181,21 @@ pub struct Continuation {
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct ContinuationActionWrap {
+pub(crate) struct ContinuationActionWrap {
     pub append_continuation_items_action: ContinuationAction,
 }
 
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct ContinuationAction {
+pub(crate) struct ContinuationAction {
     #[serde_as(as = "VecLogError<_>")]
     pub continuation_items: MapResult<Vec<YouTubeListItem>>,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct ResponseContext {
+pub(crate) struct ResponseContext {
     pub visitor_data: Option<String>,
 }
 
@@ -204,7 +204,7 @@ pub struct ResponseContext {
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct MusicItem {
+pub(crate) struct MusicItem {
     pub thumbnail: MusicThumbnailRenderer,
     #[serde(default)]
     #[serde_as(deserialize_as = "DefaultOnError")]
@@ -217,28 +217,28 @@ pub struct MusicItem {
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct MusicThumbnailRenderer {
+pub(crate) struct MusicThumbnailRenderer {
     #[serde(alias = "croppedSquareThumbnailRenderer")]
     pub music_thumbnail_renderer: ThumbnailsWrap,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct PlaylistItemData {
+pub(crate) struct PlaylistItemData {
     pub video_id: String,
 }
 
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct MusicContentsRenderer<T> {
+pub(crate) struct MusicContentsRenderer<T> {
     pub contents: Vec<T>,
     #[serde_as(as = "Option<VecSkipError<_>>")]
     pub continuations: Option<Vec<MusicContinuation>>,
 }
 
 #[derive(Debug, Deserialize)]
-pub struct MusicColumn {
+pub(crate) struct MusicColumn {
     #[serde(
         rename = "musicResponsiveListItemFlexColumnRenderer",
         alias = "musicResponsiveListItemFixedColumnRenderer"
@@ -248,19 +248,19 @@ pub struct MusicColumn {
 
 #[serde_as]
 #[derive(Debug, Deserialize)]
-pub struct MusicColumnRenderer {
+pub(crate) struct MusicColumnRenderer {
     pub text: TextComponent,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct MusicContinuation {
+pub(crate) struct MusicContinuation {
     pub next_continuation_data: MusicContinuationData,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct MusicContinuationData {
+pub(crate) struct MusicContinuationData {
     pub continuation: String,
 }
 
@@ -312,7 +312,7 @@ impl From<Icon> for crate::model::Verification {
     }
 }
 
-pub fn alerts_to_err(alerts: Option<Vec<Alert>>) -> ExtractionError {
+pub(crate) fn alerts_to_err(alerts: Option<Vec<Alert>>) -> ExtractionError {
     match alerts {
         Some(alerts) => ExtractionError::ContentUnavailable(
             alerts

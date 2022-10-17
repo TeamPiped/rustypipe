@@ -11,33 +11,33 @@ use super::{
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct PlaylistMusic {
+pub(crate) struct PlaylistMusic {
     pub contents: Contents,
     pub header: Header,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct Contents {
+pub(crate) struct Contents {
     pub single_column_browse_results_renderer: ContentsRenderer<Tab>,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct Tab {
+pub(crate) struct Tab {
     pub tab_renderer: ContentRenderer<SectionList>,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct SectionList {
+pub(crate) struct SectionList {
     /// Includes a continuation token for fetching recommendations
     pub section_list_renderer: MusicContentsRenderer<ItemSection>,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct ItemSection {
+pub(crate) struct ItemSection {
     #[serde(alias = "musicPlaylistShelfRenderer")]
     pub music_shelf_renderer: MusicShelf,
 }
@@ -45,7 +45,7 @@ pub struct ItemSection {
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct MusicShelf {
+pub(crate) struct MusicShelf {
     /// Playlist ID (only for playlists)
     pub playlist_id: Option<String>,
     #[serde_as(as = "VecSkipError<_>")]
@@ -57,20 +57,20 @@ pub struct MusicShelf {
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct PlaylistMusicItem {
+pub(crate) struct PlaylistMusicItem {
     pub music_responsive_list_item_renderer: MusicItem,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct Header {
+pub(crate) struct Header {
     pub music_detail_header_renderer: HeaderRenderer,
 }
 
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct HeaderRenderer {
+pub(crate) struct HeaderRenderer {
     #[serde_as(as = "crate::serializer::text::Text")]
     pub title: String,
     /// Content type + Channel/Artist + Year.

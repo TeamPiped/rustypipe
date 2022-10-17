@@ -4,7 +4,7 @@ use serde::Deserialize;
 use super::Thumbnail;
 
 #[derive(Debug, Deserialize)]
-pub struct ChannelRss {
+pub(crate) struct ChannelRss {
     #[serde(rename = "$unflatten=yt:channelId")]
     pub channel_id: String,
     #[serde(rename = "$unflatten=title")]
@@ -15,7 +15,7 @@ pub struct ChannelRss {
 }
 
 #[derive(Debug, Deserialize)]
-pub struct Entry {
+pub(crate) struct Entry {
     #[serde(rename = "$unflatten=yt:videoId")]
     pub video_id: String,
     #[serde(rename = "$unflatten=title")]
@@ -29,7 +29,7 @@ pub struct Entry {
 }
 
 #[derive(Debug, Deserialize)]
-pub struct MediaGroup {
+pub(crate) struct MediaGroup {
     #[serde(rename = "$unflatten=media:thumbnail")]
     pub thumbnail: Thumbnail,
     #[serde(rename = "$unflatten=media:description")]
@@ -39,7 +39,7 @@ pub struct MediaGroup {
 }
 
 #[derive(Debug, Deserialize)]
-pub struct Community {
+pub(crate) struct Community {
     #[serde(rename = "$unflatten=media:starRating")]
     pub rating: Rating,
     #[serde(rename = "$unflatten=media:statistics")]
@@ -47,12 +47,12 @@ pub struct Community {
 }
 
 #[derive(Debug, Deserialize)]
-pub struct Rating {
+pub(crate) struct Rating {
     pub count: u64,
 }
 
 #[derive(Debug, Deserialize)]
-pub struct Statistics {
+pub(crate) struct Statistics {
     pub views: u64,
 }
 
