@@ -346,9 +346,7 @@ impl MapResponse<Paginator<Comment>> for response::VideoComments {
         lang: Language,
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
     ) -> Result<MapResult<Paginator<Comment>>, ExtractionError> {
-        let received_endpoints = self
-            .on_response_received_endpoints
-            .ok_or(ExtractionError::Retry)?;
+        let received_endpoints = self.on_response_received_endpoints;
         let mut warnings = received_endpoints.warnings;
 
         let mut comments = Vec::new();

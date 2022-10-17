@@ -185,7 +185,9 @@ impl MapResponse<Paginator<PlaylistVideo>> for response::PlaylistCont {
         _deobf: Option<&Deobfuscator>,
     ) -> Result<MapResult<Paginator<PlaylistVideo>>, ExtractionError> {
         let mut actions = self.on_response_received_actions;
-        let action = actions.try_swap_remove(0).ok_or(ExtractionError::Retry)?;
+        let action = actions
+            .try_swap_remove(0)
+            .ok_or_else(|| ExtractionError::InvalidData("no onResponseReceivedAction".into()))?;
 
         let (items, ctoken) =
             map_playlist_items(action.append_continuation_items_action.continuation_items.c);

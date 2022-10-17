@@ -175,8 +175,8 @@ pub struct Continuation {
         alias = "onResponseReceivedCommands",
         alias = "onResponseReceivedEndpoints"
     )]
-    #[serde_as(as = "Option<VecSkipError<_>>")]
-    pub on_response_received_actions: Option<Vec<ContinuationActionWrap>>,
+    #[serde_as(as = "VecSkipError<_>")]
+    pub on_response_received_actions: Vec<ContinuationActionWrap>,
 }
 
 #[derive(Debug, Deserialize)]

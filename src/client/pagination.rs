@@ -51,9 +51,7 @@ impl<T: TryFrom<YouTubeItem>> MapResponse<Paginator<T>> for response::Continuati
         lang: crate::param::Language,
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
     ) -> Result<MapResult<Paginator<T>>, ExtractionError> {
-        let mut actions = self
-            .on_response_received_actions
-            .ok_or(ExtractionError::Retry)?;
+        let mut actions = self.on_response_received_actions;
         let items = some_or_bail!(
             actions.try_swap_remove(0),
             Err(ExtractionError::InvalidData(
@@ -219,7 +217,6 @@ mod tests {
 
     use crate::{
         client::{response, MapResponse},
-        error::ExtractionError,
         model::{Paginator, PlaylistItem, YouTubeItem},
         param::Language,
         serializer::MapResult,
@@ -267,20 +264,5 @@ mod tests {
             map_res.warnings
         );
         insta::assert_ron_snapshot!(format!("map_{}", name), map_res.c);
-    }
-
-    #[test]
-    fn map_recommendations_empty() {
-        let filename = format!("testfiles/video_details/recommendations_empty.json");
-        let json_path = Path::new(&filename);
-        let json_file = File::open(json_path).unwrap();
-
-        let recommendations: response::Continuation =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res: Result<MapResult<Paginator<YouTubeItem>>, ExtractionError> =
-            recommendations.map_response("", Language::En, None);
-        let err = map_res.unwrap_err();
-
-        assert!(matches!(err, crate::error::ExtractionError::Retry));
     }
 }

@@ -182,7 +182,6 @@ struct RustyPipeRef {
     storage: Option<Box<dyn CacheStorage>>,
     reporter: Option<Box<dyn Reporter>>,
     n_http_retries: u32,
-    n_query_retries: u32,
     consent_cookie: String,
     cache: CacheHolder,
     default_opts: RustyPipeOpts,
@@ -200,7 +199,6 @@ pub struct RustyPipeBuilder {
     storage: Option<Box<dyn CacheStorage>>,
     reporter: Option<Box<dyn Reporter>>,
     n_http_retries: u32,
-    n_query_retries: u32,
     user_agent: String,
     default_opts: RustyPipeOpts,
 }
@@ -292,7 +290,6 @@ impl RustyPipeBuilder {
             storage: Some(Box::new(FileStorage::default())),
             reporter: Some(Box::new(FileReporter::default())),
             n_http_retries: 2,
-            n_query_retries: 1,
             user_agent: DEFAULT_UA.to_owned(),
         }
     }
@@ -328,7 +325,6 @@ impl RustyPipeBuilder {
                 storage: self.storage,
                 reporter: self.reporter,
                 n_http_retries: self.n_http_retries,
-                n_query_retries: self.n_query_retries,
                 consent_cookie: format!(
                     "{}={}{}",
                     CONSENT_COOKIE,
@@ -385,16 +381,6 @@ impl RustyPipeBuilder {
     /// **Default value**: 2
     pub fn n_http_retries(mut self, n_retries: u32) -> Self {
         self.n_http_retries = n_retries;
-        self
-    }
-
-    /// Set the number of retries for YouTube API queries.
-    ///
-    /// If a YouTube API requests returns invalid data, the request is repeated.
-    ///
-    /// **Default value**: 1
-    pub fn n_query_retries(mut self, n_retries: u32) -> Self {
-        self.n_query_retries = n_retries;
         self
     }
 
@@ -975,62 +961,6 @@ impl RustyPipeQuery {
         body: &B,
         deobf: Option<&Deobfuscator>,
     ) -> Result<M, Error> {
-        for n in 0..self.client.inner.n_query_retries {
-            let res = self
-                ._try_execute_request_deobf::<R, M, B>(
-                    ctype,
-                    operation,
-                    id,
-                    endpoint,
-                    body,
-                    deobf,
-                    n == 0,
-                )
-                .await;
-            let emsg = match res {
-                Ok(res) => return Ok(res),
-                Err(error) => match &error {
-                    Error::Extraction(e) => match e {
-                        ExtractionError::Deserialization(_)
-                        | ExtractionError::InvalidData(_)
-                        | ExtractionError::WrongResult(_)
-                        | ExtractionError::Retry => e.to_string(),
-                        _ => return Err(error),
-                    },
-                    _ => return Err(error),
-                },
-            };
-
-            warn!("{} retry attempt #{}. Error: {}.", operation, n, emsg);
-        }
-        self._try_execute_request_deobf::<R, M, B>(
-            ctype,
-            operation,
-            id,
-            endpoint,
-            body,
-            deobf,
-            self.client.inner.n_query_retries < 2,
-        )
-        .await
-    }
-
-    /// Single try of `execute_request_deobf`
-    #[allow(clippy::too_many_arguments)]
-    async fn _try_execute_request_deobf<
-        R: DeserializeOwned + MapResponse<M> + Debug,
-        M,
-        B: Serialize + ?Sized,
-    >(
-        &self,
-        ctype: ClientType,
-        operation: &str,
-        id: &str,
-        endpoint: &str,
-        body: &B,
-        deobf: Option<&Deobfuscator>,
-        report: bool,
-    ) -> Result<M, Error> {
         let request = self
             .request_builder(ctype, endpoint)
             .await
@@ -1049,32 +979,30 @@ impl RustyPipeQuery {
         // println!("{}", &resp_str);
 
         let create_report = |level: Level, error: Option<String>, msgs: Vec<String>| {
-            if report {
-                if let Some(reporter) = &self.client.inner.reporter {
-                    let report = Report {
-                        info: Default::default(),
-                        level,
-                        operation: format!("{}({})", operation, id),
-                        error,
-                        msgs,
-                        deobf_data: deobf.map(Deobfuscator::get_data),
-                        http_request: crate::report::HTTPRequest {
-                            url: request_url,
-                            method: "POST".to_string(),
-                            req_header: request_headers
-                                .iter()
-                                .map(|(k, v)| {
-                                    (k.to_string(), v.to_str().unwrap_or_default().to_owned())
-                                })
-                                .collect(),
-                            req_body: serde_json::to_string(body).unwrap_or_default(),
-                            status: status.into(),
-                            resp_body: resp_str.to_owned(),
-                        },
-                    };
+            if let Some(reporter) = &self.client.inner.reporter {
+                let report = Report {
+                    info: Default::default(),
+                    level,
+                    operation: format!("{}({})", operation, id),
+                    error,
+                    msgs,
+                    deobf_data: deobf.map(Deobfuscator::get_data),
+                    http_request: crate::report::HTTPRequest {
+                        url: request_url,
+                        method: "POST".to_string(),
+                        req_header: request_headers
+                            .iter()
+                            .map(|(k, v)| {
+                                (k.to_string(), v.to_str().unwrap_or_default().to_owned())
+                            })
+                            .collect(),
+                        req_body: serde_json::to_string(body).unwrap_or_default(),
+                        status: status.into(),
+                        resp_body: resp_str.to_owned(),
+                    },
+                };
 
-                    reporter.report(&report);
-                }
+                reporter.report(&report);
             }
         };
 
@@ -1115,8 +1043,7 @@ impl RustyPipeQuery {
                     match e {
                         ExtractionError::VideoUnavailable(_, _)
                         | ExtractionError::VideoAgeRestricted
-                        | ExtractionError::ContentUnavailable(_)
-                        | ExtractionError::Retry => (),
+                        | ExtractionError::ContentUnavailable(_) => (),
                         _ => create_report(Level::ERR, Some(e.to_string()), Vec::new()),
                     }
                     Err(e.into())

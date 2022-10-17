@@ -83,6 +83,4 @@ pub enum ExtractionError {
     WrongResult(String),
     #[error("Warnings during deserialization/mapping")]
     DeserializationWarnings,
-    #[error("Got no data from YouTube, attempt retry")]
-    Retry,
 }

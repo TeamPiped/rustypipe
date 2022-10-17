@@ -437,8 +437,8 @@ pub struct VideoComments {
     /// - Comment replies: appendContinuationItemsAction
     ///   - n*commentRenderer, continuationItemRenderer:
     ///     replies + continuation
-    #[serde_as(as = "Option<VecLogError<_>>")]
-    pub on_response_received_endpoints: Option<MapResult<Vec<CommentsContItem>>>,
+    #[serde_as(as = "VecLogError<_>")]
+    pub on_response_received_endpoints: MapResult<Vec<CommentsContItem>>,
 }
 
 /// Video comments continuation
