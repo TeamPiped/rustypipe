@@ -45,8 +45,13 @@ impl RustyPipeQuery {
         .await
     }
 
-    pub async fn video_comments(self, ctoken: &str) -> Result<Paginator<Comment>, Error> {
-        let context = self.get_context(ClientType::Desktop, true).await;
+    pub async fn video_comments(
+        self,
+        ctoken: &str,
+        visitor_data: Option<&str>,
+    ) -> Result<Paginator<Comment>, Error> {
+        let mut context = self.get_context(ClientType::Desktop, true).await;
+        context.client.visitor_data = visitor_data.map(str::to_owned);
         let request_body = QContinuation {
             context,
             continuation: ctoken,
@@ -234,7 +239,12 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
             .secondary_results
             .and_then(|sr| {
                 sr.secondary_results.results.map(|r| {
-                    let mut res = map_recommendations(r, sr.secondary_results.continuations, lang);
+                    let mut res = map_recommendations(
+                        r,
+                        sr.secondary_results.continuations,
+                        self.response_context.visitor_data,
+                        lang,
+                    );
                     warnings.append(&mut res.warnings);
                     res.c
                 })
@@ -309,17 +319,19 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                 is_ccommons,
                 chapters,
                 recommended,
-                top_comments: Paginator::new_with_endpoint(
+                top_comments: Paginator::new_ext(
                     comment_count,
                     Vec::new(),
                     comment_ctoken,
-                    crate::model::ContinuationEndpoint::Next,
+                    None,
+                    crate::param::ContinuationEndpoint::Next,
                 ),
-                latest_comments: Paginator::new_with_endpoint(
+                latest_comments: Paginator::new_ext(
                     comment_count,
                     Vec::new(),
                     latest_comments_ctoken,
-                    crate::model::ContinuationEndpoint::Next,
+                    None,
+                    crate::param::ContinuationEndpoint::Next,
                 ),
             },
             warnings,
@@ -393,6 +405,7 @@ impl MapResponse<Paginator<Comment>> for response::VideoComments {
 fn map_recommendations(
     r: MapResult<Vec<response::YouTubeListItem>>,
     continuations: Option<Vec<response::MusicContinuation>>,
+    visitor_data: Option<String>,
     lang: Language,
 ) -> MapResult<Paginator<VideoItem>> {
     let mut mapper = response::YouTubeListMapper::<VideoItem>::new(lang);
@@ -405,11 +418,12 @@ fn map_recommendations(
     };
 
     MapResult {
-        c: Paginator::new_with_endpoint(
+        c: Paginator::new_ext(
             None,
             mapper.items,
             mapper.ctoken,
-            crate::model::ContinuationEndpoint::Next,
+            visitor_data,
+            crate::param::ContinuationEndpoint::Next,
         ),
         warnings: mapper.warnings,
     }

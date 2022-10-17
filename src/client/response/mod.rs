@@ -193,6 +193,12 @@ pub struct ContinuationAction {
     pub continuation_items: MapResult<Vec<YouTubeListItem>>,
 }
 
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct ResponseContext {
+    pub visitor_data: Option<String>,
+}
+
 // YouTube Music
 
 #[serde_as]

@@ -1,7 +1,7 @@
 use serde::Deserialize;
 use serde_with::{serde_as, VecSkipError};
 
-use super::{video_item::YouTubeListRendererWrap, ContentRenderer};
+use super::{video_item::YouTubeListRendererWrap, ContentRenderer, ResponseContext};
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -34,10 +34,4 @@ pub struct BrowseResults {
 #[serde(rename_all = "camelCase")]
 pub struct Tab<T> {
     pub tab_renderer: ContentRenderer<T>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct ResponseContext {
-    pub visitor_data: Option<String>,
 }

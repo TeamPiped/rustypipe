@@ -10,11 +10,11 @@ use crate::serializer::{
     MapResult, VecLogError,
 };
 
-use super::YouTubeListItem;
 use super::{
     url_endpoint::BrowseEndpoint, ContinuationEndpoint, ContinuationItemRenderer, Icon,
     MusicContinuation, Thumbnails, VideoOwner,
 };
+use super::{ResponseContext, YouTubeListItem};
 
 /*
 #VIDEO DETAILS
@@ -32,6 +32,7 @@ pub struct VideoDetails {
     /// Video chapters + comment section
     #[serde_as(as = "VecLogError<_>")]
     pub engagement_panels: MapResult<Vec<EngagementPanel>>,
+    pub response_context: ResponseContext,
 }
 
 /// Video details main object, contains video metadata and recommended videos

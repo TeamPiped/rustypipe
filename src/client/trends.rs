@@ -103,7 +103,13 @@ fn map_startpage_videos(
     mapper.map_response(videos);
 
     MapResult {
-        c: Paginator::new_with_vdata(None, mapper.items, mapper.ctoken, visitor_data),
+        c: Paginator::new_ext(
+            None,
+            mapper.items,
+            mapper.ctoken,
+            visitor_data,
+            crate::param::ContinuationEndpoint::Browse,
+        ),
         warnings: mapper.warnings,
     }
 }

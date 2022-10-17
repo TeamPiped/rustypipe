@@ -4,7 +4,6 @@ mod ordering;
 mod paginator;
 pub mod richtext;
 
-pub use paginator::ContinuationEndpoint;
 pub use paginator::Paginator;
 
 use std::ops::Range;

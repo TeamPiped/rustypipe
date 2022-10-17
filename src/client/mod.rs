@@ -291,8 +291,8 @@ impl RustyPipeBuilder {
             default_opts: RustyPipeOpts::default(),
             storage: Some(Box::new(FileStorage::default())),
             reporter: Some(Box::new(FileReporter::default())),
-            n_http_retries: 3,
-            n_query_retries: 2,
+            n_http_retries: 2,
+            n_query_retries: 1,
             user_agent: DEFAULT_UA.to_owned(),
         }
     }
@@ -382,7 +382,7 @@ impl RustyPipeBuilder {
     /// The waiting time is doubled for subsequent attempts (including a bit of
     /// random jitter to be less predictable).
     ///
-    /// **Default value**: 3
+    /// **Default value**: 2
     pub fn n_http_retries(mut self, n_retries: u32) -> Self {
         self.n_http_retries = n_retries;
         self
@@ -392,9 +392,9 @@ impl RustyPipeBuilder {
     ///
     /// If a YouTube API requests returns invalid data, the request is repeated.
     ///
-    /// **Default value**: 2
+    /// **Default value**: 1
     pub fn n_query_retries(mut self, n_retries: u32) -> Self {
-        self.n_http_retries = n_retries;
+        self.n_query_retries = n_retries;
         self
     }
 
@@ -481,7 +481,7 @@ impl RustyPipe {
     /// Execute the given http request.
     async fn http_request(&self, request: Request) -> Result<Response, reqwest::Error> {
         let mut last_res = None;
-        for n in 0..self.inner.n_http_retries {
+        for n in 0..=self.inner.n_http_retries {
             let res = self.inner.http.execute(request.try_clone().unwrap()).await;
             let emsg = match &res {
                 Ok(response) => {
@@ -975,7 +975,7 @@ impl RustyPipeQuery {
         body: &B,
         deobf: Option<&Deobfuscator>,
     ) -> Result<M, Error> {
-        for n in 0..self.client.inner.n_query_retries.saturating_sub(1) {
+        for n in 0..self.client.inner.n_query_retries {
             let res = self
                 ._try_execute_request_deobf::<R, M, B>(
                     ctype,
