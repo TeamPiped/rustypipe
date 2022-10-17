@@ -280,10 +280,7 @@ async fn channel_videos_cont(testfiles: &Path) {
         .unwrap();
 
     let rp = rp_testfile(&json_path);
-    rp.query()
-        .channel_videos_continuation(&videos.content.ctoken.unwrap())
-        .await
-        .unwrap();
+    videos.content.next(rp.query()).await.unwrap().unwrap();
 }
 
 async fn channel_playlists_cont(testfiles: &Path) {
@@ -302,10 +299,7 @@ async fn channel_playlists_cont(testfiles: &Path) {
         .unwrap();
 
     let rp = rp_testfile(&json_path);
-    rp.query()
-        .channel_playlists_continuation(&playlists.content.ctoken.unwrap())
-        .await
-        .unwrap();
+    playlists.content.next(rp.query()).await.unwrap().unwrap();
 }
 
 async fn search(testfiles: &Path) {

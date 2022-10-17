@@ -1,24 +1,15 @@
 use serde::Deserialize;
 use serde_with::{serde_as, VecSkipError};
 
-use crate::serializer::{ignore_any, MapResult, VecLogError};
+use crate::serializer::{MapResult, VecLogError};
 
-use super::{ContentRenderer, ContentsRenderer, VideoListItem, VideoRenderer};
+use super::{ContentRenderer, YouTubeListItem};
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Startpage {
     pub contents: Contents<BrowseResultsStartpage>,
     pub response_context: ResponseContext,
-}
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct StartpageCont {
-    #[serde(default)]
-    #[serde_as(as = "VecSkipError<_>")]
-    pub on_response_received_actions: Vec<OnResponseReceivedAction>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -60,7 +51,7 @@ pub struct StartpageTabContent {
 #[serde(rename_all = "camelCase")]
 pub struct RichGridRenderer {
     #[serde_as(as = "VecLogError<_>")]
-    pub contents: MapResult<Vec<VideoListItem>>,
+    pub contents: MapResult<Vec<YouTubeListItem>>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -72,62 +63,19 @@ pub struct Trending {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct TrendingTabContent {
-    pub section_list_renderer: ContentsRenderer<ItemSectionRenderer>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct ItemSectionRenderer {
-    pub item_section_renderer: ContentsRenderer<ShelfRenderer>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct ShelfRenderer {
-    pub shelf_renderer: ContentRenderer<ShelfContents>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct ShelfContents {
-    pub expanded_shelf_contents_renderer: Option<ShelfContentsRenderer>,
+    pub section_list_renderer: SectionListRenderer,
 }
 
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct ShelfContentsRenderer {
+pub struct SectionListRenderer {
     #[serde_as(as = "VecLogError<_>")]
-    pub items: MapResult<Vec<TrendingListItem>>,
+    pub contents: MapResult<Vec<YouTubeListItem>>,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ResponseContext {
     pub visitor_data: Option<String>,
-}
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-#[allow(clippy::large_enum_variant)]
-pub enum TrendingListItem {
-    VideoRenderer(VideoRenderer),
-
-    #[serde(other, deserialize_with = "ignore_any")]
-    None,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct OnResponseReceivedAction {
-    pub append_continuation_items_action: AppendAction,
-}
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct AppendAction {
-    #[serde_as(as = "VecLogError<_>")]
-    pub continuation_items: MapResult<Vec<VideoListItem>>,
 }

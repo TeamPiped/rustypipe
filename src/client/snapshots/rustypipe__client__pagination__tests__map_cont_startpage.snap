@@ -1,11 +1,11 @@
 ---
-source: src/client/trends.rs
+source: src/client/pagination.rs
 expression: map_res.c
 ---
 Paginator(
   count: None,
   items: [
-    SearchVideo(
+    Video(VideoItem(
       id: "mRmlXh7Hams",
       title: "Extra 3 vom 12.10.2022 im NDR | extra 3 | NDR",
       length: Some(1839),
@@ -16,7 +16,7 @@ Paginator(
           height: 270,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UCjhkuC_Pi85wGjnB0I1ydxw",
         name: "extra 3",
         avatar: [
@@ -28,15 +28,16 @@ Paginator(
         ],
         verification: none,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: Some("2 days ago"),
-      view_count: 585257,
+      view_count: Some(585257),
       is_live: false,
       is_short: false,
-      short_description: "Niedersachsen nach der Wahl: Schuld ist immer die Ampel | Die Grünen: Partei der erneuerbaren Prinzipien | Verhütung? Ist Frauensache! | Youtube: Handwerk mit goldenem Boden - Christian Ehring...",
-    ),
-    SearchVideo(
+      is_upcoming: false,
+      short_description: Some("Niedersachsen nach der Wahl: Schuld ist immer die Ampel | Die Grünen: Partei der erneuerbaren Prinzipien | Verhütung? Ist Frauensache! | Youtube: Handwerk mit goldenem Boden - Christian Ehring..."),
+    )),
+    Video(VideoItem(
       id: "LsXC5r64Pvc",
       title: "Most Rarest Plays In Baseball History",
       length: Some(1975),
@@ -47,7 +48,7 @@ Paginator(
           height: 270,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UCRfKJZ7LHueFudiDgAJDr9Q",
         name: "Top All Sports",
         avatar: [
@@ -59,15 +60,16 @@ Paginator(
         ],
         verification: none,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: Some("3 weeks ago"),
-      view_count: 985521,
+      view_count: Some(985521),
       is_live: false,
       is_short: false,
-      short_description: "#baseball #mlb #mlbb",
-    ),
-    SearchVideo(
+      is_upcoming: false,
+      short_description: Some("#baseball #mlb #mlbb"),
+    )),
+    Video(VideoItem(
       id: "dwPmd1GqQHE",
       title: "90S RAP & HIPHOP MIX - Notorious B I G , Dr Dre, 50 Cent, Snoop Dogg, 2Pac, DMX, Lil Jon and more",
       length: Some(5457),
@@ -78,7 +80,7 @@ Paginator(
           height: 270,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UCKICAAGtBLJJ5zRdIxn_B4g",
         name: "#Hip Hop 2022",
         avatar: [
@@ -90,15 +92,16 @@ Paginator(
         ],
         verification: none,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: Some("5 months ago"),
-      view_count: 1654055,
+      view_count: Some(1654055),
       is_live: false,
       is_short: false,
-      short_description: "",
-    ),
-    SearchVideo(
+      is_upcoming: false,
+      short_description: None,
+    )),
+    Video(VideoItem(
       id: "qxI-Ob8lpLE",
       title: "Schlatt\'s Chips Tier List",
       length: Some(1071),
@@ -114,7 +117,7 @@ Paginator(
           height: 404,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UC2mP7il3YV7TxM_3m6U0bwA",
         name: "jschlattLIVE",
         avatar: [
@@ -126,15 +129,16 @@ Paginator(
         ],
         verification: verified,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: Some("1 year ago"),
-      view_count: 9029628,
+      view_count: Some(9029628),
       is_live: false,
       is_short: false,
-      short_description: "Schlatt ranks every chip ever made.\nCREATE YOUR OWN TIER LIST: https://tiermaker.com/create/chips-for-big-guy-1146620\n\nSubscribe to me on Twitch:\nhttps://twitch.tv/jschlatt\n\nFollow me on Twitter:...",
-    ),
-    SearchVideo(
+      is_upcoming: false,
+      short_description: Some("Schlatt ranks every chip ever made.\nCREATE YOUR OWN TIER LIST: https://tiermaker.com/create/chips-for-big-guy-1146620\n\nSubscribe to me on Twitch:\nhttps://twitch.tv/jschlatt\n\nFollow me on Twitter:..."),
+    )),
+    Video(VideoItem(
       id: "qmrzTUmZ4UU",
       title: "850€ für den Verrat am System - UCS AT-AT LEGO® Star Wars 75313",
       length: Some(2043),
@@ -150,7 +154,7 @@ Paginator(
           height: 404,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UC_EZd3lsmxudu3IQzpTzOgw",
         name: "Held der Steine Inh. Thomas Panke",
         avatar: [
@@ -162,15 +166,16 @@ Paginator(
         ],
         verification: verified,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: Some("6 days ago"),
-      view_count: 600516,
+      view_count: Some(600516),
       is_live: false,
       is_short: false,
-      short_description: "Star Wars - erschienen 2021 - 6749 Teile\n\nDieses Set bei Amazon*:\nhttps://amzn.to/3yu9dHX\n\nErwähnt im Video*:\nTassen https://bit.ly/HdSBausteinecke\nBig Boy https://bit.ly/BBLokBigBoy\nBurg...",
-    ),
-    SearchVideo(
+      is_upcoming: false,
+      short_description: Some("Star Wars - erschienen 2021 - 6749 Teile\n\nDieses Set bei Amazon*:\nhttps://amzn.to/3yu9dHX\n\nErwähnt im Video*:\nTassen https://bit.ly/HdSBausteinecke\nBig Boy https://bit.ly/BBLokBigBoy\nBurg..."),
+    )),
+    Video(VideoItem(
       id: "4q4vpQCIZ6w",
       title: "🌉 Manhattan Jazz 💖  l Relaxing Jazz Piano Music l Background Music",
       length: Some(23229),
@@ -186,7 +191,7 @@ Paginator(
           height: 404,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UCBnMxlW70f0SB4ZTJx124lw",
         name: "몽키비지엠 MONKEYBGM",
         avatar: [
@@ -198,15 +203,16 @@ Paginator(
         ],
         verification: verified,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: Some("6 months ago"),
-      view_count: 2343407,
+      view_count: Some(2343407),
       is_live: false,
       is_short: false,
-      short_description: "- Please Subscribe!\n\n🔺Disney OST Collection part 1 \n    ➡\u{fe0f} https://youtu.be/lrzKFu85nhE\n\n🔺Disney OST Collection part 2 \n    ➡\u{fe0f} https://youtu.be/EtE09lowIbk\n\n🔺Studio Ghibli...",
-    ),
-    SearchVideo(
+      is_upcoming: false,
+      short_description: Some("- Please Subscribe!\n\n🔺Disney OST Collection part 1 \n    ➡\u{fe0f} https://youtu.be/lrzKFu85nhE\n\n🔺Disney OST Collection part 2 \n    ➡\u{fe0f} https://youtu.be/EtE09lowIbk\n\n🔺Studio Ghibli..."),
+    )),
+    Video(VideoItem(
       id: "Z_k31kqZxaE",
       title: "1 in 1,000,000 NBA Moments",
       length: Some(567),
@@ -222,7 +228,7 @@ Paginator(
           height: 404,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UCpyoYVlp67N16Lg1_N4VnVw",
         name: "dime",
         avatar: [
@@ -234,15 +240,16 @@ Paginator(
         ],
         verification: verified,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: Some("1 month ago"),
-      view_count: 4334298,
+      view_count: Some(4334298),
       is_live: false,
       is_short: false,
-      short_description: "• Instagram - https://instagram.com/dime_nba\n• TikTok - https://tiktok.com/@dime_nba\n\ndime is a Swedish brand, founded in 2022. We produce some of the most entertaining NBA content on YouTube...",
-    ),
-    SearchVideo(
+      is_upcoming: false,
+      short_description: Some("• Instagram - https://instagram.com/dime_nba\n• TikTok - https://tiktok.com/@dime_nba\n\ndime is a Swedish brand, founded in 2022. We produce some of the most entertaining NBA content on YouTube..."),
+    )),
+    Video(VideoItem(
       id: "zE-a5eqvlv8",
       title: "Dua Lipa, Coldplay, Martin Garrix & Kygo, The Chainsmokers Style - Feeling Me",
       length: None,
@@ -258,7 +265,7 @@ Paginator(
           height: 404,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UCX-USfenzQlhrEJR1zD5IYw",
         name: "Deep Mood.",
         avatar: [
@@ -270,15 +277,16 @@ Paginator(
         ],
         verification: none,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: None,
-      view_count: 889,
-      is_live: false,
+      view_count: Some(889),
+      is_live: true,
       is_short: false,
-      short_description: "#Summermix #DeepHouse #DeepHouseSummerMix\nDua Lipa, Coldplay, Martin Garrix & Kygo, The Chainsmokers Style - Feeling Me\n\n🎵 All songs in this spotify playlist: https://spoti.fi/2TJ4Dyj\nSubmit...",
-    ),
-    SearchVideo(
+      is_upcoming: false,
+      short_description: Some("#Summermix #DeepHouse #DeepHouseSummerMix\nDua Lipa, Coldplay, Martin Garrix & Kygo, The Chainsmokers Style - Feeling Me\n\n🎵 All songs in this spotify playlist: https://spoti.fi/2TJ4Dyj\nSubmit..."),
+    )),
+    Video(VideoItem(
       id: "gNlOk0LXi5M",
       title: "Soll ich dir 1g GOLD schenken? oder JEMAND anderen DOPPELT?",
       length: Some(704),
@@ -294,7 +302,7 @@ Paginator(
           height: 404,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UCqcWNPTUVATZt0Dlr2jV0Wg",
         name: "Mois",
         avatar: [
@@ -306,15 +314,16 @@ Paginator(
         ],
         verification: verified,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: Some("8 days ago"),
-      view_count: 463834,
+      view_count: Some(463834),
       is_live: false,
       is_short: false,
-      short_description: "Je mehr Menschen mich abonnieren desto mehr Menschen werde ich glücklich machen \n\n24 std ab, viel Glück \n\nhttps://I-Clip.com/?sPartner=Mois",
-    ),
-    SearchVideo(
+      is_upcoming: false,
+      short_description: Some("Je mehr Menschen mich abonnieren desto mehr Menschen werde ich glücklich machen \n\n24 std ab, viel Glück \n\nhttps://I-Clip.com/?sPartner=Mois"),
+    )),
+    Video(VideoItem(
       id: "dbMvZjs8Yc8",
       title: "Brad Pitt- Die Revanche eines Sexsymbols | Doku HD | ARTE",
       length: Some(3137),
@@ -330,7 +339,7 @@ Paginator(
           height: 404,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UCsygZtQQSplGF6JA3XWvsdg",
         name: "Irgendwas mit ARTE und Kultur",
         avatar: [
@@ -342,15 +351,16 @@ Paginator(
         ],
         verification: none,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: Some("5 days ago"),
-      view_count: 293878,
+      view_count: Some(293878),
       is_live: false,
       is_short: false,
-      short_description: "Vom „People“-Magazin wurde er mehrfach zum „Sexiest Man Alive“ gekrönt. Aber sein Aussehen ist nicht alles: In 30 Jahren Karriere drehte Brad Pitt eine Vielzahl herausragender Filme....",
-    ),
-    SearchVideo(
+      is_upcoming: false,
+      short_description: Some("Vom „People“-Magazin wurde er mehrfach zum „Sexiest Man Alive“ gekrönt. Aber sein Aussehen ist nicht alles: In 30 Jahren Karriere drehte Brad Pitt eine Vielzahl herausragender Filme...."),
+    )),
+    Video(VideoItem(
       id: "mFxi3lOAcFs",
       title: "Craziest Soviet Machines You Won\'t Believe Exist - Part 1",
       length: Some(1569),
@@ -366,7 +376,7 @@ Paginator(
           height: 404,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UCkQO3QsgTpNTsOw6ujimT5Q",
         name: "BE AMAZED",
         avatar: [
@@ -378,15 +388,16 @@ Paginator(
         ],
         verification: verified,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: Some("1 year ago"),
-      view_count: 14056843,
+      view_count: Some(14056843),
       is_live: false,
       is_short: false,
-      short_description: "Coming up are some crazy Soviet-era machines you won\'t believe exist!\nPart 2: https://youtu.be/MBZVOJrhuHY\nSuggest a topic here to be turned into a video: http://bit.ly/2kwqhuh\nSubscribe for...",
-    ),
-    SearchVideo(
+      is_upcoming: false,
+      short_description: Some("Coming up are some crazy Soviet-era machines you won\'t believe exist!\nPart 2: https://youtu.be/MBZVOJrhuHY\nSuggest a topic here to be turned into a video: http://bit.ly/2kwqhuh\nSubscribe for..."),
+    )),
+    Video(VideoItem(
       id: "eu7ubm7g59E",
       title: "People Hated Me For Using This Slab",
       length: Some(1264),
@@ -402,7 +413,7 @@ Paginator(
           height: 404,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UC6I0KzAD7uFTL1qzxyunkvA",
         name: "Blacktail Studio",
         avatar: [
@@ -414,15 +425,16 @@ Paginator(
         ],
         verification: verified,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: Some("3 months ago"),
-      view_count: 2845035,
+      view_count: Some(2845035),
       is_live: false,
       is_short: false,
-      short_description: "Some people were furious I used this slab, and I actually understand why. \nBlacktail bow tie jig (limited first run): https://www.blacktailstudio.com/bowtie-jig\nBlacktail epoxy table workshop:...",
-    ),
-    SearchVideo(
+      is_upcoming: false,
+      short_description: Some("Some people were furious I used this slab, and I actually understand why. \nBlacktail bow tie jig (limited first run): https://www.blacktailstudio.com/bowtie-jig\nBlacktail epoxy table workshop:..."),
+    )),
+    Video(VideoItem(
       id: "TRGHIN2PGIA",
       title: "Christian Bale Breaks Down His Most Iconic Characters | GQ",
       length: Some(1381),
@@ -438,7 +450,7 @@ Paginator(
           height: 404,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UCsEukrAd64fqA7FjwkmZ_Dw",
         name: "GQ",
         avatar: [
@@ -450,15 +462,16 @@ Paginator(
         ],
         verification: verified,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: Some("9 days ago"),
-      view_count: 8044465,
+      view_count: Some(8044465),
       is_live: false,
       is_short: false,
-      short_description: "Christian Bale breaks down a few of his most iconic characters from \'American Psycho,\' \'The Dark Knight\' Trilogy, \'The Fighter,\' \'The Machinist,\' \'The Big Short,\' \'Vice,\' \'Empire of the Sun,\'...",
-    ),
-    SearchVideo(
+      is_upcoming: false,
+      short_description: Some("Christian Bale breaks down a few of his most iconic characters from \'American Psycho,\' \'The Dark Knight\' Trilogy, \'The Fighter,\' \'The Machinist,\' \'The Big Short,\' \'Vice,\' \'Empire of the Sun,\'..."),
+    )),
+    Video(VideoItem(
       id: "w3tENzcssDU",
       title: "NFL Trick Plays But They Get Increasingly Higher IQ",
       length: Some(599),
@@ -474,7 +487,7 @@ Paginator(
           height: 404,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UCJka5SDh36_N4pjJd69efkg",
         name: "Savage Brick Sports",
         avatar: [
@@ -486,15 +499,16 @@ Paginator(
         ],
         verification: verified,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: Some("3 months ago"),
-      view_count: 1172372,
+      view_count: Some(1172372),
       is_live: false,
       is_short: false,
-      short_description: "NFL Trick Plays But They Get Increasingly Higher IQ\nCredit to CoshReport for starting this trend.\n\n(if any of the links don\'t work, check most recent video)\nTalkSports Discord: https://discord.gg/n...",
-    ),
-    SearchVideo(
+      is_upcoming: false,
+      short_description: Some("NFL Trick Plays But They Get Increasingly Higher IQ\nCredit to CoshReport for starting this trend.\n\n(if any of the links don\'t work, check most recent video)\nTalkSports Discord: https://discord.gg/n..."),
+    )),
+    Video(VideoItem(
       id: "gUAd2XXzH7w",
       title: "⚓\u{fe0f}Found ABANDONED SHIP!!! Big CRUISE SHIP on a desert island☠\u{fe0f} Where did the people go?!?",
       length: Some(2949),
@@ -510,7 +524,7 @@ Paginator(
           height: 404,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UClUZos7yKYtrmr0-azaD8pw",
         name: "Kreosan English",
         avatar: [
@@ -522,15 +536,16 @@ Paginator(
         ],
         verification: verified,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: Some("1 month ago"),
-      view_count: 1883533,
+      view_count: Some(1883533),
       is_live: false,
       is_short: false,
-      short_description: "We are preparing a continuation of the cruise ship for you!  Very soon you will be able to see the next part.  If you would like to help us make a video:\n\n► Support us - https://www.patreon.com/k...",
-    ),
-    SearchVideo(
+      is_upcoming: false,
+      short_description: Some("We are preparing a continuation of the cruise ship for you!  Very soon you will be able to see the next part.  If you would like to help us make a video:\n\n► Support us - https://www.patreon.com/k..."),
+    )),
+    Video(VideoItem(
       id: "YpGjaJ1ettI",
       title: "[Working BGM] Comfortable music that makes you feel positive  -- Morning Mood -- Daily Routine",
       length: Some(3651),
@@ -546,7 +561,7 @@ Paginator(
           height: 404,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UCpxY9-3iB5Hyho31uBgzh7w",
         name: "Daily Routine",
         avatar: [
@@ -558,15 +573,16 @@ Paginator(
         ],
         verification: none,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: Some("2 months ago"),
-      view_count: 1465389,
+      view_count: Some(1465389),
       is_live: false,
       is_short: false,
-      short_description: "Hello everyone. It\'s me again. I will stay at home and study . It\'s full of fun energy today, so it\'s ready to spread to everyone with hilarious music. 🔥🔥🔥\nHave fun together 😊😊😊...",
-    ),
-    SearchVideo(
+      is_upcoming: false,
+      short_description: Some("Hello everyone. It\'s me again. I will stay at home and study . It\'s full of fun energy today, so it\'s ready to spread to everyone with hilarious music. 🔥🔥🔥\nHave fun together 😊😊😊..."),
+    )),
+    Video(VideoItem(
       id: "rPAhFD8hKxQ",
       title: "Survival Camping 9ft/3m Under Snow - Giant Winter Bushcraft Shelter and Quinzee",
       length: Some(1301),
@@ -582,7 +598,7 @@ Paginator(
           height: 404,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UCfpCQ89W9wjkHc8J_6eTbBg",
         name: "Outdoor Boys",
         avatar: [
@@ -594,15 +610,16 @@ Paginator(
         ],
         verification: verified,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: Some("6 months ago"),
-      view_count: 20488431,
+      view_count: Some(20488431),
       is_live: false,
       is_short: false,
-      short_description: "Solo winter camping and bushcraft 9 feet (3 meters) under the snow. I hiked high up into the mountains during a snow storm with 30 mph/48 kmh winds to build a deep snow bushcraft survival shelter...",
-    ),
-    SearchVideo(
+      is_upcoming: false,
+      short_description: Some("Solo winter camping and bushcraft 9 feet (3 meters) under the snow. I hiked high up into the mountains during a snow storm with 30 mph/48 kmh winds to build a deep snow bushcraft survival shelter..."),
+    )),
+    Video(VideoItem(
       id: "2rye4u-cCNk",
       title: "Pink Panther Fights Off Pests | 54 Minute Compilation | The Pink Panther Show",
       length: Some(3158),
@@ -618,7 +635,7 @@ Paginator(
           height: 404,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UCFeUyPY6W8qX8w2o6oSiRmw",
         name: "Official Pink Panther",
         avatar: [
@@ -630,15 +647,16 @@ Paginator(
         ],
         verification: verified,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: Some("11 months ago"),
-      view_count: 27357653,
+      view_count: Some(27357653),
       is_live: false,
       is_short: false,
-      short_description: "(1) Pink Pest Control\n(2) Pink-a-Boo\n(3) Little Beaux Pink\n(4) The Pink Package Plot\n(5) Come On In! The Water\'s Pink\n(6) Psychedelic Pink\n(7) Pink Posies\n(8) G.I. Pink\n\nThe Pink Panther is...",
-    ),
-    SearchVideo(
+      is_upcoming: false,
+      short_description: Some("(1) Pink Pest Control\n(2) Pink-a-Boo\n(3) Little Beaux Pink\n(4) The Pink Package Plot\n(5) Come On In! The Water\'s Pink\n(6) Psychedelic Pink\n(7) Pink Posies\n(8) G.I. Pink\n\nThe Pink Panther is..."),
+    )),
+    Video(VideoItem(
       id: "O0xAlfSaBNQ",
       title: "FC Nantes vs. SC Freiburg – Highlights & Tore | UEFA Europa League",
       length: Some(326),
@@ -654,7 +672,7 @@ Paginator(
           height: 404,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UC8WYi3XQXsf-6FNvqoEvxag",
         name: "RTL Sport",
         avatar: [
@@ -666,15 +684,16 @@ Paginator(
         ],
         verification: verified,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: Some("11 hours ago"),
-      view_count: 117395,
+      view_count: Some(117395),
       is_live: false,
       is_short: false,
-      short_description: "UEFA Europa League: https://www.rtlplus.com/shows/uefa-europa-league-19818?utm_source=youtube&utm_medium=editorial&utm_campaign=beschreibung&utm_term=rtlsport \nFC Nantes vs. SC Freiburg –...",
-    ),
-    SearchVideo(
+      is_upcoming: false,
+      short_description: Some("UEFA Europa League: https://www.rtlplus.com/shows/uefa-europa-league-19818?utm_source=youtube&utm_medium=editorial&utm_campaign=beschreibung&utm_term=rtlsport \nFC Nantes vs. SC Freiburg –..."),
+    )),
+    Video(VideoItem(
       id: "Mhs9Sbnw19o",
       title: "Dramatisches Duell: 400 Jahre altes Kästchen erzielt zig-fachen Wunschpreis! | Bares für Rares XXL",
       length: Some(744),
@@ -690,7 +709,7 @@ Paginator(
           height: 404,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UC53bIpnef1pwAx69ERmmOLA",
         name: "Bares für Rares",
         avatar: [
@@ -702,15 +721,16 @@ Paginator(
         ],
         verification: verified,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: Some("11 days ago"),
-      view_count: 836333,
+      view_count: Some(836333),
       is_live: false,
       is_short: false,
-      short_description: "Du hast Schätze im Keller, die du unseren Expert*innen präsentieren möchtest? Hier geht\'s zum Bewerbungsformular: kurz.zdf.de/lSJ/\n\nEin einmaliges Bieterduell treibt den Preis für dieses...",
-    ),
-    SearchVideo(
+      is_upcoming: false,
+      short_description: Some("Du hast Schätze im Keller, die du unseren Expert*innen präsentieren möchtest? Hier geht\'s zum Bewerbungsformular: kurz.zdf.de/lSJ/\n\nEin einmaliges Bieterduell treibt den Preis für dieses..."),
+    )),
+    Video(VideoItem(
       id: "Bzzp5Cay7DI",
       title: "Sweet Jazz - Cool autumn Bossa Nova & October Jazz Positive Mood",
       length: None,
@@ -726,7 +746,7 @@ Paginator(
           height: 404,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UCoGlllJE7aYe_VzIGP3s_wA",
         name: "Smooth Jazz Music",
         avatar: [
@@ -738,15 +758,16 @@ Paginator(
         ],
         verification: none,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: None,
-      view_count: 1216,
-      is_live: false,
+      view_count: Some(1216),
+      is_live: true,
       is_short: false,
-      short_description: "Sweet Jazz - Cool autumn Bossa Nova & October Jazz Positive Mood\nhttps://youtu.be/Bzzp5Cay7DI\n********************************************\nSounds available on: Jazz Bossa Nova\nOFFICIAL VIDEO:...",
-    ),
-    SearchVideo(
+      is_upcoming: false,
+      short_description: Some("Sweet Jazz - Cool autumn Bossa Nova & October Jazz Positive Mood\nhttps://youtu.be/Bzzp5Cay7DI\n********************************************\nSounds available on: Jazz Bossa Nova\nOFFICIAL VIDEO:..."),
+    )),
+    Video(VideoItem(
       id: "SlskTqc9CEc",
       title: "The Chick-Fil-A Full Menu Challenge",
       length: Some(613),
@@ -762,7 +783,7 @@ Paginator(
           height: 404,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UCd1fLoVFooPeWqCEYVUJZqg",
         name: "Matt Stonie",
         avatar: [
@@ -774,15 +795,16 @@ Paginator(
         ],
         verification: verified,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: Some("3 years ago"),
-      view_count: 39286403,
+      view_count: Some(39286403),
       is_live: false,
       is_short: false,
-      short_description: "Good Video? Like/Fav & Share!!\n\nTBH this is really my 1st time trying Chick-Fil-A, legitimately. My verdict is torn, but that sauce is BOMB!\n\nChallenge\n+ Chick-Fil-A Deluxe\n+ Spicy Deluxe\n+...",
-    ),
-    SearchVideo(
+      is_upcoming: false,
+      short_description: Some("Good Video? Like/Fav & Share!!\n\nTBH this is really my 1st time trying Chick-Fil-A, legitimately. My verdict is torn, but that sauce is BOMB!\n\nChallenge\n+ Chick-Fil-A Deluxe\n+ Spicy Deluxe\n+..."),
+    )),
+    Video(VideoItem(
       id: "CwRvM2TfYbs",
       title: "Gentle healing music of health and to calm the nervous system, deep relaxation! Say Life Yes",
       length: None,
@@ -798,7 +820,7 @@ Paginator(
           height: 404,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UC6jH5GNi0iOR17opA1Vowhw",
         name: "Lucid Dream",
         avatar: [
@@ -810,15 +832,16 @@ Paginator(
         ],
         verification: verified,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: None,
-      view_count: 1416,
-      is_live: false,
+      view_count: Some(1416),
+      is_live: true,
       is_short: false,
-      short_description: "🌿 Music for relaxation, meditation, study, reading, massage, spa or sleep. This music is ideal for dealing with anxiety, stress or insomnia as it promotes relaxation and helps eliminate...",
-    ),
-    SearchVideo(
+      is_upcoming: false,
+      short_description: Some("🌿 Music for relaxation, meditation, study, reading, massage, spa or sleep. This music is ideal for dealing with anxiety, stress or insomnia as it promotes relaxation and helps eliminate..."),
+    )),
+    Video(VideoItem(
       id: "7jz0pXSe_kI",
       title: "Craziest \"Fine...I\'ll Do it Myself\" Moments in Sports History (PART 2)",
       length: Some(1822),
@@ -834,7 +857,7 @@ Paginator(
           height: 404,
         ),
       ],
-      channel: ChannelTag(
+      channel: Some(ChannelTag(
         id: "UCd5hdemikI6GxwGKhJCwzww",
         name: "Highlight Reel",
         avatar: [
@@ -846,14 +869,15 @@ Paginator(
         ],
         verification: verified,
         subscriber_count: None,
-      ),
+      )),
       publish_date: "[date]",
       publish_date_txt: Some("10 months ago"),
-      view_count: 11601863,
+      view_count: Some(11601863),
       is_live: false,
       is_short: false,
-      short_description: "(PART 2) of 👉🏼 Craziest \"Fine...I\'ll Do It Myself\" Moments in Sports History \n\nBIBLE VERSE OF THE DAY: Luke 12:40",
-    ),
+      is_upcoming: false,
+      short_description: Some("(PART 2) of 👉🏼 Craziest \"Fine...I\'ll Do It Myself\" Moments in Sports History \n\nBIBLE VERSE OF THE DAY: Luke 12:40"),
+    )),
   ],
   ctoken: Some("4qmFsgKxAxIPRkV3aGF0X3RvX3dhdGNoGoADQ0RCNmxnSkhUWFpRYzJOVU1UUm1iME5OWjNOSmQzWjZOM0JPWlZWMldqZDFRVlp3ZEVOdGMwdEhXR3d3V0ROQ2FGb3lWbVpqTWpWb1kwaE9iMkl6VW1aamJWWnVZVmM1ZFZsWGQxTklNVlUwVDFSU1dXUXhUbXhXTTBaeVdsaGtSRkpGYkZCWk0yaDZWbXMxTlV4VmVGbE1XRnBSVlcxallVeFJRVUZhVnpSQlFWWldWRUZCUmtWU1VVRkNRVVZhUm1ReWFHaGtSamt3WWpFNU0xbFlVbXBoUVVGQ1FVRkZRa0ZCUVVKQlFVVkJRVUZGUWtGSFNrSkRRVUZUUlROQ2FGb3lWbVpqTWpWb1kwaE9iMkl6VW1aa1J6bHlXbGMwWVVWM2Ftb3hPRkJGT1dWSU5rRm9WVlpZWlVGTFNGaHVSMEp2ZDJsRmQycERObkZmUlRsbFNEWkJhRmRIZG1RMFMwaGxaMGhDTlZnMmJrMWxPVU5SU1VsTlVRJTNEJTNEmgIaYnJvd3NlLWZlZWRGRXdoYXRfdG9fd2F0Y2g%3D"),
   endpoint: browse,

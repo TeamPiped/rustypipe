@@ -49,6 +49,7 @@ pub enum YouTubeListItem {
     ///
     /// Seems to be currently A/B tested on the channel page,
     /// as of 11.10.2022
+    #[serde(alias = "shelfRenderer")]
     RichItemRenderer {
         content: Box<YouTubeListItem>,
     },
@@ -57,7 +58,9 @@ pub enum YouTubeListItem {
     ///
     /// Seems to be currently A/B tested on the video details page,
     /// as of 11.10.2022
+    #[serde(alias = "expandedShelfContentsRenderer")]
     ItemSectionRenderer {
+        #[serde(alias = "items")]
         #[serde_as(as = "VecLogError<_>")]
         contents: MapResult<Vec<YouTubeListItem>>,
     },
@@ -352,35 +355,6 @@ impl YouTubeListMapper<PlaylistItem> {
         match item {
             YouTubeListItem::PlaylistRenderer(playlist) => {
                 self.items.push(Self::map_playlist(playlist))
-            }
-            YouTubeListItem::ContinuationItemRenderer {
-                continuation_endpoint,
-            } => self.ctoken = Some(continuation_endpoint.continuation_command.token),
-            YouTubeListItem::ShowingResultsForRenderer { corrected_query } => {
-                self.corrected_query = Some(corrected_query);
-            }
-            YouTubeListItem::RichItemRenderer { content } => {
-                self.map_item(*content);
-            }
-            YouTubeListItem::ItemSectionRenderer { mut contents } => {
-                self.warnings.append(&mut contents.warnings);
-                contents.c.into_iter().for_each(|it| self.map_item(it));
-            }
-            _ => {}
-        }
-    }
-
-    pub fn map_response(&mut self, mut res: MapResult<Vec<YouTubeListItem>>) {
-        self.warnings.append(&mut res.warnings);
-        res.c.into_iter().for_each(|item| self.map_item(item));
-    }
-}
-
-impl YouTubeListMapper<ChannelItem> {
-    fn map_item(&mut self, item: YouTubeListItem) {
-        match item {
-            YouTubeListItem::ChannelRenderer(channel) => {
-                self.items.push(Self::map_channel(channel));
             }
             YouTubeListItem::ContinuationItemRenderer {
                 continuation_endpoint,

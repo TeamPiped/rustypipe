@@ -3,7 +3,7 @@ source: src/client/trends.rs
 expression: map_res.c
 ---
 [
-  SearchVideo(
+  VideoItem(
     id: "6T67I2w1G2U",
     title: "Extreme $1,000,000 Minecraft Challenge!",
     length: Some(643),
@@ -24,7 +24,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCIPPMRA040LQr5QPyJEbmXA",
       name: "MrBeast Gaming",
       avatar: [
@@ -36,15 +36,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("1 day ago"),
-    view_count: 2873209,
+    view_count: Some(2873209),
     is_live: false,
     is_short: false,
-    short_description: "Thank you to Undeniably Dairy for sponsoring this video! Check them out! http://www.bit.ly/UDMrBeast\n\nI challenged six YouTubers to compete for $1,000,000!\n\nSUBSCRIBE OR YOU\'LL HAVE BAD LUCK...",
+    is_upcoming: false,
+    short_description: Some("Thank you to Undeniably Dairy for sponsoring this video! Check them out! http://www.bit.ly/UDMrBeast\n\nI challenged six YouTubers to compete for $1,000,000!\n\nSUBSCRIBE OR YOU\'LL HAVE BAD LUCK..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "8TzH0ayIcdo",
     title: "The Darkest Story I\'ve Ever Read",
     length: Some(4383),
@@ -65,7 +66,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UC3cpN6gcJQqcCM6mxRUo_dA",
       name: "Wendigoon",
       avatar: [
@@ -77,15 +78,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("1 day ago"),
-    view_count: 777753,
+    view_count: Some(777753),
     is_live: false,
     is_short: false,
-    short_description: "Get Honey for FREE today ▸ https://joinhoney.com/wendigoon\nHoney finds coupons with one click. Thanks to Honey for sponsoring!\n\nMy Links\n\nSecond channel/ Wendigang: https://www.youtube.com/channe...",
+    is_upcoming: false,
+    short_description: Some("Get Honey for FREE today ▸ https://joinhoney.com/wendigoon\nHoney finds coupons with one click. Thanks to Honey for sponsoring!\n\nMy Links\n\nSecond channel/ Wendigang: https://www.youtube.com/channe..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "s9PzYuVwCSE",
     title: "Lil Yachty - Poland (Directed by Cole Bennett)",
     length: Some(89),
@@ -106,7 +108,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCtylTUUVIGY_i5afsQYeBZA",
       name: "Lyrical Lemonade",
       avatar: [
@@ -118,15 +120,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("1 day ago"),
-    view_count: 4245789,
+    view_count: Some(4245789),
     is_live: false,
     is_short: false,
-    short_description: "Lyrical Lemonade Presents\nLil Yachty - Poland (Official Music Video)\n\nDirected & Edited by Cole Bennett\nSong Produced by F1LTHY\n\nDirector of Photography - Franklin Ricart\nColorist - Loren White...",
+    is_upcoming: false,
+    short_description: Some("Lyrical Lemonade Presents\nLil Yachty - Poland (Official Music Video)\n\nDirected & Edited by Cole Bennett\nSong Produced by F1LTHY\n\nDirector of Photography - Franklin Ricart\nColorist - Loren White..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "y8qhSduN6sk",
     title: "PC Games on Console - Scott The Woz",
     length: Some(1912),
@@ -147,7 +150,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UC4rqhyiTs7XyuODcECvuiiQ",
       name: "Scott The Woz",
       avatar: [
@@ -159,15 +162,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("20 hours ago"),
-    view_count: 528686,
+    view_count: Some(528686),
     is_live: false,
     is_short: false,
-    short_description: "Scott plays The Sims 2 Pets without a caps lock key.\n\nTwitter: https://www.twitter.com/ScottTheWoz\r\nFacebook: https://www.facebook.com/ScottTheWoz/\r\nInstagram: https://www.instagram.com/scottthewoz...",
+    is_upcoming: false,
+    short_description: Some("Scott plays The Sims 2 Pets without a caps lock key.\n\nTwitter: https://www.twitter.com/ScottTheWoz\r\nFacebook: https://www.facebook.com/ScottTheWoz/\r\nInstagram: https://www.instagram.com/scottthewoz..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "U9HAaHc3wnc",
     title: "Guess Iono’s Partner Pokémon! 🤔 | Pokémon Scarlet and Pokémon Violet",
     length: Some(211),
@@ -188,7 +192,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCFctpiB_Hnlk3ejWfHqSm6Q",
       name: "The Official Pokémon YouTube channel",
       avatar: [
@@ -200,15 +204,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("1 day ago"),
-    view_count: 1157471,
+    view_count: Some(1157471),
     is_live: false,
     is_short: false,
-    short_description: "Meet Iono, an influencer, streamer, and Gym Leader who specializes in Electric-type Pokémon ⚡\u{fe0f}\n\nCan you guess Iono’s partner Pokémon? 🤔\n\nPre-order Pokémon Scarlet & Pokémon Violet...",
+    is_upcoming: false,
+    short_description: Some("Meet Iono, an influencer, streamer, and Gym Leader who specializes in Electric-type Pokémon ⚡\u{fe0f}\n\nCan you guess Iono’s partner Pokémon? 🤔\n\nPre-order Pokémon Scarlet & Pokémon Violet..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "MBzi6hRrkww",
     title: "Celebrating Tito Puente",
     length: Some(65),
@@ -229,7 +234,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCdq61m8s_48EhJ5OM_MCeGw",
       name: "GoogleDoodles",
       avatar: [
@@ -241,15 +246,16 @@ expression: map_res.c
       ],
       verification: none,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("2 days ago"),
-    view_count: 19579375,
+    view_count: Some(19579375),
     is_live: false,
     is_short: false,
-    short_description: "In honor of US Hispanic Heritage Month, today’s animated video Doodle celebrates the life and legacy of American “Nuyorican” musician and internationally-renowned entertainer, Tito Puente....",
+    is_upcoming: false,
+    short_description: Some("In honor of US Hispanic Heritage Month, today’s animated video Doodle celebrates the life and legacy of American “Nuyorican” musician and internationally-renowned entertainer, Tito Puente...."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "DvkTX-AquQo",
     title: "Impossible 0.00001% Odds!",
     length: Some(481),
@@ -270,7 +276,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCUaT_39o1x6qWjz7K2pWcgw",
       name: "Beast Reacts",
       avatar: [
@@ -282,15 +288,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("2 days ago"),
-    view_count: 4850190,
+    view_count: Some(4850190),
     is_live: false,
     is_short: false,
-    short_description: "SUBSCRIBE OR YOU\'LL HAVE BAD LUCK\n\nCHECK OUT THESE CHANNELS OR ELSE\n\nFA 92\nhttps://www.youtube.com/watch?v=oaUH-nAg6UU\n\nRM Media\nhttps://www.youtube.com/watch?v=DFG-vaT0qgk\n\nThe Dodo\nhttps://cdn.jw...",
+    is_upcoming: false,
+    short_description: Some("SUBSCRIBE OR YOU\'LL HAVE BAD LUCK\n\nCHECK OUT THESE CHANNELS OR ELSE\n\nFA 92\nhttps://www.youtube.com/watch?v=oaUH-nAg6UU\n\nRM Media\nhttps://www.youtube.com/watch?v=DFG-vaT0qgk\n\nThe Dodo\nhttps://cdn.jw..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "T-8fCPT-ZKI",
     title: "DDG - Bulletproof Maybach (Official Music Video) ft. Offset",
     length: Some(189),
@@ -311,7 +318,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCKqqDlf6lfo3ChRA4-gzusQ",
       name: "DDG",
       avatar: [
@@ -323,15 +330,16 @@ expression: map_res.c
       ],
       verification: artist,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("1 day ago"),
-    view_count: 440722,
+    view_count: Some(440722),
     is_live: false,
     is_short: false,
-    short_description: "DDG ft. Offset - Bulletproof Maybach (Official Music Video)\n\n\"It\'s Not Me It\'s You\" available at: https://DDG.lnk.to/ItsNotMeItsYou \n\nFollow DDG:\nhttps://twitter.com/pontiacmadeddg \nhttps://www.fac...",
+    is_upcoming: false,
+    short_description: Some("DDG ft. Offset - Bulletproof Maybach (Official Music Video)\n\n\"It\'s Not Me It\'s You\" available at: https://DDG.lnk.to/ItsNotMeItsYou \n\nFollow DDG:\nhttps://twitter.com/pontiacmadeddg \nhttps://www.fac..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "dFlDRhvM4L0",
     title: "『チェンソーマン』ノンクレジットオープニング / CHAINSAW MAN  Opening│米津玄師 「KICK BACK」",
     length: Some(90),
@@ -352,7 +360,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCjfAEJZdfbIjVHdo5yODfyQ",
       name: "MAPPA CHANNEL",
       avatar: [
@@ -364,15 +372,16 @@ expression: map_res.c
       ],
       verification: none,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("2 days ago"),
-    view_count: 10285052,
+    view_count: Some(10285052),
     is_live: false,
     is_short: false,
-    short_description: "オープニング・テーマ\n米津玄師\u{3000}「KICK BACK」 Kenshi Yonezu – KICK BACK\n作詞・作曲\u{3000}米津玄師\n\u{3000}\u{3000}\u{3000}編曲\u{3000}米津玄師\u{3000}常田大希 (King Gnu / millennium...",
+    is_upcoming: false,
+    short_description: Some("オープニング・テーマ\n米津玄師\u{3000}「KICK BACK」 Kenshi Yonezu – KICK BACK\n作詞・作曲\u{3000}米津玄師\n\u{3000}\u{3000}\u{3000}編曲\u{3000}米津玄師\u{3000}常田大希 (King Gnu / millennium..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "G9W8CSckzAc",
     title: "why I disappeared",
     length: Some(461),
@@ -393,7 +402,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCgTaH6nm8sby0hpb2DSKNhg",
       name: "Boffy",
       avatar: [
@@ -405,15 +414,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("17 hours ago"),
-    view_count: 207145,
+    view_count: Some(207145),
     is_live: false,
     is_short: false,
-    short_description: "",
+    is_upcoming: false,
+    short_description: None,
   ),
-  SearchVideo(
+  VideoItem(
     id: "PuOUI2kwftA",
     title: "Brooklyn\'s Wedding Day Vlog | Behind the Scenes",
     length: Some(1265),
@@ -434,7 +444,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UC6QWhGQqf0YDYdRb0n6ojWw",
       name: "Brooklyn and Bailey",
       avatar: [
@@ -446,15 +456,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("23 hours ago"),
-    view_count: 395113,
+    view_count: Some(395113),
     is_live: false,
     is_short: false,
-    short_description: "The video you have all been waiting for is here! Our wedding vlog! We had so many people who filmed and helped make this video happen. Dakota and I were so excited to spend the weekend in Californi...",
+    is_upcoming: false,
+    short_description: Some("The video you have all been waiting for is here! Our wedding vlog! We had so many people who filmed and helped make this video happen. Dakota and I were so excited to spend the weekend in Californi..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "lkOGhJX6LKU",
     title: "Social Security payments set for big increase; here’s what you need to know",
     length: Some(120),
@@ -475,7 +486,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCnwI-VN5jXWIGQKOI9PMDMw",
       name: "WPRI",
       avatar: [
@@ -487,15 +498,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("22 hours ago"),
-    view_count: 227728,
+    view_count: Some(227728),
     is_live: false,
     is_short: false,
-    short_description: "Tens of millions of older Americans are about to get what may be the biggest raise of their lifetimes.\n\nStay in the know with WPRI 12 News. Local news, weather, sports, and award winning investigat...",
+    is_upcoming: false,
+    short_description: Some("Tens of millions of older Americans are about to get what may be the biggest raise of their lifetimes.\n\nStay in the know with WPRI 12 News. Local news, weather, sports, and award winning investigat..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "zkvIzKwzYNc",
     title: "Kep1er 케플러 | ‘We Fresh\' M/V",
     length: Some(225),
@@ -516,7 +528,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UC8whlOg70m2Yr3qSMjUhh0g",
       name: "Kep1er",
       avatar: [
@@ -528,15 +540,16 @@ expression: map_res.c
       ],
       verification: artist,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("11 hours ago"),
-    view_count: 1875402,
+    view_count: Some(1875402),
     is_live: false,
     is_short: false,
-    short_description: "Kep1er 3rd Mini Album ‘TROUBLESHOOTER\' \n2022.10.13 THU 6PM (KST)\n\nKep1er Official \nInstagram : https://www.instagram.com/official.kep1er/\nTwitter : https://twitter.com/official_kep1er\nFacebook...",
+    is_upcoming: false,
+    short_description: Some("Kep1er 3rd Mini Album ‘TROUBLESHOOTER\' \n2022.10.13 THU 6PM (KST)\n\nKep1er Official \nInstagram : https://www.instagram.com/official.kep1er/\nTwitter : https://twitter.com/official_kep1er\nFacebook..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "foMQG_Bpcag",
     title: "*After 4* DESTROYED my last brain cell",
     length: Some(2169),
@@ -557,7 +570,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCF_votze88WRDSEREe9s3aQ",
       name: "Dylan Is In Trouble",
       avatar: [
@@ -569,15 +582,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("1 day ago"),
-    view_count: 449633,
+    view_count: Some(449633),
     is_live: false,
     is_short: false,
-    short_description: "Go to http://audible.com/dylanisintrouble or text \'dylanisintrouble\' to 500 500 to get your free 30 day trial!\n\nTwitter: https://twitter.com/theDMatthews\nInstagram: https://www.instagram.com/neat_d...",
+    is_upcoming: false,
+    short_description: Some("Go to http://audible.com/dylanisintrouble or text \'dylanisintrouble\' to 500 500 to get your free 30 day trial!\n\nTwitter: https://twitter.com/theDMatthews\nInstagram: https://www.instagram.com/neat_d..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "iquXFFSEKyE",
     title: "NLE Choppa - Do It Again (ft. 2Rare) [HipHop Dance Musical] MEMPHIS EDITION",
     length: Some(239),
@@ -598,7 +612,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCWICXNlSLc7eeNazpzUZcLg",
       name: "NLE CHOPPA",
       avatar: [
@@ -610,15 +624,16 @@ expression: map_res.c
       ],
       verification: artist,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("22 hours ago"),
-    view_count: 311006,
+    view_count: Some(311006),
     is_live: false,
     is_short: false,
-    short_description: "Stream \"Do It Again\" now: https://nlechoppax2rare.lnk.to/doitagain\n\nWEBSITE: HERBS \nhttps://www.nlehealthandwellness.com 💜\nWEBSITE: MERCH\nhttps://www.nlehealthandwellness.com/new-collection...",
+    is_upcoming: false,
+    short_description: Some("Stream \"Do It Again\" now: https://nlechoppax2rare.lnk.to/doitagain\n\nWEBSITE: HERBS \nhttps://www.nlehealthandwellness.com 💜\nWEBSITE: MERCH\nhttps://www.nlehealthandwellness.com/new-collection..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "ijj_hheGEi0",
     title: "Queen - Face It Alone (Official Lyric Video)",
     length: Some(257),
@@ -639,7 +654,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCiMhD4jzUqG-IgPzUmmytRQ",
       name: "Queen Official",
       avatar: [
@@ -651,15 +666,16 @@ expression: map_res.c
       ],
       verification: artist,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("10 hours ago"),
-    view_count: 1016314,
+    view_count: Some(1016314),
     is_live: false,
     is_short: false,
-    short_description: "QUEEN rediscovered track featuring Freddie Mercury ‘FACE IT ALONE’ arrives as digital single release Thursday October 13\nPrecedes arrival of Queen ‘The Miracle Collector’s Edition’...",
+    is_upcoming: false,
+    short_description: Some("QUEEN rediscovered track featuring Freddie Mercury ‘FACE IT ALONE’ arrives as digital single release Thursday October 13\nPrecedes arrival of Queen ‘The Miracle Collector’s Edition’..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "nwMxp7mRbx4",
     title: "Dimension 20: Neverafter Trailer",
     length: Some(154),
@@ -680,7 +696,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCC8zWIx8aBQme-x1nX9iZ0A",
       name: "Dimension 20",
       avatar: [
@@ -692,15 +708,16 @@ expression: map_res.c
       ],
       verification: none,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("1 day ago"),
-    view_count: 205272,
+    view_count: Some(205272),
     is_live: false,
     is_short: false,
-    short_description: "Not all fairy tales end with a happily ever after. Premieres November 30th on Dropout. FAQ here: https://bit.ly/D20NeverafterFAQ\n\nWelcome to Dimension 20, Dropout.tv\'s anthology actualplay...",
+    is_upcoming: false,
+    short_description: Some("Not all fairy tales end with a happily ever after. Premieres November 30th on Dropout. FAQ here: https://bit.ly/D20NeverafterFAQ\n\nWelcome to Dimension 20, Dropout.tv\'s anthology actualplay..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "7IGD5URBGZ8",
     title: "We Got Engaged",
     length: Some(1325),
@@ -721,7 +738,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCkDG7yPqJBi_V2qGPRZHI_w",
       name: "Jayco & Val",
       avatar: [
@@ -733,15 +750,16 @@ expression: map_res.c
       ],
       verification: none,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("2 days ago"),
-    view_count: 254375,
+    view_count: Some(254375),
     is_live: false,
     is_short: false,
-    short_description: "Valentina  @Basic Valentina \n\nInstagram: https://www.instagram.com/basicvalent...\nTikTok: https://vm.tiktok.com/ZM8Gsmm4B/\nYouTube: https://youtube.com/channel/UCQxnOdDS...\n\nJayco  @Jaycoset...",
+    is_upcoming: false,
+    short_description: Some("Valentina  @Basic Valentina \n\nInstagram: https://www.instagram.com/basicvalent...\nTikTok: https://vm.tiktok.com/ZM8Gsmm4B/\nYouTube: https://youtube.com/channel/UCQxnOdDS...\n\nJayco  @Jaycoset..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "eKAIQDxai9Y",
     title: "I remade every mob into Rainbow Friends in Minecraft",
     length: Some(811),
@@ -762,7 +780,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCoRDf_M8ljQq5V_rR8CSzww",
       name: "Kipper",
       avatar: [
@@ -774,15 +792,16 @@ expression: map_res.c
       ],
       verification: none,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("1 day ago"),
-    view_count: 337002,
+    view_count: Some(337002),
     is_live: false,
     is_short: false,
-    short_description: "I remade these Minecraft mobs into Rainbow Friends characters! Check them out and let us know which one was your favorite! \n\n✅ SUBSCRIBE TO Kipper ► https://www.youtube.com/channel/UCoRDf_M8ljQ...",
+    is_upcoming: false,
+    short_description: Some("I remade these Minecraft mobs into Rainbow Friends characters! Check them out and let us know which one was your favorite! \n\n✅ SUBSCRIBE TO Kipper ► https://www.youtube.com/channel/UCoRDf_M8ljQ..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "5sRVxb2wkGM",
     title: "We Bought Every Weird Ad We Saw",
     length: Some(1602),
@@ -803,7 +822,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCfbnTUxUech4P1XgYUwYuKA",
       name: "Cold Ones",
       avatar: [
@@ -815,15 +834,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("2 days ago"),
-    view_count: 1170050,
+    view_count: Some(1170050),
     is_live: false,
     is_short: false,
-    short_description: "We See It? We Buy It! NO EXCEPTIONS\n💃 GET OUR NEW LIMITED WAIFU CUPS 👉🏻 https://bit.ly/coldoneswaifu\n🌈 Get 10% OFF OUR CLOTHES with code \"COLDONES\"  👉🏻 https://bit.ly/coolshirtzz...",
+    is_upcoming: false,
+    short_description: Some("We See It? We Buy It! NO EXCEPTIONS\n💃 GET OUR NEW LIMITED WAIFU CUPS 👉🏻 https://bit.ly/coldoneswaifu\n🌈 Get 10% OFF OUR CLOTHES with code \"COLDONES\"  👉🏻 https://bit.ly/coolshirtzz..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "9gbScp1JVN4",
     title: "Making Renaissance Costumes IN ONE DAY[ish]",
     length: Some(1317),
@@ -844,7 +864,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCONTNY-QxA-UVtpR7vWW6Pg",
       name: "Micarah Tewers",
       avatar: [
@@ -856,15 +876,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("1 day ago"),
-    view_count: 213453,
+    view_count: Some(213453),
     is_live: false,
     is_short: false,
-    short_description: "At least watch the last 5 minutes :)  Btw You can thrift my picks at https://thredup.com/x/micarah and use my code MICARAH for an extra 30% off and free shipping on your first order(Offer expires...",
+    is_upcoming: false,
+    short_description: Some("At least watch the last 5 minutes :)  Btw You can thrift my picks at https://thredup.com/x/micarah and use my code MICARAH for an extra 30% off and free shipping on your first order(Offer expires..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "qRao6FARFRo",
     title: "TURN THE TIDES - Harbor Agent Trailer // VALORANT",
     length: Some(228),
@@ -885,7 +906,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UC8CX0LD98EDXl4UYX1MDCXg",
       name: "VALORANT",
       avatar: [
@@ -897,15 +918,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("1 day ago"),
-    view_count: 2530745,
+    view_count: Some(2530745),
     is_live: false,
     is_short: false,
-    short_description: "Welcome to the team, Harbor.\n\nHailing from the coast of India, this new Controller Agent commands a mix of tide and torrent to shield allies and pummel opponents.\n\nMade in partnership with...",
+    is_upcoming: false,
+    short_description: Some("Welcome to the team, Harbor.\n\nHailing from the coast of India, this new Controller Agent commands a mix of tide and torrent to shield allies and pummel opponents.\n\nMade in partnership with..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "F8sGGKxSYNM",
     title: "Chares Oliveira: I’ll shock the world vs. Islam Makhachev at UFC 280 | ESPN MMA",
     length: Some(231),
@@ -926,7 +948,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCO4AcsPKEkIqDmbeiZLfd1A",
       name: "ESPN MMA",
       avatar: [
@@ -938,15 +960,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("1 day ago"),
-    view_count: 552568,
+    view_count: Some(552568),
     is_live: false,
     is_short: false,
-    short_description: "ESPN MMA’s Brett Okamoto speaks with Charles Oliveira about his lightweight title fight against Islam Makhachev at UFC 280 in Abu Dhabi.\n\n#UFC #UFC280 #Oliveira\n✔ For more UFC, sign up...",
+    is_upcoming: false,
+    short_description: Some("ESPN MMA’s Brett Okamoto speaks with Charles Oliveira about his lightweight title fight against Islam Makhachev at UFC 280 in Abu Dhabi.\n\n#UFC #UFC280 #Oliveira\n✔ For more UFC, sign up..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "ZnQP13rYpUY",
     title: "Rochy RD,  Tivi Gunz , Harryson, Onguito Wa, El Perrote Wz - Lokisla (Video Oficial) @Izy Music",
     length: Some(265),
@@ -967,7 +990,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCLCCG11dS-HyB3up3OCRV_w",
       name: "Tivi Gunz",
       avatar: [
@@ -979,15 +1002,16 @@ expression: map_res.c
       ],
       verification: artist,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("1 day ago"),
-    view_count: 1028903,
+    view_count: Some(1028903),
     is_live: false,
     is_short: false,
-    short_description: "Lokisla By Tivi Gunz, Rochy RD, Harryson, Onguito Wa, El Perrote Wz\nDisponible Ya: https://lnk.to/Lokisla\nProd By Zunna / Directed By Izy Films, R14 Films\n\nSubscribete: \nhttps://lnk.to/TiviGunz...",
+    is_upcoming: false,
+    short_description: Some("Lokisla By Tivi Gunz, Rochy RD, Harryson, Onguito Wa, El Perrote Wz\nDisponible Ya: https://lnk.to/Lokisla\nProd By Zunna / Directed By Izy Films, R14 Films\n\nSubscribete: \nhttps://lnk.to/TiviGunz..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "WArWsWRmdJw",
     title: "I made GeoGuessr in Among Us to challenge my friends...",
     length: Some(1340),
@@ -1008,7 +1032,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCUT8RoNBTJvwW1iErP6-b-A",
       name: "Disguised Toast",
       avatar: [
@@ -1020,15 +1044,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("1 day ago"),
-    view_count: 493539,
+    view_count: Some(493539),
     is_live: false,
     is_short: false,
-    short_description: "Toast, Sykkuno and Valkyrae test their Among Us knowledge in a brand new way to play Among Us, Among Us GeoGuessr.\n\nSubscribe to Disguised Toast! ►http://bit.ly/1cRxhZa\n\nWatch me Live on...",
+    is_upcoming: false,
+    short_description: Some("Toast, Sykkuno and Valkyrae test their Among Us knowledge in a brand new way to play Among Us, Among Us GeoGuessr.\n\nSubscribe to Disguised Toast! ►http://bit.ly/1cRxhZa\n\nWatch me Live on..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "wP9zsx04fWY",
     title: "WE ARE COMING! to a city near you!",
     length: Some(59),
@@ -1049,7 +1074,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCdvlHk5SZWwr9HjUcwtu8ng",
       name: "blink-182",
       avatar: [
@@ -1061,15 +1086,16 @@ expression: map_res.c
       ],
       verification: artist,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("2 days ago"),
-    view_count: 966225,
+    view_count: Some(966225),
     is_live: false,
     is_short: false,
-    short_description: "We’re coming. Tour’s coming. Album’s coming. Tom’s coming. \nTickets for the world tour go on sale starting Monday, 10/17 at 10am local\nNew Single EDGING out on 10/14\nEverything coming...",
+    is_upcoming: false,
+    short_description: Some("We’re coming. Tour’s coming. Album’s coming. Tom’s coming. \nTickets for the world tour go on sale starting Monday, 10/17 at 10am local\nNew Single EDGING out on 10/14\nEverything coming..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "Wz0Gb4_Q5rM",
     title: "Mariners vs. Astros ALDS Game 1 Highlights (10/11/22) | MLB Highlights",
     length: Some(584),
@@ -1090,7 +1116,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UC3RPfeyaEIPosC4eIcNr4Gw",
       name: "Houston Astros",
       avatar: [
@@ -1102,15 +1128,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("1 day ago"),
-    view_count: 185196,
+    view_count: Some(185196),
     is_live: false,
     is_short: false,
-    short_description: "Mariners vs. Astros full game highlights from 10/11/22, presented by @Chevrolet \r\n\r\nCheck out http://MLB.com/video for more!\r\n\r\nAbout MLB.com: About MLB.com: Baseball Commissioner Allan H....",
+    is_upcoming: false,
+    short_description: Some("Mariners vs. Astros full game highlights from 10/11/22, presented by @Chevrolet \r\n\r\nCheck out http://MLB.com/video for more!\r\n\r\nAbout MLB.com: About MLB.com: Baseball Commissioner Allan H...."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "ICULY_gTngs",
     title: "The MCU Has Been Taking Us For Granted.",
     length: Some(1025),
@@ -1131,7 +1158,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UC5UYMeKfZbFYnLHzoTJB1xA",
       name: "Schaffrillas Productions",
       avatar: [
@@ -1143,15 +1170,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("2 days ago"),
-    view_count: 973046,
+    view_count: Some(973046),
     is_live: false,
     is_short: false,
-    short_description: "Head to http://squarespace.com/schaffrillas to save 10% off your first purchase of a website or domain. Thanks to Squarespace for sponsoring this video!\n\nSchaff and the MCU are drifting apart....",
+    is_upcoming: false,
+    short_description: Some("Head to http://squarespace.com/schaffrillas to save 10% off your first purchase of a website or domain. Thanks to Squarespace for sponsoring this video!\n\nSchaff and the MCU are drifting apart...."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "bunhaERjxmE",
     title: "Frog Slime 🐸✨ | Ep. 11 | Minecraft Empires S2 1.19",
     length: Some(608),
@@ -1172,7 +1200,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCzTlXb7ivVzuFlugVCv3Kvg",
       name: "LDShadowLady",
       avatar: [
@@ -1184,15 +1212,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("2 days ago"),
-    view_count: 649096,
+    view_count: Some(649096),
     is_live: false,
     is_short: false,
-    short_description: "Please *boop* the like button if you enjoy the video! :)\nEmpires SMP is a 1.19 vanilla Minecraft server with some other fun Minecraft Youtubers! Each player chooses a biome to rule over and...",
+    is_upcoming: false,
+    short_description: Some("Please *boop* the like button if you enjoy the video! :)\nEmpires SMP is a 1.19 vanilla Minecraft server with some other fun Minecraft Youtubers! Each player chooses a biome to rule over and..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "tDhfNCUqZDs",
     title: "Bandmanrill x Sha Ek - “Jiggy In Jersey Pt2” (Shot by @RARI DIGITAL)",
     length: Some(110),
@@ -1213,7 +1242,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCQxF0u3RdN0v46EwkQChW7w",
       name: "RARI DIGITAL",
       avatar: [
@@ -1225,15 +1254,16 @@ expression: map_res.c
       ],
       verification: none,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("2 days ago"),
-    view_count: 163557,
+    view_count: Some(163557),
     is_live: false,
     is_short: false,
-    short_description: "Produced by EMRLD\nhttps://instagram.com/emrldbeats?igshid=YmMyMTA2M2Y=\n\nPre-Save “The Club Godfather” now: https://bandmanrill.lnk.to/ClubGodfather\n\nFollow BandmanRill & Sha Ek\nhttps://www.inst...",
+    is_upcoming: false,
+    short_description: Some("Produced by EMRLD\nhttps://instagram.com/emrldbeats?igshid=YmMyMTA2M2Y=\n\nPre-Save “The Club Godfather” now: https://bandmanrill.lnk.to/ClubGodfather\n\nFollow BandmanRill & Sha Ek\nhttps://www.inst..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "MEZe4chAeZA",
     title: "Dog and Chainsaw | Chainsawman Ep 1 Reaction",
     length: Some(1077),
@@ -1254,7 +1284,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UChJ73nb9I4Xq1bzc0a-j-pQ",
       name: "YaBoyRoshi",
       avatar: [
@@ -1266,15 +1296,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("1 day ago"),
-    view_count: 265018,
+    view_count: Some(265018),
     is_live: false,
     is_short: false,
-    short_description: "PATREON📺: http://Patreon.com/Yaboyroshi\nCHECK OUT OUR MERCH 👕: http://www.yaboyroshi.com\nGAMING CHANNEL: http://youtube.com/ybrszn\nJOIN THE DISCORD! https://discord.gg/6gAg8Vh\nFOLLOW...",
+    is_upcoming: false,
+    short_description: Some("PATREON📺: http://Patreon.com/Yaboyroshi\nCHECK OUT OUR MERCH 👕: http://www.yaboyroshi.com\nGAMING CHANNEL: http://youtube.com/ybrszn\nJOIN THE DISCORD! https://discord.gg/6gAg8Vh\nFOLLOW..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "NMA_isZYsYQ",
     title: "KICK BACK",
     length: Some(194),
@@ -1295,7 +1326,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCUCeZaZeJbEYAAzvMgrKOPQ",
       name: "Kenshi Yonezu  米津玄師",
       avatar: [
@@ -1307,15 +1338,16 @@ expression: map_res.c
       ],
       verification: artist,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("2 days ago"),
-    view_count: 934820,
+    view_count: Some(934820),
     is_live: false,
     is_short: false,
-    short_description: "Provided to YouTube by Sony Music Labels Inc.\n\nKICK BACK · Kenshi Yonezu\n\nKICK BACK\n\n℗ 2022 Sony Music Labels Inc.\n\nReleased on: 2022-10-12\n\nArranger: Daiki Tsuneta\nComposer, Lyricist: Tsunku...",
+    is_upcoming: false,
+    short_description: Some("Provided to YouTube by Sony Music Labels Inc.\n\nKICK BACK · Kenshi Yonezu\n\nKICK BACK\n\n℗ 2022 Sony Music Labels Inc.\n\nReleased on: 2022-10-12\n\nArranger: Daiki Tsuneta\nComposer, Lyricist: Tsunku..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "qe6Oy8oEOhI",
     title: "Top 50 Amazon Prime Day October 2022 Deals (DAY 2!) 🔥 Better Deals Than Yesterday?!",
     length: Some(752),
@@ -1336,7 +1368,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UC5Qbo0AR3CwpmEq751BIy0g",
       name: "The Deal Guy",
       avatar: [
@@ -1348,15 +1380,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("1 day ago"),
-    view_count: 390286,
+    view_count: Some(390286),
     is_live: false,
     is_short: false,
-    short_description: "It’s Day 2 of October Amazon Prime Day Early Access 2022!! Here are the best deals on Laptops, TV’s, Smart Home & Apple Deals!\n👇🏼 ALL DEAL LINKS ARE FEATURED IN THE DESCRIPTION BELOW...",
+    is_upcoming: false,
+    short_description: Some("It’s Day 2 of October Amazon Prime Day Early Access 2022!! Here are the best deals on Laptops, TV’s, Smart Home & Apple Deals!\n👇🏼 ALL DEAL LINKS ARE FEATURED IN THE DESCRIPTION BELOW..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "odWKEfp2QMY",
     title: "Måneskin - THE LONELIEST (Official Video)",
     length: Some(288),
@@ -1377,7 +1410,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCgQna2EqpzqzfBjlSmzT72w",
       name: "Måneskin Official",
       avatar: [
@@ -1389,15 +1422,16 @@ expression: map_res.c
       ],
       verification: artist,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("1 day ago"),
-    view_count: 1273458,
+    view_count: Some(1273458),
     is_live: false,
     is_short: false,
-    short_description: "“THE LONELIEST” – New single by Måneskin \nListen & Download THE LONELIEST: https://maneskinofficial.lnk.to/THELONELIEST\n\nFollow Måneskin:\nInstagram - https://www.instagram.com/maneskinoffic...",
+    is_upcoming: false,
+    short_description: Some("“THE LONELIEST” – New single by Måneskin \nListen & Download THE LONELIEST: https://maneskinofficial.lnk.to/THELONELIEST\n\nFollow Måneskin:\nInstagram - https://www.instagram.com/maneskinoffic..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "BRb4U99OU80",
     title: "M3GAN - official trailer",
     length: Some(148),
@@ -1418,7 +1452,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCq0OueAsdxH6b8nyAspwViw",
       name: "Universal Pictures",
       avatar: [
@@ -1430,15 +1464,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("2 days ago"),
-    view_count: 4502416,
+    view_count: Some(4502416),
     is_live: false,
     is_short: false,
-    short_description: "meet M3GAN. your new best friend.\n\nM3GAN - official trailer\nonly in theaters january 13\n\nFrom the most prolific minds in horror—James Wan, the filmmaker behind the Saw, Insidious and The...",
+    is_upcoming: false,
+    short_description: Some("meet M3GAN. your new best friend.\n\nM3GAN - official trailer\nonly in theaters january 13\n\nFrom the most prolific minds in horror—James Wan, the filmmaker behind the Saw, Insidious and The..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "F-7rQBY8uIQ",
     title: "Lil Baby - Heyy (Official Video)",
     length: Some(193),
@@ -1459,7 +1494,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCVS88tG_NYgxF6Udnx2815Q",
       name: "Lil Baby Official 4PF",
       avatar: [
@@ -1471,15 +1506,16 @@ expression: map_res.c
       ],
       verification: artist,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("3 days ago"),
-    view_count: 2540238,
+    view_count: Some(2540238),
     is_live: false,
     is_short: false,
-    short_description: "Music video by Lil Baby performing Heyy. Quality Control Music/Motown Records; © 2022 Quality Control Music, LLC, under exclusive license to UMG Recordings, Inc.\n\nhttp://vevo.ly/IFLIVM",
+    is_upcoming: false,
+    short_description: Some("Music video by Lil Baby performing Heyy. Quality Control Music/Motown Records; © 2022 Quality Control Music, LLC, under exclusive license to UMG Recordings, Inc.\n\nhttp://vevo.ly/IFLIVM"),
   ),
-  SearchVideo(
+  VideoItem(
     id: "3sPxvgrKwEg",
     title: "Overwatch 2 - SEASON 1 HERO TIER LIST",
     length: Some(1183),
@@ -1500,7 +1536,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCQH4V9PiY_eLo4Ihr1tWCwQ",
       name: "KarQ",
       avatar: [
@@ -1512,15 +1548,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("1 day ago"),
-    view_count: 655275,
+    view_count: Some(655275),
     is_live: false,
     is_short: false,
-    short_description: "🤖 Install Mech Arena for FREE here on Mobile and PC ✅ https://clik.cc/87hRz and get a special starter pack to help kickstart your game! ⭐\n\nThis Hero Tier list is based on my competitive...",
+    is_upcoming: false,
+    short_description: Some("🤖 Install Mech Arena for FREE here on Mobile and PC ✅ https://clik.cc/87hRz and get a special starter pack to help kickstart your game! ⭐\n\nThis Hero Tier list is based on my competitive..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "_akEYecFdyM",
     title: "Overwatch 2 is free but I still feel scammed",
     length: Some(904),
@@ -1541,7 +1578,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCd9TUql8V7J-Xy1RNgA7MlQ",
       name: "zanny",
       avatar: [
@@ -1553,15 +1590,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("2 days ago"),
-    view_count: 1122910,
+    view_count: Some(1122910),
     is_live: false,
     is_short: false,
-    short_description: "Ashe main\n\n\n►zan clan meme merch\nhttps://crowdmade.com/collections/zanny\n►Kirin & Miro shirts and hoodies\nhttps://projectorochi.com/collections/originals\n\n►My things\nTwitch: https://www.twitc...",
+    is_upcoming: false,
+    short_description: Some("Ashe main\n\n\n►zan clan meme merch\nhttps://crowdmade.com/collections/zanny\n►Kirin & Miro shirts and hoodies\nhttps://projectorochi.com/collections/originals\n\n►My things\nTwitch: https://www.twitc..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "6MKcY5wTcpY",
     title: "LEE CHAE YEON (이채연) - HUSH RUSH MV",
     length: Some(221),
@@ -1582,7 +1620,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UC_pwIXKXNm5KGhdEVzmY60A",
       name: "Stone Music Entertainment",
       avatar: [
@@ -1594,15 +1632,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("1 day ago"),
-    view_count: 1974306,
+    view_count: Some(1974306),
     is_live: false,
     is_short: false,
-    short_description: "LEE CHAE YEON (이채연) - HUSH RUSH MV\n\nLEE CHAE YEON(이채연) 1st Mini Album \"HUSH RUSH\" has been released.\n\n이채연의 첫 미니 앨범 \'HUSH RUSH\'는 고성에 갇힌 뱀파이어가...",
+    is_upcoming: false,
+    short_description: Some("LEE CHAE YEON (이채연) - HUSH RUSH MV\n\nLEE CHAE YEON(이채연) 1st Mini Album \"HUSH RUSH\" has been released.\n\n이채연의 첫 미니 앨범 \'HUSH RUSH\'는 고성에 갇힌 뱀파이어가..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "xIeYK9w03i4",
     title: "『チェンソーマン』第１話スペシャルエンディング / CHAINSAW MAN #1 Ending│Vaundy 「CHAINSAW BLOOD」",
     length: Some(92),
@@ -1623,7 +1662,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCjfAEJZdfbIjVHdo5yODfyQ",
       name: "MAPPA CHANNEL",
       avatar: [
@@ -1635,15 +1674,16 @@ expression: map_res.c
       ],
       verification: none,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("2 days ago"),
-    view_count: 2730322,
+    view_count: Some(2730322),
     is_live: false,
     is_short: false,
-    short_description: "第1話 エンディング・テーマ\nVaundy 「CHAINSAW BLOOD」\n作詞・作曲・編曲  Vaundy\n(SDR / Sony Music Labels Inc.)\n\n楽曲配信リンク：https://lnk.to/CHAINSAW_BLOOD\n\n2022年10...",
+    is_upcoming: false,
+    short_description: Some("第1話 エンディング・テーマ\nVaundy 「CHAINSAW BLOOD」\n作詞・作曲・編曲  Vaundy\n(SDR / Sony Music Labels Inc.)\n\n楽曲配信リンク：https://lnk.to/CHAINSAW_BLOOD\n\n2022年10..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "s4y_kzpCthQ",
     title: "Blaqbonez - Back In Uni (Official Music Video)",
     length: Some(209),
@@ -1664,7 +1704,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UC0iZ_gqCk22K0jWscf75lhg",
       name: "Blaqbonez",
       avatar: [
@@ -1676,15 +1716,16 @@ expression: map_res.c
       ],
       verification: artist,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("1 day ago"),
-    view_count: 923909,
+    view_count: Some(923909),
     is_live: false,
     is_short: false,
-    short_description: "Get \"Back In Uni\"  by BLAQBONEZ here: https://Blaqbonez.lnk.to/BackInUniOM\n\n#Blaqbonez #BackInUni #YoungPreacher\n\nFollow Blaqbonez On: \nFacebook: https://bit.ly/2GuhhPj \nTwitter: http://twitter.com...",
+    is_upcoming: false,
+    short_description: Some("Get \"Back In Uni\"  by BLAQBONEZ here: https://Blaqbonez.lnk.to/BackInUniOM\n\n#Blaqbonez #BackInUni #YoungPreacher\n\nFollow Blaqbonez On: \nFacebook: https://bit.ly/2GuhhPj \nTwitter: http://twitter.com..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "_SKVFtLtJws",
     title: "Charli D\'Amelio and Mark Ballas Jazz (Week 4) | Dancing With The Stars on Disney+",
     length: Some(92),
@@ -1705,7 +1746,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCi3OE-aN09WOcN9d2stCvPg",
       name: "charli d\'amelio",
       avatar: [
@@ -1717,15 +1758,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("1 day ago"),
-    view_count: 164574,
+    view_count: Some(164574),
     is_live: false,
     is_short: false,
-    short_description: "Charli D\'Amelio and Mark Ballas Jazz (Week 4) | Dancing With The Stars on Disney+\nSubscribe: @charli d\'amelio \nWatch next: Charli D\'Amelio and Mark Ballas Rumba (Week 3) | Dancing With The...",
+    is_upcoming: false,
+    short_description: Some("Charli D\'Amelio and Mark Ballas Jazz (Week 4) | Dancing With The Stars on Disney+\nSubscribe: @charli d\'amelio \nWatch next: Charli D\'Amelio and Mark Ballas Rumba (Week 3) | Dancing With The..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "BtJPMqyhj_M",
     title: "Money Man - Armed & Dangerous (Official Video)",
     length: Some(110),
@@ -1746,7 +1788,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCSHVQ3lgpeSbETMqKl8kcug",
       name: "Money Man",
       avatar: [
@@ -1758,15 +1800,16 @@ expression: map_res.c
       ],
       verification: artist,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("1 day ago"),
-    view_count: 337315,
+    view_count: Some(337315),
     is_live: false,
     is_short: false,
-    short_description: "#MoneyMan  #ArmedNDangerous #EMPIRE\n\n\n\nOfficial Video by Money Man - \"Armed & Dangerous\"  © 2022 Black Circle / EMPIRE",
+    is_upcoming: false,
+    short_description: Some("#MoneyMan  #ArmedNDangerous #EMPIRE\n\n\n\nOfficial Video by Money Man - \"Armed & Dangerous\"  © 2022 Black Circle / EMPIRE"),
   ),
-  SearchVideo(
+  VideoItem(
     id: "rge0deYBVv0",
     title: "Top 50 Amazon Prime Day October 2022 Deals 🤑 (Updated Hourly!!)",
     length: Some(780),
@@ -1787,7 +1830,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UC5Qbo0AR3CwpmEq751BIy0g",
       name: "The Deal Guy",
       avatar: [
@@ -1799,15 +1842,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("2 days ago"),
-    view_count: 648769,
+    view_count: Some(648769),
     is_live: false,
     is_short: false,
-    short_description: "It’s October Amazon Prime Day Early Access 2022!! Here are the best deals on Laptops, TV’s, Smart Home & Apple Deals!\n👇🏼 ALL DEAL LINKS ARE FEATURED IN THE DESCRIPTION BELOW 👇🏼...",
+    is_upcoming: false,
+    short_description: Some("It’s October Amazon Prime Day Early Access 2022!! Here are the best deals on Laptops, TV’s, Smart Home & Apple Deals!\n👇🏼 ALL DEAL LINKS ARE FEATURED IN THE DESCRIPTION BELOW 👇🏼..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "luXUJ9LJcy0",
     title: "Sounds from the Sideline: Week 5 at LAR | 2022",
     length: Some(432),
@@ -1828,7 +1872,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCC0BPKJxAyxjQoRTYbpW0FQ",
       name: "Dallas Cowboys",
       avatar: [
@@ -1840,15 +1884,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("1 day ago"),
-    view_count: 194246,
+    view_count: Some(194246),
     is_live: false,
     is_short: false,
-    short_description: "Sights and sounds from the sideline of the Dallas Cowboys game vs the Los Angele Rams, at SoFi Stadium.\n\nSubscribe to the Dallas Cowboys YouTube Channel: https://bit.ly/2L07gMO\nFor more Cowboys...",
+    is_upcoming: false,
+    short_description: Some("Sights and sounds from the sideline of the Dallas Cowboys game vs the Los Angele Rams, at SoFi Stadium.\n\nSubscribe to the Dallas Cowboys YouTube Channel: https://bit.ly/2L07gMO\nFor more Cowboys..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "avUEfUTGbhM",
     title: "Welding an excavator bucket and digging pond",
     length: Some(1756),
@@ -1869,7 +1914,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCUujfNBK9uv3cIW-P5PX7vA",
       name: "Andrew Camarata",
       avatar: [
@@ -1881,15 +1926,16 @@ expression: map_res.c
       ],
       verification: none,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("2 days ago"),
-    view_count: 402574,
+    view_count: Some(402574),
     is_live: false,
     is_short: false,
-    short_description: "Welding a set of quick change ears on an excavator bucket, then using that bucket to dig a pond and do some tree work.",
+    is_upcoming: false,
+    short_description: Some("Welding a set of quick change ears on an excavator bucket, then using that bucket to dig a pond and do some tree work."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "bqEgXmTU2SI",
     title: "NEW 5-5-5 ACE PARAGON - The Goliath Doomship! (Bloons TD 6)",
     length: Some(950),
@@ -1910,7 +1956,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UC7WQH4kpgxXJYHp8r9IAO-Q",
       name: "ISAB",
       avatar: [
@@ -1922,15 +1968,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("1 day ago"),
-    view_count: 335274,
+    view_count: Some(335274),
     is_live: false,
     is_short: false,
-    short_description: "NEW 5-5-5 ACE PARAGON - The Goliath Doomship! BTD6 / Bloons TD 6 - update 33.0 is out for real, and here is my first look at the new paragon on the new map(s)! The goliath doomship has lots...",
+    is_upcoming: false,
+    short_description: Some("NEW 5-5-5 ACE PARAGON - The Goliath Doomship! BTD6 / Bloons TD 6 - update 33.0 is out for real, and here is my first look at the new paragon on the new map(s)! The goliath doomship has lots..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "xhYj9JJnLHM",
     title: "DDG 25th SURPRISE BIRTHDAY PARTY!!",
     length: Some(3252),
@@ -1951,7 +1998,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCDDgfKQE3eaD1H08VHRAfig",
       name: "PontiacMadeDDG VLOGS",
       avatar: [
@@ -1963,15 +2010,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("3 days ago"),
-    view_count: 678135,
+    view_count: Some(678135),
     is_live: false,
     is_short: false,
-    short_description: "\"It\'s Not Me It\'s You\" available at: https://DDG.lnk.to/ItsNotMeItsYou\n\nFollow My Social Media:\nInstagram: https://instagram.com/ddg\nTwitter: https://twitter.com/pontiacmadeddg\nSnapChat: https://sn...",
+    is_upcoming: false,
+    short_description: Some("\"It\'s Not Me It\'s You\" available at: https://DDG.lnk.to/ItsNotMeItsYou\n\nFollow My Social Media:\nInstagram: https://instagram.com/ddg\nTwitter: https://twitter.com/pontiacmadeddg\nSnapChat: https://sn..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "RlbajBvxR0M",
     title: "Werewolf by Night - The MCU Tries to Be Creative Again",
     length: Some(366),
@@ -1992,7 +2040,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCqTYHSnBUXZamsVcOlQf-fg",
       name: "The Cosmonaut Variety Hour",
       avatar: [
@@ -2004,15 +2052,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("1 day ago"),
-    view_count: 255765,
+    view_count: Some(255765),
     is_live: false,
     is_short: false,
-    short_description: "Patreon: https://www.patreon.com/cosmonautvarietyhour\r\n\r\nBUY A SHIRT: https://teespring.com/stores/cosmonaut-variety-merch-store\r\n\r\nTwitter: https://twitter.com/cosmovarietyhr",
+    is_upcoming: false,
+    short_description: Some("Patreon: https://www.patreon.com/cosmonautvarietyhour\r\n\r\nBUY A SHIRT: https://teespring.com/stores/cosmonaut-variety-merch-store\r\n\r\nTwitter: https://twitter.com/cosmovarietyhr"),
   ),
-  SearchVideo(
+  VideoItem(
     id: "yX_DwPnkycc",
     title: "THE BEST RESULTS I\'VE SEEN YET! (PROGRESS UPDATE)",
     length: Some(906),
@@ -2033,7 +2082,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UC6jgzx2g3nlbaYkd8EMweKA",
       name: "Jaclyn Hill",
       avatar: [
@@ -2045,15 +2094,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("2 days ago"),
-    view_count: 259996,
+    view_count: Some(259996),
     is_live: false,
     is_short: false,
-    short_description: "SUBSCRIBE!  \nhttp://goo.gl/3Awmn8\n\nSHOP MY COSMETICS BRAND HERE!\nhttps://jaclyncosmetics.com\n\nSHOP MY JEWELRY BRAND HERE!\nhttps://jaclynroxanne.com\n\nSHOP MY PALETTES & BRUSHES HERE!!\nhttp://morpheb...",
+    is_upcoming: false,
+    short_description: Some("SUBSCRIBE!  \nhttp://goo.gl/3Awmn8\n\nSHOP MY COSMETICS BRAND HERE!\nhttps://jaclyncosmetics.com\n\nSHOP MY JEWELRY BRAND HERE!\nhttps://jaclynroxanne.com\n\nSHOP MY PALETTES & BRUSHES HERE!!\nhttp://morpheb..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "CtpdMkKvB6U",
     title: "hi, I\'m Dream.",
     length: Some(342),
@@ -2074,7 +2124,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCTkXRDQl0luXxVQrRQvWS6w",
       name: "Dream",
       avatar: [
@@ -2086,15 +2136,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("10 days ago"),
-    view_count: 40299696,
+    view_count: Some(40299696),
     is_live: false,
     is_short: false,
-    short_description: "hi, I\'m Dream, and this is what I look like.\n\nAfter years of being completely faceless online, I finally decided to do a face reveal.\n\nFollow my socials:\n➽ Twitter - @dream\n➽ Instagram...",
+    is_upcoming: false,
+    short_description: Some("hi, I\'m Dream, and this is what I look like.\n\nAfter years of being completely faceless online, I finally decided to do a face reveal.\n\nFollow my socials:\n➽ Twitter - @dream\n➽ Instagram..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "t6fIp7mMJ90",
     title: "what happened.",
     length: Some(332),
@@ -2115,7 +2166,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCpi8TJfiA4lKGkaXs__YdBA",
       name: "The Try Guys",
       avatar: [
@@ -2127,15 +2178,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("9 days ago"),
-    view_count: 10499110,
+    view_count: Some(10499110),
     is_live: false,
     is_short: false,
-    short_description: "",
+    is_upcoming: false,
+    short_description: None,
   ),
-  SearchVideo(
+  VideoItem(
     id: "dFlDRhvM4L0",
     title: "『チェンソーマン』ノンクレジットオープニング / CHAINSAW MAN  Opening│米津玄師 「KICK BACK」",
     length: Some(90),
@@ -2156,7 +2208,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCjfAEJZdfbIjVHdo5yODfyQ",
       name: "MAPPA CHANNEL",
       avatar: [
@@ -2168,15 +2220,16 @@ expression: map_res.c
       ],
       verification: none,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("2 days ago"),
-    view_count: 10285052,
+    view_count: Some(10285052),
     is_live: false,
     is_short: false,
-    short_description: "オープニング・テーマ\n米津玄師\u{3000}「KICK BACK」 Kenshi Yonezu – KICK BACK\n作詞・作曲\u{3000}米津玄師\n\u{3000}\u{3000}\u{3000}編曲\u{3000}米津玄師\u{3000}常田大希 (King Gnu / millennium...",
+    is_upcoming: false,
+    short_description: Some("オープニング・テーマ\n米津玄師\u{3000}「KICK BACK」 Kenshi Yonezu – KICK BACK\n作詞・作曲\u{3000}米津玄師\n\u{3000}\u{3000}\u{3000}編曲\u{3000}米津玄師\u{3000}常田大希 (King Gnu / millennium..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "6T67I2w1G2U",
     title: "Extreme $1,000,000 Minecraft Challenge!",
     length: Some(643),
@@ -2197,7 +2250,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCIPPMRA040LQr5QPyJEbmXA",
       name: "MrBeast Gaming",
       avatar: [
@@ -2209,15 +2262,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("1 day ago"),
-    view_count: 2873209,
+    view_count: Some(2873209),
     is_live: false,
     is_short: false,
-    short_description: "Thank you to Undeniably Dairy for sponsoring this video! Check them out! http://www.bit.ly/UDMrBeast\n\nI challenged six YouTubers to compete for $1,000,000!\n\nSUBSCRIBE OR YOU\'LL HAVE BAD LUCK...",
+    is_upcoming: false,
+    short_description: Some("Thank you to Undeniably Dairy for sponsoring this video! Check them out! http://www.bit.ly/UDMrBeast\n\nI challenged six YouTubers to compete for $1,000,000!\n\nSUBSCRIBE OR YOU\'LL HAVE BAD LUCK..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "DvkTX-AquQo",
     title: "Impossible 0.00001% Odds!",
     length: Some(481),
@@ -2238,7 +2292,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCUaT_39o1x6qWjz7K2pWcgw",
       name: "Beast Reacts",
       avatar: [
@@ -2250,15 +2304,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("2 days ago"),
-    view_count: 4850190,
+    view_count: Some(4850190),
     is_live: false,
     is_short: false,
-    short_description: "SUBSCRIBE OR YOU\'LL HAVE BAD LUCK\n\nCHECK OUT THESE CHANNELS OR ELSE\n\nFA 92\nhttps://www.youtube.com/watch?v=oaUH-nAg6UU\n\nRM Media\nhttps://www.youtube.com/watch?v=DFG-vaT0qgk\n\nThe Dodo\nhttps://cdn.jw...",
+    is_upcoming: false,
+    short_description: Some("SUBSCRIBE OR YOU\'LL HAVE BAD LUCK\n\nCHECK OUT THESE CHANNELS OR ELSE\n\nFA 92\nhttps://www.youtube.com/watch?v=oaUH-nAg6UU\n\nRM Media\nhttps://www.youtube.com/watch?v=DFG-vaT0qgk\n\nThe Dodo\nhttps://cdn.jw..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "F-7rQBY8uIQ",
     title: "Lil Baby - Heyy (Official Video)",
     length: Some(193),
@@ -2279,7 +2334,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCVS88tG_NYgxF6Udnx2815Q",
       name: "Lil Baby Official 4PF",
       avatar: [
@@ -2291,15 +2346,16 @@ expression: map_res.c
       ],
       verification: artist,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("3 days ago"),
-    view_count: 2540238,
+    view_count: Some(2540238),
     is_live: false,
     is_short: false,
-    short_description: "Music video by Lil Baby performing Heyy. Quality Control Music/Motown Records; © 2022 Quality Control Music, LLC, under exclusive license to UMG Recordings, Inc.\n\nhttp://vevo.ly/IFLIVM",
+    is_upcoming: false,
+    short_description: Some("Music video by Lil Baby performing Heyy. Quality Control Music/Motown Records; © 2022 Quality Control Music, LLC, under exclusive license to UMG Recordings, Inc.\n\nhttp://vevo.ly/IFLIVM"),
   ),
-  SearchVideo(
+  VideoItem(
     id: "atwHMKZ0SLU",
     title: "Boosie in the trap!",
     length: Some(9879),
@@ -2320,7 +2376,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UC4m46pCBkMEyy8gk26WKqbA",
       name: "The 85 South Comedy Show",
       avatar: [
@@ -2332,15 +2388,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("5 days ago"),
-    view_count: 2019404,
+    view_count: Some(2019404),
     is_live: false,
     is_short: false,
-    short_description: "Hit Our Website for more info: https://www.85southshow.com/\nGet our custom merchandise: https://85apparelco.com/\nSubscribe To our Channel: bitly.com/85tube \nWATCH KARLOUS\' MILLER\'s COMEDY SPECIAL!...",
+    is_upcoming: false,
+    short_description: Some("Hit Our Website for more info: https://www.85southshow.com/\nGet our custom merchandise: https://85apparelco.com/\nSubscribe To our Channel: bitly.com/85tube \nWATCH KARLOUS\' MILLER\'s COMEDY SPECIAL!..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "Ut68FBnWbAI",
     title: "ok, let\'s talk about it. - The TryPod Ep. 181",
     length: Some(4226),
@@ -2361,7 +2418,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCRrigpc864fw8ZNsJ2AnEJA",
       name: "TryPods",
       avatar: [
@@ -2373,15 +2430,16 @@ expression: map_res.c
       ],
       verification: none,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("7 days ago"),
-    view_count: 5591480,
+    view_count: Some(5591480),
     is_live: false,
     is_short: false,
-    short_description: "This episode is sponsored by BetterHelp. Take charge of your mental health with 10% off your first month of online therapy at https://betterhelp.com/trypod\nSupport local restaurants from the...",
+    is_upcoming: false,
+    short_description: Some("This episode is sponsored by BetterHelp. Take charge of your mental health with 10% off your first month of online therapy at https://betterhelp.com/trypod\nSupport local restaurants from the..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "_Z3QKkl1WyM",
     title: "Marvel Studios’ Black Panther: Wakanda Forever | Official Trailer",
     length: Some(131),
@@ -2402,7 +2460,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCvC4D8onUfXzvjTOM-dBfEA",
       name: "Marvel Entertainment",
       avatar: [
@@ -2414,15 +2472,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("10 days ago"),
-    view_count: 24540193,
+    view_count: Some(24540193),
     is_live: false,
     is_short: false,
-    short_description: "“Show them who we are.” Watch the brand-new trailer for Marvel Studios’ Black Panther: Wakanda Forever, only in theaters November 11.\nGet tickets now: fandango.com/wakandaforever \n\n►...",
+    is_upcoming: false,
+    short_description: Some("“Show them who we are.” Watch the brand-new trailer for Marvel Studios’ Black Panther: Wakanda Forever, only in theaters November 11.\nGet tickets now: fandango.com/wakandaforever \n\n►..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "nMPCXuvL8EM",
     title: "The Super Mario Bros. Movie Direct",
     length: Some(482),
@@ -2443,7 +2502,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCGIY_O-8vW4rfX98KlMkvRg",
       name: "Nintendo of America",
       avatar: [
@@ -2455,15 +2514,16 @@ expression: map_res.c
       ],
       verification: none,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("Streamed 7 days ago"),
-    view_count: 5869928,
+    view_count: Some(5869928),
     is_live: false,
     is_short: false,
-    short_description: "Watch this Nintendo Direct: The Super Mario Bros. Movie presentation introducing the world premiere trailer for the upcoming film (no game information will be featured).\n\nSubscribe for more...",
+    is_upcoming: false,
+    short_description: Some("Watch this Nintendo Direct: The Super Mario Bros. Movie presentation introducing the world premiere trailer for the upcoming film (no game information will be featured).\n\nSubscribe for more..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "SS7HXxy3_2c",
     title: "Try Guys - SNL",
     length: Some(352),
@@ -2484,7 +2544,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCqFzWxSCi39LnW1JKFR3efg",
       name: "Saturday Night Live",
       avatar: [
@@ -2496,15 +2556,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("4 days ago"),
-    view_count: 2106221,
+    view_count: Some(2106221),
     is_live: false,
     is_short: false,
-    short_description: "A CNN broadcast is interrupted by breaking news of the Try Guys\' (Mikey Day, Bowen Yang, Andrew Dismukes) response video to Ned Fulmer.\n\nSaturday Night Live. Stream now on Peacock: https://pck.tv/3...",
+    is_upcoming: false,
+    short_description: Some("A CNN broadcast is interrupted by breaking news of the Try Guys\' (Mikey Day, Bowen Yang, Andrew Dismukes) response video to Ned Fulmer.\n\nSaturday Night Live. Stream now on Peacock: https://pck.tv/3..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "rvInpw0WGLc",
     title: "Town Hall 15 Is Here! Clash of Clans New Update Available Now!",
     length: Some(71),
@@ -2525,7 +2586,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCD1Em4q90ZUK2R5HKesszJg",
       name: "Clash of Clans",
       avatar: [
@@ -2537,15 +2598,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("3 days ago"),
-    view_count: 5259742,
+    view_count: Some(5259742),
     is_live: false,
     is_short: false,
-    short_description: "Town Hall 15 Is Here! Clash of Clans New Update Available Now!\n\n#clashofclans #townhall15 #newupdate #th15\n\n\nIntroducing Town Hall 15, the most magical Town Hall yet!\n\n● Power up your village...",
+    is_upcoming: false,
+    short_description: Some("Town Hall 15 Is Here! Clash of Clans New Update Available Now!\n\n#clashofclans #townhall15 #newupdate #th15\n\n\nIntroducing Town Hall 15, the most magical Town Hall yet!\n\n● Power up your village..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "etV_nxVU6l8",
     title: "Wedding Stereotypes",
     length: Some(676),
@@ -2566,7 +2628,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCRijo3ddMTht_IHyNSNXpNQ",
       name: "Dude Perfect",
       avatar: [
@@ -2578,15 +2640,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("5 days ago"),
-    view_count: 5931342,
+    view_count: Some(5931342),
     is_live: false,
     is_short: false,
-    short_description: "Love \'em or Hate \'em, we all know \'em! Check out all the Wedding Stereotypes!\n► Thanks for subscribing! - http://bit.ly/SubDudePerfect\n► Sail to the Bahamas w/ us on the DUDE PERFECT CRUISE:...",
+    is_upcoming: false,
+    short_description: Some("Love \'em or Hate \'em, we all know \'em! Check out all the Wedding Stereotypes!\n► Thanks for subscribing! - http://bit.ly/SubDudePerfect\n► Sail to the Bahamas w/ us on the DUDE PERFECT CRUISE:..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "i7ytY9Onf9o",
     title: "I Met Dream In Real Life",
     length: Some(569),
@@ -2607,7 +2670,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCA2tt9GSU2sl8rAqjlLR3mQ",
       name: "GeorgeNotFound",
       avatar: [
@@ -2619,15 +2682,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("9 days ago"),
-    view_count: 9843693,
+    view_count: Some(9843693),
     is_live: false,
     is_short: false,
-    short_description: "I met Dream in real life finally... We\'ve been online friends for what feels like my whole life and this is our first time meeting in peson. This was one of the best weeks of my life.\n\nFollow...",
+    is_upcoming: false,
+    short_description: Some("I met Dream in real life finally... We\'ve been online friends for what feels like my whole life and this is our first time meeting in peson. This was one of the best weeks of my life.\n\nFollow..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "jYSlpC6Ud2A",
     title: "Stray Kids \"CASE 143\" M/V",
     length: Some(221),
@@ -2648,7 +2712,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCaO6TYtlC8U5ttz62hTrZgg",
       name: "JYP Entertainment",
       avatar: [
@@ -2660,15 +2724,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("6 days ago"),
-    view_count: 34630241,
+    view_count: Some(34630241),
     is_live: false,
     is_short: false,
-    short_description: "Stray Kids(스트레이 키즈) \"CASE 143\" M/V \n\n💗Listen to ＜MAXIDENT＞ now!\n⚡http://Stray-Kids.lnk.to/MAXIDENT \n\nStray Kids \"MAXIDENT\"\niTunes & Apple Music: https://stray-kids.lnk.to/MAXID...",
+    is_upcoming: false,
+    short_description: Some("Stray Kids(스트레이 키즈) \"CASE 143\" M/V \n\n💗Listen to ＜MAXIDENT＞ now!\n⚡http://Stray-Kids.lnk.to/MAXIDENT \n\nStray Kids \"MAXIDENT\"\niTunes & Apple Music: https://stray-kids.lnk.to/MAXID..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "XKRW1zgkCVc",
     title: "Where Animals\' Scientific Names Come From",
     length: Some(581),
@@ -2689,7 +2754,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UC1DTYW241WD64ah5BFWn4JA",
       name: "Sam O\'Nella Academy",
       avatar: [
@@ -2701,15 +2766,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("9 days ago"),
-    view_count: 5579025,
+    view_count: Some(5579025),
     is_live: false,
     is_short: false,
-    short_description: "sup\n____________________\nCheck out my other channel, Sam O\'Nella Vlog!\nhttps://www.youtube.com/channel/UCvayZDkq6wTj5EQtulrpgZA\n\nFollow me on twitter!\nhttps://twitter.com/Sam_ONella\n\nWant a...",
+    is_upcoming: false,
+    short_description: Some("sup\n____________________\nCheck out my other channel, Sam O\'Nella Vlog!\nhttps://www.youtube.com/channel/UCvayZDkq6wTj5EQtulrpgZA\n\nFollow me on twitter!\nhttps://twitter.com/Sam_ONella\n\nWant a..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "Th_O5kayAM0",
     title: "Que Vas A Hacer - Nivel Codiciado X Jose Mejia (Video Oficial)",
     length: Some(189),
@@ -2730,7 +2796,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCZ64C0y5Lc1x11SdQFeDbYg",
       name: "Nivel Codiciado",
       avatar: [
@@ -2742,15 +2808,16 @@ expression: map_res.c
       ],
       verification: none,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("5 days ago"),
-    view_count: 1322409,
+    view_count: Some(1322409),
     is_live: false,
     is_short: false,
-    short_description: "Muchas Gracias A Todos Ustedes!\n\nQue Vas A Hacer - Nivel Codiciado X Jose Mejia (Video Oficial)\n\n\nLIKE, COMMENT, SUBSCRIBE!\n\n\nNivel Codiciado IG : https://www.instagram.com/nivelcodiciadooficial/?h...",
+    is_upcoming: false,
+    short_description: Some("Muchas Gracias A Todos Ustedes!\n\nQue Vas A Hacer - Nivel Codiciado X Jose Mejia (Video Oficial)\n\n\nLIKE, COMMENT, SUBSCRIBE!\n\n\nNivel Codiciado IG : https://www.instagram.com/nivelcodiciadooficial/?h..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "O-mtWoF8umw",
     title: "Yahritza Y Su Esencia & Ivan Cornejo - Inseparables (Official Video)",
     length: Some(178),
@@ -2771,7 +2838,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UC7ptwo_0Npl5Bji31j868fA",
       name: "Yahritza Y Su Esencia",
       avatar: [
@@ -2783,15 +2850,16 @@ expression: map_res.c
       ],
       verification: artist,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("6 days ago"),
-    view_count: 2246200,
+    view_count: Some(2246200),
     is_live: false,
     is_short: false,
-    short_description: "Official video for “Inseparables” by Yahritza Y Su Esencia & Ivan Cornejo\n\nListen & Download “Inseparables” out now: https://yahritza.lnk.to/Inseparables\nAmazon Music - https://yahritza.lnk...",
+    is_upcoming: false,
+    short_description: Some("Official video for “Inseparables” by Yahritza Y Su Esencia & Ivan Cornejo\n\nListen & Download “Inseparables” out now: https://yahritza.lnk.to/Inseparables\nAmazon Music - https://yahritza.lnk..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "rFO1iqDpMZU",
     title: "I Collected Every Illegal Item In Minecraft Hardcore",
     length: Some(1402),
@@ -2812,7 +2880,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UC_GDu2QH3kp6vJlgEYyqjUA",
       name: "Kolanii",
       avatar: [
@@ -2824,15 +2892,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("7 days ago"),
-    view_count: 3926322,
+    view_count: Some(3926322),
     is_live: false,
     is_short: false,
-    short_description: "In this video we go back in time through Minecrafts versions to collect the most illegal items in the game in 100% hardcore! If you enjoyed this video remember to leave a like, it helps ya...",
+    is_upcoming: false,
+    short_description: Some("In this video we go back in time through Minecrafts versions to collect the most illegal items in the game in 100% hardcore! If you enjoyed this video remember to leave a like, it helps ya..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "-1vsm5bhoyE",
     title: "Grupo Frontera - No Se Va (Letra Oficial)",
     length: Some(192),
@@ -2853,7 +2922,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCKsN6xyJ2w8g7p4p9apXkYQ",
       name: "Grupo Frontera",
       avatar: [
@@ -2865,15 +2934,16 @@ expression: map_res.c
       ],
       verification: artist,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("8 days ago"),
-    view_count: 6793645,
+    view_count: Some(6793645),
     is_live: false,
     is_short: false,
-    short_description: "Escucha \"No Se Va\" en tu plataforma favorita: https://bfan.link/no-se-va\nDescubre más de Grupo Frontera aquí: https://bit.ly/GrupoFrontera\nSuscríbete a nuestro canal: https://bit.ly/GrupoFronter...",
+    is_upcoming: false,
+    short_description: Some("Escucha \"No Se Va\" en tu plataforma favorita: https://bfan.link/no-se-va\nDescubre más de Grupo Frontera aquí: https://bit.ly/GrupoFrontera\nSuscríbete a nuestro canal: https://bit.ly/GrupoFronter..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "XQUiabixHzo",
     title: "I Speedran the $0.01 Challenge",
     length: Some(933),
@@ -2894,7 +2964,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCnmGIkw-KdI0W5siakKPKog",
       name: "Ryan Trahan",
       avatar: [
@@ -2906,15 +2976,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("4 days ago"),
-    view_count: 5401331,
+    view_count: Some(5401331),
     is_live: false,
     is_short: false,
-    short_description: "60 minutes. 1 penny. 0 social skills\nGet Honey for FREE today ▸ https://joinhoney.com/ryan\nHoney finds coupons with one click. Thanks to Honey for sponsoring!",
+    is_upcoming: false,
+    short_description: Some("60 minutes. 1 penny. 0 social skills\nGet Honey for FREE today ▸ https://joinhoney.com/ryan\nHoney finds coupons with one click. Thanks to Honey for sponsoring!"),
   ),
-  SearchVideo(
+  VideoItem(
     id: "8TzH0ayIcdo",
     title: "The Darkest Story I\'ve Ever Read",
     length: Some(4383),
@@ -2935,7 +3006,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UC3cpN6gcJQqcCM6mxRUo_dA",
       name: "Wendigoon",
       avatar: [
@@ -2947,15 +3018,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("1 day ago"),
-    view_count: 777753,
+    view_count: Some(777753),
     is_live: false,
     is_short: false,
-    short_description: "Get Honey for FREE today ▸ https://joinhoney.com/wendigoon\nHoney finds coupons with one click. Thanks to Honey for sponsoring!\n\nMy Links\n\nSecond channel/ Wendigang: https://www.youtube.com/channe...",
+    is_upcoming: false,
+    short_description: Some("Get Honey for FREE today ▸ https://joinhoney.com/wendigoon\nHoney finds coupons with one click. Thanks to Honey for sponsoring!\n\nMy Links\n\nSecond channel/ Wendigang: https://www.youtube.com/channe..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "xkwc5TZmdIs",
     title: "GloRilla Glows Up In Every Way With Performance Of \"Tomorrow!\" & \"F.N.F.\" | Hip Hop Awards \'22",
     length: Some(146),
@@ -2976,7 +3048,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCcVqCJ_9owb1zM43vqswMNQ",
       name: "BETNetworks",
       avatar: [
@@ -2988,15 +3060,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("8 days ago"),
-    view_count: 3400062,
+    view_count: Some(3400062),
     is_live: false,
     is_short: false,
-    short_description: "Watch GloRilla\'s performance of \"F.N.F.\" & \"Tomorrow\" from the 2022 Hip Hop Awards. #HipHopAwards22 #HipHopAwards #GloRilla #BET @theofficialGloRilla @GloRillaVEVO \n\nSUBSCRIBE to #BET! ►►...",
+    is_upcoming: false,
+    short_description: Some("Watch GloRilla\'s performance of \"F.N.F.\" & \"Tomorrow\" from the 2022 Hip Hop Awards. #HipHopAwards22 #HipHopAwards #GloRilla #BET @theofficialGloRilla @GloRillaVEVO \n\nSUBSCRIBE to #BET! ►►..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "eJPLiT1kCSM",
     title: "Museums: Last Week Tonight with John Oliver (HBO)",
     length: Some(2049),
@@ -3017,7 +3090,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UC3XTzVzaHQEd30rQbuvCtTQ",
       name: "LastWeekTonight",
       avatar: [
@@ -3029,15 +3102,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("10 days ago"),
-    view_count: 4315677,
+    view_count: Some(4315677),
     is_live: false,
     is_short: false,
-    short_description: "John Oliver discusses some of the world’s most prestigious museums, why they contain so many stolen goods, the market that continues to illegally trade antiquities, and a pretty solid blueprint...",
+    is_upcoming: false,
+    short_description: Some("John Oliver discusses some of the world’s most prestigious museums, why they contain so many stolen goods, the market that continues to illegally trade antiquities, and a pretty solid blueprint..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "zwa7NzNBQig",
     title: "GloRilla, Cardi B - Tomorrow 2 (Official Music Video)",
     length: Some(214),
@@ -3058,7 +3132,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UC9bZ9eWvF0eXVqrxK9ve7Nw",
       name: "theofficialGloRilla",
       avatar: [
@@ -3070,15 +3144,16 @@ expression: map_res.c
       ],
       verification: artist,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("2 weeks ago"),
-    view_count: 20551404,
+    view_count: Some(20551404),
     is_live: false,
     is_short: false,
-    short_description: "Stream #Tomorrow2\' here: https://GloRilla.lnk.to/Tomorrow2\nPre-save Glorilla’s debut EP out everywhere 11/11: https://GloRilla.lnk.to/ALG\n\nFollow #GloRilla:\nInstagram: https://www.instagram.com/g...",
+    is_upcoming: false,
+    short_description: Some("Stream #Tomorrow2\' here: https://GloRilla.lnk.to/Tomorrow2\nPre-save Glorilla’s debut EP out everywhere 11/11: https://GloRilla.lnk.to/ALG\n\nFollow #GloRilla:\nInstagram: https://www.instagram.com/g..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "BHFcF0zcCgA",
     title: "Hurricane Ian Destroyed My Hometown!",
     length: Some(647),
@@ -3099,7 +3174,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UC94lW_-Hr_uA7RcJ3D-WPOg",
       name: "Danny Duncan",
       avatar: [
@@ -3111,15 +3186,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("7 days ago"),
-    view_count: 3545884,
+    view_count: Some(3545884),
     is_live: false,
     is_short: false,
-    short_description: "On September 28, Hurricane Ian hit Englewood, Florida, causing heavy flooding, ripping roofs off residents\' houses and leveling buildings, forcing thousands to evacuate.\n\nMerchandise ▶ http://dan...",
+    is_upcoming: false,
+    short_description: Some("On September 28, Hurricane Ian hit Englewood, Florida, causing heavy flooding, ripping roofs off residents\' houses and leveling buildings, forcing thousands to evacuate.\n\nMerchandise ▶ http://dan..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "xhYj9JJnLHM",
     title: "DDG 25th SURPRISE BIRTHDAY PARTY!!",
     length: Some(3252),
@@ -3140,7 +3216,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCDDgfKQE3eaD1H08VHRAfig",
       name: "PontiacMadeDDG VLOGS",
       avatar: [
@@ -3152,15 +3228,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("3 days ago"),
-    view_count: 678135,
+    view_count: Some(678135),
     is_live: false,
     is_short: false,
-    short_description: "\"It\'s Not Me It\'s You\" available at: https://DDG.lnk.to/ItsNotMeItsYou\n\nFollow My Social Media:\nInstagram: https://instagram.com/ddg\nTwitter: https://twitter.com/pontiacmadeddg\nSnapChat: https://sn...",
+    is_upcoming: false,
+    short_description: Some("\"It\'s Not Me It\'s You\" available at: https://DDG.lnk.to/ItsNotMeItsYou\n\nFollow My Social Media:\nInstagram: https://instagram.com/ddg\nTwitter: https://twitter.com/pontiacmadeddg\nSnapChat: https://sn..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "9YsEQaW0f2c",
     title: "Eddie Robinson Jr. goes off on Deion Sanders and Coach Prime responds",
     length: Some(439),
@@ -3181,7 +3258,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCoMv284iYWxL3JSY-9agY2w",
       name: "HBCUGameday",
       avatar: [
@@ -3193,15 +3270,16 @@ expression: map_res.c
       ],
       verification: none,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("4 days ago"),
-    view_count: 1504982,
+    view_count: Some(1504982),
     is_live: false,
     is_short: false,
-    short_description: "It was a highly tense and awkward postgame handshake between Alabama State head coach Eddie Robinson Jr. and Jackson State coach Deion Sanders. And that was just the beginning.",
+    is_upcoming: false,
+    short_description: Some("It was a highly tense and awkward postgame handshake between Alabama State head coach Eddie Robinson Jr. and Jackson State coach Deion Sanders. And that was just the beginning."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "m-SB3cpzLUU",
     title: "i\'m sorry.",
     length: Some(322),
@@ -3222,7 +3300,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCGD1IitV7_EXXEcLUc0D9sQ",
       name: "Dominic Brack",
       avatar: [
@@ -3234,15 +3312,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("3 days ago"),
-    view_count: 1468515,
+    view_count: Some(1468515),
     is_live: false,
     is_short: false,
-    short_description: "I wanted to share my side of the story...\nJust an explanation/apology I’m sorry for anyone this effected. \nim going to take a break from social media for a bit but I will be back soon!",
+    is_upcoming: false,
+    short_description: Some("I wanted to share my side of the story...\nJust an explanation/apology I’m sorry for anyone this effected. \nim going to take a break from social media for a bit but I will be back soon!"),
   ),
-  SearchVideo(
+  VideoItem(
     id: "TRGHIN2PGIA",
     title: "Christian Bale Breaks Down His Most Iconic Characters | GQ",
     length: Some(1381),
@@ -3263,7 +3342,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCsEukrAd64fqA7FjwkmZ_Dw",
       name: "GQ",
       avatar: [
@@ -3275,15 +3354,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("8 days ago"),
-    view_count: 7814218,
+    view_count: Some(7814218),
     is_live: false,
     is_short: false,
-    short_description: "Christian Bale breaks down a few of his most iconic characters from \'American Psycho,\' \'The Dark Knight\' Trilogy, \'The Fighter,\' \'The Machinist,\' \'The Big Short,\' \'Vice,\' \'Empire of the Sun,\'...",
+    is_upcoming: false,
+    short_description: Some("Christian Bale breaks down a few of his most iconic characters from \'American Psycho,\' \'The Dark Knight\' Trilogy, \'The Fighter,\' \'The Machinist,\' \'The Big Short,\' \'Vice,\' \'Empire of the Sun,\'..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "U9HAaHc3wnc",
     title: "Guess Iono’s Partner Pokémon! 🤔 | Pokémon Scarlet and Pokémon Violet",
     length: Some(211),
@@ -3304,7 +3384,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCFctpiB_Hnlk3ejWfHqSm6Q",
       name: "The Official Pokémon YouTube channel",
       avatar: [
@@ -3316,15 +3396,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("1 day ago"),
-    view_count: 1157471,
+    view_count: Some(1157471),
     is_live: false,
     is_short: false,
-    short_description: "Meet Iono, an influencer, streamer, and Gym Leader who specializes in Electric-type Pokémon ⚡\u{fe0f}\n\nCan you guess Iono’s partner Pokémon? 🤔\n\nPre-order Pokémon Scarlet & Pokémon Violet...",
+    is_upcoming: false,
+    short_description: Some("Meet Iono, an influencer, streamer, and Gym Leader who specializes in Electric-type Pokémon ⚡\u{fe0f}\n\nCan you guess Iono’s partner Pokémon? 🤔\n\nPre-order Pokémon Scarlet & Pokémon Violet..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "4ywb2pXRYZI",
     title: "Quavo & Takeoff - To The Bone feat. YoungBoy Never Broke Again (Official visualizer)",
     length: Some(284),
@@ -3345,7 +3426,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCU_xT0uVi5cku7cg9hDgkMA",
       name: "Quavo Huncho",
       avatar: [
@@ -3357,15 +3438,16 @@ expression: map_res.c
       ],
       verification: artist,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("6 days ago"),
-    view_count: 1355588,
+    view_count: Some(1355588),
     is_live: false,
     is_short: false,
-    short_description: "#NowPlaying Quavo & Takeoff \"To The Bone\" Official Visualizer.\n\nStream & Download \"To The Bone\" on \'Only Built for Infinity Links\' Here: http://www.QualityControl.lnk.to/InfinityLinks\n \nShot...",
+    is_upcoming: false,
+    short_description: Some("#NowPlaying Quavo & Takeoff \"To The Bone\" Official Visualizer.\n\nStream & Download \"To The Bone\" on \'Only Built for Infinity Links\' Here: http://www.QualityControl.lnk.to/InfinityLinks\n \nShot..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "wP9zsx04fWY",
     title: "WE ARE COMING! to a city near you!",
     length: Some(59),
@@ -3386,7 +3468,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCdvlHk5SZWwr9HjUcwtu8ng",
       name: "blink-182",
       avatar: [
@@ -3398,15 +3480,16 @@ expression: map_res.c
       ],
       verification: artist,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("2 days ago"),
-    view_count: 966225,
+    view_count: Some(966225),
     is_live: false,
     is_short: false,
-    short_description: "We’re coming. Tour’s coming. Album’s coming. Tom’s coming. \nTickets for the world tour go on sale starting Monday, 10/17 at 10am local\nNew Single EDGING out on 10/14\nEverything coming...",
+    is_upcoming: false,
+    short_description: Some("We’re coming. Tour’s coming. Album’s coming. Tom’s coming. \nTickets for the world tour go on sale starting Monday, 10/17 at 10am local\nNew Single EDGING out on 10/14\nEverything coming..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "9acxn7qAST4",
     title: "Overwatch 2 Animated Short | “Kiriko”",
     length: Some(587),
@@ -3427,7 +3510,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UClOf1XXinvZsy4wKPAkro2A",
       name: "PlayOverwatch",
       avatar: [
@@ -3439,15 +3522,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("5 days ago"),
-    view_count: 5352181,
+    view_count: Some(5352181),
     is_live: false,
     is_short: false,
-    short_description: "The protector of Kanezaka strikes again. Discover the two sides of Kiriko, the loving daughter and the deadly protector.\n\nPlay #Overwatch2 for free today on Windows® PC and Xbox Series X|S,...",
+    is_upcoming: false,
+    short_description: Some("The protector of Kanezaka strikes again. Discover the two sides of Kiriko, the loving daughter and the deadly protector.\n\nPlay #Overwatch2 for free today on Windows® PC and Xbox Series X|S,..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "8-tQKwB3RKw",
     title: "Big Boogie - Backend (Remix) Shot by @Camera Gawd",
     length: Some(164),
@@ -3468,7 +3552,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCVlaJdpaJiT3Tpr8JZI-DnA",
       name: "BIG BOOGIE MUSIC",
       avatar: [
@@ -3480,15 +3564,16 @@ expression: map_res.c
       ],
       verification: artist,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("7 days ago"),
-    view_count: 778550,
+    view_count: Some(778550),
     is_live: false,
     is_short: false,
-    short_description: "Big Boogie - Backend (Remix) \n\nFind Big Boogie on His Social Media Below\n\nInstagram | https://www.instagram.com/big_boogie_music\nFacebook | https://www.facebook.com/https://www.facebook.com/profile...",
+    is_upcoming: false,
+    short_description: Some("Big Boogie - Backend (Remix) \n\nFind Big Boogie on His Social Media Below\n\nInstagram | https://www.instagram.com/big_boogie_music\nFacebook | https://www.facebook.com/https://www.facebook.com/profile..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "5HNy7b6bz4g",
     title: "I Tried Out for an NBA Team and This Happened…",
     length: Some(805),
@@ -3509,7 +3594,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCQIUhhcmXsu6cN6n3y9-Pww",
       name: "Jesser",
       avatar: [
@@ -3521,15 +3606,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("8 days ago"),
-    view_count: 4354695,
+    view_count: Some(4354695),
     is_live: false,
     is_short: false,
-    short_description: "I tried out for the NBA G League... and this is how it went! \n\nDownload the brand NEW NBA app and check it out the behind the scenes as I follow my dreams to make it to the league (https://app.link...",
+    is_upcoming: false,
+    short_description: Some("I tried out for the NBA G League... and this is how it went! \n\nDownload the brand NEW NBA app and check it out the behind the scenes as I follow my dreams to make it to the league (https://app.link..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "Uq9gPaIzbe8",
     title: "Sam Smith, Kim Petras - Unholy",
     length: Some(276),
@@ -3550,7 +3636,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCvpDeGlR5wLP9Z3Tb6K0Xfg",
       name: "SAM SMITH",
       avatar: [
@@ -3562,15 +3648,16 @@ expression: map_res.c
       ],
       verification: artist,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("13 days ago"),
-    view_count: 15055156,
+    view_count: Some(15055156),
     is_live: false,
     is_short: false,
-    short_description: "Sam Smith \'Unholy\' featuring Kim Petras out now: http://samsmith.world/UnholyID\n\nDirected by Floria Sigismondi\n\nLabel: Capitol Records\nCommissioner: James Hackett\n\nProduction Company: Scheme...",
+    is_upcoming: false,
+    short_description: Some("Sam Smith \'Unholy\' featuring Kim Petras out now: http://samsmith.world/UnholyID\n\nDirected by Floria Sigismondi\n\nLabel: Capitol Records\nCommissioner: James Hackett\n\nProduction Company: Scheme..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "78sCR9mwBV4",
     title: "How Draymond Green Was after hitting Jordan Poole in practice",
     length: Some(76),
@@ -3591,7 +3678,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UC4G10tk3AHFuyMIuD3rHOBA",
       name: "RDCworld1",
       avatar: [
@@ -3603,15 +3690,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("5 days ago"),
-    view_count: 2892907,
+    view_count: Some(2892907),
     is_live: false,
     is_short: false,
-    short_description: "Man why did Draymond Green hit Jordan Poole that hard 😂😂😂 that man out of control I wonder what happened\n\n\nFOLLOW @SUPREMEDREAMS_1 AND @RDCWORLD1 FOR MORE CONTENT/UPDATES \n\n~RDC Social...",
+    is_upcoming: false,
+    short_description: Some("Man why did Draymond Green hit Jordan Poole that hard 😂😂😂 that man out of control I wonder what happened\n\n\nFOLLOW @SUPREMEDREAMS_1 AND @RDCWORLD1 FOR MORE CONTENT/UPDATES \n\n~RDC Social..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "2U9kNnHvE8o",
     title: "LAKERS at WARRIORS | NBA PRESEASON FULL GAME HIGHLIGHTS | October 9, 2022",
     length: Some(585),
@@ -3632,7 +3720,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCWJ2lWNubArHWmf3FIHbfcQ",
       name: "NBA",
       avatar: [
@@ -3644,15 +3732,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("3 days ago"),
-    view_count: 3353247,
+    view_count: Some(3353247),
     is_live: false,
     is_short: false,
-    short_description: "Never miss a moment with the latest news, trending stories and highlights to bring you closer to your favorite players and teams.\n\nDownload now: https://app.link.nba.com/APP22\n\nThe Los Angeles...",
+    is_upcoming: false,
+    short_description: Some("Never miss a moment with the latest news, trending stories and highlights to bring you closer to your favorite players and teams.\n\nDownload now: https://app.link.nba.com/APP22\n\nThe Los Angeles..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "xXGFb19rLtE",
     title: "Bray Wyatt returns to WWE: WWE Extreme Rules 2022 (WWE Network Exclusive)",
     length: Some(106),
@@ -3673,7 +3762,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCJ5v_MCY6GNUBTO8-D3XoAg",
       name: "WWE",
       avatar: [
@@ -3685,15 +3774,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("4 days ago"),
-    view_count: 2745645,
+    view_count: Some(2745645),
     is_live: false,
     is_short: false,
-    short_description: "After weeks of mysterious vignettes, Bray Wyatt returns in jaw-dropping fashion at the end of WWE Extreme Rules 2022. Catch WWE action on Peacock, WWE Network, FOX, USA Network, Sony India...",
+    is_upcoming: false,
+    short_description: Some("After weeks of mysterious vignettes, Bray Wyatt returns in jaw-dropping fashion at the end of WWE Extreme Rules 2022. Catch WWE action on Peacock, WWE Network, FOX, USA Network, Sony India..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "7IGD5URBGZ8",
     title: "We Got Engaged",
     length: Some(1325),
@@ -3714,7 +3804,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCkDG7yPqJBi_V2qGPRZHI_w",
       name: "Jayco & Val",
       avatar: [
@@ -3726,15 +3816,16 @@ expression: map_res.c
       ],
       verification: none,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("2 days ago"),
-    view_count: 254375,
+    view_count: Some(254375),
     is_live: false,
     is_short: false,
-    short_description: "Valentina  @Basic Valentina \n\nInstagram: https://www.instagram.com/basicvalent...\nTikTok: https://vm.tiktok.com/ZM8Gsmm4B/\nYouTube: https://youtube.com/channel/UCQxnOdDS...\n\nJayco  @Jaycoset...",
+    is_upcoming: false,
+    short_description: Some("Valentina  @Basic Valentina \n\nInstagram: https://www.instagram.com/basicvalent...\nTikTok: https://vm.tiktok.com/ZM8Gsmm4B/\nYouTube: https://youtube.com/channel/UCQxnOdDS...\n\nJayco  @Jaycoset..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "5sRVxb2wkGM",
     title: "We Bought Every Weird Ad We Saw",
     length: Some(1602),
@@ -3755,7 +3846,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCfbnTUxUech4P1XgYUwYuKA",
       name: "Cold Ones",
       avatar: [
@@ -3767,15 +3858,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("2 days ago"),
-    view_count: 1170050,
+    view_count: Some(1170050),
     is_live: false,
     is_short: false,
-    short_description: "We See It? We Buy It! NO EXCEPTIONS\n💃 GET OUR NEW LIMITED WAIFU CUPS 👉🏻 https://bit.ly/coldoneswaifu\n🌈 Get 10% OFF OUR CLOTHES with code \"COLDONES\"  👉🏻 https://bit.ly/coolshirtzz...",
+    is_upcoming: false,
+    short_description: Some("We See It? We Buy It! NO EXCEPTIONS\n💃 GET OUR NEW LIMITED WAIFU CUPS 👉🏻 https://bit.ly/coldoneswaifu\n🌈 Get 10% OFF OUR CLOTHES with code \"COLDONES\"  👉🏻 https://bit.ly/coolshirtzz..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "4YEEDqke-D0",
     title: "Jump into a Paldean Journey | Pokémon Scarlet and Pokémon Violet",
     length: Some(847),
@@ -3796,7 +3888,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCFctpiB_Hnlk3ejWfHqSm6Q",
       name: "The Official Pokémon YouTube channel",
       avatar: [
@@ -3808,15 +3900,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("7 days ago"),
-    view_count: 2287355,
+    view_count: Some(2287355),
     is_live: false,
     is_short: false,
-    short_description: "Every big journey begins with a single step! 🌄 Take a peek at some of the adventure you\'ll find through the open world of Paldea!\n\nWhere will you go? What will you discover? Find your treasure...",
+    is_upcoming: false,
+    short_description: Some("Every big journey begins with a single step! 🌄 Take a peek at some of the adventure you\'ll find through the open world of Paldea!\n\nWhere will you go? What will you discover? Find your treasure..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "rYjmxcV1se4",
     title: "Film Theory: Dora is CURSED! (Dora The Explorer)",
     length: Some(1085),
@@ -3837,7 +3930,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UC3sznuotAs2ohg_U__Jzj_Q",
       name: "The Film Theorists",
       avatar: [
@@ -3849,15 +3942,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("5 days ago"),
-    view_count: 2404696,
+    view_count: Some(2404696),
     is_live: false,
     is_short: false,
-    short_description: "Special thanks to Raycon for sponsoring this episode!\nGet 15% off your order! ► https://buyraycon.com/filmtheory\n \nIt\'s time, Theorists. Time to talk about Dora the Explorer. I\'ve wanted...",
+    is_upcoming: false,
+    short_description: Some("Special thanks to Raycon for sponsoring this episode!\nGet 15% off your order! ► https://buyraycon.com/filmtheory\n \nIt\'s time, Theorists. Time to talk about Dora the Explorer. I\'ve wanted..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "y8qhSduN6sk",
     title: "PC Games on Console - Scott The Woz",
     length: Some(1912),
@@ -3878,7 +3972,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UC4rqhyiTs7XyuODcECvuiiQ",
       name: "Scott The Woz",
       avatar: [
@@ -3890,15 +3984,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("20 hours ago"),
-    view_count: 528686,
+    view_count: Some(528686),
     is_live: false,
     is_short: false,
-    short_description: "Scott plays The Sims 2 Pets without a caps lock key.\n\nTwitter: https://www.twitter.com/ScottTheWoz\r\nFacebook: https://www.facebook.com/ScottTheWoz/\r\nInstagram: https://www.instagram.com/scottthewoz...",
+    is_upcoming: false,
+    short_description: Some("Scott plays The Sims 2 Pets without a caps lock key.\n\nTwitter: https://www.twitter.com/ScottTheWoz\r\nFacebook: https://www.facebook.com/ScottTheWoz/\r\nInstagram: https://www.instagram.com/scottthewoz..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "yTLzGSJJ5ts",
     title: "I Spent 50 Hours Customizing The World\'s Largest Xbox!",
     length: Some(886),
@@ -3919,7 +4014,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UClQubH2NeMmGLTLgNdLBwXg",
       name: "ZHC",
       avatar: [
@@ -3931,15 +4026,16 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("5 days ago"),
-    view_count: 2638910,
+    view_count: Some(2638910),
     is_live: false,
     is_short: false,
-    short_description: "50 hours to customize the world\'s largest Xbox Series X!\n\nHuge shoutout to The Casual Engineer for building the world\'s largest xbox! Watch the behind the scenes video here!\nhttps://www.youtube.com...",
+    is_upcoming: false,
+    short_description: Some("50 hours to customize the world\'s largest Xbox Series X!\n\nHuge shoutout to The Casual Engineer for building the world\'s largest xbox! Watch the behind the scenes video here!\nhttps://www.youtube.com..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "x1u8-i2pWg0",
     title: "Witness Hurricane Ian As It Hits My Home In Cape Coral, FL And View The Aftermath",
     length: Some(855),
@@ -3960,7 +4056,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCtY0HB5bLpuWOpZofTxkkxg",
       name: "Ruby (aka Adventure Mom)",
       avatar: [
@@ -3972,15 +4068,16 @@ expression: map_res.c
       ],
       verification: none,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("7 days ago"),
-    view_count: 1687151,
+    view_count: Some(1687151),
     is_live: false,
     is_short: false,
-    short_description: "In this video, I show you videos of what I experienced as Hurricane Ian hit my home in Cape Coral, FL.  I then travel down the streets of Cape Coral including the Yacht Club, Cape Harbor, and...",
+    is_upcoming: false,
+    short_description: Some("In this video, I show you videos of what I experienced as Hurricane Ian hit my home in Cape Coral, FL.  I then travel down the streets of Cape Coral including the Yacht Club, Cape Harbor, and..."),
   ),
-  SearchVideo(
+  VideoItem(
     id: "FfWtIaDtfYk",
     title: "Let’s Travel to The Most Extreme Place in The Universe",
     length: Some(766),
@@ -4001,7 +4098,7 @@ expression: map_res.c
         height: 188,
       ),
     ],
-    channel: ChannelTag(
+    channel: Some(ChannelTag(
       id: "UCsXVk37bltHxD1rDPwtNM8Q",
       name: "Kurzgesagt – In a Nutshell",
       avatar: [
@@ -4013,12 +4110,13 @@ expression: map_res.c
       ],
       verification: verified,
       subscriber_count: None,
-    ),
+    )),
     publish_date: "[date]",
     publish_date_txt: Some("9 days ago"),
-    view_count: 5546987,
+    view_count: Some(5546987),
     is_live: false,
     is_short: false,
-    short_description: "The new 12,023 Human Era Calendar is here!\nhttps://kgs.link/calendar\nWORLDWIDE SHIPPING AVAILABLE.\nThis time you can join us on a journey through the microcosm. Curious? Head over to our shop...",
+    is_upcoming: false,
+    short_description: Some("The new 12,023 Human Era Calendar is here!\nhttps://kgs.link/calendar\nWORLDWIDE SHIPPING AVAILABLE.\nThis time you can join us on a journey through the microcosm. Curious? Head over to our shop..."),
   ),
 ]
