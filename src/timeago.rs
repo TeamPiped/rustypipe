@@ -17,8 +17,8 @@
 
 use std::ops::Mul;
 
-use chrono::{DateTime, Duration, Local, NaiveDate, NaiveDateTime, NaiveTime, TimeZone};
 use serde::{Deserialize, Serialize};
+use time::{Date, Duration, OffsetDateTime};
 
 use crate::{
     param::Language,
@@ -42,7 +42,7 @@ pub struct TimeAgo {
 /// - "2 months ago" => `ParsedDate::Relative(TimeAgo {n: 2, unit: TimeUnit::Month})`
 #[derive(Debug, Copy, Clone, PartialEq, Eq)]
 pub enum ParsedDate {
-    Absolute(NaiveDate),
+    Absolute(Date),
     Relative(TimeAgo),
 }
 
@@ -82,27 +82,25 @@ impl Mul<u8> for TimeAgo {
     }
 }
 
-impl From<TimeAgo> for DateTime<Local> {
+impl From<TimeAgo> for OffsetDateTime {
     fn from(ta: TimeAgo) -> Self {
-        let ts = Local::now();
+        let ts = OffsetDateTime::now_utc();
         match ta.unit {
             TimeUnit::Second => ts - Duration::seconds(ta.n as i64),
             TimeUnit::Minute => ts - Duration::minutes(ta.n as i64),
             TimeUnit::Hour => ts - Duration::hours(ta.n as i64),
             TimeUnit::Day => ts - Duration::days(ta.n as i64),
             TimeUnit::Week => ts - Duration::weeks(ta.n as i64),
-            TimeUnit::Month => chronoutil::shift_months(ts, -(ta.n as i32)),
-            TimeUnit::Year => chronoutil::shift_years(ts, -(ta.n as i32)),
+            TimeUnit::Month => ts.replace_date(util::shift_months(ts.date(), -(ta.n as i32))),
+            TimeUnit::Year => ts.replace_date(util::shift_years(ts.date(), -(ta.n as i32))),
         }
     }
 }
 
-impl From<ParsedDate> for DateTime<Local> {
+impl From<ParsedDate> for OffsetDateTime {
     fn from(date: ParsedDate) -> Self {
         match date {
-            ParsedDate::Absolute(date) => Local
-                .from_local_datetime(&NaiveDateTime::new(date, NaiveTime::from_hms(0, 0, 0)))
-                .unwrap(),
+            ParsedDate::Absolute(date) => date.with_hms(0, 0, 0).unwrap().assume_utc(),
             ParsedDate::Relative(timeago) => timeago.into(),
         }
     }
@@ -180,7 +178,7 @@ pub fn parse_timeago(lang: Language, textual_date: &str) -> Option<TimeAgo> {
 /// Parse a TimeAgo string (e.g. "29 minutes ago") into a Chrono DateTime object.
 ///
 /// Returns None if the date could not be parsed.
-pub fn parse_timeago_to_dt(lang: Language, textual_date: &str) -> Option<DateTime<Local>> {
+pub fn parse_timeago_to_dt(lang: Language, textual_date: &str) -> Option<OffsetDateTime> {
     parse_timeago(lang, textual_date).map(|ta| ta.into())
 }
 
@@ -219,10 +217,9 @@ pub fn parse_textual_date(lang: Language, textual_date: &str) -> Option<ParsedDa
                 }
 
                 match (y, m, d) {
-                    (Some(y), Some(m), Some(d)) => {
-                        NaiveDate::from_ymd_opt(y.into(), m.into(), d.into())
-                            .map(ParsedDate::Absolute)
-                    }
+                    (Some(y), Some(m), Some(d)) => util::month_from_n(m as u8)
+                        .and_then(|m| Date::from_calendar_date(y.into(), m, d as u8).ok())
+                        .map(ParsedDate::Absolute),
                     _ => None,
                 }
             } else {
@@ -236,7 +233,7 @@ pub fn parse_textual_date(lang: Language, textual_date: &str) -> Option<ParsedDa
 /// Parse a textual date (e.g. "29 minutes ago" or "Jul 2, 2014") into a Chrono DateTime object.
 ///
 /// Returns None if the date could not be parsed.
-pub fn parse_textual_date_to_dt(lang: Language, textual_date: &str) -> Option<DateTime<Local>> {
+pub fn parse_textual_date_to_dt(lang: Language, textual_date: &str) -> Option<OffsetDateTime> {
     parse_textual_date(lang, textual_date).map(|ta| ta.into())
 }
 
@@ -244,7 +241,7 @@ pub(crate) fn parse_textual_date_or_warn(
     lang: Language,
     textual_date: &str,
     warnings: &mut Vec<String>,
-) -> Option<DateTime<Local>> {
+) -> Option<OffsetDateTime> {
     let res = parse_textual_date_to_dt(lang, textual_date);
     if res.is_none() {
         warnings.push(format!("could not parse timeago `{}`", textual_date));
@@ -256,8 +253,8 @@ pub(crate) fn parse_textual_date_or_warn(
 mod tests {
     use std::{collections::BTreeMap, fs::File, io::BufReader, path::Path};
 
-    use chrono::Datelike;
     use rstest::rstest;
+    use time::macros::{date, datetime};
 
     use super::*;
 
@@ -494,7 +491,7 @@ mod tests {
     #[case(
         Language::En,
         "Last updated on Jun 04, 2003",
-        Some(ParsedDate::Absolute(NaiveDate::from_ymd(2003, 6, 4)))
+        Some(ParsedDate::Absolute(date!(2003-6-4)))
     )]
     fn t_parse_date(
         #[case] lang: Language,
@@ -546,73 +543,73 @@ mod tests {
             );
             assert_eq!(
                 parse_textual_date(*lang, samples.get("Jan").unwrap()),
-                Some(ParsedDate::Absolute(NaiveDate::from_ymd(2020, 1, 3))),
+                Some(ParsedDate::Absolute(date!(2020 - 1 - 3))),
                 "lang: {}",
                 lang
             );
             assert_eq!(
                 parse_textual_date(*lang, samples.get("Feb").unwrap()),
-                Some(ParsedDate::Absolute(NaiveDate::from_ymd(2016, 2, 7))),
+                Some(ParsedDate::Absolute(date!(2016 - 2 - 7))),
                 "lang: {}",
                 lang
             );
             assert_eq!(
                 parse_textual_date(*lang, samples.get("Mar").unwrap()),
-                Some(ParsedDate::Absolute(NaiveDate::from_ymd(2015, 3, 9))),
+                Some(ParsedDate::Absolute(date!(2015 - 3 - 9))),
                 "lang: {}",
                 lang
             );
             assert_eq!(
                 parse_textual_date(*lang, samples.get("Apr").unwrap()),
-                Some(ParsedDate::Absolute(NaiveDate::from_ymd(2017, 4, 2))),
+                Some(ParsedDate::Absolute(date!(2017 - 4 - 2))),
                 "lang: {}",
                 lang
             );
             assert_eq!(
                 parse_textual_date(*lang, samples.get("May").unwrap()),
-                Some(ParsedDate::Absolute(NaiveDate::from_ymd(2014, 5, 22))),
+                Some(ParsedDate::Absolute(date!(2014 - 5 - 22))),
                 "lang: {}",
                 lang
             );
             assert_eq!(
                 parse_textual_date(*lang, samples.get("Jun").unwrap()),
-                Some(ParsedDate::Absolute(NaiveDate::from_ymd(2014, 6, 28))),
+                Some(ParsedDate::Absolute(date!(2014 - 6 - 28))),
                 "lang: {}",
                 lang
             );
             assert_eq!(
                 parse_textual_date(*lang, samples.get("Jul").unwrap()),
-                Some(ParsedDate::Absolute(NaiveDate::from_ymd(2014, 7, 2))),
+                Some(ParsedDate::Absolute(date!(2014 - 7 - 2))),
                 "lang: {}",
                 lang
             );
             assert_eq!(
                 parse_textual_date(*lang, samples.get("Aug").unwrap()),
-                Some(ParsedDate::Absolute(NaiveDate::from_ymd(2015, 8, 23))),
+                Some(ParsedDate::Absolute(date!(2015 - 8 - 23))),
                 "lang: {}",
                 lang
             );
             assert_eq!(
                 parse_textual_date(*lang, samples.get("Sep").unwrap()),
-                Some(ParsedDate::Absolute(NaiveDate::from_ymd(2018, 9, 16))),
+                Some(ParsedDate::Absolute(date!(2018 - 9 - 16))),
                 "lang: {}",
                 lang
             );
             assert_eq!(
                 parse_textual_date(*lang, samples.get("Oct").unwrap()),
-                Some(ParsedDate::Absolute(NaiveDate::from_ymd(2014, 10, 31))),
+                Some(ParsedDate::Absolute(date!(2014 - 10 - 31))),
                 "lang: {}",
                 lang
             );
             assert_eq!(
                 parse_textual_date(*lang, samples.get("Nov").unwrap()),
-                Some(ParsedDate::Absolute(NaiveDate::from_ymd(2016, 11, 3))),
+                Some(ParsedDate::Absolute(date!(2016 - 11 - 3))),
                 "lang: {}",
                 lang
             );
             assert_eq!(
                 parse_textual_date(*lang, samples.get("Dec").unwrap()),
-                Some(ParsedDate::Absolute(NaiveDate::from_ymd(2021, 12, 24))),
+                Some(ParsedDate::Absolute(date!(2021 - 12 - 24))),
                 "lang: {}",
                 lang
             );
@@ -623,19 +620,11 @@ mod tests {
     fn t_to_datetime() {
         // Absolute date
         let date = parse_textual_date_to_dt(Language::En, "Last updated on Jan 3, 2020").unwrap();
-        assert_eq!(
-            date,
-            Local
-                .from_local_datetime(&NaiveDateTime::new(
-                    NaiveDate::from_ymd(2020, 1, 3),
-                    NaiveTime::from_hms(0, 0, 0)
-                ))
-                .unwrap()
-        );
+        assert_eq!(date, datetime!(2020-1-3 0:00 +0));
 
         // Relative date
         let date = parse_textual_date_to_dt(Language::En, "1 year ago").unwrap();
-        let now = Local::now();
+        let now = OffsetDateTime::now_utc();
         assert_eq!(date.year(), now.year() - 1);
     }
 }

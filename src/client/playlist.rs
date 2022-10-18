@@ -1,5 +1,7 @@
 use std::{borrow::Cow, convert::TryFrom};
 
+use time::OffsetDateTime;
+
 use crate::{
     deobfuscate::Deobfuscator,
     error::{Error, ExtractionError},
@@ -152,9 +154,9 @@ impl MapResponse<Playlist> for response::Playlist {
             .and_then(|link| ChannelId::try_from(link).ok());
 
         let mut warnings = video_items.warnings;
-        let last_update = last_update_txt
-            .as_ref()
-            .and_then(|txt| timeago::parse_textual_date_or_warn(lang, txt, &mut warnings));
+        let last_update = last_update_txt.as_ref().and_then(|txt| {
+            timeago::parse_textual_date_or_warn(lang, txt, &mut warnings).map(OffsetDateTime::date)
+        });
 
         Ok(MapResult {
             c: Playlist {

@@ -1,6 +1,6 @@
-use chrono::TimeZone;
 use serde::Deserialize;
 use serde_with::{json::JsonString, serde_as, DefaultOnError, VecSkipError};
+use time::OffsetDateTime;
 
 use super::{ChannelBadge, ContinuationEndpoint, Thumbnails};
 use crate::{
@@ -342,12 +342,7 @@ impl<T> YouTubeListMapper<T> {
             publish_date: video
                 .upcoming_event_data
                 .as_ref()
-                .map(|upc| {
-                    chrono::Local.from_utc_datetime(&chrono::NaiveDateTime::from_timestamp(
-                        upc.start_time,
-                        0,
-                    ))
-                })
+                .and_then(|upc| OffsetDateTime::from_unix_timestamp(upc.start_time).ok())
                 .or_else(|| {
                     video
                         .published_time_text

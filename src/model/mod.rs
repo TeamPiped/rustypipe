@@ -5,13 +5,14 @@ mod paginator;
 pub mod richtext;
 
 pub use paginator::Paginator;
+use serde_with::serde_as;
 
 use std::ops::Range;
 
-use chrono::{DateTime, Local, Utc};
 use serde::{Deserialize, Serialize};
+use time::{Date, OffsetDateTime};
 
-use crate::{error::Error, util};
+use crate::{error::Error, serializer::DateYmd, util};
 
 use self::richtext::RichText;
 
@@ -437,6 +438,7 @@ pub struct Subtitle {
 */
 
 /// YouTube playlist
+#[serde_as]
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[non_exhaustive]
 pub struct Playlist {
@@ -455,7 +457,8 @@ pub struct Playlist {
     /// Channel of the playlist
     pub channel: Option<ChannelId>,
     /// Last update date
-    pub last_update: Option<DateTime<Local>>,
+    #[serde_as(as = "Option<DateYmd>")]
+    pub last_update: Option<Date>,
     /// Textual last update date
     pub last_update_txt: Option<String>,
 }
@@ -512,7 +515,8 @@ pub struct VideoDetails {
     /// Video publishing date. Start date in case of a livestream.
     ///
     /// [`None`] if the date could not be parsed.
-    pub publish_date: Option<DateTime<Local>>,
+    #[serde(with = "time::serde::rfc3339::option")]
+    pub publish_date: Option<OffsetDateTime>,
     /// Textual video publishing date (e.g. `Aug 2, 2013`, depends on language)
     pub publish_date_txt: String,
     /// Is the video a livestream?
@@ -616,7 +620,8 @@ pub struct Comment {
     /// Comment publishing date.
     ///
     /// [`None`] if the date could not be parsed.
-    pub publish_date: Option<DateTime<Local>>,
+    #[serde(with = "time::serde::rfc3339::option")]
+    pub publish_date: Option<OffsetDateTime>,
     /// Textual comment publish date (e.g. `14 hours ago`), depends on language setting
     pub publish_date_txt: String,
     /// Number of comment likes
@@ -675,11 +680,13 @@ pub struct Channel<T> {
 }
 
 /// Additional channel metadata fetched from the "About" tab.
+#[serde_as]
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[non_exhaustive]
 pub struct ChannelInfo {
     /// Channel creation date
-    pub create_date: Option<DateTime<Local>>,
+    #[serde_as(as = "Option<DateYmd>")]
+    pub create_date: Option<Date>,
     /// Channel view count
     pub view_count: Option<u64>,
     /// Links to other websites or social media profiles
@@ -697,7 +704,8 @@ pub struct ChannelRss {
     /// List of the latest channel videos
     pub videos: Vec<ChannelRssVideo>,
     /// Channel creation date (second-accurate).
-    pub create_date: DateTime<Utc>,
+    #[serde(with = "time::serde::rfc3339")]
+    pub create_date: OffsetDateTime,
 }
 
 /// YouTube video fetched from a channel's RSS feed
@@ -713,9 +721,11 @@ pub struct ChannelRssVideo {
     /// Video thumbnail
     pub thumbnail: Thumbnail,
     /// Video publishing date (second-accurate).
-    pub publish_date: DateTime<Utc>,
+    #[serde(with = "time::serde::rfc3339")]
+    pub publish_date: OffsetDateTime,
     /// Date and time when the RSS feed entry was last updated.
-    pub update_date: DateTime<Utc>,
+    #[serde(with = "time::serde::rfc3339")]
+    pub update_date: OffsetDateTime,
     /// Number of views / current viewers in case of a livestream.
     pub view_count: u64,
     /// Number of likes
@@ -767,7 +777,8 @@ pub struct VideoItem {
     /// Video publishing date.
     ///
     /// [`None`] if the date could not be parsed.
-    pub publish_date: Option<DateTime<Local>>,
+    #[serde(with = "time::serde::rfc3339::option")]
+    pub publish_date: Option<OffsetDateTime>,
     /// Textual video publish date (e.g. `11 months ago`, depends on language)
     ///
     /// Is [`None`] for livestreams.

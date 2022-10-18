@@ -1,6 +1,7 @@
 use std::borrow::Cow;
 
 use serde::Serialize;
+use time::OffsetDateTime;
 use url::Url;
 
 use crate::{
@@ -191,7 +192,8 @@ impl MapResponse<Channel<ChannelInfo>> for response::Channel {
                     lang,
                     &meta.joined_date_text,
                     &mut warnings,
-                ),
+                )
+                .map(OffsetDateTime::date),
                 view_count: meta
                     .view_count_text
                     .and_then(|txt| util::parse_numeric_or_warn(&txt, &mut warnings)),

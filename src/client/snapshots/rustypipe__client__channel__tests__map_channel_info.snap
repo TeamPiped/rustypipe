@@ -143,7 +143,7 @@ Channel(
     ),
   ],
   content: ChannelInfo(
-    create_date: Some("2009-04-04T00:00:00+02:00"),
+    create_date: Some("2009-04-04"),
     view_count: Some(186854342),
     links: [
       ("EEVblog Web Site", "http://www.eevblog.com/"),

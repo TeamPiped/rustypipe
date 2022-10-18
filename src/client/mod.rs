@@ -18,13 +18,13 @@ mod channel_rss;
 use std::sync::Arc;
 use std::{borrow::Cow, fmt::Debug};
 
-use chrono::{DateTime, Duration, Utc};
 use fancy_regex::Regex;
 use log::{debug, error, warn};
 use once_cell::sync::Lazy;
 use rand::Rng;
 use reqwest::{header, Client, ClientBuilder, Request, RequestBuilder, Response};
 use serde::{de::DeserializeOwned, Deserialize, Serialize};
+use time::{Duration, OffsetDateTime};
 use tokio::sync::RwLock;
 
 use crate::{
@@ -240,7 +240,8 @@ enum CacheEntry<T> {
     #[default]
     None,
     Some {
-        last_update: DateTime<Utc>,
+        #[serde(with = "time::serde::rfc3339")]
+        last_update: OffsetDateTime,
         data: T,
     },
 }
@@ -254,7 +255,7 @@ impl<T> CacheEntry<T> {
     fn get(&self) -> Option<&T> {
         match self {
             CacheEntry::Some { last_update, data } => {
-                if last_update < &(Utc::now() - Duration::hours(24)) {
+                if last_update < &(OffsetDateTime::now_utc() - Duration::hours(24)) {
                     None
                 } else {
                     Some(data)
@@ -268,7 +269,7 @@ impl<T> CacheEntry<T> {
 impl<T> From<T> for CacheEntry<T> {
     fn from(f: T) -> Self {
         Self::Some {
-            last_update: Utc::now(),
+            last_update: OffsetDateTime::now_utc(),
             data: f,
         }
     }

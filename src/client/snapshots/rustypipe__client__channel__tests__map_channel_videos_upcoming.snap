@@ -160,7 +160,7 @@ Channel(
           ),
         ],
         channel: None,
-        publish_date: Some("2022-09-27T18:00:00+02:00"),
+        publish_date: Some("2022-09-27T16:00:00Z"),
         publish_date_txt: None,
         view_count: Some(237),
         is_live: false,

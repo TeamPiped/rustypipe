@@ -1,5 +1,5 @@
-use chrono::{DateTime, Utc};
 use serde::Deserialize;
+use time::OffsetDateTime;
 
 use super::Thumbnail;
 
@@ -9,8 +9,8 @@ pub(crate) struct ChannelRss {
     pub channel_id: String,
     #[serde(rename = "$unflatten=title")]
     pub title: String,
-    #[serde(rename = "$unflatten=published")]
-    pub create_date: DateTime<Utc>,
+    #[serde(rename = "$unflatten=published", with = "time::serde::rfc3339")]
+    pub create_date: OffsetDateTime,
     pub entry: Vec<Entry>,
 }
 
@@ -20,10 +20,10 @@ pub(crate) struct Entry {
     pub video_id: String,
     #[serde(rename = "$unflatten=title")]
     pub title: String,
-    #[serde(rename = "$unflatten=published")]
-    pub published: DateTime<Utc>,
-    #[serde(rename = "$unflatten=updated")]
-    pub updated: DateTime<Utc>,
+    #[serde(rename = "$unflatten=published", with = "time::serde::rfc3339")]
+    pub published: OffsetDateTime,
+    #[serde(rename = "$unflatten=updated", with = "time::serde::rfc3339")]
+    pub updated: OffsetDateTime,
     #[serde(rename = "$unflatten=media:group")]
     pub media_group: MediaGroup,
 }

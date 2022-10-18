@@ -1,7 +1,9 @@
+mod date;
 mod protobuf;
 
 pub mod dictionary;
 
+pub use date::{month_from_n, shift_months, shift_years};
 pub use protobuf::ProtoBuilder;
 
 use std::{

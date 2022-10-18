@@ -6,12 +6,16 @@ use std::{
     path::{Path, PathBuf},
 };
 
-use chrono::{DateTime, Local};
 use log::error;
 use serde::{Deserialize, Serialize};
+use time::macros::format_description;
+use time::OffsetDateTime;
 
 use crate::deobfuscate::DeobfData;
 use crate::error::Error;
+
+const FILENAME_FORMAT: &[time::format_description::FormatItem] =
+    format_description!("[year]-[month]-[day]_[hour]-[minute]-[second]");
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[non_exhaustive]
@@ -40,7 +44,8 @@ pub struct Info {
     /// Package version (`0.1.0`)
     pub version: String,
     /// Date/Time when the event occurred
-    pub date: DateTime<Local>,
+    #[serde(with = "time::serde::rfc3339")]
+    pub date: OffsetDateTime,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -76,7 +81,7 @@ impl Default for Info {
         Self {
             package: "rustypipe".to_owned(),
             version: "0.1.0".to_owned(),
-            date: chrono::Local::now(),
+            date: OffsetDateTime::now_utc(),
         }
     }
 }
@@ -126,7 +131,7 @@ fn get_report_path(root: &Path, report: &Report, ext: &str) -> Result<PathBuf, E
 
     let filename_prefix = format!(
         "{}_{:?}",
-        report.info.date.format("%F_%H-%M-%S"),
+        report.info.date.format(FILENAME_FORMAT).unwrap_or_default(),
         report.level
     );
 

@@ -1,7 +1,8 @@
 use std::collections::HashSet;
 
-use chrono::Datelike;
 use rstest::rstest;
+use time::macros::{date, datetime};
+use time::OffsetDateTime;
 
 use rustypipe::client::{ClientType, RustyPipe};
 use rustypipe::error::{Error, ExtractionError};
@@ -417,9 +418,7 @@ async fn get_video_details() {
     );
 
     let date = details.publish_date.unwrap();
-    assert_eq!(date.year(), 2020);
-    assert_eq!(date.month(), 11);
-    assert_eq!(date.day(), 17);
+    assert_eq!(date.date(), date!(2020 - 11 - 17));
 
     assert!(!details.is_live);
     assert!(!details.is_ccommons);
@@ -470,9 +469,7 @@ async fn get_video_details_music() {
     );
 
     let date = details.publish_date.unwrap();
-    assert_eq!(date.year(), 2020);
-    assert_eq!(date.month(), 8);
-    assert_eq!(date.day(), 6);
+    assert_eq!(date.date(), date!(2020 - 8 - 6));
 
     assert!(!details.is_live);
     assert!(!details.is_ccommons);
@@ -528,9 +525,7 @@ async fn get_video_details_ccommons() {
     );
 
     let date = details.publish_date.unwrap();
-    assert_eq!(date.year(), 2019);
-    assert_eq!(date.month(), 12);
-    assert_eq!(date.day(), 29);
+    assert_eq!(date.date(), date!(2019 - 12 - 29));
 
     assert!(!details.is_live);
     assert!(details.is_ccommons);
@@ -585,9 +580,7 @@ async fn get_video_details_chapters() {
     );
 
     let date = details.publish_date.unwrap();
-    assert_eq!(date.year(), 2022);
-    assert_eq!(date.month(), 9);
-    assert_eq!(date.day(), 15);
+    assert_eq!(date.date(), date!(2022 - 9 - 15));
 
     assert!(!details.is_live);
     assert!(!details.is_ccommons);
@@ -728,9 +721,7 @@ async fn get_video_details_live() {
     );
 
     let date = details.publish_date.unwrap();
-    assert_eq!(date.year(), 2021);
-    assert_eq!(date.month(), 9);
-    assert_eq!(date.day(), 23);
+    assert_eq!(date.date(), date!(2021 - 9 - 23));
 
     assert!(details.is_live);
     assert!(!details.is_ccommons);
@@ -777,9 +768,7 @@ async fn get_video_details_agegate() {
     assert!(details.like_count.is_none(), "like count not hidden");
 
     let date = details.publish_date.unwrap();
-    assert_eq!(date.year(), 2019);
-    assert_eq!(date.month(), 1);
-    assert_eq!(date.day(), 2);
+    assert_eq!(date.date(), date!(2019 - 1 - 2));
 
     assert!(!details.is_live);
     assert!(!details.is_ccommons);
@@ -885,7 +874,7 @@ async fn channel_videos(#[case] order: ChannelOrder) {
 
     let first_video = &channel.content.items[0];
     let first_video_date = first_video.publish_date.unwrap();
-    let age_days = (chrono::Local::now() - first_video_date).num_days();
+    let age_days = (OffsetDateTime::now_utc() - first_video_date).whole_days();
 
     match order {
         ChannelOrder::Latest => {
@@ -946,9 +935,7 @@ async fn channel_info() {
     assert_channel_eevblog(&channel);
 
     let created = channel.content.create_date.unwrap();
-    assert_eq!(created.year(), 2009);
-    assert_eq!(created.month(), 4);
-    assert_eq!(created.day(), 4);
+    assert_eq!(created, date!(2009 - 4 - 4));
 
     assert!(
         channel.content.view_count.unwrap() > 186854340,
@@ -1072,8 +1059,6 @@ async fn channel_not_found(#[case] id: &str) {
 mod channel_rss {
     use super::*;
 
-    use chrono::Timelike;
-
     #[tokio::test]
     async fn get_channel_rss() {
         let rp = RustyPipe::builder().strict().build();
@@ -1085,11 +1070,7 @@ mod channel_rss {
 
         assert_eq!(channel.id, "UCHnyfMqiRRG1u-2MsSQLbXA");
         assert_eq!(channel.name, "Veritasium");
-        assert_eq!(channel.create_date.year(), 2010);
-        assert_eq!(channel.create_date.month(), 7);
-        assert_eq!(channel.create_date.day(), 21);
-        assert_eq!(channel.create_date.hour(), 7);
-        assert_eq!(channel.create_date.minute(), 18);
+        assert_eq!(channel.create_date, datetime!(2010-07-21 7:18:02 +0));
 
         assert!(!channel.videos.is_empty());
     }
