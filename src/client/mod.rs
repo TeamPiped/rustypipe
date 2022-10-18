@@ -269,7 +269,7 @@ impl<T> CacheEntry<T> {
 impl<T> From<T> for CacheEntry<T> {
     fn from(f: T) -> Self {
         Self::Some {
-            last_update: OffsetDateTime::now_utc(),
+            last_update: util::now_sec(),
             data: f,
         }
     }

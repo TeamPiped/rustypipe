@@ -11,8 +11,8 @@ use serde::{Deserialize, Serialize};
 use time::macros::format_description;
 use time::OffsetDateTime;
 
-use crate::deobfuscate::DeobfData;
 use crate::error::Error;
+use crate::{deobfuscate::DeobfData, util};
 
 const FILENAME_FORMAT: &[time::format_description::FormatItem] =
     format_description!("[year]-[month]-[day]_[hour]-[minute]-[second]");
@@ -81,7 +81,7 @@ impl Default for Info {
         Self {
             package: "rustypipe".to_owned(),
             version: "0.1.0".to_owned(),
-            date: OffsetDateTime::now_utc(),
+            date: util::now_sec(),
         }
     }
 }

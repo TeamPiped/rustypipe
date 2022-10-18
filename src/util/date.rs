@@ -1,4 +1,4 @@
-use time::{Date, Month};
+use time::{Date, Month, OffsetDateTime};
 
 pub const fn month_from_n(n: u8) -> Option<Month> {
     match n {
@@ -41,4 +41,15 @@ pub fn shift_months(date: Date, months: i32) -> Date {
 /// Ambiguous month-ends are shifted backwards as necessary.
 pub fn shift_years(date: Date, years: i32) -> Date {
     shift_months(date, years * 12)
+}
+
+/// Get the current datetime without milli/micro/nanoseconds
+pub fn now_sec() -> OffsetDateTime {
+    OffsetDateTime::now_utc()
+        .replace_millisecond(0)
+        .unwrap()
+        .replace_microsecond(0)
+        .unwrap()
+        .replace_nanosecond(0)
+        .unwrap()
 }

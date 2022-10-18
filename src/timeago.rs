@@ -84,7 +84,7 @@ impl Mul<u8> for TimeAgo {
 
 impl From<TimeAgo> for OffsetDateTime {
     fn from(ta: TimeAgo) -> Self {
-        let ts = OffsetDateTime::now_utc();
+        let ts = util::now_sec();
         match ta.unit {
             TimeUnit::Second => ts - Duration::seconds(ta.n as i64),
             TimeUnit::Minute => ts - Duration::minutes(ta.n as i64),
