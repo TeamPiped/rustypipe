@@ -23,6 +23,7 @@ Channel(
       height: 176,
     ),
   ],
+  verification: Verified,
   description: "Welcome to The Good Life by Sensual Musique.\nThe second official channel of Sensual Musique. You can find a lot of music, live streams and some other things on this channel. Stay tuned :)\n\nSubmit your music here: submit.sensualmusiquenetwork@gmail.com",
   tags: [
     "live radio",

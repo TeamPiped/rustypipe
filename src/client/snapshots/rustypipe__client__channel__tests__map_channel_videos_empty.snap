@@ -23,6 +23,7 @@ Channel(
       height: 176,
     ),
   ],
+  verification: None,
   description: "",
   tags: [],
   vanity_url: None,

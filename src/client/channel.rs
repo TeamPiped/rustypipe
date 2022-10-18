@@ -300,6 +300,7 @@ fn map_channel<T>(
                 .subscriber_count_text
                 .and_then(|txt| util::parse_large_numstr(&txt, lang)),
             avatar: header.avatar.into(),
+            verification: header.badges.into(),
             description: metadata.description,
             tags: microformat.microformat_data_renderer.tags,
             vanity_url,
@@ -333,6 +334,7 @@ fn map_channel<T>(
                         .and_then(|txt| util::parse_large_numstr(txt, lang))
                 }),
                 avatar: hdata.map(|hdata| hdata.1.into()).unwrap_or_default(),
+                verification: crate::model::Verification::None,
                 description: metadata.description,
                 tags: microformat.microformat_data_renderer.tags,
                 vanity_url,

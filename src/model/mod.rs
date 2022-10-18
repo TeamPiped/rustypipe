@@ -582,7 +582,6 @@ pub struct ChannelTag {
 
 /// Verification status of a channel
 #[derive(Default, Copy, Clone, Debug, Serialize, Deserialize, PartialEq, Eq, Hash)]
-#[serde(rename_all = "snake_case")]
 #[non_exhaustive]
 pub enum Verification {
     #[default]
@@ -656,6 +655,8 @@ pub struct Channel<T> {
     pub subscriber_count: Option<u64>,
     /// Channel avatar / profile picture
     pub avatar: Vec<Thumbnail>,
+    /// Channel verification mark
+    pub verification: Verification,
     /// Channel description text
     pub description: String,
     /// List of words to describe the topic of the channel

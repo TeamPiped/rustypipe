@@ -26,7 +26,7 @@ VideoDetails(
         height: 176,
       ),
     ],
-    verification: none,
+    verification: None,
     subscriber_count: Some(1480),
   ),
   view_count: 205,

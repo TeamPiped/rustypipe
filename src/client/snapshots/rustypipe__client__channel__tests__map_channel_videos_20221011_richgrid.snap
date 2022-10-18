@@ -23,6 +23,7 @@ Channel(
       height: 176,
     ),
   ],
+  verification: Verified,
   description: "Hi, I’m Tina, aka Doobydobap!\n\nFood is the medium I use to tell stories and connect with people who share the same passion as I do. Whether it’s because you’re hungry at midnight or trying to learn how to cook, I hope you enjoy watching my content and recipes. Don\'t yuck my yum!\n\nwww.doobydobap.com\n",
   tags: [],
   vanity_url: Some("https://www.youtube.com/c/Doobydobap"),

@@ -1,7 +1,7 @@
 pub(crate) mod channel;
 pub(crate) mod player;
 pub(crate) mod playlist;
-pub(crate) mod playlist_music;
+// pub(crate) mod playlist_music;
 pub(crate) mod search;
 pub(crate) mod trends;
 pub(crate) mod url_endpoint;
@@ -12,7 +12,7 @@ pub(crate) use channel::Channel;
 pub(crate) use player::Player;
 pub(crate) use playlist::Playlist;
 pub(crate) use playlist::PlaylistCont;
-pub(crate) use playlist_music::PlaylistMusic;
+// pub(crate) use playlist_music::PlaylistMusic;
 pub(crate) use search::Search;
 pub(crate) use trends::Startpage;
 pub(crate) use trends::Trending;
@@ -28,14 +28,11 @@ pub(crate) mod channel_rss;
 pub(crate) use channel_rss::ChannelRss;
 
 use serde::Deserialize;
-use serde_with::{json::JsonString, serde_as, DefaultOnError, VecSkipError};
+use serde_with::{json::JsonString, serde_as, VecSkipError};
 
 use crate::error::ExtractionError;
 use crate::serializer::MapResult;
-use crate::serializer::{
-    text::{Text, TextComponent},
-    VecLogError,
-};
+use crate::serializer::{text::Text, VecLogError};
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -112,25 +109,6 @@ pub(crate) enum IconType {
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub(crate) struct VideoOwner {
-    pub video_owner_renderer: VideoOwnerRenderer,
-}
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct VideoOwnerRenderer {
-    pub title: TextComponent,
-    pub thumbnail: Thumbnails,
-    #[serde_as(as = "Option<Text>")]
-    pub subscriber_count_text: Option<String>,
-    #[serde(default)]
-    #[serde_as(as = "VecSkipError<_>")]
-    pub badges: Vec<ChannelBadge>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
 pub(crate) struct ChannelBadge {
     pub metadata_badge_renderer: ChannelBadgeRenderer,
 }
@@ -201,6 +179,7 @@ pub(crate) struct ResponseContext {
 
 // YouTube Music
 
+/*
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -251,6 +230,7 @@ pub(crate) struct MusicColumn {
 pub(crate) struct MusicColumnRenderer {
     pub text: TextComponent,
 }
+*/
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]

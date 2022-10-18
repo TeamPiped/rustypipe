@@ -4,6 +4,7 @@ use serde::Deserialize;
 use serde_with::serde_as;
 use serde_with::{DefaultOnError, VecSkipError};
 
+use crate::serializer::text::TextComponent;
 use crate::serializer::{
     ignore_any,
     text::{AccessibilityText, AttributedText, Text, TextComponents},
@@ -12,9 +13,9 @@ use crate::serializer::{
 
 use super::{
     url_endpoint::BrowseEndpoint, ContinuationEndpoint, ContinuationItemRenderer, Icon,
-    MusicContinuation, Thumbnails, VideoOwner,
+    MusicContinuation, Thumbnails,
 };
-use super::{ResponseContext, YouTubeListItem};
+use super::{ChannelBadge, ResponseContext, YouTubeListItem};
 
 /*
 #VIDEO DETAILS
@@ -173,6 +174,27 @@ pub(crate) struct ToggleButton {
     /// Contains no digits (e.g. `I like this`) if likes are hidden by the creator.
     #[serde_as(as = "AccessibilityText")]
     pub accessibility_data: String,
+}
+
+/// Video channel information
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct VideoOwner {
+    pub video_owner_renderer: VideoOwnerRenderer,
+}
+
+/// Video channel information
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct VideoOwnerRenderer {
+    pub title: TextComponent,
+    pub thumbnail: Thumbnails,
+    #[serde_as(as = "Option<Text>")]
+    pub subscriber_count_text: Option<String>,
+    #[serde(default)]
+    #[serde_as(as = "VecSkipError<_>")]
+    pub badges: Vec<ChannelBadge>,
 }
 
 /// Shows additional video metadata. Its only known use is for
@@ -382,13 +404,6 @@ pub(crate) struct CommentItemSectionHeader {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct CommentItemSectionHeaderRenderer {
-    /// Approximate comment count (e.g. `81`, `2.2K`, `705K`)
-    ///
-    /// The accurate count is included in the first comment response.
-    ///
-    /// Is `None` if there are no comments.
-    #[serde_as(as = "Option<Text>")]
-    pub contextual_info: Option<String>,
     pub menu: CommentItemSectionHeaderMenu,
 }
 

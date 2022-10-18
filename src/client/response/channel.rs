@@ -120,8 +120,9 @@ pub(crate) struct HeaderRenderer {
     pub subscriber_count_text: Option<String>,
     #[serde(default)]
     pub avatar: Thumbnails,
-    #[serde_as(as = "Option<VecSkipError<_>>")]
-    pub badges: Option<Vec<ChannelBadge>>,
+    #[serde(default)]
+    #[serde_as(as = "VecSkipError<_>")]
+    pub badges: Vec<ChannelBadge>,
     #[serde(default)]
     pub banner: Thumbnails,
     #[serde(default)]

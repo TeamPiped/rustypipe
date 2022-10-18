@@ -23,6 +23,7 @@ Channel(
       height: 176,
     ),
   ],
+  verification: Verified,
   description: "BRAND NEW SECOND CHANNEL: https://youtube.com/channel/UCcsQYra-bISsFxNqnd6Javw\n\nJoin my Discord: https://discord.gg/2YcarWsc8S\n",
   tags: [
     "politics",
