@@ -53,14 +53,20 @@ impl<T: TryFrom<YouTubeItem>> MapResponse<Paginator<T>> for response::Continuati
         lang: crate::param::Language,
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
     ) -> Result<MapResult<Paginator<T>>, ExtractionError> {
-        let mut actions = self.on_response_received_actions;
-        let items = actions
-            .try_swap_remove(0)
+        let items = self
+            .on_response_received_actions
+            .and_then(|mut actions| {
+                actions
+                    .try_swap_remove(0)
+                    .map(|action| action.append_continuation_items_action.continuation_items)
+            })
+            .or_else(|| {
+                self.continuation_contents
+                    .map(|contents| contents.rich_grid_continuation.contents)
+            })
             .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
-                "no item section renderer",
-            )))?
-            .append_continuation_items_action
-            .continuation_items;
+                "no continuation items",
+            )))?;
 
         let mut mapper = response::YouTubeListMapper::<YouTubeItem>::new(lang);
         mapper.map_response(items);

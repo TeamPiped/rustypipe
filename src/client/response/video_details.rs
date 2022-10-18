@@ -66,8 +66,8 @@ pub(crate) struct VideoResultsWrap {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct VideoResults {
-    #[serde_as(as = "VecLogError<_>")]
-    pub contents: MapResult<Vec<VideoResultsItem>>,
+    #[serde_as(as = "Option<VecLogError<_>>")]
+    pub contents: Option<MapResult<Vec<VideoResultsItem>>>,
 }
 
 /// Video metadata item

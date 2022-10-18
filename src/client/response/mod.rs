@@ -140,6 +140,12 @@ pub(crate) struct AlertRenderer {
     pub text: String,
 }
 
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ResponseContext {
+    pub visitor_data: Option<String>,
+}
+
 // CONTINUATION
 
 #[serde_as]
@@ -153,8 +159,12 @@ pub(crate) struct Continuation {
         alias = "onResponseReceivedCommands",
         alias = "onResponseReceivedEndpoints"
     )]
-    #[serde_as(as = "VecSkipError<_>")]
-    pub on_response_received_actions: Vec<ContinuationActionWrap>,
+    #[serde_as(as = "Option<VecSkipError<_>>")]
+    pub on_response_received_actions: Option<Vec<ContinuationActionWrap>>,
+    /// Used for channel video rich grid renderer
+    ///
+    /// A/B test seen on 19.10.2022
+    pub continuation_contents: Option<RichGridContinuationContents>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -173,8 +183,16 @@ pub(crate) struct ContinuationAction {
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub(crate) struct ResponseContext {
-    pub visitor_data: Option<String>,
+pub(crate) struct RichGridContinuationContents {
+    pub rich_grid_continuation: RichGridContinuation,
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct RichGridContinuation {
+    #[serde_as(as = "VecLogError<_>")]
+    pub contents: MapResult<Vec<YouTubeListItem>>,
 }
 
 // YouTube Music

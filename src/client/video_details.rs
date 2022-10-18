@@ -102,7 +102,10 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
             .two_column_watch_next_results
             .results
             .results
-            .contents;
+            .contents
+            .ok_or(ExtractionError::ContentUnavailable(Cow::Borrowed(
+                "Video not found",
+            )))?;
         warnings.append(&mut primary_results.warnings);
 
         let mut primary_info = None;
