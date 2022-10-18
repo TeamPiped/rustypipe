@@ -1,3 +1,5 @@
+use std::borrow::Cow;
+
 use serde::Serialize;
 
 use crate::{
@@ -12,8 +14,8 @@ use super::{response, ClientType, MapResponse, RustyPipeQuery, YTContext};
 
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
-struct QResolveUrl {
-    context: YTContext,
+struct QResolveUrl<'a> {
+    context: YTContext<'a>,
     url: String,
 }
 
@@ -28,7 +30,7 @@ impl RustyPipeQuery {
         });
         let mut path_split = url
             .path_segments()
-            .ok_or_else(|| Error::Other("invalid url: empty path".into()))?;
+            .ok_or(Error::Other(Cow::Borrowed("invalid url: empty path")))?;
 
         let get_start_time = || {
             params
@@ -41,7 +43,7 @@ impl RustyPipeQuery {
             Some("watch") => {
                 let id = params
                     .get("v")
-                    .ok_or_else(|| Error::Other("invalid url: no video id".into()))?
+                    .ok_or(Error::Other(Cow::Borrowed("invalid url: no video id")))?
                     .to_string();
 
                 Ok(UrlTarget::Video {
@@ -56,7 +58,7 @@ impl RustyPipeQuery {
             Some("playlist") => {
                 let id = params
                     .get("list")
-                    .ok_or_else(|| Error::Other("invalid url: no playlist id".into()))?
+                    .ok_or(Error::Other(Cow::Borrowed("invalid url: no playlist id")))?
                     .to_string();
 
                 Ok(UrlTarget::Playlist { id })
@@ -190,14 +192,16 @@ impl MapResponse<UrlTarget> for response::ResolvedUrl {
         let page_type = self
             .endpoint
             .command_metadata
-            .ok_or_else(|| ExtractionError::InvalidData("No command metadata".into()))?
+            .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
+                "No command metadata",
+            )))?
             .web_command_metadata
             .web_page_type;
 
         let id = self
             .endpoint
             .browse_endpoint
-            .ok_or_else(|| ExtractionError::InvalidData("No browse ID".into()))?
+            .ok_or(ExtractionError::InvalidData(Cow::Borrowed("No browse ID")))?
             .browse_id;
 
         Ok(MapResult {

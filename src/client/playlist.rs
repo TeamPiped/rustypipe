@@ -1,4 +1,4 @@
-use std::convert::TryFrom;
+use std::{borrow::Cow, convert::TryFrom};
 
 use crate::{
     deobfuscate::Deobfuscator,
@@ -63,42 +63,40 @@ impl MapResponse<Playlist> for response::Playlist {
         };
 
         let mut tcbr_contents = contents.two_column_browse_results_renderer.contents;
-        let video_items = some_or_bail!(
-            some_or_bail!(
-                some_or_bail!(
-                    tcbr_contents.try_swap_remove(0),
-                    Err(ExtractionError::InvalidData(
-                        "twoColumnBrowseResultsRenderer empty".into()
-                    ))
-                )
-                .tab_renderer
-                .content
-                .section_list_renderer
-                .contents
-                .try_swap_remove(0),
-                Err(ExtractionError::InvalidData(
-                    "sectionListRenderer empty".into()
-                ))
-            )
+
+        let video_items = tcbr_contents
+            .try_swap_remove(0)
+            .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
+                "twoColumnBrowseResultsRenderer empty",
+            )))?
+            .tab_renderer
+            .content
+            .section_list_renderer
+            .contents
+            .try_swap_remove(0)
+            .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
+                "sectionListRenderer empty",
+            )))?
             .item_section_renderer
             .contents
-            .try_swap_remove(0),
-            Err(ExtractionError::InvalidData(
-                "itemSectionRenderer empty".into()
-            ))
-        )
-        .playlist_video_list_renderer
-        .contents;
+            .try_swap_remove(0)
+            .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
+                "itemSectionRenderer empty",
+            )))?
+            .playlist_video_list_renderer
+            .contents;
 
         let (videos, ctoken) = map_playlist_items(video_items.c);
 
         let (thumbnails, last_update_txt) = match self.sidebar {
             Some(sidebar) => {
                 let mut sidebar_items = sidebar.playlist_sidebar_renderer.items;
-                let mut primary = some_or_bail!(
-                    sidebar_items.try_swap_remove(0),
-                    Err(ExtractionError::InvalidData("no primary sidebar".into()))
-                );
+                let mut primary =
+                    sidebar_items
+                        .try_swap_remove(0)
+                        .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
+                            "no primary sidebar",
+                        )))?;
 
                 (
                     primary
@@ -113,10 +111,12 @@ impl MapResponse<Playlist> for response::Playlist {
                 )
             }
             None => {
-                let header_banner = some_or_bail!(
-                    header.playlist_header_renderer.playlist_header_banner,
-                    Err(ExtractionError::InvalidData("no thumbnail found".into()))
-                );
+                let header_banner = header
+                    .playlist_header_renderer
+                    .playlist_header_banner
+                    .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
+                        "no thumbnail found",
+                    )))?;
 
                 let mut byline = header.playlist_header_renderer.byline;
                 let last_update_txt = byline
@@ -131,12 +131,8 @@ impl MapResponse<Playlist> for response::Playlist {
         };
 
         let n_videos = match ctoken {
-            Some(_) => {
-                ok_or_bail!(
-                    util::parse_numeric(&header.playlist_header_renderer.num_videos_text),
-                    Err(ExtractionError::InvalidData("no video count".into()))
-                )
-            }
+            Some(_) => util::parse_numeric(&header.playlist_header_renderer.num_videos_text)
+                .map_err(|_| ExtractionError::InvalidData(Cow::Borrowed("no video count")))?,
             None => videos.len() as u64,
         };
 
@@ -187,7 +183,9 @@ impl MapResponse<Paginator<PlaylistVideo>> for response::PlaylistCont {
         let mut actions = self.on_response_received_actions;
         let action = actions
             .try_swap_remove(0)
-            .ok_or_else(|| ExtractionError::InvalidData("no onResponseReceivedAction".into()))?;
+            .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
+                "no onResponseReceivedAction",
+            )))?;
 
         let (items, ctoken) =
             map_playlist_items(action.append_continuation_items_action.continuation_items.c);

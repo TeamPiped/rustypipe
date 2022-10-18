@@ -1,6 +1,6 @@
 //! YouTube audio/video downloader
 
-use std::{cmp::Ordering, ffi::OsString, ops::Range, path::PathBuf};
+use std::{borrow::Cow, cmp::Ordering, ffi::OsString, ops::Range, path::PathBuf};
 
 use fancy_regex::Regex;
 use futures::stream::{self, StreamExt};
@@ -45,16 +45,15 @@ fn get_download_range(offset: u64, size: Option<u64>) -> Range<u64> {
 fn parse_cr_header(cr_header: &str) -> Result<(u64, u64)> {
     static PATTERN: Lazy<Regex> = Lazy::new(|| Regex::new(r#"bytes (\d+)-(\d+)/(\d+)"#).unwrap());
 
-    let captures = some_or_bail!(
-        PATTERN.captures(cr_header).ok().flatten(),
-        Err(DownloadError::Progressive(
+    let captures = PATTERN.captures(cr_header).ok().flatten().ok_or_else(|| {
+        DownloadError::Progressive(
             format!(
                 "Content-Range header '{}' does not match pattern",
                 cr_header
             )
-            .into()
-        ))
-    );
+            .into(),
+        )
+    })?;
 
     Ok((
         captures.get(2).unwrap().as_str().parse().map_err(|_| {
@@ -106,16 +105,18 @@ async fn download_single_file<P: Into<PathBuf>>(
             .await?
             .error_for_status()?;
 
-        let cr_header = some_or_bail!(
-            res.headers().get(header::CONTENT_RANGE),
-            Err(DownloadError::Progressive(
-                "Did not get Content-Range header".into()
-            ))
-        )
-        .to_str()
-        .map_err(|_| {
-            DownloadError::Progressive("could not convert Content-Range header to string".into())
-        })?;
+        let cr_header = res
+            .headers()
+            .get(header::CONTENT_RANGE)
+            .ok_or(DownloadError::Progressive(Cow::Borrowed(
+                "Did not get Content-Range header",
+            )))?
+            .to_str()
+            .map_err(|_| {
+                DownloadError::Progressive(
+                    "could not convert Content-Range header to string".into(),
+                )
+            })?;
 
         let (_, original_size) = parse_cr_header(cr_header)?;
 
@@ -193,16 +194,18 @@ async fn download_chunks_by_header(
             .error_for_status()?;
 
         // Content-Range: bytes 0-100/451368980
-        let cr_header = some_or_bail!(
-            res.headers().get(header::CONTENT_RANGE),
-            Err(DownloadError::Progressive(
-                "Did not get Content-Range header".into()
-            ))
-        )
-        .to_str()
-        .map_err(|_| {
-            DownloadError::Progressive("could not convert Content-Range header to string".into())
-        })?;
+        let cr_header = res
+            .headers()
+            .get(header::CONTENT_RANGE)
+            .ok_or(DownloadError::Progressive(Cow::Borrowed(
+                "Did not get Content-Range header",
+            )))?
+            .to_str()
+            .map_err(|_| {
+                DownloadError::Progressive(
+                    "could not convert Content-Range header to string".into(),
+                )
+            })?;
 
         let (parsed_offset, parsed_size) = parse_cr_header(cr_header)?;
 

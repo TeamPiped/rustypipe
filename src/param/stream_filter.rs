@@ -304,13 +304,10 @@ impl VideoPlayer {
             (Some(video_stream), None) => (Some(video_stream), None),
             (Some(video_stream), Some(video_only_stream)) => match video_only_stream > video_stream
             {
-                true => (
-                    Some(video_only_stream),
-                    Some(some_or_bail!(
-                        self.select_audio_stream(filter),
-                        (Some(video_stream), None)
-                    )),
-                ),
+                true => match self.select_audio_stream(filter) {
+                    Some(audio_stream) => (Some(video_only_stream), Some(audio_stream)),
+                    None => (Some(video_stream), None),
+                },
                 false => (Some(video_stream), None),
             },
         }

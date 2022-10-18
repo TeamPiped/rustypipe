@@ -1,3 +1,5 @@
+use std::borrow::Cow;
+
 use serde::Serialize;
 
 use crate::{
@@ -16,7 +18,7 @@ use super::{
 
 #[derive(Debug, Serialize)]
 struct QVideo<'a> {
-    context: YTContext,
+    context: YTContext<'a>,
     /// YouTube video ID
     video_id: &'a str,
     /// Set to true to allow extraction of streams with sensitive content
@@ -79,10 +81,14 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
 
         let contents = self
             .contents
-            .ok_or_else(|| ExtractionError::ContentUnavailable("Video not found".into()))?;
-        let current_video_endpoint = self
-            .current_video_endpoint
-            .ok_or_else(|| ExtractionError::ContentUnavailable("Video not found".into()))?;
+            .ok_or(ExtractionError::ContentUnavailable(Cow::Borrowed(
+                "Video not found",
+            )))?;
+        let current_video_endpoint =
+            self.current_video_endpoint
+                .ok_or(ExtractionError::ContentUnavailable(Cow::Borrowed(
+                    "Video not found",
+                )))?;
 
         let video_id = current_video_endpoint.watch_endpoint.video_id;
         if id != video_id {

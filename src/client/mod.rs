@@ -15,8 +15,8 @@ mod video_details;
 #[cfg_attr(docsrs, doc(cfg(feature = "rss")))]
 mod channel_rss;
 
-use std::fmt::Debug;
 use std::sync::Arc;
+use std::{borrow::Cow, fmt::Debug};
 
 use chrono::{DateTime, Duration, Utc};
 use fancy_regex::Regex;
@@ -69,29 +69,29 @@ impl ClientType {
 
 #[derive(Clone, Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
-struct YTContext {
-    client: ClientInfo,
+struct YTContext<'a> {
+    client: ClientInfo<'a>,
     /// only used on desktop
     #[serde(skip_serializing_if = "Option::is_none")]
     request: Option<RequestYT>,
     user: User,
     /// only used for the embedded player
     #[serde(skip_serializing_if = "Option::is_none")]
-    third_party: Option<ThirdParty>,
+    third_party: Option<ThirdParty<'a>>,
 }
 
 #[derive(Clone, Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
-struct ClientInfo {
-    client_name: String,
-    client_version: String,
+struct ClientInfo<'a> {
+    client_name: &'a str,
+    client_version: Cow<'a, str>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    client_screen: Option<String>,
+    client_screen: Option<&'a str>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    device_model: Option<String>,
-    platform: String,
+    device_model: Option<&'a str>,
+    platform: &'a str,
     #[serde(skip_serializing_if = "Option::is_none")]
-    original_url: Option<String>,
+    original_url: Option<&'a str>,
     #[serde(skip_serializing_if = "Option::is_none")]
     visitor_data: Option<String>,
     hl: Language,
@@ -124,21 +124,21 @@ struct User {
 
 #[derive(Clone, Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
-struct ThirdParty {
-    embed_url: String,
+struct ThirdParty<'a> {
+    embed_url: &'a str,
 }
 
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
-struct QBrowse {
-    context: YTContext,
+struct QBrowse<'a> {
+    context: YTContext<'a>,
     browse_id: String,
 }
 
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 struct QContinuation<'a> {
-    context: YTContext,
+    context: YTContext<'a>,
     continuation: &'a str,
 }
 
@@ -531,11 +531,11 @@ impl RustyPipe {
                 )
                 .await?;
 
-            util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &swjs, 1).ok_or_else(|| {
-                Error::from(ExtractionError::InvalidData(
-                    "Could not find desktop client version in sw.js".into(),
-                ))
-            })
+            util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &swjs, 1).ok_or(
+                Error::Extraction(ExtractionError::InvalidData(Cow::Borrowed(
+                    "Could not find desktop client version in sw.js",
+                ))),
+            )
         };
 
         let from_html = async {
@@ -549,11 +549,11 @@ impl RustyPipe {
                 )
                 .await?;
 
-            util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &html, 1).ok_or_else(|| {
-                Error::from(ExtractionError::InvalidData(
-                    "Could not find desktop client version in sw.js".into(),
-                ))
-            })
+            util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &html, 1).ok_or(
+                Error::Extraction(ExtractionError::InvalidData(Cow::Borrowed(
+                    "Could not find desktop client version on html page",
+                ))),
+            )
         };
 
         match from_swjs.await {
@@ -578,11 +578,11 @@ impl RustyPipe {
                 )
                 .await?;
 
-            util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &swjs, 1).ok_or_else(|| {
-                Error::from(ExtractionError::InvalidData(
-                    "Could not find music client version in sw.js".into(),
-                ))
-            })
+            util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &swjs, 1).ok_or(
+                Error::Extraction(ExtractionError::InvalidData(Cow::Borrowed(
+                    "Could not find music client version in sw.js",
+                ))),
+            )
         };
 
         let from_html = async {
@@ -596,11 +596,11 @@ impl RustyPipe {
                 )
                 .await?;
 
-            util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &html, 1).ok_or_else(|| {
-                Error::from(ExtractionError::InvalidData(
-                    "Could not find music client version on html page".into(),
-                ))
-            })
+            util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &html, 1).ok_or(
+                Error::Extraction(ExtractionError::InvalidData(Cow::Borrowed(
+                    "Could not find music client version on html page",
+                ))),
+            )
         };
 
         match from_swjs.await {
@@ -757,12 +757,12 @@ impl RustyPipeQuery {
         match ctype {
             ClientType::Desktop => YTContext {
                 client: ClientInfo {
-                    client_name: "WEB".to_owned(),
-                    client_version: self.client.get_desktop_client_version().await,
+                    client_name: "WEB",
+                    client_version: Cow::Owned(self.client.get_desktop_client_version().await),
                     client_screen: None,
                     device_model: None,
-                    platform: "DESKTOP".to_owned(),
-                    original_url: Some("https://www.youtube.com/".to_owned()),
+                    platform: "DESKTOP",
+                    original_url: Some("https://www.youtube.com/"),
                     visitor_data: None,
                     hl,
                     gl,
@@ -773,12 +773,12 @@ impl RustyPipeQuery {
             },
             ClientType::DesktopMusic => YTContext {
                 client: ClientInfo {
-                    client_name: "WEB_REMIX".to_owned(),
-                    client_version: self.client.get_music_client_version().await,
+                    client_name: "WEB_REMIX",
+                    client_version: Cow::Owned(self.client.get_music_client_version().await),
                     client_screen: None,
                     device_model: None,
-                    platform: "DESKTOP".to_owned(),
-                    original_url: Some("https://music.youtube.com/".to_owned()),
+                    platform: "DESKTOP",
+                    original_url: Some("https://music.youtube.com/"),
                     visitor_data: None,
                     hl,
                     gl,
@@ -789,11 +789,11 @@ impl RustyPipeQuery {
             },
             ClientType::TvHtml5Embed => YTContext {
                 client: ClientInfo {
-                    client_name: "TVHTML5_SIMPLY_EMBEDDED_PLAYER".to_owned(),
-                    client_version: TVHTML5_CLIENT_VERSION.to_owned(),
-                    client_screen: Some("EMBED".to_owned()),
+                    client_name: "TVHTML5_SIMPLY_EMBEDDED_PLAYER",
+                    client_version: Cow::Borrowed(TVHTML5_CLIENT_VERSION),
+                    client_screen: Some("EMBED"),
                     device_model: None,
-                    platform: "TV".to_owned(),
+                    platform: "TV",
                     original_url: None,
                     visitor_data: None,
                     hl,
@@ -802,16 +802,16 @@ impl RustyPipeQuery {
                 request: Some(RequestYT::default()),
                 user: User::default(),
                 third_party: Some(ThirdParty {
-                    embed_url: "https://www.youtube.com/".to_owned(),
+                    embed_url: "https://www.youtube.com/",
                 }),
             },
             ClientType::Android => YTContext {
                 client: ClientInfo {
-                    client_name: "ANDROID".to_owned(),
-                    client_version: MOBILE_CLIENT_VERSION.to_owned(),
+                    client_name: "ANDROID",
+                    client_version: Cow::Borrowed(MOBILE_CLIENT_VERSION),
                     client_screen: None,
                     device_model: None,
-                    platform: "MOBILE".to_owned(),
+                    platform: "MOBILE",
                     original_url: None,
                     visitor_data: None,
                     hl,
@@ -823,11 +823,11 @@ impl RustyPipeQuery {
             },
             ClientType::Ios => YTContext {
                 client: ClientInfo {
-                    client_name: "IOS".to_owned(),
-                    client_version: MOBILE_CLIENT_VERSION.to_owned(),
+                    client_name: "IOS",
+                    client_version: Cow::Borrowed(MOBILE_CLIENT_VERSION),
                     client_screen: None,
-                    device_model: Some(IOS_DEVICE_MODEL.to_owned()),
-                    platform: "MOBILE".to_owned(),
+                    device_model: Some(IOS_DEVICE_MODEL),
+                    platform: "MOBILE",
                     original_url: None,
                     visitor_data: None,
                     hl,

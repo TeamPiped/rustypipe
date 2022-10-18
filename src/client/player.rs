@@ -27,7 +27,7 @@ use super::{
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 struct QPlayer<'a> {
-    context: YTContext,
+    context: YTContext<'a>,
     /// Website playback context
     #[serde(skip_serializing_if = "Option::is_none")]
     playback_context: Option<QPlaybackContext>,
@@ -79,14 +79,11 @@ impl RustyPipeQuery {
         video_id: &str,
         client_type: ClientType,
     ) -> Result<VideoPlayer, Error> {
-        let q1 = self.clone();
-        let t_context = tokio::spawn(async move { q1.get_context(client_type, false).await });
-        let q2 = self.client.clone();
-        let t_deobf = tokio::spawn(async move { q2.get_deobf().await });
-
-        let (context, deobf) = tokio::join!(t_context, t_deobf);
-        let context = context.unwrap();
-        let deobf = deobf.unwrap()?;
+        let (context, deobf) = tokio::join!(
+            self.get_context(client_type, false),
+            self.client.get_deobf()
+        );
+        let deobf = deobf?;
 
         let request_body = if client_type.is_web() {
             QPlayer {
@@ -168,14 +165,16 @@ impl MapResponse<VideoPlayer> for response::Player {
             }
         };
 
-        let mut streaming_data = some_or_bail!(
-            self.streaming_data,
-            Err(ExtractionError::InvalidData("no streaming data".into()))
-        );
-        let video_details = some_or_bail!(
-            self.video_details,
-            Err(ExtractionError::InvalidData("no video details".into()))
-        );
+        let mut streaming_data =
+            self.streaming_data
+                .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
+                    "no streaming data",
+                )))?;
+        let video_details =
+            self.video_details
+                .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
+                    "no video details",
+                )))?;
 
         if video_details.video_id != id {
             return Err(ExtractionError::WrongResult(format!(
@@ -294,12 +293,11 @@ fn cipher_to_url_params(
     // `sp`: Signature parameter
     // `url`: URL that is missing the signature parameter
 
-    let sig = some_or_bail!(params.get("s"), Err(DeobfError::Extraction("s param")));
-    let sp = some_or_bail!(params.get("sp"), Err(DeobfError::Extraction("sp param")));
-    let raw_url = some_or_bail!(
-        params.get("url"),
-        Err(DeobfError::Extraction("no url param"))
-    );
+    let sig = params.get("s").ok_or(DeobfError::Extraction("s param"))?;
+    let sp = params.get("sp").ok_or(DeobfError::Extraction("sp param"))?;
+    let raw_url = params
+        .get("url")
+        .ok_or(DeobfError::Extraction("no url param"))?;
     let (url_base, mut url_params) =
         util::url_to_params(raw_url).or(Err(DeobfError::Extraction("url params")))?;
 

@@ -1,3 +1,5 @@
+use std::borrow::Cow;
+
 use serde::Serialize;
 use url::Url;
 
@@ -15,7 +17,7 @@ use super::{response, ClientType, MapResponse, RustyPipeQuery, YTContext};
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 struct QChannel<'a> {
-    context: YTContext,
+    context: YTContext<'a>,
     browse_id: &'a str,
     params: Params,
 }
@@ -257,11 +259,11 @@ fn map_vanity_url(url: &str, id: &str) -> Option<String> {
         return None;
     }
 
-    let mut parsed_url = ok_or_bail!(Url::parse(url), None);
-
-    // The vanity URL from YouTube is http for some reason
-    let _ = parsed_url.set_scheme("https");
-    Some(parsed_url.to_string())
+    Url::parse(url).ok().map(|mut parsed_url| {
+        // The vanity URL from YouTube is http for some reason
+        let _ = parsed_url.set_scheme("https");
+        parsed_url.to_string()
+    })
 }
 
 fn map_channel<T>(
@@ -272,13 +274,17 @@ fn map_channel<T>(
     id: &str,
     lang: Language,
 ) -> Result<Channel<T>, ExtractionError> {
-    let header =
-        header.ok_or_else(|| ExtractionError::ContentUnavailable("channel not found".into()))?;
+    let header = header.ok_or(ExtractionError::ContentUnavailable(Cow::Borrowed(
+        "channel not found",
+    )))?;
     let metadata = metadata
-        .ok_or_else(|| ExtractionError::ContentUnavailable("channel not found".into()))?
+        .ok_or(ExtractionError::ContentUnavailable(Cow::Borrowed(
+            "channel not found",
+        )))?
         .channel_metadata_renderer;
-    let microformat = microformat
-        .ok_or_else(|| ExtractionError::ContentUnavailable("channel not found".into()))?;
+    let microformat = microformat.ok_or(ExtractionError::ContentUnavailable(Cow::Borrowed(
+        "channel not found",
+    )))?;
 
     if metadata.external_id != id {
         return Err(ExtractionError::WrongResult(format!(
@@ -384,7 +390,9 @@ fn map_channel_content(
                     }
                 })
                 .next()
-                .ok_or_else(|| ExtractionError::InvalidData("could not extract content".into()))?;
+                .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
+                    "could not extract content",
+                )))?;
 
             if let Some(target_id) = target_id {
                 // YouTube falls back to the featured page if the channel does not have a "videos" tab.

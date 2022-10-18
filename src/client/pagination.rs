@@ -1,3 +1,5 @@
+use std::borrow::Cow;
+
 use crate::error::{Error, ExtractionError};
 use crate::model::{Comment, Paginator, PlaylistVideo, YouTubeItem};
 use crate::param::ContinuationEndpoint;
@@ -52,14 +54,13 @@ impl<T: TryFrom<YouTubeItem>> MapResponse<Paginator<T>> for response::Continuati
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
     ) -> Result<MapResult<Paginator<T>>, ExtractionError> {
         let mut actions = self.on_response_received_actions;
-        let items = some_or_bail!(
-            actions.try_swap_remove(0),
-            Err(ExtractionError::InvalidData(
-                "no item section renderer".into()
-            ))
-        )
-        .append_continuation_items_action
-        .continuation_items;
+        let items = actions
+            .try_swap_remove(0)
+            .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
+                "no item section renderer",
+            )))?
+            .append_continuation_items_action
+            .continuation_items;
 
         let mut mapper = response::YouTubeListMapper::<YouTubeItem>::new(lang);
         mapper.map_response(items);

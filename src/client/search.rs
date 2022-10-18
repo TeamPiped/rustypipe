@@ -1,3 +1,5 @@
+use std::borrow::Cow;
+
 use serde::{de::IgnoredAny, Serialize};
 
 use crate::{
@@ -12,7 +14,7 @@ use super::{response, ClientType, MapResponse, MapResult, RustyPipeQuery, YTCont
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 struct QSearch<'a> {
-    context: YTContext,
+    context: YTContext<'a>,
     query: &'a str,
     #[serde(skip_serializing_if = "Option::is_none")]
     params: Option<String>,
@@ -69,11 +71,11 @@ impl RustyPipeQuery {
             .http_request_txt(self.client.inner.http.get(url).build()?)
             .await?;
 
-        let trimmed = response.get(5..).ok_or_else(|| {
-            Error::Extraction(ExtractionError::InvalidData(
-                "could not get string slice".into(),
-            ))
-        })?;
+        let trimmed = response
+            .get(5..)
+            .ok_or(Error::Extraction(ExtractionError::InvalidData(
+                Cow::Borrowed("could not get string slice"),
+            )))?;
 
         let parsed = serde_json::from_str::<(
             IgnoredAny,

@@ -1,3 +1,5 @@
+use std::borrow::Cow;
+
 use crate::{
     error::{Error, ExtractionError},
     model::{Paginator, VideoItem},
@@ -54,7 +56,7 @@ impl MapResponse<Paginator<VideoItem>> for response::Startpage {
         let mut contents = self.contents.two_column_browse_results_renderer.tabs;
         let grid = contents
             .try_swap_remove(0)
-            .ok_or_else(|| ExtractionError::InvalidData("no contents".into()))?
+            .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no contents")))?
             .tab_renderer
             .content
             .section_list_renderer
@@ -78,7 +80,7 @@ impl MapResponse<Vec<VideoItem>> for response::Trending {
         let mut contents = self.contents.two_column_browse_results_renderer.tabs;
         let items = contents
             .try_swap_remove(0)
-            .ok_or_else(|| ExtractionError::InvalidData("no contents".into()))?
+            .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no contents")))?
             .tab_renderer
             .content
             .section_list_renderer
