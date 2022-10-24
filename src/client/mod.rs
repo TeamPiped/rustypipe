@@ -45,7 +45,7 @@ use crate::{
 /// - **Desktop**: used by youtube.com
 /// - **DesktopMusic**: used by music.youtube.com, can access special music data,
 ///   cannot access non-music content
-/// - **TvHtml5Embed**: (probably) used by Smart TVs, can access age-restricted videos
+/// - **TvHtml5Embed**: used by Smart TVs, can access age-restricted videos
 /// - **Android**: used by the Android app, no obfuscated URLs, includes lower resolution audio streams
 /// - **Ios**: used by the iOS app, no obfuscated URLs
 #[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq, Eq, Hash)]
@@ -69,7 +69,7 @@ impl ClientType {
 
 #[derive(Clone, Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
-struct YTContext<'a> {
+pub struct YTContext<'a> {
     client: ClientInfo<'a>,
     /// only used on desktop
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -93,7 +93,7 @@ struct ClientInfo<'a> {
     #[serde(skip_serializing_if = "Option::is_none")]
     original_url: Option<&'a str>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    visitor_data: Option<String>,
+    visitor_data: Option<&'a str>,
     hl: Language,
     gl: Country,
 }
@@ -183,6 +183,7 @@ struct RustyPipeRef {
     reporter: Option<Box<dyn Reporter>>,
     n_http_retries: u32,
     consent_cookie: String,
+    visitor_data: Option<String>,
     cache: CacheHolder,
     default_opts: RustyPipeOpts,
 }
@@ -200,6 +201,7 @@ pub struct RustyPipeBuilder {
     reporter: Option<Box<dyn Reporter>>,
     n_http_retries: u32,
     user_agent: String,
+    visitor_data: Option<String>,
     default_opts: RustyPipeOpts,
 }
 
@@ -292,6 +294,7 @@ impl RustyPipeBuilder {
             reporter: Some(Box::new(FileReporter::default())),
             n_http_retries: 2,
             user_agent: DEFAULT_UA.to_owned(),
+            visitor_data: None,
         }
     }
 
@@ -332,6 +335,7 @@ impl RustyPipeBuilder {
                     CONSENT_COOKIE_YES,
                     rand::thread_rng().gen_range(100..1000)
                 ),
+                visitor_data: self.visitor_data,
                 cache: CacheHolder {
                     desktop_client: RwLock::new(cdata.desktop_client),
                     music_client: RwLock::new(cdata.music_client),
@@ -432,6 +436,11 @@ impl RustyPipeBuilder {
     /// **Info**: you can set this option for individual queries, too
     pub fn strict(mut self) -> Self {
         self.default_opts.strict = true;
+        self
+    }
+
+    pub fn visitor_data(mut self, visitor_data: &str) -> Self {
+        self.visitor_data = Some(visitor_data.to_owned());
         self
     }
 }
@@ -745,7 +754,12 @@ impl RustyPipeQuery {
     /// # Parameters
     /// - `ctype`: Client type (`Desktop`, `DesktopMusic`, `Android`, ...)
     /// - `localized`: Whether to include the configured language and country
-    async fn get_context(&self, ctype: ClientType, localized: bool) -> YTContext {
+    pub async fn get_context<'a>(
+        &'a self,
+        ctype: ClientType,
+        localized: bool,
+        visitor_data: Option<&'a str>,
+    ) -> YTContext {
         let hl = match localized {
             true => self.opts.lang,
             false => Language::En,
@@ -754,6 +768,7 @@ impl RustyPipeQuery {
             true => self.opts.country,
             false => Country::Us,
         };
+        let visitor_data = self.client.inner.visitor_data.as_deref().or(visitor_data);
 
         match ctype {
             ClientType::Desktop => YTContext {
@@ -764,7 +779,7 @@ impl RustyPipeQuery {
                     device_model: None,
                     platform: "DESKTOP",
                     original_url: Some("https://www.youtube.com/"),
-                    visitor_data: None,
+                    visitor_data,
                     hl,
                     gl,
                 },
@@ -780,7 +795,7 @@ impl RustyPipeQuery {
                     device_model: None,
                     platform: "DESKTOP",
                     original_url: Some("https://music.youtube.com/"),
-                    visitor_data: None,
+                    visitor_data,
                     hl,
                     gl,
                 },
@@ -796,7 +811,7 @@ impl RustyPipeQuery {
                     device_model: None,
                     platform: "TV",
                     original_url: None,
-                    visitor_data: None,
+                    visitor_data,
                     hl,
                     gl,
                 },
@@ -814,7 +829,7 @@ impl RustyPipeQuery {
                     device_model: None,
                     platform: "MOBILE",
                     original_url: None,
-                    visitor_data: None,
+                    visitor_data,
                     hl,
                     gl,
                 },
@@ -830,7 +845,7 @@ impl RustyPipeQuery {
                     device_model: Some(IOS_DEVICE_MODEL),
                     platform: "MOBILE",
                     original_url: None,
-                    visitor_data: None,
+                    visitor_data,
                     hl,
                     gl,
                 },
@@ -1084,6 +1099,22 @@ impl RustyPipeQuery {
     ) -> Result<M, Error> {
         self.execute_request_deobf::<R, M, B>(ctype, operation, id, endpoint, body, None)
             .await
+    }
+
+    /// Execute a request to the YouTube API and return the response string
+    pub async fn raw<B: Serialize + ?Sized>(
+        &self,
+        ctype: ClientType,
+        endpoint: &str,
+        body: &B,
+    ) -> Result<String, Error> {
+        let request = self
+            .request_builder(ctype, endpoint)
+            .await
+            .json(body)
+            .build()?;
+
+        self.client.http_request_txt(request).await
     }
 }
 

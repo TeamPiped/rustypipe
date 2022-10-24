@@ -158,7 +158,7 @@ async fn playlist_cont(testfiles: &Path) {
         .unwrap();
 
     let rp = rp_testfile(&json_path);
-    playlist.videos.next(rp.query()).await.unwrap().unwrap();
+    playlist.videos.next(&rp.query()).await.unwrap().unwrap();
 }
 
 async fn video_details(testfiles: &Path) {
@@ -196,7 +196,7 @@ async fn comments_top(testfiles: &Path) {
     let rp = rp_testfile(&json_path);
     details
         .top_comments
-        .next(rp.query())
+        .next(&rp.query())
         .await
         .unwrap()
         .unwrap();
@@ -216,7 +216,7 @@ async fn comments_latest(testfiles: &Path) {
     let rp = rp_testfile(&json_path);
     details
         .latest_comments
-        .next(rp.query())
+        .next(&rp.query())
         .await
         .unwrap()
         .unwrap();
@@ -234,7 +234,7 @@ async fn recommendations(testfiles: &Path) {
     let details = rp.query().video_details("ZeerrnuLi5E").await.unwrap();
 
     let rp = rp_testfile(&json_path);
-    details.recommended.next(rp.query()).await.unwrap();
+    details.recommended.next(&rp.query()).await.unwrap();
 }
 
 async fn channel_videos(testfiles: &Path) {
@@ -304,7 +304,7 @@ async fn channel_videos_cont(testfiles: &Path) {
         .unwrap();
 
     let rp = rp_testfile(&json_path);
-    videos.content.next(rp.query()).await.unwrap().unwrap();
+    videos.content.next(&rp.query()).await.unwrap().unwrap();
 }
 
 async fn channel_playlists_cont(testfiles: &Path) {
@@ -323,7 +323,7 @@ async fn channel_playlists_cont(testfiles: &Path) {
         .unwrap();
 
     let rp = rp_testfile(&json_path);
-    playlists.content.next(rp.query()).await.unwrap().unwrap();
+    playlists.content.next(&rp.query()).await.unwrap().unwrap();
 }
 
 async fn search(testfiles: &Path) {
@@ -350,7 +350,7 @@ async fn search_cont(testfiles: &Path) {
     let search = rp.query().search("doobydoobap").await.unwrap();
 
     let rp = rp_testfile(&json_path);
-    search.items.next(rp.query()).await.unwrap().unwrap();
+    search.items.next(&rp.query()).await.unwrap().unwrap();
 }
 
 async fn search_playlists(testfiles: &Path) {
@@ -412,7 +412,7 @@ async fn startpage_cont(testfiles: &Path) {
     let startpage = rp.query().startpage().await.unwrap();
 
     let rp = rp_testfile(&json_path);
-    startpage.next(rp.query()).await.unwrap();
+    startpage.next(&rp.query()).await.unwrap();
 }
 
 async fn trending(testfiles: &Path) {

@@ -39,7 +39,7 @@ enum Params {
 
 impl RustyPipeQuery {
     pub async fn channel_videos(
-        self,
+        &self,
         channel_id: &str,
     ) -> Result<Channel<Paginator<VideoItem>>, Error> {
         self.channel_videos_ordered(channel_id, ChannelOrder::default())
@@ -47,11 +47,11 @@ impl RustyPipeQuery {
     }
 
     pub async fn channel_videos_ordered(
-        self,
+        &self,
         channel_id: &str,
         order: ChannelOrder,
     ) -> Result<Channel<Paginator<VideoItem>>, Error> {
-        let context = self.get_context(ClientType::Desktop, true).await;
+        let context = self.get_context(ClientType::Desktop, true, None).await;
         let request_body = QChannel {
             context,
             browse_id: channel_id,
@@ -73,10 +73,10 @@ impl RustyPipeQuery {
     }
 
     pub async fn channel_playlists(
-        self,
+        &self,
         channel_id: &str,
     ) -> Result<Channel<Paginator<PlaylistItem>>, Error> {
-        let context = self.get_context(ClientType::Desktop, true).await;
+        let context = self.get_context(ClientType::Desktop, true, None).await;
         let request_body = QChannel {
             context,
             browse_id: channel_id,
@@ -94,7 +94,7 @@ impl RustyPipeQuery {
     }
 
     pub async fn channel_info(&self, channel_id: &str) -> Result<Channel<ChannelInfo>, Error> {
-        let context = self.get_context(ClientType::Desktop, true).await;
+        let context = self.get_context(ClientType::Desktop, true, None).await;
         let request_body = QChannel {
             context,
             browse_id: channel_id,

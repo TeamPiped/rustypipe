@@ -145,7 +145,7 @@ async fn download_playlist(
     let mut playlist = rp.query().playlist(id).await.unwrap();
     playlist
         .videos
-        .extend_pages(rp.query(), usize::MAX)
+        .extend_pages(&rp.query(), usize::MAX)
         .await
         .unwrap();
 

@@ -11,8 +11,8 @@ use crate::{
 use super::{response, ClientType, MapResponse, QBrowse, RustyPipeQuery};
 
 impl RustyPipeQuery {
-    pub async fn startpage(self) -> Result<Paginator<VideoItem>, Error> {
-        let context = self.get_context(ClientType::Desktop, true).await;
+    pub async fn startpage(&self) -> Result<Paginator<VideoItem>, Error> {
+        let context = self.get_context(ClientType::Desktop, true, None).await;
         let request_body = QBrowse {
             context,
             browse_id: "FEwhat_to_watch".to_owned(),
@@ -28,8 +28,8 @@ impl RustyPipeQuery {
         .await
     }
 
-    pub async fn trending(self) -> Result<Vec<VideoItem>, Error> {
-        let context = self.get_context(ClientType::Desktop, true).await;
+    pub async fn trending(&self) -> Result<Vec<VideoItem>, Error> {
+        let context = self.get_context(ClientType::Desktop, true, None).await;
         let request_body = QBrowse {
             context,
             browse_id: "FEtrending".to_owned(),

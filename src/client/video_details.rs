@@ -28,8 +28,8 @@ struct QVideo<'a> {
 }
 
 impl RustyPipeQuery {
-    pub async fn video_details(self, video_id: &str) -> Result<VideoDetails, Error> {
-        let context = self.get_context(ClientType::Desktop, true).await;
+    pub async fn video_details(&self, video_id: &str) -> Result<VideoDetails, Error> {
+        let context = self.get_context(ClientType::Desktop, true, None).await;
         let request_body = QVideo {
             context,
             video_id,
@@ -48,12 +48,13 @@ impl RustyPipeQuery {
     }
 
     pub async fn video_comments(
-        self,
+        &self,
         ctoken: &str,
         visitor_data: Option<&str>,
     ) -> Result<Paginator<Comment>, Error> {
-        let mut context = self.get_context(ClientType::Desktop, true).await;
-        context.client.visitor_data = visitor_data.map(str::to_owned);
+        let context = self
+            .get_context(ClientType::Desktop, true, visitor_data)
+            .await;
         let request_body = QContinuation {
             context,
             continuation: ctoken,

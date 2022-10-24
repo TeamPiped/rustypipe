@@ -338,7 +338,7 @@ async fn playlist_cont() {
 
     playlist
         .videos
-        .extend_pages(rp.query(), usize::MAX)
+        .extend_pages(&rp.query(), usize::MAX)
         .await
         .unwrap();
     assert!(playlist.videos.items.len() > 100);
@@ -354,7 +354,11 @@ async fn playlist_cont2() {
         .await
         .unwrap();
 
-    playlist.videos.extend_limit(rp.query(), 101).await.unwrap();
+    playlist
+        .videos
+        .extend_limit(&rp.query(), 101)
+        .await
+        .unwrap();
     assert!(playlist.videos.items.len() > 100);
     assert!(playlist.videos.count.unwrap() > 100);
 }
@@ -797,7 +801,12 @@ async fn get_video_details_not_found() {
 async fn get_video_recommendations() {
     let rp = RustyPipe::builder().strict().build();
     let details = rp.query().video_details("ZeerrnuLi5E").await.unwrap();
-    let next_recommendations = details.recommended.next(rp.query()).await.unwrap().unwrap();
+    let next_recommendations = details
+        .recommended
+        .next(&rp.query())
+        .await
+        .unwrap()
+        .unwrap();
     // dbg!(&next_recommendations);
 
     assert!(
@@ -815,7 +824,7 @@ async fn get_video_comments() {
 
     let top_comments = details
         .top_comments
-        .next(rp.query())
+        .next(&rp.query())
         .await
         .unwrap()
         .unwrap();
@@ -837,7 +846,7 @@ async fn get_video_comments() {
 
     let latest_comments = details
         .latest_comments
-        .next(rp.query())
+        .next(&rp.query())
         .await
         .unwrap()
         .unwrap();
@@ -892,7 +901,7 @@ async fn channel_videos(#[case] order: ChannelOrder) {
         _ => unimplemented!(),
     }
 
-    let next = channel.content.next(rp.query()).await.unwrap().unwrap();
+    let next = channel.content.next(&rp.query()).await.unwrap().unwrap();
     assert!(
         !next.is_exhausted() && !next.items.is_empty(),
         "no more videos"
@@ -915,7 +924,7 @@ async fn channel_playlists() {
         "got no playlists"
     );
 
-    let next = channel.content.next(rp.query()).await.unwrap().unwrap();
+    let next = channel.content.next(&rp.query()).await.unwrap().unwrap();
     assert!(
         !next.is_exhausted() && !next.items.is_empty(),
         "no more playlists"
@@ -1267,7 +1276,7 @@ async fn startpage_cont() {
     let rp = RustyPipe::builder().strict().build();
     let startpage = rp.query().startpage().await.unwrap();
 
-    let next = startpage.next(rp.query()).await.unwrap().unwrap();
+    let next = startpage.next(&rp.query()).await.unwrap().unwrap();
 
     assert!(
         next.items.len() >= 20,

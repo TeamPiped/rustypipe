@@ -10,13 +10,14 @@ use super::{response, ClientType, MapResponse, QContinuation, RustyPipeQuery};
 
 impl RustyPipeQuery {
     pub async fn continuation<T: TryFrom<YouTubeItem>>(
-        self,
+        &self,
         ctoken: &str,
         endpoint: ContinuationEndpoint,
         visitor_data: Option<&str>,
     ) -> Result<Paginator<T>, Error> {
-        let mut context = self.get_context(ClientType::Desktop, true).await;
-        context.client.visitor_data = visitor_data.map(str::to_owned);
+        let context = self
+            .get_context(ClientType::Desktop, true, visitor_data)
+            .await;
         let request_body = QContinuation {
             context,
             continuation: ctoken,
@@ -87,7 +88,7 @@ impl<T: TryFrom<YouTubeItem>> MapResponse<Paginator<T>> for response::Continuati
 }
 
 impl<T: TryFrom<YouTubeItem>> Paginator<T> {
-    pub async fn next(&self, query: RustyPipeQuery) -> Result<Option<Self>, Error> {
+    pub async fn next(&self, query: &RustyPipeQuery) -> Result<Option<Self>, Error> {
         Ok(match &self.ctoken {
             Some(ctoken) => Some(
                 query
@@ -98,7 +99,7 @@ impl<T: TryFrom<YouTubeItem>> Paginator<T> {
         })
     }
 
-    pub async fn extend(&mut self, query: RustyPipeQuery) -> Result<bool, Error> {
+    pub async fn extend(&mut self, query: &RustyPipeQuery) -> Result<bool, Error> {
         match self.next(query).await {
             Ok(Some(paginator)) => {
                 let mut items = paginator.items;
@@ -113,11 +114,11 @@ impl<T: TryFrom<YouTubeItem>> Paginator<T> {
 
     pub async fn extend_pages(
         &mut self,
-        query: RustyPipeQuery,
+        query: &RustyPipeQuery,
         n_pages: usize,
     ) -> Result<(), Error> {
         for _ in 0..n_pages {
-            match self.extend(query.clone()).await {
+            match self.extend(query).await {
                 Ok(false) => break,
                 Err(e) => return Err(e),
                 _ => {}
@@ -128,11 +129,11 @@ impl<T: TryFrom<YouTubeItem>> Paginator<T> {
 
     pub async fn extend_limit(
         &mut self,
-        query: RustyPipeQuery,
+        query: &RustyPipeQuery,
         n_items: usize,
     ) -> Result<(), Error> {
         while self.items.len() < n_items {
-            match self.extend(query.clone()).await {
+            match self.extend(query).await {
                 Ok(false) => break,
                 Err(e) => return Err(e),
                 _ => {}
@@ -143,7 +144,7 @@ impl<T: TryFrom<YouTubeItem>> Paginator<T> {
 }
 
 impl Paginator<Comment> {
-    pub async fn next(&self, query: RustyPipeQuery) -> Result<Option<Self>, Error> {
+    pub async fn next(&self, query: &RustyPipeQuery) -> Result<Option<Self>, Error> {
         Ok(match &self.ctoken {
             Some(ctoken) => Some(
                 query
@@ -156,7 +157,7 @@ impl Paginator<Comment> {
 }
 
 impl Paginator<PlaylistVideo> {
-    pub async fn next(&self, query: RustyPipeQuery) -> Result<Option<Self>, Error> {
+    pub async fn next(&self, query: &RustyPipeQuery) -> Result<Option<Self>, Error> {
         Ok(match &self.ctoken {
             Some(ctoken) => Some(query.playlist_continuation(ctoken).await?),
             None => None,
@@ -167,7 +168,7 @@ impl Paginator<PlaylistVideo> {
 macro_rules! paginator {
     ($entity_type:ty) => {
         impl Paginator<$entity_type> {
-            pub async fn extend(&mut self, query: RustyPipeQuery) -> Result<bool, Error> {
+            pub async fn extend(&mut self, query: &RustyPipeQuery) -> Result<bool, Error> {
                 match self.next(query).await {
                     Ok(Some(paginator)) => {
                         let mut items = paginator.items;
@@ -182,11 +183,11 @@ macro_rules! paginator {
 
             pub async fn extend_pages(
                 &mut self,
-                query: RustyPipeQuery,
+                query: &RustyPipeQuery,
                 n_pages: usize,
             ) -> Result<(), Error> {
                 for _ in 0..n_pages {
-                    match self.extend(query.clone()).await {
+                    match self.extend(query).await {
                         Ok(false) => break,
                         Err(e) => return Err(e),
                         _ => {}
@@ -197,11 +198,11 @@ macro_rules! paginator {
 
             pub async fn extend_limit(
                 &mut self,
-                query: RustyPipeQuery,
+                query: &RustyPipeQuery,
                 n_items: usize,
             ) -> Result<(), Error> {
                 while self.items.len() < n_items {
-                    match self.extend(query.clone()).await {
+                    match self.extend(query).await {
                         Ok(false) => break,
                         Err(e) => return Err(e),
                         _ => {}

@@ -165,7 +165,7 @@ impl RustyPipeQuery {
     }
 
     async fn _navigation_resolve_url(&self, url_path: &str) -> Result<UrlTarget, Error> {
-        let context = self.get_context(ClientType::Desktop, true).await;
+        let context = self.get_context(ClientType::Desktop, true, None).await;
         let request_body = QResolveUrl {
             context,
             url: format!("https://www.youtube.com{}", url_path),
