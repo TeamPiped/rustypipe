@@ -112,8 +112,12 @@ pub struct VideoPlayer {
     pub subtitles: Vec<Subtitle>,
     /// Lifetime of the stream URLs in seconds
     pub expires_in_seconds: u32,
+    /// HLS manifest URL (for livestreams)
     pub hls_manifest_url: Option<String>,
+    /// Dash manifest URL (for livestreams)
     pub dash_manifest_url: Option<String>,
+    /// YouTube visitor data cookie
+    pub visitor_data: Option<String>,
 }
 
 /// Video metadata from the player
@@ -461,6 +465,8 @@ pub struct Playlist {
     pub last_update: Option<Date>,
     /// Textual last update date
     pub last_update_txt: Option<String>,
+    /// YouTube visitor data cookie
+    pub visitor_data: Option<String>,
 }
 
 /// YouTube video extracted from a playlist
@@ -543,6 +549,8 @@ pub struct VideoDetails {
     ///
     /// Is initially empty.
     pub latest_comments: Paginator<Comment>,
+    /// YouTube visitor data cookie
+    pub visitor_data: Option<String>,
 }
 
 /// Chapter of a video
@@ -675,6 +683,8 @@ pub struct Channel<T> {
     pub mobile_banner: Vec<Thumbnail>,
     /// Banner image shown above the channel (16:9 fullscreen format for TV)
     pub tv_banner: Vec<Thumbnail>,
+    /// YouTube visitor data cookie
+    pub visitor_data: Option<String>,
     /// Content fetched from the channel
     pub content: T,
 }
@@ -745,6 +755,8 @@ pub struct SearchResult {
     /// for the corrected search term and displays it on top of the
     /// search results page.
     pub corrected_query: Option<String>,
+    /// YouTube visitor data cookie
+    pub visitor_data: Option<String>,
 }
 
 /// YouTube item (Video/Channel/Playlist)

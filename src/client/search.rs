@@ -109,6 +109,7 @@ impl MapResponse<SearchResult> for response::Search {
             c: SearchResult {
                 items: Paginator::new(self.estimated_results, mapper.items, mapper.ctoken),
                 corrected_query: mapper.corrected_query,
+                visitor_data: self.response_context.visitor_data,
             },
             warnings: mapper.warnings,
         })

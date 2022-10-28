@@ -734,4 +734,5 @@ SearchResult(
     endpoint: browse,
   ),
   corrected_query: Some("doobydobap"),
+  visitor_data: Some("Cgs4MEJMc3FmVzVadyiNy4-aBg%3D%3D"),
 )

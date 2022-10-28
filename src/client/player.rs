@@ -275,6 +275,7 @@ impl MapResponse<VideoPlayer> for response::Player {
                 expires_in_seconds: streaming_data.expires_in_seconds,
                 hls_manifest_url: streaming_data.hls_manifest_url,
                 dash_manifest_url: streaming_data.dash_manifest_url,
+                visitor_data: self.response_context.visitor_data,
             },
             warnings,
         })

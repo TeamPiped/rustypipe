@@ -252,7 +252,7 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                     let mut res = map_recommendations(
                         r,
                         sr.secondary_results.continuations,
-                        self.response_context.visitor_data,
+                        self.response_context.visitor_data.clone(),
                         lang,
                     );
                     warnings.append(&mut res.warnings);
@@ -343,6 +343,7 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                     None,
                     crate::param::ContinuationEndpoint::Next,
                 ),
+                visitor_data: self.response_context.visitor_data,
             },
             warnings,
         })

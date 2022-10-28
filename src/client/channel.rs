@@ -115,6 +115,7 @@ impl MapResponse<Channel<Paginator<VideoItem>>> for response::Channel {
                 self.header,
                 self.metadata,
                 self.microformat,
+                self.response_context.visitor_data,
                 v_res.c,
                 id,
                 lang,
@@ -146,6 +147,7 @@ impl MapResponse<Channel<Paginator<PlaylistItem>>> for response::Channel {
                 self.header,
                 self.metadata,
                 self.microformat,
+                self.response_context.visitor_data,
                 p_res.c,
                 id,
                 lang,
@@ -204,6 +206,7 @@ impl MapResponse<Channel<ChannelInfo>> for response::Channel {
                 self.header,
                 self.metadata,
                 self.microformat,
+                self.response_context.visitor_data,
                 cinfo,
                 id,
                 lang,
@@ -255,6 +258,7 @@ fn map_channel<T>(
     header: Option<response::channel::Header>,
     metadata: Option<response::channel::Metadata>,
     microformat: Option<response::channel::Microformat>,
+    visitor_data: Option<String>,
     content: T,
     id: &str,
     lang: Language,
@@ -298,6 +302,7 @@ fn map_channel<T>(
             banner: header.banner.into(),
             mobile_banner: header.mobile_banner.into(),
             tv_banner: header.tv_banner.into(),
+            visitor_data,
             content,
         },
         response::channel::Header::CarouselHeaderRenderer(carousel) => {
@@ -332,6 +337,7 @@ fn map_channel<T>(
                 banner: Vec::new(),
                 mobile_banner: Vec::new(),
                 tv_banner: Vec::new(),
+                visitor_data,
                 content,
             }
         }

@@ -4,7 +4,7 @@ use serde::Deserialize;
 use serde_with::serde_as;
 use serde_with::{json::JsonString, DefaultOnError};
 
-use super::Thumbnails;
+use super::{ResponseContext, Thumbnails};
 use crate::serializer::{text::Text, MapResult, VecLogError};
 
 #[derive(Debug, Deserialize)]
@@ -14,6 +14,7 @@ pub(crate) struct Player {
     pub streaming_data: Option<StreamingData>,
     pub captions: Option<Captions>,
     pub video_details: Option<VideoDetails>,
+    pub response_context: ResponseContext,
 }
 
 #[derive(Debug, Deserialize)]

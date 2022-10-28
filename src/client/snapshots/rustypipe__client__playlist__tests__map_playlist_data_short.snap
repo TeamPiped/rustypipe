@@ -3041,4 +3041,5 @@ Playlist(
   channel: None,
   last_update: "[date]",
   last_update_txt: Some("Updated today"),
+  visitor_data: Some("CgtLZVdRQ1dkM2VDVSi46K-YBg%3D%3D"),
 )

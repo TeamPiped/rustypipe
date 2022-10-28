@@ -3,7 +3,7 @@ use serde_with::serde_as;
 use serde_with::{DefaultOnError, VecSkipError};
 
 use super::url_endpoint::NavigationEndpoint;
-use super::{Alert, ChannelBadge};
+use super::{Alert, ChannelBadge, ResponseContext};
 use super::{ContentRenderer, ContentsRenderer};
 use super::{Thumbnails, YouTubeListItem};
 use crate::serializer::ignore_any;
@@ -21,6 +21,7 @@ pub(crate) struct Channel {
     pub microformat: Option<Microformat>,
     #[serde_as(as = "Option<DefaultOnError>")]
     pub alerts: Option<Vec<Alert>>,
+    pub response_context: ResponseContext,
 }
 
 #[derive(Debug, Deserialize)]

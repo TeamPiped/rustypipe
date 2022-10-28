@@ -169,6 +169,7 @@ impl MapResponse<Playlist> for response::Playlist {
                 channel,
                 last_update,
                 last_update_txt,
+                visitor_data: self.response_context.visitor_data,
             },
             warnings,
         })

@@ -30,6 +30,7 @@ Channel(
   banner: [],
   mobile_banner: [],
   tv_banner: [],
+  visitor_data: Some("Cgtvc2s4UllvTGl6byigxseZBg%3D%3D"),
   content: Paginator(
     count: Some(0),
     items: [],

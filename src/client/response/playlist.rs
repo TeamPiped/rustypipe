@@ -6,7 +6,8 @@ use crate::serializer::{ignore_any, MapResult, VecLogError};
 use crate::util::MappingError;
 
 use super::{
-    Alert, ContentRenderer, ContentsRenderer, ContinuationEndpoint, Thumbnails, ThumbnailsWrap,
+    Alert, ContentRenderer, ContentsRenderer, ContinuationEndpoint, ResponseContext, Thumbnails,
+    ThumbnailsWrap,
 };
 
 #[serde_as]
@@ -18,6 +19,7 @@ pub(crate) struct Playlist {
     pub sidebar: Option<Sidebar>,
     #[serde_as(as = "Option<DefaultOnError>")]
     pub alerts: Option<Vec<Alert>>,
+    pub response_context: ResponseContext,
 }
 
 #[serde_as]
