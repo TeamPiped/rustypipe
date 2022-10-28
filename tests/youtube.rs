@@ -10,10 +10,7 @@ use rustypipe::model::richtext::ToPlaintext;
 use rustypipe::model::{
     AudioCodec, AudioFormat, Channel, UrlTarget, Verification, VideoCodec, VideoFormat, YouTubeItem,
 };
-use rustypipe::param::{
-    search_filter::{self, SearchFilter},
-    ChannelOrder,
-};
+use rustypipe::param::search_filter::{self, SearchFilter};
 
 //#PLAYER
 
@@ -260,20 +257,41 @@ async fn get_player(
 }
 
 #[rstest]
-#[case::not_found("86abcdefghi", "extraction error: Video cant be played because of deletion/censorship. Reason (from YT): This video is unavailable")]
-#[case::deleted("64DYi_8ESh0", "extraction error: Video cant be played because of deletion/censorship. Reason (from YT): This video is unavailable")]
-#[case::censored("6SJNVb0GnPI", "extraction error: Video cant be played because of deletion/censorship. Reason (from YT): This video has been removed for violating YouTube's policy on hate speech. Learn more about combating hate speech in your country.")]
+#[case::not_found(
+    "86abcdefghi",
+    "extraction error: Video cant be played because of deletion/censorship. Reason (from YT): "
+)]
+#[case::deleted(
+    "64DYi_8ESh0",
+    "extraction error: Video cant be played because of deletion/censorship. Reason (from YT): "
+)]
+#[case::censored(
+    "6SJNVb0GnPI",
+    "extraction error: Video cant be played because of deletion/censorship. Reason (from YT): "
+)]
 // This video is geoblocked outside of Japan, so expect this test case to fail when using a Japanese IP address.
-#[case::geoblock("sJL6WA-aGkQ", "extraction error: Video cant be played because of DRM/Geoblock. Reason (from YT): The uploader has not made this video available in your country")]
-#[case::drm("1bfOsni7EgI", "extraction error: Video cant be played because of DRM/Geoblock. Reason (from YT): This video can only be played on newer versions of Android or other supported devices.")]
-#[case::private("s7_qI6_mIXc", "extraction error: Video cant be played because of private video. Reason (from YT): This video is private")]
-#[case::t1("CUO8secmc0g", "extraction error: Video cant be played because of DRM/Geoblock. Reason (from YT): Playback on other websites has been disabled by the video owner")]
+#[case::geoblock(
+    "sJL6WA-aGkQ",
+    "extraction error: Video cant be played because of DRM/Geoblock. Reason (from YT): "
+)]
+#[case::drm(
+    "1bfOsni7EgI",
+    "extraction error: Video cant be played because of DRM/Geoblock. Reason (from YT): "
+)]
+#[case::private(
+    "s7_qI6_mIXc",
+    "extraction error: Video cant be played because of private video. Reason (from YT): "
+)]
+#[case::t1(
+    "CUO8secmc0g",
+    "extraction error: Video cant be played because of DRM/Geoblock. Reason (from YT): "
+)]
 #[tokio::test]
 async fn get_player_error(#[case] id: &str, #[case] msg: &str) {
     let rp = RustyPipe::builder().strict().build();
     let err = rp.query().player(id).await.unwrap_err();
 
-    assert_eq!(err.to_string(), msg);
+    assert!(err.to_string().starts_with(msg), "got error msg: {}", err);
 }
 
 //#PLAYLIST
@@ -860,16 +878,12 @@ async fn get_video_comments() {
 
 //#CHANNEL
 
-#[rstest]
-#[case::latest(ChannelOrder::Latest)]
-#[case::oldest(ChannelOrder::Oldest)]
-#[case::popular(ChannelOrder::Popular)]
 #[tokio::test]
-async fn channel_videos(#[case] order: ChannelOrder) {
+async fn channel_videos() {
     let rp = RustyPipe::builder().strict().build();
     let channel = rp
         .query()
-        .channel_videos_ordered("UC2DjFE7Xf11URZqWBigcVOQ", order)
+        .channel_videos("UC2DjFE7Xf11URZqWBigcVOQ")
         .await
         .unwrap();
 
@@ -885,21 +899,7 @@ async fn channel_videos(#[case] order: ChannelOrder) {
     let first_video_date = first_video.publish_date.unwrap();
     let age_days = (OffsetDateTime::now_utc() - first_video_date).whole_days();
 
-    match order {
-        ChannelOrder::Latest => {
-            assert!(age_days < 60, "latest video older than 60 days")
-        }
-        ChannelOrder::Oldest => {
-            assert!(age_days > 4700, "oldest video newer than 4700 days")
-        }
-        ChannelOrder::Popular => {
-            assert!(
-                first_video.view_count.unwrap() > 2300000,
-                "most popular video < 2.3M views"
-            )
-        }
-        _ => unimplemented!(),
-    }
+    assert!(age_days < 60, "latest video older than 60 days");
 
     let next = channel.content.next(&rp.query()).await.unwrap().unwrap();
     assert!(

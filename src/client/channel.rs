@@ -7,7 +7,7 @@ use url::Url;
 use crate::{
     error::{Error, ExtractionError},
     model::{Channel, ChannelInfo, Paginator, PlaylistItem, VideoItem},
-    param::{ChannelOrder, Language},
+    param::Language,
     serializer::MapResult,
     timeago,
     util::{self, TryRemove},
@@ -26,11 +26,7 @@ struct QChannel<'a> {
 #[derive(Debug, Serialize)]
 enum Params {
     #[serde(rename = "EgZ2aWRlb3PyBgQKAjoA")]
-    VideosLatest,
-    #[serde(rename = "EgZ2aWRlb3MYAiAAMAE%3D")]
-    VideosOldest,
-    #[serde(rename = "EgZ2aWRlb3MYASAAMAE%3D")]
-    VideosPopular,
+    Videos,
     #[serde(rename = "EglwbGF5bGlzdHMgAQ%3D%3D")]
     Playlists,
     #[serde(rename = "EgVhYm91dPIGBAoCEgA%3D")]
@@ -42,24 +38,11 @@ impl RustyPipeQuery {
         &self,
         channel_id: &str,
     ) -> Result<Channel<Paginator<VideoItem>>, Error> {
-        self.channel_videos_ordered(channel_id, ChannelOrder::default())
-            .await
-    }
-
-    pub async fn channel_videos_ordered(
-        &self,
-        channel_id: &str,
-        order: ChannelOrder,
-    ) -> Result<Channel<Paginator<VideoItem>>, Error> {
         let context = self.get_context(ClientType::Desktop, true, None).await;
         let request_body = QChannel {
             context,
             browse_id: channel_id,
-            params: match order {
-                ChannelOrder::Latest => Params::VideosLatest,
-                ChannelOrder::Oldest => Params::VideosOldest,
-                ChannelOrder::Popular => Params::VideosPopular,
-            },
+            params: Params::Videos,
         };
 
         self.execute_request::<response::Channel, _, _>(

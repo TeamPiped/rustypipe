@@ -7,19 +7,6 @@ pub use locale::{Country, Language};
 use serde::{Deserialize, Serialize};
 pub use stream_filter::StreamFilter;
 
-/// Channel video sort order
-#[derive(Default, Debug, Copy, Clone, PartialEq, Eq)]
-#[non_exhaustive]
-pub enum ChannelOrder {
-    /// Output the latest videos first
-    #[default]
-    Latest,
-    /// Output the oldest videos first
-    Oldest,
-    /// Output the most viewed videos first
-    Popular,
-}
-
 /// YouTube API endpoint to fetch continuations from
 #[derive(Debug, Copy, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[serde(rename_all = "lowercase")]
