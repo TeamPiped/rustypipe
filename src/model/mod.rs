@@ -683,6 +683,10 @@ pub struct Channel<T> {
     pub mobile_banner: Vec<Thumbnail>,
     /// Banner image shown above the channel (16:9 fullscreen format for TV)
     pub tv_banner: Vec<Thumbnail>,
+    /// Does the channel have a *Shorts* tab?
+    pub has_shorts: bool,
+    /// Does the channel have a *Live* tab?
+    pub has_live: bool,
     /// YouTube visitor data cookie
     pub visitor_data: Option<String>,
     /// Content fetched from the channel

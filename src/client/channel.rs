@@ -13,7 +13,10 @@ use crate::{
     util::{self, TryRemove},
 };
 
-use super::{response, ClientType, MapResponse, RustyPipeQuery, YTContext};
+use super::{
+    response::{self, channel::ChannelContent},
+    ClientType, MapResponse, RustyPipeQuery, YTContext,
+};
 
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
@@ -31,6 +34,27 @@ enum Params {
     Playlists,
     #[serde(rename = "EgVhYm91dPIGBAoCEgA%3D")]
     Info,
+}
+
+#[derive(Debug, Clone, Copy)]
+enum ChannelTab {
+    Videos,
+    Shorts,
+    Live,
+    Playlists,
+    Info,
+}
+
+impl ChannelTab {
+    const fn url_suffix(self) -> &'static str {
+        match self {
+            ChannelTab::Videos => "/videos",
+            ChannelTab::Shorts => "/shorts",
+            ChannelTab::Live => "/streams",
+            ChannelTab::Playlists => "/playlists",
+            ChannelTab::Info => "/about",
+        }
+    }
 }
 
 impl RustyPipeQuery {
@@ -102,8 +126,8 @@ impl MapResponse<Channel<Paginator<VideoItem>>> for response::Channel {
         lang: Language,
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
     ) -> Result<MapResult<Channel<Paginator<VideoItem>>>, ExtractionError> {
-        let content = map_channel_content(self.contents, id, self.alerts)?;
-        let grid = match content {
+        let content = map_channel_content(self.contents, ChannelTab::Videos, self.alerts)?;
+        let grid = match content.content {
             response::channel::ChannelContent::GridRenderer { items } => Some(items),
             _ => None,
         };
@@ -112,11 +136,15 @@ impl MapResponse<Channel<Paginator<VideoItem>>> for response::Channel {
 
         Ok(MapResult {
             c: map_channel(
-                self.header,
-                self.metadata,
-                self.microformat,
-                self.response_context.visitor_data,
-                v_res.c,
+                MapChannelData {
+                    header: self.header,
+                    metadata: self.metadata,
+                    microformat: self.microformat,
+                    visitor_data: self.response_context.visitor_data,
+                    has_shorts: content.has_shorts,
+                    has_live: content.has_live,
+                    content: v_res.c,
+                },
                 id,
                 lang,
             )?,
@@ -132,8 +160,8 @@ impl MapResponse<Channel<Paginator<PlaylistItem>>> for response::Channel {
         lang: Language,
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
     ) -> Result<MapResult<Channel<Paginator<PlaylistItem>>>, ExtractionError> {
-        let content = map_channel_content(self.contents, id, self.alerts)?;
-        let grid = match content {
+        let content = map_channel_content(self.contents, ChannelTab::Playlists, self.alerts)?;
+        let grid = match content.content {
             response::channel::ChannelContent::GridRenderer { items } => Some(items),
             _ => None,
         };
@@ -144,11 +172,15 @@ impl MapResponse<Channel<Paginator<PlaylistItem>>> for response::Channel {
 
         Ok(MapResult {
             c: map_channel(
-                self.header,
-                self.metadata,
-                self.microformat,
-                self.response_context.visitor_data,
-                p_res.c,
+                MapChannelData {
+                    header: self.header,
+                    metadata: self.metadata,
+                    microformat: self.microformat,
+                    visitor_data: self.response_context.visitor_data,
+                    has_shorts: content.has_shorts,
+                    has_live: content.has_live,
+                    content: p_res.c,
+                },
                 id,
                 lang,
             )?,
@@ -164,9 +196,9 @@ impl MapResponse<Channel<ChannelInfo>> for response::Channel {
         lang: Language,
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
     ) -> Result<MapResult<Channel<ChannelInfo>>, ExtractionError> {
-        let content = map_channel_content(self.contents, id, self.alerts)?;
+        let content = map_channel_content(self.contents, ChannelTab::Info, self.alerts)?;
         let mut warnings = Vec::new();
-        let meta = match content {
+        let meta = match content.content {
             response::channel::ChannelContent::ChannelAboutFullMetadataRenderer(meta) => Some(meta),
             _ => None,
         };
@@ -203,11 +235,15 @@ impl MapResponse<Channel<ChannelInfo>> for response::Channel {
 
         Ok(MapResult {
             c: map_channel(
-                self.header,
-                self.metadata,
-                self.microformat,
-                self.response_context.visitor_data,
-                cinfo,
+                MapChannelData {
+                    header: self.header,
+                    metadata: self.metadata,
+                    microformat: self.microformat,
+                    visitor_data: self.response_context.visitor_data,
+                    has_shorts: content.has_shorts,
+                    has_live: content.has_live,
+                    content: cinfo,
+                },
                 id,
                 lang,
             )?,
@@ -254,26 +290,37 @@ fn map_vanity_url(url: &str, id: &str) -> Option<String> {
     })
 }
 
-fn map_channel<T>(
+struct MapChannelData<T> {
     header: Option<response::channel::Header>,
     metadata: Option<response::channel::Metadata>,
     microformat: Option<response::channel::Microformat>,
     visitor_data: Option<String>,
+    has_shorts: bool,
+    has_live: bool,
     content: T,
+}
+
+fn map_channel<T>(
+    d: MapChannelData<T>,
     id: &str,
     lang: Language,
 ) -> Result<Channel<T>, ExtractionError> {
-    let header = header.ok_or(ExtractionError::ContentUnavailable(Cow::Borrowed(
-        "channel not found",
-    )))?;
-    let metadata = metadata
+    let header = d
+        .header
+        .ok_or(ExtractionError::ContentUnavailable(Cow::Borrowed(
+            "channel not found",
+        )))?;
+    let metadata = d
+        .metadata
         .ok_or(ExtractionError::ContentUnavailable(Cow::Borrowed(
             "channel not found",
         )))?
         .channel_metadata_renderer;
-    let microformat = microformat.ok_or(ExtractionError::ContentUnavailable(Cow::Borrowed(
-        "channel not found",
-    )))?;
+    let microformat = d
+        .microformat
+        .ok_or(ExtractionError::ContentUnavailable(Cow::Borrowed(
+            "channel not found",
+        )))?;
 
     if metadata.external_id != id {
         return Err(ExtractionError::WrongResult(format!(
@@ -302,8 +349,10 @@ fn map_channel<T>(
             banner: header.banner.into(),
             mobile_banner: header.mobile_banner.into(),
             tv_banner: header.tv_banner.into(),
-            visitor_data,
-            content,
+            has_shorts: d.has_shorts,
+            has_live: d.has_live,
+            visitor_data: d.visitor_data,
+            content: d.content,
         },
         response::channel::Header::CarouselHeaderRenderer(carousel) => {
             let hdata = carousel
@@ -337,18 +386,26 @@ fn map_channel<T>(
                 banner: Vec::new(),
                 mobile_banner: Vec::new(),
                 tv_banner: Vec::new(),
-                visitor_data,
-                content,
+                has_shorts: d.has_shorts,
+                has_live: d.has_live,
+                visitor_data: d.visitor_data,
+                content: d.content,
             }
         }
     })
 }
 
+struct MappedChannelContent {
+    content: response::channel::ChannelContent,
+    has_shorts: bool,
+    has_live: bool,
+}
+
 fn map_channel_content(
     contents: Option<response::channel::Contents>,
-    id: &str,
+    channel_tab: ChannelTab,
     alerts: Option<Vec<response::Alert>>,
-) -> Result<response::channel::ChannelContent, ExtractionError> {
+) -> Result<MappedChannelContent, ExtractionError> {
     match contents {
         Some(contents) => {
             let tabs = contents.two_column_browse_results_renderer.tabs;
@@ -358,42 +415,78 @@ fn map_channel_content(
                 ));
             }
 
-            let (channel_content, target_id) = tabs
-                .into_iter()
-                .filter_map(|tab| {
-                    let content = tab.tab_renderer.content;
-                    match (content.section_list_renderer, content.rich_grid_renderer) {
-                        (Some(mut section_list_renderer), _) => {
-                            let content =
-                                section_list_renderer.contents.try_swap_remove(0).and_then(
-                                    |mut i| i.item_section_renderer.contents.try_swap_remove(0),
-                                );
+            let cmp_url_suffix = |endpoint: &response::channel::ChannelTabEndpoint,
+                                  expect: &str| {
+                endpoint
+                    .command_metadata
+                    .web_command_metadata
+                    .url
+                    .ends_with(expect)
+            };
 
-                            content.map(|c| (c, section_list_renderer.target_id))
-                        }
-                        (None, Some(rich_grid_renderer)) => Some((
-                            response::channel::ChannelContent::GridRenderer {
-                                items: rich_grid_renderer.contents,
-                            },
-                            rich_grid_renderer.target_id,
-                        )),
-                        (None, None) => None,
-                    }
-                })
-                .next()
-                .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
-                    "could not extract content",
-                )))?;
+            let mut has_shorts = false;
+            let mut has_live = false;
+            let mut featured_tab = false;
 
-            if let Some(target_id) = target_id {
-                // YouTube falls back to the featured page if the channel does not have a "videos" tab.
-                // This is the case for YouTube Music channels.
-                if target_id.starts_with(&format!("browse-feed{}featured", id)) {
-                    return Ok(response::channel::ChannelContent::None);
+            for tab in &tabs {
+                if cmp_url_suffix(&tab.tab_renderer.endpoint, "/featured")
+                    && (tab.tab_renderer.content.section_list_renderer.is_some()
+                        || tab.tab_renderer.content.rich_grid_renderer.is_some())
+                {
+                    featured_tab = true;
+                } else if cmp_url_suffix(
+                    &tab.tab_renderer.endpoint,
+                    ChannelTab::Shorts.url_suffix(),
+                ) {
+                    has_shorts = true;
+                } else if cmp_url_suffix(&tab.tab_renderer.endpoint, ChannelTab::Live.url_suffix())
+                {
+                    has_live = true;
                 }
             }
 
-            Ok(channel_content)
+            let channel_content = tabs
+                .into_iter()
+                .filter_map(|tab| {
+                    if cmp_url_suffix(&tab.tab_renderer.endpoint, channel_tab.url_suffix()) {
+                        let content = tab.tab_renderer.content;
+                        match (content.rich_grid_renderer, content.section_list_renderer) {
+                            (Some(rich_grid), _) => Some(ChannelContent::GridRenderer {
+                                items: rich_grid.contents,
+                            }),
+                            (None, Some(section_list)) => {
+                                let mut contents = section_list.contents;
+                                contents.try_swap_remove(0).and_then(|mut i| {
+                                    i.item_section_renderer.contents.try_swap_remove(0)
+                                })
+                            }
+                            (None, None) => None,
+                        }
+                    } else {
+                        None
+                    }
+                })
+                .next();
+
+            let content = match channel_content {
+                Some(content) => content,
+                None => {
+                    // YouTube may show the "Featured" tab if the requested tab is empty/does not exist
+                    if featured_tab {
+                        response::channel::ChannelContent::None
+                    } else {
+                        return Err(ExtractionError::InvalidData(Cow::Borrowed(
+                            "could not extract content",
+                        )));
+                    }
+                }
+            };
+
+            Ok(MappedChannelContent {
+                content,
+                has_shorts,
+                has_live,
+            })
         }
         None => Err(response::alerts_to_err(alerts)),
     }

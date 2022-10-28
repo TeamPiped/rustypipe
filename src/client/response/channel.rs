@@ -3,9 +3,7 @@ use serde_with::serde_as;
 use serde_with::{DefaultOnError, VecSkipError};
 
 use super::url_endpoint::NavigationEndpoint;
-use super::{Alert, ChannelBadge, ResponseContext};
-use super::{ContentRenderer, ContentsRenderer};
-use super::{Thumbnails, YouTubeListItem};
+use super::{Alert, ChannelBadge, ContentsRenderer, ResponseContext, Thumbnails, YouTubeListItem};
 use crate::serializer::ignore_any;
 use crate::serializer::{text::Text, MapResult, VecLogError};
 
@@ -43,11 +41,19 @@ pub(crate) struct TabsRenderer {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct TabRendererWrap {
-    pub tab_renderer: ContentRenderer<TabContent>,
+    pub tab_renderer: TabRenderer,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct TabRenderer {
+    #[serde(default)]
+    pub content: TabContent,
+    pub endpoint: ChannelTabEndpoint,
 }
 
 #[serde_as]
-#[derive(Debug, Deserialize)]
+#[derive(Default, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct TabContent {
     #[serde(default)]
@@ -61,12 +67,26 @@ pub(crate) struct TabContent {
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
+pub(crate) struct ChannelTabEndpoint {
+    pub command_metadata: ChannelTabCommandMetadata,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ChannelTabCommandMetadata {
+    pub web_command_metadata: ChannelTabWebCommandMetadata,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ChannelTabWebCommandMetadata {
+    pub url: String,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub(crate) struct SectionListRenderer {
     pub contents: Vec<ItemSectionRendererWrap>,
-    /// - **Videos**: browse-feedUC2DjFE7Xf11URZqWBigcVOQvideos (...)
-    /// - **Playlists**: browse-feedUC2DjFE7Xf11URZqWBigcVOQplaylists104 (...)
-    /// - **Info**: None
-    pub target_id: Option<String>,
 }
 
 /// Seems to be currently A/B tested, as of 11.10.2022
@@ -76,10 +96,6 @@ pub(crate) struct SectionListRenderer {
 pub(crate) struct RichGridRenderer {
     #[serde_as(as = "VecLogError<_>")]
     pub contents: MapResult<Vec<YouTubeListItem>>,
-    /// - **Videos**: browse-feedUC2DjFE7Xf11URZqWBigcVOQvideos (...)
-    /// - **Playlists**: browse-feedUC2DjFE7Xf11URZqWBigcVOQplaylists104 (...)
-    /// - **Info**: None
-    pub target_id: Option<String>,
 }
 
 #[derive(Debug, Deserialize)]

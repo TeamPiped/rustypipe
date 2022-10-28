@@ -113,6 +113,8 @@ Channel(
       height: 1192,
     ),
   ],
+  has_shorts: true,
+  has_live: false,
   visitor_data: Some("CgtQdE9zVVR3NVBDbyjz0ZKaBg%3D%3D"),
   content: Paginator(
     count: None,
