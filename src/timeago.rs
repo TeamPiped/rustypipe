@@ -82,17 +82,27 @@ impl Mul<u8> for TimeAgo {
     }
 }
 
+impl From<TimeAgo> for Duration {
+    fn from(ta: TimeAgo) -> Self {
+        match ta.unit {
+            TimeUnit::Second => Duration::seconds(ta.n as i64),
+            TimeUnit::Minute => Duration::minutes(ta.n as i64),
+            TimeUnit::Hour => Duration::hours(ta.n as i64),
+            TimeUnit::Day => Duration::days(ta.n as i64),
+            TimeUnit::Week => Duration::weeks(ta.n as i64),
+            TimeUnit::Month => Duration::days(ta.n as i64 * 30),
+            TimeUnit::Year => Duration::days(ta.n as i64 * 365),
+        }
+    }
+}
+
 impl From<TimeAgo> for OffsetDateTime {
     fn from(ta: TimeAgo) -> Self {
         let ts = util::now_sec();
         match ta.unit {
-            TimeUnit::Second => ts - Duration::seconds(ta.n as i64),
-            TimeUnit::Minute => ts - Duration::minutes(ta.n as i64),
-            TimeUnit::Hour => ts - Duration::hours(ta.n as i64),
-            TimeUnit::Day => ts - Duration::days(ta.n as i64),
-            TimeUnit::Week => ts - Duration::weeks(ta.n as i64),
             TimeUnit::Month => ts.replace_date(util::shift_months(ts.date(), -(ta.n as i32))),
             TimeUnit::Year => ts.replace_date(util::shift_years(ts.date(), -(ta.n as i32))),
+            _ => ts - Duration::from(ta),
         }
     }
 }

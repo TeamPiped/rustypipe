@@ -12,6 +12,8 @@ use rustypipe::model::{
 };
 use rustypipe::param::search_filter::{self, SearchFilter};
 
+const VISITOR_DATA_3TAB_CHANNEL_LAYOUT: &str = "CgtOa256ckVkcG5YVSiirbyaBg%3D%3D";
+
 //#PLAYER
 
 #[rstest]
@@ -906,6 +908,75 @@ async fn channel_videos() {
         !next.is_exhausted() && !next.items.is_empty(),
         "no more videos"
     );
+}
+
+#[tokio::test]
+async fn channel_shorts() {
+    let rp = RustyPipe::builder()
+        .strict()
+        .visitor_data(VISITOR_DATA_3TAB_CHANNEL_LAYOUT)
+        .build();
+    let channel = rp
+        .query()
+        .channel_shorts("UCh8gHdtzO2tXd593_bjErWg")
+        .await
+        .unwrap();
+
+    // dbg!(&channel);
+    assert_eq!(channel.id, "UCh8gHdtzO2tXd593_bjErWg");
+    assert_eq!(channel.name, "Doobydobap");
+    assert!(
+        channel.subscriber_count.unwrap() > 2800000,
+        "expected >2.8M subscribers, got {}",
+        channel.subscriber_count.unwrap()
+    );
+    assert!(!channel.avatar.is_empty(), "got no thumbnails");
+    assert_eq!(channel.verification, Verification::Verified);
+    assert!(channel
+        .description
+        .contains("Hi, I\u{2019}m Tina, aka Doobydobap"));
+    assert_eq!(
+        channel.vanity_url.as_ref().unwrap(),
+        "https://www.youtube.com/c/Doobydobap"
+    );
+    assert!(!channel.banner.is_empty(), "got no banners");
+    assert!(!channel.mobile_banner.is_empty(), "got no mobile banners");
+    assert!(!channel.tv_banner.is_empty(), "got no tv banners");
+
+    assert!(
+        !channel.content.items.is_empty() && !channel.content.is_exhausted(),
+        "got no shorts"
+    );
+
+    let next = channel.content.next(&rp.query()).await.unwrap().unwrap();
+    assert!(
+        !next.is_exhausted() && !next.items.is_empty(),
+        "no more shorts"
+    );
+}
+
+#[tokio::test]
+async fn channel_livestreams() {
+    let rp = RustyPipe::builder()
+        .visitor_data(VISITOR_DATA_3TAB_CHANNEL_LAYOUT)
+        .strict()
+        .build();
+    let channel = rp
+        .query()
+        .channel_livestreams("UC2DjFE7Xf11URZqWBigcVOQ")
+        .await
+        .unwrap();
+
+    // dbg!(&channel);
+    assert_channel_eevblog(&channel);
+
+    assert!(
+        !channel.content.items.is_empty() && !channel.content.is_exhausted(),
+        "got no streams"
+    );
+
+    let next = channel.content.next(&rp.query()).await.unwrap().unwrap();
+    assert!(!next.items.is_empty(), "no more streams");
 }
 
 #[tokio::test]

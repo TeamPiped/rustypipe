@@ -1,6 +1,8 @@
+use fancy_regex::Regex;
+use once_cell::sync::Lazy;
 use serde::Deserialize;
 use serde_with::{json::JsonString, serde_as, DefaultOnError, VecSkipError};
-use time::OffsetDateTime;
+use time::{Duration, OffsetDateTime};
 
 use super::{ChannelBadge, ContinuationEndpoint, Thumbnails};
 use crate::{
@@ -8,7 +10,7 @@ use crate::{
     param::Language,
     serializer::{
         ignore_any,
-        text::{Text, TextComponent},
+        text::{AccessibilityText, Text, TextComponent},
         MapResult, VecLogError,
     },
     timeago,
@@ -21,6 +23,7 @@ use crate::{
 pub(crate) enum YouTubeListItem {
     #[serde(alias = "gridVideoRenderer", alias = "compactVideoRenderer")]
     VideoRenderer(VideoRenderer),
+    ReelItemRenderer(ReelItemRenderer),
 
     #[serde(alias = "gridPlaylistRenderer")]
     PlaylistRenderer(PlaylistRenderer),
@@ -98,6 +101,7 @@ pub(crate) struct VideoRenderer {
     #[serde_as(as = "VecSkipError<_>")]
     pub badges: Vec<VideoBadge>,
     /// Contains Short/Live tag
+    #[serde(default)]
     #[serde_as(as = "VecSkipError<_>")]
     pub thumbnail_overlays: Vec<TimeOverlay>,
     /// Abbreviated video description (on startpage)
@@ -108,6 +112,27 @@ pub(crate) struct VideoRenderer {
     pub detailed_metadata_snippets: Option<Vec<DetailedMetadataSnippet>>,
     /// Release date for upcoming videos
     pub upcoming_event_data: Option<UpcomingEventData>,
+}
+
+/// Short video item
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ReelItemRenderer {
+    pub video_id: String,
+    pub thumbnail: Thumbnails,
+    #[serde_as(as = "Text")]
+    pub headline: String,
+    /// Contains `No views` if the view count is zero
+    #[serde_as(as = "Option<Text>")]
+    pub view_count_text: Option<String>,
+    /// video duration
+    ///
+    /// Example: `the horror maze - 44 seconds - play video`
+    ///
+    /// Dashes may be `\u2013` (emdash)
+    #[serde_as(as = "Option<AccessibilityText>")]
+    pub accessibility: Option<String>,
 }
 
 /// Playlist displayed in search results
@@ -363,6 +388,39 @@ impl<T> YouTubeListMapper<T> {
         }
     }
 
+    fn map_short_video(&self, video: ReelItemRenderer) -> VideoItem {
+        static ACCESSIBILITY_SEP_REGEX: Lazy<Regex> =
+            Lazy::new(|| Regex::new(" [-\u{2013}] (.+) [-\u{2013}] ").unwrap());
+
+        VideoItem {
+            id: video.video_id,
+            title: video.headline,
+            length: video.accessibility.and_then(|acc| {
+                ACCESSIBILITY_SEP_REGEX
+                    .captures(&acc)
+                    .ok()
+                    .flatten()
+                    .and_then(|cap| {
+                        cap.get(1).and_then(|c| {
+                            timeago::parse_timeago(self.lang, c.as_str())
+                                .map(|ta| Duration::from(ta).whole_seconds() as u32)
+                        })
+                    })
+            }),
+            thumbnail: video.thumbnail.into(),
+            channel: None,
+            publish_date: None,
+            publish_date_txt: None,
+            view_count: video
+                .view_count_text
+                .map(|txt| util::parse_numeric(&txt).unwrap_or_default()),
+            is_live: false,
+            is_short: true,
+            is_upcoming: false,
+            short_description: None,
+        }
+    }
+
     fn map_playlist(playlist: PlaylistRenderer) -> PlaylistItem {
         PlaylistItem {
             id: playlist.playlist_id,
@@ -413,6 +471,10 @@ impl YouTubeListMapper<YouTubeItem> {
             YouTubeListItem::VideoRenderer(video) => {
                 self.items.push(YouTubeItem::Video(self.map_video(video)));
             }
+            YouTubeListItem::ReelItemRenderer(video) => {
+                self.items
+                    .push(YouTubeItem::Video(self.map_short_video(video)));
+            }
             YouTubeListItem::PlaylistRenderer(playlist) => self
                 .items
                 .push(YouTubeItem::Playlist(Self::map_playlist(playlist))),
@@ -448,6 +510,9 @@ impl YouTubeListMapper<VideoItem> {
         match item {
             YouTubeListItem::VideoRenderer(video) => {
                 self.items.push(self.map_video(video));
+            }
+            YouTubeListItem::ReelItemRenderer(video) => {
+                self.items.push(self.map_short_video(video));
             }
             YouTubeListItem::ContinuationItemRenderer {
                 continuation_endpoint,

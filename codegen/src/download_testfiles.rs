@@ -22,6 +22,8 @@ pub async fn download_testfiles(project_root: &Path) {
     comments_latest(&testfiles).await;
     recommendations(&testfiles).await;
     channel_videos(&testfiles).await;
+    channel_shorts(&testfiles).await;
+    channel_livestreams(&testfiles).await;
     channel_playlists(&testfiles).await;
     channel_info(&testfiles).await;
     channel_videos_cont(&testfiles).await;
@@ -256,6 +258,36 @@ async fn channel_videos(testfiles: &Path) {
         let rp = rp_testfile(&json_path);
         rp.query().channel_videos(id).await.unwrap();
     }
+}
+
+async fn channel_shorts(testfiles: &Path) {
+    let mut json_path = testfiles.to_path_buf();
+    json_path.push("channel");
+    json_path.push("channel_shorts.json");
+    if json_path.exists() {
+        return;
+    }
+
+    let rp = rp_testfile(&json_path);
+    rp.query()
+        .channel_shorts("UCh8gHdtzO2tXd593_bjErWg")
+        .await
+        .unwrap();
+}
+
+async fn channel_livestreams(testfiles: &Path) {
+    let mut json_path = testfiles.to_path_buf();
+    json_path.push("channel");
+    json_path.push("channel_livestreams.json");
+    if json_path.exists() {
+        return;
+    }
+
+    let rp = rp_testfile(&json_path);
+    rp.query()
+        .channel_livestreams("UC2DjFE7Xf11URZqWBigcVOQ")
+        .await
+        .unwrap();
 }
 
 async fn channel_playlists(testfiles: &Path) {

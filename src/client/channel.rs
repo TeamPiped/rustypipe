@@ -30,53 +30,62 @@ struct QChannel<'a> {
 enum Params {
     #[serde(rename = "EgZ2aWRlb3PyBgQKAjoA")]
     Videos,
+    #[serde(rename = "EgZzaG9ydHPyBgUKA5oBAA%3D%3D")]
+    Shorts,
+    #[serde(rename = "EgdzdHJlYW1z8gYECgJ6AA%3D%3D")]
+    Live,
     #[serde(rename = "EglwbGF5bGlzdHMgAQ%3D%3D")]
     Playlists,
     #[serde(rename = "EgVhYm91dPIGBAoCEgA%3D")]
     Info,
 }
 
-#[derive(Debug, Clone, Copy)]
-enum ChannelTab {
-    Videos,
-    Shorts,
-    Live,
-    Playlists,
-    Info,
-}
-
-impl ChannelTab {
-    const fn url_suffix(self) -> &'static str {
-        match self {
-            ChannelTab::Videos => "/videos",
-            ChannelTab::Shorts => "/shorts",
-            ChannelTab::Live => "/streams",
-            ChannelTab::Playlists => "/playlists",
-            ChannelTab::Info => "/about",
-        }
-    }
-}
-
 impl RustyPipeQuery {
-    pub async fn channel_videos(
+    async fn _channel_videos(
         &self,
         channel_id: &str,
+        params: Params,
+        operation: &str,
     ) -> Result<Channel<Paginator<VideoItem>>, Error> {
         let context = self.get_context(ClientType::Desktop, true, None).await;
         let request_body = QChannel {
             context,
             browse_id: channel_id,
-            params: Params::Videos,
+            params,
         };
 
         self.execute_request::<response::Channel, _, _>(
             ClientType::Desktop,
-            "channel_videos",
+            operation,
             channel_id,
             "browse",
             &request_body,
         )
         .await
+    }
+
+    pub async fn channel_videos(
+        &self,
+        channel_id: &str,
+    ) -> Result<Channel<Paginator<VideoItem>>, Error> {
+        self._channel_videos(channel_id, Params::Videos, "channel_videos")
+            .await
+    }
+
+    pub async fn channel_shorts(
+        &self,
+        channel_id: &str,
+    ) -> Result<Channel<Paginator<VideoItem>>, Error> {
+        self._channel_videos(channel_id, Params::Shorts, "channel_shorts")
+            .await
+    }
+
+    pub async fn channel_livestreams(
+        &self,
+        channel_id: &str,
+    ) -> Result<Channel<Paginator<VideoItem>>, Error> {
+        self._channel_videos(channel_id, Params::Live, "channel_livestreams")
+            .await
     }
 
     pub async fn channel_playlists(
@@ -126,7 +135,7 @@ impl MapResponse<Channel<Paginator<VideoItem>>> for response::Channel {
         lang: Language,
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
     ) -> Result<MapResult<Channel<Paginator<VideoItem>>>, ExtractionError> {
-        let content = map_channel_content(self.contents, ChannelTab::Videos, self.alerts)?;
+        let content = map_channel_content(self.contents, self.alerts)?;
         let grid = match content.content {
             response::channel::ChannelContent::GridRenderer { items } => Some(items),
             _ => None,
@@ -160,7 +169,7 @@ impl MapResponse<Channel<Paginator<PlaylistItem>>> for response::Channel {
         lang: Language,
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
     ) -> Result<MapResult<Channel<Paginator<PlaylistItem>>>, ExtractionError> {
-        let content = map_channel_content(self.contents, ChannelTab::Playlists, self.alerts)?;
+        let content = map_channel_content(self.contents, self.alerts)?;
         let grid = match content.content {
             response::channel::ChannelContent::GridRenderer { items } => Some(items),
             _ => None,
@@ -196,7 +205,7 @@ impl MapResponse<Channel<ChannelInfo>> for response::Channel {
         lang: Language,
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
     ) -> Result<MapResult<Channel<ChannelInfo>>, ExtractionError> {
-        let content = map_channel_content(self.contents, ChannelTab::Info, self.alerts)?;
+        let content = map_channel_content(self.contents, self.alerts)?;
         let mut warnings = Vec::new();
         let meta = match content.content {
             response::channel::ChannelContent::ChannelAboutFullMetadataRenderer(meta) => Some(meta),
@@ -403,7 +412,6 @@ struct MappedChannelContent {
 
 fn map_channel_content(
     contents: Option<response::channel::Contents>,
-    channel_tab: ChannelTab,
     alerts: Option<Vec<response::Alert>>,
 ) -> Result<MappedChannelContent, ExtractionError> {
     match contents {
@@ -434,13 +442,9 @@ fn map_channel_content(
                         || tab.tab_renderer.content.rich_grid_renderer.is_some())
                 {
                     featured_tab = true;
-                } else if cmp_url_suffix(
-                    &tab.tab_renderer.endpoint,
-                    ChannelTab::Shorts.url_suffix(),
-                ) {
+                } else if cmp_url_suffix(&tab.tab_renderer.endpoint, "/shorts") {
                     has_shorts = true;
-                } else if cmp_url_suffix(&tab.tab_renderer.endpoint, ChannelTab::Live.url_suffix())
-                {
+                } else if cmp_url_suffix(&tab.tab_renderer.endpoint, "/streams") {
                     has_live = true;
                 }
             }
@@ -448,22 +452,18 @@ fn map_channel_content(
             let channel_content = tabs
                 .into_iter()
                 .filter_map(|tab| {
-                    if cmp_url_suffix(&tab.tab_renderer.endpoint, channel_tab.url_suffix()) {
-                        let content = tab.tab_renderer.content;
-                        match (content.rich_grid_renderer, content.section_list_renderer) {
-                            (Some(rich_grid), _) => Some(ChannelContent::GridRenderer {
-                                items: rich_grid.contents,
-                            }),
-                            (None, Some(section_list)) => {
-                                let mut contents = section_list.contents;
-                                contents.try_swap_remove(0).and_then(|mut i| {
-                                    i.item_section_renderer.contents.try_swap_remove(0)
-                                })
-                            }
-                            (None, None) => None,
+                    let content = tab.tab_renderer.content;
+                    match (content.rich_grid_renderer, content.section_list_renderer) {
+                        (Some(rich_grid), _) => Some(ChannelContent::GridRenderer {
+                            items: rich_grid.contents,
+                        }),
+                        (None, Some(section_list)) => {
+                            let mut contents = section_list.contents;
+                            contents.try_swap_remove(0).and_then(|mut i| {
+                                i.item_section_renderer.contents.try_swap_remove(0)
+                            })
                         }
-                    } else {
-                        None
+                        (None, None) => None,
                     }
                 })
                 .next();
@@ -506,16 +506,18 @@ mod tests {
     };
 
     #[rstest]
-    #[case::base("base", "UC2DjFE7Xf11URZqWBigcVOQ")]
-    #[case::music("music", "UC_vmjW5e1xEHhYjY2a0kK1A")]
+    #[case::base("videos_base", "UC2DjFE7Xf11URZqWBigcVOQ")]
+    #[case::music("videos_music", "UC_vmjW5e1xEHhYjY2a0kK1A")]
+    #[case::withshorts("videos_shorts", "UCh8gHdtzO2tXd593_bjErWg")]
+    #[case::live("videos_live", "UChs0pSaEoNLV4mevBFGaoKA")]
+    #[case::empty("videos_empty", "UCxBa895m48H5idw5li7h-0g")]
+    #[case::upcoming("videos_upcoming", "UCcvfHa-GHSOHFAjU0-Ie57A")]
+    #[case::richgrid("videos_20221011_richgrid", "UCh8gHdtzO2tXd593_bjErWg")]
+    #[case::richgrid2("videos_20221011_richgrid2", "UC2DjFE7Xf11URZqWBigcVOQ")]
     #[case::shorts("shorts", "UCh8gHdtzO2tXd593_bjErWg")]
-    #[case::live("live", "UChs0pSaEoNLV4mevBFGaoKA")]
-    #[case::empty("empty", "UCxBa895m48H5idw5li7h-0g")]
-    #[case::upcoming("upcoming", "UCcvfHa-GHSOHFAjU0-Ie57A")]
-    #[case::richgrid("20221011_richgrid", "UCh8gHdtzO2tXd593_bjErWg")]
-    #[case::richgrid2("20221011_richgrid2", "UC2DjFE7Xf11URZqWBigcVOQ")]
+    #[case::livestreams("livestreams", "UC2DjFE7Xf11URZqWBigcVOQ")]
     fn map_channel_videos(#[case] name: &str, #[case] id: &str) {
-        let filename = format!("testfiles/channel/channel_videos_{}.json", name);
+        let filename = format!("testfiles/channel/channel_{}.json", name);
         let json_path = Path::new(&filename);
         let json_file = File::open(json_path).unwrap();
 
@@ -530,12 +532,12 @@ mod tests {
             map_res.warnings
         );
 
-        if name == "upcoming" {
-            insta::assert_ron_snapshot!(format!("map_channel_videos_{}", name), map_res.c, {
+        if name == "videos_upcoming" {
+            insta::assert_ron_snapshot!(format!("map_channel_{}", name), map_res.c, {
                 ".content.items[1:].publish_date" => "[date]",
             });
         } else {
-            insta::assert_ron_snapshot!(format!("map_channel_videos_{}", name), map_res.c, {
+            insta::assert_ron_snapshot!(format!("map_channel_{}", name), map_res.c, {
                 ".content.items[].publish_date" => "[date]",
             });
         }
