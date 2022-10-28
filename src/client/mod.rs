@@ -183,7 +183,6 @@ struct RustyPipeRef {
     reporter: Option<Box<dyn Reporter>>,
     n_http_retries: u32,
     consent_cookie: String,
-    visitor_data: Option<String>,
     cache: CacheHolder,
     default_opts: RustyPipeOpts,
 }
@@ -194,6 +193,7 @@ struct RustyPipeOpts {
     country: Country,
     report: bool,
     strict: bool,
+    visitor_data: Option<String>,
 }
 
 pub struct RustyPipeBuilder {
@@ -201,7 +201,6 @@ pub struct RustyPipeBuilder {
     reporter: Option<Box<dyn Reporter>>,
     n_http_retries: u32,
     user_agent: String,
-    visitor_data: Option<String>,
     default_opts: RustyPipeOpts,
 }
 
@@ -218,6 +217,7 @@ impl Default for RustyPipeOpts {
             country: Country::Us,
             report: false,
             strict: false,
+            visitor_data: None,
         }
     }
 }
@@ -294,7 +294,6 @@ impl RustyPipeBuilder {
             reporter: Some(Box::new(FileReporter::default())),
             n_http_retries: 2,
             user_agent: DEFAULT_UA.to_owned(),
-            visitor_data: None,
         }
     }
 
@@ -335,7 +334,6 @@ impl RustyPipeBuilder {
                     CONSENT_COOKIE_YES,
                     rand::thread_rng().gen_range(100..1000)
                 ),
-                visitor_data: self.visitor_data,
                 cache: CacheHolder {
                     desktop_client: RwLock::new(cdata.desktop_client),
                     music_client: RwLock::new(cdata.music_client),
@@ -439,8 +437,15 @@ impl RustyPipeBuilder {
         self
     }
 
+    /// Set the default YouTube visitor data cookie
     pub fn visitor_data(mut self, visitor_data: &str) -> Self {
-        self.visitor_data = Some(visitor_data.to_owned());
+        self.default_opts.visitor_data = Some(visitor_data.to_owned());
+        self
+    }
+
+    /// Set the default YouTube visitor data cookie to an optional value
+    pub fn visitor_data_opt(mut self, visitor_data: Option<String>) -> Self {
+        self.default_opts.visitor_data = visitor_data;
         self
     }
 }
@@ -748,6 +753,18 @@ impl RustyPipeQuery {
         self
     }
 
+    /// Set the YouTube visitor data cookie
+    pub fn visitor_data(mut self, visitor_data: &str) -> Self {
+        self.opts.visitor_data = Some(visitor_data.to_owned());
+        self
+    }
+
+    /// Set the YouTube visitor data cookie to an optional value
+    pub fn visitor_data_opt(mut self, visitor_data: Option<String>) -> Self {
+        self.opts.visitor_data = visitor_data;
+        self
+    }
+
     /// Create a new context object, which is included in every request to
     /// the YouTube API and contains language, country and device parameters.
     ///
@@ -768,7 +785,7 @@ impl RustyPipeQuery {
             true => self.opts.country,
             false => Country::Us,
         };
-        let visitor_data = self.client.inner.visitor_data.as_deref().or(visitor_data);
+        let visitor_data = self.opts.visitor_data.as_deref().or(visitor_data);
 
         match ctype {
             ClientType::Desktop => YTContext {
