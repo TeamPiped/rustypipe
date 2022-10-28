@@ -1,7 +1,7 @@
 use std::collections::HashSet;
 
 use rstest::rstest;
-use time::macros::{date, datetime};
+use time::macros::date;
 use time::OffsetDateTime;
 
 use rustypipe::client::{ClientType, RustyPipe};
@@ -1138,6 +1138,7 @@ async fn channel_not_found(#[case] id: &str) {
 #[cfg(feature = "rss")]
 mod channel_rss {
     use super::*;
+    use time::macros::datetime;
 
     #[tokio::test]
     async fn get_channel_rss() {

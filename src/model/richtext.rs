@@ -2,6 +2,8 @@
 
 use serde::{Deserialize, Serialize};
 
+use crate::util;
+
 use super::UrlTarget;
 
 #[derive(Default, Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
@@ -32,8 +34,6 @@ pub trait ToPlaintext {
 }
 
 /// Trait for converting rich text to html.
-#[cfg(feature = "html")]
-#[cfg_attr(docsrs, doc(cfg(feature = "html")))]
 pub trait ToHtml {
     /// Convert rich text to html.
     fn to_html(&self) -> String {
@@ -72,26 +72,22 @@ impl ToPlaintext for TextComponent {
     }
 }
 
-#[cfg(feature = "html")]
-#[cfg_attr(docsrs, doc(cfg(feature = "html")))]
 impl ToHtml for TextComponent {
     fn to_html_yt_host(&self, yt_host: &str) -> String {
         match self {
-            TextComponent::Text(text) => askama_escape::escape(&text, askama_escape::Html)
-                .to_string()
-                .replace("\n", "<br>"),
+            TextComponent::Text(text) => util::escape_html(text),
             TextComponent::Web { text, .. } => {
                 format!(
                     r#"<a href="{}" target="_blank" rel="noreferrer">{}</a>"#,
                     self.get_url(yt_host),
-                    askama_escape::escape(text, askama_escape::Html)
+                    util::escape_html(text)
                 )
             }
             _ => {
                 format!(
                     r#"<a href="{}">{}</a>"#,
                     self.get_url(yt_host),
-                    askama_escape::escape(self.get_text(), askama_escape::Html)
+                    util::escape_html(self.get_text())
                 )
             }
         }
@@ -107,8 +103,6 @@ impl ToPlaintext for RichText {
     }
 }
 
-#[cfg(feature = "html")]
-#[cfg_attr(docsrs, doc(cfg(feature = "html")))]
 impl ToHtml for RichText {
     fn to_html_yt_host(&self, yt_host: &str) -> String {
         self.0.iter().map(|c| c.to_html_yt_host(yt_host)).collect()
@@ -186,7 +180,6 @@ aespa 에스파 'Black Mamba' MV ℗ SM Entertainment"#
         );
     }
 
-    #[cfg(feature = "html")]
     #[test]
     fn t_to_html() {
         let richtext = RichText::from(TEXT_SOURCE.clone());

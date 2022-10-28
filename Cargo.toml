@@ -13,11 +13,10 @@ include = ["/src", "README.md", "LICENSE", "!snapshots"]
 members = [".", "codegen", "cli"]
 
 [features]
-default = ["default-tls", "rss"]
-all = ["rss", "html"]
+default = ["default-tls"]
+all = ["rss"]
 
 rss = ["quick-xml"]
-html = ["askama_escape"]
 
 # Reqwest TLS
 default-tls = ["reqwest/default-tls"]
@@ -45,7 +44,6 @@ filenamify = "0.1.0"
 ress = "0.11.4"
 phf  = "0.11.1"
 base64 = "0.13.0"
-askama_escape = {version = "0.10.3", optional = true}
 quick-xml = {version = "0.25.0", features = ["serialize"], optional = true}
 
 [dev-dependencies]

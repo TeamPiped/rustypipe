@@ -312,6 +312,24 @@ where
     .ok()
 }
 
+/// Replace all html control characters to make a string safe for inserting into HTML.
+pub fn escape_html(input: &str) -> String {
+    let mut buf = String::with_capacity(input.len());
+
+    for c in input.chars() {
+        match c {
+            '<' => buf.push_str("&lt;"),
+            '>' => buf.push_str("&gt;"),
+            '&' => buf.push_str("&amp;"),
+            '"' => buf.push_str("&quot;"),
+            '\'' => buf.push_str("&#x27;"),
+            '\n' => buf.push_str("<br>"),
+            _ => buf.push(c),
+        };
+    }
+    buf
+}
+
 #[cfg(test)]
 mod tests {
     use std::{fs::File, io::BufReader, path::Path};
