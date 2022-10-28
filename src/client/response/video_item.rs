@@ -6,7 +6,7 @@ use time::{Duration, OffsetDateTime};
 
 use super::{ChannelBadge, ContinuationEndpoint, Thumbnails};
 use crate::{
-    model::{ChannelId, ChannelItem, ChannelTag, PlaylistItem, VideoItem, YouTubeItem},
+    model::{Channel, ChannelId, ChannelItem, ChannelTag, PlaylistItem, VideoItem, YouTubeItem},
     param::Language,
     serializer::{
         ignore_any,
@@ -320,6 +320,8 @@ impl IsShort for Vec<TimeOverlay> {
 #[derive(Debug)]
 pub(crate) struct YouTubeListMapper<T> {
     lang: Language,
+    channel: Option<ChannelTag>,
+
     pub items: Vec<T>,
     pub warnings: Vec<String>,
     pub ctoken: Option<String>,
@@ -330,6 +332,24 @@ impl<T> YouTubeListMapper<T> {
     pub fn new(lang: Language) -> Self {
         Self {
             lang,
+            channel: None,
+            items: Vec::new(),
+            warnings: Vec::new(),
+            ctoken: None,
+            corrected_query: None,
+        }
+    }
+
+    pub fn with_channel<C>(lang: Language, channel: &Channel<C>) -> Self {
+        Self {
+            lang,
+            channel: Some(ChannelTag {
+                id: channel.id.to_owned(),
+                name: channel.name.to_owned(),
+                avatar: Vec::new(),
+                verification: channel.verification,
+                subscriber_count: channel.subscriber_count,
+            }),
             items: Vec::new(),
             warnings: Vec::new(),
             ctoken: None,
@@ -350,20 +370,23 @@ impl<T> YouTubeListMapper<T> {
             title: video.title,
             length: length_text.and_then(|txt| util::parse_video_length(&txt)),
             thumbnail: video.thumbnail.into(),
-            channel: video.channel.and_then(|c| {
-                ChannelId::try_from(c).ok().map(|c| ChannelTag {
-                    id: c.id,
-                    name: c.name,
-                    avatar: video
-                        .channel_thumbnail_supported_renderers
-                        .map(|tn| tn.channel_thumbnail_with_link_renderer.thumbnail)
-                        .or(video.channel_thumbnail)
-                        .unwrap_or_default()
-                        .into(),
-                    verification: video.owner_badges.into(),
-                    subscriber_count: None,
+            channel: video
+                .channel
+                .and_then(|c| {
+                    ChannelId::try_from(c).ok().map(|c| ChannelTag {
+                        id: c.id,
+                        name: c.name,
+                        avatar: video
+                            .channel_thumbnail_supported_renderers
+                            .map(|tn| tn.channel_thumbnail_with_link_renderer.thumbnail)
+                            .or(video.channel_thumbnail)
+                            .unwrap_or_default()
+                            .into(),
+                        verification: video.owner_badges.into(),
+                        subscriber_count: None,
+                    })
                 })
-            }),
+                .or_else(|| self.channel.clone()),
             publish_date: video
                 .upcoming_event_data
                 .as_ref()
@@ -408,7 +431,7 @@ impl<T> YouTubeListMapper<T> {
                     })
             }),
             thumbnail: video.thumbnail.into(),
-            channel: None,
+            channel: self.channel.clone(),
             publish_date: None,
             publish_date_txt: None,
             view_count: video
@@ -421,7 +444,7 @@ impl<T> YouTubeListMapper<T> {
         }
     }
 
-    fn map_playlist(playlist: PlaylistRenderer) -> PlaylistItem {
+    fn map_playlist(&self, playlist: PlaylistRenderer) -> PlaylistItem {
         PlaylistItem {
             id: playlist.playlist_id,
             name: playlist.title,
@@ -430,15 +453,18 @@ impl<T> YouTubeListMapper<T> {
                 .or_else(|| playlist.thumbnails.and_then(|mut t| t.try_swap_remove(0)))
                 .unwrap_or_default()
                 .into(),
-            channel: playlist.channel.and_then(|c| {
-                ChannelId::try_from(c).ok().map(|c| ChannelTag {
-                    id: c.id,
-                    name: c.name,
-                    avatar: Vec::new(),
-                    verification: playlist.owner_badges.into(),
-                    subscriber_count: None,
+            channel: playlist
+                .channel
+                .and_then(|c| {
+                    ChannelId::try_from(c).ok().map(|c| ChannelTag {
+                        id: c.id,
+                        name: c.name,
+                        avatar: Vec::new(),
+                        verification: playlist.owner_badges.into(),
+                        subscriber_count: None,
+                    })
                 })
-            }),
+                .or_else(|| self.channel.clone()),
             video_count: playlist.video_count.or_else(|| {
                 playlist
                     .video_count_short_text
@@ -477,7 +503,7 @@ impl YouTubeListMapper<YouTubeItem> {
             }
             YouTubeListItem::PlaylistRenderer(playlist) => self
                 .items
-                .push(YouTubeItem::Playlist(Self::map_playlist(playlist))),
+                .push(YouTubeItem::Playlist(self.map_playlist(playlist))),
             YouTubeListItem::ChannelRenderer(channel) => {
                 self.items
                     .push(YouTubeItem::Channel(Self::map_channel(channel)));
@@ -541,7 +567,7 @@ impl YouTubeListMapper<PlaylistItem> {
     fn map_item(&mut self, item: YouTubeListItem) {
         match item {
             YouTubeListItem::PlaylistRenderer(playlist) => {
-                self.items.push(Self::map_playlist(playlist))
+                self.items.push(self.map_playlist(playlist))
             }
             YouTubeListItem::ContinuationItemRenderer {
                 continuation_endpoint,

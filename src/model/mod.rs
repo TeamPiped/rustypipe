@@ -1,5 +1,6 @@
 //! YouTube API request and response models
 
+mod convert;
 mod ordering;
 mod paginator;
 pub mod richtext;
@@ -849,37 +850,4 @@ pub struct PlaylistItem {
     pub channel: Option<ChannelTag>,
     /// Number of playlist videos
     pub video_count: Option<u64>,
-}
-
-impl TryFrom<YouTubeItem> for VideoItem {
-    type Error = ();
-
-    fn try_from(value: YouTubeItem) -> Result<Self, Self::Error> {
-        match value {
-            YouTubeItem::Video(video) => Ok(video),
-            _ => Err(()),
-        }
-    }
-}
-
-impl TryFrom<YouTubeItem> for PlaylistItem {
-    type Error = ();
-
-    fn try_from(value: YouTubeItem) -> Result<Self, Self::Error> {
-        match value {
-            YouTubeItem::Playlist(playlist) => Ok(playlist),
-            _ => Err(()),
-        }
-    }
-}
-
-impl TryFrom<YouTubeItem> for ChannelItem {
-    type Error = ();
-
-    fn try_from(value: YouTubeItem) -> Result<Self, Self::Error> {
-        match value {
-            YouTubeItem::Channel(channel) => Ok(channel),
-            _ => Err(()),
-        }
-    }
 }

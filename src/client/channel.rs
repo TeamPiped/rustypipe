@@ -141,22 +141,50 @@ impl MapResponse<Channel<Paginator<VideoItem>>> for response::Channel {
             _ => None,
         };
 
-        let v_res = grid.map(|g| map_videos(g, lang)).unwrap_or_default();
+        let channel_data = map_channel(
+            MapChannelData {
+                header: self.header,
+                metadata: self.metadata,
+                microformat: self.microformat,
+                visitor_data: self.response_context.visitor_data,
+                has_shorts: content.has_shorts,
+                has_live: content.has_live,
+            },
+            id,
+            lang,
+        )?;
+
+        let v_res = grid
+            .map(|g| {
+                let mut mapper =
+                    response::YouTubeListMapper::<VideoItem>::with_channel(lang, &channel_data);
+                mapper.map_response(g);
+
+                MapResult {
+                    c: Paginator::new(None, mapper.items, mapper.ctoken),
+                    warnings: mapper.warnings,
+                }
+            })
+            .unwrap_or_default();
 
         Ok(MapResult {
-            c: map_channel(
-                MapChannelData {
-                    header: self.header,
-                    metadata: self.metadata,
-                    microformat: self.microformat,
-                    visitor_data: self.response_context.visitor_data,
-                    has_shorts: content.has_shorts,
-                    has_live: content.has_live,
-                    content: v_res.c,
-                },
-                id,
-                lang,
-            )?,
+            c: Channel {
+                id: channel_data.id,
+                name: channel_data.name,
+                subscriber_count: channel_data.subscriber_count,
+                avatar: channel_data.avatar,
+                verification: channel_data.verification,
+                description: channel_data.description,
+                tags: channel_data.tags,
+                vanity_url: channel_data.vanity_url,
+                banner: channel_data.banner,
+                mobile_banner: channel_data.mobile_banner,
+                tv_banner: channel_data.tv_banner,
+                has_shorts: channel_data.has_shorts,
+                has_live: channel_data.has_live,
+                visitor_data: channel_data.visitor_data,
+                content: v_res.c,
+            },
             warnings: v_res.warnings,
         })
     }
@@ -175,24 +203,50 @@ impl MapResponse<Channel<Paginator<PlaylistItem>>> for response::Channel {
             _ => None,
         };
 
+        let channel_data = map_channel(
+            MapChannelData {
+                header: self.header,
+                metadata: self.metadata,
+                microformat: self.microformat,
+                visitor_data: self.response_context.visitor_data,
+                has_shorts: content.has_shorts,
+                has_live: content.has_live,
+            },
+            id,
+            lang,
+        )?;
+
         let p_res = grid
-            .map(|item| map_playlists(item, lang))
+            .map(|g| {
+                let mut mapper =
+                    response::YouTubeListMapper::<PlaylistItem>::with_channel(lang, &channel_data);
+                mapper.map_response(g);
+
+                MapResult {
+                    c: Paginator::new(None, mapper.items, mapper.ctoken),
+                    warnings: mapper.warnings,
+                }
+            })
             .unwrap_or_default();
 
         Ok(MapResult {
-            c: map_channel(
-                MapChannelData {
-                    header: self.header,
-                    metadata: self.metadata,
-                    microformat: self.microformat,
-                    visitor_data: self.response_context.visitor_data,
-                    has_shorts: content.has_shorts,
-                    has_live: content.has_live,
-                    content: p_res.c,
-                },
-                id,
-                lang,
-            )?,
+            c: Channel {
+                id: channel_data.id,
+                name: channel_data.name,
+                subscriber_count: channel_data.subscriber_count,
+                avatar: channel_data.avatar,
+                verification: channel_data.verification,
+                description: channel_data.description,
+                tags: channel_data.tags,
+                vanity_url: channel_data.vanity_url,
+                banner: channel_data.banner,
+                mobile_banner: channel_data.mobile_banner,
+                tv_banner: channel_data.tv_banner,
+                has_shorts: channel_data.has_shorts,
+                has_live: channel_data.has_live,
+                visitor_data: channel_data.visitor_data,
+                content: p_res.c,
+            },
             warnings: p_res.warnings,
         })
     }
@@ -211,6 +265,19 @@ impl MapResponse<Channel<ChannelInfo>> for response::Channel {
             response::channel::ChannelContent::ChannelAboutFullMetadataRenderer(meta) => Some(meta),
             _ => None,
         };
+
+        let channel_data = map_channel(
+            MapChannelData {
+                header: self.header,
+                metadata: self.metadata,
+                microformat: self.microformat,
+                visitor_data: self.response_context.visitor_data,
+                has_shorts: content.has_shorts,
+                has_live: content.has_live,
+            },
+            id,
+            lang,
+        )?;
 
         let cinfo = meta
             .map(|meta| ChannelInfo {
@@ -243,47 +310,25 @@ impl MapResponse<Channel<ChannelInfo>> for response::Channel {
             });
 
         Ok(MapResult {
-            c: map_channel(
-                MapChannelData {
-                    header: self.header,
-                    metadata: self.metadata,
-                    microformat: self.microformat,
-                    visitor_data: self.response_context.visitor_data,
-                    has_shorts: content.has_shorts,
-                    has_live: content.has_live,
-                    content: cinfo,
-                },
-                id,
-                lang,
-            )?,
+            c: Channel {
+                id: channel_data.id,
+                name: channel_data.name,
+                subscriber_count: channel_data.subscriber_count,
+                avatar: channel_data.avatar,
+                verification: channel_data.verification,
+                description: channel_data.description,
+                tags: channel_data.tags,
+                vanity_url: channel_data.vanity_url,
+                banner: channel_data.banner,
+                mobile_banner: channel_data.mobile_banner,
+                tv_banner: channel_data.tv_banner,
+                has_shorts: channel_data.has_shorts,
+                has_live: channel_data.has_live,
+                visitor_data: channel_data.visitor_data,
+                content: cinfo,
+            },
             warnings,
         })
-    }
-}
-
-fn map_videos(
-    res: MapResult<Vec<response::YouTubeListItem>>,
-    lang: Language,
-) -> MapResult<Paginator<VideoItem>> {
-    let mut mapper = response::YouTubeListMapper::<VideoItem>::new(lang);
-    mapper.map_response(res);
-
-    MapResult {
-        c: Paginator::new(None, mapper.items, mapper.ctoken),
-        warnings: mapper.warnings,
-    }
-}
-
-fn map_playlists(
-    res: MapResult<Vec<response::YouTubeListItem>>,
-    lang: Language,
-) -> MapResult<Paginator<PlaylistItem>> {
-    let mut mapper = response::YouTubeListMapper::<PlaylistItem>::new(lang);
-    mapper.map_response(res);
-
-    MapResult {
-        c: Paginator::new(None, mapper.items, mapper.ctoken),
-        warnings: mapper.warnings,
     }
 }
 
@@ -299,21 +344,20 @@ fn map_vanity_url(url: &str, id: &str) -> Option<String> {
     })
 }
 
-struct MapChannelData<T> {
+struct MapChannelData {
     header: Option<response::channel::Header>,
     metadata: Option<response::channel::Metadata>,
     microformat: Option<response::channel::Microformat>,
     visitor_data: Option<String>,
     has_shorts: bool,
     has_live: bool,
-    content: T,
 }
 
-fn map_channel<T>(
-    d: MapChannelData<T>,
+fn map_channel(
+    d: MapChannelData,
     id: &str,
     lang: Language,
-) -> Result<Channel<T>, ExtractionError> {
+) -> Result<Channel<()>, ExtractionError> {
     let header = d
         .header
         .ok_or(ExtractionError::ContentUnavailable(Cow::Borrowed(
@@ -361,7 +405,7 @@ fn map_channel<T>(
             has_shorts: d.has_shorts,
             has_live: d.has_live,
             visitor_data: d.visitor_data,
-            content: d.content,
+            content: (),
         },
         response::channel::Header::CarouselHeaderRenderer(carousel) => {
             let hdata = carousel
@@ -398,7 +442,7 @@ fn map_channel<T>(
                 has_shorts: d.has_shorts,
                 has_live: d.has_live,
                 visitor_data: d.visitor_data,
-                content: d.content,
+                content: (),
             }
         }
     })
