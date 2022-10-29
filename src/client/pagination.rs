@@ -1,7 +1,7 @@
 use std::borrow::Cow;
 
 use crate::error::{Error, ExtractionError};
-use crate::model::{Comment, Paginator, PlaylistVideo, YouTubeItem};
+use crate::model::{Comment, Paginator, PlaylistVideo, TrackItem, YouTubeItem};
 use crate::param::ContinuationEndpoint;
 use crate::serializer::MapResult;
 use crate::util::TryRemove;
@@ -165,6 +165,15 @@ impl Paginator<PlaylistVideo> {
     }
 }
 
+impl Paginator<TrackItem> {
+    pub async fn next(&self, query: &RustyPipeQuery) -> Result<Option<Self>, Error> {
+        Ok(match &self.ctoken {
+            Some(ctoken) => Some(query.music_playlist_continuation(ctoken).await?),
+            None => None,
+        })
+    }
+}
+
 macro_rules! paginator {
     ($entity_type:ty) => {
         impl Paginator<$entity_type> {
@@ -216,6 +225,7 @@ macro_rules! paginator {
 
 paginator!(Comment);
 paginator!(PlaylistVideo);
+paginator!(TrackItem);
 
 #[cfg(test)]
 mod tests {

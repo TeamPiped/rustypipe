@@ -300,12 +300,12 @@ async fn get_player_error(#[case] id: &str, #[case] msg: &str) {
 
 #[rstest]
 #[case::long(
-        "PL5dDx681T4bR7ZF1IuWzOv1omlRbE7PiJ",
-        "Die schönsten deutschen Lieder | Beliebteste Lieder | Beste Deutsche Musik 2022",
-        true,
-        None,
-        Some(("UCIekuFeMaV78xYfvpmoCnPg", "Best Music")),
-    )]
+    "PL5dDx681T4bR7ZF1IuWzOv1omlRbE7PiJ",
+    "Die schönsten deutschen Lieder | Beliebteste Lieder | Beste Deutsche Musik 2022",
+    true,
+    None,
+    Some(("UCIekuFeMaV78xYfvpmoCnPg", "Best Music")),
+)]
 #[case::short(
     "RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk",
     "Easy Pop",
@@ -1367,6 +1367,99 @@ async fn trending() {
         result.len() >= 50,
         "expected >= 50 items, got {}",
         result.len()
+    );
+}
+
+//#MUSIC
+
+#[rstest]
+#[case::long(
+    "PL5dDx681T4bR7ZF1IuWzOv1omlRbE7PiJ",
+    "Die schönsten deutschen Lieder | Beliebteste Lieder | Beste Deutsche Musik 2022",
+    true,
+    None,
+    Some(("UCIekuFeMaV78xYfvpmoCnPg", "Best Music")),
+    false,
+)]
+#[case::short(
+    "RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk",
+    "Easy Pop",
+    false,
+    Some("Stress-free tunes from classic rockers and newer artists.".to_owned()),
+    None,
+    true
+)]
+#[case::nomusic(
+    "PL1J-6JOckZtE_P9Xx8D3b2O6w0idhuKBe",
+    "Minecraft SHINE",
+    false,
+    Some("SHINE - Survival Hardcore in New Environment: Auf einem Server machen sich tapfere Spieler auf, mystische Welten zu erkunden, magische Technologien zu erforschen und vorallem zu überleben...".to_owned()),
+    Some(("UCQM0bS4_04-Y4JuYrgmnpZQ", "Chaosflo44")),
+    false,
+)]
+#[tokio::test]
+async fn music_playlist(
+    #[case] id: &str,
+    #[case] name: &str,
+    #[case] is_long: bool,
+    #[case] description: Option<String>,
+    #[case] channel: Option<(&str, &str)>,
+    #[case] from_ytm: bool,
+) {
+    let rp = RustyPipe::builder().strict().build();
+    let playlist = rp.query().music_playlist(id).await.unwrap();
+
+    assert_eq!(playlist.id, id);
+    assert_eq!(playlist.name, name);
+    assert!(!playlist.tracks.is_empty());
+    assert_eq!(!playlist.tracks.is_exhausted(), is_long);
+    assert!(playlist.track_count.unwrap() > 10);
+    assert_eq!(playlist.track_count.unwrap() > 100, is_long);
+    assert_eq!(playlist.description, description);
+
+    if let Some(expect) = channel {
+        let c = playlist.channel.unwrap();
+        assert_eq!(c.id, expect.0);
+        assert_eq!(c.name, expect.1);
+    }
+    assert!(!playlist.thumbnail.is_empty());
+    assert_eq!(playlist.from_ytm, from_ytm);
+}
+
+#[tokio::test]
+async fn music_playlist_cont() {
+    let rp = RustyPipe::builder().strict().build();
+    let mut playlist = rp
+        .query()
+        .music_playlist("PLbZIPy20-1pN7mqjckepWF78ndb6ci_qi")
+        .await
+        .unwrap();
+
+    playlist
+        .tracks
+        .extend_pages(&rp.query(), usize::MAX)
+        .await
+        .unwrap();
+    assert!(playlist.tracks.items.len() > 100);
+    assert!(playlist.tracks.count.unwrap() > 100);
+}
+
+#[tokio::test]
+async fn music_playlist_not_found() {
+    let rp = RustyPipe::builder().strict().build();
+    let err = rp
+        .query()
+        .music_playlist("PLbZIPy20-1pN7mqjckepWF78ndb6ci_qz")
+        .await
+        .unwrap_err();
+
+    assert!(
+        matches!(
+            err,
+            Error::Extraction(ExtractionError::ContentUnavailable(_))
+        ),
+        "got: {}",
+        err
     );
 }
 

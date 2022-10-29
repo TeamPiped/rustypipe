@@ -330,6 +330,16 @@ pub fn escape_html(input: &str) -> String {
     buf
 }
 
+pub fn video_id_from_thumbnail_url(url: &str) -> Option<String> {
+    static URL_REGEX: Lazy<Regex> =
+        Lazy::new(|| Regex::new(r"^https://i.ytimg.com/vi/([A-Za-z0-9_-]{11})/").unwrap());
+    URL_REGEX
+        .captures(url)
+        .ok()
+        .flatten()
+        .and_then(|cap| cap.get(1).map(|x| x.as_str().to_owned()))
+}
+
 #[cfg(test)]
 mod tests {
     use std::{fs::File, io::BufReader, path::Path};

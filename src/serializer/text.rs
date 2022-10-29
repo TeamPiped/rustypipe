@@ -113,6 +113,7 @@ pub(crate) enum TextComponent {
 /// runs aka components, which can be simple strings or links.
 #[derive(Deserialize)]
 struct RichTextInternal {
+    #[serde(default)]
     runs: Vec<RichTextRun>,
 }
 
@@ -295,13 +296,31 @@ impl TryFrom<TextComponent> for crate::model::ChannelId {
                 page_type,
                 browse_id,
             } => match page_type {
-                PageType::Channel => Ok(crate::model::ChannelId {
+                PageType::Channel | PageType::Artist => Ok(crate::model::ChannelId {
                     id: browse_id,
                     name: text,
                 }),
                 _ => Err(util::MappingError("invalid channel link type".into())),
             },
             _ => Err(util::MappingError("invalid channel link".into())),
+        }
+    }
+}
+
+impl TryFrom<TextComponent> for crate::model::AlbumId {
+    type Error = ();
+
+    fn try_from(value: TextComponent) -> Result<Self, Self::Error> {
+        match value {
+            TextComponent::Browse {
+                text,
+                page_type: PageType::Album,
+                browse_id,
+            } => Ok(Self {
+                id: browse_id,
+                name: text,
+            }),
+            _ => Err(()),
         }
     }
 }
@@ -340,6 +359,23 @@ impl From<TextComponent> for crate::model::richtext::TextComponent {
 impl From<TextComponents> for crate::model::richtext::RichText {
     fn from(components: TextComponents) -> Self {
         Self(components.0.into_iter().map(TextComponent::into).collect())
+    }
+}
+
+impl TextComponent {
+    pub fn as_str(&self) -> &str {
+        match self {
+            TextComponent::Video { text, .. } => text,
+            TextComponent::Browse { text, .. } => text,
+            TextComponent::Web { text, .. } => text,
+            TextComponent::Text { text } => text,
+        }
+    }
+}
+
+impl ToString for TextComponents {
+    fn to_string(&self) -> String {
+        self.0.iter().map(|x| x.as_str()).collect::<String>()
     }
 }
 
@@ -667,6 +703,14 @@ mod tests {
             ),
         }
         "###);
+    }
+
+    #[test]
+    fn t_links_empty() {
+        let test_json = r#"{"ln": {}}"#;
+
+        let res = serde_json::from_str::<SLinks>(&test_json).unwrap();
+        assert!(res.ln.0.is_empty())
     }
 
     #[test]

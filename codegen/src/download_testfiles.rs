@@ -35,6 +35,9 @@ pub async fn download_testfiles(project_root: &Path) {
     startpage(&testfiles).await;
     startpage_cont(&testfiles).await;
     trending(&testfiles).await;
+
+    music_playlist(&testfiles).await;
+    music_playlist_cont(&testfiles).await;
 }
 
 const CLIENT_TYPES: [ClientType; 5] = [
@@ -457,4 +460,41 @@ async fn trending(testfiles: &Path) {
 
     let rp = rp_testfile(&json_path);
     rp.query().trending().await.unwrap();
+}
+
+async fn music_playlist(testfiles: &Path) {
+    for (name, id) in [
+        ("short", "RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk"),
+        ("long", "PL5dDx681T4bR7ZF1IuWzOv1omlRbE7PiJ"),
+        ("nomusic", "PL1J-6JOckZtE_P9Xx8D3b2O6w0idhuKBe"),
+    ] {
+        let mut json_path = testfiles.to_path_buf();
+        json_path.push("music_playlist");
+        json_path.push(format!("playlist_{}.json", name));
+        if json_path.exists() {
+            continue;
+        }
+
+        let rp = rp_testfile(&json_path);
+        rp.query().music_playlist(id).await.unwrap();
+    }
+}
+
+async fn music_playlist_cont(testfiles: &Path) {
+    let mut json_path = testfiles.to_path_buf();
+    json_path.push("music_playlist");
+    json_path.push("playlist_cont.json");
+    if json_path.exists() {
+        return;
+    }
+
+    let rp = RustyPipe::new();
+    let playlist = rp
+        .query()
+        .music_playlist("PL5dDx681T4bR7ZF1IuWzOv1omlRbE7PiJ")
+        .await
+        .unwrap();
+
+    let rp = rp_testfile(&json_path);
+    playlist.tracks.next(&rp.query()).await.unwrap().unwrap();
 }

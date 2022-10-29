@@ -1,7 +1,8 @@
 pub(crate) mod channel;
+pub(crate) mod music_item;
+pub(crate) mod music_playlist;
 pub(crate) mod player;
 pub(crate) mod playlist;
-// pub(crate) mod playlist_music;
 pub(crate) mod search;
 pub(crate) mod trends;
 pub(crate) mod url_endpoint;
@@ -9,10 +10,11 @@ pub(crate) mod video_details;
 pub(crate) mod video_item;
 
 pub(crate) use channel::Channel;
+pub(crate) use music_playlist::MusicPlaylist;
+pub(crate) use music_playlist::MusicPlaylistCont;
 pub(crate) use player::Player;
 pub(crate) use playlist::Playlist;
 pub(crate) use playlist::PlaylistCont;
-// pub(crate) use playlist_music::PlaylistMusic;
 pub(crate) use search::Search;
 pub(crate) use trends::Startpage;
 pub(crate) use trends::Trending;
@@ -47,7 +49,7 @@ pub(crate) struct ContentsRenderer<T> {
     pub contents: Vec<T>,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Default, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct ThumbnailsWrap {
     #[serde(default)]
@@ -194,61 +196,6 @@ pub(crate) struct RichGridContinuation {
     #[serde_as(as = "VecLogError<_>")]
     pub contents: MapResult<Vec<YouTubeListItem>>,
 }
-
-// YouTube Music
-
-/*
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct MusicItem {
-    pub thumbnail: MusicThumbnailRenderer,
-    #[serde(default)]
-    #[serde_as(deserialize_as = "DefaultOnError")]
-    pub playlist_item_data: Option<PlaylistItemData>,
-    #[serde_as(as = "VecSkipError<_>")]
-    pub flex_columns: Vec<MusicColumn>,
-    #[serde_as(as = "VecSkipError<_>")]
-    pub fixed_columns: Vec<MusicColumn>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct MusicThumbnailRenderer {
-    #[serde(alias = "croppedSquareThumbnailRenderer")]
-    pub music_thumbnail_renderer: ThumbnailsWrap,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct PlaylistItemData {
-    pub video_id: String,
-}
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct MusicContentsRenderer<T> {
-    pub contents: Vec<T>,
-    #[serde_as(as = "Option<VecSkipError<_>>")]
-    pub continuations: Option<Vec<MusicContinuation>>,
-}
-
-#[derive(Debug, Deserialize)]
-pub(crate) struct MusicColumn {
-    #[serde(
-        rename = "musicResponsiveListItemFlexColumnRenderer",
-        alias = "musicResponsiveListItemFixedColumnRenderer"
-    )]
-    pub renderer: MusicColumnRenderer,
-}
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-pub(crate) struct MusicColumnRenderer {
-    pub text: TextComponent,
-}
-*/
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]

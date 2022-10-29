@@ -25,8 +25,11 @@ use self::richtext::RichText;
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
 #[non_exhaustive]
 pub struct Thumbnail {
+    /// Thumbnail URL
     pub url: String,
+    /// Thumbnail image width
     pub width: u32,
+    /// Thumbnail image height
     pub height: u32,
 }
 
@@ -590,7 +593,7 @@ pub struct ChannelTag {
 }
 
 /*
-@COMMENTS
+#COMMENTS
 */
 
 /// Verification status of a channel
@@ -840,7 +843,7 @@ pub struct ChannelItem {
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[non_exhaustive]
 pub struct PlaylistItem {
-    /// Unique YouTube Playlist-ID (e.g. `PL5dDx681T4bR7ZF1IuWzOv1omlRbE7PiJ`)
+    /// Unique YouTube playlist ID (e.g. `PL5dDx681T4bR7ZF1IuWzOv1omlRbE7PiJ`)
     pub id: String,
     /// Playlist name
     pub name: String,
@@ -850,4 +853,165 @@ pub struct PlaylistItem {
     pub channel: Option<ChannelTag>,
     /// Number of playlist videos
     pub video_count: Option<u64>,
+}
+
+/*
+#MUSIC
+*/
+
+/// YouTube Music list item
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+pub enum YouTubeMusicItem {
+    Track(TrackItem),
+    Artist(ArtistItem),
+    Album(AlbumItem),
+    Playlist(MusicPlaylistItem),
+}
+
+/// YouTube Music track list item
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
+pub struct TrackItem {
+    /// Unique YouTube video ID
+    pub id: String,
+    /// Track title
+    pub title: String,
+    /// Track duration in seconds
+    pub duration: u32,
+    /// Album cover
+    pub cover: Vec<Thumbnail>,
+    /// Artists of the track
+    ///
+    /// **Note:** this field only contains artists that have a link attached
+    /// to them. You may want to use `artists_txt` as a fallback.
+    pub artists: Vec<ChannelId>,
+    /// Full content of the artists column
+    ///
+    /// Conjunction words/characters depend on language and fetched page.
+    /// Includes unlinked artists.
+    pub artists_txt: Option<String>,
+    /// Album of the track
+    pub album: Option<AlbumId>,
+    /// View count
+    ///
+    /// [`None`] if it is a not a video or the view count could not be extracted.
+    pub view_count: Option<u64>,
+    /// True if the track is a music video
+    pub is_video: bool,
+}
+
+/// YouTube Music artist list item
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
+pub struct ArtistItem {
+    /// Unique YouTube channel ID
+    pub id: String,
+    /// Artist name
+    pub name: String,
+    /// Artist avatar/profile picture
+    pub avatar: Vec<Thumbnail>,
+    /// Approximate number of subscribers
+    ///
+    /// [`None`] if hidden by the owner or not present.
+    pub subscriber_count: Option<u64>,
+}
+
+/// YouTube Music album list item
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
+pub struct AlbumItem {
+    /// Unique YouTube album ID (e.g. `OLAK5uy_nZpcQys48R0aNb046hV-n1OAHGE4reftQ`)
+    pub id: String,
+    /// Album name
+    pub name: String,
+    /// Album cover
+    pub cover: Vec<Thumbnail>,
+    /// Artists of the album
+    pub artists: Vec<ChannelId>,
+    /// Release year of the album
+    pub year: u16,
+}
+
+/// YouTube Music playlist list item
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
+pub struct MusicPlaylistItem {
+    /// Unique YouTube playlist ID (e.g. `PL5dDx681T4bR7ZF1IuWzOv1omlRbE7PiJ`)
+    pub id: String,
+    /// Playlist name
+    pub name: String,
+    /// Playlist thumbnail
+    pub thumbnail: Vec<Thumbnail>,
+    /// Channel of the playlist
+    pub channel: Option<ChannelTag>,
+    /// Number of tracks in the playlist
+    pub track_count: Option<u64>,
+    /// True if the playlist is from YouTube Music
+    pub from_ytm: bool,
+}
+
+/// YouTube Music album type
+#[derive(Default, Debug, Copy, Clone, Serialize, Deserialize, PartialEq, Eq)]
+pub enum AlbumType {
+    /// Regular album (default)
+    #[default]
+    Album,
+    /// Extended play
+    Ep,
+    /// Single
+    Single,
+}
+
+/// Album identifier
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
+pub struct AlbumId {
+    /// Unique YouTube album ID (e.g. `MPREb_O2gXCdCVGsZ`)
+    pub id: String,
+    /// Album name
+    pub name: String,
+}
+
+/// YouTube music playlist object
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
+pub struct MusicPlaylist {
+    /// Unique YouTube playlist ID (e.g. `PL5dDx681T4bR7ZF1IuWzOv1omlRbE7PiJ`)
+    pub id: String,
+    /// Playlist/album name
+    pub name: String,
+    /// Playlist thumbnail
+    pub thumbnail: Vec<Thumbnail>,
+    /// Channel of the playlist
+    pub channel: Option<ChannelId>,
+    /// Playlist description in plaintext format
+    pub description: Option<String>,
+    /// Number of tracks in the playlist
+    pub track_count: Option<u64>,
+    /// True if the playlist is from YouTube Music
+    pub from_ytm: bool,
+    /// Playlist tracks
+    pub tracks: Paginator<TrackItem>,
+}
+
+/// YouTube music album object
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
+pub struct MusicAlbum {
+    /// Unique YouTube album ID (e.g. `MPREb_O2gXCdCVGsZ`)
+    pub id: String,
+    /// Unique YouTube playlist ID (e.g. `OLAK5uy_nZpcQys48R0aNb046hV-n1OAHGE4reftQ`)
+    pub playlist_id: Option<String>,
+    /// Album name
+    pub name: String,
+    /// Album cover
+    pub cover: Vec<Thumbnail>,
+    /// Artists of the album
+    pub artists: Vec<ChannelId>,
+    /// Music album type
+    pub album_type: AlbumType,
+    /// Release year
+    pub year: u16,
+    /// Album tracks
+    pub tracks: Vec<TrackItem>,
 }

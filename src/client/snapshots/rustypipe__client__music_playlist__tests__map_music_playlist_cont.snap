@@ -1,0 +1,2254 @@
+---
+source: src/client/music_playlist.rs
+expression: map_res.c
+---
+Paginator(
+  count: None,
+  items: [
+    TrackItem(
+      id: "zMPIobcM2j0",
+      title: "ZUNA feat. AZET & NOIZY - NUMMER 1 prod. by DJ A-BOOM",
+      duration: 212,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/zMPIobcM2j0/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mGqKNUFZSt-vMNL0hqsVkIGlwdsQ",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCDLPHv0SrvyUzct8UYQ9R_g",
+          name: "KMNGANG",
+        ),
+      ],
+      artists_txt: Some("KMNGANG"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "f9g6NCHQrcE",
+      title: "Kriminell (feat. Noizy)",
+      duration: 230,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/f9g6NCHQrcE/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kdM3_EHcqMITf0g4PgPtM0H1aEbA",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCXUNYorrTVi7iG5FUnr-Gbg",
+          name: "Azet",
+        ),
+        ChannelId(
+          id: "UC3MZNlOw72DZEeoBo7PzHEA",
+          name: "Zuna",
+        ),
+      ],
+      artists_txt: Some("Azet & Zuna"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "CAVfEwrwT_o",
+      title: "Immer wieder",
+      duration: 227,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/CAVfEwrwT_o/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lYbDTeW97_2QZosa4lIHsClxQpzA",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCcyO_SNHFhbdogh9PPBB9LA",
+          name: "MoTrip",
+        ),
+        ChannelId(
+          id: "UCbqJ-0ByHVGVqQpzdafByfw",
+          name: "Rooz",
+        ),
+      ],
+      artists_txt: Some("MoTrip & Rooz"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "VUr9JZQ8F2g",
+      title: "Zwischen Himmel & Hölle",
+      duration: 270,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/VUr9JZQ8F2g/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3m603a5VGh7uBoRG-lLwV4-G4H5pg",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCJWteOVucKiI2Zy39jGoMZw",
+          name: "Kontra K",
+        ),
+      ],
+      artists_txt: Some("Kontra K"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "XQat6rNNbdQ",
+      title: "Ayé (KMN Street EP)",
+      duration: 220,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/XQat6rNNbdQ/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3m7hbh15qrlvNRB7aEawWqSzHXbcA",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UC3MZNlOw72DZEeoBo7PzHEA",
+          name: "Zuna",
+        ),
+      ],
+      artists_txt: Some("Zuna"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "EQyU6fGDn0c",
+      title: "Corleone",
+      duration: 220,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/EQyU6fGDn0c/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mNa1-7Y3ah2s2NYjk3gAxH_JP4Tg",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCZHCkx-08zBqSD1A1C5TWrA",
+          name: "RAF Camora",
+        ),
+      ],
+      artists_txt: Some("RAF Camora"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "g4poKgQZX6w",
+      title: "Beverly Hills",
+      duration: 219,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/g4poKgQZX6w/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mvXqxNHjDz2JmmgsJFmkdYLDwOkQ",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCuA6k6g0Xzf6-JlgMXSSA0g",
+          name: "Ufo361",
+        ),
+      ],
+      artists_txt: Some("Ufo361"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "YTHr7gxwYUQ",
+      title: "Airmax gegen Kopf (feat. Luciano)",
+      duration: 167,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/YTHr7gxwYUQ/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kmyX3pFClaPDWm60jo3Tj-eYfYTw",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCeKm0uZEL5xCB57pNgOw7mg",
+          name: "Dardan",
+        ),
+      ],
+      artists_txt: Some("Dardan"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "MfCSDn6q6j4",
+      title: "Direction",
+      duration: 182,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/MfCSDn6q6j4/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nLwkQa04zXFTcMb47vI5xPoWVpqw",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCfKZwKZy9XFtHWPJMDYrmow",
+          name: "YONII",
+        ),
+      ],
+      artists_txt: Some("YONII"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "gx9KFXb5x_o",
+      title: "Egal (feat. Jasmiina)",
+      duration: 166,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/gx9KFXb5x_o/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mCcQp0pyVKziQI7cQPFf2BWPXBoQ",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCx_r_19OjCTU93Koa2kFr1w",
+          name: "Anstandslos & Durchgeknallt",
+        ),
+      ],
+      artists_txt: Some("Anstandslos & Durchgeknallt"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "d7R7DQ5tlQo",
+      title: "Sag Nix",
+      duration: 205,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/d7R7DQ5tlQo/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kBugfTjy0gWhn2GrLtqtGXbqLWXw",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCZHCkx-08zBqSD1A1C5TWrA",
+          name: "RAF Camora",
+        ),
+      ],
+      artists_txt: Some("RAF Camora"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "cZPjgcqHSa8",
+      title: "BWA (feat. Hanybal)",
+      duration: 294,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/cZPjgcqHSa8/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nMzEHpRx_MN2g8yrjYOF6Iah2b0g",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCwdy-QmH4y-gqjC8PMbKVVg",
+          name: "Olexesh",
+        ),
+      ],
+      artists_txt: Some("Olexesh"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "ogDLdREonWY",
+      title: "Ketten Cartier",
+      duration: 198,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/ogDLdREonWY/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3l2JV9H7oYwLn_F9jqzA2Iu8CU-Qw",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCXUNYorrTVi7iG5FUnr-Gbg",
+          name: "Azet",
+        ),
+      ],
+      artists_txt: Some("Azet"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "pRQpKprUUPY",
+      title: "Moe Phoenix - Ching Chang Chong (prod. by FL3X & Unik)",
+      duration: 226,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/pRQpKprUUPY/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mOVje3r-6xh9GbNufVpSejO0_Yrg",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCAbiUl42boUt6vUL019r9Bw",
+          name: "LifeisPainTv",
+        ),
+      ],
+      artists_txt: Some("LifeisPainTv"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "qZoQw9b4uCo",
+      title: "Handschellen (feat. Ardian Bujupi)",
+      duration: 221,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/qZoQw9b4uCo/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nnHr0NCQTCpfBfcPbnwfOI_Mf3fA",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCRU-s8cv-aOOuGXosCQ-hWA",
+          name: "Payy",
+        ),
+      ],
+      artists_txt: Some("Payy"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "q23qghoF6Nk",
+      title: "Gjynah",
+      duration: 271,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/q23qghoF6Nk/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nkVytsYqpdHmM6QhX5Y3GSV81ZWQ",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCXUNYorrTVi7iG5FUnr-Gbg",
+          name: "Azet",
+        ),
+      ],
+      artists_txt: Some("Azet"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "yU0aKa7PFBg",
+      title: "Herzbeben",
+      duration: 206,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/yU0aKa7PFBg/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lkvuKDU4uF9TqAANhPlVvXMg-kHw",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCE7_p3lcXA-YXRZp2PjrgYw",
+          name: "Helene Fischer",
+        ),
+      ],
+      artists_txt: Some("Helene Fischer"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "DVCAqvypaCc",
+      title: "Jump",
+      duration: 202,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/DVCAqvypaCc/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3llvl8DJX_-7ry0RRT_N_NYCkdwNQ",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCeKm0uZEL5xCB57pNgOw7mg",
+          name: "Dardan",
+        ),
+      ],
+      artists_txt: Some("Dardan"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "XdnI7sm6LeQ",
+      title: "Andere Liga",
+      duration: 240,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/XdnI7sm6LeQ/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kz8_m5K9sEEgDBy4EFLm95Yqv1KQ",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCZHCkx-08zBqSD1A1C5TWrA",
+          name: "RAF Camora",
+        ),
+      ],
+      artists_txt: Some("RAF Camora"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "KcOXNSJtFLg",
+      title: "Trikot von Paris",
+      duration: 255,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/KcOXNSJtFLg/hqdefault.jpg?sqp=-oaymwEWCMACELQBIAQqCghQEJADGFogjgJIWg&rs=AMzJL3n1lFTL7AeKXIwoWr0n7R0OVeeC0w",
+          width: 320,
+          height: 180,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCaDQ6gDmX-hVFWz_SDb9GKg",
+          name: "Sugar MMFK",
+        ),
+      ],
+      artists_txt: Some("Sugar MMFK"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "K0UxHXZwgsg",
+      title: "Pfirsich",
+      duration: 245,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/K0UxHXZwgsg/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kbt6N-exJAiQ2VWD-N2SAZb72t1Q",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCHOrIXuV6IFUS-cdHEwPYcg",
+          name: "Fler",
+        ),
+      ],
+      artists_txt: Some("Fler"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "eyyNwOSQ3Yg",
+      title: "MGP \"BAD BITCH\" (Official Video)",
+      duration: 166,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/eyyNwOSQ3Yg/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3loat8o2KqxI50eA_0t33mayE-vZg",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UC7VGRS1q1XzHsAm1uM1PQ_Q",
+          name: "MGP",
+        ),
+      ],
+      artists_txt: Some("MGP"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "1yskotqNuXI",
+      title: "Bros",
+      duration: 219,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/1yskotqNuXI/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lw5HdQiGkWPICNK6JQ0zQrb_OY_A",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCrWi76yRUDOyIkoM-3rst6g",
+          name: "RIN",
+        ),
+      ],
+      artists_txt: Some("RIN"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "C03n4AAiL9w",
+      title: "Geiles Leben (Madizin single mix)",
+      duration: 211,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/C03n4AAiL9w/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lKrWXIdWTuniJIbm4bcGAVMDqodA",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCrbdusWBqxVtEsktO3EfP3A",
+          name: "Glasperlenspiel",
+        ),
+      ],
+      artists_txt: Some("Glasperlenspiel"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "a2wNRTKRusM",
+      title: "Moe Phoenix - Mohammad (prod. by AriBeatz)",
+      duration: 197,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/a2wNRTKRusM/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mf255VHOdZkqjal69y_6vncWOj_Q",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCAbiUl42boUt6vUL019r9Bw",
+          name: "LifeisPainTv",
+        ),
+      ],
+      artists_txt: Some("LifeisPainTv"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "AIf61iHwWMQ",
+      title: "Waffen (feat. Bonez MC, Ufo361 & Gzuz)",
+      duration: 268,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/AIf61iHwWMQ/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3m2Y0IwkBA5nlfo_yGhB4Rl_PQWrw",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCZHCkx-08zBqSD1A1C5TWrA",
+          name: "RAF Camora",
+        ),
+      ],
+      artists_txt: Some("RAF Camora"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "BixqbSRjY2Y",
+      title: "Alles probiert (feat. Bonez MC)",
+      duration: 319,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/BixqbSRjY2Y/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kJXX_D3CBHvhk4-eXoeEjLuPDLuA",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCZHCkx-08zBqSD1A1C5TWrA",
+          name: "RAF Camora",
+        ),
+      ],
+      artists_txt: Some("RAF Camora"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "Acgy-3d4P6o",
+      title: "Erfolg ist kein Glück",
+      duration: 226,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/Acgy-3d4P6o/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3llC-9c8Ba6pCqm5MjtPHNJJrl5Ww",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCJWteOVucKiI2Zy39jGoMZw",
+          name: "Kontra K",
+        ),
+      ],
+      artists_txt: Some("Kontra K"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "5M_yA9M7yNc",
+      title: "Gotham City",
+      duration: 156,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/5M_yA9M7yNc/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lDthGAX5eyBgMY1Mk73ruGWvUZTA",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCZHCkx-08zBqSD1A1C5TWrA",
+          name: "RAF Camora",
+        ),
+      ],
+      artists_txt: Some("RAF Camora"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "PjJuezhos3U",
+      title: "Liebe macht blind",
+      duration: 258,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/PjJuezhos3U/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nvGDR0Dry3ue3PRNX5hBpc8ZXJHQ",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCupgfYuFD4-0Rq7yPIVDLtA",
+          name: "Fard",
+        ),
+      ],
+      artists_txt: Some("Fard"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "XMutaJI2-kc",
+      title: "Mama ist nicht stolz",
+      duration: 262,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/XMutaJI2-kc/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kSFI5TL3IhmMKE4AbQVq5cNGDdlA",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UChewMSJ_RAvnoPqMyJZ95_g",
+          name: "18 Karat",
+        ),
+      ],
+      artists_txt: Some("18 Karat"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "Xac6Q7hcZkQ",
+      title: "Monica Bellucci",
+      duration: 228,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/Xac6Q7hcZkQ/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mUrl21Lg5TnRVZlS_HsjExiHbykA",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCrWi76yRUDOyIkoM-3rst6g",
+          name: "RIN",
+        ),
+      ],
+      artists_txt: Some("RIN"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "JfwjsjBcDoU",
+      title: "Achterbahn",
+      duration: 222,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/JfwjsjBcDoU/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3m9YWQi2VwUWy0HbvTp5eABMv19ig",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCE7_p3lcXA-YXRZp2PjrgYw",
+          name: "Helene Fischer",
+        ),
+      ],
+      artists_txt: Some("Helene Fischer"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "zshiQUV3ohw",
+      title: "MOE PHOENIX feat. VEYSEL - GAUNER (prod. by Ghana Beats)",
+      duration: 226,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/zshiQUV3ohw/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mvfu8TUWbiYPBd5KeknzelsyMhGA",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCAbiUl42boUt6vUL019r9Bw",
+          name: "LifeisPainTv",
+        ),
+      ],
+      artists_txt: Some("LifeisPainTv"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "g1eTAt1_VAM",
+      title: "Hype (feat. Abdi & CELO)",
+      duration: 303,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/g1eTAt1_VAM/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3ln4VrxhGpWamDXIRK28ZG36zebpw",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCr-f5ECZ7DCJk7ygmEij1HA",
+          name: "Abdi",
+        ),
+        ChannelId(
+          id: "UC8Bnfb1ULvFNIK-asnJ68rQ",
+          name: "CELO",
+        ),
+      ],
+      artists_txt: Some("Abdi & CELO"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "c3rLrFC8igY",
+      title: "Dame - Auf die guten alten Zeiten [Official HD Video]",
+      duration: 252,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/c3rLrFC8igY/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nlwP8jhSDHu6UWrfKkg_6aYf4O2w",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [],
+      artists_txt: Some("Damestream Records"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "1im4DNEYzEM",
+      title: "Optimal (instrumental)",
+      duration: 209,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/1im4DNEYzEM/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3maFTAbUASsI-cKvFzl-bMxaz1ZFA",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UC8gxc2fYnL1tHPOXHXyI6sQ",
+          name: "Bonez MC",
+        ),
+        ChannelId(
+          id: "UCVvL70F5a_APtKzTjGb2L0w",
+          name: "Gzuz",
+        ),
+      ],
+      artists_txt: Some("Bonez MC & Gzuz"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "8BUxw9ocM2s",
+      title: "EULE aka Jazzy Gudd - Stehaufmädchen (Official Video)",
+      duration: 184,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/8BUxw9ocM2s/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3k0xjHaaLKRl13FIINRNV8G27w82Q",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCO8_DFkr_fn_YDup_7OZNow",
+          name: "El Cartel Music",
+        ),
+      ],
+      artists_txt: Some("El Cartel Music"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "g4cSpnGbHPE",
+      title: "Zweistellige Haftstrafen",
+      duration: 201,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/g4cSpnGbHPE/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mzqofFr-t8T8RFLsGBuU56C5N6DQ",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCQpUg11TCB1eLGO1f59Ce6Q",
+          name: "King Khalil",
+        ),
+        ChannelId(
+          id: "UCa7FGSUsN2wNRUclibmicMg",
+          name: "Capital Bra",
+        ),
+      ],
+      artists_txt: Some("King Khalil & Capital Bra"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "1Sdj9MiCowQ",
+      title: "187",
+      duration: 296,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/1Sdj9MiCowQ/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nS4GO2Le1ipaSHUp9UHhcgEuK7zA",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UC8gxc2fYnL1tHPOXHXyI6sQ",
+          name: "Bonez MC",
+        ),
+        ChannelId(
+          id: "UCVvL70F5a_APtKzTjGb2L0w",
+          name: "Gzuz",
+        ),
+      ],
+      artists_txt: Some("Bonez MC & Gzuz"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "2DbR35g-0ZY",
+      title: "Der Pate",
+      duration: 237,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/2DbR35g-0ZY/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kdZmuRrmJBGfPZXaH2N-PHp6vlzw",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCuA6k6g0Xzf6-JlgMXSSA0g",
+          name: "Ufo361",
+        ),
+      ],
+      artists_txt: Some("Ufo361"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "j09hpp3AxIE",
+      title: "Tage wie diese",
+      duration: 272,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/j09hpp3AxIE/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nfWvqhMW_GfFDjgdTN1cMkalIZxQ",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCDOMU7d2xhTF90FFzij3kgg",
+          name: "Die Toten Hosen",
+        ),
+      ],
+      artists_txt: Some("Die Toten Hosen"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "J3GN6JXjV3g",
+      title: "Frische Luft",
+      duration: 200,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/J3GN6JXjV3g/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mdbJXJMnc-or27SYD8R3pjilDXlQ",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCXDkh6v5SI-Y5W-9nGcV8FA",
+          name: "Wincent Weiss",
+        ),
+      ],
+      artists_txt: Some("Wincent Weiss"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "pULl-p02upM",
+      title: "Check (feat. Xatar)",
+      duration: 240,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/pULl-p02upM/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nh799vU0wPzY2ytSmeOPBH38eALg",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCriUQh7BGZUop8BW4ZTx7Lg",
+          name: "Eunique",
+        ),
+      ],
+      artists_txt: Some("Eunique"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "O6By8JeCtQQ",
+      title: "Alles richtig so (Instrumental)",
+      duration: 210,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/O6By8JeCtQQ/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nk34pJNIkWHcxpyyNXS66OWr3ckw",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCv83kiz_XGb4rfO0CXxzn5A",
+          name: "King Khalil",
+        ),
+      ],
+      artists_txt: Some("King Khalil"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "NGn3IYQ7M7E",
+      title: "Vorankommen",
+      duration: 228,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/NGn3IYQ7M7E/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nik2tVOHUckqAwAeSnzQfX1xch2Q",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCQCDX-NwtNYXcRaVRCmIZKw",
+          name: "Luciano",
+        ),
+      ],
+      artists_txt: Some("Luciano"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "o43oI5x86dI",
+      title: "Schnapp!",
+      duration: 166,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/o43oI5x86dI/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lcyy2u7kVdFvtPonuqLhDv6t5lUA",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCVvL70F5a_APtKzTjGb2L0w",
+          name: "Gzuz",
+        ),
+      ],
+      artists_txt: Some("Gzuz"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "7TNqUrINxzs",
+      title: "Besser als 50 Cent (Instrumental)",
+      duration: 197,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/7TNqUrINxzs/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kpAsFpwzoQ-UD_RzGa0ExoQMtgcA",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCmhABfwtPqVfEcn0aKpMRaw",
+          name: "Veysel",
+        ),
+      ],
+      artists_txt: Some("Veysel"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "f3BD5Zm3cp0",
+      title: "Palmen aus Gold",
+      duration: 231,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/f3BD5Zm3cp0/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mxCAbmFZTlKVp-PX0PJk8fpvZdSg",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UC8gxc2fYnL1tHPOXHXyI6sQ",
+          name: "Bonez MC",
+        ),
+        ChannelId(
+          id: "UCZHCkx-08zBqSD1A1C5TWrA",
+          name: "RAF Camora",
+        ),
+      ],
+      artists_txt: Some("Bonez MC & RAF Camora"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "sF4yTDp95Eo",
+      title: "Lampedusa",
+      duration: 203,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/sF4yTDp95Eo/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nQ5ldvK9on8deipW07A_6XmUVamQ",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCfKZwKZy9XFtHWPJMDYrmow",
+          name: "YONII",
+        ),
+      ],
+      artists_txt: Some("YONII"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "1EwLNHg6ejY",
+      title: "Ajajaj (feat. Soolking)",
+      duration: 224,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/1EwLNHg6ejY/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lwps5a7iqy_EldJCIgl-XuXhw3jg",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCjWIuu9eZlxQaFgLZfQx7CA",
+          name: "Mert",
+        ),
+      ],
+      artists_txt: Some("Mert"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "-l75qaSDWe8",
+      title: "Bongzimmer",
+      duration: 287,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/-l75qaSDWe8/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lXnzM-rTh-zXr88zBKemiKKsYBeg",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCFNSyezyK_1_f0nOrNaCdHQ",
+          name: "SXTN",
+        ),
+      ],
+      artists_txt: Some("SXTN"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "7h7ntYLLrfQ",
+      title: "Kogong",
+      duration: 223,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/7h7ntYLLrfQ/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3l1I5hUp81fZfyzHVyt6YMlFH6cpw",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCkQRXVZuBMktEdVyptoUgGg",
+          name: "Mark Forster",
+        ),
+      ],
+      artists_txt: Some("Mark Forster"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "ApUl3Ops69M",
+      title: "AZET - FAST LIFE (prod. by m3) #KMNSTREET VOL. 1",
+      duration: 179,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/ApUl3Ops69M/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kyz_IgQaYaOyaYbnJp-NyAQWMMpg",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCDLPHv0SrvyUzct8UYQ9R_g",
+          name: "KMNGANG",
+        ),
+      ],
+      artists_txt: Some("KMNGANG"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "2YcJ8Wightw",
+      title: "CL500",
+      duration: 152,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/2YcJ8Wightw/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mPorYxL_EZ3HJW7XkLsOMyXJRwTQ",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCVvL70F5a_APtKzTjGb2L0w",
+          name: "Gzuz",
+        ),
+      ],
+      artists_txt: Some("Gzuz"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "W3q8Od5qJio",
+      title: "Du hast",
+      duration: 236,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/W3q8Od5qJio/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lU9rCLLB5-tGTbMY4VddAj2fX0_A",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCs6GGpd9zvsYghuYe0VDFUQ",
+          name: "Rammstein",
+        ),
+      ],
+      artists_txt: Some("Rammstein"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "WPFLAjmWCtk",
+      title: "Astronaut (feat. Andreas Bourani)",
+      duration: 268,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/WPFLAjmWCtk/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kRYRfZM-1t_DHI3rKxAVAsb6xBlA",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCgosMU69MpoCqhuS1JZj6Cw",
+          name: "Sido",
+        ),
+      ],
+      artists_txt: Some("Sido"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "tC76tIp0kBk",
+      title: "So wie du bist (feat. Lary)",
+      duration: 312,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/tC76tIp0kBk/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kyBxTmyWDlXnobxfTP3b1_eFomug",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCcyO_SNHFhbdogh9PPBB9LA",
+          name: "MoTrip",
+        ),
+      ],
+      artists_txt: Some("MoTrip"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "kiMG_JV2gbo",
+      title: "Adel Tawil \"Lieder\" (Official Lyrics Video)",
+      duration: 230,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/kiMG_JV2gbo/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mST1CbRad_P2tovi7PverVHfYLSg",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCJjgJI2vEDxGZYbQ_-2ZGXQ",
+          name: "Adel Tawil",
+        ),
+      ],
+      artists_txt: Some("Adel Tawil"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "CrYYg_atdtk",
+      title: "Marteria, Yasha, Miss Platnum - Lila Wolken (Official Video)",
+      duration: 231,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/CrYYg_atdtk/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lTbl71twx0lB7adIXPA1R3r_4ixQ",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCicJjripVxiTXbUfociVZwQ",
+          name: "MARTERIA",
+        ),
+      ],
+      artists_txt: Some("MARTERIA"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "XTPGpBBwt1w",
+      title: "Hurra die Welt geht unter (feat. Henning May)",
+      duration: 299,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/XTPGpBBwt1w/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nMcVn4epzwg2Axrjjl62wI7XBeaA",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UC5k_3LEPSGchsGEGpqoF6dg",
+          name: "K.I.Z",
+        ),
+      ],
+      artists_txt: Some("K.I.Z"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "uC08L4xxjNM",
+      title: "80 Millionen",
+      duration: 257,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/uC08L4xxjNM/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kg9Z-mzC2WGtxCWjqc-bnJM36qgQ",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCEHalRyK7ZSFafTtAn3uYIA",
+          name: "Max Giesinger",
+        ),
+      ],
+      artists_txt: Some("Max Giesinger"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "5fAoV_AAMf0",
+      title: "Bauch und Kopf (Videoclip)",
+      duration: 257,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/5fAoV_AAMf0/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3myIarnH-vyPtz4csyLkS9lMUD5Aw",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCkQRXVZuBMktEdVyptoUgGg",
+          name: "Mark Forster",
+        ),
+      ],
+      artists_txt: Some("Mark Forster"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "u5Vz7obL460",
+      title: "Keine Maschine",
+      duration: 202,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/u5Vz7obL460/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lim7InSFTb1G54EaZ0HVOSIgogHw",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCcgml_Q7npEKVGM2bSksWBA",
+          name: "Tim Bendzko",
+        ),
+      ],
+      artists_txt: Some("Tim Bendzko"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "ZPJlyRv_IGI",
+      title: "Deichkind - Leider Geil (Official Video)",
+      duration: 189,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/ZPJlyRv_IGI/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3n1twL6cpEZeQhEl8QoHfVf7cM2Pg",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCT7MCko43YqeZ1x55O1DRtw",
+          name: "deichkindTV",
+        ),
+      ],
+      artists_txt: Some("deichkindTV"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "s2SLbln-JwE",
+      title: "BIBI & TINA  \" Jungs gegen Mädchen - MÄDCHEN GEGEN JUNGS - Das offizielle Video!",
+      duration: 172,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/s2SLbln-JwE/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3ltIxSy4LoU_-fArtrikLGXNRl1XQ",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCqsyOBd31LT-EwwqiSBKxSA",
+          name: "pop-out Musik",
+        ),
+      ],
+      artists_txt: Some("pop-out Musik"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "28xHtRw6pG8",
+      title: "Patte fließt",
+      duration: 206,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/28xHtRw6pG8/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kVwxZw2B34VAnHSTJshYQa9j5xMA",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCXUNYorrTVi7iG5FUnr-Gbg",
+          name: "Azet",
+        ),
+      ],
+      artists_txt: Some("Azet"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "joWoKqUTRvc",
+      title: "Alles & Nichts",
+      duration: 204,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/joWoKqUTRvc/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3movb12YctPFD0IBYWqPsaQw7PALg",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCACOVSEb3DGote2ZHZx6jHw",
+          name: "KC Rebell",
+        ),
+      ],
+      artists_txt: Some("KC Rebell"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "XNMFTqhcNrE",
+      title: "Flash mich (Videoclip)",
+      duration: 236,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/XNMFTqhcNrE/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mSsHLDjHqiqe8UCZJE1RbeRMMz6A",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCkQRXVZuBMktEdVyptoUgGg",
+          name: "Mark Forster",
+        ),
+      ],
+      artists_txt: Some("Mark Forster"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "v3vPLgJ9FX8",
+      title: "Sex",
+      duration: 260,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/v3vPLgJ9FX8/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3l8eDykZMz2z2N_LsJbPguiD3cT1Q",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UC9-2io8F6puEBsQZ8uCQ1qw",
+          name: "Cheat Codes",
+        ),
+        ChannelId(
+          id: "UCPV7kPtFBhHOJbjmWlX85SQ",
+          name: "Kris Kross Amsterdam",
+        ),
+      ],
+      artists_txt: Some("Cheat Codes & Kris Kross Amsterdam"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "UFXOd179kOA",
+      title: "Ebbe und Flut (feat. Hanybal & Xatar)",
+      duration: 213,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/UFXOd179kOA/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3n0eX07lNsT2RdXZxYz_lcbiKP-xg",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCVvL70F5a_APtKzTjGb2L0w",
+          name: "Gzuz",
+        ),
+      ],
+      artists_txt: Some("Gzuz"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "4xRsDnKgHZc",
+      title: "Hol\' mir dein Cousin",
+      duration: 206,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/4xRsDnKgHZc/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nbKBQXBSXiqUGzESK2u4said9-DA",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UC3MZNlOw72DZEeoBo7PzHEA",
+          name: "Zuna",
+        ),
+      ],
+      artists_txt: Some("Zuna"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "mE3IjoEqMqY",
+      title: "Hanybal - VANILLA SKY mit Nimo (prod. von Lucry) [Official 4K Video]",
+      duration: 211,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/mE3IjoEqMqY/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3l4mnV5m6_KouDV0jgGk8Q2Lw1BAQ",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCnH4k3ASwytYAgfsW83OvTg",
+          name: "Azzlackz",
+        ),
+      ],
+      artists_txt: Some("Azzlackz"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "E7e5vxKerqA",
+      title: "Wer Macht Para? (feat. ENO)",
+      duration: 195,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/E7e5vxKerqA/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mGWRNhex4Dn-AofZaYFSb3SZ76rQ",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCeKm0uZEL5xCB57pNgOw7mg",
+          name: "Dardan",
+        ),
+      ],
+      artists_txt: Some("Dardan"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "axmZ_5Rx4Go",
+      title: "Zuhause (feat. Matisyahu)",
+      duration: 210,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/axmZ_5Rx4Go/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3ln3zFIlxlt-cZHQ0RSfqd-GjRTdA",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCJjgJI2vEDxGZYbQ_-2ZGXQ",
+          name: "Adel Tawil",
+        ),
+      ],
+      artists_txt: Some("Adel Tawil"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "44Ig6BsOCYA",
+      title: "Purple Haze",
+      duration: 279,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/44Ig6BsOCYA/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3khpPZLQA__8mQdgGaTYkH5MTBGeg",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCwdy-QmH4y-gqjC8PMbKVVg",
+          name: "Olexesh",
+        ),
+      ],
+      artists_txt: Some("Olexesh"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "3iLBFEJjdN0",
+      title: "Löwenzahn (feat. Olexesh)",
+      duration: 242,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/3iLBFEJjdN0/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nu5nTaA5NAoYKDKFqCziZXcoHv8Q",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCgosMU69MpoCqhuS1JZj6Cw",
+          name: "Sido",
+        ),
+      ],
+      artists_txt: Some("Sido"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "M-ncq2eHF_k",
+      title: "Ich will nur (Live)",
+      duration: 233,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/M-ncq2eHF_k/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lRiJ0It7T26TBKf11KmupiXQM3yg",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCwoO85C8_Pzq-2ek7x53Y9Q",
+          name: "Philipp Poisel",
+        ),
+      ],
+      artists_txt: Some("Philipp Poisel"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "-AJoJ-ggiKI",
+      title: "LX & Maxwell feat. Gzuz - HaifischNikez (Jambeatz)",
+      duration: 215,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/-AJoJ-ggiKI/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mBFwSutY27Cg9Qguh6a0IRAqWmug",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCGh8tmH9x9njaI2mXfh2fyg",
+          name: "CrhymeTV",
+        ),
+      ],
+      artists_txt: Some("CrhymeTV"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "cgb-zp9DDHg",
+      title: "Brot brechen",
+      duration: 191,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/cgb-zp9DDHg/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lamoVIcN2q2OwHp3dael5FCyckXw",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCyavaV4GE4o3jW1X4k55fLA",
+          name: "Bushido",
+        ),
+        ChannelId(
+          id: "UCclvs9lPYVhUNaJd4hWPEgg",
+          name: "Shindy",
+        ),
+      ],
+      artists_txt: Some("Bushido & Shindy"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "Q7ZXg3KQLt0",
+      title: "Genozid",
+      duration: 407,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/Q7ZXg3KQLt0/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lf8_C4ADg9w2mQlrVs7eovgwYnsw",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCLmyWpIwbKr6HJQ_teYCkVw",
+          name: "Kollegah",
+        ),
+      ],
+      artists_txt: Some("Kollegah"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "ysAEZOwp5rM",
+      title: "John Gotti",
+      duration: 207,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/ysAEZOwp5rM/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lVLPd_yYSO9xCbGIQruofzxarXmw",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCLmyWpIwbKr6HJQ_teYCkVw",
+          name: "Kollegah",
+        ),
+      ],
+      artists_txt: Some("Kollegah"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "m5vfng33SVE",
+      title: "Das ist dein Leben",
+      duration: 282,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/m5vfng33SVE/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mhyLzc0t56EXwAPur-PUR3PW4vMA",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCUtLzBYwbDWCbZpZ5qkMLwQ",
+          name: "Philipp Dittberner",
+        ),
+      ],
+      artists_txt: Some("Philipp Dittberner"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "yMfgjVlGbUE",
+      title: "Apocalyptic Infinity",
+      duration: 1622,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/yMfgjVlGbUE/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3n_YHxl5zLlX77d3oZEi2EnsgmZNw",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCkUwPD973AomSmANZuoCrfg",
+          name: "SpongeBOZZ",
+        ),
+      ],
+      artists_txt: Some("SpongeBOZZ"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "OQIYEPe6DWY",
+      title: "Kraftwerk - Das Model",
+      duration: 262,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/OQIYEPe6DWY/hqdefault.jpg?sqp=-oaymwEWCMACELQBIAQqCghQEJADGFogjgJIWg&rs=AMzJL3mQmoIe2DRlb7QWVUVJX3SCeWbH_Q",
+          width: 320,
+          height: 180,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCg9Mw2YNnXqrecKl4bKLVCQ",
+          name: "80smusicfanman",
+        ),
+      ],
+      artists_txt: Some("80smusicfanman"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "5FS8RIH7BpI",
+      title: "Wünsch dir was",
+      duration: 303,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/5FS8RIH7BpI/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kNOrBGoV1P7wuYrmKGlEW5yNsoyw",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCDvquKlXAy3pY4dFwj3QKtw",
+          name: "Genetikk",
+        ),
+      ],
+      artists_txt: Some("Genetikk"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "zSRKgFB9piY",
+      title: "Keine ist wie Du ( Gregor Meyle Acoustic Cover )",
+      duration: 256,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/zSRKgFB9piY/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nF4dUIKKNM5y-LmsIOOZoATrT-0Q",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCXGYZ-OhdOpPBamHX3K9YRg",
+          name: "Joel Brandenstein",
+        ),
+      ],
+      artists_txt: Some("Joel Brandenstein"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "e4eHhgwHCME",
+      title: "Sturmmaske auf (Intro)",
+      duration: 275,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/e4eHhgwHCME/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nQl_6lMyV10I2zjZyFcJEdwQaIZg",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCLmyWpIwbKr6HJQ_teYCkVw",
+          name: "Kollegah",
+        ),
+        ChannelId(
+          id: "UC4gi504gkSyoXt9vfaGUr9A",
+          name: "Farid Bang",
+        ),
+      ],
+      artists_txt: Some("Kollegah & Farid Bang"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "q3hZvho7jNk",
+      title: "Paper",
+      duration: 222,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/q3hZvho7jNk/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kOcKYMlDrXaKxJDoeH87Q_Mzd_SQ",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCACOVSEb3DGote2ZHZx6jHw",
+          name: "KC Rebell",
+        ),
+      ],
+      artists_txt: Some("KC Rebell"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "0nWysyj_Z4Y",
+      title: "Flouz kommt Flouz geht",
+      duration: 191,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/0nWysyj_Z4Y/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kSMItp6YIX6w_qDux1u8F6Cagyig",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCvnCXuh_zhm75EJ89qJ95Kw",
+          name: "385idéal",
+        ),
+      ],
+      artists_txt: Some("385idéal"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "aGCcLWU0OVo",
+      title: "Gürtel am Arm",
+      duration: 218,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/aGCcLWU0OVo/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kMGpv4wmbGpoj5kuiXb9KdKzV8oA",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCgosMU69MpoCqhuS1JZj6Cw",
+          name: "Sido",
+        ),
+      ],
+      artists_txt: Some("Sido"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "OQsXLK4MeEA",
+      title: "JBB 2013 - SpongeBOZZ vs. Gio (Finale HR) prod. by Digital Drama",
+      duration: 400,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/OQsXLK4MeEA/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3ne3Hh8Kkwk16N0zSVhDnPEkcAqwA",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCUQY0RLnpERvFlTCtzdU3Xg",
+          name: "JuliensBlog",
+        ),
+      ],
+      artists_txt: Some("JuliensBlog"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "xm7dxIqOO2M",
+      title: "Halbmond",
+      duration: 272,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/xm7dxIqOO2M/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nDcyYoQvs0hGNEKrvL7fVOJY5L3w",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCAOPSjipxqxXk5mctGHiUoQ",
+          name: "Kurdo",
+        ),
+      ],
+      artists_txt: Some("Kurdo"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "jlaaByab4Zk",
+      title: "Ljubi me budalo (Radio)",
+      duration: 224,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/jlaaByab4Zk/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3m6sTRTunsqQGLxWlaU4vcX8eqPEQ",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UC2-YEIq9n-IH6eUMqzEWAaQ",
+          name: "MC Yankoo",
+        ),
+        ChannelId(
+          id: "UCWa9AoWdpNpEvDVoi62rITg",
+          name: "Milica Todorović",
+        ),
+      ],
+      artists_txt: Some("MC Yankoo & Milica Todorović"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "KG9-jSqXz4U",
+      title: "Oft gefragt (AMK Version)",
+      duration: 205,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/KG9-jSqXz4U/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nxsaHyT0dlyjgAjia_RoqrrWra_g",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCK2ZLsY9Mb_dxZiZfKE3lGg",
+          name: "AnnenMayKantereit",
+        ),
+      ],
+      artists_txt: Some("AnnenMayKantereit"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "7dISZnwsBSA",
+      title: "1,40m (feat. Philipp Dittberner)",
+      duration: 284,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/7dISZnwsBSA/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lnfTeZo81tTNqp-wQjR--Oxv03TA",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCcV2StZKkutS-1GsgL-XobQ",
+          name: "Prinz Pi",
+        ),
+      ],
+      artists_txt: Some("Prinz Pi"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "F_PPdS-PB14",
+      title: "Idéal",
+      duration: 253,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/F_PPdS-PB14/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3krIwo8VzYKk9qVoIknbptf_RNqiA",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCiBODJaGfd1aBHE7BF_Iv7w",
+          name: "Nimo",
+        ),
+      ],
+      artists_txt: Some("Nimo"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "DMg9idvVY8M",
+      title: "Bitter",
+      duration: 173,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/DMg9idvVY8M/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lH9rwO-ADA6_jBP3xHCJ0r4mcp_A",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCiBODJaGfd1aBHE7BF_Iv7w",
+          name: "Nimo",
+        ),
+      ],
+      artists_txt: Some("Nimo"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "DGEmoSFI94Y",
+      title: "Kurz Für Immer Bleiben",
+      duration: 218,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/DGEmoSFI94Y/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kadR5_E5BFVgv-slX2RBdYbHyDgw",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCAbxL0lZcmlaQrzoUbrvS3A",
+          name: "SDP",
+        ),
+      ],
+      artists_txt: Some("SDP"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+    TrackItem(
+      id: "BtZufymxHvE",
+      title: "Ausser Kontrolle",
+      duration: 159,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/BtZufymxHvE/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kHr0G-SFBkafG5ym10v9EX0F8tmw",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCqG3KFVWvCPCtKzEYifV5Ew",
+          name: "Maxwell",
+        ),
+        ChannelId(
+          id: "UC_oDmJUkrvH5UAWsHFFD3Kw",
+          name: "LX",
+        ),
+      ],
+      artists_txt: Some("Maxwell & LX"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+  ],
+  ctoken: Some("4qmFsgI8EiRWTFBMNWREeDY4MVQ0YlI3WkYxSXVXek92MW9tbFJiRTdQaUoaFGVnZFFWRHBEVGtGQ2tnRURDTG9F"),
+  endpoint: browse,
+)
