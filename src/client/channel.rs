@@ -136,10 +136,6 @@ impl MapResponse<Channel<Paginator<VideoItem>>> for response::Channel {
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
     ) -> Result<MapResult<Channel<Paginator<VideoItem>>>, ExtractionError> {
         let content = map_channel_content(self.contents, self.alerts)?;
-        let grid = match content.content {
-            response::channel::ChannelContent::GridRenderer { items } => Some(items),
-            _ => None,
-        };
 
         let channel_data = map_channel(
             MapChannelData {
@@ -154,37 +150,22 @@ impl MapResponse<Channel<Paginator<VideoItem>>> for response::Channel {
             lang,
         )?;
 
-        let v_res = grid
-            .map(|g| {
+        let v_res = match content.content {
+            ChannelContent::GridRenderer { items } => {
                 let mut mapper =
                     response::YouTubeListMapper::<VideoItem>::with_channel(lang, &channel_data);
-                mapper.map_response(g);
+                mapper.map_response(items);
 
                 MapResult {
                     c: Paginator::new(None, mapper.items, mapper.ctoken),
                     warnings: mapper.warnings,
                 }
-            })
-            .unwrap_or_default();
+            }
+            _ => MapResult::default(),
+        };
 
         Ok(MapResult {
-            c: Channel {
-                id: channel_data.id,
-                name: channel_data.name,
-                subscriber_count: channel_data.subscriber_count,
-                avatar: channel_data.avatar,
-                verification: channel_data.verification,
-                description: channel_data.description,
-                tags: channel_data.tags,
-                vanity_url: channel_data.vanity_url,
-                banner: channel_data.banner,
-                mobile_banner: channel_data.mobile_banner,
-                tv_banner: channel_data.tv_banner,
-                has_shorts: channel_data.has_shorts,
-                has_live: channel_data.has_live,
-                visitor_data: channel_data.visitor_data,
-                content: v_res.c,
-            },
+            c: combine_channel_data(channel_data, v_res.c),
             warnings: v_res.warnings,
         })
     }
@@ -198,10 +179,6 @@ impl MapResponse<Channel<Paginator<PlaylistItem>>> for response::Channel {
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
     ) -> Result<MapResult<Channel<Paginator<PlaylistItem>>>, ExtractionError> {
         let content = map_channel_content(self.contents, self.alerts)?;
-        let grid = match content.content {
-            response::channel::ChannelContent::GridRenderer { items } => Some(items),
-            _ => None,
-        };
 
         let channel_data = map_channel(
             MapChannelData {
@@ -216,37 +193,22 @@ impl MapResponse<Channel<Paginator<PlaylistItem>>> for response::Channel {
             lang,
         )?;
 
-        let p_res = grid
-            .map(|g| {
+        let p_res = match content.content {
+            ChannelContent::GridRenderer { items } => {
                 let mut mapper =
                     response::YouTubeListMapper::<PlaylistItem>::with_channel(lang, &channel_data);
-                mapper.map_response(g);
+                mapper.map_response(items);
 
                 MapResult {
                     c: Paginator::new(None, mapper.items, mapper.ctoken),
                     warnings: mapper.warnings,
                 }
-            })
-            .unwrap_or_default();
+            }
+            _ => MapResult::default(),
+        };
 
         Ok(MapResult {
-            c: Channel {
-                id: channel_data.id,
-                name: channel_data.name,
-                subscriber_count: channel_data.subscriber_count,
-                avatar: channel_data.avatar,
-                verification: channel_data.verification,
-                description: channel_data.description,
-                tags: channel_data.tags,
-                vanity_url: channel_data.vanity_url,
-                banner: channel_data.banner,
-                mobile_banner: channel_data.mobile_banner,
-                tv_banner: channel_data.tv_banner,
-                has_shorts: channel_data.has_shorts,
-                has_live: channel_data.has_live,
-                visitor_data: channel_data.visitor_data,
-                content: p_res.c,
-            },
+            c: combine_channel_data(channel_data, p_res.c),
             warnings: p_res.warnings,
         })
     }
@@ -261,10 +223,6 @@ impl MapResponse<Channel<ChannelInfo>> for response::Channel {
     ) -> Result<MapResult<Channel<ChannelInfo>>, ExtractionError> {
         let content = map_channel_content(self.contents, self.alerts)?;
         let mut warnings = Vec::new();
-        let meta = match content.content {
-            response::channel::ChannelContent::ChannelAboutFullMetadataRenderer(meta) => Some(meta),
-            _ => None,
-        };
 
         let channel_data = map_channel(
             MapChannelData {
@@ -279,54 +237,41 @@ impl MapResponse<Channel<ChannelInfo>> for response::Channel {
             lang,
         )?;
 
-        let cinfo = meta
-            .map(|meta| ChannelInfo {
-                create_date: timeago::parse_textual_date_or_warn(
-                    lang,
-                    &meta.joined_date_text,
-                    &mut warnings,
-                )
-                .map(OffsetDateTime::date),
-                view_count: meta
-                    .view_count_text
-                    .and_then(|txt| util::parse_numeric_or_warn(&txt, &mut warnings)),
-                links: meta
-                    .primary_links
-                    .into_iter()
-                    .filter_map(|l| {
-                        l.navigation_endpoint
-                            .url_endpoint
-                            .map(|url| (l.title, util::sanitize_yt_url(&url.url)))
-                    })
-                    .collect(),
-            })
-            .unwrap_or_else(|| {
+        let cinfo = match content.content {
+            response::channel::ChannelContent::ChannelAboutFullMetadataRenderer(meta) => {
+                ChannelInfo {
+                    create_date: timeago::parse_textual_date_or_warn(
+                        lang,
+                        &meta.joined_date_text,
+                        &mut warnings,
+                    )
+                    .map(OffsetDateTime::date),
+                    view_count: meta
+                        .view_count_text
+                        .and_then(|txt| util::parse_numeric_or_warn(&txt, &mut warnings)),
+                    links: meta
+                        .primary_links
+                        .into_iter()
+                        .filter_map(|l| {
+                            l.navigation_endpoint
+                                .url_endpoint
+                                .map(|url| (l.title, util::sanitize_yt_url(&url.url)))
+                        })
+                        .collect(),
+                }
+            }
+            _ => {
                 warnings.push("no aboutFullMetadata".to_owned());
                 ChannelInfo {
                     create_date: None,
                     view_count: None,
                     links: Vec::new(),
                 }
-            });
+            }
+        };
 
         Ok(MapResult {
-            c: Channel {
-                id: channel_data.id,
-                name: channel_data.name,
-                subscriber_count: channel_data.subscriber_count,
-                avatar: channel_data.avatar,
-                verification: channel_data.verification,
-                description: channel_data.description,
-                tags: channel_data.tags,
-                vanity_url: channel_data.vanity_url,
-                banner: channel_data.banner,
-                mobile_banner: channel_data.mobile_banner,
-                tv_banner: channel_data.tv_banner,
-                has_shorts: channel_data.has_shorts,
-                has_live: channel_data.has_live,
-                visitor_data: channel_data.visitor_data,
-                content: cinfo,
-            },
+            c: combine_channel_data(channel_data, cinfo),
             warnings,
         })
     }
@@ -533,6 +478,26 @@ fn map_channel_content(
             })
         }
         None => Err(response::alerts_to_err(alerts)),
+    }
+}
+
+fn combine_channel_data<T>(channel_data: Channel<()>, content: T) -> Channel<T> {
+    Channel {
+        id: channel_data.id,
+        name: channel_data.name,
+        subscriber_count: channel_data.subscriber_count,
+        avatar: channel_data.avatar,
+        verification: channel_data.verification,
+        description: channel_data.description,
+        tags: channel_data.tags,
+        vanity_url: channel_data.vanity_url,
+        banner: channel_data.banner,
+        mobile_banner: channel_data.mobile_banner,
+        tv_banner: channel_data.tv_banner,
+        has_shorts: channel_data.has_shorts,
+        has_live: channel_data.has_live,
+        visitor_data: channel_data.visitor_data,
+        content,
     }
 }
 
