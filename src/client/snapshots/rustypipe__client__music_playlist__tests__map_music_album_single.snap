@@ -1,0 +1,67 @@
+---
+source: src/client/music_playlist.rs
+expression: map_res.c
+---
+MusicAlbum(
+  id: "MPREb_bHfHGoy7vuv",
+  playlist_id: Some("OLAK5uy_kdSWBZ-9AZDkYkuy0QCc3p0KO9DEHVNH0"),
+  name: "Der Himmel reißt auf",
+  cover: [
+    Thumbnail(
+      url: "https://lh3.googleusercontent.com/sfYeIuiLljpCsDLSooCOkNON1jZwHsEui3fD1FnLSyCMYjLCPQtEgy4_6qBmSGOz3eNWyS-aW4WcZMo8=w60-h60-l90-rj",
+      width: 60,
+      height: 60,
+    ),
+    Thumbnail(
+      url: "https://lh3.googleusercontent.com/sfYeIuiLljpCsDLSooCOkNON1jZwHsEui3fD1FnLSyCMYjLCPQtEgy4_6qBmSGOz3eNWyS-aW4WcZMo8=w120-h120-l90-rj",
+      width: 120,
+      height: 120,
+    ),
+    Thumbnail(
+      url: "https://lh3.googleusercontent.com/sfYeIuiLljpCsDLSooCOkNON1jZwHsEui3fD1FnLSyCMYjLCPQtEgy4_6qBmSGOz3eNWyS-aW4WcZMo8=w226-h226-l90-rj",
+      width: 226,
+      height: 226,
+    ),
+    Thumbnail(
+      url: "https://lh3.googleusercontent.com/sfYeIuiLljpCsDLSooCOkNON1jZwHsEui3fD1FnLSyCMYjLCPQtEgy4_6qBmSGOz3eNWyS-aW4WcZMo8=w544-h544-l90-rj",
+      width: 544,
+      height: 544,
+    ),
+  ],
+  artists: [
+    ChannelId(
+      id: "UCXGYZ-OhdOpPBamHX3K9YRg",
+      name: "Joel Brandenstein",
+    ),
+    ChannelId(
+      id: "UCFTcSVPYRWlDoHisR-ZKwgw",
+      name: "Vanessa Mai",
+    ),
+  ],
+  artists_txt: "Joel Brandenstein & Vanessa Mai",
+  album_type: Single,
+  year: 2020,
+  by_va: false,
+  tracks: [
+    TrackItem(
+      id: "XX0epju-YvY",
+      title: "Der Himmel reißt auf",
+      duration: 183,
+      cover: [],
+      artists: [
+        ChannelId(
+          id: "UCXGYZ-OhdOpPBamHX3K9YRg",
+          name: "Joel Brandenstein",
+        ),
+        ChannelId(
+          id: "UCFTcSVPYRWlDoHisR-ZKwgw",
+          name: "Vanessa Mai",
+        ),
+      ],
+      artists_txt: Some("Joel Brandenstein & Vanessa Mai"),
+      album: None,
+      view_count: None,
+      is_video: true,
+    ),
+  ],
+)

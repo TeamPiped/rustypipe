@@ -1,8 +1,8 @@
 use serde::Deserialize;
-use serde_with::serde_as;
-use serde_with::VecSkipError;
+use serde_with::{serde_as, DefaultOnError, VecSkipError};
 
 use crate::serializer::{
+    ignore_any,
     text::{Text, TextComponents},
     MapResult, VecLogError,
 };
@@ -10,6 +10,7 @@ use crate::serializer::{
 use super::music_item::{MusicContentsRenderer, MusicItem, MusicThumbnailRenderer};
 use super::{ContentRenderer, ContentsRenderer, MusicContinuation};
 
+/// Response model for YouTube Music playlists and albums
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct MusicPlaylist {
@@ -42,11 +43,18 @@ pub(crate) struct SectionList {
     pub section_list_renderer: MusicContentsRenderer<ItemSection>,
 }
 
+#[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub(crate) struct ItemSection {
+pub(crate) enum ItemSection {
     #[serde(alias = "musicPlaylistShelfRenderer")]
-    pub music_shelf_renderer: MusicShelf,
+    MusicShelfRenderer(MusicShelf),
+    MusicCarouselShelfRenderer {
+        #[serde_as(as = "VecLogError<_>")]
+        contents: MapResult<Vec<MusicItem>>,
+    },
+    #[serde(other, deserialize_with = "ignore_any")]
+    None,
 }
 
 #[serde_as]
@@ -98,6 +106,48 @@ pub(crate) struct HeaderRenderer {
     #[serde(default)]
     #[serde_as(as = "Text")]
     pub second_subtitle: Vec<String>,
+    #[serde(default)]
+    #[serde_as(as = "DefaultOnError")]
+    pub menu: Option<HeaderMenu>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct HeaderMenu {
+    pub menu_renderer: HeaderMenuRenderer,
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct HeaderMenuRenderer {
+    #[serde(default)]
+    #[serde_as(as = "VecSkipError<_>")]
+    pub top_level_buttons: Vec<TopLevelButton>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct TopLevelButton {
+    pub button_renderer: ButtonRenderer,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ButtonRenderer {
+    pub navigation_endpoint: PlaylistEndpoint,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct PlaylistEndpoint {
+    pub watch_playlist_endpoint: PlaylistWatchEndpoint,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct PlaylistWatchEndpoint {
+    pub playlist_id: String,
 }
 
 #[derive(Debug, Deserialize)]

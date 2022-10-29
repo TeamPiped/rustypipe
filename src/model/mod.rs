@@ -1008,10 +1008,17 @@ pub struct MusicAlbum {
     pub cover: Vec<Thumbnail>,
     /// Artists of the album
     pub artists: Vec<ChannelId>,
+    /// Full content of the artists column
+    ///
+    /// Conjunction words/characters depend on language and fetched page.
+    /// Includes unlinked artists.
+    pub artists_txt: String,
     /// Music album type
     pub album_type: AlbumType,
     /// Release year
     pub year: u16,
+    /// Is the album by 'Various artists'?
+    pub by_va: bool,
     /// Album tracks
     pub tracks: Vec<TrackItem>,
 }

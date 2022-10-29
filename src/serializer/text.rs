@@ -373,6 +373,16 @@ impl TextComponent {
     }
 }
 
+impl TextComponents {
+    pub fn to_opt_string(&self) -> Option<String> {
+        if self.0.is_empty() {
+            None
+        } else {
+            Some(self.to_string())
+        }
+    }
+}
+
 impl ToString for TextComponents {
     fn to_string(&self) -> String {
         self.0.iter().map(|x| x.as_str()).collect::<String>()

@@ -19,6 +19,7 @@ pub(crate) struct MusicItem {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct InnerMusicItem {
+    #[serde(default)]
     pub thumbnail: MusicThumbnailRenderer,
     #[serde(default)]
     #[serde_as(deserialize_as = "DefaultOnError")]
@@ -79,7 +80,7 @@ impl From<MusicThumbnailRenderer> for Vec<model::Thumbnail> {
 
 #[derive(Debug)]
 pub(crate) struct MusicListMapper<T> {
-    artists: Option<Vec<ChannelId>>,
+    artists: Option<(Vec<ChannelId>, String)>,
 
     pub items: Vec<T>,
     pub warnings: Vec<String>,
@@ -94,9 +95,9 @@ impl<T> MusicListMapper<T> {
         }
     }
 
-    pub fn with_artists(artists: Vec<ChannelId>) -> Self {
+    pub fn with_artists(artists: Vec<ChannelId>, artists_txt: String) -> Self {
         Self {
-            artists: Some(artists),
+            artists: Some((artists, artists_txt)),
             items: Vec::new(),
             warnings: Vec::new(),
         }
@@ -140,9 +141,9 @@ impl<T> MusicListMapper<T> {
         });
 
         let artists_col = columns.try_swap_remove(1);
-        let artists_txt = artists_col
+        let mut artists_txt = artists_col
             .as_ref()
-            .map(|col| col.renderer.text.to_string());
+            .and_then(|col| col.renderer.text.to_opt_string());
         let mut artists = artists_col
             .map(|col| {
                 col.renderer
@@ -154,8 +155,10 @@ impl<T> MusicListMapper<T> {
             })
             .unwrap_or_default();
         if let Some(a) = &self.artists {
-            if artists.is_empty() {
-                artists = a.clone();
+            if artists.is_empty() && artists_txt.is_none() {
+                let xa = a.clone();
+                artists = xa.0;
+                artists_txt = Some(xa.1);
             }
         }
 
