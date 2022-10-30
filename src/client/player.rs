@@ -149,7 +149,7 @@ impl MapResponse<VideoPlayer> for response::Player {
                 {
                     return Err(ExtractionError::VideoAgeRestricted);
                 }
-                return Err(ExtractionError::VideoUnavailable("private video", reason));
+                return Err(ExtractionError::VideoUnavailable("being private", reason));
             }
             response::player::PlayabilityStatus::LiveStreamOffline { reason } => {
                 return Err(ExtractionError::VideoUnavailable(

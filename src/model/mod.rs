@@ -859,15 +859,6 @@ pub struct PlaylistItem {
 #MUSIC
 */
 
-/// YouTube Music list item
-#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
-pub enum YouTubeMusicItem {
-    Track(TrackItem),
-    Artist(ArtistItem),
-    Album(AlbumItem),
-    Playlist(MusicPlaylistItem),
-}
-
 /// YouTube Music track list item
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[non_exhaustive]
@@ -928,8 +919,15 @@ pub struct AlbumItem {
     pub cover: Vec<Thumbnail>,
     /// Artists of the album
     pub artists: Vec<ChannelId>,
+    /// Full content of the artists field
+    ///
+    /// Conjunction words/characters depend on language and fetched page.
+    /// Includes unlinked artists.
+    pub artists_txt: String,
+    /// Album type (Album/Single/EP)
+    pub album_type: AlbumType,
     /// Release year of the album
-    pub year: u16,
+    pub year: Option<u16>,
 }
 
 /// YouTube Music playlist list item
@@ -943,7 +941,7 @@ pub struct MusicPlaylistItem {
     /// Playlist thumbnail
     pub thumbnail: Vec<Thumbnail>,
     /// Channel of the playlist
-    pub channel: Option<ChannelTag>,
+    pub channel: Option<ChannelId>,
     /// Number of tracks in the playlist
     pub track_count: Option<u64>,
     /// True if the playlist is from YouTube Music
@@ -952,6 +950,7 @@ pub struct MusicPlaylistItem {
 
 /// YouTube Music album type
 #[derive(Default, Debug, Copy, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[serde(rename_all = "snake_case")]
 pub enum AlbumType {
     /// Regular album (default)
     #[default]
@@ -1008,17 +1007,19 @@ pub struct MusicAlbum {
     pub cover: Vec<Thumbnail>,
     /// Artists of the album
     pub artists: Vec<ChannelId>,
-    /// Full content of the artists column
+    /// Full content of the artists field
     ///
     /// Conjunction words/characters depend on language and fetched page.
     /// Includes unlinked artists.
     pub artists_txt: String,
-    /// Music album type
+    /// Album type (Album/Single/EP)
     pub album_type: AlbumType,
     /// Release year
-    pub year: u16,
+    pub year: Option<u16>,
     /// Is the album by 'Various artists'?
     pub by_va: bool,
     /// Album tracks
     pub tracks: Vec<TrackItem>,
+    /// Album variants
+    pub variants: Vec<AlbumItem>,
 }

@@ -27,6 +27,12 @@ pub static PLAYLIST_ID_REGEX: Lazy<Regex> =
 pub static VANITY_PATH_REGEX: Lazy<Regex> =
     Lazy::new(|| Regex::new(r"^/?(?:(?:c\/|user\/)?[A-z0-9]+)|(?:@[A-z0-9-_.]+)$").unwrap());
 
+/// Separator string for YouTube Music subtitles
+pub const DOT_SEPARATOR: &str = " • ";
+/// YouTube Music name (author of official playlists)
+pub const YT_MUSIC_NAME: &str = "YouTube Music";
+pub const VARIOUS_ARTISTS: &str = "Various Artists";
+
 const CONTENT_PLAYBACK_NONCE_ALPHABET: &[u8; 64] =
     b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
 

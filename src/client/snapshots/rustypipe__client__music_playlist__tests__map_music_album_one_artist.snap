@@ -35,8 +35,8 @@ MusicAlbum(
     ),
   ],
   artists_txt: "Oonagh",
-  album_type: Album,
-  year: 2016,
+  album_type: album,
+  year: Some(2016),
   by_va: false,
   tracks: [
     TrackItem(
@@ -326,6 +326,33 @@ MusicAlbum(
       album: None,
       view_count: None,
       is_video: true,
+    ),
+  ],
+  variants: [
+    AlbumItem(
+      id: "MPREb_jk6Msw8izou",
+      name: "Märchen enden gut (Nyáre Ranta (Märchenedition))",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/BKgnW_-hapCHk599AtRfTYZGdXVIo0C4bJp1Bh7qUpGK7fNAXGW8Bhv2x-ukeFM8cuxKbGqqGaTo8fZASA=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/BKgnW_-hapCHk599AtRfTYZGdXVIo0C4bJp1Bh7qUpGK7fNAXGW8Bhv2x-ukeFM8cuxKbGqqGaTo8fZASA=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+          name: "Oonagh",
+        ),
+      ],
+      artists_txt: "Oonagh",
+      album_type: album,
+      year: None,
     ),
   ],
 )

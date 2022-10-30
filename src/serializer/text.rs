@@ -381,6 +381,28 @@ impl TextComponents {
             Some(self.to_string())
         }
     }
+
+    pub fn split(self, separator: &str) -> Vec<TextComponents> {
+        let mut buf = Vec::new();
+        let mut inner = Vec::new();
+
+        for c in self.0 {
+            if c.as_str() == separator {
+                if !inner.is_empty() {
+                    buf.push(TextComponents(inner));
+                    inner = Vec::new();
+                }
+            } else {
+                inner.push(c);
+            }
+        }
+
+        if !inner.is_empty() {
+            buf.push(TextComponents(inner))
+        }
+
+        buf
+    }
 }
 
 impl ToString for TextComponents {
@@ -1184,6 +1206,60 @@ mod tests {
                 ],
             ),
         }
+        "###);
+    }
+
+    #[test]
+    fn split_text_cmp() {
+        let text = TextComponents(vec![
+            TextComponent::Text {
+                text: "Hello".to_owned(),
+            },
+            TextComponent::Text {
+                text: " World".to_owned(),
+            },
+            TextComponent::Text {
+                text: util::DOT_SEPARATOR.to_owned(),
+            },
+            TextComponent::Text {
+                text: "T2".to_owned(),
+            },
+            TextComponent::Text {
+                text: util::DOT_SEPARATOR.to_owned(),
+            },
+            TextComponent::Text {
+                text: "T3".to_owned(),
+            },
+        ]);
+
+        let split = text.split(util::DOT_SEPARATOR);
+        insta::assert_debug_snapshot!(split, @r###"
+        [
+            TextComponents(
+                [
+                    Text {
+                        text: "Hello",
+                    },
+                    Text {
+                        text: " World",
+                    },
+                ],
+            ),
+            TextComponents(
+                [
+                    Text {
+                        text: "T2",
+                    },
+                ],
+            ),
+            TextComponents(
+                [
+                    Text {
+                        text: "T3",
+                    },
+                ],
+            ),
+        ]
         "###);
     }
 }

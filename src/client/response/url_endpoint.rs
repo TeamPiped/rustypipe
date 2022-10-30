@@ -98,3 +98,18 @@ impl PageType {
         }
     }
 }
+
+impl NavigationEndpoint {
+    pub(crate) fn music_page(self) -> Option<(PageType, String)> {
+        match self.browse_endpoint {
+            Some(browse) => match browse.browse_endpoint_context_supported_configs {
+                Some(config) => Some((
+                    config.browse_endpoint_context_music_config.page_type,
+                    browse.browse_id,
+                )),
+                None => None,
+            },
+            None => None,
+        }
+    }
+}

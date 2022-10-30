@@ -2,13 +2,16 @@ use std::borrow::Cow;
 
 use crate::{
     error::{Error, ExtractionError},
-    model::{AlbumType, ChannelId, MusicAlbum, MusicPlaylist, Paginator, TrackItem},
+    model::{ChannelId, MusicAlbum, MusicPlaylist, Paginator, TrackItem},
     serializer::MapResult,
     util::{self, TryRemove},
 };
 
 use super::{
-    response::{self, music_item::MusicListMapper},
+    response::{
+        self,
+        music_item::{map_album_type, map_artists, MusicListMapper},
+    },
     ClientType, MapResponse, QBrowse, QContinuation, RustyPipeQuery,
 };
 
@@ -72,7 +75,7 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
     fn map_response(
         self,
         id: &str,
-        _lang: crate::param::Language,
+        lang: crate::param::Language,
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
     ) -> Result<MapResult<MusicPlaylist>, ExtractionError> {
         // dbg!(&self);
@@ -113,7 +116,7 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
             .subtitle
             .0
             .iter()
-            .any(|c| c.as_str() == "YouTube Music");
+            .any(|c| c.as_str() == util::YT_MUSIC_NAME);
 
         let channel = header
             .subtitle
@@ -121,7 +124,7 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
             .into_iter()
             .find_map(|c| ChannelId::try_from(c).ok());
 
-        let mut mapper = MusicListMapper::<TrackItem>::new();
+        let mut mapper = MusicListMapper::new(lang);
         mapper.map_response(shelf.contents);
 
         let ctoken = shelf
@@ -134,7 +137,7 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
                 .second_subtitle
                 .first()
                 .and_then(|txt| util::parse_numeric::<u64>(txt).ok()),
-            None => Some(mapper.items.len() as u64),
+            None => Some(mapper.tracks.len() as u64),
         };
 
         Ok(MapResult {
@@ -146,7 +149,7 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
                 description: header.description,
                 track_count,
                 from_ytm,
-                tracks: Paginator::new(track_count, mapper.items, ctoken),
+                tracks: Paginator::new(track_count, mapper.tracks, ctoken),
             },
             warnings: mapper.warnings,
         })
@@ -157,10 +160,10 @@ impl MapResponse<Paginator<TrackItem>> for response::MusicPlaylistCont {
     fn map_response(
         self,
         _id: &str,
-        _lang: crate::param::Language,
+        lang: crate::param::Language,
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
     ) -> Result<MapResult<Paginator<TrackItem>>, ExtractionError> {
-        let mut mapper = MusicListMapper::<TrackItem>::new();
+        let mut mapper = MusicListMapper::new(lang);
         let mut shelf = self.continuation_contents.music_playlist_shelf_continuation;
         mapper.map_response(shelf.contents);
 
@@ -170,7 +173,7 @@ impl MapResponse<Paginator<TrackItem>> for response::MusicPlaylistCont {
             .map(|cont| cont.next_continuation_data.continuation);
 
         Ok(MapResult {
-            c: Paginator::new(None, mapper.items, ctoken),
+            c: Paginator::new(None, mapper.tracks, ctoken),
             warnings: mapper.warnings,
         })
     }
@@ -180,7 +183,7 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
     fn map_response(
         self,
         id: &str,
-        _lang: crate::param::Language,
+        lang: crate::param::Language,
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
     ) -> Result<MapResult<MusicAlbum>, ExtractionError> {
         // dbg!(&self);
@@ -197,12 +200,12 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
             .contents;
 
         let mut shelf = None;
-        let mut album_versions = None;
+        let mut album_variants = None;
         for section in sections {
             match section {
                 response::music_playlist::ItemSection::MusicShelfRenderer(sh) => shelf = Some(sh),
                 response::music_playlist::ItemSection::MusicCarouselShelfRenderer { contents } => {
-                    album_versions = Some(contents)
+                    album_variants = Some(contents)
                 }
                 response::music_playlist::ItemSection::None => (),
             }
@@ -223,52 +226,30 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
                 })
         });
 
-        let subtitle_len = header.subtitle.0.len();
-        if subtitle_len < 5 {
-            return Err(ExtractionError::InvalidData(Cow::Owned(format!(
-                "header text is missing elements: {}",
-                header.subtitle.to_string()
-            ))));
-        }
+        let mut subtitle_split = header.subtitle.split(util::DOT_SEPARATOR);
+        let year_txt = subtitle_split.try_swap_remove(2).map(|cmp| cmp.to_string());
 
-        let mut artists = Vec::new();
-        let mut artists_txt = String::new();
-
-        let mut st_parts = header.subtitle.0.into_iter();
-        let album_type_txt = st_parts.next().unwrap();
-        st_parts.next();
-
-        for _ in 0..subtitle_len - 4 {
-            let part = st_parts.next().unwrap();
-            artists_txt += part.as_str();
-
-            if let Ok(a) = ChannelId::try_from(part) {
-                artists.push(a);
-            }
-        }
-
-        st_parts.next();
-        let year_txt = st_parts.next().unwrap();
-
-        let by_va = artists_txt == "Various Artists";
-
-        // TODO: add support for different languages
-        let album_type = match album_type_txt.as_str() {
-            "Single" => AlbumType::Single,
-            "EP" => AlbumType::Ep,
-            _ => AlbumType::Album,
-        };
-        let year = util::parse_numeric(year_txt.as_str())
-            .ok()
+        let artists_p = subtitle_split.try_swap_remove(1);
+        let (artists, artists_txt) = map_artists(artists_p);
+        let album_type_txt = subtitle_split
+            .try_swap_remove(0)
+            .map(|part| part.to_string())
             .unwrap_or_default();
 
+        let by_va = artists_txt == util::VARIOUS_ARTISTS;
+        let album_type = map_album_type(album_type_txt.as_str());
+        let year = year_txt.and_then(|txt| util::parse_numeric(&txt).ok());
+
         let mut mapper = match by_va {
-            true => MusicListMapper::<TrackItem>::new(),
+            true => MusicListMapper::new(lang),
             false => {
-                MusicListMapper::<TrackItem>::with_artists(artists.clone(), artists_txt.clone())
+                MusicListMapper::with_artists(lang, artists.clone(), artists_txt.clone(), false)
             }
         };
         mapper.map_response(shelf.contents);
+        if let Some(res) = album_variants {
+            mapper.map_response(res)
+        }
 
         Ok(MapResult {
             c: MusicAlbum {
@@ -281,7 +262,8 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
                 album_type,
                 year,
                 by_va,
-                tracks: mapper.items,
+                tracks: mapper.tracks,
+                variants: mapper.albums,
             },
             warnings: mapper.warnings,
         })

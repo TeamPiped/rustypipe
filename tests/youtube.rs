@@ -280,10 +280,11 @@ async fn get_player(
     "1bfOsni7EgI",
     "extraction error: Video cant be played because of DRM/Geoblock. Reason (from YT): "
 )]
-#[case::private(
-    "s7_qI6_mIXc",
-    "extraction error: Video cant be played because of private video. Reason (from YT): "
-)]
+// YouTube sometimes returns "Video unavailable" for this video
+// #[case::private(
+//     "s7_qI6_mIXc",
+//     "extraction error: Video cant be played because of being private. Reason (from YT): "
+// )]
 #[case::t1(
     "CUO8secmc0g",
     "extraction error: Video cant be played because of DRM/Geoblock. Reason (from YT): "
