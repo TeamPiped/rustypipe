@@ -1023,3 +1023,18 @@ pub struct MusicAlbum {
     /// Album variants
     pub variants: Vec<AlbumItem>,
 }
+
+/// YouTube Music search result
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+pub struct MusicSearchResult {
+    pub tracks: Vec<TrackItem>,
+    pub albums: Vec<AlbumItem>,
+    pub artists: Vec<ArtistItem>,
+    pub playlists: Vec<MusicPlaylistItem>,
+    /// Corrected search query
+    ///
+    /// If the search term containes a typo, YouTube instead searches
+    /// for the corrected search term and displays it on top of the
+    /// search results page.
+    pub corrected_query: Option<String>,
+}

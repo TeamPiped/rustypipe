@@ -1,6 +1,7 @@
 pub(crate) mod channel;
 pub(crate) mod music_item;
 pub(crate) mod music_playlist;
+pub(crate) mod music_search;
 pub(crate) mod player;
 pub(crate) mod playlist;
 pub(crate) mod search;
@@ -12,6 +13,7 @@ pub(crate) mod video_item;
 pub(crate) use channel::Channel;
 pub(crate) use music_playlist::MusicPlaylist;
 pub(crate) use music_playlist::MusicPlaylistCont;
+pub(crate) use music_search::MusicSearch;
 pub(crate) use player::Player;
 pub(crate) use playlist::Playlist;
 pub(crate) use playlist::PlaylistCont;
@@ -47,6 +49,12 @@ pub(crate) struct ContentRenderer<T> {
 pub(crate) struct ContentsRenderer<T> {
     #[serde(alias = "tabs")]
     pub contents: Vec<T>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct Tab<T> {
+    pub tab_renderer: ContentRenderer<T>,
 }
 
 #[derive(Default, Debug, Deserialize)]

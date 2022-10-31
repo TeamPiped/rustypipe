@@ -7,8 +7,8 @@ use crate::serializer::{
     MapResult, VecLogError,
 };
 
-use super::music_item::{MusicContentsRenderer, MusicItem, MusicThumbnailRenderer};
-use super::{ContentRenderer, ContentsRenderer, MusicContinuation};
+use super::music_item::{MusicContentsRenderer, MusicItem, MusicShelf, MusicThumbnailRenderer};
+use super::{ContentsRenderer, Tab};
 
 /// Response model for YouTube Music playlists and albums
 #[derive(Debug, Deserialize)]
@@ -27,13 +27,7 @@ pub(crate) struct MusicPlaylistCont {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct Contents {
-    pub single_column_browse_results_renderer: ContentsRenderer<Tab>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct Tab {
-    pub tab_renderer: ContentRenderer<SectionList>,
+    pub single_column_browse_results_renderer: ContentsRenderer<Tab<SectionList>>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -55,20 +49,6 @@ pub(crate) enum ItemSection {
     },
     #[serde(other, deserialize_with = "ignore_any")]
     None,
-}
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct MusicShelf {
-    /// Playlist ID (only for playlists)
-    pub playlist_id: Option<String>,
-    #[serde_as(as = "VecLogError<_>")]
-    pub contents: MapResult<Vec<MusicItem>>,
-    /// Continuation token for fetching more (>100) playlist items
-    #[serde(default)]
-    #[serde_as(as = "VecSkipError<_>")]
-    pub continuations: Vec<MusicContinuation>,
 }
 
 #[derive(Debug, Deserialize)]

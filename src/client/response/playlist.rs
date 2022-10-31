@@ -6,8 +6,7 @@ use crate::serializer::{ignore_any, MapResult, VecLogError};
 use crate::util::MappingError;
 
 use super::{
-    Alert, ContentRenderer, ContentsRenderer, ContinuationEndpoint, ResponseContext, Thumbnails,
-    ThumbnailsWrap,
+    Alert, ContentsRenderer, ContinuationEndpoint, ResponseContext, Tab, Thumbnails, ThumbnailsWrap,
 };
 
 #[serde_as]
@@ -34,13 +33,7 @@ pub(crate) struct PlaylistCont {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct Contents {
-    pub two_column_browse_results_renderer: ContentsRenderer<Tab>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct Tab {
-    pub tab_renderer: ContentRenderer<SectionList>,
+    pub two_column_browse_results_renderer: ContentsRenderer<Tab<SectionList>>,
 }
 
 #[derive(Debug, Deserialize)]

@@ -1,0 +1,63 @@
+---
+source: src/client/music_search.rs
+expression: map_res.c
+---
+MusicSearchResult(
+  tracks: [],
+  albums: [],
+  artists: [
+    ArtistItem(
+      id: "UCIh4j8fXWf2U0ro0qnGU8Mg",
+      name: "Namika",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/iY5H0k9sMP6hevj7ttwx2WibgxmJ9OMoK9TuVHwUMvdA8ZrrJCdGYT_BG-HhgYcVDihVJMQqSKbOcpk=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/iY5H0k9sMP6hevj7ttwx2WibgxmJ9OMoK9TuVHwUMvdA8ZrrJCdGYT_BG-HhgYcVDihVJMQqSKbOcpk=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: Some(737000),
+    ),
+    ArtistItem(
+      id: "UCCpID8TTjkkjLCwBybAfHSg",
+      name: "Boris Brejcha",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/2aw3EVIIy1zbuvkl0txoqPBGUjvkv056NUzc6Qdz5ZdmknsJr28AQig7HTy_q9xqYC4LjVsyffl-9shZ=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/2aw3EVIIy1zbuvkl0txoqPBGUjvkv056NUzc6Qdz5ZdmknsJr28AQig7HTy_q9xqYC4LjVsyffl-9shZ=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: Some(988000),
+    ),
+    ArtistItem(
+      id: "UCZnutiGgJ2LrrwzDH_ElSDg",
+      name: "Dendemann",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/G_nI16FH_wiRKj1HAhmltOA-vTifD8UVwsNcJGKu40c6Y2A6Pg2S6o6f5EajkIZguv8JAt1mU9V66dw=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/G_nI16FH_wiRKj1HAhmltOA-vTifD8UVwsNcJGKu40c6Y2A6Pg2S6o6f5EajkIZguv8JAt1mU9V66dw=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: Some(22700),
+    ),
+  ],
+  playlists: [],
+  corrected_query: Some("lieblingsmensch"),
+)

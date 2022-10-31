@@ -1,0 +1,93 @@
+---
+source: src/client/music_search.rs
+expression: map_res.c
+---
+MusicSearchResult(
+  tracks: [],
+  albums: [],
+  artists: [],
+  playlists: [
+    MusicPlaylistItem(
+      id: "VLPLk76iSbFqNJsu_Gozn9SkEXxQ7t-bpXid",
+      name: "IRMA MIRTILLA Black Mamba",
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/md19pon3B9o/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kR84wE4E_UufGzATfZhAsFWEieaA",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/md19pon3B9o/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3nxumiGKYWYiiTokZB8M6rwtK5mRw",
+          width: 800,
+          height: 450,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/md19pon3B9o/hq720.jpg?sqp=-oaymwEXCNUGEOADIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3mEU1yvpIHQXYgVnCyXx8Rlzilg6Q",
+          width: 853,
+          height: 480,
+        ),
+      ],
+      channel: Some(ChannelId(
+        id: "UCtZaFx5MXZHIh7VTItJK1lQ",
+        name: "Lajos Fülöp",
+      )),
+      track_count: Some(29),
+      from_ytm: false,
+    ),
+    MusicPlaylistItem(
+      id: "VLPLIL9Q2jz6euDEJZKHd4QaG4iic944_vKY",
+      name: "Black Mamba",
+      thumbnail: [
+        Thumbnail(
+          url: "https://yt3.ggpht.com/jsvBK6isPIQ0ERSc1xV6PoaYxbYZqCzqr90lHZNEfUcQL2lP0oNzrdimX8KIBchE6X8myc58zwyS=s192",
+          width: 192,
+          height: 192,
+        ),
+        Thumbnail(
+          url: "https://yt3.ggpht.com/jsvBK6isPIQ0ERSc1xV6PoaYxbYZqCzqr90lHZNEfUcQL2lP0oNzrdimX8KIBchE6X8myc58zwyS=s576",
+          width: 576,
+          height: 576,
+        ),
+        Thumbnail(
+          url: "https://yt3.ggpht.com/jsvBK6isPIQ0ERSc1xV6PoaYxbYZqCzqr90lHZNEfUcQL2lP0oNzrdimX8KIBchE6X8myc58zwyS=s1200",
+          width: 1200,
+          height: 1200,
+        ),
+      ],
+      channel: Some(ChannelId(
+        id: "UCwFT0vvkbtbohtzVbwx7WjQ",
+        name: "Toshihiko KOMINAMI",
+      )),
+      track_count: Some(6),
+      from_ytm: false,
+    ),
+    MusicPlaylistItem(
+      id: "VLPLinm7-cvTdN7RqadpfNrncUGqkdyKNpn6",
+      name: "Black Mamba",
+      thumbnail: [
+        Thumbnail(
+          url: "https://yt3.ggpht.com/hj6EywHSUD3UEnRQPHaEjHPC1VRi9UcsrkW8zGiOaXhRGlyNikLw6Iv0VnHTSuo2MlVBiQaskqo=s192",
+          width: 192,
+          height: 192,
+        ),
+        Thumbnail(
+          url: "https://yt3.ggpht.com/hj6EywHSUD3UEnRQPHaEjHPC1VRi9UcsrkW8zGiOaXhRGlyNikLw6Iv0VnHTSuo2MlVBiQaskqo=s576",
+          width: 576,
+          height: 576,
+        ),
+        Thumbnail(
+          url: "https://yt3.ggpht.com/hj6EywHSUD3UEnRQPHaEjHPC1VRi9UcsrkW8zGiOaXhRGlyNikLw6Iv0VnHTSuo2MlVBiQaskqo=s1200",
+          width: 1200,
+          height: 1200,
+        ),
+      ],
+      channel: Some(ChannelId(
+        id: "UCEdZAdnnKqbaHOlv8nM6OtA",
+        name: "aespa",
+      )),
+      track_count: Some(39),
+      from_ytm: false,
+    ),
+  ],
+  corrected_query: None,
+)

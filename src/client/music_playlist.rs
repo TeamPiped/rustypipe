@@ -339,8 +339,6 @@ mod tests {
             "deserialization/mapping warnings: {:?}",
             map_res.warnings
         );
-        insta::assert_ron_snapshot!(format!("map_music_album_{}", name), map_res.c, {
-            ".last_update" => "[date]"
-        });
+        insta::assert_ron_snapshot!(format!("map_music_album_{}", name), map_res.c);
     }
 }

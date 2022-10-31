@@ -1,7 +1,7 @@
 use serde::Deserialize;
 use serde_with::{serde_as, VecSkipError};
 
-use super::{video_item::YouTubeListRendererWrap, ContentRenderer, ResponseContext};
+use super::{video_item::YouTubeListRendererWrap, ResponseContext, Tab};
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -28,10 +28,4 @@ pub(crate) struct Contents {
 pub(crate) struct BrowseResults {
     #[serde_as(as = "VecSkipError<_>")]
     pub tabs: Vec<Tab<YouTubeListRendererWrap>>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct Tab<T> {
-    pub tab_renderer: ContentRenderer<T>,
 }

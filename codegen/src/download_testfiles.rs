@@ -39,6 +39,7 @@ pub async fn download_testfiles(project_root: &Path) {
     music_playlist(&testfiles).await;
     music_playlist_cont(&testfiles).await;
     music_album(&testfiles).await;
+    music_search(&testfiles).await;
 }
 
 const CLIENT_TYPES: [ClientType; 5] = [
@@ -515,5 +516,19 @@ async fn music_album(testfiles: &Path) {
 
         let rp = rp_testfile(&json_path);
         rp.query().music_album(id).await.unwrap();
+    }
+}
+
+async fn music_search(testfiles: &Path) {
+    for (name, query) in [("default", "black mamba"), ("typo", "liblingsmensch")] {
+        let mut json_path = testfiles.to_path_buf();
+        json_path.push("music_search");
+        json_path.push(format!("{}.json", name));
+        if json_path.exists() {
+            continue;
+        }
+
+        let rp = rp_testfile(&json_path);
+        rp.query().music_search(query).await.unwrap();
     }
 }
