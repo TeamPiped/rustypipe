@@ -20,9 +20,9 @@ inspired by [NewPipe](https://github.com/TeamNewPipe/NewPipeExtractor).
 ### YouTube Music
 
 - [X] **Playlist**
-- [ ] **Album**
+- [X] **Album**
 - [ ] **Artist**
-- [ ] **Search**
+- [X] **Search**
 - [ ] **Search suggestions**
 - [ ] **Moods**
 - [ ] **Charts**

@@ -83,6 +83,8 @@ pub(crate) struct ListMusicItem {
     pub navigation_endpoint: Option<NavigationEndpoint>,
     #[serde(default)]
     pub flex_column_display_style: FlexColumnDisplayStyle,
+    #[serde_as(as = "Option<Text>")]
+    pub index: Option<String>,
 }
 
 #[derive(Default, Debug, Deserialize)]
@@ -262,7 +264,7 @@ impl MusicListMapper {
                         match page_type {
                             PageType::Artist => {
                                 let subscriber_count = subtitle_p2.and_then(|p| {
-                                    util::parse_large_numstr(&p.to_string(), self.lang)
+                                    util::parse_large_numstr(p.first_str(), self.lang)
                                 });
 
                                 self.items.push(MusicItem::Artist(ArtistItem {
@@ -275,13 +277,13 @@ impl MusicListMapper {
                             }
                             PageType::Album => {
                                 let album_type = subtitle_p1
-                                    .map(|st| map_album_type(&st.to_string()))
+                                    .map(|st| map_album_type(st.first_str()))
                                     .unwrap_or_default();
 
                                 let (artists, artists_txt) = map_artists(subtitle_p2);
 
                                 let year = subtitle_p3
-                                    .and_then(|st| util::parse_numeric(&st.to_string()).ok());
+                                    .and_then(|st| util::parse_numeric(st.first_str()).ok());
 
                                 self.items.push(MusicItem::Album(AlbumItem {
                                     id,
@@ -303,15 +305,13 @@ impl MusicListMapper {
 
                                 let from_ytm = channel_p
                                     .as_ref()
-                                    .and_then(|p| {
-                                        p.0.first().map(|txt| txt.as_str() == util::YT_MUSIC_NAME)
-                                    })
+                                    .map(|p| p.first_str() == util::YT_MUSIC_NAME)
                                     .unwrap_or_default();
                                 let channel = channel_p.and_then(|p| {
                                     p.0.into_iter().find_map(|c| ChannelId::try_from(c).ok())
                                 });
                                 let track_count =
-                                    tcount_p.and_then(|p| util::parse_numeric(&p.to_string()).ok());
+                                    tcount_p.and_then(|p| util::parse_numeric(p.first_str()).ok());
 
                                 self.items.push(MusicItem::Playlist(MusicPlaylistItem {
                                     id,
@@ -381,7 +381,7 @@ impl MusicListMapper {
                         };
 
                         let duration = duration_p
-                            .and_then(|p| util::parse_video_length(&p.to_string()))
+                            .and_then(|p| util::parse_video_length(p.first_str()))
                             .ok_or_else(|| format!("track {}: could not parse duration", id))?;
 
                         // The album field contains the track count for search videos
@@ -389,7 +389,7 @@ impl MusicListMapper {
                             (FlexColumnDisplayStyle::TwoLines, true) => (
                                 None,
                                 album_p.and_then(|p| {
-                                    util::parse_large_numstr(&p.to_string(), self.lang)
+                                    util::parse_large_numstr(p.first_str(), self.lang)
                                 }),
                             ),
                             (_, false) => (
@@ -419,6 +419,8 @@ impl MusicListMapper {
                             }
                         }
 
+                        let track_nr = item.index.and_then(|txt| util::parse_numeric(&txt).ok());
+
                         self.items.push(MusicItem::Track(TrackItem {
                             id,
                             title,
@@ -429,6 +431,7 @@ impl MusicListMapper {
                             album,
                             view_count,
                             is_video,
+                            track_nr,
                         }));
                         Ok(MusicEntityType::Track)
                     }
@@ -454,7 +457,7 @@ impl MusicListMapper {
                             match (subtitle_p1, subtitle_p2, &self.o_artists, self.artist_page) {
                                 // "2022" (Artist singles)
                                 (Some(year_txt), None, Some((artists, artists_txt)), true) => {
-                                    year = util::parse_numeric(&year_txt.to_string()).ok();
+                                    year = util::parse_numeric(year_txt.first_str()).ok();
                                     (artists.clone(), artists_txt.clone())
                                 }
                                 // "Album", "2022" (Artist albums)
@@ -464,13 +467,13 @@ impl MusicListMapper {
                                     Some((artists, artists_txt)),
                                     true,
                                 ) => {
-                                    year = util::parse_numeric(&year_txt.to_string()).ok();
-                                    album_type = map_album_type(&atype_txt.to_string());
+                                    year = util::parse_numeric(year_txt.first_str()).ok();
+                                    album_type = map_album_type(atype_txt.first_str());
                                     (artists.clone(), artists_txt.clone())
                                 }
                                 // "Album", <"Oonagh"> (Album variants, new releases)
                                 (Some(atype_txt), Some(p2), _, false) => {
-                                    album_type = map_album_type(&atype_txt.to_string());
+                                    album_type = map_album_type(atype_txt.first_str());
                                     map_artists(Some(p2))
                                 }
                                 _ => {
@@ -493,18 +496,15 @@ impl MusicListMapper {
                         Ok(MusicEntityType::Album)
                     }
                     PageType::Playlist => {
-                        // TODO: make component to string zero-copy if len=1
                         let from_ytm = subtitle_p2
                             .as_ref()
-                            .and_then(|p| {
-                                p.0.first().map(|txt| txt.as_str() == util::YT_MUSIC_NAME)
-                            })
+                            .map(|p| p.first_str() == util::YT_MUSIC_NAME)
                             .unwrap_or_default();
                         let channel = subtitle_p2.and_then(|p| {
                             p.0.into_iter().find_map(|c| ChannelId::try_from(c).ok())
                         });
                         let track_count =
-                            subtitle_p3.and_then(|p| util::parse_numeric(&p.to_string()).ok());
+                            subtitle_p3.and_then(|p| util::parse_numeric(p.first_str()).ok());
 
                         self.items.push(MusicItem::Playlist(MusicPlaylistItem {
                             id,
@@ -518,7 +518,7 @@ impl MusicListMapper {
                     }
                     PageType::Artist => {
                         let subscriber_count = subtitle_p1
-                            .and_then(|p| util::parse_large_numstr(&p.to_string(), self.lang));
+                            .and_then(|p| util::parse_large_numstr(p.first_str(), self.lang));
 
                         self.items.push(MusicItem::Artist(ArtistItem {
                             id,

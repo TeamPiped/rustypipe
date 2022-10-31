@@ -374,6 +374,8 @@ impl TextComponent {
 }
 
 impl TextComponents {
+    /// Return the string representation of all text components
+    /// or [`None`] if there aren't any.
     pub fn to_opt_string(&self) -> Option<String> {
         if self.0.is_empty() {
             None
@@ -382,6 +384,15 @@ impl TextComponents {
         }
     }
 
+    /// Return the string representation of the first text component
+    pub fn first_str(&self) -> &str {
+        self.0.first().map(|t| t.as_str()).unwrap_or_default()
+    }
+
+    /// Split the text components using the given separation string.
+    ///
+    /// Example: `["Abc", "-", "Hello", "World", "-", "Xyz"]` ->
+    /// `["Abc"], ["Hello", "World"], ["Xyz"]`
     pub fn split(self, separator: &str) -> Vec<TextComponents> {
         let mut buf = Vec::new();
         let mut inner = Vec::new();

@@ -890,6 +890,10 @@ pub struct TrackItem {
     pub view_count: Option<u64>,
     /// True if the track is a music video
     pub is_video: bool,
+    /// Album track number
+    ///
+    /// [`None`] if the track is not fetched from an album.
+    pub track_nr: Option<u16>,
 }
 
 /// YouTube Music artist list item

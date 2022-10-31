@@ -54,6 +54,7 @@ MusicAlbum(
       album: None,
       view_count: None,
       is_video: true,
+      track_nr: Some(1),
     ),
     TrackItem(
       id: "rREEBXp0y9s",
@@ -70,6 +71,7 @@ MusicAlbum(
       album: None,
       view_count: None,
       is_video: true,
+      track_nr: Some(2),
     ),
     TrackItem(
       id: "zvU5Y8Q19hU",
@@ -86,6 +88,7 @@ MusicAlbum(
       album: None,
       view_count: None,
       is_video: true,
+      track_nr: Some(3),
     ),
     TrackItem(
       id: "ARKLrzzTQA0",
@@ -102,6 +105,7 @@ MusicAlbum(
       album: None,
       view_count: None,
       is_video: true,
+      track_nr: Some(4),
     ),
     TrackItem(
       id: "tstLgN8A_Ng",
@@ -118,6 +122,7 @@ MusicAlbum(
       album: None,
       view_count: None,
       is_video: true,
+      track_nr: Some(5),
     ),
     TrackItem(
       id: "k2DjgQOY3Ts",
@@ -134,6 +139,7 @@ MusicAlbum(
       album: None,
       view_count: None,
       is_video: true,
+      track_nr: Some(6),
     ),
     TrackItem(
       id: "azHwhecxEsI",
@@ -150,6 +156,7 @@ MusicAlbum(
       album: None,
       view_count: None,
       is_video: true,
+      track_nr: Some(7),
     ),
     TrackItem(
       id: "_FcsdYIQ2co",
@@ -166,6 +173,7 @@ MusicAlbum(
       album: None,
       view_count: None,
       is_video: true,
+      track_nr: Some(8),
     ),
     TrackItem(
       id: "27bOWEbshyE",
@@ -182,6 +190,7 @@ MusicAlbum(
       album: None,
       view_count: None,
       is_video: true,
+      track_nr: Some(9),
     ),
     TrackItem(
       id: "riD_3oZwt8w",
@@ -198,6 +207,7 @@ MusicAlbum(
       album: None,
       view_count: None,
       is_video: true,
+      track_nr: Some(10),
     ),
     TrackItem(
       id: "8GNvjF3no9s",
@@ -214,6 +224,7 @@ MusicAlbum(
       album: None,
       view_count: None,
       is_video: true,
+      track_nr: Some(11),
     ),
     TrackItem(
       id: "YHMFzf1uN2U",
@@ -230,6 +241,7 @@ MusicAlbum(
       album: None,
       view_count: None,
       is_video: true,
+      track_nr: Some(12),
     ),
     TrackItem(
       id: "jvV-z5F3oAo",
@@ -246,6 +258,7 @@ MusicAlbum(
       album: None,
       view_count: None,
       is_video: true,
+      track_nr: Some(13),
     ),
     TrackItem(
       id: "u8_9cxlrh8k",
@@ -262,6 +275,7 @@ MusicAlbum(
       album: None,
       view_count: None,
       is_video: true,
+      track_nr: Some(14),
     ),
     TrackItem(
       id: "gSvKcvM1Wk0",
@@ -278,6 +292,7 @@ MusicAlbum(
       album: None,
       view_count: None,
       is_video: true,
+      track_nr: Some(15),
     ),
     TrackItem(
       id: "wQHgKRJ0pDQ",
@@ -294,6 +309,7 @@ MusicAlbum(
       album: None,
       view_count: None,
       is_video: true,
+      track_nr: Some(16),
     ),
     TrackItem(
       id: "Ckz5i6-hzf0",
@@ -310,6 +326,7 @@ MusicAlbum(
       album: None,
       view_count: None,
       is_video: true,
+      track_nr: Some(17),
     ),
     TrackItem(
       id: "y5zuUgyFqrc",
@@ -326,6 +343,7 @@ MusicAlbum(
       album: None,
       view_count: None,
       is_video: true,
+      track_nr: Some(18),
     ),
   ],
   variants: [
