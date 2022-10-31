@@ -68,6 +68,10 @@ impl RustyPipeQuery {
             &request_body,
         )
         .await
+        .map(|p| Paginator {
+            visitor_data: visitor_data.map(str::to_owned),
+            ..p
+        })
     }
 }
 
@@ -244,6 +248,7 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
             _ => return Err(ExtractionError::InvalidData("invalid channel link".into())),
         };
 
+        let visitor_data = self.response_context.visitor_data;
         let recommended = contents
             .two_column_watch_next_results
             .secondary_results
@@ -252,7 +257,7 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                     let mut res = map_recommendations(
                         r,
                         sr.secondary_results.continuations,
-                        self.response_context.visitor_data.clone(),
+                        visitor_data.clone(),
                         lang,
                     );
                     warnings.append(&mut res.warnings);
@@ -333,17 +338,17 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                     comment_count,
                     Vec::new(),
                     comment_ctoken,
-                    None,
+                    visitor_data.clone(),
                     crate::param::ContinuationEndpoint::Next,
                 ),
                 latest_comments: Paginator::new_ext(
                     comment_count,
                     Vec::new(),
                     latest_comments_ctoken,
-                    None,
+                    visitor_data.clone(),
                     crate::param::ContinuationEndpoint::Next,
                 ),
-                visitor_data: self.response_context.visitor_data,
+                visitor_data,
             },
             warnings,
         })

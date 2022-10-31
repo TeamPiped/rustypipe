@@ -35,7 +35,7 @@ impl RustyPipeQuery {
                 )
                 .await?;
 
-            Ok(map_ytm_paginator(p, endpoint))
+            Ok(map_ytm_paginator(p, visitor_data, endpoint))
         } else {
             let context = self
                 .get_context(ClientType::Desktop, true, visitor_data)
@@ -55,33 +55,35 @@ impl RustyPipeQuery {
                 )
                 .await?;
 
-            Ok(map_yt_paginator(p, endpoint))
+            Ok(map_yt_paginator(p, visitor_data, endpoint))
         }
     }
 }
 
 fn map_yt_paginator<T: FromYtItem>(
     p: Paginator<YouTubeItem>,
+    visitor_data: Option<&str>,
     endpoint: ContinuationEndpoint,
 ) -> Paginator<T> {
     Paginator {
         count: p.count,
         items: p.items.into_iter().filter_map(T::from_yt_item).collect(),
         ctoken: p.ctoken,
-        visitor_data: p.visitor_data,
+        visitor_data: visitor_data.map(str::to_owned),
         endpoint,
     }
 }
 
 fn map_ytm_paginator<T: FromYtItem>(
     p: Paginator<MusicItem>,
+    visitor_data: Option<&str>,
     endpoint: ContinuationEndpoint,
 ) -> Paginator<T> {
     Paginator {
         count: p.count,
         items: p.items.into_iter().filter_map(T::from_ytm_item).collect(),
         ctoken: p.ctoken,
-        visitor_data: p.visitor_data,
+        visitor_data: visitor_data.map(str::to_owned),
         endpoint,
     }
 }
@@ -318,7 +320,7 @@ mod tests {
         let map_res: MapResult<Paginator<YouTubeItem>> =
             items.map_response("", Language::En, None).unwrap();
         let paginator: Paginator<PlaylistItem> =
-            map_yt_paginator(map_res.c, ContinuationEndpoint::Browse);
+            map_yt_paginator(map_res.c, None, ContinuationEndpoint::Browse);
 
         assert!(
             map_res.warnings.is_empty(),
@@ -340,7 +342,7 @@ mod tests {
         let map_res: MapResult<Paginator<MusicItem>> =
             items.map_response("", Language::En, None).unwrap();
         let paginator: Paginator<TrackItem> =
-            map_ytm_paginator(map_res.c, ContinuationEndpoint::MusicBrowse);
+            map_ytm_paginator(map_res.c, None, ContinuationEndpoint::MusicBrowse);
 
         assert!(
             map_res.warnings.is_empty(),

@@ -502,11 +502,13 @@ async fn get_video_details_music() {
     assert!(!details.recommended.items.is_empty());
     assert!(!details.recommended.is_exhausted());
 
-    // Comments are disabled for this video
+    // Update(01.11.2022): comments are sometimes enabled
+    /*
     assert_eq!(details.top_comments.count, Some(0));
     assert_eq!(details.latest_comments.count, Some(0));
     assert!(details.top_comments.is_empty());
     assert!(details.latest_comments.is_empty());
+    */
 }
 
 #[tokio::test]
