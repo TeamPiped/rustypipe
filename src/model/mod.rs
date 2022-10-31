@@ -950,7 +950,6 @@ pub struct MusicPlaylistItem {
 
 /// YouTube Music album type
 #[derive(Default, Debug, Copy, Clone, Serialize, Deserialize, PartialEq, Eq)]
-#[serde(rename_all = "snake_case")]
 pub enum AlbumType {
     /// Regular album (default)
     #[default]

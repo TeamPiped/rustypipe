@@ -30,7 +30,7 @@ MusicAlbum(
   ],
   artists: [],
   artists_txt: "Various Artists",
-  album_type: single,
+  album_type: Single,
   year: Some(2022),
   by_va: true,
   tracks: [

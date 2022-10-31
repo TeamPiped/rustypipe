@@ -39,7 +39,7 @@ MusicAlbum(
     ),
   ],
   artists_txt: "Joel Brandenstein & Vanessa Mai",
-  album_type: single,
+  album_type: Single,
   year: Some(2020),
   by_va: false,
   tracks: [

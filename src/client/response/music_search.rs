@@ -24,6 +24,7 @@ pub(crate) struct SectionList {
     pub section_list_renderer: ContentsRenderer<ItemSection>,
 }
 
+#[allow(clippy::enum_variant_names)]
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]

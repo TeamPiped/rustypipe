@@ -8,7 +8,7 @@ use crate::{
         text::{Text, TextComponents},
         MapResult, VecLogError,
     },
-    util,
+    util::{self, TryRemove},
 };
 
 use super::{
@@ -150,6 +150,12 @@ pub(crate) struct MusicColumnRenderer {
     pub text: TextComponents,
 }
 
+impl From<MusicColumn> for TextComponents {
+    fn from(col: MusicColumn) -> Self {
+        col.renderer.text
+    }
+}
+
 impl From<MusicThumbnailRenderer> for Vec<model::Thumbnail> {
     fn from(tr: MusicThumbnailRenderer) -> Self {
         tr.music_thumbnail_renderer.thumbnail.into()
@@ -225,7 +231,7 @@ impl MusicListMapper {
                             title.ok_or_else(|| format!("track {}: could not get title", id))?;
 
                         let mut subtitle_parts = c2
-                            .ok_or_else(|| format!("track {}: could not get subtitle", id))?
+                            .ok_or_else(|| format!("item {}: could not get subtitle", id))?
                             .renderer
                             .text
                             .split(util::DOT_SEPARATOR)
@@ -320,39 +326,65 @@ impl MusicListMapper {
                         let is_video =
                             !first_tn.map(|tn| tn.height == tn.width).unwrap_or_default();
 
-                        let duration = item
-                            .fixed_columns
-                            .first()
-                            .and_then(|col| {
-                                col.renderer
+                        let (artists_p, album_p, duration_p) = match item.flex_column_display_style
+                        {
+                            FlexColumnDisplayStyle::TwoLines => {
+                                let mut subtitle_parts = c2
+                                    .ok_or_else(|| format!("track {}: could not get subtitle", id))?
+                                    .renderer
                                     .text
-                                    .0
-                                    .first()
-                                    .and_then(|txt| util::parse_video_length(txt.as_str()))
-                            })
+                                    .split(util::DOT_SEPARATOR)
+                                    .into_iter();
+                                // Skip first part (track type)
+                                subtitle_parts.next();
+                                (
+                                    subtitle_parts.next(),
+                                    subtitle_parts.next(),
+                                    subtitle_parts.next(),
+                                )
+                            }
+                            FlexColumnDisplayStyle::Default => {
+                                let mut fixed_columns = item.fixed_columns;
+                                (
+                                    c2.map(TextComponents::from),
+                                    c3.map(TextComponents::from),
+                                    fixed_columns.try_swap_remove(0).map(TextComponents::from),
+                                )
+                            }
+                        };
+
+                        let duration = duration_p
+                            .and_then(|p| util::parse_video_length(&p.to_string()))
                             .ok_or_else(|| format!("track {}: could not parse duration", id))?;
 
-                        let album = c3.and_then(|col| {
-                            col.renderer
-                                .text
-                                .0
-                                .into_iter()
-                                .find_map(|c| model::AlbumId::try_from(c).ok())
-                        });
+                        // The album field contains the track count for search videos
+                        let (album, view_count) = match (item.flex_column_display_style, is_video) {
+                            (FlexColumnDisplayStyle::TwoLines, true) => (
+                                None,
+                                album_p.and_then(|p| {
+                                    util::parse_large_numstr(&p.to_string(), self.lang)
+                                }),
+                            ),
+                            (_, false) => (
+                                album_p.and_then(|p| {
+                                    p.0.into_iter()
+                                        .find_map(|c| model::AlbumId::try_from(c).ok())
+                                }),
+                                None,
+                            ),
+                            (FlexColumnDisplayStyle::Default, true) => (None, None),
+                        };
 
-                        let mut artists_txt = c2
-                            .as_ref()
-                            .and_then(|col| col.renderer.text.to_opt_string());
-                        let mut artists = c2
-                            .map(|col| {
-                                col.renderer
-                                    .text
-                                    .0
-                                    .into_iter()
+                        let mut artists_txt =
+                            artists_p.as_ref().and_then(TextComponents::to_opt_string);
+                        let mut artists = artists_p
+                            .map(|p| {
+                                p.0.into_iter()
                                     .filter_map(|c| ChannelId::try_from(c).ok())
                                     .collect::<Vec<_>>()
                             })
                             .unwrap_or_default();
+
                         if let Some(a) = &self.o_artists {
                             if artists.is_empty() && artists_txt.is_none() {
                                 let xa = a.clone();
@@ -369,7 +401,7 @@ impl MusicListMapper {
                             artists,
                             artists_txt,
                             album,
-                            view_count: None,
+                            view_count,
                             is_video,
                         });
                         Ok(())

@@ -35,7 +35,7 @@ MusicAlbum(
     ),
   ],
   artists_txt: "Oonagh",
-  album_type: album,
+  album_type: Album,
   year: Some(2016),
   by_va: false,
   tracks: [
@@ -351,7 +351,7 @@ MusicAlbum(
         ),
       ],
       artists_txt: "Oonagh",
-      album_type: album,
+      album_type: Album,
       year: None,
     ),
   ],

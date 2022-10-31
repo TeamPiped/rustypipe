@@ -64,7 +64,7 @@ impl MapResponse<MusicSearchResult> for response::MusicSearch {
         lang: crate::param::Language,
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
     ) -> Result<MapResult<MusicSearchResult>, crate::error::ExtractionError> {
-        dbg!(&self);
+        // dbg!(&self);
 
         let mut tabs = self.contents.tabbed_search_results_renderer.contents;
         let sections = tabs
