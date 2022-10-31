@@ -1,6 +1,6 @@
 ---
 source: src/client/pagination.rs
-expression: map_res.c
+expression: paginator
 ---
 Paginator(
   count: None,

@@ -1,6 +1,6 @@
 ---
-source: src/client/music_playlist.rs
-expression: map_res.c
+source: src/client/pagination.rs
+expression: paginator
 ---
 Paginator(
   count: None,
@@ -2250,5 +2250,5 @@ Paginator(
     ),
   ],
   ctoken: Some("4qmFsgI8EiRWTFBMNWREeDY4MVQ0YlI3WkYxSXVXek92MW9tbFJiRTdQaUoaFGVnZFFWRHBEVGtGQ2tnRURDTG9F"),
-  endpoint: browse,
+  endpoint: music_browse,
 )

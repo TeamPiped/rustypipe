@@ -431,4 +431,10 @@ MusicSearchResult(
     ),
   ],
   corrected_query: None,
+  order: [
+    Track,
+    Album,
+    Artist,
+    Playlist,
+  ],
 )

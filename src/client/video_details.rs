@@ -413,7 +413,7 @@ impl MapResponse<Paginator<Comment>> for response::VideoComments {
 
 fn map_recommendations(
     r: MapResult<Vec<response::YouTubeListItem>>,
-    continuations: Option<Vec<response::MusicContinuation>>,
+    continuations: Option<Vec<response::MusicContinuationData>>,
     visitor_data: Option<String>,
     lang: Language,
 ) -> MapResult<Paginator<VideoItem>> {

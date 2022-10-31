@@ -107,7 +107,13 @@ impl MapResponse<SearchResult> for response::Search {
 
         Ok(MapResult {
             c: SearchResult {
-                items: Paginator::new(self.estimated_results, mapper.items, mapper.ctoken),
+                items: Paginator::new_ext(
+                    self.estimated_results,
+                    mapper.items,
+                    mapper.ctoken,
+                    None,
+                    crate::param::ContinuationEndpoint::Search,
+                ),
                 corrected_query: mapper.corrected_query,
                 visitor_data: self.response_context.visitor_data,
             },

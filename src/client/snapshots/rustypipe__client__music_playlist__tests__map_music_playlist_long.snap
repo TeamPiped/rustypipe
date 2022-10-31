@@ -2266,6 +2266,6 @@ MusicPlaylist(
       ),
     ],
     ctoken: Some("4qmFsgI-EiRWTFBMNWREeDY4MVQ0YlI3WkYxSXVXek92MW9tbFJiRTdQaUoaFmVnWlFWRHBEUjFtU0FRTUl1Z1ElM0Q%3D"),
-    endpoint: browse,
+    endpoint: music_browse,
   ),
 )

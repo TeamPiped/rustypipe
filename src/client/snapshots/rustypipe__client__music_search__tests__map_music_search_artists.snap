@@ -1,0 +1,354 @@
+---
+source: src/client/music_search.rs
+expression: map_res.c
+---
+MusicSearchFiltered(
+  items: Paginator(
+    count: None,
+    items: [
+      ArtistItem(
+        id: "UCEdZAdnnKqbaHOlv8nM6OtA",
+        name: "aespa",
+        avatar: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/gV8Sbt3iKraNm_H9ZaH3oh6ERRdN0Dj6qHmTLPiQQ4WS8uGNN09HlpujMJOWwei_z5yC9Th1cZXyOQ=w60-h60-p-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/gV8Sbt3iKraNm_H9ZaH3oh6ERRdN0Dj6qHmTLPiQQ4WS8uGNN09HlpujMJOWwei_z5yC9Th1cZXyOQ=w120-h120-p-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        subscriber_count: Some(4120000),
+      ),
+      ArtistItem(
+        id: "UCaDT20-B3U8h-tPg_VMvntw",
+        name: "The Black Mamba",
+        avatar: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Vq3Jc5g2QNJCdkwHbk4uShyhlzwKx0oVovyBXH_AzQs7i6lF7eRN149E56bo4OP_rP2TPvYem8RV3DhV=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Vq3Jc5g2QNJCdkwHbk4uShyhlzwKx0oVovyBXH_AzQs7i6lF7eRN149E56bo4OP_rP2TPvYem8RV3DhV=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        subscriber_count: Some(2640),
+      ),
+      ArtistItem(
+        id: "UCLcwLJIGBDDvbfq8JERV6Ag",
+        name: "Black Mamba",
+        avatar: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/qPN6oDatmKgTxytO4b8ScN1qGGMBpsF2_vH9OG1sSDn8Hew28J8vy9y4WNWOJYvSCyHbghIs_B5aGgkJ=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/qPN6oDatmKgTxytO4b8ScN1qGGMBpsF2_vH9OG1sSDn8Hew28J8vy9y4WNWOJYvSCyHbghIs_B5aGgkJ=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        subscriber_count: Some(9),
+      ),
+      ArtistItem(
+        id: "UCxX9tNcQgCBuU56ezupriqg",
+        name: "Black Mamba",
+        avatar: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/IDUShs34Xb5MdCLxYoLzOas8gLET79TgvLhaarlaNlBJfiWergRjWxFptuBcGt3bVp2zsuBmBV1F_WmO=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/IDUShs34Xb5MdCLxYoLzOas8gLET79TgvLhaarlaNlBJfiWergRjWxFptuBcGt3bVp2zsuBmBV1F_WmO=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        subscriber_count: Some(266),
+      ),
+      ArtistItem(
+        id: "UCRpi1gBlax4sK3dNNxIxxFg",
+        name: "Black Mamba Official",
+        avatar: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/g0iyEdaYwlSjWkL516U_yDhCNh0ybcMIIcxBLtzRU32z8-K6-lY4n7dLy4QLWjDVeG28_uPaMRLRipzz=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/g0iyEdaYwlSjWkL516U_yDhCNh0ybcMIIcxBLtzRU32z8-K6-lY4n7dLy4QLWjDVeG28_uPaMRLRipzz=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        subscriber_count: Some(94),
+      ),
+      ArtistItem(
+        id: "UCmv0BSLywph2xUVzL1B8Z5w",
+        name: "Ladysmith Black Mambazo",
+        avatar: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/tuS_P7aTxOxw1wrm46sE78kl66L8B2466egIf7n1M4QZ50hpKAnVqfwxxq8j_0j0gr68JYr-mEtdUHJ2=w60-h60-p-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/tuS_P7aTxOxw1wrm46sE78kl66L8B2466egIf7n1M4QZ50hpKAnVqfwxxq8j_0j0gr68JYr-mEtdUHJ2=w120-h120-p-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        subscriber_count: Some(14700),
+      ),
+      ArtistItem(
+        id: "UCdkNrc_l73BHYKRhDqxBo9w",
+        name: "Black Mamba Man",
+        avatar: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/a-/ACNPEu9AGdkyIbtHOsHiGL_9MHUkTckGmOljmnBAz9z9Rw=w60-h60-l90-rj-dcpVGObakG",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/a-/ACNPEu9AGdkyIbtHOsHiGL_9MHUkTckGmOljmnBAz9z9Rw=w120-h120-l90-rj-dcpVGObakG",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        subscriber_count: Some(2660),
+      ),
+      ArtistItem(
+        id: "UCXL-mycQdd2cESIUNb7b8-Q",
+        name: "Black Mamba Queen",
+        avatar: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/H9PBOtO21MFaQWGrQ-PuypRpo2JmQt-8lUtO7p3tkXwL23dGH3xT7audwyQTFRcDQciPPn7XlsXK86Lr=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/H9PBOtO21MFaQWGrQ-PuypRpo2JmQt-8lUtO7p3tkXwL23dGH3xT7audwyQTFRcDQciPPn7XlsXK86Lr=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        subscriber_count: Some(16),
+      ),
+      ArtistItem(
+        id: "UCs04jfHH78YUziFA52P97LA",
+        name: "R. Black Mamba",
+        avatar: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/spK0WDkuFgwfcu9rs1MUCu84YaNWLkwWkrZYoAfxtDdaXWxia84rMLkwFmDiLA5XqTnvYrjg0lqVWY8=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/spK0WDkuFgwfcu9rs1MUCu84YaNWLkwWkrZYoAfxtDdaXWxia84rMLkwFmDiLA5XqTnvYrjg0lqVWY8=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        subscriber_count: Some(38),
+      ),
+      ArtistItem(
+        id: "UCcogSfIDHsBhCED4YTd8oOg",
+        name: "Bionik & Black Mamba feat. Afrob & D-Flame",
+        avatar: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Q97HzPcy6_fzfzxk57vig3UgcELHHoDGG9lZN6fgAc9KVpZQIJGyxCNMlz37jRQn1gJDqHENwmIYSF5i=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Q97HzPcy6_fzfzxk57vig3UgcELHHoDGG9lZN6fgAc9KVpZQIJGyxCNMlz37jRQn1gJDqHENwmIYSF5i=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        subscriber_count: Some(1),
+      ),
+      ArtistItem(
+        id: "UCasuQMoX2yjpp8jQF_rJFhw",
+        name: "Matao",
+        avatar: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/xmsKa7XppwIdfTT2553JUduDXYkLAvYOc2yqeDhdga8SHXS3PjMzLWQxRFGiGPpS3GIKzNutk3Ldu6r3=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/xmsKa7XppwIdfTT2553JUduDXYkLAvYOc2yqeDhdga8SHXS3PjMzLWQxRFGiGPpS3GIKzNutk3Ldu6r3=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        subscriber_count: Some(2),
+      ),
+      ArtistItem(
+        id: "UCDHWJXxzaqUiFUcX-49jmaQ",
+        name: "Black Pumas",
+        avatar: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/aFSb7LPmBgdLtRxxk-ToHBSEVFAISlR_wGA3eszYdoxyCFDMlqDG6l70iUnoM8ef9Uk-1ovJgKyFGRg8=w60-h60-p-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/aFSb7LPmBgdLtRxxk-ToHBSEVFAISlR_wGA3eszYdoxyCFDMlqDG6l70iUnoM8ef9Uk-1ovJgKyFGRg8=w120-h120-p-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        subscriber_count: Some(656000),
+      ),
+      ArtistItem(
+        id: "UCC7VZvZHG4UOP4wtbzyl4kA",
+        name: "Black Mamba 2.0",
+        avatar: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/w8l4Tq6UbmRH8q-Xd5Op1oywE0H6iZTYjbTYdfhCB1g2Hz7NRiLapql4qOUMKDvBebDY_DTUTyV0CH1_1g=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/w8l4Tq6UbmRH8q-Xd5Op1oywE0H6iZTYjbTYdfhCB1g2Hz7NRiLapql4qOUMKDvBebDY_DTUTyV0CH1_1g=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        subscriber_count: Some(2),
+      ),
+      ArtistItem(
+        id: "UC_TOO0jbQBRgeP0DoZMtEKQ",
+        name: "Ana and The Black Mamba",
+        avatar: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/DAAztELhO8SV8Ja1wJQYp4qPOe6T1WJlc0nqNqF5zdxPgKvktnUuAV1Xq6Ud5fQOw3Pymx6k7s6LfmmebQ=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/DAAztELhO8SV8Ja1wJQYp4qPOe6T1WJlc0nqNqF5zdxPgKvktnUuAV1Xq6Ud5fQOw3Pymx6k7s6LfmmebQ=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        subscriber_count: Some(12),
+      ),
+      ArtistItem(
+        id: "UC1RJ4atUIi5UAYj-1-vNJtg",
+        name: "Mr. Black Mamba",
+        avatar: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/-cqt-vX_yWEVaS6eN-FMtE0CdsLr5b9IknyOLfSXSgLaqVtpx7AYBDXfzGz3s7FmlSoSTMEXiGCtxSuCwQ=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/-cqt-vX_yWEVaS6eN-FMtE0CdsLr5b9IknyOLfSXSgLaqVtpx7AYBDXfzGz3s7FmlSoSTMEXiGCtxSuCwQ=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        subscriber_count: Some(12),
+      ),
+      ArtistItem(
+        id: "UC-J22tQNMWvBwWxe9OqvVaw",
+        name: "BLVCK MAMBA",
+        avatar: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/W4Ij0kltncrSYRGhSmPDbfz2WOJVsqCK5GO4obZYdLO36fVC-yNzLe_a3BpadfBIwn_wdh4BHg8r8b9N=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/W4Ij0kltncrSYRGhSmPDbfz2WOJVsqCK5GO4obZYdLO36fVC-yNzLe_a3BpadfBIwn_wdh4BHg8r8b9N=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        subscriber_count: Some(52),
+      ),
+      ArtistItem(
+        id: "UCYAFIwL4uBWQHBrBiohx1vw",
+        name: "Addis Black Mamba",
+        avatar: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Xonj-vCCYYjIKSATlqbbPJCKM6jJBrn4belO7YBm1fmW-sv71KT7Dvhp-RGEd_zjkupkpbHgmvRcq_U=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Xonj-vCCYYjIKSATlqbbPJCKM6jJBrn4belO7YBm1fmW-sv71KT7Dvhp-RGEd_zjkupkpbHgmvRcq_U=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        subscriber_count: Some(3),
+      ),
+      ArtistItem(
+        id: "UCcp64GnNBBnA0TLBQBzOTzg",
+        name: "Blackmamba",
+        avatar: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/-eB3_6oU13574GvFZuxPEiVRt6L3a5sxc1bOI81wrH2ApPBW1FkiasjUW9kG57HT9lzvx7THUhzOX_Dywg=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/-eB3_6oU13574GvFZuxPEiVRt6L3a5sxc1bOI81wrH2ApPBW1FkiasjUW9kG57HT9lzvx7THUhzOX_Dywg=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        subscriber_count: Some(33),
+      ),
+      ArtistItem(
+        id: "UCUwuDw3pGLVIvX0qEIUN7jw",
+        name: "Blck Mamba",
+        avatar: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/AzBKfAN0U1gI_jwMGdDgP2TGiywSP88qCpB7Bse1LsU-9HM7hqxlpqhohm-JGqJ69EKvVUgC4lSH8fTEgA=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/AzBKfAN0U1gI_jwMGdDgP2TGiywSP88qCpB7Bse1LsU-9HM7hqxlpqhohm-JGqJ69EKvVUgC4lSH8fTEgA=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        subscriber_count: Some(1),
+      ),
+      ArtistItem(
+        id: "UCrlOxtIAzzIpkcOT4YM0e7A",
+        name: "The Black Mambas",
+        avatar: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/lpnIQ3IbuHooCDHqCQYREfDSOxq-pO241iBI6enu8-h-ZoXTc4WN3RDAKmYqGv6wE08iwFglXqjZNBtM=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/lpnIQ3IbuHooCDHqCQYREfDSOxq-pO241iBI6enu8-h-ZoXTc4WN3RDAKmYqGv6wE08iwFglXqjZNBtM=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        subscriber_count: Some(27),
+      ),
+    ],
+    ctoken: Some("EoIGEgtibGFjayBtYW1iYRryBUVnV0tBUUlnQVVnVWFnd1FBeEFFRUFrUURoQUtFQVdDQVJoVlEwVmtXa0ZrYm01TGNXSmhTRTlzZGpodVRUWlBkRUdDQVJoVlEyRkVWREl3TFVJelZUaG9MWFJRWjE5V1RYWnVkSGVDQVJoVlEweGpkMHhLU1VkQ1JFUjJZbVp4T0VwRlVsWTJRV2VDQVJoVlEzaFlPWFJPWTFGblEwSjFWVFUyWlhwMWNISnBjV2VDQVJoVlExSndhVEZuUW14aGVEUnpTek5rVGs1NFNYaDRSbWVDQVJoVlEyMTJNRUpUVEhsM2NHZ3llRlZXZWt3eFFqaGFOWGVDQVJoVlEyUnJUbkpqWDJ3M00wSklXVXRTYUVSeGVFSnZPWGVDQVJoVlExaE1MVzE1WTFGa1pESmpSVk5KVlU1aU4ySTRMVkdDQVJoVlEzTXdOR3BtU0VnM09GbFZlbWxHUVRVeVVEazNURUdDQVJoVlEyTnZaMU5tU1VSSWMwSm9RMFZFTkZsVVpEaHZUMmVDQVJoVlEyRnpkVkZOYjFneWVXcHdjRGhxVVVaZmNrcEdhSGVDQVJoVlEwUklWMHBZZUhwaGNWVnBSbFZqV0MwME9XcHRZVkdDQVJoVlEwTTNWbHAyV2toSE5GVlBVRFIzZEdKNmVXdzBhMEdDQVJoVlExOVVUMDh3YW1KUlFsSm5aVkF3Ukc5YVRYUkZTMUdDQVJoVlF6RlNTalJoZEZWSmFUVlZRVmxxTFRFdGRrNUtkR2VDQVJoVlF5MUtNakowVVU1TlYzWkNkMWQ0WlRsUGNYWldZWGVDQVJoVlExbEJSa2wzVERSMVFsZFJTRUp5UW1sdmFIZ3hkbmVDQVJoVlEyTndOalJIYms1Q1FtNUJNRlJNUWxGQ2VrOVVlbWVDQVJoVlExVjNkVVIzTTNCSFRGWkpkbGd3Y1VWSlZVNDNhbmVDQVJoVlEzSnNUM2gwU1VGNmVrbHdhMk5QVkRSWlRUQmxOMEUlM0QY8erQLg%3D%3D"),
+    endpoint: music_search,
+  ),
+  corrected_query: None,
+)

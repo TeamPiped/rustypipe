@@ -13,7 +13,7 @@ use crate::serializer::{
 
 use super::{
     url_endpoint::BrowseEndpoint, ContinuationEndpoint, ContinuationItemRenderer, Icon,
-    MusicContinuation, Thumbnails,
+    MusicContinuationData, Thumbnails,
 };
 use super::{ChannelBadge, ResponseContext, YouTubeListItem};
 
@@ -308,7 +308,7 @@ pub(crate) struct RecommendationResults {
     #[serde_as(as = "Option<VecLogError<_>>")]
     pub results: Option<MapResult<Vec<YouTubeListItem>>>,
     #[serde_as(as = "Option<VecSkipError<_>>")]
-    pub continuations: Option<Vec<MusicContinuation>>,
+    pub continuations: Option<Vec<MusicContinuationData>>,
 }
 
 /// The engagement panels are displayed below the video and contain chapter markers

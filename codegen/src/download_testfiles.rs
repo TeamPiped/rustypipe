@@ -40,6 +40,10 @@ pub async fn download_testfiles(project_root: &Path) {
     music_playlist_cont(&testfiles).await;
     music_album(&testfiles).await;
     music_search(&testfiles).await;
+    music_search_tracks(&testfiles).await;
+    music_search_albums(&testfiles).await;
+    music_search_artists(&testfiles).await;
+    music_search_playlists(&testfiles).await;
 }
 
 const CLIENT_TYPES: [ClientType; 5] = [
@@ -530,5 +534,67 @@ async fn music_search(testfiles: &Path) {
 
         let rp = rp_testfile(&json_path);
         rp.query().music_search(query).await.unwrap();
+    }
+}
+
+async fn music_search_tracks(testfiles: &Path) {
+    for (name, query, videos) in [
+        ("default", "black mamba", false),
+        ("videos", "black mamba", true),
+        ("typo", "liblingsmensch", false),
+    ] {
+        let mut json_path = testfiles.to_path_buf();
+        json_path.push("music_search");
+        json_path.push(format!("tracks_{}.json", name));
+        if json_path.exists() {
+            continue;
+        }
+
+        let rp = rp_testfile(&json_path);
+        rp.query().music_search_tracks(query, videos).await.unwrap();
+    }
+}
+
+async fn music_search_albums(testfiles: &Path) {
+    let mut json_path = testfiles.to_path_buf();
+    json_path.push("music_search");
+    json_path.push("albums.json");
+    if json_path.exists() {
+        return;
+    }
+
+    let rp = rp_testfile(&json_path);
+    rp.query().music_search_albums("black mamba").await.unwrap();
+}
+
+async fn music_search_artists(testfiles: &Path) {
+    let mut json_path = testfiles.to_path_buf();
+    json_path.push("music_search");
+    json_path.push("artists.json");
+    if json_path.exists() {
+        return;
+    }
+
+    let rp = rp_testfile(&json_path);
+    rp.query()
+        .music_search_artists("black mamba")
+        .await
+        .unwrap();
+}
+
+async fn music_search_playlists(testfiles: &Path) {
+    for (name, community) in [("ytm", false), ("community", true)] {
+        let mut json_path = testfiles.to_path_buf();
+        json_path.push("music_search");
+        json_path.push(format!("playlists_{}.json", name));
+        if json_path.exists() {
+            continue;
+        }
+
+        let rp = rp_testfile(&json_path);
+        rp.query()
+            .music_search_playlists("pop", community)
+            .await
+            .unwrap();
     }
 }

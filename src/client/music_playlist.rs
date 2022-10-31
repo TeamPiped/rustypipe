@@ -2,7 +2,7 @@ use std::borrow::Cow;
 
 use crate::{
     error::{Error, ExtractionError},
-    model::{ChannelId, MusicAlbum, MusicPlaylist, Paginator, TrackItem},
+    model::{ChannelId, MusicAlbum, MusicPlaylist, Paginator},
     serializer::MapResult,
     util::{self, TryRemove},
 };
@@ -12,7 +12,7 @@ use super::{
         self,
         music_item::{map_album_type, map_artists, MusicListMapper},
     },
-    ClientType, MapResponse, QBrowse, QContinuation, RustyPipeQuery,
+    ClientType, MapResponse, QBrowse, RustyPipeQuery,
 };
 
 impl RustyPipeQuery {
@@ -27,26 +27,6 @@ impl RustyPipeQuery {
             ClientType::DesktopMusic,
             "music_playlist",
             playlist_id,
-            "browse",
-            &request_body,
-        )
-        .await
-    }
-
-    pub async fn music_playlist_continuation(
-        &self,
-        ctoken: &str,
-    ) -> Result<Paginator<TrackItem>, Error> {
-        let context = self.get_context(ClientType::DesktopMusic, true, None).await;
-        let request_body = QContinuation {
-            context,
-            continuation: ctoken,
-        };
-
-        self.execute_request::<response::MusicPlaylistCont, _, _>(
-            ClientType::DesktopMusic,
-            "music_playlist_continuation",
-            ctoken,
             "browse",
             &request_body,
         )
@@ -126,6 +106,7 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
 
         let mut mapper = MusicListMapper::new(lang);
         mapper.map_response(shelf.contents);
+        let map_res = mapper.conv_items();
 
         let ctoken = shelf
             .continuations
@@ -137,7 +118,7 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
                 .second_subtitle
                 .first()
                 .and_then(|txt| util::parse_numeric::<u64>(txt).ok()),
-            None => Some(mapper.tracks.len() as u64),
+            None => Some(map_res.c.len() as u64),
         };
 
         Ok(MapResult {
@@ -149,32 +130,15 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
                 description: header.description,
                 track_count,
                 from_ytm,
-                tracks: Paginator::new(track_count, mapper.tracks, ctoken),
+                tracks: Paginator::new_ext(
+                    track_count,
+                    map_res.c,
+                    ctoken,
+                    None,
+                    crate::param::ContinuationEndpoint::MusicBrowse,
+                ),
             },
-            warnings: mapper.warnings,
-        })
-    }
-}
-
-impl MapResponse<Paginator<TrackItem>> for response::MusicPlaylistCont {
-    fn map_response(
-        self,
-        _id: &str,
-        lang: crate::param::Language,
-        _deobf: Option<&crate::deobfuscate::Deobfuscator>,
-    ) -> Result<MapResult<Paginator<TrackItem>>, ExtractionError> {
-        let mut mapper = MusicListMapper::new(lang);
-        let mut shelf = self.continuation_contents.music_playlist_shelf_continuation;
-        mapper.map_response(shelf.contents);
-
-        let ctoken = shelf
-            .continuations
-            .try_swap_remove(0)
-            .map(|cont| cont.next_continuation_data.continuation);
-
-        Ok(MapResult {
-            c: Paginator::new(None, mapper.tracks, ctoken),
-            warnings: mapper.warnings,
+            warnings: map_res.warnings,
         })
     }
 }
@@ -247,9 +211,15 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
             }
         };
         mapper.map_response(shelf.contents);
+        let tracks_res = mapper.conv_items();
+        let mut warnings = tracks_res.warnings;
+
+        let mut variants_mapper = MusicListMapper::new(lang);
         if let Some(res) = album_variants {
-            mapper.map_response(res)
+            variants_mapper.map_response(res);
         }
+        let mut variants_res = variants_mapper.conv_items();
+        warnings.append(&mut variants_res.warnings);
 
         Ok(MapResult {
             c: MusicAlbum {
@@ -262,10 +232,10 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
                 album_type,
                 year,
                 by_va,
-                tracks: mapper.tracks,
-                variants: mapper.albums,
+                tracks: tracks_res.c,
+                variants: variants_res.c,
             },
-            warnings: mapper.warnings,
+            warnings,
         })
     }
 }
@@ -301,23 +271,6 @@ mod tests {
         insta::assert_ron_snapshot!(format!("map_music_playlist_{}", name), map_res.c, {
             ".last_update" => "[date]"
         });
-    }
-
-    #[test]
-    fn map_music_playlist_cont() {
-        let json_path = Path::new("testfiles/music_playlist/playlist_cont.json");
-        let json_file = File::open(json_path).unwrap();
-
-        let playlist: response::MusicPlaylistCont =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res = playlist.map_response("", Language::En, None).unwrap();
-
-        assert!(
-            map_res.warnings.is_empty(),
-            "deserialization/mapping warnings: {:?}",
-            map_res.warnings
-        );
-        insta::assert_ron_snapshot!("map_music_playlist_cont", map_res.c);
     }
 
     #[rstest]

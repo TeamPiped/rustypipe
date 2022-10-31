@@ -1,0 +1,604 @@
+---
+source: src/client/music_search.rs
+expression: map_res.c
+---
+MusicSearchFiltered(
+  items: Paginator(
+    count: None,
+    items: [
+      TrackItem(
+        id: "6485PhOtHzY",
+        title: "Lieblingsmensch",
+        duration: 191,
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/dwrJ5NnlZU7CBziLRlTm1uizuolakRAX7g34-eKeqEZQGZgwmvhqcs3TiZClfm7v6a-KYHieitdakpPo=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/dwrJ5NnlZU7CBziLRlTm1uizuolakRAX7g34-eKeqEZQGZgwmvhqcs3TiZClfm7v6a-KYHieitdakpPo=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCIh4j8fXWf2U0ro0qnGU8Mg",
+            name: "Namika",
+          ),
+        ],
+        artists_txt: Some("Namika"),
+        album: Some(AlbumId(
+          id: "MPREb_RXHxrUFfrvQ",
+          name: "Lieblingsmensch",
+        )),
+        view_count: None,
+        is_video: false,
+      ),
+      TrackItem(
+        id: "pt0YvfnhGgI",
+        title: "Lieblingsmensch",
+        duration: 524,
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/38mrm1ntm4MQfmB4Pl2EdY7o6McbLq06sC7qqLxDMqOfL-eqySheDnfl3IOpZYIE_ozt6Bywlmjj2DCe=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/38mrm1ntm4MQfmB4Pl2EdY7o6McbLq06sC7qqLxDMqOfL-eqySheDnfl3IOpZYIE_ozt6Bywlmjj2DCe=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCCpID8TTjkkjLCwBybAfHSg",
+            name: "Boris Brejcha",
+          ),
+        ],
+        artists_txt: Some("Boris Brejcha"),
+        album: Some(AlbumId(
+          id: "MPREb_VFqQlfPhsFW",
+          name: "Lieblingsmensch",
+        )),
+        view_count: None,
+        is_video: false,
+      ),
+      TrackItem(
+        id: "VinJmH-uidY",
+        title: "Lieblingsmensch",
+        duration: 203,
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/frjY96Y5A4eZ9tQOmMZm7zqqRr19W4Q3xz7Y2DcAiaCB0Eyp22u3_DfP8qP4NNqrxZFPA1pC3DBC91T3=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/frjY96Y5A4eZ9tQOmMZm7zqqRr19W4Q3xz7Y2DcAiaCB0Eyp22u3_DfP8qP4NNqrxZFPA1pC3DBC91T3=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCMLbHQGqUHeNAqjOL1qXZXg",
+            name: "Lumbematz",
+          ),
+        ],
+        artists_txt: Some("Lumbematz"),
+        album: Some(AlbumId(
+          id: "MPREb_14GKjCEauSE",
+          name: "Lieblingsmensch",
+        )),
+        view_count: None,
+        is_video: false,
+      ),
+      TrackItem(
+        id: "YmSmymHRnEE",
+        title: "Lieblingsmensch (Edit)",
+        duration: 220,
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/52NEd25MuR_LmWQw_sbHEm1s4jdiUm1SB25aLeFSaz70Z89GTdghmRNd21YgggAFbAg4NgMHiGpSdCyANw=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/52NEd25MuR_LmWQw_sbHEm1s4jdiUm1SB25aLeFSaz70Z89GTdghmRNd21YgggAFbAg4NgMHiGpSdCyANw=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCCpID8TTjkkjLCwBybAfHSg",
+            name: "Boris Brejcha",
+          ),
+        ],
+        artists_txt: Some("Boris Brejcha"),
+        album: Some(AlbumId(
+          id: "MPREb_AlIjxpnBKtn",
+          name: "Lieblingsmensch (Edit)",
+        )),
+        view_count: None,
+        is_video: false,
+      ),
+      TrackItem(
+        id: "TgfIbiHCOLo",
+        title: "Lieblingsmensch",
+        duration: 211,
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/IGfkF3S_lPTLb9988SHZegHEAnuT_mT9BrZg8ZssbuYWWkfL5fvoxXlpOvRZr7ajNSdJSFfAhK0xnGCD=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/IGfkF3S_lPTLb9988SHZegHEAnuT_mT9BrZg8ZssbuYWWkfL5fvoxXlpOvRZr7ajNSdJSFfAhK0xnGCD=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCTJBrv8T8AxavAynvB3_DSw",
+            name: "Seer",
+          ),
+        ],
+        artists_txt: Some("Seer"),
+        album: Some(AlbumId(
+          id: "MPREb_t2Laj9ENdVn",
+          name: "echt seerisch",
+        )),
+        view_count: None,
+        is_video: false,
+      ),
+      TrackItem(
+        id: "lCi6N_uq3vE",
+        title: "Lieblingsmensch",
+        duration: 209,
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/mUCPnu_MO_s46GVCkRnCI8wIx1AvTdexxqpr78ZXHurucPeNFJ_tBtTAJ6IFkaOVMdfmYWPp1ibTU5xd=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/mUCPnu_MO_s46GVCkRnCI8wIx1AvTdexxqpr78ZXHurucPeNFJ_tBtTAJ6IFkaOVMdfmYWPp1ibTU5xd=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCtoec88rzlhABHeo_4d-H8g",
+            name: "Dame",
+          ),
+        ],
+        artists_txt: Some("Dame"),
+        album: Some(AlbumId(
+          id: "MPREb_9ILis64aD76",
+          name: "Notiz an mich",
+        )),
+        view_count: None,
+        is_video: false,
+      ),
+      TrackItem(
+        id: "QIjqe2B3RdQ",
+        title: "Lieblingsmensch",
+        duration: 184,
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Y_1W369gCVOjE4aYEj_Q8gkX9GjjQG08Pf8yl_4f4DZKcnBzncueRCFhfTnElQE7nDWo0et6fYtH9xs=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Y_1W369gCVOjE4aYEj_Q8gkX9GjjQG08Pf8yl_4f4DZKcnBzncueRCFhfTnElQE7nDWo0et6fYtH9xs=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UClOpZVfE5v-fFtM8vqFud-g",
+            name: "KIDZ BOP Kids",
+          ),
+        ],
+        artists_txt: Some("KIDZ BOP Kids"),
+        album: Some(AlbumId(
+          id: "MPREb_vxdAMBsmm1s",
+          name: "KIDZ BOP Ultimate Playlist",
+        )),
+        view_count: None,
+        is_video: false,
+      ),
+      TrackItem(
+        id: "q2pUotlXPeM",
+        title: "Lieblingsmensch (Beatgees Remix)",
+        duration: 199,
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/vh1NIdzUQTuH3jlZFTJ-XK3f_QIUVJGZe1qTE-O1O8MZtylnx7JpYtd0NPSUWFFgIzlysNfbUOaeryr5Zw=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/vh1NIdzUQTuH3jlZFTJ-XK3f_QIUVJGZe1qTE-O1O8MZtylnx7JpYtd0NPSUWFFgIzlysNfbUOaeryr5Zw=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCIh4j8fXWf2U0ro0qnGU8Mg",
+            name: "Namika",
+          ),
+        ],
+        artists_txt: Some("Namika"),
+        album: Some(AlbumId(
+          id: "MPREb_V5f8YfHKp2j",
+          name: "Lieblingsmensch",
+        )),
+        view_count: None,
+        is_video: false,
+      ),
+      TrackItem(
+        id: "0yPnvetCm-U",
+        title: "Lieblingsmensch",
+        duration: 174,
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/RORTouE503-ZZqgAov66r2cK-YyTJbZIwbM1Hz58ja7jNgWSG_xjTLxK41nwAT8ejRvY7U35dMm4OOYhYg=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/RORTouE503-ZZqgAov66r2cK-YyTJbZIwbM1Hz58ja7jNgWSG_xjTLxK41nwAT8ejRvY7U35dMm4OOYhYg=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCvfUKCnUBfsZAVHgF-pYmJg",
+            name: "Voyce",
+          ),
+        ],
+        artists_txt: Some("Voyce"),
+        album: Some(AlbumId(
+          id: "MPREb_SpT32xAd4YR",
+          name: "Gegenstück EP",
+        )),
+        view_count: None,
+        is_video: false,
+      ),
+      TrackItem(
+        id: "EU5Vly60VGU",
+        title: "Lieblingsmensch",
+        duration: 205,
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/SpQwKRYlYv8LRubMGRjCDdbHfcGEjh30Ta97f1iUPXKpy6pfudCGdf-GJQiKfR8zT7p7mkZ6UFR1V8vE=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/SpQwKRYlYv8LRubMGRjCDdbHfcGEjh30Ta97f1iUPXKpy6pfudCGdf-GJQiKfR8zT7p7mkZ6UFR1V8vE=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCosvbvqFxbUniyDCUNXN5wA",
+            name: "Klaus Hanslbauer",
+          ),
+        ],
+        artists_txt: Some("Klaus Hanslbauer"),
+        album: Some(AlbumId(
+          id: "MPREb_oz9ZiEQcBU4",
+          name: "Lieblingsmensch",
+        )),
+        view_count: None,
+        is_video: false,
+      ),
+      TrackItem(
+        id: "UnxQ0TI4IMs",
+        title: "Lieblingsmensch (Intrumental)",
+        duration: 190,
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/vh1NIdzUQTuH3jlZFTJ-XK3f_QIUVJGZe1qTE-O1O8MZtylnx7JpYtd0NPSUWFFgIzlysNfbUOaeryr5Zw=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/vh1NIdzUQTuH3jlZFTJ-XK3f_QIUVJGZe1qTE-O1O8MZtylnx7JpYtd0NPSUWFFgIzlysNfbUOaeryr5Zw=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCIh4j8fXWf2U0ro0qnGU8Mg",
+            name: "Namika",
+          ),
+        ],
+        artists_txt: Some("Namika"),
+        album: Some(AlbumId(
+          id: "MPREb_V5f8YfHKp2j",
+          name: "Lieblingsmensch",
+        )),
+        view_count: None,
+        is_video: false,
+      ),
+      TrackItem(
+        id: "ufpny1KxwcU",
+        title: "Lieblingsmensch",
+        duration: 196,
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/S9htVpH2mk6tD6pG9SDcmKYvaXTzS5XfFDDGdWBJpK-QqffLTVT3V9BrA7uSiIy_vJlpyVotPcQhFdNBfw=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/S9htVpH2mk6tD6pG9SDcmKYvaXTzS5XfFDDGdWBJpK-QqffLTVT3V9BrA7uSiIy_vJlpyVotPcQhFdNBfw=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCk-g5nfpm8Q9gfy7DuU8PZA",
+            name: "VVIER",
+          ),
+        ],
+        artists_txt: Some("VVIER"),
+        album: Some(AlbumId(
+          id: "MPREb_Oc7tpyMz6uE",
+          name: "Zusammen",
+        )),
+        view_count: None,
+        is_video: false,
+      ),
+      TrackItem(
+        id: "duzWgZFJNwA",
+        title: "Lieblingsmensch (Übernice Remix)",
+        duration: 184,
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/vh1NIdzUQTuH3jlZFTJ-XK3f_QIUVJGZe1qTE-O1O8MZtylnx7JpYtd0NPSUWFFgIzlysNfbUOaeryr5Zw=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/vh1NIdzUQTuH3jlZFTJ-XK3f_QIUVJGZe1qTE-O1O8MZtylnx7JpYtd0NPSUWFFgIzlysNfbUOaeryr5Zw=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCIh4j8fXWf2U0ro0qnGU8Mg",
+            name: "Namika",
+          ),
+        ],
+        artists_txt: Some("Namika"),
+        album: Some(AlbumId(
+          id: "MPREb_V5f8YfHKp2j",
+          name: "Lieblingsmensch",
+        )),
+        view_count: None,
+        is_video: false,
+      ),
+      TrackItem(
+        id: "rnXq-1n0lt0",
+        title: "Lieblingsmensch",
+        duration: 223,
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/slp9kDTF1UHk6WcR6FgWuWP2uF0R4OK0Ljeh8wu8FJ6sy3qAy-KjdGnDbb37FPlOd9sXnO8HItnGWbLgjg=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/slp9kDTF1UHk6WcR6FgWuWP2uF0R4OK0Ljeh8wu8FJ6sy3qAy-KjdGnDbb37FPlOd9sXnO8HItnGWbLgjg=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCDBvf2dl0XZQvIKPsrsDprg",
+            name: "Sebó",
+          ),
+        ],
+        artists_txt: Some("Sebó"),
+        album: Some(AlbumId(
+          id: "MPREb_X5boeaZWzPX",
+          name: "Lieblingsmensch",
+        )),
+        view_count: None,
+        is_video: false,
+      ),
+      TrackItem(
+        id: "vHkqdC6-rOI",
+        title: "Lieblingsmensch",
+        duration: 259,
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/28SryO8FUVn7wv1nnY9KXRXQrcTI3WBxXvi8LP3h218aMqwpMVsJ2FW5cTiAJvLk9T6UVb1Ex4aq4BnUxQ=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/28SryO8FUVn7wv1nnY9KXRXQrcTI3WBxXvi8LP3h218aMqwpMVsJ2FW5cTiAJvLk9T6UVb1Ex4aq4BnUxQ=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UC2_O7ywkwEh-crQedvyNOYg",
+            name: "DIA Herbst",
+          ),
+        ],
+        artists_txt: Some("DIA Herbst"),
+        album: Some(AlbumId(
+          id: "MPREb_8f4SNZ8HDhD",
+          name: "Lieblingsmensch",
+        )),
+        view_count: None,
+        is_video: false,
+      ),
+      TrackItem(
+        id: "nTlceSET_b8",
+        title: "Lieblingsmensch",
+        duration: 190,
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/qMk9Q2DY1rwbdyJx7G2vWUgOiW1y1JEi8gRxMAorrayzPPxvjF5QbDy3lK-G3bgPyCowxNudDQPs4I-2=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/qMk9Q2DY1rwbdyJx7G2vWUgOiW1y1JEi8gRxMAorrayzPPxvjF5QbDy3lK-G3bgPyCowxNudDQPs4I-2=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [],
+        artists_txt: Some("Jasmin Bick"),
+        album: Some(AlbumId(
+          id: "MPREb_6PhWrMAoiO3",
+          name: "Volksmusik Sommer 2017",
+        )),
+        view_count: None,
+        is_video: false,
+      ),
+      TrackItem(
+        id: "D8GhmRiIfxI",
+        title: "Lieblingsmensch",
+        duration: 173,
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/o2NBiflfACN6lJQFOkB-xFywBd61nmejQa_8JgEksiZ3rnpBdUp_W1T9f4sD-QbJuLyvaS4E9WPhvlc=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/o2NBiflfACN6lJQFOkB-xFywBd61nmejQa_8JgEksiZ3rnpBdUp_W1T9f4sD-QbJuLyvaS4E9WPhvlc=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCtsMcVBiK9QvtS2LH8Z6M5g",
+            name: "Apres Ski",
+          ),
+        ],
+        artists_txt: Some("Apres Ski"),
+        album: Some(AlbumId(
+          id: "MPREb_4HeyZ3um21Q",
+          name: "Ballermann Stars - Après Ski Hits 2016 Party (Die XXL Schlager Party im Karneval und Fasching der Saison 2015 bis 2016)",
+        )),
+        view_count: None,
+        is_video: false,
+      ),
+      TrackItem(
+        id: "01CS-jTaY1U",
+        title: "Je Ne Parle Pas Français (Instrumental)",
+        duration: 196,
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/dq-4hwakOMJ_HCWEo7fHOOWg3g1X0bl4UPtwuhuEScfYwh38WeXM5zmSk9vTxClkFRynOTEH4RaUJ3q_=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/dq-4hwakOMJ_HCWEo7fHOOWg3g1X0bl4UPtwuhuEScfYwh38WeXM5zmSk9vTxClkFRynOTEH4RaUJ3q_=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UC16V9XG1PfOD1E0m6G-s22A",
+            name: "Trap Lion Beats",
+          ),
+        ],
+        artists_txt: Some("Trap Lion Beats"),
+        album: Some(AlbumId(
+          id: "MPREb_BVRbZ6muIXJ",
+          name: "25 Trap Beats, Vol. 5",
+        )),
+        view_count: None,
+        is_video: false,
+      ),
+      TrackItem(
+        id: "2sKkKKKXO28",
+        title: "Lieblingsmensch",
+        duration: 190,
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Oxm4SNpnYnyfxlcD7KYOGO5Tpbunenzwi6N7nQgqyhvMjTA-YeND2Bxbozdmmc53bn30PMX0wlNSOJtYcw=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Oxm4SNpnYnyfxlcD7KYOGO5Tpbunenzwi6N7nQgqyhvMjTA-YeND2Bxbozdmmc53bn30PMX0wlNSOJtYcw=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [],
+        artists_txt: Some("Eva Florist"),
+        album: Some(AlbumId(
+          id: "MPREb_wRHz8l7GRIp",
+          name: "Ballermann Raketen - Die Party Hits für Weihnachten und die Silvester Schlager Fete der Saison 2015 bis 2016",
+        )),
+        view_count: None,
+        is_video: false,
+      ),
+      TrackItem(
+        id: "czlgl6n9voM",
+        title: "Lieblingsmensch (Live @ DELUXE MUSIC SESSION)",
+        duration: 176,
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/wnE86gP7vC4WtwqcD1Wh4OWgQgrCXhNgvYlu2KmdzAXpmc1JZo8NWBHL7tmTC9hzU0gEt8ZZm6WDYNbA=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/wnE86gP7vC4WtwqcD1Wh4OWgQgrCXhNgvYlu2KmdzAXpmc1JZo8NWBHL7tmTC9hzU0gEt8ZZm6WDYNbA=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCIh4j8fXWf2U0ro0qnGU8Mg",
+            name: "Namika",
+          ),
+        ],
+        artists_txt: Some("Namika"),
+        album: Some(AlbumId(
+          id: "MPREb_eew4y1xo5Q3",
+          name: "Live @ DELUXE MUSIC SESSION",
+        )),
+        view_count: None,
+        is_video: false,
+      ),
+    ],
+    ctoken: Some("EqcDEg5saWJsaW5nc21lbnNjaBqUA0VnV0tBUUlJQVVnVWFnd1FBeEFFRUFrUURoQUtFQVdDQVFzMk5EZzFVR2hQZEVoNldZSUJDM0IwTUZsMlptNW9SMmRKZ2dFTFZtbHVTbTFJTFhWcFpGbUNBUXRaYlZOdGVXMUlVbTVGUllJQkMxUm5aa2xpYVVoRFQweHZnZ0VMYkVOcE5rNWZkWEV6ZGtXQ0FRdFJTV3B4WlRKQ00xSmtVWUlCQzNFeWNGVnZkR3hZVUdWTmdnRUxNSGxRYm5abGRFTnRMVldDQVF0RlZUVldiSGsyTUZaSFZZSUJDMVZ1ZUZFd1ZFazBTVTF6Z2dFTGRXWndibmt4UzNoM1kxV0NBUXRrZFhwWFoxcEdTazUzUVlJQkMzSnVXSEV0TVc0d2JIUXdnZ0VMZGtocmNXUkROaTF5VDBtQ0FRdHVWR3hqWlZORlZGOWlPSUlCQzBRNFIyaHRVbWxKWm5oSmdnRUxNREZEVXkxcVZHRlpNVldDQVFzeWMwdHJTMHRMV0U4eU9JSUJDMk42Ykdkc05tNDVkbTlOGPHq0C4%3D"),
+    endpoint: music_search,
+  ),
+  corrected_query: Some("lieblingsmensch"),
+)

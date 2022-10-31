@@ -1,59 +1,98 @@
 use std::borrow::Cow;
 
 use crate::error::{Error, ExtractionError};
-use crate::model::{Comment, Paginator, PlaylistVideo, TrackItem, YouTubeItem};
+use crate::model::{Comment, FromYtItem, MusicItem, Paginator, PlaylistVideo, YouTubeItem};
 use crate::param::ContinuationEndpoint;
 use crate::serializer::MapResult;
 use crate::util::TryRemove;
 
+use super::response::music_item::MusicListMapper;
 use super::{response, ClientType, MapResponse, QContinuation, RustyPipeQuery};
 
 impl RustyPipeQuery {
-    pub async fn continuation<T: TryFrom<YouTubeItem>>(
+    pub async fn continuation<T: FromYtItem>(
         &self,
         ctoken: &str,
         endpoint: ContinuationEndpoint,
         visitor_data: Option<&str>,
     ) -> Result<Paginator<T>, Error> {
-        let context = self
-            .get_context(ClientType::Desktop, true, visitor_data)
-            .await;
-        let request_body = QContinuation {
-            context,
-            continuation: ctoken,
-        };
+        if endpoint.is_music() {
+            let context = self
+                .get_context(ClientType::DesktopMusic, true, visitor_data)
+                .await;
+            let request_body = QContinuation {
+                context,
+                continuation: ctoken,
+            };
 
-        let p = self
-            .execute_request::<response::Continuation, Paginator<YouTubeItem>, _>(
-                ClientType::Desktop,
-                "continuation",
-                ctoken,
-                endpoint.as_str(),
-                &request_body,
-            )
-            .await?;
+            let p = self
+                .execute_request::<response::MusicContinuation, Paginator<MusicItem>, _>(
+                    ClientType::DesktopMusic,
+                    "music_continuation",
+                    ctoken,
+                    endpoint.as_str(),
+                    &request_body,
+                )
+                .await?;
 
-        Ok(Paginator {
-            count: p.count,
-            items: p
-                .items
-                .into_iter()
-                .filter_map(|item| T::try_from(item).ok())
-                .collect(),
-            ctoken: p.ctoken,
-            visitor_data: p.visitor_data,
-            endpoint,
-        })
+            Ok(map_ytm_paginator(p, endpoint))
+        } else {
+            let context = self
+                .get_context(ClientType::Desktop, true, visitor_data)
+                .await;
+            let request_body = QContinuation {
+                context,
+                continuation: ctoken,
+            };
+
+            let p = self
+                .execute_request::<response::Continuation, Paginator<YouTubeItem>, _>(
+                    ClientType::Desktop,
+                    "continuation",
+                    ctoken,
+                    endpoint.as_str(),
+                    &request_body,
+                )
+                .await?;
+
+            Ok(map_yt_paginator(p, endpoint))
+        }
     }
 }
 
-impl<T: TryFrom<YouTubeItem>> MapResponse<Paginator<T>> for response::Continuation {
+fn map_yt_paginator<T: FromYtItem>(
+    p: Paginator<YouTubeItem>,
+    endpoint: ContinuationEndpoint,
+) -> Paginator<T> {
+    Paginator {
+        count: p.count,
+        items: p.items.into_iter().filter_map(T::from_yt_item).collect(),
+        ctoken: p.ctoken,
+        visitor_data: p.visitor_data,
+        endpoint,
+    }
+}
+
+fn map_ytm_paginator<T: FromYtItem>(
+    p: Paginator<MusicItem>,
+    endpoint: ContinuationEndpoint,
+) -> Paginator<T> {
+    Paginator {
+        count: p.count,
+        items: p.items.into_iter().filter_map(T::from_ytm_item).collect(),
+        ctoken: p.ctoken,
+        visitor_data: p.visitor_data,
+        endpoint,
+    }
+}
+
+impl MapResponse<Paginator<YouTubeItem>> for response::Continuation {
     fn map_response(
         self,
         _id: &str,
         lang: crate::param::Language,
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
-    ) -> Result<MapResult<Paginator<T>>, ExtractionError> {
+    ) -> Result<MapResult<Paginator<YouTubeItem>>, ExtractionError> {
         let items = self
             .on_response_received_actions
             .and_then(|mut actions| {
@@ -73,21 +112,37 @@ impl<T: TryFrom<YouTubeItem>> MapResponse<Paginator<T>> for response::Continuati
         mapper.map_response(items);
 
         Ok(MapResult {
-            c: Paginator::new(
-                self.estimated_results,
-                mapper
-                    .items
-                    .into_iter()
-                    .filter_map(|item| T::try_from(item).ok())
-                    .collect(),
-                mapper.ctoken,
-            ),
+            c: Paginator::new(self.estimated_results, mapper.items, mapper.ctoken),
             warnings: mapper.warnings,
         })
     }
 }
 
-impl<T: TryFrom<YouTubeItem>> Paginator<T> {
+impl MapResponse<Paginator<MusicItem>> for response::MusicContinuation {
+    fn map_response(
+        self,
+        _id: &str,
+        lang: crate::param::Language,
+        _deobf: Option<&crate::deobfuscate::Deobfuscator>,
+    ) -> Result<MapResult<Paginator<MusicItem>>, ExtractionError> {
+        let mut mapper = MusicListMapper::new(lang);
+        let mut shelf = self.continuation_contents.music_playlist_shelf_continuation;
+        mapper.map_response(shelf.contents);
+        let map_res = mapper.items();
+
+        let ctoken = shelf
+            .continuations
+            .try_swap_remove(0)
+            .map(|cont| cont.next_continuation_data.continuation);
+
+        Ok(MapResult {
+            c: Paginator::new(None, map_res.c, ctoken),
+            warnings: map_res.warnings,
+        })
+    }
+}
+
+impl<T: FromYtItem> Paginator<T> {
     pub async fn next(&self, query: &RustyPipeQuery) -> Result<Option<Self>, Error> {
         Ok(match &self.ctoken {
             Some(ctoken) => Some(
@@ -165,15 +220,6 @@ impl Paginator<PlaylistVideo> {
     }
 }
 
-impl Paginator<TrackItem> {
-    pub async fn next(&self, query: &RustyPipeQuery) -> Result<Option<Self>, Error> {
-        Ok(match &self.ctoken {
-            Some(ctoken) => Some(query.music_playlist_continuation(ctoken).await?),
-            None => None,
-        })
-    }
-}
-
 macro_rules! paginator {
     ($entity_type:ty) => {
         impl Paginator<$entity_type> {
@@ -225,7 +271,6 @@ macro_rules! paginator {
 
 paginator!(Comment);
 paginator!(PlaylistVideo);
-paginator!(TrackItem);
 
 #[cfg(test)]
 mod tests {
@@ -233,12 +278,9 @@ mod tests {
 
     use rstest::rstest;
 
-    use crate::{
-        client::{response, MapResponse},
-        model::{Paginator, PlaylistItem, YouTubeItem},
-        param::Language,
-        serializer::MapResult,
-    };
+    use super::*;
+    use crate::model::{PlaylistItem, TrackItem};
+    use crate::param::Language;
 
     #[rstest]
     #[case("search", "search/cont")]
@@ -273,14 +315,38 @@ mod tests {
 
         let items: response::Continuation =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res: MapResult<Paginator<PlaylistItem>> =
+        let map_res: MapResult<Paginator<YouTubeItem>> =
             items.map_response("", Language::En, None).unwrap();
+        let paginator: Paginator<PlaylistItem> =
+            map_yt_paginator(map_res.c, ContinuationEndpoint::Browse);
 
         assert!(
             map_res.warnings.is_empty(),
             "deserialization/mapping warnings: {:?}",
             map_res.warnings
         );
-        insta::assert_ron_snapshot!(format!("map_{}", name), map_res.c);
+        insta::assert_ron_snapshot!(format!("map_{}", name), paginator);
+    }
+
+    #[rstest]
+    #[case("playlist_tracks", "music_playlist/playlist_cont")]
+    fn map_continuation_tracks(#[case] name: &str, #[case] path: &str) {
+        let filename = format!("testfiles/{}.json", path);
+        let json_path = Path::new(&filename);
+        let json_file = File::open(json_path).unwrap();
+
+        let items: response::MusicContinuation =
+            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let map_res: MapResult<Paginator<MusicItem>> =
+            items.map_response("", Language::En, None).unwrap();
+        let paginator: Paginator<TrackItem> =
+            map_ytm_paginator(map_res.c, ContinuationEndpoint::MusicBrowse);
+
+        assert!(
+            map_res.warnings.is_empty(),
+            "deserialization/mapping warnings: {:?}",
+            map_res.warnings
+        );
+        insta::assert_ron_snapshot!(format!("map_{}", name), paginator);
     }
 }

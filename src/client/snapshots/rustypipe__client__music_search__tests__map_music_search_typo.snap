@@ -440,4 +440,10 @@ MusicSearchResult(
     ),
   ],
   corrected_query: Some("lieblingsmensch"),
+  order: [
+    Album,
+    Track,
+    Playlist,
+    Artist,
+  ],
 )

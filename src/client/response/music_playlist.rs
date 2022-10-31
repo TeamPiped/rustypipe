@@ -7,7 +7,9 @@ use crate::serializer::{
     MapResult, VecLogError,
 };
 
-use super::music_item::{MusicContentsRenderer, MusicItem, MusicShelf, MusicThumbnailRenderer};
+use super::music_item::{
+    MusicContentsRenderer, MusicResponseItem, MusicShelf, MusicThumbnailRenderer,
+};
 use super::{ContentsRenderer, Tab};
 
 /// Response model for YouTube Music playlists and albums
@@ -16,12 +18,6 @@ use super::{ContentsRenderer, Tab};
 pub(crate) struct MusicPlaylist {
     pub contents: Contents,
     pub header: Header,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct MusicPlaylistCont {
-    pub continuation_contents: ContinuationContents,
 }
 
 #[derive(Debug, Deserialize)]
@@ -45,7 +41,7 @@ pub(crate) enum ItemSection {
     MusicShelfRenderer(MusicShelf),
     MusicCarouselShelfRenderer {
         #[serde_as(as = "VecLogError<_>")]
-        contents: MapResult<Vec<MusicItem>>,
+        contents: MapResult<Vec<MusicResponseItem>>,
     },
     #[serde(other, deserialize_with = "ignore_any")]
     None,
@@ -128,10 +124,4 @@ pub(crate) struct PlaylistEndpoint {
 #[serde(rename_all = "camelCase")]
 pub(crate) struct PlaylistWatchEndpoint {
     pub playlist_id: String,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct ContinuationContents {
-    pub music_playlist_shelf_continuation: MusicShelf,
 }

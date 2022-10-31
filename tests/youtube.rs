@@ -1197,6 +1197,14 @@ async fn search() {
     assert!(!result.items.is_exhausted());
 
     assert_eq!(result.corrected_query.unwrap(), "doobydobap");
+
+    let next = result.items.next(&rp.query()).await.unwrap().unwrap();
+    assert!(
+        next.items.len() > 10,
+        "expected > 10 continuation results, got {}",
+        next.items.len()
+    );
+    assert!(!next.is_exhausted());
 }
 
 #[rstest]

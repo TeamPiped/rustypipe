@@ -1,0 +1,554 @@
+---
+source: src/client/music_search.rs
+expression: map_res.c
+---
+MusicSearchFiltered(
+  items: Paginator(
+    count: None,
+    items: [
+      MusicPlaylistItem(
+        id: "VLPLDIoUOhQQPlVr3qepMVRsDe4T8vNQsvno",
+        name: "Türkçe Pop Şarkılar 2022 - Yeni Hit Şarkılar 2022",
+        thumbnail: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/eby39tamByr1zw-_QJtUyRhc8T19NZWiHqcoWWsi7ALb6FKJRQqjzLgwohvCmNMqwmGwcSI5GA=s192",
+            width: 192,
+            height: 192,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/eby39tamByr1zw-_QJtUyRhc8T19NZWiHqcoWWsi7ALb6FKJRQqjzLgwohvCmNMqwmGwcSI5GA=s576",
+            width: 576,
+            height: 576,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/eby39tamByr1zw-_QJtUyRhc8T19NZWiHqcoWWsi7ALb6FKJRQqjzLgwohvCmNMqwmGwcSI5GA=s1200",
+            width: 1200,
+            height: 1200,
+          ),
+        ],
+        channel: Some(ChannelId(
+          id: "UCX9oPuvJYZsG8wnHTwOBVPA",
+          name: "Chillax",
+        )),
+        track_count: Some(220),
+        from_ytm: false,
+      ),
+      MusicPlaylistItem(
+        id: "VLPLI_7Mg2Z_-4Lf7IYeiTEOV8HBn-nMqz5N",
+        name: "Pop 2022 ♫ Mix Pop En Ingles (English Pop Songs 2022)",
+        thumbnail: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/mx1Gz-YSxRA4LefldgbLlIKPzGrZtT1m5T8oYX_jpI8dH2JhwRYvukFV8u9fEgcypBbaYR8Lqg=s192",
+            width: 192,
+            height: 192,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/mx1Gz-YSxRA4LefldgbLlIKPzGrZtT1m5T8oYX_jpI8dH2JhwRYvukFV8u9fEgcypBbaYR8Lqg=s576",
+            width: 576,
+            height: 576,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/mx1Gz-YSxRA4LefldgbLlIKPzGrZtT1m5T8oYX_jpI8dH2JhwRYvukFV8u9fEgcypBbaYR8Lqg=s1200",
+            width: 1200,
+            height: 1200,
+          ),
+        ],
+        channel: Some(ChannelId(
+          id: "UC8Ojfs-1VLiAO_MosLwvjpQ",
+          name: "Redlist - Ultimate Music",
+        )),
+        track_count: Some(70),
+        from_ytm: false,
+      ),
+      MusicPlaylistItem(
+        id: "VLPLTC7VQ12-9raqhLCx1S1E_ic35t94dj28",
+        name: "Pop & Pop Rock Hits 🔥 2012 - 2022",
+        thumbnail: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/WYgJLD76pO1o8S3ZGE045VB_ae_eYyXEKC5s8DwcMIGivWMLxKhH5kCc8zezPKojRcDeRuFANg=s192",
+            width: 192,
+            height: 192,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/WYgJLD76pO1o8S3ZGE045VB_ae_eYyXEKC5s8DwcMIGivWMLxKhH5kCc8zezPKojRcDeRuFANg=s576",
+            width: 576,
+            height: 576,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/WYgJLD76pO1o8S3ZGE045VB_ae_eYyXEKC5s8DwcMIGivWMLxKhH5kCc8zezPKojRcDeRuFANg=s1200",
+            width: 1200,
+            height: 1200,
+          ),
+        ],
+        channel: Some(ChannelId(
+          id: "UCE2DEoWWdlUlZsOpolWOgog",
+          name: "Jeff Co",
+        )),
+        track_count: Some(321),
+        from_ytm: false,
+      ),
+      MusicPlaylistItem(
+        id: "VLPLPssMy7y6ygl-Kzi9Mc7TVFFPWwyAXIwW",
+        name: "Bester deutscher Pop/Best of German Pop music",
+        thumbnail: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/OLk8-06LH-XBxHRj9_XfEkTxy2695DKiP66iOfMUqIXfZViPGsEYKw2TPbu1PA6Uj6lQEWoRKgs=s192",
+            width: 192,
+            height: 192,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/OLk8-06LH-XBxHRj9_XfEkTxy2695DKiP66iOfMUqIXfZViPGsEYKw2TPbu1PA6Uj6lQEWoRKgs=s576",
+            width: 576,
+            height: 576,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/OLk8-06LH-XBxHRj9_XfEkTxy2695DKiP66iOfMUqIXfZViPGsEYKw2TPbu1PA6Uj6lQEWoRKgs=s1200",
+            width: 1200,
+            height: 1200,
+          ),
+        ],
+        channel: Some(ChannelId(
+          id: "UCf7eNY2yY-cRuYshHmg4IIg",
+          name: "Frank Denker",
+        )),
+        track_count: Some(106),
+        from_ytm: false,
+      ),
+      MusicPlaylistItem(
+        id: "VLPLMC9KNkIncKtPzgY-5rmhvj7fax8fdxoj",
+        name: "Pop Music Playlist - Timeless Pop Songs (Updated Weekly 2022)",
+        thumbnail: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/cBQ40Y5m4N2IIK8fQnBMIM0PkWK15IqV8v6TpTrNbjlHaHAwhaG_o7VWYx55iTzr7fZr-Ns07Z4_=s192",
+            width: 192,
+            height: 192,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/cBQ40Y5m4N2IIK8fQnBMIM0PkWK15IqV8v6TpTrNbjlHaHAwhaG_o7VWYx55iTzr7fZr-Ns07Z4_=s576",
+            width: 576,
+            height: 576,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/cBQ40Y5m4N2IIK8fQnBMIM0PkWK15IqV8v6TpTrNbjlHaHAwhaG_o7VWYx55iTzr7fZr-Ns07Z4_=s1200",
+            width: 1200,
+            height: 1200,
+          ),
+        ],
+        channel: Some(ChannelId(
+          id: "UCs72iRpTEuwV3y6pdWYLgiw",
+          name: "Redlist - Just Hits",
+        )),
+        track_count: Some(204),
+        from_ytm: false,
+      ),
+      MusicPlaylistItem(
+        id: "VLPLX6L4t7t6ZanfCJ1wBxRdGZ_mk9ygmKqo",
+        name: "Deutsch Pop Hits NEU 2022",
+        thumbnail: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/eVEkTvmjzvkJtNLl68kFcNA3I9TSZmbkKv0pK6ICekXC7U_0PurMBIOuyA3n6s1Zi9JlMWcGBiw=s192",
+            width: 192,
+            height: 192,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/eVEkTvmjzvkJtNLl68kFcNA3I9TSZmbkKv0pK6ICekXC7U_0PurMBIOuyA3n6s1Zi9JlMWcGBiw=s576",
+            width: 576,
+            height: 576,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/eVEkTvmjzvkJtNLl68kFcNA3I9TSZmbkKv0pK6ICekXC7U_0PurMBIOuyA3n6s1Zi9JlMWcGBiw=s1200",
+            width: 1200,
+            height: 1200,
+          ),
+        ],
+        channel: Some(ChannelId(
+          id: "UCesP91XKnuZVd6OJN06hokg",
+          name: "Startup Records",
+        )),
+        track_count: Some(164),
+        from_ytm: false,
+      ),
+      MusicPlaylistItem(
+        id: "VLPL1jMjCxDqxLvomtUMbqa_4pAjMmzpfgUy",
+        name: "Top 100 Músicas Internacionais Pop 2022",
+        thumbnail: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/Z6pSgDb_FYtmLGwUfiR21hebCHjdxvNiqe9mg42p2bIcykZsAQsozzL3KbL15A8U0KCZNNmTV8c=s192",
+            width: 192,
+            height: 192,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/Z6pSgDb_FYtmLGwUfiR21hebCHjdxvNiqe9mg42p2bIcykZsAQsozzL3KbL15A8U0KCZNNmTV8c=s576",
+            width: 576,
+            height: 576,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/Z6pSgDb_FYtmLGwUfiR21hebCHjdxvNiqe9mg42p2bIcykZsAQsozzL3KbL15A8U0KCZNNmTV8c=s1200",
+            width: 1200,
+            height: 1200,
+          ),
+        ],
+        channel: Some(ChannelId(
+          id: "UCHuFqDbnqNhBsZB3KBj_Y0g",
+          name: "Redlist - Músicas Internacionais",
+        )),
+        track_count: Some(102),
+        from_ytm: false,
+      ),
+      MusicPlaylistItem(
+        id: "VLPLgRdph0qPLy53IhYrQLPpATDDA2TpFey5",
+        name: "Teen-Pop 90-2000",
+        thumbnail: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/Yo6ErZb73SqWyd-dYyoPh2i0JQQZPrRIoAsAbA7xVMmRkJVJizbEpewmz6Z0eVPSfzrOZOptev67=s192",
+            width: 192,
+            height: 192,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/Yo6ErZb73SqWyd-dYyoPh2i0JQQZPrRIoAsAbA7xVMmRkJVJizbEpewmz6Z0eVPSfzrOZOptev67=s576",
+            width: 576,
+            height: 576,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/Yo6ErZb73SqWyd-dYyoPh2i0JQQZPrRIoAsAbA7xVMmRkJVJizbEpewmz6Z0eVPSfzrOZOptev67=s1200",
+            width: 1200,
+            height: 1200,
+          ),
+        ],
+        channel: Some(ChannelId(
+          id: "UCv9O2E_G8U46Paz8828THJw",
+          name: "Victor Vaz",
+        )),
+        track_count: Some(50),
+        from_ytm: false,
+      ),
+      MusicPlaylistItem(
+        id: "VLPLV9Y77TQ4I9dXpIF-r54ZTLM5T7C4k5jf",
+        name: "Most Popular Soft Pop Songs of 2022 Playlist - Best Soft Pop Music Hits of the Year 2022",
+        thumbnail: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/6tFXET3tJ1qFCWfQU4UPx3O17LFwkDXw8j5eYwZTxcDL1xHN9Pm0HRZ3pfVyRpBfgBFN8-Espw=s192",
+            width: 192,
+            height: 192,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/6tFXET3tJ1qFCWfQU4UPx3O17LFwkDXw8j5eYwZTxcDL1xHN9Pm0HRZ3pfVyRpBfgBFN8-Espw=s576",
+            width: 576,
+            height: 576,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/6tFXET3tJ1qFCWfQU4UPx3O17LFwkDXw8j5eYwZTxcDL1xHN9Pm0HRZ3pfVyRpBfgBFN8-Espw=s1200",
+            width: 1200,
+            height: 1200,
+          ),
+        ],
+        channel: Some(ChannelId(
+          id: "UCkX96b0MIXbisaGNCYXSRCQ",
+          name: "Redlist - Music Tops",
+        )),
+        track_count: Some(50),
+        from_ytm: false,
+      ),
+      MusicPlaylistItem(
+        id: "VLPLlYKDqBVDxX2TXAf8ruuF3FVZgzF3wCTx",
+        name: "Pop 2022 ♫  Best Pop Songs Playlist 2022",
+        thumbnail: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/b0lbuJ3s4IBr_ASchbgoWHWrK_6UW19UeYNM7RIgIwXpqKANhZ1VtiQWrRkOhB0DwaFZ0Sb5tA=s192",
+            width: 192,
+            height: 192,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/b0lbuJ3s4IBr_ASchbgoWHWrK_6UW19UeYNM7RIgIwXpqKANhZ1VtiQWrRkOhB0DwaFZ0Sb5tA=s576",
+            width: 576,
+            height: 576,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/b0lbuJ3s4IBr_ASchbgoWHWrK_6UW19UeYNM7RIgIwXpqKANhZ1VtiQWrRkOhB0DwaFZ0Sb5tA=s1200",
+            width: 1200,
+            height: 1200,
+          ),
+        ],
+        channel: Some(ChannelId(
+          id: "UCRnu4ZIsaCCDOJdFKIJgirw",
+          name: "Redlist - Fresh Hits",
+        )),
+        track_count: Some(100),
+        from_ytm: false,
+      ),
+      MusicPlaylistItem(
+        id: "VLPLMC9KNkIncKvYin_USF1qoJQnIyMAfRxl",
+        name: "Best Pop Songs of All Time: Playlist of Good Songs (Throwback Hits & Pop Music 2022)",
+        thumbnail: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/lab1mInCWYTAs9zb3ODN4kY9VSTGCtu7uPeDEUtaVA1oY8RS61fSTJp8NfNyDqdF8x18DEatEg=s192",
+            width: 192,
+            height: 192,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/lab1mInCWYTAs9zb3ODN4kY9VSTGCtu7uPeDEUtaVA1oY8RS61fSTJp8NfNyDqdF8x18DEatEg=s576",
+            width: 576,
+            height: 576,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/lab1mInCWYTAs9zb3ODN4kY9VSTGCtu7uPeDEUtaVA1oY8RS61fSTJp8NfNyDqdF8x18DEatEg=s1200",
+            width: 1200,
+            height: 1200,
+          ),
+        ],
+        channel: Some(ChannelId(
+          id: "UCs72iRpTEuwV3y6pdWYLgiw",
+          name: "Redlist - Just Hits",
+        )),
+        track_count: Some(180),
+        from_ytm: false,
+      ),
+      MusicPlaylistItem(
+        id: "VLPLKUA473MWUv2jmkqIxzQR3YL4kuPArj4G",
+        name: "Best Pop Music for Office – Good Songs for Work: Pop Hits Collection (Playlist Updated in 2022)",
+        thumbnail: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/XZnCmA_a-xfqe0qNNMihiHvsObQjDj9V7fEwkql-aCWqBU0AgcUh8hvwxOCVWfCUtDczSXxtHA=s192",
+            width: 192,
+            height: 192,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/XZnCmA_a-xfqe0qNNMihiHvsObQjDj9V7fEwkql-aCWqBU0AgcUh8hvwxOCVWfCUtDczSXxtHA=s576",
+            width: 576,
+            height: 576,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/XZnCmA_a-xfqe0qNNMihiHvsObQjDj9V7fEwkql-aCWqBU0AgcUh8hvwxOCVWfCUtDczSXxtHA=s1200",
+            width: 1200,
+            height: 1200,
+          ),
+        ],
+        channel: Some(ChannelId(
+          id: "UCGUHgJb6ZaJoOqQ6FHgV6zw",
+          name: "Redlist - World Songs",
+        )),
+        track_count: Some(91),
+        from_ytm: false,
+      ),
+      MusicPlaylistItem(
+        id: "VLPLkqz3S84Tw-RfPS9HHi3MRmrinOBKxIr8",
+        name: "Top POP Hits 2022 – Biggest Pop Music Videos - Vevo",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/uqVHr8UYHJw/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kw4JL-GoUF0tjvyvhOv5CmjVKKMw",
+            width: 400,
+            height: 225,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/uqVHr8UYHJw/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3mozaM7uKI0tPeSWNItsEQN-P_LjA",
+            width: 800,
+            height: 450,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/uqVHr8UYHJw/hq720.jpg?sqp=-oaymwEXCNUGEOADIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3nd91L12knKM8uDXcxV4QBu0PhvQw",
+            width: 853,
+            height: 480,
+          ),
+        ],
+        channel: Some(ChannelId(
+          id: "UCPVhZsC2od1xjGhgEc2NEPQ",
+          name: "Vevo Playlists",
+        )),
+        track_count: Some(82),
+        from_ytm: false,
+      ),
+      MusicPlaylistItem(
+        id: "VLPLEBX04z4REEaHbC7ghEqFwwL4ptIw8qaZ",
+        name: "Playlist Pop Rock 2022 ♫  Musique Pop Rock 2022 Nouveauté",
+        thumbnail: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/yiClASfoEb277CTCtbPJjovTmBEgBV3kCRpO77WMwgtn4sgZbbORkk6gph8nHb2HT-bzyYBfOoQ=s192",
+            width: 192,
+            height: 192,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/yiClASfoEb277CTCtbPJjovTmBEgBV3kCRpO77WMwgtn4sgZbbORkk6gph8nHb2HT-bzyYBfOoQ=s576",
+            width: 576,
+            height: 576,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/yiClASfoEb277CTCtbPJjovTmBEgBV3kCRpO77WMwgtn4sgZbbORkk6gph8nHb2HT-bzyYBfOoQ=s1200",
+            width: 1200,
+            height: 1200,
+          ),
+        ],
+        channel: Some(ChannelId(
+          id: "UCNAPgBbQ2iXE94osjz3-m_A",
+          name: "Redlist - Top Hits",
+        )),
+        track_count: Some(42),
+        from_ytm: false,
+      ),
+      MusicPlaylistItem(
+        id: "VLPLMC9KNkIncKtGvr2kFRuXBVmBev6cAJ2u",
+        name: "Best Pop Music Videos - Top Pop Hits Playlist",
+        thumbnail: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/lwheB4DwnODwPOyRdtKa6hXINFyoLt3ibdu1FusA2jk6PeMPlfwR5gZnZm8YAkKD6wUzV0P-ORGI=s192",
+            width: 192,
+            height: 192,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/lwheB4DwnODwPOyRdtKa6hXINFyoLt3ibdu1FusA2jk6PeMPlfwR5gZnZm8YAkKD6wUzV0P-ORGI=s576",
+            width: 576,
+            height: 576,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/lwheB4DwnODwPOyRdtKa6hXINFyoLt3ibdu1FusA2jk6PeMPlfwR5gZnZm8YAkKD6wUzV0P-ORGI=s1200",
+            width: 1200,
+            height: 1200,
+          ),
+        ],
+        channel: Some(ChannelId(
+          id: "UCs72iRpTEuwV3y6pdWYLgiw",
+          name: "Redlist - Just Hits",
+        )),
+        track_count: Some(254),
+        from_ytm: false,
+      ),
+      MusicPlaylistItem(
+        id: "VLPL9NY5axt700FjL6HlEhqlMFT1gjMGVBgy",
+        name: "Pop Music Songs 2022",
+        thumbnail: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/9wlcmWOCA_8hrPRUHdfdmWrTHY8VytJhr_yYq0YMff00nhQ2wWjEso9B3_FxyZ5YzSlFpoRsCgs=s192",
+            width: 192,
+            height: 192,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/9wlcmWOCA_8hrPRUHdfdmWrTHY8VytJhr_yYq0YMff00nhQ2wWjEso9B3_FxyZ5YzSlFpoRsCgs=s576",
+            width: 576,
+            height: 576,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/9wlcmWOCA_8hrPRUHdfdmWrTHY8VytJhr_yYq0YMff00nhQ2wWjEso9B3_FxyZ5YzSlFpoRsCgs=s1200",
+            width: 1200,
+            height: 1200,
+          ),
+        ],
+        channel: Some(ChannelId(
+          id: "UC1crMgATGeegnQTZTImZuqA",
+          name: "AXEG UK",
+        )),
+        track_count: Some(236),
+        from_ytm: false,
+      ),
+      MusicPlaylistItem(
+        id: "VLPLTariUrSxayvzHkCnEiX5-NSeFgLTqzHE",
+        name: "Pop Music Playlist 2022",
+        thumbnail: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/uAzNqOxCc7BYsY2HbbiYSMMacz-BVxawaDSYmF4TtNUAzA_1O_o-P8TNcy_yUIQSRAot5fhEucXg=s192",
+            width: 192,
+            height: 192,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/uAzNqOxCc7BYsY2HbbiYSMMacz-BVxawaDSYmF4TtNUAzA_1O_o-P8TNcy_yUIQSRAot5fhEucXg=s576",
+            width: 576,
+            height: 576,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/uAzNqOxCc7BYsY2HbbiYSMMacz-BVxawaDSYmF4TtNUAzA_1O_o-P8TNcy_yUIQSRAot5fhEucXg=s1200",
+            width: 1200,
+            height: 1200,
+          ),
+        ],
+        channel: Some(ChannelId(
+          id: "UCSjPP6ccJ3MbsK7v-NfhFtw",
+          name: "Redlist Grama",
+        )),
+        track_count: Some(150),
+        from_ytm: false,
+      ),
+      MusicPlaylistItem(
+        id: "VLPLB8HqqmpyIBcPirb5lDm-ol01trE6dOuM",
+        name: "Mix Internacional 2022 ♫  As Mais Tocadas 2022 Internacionais (Playlist Musicas Pop As Melhores)",
+        thumbnail: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/2M3mr2akjDVvJG6spMWyt7wroBZ9QEVx88nRyiySutzl22LK5nHQrkeXNM3cKRSFS6kKYCPrLw=s192",
+            width: 192,
+            height: 192,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/2M3mr2akjDVvJG6spMWyt7wroBZ9QEVx88nRyiySutzl22LK5nHQrkeXNM3cKRSFS6kKYCPrLw=s576",
+            width: 576,
+            height: 576,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/2M3mr2akjDVvJG6spMWyt7wroBZ9QEVx88nRyiySutzl22LK5nHQrkeXNM3cKRSFS6kKYCPrLw=s1200",
+            width: 1200,
+            height: 1200,
+          ),
+        ],
+        channel: Some(ChannelId(
+          id: "UCdeukGMkFDh8Zs662Z-d2pA",
+          name: "Redlist - Melhores Músicas",
+        )),
+        track_count: Some(101),
+        from_ytm: false,
+      ),
+      MusicPlaylistItem(
+        id: "VLPLkqz3S84Tw-Qlth8bNBpXGO7L4J1PkCW7",
+        name: "POP INTERNATIONAL HOTLIST  - Pop Hits 2022- Brandneue Pop Videos  | Vevo Playlist",
+        thumbnail: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/w29k1xhegDYHDxG2YQfJHu_8Z0YMkP6NF_PWFeNL2asKWpcUYfpAJ2mGHT3z7MY_zpz22Hqk3vQ=s192",
+            width: 192,
+            height: 192,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/w29k1xhegDYHDxG2YQfJHu_8Z0YMkP6NF_PWFeNL2asKWpcUYfpAJ2mGHT3z7MY_zpz22Hqk3vQ=s576",
+            width: 576,
+            height: 576,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/w29k1xhegDYHDxG2YQfJHu_8Z0YMkP6NF_PWFeNL2asKWpcUYfpAJ2mGHT3z7MY_zpz22Hqk3vQ=s1200",
+            width: 1200,
+            height: 1200,
+          ),
+        ],
+        channel: Some(ChannelId(
+          id: "UCPVhZsC2od1xjGhgEc2NEPQ",
+          name: "Vevo Playlists",
+        )),
+        track_count: Some(261),
+        from_ytm: false,
+      ),
+      MusicPlaylistItem(
+        id: "VLPLkqz3S84Tw-SvUSUY5Ov8LTP3KWuWxFab",
+        name: "Cheesy Sing-Along Pop Hits!",
+        thumbnail: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/y5JJakpTWUBECBzvG30lI_tSWYerxTGOYEDhqx3Rx_KY3Vu1rfZqgmeQqqJaWwd_7M7m1FIFdGg=s192",
+            width: 192,
+            height: 192,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/y5JJakpTWUBECBzvG30lI_tSWYerxTGOYEDhqx3Rx_KY3Vu1rfZqgmeQqqJaWwd_7M7m1FIFdGg=s576",
+            width: 576,
+            height: 576,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/y5JJakpTWUBECBzvG30lI_tSWYerxTGOYEDhqx3Rx_KY3Vu1rfZqgmeQqqJaWwd_7M7m1FIFdGg=s1200",
+            width: 1200,
+            height: 1200,
+          ),
+        ],
+        channel: Some(ChannelId(
+          id: "UCPVhZsC2od1xjGhgEc2NEPQ",
+          name: "Vevo Playlists",
+        )),
+        track_count: Some(52),
+        from_ytm: false,
+      ),
+    ],
+    ctoken: Some("EoQIEgNwb3Aa_AdFZ2VLQVFRb0FFQUJTQlJxREJBREVBUVFDUkFPRUFvUUJZSUJJbEJNUkVsdlZVOW9VVkZRYkZaeU0zRmxjRTFXVW5ORVpUUlVPSFpPVVhOMmJtLUNBU0pRVEVsZk4wMW5NbHBmTFRSTVpqZEpXV1ZwVkVWUFZqaElRbTR0YmsxeGVqVk9nZ0VpVUV4VVF6ZFdVVEV5TFRseVlYRm9URU40TVZNeFJWOXBZek0xZERrMFpHb3lPSUlCSWxCTVVITnpUWGszZVRaNVoyd3RTM3BwT1Uxak4xUldSa1pRVjNkNVFWaEpkMWVDQVNKUVRFMURPVXRPYTBsdVkwdDBVSHBuV1MwMWNtMW9kbW8zWm1GNE9HWmtlRzlxZ2dFaVVFeFlOa3cwZERkME5scGhibVpEU2pGM1FuaFNaRWRhWDIxck9YbG5iVXR4YjRJQklsQk1NV3BOYWtONFJIRjRUSFp2YlhSVlRXSnhZVjgwY0VGcVRXMTZjR1puVlhtQ0FTSlFUR2RTWkhCb01IRlFUSGsxTTBsb1dYSlJURkJ3UVZSRVJFRXlWSEJHWlhrMWdnRWlVRXhXT1ZrM04xUlJORWs1WkZod1NVWXRjalUwV2xSTVRUVlVOME0wYXpWcVpvSUJJbEJNYkZsTFJIRkNWa1I0V0RKVVdFRm1PSEoxZFVZelJsWmFaM3BHTTNkRFZIaUNBU0pRVEUxRE9VdE9hMGx1WTB0MldXbHVYMVZUUmpGeGIwcFJia2w1VFVGbVVuaHNnZ0VpVUV4TFZVRTBOek5OVjFWMk1tcHRhM0ZKZUhwUlVqTlpURFJyZFZCQmNtbzBSNElCSWxCTWEzRjZNMU00TkZSM0xWSm1VRk01U0VocE0wMVNiWEpwYms5Q1MzaEpjamlDQVNKUVRFVkNXREEwZWpSU1JVVmhTR0pETjJkb1JYRkdkM2RNTkhCMFNYYzRjV0ZhZ2dFaVVFeE5RemxMVG10SmJtTkxkRWQyY2pKclJsSjFXRUpXYlVKbGRqWmpRVW95ZFlJQklsQk1PVTVaTldGNGREY3dNRVpxVERaSWJFVm9jV3hOUmxReFoycE5SMVpDWjNtQ0FTSlFURlJoY21sVmNsTjRZWGwyZWtoclEyNUZhVmcxTFU1VFpVWm5URlJ4ZWtoRmdnRWlVRXhDT0VoeGNXMXdlVWxDWTFCcGNtSTFiRVJ0TFc5c01ERjBja1UyWkU5MVRZSUJJbEJNYTNGNk0xTTRORlIzTFZGc2RHZzRZazVDY0ZoSFR6ZE1ORW94VUd0RFZ6ZUNBU0pRVEd0eGVqTlRPRFJVZHkxVGRsVlRWVmsxVDNZNFRGUlFNMHRYZFZkNFJtRmkY8erQLg%3D%3D"),
+    endpoint: music_search,
+  ),
+  corrected_query: None,
+)

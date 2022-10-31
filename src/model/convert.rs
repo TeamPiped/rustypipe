@@ -1,34 +1,88 @@
-use super::{Channel, ChannelId, ChannelItem, ChannelTag, PlaylistItem, VideoItem, YouTubeItem};
+use super::{
+    AlbumItem, ArtistItem, Channel, ChannelId, ChannelItem, ChannelTag, MusicItem,
+    MusicPlaylistItem, PlaylistItem, TrackItem, VideoItem, YouTubeItem,
+};
 
-impl TryFrom<YouTubeItem> for VideoItem {
-    type Error = ();
+pub trait FromYtItem: Sized {
+    fn from_yt_item(_item: YouTubeItem) -> Option<Self> {
+        None
+    }
+    fn from_ytm_item(_item: MusicItem) -> Option<Self> {
+        None
+    }
+}
 
-    fn try_from(value: YouTubeItem) -> Result<Self, Self::Error> {
-        match value {
-            YouTubeItem::Video(video) => Ok(video),
-            _ => Err(()),
+impl FromYtItem for YouTubeItem {
+    fn from_yt_item(item: YouTubeItem) -> Option<Self> {
+        Some(item)
+    }
+}
+
+impl FromYtItem for VideoItem {
+    fn from_yt_item(item: YouTubeItem) -> Option<Self> {
+        match item {
+            YouTubeItem::Video(video) => Some(video),
+            _ => None,
         }
     }
 }
 
-impl TryFrom<YouTubeItem> for PlaylistItem {
-    type Error = ();
-
-    fn try_from(value: YouTubeItem) -> Result<Self, Self::Error> {
-        match value {
-            YouTubeItem::Playlist(playlist) => Ok(playlist),
-            _ => Err(()),
+impl FromYtItem for PlaylistItem {
+    fn from_yt_item(item: YouTubeItem) -> Option<Self> {
+        match item {
+            YouTubeItem::Playlist(playlist) => Some(playlist),
+            _ => None,
         }
     }
 }
 
-impl TryFrom<YouTubeItem> for ChannelItem {
-    type Error = ();
+impl FromYtItem for ChannelItem {
+    fn from_yt_item(item: YouTubeItem) -> Option<Self> {
+        match item {
+            YouTubeItem::Channel(channel) => Some(channel),
+            _ => None,
+        }
+    }
+}
 
-    fn try_from(value: YouTubeItem) -> Result<Self, Self::Error> {
-        match value {
-            YouTubeItem::Channel(channel) => Ok(channel),
-            _ => Err(()),
+impl FromYtItem for MusicItem {
+    fn from_ytm_item(item: MusicItem) -> Option<Self> {
+        Some(item)
+    }
+}
+
+impl FromYtItem for TrackItem {
+    fn from_ytm_item(item: MusicItem) -> Option<Self> {
+        match item {
+            MusicItem::Track(track) => Some(track),
+            _ => None,
+        }
+    }
+}
+
+impl FromYtItem for AlbumItem {
+    fn from_ytm_item(item: MusicItem) -> Option<Self> {
+        match item {
+            MusicItem::Album(album) => Some(album),
+            _ => None,
+        }
+    }
+}
+
+impl FromYtItem for ArtistItem {
+    fn from_ytm_item(item: MusicItem) -> Option<Self> {
+        match item {
+            MusicItem::Artist(artist) => Some(artist),
+            _ => None,
+        }
+    }
+}
+
+impl FromYtItem for MusicPlaylistItem {
+    fn from_ytm_item(item: MusicItem) -> Option<Self> {
+        match item {
+            MusicItem::Playlist(playlist) => Some(playlist),
+            _ => None,
         }
     }
 }

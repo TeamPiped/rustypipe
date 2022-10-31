@@ -2,7 +2,10 @@ use serde::Deserialize;
 use serde_with::{serde_as, DefaultOnError, VecSkipError};
 
 use crate::{
-    model::{self, AlbumItem, AlbumType, ArtistItem, ChannelId, MusicPlaylistItem, TrackItem},
+    model::{
+        self, AlbumId, AlbumItem, AlbumType, ArtistItem, ChannelId, FromYtItem, MusicEntityType,
+        MusicItem, MusicPlaylistItem, TrackItem,
+    },
     param::Language,
     serializer::{
         text::{Text, TextComponents},
@@ -13,7 +16,7 @@ use crate::{
 
 use super::{
     url_endpoint::{NavigationEndpoint, PageType},
-    MusicContinuation, ThumbnailsWrap,
+    MusicContinuationData, ThumbnailsWrap,
 };
 
 #[serde_as]
@@ -23,16 +26,16 @@ pub(crate) struct MusicShelf {
     /// Playlist ID (only for playlists)
     pub playlist_id: Option<String>,
     #[serde_as(as = "VecLogError<_>")]
-    pub contents: MapResult<Vec<MusicItem>>,
+    pub contents: MapResult<Vec<MusicResponseItem>>,
     /// Continuation token for fetching more (>100) playlist items
     #[serde(default)]
     #[serde_as(as = "VecSkipError<_>")]
-    pub continuations: Vec<MusicContinuation>,
+    pub continuations: Vec<MusicContinuationData>,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub(crate) enum MusicItem {
+pub(crate) enum MusicResponseItem {
     MusicResponsiveListItemRenderer(ListMusicItem),
     MusicTwoRowItemRenderer(CoverMusicItem),
 }
@@ -52,10 +55,14 @@ pub(crate) struct ListMusicItem {
     /// `[<"Der Himmel reißt auf">]` Album track (title)
     ///
     /// `[<"Girls">], ["Song", " • ", <"aespa">, " • ", <"Girls - The 2nd Mini Album">, " • ", "4:01"]`
-    /// Search track (title, artist, album, duration)
+    /// Search track (title, artist, album, duration).
+    ///
+    /// Info: "Song" label is missing in the "Songs" tab
     ///
     /// `[<"Black Mamba">], ["Video", " • ", <"aespa">, " • ", "235M views", " • ", "3:50"]`
     /// Search video (title, artist, view count, duration)
+    ///
+    /// Info: "Video" label is missing in the "Videos" tab
     ///
     /// `["Next Level"], ["Single", " • ", <"aespa">, " • ", "2021"]`
     /// Search album (title, type, artist, year)
@@ -64,6 +71,8 @@ pub(crate) struct ListMusicItem {
     ///
     /// `["aespa - All Songs & MV"], ["Playlist", " • ", <"Jerwen">, " • ", "49 songs"]`
     /// Search playlist (title, creator, track count)
+    ///
+    /// Info: "Playlist" label is missing in the "Playlists" tab
     pub flex_columns: Vec<MusicColumn>,
     /// Track duration (playlist/album tracks)
     ///
@@ -162,6 +171,19 @@ impl From<MusicThumbnailRenderer> for Vec<model::Thumbnail> {
     }
 }
 
+/// Music list continuation response model
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct MusicContinuation {
+    pub continuation_contents: ContinuationContents,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ContinuationContents {
+    pub music_playlist_shelf_continuation: MusicShelf,
+}
+
 /*
 #MAPPER
 */
@@ -171,13 +193,16 @@ pub(crate) struct MusicListMapper {
     lang: Language,
     o_artists: Option<(Vec<ChannelId>, String)>,
     artist_page: bool,
+    items: Vec<MusicItem>,
+    warnings: Vec<String>,
+}
 
+#[derive(Debug)]
+pub(crate) struct GroupedMusicItems {
     pub tracks: Vec<TrackItem>,
     pub albums: Vec<AlbumItem>,
     pub artists: Vec<ArtistItem>,
     pub playlists: Vec<MusicPlaylistItem>,
-
-    pub warnings: Vec<String>,
 }
 
 impl MusicListMapper {
@@ -186,10 +211,7 @@ impl MusicListMapper {
             lang,
             o_artists: None,
             artist_page: false,
-            tracks: Vec::new(),
-            albums: Vec::new(),
-            artists: Vec::new(),
-            playlists: Vec::new(),
+            items: Vec::new(),
             warnings: Vec::new(),
         }
     }
@@ -204,17 +226,14 @@ impl MusicListMapper {
             lang,
             o_artists: Some((artists, artists_txt)),
             artist_page,
-            tracks: Vec::new(),
-            albums: Vec::new(),
-            artists: Vec::new(),
-            playlists: Vec::new(),
+            items: Vec::new(),
             warnings: Vec::new(),
         }
     }
 
-    fn map_item(&mut self, item: MusicItem) -> Result<(), String> {
+    fn map_item(&mut self, item: MusicResponseItem) -> Result<MusicEntityType, String> {
         match item {
-            MusicItem::MusicResponsiveListItemRenderer(item) => {
+            MusicResponseItem::MusicResponsiveListItemRenderer(item) => {
                 let mut columns = item.flex_columns.into_iter();
                 let title = columns.next().map(|col| col.renderer.text.to_string());
                 let c2 = columns.next();
@@ -246,13 +265,13 @@ impl MusicListMapper {
                                     util::parse_large_numstr(&p.to_string(), self.lang)
                                 });
 
-                                self.artists.push(ArtistItem {
+                                self.items.push(MusicItem::Artist(ArtistItem {
                                     id,
                                     name: title,
                                     avatar: item.thumbnail.into(),
                                     subscriber_count,
-                                });
-                                Ok(())
+                                }));
+                                Ok(MusicEntityType::Artist)
                             }
                             PageType::Album => {
                                 let album_type = subtitle_p1
@@ -264,7 +283,7 @@ impl MusicListMapper {
                                 let year = subtitle_p3
                                     .and_then(|st| util::parse_numeric(&st.to_string()).ok());
 
-                                self.albums.push(AlbumItem {
+                                self.items.push(MusicItem::Album(AlbumItem {
                                     id,
                                     name: title,
                                     cover: item.thumbnail.into(),
@@ -272,31 +291,37 @@ impl MusicListMapper {
                                     artists_txt,
                                     album_type,
                                     year,
-                                });
-                                Ok(())
+                                }));
+                                Ok(MusicEntityType::Album)
                             }
                             PageType::Playlist => {
-                                let from_ytm = subtitle_p2
+                                // Part 1 may be the "Playlist" label
+                                let (channel_p, tcount_p) = match subtitle_p3 {
+                                    Some(_) => (subtitle_p2, subtitle_p3),
+                                    None => (subtitle_p1, subtitle_p2),
+                                };
+
+                                let from_ytm = channel_p
                                     .as_ref()
                                     .and_then(|p| {
                                         p.0.first().map(|txt| txt.as_str() == util::YT_MUSIC_NAME)
                                     })
                                     .unwrap_or_default();
-                                let channel = subtitle_p2.and_then(|p| {
+                                let channel = channel_p.and_then(|p| {
                                     p.0.into_iter().find_map(|c| ChannelId::try_from(c).ok())
                                 });
-                                let track_count = subtitle_p3
-                                    .and_then(|p| util::parse_numeric(&p.to_string()).ok());
+                                let track_count =
+                                    tcount_p.and_then(|p| util::parse_numeric(&p.to_string()).ok());
 
-                                self.playlists.push(MusicPlaylistItem {
+                                self.items.push(MusicItem::Playlist(MusicPlaylistItem {
                                     id,
                                     name: title,
                                     thumbnail: item.thumbnail.into(),
                                     channel,
                                     track_count,
                                     from_ytm,
-                                });
-                                Ok(())
+                                }));
+                                Ok(MusicEntityType::Playlist)
                             }
                             PageType::Channel => {
                                 Err(format!("channel items unsupported. id: {}", id))
@@ -336,7 +361,9 @@ impl MusicListMapper {
                                     .split(util::DOT_SEPARATOR)
                                     .into_iter();
                                 // Skip first part (track type)
-                                subtitle_parts.next();
+                                if subtitle_parts.len() > 3 {
+                                    subtitle_parts.next();
+                                }
                                 (
                                     subtitle_parts.next(),
                                     subtitle_parts.next(),
@@ -367,8 +394,7 @@ impl MusicListMapper {
                             ),
                             (_, false) => (
                                 album_p.and_then(|p| {
-                                    p.0.into_iter()
-                                        .find_map(|c| model::AlbumId::try_from(c).ok())
+                                    p.0.into_iter().find_map(|c| AlbumId::try_from(c).ok())
                                 }),
                                 None,
                             ),
@@ -393,7 +419,7 @@ impl MusicListMapper {
                             }
                         }
 
-                        self.tracks.push(TrackItem {
+                        self.items.push(MusicItem::Track(TrackItem {
                             id,
                             title,
                             duration,
@@ -403,12 +429,12 @@ impl MusicListMapper {
                             album,
                             view_count,
                             is_video,
-                        });
-                        Ok(())
+                        }));
+                        Ok(MusicEntityType::Track)
                     }
                 }
             }
-            MusicItem::MusicTwoRowItemRenderer(item) => {
+            MusicResponseItem::MusicTwoRowItemRenderer(item) => {
                 let mut subtitle_parts = item.subtitle.split(util::DOT_SEPARATOR).into_iter();
                 let subtitle_p1 = subtitle_parts.next();
                 let subtitle_p2 = subtitle_parts.next();
@@ -455,7 +481,7 @@ impl MusicListMapper {
                                 }
                             };
 
-                        self.albums.push(AlbumItem {
+                        self.items.push(MusicItem::Album(AlbumItem {
                             id,
                             name: item.title,
                             cover: item.thumbnail_renderer.into(),
@@ -463,8 +489,8 @@ impl MusicListMapper {
                             artists_txt,
                             year,
                             album_type,
-                        });
-                        Ok(())
+                        }));
+                        Ok(MusicEntityType::Album)
                     }
                     PageType::Playlist => {
                         // TODO: make component to string zero-copy if len=1
@@ -480,27 +506,27 @@ impl MusicListMapper {
                         let track_count =
                             subtitle_p3.and_then(|p| util::parse_numeric(&p.to_string()).ok());
 
-                        self.playlists.push(MusicPlaylistItem {
+                        self.items.push(MusicItem::Playlist(MusicPlaylistItem {
                             id,
                             name: item.title,
                             thumbnail: item.thumbnail_renderer.into(),
                             channel,
                             track_count,
                             from_ytm,
-                        });
-                        Ok(())
+                        }));
+                        Ok(MusicEntityType::Playlist)
                     }
                     PageType::Artist => {
                         let subscriber_count = subtitle_p1
                             .and_then(|p| util::parse_large_numstr(&p.to_string(), self.lang));
 
-                        self.artists.push(ArtistItem {
+                        self.items.push(MusicItem::Artist(ArtistItem {
                             id,
                             name: item.title,
                             avatar: item.thumbnail_renderer.into(),
                             subscriber_count,
-                        });
-                        Ok(())
+                        }));
+                        Ok(MusicEntityType::Artist)
                     }
                     PageType::Channel => Err(format!("channel items unsupported. id: {}", id)),
                 }
@@ -508,13 +534,63 @@ impl MusicListMapper {
         }
     }
 
-    pub fn map_response(&mut self, mut res: MapResult<Vec<MusicItem>>) {
+    pub fn map_response(
+        &mut self,
+        mut res: MapResult<Vec<MusicResponseItem>>,
+    ) -> Option<MusicEntityType> {
+        let mut etype = None;
         self.warnings.append(&mut res.warnings);
-        res.c.into_iter().for_each(|item| {
-            if let Err(e) = self.map_item(item) {
-                self.warnings.push(e);
+        res.c
+            .into_iter()
+            .for_each(|item| match self.map_item(item) {
+                Ok(t) => etype = Some(t),
+                Err(e) => self.warnings.push(e),
+            });
+        etype
+    }
+
+    pub fn items(self) -> MapResult<Vec<MusicItem>> {
+        MapResult {
+            c: self.items,
+            warnings: self.warnings,
+        }
+    }
+
+    pub fn conv_items<T: FromYtItem>(self) -> MapResult<Vec<T>> {
+        MapResult {
+            c: self
+                .items
+                .into_iter()
+                .filter_map(T::from_ytm_item)
+                .collect(),
+            warnings: self.warnings,
+        }
+    }
+
+    pub fn group_items(self) -> MapResult<GroupedMusicItems> {
+        let mut tracks = Vec::new();
+        let mut albums = Vec::new();
+        let mut artists = Vec::new();
+        let mut playlists = Vec::new();
+
+        for item in self.items {
+            match item {
+                MusicItem::Track(track) => tracks.push(track),
+                MusicItem::Album(album) => albums.push(album),
+                MusicItem::Artist(artist) => artists.push(artist),
+                MusicItem::Playlist(playlist) => playlists.push(playlist),
             }
-        });
+        }
+
+        MapResult {
+            c: GroupedMusicItems {
+                tracks,
+                albums,
+                artists,
+                playlists,
+            },
+            warnings: self.warnings,
+        }
     }
 }
 

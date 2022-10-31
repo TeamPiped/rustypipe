@@ -2046,6 +2046,6 @@ MusicPlaylist(
       ),
     ],
     ctoken: None,
-    endpoint: browse,
+    endpoint: music_browse,
   ),
 )

@@ -11,8 +11,8 @@ pub(crate) mod video_details;
 pub(crate) mod video_item;
 
 pub(crate) use channel::Channel;
+pub(crate) use music_item::MusicContinuation;
 pub(crate) use music_playlist::MusicPlaylist;
-pub(crate) use music_playlist::MusicPlaylistCont;
 pub(crate) use music_search::MusicSearch;
 pub(crate) use player::Player;
 pub(crate) use playlist::Playlist;
@@ -207,13 +207,13 @@ pub(crate) struct RichGridContinuation {
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub(crate) struct MusicContinuation {
-    pub next_continuation_data: MusicContinuationData,
+pub(crate) struct MusicContinuationData {
+    pub next_continuation_data: MusicContinuationDataInner,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub(crate) struct MusicContinuationData {
+pub(crate) struct MusicContinuationDataInner {
     pub continuation: String,
 }
 

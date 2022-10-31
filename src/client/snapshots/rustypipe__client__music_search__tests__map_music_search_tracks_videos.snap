@@ -1,0 +1,454 @@
+---
+source: src/client/music_search.rs
+expression: map_res.c
+---
+MusicSearchFiltered(
+  items: Paginator(
+    count: None,
+    items: [
+      TrackItem(
+        id: "ZeerrnuLi5E",
+        title: "Black Mamba",
+        duration: 230,
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/ZeerrnuLi5E/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3maNxpYzTFmXZBd8s1w1iE6rTBDaw",
+            width: 400,
+            height: 225,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCEdZAdnnKqbaHOlv8nM6OtA",
+            name: "aespa",
+          ),
+        ],
+        artists_txt: Some("aespa"),
+        album: None,
+        view_count: Some(235000000),
+        is_video: true,
+      ),
+      TrackItem(
+        id: "vbl9KrZxOF8",
+        title: "Black Mamba  DJ set - Boko! Boko!  | @Beatport  Live",
+        duration: 4447,
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/vbl9KrZxOF8/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nmPW2KSv4XyDSzKb1A1GYC8MDpmw",
+            width: 400,
+            height: 225,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCyEMqKQPGdj8wKVKt2-agbQ",
+            name: "Beatport",
+          ),
+        ],
+        artists_txt: Some("Beatport"),
+        album: None,
+        view_count: Some(6400),
+        is_video: true,
+      ),
+      TrackItem(
+        id: "eMfROJt0a7Q",
+        title: "aespa - \"Black Mamba\" @ KAMP LA 2022 Day 2",
+        duration: 198,
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/eMfROJt0a7Q/hqdefault.jpg?sqp=-oaymwEWCMACELQBIAQqCghQEJADGFogjgJIWg&rs=AMzJL3k-qlA2eSgHl3JKGSVUF6YLDuU09w",
+            width: 320,
+            height: 180,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UC0PlwwXUJihXdol4I9vuE0g",
+            name: "PridePKJ",
+          ),
+        ],
+        artists_txt: Some("PridePKJ"),
+        album: None,
+        view_count: Some(701),
+        is_video: true,
+      ),
+      TrackItem(
+        id: "1ktLEhfkBCI",
+        title: "ANKATHIE KOI - BLACK MAMBA (official)",
+        duration: 230,
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/1ktLEhfkBCI/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3k_xzZs28i_w4pNyz630i9whVDyGQ",
+            width: 400,
+            height: 225,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCzP_LIeF9W26F7o03k-Y9CQ",
+            name: "Seayou Records",
+          ),
+        ],
+        artists_txt: Some("Seayou Records"),
+        album: None,
+        view_count: Some(80000),
+        is_video: true,
+      ),
+      TrackItem(
+        id: "2hAlp3Khsnk",
+        title: "The Black Mamba - Love Is On My Side - Portugal 🇵🇹  - Official Video - Eurovision 2021",
+        duration: 189,
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/2hAlp3Khsnk/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nWe-5Mng_LKafQ_39Wc47rgiIaUQ",
+            width: 400,
+            height: 225,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCRpjHHu8ivVWs73uxHlWwFA",
+            name: "Eurovision Song Contest",
+          ),
+        ],
+        artists_txt: Some("Eurovision Song Contest"),
+        album: None,
+        view_count: Some(1100000),
+        is_video: true,
+      ),
+      TrackItem(
+        id: "CHixjhwY0ek",
+        title: "aespa, Black Mamba (에스파, Black Mamba) with Goyang Philharmonic Orchestra [UN DAY CONCERT 2021]",
+        duration: 238,
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/CHixjhwY0ek/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nT_bNQ-v6o82RVmUPdowGPoT3sjQ",
+            width: 400,
+            height: 225,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCoRXPcv8XK5fAplLbk9PTww",
+            name: "THE K-POP",
+          ),
+        ],
+        artists_txt: Some("THE K-POP"),
+        album: None,
+        view_count: Some(269000),
+        is_video: true,
+      ),
+      TrackItem(
+        id: "8YXKgZ393Ec",
+        title: "Kronos - Black Mamba",
+        duration: 157,
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/8YXKgZ393Ec/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3muPb_raK0T9xU_a0T3L-wxg7iOUg",
+            width: 400,
+            height: 225,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCsw9NVMkJfbxHTuMUMlk3mw",
+            name: "Dj Kronos",
+          ),
+        ],
+        artists_txt: Some("Dj Kronos"),
+        album: None,
+        view_count: Some(32000),
+        is_video: true,
+      ),
+      TrackItem(
+        id: "KFNznAXnjXc",
+        title: "AESPA - Black Mamba (Teaser Demo/Instrumental)",
+        duration: 112,
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/KFNznAXnjXc/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3ne7MVklbB0HR0wixtu3aq0ikctEA",
+            width: 400,
+            height: 225,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCBju0pyQY7EWRvLqMkXcxBw",
+            name: "1O1% MUSIC",
+          ),
+        ],
+        artists_txt: Some("1O1% MUSIC"),
+        album: None,
+        view_count: Some(179000),
+        is_video: true,
+      ),
+      TrackItem(
+        id: "hDhJeJZmTDA",
+        title: "aespa (에스파) - Black Mamba | INK Incheon K-Pop Concert | MTV Asia",
+        duration: 178,
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/hDhJeJZmTDA/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nE5LbHIjTYSTz-A_t662nHkN5yfQ",
+            width: 400,
+            height: 225,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCawCt_6XWaFxZSW5ZKcIMew",
+            name: "MTV ASIA",
+          ),
+        ],
+        artists_txt: Some("MTV ASIA"),
+        album: None,
+        view_count: Some(69000),
+        is_video: true,
+      ),
+      TrackItem(
+        id: "6kKSDXiip_8",
+        title: "aespa エスパ - Black Mamba",
+        duration: 185,
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/6kKSDXiip_8/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mx7ocT3O3S758oGGfbKdR0QjmfGQ",
+            width: 400,
+            height: 225,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UC_vrqgb3YLoe2MYSJm2aO-A",
+            name: "K-Series : STORY & MUSIC",
+          ),
+        ],
+        artists_txt: Some("K-Series : STORY & MUSIC"),
+        album: None,
+        view_count: Some(28000),
+        is_video: true,
+      ),
+      TrackItem(
+        id: "vfzlr70ogaI",
+        title: "aespa(에스파) - Black Mamba (Music Bank) | KBS WORLD TV 201211",
+        duration: 190,
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/vfzlr70ogaI/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3m1NeOWJDh4HqGPPFfEnq4g2BLR3A",
+            width: 400,
+            height: 225,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UC5BMQOsAB8hKUyHu9KI6yig",
+            name: "KBS WORLD TV",
+          ),
+        ],
+        artists_txt: Some("KBS WORLD TV"),
+        album: None,
+        view_count: Some(1300000),
+        is_video: true,
+      ),
+      TrackItem(
+        id: "Fjth6cKGI88",
+        title: "aespa, Black Mamba\u{a0}(에스파, Black Mamba) [THE SHOW 201208]",
+        duration: 179,
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/Fjth6cKGI88/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3k9DYBKdlPtxYcpLn_0oO7ikeQBtA",
+            width: 400,
+            height: 225,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCoRXPcv8XK5fAplLbk9PTww",
+            name: "THE K-POP",
+          ),
+        ],
+        artists_txt: Some("THE K-POP"),
+        album: None,
+        view_count: Some(3000000),
+        is_video: true,
+      ),
+      TrackItem(
+        id: "fznwvW9Kn4s",
+        title: "Love Is Dope",
+        duration: 371,
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/fznwvW9Kn4s/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nlnfAi-ia58ugtRW_mrT9NPstp7w",
+            width: 400,
+            height: 225,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCaDT20-B3U8h-tPg_VMvntw",
+            name: "The Black Mamba",
+          ),
+        ],
+        artists_txt: Some("The Black Mamba"),
+        album: None,
+        view_count: Some(49000),
+        is_video: true,
+      ),
+      TrackItem(
+        id: "Jore0zZW-_M",
+        title: "The Tunnel — Black Mamba (dj-set)",
+        duration: 3881,
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/Jore0zZW-_M/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3ktaYDC0Dsl_VM2sQLoeHbE5TzTIw",
+            width: 400,
+            height: 225,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCEAgugIw6pHGg7MRlkOU1Dw",
+            name: "Studio Brussel",
+          ),
+        ],
+        artists_txt: Some("Studio Brussel"),
+        album: None,
+        view_count: Some(29000),
+        is_video: true,
+      ),
+      TrackItem(
+        id: "_THM-2Ph-6I",
+        title: "Black Mamba / Turn to Stone Cover",
+        duration: 355,
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/_THM-2Ph-6I/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3k5xZOdoOkY9QjEe7xvhtTLyYsm0w",
+            width: 400,
+            height: 225,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCAj9gLNfM0q3MFhovVmAtBw",
+            name: "Achim Müller",
+          ),
+        ],
+        artists_txt: Some("Achim Müller"),
+        album: None,
+        view_count: Some(823),
+        is_video: true,
+      ),
+      TrackItem(
+        id: "koJAGIUlnD0",
+        title: "The Black Mamba - Love Is On My Side - Portugal 🇵🇹 - Second Semi-Final - Eurovision 2021",
+        duration: 204,
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/koJAGIUlnD0/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kRXIHk7K8ax2DBjcZzZcqRJAzg5g",
+            width: 400,
+            height: 225,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCRpjHHu8ivVWs73uxHlWwFA",
+            name: "Eurovision Song Contest",
+          ),
+        ],
+        artists_txt: Some("Eurovision Song Contest"),
+        album: None,
+        view_count: Some(1800000),
+        is_video: true,
+      ),
+      TrackItem(
+        id: "4tvQPrHcR4w",
+        title: "Black Mamba - aespa(에스파) [뮤직뱅크/Music Bank] | KBS 201211 방송",
+        duration: 181,
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/4tvQPrHcR4w/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3n1v_80gL-nZ7CxpmU2hfXFP31HXw",
+            width: 400,
+            height: 225,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCeLPm9yH_a_QH8n6445G-Ow",
+            name: "KBS Kpop",
+          ),
+        ],
+        artists_txt: Some("KBS Kpop"),
+        album: None,
+        view_count: Some(4400000),
+        is_video: true,
+      ),
+      TrackItem(
+        id: "CUh6MTvB_4E",
+        title: "The Black Mamba - Love Is On My Side (long version)",
+        duration: 343,
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/CUh6MTvB_4E/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lR1QEW6JiCq8M9h9It_vjiU_3vCQ",
+            width: 400,
+            height: 225,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCaDT20-B3U8h-tPg_VMvntw",
+            name: "The Black Mamba",
+          ),
+        ],
+        artists_txt: Some("The Black Mamba"),
+        album: None,
+        view_count: Some(1300),
+        is_video: true,
+      ),
+      TrackItem(
+        id: "4TWR90KJl84",
+        title: "Next Level",
+        duration: 236,
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/4TWR90KJl84/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kl3LTK647n1QMNk2ltojkKT5jR8w",
+            width: 400,
+            height: 225,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCEdZAdnnKqbaHOlv8nM6OtA",
+            name: "aespa",
+          ),
+        ],
+        artists_txt: Some("aespa"),
+        album: None,
+        view_count: Some(249000000),
+        is_video: true,
+      ),
+      TrackItem(
+        id: "Cw7eMibV-Xk",
+        title: "BLACKPINK & AESPA - Pink Venom x Black Mamba (ft.Next Level) (Color Coded Lyrics) @Miggy Smallz",
+        duration: 241,
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/Cw7eMibV-Xk/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mDFIPEb97IyOFO1AwUKBN9PK8eww",
+            width: 400,
+            height: 225,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCB-TbzcDawIZVkG229eqnKg",
+            name: "Sweet & Sour",
+          ),
+        ],
+        artists_txt: Some("Sweet & Sour"),
+        album: None,
+        view_count: Some(15000),
+        is_video: true,
+      ),
+    ],
+    ctoken: Some("EqQDEgtibGFjayBtYW1iYRqUA0VnV0tBUUlRQVVnVWFnd1FBeEFFRUFrUURoQUtFQVdDQVF0YVpXVnljbTUxVEdrMVJZSUJDM1ppYkRsTGNscDRUMFk0Z2dFTFpVMW1VazlLZERCaE4xR0NBUXN4YTNSTVJXaG1hMEpEU1lJQkN6Sm9RV3h3TTB0b2MyNXJnZ0VMUTBocGVHcG9kMWt3Wld1Q0FRczRXVmhMWjFvek9UTkZZNElCQzB0R1RucHVRVmh1YWxoamdnRUxhRVJvU21WS1dtMVVSRUdDQVFzMmEwdFRSRmhwYVhCZk9JSUJDM1ptZW14eU56QnZaMkZKZ2dFTFJtcDBhRFpqUzBkSk9EaUNBUXRtZW01M2RsYzVTMjQwYzRJQkMwcHZjbVV3ZWxwWExWOU5nZ0VMWDFSSVRTMHlVR2d0TmttQ0FRdHJiMHBCUjBsVmJHNUVNSUlCQ3pSMGRsRlFja2hqVWpSM2dnRUxRMVZvTmsxVWRrSmZORVdDQVFzMFZGZFNPVEJMU213NE5JSUJDME4zTjJWTmFXSldMVmhyGPHq0C4%3D"),
+    endpoint: music_search,
+  ),
+  corrected_query: None,
+)

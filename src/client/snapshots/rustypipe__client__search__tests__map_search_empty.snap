@@ -7,7 +7,7 @@ SearchResult(
     count: Some(0),
     items: [],
     ctoken: None,
-    endpoint: browse,
+    endpoint: search,
   ),
   corrected_query: None,
   visitor_data: Some("Cgs1Q0NxX3llelBxWSi85ZGaBg%3D%3D"),

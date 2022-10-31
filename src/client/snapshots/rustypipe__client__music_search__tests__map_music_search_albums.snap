@@ -1,0 +1,722 @@
+---
+source: src/client/music_search.rs
+expression: map_res.c
+---
+MusicSearchFiltered(
+  items: Paginator(
+    count: None,
+    items: [
+      AlbumItem(
+        id: "MPREb_OpHWHwyNOuY",
+        name: "Black Mamba",
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/MOL4_Ula9hocErkX2xK_7mISFiWvQz51vReT14KCHF9wsqCEH6sO8iilFFelWMn7JOYIk2WFa-gMmw2uvw=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/MOL4_Ula9hocErkX2xK_7mISFiWvQz51vReT14KCHF9wsqCEH6sO8iilFFelWMn7JOYIk2WFa-gMmw2uvw=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/MOL4_Ula9hocErkX2xK_7mISFiWvQz51vReT14KCHF9wsqCEH6sO8iilFFelWMn7JOYIk2WFa-gMmw2uvw=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/MOL4_Ula9hocErkX2xK_7mISFiWvQz51vReT14KCHF9wsqCEH6sO8iilFFelWMn7JOYIk2WFa-gMmw2uvw=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCEdZAdnnKqbaHOlv8nM6OtA",
+            name: "aespa",
+          ),
+        ],
+        artists_txt: "aespa",
+        album_type: Single,
+        year: Some(2020),
+      ),
+      AlbumItem(
+        id: "MPREb_pvdHyqvGjbI",
+        name: "Girls - The 2nd Mini Album",
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/JYOTl7neLJLMUEVjdg_qIqz7XjUZB2AQAx_sRDlNVd5jSYiv1xA0v68ZN8Kn0KKf1fSfQnTaeakGeQgI=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/JYOTl7neLJLMUEVjdg_qIqz7XjUZB2AQAx_sRDlNVd5jSYiv1xA0v68ZN8Kn0KKf1fSfQnTaeakGeQgI=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/JYOTl7neLJLMUEVjdg_qIqz7XjUZB2AQAx_sRDlNVd5jSYiv1xA0v68ZN8Kn0KKf1fSfQnTaeakGeQgI=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/JYOTl7neLJLMUEVjdg_qIqz7XjUZB2AQAx_sRDlNVd5jSYiv1xA0v68ZN8Kn0KKf1fSfQnTaeakGeQgI=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCEdZAdnnKqbaHOlv8nM6OtA",
+            name: "aespa",
+          ),
+        ],
+        artists_txt: "aespa",
+        album_type: Album,
+        year: Some(2022),
+      ),
+      AlbumItem(
+        id: "MPREb_CznUTKnATw6",
+        name: "Black Mamba (feat. Foolio)",
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/3ut0tvS5LYcfHjLwrYPSYNbraALbFb9ov28b2GXHB8ABaMGWILUko_BJa1jpsSVrELE_B8so3NtYMVfb1g=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/3ut0tvS5LYcfHjLwrYPSYNbraALbFb9ov28b2GXHB8ABaMGWILUko_BJa1jpsSVrELE_B8so3NtYMVfb1g=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/3ut0tvS5LYcfHjLwrYPSYNbraALbFb9ov28b2GXHB8ABaMGWILUko_BJa1jpsSVrELE_B8so3NtYMVfb1g=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/3ut0tvS5LYcfHjLwrYPSYNbraALbFb9ov28b2GXHB8ABaMGWILUko_BJa1jpsSVrELE_B8so3NtYMVfb1g=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCZK5n7V2-iPHfUXLV2tDvzw",
+            name: "Cojack",
+          ),
+        ],
+        artists_txt: "Cojack",
+        album_type: Single,
+        year: Some(2020),
+      ),
+      AlbumItem(
+        id: "MPREb_Sx4uifBuKyD",
+        name: "Black Mamba",
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/lS8hPUJ0lZkX3FsVu400p9izEBRfZnAzjR9GSXx0T2wjSYmZIcJG8QLMX0mqErvrKA7lJb-lrfy-_Oo=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/lS8hPUJ0lZkX3FsVu400p9izEBRfZnAzjR9GSXx0T2wjSYmZIcJG8QLMX0mqErvrKA7lJb-lrfy-_Oo=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/lS8hPUJ0lZkX3FsVu400p9izEBRfZnAzjR9GSXx0T2wjSYmZIcJG8QLMX0mqErvrKA7lJb-lrfy-_Oo=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/lS8hPUJ0lZkX3FsVu400p9izEBRfZnAzjR9GSXx0T2wjSYmZIcJG8QLMX0mqErvrKA7lJb-lrfy-_Oo=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCudOYmRtW3uylYtqY1aAD0A",
+            name: "Montana Of 300",
+          ),
+        ],
+        artists_txt: "Montana Of 300",
+        album_type: Single,
+        year: Some(2020),
+      ),
+      AlbumItem(
+        id: "MPREb_PdIIalyOQXF",
+        name: "Black Mamba",
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/EsVdgKC0gQx9FqkAxd6VfwHNC6Me2nX0_k-s26069NgyVeDs7kSOKKq1q5Ze9SJj1uHkknONpeLc1m4VdA=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/EsVdgKC0gQx9FqkAxd6VfwHNC6Me2nX0_k-s26069NgyVeDs7kSOKKq1q5Ze9SJj1uHkknONpeLc1m4VdA=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/EsVdgKC0gQx9FqkAxd6VfwHNC6Me2nX0_k-s26069NgyVeDs7kSOKKq1q5Ze9SJj1uHkknONpeLc1m4VdA=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/EsVdgKC0gQx9FqkAxd6VfwHNC6Me2nX0_k-s26069NgyVeDs7kSOKKq1q5Ze9SJj1uHkknONpeLc1m4VdA=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UC8whsREta_7Fu-EjRq2Ys-A",
+            name: "Alpha Wolf",
+          ),
+        ],
+        artists_txt: "Alpha Wolf",
+        album_type: Single,
+        year: Some(2018),
+      ),
+      AlbumItem(
+        id: "MPREb_9KdyuqvufOL",
+        name: "BLACK MAMBA",
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/k8Cu4k-k6xsK8-RzJKQGnW2CAby1HpxintJvIij9UtWSJpfaLoYn86C-Kg0C0cXKmNY2ikDaZqOfgg4N2g=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/k8Cu4k-k6xsK8-RzJKQGnW2CAby1HpxintJvIij9UtWSJpfaLoYn86C-Kg0C0cXKmNY2ikDaZqOfgg4N2g=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/k8Cu4k-k6xsK8-RzJKQGnW2CAby1HpxintJvIij9UtWSJpfaLoYn86C-Kg0C0cXKmNY2ikDaZqOfgg4N2g=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/k8Cu4k-k6xsK8-RzJKQGnW2CAby1HpxintJvIij9UtWSJpfaLoYn86C-Kg0C0cXKmNY2ikDaZqOfgg4N2g=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCRy7ecValgvorRe_8dum9lA",
+            name: "ESKIIMO",
+          ),
+        ],
+        artists_txt: "ESKIIMO",
+        album_type: Ep,
+        year: Some(2022),
+      ),
+      AlbumItem(
+        id: "MPREb_VDjWCOUvD7s",
+        name: "Anti Venom",
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/8pJynr17yAyhW8QL20jk_XdhBBokDmt6-HtrTo2IGiwe6nOsalsd64vNtXYM_vl8-iMxyqULJ3psnf_2Yg=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/8pJynr17yAyhW8QL20jk_XdhBBokDmt6-HtrTo2IGiwe6nOsalsd64vNtXYM_vl8-iMxyqULJ3psnf_2Yg=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/8pJynr17yAyhW8QL20jk_XdhBBokDmt6-HtrTo2IGiwe6nOsalsd64vNtXYM_vl8-iMxyqULJ3psnf_2Yg=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/8pJynr17yAyhW8QL20jk_XdhBBokDmt6-HtrTo2IGiwe6nOsalsd64vNtXYM_vl8-iMxyqULJ3psnf_2Yg=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCdkNrc_l73BHYKRhDqxBo9w",
+            name: "Black Mamba Man",
+          ),
+        ],
+        artists_txt: "Black Mamba Man",
+        album_type: Album,
+        year: Some(2017),
+      ),
+      AlbumItem(
+        id: "MPREb_xjJaY8xb2Rw",
+        name: "Black Mamba",
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Ujbtua0R_mf-THSu5c299qRGmxs_KPKDNYNRTjsgMqjtTlCUJZPsqYN_cGi2S6jgY1helBWuzcgExN4=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Ujbtua0R_mf-THSu5c299qRGmxs_KPKDNYNRTjsgMqjtTlCUJZPsqYN_cGi2S6jgY1helBWuzcgExN4=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Ujbtua0R_mf-THSu5c299qRGmxs_KPKDNYNRTjsgMqjtTlCUJZPsqYN_cGi2S6jgY1helBWuzcgExN4=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Ujbtua0R_mf-THSu5c299qRGmxs_KPKDNYNRTjsgMqjtTlCUJZPsqYN_cGi2S6jgY1helBWuzcgExN4=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCn09cNujyKjEA1NxD5Aj_mQ",
+            name: "Paride Saraceni",
+          ),
+        ],
+        artists_txt: "Paride Saraceni",
+        album_type: Single,
+        year: Some(2019),
+      ),
+      AlbumItem(
+        id: "MPREb_CH1VEbx7Lle",
+        name: "Addis Black Mamba",
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Xonj-vCCYYjIKSATlqbbPJCKM6jJBrn4belO7YBm1fmW-sv71KT7Dvhp-RGEd_zjkupkpbHgmvRcq_U=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Xonj-vCCYYjIKSATlqbbPJCKM6jJBrn4belO7YBm1fmW-sv71KT7Dvhp-RGEd_zjkupkpbHgmvRcq_U=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Xonj-vCCYYjIKSATlqbbPJCKM6jJBrn4belO7YBm1fmW-sv71KT7Dvhp-RGEd_zjkupkpbHgmvRcq_U=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Xonj-vCCYYjIKSATlqbbPJCKM6jJBrn4belO7YBm1fmW-sv71KT7Dvhp-RGEd_zjkupkpbHgmvRcq_U=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCYAFIwL4uBWQHBrBiohx1vw",
+            name: "Addis Black Mamba",
+          ),
+        ],
+        artists_txt: "Addis Black Mamba",
+        album_type: Single,
+        year: Some(2019),
+      ),
+      AlbumItem(
+        id: "MPREb_IfiMtX5CnWJ",
+        name: "Killing fame",
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/mMjDp4UhZn-ekqF6NhEZuBh0cUTmgDq-jbp7TuNIGWMYAyWyd1MMR2HwCtKsZm4izKDM9jLXq9XIRo0tCA=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/mMjDp4UhZn-ekqF6NhEZuBh0cUTmgDq-jbp7TuNIGWMYAyWyd1MMR2HwCtKsZm4izKDM9jLXq9XIRo0tCA=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/mMjDp4UhZn-ekqF6NhEZuBh0cUTmgDq-jbp7TuNIGWMYAyWyd1MMR2HwCtKsZm4izKDM9jLXq9XIRo0tCA=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/mMjDp4UhZn-ekqF6NhEZuBh0cUTmgDq-jbp7TuNIGWMYAyWyd1MMR2HwCtKsZm4izKDM9jLXq9XIRo0tCA=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCs04jfHH78YUziFA52P97LA",
+            name: "R. Black Mamba",
+          ),
+          ChannelId(
+            id: "UCsOfYy8UlBPRYkC5lgRaatA",
+            name: "Lonzzo",
+          ),
+          ChannelId(
+            id: "UCEwg585uC9nBoL8KA7ayjPA",
+            name: "24.Gz",
+          ),
+        ],
+        artists_txt: "R. Black Mamba, Lonzzo & 24.Gz",
+        album_type: Single,
+        year: Some(2022),
+      ),
+      AlbumItem(
+        id: "MPREb_DeCImAQRYMO",
+        name: "Black Mamba (Orchestra Version)",
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/iVzSchJFVKNSREbIRye25Y-EJXocz-dsR9xpOZ4qBejfZS4IYjDhlUhGCXmYH-0xdGXE6wL1zxxPlu_0aQ=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/iVzSchJFVKNSREbIRye25Y-EJXocz-dsR9xpOZ4qBejfZS4IYjDhlUhGCXmYH-0xdGXE6wL1zxxPlu_0aQ=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/iVzSchJFVKNSREbIRye25Y-EJXocz-dsR9xpOZ4qBejfZS4IYjDhlUhGCXmYH-0xdGXE6wL1zxxPlu_0aQ=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/iVzSchJFVKNSREbIRye25Y-EJXocz-dsR9xpOZ4qBejfZS4IYjDhlUhGCXmYH-0xdGXE6wL1zxxPlu_0aQ=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCZwE-b-kzA4pQaCQXwOQnlg",
+            name: "Seoul Philharmonic Orchestra",
+          ),
+        ],
+        artists_txt: "Seoul Philharmonic Orchestra",
+        album_type: Single,
+        year: Some(2022),
+      ),
+      AlbumItem(
+        id: "MPREb_vXAHel98vo2",
+        name: "Black Mamba",
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/9LGEIxmbTKdJOOriPVgEY0KHPijrMUrjBD60Us-UvJf60PZC24-5c8xrMgE27ExiviVKCwzYSMLlC24fSQ=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/9LGEIxmbTKdJOOriPVgEY0KHPijrMUrjBD60Us-UvJf60PZC24-5c8xrMgE27ExiviVKCwzYSMLlC24fSQ=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/9LGEIxmbTKdJOOriPVgEY0KHPijrMUrjBD60Us-UvJf60PZC24-5c8xrMgE27ExiviVKCwzYSMLlC24fSQ=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/9LGEIxmbTKdJOOriPVgEY0KHPijrMUrjBD60Us-UvJf60PZC24-5c8xrMgE27ExiviVKCwzYSMLlC24fSQ=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UC_SI7sOel-qMTvSe-lGHX8w",
+            name: "Hever Jara",
+          ),
+        ],
+        artists_txt: "Hever Jara",
+        album_type: Single,
+        year: Some(2018),
+      ),
+      AlbumItem(
+        id: "MPREb_iAemzaCGXuo",
+        name: "Black Mamba",
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/4np4p7SY1vDGvm6a5FWbjgZ06odig4eWv-A9gxmrk1UHqSwhNksRBMji2rmWcMSgssItBLekes9soYAH=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/4np4p7SY1vDGvm6a5FWbjgZ06odig4eWv-A9gxmrk1UHqSwhNksRBMji2rmWcMSgssItBLekes9soYAH=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/4np4p7SY1vDGvm6a5FWbjgZ06odig4eWv-A9gxmrk1UHqSwhNksRBMji2rmWcMSgssItBLekes9soYAH=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/4np4p7SY1vDGvm6a5FWbjgZ06odig4eWv-A9gxmrk1UHqSwhNksRBMji2rmWcMSgssItBLekes9soYAH=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCMZowOoC3u_ntr9o52ekeZw",
+            name: "Yung FN",
+          ),
+        ],
+        artists_txt: "Yung FN",
+        album_type: Single,
+        year: Some(2022),
+      ),
+      AlbumItem(
+        id: "MPREb_CbIA5po2cn4",
+        name: "Black Mamba",
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/yHLKcDqfL62EB0Zc4_xu9-Y8X-xbUW7rljIwoYhZSqpP1F4_myznQPmaIhgQQPnJijHvjK3_HwxBJpk=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/yHLKcDqfL62EB0Zc4_xu9-Y8X-xbUW7rljIwoYhZSqpP1F4_myznQPmaIhgQQPnJijHvjK3_HwxBJpk=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/yHLKcDqfL62EB0Zc4_xu9-Y8X-xbUW7rljIwoYhZSqpP1F4_myznQPmaIhgQQPnJijHvjK3_HwxBJpk=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/yHLKcDqfL62EB0Zc4_xu9-Y8X-xbUW7rljIwoYhZSqpP1F4_myznQPmaIhgQQPnJijHvjK3_HwxBJpk=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCX6v_euBwliDYV2NMTouuSA",
+            name: "Hobino",
+          ),
+        ],
+        artists_txt: "Hobino",
+        album_type: Single,
+        year: Some(2022),
+      ),
+      AlbumItem(
+        id: "MPREb_yrsxU7t0h6l",
+        name: "Black Mamba",
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/2cJawayDujRRcl8OKABi82_aa4sH6EGLAqxlx976Syzh86c9inNlY2xch5s4GWEo5iSXVq8VdS_59l8=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/2cJawayDujRRcl8OKABi82_aa4sH6EGLAqxlx976Syzh86c9inNlY2xch5s4GWEo5iSXVq8VdS_59l8=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/2cJawayDujRRcl8OKABi82_aa4sH6EGLAqxlx976Syzh86c9inNlY2xch5s4GWEo5iSXVq8VdS_59l8=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/2cJawayDujRRcl8OKABi82_aa4sH6EGLAqxlx976Syzh86c9inNlY2xch5s4GWEo5iSXVq8VdS_59l8=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCAlOD5s3Ro27M61-2Z_UB7w",
+            name: "Tee See Connection",
+          ),
+        ],
+        artists_txt: "Tee See Connection",
+        album_type: Single,
+        year: Some(2013),
+      ),
+      AlbumItem(
+        id: "MPREb_fETChb2O2uR",
+        name: "Black Mamba",
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/MwPaFKuMpJTP9csDP0Wn5z1_KvXCKj4BfOWyHw2NTdXWI7V_E9TUiYjfcbh7rdC8Ba1S0GqHF-AlBx7g=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/MwPaFKuMpJTP9csDP0Wn5z1_KvXCKj4BfOWyHw2NTdXWI7V_E9TUiYjfcbh7rdC8Ba1S0GqHF-AlBx7g=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/MwPaFKuMpJTP9csDP0Wn5z1_KvXCKj4BfOWyHw2NTdXWI7V_E9TUiYjfcbh7rdC8Ba1S0GqHF-AlBx7g=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/MwPaFKuMpJTP9csDP0Wn5z1_KvXCKj4BfOWyHw2NTdXWI7V_E9TUiYjfcbh7rdC8Ba1S0GqHF-AlBx7g=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UC77rFNJxH8Y2VwSYp8ZTXHA",
+            name: "Franco Vitola",
+          ),
+        ],
+        artists_txt: "Franco Vitola",
+        album_type: Single,
+        year: Some(2020),
+      ),
+      AlbumItem(
+        id: "MPREb_VcRKLYVgy11",
+        name: "Black Mamba",
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/zrjvi7zCzuP-10RIaB63k2Riy59MU2ghsifk7Zquc9_m-g1bQHCcKS_eNosZy3e_oK0wi5blz7hwKKrh=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/zrjvi7zCzuP-10RIaB63k2Riy59MU2ghsifk7Zquc9_m-g1bQHCcKS_eNosZy3e_oK0wi5blz7hwKKrh=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/zrjvi7zCzuP-10RIaB63k2Riy59MU2ghsifk7Zquc9_m-g1bQHCcKS_eNosZy3e_oK0wi5blz7hwKKrh=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/zrjvi7zCzuP-10RIaB63k2Riy59MU2ghsifk7Zquc9_m-g1bQHCcKS_eNosZy3e_oK0wi5blz7hwKKrh=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCxX9tNcQgCBuU56ezupriqg",
+            name: "Black Mamba",
+          ),
+        ],
+        artists_txt: "Black Mamba",
+        album_type: Album,
+        year: Some(2011),
+      ),
+      AlbumItem(
+        id: "MPREb_grtT3Ze8U2Z",
+        name: "Black Mamba",
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/uP7fOWCer3tlszDLH_8CEarOb4XVNqShpJ5DQBJWWT3HaTF2m8bt6BUvCm_11iSz4CARMLpVekK2Ug=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/uP7fOWCer3tlszDLH_8CEarOb4XVNqShpJ5DQBJWWT3HaTF2m8bt6BUvCm_11iSz4CARMLpVekK2Ug=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/uP7fOWCer3tlszDLH_8CEarOb4XVNqShpJ5DQBJWWT3HaTF2m8bt6BUvCm_11iSz4CARMLpVekK2Ug=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/uP7fOWCer3tlszDLH_8CEarOb4XVNqShpJ5DQBJWWT3HaTF2m8bt6BUvCm_11iSz4CARMLpVekK2Ug=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UC6Y8G45J9Uv2EsLLOatymOw",
+            name: "WookTheCrook",
+          ),
+        ],
+        artists_txt: "WookTheCrook",
+        album_type: Single,
+        year: Some(2022),
+      ),
+      AlbumItem(
+        id: "MPREb_hXasyBrDJm7",
+        name: "The Black Mamba",
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/ByZsPc5CHoZwtn-cl7e_nbhiVkWxoFJ2RHkNUvLTiowT8228-aVd6r2XT08Z8a32Qa7d-0-Go44sxkdf=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/ByZsPc5CHoZwtn-cl7e_nbhiVkWxoFJ2RHkNUvLTiowT8228-aVd6r2XT08Z8a32Qa7d-0-Go44sxkdf=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/ByZsPc5CHoZwtn-cl7e_nbhiVkWxoFJ2RHkNUvLTiowT8228-aVd6r2XT08Z8a32Qa7d-0-Go44sxkdf=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/ByZsPc5CHoZwtn-cl7e_nbhiVkWxoFJ2RHkNUvLTiowT8228-aVd6r2XT08Z8a32Qa7d-0-Go44sxkdf=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCaDT20-B3U8h-tPg_VMvntw",
+            name: "The Black Mamba",
+          ),
+        ],
+        artists_txt: "The Black Mamba",
+        album_type: Album,
+        year: Some(2012),
+      ),
+      AlbumItem(
+        id: "MPREb_jDiEDfz09CY",
+        name: "Black Mamba",
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/QXKgvSug589atLxKgP_GIPYxUnjBH-exHP_9zipceGOmSxmUSdQgxmwDI6k5jvqQdQc4t4Oc0b1NEkll=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/QXKgvSug589atLxKgP_GIPYxUnjBH-exHP_9zipceGOmSxmUSdQgxmwDI6k5jvqQdQc4t4Oc0b1NEkll=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/QXKgvSug589atLxKgP_GIPYxUnjBH-exHP_9zipceGOmSxmUSdQgxmwDI6k5jvqQdQc4t4Oc0b1NEkll=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/QXKgvSug589atLxKgP_GIPYxUnjBH-exHP_9zipceGOmSxmUSdQgxmwDI6k5jvqQdQc4t4Oc0b1NEkll=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        artists: [
+          ChannelId(
+            id: "UCJq1MEuNM0SidXn5pMqqHBA",
+            name: "Voltage",
+          ),
+        ],
+        artists_txt: "Voltage",
+        album_type: Single,
+        year: Some(2019),
+      ),
+    ],
+    ctoken: Some("EoIGEgtibGFjayBtYW1iYRryBUVnV0tBUUlZQVVnVWFnd1FBeEFFRUFrUURoQUtFQVdDQVJoVlEyRjJabUpWTlc0emFEaHZXR2RSUzBkTlZqTkhXbEdDQVJoVlEzbE1XR2hVTWxGU1ZYRlJVbUZUY2tST1RVSmZNMmVDQVJoVlEyZG1SR2RXWVRsbE9EWm1TVTVZYTE5elpWOWxlWGVDQVJoVlEzZGlNekEyT0ZkQ1dYTlJjbkl5WDBSS1pIRlRaWGVDQVJoVlEwZEhWVVkwWHpjMFZuWkxSbmR1Y0ZCRU1FWndPRUdDQVJoVlEyaHBaMVprUkhVM1owTkpZWEJ0ZUZSeGEyZG1RM2VDQVJoVlEyd3laVFpzVXkwdGQzYzNabnBLWVMxV2QxQkJNbWVDQVJoVlF6Z3RhbmxoVkdsSU9VWlViVGRRZG10RllYa3hWVUdDQVJoVlF5MDBOSGRNWm04eldISmplbGROZFdsQ1JWbHJWVUdDQVJoVlEzWnVjVmw1UVdSUGJWRnZVMlpMZEV0SldYVm5NbEdDQVJoVlEyWmlhMFpCTjFSU01tMXhRbU5WVVZCWFZFaDBWWGVDQVJoVlEzcHlkM2RGZUhZeWQxUmFkUzFrVldobU9DMVdUbmVDQVJoVlEySmpNa2xCYmxOTE0zcDBWR0YyVGtkTFJrRk5UWGVDQVJoVlF6UnlSVGRPTW5sR2VrVXdNVVozY1ZwdVdrWm5RVUdDQVJoVlEwRTBORFF4YlZGaGNHazNTbU5RWmpkVVkxOHdSVUdDQVJoVlEzZHBZVjl1ZUc5QlkwRjFiVmgzUmpVeVVHeDFYMmVDQVJoVlF6QlZVMWhDU1VOcmJHbGlhSGxVUkhKaWVHUldMVkdDQVJoVlF6bERMV1pwVG1JM1FWWjJjRGRWZGxKdlEyMTJjMUdDQVJoVlEwZFZkMUJHWVVaMFdVRXRiamRhVERSSFlubHlYM2VDQVJoVlEySkdiRTR5Y0RCT1owbERlbVZYVFRNd1pIQTFaMmMlM0QY8erQLg%3D%3D"),
+    endpoint: music_search,
+  ),
+  corrected_query: None,
+)

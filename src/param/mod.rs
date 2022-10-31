@@ -9,19 +9,29 @@ pub use stream_filter::StreamFilter;
 
 /// YouTube API endpoint to fetch continuations from
 #[derive(Debug, Copy, Clone, Serialize, Deserialize, PartialEq, Eq)]
-#[serde(rename_all = "lowercase")]
+#[serde(rename_all = "snake_case")]
+#[non_exhaustive]
 pub enum ContinuationEndpoint {
     Browse,
     Search,
     Next,
+    MusicBrowse,
+    MusicSearch,
 }
 
 impl ContinuationEndpoint {
     pub(crate) fn as_str(self) -> &'static str {
         match self {
-            ContinuationEndpoint::Browse => "browse",
-            ContinuationEndpoint::Search => "search",
+            ContinuationEndpoint::Browse | ContinuationEndpoint::MusicBrowse => "browse",
+            ContinuationEndpoint::Search | ContinuationEndpoint::MusicSearch => "search",
             ContinuationEndpoint::Next => "next",
         }
+    }
+
+    pub(crate) fn is_music(self) -> bool {
+        matches!(
+            self,
+            ContinuationEndpoint::MusicBrowse | ContinuationEndpoint::MusicSearch
+        )
     }
 }

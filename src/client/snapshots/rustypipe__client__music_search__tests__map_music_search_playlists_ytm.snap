@@ -1,0 +1,594 @@
+---
+source: src/client/music_search.rs
+expression: map_res.c
+---
+MusicSearchFiltered(
+  items: Paginator(
+    count: None,
+    items: [
+      MusicPlaylistItem(
+        id: "VLRDCLAK5uy_nmS3YoxSwVVQk9lEQJ0UX4ZCjXsW_psU8",
+        name: "Pop\'s Biggest Hits",
+        thumbnail: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/ih5QdpqpkVNRXtD-joBWj3jo1woxAXJFyAoA3hWYNWAKX0M9B825HH2VOh7aDX-unf67oyCyJGN9TljR=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/ih5QdpqpkVNRXtD-joBWj3jo1woxAXJFyAoA3hWYNWAKX0M9B825HH2VOh7aDX-unf67oyCyJGN9TljR=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/ih5QdpqpkVNRXtD-joBWj3jo1woxAXJFyAoA3hWYNWAKX0M9B825HH2VOh7aDX-unf67oyCyJGN9TljR=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/ih5QdpqpkVNRXtD-joBWj3jo1woxAXJFyAoA3hWYNWAKX0M9B825HH2VOh7aDX-unf67oyCyJGN9TljR=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        channel: None,
+        track_count: Some(225),
+        from_ytm: true,
+      ),
+      MusicPlaylistItem(
+        id: "VLRDCLAK5uy_nfs_t4FUu00E5ED6lveEBBX1VMYe1mFjk",
+        name: "Dance-Pop Bangers",
+        thumbnail: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/371QuBVeCF9Q2wygw9z69I1GqwXXpmrSHsgmbhc1YofGXEloyB2EiV5vFx_GEDu23J2ieG9CTNOa7A=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/371QuBVeCF9Q2wygw9z69I1GqwXXpmrSHsgmbhc1YofGXEloyB2EiV5vFx_GEDu23J2ieG9CTNOa7A=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/371QuBVeCF9Q2wygw9z69I1GqwXXpmrSHsgmbhc1YofGXEloyB2EiV5vFx_GEDu23J2ieG9CTNOa7A=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/371QuBVeCF9Q2wygw9z69I1GqwXXpmrSHsgmbhc1YofGXEloyB2EiV5vFx_GEDu23J2ieG9CTNOa7A=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        channel: None,
+        track_count: Some(100),
+        from_ytm: true,
+      ),
+      MusicPlaylistItem(
+        id: "VLRDCLAK5uy_nH_fdBVCcbNaVwi_tmZajZRq-ekddiuFY",
+        name: "Pop Meets Country",
+        thumbnail: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/x1x_b4tyMHZQFxDr_LnYp39BTeMf9lgCT3EIsWAgaiFSvF1zBtVeUmwoXCixITsWU4tV85BwZh1yx6Q=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/x1x_b4tyMHZQFxDr_LnYp39BTeMf9lgCT3EIsWAgaiFSvF1zBtVeUmwoXCixITsWU4tV85BwZh1yx6Q=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/x1x_b4tyMHZQFxDr_LnYp39BTeMf9lgCT3EIsWAgaiFSvF1zBtVeUmwoXCixITsWU4tV85BwZh1yx6Q=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/x1x_b4tyMHZQFxDr_LnYp39BTeMf9lgCT3EIsWAgaiFSvF1zBtVeUmwoXCixITsWU4tV85BwZh1yx6Q=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        channel: None,
+        track_count: Some(92),
+        from_ytm: true,
+      ),
+      MusicPlaylistItem(
+        id: "VLRDCLAK5uy_lb6CVU6S4uVugLVNTU9WhqfaomWAgnho4",
+        name: "Shout-Out Pop Hits",
+        thumbnail: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/BJQlF3li_vQMpYuC7JKQan3Qehp4OxW9tBRf1Ik7C5fX4J8boxXZRhJn5ubf3jxGA8UFUHEhnrODPQ=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/BJQlF3li_vQMpYuC7JKQan3Qehp4OxW9tBRf1Ik7C5fX4J8boxXZRhJn5ubf3jxGA8UFUHEhnrODPQ=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/BJQlF3li_vQMpYuC7JKQan3Qehp4OxW9tBRf1Ik7C5fX4J8boxXZRhJn5ubf3jxGA8UFUHEhnrODPQ=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/BJQlF3li_vQMpYuC7JKQan3Qehp4OxW9tBRf1Ik7C5fX4J8boxXZRhJn5ubf3jxGA8UFUHEhnrODPQ=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        channel: None,
+        track_count: Some(50),
+        from_ytm: true,
+      ),
+      MusicPlaylistItem(
+        id: "VLRDCLAK5uy_mfdqvCAl8wodlx2P2_Ai2gNkiRDAufkkI",
+        name: "Happy Pop Hits",
+        thumbnail: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/-ZNC3w71iSs1df7ogBe-LmZj98AzwhHVxJpQVe-nO5VKw8s2M3B8g_7v0mih9NV2dRwX8_a0znewkJI=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/-ZNC3w71iSs1df7ogBe-LmZj98AzwhHVxJpQVe-nO5VKw8s2M3B8g_7v0mih9NV2dRwX8_a0znewkJI=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/-ZNC3w71iSs1df7ogBe-LmZj98AzwhHVxJpQVe-nO5VKw8s2M3B8g_7v0mih9NV2dRwX8_a0znewkJI=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/-ZNC3w71iSs1df7ogBe-LmZj98AzwhHVxJpQVe-nO5VKw8s2M3B8g_7v0mih9NV2dRwX8_a0znewkJI=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        channel: None,
+        track_count: Some(59),
+        from_ytm: true,
+      ),
+      MusicPlaylistItem(
+        id: "VLRDCLAK5uy_nHSqCJjDrW9HBhCNdF6tWPdnOMngOv0wA",
+        name: "Pop Gold",
+        thumbnail: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/rAUuEbLF7CYEYBXU3yAY4npMCzTgPxMhlD-ygH9iv_SuDXGDuDvO0Z4MTh33xAI6o3UnpWFe26MS_hBZ=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/rAUuEbLF7CYEYBXU3yAY4npMCzTgPxMhlD-ygH9iv_SuDXGDuDvO0Z4MTh33xAI6o3UnpWFe26MS_hBZ=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/rAUuEbLF7CYEYBXU3yAY4npMCzTgPxMhlD-ygH9iv_SuDXGDuDvO0Z4MTh33xAI6o3UnpWFe26MS_hBZ=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/rAUuEbLF7CYEYBXU3yAY4npMCzTgPxMhlD-ygH9iv_SuDXGDuDvO0Z4MTh33xAI6o3UnpWFe26MS_hBZ=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        channel: None,
+        track_count: Some(100),
+        from_ytm: true,
+      ),
+      MusicPlaylistItem(
+        id: "VLRDCLAK5uy_kLB769E3eFSzgy4fbpu6-1YPLh90b0JAY",
+        name: "Pop Hotlist",
+        thumbnail: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/tGSasOiGlg7ulpPNtR8_UvNdj1Wm9HyLKU1brC_ICOaJPYQXBh4GfhW1OcjGc_7A3eOxAtWzeFKgMow=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/tGSasOiGlg7ulpPNtR8_UvNdj1Wm9HyLKU1brC_ICOaJPYQXBh4GfhW1OcjGc_7A3eOxAtWzeFKgMow=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/tGSasOiGlg7ulpPNtR8_UvNdj1Wm9HyLKU1brC_ICOaJPYQXBh4GfhW1OcjGc_7A3eOxAtWzeFKgMow=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/tGSasOiGlg7ulpPNtR8_UvNdj1Wm9HyLKU1brC_ICOaJPYQXBh4GfhW1OcjGc_7A3eOxAtWzeFKgMow=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        channel: None,
+        track_count: Some(54),
+        from_ytm: true,
+      ),
+      MusicPlaylistItem(
+        id: "VLRDCLAK5uy_m_0U5VQNyyzwwH1lRi7cPAAGXqNQnAOqY",
+        name: "Laid-Back Sofa Pop",
+        thumbnail: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/IKBTW8jZAxhiUfUkM9u-BLTuuFYrO2833EMuUmH4od_9Acn2pOhh0xOda0iSxo_C24TW3EHGPkkXF2o=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/IKBTW8jZAxhiUfUkM9u-BLTuuFYrO2833EMuUmH4od_9Acn2pOhh0xOda0iSxo_C24TW3EHGPkkXF2o=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/IKBTW8jZAxhiUfUkM9u-BLTuuFYrO2833EMuUmH4od_9Acn2pOhh0xOda0iSxo_C24TW3EHGPkkXF2o=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/IKBTW8jZAxhiUfUkM9u-BLTuuFYrO2833EMuUmH4od_9Acn2pOhh0xOda0iSxo_C24TW3EHGPkkXF2o=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        channel: None,
+        track_count: Some(67),
+        from_ytm: true,
+      ),
+      MusicPlaylistItem(
+        id: "VLRDCLAK5uy_mHW5bcduhjB-PkTePAe6EoRMj1xNT8gzY",
+        name: "K-Pop Girl Crush",
+        thumbnail: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/1INaodXPz__Ijahn-kmKe7_K7t7nduKH2QO38PWe-w-jQunKDJpwO_ic6ugIpgfLjmUx5ZEH76uZURc=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/1INaodXPz__Ijahn-kmKe7_K7t7nduKH2QO38PWe-w-jQunKDJpwO_ic6ugIpgfLjmUx5ZEH76uZURc=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/1INaodXPz__Ijahn-kmKe7_K7t7nduKH2QO38PWe-w-jQunKDJpwO_ic6ugIpgfLjmUx5ZEH76uZURc=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/1INaodXPz__Ijahn-kmKe7_K7t7nduKH2QO38PWe-w-jQunKDJpwO_ic6ugIpgfLjmUx5ZEH76uZURc=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        channel: None,
+        track_count: Some(88),
+        from_ytm: true,
+      ),
+      MusicPlaylistItem(
+        id: "VLRDCLAK5uy_nWFLXjO1mIJnP4wAmxjfDS40Zmu6nF9DU",
+        name: "Se Habla Pop",
+        thumbnail: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/YAoTwD_eJcM7Lt6rzJ76y87SoF9LoCq1Kb-1dLZwfUGgA7diG7yRk9E1myosRk74w1p6i8wtlM7FGt4=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/YAoTwD_eJcM7Lt6rzJ76y87SoF9LoCq1Kb-1dLZwfUGgA7diG7yRk9E1myosRk74w1p6i8wtlM7FGt4=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/YAoTwD_eJcM7Lt6rzJ76y87SoF9LoCq1Kb-1dLZwfUGgA7diG7yRk9E1myosRk74w1p6i8wtlM7FGt4=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/YAoTwD_eJcM7Lt6rzJ76y87SoF9LoCq1Kb-1dLZwfUGgA7diG7yRk9E1myosRk74w1p6i8wtlM7FGt4=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        channel: None,
+        track_count: Some(61),
+        from_ytm: true,
+      ),
+      MusicPlaylistItem(
+        id: "VLRDCLAK5uy_lHu_HYAQ0A-OfCwhuky240HOdM1UduuyA",
+        name: "Presenting Pop Smoke",
+        thumbnail: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/uEZTcfN-VPGwLuR6aBA-8kYaxK9rRWyOw87If4AThJHzH2vj_9maLZGdQMQnISwb7uLQGh0RR2vu3bE=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/uEZTcfN-VPGwLuR6aBA-8kYaxK9rRWyOw87If4AThJHzH2vj_9maLZGdQMQnISwb7uLQGh0RR2vu3bE=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/uEZTcfN-VPGwLuR6aBA-8kYaxK9rRWyOw87If4AThJHzH2vj_9maLZGdQMQnISwb7uLQGh0RR2vu3bE=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/uEZTcfN-VPGwLuR6aBA-8kYaxK9rRWyOw87If4AThJHzH2vj_9maLZGdQMQnISwb7uLQGh0RR2vu3bE=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        channel: None,
+        track_count: Some(48),
+        from_ytm: true,
+      ),
+      MusicPlaylistItem(
+        id: "VLRDCLAK5uy_lw21MuKaqFsDBIPZSbRmZcoDrHmV_c6uY",
+        name: "Happy latin pop",
+        thumbnail: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/g0NAfiHpB5GlIwYDdGPwmebUUtDTjLzV5-IZ9WeKlJAysp4iRL_53yL7jqFkk2TiH7m0zxhV0eb2XR61=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/g0NAfiHpB5GlIwYDdGPwmebUUtDTjLzV5-IZ9WeKlJAysp4iRL_53yL7jqFkk2TiH7m0zxhV0eb2XR61=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/g0NAfiHpB5GlIwYDdGPwmebUUtDTjLzV5-IZ9WeKlJAysp4iRL_53yL7jqFkk2TiH7m0zxhV0eb2XR61=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/g0NAfiHpB5GlIwYDdGPwmebUUtDTjLzV5-IZ9WeKlJAysp4iRL_53yL7jqFkk2TiH7m0zxhV0eb2XR61=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        channel: None,
+        track_count: Some(53),
+        from_ytm: true,
+      ),
+      MusicPlaylistItem(
+        id: "VLRDCLAK5uy_lY6JFrs7W9yIhFjUN_yxQ_ubkjcrqQaVs",
+        name: "Bedroom Pop",
+        thumbnail: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/6zXQhY27q_lJNTYl2SbPZIQCzQ6pUBI2S_u7YuoxBfdsSTtVhyAri0n4bxzCmRQLJBrOpQFwYAvn6Zs=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/6zXQhY27q_lJNTYl2SbPZIQCzQ6pUBI2S_u7YuoxBfdsSTtVhyAri0n4bxzCmRQLJBrOpQFwYAvn6Zs=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/6zXQhY27q_lJNTYl2SbPZIQCzQ6pUBI2S_u7YuoxBfdsSTtVhyAri0n4bxzCmRQLJBrOpQFwYAvn6Zs=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/6zXQhY27q_lJNTYl2SbPZIQCzQ6pUBI2S_u7YuoxBfdsSTtVhyAri0n4bxzCmRQLJBrOpQFwYAvn6Zs=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        channel: None,
+        track_count: Some(176),
+        from_ytm: true,
+      ),
+      MusicPlaylistItem(
+        id: "VLRDCLAK5uy_nbK9qSkqYZvtMXH1fLCMmC1yn8HEm0W90",
+        name: "J-Hits!",
+        thumbnail: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/fbxl4SPlkBHzHHXYzg2eAKIfi__2B_2JjvHf9n4kfEQECDXHCCT9xiVRXAedzLVcZZ3YVF6CKd_URBo=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/fbxl4SPlkBHzHHXYzg2eAKIfi__2B_2JjvHf9n4kfEQECDXHCCT9xiVRXAedzLVcZZ3YVF6CKd_URBo=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/fbxl4SPlkBHzHHXYzg2eAKIfi__2B_2JjvHf9n4kfEQECDXHCCT9xiVRXAedzLVcZZ3YVF6CKd_URBo=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/fbxl4SPlkBHzHHXYzg2eAKIfi__2B_2JjvHf9n4kfEQECDXHCCT9xiVRXAedzLVcZZ3YVF6CKd_URBo=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        channel: None,
+        track_count: Some(50),
+        from_ytm: true,
+      ),
+      MusicPlaylistItem(
+        id: "VLRDCLAK5uy_kIcfhFcnJ9fdkKHw96Gvr6Q0_bAyWiZbM",
+        name: "Reiwa Era J-Pop",
+        thumbnail: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/kc7Pu6tjxFx43I-hd4X7Sv9CD09SfGR-rVBvl5NliXVDqOVcDR8idwzfZRMCE0iKGanYib_bfGDqxJI=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/kc7Pu6tjxFx43I-hd4X7Sv9CD09SfGR-rVBvl5NliXVDqOVcDR8idwzfZRMCE0iKGanYib_bfGDqxJI=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/kc7Pu6tjxFx43I-hd4X7Sv9CD09SfGR-rVBvl5NliXVDqOVcDR8idwzfZRMCE0iKGanYib_bfGDqxJI=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/kc7Pu6tjxFx43I-hd4X7Sv9CD09SfGR-rVBvl5NliXVDqOVcDR8idwzfZRMCE0iKGanYib_bfGDqxJI=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        channel: None,
+        track_count: Some(78),
+        from_ytm: true,
+      ),
+      MusicPlaylistItem(
+        id: "VLRDCLAK5uy_nDL8KeBrUagwyISwNmyEiSfYgz1gVCesg",
+        name: "Mellow Pop Classics",
+        thumbnail: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/XyREm3Y-HafFR_mxyJF99Pd9zerLQiJ0q62_XEnzPK2g30m_V04iVdzAwyP1T9-_3ruclUASulQFjSY=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/XyREm3Y-HafFR_mxyJF99Pd9zerLQiJ0q62_XEnzPK2g30m_V04iVdzAwyP1T9-_3ruclUASulQFjSY=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/XyREm3Y-HafFR_mxyJF99Pd9zerLQiJ0q62_XEnzPK2g30m_V04iVdzAwyP1T9-_3ruclUASulQFjSY=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/XyREm3Y-HafFR_mxyJF99Pd9zerLQiJ0q62_XEnzPK2g30m_V04iVdzAwyP1T9-_3ruclUASulQFjSY=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        channel: None,
+        track_count: Some(50),
+        from_ytm: true,
+      ),
+      MusicPlaylistItem(
+        id: "VLRDCLAK5uy_l7K78k4EkjcFojhd1617rmUjY-aet6-t0",
+        name: "K-Pop Party Hits",
+        thumbnail: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/IpuPGdpvBPCS9KEeqDCN3O9omG9_xWBVl-oBCQgWz6EXLyfWLrtkb_UXoN9TvN7CvYa2lXg4ycVMWtk=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/IpuPGdpvBPCS9KEeqDCN3O9omG9_xWBVl-oBCQgWz6EXLyfWLrtkb_UXoN9TvN7CvYa2lXg4ycVMWtk=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/IpuPGdpvBPCS9KEeqDCN3O9omG9_xWBVl-oBCQgWz6EXLyfWLrtkb_UXoN9TvN7CvYa2lXg4ycVMWtk=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/IpuPGdpvBPCS9KEeqDCN3O9omG9_xWBVl-oBCQgWz6EXLyfWLrtkb_UXoN9TvN7CvYa2lXg4ycVMWtk=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        channel: None,
+        track_count: Some(106),
+        from_ytm: true,
+      ),
+      MusicPlaylistItem(
+        id: "VLRDCLAK5uy_nCVF_zUZizzRcojIUuYmaXxMoPgg2WMDo",
+        name: "Klangfarbe: German Pop Hits",
+        thumbnail: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Oy8vZ8tPHIRAfKqOJcHXS9obZpb9VCIvkesRlJq7AuiWRME5PesStIGJgQmtLTu_0LB0v0_srB61VLs=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Oy8vZ8tPHIRAfKqOJcHXS9obZpb9VCIvkesRlJq7AuiWRME5PesStIGJgQmtLTu_0LB0v0_srB61VLs=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Oy8vZ8tPHIRAfKqOJcHXS9obZpb9VCIvkesRlJq7AuiWRME5PesStIGJgQmtLTu_0LB0v0_srB61VLs=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Oy8vZ8tPHIRAfKqOJcHXS9obZpb9VCIvkesRlJq7AuiWRME5PesStIGJgQmtLTu_0LB0v0_srB61VLs=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        channel: None,
+        track_count: Some(55),
+        from_ytm: true,
+      ),
+      MusicPlaylistItem(
+        id: "VLRDCLAK5uy_nGKsW16ocmP8l8wL1oMIyR53cu4N5fyKI",
+        name: "GIF Pop BR",
+        thumbnail: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/ft-u97TMfiDgycVnHbIUZo6bx3Mrx-F1x-XnhZ-Y4p7Z6gjhY7fcwf3ssi-I80dqDICMwfq5dfMP0Bs=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/ft-u97TMfiDgycVnHbIUZo6bx3Mrx-F1x-XnhZ-Y4p7Z6gjhY7fcwf3ssi-I80dqDICMwfq5dfMP0Bs=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/ft-u97TMfiDgycVnHbIUZo6bx3Mrx-F1x-XnhZ-Y4p7Z6gjhY7fcwf3ssi-I80dqDICMwfq5dfMP0Bs=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/ft-u97TMfiDgycVnHbIUZo6bx3Mrx-F1x-XnhZ-Y4p7Z6gjhY7fcwf3ssi-I80dqDICMwfq5dfMP0Bs=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        channel: None,
+        track_count: Some(50),
+        from_ytm: true,
+      ),
+      MusicPlaylistItem(
+        id: "VLRDCLAK5uy_mVJ3RRi_YBfUJnZnQxLAedQQcXHujbUcg",
+        name: "Pump-Up Pop",
+        thumbnail: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/jzUe3KUHUMCHGN5o02havVoL481hvjMJ1Yjgyej8xPYwCfGwPKrPlcUmBr0p9HjbxSSzR8ZvzsVsuY3r=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/jzUe3KUHUMCHGN5o02havVoL481hvjMJ1Yjgyej8xPYwCfGwPKrPlcUmBr0p9HjbxSSzR8ZvzsVsuY3r=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/jzUe3KUHUMCHGN5o02havVoL481hvjMJ1Yjgyej8xPYwCfGwPKrPlcUmBr0p9HjbxSSzR8ZvzsVsuY3r=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/jzUe3KUHUMCHGN5o02havVoL481hvjMJ1Yjgyej8xPYwCfGwPKrPlcUmBr0p9HjbxSSzR8ZvzsVsuY3r=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        channel: None,
+        track_count: Some(100),
+        from_ytm: true,
+      ),
+    ],
+    ctoken: Some("EvQJEgNwb3Aa7AlFZ2VLQVFRb0FEZ0JTQlJxREJBREVBUVFDUkFPRUFvUUJZSUJLMUpFUTB4QlN6VjFlVjl1YlZNeldXOTRVM2RXVmxGck9XeEZVVW93VlZnMFdrTnFXSE5YWDNCelZUaUNBU3RTUkVOTVFVczFkWGxmYm1aelgzUTBSbFYxTURCRk5VVkVObXgyWlVWQ1FsZ3hWazFaWlRGdFJtcHJnZ0VyVWtSRFRFRkxOWFY1WDI1SVgyWmtRbFpEWTJKT1lWWjNhVjkwYlZwaGFscFNjUzFsYTJSa2FYVkdXWUlCSzFKRVEweEJTelYxZVY5c1lqWkRWbFUyVXpSMVZuVm5URlpPVkZVNVYyaHhabUZ2YlZkQloyNW9ielNDQVN0U1JFTk1RVXMxZFhsZmJXWmtjWFpEUVd3NGQyOWtiSGd5VURKZlFXa3laMDVyYVZKRVFYVm1hMnRKZ2dFclVrUkRURUZMTlhWNVgyNUlVM0ZEU21wRWNsYzVTRUpvUTA1a1JqWjBWMUJrYms5TmJtZFBkakIzUVlJQksxSkVRMHhCU3pWMWVWOXJURUkzTmpsRk0yVkdVM3BuZVRSbVluQjFOaTB4V1ZCTWFEa3dZakJLUVZtQ0FTdFNSRU5NUVVzMWRYbGZiVjh3VlRWV1VVNTVlWHAzZDBneGJGSnBOMk5RUVVGSFdIRk9VVzVCVDNGWmdnRXJVa1JEVEVGTE5YVjVYMjFJVnpWaVkyUjFhR3BDTFZCclZHVlFRV1UyUlc5U1RXb3hlRTVVT0dkNldZSUJLMUpFUTB4QlN6VjFlVjl1VjBaTVdHcFBNVzFKU201UU5IZEJiWGhxWmtSVE5EQmFiWFUyYmtZNVJGV0NBU3RTUkVOTVFVczFkWGxmYkVoMVgwaFpRVkV3UVMxUFprTjNhSFZyZVRJME1FaFBaRTB4VldSMWRYbEJnZ0VyVWtSRFRFRkxOWFY1WDJ4M01qRk5kVXRoY1VaelJFSkpVRnBUWWxKdFdtTnZSSEpJYlZaZll6WjFXWUlCSzFKRVEweEJTelYxZVY5c1dUWktSbkp6TjFjNWVVbG9SbXBWVGw5NWVGRmZkV0pyYW1OeWNWRmhWbk9DQVN0U1JFTk1RVXMxZFhsZmJtSkxPWEZUYTNGWlduWjBUVmhJTVdaTVEwMXRRekY1YmpoSVJXMHdWemt3Z2dFclVrUkRURUZMTlhWNVgydEpZMlpvUm1OdVNqbG1aR3RMU0hjNU5rZDJjalpSTUY5aVFYbFhhVnBpVFlJQksxSkVRMHhCU3pWMWVWOXVSRXc0UzJWQ2NsVmhaM2Q1U1ZOM1RtMTVSV2xUWmxsbmVqRm5Wa05sYzJlQ0FTdFNSRU5NUVVzMWRYbGZiRGRMTnpock5FVnJhbU5HYjJwb1pERTJNVGR5YlZWcVdTMWhaWFEyTFhRd2dnRXJVa1JEVEVGTE5YVjVYMjVEVmtaZmVsVmFhWHA2VW1OdmFrbFZkVmx0WVZoNFRXOVFaMmN5VjAxRWI0SUJLMUpFUTB4QlN6VjFlVjl1UjB0elZ6RTJiMk50VURoc09IZE1NVzlOU1hsU05UTmpkVFJPTldaNVMwbUNBU3RTUkVOTVFVczFkWGxmYlZaS00xSlNhVjlaUW1aVlNtNWFibEY0VEVGbFpGRlJZMWhJZFdwaVZXTm4Y8erQLg%3D%3D"),
+    endpoint: music_search,
+  ),
+  corrected_query: None,
+)
