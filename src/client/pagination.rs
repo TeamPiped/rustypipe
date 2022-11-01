@@ -128,7 +128,7 @@ impl MapResponse<Paginator<MusicItem>> for response::MusicContinuation {
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
     ) -> Result<MapResult<Paginator<MusicItem>>, ExtractionError> {
         let mut mapper = MusicListMapper::new(lang);
-        let mut shelf = self.continuation_contents.music_playlist_shelf_continuation;
+        let mut shelf = self.continuation_contents.music_shelf_continuation;
         mapper.map_response(shelf.contents);
         let map_res = mapper.items();
 

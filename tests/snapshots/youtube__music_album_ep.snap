@@ -1,0 +1,108 @@
+---
+source: tests/youtube.rs
+expression: album
+---
+MusicAlbum(
+  id: "MPREb_u1I69lSAe5v",
+  playlist_id: Some("OLAK5uy_lGP_zv0vJDUlecQDzugUJmjcF7pvyVNyY"),
+  name: "Waldbrand",
+  cover: "[cover]",
+  artists: [
+    ChannelId(
+      id: "UCpJyCbFbdTrx0M90HCNBHFQ",
+      name: "Madeline Juno",
+    ),
+  ],
+  artists_txt: "Madeline Juno",
+  album_type: Ep,
+  year: Some(2016),
+  by_va: false,
+  tracks: [
+    TrackItem(
+      id: "aGd3VKSOTxY",
+      title: "Ich wache auf",
+      duration: 221,
+      cover: [],
+      artists: [
+        ChannelId(
+          id: "UCpJyCbFbdTrx0M90HCNBHFQ",
+          name: "Madeline Juno",
+        ),
+      ],
+      artists_txt: Some("Madeline Juno"),
+      album: None,
+      view_count: None,
+      is_video: true,
+      track_nr: Some(1),
+    ),
+    TrackItem(
+      id: "lhPOMUjV4rE",
+      title: "Waldbrand",
+      duration: 208,
+      cover: [],
+      artists: [
+        ChannelId(
+          id: "UCpJyCbFbdTrx0M90HCNBHFQ",
+          name: "Madeline Juno",
+        ),
+      ],
+      artists_txt: Some("Madeline Juno"),
+      album: None,
+      view_count: None,
+      is_video: true,
+      track_nr: Some(2),
+    ),
+    TrackItem(
+      id: "Bu26uFtpt58",
+      title: "Verlernt",
+      duration: 223,
+      cover: [],
+      artists: [
+        ChannelId(
+          id: "UCpJyCbFbdTrx0M90HCNBHFQ",
+          name: "Madeline Juno",
+        ),
+      ],
+      artists_txt: Some("Madeline Juno"),
+      album: None,
+      view_count: None,
+      is_video: true,
+      track_nr: Some(3),
+    ),
+    TrackItem(
+      id: "RgwNqqiVqdY",
+      title: "In Farbe",
+      duration: 221,
+      cover: [],
+      artists: [
+        ChannelId(
+          id: "UCpJyCbFbdTrx0M90HCNBHFQ",
+          name: "Madeline Juno",
+        ),
+      ],
+      artists_txt: Some("Madeline Juno"),
+      album: None,
+      view_count: None,
+      is_video: true,
+      track_nr: Some(4),
+    ),
+    TrackItem(
+      id: "2TuOh30XbCI",
+      title: "Stadt im Hinterland",
+      duration: 197,
+      cover: [],
+      artists: [
+        ChannelId(
+          id: "UCpJyCbFbdTrx0M90HCNBHFQ",
+          name: "Madeline Juno",
+        ),
+      ],
+      artists_txt: Some("Madeline Juno"),
+      album: None,
+      view_count: None,
+      is_video: true,
+      track_nr: Some(5),
+    ),
+  ],
+  variants: [],
+)

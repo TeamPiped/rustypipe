@@ -63,3 +63,10 @@ Dec PL1J-6JOckZtHo91uApeb10Qlf2XhkfM-9 24.12.2021
 10e3: 5K UC0QEucPrn0-Ddi3JBTcs5Kw
 10e2: 388 UCllyEQfcoiPN68zHv6mGHDQ
 10e1: 37 UCGiJh0NZ52wRhYKYnuZI08Q
+
+# Album types
+Album: MPREb_nlBWQROfvjo
+Single: MPREb_bHfHGoy7vuv
+EP: MPREb_u1I69lSAe5v
+Show: MPREb_cwzk8EUwypZ
+Audiobook: MPREb_gaoNzsQHedo

@@ -1,0 +1,355 @@
+---
+source: tests/youtube.rs
+expression: album
+---
+MusicAlbum(
+  id: "MPREb_nlBWQROfvjo",
+  playlist_id: Some("OLAK5uy_myZkBX2d2TzcrlQhIwLy3hCj2MkAMaPR4"),
+  name: "Märchen enden gut",
+  cover: "[cover]",
+  artists: [
+    ChannelId(
+      id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+      name: "Oonagh",
+    ),
+  ],
+  artists_txt: "Oonagh",
+  album_type: Album,
+  year: Some(2016),
+  by_va: false,
+  tracks: [
+    TrackItem(
+      id: "g0iRiJ_ck48",
+      title: "Aulë und Yavanna",
+      duration: 216,
+      cover: [],
+      artists: [
+        ChannelId(
+          id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+          name: "Oonagh",
+        ),
+      ],
+      artists_txt: Some("Oonagh"),
+      album: None,
+      view_count: None,
+      is_video: true,
+      track_nr: Some(1),
+    ),
+    TrackItem(
+      id: "rREEBXp0y9s",
+      title: "Numenor",
+      duration: 224,
+      cover: [],
+      artists: [
+        ChannelId(
+          id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+          name: "Oonagh",
+        ),
+      ],
+      artists_txt: Some("Oonagh"),
+      album: None,
+      view_count: None,
+      is_video: true,
+      track_nr: Some(2),
+    ),
+    TrackItem(
+      id: "zvU5Y8Q19hU",
+      title: "Das Mädchen und die Liebe (feat. Santiano)",
+      duration: 176,
+      cover: [],
+      artists: [
+        ChannelId(
+          id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+          name: "Oonagh",
+        ),
+      ],
+      artists_txt: Some("Oonagh"),
+      album: None,
+      view_count: None,
+      is_video: true,
+      track_nr: Some(3),
+    ),
+    TrackItem(
+      id: "ARKLrzzTQA0",
+      title: "Niënna",
+      duration: 215,
+      cover: [],
+      artists: [
+        ChannelId(
+          id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+          name: "Oonagh",
+        ),
+      ],
+      artists_txt: Some("Oonagh"),
+      album: None,
+      view_count: None,
+      is_video: true,
+      track_nr: Some(4),
+    ),
+    TrackItem(
+      id: "tstLgN8A_Ng",
+      title: "Der fahle Mond",
+      duration: 268,
+      cover: [],
+      artists: [
+        ChannelId(
+          id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+          name: "Oonagh",
+        ),
+      ],
+      artists_txt: Some("Oonagh"),
+      album: None,
+      view_count: None,
+      is_video: true,
+      track_nr: Some(5),
+    ),
+    TrackItem(
+      id: "k2DjgQOY3Ts",
+      title: "Weise den Weg",
+      duration: 202,
+      cover: [],
+      artists: [
+        ChannelId(
+          id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+          name: "Oonagh",
+        ),
+      ],
+      artists_txt: Some("Oonagh"),
+      album: None,
+      view_count: None,
+      is_video: true,
+      track_nr: Some(6),
+    ),
+    TrackItem(
+      id: "azHwhecxEsI",
+      title: "Zeit der Sommernächte",
+      duration: 185,
+      cover: [],
+      artists: [
+        ChannelId(
+          id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+          name: "Oonagh",
+        ),
+      ],
+      artists_txt: Some("Oonagh"),
+      album: None,
+      view_count: None,
+      is_video: true,
+      track_nr: Some(7),
+    ),
+    TrackItem(
+      id: "_FcsdYIQ2co",
+      title: "Märchen enden gut",
+      duration: 226,
+      cover: [],
+      artists: [
+        ChannelId(
+          id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+          name: "Oonagh",
+        ),
+      ],
+      artists_txt: Some("Oonagh"),
+      album: None,
+      view_count: None,
+      is_video: true,
+      track_nr: Some(8),
+    ),
+    TrackItem(
+      id: "27bOWEbshyE",
+      title: "Das Mädchen und der Tod",
+      duration: 207,
+      cover: [],
+      artists: [
+        ChannelId(
+          id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+          name: "Oonagh",
+        ),
+      ],
+      artists_txt: Some("Oonagh"),
+      album: None,
+      view_count: None,
+      is_video: true,
+      track_nr: Some(9),
+    ),
+    TrackItem(
+      id: "riD_3oZwt8w",
+      title: "Wir sehn uns wieder",
+      duration: 211,
+      cover: [],
+      artists: [
+        ChannelId(
+          id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+          name: "Oonagh",
+        ),
+      ],
+      artists_txt: Some("Oonagh"),
+      album: None,
+      view_count: None,
+      is_video: true,
+      track_nr: Some(10),
+    ),
+    TrackItem(
+      id: "8GNvjF3no9s",
+      title: "Tanz mit mir",
+      duration: 179,
+      cover: [],
+      artists: [
+        ChannelId(
+          id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+          name: "Oonagh",
+        ),
+      ],
+      artists_txt: Some("Oonagh"),
+      album: None,
+      view_count: None,
+      is_video: true,
+      track_nr: Some(11),
+    ),
+    TrackItem(
+      id: "YHMFzf1uN2U",
+      title: "Nachtigall",
+      duration: 218,
+      cover: [],
+      artists: [
+        ChannelId(
+          id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+          name: "Oonagh",
+        ),
+      ],
+      artists_txt: Some("Oonagh"),
+      album: None,
+      view_count: None,
+      is_video: true,
+      track_nr: Some(12),
+    ),
+    TrackItem(
+      id: "jvV-z5F3oAo",
+      title: "Gayatri Mantra",
+      duration: 277,
+      cover: [],
+      artists: [
+        ChannelId(
+          id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+          name: "Oonagh",
+        ),
+      ],
+      artists_txt: Some("Oonagh"),
+      album: None,
+      view_count: None,
+      is_video: true,
+      track_nr: Some(13),
+    ),
+    TrackItem(
+      id: "u8_9cxlrh8k",
+      title: "Sing mir deine Lieder",
+      duration: 204,
+      cover: [],
+      artists: [
+        ChannelId(
+          id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+          name: "Oonagh",
+        ),
+      ],
+      artists_txt: Some("Oonagh"),
+      album: None,
+      view_count: None,
+      is_video: true,
+      track_nr: Some(14),
+    ),
+    TrackItem(
+      id: "gSvKcvM1Wk0",
+      title: "Laurië lantar",
+      duration: 202,
+      cover: [],
+      artists: [
+        ChannelId(
+          id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+          name: "Oonagh",
+        ),
+      ],
+      artists_txt: Some("Oonagh"),
+      album: None,
+      view_count: None,
+      is_video: true,
+      track_nr: Some(15),
+    ),
+    TrackItem(
+      id: "wQHgKRJ0pDQ",
+      title: "Wächter vor dem Tor",
+      duration: 222,
+      cover: [],
+      artists: [
+        ChannelId(
+          id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+          name: "Oonagh",
+        ),
+      ],
+      artists_txt: Some("Oonagh"),
+      album: None,
+      view_count: None,
+      is_video: true,
+      track_nr: Some(16),
+    ),
+    TrackItem(
+      id: "Ckz5i6-hzf0",
+      title: "Stroh zu Gold",
+      duration: 177,
+      cover: [],
+      artists: [
+        ChannelId(
+          id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+          name: "Oonagh",
+        ),
+      ],
+      artists_txt: Some("Oonagh"),
+      album: None,
+      view_count: None,
+      is_video: true,
+      track_nr: Some(17),
+    ),
+    TrackItem(
+      id: "y5zuUgyFqrc",
+      title: "Sonnenwendnacht",
+      duration: 220,
+      cover: [],
+      artists: [
+        ChannelId(
+          id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+          name: "Oonagh",
+        ),
+      ],
+      artists_txt: Some("Oonagh"),
+      album: None,
+      view_count: None,
+      is_video: true,
+      track_nr: Some(18),
+    ),
+  ],
+  variants: [
+    AlbumItem(
+      id: "MPREb_jk6Msw8izou",
+      name: "Märchen enden gut (Nyáre Ranta (Märchenedition))",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/BKgnW_-hapCHk599AtRfTYZGdXVIo0C4bJp1Bh7qUpGK7fNAXGW8Bhv2x-ukeFM8cuxKbGqqGaTo8fZASA=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/BKgnW_-hapCHk599AtRfTYZGdXVIo0C4bJp1Bh7qUpGK7fNAXGW8Bhv2x-ukeFM8cuxKbGqqGaTo8fZASA=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+          name: "Oonagh",
+        ),
+      ],
+      artists_txt: "Oonagh",
+      album_type: Album,
+      year: None,
+    ),
+  ],
+)

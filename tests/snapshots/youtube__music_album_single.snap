@@ -1,0 +1,48 @@
+---
+source: tests/youtube.rs
+expression: album
+---
+MusicAlbum(
+  id: "MPREb_bHfHGoy7vuv",
+  playlist_id: Some("OLAK5uy_kdSWBZ-9AZDkYkuy0QCc3p0KO9DEHVNH0"),
+  name: "Der Himmel reißt auf",
+  cover: "[cover]",
+  artists: [
+    ChannelId(
+      id: "UCXGYZ-OhdOpPBamHX3K9YRg",
+      name: "Joel Brandenstein",
+    ),
+    ChannelId(
+      id: "UCFTcSVPYRWlDoHisR-ZKwgw",
+      name: "Vanessa Mai",
+    ),
+  ],
+  artists_txt: "Joel Brandenstein & Vanessa Mai",
+  album_type: Single,
+  year: Some(2020),
+  by_va: false,
+  tracks: [
+    TrackItem(
+      id: "XX0epju-YvY",
+      title: "Der Himmel reißt auf",
+      duration: 183,
+      cover: [],
+      artists: [
+        ChannelId(
+          id: "UCXGYZ-OhdOpPBamHX3K9YRg",
+          name: "Joel Brandenstein",
+        ),
+        ChannelId(
+          id: "UCFTcSVPYRWlDoHisR-ZKwgw",
+          name: "Vanessa Mai",
+        ),
+      ],
+      artists_txt: Some("Joel Brandenstein & Vanessa Mai"),
+      album: None,
+      view_count: None,
+      is_video: true,
+      track_nr: Some(1),
+    ),
+  ],
+  variants: [],
+)

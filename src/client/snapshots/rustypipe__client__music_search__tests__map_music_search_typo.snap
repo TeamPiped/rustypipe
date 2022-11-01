@@ -364,7 +364,7 @@ MusicSearchResult(
   ],
   playlists: [
     MusicPlaylistItem(
-      id: "VLPL46jG0sBz4EabjYqv0tVEd1RvrZRjfJ8m",
+      id: "PL46jG0sBz4EabjYqv0tVEd1RvrZRjfJ8m",
       name: "Lieblingsmensch",
       thumbnail: [
         Thumbnail(
@@ -391,7 +391,7 @@ MusicSearchResult(
       from_ytm: false,
     ),
     MusicPlaylistItem(
-      id: "VLPL-2Z-8cOvEixQ2EKumbXXW8XivJG6U7-D",
+      id: "PL-2Z-8cOvEixQ2EKumbXXW8XivJG6U7-D",
       name: "Namika - Lieblingsmensch",
       thumbnail: [
         Thumbnail(
@@ -418,7 +418,7 @@ MusicSearchResult(
       from_ytm: false,
     ),
     MusicPlaylistItem(
-      id: "VLPLDnJKuRrOR5sx_jZ8-dsweq1OdayL_kpz",
+      id: "PLDnJKuRrOR5sx_jZ8-dsweq1OdayL_kpz",
       name: "Lieblingsmensch",
       thumbnail: [
         Thumbnail(

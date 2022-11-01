@@ -1,0 +1,261 @@
+---
+source: tests/youtube.rs
+expression: album
+---
+MusicAlbum(
+  id: "MPREb_cwzk8EUwypZ",
+  playlist_id: Some("OLAK5uy_kODvYZ5CEpYdtd4VPsmg0eRTlpazG0dvA"),
+  name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
+  cover: "[cover]",
+  artists: [
+    ChannelId(
+      id: "UCNoyEM0e2A7WlsBmP2w3avg",
+      name: "Kingdom Force",
+    ),
+  ],
+  artists_txt: "Kingdom Force",
+  album_type: Album,
+  year: Some(2022),
+  by_va: false,
+  tracks: [
+    TrackItem(
+      id: "lSbKz5LWvKE",
+      title: "Achtung, Waldbrand - Teil 1",
+      duration: 229,
+      cover: [],
+      artists: [
+        ChannelId(
+          id: "UCNoyEM0e2A7WlsBmP2w3avg",
+          name: "Kingdom Force",
+        ),
+      ],
+      artists_txt: Some("Kingdom Force"),
+      album: None,
+      view_count: None,
+      is_video: true,
+      track_nr: Some(1),
+    ),
+    TrackItem(
+      id: "fdO6gu4qjRw",
+      title: "Achtung, Waldbrand - Teil 2",
+      duration: 235,
+      cover: [],
+      artists: [
+        ChannelId(
+          id: "UCNoyEM0e2A7WlsBmP2w3avg",
+          name: "Kingdom Force",
+        ),
+      ],
+      artists_txt: Some("Kingdom Force"),
+      album: None,
+      view_count: None,
+      is_video: true,
+      track_nr: Some(2),
+    ),
+    TrackItem(
+      id: "muCxstXirvY",
+      title: "Achtung, Waldbrand - Teil 3",
+      duration: 197,
+      cover: [],
+      artists: [
+        ChannelId(
+          id: "UCNoyEM0e2A7WlsBmP2w3avg",
+          name: "Kingdom Force",
+        ),
+      ],
+      artists_txt: Some("Kingdom Force"),
+      album: None,
+      view_count: None,
+      is_video: true,
+      track_nr: Some(3),
+    ),
+    TrackItem(
+      id: "aG1N0vo__Ng",
+      title: "Eiszeit - Teil 1",
+      duration: 186,
+      cover: [],
+      artists: [
+        ChannelId(
+          id: "UCNoyEM0e2A7WlsBmP2w3avg",
+          name: "Kingdom Force",
+        ),
+      ],
+      artists_txt: Some("Kingdom Force"),
+      album: None,
+      view_count: None,
+      is_video: true,
+      track_nr: Some(4),
+    ),
+    TrackItem(
+      id: "roHhLNYS9yo",
+      title: "Eiszeit - Teil 2",
+      duration: 188,
+      cover: [],
+      artists: [
+        ChannelId(
+          id: "UCNoyEM0e2A7WlsBmP2w3avg",
+          name: "Kingdom Force",
+        ),
+      ],
+      artists_txt: Some("Kingdom Force"),
+      album: None,
+      view_count: None,
+      is_video: true,
+      track_nr: Some(5),
+    ),
+    TrackItem(
+      id: "nJ49NuLvcAw",
+      title: "Eiszeit - Teil 3",
+      duration: 205,
+      cover: [],
+      artists: [
+        ChannelId(
+          id: "UCNoyEM0e2A7WlsBmP2w3avg",
+          name: "Kingdom Force",
+        ),
+      ],
+      artists_txt: Some("Kingdom Force"),
+      album: None,
+      view_count: None,
+      is_video: true,
+      track_nr: Some(6),
+    ),
+    TrackItem(
+      id: "Me119D570h0",
+      title: "Eiszeit - Teil 4",
+      duration: 219,
+      cover: [],
+      artists: [
+        ChannelId(
+          id: "UCNoyEM0e2A7WlsBmP2w3avg",
+          name: "Kingdom Force",
+        ),
+      ],
+      artists_txt: Some("Kingdom Force"),
+      album: None,
+      view_count: None,
+      is_video: true,
+      track_nr: Some(7),
+    ),
+    TrackItem(
+      id: "YXnRLK-qKG8",
+      title: "Im Sinkloch - Teil 1",
+      duration: 240,
+      cover: [],
+      artists: [
+        ChannelId(
+          id: "UCNoyEM0e2A7WlsBmP2w3avg",
+          name: "Kingdom Force",
+        ),
+      ],
+      artists_txt: Some("Kingdom Force"),
+      album: None,
+      view_count: None,
+      is_video: true,
+      track_nr: Some(8),
+    ),
+    TrackItem(
+      id: "A61wz1jz9X0",
+      title: "Im Sinkloch - Teil 2",
+      duration: 239,
+      cover: [],
+      artists: [
+        ChannelId(
+          id: "UCNoyEM0e2A7WlsBmP2w3avg",
+          name: "Kingdom Force",
+        ),
+      ],
+      artists_txt: Some("Kingdom Force"),
+      album: None,
+      view_count: None,
+      is_video: true,
+      track_nr: Some(9),
+    ),
+    TrackItem(
+      id: "u_S08EJOTUg",
+      title: "Im Sinkloch - Teil 3",
+      duration: 197,
+      cover: [],
+      artists: [
+        ChannelId(
+          id: "UCNoyEM0e2A7WlsBmP2w3avg",
+          name: "Kingdom Force",
+        ),
+      ],
+      artists_txt: Some("Kingdom Force"),
+      album: None,
+      view_count: None,
+      is_video: true,
+      track_nr: Some(10),
+    ),
+    TrackItem(
+      id: "0qwYJihV1EU",
+      title: "Vorsicht, heiß - Teil 1",
+      duration: 201,
+      cover: [],
+      artists: [
+        ChannelId(
+          id: "UCNoyEM0e2A7WlsBmP2w3avg",
+          name: "Kingdom Force",
+        ),
+      ],
+      artists_txt: Some("Kingdom Force"),
+      album: None,
+      view_count: None,
+      is_video: true,
+      track_nr: Some(11),
+    ),
+    TrackItem(
+      id: "zjhoyTnEzuQ",
+      title: "Vorsicht, heiß - Teil 2",
+      duration: 187,
+      cover: [],
+      artists: [
+        ChannelId(
+          id: "UCNoyEM0e2A7WlsBmP2w3avg",
+          name: "Kingdom Force",
+        ),
+      ],
+      artists_txt: Some("Kingdom Force"),
+      album: None,
+      view_count: None,
+      is_video: true,
+      track_nr: Some(12),
+    ),
+    TrackItem(
+      id: "oDjDd0UBzAY",
+      title: "Vorsicht, heiß - Teil 3",
+      duration: 183,
+      cover: [],
+      artists: [
+        ChannelId(
+          id: "UCNoyEM0e2A7WlsBmP2w3avg",
+          name: "Kingdom Force",
+        ),
+      ],
+      artists_txt: Some("Kingdom Force"),
+      album: None,
+      view_count: None,
+      is_video: true,
+      track_nr: Some(13),
+    ),
+    TrackItem(
+      id: "_3-WVmqgi-Q",
+      title: "Vorsicht, heiß - Teil 4",
+      duration: 193,
+      cover: [],
+      artists: [
+        ChannelId(
+          id: "UCNoyEM0e2A7WlsBmP2w3avg",
+          name: "Kingdom Force",
+        ),
+      ],
+      artists_txt: Some("Kingdom Force"),
+      album: None,
+      view_count: None,
+      is_video: true,
+      track_nr: Some(14),
+    ),
+  ],
+  variants: [],
+)

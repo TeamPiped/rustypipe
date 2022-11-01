@@ -5,7 +5,7 @@ mod ordering;
 mod paginator;
 pub mod richtext;
 
-pub(crate) use convert::FromYtItem;
+pub use convert::FromYtItem;
 pub use paginator::Paginator;
 use serde_with::serde_as;
 
@@ -955,6 +955,7 @@ pub struct MusicPlaylistItem {
 
 /// YouTube Music album type
 #[derive(Default, Debug, Copy, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
 pub enum AlbumType {
     /// Regular album (default)
     #[default]
@@ -1031,9 +1032,13 @@ pub struct MusicAlbum {
 /// YouTube Music search result
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct MusicSearchResult {
+    /// Found tracks
     pub tracks: Vec<TrackItem>,
+    /// Found albums
     pub albums: Vec<AlbumItem>,
+    /// Found artists
     pub artists: Vec<ArtistItem>,
+    /// Found playlists
     pub playlists: Vec<MusicPlaylistItem>,
     /// Corrected search query
     ///
@@ -1041,6 +1046,8 @@ pub struct MusicSearchResult {
     /// for the corrected search term and displays it on top of the
     /// search results page.
     pub corrected_query: Option<String>,
+    /// Order of the item sections of the search page, starting with
+    /// the most relevant.
     pub order: Vec<MusicEntityType>,
 }
 

@@ -356,7 +356,7 @@ MusicSearchResult(
   ],
   playlists: [
     MusicPlaylistItem(
-      id: "VLPLk76iSbFqNJsu_Gozn9SkEXxQ7t-bpXid",
+      id: "PLk76iSbFqNJsu_Gozn9SkEXxQ7t-bpXid",
       name: "IRMA MIRTILLA Black Mamba",
       thumbnail: [
         Thumbnail(
@@ -383,7 +383,7 @@ MusicSearchResult(
       from_ytm: false,
     ),
     MusicPlaylistItem(
-      id: "VLPLIL9Q2jz6euDEJZKHd4QaG4iic944_vKY",
+      id: "PLIL9Q2jz6euDEJZKHd4QaG4iic944_vKY",
       name: "Black Mamba",
       thumbnail: [
         Thumbnail(
@@ -410,7 +410,7 @@ MusicSearchResult(
       from_ytm: false,
     ),
     MusicPlaylistItem(
-      id: "VLPLinm7-cvTdN7RqadpfNrncUGqkdyKNpn6",
+      id: "PLinm7-cvTdN7RqadpfNrncUGqkdyKNpn6",
       name: "Black Mamba",
       thumbnail: [
         Thumbnail(

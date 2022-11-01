@@ -1,14 +1,16 @@
 use std::collections::HashSet;
+use std::fmt::Display;
 
 use rstest::rstest;
 use time::macros::date;
 use time::OffsetDateTime;
 
-use rustypipe::client::{ClientType, RustyPipe};
+use rustypipe::client::{ClientType, RustyPipe, RustyPipeQuery};
 use rustypipe::error::{Error, ExtractionError};
 use rustypipe::model::richtext::ToPlaintext;
 use rustypipe::model::{
-    AudioCodec, AudioFormat, Channel, UrlTarget, Verification, VideoCodec, VideoFormat, YouTubeItem,
+    AlbumType, AudioCodec, AudioFormat, Channel, FromYtItem, MusicEntityType, Paginator, UrlTarget,
+    Verification, VideoCodec, VideoFormat, YouTubeItem,
 };
 use rustypipe::param::search_filter::{self, SearchFilter};
 
@@ -45,7 +47,7 @@ async fn get_player_from_client(#[case] client_type: ClientType) {
     assert!(!player_data.details.thumbnail.is_empty());
     assert_eq!(player_data.details.channel.id, "UC_aEa8K-EOJ3D6gOs7HcyNg");
     assert_eq!(player_data.details.channel.name, "NoCopyrightSounds");
-    assert!(player_data.details.view_count > 146_818_808);
+    assert_gte(player_data.details.view_count, 146_818_808, "view count");
     assert_eq!(player_data.details.keywords[0], "spektrem");
     assert_eq!(player_data.details.is_live_content, false);
 
@@ -76,7 +78,7 @@ async fn get_player_from_client(#[case] client_type: ClientType) {
 
         assert_approx(audio.bitrate as f64, 130685.0);
         assert_approx(audio.average_bitrate as f64, 129496.0);
-        assert_eq!(audio.size, 4193863);
+        assert_approx(audio.size as f64, 4193863.0);
         assert_eq!(audio.mime, "audio/mp4; codecs=\"mp4a.40.2\"");
         assert_eq!(audio.format, AudioFormat::M4a);
         assert_eq!(audio.codec, AudioCodec::Mp4a);
@@ -207,12 +209,7 @@ async fn get_player(
     assert_eq!(details.length, length);
     assert_eq!(details.channel.id, channel_id);
     assert_eq!(details.channel.name, channel_name);
-    assert!(
-        details.view_count > views,
-        "expected > {} views, got {}",
-        views,
-        details.view_count
-    );
+    assert_gte(details.view_count, views, "views");
     assert_eq!(details.is_live, is_live);
     assert_eq!(details.is_live_content, is_live_content);
 
@@ -255,7 +252,7 @@ async fn get_player(
         _ => {}
     };
 
-    assert!(player_data.expires_in_seconds > 10000);
+    assert_gte(player_data.expires_in_seconds, 10_000, "expiry time");
 }
 
 #[rstest]
@@ -425,22 +422,13 @@ async fn get_video_details() {
     assert_eq!(details.channel.name, "SMTOWN");
     assert!(!details.channel.avatar.is_empty(), "no channel avatars");
     assert_eq!(details.channel.verification, Verification::Verified);
-    assert!(
-        details.channel.subscriber_count.unwrap() > 30000000,
-        "expected >30M subs, got {}",
-        details.channel.subscriber_count.unwrap()
+    assert_gte(
+        details.channel.subscriber_count.unwrap(),
+        30_000_000,
+        "subscribers",
     );
-
-    assert!(
-        details.view_count > 232000000,
-        "expected > 232M views, got {}",
-        details.view_count
-    );
-    assert!(
-        details.like_count.unwrap() > 4000000,
-        "expected > 4M likes, got {}",
-        details.like_count.unwrap()
-    );
+    assert_gte(details.view_count, 232_000_000, "views");
+    assert_gte(details.like_count.unwrap(), 4_000_000, "likes");
 
     let date = details.publish_date.unwrap();
     assert_eq!(date.date(), date!(2020 - 11 - 17));
@@ -448,14 +436,9 @@ async fn get_video_details() {
     assert!(!details.is_live);
     assert!(!details.is_ccommons);
 
-    assert!(!details.recommended.items.is_empty());
-    assert!(!details.recommended.is_exhausted());
+    assert_next(details.recommended, &rp.query(), 10, 2).await;
 
-    assert!(
-        details.top_comments.count.unwrap() > 700000,
-        "expected > 700K comments, got {}",
-        details.top_comments.count.unwrap()
-    );
+    assert_gte(details.top_comments.count.unwrap(), 700_000, "comments");
     assert!(!details.top_comments.is_exhausted());
     assert!(!details.latest_comments.is_exhausted());
 }
@@ -476,22 +459,13 @@ async fn get_video_details_music() {
     assert_eq!(details.channel.name, "Sentamusic");
     assert!(!details.channel.avatar.is_empty(), "no channel avatars");
     assert_eq!(details.channel.verification, Verification::Artist);
-    assert!(
-        details.channel.subscriber_count.unwrap() > 33000,
-        "expected >33K subs, got {}",
-        details.channel.subscriber_count.unwrap()
+    assert_gte(
+        details.channel.subscriber_count.unwrap(),
+        33_000,
+        "subscribers",
     );
-
-    assert!(
-        details.view_count > 20309,
-        "expected > 20309 views, got {}",
-        details.view_count
-    );
-    assert!(
-        details.like_count.unwrap() > 145,
-        "expected > 145 likes, got {}",
-        details.like_count.unwrap()
-    );
+    assert_gte(details.view_count, 20_309, "views");
+    assert_gte(details.like_count.unwrap(), 145, "likes");
 
     let date = details.publish_date.unwrap();
     assert_eq!(date.date(), date!(2020 - 8 - 6));
@@ -499,8 +473,7 @@ async fn get_video_details_music() {
     assert!(!details.is_live);
     assert!(!details.is_ccommons);
 
-    assert!(!details.recommended.items.is_empty());
-    assert!(!details.recommended.is_exhausted());
+    assert_next(details.recommended, &rp.query(), 10, 2).await;
 
     // Update(01.11.2022): comments are sometimes enabled
     /*
@@ -534,22 +507,13 @@ async fn get_video_details_ccommons() {
     assert_eq!(details.channel.name, "media.ccc.de");
     assert!(!details.channel.avatar.is_empty(), "no channel avatars");
     assert_eq!(details.channel.verification, Verification::None);
-    assert!(
-        details.channel.subscriber_count.unwrap() > 170000,
-        "expected >170K subs, got {}",
-        details.channel.subscriber_count.unwrap()
+    assert_gte(
+        details.channel.subscriber_count.unwrap(),
+        170_000,
+        "subscribers",
     );
-
-    assert!(
-        details.view_count > 2517358,
-        "expected > 2517358 views, got {}",
-        details.view_count
-    );
-    assert!(
-        details.like_count.unwrap() > 52330,
-        "expected > 52330 likes, got {}",
-        details.like_count.unwrap()
-    );
+    assert_gte(details.view_count, 2_517_358, "views");
+    assert_gte(details.like_count.unwrap(), 52_330, "likes");
 
     let date = details.publish_date.unwrap();
     assert_eq!(date.date(), date!(2019 - 12 - 29));
@@ -557,14 +521,9 @@ async fn get_video_details_ccommons() {
     assert!(!details.is_live);
     assert!(details.is_ccommons);
 
-    assert!(!details.recommended.items.is_empty());
-    assert!(!details.recommended.is_exhausted());
+    assert_next(details.recommended, &rp.query(), 10, 2).await;
 
-    assert!(
-        details.top_comments.count.unwrap() > 2199,
-        "expected > 2199 comments, got {}",
-        details.top_comments.count.unwrap()
-    );
+    assert_gte(details.top_comments.count.unwrap(), 2199, "comments");
     assert!(!details.top_comments.is_exhausted());
     assert!(!details.latest_comments.is_exhausted());
 }
@@ -589,22 +548,13 @@ async fn get_video_details_chapters() {
     assert_eq!(details.channel.name, "Linus Tech Tips");
     assert!(!details.channel.avatar.is_empty(), "no channel avatars");
     assert_eq!(details.channel.verification, Verification::Verified);
-    assert!(
-        details.channel.subscriber_count.unwrap() > 14700000,
-        "expected >14.7M subs, got {}",
-        details.channel.subscriber_count.unwrap()
+    assert_gte(
+        details.channel.subscriber_count.unwrap(),
+        14_700_000,
+        "subscribers",
     );
-
-    assert!(
-        details.view_count > 1157262,
-        "expected > 1157262 views, got {}",
-        details.view_count
-    );
-    assert!(
-        details.like_count.unwrap() > 54670,
-        "expected > 54670 likes, got {}",
-        details.like_count.unwrap()
-    );
+    assert_gte(details.view_count, 1_157_262, "views");
+    assert_gte(details.like_count.unwrap(), 54_670, "likes");
 
     let date = details.publish_date.unwrap();
     assert_eq!(date.date(), date!(2022 - 9 - 15));
@@ -695,14 +645,9 @@ async fn get_video_details_chapters() {
         "###);
     }
 
-    assert!(!details.recommended.items.is_empty());
-    assert!(!details.recommended.is_exhausted());
+    assert_next(details.recommended, &rp.query(), 10, 2).await;
 
-    assert!(
-        details.top_comments.count.unwrap() > 3199,
-        "expected > 3199 comments, got {}",
-        details.top_comments.count.unwrap()
-    );
+    assert_gte(details.top_comments.count.unwrap(), 3200, "comments");
     assert!(!details.top_comments.is_exhausted());
     assert!(!details.latest_comments.is_exhausted());
 }
@@ -730,22 +675,13 @@ async fn get_video_details_live() {
     assert_eq!(details.channel.name, "Space Videos");
     assert!(!details.channel.avatar.is_empty(), "no channel avatars");
     assert_eq!(details.channel.verification, Verification::Verified);
-    assert!(
-        details.channel.subscriber_count.unwrap() > 5500000,
-        "expected >5.5M subs, got {}",
-        details.channel.subscriber_count.unwrap()
+    assert_gte(
+        details.channel.subscriber_count.unwrap(),
+        5_500_000,
+        "subscribers",
     );
-
-    assert!(
-        details.view_count > 10,
-        "expected > 10 views, got {}",
-        details.view_count
-    );
-    assert!(
-        details.like_count.unwrap() > 872290,
-        "expected > 872290 likes, got {}",
-        details.like_count.unwrap()
-    );
+    assert_gte(details.view_count, 10, "views");
+    assert_gte(details.like_count.unwrap(), 872_290, "likes");
 
     let date = details.publish_date.unwrap();
     assert_eq!(date.date(), date!(2021 - 9 - 23));
@@ -753,8 +689,7 @@ async fn get_video_details_live() {
     assert!(details.is_live);
     assert!(!details.is_ccommons);
 
-    assert!(!details.recommended.items.is_empty());
-    assert!(!details.recommended.is_exhausted());
+    assert_next(details.recommended, &rp.query(), 10, 2).await;
 
     // No comments because livestream
     assert_eq!(details.top_comments.count, Some(0));
@@ -781,17 +716,12 @@ async fn get_video_details_agegate() {
     assert_eq!(details.channel.name, "PrinceOfFALLEN");
     assert!(!details.channel.avatar.is_empty(), "no channel avatars");
     assert_eq!(details.channel.verification, Verification::None);
-    assert!(
-        details.channel.subscriber_count.unwrap() > 1400,
-        "expected >1400 subs, got {}",
-        details.channel.subscriber_count.unwrap()
+    assert_gte(
+        details.channel.subscriber_count.unwrap(),
+        1400,
+        "subscribers",
     );
-
-    assert!(
-        details.view_count > 200,
-        "expected > 200 views, got {}",
-        details.view_count
-    );
+    assert_gte(details.view_count, 200, "views");
     assert!(details.like_count.is_none(), "like count not hidden");
 
     let date = details.publish_date.unwrap();
@@ -821,26 +751,6 @@ async fn get_video_details_not_found() {
 }
 
 #[tokio::test]
-async fn get_video_recommendations() {
-    let rp = RustyPipe::builder().strict().build();
-    let details = rp.query().video_details("ZeerrnuLi5E").await.unwrap();
-    let next_recommendations = details
-        .recommended
-        .next(&rp.query())
-        .await
-        .unwrap()
-        .unwrap();
-    // dbg!(&next_recommendations);
-
-    assert!(
-        next_recommendations.items.len() > 10,
-        "expected > 10 next recommendations, got {}",
-        next_recommendations.items.len()
-    );
-    assert!(!next_recommendations.is_exhausted());
-}
-
-#[tokio::test]
 async fn get_video_comments() {
     let rp = RustyPipe::builder().strict().build();
     let details = rp.query().video_details("ZeerrnuLi5E").await.unwrap();
@@ -851,21 +761,17 @@ async fn get_video_comments() {
         .await
         .unwrap()
         .unwrap();
-    assert!(
-        top_comments.items.len() > 10,
-        "expected > 10 next comments, got {}",
-        top_comments.items.len()
-    );
+    assert_gte(top_comments.items.len(), 10, "comments");
     assert!(!top_comments.is_exhausted());
 
     let n_comments = top_comments.count.unwrap();
+    assert_gte(n_comments, 700_000, "comments");
+    // Comment count should be exact after fetching first page
     assert!(
-        n_comments > 700000,
-        "expected > 700k comments, got {}",
+        n_comments % 1000 != 0,
+        "estimated comment count: {}",
         n_comments
     );
-    // Comment count should be exact after fetching first page
-    assert!(n_comments % 1000 != 0);
 
     let latest_comments = details
         .latest_comments
@@ -873,11 +779,7 @@ async fn get_video_comments() {
         .await
         .unwrap()
         .unwrap();
-    assert!(
-        latest_comments.items.len() > 10,
-        "expected > 10 next comments, got {}",
-        latest_comments.items.len()
-    );
+    assert_gte(latest_comments.items.len(), 10, "next comments");
     assert!(!latest_comments.is_exhausted());
 }
 
@@ -906,11 +808,7 @@ async fn channel_videos() {
 
     assert!(age_days < 60, "latest video older than 60 days");
 
-    let next = channel.content.next(&rp.query()).await.unwrap().unwrap();
-    assert!(
-        !next.is_exhausted() && !next.items.is_empty(),
-        "no more videos"
-    );
+    assert_next(channel.content, &rp.query(), 15, 2).await;
 }
 
 #[tokio::test]
@@ -928,11 +826,7 @@ async fn channel_shorts() {
     // dbg!(&channel);
     assert_eq!(channel.id, "UCh8gHdtzO2tXd593_bjErWg");
     assert_eq!(channel.name, "Doobydobap");
-    assert!(
-        channel.subscriber_count.unwrap() > 2800000,
-        "expected >2.8M subscribers, got {}",
-        channel.subscriber_count.unwrap()
-    );
+    assert_gte(channel.subscriber_count.unwrap(), 2_800_000, "subscribers");
     assert!(!channel.avatar.is_empty(), "got no thumbnails");
     assert_eq!(channel.verification, Verification::Verified);
     assert!(channel
@@ -951,11 +845,7 @@ async fn channel_shorts() {
         "got no shorts"
     );
 
-    let next = channel.content.next(&rp.query()).await.unwrap().unwrap();
-    assert!(
-        !next.is_exhausted() && !next.items.is_empty(),
-        "no more shorts"
-    );
+    assert_next(channel.content, &rp.query(), 15, 1).await;
 }
 
 #[tokio::test]
@@ -978,8 +868,7 @@ async fn channel_livestreams() {
         "got no streams"
     );
 
-    let next = channel.content.next(&rp.query()).await.unwrap().unwrap();
-    assert!(!next.items.is_empty(), "no more streams");
+    assert_next(channel.content, &rp.query(), 5, 1).await;
 }
 
 #[tokio::test]
@@ -998,11 +887,7 @@ async fn channel_playlists() {
         "got no playlists"
     );
 
-    let next = channel.content.next(&rp.query()).await.unwrap().unwrap();
-    assert!(
-        !next.is_exhausted() && !next.items.is_empty(),
-        "no more playlists"
-    );
+    assert_next(channel.content, &rp.query(), 15, 1).await;
 }
 
 #[tokio::test]
@@ -1020,10 +905,10 @@ async fn channel_info() {
     let created = channel.content.create_date.unwrap();
     assert_eq!(created, date!(2009 - 4 - 4));
 
-    assert!(
-        channel.content.view_count.unwrap() > 186854340,
-        "exp >186M views, got {}",
-        channel.content.view_count.unwrap()
+    assert_gte(
+        channel.content.view_count.unwrap(),
+        186854340,
+        "channel views",
     );
 
     insta::assert_ron_snapshot!(channel.content.links, @r###"
@@ -1048,11 +933,7 @@ async fn channel_info() {
 fn assert_channel_eevblog<T>(channel: &Channel<T>) {
     assert_eq!(channel.id, "UC2DjFE7Xf11URZqWBigcVOQ");
     assert_eq!(channel.name, "EEVblog");
-    assert!(
-        channel.subscriber_count.unwrap() > 880000,
-        "exp >880K subscribers, got {}",
-        channel.subscriber_count.unwrap()
-    );
+    assert_gte(channel.subscriber_count.unwrap(), 880_000, "subscribers");
     assert!(!channel.avatar.is_empty(), "got no thumbnails");
     assert_eq!(channel.verification, Verification::Verified);
     assert_eq!(channel.description, "NO SCRIPT, NO FEAR, ALL OPINION\nAn off-the-cuff Video Blog about Electronics Engineering, for engineers, hobbyists, enthusiasts, hackers and Makers\nHosted by Dave Jones from Sydney Australia\n\nDONATIONS:\nBitcoin: 3KqyH1U3qrMPnkLufM2oHDU7YB4zVZeFyZ\nEthereum: 0x99ccc4d2654ba40744a1f678d9868ecb15e91206\nPayPal: david@alternatezone.com\n\nPatreon: https://www.patreon.com/eevblog\n\nEEVblog2: http://www.youtube.com/EEVblog2\nEEVdiscover: https://www.youtube.com/channel/UCkGvUEt8iQLmq3aJIMjT2qQ\n\nEMAIL:\nAdvertising/Commercial: eevblog+business@gmail.com\nFan mail: eevblog+fan@gmail.com\nHate Mail: eevblog+hate@gmail.com\n\nI DON'T DO PAID VIDEO SPONSORSHIPS, DON'T ASK!\n\nPLEASE:\nDo NOT ask for personal advice on something, post it in the EEVblog forum.\nI read ALL email, but please don't be offended if I don't have time to reply, I get a LOT of email.\n\nMailbag\nPO Box 7949\nBaulkham Hills NSW 2153\nAUSTRALIA");
@@ -1191,22 +1072,9 @@ async fn search() {
         "expected > 7000 total results, got {}",
         result.items.count.unwrap()
     );
-    assert!(
-        result.items.items.len() > 10,
-        "expected > 10 search results, got {}",
-        result.items.items.len()
-    );
-    assert!(!result.items.is_exhausted());
-
     assert_eq!(result.corrected_query.unwrap(), "doobydobap");
 
-    let next = result.items.next(&rp.query()).await.unwrap().unwrap();
-    assert!(
-        next.items.len() > 10,
-        "expected > 10 continuation results, got {}",
-        next.items.len()
-    );
-    assert!(!next.is_exhausted());
+    assert_next(result.items, &rp.query(), 10, 2).await;
 }
 
 #[rstest]
@@ -1216,18 +1084,14 @@ async fn search() {
 #[tokio::test]
 async fn search_filter_entity(#[case] entity: search_filter::Entity) {
     let rp = RustyPipe::builder().strict().build();
-    let result = rp
+    let mut result = rp
         .query()
         .search_filter("music", &SearchFilter::new().entity(entity))
         .await
         .unwrap();
 
-    assert!(
-        result.items.items.len() > 10,
-        "expected > 10 search results, got {}",
-        result.items.items.len()
-    );
-    assert!(!result.items.is_exhausted());
+    result.items.extend(&rp.query()).await.unwrap();
+    assert_gte(result.items.items.len(), 20, "items");
 
     result.items.items.iter().for_each(|item| match item {
         YouTubeItem::Video(_) => {
@@ -1344,29 +1208,9 @@ async fn resolve_channel_not_found() {
 #[tokio::test]
 async fn startpage() {
     let rp = RustyPipe::builder().strict().build();
-    let result = rp.query().startpage().await.unwrap();
-
-    assert!(
-        result.items.len() >= 20,
-        "expected >= 20 items, got {}",
-        result.items.len()
-    );
-    assert!(!result.is_exhausted());
-}
-
-#[tokio::test]
-async fn startpage_cont() {
-    let rp = RustyPipe::builder().strict().build();
     let startpage = rp.query().startpage().await.unwrap();
 
-    let next = startpage.next(&rp.query()).await.unwrap().unwrap();
-
-    assert!(
-        next.items.len() >= 20,
-        "expected >= 20 items, got {}",
-        next.items.len()
-    );
-    assert!(!next.is_exhausted());
+    assert_next(startpage, &rp.query(), 20, 2).await;
 }
 
 #[tokio::test]
@@ -1374,11 +1218,7 @@ async fn trending() {
     let rp = RustyPipe::builder().strict().build();
     let result = rp.query().trending().await.unwrap();
 
-    assert!(
-        result.len() >= 50,
-        "expected >= 50 items, got {}",
-        result.len()
-    );
+    assert_gte(result.len(), 50, "items");
 }
 
 //#MUSIC
@@ -1474,6 +1314,263 @@ async fn music_playlist_not_found() {
     );
 }
 
+#[rstest]
+#[case::one_artist("one_artist", "MPREb_nlBWQROfvjo")]
+#[case::various_artists("various_artists", "MPREb_8QkDeEIawvX")]
+#[case::single("single", "MPREb_bHfHGoy7vuv")]
+#[case::ep("ep", "MPREb_u1I69lSAe5v")]
+#[case::audiobook("audiobook", "MPREb_gaoNzsQHedo")]
+#[case::show("show", "MPREb_cwzk8EUwypZ")]
+#[tokio::test]
+async fn music_album(#[case] name: &str, #[case] id: &str) {
+    let rp = RustyPipe::builder().strict().build();
+    let album = rp.query().music_album(id).await.unwrap();
+
+    assert!(!album.cover.is_empty(), "got no cover");
+
+    insta::assert_ron_snapshot!(format!("music_album_{}", name), album,
+        {".cover" => "[cover]"}
+    );
+}
+
+#[tokio::test]
+async fn music_album_not_found() {
+    let rp = RustyPipe::builder().strict().build();
+    let err = rp
+        .query()
+        .music_album("MPREb_nlBWQROfvjoz")
+        .await
+        .unwrap_err();
+
+    assert!(
+        matches!(
+            err,
+            Error::Extraction(ExtractionError::ContentUnavailable(_))
+        ),
+        "got: {}",
+        err
+    );
+}
+
+#[rstest]
+#[case::default(false)]
+#[case::typo(true)]
+#[tokio::test]
+async fn music_search(#[case] typo: bool) {
+    let rp = RustyPipe::builder().strict().build();
+    let res = rp
+        .query()
+        .music_search(match typo {
+            false => "black mamba",
+            true => "blck mamba",
+        })
+        .await
+        .unwrap();
+
+    assert!(!res.tracks.is_empty(), "no tracks");
+    assert!(!res.albums.is_empty(), "no albums");
+    assert!(!res.artists.is_empty(), "no artists");
+    assert!(!res.playlists.is_empty(), "no playlists");
+    assert_eq!(res.order[0], MusicEntityType::Track);
+
+    if typo {
+        assert_eq!(res.corrected_query.unwrap(), "black mamba");
+    } else {
+        assert_eq!(res.corrected_query, None);
+    }
+
+    let track = &res.tracks[0];
+    dbg!(&track);
+    assert_eq!(track.id, "ZeerrnuLi5E");
+    assert_eq!(track.title, "Black Mamba");
+    assert_eq!(track.duration, 230);
+    assert!(!track.cover.is_empty(), "got no cover");
+
+    let track_artist = &track.artists[0];
+    assert_eq!(track_artist.id, "UCEdZAdnnKqbaHOlv8nM6OtA");
+    assert_eq!(track_artist.name, "aespa");
+    assert_eq!(track.artists_txt.as_ref().unwrap(), "aespa");
+    assert_eq!(track.album, None);
+    assert_gte(track.view_count.unwrap(), 230_000_000, "views");
+    assert!(track.is_video, "got no video");
+    assert_eq!(track.track_nr, None);
+}
+
+#[rstest]
+#[case::tracks(false)]
+#[case::videos(true)]
+#[tokio::test]
+async fn music_search_tracks(#[case] videos: bool) {
+    let rp = RustyPipe::builder().strict().build();
+    let res = rp
+        .query()
+        .music_search_tracks("black mamba", videos)
+        .await
+        .unwrap();
+
+    let track = &res.items.items[0];
+    assert_eq!(track.title, "Black Mamba");
+    assert!(!track.cover.is_empty(), "got no cover");
+    assert_eq!(track.is_video, videos);
+    assert_eq!(track.track_nr, None);
+
+    let track_artist = &track.artists[0];
+    assert_eq!(track_artist.id, "UCEdZAdnnKqbaHOlv8nM6OtA");
+    assert_eq!(track_artist.name, "aespa");
+    assert_eq!(track.artists_txt.as_ref().unwrap(), "aespa");
+
+    if videos {
+        assert_eq!(track.id, "ZeerrnuLi5E");
+        assert_eq!(track.duration, 230);
+        assert_eq!(track.album, None);
+        assert_gte(track.view_count.unwrap(), 230_000_000, "views");
+    } else {
+        assert_eq!(track.id, "BL-aIpCLWnU");
+        assert_eq!(track.duration, 175);
+
+        let album = track.album.as_ref().unwrap();
+        assert_eq!(album.id, "MPREb_OpHWHwyNOuY");
+        assert_eq!(album.name, "Black Mamba");
+    }
+
+    assert_next(res.items, &rp.query(), 15, 2).await;
+}
+
+#[rstest]
+#[case::single(
+    "black mamba",
+    "Black Mamba",
+    "MPREb_OpHWHwyNOuY",
+    "aespa",
+    "UCEdZAdnnKqbaHOlv8nM6OtA",
+    2020,
+    AlbumType::Single,
+    2
+)]
+#[case::ep(
+    "waldbrand",
+    "Waldbrand",
+    "MPREb_u1I69lSAe5v",
+    "Madeline Juno",
+    "UCpJyCbFbdTrx0M90HCNBHFQ",
+    2016,
+    AlbumType::Ep,
+    1
+)]
+#[case::album(
+    "märchen enden gut",
+    "Märchen enden gut",
+    "MPREb_nlBWQROfvjo",
+    "Oonagh",
+    "UC_vmjW5e1xEHhYjY2a0kK1A",
+    2016,
+    AlbumType::Album,
+    1
+)]
+#[tokio::test]
+async fn music_search_albums(
+    #[case] query: &str,
+    #[case] name: &str,
+    #[case] id: &str,
+    #[case] artist: &str,
+    #[case] artist_id: &str,
+    #[case] year: u16,
+    #[case] album_type: AlbumType,
+    #[case] n_pages: usize,
+) {
+    let rp = RustyPipe::builder().strict().build();
+    let res = rp.query().music_search_albums(query).await.unwrap();
+
+    let album = &res.items.items[0];
+    assert_eq!(album.name, name);
+    assert_eq!(album.id, id);
+    assert_eq!(album.artists_txt, artist);
+
+    let album_artist = &album.artists[0];
+    assert_eq!(album_artist.id, artist_id);
+    assert_eq!(album_artist.name, artist);
+
+    assert!(!album.cover.is_empty(), "got no cover");
+    assert_eq!(album.year.as_ref().unwrap(), &year);
+    assert_eq!(album.album_type, album_type);
+
+    assert_eq!(res.corrected_query, None);
+
+    assert_next(res.items, &rp.query(), 15, n_pages).await;
+}
+
+#[tokio::test]
+async fn music_search_artists() {
+    let rp = RustyPipe::builder().strict().build();
+    let res = rp.query().music_search_artists("namika").await.unwrap();
+
+    let artist = &res.items.items[0];
+    assert_eq!(artist.id, "UCIh4j8fXWf2U0ro0qnGU8Mg");
+    assert_eq!(artist.name, "Namika");
+    assert!(!artist.avatar.is_empty(), "got no avatar");
+    assert!(
+        artist.subscriber_count.unwrap() > 735_000,
+        "expected >735K subscribers, got {}",
+        artist.subscriber_count.unwrap()
+    );
+    assert_eq!(res.corrected_query, None);
+}
+
+#[tokio::test]
+async fn music_search_artists_cont() {
+    let rp = RustyPipe::builder().strict().build();
+    let res = rp.query().music_search_artists("band").await.unwrap();
+
+    assert_eq!(res.corrected_query, None);
+    assert_next(res.items, &rp.query(), 15, 2).await;
+}
+
+#[tokio::test]
+async fn music_search_playlists() {
+    let rp = RustyPipe::builder().strict().build();
+    let res = rp
+        .query()
+        .music_search_playlists("easy pop", false)
+        .await
+        .unwrap();
+
+    assert_eq!(res.corrected_query, None);
+    let playlist = &res.items.items[0];
+
+    assert_eq!(playlist.id, "RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk");
+    assert_eq!(playlist.name, "Easy Pop");
+    assert!(!playlist.thumbnail.is_empty(), "got no thumbnail");
+    assert_gte(playlist.track_count.unwrap(), 80, "tracks");
+    assert_eq!(playlist.channel, None);
+    assert!(playlist.from_ytm);
+}
+
+#[tokio::test]
+async fn music_search_playlists_community() {
+    let rp = RustyPipe::builder().strict().build();
+    let res = rp
+        .query()
+        .music_search_playlists("Best Pop Music Videos - Top Pop Hits Playlist", true)
+        .await
+        .unwrap();
+
+    assert_eq!(res.corrected_query, None);
+    let playlist = &res.items.items[0];
+
+    assert_eq!(playlist.id, "PLMC9KNkIncKtGvr2kFRuXBVmBev6cAJ2u");
+    assert_eq!(
+        playlist.name,
+        "Best Pop Music Videos - Top Pop Hits Playlist"
+    );
+    assert!(!playlist.thumbnail.is_empty(), "got no thumbnail");
+    assert_gte(playlist.track_count.unwrap(), 250, "tracks");
+
+    let channel = playlist.channel.as_ref().unwrap();
+    assert_eq!(channel.id, "UCs72iRpTEuwV3y6pdWYLgiw");
+    assert_eq!(channel.name, "Redlist - Just Hits");
+    assert!(!playlist.from_ytm);
+}
+
 //#TESTUTIL
 
 /// Assert equality within 10% margin
@@ -1485,6 +1582,29 @@ fn assert_approx(left: f64, right: f64) {
             "{} not within 10% margin of {}",
             left,
             right
+        );
+    }
+}
+
+fn assert_gte<T: PartialOrd + Display>(a: T, b: T, msg: &str) {
+    assert!(a >= b, "expected {} {}, got {}", b, msg, a);
+}
+
+async fn assert_next<T: FromYtItem>(
+    paginator: Paginator<T>,
+    query: &RustyPipeQuery,
+    min_items: usize,
+    n_pages: usize,
+) {
+    let mut p = paginator;
+    assert_gte(p.items.len(), min_items, "items on page 0");
+
+    for i in 0..n_pages {
+        p = p.next(query).await.unwrap().expect("paginator exhausted");
+        assert_gte(
+            p.items.len(),
+            min_items,
+            &format!("items on page {}", i + 1),
         );
     }
 }

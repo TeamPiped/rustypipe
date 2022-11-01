@@ -36,11 +36,45 @@ pub(crate) struct WatchEndpoint {
     pub start_time_seconds: u32,
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Debug)]
 pub(crate) struct BrowseEndpoint {
     pub browse_id: String,
     pub browse_endpoint_context_supported_configs: Option<BrowseEndpointConfig>,
+}
+
+impl<'de> Deserialize<'de> for BrowseEndpoint {
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        #[derive(Debug, Deserialize)]
+        #[serde(rename_all = "camelCase")]
+        struct BEp {
+            pub browse_id: String,
+            pub browse_endpoint_context_supported_configs: Option<BrowseEndpointConfig>,
+        }
+
+        let bep = BEp::deserialize(deserializer)?;
+
+        // Remove the VL prefix from the playlist id
+        let browse_id = bep
+            .browse_endpoint_context_supported_configs
+            .as_ref()
+            .and_then(
+                |cfg| match cfg.browse_endpoint_context_music_config.page_type {
+                    PageType::Playlist => bep.browse_id.strip_prefix("VL"),
+                    _ => None,
+                },
+            )
+            .map(str::to_owned)
+            .unwrap_or(bep.browse_id);
+
+        Ok(Self {
+            browse_id,
+            browse_endpoint_context_supported_configs: bep
+                .browse_endpoint_context_supported_configs,
+        })
+    }
 }
 
 #[derive(Debug, Deserialize)]
@@ -75,9 +109,12 @@ pub(crate) struct WebCommandMetadata {
 
 #[derive(Debug, Clone, Copy, Deserialize, PartialEq, Eq)]
 pub(crate) enum PageType {
-    #[serde(rename = "MUSIC_PAGE_TYPE_ARTIST")]
+    #[serde(
+        rename = "MUSIC_PAGE_TYPE_ARTIST",
+        alias = "MUSIC_PAGE_TYPE_AUDIOBOOK_ARTIST"
+    )]
     Artist,
-    #[serde(rename = "MUSIC_PAGE_TYPE_ALBUM")]
+    #[serde(rename = "MUSIC_PAGE_TYPE_ALBUM", alias = "MUSIC_PAGE_TYPE_AUDIOBOOK")]
     Album,
     #[serde(
         rename = "WEB_PAGE_TYPE_CHANNEL",

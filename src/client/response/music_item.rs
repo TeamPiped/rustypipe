@@ -183,7 +183,8 @@ pub(crate) struct MusicContinuation {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct ContinuationContents {
-    pub music_playlist_shelf_continuation: MusicShelf,
+    #[serde(alias = "musicPlaylistShelfContinuation")]
+    pub music_shelf_continuation: MusicShelf,
 }
 
 /*
