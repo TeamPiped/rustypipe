@@ -375,13 +375,11 @@ async fn get_channel(channel_id: &str, lang: Language) -> Result<ChannelData> {
                     .iter()
                     .map(|itm| {
                         (
-                            util::parse_numeric(
-                                &itm.grid_video_renderer.view_count_text.simple_text,
-                            )
-                            .unwrap(),
+                            util::parse_numeric(&itm.grid_video_renderer.view_count_text.text)
+                                .unwrap(),
                             itm.grid_video_renderer
                                 .short_view_count_text
-                                .simple_text
+                                .text
                                 .to_owned(),
                         )
                     })

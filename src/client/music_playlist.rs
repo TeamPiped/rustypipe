@@ -201,7 +201,7 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
             .unwrap_or_default();
 
         let by_va = artists_txt == util::VARIOUS_ARTISTS;
-        let album_type = map_album_type(album_type_txt.as_str());
+        let album_type = map_album_type(album_type_txt.as_str(), lang);
         let year = year_txt.and_then(|txt| util::parse_numeric(&txt).ok());
 
         let mut mapper = match by_va {

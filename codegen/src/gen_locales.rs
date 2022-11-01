@@ -359,7 +359,7 @@ fn map_language_section(section: &CompactLinkRendererWrap) -> BTreeMap<String, S
                     .select_language_command
                     .hl
                     .to_owned(),
-                i.compact_link_renderer.title.simple_text.to_owned(),
+                i.compact_link_renderer.title.text.to_owned(),
             )
         })
         .collect()

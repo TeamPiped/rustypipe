@@ -1,0 +1,583 @@
+{
+  "af": {
+    "Album": "Album",
+    "Ep": "EP",
+    "Single": "Enkelsnit",
+    "Audiobook": "Oudioboek",
+    "Show": "Drama"
+  },
+  "am": {
+    "Album": "አልበም",
+    "Ep": "የተራዘመ አልበም",
+    "Single": "ነጠላ",
+    "Audiobook": "ኦዲዮ መጽሐፍ",
+    "Show": "ትዕይንት"
+  },
+  "ar": {
+    "Album": "ألبوم",
+    "Ep": "ألبوم قصير",
+    "Single": "أغنية منفردة",
+    "Audiobook": "الكتب المسموعة",
+    "Show": "عرض"
+  },
+  "as": {
+    "Album": "এলবাম",
+    "Ep": "EP",
+    "Single": "একক",
+    "Audiobook": "অডিঅ’বুক",
+    "Show": "শ্ব’"
+  },
+  "az": {
+    "Album": "Albom",
+    "Ep": "EP",
+    "Single": "Tək",
+    "Audiobook": "Audio kitab",
+    "Show": "Şou"
+  },
+  "be": {
+    "Album": "Альбом",
+    "Ep": "Міні-альбом",
+    "Single": "Сінгл",
+    "Audiobook": "Аўдыякніга",
+    "Show": "Шоу"
+  },
+  "bg": {
+    "Album": "Албум",
+    "Ep": "Миниалбум",
+    "Single": "Сингъл",
+    "Audiobook": "Аудиокнига",
+    "Show": "Предаване"
+  },
+  "bn": {
+    "Album": "অ্যালবাম",
+    "Ep": "ইপি",
+    "Single": "সিঙ্গেল",
+    "Audiobook": "অডিওবুক",
+    "Show": "শো"
+  },
+  "bs": {
+    "Album": "Album",
+    "Ep": "EP",
+    "Single": "Singl",
+    "Audiobook": "Audio knjiga",
+    "Show": "Serija"
+  },
+  "ca": {
+    "Album": "Àlbum",
+    "Ep": "EP",
+    "Single": "Single",
+    "Audiobook": "Audiollibre",
+    "Show": "Programa"
+  },
+  "cs": {
+    "Album": "Album",
+    "Ep": "EP",
+    "Single": "Singl",
+    "Audiobook": "Audiokniha",
+    "Show": "Zobrazit"
+  },
+  "da": {
+    "Album": "Album",
+    "Ep": "EP",
+    "Single": "Single",
+    "Audiobook": "Lydbog",
+    "Show": "Lyddrama"
+  },
+  "de": {
+    "Album": "Album",
+    "Ep": "EP",
+    "Single": "Single",
+    "Audiobook": "Hörbuch",
+    "Show": "Hörspiel"
+  },
+  "el": {
+    "Album": "Άλμπουμ",
+    "Ep": "EP",
+    "Single": "Single",
+    "Audiobook": "Ηχητικό βιβλίο",
+    "Show": "Εκπομπή"
+  },
+  "en": {
+    "Album": "Album",
+    "Ep": "EP",
+    "Single": "Single",
+    "Audiobook": "Audiobook",
+    "Show": "Show"
+  },
+  "en-GB": {
+    "Album": "Album",
+    "Ep": "EP",
+    "Single": "Single",
+    "Audiobook": "Audiobook",
+    "Show": "Show"
+  },
+  "en-IN": {
+    "Album": "Album",
+    "Ep": "EP",
+    "Single": "Single",
+    "Audiobook": "Audiobook",
+    "Show": "Show"
+  },
+  "es": {
+    "Album": "Álbum",
+    "Ep": "EP",
+    "Single": "Single",
+    "Audiobook": "Audiolibro",
+    "Show": "Audiodrama"
+  },
+  "es-419": {
+    "Album": "Álbum",
+    "Ep": "EP",
+    "Single": "Sencillo",
+    "Audiobook": "Audiolibro",
+    "Show": "Programa"
+  },
+  "es-US": {
+    "Album": "Álbum",
+    "Ep": "EP",
+    "Single": "Sencillo",
+    "Audiobook": "Audiolibro",
+    "Show": "Programa"
+  },
+  "et": {
+    "Album": "Album",
+    "Ep": "EP",
+    "Single": "Singel",
+    "Audiobook": "Audioraamat",
+    "Show": "Sari"
+  },
+  "eu": {
+    "Album": "Albuma",
+    "Ep": "EP",
+    "Single": "Singlea",
+    "Audiobook": "Audio-liburua",
+    "Show": "Saioa"
+  },
+  "fa": {
+    "Album": "آلبوم",
+    "Ep": "پخش فوق‌العاده",
+    "Single": "تک آهنگ",
+    "Audiobook": "کتاب صوتی",
+    "Show": "نمایش"
+  },
+  "fi": {
+    "Album": "Albumi",
+    "Ep": "EP",
+    "Single": "Single",
+    "Audiobook": "Äänikirja",
+    "Show": "Näytä"
+  },
+  "fil": {
+    "Album": "Album",
+    "Ep": "EP",
+    "Single": "Single",
+    "Audiobook": "Audiobook",
+    "Show": "Palabas"
+  },
+  "fr": {
+    "Album": "Album",
+    "Ep": "EP",
+    "Single": "Single",
+    "Audiobook": "Livre audio",
+    "Show": "Émission"
+  },
+  "fr-CA": {
+    "Album": "Album",
+    "Ep": "Microalbum",
+    "Single": "Simple",
+    "Audiobook": "Livre audio",
+    "Show": "Émission"
+  },
+  "gl": {
+    "Album": "Álbum",
+    "Ep": "EP",
+    "Single": "Single",
+    "Audiobook": "Audiolibro",
+    "Show": "Programa"
+  },
+  "gu": {
+    "Album": "આલ્બમ",
+    "Ep": "EP",
+    "Single": "સિંગલ",
+    "Audiobook": "ઑડિયોબુક",
+    "Show": "શો"
+  },
+  "hi": {
+    "Album": "एल्‍बम",
+    "Ep": "ईपी",
+    "Single": "सिंगल",
+    "Audiobook": "ऑडियो बुक",
+    "Show": "शो"
+  },
+  "hr": {
+    "Album": "Album",
+    "Ep": "EP",
+    "Single": "Singl",
+    "Audiobook": "Audioknjiga",
+    "Show": "Serija"
+  },
+  "hu": {
+    "Album": "Album",
+    "Ep": "EP",
+    "Single": "Kislemez",
+    "Audiobook": "Hangoskönyv",
+    "Show": "Műsor"
+  },
+  "hy": {
+    "Album": "Ալբոմ",
+    "Ep": "EP",
+    "Single": "Սինգլ",
+    "Audiobook": "Աուդիոգիրք",
+    "Show": "Աուդիոդրամա"
+  },
+  "id": {
+    "Album": "Album",
+    "Ep": "EP",
+    "Single": "Single",
+    "Audiobook": "Buku audio",
+    "Show": "Acara"
+  },
+  "is": {
+    "Album": "Plata",
+    "Ep": "EP",
+    "Single": "Smáskífa",
+    "Audiobook": "Hljóðbók",
+    "Show": "Þáttur"
+  },
+  "it": {
+    "Album": "Album",
+    "Ep": "EP",
+    "Single": "Singolo",
+    "Audiobook": "Audiolibro",
+    "Show": "Programma"
+  },
+  "iw": {
+    "Album": "אלבום",
+    "Ep": "מיני-אלבום",
+    "Single": "סינגל",
+    "Audiobook": "ספר אודיו",
+    "Show": "תסכית"
+  },
+  "ja": {
+    "Album": "アルバム",
+    "Ep": "EP",
+    "Single": "シングル",
+    "Audiobook": "オーディオブック",
+    "Show": "表示"
+  },
+  "ka": {
+    "Album": "ალბომი",
+    "Ep": "მინი-ალბომი",
+    "Single": "სინგლი",
+    "Audiobook": "აუდიოწიგნი",
+    "Show": "ჩვენება"
+  },
+  "kk": {
+    "Album": "Альбом",
+    "Ep": "EP",
+    "Single": "Сингл",
+    "Audiobook": "Аудиокітап",
+    "Show": "Шоу"
+  },
+  "km": {
+    "Album": "អាល់ប៊ុម",
+    "Ep": "EP",
+    "Single": "ចម្រៀងទោល",
+    "Audiobook": "សៀវភៅ​ជា​សំឡេង",
+    "Show": "កម្មវិធីទូរទស្សន៍"
+  },
+  "kn": {
+    "Album": "ಆಲ್ಬಮ್",
+    "Ep": "EP",
+    "Single": "ಒಂದೇ",
+    "Audiobook": "ಆಡಿಯೋಬುಕ್",
+    "Show": "ಶೋ"
+  },
+  "ko": {
+    "Album": "앨범",
+    "Ep": "EP",
+    "Single": "싱글",
+    "Audiobook": "오디오북",
+    "Show": "표시"
+  },
+  "ky": {
+    "Album": "Альбом",
+    "Ep": "Чакан альбом",
+    "Single": "Сингл",
+    "Audiobook": "Аудиокитеп",
+    "Show": "Шоу"
+  },
+  "lo": {
+    "Album": "ອະລະບໍ້າ",
+    "Ep": "EP",
+    "Single": "ຊິງເກິນ",
+    "Audiobook": "ປຶ້ມສຽງ",
+    "Show": "ສະແດງ"
+  },
+  "lt": {
+    "Album": "Albumas",
+    "Ep": "Mini albumas",
+    "Single": "Singlas",
+    "Audiobook": "Garsinė knyga",
+    "Show": "Serialas"
+  },
+  "lv": {
+    "Album": "Albums",
+    "Ep": "EP ieraksts",
+    "Single": "Singls",
+    "Audiobook": "Audiogrāmata",
+    "Show": "Pārraide"
+  },
+  "mk": {
+    "Album": "Албум",
+    "Ep": "EP",
+    "Single": "Сингл",
+    "Audiobook": "Аудиокнига",
+    "Show": "Серија"
+  },
+  "ml": {
+    "Album": "ആല്‍‌ബം",
+    "Ep": "EP",
+    "Single": "സിംഗിൾ",
+    "Audiobook": "ഓഡിയോ ബുക്ക്",
+    "Show": "ഷോ"
+  },
+  "mn": {
+    "Album": "Цомог",
+    "Ep": "EP",
+    "Single": "Сингл",
+    "Audiobook": "Аудио ном",
+    "Show": "Жүжиг"
+  },
+  "mr": {
+    "Album": "अल्बम",
+    "Ep": "भाग",
+    "Single": "सिंगल",
+    "Audiobook": "ऑडिओबुक",
+    "Show": "शो"
+  },
+  "ms": {
+    "Album": "Album",
+    "Ep": "EP",
+    "Single": "Rekod single",
+    "Audiobook": "Buku audio",
+    "Show": "Rancangan"
+  },
+  "my": {
+    "Album": "အယ်လ်ဘမ်",
+    "Ep": "EP",
+    "Single": "တစ်ကိုယ်တော်",
+    "Audiobook": "အော်ဒီယိုစာအုပ်",
+    "Show": "ရှိုး"
+  },
+  "ne": {
+    "Album": "एल्बम",
+    "Ep": "EP",
+    "Single": "एकल एल्बम",
+    "Audiobook": "अडियोबुक",
+    "Show": "टिभी सो"
+  },
+  "nl": {
+    "Album": "Album",
+    "Ep": "Ep",
+    "Single": "Single",
+    "Audiobook": "Audioboek",
+    "Show": "Aflevering"
+  },
+  "no": {
+    "Album": "Album",
+    "Ep": "EP",
+    "Single": "Singel",
+    "Audiobook": "Lydbok",
+    "Show": "Hørespill"
+  },
+  "or": {
+    "Album": "ଆଲବମ୍",
+    "Ep": "EP",
+    "Single": "ସିଙ୍ଗଲ୍",
+    "Audiobook": "ଅଡିଓବୁକ୍",
+    "Show": "ଶୋ"
+  },
+  "pa": {
+    "Album": "ਐਲਬਮ",
+    "Ep": "EP",
+    "Single": "ਸਿੰਗਲ",
+    "Audiobook": "ਆਡੀਓ-ਕਿਤਾਬ",
+    "Show": "ਸ਼ੋਅ"
+  },
+  "pl": {
+    "Album": "Album",
+    "Ep": "EP",
+    "Single": "Singiel",
+    "Audiobook": "Audiobook",
+    "Show": "Słuchowisko"
+  },
+  "pt": {
+    "Album": "Álbum",
+    "Ep": "EP",
+    "Single": "Single",
+    "Audiobook": "Audiolivro",
+    "Show": "Programa"
+  },
+  "pt-PT": {
+    "Album": "Álbum",
+    "Ep": "EP",
+    "Single": "Single",
+    "Audiobook": "Livro áudio",
+    "Show": "Programa"
+  },
+  "ro": {
+    "Album": "Album",
+    "Ep": "EP",
+    "Single": "Single",
+    "Audiobook": "Carte audio",
+    "Show": "Emisiune"
+  },
+  "ru": {
+    "Album": "Альбом",
+    "Ep": "EP",
+    "Single": "Сингл",
+    "Audiobook": "Аудиокнига",
+    "Show": "Аудиошоу"
+  },
+  "si": {
+    "Album": "ඇල්බමය",
+    "Ep": "දීවා",
+    "Single": "තනි",
+    "Audiobook": "ශ්‍රව්‍යපොත",
+    "Show": "සංදර්ශනය"
+  },
+  "sk": {
+    "Album": "Album",
+    "Ep": "EP",
+    "Single": "Singel",
+    "Audiobook": "Audiokniha",
+    "Show": "Relácia"
+  },
+  "sl": {
+    "Album": "Album",
+    "Ep": "EP",
+    "Single": "Singel",
+    "Audiobook": "Zvočna knjiga",
+    "Show": "Oddaja"
+  },
+  "sq": {
+    "Album": "Album",
+    "Ep": "EP",
+    "Single": "Single",
+    "Audiobook": "Libër me audio",
+    "Show": "Shfaq"
+  },
+  "sr": {
+    "Album": "Албум",
+    "Ep": "EP",
+    "Single": "Сингл",
+    "Audiobook": "Аудио-књига",
+    "Show": "Серија"
+  },
+  "sr-Latn": {
+    "Album": "Album",
+    "Ep": "EP",
+    "Single": "Singl",
+    "Audiobook": "Audio-knjiga",
+    "Show": "Serija"
+  },
+  "sv": {
+    "Album": "Album",
+    "Ep": "EP",
+    "Single": "Singel",
+    "Audiobook": "Ljudbok",
+    "Show": "Ljuddrama"
+  },
+  "sw": {
+    "Album": "Albamu",
+    "Ep": "EP",
+    "Single": "Singo",
+    "Audiobook": "Kitabu cha kusikiliza",
+    "Show": "Kipindi"
+  },
+  "ta": {
+    "Album": "ஆல்பம்",
+    "Ep": "EP",
+    "Single": "சிங்கிள்",
+    "Audiobook": "ஆடியோ புத்தகம்",
+    "Show": "ஆடியோ ஷோ"
+  },
+  "te": {
+    "Album": "ఆల్బమ్",
+    "Ep": "EP",
+    "Single": "సింగిల్",
+    "Audiobook": "ఆడియోబుక్",
+    "Show": "చూపించు"
+  },
+  "th": {
+    "Album": "อัลบั้ม",
+    "Ep": "EP",
+    "Single": "ซิงเกิล",
+    "Audiobook": "หนังสือเสียง",
+    "Show": "รายการ"
+  },
+  "tr": {
+    "Album": "Albüm",
+    "Ep": "EP",
+    "Single": "Single",
+    "Audiobook": "Sesli kitap",
+    "Show": "Program"
+  },
+  "uk": {
+    "Album": "Альбом",
+    "Ep": "Мініальбом",
+    "Single": "Сингл",
+    "Audiobook": "Аудіокнига",
+    "Show": "Аудіодрама"
+  },
+  "ur": {
+    "Album": "البم",
+    "Ep": "EP",
+    "Single": "واحد",
+    "Audiobook": "آڈیو بک",
+    "Show": "شو"
+  },
+  "uz": {
+    "Album": "Albom",
+    "Ep": "EP",
+    "Single": "Singl",
+    "Audiobook": "Audiokitob",
+    "Show": "Shou"
+  },
+  "vi": {
+    "Album": "Đĩa nhạc",
+    "Ep": "Đĩa nhạc mở rộng (EP)",
+    "Single": "Đĩa đơn",
+    "Audiobook": "Sách nói",
+    "Show": "Chương trình"
+  },
+  "zh-CN": {
+    "Album": "专辑",
+    "Ep": "迷你专辑",
+    "Single": "单曲",
+    "Audiobook": "有声读物",
+    "Show": "广播剧"
+  },
+  "zh-HK": {
+    "Album": "專輯",
+    "Ep": "EP",
+    "Single": "單曲",
+    "Audiobook": "有聲書",
+    "Show": "節目"
+  },
+  "zh-TW": {
+    "Album": "專輯",
+    "Ep": "EP",
+    "Single": "單曲",
+    "Audiobook": "有聲書",
+    "Show": "節目"
+  },
+  "zu": {
+    "Album": "I-albhamu",
+    "Ep": "I-EP",
+    "Single": "I-Single",
+    "Audiobook": "I-audiobook",
+    "Show": "Bonisa"
+  }
+}

@@ -11,7 +11,7 @@ use crate::{
         text::{Text, TextComponents},
         MapResult, VecLogError,
     },
-    util::{self, TryRemove},
+    util::{self, dictionary, TryRemove},
 };
 
 use super::{
@@ -278,7 +278,7 @@ impl MusicListMapper {
                             }
                             PageType::Album => {
                                 let album_type = subtitle_p1
-                                    .map(|st| map_album_type(st.first_str()))
+                                    .map(|st| map_album_type(st.first_str(), self.lang))
                                     .unwrap_or_default();
 
                                 let (artists, artists_txt) = map_artists(subtitle_p2);
@@ -469,12 +469,12 @@ impl MusicListMapper {
                                     true,
                                 ) => {
                                     year = util::parse_numeric(year_txt.first_str()).ok();
-                                    album_type = map_album_type(atype_txt.first_str());
+                                    album_type = map_album_type(atype_txt.first_str(), self.lang);
                                     (artists.clone(), artists_txt.clone())
                                 }
                                 // "Album", <"Oonagh"> (Album variants, new releases)
                                 (Some(atype_txt), Some(p2), _, false) => {
-                                    album_type = map_album_type(atype_txt.first_str());
+                                    album_type = map_album_type(atype_txt.first_str(), self.lang);
                                     map_artists(Some(p2))
                                 }
                                 _ => {
@@ -612,11 +612,10 @@ pub(crate) fn map_artists(artists_p: Option<TextComponents>) -> (Vec<ChannelId>,
     (artists, artists_txt)
 }
 
-pub(crate) fn map_album_type(txt: &str) -> AlbumType {
-    // TODO: add support for different languages
-    match txt {
-        "Single" => AlbumType::Single,
-        "EP" => AlbumType::Ep,
-        _ => AlbumType::Album,
-    }
+pub(crate) fn map_album_type(txt: &str, lang: Language) -> AlbumType {
+    dictionary::entry(lang)
+        .album_types
+        .get(&txt.to_lowercase())
+        .copied()
+        .unwrap_or_default()
 }

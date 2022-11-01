@@ -40,6 +40,13 @@
     "number_tokens": {
       "m": 6,
       "mjd": 9
+    },
+    "album_types": {
+      "album": "Album",
+      "drama": "Show",
+      "enkelsnit": "Single",
+      "ep": "Ep",
+      "oudioboek": "Audiobook"
     }
   },
   "am": {
@@ -85,6 +92,13 @@
       "ሚ": 6,
       "ሺ": 3,
       "ቢ": 9
+    },
+    "album_types": {
+      "ትዕይንት": "Show",
+      "ነጠላ": "Single",
+      "አልበም": "Album",
+      "ኦዲዮ መጽሐፍ": "Audiobook",
+      "የተራዘመ አልበም": "Ep"
     }
   },
   "ar": {
@@ -124,10 +138,17 @@
     },
     "comma_decimal": false,
     "number_tokens": {
-      "ألف": 3,
       "آلاف": 3,
+      "ألف": 3,
       "مليار": 9,
       "مليون": 6
+    },
+    "album_types": {
+      "أغنية منفردة": "Single",
+      "ألبوم": "Album",
+      "ألبوم قصير": "Ep",
+      "الكتب المسموعة": "Audiobook",
+      "عرض": "Show"
     }
   },
   "as": {
@@ -155,6 +176,13 @@
       "নিযুতটা": 6,
       "লাখটা": 5,
       "হাজাৰটা": 3
+    },
+    "album_types": {
+      "ep": "Ep",
+      "অডিঅ’বুক": "Audiobook",
+      "একক": "Single",
+      "এলবাম": "Album",
+      "শ্ব’": "Show"
     }
   },
   "az": {
@@ -192,6 +220,13 @@
     "number_tokens": {
       "mln": 6,
       "mlrd": 9
+    },
+    "album_types": {
+      "albom": "Album",
+      "audio kitab": "Audiobook",
+      "ep": "Ep",
+      "tək": "Single",
+      "şou": "Show"
     }
   },
   "be": {
@@ -247,6 +282,13 @@
       "млн": 6,
       "млрд": 9,
       "тыс": 3
+    },
+    "album_types": {
+      "альбом": "Album",
+      "аўдыякніга": "Audiobook",
+      "міні-альбом": "Ep",
+      "сінгл": "Single",
+      "шоу": "Show"
     }
   },
   "bg": {
@@ -279,6 +321,13 @@
       "млн": 6,
       "млрд": 9,
       "хил": 3
+    },
+    "album_types": {
+      "албум": "Album",
+      "аудиокнига": "Audiobook",
+      "миниалбум": "Ep",
+      "предаване": "Show",
+      "сингъл": "Single"
     }
   },
   "bn": {
@@ -314,10 +363,17 @@
     },
     "comma_decimal": false,
     "number_tokens": {
+      "কোটি": 7,
       "লাটি": 5,
       "শত": 2,
-      "হাটি": 3,
-      "কোটি": 7
+      "হাটি": 3
+    },
+    "album_types": {
+      "অডিওবুক": "Audiobook",
+      "অ্যালবাম": "Album",
+      "ইপি": "Ep",
+      "শো": "Show",
+      "সিঙ্গেল": "Single"
     }
   },
   "bs": {
@@ -368,6 +424,13 @@
       "hilj": 3,
       "mil": 6,
       "mlr": 9
+    },
+    "album_types": {
+      "album": "Album",
+      "audio knjiga": "Audiobook",
+      "ep": "Ep",
+      "serija": "Show",
+      "singl": "Single"
     }
   },
   "ca": {
@@ -413,6 +476,13 @@
       "M": 6,
       "m": 3,
       "mM": 9
+    },
+    "album_types": {
+      "audiollibre": "Audiobook",
+      "ep": "Ep",
+      "programa": "Show",
+      "single": "Single",
+      "àlbum": "Album"
     }
   },
   "cs": {
@@ -446,6 +516,13 @@
       "mil": 6,
       "mld": 9,
       "tis": 3
+    },
+    "album_types": {
+      "album": "Album",
+      "audiokniha": "Audiobook",
+      "ep": "Ep",
+      "singl": "Single",
+      "zobrazit": "Show"
     }
   },
   "da": {
@@ -489,6 +566,13 @@
     "number_tokens": {
       "mia": 9,
       "mio": 6
+    },
+    "album_types": {
+      "album": "Album",
+      "ep": "Ep",
+      "lydbog": "Audiobook",
+      "lyddrama": "Show",
+      "single": "Single"
     }
   },
   "de": {
@@ -520,6 +604,13 @@
     "number_tokens": {
       "Mio": 6,
       "Mrd": 9
+    },
+    "album_types": {
+      "album": "Album",
+      "ep": "Ep",
+      "hörbuch": "Audiobook",
+      "hörspiel": "Show",
+      "single": "Single"
     }
   },
   "el": {
@@ -565,6 +656,13 @@
       "δισ": 9,
       "εκ": 6,
       "χιλ": 3
+    },
+    "album_types": {
+      "ep": "Ep",
+      "single": "Single",
+      "άλμπουμ": "Album",
+      "εκπομπή": "Show",
+      "ηχητικό βιβλίο": "Audiobook"
     }
   },
   "en": {
@@ -615,6 +713,13 @@
       "M": 6,
       "crore": 7,
       "lakh": 5
+    },
+    "album_types": {
+      "album": "Album",
+      "audiobook": "Audiobook",
+      "ep": "Ep",
+      "show": "Show",
+      "single": "Single"
     }
   },
   "es": {
@@ -659,6 +764,13 @@
     "number_tokens": {
       "M": 6,
       "mil": 3
+    },
+    "album_types": {
+      "audiodrama": "Show",
+      "audiolibro": "Audiobook",
+      "ep": "Ep",
+      "single": "Single",
+      "álbum": "Album"
     }
   },
   "es-US": {
@@ -705,6 +817,13 @@
     "number_tokens": {
       "M": 6,
       "mil": 3
+    },
+    "album_types": {
+      "audiolibro": "Audiobook",
+      "ep": "Ep",
+      "programa": "Show",
+      "sencillo": "Single",
+      "álbum": "Album"
     }
   },
   "et": {
@@ -752,6 +871,13 @@
       "mld": 9,
       "mln": 6,
       "tuh": 3
+    },
+    "album_types": {
+      "album": "Album",
+      "audioraamat": "Audiobook",
+      "ep": "Ep",
+      "sari": "Show",
+      "singel": "Single"
     }
   },
   "eu": {
@@ -791,6 +917,13 @@
     "comma_decimal": true,
     "number_tokens": {
       "M": 6
+    },
+    "album_types": {
+      "albuma": "Album",
+      "audio-liburua": "Audiobook",
+      "ep": "Ep",
+      "saioa": "Show",
+      "singlea": "Single"
     }
   },
   "fa": {
@@ -829,6 +962,13 @@
       "میلیارد": 9,
       "میلیون": 6,
       "هزار": 3
+    },
+    "album_types": {
+      "آلبوم": "Album",
+      "تک آهنگ": "Single",
+      "نمایش": "Show",
+      "پخش فوق‌العاده": "Ep",
+      "کتاب صوتی": "Audiobook"
     }
   },
   "fi": {
@@ -861,6 +1001,13 @@
       "milj": 6,
       "mrd": 9,
       "t": 3
+    },
+    "album_types": {
+      "albumi": "Album",
+      "ep": "Ep",
+      "näytä": "Show",
+      "single": "Single",
+      "äänikirja": "Audiobook"
     }
   },
   "fil": {
@@ -898,6 +1045,13 @@
     "number_tokens": {
       "B": 9,
       "M": 6
+    },
+    "album_types": {
+      "album": "Album",
+      "audiobook": "Audiobook",
+      "ep": "Ep",
+      "palabas": "Show",
+      "single": "Single"
     }
   },
   "fr": {
@@ -945,6 +1099,13 @@
       "G": 9,
       "M": 6,
       "Md": 9
+    },
+    "album_types": {
+      "album": "Album",
+      "ep": "Ep",
+      "livre audio": "Audiobook",
+      "single": "Single",
+      "émission": "Show"
     }
   },
   "gl": {
@@ -988,6 +1149,13 @@
     "comma_decimal": true,
     "number_tokens": {
       "M": 6
+    },
+    "album_types": {
+      "audiolibro": "Audiobook",
+      "ep": "Ep",
+      "programa": "Show",
+      "single": "Single",
+      "álbum": "Album"
     }
   },
   "gu": {
@@ -1027,6 +1195,13 @@
       "કરોડ": 7,
       "લાખ": 5,
       "હજાર": 3
+    },
+    "album_types": {
+      "ep": "Ep",
+      "આલ્બમ": "Album",
+      "ઑડિયોબુક": "Audiobook",
+      "શો": "Show",
+      "સિંગલ": "Single"
     }
   },
   "hi": {
@@ -1066,6 +1241,13 @@
       "क॰": 7,
       "लाख": 5,
       "हज़ार": 3
+    },
+    "album_types": {
+      "ईपी": "Ep",
+      "एल्‍बम": "Album",
+      "ऑडियो बुक": "Audiobook",
+      "शो": "Show",
+      "सिंगल": "Single"
     }
   },
   "hr": {
@@ -1116,6 +1298,13 @@
       "mil": 6,
       "mlr": 9,
       "tis": 3
+    },
+    "album_types": {
+      "album": "Album",
+      "audioknjiga": "Audiobook",
+      "ep": "Ep",
+      "serija": "Show",
+      "singl": "Single"
     }
   },
   "hu": {
@@ -1161,6 +1350,13 @@
       "E": 3,
       "M": 6,
       "Mrd": 9
+    },
+    "album_types": {
+      "album": "Album",
+      "ep": "Ep",
+      "hangoskönyv": "Audiobook",
+      "kislemez": "Single",
+      "műsor": "Show"
     }
   },
   "hy": {
@@ -1199,6 +1395,13 @@
       "հզր": 3,
       "մլն": 6,
       "մլրդ": 9
+    },
+    "album_types": {
+      "ep": "Ep",
+      "ալբոմ": "Album",
+      "աուդիոգիրք": "Audiobook",
+      "աուդիոդրամա": "Show",
+      "սինգլ": "Single"
     }
   },
   "id": {
@@ -1237,6 +1440,13 @@
       "M": 9,
       "jt": 6,
       "rb": 3
+    },
+    "album_types": {
+      "acara": "Show",
+      "album": "Album",
+      "buku audio": "Audiobook",
+      "ep": "Ep",
+      "single": "Single"
     }
   },
   "is": {
@@ -1282,6 +1492,13 @@
       "m": 6,
       "ma": 9,
       "þ": 3
+    },
+    "album_types": {
+      "ep": "Ep",
+      "hljóðbók": "Audiobook",
+      "plata": "Album",
+      "smáskífa": "Single",
+      "þáttur": "Show"
     }
   },
   "it": {
@@ -1326,6 +1543,13 @@
     "number_tokens": {
       "Mln": 6,
       "Mrd": 9
+    },
+    "album_types": {
+      "album": "Album",
+      "audiolibro": "Audiobook",
+      "ep": "Ep",
+      "programma": "Show",
+      "singolo": "Single"
     }
   },
   "iw": {
@@ -1377,6 +1601,13 @@
       "‫B‏‬": 9,
       "‫K‏‬": 3,
       "‫M‏‬": 6
+    },
+    "album_types": {
+      "אלבום": "Album",
+      "מיני-אלבום": "Ep",
+      "סינגל": "Single",
+      "ספר אודיו": "Audiobook",
+      "תסכית": "Show"
     }
   },
   "ja": {
@@ -1401,6 +1632,13 @@
     "number_tokens": {
       "万": 4,
       "億": 8
+    },
+    "album_types": {
+      "ep": "Ep",
+      "アルバム": "Album",
+      "オーディオブック": "Audiobook",
+      "シングル": "Single",
+      "表示": "Show"
     }
   },
   "ka": {
@@ -1439,6 +1677,13 @@
       "ათ": 3,
       "მლნ": 6,
       "მლრდ": 9
+    },
+    "album_types": {
+      "ალბომი": "Album",
+      "აუდიოწიგნი": "Audiobook",
+      "მინი-ალბომი": "Ep",
+      "სინგლი": "Single",
+      "ჩვენება": "Show"
     }
   },
   "kk": {
@@ -1478,6 +1723,13 @@
       "млн": 6,
       "млрд": 9,
       "мың": 3
+    },
+    "album_types": {
+      "ep": "Ep",
+      "альбом": "Album",
+      "аудиокітап": "Audiobook",
+      "сингл": "Single",
+      "шоу": "Show"
     }
   },
   "km": {
@@ -1516,6 +1768,13 @@
       "ប៊ីលាន": 9,
       "ពាន់": 3,
       "លាន": 6
+    },
+    "album_types": {
+      "ep": "Ep",
+      "កម្មវិធីទូរទស្សន៍": "Show",
+      "ចម្រៀងទោល": "Single",
+      "សៀវភៅ​ជា​សំឡេង": "Audiobook",
+      "អាល់ប៊ុម": "Album"
     }
   },
   "kn": {
@@ -1560,6 +1819,13 @@
     "number_tokens": {
       "ಕೋಟಿ": 7,
       "ಲಕ್ಷ": 5
+    },
+    "album_types": {
+      "ep": "Ep",
+      "ಆಡಿಯೋಬುಕ್": "Audiobook",
+      "ಆಲ್ಬಮ್": "Album",
+      "ಒಂದೇ": "Single",
+      "ಶೋ": "Show"
     }
   },
   "ko": {
@@ -1584,6 +1850,13 @@
       "만회": 4,
       "억회": 8,
       "천회": 3
+    },
+    "album_types": {
+      "ep": "Ep",
+      "싱글": "Single",
+      "앨범": "Album",
+      "오디오북": "Audiobook",
+      "표시": "Show"
     }
   },
   "ky": {
@@ -1622,6 +1895,13 @@
       "миң": 3,
       "млд": 9,
       "млн": 6
+    },
+    "album_types": {
+      "альбом": "Album",
+      "аудиокитеп": "Audiobook",
+      "сингл": "Single",
+      "чакан альбом": "Ep",
+      "шоу": "Show"
     }
   },
   "lo": {
@@ -1661,6 +1941,13 @@
       "ຕື້": 9,
       "ພັນ": 3,
       "ລ້ານ": 6
+    },
+    "album_types": {
+      "ep": "Ep",
+      "ຊິງເກິນ": "Single",
+      "ປຶ້ມສຽງ": "Audiobook",
+      "ສະແດງ": "Show",
+      "ອະລະບໍ້າ": "Album"
     }
   },
   "lt": {
@@ -1700,6 +1987,13 @@
       "mln": 6,
       "mlrd": 9,
       "tūkst": 3
+    },
+    "album_types": {
+      "albumas": "Album",
+      "garsinė knyga": "Audiobook",
+      "mini albumas": "Ep",
+      "serialas": "Show",
+      "singlas": "Single"
     }
   },
   "lv": {
@@ -1745,6 +2039,13 @@
       "milj": 6,
       "mljrd": 9,
       "tūkst": 3
+    },
+    "album_types": {
+      "albums": "Album",
+      "audiogrāmata": "Audiobook",
+      "ep ieraksts": "Ep",
+      "pārraide": "Show",
+      "singls": "Single"
     }
   },
   "mk": {
@@ -1778,6 +2079,13 @@
       "илј": 3,
       "мил": 6,
       "милј": 9
+    },
+    "album_types": {
+      "ep": "Ep",
+      "албум": "Album",
+      "аудиокнига": "Audiobook",
+      "серија": "Show",
+      "сингл": "Single"
     }
   },
   "ml": {
@@ -1815,6 +2123,13 @@
     "number_tokens": {
       "കോടി": 7,
       "ലക്ഷം": 5
+    },
+    "album_types": {
+      "ep": "Ep",
+      "ആല്‍‌ബം": "Album",
+      "ഓഡിയോ ബുക്ക്": "Audiobook",
+      "ഷോ": "Show",
+      "സിംഗിൾ": "Single"
     }
   },
   "mn": {
@@ -1840,6 +2155,13 @@
       "мянга": 3,
       "сая": 6,
       "тэрбум": 9
+    },
+    "album_types": {
+      "ep": "Ep",
+      "аудио ном": "Audiobook",
+      "жүжиг": "Show",
+      "сингл": "Single",
+      "цомог": "Album"
     }
   },
   "mr": {
@@ -1886,6 +2208,13 @@
       "कोटी": 7,
       "लाख": 5,
       "ह": 3
+    },
+    "album_types": {
+      "अल्बम": "Album",
+      "ऑडिओबुक": "Audiobook",
+      "भाग": "Ep",
+      "शो": "Show",
+      "सिंगल": "Single"
     }
   },
   "ms": {
@@ -1923,6 +2252,13 @@
     "number_tokens": {
       "B": 9,
       "J": 6
+    },
+    "album_types": {
+      "album": "Album",
+      "buku audio": "Audiobook",
+      "ep": "Ep",
+      "rancangan": "Show",
+      "rekod single": "Single"
     }
   },
   "my": {
@@ -1965,6 +2301,13 @@
       "သန်း": 6,
       "သိန်း": 5,
       "သောင်း": 4
+    },
+    "album_types": {
+      "ep": "Ep",
+      "တစ်ကိုယ်တော်": "Single",
+      "ရှိုး": "Show",
+      "အယ်လ်ဘမ်": "Album",
+      "အော်ဒီယိုစာအုပ်": "Audiobook"
     }
   },
   "ne": {
@@ -2004,6 +2347,13 @@
       "करोड": 7,
       "लाख": 5,
       "हजार": 3
+    },
+    "album_types": {
+      "ep": "Ep",
+      "अडियोबुक": "Audiobook",
+      "एकल एल्बम": "Single",
+      "एल्बम": "Album",
+      "टिभी सो": "Show"
     }
   },
   "nl": {
@@ -2046,6 +2396,13 @@
     "number_tokens": {
       "mld": 9,
       "mln": 6
+    },
+    "album_types": {
+      "aflevering": "Show",
+      "album": "Album",
+      "audioboek": "Audiobook",
+      "ep": "Ep",
+      "single": "Single"
     }
   },
   "no": {
@@ -2090,6 +2447,13 @@
     "number_tokens": {
       "mill": 6,
       "mrd": 9
+    },
+    "album_types": {
+      "album": "Album",
+      "ep": "Ep",
+      "hørespill": "Show",
+      "lydbok": "Audiobook",
+      "singel": "Single"
     }
   },
   "or": {
@@ -2128,6 +2492,13 @@
       "ନିଟି": 6,
       "ବିଟି": 9,
       "ହଟି": 3
+    },
+    "album_types": {
+      "ep": "Ep",
+      "ଅଡିଓବୁକ୍": "Audiobook",
+      "ଆଲବମ୍": "Album",
+      "ଶୋ": "Show",
+      "ସିଙ୍ଗଲ୍": "Single"
     }
   },
   "pa": {
@@ -2170,6 +2541,13 @@
       "ਕਰੋੜ": 7,
       "ਲੱਖ": 5,
       "ਹਜ਼ਾਰ": 3
+    },
+    "album_types": {
+      "ep": "Ep",
+      "ਆਡੀਓ-ਕਿਤਾਬ": "Audiobook",
+      "ਐਲਬਮ": "Album",
+      "ਸ਼ੋਅ": "Show",
+      "ਸਿੰਗਲ": "Single"
     }
   },
   "pl": {
@@ -2220,6 +2598,13 @@
       "mld": 9,
       "mln": 6,
       "tys": 3
+    },
+    "album_types": {
+      "album": "Album",
+      "audiobook": "Audiobook",
+      "ep": "Ep",
+      "singiel": "Single",
+      "słuchowisko": "Show"
     }
   },
   "pt": {
@@ -2265,6 +2650,13 @@
       "bi": 9,
       "mi": 6,
       "mil": 3
+    },
+    "album_types": {
+      "audiolivro": "Audiobook",
+      "ep": "Ep",
+      "programa": "Show",
+      "single": "Single",
+      "álbum": "Album"
     }
   },
   "pt-PT": {
@@ -2297,6 +2689,13 @@
       "M": 6,
       "mM": 9,
       "mil": 3
+    },
+    "album_types": {
+      "ep": "Ep",
+      "livro áudio": "Audiobook",
+      "programa": "Show",
+      "single": "Single",
+      "álbum": "Album"
     }
   },
   "ro": {
@@ -2341,6 +2740,13 @@
     "number_tokens": {
       "mil": 6,
       "mld": 9
+    },
+    "album_types": {
+      "album": "Album",
+      "carte audio": "Audiobook",
+      "emisiune": "Show",
+      "ep": "Ep",
+      "single": "Single"
     }
   },
   "ru": {
@@ -2392,6 +2798,13 @@
       "млн": 6,
       "млрд": 9,
       "тыс": 3
+    },
+    "album_types": {
+      "ep": "Ep",
+      "альбом": "Album",
+      "аудиокнига": "Audiobook",
+      "аудиошоу": "Show",
+      "сингл": "Single"
     }
   },
   "si": {
@@ -2431,6 +2844,13 @@
       "ද": 3,
       "බි": 9,
       "මි": 6
+    },
+    "album_types": {
+      "ඇල්බමය": "Album",
+      "තනි": "Single",
+      "දීවා": "Ep",
+      "ශ්‍රව්‍යපොත": "Audiobook",
+      "සංදර්ශනය": "Show"
     }
   },
   "sk": {
@@ -2463,6 +2883,13 @@
       "mil": 6,
       "mld": 9,
       "tis": 3
+    },
+    "album_types": {
+      "album": "Album",
+      "audiokniha": "Audiobook",
+      "ep": "Ep",
+      "relácia": "Show",
+      "singel": "Single"
     }
   },
   "sl": {
@@ -2516,6 +2943,13 @@
       "mio": 6,
       "mrd": 9,
       "tis": 3
+    },
+    "album_types": {
+      "album": "Album",
+      "ep": "Ep",
+      "oddaja": "Show",
+      "singel": "Single",
+      "zvočna knjiga": "Audiobook"
     }
   },
   "sq": {
@@ -2557,6 +2991,13 @@
       "mijë": 3,
       "mld": 9,
       "mln": 6
+    },
+    "album_types": {
+      "album": "Album",
+      "ep": "Ep",
+      "libër me audio": "Audiobook",
+      "shfaq": "Show",
+      "single": "Single"
     }
   },
   "sr": {
@@ -2591,6 +3032,13 @@
       "мил": 6,
       "млрд": 9,
       "хиљ": 3
+    },
+    "album_types": {
+      "ep": "Ep",
+      "албум": "Album",
+      "аудио-књига": "Audiobook",
+      "серија": "Show",
+      "сингл": "Single"
     }
   },
   "sr-Latn": {
@@ -2626,6 +3074,13 @@
       "hilj": 3,
       "mil": 6,
       "mlrd": 9
+    },
+    "album_types": {
+      "album": "Album",
+      "audio-knjiga": "Audiobook",
+      "ep": "Ep",
+      "serija": "Show",
+      "singl": "Single"
     }
   },
   "sv": {
@@ -2669,6 +3124,13 @@
     "number_tokens": {
       "md": 9,
       "mn": 6
+    },
+    "album_types": {
+      "album": "Album",
+      "ep": "Ep",
+      "ljudbok": "Audiobook",
+      "ljuddrama": "Show",
+      "singel": "Single"
     }
   },
   "sw": {
@@ -2709,6 +3171,13 @@
       "B": 9,
       "M": 6,
       "elfu": 3
+    },
+    "album_types": {
+      "albamu": "Album",
+      "ep": "Ep",
+      "kipindi": "Show",
+      "kitabu cha kusikiliza": "Audiobook",
+      "singo": "Single"
     }
   },
   "ta": {
@@ -2752,6 +3221,13 @@
     "number_tokens": {
       "கோடி": 7,
       "லட்சம்": 5
+    },
+    "album_types": {
+      "ep": "Ep",
+      "ஆடியோ புத்தகம்": "Audiobook",
+      "ஆடியோ ஷோ": "Show",
+      "ஆல்பம்": "Album",
+      "சிங்கிள்": "Single"
     }
   },
   "te": {
@@ -2797,6 +3273,13 @@
       "కోట్లు": 7,
       "లక్ష": 5,
       "లక్షలు": 5
+    },
+    "album_types": {
+      "ep": "Ep",
+      "ఆడియోబుక్": "Audiobook",
+      "ఆల్బమ్": "Album",
+      "చూపించు": "Show",
+      "సింగిల్": "Single"
     }
   },
   "th": {
@@ -2838,6 +3321,13 @@
       "หมื่น": 4,
       "หมื่นล้าน": 10,
       "แสน": 5
+    },
+    "album_types": {
+      "ep": "Ep",
+      "ซิงเกิล": "Single",
+      "รายการ": "Show",
+      "หนังสือเสียง": "Audiobook",
+      "อัลบั้ม": "Album"
     }
   },
   "tr": {
@@ -2876,6 +3366,13 @@
       "B": 3,
       "Mn": 6,
       "Mr": 9
+    },
+    "album_types": {
+      "albüm": "Album",
+      "ep": "Ep",
+      "program": "Show",
+      "sesli kitap": "Audiobook",
+      "single": "Single"
     }
   },
   "uk": {
@@ -2927,6 +3424,13 @@
       "млн": 6,
       "млрд": 9,
       "тис": 3
+    },
+    "album_types": {
+      "альбом": "Album",
+      "аудіодрама": "Show",
+      "аудіокнига": "Audiobook",
+      "мініальбом": "Ep",
+      "сингл": "Single"
     }
   },
   "ur": {
@@ -2972,6 +3476,13 @@
       "لاکھ": 5,
       "کروڑ": 7,
       "ہزار": 3
+    },
+    "album_types": {
+      "ep": "Ep",
+      "آڈیو بک": "Audiobook",
+      "البم": "Album",
+      "شو": "Show",
+      "واحد": "Single"
     }
   },
   "uz": {
@@ -3010,6 +3521,13 @@
       "ming": 3,
       "mln": 6,
       "mlrd": 9
+    },
+    "album_types": {
+      "albom": "Album",
+      "audiokitob": "Audiobook",
+      "ep": "Ep",
+      "shou": "Show",
+      "singl": "Single"
     }
   },
   "vi": {
@@ -3036,6 +3554,13 @@
       "N": 3,
       "T": 9,
       "Tr": 6
+    },
+    "album_types": {
+      "chương trình": "Show",
+      "sách nói": "Audiobook",
+      "đĩa nhạc": "Album",
+      "đĩa nhạc mở rộng (ep)": "Ep",
+      "đĩa đơn": "Single"
     }
   },
   "zh-CN": {
@@ -3060,6 +3585,13 @@
     "number_tokens": {
       "万": 4,
       "亿": 8
+    },
+    "album_types": {
+      "专辑": "Album",
+      "单曲": "Single",
+      "广播剧": "Show",
+      "有声读物": "Audiobook",
+      "迷你专辑": "Ep"
     }
   },
   "zh-HK": {
@@ -3085,6 +3617,13 @@
     "number_tokens": {
       "B": 9,
       "M": 6
+    },
+    "album_types": {
+      "ep": "Ep",
+      "單曲": "Single",
+      "專輯": "Album",
+      "有聲書": "Audiobook",
+      "節目": "Show"
     }
   },
   "zh-TW": {
@@ -3109,6 +3648,13 @@
     "number_tokens": {
       "億": 8,
       "萬": 4
+    },
+    "album_types": {
+      "ep": "Ep",
+      "單曲": "Single",
+      "專輯": "Album",
+      "有聲書": "Audiobook",
+      "節目": "Show"
     }
   },
   "zu": {
@@ -3153,6 +3699,13 @@
     "number_tokens": {
       "B": 9,
       "M": 6
+    },
+    "album_types": {
+      "bonisa": "Show",
+      "i-albhamu": "Album",
+      "i-audiobook": "Audiobook",
+      "i-ep": "Ep",
+      "i-single": "Single"
     }
   }
 }

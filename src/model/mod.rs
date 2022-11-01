@@ -598,7 +598,9 @@ pub struct ChannelTag {
 */
 
 /// Verification status of a channel
-#[derive(Default, Copy, Clone, Debug, Serialize, Deserialize, PartialEq, Eq, Hash)]
+#[derive(
+    Default, Copy, Clone, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash,
+)]
 #[non_exhaustive]
 pub enum Verification {
     #[default]
@@ -954,7 +956,9 @@ pub struct MusicPlaylistItem {
 }
 
 /// YouTube Music album type
-#[derive(Default, Debug, Copy, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[derive(
+    Default, Debug, Copy, Clone, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash,
+)]
 #[non_exhaustive]
 pub enum AlbumType {
     /// Regular album (default)
@@ -964,6 +968,10 @@ pub enum AlbumType {
     Ep,
     /// Single
     Single,
+    /// Audiobook
+    Audiobook,
+    /// Show (audio drama)
+    Show,
 }
 
 /// Album identifier
@@ -1059,7 +1067,7 @@ pub enum MusicItem {
     Playlist(MusicPlaylistItem),
 }
 
-#[derive(Debug, Copy, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[derive(Debug, Copy, Clone, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub enum MusicEntityType {
     Track,
     Album,

@@ -1,6 +1,6 @@
 use std::{collections::BTreeMap, fs::File, io::BufReader, path::Path, str::FromStr};
 
-use rustypipe::param::Language;
+use rustypipe::{model::AlbumType, param::Language};
 use serde::{Deserialize, Serialize};
 
 const DICT_PATH: &str = "testfiles/dict/dictionary.json";
@@ -44,12 +44,21 @@ pub struct DictEntry {
     ///
     /// Format: Parsed token -> decimal power
     pub number_tokens: BTreeMap<String, u8>,
+    /// Names of album types (Album, Single, ...)
+    ///
+    /// Format: Parsed text -> Album type
+    pub album_types: BTreeMap<String, AlbumType>,
 }
 
 #[derive(Clone, Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+pub struct TextRuns {
+    pub runs: Vec<Text>,
+}
+
+#[derive(Clone, Debug, Deserialize)]
 pub struct Text {
-    pub simple_text: String,
+    #[serde(alias = "simpleText")]
+    pub text: String,
 }
 
 pub fn read_dict(project_root: &Path) -> Dictionary {

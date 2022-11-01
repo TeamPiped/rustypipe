@@ -14,7 +14,7 @@ MusicAlbum(
     ),
   ],
   artists_txt: "Kingdom Force",
-  album_type: Album,
+  album_type: Show,
   year: Some(2022),
   by_va: false,
   tracks: [

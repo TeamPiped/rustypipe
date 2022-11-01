@@ -9,7 +9,7 @@ MusicAlbum(
   cover: "[cover]",
   artists: [],
   artists_txt: "George Orwell & Dirk Jacobs",
-  album_type: Album,
+  album_type: Audiobook,
   year: Some(2022),
   by_va: false,
   tracks: [
