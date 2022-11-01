@@ -44,6 +44,7 @@ pub async fn download_testfiles(project_root: &Path) {
     music_search_albums(&testfiles).await;
     music_search_artists(&testfiles).await;
     music_search_playlists(&testfiles).await;
+    music_search_cont(&testfiles).await;
 }
 
 const CLIENT_TYPES: [ClientType; 5] = [
@@ -597,4 +598,23 @@ async fn music_search_playlists(testfiles: &Path) {
             .await
             .unwrap();
     }
+}
+
+async fn music_search_cont(testfiles: &Path) {
+    let mut json_path = testfiles.to_path_buf();
+    json_path.push("music_search");
+    json_path.push("tracks_cont.json");
+    if json_path.exists() {
+        return;
+    }
+
+    let rp = RustyPipe::new();
+    let res = rp
+        .query()
+        .music_search_tracks("black mamba", false)
+        .await
+        .unwrap();
+
+    let rp = rp_testfile(&json_path);
+    res.items.next(&rp.query()).await.unwrap().unwrap();
 }

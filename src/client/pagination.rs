@@ -332,6 +332,7 @@ mod tests {
 
     #[rstest]
     #[case("playlist_tracks", "music_playlist/playlist_cont")]
+    #[case("search_tracks", "music_search/tracks_cont")]
     fn map_continuation_tracks(#[case] name: &str, #[case] path: &str) {
         let filename = format!("testfiles/{}.json", path);
         let json_path = Path::new(&filename);

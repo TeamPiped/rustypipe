@@ -1,0 +1,629 @@
+---
+source: src/client/pagination.rs
+expression: paginator
+---
+Paginator(
+  count: None,
+  items: [
+    TrackItem(
+      id: "rNsISA-kWzM",
+      title: "Black Mamba Dub",
+      duration: 248,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/zRVppSgdih64UOcY_0-sZacnxhMkII4v4OotgFbV1SVbLT3qk4NmfQRXwhxszMJKTmb3uo8MzOwkyQ=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/zRVppSgdih64UOcY_0-sZacnxhMkII4v4OotgFbV1SVbLT3qk4NmfQRXwhxszMJKTmb3uo8MzOwkyQ=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCxoJ3pl32f39kmTvIR_NWOg",
+          name: "Akae Beka",
+        ),
+      ],
+      artists_txt: Some("Akae Beka"),
+      album: Some(AlbumId(
+        id: "MPREb_iuN0lQwEmRp",
+        name: "Kings Dub",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "vMZqNPZADFw",
+      title: "Black Mamba (feat. Ermal Meta)",
+      duration: 287,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/POoljmkFZgedlsgFfdn4B1kcZZ7P9Kx1xszHV9wT082T7GYX4c0lRrYaalrXIkT-ZeTeB5esqrftpzQ0GQ=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/POoljmkFZgedlsgFfdn4B1kcZZ7P9Kx1xszHV9wT082T7GYX4c0lRrYaalrXIkT-ZeTeB5esqrftpzQ0GQ=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCz7CQ4Mn9VChcO5-8j0SZpQ",
+          name: "Stylophonic",
+        ),
+      ],
+      artists_txt: Some("Stylophonic"),
+      album: Some(AlbumId(
+        id: "MPREb_HOsmtxbCHyg",
+        name: "Boom!",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "C8B-nBnB7Bk",
+      title: "Black Mamba",
+      duration: 177,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/2cJawayDujRRcl8OKABi82_aa4sH6EGLAqxlx976Syzh86c9inNlY2xch5s4GWEo5iSXVq8VdS_59l8=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/2cJawayDujRRcl8OKABi82_aa4sH6EGLAqxlx976Syzh86c9inNlY2xch5s4GWEo5iSXVq8VdS_59l8=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCAlOD5s3Ro27M61-2Z_UB7w",
+          name: "Tee See Connection",
+        ),
+      ],
+      artists_txt: Some("Tee See Connection"),
+      album: Some(AlbumId(
+        id: "MPREb_yrsxU7t0h6l",
+        name: "Black Mamba",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "29MOu6Y781I",
+      title: "Rip Black Mamba",
+      duration: 122,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/4XunKmdccrggx1GrQiX5T5OrPQpSLuzacDQjvFHUYQasIDClF-TtQdSCYXYDQ8gGy7CYn2J9aJC5P4c=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/4XunKmdccrggx1GrQiX5T5OrPQpSLuzacDQjvFHUYQasIDClF-TtQdSCYXYDQ8gGy7CYn2J9aJC5P4c=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCJv4icVpfpTaKZcB_Bytxyw",
+          name: "Bravoo Hunnidz",
+        ),
+      ],
+      artists_txt: Some("Bravoo Hunnidz"),
+      album: Some(AlbumId(
+        id: "MPREb_7Bg4fukodPY",
+        name: "Ballin\' Like I\'m Kobe",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "AdvPpJVvyEg",
+      title: "Black Mamba",
+      duration: 126,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/Ue_Q3bgiMyvB_Rk8g0nCyTJHebz_A7f6twQkaRLX-iaHug2j5MmIwS9iHHW94S5x7gOwymGNngIDOXE=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/Ue_Q3bgiMyvB_Rk8g0nCyTJHebz_A7f6twQkaRLX-iaHug2j5MmIwS9iHHW94S5x7gOwymGNngIDOXE=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UC7RJTtpE3qwbw6-Idq9PTIg",
+          name: "Shockwave-Sound",
+        ),
+      ],
+      artists_txt: Some("Shockwave-Sound"),
+      album: Some(AlbumId(
+        id: "MPREb_Kg4Ff883GH0",
+        name: "Out on the Road",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "kv3Z269PQvE",
+      title: "Black Mamba",
+      duration: 178,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/PXz8D3pENlYjM-uBxgaMrWZtydsXzV7jGznVo1g9qf11fDckcTonR4NgMv0fwxjesqCvgq-uRSV3gfQTyA=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/PXz8D3pENlYjM-uBxgaMrWZtydsXzV7jGznVo1g9qf11fDckcTonR4NgMv0fwxjesqCvgq-uRSV3gfQTyA=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCh4Y9bvt_6vDq1gQhhT8AdA",
+          name: "Solo Da Honcho",
+        ),
+      ],
+      artists_txt: Some("Solo Da Honcho"),
+      album: Some(AlbumId(
+        id: "MPREb_fmNpLFKg4BY",
+        name: "Black Mamba",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "y74ZqAkFkK4",
+      title: "Born To Fight",
+      duration: 278,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/g0iyEdaYwlSjWkL516U_yDhCNh0ybcMIIcxBLtzRU32z8-K6-lY4n7dLy4QLWjDVeG28_uPaMRLRipzz=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/g0iyEdaYwlSjWkL516U_yDhCNh0ybcMIIcxBLtzRU32z8-K6-lY4n7dLy4QLWjDVeG28_uPaMRLRipzz=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCRpi1gBlax4sK3dNNxIxxFg",
+          name: "Black Mamba Official",
+        ),
+      ],
+      artists_txt: Some("Black Mamba Official"),
+      album: Some(AlbumId(
+        id: "MPREb_zMwHYnQRmuP",
+        name: "Born To Fight",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "ZVnqAUnj-1Y",
+      title: "Black Mamba",
+      duration: 188,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/WOkfIAGaz2Q_RhoMqgLQPS8zfrnT85NEpwgbvyc04DCS9fEw8y03FqAA4iUEABq0Adcey0w4erkX67vJoA=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/WOkfIAGaz2Q_RhoMqgLQPS8zfrnT85NEpwgbvyc04DCS9fEw8y03FqAA4iUEABq0Adcey0w4erkX67vJoA=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [],
+      artists_txt: Some("Dollah"),
+      album: Some(AlbumId(
+        id: "MPREb_5mxIz2hChjd",
+        name: "Black Mamba",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "REmUidcJt5I",
+      title: "Savage",
+      duration: 239,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/WVm938cCHuYeJyYRz0a8NHrvTXnEM6_aPiZOyv8ZzPVWt-wFqM1Fnkko68jgNPhhwI5ub_8z8n1OyhA=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/WVm938cCHuYeJyYRz0a8NHrvTXnEM6_aPiZOyv8ZzPVWt-wFqM1Fnkko68jgNPhhwI5ub_8z8n1OyhA=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCEdZAdnnKqbaHOlv8nM6OtA",
+          name: "aespa",
+        ),
+      ],
+      artists_txt: Some("aespa"),
+      album: Some(AlbumId(
+        id: "MPREb_ThKZWN8DQwp",
+        name: "Savage - The 1st Mini Album",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "63sEilefjtQ",
+      title: "Black Mamba",
+      duration: 233,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/Smo8SmweSdDGfGCWbyo_WY08R72MwqkEx6eq9aUTc2TulaGJs7uh9nDoqcPjV5BRkBFtrCRAm8CryjMImA=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/Smo8SmweSdDGfGCWbyo_WY08R72MwqkEx6eq9aUTc2TulaGJs7uh9nDoqcPjV5BRkBFtrCRAm8CryjMImA=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCQSz-Rhz_ew4hUprXww4PAA",
+          name: "Crystal Ignite",
+        ),
+      ],
+      artists_txt: Some("Crystal Ignite"),
+      album: Some(AlbumId(
+        id: "MPREb_E29fqYqQp2V",
+        name: "Black Mamba",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "_LGy1K5vmq8",
+      title: "Black Mamba",
+      duration: 284,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/9Djd9it37TlN57UrU90PfDOYETwyEuxewPaW9ZcRJICkYS5FAwYjsC8ZN50KVT6DTTRm14fD3JIuzifL=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/9Djd9it37TlN57UrU90PfDOYETwyEuxewPaW9ZcRJICkYS5FAwYjsC8ZN50KVT6DTTRm14fD3JIuzifL=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [],
+      artists_txt: Some("Izhha, yasom, Samu, Ritmo, and Dcibel"),
+      album: Some(AlbumId(
+        id: "MPREb_PokIWXXD0EX",
+        name: "Black Mamba",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "Ak98OIfed8o",
+      title: "Black Mamba",
+      duration: 346,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/of6AjBFZiDdRIOzHk8hJI_6rexaVeBX2Weli37gkTwo7GD0nQynE9I8FQMwwyqPkyXBP9rfzP4CAtAFk=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/of6AjBFZiDdRIOzHk8hJI_6rexaVeBX2Weli37gkTwo7GD0nQynE9I8FQMwwyqPkyXBP9rfzP4CAtAFk=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCuDH6EntL5Qx9YrQCZSFiPg",
+          name: "Jeroenski",
+        ),
+      ],
+      artists_txt: Some("Jeroenski"),
+      album: Some(AlbumId(
+        id: "MPREb_NjnY9xgK1OH",
+        name: "Urban Vibes (The Underground Sound of House Music, Vol. 9)",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "_aSqdZKxcuU",
+      title: "Soul Surrender",
+      duration: 273,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/POgJYf88Xb_XJz2JKhJLRgni4a4P_NOEEZ8Yy_EX4LwoWeadBuNg2shcLiS6ruxehoRerVqjbrRWPc1t=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/POgJYf88Xb_XJz2JKhJLRgni4a4P_NOEEZ8Yy_EX4LwoWeadBuNg2shcLiS6ruxehoRerVqjbrRWPc1t=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCRpi1gBlax4sK3dNNxIxxFg",
+          name: "Black Mamba Official",
+        ),
+      ],
+      artists_txt: Some("Black Mamba Official"),
+      album: Some(AlbumId(
+        id: "MPREb_TyaTgucQuuW",
+        name: "Soul Surrender",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "6Lb4bmEEfnY",
+      title: "Black Mamba Boy",
+      duration: 312,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/8pJynr17yAyhW8QL20jk_XdhBBokDmt6-HtrTo2IGiwe6nOsalsd64vNtXYM_vl8-iMxyqULJ3psnf_2Yg=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/8pJynr17yAyhW8QL20jk_XdhBBokDmt6-HtrTo2IGiwe6nOsalsd64vNtXYM_vl8-iMxyqULJ3psnf_2Yg=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCdkNrc_l73BHYKRhDqxBo9w",
+          name: "Black Mamba Man",
+        ),
+      ],
+      artists_txt: Some("Black Mamba Man"),
+      album: Some(AlbumId(
+        id: "MPREb_VDjWCOUvD7s",
+        name: "Anti Venom",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "4lrp5FWFIak",
+      title: "Black Mamba",
+      duration: 558,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/lPZMkkaPYEXPHmUgwebckyBi1M6EtIxyxhfsSTvEcqj0J5QSCy4MWICmznUSo5ym7nh6ZbSLAFjruoJ_=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/lPZMkkaPYEXPHmUgwebckyBi1M6EtIxyxhfsSTvEcqj0J5QSCy4MWICmznUSo5ym7nh6ZbSLAFjruoJ_=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCiS97__D2VSNbDMfajnkTkw",
+          name: "Liapin",
+        ),
+      ],
+      artists_txt: Some("Liapin"),
+      album: Some(AlbumId(
+        id: "MPREb_TQJZCrJZ9cZ",
+        name: "Basila",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "Kk8vT1o_gYE",
+      title: "Black Mamba",
+      duration: 324,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/tJDelxhiUsBVlb2jbqR-cBqnPpsFUaNCIvJ-kUET3kNPhbGXkRDMBpNtQ9fkqrwhewyhHwd5SvQnNbA=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/tJDelxhiUsBVlb2jbqR-cBqnPpsFUaNCIvJ-kUET3kNPhbGXkRDMBpNtQ9fkqrwhewyhHwd5SvQnNbA=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UC3z_UqNGLnKLHfBDONx82zQ",
+          name: "Romane, Stochelo Rosenberg",
+        ),
+        ChannelId(
+          id: "UCPrlkPZfsIoN6QG-jDRYQkQ",
+          name: "Romane",
+        ),
+        ChannelId(
+          id: "UCmsTxLepDwdzr07-ALKUEHw",
+          name: "Stochelo Rosenberg",
+        ),
+      ],
+      artists_txt: Some("Romane, Stochelo Rosenberg, Romane & Stochelo Rosenberg"),
+      album: Some(AlbumId(
+        id: "MPREb_RFMbAhqPjqV",
+        name: "Double jeu (Intégrale Romane, vol. 9)",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "FbUrY0GdO88",
+      title: "Black Mamba Blues",
+      duration: 186,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/F4XKnhpSiMqFwf-wXEV7w7HAT8B6u7KVKzuauyJGyntuwBArQ8nw6_4WLL7csBtJcvh4skHWI_168EXsJA=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/F4XKnhpSiMqFwf-wXEV7w7HAT8B6u7KVKzuauyJGyntuwBArQ8nw6_4WLL7csBtJcvh4skHWI_168EXsJA=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UC2wd_7GTMGiQjIb6wCwnLhQ",
+          name: "Hangmen",
+        ),
+      ],
+      artists_txt: Some("Hangmen"),
+      album: Some(AlbumId(
+        id: "MPREb_fEAazqatkfR",
+        name: "Singapore Slingers",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "OFesVwAdT80",
+      title: "Black Mamba",
+      duration: 149,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/WSxW9Z7k4cPpouB30qD1hvYITQA-e5J_dB7m0SuxEbIAUlYAGtKDc_uiDOHYHBLx4bPwbqKCjtO3-dtfdQ=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/WSxW9Z7k4cPpouB30qD1hvYITQA-e5J_dB7m0SuxEbIAUlYAGtKDc_uiDOHYHBLx4bPwbqKCjtO3-dtfdQ=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCXQvoNpH-EDGUnCe2ABldDg",
+          name: "Two Tone Club",
+        ),
+      ],
+      artists_txt: Some("Two Tone Club"),
+      album: Some(AlbumId(
+        id: "MPREb_ksEm4DleWYg",
+        name: "Don\'t Look Back",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "lNeJjPPKE1g",
+      title: "Black Mamba",
+      duration: 212,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/_F5_qGGtZ8jYva_vvaOTwvrw7Elig9Y119SFqUbyf45ioDo3aAkfmaVNb0czjGDzU_MUDjnXQmnwXa4=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/_F5_qGGtZ8jYva_vvaOTwvrw7Elig9Y119SFqUbyf45ioDo3aAkfmaVNb0czjGDzU_MUDjnXQmnwXa4=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UCPjjr_AvPvEhZ5nnzEACI4w",
+          name: "Adrian Raso",
+        ),
+      ],
+      artists_txt: Some("Adrian Raso"),
+      album: Some(AlbumId(
+        id: "MPREb_Ws191BQ8IqM",
+        name: "Black Mamba",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "SW_woyyA1Bg",
+      title: "Black Mamba Style",
+      duration: 202,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/o5Tdv51nXvS40_b1mz_YnpB9bQRSyzRzrahjwN9quAJrjiN3MWDRo5tqIVzH-dnJIwyZYKdeRa2rUDg=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/o5Tdv51nXvS40_b1mz_YnpB9bQRSyzRzrahjwN9quAJrjiN3MWDRo5tqIVzH-dnJIwyZYKdeRa2rUDg=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ChannelId(
+          id: "UC_GZYnrfgYfORwOb2MsuyIg",
+          name: "Tunde",
+        ),
+      ],
+      artists_txt: Some("Tunde"),
+      album: Some(AlbumId(
+        id: "MPREb_5VuPA4DLi53",
+        name: "Black Mamba Style",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+  ],
+  ctoken: Some("EqQDEgtibGFjayBtYW1iYRqUA0VnV0tBUUlJQVVnb2Fnd1FBeEFFRUFrUURoQUtFQVdDQVF0eVRuTkpVMEV0YTFkNlRZSUJDM1pOV25GT1VGcEJSRVozZ2dFTFF6aENMVzVDYmtJM1FtdUNBUXN5T1UxUGRUWlpOemd4U1lJQkMwRmtkbEJ3U2xaMmVVVm5nZ0VMYTNZeldqSTJPVkJSZGtXQ0FRdDVOelJhY1VGclJtdExOSUlCQzFwV2JuRkJWVzVxTFRGWmdnRUxVa1Z0Vldsa1kwcDBOVW1DQVFzMk0zTkZhV3hsWm1wMFVZSUJDMTlNUjNreFN6VjJiWEU0Z2dFTFFXczVPRTlKWm1Wa09HLUNBUXRmWVZOeFpGcExlR04xVllJQkN6Wk1ZalJpYlVWRlptNVpnZ0VMTkd4eWNEVkdWMFpKWVd1Q0FRdExhemgyVkRGdlgyZFpSWUlCQzBaaVZYSlpNRWRrVHpnNGdnRUxUMFpsYzFaM1FXUlVPRENDQVF0c1RtVkthbEJRUzBVeFo0SUJDMU5YWDNkdmVYbEJNVUpuGPHq0C4%3D"),
+  endpoint: music_browse,
+)
