@@ -1,0 +1,114 @@
+---
+source: src/serializer/text.rs
+expression: res
+---
+SAttributed {
+    ln: TextComponents(
+        [
+            Text {
+                text: "🎧Listen and download aespa's debut single \"Black Mamba\": ",
+            },
+            Web {
+                text: "https://smarturl.it/aespa_BlackMamba",
+                url: "https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbm1qRVVfQUlObURLcnFFQXBTUkJSOEpqWGIzUXxBQ3Jtc0tsNUJIYm5xdERxZk9rZEw3YlJzV0ZIYTNaSjU2a21PaFhNUmxzdjI5VE1VRWUyczZwYmtmQXh3QXV0eXlkMDgxRUJoNVMzRFZ6RlZ6MGdXeXdWQXFTTGY2ZHhFcUFqdExRQ21PYzNfWmlBaHhqYXVUdw&q=https%3A%2F%2Fsmarturl.it%2Faespa_BlackMamba&v=ZeerrnuLi5E",
+            },
+            Text {
+                text: "\n🐍The Debut Stage ",
+            },
+            Video {
+                text: "aespa 에스파 'Black ...",
+                video_id: "Ky5RT5oGg0w",
+                start_time: 0,
+            },
+            Text {
+                text: "\n\n🎟\u{fe0f} aespa Showcase SYNK in LA! Tickets now on sale: ",
+            },
+            Web {
+                text: "https://www.ticketmaster.com/event/0A...",
+                url: "https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbU1ObGNaRDZaRmo1X1ZjejBoeTRnWkxuVUJxZ3xBQ3Jtc0ttWk1BVVhaRXRfN1VYWXBqMHdaYURTRFJNcUZJVlY3a21wRHE2ZGZaclE3WUM5bEZWbmFfT0sxWTZHOVotWVh6U3YtVk94SlA5NkRFTnBPcHVCWDJhMGJRQlI3ZHN0MnJleHp0c2lEVWNxeW1jSDZuVQ&q=https%3A%2F%2Fwww.ticketmaster.com%2Fevent%2F0A005CCD9E871F6E&v=ZeerrnuLi5E",
+            },
+            Text {
+                text: "\n\nSubscribe to aespa Official YouTube Channel!\n",
+            },
+            Web {
+                text: "https://www.youtube.com/aespa?sub_con...",
+                url: "https://www.youtube.com/aespa?sub_confirmation=1",
+            },
+            Text {
+                text: "\n\naespa official\n",
+            },
+            Web {
+                text: "aespa",
+                url: "https://www.youtube.com/c/aespa",
+            },
+            Text {
+                text: "\n",
+            },
+            Web {
+                text: "https://www.instagram.com/aespa_official",
+                url: "https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbE9FVEtZZkVLUExjdFBnZjZnZ19KNWRYOVZUd3xBQ3Jtc0tsbHpCa1hLTVJ6MEllczlzUEpoVi1IQ2F5NG1jMnlOT3p3bnlFeE80ZzlsaG5CUXlFQnFGTkMtN19DcVYzQkw3bVlVVmNwQlpYQWZnNGNsME45WE1WQ21sR3V1Z3k5RG9DUDE0VTZQTm53Mk9vTWhiOA&q=https%3A%2F%2Fwww.instagram.com%2Faespa_official&v=ZeerrnuLi5E",
+            },
+            Text {
+                text: "\n",
+            },
+            Web {
+                text: "https://www.tiktok.com/@aespa_official",
+                url: "https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbVdlSGk3eDd5U0dUVG16VFJCQnhKVFBEUUxMQXxBQ3Jtc0tuX3ZJbENNY1ZSN0FFemdxTFdlcTVvc3AwZE05NEFvRW5nOHpZWDUtZG9ORHBnT1JGc2UySDh3WWl3MU53VjFvbHRSdjdxMUlGM2Z6SmdaLTVaWWxhamJEems0Uld3MGlTT0Z0bkh5Y0hpcnY1aXptSQ&q=https%3A%2F%2Fwww.tiktok.com%2F%40aespa_official&v=ZeerrnuLi5E",
+            },
+            Text {
+                text: "\n",
+            },
+            Web {
+                text: "https://twitter.com/aespa_Official",
+                url: "https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqa3lNcG1lMHkwSzNLQVBrUXFNTXl0N1hNa04wUXxBQ3Jtc0tubm1sQkdaVjNYR04xOHpJV3NxZVBpb3I5V1FVOHVFNC1uWE5vb211ZmZKYzhTZXZfbjlkY09fanBRdHpjUkdRVGJJYS0xZ3NBNkVZQVhWSS0xVDYwRlRzQ0J3ODQxNDE0ODAxd1Q0cG5icVlNWndscw&q=https%3A%2F%2Ftwitter.com%2Faespa_Official&v=ZeerrnuLi5E",
+            },
+            Text {
+                text: "\n",
+            },
+            Web {
+                text: "https://www.facebook.com/aespa.official",
+                url: "https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbjdBNG5yVEFwU0JMNGZaLUpQZ1ZoeGgwT0xOZ3xBQ3Jtc0tuRFdFNlJNV29PMThRNWo5MHZrREZ1ZU5oZlkxVmE4ZlU5STFCZW1mUFVSdXJ3VUQxUnNVVkUzLWJQMS1uRzVjdkRCV2ZxSWJ6cFNxRVVzejY0SDltZFZPc2xwS3ZPZGIxcFZ6cndIVkMtUjVtZ054cw&q=https%3A%2F%2Fwww.facebook.com%2Faespa.official&v=ZeerrnuLi5E",
+            },
+            Text {
+                text: "\n",
+            },
+            Web {
+                text: "https://weibo.com/aespa",
+                url: "https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbEtGMHB6eXBESW92aEVLc1FybkRwQU95eTh6UXxBQ3Jtc0tuWXc5d2JsTHFYcHExdy1FTDFyUV9wdU1DSmxELUxGSGlPMzhBdFVkblRSZkNLQzRaMEJGUGhYLWp4RU40YUVwV3N3ZUpRTVVKVDRiY19zeE5RUkt2dW5aUVcxcHBRQldCOTE3YktXSXZlSFJhRWRjdw&q=https%3A%2F%2Fweibo.com%2Faespa&v=ZeerrnuLi5E",
+            },
+            Text {
+                text: "\n\n",
+            },
+            Text {
+                text: "#aespa",
+            },
+            Text {
+                text: " ",
+            },
+            Text {
+                text: "#æspa",
+            },
+            Text {
+                text: " ",
+            },
+            Text {
+                text: "#BlackMamba",
+            },
+            Text {
+                text: " ",
+            },
+            Text {
+                text: "#블랙맘바",
+            },
+            Text {
+                text: " ",
+            },
+            Text {
+                text: "#에스파",
+            },
+            Text {
+                text: "\naespa 에스파 'Black Mamba' MV ℗ SM Entertainment",
+            },
+        ],
+    ),
+}

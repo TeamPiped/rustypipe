@@ -1,0 +1,346 @@
+{
+  "ln": {
+    "content": "🎧Listen and download aespa's debut single \"Black Mamba\": https://smarturl.it/aespa_BlackMamba\n🐍The Debut Stage    • aespa 에스파 'Black ...  \n\n🎟️ aespa Showcase SYNK in LA! Tickets now on sale: https://www.ticketmaster.com/event/0A...\n\nSubscribe to aespa Official YouTube Channel!\nhttps://www.youtube.com/aespa?sub_con...\n\naespa official\n   / aespa  \nhttps://www.instagram.com/aespa_official\nhttps://www.tiktok.com/@aespa_official\nhttps://twitter.com/aespa_Official\nhttps://www.facebook.com/aespa.official\nhttps://weibo.com/aespa\n\n#aespa #æspa #BlackMamba #블랙맘바 #에스파\naespa 에스파 'Black Mamba' MV ℗ SM Entertainment",
+    "commandRuns": [
+      {
+        "startIndex": 58,
+        "length": 36,
+        "onTap": {
+          "innertubeCommand": {
+            "clickTrackingParams": "CJ0BEM2rARgBIhMIzvHr0sis-gIV0kZ6BR0GNA_4SJGXrtzn9erzZQ==",
+            "commandMetadata": {
+              "webCommandMetadata": {
+                "url": "https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbm1qRVVfQUlObURLcnFFQXBTUkJSOEpqWGIzUXxBQ3Jtc0tsNUJIYm5xdERxZk9rZEw3YlJzV0ZIYTNaSjU2a21PaFhNUmxzdjI5VE1VRWUyczZwYmtmQXh3QXV0eXlkMDgxRUJoNVMzRFZ6RlZ6MGdXeXdWQXFTTGY2ZHhFcUFqdExRQ21PYzNfWmlBaHhqYXVUdw&q=https%3A%2F%2Fsmarturl.it%2Faespa_BlackMamba&v=ZeerrnuLi5E",
+                "webPageType": "WEB_PAGE_TYPE_UNKNOWN",
+                "rootVe": 83769
+              }
+            },
+            "urlEndpoint": {
+              "url": "https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbm1qRVVfQUlObURLcnFFQXBTUkJSOEpqWGIzUXxBQ3Jtc0tsNUJIYm5xdERxZk9rZEw3YlJzV0ZIYTNaSjU2a21PaFhNUmxzdjI5VE1VRWUyczZwYmtmQXh3QXV0eXlkMDgxRUJoNVMzRFZ6RlZ6MGdXeXdWQXFTTGY2ZHhFcUFqdExRQ21PYzNfWmlBaHhqYXVUdw&q=https%3A%2F%2Fsmarturl.it%2Faespa_BlackMamba&v=ZeerrnuLi5E",
+              "target": "TARGET_NEW_WINDOW",
+              "nofollow": true
+            }
+          }
+        }
+      },
+      {
+        "startIndex": 113,
+        "length": 27,
+        "onTap": {
+          "innertubeCommand": {
+            "clickTrackingParams": "CJ0BEM2rARgBIhMIzvHr0sis-gIV0kZ6BR0GNA_4",
+            "commandMetadata": {
+              "webCommandMetadata": {
+                "url": "/watch?v=Ky5RT5oGg0w&t=0s",
+                "webPageType": "WEB_PAGE_TYPE_WATCH",
+                "rootVe": 3832
+              }
+            },
+            "watchEndpoint": {
+              "videoId": "Ky5RT5oGg0w",
+              "startTimeSeconds": 0,
+              "watchEndpointSupportedOnesieConfig": {
+                "html5PlaybackOnesieConfig": {
+                  "commonConfig": {
+                    "url": "https://rr5---sn-h0jeener.googlevideo.com/initplayback?source=youtube&orc=1&oeis=1&c=WEB&oad=3200&ovd=3200&oaad=11000&oavd=11000&ocs=700&oewis=1&oputc=1&ofpcc=1&msp=1&odeak=1&odepv=1&osfc=1&id=2b2e514f9a06834c&ip=2003%3Ade%3Aaf30%3A200%3Ad8ce%3A4044%3A2ba2%3A3881&initcwndbps=1556250&mt=1663992556&oweuc="
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      {
+        "startIndex": 194,
+        "length": 40,
+        "onTap": {
+          "innertubeCommand": {
+            "clickTrackingParams": "CJ0BEM2rARgBIhMIzvHr0sis-gIV0kZ6BR0GNA_4SJGXrtzn9erzZQ==",
+            "commandMetadata": {
+              "webCommandMetadata": {
+                "url": "https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbU1ObGNaRDZaRmo1X1ZjejBoeTRnWkxuVUJxZ3xBQ3Jtc0ttWk1BVVhaRXRfN1VYWXBqMHdaYURTRFJNcUZJVlY3a21wRHE2ZGZaclE3WUM5bEZWbmFfT0sxWTZHOVotWVh6U3YtVk94SlA5NkRFTnBPcHVCWDJhMGJRQlI3ZHN0MnJleHp0c2lEVWNxeW1jSDZuVQ&q=https%3A%2F%2Fwww.ticketmaster.com%2Fevent%2F0A005CCD9E871F6E&v=ZeerrnuLi5E",
+                "webPageType": "WEB_PAGE_TYPE_UNKNOWN",
+                "rootVe": 83769
+              }
+            },
+            "urlEndpoint": {
+              "url": "https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbU1ObGNaRDZaRmo1X1ZjejBoeTRnWkxuVUJxZ3xBQ3Jtc0ttWk1BVVhaRXRfN1VYWXBqMHdaYURTRFJNcUZJVlY3a21wRHE2ZGZaclE3WUM5bEZWbmFfT0sxWTZHOVotWVh6U3YtVk94SlA5NkRFTnBPcHVCWDJhMGJRQlI3ZHN0MnJleHp0c2lEVWNxeW1jSDZuVQ&q=https%3A%2F%2Fwww.ticketmaster.com%2Fevent%2F0A005CCD9E871F6E&v=ZeerrnuLi5E",
+              "target": "TARGET_NEW_WINDOW",
+              "nofollow": true
+            }
+          }
+        }
+      },
+      {
+        "startIndex": 281,
+        "length": 40,
+        "onTap": {
+          "innertubeCommand": {
+            "clickTrackingParams": "CJ0BEM2rARgBIhMIzvHr0sis-gIV0kZ6BR0GNA_4",
+            "commandMetadata": {
+              "webCommandMetadata": {
+                "url": "https://www.youtube.com/aespa?sub_confirmation=1",
+                "webPageType": "WEB_PAGE_TYPE_UNKNOWN",
+                "rootVe": 83769
+              }
+            },
+            "urlEndpoint": {
+              "url": "https://www.youtube.com/aespa?sub_confirmation=1",
+              "nofollow": true
+            }
+          }
+        }
+      },
+      {
+        "startIndex": 338,
+        "length": 12,
+        "onTap": {
+          "innertubeCommand": {
+            "clickTrackingParams": "CJ0BEM2rARgBIhMIzvHr0sis-gIV0kZ6BR0GNA_4",
+            "commandMetadata": {
+              "webCommandMetadata": {
+                "url": "https://www.youtube.com/c/aespa",
+                "webPageType": "WEB_PAGE_TYPE_UNKNOWN",
+                "rootVe": 83769
+              }
+            },
+            "urlEndpoint": {
+              "url": "https://www.youtube.com/c/aespa",
+              "nofollow": true
+            }
+          }
+        }
+      },
+      {
+        "startIndex": 351,
+        "length": 40,
+        "onTap": {
+          "innertubeCommand": {
+            "clickTrackingParams": "CJ0BEM2rARgBIhMIzvHr0sis-gIV0kZ6BR0GNA_4SJGXrtzn9erzZQ==",
+            "commandMetadata": {
+              "webCommandMetadata": {
+                "url": "https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbE9FVEtZZkVLUExjdFBnZjZnZ19KNWRYOVZUd3xBQ3Jtc0tsbHpCa1hLTVJ6MEllczlzUEpoVi1IQ2F5NG1jMnlOT3p3bnlFeE80ZzlsaG5CUXlFQnFGTkMtN19DcVYzQkw3bVlVVmNwQlpYQWZnNGNsME45WE1WQ21sR3V1Z3k5RG9DUDE0VTZQTm53Mk9vTWhiOA&q=https%3A%2F%2Fwww.instagram.com%2Faespa_official&v=ZeerrnuLi5E",
+                "webPageType": "WEB_PAGE_TYPE_UNKNOWN",
+                "rootVe": 83769
+              }
+            },
+            "urlEndpoint": {
+              "url": "https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbE9FVEtZZkVLUExjdFBnZjZnZ19KNWRYOVZUd3xBQ3Jtc0tsbHpCa1hLTVJ6MEllczlzUEpoVi1IQ2F5NG1jMnlOT3p3bnlFeE80ZzlsaG5CUXlFQnFGTkMtN19DcVYzQkw3bVlVVmNwQlpYQWZnNGNsME45WE1WQ21sR3V1Z3k5RG9DUDE0VTZQTm53Mk9vTWhiOA&q=https%3A%2F%2Fwww.instagram.com%2Faespa_official&v=ZeerrnuLi5E",
+              "target": "TARGET_NEW_WINDOW",
+              "nofollow": true
+            }
+          }
+        }
+      },
+      {
+        "startIndex": 392,
+        "length": 38,
+        "onTap": {
+          "innertubeCommand": {
+            "clickTrackingParams": "CJ0BEM2rARgBIhMIzvHr0sis-gIV0kZ6BR0GNA_4SJGXrtzn9erzZQ==",
+            "commandMetadata": {
+              "webCommandMetadata": {
+                "url": "https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbVdlSGk3eDd5U0dUVG16VFJCQnhKVFBEUUxMQXxBQ3Jtc0tuX3ZJbENNY1ZSN0FFemdxTFdlcTVvc3AwZE05NEFvRW5nOHpZWDUtZG9ORHBnT1JGc2UySDh3WWl3MU53VjFvbHRSdjdxMUlGM2Z6SmdaLTVaWWxhamJEems0Uld3MGlTT0Z0bkh5Y0hpcnY1aXptSQ&q=https%3A%2F%2Fwww.tiktok.com%2F%40aespa_official&v=ZeerrnuLi5E",
+                "webPageType": "WEB_PAGE_TYPE_UNKNOWN",
+                "rootVe": 83769
+              }
+            },
+            "urlEndpoint": {
+              "url": "https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbVdlSGk3eDd5U0dUVG16VFJCQnhKVFBEUUxMQXxBQ3Jtc0tuX3ZJbENNY1ZSN0FFemdxTFdlcTVvc3AwZE05NEFvRW5nOHpZWDUtZG9ORHBnT1JGc2UySDh3WWl3MU53VjFvbHRSdjdxMUlGM2Z6SmdaLTVaWWxhamJEems0Uld3MGlTT0Z0bkh5Y0hpcnY1aXptSQ&q=https%3A%2F%2Fwww.tiktok.com%2F%40aespa_official&v=ZeerrnuLi5E",
+              "target": "TARGET_NEW_WINDOW",
+              "nofollow": true
+            }
+          }
+        }
+      },
+      {
+        "startIndex": 431,
+        "length": 34,
+        "onTap": {
+          "innertubeCommand": {
+            "clickTrackingParams": "CJ0BEM2rARgBIhMIzvHr0sis-gIV0kZ6BR0GNA_4SJGXrtzn9erzZQ==",
+            "commandMetadata": {
+              "webCommandMetadata": {
+                "url": "https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqa3lNcG1lMHkwSzNLQVBrUXFNTXl0N1hNa04wUXxBQ3Jtc0tubm1sQkdaVjNYR04xOHpJV3NxZVBpb3I5V1FVOHVFNC1uWE5vb211ZmZKYzhTZXZfbjlkY09fanBRdHpjUkdRVGJJYS0xZ3NBNkVZQVhWSS0xVDYwRlRzQ0J3ODQxNDE0ODAxd1Q0cG5icVlNWndscw&q=https%3A%2F%2Ftwitter.com%2Faespa_Official&v=ZeerrnuLi5E",
+                "webPageType": "WEB_PAGE_TYPE_UNKNOWN",
+                "rootVe": 83769
+              }
+            },
+            "urlEndpoint": {
+              "url": "https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqa3lNcG1lMHkwSzNLQVBrUXFNTXl0N1hNa04wUXxBQ3Jtc0tubm1sQkdaVjNYR04xOHpJV3NxZVBpb3I5V1FVOHVFNC1uWE5vb211ZmZKYzhTZXZfbjlkY09fanBRdHpjUkdRVGJJYS0xZ3NBNkVZQVhWSS0xVDYwRlRzQ0J3ODQxNDE0ODAxd1Q0cG5icVlNWndscw&q=https%3A%2F%2Ftwitter.com%2Faespa_Official&v=ZeerrnuLi5E",
+              "target": "TARGET_NEW_WINDOW",
+              "nofollow": true
+            }
+          }
+        }
+      },
+      {
+        "startIndex": 466,
+        "length": 39,
+        "onTap": {
+          "innertubeCommand": {
+            "clickTrackingParams": "CJ0BEM2rARgBIhMIzvHr0sis-gIV0kZ6BR0GNA_4SJGXrtzn9erzZQ==",
+            "commandMetadata": {
+              "webCommandMetadata": {
+                "url": "https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbjdBNG5yVEFwU0JMNGZaLUpQZ1ZoeGgwT0xOZ3xBQ3Jtc0tuRFdFNlJNV29PMThRNWo5MHZrREZ1ZU5oZlkxVmE4ZlU5STFCZW1mUFVSdXJ3VUQxUnNVVkUzLWJQMS1uRzVjdkRCV2ZxSWJ6cFNxRVVzejY0SDltZFZPc2xwS3ZPZGIxcFZ6cndIVkMtUjVtZ054cw&q=https%3A%2F%2Fwww.facebook.com%2Faespa.official&v=ZeerrnuLi5E",
+                "webPageType": "WEB_PAGE_TYPE_UNKNOWN",
+                "rootVe": 83769
+              }
+            },
+            "urlEndpoint": {
+              "url": "https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbjdBNG5yVEFwU0JMNGZaLUpQZ1ZoeGgwT0xOZ3xBQ3Jtc0tuRFdFNlJNV29PMThRNWo5MHZrREZ1ZU5oZlkxVmE4ZlU5STFCZW1mUFVSdXJ3VUQxUnNVVkUzLWJQMS1uRzVjdkRCV2ZxSWJ6cFNxRVVzejY0SDltZFZPc2xwS3ZPZGIxcFZ6cndIVkMtUjVtZ054cw&q=https%3A%2F%2Fwww.facebook.com%2Faespa.official&v=ZeerrnuLi5E",
+              "target": "TARGET_NEW_WINDOW",
+              "nofollow": true
+            }
+          }
+        }
+      },
+      {
+        "startIndex": 506,
+        "length": 23,
+        "onTap": {
+          "innertubeCommand": {
+            "clickTrackingParams": "CJ0BEM2rARgBIhMIzvHr0sis-gIV0kZ6BR0GNA_4SJGXrtzn9erzZQ==",
+            "commandMetadata": {
+              "webCommandMetadata": {
+                "url": "https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbEtGMHB6eXBESW92aEVLc1FybkRwQU95eTh6UXxBQ3Jtc0tuWXc5d2JsTHFYcHExdy1FTDFyUV9wdU1DSmxELUxGSGlPMzhBdFVkblRSZkNLQzRaMEJGUGhYLWp4RU40YUVwV3N3ZUpRTVVKVDRiY19zeE5RUkt2dW5aUVcxcHBRQldCOTE3YktXSXZlSFJhRWRjdw&q=https%3A%2F%2Fweibo.com%2Faespa&v=ZeerrnuLi5E",
+                "webPageType": "WEB_PAGE_TYPE_UNKNOWN",
+                "rootVe": 83769
+              }
+            },
+            "urlEndpoint": {
+              "url": "https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbEtGMHB6eXBESW92aEVLc1FybkRwQU95eTh6UXxBQ3Jtc0tuWXc5d2JsTHFYcHExdy1FTDFyUV9wdU1DSmxELUxGSGlPMzhBdFVkblRSZkNLQzRaMEJGUGhYLWp4RU40YUVwV3N3ZUpRTVVKVDRiY19zeE5RUkt2dW5aUVcxcHBRQldCOTE3YktXSXZlSFJhRWRjdw&q=https%3A%2F%2Fweibo.com%2Faespa&v=ZeerrnuLi5E",
+              "target": "TARGET_NEW_WINDOW",
+              "nofollow": true
+            }
+          }
+        }
+      },
+      {
+        "startIndex": 531,
+        "length": 6,
+        "onTap": {
+          "innertubeCommand": {
+            "clickTrackingParams": "CKIBENzXBBgKIhMIzvHr0sis-gIV0kZ6BR0GNA_4",
+            "commandMetadata": {
+              "webCommandMetadata": {
+                "url": "/hashtag/aespa",
+                "webPageType": "WEB_PAGE_TYPE_BROWSE",
+                "rootVe": 6827,
+                "apiUrl": "/youtubei/v1/browse"
+              }
+            },
+            "browseEndpoint": {
+              "browseId": "FEhashtag",
+              "params": "6gUHCgVhZXNwYQ%3D%3D"
+            }
+          }
+        },
+        "loggingDirectives": {
+          "trackingParams": "CKIBENzXBBgKIhMIzvHr0sis-gIV0kZ6BR0GNA_4",
+          "enableDisplayloggerExperiment": true
+        }
+      },
+      {
+        "startIndex": 538,
+        "length": 5,
+        "onTap": {
+          "innertubeCommand": {
+            "clickTrackingParams": "CKEBENzXBBgLIhMIzvHr0sis-gIV0kZ6BR0GNA_4",
+            "commandMetadata": {
+              "webCommandMetadata": {
+                "url": "/hashtag/%C3%A6spa",
+                "webPageType": "WEB_PAGE_TYPE_BROWSE",
+                "rootVe": 6827,
+                "apiUrl": "/youtubei/v1/browse"
+              }
+            },
+            "browseEndpoint": {
+              "browseId": "FEhashtag",
+              "params": "6gUHCgXDpnNwYQ%3D%3D"
+            }
+          }
+        },
+        "loggingDirectives": {
+          "trackingParams": "CKEBENzXBBgLIhMIzvHr0sis-gIV0kZ6BR0GNA_4",
+          "enableDisplayloggerExperiment": true
+        }
+      },
+      {
+        "startIndex": 544,
+        "length": 11,
+        "onTap": {
+          "innertubeCommand": {
+            "clickTrackingParams": "CKABENzXBBgMIhMIzvHr0sis-gIV0kZ6BR0GNA_4",
+            "commandMetadata": {
+              "webCommandMetadata": {
+                "url": "/hashtag/blackmamba",
+                "webPageType": "WEB_PAGE_TYPE_BROWSE",
+                "rootVe": 6827,
+                "apiUrl": "/youtubei/v1/browse"
+              }
+            },
+            "browseEndpoint": {
+              "browseId": "FEhashtag",
+              "params": "6gUMCgpibGFja21hbWJh"
+            }
+          }
+        },
+        "loggingDirectives": {
+          "trackingParams": "CKABENzXBBgMIhMIzvHr0sis-gIV0kZ6BR0GNA_4",
+          "enableDisplayloggerExperiment": true
+        }
+      },
+      {
+        "startIndex": 556,
+        "length": 5,
+        "onTap": {
+          "innertubeCommand": {
+            "clickTrackingParams": "CJ8BENzXBBgNIhMIzvHr0sis-gIV0kZ6BR0GNA_4",
+            "commandMetadata": {
+              "webCommandMetadata": {
+                "url": "/hashtag/%EB%B8%94%EB%9E%99%EB%A7%98%EB%B0%94",
+                "webPageType": "WEB_PAGE_TYPE_BROWSE",
+                "rootVe": 6827,
+                "apiUrl": "/youtubei/v1/browse"
+              }
+            },
+            "browseEndpoint": {
+              "browseId": "FEhashtag",
+              "params": "6gUOCgzruJTrnpnrp5jrsJQ%3D"
+            }
+          }
+        },
+        "loggingDirectives": {
+          "trackingParams": "CJ8BENzXBBgNIhMIzvHr0sis-gIV0kZ6BR0GNA_4",
+          "enableDisplayloggerExperiment": true
+        }
+      },
+      {
+        "startIndex": 562,
+        "length": 4,
+        "onTap": {
+          "innertubeCommand": {
+            "clickTrackingParams": "CJ4BENzXBBgOIhMIzvHr0sis-gIV0kZ6BR0GNA_4",
+            "commandMetadata": {
+              "webCommandMetadata": {
+                "url": "/hashtag/%EC%97%90%EC%8A%A4%ED%8C%8C",
+                "webPageType": "WEB_PAGE_TYPE_BROWSE",
+                "rootVe": 6827,
+                "apiUrl": "/youtubei/v1/browse"
+              }
+            },
+            "browseEndpoint": {
+              "browseId": "FEhashtag",
+              "params": "6gULCgnsl5DsiqTtjIw%3D"
+            }
+          }
+        },
+        "loggingDirectives": {
+          "trackingParams": "CJ4BENzXBBgOIhMIzvHr0sis-gIV0kZ6BR0GNA_4",
+          "enableDisplayloggerExperiment": true
+        }
+      }
+    ]
+  }
+}
