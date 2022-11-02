@@ -875,15 +875,7 @@ pub struct TrackItem {
     /// Album cover
     pub cover: Vec<Thumbnail>,
     /// Artists of the track
-    ///
-    /// **Note:** this field only contains artists that have a link attached
-    /// to them. You may want to use `artists_txt` as a fallback.
-    pub artists: Vec<ChannelId>,
-    /// Full content of the artists column
-    ///
-    /// Conjunction words/characters depend on language and fetched page.
-    /// Includes unlinked artists.
-    pub artists_txt: Option<String>,
+    pub artists: Vec<ArtistId>,
     /// Album of the track
     pub album: Option<AlbumId>,
     /// View count
@@ -914,6 +906,14 @@ pub struct ArtistItem {
     pub subscriber_count: Option<u64>,
 }
 
+/// YouTube Music artist identifier
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
+pub struct ArtistId {
+    pub id: Option<String>,
+    pub name: String,
+}
+
 /// YouTube Music album list item
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[non_exhaustive]
@@ -925,12 +925,7 @@ pub struct AlbumItem {
     /// Album cover
     pub cover: Vec<Thumbnail>,
     /// Artists of the album
-    pub artists: Vec<ChannelId>,
-    /// Full content of the artists field
-    ///
-    /// Conjunction words/characters depend on language and fetched page.
-    /// Includes unlinked artists.
-    pub artists_txt: String,
+    pub artists: Vec<ArtistId>,
     /// Album type (Album/Single/EP)
     pub album_type: AlbumType,
     /// Release year of the album
@@ -1019,12 +1014,7 @@ pub struct MusicAlbum {
     /// Album cover
     pub cover: Vec<Thumbnail>,
     /// Artists of the album
-    pub artists: Vec<ChannelId>,
-    /// Full content of the artists field
-    ///
-    /// Conjunction words/characters depend on language and fetched page.
-    /// Includes unlinked artists.
-    pub artists_txt: String,
+    pub artists: Vec<ArtistId>,
     /// Album type (Album/Single/EP)
     pub album_type: AlbumType,
     /// Release year
