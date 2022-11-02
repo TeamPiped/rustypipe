@@ -2,7 +2,7 @@ use std::borrow::Cow;
 
 use crate::{
     error::{Error, ExtractionError},
-    model::{ChannelId, MusicAlbum, MusicPlaylist, Paginator},
+    model::{AlbumId, ChannelId, MusicAlbum, MusicPlaylist, Paginator},
     serializer::MapResult,
     util::{self, TryRemove},
 };
@@ -194,22 +194,24 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
         let year_txt = subtitle_split.try_swap_remove(2).map(|cmp| cmp.to_string());
 
         let artists_p = subtitle_split.try_swap_remove(1);
-        let (artists, artists_txt) = map_artists(artists_p);
+        let (artists, by_va) = map_artists(artists_p);
         let album_type_txt = subtitle_split
             .try_swap_remove(0)
             .map(|part| part.to_string())
             .unwrap_or_default();
 
-        let by_va = artists_txt == util::VARIOUS_ARTISTS;
         let album_type = map_album_type(album_type_txt.as_str(), lang);
         let year = year_txt.and_then(|txt| util::parse_numeric(&txt).ok());
 
-        let mut mapper = match by_va {
-            true => MusicListMapper::new(lang),
-            false => {
-                MusicListMapper::with_artists(lang, artists.clone(), artists_txt.clone(), false)
-            }
-        };
+        let mut mapper = MusicListMapper::with_album(
+            lang,
+            artists.clone(),
+            by_va,
+            AlbumId {
+                id: id.to_owned(),
+                name: header.title.to_owned(),
+            },
+        );
         mapper.map_response(shelf.contents);
         let tracks_res = mapper.conv_items();
         let mut warnings = tracks_res.warnings;
@@ -228,7 +230,6 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
                 name: header.title,
                 cover: header.thumbnail.into(),
                 artists,
-                artists_txt,
                 album_type,
                 year,
                 by_va,

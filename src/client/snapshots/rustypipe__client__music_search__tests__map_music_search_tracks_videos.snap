@@ -18,12 +18,11 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCEdZAdnnKqbaHOlv8nM6OtA",
+          ArtistId(
+            id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
             name: "aespa",
           ),
         ],
-        artists_txt: Some("aespa"),
         album: None,
         view_count: Some(235000000),
         is_video: true,
@@ -41,12 +40,11 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCyEMqKQPGdj8wKVKt2-agbQ",
+          ArtistId(
+            id: Some("UCyEMqKQPGdj8wKVKt2-agbQ"),
             name: "Beatport",
           ),
         ],
-        artists_txt: Some("Beatport"),
         album: None,
         view_count: Some(6400),
         is_video: true,
@@ -64,12 +62,11 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UC0PlwwXUJihXdol4I9vuE0g",
+          ArtistId(
+            id: Some("UC0PlwwXUJihXdol4I9vuE0g"),
             name: "PridePKJ",
           ),
         ],
-        artists_txt: Some("PridePKJ"),
         album: None,
         view_count: Some(701),
         is_video: true,
@@ -87,12 +84,11 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCzP_LIeF9W26F7o03k-Y9CQ",
+          ArtistId(
+            id: Some("UCzP_LIeF9W26F7o03k-Y9CQ"),
             name: "Seayou Records",
           ),
         ],
-        artists_txt: Some("Seayou Records"),
         album: None,
         view_count: Some(80000),
         is_video: true,
@@ -110,12 +106,11 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCRpjHHu8ivVWs73uxHlWwFA",
+          ArtistId(
+            id: Some("UCRpjHHu8ivVWs73uxHlWwFA"),
             name: "Eurovision Song Contest",
           ),
         ],
-        artists_txt: Some("Eurovision Song Contest"),
         album: None,
         view_count: Some(1100000),
         is_video: true,
@@ -133,12 +128,11 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCoRXPcv8XK5fAplLbk9PTww",
+          ArtistId(
+            id: Some("UCoRXPcv8XK5fAplLbk9PTww"),
             name: "THE K-POP",
           ),
         ],
-        artists_txt: Some("THE K-POP"),
         album: None,
         view_count: Some(269000),
         is_video: true,
@@ -156,12 +150,11 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCsw9NVMkJfbxHTuMUMlk3mw",
+          ArtistId(
+            id: Some("UCsw9NVMkJfbxHTuMUMlk3mw"),
             name: "Dj Kronos",
           ),
         ],
-        artists_txt: Some("Dj Kronos"),
         album: None,
         view_count: Some(32000),
         is_video: true,
@@ -179,12 +172,11 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCBju0pyQY7EWRvLqMkXcxBw",
+          ArtistId(
+            id: Some("UCBju0pyQY7EWRvLqMkXcxBw"),
             name: "1O1% MUSIC",
           ),
         ],
-        artists_txt: Some("1O1% MUSIC"),
         album: None,
         view_count: Some(179000),
         is_video: true,
@@ -202,12 +194,11 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCawCt_6XWaFxZSW5ZKcIMew",
+          ArtistId(
+            id: Some("UCawCt_6XWaFxZSW5ZKcIMew"),
             name: "MTV ASIA",
           ),
         ],
-        artists_txt: Some("MTV ASIA"),
         album: None,
         view_count: Some(69000),
         is_video: true,
@@ -225,12 +216,11 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UC_vrqgb3YLoe2MYSJm2aO-A",
+          ArtistId(
+            id: Some("UC_vrqgb3YLoe2MYSJm2aO-A"),
             name: "K-Series : STORY & MUSIC",
           ),
         ],
-        artists_txt: Some("K-Series : STORY & MUSIC"),
         album: None,
         view_count: Some(28000),
         is_video: true,
@@ -248,12 +238,11 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UC5BMQOsAB8hKUyHu9KI6yig",
+          ArtistId(
+            id: Some("UC5BMQOsAB8hKUyHu9KI6yig"),
             name: "KBS WORLD TV",
           ),
         ],
-        artists_txt: Some("KBS WORLD TV"),
         album: None,
         view_count: Some(1300000),
         is_video: true,
@@ -271,12 +260,11 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCoRXPcv8XK5fAplLbk9PTww",
+          ArtistId(
+            id: Some("UCoRXPcv8XK5fAplLbk9PTww"),
             name: "THE K-POP",
           ),
         ],
-        artists_txt: Some("THE K-POP"),
         album: None,
         view_count: Some(3000000),
         is_video: true,
@@ -294,12 +282,11 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCaDT20-B3U8h-tPg_VMvntw",
+          ArtistId(
+            id: Some("UCaDT20-B3U8h-tPg_VMvntw"),
             name: "The Black Mamba",
           ),
         ],
-        artists_txt: Some("The Black Mamba"),
         album: None,
         view_count: Some(49000),
         is_video: true,
@@ -317,12 +304,11 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCEAgugIw6pHGg7MRlkOU1Dw",
+          ArtistId(
+            id: Some("UCEAgugIw6pHGg7MRlkOU1Dw"),
             name: "Studio Brussel",
           ),
         ],
-        artists_txt: Some("Studio Brussel"),
         album: None,
         view_count: Some(29000),
         is_video: true,
@@ -340,12 +326,11 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCAj9gLNfM0q3MFhovVmAtBw",
+          ArtistId(
+            id: Some("UCAj9gLNfM0q3MFhovVmAtBw"),
             name: "Achim Müller",
           ),
         ],
-        artists_txt: Some("Achim Müller"),
         album: None,
         view_count: Some(823),
         is_video: true,
@@ -363,12 +348,11 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCRpjHHu8ivVWs73uxHlWwFA",
+          ArtistId(
+            id: Some("UCRpjHHu8ivVWs73uxHlWwFA"),
             name: "Eurovision Song Contest",
           ),
         ],
-        artists_txt: Some("Eurovision Song Contest"),
         album: None,
         view_count: Some(1800000),
         is_video: true,
@@ -386,12 +370,11 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCeLPm9yH_a_QH8n6445G-Ow",
+          ArtistId(
+            id: Some("UCeLPm9yH_a_QH8n6445G-Ow"),
             name: "KBS Kpop",
           ),
         ],
-        artists_txt: Some("KBS Kpop"),
         album: None,
         view_count: Some(4400000),
         is_video: true,
@@ -409,12 +392,11 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCaDT20-B3U8h-tPg_VMvntw",
+          ArtistId(
+            id: Some("UCaDT20-B3U8h-tPg_VMvntw"),
             name: "The Black Mamba",
           ),
         ],
-        artists_txt: Some("The Black Mamba"),
         album: None,
         view_count: Some(1300),
         is_video: true,
@@ -432,12 +414,11 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCEdZAdnnKqbaHOlv8nM6OtA",
+          ArtistId(
+            id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
             name: "aespa",
           ),
         ],
-        artists_txt: Some("aespa"),
         album: None,
         view_count: Some(249000000),
         is_video: true,
@@ -455,12 +436,11 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCB-TbzcDawIZVkG229eqnKg",
+          ArtistId(
+            id: Some("UCB-TbzcDawIZVkG229eqnKg"),
             name: "Sweet & Sour",
           ),
         ],
-        artists_txt: Some("Sweet & Sour"),
         album: None,
         view_count: Some(15000),
         is_video: true,

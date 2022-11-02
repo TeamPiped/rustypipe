@@ -29,12 +29,11 @@ MusicAlbum(
     ),
   ],
   artists: [
-    ChannelId(
-      id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+    ArtistId(
+      id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
       name: "Oonagh",
     ),
   ],
-  artists_txt: "Oonagh",
   album_type: Album,
   year: Some(2016),
   by_va: false,
@@ -45,15 +44,17 @@ MusicAlbum(
       duration: 216,
       cover: [],
       artists: [
-        ChannelId(
-          id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
           name: "Oonagh",
         ),
       ],
-      artists_txt: Some("Oonagh"),
-      album: None,
+      album: Some(AlbumId(
+        id: "MPREb_nlBWQROfvjo",
+        name: "Märchen enden gut",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(1),
     ),
     TrackItem(
@@ -62,15 +63,17 @@ MusicAlbum(
       duration: 224,
       cover: [],
       artists: [
-        ChannelId(
-          id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
           name: "Oonagh",
         ),
       ],
-      artists_txt: Some("Oonagh"),
-      album: None,
+      album: Some(AlbumId(
+        id: "MPREb_nlBWQROfvjo",
+        name: "Märchen enden gut",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(2),
     ),
     TrackItem(
@@ -79,15 +82,17 @@ MusicAlbum(
       duration: 176,
       cover: [],
       artists: [
-        ChannelId(
-          id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
           name: "Oonagh",
         ),
       ],
-      artists_txt: Some("Oonagh"),
-      album: None,
+      album: Some(AlbumId(
+        id: "MPREb_nlBWQROfvjo",
+        name: "Märchen enden gut",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(3),
     ),
     TrackItem(
@@ -96,15 +101,17 @@ MusicAlbum(
       duration: 215,
       cover: [],
       artists: [
-        ChannelId(
-          id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
           name: "Oonagh",
         ),
       ],
-      artists_txt: Some("Oonagh"),
-      album: None,
+      album: Some(AlbumId(
+        id: "MPREb_nlBWQROfvjo",
+        name: "Märchen enden gut",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(4),
     ),
     TrackItem(
@@ -113,15 +120,17 @@ MusicAlbum(
       duration: 268,
       cover: [],
       artists: [
-        ChannelId(
-          id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
           name: "Oonagh",
         ),
       ],
-      artists_txt: Some("Oonagh"),
-      album: None,
+      album: Some(AlbumId(
+        id: "MPREb_nlBWQROfvjo",
+        name: "Märchen enden gut",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(5),
     ),
     TrackItem(
@@ -130,15 +139,17 @@ MusicAlbum(
       duration: 202,
       cover: [],
       artists: [
-        ChannelId(
-          id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
           name: "Oonagh",
         ),
       ],
-      artists_txt: Some("Oonagh"),
-      album: None,
+      album: Some(AlbumId(
+        id: "MPREb_nlBWQROfvjo",
+        name: "Märchen enden gut",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(6),
     ),
     TrackItem(
@@ -147,15 +158,17 @@ MusicAlbum(
       duration: 185,
       cover: [],
       artists: [
-        ChannelId(
-          id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
           name: "Oonagh",
         ),
       ],
-      artists_txt: Some("Oonagh"),
-      album: None,
+      album: Some(AlbumId(
+        id: "MPREb_nlBWQROfvjo",
+        name: "Märchen enden gut",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(7),
     ),
     TrackItem(
@@ -164,15 +177,17 @@ MusicAlbum(
       duration: 226,
       cover: [],
       artists: [
-        ChannelId(
-          id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
           name: "Oonagh",
         ),
       ],
-      artists_txt: Some("Oonagh"),
-      album: None,
+      album: Some(AlbumId(
+        id: "MPREb_nlBWQROfvjo",
+        name: "Märchen enden gut",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(8),
     ),
     TrackItem(
@@ -181,15 +196,17 @@ MusicAlbum(
       duration: 207,
       cover: [],
       artists: [
-        ChannelId(
-          id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
           name: "Oonagh",
         ),
       ],
-      artists_txt: Some("Oonagh"),
-      album: None,
+      album: Some(AlbumId(
+        id: "MPREb_nlBWQROfvjo",
+        name: "Märchen enden gut",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(9),
     ),
     TrackItem(
@@ -198,15 +215,17 @@ MusicAlbum(
       duration: 211,
       cover: [],
       artists: [
-        ChannelId(
-          id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
           name: "Oonagh",
         ),
       ],
-      artists_txt: Some("Oonagh"),
-      album: None,
+      album: Some(AlbumId(
+        id: "MPREb_nlBWQROfvjo",
+        name: "Märchen enden gut",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(10),
     ),
     TrackItem(
@@ -215,15 +234,17 @@ MusicAlbum(
       duration: 179,
       cover: [],
       artists: [
-        ChannelId(
-          id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
           name: "Oonagh",
         ),
       ],
-      artists_txt: Some("Oonagh"),
-      album: None,
+      album: Some(AlbumId(
+        id: "MPREb_nlBWQROfvjo",
+        name: "Märchen enden gut",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(11),
     ),
     TrackItem(
@@ -232,15 +253,17 @@ MusicAlbum(
       duration: 218,
       cover: [],
       artists: [
-        ChannelId(
-          id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
           name: "Oonagh",
         ),
       ],
-      artists_txt: Some("Oonagh"),
-      album: None,
+      album: Some(AlbumId(
+        id: "MPREb_nlBWQROfvjo",
+        name: "Märchen enden gut",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(12),
     ),
     TrackItem(
@@ -249,15 +272,17 @@ MusicAlbum(
       duration: 277,
       cover: [],
       artists: [
-        ChannelId(
-          id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
           name: "Oonagh",
         ),
       ],
-      artists_txt: Some("Oonagh"),
-      album: None,
+      album: Some(AlbumId(
+        id: "MPREb_nlBWQROfvjo",
+        name: "Märchen enden gut",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(13),
     ),
     TrackItem(
@@ -266,15 +291,17 @@ MusicAlbum(
       duration: 204,
       cover: [],
       artists: [
-        ChannelId(
-          id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
           name: "Oonagh",
         ),
       ],
-      artists_txt: Some("Oonagh"),
-      album: None,
+      album: Some(AlbumId(
+        id: "MPREb_nlBWQROfvjo",
+        name: "Märchen enden gut",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(14),
     ),
     TrackItem(
@@ -283,15 +310,17 @@ MusicAlbum(
       duration: 202,
       cover: [],
       artists: [
-        ChannelId(
-          id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
           name: "Oonagh",
         ),
       ],
-      artists_txt: Some("Oonagh"),
-      album: None,
+      album: Some(AlbumId(
+        id: "MPREb_nlBWQROfvjo",
+        name: "Märchen enden gut",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(15),
     ),
     TrackItem(
@@ -300,15 +329,17 @@ MusicAlbum(
       duration: 222,
       cover: [],
       artists: [
-        ChannelId(
-          id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
           name: "Oonagh",
         ),
       ],
-      artists_txt: Some("Oonagh"),
-      album: None,
+      album: Some(AlbumId(
+        id: "MPREb_nlBWQROfvjo",
+        name: "Märchen enden gut",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(16),
     ),
     TrackItem(
@@ -317,15 +348,17 @@ MusicAlbum(
       duration: 177,
       cover: [],
       artists: [
-        ChannelId(
-          id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
           name: "Oonagh",
         ),
       ],
-      artists_txt: Some("Oonagh"),
-      album: None,
+      album: Some(AlbumId(
+        id: "MPREb_nlBWQROfvjo",
+        name: "Märchen enden gut",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(17),
     ),
     TrackItem(
@@ -334,15 +367,17 @@ MusicAlbum(
       duration: 220,
       cover: [],
       artists: [
-        ChannelId(
-          id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
           name: "Oonagh",
         ),
       ],
-      artists_txt: Some("Oonagh"),
-      album: None,
+      album: Some(AlbumId(
+        id: "MPREb_nlBWQROfvjo",
+        name: "Märchen enden gut",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(18),
     ),
   ],
@@ -363,14 +398,14 @@ MusicAlbum(
         ),
       ],
       artists: [
-        ChannelId(
-          id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
           name: "Oonagh",
         ),
       ],
-      artists_txt: "Oonagh",
       album_type: Album,
       year: None,
+      by_va: false,
     ),
   ],
 )

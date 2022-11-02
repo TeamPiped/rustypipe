@@ -1386,10 +1386,13 @@ async fn music_search(#[case] typo: bool) {
     assert_eq!(track.duration, 230);
     assert!(!track.cover.is_empty(), "got no cover");
 
+    assert_eq!(track.artists.len(), 1);
     let track_artist = &track.artists[0];
-    assert_eq!(track_artist.id, "UCEdZAdnnKqbaHOlv8nM6OtA");
+    assert_eq!(
+        track_artist.id.as_ref().unwrap(),
+        "UCEdZAdnnKqbaHOlv8nM6OtA"
+    );
     assert_eq!(track_artist.name, "aespa");
-    assert_eq!(track.artists_txt.as_ref().unwrap(), "aespa");
     assert_eq!(track.album, None);
     assert_gte(track.view_count.unwrap(), 230_000_000, "views");
     assert!(track.is_video, "got no video");
@@ -1414,10 +1417,13 @@ async fn music_search_tracks(#[case] videos: bool) {
     assert_eq!(track.is_video, videos);
     assert_eq!(track.track_nr, None);
 
+    assert_eq!(track.artists.len(), 1);
     let track_artist = &track.artists[0];
-    assert_eq!(track_artist.id, "UCEdZAdnnKqbaHOlv8nM6OtA");
+    assert_eq!(
+        track_artist.id.as_ref().unwrap(),
+        "UCEdZAdnnKqbaHOlv8nM6OtA"
+    );
     assert_eq!(track_artist.name, "aespa");
-    assert_eq!(track.artists_txt.as_ref().unwrap(), "aespa");
 
     if videos {
         assert_eq!(track.id, "ZeerrnuLi5E");
@@ -1484,10 +1490,10 @@ async fn music_search_albums(
     let album = &res.items.items[0];
     assert_eq!(album.name, name);
     assert_eq!(album.id, id);
-    assert_eq!(album.artists_txt, artist);
 
+    assert_eq!(album.artists.len(), 1);
     let album_artist = &album.artists[0];
-    assert_eq!(album_artist.id, artist_id);
+    assert_eq!(album_artist.id.as_ref().unwrap(), artist_id);
     assert_eq!(album_artist.name, artist);
 
     assert!(!album.cover.is_empty(), "got no cover");

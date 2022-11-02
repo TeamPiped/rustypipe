@@ -3,8 +3,8 @@ use serde_with::{serde_as, DefaultOnError, VecSkipError};
 
 use crate::{
     model::{
-        self, AlbumId, AlbumItem, AlbumType, ArtistItem, ChannelId, FromYtItem, MusicEntityType,
-        MusicItem, MusicPlaylistItem, TrackItem,
+        self, AlbumId, AlbumItem, AlbumType, ArtistId, ArtistItem, ChannelId, FromYtItem,
+        MusicEntityType, MusicItem, MusicPlaylistItem, TrackItem,
     },
     param::Language,
     serializer::{
@@ -194,7 +194,9 @@ pub(crate) struct ContinuationContents {
 #[derive(Debug)]
 pub(crate) struct MusicListMapper {
     lang: Language,
-    o_artists: Option<(Vec<ChannelId>, String)>,
+    /// Artists list + various artists flag
+    artists: Option<(Vec<ArtistId>, bool)>,
+    album: Option<AlbumId>,
     artist_page: bool,
     items: Vec<MusicItem>,
     warnings: Vec<String>,
@@ -212,23 +214,37 @@ impl MusicListMapper {
     pub fn new(lang: Language) -> Self {
         Self {
             lang,
-            o_artists: None,
+            artists: None,
+            album: None,
             artist_page: false,
             items: Vec::new(),
             warnings: Vec::new(),
         }
     }
 
+    /*
     pub fn with_artists(
         lang: Language,
-        artists: Vec<ChannelId>,
-        artists_txt: String,
+        artists: Vec<ArtistId>,
+        by_va: bool,
         artist_page: bool,
     ) -> Self {
         Self {
             lang,
-            o_artists: Some((artists, artists_txt)),
+            artists: Some((artists, by_va)),
+            album: None,
             artist_page,
+            items: Vec::new(),
+            warnings: Vec::new(),
+        }
+    }*/
+
+    pub fn with_album(lang: Language, artists: Vec<ArtistId>, by_va: bool, album: AlbumId) -> Self {
+        Self {
+            lang,
+            artists: Some((artists, by_va)),
+            album: Some(album),
+            artist_page: false,
             items: Vec::new(),
             warnings: Vec::new(),
         }
@@ -281,7 +297,7 @@ impl MusicListMapper {
                                     .map(|st| map_album_type(st.first_str(), self.lang))
                                     .unwrap_or_default();
 
-                                let (artists, artists_txt) = map_artists(subtitle_p2);
+                                let (artists, by_va) = map_artists(subtitle_p2);
 
                                 let year = subtitle_p3
                                     .and_then(|st| util::parse_numeric(st.first_str()).ok());
@@ -291,9 +307,9 @@ impl MusicListMapper {
                                     name: title,
                                     cover: item.thumbnail.into(),
                                     artists,
-                                    artists_txt,
                                     album_type,
                                     year,
+                                    by_va,
                                 }));
                                 Ok(MusicEntityType::Album)
                             }
@@ -349,8 +365,10 @@ impl MusicListMapper {
                         let title =
                             title.ok_or_else(|| format!("track {}: could not get title", id))?;
 
-                        let is_video =
-                            !first_tn.map(|tn| tn.height == tn.width).unwrap_or_default();
+                        // Videos have rectangular thumbnails, YTM tracks have square covers
+                        // Exception: there are no thumbnails on album items
+                        let is_video = self.album.is_none()
+                            && !first_tn.map(|tn| tn.height == tn.width).unwrap_or_default();
 
                         let (artists_p, album_p, duration_p) = match item.flex_column_display_style
                         {
@@ -385,8 +403,8 @@ impl MusicListMapper {
                             .and_then(|p| util::parse_video_length(p.first_str()))
                             .ok_or_else(|| format!("track {}: could not parse duration", id))?;
 
-                        // The album field contains the track count for search videos
                         let (album, view_count) = match (item.flex_column_display_style, is_video) {
+                            // The album field contains the view count for search videos
                             (FlexColumnDisplayStyle::TwoLines, true) => (
                                 None,
                                 album_p.and_then(|p| {
@@ -394,29 +412,23 @@ impl MusicListMapper {
                                 }),
                             ),
                             (_, false) => (
-                                album_p.and_then(|p| {
-                                    p.0.into_iter().find_map(|c| AlbumId::try_from(c).ok())
-                                }),
+                                album_p
+                                    .and_then(|p| {
+                                        p.0.into_iter().find_map(|c| AlbumId::try_from(c).ok())
+                                    })
+                                    .or_else(|| self.album.clone()),
                                 None,
                             ),
                             (FlexColumnDisplayStyle::Default, true) => (None, None),
                         };
 
-                        let mut artists_txt =
-                            artists_p.as_ref().and_then(TextComponents::to_opt_string);
-                        let mut artists = artists_p
-                            .map(|p| {
-                                p.0.into_iter()
-                                    .filter_map(|c| ChannelId::try_from(c).ok())
-                                    .collect::<Vec<_>>()
-                            })
-                            .unwrap_or_default();
+                        let (mut artists, _) = map_artists(artists_p);
 
-                        if let Some(a) = &self.o_artists {
-                            if artists.is_empty() && artists_txt.is_none() {
-                                let xa = a.clone();
-                                artists = xa.0;
-                                artists_txt = Some(xa.1);
+                        // Fall back to the artist given when constructing the mapper.
+                        // This is used for extracting artist pages.
+                        if let Some(a) = &self.artists {
+                            if artists.is_empty() {
+                                artists = a.0.clone();
                             }
                         }
 
@@ -428,7 +440,6 @@ impl MusicListMapper {
                             duration,
                             cover: item.thumbnail.into(),
                             artists,
-                            artists_txt,
                             album,
                             view_count,
                             is_video,
@@ -454,23 +465,18 @@ impl MusicListMapper {
                         let mut year = None;
                         let mut album_type = AlbumType::Single;
 
-                        let (artists, artists_txt) =
-                            match (subtitle_p1, subtitle_p2, &self.o_artists, self.artist_page) {
+                        let (artists, by_va) =
+                            match (subtitle_p1, subtitle_p2, &self.artists, self.artist_page) {
                                 // "2022" (Artist singles)
-                                (Some(year_txt), None, Some((artists, artists_txt)), true) => {
+                                (Some(year_txt), None, Some(artists), true) => {
                                     year = util::parse_numeric(year_txt.first_str()).ok();
-                                    (artists.clone(), artists_txt.clone())
+                                    artists.clone()
                                 }
                                 // "Album", "2022" (Artist albums)
-                                (
-                                    Some(atype_txt),
-                                    Some(year_txt),
-                                    Some((artists, artists_txt)),
-                                    true,
-                                ) => {
+                                (Some(atype_txt), Some(year_txt), Some(artists), true) => {
                                     year = util::parse_numeric(year_txt.first_str()).ok();
                                     album_type = map_album_type(atype_txt.first_str(), self.lang);
-                                    (artists.clone(), artists_txt.clone())
+                                    artists.clone()
                                 }
                                 // "Album", <"Oonagh"> (Album variants, new releases)
                                 (Some(atype_txt), Some(p2), _, false) => {
@@ -490,9 +496,9 @@ impl MusicListMapper {
                             name: item.title,
                             cover: item.thumbnail_renderer.into(),
                             artists,
-                            artists_txt,
-                            year,
                             album_type,
+                            year,
+                            by_va,
                         }));
                         Ok(MusicEntityType::Album)
                     }
@@ -595,21 +601,30 @@ impl MusicListMapper {
     }
 }
 
-pub(crate) fn map_artists(artists_p: Option<TextComponents>) -> (Vec<ChannelId>, String) {
-    let artists_txt = artists_p
-        .as_ref()
-        .map(|p| p.to_string())
-        .unwrap_or_default();
+pub(crate) fn map_artists(artists_p: Option<TextComponents>) -> (Vec<ArtistId>, bool) {
+    let mut by_va = false;
     let artists = artists_p
         .map(|part| {
             part.0
                 .into_iter()
-                .filter_map(|c| ChannelId::try_from(c).ok())
+                .enumerate()
+                .filter_map(|(i, c)| {
+                    let artist = ArtistId::from(c);
+                    // Filter out text components with no links that are at
+                    // odd positions (conjunctions)
+                    if artist.id.is_none() && i % 2 == 1 {
+                        None
+                    } else if artist.id.is_none() && artist.name == util::VARIOUS_ARTISTS {
+                        by_va = true;
+                        None
+                    } else {
+                        Some(artist)
+                    }
+                })
                 .collect::<Vec<_>>()
         })
         .unwrap_or_default();
-
-    (artists, artists_txt)
+    (artists, by_va)
 }
 
 pub(crate) fn map_album_type(txt: &str, lang: Language) -> AlbumType {

@@ -930,6 +930,8 @@ pub struct AlbumItem {
     pub album_type: AlbumType,
     /// Release year of the album
     pub year: Option<u16>,
+    /// Is the album by 'Various artists'?
+    pub by_va: bool,
 }
 
 /// YouTube Music playlist list item

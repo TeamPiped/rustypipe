@@ -32,14 +32,14 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCEdZAdnnKqbaHOlv8nM6OtA",
+          ArtistId(
+            id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
             name: "aespa",
           ),
         ],
-        artists_txt: "aespa",
         album_type: Single,
         year: Some(2020),
+        by_va: false,
       ),
       AlbumItem(
         id: "MPREb_pvdHyqvGjbI",
@@ -67,14 +67,14 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCEdZAdnnKqbaHOlv8nM6OtA",
+          ArtistId(
+            id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
             name: "aespa",
           ),
         ],
-        artists_txt: "aespa",
         album_type: Album,
         year: Some(2022),
+        by_va: false,
       ),
       AlbumItem(
         id: "MPREb_CznUTKnATw6",
@@ -102,14 +102,14 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCZK5n7V2-iPHfUXLV2tDvzw",
+          ArtistId(
+            id: Some("UCZK5n7V2-iPHfUXLV2tDvzw"),
             name: "Cojack",
           ),
         ],
-        artists_txt: "Cojack",
         album_type: Single,
         year: Some(2020),
+        by_va: false,
       ),
       AlbumItem(
         id: "MPREb_Sx4uifBuKyD",
@@ -137,14 +137,14 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCudOYmRtW3uylYtqY1aAD0A",
+          ArtistId(
+            id: Some("UCudOYmRtW3uylYtqY1aAD0A"),
             name: "Montana Of 300",
           ),
         ],
-        artists_txt: "Montana Of 300",
         album_type: Single,
         year: Some(2020),
+        by_va: false,
       ),
       AlbumItem(
         id: "MPREb_PdIIalyOQXF",
@@ -172,14 +172,14 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UC8whsREta_7Fu-EjRq2Ys-A",
+          ArtistId(
+            id: Some("UC8whsREta_7Fu-EjRq2Ys-A"),
             name: "Alpha Wolf",
           ),
         ],
-        artists_txt: "Alpha Wolf",
         album_type: Single,
         year: Some(2018),
+        by_va: false,
       ),
       AlbumItem(
         id: "MPREb_9KdyuqvufOL",
@@ -207,14 +207,14 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCRy7ecValgvorRe_8dum9lA",
+          ArtistId(
+            id: Some("UCRy7ecValgvorRe_8dum9lA"),
             name: "ESKIIMO",
           ),
         ],
-        artists_txt: "ESKIIMO",
         album_type: Ep,
         year: Some(2022),
+        by_va: false,
       ),
       AlbumItem(
         id: "MPREb_VDjWCOUvD7s",
@@ -242,14 +242,14 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCdkNrc_l73BHYKRhDqxBo9w",
+          ArtistId(
+            id: Some("UCdkNrc_l73BHYKRhDqxBo9w"),
             name: "Black Mamba Man",
           ),
         ],
-        artists_txt: "Black Mamba Man",
         album_type: Album,
         year: Some(2017),
+        by_va: false,
       ),
       AlbumItem(
         id: "MPREb_xjJaY8xb2Rw",
@@ -277,14 +277,14 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCn09cNujyKjEA1NxD5Aj_mQ",
+          ArtistId(
+            id: Some("UCn09cNujyKjEA1NxD5Aj_mQ"),
             name: "Paride Saraceni",
           ),
         ],
-        artists_txt: "Paride Saraceni",
         album_type: Single,
         year: Some(2019),
+        by_va: false,
       ),
       AlbumItem(
         id: "MPREb_CH1VEbx7Lle",
@@ -312,14 +312,14 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCYAFIwL4uBWQHBrBiohx1vw",
+          ArtistId(
+            id: Some("UCYAFIwL4uBWQHBrBiohx1vw"),
             name: "Addis Black Mamba",
           ),
         ],
-        artists_txt: "Addis Black Mamba",
         album_type: Single,
         year: Some(2019),
+        by_va: false,
       ),
       AlbumItem(
         id: "MPREb_IfiMtX5CnWJ",
@@ -347,22 +347,22 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCs04jfHH78YUziFA52P97LA",
+          ArtistId(
+            id: Some("UCs04jfHH78YUziFA52P97LA"),
             name: "R. Black Mamba",
           ),
-          ChannelId(
-            id: "UCsOfYy8UlBPRYkC5lgRaatA",
+          ArtistId(
+            id: Some("UCsOfYy8UlBPRYkC5lgRaatA"),
             name: "Lonzzo",
           ),
-          ChannelId(
-            id: "UCEwg585uC9nBoL8KA7ayjPA",
+          ArtistId(
+            id: Some("UCEwg585uC9nBoL8KA7ayjPA"),
             name: "24.Gz",
           ),
         ],
-        artists_txt: "R. Black Mamba, Lonzzo & 24.Gz",
         album_type: Single,
         year: Some(2022),
+        by_va: false,
       ),
       AlbumItem(
         id: "MPREb_DeCImAQRYMO",
@@ -390,14 +390,14 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCZwE-b-kzA4pQaCQXwOQnlg",
+          ArtistId(
+            id: Some("UCZwE-b-kzA4pQaCQXwOQnlg"),
             name: "Seoul Philharmonic Orchestra",
           ),
         ],
-        artists_txt: "Seoul Philharmonic Orchestra",
         album_type: Single,
         year: Some(2022),
+        by_va: false,
       ),
       AlbumItem(
         id: "MPREb_vXAHel98vo2",
@@ -425,14 +425,14 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UC_SI7sOel-qMTvSe-lGHX8w",
+          ArtistId(
+            id: Some("UC_SI7sOel-qMTvSe-lGHX8w"),
             name: "Hever Jara",
           ),
         ],
-        artists_txt: "Hever Jara",
         album_type: Single,
         year: Some(2018),
+        by_va: false,
       ),
       AlbumItem(
         id: "MPREb_iAemzaCGXuo",
@@ -460,14 +460,14 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCMZowOoC3u_ntr9o52ekeZw",
+          ArtistId(
+            id: Some("UCMZowOoC3u_ntr9o52ekeZw"),
             name: "Yung FN",
           ),
         ],
-        artists_txt: "Yung FN",
         album_type: Single,
         year: Some(2022),
+        by_va: false,
       ),
       AlbumItem(
         id: "MPREb_CbIA5po2cn4",
@@ -495,14 +495,14 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCX6v_euBwliDYV2NMTouuSA",
+          ArtistId(
+            id: Some("UCX6v_euBwliDYV2NMTouuSA"),
             name: "Hobino",
           ),
         ],
-        artists_txt: "Hobino",
         album_type: Single,
         year: Some(2022),
+        by_va: false,
       ),
       AlbumItem(
         id: "MPREb_yrsxU7t0h6l",
@@ -530,14 +530,14 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCAlOD5s3Ro27M61-2Z_UB7w",
+          ArtistId(
+            id: Some("UCAlOD5s3Ro27M61-2Z_UB7w"),
             name: "Tee See Connection",
           ),
         ],
-        artists_txt: "Tee See Connection",
         album_type: Single,
         year: Some(2013),
+        by_va: false,
       ),
       AlbumItem(
         id: "MPREb_fETChb2O2uR",
@@ -565,14 +565,14 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UC77rFNJxH8Y2VwSYp8ZTXHA",
+          ArtistId(
+            id: Some("UC77rFNJxH8Y2VwSYp8ZTXHA"),
             name: "Franco Vitola",
           ),
         ],
-        artists_txt: "Franco Vitola",
         album_type: Single,
         year: Some(2020),
+        by_va: false,
       ),
       AlbumItem(
         id: "MPREb_VcRKLYVgy11",
@@ -600,14 +600,14 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCxX9tNcQgCBuU56ezupriqg",
+          ArtistId(
+            id: Some("UCxX9tNcQgCBuU56ezupriqg"),
             name: "Black Mamba",
           ),
         ],
-        artists_txt: "Black Mamba",
         album_type: Album,
         year: Some(2011),
+        by_va: false,
       ),
       AlbumItem(
         id: "MPREb_grtT3Ze8U2Z",
@@ -635,14 +635,14 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UC6Y8G45J9Uv2EsLLOatymOw",
+          ArtistId(
+            id: Some("UC6Y8G45J9Uv2EsLLOatymOw"),
             name: "WookTheCrook",
           ),
         ],
-        artists_txt: "WookTheCrook",
         album_type: Single,
         year: Some(2022),
+        by_va: false,
       ),
       AlbumItem(
         id: "MPREb_hXasyBrDJm7",
@@ -670,14 +670,14 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCaDT20-B3U8h-tPg_VMvntw",
+          ArtistId(
+            id: Some("UCaDT20-B3U8h-tPg_VMvntw"),
             name: "The Black Mamba",
           ),
         ],
-        artists_txt: "The Black Mamba",
         album_type: Album,
         year: Some(2012),
+        by_va: false,
       ),
       AlbumItem(
         id: "MPREb_jDiEDfz09CY",
@@ -705,14 +705,14 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCJq1MEuNM0SidXn5pMqqHBA",
+          ArtistId(
+            id: Some("UCJq1MEuNM0SidXn5pMqqHBA"),
             name: "Voltage",
           ),
         ],
-        artists_txt: "Voltage",
         album_type: Single,
         year: Some(2019),
+        by_va: false,
       ),
     ],
     ctoken: Some("EoIGEgtibGFjayBtYW1iYRryBUVnV0tBUUlZQVVnVWFnd1FBeEFFRUFrUURoQUtFQVdDQVJoVlEyRjJabUpWTlc0emFEaHZXR2RSUzBkTlZqTkhXbEdDQVJoVlEzbE1XR2hVTWxGU1ZYRlJVbUZUY2tST1RVSmZNMmVDQVJoVlEyZG1SR2RXWVRsbE9EWm1TVTVZYTE5elpWOWxlWGVDQVJoVlEzZGlNekEyT0ZkQ1dYTlJjbkl5WDBSS1pIRlRaWGVDQVJoVlEwZEhWVVkwWHpjMFZuWkxSbmR1Y0ZCRU1FWndPRUdDQVJoVlEyaHBaMVprUkhVM1owTkpZWEJ0ZUZSeGEyZG1RM2VDQVJoVlEyd3laVFpzVXkwdGQzYzNabnBLWVMxV2QxQkJNbWVDQVJoVlF6Z3RhbmxoVkdsSU9VWlViVGRRZG10RllYa3hWVUdDQVJoVlF5MDBOSGRNWm04eldISmplbGROZFdsQ1JWbHJWVUdDQVJoVlEzWnVjVmw1UVdSUGJWRnZVMlpMZEV0SldYVm5NbEdDQVJoVlEyWmlhMFpCTjFSU01tMXhRbU5WVVZCWFZFaDBWWGVDQVJoVlEzcHlkM2RGZUhZeWQxUmFkUzFrVldobU9DMVdUbmVDQVJoVlEySmpNa2xCYmxOTE0zcDBWR0YyVGtkTFJrRk5UWGVDQVJoVlF6UnlSVGRPTW5sR2VrVXdNVVozY1ZwdVdrWm5RVUdDQVJoVlEwRTBORFF4YlZGaGNHazNTbU5RWmpkVVkxOHdSVUdDQVJoVlEzZHBZVjl1ZUc5QlkwRjFiVmgzUmpVeVVHeDFYMmVDQVJoVlF6QlZVMWhDU1VOcmJHbGlhSGxVUkhKaWVHUldMVkdDQVJoVlF6bERMV1pwVG1JM1FWWjJjRGRWZGxKdlEyMTJjMUdDQVJoVlEwZFZkMUJHWVVaMFdVRXRiamRhVERSSFlubHlYM2VDQVJoVlEySkdiRTR5Y0RCT1owbERlbVZYVFRNd1pIQTFaMmMlM0QY8erQLg%3D%3D"),

@@ -8,16 +8,15 @@ MusicAlbum(
   name: "Der Himmel reißt auf",
   cover: "[cover]",
   artists: [
-    ChannelId(
-      id: "UCXGYZ-OhdOpPBamHX3K9YRg",
+    ArtistId(
+      id: Some("UCXGYZ-OhdOpPBamHX3K9YRg"),
       name: "Joel Brandenstein",
     ),
-    ChannelId(
-      id: "UCFTcSVPYRWlDoHisR-ZKwgw",
+    ArtistId(
+      id: Some("UCFTcSVPYRWlDoHisR-ZKwgw"),
       name: "Vanessa Mai",
     ),
   ],
-  artists_txt: "Joel Brandenstein & Vanessa Mai",
   album_type: Single,
   year: Some(2020),
   by_va: false,
@@ -28,19 +27,21 @@ MusicAlbum(
       duration: 183,
       cover: [],
       artists: [
-        ChannelId(
-          id: "UCXGYZ-OhdOpPBamHX3K9YRg",
+        ArtistId(
+          id: Some("UCXGYZ-OhdOpPBamHX3K9YRg"),
           name: "Joel Brandenstein",
         ),
-        ChannelId(
-          id: "UCFTcSVPYRWlDoHisR-ZKwgw",
+        ArtistId(
+          id: Some("UCFTcSVPYRWlDoHisR-ZKwgw"),
           name: "Vanessa Mai",
         ),
       ],
-      artists_txt: Some("Joel Brandenstein & Vanessa Mai"),
-      album: None,
+      album: Some(AlbumId(
+        id: "MPREb_bHfHGoy7vuv",
+        name: "Der Himmel reißt auf",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(1),
     ),
   ],

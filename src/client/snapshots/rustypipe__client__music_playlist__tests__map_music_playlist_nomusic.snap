@@ -43,8 +43,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -61,8 +65,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -79,8 +87,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -97,8 +109,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -115,8 +131,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -133,8 +153,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -151,8 +175,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -169,8 +197,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -187,8 +219,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -205,8 +241,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -223,8 +263,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -241,8 +285,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -259,8 +307,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -277,8 +329,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -295,8 +351,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -313,8 +373,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -331,8 +395,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -349,8 +417,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -367,8 +439,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -385,8 +461,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -403,8 +483,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -421,8 +505,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -439,8 +527,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -457,8 +549,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -475,8 +571,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -493,8 +593,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -511,8 +615,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -529,8 +637,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -547,8 +659,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -565,8 +681,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -583,8 +703,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -601,8 +725,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -619,8 +747,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -637,8 +769,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -655,8 +791,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -673,8 +813,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -691,8 +835,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -709,8 +857,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -727,8 +879,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -745,8 +901,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -763,8 +923,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -781,8 +945,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -799,8 +967,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -817,8 +989,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -835,8 +1011,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -853,8 +1033,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -871,8 +1055,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -889,8 +1077,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -907,8 +1099,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -925,8 +1121,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -943,8 +1143,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -961,8 +1165,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -979,8 +1187,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -997,8 +1209,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -1015,8 +1231,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -1033,8 +1253,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -1051,8 +1275,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -1069,8 +1297,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -1087,8 +1319,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -1105,8 +1341,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -1123,8 +1363,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -1141,8 +1385,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -1159,8 +1407,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -1177,8 +1429,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -1195,8 +1451,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,
@@ -1213,8 +1473,12 @@ MusicPlaylist(
             height: 225,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Chaosflo44"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Chaosflo44",
+          ),
+        ],
         album: None,
         view_count: None,
         is_video: true,

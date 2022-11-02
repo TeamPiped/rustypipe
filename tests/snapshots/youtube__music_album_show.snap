@@ -8,12 +8,11 @@ MusicAlbum(
   name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
   cover: "[cover]",
   artists: [
-    ChannelId(
-      id: "UCNoyEM0e2A7WlsBmP2w3avg",
+    ArtistId(
+      id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
       name: "Kingdom Force",
     ),
   ],
-  artists_txt: "Kingdom Force",
   album_type: Show,
   year: Some(2022),
   by_va: false,
@@ -24,15 +23,17 @@ MusicAlbum(
       duration: 229,
       cover: [],
       artists: [
-        ChannelId(
-          id: "UCNoyEM0e2A7WlsBmP2w3avg",
+        ArtistId(
+          id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
           name: "Kingdom Force",
         ),
       ],
-      artists_txt: Some("Kingdom Force"),
-      album: None,
+      album: Some(AlbumId(
+        id: "MPREb_cwzk8EUwypZ",
+        name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(1),
     ),
     TrackItem(
@@ -41,15 +42,17 @@ MusicAlbum(
       duration: 235,
       cover: [],
       artists: [
-        ChannelId(
-          id: "UCNoyEM0e2A7WlsBmP2w3avg",
+        ArtistId(
+          id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
           name: "Kingdom Force",
         ),
       ],
-      artists_txt: Some("Kingdom Force"),
-      album: None,
+      album: Some(AlbumId(
+        id: "MPREb_cwzk8EUwypZ",
+        name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(2),
     ),
     TrackItem(
@@ -58,15 +61,17 @@ MusicAlbum(
       duration: 197,
       cover: [],
       artists: [
-        ChannelId(
-          id: "UCNoyEM0e2A7WlsBmP2w3avg",
+        ArtistId(
+          id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
           name: "Kingdom Force",
         ),
       ],
-      artists_txt: Some("Kingdom Force"),
-      album: None,
+      album: Some(AlbumId(
+        id: "MPREb_cwzk8EUwypZ",
+        name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(3),
     ),
     TrackItem(
@@ -75,15 +80,17 @@ MusicAlbum(
       duration: 186,
       cover: [],
       artists: [
-        ChannelId(
-          id: "UCNoyEM0e2A7WlsBmP2w3avg",
+        ArtistId(
+          id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
           name: "Kingdom Force",
         ),
       ],
-      artists_txt: Some("Kingdom Force"),
-      album: None,
+      album: Some(AlbumId(
+        id: "MPREb_cwzk8EUwypZ",
+        name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(4),
     ),
     TrackItem(
@@ -92,15 +99,17 @@ MusicAlbum(
       duration: 188,
       cover: [],
       artists: [
-        ChannelId(
-          id: "UCNoyEM0e2A7WlsBmP2w3avg",
+        ArtistId(
+          id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
           name: "Kingdom Force",
         ),
       ],
-      artists_txt: Some("Kingdom Force"),
-      album: None,
+      album: Some(AlbumId(
+        id: "MPREb_cwzk8EUwypZ",
+        name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(5),
     ),
     TrackItem(
@@ -109,15 +118,17 @@ MusicAlbum(
       duration: 205,
       cover: [],
       artists: [
-        ChannelId(
-          id: "UCNoyEM0e2A7WlsBmP2w3avg",
+        ArtistId(
+          id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
           name: "Kingdom Force",
         ),
       ],
-      artists_txt: Some("Kingdom Force"),
-      album: None,
+      album: Some(AlbumId(
+        id: "MPREb_cwzk8EUwypZ",
+        name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(6),
     ),
     TrackItem(
@@ -126,15 +137,17 @@ MusicAlbum(
       duration: 219,
       cover: [],
       artists: [
-        ChannelId(
-          id: "UCNoyEM0e2A7WlsBmP2w3avg",
+        ArtistId(
+          id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
           name: "Kingdom Force",
         ),
       ],
-      artists_txt: Some("Kingdom Force"),
-      album: None,
+      album: Some(AlbumId(
+        id: "MPREb_cwzk8EUwypZ",
+        name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(7),
     ),
     TrackItem(
@@ -143,15 +156,17 @@ MusicAlbum(
       duration: 240,
       cover: [],
       artists: [
-        ChannelId(
-          id: "UCNoyEM0e2A7WlsBmP2w3avg",
+        ArtistId(
+          id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
           name: "Kingdom Force",
         ),
       ],
-      artists_txt: Some("Kingdom Force"),
-      album: None,
+      album: Some(AlbumId(
+        id: "MPREb_cwzk8EUwypZ",
+        name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(8),
     ),
     TrackItem(
@@ -160,15 +175,17 @@ MusicAlbum(
       duration: 239,
       cover: [],
       artists: [
-        ChannelId(
-          id: "UCNoyEM0e2A7WlsBmP2w3avg",
+        ArtistId(
+          id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
           name: "Kingdom Force",
         ),
       ],
-      artists_txt: Some("Kingdom Force"),
-      album: None,
+      album: Some(AlbumId(
+        id: "MPREb_cwzk8EUwypZ",
+        name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(9),
     ),
     TrackItem(
@@ -177,15 +194,17 @@ MusicAlbum(
       duration: 197,
       cover: [],
       artists: [
-        ChannelId(
-          id: "UCNoyEM0e2A7WlsBmP2w3avg",
+        ArtistId(
+          id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
           name: "Kingdom Force",
         ),
       ],
-      artists_txt: Some("Kingdom Force"),
-      album: None,
+      album: Some(AlbumId(
+        id: "MPREb_cwzk8EUwypZ",
+        name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(10),
     ),
     TrackItem(
@@ -194,15 +213,17 @@ MusicAlbum(
       duration: 201,
       cover: [],
       artists: [
-        ChannelId(
-          id: "UCNoyEM0e2A7WlsBmP2w3avg",
+        ArtistId(
+          id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
           name: "Kingdom Force",
         ),
       ],
-      artists_txt: Some("Kingdom Force"),
-      album: None,
+      album: Some(AlbumId(
+        id: "MPREb_cwzk8EUwypZ",
+        name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(11),
     ),
     TrackItem(
@@ -211,15 +232,17 @@ MusicAlbum(
       duration: 187,
       cover: [],
       artists: [
-        ChannelId(
-          id: "UCNoyEM0e2A7WlsBmP2w3avg",
+        ArtistId(
+          id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
           name: "Kingdom Force",
         ),
       ],
-      artists_txt: Some("Kingdom Force"),
-      album: None,
+      album: Some(AlbumId(
+        id: "MPREb_cwzk8EUwypZ",
+        name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(12),
     ),
     TrackItem(
@@ -228,15 +251,17 @@ MusicAlbum(
       duration: 183,
       cover: [],
       artists: [
-        ChannelId(
-          id: "UCNoyEM0e2A7WlsBmP2w3avg",
+        ArtistId(
+          id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
           name: "Kingdom Force",
         ),
       ],
-      artists_txt: Some("Kingdom Force"),
-      album: None,
+      album: Some(AlbumId(
+        id: "MPREb_cwzk8EUwypZ",
+        name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(13),
     ),
     TrackItem(
@@ -245,15 +270,17 @@ MusicAlbum(
       duration: 193,
       cover: [],
       artists: [
-        ChannelId(
-          id: "UCNoyEM0e2A7WlsBmP2w3avg",
+        ArtistId(
+          id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
           name: "Kingdom Force",
         ),
       ],
-      artists_txt: Some("Kingdom Force"),
-      album: None,
+      album: Some(AlbumId(
+        id: "MPREb_cwzk8EUwypZ",
+        name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(14),
     ),
   ],

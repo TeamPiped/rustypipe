@@ -325,6 +325,39 @@ impl TryFrom<TextComponent> for crate::model::AlbumId {
     }
 }
 
+impl From<TextComponent> for crate::model::ArtistId {
+    fn from(component: TextComponent) -> Self {
+        match component {
+            TextComponent::Browse {
+                text,
+                page_type,
+                browse_id,
+            } => match page_type {
+                PageType::Channel | PageType::Artist => Self {
+                    id: Some(browse_id),
+                    name: text,
+                },
+                _ => Self {
+                    id: None,
+                    name: text,
+                },
+            },
+            TextComponent::Video { text, .. } => Self {
+                id: None,
+                name: text,
+            },
+            TextComponent::Web { text, .. } => Self {
+                id: None,
+                name: text,
+            },
+            TextComponent::Text { text } => Self {
+                id: None,
+                name: text,
+            },
+        }
+    }
+}
+
 impl From<TextComponent> for crate::model::richtext::TextComponent {
     fn from(component: TextComponent) -> Self {
         match component {
@@ -374,16 +407,6 @@ impl TextComponent {
 }
 
 impl TextComponents {
-    /// Return the string representation of all text components
-    /// or [`None`] if there aren't any.
-    pub fn to_opt_string(&self) -> Option<String> {
-        if self.0.is_empty() {
-            None
-        } else {
-            Some(self.to_string())
-        }
-    }
-
     /// Return the string representation of the first text component
     pub fn first_str(&self) -> &str {
         self.0.first().map(|t| t.as_str()).unwrap_or_default()

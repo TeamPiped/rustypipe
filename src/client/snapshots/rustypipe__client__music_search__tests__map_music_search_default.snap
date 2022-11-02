@@ -16,12 +16,11 @@ MusicSearchResult(
         ),
       ],
       artists: [
-        ChannelId(
-          id: "UCEdZAdnnKqbaHOlv8nM6OtA",
+        ArtistId(
+          id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
           name: "aespa",
         ),
       ],
-      artists_txt: Some("aespa"),
       album: None,
       view_count: Some(235000000),
       is_video: true,
@@ -44,12 +43,11 @@ MusicSearchResult(
         ),
       ],
       artists: [
-        ChannelId(
-          id: "UCEdZAdnnKqbaHOlv8nM6OtA",
+        ArtistId(
+          id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
           name: "aespa",
         ),
       ],
-      artists_txt: Some("aespa"),
       album: Some(AlbumId(
         id: "MPREb_OpHWHwyNOuY",
         name: "Black Mamba",
@@ -75,16 +73,15 @@ MusicSearchResult(
         ),
       ],
       artists: [
-        ChannelId(
-          id: "UCfCNL5oajlQBAlyjWv1ChVw",
+        ArtistId(
+          id: Some("UCfCNL5oajlQBAlyjWv1ChVw"),
           name: "Hans Zimmer",
         ),
-        ChannelId(
-          id: "UCvTXGTZf9EvuCAwZOkoR2iQ",
+        ArtistId(
+          id: Some("UCvTXGTZf9EvuCAwZOkoR2iQ"),
           name: "Lorne Balfe",
         ),
       ],
-      artists_txt: Some("Hans Zimmer & Lorne Balfe"),
       album: Some(AlbumId(
         id: "MPREb_UmDOhLpDsc0",
         name: "Megamind (Music from the Motion Picture)",
@@ -110,12 +107,11 @@ MusicSearchResult(
         ),
       ],
       artists: [
-        ChannelId(
-          id: "UCz6yr3CgFGrrrPDa2asbWMQ",
+        ArtistId(
+          id: Some("UCz6yr3CgFGrrrPDa2asbWMQ"),
           name: "Bayamon PR Tribe",
         ),
       ],
-      artists_txt: Some("Bayamon PR Tribe"),
       album: Some(AlbumId(
         id: "MPREb_RV0PGHyGfkp",
         name: "LISTEN ME",
@@ -136,12 +132,11 @@ MusicSearchResult(
         ),
       ],
       artists: [
-        ChannelId(
-          id: "UCS_hnpJLQTvBkqALgapi_4g",
+        ArtistId(
+          id: Some("UCS_hnpJLQTvBkqALgapi_4g"),
           name: "스브스케이팝 X INKIGAYO",
         ),
       ],
-      artists_txt: Some("스브스케이팝 X INKIGAYO"),
       album: None,
       view_count: Some(10000000),
       is_video: true,
@@ -159,12 +154,11 @@ MusicSearchResult(
         ),
       ],
       artists: [
-        ChannelId(
-          id: "UCEdZAdnnKqbaHOlv8nM6OtA",
+        ArtistId(
+          id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
           name: "aespa",
         ),
       ],
-      artists_txt: Some("aespa"),
       album: None,
       view_count: Some(18000000),
       is_video: true,
@@ -182,12 +176,11 @@ MusicSearchResult(
         ),
       ],
       artists: [
-        ChannelId(
-          id: "UC5BMQOsAB8hKUyHu9KI6yig",
+        ArtistId(
+          id: Some("UC5BMQOsAB8hKUyHu9KI6yig"),
           name: "KBS WORLD TV",
         ),
       ],
-      artists_txt: Some("KBS WORLD TV"),
       album: None,
       view_count: Some(3200000),
       is_video: true,
@@ -221,14 +214,14 @@ MusicSearchResult(
         ),
       ],
       artists: [
-        ChannelId(
-          id: "UCEdZAdnnKqbaHOlv8nM6OtA",
+        ArtistId(
+          id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
           name: "aespa",
         ),
       ],
-      artists_txt: "aespa",
       album_type: Single,
       year: Some(2020),
+      by_va: false,
     ),
     AlbumItem(
       id: "MPREb_pvdHyqvGjbI",
@@ -256,14 +249,14 @@ MusicSearchResult(
         ),
       ],
       artists: [
-        ChannelId(
-          id: "UCEdZAdnnKqbaHOlv8nM6OtA",
+        ArtistId(
+          id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
           name: "aespa",
         ),
       ],
-      artists_txt: "aespa",
       album_type: Album,
       year: Some(2022),
+      by_va: false,
     ),
     AlbumItem(
       id: "MPREb_CznUTKnATw6",
@@ -291,14 +284,14 @@ MusicSearchResult(
         ),
       ],
       artists: [
-        ChannelId(
-          id: "UCZK5n7V2-iPHfUXLV2tDvzw",
+        ArtistId(
+          id: Some("UCZK5n7V2-iPHfUXLV2tDvzw"),
           name: "Cojack",
         ),
       ],
-      artists_txt: "Cojack",
       album_type: Single,
       year: Some(2020),
+      by_va: false,
     ),
   ],
   artists: [

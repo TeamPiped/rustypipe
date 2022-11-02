@@ -8,7 +8,6 @@ MusicAlbum(
   name: "＜Queendom2＞ FINAL",
   cover: "[cover]",
   artists: [],
-  artists_txt: "Various Artists",
   album_type: Single,
   year: Some(2022),
   by_va: true,
@@ -18,11 +17,18 @@ MusicAlbum(
       title: "Waka Boom (My Way) (feat. Lee Young Ji)",
       duration: 274,
       cover: [],
-      artists: [],
-      artists_txt: Some("HYOLYN"),
-      album: None,
+      artists: [
+        ArtistId(
+          id: None,
+          name: "HYOLYN",
+        ),
+      ],
+      album: Some(AlbumId(
+        id: "MPREb_8QkDeEIawvX",
+        name: "＜Queendom2＞ FINAL",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(1),
     ),
     TrackItem(
@@ -30,11 +36,18 @@ MusicAlbum(
       title: "AURA",
       duration: 216,
       cover: [],
-      artists: [],
-      artists_txt: Some("WJSN"),
-      album: None,
+      artists: [
+        ArtistId(
+          id: None,
+          name: "WJSN",
+        ),
+      ],
+      album: Some(AlbumId(
+        id: "MPREb_8QkDeEIawvX",
+        name: "＜Queendom2＞ FINAL",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(2),
     ),
     TrackItem(
@@ -43,15 +56,17 @@ MusicAlbum(
       duration: 239,
       cover: [],
       artists: [
-        ChannelId(
-          id: "UCAKvDuIX3m1AUdPpDSqV_3w",
+        ArtistId(
+          id: Some("UCAKvDuIX3m1AUdPpDSqV_3w"),
           name: "Kep1er",
         ),
       ],
-      artists_txt: Some("Kep1er"),
-      album: None,
+      album: Some(AlbumId(
+        id: "MPREb_8QkDeEIawvX",
+        name: "＜Queendom2＞ FINAL",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(3),
     ),
     TrackItem(
@@ -59,11 +74,18 @@ MusicAlbum(
       title: "Red Sun!",
       duration: 254,
       cover: [],
-      artists: [],
-      artists_txt: Some("VIVIZ"),
-      album: None,
+      artists: [
+        ArtistId(
+          id: None,
+          name: "VIVIZ",
+        ),
+      ],
+      album: Some(AlbumId(
+        id: "MPREb_8QkDeEIawvX",
+        name: "＜Queendom2＞ FINAL",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(4),
     ),
     TrackItem(
@@ -71,11 +93,18 @@ MusicAlbum(
       title: "POSE",
       duration: 187,
       cover: [],
-      artists: [],
-      artists_txt: Some("LOONA"),
-      album: None,
+      artists: [
+        ArtistId(
+          id: None,
+          name: "LOONA",
+        ),
+      ],
+      album: Some(AlbumId(
+        id: "MPREb_8QkDeEIawvX",
+        name: "＜Queendom2＞ FINAL",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(5),
     ),
     TrackItem(
@@ -83,11 +112,18 @@ MusicAlbum(
       title: "Whistle",
       duration: 224,
       cover: [],
-      artists: [],
-      artists_txt: Some("Brave Girls"),
-      album: None,
+      artists: [
+        ArtistId(
+          id: None,
+          name: "Brave Girls",
+        ),
+      ],
+      album: Some(AlbumId(
+        id: "MPREb_8QkDeEIawvX",
+        name: "＜Queendom2＞ FINAL",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(6),
     ),
   ],

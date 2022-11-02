@@ -8,12 +8,11 @@ MusicAlbum(
   name: "Waldbrand",
   cover: "[cover]",
   artists: [
-    ChannelId(
-      id: "UCpJyCbFbdTrx0M90HCNBHFQ",
+    ArtistId(
+      id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
       name: "Madeline Juno",
     ),
   ],
-  artists_txt: "Madeline Juno",
   album_type: Ep,
   year: Some(2016),
   by_va: false,
@@ -24,15 +23,17 @@ MusicAlbum(
       duration: 221,
       cover: [],
       artists: [
-        ChannelId(
-          id: "UCpJyCbFbdTrx0M90HCNBHFQ",
+        ArtistId(
+          id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
           name: "Madeline Juno",
         ),
       ],
-      artists_txt: Some("Madeline Juno"),
-      album: None,
+      album: Some(AlbumId(
+        id: "MPREb_u1I69lSAe5v",
+        name: "Waldbrand",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(1),
     ),
     TrackItem(
@@ -41,15 +42,17 @@ MusicAlbum(
       duration: 208,
       cover: [],
       artists: [
-        ChannelId(
-          id: "UCpJyCbFbdTrx0M90HCNBHFQ",
+        ArtistId(
+          id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
           name: "Madeline Juno",
         ),
       ],
-      artists_txt: Some("Madeline Juno"),
-      album: None,
+      album: Some(AlbumId(
+        id: "MPREb_u1I69lSAe5v",
+        name: "Waldbrand",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(2),
     ),
     TrackItem(
@@ -58,15 +61,17 @@ MusicAlbum(
       duration: 223,
       cover: [],
       artists: [
-        ChannelId(
-          id: "UCpJyCbFbdTrx0M90HCNBHFQ",
+        ArtistId(
+          id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
           name: "Madeline Juno",
         ),
       ],
-      artists_txt: Some("Madeline Juno"),
-      album: None,
+      album: Some(AlbumId(
+        id: "MPREb_u1I69lSAe5v",
+        name: "Waldbrand",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(3),
     ),
     TrackItem(
@@ -75,15 +80,17 @@ MusicAlbum(
       duration: 221,
       cover: [],
       artists: [
-        ChannelId(
-          id: "UCpJyCbFbdTrx0M90HCNBHFQ",
+        ArtistId(
+          id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
           name: "Madeline Juno",
         ),
       ],
-      artists_txt: Some("Madeline Juno"),
-      album: None,
+      album: Some(AlbumId(
+        id: "MPREb_u1I69lSAe5v",
+        name: "Waldbrand",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(4),
     ),
     TrackItem(
@@ -92,15 +99,17 @@ MusicAlbum(
       duration: 197,
       cover: [],
       artists: [
-        ChannelId(
-          id: "UCpJyCbFbdTrx0M90HCNBHFQ",
+        ArtistId(
+          id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
           name: "Madeline Juno",
         ),
       ],
-      artists_txt: Some("Madeline Juno"),
-      album: None,
+      album: Some(AlbumId(
+        id: "MPREb_u1I69lSAe5v",
+        name: "Waldbrand",
+      )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(5),
     ),
   ],

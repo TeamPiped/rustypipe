@@ -23,12 +23,11 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCIh4j8fXWf2U0ro0qnGU8Mg",
+          ArtistId(
+            id: Some("UCIh4j8fXWf2U0ro0qnGU8Mg"),
             name: "Namika",
           ),
         ],
-        artists_txt: Some("Namika"),
         album: Some(AlbumId(
           id: "MPREb_RXHxrUFfrvQ",
           name: "Lieblingsmensch",
@@ -54,12 +53,11 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCCpID8TTjkkjLCwBybAfHSg",
+          ArtistId(
+            id: Some("UCCpID8TTjkkjLCwBybAfHSg"),
             name: "Boris Brejcha",
           ),
         ],
-        artists_txt: Some("Boris Brejcha"),
         album: Some(AlbumId(
           id: "MPREb_VFqQlfPhsFW",
           name: "Lieblingsmensch",
@@ -85,12 +83,11 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCMLbHQGqUHeNAqjOL1qXZXg",
+          ArtistId(
+            id: Some("UCMLbHQGqUHeNAqjOL1qXZXg"),
             name: "Lumbematz",
           ),
         ],
-        artists_txt: Some("Lumbematz"),
         album: Some(AlbumId(
           id: "MPREb_14GKjCEauSE",
           name: "Lieblingsmensch",
@@ -116,12 +113,11 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCCpID8TTjkkjLCwBybAfHSg",
+          ArtistId(
+            id: Some("UCCpID8TTjkkjLCwBybAfHSg"),
             name: "Boris Brejcha",
           ),
         ],
-        artists_txt: Some("Boris Brejcha"),
         album: Some(AlbumId(
           id: "MPREb_AlIjxpnBKtn",
           name: "Lieblingsmensch (Edit)",
@@ -147,12 +143,11 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCTJBrv8T8AxavAynvB3_DSw",
+          ArtistId(
+            id: Some("UCTJBrv8T8AxavAynvB3_DSw"),
             name: "Seer",
           ),
         ],
-        artists_txt: Some("Seer"),
         album: Some(AlbumId(
           id: "MPREb_t2Laj9ENdVn",
           name: "echt seerisch",
@@ -178,12 +173,11 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCtoec88rzlhABHeo_4d-H8g",
+          ArtistId(
+            id: Some("UCtoec88rzlhABHeo_4d-H8g"),
             name: "Dame",
           ),
         ],
-        artists_txt: Some("Dame"),
         album: Some(AlbumId(
           id: "MPREb_9ILis64aD76",
           name: "Notiz an mich",
@@ -209,12 +203,11 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UClOpZVfE5v-fFtM8vqFud-g",
+          ArtistId(
+            id: Some("UClOpZVfE5v-fFtM8vqFud-g"),
             name: "KIDZ BOP Kids",
           ),
         ],
-        artists_txt: Some("KIDZ BOP Kids"),
         album: Some(AlbumId(
           id: "MPREb_vxdAMBsmm1s",
           name: "KIDZ BOP Ultimate Playlist",
@@ -240,12 +233,11 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCIh4j8fXWf2U0ro0qnGU8Mg",
+          ArtistId(
+            id: Some("UCIh4j8fXWf2U0ro0qnGU8Mg"),
             name: "Namika",
           ),
         ],
-        artists_txt: Some("Namika"),
         album: Some(AlbumId(
           id: "MPREb_V5f8YfHKp2j",
           name: "Lieblingsmensch",
@@ -271,12 +263,11 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCvfUKCnUBfsZAVHgF-pYmJg",
+          ArtistId(
+            id: Some("UCvfUKCnUBfsZAVHgF-pYmJg"),
             name: "Voyce",
           ),
         ],
-        artists_txt: Some("Voyce"),
         album: Some(AlbumId(
           id: "MPREb_SpT32xAd4YR",
           name: "Gegenstück EP",
@@ -302,12 +293,11 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCosvbvqFxbUniyDCUNXN5wA",
+          ArtistId(
+            id: Some("UCosvbvqFxbUniyDCUNXN5wA"),
             name: "Klaus Hanslbauer",
           ),
         ],
-        artists_txt: Some("Klaus Hanslbauer"),
         album: Some(AlbumId(
           id: "MPREb_oz9ZiEQcBU4",
           name: "Lieblingsmensch",
@@ -333,12 +323,11 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCIh4j8fXWf2U0ro0qnGU8Mg",
+          ArtistId(
+            id: Some("UCIh4j8fXWf2U0ro0qnGU8Mg"),
             name: "Namika",
           ),
         ],
-        artists_txt: Some("Namika"),
         album: Some(AlbumId(
           id: "MPREb_V5f8YfHKp2j",
           name: "Lieblingsmensch",
@@ -364,12 +353,11 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCk-g5nfpm8Q9gfy7DuU8PZA",
+          ArtistId(
+            id: Some("UCk-g5nfpm8Q9gfy7DuU8PZA"),
             name: "VVIER",
           ),
         ],
-        artists_txt: Some("VVIER"),
         album: Some(AlbumId(
           id: "MPREb_Oc7tpyMz6uE",
           name: "Zusammen",
@@ -395,12 +383,11 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCIh4j8fXWf2U0ro0qnGU8Mg",
+          ArtistId(
+            id: Some("UCIh4j8fXWf2U0ro0qnGU8Mg"),
             name: "Namika",
           ),
         ],
-        artists_txt: Some("Namika"),
         album: Some(AlbumId(
           id: "MPREb_V5f8YfHKp2j",
           name: "Lieblingsmensch",
@@ -426,12 +413,11 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCDBvf2dl0XZQvIKPsrsDprg",
+          ArtistId(
+            id: Some("UCDBvf2dl0XZQvIKPsrsDprg"),
             name: "Sebó",
           ),
         ],
-        artists_txt: Some("Sebó"),
         album: Some(AlbumId(
           id: "MPREb_X5boeaZWzPX",
           name: "Lieblingsmensch",
@@ -457,12 +443,11 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UC2_O7ywkwEh-crQedvyNOYg",
+          ArtistId(
+            id: Some("UC2_O7ywkwEh-crQedvyNOYg"),
             name: "DIA Herbst",
           ),
         ],
-        artists_txt: Some("DIA Herbst"),
         album: Some(AlbumId(
           id: "MPREb_8f4SNZ8HDhD",
           name: "Lieblingsmensch",
@@ -487,8 +472,12 @@ MusicSearchFiltered(
             height: 120,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Jasmin Bick"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Jasmin Bick",
+          ),
+        ],
         album: Some(AlbumId(
           id: "MPREb_6PhWrMAoiO3",
           name: "Volksmusik Sommer 2017",
@@ -514,12 +503,11 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCtsMcVBiK9QvtS2LH8Z6M5g",
+          ArtistId(
+            id: Some("UCtsMcVBiK9QvtS2LH8Z6M5g"),
             name: "Apres Ski",
           ),
         ],
-        artists_txt: Some("Apres Ski"),
         album: Some(AlbumId(
           id: "MPREb_4HeyZ3um21Q",
           name: "Ballermann Stars - Après Ski Hits 2016 Party (Die XXL Schlager Party im Karneval und Fasching der Saison 2015 bis 2016)",
@@ -545,12 +533,11 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UC16V9XG1PfOD1E0m6G-s22A",
+          ArtistId(
+            id: Some("UC16V9XG1PfOD1E0m6G-s22A"),
             name: "Trap Lion Beats",
           ),
         ],
-        artists_txt: Some("Trap Lion Beats"),
         album: Some(AlbumId(
           id: "MPREb_BVRbZ6muIXJ",
           name: "25 Trap Beats, Vol. 5",
@@ -575,8 +562,12 @@ MusicSearchFiltered(
             height: 120,
           ),
         ],
-        artists: [],
-        artists_txt: Some("Eva Florist"),
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Eva Florist",
+          ),
+        ],
         album: Some(AlbumId(
           id: "MPREb_wRHz8l7GRIp",
           name: "Ballermann Raketen - Die Party Hits für Weihnachten und die Silvester Schlager Fete der Saison 2015 bis 2016",
@@ -602,12 +593,11 @@ MusicSearchFiltered(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCIh4j8fXWf2U0ro0qnGU8Mg",
+          ArtistId(
+            id: Some("UCIh4j8fXWf2U0ro0qnGU8Mg"),
             name: "Namika",
           ),
         ],
-        artists_txt: Some("Namika"),
         album: Some(AlbumId(
           id: "MPREb_eew4y1xo5Q3",
           name: "Live @ DELUXE MUSIC SESSION",

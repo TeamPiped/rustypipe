@@ -21,12 +21,11 @@ MusicSearchResult(
         ),
       ],
       artists: [
-        ChannelId(
-          id: "UCIh4j8fXWf2U0ro0qnGU8Mg",
+        ArtistId(
+          id: Some("UCIh4j8fXWf2U0ro0qnGU8Mg"),
           name: "Namika",
         ),
       ],
-      artists_txt: Some("Namika"),
       album: Some(AlbumId(
         id: "MPREb_RXHxrUFfrvQ",
         name: "Lieblingsmensch",
@@ -52,12 +51,11 @@ MusicSearchResult(
         ),
       ],
       artists: [
-        ChannelId(
-          id: "UCCpID8TTjkkjLCwBybAfHSg",
+        ArtistId(
+          id: Some("UCCpID8TTjkkjLCwBybAfHSg"),
           name: "Boris Brejcha",
         ),
       ],
-      artists_txt: Some("Boris Brejcha"),
       album: Some(AlbumId(
         id: "MPREb_VFqQlfPhsFW",
         name: "Lieblingsmensch",
@@ -83,12 +81,11 @@ MusicSearchResult(
         ),
       ],
       artists: [
-        ChannelId(
-          id: "UCvfUKCnUBfsZAVHgF-pYmJg",
+        ArtistId(
+          id: Some("UCvfUKCnUBfsZAVHgF-pYmJg"),
           name: "Voyce",
         ),
       ],
-      artists_txt: Some("Voyce"),
       album: Some(AlbumId(
         id: "MPREb_SpT32xAd4YR",
         name: "Gegenstück EP",
@@ -109,12 +106,11 @@ MusicSearchResult(
         ),
       ],
       artists: [
-        ChannelId(
-          id: "UCIh4j8fXWf2U0ro0qnGU8Mg",
+        ArtistId(
+          id: Some("UCIh4j8fXWf2U0ro0qnGU8Mg"),
           name: "Namika",
         ),
       ],
-      artists_txt: Some("Namika"),
       album: None,
       view_count: Some(108000000),
       is_video: true,
@@ -132,12 +128,11 @@ MusicSearchResult(
         ),
       ],
       artists: [
-        ChannelId(
-          id: "UCgoJMRKimbxB374QjHgE6kA",
+        ArtistId(
+          id: Some("UCgoJMRKimbxB374QjHgE6kA"),
           name: "jessika adam",
         ),
       ],
-      artists_txt: Some("jessika adam"),
       album: None,
       view_count: Some(10000000),
       is_video: true,
@@ -155,12 +150,11 @@ MusicSearchResult(
         ),
       ],
       artists: [
-        ChannelId(
-          id: "UCiQjRO2m3dBBlg7sqTaFA_A",
+        ArtistId(
+          id: Some("UCiQjRO2m3dBBlg7sqTaFA_A"),
           name: "ZockerAlarm",
         ),
       ],
-      artists_txt: Some("ZockerAlarm"),
       album: None,
       view_count: Some(56000),
       is_video: true,
@@ -194,14 +188,14 @@ MusicSearchResult(
         ),
       ],
       artists: [
-        ChannelId(
-          id: "UCIh4j8fXWf2U0ro0qnGU8Mg",
+        ArtistId(
+          id: Some("UCIh4j8fXWf2U0ro0qnGU8Mg"),
           name: "Namika",
         ),
       ],
-      artists_txt: "Namika",
       album_type: Single,
       year: Some(2015),
+      by_va: false,
     ),
     AlbumItem(
       id: "MPREb_V5f8YfHKp2j",
@@ -229,14 +223,14 @@ MusicSearchResult(
         ),
       ],
       artists: [
-        ChannelId(
-          id: "UCIh4j8fXWf2U0ro0qnGU8Mg",
+        ArtistId(
+          id: Some("UCIh4j8fXWf2U0ro0qnGU8Mg"),
           name: "Namika",
         ),
       ],
-      artists_txt: "Namika",
       album_type: Ep,
       year: Some(2015),
+      by_va: false,
     ),
     AlbumItem(
       id: "MPREb_AlIjxpnBKtn",
@@ -264,14 +258,14 @@ MusicSearchResult(
         ),
       ],
       artists: [
-        ChannelId(
-          id: "UCCpID8TTjkkjLCwBybAfHSg",
+        ArtistId(
+          id: Some("UCCpID8TTjkkjLCwBybAfHSg"),
           name: "Boris Brejcha",
         ),
       ],
-      artists_txt: "Boris Brejcha",
       album_type: Single,
       year: Some(2019),
+      by_va: false,
     ),
     AlbumItem(
       id: "MPREb_VFqQlfPhsFW",
@@ -299,14 +293,14 @@ MusicSearchResult(
         ),
       ],
       artists: [
-        ChannelId(
-          id: "UCCpID8TTjkkjLCwBybAfHSg",
+        ArtistId(
+          id: Some("UCCpID8TTjkkjLCwBybAfHSg"),
           name: "Boris Brejcha",
         ),
       ],
-      artists_txt: "Boris Brejcha",
       album_type: Single,
       year: Some(2019),
+      by_va: false,
     ),
   ],
   artists: [

@@ -44,16 +44,15 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCxpEXfdz8GpczOZ8axPLApg",
+          ArtistId(
+            id: Some("UCxpEXfdz8GpczOZ8axPLApg"),
             name: "Stereoact",
           ),
-          ChannelId(
-            id: "UCVAvAvPCnScF3XoFPzvep7g",
+          ArtistId(
+            id: Some("UCVAvAvPCnScF3XoFPzvep7g"),
             name: "Kerstin Ott",
           ),
         ],
-        artists_txt: Some("Stereoact & Kerstin Ott"),
         album: None,
         view_count: None,
         is_video: true,
@@ -71,12 +70,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCAiYaiG1z72cEF7A4l53x3Q",
+          ArtistId(
+            id: Some("UCAiYaiG1z72cEF7A4l53x3Q"),
             name: "Uzzah",
           ),
         ],
-        artists_txt: Some("Uzzah"),
         album: None,
         view_count: None,
         is_video: true,
@@ -94,12 +92,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCR5tGRQZrS7GpImwYUj_Drg",
+          ArtistId(
+            id: Some("UCR5tGRQZrS7GpImwYUj_Drg"),
             name: "Andreas Gabalier",
           ),
         ],
-        artists_txt: Some("Andreas Gabalier"),
         album: None,
         view_count: None,
         is_video: true,
@@ -117,12 +114,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCsPz48w0M3QUEGAiDP1x17w",
+          ArtistId(
+            id: Some("UCsPz48w0M3QUEGAiDP1x17w"),
             name: "Bausa",
           ),
         ],
-        artists_txt: Some("Bausa"),
         album: None,
         view_count: None,
         is_video: true,
@@ -140,12 +136,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCnAbdPb5psmj2VvDjn6FRIw",
+          ArtistId(
+            id: Some("UCnAbdPb5psmj2VvDjn6FRIw"),
             name: "Prince Kay One",
           ),
         ],
-        artists_txt: Some("Prince Kay One"),
         album: None,
         view_count: None,
         is_video: true,
@@ -163,12 +158,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCIh4j8fXWf2U0ro0qnGU8Mg",
+          ArtistId(
+            id: Some("UCIh4j8fXWf2U0ro0qnGU8Mg"),
             name: "Namika",
           ),
         ],
-        artists_txt: Some("Namika"),
         album: None,
         view_count: None,
         is_video: true,
@@ -186,16 +180,15 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCY06CayCwdaOd1CnDgjy6uw",
+          ArtistId(
+            id: Some("UCY06CayCwdaOd1CnDgjy6uw"),
             name: "Maite Kelly",
           ),
-          ChannelId(
-            id: "UCtqi0viP-suK-okUQfaw8Ew",
+          ArtistId(
+            id: Some("UCtqi0viP-suK-okUQfaw8Ew"),
             name: "Roland Kaiser",
           ),
         ],
-        artists_txt: Some("Maite Kelly & Roland Kaiser"),
         album: None,
         view_count: None,
         is_video: true,
@@ -213,12 +206,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCnAbdPb5psmj2VvDjn6FRIw",
+          ArtistId(
+            id: Some("UCnAbdPb5psmj2VvDjn6FRIw"),
             name: "Prince Kay One",
           ),
         ],
-        artists_txt: Some("Prince Kay One"),
         album: None,
         view_count: None,
         is_video: true,
@@ -236,12 +228,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCTnPiL9QpipJzruQiV4fR7w",
+          ArtistId(
+            id: Some("UCTnPiL9QpipJzruQiV4fR7w"),
             name: "Chart Kids",
           ),
         ],
-        artists_txt: Some("Chart Kids"),
         album: None,
         view_count: None,
         is_video: true,
@@ -259,12 +250,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCicJjripVxiTXbUfociVZwQ",
+          ArtistId(
+            id: Some("UCicJjripVxiTXbUfociVZwQ"),
             name: "MARTERIA",
           ),
         ],
-        artists_txt: Some("MARTERIA"),
         album: None,
         view_count: None,
         is_video: true,
@@ -282,12 +272,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCwEIiKCL4YYnYUnkc3w418w",
+          ArtistId(
+            id: Some("UCwEIiKCL4YYnYUnkc3w418w"),
             name: "CRO",
           ),
         ],
-        artists_txt: Some("CRO"),
         album: None,
         view_count: None,
         is_video: true,
@@ -305,12 +294,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCACOVSEb3DGote2ZHZx6jHw",
+          ArtistId(
+            id: Some("UCACOVSEb3DGote2ZHZx6jHw"),
             name: "KC Rebell",
           ),
         ],
-        artists_txt: Some("KC Rebell"),
         album: None,
         view_count: None,
         is_video: true,
@@ -328,12 +316,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCAbxL0lZcmlaQrzoUbrvS3A",
+          ArtistId(
+            id: Some("UCAbxL0lZcmlaQrzoUbrvS3A"),
             name: "SDP",
           ),
         ],
-        artists_txt: Some("SDP"),
         album: None,
         view_count: None,
         is_video: true,
@@ -351,12 +338,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCkQRXVZuBMktEdVyptoUgGg",
+          ArtistId(
+            id: Some("UCkQRXVZuBMktEdVyptoUgGg"),
             name: "Mark Forster",
           ),
         ],
-        artists_txt: Some("Mark Forster"),
         album: None,
         view_count: None,
         is_video: true,
@@ -374,12 +360,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCwEIiKCL4YYnYUnkc3w418w",
+          ArtistId(
+            id: Some("UCwEIiKCL4YYnYUnkc3w418w"),
             name: "CRO",
           ),
         ],
-        artists_txt: Some("CRO"),
         album: None,
         view_count: None,
         is_video: true,
@@ -397,12 +382,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCwEIiKCL4YYnYUnkc3w418w",
+          ArtistId(
+            id: Some("UCwEIiKCL4YYnYUnkc3w418w"),
             name: "CRO",
           ),
         ],
-        artists_txt: Some("CRO"),
         album: None,
         view_count: None,
         is_video: true,
@@ -420,12 +404,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCRD-INDaHvHlO8K_33uKetQ",
+          ArtistId(
+            id: Some("UCRD-INDaHvHlO8K_33uKetQ"),
             name: "Sarah Connor",
           ),
         ],
-        artists_txt: Some("Sarah Connor"),
         album: None,
         view_count: None,
         is_video: true,
@@ -443,12 +426,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCiBODJaGfd1aBHE7BF_Iv7w",
+          ArtistId(
+            id: Some("UCiBODJaGfd1aBHE7BF_Iv7w"),
             name: "Nimo",
           ),
         ],
-        artists_txt: Some("Nimo"),
         album: None,
         view_count: None,
         is_video: true,
@@ -466,16 +448,15 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCvvMm92fPNQNRj54GTPV6UQ",
+          ArtistId(
+            id: Some("UCvvMm92fPNQNRj54GTPV6UQ"),
             name: "Xavier Naidoo",
           ),
-          ChannelId(
-            id: "UCS9E7hCpXnbB-UFlLXgGC6g",
+          ArtistId(
+            id: Some("UCS9E7hCpXnbB-UFlLXgGC6g"),
             name: "RZA",
           ),
         ],
-        artists_txt: Some("Xavier Naidoo & RZA"),
         album: None,
         view_count: None,
         is_video: true,
@@ -493,12 +474,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCEHalRyK7ZSFafTtAn3uYIA",
+          ArtistId(
+            id: Some("UCEHalRyK7ZSFafTtAn3uYIA"),
             name: "Max Giesinger",
           ),
         ],
-        artists_txt: Some("Max Giesinger"),
         album: None,
         view_count: None,
         is_video: true,
@@ -516,12 +496,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCuNyvmBfTzQZmWI2rsVX3QQ",
+          ArtistId(
+            id: Some("UCuNyvmBfTzQZmWI2rsVX3QQ"),
             name: "Alligatoah",
           ),
         ],
-        artists_txt: Some("Alligatoah"),
         album: None,
         view_count: None,
         is_video: true,
@@ -539,12 +518,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCgosMU69MpoCqhuS1JZj6Cw",
+          ArtistId(
+            id: Some("UCgosMU69MpoCqhuS1JZj6Cw"),
             name: "Sido",
           ),
         ],
-        artists_txt: Some("Sido"),
         album: None,
         view_count: None,
         is_video: true,
@@ -562,12 +540,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCAbxL0lZcmlaQrzoUbrvS3A",
+          ArtistId(
+            id: Some("UCAbxL0lZcmlaQrzoUbrvS3A"),
             name: "SDP",
           ),
         ],
-        artists_txt: Some("SDP"),
         album: None,
         view_count: None,
         is_video: true,
@@ -585,12 +562,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCAOPSjipxqxXk5mctGHiUoQ",
+          ArtistId(
+            id: Some("UCAOPSjipxqxXk5mctGHiUoQ"),
             name: "Kurdo",
           ),
         ],
-        artists_txt: Some("Kurdo"),
         album: None,
         view_count: None,
         is_video: true,
@@ -608,12 +584,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCyRQa8Azw8K6ISSd4INDGjQ",
+          ArtistId(
+            id: Some("UCyRQa8Azw8K6ISSd4INDGjQ"),
             name: "Gestört aber GeiL",
           ),
         ],
-        artists_txt: Some("Gestört aber GeiL"),
         album: None,
         view_count: None,
         is_video: true,
@@ -631,12 +606,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCkQRXVZuBMktEdVyptoUgGg",
+          ArtistId(
+            id: Some("UCkQRXVZuBMktEdVyptoUgGg"),
             name: "Mark Forster",
           ),
         ],
-        artists_txt: Some("Mark Forster"),
         album: None,
         view_count: None,
         is_video: true,
@@ -654,12 +628,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCVAvAvPCnScF3XoFPzvep7g",
+          ArtistId(
+            id: Some("UCVAvAvPCnScF3XoFPzvep7g"),
             name: "Kerstin Ott",
           ),
         ],
-        artists_txt: Some("Kerstin Ott"),
         album: None,
         view_count: None,
         is_video: true,
@@ -677,12 +650,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCJjgJI2vEDxGZYbQ_-2ZGXQ",
+          ArtistId(
+            id: Some("UCJjgJI2vEDxGZYbQ_-2ZGXQ"),
             name: "Adel Tawil",
           ),
         ],
-        artists_txt: Some("Adel Tawil"),
         album: None,
         view_count: None,
         is_video: true,
@@ -700,12 +672,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCK2ZLsY9Mb_dxZiZfKE3lGg",
+          ArtistId(
+            id: Some("UCK2ZLsY9Mb_dxZiZfKE3lGg"),
             name: "AnnenMayKantereit",
           ),
         ],
-        artists_txt: Some("AnnenMayKantereit"),
         album: None,
         view_count: None,
         is_video: true,
@@ -723,12 +694,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCZwxolUWIeUty9Ru39pKNIw",
+          ArtistId(
+            id: Some("UCZwxolUWIeUty9Ru39pKNIw"),
             name: "Revolverheld",
           ),
         ],
-        artists_txt: Some("Revolverheld"),
         album: None,
         view_count: None,
         is_video: true,
@@ -746,12 +716,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCr_mpK4vqxfUmyiMolCPfPA",
+          ArtistId(
+            id: Some("UCr_mpK4vqxfUmyiMolCPfPA"),
             name: "Peter Fox",
           ),
         ],
-        artists_txt: Some("Peter Fox"),
         album: None,
         view_count: None,
         is_video: true,
@@ -769,12 +738,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCVRREKn7V1Cb8qvf43dwZ6w",
+          ArtistId(
+            id: Some("UCVRREKn7V1Cb8qvf43dwZ6w"),
             name: "257ers",
           ),
         ],
-        artists_txt: Some("257ers"),
         album: None,
         view_count: None,
         is_video: true,
@@ -792,12 +760,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCFEQ-Z7CSAA3pqegM1VywrQ",
+          ArtistId(
+            id: Some("UCFEQ-Z7CSAA3pqegM1VywrQ"),
             name: "Laserkraft 3D",
           ),
         ],
-        artists_txt: Some("Laserkraft 3D"),
         album: None,
         view_count: None,
         is_video: true,
@@ -815,12 +782,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCDkoIRV3UeF4k3F_TgFCPEQ",
+          ArtistId(
+            id: Some("UCDkoIRV3UeF4k3F_TgFCPEQ"),
             name: "Miami Yacine",
           ),
         ],
-        artists_txt: Some("Miami Yacine"),
         album: None,
         view_count: None,
         is_video: true,
@@ -838,12 +804,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCK2ZLsY9Mb_dxZiZfKE3lGg",
+          ArtistId(
+            id: Some("UCK2ZLsY9Mb_dxZiZfKE3lGg"),
             name: "AnnenMayKantereit",
           ),
         ],
-        artists_txt: Some("AnnenMayKantereit"),
         album: None,
         view_count: None,
         is_video: true,
@@ -861,12 +826,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCvvMm92fPNQNRj54GTPV6UQ",
+          ArtistId(
+            id: Some("UCvvMm92fPNQNRj54GTPV6UQ"),
             name: "Xavier Naidoo",
           ),
         ],
-        artists_txt: Some("Xavier Naidoo"),
         album: None,
         view_count: None,
         is_video: true,
@@ -884,12 +848,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCwdy-QmH4y-gqjC8PMbKVVg",
+          ArtistId(
+            id: Some("UCwdy-QmH4y-gqjC8PMbKVVg"),
             name: "Olexesh",
           ),
         ],
-        artists_txt: Some("Olexesh"),
         album: None,
         view_count: None,
         is_video: true,
@@ -907,16 +870,15 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCZHCkx-08zBqSD1A1C5TWrA",
+          ArtistId(
+            id: Some("UCZHCkx-08zBqSD1A1C5TWrA"),
             name: "RAF Camora",
           ),
-          ChannelId(
-            id: "UC8gxc2fYnL1tHPOXHXyI6sQ",
+          ArtistId(
+            id: Some("UC8gxc2fYnL1tHPOXHXyI6sQ"),
             name: "Bonez MC",
           ),
         ],
-        artists_txt: Some("RAF Camora & Bonez MC"),
         album: None,
         view_count: None,
         is_video: true,
@@ -934,12 +896,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCmhABfwtPqVfEcn0aKpMRaw",
+          ArtistId(
+            id: Some("UCmhABfwtPqVfEcn0aKpMRaw"),
             name: "Veysel",
           ),
         ],
-        artists_txt: Some("Veysel"),
         album: None,
         view_count: None,
         is_video: true,
@@ -957,12 +918,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCFTcSVPYRWlDoHisR-ZKwgw",
+          ArtistId(
+            id: Some("UCFTcSVPYRWlDoHisR-ZKwgw"),
             name: "Vanessa Mai",
           ),
         ],
-        artists_txt: Some("Vanessa Mai"),
         album: None,
         view_count: None,
         is_video: true,
@@ -980,12 +940,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCE7_p3lcXA-YXRZp2PjrgYw",
+          ArtistId(
+            id: Some("UCE7_p3lcXA-YXRZp2PjrgYw"),
             name: "Helene Fischer",
           ),
         ],
-        artists_txt: Some("Helene Fischer"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1003,12 +962,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UC2IxXopNUjjBCC78s_01mnw",
+          ArtistId(
+            id: Some("UC2IxXopNUjjBCC78s_01mnw"),
             name: "Falco",
           ),
         ],
-        artists_txt: Some("Falco"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1026,12 +984,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCVRREKn7V1Cb8qvf43dwZ6w",
+          ArtistId(
+            id: Some("UCVRREKn7V1Cb8qvf43dwZ6w"),
             name: "257ers",
           ),
         ],
-        artists_txt: Some("257ers"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1049,12 +1006,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCAbxL0lZcmlaQrzoUbrvS3A",
+          ArtistId(
+            id: Some("UCAbxL0lZcmlaQrzoUbrvS3A"),
             name: "SDP",
           ),
         ],
-        artists_txt: Some("SDP"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1072,12 +1028,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCKcDBfdLPF3_d0ZzeiCeaSg",
+          ArtistId(
+            id: Some("UCKcDBfdLPF3_d0ZzeiCeaSg"),
             name: "Seeed",
           ),
         ],
-        artists_txt: Some("Seeed"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1095,12 +1050,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCkQRXVZuBMktEdVyptoUgGg",
+          ArtistId(
+            id: Some("UCkQRXVZuBMktEdVyptoUgGg"),
             name: "Mark Forster",
           ),
         ],
-        artists_txt: Some("Mark Forster"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1118,16 +1072,15 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCrKtmz26qlXIqlR0CH1vr_g",
+          ArtistId(
+            id: Some("UCrKtmz26qlXIqlR0CH1vr_g"),
             name: "Koby Funk",
           ),
-          ChannelId(
-            id: "UCyRQa8Azw8K6ISSd4INDGjQ",
+          ArtistId(
+            id: Some("UCyRQa8Azw8K6ISSd4INDGjQ"),
             name: "Gestört aber GeiL",
           ),
         ],
-        artists_txt: Some("Koby Funk & Gestört aber GeiL"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1145,12 +1098,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCwEIiKCL4YYnYUnkc3w418w",
+          ArtistId(
+            id: Some("UCwEIiKCL4YYnYUnkc3w418w"),
             name: "CRO",
           ),
         ],
-        artists_txt: Some("CRO"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1168,12 +1120,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCa7FGSUsN2wNRUclibmicMg",
+          ArtistId(
+            id: Some("UCa7FGSUsN2wNRUclibmicMg"),
             name: "Capital Bra",
           ),
         ],
-        artists_txt: Some("Capital Bra"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1191,12 +1142,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCtsP_mr458_eETZOrRVgDCg",
+          ArtistId(
+            id: Some("UCtsP_mr458_eETZOrRVgDCg"),
             name: "Jupiter Jones",
           ),
         ],
-        artists_txt: Some("Jupiter Jones"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1214,12 +1164,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCiwL2PwE5oWPDFL6Twq904Q",
+          ArtistId(
+            id: Some("UCiwL2PwE5oWPDFL6Twq904Q"),
             name: "Andreas Bourani",
           ),
         ],
-        artists_txt: Some("Andreas Bourani"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1237,12 +1186,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCR5tGRQZrS7GpImwYUj_Drg",
+          ArtistId(
+            id: Some("UCR5tGRQZrS7GpImwYUj_Drg"),
             name: "Andreas Gabalier",
           ),
         ],
-        artists_txt: Some("Andreas Gabalier"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1260,12 +1208,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCZHCkx-08zBqSD1A1C5TWrA",
+          ArtistId(
+            id: Some("UCZHCkx-08zBqSD1A1C5TWrA"),
             name: "RAF Camora",
           ),
         ],
-        artists_txt: Some("RAF Camora"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1283,12 +1230,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCuA6k6g0Xzf6-JlgMXSSA0g",
+          ArtistId(
+            id: Some("UCuA6k6g0Xzf6-JlgMXSSA0g"),
             name: "Ufo361",
           ),
         ],
-        artists_txt: Some("Ufo361"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1306,16 +1252,15 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCmhABfwtPqVfEcn0aKpMRaw",
+          ArtistId(
+            id: Some("UCmhABfwtPqVfEcn0aKpMRaw"),
             name: "Veysel",
           ),
-          ChannelId(
-            id: "UCBI6li04V1aWOFrs9jjPomQ",
+          ArtistId(
+            id: Some("UCBI6li04V1aWOFrs9jjPomQ"),
             name: "Mozzik",
           ),
         ],
-        artists_txt: Some("Veysel & Mozzik"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1333,12 +1278,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCCirWHa1TzMlpaXzcn_tGdw",
+          ArtistId(
+            id: Some("UCCirWHa1TzMlpaXzcn_tGdw"),
             name: "Kool Savas",
           ),
         ],
-        artists_txt: Some("Kool Savas"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1356,12 +1300,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCyavaV4GE4o3jW1X4k55fLA",
+          ArtistId(
+            id: Some("UCyavaV4GE4o3jW1X4k55fLA"),
             name: "Bushido",
           ),
         ],
-        artists_txt: Some("Bushido"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1379,12 +1322,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCuNyvmBfTzQZmWI2rsVX3QQ",
+          ArtistId(
+            id: Some("UCuNyvmBfTzQZmWI2rsVX3QQ"),
             name: "Alligatoah",
           ),
         ],
-        artists_txt: Some("Alligatoah"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1402,12 +1344,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UC4Uo6C43HtCJ1yGeUuCtIsA",
+          ArtistId(
+            id: Some("UC4Uo6C43HtCJ1yGeUuCtIsA"),
             name: "187 Strassenbande",
           ),
         ],
-        artists_txt: Some("187 Strassenbande"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1425,12 +1366,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCkQRXVZuBMktEdVyptoUgGg",
+          ArtistId(
+            id: Some("UCkQRXVZuBMktEdVyptoUgGg"),
             name: "Mark Forster",
           ),
         ],
-        artists_txt: Some("Mark Forster"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1448,12 +1388,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UC765Orc9dupeXxykaXpdQFw",
+          ArtistId(
+            id: Some("UC765Orc9dupeXxykaXpdQFw"),
             name: "Anna-Maria Zimmermann",
           ),
         ],
-        artists_txt: Some("Anna-Maria Zimmermann"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1471,12 +1410,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCAbxL0lZcmlaQrzoUbrvS3A",
+          ArtistId(
+            id: Some("UCAbxL0lZcmlaQrzoUbrvS3A"),
             name: "SDP",
           ),
         ],
-        artists_txt: Some("SDP"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1494,12 +1432,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCozHZjJVp3FcLPlTVL1oUnA",
+          ArtistId(
+            id: Some("UCozHZjJVp3FcLPlTVL1oUnA"),
             name: "Wolkenfrei",
           ),
         ],
-        artists_txt: Some("Wolkenfrei"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1517,12 +1454,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCIxzmOKFBzdWaK95Q9xcVGw",
+          ArtistId(
+            id: Some("UCIxzmOKFBzdWaK95Q9xcVGw"),
             name: "Ali As",
           ),
         ],
-        artists_txt: Some("Ali As"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1540,12 +1476,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCR5VDjhUCi0FYr4f-3Zd9Bw",
+          ArtistId(
+            id: Some("UCR5VDjhUCi0FYr4f-3Zd9Bw"),
             name: "Frei.Wild",
           ),
         ],
-        artists_txt: Some("Frei.Wild"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1563,12 +1498,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCXUNYorrTVi7iG5FUnr-Gbg",
+          ArtistId(
+            id: Some("UCXUNYorrTVi7iG5FUnr-Gbg"),
             name: "Azet",
           ),
         ],
-        artists_txt: Some("Azet"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1586,12 +1520,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UC_MxOdawj_BStPs4CKBYD0Q",
+          ArtistId(
+            id: Some("UC_MxOdawj_BStPs4CKBYD0Q"),
             name: "LEA",
           ),
         ],
-        artists_txt: Some("LEA"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1609,12 +1542,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCyavaV4GE4o3jW1X4k55fLA",
+          ArtistId(
+            id: Some("UCyavaV4GE4o3jW1X4k55fLA"),
             name: "Bushido",
           ),
         ],
-        artists_txt: Some("Bushido"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1632,12 +1564,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UC-fcAnS3bwGkrfpLSv-0Dag",
+          ArtistId(
+            id: Some("UC-fcAnS3bwGkrfpLSv-0Dag"),
             name: "Klubbb3",
           ),
         ],
-        artists_txt: Some("Klubbb3"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1655,12 +1586,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCyavaV4GE4o3jW1X4k55fLA",
+          ArtistId(
+            id: Some("UCyavaV4GE4o3jW1X4k55fLA"),
             name: "Bushido",
           ),
         ],
-        artists_txt: Some("Bushido"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1678,12 +1608,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCxaovR9-q1-mDpwqB9PbXZA",
+          ArtistId(
+            id: Some("UCxaovR9-q1-mDpwqB9PbXZA"),
             name: "Söhne Mannheims",
           ),
         ],
-        artists_txt: Some("Söhne Mannheims"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1701,12 +1630,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCwoO85C8_Pzq-2ek7x53Y9Q",
+          ArtistId(
+            id: Some("UCwoO85C8_Pzq-2ek7x53Y9Q"),
             name: "Philipp Poisel",
           ),
         ],
-        artists_txt: Some("Philipp Poisel"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1724,12 +1652,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCymtzNvoLbYPhnZbd2CcCZA",
+          ArtistId(
+            id: Some("UCymtzNvoLbYPhnZbd2CcCZA"),
             name: "Mike Singer",
           ),
         ],
-        artists_txt: Some("Mike Singer"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1747,12 +1674,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCE8BWpRTOxclDmpqf9Zlq8w",
+          ArtistId(
+            id: Some("UCE8BWpRTOxclDmpqf9Zlq8w"),
             name: "JORIS",
           ),
         ],
-        artists_txt: Some("JORIS"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1770,12 +1696,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCACOVSEb3DGote2ZHZx6jHw",
+          ArtistId(
+            id: Some("UCACOVSEb3DGote2ZHZx6jHw"),
             name: "KC Rebell",
           ),
         ],
-        artists_txt: Some("KC Rebell"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1793,12 +1718,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCcgml_Q7npEKVGM2bSksWBA",
+          ArtistId(
+            id: Some("UCcgml_Q7npEKVGM2bSksWBA"),
             name: "Tim Bendzko",
           ),
         ],
-        artists_txt: Some("Tim Bendzko"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1816,12 +1740,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UC9N-YBlbrSGyM8DeAlv717g",
+          ArtistId(
+            id: Some("UC9N-YBlbrSGyM8DeAlv717g"),
             name: "Casper",
           ),
         ],
-        artists_txt: Some("Casper"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1839,12 +1762,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCuNyvmBfTzQZmWI2rsVX3QQ",
+          ArtistId(
+            id: Some("UCuNyvmBfTzQZmWI2rsVX3QQ"),
             name: "Alligatoah",
           ),
         ],
-        artists_txt: Some("Alligatoah"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1862,12 +1784,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCZwxolUWIeUty9Ru39pKNIw",
+          ArtistId(
+            id: Some("UCZwxolUWIeUty9Ru39pKNIw"),
             name: "Revolverheld",
           ),
         ],
-        artists_txt: Some("Revolverheld"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1885,12 +1806,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCK2ZLsY9Mb_dxZiZfKE3lGg",
+          ArtistId(
+            id: Some("UCK2ZLsY9Mb_dxZiZfKE3lGg"),
             name: "AnnenMayKantereit",
           ),
         ],
-        artists_txt: Some("AnnenMayKantereit"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1908,12 +1828,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCZeK8mXLSQV4wJ7IjOfgtwQ",
+          ArtistId(
+            id: Some("UCZeK8mXLSQV4wJ7IjOfgtwQ"),
             name: "Capo",
           ),
         ],
-        artists_txt: Some("Capo"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1931,12 +1850,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UC3qkJTPxKEp8TOf0V8M8_dw",
+          ArtistId(
+            id: Some("UC3qkJTPxKEp8TOf0V8M8_dw"),
             name: "Die Lochis",
           ),
         ],
-        artists_txt: Some("Die Lochis"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1954,12 +1872,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCZeK8mXLSQV4wJ7IjOfgtwQ",
+          ArtistId(
+            id: Some("UCZeK8mXLSQV4wJ7IjOfgtwQ"),
             name: "Capo",
           ),
         ],
-        artists_txt: Some("Capo"),
         album: None,
         view_count: None,
         is_video: true,
@@ -1977,12 +1894,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCXGYZ-OhdOpPBamHX3K9YRg",
+          ArtistId(
+            id: Some("UCXGYZ-OhdOpPBamHX3K9YRg"),
             name: "Joel Brandenstein",
           ),
         ],
-        artists_txt: Some("Joel Brandenstein"),
         album: None,
         view_count: None,
         is_video: true,
@@ -2000,12 +1916,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCXDkh6v5SI-Y5W-9nGcV8FA",
+          ArtistId(
+            id: Some("UCXDkh6v5SI-Y5W-9nGcV8FA"),
             name: "Wincent Weiss",
           ),
         ],
-        artists_txt: Some("Wincent Weiss"),
         album: None,
         view_count: None,
         is_video: true,
@@ -2023,12 +1938,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCKcDBfdLPF3_d0ZzeiCeaSg",
+          ArtistId(
+            id: Some("UCKcDBfdLPF3_d0ZzeiCeaSg"),
             name: "Seeed",
           ),
         ],
-        artists_txt: Some("Seeed"),
         album: None,
         view_count: None,
         is_video: true,
@@ -2046,12 +1960,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCKcDBfdLPF3_d0ZzeiCeaSg",
+          ArtistId(
+            id: Some("UCKcDBfdLPF3_d0ZzeiCeaSg"),
             name: "Seeed",
           ),
         ],
-        artists_txt: Some("Seeed"),
         album: None,
         view_count: None,
         is_video: true,
@@ -2069,12 +1982,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCACOVSEb3DGote2ZHZx6jHw",
+          ArtistId(
+            id: Some("UCACOVSEb3DGote2ZHZx6jHw"),
             name: "KC Rebell",
           ),
         ],
-        artists_txt: Some("KC Rebell"),
         album: None,
         view_count: None,
         is_video: true,
@@ -2092,12 +2004,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCJjgJI2vEDxGZYbQ_-2ZGXQ",
+          ArtistId(
+            id: Some("UCJjgJI2vEDxGZYbQ_-2ZGXQ"),
             name: "Adel Tawil",
           ),
         ],
-        artists_txt: Some("Adel Tawil"),
         album: None,
         view_count: None,
         is_video: true,
@@ -2115,12 +2026,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCAbxL0lZcmlaQrzoUbrvS3A",
+          ArtistId(
+            id: Some("UCAbxL0lZcmlaQrzoUbrvS3A"),
             name: "SDP",
           ),
         ],
-        artists_txt: Some("SDP"),
         album: None,
         view_count: None,
         is_video: true,
@@ -2138,12 +2048,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCwoO85C8_Pzq-2ek7x53Y9Q",
+          ArtistId(
+            id: Some("UCwoO85C8_Pzq-2ek7x53Y9Q"),
             name: "Philipp Poisel",
           ),
         ],
-        artists_txt: Some("Philipp Poisel"),
         album: None,
         view_count: None,
         is_video: true,
@@ -2161,12 +2070,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCvvMm92fPNQNRj54GTPV6UQ",
+          ArtistId(
+            id: Some("UCvvMm92fPNQNRj54GTPV6UQ"),
             name: "Xavier Naidoo",
           ),
         ],
-        artists_txt: Some("Xavier Naidoo"),
         album: None,
         view_count: None,
         is_video: true,
@@ -2184,12 +2092,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCuNyvmBfTzQZmWI2rsVX3QQ",
+          ArtistId(
+            id: Some("UCuNyvmBfTzQZmWI2rsVX3QQ"),
             name: "Alligatoah",
           ),
         ],
-        artists_txt: Some("Alligatoah"),
         album: None,
         view_count: None,
         is_video: true,
@@ -2207,16 +2114,15 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCLmyWpIwbKr6HJQ_teYCkVw",
+          ArtistId(
+            id: Some("UCLmyWpIwbKr6HJQ_teYCkVw"),
             name: "Kollegah",
           ),
-          ChannelId(
-            id: "UC4gi504gkSyoXt9vfaGUr9A",
+          ArtistId(
+            id: Some("UC4gi504gkSyoXt9vfaGUr9A"),
             name: "Farid Bang",
           ),
         ],
-        artists_txt: Some("Kollegah & Farid Bang"),
         album: None,
         view_count: None,
         is_video: true,
@@ -2234,12 +2140,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCAbxL0lZcmlaQrzoUbrvS3A",
+          ArtistId(
+            id: Some("UCAbxL0lZcmlaQrzoUbrvS3A"),
             name: "SDP",
           ),
         ],
-        artists_txt: Some("SDP"),
         album: None,
         view_count: None,
         is_video: true,
@@ -2257,12 +2162,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCFNSyezyK_1_f0nOrNaCdHQ",
+          ArtistId(
+            id: Some("UCFNSyezyK_1_f0nOrNaCdHQ"),
             name: "SXTN",
           ),
         ],
-        artists_txt: Some("SXTN"),
         album: None,
         view_count: None,
         is_video: true,
@@ -2280,12 +2184,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCVz_BF7bR39KN0gK8gG3knA",
+          ArtistId(
+            id: Some("UCVz_BF7bR39KN0gK8gG3knA"),
             name: "House Rockerz",
           ),
         ],
-        artists_txt: Some("House Rockerz"),
         album: None,
         view_count: None,
         is_video: true,
@@ -2303,12 +2206,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCVvL70F5a_APtKzTjGb2L0w",
+          ArtistId(
+            id: Some("UCVvL70F5a_APtKzTjGb2L0w"),
             name: "Gzuz",
           ),
         ],
-        artists_txt: Some("Gzuz"),
         album: None,
         view_count: None,
         is_video: true,
@@ -2326,12 +2228,11 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCcgml_Q7npEKVGM2bSksWBA",
+          ArtistId(
+            id: Some("UCcgml_Q7npEKVGM2bSksWBA"),
             name: "Tim Bendzko",
           ),
         ],
-        artists_txt: Some("Tim Bendzko"),
         album: None,
         view_count: None,
         is_video: true,
@@ -2349,16 +2250,15 @@ MusicPlaylist(
           ),
         ],
         artists: [
-          ChannelId(
-            id: "UCZHCkx-08zBqSD1A1C5TWrA",
+          ArtistId(
+            id: Some("UCZHCkx-08zBqSD1A1C5TWrA"),
             name: "RAF Camora",
           ),
-          ChannelId(
-            id: "UC8gxc2fYnL1tHPOXHXyI6sQ",
+          ArtistId(
+            id: Some("UC8gxc2fYnL1tHPOXHXyI6sQ"),
             name: "Bonez MC",
           ),
         ],
-        artists_txt: Some("RAF Camora & Bonez MC"),
         album: None,
         view_count: None,
         is_video: true,

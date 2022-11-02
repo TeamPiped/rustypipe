@@ -22,12 +22,11 @@ Paginator(
         ),
       ],
       artists: [
-        ChannelId(
-          id: "UCxoJ3pl32f39kmTvIR_NWOg",
+        ArtistId(
+          id: Some("UCxoJ3pl32f39kmTvIR_NWOg"),
           name: "Akae Beka",
         ),
       ],
-      artists_txt: Some("Akae Beka"),
       album: Some(AlbumId(
         id: "MPREb_iuN0lQwEmRp",
         name: "Kings Dub",
@@ -53,12 +52,11 @@ Paginator(
         ),
       ],
       artists: [
-        ChannelId(
-          id: "UCz7CQ4Mn9VChcO5-8j0SZpQ",
+        ArtistId(
+          id: Some("UCz7CQ4Mn9VChcO5-8j0SZpQ"),
           name: "Stylophonic",
         ),
       ],
-      artists_txt: Some("Stylophonic"),
       album: Some(AlbumId(
         id: "MPREb_HOsmtxbCHyg",
         name: "Boom!",
@@ -84,12 +82,11 @@ Paginator(
         ),
       ],
       artists: [
-        ChannelId(
-          id: "UCAlOD5s3Ro27M61-2Z_UB7w",
+        ArtistId(
+          id: Some("UCAlOD5s3Ro27M61-2Z_UB7w"),
           name: "Tee See Connection",
         ),
       ],
-      artists_txt: Some("Tee See Connection"),
       album: Some(AlbumId(
         id: "MPREb_yrsxU7t0h6l",
         name: "Black Mamba",
@@ -115,12 +112,11 @@ Paginator(
         ),
       ],
       artists: [
-        ChannelId(
-          id: "UCJv4icVpfpTaKZcB_Bytxyw",
+        ArtistId(
+          id: Some("UCJv4icVpfpTaKZcB_Bytxyw"),
           name: "Bravoo Hunnidz",
         ),
       ],
-      artists_txt: Some("Bravoo Hunnidz"),
       album: Some(AlbumId(
         id: "MPREb_7Bg4fukodPY",
         name: "Ballin\' Like I\'m Kobe",
@@ -146,12 +142,11 @@ Paginator(
         ),
       ],
       artists: [
-        ChannelId(
-          id: "UC7RJTtpE3qwbw6-Idq9PTIg",
+        ArtistId(
+          id: Some("UC7RJTtpE3qwbw6-Idq9PTIg"),
           name: "Shockwave-Sound",
         ),
       ],
-      artists_txt: Some("Shockwave-Sound"),
       album: Some(AlbumId(
         id: "MPREb_Kg4Ff883GH0",
         name: "Out on the Road",
@@ -177,12 +172,11 @@ Paginator(
         ),
       ],
       artists: [
-        ChannelId(
-          id: "UCh4Y9bvt_6vDq1gQhhT8AdA",
+        ArtistId(
+          id: Some("UCh4Y9bvt_6vDq1gQhhT8AdA"),
           name: "Solo Da Honcho",
         ),
       ],
-      artists_txt: Some("Solo Da Honcho"),
       album: Some(AlbumId(
         id: "MPREb_fmNpLFKg4BY",
         name: "Black Mamba",
@@ -208,12 +202,11 @@ Paginator(
         ),
       ],
       artists: [
-        ChannelId(
-          id: "UCRpi1gBlax4sK3dNNxIxxFg",
+        ArtistId(
+          id: Some("UCRpi1gBlax4sK3dNNxIxxFg"),
           name: "Black Mamba Official",
         ),
       ],
-      artists_txt: Some("Black Mamba Official"),
       album: Some(AlbumId(
         id: "MPREb_zMwHYnQRmuP",
         name: "Born To Fight",
@@ -238,8 +231,12 @@ Paginator(
           height: 120,
         ),
       ],
-      artists: [],
-      artists_txt: Some("Dollah"),
+      artists: [
+        ArtistId(
+          id: None,
+          name: "Dollah",
+        ),
+      ],
       album: Some(AlbumId(
         id: "MPREb_5mxIz2hChjd",
         name: "Black Mamba",
@@ -265,12 +262,11 @@ Paginator(
         ),
       ],
       artists: [
-        ChannelId(
-          id: "UCEdZAdnnKqbaHOlv8nM6OtA",
+        ArtistId(
+          id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
           name: "aespa",
         ),
       ],
-      artists_txt: Some("aespa"),
       album: Some(AlbumId(
         id: "MPREb_ThKZWN8DQwp",
         name: "Savage - The 1st Mini Album",
@@ -296,12 +292,11 @@ Paginator(
         ),
       ],
       artists: [
-        ChannelId(
-          id: "UCQSz-Rhz_ew4hUprXww4PAA",
+        ArtistId(
+          id: Some("UCQSz-Rhz_ew4hUprXww4PAA"),
           name: "Crystal Ignite",
         ),
       ],
-      artists_txt: Some("Crystal Ignite"),
       album: Some(AlbumId(
         id: "MPREb_E29fqYqQp2V",
         name: "Black Mamba",
@@ -326,8 +321,12 @@ Paginator(
           height: 120,
         ),
       ],
-      artists: [],
-      artists_txt: Some("Izhha, yasom, Samu, Ritmo, and Dcibel"),
+      artists: [
+        ArtistId(
+          id: None,
+          name: "Izhha, yasom, Samu, Ritmo, and Dcibel",
+        ),
+      ],
       album: Some(AlbumId(
         id: "MPREb_PokIWXXD0EX",
         name: "Black Mamba",
@@ -353,12 +352,11 @@ Paginator(
         ),
       ],
       artists: [
-        ChannelId(
-          id: "UCuDH6EntL5Qx9YrQCZSFiPg",
+        ArtistId(
+          id: Some("UCuDH6EntL5Qx9YrQCZSFiPg"),
           name: "Jeroenski",
         ),
       ],
-      artists_txt: Some("Jeroenski"),
       album: Some(AlbumId(
         id: "MPREb_NjnY9xgK1OH",
         name: "Urban Vibes (The Underground Sound of House Music, Vol. 9)",
@@ -384,12 +382,11 @@ Paginator(
         ),
       ],
       artists: [
-        ChannelId(
-          id: "UCRpi1gBlax4sK3dNNxIxxFg",
+        ArtistId(
+          id: Some("UCRpi1gBlax4sK3dNNxIxxFg"),
           name: "Black Mamba Official",
         ),
       ],
-      artists_txt: Some("Black Mamba Official"),
       album: Some(AlbumId(
         id: "MPREb_TyaTgucQuuW",
         name: "Soul Surrender",
@@ -415,12 +412,11 @@ Paginator(
         ),
       ],
       artists: [
-        ChannelId(
-          id: "UCdkNrc_l73BHYKRhDqxBo9w",
+        ArtistId(
+          id: Some("UCdkNrc_l73BHYKRhDqxBo9w"),
           name: "Black Mamba Man",
         ),
       ],
-      artists_txt: Some("Black Mamba Man"),
       album: Some(AlbumId(
         id: "MPREb_VDjWCOUvD7s",
         name: "Anti Venom",
@@ -446,12 +442,11 @@ Paginator(
         ),
       ],
       artists: [
-        ChannelId(
-          id: "UCiS97__D2VSNbDMfajnkTkw",
+        ArtistId(
+          id: Some("UCiS97__D2VSNbDMfajnkTkw"),
           name: "Liapin",
         ),
       ],
-      artists_txt: Some("Liapin"),
       album: Some(AlbumId(
         id: "MPREb_TQJZCrJZ9cZ",
         name: "Basila",
@@ -477,20 +472,19 @@ Paginator(
         ),
       ],
       artists: [
-        ChannelId(
-          id: "UC3z_UqNGLnKLHfBDONx82zQ",
+        ArtistId(
+          id: Some("UC3z_UqNGLnKLHfBDONx82zQ"),
           name: "Romane, Stochelo Rosenberg",
         ),
-        ChannelId(
-          id: "UCPrlkPZfsIoN6QG-jDRYQkQ",
+        ArtistId(
+          id: Some("UCPrlkPZfsIoN6QG-jDRYQkQ"),
           name: "Romane",
         ),
-        ChannelId(
-          id: "UCmsTxLepDwdzr07-ALKUEHw",
+        ArtistId(
+          id: Some("UCmsTxLepDwdzr07-ALKUEHw"),
           name: "Stochelo Rosenberg",
         ),
       ],
-      artists_txt: Some("Romane, Stochelo Rosenberg, Romane & Stochelo Rosenberg"),
       album: Some(AlbumId(
         id: "MPREb_RFMbAhqPjqV",
         name: "Double jeu (Intégrale Romane, vol. 9)",
@@ -516,12 +510,11 @@ Paginator(
         ),
       ],
       artists: [
-        ChannelId(
-          id: "UC2wd_7GTMGiQjIb6wCwnLhQ",
+        ArtistId(
+          id: Some("UC2wd_7GTMGiQjIb6wCwnLhQ"),
           name: "Hangmen",
         ),
       ],
-      artists_txt: Some("Hangmen"),
       album: Some(AlbumId(
         id: "MPREb_fEAazqatkfR",
         name: "Singapore Slingers",
@@ -547,12 +540,11 @@ Paginator(
         ),
       ],
       artists: [
-        ChannelId(
-          id: "UCXQvoNpH-EDGUnCe2ABldDg",
+        ArtistId(
+          id: Some("UCXQvoNpH-EDGUnCe2ABldDg"),
           name: "Two Tone Club",
         ),
       ],
-      artists_txt: Some("Two Tone Club"),
       album: Some(AlbumId(
         id: "MPREb_ksEm4DleWYg",
         name: "Don\'t Look Back",
@@ -578,12 +570,11 @@ Paginator(
         ),
       ],
       artists: [
-        ChannelId(
-          id: "UCPjjr_AvPvEhZ5nnzEACI4w",
+        ArtistId(
+          id: Some("UCPjjr_AvPvEhZ5nnzEACI4w"),
           name: "Adrian Raso",
         ),
       ],
-      artists_txt: Some("Adrian Raso"),
       album: Some(AlbumId(
         id: "MPREb_Ws191BQ8IqM",
         name: "Black Mamba",
@@ -609,12 +600,11 @@ Paginator(
         ),
       ],
       artists: [
-        ChannelId(
-          id: "UC_GZYnrfgYfORwOb2MsuyIg",
+        ArtistId(
+          id: Some("UC_GZYnrfgYfORwOb2MsuyIg"),
           name: "Tunde",
         ),
       ],
-      artists_txt: Some("Tunde"),
       album: Some(AlbumId(
         id: "MPREb_5VuPA4DLi53",
         name: "Black Mamba Style",
