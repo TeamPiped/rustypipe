@@ -6,7 +6,7 @@ use crate::util::{self, ProtoBuilder};
 pub struct SearchFilter {
     sort: Option<Order>,
     features: BTreeSet<Feature>,
-    date: Option<Date>,
+    date: Option<UploadDate>,
     entity: Option<Entity>,
     length: Option<Length>,
     verbatim: bool,
@@ -48,7 +48,7 @@ pub enum Order {
 
 /// Upload date range to filter by
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum Date {
+pub enum UploadDate {
     /// 1 hour old or newer
     Hour = 1,
     /// 1 day old or newer
@@ -110,13 +110,13 @@ impl SearchFilter {
     }
 
     /// Filter videos by upload date range
-    pub fn date(mut self, date: Date) -> Self {
+    pub fn date(mut self, date: UploadDate) -> Self {
         self.date = Some(date);
         self
     }
 
     /// Filter videos by upload date range
-    pub fn date_opt(mut self, date: Option<Date>) -> Self {
+    pub fn date_opt(mut self, date: Option<UploadDate>) -> Self {
         self.date = date;
         self
     }
@@ -203,11 +203,11 @@ mod tests {
     #[case(SearchFilter::new().entity(Entity::Video), "EgIQAQ%253D%253D")]
     #[case(SearchFilter::new().entity(Entity::Channel), "EgIQAg%253D%253D")]
     #[case(SearchFilter::new().entity(Entity::Playlist), "EgIQAw%253D%253D")]
-    #[case(SearchFilter::new().date(Date::Hour), "EgIIAQ%253D%253D")]
-    #[case(SearchFilter::new().date(Date::Day), "EgIIAg%253D%253D")]
-    #[case(SearchFilter::new().date(Date::Week), "EgIIAw%253D%253D")]
-    #[case(SearchFilter::new().date(Date::Month), "EgIIBA%253D%253D")]
-    #[case(SearchFilter::new().date(Date::Year), "EgIIBQ%253D%253D")]
+    #[case(SearchFilter::new().date(UploadDate::Hour), "EgIIAQ%253D%253D")]
+    #[case(SearchFilter::new().date(UploadDate::Day), "EgIIAg%253D%253D")]
+    #[case(SearchFilter::new().date(UploadDate::Week), "EgIIAw%253D%253D")]
+    #[case(SearchFilter::new().date(UploadDate::Month), "EgIIBA%253D%253D")]
+    #[case(SearchFilter::new().date(UploadDate::Year), "EgIIBQ%253D%253D")]
     #[case(SearchFilter::new().length(Length::Short), "EgIYAQ%253D%253D")]
     #[case(SearchFilter::new().length(Length::Medium), "EgIYAw%253D%253D")]
     #[case(SearchFilter::new().length(Length::Long), "EgIYAg%253D%253D")]
