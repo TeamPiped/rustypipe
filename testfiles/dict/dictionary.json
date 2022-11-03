@@ -1104,6 +1104,8 @@
       "album": "Album",
       "ep": "Ep",
       "livre audio": "Audiobook",
+      "microalbum": "Ep",
+      "simple": "Single",
       "single": "Single",
       "émission": "Show"
     }

@@ -630,7 +630,29 @@ pub(crate) fn map_artists(artists_p: Option<TextComponents>) -> (Vec<ArtistId>, 
 pub(crate) fn map_album_type(txt: &str, lang: Language) -> AlbumType {
     dictionary::entry(lang)
         .album_types
-        .get(&txt.to_lowercase())
+        .get(txt.to_lowercase().trim())
         .copied()
         .unwrap_or_default()
+}
+
+#[cfg(test)]
+mod tests {
+    use std::{collections::BTreeMap, fs::File, io::BufReader, path::Path};
+
+    use super::*;
+
+    #[test]
+    fn map_album_type_samples() {
+        let json_path = Path::new("testfiles/dict/album_type_samples.json");
+        let json_file = File::open(json_path).unwrap();
+        let atype_samples: BTreeMap<Language, BTreeMap<AlbumType, String>> =
+            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+
+        atype_samples.iter().for_each(|(lang, entry)| {
+            entry.iter().for_each(|(album_type, txt)| {
+                let res = map_album_type(txt, *lang);
+                assert_eq!(res, *album_type, "lang: {}, txt: {}", lang, txt);
+            });
+        });
+    }
 }

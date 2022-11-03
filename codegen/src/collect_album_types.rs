@@ -64,8 +64,12 @@ pub fn write_samples_to_dict(project_root: &Path) {
         let mut e_langs = dict_entry.equivalent.clone();
         e_langs.push(lang);
 
-        collected.get(&lang).unwrap().iter().for_each(|(t, v)| {
-            dict_entry.album_types.insert(v.to_lowercase(), *t);
+        e_langs.iter().for_each(|lang| {
+            collected.get(&lang).unwrap().iter().for_each(|(t, v)| {
+                dict_entry
+                    .album_types
+                    .insert(v.to_lowercase().trim().to_owned(), *t);
+            });
         });
     }
 

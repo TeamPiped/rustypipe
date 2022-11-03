@@ -1886,15 +1886,18 @@ pub(crate) fn entry(lang: Language) -> Entry {
                 ],
             },
             album_types: ::phf::Map {
-                key: 2980949210194914378,
+                key: 12913932095322966823,
                 disps: &[
-                    (2, 0),
+                    (0, 0),
+                    (5, 0),
                 ],
                 entries: &[
+                    ("microalbum", AlbumType::Ep),
                     ("album", AlbumType::Album),
-                    ("émission", AlbumType::Show),
-                    ("ep", AlbumType::Ep),
                     ("livre audio", AlbumType::Audiobook),
+                    ("émission", AlbumType::Show),
+                    ("simple", AlbumType::Single),
+                    ("ep", AlbumType::Ep),
                     ("single", AlbumType::Single),
                 ],
             },
