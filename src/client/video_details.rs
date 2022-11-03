@@ -506,7 +506,7 @@ fn map_comment(
                     .accessibility_data,
                 &mut warnings,
             ),
-            reply_count: c.reply_count,
+            reply_count: c.reply_count as u32,
             replies: replies
                 .map(|items| Paginator::new(Some(c.reply_count), items, reply_ctoken))
                 .unwrap_or_default(),

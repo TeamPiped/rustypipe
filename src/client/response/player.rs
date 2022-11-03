@@ -73,7 +73,7 @@ pub(crate) struct Format {
     pub width: Option<u32>,
     pub height: Option<u32>,
     #[serde_as(as = "Option<JsonString>")]
-    pub approx_duration_ms: Option<u64>,
+    pub approx_duration_ms: Option<u32>,
 
     #[serde_as(as = "Option<crate::serializer::Range>")]
     pub index_range: Option<Range<u32>>,

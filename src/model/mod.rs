@@ -168,7 +168,7 @@ pub struct VideoStream {
     pub index_range: Option<Range<u32>>,
     pub init_range: Option<Range<u32>>,
     // Video duration in milliseconds
-    pub duration_ms: Option<u64>,
+    pub duration_ms: Option<u32>,
     /// Video width in pixels
     pub width: u32,
     /// Video height in pixels
@@ -205,7 +205,7 @@ pub struct AudioStream {
     pub index_range: Option<Range<u32>>,
     pub init_range: Option<Range<u32>>,
     // Audio duration in milliseconds
-    pub duration_ms: Option<u64>,
+    pub duration_ms: Option<u32>,
     /// MIME file type
     pub mime: String,
     /// Audio file format
@@ -652,7 +652,7 @@ pub struct Comment {
     /// Number of comment likes
     pub like_count: Option<u32>,
     /// Number of replies
-    pub reply_count: u64,
+    pub reply_count: u32,
     /// Paginator to fetch comment replies
     pub replies: Paginator<Comment>,
     /// Is the comment from the channel owner?
