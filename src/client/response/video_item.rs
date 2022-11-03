@@ -133,6 +133,8 @@ pub(crate) struct ReelItemRenderer {
     /// Dashes may be `\u2013` (emdash)
     #[serde_as(as = "Option<AccessibilityText>")]
     pub accessibility: Option<String>,
+    #[serde_as(as = "DefaultOnError")]
+    pub navigation_endpoint: Option<ReelNavigationEndpoint>,
 }
 
 /// Playlist displayed in search results
@@ -283,6 +285,45 @@ pub(crate) struct ChannelThumbnailWithLinkRenderer {
     pub thumbnail: Thumbnails,
 }
 
+/// Short video item navigation endpoint (contains upload date)
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ReelNavigationEndpoint {
+    pub reel_watch_endpoint: ReelWatchEndpoint,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ReelWatchEndpoint {
+    pub overlay: ReelPlayerOverlay,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ReelPlayerOverlay {
+    pub reel_player_overlay_renderer: ReelPlayerOverlayRenderer,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ReelPlayerOverlayRenderer {
+    pub reel_player_header_supported_renderers: ReelPlayerHeaderRenderers,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ReelPlayerHeaderRenderers {
+    pub reel_player_header_renderer: ReelPlayerHeaderRenderer,
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ReelPlayerHeaderRenderer {
+    #[serde_as(as = "Text")]
+    pub timestamp_text: String,
+}
+
 trait IsLive {
     fn is_live(&self) -> bool;
 }
@@ -415,6 +456,15 @@ impl<T> YouTubeListMapper<T> {
         static ACCESSIBILITY_SEP_REGEX: Lazy<Regex> =
             Lazy::new(|| Regex::new(" [-\u{2013}] (.+) [-\u{2013}] ").unwrap());
 
+        let pub_date_txt = video.navigation_endpoint.map(|n| {
+            n.reel_watch_endpoint
+                .overlay
+                .reel_player_overlay_renderer
+                .reel_player_header_supported_renderers
+                .reel_player_header_renderer
+                .timestamp_text
+        });
+
         VideoItem {
             id: video.video_id,
             title: video.headline,
@@ -432,8 +482,10 @@ impl<T> YouTubeListMapper<T> {
             }),
             thumbnail: video.thumbnail.into(),
             channel: self.channel.clone(),
-            publish_date: None,
-            publish_date_txt: None,
+            publish_date: pub_date_txt
+                .as_ref()
+                .and_then(|txt| timeago::parse_timeago_to_dt(self.lang, txt)),
+            publish_date_txt: pub_date_txt,
             view_count: video
                 .view_count_text
                 .map(|txt| util::parse_numeric(&txt).unwrap_or_default()),
