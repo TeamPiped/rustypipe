@@ -133,6 +133,7 @@ pub(crate) struct ReelItemRenderer {
     /// Dashes may be `\u2013` (emdash)
     #[serde_as(as = "Option<AccessibilityText>")]
     pub accessibility: Option<String>,
+    #[serde(default)]
     #[serde_as(as = "DefaultOnError")]
     pub navigation_endpoint: Option<ReelNavigationEndpoint>,
 }

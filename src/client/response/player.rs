@@ -72,6 +72,8 @@ pub(crate) struct Format {
 
     pub width: Option<u32>,
     pub height: Option<u32>,
+    #[serde_as(as = "Option<JsonString>")]
+    pub approx_duration_ms: Option<u64>,
 
     #[serde_as(as = "Option<crate::serializer::Range>")]
     pub index_range: Option<Range<u32>>,
@@ -95,6 +97,8 @@ pub(crate) struct Format {
     pub audio_quality: Option<AudioQuality>,
     #[serde_as(as = "Option<JsonString>")]
     pub audio_sample_rate: Option<u32>,
+    pub audio_channels: Option<u8>,
+    pub loudness_db: Option<f32>,
     pub audio_track: Option<AudioTrack>,
 
     pub signature_cipher: Option<String>,

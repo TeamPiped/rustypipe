@@ -167,6 +167,8 @@ pub struct VideoStream {
     pub size: Option<u64>,
     pub index_range: Option<Range<u32>>,
     pub init_range: Option<Range<u32>>,
+    // Video duration in milliseconds
+    pub duration_ms: Option<u64>,
     /// Video width in pixels
     pub width: u32,
     /// Video height in pixels
@@ -202,12 +204,20 @@ pub struct AudioStream {
     pub size: u64,
     pub index_range: Option<Range<u32>>,
     pub init_range: Option<Range<u32>>,
+    // Audio duration in milliseconds
+    pub duration_ms: Option<u64>,
     /// MIME file type
     pub mime: String,
     /// Audio file format
     pub format: AudioFormat,
     /// Audio codec
     pub codec: AudioCodec,
+    /// Number of audio channels
+    pub channels: Option<u8>,
+    /// Loudness
+    ///
+    /// Not available when using the Android client
+    pub loudness_db: Option<f32>,
     /// True if the deobfuscation of the nsig url parameter failed
     /// and the stream will be throttled
     pub throttled: bool,

@@ -421,6 +421,7 @@ fn map_video_stream(
                 size: f.content_length,
                 index_range: f.index_range,
                 init_range: f.init_range,
+                duration_ms: f.approx_duration_ms,
                 // Note that the format has already been verified using
                 // is_video(), so these unwraps are safe
                 width: f.width.unwrap(),
@@ -478,6 +479,7 @@ fn map_audio_stream(
                 size: f.content_length.unwrap(),
                 index_range: f.index_range,
                 init_range: f.init_range,
+                duration_ms: f.approx_duration_ms,
                 mime: f.mime_type.to_owned(),
                 format: some_or_bail!(
                     get_audio_format(mtype),
@@ -487,6 +489,8 @@ fn map_audio_stream(
                     }
                 ),
                 codec: get_audio_codec(codecs),
+                channels: f.audio_channels,
+                loudness_db: f.loudness_db,
                 throttled,
                 track: match f.audio_track {
                     Some(t) => {
