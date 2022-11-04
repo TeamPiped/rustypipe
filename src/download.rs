@@ -150,7 +150,7 @@ async fn download_single_file<P: Into<PathBuf>>(
     let mut file = fs::OpenOptions::new()
         .append(true)
         .create(true)
-        .open(output_path_tmp.to_owned())
+        .open(&output_path_tmp)
         .await?;
 
     if is_gvideo && size.is_some() {
@@ -159,7 +159,7 @@ async fn download_single_file<P: Into<PathBuf>>(
         download_chunks_by_header(http, &mut file, url, size, offset, pb).await?;
     }
 
-    fs::rename(output_path_tmp, output_path).await?;
+    fs::rename(&output_path_tmp, &output_path).await?;
     Ok(())
 }
 
