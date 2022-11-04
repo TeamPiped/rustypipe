@@ -1,10 +1,10 @@
 //! YouTube audio/video downloader
 
-use std::{borrow::Cow, cmp::Ordering, ffi::OsString, ops::Range, path::PathBuf};
+use std::{borrow::Cow, cmp::Ordering, ffi::OsString, ops::Range, path::PathBuf, time::Duration};
 
 use fancy_regex::Regex;
 use futures::stream::{self, StreamExt};
-use indicatif::ProgressBar;
+use indicatif::{ProgressBar, ProgressStyle};
 use log::{debug, info};
 use once_cell::sync::Lazy;
 use rand::Rng;
@@ -391,7 +391,13 @@ pub async fn download_video(
             download_streams(&downloads, http, pb.clone()).await?;
 
             pb.set_message(format!("Converting {}", title));
+            pb.set_style(
+                ProgressStyle::with_template("{msg}\n{spinner:.green} [{elapsed_precise}]")
+                    .unwrap(),
+            );
+            pb.enable_steady_tick(Duration::from_millis(100));
             convert_streams(&downloads, output_path, ffmpeg).await?;
+            pb.disable_steady_tick();
 
             // Delete original files
             stream::iter(&downloads)

@@ -1,9 +1,10 @@
 //! Filters for selecting audio/video streams
 
-use std::collections::HashSet;
+use std::{cmp::Ordering, collections::HashSet};
 
 use crate::model::{
-    AudioCodec, AudioFormat, AudioStream, VideoCodec, VideoFormat, VideoPlayer, VideoStream,
+    AudioCodec, AudioFormat, AudioStream, QualityOrd, VideoCodec, VideoFormat, VideoPlayer,
+    VideoStream,
 };
 
 #[derive(Debug, Default, Clone)]
@@ -302,14 +303,15 @@ impl VideoPlayer {
                 (Some(video_only_stream), self.select_audio_stream(filter))
             }
             (Some(video_stream), None) => (Some(video_stream), None),
-            (Some(video_stream), Some(video_only_stream)) => match video_only_stream > video_stream
-            {
-                true => match self.select_audio_stream(filter) {
-                    Some(audio_stream) => (Some(video_only_stream), Some(audio_stream)),
-                    None => (Some(video_stream), None),
-                },
-                false => (Some(video_stream), None),
-            },
+            (Some(video_stream), Some(video_only_stream)) => {
+                match video_only_stream.quality_cmp(video_stream) {
+                    Ordering::Greater => match self.select_audio_stream(filter) {
+                        Some(audio_stream) => (Some(video_only_stream), Some(audio_stream)),
+                        None => (Some(video_stream), None),
+                    },
+                    _ => (Some(video_stream), None),
+                }
+            }
         }
     }
 }

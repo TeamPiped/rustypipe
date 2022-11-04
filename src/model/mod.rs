@@ -6,6 +6,7 @@ mod paginator;
 pub mod richtext;
 
 pub use convert::FromYtItem;
+pub use ordering::QualityOrd;
 pub use paginator::Paginator;
 use serde_with::serde_as;
 
@@ -191,7 +192,7 @@ pub struct VideoStream {
 }
 
 /// Audio stream
-#[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq)]
 #[non_exhaustive]
 pub struct AudioStream {
     /// Audio stream URL

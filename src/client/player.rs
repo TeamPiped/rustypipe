@@ -12,8 +12,8 @@ use crate::{
     deobfuscate::Deobfuscator,
     error::{DeobfError, Error, ExtractionError},
     model::{
-        AudioCodec, AudioFormat, AudioStream, AudioTrack, ChannelId, Subtitle, VideoCodec,
-        VideoFormat, VideoPlayer, VideoPlayerDetails, VideoStream,
+        AudioCodec, AudioFormat, AudioStream, AudioTrack, ChannelId, QualityOrd, Subtitle,
+        VideoCodec, VideoFormat, VideoPlayer, VideoPlayerDetails, VideoStream,
     },
     param::Language,
     util,
@@ -244,9 +244,9 @@ impl MapResponse<VideoPlayer> for response::Player {
             }
         }
 
-        video_streams.sort();
-        video_only_streams.sort();
-        audio_streams.sort();
+        video_streams.sort_by(QualityOrd::quality_cmp);
+        video_only_streams.sort_by(QualityOrd::quality_cmp);
+        audio_streams.sort_by(QualityOrd::quality_cmp);
 
         let subtitles = self.captions.map_or(Vec::new(), |captions| {
             captions

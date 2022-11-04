@@ -49,8 +49,7 @@ async fn download_single_video(
     main: Option<ProgressBar>,
 ) -> Result<()> {
     let pb = multi.add(ProgressBar::new(1));
-    pb.set_style(ProgressStyle::default_bar()
-        .template("{msg}\n{spinner:.green} [{elapsed_precise}] [{wide_bar:.cyan/blue}] {bytes}/{total_bytes} ({bytes_per_sec}, {eta})").unwrap()
+    pb.set_style(ProgressStyle::with_template("{msg}\n{spinner:.green} [{elapsed_precise}] [{wide_bar:.cyan/blue}] {bytes}/{total_bytes} ({bytes_per_sec}, {eta})").unwrap()
         .progress_chars("#>-"));
     pb.set_message(format!("Fetching player data for {}", video_title));
 
