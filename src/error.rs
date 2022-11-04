@@ -73,6 +73,10 @@ pub enum ExtractionError {
     VideoUnavailable(&'static str, String),
     #[error("Video is age restricted")]
     VideoAgeRestricted,
+    #[error("Video is not available in your country")]
+    VideoGeoblock,
+    #[error("Video cant be played with this client. Reason (from YT): {0}")]
+    VideoClientUnsupported(String),
     #[error("Content is not available. Reason: {0}")]
     ContentUnavailable(Cow<'static, str>),
     #[error("deserialization error: {0}")]
@@ -83,4 +87,24 @@ pub enum ExtractionError {
     WrongResult(String),
     #[error("Warnings during deserialization/mapping")]
     DeserializationWarnings,
+}
+
+impl ExtractionError {
+    pub(crate) fn should_report(&self) -> bool {
+        matches!(
+            self,
+            ExtractionError::Deserialization(_)
+                | ExtractionError::InvalidData(_)
+                | ExtractionError::WrongResult(_)
+        )
+    }
+
+    pub(crate) fn switch_client(&self) -> bool {
+        matches!(
+            self,
+            ExtractionError::VideoClientUnsupported(_)
+                | ExtractionError::VideoAgeRestricted
+                | ExtractionError::WrongResult(_)
+        )
+    }
 }

@@ -271,27 +271,28 @@ async fn get_player(
 // This video is geoblocked outside of Japan, so expect this test case to fail when using a Japanese IP address.
 #[case::geoblock(
     "sJL6WA-aGkQ",
-    "extraction error: Video cant be played because of DRM/Geoblock. Reason (from YT): "
+    "extraction error: Video is not available in your country"
 )]
 #[case::drm(
     "1bfOsni7EgI",
-    "extraction error: Video cant be played because of DRM/Geoblock. Reason (from YT): "
+    "extraction error: Video cant be played because of DRM. Reason (from YT): "
 )]
-// YouTube sometimes returns "Video unavailable" for this video
-// #[case::private(
-//     "s7_qI6_mIXc",
-//     "extraction error: Video cant be played because of being private. Reason (from YT): "
-// )]
-#[case::t1(
-    "CUO8secmc0g",
-    "extraction error: Video cant be played because of DRM/Geoblock. Reason (from YT): "
+#[case::private(
+    "s7_qI6_mIXc",
+    "extraction error: Video cant be played because of being private. Reason (from YT): "
 )]
+#[case::age_restricted("CUO8secmc0g", "extraction error: Video is age restricted")]
 #[tokio::test]
 async fn get_player_error(#[case] id: &str, #[case] msg: &str) {
     let rp = RustyPipe::builder().strict().build();
-    let err = rp.query().player(id).await.unwrap_err();
+    let err = rp.query().player(id).await.unwrap_err().to_string();
 
-    assert!(err.to_string().starts_with(msg), "got error msg: {}", err);
+    assert!(
+        err.starts_with(msg),
+        "got error msg: `{}`, expected: `{}`",
+        err,
+        msg
+    );
 }
 
 //#PLAYLIST

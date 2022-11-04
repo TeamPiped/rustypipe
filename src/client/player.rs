@@ -64,11 +64,22 @@ impl RustyPipeQuery {
 
         match android_res {
             Ok(res) => Ok(res),
-            Err(Error::Extraction(
-                ExtractionError::VideoAgeRestricted | ExtractionError::WrongResult(_),
-            )) => {
-                self.player_from_client(video_id, ClientType::TvHtml5Embed)
-                    .await
+            Err(Error::Extraction(e)) => {
+                if e.switch_client() {
+                    let tv_res = self
+                        .player_from_client(video_id, ClientType::TvHtml5Embed)
+                        .await;
+
+                    match tv_res {
+                        // Output android client error if the tv client is unsupported
+                        Err(Error::Extraction(ExtractionError::VideoClientUnsupported(_))) => {
+                            Err(Error::Extraction(e))
+                        }
+                        _ => tv_res,
+                    }
+                } else {
+                    Err(Error::Extraction(e))
+                }
             }
             Err(e) => Err(e),
         }
@@ -138,11 +149,29 @@ impl MapResponse<VideoPlayer> for response::Player {
                 live_streamability.is_some()
             }
             response::player::PlayabilityStatus::Unplayable { reason } => {
-                return Err(ExtractionError::VideoUnavailable("DRM/Geoblock", reason))
+                for word in reason.split_whitespace() {
+                    match word {
+                        // reason: "This video requires payment to watch."
+                        "payment" => return Err(ExtractionError::VideoUnavailable("DRM", reason)),
+                        // reason: "The uploader has not made this video available in your country."
+                        "country" => return Err(ExtractionError::VideoGeoblock),
+                        // reason (Android): "This video can only be played on newer versions of Android or other supported devices."
+                        // reason (TV client): "Playback on other websites has been disabled by the video owner."
+                        "Android" | "websites" => {
+                            return Err(ExtractionError::VideoClientUnsupported(reason))
+                        }
+                        _ => {}
+                    }
+                }
+                return Err(ExtractionError::VideoUnavailable(
+                    "being unplayable",
+                    reason,
+                ));
             }
             response::player::PlayabilityStatus::LoginRequired { reason } => {
-                // reason: "Sign in to confirm your age"
+                // reason (age restriction): "Sign in to confirm your age"
                 // or: "This video may be inappropriate for some users."
+                // reason (private): "This video is private"
                 if reason
                     .split_whitespace()
                     .any(|word| word == "age" || word == "inappropriate")
@@ -158,10 +187,12 @@ impl MapResponse<VideoPlayer> for response::Player {
                 ))
             }
             response::player::PlayabilityStatus::Error { reason } => {
+                // reason (censored): "This video has been removed for violating YouTube's policy on hate speech. Learn more about combating hate speech in your country."
+                // reason: "This video is unavailable"
                 return Err(ExtractionError::VideoUnavailable(
                     "deletion/censorship",
                     reason,
-                ))
+                ));
             }
         };
 

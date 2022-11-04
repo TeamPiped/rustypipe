@@ -1075,11 +1075,8 @@ impl RustyPipeQuery {
                     Ok(mapres.c)
                 }
                 Err(e) => {
-                    match e {
-                        ExtractionError::VideoUnavailable(_, _)
-                        | ExtractionError::VideoAgeRestricted
-                        | ExtractionError::ContentUnavailable(_) => (),
-                        _ => create_report(Level::ERR, Some(e.to_string()), Vec::new()),
+                    if e.should_report() {
+                        create_report(Level::ERR, Some(e.to_string()), Vec::new());
                     }
                     Err(e.into())
                 }
