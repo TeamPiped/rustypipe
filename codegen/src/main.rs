@@ -1,3 +1,4 @@
+mod abtest;
 mod collect_album_types;
 mod collect_large_numbers;
 mod collect_playlist_dates;
@@ -31,6 +32,12 @@ enum Commands {
     GenLocales,
     GenDict,
     DownloadTestfiles,
+    AbTest {
+        #[clap(value_parser)]
+        id: Option<u16>,
+        #[clap(short, default_value = "100")]
+        n: usize,
+    },
 }
 
 #[tokio::main]
@@ -61,6 +68,19 @@ async fn main() {
         Commands::GenDict => gen_dictionary::generate_dictionary(&cli.project_root),
         Commands::DownloadTestfiles => {
             download_testfiles::download_testfiles(&cli.project_root).await
+        }
+        Commands::AbTest { id, n } => {
+            match id {
+                Some(id) => {
+                    let ab = abtest::ABTest::try_from(id).expect("invalid A/B test id");
+                    let res = abtest::run_test(ab, n, cli.concurrency).await;
+                    eprintln!("{} occurences", res);
+                }
+                None => {
+                    let res = abtest::run_all_tests(n, cli.concurrency).await;
+                    println!("{}", serde_json::to_string(&res).unwrap())
+                }
+            };
         }
     };
 }
