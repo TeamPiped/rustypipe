@@ -2268,4 +2268,10 @@ MusicPlaylist(
     ctoken: Some("4qmFsgI-EiRWTFBMNWREeDY4MVQ0YlI3WkYxSXVXek92MW9tbFJiRTdQaUoaFmVnWlFWRHBEUjFtU0FRTUl1Z1ElM0Q%3D"),
     endpoint: music_browse,
   ),
+  related_playlists: Paginator(
+    count: None,
+    items: [],
+    ctoken: Some("4qmFsgIwEiRWTFBMNWREeDY4MVQ0YlI3WkYxSXVXek92MW9tbFJiRTdQaUoaCGtnRURDTTBH"),
+    endpoint: music_browse,
+  ),
 )

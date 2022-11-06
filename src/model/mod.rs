@@ -1014,6 +1014,8 @@ pub struct MusicPlaylist {
     pub from_ytm: bool,
     /// Playlist tracks
     pub tracks: Paginator<TrackItem>,
+    /// Related playlists
+    pub related_playlists: Paginator<MusicPlaylistItem>,
 }
 
 /// YouTube music album object

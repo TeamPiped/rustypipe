@@ -1292,8 +1292,31 @@ async fn music_playlist_cont() {
         .extend_pages(&rp.query(), usize::MAX)
         .await
         .unwrap();
-    assert!(playlist.tracks.items.len() > 100);
-    assert!(playlist.tracks.count.unwrap() > 100);
+
+    assert_gte(playlist.tracks.items.len(), 100, "tracks");
+    assert_gte(playlist.tracks.count.unwrap(), 100, "track count");
+}
+
+#[tokio::test]
+async fn music_playlist_related() {
+    let rp = RustyPipe::builder().strict().build();
+    let mut playlist = rp
+        .query()
+        .music_playlist("PLbZIPy20-1pN7mqjckepWF78ndb6ci_qi")
+        .await
+        .unwrap();
+
+    playlist
+        .related_playlists
+        .extend(&rp.query())
+        .await
+        .unwrap();
+
+    assert_gte(
+        playlist.related_playlists.items.len(),
+        10,
+        "related playlists",
+    );
 }
 
 #[tokio::test]

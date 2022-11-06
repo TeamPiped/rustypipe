@@ -1488,4 +1488,10 @@ MusicPlaylist(
     ctoken: None,
     endpoint: music_browse,
   ),
+  related_playlists: Paginator(
+    count: None,
+    items: [],
+    ctoken: Some("4qmFsgIwEiRWTFBMMUotNkpPY2tadEVfUDlYeDhEM2IyTzZ3MGlkaHVLQmUaCGtnRURDTTBH"),
+    endpoint: music_browse,
+  ),
 )

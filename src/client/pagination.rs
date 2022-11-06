@@ -128,12 +128,34 @@ impl MapResponse<Paginator<MusicItem>> for response::MusicContinuation {
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
     ) -> Result<MapResult<Paginator<MusicItem>>, ExtractionError> {
         let mut mapper = MusicListMapper::new(lang);
-        let mut shelf = self.continuation_contents.music_shelf_continuation;
-        mapper.map_response(shelf.contents);
-        let map_res = mapper.items();
+        let mut continuations = Vec::new();
 
-        let ctoken = shelf
-            .continuations
+        match self.continuation_contents {
+            response::music_item::ContinuationContents::MusicShelfContinuation(mut shelf) => {
+                mapper.map_response(shelf.contents);
+                continuations.append(&mut shelf.continuations);
+            }
+            response::music_item::ContinuationContents::SectionListContinuation(contents) => {
+                for c in contents.contents {
+                    match c {
+                        response::music_item::ItemSection::MusicShelfRenderer(mut shelf) => {
+                            mapper.map_response(shelf.contents);
+                            continuations.append(&mut shelf.continuations);
+                        }
+                        response::music_item::ItemSection::MusicCarouselShelfRenderer {
+                            contents,
+                            ..
+                        } => {
+                            mapper.map_response(contents);
+                        }
+                        response::music_item::ItemSection::None => {}
+                    }
+                }
+            }
+        }
+
+        let map_res = mapper.items();
+        let ctoken = continuations
             .try_swap_remove(0)
             .map(|cont| cont.next_continuation_data.continuation);
 
@@ -281,7 +303,7 @@ mod tests {
     use rstest::rstest;
 
     use super::*;
-    use crate::model::{PlaylistItem, TrackItem};
+    use crate::model::{MusicPlaylistItem, PlaylistItem, TrackItem};
     use crate::param::Language;
 
     #[rstest]
@@ -343,6 +365,28 @@ mod tests {
         let map_res: MapResult<Paginator<MusicItem>> =
             items.map_response("", Language::En, None).unwrap();
         let paginator: Paginator<TrackItem> =
+            map_ytm_paginator(map_res.c, None, ContinuationEndpoint::MusicBrowse);
+
+        assert!(
+            map_res.warnings.is_empty(),
+            "deserialization/mapping warnings: {:?}",
+            map_res.warnings
+        );
+        insta::assert_ron_snapshot!(format!("map_{}", name), paginator);
+    }
+
+    #[rstest]
+    #[case("playlist_related", "music_playlist/playlist_related")]
+    fn map_continuation_music_playlists(#[case] name: &str, #[case] path: &str) {
+        let filename = format!("testfiles/{}.json", path);
+        let json_path = Path::new(&filename);
+        let json_file = File::open(json_path).unwrap();
+
+        let items: response::MusicContinuation =
+            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let map_res: MapResult<Paginator<MusicItem>> =
+            items.map_response("", Language::En, None).unwrap();
+        let paginator: Paginator<MusicPlaylistItem> =
             map_ytm_paginator(map_res.c, None, ContinuationEndpoint::MusicBrowse);
 
         assert!(

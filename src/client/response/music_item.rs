@@ -17,7 +17,7 @@ use crate::{
 
 use super::{
     url_endpoint::{BrowseEndpointWrap, NavigationEndpoint, PageType},
-    MusicContinuationData, ThumbnailsWrap,
+    ContentsRenderer, MusicContinuationData, ThumbnailsWrap,
 };
 
 #[serde_as]
@@ -156,16 +156,15 @@ pub(crate) struct PlaylistItemData {
     pub video_id: String,
 }
 
+#[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct MusicContentsRenderer<T> {
     pub contents: Vec<T>,
-    /*
     /// Continuation token for fetching recommended items
     #[serde(default)]
     #[serde_as(as = "VecSkipError<_>")]
-    pub continuations: Vec<MusicContinuation>,
-    */
+    pub continuations: Vec<MusicContinuationData>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -204,9 +203,10 @@ pub(crate) struct MusicContinuation {
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub(crate) struct ContinuationContents {
+pub(crate) enum ContinuationContents {
     #[serde(alias = "musicPlaylistShelfContinuation")]
-    pub music_shelf_continuation: MusicShelf,
+    MusicShelfContinuation(MusicShelf),
+    SectionListContinuation(ContentsRenderer<ItemSection>),
 }
 
 #[derive(Debug, Deserialize)]

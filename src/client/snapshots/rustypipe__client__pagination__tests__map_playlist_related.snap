@@ -1,0 +1,204 @@
+---
+source: src/client/pagination.rs
+expression: paginator
+---
+Paginator(
+  count: Some(10),
+  items: [
+    MusicPlaylistItem(
+      id: "RDCLAK5uy_meKJG4fRVGUG1Z5P6O-OVRJIja9U3Ctt8",
+      name: "Party Schlager",
+      thumbnail: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/xrAa318NOyL334j4P3KOeuvMh2NdaC3zbcRfdP2VPQ3o_MDthD0ueeMTh-Hfk5kzmkp73nH8enOH1as=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/xrAa318NOyL334j4P3KOeuvMh2NdaC3zbcRfdP2VPQ3o_MDthD0ueeMTh-Hfk5kzmkp73nH8enOH1as=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      channel: None,
+      track_count: None,
+      from_ytm: true,
+    ),
+    MusicPlaylistItem(
+      id: "RDCLAK5uy_nCUL5fa0G5mSAxmXU9tu4uGM1SoZ44OPA",
+      name: "Happy German Pop",
+      thumbnail: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/vqBjVRRp93TYop30YxN84sS9ITPVBWYCpzGMBBv-1KVpoQaS0kLixwXYTMX8p84wWrMRj-IrWipg6rE=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/vqBjVRRp93TYop30YxN84sS9ITPVBWYCpzGMBBv-1KVpoQaS0kLixwXYTMX8p84wWrMRj-IrWipg6rE=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      channel: None,
+      track_count: None,
+      from_ytm: true,
+    ),
+    MusicPlaylistItem(
+      id: "RDCLAK5uy_ksgASdLdWz-NAd_rDVowAxqT6xAEN5JAA",
+      name: "Oktoberfest",
+      thumbnail: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/_wFTtKjF2JrQPeF4FGAJeayJD1p5I24gLf92WZc7Q6M5uOMSVouuSOB0iS7jlV6vG18kMViPjBmgW6Y=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/_wFTtKjF2JrQPeF4FGAJeayJD1p5I24gLf92WZc7Q6M5uOMSVouuSOB0iS7jlV6vG18kMViPjBmgW6Y=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      channel: None,
+      track_count: None,
+      from_ytm: true,
+    ),
+    MusicPlaylistItem(
+      id: "RDCLAK5uy_lEt1yX7jdZ0dcr4e8N5Y8pUYsaO8nUc2E",
+      name: "\'10s German Pop",
+      thumbnail: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/slwtKgp4BHop8sstyZ2YRVKhg-cOpcFx2vWSmBaeBP4bloW0gVe6eJcqFcO-4VkjfUTDJTdcIrzGoch6=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/slwtKgp4BHop8sstyZ2YRVKhg-cOpcFx2vWSmBaeBP4bloW0gVe6eJcqFcO-4VkjfUTDJTdcIrzGoch6=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      channel: None,
+      track_count: None,
+      from_ytm: true,
+    ),
+    MusicPlaylistItem(
+      id: "RDCLAK5uy_kn1IcNFwwz5N_qekUFnvxYzPYHHRQ9_mY",
+      name: "\'10s Schlager",
+      thumbnail: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/Lmxml0utaSLguhcR3Fre_60dbUfF-T87l4KouMD_nWdVEz32sn4RNOZNOLiqhBjMf0bs4LnFPSsUdJY=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/Lmxml0utaSLguhcR3Fre_60dbUfF-T87l4KouMD_nWdVEz32sn4RNOZNOLiqhBjMf0bs4LnFPSsUdJY=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      channel: None,
+      track_count: None,
+      from_ytm: true,
+    ),
+    MusicPlaylistItem(
+      id: "RDCLAK5uy_kvH_VWOl1tx0Ad4H2F_4jaTMnImcuCFXc",
+      name: "German Pop Throwback",
+      thumbnail: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/gCaww9YpZ-Th2I6Y7mTarqo_JJPkBerhUPTchgu06VowkRZc8ndS9Efa-AIz5uqKoGWiNf32YzkFUQ=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/gCaww9YpZ-Th2I6Y7mTarqo_JJPkBerhUPTchgu06VowkRZc8ndS9Efa-AIz5uqKoGWiNf32YzkFUQ=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      channel: None,
+      track_count: None,
+      from_ytm: true,
+    ),
+    MusicPlaylistItem(
+      id: "RDCLAK5uy_kSJ30ym-GRlGJvlZsM9xnK9dAZdonBoB0",
+      name: "Presenting Mark Forster",
+      thumbnail: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/ZarhsSrgS22O6JwaZl4FfgeXOtaVyq0GWZKTLCrByxYgQhrEVRj1oP4MO__moYmQuKCRB1BB67JDZfg=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/ZarhsSrgS22O6JwaZl4FfgeXOtaVyq0GWZKTLCrByxYgQhrEVRj1oP4MO__moYmQuKCRB1BB67JDZfg=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      channel: None,
+      track_count: None,
+      from_ytm: true,
+    ),
+    MusicPlaylistItem(
+      id: "PLW4r_btbY6e3p8RuogQM9F8S3dFNgsMqn",
+      name: "German Pop",
+      thumbnail: [
+        Thumbnail(
+          url: "https://yt3.ggpht.com/DN7nE9pKDZ6gU-k6TJbMmIhBf-c_CfczCJ_hACD0MMIQzCXf9h69_b8y5PaStkznCsiPBHYcuVc=s192",
+          width: 192,
+          height: 192,
+        ),
+        Thumbnail(
+          url: "https://yt3.ggpht.com/DN7nE9pKDZ6gU-k6TJbMmIhBf-c_CfczCJ_hACD0MMIQzCXf9h69_b8y5PaStkznCsiPBHYcuVc=s576",
+          width: 576,
+          height: 576,
+        ),
+      ],
+      channel: Some(ChannelId(
+        id: "UCnOnrhWLv3YMoTVWqF4k82w",
+        name: "botevpd",
+      )),
+      track_count: Some(49),
+      from_ytm: false,
+    ),
+    MusicPlaylistItem(
+      id: "RDCLAK5uy_m55iAnFa25l8bl7m8vsTsmGph3-_yVBW0",
+      name: "German Singalong Songs",
+      thumbnail: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/JLLNoS2hhZ54GcYoY_mD0fxVVxcZ7Ay_rT41TIbjv6n3efAUqAexZpcbK7qAS8vLw_K4NuV2R3_iRPfs=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/JLLNoS2hhZ54GcYoY_mD0fxVVxcZ7Ay_rT41TIbjv6n3efAUqAexZpcbK7qAS8vLw_K4NuV2R3_iRPfs=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      channel: None,
+      track_count: None,
+      from_ytm: true,
+    ),
+    MusicPlaylistItem(
+      id: "RDCLAK5uy_nLm6_mnMdOQD1vZypJ0yPpzJPuzfPN4d4",
+      name: "German Summer",
+      thumbnail: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/DKPAdAdEmbP1UYpXmQaFRIvIuZXVkRmgzxx9V_PtsvSZLBRDL8gzv9ibIJbRBcNV0toryLF4tFxEIaE=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/DKPAdAdEmbP1UYpXmQaFRIvIuZXVkRmgzxx9V_PtsvSZLBRDL8gzv9ibIJbRBcNV0toryLF4tFxEIaE=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      channel: None,
+      track_count: None,
+      from_ytm: true,
+    ),
+  ],
+  ctoken: None,
+  endpoint: music_browse,
+)

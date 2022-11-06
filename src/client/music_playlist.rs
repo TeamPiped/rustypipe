@@ -63,12 +63,13 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
         let header = self.header.music_detail_header_renderer;
 
         let mut content = self.contents.single_column_browse_results_renderer.contents;
-        let mut shelf = content
+        let mut music_contents = content
             .try_swap_remove(0)
             .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no content")))?
             .tab_renderer
             .content
-            .section_list_renderer
+            .section_list_renderer;
+        let mut shelf = music_contents
             .contents
             .into_iter()
             .find_map(|section| match section {
@@ -121,6 +122,11 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
             None => Some(map_res.c.len() as u64),
         };
 
+        let related_ctoken = music_contents
+            .continuations
+            .try_swap_remove(0)
+            .map(|c| c.next_continuation_data.continuation);
+
         Ok(MapResult {
             c: MusicPlaylist {
                 id: playlist_id,
@@ -134,6 +140,13 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
                     track_count,
                     map_res.c,
                     ctoken,
+                    None,
+                    crate::param::ContinuationEndpoint::MusicBrowse,
+                ),
+                related_playlists: Paginator::new_ext(
+                    None,
+                    Vec::new(),
+                    related_ctoken,
                     None,
                     crate::param::ContinuationEndpoint::MusicBrowse,
                 ),
