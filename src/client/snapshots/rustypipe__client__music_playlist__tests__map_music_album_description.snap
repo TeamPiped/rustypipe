@@ -1,0 +1,253 @@
+---
+source: src/client/music_playlist.rs
+expression: map_res.c
+---
+MusicAlbum(
+  id: "MPREb_PiyfuVl6aYd",
+  playlist_id: Some("OLAK5uy_k-Bi6NLrq5DrDKPLuiRvm7NsbMccKIcEY"),
+  name: "25",
+  cover: [
+    Thumbnail(
+      url: "https://lh3.googleusercontent.com/LRj9RZOKcS7PrG-NvXKnwSekCqXNWMItrnuF6WXmr3MeujS1HxqjiATe6H5HCM6-hoHNYncjmlIovaaH=w60-h60-l90-rj",
+      width: 60,
+      height: 60,
+    ),
+    Thumbnail(
+      url: "https://lh3.googleusercontent.com/LRj9RZOKcS7PrG-NvXKnwSekCqXNWMItrnuF6WXmr3MeujS1HxqjiATe6H5HCM6-hoHNYncjmlIovaaH=w120-h120-l90-rj",
+      width: 120,
+      height: 120,
+    ),
+    Thumbnail(
+      url: "https://lh3.googleusercontent.com/LRj9RZOKcS7PrG-NvXKnwSekCqXNWMItrnuF6WXmr3MeujS1HxqjiATe6H5HCM6-hoHNYncjmlIovaaH=w226-h226-l90-rj",
+      width: 226,
+      height: 226,
+    ),
+    Thumbnail(
+      url: "https://lh3.googleusercontent.com/LRj9RZOKcS7PrG-NvXKnwSekCqXNWMItrnuF6WXmr3MeujS1HxqjiATe6H5HCM6-hoHNYncjmlIovaaH=w544-h544-l90-rj",
+      width: 544,
+      height: 544,
+    ),
+  ],
+  artists: [
+    ArtistId(
+      id: Some("UCRw0x9_EfawqmgDI2IgQLLg"),
+      name: "Adele",
+    ),
+  ],
+  description: Some("25 is the third studio album by English singer-songwriter Adele, released on 20 November 2015 by XL Recordings and Columbia Records. The album is titled as a reflection of her life and frame of mind at 25 years old and is termed a \"make-up record\". Its lyrical content features themes of Adele \"yearning for her old self, her nostalgia\", and \"melancholia about the passage of time\" according to an interview with the singer by Rolling Stone, as well as themes of motherhood and regret. In contrast to Adele\'s previous works, the production of 25 incorporated the use of electronic elements and creative rhythmic patterns, with elements of 1980s R&B and organs. Like when recording 21, Adele worked with producer and songwriter Paul Epworth and Ryan Tedder, along with new collaborations with Max Martin and Shellback, Bruno Mars, Greg Kurstin, Danger Mouse, the Smeezingtons, Samuel Dixon, and Tobias Jesso Jr.\n25 received generally positive reviews from music critics, who commended its production and Adele\'s vocal performance.\n\nFrom Wikipedia (https://en.wikipedia.org/wiki/25_(Adele_album)) under Creative Commons Attribution CC-BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0/legalcode)"),
+  album_type: Album,
+  year: Some(2015),
+  by_va: false,
+  tracks: [
+    TrackItem(
+      id: "YQHsXMglC9A",
+      title: "Hello",
+      duration: Some(296),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCRw0x9_EfawqmgDI2IgQLLg"),
+          name: "Adele",
+        ),
+      ],
+      album: Some(AlbumId(
+        id: "MPREb_PiyfuVl6aYd",
+        name: "25",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(1),
+    ),
+    TrackItem(
+      id: "fk4BbF7B29w",
+      title: "Send My Love (To Your New Lover)",
+      duration: Some(224),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCRw0x9_EfawqmgDI2IgQLLg"),
+          name: "Adele",
+        ),
+      ],
+      album: Some(AlbumId(
+        id: "MPREb_PiyfuVl6aYd",
+        name: "25",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(2),
+    ),
+    TrackItem(
+      id: "z7NEG3SGZ_g",
+      title: "I Miss You",
+      duration: Some(349),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCRw0x9_EfawqmgDI2IgQLLg"),
+          name: "Adele",
+        ),
+      ],
+      album: Some(AlbumId(
+        id: "MPREb_PiyfuVl6aYd",
+        name: "25",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(3),
+    ),
+    TrackItem(
+      id: "a1IuJLebHgM",
+      title: "When We Were Young",
+      duration: Some(291),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCRw0x9_EfawqmgDI2IgQLLg"),
+          name: "Adele",
+        ),
+      ],
+      album: Some(AlbumId(
+        id: "MPREb_PiyfuVl6aYd",
+        name: "25",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(4),
+    ),
+    TrackItem(
+      id: "-fsCc7Be1H0",
+      title: "Remedy",
+      duration: Some(246),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCRw0x9_EfawqmgDI2IgQLLg"),
+          name: "Adele",
+        ),
+      ],
+      album: Some(AlbumId(
+        id: "MPREb_PiyfuVl6aYd",
+        name: "25",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(5),
+    ),
+    TrackItem(
+      id: "l8djdhhFuxo",
+      title: "Water Under the Bridge",
+      duration: Some(241),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCRw0x9_EfawqmgDI2IgQLLg"),
+          name: "Adele",
+        ),
+      ],
+      album: Some(AlbumId(
+        id: "MPREb_PiyfuVl6aYd",
+        name: "25",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(6),
+    ),
+    TrackItem(
+      id: "Qiu59lZShCo",
+      title: "River Lea",
+      duration: Some(226),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCRw0x9_EfawqmgDI2IgQLLg"),
+          name: "Adele",
+        ),
+      ],
+      album: Some(AlbumId(
+        id: "MPREb_PiyfuVl6aYd",
+        name: "25",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(7),
+    ),
+    TrackItem(
+      id: "-hzFTJDJGkQ",
+      title: "Love in the Dark",
+      duration: Some(286),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCRw0x9_EfawqmgDI2IgQLLg"),
+          name: "Adele",
+        ),
+      ],
+      album: Some(AlbumId(
+        id: "MPREb_PiyfuVl6aYd",
+        name: "25",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(8),
+    ),
+    TrackItem(
+      id: "Db9ciJPIaEU",
+      title: "Million Years Ago",
+      duration: Some(228),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCRw0x9_EfawqmgDI2IgQLLg"),
+          name: "Adele",
+        ),
+      ],
+      album: Some(AlbumId(
+        id: "MPREb_PiyfuVl6aYd",
+        name: "25",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(9),
+    ),
+    TrackItem(
+      id: "jb5g4UFHmfQ",
+      title: "All I Ask",
+      duration: Some(272),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCRw0x9_EfawqmgDI2IgQLLg"),
+          name: "Adele",
+        ),
+      ],
+      album: Some(AlbumId(
+        id: "MPREb_PiyfuVl6aYd",
+        name: "25",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(10),
+    ),
+    TrackItem(
+      id: "1kZsaRkVEUY",
+      title: "Sweetest Devotion",
+      duration: Some(252),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCRw0x9_EfawqmgDI2IgQLLg"),
+          name: "Adele",
+        ),
+      ],
+      album: Some(AlbumId(
+        id: "MPREb_PiyfuVl6aYd",
+        name: "25",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(11),
+    ),
+  ],
+  variants: [],
+)

@@ -1,15 +1,9 @@
 use serde::Deserialize;
 use serde_with::{serde_as, DefaultOnError, VecSkipError};
 
-use crate::serializer::{
-    ignore_any,
-    text::{Text, TextComponents},
-    MapResult, VecLogError,
-};
+use crate::serializer::text::{Text, TextComponents};
 
-use super::music_item::{
-    MusicContentsRenderer, MusicResponseItem, MusicShelf, MusicThumbnailRenderer,
-};
+use super::music_item::{ItemSection, MusicContentsRenderer, MusicThumbnailRenderer};
 use super::{ContentsRenderer, Tab};
 
 /// Response model for YouTube Music playlists and albums
@@ -33,20 +27,6 @@ pub(crate) struct SectionList {
     pub section_list_renderer: MusicContentsRenderer<ItemSection>,
 }
 
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) enum ItemSection {
-    #[serde(alias = "musicPlaylistShelfRenderer")]
-    MusicShelfRenderer(MusicShelf),
-    MusicCarouselShelfRenderer {
-        #[serde_as(as = "VecLogError<_>")]
-        contents: MapResult<Vec<MusicResponseItem>>,
-    },
-    #[serde(other, deserialize_with = "ignore_any")]
-    None,
-}
-
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct Header {
@@ -67,7 +47,7 @@ pub(crate) struct HeaderRenderer {
     /// `"Album", " • ", <"Helene Fischer">, " • ", "2021"`
     #[serde(default)]
     pub subtitle: TextComponents,
-    /// Playlist description. May contain hashtags which are
+    /// Playlist/album description. May contain hashtags which are
     /// displayed as search links on the YouTube website.
     #[serde_as(as = "Option<Text>")]
     pub description: Option<String>,

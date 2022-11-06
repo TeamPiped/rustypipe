@@ -13,6 +13,7 @@ MusicAlbum(
       name: "Kingdom Force",
     ),
   ],
+  description: None,
   album_type: Show,
   year: Some(2022),
   by_va: false,

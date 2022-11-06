@@ -177,7 +177,7 @@ fn map_artist_page(
 
     for section in sections {
         match section {
-            response::music_artist::ItemSection::MusicShelfRenderer(shelf) => {
+            response::music_item::ItemSection::MusicShelfRenderer(shelf) => {
                 if tracks_playlist_id.is_none() {
                     if let Some(ep) = shelf.bottom_endpoint {
                         if let Some(cfg) =
@@ -194,10 +194,7 @@ fn map_artist_page(
 
                 mapper.map_response(shelf.contents);
             }
-            response::music_artist::ItemSection::MusicCarouselShelfRenderer {
-                header,
-                contents,
-            } => {
+            response::music_item::ItemSection::MusicCarouselShelfRenderer { header, contents } => {
                 let mut extendable_albums = false;
                 if let Some(h) = header {
                     let ep = h
@@ -228,7 +225,7 @@ fn map_artist_page(
                     mapper.map_response(contents);
                 }
             }
-            response::music_artist::ItemSection::None => {}
+            response::music_item::ItemSection::None => {}
         }
     }
 

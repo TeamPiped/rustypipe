@@ -72,7 +72,7 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
             .contents
             .into_iter()
             .find_map(|section| match section {
-                response::music_playlist::ItemSection::MusicShelfRenderer(shelf) => Some(shelf),
+                response::music_item::ItemSection::MusicShelfRenderer(shelf) => Some(shelf),
                 _ => None,
             })
             .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
@@ -167,11 +167,11 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
         let mut album_variants = None;
         for section in sections {
             match section {
-                response::music_playlist::ItemSection::MusicShelfRenderer(sh) => shelf = Some(sh),
-                response::music_playlist::ItemSection::MusicCarouselShelfRenderer { contents } => {
-                    album_variants = Some(contents)
-                }
-                response::music_playlist::ItemSection::None => (),
+                response::music_item::ItemSection::MusicShelfRenderer(sh) => shelf = Some(sh),
+                response::music_item::ItemSection::MusicCarouselShelfRenderer {
+                    contents, ..
+                } => album_variants = Some(contents),
+                response::music_item::ItemSection::None => (),
             }
         }
         let shelf = shelf.ok_or(ExtractionError::InvalidData(Cow::Borrowed(
@@ -230,6 +230,7 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
                 name: header.title,
                 cover: header.thumbnail.into(),
                 artists,
+                description: header.description,
                 album_type,
                 year,
                 by_va,
@@ -278,6 +279,7 @@ mod tests {
     #[case::one_artist("one_artist", "MPREb_nlBWQROfvjo")]
     #[case::various_artists("various_artists", "MPREb_8QkDeEIawvX")]
     #[case::single("single", "MPREb_bHfHGoy7vuv")]
+    #[case::description("description", "MPREb_PiyfuVl6aYd")]
     fn map_music_album(#[case] name: &str, #[case] id: &str) {
         let filename = format!("testfiles/music_playlist/album_{}.json", name);
         let json_path = Path::new(&filename);

@@ -8,6 +8,7 @@ use crate::{
     },
     param::Language,
     serializer::{
+        ignore_any,
         text::{Text, TextComponents},
         MapResult, VecLogError,
     },
@@ -18,6 +19,23 @@ use super::{
     url_endpoint::{BrowseEndpointWrap, NavigationEndpoint, PageType},
     MusicContinuationData, ThumbnailsWrap,
 };
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) enum ItemSection {
+    #[serde(alias = "musicPlaylistShelfRenderer")]
+    MusicShelfRenderer(MusicShelf),
+    MusicCarouselShelfRenderer {
+        #[serde(default)]
+        #[serde_as(as = "DefaultOnError")]
+        header: Option<MusicCarouselShelfHeader>,
+        #[serde_as(as = "VecLogError<_>")]
+        contents: MapResult<Vec<MusicResponseItem>>,
+    },
+    #[serde(other, deserialize_with = "ignore_any")]
+    None,
+}
 
 #[serde_as]
 #[derive(Debug, Deserialize)]
@@ -189,6 +207,30 @@ pub(crate) struct MusicContinuation {
 pub(crate) struct ContinuationContents {
     #[serde(alias = "musicPlaylistShelfContinuation")]
     pub music_shelf_continuation: MusicShelf,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct MusicCarouselShelfHeader {
+    pub music_carousel_shelf_basic_header_renderer: MusicCarouselShelfHeaderRenderer,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct MusicCarouselShelfHeaderRenderer {
+    pub more_content_button: MoreContentButton,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct MoreContentButton {
+    pub button_renderer: ButtonRenderer,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ButtonRenderer {
+    pub navigation_endpoint: NavigationEndpoint,
 }
 
 /*

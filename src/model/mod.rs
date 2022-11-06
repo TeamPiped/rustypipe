@@ -1030,6 +1030,8 @@ pub struct MusicAlbum {
     pub cover: Vec<Thumbnail>,
     /// Artists of the album
     pub artists: Vec<ArtistId>,
+    /// Album description in plaintext format
+    pub description: Option<String>,
     /// Album type (Album/Single/EP)
     pub album_type: AlbumType,
     /// Release year

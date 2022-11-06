@@ -17,6 +17,7 @@ MusicAlbum(
       name: "Dirk Jacobs",
     ),
   ],
+  description: None,
   album_type: Audiobook,
   year: Some(2022),
   by_va: false,

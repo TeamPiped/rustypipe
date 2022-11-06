@@ -1,11 +1,10 @@
 use serde::Deserialize;
 use serde_with::{serde_as, DefaultOnError};
 
-use crate::serializer::{ignore_any, text::Text, MapResult, VecLogError};
+use crate::serializer::{text::Text, MapResult, VecLogError};
 
 use super::{
-    music_item::{MusicResponseItem, MusicShelf, MusicThumbnailRenderer},
-    url_endpoint::NavigationEndpoint,
+    music_item::{ItemSection, MusicResponseItem, MusicThumbnailRenderer},
     ContentsRenderer, Tab,
 };
 
@@ -27,22 +26,6 @@ pub(crate) struct Contents<T> {
 #[serde(rename_all = "camelCase")]
 pub(crate) struct SectionList<T> {
     pub section_list_renderer: ContentsRenderer<T>,
-}
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) enum ItemSection {
-    MusicShelfRenderer(MusicShelf),
-    MusicCarouselShelfRenderer {
-        #[serde(default)]
-        #[serde_as(as = "DefaultOnError")]
-        header: Option<MusicCarouselShelfHeader>,
-        #[serde_as(as = "VecLogError<_>")]
-        contents: MapResult<Vec<MusicResponseItem>>,
-    },
-    #[serde(other, deserialize_with = "ignore_any")]
-    None,
 }
 
 #[derive(Debug, Deserialize)]
@@ -80,30 +63,6 @@ pub(crate) struct SubscriptionButton {
 pub(crate) struct SubscriptionButtonRenderer {
     #[serde_as(as = "Text")]
     pub subscriber_count_text: String,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct MusicCarouselShelfHeader {
-    pub music_carousel_shelf_basic_header_renderer: MusicCarouselShelfHeaderRenderer,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct MusicCarouselShelfHeaderRenderer {
-    pub more_content_button: MoreContentButton,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct MoreContentButton {
-    pub button_renderer: ButtonRenderer,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct ButtonRenderer {
-    pub navigation_endpoint: NavigationEndpoint,
 }
 
 /// Response model for YouTube Music artist album page

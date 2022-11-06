@@ -8,6 +8,7 @@ MusicAlbum(
   name: "＜Queendom2＞ FINAL",
   cover: "[cover]",
   artists: [],
+  description: None,
   album_type: Single,
   year: Some(2022),
   by_va: true,
