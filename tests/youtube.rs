@@ -1501,22 +1501,15 @@ async fn music_search(#[case] typo: bool) {
     assert_eq!(track.track_nr, None);
 }
 
-#[rstest]
-#[case::tracks(false)]
-#[case::videos(true)]
 #[tokio::test]
-async fn music_search_tracks(#[case] videos: bool) {
+async fn music_search_tracks() {
     let rp = RustyPipe::builder().strict().build();
-    let res = rp
-        .query()
-        .music_search_tracks("black mamba", videos)
-        .await
-        .unwrap();
+    let res = rp.query().music_search_tracks("black mamba").await.unwrap();
 
     let track = &res.items.items[0];
     assert_eq!(track.title, "Black Mamba");
     assert!(!track.cover.is_empty(), "got no cover");
-    assert_eq!(track.is_video, videos);
+    assert!(!track.is_video);
     assert_eq!(track.track_nr, None);
 
     assert_eq!(track.artists.len(), 1);
@@ -1527,19 +1520,39 @@ async fn music_search_tracks(#[case] videos: bool) {
     );
     assert_eq!(track_artist.name, "aespa");
 
-    if videos {
-        assert_eq!(track.id, "ZeerrnuLi5E");
-        assert_eq!(track.duration.unwrap(), 230);
-        assert_eq!(track.album, None);
-        assert_gte(track.view_count.unwrap(), 230_000_000, "views");
-    } else {
-        assert_eq!(track.id, "BL-aIpCLWnU");
-        assert_eq!(track.duration.unwrap(), 175);
+    assert_eq!(track.id, "BL-aIpCLWnU");
+    assert_eq!(track.duration.unwrap(), 175);
 
-        let album = track.album.as_ref().unwrap();
-        assert_eq!(album.id, "MPREb_OpHWHwyNOuY");
-        assert_eq!(album.name, "Black Mamba");
-    }
+    let album = track.album.as_ref().unwrap();
+    assert_eq!(album.id, "MPREb_OpHWHwyNOuY");
+    assert_eq!(album.name, "Black Mamba");
+
+    assert_next(res.items, &rp.query(), 15, 2).await;
+}
+
+#[tokio::test]
+async fn music_search_videos() {
+    let rp = RustyPipe::builder().strict().build();
+    let res = rp.query().music_search_videos("black mamba").await.unwrap();
+
+    let track = &res.items.items[0];
+    assert_eq!(track.title, "Black Mamba");
+    assert!(!track.cover.is_empty(), "got no cover");
+    assert!(track.is_video);
+    assert_eq!(track.track_nr, None);
+
+    assert_eq!(track.artists.len(), 1);
+    let track_artist = &track.artists[0];
+    assert_eq!(
+        track_artist.id.as_ref().unwrap(),
+        "UCEdZAdnnKqbaHOlv8nM6OtA"
+    );
+    assert_eq!(track_artist.name, "aespa");
+
+    assert_eq!(track.id, "ZeerrnuLi5E");
+    assert_eq!(track.duration.unwrap(), 230);
+    assert_eq!(track.album, None);
+    assert_gte(track.view_count.unwrap(), 230_000_000, "views");
 
     assert_next(res.items, &rp.query(), 15, 2).await;
 }
@@ -1637,14 +1650,20 @@ async fn music_search_artists_cont() {
     assert_next(res.items, &rp.query(), 15, 2).await;
 }
 
+#[rstest]
+#[case::ytm(false)]
+#[case::ytm_community(true)]
 #[tokio::test]
-async fn music_search_playlists() {
+async fn music_search_playlists(#[case] with_community: bool) {
     let rp = RustyPipe::builder().strict().build();
-    let res = rp
-        .query()
-        .music_search_playlists("easy pop", false)
-        .await
-        .unwrap();
+    let res = if with_community {
+        rp.query().music_search_playlists("easy pop").await.unwrap()
+    } else {
+        rp.query()
+            .music_search_playlists_filter("easy pop", false)
+            .await
+            .unwrap()
+    };
 
     assert_eq!(res.corrected_query, None);
     let playlist = &res.items.items[0];
@@ -1662,7 +1681,7 @@ async fn music_search_playlists_community() {
     let rp = RustyPipe::builder().strict().build();
     let res = rp
         .query()
-        .music_search_playlists("Best Pop Music Videos - Top Pop Hits Playlist", true)
+        .music_search_playlists_filter("Best Pop Music Videos - Top Pop Hits Playlist", true)
         .await
         .unwrap();
 

@@ -34,8 +34,10 @@ enum Params {
     Albums,
     #[serde(rename = "EgWKAQIgAWoMEAMQBBAJEA4QChAF")]
     Artists,
+    #[serde(rename = "EgWKAQIoAWoMEAMQBBAJEA4QChAF")]
+    Playlists,
     #[serde(rename = "EgeKAQQoADgBagwQAxAEEAkQDhAKEAU%3D")]
-    FeaturedPlaylists,
+    YtmPlaylists,
     #[serde(rename = "EgeKAQQoAEABagwQAxAEEAkQDhAKEAU%3D")]
     CommunityPlaylists,
 }
@@ -62,16 +64,27 @@ impl RustyPipeQuery {
     pub async fn music_search_tracks(
         &self,
         query: &str,
-        videos: bool,
+    ) -> Result<MusicSearchFiltered<TrackItem>, Error> {
+        self._music_search_tracks(query, Params::Tracks).await
+    }
+
+    pub async fn music_search_videos(
+        &self,
+        query: &str,
+    ) -> Result<MusicSearchFiltered<TrackItem>, Error> {
+        self._music_search_tracks(query, Params::Videos).await
+    }
+
+    async fn _music_search_tracks(
+        &self,
+        query: &str,
+        params: Params,
     ) -> Result<MusicSearchFiltered<TrackItem>, Error> {
         let context = self.get_context(ClientType::DesktopMusic, true, None).await;
         let request_body = QSearch {
             context,
             query,
-            params: Some(match videos {
-                true => Params::Videos,
-                false => Params::Tracks,
-            }),
+            params: Some(params),
         };
 
         self.execute_request::<response::MusicSearch, _, _>(
@@ -129,21 +142,40 @@ impl RustyPipeQuery {
     pub async fn music_search_playlists(
         &self,
         query: &str,
+    ) -> Result<MusicSearchFiltered<MusicPlaylistItem>, Error> {
+        self._music_search_playlists(query, Params::Playlists).await
+    }
+
+    pub async fn music_search_playlists_filter(
+        &self,
+        query: &str,
         community: bool,
+    ) -> Result<MusicSearchFiltered<MusicPlaylistItem>, Error> {
+        self._music_search_playlists(
+            query,
+            match community {
+                true => Params::CommunityPlaylists,
+                false => Params::YtmPlaylists,
+            },
+        )
+        .await
+    }
+
+    async fn _music_search_playlists(
+        &self,
+        query: &str,
+        params: Params,
     ) -> Result<MusicSearchFiltered<MusicPlaylistItem>, Error> {
         let context = self.get_context(ClientType::DesktopMusic, true, None).await;
         let request_body = QSearch {
             context,
             query,
-            params: Some(match community {
-                true => Params::CommunityPlaylists,
-                false => Params::FeaturedPlaylists,
-            }),
+            params: Some(params),
         };
 
         self.execute_request::<response::MusicSearch, _, _>(
             ClientType::DesktopMusic,
-            "music_playlists",
+            "music_search_playlists",
             query,
             "search",
             &request_body,

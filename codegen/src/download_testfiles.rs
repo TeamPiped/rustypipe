@@ -607,7 +607,11 @@ async fn music_search_tracks(testfiles: &Path) {
         }
 
         let rp = rp_testfile(&json_path);
-        rp.query().music_search_tracks(query, videos).await.unwrap();
+        if videos {
+            rp.query().music_search_videos(query).await.unwrap();
+        } else {
+            rp.query().music_search_tracks(query).await.unwrap();
+        }
     }
 }
 
@@ -649,7 +653,7 @@ async fn music_search_playlists(testfiles: &Path) {
 
         let rp = rp_testfile(&json_path);
         rp.query()
-            .music_search_playlists("pop", community)
+            .music_search_playlists_filter("pop", community)
             .await
             .unwrap();
     }
@@ -664,11 +668,7 @@ async fn music_search_cont(testfiles: &Path) {
     }
 
     let rp = RustyPipe::new();
-    let res = rp
-        .query()
-        .music_search_tracks("black mamba", false)
-        .await
-        .unwrap();
+    let res = rp.query().music_search_tracks("black mamba").await.unwrap();
 
     let rp = rp_testfile(&json_path);
     res.items.next(&rp.query()).await.unwrap().unwrap();
