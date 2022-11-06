@@ -1557,6 +1557,24 @@ async fn music_search_videos() {
     assert_next(res.items, &rp.query(), 15, 2).await;
 }
 
+#[tokio::test]
+async fn music_search_episode() {
+    let rp = RustyPipe::builder().strict().build();
+    let res = rp
+        .query()
+        .music_search_videos("Blond - Da muss man dabei gewesen sein: Das Hörspiel - Fall #1")
+        .await
+        .unwrap();
+
+    let track = &res.items.items[0];
+    assert_eq!(track.id, "Zq_-LDy7AgE");
+    assert_eq!(
+        track.title,
+        "Blond - Da muss man dabei gewesen sein: Das Hörspiel - Fall #1"
+    );
+    assert!(!track.cover.is_empty(), "got no cover");
+}
+
 #[rstest]
 #[case::single(
     "black mamba",

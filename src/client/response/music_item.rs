@@ -71,28 +71,59 @@ pub(crate) struct ListMusicItem {
     #[serde(default)]
     #[serde_as(deserialize_as = "DefaultOnError")]
     pub playlist_item_data: Option<PlaylistItemData>,
-    /// `[<"Das Beste">], [<"Silbermond">], [<"Laut Gedacht (Re-Edition)">]`
-    /// Playlist track (title, artist, album)
+    /// ### Playlist track
     ///
-    /// `[<"Der Himmel reißt auf">]` Album track (title)
+    /// `[<"Das Beste">], [<"Silbermond">], [<"Laut Gedacht (Re-Edition)">]`
+    ///
+    /// (title, artist, album)
+    ///
+    /// ### Album track
+    ///
+    /// `[<"Der Himmel reißt auf">]`
+    ///
+    /// (title)
+    ///
+    /// ### Search track
     ///
     /// `[<"Girls">], ["Song", " • ", <"aespa">, " • ", <"Girls - The 2nd Mini Album">, " • ", "4:01"]`
-    /// Search track (title, artist, album, duration).
+    ///
+    /// (title, artist, album, duration)
     ///
     /// Info: "Song" label is missing in the "Songs" tab
     ///
+    /// ### Search video
+    ///
     /// `[<"Black Mamba">], ["Video", " • ", <"aespa">, " • ", "235M views", " • ", "3:50"]`
-    /// Search video (title, artist, view count, duration)
+    ///
+    /// (title, artist, view count, duration)
     ///
     /// Info: "Video" label is missing in the "Videos" tab
     ///
-    /// `["Next Level"], ["Single", " • ", <"aespa">, " • ", "2021"]`
-    /// Search album (title, type, artist, year)
+    /// ### Search podcast episode
     ///
-    /// `["Test Shot Starfish"], ["Artist", " • ", "1660 subscribers"]` Search artist
+    /// `["Blond - Da muss man dabei..."], ["Episode", " • ", "Dec 24, 2020", " • ", <"BLOND_OFFICIAL">], ["Dec 24, 2020"]`
+    ///
+    /// (title, date, artist, date again?)
+    ///
+    /// Info: "Episode" label is missing in the "Videos" tab
+    ///
+    /// ### Search album
+    ///
+    /// `["Next Level"], ["Single", " • ", <"aespa">, " • ", "2021"]`
+    ///
+    /// (title, type, artist, year)
+    ///
+    /// ### Search artist
+    ///
+    /// `["Test Shot Starfish"], ["Artist", " • ", "1660 subscribers"]`
+    ///
+    /// (subscriber count)
+    ///
+    /// ### Search playlist
     ///
     /// `["aespa - All Songs & MV"], ["Playlist", " • ", <"Jerwen">, " • ", "49 songs"]`
-    /// Search playlist (title, creator, track count)
+    ///
+    /// (title, creator, track count)
     ///
     /// Info: "Playlist" label is missing in the "Playlists" tab
     pub flex_columns: Vec<MusicColumn>,
@@ -414,6 +445,7 @@ impl MusicListMapper {
 
                         let (artists_p, album_p, duration_p) = match item.flex_column_display_style
                         {
+                            // Search result
                             FlexColumnDisplayStyle::TwoLines => {
                                 let mut subtitle_parts = c2
                                     .ok_or_else(|| format!("track {}: could not get subtitle", id))?
@@ -421,16 +453,24 @@ impl MusicListMapper {
                                     .text
                                     .split(util::DOT_SEPARATOR)
                                     .into_iter();
-                                // Skip first part (track type)
-                                if subtitle_parts.len() > 3 {
-                                    subtitle_parts.next();
+
+                                // Is it a podcast episode?
+                                if subtitle_parts.len() <= 3 && c3.is_some() {
+                                    (subtitle_parts.rev().next(), None, None)
+                                } else {
+                                    // Skip first part (track type)
+                                    if subtitle_parts.len() > 3 {
+                                        subtitle_parts.next();
+                                    }
+
+                                    (
+                                        subtitle_parts.next(),
+                                        subtitle_parts.next(),
+                                        subtitle_parts.next(),
+                                    )
                                 }
-                                (
-                                    subtitle_parts.next(),
-                                    subtitle_parts.next(),
-                                    subtitle_parts.next(),
-                                )
                             }
+                            // Playlist item
                             FlexColumnDisplayStyle::Default => {
                                 let mut fixed_columns = item.fixed_columns;
                                 (

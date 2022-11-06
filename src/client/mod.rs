@@ -492,10 +492,9 @@ impl RustyPipe {
                 Ok(response) => {
                     let status = response.status();
                     // Immediately return in case of success or unrecoverable status code
-                    if status.is_success() || !status.is_server_error() {
+                    if status.is_success() || (!status.is_server_error() && status != 429) {
                         return res;
                     }
-                    // TODO: handle 429 (captcha)
                     status.to_string()
                 }
                 Err(e) => {
