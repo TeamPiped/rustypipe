@@ -1,4 +1,5 @@
 pub(crate) mod channel;
+pub(crate) mod music_artist;
 pub(crate) mod music_item;
 pub(crate) mod music_playlist;
 pub(crate) mod music_search;
@@ -11,6 +12,8 @@ pub(crate) mod video_details;
 pub(crate) mod video_item;
 
 pub(crate) use channel::Channel;
+pub(crate) use music_artist::MusicArtist;
+pub(crate) use music_artist::MusicArtistAlbums;
 pub(crate) use music_item::MusicContinuation;
 pub(crate) use music_playlist::MusicPlaylist;
 pub(crate) use music_search::MusicSearch;

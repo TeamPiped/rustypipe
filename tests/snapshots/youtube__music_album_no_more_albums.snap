@@ -1,0 +1,229 @@
+---
+source: tests/youtube.rs
+expression: artist
+---
+MusicArtist(
+  id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+  name: "Oonagh",
+  header_image: "[header_image]",
+  description: "Senta-Sofia Delliponti is a German singer, songwriter and actress. Since January 2014, she used the stage name Oonagh, until she changed it to Senta in 2022. Her signature musical style is inspired by the mystical lore of J. R. R. Tolkien\'s universe and by ethnic sounds throughout the world.\n\nFrom Wikipedia (https://en.wikipedia.org/wiki/Oonagh_(singer)) under Creative Commons Attribution CC-BY-SA 3.0 (http://creativecommons.org/licenses/by-sa/3.0/legalcode)",
+  wikipedia_url: Some("https://en.wikipedia.org/wiki/Oonagh_"),
+  subscriber_count: "[subscriber_count]",
+  tracks: "[tracks]",
+  albums: [
+    AlbumItem(
+      id: "MPREb_2vYEpZteTjN",
+      name: "Willst du noch träumen (feat. Elbkinder (Rolf Zuckowski))",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "Oonagh",
+        ),
+      ],
+      album_type: Single,
+      year: Some(2016),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_76jQdnW2e6m",
+      name: "Gäa (Akustik Version)",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "Oonagh",
+        ),
+      ],
+      album_type: Single,
+      year: Some(2014),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_8weOuwHWdSU",
+      name: "Oonagh",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "Oonagh",
+        ),
+      ],
+      album_type: Album,
+      year: Some(2014),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_Gnj2M6UQmfX",
+      name: "Ich sehe was, was Du nicht siehst (Online Version)",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "Oonagh",
+        ),
+      ],
+      album_type: Single,
+      year: Some(2007),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_GyH43gCvdM5",
+      name: "Best Of",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "Oonagh",
+        ),
+      ],
+      album_type: Album,
+      year: Some(2020),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_S6P0cjIdHIF",
+      name: "Zauberwald",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "Oonagh",
+        ),
+      ],
+      album_type: Single,
+      year: Some(2017),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_WAzaITm6K4l",
+      name: "Zeit der Sommernächte (Single Mix)",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "Oonagh",
+        ),
+      ],
+      album_type: Single,
+      year: Some(2017),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_WfEYxWGLcMx",
+      name: "Du bist genug (Single Mix)",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "Oonagh",
+        ),
+      ],
+      album_type: Single,
+      year: Some(2020),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_eNje8weTxgK",
+      name: "Aulë und Yavanna (Jungle-Mix)",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "Oonagh",
+        ),
+      ],
+      album_type: Single,
+      year: Some(2016),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_imDwIcPAjFy",
+      name: "Aeria (Sartoranta - Fan Edition)",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "Oonagh",
+        ),
+      ],
+      album_type: Album,
+      year: Some(2015),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_jovYz4SubiU",
+      name: "Eine neue Zeit",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "Oonagh",
+        ),
+      ],
+      album_type: Album,
+      year: Some(2019),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_kWjFiCq7EdM",
+      name: "Scheissegal (Digital Version)",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "Oonagh",
+        ),
+      ],
+      album_type: Single,
+      year: Some(2006),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_nlBWQROfvjo",
+      name: "Märchen enden gut",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "Oonagh",
+        ),
+      ],
+      album_type: Album,
+      year: Some(2016),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_oWACs9fccqd",
+      name: "Kuliko Jana - Eine neue Zeit",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "Oonagh",
+        ),
+      ],
+      album_type: Single,
+      year: Some(2019),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_vuyS6nIsNeg",
+      name: "Gäa",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "Oonagh",
+        ),
+      ],
+      album_type: Single,
+      year: Some(2014),
+      by_va: false,
+    ),
+  ],
+  playlists: "[playlists]",
+  similar_artists: "[artists]",
+  tracks_playlist_id: Some("OLAK5uy_m6843aeUO05cz_t1seql2dQ9eUgwyuOXI"),
+  videos_playlist_id: None,
+)

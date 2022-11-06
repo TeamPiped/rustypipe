@@ -15,7 +15,7 @@ use crate::{
 };
 
 use super::{
-    url_endpoint::{NavigationEndpoint, PageType},
+    url_endpoint::{BrowseEndpointWrap, NavigationEndpoint, PageType},
     MusicContinuationData, ThumbnailsWrap,
 };
 
@@ -31,6 +31,10 @@ pub(crate) struct MusicShelf {
     #[serde(default)]
     #[serde_as(as = "VecSkipError<_>")]
     pub continuations: Vec<MusicContinuationData>,
+    /// "More" button at the bottom (artist pages)
+    #[serde(default)]
+    #[serde_as(as = "DefaultOnError")]
+    pub bottom_endpoint: Option<BrowseEndpointWrap>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -222,23 +226,19 @@ impl MusicListMapper {
         }
     }
 
-    /*
-    pub fn with_artists(
-        lang: Language,
-        artists: Vec<ArtistId>,
-        by_va: bool,
-        artist_page: bool,
-    ) -> Self {
+    /// Create a new MusicListMapper for an artist page
+    pub fn with_artist(lang: Language, artist: ArtistId) -> Self {
         Self {
             lang,
-            artists: Some((artists, by_va)),
+            artists: Some((vec![artist], false)),
             album: None,
-            artist_page,
+            artist_page: true,
             items: Vec::new(),
             warnings: Vec::new(),
         }
-    }*/
+    }
 
+    /// Create a new MusicListMapper for an album page
     pub fn with_album(lang: Language, artists: Vec<ArtistId>, by_va: bool, album: AlbumId) -> Self {
         Self {
             lang,
@@ -399,9 +399,8 @@ impl MusicListMapper {
                             }
                         };
 
-                        let duration = duration_p
-                            .and_then(|p| util::parse_video_length(p.first_str()))
-                            .ok_or_else(|| format!("track {}: could not parse duration", id))?;
+                        let duration =
+                            duration_p.and_then(|p| util::parse_video_length(p.first_str()));
 
                         let (album, view_count) = match (item.flex_column_display_style, is_video) {
                             // The album field contains the view count for search videos
@@ -455,87 +454,117 @@ impl MusicListMapper {
                 let subtitle_p2 = subtitle_parts.next();
                 let subtitle_p3 = subtitle_parts.next();
 
-                let (page_type, id) = item
-                    .navigation_endpoint
-                    .music_page()
-                    .ok_or_else(|| "could not get navigation endpoint".to_owned())?;
-
-                match page_type {
-                    PageType::Album => {
-                        let mut year = None;
-                        let mut album_type = AlbumType::Single;
-
-                        let (artists, by_va) =
-                            match (subtitle_p1, subtitle_p2, &self.artists, self.artist_page) {
-                                // "2022" (Artist singles)
-                                (Some(year_txt), None, Some(artists), true) => {
-                                    year = util::parse_numeric(year_txt.first_str()).ok();
-                                    artists.clone()
-                                }
-                                // "Album", "2022" (Artist albums)
-                                (Some(atype_txt), Some(year_txt), Some(artists), true) => {
-                                    year = util::parse_numeric(year_txt.first_str()).ok();
-                                    album_type = map_album_type(atype_txt.first_str(), self.lang);
-                                    artists.clone()
-                                }
-                                // "Album", <"Oonagh"> (Album variants, new releases)
-                                (Some(atype_txt), Some(p2), _, false) => {
-                                    album_type = map_album_type(atype_txt.first_str(), self.lang);
-                                    map_artists(Some(p2))
-                                }
-                                _ => {
-                                    return Err(format!(
-                                        "could not parse subtitle of album {}",
-                                        id
-                                    ));
-                                }
-                            };
-
-                        self.items.push(MusicItem::Album(AlbumItem {
-                            id,
-                            name: item.title,
+                match item.navigation_endpoint.watch_endpoint {
+                    // Music video
+                    Some(wep) => {
+                        self.items.push(MusicItem::Track(TrackItem {
+                            id: wep.video_id,
+                            title: item.title,
+                            duration: None,
                             cover: item.thumbnail_renderer.into(),
-                            artists,
-                            album_type,
-                            year,
-                            by_va,
+                            artists: map_artists(subtitle_p1).0,
+                            album: None,
+                            view_count: subtitle_p2
+                                .and_then(|c| util::parse_large_numstr(c.first_str(), self.lang)),
+                            is_video: true,
+                            track_nr: None,
                         }));
-                        Ok(MusicEntityType::Album)
+                        Ok(MusicEntityType::Track)
                     }
-                    PageType::Playlist => {
-                        let from_ytm = subtitle_p2
-                            .as_ref()
-                            .map(|p| p.first_str() == util::YT_MUSIC_NAME)
-                            .unwrap_or_default();
-                        let channel = subtitle_p2.and_then(|p| {
-                            p.0.into_iter().find_map(|c| ChannelId::try_from(c).ok())
-                        });
-                        let track_count =
-                            subtitle_p3.and_then(|p| util::parse_numeric(p.first_str()).ok());
+                    // Artist / Album / Playlist
+                    None => {
+                        let (page_type, id) = item
+                            .navigation_endpoint
+                            .music_page()
+                            .ok_or_else(|| "could not get navigation endpoint".to_owned())?;
 
-                        self.items.push(MusicItem::Playlist(MusicPlaylistItem {
-                            id,
-                            name: item.title,
-                            thumbnail: item.thumbnail_renderer.into(),
-                            channel,
-                            track_count,
-                            from_ytm,
-                        }));
-                        Ok(MusicEntityType::Playlist)
-                    }
-                    PageType::Artist => {
-                        let subscriber_count = subtitle_p1
-                            .and_then(|p| util::parse_large_numstr(p.first_str(), self.lang));
+                        match page_type {
+                            PageType::Album => {
+                                let mut year = None;
+                                let mut album_type = AlbumType::Single;
 
-                        self.items.push(MusicItem::Artist(ArtistItem {
-                            id,
-                            name: item.title,
-                            avatar: item.thumbnail_renderer.into(),
-                            subscriber_count,
-                        }));
-                        Ok(MusicEntityType::Artist)
+                                let (artists, by_va) = match (
+                                    subtitle_p1,
+                                    subtitle_p2,
+                                    &self.artists,
+                                    self.artist_page,
+                                ) {
+                                    // "2022" (Artist singles)
+                                    (Some(year_txt), None, Some(artists), true) => {
+                                        year = util::parse_numeric(year_txt.first_str()).ok();
+                                        artists.clone()
+                                    }
+                                    // "Album", "2022" (Artist albums)
+                                    (Some(atype_txt), Some(year_txt), Some(artists), true) => {
+                                        year = util::parse_numeric(year_txt.first_str()).ok();
+                                        album_type =
+                                            map_album_type(atype_txt.first_str(), self.lang);
+                                        artists.clone()
+                                    }
+                                    // "Album", <"Oonagh"> (Album variants, new releases)
+                                    (Some(atype_txt), Some(p2), _, false) => {
+                                        album_type =
+                                            map_album_type(atype_txt.first_str(), self.lang);
+                                        map_artists(Some(p2))
+                                    }
+                                    _ => {
+                                        return Err(format!(
+                                            "could not parse subtitle of album {}",
+                                            id
+                                        ));
+                                    }
+                                };
+
+                                self.items.push(MusicItem::Album(AlbumItem {
+                                    id,
+                                    name: item.title,
+                                    cover: item.thumbnail_renderer.into(),
+                                    artists,
+                                    album_type,
+                                    year,
+                                    by_va,
+                                }));
+                                Ok(MusicEntityType::Album)
+                            }
+                            PageType::Playlist => {
+                                let from_ytm = subtitle_p2
+                                    .as_ref()
+                                    .map(|p| p.first_str() == util::YT_MUSIC_NAME)
+                                    .unwrap_or_default();
+                                let channel = subtitle_p2.and_then(|p| {
+                                    p.0.into_iter().find_map(|c| ChannelId::try_from(c).ok())
+                                });
+                                let track_count = subtitle_p3
+                                    .and_then(|p| util::parse_numeric(p.first_str()).ok());
+
+                                self.items.push(MusicItem::Playlist(MusicPlaylistItem {
+                                    id,
+                                    name: item.title,
+                                    thumbnail: item.thumbnail_renderer.into(),
+                                    channel,
+                                    track_count,
+                                    from_ytm,
+                                }));
+                                Ok(MusicEntityType::Playlist)
+                            }
+                            PageType::Artist => {
+                                let subscriber_count = subtitle_p1.and_then(|p| {
+                                    util::parse_large_numstr(p.first_str(), self.lang)
+                                });
+
+                                self.items.push(MusicItem::Artist(ArtistItem {
+                                    id,
+                                    name: item.title,
+                                    avatar: item.thumbnail_renderer.into(),
+                                    subscriber_count,
+                                }));
+                                Ok(MusicEntityType::Artist)
+                            }
+                            PageType::Channel => {
+                                Err(format!("channel items unsupported. id: {}", id))
+                            }
+                        }
                     }
-                    PageType::Channel => Err(format!("channel items unsupported. id: {}", id)),
                 }
             }
         }

@@ -1354,6 +1354,84 @@ async fn music_album_not_found() {
 }
 
 #[rstest]
+#[case::basic_all("basic_all", "UC7cl4MmM6ZZ2TcFyMk_b4pg", true, 15, 2)]
+#[case::basic("basic", "UC7cl4MmM6ZZ2TcFyMk_b4pg", false, 15, 2)]
+#[case::no_more_albums("no_more_albums", "UC_vmjW5e1xEHhYjY2a0kK1A", true, 12, 0)]
+#[case::only_singles("only_singles", "UCfwCE5VhPMGxNPFxtVv7lRw", false, 13, 0)]
+#[case::no_artist("no_artist", "UCh8gHdtzO2tXd593_bjErWg", false, 0, 2)]
+#[tokio::test]
+async fn music_artist(
+    #[case] name: &str,
+    #[case] id: &str,
+    #[case] all_albums: bool,
+    #[case] min_tracks: usize,
+    #[case] min_playlists: usize,
+) {
+    let rp = RustyPipe::builder().strict().build();
+    let mut artist = rp.query().music_artist(id, all_albums).await.unwrap();
+
+    assert_gte(artist.tracks.len(), min_tracks, "tracks");
+    assert_gte(artist.playlists.len(), min_playlists, "playlists");
+
+    if name == "no_artist" {
+        assert!(artist.similar_artists.is_empty());
+        assert!(artist.subscriber_count.is_none());
+    } else {
+        assert_gte(artist.subscriber_count.unwrap(), 30000, "subscribers");
+    }
+
+    // Check images
+    assert!(!artist.header_image.is_empty(), "got no header image");
+    artist
+        .tracks
+        .iter()
+        .for_each(|t| assert!(!t.cover.is_empty()));
+    artist
+        .albums
+        .iter()
+        .for_each(|t| assert!(!t.cover.is_empty()));
+    artist
+        .playlists
+        .iter()
+        .for_each(|t| assert!(!t.thumbnail.is_empty()));
+    artist
+        .similar_artists
+        .iter()
+        .for_each(|t| assert!(!t.avatar.is_empty()));
+
+    // Sort albums to ensure consistent order
+    artist.albums.sort_by_key(|a| a.id.to_owned());
+
+    insta::assert_ron_snapshot!(format!("music_album_{}", name), artist, {
+        ".header_image" => "[header_image]",
+        ".subscriber_count" => "[subscriber_count]",
+        ".albums[].cover" => "[cover]",
+        ".tracks" => "[tracks]",
+        ".playlists" => "[playlists]",
+        ".similar_artists" => "[artists]",
+    });
+}
+
+#[tokio::test]
+async fn music_artist_not_found() {
+    let rp = RustyPipe::builder().strict().build();
+    let err = rp
+        .query()
+        .music_artist("UC7cl4MmM6ZZ2TcFyMk_b4pq", false)
+        .await
+        .unwrap_err();
+
+    assert!(
+        matches!(
+            err,
+            Error::Extraction(ExtractionError::ContentUnavailable(_))
+        ),
+        "got: {}",
+        err
+    );
+}
+
+#[rstest]
 #[case::default(false)]
 #[case::typo(true)]
 #[tokio::test]
@@ -1384,7 +1462,7 @@ async fn music_search(#[case] typo: bool) {
     dbg!(&track);
     assert_eq!(track.id, "ZeerrnuLi5E");
     assert_eq!(track.title, "Black Mamba");
-    assert_eq!(track.duration, 230);
+    assert_eq!(track.duration.unwrap(), 230);
     assert!(!track.cover.is_empty(), "got no cover");
 
     assert_eq!(track.artists.len(), 1);
@@ -1428,12 +1506,12 @@ async fn music_search_tracks(#[case] videos: bool) {
 
     if videos {
         assert_eq!(track.id, "ZeerrnuLi5E");
-        assert_eq!(track.duration, 230);
+        assert_eq!(track.duration.unwrap(), 230);
         assert_eq!(track.album, None);
         assert_gte(track.view_count.unwrap(), 230_000_000, "views");
     } else {
         assert_eq!(track.id, "BL-aIpCLWnU");
-        assert_eq!(track.duration, 175);
+        assert_eq!(track.duration.unwrap(), 175);
 
         let album = track.album.as_ref().unwrap();
         assert_eq!(album.id, "MPREb_OpHWHwyNOuY");

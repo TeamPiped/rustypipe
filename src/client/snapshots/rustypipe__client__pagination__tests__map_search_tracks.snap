@@ -8,7 +8,7 @@ Paginator(
     TrackItem(
       id: "rNsISA-kWzM",
       title: "Black Mamba Dub",
-      duration: 248,
+      duration: Some(248),
       cover: [
         Thumbnail(
           url: "https://lh3.googleusercontent.com/zRVppSgdih64UOcY_0-sZacnxhMkII4v4OotgFbV1SVbLT3qk4NmfQRXwhxszMJKTmb3uo8MzOwkyQ=w60-h60-l90-rj",
@@ -38,7 +38,7 @@ Paginator(
     TrackItem(
       id: "vMZqNPZADFw",
       title: "Black Mamba (feat. Ermal Meta)",
-      duration: 287,
+      duration: Some(287),
       cover: [
         Thumbnail(
           url: "https://lh3.googleusercontent.com/POoljmkFZgedlsgFfdn4B1kcZZ7P9Kx1xszHV9wT082T7GYX4c0lRrYaalrXIkT-ZeTeB5esqrftpzQ0GQ=w60-h60-l90-rj",
@@ -68,7 +68,7 @@ Paginator(
     TrackItem(
       id: "C8B-nBnB7Bk",
       title: "Black Mamba",
-      duration: 177,
+      duration: Some(177),
       cover: [
         Thumbnail(
           url: "https://lh3.googleusercontent.com/2cJawayDujRRcl8OKABi82_aa4sH6EGLAqxlx976Syzh86c9inNlY2xch5s4GWEo5iSXVq8VdS_59l8=w60-h60-l90-rj",
@@ -98,7 +98,7 @@ Paginator(
     TrackItem(
       id: "29MOu6Y781I",
       title: "Rip Black Mamba",
-      duration: 122,
+      duration: Some(122),
       cover: [
         Thumbnail(
           url: "https://lh3.googleusercontent.com/4XunKmdccrggx1GrQiX5T5OrPQpSLuzacDQjvFHUYQasIDClF-TtQdSCYXYDQ8gGy7CYn2J9aJC5P4c=w60-h60-l90-rj",
@@ -128,7 +128,7 @@ Paginator(
     TrackItem(
       id: "AdvPpJVvyEg",
       title: "Black Mamba",
-      duration: 126,
+      duration: Some(126),
       cover: [
         Thumbnail(
           url: "https://lh3.googleusercontent.com/Ue_Q3bgiMyvB_Rk8g0nCyTJHebz_A7f6twQkaRLX-iaHug2j5MmIwS9iHHW94S5x7gOwymGNngIDOXE=w60-h60-l90-rj",
@@ -158,7 +158,7 @@ Paginator(
     TrackItem(
       id: "kv3Z269PQvE",
       title: "Black Mamba",
-      duration: 178,
+      duration: Some(178),
       cover: [
         Thumbnail(
           url: "https://lh3.googleusercontent.com/PXz8D3pENlYjM-uBxgaMrWZtydsXzV7jGznVo1g9qf11fDckcTonR4NgMv0fwxjesqCvgq-uRSV3gfQTyA=w60-h60-l90-rj",
@@ -188,7 +188,7 @@ Paginator(
     TrackItem(
       id: "y74ZqAkFkK4",
       title: "Born To Fight",
-      duration: 278,
+      duration: Some(278),
       cover: [
         Thumbnail(
           url: "https://lh3.googleusercontent.com/g0iyEdaYwlSjWkL516U_yDhCNh0ybcMIIcxBLtzRU32z8-K6-lY4n7dLy4QLWjDVeG28_uPaMRLRipzz=w60-h60-l90-rj",
@@ -218,7 +218,7 @@ Paginator(
     TrackItem(
       id: "ZVnqAUnj-1Y",
       title: "Black Mamba",
-      duration: 188,
+      duration: Some(188),
       cover: [
         Thumbnail(
           url: "https://lh3.googleusercontent.com/WOkfIAGaz2Q_RhoMqgLQPS8zfrnT85NEpwgbvyc04DCS9fEw8y03FqAA4iUEABq0Adcey0w4erkX67vJoA=w60-h60-l90-rj",
@@ -248,7 +248,7 @@ Paginator(
     TrackItem(
       id: "REmUidcJt5I",
       title: "Savage",
-      duration: 239,
+      duration: Some(239),
       cover: [
         Thumbnail(
           url: "https://lh3.googleusercontent.com/WVm938cCHuYeJyYRz0a8NHrvTXnEM6_aPiZOyv8ZzPVWt-wFqM1Fnkko68jgNPhhwI5ub_8z8n1OyhA=w60-h60-l90-rj",
@@ -278,7 +278,7 @@ Paginator(
     TrackItem(
       id: "63sEilefjtQ",
       title: "Black Mamba",
-      duration: 233,
+      duration: Some(233),
       cover: [
         Thumbnail(
           url: "https://lh3.googleusercontent.com/Smo8SmweSdDGfGCWbyo_WY08R72MwqkEx6eq9aUTc2TulaGJs7uh9nDoqcPjV5BRkBFtrCRAm8CryjMImA=w60-h60-l90-rj",
@@ -308,7 +308,7 @@ Paginator(
     TrackItem(
       id: "_LGy1K5vmq8",
       title: "Black Mamba",
-      duration: 284,
+      duration: Some(284),
       cover: [
         Thumbnail(
           url: "https://lh3.googleusercontent.com/9Djd9it37TlN57UrU90PfDOYETwyEuxewPaW9ZcRJICkYS5FAwYjsC8ZN50KVT6DTTRm14fD3JIuzifL=w60-h60-l90-rj",
@@ -338,7 +338,7 @@ Paginator(
     TrackItem(
       id: "Ak98OIfed8o",
       title: "Black Mamba",
-      duration: 346,
+      duration: Some(346),
       cover: [
         Thumbnail(
           url: "https://lh3.googleusercontent.com/of6AjBFZiDdRIOzHk8hJI_6rexaVeBX2Weli37gkTwo7GD0nQynE9I8FQMwwyqPkyXBP9rfzP4CAtAFk=w60-h60-l90-rj",
@@ -368,7 +368,7 @@ Paginator(
     TrackItem(
       id: "_aSqdZKxcuU",
       title: "Soul Surrender",
-      duration: 273,
+      duration: Some(273),
       cover: [
         Thumbnail(
           url: "https://lh3.googleusercontent.com/POgJYf88Xb_XJz2JKhJLRgni4a4P_NOEEZ8Yy_EX4LwoWeadBuNg2shcLiS6ruxehoRerVqjbrRWPc1t=w60-h60-l90-rj",
@@ -398,7 +398,7 @@ Paginator(
     TrackItem(
       id: "6Lb4bmEEfnY",
       title: "Black Mamba Boy",
-      duration: 312,
+      duration: Some(312),
       cover: [
         Thumbnail(
           url: "https://lh3.googleusercontent.com/8pJynr17yAyhW8QL20jk_XdhBBokDmt6-HtrTo2IGiwe6nOsalsd64vNtXYM_vl8-iMxyqULJ3psnf_2Yg=w60-h60-l90-rj",
@@ -428,7 +428,7 @@ Paginator(
     TrackItem(
       id: "4lrp5FWFIak",
       title: "Black Mamba",
-      duration: 558,
+      duration: Some(558),
       cover: [
         Thumbnail(
           url: "https://lh3.googleusercontent.com/lPZMkkaPYEXPHmUgwebckyBi1M6EtIxyxhfsSTvEcqj0J5QSCy4MWICmznUSo5ym7nh6ZbSLAFjruoJ_=w60-h60-l90-rj",
@@ -458,7 +458,7 @@ Paginator(
     TrackItem(
       id: "Kk8vT1o_gYE",
       title: "Black Mamba",
-      duration: 324,
+      duration: Some(324),
       cover: [
         Thumbnail(
           url: "https://lh3.googleusercontent.com/tJDelxhiUsBVlb2jbqR-cBqnPpsFUaNCIvJ-kUET3kNPhbGXkRDMBpNtQ9fkqrwhewyhHwd5SvQnNbA=w60-h60-l90-rj",
@@ -496,7 +496,7 @@ Paginator(
     TrackItem(
       id: "FbUrY0GdO88",
       title: "Black Mamba Blues",
-      duration: 186,
+      duration: Some(186),
       cover: [
         Thumbnail(
           url: "https://lh3.googleusercontent.com/F4XKnhpSiMqFwf-wXEV7w7HAT8B6u7KVKzuauyJGyntuwBArQ8nw6_4WLL7csBtJcvh4skHWI_168EXsJA=w60-h60-l90-rj",
@@ -526,7 +526,7 @@ Paginator(
     TrackItem(
       id: "OFesVwAdT80",
       title: "Black Mamba",
-      duration: 149,
+      duration: Some(149),
       cover: [
         Thumbnail(
           url: "https://lh3.googleusercontent.com/WSxW9Z7k4cPpouB30qD1hvYITQA-e5J_dB7m0SuxEbIAUlYAGtKDc_uiDOHYHBLx4bPwbqKCjtO3-dtfdQ=w60-h60-l90-rj",
@@ -556,7 +556,7 @@ Paginator(
     TrackItem(
       id: "lNeJjPPKE1g",
       title: "Black Mamba",
-      duration: 212,
+      duration: Some(212),
       cover: [
         Thumbnail(
           url: "https://lh3.googleusercontent.com/_F5_qGGtZ8jYva_vvaOTwvrw7Elig9Y119SFqUbyf45ioDo3aAkfmaVNb0czjGDzU_MUDjnXQmnwXa4=w60-h60-l90-rj",
@@ -586,7 +586,7 @@ Paginator(
     TrackItem(
       id: "SW_woyyA1Bg",
       title: "Black Mamba Style",
-      duration: 202,
+      duration: Some(202),
       cover: [
         Thumbnail(
           url: "https://lh3.googleusercontent.com/o5Tdv51nXvS40_b1mz_YnpB9bQRSyzRzrahjwN9quAJrjiN3MWDRo5tqIVzH-dnJIwyZYKdeRa2rUDg=w60-h60-l90-rj",

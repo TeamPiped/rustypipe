@@ -21,7 +21,7 @@ inspired by [NewPipe](https://github.com/TeamNewPipe/NewPipeExtractor).
 
 - [X] **Playlist**
 - [X] **Album**
-- [ ] **Artist**
+- [X] **Artist**
 - [X] **Search**
 - [ ] **Search suggestions**
 - [ ] **Moods**

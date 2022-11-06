@@ -45,7 +45,7 @@ MusicAlbum(
     TrackItem(
       id: "XX0epju-YvY",
       title: "Der Himmel reißt auf",
-      duration: 183,
+      duration: Some(183),
       cover: [],
       artists: [
         ArtistId(

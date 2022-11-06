@@ -1,0 +1,621 @@
+---
+source: tests/youtube.rs
+expression: artist
+---
+MusicArtist(
+  id: "UC7cl4MmM6ZZ2TcFyMk_b4pg",
+  name: "Unheilig",
+  header_image: "[header_image]",
+  description: "Unheilig was a German band that featured a variety of influences, including various pop and electronic styles as well as harder, nihilistic hard rock. The band was founded in 1999 and principally consisted of singer Bernd Heinrich \"Der Graf\" along with various musical partners. He was accompanied for live shows with musicians Christoph \"Licky\" Termühlen, Henning Verlage, and Martin \"Potti\" Potthoff. The group\'s debut, Phosphor, came out in 2000.\n\nFrom Wikipedia (https://en.wikipedia.org/wiki/Unheilig) under Creative Commons Attribution CC-BY-SA 3.0 (http://creativecommons.org/licenses/by-sa/3.0/legalcode)",
+  wikipedia_url: Some("https://en.wikipedia.org/wiki/Unheilig"),
+  subscriber_count: "[subscriber_count]",
+  tracks: "[tracks]",
+  albums: [
+    AlbumItem(
+      id: "MPREb_43NWLzXChnh",
+      name: "Grosse Freiheit (Digital Version)",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Album,
+      year: Some(2010),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_585fV7eqUP8",
+      name: "Gipfelstürmer",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Album,
+      year: Some(2014),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_6PEkIQE7sWY",
+      name: "An deiner Seite (Online Version)",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Ep,
+      year: Some(2008),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_7nIPO6oeETY",
+      name: "Lichter der Stadt - Live",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Album,
+      year: Some(2012),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_88p7e6nBtgz",
+      name: "Lichter der Stadt",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Single,
+      year: Some(2012),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_8rukEzdytkN",
+      name: "Gipfelstürmer (Live in Österreich)",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Album,
+      year: Some(2015),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_BJKvCuKo7nJ",
+      name: "MTV Unplugged \"Unter Dampf – Ohne Strom\" (Deluxe Version)",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Album,
+      year: Some(2015),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_EAiIEvINDHB",
+      name: "Stark",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Single,
+      year: Some(2012),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_HrCgErOdgCv",
+      name: "Freiheit",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Album,
+      year: Some(2004),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_Md2aZrjaqHX",
+      name: "Stille Winternacht",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Single,
+      year: Some(2021),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_OW1GOBZ64ap",
+      name: "Hallo Leben",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Single,
+      year: Some(2018),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_Oq0WKqNwSVY",
+      name: "Das 2. Gebot",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Album,
+      year: Some(2003),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_QEClJsuO9xM",
+      name: "So wie Du warst",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Single,
+      year: Some(2012),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_QyGCcLWExXj",
+      name: "Als wär\'s das erste Mal (Exklusive Piano Version)",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Single,
+      year: Some(2014),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_R3p5kDRIGKL",
+      name: "Astronaut",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Album,
+      year: Some(2006),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_T4fJMmrfxXk",
+      name: "Phosphor",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Album,
+      year: Some(2000),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_TiIBQqCFttT",
+      name: "Von Mensch zu Mensch",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Album,
+      year: Some(2016),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_U9HLD8nF7H5",
+      name: "Der Himmel über mir",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Single,
+      year: Some(2017),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_U9dMPQUeR9q",
+      name: "Wie wir waren (feat. Andreas Bourani)",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Single,
+      year: Some(2012),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_V0FEmw2pj2u",
+      name: "Sonnentag",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Single,
+      year: Some(2017),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_WYx2c0e95TA",
+      name: "Spiegelbild",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Album,
+      year: Some(2008),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_Wc8Ehka0R0T",
+      name: "Lichterland - Best Of (Deluxe)",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Album,
+      year: Some(2021),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_Yj49s4xy7fM",
+      name: "Lichtermeer",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Single,
+      year: Some(2021),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_baIxpKBcYbF",
+      name: "Schutzengel",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Ep,
+      year: Some(2003),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_eiYjUXT1Mn3",
+      name: "Geboren um zu leben",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Single,
+      year: Some(2010),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_f4MhYbccbPi",
+      name: "Moderne Zeiten",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Album,
+      year: Some(2006),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_gHlGAdNjEZI",
+      name: "Für immer",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Single,
+      year: Some(2010),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_kW2NAMSZElX",
+      name: "Glück auf das Leben",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Single,
+      year: Some(2015),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_m5U1xZasDSy",
+      name: "Frohes Fest",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Album,
+      year: Some(2002),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_n1H3JiFyGkv",
+      name: "Mein Berg (EP)",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Ep,
+      year: Some(2015),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_ohcGTZrqKPZ",
+      name: "Zelluloid",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Album,
+      year: Some(2004),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_pWpeXxATZYb",
+      name: "Wir sind alle wie eins",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Single,
+      year: Some(2014),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_ptO8gh250LP",
+      name: "Maschine",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Ep,
+      year: Some(2003),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_qbJv3f0ijrk",
+      name: "Alles hat seine Zeit (Best Of Unheilig 1999 - 2014)",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Album,
+      year: Some(2007),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_rHhaDLqalbT",
+      name: "Winter (EP)",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Ep,
+      year: Some(2010),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_rdrfznTDhSX",
+      name: "Lichter der Stadt",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Album,
+      year: Some(2012),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_saXgTKNPaSu",
+      name: "Zeit zu gehen",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Single,
+      year: Some(2014),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_t6zStv8YrVG",
+      name: "Unter deiner Flagge",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Single,
+      year: Some(2010),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_vM0cMpn8pHh",
+      name: "Puppenspiel Live - Vorhang auf!",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Album,
+      year: Some(2008),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_wgm3k1qxpbF",
+      name: "Grosse Freiheit Live",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Album,
+      year: Some(2010),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_wmSecJVDwPB",
+      name: "Puppenspiel",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Album,
+      year: Some(2008),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_xCehp2mGhCk",
+      name: "Winter",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Single,
+      year: Some(2010),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_y5fUQ2toJwT",
+      name: "Best Of Vol. 2 - Rares Gold (Deluxe Version)",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      album_type: Album,
+      year: Some(2017),
+      by_va: false,
+    ),
+  ],
+  playlists: "[playlists]",
+  similar_artists: "[artists]",
+  tracks_playlist_id: Some("OLAK5uy_n6aX-F_lCQxgyTIv4FJhp78bXV93b9NUM"),
+  videos_playlist_id: Some("OLAK5uy_nrePwvOEzmO7SydszEFfCDu8gAJxKfFtw"),
+)

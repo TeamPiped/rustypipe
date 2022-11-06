@@ -37,7 +37,7 @@ MusicPlaylist(
       TrackItem(
         id: "ospQ06jJe-I",
         title: "Lift Me Up (Visualizer)",
-        duration: 197,
+        duration: Some(197),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/ospQ06jJe-I/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3n50xSGwxNwOgBzfF1-mxofFn8EzQ",
@@ -59,7 +59,7 @@ MusicPlaylist(
       TrackItem(
         id: "nBZlrbrBO1I",
         title: "Forget Me",
-        duration: 257,
+        duration: Some(257),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/nBZlrbrBO1I/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lDgaZGsuA2HV3H9wiNvDXrRdEZRg",
@@ -81,7 +81,7 @@ MusicPlaylist(
       TrackItem(
         id: "AcTDlsUej2w",
         title: "Come Back Home (From \"Purple Hearts\")",
-        duration: 204,
+        duration: Some(204),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/AcTDlsUej2w/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lKvHMpT_0G8AJ5IGCgLlTbAaun9Q",
@@ -103,7 +103,7 @@ MusicPlaylist(
       TrackItem(
         id: "k6ZoE4RrcDs",
         title: "Overpass Graffiti",
-        duration: 287,
+        duration: Some(287),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/k6ZoE4RrcDs/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lrDlLXxFjVDQBZtgO7bJQGfazQ7A",
@@ -125,7 +125,7 @@ MusicPlaylist(
       TrackItem(
         id: "2n5GKLdrTfk",
         title: "In The Stars (Lyric Video)",
-        duration: 217,
+        duration: Some(217),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/2n5GKLdrTfk/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3la_KUHZCJMxdsL_uOpyYby0ZU4iQ",
@@ -147,7 +147,7 @@ MusicPlaylist(
       TrackItem(
         id: "psuRGfAaju4",
         title: "Fireflies",
-        duration: 233,
+        duration: Some(233),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/psuRGfAaju4/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kDlw4WaUYkwVdOg2eaCWRi534MWA",
@@ -169,7 +169,7 @@ MusicPlaylist(
       TrackItem(
         id: "_JGGLJMpVks",
         title: "TV",
-        duration: 282,
+        duration: Some(282),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/_JGGLJMpVks/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mo4imyJ5IlcWcE54AfzRO_Np8_2Q",
@@ -191,7 +191,7 @@ MusicPlaylist(
       TrackItem(
         id: "1YUBbF24H44",
         title: "because i liked a boy (Official Video)",
-        duration: 206,
+        duration: Some(206),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/1YUBbF24H44/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lCaOfJvuCPAG-LGiuJd3-wV1zKGQ",
@@ -213,7 +213,7 @@ MusicPlaylist(
       TrackItem(
         id: "E0WRQpjckYg",
         title: "Older (feat. Sierra Deaton)",
-        duration: 197,
+        duration: Some(197),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/E0WRQpjckYg/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kxvtkj06LuylhlKcvIeaft1urPPg",
@@ -235,7 +235,7 @@ MusicPlaylist(
       TrackItem(
         id: "mqiH0ZSkM9I",
         title: "Hold Back the River",
-        duration: 247,
+        duration: Some(247),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/mqiH0ZSkM9I/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3n4bwz3GqhZi1wrtp9zc9PVltEcmg",
@@ -257,7 +257,7 @@ MusicPlaylist(
       TrackItem(
         id: "UAWcs5H-qgQ",
         title: "The A Team",
-        duration: 290,
+        duration: Some(290),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/UAWcs5H-qgQ/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nvyeAuyBTKPOYtTjGHHQZ6kFU7Dw",
@@ -279,7 +279,7 @@ MusicPlaylist(
       TrackItem(
         id: "bqO3Y5e4Dow",
         title: "Hard For Me",
-        duration: 173,
+        duration: Some(173),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/bqO3Y5e4Dow/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nhxyVJjUBhhF8y7w6x5oaol3wcrg",
@@ -301,7 +301,7 @@ MusicPlaylist(
       TrackItem(
         id: "ouEezpuPc3A",
         title: "Don’t Give Up on Me (from “Five Feet Apart”)",
-        duration: 216,
+        duration: Some(216),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/ouEezpuPc3A/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kwc0Tq2t2Klpgrxjhp4FrJP6VShQ",
@@ -323,7 +323,7 @@ MusicPlaylist(
       TrackItem(
         id: "i-qT5n_5Mys",
         title: "Happiest Year",
-        duration: 278,
+        duration: Some(278),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/i-qT5n_5Mys/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3k4ujPJ7jOI4Sb_c2lYAPP_YtRfiA",
@@ -345,7 +345,7 @@ MusicPlaylist(
       TrackItem(
         id: "PMGY8fLwess",
         title: "Falling Like The Stars",
-        duration: 256,
+        duration: Some(256),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/PMGY8fLwess/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3neuVwtFvWzlTsDWi7lH9VSEs0WWg",
@@ -367,7 +367,7 @@ MusicPlaylist(
       TrackItem(
         id: "2ebfSItB0oM",
         title: "Take Me Home",
-        duration: 273,
+        duration: Some(273),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/2ebfSItB0oM/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3n1gsxcPxdCcMgZdjc_d8254fauFA",
@@ -389,7 +389,7 @@ MusicPlaylist(
       TrackItem(
         id: "c4BLVznuWnU",
         title: "Lego House",
-        duration: 246,
+        duration: Some(246),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/c4BLVznuWnU/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lUSEaVj-cHaSb4PrApKlQt71cg_A",
@@ -411,7 +411,7 @@ MusicPlaylist(
       TrackItem(
         id: "c0wUKCekI34",
         title: "Another Day (Official Music Video)",
-        duration: 188,
+        duration: Some(188),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/c0wUKCekI34/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3n2oTAIAhHWG0WmcjsD-OKevXOLVw",
@@ -433,7 +433,7 @@ MusicPlaylist(
       TrackItem(
         id: "vNfgVjZF8_4",
         title: "Someday (Official Music Video)",
-        duration: 192,
+        duration: Some(192),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/vNfgVjZF8_4/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mbbKMAQbN_Fi0OdoU0PKHBXYeW8A",
@@ -455,7 +455,7 @@ MusicPlaylist(
       TrackItem(
         id: "XPpTgCho5ZA",
         title: "This Love Closed Captioned",
-        duration: 206,
+        duration: Some(206),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/XPpTgCho5ZA/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lF5ZClWWDxuCWZejD6z1_Q0KnsZw",
@@ -477,7 +477,7 @@ MusicPlaylist(
       TrackItem(
         id: "-oqAU5VxFWs",
         title: "Mr. Jones",
-        duration: 270,
+        duration: Some(270),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/-oqAU5VxFWs/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kc3B5pGUntRaVTN4w0HuBObS1Xgw",
@@ -499,7 +499,7 @@ MusicPlaylist(
       TrackItem(
         id: "CA1VHbdq5hY",
         title: "Lie Again (Official Music Video)",
-        duration: 236,
+        duration: Some(236),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/CA1VHbdq5hY/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lVicEMNq-Lbm8-M5DtPxmf-mN7Cw",
@@ -521,7 +521,7 @@ MusicPlaylist(
       TrackItem(
         id: "aNzCDt2eidg",
         title: "Skinny Love",
-        duration: 214,
+        duration: Some(214),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/aNzCDt2eidg/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lOi3Gsd65hICL5DMl2Lw1QAjBJfw",
@@ -543,7 +543,7 @@ MusicPlaylist(
       TrackItem(
         id: "A48hOToMuRE",
         title: "Outnumbered",
-        duration: 247,
+        duration: Some(247),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/A48hOToMuRE/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kWIjd5ObawW5e6oLyWpWwYeudB0A",
@@ -565,7 +565,7 @@ MusicPlaylist(
       TrackItem(
         id: "qHm9MG9xw1o",
         title: "Secrets",
-        duration: 233,
+        duration: Some(233),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/qHm9MG9xw1o/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nv0PWMm8_KtFZ4_x2t3FJjOqG1jg",
@@ -587,7 +587,7 @@ MusicPlaylist(
       TrackItem(
         id: "74NhLkjIeMs",
         title: "Yours",
-        duration: 201,
+        duration: Some(201),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/74NhLkjIeMs/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nJTZD4UEXTRkmt5R7rabNCyxCPsQ",
@@ -609,7 +609,7 @@ MusicPlaylist(
       TrackItem(
         id: "EptPhiK_q0E",
         title: "Let Somebody Go (Lyric Video) (feat. Selena Gomez)",
-        duration: 242,
+        duration: Some(242),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/EptPhiK_q0E/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mweEoHACM5efQHnyyJKRXRpXAjCQ",
@@ -631,7 +631,7 @@ MusicPlaylist(
       TrackItem(
         id: "44u7_wQ1s0g",
         title: "Wonder Woman",
-        duration: 167,
+        duration: Some(167),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/44u7_wQ1s0g/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lzfYeHyY6vYrvwsMLJT4P7OCDJjw",
@@ -653,7 +653,7 @@ MusicPlaylist(
       TrackItem(
         id: "toOyxylnNkI",
         title: "How Could You (Official Audio)",
-        duration: 186,
+        duration: Some(186),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/toOyxylnNkI/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kvcmxI8ykCv3FXhSqqNGqhEcJgfA",
@@ -675,7 +675,7 @@ MusicPlaylist(
       TrackItem(
         id: "ljXSjIph5ZM",
         title: "Too Much to Ask",
-        duration: 226,
+        duration: Some(226),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/ljXSjIph5ZM/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mSL3xzzOU0vFlQ5Xb2mJcQ8hQCdA",
@@ -697,7 +697,7 @@ MusicPlaylist(
       TrackItem(
         id: "DJFMRLIe-0o",
         title: "Lie to Me",
-        duration: 191,
+        duration: Some(191),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/DJFMRLIe-0o/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3ngDk_WvEMJRIHyKnhSvSnz23wyjA",
@@ -723,7 +723,7 @@ MusicPlaylist(
       TrackItem(
         id: "goqqohUitmw",
         title: "People Watching (Official Video)",
-        duration: 210,
+        duration: Some(210),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/goqqohUitmw/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nF59JY1VUGZGGRLkH2GbfJQoS-lA",
@@ -745,7 +745,7 @@ MusicPlaylist(
       TrackItem(
         id: "_LwX7GCE5rI",
         title: "Slide Away",
-        duration: 236,
+        duration: Some(236),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/_LwX7GCE5rI/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nQT7AxTGduzdz1cQriuDmJaDJPUA",
@@ -767,7 +767,7 @@ MusicPlaylist(
       TrackItem(
         id: "7KHPC-kEQOA",
         title: "WDIA (Would Do It Again) (Official Lyric Video)",
-        duration: 193,
+        duration: Some(193),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/7KHPC-kEQOA/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kH4SnPlfWwgU5zihC31jKBSV3MNg",
@@ -793,7 +793,7 @@ MusicPlaylist(
       TrackItem(
         id: "26PAgklYYvo",
         title: "Broken Strings (feat. Nelly Furtado)",
-        duration: 261,
+        duration: Some(261),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/26PAgklYYvo/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mE0ZaGvhX4fuk4jMbGnUVobyOZkQ",
@@ -815,7 +815,7 @@ MusicPlaylist(
       TrackItem(
         id: "bO3S8CKafbE",
         title: "Put A Little Love On Me (Official)",
-        duration: 235,
+        duration: Some(235),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/bO3S8CKafbE/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nlINmSh9HJitH-RhrIcGzPUrlQCw",
@@ -837,7 +837,7 @@ MusicPlaylist(
       TrackItem(
         id: "tMsbeyeTtpk",
         title: "I\'ll Never Not Love You",
-        duration: 245,
+        duration: Some(245),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/tMsbeyeTtpk/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mIcb3jD5OQAAPJgx3YS3GjoJtCrg",
@@ -859,7 +859,7 @@ MusicPlaylist(
       TrackItem(
         id: "fvXn3rmhdc4",
         title: "Better Alone",
-        duration: 209,
+        duration: Some(209),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/fvXn3rmhdc4/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kOj6_zdIUnCWcfD7QEZDDkTevuzw",
@@ -881,7 +881,7 @@ MusicPlaylist(
       TrackItem(
         id: "2p4n7JgdCsc",
         title: "As If (Official Video)",
-        duration: 336,
+        duration: Some(336),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/2p4n7JgdCsc/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mvJZHMmPBb5poN6y_2DI9CnQxwGw",
@@ -903,7 +903,7 @@ MusicPlaylist(
       TrackItem(
         id: "HtNS1afUOnE",
         title: "Stop And Stare Closed Captioned",
-        duration: 295,
+        duration: Some(295),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/HtNS1afUOnE/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nkvdF3ri-NDPtXTIDMnkoRMlp-BQ",
@@ -925,7 +925,7 @@ MusicPlaylist(
       TrackItem(
         id: "ufbDvPaVrzs",
         title: "Innocence and Sadness (Live From Mission Sound Studios, Brook...",
-        duration: 252,
+        duration: Some(252),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/ufbDvPaVrzs/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mdmnD9uMmJBP892QNhw7uOtOXIDw",
@@ -947,7 +947,7 @@ MusicPlaylist(
       TrackItem(
         id: "H1_icnjg6MY",
         title: "Blue",
-        duration: 207,
+        duration: Some(207),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/H1_icnjg6MY/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3ljLcOMB9kfZM-G408ktgTTkxsE8w",
@@ -969,7 +969,7 @@ MusicPlaylist(
       TrackItem(
         id: "7Lna4Hu4-AQ",
         title: "Butterflies",
-        duration: 195,
+        duration: Some(195),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/7Lna4Hu4-AQ/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mxC6pR5RYjv_poXr__qKmg-8wLnA",
@@ -995,7 +995,7 @@ MusicPlaylist(
       TrackItem(
         id: "K9qu2QMBguw",
         title: "I See Fire (From \"The Hobbit - The Desolation Of Smaug\")",
-        duration: 300,
+        duration: Some(300),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/Ws1f5n6DsXCc6Zofk6TVtSbwQbTSTPYp4ejud1Y4UFnnm2Vrkox6rL7ZHPVOOpJcfrKqvuU3hCitv3Ht=w60-h60-l90-rj",
@@ -1025,7 +1025,7 @@ MusicPlaylist(
       TrackItem(
         id: "uWeqeQkjLto",
         title: "1973",
-        duration: 234,
+        duration: Some(234),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/uWeqeQkjLto/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3l-iCUvOTBf7GnlKh2uJKrfXXk8Bw",
@@ -1047,7 +1047,7 @@ MusicPlaylist(
       TrackItem(
         id: "X_ZOGHUWwqE",
         title: "Kids Again",
-        duration: 214,
+        duration: Some(214),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/X_ZOGHUWwqE/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mbyv7cWR83S4zssvpbRgYcP-mT6w",
@@ -1069,7 +1069,7 @@ MusicPlaylist(
       TrackItem(
         id: "mHeK0Cwr9sg",
         title: "Hero",
-        duration: 197,
+        duration: Some(197),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/mHeK0Cwr9sg/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lufjrgFaxFaC4QBlW4oR0JMkAjSg",
@@ -1091,7 +1091,7 @@ MusicPlaylist(
       TrackItem(
         id: "0Bf3CJZ4hvg",
         title: "When You Love Someone",
-        duration: 227,
+        duration: Some(227),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/0Bf3CJZ4hvg/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mQeDaCXjB4aoYLFd7TmPQRpaFfUg",
@@ -1113,7 +1113,7 @@ MusicPlaylist(
       TrackItem(
         id: "7TCncxWNcPU",
         title: "Mr. Forgettable",
-        duration: 188,
+        duration: Some(188),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/7TCncxWNcPU/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3n7SKvfiHl6twW7WnecHlqbcq4QqQ",
@@ -1135,7 +1135,7 @@ MusicPlaylist(
       TrackItem(
         id: "PxNYvk_0Onw",
         title: "Please Don\'t Say You Love Me",
-        duration: 208,
+        duration: Some(208),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/PxNYvk_0Onw/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3ni2HlsptPuTlx48hnFq4ki0V9S0w",
@@ -1157,7 +1157,7 @@ MusicPlaylist(
       TrackItem(
         id: "WLoWBe9BRP4",
         title: "Good Without (Official Music Video)",
-        duration: 187,
+        duration: Some(187),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/WLoWBe9BRP4/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kA4Q-cge2WcQVKFNckJ-lIazPRKA",
@@ -1179,7 +1179,7 @@ MusicPlaylist(
       TrackItem(
         id: "1XYLKoEETVA",
         title: "Hold Me Like You Used To",
-        duration: 193,
+        duration: Some(193),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/1XYLKoEETVA/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nx_eNWxTGTDXaPqLSuukQKN1RZzA",
@@ -1201,7 +1201,7 @@ MusicPlaylist(
       TrackItem(
         id: "Ghl_vkEV3tc",
         title: "Mr. Percocet (Official Video)",
-        duration: 193,
+        duration: Some(193),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/Ghl_vkEV3tc/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mCpEi3kvRL8t9mA0s1r6YIMb9gOQ",
@@ -1223,7 +1223,7 @@ MusicPlaylist(
       TrackItem(
         id: "5qHRMFQ0pLg",
         title: "Dreamer",
-        duration: 182,
+        duration: Some(182),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/5qHRMFQ0pLg/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lOCDKr-LdYqynvw30bPrNSuVCaJg",
@@ -1245,7 +1245,7 @@ MusicPlaylist(
       TrackItem(
         id: "X-vispdELDo",
         title: "Survive My Own Mind (Official Music Video)",
-        duration: 199,
+        duration: Some(199),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/X-vispdELDo/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lFSv0DKeiTvIFRkVMK1ywulZr5pw",
@@ -1267,7 +1267,7 @@ MusicPlaylist(
       TrackItem(
         id: "il_L6c_fOvs",
         title: "amnesia - Camylio (Visualizer)",
-        duration: 173,
+        duration: Some(173),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/il_L6c_fOvs/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3l_G3bAstg0Sm2Ih9FMPUnBEnEgTg",
@@ -1289,7 +1289,7 @@ MusicPlaylist(
       TrackItem(
         id: "hCjcgoubkPM",
         title: "Mess Her Up (Official Video)",
-        duration: 226,
+        duration: Some(226),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/hCjcgoubkPM/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nYCfw2p8vpKc0fL2Zoj8PIbFfIKA",
@@ -1311,7 +1311,7 @@ MusicPlaylist(
       TrackItem(
         id: "nwXlRq_QyTI",
         title: "A Little Bit Yours (Mandarin Version) (feat. Eric Chou)",
-        duration: 246,
+        duration: Some(246),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/nwXlRq_QyTI/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3k6r5bFCkwwiVkUeMyqM1-0q7SimQ",
@@ -1333,7 +1333,7 @@ MusicPlaylist(
       TrackItem(
         id: "ZdsER1S3t8k",
         title: "Hurt Somebody",
-        duration: 175,
+        duration: Some(175),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/ZdsER1S3t8k/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kA687he6KBmVWlxJC6TiUGqhkc5Q",
@@ -1359,7 +1359,7 @@ MusicPlaylist(
       TrackItem(
         id: "fyrsExw_LUg",
         title: "Bad",
-        duration: 243,
+        duration: Some(243),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/fyrsExw_LUg/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lJ1aALIGud5NM_my5NkpSItniM8A",
@@ -1381,7 +1381,7 @@ MusicPlaylist(
       TrackItem(
         id: "BS4t017LSoA",
         title: "Bad Habits (Acoustic Version)",
-        duration: 233,
+        duration: Some(233),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/C8f5HPHhFHaXtg7GbL_MXeaQ_nlWSCDyUWLPy7UfsrkoG0Ogt4d4c8TKdwHWApeTZgcV89hLvOv2i3E=w60-h60-l90-rj",
@@ -1411,7 +1411,7 @@ MusicPlaylist(
       TrackItem(
         id: "0AYzzzBaPBI",
         title: "They Own This Town",
-        duration: 246,
+        duration: Some(246),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/0AYzzzBaPBI/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3ltoh13ALxbRzlEXoJC4gV64WR8gA",
@@ -1433,7 +1433,7 @@ MusicPlaylist(
       TrackItem(
         id: "zM0K3LC7Aak",
         title: "Avalanche (Live Session)",
-        duration: 220,
+        duration: Some(220),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/zM0K3LC7Aak/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lLdaGZggAo6DsBOdnmkAzkqSJusQ",
@@ -1455,7 +1455,7 @@ MusicPlaylist(
       TrackItem(
         id: "1le0xDbrVj8",
         title: "True Romance",
-        duration: 244,
+        duration: Some(244),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/1le0xDbrVj8/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nGbO9ozslKZ0whB2gZelGqmpB4ZQ",
@@ -1477,7 +1477,7 @@ MusicPlaylist(
       TrackItem(
         id: "RdFaKz71-5M",
         title: "LET THE GRASS GROW (Visualizer)",
-        duration: 181,
+        duration: Some(181),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/RdFaKz71-5M/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lddFGnW_U4FXtYGHD9nnCfJYqUtQ",
@@ -1499,7 +1499,7 @@ MusicPlaylist(
       TrackItem(
         id: "d6hUByfuhM4",
         title: "Colours Of You",
-        duration: 218,
+        duration: Some(218),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/d6hUByfuhM4/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nfFTudW_y_zQjmvzZZkvPiJ1zCNQ",
@@ -1521,7 +1521,7 @@ MusicPlaylist(
       TrackItem(
         id: "-uxeu0MbNR0",
         title: "oh, mexico",
-        duration: 191,
+        duration: Some(191),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/-uxeu0MbNR0/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3luAdVwVi3ZwYlwlDLc-F-BGnvYPQ",
@@ -1543,7 +1543,7 @@ MusicPlaylist(
       TrackItem(
         id: "35VK8yonvsc",
         title: "Everybody Needs Someone",
-        duration: 216,
+        duration: Some(216),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/35VK8yonvsc/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mhrNFCxnFoO37pj821hdBOK-gL3w",
@@ -1565,7 +1565,7 @@ MusicPlaylist(
       TrackItem(
         id: "ELD3aRzbVQg",
         title: "Run to You (Marcapasos & Janosh Remix)",
-        duration: 201,
+        duration: Some(201),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/ELD3aRzbVQg/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lU8OrqBcWJ88gY-EWi5Pjcvu-ptg",
@@ -1587,7 +1587,7 @@ MusicPlaylist(
       TrackItem(
         id: "BD7HwXv18aU",
         title: "Blue - Magnetic (packshot video)",
-        duration: 192,
+        duration: Some(192),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/BD7HwXv18aU/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kCuOymm21GsOgEFOp836XMaPN16g",
@@ -1609,7 +1609,7 @@ MusicPlaylist(
       TrackItem(
         id: "WJJLfUwIVR4",
         title: "christina perri - home [official audio]",
-        duration: 219,
+        duration: Some(219),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/WJJLfUwIVR4/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lfvYzdtx0nYhJiF6dlL3IwWXGUJw",
@@ -1631,7 +1631,7 @@ MusicPlaylist(
       TrackItem(
         id: "NjW1S0WIiJw",
         title: "FREE",
-        duration: 223,
+        duration: Some(223),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/NjW1S0WIiJw/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kmGufbWRIis-_ooiqartLCinnxUg",
@@ -1653,7 +1653,7 @@ MusicPlaylist(
       TrackItem(
         id: "-4szr0EMrgk",
         title: "32 Floors",
-        duration: 185,
+        duration: Some(185),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/-4szr0EMrgk/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lf79Tux3vf5toDfNCLQNes0EH6lA",
@@ -1675,7 +1675,7 @@ MusicPlaylist(
       TrackItem(
         id: "88NWeOGrxys",
         title: "The Middle",
-        duration: 199,
+        duration: Some(199),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/JdWlQJW26M4u8jYEx8iQucO7lnW7MGDEmFZf70FGyhevNAhRticMUN-i3HLqT9rCWJMTz6INMImvGoo=w60-h60-l90-rj",
@@ -1705,7 +1705,7 @@ MusicPlaylist(
       TrackItem(
         id: "BxqtS-7GxFM",
         title: "Never Seen the Rain (alternate version)",
-        duration: 296,
+        duration: Some(296),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/BxqtS-7GxFM/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lSi4ezO2W3ON1cVzMlqessi2g9ew",
@@ -1727,7 +1727,7 @@ MusicPlaylist(
       TrackItem(
         id: "KUKt_LbaBnM",
         title: "Better Now (Official Audio)",
-        duration: 200,
+        duration: Some(200),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/KUKt_LbaBnM/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mPhtxecPzy3VIv7ZAr4CFJtkzFUg",
@@ -1749,7 +1749,7 @@ MusicPlaylist(
       TrackItem(
         id: "bhL7A8k6kU8",
         title: "Madelyn",
-        duration: 203,
+        duration: Some(203),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/bhL7A8k6kU8/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nVG0hyWLPpxabi19W0CiUGnUqr4A",
@@ -1771,7 +1771,7 @@ MusicPlaylist(
       TrackItem(
         id: "mUN36hFtazE",
         title: "All My Heroes",
-        duration: 206,
+        duration: Some(206),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/mUN36hFtazE/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kdr9bRT10i_4t-vr4jusP0wtwhqg",
@@ -1793,7 +1793,7 @@ MusicPlaylist(
       TrackItem(
         id: "dcBZP_pt0uY",
         title: "Little Bit of Love (Strings)",
-        duration: 231,
+        duration: Some(231),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/dcBZP_pt0uY/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3m29DGm3Gv3cG7nwEqSUKt2aDRAKA",
@@ -1815,7 +1815,7 @@ MusicPlaylist(
       TrackItem(
         id: "m342B1Vv3tM",
         title: "Dust (feat. Betty Who)",
-        duration: 202,
+        duration: Some(202),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/m342B1Vv3tM/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lkV2L8t_qrsPauL_c5S103Gen7Tg",
@@ -1837,7 +1837,7 @@ MusicPlaylist(
       TrackItem(
         id: "N_5RiRBvPSk",
         title: "SHIVERS (image of you)",
-        duration: 178,
+        duration: Some(178),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/nEru6SasfIVcpI3KJ-_WpbTK5A3Ac1V8IVtUNNNJ3hS5ejGiEHqJ6RsZvgYty-T0Ibdw3fcpE3ODRAcS=w60-h60-l90-rj",
@@ -1867,7 +1867,7 @@ MusicPlaylist(
       TrackItem(
         id: "Q5kH0wg_sKo",
         title: "Will You Love Me Tomorrow",
-        duration: 173,
+        duration: Some(173),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/Ms2FGF2x6xDKoOrk11NzImqwKxFaAt8rFl5c5_5PTsXuOYRhhDiGo80pcAk47yNF8Yw_t-9K108M6kA=w60-h60-l90-rj",
@@ -1897,7 +1897,7 @@ MusicPlaylist(
       TrackItem(
         id: "j9zlc5zufl8",
         title: "The Game",
-        duration: 181,
+        duration: Some(181),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/03emmKIM4KlpMCgQBAudKLxQ4KX1VJX1bu3D2se_aBEmG041BUWEBWJHhMdxc71bntgIhFsOH-n4vQppYw=w60-h60-l90-rj",
@@ -1927,7 +1927,7 @@ MusicPlaylist(
       TrackItem(
         id: "ufxjiU7BgR4",
         title: "Fall Into Me",
-        duration: 224,
+        duration: Some(224),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/gMX8rtgSiiR5_Pq0ADjeDXFsXifJC21sKCrfDs9Eiunx8rHqn1xGIgDYZhbQrtbLM3o0nWrXlAwikrkGGA=w60-h60-s-l90-rj",
@@ -1957,7 +1957,7 @@ MusicPlaylist(
       TrackItem(
         id: "7OfB_8rrtug",
         title: "Grace (We All Try)",
-        duration: 206,
+        duration: Some(206),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/Lu_7sLKRYKbW9-HQMWRLtDVZbmeWSCsQeWgIB_-lO76gT_DPplfDlm9odNBUCVemH037M-gzy2W0nRw=w60-h60-l90-rj",
@@ -1987,7 +1987,7 @@ MusicPlaylist(
       TrackItem(
         id: "UqmvAc81XuM",
         title: "Don\'t Lay It All On Me",
-        duration: 232,
+        duration: Some(232),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/pA_qB9Co5hhwSWWnKbMpCdsV11pDpoYRqg0IgbBtM71XXM1IrWm_W_XFdltnalh-_YNhhYRXG_OaWijB=w60-h60-l90-rj",
@@ -2017,7 +2017,7 @@ MusicPlaylist(
       TrackItem(
         id: "QDULTFB8gSY",
         title: "Words as Weapons",
-        duration: 199,
+        duration: Some(199),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/3KCJIL7UE5S5cZZLF2LrdGuY2ard-sWXXAqzllxP0hEXO-sfid3kk5xHz118wi7jsK7qY6sBy1C1SL3D=w60-h60-l90-rj",

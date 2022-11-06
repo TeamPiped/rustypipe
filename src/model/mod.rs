@@ -882,7 +882,9 @@ pub struct TrackItem {
     /// Track title
     pub title: String,
     /// Track duration in seconds
-    pub duration: u32,
+    ///
+    /// [`None`] when extracted from an artist page or a featured video.
+    pub duration: Option<u32>,
     /// Album cover
     pub cover: Vec<Thumbnail>,
     /// Artists of the track
@@ -1038,6 +1040,39 @@ pub struct MusicAlbum {
     pub tracks: Vec<TrackItem>,
     /// Album variants
     pub variants: Vec<AlbumItem>,
+}
+
+/// YouTube music artist object
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
+pub struct MusicArtist {
+    /// Unique YouTube channel ID (e.g. `UCRD-INDaHvHlO8K_33uKetQ`)
+    pub id: String,
+    /// Artist name
+    pub name: String,
+    /// Artist header image
+    pub header_image: Vec<Thumbnail>,
+    /// Artist description
+    pub description: String,
+    /// URL of the artist's wikipedia page
+    pub wikipedia_url: Option<String>,
+    /// Artist subscriber count
+    ///
+    /// [`None`] if the subscriber count was hidden by the owner
+    /// or could not be parsed.
+    pub subscriber_count: Option<u64>,
+    /// The most popular tracks of the artist
+    pub tracks: Vec<TrackItem>,
+    /// The artist's albums
+    pub albums: Vec<AlbumItem>,
+    /// Playlists featuring the artist
+    pub playlists: Vec<MusicPlaylistItem>,
+    /// Similar artists
+    pub similar_artists: Vec<ArtistItem>,
+    /// ID of the playlist containging the artist's tracks
+    pub tracks_playlist_id: Option<String>,
+    /// ID of the playlist containging the artist's videos
+    pub videos_playlist_id: Option<String>,
 }
 
 /// YouTube Music search result

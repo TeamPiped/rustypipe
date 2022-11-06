@@ -9,7 +9,7 @@ MusicSearchFiltered(
       TrackItem(
         id: "6485PhOtHzY",
         title: "Lieblingsmensch",
-        duration: 191,
+        duration: Some(191),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/dwrJ5NnlZU7CBziLRlTm1uizuolakRAX7g34-eKeqEZQGZgwmvhqcs3TiZClfm7v6a-KYHieitdakpPo=w60-h60-l90-rj",
@@ -39,7 +39,7 @@ MusicSearchFiltered(
       TrackItem(
         id: "pt0YvfnhGgI",
         title: "Lieblingsmensch",
-        duration: 524,
+        duration: Some(524),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/38mrm1ntm4MQfmB4Pl2EdY7o6McbLq06sC7qqLxDMqOfL-eqySheDnfl3IOpZYIE_ozt6Bywlmjj2DCe=w60-h60-l90-rj",
@@ -69,7 +69,7 @@ MusicSearchFiltered(
       TrackItem(
         id: "VinJmH-uidY",
         title: "Lieblingsmensch",
-        duration: 203,
+        duration: Some(203),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/frjY96Y5A4eZ9tQOmMZm7zqqRr19W4Q3xz7Y2DcAiaCB0Eyp22u3_DfP8qP4NNqrxZFPA1pC3DBC91T3=w60-h60-l90-rj",
@@ -99,7 +99,7 @@ MusicSearchFiltered(
       TrackItem(
         id: "YmSmymHRnEE",
         title: "Lieblingsmensch (Edit)",
-        duration: 220,
+        duration: Some(220),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/52NEd25MuR_LmWQw_sbHEm1s4jdiUm1SB25aLeFSaz70Z89GTdghmRNd21YgggAFbAg4NgMHiGpSdCyANw=w60-h60-l90-rj",
@@ -129,7 +129,7 @@ MusicSearchFiltered(
       TrackItem(
         id: "TgfIbiHCOLo",
         title: "Lieblingsmensch",
-        duration: 211,
+        duration: Some(211),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/IGfkF3S_lPTLb9988SHZegHEAnuT_mT9BrZg8ZssbuYWWkfL5fvoxXlpOvRZr7ajNSdJSFfAhK0xnGCD=w60-h60-l90-rj",
@@ -159,7 +159,7 @@ MusicSearchFiltered(
       TrackItem(
         id: "lCi6N_uq3vE",
         title: "Lieblingsmensch",
-        duration: 209,
+        duration: Some(209),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/mUCPnu_MO_s46GVCkRnCI8wIx1AvTdexxqpr78ZXHurucPeNFJ_tBtTAJ6IFkaOVMdfmYWPp1ibTU5xd=w60-h60-l90-rj",
@@ -189,7 +189,7 @@ MusicSearchFiltered(
       TrackItem(
         id: "QIjqe2B3RdQ",
         title: "Lieblingsmensch",
-        duration: 184,
+        duration: Some(184),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/Y_1W369gCVOjE4aYEj_Q8gkX9GjjQG08Pf8yl_4f4DZKcnBzncueRCFhfTnElQE7nDWo0et6fYtH9xs=w60-h60-l90-rj",
@@ -219,7 +219,7 @@ MusicSearchFiltered(
       TrackItem(
         id: "q2pUotlXPeM",
         title: "Lieblingsmensch (Beatgees Remix)",
-        duration: 199,
+        duration: Some(199),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/vh1NIdzUQTuH3jlZFTJ-XK3f_QIUVJGZe1qTE-O1O8MZtylnx7JpYtd0NPSUWFFgIzlysNfbUOaeryr5Zw=w60-h60-l90-rj",
@@ -249,7 +249,7 @@ MusicSearchFiltered(
       TrackItem(
         id: "0yPnvetCm-U",
         title: "Lieblingsmensch",
-        duration: 174,
+        duration: Some(174),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/RORTouE503-ZZqgAov66r2cK-YyTJbZIwbM1Hz58ja7jNgWSG_xjTLxK41nwAT8ejRvY7U35dMm4OOYhYg=w60-h60-l90-rj",
@@ -279,7 +279,7 @@ MusicSearchFiltered(
       TrackItem(
         id: "EU5Vly60VGU",
         title: "Lieblingsmensch",
-        duration: 205,
+        duration: Some(205),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/SpQwKRYlYv8LRubMGRjCDdbHfcGEjh30Ta97f1iUPXKpy6pfudCGdf-GJQiKfR8zT7p7mkZ6UFR1V8vE=w60-h60-l90-rj",
@@ -309,7 +309,7 @@ MusicSearchFiltered(
       TrackItem(
         id: "UnxQ0TI4IMs",
         title: "Lieblingsmensch (Intrumental)",
-        duration: 190,
+        duration: Some(190),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/vh1NIdzUQTuH3jlZFTJ-XK3f_QIUVJGZe1qTE-O1O8MZtylnx7JpYtd0NPSUWFFgIzlysNfbUOaeryr5Zw=w60-h60-l90-rj",
@@ -339,7 +339,7 @@ MusicSearchFiltered(
       TrackItem(
         id: "ufpny1KxwcU",
         title: "Lieblingsmensch",
-        duration: 196,
+        duration: Some(196),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/S9htVpH2mk6tD6pG9SDcmKYvaXTzS5XfFDDGdWBJpK-QqffLTVT3V9BrA7uSiIy_vJlpyVotPcQhFdNBfw=w60-h60-l90-rj",
@@ -369,7 +369,7 @@ MusicSearchFiltered(
       TrackItem(
         id: "duzWgZFJNwA",
         title: "Lieblingsmensch (Übernice Remix)",
-        duration: 184,
+        duration: Some(184),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/vh1NIdzUQTuH3jlZFTJ-XK3f_QIUVJGZe1qTE-O1O8MZtylnx7JpYtd0NPSUWFFgIzlysNfbUOaeryr5Zw=w60-h60-l90-rj",
@@ -399,7 +399,7 @@ MusicSearchFiltered(
       TrackItem(
         id: "rnXq-1n0lt0",
         title: "Lieblingsmensch",
-        duration: 223,
+        duration: Some(223),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/slp9kDTF1UHk6WcR6FgWuWP2uF0R4OK0Ljeh8wu8FJ6sy3qAy-KjdGnDbb37FPlOd9sXnO8HItnGWbLgjg=w60-h60-l90-rj",
@@ -429,7 +429,7 @@ MusicSearchFiltered(
       TrackItem(
         id: "vHkqdC6-rOI",
         title: "Lieblingsmensch",
-        duration: 259,
+        duration: Some(259),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/28SryO8FUVn7wv1nnY9KXRXQrcTI3WBxXvi8LP3h218aMqwpMVsJ2FW5cTiAJvLk9T6UVb1Ex4aq4BnUxQ=w60-h60-l90-rj",
@@ -459,7 +459,7 @@ MusicSearchFiltered(
       TrackItem(
         id: "nTlceSET_b8",
         title: "Lieblingsmensch",
-        duration: 190,
+        duration: Some(190),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/qMk9Q2DY1rwbdyJx7G2vWUgOiW1y1JEi8gRxMAorrayzPPxvjF5QbDy3lK-G3bgPyCowxNudDQPs4I-2=w60-h60-l90-rj",
@@ -489,7 +489,7 @@ MusicSearchFiltered(
       TrackItem(
         id: "D8GhmRiIfxI",
         title: "Lieblingsmensch",
-        duration: 173,
+        duration: Some(173),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/o2NBiflfACN6lJQFOkB-xFywBd61nmejQa_8JgEksiZ3rnpBdUp_W1T9f4sD-QbJuLyvaS4E9WPhvlc=w60-h60-l90-rj",
@@ -519,7 +519,7 @@ MusicSearchFiltered(
       TrackItem(
         id: "01CS-jTaY1U",
         title: "Je Ne Parle Pas Français (Instrumental)",
-        duration: 196,
+        duration: Some(196),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/dq-4hwakOMJ_HCWEo7fHOOWg3g1X0bl4UPtwuhuEScfYwh38WeXM5zmSk9vTxClkFRynOTEH4RaUJ3q_=w60-h60-l90-rj",
@@ -549,7 +549,7 @@ MusicSearchFiltered(
       TrackItem(
         id: "2sKkKKKXO28",
         title: "Lieblingsmensch",
-        duration: 190,
+        duration: Some(190),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/Oxm4SNpnYnyfxlcD7KYOGO5Tpbunenzwi6N7nQgqyhvMjTA-YeND2Bxbozdmmc53bn30PMX0wlNSOJtYcw=w60-h60-l90-rj",
@@ -579,7 +579,7 @@ MusicSearchFiltered(
       TrackItem(
         id: "czlgl6n9voM",
         title: "Lieblingsmensch (Live @ DELUXE MUSIC SESSION)",
-        duration: 176,
+        duration: Some(176),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/wnE86gP7vC4WtwqcD1Wh4OWgQgrCXhNgvYlu2KmdzAXpmc1JZo8NWBHL7tmTC9hzU0gEt8ZZm6WDYNbA=w60-h60-l90-rj",

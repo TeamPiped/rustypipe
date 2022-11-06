@@ -9,7 +9,7 @@ MusicSearchFiltered(
       TrackItem(
         id: "BL-aIpCLWnU",
         title: "Black Mamba",
-        duration: 175,
+        duration: Some(175),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/MOL4_Ula9hocErkX2xK_7mISFiWvQz51vReT14KCHF9wsqCEH6sO8iilFFelWMn7JOYIk2WFa-gMmw2uvw=w60-h60-l90-rj",
@@ -39,7 +39,7 @@ MusicSearchFiltered(
       TrackItem(
         id: "cATe8Toht70",
         title: "Black Mamba",
-        duration: 74,
+        duration: Some(74),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/ZesxRmV1_bDW89z70eojCd6DofYPbzbgGaXSIRP3UjmE4nIAkOuWc8pXaozR4AwrzPQublDCKrg6vcxHOg=w60-h60-l90-rj",
@@ -73,7 +73,7 @@ MusicSearchFiltered(
       TrackItem(
         id: "0I1UpXSYdOQ",
         title: "Black Mamba (Orchestra Version)",
-        duration: 291,
+        duration: Some(291),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/iVzSchJFVKNSREbIRye25Y-EJXocz-dsR9xpOZ4qBejfZS4IYjDhlUhGCXmYH-0xdGXE6wL1zxxPlu_0aQ=w60-h60-l90-rj",
@@ -103,7 +103,7 @@ MusicSearchFiltered(
       TrackItem(
         id: "9G2tG8V5_PY",
         title: "Black Mamba",
-        duration: 210,
+        duration: Some(210),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/EsVdgKC0gQx9FqkAxd6VfwHNC6Me2nX0_k-s26069NgyVeDs7kSOKKq1q5Ze9SJj1uHkknONpeLc1m4VdA=w60-h60-l90-rj",
@@ -133,7 +133,7 @@ MusicSearchFiltered(
       TrackItem(
         id: "WwNKyoizf8k",
         title: "BLACK MAMBA",
-        duration: 182,
+        duration: Some(182),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/gall0XXuwoV_SYR3S6EgtOGaBC3YOR5wOpQxCyqgxC3Xht3Jc95Y-sFg-sGAcQl946MfurGY_xSv0YBT=w60-h60-l90-rj",
@@ -163,7 +163,7 @@ MusicSearchFiltered(
       TrackItem(
         id: "kS1o36LXQkc",
         title: "Black Mamba",
-        duration: 299,
+        duration: Some(299),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/MxQNc8FHi_NrLkA_OKNOPB0vUPlaN1k4gPUd5qHzY1kd8vVNUu3sJGnJTgUPG05S3p-551sHyRCXNK8=w60-h60-l90-rj",
@@ -193,7 +193,7 @@ MusicSearchFiltered(
       TrackItem(
         id: "UQQ6L1j6mXE",
         title: "Black Mamba",
-        duration: 122,
+        duration: Some(122),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/fttA1FSkkhNfn_s-HleFYEm-bPpKhAhsbTKnjqjNxKIwGB_bqHtXotzeUwriCWd7Sgj-L0J-Skia67bM=w60-h60-l90-rj",
@@ -223,7 +223,7 @@ MusicSearchFiltered(
       TrackItem(
         id: "9l9dCro-7l8",
         title: "Black Mamba",
-        duration: 246,
+        duration: Some(246),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/eWk4BziW2TljgowoSlCobR6zt5u_akVNuKMlIH5XBYp14XqTxEwsdWTGYNvLj-YnbDEelIj-d3FC8Atp=w60-h60-l90-rj",
@@ -253,7 +253,7 @@ MusicSearchFiltered(
       TrackItem(
         id: "S_PRpDtgUfI",
         title: "Black Mamba",
-        duration: 286,
+        duration: Some(286),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/lS8hPUJ0lZkX3FsVu400p9izEBRfZnAzjR9GSXx0T2wjSYmZIcJG8QLMX0mqErvrKA7lJb-lrfy-_Oo=w60-h60-l90-rj",
@@ -283,7 +283,7 @@ MusicSearchFiltered(
       TrackItem(
         id: "Xt_ReZc0gnw",
         title: "Black Mamba",
-        duration: 179,
+        duration: Some(179),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/VQpE33G21kT_nICA168zKpPMCApANoYfL9vTBUbn5oQTl5udE-kmCLUVRYZppLejvq4-EFoChp9qWmKq=w60-h60-l90-rj",
@@ -313,7 +313,7 @@ MusicSearchFiltered(
       TrackItem(
         id: "diN3WCxpqis",
         title: "Black Mamba",
-        duration: 376,
+        duration: Some(376),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/1ThxS5gEjktWjom7UT4gBBGiS3V9fdzZeNUEBWUKJg84a8ldY-vXoQtGQEQnReVoiXiVCu_mfN-WXTjU=w60-h60-l90-rj",
@@ -343,7 +343,7 @@ MusicSearchFiltered(
       TrackItem(
         id: "9q3FfH_57Rc",
         title: "Black Mamba",
-        duration: 213,
+        duration: Some(213),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/70aMvzcO0Gn3UhDVyq_oL7ond89jbpX5o3TpzNPQMdjPYnq7r0q4we4GqMD5f5DfW-S08Kou8jc9pK0B=w60-h60-l90-rj",
@@ -373,7 +373,7 @@ MusicSearchFiltered(
       TrackItem(
         id: "U29V08A9yBs",
         title: "BLCK MAMBA",
-        duration: 166,
+        duration: Some(166),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/m0oD-sysVTuLunVkCNvdXz2dG_Aj978B1oq13Dr91e4H4I4RIJtD1VqGX6rjIH-xtCfFEMlpK33-Rc8=w60-h60-l90-rj",
@@ -407,7 +407,7 @@ MusicSearchFiltered(
       TrackItem(
         id: "HHEKbGlLoEM",
         title: "Black Mamba",
-        duration: 215,
+        duration: Some(215),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/ENvv-CqUxK-cm2JAXVANMohQglRc3701a3sAz3CQwZZk_-ZlF4kKCQA050ErWZzqFWHLEccbTnjEfJY=w60-h60-l90-rj",
@@ -437,7 +437,7 @@ MusicSearchFiltered(
       TrackItem(
         id: "qE_dGvQG1rU",
         title: "Told Black",
-        duration: 106,
+        duration: Some(106),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/usurlrzRxEMLWxWvfDdBIilrAZfO06NUXfF01yRQX_wBJWbtb_PrSL_V7dVPs1BPqekuaE2Q9dpTl3D4=w60-h60-l90-rj",
@@ -467,7 +467,7 @@ MusicSearchFiltered(
       TrackItem(
         id: "1tyPs3ccT7E",
         title: "Black Mamba",
-        duration: 414,
+        duration: Some(414),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/ELMwnT1kiPKvyKJ5KJPe2Pi0bj4b-unO9Y3ZEMuPvfAveo49dvR3sx9o9376r62p2BsG6Fap6pBJP1Fc=w60-h60-l90-rj",
@@ -501,7 +501,7 @@ MusicSearchFiltered(
       TrackItem(
         id: "6pSmQ-MHKbg",
         title: "Black Mamba Jiu Jitsu (feat. Blackwolf SR & OnenD)",
-        duration: 188,
+        duration: Some(188),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/Xf1QDfhBnHjeynm3CWUQpjvic8Dq_UT_zObuEvGUTUFst1dR9DtX-ge9EVtwMC95s786KHtHJFiO2k8=w60-h60-l90-rj",
@@ -531,7 +531,7 @@ MusicSearchFiltered(
       TrackItem(
         id: "rNsISA-kWzM",
         title: "Black Mamba Dub",
-        duration: 248,
+        duration: Some(248),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/zRVppSgdih64UOcY_0-sZacnxhMkII4v4OotgFbV1SVbLT3qk4NmfQRXwhxszMJKTmb3uo8MzOwkyQ=w60-h60-l90-rj",
@@ -561,7 +561,7 @@ MusicSearchFiltered(
       TrackItem(
         id: "AdvPpJVvyEg",
         title: "Black Mamba",
-        duration: 126,
+        duration: Some(126),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/Ue_Q3bgiMyvB_Rk8g0nCyTJHebz_A7f6twQkaRLX-iaHug2j5MmIwS9iHHW94S5x7gOwymGNngIDOXE=w60-h60-l90-rj",
@@ -591,7 +591,7 @@ MusicSearchFiltered(
       TrackItem(
         id: "7q7o-kjIKpo",
         title: "Black Mamba",
-        duration: 126,
+        duration: Some(126),
         cover: [
           Thumbnail(
             url: "https://lh3.googleusercontent.com/LlHQjoVTK0nbngamfjjKdBmEn1LwsO1riYNEf_GhC3xACa4AUw47FSYGOUXkLVCcev2ccfxqX_nHeNM3=w60-h60-l90-rj",

@@ -1,0 +1,155 @@
+---
+source: src/client/music_artist.rs
+expression: artist
+---
+MusicArtist(
+  id: "UCh8gHdtzO2tXd593_bjErWg",
+  name: "Doobydobap",
+  header_image: [
+    Thumbnail(
+      url: "https://yt3.ggpht.com/BvnAqgiursrXpmS9AgDLtkOSTQfOG_Dqn0KzY5hcwO9XrHTEQTVgaflI913f9KRp7d0U2qBp=w540-h225-p-l90-rj",
+      width: 540,
+      height: 225,
+    ),
+    Thumbnail(
+      url: "https://yt3.ggpht.com/BvnAqgiursrXpmS9AgDLtkOSTQfOG_Dqn0KzY5hcwO9XrHTEQTVgaflI913f9KRp7d0U2qBp=w816-h340-p-l90-rj",
+      width: 816,
+      height: 340,
+    ),
+    Thumbnail(
+      url: "https://yt3.ggpht.com/BvnAqgiursrXpmS9AgDLtkOSTQfOG_Dqn0KzY5hcwO9XrHTEQTVgaflI913f9KRp7d0U2qBp=w1440-h600-p-l90-rj",
+      width: 1440,
+      height: 600,
+    ),
+    Thumbnail(
+      url: "https://yt3.ggpht.com/BvnAqgiursrXpmS9AgDLtkOSTQfOG_Dqn0KzY5hcwO9XrHTEQTVgaflI913f9KRp7d0U2qBp=w1920-h800-p-l90-rj",
+      width: 1920,
+      height: 800,
+    ),
+    Thumbnail(
+      url: "https://yt3.ggpht.com/BvnAqgiursrXpmS9AgDLtkOSTQfOG_Dqn0KzY5hcwO9XrHTEQTVgaflI913f9KRp7d0U2qBp=w2436-h1015-p-l90-rj",
+      width: 2436,
+      height: 1015,
+    ),
+  ],
+  description: "",
+  wikipedia_url: None,
+  subscriber_count: None,
+  tracks: [],
+  albums: [],
+  playlists: [
+    MusicPlaylistItem(
+      id: "PLwkM1QxaP342hjju64dtqG5wKqx2hNgjr",
+      name: "After Hours & Doob Gourmand",
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/38Gd6TdmNVs/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lbh9XVK3zCkDHMxgOnDokkqE3kwg",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/38Gd6TdmNVs/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3k4lcTkiScLDPpmxBPfEub3xft7iQ",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      channel: Some(ChannelId(
+        id: "UCh8gHdtzO2tXd593_bjErWg",
+        name: "Doobydobap",
+      )),
+      track_count: Some(6),
+      from_ytm: false,
+    ),
+    MusicPlaylistItem(
+      id: "PLwkM1QxaP342v1hhoB3XLiruSQOzmdmBt",
+      name: "doobyvlog",
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/CN-u8_2ixOU/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kCdNu1hqEubXzcLcci_xhWSI9q-Q",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/CN-u8_2ixOU/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3lN1-hs5ItQ_DJXBp-aUQQ-DLjMVg",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      channel: Some(ChannelId(
+        id: "UCh8gHdtzO2tXd593_bjErWg",
+        name: "Doobydobap",
+      )),
+      track_count: Some(59),
+      from_ytm: false,
+    ),
+    MusicPlaylistItem(
+      id: "PLwkM1QxaP342EBMza0AG10nB3oDD65RPY",
+      name: "How to...",
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/6WQphW7wS7E/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3k-lHwO5StMjLAm9Ww_R8WNOdfg4A",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/6WQphW7wS7E/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3moc6um8pialExf2VRSCcZrdS72jg",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      channel: Some(ChannelId(
+        id: "UCh8gHdtzO2tXd593_bjErWg",
+        name: "Doobydobap",
+      )),
+      track_count: Some(10),
+      from_ytm: false,
+    ),
+    MusicPlaylistItem(
+      id: "PLwkM1QxaP342nVAeBVL6_Q8gbbAD8l4wb",
+      name: "korean street food vlog",
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/SYE0eTOIyYs/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kMJdjGcjlBqmKu7cbM1e1JqVr0_g",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/SYE0eTOIyYs/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3mz6KRiyvozhHZ3HNkUYX12dTTgdg",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      channel: Some(ChannelId(
+        id: "UCh8gHdtzO2tXd593_bjErWg",
+        name: "Doobydobap",
+      )),
+      track_count: Some(12),
+      from_ytm: false,
+    ),
+    MusicPlaylistItem(
+      id: "PLwkM1QxaP3438x6ta8VJZlJSlDn43FueA",
+      name: "asmr cooking",
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/WvvMHEeSNJk/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kfHl-T1ZtohuD1qXl0lbs0e9zAGA",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/WvvMHEeSNJk/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3n8lBs4xkQBwsNVlJ4qc3U6xQEsag",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      channel: Some(ChannelId(
+        id: "UCh8gHdtzO2tXd593_bjErWg",
+        name: "Doobydobap",
+      )),
+      track_count: Some(40),
+      from_ytm: false,
+    ),
+  ],
+  similar_artists: [],
+  tracks_playlist_id: None,
+  videos_playlist_id: None,
+)

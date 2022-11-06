@@ -12,7 +12,7 @@ use crate::serializer::{
 };
 
 use super::{
-    url_endpoint::BrowseEndpoint, ContinuationEndpoint, ContinuationItemRenderer, Icon,
+    url_endpoint::BrowseEndpointWrap, ContinuationEndpoint, ContinuationItemRenderer, Icon,
     MusicContinuationData, Thumbnails,
 };
 use super::{ChannelBadge, ResponseContext, YouTubeListItem};
@@ -525,7 +525,7 @@ pub(crate) struct CommentRenderer {
     /// ID of the author's channel
     #[serde(default)]
     #[serde_as(as = "DefaultOnError")]
-    pub author_endpoint: Option<AuthorEndpoint>,
+    pub author_endpoint: Option<BrowseEndpointWrap>,
     /// Comment text
     pub content_text: TextComponents,
     /// Textual publish date (e.g. `15 minutes ago`, `2 days ago`)
@@ -540,12 +540,6 @@ pub(crate) struct CommentRenderer {
     pub reply_count: u64,
     /// Buttons for comment interaction (Like/Dislike/Reply)
     pub action_buttons: CommentActionButtons,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct AuthorEndpoint {
-    pub browse_endpoint: BrowseEndpoint,
 }
 
 #[derive(Default, Clone, Copy, Debug, Deserialize, PartialEq, Eq)]

@@ -8,7 +8,7 @@ Paginator(
     TrackItem(
       id: "zMPIobcM2j0",
       title: "ZUNA feat. AZET & NOIZY - NUMMER 1 prod. by DJ A-BOOM",
-      duration: 212,
+      duration: Some(212),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/zMPIobcM2j0/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mGqKNUFZSt-vMNL0hqsVkIGlwdsQ",
@@ -30,7 +30,7 @@ Paginator(
     TrackItem(
       id: "f9g6NCHQrcE",
       title: "Kriminell (feat. Noizy)",
-      duration: 230,
+      duration: Some(230),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/f9g6NCHQrcE/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kdM3_EHcqMITf0g4PgPtM0H1aEbA",
@@ -56,7 +56,7 @@ Paginator(
     TrackItem(
       id: "CAVfEwrwT_o",
       title: "Immer wieder",
-      duration: 227,
+      duration: Some(227),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/CAVfEwrwT_o/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lYbDTeW97_2QZosa4lIHsClxQpzA",
@@ -82,7 +82,7 @@ Paginator(
     TrackItem(
       id: "VUr9JZQ8F2g",
       title: "Zwischen Himmel & Hölle",
-      duration: 270,
+      duration: Some(270),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/VUr9JZQ8F2g/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3m603a5VGh7uBoRG-lLwV4-G4H5pg",
@@ -104,7 +104,7 @@ Paginator(
     TrackItem(
       id: "XQat6rNNbdQ",
       title: "Ayé (KMN Street EP)",
-      duration: 220,
+      duration: Some(220),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/XQat6rNNbdQ/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3m7hbh15qrlvNRB7aEawWqSzHXbcA",
@@ -126,7 +126,7 @@ Paginator(
     TrackItem(
       id: "EQyU6fGDn0c",
       title: "Corleone",
-      duration: 220,
+      duration: Some(220),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/EQyU6fGDn0c/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mNa1-7Y3ah2s2NYjk3gAxH_JP4Tg",
@@ -148,7 +148,7 @@ Paginator(
     TrackItem(
       id: "g4poKgQZX6w",
       title: "Beverly Hills",
-      duration: 219,
+      duration: Some(219),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/g4poKgQZX6w/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mvXqxNHjDz2JmmgsJFmkdYLDwOkQ",
@@ -170,7 +170,7 @@ Paginator(
     TrackItem(
       id: "YTHr7gxwYUQ",
       title: "Airmax gegen Kopf (feat. Luciano)",
-      duration: 167,
+      duration: Some(167),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/YTHr7gxwYUQ/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kmyX3pFClaPDWm60jo3Tj-eYfYTw",
@@ -192,7 +192,7 @@ Paginator(
     TrackItem(
       id: "MfCSDn6q6j4",
       title: "Direction",
-      duration: 182,
+      duration: Some(182),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/MfCSDn6q6j4/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nLwkQa04zXFTcMb47vI5xPoWVpqw",
@@ -214,7 +214,7 @@ Paginator(
     TrackItem(
       id: "gx9KFXb5x_o",
       title: "Egal (feat. Jasmiina)",
-      duration: 166,
+      duration: Some(166),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/gx9KFXb5x_o/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mCcQp0pyVKziQI7cQPFf2BWPXBoQ",
@@ -236,7 +236,7 @@ Paginator(
     TrackItem(
       id: "d7R7DQ5tlQo",
       title: "Sag Nix",
-      duration: 205,
+      duration: Some(205),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/d7R7DQ5tlQo/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kBugfTjy0gWhn2GrLtqtGXbqLWXw",
@@ -258,7 +258,7 @@ Paginator(
     TrackItem(
       id: "cZPjgcqHSa8",
       title: "BWA (feat. Hanybal)",
-      duration: 294,
+      duration: Some(294),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/cZPjgcqHSa8/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nMzEHpRx_MN2g8yrjYOF6Iah2b0g",
@@ -280,7 +280,7 @@ Paginator(
     TrackItem(
       id: "ogDLdREonWY",
       title: "Ketten Cartier",
-      duration: 198,
+      duration: Some(198),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/ogDLdREonWY/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3l2JV9H7oYwLn_F9jqzA2Iu8CU-Qw",
@@ -302,7 +302,7 @@ Paginator(
     TrackItem(
       id: "pRQpKprUUPY",
       title: "Moe Phoenix - Ching Chang Chong (prod. by FL3X & Unik)",
-      duration: 226,
+      duration: Some(226),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/pRQpKprUUPY/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mOVje3r-6xh9GbNufVpSejO0_Yrg",
@@ -324,7 +324,7 @@ Paginator(
     TrackItem(
       id: "qZoQw9b4uCo",
       title: "Handschellen (feat. Ardian Bujupi)",
-      duration: 221,
+      duration: Some(221),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/qZoQw9b4uCo/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nnHr0NCQTCpfBfcPbnwfOI_Mf3fA",
@@ -346,7 +346,7 @@ Paginator(
     TrackItem(
       id: "q23qghoF6Nk",
       title: "Gjynah",
-      duration: 271,
+      duration: Some(271),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/q23qghoF6Nk/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nkVytsYqpdHmM6QhX5Y3GSV81ZWQ",
@@ -368,7 +368,7 @@ Paginator(
     TrackItem(
       id: "yU0aKa7PFBg",
       title: "Herzbeben",
-      duration: 206,
+      duration: Some(206),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/yU0aKa7PFBg/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lkvuKDU4uF9TqAANhPlVvXMg-kHw",
@@ -390,7 +390,7 @@ Paginator(
     TrackItem(
       id: "DVCAqvypaCc",
       title: "Jump",
-      duration: 202,
+      duration: Some(202),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/DVCAqvypaCc/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3llvl8DJX_-7ry0RRT_N_NYCkdwNQ",
@@ -412,7 +412,7 @@ Paginator(
     TrackItem(
       id: "XdnI7sm6LeQ",
       title: "Andere Liga",
-      duration: 240,
+      duration: Some(240),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/XdnI7sm6LeQ/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kz8_m5K9sEEgDBy4EFLm95Yqv1KQ",
@@ -434,7 +434,7 @@ Paginator(
     TrackItem(
       id: "KcOXNSJtFLg",
       title: "Trikot von Paris",
-      duration: 255,
+      duration: Some(255),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/KcOXNSJtFLg/hqdefault.jpg?sqp=-oaymwEWCMACELQBIAQqCghQEJADGFogjgJIWg&rs=AMzJL3n1lFTL7AeKXIwoWr0n7R0OVeeC0w",
@@ -456,7 +456,7 @@ Paginator(
     TrackItem(
       id: "K0UxHXZwgsg",
       title: "Pfirsich",
-      duration: 245,
+      duration: Some(245),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/K0UxHXZwgsg/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kbt6N-exJAiQ2VWD-N2SAZb72t1Q",
@@ -478,7 +478,7 @@ Paginator(
     TrackItem(
       id: "eyyNwOSQ3Yg",
       title: "MGP \"BAD BITCH\" (Official Video)",
-      duration: 166,
+      duration: Some(166),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/eyyNwOSQ3Yg/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3loat8o2KqxI50eA_0t33mayE-vZg",
@@ -500,7 +500,7 @@ Paginator(
     TrackItem(
       id: "1yskotqNuXI",
       title: "Bros",
-      duration: 219,
+      duration: Some(219),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/1yskotqNuXI/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lw5HdQiGkWPICNK6JQ0zQrb_OY_A",
@@ -522,7 +522,7 @@ Paginator(
     TrackItem(
       id: "C03n4AAiL9w",
       title: "Geiles Leben (Madizin single mix)",
-      duration: 211,
+      duration: Some(211),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/C03n4AAiL9w/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lKrWXIdWTuniJIbm4bcGAVMDqodA",
@@ -544,7 +544,7 @@ Paginator(
     TrackItem(
       id: "a2wNRTKRusM",
       title: "Moe Phoenix - Mohammad (prod. by AriBeatz)",
-      duration: 197,
+      duration: Some(197),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/a2wNRTKRusM/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mf255VHOdZkqjal69y_6vncWOj_Q",
@@ -566,7 +566,7 @@ Paginator(
     TrackItem(
       id: "AIf61iHwWMQ",
       title: "Waffen (feat. Bonez MC, Ufo361 & Gzuz)",
-      duration: 268,
+      duration: Some(268),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/AIf61iHwWMQ/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3m2Y0IwkBA5nlfo_yGhB4Rl_PQWrw",
@@ -588,7 +588,7 @@ Paginator(
     TrackItem(
       id: "BixqbSRjY2Y",
       title: "Alles probiert (feat. Bonez MC)",
-      duration: 319,
+      duration: Some(319),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/BixqbSRjY2Y/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kJXX_D3CBHvhk4-eXoeEjLuPDLuA",
@@ -610,7 +610,7 @@ Paginator(
     TrackItem(
       id: "Acgy-3d4P6o",
       title: "Erfolg ist kein Glück",
-      duration: 226,
+      duration: Some(226),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/Acgy-3d4P6o/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3llC-9c8Ba6pCqm5MjtPHNJJrl5Ww",
@@ -632,7 +632,7 @@ Paginator(
     TrackItem(
       id: "5M_yA9M7yNc",
       title: "Gotham City",
-      duration: 156,
+      duration: Some(156),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/5M_yA9M7yNc/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lDthGAX5eyBgMY1Mk73ruGWvUZTA",
@@ -654,7 +654,7 @@ Paginator(
     TrackItem(
       id: "PjJuezhos3U",
       title: "Liebe macht blind",
-      duration: 258,
+      duration: Some(258),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/PjJuezhos3U/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nvGDR0Dry3ue3PRNX5hBpc8ZXJHQ",
@@ -676,7 +676,7 @@ Paginator(
     TrackItem(
       id: "XMutaJI2-kc",
       title: "Mama ist nicht stolz",
-      duration: 262,
+      duration: Some(262),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/XMutaJI2-kc/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kSFI5TL3IhmMKE4AbQVq5cNGDdlA",
@@ -698,7 +698,7 @@ Paginator(
     TrackItem(
       id: "Xac6Q7hcZkQ",
       title: "Monica Bellucci",
-      duration: 228,
+      duration: Some(228),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/Xac6Q7hcZkQ/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mUrl21Lg5TnRVZlS_HsjExiHbykA",
@@ -720,7 +720,7 @@ Paginator(
     TrackItem(
       id: "JfwjsjBcDoU",
       title: "Achterbahn",
-      duration: 222,
+      duration: Some(222),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/JfwjsjBcDoU/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3m9YWQi2VwUWy0HbvTp5eABMv19ig",
@@ -742,7 +742,7 @@ Paginator(
     TrackItem(
       id: "zshiQUV3ohw",
       title: "MOE PHOENIX feat. VEYSEL - GAUNER (prod. by Ghana Beats)",
-      duration: 226,
+      duration: Some(226),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/zshiQUV3ohw/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mvfu8TUWbiYPBd5KeknzelsyMhGA",
@@ -764,7 +764,7 @@ Paginator(
     TrackItem(
       id: "g1eTAt1_VAM",
       title: "Hype (feat. Abdi & CELO)",
-      duration: 303,
+      duration: Some(303),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/g1eTAt1_VAM/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3ln4VrxhGpWamDXIRK28ZG36zebpw",
@@ -790,7 +790,7 @@ Paginator(
     TrackItem(
       id: "c3rLrFC8igY",
       title: "Dame - Auf die guten alten Zeiten [Official HD Video]",
-      duration: 252,
+      duration: Some(252),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/c3rLrFC8igY/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nlwP8jhSDHu6UWrfKkg_6aYf4O2w",
@@ -812,7 +812,7 @@ Paginator(
     TrackItem(
       id: "1im4DNEYzEM",
       title: "Optimal (instrumental)",
-      duration: 209,
+      duration: Some(209),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/1im4DNEYzEM/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3maFTAbUASsI-cKvFzl-bMxaz1ZFA",
@@ -838,7 +838,7 @@ Paginator(
     TrackItem(
       id: "8BUxw9ocM2s",
       title: "EULE aka Jazzy Gudd - Stehaufmädchen (Official Video)",
-      duration: 184,
+      duration: Some(184),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/8BUxw9ocM2s/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3k0xjHaaLKRl13FIINRNV8G27w82Q",
@@ -860,7 +860,7 @@ Paginator(
     TrackItem(
       id: "g4cSpnGbHPE",
       title: "Zweistellige Haftstrafen",
-      duration: 201,
+      duration: Some(201),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/g4cSpnGbHPE/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mzqofFr-t8T8RFLsGBuU56C5N6DQ",
@@ -886,7 +886,7 @@ Paginator(
     TrackItem(
       id: "1Sdj9MiCowQ",
       title: "187",
-      duration: 296,
+      duration: Some(296),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/1Sdj9MiCowQ/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nS4GO2Le1ipaSHUp9UHhcgEuK7zA",
@@ -912,7 +912,7 @@ Paginator(
     TrackItem(
       id: "2DbR35g-0ZY",
       title: "Der Pate",
-      duration: 237,
+      duration: Some(237),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/2DbR35g-0ZY/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kdZmuRrmJBGfPZXaH2N-PHp6vlzw",
@@ -934,7 +934,7 @@ Paginator(
     TrackItem(
       id: "j09hpp3AxIE",
       title: "Tage wie diese",
-      duration: 272,
+      duration: Some(272),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/j09hpp3AxIE/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nfWvqhMW_GfFDjgdTN1cMkalIZxQ",
@@ -956,7 +956,7 @@ Paginator(
     TrackItem(
       id: "J3GN6JXjV3g",
       title: "Frische Luft",
-      duration: 200,
+      duration: Some(200),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/J3GN6JXjV3g/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mdbJXJMnc-or27SYD8R3pjilDXlQ",
@@ -978,7 +978,7 @@ Paginator(
     TrackItem(
       id: "pULl-p02upM",
       title: "Check (feat. Xatar)",
-      duration: 240,
+      duration: Some(240),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/pULl-p02upM/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nh799vU0wPzY2ytSmeOPBH38eALg",
@@ -1000,7 +1000,7 @@ Paginator(
     TrackItem(
       id: "O6By8JeCtQQ",
       title: "Alles richtig so (Instrumental)",
-      duration: 210,
+      duration: Some(210),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/O6By8JeCtQQ/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nk34pJNIkWHcxpyyNXS66OWr3ckw",
@@ -1022,7 +1022,7 @@ Paginator(
     TrackItem(
       id: "NGn3IYQ7M7E",
       title: "Vorankommen",
-      duration: 228,
+      duration: Some(228),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/NGn3IYQ7M7E/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nik2tVOHUckqAwAeSnzQfX1xch2Q",
@@ -1044,7 +1044,7 @@ Paginator(
     TrackItem(
       id: "o43oI5x86dI",
       title: "Schnapp!",
-      duration: 166,
+      duration: Some(166),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/o43oI5x86dI/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lcyy2u7kVdFvtPonuqLhDv6t5lUA",
@@ -1066,7 +1066,7 @@ Paginator(
     TrackItem(
       id: "7TNqUrINxzs",
       title: "Besser als 50 Cent (Instrumental)",
-      duration: 197,
+      duration: Some(197),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/7TNqUrINxzs/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kpAsFpwzoQ-UD_RzGa0ExoQMtgcA",
@@ -1088,7 +1088,7 @@ Paginator(
     TrackItem(
       id: "f3BD5Zm3cp0",
       title: "Palmen aus Gold",
-      duration: 231,
+      duration: Some(231),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/f3BD5Zm3cp0/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mxCAbmFZTlKVp-PX0PJk8fpvZdSg",
@@ -1114,7 +1114,7 @@ Paginator(
     TrackItem(
       id: "sF4yTDp95Eo",
       title: "Lampedusa",
-      duration: 203,
+      duration: Some(203),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/sF4yTDp95Eo/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nQ5ldvK9on8deipW07A_6XmUVamQ",
@@ -1136,7 +1136,7 @@ Paginator(
     TrackItem(
       id: "1EwLNHg6ejY",
       title: "Ajajaj (feat. Soolking)",
-      duration: 224,
+      duration: Some(224),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/1EwLNHg6ejY/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lwps5a7iqy_EldJCIgl-XuXhw3jg",
@@ -1158,7 +1158,7 @@ Paginator(
     TrackItem(
       id: "-l75qaSDWe8",
       title: "Bongzimmer",
-      duration: 287,
+      duration: Some(287),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/-l75qaSDWe8/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lXnzM-rTh-zXr88zBKemiKKsYBeg",
@@ -1180,7 +1180,7 @@ Paginator(
     TrackItem(
       id: "7h7ntYLLrfQ",
       title: "Kogong",
-      duration: 223,
+      duration: Some(223),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/7h7ntYLLrfQ/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3l1I5hUp81fZfyzHVyt6YMlFH6cpw",
@@ -1202,7 +1202,7 @@ Paginator(
     TrackItem(
       id: "ApUl3Ops69M",
       title: "AZET - FAST LIFE (prod. by m3) #KMNSTREET VOL. 1",
-      duration: 179,
+      duration: Some(179),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/ApUl3Ops69M/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kyz_IgQaYaOyaYbnJp-NyAQWMMpg",
@@ -1224,7 +1224,7 @@ Paginator(
     TrackItem(
       id: "2YcJ8Wightw",
       title: "CL500",
-      duration: 152,
+      duration: Some(152),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/2YcJ8Wightw/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mPorYxL_EZ3HJW7XkLsOMyXJRwTQ",
@@ -1246,7 +1246,7 @@ Paginator(
     TrackItem(
       id: "W3q8Od5qJio",
       title: "Du hast",
-      duration: 236,
+      duration: Some(236),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/W3q8Od5qJio/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lU9rCLLB5-tGTbMY4VddAj2fX0_A",
@@ -1268,7 +1268,7 @@ Paginator(
     TrackItem(
       id: "WPFLAjmWCtk",
       title: "Astronaut (feat. Andreas Bourani)",
-      duration: 268,
+      duration: Some(268),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/WPFLAjmWCtk/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kRYRfZM-1t_DHI3rKxAVAsb6xBlA",
@@ -1290,7 +1290,7 @@ Paginator(
     TrackItem(
       id: "tC76tIp0kBk",
       title: "So wie du bist (feat. Lary)",
-      duration: 312,
+      duration: Some(312),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/tC76tIp0kBk/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kyBxTmyWDlXnobxfTP3b1_eFomug",
@@ -1312,7 +1312,7 @@ Paginator(
     TrackItem(
       id: "kiMG_JV2gbo",
       title: "Adel Tawil \"Lieder\" (Official Lyrics Video)",
-      duration: 230,
+      duration: Some(230),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/kiMG_JV2gbo/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mST1CbRad_P2tovi7PverVHfYLSg",
@@ -1334,7 +1334,7 @@ Paginator(
     TrackItem(
       id: "CrYYg_atdtk",
       title: "Marteria, Yasha, Miss Platnum - Lila Wolken (Official Video)",
-      duration: 231,
+      duration: Some(231),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/CrYYg_atdtk/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lTbl71twx0lB7adIXPA1R3r_4ixQ",
@@ -1356,7 +1356,7 @@ Paginator(
     TrackItem(
       id: "XTPGpBBwt1w",
       title: "Hurra die Welt geht unter (feat. Henning May)",
-      duration: 299,
+      duration: Some(299),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/XTPGpBBwt1w/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nMcVn4epzwg2Axrjjl62wI7XBeaA",
@@ -1378,7 +1378,7 @@ Paginator(
     TrackItem(
       id: "uC08L4xxjNM",
       title: "80 Millionen",
-      duration: 257,
+      duration: Some(257),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/uC08L4xxjNM/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kg9Z-mzC2WGtxCWjqc-bnJM36qgQ",
@@ -1400,7 +1400,7 @@ Paginator(
     TrackItem(
       id: "5fAoV_AAMf0",
       title: "Bauch und Kopf (Videoclip)",
-      duration: 257,
+      duration: Some(257),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/5fAoV_AAMf0/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3myIarnH-vyPtz4csyLkS9lMUD5Aw",
@@ -1422,7 +1422,7 @@ Paginator(
     TrackItem(
       id: "u5Vz7obL460",
       title: "Keine Maschine",
-      duration: 202,
+      duration: Some(202),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/u5Vz7obL460/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lim7InSFTb1G54EaZ0HVOSIgogHw",
@@ -1444,7 +1444,7 @@ Paginator(
     TrackItem(
       id: "ZPJlyRv_IGI",
       title: "Deichkind - Leider Geil (Official Video)",
-      duration: 189,
+      duration: Some(189),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/ZPJlyRv_IGI/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3n1twL6cpEZeQhEl8QoHfVf7cM2Pg",
@@ -1466,7 +1466,7 @@ Paginator(
     TrackItem(
       id: "s2SLbln-JwE",
       title: "BIBI & TINA  \" Jungs gegen Mädchen - MÄDCHEN GEGEN JUNGS - Das offizielle Video!",
-      duration: 172,
+      duration: Some(172),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/s2SLbln-JwE/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3ltIxSy4LoU_-fArtrikLGXNRl1XQ",
@@ -1488,7 +1488,7 @@ Paginator(
     TrackItem(
       id: "28xHtRw6pG8",
       title: "Patte fließt",
-      duration: 206,
+      duration: Some(206),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/28xHtRw6pG8/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kVwxZw2B34VAnHSTJshYQa9j5xMA",
@@ -1510,7 +1510,7 @@ Paginator(
     TrackItem(
       id: "joWoKqUTRvc",
       title: "Alles & Nichts",
-      duration: 204,
+      duration: Some(204),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/joWoKqUTRvc/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3movb12YctPFD0IBYWqPsaQw7PALg",
@@ -1532,7 +1532,7 @@ Paginator(
     TrackItem(
       id: "XNMFTqhcNrE",
       title: "Flash mich (Videoclip)",
-      duration: 236,
+      duration: Some(236),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/XNMFTqhcNrE/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mSsHLDjHqiqe8UCZJE1RbeRMMz6A",
@@ -1554,7 +1554,7 @@ Paginator(
     TrackItem(
       id: "v3vPLgJ9FX8",
       title: "Sex",
-      duration: 260,
+      duration: Some(260),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/v3vPLgJ9FX8/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3l8eDykZMz2z2N_LsJbPguiD3cT1Q",
@@ -1580,7 +1580,7 @@ Paginator(
     TrackItem(
       id: "UFXOd179kOA",
       title: "Ebbe und Flut (feat. Hanybal & Xatar)",
-      duration: 213,
+      duration: Some(213),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/UFXOd179kOA/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3n0eX07lNsT2RdXZxYz_lcbiKP-xg",
@@ -1602,7 +1602,7 @@ Paginator(
     TrackItem(
       id: "4xRsDnKgHZc",
       title: "Hol\' mir dein Cousin",
-      duration: 206,
+      duration: Some(206),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/4xRsDnKgHZc/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nbKBQXBSXiqUGzESK2u4said9-DA",
@@ -1624,7 +1624,7 @@ Paginator(
     TrackItem(
       id: "mE3IjoEqMqY",
       title: "Hanybal - VANILLA SKY mit Nimo (prod. von Lucry) [Official 4K Video]",
-      duration: 211,
+      duration: Some(211),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/mE3IjoEqMqY/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3l4mnV5m6_KouDV0jgGk8Q2Lw1BAQ",
@@ -1646,7 +1646,7 @@ Paginator(
     TrackItem(
       id: "E7e5vxKerqA",
       title: "Wer Macht Para? (feat. ENO)",
-      duration: 195,
+      duration: Some(195),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/E7e5vxKerqA/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mGWRNhex4Dn-AofZaYFSb3SZ76rQ",
@@ -1668,7 +1668,7 @@ Paginator(
     TrackItem(
       id: "axmZ_5Rx4Go",
       title: "Zuhause (feat. Matisyahu)",
-      duration: 210,
+      duration: Some(210),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/axmZ_5Rx4Go/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3ln3zFIlxlt-cZHQ0RSfqd-GjRTdA",
@@ -1690,7 +1690,7 @@ Paginator(
     TrackItem(
       id: "44Ig6BsOCYA",
       title: "Purple Haze",
-      duration: 279,
+      duration: Some(279),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/44Ig6BsOCYA/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3khpPZLQA__8mQdgGaTYkH5MTBGeg",
@@ -1712,7 +1712,7 @@ Paginator(
     TrackItem(
       id: "3iLBFEJjdN0",
       title: "Löwenzahn (feat. Olexesh)",
-      duration: 242,
+      duration: Some(242),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/3iLBFEJjdN0/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nu5nTaA5NAoYKDKFqCziZXcoHv8Q",
@@ -1734,7 +1734,7 @@ Paginator(
     TrackItem(
       id: "M-ncq2eHF_k",
       title: "Ich will nur (Live)",
-      duration: 233,
+      duration: Some(233),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/M-ncq2eHF_k/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lRiJ0It7T26TBKf11KmupiXQM3yg",
@@ -1756,7 +1756,7 @@ Paginator(
     TrackItem(
       id: "-AJoJ-ggiKI",
       title: "LX & Maxwell feat. Gzuz - HaifischNikez (Jambeatz)",
-      duration: 215,
+      duration: Some(215),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/-AJoJ-ggiKI/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mBFwSutY27Cg9Qguh6a0IRAqWmug",
@@ -1778,7 +1778,7 @@ Paginator(
     TrackItem(
       id: "cgb-zp9DDHg",
       title: "Brot brechen",
-      duration: 191,
+      duration: Some(191),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/cgb-zp9DDHg/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lamoVIcN2q2OwHp3dael5FCyckXw",
@@ -1804,7 +1804,7 @@ Paginator(
     TrackItem(
       id: "Q7ZXg3KQLt0",
       title: "Genozid",
-      duration: 407,
+      duration: Some(407),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/Q7ZXg3KQLt0/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lf8_C4ADg9w2mQlrVs7eovgwYnsw",
@@ -1826,7 +1826,7 @@ Paginator(
     TrackItem(
       id: "ysAEZOwp5rM",
       title: "John Gotti",
-      duration: 207,
+      duration: Some(207),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/ysAEZOwp5rM/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lVLPd_yYSO9xCbGIQruofzxarXmw",
@@ -1848,7 +1848,7 @@ Paginator(
     TrackItem(
       id: "m5vfng33SVE",
       title: "Das ist dein Leben",
-      duration: 282,
+      duration: Some(282),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/m5vfng33SVE/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mhyLzc0t56EXwAPur-PUR3PW4vMA",
@@ -1870,7 +1870,7 @@ Paginator(
     TrackItem(
       id: "yMfgjVlGbUE",
       title: "Apocalyptic Infinity",
-      duration: 1622,
+      duration: Some(1622),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/yMfgjVlGbUE/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3n_YHxl5zLlX77d3oZEi2EnsgmZNw",
@@ -1892,7 +1892,7 @@ Paginator(
     TrackItem(
       id: "OQIYEPe6DWY",
       title: "Kraftwerk - Das Model",
-      duration: 262,
+      duration: Some(262),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/OQIYEPe6DWY/hqdefault.jpg?sqp=-oaymwEWCMACELQBIAQqCghQEJADGFogjgJIWg&rs=AMzJL3mQmoIe2DRlb7QWVUVJX3SCeWbH_Q",
@@ -1914,7 +1914,7 @@ Paginator(
     TrackItem(
       id: "5FS8RIH7BpI",
       title: "Wünsch dir was",
-      duration: 303,
+      duration: Some(303),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/5FS8RIH7BpI/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kNOrBGoV1P7wuYrmKGlEW5yNsoyw",
@@ -1936,7 +1936,7 @@ Paginator(
     TrackItem(
       id: "zSRKgFB9piY",
       title: "Keine ist wie Du ( Gregor Meyle Acoustic Cover )",
-      duration: 256,
+      duration: Some(256),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/zSRKgFB9piY/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nF4dUIKKNM5y-LmsIOOZoATrT-0Q",
@@ -1958,7 +1958,7 @@ Paginator(
     TrackItem(
       id: "e4eHhgwHCME",
       title: "Sturmmaske auf (Intro)",
-      duration: 275,
+      duration: Some(275),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/e4eHhgwHCME/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nQl_6lMyV10I2zjZyFcJEdwQaIZg",
@@ -1984,7 +1984,7 @@ Paginator(
     TrackItem(
       id: "q3hZvho7jNk",
       title: "Paper",
-      duration: 222,
+      duration: Some(222),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/q3hZvho7jNk/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kOcKYMlDrXaKxJDoeH87Q_Mzd_SQ",
@@ -2006,7 +2006,7 @@ Paginator(
     TrackItem(
       id: "0nWysyj_Z4Y",
       title: "Flouz kommt Flouz geht",
-      duration: 191,
+      duration: Some(191),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/0nWysyj_Z4Y/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kSMItp6YIX6w_qDux1u8F6Cagyig",
@@ -2028,7 +2028,7 @@ Paginator(
     TrackItem(
       id: "aGCcLWU0OVo",
       title: "Gürtel am Arm",
-      duration: 218,
+      duration: Some(218),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/aGCcLWU0OVo/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kMGpv4wmbGpoj5kuiXb9KdKzV8oA",
@@ -2050,7 +2050,7 @@ Paginator(
     TrackItem(
       id: "OQsXLK4MeEA",
       title: "JBB 2013 - SpongeBOZZ vs. Gio (Finale HR) prod. by Digital Drama",
-      duration: 400,
+      duration: Some(400),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/OQsXLK4MeEA/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3ne3Hh8Kkwk16N0zSVhDnPEkcAqwA",
@@ -2072,7 +2072,7 @@ Paginator(
     TrackItem(
       id: "xm7dxIqOO2M",
       title: "Halbmond",
-      duration: 272,
+      duration: Some(272),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/xm7dxIqOO2M/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nDcyYoQvs0hGNEKrvL7fVOJY5L3w",
@@ -2094,7 +2094,7 @@ Paginator(
     TrackItem(
       id: "jlaaByab4Zk",
       title: "Ljubi me budalo (Radio)",
-      duration: 224,
+      duration: Some(224),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/jlaaByab4Zk/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3m6sTRTunsqQGLxWlaU4vcX8eqPEQ",
@@ -2120,7 +2120,7 @@ Paginator(
     TrackItem(
       id: "KG9-jSqXz4U",
       title: "Oft gefragt (AMK Version)",
-      duration: 205,
+      duration: Some(205),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/KG9-jSqXz4U/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nxsaHyT0dlyjgAjia_RoqrrWra_g",
@@ -2142,7 +2142,7 @@ Paginator(
     TrackItem(
       id: "7dISZnwsBSA",
       title: "1,40m (feat. Philipp Dittberner)",
-      duration: 284,
+      duration: Some(284),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/7dISZnwsBSA/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lnfTeZo81tTNqp-wQjR--Oxv03TA",
@@ -2164,7 +2164,7 @@ Paginator(
     TrackItem(
       id: "F_PPdS-PB14",
       title: "Idéal",
-      duration: 253,
+      duration: Some(253),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/F_PPdS-PB14/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3krIwo8VzYKk9qVoIknbptf_RNqiA",
@@ -2186,7 +2186,7 @@ Paginator(
     TrackItem(
       id: "DMg9idvVY8M",
       title: "Bitter",
-      duration: 173,
+      duration: Some(173),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/DMg9idvVY8M/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lH9rwO-ADA6_jBP3xHCJ0r4mcp_A",
@@ -2208,7 +2208,7 @@ Paginator(
     TrackItem(
       id: "DGEmoSFI94Y",
       title: "Kurz Für Immer Bleiben",
-      duration: 218,
+      duration: Some(218),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/DGEmoSFI94Y/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kadR5_E5BFVgv-slX2RBdYbHyDgw",
@@ -2230,7 +2230,7 @@ Paginator(
     TrackItem(
       id: "BtZufymxHvE",
       title: "Ausser Kontrolle",
-      duration: 159,
+      duration: Some(159),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/BtZufymxHvE/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kHr0G-SFBkafG5ym10v9EX0F8tmw",

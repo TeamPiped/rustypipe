@@ -20,7 +20,7 @@ MusicAlbum(
     TrackItem(
       id: "lSbKz5LWvKE",
       title: "Achtung, Waldbrand - Teil 1",
-      duration: 229,
+      duration: Some(229),
       cover: [],
       artists: [
         ArtistId(
@@ -39,7 +39,7 @@ MusicAlbum(
     TrackItem(
       id: "fdO6gu4qjRw",
       title: "Achtung, Waldbrand - Teil 2",
-      duration: 235,
+      duration: Some(235),
       cover: [],
       artists: [
         ArtistId(
@@ -58,7 +58,7 @@ MusicAlbum(
     TrackItem(
       id: "muCxstXirvY",
       title: "Achtung, Waldbrand - Teil 3",
-      duration: 197,
+      duration: Some(197),
       cover: [],
       artists: [
         ArtistId(
@@ -77,7 +77,7 @@ MusicAlbum(
     TrackItem(
       id: "aG1N0vo__Ng",
       title: "Eiszeit - Teil 1",
-      duration: 186,
+      duration: Some(186),
       cover: [],
       artists: [
         ArtistId(
@@ -96,7 +96,7 @@ MusicAlbum(
     TrackItem(
       id: "roHhLNYS9yo",
       title: "Eiszeit - Teil 2",
-      duration: 188,
+      duration: Some(188),
       cover: [],
       artists: [
         ArtistId(
@@ -115,7 +115,7 @@ MusicAlbum(
     TrackItem(
       id: "nJ49NuLvcAw",
       title: "Eiszeit - Teil 3",
-      duration: 205,
+      duration: Some(205),
       cover: [],
       artists: [
         ArtistId(
@@ -134,7 +134,7 @@ MusicAlbum(
     TrackItem(
       id: "Me119D570h0",
       title: "Eiszeit - Teil 4",
-      duration: 219,
+      duration: Some(219),
       cover: [],
       artists: [
         ArtistId(
@@ -153,7 +153,7 @@ MusicAlbum(
     TrackItem(
       id: "YXnRLK-qKG8",
       title: "Im Sinkloch - Teil 1",
-      duration: 240,
+      duration: Some(240),
       cover: [],
       artists: [
         ArtistId(
@@ -172,7 +172,7 @@ MusicAlbum(
     TrackItem(
       id: "A61wz1jz9X0",
       title: "Im Sinkloch - Teil 2",
-      duration: 239,
+      duration: Some(239),
       cover: [],
       artists: [
         ArtistId(
@@ -191,7 +191,7 @@ MusicAlbum(
     TrackItem(
       id: "u_S08EJOTUg",
       title: "Im Sinkloch - Teil 3",
-      duration: 197,
+      duration: Some(197),
       cover: [],
       artists: [
         ArtistId(
@@ -210,7 +210,7 @@ MusicAlbum(
     TrackItem(
       id: "0qwYJihV1EU",
       title: "Vorsicht, heiß - Teil 1",
-      duration: 201,
+      duration: Some(201),
       cover: [],
       artists: [
         ArtistId(
@@ -229,7 +229,7 @@ MusicAlbum(
     TrackItem(
       id: "zjhoyTnEzuQ",
       title: "Vorsicht, heiß - Teil 2",
-      duration: 187,
+      duration: Some(187),
       cover: [],
       artists: [
         ArtistId(
@@ -248,7 +248,7 @@ MusicAlbum(
     TrackItem(
       id: "oDjDd0UBzAY",
       title: "Vorsicht, heiß - Teil 3",
-      duration: 183,
+      duration: Some(183),
       cover: [],
       artists: [
         ArtistId(
@@ -267,7 +267,7 @@ MusicAlbum(
     TrackItem(
       id: "_3-WVmqgi-Q",
       title: "Vorsicht, heiß - Teil 4",
-      duration: 193,
+      duration: Some(193),
       cover: [],
       artists: [
         ArtistId(

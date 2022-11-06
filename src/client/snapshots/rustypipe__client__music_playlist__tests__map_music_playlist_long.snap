@@ -35,7 +35,7 @@ MusicPlaylist(
       TrackItem(
         id: "Bkj3IVIO2Os",
         title: "Die immer lacht (radio 2016 mix)",
-        duration: 216,
+        duration: Some(216),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/Bkj3IVIO2Os/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kTlKI2Vxz6MI9hkXDdKE6VXabOjA",
@@ -61,7 +61,7 @@ MusicPlaylist(
       TrackItem(
         id: "8rRj5ZXRNko",
         title: "Faded Love",
-        duration: 191,
+        duration: Some(191),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/8rRj5ZXRNko/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3l_fwzcVbV_AhJfo_V9z8kCCWo6DA",
@@ -83,7 +83,7 @@ MusicPlaylist(
       TrackItem(
         id: "lHZtcC67yrY",
         title: "Hulapalu",
-        duration: 188,
+        duration: Some(188),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/lHZtcC67yrY/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mT2jzszatb6LxheIId6qwf6kG9mg",
@@ -105,7 +105,7 @@ MusicPlaylist(
       TrackItem(
         id: "TSkVVVBS9k8",
         title: "Was du Liebe nennst",
-        duration: 237,
+        duration: Some(237),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/TSkVVVBS9k8/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lFFrBRqkhh4EKud1GwUPgudzm23w",
@@ -127,7 +127,7 @@ MusicPlaylist(
       TrackItem(
         id: "lc-cnCRhE7c",
         title: "Senorita (feat. Pietro Lombardi)",
-        duration: 250,
+        duration: Some(250),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/lc-cnCRhE7c/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mdOyIPLtIUkwm2-KRWQiYBdD1SUA",
@@ -149,7 +149,7 @@ MusicPlaylist(
       TrackItem(
         id: "3ryohiCVq3M",
         title: "Namika -  Lieblingsmensch (Official Video)",
-        duration: 191,
+        duration: Some(191),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/3ryohiCVq3M/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nsa7wZ13z3ie49RzcBHKQAmjlU9w",
@@ -171,7 +171,7 @@ MusicPlaylist(
       TrackItem(
         id: "BNHamTwxJ6Q",
         title: "Warum hast du nicht nein gesagt (Club Mix / Videoclip)",
-        duration: 217,
+        duration: Some(217),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/BNHamTwxJ6Q/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lTypysVT-TkZOZ8zLwCphzDniuJA",
@@ -197,7 +197,7 @@ MusicPlaylist(
       TrackItem(
         id: "5mqelmYUcI0",
         title: "Louis Louis",
-        duration: 218,
+        duration: Some(218),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/5mqelmYUcI0/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3myMhtMRqJzhWZbQEJRYSksXLN-ew",
@@ -219,7 +219,7 @@ MusicPlaylist(
       TrackItem(
         id: "k9EYjn5f_nE",
         title: "Auf uns",
-        duration: 244,
+        duration: Some(244),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/k9EYjn5f_nE/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kZLQDAV5k4ulMK2CrbOLmZsvwx2w",
@@ -241,7 +241,7 @@ MusicPlaylist(
       TrackItem(
         id: "fkMg_X9lHMc",
         title: "Marteria - Kids (2 Finger an den Kopf) [Offizielles Video]",
-        duration: 230,
+        duration: Some(230),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/fkMg_X9lHMc/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mX_nvoPQWTqcKs5rI8B9ziBF0t9w",
@@ -263,7 +263,7 @@ MusicPlaylist(
       TrackItem(
         id: "4wOoLLDXbDY",
         title: "Easy",
-        duration: 195,
+        duration: Some(195),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/4wOoLLDXbDY/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kouOlp5qw3zb3XFPjYfQ9FzxXPbA",
@@ -285,7 +285,7 @@ MusicPlaylist(
       TrackItem(
         id: "Z_mf9aCHag8",
         title: "Bist Du Real (feat. moe.)",
-        duration: 186,
+        duration: Some(186),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/Z_mf9aCHag8/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3ld-p3LsK8HUqaVtlxecr0bsRMtFw",
@@ -307,7 +307,7 @@ MusicPlaylist(
       TrackItem(
         id: "cZ58odQo87A",
         title: "Ich will nur dass du weißt - Radio Edit (feat. Adel Tawil)",
-        duration: 222,
+        duration: Some(222),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/cZ58odQo87A/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mihYNiPBsfwraGxrQy2MqDnImxwA",
@@ -329,7 +329,7 @@ MusicPlaylist(
       TrackItem(
         id: "1il3RFk5Okw",
         title: "Chöre (Willkommen bei den Hartmanns Version)",
-        duration: 209,
+        duration: Some(209),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/1il3RFk5Okw/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mYWNVVcJ0AY-lC2Y95JUBJCR8-oA",
@@ -351,7 +351,7 @@ MusicPlaylist(
       TrackItem(
         id: "8WQMBv2deYQ",
         title: "Traum",
-        duration: 219,
+        duration: Some(219),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/8WQMBv2deYQ/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kEHXTPowrmMKz11nlxLGkX6bevdg",
@@ -373,7 +373,7 @@ MusicPlaylist(
       TrackItem(
         id: "vGrfFzagzHs",
         title: "Whatever",
-        duration: 207,
+        duration: Some(207),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/vGrfFzagzHs/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mAdnqOJHcb_a_MAyfO_rLMrC6iYA",
@@ -395,7 +395,7 @@ MusicPlaylist(
       TrackItem(
         id: "1gDbpWC_9pE",
         title: "Wie schön du bist",
-        duration: 216,
+        duration: Some(216),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/1gDbpWC_9pE/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3m0oustVTewmbNs4-smVzIf_ASsjA",
@@ -417,7 +417,7 @@ MusicPlaylist(
       TrackItem(
         id: "p-AWcCCbBHw",
         title: "Heute mit mir",
-        duration: 256,
+        duration: Some(256),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/p-AWcCCbBHw/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kfu3U-2SZ54FknbX0lM0XwDNQLgw",
@@ -439,7 +439,7 @@ MusicPlaylist(
       TrackItem(
         id: "RPN88D_HjMU",
         title: "Xavier Naidoo - Ich kenne nichts (Das so schön ist wie du) [Official Video]",
-        duration: 332,
+        duration: Some(332),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/RPN88D_HjMU/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lbCw2LIIvCooCATt3tR3cA2T4l5g",
@@ -465,7 +465,7 @@ MusicPlaylist(
       TrackItem(
         id: "5PST7Ld4wWU",
         title: "Wenn sie tanzt (Single Version)",
-        duration: 225,
+        duration: Some(225),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/5PST7Ld4wWU/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3myi1Y-zZukbX-dNYFhfF1Nhj0Q_A",
@@ -487,7 +487,7 @@ MusicPlaylist(
       TrackItem(
         id: "opoDBF_b-fg",
         title: "Willst du",
-        duration: 307,
+        duration: Some(307),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/opoDBF_b-fg/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3niJgIy4iTrKDPp-et6Kcby6eu30Q",
@@ -509,7 +509,7 @@ MusicPlaylist(
       TrackItem(
         id: "AMT9IOyXmBM",
         title: "Einer dieser Steine (feat. Mark Forster)",
-        duration: 258,
+        duration: Some(258),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/AMT9IOyXmBM/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lYPOtI5KPGgfP9vXMB4bQoWIexLA",
@@ -531,7 +531,7 @@ MusicPlaylist(
       TrackItem(
         id: "VP5B1UmgHfc",
         title: "Ne Leiche (feat. Sido)",
-        duration: 328,
+        duration: Some(328),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/VP5B1UmgHfc/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3khHbalen3wPNJc5Ig-ef5OWnqxCg",
@@ -553,7 +553,7 @@ MusicPlaylist(
       TrackItem(
         id: "vcuQpbs0yT0",
         title: "Ya Salam",
-        duration: 224,
+        duration: Some(224),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/vcuQpbs0yT0/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3l1mZ3gFx4ZUeOwEg2O6CmfXmo7QA",
@@ -575,7 +575,7 @@ MusicPlaylist(
       TrackItem(
         id: "LeMLVEJLruQ",
         title: "Ich & Du (feat. Sebastian Hämer)",
-        duration: 229,
+        duration: Some(229),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/LeMLVEJLruQ/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lUwcW-mGVDQ-6Xsqy6vJHecIdWhw",
@@ -597,7 +597,7 @@ MusicPlaylist(
       TrackItem(
         id: "MtDPKJSsBgc",
         title: "Au Revoir (Videoclip)",
-        duration: 227,
+        duration: Some(227),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/MtDPKJSsBgc/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mtCVvrnjdivWPqmFkgBp8-VQUd5A",
@@ -619,7 +619,7 @@ MusicPlaylist(
       TrackItem(
         id: "4tDpYxNYqPg",
         title: "Scheissmelodie (Single Edit)",
-        duration: 209,
+        duration: Some(209),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/4tDpYxNYqPg/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nnGp7fPKITHS1Tq1suJ84_RnrPkw",
@@ -641,7 +641,7 @@ MusicPlaylist(
       TrackItem(
         id: "EkWjaoH7k6w",
         title: "Ist da jemand (Official Video)",
-        duration: 251,
+        duration: Some(251),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/EkWjaoH7k6w/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nw0l5xAB-2K6JHQFFEJFH906CIgg",
@@ -663,7 +663,7 @@ MusicPlaylist(
       TrackItem(
         id: "tERRFWuYG48",
         title: "Barfuß am Klavier",
-        duration: 202,
+        duration: Some(202),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/tERRFWuYG48/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3k4aEijOPd3aWN7xvOughUamG9ACw",
@@ -685,7 +685,7 @@ MusicPlaylist(
       TrackItem(
         id: "wCcJuN47UcY",
         title: "Halt dich an mir fest",
-        duration: 213,
+        duration: Some(213),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/wCcJuN47UcY/hqdefault.jpg?sqp=-oaymwEWCMACELQBIAQqCghQEJADGFogjgJIWg&rs=AMzJL3mtG2Flx0lc7sY6lyYxtIpno95eQg",
@@ -707,7 +707,7 @@ MusicPlaylist(
       TrackItem(
         id: "qdtLCfEcPL4",
         title: "Alles neu",
-        duration: 272,
+        duration: Some(272),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/qdtLCfEcPL4/hqdefault.jpg?sqp=-oaymwEWCMACELQBIAQqCghQEJADGFogjgJIWg&rs=AMzJL3m_osOw2QtTxxwycq2RrWslFPWhfg",
@@ -729,7 +729,7 @@ MusicPlaylist(
       TrackItem(
         id: "wjXUBG15eZ8",
         title: "Holz",
-        duration: 214,
+        duration: Some(214),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/wjXUBG15eZ8/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3khBDXvSeCb_7IsUISEaX7_dhJQ8w",
@@ -751,7 +751,7 @@ MusicPlaylist(
       TrackItem(
         id: "HBjDZMJUduo",
         title: "Nein, Mann! (Radio Edit)",
-        duration: 231,
+        duration: Some(231),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/HBjDZMJUduo/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mB_mR0YNDGsWaZPWZddMXRnPHr1g",
@@ -773,7 +773,7 @@ MusicPlaylist(
       TrackItem(
         id: "xkXQQ0IAbk0",
         title: "Bon Voyage (Alistair x KidSoFly Remix (Remix EP))",
-        duration: 159,
+        duration: Some(159),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/xkXQQ0IAbk0/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3ka09iD00BF1_D9KsUXERZ8zY9_Xg",
@@ -795,7 +795,7 @@ MusicPlaylist(
       TrackItem(
         id: "DraA3PUuoQc",
         title: "Pocahontas",
-        duration: 192,
+        duration: Some(192),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/DraA3PUuoQc/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nU3AhorATafuOpXE-orIOoCtnw3g",
@@ -817,7 +817,7 @@ MusicPlaylist(
       TrackItem(
         id: "wMIGQp4YhuU",
         title: "Alles kann besser werden",
-        duration: 269,
+        duration: Some(269),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/wMIGQp4YhuU/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kgG0ouxeTQ7BCeaqRG2oLFtLQhGg",
@@ -839,7 +839,7 @@ MusicPlaylist(
       TrackItem(
         id: "38lrK74voaI",
         title: "Magisch (feat. Edin)",
-        duration: 270,
+        duration: Some(270),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/38lrK74voaI/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kavNC9zr9q0GfWWn-c25rj2ep28g",
@@ -861,7 +861,7 @@ MusicPlaylist(
       TrackItem(
         id: "2qW9rOSFF1M",
         title: "An ihnen vorbei",
-        duration: 220,
+        duration: Some(220),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/2qW9rOSFF1M/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lTtEDqW8TwUHZD7U-3VM-qjbUaqQ",
@@ -887,7 +887,7 @@ MusicPlaylist(
       TrackItem(
         id: "tMILH6UEfPA",
         title: "Kleiner Cabrón (Instrumental)",
-        duration: 213,
+        duration: Some(213),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/tMILH6UEfPA/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3n4g5pYZWQH6UINg328x5kzcUolpA",
@@ -909,7 +909,7 @@ MusicPlaylist(
       TrackItem(
         id: "izHB2EdMngg",
         title: "Ich sterb für dich",
-        duration: 190,
+        duration: Some(190),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/izHB2EdMngg/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3khtYLkIs89vT-dwMLKY5-jpedF_g",
@@ -931,7 +931,7 @@ MusicPlaylist(
       TrackItem(
         id: "haECT-SerHk",
         title: "Atemlos durch die Nacht (A | Class Kuduro edit)",
-        duration: 219,
+        duration: Some(219),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/haECT-SerHk/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lrxWOpxaHuPba39j_Rwlw5tYofjw",
@@ -953,7 +953,7 @@ MusicPlaylist(
       TrackItem(
         id: "cVikZ8Oe_XA",
         title: "Rock Me Amadeus",
-        duration: 225,
+        duration: Some(225),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/cVikZ8Oe_XA/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3m_u9Xin9-FSfoIDZxA3nNkALAtVQ",
@@ -975,7 +975,7 @@ MusicPlaylist(
       TrackItem(
         id: "drFsXLChrWc",
         title: "Holland",
-        duration: 213,
+        duration: Some(213),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/drFsXLChrWc/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nPM4uqyt2bwQsSG_lRKcqYoF8hfg",
@@ -997,7 +997,7 @@ MusicPlaylist(
       TrackItem(
         id: "1EMFt7m_8yE",
         title: "Ich muss immer an dich denken",
-        duration: 217,
+        duration: Some(217),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/1EMFt7m_8yE/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kvX5MQwEshP9FNSP2XsAo_Ii5ewQ",
@@ -1019,7 +1019,7 @@ MusicPlaylist(
       TrackItem(
         id: "_yWU0lFghxU",
         title: "Ding (feat. Saïan Supa Crew)",
-        duration: 211,
+        duration: Some(211),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/_yWU0lFghxU/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mP4_adKMOCTTt3h2qovYUUFoLaVw",
@@ -1041,7 +1041,7 @@ MusicPlaylist(
       TrackItem(
         id: "XlD-LO3ogFM",
         title: "Wir sind groß (Lyric Video)",
-        duration: 204,
+        duration: Some(204),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/XlD-LO3ogFM/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3m--iMwqpwie5EUV0lTwADap40-DQ",
@@ -1063,7 +1063,7 @@ MusicPlaylist(
       TrackItem(
         id: "nAzjWqNfgvc",
         title: "Unter meiner Haut (Radio Mix) (feat. Wincent Weiss)",
-        duration: 218,
+        duration: Some(218),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/nAzjWqNfgvc/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nfhNip3eZaKmCcF1FfieWhBsouCA",
@@ -1089,7 +1089,7 @@ MusicPlaylist(
       TrackItem(
         id: "PySC3RGhZJU",
         title: "Bad Chick",
-        duration: 218,
+        duration: Some(218),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/PySC3RGhZJU/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mFI-zFWxPpn5zXuUvNa-vEqJeA8w",
@@ -1111,7 +1111,7 @@ MusicPlaylist(
       TrackItem(
         id: "G-iwLoyH6ZE",
         title: "Nur noch Gucci",
-        duration: 232,
+        duration: Some(232),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/G-iwLoyH6ZE/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3ndgQ2lWMftCIarXt4OlsKHgZjh0g",
@@ -1133,7 +1133,7 @@ MusicPlaylist(
       TrackItem(
         id: "fgCOUO-s8nY",
         title: "Still (Videoclip)",
-        duration: 238,
+        duration: Some(238),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/fgCOUO-s8nY/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nmjkfmmM0rwVZWiemGIcVknIyRCg",
@@ -1155,7 +1155,7 @@ MusicPlaylist(
       TrackItem(
         id: "m-Ik3yy728Y",
         title: "Auf anderen Wegen",
-        duration: 245,
+        duration: Some(245),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/m-Ik3yy728Y/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mPWMCElmGpQ6wf8qQYdnQhXzSo_Q",
@@ -1177,7 +1177,7 @@ MusicPlaylist(
       TrackItem(
         id: "U0_UYW5Y4cM",
         title: "I sing a Liad für di",
-        duration: 188,
+        duration: Some(188),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/U0_UYW5Y4cM/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kstlZ5oWaI0UDUi33gp-p8LTsTqg",
@@ -1199,7 +1199,7 @@ MusicPlaylist(
       TrackItem(
         id: "rsrDYTEicq8",
         title: "Primo",
-        duration: 214,
+        duration: Some(214),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/rsrDYTEicq8/hqdefault.jpg?sqp=-oaymwEWCMACELQBIAQqCghQEJADGFogjgJIWg&rs=AMzJL3mJp9n_p4eW3L8Zd3TU8H6q9hEsUA",
@@ -1221,7 +1221,7 @@ MusicPlaylist(
       TrackItem(
         id: "2aU4wRgl_0E",
         title: "Nice Girl 2.0",
-        duration: 169,
+        duration: Some(169),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/2aU4wRgl_0E/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mzl9po_tzR0-9o3gfK0u6BoFuAqg",
@@ -1243,7 +1243,7 @@ MusicPlaylist(
       TrackItem(
         id: "FzcJxJAxFtw",
         title: "Ti amo",
-        duration: 267,
+        duration: Some(267),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/FzcJxJAxFtw/hqdefault.jpg?sqp=-oaymwEWCMACELQBIAQqCghQEJADGFogjgJIWg&rs=AMzJL3kQAy5J3NliA0XtuBZ0TDlqCv1E0g",
@@ -1269,7 +1269,7 @@ MusicPlaylist(
       TrackItem(
         id: "2hyibXdOp5w",
         title: "XAVAS (Xavier Naidoo & Kool Savas) \"Schau nicht mehr zurück\" (Official HD Video 2012)",
-        duration: 234,
+        duration: Some(234),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/2hyibXdOp5w/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3n6pZRqSg9PltCZfan7D5xkh36fLQ",
@@ -1291,7 +1291,7 @@ MusicPlaylist(
       TrackItem(
         id: "YaKG5cUVB30",
         title: "Ali Bumaye - Sex ohne Grund feat. Shindy",
-        duration: 166,
+        duration: Some(166),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/YaKG5cUVB30/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3n-1O-hS54saO21vhbjt_cILkuNyA",
@@ -1313,7 +1313,7 @@ MusicPlaylist(
       TrackItem(
         id: "Ahwc-ouFeTQ",
         title: "Willst du",
-        duration: 224,
+        duration: Some(224),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/Ahwc-ouFeTQ/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mzliNJk8IdOTF1icm1sUn7axMs3Q",
@@ -1335,7 +1335,7 @@ MusicPlaylist(
       TrackItem(
         id: "SoImFhORKpg",
         title: "Bonez MC & RAF Camora feat. Gzuz & Maxwell - Kontrollieren (prod. by Beataura & RAF Camora)",
-        duration: 232,
+        duration: Some(232),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/SoImFhORKpg/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3na-bHZp1y6wJa81skoL9oJp6sybw",
@@ -1357,7 +1357,7 @@ MusicPlaylist(
       TrackItem(
         id: "jP4-XrbGt3M",
         title: "Sowieso",
-        duration: 161,
+        duration: Some(161),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/jP4-XrbGt3M/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lQkpadJVO-Aohi1K7Xkwyk6lx2oQ",
@@ -1379,7 +1379,7 @@ MusicPlaylist(
       TrackItem(
         id: "Yy2RsG4lnm4",
         title: "1000 Träume weit (Tornero)",
-        duration: 254,
+        duration: Some(254),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/Yy2RsG4lnm4/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kH9KUmouysPz3W9cYkXGO4xmGN3g",
@@ -1401,7 +1401,7 @@ MusicPlaylist(
       TrackItem(
         id: "388e_8mu1t4",
         title: "SDP feat. Sido - Die Nacht von Freitag auf Montag",
-        duration: 241,
+        duration: Some(241),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/388e_8mu1t4/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mHF9bGUcmdh-0xzqokqmebxPmptw",
@@ -1423,7 +1423,7 @@ MusicPlaylist(
       TrackItem(
         id: "dHHtPi-j7dQ",
         title: "Wolke 7",
-        duration: 239,
+        duration: Some(239),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/dHHtPi-j7dQ/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3msZKqCNGVk5parIVPV_Q6DGlLD-Q",
@@ -1445,7 +1445,7 @@ MusicPlaylist(
       TrackItem(
         id: "d8ERTCVXIUE",
         title: "Lass sie tanzen (Square Dance) [Instrumental]",
-        duration: 251,
+        duration: Some(251),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/d8ERTCVXIUE/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nXYuXL118J9ixIrqPAgsaecQEymg",
@@ -1467,7 +1467,7 @@ MusicPlaylist(
       TrackItem(
         id: "vQXn3EzzYY4",
         title: "Weil Du mich nur verarscht hast (Instrumental)",
-        duration: 208,
+        duration: Some(208),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/vQXn3EzzYY4/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lnmi3lPkqi4pyHclQ-2UiHO8eOcg",
@@ -1489,7 +1489,7 @@ MusicPlaylist(
       TrackItem(
         id: "zA-BTpC-yvI",
         title: "Qa bone",
-        duration: 202,
+        duration: Some(202),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/zA-BTpC-yvI/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mUVzHYdBK5has09n-_DRf2MiTQig",
@@ -1511,7 +1511,7 @@ MusicPlaylist(
       TrackItem(
         id: "rnzIN9H_G10",
         title: "Leiser (Pseudo Video)",
-        duration: 209,
+        duration: Some(209),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/rnzIN9H_G10/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3n4Wt1x4HutMM-rOLZnwT-yUUJYAw",
@@ -1533,7 +1533,7 @@ MusicPlaylist(
       TrackItem(
         id: "fcBbT1GTxqM",
         title: "Kay One - Ich brech die Herzen",
-        duration: 229,
+        duration: Some(229),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/fcBbT1GTxqM/hqdefault.jpg?sqp=-oaymwEWCMACELQBIAQqCghQEJADGFogjgJIWg&rs=AMzJL3nFXmCI3boY29fznF06UEhuLqCI8A",
@@ -1555,7 +1555,7 @@ MusicPlaylist(
       TrackItem(
         id: "wCDsm_dt1cI",
         title: "Du schaffst das schon (Oktoberfest-Mix)",
-        duration: 190,
+        duration: Some(190),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/wCDsm_dt1cI/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nrWf7svEJMoTZFyzZUXrAj-fbjPg",
@@ -1577,7 +1577,7 @@ MusicPlaylist(
       TrackItem(
         id: "4j3AOJV1J8I",
         title: "23 - Bushido & Sido feat. Peter Maffay - Erwachsen sein",
-        duration: 218,
+        duration: Some(218),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/4j3AOJV1J8I/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3k7G40_B-QsI47BTObeHSXDJp_YKQ",
@@ -1599,7 +1599,7 @@ MusicPlaylist(
       TrackItem(
         id: "RtuW08ZIgvg",
         title: "Und wenn ein Lied - Radio Edit",
-        duration: 249,
+        duration: Some(249),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/RtuW08ZIgvg/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3n92_W3cp4nU9At3Bp7A5NJiTz07Q",
@@ -1621,7 +1621,7 @@ MusicPlaylist(
       TrackItem(
         id: "cbTXqKBIQ40",
         title: "Eiserner Steg [Klavier Version] (feat. Matthias Schweighöfer)",
-        duration: 250,
+        duration: Some(250),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/cbTXqKBIQ40/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mfnaL8_s3iYj0EhPtPdQKa5Q4KuQ",
@@ -1643,7 +1643,7 @@ MusicPlaylist(
       TrackItem(
         id: "oSd0Lph4luY",
         title: "Deja Vu (Instrumental)",
-        duration: 229,
+        duration: Some(229),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/oSd0Lph4luY/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lGkBNHVbBkECYRU_hVZeMnlChJqQ",
@@ -1665,7 +1665,7 @@ MusicPlaylist(
       TrackItem(
         id: "oq0rrYrufYU",
         title: "Herz über Kopf (Official Video)",
-        duration: 209,
+        duration: Some(209),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/oq0rrYrufYU/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mOMQ_a1JzMtNAg6ct1-YKmSrxsBw",
@@ -1687,7 +1687,7 @@ MusicPlaylist(
       TrackItem(
         id: "0-P_YkS0z8s",
         title: "Augenblick (feat. Summer Cem)",
-        duration: 208,
+        duration: Some(208),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/0-P_YkS0z8s/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mZaGU8H6n-ZWVBKersvuamy54mxA",
@@ -1709,7 +1709,7 @@ MusicPlaylist(
       TrackItem(
         id: "4BAKb2p450Q",
         title: "Nur noch kurz die Welt retten",
-        duration: 191,
+        duration: Some(191),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/4BAKb2p450Q/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3n2hrN7GF37duCFMPLPKjfVxY7qrA",
@@ -1731,7 +1731,7 @@ MusicPlaylist(
       TrackItem(
         id: "yqObMM_QzVQ",
         title: "Im Ascheregen",
-        duration: 303,
+        duration: Some(303),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/yqObMM_QzVQ/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nkAqu3SUZrUmUN1EcQt00FQTmyKA",
@@ -1753,7 +1753,7 @@ MusicPlaylist(
       TrackItem(
         id: "dlvStoOyEzE",
         title: "Du bist schön",
-        duration: 246,
+        duration: Some(246),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/dlvStoOyEzE/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kXzRe8O5ktyB5uCOEH65QEIjHMEA",
@@ -1775,7 +1775,7 @@ MusicPlaylist(
       TrackItem(
         id: "VNttGAaek2U",
         title: "Lass uns gehen",
-        duration: 214,
+        duration: Some(214),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/VNttGAaek2U/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lF0kIaWKUGXVoCjclXhwKuF4kjYA",
@@ -1797,7 +1797,7 @@ MusicPlaylist(
       TrackItem(
         id: "TxZMfufRJfo",
         title: "Oft gefragt",
-        duration: 189,
+        duration: Some(189),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/TxZMfufRJfo/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kUjXR2WNMkTz23tVxt_GEH16R5Qw",
@@ -1819,7 +1819,7 @@ MusicPlaylist(
       TrackItem(
         id: "6agT2asF4as",
         title: "Mon Chéri",
-        duration: 230,
+        duration: Some(230),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/6agT2asF4as/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kwObKE9HKfxV7VIYXVjT362uuUkg",
@@ -1841,7 +1841,7 @@ MusicPlaylist(
       TrackItem(
         id: "EcW0n83La5A",
         title: "Lieblingslied",
-        duration: 212,
+        duration: Some(212),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/EcW0n83La5A/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3m2ZRtRiJH7GX97dB1PAKpDtdJjvA",
@@ -1863,7 +1863,7 @@ MusicPlaylist(
       TrackItem(
         id: "_b61hg8UlZM",
         title: "Lambo Diablo GT",
-        duration: 285,
+        duration: Some(285),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/_b61hg8UlZM/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lJI1DFuirYMxvCHGAyWeKqrspqCg",
@@ -1885,7 +1885,7 @@ MusicPlaylist(
       TrackItem(
         id: "kDMFranvFuQ",
         title: "Diese Liebe",
-        duration: 359,
+        duration: Some(359),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/kDMFranvFuQ/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nMHTxjmESbG-avOxWEHI90YBYNwQ",
@@ -1907,7 +1907,7 @@ MusicPlaylist(
       TrackItem(
         id: "1apku0pVDeE",
         title: "Feuerwerk",
-        duration: 213,
+        duration: Some(213),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/1apku0pVDeE/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3klW08RZkY4CZCBVdgP09it-pvPQA",
@@ -1929,7 +1929,7 @@ MusicPlaylist(
       TrackItem(
         id: "g6JYzOjglBs",
         title: "Aufstehn! (feat. CeeLo Green)",
-        duration: 231,
+        duration: Some(231),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/g6JYzOjglBs/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nIHajbtUTurQeGCtR5Ak6XxCS1Jw",
@@ -1951,7 +1951,7 @@ MusicPlaylist(
       TrackItem(
         id: "GYK-NfOo7b4",
         title: "Dickes B (feat. Black Kappa)",
-        duration: 240,
+        duration: Some(240),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/GYK-NfOo7b4/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3k-P3yrpLnEZy0eF_XArYwiEw_U0A",
@@ -1973,7 +1973,7 @@ MusicPlaylist(
       TrackItem(
         id: "omUuR45iU0g",
         title: "Hayvan (feat. Summer Cem)",
-        duration: 291,
+        duration: Some(291),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/omUuR45iU0g/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3l3q63dT3Zpe-VxDrt84smPJQrX6g",
@@ -1995,7 +1995,7 @@ MusicPlaylist(
       TrackItem(
         id: "w7BE3inS-NM",
         title: "Bis hier und noch weiter (Official Video) (feat. KC Rebell & Summer Cem)",
-        duration: 228,
+        duration: Some(228),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/w7BE3inS-NM/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mwAvexX8kV3fB-YSFhA8l6hUp-ng",
@@ -2017,7 +2017,7 @@ MusicPlaylist(
       TrackItem(
         id: "FM-5BPMnhm0",
         title: "Tanz aus der Reihe!",
-        duration: 234,
+        duration: Some(234),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/FM-5BPMnhm0/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3neYDa-6mgFDVGPOvSUIET0unmRNg",
@@ -2039,7 +2039,7 @@ MusicPlaylist(
       TrackItem(
         id: "MnNZNfixTOw",
         title: "Wie soll ein Mensch das ertragen",
-        duration: 278,
+        duration: Some(278),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/MnNZNfixTOw/hqdefault.jpg?sqp=-oaymwEWCMACELQBIAQqCghQEJADGFogjgJIWg&rs=AMzJL3mFUmyqOgyCgXrmSeHbLHYOjuB8YA",
@@ -2061,7 +2061,7 @@ MusicPlaylist(
       TrackItem(
         id: "qe80EeU8cT8",
         title: "Wann (MTV Unplugged) (feat. Cassandra Steen)",
-        duration: 327,
+        duration: Some(327),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/qe80EeU8cT8/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3maHo7hlWZ2sb7tKItIl01uVCHBmA",
@@ -2083,7 +2083,7 @@ MusicPlaylist(
       TrackItem(
         id: "-s2-6KYgqpQ",
         title: "Narben",
-        duration: 264,
+        duration: Some(264),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/-s2-6KYgqpQ/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nt9ak1_BwlsnOCWPDgJyxIr5cMaQ",
@@ -2105,7 +2105,7 @@ MusicPlaylist(
       TrackItem(
         id: "RSlp874hESE",
         title: "Kollegah & Farid Bang - \"ZIEH DEN RUCKSACK AUS\" [ official Video ]",
-        duration: 162,
+        duration: Some(162),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/RSlp874hESE/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3muUIDaLUg7v3LnIS0YYo6bpUWD1Q",
@@ -2131,7 +2131,7 @@ MusicPlaylist(
       TrackItem(
         id: "oTI3tRQ_-3k",
         title: "SDP - Wenn ich groß bin",
-        duration: 225,
+        duration: Some(225),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/oTI3tRQ_-3k/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3n03HYB7ESYRchW7sTtbvl911Hfyg",
@@ -2153,7 +2153,7 @@ MusicPlaylist(
       TrackItem(
         id: "_okA84gaEJw",
         title: "Von Party zu Party",
-        duration: 221,
+        duration: Some(221),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/_okA84gaEJw/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mPgZSWA9tVjCTA3yo5MQH7RpbW2w",
@@ -2175,7 +2175,7 @@ MusicPlaylist(
       TrackItem(
         id: "pLHnnJRaP7Q",
         title: "Herzrasen (Original Radio Edit)",
-        duration: 207,
+        duration: Some(207),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/pLHnnJRaP7Q/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kUiMSXirWiHBmVNV2MDJnWJcqMng",
@@ -2197,7 +2197,7 @@ MusicPlaylist(
       TrackItem(
         id: "H2hGrsExuyc",
         title: "¿ Was hast du gedacht ?",
-        duration: 188,
+        duration: Some(188),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/H2hGrsExuyc/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kaz8Rg92gey55IXtV5HHa636nlaA",
@@ -2219,7 +2219,7 @@ MusicPlaylist(
       TrackItem(
         id: "RsZvjqG2lec",
         title: "Wenn Worte meine Sprache wären",
-        duration: 196,
+        duration: Some(196),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/RsZvjqG2lec/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3luIOtskw4y7w33W3ZBYW39F4GTbA",
@@ -2241,7 +2241,7 @@ MusicPlaylist(
       TrackItem(
         id: "qYRCiQ6d35w",
         title: "Mörder (instrumental)",
-        duration: 240,
+        duration: Some(240),
         cover: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/qYRCiQ6d35w/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3ljER1YYPIkdz00BCahMExaOq3_JA",

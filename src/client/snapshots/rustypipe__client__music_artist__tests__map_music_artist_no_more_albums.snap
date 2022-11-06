@@ -1,0 +1,930 @@
+---
+source: src/client/music_artist.rs
+expression: artist
+---
+MusicArtist(
+  id: "UC_vmjW5e1xEHhYjY2a0kK1A",
+  name: "Oonagh",
+  header_image: [
+    Thumbnail(
+      url: "https://lh3.googleusercontent.com/eMMHFaIWg8G3LL3B-8EAew8vhAP2G2aUIDfn4I1JHpS8WxmnO0Yof-vOSEyUSp4y3lCl-q6MIbugbw=w540-h225-p-l90-rj",
+      width: 540,
+      height: 225,
+    ),
+    Thumbnail(
+      url: "https://lh3.googleusercontent.com/eMMHFaIWg8G3LL3B-8EAew8vhAP2G2aUIDfn4I1JHpS8WxmnO0Yof-vOSEyUSp4y3lCl-q6MIbugbw=w816-h340-p-l90-rj",
+      width: 816,
+      height: 340,
+    ),
+    Thumbnail(
+      url: "https://lh3.googleusercontent.com/eMMHFaIWg8G3LL3B-8EAew8vhAP2G2aUIDfn4I1JHpS8WxmnO0Yof-vOSEyUSp4y3lCl-q6MIbugbw=w1440-h600-p-l90-rj",
+      width: 1440,
+      height: 600,
+    ),
+    Thumbnail(
+      url: "https://lh3.googleusercontent.com/eMMHFaIWg8G3LL3B-8EAew8vhAP2G2aUIDfn4I1JHpS8WxmnO0Yof-vOSEyUSp4y3lCl-q6MIbugbw=w1920-h800-p-l90-rj",
+      width: 1920,
+      height: 800,
+    ),
+    Thumbnail(
+      url: "https://lh3.googleusercontent.com/eMMHFaIWg8G3LL3B-8EAew8vhAP2G2aUIDfn4I1JHpS8WxmnO0Yof-vOSEyUSp4y3lCl-q6MIbugbw=w2880-h1200-p-l90-rj",
+      width: 2880,
+      height: 1200,
+    ),
+  ],
+  description: "Senta-Sofia Delliponti is a German singer, songwriter and actress. Since January 2014, she used the stage name Oonagh, until she changed it to Senta in 2022. Her signature musical style is inspired by the mystical lore of J. R. R. Tolkien\'s universe and by ethnic sounds throughout the world.\n\nFrom Wikipedia (https://en.wikipedia.org/wiki/Oonagh_(singer)) under Creative Commons Attribution CC-BY-SA 3.0 (http://creativecommons.org/licenses/by-sa/3.0/legalcode)",
+  wikipedia_url: Some("https://en.wikipedia.org/wiki/Oonagh_"),
+  subscriber_count: Some(34200),
+  tracks: [
+    TrackItem(
+      id: "aWxWb6iBC_s",
+      title: "Gäa",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/5HPo4GHtboHIiJtjs_VyQUW3Om-SzxhsREo5Rroq-RMj2Hx570v2Dy1uvPO9SwdYE13WSPKEKmPe6o8=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/5HPo4GHtboHIiJtjs_VyQUW3Om-SzxhsREo5Rroq-RMj2Hx570v2Dy1uvPO9SwdYE13WSPKEKmPe6o8=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "Oonagh",
+        ),
+      ],
+      album: Some(AlbumId(
+        id: "MPREb_8weOuwHWdSU",
+        name: "Oonagh",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "pI0Rancanz0",
+      title: "Vergiss mein nicht",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/5HPo4GHtboHIiJtjs_VyQUW3Om-SzxhsREo5Rroq-RMj2Hx570v2Dy1uvPO9SwdYE13WSPKEKmPe6o8=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/5HPo4GHtboHIiJtjs_VyQUW3Om-SzxhsREo5Rroq-RMj2Hx570v2Dy1uvPO9SwdYE13WSPKEKmPe6o8=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "Oonagh",
+        ),
+      ],
+      album: Some(AlbumId(
+        id: "MPREb_8weOuwHWdSU",
+        name: "Oonagh",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "kNdPylPd4JM",
+      title: "Kuliko Jana - Eine neue Zeit",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/6jIi291oF4nO81dPMFuXYD_53b8LySMvCjaN42nulLxAAvxdCjqIHs3UbHMNPd_v6_k8qB6wMAZoH2lx=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/6jIi291oF4nO81dPMFuXYD_53b8LySMvCjaN42nulLxAAvxdCjqIHs3UbHMNPd_v6_k8qB6wMAZoH2lx=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "Oonagh",
+        ),
+      ],
+      album: Some(AlbumId(
+        id: "MPREb_jovYz4SubiU",
+        name: "Eine neue Zeit",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "DsviLYh1CB0",
+      title: "Eldamar",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/dM1Gb_cyP0VS9effyzcEIbD9OCNsHSe9UwCBWaqf51Bn60cT4Jc74Yzd_kIxh6JO3eSFWgW17kYWJgYu=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/dM1Gb_cyP0VS9effyzcEIbD9OCNsHSe9UwCBWaqf51Bn60cT4Jc74Yzd_kIxh6JO3eSFWgW17kYWJgYu=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "Oonagh",
+        ),
+      ],
+      album: Some(AlbumId(
+        id: "MPREb_AkRyaoh86St",
+        name: "Oonagh (Attea Ranta - Second Edition)",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "wNgCQjct_Ys",
+      title: "Zeit der Sommernächte (Single Mix)",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/RQ3jJ3FCS9JwBMAiEAePDZpWFBjq57bamvWOm0xBUqRDBCncv-Elk7KRnVyQvJMjx-_1v_vEwc2LRHXI=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/RQ3jJ3FCS9JwBMAiEAePDZpWFBjq57bamvWOm0xBUqRDBCncv-Elk7KRnVyQvJMjx-_1v_vEwc2LRHXI=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "Oonagh",
+        ),
+        ArtistId(
+          id: Some("UCNWqts1f6DTMZav6Z9REj9w"),
+          name: "Safri Duo",
+        ),
+      ],
+      album: Some(AlbumId(
+        id: "MPREb_WAzaITm6K4l",
+        name: "Zeit der Sommernächte (Single Mix)",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "btPcPR3fJfQ",
+      title: "Akustik Version „AUFHÖREN“.♥\u{fe0f}",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/btPcPR3fJfQ/hqdefault.jpg?sqp=-oaymwEWCMACELQBIAQqCghQEJADGFogjgJIWg&rs=AMzJL3lBcuRfZoVybraQTngPUEUg0baH2w",
+          width: 320,
+          height: 180,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "Oonagh",
+        ),
+      ],
+      album: None,
+      view_count: Some(1000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "dFdac41o3mQ",
+      title: "AUFHÖREN",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/dFdac41o3mQ/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3l2HPoANrSDjuy7BDLJtBDan0oP1A",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/dFdac41o3mQ/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3lulkno5aGMi4dvpzvB6N-Nkkvo7Q",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCqqGdqr0qOwVxTVD4OztsZg"),
+          name: "Senta",
+        ),
+      ],
+      album: None,
+      view_count: Some(109000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "C_pGRMlCM3U",
+      title: "Gäa",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/C_pGRMlCM3U/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lEn2_IwgQ0geyf4g4VftqH9Y1_rw",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/C_pGRMlCM3U/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3ltty0d95k8DlHURkUcNR0UnzKhNA",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "Oonagh",
+        ),
+      ],
+      album: None,
+      view_count: Some(13000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "SUioohuufeE",
+      title: "Eldamar",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/SUioohuufeE/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kYTAURVybT5Dya-V0yBWtCWxIH_A",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/SUioohuufeE/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3lF9s6FGugleQxjahrdQY8S-IyRIA",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "Oonagh",
+        ),
+      ],
+      album: None,
+      view_count: Some(4500000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "yHv2oXYVbZg",
+      title: "Zeit der Sommernächte (single mix) (feat. Safri Duo)",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/yHv2oXYVbZg/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nM6j7dAdzB693s4j8w1T6P-sC8ng",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/yHv2oXYVbZg/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3mel1uPyHwlaFgRYVXgGj_JHZiKnA",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "Oonagh",
+        ),
+      ],
+      album: None,
+      view_count: Some(1900000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "QnzAiQZZ1uw",
+      title: "MUSIK MUSIK",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/QnzAiQZZ1uw/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mgJCmKzA8FNnIFR3u2VE0afXvvsA",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/QnzAiQZZ1uw/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3ljOkyUqSlQW7Gti08XL6WJFwHV6A",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCqqGdqr0qOwVxTVD4OztsZg"),
+          name: "Senta",
+        ),
+      ],
+      album: None,
+      view_count: Some(165000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "cnF-BVrVs1M",
+      title: "Senta - Was immer es ist (Offizielles Video)",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/cnF-BVrVs1M/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lVW88tiiFymiK4B7kDcp64huLwmA",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/cnF-BVrVs1M/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3kJLSNiI1ZuEl_dnbY3yLZHpz1GjA",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "Oonagh",
+        ),
+      ],
+      album: None,
+      view_count: Some(154000),
+      is_video: true,
+      track_nr: None,
+    ),
+  ],
+  albums: [
+    AlbumItem(
+      id: "MPREb_jovYz4SubiU",
+      name: "Eine neue Zeit",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/6jIi291oF4nO81dPMFuXYD_53b8LySMvCjaN42nulLxAAvxdCjqIHs3UbHMNPd_v6_k8qB6wMAZoH2lx=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/6jIi291oF4nO81dPMFuXYD_53b8LySMvCjaN42nulLxAAvxdCjqIHs3UbHMNPd_v6_k8qB6wMAZoH2lx=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "Oonagh",
+        ),
+      ],
+      album_type: Album,
+      year: Some(2019),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_nlBWQROfvjo",
+      name: "Märchen enden gut",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/Z5CF2JCRD5o7fBywh9Spg_Wvmrqkg0M01FWsSm_mdmUSfplv--9NgIiBRExudt7s0TTd3tgpJ7CLRFal=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/Z5CF2JCRD5o7fBywh9Spg_Wvmrqkg0M01FWsSm_mdmUSfplv--9NgIiBRExudt7s0TTd3tgpJ7CLRFal=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "Oonagh",
+        ),
+      ],
+      album_type: Album,
+      year: Some(2016),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_imDwIcPAjFy",
+      name: "Aeria (Sartoranta - Fan Edition)",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/_HeMwgRw13clSFgwGoOr96pYM-Hp3iBlBPw3IzITAzmt9pEavrYmmzN2qIlFIvAbyZjiD0kuDvpLx9k=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/_HeMwgRw13clSFgwGoOr96pYM-Hp3iBlBPw3IzITAzmt9pEavrYmmzN2qIlFIvAbyZjiD0kuDvpLx9k=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "Oonagh",
+        ),
+      ],
+      album_type: Album,
+      year: Some(2015),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_8weOuwHWdSU",
+      name: "Oonagh",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/5HPo4GHtboHIiJtjs_VyQUW3Om-SzxhsREo5Rroq-RMj2Hx570v2Dy1uvPO9SwdYE13WSPKEKmPe6o8=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/5HPo4GHtboHIiJtjs_VyQUW3Om-SzxhsREo5Rroq-RMj2Hx570v2Dy1uvPO9SwdYE13WSPKEKmPe6o8=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "Oonagh",
+        ),
+      ],
+      album_type: Album,
+      year: Some(2014),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_GyH43gCvdM5",
+      name: "Best Of",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/51Ee0uFa5llisVq_-qrCKT9iznOXDLi4M0jAN9lQhqDP0FwF8U5hOz3FczkkjPW42uncvmaUBFuosCNv=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/51Ee0uFa5llisVq_-qrCKT9iznOXDLi4M0jAN9lQhqDP0FwF8U5hOz3FczkkjPW42uncvmaUBFuosCNv=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "Oonagh",
+        ),
+      ],
+      album_type: Album,
+      year: Some(2020),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_WfEYxWGLcMx",
+      name: "Du bist genug (Single Mix)",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/51Ee0uFa5llisVq_-qrCKT9iznOXDLi4M0jAN9lQhqDP0FwF8U5hOz3FczkkjPW42uncvmaUBFuosCNv=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/51Ee0uFa5llisVq_-qrCKT9iznOXDLi4M0jAN9lQhqDP0FwF8U5hOz3FczkkjPW42uncvmaUBFuosCNv=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "Oonagh",
+        ),
+      ],
+      album_type: Single,
+      year: Some(2020),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_oWACs9fccqd",
+      name: "Kuliko Jana - Eine neue Zeit",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/aGMDrDlEEHyvTCZkPicIvvXD-oTtwAm6xKeupEb94RCPCoXAWkJ_VUsFW_djOPOgm2GX1uUPQNRmdrvZ=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/aGMDrDlEEHyvTCZkPicIvvXD-oTtwAm6xKeupEb94RCPCoXAWkJ_VUsFW_djOPOgm2GX1uUPQNRmdrvZ=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "Oonagh",
+        ),
+      ],
+      album_type: Single,
+      year: Some(2019),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_S6P0cjIdHIF",
+      name: "Zauberwald",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/YG6T83cQBccuJ6EwCQ2Kr9BLasLGjHmkxaLWRulnuCcbTGRBz8ugklJi1EkUNkI7J5xn6PWc-V6RAD36IA=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/YG6T83cQBccuJ6EwCQ2Kr9BLasLGjHmkxaLWRulnuCcbTGRBz8ugklJi1EkUNkI7J5xn6PWc-V6RAD36IA=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "Oonagh",
+        ),
+      ],
+      album_type: Single,
+      year: Some(2017),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_WAzaITm6K4l",
+      name: "Zeit der Sommernächte (Single Mix)",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/RQ3jJ3FCS9JwBMAiEAePDZpWFBjq57bamvWOm0xBUqRDBCncv-Elk7KRnVyQvJMjx-_1v_vEwc2LRHXI=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/RQ3jJ3FCS9JwBMAiEAePDZpWFBjq57bamvWOm0xBUqRDBCncv-Elk7KRnVyQvJMjx-_1v_vEwc2LRHXI=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "Oonagh",
+        ),
+      ],
+      album_type: Single,
+      year: Some(2017),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_2vYEpZteTjN",
+      name: "Willst du noch träumen (feat. Elbkinder (Rolf Zuckowski))",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/a8LKtq079VJn0TvA_qXOsoXDkRn8LkoUGlacmqSYZrZObvre5NiCwVVoJvhJT5U5qznU8PF6DAMtnT9x=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/a8LKtq079VJn0TvA_qXOsoXDkRn8LkoUGlacmqSYZrZObvre5NiCwVVoJvhJT5U5qznU8PF6DAMtnT9x=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "Oonagh",
+        ),
+      ],
+      album_type: Single,
+      year: Some(2016),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_eNje8weTxgK",
+      name: "Aulë und Yavanna (Jungle-Mix)",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/bSP9AK_sIsj3PWovWvpRvv0MUJ84lWlcjNeIiZXOoXgP5u9cILZYqSBP0_93f1b2-Fs3bv44HK_kYacC=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/bSP9AK_sIsj3PWovWvpRvv0MUJ84lWlcjNeIiZXOoXgP5u9cILZYqSBP0_93f1b2-Fs3bv44HK_kYacC=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "Oonagh",
+        ),
+      ],
+      album_type: Single,
+      year: Some(2016),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_vuyS6nIsNeg",
+      name: "Gäa",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/ADbxmUGQ9idAkrpYOo55d6bxIWe80aGPPIRnj-t2nptMVyekBQPBCP7Zl8uQUr0_bMAjBlU2vpMCuKSc=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/ADbxmUGQ9idAkrpYOo55d6bxIWe80aGPPIRnj-t2nptMVyekBQPBCP7Zl8uQUr0_bMAjBlU2vpMCuKSc=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "Oonagh",
+        ),
+      ],
+      album_type: Single,
+      year: Some(2014),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_76jQdnW2e6m",
+      name: "Gäa (Akustik Version)",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/51Ee0uFa5llisVq_-qrCKT9iznOXDLi4M0jAN9lQhqDP0FwF8U5hOz3FczkkjPW42uncvmaUBFuosCNv=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/51Ee0uFa5llisVq_-qrCKT9iznOXDLi4M0jAN9lQhqDP0FwF8U5hOz3FczkkjPW42uncvmaUBFuosCNv=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "Oonagh",
+        ),
+      ],
+      album_type: Single,
+      year: Some(2014),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_Gnj2M6UQmfX",
+      name: "Ich sehe was, was Du nicht siehst (Online Version)",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/aTSiSiSl_yW_mC5utFdDvz8VxVdEuczkqJuA3BfCDqz3oy4B24f7HvUzXmqc7-_hCGCQKzcZVVOw7EPxHA=w226-h226-s-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/aTSiSiSl_yW_mC5utFdDvz8VxVdEuczkqJuA3BfCDqz3oy4B24f7HvUzXmqc7-_hCGCQKzcZVVOw7EPxHA=w544-h544-s-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "Oonagh",
+        ),
+      ],
+      album_type: Single,
+      year: Some(2007),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_kWjFiCq7EdM",
+      name: "Scheissegal (Digital Version)",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/fuDYgIcWR_McW-0kawebvc3pWODrPKgEkw8kMaIuhXiAhgIVbtK2f7VBQKO1zb2axQuhWllKU4xZr6Zk=w226-h226-s-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/fuDYgIcWR_McW-0kawebvc3pWODrPKgEkw8kMaIuhXiAhgIVbtK2f7VBQKO1zb2axQuhWllKU4xZr6Zk=w544-h544-s-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "Oonagh",
+        ),
+      ],
+      album_type: Single,
+      year: Some(2006),
+      by_va: false,
+    ),
+  ],
+  playlists: [],
+  similar_artists: [
+    ArtistItem(
+      id: "UCzVhvhjoVjkQnmDG-b9hbRQ",
+      name: "Santiano",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/5GS1CSS3p89L5zFKIy6WdewcbYBK3N_WN3JutSRqa22RVf9zh3C2scsA1H0XNCecCOJoXbY1il8eszI=w226-h226-p-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/5GS1CSS3p89L5zFKIy6WdewcbYBK3N_WN3JutSRqa22RVf9zh3C2scsA1H0XNCecCOJoXbY1il8eszI=w544-h544-p-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(199000),
+    ),
+    ArtistItem(
+      id: "UCCRR8xYCRKBughN1C5xeADA",
+      name: "Bannkreis",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/69Gi5bqIGVZ3Q0svysQO-xJtrpyQOPkg2TV6YMUxQhP0ggFmbj5jgRya4JhD0J5jtBh5bTDsBVAYV6r3oA=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/69Gi5bqIGVZ3Q0svysQO-xJtrpyQOPkg2TV6YMUxQhP0ggFmbj5jgRya4JhD0J5jtBh5bTDsBVAYV6r3oA=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(978),
+    ),
+    ArtistItem(
+      id: "UCWOw75Vmryv3D_WdzE2DbKA",
+      name: "dArtagnan",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/eLIY1e-S56FdEnJKIdZhnyUAKKyxrpS9Q6qql8SDTGp-w6avQKQDqfN2x9Ml_4W0hF8dJnpU5w0YXg=w226-h226-p-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/eLIY1e-S56FdEnJKIdZhnyUAKKyxrpS9Q6qql8SDTGp-w6avQKQDqfN2x9Ml_4W0hF8dJnpU5w0YXg=w544-h544-p-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(150000),
+    ),
+    ArtistItem(
+      id: "UCS7jnBHtFH3TQHBw6CiqGFQ",
+      name: "Ji-In Cho",
+      avatar: [
+        Thumbnail(
+          url: "https://www.gstatic.com/youtube/media/ytm/images/artist_avatar@1200.png?sqp=CPPx1tgF-oaymwEICOIBEOIBWAE&rs=ALLJMcJpRmbO_mSzzJIvhCI3RKotZOVoMw",
+          width: 256,
+          height: 256,
+        ),
+        Thumbnail(
+          url: "https://www.gstatic.com/youtube/media/ytm/images/artist_avatar@1200.png?sqp=CLjy1tgF-oaymwEICKAEEKAEWAE&rs=ALLJMcLCN3eUA6SlURWHZDKHi0vPg_Qv6g",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(143),
+    ),
+    ArtistItem(
+      id: "UCjnWwN1uliOk327LAbaQ6pA",
+      name: "Schandmaul",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/JBZIzWMtBWkdp4hOPlwccwUC-B2YaqScYkDdkg0tEAWRpck9Ihs4fkg1zgI9mybGtjFBDssYu6RSeZo=w226-h226-p-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/JBZIzWMtBWkdp4hOPlwccwUC-B2YaqScYkDdkg0tEAWRpck9Ihs4fkg1zgI9mybGtjFBDssYu6RSeZo=w544-h544-p-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(84300),
+    ),
+    ArtistItem(
+      id: "UCb8Equh_Bi6a38MeXY0z36w",
+      name: "LaFee",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68YcWOWU-zpVgosITSdESwS_x3HQ75uJkYUlBi8WpDYrgyjIt1UmHSYX0LdHEiloMepLrcbPHrwQGSzr=w226-h226-p-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68YcWOWU-zpVgosITSdESwS_x3HQ75uJkYUlBi8WpDYrgyjIt1UmHSYX0LdHEiloMepLrcbPHrwQGSzr=w544-h544-p-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(67500),
+    ),
+    ArtistItem(
+      id: "UCKT1ZHKHDVQPNW9Ur-T5pnQ",
+      name: "Eisblume",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/C3dfXGjcd4nFfUTbe1qDJDfiYTARt2xLm7DXis3cEEDRDEz4CW4IfLRPav4a-IDvJA-trLMHWSwFfCM=w226-h226-p-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/C3dfXGjcd4nFfUTbe1qDJDfiYTARt2xLm7DXis3cEEDRDEz4CW4IfLRPav4a-IDvJA-trLMHWSwFfCM=w544-h544-p-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(2890),
+    ),
+    ArtistItem(
+      id: "UCBepT5loBAcvYgvXikNag4g",
+      name: "Versengold",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/UojxDkEKXxDQYYHxChiVuijl1nBNJGPgeYRwdbnKH-VqtcXclfyW9aDjHmB3NdGeuGh053j38raLyfE=w226-h226-p-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/UojxDkEKXxDQYYHxChiVuijl1nBNJGPgeYRwdbnKH-VqtcXclfyW9aDjHmB3NdGeuGh053j38raLyfE=w544-h544-p-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(92500),
+    ),
+    ArtistItem(
+      id: "UCB08eUitS1agOuL6KVffvFg",
+      name: "The Dark Tenor",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/90cpYV5OWevw0JYLbx0jUuZWlPV-qBqXYiGOtfWO464JEIHvnbvYWGXme0P6vsXZg_39AjCoChqetXw=w226-h226-p-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/90cpYV5OWevw0JYLbx0jUuZWlPV-qBqXYiGOtfWO464JEIHvnbvYWGXme0P6vsXZg_39AjCoChqetXw=w544-h544-p-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(34000),
+    ),
+    ArtistItem(
+      id: "UCZJnPgkQapYA9R12WJLDt9A",
+      name: "Saltatio Mortis",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/ko6qJfDzUT2wCDkVK_iCMeXZb9uImkbrKNlk3JgxgEhcCEHOB2LQlbE5zOuBINUnbPLK4-ch00luTcc=w226-h226-p-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/ko6qJfDzUT2wCDkVK_iCMeXZb9uImkbrKNlk3JgxgEhcCEHOB2LQlbE5zOuBINUnbPLK4-ch00luTcc=w544-h544-p-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(178000),
+    ),
+  ],
+  tracks_playlist_id: Some("OLAK5uy_m6843aeUO05cz_t1seql2dQ9eUgwyuOXI"),
+  videos_playlist_id: None,
+)

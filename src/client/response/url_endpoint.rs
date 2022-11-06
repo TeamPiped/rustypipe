@@ -39,7 +39,14 @@ pub(crate) struct WatchEndpoint {
 #[derive(Debug)]
 pub(crate) struct BrowseEndpoint {
     pub browse_id: String,
+    pub params: String,
     pub browse_endpoint_context_supported_configs: Option<BrowseEndpointConfig>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct BrowseEndpointWrap {
+    pub browse_endpoint: BrowseEndpoint,
 }
 
 impl<'de> Deserialize<'de> for BrowseEndpoint {
@@ -51,6 +58,8 @@ impl<'de> Deserialize<'de> for BrowseEndpoint {
         #[serde(rename_all = "camelCase")]
         struct BEp {
             pub browse_id: String,
+            #[serde(default)]
+            pub params: String,
             pub browse_endpoint_context_supported_configs: Option<BrowseEndpointConfig>,
         }
 
@@ -71,6 +80,7 @@ impl<'de> Deserialize<'de> for BrowseEndpoint {
 
         Ok(Self {
             browse_id,
+            params: bep.params,
             browse_endpoint_context_supported_configs: bep
                 .browse_endpoint_context_supported_configs,
         })

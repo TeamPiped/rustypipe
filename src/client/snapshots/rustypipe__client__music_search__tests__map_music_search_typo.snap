@@ -7,7 +7,7 @@ MusicSearchResult(
     TrackItem(
       id: "6485PhOtHzY",
       title: "Lieblingsmensch",
-      duration: 191,
+      duration: Some(191),
       cover: [
         Thumbnail(
           url: "https://lh3.googleusercontent.com/dwrJ5NnlZU7CBziLRlTm1uizuolakRAX7g34-eKeqEZQGZgwmvhqcs3TiZClfm7v6a-KYHieitdakpPo=w60-h60-l90-rj",
@@ -37,7 +37,7 @@ MusicSearchResult(
     TrackItem(
       id: "pt0YvfnhGgI",
       title: "Lieblingsmensch",
-      duration: 524,
+      duration: Some(524),
       cover: [
         Thumbnail(
           url: "https://lh3.googleusercontent.com/38mrm1ntm4MQfmB4Pl2EdY7o6McbLq06sC7qqLxDMqOfL-eqySheDnfl3IOpZYIE_ozt6Bywlmjj2DCe=w60-h60-l90-rj",
@@ -67,7 +67,7 @@ MusicSearchResult(
     TrackItem(
       id: "0yPnvetCm-U",
       title: "Lieblingsmensch",
-      duration: 174,
+      duration: Some(174),
       cover: [
         Thumbnail(
           url: "https://lh3.googleusercontent.com/RORTouE503-ZZqgAov66r2cK-YyTJbZIwbM1Hz58ja7jNgWSG_xjTLxK41nwAT8ejRvY7U35dMm4OOYhYg=w60-h60-l90-rj",
@@ -97,7 +97,7 @@ MusicSearchResult(
     TrackItem(
       id: "3ryohiCVq3M",
       title: "Namika -  Lieblingsmensch (Official Video)",
-      duration: 191,
+      duration: Some(191),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/3ryohiCVq3M/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nsa7wZ13z3ie49RzcBHKQAmjlU9w",
@@ -119,7 +119,7 @@ MusicSearchResult(
     TrackItem(
       id: "6Bt1KeMNqvc",
       title: "Lieblingsmensch Namika Lyrics",
-      duration: 188,
+      duration: Some(188),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/6Bt1KeMNqvc/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3n9IkVmxE5YqesHGPS0xtJemxrNzQ",
@@ -141,7 +141,7 @@ MusicSearchResult(
     TrackItem(
       id: "5YQRHUItXTI",
       title: "Namika - Lieblingsmensch 1 Hour Version",
-      duration: 3801,
+      duration: Some(3801),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/5YQRHUItXTI/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kP0NYgZ5YbsGdULVIXOu08eoHGrw",

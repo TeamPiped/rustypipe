@@ -7,7 +7,7 @@ MusicSearchResult(
     TrackItem(
       id: "ZeerrnuLi5E",
       title: "Black Mamba",
-      duration: 230,
+      duration: Some(230),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/ZeerrnuLi5E/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3maNxpYzTFmXZBd8s1w1iE6rTBDaw",
@@ -29,7 +29,7 @@ MusicSearchResult(
     TrackItem(
       id: "BL-aIpCLWnU",
       title: "Black Mamba",
-      duration: 175,
+      duration: Some(175),
       cover: [
         Thumbnail(
           url: "https://lh3.googleusercontent.com/MOL4_Ula9hocErkX2xK_7mISFiWvQz51vReT14KCHF9wsqCEH6sO8iilFFelWMn7JOYIk2WFa-gMmw2uvw=w60-h60-l90-rj",
@@ -59,7 +59,7 @@ MusicSearchResult(
     TrackItem(
       id: "cATe8Toht70",
       title: "Black Mamba",
-      duration: 74,
+      duration: Some(74),
       cover: [
         Thumbnail(
           url: "https://lh3.googleusercontent.com/ZesxRmV1_bDW89z70eojCd6DofYPbzbgGaXSIRP3UjmE4nIAkOuWc8pXaozR4AwrzPQublDCKrg6vcxHOg=w60-h60-l90-rj",
@@ -93,7 +93,7 @@ MusicSearchResult(
     TrackItem(
       id: "WwNKyoizf8k",
       title: "BLACK MAMBA",
-      duration: 182,
+      duration: Some(182),
       cover: [
         Thumbnail(
           url: "https://lh3.googleusercontent.com/gall0XXuwoV_SYR3S6EgtOGaBC3YOR5wOpQxCyqgxC3Xht3Jc95Y-sFg-sGAcQl946MfurGY_xSv0YBT=w60-h60-l90-rj",
@@ -123,7 +123,7 @@ MusicSearchResult(
     TrackItem(
       id: "yQUU29NwNF4",
       title: "aespa(에스파) - Black Mamba @인기가요 inkigayo 20201122",
-      duration: 213,
+      duration: Some(213),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/yQUU29NwNF4/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3k0HD8CTPlz4YU0hvy1GqKSf2HKUQ",
@@ -145,7 +145,7 @@ MusicSearchResult(
     TrackItem(
       id: "Ky5RT5oGg0w",
       title: "Black Mamba",
-      duration: 287,
+      duration: Some(287),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/Ky5RT5oGg0w/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mB-DDgCruC-dhPM0v66ckiZJQnJg",
@@ -167,7 +167,7 @@ MusicSearchResult(
     TrackItem(
       id: "dz9bieeSVRw",
       title: "aespa - Black Mamba (Music Bank) | KBS WORLD TV 201127",
-      duration: 192,
+      duration: Some(192),
       cover: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/dz9bieeSVRw/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lsJGKTqJhnt-ckrJtBLlvSp46Y5g",

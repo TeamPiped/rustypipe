@@ -1,0 +1,18 @@
+---
+source: tests/youtube.rs
+expression: artist
+---
+MusicArtist(
+  id: "UCh8gHdtzO2tXd593_bjErWg",
+  name: "Doobydobap",
+  header_image: "[header_image]",
+  description: "",
+  wikipedia_url: None,
+  subscriber_count: "[subscriber_count]",
+  tracks: "[tracks]",
+  albums: [],
+  playlists: "[playlists]",
+  similar_artists: "[artists]",
+  tracks_playlist_id: None,
+  videos_playlist_id: None,
+)

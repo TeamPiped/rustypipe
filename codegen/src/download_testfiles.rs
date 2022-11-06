@@ -1,6 +1,8 @@
 use std::{
     fs::File,
+    ops::Sub,
     path::{Path, PathBuf},
+    sync::Mutex,
 };
 
 use rustypipe::{
@@ -45,6 +47,7 @@ pub async fn download_testfiles(project_root: &Path) {
     music_search_artists(&testfiles).await;
     music_search_playlists(&testfiles).await;
     music_search_cont(&testfiles).await;
+    music_artist(&testfiles).await;
 }
 
 const CLIENT_TYPES: [ClientType; 5] = [
@@ -58,28 +61,54 @@ const CLIENT_TYPES: [ClientType; 5] = [
 /// Store pretty-printed response json
 pub struct TestFileReporter {
     path: PathBuf,
+    count: Mutex<u8>,
 }
 
 impl TestFileReporter {
     pub fn new<P: AsRef<Path>>(path: P) -> Self {
         Self {
             path: path.as_ref().to_path_buf(),
+            count: Mutex::new(0),
         }
     }
 }
 
 impl Reporter for TestFileReporter {
     fn report(&self, report: &Report) {
+        if report.level != rustypipe::report::Level::DBG {
+            println!("Error: {}", report.error.as_deref().unwrap_or_default());
+            return;
+        }
+
         let mut root = self.path.clone();
         root.set_file_name("");
         std::fs::create_dir_all(root).unwrap();
 
+        let count = {
+            let mut cl = self.count.lock().unwrap();
+            *cl += 1;
+            cl.sub(1)
+        };
+
+        let path = if count == 0 {
+            self.path.clone()
+        } else {
+            let mut p = self.path.clone();
+            p.set_file_name(format!(
+                "{}_{}.{}",
+                p.file_stem().unwrap_or_default().to_string_lossy(),
+                count,
+                p.extension().unwrap_or_default().to_string_lossy()
+            ));
+            p
+        };
+
         let data =
             serde_json::from_str::<serde_json::Value>(&report.http_request.resp_body).unwrap();
-        let file = File::create(&self.path).unwrap();
+        let file = File::create(&path).unwrap();
         serde_json::to_writer_pretty(file, &data).unwrap();
 
-        println!("Downloaded {}", self.path.display());
+        println!("Downloaded {}", path.display());
     }
 }
 
@@ -617,4 +646,24 @@ async fn music_search_cont(testfiles: &Path) {
 
     let rp = rp_testfile(&json_path);
     res.items.next(&rp.query()).await.unwrap().unwrap();
+}
+
+async fn music_artist(testfiles: &Path) {
+    for (name, id) in [
+        ("default", "UClmXPfaYhXOYsNn_QUyheWQ"),
+        ("no_more_albums", "UC_vmjW5e1xEHhYjY2a0kK1A"),
+        ("only_singles", "UCfwCE5VhPMGxNPFxtVv7lRw"),
+        ("no_artist", "UCh8gHdtzO2tXd593_bjErWg"),
+        ("only_more_singles", "UC0aXrjVxG5pZr99v77wZdPQ"),
+    ] {
+        let mut json_path = testfiles.to_path_buf();
+        json_path.push("music_artist");
+        json_path.push(format!("artist_{}.json", name));
+        if json_path.exists() {
+            continue;
+        }
+
+        let rp = rp_testfile(&json_path);
+        rp.query().music_artist(id, true).await.unwrap();
+    }
 }

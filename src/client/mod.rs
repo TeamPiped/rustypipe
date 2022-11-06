@@ -3,6 +3,7 @@
 pub(crate) mod response;
 
 mod channel;
+mod music_artist;
 mod music_playlist;
 mod music_search;
 mod pagination;
@@ -152,6 +153,7 @@ const CONSENT_COOKIE_YES: &str = "YES+yt.462272069.de+FX+";
 const YOUTUBEI_V1_URL: &str = "https://www.youtube.com/youtubei/v1/";
 const YOUTUBEI_V1_GAPIS_URL: &str = "https://youtubei.googleapis.com/youtubei/v1/";
 const YOUTUBE_MUSIC_V1_URL: &str = "https://music.youtube.com/youtubei/v1/";
+const YOUTUBE_MUSIC_HOME_URL: &str = "https://music.youtube.com/";
 
 const DISABLE_PRETTY_PRINT_PARAMETER: &str = "&prettyPrint=false";
 
@@ -351,7 +353,7 @@ impl RustyPipeBuilder {
     /// program executions.
     ///
     /// **Default value**: `FileStorage` in `rustypipe_cache.json`
-    pub fn storage(mut self, storage: Box<dyn CacheStorage + Sync + Send>) -> Self {
+    pub fn storage(mut self, storage: Box<dyn CacheStorage>) -> Self {
         self.storage = Some(storage);
         self
     }
@@ -365,7 +367,7 @@ impl RustyPipeBuilder {
     /// Add a `Reporter` to collect error details
     ///
     ///  **Default value**: `FileReporter` creating reports in `./rustypipe_reports`
-    pub fn reporter(mut self, reporter: Box<dyn Reporter + Sync + Send>) -> Self {
+    pub fn reporter(mut self, reporter: Box<dyn Reporter>) -> Self {
         self.reporter = Some(reporter);
         self
     }
@@ -722,6 +724,25 @@ impl RustyPipe {
                 Err(e) => error!("Could not serialize cache. Error: {}", e),
             }
         }
+    }
+
+    async fn get_ytm_visitor_data(&self) -> Result<String, Error> {
+        let resp = self.inner.http.get(YOUTUBE_MUSIC_HOME_URL).send().await?;
+
+        resp.headers()
+            .get_all(header::SET_COOKIE)
+            .iter()
+            .find_map(|c| {
+                if let Ok(cookie) = c.to_str() {
+                    if let Some(after) = cookie.strip_prefix("__Secure-YEC=") {
+                        return after.split_once(';').map(|s| s.0.to_owned());
+                    }
+                }
+                None
+            })
+            .ok_or(Error::Extraction(ExtractionError::InvalidData(
+                Cow::Borrowed("could not get YTM cookies"),
+            )))
     }
 }
 
@@ -1155,4 +1176,17 @@ trait MapResponse<T> {
         lang: Language,
         deobf: Option<&Deobfuscator>,
     ) -> Result<MapResult<T>, ExtractionError>;
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[tokio::test]
+    async fn t_get_ytm_visitor_data() {
+        let rp = RustyPipe::new();
+        let visitor_data = rp.get_ytm_visitor_data().await.unwrap();
+        assert!(visitor_data.ends_with("%3D"));
+        assert_eq!(visitor_data.len(), 32)
+    }
 }
