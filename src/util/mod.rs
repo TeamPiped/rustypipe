@@ -23,7 +23,9 @@ pub static VIDEO_ID_REGEX: Lazy<Regex> = Lazy::new(|| Regex::new(r"^[A-Za-z0-9_-
 pub static CHANNEL_ID_REGEX: Lazy<Regex> =
     Lazy::new(|| Regex::new(r"^UC[A-Za-z0-9_-]{22}$").unwrap());
 pub static PLAYLIST_ID_REGEX: Lazy<Regex> =
-    Lazy::new(|| Regex::new(r"^(?:PL|RD)[A-Za-z0-9_-]{30,}$").unwrap());
+    Lazy::new(|| Regex::new(r"^(?:PL|RD|OLAK)[A-Za-z0-9_-]{30,}$").unwrap());
+pub static ALBUM_ID_REGEX: Lazy<Regex> =
+    Lazy::new(|| Regex::new(r"^MPREb_[A-Za-z0-9_-]{11}$").unwrap());
 pub static VANITY_PATH_REGEX: Lazy<Regex> =
     Lazy::new(|| Regex::new(r"^/?(?:(?:c\/|user\/)?[A-z0-9]+)|(?:@[A-z0-9-_.]+)$").unwrap());
 
@@ -32,6 +34,7 @@ pub const DOT_SEPARATOR: &str = " • ";
 /// YouTube Music name (author of official playlists)
 pub const YT_MUSIC_NAME: &str = "YouTube Music";
 pub const VARIOUS_ARTISTS: &str = "Various Artists";
+pub const PLAYLIST_ID_ALBUM_PREFIX: &str = "OLAK";
 
 const CONTENT_PLAYBACK_NONCE_ALPHABET: &[u8; 64] =
     b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";

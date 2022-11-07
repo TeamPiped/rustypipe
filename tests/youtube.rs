@@ -1165,10 +1165,11 @@ async fn search_suggestion_empty() {
 #[case("https://piped.mha.fi/dQw4w9WgXcQ", UrlTarget::Channel {id: "UCoG6BrhgmivrkcbEHcYtK4Q".to_owned()})]
 // Both a video ID and a channel name + video time param => returns video
 #[case("https://piped.mha.fi/dQw4w9WgXcQ?t=0", UrlTarget::Video {id: "dQw4w9WgXcQ".to_owned(), start_time: 0})]
+#[case("https://music.youtube.com/playlist?list=OLAK5uy_k0yFrZlFRgCf3rLPza-lkRmCrtLPbK9pE", UrlTarget::Album {id: "MPREb_GyH43gCvdM5".to_owned()})]
 #[tokio::test]
 async fn resolve_url(#[case] url: &str, #[case] expect: UrlTarget) {
     let rp = RustyPipe::builder().strict().build();
-    let target = rp.query().resolve_url(url).await.unwrap();
+    let target = rp.query().resolve_url(url, true).await.unwrap();
     assert_eq!(target, expect);
 }
 
@@ -1182,10 +1183,12 @@ async fn resolve_url(#[case] url: &str, #[case] expect: UrlTarget) {
 #[case("dQw4w9WgXcQ", UrlTarget::Video {id: "dQw4w9WgXcQ".to_owned(), start_time: 0})]
 #[case("PL4lEESSgxM_5O81EvKCmBIm_JT5Q7JeaI", UrlTarget::Playlist {id: "PL4lEESSgxM_5O81EvKCmBIm_JT5Q7JeaI".to_owned()})]
 #[case("RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk", UrlTarget::Playlist {id: "RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk".to_owned()})]
+#[case("OLAK5uy_k0yFrZlFRgCf3rLPza-lkRmCrtLPbK9pE", UrlTarget::Album {id: "MPREb_GyH43gCvdM5".to_owned()})]
+#[case("MPREb_GyH43gCvdM5", UrlTarget::Album {id: "MPREb_GyH43gCvdM5".to_owned()})]
 #[tokio::test]
 async fn resolve_string(#[case] string: &str, #[case] expect: UrlTarget) {
     let rp = RustyPipe::builder().strict().build();
-    let target = rp.query().resolve_string(string).await.unwrap();
+    let target = rp.query().resolve_string(string, true).await.unwrap();
     assert_eq!(target, expect);
 }
 
@@ -1194,7 +1197,7 @@ async fn resolve_channel_not_found() {
     let rp = RustyPipe::builder().strict().build();
     let err = rp
         .query()
-        .resolve_url("https://www.youtube.com/feeqegnhq3rkwghjq43ruih43io3")
+        .resolve_url("https://www.youtube.com/feeqegnhq3rkwghjq43ruih43io3", true)
         .await
         .unwrap_err();
 

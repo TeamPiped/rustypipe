@@ -139,7 +139,7 @@ impl PageType {
     pub(crate) fn to_url_target(self, id: String) -> UrlTarget {
         match self {
             PageType::Artist => UrlTarget::Channel { id },
-            PageType::Album => UrlTarget::Playlist { id },
+            PageType::Album => UrlTarget::Album { id },
             PageType::Channel => UrlTarget::Channel { id },
             PageType::Playlist => UrlTarget::Playlist { id },
         }

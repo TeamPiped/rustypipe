@@ -41,6 +41,7 @@ pub enum UrlTarget {
     Video { id: String, start_time: u32 },
     Channel { id: String },
     Playlist { id: String },
+    Album { id: String },
 }
 
 impl ToString for UrlTarget {
@@ -66,6 +67,11 @@ impl UrlTarget {
             UrlTarget::Playlist { id } => {
                 format!("{}/playlist?list={}", yt_host, id)
             }
+            UrlTarget::Album { id } => {
+                // The official album URLs use the playlist ID
+                // This looks weird, but it works
+                format!("{}/channel/{}", yt_host, id)
+            }
         }
     }
 
@@ -87,6 +93,12 @@ impl UrlTarget {
                 match util::PLAYLIST_ID_REGEX.is_match(id).unwrap_or_default() {
                     true => Ok(()),
                     false => Err(Error::Other("invalid playlist id".into())),
+                }
+            }
+            UrlTarget::Album { id } => {
+                match util::ALBUM_ID_REGEX.is_match(id).unwrap_or_default() {
+                    true => Ok(()),
+                    false => Err(Error::Other("invalid album id".into())),
                 }
             }
         }

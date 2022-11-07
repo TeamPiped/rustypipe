@@ -20,7 +20,7 @@ struct QResolveUrl<'a> {
 }
 
 impl RustyPipeQuery {
-    pub async fn resolve_url(self, url: &str) -> Result<UrlTarget, Error> {
+    pub async fn resolve_url(self, url: &str, resolve_albums: bool) -> Result<UrlTarget, Error> {
         let (url, params) = util::url_to_params(url)?;
 
         let mut is_shortlink = url.domain().and_then(|d| match d {
@@ -61,7 +61,16 @@ impl RustyPipeQuery {
                     .ok_or(Error::Other(Cow::Borrowed("invalid url: no playlist id")))?
                     .to_string();
 
-                Ok(UrlTarget::Playlist { id })
+                // YouTube Music album has to be resolved by the YTM API
+                if resolve_albums && id.starts_with(util::PLAYLIST_ID_ALBUM_PREFIX) {
+                    self._navigation_resolve_url(
+                        &format!("/playlist?list={}", id),
+                        ClientType::DesktopMusic,
+                    )
+                    .await
+                } else {
+                    Ok(UrlTarget::Playlist { id })
+                }
             }
             // Channel vanity URL or youtu.be shortlink
             Some(mut id) => {
@@ -86,7 +95,8 @@ impl RustyPipeQuery {
                     }
                     Some(false) => {
                         // Vanity URL (e.g. youtube.com/LinusTechTips) has to be resolved by the Innertube API
-                        self._navigation_resolve_url(url.path()).await
+                        self._navigation_resolve_url(url.path(), ClientType::Desktop)
+                            .await
                     }
                     None => {
                         // We dont have the original YT domain, so this can be both
@@ -98,7 +108,10 @@ impl RustyPipeQuery {
                                 .is_match(url.path())
                                 .unwrap_or_default()
                         {
-                            match self._navigation_resolve_url(url.path()).await {
+                            match self
+                                ._navigation_resolve_url(url.path(), ClientType::Desktop)
+                                .await
+                            {
                                 Ok(target) => Ok(target),
                                 Err(Error::Extraction(ExtractionError::ContentUnavailable(e))) => {
                                     match util::VIDEO_ID_REGEX.is_match(id).unwrap_or_default() {
@@ -131,14 +144,19 @@ impl RustyPipeQuery {
         Ok(target)
     }
 
-    pub async fn resolve_string(self, string: &str) -> Result<UrlTarget, Error> {
+    pub async fn resolve_string(
+        self,
+        string: &str,
+        resolve_albums: bool,
+    ) -> Result<UrlTarget, Error> {
         // URL with protocol
         if string.starts_with("http://") || string.starts_with("https://") {
-            self.resolve_url(string).await
+            self.resolve_url(string, resolve_albums).await
         }
         // URL without protocol
         else if string.contains('/') && string.contains('.') {
-            self.resolve_url(&format!("https://{}", string)).await
+            self.resolve_url(&format!("https://{}", string), resolve_albums)
+                .await
         }
         // ID only
         else if util::VIDEO_ID_REGEX.is_match(string).unwrap_or_default() {
@@ -151,28 +169,54 @@ impl RustyPipeQuery {
                 id: string.to_owned(),
             })
         } else if util::PLAYLIST_ID_REGEX.is_match(string).unwrap_or_default() {
-            Ok(UrlTarget::Playlist {
+            if resolve_albums && string.starts_with(util::PLAYLIST_ID_ALBUM_PREFIX) {
+                self._navigation_resolve_url(
+                    &format!("/playlist?list={}", string),
+                    ClientType::DesktopMusic,
+                )
+                .await
+            } else {
+                Ok(UrlTarget::Playlist {
+                    id: string.to_owned(),
+                })
+            }
+        } else if util::ALBUM_ID_REGEX.is_match(string).unwrap_or_default() {
+            Ok(UrlTarget::Album {
                 id: string.to_owned(),
             })
         }
         // Channel name only
         else if util::VANITY_PATH_REGEX.is_match(string).unwrap_or_default() {
-            self._navigation_resolve_url(&format!("/{}", string.trim_start_matches('/')))
-                .await
+            self._navigation_resolve_url(
+                &format!("/{}", string.trim_start_matches('/')),
+                ClientType::Desktop,
+            )
+            .await
         } else {
             Err(Error::Other("invalid input string".into()))
         }
     }
 
-    async fn _navigation_resolve_url(&self, url_path: &str) -> Result<UrlTarget, Error> {
-        let context = self.get_context(ClientType::Desktop, true, None).await;
+    async fn _navigation_resolve_url(
+        &self,
+        url_path: &str,
+        ctype: ClientType,
+    ) -> Result<UrlTarget, Error> {
+        let context = self.get_context(ctype, true, None).await;
         let request_body = QResolveUrl {
             context,
-            url: format!("https://www.youtube.com{}", url_path),
+            url: format!(
+                "https://{}.youtube.com{}",
+                match ctype {
+                    ClientType::DesktopMusic => "music",
+                    _ => "www",
+                },
+                url_path
+            ),
         };
 
         self.execute_request::<response::ResolvedUrl, _, _>(
-            ClientType::Desktop,
+            ctype,
             "channel_id",
             &request_body.url,
             "navigation/resolve_url",
@@ -189,23 +233,24 @@ impl MapResponse<UrlTarget> for response::ResolvedUrl {
         _lang: Language,
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
     ) -> Result<MapResult<UrlTarget>, ExtractionError> {
+        let browse_endpoint = self
+            .endpoint
+            .browse_endpoint
+            .ok_or(ExtractionError::InvalidData(Cow::Borrowed("No browse ID")))?;
+
         let page_type = self
             .endpoint
             .command_metadata
-            .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
-                "No command metadata",
-            )))?
-            .web_command_metadata
-            .web_page_type;
-
-        let id = self
-            .endpoint
-            .browse_endpoint
-            .ok_or(ExtractionError::InvalidData(Cow::Borrowed("No browse ID")))?
-            .browse_id;
+            .map(|c| c.web_command_metadata.web_page_type)
+            .or_else(|| {
+                browse_endpoint
+                    .browse_endpoint_context_supported_configs
+                    .map(|c| c.browse_endpoint_context_music_config.page_type)
+            })
+            .ok_or(ExtractionError::InvalidData(Cow::Borrowed("No page type")))?;
 
         Ok(MapResult {
-            c: page_type.to_url_target(id),
+            c: page_type.to_url_target(browse_endpoint.browse_id),
             warnings: Vec::new(),
         })
     }
