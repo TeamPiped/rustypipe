@@ -414,7 +414,8 @@ impl MusicListMapper {
                                 Ok(MusicEntityType::Playlist)
                             }
                             PageType::Channel => {
-                                Err(format!("channel items unsupported. id: {}", id))
+                                // There may be broken YT channels from the artist search. They can be skipped.
+                                Ok(MusicEntityType::Artist)
                             }
                         }
                     }
