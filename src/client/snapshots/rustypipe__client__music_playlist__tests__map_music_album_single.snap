@@ -58,6 +58,7 @@ MusicAlbum(
           name: "Vanessa Mai",
         ),
       ],
+      artist_id: Some("UCXGYZ-OhdOpPBamHX3K9YRg"),
       album: Some(AlbumId(
         id: "MPREb_bHfHGoy7vuv",
         name: "Der Himmel reißt auf",

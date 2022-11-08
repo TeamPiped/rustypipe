@@ -901,6 +901,8 @@ pub struct TrackItem {
     pub cover: Vec<Thumbnail>,
     /// Artists of the track
     pub artists: Vec<ArtistId>,
+    /// Primary artist ID
+    pub artist_id: Option<String>,
     /// Album of the track
     pub album: Option<AlbumId>,
     /// View count

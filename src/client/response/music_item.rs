@@ -136,8 +136,10 @@ pub(crate) struct ListMusicItem {
     pub navigation_endpoint: Option<NavigationEndpoint>,
     #[serde(default)]
     pub flex_column_display_style: FlexColumnDisplayStyle,
+    /// Album track number
     #[serde_as(as = "Option<Text>")]
     pub index: Option<String>,
+    pub menu: Option<MusicItemMenu>,
 }
 
 #[derive(Default, Debug, Deserialize)]
@@ -262,6 +264,26 @@ pub(crate) struct MoreContentButton {
 #[serde(rename_all = "camelCase")]
 pub(crate) struct ButtonRenderer {
     pub navigation_endpoint: NavigationEndpoint,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct MusicItemMenu {
+    pub menu_renderer: MusicItemMenuRenderer,
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct MusicItemMenuRenderer {
+    #[serde_as(as = "VecSkipError<_>")]
+    pub items: Vec<MusicItemMenuEntry>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct MusicItemMenuEntry {
+    pub menu_navigation_item_renderer: ButtonRenderer,
 }
 
 /*
@@ -514,6 +536,9 @@ impl MusicListMapper {
                             }
                         }
 
+                        // Extract artist id from dropdown menu
+                        let artist_id = map_artist_id(item.menu, artists.first());
+
                         let track_nr = item.index.and_then(|txt| util::parse_numeric(&txt).ok());
 
                         self.items.push(MusicItem::Track(TrackItem {
@@ -522,6 +547,7 @@ impl MusicListMapper {
                             duration,
                             cover: item.thumbnail.into(),
                             artists,
+                            artist_id,
                             album,
                             view_count,
                             is_video,
@@ -540,12 +566,15 @@ impl MusicListMapper {
                 match item.navigation_endpoint.watch_endpoint {
                     // Music video
                     Some(wep) => {
+                        let artists = map_artists(subtitle_p1).0;
+
                         self.items.push(MusicItem::Track(TrackItem {
                             id: wep.video_id,
                             title: item.title,
                             duration: None,
                             cover: item.thumbnail_renderer.into(),
-                            artists: map_artists(subtitle_p1).0,
+                            artist_id: artists.first().and_then(|a| a.id.to_owned()),
+                            artists,
                             album: None,
                             view_count: subtitle_p2
                                 .and_then(|c| util::parse_large_numstr(c.first_str(), self.lang)),
@@ -737,6 +766,31 @@ pub(crate) fn map_artists(artists_p: Option<TextComponents>) -> (Vec<ArtistId>, 
         })
         .unwrap_or_default();
     (artists, by_va)
+}
+
+fn map_artist_id(
+    menu: Option<MusicItemMenu>,
+    fallback_artist: Option<&ArtistId>,
+) -> Option<String> {
+    menu.and_then(|m| {
+        m.menu_renderer.items.into_iter().find_map(|i| {
+            let ep = i
+                .menu_navigation_item_renderer
+                .navigation_endpoint
+                .browse_endpoint;
+            ep.and_then(|ep| {
+                ep.browse_endpoint_context_supported_configs
+                    .and_then(|cfg| {
+                        if cfg.browse_endpoint_context_music_config.page_type == PageType::Artist {
+                            Some(ep.browse_id)
+                        } else {
+                            None
+                        }
+                    })
+            })
+        })
+    })
+    .or_else(|| fallback_artist.and_then(|a| a.id.to_owned()))
 }
 
 pub(crate) fn map_album_type(txt: &str, lang: Language) -> AlbumType {

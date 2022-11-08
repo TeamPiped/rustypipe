@@ -1,0 +1,243 @@
+---
+source: src/client/music_search.rs
+expression: map_res.c
+---
+MusicSearchFiltered(
+  items: Paginator(
+    count: Some(7),
+    items: [
+      TrackItem(
+        id: "LYUESTEwXiU",
+        title: "Am sichersten seid ihr im Auto",
+        duration: Some(198),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Ct-BNS-Ogb23yTsyqk-guf07bXzy3fb5cpY0xB4b31Qx1SQVGLCaSnHTcZe4P3Mh5Y394V4JOxPOo6c=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Ct-BNS-Ogb23yTsyqk-guf07bXzy3fb5cpY0xB4b31Qx1SQVGLCaSnHTcZe4P3Mh5Y394V4JOxPOo6c=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: None,
+            name: "#HURRICANESWIMTEAM",
+          ),
+          ArtistId(
+            id: None,
+            name: "Christoph Karrasch",
+          ),
+        ],
+        artist_id: Some("UCrEWmHZz6YRDiNIPMf17qKQ"),
+        album: Some(AlbumId(
+          id: "MPREb_6nAZTGBaQMd",
+          name: "Am sichersten seid ihr im Auto",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+      ),
+      TrackItem(
+        id: "OJ5ZittaTCk",
+        title: "Am sichersten sind wir zu Hause",
+        duration: Some(193),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/CIbMsqjZr4PFSN1WyvJAH9OyR6l7jFiOfxNMiUByZcXxHINA6SQJgsa30F-LgMEsU1C-nYXMpIOaBN79=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/CIbMsqjZr4PFSN1WyvJAH9OyR6l7jFiOfxNMiUByZcXxHINA6SQJgsa30F-LgMEsU1C-nYXMpIOaBN79=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCrEWmHZz6YRDiNIPMf17qKQ"),
+            name: "#HURRICANESWIMTEAM",
+          ),
+        ],
+        artist_id: Some("UCrEWmHZz6YRDiNIPMf17qKQ"),
+        album: Some(AlbumId(
+          id: "MPREb_OVWRPWkPXX5",
+          name: "Am sichersten sind wir zu Hause",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+      ),
+      TrackItem(
+        id: "H199HKaUk3g",
+        title: "Am sichersten sind wir zu Hause (Live)",
+        duration: Some(180),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/5cJLFoS5Ph-wf6EkRP5RZbTviVpX-eDUKV_Eh1vjbCe_6URxcHyJloL9iSiLkeURZ4WWNCPAeXiWUKUs=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/5cJLFoS5Ph-wf6EkRP5RZbTviVpX-eDUKV_Eh1vjbCe_6URxcHyJloL9iSiLkeURZ4WWNCPAeXiWUKUs=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCrEWmHZz6YRDiNIPMf17qKQ"),
+            name: "#HURRICANESWIMTEAM",
+          ),
+        ],
+        artist_id: Some("UCrEWmHZz6YRDiNIPMf17qKQ"),
+        album: Some(AlbumId(
+          id: "MPREb_7JKPh1gI4Q4",
+          name: "LIVE in Scheeßel 2020 (Live)",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+      ),
+      TrackItem(
+        id: "UlNOkZEcSjQ",
+        title: "Fragen an einen Rollstuhlfahrer",
+        duration: Some(464),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/SETt5GmeCDiJ9tcEcWfEDzolhyxsYFy9K_DFC8vaPAKB_bQb6n1EbAUr_DTHqCIk_OXsdo_Q8hpAUGuyOg=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/SETt5GmeCDiJ9tcEcWfEDzolhyxsYFy9K_DFC8vaPAKB_bQb6n1EbAUr_DTHqCIk_OXsdo_Q8hpAUGuyOg=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Ronny Kienert & Sascha Stoltze",
+          ),
+        ],
+        artist_id: None,
+        album: Some(AlbumId(
+          id: "MPREb_MyS993LdFmU",
+          name: "Anstarren oder Wegsehen?",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+      ),
+      TrackItem(
+        id: "L61sF-655Zw",
+        title: "Urlaub",
+        duration: Some(171),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/JXgj2FjdfLXFLIlWU-OBhgPxlIdz_ZCMAlo9ONow92cz4IX8nzNIiy_FfDR6dGpzR5oD8PV8mI43wWlj=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/JXgj2FjdfLXFLIlWU-OBhgPxlIdz_ZCMAlo9ONow92cz4IX8nzNIiy_FfDR6dGpzR5oD8PV8mI43wWlj=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCFx_3VPVecDwpO8EKNi87Sw"),
+            name: "Schäfer Heinrich",
+          ),
+        ],
+        artist_id: Some("UCFx_3VPVecDwpO8EKNi87Sw"),
+        album: Some(AlbumId(
+          id: "MPREb_0J4ukT7BpyO",
+          name: "Mallorca Warm Up",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+      ),
+      TrackItem(
+        id: "bOK90e8P3k0",
+        title: "Endlich wieder Skifahrn",
+        duration: Some(172),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/R7dd-mxvYjADkNL9ACt7eod2z4yWWnuT7qvlGOTUHP4pV_JXhgbtJsOOd60p2p0zzD10KcFb-AZefGA=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/R7dd-mxvYjADkNL9ACt7eod2z4yWWnuT7qvlGOTUHP4pV_JXhgbtJsOOd60p2p0zzD10KcFb-AZefGA=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCxJBAHh7fbfCZjP56ikJRDQ"),
+            name: "Jörg & Dragan (Die Autohändler)",
+          ),
+        ],
+        artist_id: Some("UCxJBAHh7fbfCZjP56ikJRDQ"),
+        album: Some(AlbumId(
+          id: "MPREb_ChdIZjz6Fu2",
+          name: "Ballermann Après-Ski Party 2022",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+      ),
+      TrackItem(
+        id: "oRHLx2mc2zY",
+        title: "#50_Sie werden ständig unterschätzt_ Seien Sie froh!.3 & #51_Unsere Schulen produzieren Lebensuntüchtige.1 - #Malehrlich: 52 ungeschminkte Impulse einer Unternehmerin",
+        duration: Some(145),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/9M0HJA__hYxziUtpK9u8xZnSTCK-VuIvbPAT5k9OK7ZfPADuZ5ojRWvj80hzYk6e_rHKv38wG6r72H-5QA=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/9M0HJA__hYxziUtpK9u8xZnSTCK-VuIvbPAT5k9OK7ZfPADuZ5ojRWvj80hzYk6e_rHKv38wG6r72H-5QA=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Vanessa Weber",
+          ),
+          ArtistId(
+            id: None,
+            name: "audioparadies",
+          ),
+          ArtistId(
+            id: None,
+            name: "Hanna Kersten",
+          ),
+        ],
+        artist_id: Some("UCjuK6xm6yISeW8vdFwqTDWA"),
+        album: Some(AlbumId(
+          id: "MPREb_SWxqhfIGNXa",
+          name: "#Malehrlich: 52 ungeschminkte Impulse einer Unternehmerin",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+      ),
+    ],
+    ctoken: None,
+    endpoint: music_search,
+  ),
+  corrected_query: None,
+)

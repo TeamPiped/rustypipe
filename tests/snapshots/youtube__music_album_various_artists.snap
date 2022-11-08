@@ -24,6 +24,7 @@ MusicAlbum(
           name: "HYOLYN",
         ),
       ],
+      artist_id: None,
       album: Some(AlbumId(
         id: "MPREb_8QkDeEIawvX",
         name: "＜Queendom2＞ FINAL",
@@ -43,6 +44,7 @@ MusicAlbum(
           name: "WJSN",
         ),
       ],
+      artist_id: None,
       album: Some(AlbumId(
         id: "MPREb_8QkDeEIawvX",
         name: "＜Queendom2＞ FINAL",
@@ -62,6 +64,7 @@ MusicAlbum(
           name: "Kep1er",
         ),
       ],
+      artist_id: Some("UCAKvDuIX3m1AUdPpDSqV_3w"),
       album: Some(AlbumId(
         id: "MPREb_8QkDeEIawvX",
         name: "＜Queendom2＞ FINAL",
@@ -81,6 +84,7 @@ MusicAlbum(
           name: "VIVIZ",
         ),
       ],
+      artist_id: None,
       album: Some(AlbumId(
         id: "MPREb_8QkDeEIawvX",
         name: "＜Queendom2＞ FINAL",
@@ -100,6 +104,7 @@ MusicAlbum(
           name: "LOONA",
         ),
       ],
+      artist_id: None,
       album: Some(AlbumId(
         id: "MPREb_8QkDeEIawvX",
         name: "＜Queendom2＞ FINAL",
@@ -119,6 +124,7 @@ MusicAlbum(
           name: "Brave Girls",
         ),
       ],
+      artist_id: None,
       album: Some(AlbumId(
         id: "MPREb_8QkDeEIawvX",
         name: "＜Queendom2＞ FINAL",

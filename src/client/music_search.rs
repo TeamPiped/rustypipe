@@ -335,6 +335,7 @@ mod tests {
     #[case::default("default")]
     #[case::typo("typo")]
     #[case::videos("videos")]
+    #[case::no_artist_link("no_artist_link")]
     fn map_music_search_tracks(#[case] name: &str) {
         let filename = format!("testfiles/music_search/tracks_{}.json", name);
         let json_path = Path::new(&filename);

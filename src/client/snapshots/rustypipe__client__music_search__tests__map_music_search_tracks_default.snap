@@ -28,6 +28,7 @@ MusicSearchFiltered(
             name: "aespa",
           ),
         ],
+        artist_id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
         album: Some(AlbumId(
           id: "MPREb_OpHWHwyNOuY",
           name: "Black Mamba",
@@ -62,6 +63,7 @@ MusicSearchFiltered(
             name: "Lorne Balfe",
           ),
         ],
+        artist_id: Some("UCfCNL5oajlQBAlyjWv1ChVw"),
         album: Some(AlbumId(
           id: "MPREb_UmDOhLpDsc0",
           name: "Megamind (Music from the Motion Picture)",
@@ -92,6 +94,7 @@ MusicSearchFiltered(
             name: "Seoul Philharmonic Orchestra",
           ),
         ],
+        artist_id: Some("UCZwE-b-kzA4pQaCQXwOQnlg"),
         album: Some(AlbumId(
           id: "MPREb_DeCImAQRYMO",
           name: "Black Mamba (Orchestra Version)",
@@ -122,6 +125,7 @@ MusicSearchFiltered(
             name: "Alpha Wolf",
           ),
         ],
+        artist_id: Some("UC8whsREta_7Fu-EjRq2Ys-A"),
         album: Some(AlbumId(
           id: "MPREb_PdIIalyOQXF",
           name: "Black Mamba",
@@ -152,6 +156,7 @@ MusicSearchFiltered(
             name: "Bayamon PR Tribe",
           ),
         ],
+        artist_id: Some("UCz6yr3CgFGrrrPDa2asbWMQ"),
         album: Some(AlbumId(
           id: "MPREb_RV0PGHyGfkp",
           name: "LISTEN ME",
@@ -182,6 +187,7 @@ MusicSearchFiltered(
             name: "Jethro Tull",
           ),
         ],
+        artist_id: Some("UC7sFWdsZTzfR507dbonTlyQ"),
         album: Some(AlbumId(
           id: "MPREb_uC4NIfLr7VS",
           name: "J-Tull Dot Com",
@@ -212,6 +218,7 @@ MusicSearchFiltered(
             name: "FREE FLOW FLAVA",
           ),
         ],
+        artist_id: Some("UCzqRJ5qy_ekVd9jfaAlb7nA"),
         album: Some(AlbumId(
           id: "MPREb_4gkEob83yi2",
           name: "Hidden Tape",
@@ -242,6 +249,7 @@ MusicSearchFiltered(
             name: "Ashkabad",
           ),
         ],
+        artist_id: Some("UCi8RICptUr15gPmPjEuIEDQ"),
         album: Some(AlbumId(
           id: "MPREb_SU8gaBGZv2T",
           name: "Reptile",
@@ -272,6 +280,7 @@ MusicSearchFiltered(
             name: "Montana Of 300",
           ),
         ],
+        artist_id: Some("UCudOYmRtW3uylYtqY1aAD0A"),
         album: Some(AlbumId(
           id: "MPREb_Sx4uifBuKyD",
           name: "Black Mamba",
@@ -302,6 +311,7 @@ MusicSearchFiltered(
             name: "Dj Zapy & Dj Uragun",
           ),
         ],
+        artist_id: Some("UCoNSQrGCiSZscyBwQTsMK2g"),
         album: Some(AlbumId(
           id: "MPREb_nfwzSf4mnx4",
           name: "Black Mamba",
@@ -332,6 +342,7 @@ MusicSearchFiltered(
             name: "Alex Torres y Los Reyes Latinos",
           ),
         ],
+        artist_id: Some("UCkjmrFnxpkxI4cVVwhc_mMw"),
         album: Some(AlbumId(
           id: "MPREb_9SbptcWbS7a",
           name: "Elementos",
@@ -362,6 +373,7 @@ MusicSearchFiltered(
             name: "C.JERRY",
           ),
         ],
+        artist_id: None,
         album: Some(AlbumId(
           id: "MPREb_0lYy8bzdAWJ",
           name: "Bleem多维视角",
@@ -396,6 +408,7 @@ MusicSearchFiltered(
             name: "Fri2",
           ),
         ],
+        artist_id: Some("UC_PI4ScqWXzHuYP2TNqw6vg"),
         album: Some(AlbumId(
           id: "MPREb_6cqJGhzYwwg",
           name: "BLCK MAMBA",
@@ -426,6 +439,7 @@ MusicSearchFiltered(
             name: "Biodizzy",
           ),
         ],
+        artist_id: Some("UCr8Gk2ECkAhRzNWCqKg62bA"),
         album: Some(AlbumId(
           id: "MPREb_11tzMasyq5O",
           name: "Mathomo Mayo",
@@ -456,6 +470,7 @@ MusicSearchFiltered(
             name: "Mamba Cinco",
           ),
         ],
+        artist_id: Some("UC6LdZsjHDoy88JtQnEz4z4A"),
         album: Some(AlbumId(
           id: "MPREb_BBP23Ry1SBL",
           name: "Told Black",
@@ -490,6 +505,7 @@ MusicSearchFiltered(
             name: "Brisk",
           ),
         ],
+        artist_id: Some("UCX1lJbaUf3IEGhNi1_KCEZw"),
         album: Some(AlbumId(
           id: "MPREb_aLZJtqNevjw",
           name: "Night & Dayz / Black Mamba",
@@ -520,6 +536,7 @@ MusicSearchFiltered(
             name: "Ghost Tribe",
           ),
         ],
+        artist_id: Some("UCoJXsT1SzLsZZgg5P0yaVQw"),
         album: Some(AlbumId(
           id: "MPREb_fzz3cs4IkeX",
           name: "Black Mamba Jiu Jitsu",
@@ -550,6 +567,7 @@ MusicSearchFiltered(
             name: "Akae Beka",
           ),
         ],
+        artist_id: Some("UCxoJ3pl32f39kmTvIR_NWOg"),
         album: Some(AlbumId(
           id: "MPREb_iuN0lQwEmRp",
           name: "Kings Dub",
@@ -580,6 +598,7 @@ MusicSearchFiltered(
             name: "Shockwave-Sound",
           ),
         ],
+        artist_id: Some("UC7RJTtpE3qwbw6-Idq9PTIg"),
         album: Some(AlbumId(
           id: "MPREb_Kg4Ff883GH0",
           name: "Out on the Road",
@@ -610,6 +629,7 @@ MusicSearchFiltered(
             name: "Dubb Bankroll",
           ),
         ],
+        artist_id: Some("UCfGf1P_mK274Rp3OKFTgbBQ"),
         album: Some(AlbumId(
           id: "MPREb_VGZMM6pmzrt",
           name: "Area 51",

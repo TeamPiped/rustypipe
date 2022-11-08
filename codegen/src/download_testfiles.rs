@@ -598,6 +598,11 @@ async fn music_search_tracks(testfiles: &Path) {
         ("default", "black mamba", false),
         ("videos", "black mamba", true),
         ("typo", "liblingsmensch", false),
+        (
+            "no_artist_link",
+            "Am sichersten seid ihr im Auto #HURRICANESWIMTEAM",
+            false,
+        ),
     ] {
         let mut json_path = testfiles.to_path_buf();
         json_path.push("music_search");

@@ -1644,14 +1644,14 @@ async fn music_search_albums(
 #[tokio::test]
 async fn music_search_artists() {
     let rp = RustyPipe::builder().strict().build();
-    let res = rp
-        .query()
-        .music_search_artists("namika lieblingsmensch")
-        .await
-        .unwrap();
+    let res = rp.query().music_search_artists("namika").await.unwrap();
 
-    let artist = &res.items.items[0];
-    assert_eq!(artist.id, "UCIh4j8fXWf2U0ro0qnGU8Mg");
+    let artist = res
+        .items
+        .items
+        .iter()
+        .find(|a| a.id == "UCIh4j8fXWf2U0ro0qnGU8Mg")
+        .unwrap();
     assert_eq!(artist.name, "Namika");
     assert!(!artist.avatar.is_empty(), "got no avatar");
     assert!(

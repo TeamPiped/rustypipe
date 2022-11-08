@@ -50,6 +50,7 @@ MusicAlbum(
           name: "Adele",
         ),
       ],
+      artist_id: Some("UCRw0x9_EfawqmgDI2IgQLLg"),
       album: Some(AlbumId(
         id: "MPREb_PiyfuVl6aYd",
         name: "25",
@@ -69,6 +70,7 @@ MusicAlbum(
           name: "Adele",
         ),
       ],
+      artist_id: Some("UCRw0x9_EfawqmgDI2IgQLLg"),
       album: Some(AlbumId(
         id: "MPREb_PiyfuVl6aYd",
         name: "25",
@@ -88,6 +90,7 @@ MusicAlbum(
           name: "Adele",
         ),
       ],
+      artist_id: Some("UCRw0x9_EfawqmgDI2IgQLLg"),
       album: Some(AlbumId(
         id: "MPREb_PiyfuVl6aYd",
         name: "25",
@@ -107,6 +110,7 @@ MusicAlbum(
           name: "Adele",
         ),
       ],
+      artist_id: Some("UCRw0x9_EfawqmgDI2IgQLLg"),
       album: Some(AlbumId(
         id: "MPREb_PiyfuVl6aYd",
         name: "25",
@@ -126,6 +130,7 @@ MusicAlbum(
           name: "Adele",
         ),
       ],
+      artist_id: Some("UCRw0x9_EfawqmgDI2IgQLLg"),
       album: Some(AlbumId(
         id: "MPREb_PiyfuVl6aYd",
         name: "25",
@@ -145,6 +150,7 @@ MusicAlbum(
           name: "Adele",
         ),
       ],
+      artist_id: Some("UCRw0x9_EfawqmgDI2IgQLLg"),
       album: Some(AlbumId(
         id: "MPREb_PiyfuVl6aYd",
         name: "25",
@@ -164,6 +170,7 @@ MusicAlbum(
           name: "Adele",
         ),
       ],
+      artist_id: Some("UCRw0x9_EfawqmgDI2IgQLLg"),
       album: Some(AlbumId(
         id: "MPREb_PiyfuVl6aYd",
         name: "25",
@@ -183,6 +190,7 @@ MusicAlbum(
           name: "Adele",
         ),
       ],
+      artist_id: Some("UCRw0x9_EfawqmgDI2IgQLLg"),
       album: Some(AlbumId(
         id: "MPREb_PiyfuVl6aYd",
         name: "25",
@@ -202,6 +210,7 @@ MusicAlbum(
           name: "Adele",
         ),
       ],
+      artist_id: Some("UCRw0x9_EfawqmgDI2IgQLLg"),
       album: Some(AlbumId(
         id: "MPREb_PiyfuVl6aYd",
         name: "25",
@@ -221,6 +230,7 @@ MusicAlbum(
           name: "Adele",
         ),
       ],
+      artist_id: Some("UCRw0x9_EfawqmgDI2IgQLLg"),
       album: Some(AlbumId(
         id: "MPREb_PiyfuVl6aYd",
         name: "25",
@@ -240,6 +250,7 @@ MusicAlbum(
           name: "Adele",
         ),
       ],
+      artist_id: Some("UCRw0x9_EfawqmgDI2IgQLLg"),
       album: Some(AlbumId(
         id: "MPREb_PiyfuVl6aYd",
         name: "25",

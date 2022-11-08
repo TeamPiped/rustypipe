@@ -26,6 +26,7 @@ MusicSearchResult(
           name: "Namika",
         ),
       ],
+      artist_id: Some("UCIh4j8fXWf2U0ro0qnGU8Mg"),
       album: Some(AlbumId(
         id: "MPREb_RXHxrUFfrvQ",
         name: "Lieblingsmensch",
@@ -56,6 +57,7 @@ MusicSearchResult(
           name: "Boris Brejcha",
         ),
       ],
+      artist_id: Some("UCCpID8TTjkkjLCwBybAfHSg"),
       album: Some(AlbumId(
         id: "MPREb_VFqQlfPhsFW",
         name: "Lieblingsmensch",
@@ -86,6 +88,7 @@ MusicSearchResult(
           name: "Voyce",
         ),
       ],
+      artist_id: Some("UCvfUKCnUBfsZAVHgF-pYmJg"),
       album: Some(AlbumId(
         id: "MPREb_SpT32xAd4YR",
         name: "Gegenstück EP",
@@ -111,6 +114,7 @@ MusicSearchResult(
           name: "Namika",
         ),
       ],
+      artist_id: Some("UCIh4j8fXWf2U0ro0qnGU8Mg"),
       album: None,
       view_count: Some(108000000),
       is_video: true,
@@ -133,6 +137,7 @@ MusicSearchResult(
           name: "jessika adam",
         ),
       ],
+      artist_id: Some("UCgoJMRKimbxB374QjHgE6kA"),
       album: None,
       view_count: Some(10000000),
       is_video: true,
@@ -155,6 +160,7 @@ MusicSearchResult(
           name: "ZockerAlarm",
         ),
       ],
+      artist_id: Some("UCiQjRO2m3dBBlg7sqTaFA_A"),
       album: None,
       view_count: Some(56000),
       is_video: true,

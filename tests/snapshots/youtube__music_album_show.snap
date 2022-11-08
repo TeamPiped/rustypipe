@@ -29,6 +29,7 @@ MusicAlbum(
           name: "Kingdom Force",
         ),
       ],
+      artist_id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
       album: Some(AlbumId(
         id: "MPREb_cwzk8EUwypZ",
         name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
@@ -48,6 +49,7 @@ MusicAlbum(
           name: "Kingdom Force",
         ),
       ],
+      artist_id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
       album: Some(AlbumId(
         id: "MPREb_cwzk8EUwypZ",
         name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
@@ -67,6 +69,7 @@ MusicAlbum(
           name: "Kingdom Force",
         ),
       ],
+      artist_id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
       album: Some(AlbumId(
         id: "MPREb_cwzk8EUwypZ",
         name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
@@ -86,6 +89,7 @@ MusicAlbum(
           name: "Kingdom Force",
         ),
       ],
+      artist_id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
       album: Some(AlbumId(
         id: "MPREb_cwzk8EUwypZ",
         name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
@@ -105,6 +109,7 @@ MusicAlbum(
           name: "Kingdom Force",
         ),
       ],
+      artist_id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
       album: Some(AlbumId(
         id: "MPREb_cwzk8EUwypZ",
         name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
@@ -124,6 +129,7 @@ MusicAlbum(
           name: "Kingdom Force",
         ),
       ],
+      artist_id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
       album: Some(AlbumId(
         id: "MPREb_cwzk8EUwypZ",
         name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
@@ -143,6 +149,7 @@ MusicAlbum(
           name: "Kingdom Force",
         ),
       ],
+      artist_id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
       album: Some(AlbumId(
         id: "MPREb_cwzk8EUwypZ",
         name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
@@ -162,6 +169,7 @@ MusicAlbum(
           name: "Kingdom Force",
         ),
       ],
+      artist_id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
       album: Some(AlbumId(
         id: "MPREb_cwzk8EUwypZ",
         name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
@@ -181,6 +189,7 @@ MusicAlbum(
           name: "Kingdom Force",
         ),
       ],
+      artist_id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
       album: Some(AlbumId(
         id: "MPREb_cwzk8EUwypZ",
         name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
@@ -200,6 +209,7 @@ MusicAlbum(
           name: "Kingdom Force",
         ),
       ],
+      artist_id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
       album: Some(AlbumId(
         id: "MPREb_cwzk8EUwypZ",
         name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
@@ -219,6 +229,7 @@ MusicAlbum(
           name: "Kingdom Force",
         ),
       ],
+      artist_id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
       album: Some(AlbumId(
         id: "MPREb_cwzk8EUwypZ",
         name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
@@ -238,6 +249,7 @@ MusicAlbum(
           name: "Kingdom Force",
         ),
       ],
+      artist_id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
       album: Some(AlbumId(
         id: "MPREb_cwzk8EUwypZ",
         name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
@@ -257,6 +269,7 @@ MusicAlbum(
           name: "Kingdom Force",
         ),
       ],
+      artist_id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
       album: Some(AlbumId(
         id: "MPREb_cwzk8EUwypZ",
         name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
@@ -276,6 +289,7 @@ MusicAlbum(
           name: "Kingdom Force",
         ),
       ],
+      artist_id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
       album: Some(AlbumId(
         id: "MPREb_cwzk8EUwypZ",
         name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",

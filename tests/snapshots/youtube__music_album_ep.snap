@@ -29,6 +29,7 @@ MusicAlbum(
           name: "Madeline Juno",
         ),
       ],
+      artist_id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
       album: Some(AlbumId(
         id: "MPREb_u1I69lSAe5v",
         name: "Waldbrand",
@@ -48,6 +49,7 @@ MusicAlbum(
           name: "Madeline Juno",
         ),
       ],
+      artist_id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
       album: Some(AlbumId(
         id: "MPREb_u1I69lSAe5v",
         name: "Waldbrand",
@@ -67,6 +69,7 @@ MusicAlbum(
           name: "Madeline Juno",
         ),
       ],
+      artist_id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
       album: Some(AlbumId(
         id: "MPREb_u1I69lSAe5v",
         name: "Waldbrand",
@@ -86,6 +89,7 @@ MusicAlbum(
           name: "Madeline Juno",
         ),
       ],
+      artist_id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
       album: Some(AlbumId(
         id: "MPREb_u1I69lSAe5v",
         name: "Waldbrand",
@@ -105,6 +109,7 @@ MusicAlbum(
           name: "Madeline Juno",
         ),
       ],
+      artist_id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
       album: Some(AlbumId(
         id: "MPREb_u1I69lSAe5v",
         name: "Waldbrand",
