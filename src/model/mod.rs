@@ -68,9 +68,7 @@ impl UrlTarget {
                 format!("{}/playlist?list={}", yt_host, id)
             }
             UrlTarget::Album { id } => {
-                // The official album URLs use the playlist ID
-                // This looks weird, but it works
-                format!("{}/channel/{}", yt_host, id)
+                format!("https://music.youtube.com/browse/{}", id)
             }
         }
     }

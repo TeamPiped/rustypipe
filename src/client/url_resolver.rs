@@ -72,6 +72,19 @@ impl RustyPipeQuery {
                     Ok(UrlTarget::Playlist { id })
                 }
             }
+            // Album or channel
+            Some("browse") => match path_split.next() {
+                Some(id) => {
+                    if util::CHANNEL_ID_REGEX.is_match(id).unwrap_or_default() {
+                        Ok(UrlTarget::Channel { id: id.to_owned() })
+                    } else if util::ALBUM_ID_REGEX.is_match(id).unwrap_or_default() {
+                        Ok(UrlTarget::Album { id: id.to_owned() })
+                    } else {
+                        Err(Error::Other("invalid url: no browse id".into()))
+                    }
+                }
+                None => Err(Error::Other("invalid url: invalid browse id".into())),
+            },
             // Channel vanity URL or youtu.be shortlink
             Some(mut id) => {
                 if id == "c" || id == "user" {
