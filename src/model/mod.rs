@@ -243,6 +243,94 @@ pub struct AudioStream {
     pub track: Option<AudioTrack>,
 }
 
+pub trait YtStream {
+    fn url(&self) -> &str;
+    fn itag(&self) -> u32;
+    fn bitrate(&self) -> u32;
+    fn averate_bitrate(&self) -> u32;
+    fn size(&self) -> Option<u64>;
+    fn index_range(&self) -> Option<Range<u32>>;
+    fn init_range(&self) -> Option<Range<u32>>;
+    fn duration_ms(&self) -> Option<u32>;
+    fn mime(&self) -> &str;
+}
+
+impl YtStream for VideoStream {
+    fn url(&self) -> &str {
+        &self.url
+    }
+
+    fn itag(&self) -> u32 {
+        self.itag
+    }
+
+    fn bitrate(&self) -> u32 {
+        self.bitrate
+    }
+
+    fn averate_bitrate(&self) -> u32 {
+        self.average_bitrate
+    }
+
+    fn size(&self) -> Option<u64> {
+        self.size
+    }
+
+    fn index_range(&self) -> Option<Range<u32>> {
+        self.index_range.clone()
+    }
+
+    fn init_range(&self) -> Option<Range<u32>> {
+        self.init_range.clone()
+    }
+
+    fn duration_ms(&self) -> Option<u32> {
+        self.duration_ms
+    }
+
+    fn mime(&self) -> &str {
+        &self.mime
+    }
+}
+
+impl YtStream for AudioStream {
+    fn url(&self) -> &str {
+        &self.url
+    }
+
+    fn itag(&self) -> u32 {
+        self.itag
+    }
+
+    fn bitrate(&self) -> u32 {
+        self.bitrate
+    }
+
+    fn averate_bitrate(&self) -> u32 {
+        self.average_bitrate
+    }
+
+    fn size(&self) -> Option<u64> {
+        Some(self.size)
+    }
+
+    fn index_range(&self) -> Option<Range<u32>> {
+        self.index_range.clone()
+    }
+
+    fn init_range(&self) -> Option<Range<u32>> {
+        self.init_range.clone()
+    }
+
+    fn duration_ms(&self) -> Option<u32> {
+        self.duration_ms
+    }
+
+    fn mime(&self) -> &str {
+        &self.mime
+    }
+}
+
 /// Video codec
 #[derive(
     Default, Copy, Clone, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash,

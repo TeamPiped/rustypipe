@@ -10,7 +10,7 @@ use rustypipe::error::{Error, ExtractionError};
 use rustypipe::model::richtext::ToPlaintext;
 use rustypipe::model::{
     AlbumType, AudioCodec, AudioFormat, Channel, FromYtItem, MusicEntityType, Paginator, UrlTarget,
-    Verification, VideoCodec, VideoFormat, YouTubeItem,
+    Verification, VideoCodec, VideoFormat, YouTubeItem, YtStream,
 };
 use rustypipe::param::search_filter::{self, SearchFilter};
 
@@ -54,12 +54,12 @@ async fn get_player_from_client(#[case] client_type: ClientType) {
     if client_type == ClientType::Ios {
         let video = player_data
             .video_only_streams
-            .iter()
+            .into_iter()
             .find(|s| s.itag == 247)
             .unwrap();
         let audio = player_data
             .audio_streams
-            .iter()
+            .into_iter()
             .find(|s| s.itag == 140)
             .unwrap();
 
@@ -82,15 +82,18 @@ async fn get_player_from_client(#[case] client_type: ClientType) {
         assert_eq!(audio.mime, "audio/mp4; codecs=\"mp4a.40.2\"");
         assert_eq!(audio.format, AudioFormat::M4a);
         assert_eq!(audio.codec, AudioCodec::Mp4a);
+
+        check_video_stream(video).await;
+        check_video_stream(audio).await;
     } else {
         let video = player_data
             .video_only_streams
-            .iter()
+            .into_iter()
             .find(|s| s.itag == 398)
             .unwrap();
         let audio = player_data
             .audio_streams
-            .iter()
+            .into_iter()
             .find(|s| s.itag == 251)
             .unwrap();
 
@@ -114,9 +117,29 @@ async fn get_player_from_client(#[case] client_type: ClientType) {
         assert_eq!(audio.format, AudioFormat::Webm);
         assert_eq!(audio.codec, AudioCodec::Opus);
         assert_eq!(audio.throttled, false);
+
+        check_video_stream(video).await;
+        check_video_stream(audio).await;
     }
 
     assert!(player_data.expires_in_seconds > 10000);
+}
+
+/// Request the given stream to check if it returns a valid response
+async fn check_video_stream(s: impl YtStream) {
+    let http = reqwest::Client::new();
+
+    let resp = http
+        .get(s.url())
+        .send()
+        .await
+        .unwrap()
+        .error_for_status()
+        .unwrap();
+
+    if let Some(size) = s.size() {
+        assert_eq!(resp.content_length().unwrap(), size)
+    }
 }
 
 #[rstest]
