@@ -345,8 +345,9 @@ impl MusicListMapper {
         }
     }
 
-    fn map_item(&mut self, item: MusicResponseItem) -> Result<MusicEntityType, String> {
+    fn map_item(&mut self, item: MusicResponseItem) -> Result<Option<MusicEntityType>, String> {
         match item {
+            // List item
             MusicResponseItem::MusicResponsiveListItemRenderer(item) => {
                 let mut columns = item.flex_columns.into_iter();
                 let title = columns.next().map(|col| col.renderer.text.to_string());
@@ -356,19 +357,27 @@ impl MusicListMapper {
                 match item.navigation_endpoint {
                     // Artist / Album / Playlist
                     Some(ne) => {
-                        let (page_type, id) = ne
-                            .music_page()
-                            .ok_or_else(|| "could not get navigation endpoint".to_owned())?;
-
-                        let title =
-                            title.ok_or_else(|| format!("track {}: could not get title", id))?;
-
                         let mut subtitle_parts = c2
-                            .ok_or_else(|| format!("item {}: could not get subtitle", id))?
+                            .ok_or_else(|| "could not get subtitle".to_owned())?
                             .renderer
                             .text
                             .split(util::DOT_SEPARATOR)
                             .into_iter();
+
+                        let (page_type, id) = match ne.music_page() {
+                            Some(music_page) => music_page,
+                            None => {
+                                // Ignore radio items
+                                if subtitle_parts.len() == 1 {
+                                    return Ok(None);
+                                }
+                                return Err("invalid navigation endpoint".to_string());
+                            }
+                        };
+
+                        let title =
+                            title.ok_or_else(|| format!("track {}: could not get title", id))?;
+
                         let subtitle_p1 = subtitle_parts.next();
                         let subtitle_p2 = subtitle_parts.next();
                         let subtitle_p3 = subtitle_parts.next();
@@ -385,7 +394,7 @@ impl MusicListMapper {
                                     avatar: item.thumbnail.into(),
                                     subscriber_count,
                                 }));
-                                Ok(MusicEntityType::Artist)
+                                Ok(Some(MusicEntityType::Artist))
                             }
                             PageType::Album => {
                                 let album_type = subtitle_p1
@@ -406,7 +415,7 @@ impl MusicListMapper {
                                     year,
                                     by_va,
                                 }));
-                                Ok(MusicEntityType::Album)
+                                Ok(Some(MusicEntityType::Album))
                             }
                             PageType::Playlist => {
                                 // Part 1 may be the "Playlist" label
@@ -433,11 +442,11 @@ impl MusicListMapper {
                                     track_count,
                                     from_ytm,
                                 }));
-                                Ok(MusicEntityType::Playlist)
+                                Ok(Some(MusicEntityType::Playlist))
                             }
                             PageType::Channel => {
                                 // There may be broken YT channels from the artist search. They can be skipped.
-                                Ok(MusicEntityType::Artist)
+                                Ok(None)
                             }
                         }
                     }
@@ -553,10 +562,11 @@ impl MusicListMapper {
                             is_video,
                             track_nr,
                         }));
-                        Ok(MusicEntityType::Track)
+                        Ok(Some(MusicEntityType::Track))
                     }
                 }
             }
+            // Tile
             MusicResponseItem::MusicTwoRowItemRenderer(item) => {
                 let mut subtitle_parts = item.subtitle.split(util::DOT_SEPARATOR).into_iter();
                 let subtitle_p1 = subtitle_parts.next();
@@ -581,7 +591,7 @@ impl MusicListMapper {
                             is_video: true,
                             track_nr: None,
                         }));
-                        Ok(MusicEntityType::Track)
+                        Ok(Some(MusicEntityType::Track))
                     }
                     // Artist / Album / Playlist
                     None => {
@@ -636,7 +646,7 @@ impl MusicListMapper {
                                     year,
                                     by_va,
                                 }));
-                                Ok(MusicEntityType::Album)
+                                Ok(Some(MusicEntityType::Album))
                             }
                             PageType::Playlist => {
                                 let from_ytm = subtitle_p2
@@ -657,7 +667,7 @@ impl MusicListMapper {
                                     track_count,
                                     from_ytm,
                                 }));
-                                Ok(MusicEntityType::Playlist)
+                                Ok(Some(MusicEntityType::Playlist))
                             }
                             PageType::Artist => {
                                 let subscriber_count = subtitle_p1.and_then(|p| {
@@ -670,7 +680,7 @@ impl MusicListMapper {
                                     avatar: item.thumbnail_renderer.into(),
                                     subscriber_count,
                                 }));
-                                Ok(MusicEntityType::Artist)
+                                Ok(Some(MusicEntityType::Artist))
                             }
                             PageType::Channel => {
                                 Err(format!("channel items unsupported. id: {}", id))
@@ -691,7 +701,12 @@ impl MusicListMapper {
         res.c
             .into_iter()
             .for_each(|item| match self.map_item(item) {
-                Ok(t) => etype = Some(t),
+                Ok(Some(et)) => {
+                    if etype.is_none() {
+                        etype = Some(et);
+                    }
+                }
+                Ok(None) => {}
                 Err(e) => self.warnings.push(e),
             });
         etype

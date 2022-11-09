@@ -1746,6 +1746,13 @@ async fn music_search_playlists_community() {
     assert!(!playlist.from_ytm);
 }
 
+/// The YouTube Music search sometimes shows genre radio items. They should be skipped.
+#[tokio::test]
+async fn music_search_genre_radio() {
+    let rp = RustyPipe::builder().strict().build();
+    rp.query().music_search("pop radio").await.unwrap();
+}
+
 //#TESTUTIL
 
 /// Assert equality within 10% margin
