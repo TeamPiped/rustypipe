@@ -1181,6 +1181,7 @@ pub struct MusicArtist {
 
 /// YouTube Music search result
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
 pub struct MusicSearchResult {
     /// Found tracks
     pub tracks: Vec<TrackItem>,
@@ -1219,6 +1220,7 @@ pub enum MusicEntityType {
 
 /// Filtered YouTube Music search result
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
 pub struct MusicSearchFiltered<T> {
     pub items: Paginator<T>,
     /// Corrected search query
@@ -1228,3 +1230,8 @@ pub struct MusicSearchFiltered<T> {
     /// search results page.
     pub corrected_query: Option<String>,
 }
+
+/// Music track details
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
+pub struct MusicDetails {}

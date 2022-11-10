@@ -1,0 +1,9 @@
+Track radio: RDAMVM + video id
+Example: RDAMVMZeerrnuLi5E
+
+Artist radio: RDEMieiteXw81tMLBdKv8qkChg
+ID has to be extracted from artist page
+
+Playlist/album radio: RDAMPL + playlist id
+
+Genre radio: RDQM1xqCV6EdPUw
