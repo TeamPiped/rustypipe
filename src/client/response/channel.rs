@@ -58,7 +58,7 @@ pub(crate) struct TabRenderer {
 pub(crate) struct TabContent {
     #[serde(default)]
     #[serde_as(as = "DefaultOnError")]
-    pub section_list_renderer: Option<SectionListRenderer>,
+    pub section_list_renderer: Option<ContentsRenderer<ItemSectionRendererWrap>>,
     /// Seems to be currently A/B tested, as of 11.10.2022
     #[serde(default)]
     #[serde_as(as = "DefaultOnError")]
@@ -81,12 +81,6 @@ pub(crate) struct ChannelTabCommandMetadata {
 #[serde(rename_all = "camelCase")]
 pub(crate) struct ChannelTabWebCommandMetadata {
     pub url: String,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct SectionListRenderer {
-    pub contents: Vec<ItemSectionRendererWrap>,
 }
 
 /// Seems to be currently A/B tested, as of 11.10.2022

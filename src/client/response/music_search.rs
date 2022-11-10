@@ -3,7 +3,7 @@ use serde_with::{serde_as, VecSkipError};
 
 use crate::serializer::{ignore_any, text::Text};
 
-use super::{music_item::MusicShelf, ContentsRenderer, Tab};
+use super::{music_item::MusicShelf, ContentsRenderer, SectionList, Tab};
 
 /// Response model for YouTube Music search
 #[derive(Debug, Deserialize)]
@@ -15,13 +15,7 @@ pub(crate) struct MusicSearch {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct Contents {
-    pub tabbed_search_results_renderer: ContentsRenderer<Tab<SectionList>>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct SectionList {
-    pub section_list_renderer: ContentsRenderer<ItemSection>,
+    pub tabbed_search_results_renderer: ContentsRenderer<Tab<SectionList<ItemSection>>>,
 }
 
 #[allow(clippy::enum_variant_names)]

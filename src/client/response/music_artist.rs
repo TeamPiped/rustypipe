@@ -5,7 +5,7 @@ use crate::serializer::{text::Text, MapResult, VecLogError};
 
 use super::{
     music_item::{ItemSection, MusicResponseItem, MusicThumbnailRenderer},
-    ContentsRenderer, Tab,
+    ContentsRenderer, SectionList, Tab,
 };
 
 /// Response model for YouTube Music artists
@@ -20,12 +20,6 @@ pub(crate) struct MusicArtist {
 #[serde(rename_all = "camelCase")]
 pub(crate) struct Contents<T> {
     pub single_column_browse_results_renderer: ContentsRenderer<Tab<SectionList<T>>>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct SectionList<T> {
-    pub section_list_renderer: ContentsRenderer<T>,
 }
 
 #[derive(Debug, Deserialize)]
