@@ -15,7 +15,7 @@ impl RustyPipeQuery {
         let context = self.get_context(ClientType::Desktop, true, None).await;
         let request_body = QBrowse {
             context,
-            browse_id: "FEwhat_to_watch".to_owned(),
+            browse_id: "FEwhat_to_watch",
         };
 
         self.execute_request::<response::Startpage, _, _>(
@@ -32,7 +32,7 @@ impl RustyPipeQuery {
         let context = self.get_context(ClientType::Desktop, true, None).await;
         let request_body = QBrowse {
             context,
-            browse_id: "FEtrending".to_owned(),
+            browse_id: "FEtrending",
         };
 
         self.execute_request::<response::Trending, _, _>(

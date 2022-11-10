@@ -1784,7 +1784,7 @@ async fn music_radio_playlist() {
         .music_radio_playlist("PL5dDx681T4bR7ZF1IuWzOv1omlRbE7PiJ")
         .await
         .unwrap();
-    assert_next(tracks, &rp.query(), 20, 1).await;
+    assert_next(tracks, &rp.query(), 10, 1).await;
 }
 
 //#TESTUTIL

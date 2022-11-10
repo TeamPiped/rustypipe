@@ -18,7 +18,7 @@ impl RustyPipeQuery {
         let context = self.get_context(ClientType::Desktop, true, None).await;
         let request_body = QBrowse {
             context,
-            browse_id: "VL".to_owned() + playlist_id,
+            browse_id: &format!("VL{}", playlist_id),
         };
 
         self.execute_request::<response::Playlist, _, _>(

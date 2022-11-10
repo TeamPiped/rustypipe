@@ -42,7 +42,7 @@ impl RustyPipeQuery {
                 .await;
             let request_body = QBrowse {
                 context,
-                browse_id: artist_id.to_owned(),
+                browse_id: artist_id,
             };
 
             let (mut artist, album_page_params) = self
@@ -78,7 +78,7 @@ impl RustyPipeQuery {
             let context = self.get_context(ClientType::DesktopMusic, true, None).await;
             let request_body = QBrowse {
                 context,
-                browse_id: artist_id.to_owned(),
+                browse_id: artist_id,
             };
 
             self.execute_request::<response::MusicArtist, _, _>(

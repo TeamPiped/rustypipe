@@ -136,7 +136,7 @@ struct ThirdParty<'a> {
 #[serde(rename_all = "camelCase")]
 struct QBrowse<'a> {
     context: YTContext<'a>,
-    browse_id: String,
+    browse_id: &'a str,
 }
 
 #[derive(Debug, Serialize)]
