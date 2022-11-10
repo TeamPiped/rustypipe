@@ -990,6 +990,14 @@ impl RustyPipeQuery {
         }
     }
 
+    /// Get a YouTube Music visitor data cookie, which is necessary for certain requests
+    async fn get_ytm_visitor_data(&self) -> Result<String, Error> {
+        match &self.opts.visitor_data {
+            Some(vd) => Ok(vd.to_owned()),
+            None => self.client.get_ytm_visitor_data().await,
+        }
+    }
+
     /// Execute a request to the YouTube API, then deobfuscate and map the response.
     ///
     /// Creates a report in case of failure for easy debugging.

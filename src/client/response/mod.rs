@@ -16,6 +16,7 @@ pub(crate) use channel::Channel;
 pub(crate) use music_artist::MusicArtist;
 pub(crate) use music_artist::MusicArtistAlbums;
 pub(crate) use music_details::MusicDetails;
+pub(crate) use music_details::MusicLyrics;
 pub(crate) use music_item::MusicContinuation;
 pub(crate) use music_playlist::MusicPlaylist;
 pub(crate) use music_search::MusicSearch;
@@ -60,6 +61,12 @@ pub(crate) struct ContentsRenderer<T> {
 #[serde(rename_all = "camelCase")]
 pub(crate) struct Tab<T> {
     pub tab_renderer: ContentRenderer<T>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct SectionList<T> {
+    pub section_list_renderer: ContentsRenderer<T>,
 }
 
 #[derive(Default, Debug, Deserialize)]

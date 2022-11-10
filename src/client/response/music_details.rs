@@ -1,6 +1,9 @@
 use serde::Deserialize;
+use serde_with::serde_as;
 
-use super::{music_item::PlaylistPanelRenderer, ContentRenderer};
+use crate::serializer::text::Text;
+
+use super::{music_item::PlaylistPanelRenderer, ContentRenderer, SectionList};
 
 /// Response model for YouTube Music track details
 #[derive(Debug, Deserialize)]
@@ -90,4 +93,26 @@ pub(crate) struct TabContent {
 #[serde(rename_all = "camelCase")]
 pub(crate) struct PlaylistPanel {
     pub playlist_panel_renderer: PlaylistPanelRenderer,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct MusicLyrics {
+    pub contents: SectionList<LyricsContents>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct LyricsContents {
+    pub music_description_shelf_renderer: Option<LyricsRenderer>,
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct LyricsRenderer {
+    #[serde_as(as = "Text")]
+    pub description: String,
+    #[serde_as(as = "Text")]
+    pub footer: String,
 }

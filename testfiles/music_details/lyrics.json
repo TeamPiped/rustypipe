@@ -1,0 +1,103 @@
+{
+  "contents": {
+    "sectionListRenderer": {
+      "contents": [
+        {
+          "musicDescriptionShelfRenderer": {
+            "description": {
+              "runs": [
+                {
+                  "text": "Eyes, in the sky, gazing far into the night\nI raise my hand to the fire, but it's no use\n'Cause you can't stop it from shining through\nIt's true\nBaby let the light shine through\nIf you believe it's true\nBaby won't you let the light shine through\nFor you\nFor you\nFor you\nFor you\nFor you\nFor you\nFor you\nFor you\nFor you\nFor you\nFor you\nWon't you let the light shine through\n\nEyes, in the sky, gazing far into the night\nI raise my hand to the fire, but it's no use\n'Cause you can't stop it from shining through\nIt's true\nBaby let the light shine through\nIf you believe it's true\nBaby won't you let the light shine through\nFor you\nFor you\nFor you\nFor you\nFor you\nFor you\nFor you\nFor you\nFor you\nFor you\nFor you\nFor you"
+                }
+              ]
+            },
+            "footer": {
+              "runs": [
+                {
+                  "text": "Source: Musixmatch"
+                }
+              ]
+            },
+            "maxCollapsedLines": 0,
+            "maxExpandedLines": 0,
+            "onShowCommands": [
+              {
+                "clickTrackingParams": "CAIQ2fQEGAAiEwjpyODp3aT7AhUe0REIHV-EAKs=",
+                "logLyricEventCommand": {
+                  "serializedLyricInfo": "Eg10X3E4eGptbTdDbEpMGAIiCDE4NTc2OTU0"
+                }
+              }
+            ],
+            "trackingParams": "CAIQ2fQEGAAiEwjpyODp3aT7AhUe0REIHV-EAKs="
+          }
+        }
+      ],
+      "trackingParams": "CAEQui8iEwjpyODp3aT7AhUe0REIHV-EAKs="
+    }
+  },
+  "responseContext": {
+    "serviceTrackingParams": [
+      {
+        "params": [
+          {
+            "key": "has_unlimited_entitlement",
+            "value": "False"
+          },
+          {
+            "key": "browse_id",
+            "value": "MPLYt_q8xjmm7ClJL"
+          },
+          {
+            "key": "logged_in",
+            "value": "0"
+          },
+          {
+            "key": "e",
+            "value": "1714259,23804281,23848211,23882503,23918597,23934970,23940248,23946420,23966208,23983296,23998056,24001373,24002022,24002025,24004644,24007246,24034168,24036948,24077241,24078244,24080738,24108447,24120819,24135310,24135692,24140247,24147965,24161116,24162920,24164186,24169501,24181174,24185614,24187043,24187377,24191629,24197450,24199724,24200839,24209350,24211178,24216167,24217535,24219713,24228638,24230619,24241378,24248091,24253729,24255165,24255543,24255545,24260783,24262346,24263796,24267564,24267570,24268142,24269410,24278596,24279196,24279852,24281671,24283556,24286005,24286017,24287327,24288043,24290971,24292955,24293803,24295708,24299747,24390374,24390675,24391018,24391537,24392450,24392500,24394549,24396819,24397910,24398998,24399052,24399916,24401557,24402891,24403118,24404641,24406605,24407199,24407665,24409401,24410273,24413557,24413558,24415139,24590921,39322504,39322574"
+          }
+        ],
+        "service": "GFEEDBACK"
+      },
+      {
+        "params": [
+          {
+            "key": "c",
+            "value": "WEB_REMIX"
+          },
+          {
+            "key": "cver",
+            "value": "1.20221107.01.00"
+          },
+          {
+            "key": "yt_li",
+            "value": "0"
+          },
+          {
+            "key": "GetBrowseTrackLyricsPage_rid",
+            "value": "0x8d12ba6a166bab0c"
+          }
+        ],
+        "service": "CSI"
+      },
+      {
+        "params": [
+          {
+            "key": "client.version",
+            "value": "1.20000101"
+          },
+          {
+            "key": "client.name",
+            "value": "WEB_REMIX"
+          },
+          {
+            "key": "client.fexp",
+            "value": "24217535,24295708,24590921,24401557,24410273,24120819,24278596,24001373,24290971,24077241,24292955,23848211,24036948,24255545,24286005,24219713,39322504,24279196,24002022,24080738,24413557,23918597,24404641,24209350,39322574,24390675,23940248,24169501,24391018,24002025,24262346,24392500,24396819,24255165,24241378,24279852,24281671,24162920,1714259,24181174,24200839,24034168,24108447,24402891,24216167,24197450,24253729,23998056,24283556,24007246,24403118,24255543,24406605,24161116,24293803,24004644,24230619,24399052,24191629,24211178,24407199,24135310,23882503,24260783,24263796,24391537,24392450,23983296,24415139,24267564,24187043,24409401,24286017,24287327,24399916,23934970,24228638,24398998,24185614,24268142,24394549,24187377,24140247,24164186,24135692,24269410,24288043,24407665,24199724,24390374,24397910,23966208,24267570,24078244,24248091,24147965,24413558,23946420,23804281,24299747"
+          }
+        ],
+        "service": "ECATCHER"
+      }
+    ],
+    "visitorData": "Cgs3R19icmhVUkNYOCikibabBg%3D%3D"
+  },
+  "trackingParams": "CAAQhGciEwjpyODp3aT7AhUe0REIHV-EAKs="
+}

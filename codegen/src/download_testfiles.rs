@@ -50,6 +50,7 @@ pub async fn download_testfiles(project_root: &Path) {
     music_search_cont(&testfiles).await;
     music_artist(&testfiles).await;
     music_details(&testfiles).await;
+    music_lyrics(&testfiles).await;
     music_radio(&testfiles).await;
     music_radio_cont(&testfiles).await;
 }
@@ -714,6 +715,24 @@ async fn music_details(testfiles: &Path) {
         let rp = rp_testfile(&json_path);
         rp.query().music_details(id).await.unwrap();
     }
+}
+
+async fn music_lyrics(testfiles: &Path) {
+    let mut json_path = testfiles.to_path_buf();
+    json_path.push("music_details");
+    json_path.push("lyrics.json");
+    if json_path.exists() {
+        return;
+    }
+
+    let rp = RustyPipe::new();
+    let res = rp.query().music_details("n4tK7LYFxI0").await.unwrap();
+
+    let rp = rp_testfile(&json_path);
+    rp.query()
+        .music_lyrics(&res.lyrics_id.unwrap())
+        .await
+        .unwrap();
 }
 
 async fn music_radio(testfiles: &Path) {

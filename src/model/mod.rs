@@ -1239,3 +1239,10 @@ pub struct TrackDetails {
     pub lyrics_id: Option<String>,
     pub related_id: Option<String>,
 }
+
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
+pub struct Lyrics {
+    pub body: String,
+    pub footer: String,
+}

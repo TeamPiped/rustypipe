@@ -32,11 +32,7 @@ impl RustyPipeQuery {
         all_albums: bool,
     ) -> Result<MusicArtist, Error> {
         if all_albums {
-            let visitor_data = match &self.opts.visitor_data {
-                Some(vd) => vd.to_owned(),
-                None => self.client.get_ytm_visitor_data().await?,
-            };
-
+            let visitor_data = self.get_ytm_visitor_data().await?;
             let context = self
                 .get_context(ClientType::DesktopMusic, true, Some(&visitor_data))
                 .await;

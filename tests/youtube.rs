@@ -1770,6 +1770,18 @@ async fn music_details(#[case] name: &str, #[case] id: &str) {
 }
 
 #[tokio::test]
+async fn music_lyrics() {
+    let rp = RustyPipe::builder().strict().build();
+    let track = rp.query().music_details("n4tK7LYFxI0").await.unwrap();
+    let lyrics = rp
+        .query()
+        .music_lyrics(&track.lyrics_id.unwrap())
+        .await
+        .unwrap();
+    insta::assert_ron_snapshot!(lyrics);
+}
+
+#[tokio::test]
 async fn music_radio_track() {
     let rp = RustyPipe::builder().strict().build();
     let tracks = rp.query().music_radio_track("ZeerrnuLi5E").await.unwrap();

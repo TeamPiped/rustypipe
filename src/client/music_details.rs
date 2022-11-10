@@ -4,14 +4,14 @@ use serde::Serialize;
 
 use crate::{
     error::{Error, ExtractionError},
-    model::{Paginator, TrackDetails, TrackItem},
+    model::{Lyrics, Paginator, TrackDetails, TrackItem},
     param::Language,
     serializer::MapResult,
 };
 
 use super::{
     response::{self, music_item::map_queue_item},
-    ClientType, MapResponse, RustyPipeQuery, YTContext,
+    ClientType, MapResponse, QBrowse, RustyPipeQuery, YTContext,
 };
 
 #[derive(Debug, Serialize)]
@@ -49,6 +49,23 @@ impl RustyPipeQuery {
             "music_details",
             video_id,
             "next",
+            &request_body,
+        )
+        .await
+    }
+
+    pub async fn music_lyrics(&self, lyrics_id: &str) -> Result<Lyrics, Error> {
+        let context = self.get_context(ClientType::DesktopMusic, true, None).await;
+        let request_body = QBrowse {
+            context,
+            browse_id: lyrics_id,
+        };
+
+        self.execute_request::<response::MusicLyrics, _, _>(
+            ClientType::DesktopMusic,
+            "music_lyrics",
+            lyrics_id,
+            "browse",
             &request_body,
         )
         .await
@@ -214,6 +231,31 @@ impl MapResponse<Paginator<TrackItem>> for response::MusicDetails {
     }
 }
 
+impl MapResponse<Lyrics> for response::MusicLyrics {
+    fn map_response(
+        self,
+        _id: &str,
+        _lang: Language,
+        _deobf: Option<&crate::deobfuscate::Deobfuscator>,
+    ) -> Result<MapResult<Lyrics>, ExtractionError> {
+        let lyrics = self
+            .contents
+            .section_list_renderer
+            .contents
+            .into_iter()
+            .find_map(|item| item.music_description_shelf_renderer)
+            .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no content")))?;
+
+        Ok(MapResult {
+            c: Lyrics {
+                body: lyrics.description,
+                footer: lyrics.footer,
+            },
+            warnings: Vec::new(),
+        })
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use std::{fs::File, io::BufReader, path::Path};
@@ -263,5 +305,22 @@ mod tests {
             map_res.warnings
         );
         insta::assert_ron_snapshot!(format!("map_music_radio_{}", name), map_res.c);
+    }
+
+    #[test]
+    fn map_lyrics() {
+        let json_path = Path::new("testfiles/music_details/lyrics.json");
+        let json_file = File::open(json_path).unwrap();
+
+        let lyrics: response::MusicLyrics =
+            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let map_res: MapResult<Lyrics> = lyrics.map_response("", Language::En, None).unwrap();
+
+        assert!(
+            map_res.warnings.is_empty(),
+            "deserialization/mapping warnings: {:?}",
+            map_res.warnings
+        );
+        insta::assert_ron_snapshot!(format!("map_music_lyrics"), map_res.c);
     }
 }
