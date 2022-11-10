@@ -1,18 +1,22 @@
+use std::borrow::Cow;
+
 use serde::Serialize;
 
 use crate::{
     error::{Error, ExtractionError},
-    model::MusicDetails,
+    model::{Paginator, TrackDetails, TrackItem},
     param::Language,
     serializer::MapResult,
 };
 
-use super::{response, ClientType, MapResponse, RustyPipeQuery, YTContext};
+use super::{
+    response::{self, music_item::map_queue_item},
+    ClientType, MapResponse, RustyPipeQuery, YTContext,
+};
 
 #[derive(Debug, Serialize)]
 struct QMusicDetails<'a> {
     context: YTContext<'a>,
-    // YouTube video ID
     video_id: &'a str,
     enable_persistent_playlist_panel: bool,
     is_audio_only: bool,
@@ -30,7 +34,27 @@ struct QRadio<'a> {
 }
 
 impl RustyPipeQuery {
-    pub async fn music_radio(&self, radio_id: &str) -> Result<MusicDetails, Error> {
+    pub async fn music_details(&self, video_id: &str) -> Result<TrackDetails, Error> {
+        let context = self.get_context(ClientType::DesktopMusic, true, None).await;
+        let request_body = QMusicDetails {
+            context,
+            video_id,
+            enable_persistent_playlist_panel: true,
+            is_audio_only: true,
+            tuner_setting_value: "AUTOMIX_SETTING_NORMAL",
+        };
+
+        self.execute_request::<response::MusicDetails, _, _>(
+            ClientType::DesktopMusic,
+            "music_details",
+            video_id,
+            "next",
+            &request_body,
+        )
+        .await
+    }
+
+    pub async fn music_radio(&self, radio_id: &str) -> Result<Paginator<TrackItem>, Error> {
         let context = self.get_context(ClientType::DesktopMusic, true, None).await;
         let request_body = QRadio {
             context,
@@ -50,20 +74,194 @@ impl RustyPipeQuery {
         )
         .await
     }
+
+    pub async fn music_radio_track(&self, video_id: &str) -> Result<Paginator<TrackItem>, Error> {
+        self.music_radio(&format!("RDAMVM{}", video_id)).await
+    }
+
+    pub async fn music_radio_playlist(
+        &self,
+        playlist_id: &str,
+    ) -> Result<Paginator<TrackItem>, Error> {
+        self.music_radio(&format!("RDAMPL{}", playlist_id)).await
+    }
 }
 
-impl MapResponse<MusicDetails> for response::MusicDetails {
+impl MapResponse<TrackDetails> for response::MusicDetails {
     fn map_response(
         self,
         id: &str,
         lang: Language,
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
-    ) -> Result<MapResult<MusicDetails>, ExtractionError> {
-        dbg!(&self);
+    ) -> Result<MapResult<TrackDetails>, ExtractionError> {
+        let tabs = self
+            .contents
+            .single_column_music_watch_next_results_renderer
+            .tabbed_renderer
+            .watch_next_tabbed_results_renderer
+            .tabs;
+
+        let mut content = None;
+        let mut lyrics_id = None;
+        let mut related_id = None;
+
+        for t in tabs {
+            match (t.tab_renderer.content, t.tab_renderer.endpoint) {
+                (Some(tc), _) => {
+                    content = Some(tc.music_queue_renderer.content.playlist_panel_renderer);
+                }
+                (_, Some(endpoint)) => {
+                    match endpoint
+                        .browse_endpoint
+                        .browse_endpoint_context_supported_configs
+                        .browse_endpoint_context_music_config
+                        .page_type
+                    {
+                        response::music_details::TabType::Lyrics => {
+                            lyrics_id = Some(endpoint.browse_endpoint.browse_id);
+                        }
+                        response::music_details::TabType::Related => {
+                            related_id = Some(endpoint.browse_endpoint.browse_id);
+                        }
+                    }
+                }
+                (None, None) => {}
+            }
+        }
+
+        let content = content.ok_or(ExtractionError::InvalidData(Cow::Borrowed("no content")))?;
+        let track_item = content
+            .contents
+            .c
+            .into_iter()
+            .find_map(|item| match item {
+                response::music_item::PlaylistPanelVideo::PlaylistPanelVideoRenderer(track) => {
+                    Some(track)
+                }
+                response::music_item::PlaylistPanelVideo::None => None,
+            })
+            .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no video item")))?;
+        let track = map_queue_item(track_item, lang);
+
+        if track.id != id {
+            return Err(ExtractionError::WrongResult(format!(
+                "got wrong video id {}, expected {}",
+                track.id, id
+            )));
+        }
 
         Ok(MapResult {
-            c: MusicDetails {},
-            warnings: Vec::new(),
+            c: TrackDetails {
+                track,
+                lyrics_id,
+                related_id,
+            },
+            warnings: content.contents.warnings,
         })
+    }
+}
+
+impl MapResponse<Paginator<TrackItem>> for response::MusicDetails {
+    fn map_response(
+        self,
+        _id: &str,
+        lang: Language,
+        _deobf: Option<&crate::deobfuscate::Deobfuscator>,
+    ) -> Result<MapResult<Paginator<TrackItem>>, ExtractionError> {
+        let tabs = self
+            .contents
+            .single_column_music_watch_next_results_renderer
+            .tabbed_renderer
+            .watch_next_tabbed_results_renderer
+            .tabs;
+
+        let content = tabs
+            .into_iter()
+            .find_map(|t| t.tab_renderer.content)
+            .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no content")))?
+            .music_queue_renderer
+            .content
+            .playlist_panel_renderer;
+
+        let tracks = content
+            .contents
+            .c
+            .into_iter()
+            .filter_map(|item| match item {
+                response::music_item::PlaylistPanelVideo::PlaylistPanelVideoRenderer(item) => {
+                    Some(map_queue_item(item, lang))
+                }
+                response::music_item::PlaylistPanelVideo::None => None,
+            })
+            .collect::<Vec<_>>();
+
+        let ctoken = content
+            .continuations
+            .into_iter()
+            .next()
+            .map(|c| c.next_continuation_data.continuation);
+
+        Ok(MapResult {
+            c: Paginator::new_ext(
+                None,
+                tracks,
+                ctoken,
+                None,
+                crate::param::ContinuationEndpoint::MusicNext,
+            ),
+            warnings: content.contents.warnings,
+        })
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use std::{fs::File, io::BufReader, path::Path};
+
+    use rstest::rstest;
+
+    use super::*;
+    use crate::{model, param::Language};
+
+    #[rstest]
+    #[case::mv("mv", "ZeerrnuLi5E")]
+    #[case::track("track", "7nigXQS1Xb0")]
+    fn map_music_details(#[case] name: &str, #[case] id: &str) {
+        let filename = format!("testfiles/music_details/details_{}.json", name);
+        let json_path = Path::new(&filename);
+        let json_file = File::open(json_path).unwrap();
+
+        let details: response::MusicDetails =
+            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let map_res: MapResult<model::TrackDetails> =
+            details.map_response(id, Language::En, None).unwrap();
+
+        assert!(
+            map_res.warnings.is_empty(),
+            "deserialization/mapping warnings: {:?}",
+            map_res.warnings
+        );
+        insta::assert_ron_snapshot!(format!("map_music_details_{}", name), map_res.c);
+    }
+
+    #[rstest]
+    #[case::mv("mv", "RDAMVMZeerrnuLi5E")]
+    #[case::track("track", "RDAMVM7nigXQS1Xb0")]
+    fn map_music_radio(#[case] name: &str, #[case] id: &str) {
+        let filename = format!("testfiles/music_details/radio_{}.json", name);
+        let json_path = Path::new(&filename);
+        let json_file = File::open(json_path).unwrap();
+
+        let radio: response::MusicDetails =
+            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let map_res: MapResult<Paginator<TrackItem>> =
+            radio.map_response(id, Language::En, None).unwrap();
+
+        assert!(
+            map_res.warnings.is_empty(),
+            "deserialization/mapping warnings: {:?}",
+            map_res.warnings
+        );
+        insta::assert_ron_snapshot!(format!("map_music_radio_{}", name), map_res.c);
     }
 }

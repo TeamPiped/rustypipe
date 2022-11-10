@@ -1,0 +1,59 @@
+---
+source: src/client/music_details.rs
+expression: map_res.c
+---
+TrackDetails(
+  track: TrackItem(
+    id: "7nigXQS1Xb0",
+    title: "INVU",
+    duration: Some(205),
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/2a1Lr46_ibhVNX5tZK_PnsmKFpB1ptZ9eUqtlcCXTRSxAcOLC7HpAO0pqyFJTttUPHAiYpqkTH251DIQ9A=w60-h60-l90-rj",
+        width: 60,
+        height: 60,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/2a1Lr46_ibhVNX5tZK_PnsmKFpB1ptZ9eUqtlcCXTRSxAcOLC7HpAO0pqyFJTttUPHAiYpqkTH251DIQ9A=w120-h120-l90-rj",
+        width: 120,
+        height: 120,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/2a1Lr46_ibhVNX5tZK_PnsmKFpB1ptZ9eUqtlcCXTRSxAcOLC7HpAO0pqyFJTttUPHAiYpqkTH251DIQ9A=w180-h180-l90-rj",
+        width: 180,
+        height: 180,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/2a1Lr46_ibhVNX5tZK_PnsmKFpB1ptZ9eUqtlcCXTRSxAcOLC7HpAO0pqyFJTttUPHAiYpqkTH251DIQ9A=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/2a1Lr46_ibhVNX5tZK_PnsmKFpB1ptZ9eUqtlcCXTRSxAcOLC7HpAO0pqyFJTttUPHAiYpqkTH251DIQ9A=w302-h302-l90-rj",
+        width: 302,
+        height: 302,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/2a1Lr46_ibhVNX5tZK_PnsmKFpB1ptZ9eUqtlcCXTRSxAcOLC7HpAO0pqyFJTttUPHAiYpqkTH251DIQ9A=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCwzCuKxyMY_sT7hr1E8G1XA"),
+        name: "TAEYEON",
+      ),
+    ],
+    artist_id: Some("UCwzCuKxyMY_sT7hr1E8G1XA"),
+    album: Some(AlbumId(
+      id: "MPREb_4xbv14CiQJm",
+      name: "INVU - The 3rd Album",
+    )),
+    view_count: None,
+    is_video: false,
+    track_nr: None,
+  ),
+  lyrics_id: Some("MPLYt_4xbv14CiQJm-1"),
+  related_id: Some("MPTRt_4xbv14CiQJm-1"),
+)

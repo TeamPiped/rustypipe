@@ -1509,9 +1509,8 @@ async fn music_search(#[case] typo: bool) {
         assert_eq!(res.corrected_query, None);
     }
 
-    let track = &res.tracks[0];
-    dbg!(&track);
-    assert_eq!(track.id, "ZeerrnuLi5E");
+    let track = res.tracks.iter().find(|t| t.id == "ZeerrnuLi5E").unwrap();
+
     assert_eq!(track.title, "Black Mamba");
     assert_eq!(track.duration.unwrap(), 230);
     assert!(!track.cover.is_empty(), "got no cover");
@@ -1753,6 +1752,39 @@ async fn music_search_playlists_community() {
 async fn music_search_genre_radio() {
     let rp = RustyPipe::builder().strict().build();
     rp.query().music_search("pop radio").await.unwrap();
+}
+
+#[rstest]
+#[case::mv("mv", "ZeerrnuLi5E")]
+#[case::track("track", "7nigXQS1Xb0")]
+#[tokio::test]
+async fn music_details(#[case] name: &str, #[case] id: &str) {
+    let rp = RustyPipe::builder().strict().build();
+    let track = rp.query().music_details(id).await.unwrap();
+
+    assert!(!track.track.cover.is_empty(), "got no cover");
+
+    insta::assert_ron_snapshot!(format!("music_details_{}", name), track,
+        {".track.cover" => "[cover]"}
+    );
+}
+
+#[tokio::test]
+async fn music_radio_track() {
+    let rp = RustyPipe::builder().strict().build();
+    let tracks = rp.query().music_radio_track("ZeerrnuLi5E").await.unwrap();
+    assert_next(tracks, &rp.query(), 20, 3).await;
+}
+
+#[tokio::test]
+async fn music_radio_playlist() {
+    let rp = RustyPipe::builder().strict().build();
+    let tracks = rp
+        .query()
+        .music_radio_playlist("PL5dDx681T4bR7ZF1IuWzOv1omlRbE7PiJ")
+        .await
+        .unwrap();
+    assert_next(tracks, &rp.query(), 20, 1).await;
 }
 
 //#TESTUTIL

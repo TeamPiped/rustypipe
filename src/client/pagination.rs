@@ -6,7 +6,7 @@ use crate::param::ContinuationEndpoint;
 use crate::serializer::MapResult;
 use crate::util::TryRemove;
 
-use super::response::music_item::MusicListMapper;
+use super::response::music_item::{map_queue_item, MusicListMapper, PlaylistPanelVideo};
 use super::{response, ClientType, MapResponse, QContinuation, RustyPipeQuery};
 
 impl RustyPipeQuery {
@@ -151,6 +151,15 @@ impl MapResponse<Paginator<MusicItem>> for response::MusicContinuation {
                         response::music_item::ItemSection::None => {}
                     }
                 }
+            }
+            response::music_item::ContinuationContents::PlaylistPanelContinuation(mut panel) => {
+                continuations.append(&mut panel.continuations);
+                mapper.add_warnings(&mut panel.contents.warnings);
+                panel.contents.c.into_iter().for_each(|item| {
+                    if let PlaylistPanelVideo::PlaylistPanelVideoRenderer(item) = item {
+                        mapper.add_item(MusicItem::Track(map_queue_item(item, lang)))
+                    }
+                });
             }
         }
 
@@ -355,6 +364,7 @@ mod tests {
     #[rstest]
     #[case("playlist_tracks", "music_playlist/playlist_cont")]
     #[case("search_tracks", "music_search/tracks_cont")]
+    #[case("radio_tracks", "music_details/radio_cont")]
     fn map_continuation_tracks(#[case] name: &str, #[case] path: &str) {
         let filename = format!("testfiles/{}.json", path);
         let json_path = Path::new(&filename);

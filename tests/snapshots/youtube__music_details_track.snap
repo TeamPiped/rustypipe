@@ -1,0 +1,28 @@
+---
+source: tests/youtube.rs
+expression: track
+---
+TrackDetails(
+  track: TrackItem(
+    id: "7nigXQS1Xb0",
+    title: "INVU",
+    duration: Some(205),
+    cover: "[cover]",
+    artists: [
+      ArtistId(
+        id: Some("UCwzCuKxyMY_sT7hr1E8G1XA"),
+        name: "TAEYEON",
+      ),
+    ],
+    artist_id: Some("UCwzCuKxyMY_sT7hr1E8G1XA"),
+    album: Some(AlbumId(
+      id: "MPREb_4xbv14CiQJm",
+      name: "INVU - The 3rd Album",
+    )),
+    view_count: None,
+    is_video: false,
+    track_nr: None,
+  ),
+  lyrics_id: Some("MPLYt_4xbv14CiQJm-1"),
+  related_id: Some("MPTRt_4xbv14CiQJm-1"),
+)

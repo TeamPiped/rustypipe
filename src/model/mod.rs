@@ -1234,4 +1234,8 @@ pub struct MusicSearchFiltered<T> {
 /// Music track details
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[non_exhaustive]
-pub struct MusicDetails {}
+pub struct TrackDetails {
+    pub track: TrackItem,
+    pub lyrics_id: Option<String>,
+    pub related_id: Option<String>,
+}

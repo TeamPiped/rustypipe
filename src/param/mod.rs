@@ -17,6 +17,7 @@ pub enum ContinuationEndpoint {
     Next,
     MusicBrowse,
     MusicSearch,
+    MusicNext,
 }
 
 impl ContinuationEndpoint {
@@ -24,14 +25,16 @@ impl ContinuationEndpoint {
         match self {
             ContinuationEndpoint::Browse | ContinuationEndpoint::MusicBrowse => "browse",
             ContinuationEndpoint::Search | ContinuationEndpoint::MusicSearch => "search",
-            ContinuationEndpoint::Next => "next",
+            ContinuationEndpoint::Next | ContinuationEndpoint::MusicNext => "next",
         }
     }
 
     pub(crate) fn is_music(self) -> bool {
         matches!(
             self,
-            ContinuationEndpoint::MusicBrowse | ContinuationEndpoint::MusicSearch
+            ContinuationEndpoint::MusicBrowse
+                | ContinuationEndpoint::MusicSearch
+                | ContinuationEndpoint::MusicNext
         )
     }
 }

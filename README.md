@@ -24,6 +24,8 @@ inspired by [NewPipe](https://github.com/TeamNewPipe/NewPipeExtractor).
 - [X] **Artist**
 - [X] **Search**
 - [ ] **Search suggestions**
+- [ ] **Radio**
+- [ ] **Track details**
 - [ ] **Moods**
 - [ ] **Charts**
 - [ ] **New**

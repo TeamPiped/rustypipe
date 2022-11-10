@@ -70,3 +70,9 @@ Single: MPREb_bHfHGoy7vuv
 EP: MPREb_u1I69lSAe5v
 Audiobook: MPREb_gaoNzsQHedo
 Show: MPREb_cwzk8EUwypZ
+
+# Radios
+Track radio (Autoplay): RDAMVM + video id, example: RDAMVMZeerrnuLi5E
+Artist radio: RDEMieiteXw81tMLBdKv8qkChg (ID from artist page)
+Playlist/album radio: RDAMPL + playlist id
+Genre radio: RDQM1xqCV6EdPUw

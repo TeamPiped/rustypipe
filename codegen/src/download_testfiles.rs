@@ -49,7 +49,9 @@ pub async fn download_testfiles(project_root: &Path) {
     music_search_playlists(&testfiles).await;
     music_search_cont(&testfiles).await;
     music_artist(&testfiles).await;
+    music_details(&testfiles).await;
     music_radio(&testfiles).await;
+    music_radio_cont(&testfiles).await;
 }
 
 const CLIENT_TYPES: [ClientType; 5] = [
@@ -700,8 +702,8 @@ async fn music_artist(testfiles: &Path) {
     }
 }
 
-async fn music_radio(testfiles: &Path) {
-    for (name, id) in [("mv", "RDAMVMZeerrnuLi5E"), ("track", "RDAMVM7nigXQS1Xb0")] {
+async fn music_details(testfiles: &Path) {
+    for (name, id) in [("mv", "ZeerrnuLi5E"), ("track", "7nigXQS1Xb0")] {
         let mut json_path = testfiles.to_path_buf();
         json_path.push("music_details");
         json_path.push(format!("details_{}.json", name));
@@ -710,6 +712,35 @@ async fn music_radio(testfiles: &Path) {
         }
 
         let rp = rp_testfile(&json_path);
+        rp.query().music_details(id).await.unwrap();
+    }
+}
+
+async fn music_radio(testfiles: &Path) {
+    for (name, id) in [("mv", "RDAMVMZeerrnuLi5E"), ("track", "RDAMVM7nigXQS1Xb0")] {
+        let mut json_path = testfiles.to_path_buf();
+        json_path.push("music_details");
+        json_path.push(format!("radio_{}.json", name));
+        if json_path.exists() {
+            continue;
+        }
+
+        let rp = rp_testfile(&json_path);
         rp.query().music_radio(id).await.unwrap();
     }
+}
+
+async fn music_radio_cont(testfiles: &Path) {
+    let mut json_path = testfiles.to_path_buf();
+    json_path.push("music_details");
+    json_path.push("radio_cont.json");
+    if json_path.exists() {
+        return;
+    }
+
+    let rp = RustyPipe::new();
+    let res = rp.query().music_radio("RDAMVM7nigXQS1Xb0").await.unwrap();
+
+    let rp = rp_testfile(&json_path);
+    res.next(&rp.query()).await.unwrap().unwrap();
 }

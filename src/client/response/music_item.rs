@@ -17,7 +17,7 @@ use crate::{
 
 use super::{
     url_endpoint::{BrowseEndpointWrap, NavigationEndpoint, PageType},
-    ContentsRenderer, MusicContinuationData, ThumbnailsWrap,
+    ContentsRenderer, MusicContinuationData, Thumbnails, ThumbnailsWrap,
 };
 
 #[serde_as]
@@ -176,6 +176,48 @@ pub(crate) struct CoverMusicItem {
     pub navigation_endpoint: NavigationEndpoint,
 }
 
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct PlaylistPanelRenderer {
+    #[serde_as(as = "VecLogError<_>")]
+    pub contents: MapResult<Vec<PlaylistPanelVideo>>,
+    /// Continuation token for fetching more radio items
+    #[serde(default)]
+    #[serde_as(as = "VecSkipError<_>")]
+    pub continuations: Vec<MusicContinuationData>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) enum PlaylistPanelVideo {
+    PlaylistPanelVideoRenderer(QueueMusicItem),
+    #[serde(other, deserialize_with = "ignore_any")]
+    None,
+}
+
+/// Music item from a playback queue (`playlistPanelVideoRenderer`)
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct QueueMusicItem {
+    pub video_id: String,
+    #[serde_as(as = "Text")]
+    pub title: String,
+    #[serde_as(as = "Option<Text>")]
+    pub length_text: Option<String>,
+    /// Artist + Album + Year (for tracks)
+    /// `<"IVE">, " • ", <"LOVE DIVE (LOVE DIVE)">, " • ", "2022"`
+    ///
+    /// Artist + view count + like count (for videos)
+    /// `<"aespa">, " • ", "250M views", " • ", "3.6M likes"`
+    #[serde(default)]
+    pub long_byline_text: TextComponents,
+    #[serde(default)]
+    pub thumbnail: Thumbnails,
+    pub menu: Option<MusicItemMenu>,
+}
+
 #[derive(Default, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct MusicThumbnailRenderer {
@@ -236,10 +278,12 @@ pub(crate) struct MusicContinuation {
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
+#[allow(clippy::enum_variant_names)]
 pub(crate) enum ContinuationContents {
     #[serde(alias = "musicPlaylistShelfContinuation")]
     MusicShelfContinuation(MusicShelf),
     SectionListContinuation(ContentsRenderer<ItemSection>),
+    PlaylistPanelContinuation(PlaylistPanelRenderer),
 }
 
 #[derive(Debug, Deserialize)]
@@ -712,6 +756,14 @@ impl MusicListMapper {
         etype
     }
 
+    pub fn add_item(&mut self, item: MusicItem) {
+        self.items.push(item);
+    }
+
+    pub fn add_warnings(&mut self, warnings: &mut Vec<String>) {
+        self.warnings.append(warnings);
+    }
+
     pub fn items(self) -> MapResult<Vec<MusicItem>> {
         MapResult {
             c: self.items,
@@ -783,7 +835,7 @@ pub(crate) fn map_artists(artists_p: Option<TextComponents>) -> (Vec<ArtistId>, 
     (artists, by_va)
 }
 
-fn map_artist_id(
+pub(crate) fn map_artist_id(
     menu: Option<MusicItemMenu>,
     fallback_artist: Option<&ArtistId>,
 ) -> Option<String> {
@@ -814,6 +866,49 @@ pub(crate) fn map_album_type(txt: &str, lang: Language) -> AlbumType {
         .get(txt.to_lowercase().trim())
         .copied()
         .unwrap_or_default()
+}
+
+pub(crate) fn map_queue_item(item: QueueMusicItem, lang: Language) -> TrackItem {
+    let mut subtitle_parts = item.long_byline_text.split(util::DOT_SEPARATOR).into_iter();
+
+    let is_video = !item
+        .thumbnail
+        .thumbnails
+        .first()
+        .map(|tn| tn.height == tn.width)
+        .unwrap_or_default();
+
+    let artist_p = subtitle_parts.next();
+    let (artists, _) = map_artists(artist_p);
+    let artist_id = map_artist_id(item.menu, artists.first());
+
+    let subtitle_p2 = subtitle_parts.next();
+    let (album, view_count) = if is_video {
+        (
+            None,
+            subtitle_p2.and_then(|p| util::parse_large_numstr(p.first_str(), lang)),
+        )
+    } else {
+        (
+            subtitle_p2.and_then(|p| p.0.into_iter().find_map(|c| AlbumId::try_from(c).ok())),
+            None,
+        )
+    };
+
+    TrackItem {
+        id: item.video_id,
+        title: item.title,
+        duration: item
+            .length_text
+            .and_then(|txt| util::parse_video_length(&txt)),
+        cover: item.thumbnail.into(),
+        artists,
+        artist_id,
+        album,
+        view_count,
+        is_video,
+        track_nr: None,
+    }
 }
 
 #[cfg(test)]

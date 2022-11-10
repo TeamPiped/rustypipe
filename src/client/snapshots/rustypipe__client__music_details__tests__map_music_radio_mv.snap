@@ -1,0 +1,826 @@
+---
+source: src/client/music_details.rs
+expression: map_res.c
+---
+Paginator(
+  count: None,
+  items: [
+    TrackItem(
+      id: "4TWR90KJl84",
+      title: "Next Level",
+      duration: Some(236),
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/4TWR90KJl84/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kl3LTK647n1QMNk2ltojkKT5jR8w",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/4TWR90KJl84/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3lCHWpapuNMHxDRnGHl_AKqq73fAw",
+          width: 800,
+          height: 450,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/4TWR90KJl84/hq720.jpg?sqp=-oaymwEXCNUGEOADIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3k49HRWAedtI0Zqb7Noov7jBviZig",
+          width: 853,
+          height: 480,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
+          name: "aespa",
+        ),
+      ],
+      artist_id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
+      album: None,
+      view_count: Some(250000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "Y8JFxS1HlDo",
+      title: "LOVE DIVE",
+      duration: Some(179),
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/Y8JFxS1HlDo/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3k7dfJvms48b2vkzgD8IgO7NeY6cQ",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/Y8JFxS1HlDo/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3llrmra1TaoqopbxBevNFRK_6Xc2w",
+          width: 800,
+          height: 450,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/Y8JFxS1HlDo/hq720.jpg?sqp=-oaymwEXCNUGEOADIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3moJU9Sl3QbDvSvlGR2Q2cngtnKMw",
+          width: 853,
+          height: 480,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC_4Y1QqJr60C5Z7-eQWy-mw"),
+          name: "IVE",
+        ),
+      ],
+      artist_id: Some("UC_4Y1QqJr60C5Z7-eQWy-mw"),
+      album: None,
+      view_count: Some(168000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "CM4CkVFmTds",
+      title: "I CAN\'T STOP ME",
+      duration: Some(221),
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/CM4CkVFmTds/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3n_4nSKMrgw65E7qu7SXopvURCqLg",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/CM4CkVFmTds/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3mw6J7Z0DXh2ashrL5DBTZm5Z5sXA",
+          width: 800,
+          height: 450,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/CM4CkVFmTds/hq720.jpg?sqp=-oaymwEXCNUGEOADIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3laWy4cMXts0_azK9y7-nvHE-TTzQ",
+          width: 853,
+          height: 480,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCAq0pFGa2w9SjxOq0ZxKVIw"),
+          name: "TWICE",
+        ),
+      ],
+      artist_id: Some("UCAq0pFGa2w9SjxOq0ZxKVIw"),
+      album: None,
+      view_count: Some(464000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "_ysomCGaZLw",
+      title: "In the Morning",
+      duration: Some(185),
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/_ysomCGaZLw/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mmHZHNUSSMjNtqYD5P3vpl3fhnTA",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/_ysomCGaZLw/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3kpPew9xvDjRS-Psi-SqcKDDVwbCw",
+          width: 800,
+          height: 450,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/_ysomCGaZLw/hq720.jpg?sqp=-oaymwEXCNUGEOADIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3k8Q_n6ukQ9LlhJzZ6gHskmdFFmhg",
+          width: 853,
+          height: 480,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCTP45_DE3fMLujU8sZ-MBzw"),
+          name: "ITZY",
+        ),
+      ],
+      artist_id: Some("UCTP45_DE3fMLujU8sZ-MBzw"),
+      album: None,
+      view_count: Some(230000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "gQlMMD8auMs",
+      title: "Pink Venom",
+      duration: Some(194),
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/gQlMMD8auMs/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nEM0b-vFFexT2C8d4yzP8hQi60Sg",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/gQlMMD8auMs/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3khUMi18G93F7jAInIz62E5CIBUFw",
+          width: 800,
+          height: 450,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/gQlMMD8auMs/hq720.jpg?sqp=-oaymwEXCNUGEOADIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3mkn0qyMCzW43mTrIGr6lana1WZpg",
+          width: 853,
+          height: 480,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCkbbMCA40i18i7UdjayMPAg"),
+          name: "BLACKPINK",
+        ),
+      ],
+      artist_id: Some("UCkbbMCA40i18i7UdjayMPAg"),
+      album: None,
+      view_count: Some(422000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "uR8Mrt1IpXg",
+      title: "Psycho",
+      duration: Some(216),
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/uR8Mrt1IpXg/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mhufeImZ0Df0rKCh6-W4M5GF9tGg",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/uR8Mrt1IpXg/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3neHndOeWLSL1Sb73WcnsA7Iiq0mg",
+          width: 800,
+          height: 450,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/uR8Mrt1IpXg/hq720.jpg?sqp=-oaymwEXCNUGEOADIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3mgmwQ-4E42UvQGZvyQP86E3eKUWw",
+          width: 853,
+          height: 480,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCHmZYTfdTyVKQEJicLiXEOg"),
+          name: "Red Velvet",
+        ),
+      ],
+      artist_id: Some("UCHmZYTfdTyVKQEJicLiXEOg"),
+      album: None,
+      view_count: Some(349000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "PkKnp4SdE-w",
+      title: "Hot Sauce",
+      duration: Some(212),
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/PkKnp4SdE-w/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kWfgwfdbEnHIDeILZPWhTgwuGDRw",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/PkKnp4SdE-w/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3mvnlVkFKrInqbVQbZu_ttrFbih4g",
+          width: 800,
+          height: 450,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/PkKnp4SdE-w/hq720.jpg?sqp=-oaymwEXCNUGEOADIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3kBZU4LKqDi5yxDZpP3dUeiPzZWXw",
+          width: 853,
+          height: 480,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCuKdaTsJ9Jv94hVV_I9aRxQ"),
+          name: "NCT DREAM",
+        ),
+      ],
+      artist_id: Some("UCuKdaTsJ9Jv94hVV_I9aRxQ"),
+      album: None,
+      view_count: Some(167000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "4vbDFu0PUew",
+      title: "FEARLESS OFFICIAL M/V",
+      duration: Some(183),
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/4vbDFu0PUew/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3khlrmZ55Elav20m6uPsZObHLhb1Q",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/4vbDFu0PUew/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3lYxFh0M0OcTQEKuGinVKYcZYNGhg",
+          width: 800,
+          height: 450,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/4vbDFu0PUew/hq720.jpg?sqp=-oaymwEXCNUGEOADIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3kvF9SdDGxAVrh5AUiDmF1jW31bzg",
+          width: 853,
+          height: 480,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC-clMkTZa7k-FxmNgMjoCgQ"),
+          name: "LE SSERAFIM",
+        ),
+      ],
+      artist_id: Some("UC-clMkTZa7k-FxmNgMjoCgQ"),
+      album: None,
+      view_count: Some(124000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "A5H8zBb3iao",
+      title: "90\'s Love",
+      duration: Some(227),
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/A5H8zBb3iao/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3k_nifrnpSLq1wQ8WX1XEx2azAmJw",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/A5H8zBb3iao/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3ly97BC743uywuuUbBd27U6QgyYXw",
+          width: 800,
+          height: 450,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/A5H8zBb3iao/hq720.jpg?sqp=-oaymwEXCNUGEOADIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3kJoTPcNu84VWy0DE4qX83EmK6qXQ",
+          width: 853,
+          height: 480,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCEf_Bc-KVd7onSeifS3py9g"),
+          name: "SMTOWN",
+        ),
+      ],
+      artist_id: Some("UCEf_Bc-KVd7onSeifS3py9g"),
+      album: None,
+      view_count: Some(127000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "_xJUCsyMQes",
+      title: "Best Friend (feat. Doja Cat)",
+      duration: Some(202),
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/_xJUCsyMQes/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lR1nuc9rfKYua1azmFgfgI0NI_DA",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/_xJUCsyMQes/sddefault.jpg?sqp=-oaymwEWCKoDEPABIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lUfitpkawiQB5Eh2qeIRKmck_H5Q",
+          width: 426,
+          height: 240,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCqTaQGqjAI6fYkr84KZgZEg"),
+          name: "Saweetie",
+        ),
+      ],
+      artist_id: Some("UCqTaQGqjAI6fYkr84KZgZEg"),
+      album: None,
+      view_count: Some(239000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "n0j5NPptyM0",
+      title: "WA DA DA",
+      duration: Some(198),
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/n0j5NPptyM0/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mPDQ3gbOoo_rjjKAzA6RL4atuimw",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/n0j5NPptyM0/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3l7mg1I-bMPbXmQuFuTTQZcExRhLQ",
+          width: 800,
+          height: 450,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/n0j5NPptyM0/hq720.jpg?sqp=-oaymwEXCNUGEOADIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3m3bKSefnosNWvGi7vR_1_ezSDbnw",
+          width: 853,
+          height: 480,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCAKvDuIX3m1AUdPpDSqV_3w"),
+          name: "Kep1er",
+        ),
+      ],
+      artist_id: Some("UCAKvDuIX3m1AUdPpDSqV_3w"),
+      album: None,
+      view_count: Some(140000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "3GWscde8rM8",
+      title: "O.O",
+      duration: Some(214),
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/3GWscde8rM8/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3njiYPlQmSjbSJxDZ2cazfxOFEw9Q",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/3GWscde8rM8/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3lrAIY30SBN9UvKQ8CCLz5HQw2rZw",
+          width: 800,
+          height: 450,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/3GWscde8rM8/hq720.jpg?sqp=-oaymwEXCNUGEOADIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3ngOrZhqin3AJB9WWNRVnbH5eoT5Q",
+          width: 853,
+          height: 480,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC_Cx288SDUD9liYn7CiJLAA"),
+          name: "NMIXX",
+        ),
+      ],
+      artist_id: Some("UC_Cx288SDUD9liYn7CiJLAA"),
+      album: None,
+      view_count: Some(90000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "uBY1AoiF5Vo",
+      title: "Step Back",
+      duration: Some(231),
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/uBY1AoiF5Vo/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3ldz-mtiOTGWMsnjD7IqX9Q2SDDpA",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/uBY1AoiF5Vo/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3lu0lV6GzYKqCbUm8E-DPD715gTGQ",
+          width: 800,
+          height: 450,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/uBY1AoiF5Vo/hq720.jpg?sqp=-oaymwEXCNUGEOADIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3n8F8MoVoc0RWYssIJ591eVxJrAgQ",
+          width: 853,
+          height: 480,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCDDpqmryjNunitS05bv7-8w"),
+          name: "GOT the beat",
+        ),
+      ],
+      artist_id: Some("UCDDpqmryjNunitS05bv7-8w"),
+      album: None,
+      view_count: Some(137000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "WPdWvnAAurg",
+      title: "Savage",
+      duration: Some(259),
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/WPdWvnAAurg/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mTnrnrCkW0aHO0t5nRP1ukYRu6vg",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/WPdWvnAAurg/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3lzqbOcWJEoxbxHT6mLxbSDCx3kPA",
+          width: 800,
+          height: 450,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/WPdWvnAAurg/hq720.jpg?sqp=-oaymwEXCNUGEOADIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3nyqKPkwPLJVpPofie4QX3y807Txw",
+          width: 853,
+          height: 480,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
+          name: "aespa",
+        ),
+      ],
+      artist_id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
+      album: None,
+      view_count: Some(220000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "tyrVtwE8Gv0",
+      title: "Make A Wish (Birthday Song)",
+      duration: Some(249),
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/tyrVtwE8Gv0/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lEIhBp-IAoTTCiDYJLIj4vtl8Hpw",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/tyrVtwE8Gv0/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3mLBdpBoRAGP1SKLd_T2SOzM_Gn-g",
+          width: 800,
+          height: 450,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/tyrVtwE8Gv0/hq720.jpg?sqp=-oaymwEXCNUGEOADIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3lFYENgMq_4Ql9KLEShyeKm7mV2mQ",
+          width: 853,
+          height: 480,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCwPKPUAWE8ah0lkOcvNh8_Q"),
+          name: "NCT U",
+        ),
+      ],
+      artist_id: Some("UCwPKPUAWE8ah0lkOcvNh8_Q"),
+      album: None,
+      view_count: Some(258000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "Jh4QFaPmdss",
+      title: "TOMBOY",
+      duration: Some(198),
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/Jh4QFaPmdss/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nL0vQ4DGp4rNES4wtIQXf6MMcX4A",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/Jh4QFaPmdss/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3kTDFBdA22mhhPDMAxJPoFkm9bsLA",
+          width: 800,
+          height: 450,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/Jh4QFaPmdss/hq720.jpg?sqp=-oaymwEXCNUGEOADIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3nDO6v2YyPEsuP9TlHOCXq0b8kq2Q",
+          width: 853,
+          height: 480,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCWT2ZfW7d8YI-HinHEVhyCA"),
+          name: "(G)I-DLE",
+        ),
+      ],
+      artist_id: Some("UCWT2ZfW7d8YI-HinHEVhyCA"),
+      album: None,
+      view_count: Some(181000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "2OvyA2__Eas",
+      title: "英雄; Kick It",
+      duration: Some(239),
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/2OvyA2__Eas/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3n8rUV8L6DfEtliJa6uRI007X4ryg",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/2OvyA2__Eas/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3kbaxVY4Hkp0RwwvQtIf8V3kpBl0w",
+          width: 800,
+          height: 450,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/2OvyA2__Eas/hq720.jpg?sqp=-oaymwEXCNUGEOADIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3nNHdrJrMIksXZ5x2_nabxLC1STXA",
+          width: 853,
+          height: 480,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCjqYTQjO-JG-8vLlt6-4iyQ"),
+          name: "NCT 127",
+        ),
+      ],
+      artist_id: Some("UCjqYTQjO-JG-8vLlt6-4iyQ"),
+      album: None,
+      view_count: Some(165000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "dYRITmpFbJ4",
+      title: "Girls",
+      duration: Some(269),
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/dYRITmpFbJ4/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mt44xFH24DkaQqASPBttEMuL02aQ",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/dYRITmpFbJ4/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3k1I7uOUx9-Rs_MiUFD2YWrbmAbJg",
+          width: 800,
+          height: 450,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/dYRITmpFbJ4/hq720.jpg?sqp=-oaymwEXCNUGEOADIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3kQC3YdpaKYJ5xLF1ryXjTN9wJ_3Q",
+          width: 853,
+          height: 480,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
+          name: "aespa",
+        ),
+      ],
+      artist_id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
+      album: None,
+      view_count: Some(108000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "POe9SOEKotk",
+      title: "Shut Down",
+      duration: Some(181),
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/POe9SOEKotk/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3m512hPlVaRZGGDe7lyzi4uYVVm2Q",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/POe9SOEKotk/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3kbAXOLxYByimodFUXOfH2mRh45lA",
+          width: 800,
+          height: 450,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/POe9SOEKotk/hq720.jpg?sqp=-oaymwEXCNUGEOADIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3mP1fmBP5TsNQ8Hkwi_oK9AKmGYNg",
+          width: 853,
+          height: 480,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCkbbMCA40i18i7UdjayMPAg"),
+          name: "BLACKPINK",
+        ),
+      ],
+      artist_id: Some("UCkbbMCA40i18i7UdjayMPAg"),
+      album: None,
+      view_count: Some(222000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "pSudEWBAYRE",
+      title: "Love Shot",
+      duration: Some(210),
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/pSudEWBAYRE/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lAEYvImiSXeADO3bExIVXqZZ7GKQ",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/pSudEWBAYRE/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3lWkqnBi3qqf4yWDXzR4qDUcuR7ow",
+          width: 800,
+          height: 450,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/pSudEWBAYRE/hq720.jpg?sqp=-oaymwEXCNUGEOADIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3kCW9v4BsQjGfWRYYdO1xh6DMJwmg",
+          width: 853,
+          height: 480,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCEUX9tUYqTFfPQdAgVNsKTA"),
+          name: "EXO",
+        ),
+      ],
+      artist_id: Some("UCEUX9tUYqTFfPQdAgVNsKTA"),
+      album: None,
+      view_count: Some(540000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "nnVjsos40qk",
+      title: "환상동화 (Secret Story of the Swan)",
+      duration: Some(202),
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/nnVjsos40qk/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kn_BEjT7jYkFddBxe6yv0igyo-0Q",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/nnVjsos40qk/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3nY9IGsviFkfgMsqPBhH2rEAGsGmQ",
+          width: 800,
+          height: 450,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/nnVjsos40qk/hq720.jpg?sqp=-oaymwEXCNUGEOADIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3lJEM3KYpj5POzRL7MQQBnbRMJIYA",
+          width: 853,
+          height: 480,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCG81UKNsFg9Perf0uPQOsQw"),
+          name: "IZ*ONE",
+        ),
+      ],
+      artist_id: Some("UCG81UKNsFg9Perf0uPQOsQw"),
+      album: None,
+      view_count: Some(90000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "H69tJmsgd9I",
+      title: "Dreams Come True",
+      duration: Some(221),
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/H69tJmsgd9I/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mWiXkBoELY5U1XWBMe2bEn1OFdgQ",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/H69tJmsgd9I/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3me8GohbnE0UckrhjJg5WtTVFgmfg",
+          width: 800,
+          height: 450,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/H69tJmsgd9I/hq720.jpg?sqp=-oaymwEXCNUGEOADIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3lKXzVOcOskWpZFhI60ZcbEEyEbiw",
+          width: 853,
+          height: 480,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
+          name: "aespa",
+        ),
+      ],
+      artist_id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
+      album: None,
+      view_count: Some(90000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "0IBSemQmno8",
+      title: "ZOO",
+      duration: Some(189),
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/0IBSemQmno8/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nq0HomQUvUAgv20Rb5KTkOOjYy-A",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/0IBSemQmno8/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3mHDReqIeTQ82otCPBovy0ye0LNSQ",
+          width: 800,
+          height: 450,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/0IBSemQmno8/hq720.jpg?sqp=-oaymwEXCNUGEOADIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3koM0EYu_ZhdOjoKBDhhoQgTrpAUA",
+          width: 853,
+          height: 480,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "Taeyong, JENO, YANGYANG, 지젤 (GISELLE), and HENDERY",
+        ),
+      ],
+      artist_id: Some("UCDdCbqagfKo_euzzCV9G2EQ"),
+      album: None,
+      view_count: Some(71000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "MjCZfZfucEc",
+      title: "LOCO",
+      duration: Some(233),
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/MjCZfZfucEc/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lvN8V98wicGg5vG2F2zon-foZzIA",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/MjCZfZfucEc/sddefault.jpg?sqp=-oaymwEWCKoDEPABIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mKJIqURQYCCY_G1XDJnDiyqRZ4kQ",
+          width: 426,
+          height: 240,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCTP45_DE3fMLujU8sZ-MBzw"),
+          name: "ITZY",
+        ),
+      ],
+      artist_id: Some("UCTP45_DE3fMLujU8sZ-MBzw"),
+      album: None,
+      view_count: Some(208000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "tg2uF3R_Ozo",
+      title: "DUMB DUMB",
+      duration: Some(179),
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/tg2uF3R_Ozo/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mYPwfsMuBxT19qgv_XmSk2H79jvg",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/tg2uF3R_Ozo/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3lqGADl8uyCCDtehV_LAgMphtc57g",
+          width: 800,
+          height: 450,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/tg2uF3R_Ozo/hq720.jpg?sqp=-oaymwEXCNUGEOADIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3nHkXP82A1Qe5nY_OQL55o5vtkIOQ",
+          width: 853,
+          height: 480,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCDnYJA3OXXhRKYPe3jzLGeQ"),
+          name: "SOMI",
+        ),
+      ],
+      artist_id: Some("UCDnYJA3OXXhRKYPe3jzLGeQ"),
+      album: None,
+      view_count: Some(140000000),
+      is_video: true,
+      track_nr: None,
+    ),
+  ],
+  ctoken: Some("CBkSSBILdGcydUYzUl9Pem8iEVJEQU1WTVplZXJybnVMaTVFMg53QUVCOGdFQ2VBRSUzRDgY0AEB-gEQQzcxNUY2RDFGQjIwNEQwQRgKggEVUFQ6RWd0MFp6SjFSak5TWDA5NmJ3"),
+  endpoint: music_next,
+)

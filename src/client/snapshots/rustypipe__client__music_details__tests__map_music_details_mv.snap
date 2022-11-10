@@ -1,0 +1,41 @@
+---
+source: src/client/music_details.rs
+expression: map_res.c
+---
+TrackDetails(
+  track: TrackItem(
+    id: "ZeerrnuLi5E",
+    title: "Black Mamba",
+    duration: Some(230),
+    cover: [
+      Thumbnail(
+        url: "https://i.ytimg.com/vi/ZeerrnuLi5E/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3maNxpYzTFmXZBd8s1w1iE6rTBDaw",
+        width: 400,
+        height: 225,
+      ),
+      Thumbnail(
+        url: "https://i.ytimg.com/vi/ZeerrnuLi5E/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3k5q17nduJ8-t3h9_obEVMVi8Cz3A",
+        width: 800,
+        height: 450,
+      ),
+      Thumbnail(
+        url: "https://i.ytimg.com/vi/ZeerrnuLi5E/hq720.jpg?sqp=-oaymwEXCNUGEOADIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3k7CsaxHObhW1JXPtGyKE1fgSGZ3Q",
+        width: 853,
+        height: 480,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
+        name: "aespa",
+      ),
+    ],
+    artist_id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
+    album: None,
+    view_count: Some(235000000),
+    is_video: true,
+    track_nr: None,
+  ),
+  lyrics_id: Some("MPLYt_wrKjTn9hmry"),
+  related_id: Some("MPTRt_wrKjTn9hmry"),
+)

@@ -213,6 +213,7 @@ pub(crate) struct RichGridContinuation {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct MusicContinuationData {
+    #[serde(alias = "nextRadioContinuationData")]
     pub next_continuation_data: MusicContinuationDataInner,
 }
 
