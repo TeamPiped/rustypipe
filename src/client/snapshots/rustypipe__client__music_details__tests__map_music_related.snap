@@ -1,0 +1,1168 @@
+---
+source: src/client/music_details.rs
+expression: map_res.c
+---
+MusicRelated(
+  tracks: [
+    TrackItem(
+      id: "QiziJ40kTz0",
+      title: "FOREVER 1",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/BUvfDzYYoFWiMZ7qdbRmDNwQAb1BUO2EJqDlSF7D8cVqaqOYCnibj4YtRf70liOT8j8382sVdjQb-9OJ9g=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/BUvfDzYYoFWiMZ7qdbRmDNwQAb1BUO2EJqDlSF7D8cVqaqOYCnibj4YtRf70liOT8j8382sVdjQb-9OJ9g=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCGn8T3PmIkow87GeZC9mW7g"),
+          name: "Girls\' Generation",
+        ),
+      ],
+      artist_id: Some("UCGn8T3PmIkow87GeZC9mW7g"),
+      album: Some(AlbumId(
+        id: "MPREb_gpWHoz5UqGF",
+        name: "FOREVER 1 - The 7th Album",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "g92HIac9ufA",
+      title: "After LIKE",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/kbwN5hyEYdCuz98kPGZfBKjp3acqdvVFXSeihO92ZZilc4FzfrELauOQD7v5Iede-8qIK2tkBRu89g6vJA=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/kbwN5hyEYdCuz98kPGZfBKjp3acqdvVFXSeihO92ZZilc4FzfrELauOQD7v5Iede-8qIK2tkBRu89g6vJA=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC_4Y1QqJr60C5Z7-eQWy-mw"),
+          name: "IVE",
+        ),
+      ],
+      artist_id: Some("UC_4Y1QqJr60C5Z7-eQWy-mw"),
+      album: Some(AlbumId(
+        id: "MPREb_Bfjf00mXFJe",
+        name: "After LIKE",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "khgCIMs_lVQ",
+      title: "삠삠 (BEAM BEAM)",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/ZoskAzVhg7B9sPgSXO1eCSiYKle7L4N5pAuKPHFuzIZU4qqtGTHjxektboNuba8fYS6gJtToqpG8hlg=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/ZoskAzVhg7B9sPgSXO1eCSiYKle7L4N5pAuKPHFuzIZU4qqtGTHjxektboNuba8fYS6gJtToqpG8hlg=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCVXeNwNQs07XQ8d1HtvuxVg"),
+          name: "전소연 (JEON SOYEON)",
+        ),
+      ],
+      artist_id: Some("UCVXeNwNQs07XQ8d1HtvuxVg"),
+      album: Some(AlbumId(
+        id: "MPREb_PIdAoURKxSJ",
+        name: "Windy",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "i2VGa-ETiM4",
+      title: "Life\'s Too Short",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/JYOTl7neLJLMUEVjdg_qIqz7XjUZB2AQAx_sRDlNVd5jSYiv1xA0v68ZN8Kn0KKf1fSfQnTaeakGeQgI=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/JYOTl7neLJLMUEVjdg_qIqz7XjUZB2AQAx_sRDlNVd5jSYiv1xA0v68ZN8Kn0KKf1fSfQnTaeakGeQgI=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
+          name: "aespa",
+        ),
+      ],
+      artist_id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
+      album: Some(AlbumId(
+        id: "MPREb_pvdHyqvGjbI",
+        name: "Girls - The 2nd Mini Album",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "INLFlN-PZq4",
+      title: "Weekend",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/Eb4F6fw9Q10ZXODpe4iFDSSn_AQgC3r19HkGT9B1FDOjxg-4vsAMUEqIrjTckWodpjMu4Wb48J1eig5J=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/Eb4F6fw9Q10ZXODpe4iFDSSn_AQgC3r19HkGT9B1FDOjxg-4vsAMUEqIrjTckWodpjMu4Wb48J1eig5J=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCwzCuKxyMY_sT7hr1E8G1XA"),
+          name: "TAEYEON",
+        ),
+      ],
+      artist_id: Some("UCwzCuKxyMY_sT7hr1E8G1XA"),
+      album: Some(AlbumId(
+        id: "MPREb_AXLV76B1XHw",
+        name: "Weekend",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "ZzbNM2l-AAA",
+      title: "Hello",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/IpMVxsklZhFPfHdLqbFAwVn9uCduaixkbcyhvuPCKq6mKR-CLSmvovIsE_Q8OMhFmduUNAeFf7rTODk=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/IpMVxsklZhFPfHdLqbFAwVn9uCduaixkbcyhvuPCKq6mKR-CLSmvovIsE_Q8OMhFmduUNAeFf7rTODk=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCTEWSEBfdU8GB7J_XV6VBKw"),
+          name: "JOY",
+        ),
+      ],
+      artist_id: Some("UCTEWSEBfdU8GB7J_XV6VBKw"),
+      album: Some(AlbumId(
+        id: "MPREb_DGu8PgmQPg4",
+        name: "Hello",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "i4loHXi8f3A",
+      title: "Forever 약속",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/JYOTl7neLJLMUEVjdg_qIqz7XjUZB2AQAx_sRDlNVd5jSYiv1xA0v68ZN8Kn0KKf1fSfQnTaeakGeQgI=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/JYOTl7neLJLMUEVjdg_qIqz7XjUZB2AQAx_sRDlNVd5jSYiv1xA0v68ZN8Kn0KKf1fSfQnTaeakGeQgI=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
+          name: "aespa",
+        ),
+      ],
+      artist_id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
+      album: Some(AlbumId(
+        id: "MPREb_pvdHyqvGjbI",
+        name: "Girls - The 2nd Mini Album",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "miqQAzOXPBo",
+      title: "달라달라 DALLA DALLA",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/z9CRcjqBFHC_GY3p9pAfuTd1BuG-02DsmpcHm5CoyV_WFVnK0rcuYHdPSW-zjo_WlKiZv_vByOT-X0yOqQ=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/z9CRcjqBFHC_GY3p9pAfuTd1BuG-02DsmpcHm5CoyV_WFVnK0rcuYHdPSW-zjo_WlKiZv_vByOT-X0yOqQ=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCTP45_DE3fMLujU8sZ-MBzw"),
+          name: "ITZY",
+        ),
+      ],
+      artist_id: Some("UCTP45_DE3fMLujU8sZ-MBzw"),
+      album: Some(AlbumId(
+        id: "MPREb_xyvxcuge8JF",
+        name: "IT\'z Different",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "hh5GKVa8VtM",
+      title: "LOVE DIVE (LOVE DIVE)",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/jRELX5qAew8CuPt1mAzv_51WgcWjY08kCbK051wB4MX8B_4K9CgUVX5YHqxRwPoFhoNQZ69vbY03tL6S=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/jRELX5qAew8CuPt1mAzv_51WgcWjY08kCbK051wB4MX8B_4K9CgUVX5YHqxRwPoFhoNQZ69vbY03tL6S=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC_4Y1QqJr60C5Z7-eQWy-mw"),
+          name: "IVE",
+        ),
+      ],
+      artist_id: Some("UC_4Y1QqJr60C5Z7-eQWy-mw"),
+      album: Some(AlbumId(
+        id: "MPREb_Yqp7NyUFXMt",
+        name: "LOVE DIVE (LOVE DIVE)",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "dzwSnvfKEtw",
+      title: "Vanilla",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/sHhuQYyRiXbBKowt_Ab80XgblSRukfnYt8fFyn3QxO57yjtSo_CZn5s1LOEOoBK_aENHISravRIa6GE=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/sHhuQYyRiXbBKowt_Ab80XgblSRukfnYt8fFyn3QxO57yjtSo_CZn5s1LOEOoBK_aENHISravRIa6GE=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCppZqNOsH4V2562WtaCrpjw"),
+          name: "LIGHTSUM",
+        ),
+      ],
+      artist_id: Some("UCppZqNOsH4V2562WtaCrpjw"),
+      album: Some(AlbumId(
+        id: "MPREb_OQeHMPRfqBs",
+        name: "Vanilla",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "REmUidcJt5I",
+      title: "Savage",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/WVm938cCHuYeJyYRz0a8NHrvTXnEM6_aPiZOyv8ZzPVWt-wFqM1Fnkko68jgNPhhwI5ub_8z8n1OyhA=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/WVm938cCHuYeJyYRz0a8NHrvTXnEM6_aPiZOyv8ZzPVWt-wFqM1Fnkko68jgNPhhwI5ub_8z8n1OyhA=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
+          name: "aespa",
+        ),
+      ],
+      artist_id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
+      album: Some(AlbumId(
+        id: "MPREb_ThKZWN8DQwp",
+        name: "Savage - The 1st Mini Album",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "OXWz_x6-dro",
+      title: "Feel My Rhythm",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/Zkk_jGQgpi2xShYOtrLbb9Aw3INchh0AWRQRiDVhyw7RMPXAs5dbejgRMC7neOjmBZp2PB5eqvk4oAnItQ=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/Zkk_jGQgpi2xShYOtrLbb9Aw3INchh0AWRQRiDVhyw7RMPXAs5dbejgRMC7neOjmBZp2PB5eqvk4oAnItQ=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCHmZYTfdTyVKQEJicLiXEOg"),
+          name: "Red Velvet",
+        ),
+      ],
+      artist_id: Some("UCHmZYTfdTyVKQEJicLiXEOg"),
+      album: Some(AlbumId(
+        id: "MPREb_fwK4xLwdkoj",
+        name: "\'The ReVe Festival 2022 - Feel My Rhythm\'",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "aFoqCI75WoY",
+      title: "TOMBOY",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/s7OfLLkq-773i4R8j9H6-Y7MY3b6bXNG6BkAakHT87pbEsJrMp_qBM7bUKDmBUvqCOrto2IxR6sm3Luo=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/s7OfLLkq-773i4R8j9H6-Y7MY3b6bXNG6BkAakHT87pbEsJrMp_qBM7bUKDmBUvqCOrto2IxR6sm3Luo=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCWT2ZfW7d8YI-HinHEVhyCA"),
+          name: "(G)I-DLE",
+        ),
+      ],
+      artist_id: Some("UCWT2ZfW7d8YI-HinHEVhyCA"),
+      album: Some(AlbumId(
+        id: "MPREb_nYE1gWxze2X",
+        name: "I NEVER DIE",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "_Pm74XignKI",
+      title: "Can\'t Control Myself",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/2a1Lr46_ibhVNX5tZK_PnsmKFpB1ptZ9eUqtlcCXTRSxAcOLC7HpAO0pqyFJTttUPHAiYpqkTH251DIQ9A=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/2a1Lr46_ibhVNX5tZK_PnsmKFpB1ptZ9eUqtlcCXTRSxAcOLC7HpAO0pqyFJTttUPHAiYpqkTH251DIQ9A=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCwzCuKxyMY_sT7hr1E8G1XA"),
+          name: "TAEYEON",
+        ),
+      ],
+      artist_id: Some("UCwzCuKxyMY_sT7hr1E8G1XA"),
+      album: Some(AlbumId(
+        id: "MPREb_4xbv14CiQJm",
+        name: "INVU - The 3rd Album",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "-uOShlFu1v8",
+      title: "SNEAKERS",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/C5m5SYqUm1EW-AZT7TP8VUAXkJzbBNOcyiF_9ddvFTfcsU9Epx8FOjbKPk4pXev3LBpwJy006rtPent4=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/C5m5SYqUm1EW-AZT7TP8VUAXkJzbBNOcyiF_9ddvFTfcsU9Epx8FOjbKPk4pXev3LBpwJy006rtPent4=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCTP45_DE3fMLujU8sZ-MBzw"),
+          name: "ITZY",
+        ),
+      ],
+      artist_id: Some("UCTP45_DE3fMLujU8sZ-MBzw"),
+      album: Some(AlbumId(
+        id: "MPREb_E9b3lnfYp1X",
+        name: "CHECKMATE",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "LP9sF1v-vz4",
+      title: "도깨비불 Illusion",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/JYOTl7neLJLMUEVjdg_qIqz7XjUZB2AQAx_sRDlNVd5jSYiv1xA0v68ZN8Kn0KKf1fSfQnTaeakGeQgI=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/JYOTl7neLJLMUEVjdg_qIqz7XjUZB2AQAx_sRDlNVd5jSYiv1xA0v68ZN8Kn0KKf1fSfQnTaeakGeQgI=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
+          name: "aespa",
+        ),
+      ],
+      artist_id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
+      album: Some(AlbumId(
+        id: "MPREb_pvdHyqvGjbI",
+        name: "Girls - The 2nd Mini Album",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "KJrPsT2X-yk",
+      title: "Weapon (With Newnion & FLOOR) (Prod. by Czaer)",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/V3KA-Ok7cIPdxHPzYGO7Fa6eZ3hrpGk-j5dn-F8tv8gtf3aqFFFhzp44ZKfRQB7tose0dKT__BTXXr8=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/V3KA-Ok7cIPdxHPzYGO7Fa6eZ3hrpGk-j5dn-F8tv8gtf3aqFFFhzp44ZKfRQB7tose0dKT__BTXXr8=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCTP45_DE3fMLujU8sZ-MBzw"),
+          name: "ITZY",
+        ),
+      ],
+      artist_id: Some("UCTP45_DE3fMLujU8sZ-MBzw"),
+      album: Some(AlbumId(
+        id: "MPREb_HbaecY0lkXn",
+        name: "Street Dance Girls Fighter (SGF) Special",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "tkzYyEp4zB4",
+      title: "Next Level",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/KRU-LikB-YvAXaEeHgh_8ismnHXjT_GRgr3PKv2Hjcm7Y9TNyzb2cHRKv0B5MaySP9A1ifqSazQSwPd9=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/KRU-LikB-YvAXaEeHgh_8ismnHXjT_GRgr3PKv2Hjcm7Y9TNyzb2cHRKv0B5MaySP9A1ifqSazQSwPd9=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
+          name: "aespa",
+        ),
+      ],
+      artist_id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
+      album: Some(AlbumId(
+        id: "MPREb_EvUWUKT2PHE",
+        name: "Next Level",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "ZpD59tu5_Rk",
+      title: "ICY",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/JIC_5NBHuAZOX-0rUW5lzxZScpaFygUK7i-aGiaSBEUTmFoaYAurgp_2PlX6So5hr41pyqHuI26n1do0=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/JIC_5NBHuAZOX-0rUW5lzxZScpaFygUK7i-aGiaSBEUTmFoaYAurgp_2PlX6So5hr41pyqHuI26n1do0=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCTP45_DE3fMLujU8sZ-MBzw"),
+          name: "ITZY",
+        ),
+      ],
+      artist_id: Some("UCTP45_DE3fMLujU8sZ-MBzw"),
+      album: Some(AlbumId(
+        id: "MPREb_4sedh2NnbiA",
+        name: "IT\'z ICY",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "_eNXeEx9Hvk",
+      title: "You can\'t sit with us (You can\'t sit with us)",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/R6_7eglKZh3ieUfPS8Sa3xW_9LDoPfQfRuqkoxStBRRfyBY1jOa6MFNl3r5iZcbCXes9o0_Jiz6dN0CZ=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/R6_7eglKZh3ieUfPS8Sa3xW_9LDoPfQfRuqkoxStBRRfyBY1jOa6MFNl3r5iZcbCXes9o0_Jiz6dN0CZ=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCmeskqhmPRuteGVH4yCXT0A"),
+          name: "SUNMI",
+        ),
+      ],
+      artist_id: Some("UCmeskqhmPRuteGVH4yCXT0A"),
+      album: Some(AlbumId(
+        id: "MPREb_ZT8CWsSNWpt",
+        name: "1/6 (6분의1)",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+    ),
+  ],
+  other_versions: [
+    TrackItem(
+      id: "NU611fxGyPU",
+      title: "Black Mamba",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/NU611fxGyPU/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3md93InOvanuHclIZe1FpSmEVWGKw",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
+          name: "aespa",
+        ),
+      ],
+      artist_id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
+      album: None,
+      view_count: Some(35000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "Yi2nsnpw5h0",
+      title: "aespa - Black Mamba (Official Instrumental)",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/Yi2nsnpw5h0/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3meMnbqX2Gi5z5lD0G6PeDxcp-zpA",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCx5Dw_5guQcKu_lMGCh-IuQ"),
+          name: "aesthetic inst.",
+        ),
+      ],
+      artist_id: Some("UCx5Dw_5guQcKu_lMGCh-IuQ"),
+      album: None,
+      view_count: Some(836000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "2Qefh0W_H88",
+      title: "aespa - black mamba (𝒔𝒍𝒐𝒘𝒆𝒅 𝒏 𝒓𝒆𝒗𝒆𝒓𝒃)",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/2Qefh0W_H88/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3knLw9_f0ukxeV-S6vS5_JOTXnaWQ",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCrGYENbzwtva2X16bAPhTbA"),
+          name: "i n s o m n i o",
+        ),
+      ],
+      artist_id: Some("UCrGYENbzwtva2X16bAPhTbA"),
+      album: None,
+      view_count: Some(1200000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "oo89OQvzkIo",
+      title: "AESPA (에스파) – BLACK MAMBA [8D USE HEADPHONE] 🎧",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/oo89OQvzkIo/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mpkXLMvkTk3dln9R9SAMHbVIPeyQ",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCC3bq4PHj5W5y47jdRjOCPA"),
+          name: "Soumaya jp",
+        ),
+      ],
+      artist_id: Some("UCC3bq4PHj5W5y47jdRjOCPA"),
+      album: None,
+      view_count: Some(987000),
+      is_video: true,
+      track_nr: None,
+    ),
+  ],
+  albums: [
+    AlbumItem(
+      id: "MPREb_pvdHyqvGjbI",
+      name: "Girls - The 2nd Mini Album",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/JYOTl7neLJLMUEVjdg_qIqz7XjUZB2AQAx_sRDlNVd5jSYiv1xA0v68ZN8Kn0KKf1fSfQnTaeakGeQgI=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/JYOTl7neLJLMUEVjdg_qIqz7XjUZB2AQAx_sRDlNVd5jSYiv1xA0v68ZN8Kn0KKf1fSfQnTaeakGeQgI=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
+          name: "aespa",
+        ),
+      ],
+      album_type: Album,
+      year: Some(2022),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_ThKZWN8DQwp",
+      name: "Savage - The 1st Mini Album",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/WVm938cCHuYeJyYRz0a8NHrvTXnEM6_aPiZOyv8ZzPVWt-wFqM1Fnkko68jgNPhhwI5ub_8z8n1OyhA=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/WVm938cCHuYeJyYRz0a8NHrvTXnEM6_aPiZOyv8ZzPVWt-wFqM1Fnkko68jgNPhhwI5ub_8z8n1OyhA=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
+          name: "aespa",
+        ),
+      ],
+      album_type: Ep,
+      year: Some(2021),
+      by_va: false,
+    ),
+  ],
+  artists: [
+    ArtistItem(
+      id: "UC_4Y1QqJr60C5Z7-eQWy-mw",
+      name: "IVE",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/iB4JCyLchlInzXdRoKvSeErrvov74jHLQaesfFGOuonxtWOosggr0z-SGHK0ZPIjqBBaewHxnm9cTA=w226-h226-p-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/iB4JCyLchlInzXdRoKvSeErrvov74jHLQaesfFGOuonxtWOosggr0z-SGHK0ZPIjqBBaewHxnm9cTA=w544-h544-p-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(2120000),
+    ),
+    ArtistItem(
+      id: "UC-clMkTZa7k-FxmNgMjoCgQ",
+      name: "LE SSERAFIM",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/5XYjDaGglLHuaP9JOM1Yi_ii5wf0ZERjBu7WNrNCm92RQJcbFvWXp3fxzOJmFg5Lcz3TWNsr8Mlfu6EA=w226-h226-p-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/5XYjDaGglLHuaP9JOM1Yi_ii5wf0ZERjBu7WNrNCm92RQJcbFvWXp3fxzOJmFg5Lcz3TWNsr8Mlfu6EA=w544-h544-p-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(1470000),
+    ),
+    ArtistItem(
+      id: "UCwc9eSwp1MAoToS9QUTRpDw",
+      name: "STAYC",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/Y2aMm2GCkqdLOTV7RCDp71-CEDlN5LttsCH3AjFmOBpcps7hWQRUlBgIoW1WucgLIUgIdNha1E_S-Q4=w226-h226-p-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/Y2aMm2GCkqdLOTV7RCDp71-CEDlN5LttsCH3AjFmOBpcps7hWQRUlBgIoW1WucgLIUgIdNha1E_S-Q4=w544-h544-p-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(1440000),
+    ),
+    ArtistItem(
+      id: "UCTP45_DE3fMLujU8sZ-MBzw",
+      name: "ITZY",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/zc_Zwea5L_QTZXqhcBu6rAHna3W98C8uhrrPQ5j7w38Md2HWJVKdZCrDLIg3RY3iSLOowQTJB0uLM69_=w226-h226-p-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/zc_Zwea5L_QTZXqhcBu6rAHna3W98C8uhrrPQ5j7w38Md2HWJVKdZCrDLIg3RY3iSLOowQTJB0uLM69_=w544-h544-p-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(7830000),
+    ),
+    ArtistItem(
+      id: "UC_Cx288SDUD9liYn7CiJLAA",
+      name: "NMIXX",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/vKFS34qRlbpWEBjRPwKtpr-E9GuO7FSPBPnFeohyOrEUZpTwGbXO8WnWvPGxCmwhNHZ_Od76jstQ5-Az=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/vKFS34qRlbpWEBjRPwKtpr-E9GuO7FSPBPnFeohyOrEUZpTwGbXO8WnWvPGxCmwhNHZ_Od76jstQ5-Az=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(1480000),
+    ),
+    ArtistItem(
+      id: "UCxOqS3cYg4FaHbobICo7nFQ",
+      name: "NewJeans",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/yg7U52lN4NMHddFXE1de6d99puDNeC-1U6q5PnLjXPatrexqW9AOoWC8a5EJBULlXraaEWU8OvKrFYrp1A=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/yg7U52lN4NMHddFXE1de6d99puDNeC-1U6q5PnLjXPatrexqW9AOoWC8a5EJBULlXraaEWU8OvKrFYrp1A=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(1120000),
+    ),
+    ArtistItem(
+      id: "UCDDpqmryjNunitS05bv7-8w",
+      name: "GOT the beat",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/F4ua4GYWeXcUpLul4DTyglYb_s2YZ_OIHrbr6aKAwpQZKvpFt5NQPb2XvFCe0yyO42_ytMG4zU8WBf6w=w226-h226-p-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/F4ua4GYWeXcUpLul4DTyglYb_s2YZ_OIHrbr6aKAwpQZKvpFt5NQPb2XvFCe0yyO42_ytMG4zU8WBf6w=w544-h544-p-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(21500),
+    ),
+    ArtistItem(
+      id: "UCWT2ZfW7d8YI-HinHEVhyCA",
+      name: "(G)I-DLE",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/uZQSZdDnDJCajJtE6Ig9tqgdO7-uogJpdk9TM0p7iEBmnAQXaSGqYET-W-SHTY-NL9UQ2sdOVtIhd54=w226-h226-p-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/uZQSZdDnDJCajJtE6Ig9tqgdO7-uogJpdk9TM0p7iEBmnAQXaSGqYET-W-SHTY-NL9UQ2sdOVtIhd54=w544-h544-p-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(4530000),
+    ),
+    ArtistItem(
+      id: "UCppZqNOsH4V2562WtaCrpjw",
+      name: "LIGHTSUM",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/ds3GlWQ59pslbxsC7CFUW1atnCI4Ro2epNXzYT8YgSmtk2Ofa8YT3Ck0DL0KPVkFCZdpM2Ni31api5I=w226-h226-p-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/ds3GlWQ59pslbxsC7CFUW1atnCI4Ro2epNXzYT8YgSmtk2Ofa8YT3Ck0DL0KPVkFCZdpM2Ni31api5I=w544-h544-p-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(286000),
+    ),
+    ArtistItem(
+      id: "UCAKvDuIX3m1AUdPpDSqV_3w",
+      name: "Kep1er",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/TlVV5kRLdbJP__x9ogq2pMFmXSaeKSTEqHRTpSZeSdDqEjPV3aIR11OFE29gD0pm6XarHl5sXxMdhg=w226-h226-p-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/TlVV5kRLdbJP__x9ogq2pMFmXSaeKSTEqHRTpSZeSdDqEjPV3aIR11OFE29gD0pm6XarHl5sXxMdhg=w544-h544-p-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(2310000),
+    ),
+  ],
+  playlists: [
+    MusicPlaylistItem(
+      id: "PLbrrwX-RfVuGhPaxorHVNbjEwwOS6rcpe",
+      name: "Korea-pop",
+      thumbnail: [
+        Thumbnail(
+          url: "https://yt3.ggpht.com/CmVErJLlDYRtOIcRDbejRbxE680yFg6fHZWP3coZDnZg60aUux5EqWfqUrgYhkCx2S9d__fvrw=s192",
+          width: 192,
+          height: 192,
+        ),
+        Thumbnail(
+          url: "https://yt3.ggpht.com/CmVErJLlDYRtOIcRDbejRbxE680yFg6fHZWP3coZDnZg60aUux5EqWfqUrgYhkCx2S9d__fvrw=s576",
+          width: 576,
+          height: 576,
+        ),
+      ],
+      channel: Some(ChannelId(
+        id: "UCteCDkIcXeK0Hy2jfDyjAvg",
+        name: "느양이",
+      )),
+      track_count: Some(24),
+      from_ytm: false,
+    ),
+    MusicPlaylistItem(
+      id: "PLXE743St3DmXcUceLu--0-1k2FP2EocOk",
+      name: "노래",
+      thumbnail: [
+        Thumbnail(
+          url: "https://yt3.ggpht.com/AIsWKWu5eijbJrgdRQun-FcNBBwcq-bk1Mr2YWBDTj0ndF_pboCifWOzrYeldZAhlG_iZMhtP-uA=s192",
+          width: 192,
+          height: 192,
+        ),
+        Thumbnail(
+          url: "https://yt3.ggpht.com/AIsWKWu5eijbJrgdRQun-FcNBBwcq-bk1Mr2YWBDTj0ndF_pboCifWOzrYeldZAhlG_iZMhtP-uA=s576",
+          width: 576,
+          height: 576,
+        ),
+      ],
+      channel: Some(ChannelId(
+        id: "UCMbDcEEUG_qlfEWuEmSWK4w",
+        name: "몰라",
+      )),
+      track_count: Some(26),
+      from_ytm: false,
+    ),
+    MusicPlaylistItem(
+      id: "PLrppmyF0pfrfcoUjEygOB3sJpLk7envYZ",
+      name: "K-pop video",
+      thumbnail: [
+        Thumbnail(
+          url: "https://yt3.ggpht.com/1v2dvuCoxT0y-VYDIyVyLhK7zTgR6ogUarFGyXL1Qkj5fGoV37xlPtW16ANIDKhY9hYgDiDGRQ=s192",
+          width: 192,
+          height: 192,
+        ),
+        Thumbnail(
+          url: "https://yt3.ggpht.com/1v2dvuCoxT0y-VYDIyVyLhK7zTgR6ogUarFGyXL1Qkj5fGoV37xlPtW16ANIDKhY9hYgDiDGRQ=s576",
+          width: 576,
+          height: 576,
+        ),
+      ],
+      channel: Some(ChannelId(
+        id: "UCbP0WNlLgrnjAm4bBayYCHg",
+        name: "zekeira Jackson",
+      )),
+      track_count: Some(25),
+      from_ytm: false,
+    ),
+    MusicPlaylistItem(
+      id: "PLpwgyaUVRzlLwAwXFWUCtIQJgbMS2k5fG",
+      name: "Viviz",
+      thumbnail: [
+        Thumbnail(
+          url: "https://yt3.ggpht.com/Ii7as4BqnVxhTAJ36ilWVQx85qAcm6FooYRbv-ZGkYrHjrL6da6rC2sG5pKep1Fu3IPpsRfvar7R=s192",
+          width: 192,
+          height: 192,
+        ),
+        Thumbnail(
+          url: "https://yt3.ggpht.com/Ii7as4BqnVxhTAJ36ilWVQx85qAcm6FooYRbv-ZGkYrHjrL6da6rC2sG5pKep1Fu3IPpsRfvar7R=s576",
+          width: 576,
+          height: 576,
+        ),
+      ],
+      channel: Some(ChannelId(
+        id: "UCt0wIbpQkTfojRTMm0c7fVg",
+        name: "Ashlyn Anahí Perez xitumul",
+      )),
+      track_count: Some(25),
+      from_ytm: false,
+    ),
+    MusicPlaylistItem(
+      id: "PLPhP3bI_bdf1KY5-iN6trq-1XB4AQoZij",
+      name: "K-pop GG & Solo 🇰🇷",
+      thumbnail: [
+        Thumbnail(
+          url: "https://yt3.ggpht.com/hAJsRoDsU9VuxCYq0OEyBx0DXDYuxRFsWh03wSKhfofakfmNRqUpbLPPjT9uCCp0RjWEum-gzkk=s192",
+          width: 192,
+          height: 192,
+        ),
+        Thumbnail(
+          url: "https://yt3.ggpht.com/hAJsRoDsU9VuxCYq0OEyBx0DXDYuxRFsWh03wSKhfofakfmNRqUpbLPPjT9uCCp0RjWEum-gzkk=s576",
+          width: 576,
+          height: 576,
+        ),
+      ],
+      channel: Some(ChannelId(
+        id: "UCceFVAj8BxG0_aLdypfdcew",
+        name: "YANA24",
+      )),
+      track_count: Some(48),
+      from_ytm: false,
+    ),
+    MusicPlaylistItem(
+      id: "PLjVRwhW9AxIDrdwuZqGfC_gjmFNfDfXqm",
+      name: "K-pop GG",
+      thumbnail: [
+        Thumbnail(
+          url: "https://yt3.ggpht.com/1YrraUqMLVPxwCsyUv1JaCWcKJCENnCrPg4YUu9snI5LYetBE9yut-u73prP4F-69J2KHJvnGQ=s192",
+          width: 192,
+          height: 192,
+        ),
+        Thumbnail(
+          url: "https://yt3.ggpht.com/1YrraUqMLVPxwCsyUv1JaCWcKJCENnCrPg4YUu9snI5LYetBE9yut-u73prP4F-69J2KHJvnGQ=s576",
+          width: 576,
+          height: 576,
+        ),
+      ],
+      channel: Some(ChannelId(
+        id: "UCX-Fmn_USQ2PuFxnibdv_tw",
+        name: "BLÆZY",
+      )),
+      track_count: Some(29),
+      from_ytm: false,
+    ),
+    MusicPlaylistItem(
+      id: "PLhBJuM3nUmMEZSJaKFmjA7Y5z-PBzMO0o",
+      name: "K-Pop girl 2022",
+      thumbnail: [
+        Thumbnail(
+          url: "https://yt3.ggpht.com/PmL3tXb4lAOkDDRE96YQUa5hRYYqSeSLOdpbGYfzupHtt80aLbmCrsH_KzJcI9MI9n1crQAdfWYk=s192",
+          width: 192,
+          height: 192,
+        ),
+        Thumbnail(
+          url: "https://yt3.ggpht.com/PmL3tXb4lAOkDDRE96YQUa5hRYYqSeSLOdpbGYfzupHtt80aLbmCrsH_KzJcI9MI9n1crQAdfWYk=s576",
+          width: 576,
+          height: 576,
+        ),
+      ],
+      channel: Some(ChannelId(
+        id: "UCC2CZv7mdAkCbwHH10c9m9g",
+        name: "aideed razali",
+      )),
+      track_count: Some(27),
+      from_ytm: false,
+    ),
+    MusicPlaylistItem(
+      id: "PL0Ne18oW010y_gRCR_57arzpFiP9gnVEi",
+      name: "Female K-Pop-Mix",
+      thumbnail: [
+        Thumbnail(
+          url: "https://yt3.ggpht.com/Pi9o0X_tu-Q4G93QsqJ6aI_PHnJpEnElHMXERgDtTLfPOgt3twUpJC4Q8qe5S9VArR0VWnDTUzgi=s192",
+          width: 192,
+          height: 192,
+        ),
+        Thumbnail(
+          url: "https://yt3.ggpht.com/Pi9o0X_tu-Q4G93QsqJ6aI_PHnJpEnElHMXERgDtTLfPOgt3twUpJC4Q8qe5S9VArR0VWnDTUzgi=s576",
+          width: 576,
+          height: 576,
+        ),
+      ],
+      channel: Some(ChannelId(
+        id: "UCAR5UBWbSjZZojV4q5jBuPw",
+        name: "Terry Zarrato",
+      )),
+      track_count: Some(26),
+      from_ytm: false,
+    ),
+    MusicPlaylistItem(
+      id: "PLSNAUEM08rvKpvgkWSThc7PP7R9GJ8WdJ",
+      name: "가요",
+      thumbnail: [
+        Thumbnail(
+          url: "https://yt3.ggpht.com/6ZPzYBsLN7Y2JX51_Qi-UkbNsgTL1CY4nUOvtoVlEt5ev53Y8p0CDk8MiH_ATu1rRaAbeVxyEoU=s192",
+          width: 192,
+          height: 192,
+        ),
+        Thumbnail(
+          url: "https://yt3.ggpht.com/6ZPzYBsLN7Y2JX51_Qi-UkbNsgTL1CY4nUOvtoVlEt5ev53Y8p0CDk8MiH_ATu1rRaAbeVxyEoU=s576",
+          width: 576,
+          height: 576,
+        ),
+      ],
+      channel: Some(ChannelId(
+        id: "UCSd74nw3xjGGyBQ4I7-vAVQ",
+        name: "Changmin Park",
+      )),
+      track_count: Some(25),
+      from_ytm: false,
+    ),
+    MusicPlaylistItem(
+      id: "PLmOj3ylRt-xido1Feaf3O5HFXSKKeBuRR",
+      name: "Best 4th gen girl group songs",
+      thumbnail: [
+        Thumbnail(
+          url: "https://yt3.ggpht.com/YWsTJi1mZN9t4joSNvkPWxc0HJ8oJ9XXll-sSi1VzhvbBXKHmVA5OrgCKOAWfu6JP70YnqNsuQ=s192",
+          width: 192,
+          height: 192,
+        ),
+        Thumbnail(
+          url: "https://yt3.ggpht.com/YWsTJi1mZN9t4joSNvkPWxc0HJ8oJ9XXll-sSi1VzhvbBXKHmVA5OrgCKOAWfu6JP70YnqNsuQ=s576",
+          width: 576,
+          height: 576,
+        ),
+      ],
+      channel: Some(ChannelId(
+        id: "UC2XFk1E2pia0DH8iZHWX7uQ",
+        name: "Gorgeous_Celebs",
+      )),
+      track_count: Some(22),
+      from_ytm: false,
+    ),
+  ],
+)

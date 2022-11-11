@@ -17,6 +17,7 @@ pub(crate) use music_artist::MusicArtist;
 pub(crate) use music_artist::MusicArtistAlbums;
 pub(crate) use music_details::MusicDetails;
 pub(crate) use music_details::MusicLyrics;
+pub(crate) use music_details::MusicRelated;
 pub(crate) use music_item::MusicContinuation;
 pub(crate) use music_playlist::MusicPlaylist;
 pub(crate) use music_search::MusicSearch;

@@ -1240,9 +1240,28 @@ pub struct TrackDetails {
     pub related_id: Option<String>,
 }
 
+/// Song lyrics
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[non_exhaustive]
 pub struct Lyrics {
+    /// Lyrics text
     pub body: String,
+    /// Footer (contains lyrics source)
     pub footer: String,
+}
+
+/// YouTube Music related entities
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
+pub struct MusicRelated {
+    /// Related tracks
+    pub tracks: Vec<TrackItem>,
+    /// Other versions of the same track
+    pub other_versions: Vec<TrackItem>,
+    /// Related albums
+    pub albums: Vec<AlbumItem>,
+    /// Related artists
+    pub artists: Vec<ArtistItem>,
+    /// Related playlists
+    pub playlists: Vec<MusicPlaylistItem>,
 }

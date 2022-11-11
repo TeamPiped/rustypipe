@@ -3,7 +3,10 @@ use serde_with::serde_as;
 
 use crate::serializer::text::Text;
 
-use super::{music_item::PlaylistPanelRenderer, ContentRenderer, SectionList};
+use super::{
+    music_item::{ItemSection, PlaylistPanelRenderer},
+    ContentRenderer, SectionList,
+};
 
 /// Response model for YouTube Music track details
 #[derive(Debug, Deserialize)]
@@ -115,4 +118,10 @@ pub(crate) struct LyricsRenderer {
     pub description: String,
     #[serde_as(as = "Text")]
     pub footer: String,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct MusicRelated {
+    pub contents: SectionList<ItemSection>,
 }

@@ -27,8 +27,6 @@ pub(crate) enum ItemSection {
     #[serde(alias = "musicPlaylistShelfRenderer")]
     MusicShelfRenderer(MusicShelf),
     MusicCarouselShelfRenderer {
-        #[serde(default)]
-        #[serde_as(as = "DefaultOnError")]
         header: Option<MusicCarouselShelfHeader>,
         #[serde_as(as = "VecLogError<_>")]
         contents: MapResult<Vec<MusicResponseItem>>,
@@ -136,16 +134,27 @@ pub(crate) struct ListMusicItem {
     pub navigation_endpoint: Option<NavigationEndpoint>,
     #[serde(default)]
     pub flex_column_display_style: FlexColumnDisplayStyle,
+    #[serde(default)]
+    pub item_height: ItemHeight,
     /// Album track number
     #[serde_as(as = "Option<Text>")]
     pub index: Option<String>,
     pub menu: Option<MusicItemMenu>,
 }
 
-#[derive(Default, Debug, Deserialize)]
+#[derive(Default, Debug, Copy, Clone, Deserialize)]
 pub(crate) enum FlexColumnDisplayStyle {
     #[serde(rename = "MUSIC_RESPONSIVE_LIST_ITEM_FLEX_COLUMN_DISPLAY_STYLE_TWO_LINE_STACK")]
     TwoLines,
+    #[default]
+    #[serde(other)]
+    Default,
+}
+
+#[derive(Default, Debug, Copy, Clone, PartialEq, Eq, Deserialize)]
+pub(crate) enum ItemHeight {
+    #[serde(rename = "MUSIC_RESPONSIVE_LIST_ITEM_HEIGHT_MEDIUM_COMPACT")]
+    Compact,
     #[default]
     #[serde(other)]
     Default,
@@ -295,7 +304,9 @@ pub(crate) struct MusicCarouselShelfHeader {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct MusicCarouselShelfHeaderRenderer {
-    pub more_content_button: MoreContentButton,
+    pub more_content_button: Option<MoreContentButton>,
+    #[serde(default)]
+    pub title: TextComponents,
 }
 
 #[derive(Debug, Deserialize)]
@@ -523,27 +534,42 @@ impl MusicListMapper {
                         {
                             // Search result
                             FlexColumnDisplayStyle::TwoLines => {
-                                let mut subtitle_parts = c2
-                                    .ok_or_else(|| format!("track {}: could not get subtitle", id))?
-                                    .renderer
-                                    .text
-                                    .split(util::DOT_SEPARATOR)
-                                    .into_iter();
-
-                                // Is it a podcast episode?
-                                if subtitle_parts.len() <= 3 && c3.is_some() {
-                                    (subtitle_parts.rev().next(), None, None)
-                                } else {
-                                    // Skip first part (track type)
-                                    if subtitle_parts.len() > 3 {
-                                        subtitle_parts.next();
-                                    }
-
+                                // Is this a related track?
+                                if !is_video && item.item_height == ItemHeight::Compact {
                                     (
-                                        subtitle_parts.next(),
-                                        subtitle_parts.next(),
-                                        subtitle_parts.next(),
+                                        c2.map(TextComponents::from),
+                                        c3.map(TextComponents::from),
+                                        None,
                                     )
+                                } else {
+                                    let mut subtitle_parts = c2
+                                        .ok_or_else(|| {
+                                            format!("track {}: could not get subtitle", id)
+                                        })?
+                                        .renderer
+                                        .text
+                                        .split(util::DOT_SEPARATOR)
+                                        .into_iter();
+
+                                    // Is this a related video?
+                                    if item.item_height == ItemHeight::Compact {
+                                        (subtitle_parts.next(), subtitle_parts.next(), None)
+                                    }
+                                    // Is it a podcast episode?
+                                    else if subtitle_parts.len() <= 3 && c3.is_some() {
+                                        (subtitle_parts.rev().next(), None, None)
+                                    } else {
+                                        // Skip first part (track type)
+                                        if subtitle_parts.len() > 3 {
+                                            subtitle_parts.next();
+                                        }
+
+                                        (
+                                            subtitle_parts.next(),
+                                            subtitle_parts.next(),
+                                            subtitle_parts.next(),
+                                        )
+                                    }
                                 }
                             }
                             // Playlist item

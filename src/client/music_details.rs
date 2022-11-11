@@ -4,13 +4,16 @@ use serde::Serialize;
 
 use crate::{
     error::{Error, ExtractionError},
-    model::{Lyrics, Paginator, TrackDetails, TrackItem},
+    model::{ArtistId, Lyrics, MusicRelated, Paginator, TrackDetails, TrackItem},
     param::Language,
     serializer::MapResult,
 };
 
 use super::{
-    response::{self, music_item::map_queue_item},
+    response::{
+        self,
+        music_item::{map_queue_item, MusicListMapper},
+    },
     ClientType, MapResponse, QBrowse, RustyPipeQuery, YTContext,
 };
 
@@ -65,6 +68,23 @@ impl RustyPipeQuery {
             ClientType::DesktopMusic,
             "music_lyrics",
             lyrics_id,
+            "browse",
+            &request_body,
+        )
+        .await
+    }
+
+    pub async fn music_related(&self, related_id: &str) -> Result<MusicRelated, Error> {
+        let context = self.get_context(ClientType::DesktopMusic, true, None).await;
+        let request_body = QBrowse {
+            context,
+            browse_id: related_id,
+        };
+
+        self.execute_request::<response::MusicRelated, _, _>(
+            ClientType::DesktopMusic,
+            "music_related",
+            related_id,
             "browse",
             &request_body,
         )
@@ -256,6 +276,84 @@ impl MapResponse<Lyrics> for response::MusicLyrics {
     }
 }
 
+impl MapResponse<MusicRelated> for response::MusicRelated {
+    fn map_response(
+        self,
+        _id: &str,
+        lang: Language,
+        _deobf: Option<&crate::deobfuscate::Deobfuscator>,
+    ) -> Result<MapResult<MusicRelated>, ExtractionError> {
+        // Find artist
+        let artist_id = self
+            .contents
+            .section_list_renderer
+            .contents
+            .iter()
+            .find_map(|section| match section {
+                response::music_item::ItemSection::MusicShelfRenderer(_) => None,
+                response::music_item::ItemSection::MusicCarouselShelfRenderer {
+                    header, ..
+                } => header.as_ref().and_then(|h| {
+                    h.music_carousel_shelf_basic_header_renderer
+                        .title
+                        .0
+                        .iter()
+                        .find_map(|c| {
+                            let artist = ArtistId::from(c.clone());
+                            if artist.id.is_some() {
+                                Some(artist)
+                            } else {
+                                None
+                            }
+                        })
+                }),
+                response::music_item::ItemSection::None => None,
+            });
+
+        let mut mapper_tracks = MusicListMapper::new(lang);
+        let mut mapper = match artist_id {
+            Some(artist_id) => MusicListMapper::with_artist(lang, artist_id),
+            None => MusicListMapper::new(lang),
+        };
+
+        let mut sections = self.contents.section_list_renderer.contents.into_iter();
+        if let Some(response::music_item::ItemSection::MusicCarouselShelfRenderer {
+            contents,
+            ..
+        }) = sections.next()
+        {
+            mapper_tracks.map_response(contents);
+        }
+
+        sections.for_each(|section| match section {
+            response::music_item::ItemSection::MusicShelfRenderer(shelf) => {
+                mapper.map_response(shelf.contents);
+            }
+            response::music_item::ItemSection::MusicCarouselShelfRenderer { contents, .. } => {
+                mapper.map_response(contents);
+            }
+            response::music_item::ItemSection::None => {}
+        });
+
+        let mapped_tracks = mapper_tracks.conv_items();
+        let mut mapped = mapper.group_items();
+
+        let mut warnings = mapped_tracks.warnings;
+        warnings.append(&mut mapped.warnings);
+
+        Ok(MapResult {
+            c: MusicRelated {
+                tracks: mapped_tracks.c,
+                other_versions: mapped.c.tracks,
+                albums: mapped.c.albums,
+                artists: mapped.c.artists,
+                playlists: mapped.c.playlists,
+            },
+            warnings,
+        })
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use std::{fs::File, io::BufReader, path::Path};
@@ -322,5 +420,22 @@ mod tests {
             map_res.warnings
         );
         insta::assert_ron_snapshot!(format!("map_music_lyrics"), map_res.c);
+    }
+
+    #[test]
+    fn map_related() {
+        let json_path = Path::new("testfiles/music_details/related.json");
+        let json_file = File::open(json_path).unwrap();
+
+        let lyrics: response::MusicRelated =
+            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let map_res: MapResult<MusicRelated> = lyrics.map_response("", Language::En, None).unwrap();
+
+        assert!(
+            map_res.warnings.is_empty(),
+            "deserialization/mapping warnings: {:?}",
+            map_res.warnings
+        );
+        insta::assert_ron_snapshot!(format!("map_music_related"), map_res.c);
     }
 }

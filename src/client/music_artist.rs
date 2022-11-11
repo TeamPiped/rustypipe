@@ -193,25 +193,26 @@ fn map_artist_page(
             response::music_item::ItemSection::MusicCarouselShelfRenderer { header, contents } => {
                 let mut extendable_albums = false;
                 if let Some(h) = header {
-                    let ep = h
+                    if let Some(button) = h
                         .music_carousel_shelf_basic_header_renderer
                         .more_content_button
-                        .button_renderer
-                        .navigation_endpoint;
-
-                    if let Some(bep) = ep.browse_endpoint {
-                        if let Some(cfg) = bep.browse_endpoint_context_supported_configs {
-                            match cfg.browse_endpoint_context_music_config.page_type {
-                                PageType::Playlist => {
-                                    if videos_playlist_id.is_none() {
-                                        videos_playlist_id = Some(bep.browse_id);
+                    {
+                        if let Some(bep) =
+                            button.button_renderer.navigation_endpoint.browse_endpoint
+                        {
+                            if let Some(cfg) = bep.browse_endpoint_context_supported_configs {
+                                match cfg.browse_endpoint_context_music_config.page_type {
+                                    PageType::Playlist => {
+                                        if videos_playlist_id.is_none() {
+                                            videos_playlist_id = Some(bep.browse_id);
+                                        }
                                     }
+                                    PageType::Artist => {
+                                        album_page_params.push(bep.params);
+                                        extendable_albums = true;
+                                    }
+                                    _ => {}
                                 }
-                                PageType::Artist => {
-                                    album_page_params.push(bep.params);
-                                    extendable_albums = true;
-                                }
-                                _ => {}
                             }
                         }
                     }

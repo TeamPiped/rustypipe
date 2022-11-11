@@ -1,6 +1,8 @@
 use std::collections::HashSet;
 use std::fmt::Display;
 
+use fancy_regex::Regex;
+use once_cell::sync::Lazy;
 use rstest::rstest;
 use time::macros::date;
 use time::OffsetDateTime;
@@ -1781,6 +1783,97 @@ async fn music_lyrics() {
     insta::assert_ron_snapshot!(lyrics);
 }
 
+#[rstest]
+#[case::a("7nigXQS1Xb0", true)]
+#[case::b("4t3SUDZCBaQ", false)]
+#[tokio::test]
+async fn music_related(#[case] id: &str, #[case] full: bool) {
+    let rp = RustyPipe::builder().strict().build();
+    let track = rp.query().music_details(id).await.unwrap();
+    let related = rp
+        .query()
+        .music_related(&track.related_id.unwrap())
+        .await
+        .unwrap();
+
+    let n_tracks = related.tracks.len();
+    let mut track_artists = 0;
+    let mut track_artist_ids = 0;
+    let mut n_tracks_ytm = 0;
+    let mut track_albums = 0;
+
+    for track in related.tracks {
+        assert_video_id(&track.id);
+        assert!(!track.title.is_empty());
+        assert!(!track.cover.is_empty(), "got no cover");
+
+        if let Some(artist_id) = track.artist_id {
+            assert_channel_id(&artist_id);
+            track_artist_ids += 1;
+        }
+
+        let artist = track.artists.first().unwrap();
+        assert!(!artist.name.is_empty());
+        if let Some(artist_id) = &artist.id {
+            assert_channel_id(artist_id);
+            track_artists += 1;
+        }
+
+        if track.is_video {
+            assert!(track.album.is_none());
+            assert_gte(track.view_count.unwrap(), 10_000, "views")
+        } else {
+            n_tracks_ytm += 1;
+
+            assert!(track.view_count.is_none());
+            if let Some(album) = track.album {
+                assert_album_id(&album.id);
+                assert!(!album.name.is_empty());
+                track_albums += 1;
+            }
+        }
+    }
+
+    assert_gte(n_tracks, 20, "tracks");
+    assert_gte(n_tracks_ytm, 10, "tracks_ytm");
+
+    assert_gte(track_artists, n_tracks - 3, "track_artists");
+    assert_gte(track_artist_ids, n_tracks - 3, "track_artists");
+    assert_gte(track_albums, n_tracks_ytm - 3, "track_artists");
+
+    if full {
+        assert_gte(related.albums.len(), 10, "albums");
+        for album in related.albums {
+            assert_album_id(&album.id);
+            assert!(!album.name.is_empty());
+            assert!(!album.cover.is_empty(), "got no cover");
+
+            let artist = album.artists.first().unwrap();
+            assert_channel_id(&artist.id.as_ref().unwrap());
+            assert!(!artist.name.is_empty());
+        }
+
+        assert_gte(related.artists.len(), 10, "artists");
+        for artist in related.artists {
+            assert_channel_id(&artist.id);
+            assert!(!artist.name.is_empty());
+            assert!(!artist.avatar.is_empty(), "got no avatar");
+            assert_gte(artist.subscriber_count.unwrap(), 5000, "subscribers")
+        }
+
+        assert_gte(related.playlists.len(), 10, "playlists");
+        for playlist in related.playlists {
+            assert_playlist_id(&playlist.id);
+            assert!(!playlist.name.is_empty());
+            assert!(!playlist.thumbnail.is_empty(), "got no playlist thumbnail");
+            let channel = playlist.channel.unwrap();
+            assert_channel_id(&channel.id);
+            assert!(!channel.name.is_empty());
+            assert_gte(playlist.track_count.unwrap(), 2, "tracks");
+        }
+    }
+}
+
 #[tokio::test]
 async fn music_radio_track() {
     let rp = RustyPipe::builder().strict().build();
@@ -1835,4 +1928,47 @@ async fn assert_next<T: FromYtItem>(
             &format!("items on page {}", i + 1),
         );
     }
+}
+
+fn assert_video_id(id: &str) {
+    static VIDEO_ID_REGEX: Lazy<Regex> = Lazy::new(|| Regex::new(r"^[A-Za-z0-9_-]{11}$").unwrap());
+
+    assert!(
+        VIDEO_ID_REGEX.is_match(id).unwrap_or_default(),
+        "invalid video id: `{}`",
+        id
+    );
+}
+
+fn assert_channel_id(id: &str) {
+    static CHANNEL_ID_REGEX: Lazy<Regex> =
+        Lazy::new(|| Regex::new(r"^UC[A-Za-z0-9_-]{22}$").unwrap());
+
+    assert!(
+        CHANNEL_ID_REGEX.is_match(id).unwrap_or_default(),
+        "invalid channel id: `{}`",
+        id
+    );
+}
+
+fn assert_album_id(id: &str) {
+    static ALBUM_ID_REGEX: Lazy<Regex> =
+        Lazy::new(|| Regex::new(r"^MPREb_[A-Za-z0-9_-]{11}$").unwrap());
+
+    assert!(
+        ALBUM_ID_REGEX.is_match(id).unwrap_or_default(),
+        "invalid album id: `{}`",
+        id
+    );
+}
+
+fn assert_playlist_id(id: &str) {
+    static PLAYLIST_ID_REGEX: Lazy<Regex> =
+        Lazy::new(|| Regex::new(r"^(?:PL|RD|OLAK)[A-Za-z0-9_-]{30,}$").unwrap());
+
+    assert!(
+        PLAYLIST_ID_REGEX.is_match(id).unwrap_or_default(),
+        "invalid album id: `{}`",
+        id
+    );
 }
