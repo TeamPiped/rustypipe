@@ -860,7 +860,7 @@ async fn channel_shorts() {
         .contains("Hi, I\u{2019}m Tina, aka Doobydobap"));
     assert_eq!(
         channel.vanity_url.as_ref().unwrap(),
-        "https://www.youtube.com/c/Doobydobap"
+        "https://www.youtube.com/@Doobydobap"
     );
     assert!(!channel.banner.is_empty(), "got no banners");
     assert!(!channel.mobile_banner.is_empty(), "got no mobile banners");
@@ -966,7 +966,7 @@ fn assert_channel_eevblog<T>(channel: &Channel<T>) {
     assert!(!channel.tags.is_empty(), "got no tags");
     assert_eq!(
         channel.vanity_url.as_ref().unwrap(),
-        "https://www.youtube.com/c/EevblogDave"
+        "https://www.youtube.com/@EEVblog"
     );
     assert!(!channel.banner.is_empty(), "got no banners");
     assert!(!channel.mobile_banner.is_empty(), "got no mobile banners");
@@ -1511,7 +1511,13 @@ async fn music_search(#[case] typo: bool) {
         assert_eq!(res.corrected_query, None);
     }
 
-    let track = res.tracks.iter().find(|t| t.id == "ZeerrnuLi5E").unwrap();
+    let (i, track) = &res
+        .tracks
+        .iter()
+        .enumerate()
+        .find(|(_, a)| a.id == "ZeerrnuLi5E")
+        .unwrap();
+    assert!(*i < 3);
 
     assert_eq!(track.title, "Black Mamba");
     assert_eq!(track.duration.unwrap(), 230);
@@ -1535,7 +1541,15 @@ async fn music_search_tracks() {
     let rp = RustyPipe::builder().strict().build();
     let res = rp.query().music_search_tracks("black mamba").await.unwrap();
 
-    let track = &res.items.items[0];
+    let (i, track) = &res
+        .items
+        .items
+        .iter()
+        .enumerate()
+        .find(|(_, a)| a.id == "BL-aIpCLWnU")
+        .unwrap();
+    assert!(*i < 3);
+
     assert_eq!(track.title, "Black Mamba");
     assert!(!track.cover.is_empty(), "got no cover");
     assert!(!track.is_video);
@@ -1549,7 +1563,6 @@ async fn music_search_tracks() {
     );
     assert_eq!(track_artist.name, "aespa");
 
-    assert_eq!(track.id, "BL-aIpCLWnU");
     assert_eq!(track.duration.unwrap(), 175);
 
     let album = track.album.as_ref().unwrap();
@@ -1564,7 +1577,15 @@ async fn music_search_videos() {
     let rp = RustyPipe::builder().strict().build();
     let res = rp.query().music_search_videos("black mamba").await.unwrap();
 
-    let track = &res.items.items[0];
+    let (i, track) = &res
+        .items
+        .items
+        .iter()
+        .enumerate()
+        .find(|(_, a)| a.id == "ZeerrnuLi5E")
+        .unwrap();
+    assert!(*i < 3);
+
     assert_eq!(track.title, "Black Mamba");
     assert!(!track.cover.is_empty(), "got no cover");
     assert!(track.is_video);
@@ -1578,7 +1599,6 @@ async fn music_search_videos() {
     );
     assert_eq!(track_artist.name, "aespa");
 
-    assert_eq!(track.id, "ZeerrnuLi5E");
     assert_eq!(track.duration.unwrap(), 230);
     assert_eq!(track.album, None);
     assert_gte(track.view_count.unwrap(), 230_000_000, "views");
@@ -1649,9 +1669,15 @@ async fn music_search_albums(
     let rp = RustyPipe::builder().strict().build();
     let res = rp.query().music_search_albums(query).await.unwrap();
 
-    let album = &res.items.items[0];
+    let (i, album) = &res
+        .items
+        .items
+        .iter()
+        .enumerate()
+        .find(|(_, a)| a.id == id)
+        .unwrap();
+    assert!(*i < 3);
     assert_eq!(album.name, name);
-    assert_eq!(album.id, id);
 
     assert_eq!(album.artists.len(), 1);
     let album_artist = &album.artists[0];
@@ -1765,9 +1791,17 @@ async fn music_details(#[case] name: &str, #[case] id: &str) {
     let track = rp.query().music_details(id).await.unwrap();
 
     assert!(!track.track.cover.is_empty(), "got no cover");
+    if name == "mv" {
+        assert_gte(track.track.view_count.unwrap(), 235_000_000, "view count");
+    } else {
+        assert!(track.track.view_count.is_none());
+    }
 
     insta::assert_ron_snapshot!(format!("music_details_{}", name), track,
-        {".track.cover" => "[cover]"}
+        {
+            ".track.cover" => "[cover]",
+            ".track.view_count" => "[view_count]"
+        }
     );
 }
 
@@ -1865,11 +1899,25 @@ async fn music_related(#[case] id: &str, #[case] full: bool) {
         for playlist in related.playlists {
             assert_playlist_id(&playlist.id);
             assert!(!playlist.name.is_empty());
-            assert!(!playlist.thumbnail.is_empty(), "got no playlist thumbnail");
-            let channel = playlist.channel.unwrap();
-            assert_channel_id(&channel.id);
-            assert!(!channel.name.is_empty());
-            assert_gte(playlist.track_count.unwrap(), 2, "tracks");
+            assert!(
+                !playlist.thumbnail.is_empty(),
+                "pl: {}, got no playlist thumbnail",
+                playlist.id
+            );
+            if !playlist.from_ytm {
+                assert!(
+                    playlist.channel.is_some(),
+                    "pl: {}, got no channel",
+                    playlist.id
+                );
+                let channel = playlist.channel.unwrap();
+                assert_channel_id(&channel.id);
+                assert!(!channel.name.is_empty());
+
+                assert_gte(playlist.track_count.unwrap(), 2, "tracks");
+            } else {
+                assert!(playlist.channel.is_none());
+            }
         }
     }
 }

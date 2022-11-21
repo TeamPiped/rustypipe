@@ -19,7 +19,7 @@ TrackDetails(
       id: "MPREb_4xbv14CiQJm",
       name: "INVU - The 3rd Album",
     )),
-    view_count: None,
+    view_count: "[view_count]",
     is_video: false,
     track_nr: None,
   ),

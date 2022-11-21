@@ -1,5 +1,6 @@
 ---
 source: tests/youtube.rs
+assertion_line: 1770
 expression: track
 ---
 TrackDetails(
@@ -16,7 +17,7 @@ TrackDetails(
     ],
     artist_id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
     album: None,
-    view_count: Some(235000000),
+    view_count: "[view_count]",
     is_video: true,
     track_nr: None,
   ),
