@@ -217,7 +217,7 @@ Short videos also have their own data models (`"reelItemRenderer"`).
 ![A/B test 3 screenshot](./_img/ab_3.png)
 
 Instead of subscriber count / video count, a channel item from the search result now
-displays the channel handle and the subscriber count.
+displays the channel handle and the subscriber count. The video count was removed.
 
 The implementation looks pretty quick and dirty, as they did not even bother to rename
 their response parameters. So this might change again in the future.

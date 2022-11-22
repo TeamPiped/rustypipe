@@ -1,8 +1,11 @@
 use serde::Deserialize;
 use serde_with::serde_as;
+use serde_with::DefaultOnError;
 
 use crate::serializer::text::Text;
 
+use super::AlertRenderer;
+use super::ContentsRenderer;
 use super::{
     music_item::{ItemSection, PlaylistPanelRenderer},
     ContentRenderer, SectionList,
@@ -46,9 +49,12 @@ pub(crate) struct Tab {
 }
 
 /// Watch next tab
+#[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct TabRenderer {
+    #[serde(default)]
+    #[serde_as(as = "DefaultOnError")]
     pub content: Option<TabContent>,
     pub endpoint: Option<TabEndpoint>,
 }
@@ -101,12 +107,19 @@ pub(crate) struct PlaylistPanel {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct MusicLyrics {
-    pub contents: SectionList<LyricsContents>,
+    pub contents: LyricsContents,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct LyricsContents {
+    pub message_renderer: Option<AlertRenderer>,
+    pub section_list_renderer: Option<ContentsRenderer<LyricsSection>>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct LyricsSection {
     pub music_description_shelf_renderer: Option<LyricsRenderer>,
 }
 

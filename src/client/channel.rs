@@ -142,7 +142,7 @@ impl MapResponse<Channel<Paginator<VideoItem>>> for response::Channel {
                 header: self.header,
                 metadata: self.metadata,
                 microformat: self.microformat,
-                visitor_data: self.response_context.visitor_data,
+                visitor_data: self.response_context.visitor_data.clone(),
                 has_shorts: content.has_shorts,
                 has_live: content.has_live,
             },
@@ -157,7 +157,13 @@ impl MapResponse<Channel<Paginator<VideoItem>>> for response::Channel {
                 mapper.map_response(items);
 
                 MapResult {
-                    c: Paginator::new(None, mapper.items, mapper.ctoken),
+                    c: Paginator::new_ext(
+                        None,
+                        mapper.items,
+                        mapper.ctoken,
+                        self.response_context.visitor_data,
+                        crate::param::ContinuationEndpoint::Browse,
+                    ),
                     warnings: mapper.warnings,
                 }
             }

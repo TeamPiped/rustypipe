@@ -460,6 +460,7 @@ async fn get_video_details() {
     assert!(!details.is_live);
     assert!(!details.is_ccommons);
 
+    assert!(details.recommended.visitor_data.is_some());
     assert_next(details.recommended, &rp.query(), 10, 2).await;
 
     assert_gte(details.top_comments.count.unwrap(), 700_000, "comments");
@@ -497,6 +498,7 @@ async fn get_video_details_music() {
     assert!(!details.is_live);
     assert!(!details.is_ccommons);
 
+    assert!(details.recommended.visitor_data.is_some());
     assert_next(details.recommended, &rp.query(), 10, 2).await;
 
     // Update(01.11.2022): comments are sometimes enabled
@@ -545,6 +547,7 @@ async fn get_video_details_ccommons() {
     assert!(!details.is_live);
     assert!(details.is_ccommons);
 
+    assert!(details.recommended.visitor_data.is_some());
     assert_next(details.recommended, &rp.query(), 10, 2).await;
 
     assert_gte(details.top_comments.count.unwrap(), 2199, "comments");
@@ -669,6 +672,7 @@ async fn get_video_details_chapters() {
         "###);
     }
 
+    assert!(details.recommended.visitor_data.is_some());
     assert_next(details.recommended, &rp.query(), 10, 2).await;
 
     assert_gte(details.top_comments.count.unwrap(), 3200, "comments");
@@ -713,6 +717,7 @@ async fn get_video_details_live() {
     assert!(details.is_live);
     assert!(!details.is_ccommons);
 
+    assert!(details.recommended.visitor_data.is_some());
     assert_next(details.recommended, &rp.query(), 10, 2).await;
 
     // No comments because livestream
@@ -787,6 +792,7 @@ async fn get_video_comments() {
         .unwrap();
     assert_gte(top_comments.items.len(), 10, "comments");
     assert!(!top_comments.is_exhausted());
+    assert!(top_comments.visitor_data.is_some());
 
     let n_comments = top_comments.count.unwrap();
     assert_gte(n_comments, 700_000, "comments");
@@ -805,6 +811,7 @@ async fn get_video_comments() {
         .unwrap();
     assert_gte(latest_comments.items.len(), 10, "next comments");
     assert!(!latest_comments.is_exhausted());
+    assert!(latest_comments.visitor_data.is_some());
 }
 
 //#CHANNEL
@@ -1232,6 +1239,9 @@ async fn resolve_channel_not_found() {
 async fn startpage() {
     let rp = RustyPipe::builder().strict().build();
     let startpage = rp.query().startpage().await.unwrap();
+
+    // The startpage requires visitor data to fetch continuations
+    assert!(startpage.visitor_data.is_some());
 
     assert_next(startpage, &rp.query(), 20, 2).await;
 }
@@ -1800,13 +1810,33 @@ async fn music_details(#[case] name: &str, #[case] id: &str) {
 #[tokio::test]
 async fn music_lyrics() {
     let rp = RustyPipe::builder().strict().build();
-    let track = rp.query().music_details("n4tK7LYFxI0").await.unwrap();
+    let track = rp.query().music_details("NO8Arj4yeww").await.unwrap();
     let lyrics = rp
         .query()
         .music_lyrics(&track.lyrics_id.unwrap())
         .await
         .unwrap();
     insta::assert_ron_snapshot!(lyrics);
+}
+
+#[tokio::test]
+async fn music_lyrics_not_found() {
+    let rp = RustyPipe::builder().strict().build();
+    let track = rp.query().music_details("ekXI8qrbe1s").await.unwrap();
+    let err = rp
+        .query()
+        .music_lyrics(&track.lyrics_id.unwrap())
+        .await
+        .unwrap_err();
+
+    assert!(
+        matches!(
+            err,
+            Error::Extraction(ExtractionError::ContentUnavailable(_))
+        ),
+        "got: {}",
+        err
+    );
 }
 
 #[rstest]
@@ -1915,10 +1945,44 @@ async fn music_related(#[case] id: &str, #[case] full: bool) {
 }
 
 #[tokio::test]
+async fn music_details_not_found() {
+    let rp = RustyPipe::builder().strict().build();
+    let err = rp.query().music_details("7nigXQS1XbZ").await.unwrap_err();
+
+    assert!(
+        matches!(
+            err,
+            Error::Extraction(ExtractionError::ContentUnavailable(_))
+        ),
+        "got: {}",
+        err
+    );
+}
+
+#[tokio::test]
 async fn music_radio_track() {
     let rp = RustyPipe::builder().strict().build();
     let tracks = rp.query().music_radio_track("ZeerrnuLi5E").await.unwrap();
     assert_next(tracks, &rp.query(), 20, 3).await;
+}
+
+#[tokio::test]
+async fn music_radio_track_not_found() {
+    let rp = RustyPipe::builder().strict().build();
+    let err = rp
+        .query()
+        .music_radio_track("7nigXQS1XbZ")
+        .await
+        .unwrap_err();
+
+    assert!(
+        matches!(
+            err,
+            Error::Extraction(ExtractionError::ContentUnavailable(_))
+        ),
+        "got: {}",
+        err
+    );
 }
 
 #[tokio::test]
@@ -1930,6 +1994,27 @@ async fn music_radio_playlist() {
         .await
         .unwrap();
     assert_next(tracks, &rp.query(), 10, 1).await;
+}
+
+#[tokio::test]
+async fn music_radio_playlist_not_found() {
+    let rp = RustyPipe::builder().strict().build();
+    let res = rp
+        .query()
+        .music_radio_playlist("PL5dDx681T4bR7ZF1IuWzOv1omlZZZZZZZ")
+        .await;
+
+    // Currently this returns valid data
+    if let Err(err) = res {
+        assert!(
+            matches!(
+                err,
+                Error::Extraction(ExtractionError::ContentUnavailable(_))
+            ),
+            "got: {}",
+            err
+        );
+    }
 }
 
 //#AB TESTS

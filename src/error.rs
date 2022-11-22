@@ -74,7 +74,7 @@ pub enum ExtractionError {
     #[error("Video is age restricted")]
     VideoAgeRestricted,
     #[error("Video is not available in your country")]
-    VideoGeoblock,
+    VideoGeoblocked,
     #[error("Video cant be played with this client. Reason (from YT): {0}")]
     VideoClientUnsupported(String),
     #[error("Content is not available. Reason: {0}")]

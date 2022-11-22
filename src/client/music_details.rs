@@ -166,7 +166,9 @@ impl MapResponse<TrackDetails> for response::MusicDetails {
             }
         }
 
-        let content = content.ok_or(ExtractionError::InvalidData(Cow::Borrowed("no content")))?;
+        let content = content.ok_or(ExtractionError::ContentUnavailable(Cow::Borrowed(
+            "track not found",
+        )))?;
         let track_item = content
             .contents
             .c
@@ -215,7 +217,9 @@ impl MapResponse<Paginator<TrackItem>> for response::MusicDetails {
         let content = tabs
             .into_iter()
             .find_map(|t| t.tab_renderer.content)
-            .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no content")))?
+            .ok_or(ExtractionError::ContentUnavailable(Cow::Borrowed(
+                "radio unavailable",
+            )))?
             .music_queue_renderer
             .content
             .playlist_panel_renderer;
@@ -261,10 +265,15 @@ impl MapResponse<Lyrics> for response::MusicLyrics {
         let lyrics = self
             .contents
             .section_list_renderer
-            .contents
-            .into_iter()
-            .find_map(|item| item.music_description_shelf_renderer)
-            .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no content")))?;
+            .and_then(|sl| {
+                sl.contents
+                    .into_iter()
+                    .find_map(|item| item.music_description_shelf_renderer)
+            })
+            .ok_or(match self.contents.message_renderer {
+                Some(msg) => ExtractionError::ContentUnavailable(Cow::Owned(msg.text)),
+                None => ExtractionError::InvalidData(Cow::Borrowed("no content")),
+            })?;
 
         Ok(MapResult {
             c: Lyrics {

@@ -154,7 +154,7 @@ impl MapResponse<VideoPlayer> for response::Player {
                         // reason: "This video requires payment to watch."
                         "payment" => return Err(ExtractionError::VideoUnavailable("DRM", reason)),
                         // reason: "The uploader has not made this video available in your country."
-                        "country" => return Err(ExtractionError::VideoGeoblock),
+                        "country" => return Err(ExtractionError::VideoGeoblocked),
                         // reason (Android): "This video can only be played on newer versions of Android or other supported devices."
                         // reason (TV client): "Playback on other websites has been disabled by the video owner."
                         "Android" | "websites" => {
