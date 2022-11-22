@@ -64,15 +64,22 @@ mod tests {
 
     use crate::{client::response, model::ChannelRss};
 
-    #[test]
-    fn map_channel_rss() {
-        let xml_path = Path::new("testfiles/channel_rss/base.xml");
+    use rstest::rstest;
+
+    #[rstest]
+    #[case::base("base")]
+    #[case::no_likes("no_likes")]
+    #[case::no_channel_id("no_channel_id")]
+    fn map_channel_rss(#[case] name: &str) {
+        let filename = format!("testfiles/channel_rss/{}.xml", name);
+        let xml_path = Path::new(&filename);
         let xml_file = File::open(xml_path).unwrap();
 
         let feed: response::ChannelRss =
             quick_xml::de::from_reader(BufReader::new(xml_file)).unwrap();
+
         let map_res: ChannelRss = feed.into();
 
-        insta::assert_ron_snapshot!("map_channel_rss", map_res);
+        insta::assert_ron_snapshot!(format!("map_channel_rss_{}", name), map_res);
     }
 }

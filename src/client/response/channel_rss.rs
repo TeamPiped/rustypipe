@@ -1,6 +1,8 @@
 use serde::Deserialize;
 use time::OffsetDateTime;
 
+use crate::util;
+
 use super::Thumbnail;
 
 #[derive(Debug, Deserialize)]
@@ -9,6 +11,7 @@ pub(crate) struct ChannelRss {
     pub channel_id: String,
     #[serde(rename = "$unflatten=title")]
     pub title: String,
+    pub author: Author,
     #[serde(rename = "$unflatten=published", with = "time::serde::rfc3339")]
     pub create_date: OffsetDateTime,
     pub entry: Vec<Entry>,
@@ -18,6 +21,8 @@ pub(crate) struct ChannelRss {
 pub(crate) struct Entry {
     #[serde(rename = "$unflatten=yt:videoId")]
     pub video_id: String,
+    #[serde(rename = "$unflatten=yt:channelId")]
+    pub channel_id: String,
     #[serde(rename = "$unflatten=title")]
     pub title: String,
     #[serde(rename = "$unflatten=published", with = "time::serde::rfc3339")]
@@ -56,10 +61,42 @@ pub(crate) struct Statistics {
     pub views: u64,
 }
 
+#[derive(Debug, Deserialize)]
+pub(crate) struct Author {
+    pub uri: String,
+}
+
 impl From<ChannelRss> for crate::model::ChannelRss {
     fn from(feed: ChannelRss) -> Self {
+        let id = if feed.channel_id.is_empty() {
+            feed.entry
+                .iter()
+                .find_map(|entry| {
+                    if !entry.channel_id.is_empty() {
+                        Some(entry.channel_id.to_owned())
+                    } else {
+                        None
+                    }
+                })
+                .or_else(|| {
+                    feed.author
+                        .uri
+                        .strip_prefix("https://www.youtube.com/channel/")
+                        .and_then(|id| {
+                            if util::CHANNEL_ID_REGEX.is_match(id).unwrap_or_default() {
+                                Some(id.to_owned())
+                            } else {
+                                None
+                            }
+                        })
+                })
+                .unwrap_or_default()
+        } else {
+            feed.channel_id
+        };
+
         Self {
-            id: feed.channel_id,
+            id,
             name: feed.title,
             videos: feed
                 .entry
