@@ -946,7 +946,7 @@ pub struct ChannelItem {
     /// [`None`] if hidden by the owner or not present.
     pub subscriber_count: Option<u64>,
     /// Number of videos from the channel
-    pub video_count: u64,
+    pub video_count: Option<u64>,
     /// Abbreviated channel description
     pub short_description: String,
 }

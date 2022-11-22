@@ -73,8 +73,16 @@ async fn main() {
             match id {
                 Some(id) => {
                     let ab = abtest::ABTest::try_from(id).expect("invalid A/B test id");
-                    let res = abtest::run_test(ab, n, cli.concurrency).await;
-                    eprintln!("{} occurences", res);
+                    let (occurrences, vd_present, vd_absent) =
+                        abtest::run_test(ab, n, cli.concurrency).await;
+                    eprintln!(
+                        "{}/{} occurences ({:.1}%)",
+                        occurrences,
+                        n,
+                        occurrences as f32 / n as f32 * 100.0
+                    );
+                    eprintln!("visitor_data (present): {:?}", vd_present);
+                    eprintln!("visitor_data (absent):  {:?}", vd_absent);
                 }
                 None => {
                     let res = abtest::run_all_tests(n, cli.concurrency).await;

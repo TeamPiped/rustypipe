@@ -138,7 +138,8 @@ mod tests {
     #[rstest]
     #[case::default("default")]
     #[case::playlists("playlists")]
-    #[case::playlists("empty")]
+    #[case::empty("empty")]
+    #[case::ab3_channel_handles("20221121_AB3_channel_handles")]
     fn t_map_search(#[case] name: &str) {
         let filename = format!("testfiles/search/{}.json", name);
         let json_path = Path::new(&filename);

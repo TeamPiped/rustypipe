@@ -1,0 +1,415 @@
+---
+source: src/client/search.rs
+expression: map_res.c
+---
+SearchResult(
+  items: Paginator(
+    count: Some(476743),
+    items: [
+      Channel(ChannelItem(
+        id: "UCMwePVHRpDdfeUcwtDZu2Dw",
+        name: "Monstafluff Music",
+        avatar: [
+          Thumbnail(
+            url: "//yt3.ggpht.com/ytc/AMLnZu9YhTzdAoL6P4PYq51PCF076ITDrgLitxSDPqv6sw=s88-c-k-c0x00ffffff-no-rj-mo",
+            width: 88,
+            height: 88,
+          ),
+          Thumbnail(
+            url: "//yt3.ggpht.com/ytc/AMLnZu9YhTzdAoL6P4PYq51PCF076ITDrgLitxSDPqv6sw=s176-c-k-c0x00ffffff-no-rj-mo",
+            width: 176,
+            height: 176,
+          ),
+        ],
+        verification: Verified,
+        subscriber_count: Some(582),
+        video_count: None,
+        short_description: "Music Submissions: https://monstafluff.edmdistrict.com/",
+      )),
+      Channel(ChannelItem(
+        id: "UCLxAS02eWvfZK4icRNzWD_g",
+        name: "Music Travel Love",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/ytc/AMLnZu9njNDLU_VtFjfGUaTArBp4AJFhJIxb_CxP7knf3A=s88-c-k-c0x00ffffff-no-rj-mo",
+            width: 88,
+            height: 88,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/ytc/AMLnZu9njNDLU_VtFjfGUaTArBp4AJFhJIxb_CxP7knf3A=s176-c-k-c0x00ffffff-no-rj-mo",
+            width: 176,
+            height: 176,
+          ),
+        ],
+        verification: Artist,
+        subscriber_count: Some(403),
+        video_count: None,
+        short_description: "Welcome to the official Music Travel Love YouTube channel! We travel the world making music, friends, videos and memories!",
+      )),
+      Channel(ChannelItem(
+        id: "UCxKxjNPyL9UO5LRWHzp5JxA",
+        name: "Black&White Music",
+        avatar: [
+          Thumbnail(
+            url: "//yt3.ggpht.com/FDjW2-Cb6tFbtNv02D1UX4XtvP7P3eEWB93hGimeP4pb2TadVhAgxSVMZLZDp5NiBWGLT5eprA=s88-c-k-c0x00ffffff-no-rj-mo",
+            width: 88,
+            height: 88,
+          ),
+          Thumbnail(
+            url: "//yt3.ggpht.com/FDjW2-Cb6tFbtNv02D1UX4XtvP7P3eEWB93hGimeP4pb2TadVhAgxSVMZLZDp5NiBWGLT5eprA=s176-c-k-c0x00ffffff-no-rj-mo",
+            width: 176,
+            height: 176,
+          ),
+        ],
+        verification: Verified,
+        subscriber_count: Some(167),
+        video_count: None,
+        short_description: "MUSIC IN HARMONY WITH YOUR LIFE!!! If any producer, label, artist or photographer has an issue with any of the music or\u{a0}...",
+      )),
+      Channel(ChannelItem(
+        id: "UCGIygiYkKxn7g7fFNFdXskg",
+        name: "HAEVN MUSIC",
+        avatar: [
+          Thumbnail(
+            url: "//yt3.ggpht.com/EYlGIfqhvwtfkCyi5vpqfY_kDHr6L3OeCmkudNiAyhvz6UCnTZQOQaM-8PelFDGofdIqeF7Mb4E=s88-c-k-c0x00ffffff-no-rj-mo",
+            width: 88,
+            height: 88,
+          ),
+          Thumbnail(
+            url: "//yt3.ggpht.com/EYlGIfqhvwtfkCyi5vpqfY_kDHr6L3OeCmkudNiAyhvz6UCnTZQOQaM-8PelFDGofdIqeF7Mb4E=s176-c-k-c0x00ffffff-no-rj-mo",
+            width: 176,
+            height: 176,
+          ),
+        ],
+        verification: Artist,
+        subscriber_count: Some(411),
+        video_count: None,
+        short_description: "The official YouTube channel of HAEVN Music. Receiving a piano from his grandfather had a great impact on Jorrit\'s life.",
+      )),
+      Channel(ChannelItem(
+        id: "UClvNJkDHdc1gvFGN_Fr_qPw",
+        name: "Artemis Music",
+        avatar: [
+          Thumbnail(
+            url: "//yt3.ggpht.com/rGXIwYAhI49rKBQmw_pKFMv9yEt4euHnmXOE0OOCD6ApdQXGnuPmEv7TK7cDjrjt0rUXYHuw=s88-c-k-c0x00ffffff-no-rj-mo",
+            width: 88,
+            height: 88,
+          ),
+          Thumbnail(
+            url: "//yt3.ggpht.com/rGXIwYAhI49rKBQmw_pKFMv9yEt4euHnmXOE0OOCD6ApdQXGnuPmEv7TK7cDjrjt0rUXYHuw=s176-c-k-c0x00ffffff-no-rj-mo",
+            width: 176,
+            height: 176,
+          ),
+        ],
+        verification: None,
+        subscriber_count: Some(312),
+        video_count: None,
+        short_description: "Hello and welcome to \"Artemis Music\"! Music can play an effective role in helping us lead a better and more productive life.",
+      )),
+      Channel(ChannelItem(
+        id: "UC5r3j8tQsB3MYZiwQFGKrdA",
+        name: "Disco Music",
+        avatar: [
+          Thumbnail(
+            url: "//yt3.ggpht.com/5nqhAdf26KoSKbfUB8kvhJo6rpMQw3XS345h8ZNmeXScqlB1KjJAM0T371r3QcS1mA1LZg9B1Po=s88-c-k-c0x00ffffff-no-rj-mo",
+            width: 88,
+            height: 88,
+          ),
+          Thumbnail(
+            url: "//yt3.ggpht.com/5nqhAdf26KoSKbfUB8kvhJo6rpMQw3XS345h8ZNmeXScqlB1KjJAM0T371r3QcS1mA1LZg9B1Po=s176-c-k-c0x00ffffff-no-rj-mo",
+            width: 176,
+            height: 176,
+          ),
+        ],
+        verification: Verified,
+        subscriber_count: Some(372),
+        video_count: None,
+        short_description: "Music is the only language in which you cannot say a mean or sarcastic thing. Have fun listening to music.",
+      )),
+      Channel(ChannelItem(
+        id: "UCNZYpcqym8gHcNg2GWcC6nQ",
+        name: "S!X - Music",
+        avatar: [
+          Thumbnail(
+            url: "//yt3.googleusercontent.com/ytc/AMLnZu_1NOzbZUJWZjtmD4NTsb9BR-TNIAzNoajv0TisvQ=s88-c-k-c0x00ffffff-no-rj-mo",
+            width: 88,
+            height: 88,
+          ),
+          Thumbnail(
+            url: "//yt3.googleusercontent.com/ytc/AMLnZu_1NOzbZUJWZjtmD4NTsb9BR-TNIAzNoajv0TisvQ=s176-c-k-c0x00ffffff-no-rj-mo",
+            width: 176,
+            height: 176,
+          ),
+        ],
+        verification: Verified,
+        subscriber_count: Some(178),
+        video_count: None,
+        short_description: "S!X - Music is an independent Hip-Hop label. Soundcloud : https://soundcloud.com/s1xmusic Facebook\u{a0}...",
+      )),
+      Channel(ChannelItem(
+        id: "UCoEryX-WO7IHBGqTAC5r9Zw",
+        name: "Shake Music",
+        avatar: [
+          Thumbnail(
+            url: "//yt3.googleusercontent.com/ytc/AMLnZu9fMXUALsloNUJ_wLpqCS0ovprvc5W-XwfrpmWqIw=s88-c-k-c0x00ffffff-no-rj-mo",
+            width: 88,
+            height: 88,
+          ),
+          Thumbnail(
+            url: "//yt3.googleusercontent.com/ytc/AMLnZu9fMXUALsloNUJ_wLpqCS0ovprvc5W-XwfrpmWqIw=s176-c-k-c0x00ffffff-no-rj-mo",
+            width: 176,
+            height: 176,
+          ),
+        ],
+        verification: Verified,
+        subscriber_count: Some(104),
+        video_count: None,
+        short_description: "Welcome to Shake Music, a Trap & Bass Channel / Record Label dedicated to bringing you the best tracks. All tracks on Shake\u{a0}...",
+      )),
+      Channel(ChannelItem(
+        id: "UCTJ9Qg-1vBu2pP_YrWUfGnQ",
+        name: "Miracle Music",
+        avatar: [
+          Thumbnail(
+            url: "//yt3.ggpht.com/3RMarDSmUSIexCXWCpMUkqV64uiHDXTidBLwsObHstx5-AbB8h_n8Zy1W9JymURd7ivzlDEGFw=s88-c-k-c0x00ffffff-no-rj-mo",
+            width: 88,
+            height: 88,
+          ),
+          Thumbnail(
+            url: "//yt3.ggpht.com/3RMarDSmUSIexCXWCpMUkqV64uiHDXTidBLwsObHstx5-AbB8h_n8Zy1W9JymURd7ivzlDEGFw=s176-c-k-c0x00ffffff-no-rj-mo",
+            width: 176,
+            height: 176,
+          ),
+        ],
+        verification: Verified,
+        subscriber_count: Some(822),
+        video_count: None,
+        short_description: "Welcome to Miracle Music! On this channel you will find a wide variety of different Deep House, Tropical House, Chill Out, EDM,.",
+      )),
+      Channel(ChannelItem(
+        id: "UCp6_KuNhT0kcFk-jXw9Tivg",
+        name: "Magic Music",
+        avatar: [
+          Thumbnail(
+            url: "//yt3.googleusercontent.com/ytc/AMLnZu-fgSc_lceD4fRL_y0b3MKd2k54DF-laDAR3Avbuw=s88-c-k-c0x00ffffff-no-rj-mo",
+            width: 88,
+            height: 88,
+          ),
+          Thumbnail(
+            url: "//yt3.googleusercontent.com/ytc/AMLnZu-fgSc_lceD4fRL_y0b3MKd2k54DF-laDAR3Avbuw=s176-c-k-c0x00ffffff-no-rj-mo",
+            width: 176,
+            height: 176,
+          ),
+        ],
+        verification: Verified,
+        subscriber_count: Some(462),
+        video_count: None,
+        short_description: "",
+      )),
+      Channel(ChannelItem(
+        id: "UCe55Gy-hFDvLZp8C8BZhBnw",
+        name: "Nightblue Music",
+        avatar: [
+          Thumbnail(
+            url: "//yt3.googleusercontent.com/ytc/AMLnZu-29SYt5qpqMP9Xi2A98mqL8ymI5Lg7Vzx-qpY09w=s88-c-k-c0x00ffffff-no-rj-mo",
+            width: 88,
+            height: 88,
+          ),
+          Thumbnail(
+            url: "//yt3.googleusercontent.com/ytc/AMLnZu-29SYt5qpqMP9Xi2A98mqL8ymI5Lg7Vzx-qpY09w=s176-c-k-c0x00ffffff-no-rj-mo",
+            width: 176,
+            height: 176,
+          ),
+        ],
+        verification: Verified,
+        subscriber_count: Some(105),
+        video_count: None,
+        short_description: "BRINGING YOU ONLY THE BEST EDM - TRAP Submit your own track for promotion here:\u{a0}...",
+      )),
+      Channel(ChannelItem(
+        id: "UC2fVSthyWxWSjsiEAHPzriQ",
+        name: "Mr_MoMo Music",
+        avatar: [
+          Thumbnail(
+            url: "//yt3.ggpht.com/7YG4jSrhx_Mfi2TsV0rJFlFARaR8kl7ilcIyzs6gSeNjwn-J88DvDWD8PSNd5o03qJRzpvhs=s88-c-k-c0x00ffffff-no-rj-mo",
+            width: 88,
+            height: 88,
+          ),
+          Thumbnail(
+            url: "//yt3.ggpht.com/7YG4jSrhx_Mfi2TsV0rJFlFARaR8kl7ilcIyzs6gSeNjwn-J88DvDWD8PSNd5o03qJRzpvhs=s176-c-k-c0x00ffffff-no-rj-mo",
+            width: 176,
+            height: 176,
+          ),
+        ],
+        verification: Verified,
+        subscriber_count: Some(709),
+        video_count: None,
+        short_description: "Hey there! I am Mr MoMo My channel focus on Japan music, lofi, trap & bass type beat and Japanese instrumental. I mindfully\u{a0}...",
+      )),
+      Channel(ChannelItem(
+        id: "UCN31w7dRjjz8CeP0GfSIo8A",
+        name: "Danit Music Official",
+        avatar: [
+          Thumbnail(
+            url: "//yt3.ggpht.com/ytc/AMLnZu9rUKtDsY-aSoE5WEwAQxvQTXiuAPYMBoJQ2mYTUA=s88-c-k-c0x00ffffff-no-rj-mo",
+            width: 88,
+            height: 88,
+          ),
+          Thumbnail(
+            url: "//yt3.ggpht.com/ytc/AMLnZu9rUKtDsY-aSoE5WEwAQxvQTXiuAPYMBoJQ2mYTUA=s176-c-k-c0x00ffffff-no-rj-mo",
+            width: 176,
+            height: 176,
+          ),
+        ],
+        verification: None,
+        subscriber_count: Some(544),
+        video_count: None,
+        short_description: "",
+      )),
+      Channel(ChannelItem(
+        id: "UCpEHWiTMk1eEBAdzBnAb3rA",
+        name: "Energy Transformation Relaxing Music ",
+        avatar: [
+          Thumbnail(
+            url: "//yt3.ggpht.com/RR7upyAvT7N0_qlZWfLlDSRPhLufX4W4X6-qahWvuvDCLn2cWCs0yh_HXB2iwGbk_MTwSqwWEQ=s88-c-k-c0x00ffffff-no-rj-mo",
+            width: 88,
+            height: 88,
+          ),
+          Thumbnail(
+            url: "//yt3.ggpht.com/RR7upyAvT7N0_qlZWfLlDSRPhLufX4W4X6-qahWvuvDCLn2cWCs0yh_HXB2iwGbk_MTwSqwWEQ=s176-c-k-c0x00ffffff-no-rj-mo",
+            width: 176,
+            height: 176,
+          ),
+        ],
+        verification: None,
+        subscriber_count: Some(359),
+        video_count: None,
+        short_description: "Welcome to our Energy Transformation Relaxing Music . This chakra music channel will focus on developing the best chakra\u{a0}...",
+      )),
+      Channel(ChannelItem(
+        id: "UCqswUMaC5yWUrkQszr8fuBA",
+        name: "Nonstop Music",
+        avatar: [
+          Thumbnail(
+            url: "//yt3.googleusercontent.com/ytc/AMLnZu9vLN62RxNbnpa20r5XreWRlVjHXbHf7BMcvSBxoQ=s88-c-k-c0x00ffffff-no-rj-mo",
+            width: 88,
+            height: 88,
+          ),
+          Thumbnail(
+            url: "//yt3.googleusercontent.com/ytc/AMLnZu9vLN62RxNbnpa20r5XreWRlVjHXbHf7BMcvSBxoQ=s176-c-k-c0x00ffffff-no-rj-mo",
+            width: 176,
+            height: 176,
+          ),
+        ],
+        verification: Verified,
+        subscriber_count: Some(416),
+        video_count: None,
+        short_description: "Nonstop Music - Home of 1h videos of your favourite songs and mixes. Nonstop Genres: Pop • Chillout • Tropical House • Deep\u{a0}...",
+      )),
+      Channel(ChannelItem(
+        id: "UChO8h2G8UjOVc081rgYU8XQ",
+        name: "Vibe Music",
+        avatar: [
+          Thumbnail(
+            url: "//yt3.googleusercontent.com/ytc/AMLnZu9Br5pt87kuDLRFbh1MqMXeFlCLbUrwFlDIzU4s=s88-c-k-c0x00ffffff-no-rj-mo",
+            width: 88,
+            height: 88,
+          ),
+          Thumbnail(
+            url: "//yt3.googleusercontent.com/ytc/AMLnZu9Br5pt87kuDLRFbh1MqMXeFlCLbUrwFlDIzU4s=s176-c-k-c0x00ffffff-no-rj-mo",
+            width: 176,
+            height: 176,
+          ),
+        ],
+        verification: Verified,
+        subscriber_count: Some(3),
+        video_count: None,
+        short_description: "Vibe Music strives to bring the best lyric videos of popular Rap & Hip Hop songs. Be sure to Subscribe to see new videos we\u{a0}...",
+      )),
+      Channel(ChannelItem(
+        id: "UClV8b2EhIhIASKw-etzegyw",
+        name: "Suits Music",
+        avatar: [
+          Thumbnail(
+            url: "//yt3.googleusercontent.com/ytc/AMLnZu9Aj5RtZZMdK_B_YD-8rOfi9c5ddFw5t1s4GYEeOQ=s88-c-k-c0x00ffffff-no-rj-mo",
+            width: 88,
+            height: 88,
+          ),
+          Thumbnail(
+            url: "//yt3.googleusercontent.com/ytc/AMLnZu9Aj5RtZZMdK_B_YD-8rOfi9c5ddFw5t1s4GYEeOQ=s176-c-k-c0x00ffffff-no-rj-mo",
+            width: 176,
+            height: 176,
+          ),
+        ],
+        verification: None,
+        subscriber_count: Some(120),
+        video_count: None,
+        short_description: "",
+      )),
+      Channel(ChannelItem(
+        id: "UCI2hwz3r5phXpOtViIA5inA",
+        name: "Rock Music Collection",
+        avatar: [
+          Thumbnail(
+            url: "//yt3.ggpht.com/kB4gWvROUIWFuJN8xwIqmPl1QV2_gXMat6COAJjXZT07E3xomc4b2JwGtDg05t1MmhgqImSifhc=s88-c-k-c0x00ffffff-no-rj-mo",
+            width: 88,
+            height: 88,
+          ),
+          Thumbnail(
+            url: "//yt3.ggpht.com/kB4gWvROUIWFuJN8xwIqmPl1QV2_gXMat6COAJjXZT07E3xomc4b2JwGtDg05t1MmhgqImSifhc=s176-c-k-c0x00ffffff-no-rj-mo",
+            width: 176,
+            height: 176,
+          ),
+        ],
+        verification: None,
+        subscriber_count: Some(817),
+        video_count: None,
+        short_description: "",
+      )),
+      Channel(ChannelItem(
+        id: "UC9w8My3S7h-bQZ-4R-0ZPsw",
+        name: "Helios Music",
+        avatar: [
+          Thumbnail(
+            url: "//yt3.ggpht.com/bi08T8zuYI1PlbM8M5fyZzjVvNJRJFFcQoonRQvS30opJ-OqGIq5OPrZ19qga29PIAit7OO3=s88-c-k-c0x00ffffff-no-rj-mo",
+            width: 88,
+            height: 88,
+          ),
+          Thumbnail(
+            url: "//yt3.ggpht.com/bi08T8zuYI1PlbM8M5fyZzjVvNJRJFFcQoonRQvS30opJ-OqGIq5OPrZ19qga29PIAit7OO3=s176-c-k-c0x00ffffff-no-rj-mo",
+            width: 176,
+            height: 176,
+          ),
+        ],
+        verification: None,
+        subscriber_count: Some(53),
+        video_count: None,
+        short_description: "Welcome to my channel - Helios Music. I created this channel to help people have the most relaxing, refreshing and comfortable\u{a0}...",
+      )),
+      Channel(ChannelItem(
+        id: "UC_ODKC5gTs2LvdHXDRdDm0w",
+        name: "Music On",
+        avatar: [
+          Thumbnail(
+            url: "//yt3.googleusercontent.com/ytc/AMLnZu8lUOYw4RdRwQf2Kz8RCExSmuWC78oetXF7VL67SA=s88-c-k-c0x00ffffff-no-rj-mo",
+            width: 88,
+            height: 88,
+          ),
+          Thumbnail(
+            url: "//yt3.googleusercontent.com/ytc/AMLnZu8lUOYw4RdRwQf2Kz8RCExSmuWC78oetXF7VL67SA=s176-c-k-c0x00ffffff-no-rj-mo",
+            width: 176,
+            height: 176,
+          ),
+        ],
+        verification: None,
+        subscriber_count: Some(129),
+        video_count: None,
+        short_description: "Music On (UNOFFICIAL CHANNEL)",
+      )),
+    ],
+    ctoken: Some("Eu4FEgVtdXNpYxrkBUVnSVFBa2dVZ2dFWVZVTk5kMlZRVmtoU2NFUmtabVZWWTNkMFJGcDFNa1IzZ2dFWVZVTk1lRUZUTURKbFYzWm1Xa3MwYVdOU1RucFhSRjluZ2dFWVZVTjRTM2hxVGxCNVREbFZUelZNVWxkSWVuQTFTbmhCZ2dFWVZVTkhTWGxuYVZsclMzaHVOMmMzWmtaT1JtUlljMnRuZ2dFWVZVTnNkazVLYTBSSVpHTXhaM1pHUjA1ZlJuSmZjVkIzZ2dFWVZVTTFjak5xT0hSUmMwSXpUVmxhYVhkUlJrZExjbVJCZ2dFWVZVTk9XbGx3WTNGNWJUaG5TR05PWnpKSFYyTkRObTVSZ2dFWVZVTnZSWEo1V0MxWFR6ZEpTRUpIY1ZSQlF6VnlPVnAzZ2dFWVZVTlVTamxSWnkweGRrSjFNbkJRWDFseVYxVm1SMjVSZ2dFWVZVTndObDlMZFU1b1ZEQnJZMFpyTFdwWWR6bFVhWFpuZ2dFWVZVTmxOVFZIZVMxb1JrUjJURnB3T0VNNFFscG9RbTUzZ2dFWVZVTXlabFpUZEdoNVYzaFhVMnB6YVVWQlNGQjZjbWxSZ2dFWVZVTk9NekYzTjJSU2FtcDZPRU5sVURCSFpsTkpiemhCZ2dFWVZVTndSVWhYYVZSTmF6RmxSVUpCWkhwQ2JrRmlNM0pCZ2dFWVZVTnhjM2RWVFdGRE5YbFhWWEpyVVhONmNqaG1kVUpCZ2dFWVZVTm9UemhvTWtjNFZXcFBWbU13T0RGeVoxbFZPRmhSZ2dFWVZVTnNWamhpTWtWb1NXaEpRVk5MZHkxbGRIcGxaM2wzZ2dFWVZVTkpNbWgzZWpOeU5YQm9XSEJQZEZacFNVRTFhVzVCZ2dFWVZVTTVkemhOZVROVE4yZ3RZbEZhTFRSU0xUQmFVSE4zZ2dFWVZVTmZUMFJMUXpWblZITXlUSFprU0ZoRVVtUkViVEIzc2dFR0NnUUlGUkFDGIHg6BgiC3NlYXJjaC1mZWVk"),
+    endpoint: search,
+  ),
+  corrected_query: None,
+  visitor_data: None,
+)

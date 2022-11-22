@@ -17,6 +17,7 @@ use rustypipe::model::{
 use rustypipe::param::search_filter::{self, SearchFilter};
 
 const VISITOR_DATA_3TAB_CHANNEL_LAYOUT: &str = "CgtOa256ckVkcG5YVSiirbyaBg%3D%3D";
+const VISITOR_DATA_SEARCH_CHANNEL_HANDLES: &str = "CgszYlc1Yk1WZGRCSSjrwOSbBg%3D%3D";
 
 //#PLAYER
 
@@ -1105,14 +1106,14 @@ async fn search() {
 
 #[rstest]
 #[case::video(search_filter::Entity::Video)]
-#[case::video(search_filter::Entity::Channel)]
-#[case::video(search_filter::Entity::Playlist)]
+#[case::channel(search_filter::Entity::Channel)]
+#[case::playlist(search_filter::Entity::Playlist)]
 #[tokio::test]
 async fn search_filter_entity(#[case] entity: search_filter::Entity) {
     let rp = RustyPipe::builder().strict().build();
     let mut result = rp
         .query()
-        .search_filter("music", &SearchFilter::new().entity(entity))
+        .search_filter("with no videos", &SearchFilter::new().entity(entity))
         .await
         .unwrap();
 

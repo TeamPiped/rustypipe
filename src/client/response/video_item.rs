@@ -399,7 +399,7 @@ impl<T> YouTubeListMapper<T> {
         }
     }
 
-    fn map_video(&self, video: VideoRenderer) -> VideoItem {
+    fn map_video(&mut self, video: VideoRenderer) -> VideoItem {
         let mut tn_overlays = video.thumbnail_overlays;
         let length_text = video.length_text.or_else(|| {
             tn_overlays
@@ -434,10 +434,9 @@ impl<T> YouTubeListMapper<T> {
                 .as_ref()
                 .and_then(|upc| OffsetDateTime::from_unix_timestamp(upc.start_time).ok())
                 .or_else(|| {
-                    video
-                        .published_time_text
-                        .as_ref()
-                        .and_then(|txt| timeago::parse_timeago_to_dt(self.lang, txt))
+                    video.published_time_text.as_ref().and_then(|txt| {
+                        timeago::parse_timeago_dt_or_warn(self.lang, txt, &mut self.warnings)
+                    })
                 }),
             publish_date_txt: video.published_time_text,
             view_count: video
@@ -453,7 +452,7 @@ impl<T> YouTubeListMapper<T> {
         }
     }
 
-    fn map_short_video(&self, video: ReelItemRenderer) -> VideoItem {
+    fn map_short_video(&mut self, video: ReelItemRenderer) -> VideoItem {
         static ACCESSIBILITY_SEP_REGEX: Lazy<Regex> =
             Lazy::new(|| Regex::new(" [-\u{2013}] (.+) [-\u{2013}] ").unwrap());
 
@@ -476,16 +475,20 @@ impl<T> YouTubeListMapper<T> {
                     .flatten()
                     .and_then(|cap| {
                         cap.get(1).and_then(|c| {
-                            timeago::parse_timeago(self.lang, c.as_str())
-                                .map(|ta| Duration::from(ta).whole_seconds() as u32)
+                            timeago::parse_timeago_or_warn(
+                                self.lang,
+                                c.as_str(),
+                                &mut self.warnings,
+                            )
+                            .map(|ta| Duration::from(ta).whole_seconds() as u32)
                         })
                     })
             }),
             thumbnail: video.thumbnail.into(),
             channel: self.channel.clone(),
-            publish_date: pub_date_txt
-                .as_ref()
-                .and_then(|txt| timeago::parse_timeago_to_dt(self.lang, txt)),
+            publish_date: pub_date_txt.as_ref().and_then(|txt| {
+                timeago::parse_timeago_dt_or_warn(self.lang, txt, &mut self.warnings)
+            }),
             publish_date_txt: pub_date_txt,
             view_count: video
                 .view_count_text
@@ -526,19 +529,27 @@ impl<T> YouTubeListMapper<T> {
         }
     }
 
-    fn map_channel(channel: ChannelRenderer) -> ChannelItem {
+    fn map_channel(&mut self, channel: ChannelRenderer) -> ChannelItem {
+        // channel handle instead of subscriber count (A/B test 3)
+        let (sc_txt, vc_text) = match channel
+            .subscriber_count_text
+            .as_ref()
+            .map(|txt| txt.starts_with('@'))
+            .unwrap_or_default()
+        {
+            true => (channel.video_count_text, None),
+            false => (channel.subscriber_count_text, channel.video_count_text),
+        };
+
         ChannelItem {
             id: channel.channel_id,
             name: channel.title,
             avatar: channel.thumbnail.into(),
             verification: channel.owner_badges.into(),
-            subscriber_count: channel
-                .subscriber_count_text
-                .and_then(|txt| util::parse_numeric(&txt).ok()),
-            video_count: channel
-                .video_count_text
-                .and_then(|txt| util::parse_numeric(&txt).ok())
-                .unwrap_or_default(),
+            subscriber_count: sc_txt
+                .and_then(|txt| util::parse_numeric_or_warn(&txt, &mut self.warnings)),
+            video_count: vc_text
+                .and_then(|txt| util::parse_numeric_or_warn(&txt, &mut self.warnings)),
             short_description: channel.description_snippet,
         }
     }
@@ -548,18 +559,20 @@ impl YouTubeListMapper<YouTubeItem> {
     fn map_item(&mut self, item: YouTubeListItem) {
         match item {
             YouTubeListItem::VideoRenderer(video) => {
-                self.items.push(YouTubeItem::Video(self.map_video(video)));
+                let mapped = YouTubeItem::Video(self.map_video(video));
+                self.items.push(mapped);
             }
             YouTubeListItem::ReelItemRenderer(video) => {
-                self.items
-                    .push(YouTubeItem::Video(self.map_short_video(video)));
+                let mapped = self.map_short_video(video);
+                self.items.push(YouTubeItem::Video(mapped));
             }
-            YouTubeListItem::PlaylistRenderer(playlist) => self
-                .items
-                .push(YouTubeItem::Playlist(self.map_playlist(playlist))),
+            YouTubeListItem::PlaylistRenderer(playlist) => {
+                let mapped = YouTubeItem::Playlist(self.map_playlist(playlist));
+                self.items.push(mapped);
+            }
             YouTubeListItem::ChannelRenderer(channel) => {
-                self.items
-                    .push(YouTubeItem::Channel(Self::map_channel(channel)));
+                let mapped = YouTubeItem::Channel(self.map_channel(channel));
+                self.items.push(mapped);
             }
             YouTubeListItem::ContinuationItemRenderer {
                 continuation_endpoint,
@@ -588,10 +601,12 @@ impl YouTubeListMapper<VideoItem> {
     fn map_item(&mut self, item: YouTubeListItem) {
         match item {
             YouTubeListItem::VideoRenderer(video) => {
-                self.items.push(self.map_video(video));
+                let mapped = self.map_video(video);
+                self.items.push(mapped);
             }
             YouTubeListItem::ReelItemRenderer(video) => {
-                self.items.push(self.map_short_video(video));
+                let mapped = self.map_short_video(video);
+                self.items.push(mapped);
             }
             YouTubeListItem::ContinuationItemRenderer {
                 continuation_endpoint,
@@ -620,7 +635,8 @@ impl YouTubeListMapper<PlaylistItem> {
     fn map_item(&mut self, item: YouTubeListItem) {
         match item {
             YouTubeListItem::PlaylistRenderer(playlist) => {
-                self.items.push(self.map_playlist(playlist))
+                let mapped = self.map_playlist(playlist);
+                self.items.push(mapped)
             }
             YouTubeListItem::ContinuationItemRenderer {
                 continuation_endpoint,
