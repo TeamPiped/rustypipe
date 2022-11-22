@@ -1,12 +1,10 @@
 #![allow(clippy::enum_variant_names)]
 
 use serde::Deserialize;
-use serde_with::serde_as;
-use serde_with::{DefaultOnError, VecSkipError};
+use serde_with::{rust::deserialize_ignore_any, serde_as, DefaultOnError, VecSkipError};
 
 use crate::serializer::text::TextComponent;
 use crate::serializer::{
-    ignore_any,
     text::{AccessibilityText, AttributedText, Text, TextComponents},
     MapResult, VecLogError,
 };
@@ -102,7 +100,7 @@ pub(crate) enum VideoResultsItem {
     /// 1. sectionIdentifier: "comments-entry-point", contains number of comments
     /// 2. sectionIdentifier: "comment-item-section", contains continuation token
     ItemSectionRenderer(#[serde_as(deserialize_as = "DefaultOnError")] ItemSection),
-    #[serde(other, deserialize_with = "ignore_any")]
+    #[serde(other, deserialize_with = "deserialize_ignore_any")]
     None,
 }
 
@@ -335,7 +333,7 @@ pub(crate) enum EngagementPanelRenderer {
     ///   (Description already included in `VideoSecondaryInfoRenderer`)
     /// - `engagement-panel-searchable-transcript`
     ///   (basically video subtitles in a different format)
-    #[serde(other, deserialize_with = "ignore_any")]
+    #[serde(other, deserialize_with = "deserialize_ignore_any")]
     None,
 }
 

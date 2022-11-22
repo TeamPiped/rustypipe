@@ -1,10 +1,8 @@
 use serde::Deserialize;
-use serde_with::serde_as;
-use serde_with::{DefaultOnError, VecSkipError};
+use serde_with::{rust::deserialize_ignore_any, serde_as, DefaultOnError, VecSkipError};
 
 use super::url_endpoint::NavigationEndpoint;
 use super::{Alert, ChannelBadge, ContentsRenderer, ResponseContext, Thumbnails, YouTubeListItem};
-use crate::serializer::ignore_any;
 use crate::serializer::{text::Text, MapResult, VecLogError};
 
 #[serde_as]
@@ -108,7 +106,7 @@ pub(crate) enum ChannelContent {
     },
     ChannelAboutFullMetadataRenderer(ChannelFullMetadata),
     #[default]
-    #[serde(other, deserialize_with = "ignore_any")]
+    #[serde(other, deserialize_with = "deserialize_ignore_any")]
     None,
 }
 
@@ -154,7 +152,7 @@ pub(crate) enum CarouselHeaderRendererItem {
         #[serde(default)]
         avatar: Thumbnails,
     },
-    #[serde(other, deserialize_with = "ignore_any")]
+    #[serde(other, deserialize_with = "deserialize_ignore_any")]
     None,
 }
 

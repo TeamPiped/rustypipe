@@ -1,7 +1,7 @@
 use serde::Deserialize;
-use serde_with::{serde_as, VecSkipError};
+use serde_with::{rust::deserialize_ignore_any, serde_as, VecSkipError};
 
-use crate::serializer::{ignore_any, text::Text};
+use crate::serializer::text::Text;
 
 use super::{music_item::MusicShelf, ContentsRenderer, SectionList, Tab};
 
@@ -28,7 +28,7 @@ pub(crate) enum ItemSection {
         #[serde_as(as = "VecSkipError<_>")]
         contents: Vec<ShowingResultsFor>,
     },
-    #[serde(other, deserialize_with = "ignore_any")]
+    #[serde(other, deserialize_with = "deserialize_ignore_any")]
     None,
 }
 

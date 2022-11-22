@@ -1,7 +1,9 @@
 use fancy_regex::Regex;
 use once_cell::sync::Lazy;
 use serde::Deserialize;
-use serde_with::{json::JsonString, serde_as, DefaultOnError, VecSkipError};
+use serde_with::{
+    json::JsonString, rust::deserialize_ignore_any, serde_as, DefaultOnError, VecSkipError,
+};
 use time::{Duration, OffsetDateTime};
 
 use super::{ChannelBadge, ContinuationEndpoint, Thumbnails};
@@ -9,7 +11,6 @@ use crate::{
     model::{Channel, ChannelId, ChannelItem, ChannelTag, PlaylistItem, VideoItem, YouTubeItem},
     param::Language,
     serializer::{
-        ignore_any,
         text::{AccessibilityText, Text, TextComponent},
         MapResult, VecLogError,
     },
@@ -69,7 +70,7 @@ pub(crate) enum YouTubeListItem {
     /// Unimplemented:
     /// - compactPlaylistRenderer (recommended playlists)
     /// - compactRadioRenderer (recommended mix)
-    #[serde(other, deserialize_with = "ignore_any")]
+    #[serde(other, deserialize_with = "deserialize_ignore_any")]
     None,
 }
 

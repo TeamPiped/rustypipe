@@ -1,5 +1,5 @@
 use serde::Deserialize;
-use serde_with::{serde_as, DefaultOnError, VecSkipError};
+use serde_with::{rust::deserialize_ignore_any, serde_as, DefaultOnError, VecSkipError};
 
 use crate::{
     model::{
@@ -8,7 +8,6 @@ use crate::{
     },
     param::Language,
     serializer::{
-        ignore_any,
         text::{Text, TextComponents},
         MapResult, VecLogError,
     },
@@ -31,7 +30,7 @@ pub(crate) enum ItemSection {
         #[serde_as(as = "VecLogError<_>")]
         contents: MapResult<Vec<MusicResponseItem>>,
     },
-    #[serde(other, deserialize_with = "ignore_any")]
+    #[serde(other, deserialize_with = "deserialize_ignore_any")]
     None,
 }
 
@@ -201,7 +200,7 @@ pub(crate) struct PlaylistPanelRenderer {
 #[serde(rename_all = "camelCase")]
 pub(crate) enum PlaylistPanelVideo {
     PlaylistPanelVideoRenderer(QueueMusicItem),
-    #[serde(other, deserialize_with = "ignore_any")]
+    #[serde(other, deserialize_with = "deserialize_ignore_any")]
     None,
 }
 

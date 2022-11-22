@@ -1,8 +1,10 @@
 use serde::Deserialize;
-use serde_with::{json::JsonString, serde_as, DefaultOnError, VecSkipError};
+use serde_with::{
+    json::JsonString, rust::deserialize_ignore_any, serde_as, DefaultOnError, VecSkipError,
+};
 
 use crate::serializer::text::{Text, TextComponent};
-use crate::serializer::{ignore_any, MapResult, VecLogError};
+use crate::serializer::{MapResult, VecLogError};
 use crate::util::MappingError;
 
 use super::{
@@ -156,7 +158,7 @@ pub(crate) enum PlaylistItem {
         continuation_endpoint: ContinuationEndpoint,
     },
     /// No video list item (e.g. ad) or unimplemented item
-    #[serde(other, deserialize_with = "ignore_any")]
+    #[serde(other, deserialize_with = "deserialize_ignore_any")]
     None,
 }
 

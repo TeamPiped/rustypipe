@@ -10,8 +10,6 @@ pub use vec_log_err::VecLogError;
 
 use std::fmt::Debug;
 
-use serde::{de::IgnoredAny, Deserializer};
-
 /// This represents a result from a deserializing/mapping operation.
 /// It holds the desired content (`c`) and a list of warning messages,
 /// if there occurred minor error during the deserializing or mapping
@@ -43,33 +41,10 @@ where
     }
 }
 
-/// Deserialization method that consumes anything and returns an empty value.
-/// Intended to be used for a wildcard enum option.
-///
-/// Example:
-/// ```rs
-/// #[derive(Deserialize)]
-/// enum Fruit {
-///     Apple {
-///         red: bool,
-///     },
-///     Banana {
-///         yellow: bool,
-///     },
-///     #[serde(other, deserialize_with = "deserialize_blackhole")]
-///     None,
-/// }
-/// ```
-pub fn ignore_any<'de, D>(deserializer: D) -> Result<(), D::Error>
-where
-    D: Deserializer<'de>,
-{
-    deserializer.deserialize_ignored_any(IgnoredAny).and(Ok(()))
-}
-
 #[cfg(test)]
 mod tests {
     use serde::Deserialize;
+    use serde_with::rust::deserialize_ignore_any;
 
     use super::*;
 
@@ -81,7 +56,7 @@ mod tests {
         Banana {
             yellow: bool,
         },
-        #[serde(other, deserialize_with = "ignore_any")]
+        #[serde(other, deserialize_with = "deserialize_ignore_any")]
         None,
     }
 
