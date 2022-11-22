@@ -157,7 +157,7 @@ impl SearchFilter {
         self
     }
 
-    pub fn encode(&self) -> String {
+    pub(crate) fn encode(&self) -> String {
         let mut filters = ProtoBuilder::new();
 
         if let Some(date) = self.date {

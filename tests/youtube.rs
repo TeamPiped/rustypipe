@@ -16,9 +16,6 @@ use rustypipe::model::{
 };
 use rustypipe::param::search_filter::{self, SearchFilter};
 
-const VISITOR_DATA_3TAB_CHANNEL_LAYOUT: &str = "CgtOa256ckVkcG5YVSiirbyaBg%3D%3D";
-const VISITOR_DATA_SEARCH_CHANNEL_HANDLES: &str = "CgszYlc1Yk1WZGRCSSjrwOSbBg%3D%3D";
-
 //#PLAYER
 
 #[rstest]
@@ -840,10 +837,7 @@ async fn channel_videos() {
 
 #[tokio::test]
 async fn channel_shorts() {
-    let rp = RustyPipe::builder()
-        .strict()
-        .visitor_data(VISITOR_DATA_3TAB_CHANNEL_LAYOUT)
-        .build();
+    let rp = RustyPipe::builder().strict().build();
     let channel = rp
         .query()
         .channel_shorts("UCh8gHdtzO2tXd593_bjErWg")
@@ -877,10 +871,7 @@ async fn channel_shorts() {
 
 #[tokio::test]
 async fn channel_livestreams() {
-    let rp = RustyPipe::builder()
-        .visitor_data(VISITOR_DATA_3TAB_CHANNEL_LAYOUT)
-        .strict()
-        .build();
+    let rp = RustyPipe::builder().strict().build();
     let channel = rp
         .query()
         .channel_livestreams("UC2DjFE7Xf11URZqWBigcVOQ")
@@ -1939,6 +1930,26 @@ async fn music_radio_playlist() {
         .await
         .unwrap();
     assert_next(tracks, &rp.query(), 10, 1).await;
+}
+
+//#AB TESTS
+
+const VISITOR_DATA_SEARCH_CHANNEL_HANDLES: &str = "CgszYlc1Yk1WZGRCSSjrwOSbBg%3D%3D";
+
+#[tokio::test]
+async fn ab3_search_channel_handles() {
+    let rp = RustyPipe::builder()
+        .strict()
+        .visitor_data(VISITOR_DATA_SEARCH_CHANNEL_HANDLES)
+        .build();
+
+    rp.query()
+        .search_filter(
+            "test",
+            &SearchFilter::new().entity(search_filter::Entity::Channel),
+        )
+        .await
+        .unwrap();
 }
 
 //#TESTUTIL
