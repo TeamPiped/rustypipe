@@ -3,6 +3,8 @@ use futures::{stream, StreamExt};
 use indicatif::{ProgressBar, ProgressStyle};
 use num_enum::TryFromPrimitive;
 use rustypipe::client::{ClientType, RustyPipe, YTContext};
+use rustypipe::model::YouTubeItem;
+use rustypipe::param::search_filter::{Entity, SearchFilter};
 use serde::{Deserialize, Serialize};
 
 #[derive(
@@ -12,9 +14,13 @@ use serde::{Deserialize, Serialize};
 pub enum ABTest {
     AttributedTextDescription = 1,
     ThreeTabChannelLayout = 2,
+    ChannelHandlesInSearchResults = 3,
 }
 
-const N_TESTS: u16 = 2;
+const TESTS_TO_RUN: [ABTest; 2] = [
+    ABTest::AttributedTextDescription,
+    ABTest::ChannelHandlesInSearchResults,
+];
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ABTestRes {
@@ -63,6 +69,9 @@ pub async fn run_test(
                     ABTest::ThreeTabChannelLayout => {
                         three_tab_channel_layout(&rp, &visitor_data).await
                     }
+                    ABTest::ChannelHandlesInSearchResults => {
+                        channel_handles_in_search_results(&rp, &visitor_data).await
+                    }
                 }
                 .unwrap();
                 pb.inc(1);
@@ -103,11 +112,10 @@ async fn get_visitor_data(http: &reqwest::Client) -> String {
 pub async fn run_all_tests(n: usize, concurrency: usize) -> Vec<ABTestRes> {
     let mut results = Vec::new();
 
-    for id in 1..=N_TESTS {
-        let ab = ABTest::try_from(id).unwrap();
+    for ab in TESTS_TO_RUN {
         let (occurrences, _, _) = run_test(ab, n, concurrency).await;
         results.push(ABTestRes {
-            id,
+            id: ab as u16,
             name: ab,
             tests: n,
             occurrences,
@@ -144,4 +152,21 @@ pub async fn three_tab_channel_layout(rp: &RustyPipe, visitor_data: &str) -> Res
         .await
         .unwrap();
     Ok(channel.has_live || channel.has_shorts)
+}
+
+pub async fn channel_handles_in_search_results(rp: &RustyPipe, visitor_data: &str) -> Result<bool> {
+    let search = rp
+        .query()
+        .visitor_data(visitor_data)
+        .search_filter("rust", &SearchFilter::new().entity(Entity::Channel))
+        .await
+        .unwrap();
+
+    Ok(search.items.items.iter().any(|itm| match itm {
+        YouTubeItem::Channel(channel) => channel
+            .subscriber_count
+            .map(|sc| sc > 100 && channel.video_count.is_none())
+            .unwrap_or_default(),
+        _ => false,
+    }))
 }
