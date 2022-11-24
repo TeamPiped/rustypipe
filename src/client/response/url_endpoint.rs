@@ -32,6 +32,7 @@ pub(crate) struct NavigationEndpoint {
 #[serde(rename_all = "camelCase")]
 pub(crate) struct WatchEndpoint {
     pub video_id: String,
+    pub playlist_id: Option<String>,
     #[serde(default)]
     pub start_time_seconds: u32,
 }
@@ -146,17 +147,51 @@ impl PageType {
     }
 }
 
+#[derive(Debug, Copy, Clone, PartialEq, Eq)]
+pub(crate) enum MusicPageType {
+    Artist,
+    Album,
+    Playlist,
+    Track,
+    None,
+}
+
+impl From<PageType> for MusicPageType {
+    fn from(t: PageType) -> Self {
+        match t {
+            PageType::Artist => MusicPageType::Artist,
+            PageType::Album => MusicPageType::Album,
+            PageType::Playlist => MusicPageType::Playlist,
+            PageType::Channel => MusicPageType::None,
+        }
+    }
+}
+
 impl NavigationEndpoint {
-    pub(crate) fn music_page(self) -> Option<(PageType, String)> {
+    pub(crate) fn music_page(self) -> Option<(MusicPageType, String)> {
         match self.browse_endpoint {
             Some(browse) => match browse.browse_endpoint_context_supported_configs {
                 Some(config) => Some((
-                    config.browse_endpoint_context_music_config.page_type,
+                    config.browse_endpoint_context_music_config.page_type.into(),
                     browse.browse_id,
                 )),
                 None => None,
             },
             None => None,
         }
+        .or_else(|| {
+            self.watch_endpoint.map(|watch| {
+                if watch
+                    .playlist_id
+                    .map(|plid| plid.starts_with("RDQM"))
+                    .unwrap_or_default()
+                {
+                    // Genre radios (e.g. "pop radio") will be skipped
+                    (MusicPageType::None, watch.video_id)
+                } else {
+                    (MusicPageType::Track, watch.video_id)
+                }
+            })
+        })
     }
 }

@@ -1700,12 +1700,14 @@ async fn music_search_artists() {
     let rp = RustyPipe::builder().strict().build();
     let res = rp.query().music_search_artists("namika").await.unwrap();
 
-    let artist = res
+    let (i, artist) = res
         .items
         .items
         .iter()
-        .find(|a| a.id == "UCIh4j8fXWf2U0ro0qnGU8Mg")
+        .enumerate()
+        .find(|(_, a)| a.id == "UCIh4j8fXWf2U0ro0qnGU8Mg")
         .unwrap();
+    assert!(i < 3);
     assert_eq!(artist.name, "Namika");
     assert!(!artist.avatar.is_empty(), "got no avatar");
     assert!(
@@ -1741,9 +1743,15 @@ async fn music_search_playlists(#[case] with_community: bool) {
     };
 
     assert_eq!(res.corrected_query, None);
-    let playlist = &res.items.items[0];
+    let (i, playlist) = res
+        .items
+        .items
+        .iter()
+        .enumerate()
+        .find(|(_, p)| p.id == "RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk")
+        .unwrap();
 
-    assert_eq!(playlist.id, "RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk");
+    assert!(i < 3);
     assert_eq!(playlist.name, "Easy Pop");
     assert!(!playlist.thumbnail.is_empty(), "got no thumbnail");
     assert_gte(playlist.track_count.unwrap(), 80, "tracks");
@@ -1761,9 +1769,15 @@ async fn music_search_playlists_community() {
         .unwrap();
 
     assert_eq!(res.corrected_query, None);
-    let playlist = &res.items.items[0];
+    let (i, playlist) = res
+        .items
+        .items
+        .iter()
+        .enumerate()
+        .find(|(_, p)| p.id == "PLMC9KNkIncKtGvr2kFRuXBVmBev6cAJ2u")
+        .unwrap();
 
-    assert_eq!(playlist.id, "PLMC9KNkIncKtGvr2kFRuXBVmBev6cAJ2u");
+    assert!(i < 3);
     assert_eq!(
         playlist.name,
         "Best Pop Music Videos - Top Pop Hits Playlist"
