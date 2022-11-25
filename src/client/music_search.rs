@@ -312,8 +312,9 @@ mod tests {
     #[rstest]
     #[case::default("default")]
     #[case::typo("typo")]
-    fn map_music_search(#[case] name: &str) {
-        let filename = format!("testfiles/music_search/{}.json", name);
+    #[case::radio("radio")]
+    fn map_music_search_main(#[case] name: &str) {
+        let filename = format!("testfiles/music_search/main_{}.json", name);
         let json_path = Path::new(&filename);
         let json_file = File::open(json_path).unwrap();
 
@@ -328,7 +329,7 @@ mod tests {
             map_res.warnings
         );
 
-        insta::assert_ron_snapshot!(format!("map_music_search_{}", name), map_res.c);
+        insta::assert_ron_snapshot!(format!("map_music_search_main_{}", name), map_res.c);
     }
 
     #[rstest]
