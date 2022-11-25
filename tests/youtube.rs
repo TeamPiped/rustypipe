@@ -1799,6 +1799,29 @@ async fn music_search_genre_radio() {
 }
 
 #[rstest]
+#[case::default("ed sheer", Some("ed sheeran"))]
+#[case::empty("reujbhevmfndxnjrze", None)]
+#[tokio::test]
+async fn music_search_suggestion(#[case] query: &str, #[case] expect: Option<&str>) {
+    let rp = RustyPipe::builder().strict().build();
+    let suggestion = rp.query().music_search_suggestion(query).await.unwrap();
+
+    match expect {
+        Some(expect) => assert!(
+            suggestion.iter().any(|s| s == expect),
+            "suggestion: {:?}, expected: {}",
+            suggestion,
+            expect
+        ),
+        None => assert!(
+            suggestion.is_empty(),
+            "suggestion: {:?}, expected to be empty",
+            suggestion
+        ),
+    }
+}
+
+#[rstest]
 #[case::mv("mv", "ZeerrnuLi5E")]
 #[case::track("track", "7nigXQS1Xb0")]
 #[tokio::test]

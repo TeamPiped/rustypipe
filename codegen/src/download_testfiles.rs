@@ -48,6 +48,7 @@ pub async fn download_testfiles(project_root: &Path) {
     music_search_artists(&testfiles).await;
     music_search_playlists(&testfiles).await;
     music_search_cont(&testfiles).await;
+    music_search_suggestion(&testfiles).await;
     music_artist(&testfiles).await;
     music_details(&testfiles).await;
     music_lyrics(&testfiles).await;
@@ -585,10 +586,14 @@ async fn music_album(testfiles: &Path) {
 }
 
 async fn music_search(testfiles: &Path) {
-    for (name, query) in [("default", "black mamba"), ("typo", "liblingsmensch")] {
+    for (name, query) in [
+        ("default", "black mamba"),
+        ("typo", "liblingsmensch"),
+        ("radio", "pop radio"),
+    ] {
         let mut json_path = testfiles.to_path_buf();
         json_path.push("music_search");
-        json_path.push(format!("{}.json", name));
+        json_path.push(format!("main_{}.json", name));
         if json_path.exists() {
             continue;
         }
@@ -682,6 +687,20 @@ async fn music_search_cont(testfiles: &Path) {
 
     let rp = rp_testfile(&json_path);
     res.items.next(&rp.query()).await.unwrap().unwrap();
+}
+
+async fn music_search_suggestion(testfiles: &Path) {
+    for (name, query) in [("default", "t"), ("empty", "reujbhevmfndxnjrze")] {
+        let mut json_path = testfiles.to_path_buf();
+        json_path.push("music_search");
+        json_path.push(format!("suggestion_{}.json", name));
+        if json_path.exists() {
+            continue;
+        }
+
+        let rp = rp_testfile(&json_path);
+        rp.query().music_search_suggestion(query).await.unwrap();
+    }
 }
 
 async fn music_artist(testfiles: &Path) {

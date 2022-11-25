@@ -1,0 +1,242 @@
+{
+  "contents": [
+    {
+      "searchSuggestionsSectionRenderer": {
+        "contents": [
+          {
+            "searchSuggestionRenderer": {
+              "icon": {
+                "iconType": "SEARCH"
+              },
+              "navigationEndpoint": {
+                "clickTrackingParams": "CAcQpWEYASITCKbj7Pb3yPsCFcfUEQgdRe0MBA==",
+                "searchEndpoint": {
+                  "query": "taylor swift"
+                }
+              },
+              "suggestion": {
+                "runs": [
+                  {
+                    "bold": true,
+                    "text": "t"
+                  },
+                  {
+                    "text": "aylor swift"
+                  }
+                ]
+              },
+              "trackingParams": "CAcQpWEYASITCKbj7Pb3yPsCFcfUEQgdRe0MBA=="
+            }
+          },
+          {
+            "searchSuggestionRenderer": {
+              "icon": {
+                "iconType": "SEARCH"
+              },
+              "navigationEndpoint": {
+                "clickTrackingParams": "CAYQpWEYAiITCKbj7Pb3yPsCFcfUEQgdRe0MBA==",
+                "searchEndpoint": {
+                  "query": "tkkg"
+                }
+              },
+              "suggestion": {
+                "runs": [
+                  {
+                    "bold": true,
+                    "text": "t"
+                  },
+                  {
+                    "text": "kkg"
+                  }
+                ]
+              },
+              "trackingParams": "CAYQpWEYAiITCKbj7Pb3yPsCFcfUEQgdRe0MBA=="
+            }
+          },
+          {
+            "searchSuggestionRenderer": {
+              "icon": {
+                "iconType": "SEARCH"
+              },
+              "navigationEndpoint": {
+                "clickTrackingParams": "CAUQpWEYAyITCKbj7Pb3yPsCFcfUEQgdRe0MBA==",
+                "searchEndpoint": {
+                  "query": "techno"
+                }
+              },
+              "suggestion": {
+                "runs": [
+                  {
+                    "bold": true,
+                    "text": "t"
+                  },
+                  {
+                    "text": "echno"
+                  }
+                ]
+              },
+              "trackingParams": "CAUQpWEYAyITCKbj7Pb3yPsCFcfUEQgdRe0MBA=="
+            }
+          },
+          {
+            "searchSuggestionRenderer": {
+              "icon": {
+                "iconType": "SEARCH"
+              },
+              "navigationEndpoint": {
+                "clickTrackingParams": "CAQQpWEYBCITCKbj7Pb3yPsCFcfUEQgdRe0MBA==",
+                "searchEndpoint": {
+                  "query": "t low"
+                }
+              },
+              "suggestion": {
+                "runs": [
+                  {
+                    "bold": true,
+                    "text": "t"
+                  },
+                  {
+                    "text": " low"
+                  }
+                ]
+              },
+              "trackingParams": "CAQQpWEYBCITCKbj7Pb3yPsCFcfUEQgdRe0MBA=="
+            }
+          },
+          {
+            "searchSuggestionRenderer": {
+              "icon": {
+                "iconType": "SEARCH"
+              },
+              "navigationEndpoint": {
+                "clickTrackingParams": "CAMQpWEYBSITCKbj7Pb3yPsCFcfUEQgdRe0MBA==",
+                "searchEndpoint": {
+                  "query": "the weeknd"
+                }
+              },
+              "suggestion": {
+                "runs": [
+                  {
+                    "bold": true,
+                    "text": "t"
+                  },
+                  {
+                    "text": "he weeknd"
+                  }
+                ]
+              },
+              "trackingParams": "CAMQpWEYBSITCKbj7Pb3yPsCFcfUEQgdRe0MBA=="
+            }
+          },
+          {
+            "searchSuggestionRenderer": {
+              "icon": {
+                "iconType": "SEARCH"
+              },
+              "navigationEndpoint": {
+                "clickTrackingParams": "CAIQpWEYBiITCKbj7Pb3yPsCFcfUEQgdRe0MBA==",
+                "searchEndpoint": {
+                  "query": "tiktok songs"
+                }
+              },
+              "suggestion": {
+                "runs": [
+                  {
+                    "bold": true,
+                    "text": "t"
+                  },
+                  {
+                    "text": "iktok songs"
+                  }
+                ]
+              },
+              "trackingParams": "CAIQpWEYBiITCKbj7Pb3yPsCFcfUEQgdRe0MBA=="
+            }
+          },
+          {
+            "searchSuggestionRenderer": {
+              "icon": {
+                "iconType": "SEARCH"
+              },
+              "navigationEndpoint": {
+                "clickTrackingParams": "CAEQpWEYByITCKbj7Pb3yPsCFcfUEQgdRe0MBA==",
+                "searchEndpoint": {
+                  "query": "toten hosen"
+                }
+              },
+              "suggestion": {
+                "runs": [
+                  {
+                    "bold": true,
+                    "text": "t"
+                  },
+                  {
+                    "text": "oten hosen"
+                  }
+                ]
+              },
+              "trackingParams": "CAEQpWEYByITCKbj7Pb3yPsCFcfUEQgdRe0MBA=="
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "responseContext": {
+    "serviceTrackingParams": [
+      {
+        "params": [
+          {
+            "key": "c",
+            "value": "WEB_REMIX"
+          },
+          {
+            "key": "cver",
+            "value": "1.20221121.01.00"
+          },
+          {
+            "key": "yt_li",
+            "value": "0"
+          },
+          {
+            "key": "GetMusicSearchSuggestions_rid",
+            "value": "0xe343e5421f9bc4f5"
+          }
+        ],
+        "service": "CSI"
+      },
+      {
+        "params": [
+          {
+            "key": "logged_in",
+            "value": "0"
+          },
+          {
+            "key": "e",
+            "value": "1714247,9407157,23804281,23882685,23885487,23918597,23934970,23946420,23966208,23983296,23998056,24001373,24002022,24002025,24004644,24007246,24034168,24036948,24077241,24080738,24108448,24120820,24135310,24140247,24161116,24162920,24164186,24169501,24181174,24187043,24187377,24191629,24197450,24199724,24200839,24211178,24217535,24219713,24237297,24241378,24255165,24255543,24255545,24257695,24262346,24263796,24265426,24267564,24268142,24271464,24279196,24282724,24287327,24287604,24288043,24288442,24290971,24292955,24293803,24296354,24298084,24299747,24299875,24390374,24390675,24391018,24391541,24391579,24392268,24392403,24392452,24398048,24401557,24402891,24405024,24406605,24407200,24407452,24407665,24410273,24410853,24412682,24412897,24413820,24414162,24414917,24415579,24415866,24416290,24419371,24420756,24421162,24421894,24422904,24424806,24590921,39322504,39322574"
+          }
+        ],
+        "service": "GFEEDBACK"
+      },
+      {
+        "params": [
+          {
+            "key": "client.version",
+            "value": "1.20000101"
+          },
+          {
+            "key": "client.name",
+            "value": "WEB_REMIX"
+          },
+          {
+            "key": "client.fexp",
+            "value": "24257695,24288043,24415579,23882685,24412682,39322574,24287604,24410273,23885487,24217535,24392452,1714247,9407157,24390675,24299747,24401557,39322504,24410853,24191629,24108448,24279196,24255545,24292955,24001373,24161116,24290971,24413820,23934970,24007246,24187377,23998056,24391018,24415866,24293803,24262346,24282724,24398048,24407452,24187043,24407200,24419371,24199724,24421162,24211178,24287327,24265426,24392268,24164186,24241378,24391541,24422904,24255165,24402891,24140247,24416290,23983296,24002025,24414917,24414162,24391579,24237297,24406605,24424806,24255543,24299875,24263796,24298084,24135310,24267564,24004644,24077241,24036948,24405024,24420756,24296354,24590921,24268142,23918597,24390374,24271464,23946420,24197450,24412897,24120820,24421894,23804281,24392403,24181174,24002022,24200839,24288442,24219713,23966208,24034168,24080738,24162920,24169501,24407665"
+          }
+        ],
+        "service": "ECATCHER"
+      }
+    ],
+    "visitorData": "CgtHV2dSNHFYMDhLSSjZ_4GcBg%3D%3D"
+  },
+  "trackingParams": "CAAQi24iEwim4-z298j7AhXH1BEIHUXtDAQ="
+}

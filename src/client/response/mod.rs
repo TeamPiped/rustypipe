@@ -21,6 +21,7 @@ pub(crate) use music_details::MusicRelated;
 pub(crate) use music_item::MusicContinuation;
 pub(crate) use music_playlist::MusicPlaylist;
 pub(crate) use music_search::MusicSearch;
+pub(crate) use music_search::MusicSearchSuggestion;
 pub(crate) use player::Player;
 pub(crate) use playlist::Playlist;
 pub(crate) use playlist::PlaylistCont;

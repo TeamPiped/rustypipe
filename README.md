@@ -23,7 +23,7 @@ inspired by [NewPipe](https://github.com/TeamNewPipe/NewPipeExtractor).
 - [X] **Album**
 - [X] **Artist**
 - [X] **Search**
-- [ ] **Search suggestions**
+- [X] **Search suggestions**
 - [X] **Radio**
 - [X] **Track details** (lyrics, recommendations)
 - [ ] **Moods**

@@ -25,6 +25,13 @@ struct QSearch<'a> {
 }
 
 #[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+struct QSearchSuggestion<'a> {
+    context: YTContext<'a>,
+    input: &'a str,
+}
+
+#[derive(Debug, Serialize)]
 enum Params {
     #[serde(rename = "EgWKAQIIAWoMEAMQBBAJEA4QChAF")]
     Tracks,
@@ -182,6 +189,23 @@ impl RustyPipeQuery {
         )
         .await
     }
+
+    pub async fn music_search_suggestion(&self, query: &str) -> Result<Vec<String>, Error> {
+        let context = self.get_context(ClientType::DesktopMusic, true, None).await;
+        let request_body = QSearchSuggestion {
+            context,
+            input: query,
+        };
+
+        self.execute_request::<response::MusicSearchSuggestion, _, _>(
+            ClientType::DesktopMusic,
+            "music_search_suggestion",
+            query,
+            "music/get_search_suggestions",
+            &request_body,
+        )
+        .await
+    }
 }
 
 impl MapResponse<MusicSearchResult> for response::MusicSearch {
@@ -289,6 +313,41 @@ impl<T: FromYtItem> MapResponse<MusicSearchFiltered<T>> for response::MusicSearc
                 corrected_query,
             },
             warnings: map_res.warnings,
+        })
+    }
+}
+
+impl MapResponse<Vec<String>> for response::MusicSearchSuggestion {
+    fn map_response(
+        self,
+        _id: &str,
+        _lang: crate::param::Language,
+        _deobf: Option<&crate::deobfuscate::Deobfuscator>,
+    ) -> Result<MapResult<Vec<String>>, ExtractionError> {
+        let items = self
+            .contents
+            .into_iter()
+            .next()
+            .map(|content| {
+                content
+                    .search_suggestions_section_renderer
+                    .contents
+                    .into_iter()
+                    .filter_map(|itm| {
+                        match itm {
+                    response::music_search::SearchSuggestionItem::SearchSuggestionRenderer {
+                        suggestion,
+                    } => Some(suggestion),
+                    response::music_search::SearchSuggestionItem::None => None,
+                }
+                    })
+                    .collect::<Vec<_>>()
+            })
+            .unwrap_or_default();
+
+        Ok(MapResult {
+            c: items,
+            warnings: Vec::new(),
         })
     }
 }
@@ -416,5 +475,27 @@ mod tests {
         );
 
         insta::assert_ron_snapshot!(format!("map_music_search_playlists_{}", name), map_res.c);
+    }
+
+    #[rstest]
+    #[case::default("default")]
+    #[case::empty("empty")]
+    fn map_music_search_suggestion(#[case] name: &str) {
+        let filename = format!("testfiles/music_search/suggestion_{}.json", name);
+        let json_path = Path::new(&filename);
+        let json_file = File::open(json_path).unwrap();
+
+        let suggestion: response::MusicSearchSuggestion =
+            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let map_res: MapResult<Vec<String>> =
+            suggestion.map_response("", Language::En, None).unwrap();
+
+        assert!(
+            map_res.warnings.is_empty(),
+            "deserialization/mapping warnings: {:?}",
+            map_res.warnings
+        );
+
+        insta::assert_ron_snapshot!(format!("map_music_search_suggestion_{}", name), map_res.c);
     }
 }
