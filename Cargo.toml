@@ -14,7 +14,6 @@ members = [".", "codegen", "cli"]
 
 [features]
 default = ["default-tls"]
-all = ["rss"]
 
 rss = ["quick-xml"]
 

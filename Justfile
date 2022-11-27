@@ -1,5 +1,5 @@
 test:
-    cargo test -F all
+    cargo test --all-features
 
 testfiles:
     cargo run -p rustypipe-codegen -- -d . download-testfiles

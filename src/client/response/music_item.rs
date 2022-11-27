@@ -340,6 +340,20 @@ pub(crate) struct MusicItemMenuEntry {
     pub menu_navigation_item_renderer: ButtonRenderer,
 }
 
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct Grid {
+    pub grid_renderer: GridRenderer,
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct GridRenderer {
+    #[serde_as(as = "VecLogError<_>")]
+    pub items: MapResult<Vec<MusicResponseItem>>,
+}
+
 /*
 #MAPPER
 */

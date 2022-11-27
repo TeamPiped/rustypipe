@@ -1,0 +1,299 @@
+---
+source: src/client/music_new.rs
+assertion_line: 125
+expression: map_res.c
+---
+[
+  TrackItem(
+    id: "skl6N3zGv-s",
+    title: "Adieu",
+    duration: None,
+    cover: [
+      Thumbnail(
+        url: "https://i.ytimg.com/vi/skl6N3zGv-s/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3ktEUMuvlRUDZBMXDRt-Cx7Nz3EWg",
+        width: 400,
+        height: 225,
+      ),
+      Thumbnail(
+        url: "https://i.ytimg.com/vi/skl6N3zGv-s/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3nyQxZBIheGvsVXeL2EBknUqHPJow",
+        width: 800,
+        height: 450,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCs6GGpd9zvsYghuYe0VDFUQ"),
+        name: "Rammstein",
+      ),
+    ],
+    artist_id: Some("UCs6GGpd9zvsYghuYe0VDFUQ"),
+    album: None,
+    view_count: Some(8600000),
+    is_video: true,
+    track_nr: None,
+  ),
+  TrackItem(
+    id: "gFERoNpcnFU",
+    title: "Marteria - Wald (Official Video)",
+    duration: None,
+    cover: [
+      Thumbnail(
+        url: "https://i.ytimg.com/vi/gFERoNpcnFU/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mLZl-GbssOYbd_1gOgbN0VeeD1Wg",
+        width: 400,
+        height: 225,
+      ),
+      Thumbnail(
+        url: "https://i.ytimg.com/vi/gFERoNpcnFU/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3locAMTqlz38oUE3SFLrg2Z4-g1Aw",
+        width: 800,
+        height: 450,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCicJjripVxiTXbUfociVZwQ"),
+        name: "MARTERIA",
+      ),
+    ],
+    artist_id: Some("UCicJjripVxiTXbUfociVZwQ"),
+    album: None,
+    view_count: Some(244000),
+    is_video: true,
+    track_nr: None,
+  ),
+  TrackItem(
+    id: "bmEzom5sfCI",
+    title: "ELIF X PA SPORTS - ICH DENK AN DICH (Official Video)",
+    duration: None,
+    cover: [
+      Thumbnail(
+        url: "https://i.ytimg.com/vi/bmEzom5sfCI/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nFPXYLNpvXAYJwNc8cDZv2zbTQ_w",
+        width: 400,
+        height: 225,
+      ),
+      Thumbnail(
+        url: "https://i.ytimg.com/vi/bmEzom5sfCI/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3mkd-afVklbhPQSmdCLjpMEIj6zow",
+        width: 800,
+        height: 450,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCuO5r4J0jTrgRYnmfEOd3UQ"),
+        name: "ELIF",
+      ),
+    ],
+    artist_id: Some("UCuO5r4J0jTrgRYnmfEOd3UQ"),
+    album: None,
+    view_count: Some(314000),
+    is_video: true,
+    track_nr: None,
+  ),
+  TrackItem(
+    id: "QHY2pm7uT3k",
+    title: "HOME RUN",
+    duration: None,
+    cover: [
+      Thumbnail(
+        url: "https://i.ytimg.com/vi/QHY2pm7uT3k/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nYr8bEDDfJfpHsCldOvYscc_nmfQ",
+        width: 400,
+        height: 225,
+      ),
+      Thumbnail(
+        url: "https://i.ytimg.com/vi/QHY2pm7uT3k/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3lc6FFxwsEUKprtbtZT8Ug8u6ckaA",
+        width: 800,
+        height: 450,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UC4gi504gkSyoXt9vfaGUr9A"),
+        name: "Farid Bang",
+      ),
+    ],
+    artist_id: Some("UC4gi504gkSyoXt9vfaGUr9A"),
+    album: None,
+    view_count: Some(265000),
+    is_video: true,
+    track_nr: None,
+  ),
+  TrackItem(
+    id: "Su42LK7I4NM",
+    title: "R3HAB, Timmy Trumpet, W&W - Poison [Tomorrowland Music]",
+    duration: None,
+    cover: [
+      Thumbnail(
+        url: "https://i.ytimg.com/vi/Su42LK7I4NM/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3naagfviBJEDib3cquUWBcc0nYEsA",
+        width: 400,
+        height: 225,
+      ),
+      Thumbnail(
+        url: "https://i.ytimg.com/vi/Su42LK7I4NM/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3mf75m2WZU_U9AnZVC5Pry9sDodWA",
+        width: 800,
+        height: 450,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCsN8M73DMWa8SPp5o_0IAQQ"),
+        name: "Tomorrowland",
+      ),
+    ],
+    artist_id: Some("UCsN8M73DMWa8SPp5o_0IAQQ"),
+    album: None,
+    view_count: Some(47000),
+    is_video: true,
+    track_nr: None,
+  ),
+  TrackItem(
+    id: "mly7ha04bEE",
+    title: "SAMRA x JOEL BRANDENSTEIN - REGEN (prod. by Lukas Lulou Loules) [Official Video]",
+    duration: None,
+    cover: [
+      Thumbnail(
+        url: "https://i.ytimg.com/vi/mly7ha04bEE/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mZWz0zJVHnKmHxB8bGuGan56w_3g",
+        width: 400,
+        height: 225,
+      ),
+      Thumbnail(
+        url: "https://i.ytimg.com/vi/mly7ha04bEE/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3nWJJNvExgCsjQHgohAaNJYaP-Dtg",
+        width: 800,
+        height: 450,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCc_iRXEpehN-dDTkPLoBjZg"),
+        name: "Samra",
+      ),
+    ],
+    artist_id: Some("UCc_iRXEpehN-dDTkPLoBjZg"),
+    album: None,
+    view_count: Some(225000),
+    is_video: true,
+    track_nr: None,
+  ),
+  TrackItem(
+    id: "c91bmLbGt-g",
+    title: "Der Berg ruft",
+    duration: None,
+    cover: [
+      Thumbnail(
+        url: "https://i.ytimg.com/vi/c91bmLbGt-g/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kh7cuvBMYZNVVh9Qci2GKLdEUJTg",
+        width: 400,
+        height: 225,
+      ),
+      Thumbnail(
+        url: "https://i.ytimg.com/vi/c91bmLbGt-g/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3kPm3joE3rQMh_NJfvrWm4c4VaTpA",
+        width: 800,
+        height: 450,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCsPz48w0M3QUEGAiDP1x17w"),
+        name: "Bausa",
+      ),
+      ArtistId(
+        id: Some("UCqG3KFVWvCPCtKzEYifV5Ew"),
+        name: "Maxwell",
+      ),
+      ArtistId(
+        id: Some("UC6EFoBjPEanrpj3ua_khs5w"),
+        name: "Joshi Mizu",
+      ),
+    ],
+    artist_id: Some("UCsPz48w0M3QUEGAiDP1x17w"),
+    album: None,
+    view_count: Some(124000),
+    is_video: true,
+    track_nr: None,
+  ),
+  TrackItem(
+    id: "IwzkfMmNMpM",
+    title: "정국 Jung Kook (of BTS) featuring Fahad Al Kubaisi - Dreamers | FIFA World Cup 2022 Soundtrack",
+    duration: None,
+    cover: [
+      Thumbnail(
+        url: "https://i.ytimg.com/vi/IwzkfMmNMpM/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kCDSVTXecskVcEeDKgRZQTG8x4Yg",
+        width: 400,
+        height: 225,
+      ),
+      Thumbnail(
+        url: "https://i.ytimg.com/vi/IwzkfMmNMpM/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3nrwn3QHyDAiR6IPr9haIxEBUclYg",
+        width: 800,
+        height: 450,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCpcTrCXblq78GZrTUTLWeBw"),
+        name: "FIFA",
+      ),
+    ],
+    artist_id: Some("UCpcTrCXblq78GZrTUTLWeBw"),
+    album: None,
+    view_count: Some(34000000),
+    is_video: true,
+    track_nr: None,
+  ),
+  TrackItem(
+    id: "_-spkuonX2k",
+    title: "Blau zu Grau",
+    duration: None,
+    cover: [
+      Thumbnail(
+        url: "https://i.ytimg.com/vi/_-spkuonX2k/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kyiowlRzYlkTqpip9Wvvb0XRbHSg",
+        width: 400,
+        height: 225,
+      ),
+      Thumbnail(
+        url: "https://i.ytimg.com/vi/_-spkuonX2k/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3mKFbAX7nNg-FHcEpWwN5B23HXE-Q",
+        width: 800,
+        height: 450,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCeCsfhcY09c-UvX7DkQDcUw"),
+        name: "IMMI",
+      ),
+      ArtistId(
+        id: Some("UCqjwECZanh3FGxXSEgFNjkw"),
+        name: "The Cratez",
+      ),
+    ],
+    artist_id: Some("UCeCsfhcY09c-UvX7DkQDcUw"),
+    album: None,
+    view_count: Some(39000),
+    is_video: true,
+    track_nr: None,
+  ),
+  TrackItem(
+    id: "48pBUciAbRY",
+    title: "CAPITAL BRA - BALLERLAIKA (prod. by LUCRY & CESA)",
+    duration: None,
+    cover: [
+      Thumbnail(
+        url: "https://i.ytimg.com/vi/48pBUciAbRY/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nNFQ7wq5X4pqoZMPDDsB0xg7BrGA",
+        width: 400,
+        height: 225,
+      ),
+      Thumbnail(
+        url: "https://i.ytimg.com/vi/48pBUciAbRY/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3kUpn8ZUgkIR6v8n5jcJ6lxx-WJJg",
+        width: 800,
+        height: 450,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCa7FGSUsN2wNRUclibmicMg"),
+        name: "Capital Bra",
+      ),
+    ],
+    artist_id: Some("UCa7FGSUsN2wNRUclibmicMg"),
+    album: None,
+    view_count: Some(400000),
+    is_video: true,
+    track_nr: None,
+  ),
+]

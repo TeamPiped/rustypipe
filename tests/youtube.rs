@@ -2054,6 +2054,34 @@ async fn music_radio_playlist_not_found() {
     }
 }
 
+#[tokio::test]
+async fn music_new_albums() {
+    let rp = RustyPipe::builder().strict().build();
+    let albums = rp.query().music_new_albums().await.unwrap();
+    assert_gte(albums.len(), 10, "albums");
+
+    for album in albums {
+        assert_album_id(&album.id);
+        assert!(!album.name.is_empty());
+        assert!(!album.cover.is_empty(), "got no cover");
+    }
+}
+
+#[tokio::test]
+async fn music_new_videos() {
+    let rp = RustyPipe::builder().strict().build();
+    let videos = rp.query().music_new_videos().await.unwrap();
+    assert_gte(videos.len(), 10, "videos");
+
+    for video in videos {
+        assert_video_id(&video.id);
+        assert!(!video.title.is_empty());
+        assert!(!video.cover.is_empty(), "got no cover");
+        assert_gte(video.view_count.unwrap(), 1000, "views");
+        assert!(video.is_video);
+    }
+}
+
 //#AB TESTS
 
 const VISITOR_DATA_SEARCH_CHANNEL_HANDLES: &str = "CgszYlc1Yk1WZGRCSSjrwOSbBg%3D%3D";

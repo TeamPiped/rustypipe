@@ -55,6 +55,8 @@ pub async fn download_testfiles(project_root: &Path) {
     music_related(&testfiles).await;
     music_radio(&testfiles).await;
     music_radio_cont(&testfiles).await;
+    music_new_albums(&testfiles).await;
+    music_new_videos(&testfiles).await;
 }
 
 const CLIENT_TYPES: [ClientType; 5] = [
@@ -800,4 +802,28 @@ async fn music_radio_cont(testfiles: &Path) {
 
     let rp = rp_testfile(&json_path);
     res.next(&rp.query()).await.unwrap().unwrap();
+}
+
+async fn music_new_albums(testfiles: &Path) {
+    let mut json_path = testfiles.to_path_buf();
+    json_path.push("music_new");
+    json_path.push("albums_default.json");
+    if json_path.exists() {
+        return;
+    }
+
+    let rp = rp_testfile(&json_path);
+    rp.query().music_new_albums().await.unwrap();
+}
+
+async fn music_new_videos(testfiles: &Path) {
+    let mut json_path = testfiles.to_path_buf();
+    json_path.push("music_new");
+    json_path.push("videos_default.json");
+    if json_path.exists() {
+        return;
+    }
+
+    let rp = rp_testfile(&json_path);
+    rp.query().music_new_videos().await.unwrap();
 }

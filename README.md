@@ -28,4 +28,4 @@ inspired by [NewPipe](https://github.com/TeamNewPipe/NewPipeExtractor).
 - [X] **Track details** (lyrics, recommendations)
 - [ ] **Moods**
 - [ ] **Charts**
-- [ ] **New**
+- [X] **New**

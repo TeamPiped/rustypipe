@@ -1,10 +1,10 @@
 use serde::Deserialize;
 use serde_with::{serde_as, DefaultOnError};
 
-use crate::serializer::{text::Text, MapResult, VecLogError};
+use crate::serializer::text::Text;
 
 use super::{
-    music_item::{ItemSection, MusicResponseItem, MusicThumbnailRenderer},
+    music_item::{Grid, ItemSection, MusicThumbnailRenderer},
     ContentsRenderer, SectionList, Tab,
 };
 
@@ -65,20 +65,6 @@ pub(crate) struct SubscriptionButtonRenderer {
 pub(crate) struct MusicArtistAlbums {
     pub header: SimpleHeader,
     pub contents: Contents<Grid>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct Grid {
-    pub grid_renderer: GridRenderer,
-}
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct GridRenderer {
-    #[serde_as(as = "VecLogError<_>")]
-    pub items: MapResult<Vec<MusicResponseItem>>,
 }
 
 #[derive(Debug, Deserialize)]

@@ -1,0 +1,5262 @@
+---
+source: src/client/music_new.rs
+expression: map_res.c
+---
+[
+  AlbumItem(
+    id: "MPREb_OVH3fawC7eO",
+    name: "Sonder",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/XC7s4fJc8w-1FA287HbTY8CN234RYwddHp8pgxQN-1yXItZZcF4Q3w9xKMP9c3JIJceg1j3nEEywiIR-Iw=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/XC7s4fJc8w-1FA287HbTY8CN234RYwddHp8pgxQN-1yXItZZcF4Q3w9xKMP9c3JIJceg1j3nEEywiIR-Iw=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UClHxZy_9ArA6rploIzcDReQ"),
+        name: "Dermot Kennedy",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_J7KQy5GLARl",
+    name: "Ballerlaika",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/xSqdH7HJqs6iQs3BAkmzt2lFjV9yPe09pLLQVbRhLIkGJx-oyHj6W18XFNPoogYlVc8D8sSdnniPiyZh=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/xSqdH7HJqs6iQs3BAkmzt2lFjV9yPe09pLLQVbRhLIkGJx-oyHj6W18XFNPoogYlVc8D8sSdnniPiyZh=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCa7FGSUsN2wNRUclibmicMg"),
+        name: "Capital Bra",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_LelYSiZS35x",
+    name: "Not So Silent Night",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/dYMNfe3T8Ncc8wjD7PkKJ_QtDw1nqdO1fjiLVoyrLTosYQaxGRAfOs0r0afPbFOld-0xwQ3YjdnAmFfS=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/dYMNfe3T8Ncc8wjD7PkKJ_QtDw1nqdO1fjiLVoyrLTosYQaxGRAfOs0r0afPbFOld-0xwQ3YjdnAmFfS=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCRD-INDaHvHlO8K_33uKetQ"),
+        name: "Sarah Connor",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_8IvOBFIjAuS",
+    name: "KIDS WITH ATTITUDE",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/l0gnmUOPU8hZWbcidsA7F0txVJt1GbP36_-zfg0AToTbnnfpsJjRE7jugcdBDUGLHPQfEnlIWUf8pbY=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/l0gnmUOPU8hZWbcidsA7F0txVJt1GbP36_-zfg0AToTbnnfpsJjRE7jugcdBDUGLHPQfEnlIWUf8pbY=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCFrNQgyEQz5fRIW90uqP7rw"),
+        name: "Jamule",
+      ),
+      ArtistId(
+        id: Some("UCoOBimauzF76gPFW6fyDqtA"),
+        name: "FOURTY",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_XUuXNw10GHr",
+    name: "Girl Of My Dreams (Deluxe)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/lxKsWmsYgAg_xnjcAy918bHKYiI4d_yTFY_ib0ngWMc0pzDILd7_2ITvrdDWI7o6UajM26CPAUszwsJd=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/lxKsWmsYgAg_xnjcAy918bHKYiI4d_yTFY_ib0ngWMc0pzDILd7_2ITvrdDWI7o6UajM26CPAUszwsJd=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCzrpaSWxEkjeKfoSR2L7OzQ"),
+        name: "FLETCHER",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_cYD4YKlqYkn",
+    name: "Pokemon",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/f5NASFu75zBHQYg99gF2CvHHgXV8syt1GJFtM34604FzoQOB_f6oMJCMWfAayTQw_7edR1JyuSZEjEWz=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/f5NASFu75zBHQYg99gF2CvHHgXV8syt1GJFtM34604FzoQOB_f6oMJCMWfAayTQw_7edR1JyuSZEjEWz=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCXnN-eHLEDBJKjV12WzfYMw"),
+        name: "HBz",
+      ),
+      ArtistId(
+        id: Some("UCK-PJP5jz5ePyIyZd_HzurA"),
+        name: "Enyadres",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_11YqSRzNcgo",
+    name: "girls just wanna have sex",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/e8e0DXs5_Q3sjV2GSg7XtmRp7cI6Q4WQos5L3fMqMWZIaXkSyiPjiVBeOyMZi9vimlnZ-Nn2S9qn3ZBh=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/e8e0DXs5_Q3sjV2GSg7XtmRp7cI6Q4WQos5L3fMqMWZIaXkSyiPjiVBeOyMZi9vimlnZ-Nn2S9qn3ZBh=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UC0_KSKflVDkoLYKg4vNGO1A"),
+        name: "mazie",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_mERYPsxDyT0",
+    name: "Regen",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/nT-GIIgAKk8_nSZf186uZLooJwMXijI30J6Lo3W2MdRZfpk72TV9ck6XIOTZ0e4AhRR60J7ujpcOFX4=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/nT-GIIgAKk8_nSZf186uZLooJwMXijI30J6Lo3W2MdRZfpk72TV9ck6XIOTZ0e4AhRR60J7ujpcOFX4=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCc_iRXEpehN-dDTkPLoBjZg"),
+        name: "Samra",
+      ),
+      ArtistId(
+        id: Some("UCXGYZ-OhdOpPBamHX3K9YRg"),
+        name: "Joel Brandenstein",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_KDANpDhC0cU",
+    name: "44",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/OAvHFBHdd4-BhjB1sMEGd8qYWDn-dAaScSbmLkDXD_cfl0Fd_fIg275tfEMaG9zx7MlICCew9TEmz57okA=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/OAvHFBHdd4-BhjB1sMEGd8qYWDn-dAaScSbmLkDXD_cfl0Fd_fIg275tfEMaG9zx7MlICCew9TEmz57okA=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCpVPM62RMcDpjmXacKIEosg"),
+        name: "Gert Steinbäcker",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_FvDMaxAqSta",
+    name: "Adieu (Remixes)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/oLgh93aRiz1X0lujpcivywEFxODRX6nnYptcr8FEynRiz0aJLLZ722XXBpvhSsLbfKRZveoD8fPEqx05lQ=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/oLgh93aRiz1X0lujpcivywEFxODRX6nnYptcr8FEynRiz0aJLLZ722XXBpvhSsLbfKRZveoD8fPEqx05lQ=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCs6GGpd9zvsYghuYe0VDFUQ"),
+        name: "Rammstein",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_pXa4BDTwe5m",
+    name: "Zweite Chance",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/9PJmneFxyVqBM0FWekefshe27-qmRtEtKcgQeS4zexGxWRgwMTwk6nifCnxv7CAkZbC5ZNzrhKxmXpwI=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/9PJmneFxyVqBM0FWekefshe27-qmRtEtKcgQeS4zexGxWRgwMTwk6nifCnxv7CAkZbC5ZNzrhKxmXpwI=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCg3M7Pk71xLoQ7rfeGYfzUw"),
+        name: "1986zig",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_PjKURr4U0DE",
+    name: "Unholy",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/uimtOO9FPrfJBLL3cJhqdVvkVfliVgIZuPW9-2DQjZRa8fwjiXwQP1lv7Bf83yBfZXRpr-rpc9Tfkq0=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/uimtOO9FPrfJBLL3cJhqdVvkVfliVgIZuPW9-2DQjZRa8fwjiXwQP1lv7Bf83yBfZXRpr-rpc9Tfkq0=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCgpBsaDW2n_6ruzht3wvP0A"),
+        name: "Sam Smith",
+      ),
+      ArtistId(
+        id: Some("UCHG91TZ3WrWbZGD5sbkXsxg"),
+        name: "Kim Petras",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_tUhgfp2k7cg",
+    name: "Les Affamés",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/Q5QevtVLdUiY__EX2RhA_A-ylmNzf-2M_Way3JA_R4KjAroydMxvlre93vPJz30r6prB_aGhP5jr364=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/Q5QevtVLdUiY__EX2RhA_A-ylmNzf-2M_Way3JA_R4KjAroydMxvlre93vPJz30r6prB_aGhP5jr364=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCjQ_EknxA-PSdgzXvKpCKYg"),
+        name: "Mehdi YZ",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_I0EnGc84nEw",
+    name: "Christmas Hits: My Best Songs for Christmas",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/hPXF7Im43xaGJk_VJQdDehdIJqJFeXnCnpdWZ2k_M6ggdAAIRaVi6eBGLP9CUit3eAqAxold5VamHFeA=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/hPXF7Im43xaGJk_VJQdDehdIJqJFeXnCnpdWZ2k_M6ggdAAIRaVi6eBGLP9CUit3eAqAxold5VamHFeA=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCE7_p3lcXA-YXRZp2PjrgYw"),
+        name: "Helene Fischer",
+      ),
+    ],
+    album_type: Ep,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_n6sAOJ6pFiO",
+    name: "Weihnachts-Memories",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/3CKjCqsdCHJVpmvPSqOp2YZ4UD0YBqtAzhawRN4nVREVEGGAD2iA1cePI2-eIwQz_uTLI7_26O_70I0=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/3CKjCqsdCHJVpmvPSqOp2YZ4UD0YBqtAzhawRN4nVREVEGGAD2iA1cePI2-eIwQz_uTLI7_26O_70I0=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCOPDRGEfpw2kmMypQz-iW8Q"),
+        name: "DJ Ötzi",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_8RY5luKkqfP",
+    name: "Anti-Hero (Acoustic Version)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/SiDHd6UJVCKUa9tqg08W9FULiLQnmFP-ytZzjPU9egTc4T_3F6ISlXfLgv5xu0ODAa5qtOGZ0DBz4OU=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/SiDHd6UJVCKUa9tqg08W9FULiLQnmFP-ytZzjPU9egTc4T_3F6ISlXfLgv5xu0ODAa5qtOGZ0DBz4OU=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCPC0L1d253x-KuMNwa05TpA"),
+        name: "Taylor Swift",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_LlMvxzDGkEq",
+    name: "Peaceful Christmas",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/3sgPu6CRaIfWbde9eZ99CwSKUnIKYrzFwH_t5DuGbG3gVNUu80rknERuCorG3phMQ-tQ-MvaE09W1f5KQQ=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/3sgPu6CRaIfWbde9eZ99CwSKUnIKYrzFwH_t5DuGbG3gVNUu80rknERuCorG3phMQ-tQ-MvaE09W1f5KQQ=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCAqZTXTRBQMyK73Zlq5n0eQ"),
+        name: "Roman Nagel",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_GXRuvQpTRFr",
+    name: "HOME RUN EP",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/MFKKTFECM8UbXbDr_rmG3W3aszHkqISaCXeaOqS44ql4yFEen1ebdfi0Y0cEQcUHecp3DrvwG0hQcPg=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/MFKKTFECM8UbXbDr_rmG3W3aszHkqISaCXeaOqS44ql4yFEen1ebdfi0Y0cEQcUHecp3DrvwG0hQcPg=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UC4gi504gkSyoXt9vfaGUr9A"),
+        name: "Farid Bang",
+      ),
+    ],
+    album_type: Ep,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_ZZ9jIkMUovZ",
+    name: "Das kleine Fußball-Weihnachtsalbum",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/ru-P29cgYZabVemQ0ZzJZaJM1gqtFuvLlg7J_oeGUix32Ga8cGX7ok3MDaVrc2WV7yWhKDmvjdp-Ujc=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/ru-P29cgYZabVemQ0ZzJZaJM1gqtFuvLlg7J_oeGUix32Ga8cGX7ok3MDaVrc2WV7yWhKDmvjdp-Ujc=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UC90P3pg6Sa2cqHxdXrVPorQ"),
+        name: "Matze Knop",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_nbLZVgFKpzJ",
+    name: "Glatteis",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/EhiZxKqqUWkGz2VzipujtxYVpcC_oZULpIDPcqZrE6Ly7svgmM12JUcIs5MFuhbkIXtr2O5upi0NyfEz=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/EhiZxKqqUWkGz2VzipujtxYVpcC_oZULpIDPcqZrE6Ly7svgmM12JUcIs5MFuhbkIXtr2O5upi0NyfEz=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCtBk1TIUH15p2pJvKFtPjgA"),
+        name: "Nina Chuba",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_YJDfzAOuOAb",
+    name: "Berry (Deluxe)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/yM6etkqHB_-BoX1uRpIZOugaxa7Ghkl0sH-HAqJ5eSPDBde8U9Di33-4IQjvrZK4VuKGUKvRXzQEds7N=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/yM6etkqHB_-BoX1uRpIZOugaxa7Ghkl0sH-HAqJ5eSPDBde8U9Di33-4IQjvrZK4VuKGUKvRXzQEds7N=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCizMcrm1SSYA-Gascg05S4g"),
+        name: "Rozzi",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_mX9uhNXSYJE",
+    name: "Weihnachtsgeschenk",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/i7MRxPsosKLp6i4iXEXeqLlaTGK5cqc5vN_wg7NFZ9ciQfZBcv6YwQvc68cGU6bcpV1Jzx6_Zar3BpU=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/i7MRxPsosKLp6i4iXEXeqLlaTGK5cqc5vN_wg7NFZ9ciQfZBcv6YwQvc68cGU6bcpV1Jzx6_Zar3BpU=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCxpEXfdz8GpczOZ8axPLApg"),
+        name: "Stereoact",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_HRd25j3K7xk",
+    name: "Get Rollin\'",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/ACGK3sD8oSmSuseotqd-ifLtyRJzqGSWje3QW3ahdCHJlzrAUDMawmXDx1mvKZCYM99WM6CK_-VK4Fs=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/ACGK3sD8oSmSuseotqd-ifLtyRJzqGSWje3QW3ahdCHJlzrAUDMawmXDx1mvKZCYM99WM6CK_-VK4Fs=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UC1T4LYUer48KhKlrru13kUg"),
+        name: "Nickelback",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_nJD80bcAsG0",
+    name: "Winter",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/FzgjYks143KR0zByjqvgzitveb6Ka22rZDsmfsf5v6XlqeHmP3r4rPTecZ98hZjqafcnyXkTe_YcSvrv=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/FzgjYks143KR0zByjqvgzitveb6Ka22rZDsmfsf5v6XlqeHmP3r4rPTecZ98hZjqafcnyXkTe_YcSvrv=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCccQ2_F-L5EQo6wEdqBkxHA"),
+        name: "Montez",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_l5kokcfZLnx",
+    name: "Play Echoes",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/VmaewTxNzwEHGQ2tMuBWaZ-cw53cxXfEuGaWdQMoLeO9j86dNNoXC1UmTgQ19D5UCzH2_kSK0aOM5qh0Ig=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/VmaewTxNzwEHGQ2tMuBWaZ-cw53cxXfEuGaWdQMoLeO9j86dNNoXC1UmTgQ19D5UCzH2_kSK0aOM5qh0Ig=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCE7DD2CgO3MFCsGQyiWYe-w"),
+        name: "Alexandra Hamilton-Ayres",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_ocdPl7N41De",
+    name: "Der Berg ruft",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/v5C9Nw3xwRgtlX7iynj2ZLHore2vodSj9xyaS7mZyY4-mEw-qdldRNpbeWBmL16Eo1YFSKI273ABwdgz=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/v5C9Nw3xwRgtlX7iynj2ZLHore2vodSj9xyaS7mZyY4-mEw-qdldRNpbeWBmL16Eo1YFSKI273ABwdgz=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCsPz48w0M3QUEGAiDP1x17w"),
+        name: "Bausa",
+      ),
+      ArtistId(
+        id: Some("UCqG3KFVWvCPCtKzEYifV5Ew"),
+        name: "Maxwell",
+      ),
+      ArtistId(
+        id: Some("UC6EFoBjPEanrpj3ua_khs5w"),
+        name: "Joshi Mizu",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_J9rByv3v9EI",
+    name: "The Silence Of You",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/N-Knu_gAl4v1hxDxz_ObVddPdf8c6lV1I_2lULbzMKWax1yDOPvxh0-gUjcsYVQlqgLLwBkSiReMzIwH=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/N-Knu_gAl4v1hxDxz_ObVddPdf8c6lV1I_2lULbzMKWax1yDOPvxh0-gUjcsYVQlqgLLwBkSiReMzIwH=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UC_PsyV7331J1aX4368v10pw"),
+        name: "Kyle Lionhart",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_8ZSGyJIsZ0g",
+    name: "Die braune Tasche",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/y_ny7_Dk_jbyOwPQJaD7t23PC3FaU2updjvvz4E6KT5ZhfvfRoshlt9bI-59yzsu9KD8UUCYnVlbokiX=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/y_ny7_Dk_jbyOwPQJaD7t23PC3FaU2updjvvz4E6KT5ZhfvfRoshlt9bI-59yzsu9KD8UUCYnVlbokiX=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UC-fLJhhYstbX8ns-mYKsH_Q"),
+        name: "Haftbefehl",
+      ),
+      ArtistId(
+        id: Some("UCTCoGASdDvIgfPoAt01QwKw"),
+        name: "Bazzazian",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_BOWYxxQTId0",
+    name: "Moonrise",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/CmHQmDHRBjLBjazxT1QdkN5pD3WbuT_vN_kxI-l_Vw1PkhFODJzb40SKhftYq70o9BEFz3wgzeWTDVoo8g=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/CmHQmDHRBjLBjazxT1QdkN5pD3WbuT_vN_kxI-l_Vw1PkhFODJzb40SKhftYq70o9BEFz3wgzeWTDVoo8g=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCRsN329XrgDGxuYnxXZQiOQ"),
+        name: "Granger Smith",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_zCwgVGYieqV",
+    name: "HEY PUPPE!",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/uh_Qli8KSuQXxtpdOlOHhOJHiE9U85o5eozz12qNKCwbvB_bi5A_e-tZSvRmdAXS_CUnEZywd-NaRE1A=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/uh_Qli8KSuQXxtpdOlOHhOJHiE9U85o5eozz12qNKCwbvB_bi5A_e-tZSvRmdAXS_CUnEZywd-NaRE1A=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCzFoNWzy9myd8p68utSdqow"),
+        name: "tream",
+      ),
+      ArtistId(
+        id: Some("UCEQDBFeDEwCHGIkQw4D4Kjg"),
+        name: "treamiboii",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_Zu1iCaaWGOL",
+    name: "Joan Armatrading - Live at Asylum Chapel",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/xr9HalZkGDfYtFnmUezJCiDIOyuJhGTJk_rHYnvDt8VC0oCdhXiBlQ0o-nZ_e7cVdF1kBcx2sMSyXYLSrA=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/xr9HalZkGDfYtFnmUezJCiDIOyuJhGTJk_rHYnvDt8VC0oCdhXiBlQ0o-nZ_e7cVdF1kBcx2sMSyXYLSrA=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCD4XPfsYpY2h-5qQiKL8gEw"),
+        name: "Joan Armatrading",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_QvvRzddKU2G",
+    name: "Ritual",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/1ia2bGQqRzdJb74Pia3Bx_IPxOAxTTKgn42IIBCkLVQX-cs9jSDSuT79okSNEQSQuRe-Vjm8Muj_i3Q=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/1ia2bGQqRzdJb74Pia3Bx_IPxOAxTTKgn42IIBCkLVQX-cs9jSDSuT79okSNEQSQuRe-Vjm8Muj_i3Q=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCaXJEi-wOOVe2eZZHzyz4mQ"),
+        name: "Alan Walker",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_Muq3crUGLlg",
+    name: "Live at Acton Town Hall",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/pDRh_cBfefrdFd0ItdICJPsgEtseih00kONn8CeqQ6dp5gWcCnEIfJMbgkodb8rYv3jQHlH6_z6pHre8ng=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/pDRh_cBfefrdFd0ItdICJPsgEtseih00kONn8CeqQ6dp5gWcCnEIfJMbgkodb8rYv3jQHlH6_z6pHre8ng=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCBzD5ci0CGt_ZhKJw4aZhaQ"),
+        name: "Joe Strummer",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_hWYWKWs0EML",
+    name: "Baby (Hamza Remix)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/st2VMlNmMFBeb3gQOJraQenNtHpQEn2SP1RvbRke5eBTiu0REWa8whB9Ew8bSVlyvdUvGtDWNLJrBOS3=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/st2VMlNmMFBeb3gQOJraQenNtHpQEn2SP1RvbRke5eBTiu0REWa8whB9Ew8bSVlyvdUvGtDWNLJrBOS3=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCdbasYA6lUSImvxdqS1RuZQ"),
+        name: "Aitch",
+      ),
+      ArtistId(
+        id: Some("UCVW_nVC1hjTCxT9uiPRRLCQ"),
+        name: "Ashanti",
+      ),
+      ArtistId(
+        id: Some("UCv3Rfg-H-WwrMtoaqy86DJg"),
+        name: "Hamza",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_9eJQuAdycmn",
+    name: "Les musiques de l\'amour",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/VLoAKZw-ooaFTw_U9C6vL6FS-B1zdo7gBEVVP3sXT4aJJe3HFdiUy74ZjkHKUX3_FV6HvCNMjPI0JME=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/VLoAKZw-ooaFTw_U9C6vL6FS-B1zdo7gBEVVP3sXT4aJJe3HFdiUy74ZjkHKUX3_FV6HvCNMjPI0JME=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCCtxJeSaG4jEX-dt3dwx48A"),
+        name: "Richard Clayderman",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_aSEXp4Shtjp",
+    name: "This Is Me...Then (20th Anniversary Edition)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/fRyZx8MyhmB8yAMQDRWazbHKtVrStB3GbNZuAi3riBUwxyzB585XWJ77umg3cYZtmntYhezozmj9YJXa=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/fRyZx8MyhmB8yAMQDRWazbHKtVrStB3GbNZuAi3riBUwxyzB585XWJ77umg3cYZtmntYhezozmj9YJXa=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCXDcGa1H1axtr1wkxOR3hZQ"),
+        name: "Jennifer Lopez",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_Srr6VA7NIQj",
+    name: "THE SINGLE LIFE",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/CWg2CObW4tmZT41E_b3tkXPTfTrfYSWSfy7OJIhuzYE-1o_Sr2NiJTH43na_dkvS6LIf_AKHD-qO93k=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/CWg2CObW4tmZT41E_b3tkXPTfTrfYSWSfy7OJIhuzYE-1o_Sr2NiJTH43na_dkvS6LIf_AKHD-qO93k=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCqTaQGqjAI6fYkr84KZgZEg"),
+        name: "Saweetie",
+      ),
+    ],
+    album_type: Ep,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_M1VSmMh5uxA",
+    name: "Isyans & Dramas - EP",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/HebLvnVhF_ZUV0CwyRtsxcdUU25xZmE0RRXKSZycoipN9NqjHDjtEGt7TzEgGf7BTUPKhBKJN3IjydpLdg=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/HebLvnVhF_ZUV0CwyRtsxcdUU25xZmE0RRXKSZycoipN9NqjHDjtEGt7TzEgGf7BTUPKhBKJN3IjydpLdg=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCeCsfhcY09c-UvX7DkQDcUw"),
+        name: "IMMI",
+      ),
+    ],
+    album_type: Ep,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_i46dUZWJ8b8",
+    name: "Divisive",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/4DN4ph1Uig6SuInVMIn45n_LryRNhlyHDrJKKZpqEobFRfJARXiMJLSZh_OhMPLpXG-1u9UYZj3oixqn=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/4DN4ph1Uig6SuInVMIn45n_LryRNhlyHDrJKKZpqEobFRfJARXiMJLSZh_OhMPLpXG-1u9UYZj3oixqn=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCMHHDXMvnMKRzuEKtMe8ZRA"),
+        name: "Disturbed",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_lXMu7VumH6N",
+    name: "Miss You (Georgie Riot Remix)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/eivUqfcwks5RqPunFltAfcZ3YPwOjJBnJipJ6FZYieMTbGOWCGHQKAe09CSPbpFyS_m6710RmmEX1NDx=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/eivUqfcwks5RqPunFltAfcZ3YPwOjJBnJipJ6FZYieMTbGOWCGHQKAe09CSPbpFyS_m6710RmmEX1NDx=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCoOFEu6s0wk7CUljMh8wisw"),
+        name: "Oliver Tree",
+      ),
+      ArtistId(
+        id: Some("UCG5GMu-YsN4uorcSJBo6OJw"),
+        name: "Georgie Riot",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_G63uGGfBOyr",
+    name: "Trumpet Concertos",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/Li52qgzw00-wm0A-tfosFTW8YZOXcSIpNhUlZkLEPiVWvh7FCx2jug2G96POcbRuYQtqpoxhd7MuEvmP=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/Li52qgzw00-wm0A-tfosFTW8YZOXcSIpNhUlZkLEPiVWvh7FCx2jug2G96POcbRuYQtqpoxhd7MuEvmP=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCkUheY8pKWamT7BLzQSBzEQ"),
+        name: "Lucienne Renaudin Vary",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_EO4iRdzUJcS",
+    name: "The Rain",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/V3cV_RqUogY76pnBtrruBsEDklCP1-YLxFOp4TMprQ0TfvndPHBOLsXdyGjUxLHCINRLFzCUp2pelbc=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/V3cV_RqUogY76pnBtrruBsEDklCP1-YLxFOp4TMprQ0TfvndPHBOLsXdyGjUxLHCINRLFzCUp2pelbc=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UC281fR3Rg1O08xpxArdbdew"),
+        name: "NEFFEX",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_hE83drGU9C4",
+    name: "World Record",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/uAjHJ0754Q9FtSF23VWxmRLVf1QHVOz1758zL8aVjfvZVmxEbmrOIxtR_1cpQpCSO6hM4hI_Od-xx2nQ=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/uAjHJ0754Q9FtSF23VWxmRLVf1QHVOz1758zL8aVjfvZVmxEbmrOIxtR_1cpQpCSO6hM4hI_Od-xx2nQ=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UC6JhadLTf6g6f-ZdeEaAqBQ"),
+        name: "Neil Young",
+      ),
+      ArtistId(
+        id: Some("UCUR77ItI_Iiz0wd7lsCsZaw"),
+        name: "Crazy Horse",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_9VXfv6CHwGB",
+    name: "Kiss Me",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/OzV2huZbJ6mng0buGjII2WPopqY64vkDy_FfUHiYMAWP0T4qXj1kQvuXPmaOsLUKW6SAt5QB5CaeFBG8=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/OzV2huZbJ6mng0buGjII2WPopqY64vkDy_FfUHiYMAWP0T4qXj1kQvuXPmaOsLUKW6SAt5QB5CaeFBG8=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UClHxZy_9ArA6rploIzcDReQ"),
+        name: "Dermot Kennedy",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_QxJkAJGgcD5",
+    name: "Skateboard Sex Monsters Vol.1",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/fxIlr9QUO4WEDfXPw32KPjjuAvISX34rldF4gEZMTwNAdl0GLYqov3IazST-xMpNIYKyatcWHV7OLCOGhw=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/fxIlr9QUO4WEDfXPw32KPjjuAvISX34rldF4gEZMTwNAdl0GLYqov3IazST-xMpNIYKyatcWHV7OLCOGhw=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCMlwPZO5rmB_v_ndvZ_fTPQ"),
+        name: "Fifteen",
+      ),
+    ],
+    album_type: Ep,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_o0UOXEVguLg",
+    name: "Vinotinto (feat. Carlos Cortez)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/ZyYkfJWwJZp0LbxazErvA8yt1QuV9Zz1mUe-LcJm6tyrQDxxgC0iAlk4twMf1rdbmg3irv3Z2GIi9inpMA=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/ZyYkfJWwJZp0LbxazErvA8yt1QuV9Zz1mUe-LcJm6tyrQDxxgC0iAlk4twMf1rdbmg3irv3Z2GIi9inpMA=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCQCDX-NwtNYXcRaVRCmIZKw"),
+        name: "Luciano",
+      ),
+      ArtistId(
+        id: Some("UCsHvA_y9is03d-E4cq1p9BA"),
+        name: "Carloh",
+      ),
+      ArtistId(
+        id: Some("UCJfyGao_PmXXI5dy4qxt-Ww"),
+        name: "Bastidas",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_ktTypUZd6Sd",
+    name: "FROM THE SOUTH",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/QHsRmOrKy02lmXmMl94ECXVAtszf8QjHn4oUSfWV5gecaQ77pZJLUuF-RFDredNGaAWevnsLTuaWSjep=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/QHsRmOrKy02lmXmMl94ECXVAtszf8QjHn4oUSfWV5gecaQ77pZJLUuF-RFDredNGaAWevnsLTuaWSjep=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCI1oAsRUrmEG3J4Bj9c6ORw"),
+        name: "NICO",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_HTEySXuGOuX",
+    name: "Täter",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/I3F48ukEGhozkYDxWaeCWoqd5pUeUmsdpqlrNPPbZ8uZSjS-Kg-pZoJffu6n0rsfS0TkCzS2roUIwPPj=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/I3F48ukEGhozkYDxWaeCWoqd5pUeUmsdpqlrNPPbZ8uZSjS-Kg-pZoJffu6n0rsfS0TkCzS2roUIwPPj=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCDPnXJIiNwEtXqi1qyLbj0w"),
+        name: "O.G.",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_6YR3nUspCh4",
+    name: "I Can\'t Say No",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/E4_gPSVWDDwdO-w-M0Y7xUnjTljmiufxZUbiJwJEUghCh4Q7WUMNlgscgU8nMLEt1svfHrSpBQIXrMo=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/E4_gPSVWDDwdO-w-M0Y7xUnjTljmiufxZUbiJwJEUghCh4Q7WUMNlgscgU8nMLEt1svfHrSpBQIXrMo=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCExSlmVhYeJca_Jjl52zFcw"),
+        name: "Freddie Long",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_09sUhxJ1DIU",
+    name: "Taurus (From The Motion Picture Taurus) (feat. Naomi Wild)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/V-SkqtRA1zzAbkYVwzmwK7t58fNOnISuomYJdsLTpZLb7-GhWmIFegXWn1LuBnwusI7aoR4HlnRM89k3-w=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/V-SkqtRA1zzAbkYVwzmwK7t58fNOnISuomYJdsLTpZLb7-GhWmIFegXWn1LuBnwusI7aoR4HlnRM89k3-w=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCDbLC4CaZzi4jt5KyAF0ZQw"),
+        name: "Machine Gun Kelly",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_UzgKCT8qVVD",
+    name: "just for fun",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/1kWeQAFqHTbA9MyebWd1sFO6VFC4zZXNzcIkIL1BQhYgPPZNX6r4pz6uwD7-u6n1j7qqJQFiQIM7bJit=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/1kWeQAFqHTbA9MyebWd1sFO6VFC4zZXNzcIkIL1BQhYgPPZNX6r4pz6uwD7-u6n1j7qqJQFiQIM7bJit=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UC4aep5QQu4CC9sfgovVcffQ"),
+        name: "KeKe",
+      ),
+    ],
+    album_type: Ep,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_NX2paBs2LZz",
+    name: "Typically Dutch (feat. PollyAnna)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/X4HoQ3sO4cGWUdAPB7u0N1DjN0R1c41I6w5Ncf-6PFqASWxQF9zEnQxvkTKfPZiDC28HHaYLuRysxFCE=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/X4HoQ3sO4cGWUdAPB7u0N1DjN0R1c41I6w5Ncf-6PFqASWxQF9zEnQxvkTKfPZiDC28HHaYLuRysxFCE=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCAeLFBCQS7FvI8PvBrWvSBg"),
+        name: "Armin van Buuren",
+      ),
+      ArtistId(
+        id: Some("UC_VTI1w76E4f25Px0oM3Aew"),
+        name: "Wildstylez",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_mB2Gt1KE9bh",
+    name: "Grüne Nikes",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/KZzFjFWY8jKux3uOHw-VAj9Fze9wYiIWAESDRwZhllg8fWWIUDV38mtJWrCdYldeL-4XA3oQKyY3BGEBJQ=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/KZzFjFWY8jKux3uOHw-VAj9Fze9wYiIWAESDRwZhllg8fWWIUDV38mtJWrCdYldeL-4XA3oQKyY3BGEBJQ=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UC7qLvzWBYKOiO1Xw3EAgg4w"),
+        name: "Lena&Linus",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_fS9X69ofxJq",
+    name: "Gone (Da Da Da) (Billen Ted Remix)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/qghnvsIZdfpJt7v_R6GEvcBnxjvzeerBiB0uizYf4zROJXsXDMKvT5UZhxvOAu-jItd-PEe1wUQGL6jP=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/qghnvsIZdfpJt7v_R6GEvcBnxjvzeerBiB0uizYf4zROJXsXDMKvT5UZhxvOAu-jItd-PEe1wUQGL6jP=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UC87-yfmlLTjCf4TnUQ8bWgA"),
+        name: "Imanbek",
+      ),
+      ArtistId(
+        id: Some("UC5IMokurjvYCO1AWiCOskYg"),
+        name: "Jay Sean",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_lTiWVEiRyYi",
+    name: "Erstmal zu Penny",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/5URnqa0brb67Nt0mdVxbBKFyqU-41cezptlRlFFXOmJDV7nLAqqgj2jzY8U4JPP9P_ZwAlWs3qSna3qDqQ=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/5URnqa0brb67Nt0mdVxbBKFyqU-41cezptlRlFFXOmJDV7nLAqqgj2jzY8U4JPP9P_ZwAlWs3qSna3qDqQ=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UC5uhzuItRbptRuvZdFd15yw"),
+        name: "Swiss & Die Andern",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_T6PQKcTrU7X",
+    name: "UNGA UNGA",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/iWXJ23w69doDr6V86gS9ccWwprl8OKxVFcgup7ZPkS53Y0VobFo3K8X0djiZW6lqSQeLY8BShstSNhzc=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/iWXJ23w69doDr6V86gS9ccWwprl8OKxVFcgup7ZPkS53Y0VobFo3K8X0djiZW6lqSQeLY8BShstSNhzc=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UC2FbxmIdK0UIt2V3phUQg5Q"),
+        name: "HoodBlaq",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_4tCsiQlWkAW",
+    name: "Für immer egal",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/Qty7l4iu0rksEFDty-S_NRGMR78Q1rzgDfKchd0aAx3bG3fAblF71rbE-480cLRkkX_4t_bL8-Kw1IA=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/Qty7l4iu0rksEFDty-S_NRGMR78Q1rzgDfKchd0aAx3bG3fAblF71rbE-480cLRkkX_4t_bL8-Kw1IA=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCkTzRJf2nUfzwgi6KuIiggg"),
+        name: "Schimmerling",
+      ),
+    ],
+    album_type: Ep,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_ARFUHjSbxX6",
+    name: "The Shape I\'m Takin\'",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/r1OHipG62BhRf-a3JExhypxfonrBeOIHM_wbCyax3VxJyxx1Y0WpmybD0Fudnu4fxunlSjzOL7wH7FY=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/r1OHipG62BhRf-a3JExhypxfonrBeOIHM_wbCyax3VxJyxx1Y0WpmybD0Fudnu4fxunlSjzOL7wH7FY=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCrSorX845CEWXzU4Z7BojjA"),
+        name: "Red Hot Chili Peppers",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_TEaY4jUukj1",
+    name: "Ende",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/HHWXCV9k1mkk8WV2_xlD2W01kaWTrCQNybYYqALCPmQciavu_GSPv-FkHsGKd5vUoG4ph4d7-sFVnHzupQ=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/HHWXCV9k1mkk8WV2_xlD2W01kaWTrCQNybYYqALCPmQciavu_GSPv-FkHsGKd5vUoG4ph4d7-sFVnHzupQ=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCiBODJaGfd1aBHE7BF_Iv7w"),
+        name: "Nimo",
+      ),
+      ArtistId(
+        id: Some("UCeKm0uZEL5xCB57pNgOw7mg"),
+        name: "Dardan",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_pk5X7Roi6QE",
+    name: "Licht brennt",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/PYTxxaR_F7sdc2uHu5PzAzcWSi_-Li7uZDUlV6gyoesvs-Vcu6aWRZJSvxaIDkY9YBDytbtpj51fPNFf=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/PYTxxaR_F7sdc2uHu5PzAzcWSi_-Li7uZDUlV6gyoesvs-Vcu6aWRZJSvxaIDkY9YBDytbtpj51fPNFf=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UClIoHK6CtwuMQCEd0n0bOxQ"),
+        name: "KALIM",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_IrTpovLF4kV",
+    name: "Du gehörst zu mir und ich gehör zu dir",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/OPbPopDusU7-7j75fwPLWCR4vxwgONMEVGhxmikWNx0H7jSk0v2-5pPMotUlc-Z0l1uL0NWDvjWEHuLg=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/OPbPopDusU7-7j75fwPLWCR4vxwgONMEVGhxmikWNx0H7jSk0v2-5pPMotUlc-Z0l1uL0NWDvjWEHuLg=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UC1JrQ9TyOAcXdcDa2Jx3SCQ"),
+        name: "Wolfgang Petry",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_GdLHYM6Y2tb",
+    name: "Klingeling",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/1jU1-s_xZui8M6adCPHbzaG66FFq-S2AwcQz82TYpAS4ajAWTuDHDB0_pXQ91P69xFtGvIrnXJKxUKk-9w=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/1jU1-s_xZui8M6adCPHbzaG66FFq-S2AwcQz82TYpAS4ajAWTuDHDB0_pXQ91P69xFtGvIrnXJKxUKk-9w=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCqZPGciX12nh1yiWGfrw8lg"),
+        name: "Lorenz Büffel",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_rfkEKoJ7kQ8",
+    name: "Nie wieder sehen",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/qwBDC25YOqAml_sKsBzeEJTTlalgjVYerDhGbLxuCVulLvSHkbb9nxHzqxmE3aW3oYqKAlElZYJgzRw8Sw=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/qwBDC25YOqAml_sKsBzeEJTTlalgjVYerDhGbLxuCVulLvSHkbb9nxHzqxmE3aW3oYqKAlElZYJgzRw8Sw=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCY2f-ZnXFcL6vjtVr0ELzxA"),
+        name: "Juju",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_f3uu4ZNnV0p",
+    name: "Love On The Line (with Masked Wolf)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/V1hRQ4CWgc1paEowGuJk63TWJr0M7GlPBf28eT8EgBnMw3lfgV8ieiRDQFZQ8V38RVGeIzbrtMAJjBF3=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/V1hRQ4CWgc1paEowGuJk63TWJr0M7GlPBf28eT8EgBnMw3lfgV8ieiRDQFZQ8V38RVGeIzbrtMAJjBF3=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCHUPrayXP0esjzq4Dcvn1NA"),
+        name: "VIZE",
+      ),
+      ArtistId(
+        id: Some("UC6WBqJXL9BOqHTAMKUDQAlQ"),
+        name: "Leony",
+      ),
+      ArtistId(
+        id: Some("UCeYiAaXw-aauILPI-jSVi8g"),
+        name: "Masked Wolf",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_fMs8yKERyYJ",
+    name: "AUS MEIN KOPF (SLOWED)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/M92DHqaYvwrU9TjXxYxJ-3AQ-8bqPbwdnyCtXA1Xto-zq92OyqKAaKRrxpq2OI4IE0h9uTlgtFtJ-74=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/M92DHqaYvwrU9TjXxYxJ-3AQ-8bqPbwdnyCtXA1Xto-zq92OyqKAaKRrxpq2OI4IE0h9uTlgtFtJ-74=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCwrvM6h3SUIk2Wo63ySfLNQ"),
+        name: "Yung Hurn",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_E210vF0SHfh",
+    name: "Everything I Didn’t Say And More",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/N9mS7yPzuNbngWa-QXR5olyVUCUGaBHGEyjK_ZONdRqdi_s9TjQ1mfD_-rjZRUBm77XNUbqPMmV3vK4=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/N9mS7yPzuNbngWa-QXR5olyVUCUGaBHGEyjK_ZONdRqdi_s9TjQ1mfD_-rjZRUBm77XNUbqPMmV3vK4=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCWN8EUD00PTyo5QQ5ueRr-A"),
+        name: "Ella Henderson",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_lpU3chy4Ncn",
+    name: "You Can Dance (Single Edits)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/Ivg5He8dQnZfST4pWzNNI4jgQTzykck29dfZOPFdL2ZFzxNcpkTCU2jGIRH_R2fK1KoDzyPT_nlQ06sb=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/Ivg5He8dQnZfST4pWzNNI4jgQTzykck29dfZOPFdL2ZFzxNcpkTCU2jGIRH_R2fK1KoDzyPT_nlQ06sb=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCo4CrqhIV_tSOGdDWfVyCsg"),
+        name: "Madonna",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_m6Y34SMlJAB",
+    name: "MIT DIR STREITEN",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/ag_E7TIlz3ERPECQ9DKdKVKZjOC83AtLWpuF81qcJ1znxMVryYotzJR2hAJLEDhbFAeIoYNYuCXmEqIy=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/ag_E7TIlz3ERPECQ9DKdKVKZjOC83AtLWpuF81qcJ1znxMVryYotzJR2hAJLEDhbFAeIoYNYuCXmEqIy=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCp1Rxq0nIVoeljRfJn8yKbg"),
+        name: "KAYEF",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_Qvqdn5X24ra",
+    name: "Kein Stern",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/i-wMBaXHKCOzjvj2HgQvgBYkxRFOjtzJbTuW4yHIAqumdhkf6F1ZXDCn8Zt8yPXPJJr4dvsP6idcX5bC=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/i-wMBaXHKCOzjvj2HgQvgBYkxRFOjtzJbTuW4yHIAqumdhkf6F1ZXDCn8Zt8yPXPJJr4dvsP6idcX5bC=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCK2ZLsY9Mb_dxZiZfKE3lGg"),
+        name: "AnnenMayKantereit",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_3pPHQ0Ft2uA",
+    name: "Millionera",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/yU6d8dglbdFU4zLOE04T4dHfrNiI-FhXbRoz-Eu2RLnyu3_QKd4IVERRxPh51TuqtxgR8UPnUCU7Ylhk=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/yU6d8dglbdFU4zLOE04T4dHfrNiI-FhXbRoz-Eu2RLnyu3_QKd4IVERRxPh51TuqtxgR8UPnUCU7Ylhk=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: None,
+        name: "MADE",
+      ),
+      ArtistId(
+        id: None,
+        name: "Kenan",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_ecqwFi14x2e",
+    name: "Hold Me Closer (Acoustic)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/ZF7KiPZUnXftgWoZkG1RlAbH5HoHVW9drBSNl_Ai6o4UaSux5VcEo_YqL7J4d8jOry3WHePp-xOmLRxJ=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/ZF7KiPZUnXftgWoZkG1RlAbH5HoHVW9drBSNl_Ai6o4UaSux5VcEo_YqL7J4d8jOry3WHePp-xOmLRxJ=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCn9i4cdLe14CbsOycTbKMoA"),
+        name: "Elton John",
+      ),
+      ArtistId(
+        id: Some("UCIOdfgVAkc_8rxhRAz9WRDw"),
+        name: "Britney Spears",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_EKJ2c1zcIH2",
+    name: "immer wenn du gehst",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/JLDbx1ngIDDtce8hnBGzzyYr0tu9jhNhKEFSTcs72qH2bvyCFQt1k7JuR3UMgB9Ks9WK-efLMSer3FyP=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/JLDbx1ngIDDtce8hnBGzzyYr0tu9jhNhKEFSTcs72qH2bvyCFQt1k7JuR3UMgB9Ks9WK-efLMSer3FyP=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCd-REfvSbRwndM82NWDJ_qg"),
+        name: "Edo Saiya",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_wzytwDSu9wt",
+    name: "The Son (Original Motion Picture Soundtrack)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/gxxL0KLMv_383YOnO0C1331rsoc68vfmW3G0uodWwnc5wHAcDa9piGr0wwO5kj-eQryKsJ1MgOhNZ7YK=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/gxxL0KLMv_383YOnO0C1331rsoc68vfmW3G0uodWwnc5wHAcDa9piGr0wwO5kj-eQryKsJ1MgOhNZ7YK=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCfCNL5oajlQBAlyjWv1ChVw"),
+        name: "Hans Zimmer",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_6eGr2GXr93l",
+    name: "Trotinete (From \"Romina VTM\" The Movie)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/xCCUFZwp3wAO0RYapEeMAl4ZSNJ_OD9IfQbdkKE3pzrtXQUEyvfkT7pnk0-lz7CJHimmzoyQX9rOKvM=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/xCCUFZwp3wAO0RYapEeMAl4ZSNJ_OD9IfQbdkKE3pzrtXQUEyvfkT7pnk0-lz7CJHimmzoyQX9rOKvM=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCUfYDPYsR_AVR8cvcIB_YDA"),
+        name: "Tzanca Uraganu",
+      ),
+      ArtistId(
+        id: Some("UC9YaCyDN1fBJthy4j2FdSfQ"),
+        name: "Manele Mentolate",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_klZCcga4Icx",
+    name: "High Heels (Whistle While You Twerk) (feat. secs on the beach)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/w2TJqUy5k7_BY1RzvAwDsq4q1vf-r943dH0Kj95gQEuqlH2Sqg5P_0XRWbsCxZoMJsbXYRmWdT7nmJ4=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/w2TJqUy5k7_BY1RzvAwDsq4q1vf-r943dH0Kj95gQEuqlH2Sqg5P_0XRWbsCxZoMJsbXYRmWdT7nmJ4=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UC3VBeY60GWWpe3w8b4QWDYQ"),
+        name: "Flo Rida",
+      ),
+      ArtistId(
+        id: Some("UCxhjHz4MinbZbhR19cyF35Q"),
+        name: "Walker Hayes",
+      ),
+      ArtistId(
+        id: Some("UC5Wxk5lVmNgfC0RAEzzIsyg"),
+        name: "Aukoustics",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_6csOhl5zuns",
+    name: "Renne (feat. Kkuba102, Chapo102 & Addikt102)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/XaLL3S1kSDL3Z0LY1iKScc4XvYIssZsHhYFbZNx57jPAiQNX152P7Em5tO0DZw9pisqG1dYk1T2_qEc=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/XaLL3S1kSDL3Z0LY1iKScc4XvYIssZsHhYFbZNx57jPAiQNX152P7Em5tO0DZw9pisqG1dYk1T2_qEc=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCKGnuwghxYaf_KIXzK7ATIA"),
+        name: "102 Boyz",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_MrHgcjq3iVx",
+    name: "Tukoh Taka (Official FIFA Fan Festival™Anthem) (feat. FIFA Sound)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/Hjmw7tPhGxfUbopi2t8A8GxCMtgayESVL1HN0sVq3ZXUy0BhCK70jiHUmpuOUMfV9qCvbylAG7Lhe-N_1A=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/Hjmw7tPhGxfUbopi2t8A8GxCMtgayESVL1HN0sVq3ZXUy0BhCK70jiHUmpuOUMfV9qCvbylAG7Lhe-N_1A=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCTTcTeAszDGxALRSMkJH9FQ"),
+        name: "Nicki Minaj",
+      ),
+      ArtistId(
+        id: Some("UCtKIuEMDzPlUmPgdwBhiGcg"),
+        name: "Maluma",
+      ),
+      ArtistId(
+        id: Some("UCUVvwGRr7LTeS_WfJ-VZlxQ"),
+        name: "Myriam Fares",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_IcrHsGxFjSa",
+    name: "Auf frischer Tat ertappt - Das Jubiläum LIVE 2022",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/z_mJWJzAbl9ZENkJJal48o-o4TImJEEjRrXQ04m7R98PZB1RXj2F9f15Cx1BDNsoJgXzJi4yJ5lKg4br7Q=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/z_mJWJzAbl9ZENkJJal48o-o4TImJEEjRrXQ04m7R98PZB1RXj2F9f15Cx1BDNsoJgXzJi4yJ5lKg4br7Q=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCobgi-0C_8rBLNuMleLNUKQ"),
+        name: "Heinz Rudolf Kunze",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_HcwhB86I7Y7",
+    name: "Confessin\' The Blues (Influences - Vol. 1)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/UsrMRFnX_3Kqk8Y6gJVhE-CAOr3wVpvsX6oxAuX4TrnNTwdMa7XObBk5EXY5Fsw3WcUcGWkxECoABwXv=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/UsrMRFnX_3Kqk8Y6gJVhE-CAOr3wVpvsX6oxAuX4TrnNTwdMa7XObBk5EXY5Fsw3WcUcGWkxECoABwXv=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCNYhhkQqeFLUc-YEDcLpSYQ"),
+        name: "The Rolling Stones",
+      ),
+    ],
+    album_type: Ep,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_CzniOFkU0f7",
+    name: "The Miracle (Collector\'s Edition)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/ZboSkhfJcw5KFIzEn2u5yvJ9m81FBM75GkmyQsDRS3JQYDvekAIkdQ1W1SUoKl6o7RSThCwuxLGxSqqp=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/ZboSkhfJcw5KFIzEn2u5yvJ9m81FBM75GkmyQsDRS3JQYDvekAIkdQ1W1SUoKl6o7RSThCwuxLGxSqqp=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCEPMVbUzImPl4p8k4LkGevA"),
+        name: "Queen",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_49Ci46eR2IA",
+    name: "Weihnachtslied 2022",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/89wQfhBgR8BcVYuh7qxhtDMsL0csrpWaOuy1o-z77SwFRyHfTzg59YHsr_ys4Bew_TV36WSVM_djnRvGDg=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/89wQfhBgR8BcVYuh7qxhtDMsL0csrpWaOuy1o-z77SwFRyHfTzg59YHsr_ys4Bew_TV36WSVM_djnRvGDg=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UC4D9yS9Pa7EdpcCHfd8gAiw"),
+        name: "01099",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_U8b72Qgo0sx",
+    name: "Poison",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/o53oLgUFIsINoefwIJC0N4gkRJhutyBRpf5paX19jh1TQMxs-mN9QABReEob_z0_lsFFVj2IMcC3cBH6=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/o53oLgUFIsINoefwIJC0N4gkRJhutyBRpf5paX19jh1TQMxs-mN9QABReEob_z0_lsFFVj2IMcC3cBH6=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCjpBcfMn2g8afa3XIZmS3mw"),
+        name: "R3HAB",
+      ),
+      ArtistId(
+        id: Some("UCCD7dAEC73C-Pm2HXqv_TGQ"),
+        name: "Timmy Trumpet",
+      ),
+      ArtistId(
+        id: Some("UCuM1D5B3L7EB2SG9jWwje6A"),
+        name: "W&W",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_4iBdh4nd8kF",
+    name: "Lied mit gutem Text",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/WTZnBie1xASWZFrueDPPxDwSc_0Ryd7_i_dzSysdLRT-WFbIi0rIK3Rdqo-ZnSgVrcFP5PTDyv6XIrMJ=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/WTZnBie1xASWZFrueDPPxDwSc_0Ryd7_i_dzSysdLRT-WFbIi0rIK3Rdqo-ZnSgVrcFP5PTDyv6XIrMJ=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UChUTaY5E47rD4njRw7jnYWA"),
+        name: "Ikke Hüftgold",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_JhzDyi90ll8",
+    name: "Bodybag",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/ZPFS3TYs9aTD0XV7DEM09gPjHsqwu33lU_nN_fMigG0H5SWJUdf_mgjgooQXLZkwLoClxdL2zqqNwQGWDA=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/ZPFS3TYs9aTD0XV7DEM09gPjHsqwu33lU_nN_fMigG0H5SWJUdf_mgjgooQXLZkwLoClxdL2zqqNwQGWDA=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UC4vOKBROawrqTT4sSdNNIEQ"),
+        name: "Angerfist",
+      ),
+      ArtistId(
+        id: Some("UCcUUcviyFDJsp001pArZteQ"),
+        name: "Da Mouth of Madness",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_A1n758UEWzl",
+    name: "Nur Eine Vision (feat. ZeroXTEKK)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/l7xt8cxt5o4VSlQoz6-Rkm3SdL5UUfDjbGVZrzXN3uPJQlLaNAROWYIiBhKX0OSe-mWjzo-mrlew4wA=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/l7xt8cxt5o4VSlQoz6-Rkm3SdL5UUfDjbGVZrzXN3uPJQlLaNAROWYIiBhKX0OSe-mWjzo-mrlew4wA=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCmir5ihSc8-9nRcKJjFLpLQ"),
+        name: "HIGHTKK",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_sfG6IGxSFxN",
+    name: "Jazz Violin - Ambiance for November Nocturnal",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/Xhiy2Xks7RM1o_Yjqbkaa1qFvpmrrdd2d812h4IRDXmPZGYow3e2ERt7HKg2hhuvKGJv-wMJ1QgxZhU=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/Xhiy2Xks7RM1o_Yjqbkaa1qFvpmrrdd2d812h4IRDXmPZGYow3e2ERt7HKg2hhuvKGJv-wMJ1QgxZhU=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCa71Sv2jz9HbGkd66WXvEeA"),
+        name: "Entspannungsmusik",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_Bap3HSLZCLr",
+    name: "Music for Joyful Music (Harmonica Solo)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/7fN9VIs_BC2YP4IdJobEH9zYB0_DJu0Y_nqpkXP36ESd79Js2qKUNS_A56fNQ69R9Vp7twkW0BNHxI1W=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/7fN9VIs_BC2YP4IdJobEH9zYB0_DJu0Y_nqpkXP36ESd79Js2qKUNS_A56fNQ69R9Vp7twkW0BNHxI1W=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCa71Sv2jz9HbGkd66WXvEeA"),
+        name: "Entspannungsmusik",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_rtZ13gHEPWn",
+    name: "Ambiance for November Nocturnal",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/43uaRCimLjOCZtXTxXnRGk3zwolH4IZ8UomsP4g5azeyp5dW0YiqD8A31hJVZOS87JT0-GV7lUn3yGDg=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/43uaRCimLjOCZtXTxXnRGk3zwolH4IZ8UomsP4g5azeyp5dW0YiqD8A31hJVZOS87JT0-GV7lUn3yGDg=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCa71Sv2jz9HbGkd66WXvEeA"),
+        name: "Entspannungsmusik",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_80gE3cLcBuZ",
+    name: "Acoustic Smooth Jazz Guitar - Background for Upbeat Winter",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/mVMtbVUckLR-gQe9FYFyNdHTpwo7CPmB11Iq7D_2jE_kV8TIQYI7tgT-9pd53ZTCq4hLBZA0OQGp540T=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/mVMtbVUckLR-gQe9FYFyNdHTpwo7CPmB11Iq7D_2jE_kV8TIQYI7tgT-9pd53ZTCq4hLBZA0OQGp540T=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCa71Sv2jz9HbGkd66WXvEeA"),
+        name: "Entspannungsmusik",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_FAYJfaJuPck",
+    name: "Echoes of Noteworthy Events",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/KT5BbXMulSQi4ugKs7pbjBfp5Qmdu8goujjB9vT4Jkce7KvZm-p5wEvhpXR_w6TPeYCXF4LCrJTr2mCwfw=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/KT5BbXMulSQi4ugKs7pbjBfp5Qmdu8goujjB9vT4Jkce7KvZm-p5wEvhpXR_w6TPeYCXF4LCrJTr2mCwfw=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCa71Sv2jz9HbGkd66WXvEeA"),
+        name: "Entspannungsmusik",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_QE972QaQ5GR",
+    name: "Echoes of New Looks",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/E4nW_1VEeqtWGQfnaqmjAqG1bl4-dTtkAZXdirnM1RcHblBU4FbxurSZG7K145FOh6zBehMADyCo8Zp0=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/E4nW_1VEeqtWGQfnaqmjAqG1bl4-dTtkAZXdirnM1RcHblBU4FbxurSZG7K145FOh6zBehMADyCo8Zp0=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCa71Sv2jz9HbGkd66WXvEeA"),
+        name: "Entspannungsmusik",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_hkpWbrxqcq4",
+    name: "Guitar Solo - Music for Joyful Music",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/R8RA_prwAG3yzBIkQUncChBDwNv6j7m53H-SyiTNYAxZicfEX4zaaIbYnOe6MN5zofZJ2BZ5mZD_TYIM5A=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/R8RA_prwAG3yzBIkQUncChBDwNv6j7m53H-SyiTNYAxZicfEX4zaaIbYnOe6MN5zofZJ2BZ5mZD_TYIM5A=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCa71Sv2jz9HbGkd66WXvEeA"),
+        name: "Entspannungsmusik",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_QlKMIyNGMVN",
+    name: "Latin Piano Music (Music for Daring Goals)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/KGUjj9JqKK-hG9sAsaHDqGGB-e7W6-jG-HcqgIbzeuKYfEnN1o57izHPWrGy-9E3ThJwcYcWHIB6c2Ad=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/KGUjj9JqKK-hG9sAsaHDqGGB-e7W6-jG-HcqgIbzeuKYfEnN1o57izHPWrGy-9E3ThJwcYcWHIB6c2Ad=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCa71Sv2jz9HbGkd66WXvEeA"),
+        name: "Entspannungsmusik",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_0piawP19MHR",
+    name: "Funky Background for Accurate Work",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/uBYC9aoWbQh0U3IbGQX966hJSIf1PlH_lAoQOg_YRlMG3mq2LEju60NDrzANy86CjkDD7VNlmqEW2YRn=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/uBYC9aoWbQh0U3IbGQX966hJSIf1PlH_lAoQOg_YRlMG3mq2LEju60NDrzANy86CjkDD7VNlmqEW2YRn=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCa71Sv2jz9HbGkd66WXvEeA"),
+        name: "Entspannungsmusik",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_loebNZkpnXr",
+    name: "Culturally Appropriate",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/4Jl38Q4cunvf35-lr8yrtN8wbrtTjb3YjcgSOeKeK-TetqkcVNbTP-MHxxsOiIsJb1E1OH8shgavR5cW=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/4Jl38Q4cunvf35-lr8yrtN8wbrtTjb3YjcgSOeKeK-TetqkcVNbTP-MHxxsOiIsJb1E1OH8shgavR5cW=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCgS5mGElzt2UvcWAZhxd7Jg"),
+        name: "Salvatore Ganacci",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_kWbf5oNKWQL",
+    name: "Take on Me",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/YfFFSlTeW0V46GI2zJgVhKQt2AY4I_ndTGeKBFQJMUW2iGe_Pw2MZkqeAupGSZUl2_h9jHIZrDwTr7R-jA=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/YfFFSlTeW0V46GI2zJgVhKQt2AY4I_ndTGeKBFQJMUW2iGe_Pw2MZkqeAupGSZUl2_h9jHIZrDwTr7R-jA=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCdwyRvg87lMQlZ7A5HXlAXQ"),
+        name: "Klaas",
+      ),
+      ArtistId(
+        id: Some("UCRp0K2WR6dCAEf0tR5svZzw"),
+        name: "Matthew Tasa",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_NArydIAkmCn",
+    name: "SAGITARIO",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/8iz9LV2wJw2mlMoomNlsj9-gMEuYXakXGSQlYg_Gl_J-heZkjLjPHnrFi0TUgJjxqQyiubxih5TEE4E=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/8iz9LV2wJw2mlMoomNlsj9-gMEuYXakXGSQlYg_Gl_J-heZkjLjPHnrFi0TUgJjxqQyiubxih5TEE4E=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCJMzvcg3QxvaTKfpaj57TyA"),
+        name: "El Alfa",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_pDhFfLVjE06",
+    name: "APRÈS VOUS MADAME (feat. Soolking)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/lISHHtiPn8zLdGoaoHo-RQUi4Bzvg8OQzdGmmtx1SlGYJFZFSOI0RswHfiIsRMDLd0XT3ybwKBGBjHHI=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/lISHHtiPn8zLdGoaoHo-RQUi4Bzvg8OQzdGmmtx1SlGYJFZFSOI0RswHfiIsRMDLd0XT3ybwKBGBjHHI=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCanUjmTDohFr8OMpfk5xWBQ"),
+        name: "GIMS",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_PRkY912POkM",
+    name: "Lass das Internet aus",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/v0ncGc84NUhfI8ppc5ZlvFJpA9nSS8TsXG7ZNjrWPasyw0PNsZlNdzrLBYeisvIGIqQWDfk_1HY0YhgD=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/v0ncGc84NUhfI8ppc5ZlvFJpA9nSS8TsXG7ZNjrWPasyw0PNsZlNdzrLBYeisvIGIqQWDfk_1HY0YhgD=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCvsCS3G5AHUPBwJrX69VdOw"),
+        name: "Execute",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_8kcKsXRuGWB",
+    name: "Dankbar",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/hbRMNdVYSoXot7Ljs7e6i5rPmyT0oWT2YArnIYVnYA9WUCF2zu5YDC2W-a68_6lp14qfRaz1HIwVtIEX=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/hbRMNdVYSoXot7Ljs7e6i5rPmyT0oWT2YArnIYVnYA9WUCF2zu5YDC2W-a68_6lp14qfRaz1HIwVtIEX=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCmM8X1eVACcgB6LxVMqTMeQ"),
+        name: "Pietro Lombardi",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_w6JFZOjlu30",
+    name: "Magical Vibes",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/Iv-X-AcbGexXBn86Bs4HEJdG8EaAicmqt10dQemJdJsRL34V5d9S1jFwZfddK21hYH0a3HACycgHHGIn=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/Iv-X-AcbGexXBn86Bs4HEJdG8EaAicmqt10dQemJdJsRL34V5d9S1jFwZfddK21hYH0a3HACycgHHGIn=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCPRysewl9FiinLnzA9SMULw"),
+        name: "Aaron Black",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_zR8z6xeErBP",
+    name: "Summer Jams (Blasterjaxx Festival Mix)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/e4HTn87uVNi5WPRrTjwPPSc7DDMKbhRYJJBtULYiMdGkA67t4mwhdf9amlEGc5kGm6Soj-WlkYB5Q2uz=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/e4HTn87uVNi5WPRrTjwPPSc7DDMKbhRYJJBtULYiMdGkA67t4mwhdf9amlEGc5kGm6Soj-WlkYB5Q2uz=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCMXEXLCy9nNjykl0sxlzz0w"),
+        name: "Blasterjaxx",
+      ),
+      ArtistId(
+        id: Some("UCdQB8B_58Q-oZq7kE7VZmQA"),
+        name: "Henri PFR",
+      ),
+      ArtistId(
+        id: Some("UCJSOnsFjXbrNQSub8mlOTng"),
+        name: "Jay Mason",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_cBQyrGbx1mf",
+    name: "ORU NAAL",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/VTHMAhIH4j6xr9ERiIkktCHyI-Al_9hwCPfUhQ8Jiggm7Wyu_4R0A-8Zxgo_7sp8muV0wvpLQkwqdDfR=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/VTHMAhIH4j6xr9ERiIkktCHyI-Al_9hwCPfUhQ8Jiggm7Wyu_4R0A-8Zxgo_7sp8muV0wvpLQkwqdDfR=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCqy_XhL-yur1zdHeKTRDB5g"),
+        name: "Majoe",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_ZBYeb79ntl6",
+    name: "Hana",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/fG78jiJQF3Mu7lz5vxQGHskYVZ4RGQUzBSPTU7EQZoko5aUhZakSmlncXlho2MU7gBS0Sc9GqteAsps=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/fG78jiJQF3Mu7lz5vxQGHskYVZ4RGQUzBSPTU7EQZoko5aUhZakSmlncXlho2MU7gBS0Sc9GqteAsps=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCJDDeY50cfuDeivwBFZVxLw"),
+        name: "JUJU",
+      ),
+    ],
+    album_type: Ep,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_Zzm35DtC7PN",
+    name: "Heartbeat",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/lfjWCtpvNvoNc8aEgMOOZovNDZiDS3gGeULC644x6O541gpiJnpVg9Id1r0qDConZjlNr4pY1PGvFbcSGA=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/lfjWCtpvNvoNc8aEgMOOZovNDZiDS3gGeULC644x6O541gpiJnpVg9Id1r0qDConZjlNr4pY1PGvFbcSGA=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCNAbUat5xDtp6FeBphe2V_Q"),
+        name: "James Arthur",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_jmzfs3xAici",
+    name: "Sieben Leben",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/0eJ_hVX6imqKAU8Ekhek_E03g0S3lsrf8jTN-WGl63ymH6tlT-RxVuTCFEXu2xrGSqohppVzx4WCpu5L1Q=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/0eJ_hVX6imqKAU8Ekhek_E03g0S3lsrf8jTN-WGl63ymH6tlT-RxVuTCFEXu2xrGSqohppVzx4WCpu5L1Q=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCEpSzaxLXatwXlujpF-neQg"),
+        name: "THOVI",
+      ),
+      ArtistId(
+        id: Some("UC_MUUZ-YusJKq2zUy7D04ZQ"),
+        name: "Olly Gi",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_WMBVcFekXmr",
+    name: "Всё решено",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/E72W-0NMt2q4CxyT82ziGJ9JIhsnFDg8HhPOAIIsP4c9qqlsOp9PrzWpA5ak-5OiUi_b1BKphZNxGdjX=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/E72W-0NMt2q4CxyT82ziGJ9JIhsnFDg8HhPOAIIsP4c9qqlsOp9PrzWpA5ak-5OiUi_b1BKphZNxGdjX=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCHhV79vwD5W4UZJdJPGE1DQ"),
+        name: "Zivert",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_MLgPGxjmkYv",
+    name: "Sag nie wieder (feat. Franzi Harmsen)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/cxSNsSeQ8Rlxf0uIa5e3aRPjYq4wsdjTGzG2zulHTg2HCxky1QDi3immrBZAlBF2Vul7pQuOhFrCzxrI=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/cxSNsSeQ8Rlxf0uIa5e3aRPjYq4wsdjTGzG2zulHTg2HCxky1QDi3immrBZAlBF2Vul7pQuOhFrCzxrI=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UClWYTAbTNH9p80shT8yPHqg"),
+        name: "Alexander Eder",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_7I4wDvetKAq",
+    name: "DROP DEAD HARDSTYLE",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/W8ocsZ13G-auN_lijq4s6GmcktCT-jea2sdwfNqVXS5eUSrHytmYAhZ2zl7iqyu9qHIbRrI-DwfVViBA=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/W8ocsZ13G-auN_lijq4s6GmcktCT-jea2sdwfNqVXS5eUSrHytmYAhZ2zl7iqyu9qHIbRrI-DwfVViBA=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCdchfYz_9BJz7htrmiCWSOg"),
+        name: "SICK LEGEND",
+      ),
+      ArtistId(
+        id: Some("UCB_LFgT5NPwpnfGezB5rGGw"),
+        name: "GYM HARDSTYLE",
+      ),
+      ArtistId(
+        id: Some("UC-BpyTTkdJCRR_skOeqI0eg"),
+        name: "HARDSTYLE BRAH",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_lmkPuEIuOrc",
+    name: "Break Your Heart (Extended Mix)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/KFYBIW2O_ebcaZHehV4UfsFmmUFsWv8JlAksXAgS2qVhmnSAXzs9Q67KzpCd3GhKtpBahfAayF3rVAzWlw=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/KFYBIW2O_ebcaZHehV4UfsFmmUFsWv8JlAksXAgS2qVhmnSAXzs9Q67KzpCd3GhKtpBahfAayF3rVAzWlw=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: None,
+        name: "Marc Korn",
+      ),
+      ArtistId(
+        id: None,
+        name: "Semitoo",
+      ),
+      ArtistId(
+        id: None,
+        name: "Stockanotti",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_QltD8N6Qy3t",
+    name: "The Fuse Is Lit",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/jUBLkJwHe37Na-4gIdjM9s79DbzJwg-IjYNaU28NfDdBeJq_5bjzyM-NQc2Wsv6a-LNeVvgxySqaAmHk=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/jUBLkJwHe37Na-4gIdjM9s79DbzJwg-IjYNaU28NfDdBeJq_5bjzyM-NQc2Wsv6a-LNeVvgxySqaAmHk=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCaSeNTljGkpoj1ijhs72nag"),
+        name: "Busta Rhymes",
+      ),
+    ],
+    album_type: Ep,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_8aH92WEkghX",
+    name: "Как любовь твою понять?",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/yHj8fepPVQJHIAEX9HhOENBzgsGQaa5ay19zaNh0cwvcKr9Gc12lyiuU-aLUKjHdCWGFaQqsK1J-v2g=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/yHj8fepPVQJHIAEX9HhOENBzgsGQaa5ay19zaNh0cwvcKr9Gc12lyiuU-aLUKjHdCWGFaQqsK1J-v2g=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCUSr-73IZLwrjOozma9Ad_w"),
+        name: "JONY",
+      ),
+      ArtistId(
+        id: Some("UCCugtn9o_lbJHdm_MLEIh1g"),
+        name: "ANNA ASTI",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_8cVh1EwvPBx",
+    name: "Drunn City 3",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/5IWsQAhm_lWKhc7W6b-QilqQk6hDZQ3vbK4egiYVvXresJvPsxixuGB2XPGTrvfsH7NNKlnvziuuRxYy=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/5IWsQAhm_lWKhc7W6b-QilqQk6hDZQ3vbK4egiYVvXresJvPsxixuGB2XPGTrvfsH7NNKlnvziuuRxYy=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UC-TDzpXxJndgBvyX4dZXVzA"),
+        name: "Lil Jon",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_7GUcV8ouGT4",
+    name: "Feed Tha Streets III",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/S2GdaNtN2KVZw8so0HMz8S8cZJvv5kbDiFtreDcao-PcB7XzuToYlhmqO2zK_QLMEg76Agd6qea7xPc=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/S2GdaNtN2KVZw8so0HMz8S8cZJvv5kbDiFtreDcao-PcB7XzuToYlhmqO2zK_QLMEg76Agd6qea7xPc=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCC30L98-rMHfY5PJ46duOPg"),
+        name: "Roddy Ricch",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_Gu9sKtbHrlm",
+    name: "Sunset Dreaming",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/lkUVAGF35FSxC1KhgK5ip223BJy3ugT94dmibjZKfQbLcM3i5ROCNQeBpx0vYDhmStfOC5tjO64uJOzX=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/lkUVAGF35FSxC1KhgK5ip223BJy3ugT94dmibjZKfQbLcM3i5ROCNQeBpx0vYDhmStfOC5tjO64uJOzX=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UC5rkoI4r3QaSK1gKMxjqmig"),
+        name: "Mark Jack",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_HdxjEfDDf8x",
+    name: "Dreamers (Music from the FIFA World Cup Qatar 2022 Official Soundtrack) (feat. FIFA Sound)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/9I9Npz8KazIlvwuWmOgxjwn9-hvy9K3sFbgEpYZBHPFXIEdFdtbWKJKVO0p7sVdaXWwTaL-GSZAVkk4=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/9I9Npz8KazIlvwuWmOgxjwn9-hvy9K3sFbgEpYZBHPFXIEdFdtbWKJKVO0p7sVdaXWwTaL-GSZAVkk4=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UC-pOuHFcndLpyfWSPVqXt_A"),
+        name: "Jung Kook",
+      ),
+      ArtistId(
+        id: Some("UC9vrvNSL3xcWGSkV86REBSg"),
+        name: "BTS",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_ZyIG3lIVXnu",
+    name: "All By Myself (Club Mix)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/JZLK_X4AlxTR8x43_dIV1ZNr0tkz12oOrVoDkgOAkSZV4D1AUFLjpxIZJTnCIxqwfY0IlwZISjgf9bU=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/JZLK_X4AlxTR8x43_dIV1ZNr0tkz12oOrVoDkgOAkSZV4D1AUFLjpxIZJTnCIxqwfY0IlwZISjgf9bU=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCyeThGzVYx1MbxUGgIkj3iQ"),
+        name: "Alok",
+      ),
+      ArtistId(
+        id: Some("UCr3FznlH-3jNyU3fi-GMo2w"),
+        name: "Sigala",
+      ),
+      ArtistId(
+        id: Some("UCZSxBlUEOKgXkzaj_VlBLlg"),
+        name: "Ellie Goulding",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_q5Mv67ReBlH",
+    name: "Candela (Dastic Remix)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/wsYGrm2e-w9QJvNmQ-wIhETzX4NV66drWAW5KS9n0oXJumePMtL2a7M-dbN8xbq_9KiZuiRObt_zvkQ=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/wsYGrm2e-w9QJvNmQ-wIhETzX4NV66drWAW5KS9n0oXJumePMtL2a7M-dbN8xbq_9KiZuiRObt_zvkQ=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCUAvCvdLFoPItXgjYy0P7CQ"),
+        name: "Alvaro Soler",
+      ),
+      ArtistId(
+        id: Some("UCP_gdSLTAPPNY3M42legQKA"),
+        name: "Nico Santos",
+      ),
+      ArtistId(
+        id: Some("UCjWuIGXGuff8Orz5MxIR42A"),
+        name: "Dastic",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_L36cNUn3nWW",
+    name: "This Is What I Mean",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/NinSk0lPIRJ6dMMuC_6NU8xNySp8FYqC2XfK1UJcc8tRVakmtsmazLs5e7Zbfrr5InA2PNo9C3cFNug=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/NinSk0lPIRJ6dMMuC_6NU8xNySp8FYqC2XfK1UJcc8tRVakmtsmazLs5e7Zbfrr5InA2PNo9C3cFNug=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCFsLMFP9I8tqxnZZNGKfPow"),
+        name: "Stormzy",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_URxOKa8ZqPb",
+    name: "Praise The Lord (Da Shine) (Durdenhauer Edit) (feat. Skepta)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/REdOBctgXl7AXIEVI2nfK5at3Rd_sjfS6bnaZXKwnb9FgIa1Li07nV99hQMEgygIqVjXOqMyNdv2zyQ9zw=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/REdOBctgXl7AXIEVI2nfK5at3Rd_sjfS6bnaZXKwnb9FgIa1Li07nV99hQMEgygIqVjXOqMyNdv2zyQ9zw=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCsfPXoStha2wqN8hB9dFR2g"),
+        name: "A$AP Rocky",
+      ),
+      ArtistId(
+        id: Some("UC-RmgQaFo2Kj6f3xlS-DQxQ"),
+        name: "Durdenhauer",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_ToUqOo2UsUW",
+    name: "Gym Hardstyle",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/0_fK2s0idWITLfnpVS-8P-QOjvpPCWXpyhz0Q9R6qr3_H_ecrSI2lICIy13MfcvNayz2yrq0HqpX-EYyLg=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/0_fK2s0idWITLfnpVS-8P-QOjvpPCWXpyhz0Q9R6qr3_H_ecrSI2lICIy13MfcvNayz2yrq0HqpX-EYyLg=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCSTEV2xPTlynyEZ3QbbVB5w"),
+        name: "Teddy Specter",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_DXAdVxwluGl",
+    name: "Since U Been Gone (Juliet’s Version)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/i-Qj3IZY4YV7oMYyC0FPUfGaoAqXGVR_c23AE74HCOJ5K9K_KlI_uTQsKiAIc4Vsc-Z8vfV1MZnz7UFsIg=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/i-Qj3IZY4YV7oMYyC0FPUfGaoAqXGVR_c23AE74HCOJ5K9K_KlI_uTQsKiAIc4Vsc-Z8vfV1MZnz7UFsIg=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCpXP9-cHlJCMapSYCSZThbw"),
+        name: "Kelly Clarkson",
+      ),
+      ArtistId(
+        id: Some("UCpMekt9HU_OvP8F66JiRlxw"),
+        name: "Lorna Courtney",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_qHjKcd2HVx9",
+    name: "Za Tebe",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/xvQEM7uwj9hR9cfX_6FTH-UZalXzDy-GVEndisyftPOp-Z7iFNgRNyhxjFmK1qq5Mk6gtJv6uKAtG1br6w=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/xvQEM7uwj9hR9cfX_6FTH-UZalXzDy-GVEndisyftPOp-Z7iFNgRNyhxjFmK1qq5Mk6gtJv6uKAtG1br6w=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCmBSyM3ScU07ecv8w8dWvIQ"),
+        name: "Senidah",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_qwWsuC7pSTV",
+    name: "SLYTHERIN",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/ibDrG7urmFTbj6zALlkjOUDfUlEHwNXYWcs5eukCA5D2chUBTI5RpL-MRZ1hf6R0_cm_CbwppE5g_RWqvg=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/ibDrG7urmFTbj6zALlkjOUDfUlEHwNXYWcs5eukCA5D2chUBTI5RpL-MRZ1hf6R0_cm_CbwppE5g_RWqvg=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UC8JxlMZ9VPddCuQGwB49fYg"),
+        name: "Crystal F",
+      ),
+      ArtistId(
+        id: Some("UCwmNo10Uqik5fObbEUsy34Q"),
+        name: "ODMGDIA",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_6tWUsDwilUG",
+    name: "THEATER DES LEBENS",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/37CGI13rCVQahhU5fCp9I-hzrwGBInzdV4JwnmDgKibvcfSsJbxgEGDUAMQbLWXAsZ8nBcSe6C6Kfg8=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/37CGI13rCVQahhU5fCp9I-hzrwGBInzdV4JwnmDgKibvcfSsJbxgEGDUAMQbLWXAsZ8nBcSe6C6Kfg8=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UC84f7RfWO0kppDO8gbWUPhA"),
+        name: "Ary",
+      ),
+    ],
+    album_type: Ep,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_d7ESYio68Gq",
+    name: "Auf geht\'s Deutschland",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/gPpF-Jm5x61g2bx_S9kfimQB2D35tLz5wRXYlhVxb10ZBZyauyZRy47eSIrE5S0X3w2aP6jdj9l-HTWs=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/gPpF-Jm5x61g2bx_S9kfimQB2D35tLz5wRXYlhVxb10ZBZyauyZRy47eSIrE5S0X3w2aP6jdj9l-HTWs=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCTL5jJqSn3tNkk1q3Nrl3gA"),
+        name: "Nisa",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_UAZrm912PxD",
+    name: "Weihnachtszeit - EP",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/YoWZJZ0ZMDDm37UGsJdCL7iKHIbUXI6xr0_x9Fythzo-la9BVGCT6POJw6JQDgwowmF8LYSTNkEgjLA=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/YoWZJZ0ZMDDm37UGsJdCL7iKHIbUXI6xr0_x9Fythzo-la9BVGCT6POJw6JQDgwowmF8LYSTNkEgjLA=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCpvDuL_5kV0teEg2QtbaAWw"),
+        name: "Eloy de Jong",
+      ),
+    ],
+    album_type: Ep,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_sHBTdKnoUV0",
+    name: "Deine Hand",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/GBrmr9eE--lgyYKcBvgwjnrFiGaL0NBd3hNCQp6mZcfT9tA4UBUmpvLxNOOhANmxwB1i6Yhw5hWfDIxPfw=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/GBrmr9eE--lgyYKcBvgwjnrFiGaL0NBd3hNCQp6mZcfT9tA4UBUmpvLxNOOhANmxwB1i6Yhw5hWfDIxPfw=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCpgBROkXWpGzEMXnz0LGHbg"),
+        name: "Herbert Grönemeyer",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_MIJ4Jo15jiq",
+    name: "2001",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/ndLrasesC2EAkBqsU5L1WGE44indquh2t8CLzuKPwXRK63QrK4huYbJHoi_33CYRAWSihv7HDNFG4zAk_A=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/ndLrasesC2EAkBqsU5L1WGE44indquh2t8CLzuKPwXRK63QrK4huYbJHoi_33CYRAWSihv7HDNFG4zAk_A=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCsvnoEFghphdrpWIsK6wqDg"),
+        name: "Tokio Hotel",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_Ia5wGLSeqiT",
+    name: "Cherry Blossom Nightmare",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/vWtdsUCgDFU-I8aw1iDxlEn1jzTd1ENTakOY54ECRI7JIrGNiKS7OekKUTJP2_q_WOh4lpklsvUgOCz4=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/vWtdsUCgDFU-I8aw1iDxlEn1jzTd1ENTakOY54ECRI7JIrGNiKS7OekKUTJP2_q_WOh4lpklsvUgOCz4=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UC1LmxpB0f-eVMB7X_9ziTVg"),
+        name: "Unlike Pluto",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_mVfQnhvnwnx",
+    name: "Robot Lullaby",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/CSao1dsZmt4pIMT19ORa6VFmT0IoUAd-CMB1ZIU3FnYpgSbOxKU8yrH5YewQMWgPbX9vtQPxiagl6y0L=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/CSao1dsZmt4pIMT19ORa6VFmT0IoUAd-CMB1ZIU3FnYpgSbOxKU8yrH5YewQMWgPbX9vtQPxiagl6y0L=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCiY3z8HAGD6BlSNKVn2kSvQ"),
+        name: "Bad Bunny",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_XyGmSigRMfa",
+    name: "Mission Control",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/Q_D6e6f86vmeQcaBwevfKEuoerbmdjCLfnqRUO1UpB8PMQrxPF-wb5PXTIwy9ZXDeUgu7Bqsi-Okhjg-=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/Q_D6e6f86vmeQcaBwevfKEuoerbmdjCLfnqRUO1UpB8PMQrxPF-wb5PXTIwy9ZXDeUgu7Bqsi-Okhjg-=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UC0Fpo5Sndk_WLcHAMXeJDPQ"),
+        name: "Mike Candys",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_YN33i5gbe2J",
+    name: "Lionheart (Come On England) (feat. Martin Tyler)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/Dmn1r5eyPWxxmXvwUj_keLfQ14juy-hxJN-zo_GeTn1gjxwDF7df3Y5DCkBQuFv53NYd2kJAwjkG-zE=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/Dmn1r5eyPWxxmXvwUj_keLfQ14juy-hxJN-zo_GeTn1gjxwDF7df3Y5DCkBQuFv53NYd2kJAwjkG-zE=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCW7eCgFY16p3tWesVwfC1yA"),
+        name: "Joel Corry",
+      ),
+      ArtistId(
+        id: Some("UCqlM8ftKlcvcvxFIHQEJKbQ"),
+        name: "Tom Grennan",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_SuOho6GqsWA",
+    name: "UGG BOOTS",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/q7twnAIAWXoD5N1IaWzpDt1adBjWB-BE7xNk6k7rpSMVt681UeMlGDJjDh7NCoEr_Hi1tjZQNbEK18_VGA=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/q7twnAIAWXoD5N1IaWzpDt1adBjWB-BE7xNk6k7rpSMVt681UeMlGDJjDh7NCoEr_Hi1tjZQNbEK18_VGA=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UC5RhS3EM_CYfIL0LYWveDrA"),
+        name: "Longus Mongus",
+      ),
+      ArtistId(
+        id: Some("UCFfK58sT24l0oa4pRb-bZWQ"),
+        name: "BHZ",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_ilj4SZcfnZ0",
+    name: "Zup zap",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/92IMYpFG7rubU40v0szV9mzrbqSXTt5NIitwJmgjTF67bwR9torot4ZGVBXUNtae-jQ0_KltPpmK1eg-=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/92IMYpFG7rubU40v0szV9mzrbqSXTt5NIitwJmgjTF67bwR9torot4ZGVBXUNtae-jQ0_KltPpmK1eg-=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCAkTuOHJleyE4lk-n_taf9A"),
+        name: "Nicolae Guta",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_DuEhdCS5qaG",
+    name: "Life Thru A Lens (25th Anniversary)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/3RoxITQKy7TjupqWrhNwTdp5KESW9FGEfsP-Or7C7OdCXG4QUxddCB1d63Qbns2FCTfNjZvungoJlLlU=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/3RoxITQKy7TjupqWrhNwTdp5KESW9FGEfsP-Or7C7OdCXG4QUxddCB1d63Qbns2FCTfNjZvungoJlLlU=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCmAgTXAlnckJJBFmqYlHnNA"),
+        name: "Robbie Williams",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_h5OPtPZNOaI",
+    name: "Venedig (Love Is In The Air) [Für Immer Tour Live 2022]",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/yuF7878GlgmR-T0lraKMk-Sj5IMVLJQnQ4ZF0ofdCaSYq6xlRBbAO1tGfm6Z5z0OWqXsyCzra4WIxnku=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/yuF7878GlgmR-T0lraKMk-Sj5IMVLJQnQ4ZF0ofdCaSYq6xlRBbAO1tGfm6Z5z0OWqXsyCzra4WIxnku=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCFTcSVPYRWlDoHisR-ZKwgw"),
+        name: "Vanessa Mai",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_Y1fdJMHG41g",
+    name: "In The Dark (feat. Polarwulf)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/i6vnoywOwkHlgspQXI5dS70gjsuS_ricCykQUmLoC0S3eSiVPa1E4d6DZLlHSVDpeVKwJK1RCATbAHVC=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/i6vnoywOwkHlgspQXI5dS70gjsuS_ricCykQUmLoC0S3eSiVPa1E4d6DZLlHSVDpeVKwJK1RCATbAHVC=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCQTiCJddISPD9BwAq4wWrsw"),
+        name: "VINAI",
+      ),
+      ArtistId(
+        id: Some("UCbdxCfyuXAhZMVBXkod9e7w"),
+        name: "Lucas Estrada",
+      ),
+      ArtistId(
+        id: Some("UCT5kjQkLcCxosTCpObs9nsg"),
+        name: "Moonshine",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_o4y4IG5srWw",
+    name: "Like Wooh Wooh (Matic Remix)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/3SH-L2QsTlO8b2d_kG-diOv4FHFtpllQCnqMlQ1mLheE0QM2W5FAEnVQQcecnwfV6lwRlHEJ-UKX38T2=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/3SH-L2QsTlO8b2d_kG-diOv4FHFtpllQCnqMlQ1mLheE0QM2W5FAEnVQQcecnwfV6lwRlHEJ-UKX38T2=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UC-g1V9YrA8Fg13BwcG_W-4g"),
+        name: "Rnbstylerz",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_h1URPrX3zan",
+    name: "100 Schatten",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/JcB48VJ2h7bfCYRqe_gocJQtllX2Iw6_JM5eVLKzpwuevODZtoT572hcLU6lNyT59VzbNtwwVMQ00Ubl=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/JcB48VJ2h7bfCYRqe_gocJQtllX2Iw6_JM5eVLKzpwuevODZtoT572hcLU6lNyT59VzbNtwwVMQ00Ubl=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCsagRjawwvj9-bybPFt5d-w"),
+        name: "Raportagen",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_m6E5UKjaz97",
+    name: "Ambiance for Upbeat Ways",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/Ud3AyQKU7ZiYvqMHPtxa2DCb0kTJdq0HkajM4j7JvvL8v1Fbf2l6w41rwLOqbn4m0wDBZSRVtJrJp3Aj=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/Ud3AyQKU7ZiYvqMHPtxa2DCb0kTJdq0HkajM4j7JvvL8v1Fbf2l6w41rwLOqbn4m0wDBZSRVtJrJp3Aj=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCa71Sv2jz9HbGkd66WXvEeA"),
+        name: "Entspannungsmusik",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_fi4rkSuvWDn",
+    name: "Echoes of Beautiful Illusions",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/h5cOd9rSDgnIu4h3PnlJItIPbwPpttERv4SmGrC52yFFPxsQNdYGQhR-LLl1jyDL0DqwQKNoV_MoNH_4Tw=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/h5cOd9rSDgnIu4h3PnlJItIPbwPpttERv4SmGrC52yFFPxsQNdYGQhR-LLl1jyDL0DqwQKNoV_MoNH_4Tw=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCa71Sv2jz9HbGkd66WXvEeA"),
+        name: "Entspannungsmusik",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_Af7hFJwDiaP",
+    name: "Ambiance for Inspiring Abstracts",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/igNJo0omdKCvR9P8lAqsWQYPr44_TwS8d7jn7x0GxJgyKwU-FduhwtFYKj-S53tTMwEnx85B0MfMGOA=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/igNJo0omdKCvR9P8lAqsWQYPr44_TwS8d7jn7x0GxJgyKwU-FduhwtFYKj-S53tTMwEnx85B0MfMGOA=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCa71Sv2jz9HbGkd66WXvEeA"),
+        name: "Entspannungsmusik",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_fRqn18TYafI",
+    name: "Relaxed Bgm for Nocturnal Nights",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/rYvMC053ETYIoqMXCPzOuFU2QrqCIBXMuDcmNq6XfUB4E_UqT3QppzFsPJ9QJxhy3d6Ly_Dqdq1ihp4r=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/rYvMC053ETYIoqMXCPzOuFU2QrqCIBXMuDcmNq6XfUB4E_UqT3QppzFsPJ9QJxhy3d6Ly_Dqdq1ihp4r=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCa71Sv2jz9HbGkd66WXvEeA"),
+        name: "Entspannungsmusik",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_9tir0rbqDIC",
+    name: "Fabulous Music for Daring Goals - Latin Piano Jazz",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/KZcLrPKhksAxOSdYH6sbFUTXjbfowixa1HcjmanrmuPD5NH-gvtm-lV4GsZkwx0V_LW7MH-FyB2G4ah5=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/KZcLrPKhksAxOSdYH6sbFUTXjbfowixa1HcjmanrmuPD5NH-gvtm-lV4GsZkwx0V_LW7MH-FyB2G4ah5=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCa71Sv2jz9HbGkd66WXvEeA"),
+        name: "Entspannungsmusik",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_A6uVGSeMGxu",
+    name: "Dopeman",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/_UkNHEChTMoAb8TCDfgci5cr1aF7U6jDXe2RniKyPt7HPfZzUuNjmSD0aKO7XE0coHzHthGFNVItBsA=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/_UkNHEChTMoAb8TCDfgci5cr1aF7U6jDXe2RniKyPt7HPfZzUuNjmSD0aKO7XE0coHzHthGFNVItBsA=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCx8wewQwEdHFWPf7TYwAGvA"),
+        name: "Hemso",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_BiuXQEWO4X5",
+    name: "Freedom",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/dWlWTbRG-GVNj7aVG9kha9xH9lH5xUmcvuXZR3WXMsIX_EZHdABydaxHUzEikjplxY5EeH22Ks_i82Xs=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/dWlWTbRG-GVNj7aVG9kha9xH9lH5xUmcvuXZR3WXMsIX_EZHdABydaxHUzEikjplxY5EeH22Ks_i82Xs=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UC-ne4DOpdAkBqXhFGRcI7xw"),
+        name: "Alle Farben",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_lTGFwv0c5gi",
+    name: "Worst Is On Its Way (HEALTH Remix) (feat. Danny Brown & Meechy Darko)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/li0TQF5EU2hU9iMcDlmYenPyIYm8MKz3pMBNiHNXCdRJWDFb2gkCRK0f1OMrYItHyqv-PYMnvfQvn_c=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/li0TQF5EU2hU9iMcDlmYenPyIYm8MKz3pMBNiHNXCdRJWDFb2gkCRK0f1OMrYItHyqv-PYMnvfQvn_c=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCdSgOgQ0WtelXBMKF3tDsqg"),
+        name: "Korn",
+      ),
+      ArtistId(
+        id: Some("UCFhh9HNNzEpJ6rmJf9oiLJA"),
+        name: "HEALTH",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_Au1IPKcVsOv",
+    name: "beni beni",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/Chh-zhv-jeiJ4T106yVlat1a57YNH-KLLliRRDQex4PpGa57bnYPdCYH6Pjoitnr-Ig1MRuiYtjNU-es=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/Chh-zhv-jeiJ4T106yVlat1a57YNH-KLLliRRDQex4PpGa57bnYPdCYH6Pjoitnr-Ig1MRuiYtjNU-es=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCQOiZrSMNwNiyLH2fNqNYNw"),
+        name: "Sefo",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_LQTCcQMjZiQ",
+    name: "Total Eclipse (2022 Remaster)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/kdWzkJyb0xNzsFliVxHXmUsLfdrBzwSKzo0PiMBiGTms_RnHvjz9IkPcKJYFUZHhaCH7satUrOcLB0uH=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/kdWzkJyb0xNzsFliVxHXmUsLfdrBzwSKzo0PiMBiGTms_RnHvjz9IkPcKJYFUZHhaCH7satUrOcLB0uH=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UC0zbzp6x7zR8u0LhanNWFyw"),
+        name: "Iron Maiden",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_pK6uAEkoSlS",
+    name: "GIVEAWAY!!!",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/E5MvgcU18jpj2hj2rbR20ABhtg0sCmeP7kpe3BeeDdcHbKfF_lBuCpxBrfA2OM9ef5XbqBlmZk8pT8i8=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/E5MvgcU18jpj2hj2rbR20ABhtg0sCmeP7kpe3BeeDdcHbKfF_lBuCpxBrfA2OM9ef5XbqBlmZk8pT8i8=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCKEFjh4JL-OyMI8z3h5Coaw"),
+        name: "Ozuna",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_N0WdMtdWWlW",
+    name: "AVA",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/125t8LiYzwaTx4_pwuDqR_mrU_SRyPopykFETxV8SUq3WDqUQXz2_OeC5XfcI2vZqWOt61Cg4_yQm3g=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/125t8LiYzwaTx4_pwuDqR_mrU_SRyPopykFETxV8SUq3WDqUQXz2_OeC5XfcI2vZqWOt61Cg4_yQm3g=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCcZVM-P7y-p4wUkro4YZHCg"),
+        name: "Natalie Jane",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_OkNMiHqM04t",
+    name: "New Gold (Dom Dolla Remix) (feat. Tame Impala & Bootie Brown)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/AWaOqEz2iXin4hPhLi-6ukBRyv8l8Ye1uj2zzIM5162Xmovjf8Dy9Cc1MJA8VpVn3YtzFETDQYTIzA4=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/AWaOqEz2iXin4hPhLi-6ukBRyv8l8Ye1uj2zzIM5162Xmovjf8Dy9Cc1MJA8VpVn3YtzFETDQYTIzA4=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCNIV5B_aJnLrKDSnW_MOmcQ"),
+        name: "Gorillaz",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_H751aPZgjde",
+    name: "Homesick",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/OKwhLwYzoHd5ktA_oLOj93fqV3w3tj7hWcqhhGIuwJCXEV1kvBK1mcVctjmUT5krjQFP_pLDOR-VMYQ=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/OKwhLwYzoHd5ktA_oLOj93fqV3w3tj7hWcqhhGIuwJCXEV1kvBK1mcVctjmUT5krjQFP_pLDOR-VMYQ=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UC4XHSTHLOwFvFiZj4gFqMsA"),
+        name: "1nonly",
+      ),
+    ],
+    album_type: Ep,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_587fjwWlVff",
+    name: "Exhausted",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/d67mUT0mL0Fk7nr_PRMltWzJYrQUfmNCon9ErLDjOON-NpPDwnj-AH1fQW-CJ6zqn64Q2GIjgegccco=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/d67mUT0mL0Fk7nr_PRMltWzJYrQUfmNCon9ErLDjOON-NpPDwnj-AH1fQW-CJ6zqn64Q2GIjgegccco=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCKh0FImZMYvIZHzMSlbschg"),
+        name: "Tazzy",
+      ),
+      ArtistId(
+        id: Some("UCEWHst7mhtQXXW_gBNlXXqQ"),
+        name: "Ramaj Eroc",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_CDrORnYHvnl",
+    name: "Roots to the World, Vol. 5",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/LpfkRdsuK2J8hWRpNnjZEic1q6LR9YUxF2xr4IdolC9iPnarq_LK5ox2OLx81agswplAWfYZ6XonEP7b=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/LpfkRdsuK2J8hWRpNnjZEic1q6LR9YUxF2xr4IdolC9iPnarq_LK5ox2OLx81agswplAWfYZ6XonEP7b=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCrSq-XRASp4clbiECIzD09g"),
+        name: "Don Goliath",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_VqsvXtyYqBy",
+    name: "Crypto Business",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/FKoKchhpV36tiogy8jhu9TfmfG6La7Km7sS1ojWRYIqa9VyORxo-GDJOWjpyq0ZP13L8mrc0GKk_iNTy=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/FKoKchhpV36tiogy8jhu9TfmfG6La7Km7sS1ojWRYIqa9VyORxo-GDJOWjpyq0ZP13L8mrc0GKk_iNTy=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCGwa7ZUGHL9pisTwM1rUIRQ"),
+        name: "Juicy J",
+      ),
+      ArtistId(
+        id: Some("UCXUecsEJm6YgQIUzvRpvhpQ"),
+        name: "Lex Luger",
+      ),
+      ArtistId(
+        id: Some("UCXtgaEl9g5Q_WcRvANh4iYA"),
+        name: "Trap-A-Holics",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_VuEBn1LLhbg",
+    name: "Agradecido",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/owMU6rZuEn3mKt_k03WTCeOs_5Cp8cfxBlBwP06OlFsQ7JhUm2zB8jrGCk_iywN0-RyKZ26OPUEa0lk=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/owMU6rZuEn3mKt_k03WTCeOs_5Cp8cfxBlBwP06OlFsQ7JhUm2zB8jrGCk_iywN0-RyKZ26OPUEa0lk=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCTrIOPtBeAN2E0R-sgU9JxA"),
+        name: "Don Omar",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_lUATWNEZjlu",
+    name: "Far Away",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/7LrENKPWMzPam37GKnz1ig23d3Uvzo6tjpVcuhZPBAroClCJYcQ5gh4UD3boTX5Xrg0HWGTjKPTxALs=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/7LrENKPWMzPam37GKnz1ig23d3Uvzo6tjpVcuhZPBAroClCJYcQ5gh4UD3boTX5Xrg0HWGTjKPTxALs=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCc6C8g9N1gfQfB1ebDG_3ww"),
+        name: "Zarka Voya",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_WKE69N6hxRv",
+    name: "Glowing Light (feat. Heleen)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/nFWtxq2uJ7wAjp6c-0068lZv3uhI0qJbjKkZ-O4XQeSeKJUUkxPYw2vyP31Bej61LObxLGBhdzaOg1Y=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/nFWtxq2uJ7wAjp6c-0068lZv3uhI0qJbjKkZ-O4XQeSeKJUUkxPYw2vyP31Bej61LObxLGBhdzaOg1Y=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: None,
+        name: "Empyre One",
+      ),
+      ArtistId(
+        id: None,
+        name: "Nikster",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_BgjS4ntec5e",
+    name: "Hard Life",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/zddvF5vm84Nb6sLrNetrLNqTMbBu0xUlPLSHMbgArtlk3t6OD1MXjEi-jd5PMi_OitFjkmMzMq7I4F-M=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/zddvF5vm84Nb6sLrNetrLNqTMbBu0xUlPLSHMbgArtlk3t6OD1MXjEi-jd5PMi_OitFjkmMzMq7I4F-M=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCAz_-i_z6Rf66dYop52ElSA"),
+        name: "Jose Stan",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_xcPBbDZ5g1V",
+    name: "Double Cup",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/H7T6TrczFXozpOqQ_lXaApjBxBtUFoEuOlW55_9eaLf7McwuFbLWB25z_ml3WtKyLaKnqAxDAH2LQS14=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/H7T6TrczFXozpOqQ_lXaApjBxBtUFoEuOlW55_9eaLf7McwuFbLWB25z_ml3WtKyLaKnqAxDAH2LQS14=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCK0E138ftvcNWus81A4zQ2A"),
+        name: "MORGENSHTERN",
+      ),
+      ArtistId(
+        id: Some("UCSE-OgF8c_LSwVgQvJ1J_yw"),
+        name: "kizary",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_ppFGyh9Wz2S",
+    name: "Fly",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/SNHaf5e16jNLS1O-il9uL0Hrr-rxCe_PBanrC_Sfau3CW9nNbbaOa-lvbFVWkEZANQpnuuJNyidGFhZ6cw=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/SNHaf5e16jNLS1O-il9uL0Hrr-rxCe_PBanrC_Sfau3CW9nNbbaOa-lvbFVWkEZANQpnuuJNyidGFhZ6cw=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCeXYHFfN53Bw_4dbPLlJgrA"),
+        name: "Simon Decker",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_vO4VV544VdK",
+    name: "Fight For No Reason",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/oogFtMBMeRW3oqU9rqlGq4GfYwJSht_pqabCq32L2TKi17d9UN_WPWCjRSmzS7jZB6Z4r7pWyuQiEDYF=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/oogFtMBMeRW3oqU9rqlGq4GfYwJSht_pqabCq32L2TKi17d9UN_WPWCjRSmzS7jZB6Z4r7pWyuQiEDYF=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCywFOWItbhJH6oZadxC2VkQ"),
+        name: "Gentleman",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_8lWa74TcquO",
+    name: "Papa",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/FMIsHvx7YKC5HBVNw7bV0LV3tAzOy6RPjcCiGRpcRmo6es73AsKzreVK802F7UJj41SJJ8NLMepy2FY3=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/FMIsHvx7YKC5HBVNw7bV0LV3tAzOy6RPjcCiGRpcRmo6es73AsKzreVK802F7UJj41SJJ8NLMepy2FY3=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UC74paQc9elYMxQKL8gpT1ow"),
+        name: "Zate",
+      ),
+      ArtistId(
+        id: Some("UCo8l8KZbcmW3YzQ9Dbnd1kQ"),
+        name: "Jack Center",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_9OYuQKkRNBe",
+    name: "Madara Uchiha Origin",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/rJZPwAV9jE3Q7g7MJnnJ4lIe4KxI7SyviRg7hQCPIOveZDVqfzg0fQlvGgYFyBwVZGnc1_nAQSnxzp1O=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/rJZPwAV9jE3Q7g7MJnnJ4lIe4KxI7SyviRg7hQCPIOveZDVqfzg0fQlvGgYFyBwVZGnc1_nAQSnxzp1O=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: None,
+        name: "Anbu Monastir",
+      ),
+      ArtistId(
+        id: None,
+        name: "GARP",
+      ),
+    ],
+    album_type: Single,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_R2a87qhUP5d",
+    name: "sanah śpiewa Poezyje",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/Q6ZyQfMA2i96AQhqnc8lgIR-7cTnnidEbptt_9o5Ev-GTgxz9bfp2tZ9rxU_NJEsnrqXZk3dtGah1g7W=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/Q6ZyQfMA2i96AQhqnc8lgIR-7cTnnidEbptt_9o5Ev-GTgxz9bfp2tZ9rxU_NJEsnrqXZk3dtGah1g7W=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCV8SUfLumnpfd-Wa_i7B2Zw"),
+        name: "sanah",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_1Vaz11QX6AZ",
+    name: "Disney Goes Heavy",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/MKjcraMrBbr_W_gwPkM5unbIxT0VSyN1DIPfMUSCq7Z7FlixA525UwgGtJOgVXrogkvJEpJ8HIdY42vLnQ=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/MKjcraMrBbr_W_gwPkM5unbIxT0VSyN1DIPfMUSCq7Z7FlixA525UwgGtJOgVXrogkvJEpJ8HIdY42vLnQ=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCYW1nL0TZhQVLbS6KATqtig"),
+        name: "Our Last Night",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_QvEB2N1JDeM",
+    name: "Udit Narayan: The Collection",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/OO_O2I7V6LHZGYdOzKHxseF3q27FgBW23SC6OQB2AnhBm6Z2_2CiciiWZ1gRGQwXgMU_9WkD71MV_z3B=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/OO_O2I7V6LHZGYdOzKHxseF3q27FgBW23SC6OQB2AnhBm6Z2_2CiciiWZ1gRGQwXgMU_9WkD71MV_z3B=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UC13ToEQgfmTe8_GW19LYtCg"),
+        name: "Udit Narayan",
+      ),
+      ArtistId(
+        id: Some("UCc5INb7FiaEgHfOJc_Udasw"),
+        name: "Pamela Jain",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_vu1SHZ9rChg",
+    name: "Lowlife Princess: Noir",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/bCnop4PvDyxMSDpfRSsrH2qsPQIbtC-lusjPTTZc_5CAJF31kaGdkqodsA3TJxxC0znl9ggWaHRAJ2s=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/bCnop4PvDyxMSDpfRSsrH2qsPQIbtC-lusjPTTZc_5CAJF31kaGdkqodsA3TJxxC0znl9ggWaHRAJ2s=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCWJKJhxr3a6P_z34eb7rmFw"),
+        name: "BIBI",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_JwQiX1z5G67",
+    name: "RIDE OR DIE",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/q_4Ma2K1VyRwOKgvFVxk7bYB7KSk5BDc58yzJ3F4TJSpnQtlR3tz40QkFJtMK6C8Za9fmvOEojlee7SR=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/q_4Ma2K1VyRwOKgvFVxk7bYB7KSk5BDc58yzJ3F4TJSpnQtlR3tz40QkFJtMK6C8Za9fmvOEojlee7SR=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCfjHG2KXoUrByv8MCSf6-LA"),
+        name: "LUVRE47",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_3RCwQb23bZL",
+    name: "Sunset",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/zgpArNDrwlHPCDii_uT8ShTZ3dwrinW4KrIW5QKdpuSELm-kK-JHQTxoFHB59KB5bJQMWgYrBSsZqXKZ=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/zgpArNDrwlHPCDii_uT8ShTZ3dwrinW4KrIW5QKdpuSELm-kK-JHQTxoFHB59KB5bJQMWgYrBSsZqXKZ=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCy0W7pwUVNzrLVmIEKTkNSQ"),
+        name: "Roberto Kabina",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_NrL9Bbzyhf7",
+    name: "Diamonds & Rhinestones: The Greatest Hits Collection",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/KIV1E1EktGyvaCkx30pZkAilCDV39dGDH6EuhJa7sIAUpi4QhMq8bVJrH3pcf4jBxHZ_MGMwm4yP43k=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/KIV1E1EktGyvaCkx30pZkAilCDV39dGDH6EuhJa7sIAUpi4QhMq8bVJrH3pcf4jBxHZ_MGMwm4yP43k=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCXJscayh5BT8m2ZVFQSdeVw"),
+        name: "Dolly Parton",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_tiLecPhH5fW",
+    name: "Silver Bells",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/gIRSlMZTuMS3kpRv3E2ri00aLdaUOJGF_mK2v7RwG7r4miklclA4xs_HCnEPANlIQ8gsDFEFycNhZ4I=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/gIRSlMZTuMS3kpRv3E2ri00aLdaUOJGF_mK2v7RwG7r4miklclA4xs_HCnEPANlIQ8gsDFEFycNhZ4I=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCwEeCuFQo7gH6dcMeNnLg1A"),
+        name: "André Rieu",
+      ),
+      ArtistId(
+        id: Some("UCLhv3Lo5bk2ug-sMBChargA"),
+        name: "Johann Strauss Orchestra",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_CQwCazpOHUW",
+    name: "young forever (extended)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/7WtOn2L45T7XvJ5I7qWjFFz1he574n0o4R1C1UAlBRmaAtuvoHsBJQgy_e7RKIDxmFibIM2UVHtJEog=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/7WtOn2L45T7XvJ5I7qWjFFz1he574n0o4R1C1UAlBRmaAtuvoHsBJQgy_e7RKIDxmFibIM2UVHtJEog=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCn81HiOrP7OO3SkdGvR6HPA"),
+        name: "Nessa Barrett",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_Ylxggw8R3kC",
+    name: "Barely Awsome",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/73wdmaZbzKTm23ka0-oU0SbHVcVtpHwk_I1VBf3rG86L1wyCtz6vyZK3AL6PuaFJQry78bE4aliqxDA=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/73wdmaZbzKTm23ka0-oU0SbHVcVtpHwk_I1VBf3rG86L1wyCtz6vyZK3AL6PuaFJQry78bE4aliqxDA=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCnL5ZocATjKZZ3IH_DXODkw"),
+        name: "Mr. Schnubs",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_HdXTucmMwQZ",
+    name: "SOS (Chapitre 3)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/3ScujA7w6Hcdh5FD00I4tPaV_JC_VAgnf9OvNApjHL9dM744JLn0zr2fOzjBffYe7EcVSWvDAzMkGKo=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/3ScujA7w6Hcdh5FD00I4tPaV_JC_VAgnf9OvNApjHL9dM744JLn0zr2fOzjBffYe7EcVSWvDAzMkGKo=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCzB2BJ-eZel88EH4IUZATrA"),
+        name: "Nej\'",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_EinaSyFwqxV",
+    name: "Bohème (English Version)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/OkDgry6I-sYASfqSMq146uUgYl6RHLNHxXxZgWO046cMZpAB9NGpovgqZitYgfFoqsDEhTOuWxUWqzKt=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/OkDgry6I-sYASfqSMq146uUgYl6RHLNHxXxZgWO046cMZpAB9NGpovgqZitYgfFoqsDEhTOuWxUWqzKt=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCFwFmMRTIVhsUtdudux_p4w"),
+        name: "Annett Louisan",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_aQ7ibCJWEEn",
+    name: "Ella Live on Stage: The Duke Ellington Songbook",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/vSuVn-1dlNJGm_XCjts3_j9_256k4K4jLHzFO-F_a54ktDRQNKZC74N1tt4DZWyRIMBTQfS7pFm_5WfB=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/vSuVn-1dlNJGm_XCjts3_j9_256k4K4jLHzFO-F_a54ktDRQNKZC74N1tt4DZWyRIMBTQfS7pFm_5WfB=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCuMHq8jMRZXpUxSGLBuCa9g"),
+        name: "Ella Fitzgerald",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_JjcoLwUVEnC",
+    name: "Dünya",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/ow2_MIWSr7BnhLYc_EaTRpj6EXyDh6-8CgyKdORXZmEUY2oKRvUChfzjxL22jlfSK8_SpgN0GOHhLg0=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/ow2_MIWSr7BnhLYc_EaTRpj6EXyDh6-8CgyKdORXZmEUY2oKRvUChfzjxL22jlfSK8_SpgN0GOHhLg0=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCNWORQud7YePhTxexu1qRFg"),
+        name: "Umut Capone",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_yZdhhuVF65x",
+    name: "BROKEN HEARTS",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/epdCOig0or4ItGQdLcViJmRqmOtR69h3lYTrCehkS3AeSAOiUeZMvGSgtihE3z1yOr0Qc0MZBvytUM-U=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/epdCOig0or4ItGQdLcViJmRqmOtR69h3lYTrCehkS3AeSAOiUeZMvGSgtihE3z1yOr0Qc0MZBvytUM-U=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCighp0MtP4WdjnNJQtrTiJQ"),
+        name: "AViVA",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_PLpexIiYKSB",
+    name: "Après (10th-anniversary edition)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/UX99vPfcVF_h2RWRAMOPCTykcvGPEuf56DhFkro7JWved34oHfn7SkplarX-QCz_OLE4G5sLKh2o58k=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/UX99vPfcVF_h2RWRAMOPCTykcvGPEuf56DhFkro7JWved34oHfn7SkplarX-QCz_OLE4G5sLKh2o58k=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCN2OwEXNYJFzgHvR7912Btg"),
+        name: "Iggy Pop",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_lPFQCVIkFa5",
+    name: "Тебя любят там где меня нет",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/KhRG9SESLbAjZcpZ4bV6t2iNQFaTSRP5Kgg9Mqc2qLupQm4t8txuIOiLjTGyD9ZpA56mmRs0LPbKvr_qGQ=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/KhRG9SESLbAjZcpZ4bV6t2iNQFaTSRP5Kgg9Mqc2qLupQm4t8txuIOiLjTGyD9ZpA56mmRs0LPbKvr_qGQ=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCLUW0Kr_w2nG0mv8q_qamxQ"),
+        name: "kizaru",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_jyUYAae7RiH",
+    name: "Zillertaler Weihnacht (Volumes 2)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/k_b23btdjq2-NdW04uRNJULLSA6XKQ3OavDd-mo94vC3Nmxi8PXvtHN9CVj0SiUWgeBw7NAxdcjLHak=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/k_b23btdjq2-NdW04uRNJULLSA6XKQ3OavDd-mo94vC3Nmxi8PXvtHN9CVj0SiUWgeBw7NAxdcjLHak=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCfTUgzPRMoYWYjrwS5BgWfA"),
+        name: "Marc Pircher",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_Vm3GgHWOU3y",
+    name: "Konsum",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/ONVJcvni2DnryQ-hEzkZw10qalzKCeT-ULWAuTxXPgL9MBplkOMJCPeNgSOAzhwplC7qzqRDsng_ZSiC=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/ONVJcvni2DnryQ-hEzkZw10qalzKCeT-ULWAuTxXPgL9MBplkOMJCPeNgSOAzhwplC7qzqRDsng_ZSiC=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCv83kiz_XGb4rfO0CXxzn5A"),
+        name: "King Khalil",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_ErE5k78Xdmh",
+    name: "Love Blooms",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/DGr7PuL63k3l8-_HBoH_l9FQPQREBzWEucK8Uq4xQbABcRzMYrh9wiK4QQp2yFRa8YaezYTEEDVMEDcP=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/DGr7PuL63k3l8-_HBoH_l9FQPQREBzWEucK8Uq4xQbABcRzMYrh9wiK4QQp2yFRa8YaezYTEEDVMEDcP=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCGknzG6-_Eh_jm_GcNkkYrQ"),
+        name: "Adam Kucho",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_zheBlNIIngB",
+    name: "Autobahn",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/1od8bp9fjrfPVxVii1GZJyy67CeufWqQyGbrvW2gw9fZNOMR1RbL5gWGLsVG0x5IehvlB3seVlcIJ1bOLw=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/1od8bp9fjrfPVxVii1GZJyy67CeufWqQyGbrvW2gw9fZNOMR1RbL5gWGLsVG0x5IehvlB3seVlcIJ1bOLw=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCGyvS9Y1RU6CeTW78bltfjA"),
+        name: "SCH",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_jhPUkyZjBng",
+    name: "Golden Collections Of Unnikrishnan Vol-1",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/ky10srj9yd7w0FGkynm_YELuXXRGzOayzc_YmNgJhxgso7_c0BJLQ9701Q1OZgyKXdz8PF7YFg4LK14-2A=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/ky10srj9yd7w0FGkynm_YELuXXRGzOayzc_YmNgJhxgso7_c0BJLQ9701Q1OZgyKXdz8PF7YFg4LK14-2A=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCtJe0RYzgPddQXKtWduxz_w"),
+        name: "A.R. Rahman",
+      ),
+      ArtistId(
+        id: Some("UCzfoYbOcY3H5XUO2Ah_SPZg"),
+        name: "Deva",
+      ),
+      ArtistId(
+        id: Some("UCwzzSiogpjsYBMoyVcwDXwQ"),
+        name: "Ilaiyaraaja",
+      ),
+      ArtistId(
+        id: Some("UCvwJK8Q-N-mDruYbIzKFQTg"),
+        name: "Bharadwaj",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_oUPIOLLKcZU",
+    name: "Вдох",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/7pljjHSAGywRScxEoeg4i0gF9Hb7mG-_qyQIxW6h_mpHs5VUcGgKsaUMQHhh21zX20QI5AP5WZRmIiUfKw=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/7pljjHSAGywRScxEoeg4i0gF9Hb7mG-_qyQIxW6h_mpHs5VUcGgKsaUMQHhh21zX20QI5AP5WZRmIiUfKw=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCXNUMUQfREjoyzhxcXqpvGg"),
+        name: "Полина Гагарина",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_VcFlh3oWcsL",
+    name: "Аллилуйя",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/3mJ8ivxmZ12jwpuqCaanyTKeP3wjDuk7ebE4vPuSkOLV1rWdZrn7zvkWwCNHpLOBTlZXwHVvSzmBeHsL=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/3mJ8ivxmZ12jwpuqCaanyTKeP3wjDuk7ebE4vPuSkOLV1rWdZrn7zvkWwCNHpLOBTlZXwHVvSzmBeHsL=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCAbByxN5lRm8SIkq3YYVuYQ"),
+        name: "Би-2",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_HNiIvq9mWpY",
+    name: "E-SIDE 2",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/VWJEbqrXjfzXtZ70U5sB99ZIpTxMVLxe5M9OLXnABVzyae2gdVDAwWt1W3SiGAVKKim2qPbTFkAfH3vL=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/VWJEbqrXjfzXtZ70U5sB99ZIpTxMVLxe5M9OLXnABVzyae2gdVDAwWt1W3SiGAVKKim2qPbTFkAfH3vL=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCI6B8NkZKqlFWoiC_xE-hzA"),
+        name: "YOASOBI",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_hUNQ9hDlB3F",
+    name: "Le monde est méchant (V2)",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/j5uNrIsL9d2x_oc4YFOm1WeLnjpsh2J5EHon4RM3m5aGZTxRYwU8UaLaXzsaALVp9b3xpYqNPR2kgng=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/j5uNrIsL9d2x_oc4YFOm1WeLnjpsh2J5EHon4RM3m5aGZTxRYwU8UaLaXzsaALVp9b3xpYqNPR2kgng=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UC2ISePqOr39OQ90kNN1WLjA"),
+        name: "Niska",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_S4b9aiRySRz",
+    name: "Rab Se Kuchh Kah Diya",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/4OHyW2tR8pEFsnOsZo9DOhN5Qlv3wIM_IVmccvd3yQo3MnL3jqvbR4zwmlP_NNj330CbxHDJfYqHagYp=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/4OHyW2tR8pEFsnOsZo9DOhN5Qlv3wIM_IVmccvd3yQo3MnL3jqvbR4zwmlP_NNj330CbxHDJfYqHagYp=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCQd9dydn5gaib_uuVVkYZTQ"),
+        name: "Kumar Sanu",
+      ),
+      ArtistId(
+        id: Some("UCptBkLZ6XRxoyn8SkUMc_Iw"),
+        name: "Alka Yagnik",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_YnBlEB8HzCN",
+    name: "Tortured in the Name of God\'s Unconditional Love",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/DbTEhkVZ8IOu2xiCoz9CgXs4mHOQPVwiRFKRNWNWn1VT3D9mPtEeA2etUYAi6WAaD4l5VFzARTwM4fC1=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/DbTEhkVZ8IOu2xiCoz9CgXs4mHOQPVwiRFKRNWNWn1VT3D9mPtEeA2etUYAi6WAaD4l5VFzARTwM4fC1=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCbZKeXFPMh2lTPwOUDiHAAg"),
+        name: "Vinnie Paz",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_mhUQalR9rfe",
+    name: "Songs of the Highlands, Songs of the Sea",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/nysDpqGT-2psfTSXjMpLtrOl89aWKlgjBPsSY3-ucg75EEaMau5FkLdlNMIgNXqv26QXciSsfRGWWGwO=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/nysDpqGT-2psfTSXjMpLtrOl89aWKlgjBPsSY3-ucg75EEaMau5FkLdlNMIgNXqv26QXciSsfRGWWGwO=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCZ_J_0XGC5hkOt7W3eEMVUQ"),
+        name: "The Real McKenzies",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_XSJoGYzyiXG",
+    name: "The Concerts in China (40th Anniversary - Remastered Edition (Live))",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/RZjV8Q1qPxLrhiA9pgiDttEtJHfTujvJI5lA0b-al6S9Zzt-B6pP4SKVzHvlPCr8jImiTR4vXkQVcJFQ=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/RZjV8Q1qPxLrhiA9pgiDttEtJHfTujvJI5lA0b-al6S9Zzt-B6pP4SKVzHvlPCr8jImiTR4vXkQVcJFQ=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCgZdvpUfbbUiqJ6UvAdM7EQ"),
+        name: "Jean-Michel Jarre",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_4DOtrqoE7YC",
+    name: "First Love",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/IianFXChzSU8jg4vBn-w7cStHDXDPoBoS6aEPkQpnxqmBwQm213Tqc8_v0jTo5bQvVTWQukH5JdUgTHd1A=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/IianFXChzSU8jg4vBn-w7cStHDXDPoBoS6aEPkQpnxqmBwQm213Tqc8_v0jTo5bQvVTWQukH5JdUgTHd1A=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCBhSdacVokJLmtqxH-TrIig"),
+        name: "Merlin Ferez",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_OcjurPW3eI2",
+    name: "Neka Nova Jutra",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/Qwzw4CVgL_-gRdSTQliP1Lu2khMjdaEGwVLph2fWjhJCiwCdOCYXi4DeUGlkUMHum1th25NKADq0nZ8=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/Qwzw4CVgL_-gRdSTQliP1Lu2khMjdaEGwVLph2fWjhJCiwCdOCYXi4DeUGlkUMHum1th25NKADq0nZ8=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCsNH8wD_AZXHnOlLKsV6KsQ"),
+        name: "Crvena Jabuka",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_hlqGj6o1NjZ",
+    name: "Just Piano",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/b0ns5414ncUdMo5ZO74Tzf6ersh6DFY6PFVQqKRwfnO84JNz6-fv4mTSYeTm0lZ6ZshJQuTfyYX4CIPP=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/b0ns5414ncUdMo5ZO74Tzf6ersh6DFY6PFVQqKRwfnO84JNz6-fv4mTSYeTm0lZ6ZshJQuTfyYX4CIPP=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCXbHzF6K7-9KnfT69_tdMSw"),
+        name: "Patti Canyoudothisin",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+  AlbumItem(
+    id: "MPREb_H3r6dBHEX8Z",
+    name: "ATUM - Act I",
+    cover: [
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/hzQe2_BuaX91-5AxtnN3GA4Gaun4AxMT2wFesGSCYKGrC06iSvRiLf-SyYwTa26_w_W-4q8v5Ko1m8Di=w226-h226-l90-rj",
+        width: 226,
+        height: 226,
+      ),
+      Thumbnail(
+        url: "https://lh3.googleusercontent.com/hzQe2_BuaX91-5AxtnN3GA4Gaun4AxMT2wFesGSCYKGrC06iSvRiLf-SyYwTa26_w_W-4q8v5Ko1m8Di=w544-h544-l90-rj",
+        width: 544,
+        height: 544,
+      ),
+    ],
+    artists: [
+      ArtistId(
+        id: Some("UCZM3bF24BS-qDMe0OigpeZw"),
+        name: "The Smashing Pumpkins",
+      ),
+    ],
+    album_type: Album,
+    year: None,
+    by_va: false,
+  ),
+]
