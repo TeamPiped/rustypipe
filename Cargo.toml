@@ -43,12 +43,12 @@ filenamify = "0.1.0"
 ress = "0.11.4"
 phf  = "0.11.1"
 base64 = "0.13.0"
-quick-xml = {version = "0.25.0", features = ["serialize"], optional = true}
+quick-xml = {version = "0.26.0", features = ["serialize"], optional = true}
 
 [dev-dependencies]
-env_logger = "0.9.0"
+env_logger = "0.10.0"
 test-log = "0.2.11"
-rstest = "0.15.0"
+rstest = "0.16.0"
 temp_testdir = "0.2.3"
 insta = {version = "1.17.1", features = ["ron", "redactions"]}
 velcro = "0.5.3"
