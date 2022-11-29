@@ -36,6 +36,7 @@ enum Commands {
     },
 }
 
+#[allow(clippy::too_many_arguments)]
 async fn download_single_video(
     video_id: String,
     video_title: String,

@@ -9,6 +9,5 @@ repos:
     rev: v0.1.0
     hooks:
       - id: cargo-fmt
-      - id: cargo-check
       - id: cargo-clippy
-        args: ["--", "-D", "warnings"]
+        args: ["--all", "--all-features", "--", "-D", "warnings"]
