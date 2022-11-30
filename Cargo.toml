@@ -61,4 +61,3 @@ rstest = "0.16.0"
 temp_testdir = "0.2.3"
 insta = { version = "1.17.1", features = ["ron", "redactions"] }
 path_macro = "1.0.0"
-velcro = "0.5.3"

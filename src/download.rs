@@ -292,7 +292,7 @@ pub async fn download_video(
     output_dir: &str,
     output_fname: Option<String>,
     output_format: Option<String>,
-    filter: &StreamFilter,
+    filter: &StreamFilter<'_>,
     ffmpeg: &str,
     http: Client,
     pb: ProgressBar,
