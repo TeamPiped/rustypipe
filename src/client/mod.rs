@@ -397,8 +397,8 @@ impl RustyPipeBuilder {
     ///
     /// **Default value**: `Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0`
     /// (Firefox ESR on Debian)
-    pub fn user_agent(mut self, user_agent: &str) -> Self {
-        self.user_agent = user_agent.to_owned();
+    pub fn user_agent<S: Into<String>>(mut self, user_agent: S) -> Self {
+        self.user_agent = user_agent.into();
         self
     }
 
@@ -444,8 +444,8 @@ impl RustyPipeBuilder {
     }
 
     /// Set the default YouTube visitor data cookie
-    pub fn visitor_data(mut self, visitor_data: &str) -> Self {
-        self.default_opts.visitor_data = Some(visitor_data.to_owned());
+    pub fn visitor_data<S: Into<String>>(mut self, visitor_data: S) -> Self {
+        self.default_opts.visitor_data = Some(visitor_data.into());
         self
     }
 
@@ -778,8 +778,8 @@ impl RustyPipeQuery {
     }
 
     /// Set the YouTube visitor data cookie
-    pub fn visitor_data(mut self, visitor_data: &str) -> Self {
-        self.opts.visitor_data = Some(visitor_data.to_owned());
+    pub fn visitor_data<S: Into<String>>(mut self, visitor_data: S) -> Self {
+        self.opts.visitor_data = Some(visitor_data.into());
         self
     }
 
