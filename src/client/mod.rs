@@ -1164,6 +1164,12 @@ impl RustyPipeQuery {
     }
 }
 
+impl AsRef<RustyPipeQuery> for RustyPipeQuery {
+    fn as_ref(&self) -> &RustyPipeQuery {
+        self
+    }
+}
+
 /// Implement this for YouTube API response structs that need to be mapped to
 /// RustyPipe models.
 trait MapResponse<T> {

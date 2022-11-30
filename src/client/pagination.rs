@@ -176,10 +176,11 @@ impl MapResponse<Paginator<MusicItem>> for response::MusicContinuation {
 }
 
 impl<T: FromYtItem> Paginator<T> {
-    pub async fn next(&self, query: &RustyPipeQuery) -> Result<Option<Self>, Error> {
+    pub async fn next<Q: AsRef<RustyPipeQuery>>(&self, query: Q) -> Result<Option<Self>, Error> {
         Ok(match &self.ctoken {
             Some(ctoken) => Some(
                 query
+                    .as_ref()
                     .continuation(ctoken, self.endpoint, self.visitor_data.as_deref())
                     .await?,
             ),
@@ -187,7 +188,7 @@ impl<T: FromYtItem> Paginator<T> {
         })
     }
 
-    pub async fn extend(&mut self, query: &RustyPipeQuery) -> Result<bool, Error> {
+    pub async fn extend<Q: AsRef<RustyPipeQuery>>(&mut self, query: Q) -> Result<bool, Error> {
         match self.next(query).await {
             Ok(Some(paginator)) => {
                 let mut items = paginator.items;
@@ -200,11 +201,12 @@ impl<T: FromYtItem> Paginator<T> {
         }
     }
 
-    pub async fn extend_pages(
+    pub async fn extend_pages<Q: AsRef<RustyPipeQuery>>(
         &mut self,
-        query: &RustyPipeQuery,
+        query: Q,
         n_pages: usize,
     ) -> Result<(), Error> {
+        let query = query.as_ref();
         for _ in 0..n_pages {
             match self.extend(query).await {
                 Ok(false) => break,
@@ -215,11 +217,12 @@ impl<T: FromYtItem> Paginator<T> {
         Ok(())
     }
 
-    pub async fn extend_limit(
+    pub async fn extend_limit<Q: AsRef<RustyPipeQuery>>(
         &mut self,
-        query: &RustyPipeQuery,
+        query: Q,
         n_items: usize,
     ) -> Result<(), Error> {
+        let query = query.as_ref();
         while self.items.len() < n_items {
             match self.extend(query).await {
                 Ok(false) => break,
@@ -232,10 +235,11 @@ impl<T: FromYtItem> Paginator<T> {
 }
 
 impl Paginator<Comment> {
-    pub async fn next(&self, query: &RustyPipeQuery) -> Result<Option<Self>, Error> {
+    pub async fn next<Q: AsRef<RustyPipeQuery>>(&self, query: Q) -> Result<Option<Self>, Error> {
         Ok(match &self.ctoken {
             Some(ctoken) => Some(
                 query
+                    .as_ref()
                     .video_comments(ctoken, self.visitor_data.as_deref())
                     .await?,
             ),
@@ -245,9 +249,9 @@ impl Paginator<Comment> {
 }
 
 impl Paginator<PlaylistVideo> {
-    pub async fn next(&self, query: &RustyPipeQuery) -> Result<Option<Self>, Error> {
+    pub async fn next<Q: AsRef<RustyPipeQuery>>(&self, query: Q) -> Result<Option<Self>, Error> {
         Ok(match &self.ctoken {
-            Some(ctoken) => Some(query.playlist_continuation(ctoken).await?),
+            Some(ctoken) => Some(query.as_ref().playlist_continuation(ctoken).await?),
             None => None,
         })
     }
@@ -256,7 +260,10 @@ impl Paginator<PlaylistVideo> {
 macro_rules! paginator {
     ($entity_type:ty) => {
         impl Paginator<$entity_type> {
-            pub async fn extend(&mut self, query: &RustyPipeQuery) -> Result<bool, Error> {
+            pub async fn extend<Q: AsRef<RustyPipeQuery>>(
+                &mut self,
+                query: Q,
+            ) -> Result<bool, Error> {
                 match self.next(query).await {
                     Ok(Some(paginator)) => {
                         let mut items = paginator.items;
@@ -269,11 +276,12 @@ macro_rules! paginator {
                 }
             }
 
-            pub async fn extend_pages(
+            pub async fn extend_pages<Q: AsRef<RustyPipeQuery>>(
                 &mut self,
-                query: &RustyPipeQuery,
+                query: Q,
                 n_pages: usize,
             ) -> Result<(), Error> {
+                let query = query.as_ref();
                 for _ in 0..n_pages {
                     match self.extend(query).await {
                         Ok(false) => break,
@@ -284,11 +292,12 @@ macro_rules! paginator {
                 Ok(())
             }
 
-            pub async fn extend_limit(
+            pub async fn extend_limit<Q: AsRef<RustyPipeQuery>>(
                 &mut self,
-                query: &RustyPipeQuery,
+                query: Q,
                 n_items: usize,
             ) -> Result<(), Error> {
+                let query = query.as_ref();
                 while self.items.len() < n_items {
                     match self.extend(query).await {
                         Ok(false) => break,

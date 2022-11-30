@@ -380,7 +380,7 @@ async fn playlist_cont() {
 
     playlist
         .videos
-        .extend_pages(&rp.query(), usize::MAX)
+        .extend_pages(rp.query(), usize::MAX)
         .await
         .unwrap();
     assert!(playlist.videos.items.len() > 100);
@@ -396,11 +396,7 @@ async fn playlist_cont2() {
         .await
         .unwrap();
 
-    playlist
-        .videos
-        .extend_limit(&rp.query(), 101)
-        .await
-        .unwrap();
+    playlist.videos.extend_limit(rp.query(), 101).await.unwrap();
     assert!(playlist.videos.items.len() > 100);
     assert!(playlist.videos.count.unwrap() > 100);
 }
@@ -461,7 +457,7 @@ async fn get_video_details() {
     assert!(!details.is_ccommons);
 
     assert!(details.recommended.visitor_data.is_some());
-    assert_next(details.recommended, &rp.query(), 10, 2).await;
+    assert_next(details.recommended, rp.query(), 10, 2).await;
 
     assert_gte(details.top_comments.count.unwrap(), 700_000, "comments");
     assert!(!details.top_comments.is_exhausted());
@@ -499,7 +495,7 @@ async fn get_video_details_music() {
     assert!(!details.is_ccommons);
 
     assert!(details.recommended.visitor_data.is_some());
-    assert_next(details.recommended, &rp.query(), 10, 2).await;
+    assert_next(details.recommended, rp.query(), 10, 2).await;
 
     // Update(01.11.2022): comments are sometimes enabled
     /*
@@ -548,7 +544,7 @@ async fn get_video_details_ccommons() {
     assert!(details.is_ccommons);
 
     assert!(details.recommended.visitor_data.is_some());
-    assert_next(details.recommended, &rp.query(), 10, 2).await;
+    assert_next(details.recommended, rp.query(), 10, 2).await;
 
     assert_gte(details.top_comments.count.unwrap(), 2199, "comments");
     assert!(!details.top_comments.is_exhausted());
@@ -673,7 +669,7 @@ async fn get_video_details_chapters() {
     }
 
     assert!(details.recommended.visitor_data.is_some());
-    assert_next(details.recommended, &rp.query(), 10, 2).await;
+    assert_next(details.recommended, rp.query(), 10, 2).await;
 
     assert_gte(details.top_comments.count.unwrap(), 3200, "comments");
     assert!(!details.top_comments.is_exhausted());
@@ -718,7 +714,7 @@ async fn get_video_details_live() {
     assert!(!details.is_ccommons);
 
     assert!(details.recommended.visitor_data.is_some());
-    assert_next(details.recommended, &rp.query(), 10, 2).await;
+    assert_next(details.recommended, rp.query(), 10, 2).await;
 
     // No comments because livestream
     assert_eq!(details.top_comments.count, Some(0));
@@ -786,7 +782,7 @@ async fn get_video_comments() {
 
     let top_comments = details
         .top_comments
-        .next(&rp.query())
+        .next(rp.query())
         .await
         .unwrap()
         .unwrap();
@@ -805,7 +801,7 @@ async fn get_video_comments() {
 
     let latest_comments = details
         .latest_comments
-        .next(&rp.query())
+        .next(rp.query())
         .await
         .unwrap()
         .unwrap();
@@ -839,7 +835,7 @@ async fn channel_videos() {
 
     assert!(age_days < 60, "latest video older than 60 days");
 
-    assert_next(channel.content, &rp.query(), 15, 2).await;
+    assert_next(channel.content, rp.query(), 15, 2).await;
 }
 
 #[tokio::test]
@@ -873,7 +869,7 @@ async fn channel_shorts() {
         "got no shorts"
     );
 
-    assert_next(channel.content, &rp.query(), 15, 1).await;
+    assert_next(channel.content, rp.query(), 15, 1).await;
 }
 
 #[tokio::test]
@@ -893,7 +889,7 @@ async fn channel_livestreams() {
         "got no streams"
     );
 
-    assert_next(channel.content, &rp.query(), 5, 1).await;
+    assert_next(channel.content, rp.query(), 5, 1).await;
 }
 
 #[tokio::test]
@@ -912,7 +908,7 @@ async fn channel_playlists() {
         "got no playlists"
     );
 
-    assert_next(channel.content, &rp.query(), 15, 1).await;
+    assert_next(channel.content, rp.query(), 15, 1).await;
 }
 
 #[tokio::test]
@@ -1099,7 +1095,7 @@ async fn search() {
     );
     assert_eq!(result.corrected_query.unwrap(), "doobydobap");
 
-    assert_next(result.items, &rp.query(), 10, 2).await;
+    assert_next(result.items, rp.query(), 10, 2).await;
 }
 
 #[rstest]
@@ -1115,7 +1111,7 @@ async fn search_filter_entity(#[case] entity: search_filter::Entity) {
         .await
         .unwrap();
 
-    result.items.extend(&rp.query()).await.unwrap();
+    result.items.extend(rp.query()).await.unwrap();
     assert_gte(result.items.items.len(), 20, "items");
 
     result.items.items.iter().for_each(|item| match item {
@@ -1243,7 +1239,7 @@ async fn startpage() {
     // The startpage requires visitor data to fetch continuations
     assert!(startpage.visitor_data.is_some());
 
-    assert_next(startpage, &rp.query(), 20, 2).await;
+    assert_next(startpage, rp.query(), 20, 2).await;
 }
 
 #[tokio::test]
@@ -1321,7 +1317,7 @@ async fn music_playlist_cont() {
 
     playlist
         .tracks
-        .extend_pages(&rp.query(), usize::MAX)
+        .extend_pages(rp.query(), usize::MAX)
         .await
         .unwrap();
 
@@ -1338,11 +1334,7 @@ async fn music_playlist_related() {
         .await
         .unwrap();
 
-    playlist
-        .related_playlists
-        .extend(&rp.query())
-        .await
-        .unwrap();
+    playlist.related_playlists.extend(rp.query()).await.unwrap();
 
     assert_gte(
         playlist.related_playlists.items.len(),
@@ -1571,7 +1563,7 @@ async fn music_search_tracks() {
     assert_eq!(album.id, "MPREb_OpHWHwyNOuY");
     assert_eq!(album.name, "Black Mamba");
 
-    assert_next(res.items, &rp.query(), 15, 2).await;
+    assert_next(res.items, rp.query(), 15, 2).await;
 }
 
 #[tokio::test]
@@ -1605,7 +1597,7 @@ async fn music_search_videos() {
     assert_eq!(track.album, None);
     assert_gte(track.view_count.unwrap(), 230_000_000, "views");
 
-    assert_next(res.items, &rp.query(), 15, 2).await;
+    assert_next(res.items, rp.query(), 15, 2).await;
 }
 
 #[tokio::test]
@@ -1692,7 +1684,7 @@ async fn music_search_albums(
 
     assert_eq!(res.corrected_query, None);
 
-    assert_next(res.items, &rp.query(), 15, n_pages).await;
+    assert_next(res.items, rp.query(), 15, n_pages).await;
 }
 
 #[tokio::test]
@@ -1724,7 +1716,7 @@ async fn music_search_artists_cont() {
     let res = rp.query().music_search_artists("band").await.unwrap();
 
     assert_eq!(res.corrected_query, None);
-    assert_next(res.items, &rp.query(), 15, 2).await;
+    assert_next(res.items, rp.query(), 15, 2).await;
 }
 
 #[rstest]
@@ -2000,7 +1992,7 @@ async fn music_details_not_found() {
 async fn music_radio_track() {
     let rp = RustyPipe::builder().strict().build();
     let tracks = rp.query().music_radio_track("ZeerrnuLi5E").await.unwrap();
-    assert_next(tracks, &rp.query(), 20, 3).await;
+    assert_next(tracks, rp.query(), 20, 3).await;
 }
 
 #[tokio::test]
@@ -2030,7 +2022,7 @@ async fn music_radio_playlist() {
         .music_radio_playlist("PL5dDx681T4bR7ZF1IuWzOv1omlRbE7PiJ")
         .await
         .unwrap();
-    assert_next(tracks, &rp.query(), 10, 1).await;
+    assert_next(tracks, rp.query(), 10, 1).await;
 }
 
 #[tokio::test]
@@ -2121,13 +2113,14 @@ fn assert_gte<T: PartialOrd + Display>(a: T, b: T, msg: &str) {
     assert!(a >= b, "expected {} {}, got {}", b, msg, a);
 }
 
-async fn assert_next<T: FromYtItem>(
+async fn assert_next<T: FromYtItem, Q: AsRef<RustyPipeQuery>>(
     paginator: Paginator<T>,
-    query: &RustyPipeQuery,
+    query: Q,
     min_items: usize,
     n_pages: usize,
 ) {
     let mut p = paginator;
+    let query = query.as_ref();
     assert_gte(p.items.len(), min_items, "items on page 0");
 
     for i in 0..n_pages {
