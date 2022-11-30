@@ -2,7 +2,7 @@ use std::borrow::Cow;
 
 use crate::{
     error::{Error, ExtractionError},
-    model::{AlbumId, ChannelId, MusicAlbum, MusicPlaylist, Paginator},
+    model::{AlbumId, ChannelId, MusicAlbum, MusicPlaylist, Paginator, TrackItem},
     serializer::MapResult,
     util::{self, TryRemove},
 };
@@ -65,8 +65,6 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
     ) -> Result<MapResult<MusicPlaylist>, ExtractionError> {
         // dbg!(&self);
 
-        let header = self.header.music_detail_header_renderer;
-
         let mut content = self.contents.single_column_browse_results_renderer.contents;
         let mut music_contents = content
             .try_swap_remove(0)
@@ -85,30 +83,14 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
                 "no sectionListRenderer content",
             )))?;
 
-        let playlist_id = shelf
-            .playlist_id
-            .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
-                "no playlist id",
-            )))?;
-
-        if playlist_id != id {
-            return Err(ExtractionError::WrongResult(format!(
-                "got wrong playlist id {}, expected {}",
-                playlist_id, id
-            )));
+        if let Some(playlist_id) = shelf.playlist_id {
+            if playlist_id != id {
+                return Err(ExtractionError::WrongResult(format!(
+                    "got wrong playlist id {}, expected {}",
+                    playlist_id, id
+                )));
+            }
         }
-
-        let from_ytm = header
-            .subtitle
-            .0
-            .iter()
-            .any(|c| c.as_str() == util::YT_MUSIC_NAME);
-
-        let channel = header
-            .subtitle
-            .0
-            .into_iter()
-            .find_map(|c| ChannelId::try_from(c).ok());
 
         let mut mapper = MusicListMapper::new(lang);
         mapper.map_response(shelf.contents);
@@ -120,10 +102,12 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
             .map(|cont| cont.next_continuation_data.continuation);
 
         let track_count = match ctoken {
-            Some(_) => header
-                .second_subtitle
-                .first()
-                .and_then(|txt| util::parse_numeric::<u64>(txt).ok()),
+            Some(_) => self.header.as_ref().and_then(|h| {
+                h.music_detail_header_renderer
+                    .second_subtitle
+                    .first()
+                    .and_then(|txt| util::parse_numeric::<u64>(txt).ok())
+            }),
             None => Some(map_res.c.len() as u64),
         };
 
@@ -132,13 +116,63 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
             .try_swap_remove(0)
             .map(|c| c.next_continuation_data.continuation);
 
+        let (from_ytm, channel, name, thumbnail, description) = match self.header {
+            Some(header) => {
+                let h = header.music_detail_header_renderer;
+
+                let from_ytm = h
+                    .subtitle
+                    .0
+                    .iter()
+                    .any(|c| c.as_str() == util::YT_MUSIC_NAME);
+                let channel = h
+                    .subtitle
+                    .0
+                    .into_iter()
+                    .find_map(|c| ChannelId::try_from(c).ok());
+
+                (
+                    from_ytm,
+                    channel,
+                    h.title,
+                    h.thumbnail.into(),
+                    h.description,
+                )
+            }
+            None => {
+                // Album playlists fetched via the playlist method dont include a header
+                let (album, cover) = map_res
+                    .c
+                    .first()
+                    .and_then(|t: &TrackItem| {
+                        t.album.as_ref().map(|a| (a.clone(), t.cover.clone()))
+                    })
+                    .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
+                        "playlist without header or album items",
+                    )))?;
+
+                if !map_res.c.iter().all(|t| {
+                    t.album
+                        .as_ref()
+                        .map(|a| a.id == album.id)
+                        .unwrap_or_default()
+                }) {
+                    return Err(ExtractionError::InvalidData(Cow::Borrowed(
+                        "album playlist containing items from different albums",
+                    )));
+                }
+
+                (true, None, album.name, cover, None)
+            }
+        };
+
         Ok(MapResult {
             c: MusicPlaylist {
-                id: playlist_id,
-                name: header.title,
-                thumbnail: header.thumbnail.into(),
+                id: id.to_owned(),
+                name,
+                thumbnail,
                 channel,
-                description: header.description,
+                description,
                 track_count,
                 from_ytm,
                 tracks: Paginator::new_ext(
@@ -170,7 +204,10 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
     ) -> Result<MapResult<MusicAlbum>, ExtractionError> {
         // dbg!(&self);
 
-        let header = self.header.music_detail_header_renderer;
+        let header = self
+            .header
+            .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no header")))?
+            .music_detail_header_renderer;
 
         let mut content = self.contents.single_column_browse_results_renderer.contents;
         let sections = content

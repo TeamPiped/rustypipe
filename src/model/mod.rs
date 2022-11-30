@@ -1031,7 +1031,7 @@ pub struct ArtistId {
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[non_exhaustive]
 pub struct AlbumItem {
-    /// Unique YouTube album ID (e.g. `OLAK5uy_nZpcQys48R0aNb046hV-n1OAHGE4reftQ`)
+    /// Unique YouTube album ID (e.g. `MPREb_T5s950Swfdy`)
     pub id: String,
     /// Album name
     pub name: String,

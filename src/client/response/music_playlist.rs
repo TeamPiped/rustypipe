@@ -11,7 +11,7 @@ use super::{ContentsRenderer, Tab};
 #[serde(rename_all = "camelCase")]
 pub(crate) struct MusicPlaylist {
     pub contents: Contents,
-    pub header: Header,
+    pub header: Option<Header>,
 }
 
 #[derive(Debug, Deserialize)]
