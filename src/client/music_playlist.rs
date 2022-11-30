@@ -16,7 +16,11 @@ use super::{
 };
 
 impl RustyPipeQuery {
-    pub async fn music_playlist(&self, playlist_id: &str) -> Result<MusicPlaylist, Error> {
+    pub async fn music_playlist<S: AsRef<str>>(
+        &self,
+        playlist_id: S,
+    ) -> Result<MusicPlaylist, Error> {
+        let playlist_id = playlist_id.as_ref();
         let context = self.get_context(ClientType::DesktopMusic, true, None).await;
         let request_body = QBrowse {
             context,
@@ -33,7 +37,8 @@ impl RustyPipeQuery {
         .await
     }
 
-    pub async fn music_album(&self, album_id: &str) -> Result<MusicAlbum, Error> {
+    pub async fn music_album<S: AsRef<str>>(&self, album_id: S) -> Result<MusicAlbum, Error> {
+        let album_id = album_id.as_ref();
         let context = self.get_context(ClientType::DesktopMusic, true, None).await;
         let request_body = QBrowse {
             context,

@@ -10,12 +10,13 @@ use super::response::music_item::{map_queue_item, MusicListMapper, PlaylistPanel
 use super::{response, ClientType, MapResponse, QContinuation, RustyPipeQuery};
 
 impl RustyPipeQuery {
-    pub async fn continuation<T: FromYtItem>(
+    pub async fn continuation<T: FromYtItem, S: AsRef<str>>(
         &self,
-        ctoken: &str,
+        ctoken: S,
         endpoint: ContinuationEndpoint,
         visitor_data: Option<&str>,
     ) -> Result<Paginator<T>, Error> {
+        let ctoken = ctoken.as_ref();
         if endpoint.is_music() {
             let context = self
                 .get_context(ClientType::DesktopMusic, true, visitor_data)

@@ -1609,8 +1609,15 @@ async fn music_search_episode() {
         .await
         .unwrap();
 
-    let track = &res.items.items[0];
-    assert_eq!(track.id, "Zq_-LDy7AgE");
+    let (i, track) = &res
+        .items
+        .items
+        .iter()
+        .enumerate()
+        .find(|(_, a)| a.id == "Zq_-LDy7AgE")
+        .unwrap();
+    assert!(*i < 3);
+
     assert_eq!(
         track.title,
         "Blond - Da muss man dabei gewesen sein: Das Hörspiel - Fall #1"

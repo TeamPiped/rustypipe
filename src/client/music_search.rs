@@ -50,7 +50,8 @@ enum Params {
 }
 
 impl RustyPipeQuery {
-    pub async fn music_search(&self, query: &str) -> Result<MusicSearchResult, Error> {
+    pub async fn music_search<S: AsRef<str>>(&self, query: S) -> Result<MusicSearchResult, Error> {
+        let query = query.as_ref();
         let context = self.get_context(ClientType::DesktopMusic, true, None).await;
         let request_body = QSearch {
             context,
@@ -68,25 +69,26 @@ impl RustyPipeQuery {
         .await
     }
 
-    pub async fn music_search_tracks(
+    pub async fn music_search_tracks<S: AsRef<str>>(
         &self,
-        query: &str,
+        query: S,
     ) -> Result<MusicSearchFiltered<TrackItem>, Error> {
         self._music_search_tracks(query, Params::Tracks).await
     }
 
-    pub async fn music_search_videos(
+    pub async fn music_search_videos<S: AsRef<str>>(
         &self,
-        query: &str,
+        query: S,
     ) -> Result<MusicSearchFiltered<TrackItem>, Error> {
         self._music_search_tracks(query, Params::Videos).await
     }
 
-    async fn _music_search_tracks(
+    async fn _music_search_tracks<S: AsRef<str>>(
         &self,
-        query: &str,
+        query: S,
         params: Params,
     ) -> Result<MusicSearchFiltered<TrackItem>, Error> {
+        let query = query.as_ref();
         let context = self.get_context(ClientType::DesktopMusic, true, None).await;
         let request_body = QSearch {
             context,
@@ -104,10 +106,11 @@ impl RustyPipeQuery {
         .await
     }
 
-    pub async fn music_search_albums(
+    pub async fn music_search_albums<S: AsRef<str>>(
         &self,
-        query: &str,
+        query: S,
     ) -> Result<MusicSearchFiltered<AlbumItem>, Error> {
+        let query = query.as_ref();
         let context = self.get_context(ClientType::DesktopMusic, true, None).await;
         let request_body = QSearch {
             context,
@@ -146,16 +149,16 @@ impl RustyPipeQuery {
         .await
     }
 
-    pub async fn music_search_playlists(
+    pub async fn music_search_playlists<S: AsRef<str>>(
         &self,
-        query: &str,
+        query: S,
     ) -> Result<MusicSearchFiltered<MusicPlaylistItem>, Error> {
         self._music_search_playlists(query, Params::Playlists).await
     }
 
-    pub async fn music_search_playlists_filter(
+    pub async fn music_search_playlists_filter<S: AsRef<str>>(
         &self,
-        query: &str,
+        query: S,
         community: bool,
     ) -> Result<MusicSearchFiltered<MusicPlaylistItem>, Error> {
         self._music_search_playlists(
@@ -168,11 +171,12 @@ impl RustyPipeQuery {
         .await
     }
 
-    async fn _music_search_playlists(
+    async fn _music_search_playlists<S: AsRef<str>>(
         &self,
-        query: &str,
+        query: S,
         params: Params,
     ) -> Result<MusicSearchFiltered<MusicPlaylistItem>, Error> {
+        let query = query.as_ref();
         let context = self.get_context(ClientType::DesktopMusic, true, None).await;
         let request_body = QSearch {
             context,
@@ -190,7 +194,11 @@ impl RustyPipeQuery {
         .await
     }
 
-    pub async fn music_search_suggestion(&self, query: &str) -> Result<Vec<String>, Error> {
+    pub async fn music_search_suggestion<S: AsRef<str>>(
+        &self,
+        query: S,
+    ) -> Result<Vec<String>, Error> {
+        let query = query.as_ref();
         let context = self.get_context(ClientType::DesktopMusic, true, None).await;
         let request_body = QSearchSuggestion {
             context,

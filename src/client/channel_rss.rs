@@ -9,10 +9,10 @@ use crate::{
 use super::{response, RustyPipeQuery};
 
 impl RustyPipeQuery {
-    pub async fn channel_rss(&self, channel_id: &str) -> Result<ChannelRss, Error> {
+    pub async fn channel_rss<S: AsRef<str>>(&self, channel_id: S) -> Result<ChannelRss, Error> {
         let url = format!(
             "https://www.youtube.com/feeds/videos.xml?channel_id={}",
-            channel_id
+            channel_id.as_ref()
         );
         let xml = self
             .client

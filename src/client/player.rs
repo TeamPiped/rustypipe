@@ -58,7 +58,8 @@ struct QContentPlaybackContext {
 }
 
 impl RustyPipeQuery {
-    pub async fn player(&self, video_id: &str) -> Result<VideoPlayer, Error> {
+    pub async fn player<S: AsRef<str>>(&self, video_id: S) -> Result<VideoPlayer, Error> {
+        let video_id = video_id.as_ref();
         let q1 = self.clone();
         let android_res = q1.player_from_client(video_id, ClientType::Android).await;
 
@@ -85,11 +86,12 @@ impl RustyPipeQuery {
         }
     }
 
-    pub async fn player_from_client(
+    pub async fn player_from_client<S: AsRef<str>>(
         &self,
-        video_id: &str,
+        video_id: S,
         client_type: ClientType,
     ) -> Result<VideoPlayer, Error> {
+        let video_id = video_id.as_ref();
         let (context, deobf) = tokio::join!(
             self.get_context(client_type, false, None),
             self.client.get_deobf()

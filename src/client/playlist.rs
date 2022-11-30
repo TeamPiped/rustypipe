@@ -14,7 +14,8 @@ use crate::{
 use super::{response, ClientType, MapResponse, MapResult, QBrowse, QContinuation, RustyPipeQuery};
 
 impl RustyPipeQuery {
-    pub async fn playlist(&self, playlist_id: &str) -> Result<Playlist, Error> {
+    pub async fn playlist<S: AsRef<str>>(&self, playlist_id: S) -> Result<Playlist, Error> {
+        let playlist_id = playlist_id.as_ref();
         let context = self.get_context(ClientType::Desktop, true, None).await;
         let request_body = QBrowse {
             context,
@@ -31,10 +32,11 @@ impl RustyPipeQuery {
         .await
     }
 
-    pub async fn playlist_continuation(
+    pub async fn playlist_continuation<S: AsRef<str>>(
         &self,
-        ctoken: &str,
+        ctoken: S,
     ) -> Result<Paginator<PlaylistVideo>, Error> {
+        let ctoken = ctoken.as_ref();
         let context = self.get_context(ClientType::Desktop, true, None).await;
         let request_body = QContinuation {
             context,

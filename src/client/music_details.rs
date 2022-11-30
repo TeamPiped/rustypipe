@@ -37,7 +37,8 @@ struct QRadio<'a> {
 }
 
 impl RustyPipeQuery {
-    pub async fn music_details(&self, video_id: &str) -> Result<TrackDetails, Error> {
+    pub async fn music_details<S: AsRef<str>>(&self, video_id: S) -> Result<TrackDetails, Error> {
+        let video_id = video_id.as_ref();
         let context = self.get_context(ClientType::DesktopMusic, true, None).await;
         let request_body = QMusicDetails {
             context,
@@ -57,7 +58,8 @@ impl RustyPipeQuery {
         .await
     }
 
-    pub async fn music_lyrics(&self, lyrics_id: &str) -> Result<Lyrics, Error> {
+    pub async fn music_lyrics<S: AsRef<str>>(&self, lyrics_id: S) -> Result<Lyrics, Error> {
+        let lyrics_id = lyrics_id.as_ref();
         let context = self.get_context(ClientType::DesktopMusic, true, None).await;
         let request_body = QBrowse {
             context,
@@ -74,7 +76,8 @@ impl RustyPipeQuery {
         .await
     }
 
-    pub async fn music_related(&self, related_id: &str) -> Result<MusicRelated, Error> {
+    pub async fn music_related<S: AsRef<str>>(&self, related_id: S) -> Result<MusicRelated, Error> {
+        let related_id = related_id.as_ref();
         let context = self.get_context(ClientType::DesktopMusic, true, None).await;
         let request_body = QBrowse {
             context,
@@ -91,7 +94,11 @@ impl RustyPipeQuery {
         .await
     }
 
-    pub async fn music_radio(&self, radio_id: &str) -> Result<Paginator<TrackItem>, Error> {
+    pub async fn music_radio<S: AsRef<str>>(
+        &self,
+        radio_id: S,
+    ) -> Result<Paginator<TrackItem>, Error> {
+        let radio_id = radio_id.as_ref();
         let context = self.get_context(ClientType::DesktopMusic, true, None).await;
         let request_body = QRadio {
             context,
@@ -112,15 +119,20 @@ impl RustyPipeQuery {
         .await
     }
 
-    pub async fn music_radio_track(&self, video_id: &str) -> Result<Paginator<TrackItem>, Error> {
-        self.music_radio(&format!("RDAMVM{}", video_id)).await
+    pub async fn music_radio_track<S: AsRef<str>>(
+        &self,
+        video_id: S,
+    ) -> Result<Paginator<TrackItem>, Error> {
+        self.music_radio(&format!("RDAMVM{}", video_id.as_ref()))
+            .await
     }
 
-    pub async fn music_radio_playlist(
+    pub async fn music_radio_playlist<S: AsRef<str>>(
         &self,
-        playlist_id: &str,
+        playlist_id: S,
     ) -> Result<Paginator<TrackItem>, Error> {
-        self.music_radio(&format!("RDAMPL{}", playlist_id)).await
+        self.music_radio(&format!("RDAMPL{}", playlist_id.as_ref()))
+            .await
     }
 }
 

@@ -41,12 +41,13 @@ enum Params {
 }
 
 impl RustyPipeQuery {
-    async fn _channel_videos(
+    async fn _channel_videos<S: AsRef<str>>(
         &self,
-        channel_id: &str,
+        channel_id: S,
         params: Params,
         operation: &str,
     ) -> Result<Channel<Paginator<VideoItem>>, Error> {
+        let channel_id = channel_id.as_ref();
         let context = self.get_context(ClientType::Desktop, true, None).await;
         let request_body = QChannel {
             context,
@@ -57,41 +58,42 @@ impl RustyPipeQuery {
         self.execute_request::<response::Channel, _, _>(
             ClientType::Desktop,
             operation,
-            channel_id,
+            channel_id.as_ref(),
             "browse",
             &request_body,
         )
         .await
     }
 
-    pub async fn channel_videos(
+    pub async fn channel_videos<S: AsRef<str>>(
         &self,
-        channel_id: &str,
+        channel_id: S,
     ) -> Result<Channel<Paginator<VideoItem>>, Error> {
         self._channel_videos(channel_id, Params::Videos, "channel_videos")
             .await
     }
 
-    pub async fn channel_shorts(
+    pub async fn channel_shorts<S: AsRef<str>>(
         &self,
-        channel_id: &str,
+        channel_id: S,
     ) -> Result<Channel<Paginator<VideoItem>>, Error> {
         self._channel_videos(channel_id, Params::Shorts, "channel_shorts")
             .await
     }
 
-    pub async fn channel_livestreams(
+    pub async fn channel_livestreams<S: AsRef<str>>(
         &self,
-        channel_id: &str,
+        channel_id: S,
     ) -> Result<Channel<Paginator<VideoItem>>, Error> {
         self._channel_videos(channel_id, Params::Live, "channel_livestreams")
             .await
     }
 
-    pub async fn channel_playlists(
+    pub async fn channel_playlists<S: AsRef<str>>(
         &self,
-        channel_id: &str,
+        channel_id: S,
     ) -> Result<Channel<Paginator<PlaylistItem>>, Error> {
+        let channel_id = channel_id.as_ref();
         let context = self.get_context(ClientType::Desktop, true, None).await;
         let request_body = QChannel {
             context,
@@ -109,7 +111,11 @@ impl RustyPipeQuery {
         .await
     }
 
-    pub async fn channel_info(&self, channel_id: &str) -> Result<Channel<ChannelInfo>, Error> {
+    pub async fn channel_info<S: AsRef<str>>(
+        &self,
+        channel_id: S,
+    ) -> Result<Channel<ChannelInfo>, Error> {
+        let channel_id = channel_id.as_ref();
         let context = self.get_context(ClientType::Desktop, true, None).await;
         let request_body = QChannel {
             context,

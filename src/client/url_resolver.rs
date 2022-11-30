@@ -20,8 +20,12 @@ struct QResolveUrl<'a> {
 }
 
 impl RustyPipeQuery {
-    pub async fn resolve_url(self, url: &str, resolve_albums: bool) -> Result<UrlTarget, Error> {
-        let (url, params) = util::url_to_params(url)?;
+    pub async fn resolve_url<S: AsRef<str>>(
+        self,
+        url: S,
+        resolve_albums: bool,
+    ) -> Result<UrlTarget, Error> {
+        let (url, params) = util::url_to_params(url.as_ref())?;
 
         let mut is_shortlink = url.domain().and_then(|d| match d {
             "youtu.be" => Some(true),

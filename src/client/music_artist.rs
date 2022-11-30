@@ -26,11 +26,13 @@ struct QBrowseParams<'a> {
 }
 
 impl RustyPipeQuery {
-    pub async fn music_artist(
+    pub async fn music_artist<S: AsRef<str>>(
         &self,
-        artist_id: &str,
+        artist_id: S,
         all_albums: bool,
     ) -> Result<MusicArtist, Error> {
+        let artist_id = artist_id.as_ref();
+
         if all_albums {
             let visitor_data = self.get_ytm_visitor_data().await?;
             let context = self

@@ -21,7 +21,8 @@ struct QSearch<'a> {
 }
 
 impl RustyPipeQuery {
-    pub async fn search(&self, query: &str) -> Result<SearchResult, Error> {
+    pub async fn search<S: AsRef<str>>(&self, query: S) -> Result<SearchResult, Error> {
+        let query = query.as_ref();
         let context = self.get_context(ClientType::Desktop, true, None).await;
         let request_body = QSearch {
             context,
@@ -39,11 +40,12 @@ impl RustyPipeQuery {
         .await
     }
 
-    pub async fn search_filter(
+    pub async fn search_filter<S: AsRef<str>>(
         &self,
-        query: &str,
+        query: S,
         filter: &SearchFilter,
     ) -> Result<SearchResult, Error> {
+        let query = query.as_ref();
         let context = self.get_context(ClientType::Desktop, true, None).await;
         let request_body = QSearch {
             context,
@@ -61,9 +63,9 @@ impl RustyPipeQuery {
         .await
     }
 
-    pub async fn search_suggestion(&self, query: &str) -> Result<Vec<String>, Error> {
+    pub async fn search_suggestion<S: AsRef<str>>(&self, query: S) -> Result<Vec<String>, Error> {
         let url = url::Url::parse_with_params("https://suggestqueries-clients6.youtube.com/complete/search?client=youtube&gs_rn=64&gs_ri=youtube&ds=yt&cp=1&gs_id=4&xhr=t&xssi=t",
-            &[("hl", self.opts.lang.to_string()), ("gl", self.opts.country.to_string()), ("q", query.to_string())]
+            &[("hl", self.opts.lang.to_string()), ("gl", self.opts.country.to_string()), ("q", query.as_ref().to_owned())]
         ).map_err(|_| Error::Other("could not build url".into()))?;
 
         let response = self
