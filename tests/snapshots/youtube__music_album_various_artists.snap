@@ -14,7 +14,7 @@ MusicAlbum(
   by_va: true,
   tracks: [
     TrackItem(
-      id: "8IqLxg0GqXc",
+      id: "Tzai7JXo45w",
       title: "Waka Boom (My Way) (feat. Lee Young Ji)",
       duration: Some(274),
       cover: [],
@@ -30,7 +30,7 @@ MusicAlbum(
         name: "＜Queendom2＞ FINAL",
       )),
       view_count: None,
-      is_video: true,
+      is_video: false,
       track_nr: Some(1),
     ),
     TrackItem(

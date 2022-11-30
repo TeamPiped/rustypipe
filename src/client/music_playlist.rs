@@ -45,14 +45,55 @@ impl RustyPipeQuery {
             browse_id: album_id,
         };
 
-        self.execute_request::<response::MusicPlaylist, _, _>(
-            ClientType::DesktopMusic,
-            "music_album",
-            album_id,
-            "browse",
-            &request_body,
-        )
-        .await
+        let mut album = self
+            .execute_request::<response::MusicPlaylist, MusicAlbum, _>(
+                ClientType::DesktopMusic,
+                "music_album",
+                album_id,
+                "browse",
+                &request_body,
+            )
+            .await?;
+
+        // YouTube Music is replacing album tracks with their respective music videos. To get the original
+        // tracks, we have to fetch the album as a playlist and replace the offending track ids.
+        if let Some(playlist_id) = &album.playlist_id {
+            // Get a list of music videos in the album
+            let to_replace = album
+                .tracks
+                .iter()
+                .enumerate()
+                .filter_map(|(i, track)| {
+                    if track.is_video {
+                        Some((i, track.title.to_owned()))
+                    } else {
+                        None
+                    }
+                })
+                .collect::<Vec<_>>();
+
+            if !to_replace.is_empty() {
+                let playlist = self.music_playlist(playlist_id).await?;
+
+                for (i, title) in to_replace {
+                    let found_track = playlist.tracks.items.iter().find_map(|track| {
+                        if track.title == title && !track.is_video {
+                            Some((track.id.to_owned(), track.duration))
+                        } else {
+                            None
+                        }
+                    });
+                    if let Some((track_id, duration)) = found_track {
+                        album.tracks[i].id = track_id;
+                        if let Some(duration) = duration {
+                            album.tracks[i].duration = Some(duration);
+                        }
+                        album.tracks[i].is_video = false;
+                    }
+                }
+            }
+        }
+        Ok(album)
     }
 }
 
