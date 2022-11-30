@@ -1600,6 +1600,8 @@ async fn music_search_videos() {
     assert_next(res.items, rp.query(), 15, 2).await;
 }
 
+/*
+This podcast was removed from YouTube Music and I could not find another one
 #[tokio::test]
 async fn music_search_episode() {
     let rp = RustyPipe::builder().strict().build();
@@ -1624,6 +1626,7 @@ async fn music_search_episode() {
     );
     assert!(!track.cover.is_empty(), "got no cover");
 }
+*/
 
 #[rstest]
 #[case::single(
