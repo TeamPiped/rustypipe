@@ -30,7 +30,7 @@ MusicAlbum(
         name: "＜Queendom2＞ FINAL",
       )),
       view_count: None,
-      is_video: false,
+      is_video: true,
       track_nr: Some(1),
     ),
     TrackItem(

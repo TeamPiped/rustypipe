@@ -418,9 +418,11 @@ impl MusicListMapper {
             // List item
             MusicResponseItem::MusicResponsiveListItemRenderer(item) => {
                 let mut columns = item.flex_columns.into_iter();
-                let title = columns.next().map(|col| col.renderer.text.to_string());
+                let c1 = columns.next();
                 let c2 = columns.next();
                 let c3 = columns.next();
+
+                let title = c1.as_ref().map(|col| col.renderer.text.to_string());
 
                 let first_tn = item
                     .thumbnail
@@ -433,26 +435,53 @@ impl MusicListMapper {
                     .navigation_endpoint
                     .and_then(|ne| ne.music_page())
                     .or_else(|| {
-                        item.playlist_item_data
-                            .map(|d| (MusicPageType::Track, d.video_id))
+                        c1.and_then(|c1| {
+                            c1.renderer.text.0.into_iter().next().and_then(|t| match t {
+                                crate::serializer::text::TextComponent::Video {
+                                    video_id,
+                                    is_video,
+                                    ..
+                                } => Some((MusicPageType::Track { is_video }, video_id)),
+                                crate::serializer::text::TextComponent::Browse {
+                                    page_type,
+                                    browse_id,
+                                    ..
+                                } => Some((page_type.into(), browse_id)),
+                                _ => None,
+                            })
+                        })
+                    })
+                    .or_else(|| {
+                        item.playlist_item_data.map(|d| {
+                            (
+                                MusicPageType::Track {
+                                    is_video: self.album.is_none()
+                                        && !first_tn
+                                            .map(|tn| tn.height == tn.width)
+                                            .unwrap_or_default(),
+                                },
+                                d.video_id,
+                            )
+                        })
                     })
                     .or_else(|| {
                         first_tn.and_then(|tn| {
-                            util::video_id_from_thumbnail_url(&tn.url)
-                                .map(|id| (MusicPageType::Track, id))
+                            util::video_id_from_thumbnail_url(&tn.url).map(|id| {
+                                (
+                                    MusicPageType::Track {
+                                        is_video: self.album.is_none() && tn.width != tn.height,
+                                    },
+                                    id,
+                                )
+                            })
                         })
                     });
 
                 match pt_id {
                     // Track
-                    Some((MusicPageType::Track, id)) => {
+                    Some((MusicPageType::Track { is_video }, id)) => {
                         let title =
                             title.ok_or_else(|| format!("track {}: could not get title", id))?;
-
-                        // Videos have rectangular thumbnails, YTM tracks have square covers
-                        // Exception: there are no thumbnails on album items
-                        let is_video = self.album.is_none()
-                            && !first_tn.map(|tn| tn.height == tn.width).unwrap_or_default();
 
                         let (artists_p, album_p, duration_p) = match item.flex_column_display_style
                         {
@@ -519,15 +548,14 @@ impl MusicListMapper {
                                 }),
                             ),
                             (_, false) => (
-                                album_p
-                                    .and_then(|p| {
-                                        p.0.into_iter().find_map(|c| AlbumId::try_from(c).ok())
-                                    })
-                                    .or_else(|| self.album.clone()),
+                                album_p.and_then(|p| {
+                                    p.0.into_iter().find_map(|c| AlbumId::try_from(c).ok())
+                                }),
                                 None,
                             ),
                             (FlexColumnDisplayStyle::Default, true) => (None, None),
                         };
+                        let album = album.or_else(|| self.album.clone());
 
                         let (mut artists, _) = map_artists(artists_p);
 
@@ -640,7 +668,8 @@ impl MusicListMapper {
                                 // There may be broken YT channels from the artist search. They can be skipped.
                                 Ok(None)
                             }
-                            MusicPageType::Track => unreachable!(),
+                            // Tracks were already handled above
+                            MusicPageType::Track { .. } => unreachable!(),
                         }
                     }
                     None => Err("could not determine item type".to_owned()),
@@ -655,7 +684,7 @@ impl MusicListMapper {
 
                 match item.navigation_endpoint.music_page() {
                     Some((page_type, id)) => match page_type {
-                        MusicPageType::Track => {
+                        MusicPageType::Track { is_video } => {
                             let artists = map_artists(subtitle_p1).0;
 
                             self.items.push(MusicItem::Track(TrackItem {
@@ -669,7 +698,7 @@ impl MusicListMapper {
                                 view_count: subtitle_p2.and_then(|c| {
                                     util::parse_large_numstr(c.first_str(), self.lang)
                                 }),
-                                is_video: true,
+                                is_video,
                                 track_nr: None,
                             }));
                             Ok(Some(MusicEntityType::Track))

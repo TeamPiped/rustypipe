@@ -6,7 +6,7 @@ use serde::{Deserialize, Deserializer};
 use serde_with::{serde_as, DeserializeAs};
 
 use crate::{
-    client::response::url_endpoint::{NavigationEndpoint, PageType},
+    client::response::url_endpoint::{MusicVideoType, NavigationEndpoint, PageType},
     model::UrlTarget,
     util,
 };
@@ -94,6 +94,8 @@ pub(crate) enum TextComponent {
         text: String,
         video_id: String,
         start_time: u32,
+        /// True if the item is a video, false if it is a YTM track
+        is_video: bool,
     },
     Browse {
         text: String,
@@ -164,6 +166,11 @@ fn map_text_component(text: String, nav: NavigationEndpoint) -> TextComponent {
             text,
             video_id: w.video_id,
             start_time: w.start_time_seconds,
+            is_video: w
+                .watch_endpoint_music_supported_configs
+                .watch_endpoint_music_config
+                .music_video_type
+                == MusicVideoType::Video,
         },
         None => match nav.browse_endpoint {
             Some(b) => TextComponent::Browse {
@@ -365,6 +372,7 @@ impl From<TextComponent> for crate::model::richtext::TextComponent {
                 text,
                 video_id,
                 start_time,
+                ..
             } => Self::YouTube {
                 text,
                 target: UrlTarget::Video {
@@ -581,6 +589,7 @@ mod tests {
                 text: "DEEP",
                 video_id: "wZIoIgz5mbs",
                 start_time: 0,
+                is_video: true,
             },
         }
         "###);

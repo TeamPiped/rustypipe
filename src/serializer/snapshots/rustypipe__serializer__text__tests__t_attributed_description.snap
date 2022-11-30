@@ -19,6 +19,7 @@ SAttributed {
                 text: "aespa 에스파 'Black ...",
                 video_id: "Ky5RT5oGg0w",
                 start_time: 0,
+                is_video: true,
             },
             Text {
                 text: "\n\n🎟\u{fe0f} aespa Showcase SYNK in LA! Tickets now on sale: ",

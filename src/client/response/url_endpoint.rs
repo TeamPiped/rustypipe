@@ -35,6 +35,8 @@ pub(crate) struct WatchEndpoint {
     pub playlist_id: Option<String>,
     #[serde(default)]
     pub start_time_seconds: u32,
+    #[serde(default)]
+    pub watch_endpoint_music_supported_configs: WatchEndpointConfigWrap,
 }
 
 #[derive(Debug)]
@@ -118,6 +120,30 @@ pub(crate) struct WebCommandMetadata {
     pub web_page_type: PageType,
 }
 
+#[derive(Default, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct WatchEndpointConfigWrap {
+    pub watch_endpoint_music_config: WatchEndpointConfig,
+}
+
+#[serde_as]
+#[derive(Default, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct WatchEndpointConfig {
+    #[serde(default)]
+    #[serde_as(deserialize_as = "DefaultOnError")]
+    pub music_video_type: MusicVideoType,
+}
+
+#[derive(Default, Debug, Clone, Copy, Deserialize, PartialEq, Eq)]
+pub(crate) enum MusicVideoType {
+    #[default]
+    #[serde(rename = "MUSIC_VIDEO_TYPE_OMV")]
+    Video,
+    #[serde(rename = "MUSIC_VIDEO_TYPE_ATV")]
+    Track,
+}
+
 #[derive(Debug, Clone, Copy, Deserialize, PartialEq, Eq)]
 pub(crate) enum PageType {
     #[serde(
@@ -152,7 +178,7 @@ pub(crate) enum MusicPageType {
     Artist,
     Album,
     Playlist,
-    Track,
+    Track { is_video: bool },
     None,
 }
 
@@ -189,7 +215,16 @@ impl NavigationEndpoint {
                     // Genre radios (e.g. "pop radio") will be skipped
                     (MusicPageType::None, watch.video_id)
                 } else {
-                    (MusicPageType::Track, watch.video_id)
+                    (
+                        MusicPageType::Track {
+                            is_video: watch
+                                .watch_endpoint_music_supported_configs
+                                .watch_endpoint_music_config
+                                .music_video_type
+                                == MusicVideoType::Video,
+                        },
+                        watch.video_id,
+                    )
                 }
             })
         })

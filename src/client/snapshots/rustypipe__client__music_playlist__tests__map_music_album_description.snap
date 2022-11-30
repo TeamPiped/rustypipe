@@ -56,7 +56,7 @@ MusicAlbum(
         name: "25",
       )),
       view_count: None,
-      is_video: false,
+      is_video: true,
       track_nr: Some(1),
     ),
     TrackItem(
@@ -76,7 +76,7 @@ MusicAlbum(
         name: "25",
       )),
       view_count: None,
-      is_video: false,
+      is_video: true,
       track_nr: Some(2),
     ),
     TrackItem(
