@@ -10,9 +10,6 @@ pub enum Error {
     /// Error from the deobfuscater
     #[error("deobfuscator error: {0}")]
     Deobfuscation(#[from] DeobfError),
-    /// Error from the video downloader
-    #[error("download error: {0}")]
-    Download(#[from] DownloadError),
     /// File IO error
     #[error(transparent)]
     Io(#[from] std::io::Error),
@@ -43,26 +40,6 @@ pub enum DeobfError {
     Extraction(&'static str),
     #[error("error: {0}")]
     Other(&'static str),
-}
-
-/// Error from the video downloader
-#[derive(thiserror::Error, Debug)]
-#[non_exhaustive]
-pub enum DownloadError {
-    /// Error from the HTTP client
-    #[error("http error: {0}")]
-    Http(#[from] reqwest::Error),
-    /// File IO error
-    #[error(transparent)]
-    Io(#[from] std::io::Error),
-    #[error("FFmpeg error: {0}")]
-    Ffmpeg(Cow<'static, str>),
-    #[error("Progressive download error: {0}")]
-    Progressive(Cow<'static, str>),
-    #[error("input error: {0}")]
-    Input(Cow<'static, str>),
-    #[error("error: {0}")]
-    Other(Cow<'static, str>),
 }
 
 /// Error extracting content from YouTube

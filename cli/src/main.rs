@@ -69,7 +69,7 @@ async fn download_single_video(
             }
         }
 
-        rustypipe::download::download_video(
+        rustypipe_downloader::download_video(
             &player_data,
             output_dir,
             output_fname,

@@ -1,26 +1,27 @@
-//! YouTube audio/video downloader
+//! # YouTube audio/video downloader
+
+mod util;
 
 use std::{borrow::Cow, cmp::Ordering, ffi::OsString, ops::Range, path::PathBuf, time::Duration};
 
-use fancy_regex::Regex;
 use futures::stream::{self, StreamExt};
 use indicatif::{ProgressBar, ProgressStyle};
 use log::{debug, info};
 use once_cell::sync::Lazy;
 use rand::Rng;
+use regex::Regex;
 use reqwest::{header, Client};
+use rustypipe::{
+    model::{AudioCodec, FileFormat, VideoCodec, VideoPlayer},
+    param::StreamFilter,
+};
 use tokio::{
     fs::{self, File},
     io::AsyncWriteExt,
     process::Command,
 };
 
-use crate::{
-    error::DownloadError,
-    model::{AudioCodec, FileFormat, VideoCodec, VideoPlayer},
-    param::StreamFilter,
-    util,
-};
+use util::DownloadError;
 
 type Result<T> = core::result::Result<T, DownloadError>;
 
@@ -45,7 +46,7 @@ fn get_download_range(offset: u64, size: Option<u64>) -> Range<u64> {
 fn parse_cr_header(cr_header: &str) -> Result<(u64, u64)> {
     static PATTERN: Lazy<Regex> = Lazy::new(|| Regex::new(r#"bytes (\d+)-(\d+)/(\d+)"#).unwrap());
 
-    let captures = PATTERN.captures(cr_header).ok().flatten().ok_or_else(|| {
+    let captures = PATTERN.captures(cr_header).ok_or_else(|| {
         DownloadError::Progressive(
             format!(
                 "Content-Range header '{}' does not match pattern",
@@ -317,11 +318,9 @@ pub async fn download_video(
             Some(_) => "mp4",
             None => match audio {
                 Some(audio) => match audio.codec {
-                    AudioCodec::Unknown => {
-                        return Err(DownloadError::Input("unknown audio codec".into()))
-                    }
                     AudioCodec::Mp4a => "m4a",
                     AudioCodec::Opus => "opus",
+                    _ => return Err(DownloadError::Input("unknown audio codec".into())),
                 },
                 None => unreachable!(),
             },
@@ -473,40 +472,3 @@ async fn convert_streams<P: Into<PathBuf>>(
     }
     Ok(())
 }
-
-/*
-#[cfg(test)]
-mod tests {
-    use crate::client::RustyTube;
-
-    use super::*;
-    use indicatif::{ProgressDrawTarget, ProgressStyle};
-    use reqwest::ClientBuilder;
-
-    // #[test_log::test(tokio::test)]
-    #[tokio::test]
-    async fn t_download_video() {
-        let http = ClientBuilder::new()
-            .user_agent(
-                "Mozilla/5.0 (Windows NT 10.0; Win64; rv:107.0) Gecko/20100101 Firefox/107.0",
-            )
-            .gzip(true)
-            .brotli(true)
-            .build()
-            .expect("unable to build the HTTP client");
-
-        // Indicatif setup
-        let pb = ProgressBar::new(0);
-
-        let rt = RustyTube::new();
-        let player_data = rt
-            .get_player("AbZH7XWDW_k", crate::client::ClientType::Desktop)
-            .await
-            .unwrap();
-
-        // download_video(&player_data, "tmp", "INVU", Some(1080), "ffmpeg", http, pb)
-        //     .await
-        //     .unwrap();
-    }
-}
-*/
