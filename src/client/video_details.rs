@@ -526,8 +526,9 @@ fn map_comment(
 
 #[cfg(test)]
 mod tests {
-    use std::{fs::File, io::BufReader, path::Path};
+    use std::{fs::File, io::BufReader};
 
+    use path_macro::path;
     use rstest::rstest;
 
     use crate::{
@@ -546,8 +547,8 @@ mod tests {
     #[case::new_cont("20221011_new_continuation", "ZeerrnuLi5E")]
     #[case::no_recommends("20221011_rec_isr", "nFDBxBUfE74")]
     fn map_video_details(#[case] name: &str, #[case] id: &str) {
-        let filename = format!("testfiles/video_details/video_details_{}.json", name);
-        let json_path = Path::new(&filename);
+        let json_path =
+            path!("testfiles" / "video_details" / format!("video_details_{}.json", name));
         let json_file = File::open(json_path).unwrap();
 
         let details: response::VideoDetails =
@@ -567,8 +568,7 @@ mod tests {
 
     #[test]
     fn map_video_details_not_found() {
-        let filename = "testfiles/video_details/video_details_not_found.json";
-        let json_path = Path::new(&filename);
+        let json_path = path!("testfiles" / "video_details" / "video_details_not_found.json");
         let json_file = File::open(json_path).unwrap();
 
         let details: response::VideoDetails =
@@ -584,8 +584,7 @@ mod tests {
     #[case::top("top")]
     #[case::latest("latest")]
     fn map_comments(#[case] name: &str) {
-        let filename = format!("testfiles/video_details/comments_{}.json", name);
-        let json_path = Path::new(&filename);
+        let json_path = path!("testfiles" / "video_details" / format!("comments_{}.json", name));
         let json_file = File::open(json_path).unwrap();
 
         let comments: response::VideoComments =

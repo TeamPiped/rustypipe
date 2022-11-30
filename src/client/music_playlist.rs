@@ -257,8 +257,9 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
 
 #[cfg(test)]
 mod tests {
-    use std::{fs::File, io::BufReader, path::Path};
+    use std::{fs::File, io::BufReader};
 
+    use path_macro::path;
     use rstest::rstest;
 
     use super::*;
@@ -269,8 +270,7 @@ mod tests {
     #[case::long("long", "PL5dDx681T4bR7ZF1IuWzOv1omlRbE7PiJ")]
     #[case::nomusic("nomusic", "PL1J-6JOckZtE_P9Xx8D3b2O6w0idhuKBe")]
     fn map_music_playlist(#[case] name: &str, #[case] id: &str) {
-        let filename = format!("testfiles/music_playlist/playlist_{}.json", name);
-        let json_path = Path::new(&filename);
+        let json_path = path!("testfiles" / "music_playlist" / format!("playlist_{}.json", name));
         let json_file = File::open(json_path).unwrap();
 
         let playlist: response::MusicPlaylist =
@@ -294,8 +294,7 @@ mod tests {
     #[case::single("single", "MPREb_bHfHGoy7vuv")]
     #[case::description("description", "MPREb_PiyfuVl6aYd")]
     fn map_music_album(#[case] name: &str, #[case] id: &str) {
-        let filename = format!("testfiles/music_playlist/album_{}.json", name);
-        let json_path = Path::new(&filename);
+        let json_path = path!("testfiles" / "music_playlist" / format!("album_{}.json", name));
         let json_file = File::open(json_path).unwrap();
 
         let playlist: response::MusicPlaylist =

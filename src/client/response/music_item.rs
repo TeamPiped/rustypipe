@@ -935,13 +935,15 @@ pub(crate) fn map_queue_item(item: QueueMusicItem, lang: Language) -> TrackItem 
 
 #[cfg(test)]
 mod tests {
-    use std::{collections::BTreeMap, fs::File, io::BufReader, path::Path};
+    use std::{collections::BTreeMap, fs::File, io::BufReader};
+
+    use path_macro::path;
 
     use super::*;
 
     #[test]
     fn map_album_type_samples() {
-        let json_path = Path::new("testfiles/dict/album_type_samples.json");
+        let json_path = path!("testfiles" / "dict" / "album_type_samples.json");
         let json_file = File::open(json_path).unwrap();
         let atype_samples: BTreeMap<Language, BTreeMap<AlbumType, String>> =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();

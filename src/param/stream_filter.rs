@@ -318,22 +318,23 @@ impl VideoPlayer {
 
 #[cfg(test)]
 mod tests {
-    use std::{fs::File, io::BufReader, path::Path};
+    use std::{fs::File, io::BufReader};
 
     use super::*;
     use once_cell::sync::Lazy;
+    use path_macro::path;
     use rstest::rstest;
     use velcro::hash_set;
 
     static PLAYER_ML: Lazy<VideoPlayer> = Lazy::new(|| {
-        let json_path = Path::new("testfiles/player_model/multilanguage.json");
+        let json_path = path!("testfiles" / "player_model" / "multilanguage.json");
         let json_file = File::open(json_path).unwrap();
 
         serde_json::from_reader(BufReader::new(json_file)).unwrap()
     });
 
     static PLAYER_HDR: Lazy<VideoPlayer> = Lazy::new(|| {
-        let json_path = Path::new("testfiles/player_model/hdr.json");
+        let json_path = path!("testfiles" / "player_model" / "hdr.json");
         let json_file = File::open(json_path).unwrap();
 
         serde_json::from_reader(BufReader::new(json_file)).unwrap()

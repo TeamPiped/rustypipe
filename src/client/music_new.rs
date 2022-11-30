@@ -77,8 +77,9 @@ impl<T: FromYtItem> MapResponse<Vec<T>> for response::MusicNew {
 
 #[cfg(test)]
 mod tests {
-    use std::{fs::File, io::BufReader, path::Path};
+    use std::{fs::File, io::BufReader};
 
+    use path_macro::path;
     use rstest::rstest;
 
     use super::*;
@@ -87,8 +88,7 @@ mod tests {
     #[rstest]
     #[case::default("default")]
     fn map_music_new_albums(#[case] name: &str) {
-        let filename = format!("testfiles/music_new/albums_{}.json", name);
-        let json_path = Path::new(&filename);
+        let json_path = path!("testfiles" / "music_new" / format!("albums_{}.json", name));
         let json_file = File::open(json_path).unwrap();
 
         let new_albums: response::MusicNew =
@@ -107,8 +107,7 @@ mod tests {
     #[rstest]
     #[case::default("default")]
     fn map_music_new_videos(#[case] name: &str) {
-        let filename = format!("testfiles/music_new/videos_{}.json", name);
-        let json_path = Path::new(&filename);
+        let json_path = path!("testfiles" / "music_new" / format!("videos_{}.json", name));
         let json_file = File::open(json_path).unwrap();
 
         let new_albums: response::MusicNew =

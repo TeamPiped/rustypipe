@@ -611,12 +611,13 @@ fn get_audio_codec(codecs: Vec<&str>) -> AudioCodec {
 
 #[cfg(test)]
 mod tests {
-    use std::{fs::File, io::BufReader, path::Path};
+    use std::{fs::File, io::BufReader};
 
-    use crate::deobfuscate::DeobfData;
+    use path_macro::path;
+    use rstest::rstest;
 
     use super::*;
-    use rstest::rstest;
+    use crate::deobfuscate::DeobfData;
 
     static DEOBFUSCATOR: Lazy<Deobfuscator> = Lazy::new(|| {
         Deobfuscator::from(DeobfData {
@@ -634,8 +635,7 @@ mod tests {
     #[case::android("android")]
     #[case::ios("ios")]
     fn map_player_data(#[case] name: &str) {
-        let filename = format!("testfiles/player/{}_video.json", name);
-        let json_path = Path::new(&filename);
+        let json_path = path!("testfiles" / "player" / format!("{}_video.json", name));
         let json_file = File::open(json_path).unwrap();
 
         let resp: response::Player = serde_json::from_reader(BufReader::new(json_file)).unwrap();

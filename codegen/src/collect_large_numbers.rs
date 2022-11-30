@@ -5,6 +5,7 @@ use anyhow::{Context, Result};
 use fancy_regex::Regex;
 use futures::{stream, StreamExt};
 use once_cell::sync::Lazy;
+use path_macro::path;
 use reqwest::{header, Client};
 use rustypipe::param::{locale::LANGUAGES, Language};
 use serde::Deserialize;
@@ -30,11 +31,9 @@ type CollectedNumbers = BTreeMap<Language, BTreeMap<u8, (String, u64)>>;
 /// outputs view counts both in approximated and exact format, so we can use
 /// the exact counts to figure out the tokens.
 pub async fn collect_large_numbers(project_root: &Path, concurrency: usize) {
-    let mut json_path = project_root.to_path_buf();
-    json_path.push("testfiles/dict/large_number_samples.json");
-
-    let mut json_path_all = project_root.to_path_buf();
-    json_path_all.push("testfiles/dict/large_number_samples_all.json");
+    let json_path = path!(project_root / "testfiles" / "dict" / "large_number_samples.json");
+    let json_path_all =
+        path!(project_root / "testfiles" / "dict" / "large_number_samples_all.json");
 
     let channels = [
         "UCq-Fj5jknLsUf-MWSy4_brA", // 10e8 (225M)
@@ -117,8 +116,7 @@ pub fn write_samples_to_dict(project_root: &Path) {
     "M": 6
     */
 
-    let mut json_path = project_root.to_path_buf();
-    json_path.push("testfiles/dict/large_number_samples.json");
+    let json_path = path!(project_root / "testfiles" / "dict" / "large_number_samples.json");
 
     let json_file = File::open(json_path).unwrap();
     let collected_nums: CollectedNumbers =

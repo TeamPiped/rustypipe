@@ -1,6 +1,7 @@
 use std::{collections::BTreeMap, fs::File, io::BufReader, path::Path};
 
 use futures::stream::{self, StreamExt};
+use path_macro::path;
 use rustypipe::{
     client::{ClientType, RustyPipe, RustyPipeQuery, YTContext},
     model::AlbumType,
@@ -11,8 +12,7 @@ use serde::{Deserialize, Serialize};
 use crate::util::{self, TextRuns};
 
 pub async fn collect_album_types(project_root: &Path, concurrency: usize) {
-    let mut json_path = project_root.to_path_buf();
-    json_path.push("testfiles/dict/album_type_samples.json");
+    let json_path = path!(project_root / "testfiles" / "dict" / "album_type_samples.json");
 
     let album_types = [
         (AlbumType::Album, "MPREb_nlBWQROfvjo"),
@@ -49,8 +49,7 @@ pub async fn collect_album_types(project_root: &Path, concurrency: usize) {
 }
 
 pub fn write_samples_to_dict(project_root: &Path) {
-    let mut json_path = project_root.to_path_buf();
-    json_path.push("testfiles/dict/album_type_samples.json");
+    let json_path = path!(project_root / "testfiles" / "dict" / "album_type_samples.json");
 
     let json_file = File::open(json_path).unwrap();
     let collected: BTreeMap<Language, BTreeMap<AlbumType, String>> =

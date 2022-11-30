@@ -305,12 +305,9 @@ impl MapResponse<Vec<AlbumItem>> for response::MusicArtistAlbums {
 
 #[cfg(test)]
 mod tests {
-    use std::{
-        fs::File,
-        io::BufReader,
-        path::{Path, PathBuf},
-    };
+    use std::{fs::File, io::BufReader};
 
+    use path_macro::path;
     use rstest::rstest;
 
     use crate::param::Language;
@@ -324,16 +321,13 @@ mod tests {
     #[case::no_artist("no_artist", "UCh8gHdtzO2tXd593_bjErWg")]
     #[case::only_more_singles("only_more_singles", "UC0aXrjVxG5pZr99v77wZdPQ")]
     fn map_music_artist(#[case] name: &str, #[case] id: &str) {
-        let filename_base = format!("testfiles/music_artist/artist_{}", name);
-
-        let filename = filename_base.clone() + ".json";
-        let json_path = Path::new(&filename);
+        let json_path = path!("testfiles" / "music_artist" / format!("artist_{}.json", name));
         let json_file = File::open(json_path).unwrap();
 
         let mut album_page_paths = Vec::new();
         for i in 1..=2 {
-            let filename = format!("{}_{}.json", filename_base, i);
-            let json_path = PathBuf::from(filename);
+            let json_path =
+                path!("testfiles" / "music_artist" / format!("artist_{}_{}.json", name, i));
             if !json_path.exists() {
                 break;
             }
@@ -373,7 +367,7 @@ mod tests {
 
     #[test]
     fn map_music_artist_no_cont() {
-        let json_path = Path::new("testfiles/music_artist/artist_default.json");
+        let json_path = path!("testfiles" / "music_artist" / "artist_default.json");
         let json_file = File::open(json_path).unwrap();
 
         let artist: response::MusicArtist =

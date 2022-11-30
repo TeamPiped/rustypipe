@@ -285,8 +285,9 @@ pub(crate) fn parse_textual_date_or_warn(
 
 #[cfg(test)]
 mod tests {
-    use std::{collections::BTreeMap, fs::File, io::BufReader, path::Path};
+    use std::{collections::BTreeMap, fs::File, io::BufReader};
 
+    use path_macro::path;
     use rstest::rstest;
     use time::macros::{date, datetime};
 
@@ -308,7 +309,7 @@ mod tests {
 
     #[test]
     fn t_testfile() {
-        let json_path = Path::new("testfiles/dict/timeago_samples.json");
+        let json_path = path!("testfiles" / "dict" / "timeago_samples.json");
 
         let expect = [
             TimeAgo {
@@ -491,7 +492,7 @@ mod tests {
             cases: BTreeMap<String, u8>,
         }
 
-        let json_path = Path::new("testfiles/dict/timeago_table.json");
+        let json_path = path!("testfiles" / "dict" / "timeago_table.json");
         let json_file = File::open(json_path).unwrap();
         let timeago_table: TimeagoTable =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
@@ -538,7 +539,7 @@ mod tests {
 
     #[test]
     fn t_parse_date_samples() {
-        let json_path = Path::new("testfiles/dict/playlist_samples.json");
+        let json_path = path!("testfiles" / "dict" / "playlist_samples.json");
         let json_file = File::open(json_path).unwrap();
         let date_samples: BTreeMap<Language, BTreeMap<String, String>> =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();

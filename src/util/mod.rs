@@ -351,11 +351,12 @@ pub fn video_id_from_thumbnail_url(url: &str) -> Option<String> {
 
 #[cfg(test)]
 mod tests {
-    use std::{fs::File, io::BufReader, path::Path};
+    use std::{fs::File, io::BufReader};
+
+    use path_macro::path;
+    use rstest::rstest;
 
     use super::*;
-
-    use rstest::rstest;
 
     #[rstest]
     #[case("1.000", 1000)]
@@ -439,7 +440,7 @@ mod tests {
 
     #[test]
     fn t_parse_large_numstr_samples() {
-        let json_path = Path::new("testfiles/dict/large_number_samples.json");
+        let json_path = path!("testfiles" / "dict" / "large_number_samples.json");
         let json_file = File::open(json_path).unwrap();
         let number_samples: BTreeMap<Language, BTreeMap<u8, (String, u64)>> =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
@@ -453,7 +454,7 @@ mod tests {
 
     #[test]
     fn t_parse_large_numstr_samples2() {
-        let json_path = Path::new("testfiles/dict/large_number_samples_all.json");
+        let json_path = path!("testfiles" / "dict" / "large_number_samples_all.json");
         let json_file = File::open(json_path).unwrap();
         let number_samples: BTreeMap<Language, BTreeMap<String, u64>> =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();

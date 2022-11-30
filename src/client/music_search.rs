@@ -354,7 +354,10 @@ impl MapResponse<Vec<String>> for response::MusicSearchSuggestion {
 
 #[cfg(test)]
 mod tests {
-    use std::{fs::File, io::BufReader, path::Path};
+    use std::{fs::File, io::BufReader};
+
+    use path_macro::path;
+    use rstest::rstest;
 
     use crate::{
         client::{response, MapResponse},
@@ -366,15 +369,12 @@ mod tests {
         serializer::MapResult,
     };
 
-    use rstest::rstest;
-
     #[rstest]
     #[case::default("default")]
     #[case::typo("typo")]
     #[case::radio("radio")]
     fn map_music_search_main(#[case] name: &str) {
-        let filename = format!("testfiles/music_search/main_{}.json", name);
-        let json_path = Path::new(&filename);
+        let json_path = path!("testfiles" / "music_search" / format!("main_{}.json", name));
         let json_file = File::open(json_path).unwrap();
 
         let search: response::MusicSearch =
@@ -397,8 +397,7 @@ mod tests {
     #[case::videos("videos")]
     #[case::no_artist_link("no_artist_link")]
     fn map_music_search_tracks(#[case] name: &str) {
-        let filename = format!("testfiles/music_search/tracks_{}.json", name);
-        let json_path = Path::new(&filename);
+        let json_path = path!("testfiles" / "music_search" / format!("tracks_{}.json", name));
         let json_file = File::open(json_path).unwrap();
 
         let search: response::MusicSearch =
@@ -417,8 +416,7 @@ mod tests {
 
     #[test]
     fn map_music_search_albums() {
-        let filename = "testfiles/music_search/albums.json";
-        let json_path = Path::new(&filename);
+        let json_path = path!("testfiles" / "music_search" / "albums.json");
         let json_file = File::open(json_path).unwrap();
 
         let search: response::MusicSearch =
@@ -437,8 +435,7 @@ mod tests {
 
     #[test]
     fn map_music_search_artists() {
-        let filename = "testfiles/music_search/artists.json";
-        let json_path = Path::new(&filename);
+        let json_path = path!("testfiles" / "music_search" / "artists.json");
         let json_file = File::open(json_path).unwrap();
 
         let search: response::MusicSearch =
@@ -459,8 +456,7 @@ mod tests {
     #[case::ytm("ytm")]
     #[case::community("community")]
     fn map_music_search_playlists(#[case] name: &str) {
-        let filename = format!("testfiles/music_search/playlists_{}.json", name);
-        let json_path = Path::new(&filename);
+        let json_path = path!("testfiles" / "music_search" / format!("playlists_{}.json", name));
         let json_file = File::open(json_path).unwrap();
 
         let search: response::MusicSearch =
@@ -481,8 +477,7 @@ mod tests {
     #[case::default("default")]
     #[case::empty("empty")]
     fn map_music_search_suggestion(#[case] name: &str) {
-        let filename = format!("testfiles/music_search/suggestion_{}.json", name);
-        let json_path = Path::new(&filename);
+        let json_path = path!("testfiles" / "music_search" / format!("suggestion_{}.json", name));
         let json_file = File::open(json_path).unwrap();
 
         let suggestion: response::MusicSearchSuggestion =

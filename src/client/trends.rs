@@ -118,7 +118,9 @@ fn map_startpage_videos(
 
 #[cfg(test)]
 mod tests {
-    use std::{fs::File, io::BufReader, path::Path};
+    use std::{fs::File, io::BufReader};
+
+    use path_macro::path;
 
     use crate::{
         client::{response, MapResponse},
@@ -129,8 +131,7 @@ mod tests {
 
     #[test]
     fn map_startpage() {
-        let filename = "testfiles/trends/startpage.json";
-        let json_path = Path::new(&filename);
+        let json_path = path!("testfiles" / "trends" / "startpage.json");
         let json_file = File::open(json_path).unwrap();
 
         let startpage: response::Startpage =
@@ -151,8 +152,7 @@ mod tests {
 
     #[test]
     fn map_trending() {
-        let filename = "testfiles/trends/trending.json";
-        let json_path = Path::new(&filename);
+        let json_path = path!("testfiles" / "trends" / "trending.json");
         let json_file = File::open(json_path).unwrap();
 
         let startpage: response::Trending =

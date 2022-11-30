@@ -509,8 +509,9 @@ fn combine_channel_data<T>(channel_data: Channel<()>, content: T) -> Channel<T> 
 
 #[cfg(test)]
 mod tests {
-    use std::{fs::File, io::BufReader, path::Path};
+    use std::{fs::File, io::BufReader};
 
+    use path_macro::path;
     use rstest::rstest;
 
     use crate::{
@@ -532,8 +533,7 @@ mod tests {
     #[case::shorts("shorts", "UCh8gHdtzO2tXd593_bjErWg")]
     #[case::livestreams("livestreams", "UC2DjFE7Xf11URZqWBigcVOQ")]
     fn map_channel_videos(#[case] name: &str, #[case] id: &str) {
-        let filename = format!("testfiles/channel/channel_{}.json", name);
-        let json_path = Path::new(&filename);
+        let json_path = path!("testfiles" / "channel" / format!("channel_{}.json", name));
         let json_file = File::open(json_path).unwrap();
 
         let channel: response::Channel =
@@ -560,7 +560,7 @@ mod tests {
 
     #[test]
     fn map_channel_playlists() {
-        let json_path = Path::new("testfiles/channel/channel_playlists.json");
+        let json_path = path!("testfiles" / "channel" / "channel_playlists.json");
         let json_file = File::open(json_path).unwrap();
 
         let channel: response::Channel =
@@ -579,7 +579,7 @@ mod tests {
 
     #[test]
     fn map_channel_info() {
-        let json_path = Path::new("testfiles/channel/channel_info.json");
+        let json_path = path!("testfiles" / "channel" / "channel_info.json");
         let json_file = File::open(json_path).unwrap();
 
         let channel: response::Channel =

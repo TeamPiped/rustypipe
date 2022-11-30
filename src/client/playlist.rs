@@ -227,8 +227,9 @@ fn map_playlist_items(
 
 #[cfg(test)]
 mod tests {
-    use std::{fs::File, io::BufReader, path::Path};
+    use std::{fs::File, io::BufReader};
 
+    use path_macro::path;
     use rstest::rstest;
 
     use super::*;
@@ -238,8 +239,7 @@ mod tests {
     #[case::long("long", "PL5dDx681T4bR7ZF1IuWzOv1omlRbE7PiJ")]
     #[case::nomusic("nomusic", "PL1J-6JOckZtE_P9Xx8D3b2O6w0idhuKBe")]
     fn map_playlist_data(#[case] name: &str, #[case] id: &str) {
-        let filename = format!("testfiles/playlist/playlist_{}.json", name);
-        let json_path = Path::new(&filename);
+        let json_path = path!("testfiles" / "playlist" / format!("playlist_{}.json", name));
         let json_file = File::open(json_path).unwrap();
 
         let playlist: response::Playlist =
@@ -258,7 +258,7 @@ mod tests {
 
     #[test]
     fn map_playlist_cont() {
-        let json_path = Path::new("testfiles/playlist/playlist_cont.json");
+        let json_path = path!("testfiles" / "playlist" / "playlist_cont.json");
         let json_file = File::open(json_path).unwrap();
 
         let playlist: response::PlaylistCont =

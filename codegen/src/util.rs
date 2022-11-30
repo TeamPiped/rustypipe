@@ -1,9 +1,17 @@
-use std::{collections::BTreeMap, fs::File, io::BufReader, path::Path, str::FromStr};
+use std::{
+    collections::BTreeMap,
+    fs::File,
+    io::BufReader,
+    path::{Path, PathBuf},
+    str::FromStr,
+};
 
+use once_cell::sync::Lazy;
+use path_macro::path;
 use rustypipe::{model::AlbumType, param::Language};
 use serde::{Deserialize, Serialize};
 
-const DICT_PATH: &str = "testfiles/dict/dictionary.json";
+static DICT_PATH: Lazy<PathBuf> = Lazy::new(|| path!("testfiles" / "dict" / "dictionary.json"));
 
 type Dictionary = BTreeMap<Language, DictEntry>;
 
@@ -62,15 +70,13 @@ pub struct Text {
 }
 
 pub fn read_dict(project_root: &Path) -> Dictionary {
-    let mut json_path = project_root.to_path_buf();
-    json_path.push(DICT_PATH);
+    let json_path = path!(project_root / *DICT_PATH);
     let json_file = File::open(json_path).unwrap();
     serde_json::from_reader(BufReader::new(json_file)).unwrap()
 }
 
 pub fn write_dict(project_root: &Path, dict: &Dictionary) {
-    let mut json_path = project_root.to_path_buf();
-    json_path.push(DICT_PATH);
+    let json_path = path!(project_root / *DICT_PATH);
     let json_file = File::create(json_path).unwrap();
     serde_json::to_writer_pretty(json_file, dict).unwrap();
 }

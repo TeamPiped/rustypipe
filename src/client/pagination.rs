@@ -307,8 +307,9 @@ paginator!(PlaylistVideo);
 
 #[cfg(test)]
 mod tests {
-    use std::{fs::File, io::BufReader, path::Path};
+    use std::{fs::File, io::BufReader, path::PathBuf};
 
+    use path_macro::path;
     use rstest::rstest;
 
     use super::*;
@@ -316,12 +317,11 @@ mod tests {
     use crate::param::Language;
 
     #[rstest]
-    #[case("search", "search/cont")]
-    #[case("startpage", "trends/startpage_cont")]
-    #[case("recommendations", "video_details/recommendations")]
-    fn map_continuation_items(#[case] name: &str, #[case] path: &str) {
-        let filename = format!("testfiles/{}.json", path);
-        let json_path = Path::new(&filename);
+    #[case("search", path!("search" / "cont.json"))]
+    #[case("startpage", path!("trends" / "startpage_cont.json"))]
+    #[case("recommendations", path!("video_details" / "recommendations.json"))]
+    fn map_continuation_items(#[case] name: &str, #[case] path: PathBuf) {
+        let json_path = path!("testfiles" / path);
         let json_file = File::open(json_path).unwrap();
 
         let items: response::Continuation =
@@ -340,10 +340,9 @@ mod tests {
     }
 
     #[rstest]
-    #[case("channel_playlists", "channel/channel_playlists_cont")]
-    fn map_continuation_playlists(#[case] name: &str, #[case] path: &str) {
-        let filename = format!("testfiles/{}.json", path);
-        let json_path = Path::new(&filename);
+    #[case("channel_playlists", path!("channel" / "channel_playlists_cont.json"))]
+    fn map_continuation_playlists(#[case] name: &str, #[case] path: PathBuf) {
+        let json_path = path!("testfiles" / path);
         let json_file = File::open(json_path).unwrap();
 
         let items: response::Continuation =
@@ -362,12 +361,11 @@ mod tests {
     }
 
     #[rstest]
-    #[case("playlist_tracks", "music_playlist/playlist_cont")]
-    #[case("search_tracks", "music_search/tracks_cont")]
-    #[case("radio_tracks", "music_details/radio_cont")]
-    fn map_continuation_tracks(#[case] name: &str, #[case] path: &str) {
-        let filename = format!("testfiles/{}.json", path);
-        let json_path = Path::new(&filename);
+    #[case("playlist_tracks", path!("music_playlist" / "playlist_cont.json"))]
+    #[case("search_tracks", path!("music_search" / "tracks_cont.json"))]
+    #[case("radio_tracks", path!("music_details" / "radio_cont.json"))]
+    fn map_continuation_tracks(#[case] name: &str, #[case] path: PathBuf) {
+        let json_path = path!("testfiles" / path);
         let json_file = File::open(json_path).unwrap();
 
         let items: response::MusicContinuation =
@@ -386,10 +384,9 @@ mod tests {
     }
 
     #[rstest]
-    #[case("playlist_related", "music_playlist/playlist_related")]
-    fn map_continuation_music_playlists(#[case] name: &str, #[case] path: &str) {
-        let filename = format!("testfiles/{}.json", path);
-        let json_path = Path::new(&filename);
+    #[case("playlist_related", path!("music_playlist" / "playlist_related.json"))]
+    fn map_continuation_music_playlists(#[case] name: &str, #[case] path: PathBuf) {
+        let json_path = path!("testfiles" / path);
         let json_file = File::open(json_path).unwrap();
 
         let items: response::MusicContinuation =

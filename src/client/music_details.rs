@@ -365,8 +365,9 @@ impl MapResponse<MusicRelated> for response::MusicRelated {
 
 #[cfg(test)]
 mod tests {
-    use std::{fs::File, io::BufReader, path::Path};
+    use std::{fs::File, io::BufReader};
 
+    use path_macro::path;
     use rstest::rstest;
 
     use super::*;
@@ -376,8 +377,7 @@ mod tests {
     #[case::mv("mv", "ZeerrnuLi5E")]
     #[case::track("track", "7nigXQS1Xb0")]
     fn map_music_details(#[case] name: &str, #[case] id: &str) {
-        let filename = format!("testfiles/music_details/details_{}.json", name);
-        let json_path = Path::new(&filename);
+        let json_path = path!("testfiles" / "music_details" / format!("details_{}.json", name));
         let json_file = File::open(json_path).unwrap();
 
         let details: response::MusicDetails =
@@ -397,8 +397,7 @@ mod tests {
     #[case::mv("mv", "RDAMVMZeerrnuLi5E")]
     #[case::track("track", "RDAMVM7nigXQS1Xb0")]
     fn map_music_radio(#[case] name: &str, #[case] id: &str) {
-        let filename = format!("testfiles/music_details/radio_{}.json", name);
-        let json_path = Path::new(&filename);
+        let json_path = path!("testfiles" / "music_details" / format!("radio_{}.json", name));
         let json_file = File::open(json_path).unwrap();
 
         let radio: response::MusicDetails =
@@ -416,7 +415,7 @@ mod tests {
 
     #[test]
     fn map_lyrics() {
-        let json_path = Path::new("testfiles/music_details/lyrics.json");
+        let json_path = path!("testfiles" / "music_details" / "lyrics.json");
         let json_file = File::open(json_path).unwrap();
 
         let lyrics: response::MusicLyrics =
@@ -433,7 +432,7 @@ mod tests {
 
     #[test]
     fn map_related() {
-        let json_path = Path::new("testfiles/music_details/related.json");
+        let json_path = path!("testfiles" / "music_details" / "related.json");
         let json_file = File::open(json_path).unwrap();
 
         let lyrics: response::MusicRelated =

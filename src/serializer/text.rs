@@ -469,13 +469,14 @@ impl<'de> DeserializeAs<'de, String> for AccessibilityText {
 
 #[cfg(test)]
 mod tests {
-    use std::{fs::File, io::BufReader, path::Path};
+    use std::{fs::File, io::BufReader};
 
-    use super::*;
-
+    use path_macro::path;
     use rstest::rstest;
     use serde::Deserialize;
     use serde_with::serde_as;
+
+    use super::*;
 
     #[rstest]
     #[case(
@@ -783,8 +784,7 @@ mod tests {
 
     #[test]
     fn t_attributed_description() {
-        let filename = format!("testfiles/text/attributed_description.json");
-        let json_path = Path::new(&filename);
+        let json_path = path!("testfiles" / "text" / "attributed_description.json");
         let json_file = File::open(json_path).unwrap();
         let res: SAttributed = serde_json::from_reader(BufReader::new(json_file)).unwrap();
         insta::assert_debug_snapshot!(res);

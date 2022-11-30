@@ -7,6 +7,7 @@ use std::{
 };
 
 use futures::{stream, StreamExt};
+use path_macro::path;
 use rustypipe::{
     client::RustyPipe,
     param::{locale::LANGUAGES, Language},
@@ -62,8 +63,7 @@ enum DateCase {
 /// Because the relative dates change with time, the first three playlists
 /// have to checked and eventually changed before running the program.
 pub async fn collect_dates(project_root: &Path, concurrency: usize) {
-    let mut json_path = project_root.to_path_buf();
-    json_path.push("testfiles/dict/playlist_samples.json");
+    let json_path = path!(project_root / "testfiles" / "dict" / "playlist_samples.json");
 
     // These are the sample playlists
     let cases = [
@@ -116,8 +116,7 @@ pub async fn collect_dates(project_root: &Path, concurrency: usize) {
 /// The ND (no digit) tokens (today, tomorrow) of some languages cannot be
 /// parsed automatically and require manual work.
 pub fn write_samples_to_dict(project_root: &Path) {
-    let mut json_path = project_root.to_path_buf();
-    json_path.push("testfiles/dict/playlist_samples.json");
+    let json_path = path!(project_root / "testfiles" / "dict" / "playlist_samples.json");
 
     let json_file = File::open(json_path).unwrap();
     let collected_dates: CollectedDates =
