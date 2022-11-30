@@ -792,12 +792,6 @@ async fn get_video_comments() {
 
     let n_comments = top_comments.count.unwrap();
     assert_gte(n_comments, 700_000, "comments");
-    // Comment count should be exact after fetching first page
-    assert!(
-        n_comments % 1000 != 0,
-        "estimated comment count: {}",
-        n_comments
-    );
 
     let latest_comments = details
         .latest_comments
