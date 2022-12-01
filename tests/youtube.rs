@@ -4,6 +4,7 @@ use std::fmt::Display;
 use fancy_regex::Regex;
 use once_cell::sync::Lazy;
 use rstest::rstest;
+use rustypipe::param::Country;
 use time::macros::date;
 use time::OffsetDateTime;
 
@@ -2047,6 +2048,35 @@ async fn music_radio_playlist_not_found() {
             "got: {}",
             err
         );
+    }
+}
+
+#[rstest]
+#[case::de(
+    Country::De,
+    "PL4fGSI1pDJn4X-OicSCOy-dChXWdTgziQ",
+    "PL0sHkSjKd2rpxgOMD-vlUlIDqvQ5ChYJh"
+)]
+#[case::us(
+    Country::Us,
+    "PL4fGSI1pDJn69On1f-8NAvX_CYlx7QyZc",
+    "PLrEnWoR732-DtKgaDdnPkezM_nDidBU9H"
+)]
+#[tokio::test]
+async fn music_charts(#[case] country: Country, #[case] plid_top: &str, #[case] plid_trend: &str) {
+    let rp = RustyPipe::builder().strict().build();
+    let charts = rp.query().music_charts(Some(country)).await.unwrap();
+
+    assert_eq!(charts.top_playlist_id.unwrap(), plid_top);
+    assert_eq!(charts.trending_playlist_id.unwrap(), plid_trend);
+
+    assert_gte(charts.top_tracks.len(), 40, "top tracks");
+    assert_gte(charts.artists.len(), 40, "top artists");
+    assert_gte(charts.trending_tracks.len(), 20, "trending tracks");
+
+    // Chart playlists only available in USA
+    if country == Country::Us {
+        assert_gte(charts.playlists.len(), 8, "charts playlists");
     }
 }
 
