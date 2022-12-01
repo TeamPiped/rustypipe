@@ -1625,14 +1625,13 @@ async fn music_search_episode() {
 
 #[rstest]
 #[case::single(
-    "black mamba",
+    "black mamba aespa",
     "Black Mamba",
     "MPREb_OpHWHwyNOuY",
     "aespa",
     "UCEdZAdnnKqbaHOlv8nM6OtA",
     2020,
-    AlbumType::Single,
-    2
+    AlbumType::Single
 )]
 #[case::ep(
     "waldbrand",
@@ -1641,8 +1640,7 @@ async fn music_search_episode() {
     "Madeline Juno",
     "UCpJyCbFbdTrx0M90HCNBHFQ",
     2016,
-    AlbumType::Ep,
-    1
+    AlbumType::Ep
 )]
 #[case::album(
     "märchen enden gut",
@@ -1651,8 +1649,7 @@ async fn music_search_episode() {
     "Oonagh",
     "UC_vmjW5e1xEHhYjY2a0kK1A",
     2016,
-    AlbumType::Album,
-    1
+    AlbumType::Album
 )]
 #[tokio::test]
 async fn music_search_albums(
@@ -1663,7 +1660,6 @@ async fn music_search_albums(
     #[case] artist_id: &str,
     #[case] year: u16,
     #[case] album_type: AlbumType,
-    #[case] n_pages: usize,
 ) {
     let rp = RustyPipe::builder().strict().build();
     let res = rp.query().music_search_albums(query).await.unwrap();
@@ -1689,7 +1685,7 @@ async fn music_search_albums(
 
     assert_eq!(res.corrected_query, None);
 
-    assert_next(res.items, rp.query(), 15, n_pages).await;
+    assert_next(res.items, rp.query(), 15, 1).await;
 }
 
 #[tokio::test]
