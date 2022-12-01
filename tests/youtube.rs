@@ -12,8 +12,8 @@ use rustypipe::client::{ClientType, RustyPipe, RustyPipeQuery};
 use rustypipe::error::{Error, ExtractionError};
 use rustypipe::model::richtext::ToPlaintext;
 use rustypipe::model::{
-    AlbumType, AudioCodec, AudioFormat, Channel, FromYtItem, MusicEntityType, Paginator, UrlTarget,
-    Verification, VideoCodec, VideoFormat, YouTubeItem, YtStream,
+    AlbumType, AudioCodec, AudioFormat, Channel, FromYtItem, MusicEntityType, MusicGenre,
+    Paginator, UrlTarget, Verification, VideoCodec, VideoFormat, YouTubeItem, YtStream,
 };
 use rustypipe::param::search_filter::{self, SearchFilter};
 
@@ -2101,6 +2101,85 @@ async fn music_new_videos() {
         assert!(!video.cover.is_empty(), "got no cover");
         assert_gte(video.view_count.unwrap(), 1000, "views");
         assert!(video.is_video);
+    }
+}
+
+#[tokio::test]
+async fn music_genres() {
+    let rp = RustyPipe::builder().strict().build();
+    let genres = rp.query().music_genres().await.unwrap();
+
+    let chill = genres
+        .iter()
+        .find(|g| g.id == "ggMPOg1uX1JOQWZFeDByc2Jm")
+        .unwrap();
+    assert_eq!(chill.name, "Chill");
+    assert!(chill.is_mood);
+
+    let pop = genres
+        .iter()
+        .find(|g| g.id == "ggMPOg1uX1lMbVZmbzl6NlJ3")
+        .unwrap();
+    assert_eq!(pop.name, "Pop");
+    assert!(!pop.is_mood);
+
+    genres.iter().for_each(|g| {
+        assert_gte(g.color, 0xff000000, "color");
+    });
+}
+
+#[rstest]
+#[case::chill("ggMPOg1uX1JOQWZFeDByc2Jm", "Chill")]
+#[case::pop("ggMPOg1uX1lMbVZmbzl6NlJ3", "Pop")]
+#[tokio::test]
+async fn music_genre(#[case] id: &str, #[case] name: &str) {
+    let rp = RustyPipe::builder().strict().build();
+    let genre = rp.query().music_genre(id).await.unwrap();
+
+    fn check_music_genre(genre: MusicGenre, id: &str, name: &str) -> Vec<(String, String)> {
+        assert_eq!(genre.id, id);
+        assert_eq!(genre.name, name);
+        assert_gte(genre.sections.len(), 2, "genre sections");
+
+        let mut subgenres = Vec::new();
+        genre.sections.iter().for_each(|section| {
+            assert!(!section.name.is_empty());
+            section.playlists.iter().for_each(|playlist| {
+                assert_playlist_id(&playlist.id);
+                assert!(!playlist.name.is_empty());
+                assert!(!playlist.thumbnail.is_empty(), "got no cover");
+
+                if !playlist.from_ytm {
+                    assert!(
+                        playlist.channel.is_some(),
+                        "pl: {}, got no channel",
+                        playlist.id
+                    );
+                    let channel = playlist.channel.as_ref().unwrap();
+                    assert_channel_id(&channel.id);
+                    assert!(!channel.name.is_empty());
+
+                    assert_gte(playlist.track_count.unwrap(), 2, "tracks");
+                } else {
+                    assert!(playlist.channel.is_none());
+                }
+            });
+            if let Some(subgenre_id) = &section.subgenre_id {
+                subgenres.push((subgenre_id.to_owned(), section.name.to_owned()));
+            }
+        });
+        subgenres
+    }
+
+    let subgenres = check_music_genre(genre, id, name);
+
+    if name == "Chill" {
+        assert_gte(subgenres.len(), 2, "subgenres");
+    }
+
+    for (id, name) in subgenres {
+        let genre = rp.query().music_genre(&id).await.unwrap();
+        check_music_genre(genre, &id, &name);
     }
 }
 
