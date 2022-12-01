@@ -1285,3 +1285,52 @@ pub struct MusicCharts {
     /// Set of available countries to fetch charts from
     pub available_countries: BTreeSet<Country>,
 }
+
+/// YouTube Music genre/mood list item
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
+pub struct MusicGenreItem {
+    /// Unique YouTube Music genre ID
+    pub id: String,
+    /// Genre name
+    pub name: String,
+    /// Is it a mood (e.g. Chill, Focus, Party)
+    pub is_mood: bool,
+    /// Color of the genre button
+    ///
+    /// Encoded as a 32-bit integer with the following format (8 bits per number):
+    ///
+    /// `[Alpha][R][G][B]`
+    ///
+    /// **Note:** Alpa/Opacity is always set to 0xFF.
+    pub color: u32,
+}
+
+/// YouTube Music genre/mood content
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
+pub struct MusicGenre {
+    /// Unique YouTube Music genre ID
+    pub id: String,
+    /// Genre name
+    pub name: String,
+    /// List of sections containing the content
+    pub sections: Vec<MusicGenreSection>,
+}
+
+/// YouTube Music genre/mood content section
+///
+/// Genre pages in YouTube Music are split into sections. These have a name
+/// and contain several playlists. If the section is showing a subgenre
+/// (e.g "2000s" from "Decades"), the section also includes a `subgenre_id`
+/// for fetching more content of that subgenre.
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
+pub struct MusicGenreSection {
+    /// Name of the genre section
+    pub name: String,
+    /// Subgenre ID to fetch more content
+    pub subgenre_id: Option<String>,
+    /// List of playlists of the genre section
+    pub playlists: Vec<MusicPlaylistItem>,
+}

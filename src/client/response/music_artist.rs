@@ -4,22 +4,18 @@ use serde_with::{serde_as, DefaultOnError};
 use crate::serializer::text::Text;
 
 use super::{
-    music_item::{Grid, ItemSection, MusicThumbnailRenderer},
-    ContentsRenderer, SectionList, Tab,
+    music_item::{
+        Grid, ItemSection, MusicThumbnailRenderer, SimpleHeader, SingleColumnBrowseResult,
+    },
+    SectionList, Tab,
 };
 
 /// Response model for YouTube Music artists
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct MusicArtist {
-    pub contents: Contents<ItemSection>,
+    pub contents: SingleColumnBrowseResult<Tab<SectionList<ItemSection>>>,
     pub header: Header,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct Contents<T> {
-    pub single_column_browse_results_renderer: ContentsRenderer<Tab<SectionList<T>>>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -64,19 +60,5 @@ pub(crate) struct SubscriptionButtonRenderer {
 #[serde(rename_all = "camelCase")]
 pub(crate) struct MusicArtistAlbums {
     pub header: SimpleHeader,
-    pub contents: Contents<Grid>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct SimpleHeader {
-    pub music_header_renderer: SimpleHeaderRenderer,
-}
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct SimpleHeaderRenderer {
-    #[serde_as(as = "Text")]
-    pub title: String,
+    pub contents: SingleColumnBrowseResult<Tab<SectionList<Grid>>>,
 }

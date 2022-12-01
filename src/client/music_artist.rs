@@ -224,7 +224,7 @@ fn map_artist_page(
                     mapper.map_response(shelf.contents);
                 }
             }
-            response::music_item::ItemSection::None => {}
+            _ => {}
         }
     }
 

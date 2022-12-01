@@ -314,7 +314,6 @@ impl MapResponse<MusicRelated> for response::MusicRelated {
             .contents
             .iter()
             .find_map(|section| match section {
-                response::music_item::ItemSection::MusicShelfRenderer(_) => None,
                 response::music_item::ItemSection::MusicCarouselShelfRenderer(shelf) => {
                     shelf.header.as_ref().and_then(|h| {
                         h.music_carousel_shelf_basic_header_renderer
@@ -331,7 +330,7 @@ impl MapResponse<MusicRelated> for response::MusicRelated {
                             })
                     })
                 }
-                response::music_item::ItemSection::None => None,
+                _ => None,
             });
 
         let mut mapper_tracks = MusicListMapper::new(lang);
@@ -354,7 +353,7 @@ impl MapResponse<MusicRelated> for response::MusicRelated {
             response::music_item::ItemSection::MusicCarouselShelfRenderer(shelf) => {
                 mapper.map_response(shelf.contents);
             }
-            response::music_item::ItemSection::None => {}
+            _ => {}
         });
 
         let mapped_tracks = mapper_tracks.conv_items();

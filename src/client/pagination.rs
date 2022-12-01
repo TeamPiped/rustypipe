@@ -146,7 +146,7 @@ impl MapResponse<Paginator<MusicItem>> for response::MusicContinuation {
                         response::music_item::ItemSection::MusicCarouselShelfRenderer(shelf) => {
                             mapper.map_response(shelf.contents);
                         }
-                        response::music_item::ItemSection::None => {}
+                        _ => {}
                     }
                 }
             }

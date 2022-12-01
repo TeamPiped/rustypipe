@@ -1,0 +1,884 @@
+{
+  "contents": {
+    "singleColumnBrowseResultsRenderer": {
+      "tabs": [
+        {
+          "tabRenderer": {
+            "content": {
+              "sectionListRenderer": {
+                "contents": [
+                  {
+                    "gridRenderer": {
+                      "header": {
+                        "gridHeaderRenderer": {
+                          "title": {
+                            "runs": [
+                              {
+                                "text": "Moods & moments"
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "itemSize": "COLLECTION_STYLE_ITEM_SIZE_MEDIUM",
+                      "items": [
+                        {
+                          "musicNavigationButtonRenderer": {
+                            "buttonText": {
+                              "runs": [
+                                {
+                                  "text": "Black Lives Matter"
+                                }
+                              ]
+                            },
+                            "clickCommand": {
+                              "browseEndpoint": {
+                                "browseId": "FEmusic_moods_and_genres_category",
+                                "params": "ggMPOg1uXzJxenpkRkNOMk1y"
+                              },
+                              "clickTrackingParams": "CCcQuKEFGAAiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                            },
+                            "solid": {
+                              "leftStripeColor": 4280098077
+                            },
+                            "trackingParams": "CCcQuKEFGAAiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                          }
+                        },
+                        {
+                          "musicNavigationButtonRenderer": {
+                            "buttonText": {
+                              "runs": [
+                                {
+                                  "text": "Chill"
+                                }
+                              ]
+                            },
+                            "clickCommand": {
+                              "browseEndpoint": {
+                                "browseId": "FEmusic_moods_and_genres_category",
+                                "params": "ggMPOg1uX1JOQWZFeDByc2Jm"
+                              },
+                              "clickTrackingParams": "CCYQuKEFGAEiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                            },
+                            "solid": {
+                              "leftStripeColor": 4288988671
+                            },
+                            "trackingParams": "CCYQuKEFGAEiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                          }
+                        },
+                        {
+                          "musicNavigationButtonRenderer": {
+                            "buttonText": {
+                              "runs": [
+                                {
+                                  "text": "Commute"
+                                }
+                              ]
+                            },
+                            "clickCommand": {
+                              "browseEndpoint": {
+                                "browseId": "FEmusic_moods_and_genres_category",
+                                "params": "ggMPOg1uX044Z2o5WERLckpU"
+                              },
+                              "clickTrackingParams": "CCUQuKEFGAIiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                            },
+                            "solid": {
+                              "leftStripeColor": 4294951424
+                            },
+                            "trackingParams": "CCUQuKEFGAIiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                          }
+                        },
+                        {
+                          "musicNavigationButtonRenderer": {
+                            "buttonText": {
+                              "runs": [
+                                {
+                                  "text": "Energy Boosters"
+                                }
+                              ]
+                            },
+                            "clickCommand": {
+                              "browseEndpoint": {
+                                "browseId": "FEmusic_moods_and_genres_category",
+                                "params": "ggMPOg1uX2lRZUZiMnNrQnJW"
+                              },
+                              "clickTrackingParams": "CCQQuKEFGAMiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                            },
+                            "solid": {
+                              "leftStripeColor": 4294961024
+                            },
+                            "trackingParams": "CCQQuKEFGAMiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                          }
+                        },
+                        {
+                          "musicNavigationButtonRenderer": {
+                            "buttonText": {
+                              "runs": [
+                                {
+                                  "text": "Feel Good"
+                                }
+                              ]
+                            },
+                            "clickCommand": {
+                              "browseEndpoint": {
+                                "browseId": "FEmusic_moods_and_genres_category",
+                                "params": "ggMPOg1uX2FVNHc2SVM4Y0dW"
+                              },
+                              "clickTrackingParams": "CCMQuKEFGAQiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                            },
+                            "solid": {
+                              "leftStripeColor": 4289003428
+                            },
+                            "trackingParams": "CCMQuKEFGAQiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                          }
+                        },
+                        {
+                          "musicNavigationButtonRenderer": {
+                            "buttonText": {
+                              "runs": [
+                                {
+                                  "text": "Focus"
+                                }
+                              ]
+                            },
+                            "clickCommand": {
+                              "browseEndpoint": {
+                                "browseId": "FEmusic_moods_and_genres_category",
+                                "params": "ggMPOg1uX0NvNGNhWThMYWRh"
+                              },
+                              "clickTrackingParams": "CCIQuKEFGAUiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                            },
+                            "solid": {
+                              "leftStripeColor": 4291611852
+                            },
+                            "trackingParams": "CCIQuKEFGAUiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                          }
+                        },
+                        {
+                          "musicNavigationButtonRenderer": {
+                            "buttonText": {
+                              "runs": [
+                                {
+                                  "text": "Party"
+                                }
+                              ]
+                            },
+                            "clickCommand": {
+                              "browseEndpoint": {
+                                "browseId": "FEmusic_moods_and_genres_category",
+                                "params": "ggMPOg1uX1lIYXpVckRyZ0Qy"
+                              },
+                              "clickTrackingParams": "CCEQuKEFGAYiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                            },
+                            "solid": {
+                              "leftStripeColor": 4290018303
+                            },
+                            "trackingParams": "CCEQuKEFGAYiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                          }
+                        },
+                        {
+                          "musicNavigationButtonRenderer": {
+                            "buttonText": {
+                              "runs": [
+                                {
+                                  "text": "Romance"
+                                }
+                              ]
+                            },
+                            "clickCommand": {
+                              "browseEndpoint": {
+                                "browseId": "FEmusic_moods_and_genres_category",
+                                "params": "ggMPOg1uXzZBTTFqOGM1Ujda"
+                              },
+                              "clickTrackingParams": "CCAQuKEFGAciEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                            },
+                            "solid": {
+                              "leftStripeColor": 4291559424
+                            },
+                            "trackingParams": "CCAQuKEFGAciEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                          }
+                        },
+                        {
+                          "musicNavigationButtonRenderer": {
+                            "buttonText": {
+                              "runs": [
+                                {
+                                  "text": "Sleep"
+                                }
+                              ]
+                            },
+                            "clickCommand": {
+                              "browseEndpoint": {
+                                "browseId": "FEmusic_moods_and_genres_category",
+                                "params": "ggMPOg1uX1MxaFQ3Z0JMZkN4"
+                              },
+                              "clickTrackingParams": "CB8QuKEFGAgiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                            },
+                            "solid": {
+                              "leftStripeColor": 4286267099
+                            },
+                            "trackingParams": "CB8QuKEFGAgiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                          }
+                        },
+                        {
+                          "musicNavigationButtonRenderer": {
+                            "buttonText": {
+                              "runs": [
+                                {
+                                  "text": "Workout"
+                                }
+                              ]
+                            },
+                            "clickCommand": {
+                              "browseEndpoint": {
+                                "browseId": "FEmusic_moods_and_genres_category",
+                                "params": "ggMPOg1uXzIxYkNac21YZ2Z0"
+                              },
+                              "clickTrackingParams": "CB4QuKEFGAkiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                            },
+                            "solid": {
+                              "leftStripeColor": 4281564671
+                            },
+                            "trackingParams": "CB4QuKEFGAkiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                          }
+                        }
+                      ],
+                      "trackingParams": "CB0Q6IsCGAAiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                    }
+                  },
+                  {
+                    "gridRenderer": {
+                      "header": {
+                        "gridHeaderRenderer": {
+                          "title": {
+                            "runs": [
+                              {
+                                "text": "Genres"
+                              }
+                            ]
+                          }
+                        }
+                      },
+                      "itemSize": "COLLECTION_STYLE_ITEM_SIZE_MEDIUM",
+                      "items": [
+                        {
+                          "musicNavigationButtonRenderer": {
+                            "buttonText": {
+                              "runs": [
+                                {
+                                  "text": "African"
+                                }
+                              ]
+                            },
+                            "clickCommand": {
+                              "browseEndpoint": {
+                                "browseId": "FEmusic_moods_and_genres_category",
+                                "params": "ggMPOg1uX0UzWGxlRE5jMDVk"
+                              },
+                              "clickTrackingParams": "CBwQuKEFGAAiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                            },
+                            "solid": {
+                              "leftStripeColor": 4278232339
+                            },
+                            "trackingParams": "CBwQuKEFGAAiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                          }
+                        },
+                        {
+                          "musicNavigationButtonRenderer": {
+                            "buttonText": {
+                              "runs": [
+                                {
+                                  "text": "Arabic"
+                                }
+                              ]
+                            },
+                            "clickCommand": {
+                              "browseEndpoint": {
+                                "browseId": "FEmusic_moods_and_genres_category",
+                                "params": "ggMPOg1uX3VOQWxsblVZTFNE"
+                              },
+                              "clickTrackingParams": "CBsQuKEFGAEiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                            },
+                            "solid": {
+                              "leftStripeColor": 4293020416
+                            },
+                            "trackingParams": "CBsQuKEFGAEiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                          }
+                        },
+                        {
+                          "musicNavigationButtonRenderer": {
+                            "buttonText": {
+                              "runs": [
+                                {
+                                  "text": "Blues"
+                                }
+                              ]
+                            },
+                            "clickCommand": {
+                              "browseEndpoint": {
+                                "browseId": "FEmusic_moods_and_genres_category",
+                                "params": "ggMPOg1uX2NXUkgxdW0zUHJp"
+                              },
+                              "clickTrackingParams": "CBoQuKEFGAIiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                            },
+                            "solid": {
+                              "leftStripeColor": 4281564671
+                            },
+                            "trackingParams": "CBoQuKEFGAIiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                          }
+                        },
+                        {
+                          "musicNavigationButtonRenderer": {
+                            "buttonText": {
+                              "runs": [
+                                {
+                                  "text": "Bollywood & Indian"
+                                }
+                              ]
+                            },
+                            "clickCommand": {
+                              "browseEndpoint": {
+                                "browseId": "FEmusic_moods_and_genres_category",
+                                "params": "ggMPOg1uX0JrcUJGUHhxaTFV"
+                              },
+                              "clickTrackingParams": "CBkQuKEFGAMiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                            },
+                            "solid": {
+                              "leftStripeColor": 4286267099
+                            },
+                            "trackingParams": "CBkQuKEFGAMiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                          }
+                        },
+                        {
+                          "musicNavigationButtonRenderer": {
+                            "buttonText": {
+                              "runs": [
+                                {
+                                  "text": "Classical"
+                                }
+                              ]
+                            },
+                            "clickCommand": {
+                              "browseEndpoint": {
+                                "browseId": "FEmusic_moods_and_genres_category",
+                                "params": "ggMPOg1uX1N4VmduTmdUR3dm"
+                              },
+                              "clickTrackingParams": "CBgQuKEFGAQiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                            },
+                            "solid": {
+                              "leftStripeColor": 4291611852
+                            },
+                            "trackingParams": "CBgQuKEFGAQiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                          }
+                        },
+                        {
+                          "musicNavigationButtonRenderer": {
+                            "buttonText": {
+                              "runs": [
+                                {
+                                  "text": "Country & Americana"
+                                }
+                              ]
+                            },
+                            "clickCommand": {
+                              "browseEndpoint": {
+                                "browseId": "FEmusic_moods_and_genres_category",
+                                "params": "ggMPOg1uX2dlOG5sUHdpOWtC"
+                              },
+                              "clickTrackingParams": "CBcQuKEFGAUiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                            },
+                            "solid": {
+                              "leftStripeColor": 4281564671
+                            },
+                            "trackingParams": "CBcQuKEFGAUiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                          }
+                        },
+                        {
+                          "musicNavigationButtonRenderer": {
+                            "buttonText": {
+                              "runs": [
+                                {
+                                  "text": "Dance & Electronic"
+                                }
+                              ]
+                            },
+                            "clickCommand": {
+                              "browseEndpoint": {
+                                "browseId": "FEmusic_moods_and_genres_category",
+                                "params": "ggMPOg1uXzBRcGpUakRJQXJ0"
+                              },
+                              "clickTrackingParams": "CBYQuKEFGAYiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                            },
+                            "solid": {
+                              "leftStripeColor": 4278227647
+                            },
+                            "trackingParams": "CBYQuKEFGAYiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                          }
+                        },
+                        {
+                          "musicNavigationButtonRenderer": {
+                            "buttonText": {
+                              "runs": [
+                                {
+                                  "text": "Decades"
+                                }
+                              ]
+                            },
+                            "clickCommand": {
+                              "browseEndpoint": {
+                                "browseId": "FEmusic_moods_and_genres_category",
+                                "params": "ggMPOg1uX0JpQ0g0RUplQ3By"
+                              },
+                              "clickTrackingParams": "CBUQuKEFGAciEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                            },
+                            "solid": {
+                              "leftStripeColor": 4289003428
+                            },
+                            "trackingParams": "CBUQuKEFGAciEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                          }
+                        },
+                        {
+                          "musicNavigationButtonRenderer": {
+                            "buttonText": {
+                              "runs": [
+                                {
+                                  "text": "Fall"
+                                }
+                              ]
+                            },
+                            "clickCommand": {
+                              "browseEndpoint": {
+                                "browseId": "FEmusic_moods_and_genres_category",
+                                "params": "ggMPOg1uX3JBUDJTM2ZUUVJM"
+                              },
+                              "clickTrackingParams": "CBQQuKEFGAgiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                            },
+                            "solid": {
+                              "leftStripeColor": 4293020416
+                            },
+                            "trackingParams": "CBQQuKEFGAgiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                          }
+                        },
+                        {
+                          "musicNavigationButtonRenderer": {
+                            "buttonText": {
+                              "runs": [
+                                {
+                                  "text": "Family"
+                                }
+                              ]
+                            },
+                            "clickCommand": {
+                              "browseEndpoint": {
+                                "browseId": "FEmusic_moods_and_genres_category",
+                                "params": "ggMPOg1uX0dZanZjMGNoTEw1"
+                              },
+                              "clickTrackingParams": "CBMQuKEFGAkiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                            },
+                            "solid": {
+                              "leftStripeColor": 4278227647
+                            },
+                            "trackingParams": "CBMQuKEFGAkiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                          }
+                        },
+                        {
+                          "musicNavigationButtonRenderer": {
+                            "buttonText": {
+                              "runs": [
+                                {
+                                  "text": "Folk & Acoustic"
+                                }
+                              ]
+                            },
+                            "clickCommand": {
+                              "browseEndpoint": {
+                                "browseId": "FEmusic_moods_and_genres_category",
+                                "params": "ggMPOg1uX3luWTExakRvajZl"
+                              },
+                              "clickTrackingParams": "CBIQuKEFGAoiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                            },
+                            "solid": {
+                              "leftStripeColor": 4278232339
+                            },
+                            "trackingParams": "CBIQuKEFGAoiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                          }
+                        },
+                        {
+                          "musicNavigationButtonRenderer": {
+                            "buttonText": {
+                              "runs": [
+                                {
+                                  "text": "Hip-Hop"
+                                }
+                              ]
+                            },
+                            "clickCommand": {
+                              "browseEndpoint": {
+                                "browseId": "FEmusic_moods_and_genres_category",
+                                "params": "ggMPOg1uX1NSeDlUaUU5Nlc2"
+                              },
+                              "clickTrackingParams": "CBEQuKEFGAsiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                            },
+                            "solid": {
+                              "leftStripeColor": 4293020416
+                            },
+                            "trackingParams": "CBEQuKEFGAsiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                          }
+                        },
+                        {
+                          "musicNavigationButtonRenderer": {
+                            "buttonText": {
+                              "runs": [
+                                {
+                                  "text": "Indie & Alternative"
+                                }
+                              ]
+                            },
+                            "clickCommand": {
+                              "browseEndpoint": {
+                                "browseId": "FEmusic_moods_and_genres_category",
+                                "params": "ggMPOg1uX2hhQTl4QVUzN2V5"
+                              },
+                              "clickTrackingParams": "CBAQuKEFGAwiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                            },
+                            "solid": {
+                              "leftStripeColor": 4291611852
+                            },
+                            "trackingParams": "CBAQuKEFGAwiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                          }
+                        },
+                        {
+                          "musicNavigationButtonRenderer": {
+                            "buttonText": {
+                              "runs": [
+                                {
+                                  "text": "J-Pop"
+                                }
+                              ]
+                            },
+                            "clickCommand": {
+                              "browseEndpoint": {
+                                "browseId": "FEmusic_moods_and_genres_category",
+                                "params": "ggMPOg1uXzAwSjVITDBZckJR"
+                              },
+                              "clickTrackingParams": "CA8QuKEFGA0iEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                            },
+                            "solid": {
+                              "leftStripeColor": 4294932735
+                            },
+                            "trackingParams": "CA8QuKEFGA0iEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                          }
+                        },
+                        {
+                          "musicNavigationButtonRenderer": {
+                            "buttonText": {
+                              "runs": [
+                                {
+                                  "text": "Jazz"
+                                }
+                              ]
+                            },
+                            "clickCommand": {
+                              "browseEndpoint": {
+                                "browseId": "FEmusic_moods_and_genres_category",
+                                "params": "ggMPOg1uX3lPcDFRaE9wM1BS"
+                              },
+                              "clickTrackingParams": "CA4QuKEFGA4iEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                            },
+                            "solid": {
+                              "leftStripeColor": 4288988671
+                            },
+                            "trackingParams": "CA4QuKEFGA4iEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                          }
+                        },
+                        {
+                          "musicNavigationButtonRenderer": {
+                            "buttonText": {
+                              "runs": [
+                                {
+                                  "text": "K-Pop"
+                                }
+                              ]
+                            },
+                            "clickCommand": {
+                              "browseEndpoint": {
+                                "browseId": "FEmusic_moods_and_genres_category",
+                                "params": "ggMPOg1uX0JrbjBDOFFPSzJW"
+                              },
+                              "clickTrackingParams": "CA0QuKEFGA8iEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                            },
+                            "solid": {
+                              "leftStripeColor": 4290018303
+                            },
+                            "trackingParams": "CA0QuKEFGA8iEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                          }
+                        },
+                        {
+                          "musicNavigationButtonRenderer": {
+                            "buttonText": {
+                              "runs": [
+                                {
+                                  "text": "Latin"
+                                }
+                              ]
+                            },
+                            "clickCommand": {
+                              "browseEndpoint": {
+                                "browseId": "FEmusic_moods_and_genres_category",
+                                "params": "ggMPOg1uX1NXRmgzQ21ySXlU"
+                              },
+                              "clickTrackingParams": "CAwQuKEFGBAiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                            },
+                            "solid": {
+                              "leftStripeColor": 4294951424
+                            },
+                            "trackingParams": "CAwQuKEFGBAiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                          }
+                        },
+                        {
+                          "musicNavigationButtonRenderer": {
+                            "buttonText": {
+                              "runs": [
+                                {
+                                  "text": "Metal"
+                                }
+                              ]
+                            },
+                            "clickCommand": {
+                              "browseEndpoint": {
+                                "browseId": "FEmusic_moods_and_genres_category",
+                                "params": "ggMPOg1uXzJxdDZFTHlDdUdW"
+                              },
+                              "clickTrackingParams": "CAsQuKEFGBEiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                            },
+                            "solid": {
+                              "leftStripeColor": 4287401100
+                            },
+                            "trackingParams": "CAsQuKEFGBEiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                          }
+                        },
+                        {
+                          "musicNavigationButtonRenderer": {
+                            "buttonText": {
+                              "runs": [
+                                {
+                                  "text": "Pop"
+                                }
+                              ]
+                            },
+                            "clickCommand": {
+                              "browseEndpoint": {
+                                "browseId": "FEmusic_moods_and_genres_category",
+                                "params": "ggMPOg1uX1lMbVZmbzl6NlJ3"
+                              },
+                              "clickTrackingParams": "CAoQuKEFGBIiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                            },
+                            "solid": {
+                              "leftStripeColor": 4294932735
+                            },
+                            "trackingParams": "CAoQuKEFGBIiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                          }
+                        },
+                        {
+                          "musicNavigationButtonRenderer": {
+                            "buttonText": {
+                              "runs": [
+                                {
+                                  "text": "R&B & Soul"
+                                }
+                              ]
+                            },
+                            "clickCommand": {
+                              "browseEndpoint": {
+                                "browseId": "FEmusic_moods_and_genres_category",
+                                "params": "ggMPOg1uX1kxNFJCWUR3WTBM"
+                              },
+                              "clickTrackingParams": "CAkQuKEFGBMiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                            },
+                            "solid": {
+                              "leftStripeColor": 4286267099
+                            },
+                            "trackingParams": "CAkQuKEFGBMiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                          }
+                        },
+                        {
+                          "musicNavigationButtonRenderer": {
+                            "buttonText": {
+                              "runs": [
+                                {
+                                  "text": "Reggae & Caribbean"
+                                }
+                              ]
+                            },
+                            "clickCommand": {
+                              "browseEndpoint": {
+                                "browseId": "FEmusic_moods_and_genres_category",
+                                "params": "ggMPOg1uX1JUc2lFcDFuUUth"
+                              },
+                              "clickTrackingParams": "CAgQuKEFGBQiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                            },
+                            "solid": {
+                              "leftStripeColor": 4294961024
+                            },
+                            "trackingParams": "CAgQuKEFGBQiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                          }
+                        },
+                        {
+                          "musicNavigationButtonRenderer": {
+                            "buttonText": {
+                              "runs": [
+                                {
+                                  "text": "Rock"
+                                }
+                              ]
+                            },
+                            "clickCommand": {
+                              "browseEndpoint": {
+                                "browseId": "FEmusic_moods_and_genres_category",
+                                "params": "ggMPOg1uX2VQZldWYXA5YUp1"
+                              },
+                              "clickTrackingParams": "CAcQuKEFGBUiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                            },
+                            "solid": {
+                              "leftStripeColor": 4291559424
+                            },
+                            "trackingParams": "CAcQuKEFGBUiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                          }
+                        },
+                        {
+                          "musicNavigationButtonRenderer": {
+                            "buttonText": {
+                              "runs": [
+                                {
+                                  "text": "Schlager"
+                                }
+                              ]
+                            },
+                            "clickCommand": {
+                              "browseEndpoint": {
+                                "browseId": "FEmusic_moods_and_genres_category",
+                                "params": "ggMPOg1uX1IxN1FMRWozWXZ5"
+                              },
+                              "clickTrackingParams": "CAYQuKEFGBYiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                            },
+                            "solid": {
+                              "leftStripeColor": 4290018303
+                            },
+                            "trackingParams": "CAYQuKEFGBYiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                          }
+                        },
+                        {
+                          "musicNavigationButtonRenderer": {
+                            "buttonText": {
+                              "runs": [
+                                {
+                                  "text": "Soundtracks & Musicals"
+                                }
+                              ]
+                            },
+                            "clickCommand": {
+                              "browseEndpoint": {
+                                "browseId": "FEmusic_moods_and_genres_category",
+                                "params": "ggMPOg1uX2xKb0I5eHVvNUQw"
+                              },
+                              "clickTrackingParams": "CAUQuKEFGBciEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                            },
+                            "solid": {
+                              "leftStripeColor": 4283297535
+                            },
+                            "trackingParams": "CAUQuKEFGBciEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                          }
+                        }
+                      ],
+                      "trackingParams": "CAQQ6IsCGAEiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+                    }
+                  }
+                ],
+                "trackingParams": "CAMQui8iEwj3pPKSotn7AhVEgXwKHWeCDO8="
+              }
+            },
+            "trackingParams": "CAIQ8JMBGAAiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+          }
+        }
+      ]
+    }
+  },
+  "header": {
+    "musicHeaderRenderer": {
+      "title": {
+        "runs": [
+          {
+            "text": "Moods & genres"
+          }
+        ]
+      },
+      "trackingParams": "CAEQ4HIiEwj3pPKSotn7AhVEgXwKHWeCDO8="
+    }
+  },
+  "maxAgeStoreSeconds": 300,
+  "responseContext": {
+    "serviceTrackingParams": [
+      {
+        "params": [
+          {
+            "key": "browse_id",
+            "value": "FEmusic_moods_and_genres"
+          },
+          {
+            "key": "browse_id_prefix",
+            "value": ""
+          },
+          {
+            "key": "logged_in",
+            "value": "0"
+          },
+          {
+            "key": "e",
+            "value": "1714255,23804281,23882503,23918597,23934970,23946420,23966208,23983296,23998056,24001373,24002022,24002025,24004644,24007246,24034168,24036948,24077241,24080738,24120819,24135310,24140247,24161116,24162919,24164186,24169501,24181174,24187043,24187377,24191629,24197450,24199724,24200839,24211178,24217535,24219713,24241378,24248092,24255165,24255543,24255545,24262346,24263796,24265425,24267564,24268142,24272788,24279196,24282154,24287327,24288043,24288441,24290376,24290971,24292955,24293803,24294554,24297392,24299747,24390374,24390674,24390918,24391018,24391543,24392268,24392499,24394017,24401557,24402891,24405024,24406605,24406620,24407200,24414076,24414162,24415580,24415864,24415866,24416290,24416708,24416786,24417873,24418299,24418762,24419035,24420756,24421162,24421892,24423785,24424028,24424572,24425861,24425905,24426900,24426909,24427242,24428900,24430665,24431335,24590921,39322504,39322574"
+          }
+        ],
+        "service": "GFEEDBACK"
+      },
+      {
+        "params": [
+          {
+            "key": "c",
+            "value": "WEB_REMIX"
+          },
+          {
+            "key": "cver",
+            "value": "1.20221128.01.00"
+          },
+          {
+            "key": "yt_li",
+            "value": "0"
+          },
+          {
+            "key": "GetBrowseMoodsAndGenresPage_rid",
+            "value": "0x9ff4996d90fe6995"
+          }
+        ],
+        "service": "CSI"
+      },
+      {
+        "params": [
+          {
+            "key": "client.version",
+            "value": "1.20000101"
+          },
+          {
+            "key": "client.name",
+            "value": "WEB_REMIX"
+          },
+          {
+            "key": "client.fexp",
+            "value": "24418299,24430665,24265425,24036948,24392499,24241378,24415866,24392268,24416786,24267564,24263796,24406620,24002025,24421892,24262346,24197450,24248092,24255165,24004644,24402891,24288441,24423785,24431335,24199724,24390674,24007246,24426900,24290376,24162919,24421162,24187377,24293803,24391018,24394017,24297392,24424572,24401557,23934970,1714255,24425861,23998056,24120819,39322574,24135310,24424028,24294554,24407200,24211178,24414076,39322504,24287327,24279196,24140247,24219713,24415864,24191629,24080738,24255545,24419035,24164186,24282154,24288043,24299747,24405024,24428900,24420756,24187043,24268142,24415580,24427242,24217535,23882503,24417873,24272788,24390374,24001373,23804281,23946420,24200839,24077241,24181174,23966208,24391543,24390918,24426909,24292955,24161116,24290971,24169501,24418762,24590921,24414162,24255543,24406605,24416290,23983296,23918597,24034168,24425905,24002022,24416708"
+          }
+        ],
+        "service": "ECATCHER"
+      }
+    ],
+    "visitorData": "CgtKb0FjYk10YUFqWSian6ScBg%3D%3D"
+  },
+  "trackingParams": "CAAQhGciEwj3pPKSotn7AhVEgXwKHWeCDO8="
+}

@@ -1,0 +1,3029 @@
+---
+source: src/client/music_genres.rs
+expression: map_res.c
+---
+MusicGenre(
+  id: "ggMPOg1uX1JOQWZFeDByc2Jm",
+  name: "Chill",
+  sections: [
+    MusicGenreSection(
+      name: "Mindfulness & meditation",
+      subgenre_id: Some("ggMPOg1uX01LVUtIRFJtSkc4"),
+      playlists: [
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_m7I7OhxMQp4dAK2AKvrEoiNmrIDnAX5Z8",
+          name: "Zen Meditation",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/Ad3A5-8hkl9TPzcI3HykfoOk08agxoGhOP63kHnRyKu2tcTVGR8POwFL6xFdb8AE9VC4OvI7IYrsu35x=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/Ad3A5-8hkl9TPzcI3HykfoOk08agxoGhOP63kHnRyKu2tcTVGR8POwFL6xFdb8AE9VC4OvI7IYrsu35x=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_kjbesFvpAjQl3z_xUxMArIfRpubFn791o",
+          name: "Tranquil Spa Day",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/NymHUHk1b2UwDbEA7ZmKQ754Vr8gWziyb9neOQKV8Eg4mY9ov-u1OCh4jLeUfblqRX-kDBkmkaAXow=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/NymHUHk1b2UwDbEA7ZmKQ754Vr8gWziyb9neOQKV8Eg4mY9ov-u1OCh4jLeUfblqRX-kDBkmkaAXow=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_mwJztsnautpobBg-95AVJ_xd5Gnb5DV-w",
+          name: "Peace",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/SPdK02jgkruGZBQ51GhD5nchPrrx1jFsFM8XZLT6D05RKvyDIHeyxK2RR7nFOzWu4UxxKf-66Jq3CWg=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/SPdK02jgkruGZBQ51GhD5nchPrrx1jFsFM8XZLT6D05RKvyDIHeyxK2RR7nFOzWu4UxxKf-66Jq3CWg=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_ldLj_raotpFCQGWiQ7L-Ag5GTbGOyjgRY",
+          name: "Classical Meditation",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/hQypKgpZ-hJ95BJVCrWBpYq1uCSuCA3ySRCjOZEWtX-5bgK5F_E1Cb0LUYS-B6I047rE5jQYhDXFHAQ=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/hQypKgpZ-hJ95BJVCrWBpYq1uCSuCA3ySRCjOZEWtX-5bgK5F_E1Cb0LUYS-B6I047rE5jQYhDXFHAQ=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_mkG6Cj4VqXPmlYf3xbLQQhhAZHGI8vJHo",
+          name: "Infinite Sound Healing",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/MfPgkhYVNnnXVbiTjjJZYgpmejz2mWO06o9Kmhs5m73bjDrZ6-58aaDkRNvS8TMjj6BZYUaqVH85aw=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/MfPgkhYVNnnXVbiTjjJZYgpmejz2mWO06o9Kmhs5m73bjDrZ6-58aaDkRNvS8TMjj6BZYUaqVH85aw=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_mS5x3haS3YiflmBHa8rK0rOZHgn0lhG0w",
+          name: "Symphonic Serenity",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/UJhpG7kQzhoanrDAw8bTRD4syjTiDzpqMSa8axay3QCdbj4T6ochCwFpiHBZJlxTOjjmjEFsMT4qK32O=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/UJhpG7kQzhoanrDAw8bTRD4syjTiDzpqMSa8axay3QCdbj4T6ochCwFpiHBZJlxTOjjmjEFsMT4qK32O=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_m6-fOiMxDip-4p9uD4lhzm3I9WMCSTy_Y",
+          name: "Yoga & Chill",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/mzG8L_GWiF5XQFMkmJ1-bO9bPIxtG_KBy3e-q9e5TUWNXo85WlLkWZG1Amd2nQ5ubYrkKb-f6RnaMQ=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/mzG8L_GWiF5XQFMkmJ1-bO9bPIxtG_KBy3e-q9e5TUWNXo85WlLkWZG1Amd2nQ5ubYrkKb-f6RnaMQ=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_kM1mWVww71EGtfZYJFhqoT7gYHbWFT8ok",
+          name: "Lines of Consciousness",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/KAxUk_fhe3mjYbS2VE1vIljPsl1Ng1eQWsq1sY3vN40K_xzlcUNcaQyB8SNH2d5NFCOF1_VyZrRjvrc=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/KAxUk_fhe3mjYbS2VE1vIljPsl1Ng1eQWsq1sY3vN40K_xzlcUNcaQyB8SNH2d5NFCOF1_VyZrRjvrc=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_kXvJt59314AsVv6QdJnFqHL7W75HkqtB4",
+          name: "Cinematic Ambience",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/QbMcbgiMHCedCNBELR_cdEvRPO1sG1Pzx0E2-A--R2qNf2RnOLVuxYn3lt9MP31w9uteRTzFiJp_gHc=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/QbMcbgiMHCedCNBELR_cdEvRPO1sG1Pzx0E2-A--R2qNf2RnOLVuxYn3lt9MP31w9uteRTzFiJp_gHc=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_mTrr21OCLdb2dJgl_BJ-6MdJDXWqB-1gc",
+          name: "Yoga & Meditation",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/KFBEEAE8C7FMDOGJdJthPSNpP7xz-evjPkVg79ba3MZcykaDuhXfa6yUNLSP1Z45uiegf08OYVtopA=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/KFBEEAE8C7FMDOGJdJthPSNpP7xz-evjPkVg79ba3MZcykaDuhXfa6yUNLSP1Z45uiegf08OYVtopA=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_n7sTcaLpQClN41GSmP1jFn2pZs2uPeSw4",
+          name: "Soothing Classical Harp",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/x9_0iAH1gNIN3Nt62BBonYfWHD87wr40UTGisTOG_1tNIvziTY-aOIxXe58gSOeVdoSYr4373X3V_w=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/x9_0iAH1gNIN3Nt62BBonYfWHD87wr40UTGisTOG_1tNIvziTY-aOIxXe58gSOeVdoSYr4373X3V_w=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_nmyiTFaD-osoI95yEMuRjaSMQiTDRJz6E",
+          name: "Néctar",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/oS2Zfc-qXFPq6R6cQwet6Qn7KpQ3xRirMh8o25iTrwKq9sahQjcC1hCufPjwdRScP82aYKPade_rfxY=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/oS2Zfc-qXFPq6R6cQwet6Qn7KpQ3xRirMh8o25iTrwKq9sahQjcC1hCufPjwdRScP82aYKPade_rfxY=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_kmK1aMjb7sJ6eWV95Co02JwJJmdi0z05M",
+          name: "Classical Solo Piano",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/VMfOy2Hf977gEpvoJY4m5JLQzvVJyYYEOLpP2ZPxhAdFEejjLUcxoeMLdN9mdrroblUDYxxhx7zaKqg=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/VMfOy2Hf977gEpvoJY4m5JLQzvVJyYYEOLpP2ZPxhAdFEejjLUcxoeMLdN9mdrroblUDYxxhx7zaKqg=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_kb7EBi6y3GrtJri4_ZH56Ms786DFEimbM",
+          name: "Lofi Loft",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/9I45SYZAfTeR17ByV9i2yDpWhQ5DTWMCrW3Lei8vMIiZzeyUnf2zRFUDBob4TGwgUkXAAR_x1Xa8VA=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/9I45SYZAfTeR17ByV9i2yDpWhQ5DTWMCrW3Lei8vMIiZzeyUnf2zRFUDBob4TGwgUkXAAR_x1Xa8VA=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_ldooV6iHaoPy6VKyVuHDq0DT4lh-3tRqQ",
+          name: "Gentle Piano",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/J878h5_HGELam1nzXgo2Q1XF4WeJtQuZxdf5-yyts2osTSGnGo9sOIfL4SKb9L2HfSywfXW-VghXlw=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/J878h5_HGELam1nzXgo2Q1XF4WeJtQuZxdf5-yyts2osTSGnGo9sOIfL4SKb9L2HfSywfXW-VghXlw=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_n9hGvSNdO2TpX8jJuiThvnfrfIi1qNRnY",
+          name: "Classical Focus",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/Xeimy3HIPRVpEVzmiO6PydpCDUc7dD35b8fJV5WHEpKHGPWJk0RZc8fjb11oCCvHfd_aQDQFR8VP7y0=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/Xeimy3HIPRVpEVzmiO6PydpCDUc7dD35b8fJV5WHEpKHGPWJk0RZc8fjb11oCCvHfd_aQDQFR8VP7y0=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_mPQwZcd20eT41GybtQa1bSvG9I2C_5044",
+          name: "German Poetry",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/hvumqFKjaKo_HzuvULVDYedIfb4SZiAdB_jNuyxlZiIkYRyI4EmaE_cLxmmwYFvoqz8glMtaea2CqUce=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/hvumqFKjaKo_HzuvULVDYedIfb4SZiAdB_jNuyxlZiIkYRyI4EmaE_cLxmmwYFvoqz8glMtaea2CqUce=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+      ],
+    ),
+    MusicGenreSection(
+      name: "Unwind + explore",
+      subgenre_id: Some("ggMPOg1uX2pyT3VrVnBleW9C"),
+      playlists: [
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_nHSqCJjDrW9HBhCNdF6tWPdnOMngOv0wA",
+          name: "Pop Gold",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/rAUuEbLF7CYEYBXU3yAY4npMCzTgPxMhlD-ygH9iv_SuDXGDuDvO0Z4MTh33xAI6o3UnpWFe26MS_hBZ=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/rAUuEbLF7CYEYBXU3yAY4npMCzTgPxMhlD-ygH9iv_SuDXGDuDvO0Z4MTh33xAI6o3UnpWFe26MS_hBZ=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_nyKVppE-RpLkeCcwLct4rvN9e8AAsS_qw",
+          name: "Soft Rock Ballads",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/CpPI34nkL0wjpkyHDfOm_YUCNBdOdtxiWCfbN_E_ahhOrSyIgL6rjdwGXBbCBBwCyxteH6ZehsXM63VF=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/CpPI34nkL0wjpkyHDfOm_YUCNBdOdtxiWCfbN_E_ahhOrSyIgL6rjdwGXBbCBBwCyxteH6ZehsXM63VF=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_n0BEng8y9HmKm6-moud8jAQ9RkE7Ie1G4",
+          name: "Turkish Folk Classics",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/mhGRlIWZP4WAI5faJLdPQhwTBxyxh9Bm4uOA1NdQrg5UgPVE_AMNnmuGszxvSPoRjjHydSyz92tj1ew=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/mhGRlIWZP4WAI5faJLdPQhwTBxyxh9Bm4uOA1NdQrg5UgPVE_AMNnmuGszxvSPoRjjHydSyz92tj1ew=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_nm4NA8cldZNPqj1D0ayZxfySeY89qedRs",
+          name: "The Smoothest of Smooth Jazz",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/MOytM2p8DaOX3KpDwYKxA738hB_NyHr3J9XA7W-Nhr09-QBXvgWeYAvLL0cSxhrwCMol2seapBN35rA=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/MOytM2p8DaOX3KpDwYKxA738hB_NyHr3J9XA7W-Nhr09-QBXvgWeYAvLL0cSxhrwCMol2seapBN35rA=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_neriXH6JbZPr7Pf4LOi5bGQP-_lWRZXs4",
+          name: "Cozy Jazz",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/TbEijxH1Q8conUoyjdXwXMgzA6SIinrS3-sxAh_n401SBBDvLniVeYwGUEcHOe8zDYUvluL9RHgFMto=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/TbEijxH1Q8conUoyjdXwXMgzA6SIinrS3-sxAh_n401SBBDvLniVeYwGUEcHOe8zDYUvluL9RHgFMto=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_lbcexX19-ShfMgzXpxayVFh_9l4Dml-kg",
+          name: "Mellow Solo Piano",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/mUDdH4uUqIQXKBFw0ygCGR0a9xX2NFeMEsONTMSuojqC3B1RcYCARlmkZmKqfSzVzA6j3bEs8eQg3hs=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/mUDdH4uUqIQXKBFw0ygCGR0a9xX2NFeMEsONTMSuojqC3B1RcYCARlmkZmKqfSzVzA6j3bEs8eQg3hs=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_nRr0zn4n0C5AGQqZKdSaSzs2zmbImOIwU",
+          name: "Jazz Piano",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/Pp5HPjS7VfUMaIArU3JB8ijqR_c_9ILgdFZ7lNE207UXW3eitV8Hj5LVG4dNP94XUpaG589sys2uipo=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/Pp5HPjS7VfUMaIArU3JB8ijqR_c_9ILgdFZ7lNE207UXW3eitV8Hj5LVG4dNP94XUpaG589sys2uipo=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_kXvJt59314AsVv6QdJnFqHL7W75HkqtB4",
+          name: "Cinematic Ambience",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/QbMcbgiMHCedCNBELR_cdEvRPO1sG1Pzx0E2-A--R2qNf2RnOLVuxYn3lt9MP31w9uteRTzFiJp_gHc=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/QbMcbgiMHCedCNBELR_cdEvRPO1sG1Pzx0E2-A--R2qNf2RnOLVuxYn3lt9MP31w9uteRTzFiJp_gHc=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_m0X_CFV7sbR3EKDoP_FvqyK5faV7xorUY",
+          name: "Freshly Chilled",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/dQaic8cocQVGqI0ZHfCIaow7mCJCy2fe4I-G1Kim0yqgcvvJftZ5dZnbLp7U-mkwD9asaXIuzycVmQ=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/dQaic8cocQVGqI0ZHfCIaow7mCJCy2fe4I-G1Kim0yqgcvvJftZ5dZnbLp7U-mkwD9asaXIuzycVmQ=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_l3jcyafhPprVNoFpQZL02ofimw9WsO6mE",
+          name: "Solo Piano Bliss",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/-1H7_JKtT1ZLn07odmQtMXpikTfTd9HANrJli8yE1HnHJOQj1E4Vu-xfxba9x_Q0jVS-kNjtstXQfMJx=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/-1H7_JKtT1ZLn07odmQtMXpikTfTd9HANrJli8yE1HnHJOQj1E4Vu-xfxba9x_Q0jVS-kNjtstXQfMJx=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_n2cq0PxECLzVblC6NOorWjaCtF5NwXJT4",
+          name: "Late Night Jazz",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/xUowNhc8w4M0xyvJXE22Bt2fW8v0HBjxZQnlXwYDqTxTkoTrOvu65QCjbo3ZvxZdcwFCDSYBZut1fw=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/xUowNhc8w4M0xyvJXE22Bt2fW8v0HBjxZQnlXwYDqTxTkoTrOvu65QCjbo3ZvxZdcwFCDSYBZut1fw=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_m2p5A1NXN8SInEzfsxzFEvQ6zws-V-wBo",
+          name: "Gentle Chamber Music",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/8psoIIvcQhqSUljk5cYVTSBbIfK4n3uaQ7Sa2NN0NnlNmeAIVBhptLrorZ3UZgh0mbKF0CF55bcD5w=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/8psoIIvcQhqSUljk5cYVTSBbIfK4n3uaQ7Sa2NN0NnlNmeAIVBhptLrorZ3UZgh0mbKF0CF55bcD5w=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_kQmVjdr90p2onIIAnijgU8u9iUUAOXM2I",
+          name: "Today\'s Smooth Jazz",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/ChiDRl7W_VsAJrB69x8sXgyxlCuZCWEQjKMNw5PadQ6bXjPglwCwosZ1kCh5zOHXH4BsYGDR__TJEoZV=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/ChiDRl7W_VsAJrB69x8sXgyxlCuZCWEQjKMNw5PadQ6bXjPglwCwosZ1kCh5zOHXH4BsYGDR__TJEoZV=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_km8j1Msn0n8FTLRIw0krI9k2sf-t1Z4hg",
+          name: "Acoustic Covers of Love Songs",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/bAruCGgTx2EpS3FiaWuR95GwFjZH3ofkuJ3mE-rgMUCW7whGPIfPWyzQbVlujVFcXVlqrklz666KVB0=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/bAruCGgTx2EpS3FiaWuR95GwFjZH3ofkuJ3mE-rgMUCW7whGPIfPWyzQbVlujVFcXVlqrklz666KVB0=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_kmK1aMjb7sJ6eWV95Co02JwJJmdi0z05M",
+          name: "Classical Solo Piano",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/VMfOy2Hf977gEpvoJY4m5JLQzvVJyYYEOLpP2ZPxhAdFEejjLUcxoeMLdN9mdrroblUDYxxhx7zaKqg=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/VMfOy2Hf977gEpvoJY4m5JLQzvVJyYYEOLpP2ZPxhAdFEejjLUcxoeMLdN9mdrroblUDYxxhx7zaKqg=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_m5EyAGTathBjwdrXC6D2G9AR-YmJrAkpw",
+          name: "Never-Ending Slow Jams",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/BcaJk_f9Mr8LL3F13NA-Zj_cWHwXOuExboHdok2cm6dGa59UXWi3nEbutnuyrbZJlltgu-e6WkDBUxU=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/BcaJk_f9Mr8LL3F13NA-Zj_cWHwXOuExboHdok2cm6dGa59UXWi3nEbutnuyrbZJlltgu-e6WkDBUxU=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_ldooV6iHaoPy6VKyVuHDq0DT4lh-3tRqQ",
+          name: "Gentle Piano",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/J878h5_HGELam1nzXgo2Q1XF4WeJtQuZxdf5-yyts2osTSGnGo9sOIfL4SKb9L2HfSywfXW-VghXlw=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/J878h5_HGELam1nzXgo2Q1XF4WeJtQuZxdf5-yyts2osTSGnGo9sOIfL4SKb9L2HfSywfXW-VghXlw=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_lsl0WiIp96sJajCIcHkUnOWtsU29tDSNg",
+          name: "Gentle Acoustic Instrumentals",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/AcqSsqL9dQNa0QLBVTjSJDtoCWwm666wj0s1IOzJULZjI2eA8TaVrRC88So3rid-YeK-Ctwb4cZBGo8=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/AcqSsqL9dQNa0QLBVTjSJDtoCWwm666wj0s1IOzJULZjI2eA8TaVrRC88So3rid-YeK-Ctwb4cZBGo8=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_l3Iir9QZmCUPLjUqyR9PmYIKkkY7YEJZA",
+          name: "Cool Jazz Moods",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/xnUDhtGd_W4KoqX8NE85Ne7Ezwbi1kZpDjdARuuPGPLkNj3jKZyOUPN4g19FJtT7M6mDc_BdapFcFg=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/xnUDhtGd_W4KoqX8NE85Ne7Ezwbi1kZpDjdARuuPGPLkNj3jKZyOUPN4g19FJtT7M6mDc_BdapFcFg=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_n7sTcaLpQClN41GSmP1jFn2pZs2uPeSw4",
+          name: "Soothing Classical Harp",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/x9_0iAH1gNIN3Nt62BBonYfWHD87wr40UTGisTOG_1tNIvziTY-aOIxXe58gSOeVdoSYr4373X3V_w=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/x9_0iAH1gNIN3Nt62BBonYfWHD87wr40UTGisTOG_1tNIvziTY-aOIxXe58gSOeVdoSYr4373X3V_w=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_nBOvRANXhyfsK6oGe_wTHNwOW-0kSMB8w",
+          name: "Classical Calm",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/D8mw4OfckbnyW2cu0nUHBmrDROUF1Iq7DNdDPHO8xNBGVxA0XbONCeeW5DLVs4sfT2o10EpoY66g8NM=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/D8mw4OfckbnyW2cu0nUHBmrDROUF1Iq7DNdDPHO8xNBGVxA0XbONCeeW5DLVs4sfT2o10EpoY66g8NM=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_kSv4K98sYykBnvkZ59z1jVocVmQDigHII",
+          name: "Laid-Back Soul",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/7YvBvHu9JK1VHwhn_ytC1U-GjQfGuWaNpC9QdfweYD5EF70VxI0G74x6znIK0XznHDa6eMQ3dZDta5U=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/7YvBvHu9JK1VHwhn_ytC1U-GjQfGuWaNpC9QdfweYD5EF70VxI0G74x6znIK0XznHDa6eMQ3dZDta5U=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_kfocULaE1ZmVD0lO2WZS1iTkDyo0SpxVw",
+          name: "Dinner for Two",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/ZTuLSMJFsxkdmafHKGBzK4q6ysBJcmbdxWjtvSz4aCzqEJ0B3P3glO4NsV47nHxYe-KARMOLD--XhIQ=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/ZTuLSMJFsxkdmafHKGBzK4q6ysBJcmbdxWjtvSz4aCzqEJ0B3P3glO4NsV47nHxYe-KARMOLD--XhIQ=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_l8gRf-W7IZq0qHUkIiTiMvztkfkR-Q1lU",
+          name: "Neo-Soul Revival",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/iHcOWsxRXflYFF03aHidEoNIeUoab3baao5DoajZGprlBtd5ndt0xC6XI_lDlOWqsqAnU1MhigDNQA=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/iHcOWsxRXflYFF03aHidEoNIeUoab3baao5DoajZGprlBtd5ndt0xC6XI_lDlOWqsqAnU1MhigDNQA=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_kTjUwIUwKmNgaGW1YDq7JxCGB6vMGA1q4",
+          name: "Presenting Chopin",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/gsSihhgybNql-GJVJq5Rd-nsCROzUw_bTEpoY4y98cgt2OL3AyYRQ95RE4YobCM-zXtsPKbB7WXm-ObR=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/gsSihhgybNql-GJVJq5Rd-nsCROzUw_bTEpoY4y98cgt2OL3AyYRQ95RE4YobCM-zXtsPKbB7WXm-ObR=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_lWfuEE9muOjxNxKnvVL_KZOhsMG7-FxMI",
+          name: "Electro Deceleration",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/8bZoYe4ui5wWgXHI87-WX1Zzv-FbdaHW_pW_NLTE4W-MfCdtp_INK4t0rRzATOl8R3_4zod_Paid3w=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/8bZoYe4ui5wWgXHI87-WX1Zzv-FbdaHW_pW_NLTE4W-MfCdtp_INK4t0rRzATOl8R3_4zod_Paid3w=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_m8ULgAe9Lkf7wIsoguU3IqZ8ZePk1ndMc",
+          name: "Classical Spanish Guitar",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/F2bNC0l-4U666WzgVUJ4YzCPRlGBftdxVfb2F0US-yVmmsRBosp9gMnNAwZhTzsT7VFs6nTb7x4i6fo=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/F2bNC0l-4U666WzgVUJ4YzCPRlGBftdxVfb2F0US-yVmmsRBosp9gMnNAwZhTzsT7VFs6nTb7x4i6fo=w512-h512-l90-rj",
+              width: 512,
+              height: 512,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_ktkqrgIqlP46yBkUsZp4go2j59McnSsYY",
+          name: "Mellow Hype",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/TqhOoP8htL7pBMP9K0RCegvwS1w5-jfEeuGSNApUXabj8FdWsXdQ3i2SEARagwd8ZStYVt0kl3S0aIE=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/TqhOoP8htL7pBMP9K0RCegvwS1w5-jfEeuGSNApUXabj8FdWsXdQ3i2SEARagwd8ZStYVt0kl3S0aIE=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_kKKdVO7GqGfPlsZKfScel-ourJ_WHUn1Q",
+          name: "Space Out & Chill",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/t8Eo_lhPW7cJWbtgj8w10CG82T25UtVAMa0HfvrMGprxmuPzJ20pnKlMRHepqN_4ffiqo0eGn2E5i44=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/t8Eo_lhPW7cJWbtgj8w10CG82T25UtVAMa0HfvrMGprxmuPzJ20pnKlMRHepqN_4ffiqo0eGn2E5i44=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_kL7seJinYAVpulQQbre887jeaIDkrnAg0",
+          name: "Background Jazz",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/Fgf5tCnIlbv7N3s7RNo2TTo9tDHLjKZkK6pDTYXo2J_U_DOvzPv90KBjkLC-Xyj2XGxkKMdcqIzOaLw=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/Fgf5tCnIlbv7N3s7RNo2TTo9tDHLjKZkK6pDTYXo2J_U_DOvzPv90KBjkLC-Xyj2XGxkKMdcqIzOaLw=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_nlJdxcHTlQmkhdN48_-8CjPKyja3x86tQ",
+          name: "New Jazz Impressions",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/mKiVpMwXF-iQarrhfLZmDq6xQsqTBQReRjESvfhakJ_N_cP0-u9i83nasBtK-w3DLccrTG6B9xOdqg=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/mKiVpMwXF-iQarrhfLZmDq6xQsqTBQReRjESvfhakJ_N_cP0-u9i83nasBtK-w3DLccrTG6B9xOdqg=w512-h512-l90-rj",
+              width: 512,
+              height: 512,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_nSOL68i5YjTpuaCX0BlTL1pMzg2uAmmq0",
+          name: "Contemporary Classical Guitar",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/buTsLc4Y9Jpge6q5PigfcpmLVanfG2bXgL1M90IlW-7MXud8IUUy6oaK8BdPJQWsywucN6PHkMXFYQ=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/buTsLc4Y9Jpge6q5PigfcpmLVanfG2bXgL1M90IlW-7MXud8IUUy6oaK8BdPJQWsywucN6PHkMXFYQ=w512-h512-l90-rj",
+              width: 512,
+              height: 512,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_lR4t8saWkusw6pH2MegxK-8lxB-fNWP2I",
+          name: "Classical Bliss",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/D9P9oyULYI-4dPe4opUg-O86PS1FAGiI8eAbAoryY-3m5zJxQdtn_XgI2AmPMqFEAX8VlqMP5Vqv3ec=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/D9P9oyULYI-4dPe4opUg-O86PS1FAGiI8eAbAoryY-3m5zJxQdtn_XgI2AmPMqFEAX8VlqMP5Vqv3ec=w512-h512-l90-rj",
+              width: 512,
+              height: 512,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_n_goavyhecaj4JOjSN-fWLxKmgZli6kj4",
+          name: "Slow German Pop",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/sOjfO7_yga3-xoIUp-fhHSRktJl4gvh26QteYglehwmoq4jsq08ardTeLsuLR4HCwOLydScP06cME0k=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/sOjfO7_yga3-xoIUp-fhHSRktJl4gvh26QteYglehwmoq4jsq08ardTeLsuLR4HCwOLydScP06cME0k=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_kYbdnA_dQD1WGAj0jvmEdm8cduRDmHKXw",
+          name: "German Rap Chilled",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/6C-xPgBkNEYlwxZCVCk3wnAgJZ1Bkkv6t6hZQivtB9BGTGQRJHXO7yxdAz-nWW3xOfy333Sg5Yuu8jRK=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/6C-xPgBkNEYlwxZCVCk3wnAgJZ1Bkkv6t6hZQivtB9BGTGQRJHXO7yxdAz-nWW3xOfy333Sg5Yuu8jRK=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+      ],
+    ),
+    MusicGenreSection(
+      name: "Laidback + acoustic",
+      subgenre_id: Some("ggMPOg1uX3lnT04xVUJsU21Y"),
+      playlists: [
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_km8j1Msn0n8FTLRIw0krI9k2sf-t1Z4hg",
+          name: "Acoustic Covers of Love Songs",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/bAruCGgTx2EpS3FiaWuR95GwFjZH3ofkuJ3mE-rgMUCW7whGPIfPWyzQbVlujVFcXVlqrklz666KVB0=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/bAruCGgTx2EpS3FiaWuR95GwFjZH3ofkuJ3mE-rgMUCW7whGPIfPWyzQbVlujVFcXVlqrklz666KVB0=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_mkPdnadBmgXk28mbGxm_5uGeKvHrec208",
+          name: "Acoustic Pop",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/twnaMo3LIVaUxiYG32ySvGXimAqS7Sn1YT7z6hXSOP4sptK9GVrFRdZ7J5Ib6eH8YuV-EOllVmLLgKQ=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/twnaMo3LIVaUxiYG32ySvGXimAqS7Sn1YT7z6hXSOP4sptK9GVrFRdZ7J5Ib6eH8YuV-EOllVmLLgKQ=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_kIlyUNKFS6Z7rgWOhrPzqohetabYwby08",
+          name: "Akustikan",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/UNtb5Ugo9HZw86fldOvXx87ww2ylZiIhtIZcx-X7b9jHKY5kTNBsK2YCjpp6loMLWbj6dbQ5x0e91Tc=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/UNtb5Ugo9HZw86fldOvXx87ww2ylZiIhtIZcx-X7b9jHKY5kTNBsK2YCjpp6loMLWbj6dbQ5x0e91Tc=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_lsl0WiIp96sJajCIcHkUnOWtsU29tDSNg",
+          name: "Gentle Acoustic Instrumentals",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/AcqSsqL9dQNa0QLBVTjSJDtoCWwm666wj0s1IOzJULZjI2eA8TaVrRC88So3rid-YeK-Ctwb4cZBGo8=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/AcqSsqL9dQNa0QLBVTjSJDtoCWwm666wj0s1IOzJULZjI2eA8TaVrRC88So3rid-YeK-Ctwb4cZBGo8=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_kIMj6ScYWghk2sQarkFf0gLcAYL7bFKNs",
+          name: "Acoustic Doze-Off",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/ebGpV9laDX2TS5CBrEcU_PoXkZhGZzOTH7WzE5izOnCDZwx8Gr3HOZ2tnPSx7Ylf8m-Zkv-H0SNCm44R=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/ebGpV9laDX2TS5CBrEcU_PoXkZhGZzOTH7WzE5izOnCDZwx8Gr3HOZ2tnPSx7Ylf8m-Zkv-H0SNCm44R=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_m6XXtQxtjnB5lr_FhgBANwp7mHKY5Yoik",
+          name: "Acoustic Singer-Songwriters",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/t_nl8Y2nAlpQKoEQDu1oUaG5BA4jcc1QXNERMuJ71vJWdXZ__dXvbtJl88Xi3BHDCOQ2JnCHTLQ2AQ=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/t_nl8Y2nAlpQKoEQDu1oUaG5BA4jcc1QXNERMuJ71vJWdXZ__dXvbtJl88Xi3BHDCOQ2JnCHTLQ2AQ=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_m2p5A1NXN8SInEzfsxzFEvQ6zws-V-wBo",
+          name: "Gentle Chamber Music",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/8psoIIvcQhqSUljk5cYVTSBbIfK4n3uaQ7Sa2NN0NnlNmeAIVBhptLrorZ3UZgh0mbKF0CF55bcD5w=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/8psoIIvcQhqSUljk5cYVTSBbIfK4n3uaQ7Sa2NN0NnlNmeAIVBhptLrorZ3UZgh0mbKF0CF55bcD5w=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_mPmYbqPIJ2C20lzdy9hyRU1ThPlZIDdog",
+          name: "Acoustic Soul",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/DPXrQS1q6945et8nQzW64SBzlCXMt9YEVwQ0YGGYDRwHeUwoWGCobxMuKb9IuAGe65CT-Z8B4WGi-w=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/DPXrQS1q6945et8nQzW64SBzlCXMt9YEVwQ0YGGYDRwHeUwoWGCobxMuKb9IuAGe65CT-Z8B4WGi-w=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_liwwwIG8z4P25AWeLZ2Nvydx1GwbvndEI",
+          name: "Campfire Classics",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/9AsBamvDn0qukL9rWgDMLveUsSZ5JAe1eGXS4XTE98JU2H5pjNCmJYO0MV6o6Q24sIeum82kBE4MZ_g=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/9AsBamvDn0qukL9rWgDMLveUsSZ5JAe1eGXS4XTE98JU2H5pjNCmJYO0MV6o6Q24sIeum82kBE4MZ_g=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_lXWhlJsihey6xq1b50d7Uv93NLqle8TSc",
+          name: "Take It Easy Indie",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/p9FVGqp5rNOOScehRUcjla_iDtAZ0777tDkXL-hNoWsThGhL5bdXRTbbwOzknFJZRTgvVuGvAZoNJyo=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/p9FVGqp5rNOOScehRUcjla_iDtAZ0777tDkXL-hNoWsThGhL5bdXRTbbwOzknFJZRTgvVuGvAZoNJyo=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_nZexkv7Z-x6_aS9MlGSpmnXZceVKEsBms",
+          name: "Ukrainian Pop Ballads",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/cW-HdzbLEtJGWXHcN5TGqPRBd1tNa69eI9lc3OAsDf2-1YKuS8fHnU8iK7sjKQp3fzCFwa8A10f6s3Y=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/cW-HdzbLEtJGWXHcN5TGqPRBd1tNa69eI9lc3OAsDf2-1YKuS8fHnU8iK7sjKQp3fzCFwa8A10f6s3Y=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_m8ULgAe9Lkf7wIsoguU3IqZ8ZePk1ndMc",
+          name: "Classical Spanish Guitar",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/F2bNC0l-4U666WzgVUJ4YzCPRlGBftdxVfb2F0US-yVmmsRBosp9gMnNAwZhTzsT7VFs6nTb7x4i6fo=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/F2bNC0l-4U666WzgVUJ4YzCPRlGBftdxVfb2F0US-yVmmsRBosp9gMnNAwZhTzsT7VFs6nTb7x4i6fo=w512-h512-l90-rj",
+              width: 512,
+              height: 512,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_lBXJA3sbgAXtfFc9gIKWF4U4gKku-XAqk",
+          name: "Harvest Moon",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/Y8y0k1cmhAkq9Kq8FQa0Gy2s7T7O3t5hTV4wXFEI52x3iwBH3jYWHg6Fhvmi4asdXgeENYCLybqyCPk=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/Y8y0k1cmhAkq9Kq8FQa0Gy2s7T7O3t5hTV4wXFEI52x3iwBH3jYWHg6Fhvmi4asdXgeENYCLybqyCPk=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_kVkMotNBbFuy4Ky2M1yxjFjYs4Ll7VXIw",
+          name: "Classics Unplugged",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/-rJHKIzX5GpcR4PnLCVhL5CkorOZ5Kj8RlMZnNBGgmThuuePwSSaHt4qn-MwSAR3pvLv51PXwPBfBYzE=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/-rJHKIzX5GpcR4PnLCVhL5CkorOZ5Kj8RlMZnNBGgmThuuePwSSaHt4qn-MwSAR3pvLv51PXwPBfBYzE=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_lgVCG10ZBWEcJ_acmecScmSbeEfO9BoR0",
+          name: "Laid Back Summer",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/Ee2TS0xmtzj583nQB9teg0jqqCQ29YSI1xBXuBh8zb6V8Nu9NzPiUyrsc3sqiiU2uxTafiEkRoIJsaUj=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/Ee2TS0xmtzj583nQB9teg0jqqCQ29YSI1xBXuBh8zb6V8Nu9NzPiUyrsc3sqiiU2uxTafiEkRoIJsaUj=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_n_goavyhecaj4JOjSN-fWLxKmgZli6kj4",
+          name: "Slow German Pop",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/sOjfO7_yga3-xoIUp-fhHSRktJl4gvh26QteYglehwmoq4jsq08ardTeLsuLR4HCwOLydScP06cME0k=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/sOjfO7_yga3-xoIUp-fhHSRktJl4gvh26QteYglehwmoq4jsq08ardTeLsuLR4HCwOLydScP06cME0k=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_n2cB9bcNdoboeec971YTzpvg3XUI0hyQg",
+          name: "Indie Gold ",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/jwy0yzFvk7e09GuSk8qSqZLXx_HB5mh-TCxFv1dVdP9FGL3j5dYZzNM5-okz7WtF9mwd1L9PRx8cSg=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/jwy0yzFvk7e09GuSk8qSqZLXx_HB5mh-TCxFv1dVdP9FGL3j5dYZzNM5-okz7WtF9mwd1L9PRx8cSg=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_nuMpvdFFPBATWGBB1IQEokh8u3jELKnSc",
+          name: "Singer-Songwriter Poetry",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/6kA_3VaNEoP5MhGM2N0OWFZu8C79ivh_O1ndZ72nJ6R9JhDUxl3Yih5B-skp1Q36cspmsogTgF96SXU=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/6kA_3VaNEoP5MhGM2N0OWFZu8C79ivh_O1ndZ72nJ6R9JhDUxl3Yih5B-skp1Q36cspmsogTgF96SXU=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_kGHYAi69KWgIEaGH9-sYOJKbvhuUovJUM",
+          name: "OPM Acoustic",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/3bI-KddNxAvs6uiF2b1xeWA0PfhkAK_e-zbSguVa6FMQuw1MTkdiEb5sOlopBURqEyu8q8vFdy0hUdc=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/3bI-KddNxAvs6uiF2b1xeWA0PfhkAK_e-zbSguVa6FMQuw1MTkdiEb5sOlopBURqEyu8q8vFdy0hUdc=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_nqJYWLG-6JPxCiMl10it5PbHU7cc-K4OQ",
+          name: "Soothing Ukrainian Rock",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/9HlleOZKVUp5DkY47krS7DlCPoBd36HRRjs4k7AXo5Erqi8L6lLr9Wej4Mc2AH8VvVacC8eFFq55iOiY=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/9HlleOZKVUp5DkY47krS7DlCPoBd36HRRjs4k7AXo5Erqi8L6lLr9Wej4Mc2AH8VvVacC8eFFq55iOiY=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_mfut9V_o1n9nVG_m5yZ3ztCif29AHUffI",
+          name: "Take It Easy Rock",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/F0qlUS-4Ck886OsJ_GghTC9vkPWxS7KNmtqfmkefxrSDgEo6067vfqIe__5zZI6upe8x42k-Ta4byrQ=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/F0qlUS-4Ck886OsJ_GghTC9vkPWxS7KNmtqfmkefxrSDgEo6067vfqIe__5zZI6upe8x42k-Ta4byrQ=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+      ],
+    ),
+    MusicGenreSection(
+      name: "Chilled",
+      subgenre_id: Some("ggMPOg1uX2dzd2FJOXpRSWkz"),
+      playlists: [
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_np_soSTj6w3-N7Dh_xmdDpQINJ8LsVpa8",
+          name: "Unwind",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/cHwacX34baHntZXdDINs2HvPgodpqTIP0CpMYjWLY6AyMWWxSdahwCCZs3Ym0yFlpQAhNzrUUpodFwI=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/cHwacX34baHntZXdDINs2HvPgodpqTIP0CpMYjWLY6AyMWWxSdahwCCZs3Ym0yFlpQAhNzrUUpodFwI=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_m_0U5VQNyyzwwH1lRi7cPAAGXqNQnAOqY",
+          name: "Laid-Back Sofa Pop",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/IKBTW8jZAxhiUfUkM9u-BLTuuFYrO2833EMuUmH4od_9Acn2pOhh0xOda0iSxo_C24TW3EHGPkkXF2o=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/IKBTW8jZAxhiUfUkM9u-BLTuuFYrO2833EMuUmH4od_9Acn2pOhh0xOda0iSxo_C24TW3EHGPkkXF2o=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_mSaYvcoVvag_GrAc593WX3MoxTLvUXYT8",
+          name: "Relaxing Evening",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/LmuNM2le9zSdvhaw41N7LrxyjNnvM9cFefBKTbJHmi4VwIbXjgxk4sP1ssA18VvT-VeiZxe-xbAJHA=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/LmuNM2le9zSdvhaw41N7LrxyjNnvM9cFefBKTbJHmi4VwIbXjgxk4sP1ssA18VvT-VeiZxe-xbAJHA=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_nDL8KeBrUagwyISwNmyEiSfYgz1gVCesg",
+          name: "Mellow Pop Classics",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/XyREm3Y-HafFR_mxyJF99Pd9zerLQiJ0q62_XEnzPK2g30m_V04iVdzAwyP1T9-_3ruclUASulQFjSY=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/XyREm3Y-HafFR_mxyJF99Pd9zerLQiJ0q62_XEnzPK2g30m_V04iVdzAwyP1T9-_3ruclUASulQFjSY=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_mkPdnadBmgXk28mbGxm_5uGeKvHrec208",
+          name: "Acoustic Pop",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/twnaMo3LIVaUxiYG32ySvGXimAqS7Sn1YT7z6hXSOP4sptK9GVrFRdZ7J5Ib6eH8YuV-EOllVmLLgKQ=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/twnaMo3LIVaUxiYG32ySvGXimAqS7Sn1YT7z6hXSOP4sptK9GVrFRdZ7J5Ib6eH8YuV-EOllVmLLgKQ=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_m0X_CFV7sbR3EKDoP_FvqyK5faV7xorUY",
+          name: "Freshly Chilled",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/dQaic8cocQVGqI0ZHfCIaow7mCJCy2fe4I-G1Kim0yqgcvvJftZ5dZnbLp7U-mkwD9asaXIuzycVmQ=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/dQaic8cocQVGqI0ZHfCIaow7mCJCy2fe4I-G1Kim0yqgcvvJftZ5dZnbLp7U-mkwD9asaXIuzycVmQ=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_mkG6Cj4VqXPmlYf3xbLQQhhAZHGI8vJHo",
+          name: "Infinite Sound Healing",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/MfPgkhYVNnnXVbiTjjJZYgpmejz2mWO06o9Kmhs5m73bjDrZ6-58aaDkRNvS8TMjj6BZYUaqVH85aw=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/MfPgkhYVNnnXVbiTjjJZYgpmejz2mWO06o9Kmhs5m73bjDrZ6-58aaDkRNvS8TMjj6BZYUaqVH85aw=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_m7I7OhxMQp4dAK2AKvrEoiNmrIDnAX5Z8",
+          name: "Zen Meditation",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/Ad3A5-8hkl9TPzcI3HykfoOk08agxoGhOP63kHnRyKu2tcTVGR8POwFL6xFdb8AE9VC4OvI7IYrsu35x=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/Ad3A5-8hkl9TPzcI3HykfoOk08agxoGhOP63kHnRyKu2tcTVGR8POwFL6xFdb8AE9VC4OvI7IYrsu35x=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_mdwsZFtQhJyGQPuQA612VoRPXp-OJfzx8",
+          name: "Hits Unplugged ",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/KDBbbKE__WAr7k6c6_MFij3nOGHOaoP5lxEJ-fS-9KuI3Gxf_rPDzNhdC8XO3sDmZAlL9bkeWUJvFalJ=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/KDBbbKE__WAr7k6c6_MFij3nOGHOaoP5lxEJ-fS-9KuI3Gxf_rPDzNhdC8XO3sDmZAlL9bkeWUJvFalJ=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_n_0vMGj-9WtHuj2fbdwMGsSxL_7qglBCI",
+          name: "Egyptian Chill",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/3KsMNr0f5YC2yoaupZUlE3CmpUsUBGj2Er75jPeAg0w6eUVgTuDYF1TeIaJhClEdpbXLu7Cz8jv17A=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/3KsMNr0f5YC2yoaupZUlE3CmpUsUBGj2Er75jPeAg0w6eUVgTuDYF1TeIaJhClEdpbXLu7Cz8jv17A=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_m6XXtQxtjnB5lr_FhgBANwp7mHKY5Yoik",
+          name: "Acoustic Singer-Songwriters",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/t_nl8Y2nAlpQKoEQDu1oUaG5BA4jcc1QXNERMuJ71vJWdXZ__dXvbtJl88Xi3BHDCOQ2JnCHTLQ2AQ=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/t_nl8Y2nAlpQKoEQDu1oUaG5BA4jcc1QXNERMuJ71vJWdXZ__dXvbtJl88Xi3BHDCOQ2JnCHTLQ2AQ=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_k3dazOzqqDagSIBhGET4VrDKHS9dEjXPA",
+          name: "Khaleeji Chill",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/oxBDXzU4GFzY6WKAl3wnSa-QPPphtT0-_VEv6xxDCF_1ySTShckngtZH9xgljnaQrDWzN5sxRH0M1Tw9=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/oxBDXzU4GFzY6WKAl3wnSa-QPPphtT0-_VEv6xxDCF_1ySTShckngtZH9xgljnaQrDWzN5sxRH0M1Tw9=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_m6-fOiMxDip-4p9uD4lhzm3I9WMCSTy_Y",
+          name: "Yoga & Chill",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/mzG8L_GWiF5XQFMkmJ1-bO9bPIxtG_KBy3e-q9e5TUWNXo85WlLkWZG1Amd2nQ5ubYrkKb-f6RnaMQ=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/mzG8L_GWiF5XQFMkmJ1-bO9bPIxtG_KBy3e-q9e5TUWNXo85WlLkWZG1Amd2nQ5ubYrkKb-f6RnaMQ=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_njvsGKIUycy_a4h7zTS8upbKhHcMVzHFM",
+          name: "Easy-Going Pop & Rock",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/M71FPrMhXzJY6ii8g63csVY6kEgTfnUIsIpOdue-5dEE8dgi3deMfoWG9pdPL0vCTZHU4gTVZiT0fXIc=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/M71FPrMhXzJY6ii8g63csVY6kEgTfnUIsIpOdue-5dEE8dgi3deMfoWG9pdPL0vCTZHU4gTVZiT0fXIc=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_mwJztsnautpobBg-95AVJ_xd5Gnb5DV-w",
+          name: "Peace",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/SPdK02jgkruGZBQ51GhD5nchPrrx1jFsFM8XZLT6D05RKvyDIHeyxK2RR7nFOzWu4UxxKf-66Jq3CWg=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/SPdK02jgkruGZBQ51GhD5nchPrrx1jFsFM8XZLT6D05RKvyDIHeyxK2RR7nFOzWu4UxxKf-66Jq3CWg=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_mwxGoOtv8258D3gdLZ0i0clri0O1-MhKU",
+          name: "Laid-Back 00s Hits",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/UEgF9Duc8rsK_Z5LNj0vzf-iu3YphSARZ9-WDQEFfBjm2cXH8vG332WfoBm3OMte4CSeZkJl6y-t95Z_=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/UEgF9Duc8rsK_Z5LNj0vzf-iu3YphSARZ9-WDQEFfBjm2cXH8vG332WfoBm3OMte4CSeZkJl6y-t95Z_=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_kZV9OCuNPSp11tslT5Qu0NVG3WR8xGo_A",
+          name: "Your Morning Coffee",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/TlfAciM9ccnz5vuQB4qobPxrI5g4k7z0KsPDDo-oH4ALLqxvTPvwYVvmYAaQKeSv5Uug2qXONCTK0omh=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/TlfAciM9ccnz5vuQB4qobPxrI5g4k7z0KsPDDo-oH4ALLqxvTPvwYVvmYAaQKeSv5Uug2qXONCTK0omh=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_kM1mWVww71EGtfZYJFhqoT7gYHbWFT8ok",
+          name: "Lines of Consciousness",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/KAxUk_fhe3mjYbS2VE1vIljPsl1Ng1eQWsq1sY3vN40K_xzlcUNcaQyB8SNH2d5NFCOF1_VyZrRjvrc=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/KAxUk_fhe3mjYbS2VE1vIljPsl1Ng1eQWsq1sY3vN40K_xzlcUNcaQyB8SNH2d5NFCOF1_VyZrRjvrc=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_k5psGic7w1Z8Udh8rwqpoKxqznjhq8p54",
+          name: "Classy Arabic",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/EnP7NmxwxtDnnv0iIYIvrBIrqYZa_V4Fd1beGEPCBSJvusVdFvVEOMIQyZEiCW8LiMrL4UEbO93BArA=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/EnP7NmxwxtDnnv0iIYIvrBIrqYZa_V4Fd1beGEPCBSJvusVdFvVEOMIQyZEiCW8LiMrL4UEbO93BArA=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_lzZ2FTtItPTnWXpdiYpNyiH5_xIXf17q8",
+          name: "Rawa\'",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/4_IJYkBgUqiQBIBa_6q1ZhOqdGClQ6T6Oxx8tTiO8stVf6ce3DoRQX-dtI6XyOetBqbV0eoO0Psz1IFu=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/4_IJYkBgUqiQBIBa_6q1ZhOqdGClQ6T6Oxx8tTiO8stVf6ce3DoRQX-dtI6XyOetBqbV0eoO0Psz1IFu=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk",
+          name: "Easy Pop",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/yhJZKIN2MC78CA5TOJ0jPlqRVogpV8NCNvXVNPNwqhRE6o5QIz-SIv69lmrAPrMa8MoVCh90EyKx7gE=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/yhJZKIN2MC78CA5TOJ0jPlqRVogpV8NCNvXVNPNwqhRE6o5QIz-SIv69lmrAPrMa8MoVCh90EyKx7gE=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_n8Hg9csbDQCPDH-PKmWZmKVG_oMgvrozY",
+          name: "Emotional German Songs",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/OLJduGjEbT5AyrB2QRGX3VW5_MWO7p9dT1dNrEGo7eRoRQi1cECumCz37dEOR95igLEWx7mznG7Tgg=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/OLJduGjEbT5AyrB2QRGX3VW5_MWO7p9dT1dNrEGo7eRoRQi1cECumCz37dEOR95igLEWx7mznG7Tgg=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_n_goavyhecaj4JOjSN-fWLxKmgZli6kj4",
+          name: "Slow German Pop",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/sOjfO7_yga3-xoIUp-fhHSRktJl4gvh26QteYglehwmoq4jsq08ardTeLsuLR4HCwOLydScP06cME0k=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/sOjfO7_yga3-xoIUp-fhHSRktJl4gvh26QteYglehwmoq4jsq08ardTeLsuLR4HCwOLydScP06cME0k=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_kYbdnA_dQD1WGAj0jvmEdm8cduRDmHKXw",
+          name: "German Rap Chilled",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/6C-xPgBkNEYlwxZCVCk3wnAgJZ1Bkkv6t6hZQivtB9BGTGQRJHXO7yxdAz-nWW3xOfy333Sg5Yuu8jRK=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/6C-xPgBkNEYlwxZCVCk3wnAgJZ1Bkkv6t6hZQivtB9BGTGQRJHXO7yxdAz-nWW3xOfy333Sg5Yuu8jRK=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_nOQfhuQ-yKUIAFqFyxJ-M7vGfwcEg257U",
+          name: "Electro Melancholy",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/FKMYmueDYJ1eJwMbjtmPhe-KWWs7YPnWWFEiuHM3GnuxXAkHSezZJ3PW6tya8Du1alzMCDFsvLSO1IZW=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/FKMYmueDYJ1eJwMbjtmPhe-KWWs7YPnWWFEiuHM3GnuxXAkHSezZJ3PW6tya8Du1alzMCDFsvLSO1IZW=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_lp8LtelM9GiSwRFGGQjctKaGoHcrgQVEU",
+          name: "#SadForever",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/jMrnCI2xEUrHenV0aa56jxJFggGe5Vylg2tGgDPphiiDujuAvkf53Hw61_XfF_o4X9WdV2xRc8qugpU=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/jMrnCI2xEUrHenV0aa56jxJFggGe5Vylg2tGgDPphiiDujuAvkf53Hw61_XfF_o4X9WdV2xRc8qugpU=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_n6KBAnIl1BQJyOFJURESNO3BgsVttpwZM",
+          name: "Melancholic Schlager",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/l7w_NgevQlDwPGflKWk7sY0rQGJsMsYGTZQ9qAs1omV8MQ4Ir_mW7QRFLEJP_r2MKatLnw7XXMl8AL0=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/l7w_NgevQlDwPGflKWk7sY0rQGJsMsYGTZQ9qAs1omV8MQ4Ir_mW7QRFLEJP_r2MKatLnw7XXMl8AL0=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_nuMpvdFFPBATWGBB1IQEokh8u3jELKnSc",
+          name: "Singer-Songwriter Poetry",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/6kA_3VaNEoP5MhGM2N0OWFZu8C79ivh_O1ndZ72nJ6R9JhDUxl3Yih5B-skp1Q36cspmsogTgF96SXU=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/6kA_3VaNEoP5MhGM2N0OWFZu8C79ivh_O1ndZ72nJ6R9JhDUxl3Yih5B-skp1Q36cspmsogTgF96SXU=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+      ],
+    ),
+    MusicGenreSection(
+      name: "Peaceful bedtime",
+      subgenre_id: Some("ggMPOg1uX0ZNZXlVS2l4VVlK"),
+      playlists: [
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_k83Q0BJ_yGLX2nTNKxOXb3BP3Pb7uMIN0",
+          name: "Classical for Sleeping",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/EIyfle5mn3IlaZGnoTtXuIFwrGEvx_8tEkyW4Gby-Eipr2ZWddljRRy0JSIdF_RSX8JFzJ6Azc3eUw=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/EIyfle5mn3IlaZGnoTtXuIFwrGEvx_8tEkyW4Gby-Eipr2ZWddljRRy0JSIdF_RSX8JFzJ6Azc3eUw=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_mSaYvcoVvag_GrAc593WX3MoxTLvUXYT8",
+          name: "Relaxing Evening",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/LmuNM2le9zSdvhaw41N7LrxyjNnvM9cFefBKTbJHmi4VwIbXjgxk4sP1ssA18VvT-VeiZxe-xbAJHA=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/LmuNM2le9zSdvhaw41N7LrxyjNnvM9cFefBKTbJHmi4VwIbXjgxk4sP1ssA18VvT-VeiZxe-xbAJHA=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_k2csipDOuQwX6-GGZd4ys5MM5bueEqkrE",
+          name: "Fall Asleep",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/kAIMx2sLsem_3qRAQfzIZPK5DvCm30my2p8su6qbY8OMEMtGYlgxIS7WqgF5lEO_ZHTAlIDZRCgr7vM=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/kAIMx2sLsem_3qRAQfzIZPK5DvCm30my2p8su6qbY8OMEMtGYlgxIS7WqgF5lEO_ZHTAlIDZRCgr7vM=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_kIMj6ScYWghk2sQarkFf0gLcAYL7bFKNs",
+          name: "Acoustic Doze-Off",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/ebGpV9laDX2TS5CBrEcU_PoXkZhGZzOTH7WzE5izOnCDZwx8Gr3HOZ2tnPSx7Ylf8m-Zkv-H0SNCm44R=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/ebGpV9laDX2TS5CBrEcU_PoXkZhGZzOTH7WzE5izOnCDZwx8Gr3HOZ2tnPSx7Ylf8m-Zkv-H0SNCm44R=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_l2OjbOL4oVkkHE86UT6oQCNufuv8d0luQ",
+          name: "Deep Sleep Meditation",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/X5qscDus-OPBoXcLfAUAbH7xoqw5cy46jTkm6CE7GM3Pn1LGue6v9H0D9GAkSRoDu3lScnK0fOVhpeY=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/X5qscDus-OPBoXcLfAUAbH7xoqw5cy46jTkm6CE7GM3Pn1LGue6v9H0D9GAkSRoDu3lScnK0fOVhpeY=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_nNaRgDdtxqig84vFR4hHMYsCXRZpUbfNE",
+          name: "Late Night Classical",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/ELAyJXZoSTmGgw_V1nId7nvtig5JKN-XOrsPLdka8z1MP-yAnEo3MP0OPwK1rX2i5ZqMZ7Rb2vrUjYC5=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/ELAyJXZoSTmGgw_V1nId7nvtig5JKN-XOrsPLdka8z1MP-yAnEo3MP0OPwK1rX2i5ZqMZ7Rb2vrUjYC5=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_ntOL7kXTRxvIvmIsrYzKQ_MEpBdIywpQc",
+          name: "Acoustic Bedtime",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/8l2L2Y_txyp9UKmr3CfxbIPjcSSPXwi6advuwXVi3HsXVOR9uTqyEwFPdryScjLgY9SIlvpn4JZ8DlE=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/8l2L2Y_txyp9UKmr3CfxbIPjcSSPXwi6advuwXVi3HsXVOR9uTqyEwFPdryScjLgY9SIlvpn4JZ8DlE=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_kABC3nlv35ioOf0D9mih-37tNip6SWre8",
+          name: "Classic Rock Lullabies",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/XLlZkXe35w3gKkdHk2a9V94rufj7wjyri_ZDoWuVDXjKef1cUvEhJuwXKt00kxlGRxKd1mN3iAyJHF8=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/XLlZkXe35w3gKkdHk2a9V94rufj7wjyri_ZDoWuVDXjKef1cUvEhJuwXKt00kxlGRxKd1mN3iAyJHF8=w512-h512-l90-rj",
+              width: 512,
+              height: 512,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_ldooV6iHaoPy6VKyVuHDq0DT4lh-3tRqQ",
+          name: "Gentle Piano",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/J878h5_HGELam1nzXgo2Q1XF4WeJtQuZxdf5-yyts2osTSGnGo9sOIfL4SKb9L2HfSywfXW-VghXlw=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/J878h5_HGELam1nzXgo2Q1XF4WeJtQuZxdf5-yyts2osTSGnGo9sOIfL4SKb9L2HfSywfXW-VghXlw=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_neriXH6JbZPr7Pf4LOi5bGQP-_lWRZXs4",
+          name: "Cozy Jazz",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/TbEijxH1Q8conUoyjdXwXMgzA6SIinrS3-sxAh_n401SBBDvLniVeYwGUEcHOe8zDYUvluL9RHgFMto=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/TbEijxH1Q8conUoyjdXwXMgzA6SIinrS3-sxAh_n401SBBDvLniVeYwGUEcHOe8zDYUvluL9RHgFMto=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_ldLj_raotpFCQGWiQ7L-Ag5GTbGOyjgRY",
+          name: "Classical Meditation",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/hQypKgpZ-hJ95BJVCrWBpYq1uCSuCA3ySRCjOZEWtX-5bgK5F_E1Cb0LUYS-B6I047rE5jQYhDXFHAQ=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/hQypKgpZ-hJ95BJVCrWBpYq1uCSuCA3ySRCjOZEWtX-5bgK5F_E1Cb0LUYS-B6I047rE5jQYhDXFHAQ=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_kL57PLcOmExjhzqGfGhvA82ZWe4fPH2c4",
+          name: "Muted Jazz",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/ECvj_QjyX3vynBn3V561-Q0a7EEGjBxUEa2QtIdbNMTta1pBsov0-VpEUPwuqhYxrxwmPVgmh3b2MCWs=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/ECvj_QjyX3vynBn3V561-Q0a7EEGjBxUEa2QtIdbNMTta1pBsov0-VpEUPwuqhYxrxwmPVgmh3b2MCWs=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_lbcexX19-ShfMgzXpxayVFh_9l4Dml-kg",
+          name: "Mellow Solo Piano",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/mUDdH4uUqIQXKBFw0ygCGR0a9xX2NFeMEsONTMSuojqC3B1RcYCARlmkZmKqfSzVzA6j3bEs8eQg3hs=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/mUDdH4uUqIQXKBFw0ygCGR0a9xX2NFeMEsONTMSuojqC3B1RcYCARlmkZmKqfSzVzA6j3bEs8eQg3hs=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_lQ2iiRFCsEvoxLRfTCOyVd6-tdZ75Gw-E",
+          name: "Rain Sounds",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/Qgyk9a5qUP8SBPMMwCovArx44H8FaSeC6BkKm7QAejpm4tOi6YbaokIJ37Ti0EDaKB-VMaDQI2RZRfo=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/Qgyk9a5qUP8SBPMMwCovArx44H8FaSeC6BkKm7QAejpm4tOi6YbaokIJ37Ti0EDaKB-VMaDQI2RZRfo=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_k0oJ5JQqsSSQQvYS8xzcAh29CFryqs0mc",
+          name: "Soothing Soul",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/rAuzuLfViDJUshG4WU2sHbQv6hFX6ZCnGpI-_ucalfi9RGDoZisfPx9iESN1--HSyeCmTc2YKfJO4wM=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/rAuzuLfViDJUshG4WU2sHbQv6hFX6ZCnGpI-_ucalfi9RGDoZisfPx9iESN1--HSyeCmTc2YKfJO4wM=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_nZJzoZEBYRptA2XXskbxGTvKkevapT_F4",
+          name: "Lofi Flow State",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/sViNWRLr2ws5PlmWPzFGbL1vvWW8u-KQQz5_a_uLjtLLE1xAnmxnVTWyfhCjfKUzuC11VV4PZqaBszw=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/sViNWRLr2ws5PlmWPzFGbL1vvWW8u-KQQz5_a_uLjtLLE1xAnmxnVTWyfhCjfKUzuC11VV4PZqaBszw=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_mS5x3haS3YiflmBHa8rK0rOZHgn0lhG0w",
+          name: "Symphonic Serenity",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/UJhpG7kQzhoanrDAw8bTRD4syjTiDzpqMSa8axay3QCdbj4T6ochCwFpiHBZJlxTOjjmjEFsMT4qK32O=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/UJhpG7kQzhoanrDAw8bTRD4syjTiDzpqMSa8axay3QCdbj4T6ochCwFpiHBZJlxTOjjmjEFsMT4qK32O=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_m9YprJ504SUVUWr1oygQy6p-lV8N11BZw",
+          name: "White Noise",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/k10wLfeXpLOFi7gPkl8mW_kLwt4Xpy8IWDFkdRqjIrvRhGPiqBPCycyxErB62SScrMiwb2FLIBU2DM8=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/k10wLfeXpLOFi7gPkl8mW_kLwt4Xpy8IWDFkdRqjIrvRhGPiqBPCycyxErB62SScrMiwb2FLIBU2DM8=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_l7nE3iR6eJpMdU08uxoNBJ7QenxwqfY0E",
+          name: "Velvet Voices",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/QV8efyxrhHDlgYL583xkTNOjTr4TsdmfNQyd5n5Tjc6J_7YPQKS-lzIAyV5sjGquqVV5AfU1uXY6ebw=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/QV8efyxrhHDlgYL583xkTNOjTr4TsdmfNQyd5n5Tjc6J_7YPQKS-lzIAyV5sjGquqVV5AfU1uXY6ebw=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_nBOvRANXhyfsK6oGe_wTHNwOW-0kSMB8w",
+          name: "Classical Calm",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/D8mw4OfckbnyW2cu0nUHBmrDROUF1Iq7DNdDPHO8xNBGVxA0XbONCeeW5DLVs4sfT2o10EpoY66g8NM=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/D8mw4OfckbnyW2cu0nUHBmrDROUF1Iq7DNdDPHO8xNBGVxA0XbONCeeW5DLVs4sfT2o10EpoY66g8NM=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_kGcITlIUh14Xy7FgqGiLtEJtKoDax4TkI",
+          name: "Wind & Rain",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/Dy1H83D1Kcghozbt3xVMaHWuygF0xYOrEojl6oMgFtvFsOUQ1IbdU4RVf7SdDAVv84KueM6SHFs_oUo=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/Dy1H83D1Kcghozbt3xVMaHWuygF0xYOrEojl6oMgFtvFsOUQ1IbdU4RVf7SdDAVv84KueM6SHFs_oUo=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_nA42_0IX0YmeKb7pLRjm_J8e2ja445Urc",
+          name: "Mellow Jazz",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/PlQSxuGLm8bF97gW6771Akz_OENSg_PYF2wSZZwKCbed7u9lJR_NRW7wWUcVNQBoBWqEQuvatU4DqrI=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/PlQSxuGLm8bF97gW6771Akz_OENSg_PYF2wSZZwKCbed7u9lJR_NRW7wWUcVNQBoBWqEQuvatU4DqrI=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_li40oRtkZfR06nf8rRzgRMraDx764TEN0",
+          name: "Mellow Cello",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/NDmy1hXh072P02P9xYqnGkdCfAxvddaz_ya660qCGWSpSuxEY1dQhpHntTfDt69tkkQE0l41F-Ac2Zg=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/NDmy1hXh072P02P9xYqnGkdCfAxvddaz_ya660qCGWSpSuxEY1dQhpHntTfDt69tkkQE0l41F-Ac2Zg=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_n8797v38N8JhZdT2JJtlM0OfIpgkJ3Mkk",
+          name: "Traditional Jazz",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/ie6vPv1bmKoRXo5p9geCKDytcUpSeEaz8Mu7LVdOuYrkXNOJ4v7VPUObMuChwDJV8qNir34nN9FE-Azs=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/ie6vPv1bmKoRXo5p9geCKDytcUpSeEaz8Mu7LVdOuYrkXNOJ4v7VPUObMuChwDJV8qNir34nN9FE-Azs=w512-h512-l90-rj",
+              width: 512,
+              height: 512,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_kL7seJinYAVpulQQbre887jeaIDkrnAg0",
+          name: "Background Jazz",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/Fgf5tCnIlbv7N3s7RNo2TTo9tDHLjKZkK6pDTYXo2J_U_DOvzPv90KBjkLC-Xyj2XGxkKMdcqIzOaLw=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/Fgf5tCnIlbv7N3s7RNo2TTo9tDHLjKZkK6pDTYXo2J_U_DOvzPv90KBjkLC-Xyj2XGxkKMdcqIzOaLw=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_nPaBlmfKLPFyzWF0NeUzb9XhJwpWT5p1I",
+          name: "Classic Ambient",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/eO0vTpvMoNdYF1xlTBa4fvWGhRRsHp4KLW0jsT7ajimlakinsquTicGW4GvtkBxYw12BNqgQTmhxpGKF=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/eO0vTpvMoNdYF1xlTBa4fvWGhRRsHp4KLW0jsT7ajimlakinsquTicGW4GvtkBxYw12BNqgQTmhxpGKF=w512-h512-l90-rj",
+              width: 512,
+              height: 512,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_n925kJbsm33edgD15CyXEfRTo55todVsA",
+          name: "Dream A Little Dream Of Me",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/DLj6oi60YeYxw9ow7zadaUrcIdhvhQAYj6JkXqqaX_fRu1_9QQ_VVI81aokPtM-8-6WmMf3pCAaugA4=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/DLj6oi60YeYxw9ow7zadaUrcIdhvhQAYj6JkXqqaX_fRu1_9QQ_VVI81aokPtM-8-6WmMf3pCAaugA4=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_mbiV5Yf70rsze2fxgIqK9k2Gi1sl-MOGM",
+          name: "Birds & Streams",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/_Y3STKBzfEWPgyDba_qxM4GX3PqEysHN8TJiNOCzFTkeINrEKGUeQePWDnd42OWK88nSjxRiKfm8ffM=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/_Y3STKBzfEWPgyDba_qxM4GX3PqEysHN8TJiNOCzFTkeINrEKGUeQePWDnd42OWK88nSjxRiKfm8ffM=w512-h512-l90-rj",
+              width: 512,
+              height: 512,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_np_soSTj6w3-N7Dh_xmdDpQINJ8LsVpa8",
+          name: "Unwind",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/cHwacX34baHntZXdDINs2HvPgodpqTIP0CpMYjWLY6AyMWWxSdahwCCZs3Ym0yFlpQAhNzrUUpodFwI=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/cHwacX34baHntZXdDINs2HvPgodpqTIP0CpMYjWLY6AyMWWxSdahwCCZs3Ym0yFlpQAhNzrUUpodFwI=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_ndAJusuZt_EEyDuPpzowQuzA8Nxa8znjg",
+          name: "Take It Easy",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/sC5xDEtzhvsO8uzThoK9t4cCoQuIqgTISGWrCxpAKJ-IZut7gU_s-n_fRJE2cGr2o7tq_G07StHGTlA=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/sC5xDEtzhvsO8uzThoK9t4cCoQuIqgTISGWrCxpAKJ-IZut7gU_s-n_fRJE2cGr2o7tq_G07StHGTlA=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+      ],
+    ),
+    MusicGenreSection(
+      name: "Deep Grooves",
+      subgenre_id: Some("ggMPOg1uXzdIbnhkdE9ZcWZy"),
+      playlists: [
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_kb7EBi6y3GrtJri4_ZH56Ms786DFEimbM",
+          name: "Lofi Loft",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/9I45SYZAfTeR17ByV9i2yDpWhQ5DTWMCrW3Lei8vMIiZzeyUnf2zRFUDBob4TGwgUkXAAR_x1Xa8VA=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/9I45SYZAfTeR17ByV9i2yDpWhQ5DTWMCrW3Lei8vMIiZzeyUnf2zRFUDBob4TGwgUkXAAR_x1Xa8VA=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_lUrzaYWnJvQv7UqkwbYLo9K_Qbui6WDgo",
+          name: "Groovy beats",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/ZqE2oBT5T2eJqnOAxXyqZ91q89-cQn64k8RiQO4OBRbQJz2wSH3p_GLK8cxYrlGshgn0xjP_eY70Rw4=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/ZqE2oBT5T2eJqnOAxXyqZ91q89-cQn64k8RiQO4OBRbQJz2wSH3p_GLK8cxYrlGshgn0xjP_eY70Rw4=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_numlg5dOsSbU-usYF_TV8qVNFoqpmH9JQ",
+          name: "Groove Junction",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/nK7C86JDMLp8_5JSAGMEViHNKfuYvnlVTTEb-picuSfyQlhUXtu_JIXwHvrOrCiIdNaQ5gKEzu-1EQ=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/nK7C86JDMLp8_5JSAGMEViHNKfuYvnlVTTEb-picuSfyQlhUXtu_JIXwHvrOrCiIdNaQ5gKEzu-1EQ=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_mPolD_J22gS1SKxufARWcTZd1UrAH_0ZI",
+          name: "deepchill",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/W-d-Yf4kNuESQAswMbEcXhYcyn3A-bbTEZQK9vzJhyrOuIIhnzi0PyKunsVCPNtMOg_Cu_-F0DeP00gk=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/W-d-Yf4kNuESQAswMbEcXhYcyn3A-bbTEZQK9vzJhyrOuIIhnzi0PyKunsVCPNtMOg_Cu_-F0DeP00gk=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_nzABe7CwJJ6FpItwp1LJHEejR40FtA_Q4",
+          name: "Chilled Dance Anthems",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/Ld2v8TchC9q41foHTLg_hHR-znG2Y99ks-mFOI1s5R-2Pac6bIt1prQtMVVHfpIWMygqYcNHY6Jvu2zF=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/Ld2v8TchC9q41foHTLg_hHR-znG2Y99ks-mFOI1s5R-2Pac6bIt1prQtMVVHfpIWMygqYcNHY6Jvu2zF=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_k6B0CcfHO04oWPAyUVlO96Vvmg_pB62JM",
+          name: "Funky Heavy Blues",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/oxp6-L_-K3epvw43QCnOli3lF9pPbndHSI4UxY1haC0LzHXFe-Nf0d8obxCBq83cRq8XwF-gPOTA6uQ=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/oxp6-L_-K3epvw43QCnOli3lF9pPbndHSI4UxY1haC0LzHXFe-Nf0d8obxCBq83cRq8XwF-gPOTA6uQ=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_nxZ3Bp0gO6_Wkb3bp9jESFoOz6bANXw4s",
+          name: "Neo Soul Essentials",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/Amwgc3dGQNamna-ft9kc7IW58VShOLD7f7g60jkGMPPb1btq97RWSCUE9Wj7CxrjbjxecIf0XsJ6hwk=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/Amwgc3dGQNamna-ft9kc7IW58VShOLD7f7g60jkGMPPb1btq97RWSCUE9Wj7CxrjbjxecIf0XsJ6hwk=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_md9QGmtE2Pn3CLaFPcx9AhVuY7CmE2yes",
+          name: "Essential Motown Hits",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/TqPdtlRwNSXansiJ9Mp9eMAQuWJjI4QIlhP2YBMdAhMZSOnu_DcC3O7Ct4mjFNHB6tcCe-mOC0zxVA=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/TqPdtlRwNSXansiJ9Mp9eMAQuWJjI4QIlhP2YBMdAhMZSOnu_DcC3O7Ct4mjFNHB6tcCe-mOC0zxVA=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_l7nE3iR6eJpMdU08uxoNBJ7QenxwqfY0E",
+          name: "Velvet Voices",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/QV8efyxrhHDlgYL583xkTNOjTr4TsdmfNQyd5n5Tjc6J_7YPQKS-lzIAyV5sjGquqVV5AfU1uXY6ebw=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/QV8efyxrhHDlgYL583xkTNOjTr4TsdmfNQyd5n5Tjc6J_7YPQKS-lzIAyV5sjGquqVV5AfU1uXY6ebw=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_lRr2S1Nmk-a4qeSFpU0WoLuVETphGyBP8",
+          name: "Minimal Techno Flow",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/ssH8s0KNYxagmStF67p6RSkP1cx0a2G2APl7uWWCEDGXWfA4z0QAueTQXy2i6OQoKXy6lg-Hw7n4BUM=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/ssH8s0KNYxagmStF67p6RSkP1cx0a2G2APl7uWWCEDGXWfA4z0QAueTQXy2i6OQoKXy6lg-Hw7n4BUM=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_n2MRgJm8KVbRLo9wpqSGGX8CQ8rLCRsWg",
+          name: "Chill House",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/YFj-8bqH6cxqj0Ht-8mb2Tt4uauR17tRZCbMkgDUuyZSpEVKx7ZSuu1bCKS6EU-9fDdqt49XtVEf9_M=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/YFj-8bqH6cxqj0Ht-8mb2Tt4uauR17tRZCbMkgDUuyZSpEVKx7ZSuu1bCKS6EU-9fDdqt49XtVEf9_M=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_nzmeshclfyjDbrCByeUO-eUMHkJXhng24",
+          name: "Afrobeats Workout",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/rNlObUebqfTKxb6lqIPTt__Tq23H7sGPlbGEq-NMbGSo_uipHVE5a6BGfA95KiFLo2iQiGuSxt-l2A=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/rNlObUebqfTKxb6lqIPTt__Tq23H7sGPlbGEq-NMbGSo_uipHVE5a6BGfA95KiFLo2iQiGuSxt-l2A=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_lXqRFBeZCG_1Ad3Ft-xMG1a9FtKQ8cRPw",
+          name: "Instrumental Soul Grooves",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/eyBM-3Qkjt7I62rcZ8QTB0MwkvtuOAEpLbAh8YAY1cWC-rQwfjjqv9lAh4SDRUESOm_LQGB2bzudJY4=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/eyBM-3Qkjt7I62rcZ8QTB0MwkvtuOAEpLbAh8YAY1cWC-rQwfjjqv9lAh4SDRUESOm_LQGB2bzudJY4=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_l8gRf-W7IZq0qHUkIiTiMvztkfkR-Q1lU",
+          name: "Neo-Soul Revival",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/iHcOWsxRXflYFF03aHidEoNIeUoab3baao5DoajZGprlBtd5ndt0xC6XI_lDlOWqsqAnU1MhigDNQA=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/iHcOWsxRXflYFF03aHidEoNIeUoab3baao5DoajZGprlBtd5ndt0xC6XI_lDlOWqsqAnU1MhigDNQA=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_ktzVJ8SgCbgResFgUTEh-O1fdH6I1rxpc",
+          name: "Instrumental Arabic",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/pLl8kt79Qn11xM4x4jlzpcmaubOO7AjGzGBEqByngmqONEt4reZJ5lDlfrmWqHZwK1y29DjzqHRn9h_9=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/pLl8kt79Qn11xM4x4jlzpcmaubOO7AjGzGBEqByngmqONEt4reZJ5lDlfrmWqHZwK1y29DjzqHRn9h_9=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_kZV9OCuNPSp11tslT5Qu0NVG3WR8xGo_A",
+          name: "Your Morning Coffee",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/TlfAciM9ccnz5vuQB4qobPxrI5g4k7z0KsPDDo-oH4ALLqxvTPvwYVvmYAaQKeSv5Uug2qXONCTK0omh=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/TlfAciM9ccnz5vuQB4qobPxrI5g4k7z0KsPDDo-oH4ALLqxvTPvwYVvmYAaQKeSv5Uug2qXONCTK0omh=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_k5psGic7w1Z8Udh8rwqpoKxqznjhq8p54",
+          name: "Classy Arabic",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/EnP7NmxwxtDnnv0iIYIvrBIrqYZa_V4Fd1beGEPCBSJvusVdFvVEOMIQyZEiCW8LiMrL4UEbO93BArA=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/EnP7NmxwxtDnnv0iIYIvrBIrqYZa_V4Fd1beGEPCBSJvusVdFvVEOMIQyZEiCW8LiMrL4UEbO93BArA=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_lWfuEE9muOjxNxKnvVL_KZOhsMG7-FxMI",
+          name: "Electro Deceleration",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/8bZoYe4ui5wWgXHI87-WX1Zzv-FbdaHW_pW_NLTE4W-MfCdtp_INK4t0rRzATOl8R3_4zod_Paid3w=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/8bZoYe4ui5wWgXHI87-WX1Zzv-FbdaHW_pW_NLTE4W-MfCdtp_INK4t0rRzATOl8R3_4zod_Paid3w=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_ktkqrgIqlP46yBkUsZp4go2j59McnSsYY",
+          name: "Mellow Hype",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/TqhOoP8htL7pBMP9K0RCegvwS1w5-jfEeuGSNApUXabj8FdWsXdQ3i2SEARagwd8ZStYVt0kl3S0aIE=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/TqhOoP8htL7pBMP9K0RCegvwS1w5-jfEeuGSNApUXabj8FdWsXdQ3i2SEARagwd8ZStYVt0kl3S0aIE=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_lj8WgXzQp-w_OOYhMJa-uiJguZ0Ns24T8",
+          name: "Deep Funk Revival",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/MBaAQBbhP-j7GNg7oXCOKr-DDkvgrKDrlBVN1dYMlRANJxuvqugCSW4wZxSVWI4Guo9aeSmTjFShZyw=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/MBaAQBbhP-j7GNg7oXCOKr-DDkvgrKDrlBVN1dYMlRANJxuvqugCSW4wZxSVWI4Guo9aeSmTjFShZyw=w512-h512-l90-rj",
+              width: 512,
+              height: 512,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_mNQPs8vK3N-dqpxN_F70pJ9d49yySQlGo",
+          name: "Shea Butter Groove",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/obRxBEJNZkMDOox_oAI9b08F2vHJFHjNe7Q-fERm0G1dRi9Foz6uqhgz8nF8bLIgExie26WgSE-6Sg=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/obRxBEJNZkMDOox_oAI9b08F2vHJFHjNe7Q-fERm0G1dRi9Foz6uqhgz8nF8bLIgExie26WgSE-6Sg=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_lI3mWWg29472FBEmVBs_hT8-nsZ7_xHGk",
+          name: "Get On Up Soul!",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/k2fuWzBLv1BYygT9PLDQoNRMt1AGW9r0obz770PVTe8u0gHdl9fEvHmQEm4I40GIZgNgt0CHu0VXPQ=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/k2fuWzBLv1BYygT9PLDQoNRMt1AGW9r0obz770PVTe8u0gHdl9fEvHmQEm4I40GIZgNgt0CHu0VXPQ=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_lxBOrv0RrMMVEmV0Gl9gDBPH0JYC1_j24",
+          name: "Electronic Dream",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/07wqu3qHRfJIJVml3y1Cw650Dp9Vvn0dviT_AcSakbvIgKkb3yO_d-Cma-oQihYicxJl5lIwEKsDZwo=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/07wqu3qHRfJIJVml3y1Cw650Dp9Vvn0dviT_AcSakbvIgKkb3yO_d-Cma-oQihYicxJl5lIwEKsDZwo=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_lDmrvWsJapdRC-uQzUdJmc1tPWB-jkzRM",
+          name: "Electronic Beats",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/K_HHojI00ZVcvie9Yo7vXhtOFYF-nwkj2BMKhx_uoc6EUYm0VXT61S9w705TP6Z_eSzaiEaA2eXKZP0=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/K_HHojI00ZVcvie9Yo7vXhtOFYF-nwkj2BMKhx_uoc6EUYm0VXT61S9w705TP6Z_eSzaiEaA2eXKZP0=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_nEDPWN4j2CGw8jzkzrTmVdBNaWgmkNnXU",
+          name: "Mo Betta",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/Lj7Zd2fBH21VEDBqp5yLsZ-8HQt1ZdFQjsV14iVd4FNTrI8ZHndLB8B9V8bJlBSyDiG2PCujeD1b3uk=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/Lj7Zd2fBH21VEDBqp5yLsZ-8HQt1ZdFQjsV14iVd4FNTrI8ZHndLB8B9V8bJlBSyDiG2PCujeD1b3uk=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_mzqnNfqauo3uVsMNcIJ8lAezCl85zJqds",
+          name: "Oriental House",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/6imlXPvm39gHjj2KgfFiYeFYxL6vZ02TLYOtlYkfUIKCg6K6bS0bbrLCyyYXLKTKZhbRQB630AlNzMQ=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/6imlXPvm39gHjj2KgfFiYeFYxL6vZ02TLYOtlYkfUIKCg6K6bS0bbrLCyyYXLKTKZhbRQB630AlNzMQ=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+      ],
+    ),
+  ],
+)

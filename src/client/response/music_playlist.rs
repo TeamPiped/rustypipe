@@ -3,21 +3,19 @@ use serde_with::{serde_as, DefaultOnError, VecSkipError};
 
 use crate::serializer::text::{Text, TextComponents};
 
-use super::music_item::{ItemSection, MusicContentsRenderer, MusicThumbnailRenderer};
-use super::{ContentsRenderer, Tab};
+use super::{
+    music_item::{
+        ItemSection, MusicContentsRenderer, MusicThumbnailRenderer, SingleColumnBrowseResult,
+    },
+    Tab,
+};
 
 /// Response model for YouTube Music playlists and albums
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct MusicPlaylist {
-    pub contents: Contents,
+    pub contents: SingleColumnBrowseResult<Tab<SectionList>>,
     pub header: Option<Header>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct Contents {
-    pub single_column_browse_results_renderer: ContentsRenderer<Tab<SectionList>>,
 }
 
 #[derive(Debug, Deserialize)]

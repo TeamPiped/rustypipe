@@ -267,7 +267,7 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
                 response::music_item::ItemSection::MusicCarouselShelfRenderer(sh) => {
                     album_variants = Some(sh.contents)
                 }
-                response::music_item::ItemSection::None => (),
+                _ => (),
             }
         }
         let shelf = shelf.ok_or(ExtractionError::InvalidData(Cow::Borrowed(

@@ -61,6 +61,8 @@ pub async fn download_testfiles(project_root: &Path) {
     music_new_albums(&testfiles).await;
     music_new_videos(&testfiles).await;
     music_charts(&testfiles).await;
+    music_genres(&testfiles).await;
+    music_genre(&testfiles).await;
 }
 
 const CLIENT_TYPES: [ClientType; 5] = [
@@ -843,5 +845,34 @@ async fn music_charts(testfiles: &Path) {
 
         let rp = rp_testfile(&json_path);
         rp.query().music_charts(country).await.unwrap();
+    }
+}
+
+async fn music_genres(testfiles: &Path) {
+    let mut json_path = testfiles.to_path_buf();
+    json_path.push("music_genres");
+    json_path.push("genres.json");
+    if json_path.exists() {
+        return;
+    }
+
+    let rp = rp_testfile(&json_path);
+    rp.query().music_genres().await.unwrap();
+}
+
+async fn music_genre(testfiles: &Path) {
+    for (name, id) in [
+        ("default", "ggMPOg1uX1lMbVZmbzl6NlJ3"),
+        ("mood", "ggMPOg1uX1JOQWZFeDByc2Jm"),
+    ] {
+        let mut json_path = testfiles.to_path_buf();
+        json_path.push("music_genres");
+        json_path.push(&format!("genre_{}.json", name));
+        if json_path.exists() {
+            continue;
+        }
+
+        let rp = rp_testfile(&json_path);
+        rp.query().music_genre(id).await.unwrap();
     }
 }

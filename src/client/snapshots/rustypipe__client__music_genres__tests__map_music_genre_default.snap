@@ -1,0 +1,3697 @@
+---
+source: src/client/music_genres.rs
+expression: map_res.c
+---
+MusicGenre(
+  id: "ggMPOg1uX1lMbVZmbzl6NlJ3",
+  name: "Pop",
+  sections: [
+    MusicGenreSection(
+      name: "Spotlight",
+      subgenre_id: None,
+      playlists: [
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_nCVF_zUZizzRcojIUuYmaXxMoPgg2WMDo",
+          name: "Klangfarbe: German Pop Hits",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/5DVhpCcXWDHIHyHBcTFlValOT8moDvoAWijrH1_pCYXZngUNFSa3WUy7fdJoyfx27WDAB3W5CmYTkMk=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/5DVhpCcXWDHIHyHBcTFlValOT8moDvoAWijrH1_pCYXZngUNFSa3WUy7fdJoyfx27WDAB3W5CmYTkMk=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_n7Y4Fp2-4cjm5UUvSZwdRaiZowRs5Tcz0",
+          name: "The Hit List",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/_zJJGaJm4M3EVMFx3ZyRJoElhGiOqAstIZEqBIosLbQyu9IhKdRPv2RhtgRfj77h2tR6WJIMVV6JBBz3=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/_zJJGaJm4M3EVMFx3ZyRJoElhGiOqAstIZEqBIosLbQyu9IhKdRPv2RhtgRfj77h2tR6WJIMVV6JBBz3=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+      ],
+    ),
+    MusicGenreSection(
+      name: "Featured playlists",
+      subgenre_id: None,
+      playlists: [
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_kLB769E3eFSzgy4fbpu6-1YPLh90b0JAY",
+          name: "Pop Hotlist",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/YlPXlLEWrIQjBJ37sKN96YLw8x5nDpPgqGWaUmOft0S0C0arw-MJr3cKvKzWGjLAtDxCTIA_Uobx9sA=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/YlPXlLEWrIQjBJ37sKN96YLw8x5nDpPgqGWaUmOft0S0C0arw-MJr3cKvKzWGjLAtDxCTIA_Uobx9sA=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_kvH_VWOl1tx0Ad4H2F_4jaTMnImcuCFXc",
+          name: "German Pop Throwback",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/gCaww9YpZ-Th2I6Y7mTarqo_JJPkBerhUPTchgu06VowkRZc8ndS9Efa-AIz5uqKoGWiNf32YzkFUQ=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/gCaww9YpZ-Th2I6Y7mTarqo_JJPkBerhUPTchgu06VowkRZc8ndS9Efa-AIz5uqKoGWiNf32YzkFUQ=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_nbEuX7ko7FvHPYcOOedR9gwtD_LfK43YQ",
+          name: "German Pop Rotation ",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/VnFENhcb5DTsyEpNQm35C1byUzR5mIdv0FoI_QG8bFhAIyp6zzyeLax1YufpIbVPtHCOO4EMvmB_8B0=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/VnFENhcb5DTsyEpNQm35C1byUzR5mIdv0FoI_QG8bFhAIyp6zzyeLax1YufpIbVPtHCOO4EMvmB_8B0=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_kbCOLoGMEP6u3N72wiPQJwwuEcqM9vM3A",
+          name: "Future Hits",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/URp-HlC71H18W-QoaKBXQazjopHiNgAxL9R53U-W3uEKtuF6siJsFb98SSSpm3199Yu5gBoQNd7RQSB6=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/URp-HlC71H18W-QoaKBXQazjopHiNgAxL9R53U-W3uEKtuF6siJsFb98SSSpm3199Yu5gBoQNd7RQSB6=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_kvmdYWgmu7MBsrWUzv53AyF02ytmE18bo",
+          name: "Happy Pop",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/rdJ2SjQAzQTsYjWBs8SJsesspiLynFvH9XkeUZxsvnqROd1X4Njv2I7NrJOCkEUMbCQrcrw6bpku7Y4=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/rdJ2SjQAzQTsYjWBs8SJsesspiLynFvH9XkeUZxsvnqROd1X4Njv2I7NrJOCkEUMbCQrcrw6bpku7Y4=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_myYJP_JeJ3G6Ai3mr2DpD0kioXp3tZMvk",
+          name: "Pop Fresh",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/w1hqqSIudpUmValUUflsT3Eqj4QAFAfQT73Io6kPvHtjqg-Et8pdsNgv91XoDSlNAplvUqhIRA5anQ=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/w1hqqSIudpUmValUUflsT3Eqj4QAFAfQT73Io6kPvHtjqg-Et8pdsNgv91XoDSlNAplvUqhIRA5anQ=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_kgZozN6UqTxdkBJ-kv0Q_YQrFlsz1Ee7g",
+          name: "Hashtag Hits",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/M5WaSNVYUUhS-INGflv5vpMZcWbI_9bQsiwvZNvGxNUSzbGm2Jjb7fAemcRJ4zXkdYcr6pGYzvgANw=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/M5WaSNVYUUhS-INGflv5vpMZcWbI_9bQsiwvZNvGxNUSzbGm2Jjb7fAemcRJ4zXkdYcr6pGYzvgANw=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_mFO2tSOkp3Ti5zWQoaPsXJ-rhcKZ6iv30",
+          name: "Feel",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/oqc7juV5a5v9n1L9S1K6L-92V86YrHYeVZUJdbFVefSwP91WJ1qwfHUYohRKJxrow9SUA4tPvlBSRJA=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/oqc7juV5a5v9n1L9S1K6L-92V86YrHYeVZUJdbFVefSwP91WJ1qwfHUYohRKJxrow9SUA4tPvlBSRJA=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_n1yUj1SIY2iIAIiVtdlwy6z7RLFqKXmB0",
+          name: "Huge Hits",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/lHxzRjN991wFvRTJczEqjlstq79rXQX9Fv788ClKUf80SKpBxzMISXQhkczBFCnbCRIyV2Tm9iREAEX8=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/lHxzRjN991wFvRTJczEqjlstq79rXQX9Fv788ClKUf80SKpBxzMISXQhkczBFCnbCRIyV2Tm9iREAEX8=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_nmS3YoxSwVVQk9lEQJ0UX4ZCjXsW_psU8",
+          name: "Pop\'s Biggest Hits",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/ih5QdpqpkVNRXtD-joBWj3jo1woxAXJFyAoA3hWYNWAKX0M9B825HH2VOh7aDX-unf67oyCyJGN9TljR=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/ih5QdpqpkVNRXtD-joBWj3jo1woxAXJFyAoA3hWYNWAKX0M9B825HH2VOh7aDX-unf67oyCyJGN9TljR=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_kJ1kr0uBugvmrHBPrf07UirV5dazSl9oc",
+          name: "German Rap: Crossovers",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/qBG4rBmBWGxKKzDaoArhf29hNKQIzTMbvLdtj8ViOKOJE4YC4H1XTI6F9irlOtdywrogHyicTILZXlI=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/qBG4rBmBWGxKKzDaoArhf29hNKQIzTMbvLdtj8ViOKOJE4YC4H1XTI6F9irlOtdywrogHyicTILZXlI=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_lJvy5U2ysw2Kwv72qeNPkrjDxu5fsvogU",
+          name: "The New Class: German Pop",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/1c7ZpE0Rw7CYb8VH5kwEVXK9yD1qbqFEvSVrtzi3EMS5AJ7tYEgjzjrKQHcc7HXU7AZCwITCwAnmCt0w=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/1c7ZpE0Rw7CYb8VH5kwEVXK9yD1qbqFEvSVrtzi3EMS5AJ7tYEgjzjrKQHcc7HXU7AZCwITCwAnmCt0w=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_l2zLaMIWOqWSePvTSmt49GcuR8460ZR10",
+          name: "Hits Remixed",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/MAyU3vfozYsyY-gRSPfaqJ3bOnhYHb8hmMcNuZTsedXiZD8ngUtvxwfWYnLFRe3E9Xp4QER1CKpjTm0=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/MAyU3vfozYsyY-gRSPfaqJ3bOnhYHb8hmMcNuZTsedXiZD8ngUtvxwfWYnLFRe3E9Xp4QER1CKpjTm0=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_nSq67AJ2d75MFNJ3j_4ClEtSgC-opBM84",
+          name: "Pop Hits",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/TVlUnnDTtw4uOJnFHX9E6x7R-JjM-2DLTTGFW6QzFx12c4vi8_0KEj9aDXsGLkHs6PPsjkiOP7qtYQ=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/TVlUnnDTtw4uOJnFHX9E6x7R-JjM-2DLTTGFW6QzFx12c4vi8_0KEj9aDXsGLkHs6PPsjkiOP7qtYQ=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_k-4bBZpMA00LtvrMiVcRNr0caz135-Ydw",
+          name: "POP with DROPS",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/BzmvqBgXPq92XyLbPkWEYhnDKwGLkK65ywUe97xNZvQAlHEx2hlohPIUW0qVq8hdwsrgs2IoHzo3-IL7=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/BzmvqBgXPq92XyLbPkWEYhnDKwGLkK65ywUe97xNZvQAlHEx2hlohPIUW0qVq8hdwsrgs2IoHzo3-IL7=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_l6kmbwVnzKyu31exvtuxnFkjswnNgI6Uw",
+          name: "Teen Pop Today",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/FkcLt3TVftRfqbrdbp9K4PqkXbDXc7FGh3GmQ7fsXOqUoE6c45l3J3TSecJa4khFaDtu-NOv7wIrY44=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/FkcLt3TVftRfqbrdbp9K4PqkXbDXc7FGh3GmQ7fsXOqUoE6c45l3J3TSecJa4khFaDtu-NOv7wIrY44=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_lWC9PGFnzJWI7RvkLcFUBICdb3UhfzLbs",
+          name: "pop rebels",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/k4pLyJ_obAb7lUQL81DQmCkTsM6m4NMTDJ8K0Xpi46GphvFGIm8R5s9M0bfxV6F_KxhKvJNB4gi9lHo=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/k4pLyJ_obAb7lUQL81DQmCkTsM6m4NMTDJ8K0Xpi46GphvFGIm8R5s9M0bfxV6F_KxhKvJNB4gi9lHo=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_latg1ZI9CZNHAJVjUird8WRB6QB0NtA0E",
+          name: "Alt-Pop Hits",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/PNJNwvYYMbqCnP5LNamoSuqEDinGicxd4V_n_51uexg47nUTKzlIwcy8YoAblG0LTMAKxHwmPXqTtw=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/PNJNwvYYMbqCnP5LNamoSuqEDinGicxd4V_n_51uexg47nUTKzlIwcy8YoAblG0LTMAKxHwmPXqTtw=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_nfs_t4FUu00E5ED6lveEBBX1VMYe1mFjk",
+          name: "Dance-Pop Bangers",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/371QuBVeCF9Q2wygw9z69I1GqwXXpmrSHsgmbhc1YofGXEloyB2EiV5vFx_GEDu23J2ieG9CTNOa7A=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/371QuBVeCF9Q2wygw9z69I1GqwXXpmrSHsgmbhc1YofGXEloyB2EiV5vFx_GEDu23J2ieG9CTNOa7A=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_lBdj-S7dlwHFWFuEWGbHSc8CX84Xw6zto",
+          name: "The Golden Age of Boy Bands",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/7Yp3VBAsRvPKkgW9bgZryWaAWorVrR38TC9DQIh_hsitGuuQda5WkLemJHCh9EfZEkQckgt3L8_9gZHl=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/7Yp3VBAsRvPKkgW9bgZryWaAWorVrR38TC9DQIh_hsitGuuQda5WkLemJHCh9EfZEkQckgt3L8_9gZHl=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_mplKe9BIYCO3ZuNWSHZr48bm9DUDzbWnE",
+          name: "The Millennial Mixtape",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/Fx9pQASjlJXByudOuKVIGDEPH19QiU36VO9oW_QTqGuCTDlTd1H0JMwIOEM6JsBoJQf23W-2RqcAHpA=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/Fx9pQASjlJXByudOuKVIGDEPH19QiU36VO9oW_QTqGuCTDlTd1H0JMwIOEM6JsBoJQf23W-2RqcAHpA=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_kqj-mUrW1rujCuPGNNWkGoBuTo-v5bfsA",
+          name: "Ready, Steady, Go!",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/hYvhGHIaYrHLr4G70hHTGF2u_7F2WBKEJ_WB1ZRbHPJUshGp7X4XQN5zyy7YZT_DTbdDVESjtMNC9ro=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/hYvhGHIaYrHLr4G70hHTGF2u_7F2WBKEJ_WB1ZRbHPJUshGp7X4XQN5zyy7YZT_DTbdDVESjtMNC9ro=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_mPQwZcd20eT41GybtQa1bSvG9I2C_5044",
+          name: "German Poetry",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/hvumqFKjaKo_HzuvULVDYedIfb4SZiAdB_jNuyxlZiIkYRyI4EmaE_cLxmmwYFvoqz8glMtaea2CqUce=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/hvumqFKjaKo_HzuvULVDYedIfb4SZiAdB_jNuyxlZiIkYRyI4EmaE_cLxmmwYFvoqz8glMtaea2CqUce=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_l0EEjXABl_IMuijE44F2H2CVQwpcDaJWI",
+          name: "Mit Ecken & Kanten: German Indie",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/5i-H4oobNxQ_BFGxmEX3sEwLFpJOOHCycvWwVCoCb3dVFAKJlTylCJVzOei3qchgQY5Pa7_V_tW9HQo=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/5i-H4oobNxQ_BFGxmEX3sEwLFpJOOHCycvWwVCoCb3dVFAKJlTylCJVzOei3qchgQY5Pa7_V_tW9HQo=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_n8Hg9csbDQCPDH-PKmWZmKVG_oMgvrozY",
+          name: "Emotional German Songs",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/OLJduGjEbT5AyrB2QRGX3VW5_MWO7p9dT1dNrEGo7eRoRQi1cECumCz37dEOR95igLEWx7mznG7Tgg=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/OLJduGjEbT5AyrB2QRGX3VW5_MWO7p9dT1dNrEGo7eRoRQi1cECumCz37dEOR95igLEWx7mznG7Tgg=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_n_goavyhecaj4JOjSN-fWLxKmgZli6kj4",
+          name: "Slow German Pop",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/sOjfO7_yga3-xoIUp-fhHSRktJl4gvh26QteYglehwmoq4jsq08ardTeLsuLR4HCwOLydScP06cME0k=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/sOjfO7_yga3-xoIUp-fhHSRktJl4gvh26QteYglehwmoq4jsq08ardTeLsuLR4HCwOLydScP06cME0k=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_kZdxcIsmHONbbqhPSpUELGUBpMw-Gy-_o",
+          name: "German Love Letter",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/GD36XnfPCsq9_cx-62WneDs8yNPRZeGrXlBPAjl0SeLSy71hTIMB9FdluE0DMVBJZqbRRbg5oTOXNWtA=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/GD36XnfPCsq9_cx-62WneDs8yNPRZeGrXlBPAjl0SeLSy71hTIMB9FdluE0DMVBJZqbRRbg5oTOXNWtA=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_m55iAnFa25l8bl7m8vsTsmGph3-_yVBW0",
+          name: "German Singalong Songs",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/VgmBfxT88NljWYr9ft7chmHuu64xZhho9445pygUizig6fnQe9IoYanu3bDscp7rO1g1_knunT9jCyA=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/VgmBfxT88NljWYr9ft7chmHuu64xZhho9445pygUizig6fnQe9IoYanu3bDscp7rO1g1_knunT9jCyA=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+        MusicPlaylistItem(
+          id: "RDCLAK5uy_mW28TsFufV3FbGWEJ_nIVpX6broAGhYzw",
+          name: "Turkish Rap\'n\'Pop",
+          thumbnail: [
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/mc6vm_ymm2PGV2RLXkRfUZXMPcu2TPSxvCht_bVHz0jyJknEhcm8Wv-SOydk2_OyM6Du2cdOCcbi9Akp=w226-h226-l90-rj",
+              width: 226,
+              height: 226,
+            ),
+            Thumbnail(
+              url: "https://lh3.googleusercontent.com/mc6vm_ymm2PGV2RLXkRfUZXMPcu2TPSxvCht_bVHz0jyJknEhcm8Wv-SOydk2_OyM6Du2cdOCcbi9Akp=w544-h544-l90-rj",
+              width: 544,
+              height: 544,
+            ),
+          ],
+          channel: None,
+          track_count: None,
+          from_ytm: true,
+        ),
+      ],
+    ),
+    MusicGenreSection(
+      name: "Community playlists",
+      subgenre_id: None,
+      playlists: [
+        MusicPlaylistItem(
+          id: "PLIdrAoNYm7RJgFRMNFHFNSJZ0w9TVX85B",
+          name: "My Best of 2022",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.googleusercontent.com/-evwFMZxfo2cB-XI2r7xq4b3xY_2LUh--k07q554K9iEsSTcVJbf5j_HXlAGofpu4YguYZKcBDAa=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.googleusercontent.com/-evwFMZxfo2cB-XI2r7xq4b3xY_2LUh--k07q554K9iEsSTcVJbf5j_HXlAGofpu4YguYZKcBDAa=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCJCV-S6ahhblGOHwJy7OC_Q",
+            name: "Toda James",
+          )),
+          track_count: Some(50),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLS2LdrVTYusLU_hCU5BpYW1obUBxmtdn1",
+          name: "Austin powers playliste",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/AN8wqRjFZpJ5u9dBPBZFUYRW8y74N6lHIxDpzhZtgHc-b8YCIzERudkGEEb3ToznUBidp3TXjqTo=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/AN8wqRjFZpJ5u9dBPBZFUYRW8y74N6lHIxDpzhZtgHc-b8YCIzERudkGEEb3ToznUBidp3TXjqTo=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCF6caQme6smAwcss8ytDZlA",
+            name: "Christina Bramsnæs",
+          )),
+          track_count: Some(66),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PL9qkt1BUOqWC5f7sfSnzJ-eruvh9z0Xvk",
+          name: "המצעד השנתי לועזי 2021",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/KEssy38qf7SJ_Za8RvIGq7bcoeHjzOpYfkCFH1NRP-v740vl9YZmXDkVPpyCdqxpMrJcjHvcGP8=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/KEssy38qf7SJ_Za8RvIGq7bcoeHjzOpYfkCFH1NRP-v740vl9YZmXDkVPpyCdqxpMrJcjHvcGP8=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCjNbfn7je1FaoB5jTku0FmQ",
+            name: "Dolev Revah",
+          )),
+          track_count: Some(40),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLJQpUCyR0LEmRqED8maDWeCSjcZQxz74o",
+          name: "Best New Release Mix",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/A4XZlHg8uXuaBKWWSEkOlrntPF25QUPWM1aNmna59EGT6Fd6P6aGBY3-g0i0yYTlRJjocaohy5k=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/A4XZlHg8uXuaBKWWSEkOlrntPF25QUPWM1aNmna59EGT6Fd6P6aGBY3-g0i0yYTlRJjocaohy5k=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCRpTJcl_StTLn1zsMlS8YIg",
+            name: "TheAdventurer64",
+          )),
+          track_count: Some(30),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLe0u44b6hRPneI9Lo8wPojNGOzUkQlU6E",
+          name: "Mismanaging Romantic Expectations",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/c9TgKNoRJ1xPYkgG7gQC1V7LcSDwQnwMW5XrWTreL37Uk0oSedn4Iqm-leKzWuIn5AdvKESW6rf5=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/c9TgKNoRJ1xPYkgG7gQC1V7LcSDwQnwMW5XrWTreL37Uk0oSedn4Iqm-leKzWuIn5AdvKESW6rf5=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCqPO5RAnOmft43Rup8olJWQ",
+            name: "Reneé Herrera",
+          )),
+          track_count: Some(23),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLx33iAjx1SX-RUPoX_VwTiH76YlDA44Kp",
+          name: "Spring 2022",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ChiDXqKLLN3XJroXnESO7sPPOzvnOMCQrKcCOR59YmAnrDuGEiblBwr72NX69xPhMoHwqFFQGo0=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ChiDXqKLLN3XJroXnESO7sPPOzvnOMCQrKcCOR59YmAnrDuGEiblBwr72NX69xPhMoHwqFFQGo0=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UC8JEZU4gc5sGplOXJ0qZ6tA",
+            name: "Samantha Tatro",
+          )),
+          track_count: Some(38),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLghwrhHIqohALdqK1yKEtNzt70KI4B5Om",
+          name: "Linksgrünversiffte Playlist",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/w0e2Ycr6GDMAz11a4o4WtNrdX-2S65R7fBFfNnjBp6EO0Muff566LjVoi7w2yRQzU2NS5lZtQv8=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/w0e2Ycr6GDMAz11a4o4WtNrdX-2S65R7fBFfNnjBp6EO0Muff566LjVoi7w2yRQzU2NS5lZtQv8=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCI92PaJYiZZUfG1QuRv6B7A",
+            name: "Lana Nahapetian",
+          )),
+          track_count: Some(25),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLVYa6bTyniWnEwKh-0tvOYnQhDuexxsFb",
+          name: "Workout 2021",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/VpxHwy6-m6Li97TJUMbWUW4Iy7cAyaqWYQ6OQ7saYz1__QLjTLydiITdGJ6pQkgDox2-ihsm89aR=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/VpxHwy6-m6Li97TJUMbWUW4Iy7cAyaqWYQ6OQ7saYz1__QLjTLydiITdGJ6pQkgDox2-ihsm89aR=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCF7UgBjfLY3g5Zc2mNu0mkw",
+            name: "Justin Longoria",
+          )),
+          track_count: Some(20),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PL1gdaAVAscyWR6w69kvI3B6YKy2XGToYF",
+          name: "Rap international",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/Pqz-a8hHZ9LEdB_KMZa6Z46TA3IJCSuolWQYNArJIbyP3O_nlggAPMVN3nXcWi8Ym7eRwHVp8g=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/Pqz-a8hHZ9LEdB_KMZa6Z46TA3IJCSuolWQYNArJIbyP3O_nlggAPMVN3nXcWi8Ym7eRwHVp8g=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCKZrE1VncRq36wPg7uTz_Qw",
+            name: "laurance Spruell",
+          )),
+          track_count: Some(61),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLSqDba5amfYmooaH98BHIKgwM_k8ZPGeE",
+          name: "Summer 2022",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/eJfxK4ivT7U1MPoWGxZDVIQ-pNHB0Aqdg_SFvyXOQBafxeT8Ff3TNQbAhC1SC5gCa5K3k3LTSQ=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/eJfxK4ivT7U1MPoWGxZDVIQ-pNHB0Aqdg_SFvyXOQBafxeT8Ff3TNQbAhC1SC5gCa5K3k3LTSQ=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UC8CQiVn5TFf2-2RaPFRlhXA",
+            name: "Greg Duke",
+          )),
+          track_count: Some(22),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PL2LI1a8pvF_0rsK_cp4CQmcEUxVkUcQl5",
+          name: "Kid Favorites",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/zksBlIvztZ1zo_lUdQC2RTLSnOh-8jpNBaFeD7K_uuIDbc3oPjvz9KhdHd1Pd2GwBkaY8j0wnl8=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/zksBlIvztZ1zo_lUdQC2RTLSnOh-8jpNBaFeD7K_uuIDbc3oPjvz9KhdHd1Pd2GwBkaY8j0wnl8=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCFKz3UmRXuTOi9FIABqDpEA",
+            name: "Randy Gardner Jr.",
+          )),
+          track_count: Some(28),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLLDR0cl8Vp56kg_NnsTmOb-RAjmTmYH8Q",
+          name: "BeatStar favoriti",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/2Y7f9rKEfU0gzWnWxImXY6P20k5U-RyHTiWxhyNhVszDM95PeB1G-TzB_Sj79PETFkNBjqODXmc=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/2Y7f9rKEfU0gzWnWxImXY6P20k5U-RyHTiWxhyNhVszDM95PeB1G-TzB_Sj79PETFkNBjqODXmc=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCDs46pTxZxx_4bCB74pRSAg",
+            name: "83Roll",
+          )),
+          track_count: Some(51),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLQINZEiwYZUhSzBYo7N2kYA-YKe7c7s6f",
+          name: "High School",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/Xf_JHKNt2M3F7KGZd8TmXqurWmNjqjB8Dag6P2iWGwl5UfQvSF4e-Nxz9xNgEl8N2Ty-gC-7ltM=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/Xf_JHKNt2M3F7KGZd8TmXqurWmNjqjB8Dag6P2iWGwl5UfQvSF4e-Nxz9xNgEl8N2Ty-gC-7ltM=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCn3bJLS5LaAkpjveSIxUVXQ",
+            name: "Bassin-N-NC",
+          )),
+          track_count: Some(91),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLI4kOmUQVGGEmAoyqXeGHnRqFW-d2QhVI",
+          name: "Gute Playlist August 2022",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/V0DO2RjcbxeDUD0OOTl7AinoB568x-MsUGLJH7snR83xay4FzlbP5oofez_6HUAJR82o4IXBfSLY=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/V0DO2RjcbxeDUD0OOTl7AinoB568x-MsUGLJH7snR83xay4FzlbP5oofez_6HUAJR82o4IXBfSLY=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCaxg7nT_axJdagTP0Hy3sxw",
+            name: "Franzi Re",
+          )),
+          track_count: Some(79),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PL7j8mqHzZ0flLdx7ALRMucMUxR9JUB8sT",
+          name: "2022 Winter Mixer",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.googleusercontent.com/fWaEqSB4OzAMvot-bbeIAeOb7LNBhQkJsO0SRFPdtTOMypMsx7pR0PsoM49Z_a6VHzJQCEGErw=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.googleusercontent.com/fWaEqSB4OzAMvot-bbeIAeOb7LNBhQkJsO0SRFPdtTOMypMsx7pR0PsoM49Z_a6VHzJQCEGErw=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCNUJdLrjgaXTT32gaBG7SsA",
+            name: "Seth leGassick",
+          )),
+          track_count: Some(25),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLrkejTJv-76SDVhgd8fPAnU0bV6NeQavI",
+          name: "Lieblingsmusik",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/RvF0bZ-Hs7dLQqemCePO7x9JNAA-01-fn6XosjjcZcuTWypZ-E9BaM-4yCnMC-SQuesG8KT8peg=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/RvF0bZ-Hs7dLQqemCePO7x9JNAA-01-fn6XosjjcZcuTWypZ-E9BaM-4yCnMC-SQuesG8KT8peg=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCG5YLvlq4wR0IHlGMgyOU-Q",
+            name: "Charleen Röhr",
+          )),
+          track_count: Some(25),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLoxE1Ti2wY-1rKdCShq3lmzxG6fT40mNg",
+          name: "Maddie\'s now favorite",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/iBAMW54iwqv5edHDgHijs0yXsuvsBdX8ieGCbzFVNUWAFogHYyD8FzfDVtmCcuC4LyYV9424zXE=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/iBAMW54iwqv5edHDgHijs0yXsuvsBdX8ieGCbzFVNUWAFogHYyD8FzfDVtmCcuC4LyYV9424zXE=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCfzNJcAMUWrFxXRZJlKWipQ",
+            name: "Maddie Sriphin",
+          )),
+          track_count: Some(64),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLIsuqDX1RVOHBF7jrK6LFENDFBSPMZggI",
+          name: "When times were simpler",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/Q4jdluoWkToZpFRo6LhNMP-0qgRnMMZ6KzlfF5D3mtO2klwbiBSTaDMwAugUNlVA5p750sbGnk8=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/Q4jdluoWkToZpFRo6LhNMP-0qgRnMMZ6KzlfF5D3mtO2klwbiBSTaDMwAugUNlVA5p750sbGnk8=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCpoD1__eSOKJ8BbPjQPcIfA",
+            name: "Owen Barrett",
+          )),
+          track_count: Some(76),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLPjmvempgZEkFo1VQxUqeY8s-btdGlQpV",
+          name: "That Girl Playlist",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/dvt2vbv6M4nnKtDPSdNE2GI4rdXWNABJ6UKrYOoinxOgf0h4NJCODzpu4eaigyVM21IRBpw8qsU=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/dvt2vbv6M4nnKtDPSdNE2GI4rdXWNABJ6UKrYOoinxOgf0h4NJCODzpu4eaigyVM21IRBpw8qsU=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCv12vedVVfnF6U6CPHVDJcA",
+            name: "Lea Christoph",
+          )),
+          track_count: Some(25),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLWfzkZat4ODqyZBxrPZZTnV1F964isfwL",
+          name: "When you are a sad brown woman",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/GK76CDfbjz5ysJ_6taMnbii6xQxPtIfU1OdPHc0HbLkNG314eDkY0i0NaYm72nMXGagwtxmpH_DJ=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/GK76CDfbjz5ysJ_6taMnbii6xQxPtIfU1OdPHc0HbLkNG314eDkY0i0NaYm72nMXGagwtxmpH_DJ=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UC4Z69GjIpvwlGrMAoqinERw",
+            name: "Sayuri Naidu",
+          )),
+          track_count: Some(22),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLOz-7wuTInGnJChJAXLNkmTy7fR9U8CQ1",
+          name: "90s-2000 Pop Songs",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/VQYwnBpQe6us7Hboh4aMNW6hdoSItMCYsSn_hiqDpE26HTMpAMRxYhVNyn67pv5dqTESNS9Rmro=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/VQYwnBpQe6us7Hboh4aMNW6hdoSItMCYsSn_hiqDpE26HTMpAMRxYhVNyn67pv5dqTESNS9Rmro=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCaL3Kg7MNY1qf-pY1MhHCxA",
+            name: "David Jones",
+          )),
+          track_count: Some(26),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLHyNvAafrhB1vhOfiwv1uupwyAp5PXvH3",
+          name: "Summer 2022",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/5IZVgYwVBtFXESAzYKWsSnX33OQCYBk58LOHhYD4NqKA6yeGIeZz6LBVyJ9o4vKddxoW3q9hN3Y=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/5IZVgYwVBtFXESAzYKWsSnX33OQCYBk58LOHhYD4NqKA6yeGIeZz6LBVyJ9o4vKddxoW3q9hN3Y=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCNRpUvXNTvKIqUj1V_QE0kA",
+            name: "Mihail Hristov",
+          )),
+          track_count: Some(22),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLlTR5R2SQJA9qQxcAUduU524YTdiTojej",
+          name: "f1 official soundtrack",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/lvR1-ieYaGv0f9rRQjYyqVXtjIszETxi-lSXNeLMxJHFNyOqYCXmZn3H6WoXf_y3Tw13I6FPMJ0W=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/lvR1-ieYaGv0f9rRQjYyqVXtjIszETxi-lSXNeLMxJHFNyOqYCXmZn3H6WoXf_y3Tw13I6FPMJ0W=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCLiNI2qE27UsxaWcOnbSwJg",
+            name: "Hiedfeld Rio_",
+          )),
+          track_count: Some(30),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PL2htvnHUyzUyUe7PsHksrvDhBFxxLh0ek",
+          name: "2022 SpringSummer",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/1dZ9wQPb7bK9gF2CKKclKWFkuMTLtPPNBq7zIpznyrSV78VEaKBnWn9zYIx62bb4kQoeXG0ZwQ=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/1dZ9wQPb7bK9gF2CKKclKWFkuMTLtPPNBq7zIpznyrSV78VEaKBnWn9zYIx62bb4kQoeXG0ZwQ=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UC7KYnk7TDG0r_nLhwlt_YJg",
+            name: "masa 0526",
+          )),
+          track_count: Some(38),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PL3W7Ee40D1uPb3Uhoq1ywxa4Bb7ACrMJQ",
+          name: "What would you do",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/jzZmaEIJR19Ac_nrpKZ8e87qNSpHQJI4hN93qGWdZafl5JUEQVpkWFvoC8GaT7CVQSXOHMeLXk3K=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/jzZmaEIJR19Ac_nrpKZ8e87qNSpHQJI4hN93qGWdZafl5JUEQVpkWFvoC8GaT7CVQSXOHMeLXk3K=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UC1YC4Iqn3J_EdEC2iHKyxUg",
+            name: "Danny Esquivel",
+          )),
+          track_count: Some(53),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PL4uHTWD34ZLwVcMtTGF1AifgjTeNAQrs0",
+          name: "Billboard\u{a0}Year-End Hot 100 singles of 2013",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/XFuhO5H9pz0k7QdpNSmCr4ecrIfI0v0dIFba-qaw8rmy0f17XXZV_8sgXPvSdZzwPpIURWJN-x1Q=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/XFuhO5H9pz0k7QdpNSmCr4ecrIfI0v0dIFba-qaw8rmy0f17XXZV_8sgXPvSdZzwPpIURWJN-x1Q=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UC51CMnsDOYDJxh4MjC8Zvrg",
+            name: "Danilo Neres",
+          )),
+          track_count: Some(50),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLSU2KN4IgLuiUWJcCnUZp82zodClvAIuf",
+          name: "Throwback",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/CS7of41iY6L3agvvh-gR20hSWB50LiObIbjiqGWWoMbxCdzVr9QFfc1mFmgz0To_x09RztgOgsGG=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/CS7of41iY6L3agvvh-gR20hSWB50LiObIbjiqGWWoMbxCdzVr9QFfc1mFmgz0To_x09RztgOgsGG=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCv3CeWGxETxrjWIRroRqtPw",
+            name: "Christine Funk",
+          )),
+          track_count: Some(46),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLfW2_8kv5330_Ao5PGh2XFkyW6eMy8WZB",
+          name: "susen playlist",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/_-2hTCfvniA6-hxR_Oxz3i2x4c1IvdIiXOYfHPiyllh8wjz0TZ3NBg27Sn-sLn-AKfA0FpB6_g=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/_-2hTCfvniA6-hxR_Oxz3i2x4c1IvdIiXOYfHPiyllh8wjz0TZ3NBg27Sn-sLn-AKfA0FpB6_g=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCFNN2IqDVou0NiQrkOBMCKQ",
+            name: "Drohnenflug",
+          )),
+          track_count: Some(21),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PL025H4LaLR5mbc3DDsUzDkcy-T01GULFk",
+          name: "Rap chill cruisen",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/8JhRDqcpX07G1rDMZYCtXREuaa-iWM2fmjdustPf_TSxBJz9lLFM29kXQNmNWGmBwt6G3Zdhibs=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/8JhRDqcpX07G1rDMZYCtXREuaa-iWM2fmjdustPf_TSxBJz9lLFM29kXQNmNWGmBwt6G3Zdhibs=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCCIWYh932q1o_NKqsOoTGkQ",
+            name: "Franz Thomas",
+          )),
+          track_count: Some(28),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLvy15vbU4Mx8Ubu-ph-2UNV_pfuxadVOj",
+          name: "mega fete playlist",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ckkwUTV72UMLby4W2jf2Wrl5LWkrtJgq3UUZfCqHxjoTjnGyY90Ba0pglpOAbDUjhIxX8Zkcsh0=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ckkwUTV72UMLby4W2jf2Wrl5LWkrtJgq3UUZfCqHxjoTjnGyY90Ba0pglpOAbDUjhIxX8Zkcsh0=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UC-YDdf6aAneAHM88HfPpkgQ",
+            name: "simon burger",
+          )),
+          track_count: Some(61),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLRreUHi07Hmddrfoq7KCGZKG9o9_oDyME",
+          name: "Cara\'s 2022 playlist",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/yInDPd7IXTGn7eokOmgmOZCf3EzdTwLmY26oSkJkdczqJa6392vAVxOTJoOz_RZkDy5OUiQS_g=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/yInDPd7IXTGn7eokOmgmOZCf3EzdTwLmY26oSkJkdczqJa6392vAVxOTJoOz_RZkDy5OUiQS_g=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCYWZ-fb1VMTPaTyIoA9kTvA",
+            name: "Cara W",
+          )),
+          track_count: Some(24),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLBv67EHx3AigJgjA8i2QsCkxCFUNUdwL3",
+          name: "summer bummer",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/3X7IleazzDJsefGQsGA6YM371hTUmjNCjszDE1VKXYcuiW9IK607QvON2casfmEZra2VS7xiCxc=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/3X7IleazzDJsefGQsGA6YM371hTUmjNCjszDE1VKXYcuiW9IK607QvON2casfmEZra2VS7xiCxc=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCe2FSIeyh1HoslXjYa8lS2g",
+            name: "alessia tarola",
+          )),
+          track_count: Some(47),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLtQwM3YIcYQnNsFA-L8ycZM6vO0Z4P6GJ",
+          name: "Girls Girls Girls",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/U0LuO_9Rf8y3nObGOmbwAGBhSX31mr7sSG6HCvsXlgaEex32FLX-AOjdM2R7LquNq6HNBmh8Gw=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/U0LuO_9Rf8y3nObGOmbwAGBhSX31mr7sSG6HCvsXlgaEex32FLX-AOjdM2R7LquNq6HNBmh8Gw=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCUlKZY0Ih0nD5wPA7a4bUKQ",
+            name: "Michael Burgmann",
+          )),
+          track_count: Some(65),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLgtsMQ_zO3sP7RSgQBUVDQDYJ3_JnSqwY",
+          name: "Favourites 2021",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/FVRULXr0KUZ115pq5e4D679kRdmvCbyNfof_NCa5k49HvTxBvTbx-CRNRwJiL54jsUlmUDKrjQ=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/FVRULXr0KUZ115pq5e4D679kRdmvCbyNfof_NCa5k49HvTxBvTbx-CRNRwJiL54jsUlmUDKrjQ=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCiZeZc6NSpvNDoOTq3avrOg",
+            name: "Katherine Vorster",
+          )),
+          track_count: Some(36),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLLEvCpqVDFs6ie8-x1Bsmijn7hTLJ1cdb",
+          name: "That loving feeling",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/8GW6DoYMgjCwP3CNwnd2AM1JG25mb-LC7ELC_dKz14gXXEBaXdu20TOhixSO5Z0GaGeXOh2dWylt=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/8GW6DoYMgjCwP3CNwnd2AM1JG25mb-LC7ELC_dKz14gXXEBaXdu20TOhixSO5Z0GaGeXOh2dWylt=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UClnxEIy62BJHlLHJsn6-vjg",
+            name: "Colin Johnston",
+          )),
+          track_count: Some(20),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLR851aUIAa01I6et--H8LwRTFI-AZJFMc",
+          name: "The side we don’t talk about",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/5Yo8VGpav07FVPfdV-upKEvQgm1QhhkzzbRMOlVv3d86u4r4zDhWG5JpaHzqJ_Lecw74HXMd18Zs=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/5Yo8VGpav07FVPfdV-upKEvQgm1QhhkzzbRMOlVv3d86u4r4zDhWG5JpaHzqJ_Lecw74HXMd18Zs=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCuLltIgY3qcmN4-WFI7UrHA",
+            name: "Sheeka Spencer",
+          )),
+          track_count: Some(25),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLiCvHZA3wfMmf9rIfiL5M0FdIAsBKIhj-",
+          name: "Road Trip",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/jXH4Vlyyj9bU1VAY4sGelDINuRWD-_hDJ9PxK1Ksu_Zb-i2Q9i822PFAL9joF1kJAXqc8QxVIJQ=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/jXH4Vlyyj9bU1VAY4sGelDINuRWD-_hDJ9PxK1Ksu_Zb-i2Q9i822PFAL9joF1kJAXqc8QxVIJQ=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCqH_eIvdqn03UxrLGwmvI8A",
+            name: "Amanda Meyers",
+          )),
+          track_count: Some(41),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLo-m1BMGmy5VOcC0QLEcjPd5QL2SQWqhb",
+          name: "90er playlist",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/OuwMRZJ8Qpi2w7OkZcDL_6vvD0ofvXyTyCG7CPxrf-77Twl6asr18SHdOk5skPPnhF_qP39vwzY=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/OuwMRZJ8Qpi2w7OkZcDL_6vvD0ofvXyTyCG7CPxrf-77Twl6asr18SHdOk5skPPnhF_qP39vwzY=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCQ04tL7ApAXFKN7pBK-tqrA",
+            name: "Robert Heilhausen",
+          )),
+          track_count: Some(40),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PL3wyQMWaWWbvCGFNeHhKIFOr_yCrfqKwC",
+          name: "Hiphop 2022",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/UBmWDvEtvmNbyYSkPnSjhElsZPWpIGjpyrGOuo7iXz7qKbLJwqxNuFmkLofU3x7fqXlVXFOKXgwC=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/UBmWDvEtvmNbyYSkPnSjhElsZPWpIGjpyrGOuo7iXz7qKbLJwqxNuFmkLofU3x7fqXlVXFOKXgwC=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCAtzlFsd4PVR3M05rmqCy9A",
+            name: "Katj Wenners",
+          )),
+          track_count: Some(40),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLg9rjmMZPv3mNdiBqA6UL-8lo9fhuHic1",
+          name: "Old school",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/0HUfF9w7ss0gylALN70IrczoNBhz_K3wh44u1X0DX6fGD3c_LDs3rAPx6fIWB4V480i8vRpMpA=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/0HUfF9w7ss0gylALN70IrczoNBhz_K3wh44u1X0DX6fGD3c_LDs3rAPx6fIWB4V480i8vRpMpA=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UC_zE0Tvp_jaoi6fHrMdlYhQ",
+            name: "Stephanie Wix",
+          )),
+          track_count: Some(22),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLbZDkrFzUaZbgiaibZuG_-e4J-5lkfL3L",
+          name: "Summer 2022",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/GHOSquNLCszljSb41wlVvg7jjYPQl85E7uQ4UFOXyQsxQ7zcf8BXjRyDofG9LlN2M8w54oKRiQ=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/GHOSquNLCszljSb41wlVvg7jjYPQl85E7uQ4UFOXyQsxQ7zcf8BXjRyDofG9LlN2M8w54oKRiQ=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCGHgI4LHsQYiOF2aGeDnlvw",
+            name: "Benjamin C",
+          )),
+          track_count: Some(41),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLMzduHz2tju2fXIIa1-YDYSv-bZgeTg0r",
+          name: "Дорога",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/tIEvuE3jz5X81Ro388nM0__chOG19VVs9PQ-ue2MSoXWbpa7M7XYqU5tHALMgWApWdRcqd8qgZM=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/tIEvuE3jz5X81Ro388nM0__chOG19VVs9PQ-ue2MSoXWbpa7M7XYqU5tHALMgWApWdRcqd8qgZM=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCtY8DPBGKcqlsjW3kIakFnQ",
+            name: "Михаил Пак",
+          )),
+          track_count: Some(51),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLeKVWa9bsZf2oJ3IM73IGFUtGMScGXGCB",
+          name: "the party playlist",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/PzykEQ-T85pjOxkIuD8dZs8cOKYH1I6xbo5G3wd0e9cP48w-uWBCR5sJ-kbITc3UtZ_7o5cag4Y=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/PzykEQ-T85pjOxkIuD8dZs8cOKYH1I6xbo5G3wd0e9cP48w-uWBCR5sJ-kbITc3UtZ_7o5cag4Y=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCk-Q3xTEjPOPYNYXF9Xg1gg",
+            name: "Geekus",
+          )),
+          track_count: Some(24),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLbaoxNdFdhRCr-Woi_W-MIZ7ifdpSVwrP",
+          name: "2022 Songs",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/yqAoz0xQFCREmHvHiv_E0wxsu-MUWsjNsSdCKgU716BMDKlcQfiKlxXyIsojWDE9d7VcmSdzOaq2=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/yqAoz0xQFCREmHvHiv_E0wxsu-MUWsjNsSdCKgU716BMDKlcQfiKlxXyIsojWDE9d7VcmSdzOaq2=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCeMJVtiyjKv5p9mvuF7ztbA",
+            name: "Jennifer R",
+          )),
+          track_count: Some(72),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLicsPGLycqD6SMiIacwDL0ysJpu6WHhn-",
+          name: "Jes’s B-Day playlist",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/qLXAXU9W8Uaujrsc3mrTyf8GdezEEJJSBQ5QmCjAJDktVmgjx0vp3gWSGMDlEYQT_YC5Y9TokYfa=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/qLXAXU9W8Uaujrsc3mrTyf8GdezEEJJSBQ5QmCjAJDktVmgjx0vp3gWSGMDlEYQT_YC5Y9TokYfa=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCzrlzOlA6Vf0jQl2--7vaEw",
+            name: "Jessie Daniel",
+          )),
+          track_count: Some(27),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLIkVmkE7IhUOgQo2WFFqtvJPjETE3jwp1",
+          name: "Hip Hop, Pop",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/rB6uB5faBTbH8MkIwissy1rWSOgNjarRguRyhPDwpSilDGvBCdlyJkBch8qhkpSc943iOmkMu-Q=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/rB6uB5faBTbH8MkIwissy1rWSOgNjarRguRyhPDwpSilDGvBCdlyJkBch8qhkpSc943iOmkMu-Q=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCSOsRIc_G4LAeH_ws76KR0Q",
+            name: "David Lopez",
+          )),
+          track_count: Some(94),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLxQVjaBwumM7WZJOhc41am3ZdtSZIHWY0",
+          name: "Sommerhits 2022",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/6wskzFf3heI_po0dX69QC6Pht0Oe4ZgsEk1DG8Tza_3gATNN10Y1kFIR5BmTO-2tQ7cYZOrA7g=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/6wskzFf3heI_po0dX69QC6Pht0Oe4ZgsEk1DG8Tza_3gATNN10Y1kFIR5BmTO-2tQ7cYZOrA7g=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCkW7HHW14r3ojZgOvWKAcJg",
+            name: "Andi Kofler",
+          )),
+          track_count: Some(64),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLIpaeL5dXdO8d2yAGLq3ihl2cc0K7HMXz",
+          name: "Now Party Hits",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/cD63b0UaFPTDwgltW2ne_RRRPwvpDwrjGiAEbc8DxmnJOcL99KsYUiJM6mmA8lZ5jiJxFl9d=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/cD63b0UaFPTDwgltW2ne_RRRPwvpDwrjGiAEbc8DxmnJOcL99KsYUiJM6mmA8lZ5jiJxFl9d=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCqVTSKemRi_xJy5k9C3W0KQ",
+            name: "Colin Simmons",
+          )),
+          track_count: Some(22),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLitmf0WIU1YNcsaGs-H2ChzNR0iEdTjz4",
+          name: "Bomben Playlist",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/MaBQMDwJJa0uOyFLymvqk2rWxbqmdqJGvKB-CqwxYiPPXdshGyVxjS1cOV-TE4ps0Zplw3cmmk8=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/MaBQMDwJJa0uOyFLymvqk2rWxbqmdqJGvKB-CqwxYiPPXdshGyVxjS1cOV-TE4ps0Zplw3cmmk8=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCbqW-bEvAkOl9ijzfaVpfKQ",
+            name: "Damia Nap",
+          )),
+          track_count: Some(50),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLd74irMqdRWbnMheQgMew6FQJn_hMKMhu",
+          name: "Independenz",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/3kWju9tse3V0C-AMOuV5pJoJpPE5liaUNTnsY3NH4rCh9tX6Uv09v-Tstc4czyo-hQD0HHODWso=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/3kWju9tse3V0C-AMOuV5pJoJpPE5liaUNTnsY3NH4rCh9tX6Uv09v-Tstc4czyo-hQD0HHODWso=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCa6FBcbtSFb_DEwijovUFXA",
+            name: "Arthur Haltrich",
+          )),
+          track_count: Some(29),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLpTRxPTIe0L1B1I3d-BrREQhZrflXhZ6X",
+          name: "Top 40 2021",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/Fjsljr01n17MYSwwyei0r72E56f7QJ3Z5DzVpnci5H39cM4XPq3oBky_1NE1asre8HNmhiX5HuU=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/Fjsljr01n17MYSwwyei0r72E56f7QJ3Z5DzVpnci5H39cM4XPq3oBky_1NE1asre8HNmhiX5HuU=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCfi844W_auiXMpLQ0Nq_szw",
+            name: "Pierre Renaud",
+          )),
+          track_count: Some(35),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLn_StDWk18WzdpMH4YTpfVeQ_7hWFcpdp",
+          name: "Top 20 Songs of 1966",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/o6nlHatohSWxuw_rFKkIHl3p_JSjxISGrVWDwA7IAdUWjEpnnKMAPiK1bQOQUhSK2TptDjzrGiRT=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/o6nlHatohSWxuw_rFKkIHl3p_JSjxISGrVWDwA7IAdUWjEpnnKMAPiK1bQOQUhSK2TptDjzrGiRT=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCWa5zj5HImGAkSNgj3MA-ew",
+            name: "Will Hoover",
+          )),
+          track_count: Some(20),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLuPX_nCC-NiWp3MohN28QP-IcUarK2PJz",
+          name: "2010\'s",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/wsuU8ABzODQ-zqw_VQTFJE9Uz_gMJMILddSJ-mq3PmXM_SInfNk_Ana1RQDYcIosGv0UXEYSh8cZ=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/wsuU8ABzODQ-zqw_VQTFJE9Uz_gMJMILddSJ-mq3PmXM_SInfNk_Ana1RQDYcIosGv0UXEYSh8cZ=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCvICPM6-tP32Ry885PFapeQ",
+            name: "Jennifer Bower",
+          )),
+          track_count: Some(99),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PL0gY3V_nZKueuqJtJoQ8ZfCnCz4nOmhZL",
+          name: "New chart songs",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/M4x2gRmYO7BmIPt4oSDyD-ardliBKSl0K6xFJOQmzpg164jVDKwFGBKrlepBv8cPP_bO81SSeds=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/M4x2gRmYO7BmIPt4oSDyD-ardliBKSl0K6xFJOQmzpg164jVDKwFGBKrlepBv8cPP_bO81SSeds=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCoUP8HE3A4e9BX1uzj-KLQw",
+            name: "George Ghazi",
+          )),
+          track_count: Some(26),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLBXbv2Ph7ssYy_hP5HsMAN2aXcp1v6ybA",
+          name: "Pop and Dance 2022",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/nB2VWqmrMKHHaWR4oDBdc_VYVr0r3tGigXuxAtgG7ez44IKWl96qYz34yUH8Y1OPBPvUjzFPLQo=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/nB2VWqmrMKHHaWR4oDBdc_VYVr0r3tGigXuxAtgG7ez44IKWl96qYz34yUH8Y1OPBPvUjzFPLQo=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UC4fW7efcYs1lW-U2YzzWKfw",
+            name: "jakirin nelson",
+          )),
+          track_count: Some(23),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PL49mwVAkZMla22f83qdnyIzWgLXSLAeAX",
+          name: "Autumn - a new beginning 2022",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/avn7aXIwodcQmhU2ShonKXCK5t1eoQLuS-DSOVQ6Pj4lgn5BFKCZfS7KmqnFK660j33CMrsNPiU=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/avn7aXIwodcQmhU2ShonKXCK5t1eoQLuS-DSOVQ6Pj4lgn5BFKCZfS7KmqnFK660j33CMrsNPiU=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCUrCJfKzyqH-ZFASlDAG4kA",
+            name: "Mathilde Leite Kallevik",
+          )),
+          track_count: Some(41),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLyauqJWhilMn3ghsoxHfbJQGjUga3WyuD",
+          name: "old Songs",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/qrF4QQ5BhxRlQwp-rk-KzdKwxzXC25FkqZrlccDmAhZESJvZjEQFJhrRl6tebJ0vLZZuxnLY1g=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/qrF4QQ5BhxRlQwp-rk-KzdKwxzXC25FkqZrlccDmAhZESJvZjEQFJhrRl6tebJ0vLZZuxnLY1g=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UC9Cv6cOlV89apQybdvY--bQ",
+            name: "just.pia.nicole",
+          )),
+          track_count: Some(25),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLhvllmSGRuzU5SkEHX8EZxOwg79ZK9mV0",
+          name: "Radio chillig",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/9yjaSt3JaLFXhOzVu2SWjyXAbyqvh9gTx6hS9pov0eNqjwOfSuO_ZmxQ5UCs5VNxfqfRlDkNQ9A=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/9yjaSt3JaLFXhOzVu2SWjyXAbyqvh9gTx6hS9pov0eNqjwOfSuO_ZmxQ5UCs5VNxfqfRlDkNQ9A=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCjea1k_El-7W7aSfQ-z6HKw",
+            name: "Ferhat Cevik",
+          )),
+          track_count: Some(24),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PL_iwx16OQhvdHC8boPrIVqVhvQRi1QW1h",
+          name: "Deutscher Rap Hip Hop",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/v6S70d-cREnvfkxXTDzJk6yS7Cbj24zpZqItHPUqQTAjlCZtqbuifjkcSq1s2_uQkRBdtkARUj7P=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/v6S70d-cREnvfkxXTDzJk6yS7Cbj24zpZqItHPUqQTAjlCZtqbuifjkcSq1s2_uQkRBdtkARUj7P=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCjMDVXCnWkKTFR64ZTIcVbg",
+            name: "Andreas Duttwyler",
+          )),
+          track_count: Some(27),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLCOb2lbbl6lbt4wEjWQ0bz04OnrPyhchc",
+          name: "Party Musik",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/3r0N06JxUk7uhPhXUxOmr2Ah2eoZSvjAMTHfbbgZ_-9Fx_rr6YjpXeWid5DVoyAHDe3NQjZZOVoM=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/3r0N06JxUk7uhPhXUxOmr2Ah2eoZSvjAMTHfbbgZ_-9Fx_rr6YjpXeWid5DVoyAHDe3NQjZZOVoM=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCUScjTsAqtYz6KKgFXhS6Dw",
+            name: "Flexi Kroll",
+          )),
+          track_count: Some(33),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLXkWolZmg_9p6lKp_Nvi4wtxtMuzq4bTB",
+          name: "Oldies for bestie",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.googleusercontent.com/l8rQbYvNJGFg7q5h_xmdraU5ISxaOooSchJ4b0YgeX1hzHhrVs_sgazu3O032WH4pAqg3MQPIg=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.googleusercontent.com/l8rQbYvNJGFg7q5h_xmdraU5ISxaOooSchJ4b0YgeX1hzHhrVs_sgazu3O032WH4pAqg3MQPIg=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCjKnKqNBHh5FnftLCAJVdNA",
+            name: "Chelsey Taylor",
+          )),
+          track_count: Some(35),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLcuYf24FBZrWaqAIZOYtfJ9GXm7W_mgqt",
+          name: "Throwback",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ltjKuQPgjAGjve6sgZOlqCUbBe6k8j2zbH9R0W9GsLz3cJkH2xX-xq6KJgxF0z6OyyYbtPGeLEA=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ltjKuQPgjAGjve6sgZOlqCUbBe6k8j2zbH9R0W9GsLz3cJkH2xX-xq6KJgxF0z6OyyYbtPGeLEA=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCM2BDhQJH2XpanhhBF1gM-Q",
+            name: "mers smith",
+          )),
+          track_count: Some(83),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLlHvA-6VfFAsRxxwGCPKQpL1RetXqtC9f",
+          name: "Dance music",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/fW789FmN1GiKLuATv9LEpRf9cikJTEQTtFC0JiKX6Zq5dacrRDi1-oFsB4YnPJ0v7H1FY1d24Q=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/fW789FmN1GiKLuATv9LEpRf9cikJTEQTtFC0JiKX6Zq5dacrRDi1-oFsB4YnPJ0v7H1FY1d24Q=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCYblPTQ9-orNCMYOJujebsg",
+            name: "Solo Serio",
+          )),
+          track_count: Some(50),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLLOlgieBNw0bRVmLzaNC_J6RPuL7PXkTG",
+          name: "Teen Pop Party",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/RuC7aiu_5zMXESIRvovdbxLt2I4zzY2qumlffS2W_zKStZx8ahpr-cuwiDdWcjM8nIw7QiuCylc=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/RuC7aiu_5zMXESIRvovdbxLt2I4zzY2qumlffS2W_zKStZx8ahpr-cuwiDdWcjM8nIw7QiuCylc=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCAwYkZc16XduG5UtwKTmZfQ",
+            name: "JMANzLegit",
+          )),
+          track_count: Some(86),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLV7CZtNaL6J4SLcgpc2NHPl3z5PKcGABE",
+          name: "Weekend funk",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/DHQBwWDsFg5MxIttIqwSC38FcrZcF3EpBOcwZohpvOXcVhNGgufH-hvrLzJ4fMREH0atSmyipMA=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/DHQBwWDsFg5MxIttIqwSC38FcrZcF3EpBOcwZohpvOXcVhNGgufH-hvrLzJ4fMREH0atSmyipMA=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCdvrXv8UJzcTD-NSd8KSB0A",
+            name: "Prince Zondo",
+          )),
+          track_count: Some(23),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLiDUBSabeEMHeRu8Lt0B0GcaiQErAuiIm",
+          name: "2015 Hits",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/YJPFCDJ6OCJ9nW17OcwrIl92vDQDBpVLIVU-MpcStI_vJfOlhTOlkNsDUbvwkrvCH3m5eL00Ag=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/YJPFCDJ6OCJ9nW17OcwrIl92vDQDBpVLIVU-MpcStI_vJfOlhTOlkNsDUbvwkrvCH3m5eL00Ag=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCfwjgiQkMWPkLt-OUbMvTLQ",
+            name: "Peter Bigg",
+          )),
+          track_count: Some(89),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLxZF2v-9IhoRrlZYk-P-xBohuUJ_TSIGV",
+          name: "All-time",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/Cz1t2giXofKqpokrNPo3yT_RA88aExWsVy_fQscFIj-c4KzrVxD9o9OMeRJn3-s-KhDxPFqnGQ=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/Cz1t2giXofKqpokrNPo3yT_RA88aExWsVy_fQscFIj-c4KzrVxD9o9OMeRJn3-s-KhDxPFqnGQ=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UClZzccOxk4a-dlYbY8EUiQw",
+            name: "Scott Jones",
+          )),
+          track_count: Some(54),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLS3KnEy0AhRhbepd13ArHY30yIo3klQzs",
+          name: "Chill & Relax",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ZFXUKzJnvgA8ZA2LE8iI3AWDxtYvwu4ksweUY__yzNADrsY7LkjWgKwVbnfh_pA9ug4LtIBUCpA=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ZFXUKzJnvgA8ZA2LE8iI3AWDxtYvwu4ksweUY__yzNADrsY7LkjWgKwVbnfh_pA9ug4LtIBUCpA=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCzL2oHQUhhiRye2NPvNtFTg",
+            name: "Nils Lang",
+          )),
+          track_count: Some(24),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PL5Ryeb8pVjXQoaV5_Hwk_RB_BgFI1INQb",
+          name: "хиты 60 х",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/2dnZs3E0NGobbh3KRAtYQ3A26NoYjiWyjtet2LEUTp4aDr0Xhgb_DLleqvTHnqDFRUHoAaBAJQ=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/2dnZs3E0NGobbh3KRAtYQ3A26NoYjiWyjtet2LEUTp4aDr0Xhgb_DLleqvTHnqDFRUHoAaBAJQ=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UC114_mB5mkLlielmJZpc2XQ",
+            name: "Илья Светлаков",
+          )),
+          track_count: Some(89),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLQLznpgWJj_NeTXk3nacx4VUmMdzi4Ynt",
+          name: "Break my soul",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/367BU1wrhSfRwA4VLS-eMAHWMBe1t6IjheEzs3L-wYDeeB1c5thg4nPxqbr1EYKMPE2dugJ5aY4=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/367BU1wrhSfRwA4VLS-eMAHWMBe1t6IjheEzs3L-wYDeeB1c5thg4nPxqbr1EYKMPE2dugJ5aY4=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCAH_OgnmnfZ4q4-X9RLkBjA",
+            name: "chastity hampstead",
+          )),
+          track_count: Some(20),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLgxYBcFUjQVaoqP4S4bXiR4LHhKaEqANY",
+          name: "high school car radio",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ifeQN2WlMSZqVjoy-glE74iuoDIl8BqcpCIKkOkep6tC-LdcYb8I5QIqXOLx1z_ZpVXij_ey6Wc=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ifeQN2WlMSZqVjoy-glE74iuoDIl8BqcpCIKkOkep6tC-LdcYb8I5QIqXOLx1z_ZpVXij_ey6Wc=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCjNsWQSS7ciWk0JgRDObCCg",
+            name: "Colin Bodger",
+          )),
+          track_count: Some(92),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLoC5DBY3lE-oF3ZyD6zBFuLk371lS7rx-",
+          name: "Pop fresh",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/qJgMSGbagY9b3aoxRC2J_TxCUUQ2LQkG6OhJ_t-f3NThcTHTTAKVaatny9SdLXfpGZr8laNnmthT=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/qJgMSGbagY9b3aoxRC2J_TxCUUQ2LQkG6OhJ_t-f3NThcTHTTAKVaatny9SdLXfpGZr8laNnmthT=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCcUcb_7OR3k1UDoyL19ID6A",
+            name: "Bernd Page",
+          )),
+          track_count: Some(52),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLoSkEdUirhIittS6Ettd9_ag6PUlpthnP",
+          name: "Rudimental Radio",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/0RT4A52jNtTOxjND76WtjGvzlNYPq03_1xwkSI8Evrt28UtHj6K7n0lgpJ5MgtTlXkDokE1VpAgB=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/0RT4A52jNtTOxjND76WtjGvzlNYPq03_1xwkSI8Evrt28UtHj6K7n0lgpJ5MgtTlXkDokE1VpAgB=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UC0eJsV0Q9x4vNuJdD1JCgkA",
+            name: "Mauro Carrera",
+          )),
+          track_count: Some(50),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLSLFXeRydzCUF9SCQK7yNObp7nMOfVnUT",
+          name: "Keine neue Freunde",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/MFaa3jk_Bds6NMgIfEvBU1kCxpm8yStTlDy7g4y1YlDFL-BWhu_hqTbWlhEjWBJGIi-pzAQStCP5=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/MFaa3jk_Bds6NMgIfEvBU1kCxpm8yStTlDy7g4y1YlDFL-BWhu_hqTbWlhEjWBJGIi-pzAQStCP5=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCRz7RHjFbynvzcHtDrWyokQ",
+            name: "Fabian H",
+          )),
+          track_count: Some(26),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLDCGSC_ibfArFyQGyLyHATXLhofGXVR2B",
+          name: "Личный",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/0mz21KYEmuuyTGqvOUrbl7UZytzru9ezOgG80UKTR1XGAGs8bim_4Rm7DSbkOCTwkAT-adohO7K7=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/0mz21KYEmuuyTGqvOUrbl7UZytzru9ezOgG80UKTR1XGAGs8bim_4Rm7DSbkOCTwkAT-adohO7K7=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCQMAlPb4QcCvpAp0qSB3aOw",
+            name: "Лале Салимова",
+          )),
+          track_count: Some(26),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLe09GLm2ley5X6wUH5ObwnRui9-LsYkku",
+          name: "música alemana",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/2XJo3jKYT89fQGxcL_MD9X9S85D2He-IBlIFud1jfGLJdOsKlq8irygMIs4Vmpo0zcXcm59CSc0=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/2XJo3jKYT89fQGxcL_MD9X9S85D2He-IBlIFud1jfGLJdOsKlq8irygMIs4Vmpo0zcXcm59CSc0=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UC79nGD5tzdvrWQur06jBZ9Q",
+            name: "german kohnenkamp",
+          )),
+          track_count: Some(25),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLNgAHkdtgRROAueZWCJODy547v4aCNIxj",
+          name: "Better Snapping and Clapping for 2022",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ijJ1L2Rz1XsiKKBCPR6OneiuTJvuJhYJHU8a-l6JTt9cMC9U_BlS92PTqtCzbSA9m_3P9Mb5qSU=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ijJ1L2Rz1XsiKKBCPR6OneiuTJvuJhYJHU8a-l6JTt9cMC9U_BlS92PTqtCzbSA9m_3P9Mb5qSU=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCECHtDZha-qA9SAV9eMle8A",
+            name: "Jamie Hansen",
+          )),
+          track_count: Some(65),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PL_xuRaWtQWh6_UlsmJ1i4y-fAmhYL2MOu",
+          name: "Dan’s November 2022 Playlist",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/2EkFhMszZ6vvKujBO-2xhk3p8ebX_9A6CVySkD5iNQo9MzGiEmMqw9OJXM0bR6sNtxaupixuN5g=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/2EkFhMszZ6vvKujBO-2xhk3p8ebX_9A6CVySkD5iNQo9MzGiEmMqw9OJXM0bR6sNtxaupixuN5g=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UC8uh9_gLI8LptXKb10THfHw",
+            name: "Daniel Terbush",
+          )),
+          track_count: Some(86),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PL4IggWOQ-WtswkyyAe0SQ3js7914E9xb6",
+          name: "Araba rap",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/0eNbLyjIDaQjbVa4TJuQx1oFOdniNU3N9kSFFkIEiPGIlfMoj8HXT34_J1hbMSkjkZkJ_K6AMQ=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/0eNbLyjIDaQjbVa4TJuQx1oFOdniNU3N9kSFFkIEiPGIlfMoj8HXT34_J1hbMSkjkZkJ_K6AMQ=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCguU0xY2_eWnHhQaX4q19RA",
+            name: "d.n",
+          )),
+          track_count: Some(20),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PL4p40E1UN4QQ380R4lwjbd5mbdVFnB9Gd",
+          name: "Deutscher Rap aktuell",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/JCgStKRuGc3_6dfcjITbJbR1gSfeHjQfZtHspXHTcXIVOVLTK332SMW1A67Ki0DyodpFa_qlPro=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/JCgStKRuGc3_6dfcjITbJbR1gSfeHjQfZtHspXHTcXIVOVLTK332SMW1A67Ki0DyodpFa_qlPro=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCPxMgXwB6ZwMqGaMuXdKtDQ",
+            name: "Otto Wilhelm Köper",
+          )),
+          track_count: Some(30),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLbaui_QE89YQ6lRcrhZTU4Gww5Em0P-lg",
+          name: "But someone will love you better",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ALVEN4DCa_ldLEka2ujN5IS88wea_OwT3utsvSUouX5LGHRRG-p5HXV86gFqLSxbQAzBpJonCw=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ALVEN4DCa_ldLEka2ujN5IS88wea_OwT3utsvSUouX5LGHRRG-p5HXV86gFqLSxbQAzBpJonCw=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCRT8AW_u_kUMtP-a_2aVL7A",
+            name: "Ayokunmi Aina",
+          )),
+          track_count: Some(20),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLmJeYkjl2HVVOU-lxiJFEJ80G4VCx_QmF",
+          name: "High school tunes",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/hvpWyJCtYImBHkSlgIY0UCvyLKzMf3L2N_AXgnm3OSxNqpjviap1mVKAUvuEtgT0ra0td83cSw=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/hvpWyJCtYImBHkSlgIY0UCvyLKzMf3L2N_AXgnm3OSxNqpjviap1mVKAUvuEtgT0ra0td83cSw=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCsuaH8Ax3Wi6eREaOZyrebg",
+            name: "Sarah Hook",
+          )),
+          track_count: Some(91),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLEd5-uLH_wuQ2agrrFOW3UpaiZkdjRpaa",
+          name: "Let’s Sing 2023 (International Edition Tracklist)",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/Cr8Te0JL-0lI533W8DscNotwqCzDNJCBsJEIkNQAldpG_YB8pJgLPtZk1gfD4xC7vDHJ6eY2jQg=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/Cr8Te0JL-0lI533W8DscNotwqCzDNJCBsJEIkNQAldpG_YB8pJgLPtZk1gfD4xC7vDHJ6eY2jQg=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCYGmCXupuYMcuMiaeHbiY0w",
+            name: "Kian Tajada",
+          )),
+          track_count: Some(30),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLXU1gTdaHyzJP6DVUTLCs6xmjxNngwiXJ",
+          name: "Motivación",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/_zthuAPBSpXBWCdBV6agtI_RAJ9FYXL9CFwIGikFA-5ZAnLWM1e-wkOFfS4S8dL6uo_4rvx2JVo=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/_zthuAPBSpXBWCdBV6agtI_RAJ9FYXL9CFwIGikFA-5ZAnLWM1e-wkOFfS4S8dL6uo_4rvx2JVo=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCyWaLLPSNuyR2dNKw4bo2Ng",
+            name: "Luis Martin Maceda Nazario",
+          )),
+          track_count: Some(49),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLAb-IT-UKa-4KxW2DYNzCd1o5RuBB53ze",
+          name: "Chill House-Harry Styles, Kx5, Diplo",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/IIpB28lIaGJqCvgkqJiwKi5OgI6AfqQq8yhTlQKLsjfnq2Ok-74P7XwsrrUJ-b442bf-fQWyKdI4=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/IIpB28lIaGJqCvgkqJiwKi5OgI6AfqQq8yhTlQKLsjfnq2Ok-74P7XwsrrUJ-b442bf-fQWyKdI4=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCVcIOeSdYPeJhZrpll-i9ow",
+            name: "Alejandro Volkman",
+          )),
+          track_count: Some(23),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLf7knoGs7DUOz6AVBYuOiS45RXKPHABhD",
+          name: "hits for the car",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/J2iVwWeJEBl0XrTepaLNVnOYXA9Md8pFFumz021yOQnNWVQHx33OnCyvgZiHCFF0Y3QfTuxXJ4Ov=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/J2iVwWeJEBl0XrTepaLNVnOYXA9Md8pFFumz021yOQnNWVQHx33OnCyvgZiHCFF0Y3QfTuxXJ4Ov=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UC3vjRDguM37Fk1GM-f7wc9g",
+            name: "Ellie Kampwerth",
+          )),
+          track_count: Some(25),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLkfgerzo2n3g-w8xZIUkf0Qtm_n4WIH5G",
+          name: "90s Throwback",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/UQI6GKfV-Cawmg48hTVX3BdLJiI20JcWgoub3_WresVOHdXOSbzhX8dv7Y06Jxg-Qs6VZv464wY=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/UQI6GKfV-Cawmg48hTVX3BdLJiI20JcWgoub3_WresVOHdXOSbzhX8dv7Y06Jxg-Qs6VZv464wY=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UC67qD0L9GgKweULcSkhGVog",
+            name: "Katie Murphy",
+          )),
+          track_count: Some(65),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLadCnAFCR_M0pMHMqeSxnHZoHiw4AIEQc",
+          name: "Sounds of the 60\'s",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/e0bwXjB7swFLu6Xd7R25wypG4w6mXZqCGpavPDzpV91UHoV64rNs1N4qDXQeowHlr0z6KdSp5OJe=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/e0bwXjB7swFLu6Xd7R25wypG4w6mXZqCGpavPDzpV91UHoV64rNs1N4qDXQeowHlr0z6KdSp5OJe=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCEMJeNR04nFGETFun4Q0Nmw",
+            name: "Veronica Bonilla",
+          )),
+          track_count: Some(55),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PL6I92v4xJF0MOL70Kq-LJc4bFngToeeui",
+          name: "Superposition",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/oa4Q8_9couab745JBkza5wwNkOk_n4q91KMhzXlYRw7mPyt96yQEmdJhbFQe9_aSo-Pi353GYdk=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/oa4Q8_9couab745JBkza5wwNkOk_n4q91KMhzXlYRw7mPyt96yQEmdJhbFQe9_aSo-Pi353GYdk=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCYO-DRRQJj_cW16nhl0q4Mw",
+            name: "Tyler Antikainen",
+          )),
+          track_count: Some(25),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLcFbnOH-hERlt1bUQG-Sopg5fxm3jrLFf",
+          name: "Deutscher Quality-Rap",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/tjEtsb-dywuwEl_bIWn_whnFjvJFdrESeSjhgSIj1aXcNTnc72atGzS9J2F7LIaRaZ1OJ-LSwA=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/tjEtsb-dywuwEl_bIWn_whnFjvJFdrESeSjhgSIj1aXcNTnc72atGzS9J2F7LIaRaZ1OJ-LSwA=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UC2MJkgRWYnnvb_Y3G3Wh9Rg",
+            name: "Michael Mende",
+          )),
+          track_count: Some(28),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLzdF1FdintplvElUSvI41GK7BAD0KDV5S",
+          name: "workout",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/I8NZZskYyxL8ViHjtASQVHYpQM473OSGXa9N662RQHRdCj9Fka6fnFZOD5qLvLi-ouDUoi6BljY=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/I8NZZskYyxL8ViHjtASQVHYpQM473OSGXa9N662RQHRdCj9Fka6fnFZOD5qLvLi-ouDUoi6BljY=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCd5PloM5KzSwDlguTnH9vkA",
+            name: "Aarav Gupta",
+          )),
+          track_count: Some(41),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLkSbGb7ZJWl2-Cn3R1PrffC1kYIZGZTFo",
+          name: "my best Moment Songs",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/r4ql5NlgTypHBx8_hiJlzivKYFbUaiCU-ZmYvDkiceuno01S7GF-IFwOKg7xIitw2Ao9HmA087mf=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/r4ql5NlgTypHBx8_hiJlzivKYFbUaiCU-ZmYvDkiceuno01S7GF-IFwOKg7xIitw2Ao9HmA087mf=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCzEPFFjku1_2dYUu10HJ4eg",
+            name: "Miriam Perner",
+          )),
+          track_count: Some(49),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLiANqzkTWXBQJ-1XeTQSfFZNCU7IOZj6k",
+          name: "All my songs",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/iRY_SCPjwox_k2JWo2b7BYaxCwBhzQNjGdwpJ9y8lqYM7lhMDUf6Y4hsBgLVLwpbhm3xEYdozR-B=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/iRY_SCPjwox_k2JWo2b7BYaxCwBhzQNjGdwpJ9y8lqYM7lhMDUf6Y4hsBgLVLwpbhm3xEYdozR-B=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UC1izA3A5f3v6qiM053p5lyg",
+            name: "Uriana Burrell",
+          )),
+          track_count: Some(73),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLgsmQNnahCaN_SSVr3yvQQX1oEP5Wxq5G",
+          name: "female singers and remixes",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/twhIPdOnszHmZ-_MX6SB6A7PNkXToTOjtt2Cl9QrcMQb-1AXPHUjb199UmgMJYNomjDh21rtp2U=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/twhIPdOnszHmZ-_MX6SB6A7PNkXToTOjtt2Cl9QrcMQb-1AXPHUjb199UmgMJYNomjDh21rtp2U=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCjuu_fE95a2M6WyrHwcF7RQ",
+            name: "Sheree Martin",
+          )),
+          track_count: Some(49),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLcL3Ukbka4H55i24haJHib2MIRaqzWFu2",
+          name: "Summer 2022",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/81R5Gpyc8F4ThI65nOR424srFDQXOTlQRclVuH_aVR1vd9tLwbP3Q9B9tJ711HYU6CmMRkyrcg=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/81R5Gpyc8F4ThI65nOR424srFDQXOTlQRclVuH_aVR1vd9tLwbP3Q9B9tJ711HYU6CmMRkyrcg=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCpCqOLdeTga8LoEcQe1V4Qg",
+            name: "Chris Furmanek",
+          )),
+          track_count: Some(33),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLY9S50VIs7npMlH-ZSOH-SuikGh9d22pC",
+          name: "2022 Acoustic Music",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/BYkvu7ih868I1v4OVwHEyGS9reHZ_8pOGaMexiy5L50tHK3IwzjPQA8SO6Sq4fIrueCankHw8w=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/BYkvu7ih868I1v4OVwHEyGS9reHZ_8pOGaMexiy5L50tHK3IwzjPQA8SO6Sq4fIrueCankHw8w=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCoJI2GPf80lr2esYWFOYC7Q",
+            name: "Mvibez 4 You",
+          )),
+          track_count: Some(33),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PL1303cc-duJRlpu15Gy6fQdPiOgxvOQa3",
+          name: "playlisten",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/iR2mylL2YM61M9-4EC9eyr7l2E6CBouOyA2Y0_P-kHG2f8HB9ixepiM7G1IdyHPRLsBt5d9R60U=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/iR2mylL2YM61M9-4EC9eyr7l2E6CBouOyA2Y0_P-kHG2f8HB9ixepiM7G1IdyHPRLsBt5d9R60U=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCx_STF-ZTbFU7lqpcHwkb-A",
+            name: "lea melissa engling",
+          )),
+          track_count: Some(25),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PL4cy-cKSZDgvllyR4KYetlYSTcYMOrVa_",
+          name: "Laura Liebling Simon will and willboy Lieder",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/hNaW_T-rVPUIAF8QWGLujKjOVIv2UTBVsanyWXy9GyO5s13Io_dxqQfs0jlLooaXOWSDZBPZSK7d=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/hNaW_T-rVPUIAF8QWGLujKjOVIv2UTBVsanyWXy9GyO5s13Io_dxqQfs0jlLooaXOWSDZBPZSK7d=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCTlmLGzTFM_Zvgn4At7FQsw",
+            name: "Let,s Princesse Elisabeth Weißschwann",
+          )),
+          track_count: Some(49),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLCm5646X_Fe7Q5Pn75Jd37NnpMGoDvSCj",
+          name: "Workout",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/8Iw0zsGfXsIQzO0thHYMmzweyzJ2JtYUJYIFjKobYI2UO_XT5Py7-mheV_6xpj2td71LvIbowQ=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/8Iw0zsGfXsIQzO0thHYMmzweyzJ2JtYUJYIFjKobYI2UO_XT5Py7-mheV_6xpj2td71LvIbowQ=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCRRYp0mnPuxUo2OuXBTPgIw",
+            name: "MrSchindler5",
+          )),
+          track_count: Some(50),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLyOQkkNkTxU_uQfyS6JVa-wKUROPkPBoC",
+          name: "New Tunes",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.googleusercontent.com/QC_1CYfbD_-HkVSKaDRKIW1LxYVGTXrmB4WoCUWiDSpmX63v3i9fXaIO-0msFrSTpm7bpDAJacI=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.googleusercontent.com/QC_1CYfbD_-HkVSKaDRKIW1LxYVGTXrmB4WoCUWiDSpmX63v3i9fXaIO-0msFrSTpm7bpDAJacI=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCO-y9Zei-Hq57Fz-kJ5pFIg",
+            name: "Team Adam!",
+          )),
+          track_count: Some(24),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLWmOowMyqBz56GjD_7wlw8ZRP7qpFmrCN",
+          name: "Popular Songs",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/F_q4uPrM1ScKd_0WCMYGM0nVo4m8GeViLA1G7we2piyjZk4_RQcnQhy8kQFkcwc-L2no2BQZNQ=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/F_q4uPrM1ScKd_0WCMYGM0nVo4m8GeViLA1G7we2piyjZk4_RQcnQhy8kQFkcwc-L2no2BQZNQ=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCUt6RB8qCm_B7lkjC_uI_tg",
+            name: "Dzauki Iskandar Syafrudin",
+          )),
+          track_count: Some(80),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLhjMZKhmmEw59TxXHESRiGyzk6823eUcO",
+          name: "Softball playlist clean",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/gRgHp8qWBVh0CwLjbzsrI5oLG2E2mn5E1u1KxP8dhfnXST5D_rm2CWeGiCuY52wyEjYvzytO4w=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/gRgHp8qWBVh0CwLjbzsrI5oLG2E2mn5E1u1KxP8dhfnXST5D_rm2CWeGiCuY52wyEjYvzytO4w=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCmv7JPapDD8EpFRZ3JPb6wA",
+            name: "Bobbie Kook",
+          )),
+          track_count: Some(93),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLw64neqbaXy6YoifRQ61-6vUPoo8SvNYy",
+          name: "Disco Disco, Good Good",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/yscvmfNsuHBccbdcsjE2NcCUyXGJOmJw6r6BpdX1K4pUbM1zSeZVqDqN8rwngoqZ-P4_URwVaws=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/yscvmfNsuHBccbdcsjE2NcCUyXGJOmJw6r6BpdX1K4pUbM1zSeZVqDqN8rwngoqZ-P4_URwVaws=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UC6VhkMQe9xPwmtTid1okEYA",
+            name: "Southern Tasmania Inline Hockey",
+          )),
+          track_count: Some(73),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PL8JWemUnR0IcQWDK7hc5koesNDkij0N1a",
+          name: "new releases",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/Kuq2Qm5hNs68dDJfoXyMuPm3FPodC2P4f7WRbAuDKJXrm1j3Rw3memmUgjUXqIJXBd-4Tgylwmss=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/Kuq2Qm5hNs68dDJfoXyMuPm3FPodC2P4f7WRbAuDKJXrm1j3Rw3memmUgjUXqIJXBd-4Tgylwmss=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCheVMLm22cdOuin7FRfotpw",
+            name: "Annette Morgan",
+          )),
+          track_count: Some(30),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLlW3JNGGG5rihtgQcnqJAzbxzkXht-N2v",
+          name: "like driving in the dark with a heartbreak",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/b5lehxzSqaj-o8I9sUvjT4ae8QiQ_6x5LQpwySAPmAactk61k7oLWSKsLLVdyqqk_JJRo-WpXHQ=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/b5lehxzSqaj-o8I9sUvjT4ae8QiQ_6x5LQpwySAPmAactk61k7oLWSKsLLVdyqqk_JJRo-WpXHQ=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCM95yzvaCbNYyd0wSlLivLA",
+            name: "maddie kreuer",
+          )),
+          track_count: Some(24),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLPAoHehoVH_33IzpccydJcf5dkIuOZKuA",
+          name: "electrónica",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ZlnaYkrfBinWZ3tS64-xODSML1HmAcUpON41sbPBwjIc2s96pYN1WoQQBUabf6tKQwpbFMyTCQ8=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ZlnaYkrfBinWZ3tS64-xODSML1HmAcUpON41sbPBwjIc2s96pYN1WoQQBUabf6tKQwpbFMyTCQ8=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCZdhvY3ZRhLPzk63jfBu-Jg",
+            name: "Christian Porras",
+          )),
+          track_count: Some(51),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLQomN5HUDD3vf1C1N1Ba4q_rFNSi6ioPC",
+          name: "My Hip Hop",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/rhhAU2tWXIKfn0TLFBi-Ly6d8d3hiXYz-4nuWhFTIyfzDftsOYKa8iotAVcqahVj-t0Eg_ePI2I=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/rhhAU2tWXIKfn0TLFBi-Ly6d8d3hiXYz-4nuWhFTIyfzDftsOYKa8iotAVcqahVj-t0Eg_ePI2I=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCvHv1I-lzMi3yaIaVt9O6Cw",
+            name: "Joe",
+          )),
+          track_count: Some(23),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLfp3GEitdDgZaVoa3qVeR3CqGidKEXvzF",
+          name: "#1 throwback upbeat 2010s",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/uAMO1DvHy3qRa4gIHj355PwQvLFi110dBg_Tjuk71RpbUZ_HEZ6IpeHVctOfHkWFSLZekuu77w=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/uAMO1DvHy3qRa4gIHj355PwQvLFi110dBg_Tjuk71RpbUZ_HEZ6IpeHVctOfHkWFSLZekuu77w=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCBXE2_Z_79PCbMqYW7lM0Qw",
+            name: "Lachlan Chan",
+          )),
+          track_count: Some(73),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLnRSj6IxVCcyA_6iHPzhqjssJ9qGT58lK",
+          name: "Oldies but Goldies",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/dwGhWVzbpEEbI2ZbJ7RuDnIcPPPfl4tHu7M8UBGke52rJEzzlmE5fmPXMOSMNVjq4uZjNCNhUQM=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/dwGhWVzbpEEbI2ZbJ7RuDnIcPPPfl4tHu7M8UBGke52rJEzzlmE5fmPXMOSMNVjq4uZjNCNhUQM=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UC7Kjn0QXABRhGMNf8jplrYw",
+            name: "Omer",
+          )),
+          track_count: Some(60),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLGVUbwqxKs9qJ6Ay4tbRW3vD1s9IuvBVb",
+          name: "Triple Plays in 1965",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/AY040411gbF3ZYmSsjfaEBCiGT56s-MTYq7IU5OMm9nR7zwvkMOvAw2PlqjU7aeZLjkyNqWuKk2K=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/AY040411gbF3ZYmSsjfaEBCiGT56s-MTYq7IU5OMm9nR7zwvkMOvAw2PlqjU7aeZLjkyNqWuKk2K=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCPvUeP07iI1Ump_E9Re9RoQ",
+            name: "Rene LeClerc",
+          )),
+          track_count: Some(42),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLiV0Vi0cz-2GwN6fo1VtER9M26gAzOlff",
+          name: "Bops of the Century",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/EvHua7LwyzHUqw8jjZFDpE8WsqqFtgl74FJ6rYFq_agCA0KT4dNuts5IdUzSnVRAYMoslRjI4A=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/EvHua7LwyzHUqw8jjZFDpE8WsqqFtgl74FJ6rYFq_agCA0KT4dNuts5IdUzSnVRAYMoslRjI4A=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCPLqqUd3JIUhKrQSWmX9xEA",
+            name: "Rosie Bell",
+          )),
+          track_count: Some(39),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLF0-RckYpRc5vgPvMMCiihucmdpmAHCjv",
+          name: "alternative",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/k1I-h9QoWEfB2obkpETFygA14ziB7wn1-ig3LkNOKgdSctskee_tEsviRgRHutLyc74XDyJhE-g=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/k1I-h9QoWEfB2obkpETFygA14ziB7wn1-ig3LkNOKgdSctskee_tEsviRgRHutLyc74XDyJhE-g=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCTvzaZ5awMsP7sBc2QqgNpQ",
+            name: "Jerah Korol",
+          )),
+          track_count: Some(26),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLD7HpTpxQWOvZ-TWuHJwbNmBXl5wmZ8nT",
+          name: "Millenium girls",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/H4EaQa7xD-CVB74OOLBCcpBdUMzjPotTcJTjw9Wqw5el6qh2E_kfIqXITp82cuWjyfkT5tiaCN4=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/H4EaQa7xD-CVB74OOLBCcpBdUMzjPotTcJTjw9Wqw5el6qh2E_kfIqXITp82cuWjyfkT5tiaCN4=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCeNpX2m43BU8qcsklSgx_fw",
+            name: "Catherine Sauvé",
+          )),
+          track_count: Some(20),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLnAAxFaNfx2jLI8MsgMGmmc_yFEorzin-",
+          name: "أيام شبابي",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/W2MWulHgw8OdxP-YWrw2CoYl_JCJrtL-V8iPQ8VvmRHQAWBTCj167q33_OzWM-sXYvv_zDOBi-k=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/W2MWulHgw8OdxP-YWrw2CoYl_JCJrtL-V8iPQ8VvmRHQAWBTCj167q33_OzWM-sXYvv_zDOBi-k=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UC2AyRL_65MQLfAEslK2Tl1g",
+            name: "DARK KNIGHT",
+          )),
+          track_count: Some(78),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PL8a00yZlpeTaC_8T1vVFMvNgelW0AMWj-",
+          name: "Hip Hop 22 Sommer",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/Tnyqfy22-9jrdGgj7R5uNPMXZjh5qMVSqBwRNf3iWPXOUuD08KwnS_zf9OLehAsVPu_hM-oHGVE=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/Tnyqfy22-9jrdGgj7R5uNPMXZjh5qMVSqBwRNf3iWPXOUuD08KwnS_zf9OLehAsVPu_hM-oHGVE=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UC8kup9N401zYicNfFkPv2JA",
+            name: "Daniel Benk",
+          )),
+          track_count: Some(63),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLjyFxeY8wlXZaOChAJuURnUeNdK1G0MMG",
+          name: "Supermix",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/gHxYO1uYpbaIgaY1kNV4MpPSgp3eB0J2n4EVvZgS-nWgK-I5WeBZaUeLIPoMPCWQBuLK0gPbZldV=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/gHxYO1uYpbaIgaY1kNV4MpPSgp3eB0J2n4EVvZgS-nWgK-I5WeBZaUeLIPoMPCWQBuLK0gPbZldV=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCaqUlqhB5V7TOm5fj53oGOA",
+            name: "Fuxxy",
+          )),
+          track_count: Some(50),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLTLog19MpU4U-BHndzLG5xqMlpLL24cvq",
+          name: "Lynn Birthday Dance",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ivY1R75KafiVUrDkTZSzvl3rQKhGE1lWWDYEes6Np-g97MerzgkgB4KcRzxv9e7PhmNI-37mlaI=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ivY1R75KafiVUrDkTZSzvl3rQKhGE1lWWDYEes6Np-g97MerzgkgB4KcRzxv9e7PhmNI-37mlaI=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCmy8DKpss3mIp3kPk3F9UTA",
+            name: "Tony Smith",
+          )),
+          track_count: Some(32),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLeluQVgLMBs4wzUEy3FRgNqxaNnMcDkLR",
+          name: "winter 2021",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/VImmQFXyQIxEfXeghgBnCaOswMdnuSRvOl1iedeC6src3KdLEMc_t_Di8aJUy3RErnURdnw3OjZe=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/VImmQFXyQIxEfXeghgBnCaOswMdnuSRvOl1iedeC6src3KdLEMc_t_Di8aJUy3RErnURdnw3OjZe=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCkiXKygjWrLBRWO97DNOZoQ",
+            name: "Ruben Aboy",
+          )),
+          track_count: Some(72),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLZ3OUTtAaIEtN0TYd5vAnkxpyQuE5lQpc",
+          name: "Most Wanted Hits 2021",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/8THK6BV5gOVHz2Jq4sSlFNlT3UKcr47dWsY7IQCsWfdY6V39u2f85bBaRnCusEot2N4oYaZ3-sg=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/8THK6BV5gOVHz2Jq4sSlFNlT3UKcr47dWsY7IQCsWfdY6V39u2f85bBaRnCusEot2N4oYaZ3-sg=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCdYec8qochRRj9YIIeT3jww",
+            name: "Liseth Guevara Báez",
+          )),
+          track_count: Some(90),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLor1c1-o6kO2n8Dn9c4RTwuwRuQ1-7Fq_",
+          name: "POP Internacional",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/wslFypRuQKKPYf-nm4adQC_2_zET-GcS8hVj2wzxJxlyvgF5X4NECvaWw4gMLyds0yjnPrw4wHOF=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/wslFypRuQKKPYf-nm4adQC_2_zET-GcS8hVj2wzxJxlyvgF5X4NECvaWw4gMLyds0yjnPrw4wHOF=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCckUkL5J6KtIfZ4-25SWtOg",
+            name: "Paulo T. Pontes",
+          )),
+          track_count: Some(33),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLEd5-uLH_wuRvCCpIspbZ9iKsD-AIBebf",
+          name: "Let’s Sing 2017 (North American/European Tracklist)",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/d9r6lAxXVcU1JT6xlDz-DbhBYGAYSgpjUuZxZsKbfrNzX0nFgpqqwugfkhsRL-iGOdhnn61BRW4=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/d9r6lAxXVcU1JT6xlDz-DbhBYGAYSgpjUuZxZsKbfrNzX0nFgpqqwugfkhsRL-iGOdhnn61BRW4=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCYGmCXupuYMcuMiaeHbiY0w",
+            name: "Kian Tajada",
+          )),
+          track_count: Some(30),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLbYux145FQmrAtB5EhIYZMn4brty5cwsq",
+          name: "Bangers",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/DofAzDDNFoKj9UBHGMzl_uF5EsaQRaRd01Ew9WU5SuqnSp7Kb05Y7xHS58cNCLH1W7b00J-oqM1o=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/DofAzDDNFoKj9UBHGMzl_uF5EsaQRaRd01Ew9WU5SuqnSp7Kb05Y7xHS58cNCLH1W7b00J-oqM1o=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCOV65XRJchWaXJyFdgb2lzA",
+            name: "Damita Lindholm",
+          )),
+          track_count: Some(34),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PL3KsyVA1nn0DyHaH2ufmIzli__PFH3TLF",
+          name: "Indie Pop/Rock",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/u9T_wD-lHhUeFPudo4nV8wfvOAteUQcUAgbfJYOwKKV_6mVCOsmqa8jKuDLOzqJrhYq3aRTIoA=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/u9T_wD-lHhUeFPudo4nV8wfvOAteUQcUAgbfJYOwKKV_6mVCOsmqa8jKuDLOzqJrhYq3aRTIoA=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCbm8JhtvCfxG6hw5GEKBpmA",
+            name: "Paul Turcotte",
+          )),
+          track_count: Some(37),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PL0O1qyOtQJ1K2uGE1n-3XCF8u9mb2fJKv",
+          name: "Songs to Sing in the Car",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/STUIfj6ey8f4-9XDcenQ5AD0hOYwSylOmt2mCUXE3V9HfxZqTtimL9aWSnSadcqQgORwVLFfeoO_=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/STUIfj6ey8f4-9XDcenQ5AD0hOYwSylOmt2mCUXE3V9HfxZqTtimL9aWSnSadcqQgORwVLFfeoO_=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UC9Hjs1_UY3pCPGe3yuEsx6w",
+            name: "Miguel Andrade",
+          )),
+          track_count: Some(99),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLbsQXIu7iZaIvjXpz5OS07MVXsNvTzn-4",
+          name: "Spring 2022",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/GPFazkazN-ZR59TmjACNutcnMtjOyw1ijQeHVEau2k14duqx59QcLdxVcSedyyZDITAW4iPmPw=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/GPFazkazN-ZR59TmjACNutcnMtjOyw1ijQeHVEau2k14duqx59QcLdxVcSedyyZDITAW4iPmPw=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCTVj_-VIXzIH30yuniSmDSQ",
+            name: "Roman Oberle",
+          )),
+          track_count: Some(32),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLHqSWjsUHpnS82SgjhROIWpVXlrFIjkOl",
+          name: "ピアノにのせてロックンロールを味わう by THE BAWDIES",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ZIMBH_t7SXRUsIBMPfI2hd0lqR5l0zVIr0m7cZLGFJuB7Ejp_hrRim7WHFyjXvjlFwZ6Ompar5g=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ZIMBH_t7SXRUsIBMPfI2hd0lqR5l0zVIr0m7cZLGFJuB7Ejp_hrRim7WHFyjXvjlFwZ6Ompar5g=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCimMbWRjsVfXHzna9akMntg",
+            name: "Reppin Channel",
+          )),
+          track_count: Some(20),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLqo5krxiz-M9n1WvTrT0LTkqoMIkDNfNe",
+          name: "Summer 2022",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/rKGI7D-8KPEybVHlowdhaTQMXPktSt0PwBDcZvePjY6inDBdnX1pI_NpiCuzOIZCulWj9pCmW9I=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/rKGI7D-8KPEybVHlowdhaTQMXPktSt0PwBDcZvePjY6inDBdnX1pI_NpiCuzOIZCulWj9pCmW9I=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCxWzBcFDA-Aefb5yHmkN-_w",
+            name: "William Dyer",
+          )),
+          track_count: Some(39),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLh5071MGJWPeArr9_jyV1ADDbfK7OHOwx",
+          name: "Soundtrack: The Boat that Rocked",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/HtXxUTiLQjjp_Mwk2PTqAIfE39AdoDCD6YcCInexxbHuQBtz26ZqNJIDmpyoGwuNhHIK8A-_5g=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/HtXxUTiLQjjp_Mwk2PTqAIfE39AdoDCD6YcCInexxbHuQBtz26ZqNJIDmpyoGwuNhHIK8A-_5g=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UC39OAzxmN3aKTTUyBaWNxzg",
+            name: "Floris Voges",
+          )),
+          track_count: Some(31),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLECzAa1BqyewY3nWM299O0VQ5MaBfnbd1",
+          name: "舞曲",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/EHLv1YkZyDSPr-PwnEfBBdtxb0agrAxHu3DdE1dG9tlx5uCYcd6tRd4N3CP_1NH5CrsXnWtcIJQ=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/EHLv1YkZyDSPr-PwnEfBBdtxb0agrAxHu3DdE1dG9tlx5uCYcd6tRd4N3CP_1NH5CrsXnWtcIJQ=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UC5OzEKzfcd54fr9JZCOz0_g",
+            name: "Eric Wu",
+          )),
+          track_count: Some(53),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PL5eUocRCdmjeD_XbpKfu4kE_D8hc5vRvV",
+          name: "Treino hard 2022",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ptBJtZrtdds4WGnvFDGh1SibXi9SKopo5KKwkv0hrnxBDlMHulgOiL2BX410HeYphTF7x-vaxw=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ptBJtZrtdds4WGnvFDGh1SibXi9SKopo5KKwkv0hrnxBDlMHulgOiL2BX410HeYphTF7x-vaxw=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCNAcaEgjx4_hHS2v_GCbR2Q",
+            name: "Marília Pereira",
+          )),
+          track_count: Some(50),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLgz_tLyztjXnWOl6wW7blD4Rc6g9VSfsA",
+          name: "Singersongwriter",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/OeJK5_zTqOSKdWvb12w4q1S2S3FYJjfDvIVdqOtPSvsbSauFit9Jalc30jALsf1Y2MLXzu3e-u0=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/OeJK5_zTqOSKdWvb12w4q1S2S3FYJjfDvIVdqOtPSvsbSauFit9Jalc30jALsf1Y2MLXzu3e-u0=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCpF2df_OmrVwsA7n2Luaxeg",
+            name: "Marco Poinegger",
+          )),
+          track_count: Some(22),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLHHmDr918gT-vP1-UK3eI-V47ZtQgoxJF",
+          name: "Heart Break Songs",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/7eGk13B2lhwcWxKPT6H7N5vfPFJXK3zFxV-I7OP4dM2ACBMBL7MSdqidAPnRhu4JXgLtRuC4_84=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/7eGk13B2lhwcWxKPT6H7N5vfPFJXK3zFxV-I7OP4dM2ACBMBL7MSdqidAPnRhu4JXgLtRuC4_84=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCGWZDIUKZ60pcGr2YpB1uDg",
+            name: "Heather Marie Woods",
+          )),
+          track_count: Some(42),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLMCu-ebJeDAs-Bh0MBOZz1lEhdIFsCl4E",
+          name: "Popular but dusty 60s mix",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/lxDemylsDYqpDMkCk7s6plkESKhNf0DVXbyTJYfL_rtVtFFWdp-RQ1ypzhf8WOp9qJVpxU6WLWVd=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/lxDemylsDYqpDMkCk7s6plkESKhNf0DVXbyTJYfL_rtVtFFWdp-RQ1ypzhf8WOp9qJVpxU6WLWVd=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCnQUwx7YN_sR4g3ZcaXNamA",
+            name: "Ольга Довгаль",
+          )),
+          track_count: Some(28),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLcYknIcwV_5EM_OFyFXhdqjwXTKyBUTf-",
+          name: "Total Request Live",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/pMagrGH-KOzi2gouI2xOStcwXBHio0sqfn1G9xgkaclqUQfkC3XLRnk3HnYKpCoaL5AxQxPyWFA=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/pMagrGH-KOzi2gouI2xOStcwXBHio0sqfn1G9xgkaclqUQfkC3XLRnk3HnYKpCoaL5AxQxPyWFA=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCl1_WAQVo4zXNofT2yn3_Vw",
+            name: "Lydia Powers",
+          )),
+          track_count: Some(27),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLQCdGWs9PJ9dH5UTFYaPfyjo61d4DLXR9",
+          name: "Underground",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/JJqaFi1JluauIY_UPXhFXLrKdn-hWPVywDqCawIZXQC6-MocoZEl0wfFmUCUWwqTZLzT6oKW9PoY=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/JJqaFi1JluauIY_UPXhFXLrKdn-hWPVywDqCawIZXQC6-MocoZEl0wfFmUCUWwqTZLzT6oKW9PoY=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCNDEOk_usmdUC9hKvesMMsQ",
+            name: "Somethinglol ehhhh",
+          )),
+          track_count: Some(22),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLlJn-j7tKAOHEuJ7QH5_6UbVb8IVq0McT",
+          name: "Танцы хаус",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/FBmdHd_-0Y8H9YNtbrI7uKqinuH7e2dCs-HODrr5_hNSc4Z5g7K7WOZfTDzwyqQE381IFYJ-zJpU=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/FBmdHd_-0Y8H9YNtbrI7uKqinuH7e2dCs-HODrr5_hNSc4Z5g7K7WOZfTDzwyqQE381IFYJ-zJpU=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCb_WmI-Qasvilq2MtJVZCiQ",
+            name: "Діма Зеленський",
+          )),
+          track_count: Some(49),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLZwF_n0Rmg1aLn3qhcrez87W7ooYNQjN7",
+          name: "Україна",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/pnAqAKkEkMBmvE5C35L2DvPSxSzqS3tX5cYEEaS2plnD0OHtbLy67uFmfO84f_vtVbUqHukeAgEn=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/pnAqAKkEkMBmvE5C35L2DvPSxSzqS3tX5cYEEaS2plnD0OHtbLy67uFmfO84f_vtVbUqHukeAgEn=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCNmm1P9aGwu-KgzbZoXn1yw",
+            name: "Рина Мана",
+          )),
+          track_count: Some(49),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLy9Bb4KsmT2Oj7Odu57WswbbqTvm5pogd",
+          name: "workout",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/OKv1u0bUbrFEveSZZmFzsFIwAh9MbA70kc-zW8miTQvVvgjvowpMKbMNVCELpH99t_X3_5BpSp-m=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/OKv1u0bUbrFEveSZZmFzsFIwAh9MbA70kc-zW8miTQvVvgjvowpMKbMNVCELpH99t_X3_5BpSp-m=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCr6d6Guxlal_cQew33oxwHg",
+            name: "ells.xo.",
+          )),
+          track_count: Some(46),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLYEJxFGZRFTcQOIxw8kmx-0lMXSyd7DrG",
+          name: "British Columbia",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/zdZ-cCQaEvpfWae7VFYM84Dr0PBB6rHswyUtQ5jdKp1KQPtTOdlktV16IU9cDlE18SeO0tNv8Iw=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/zdZ-cCQaEvpfWae7VFYM84Dr0PBB6rHswyUtQ5jdKp1KQPtTOdlktV16IU9cDlE18SeO0tNv8Iw=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCgGH1vmxGvwD5MJ_DnqWXdw",
+            name: "Robb Rotundo",
+          )),
+          track_count: Some(88),
+          from_ytm: false,
+        ),
+        MusicPlaylistItem(
+          id: "PLvC7MTLJpPx0p3IqduEYN7ZId52lL9gJt",
+          name: "I Wanna Get Better radio",
+          thumbnail: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/AWohDXDbksPdivMwJzVdLy_AoQOJOxpiC1AHd33xFK2ZpMkqvEAjv14Em3qAfDmttN3khfPt-_AF=s192",
+              width: 192,
+              height: 192,
+            ),
+            Thumbnail(
+              url: "https://yt3.ggpht.com/AWohDXDbksPdivMwJzVdLy_AoQOJOxpiC1AHd33xFK2ZpMkqvEAjv14Em3qAfDmttN3khfPt-_AF=s576",
+              width: 576,
+              height: 576,
+            ),
+          ],
+          channel: Some(ChannelId(
+            id: "UCRWBNSG-WdBJW60ck1qNXSw",
+            name: "Katelyn Powers",
+          )),
+          track_count: Some(78),
+          from_ytm: false,
+        ),
+      ],
+    ),
+  ],
+)

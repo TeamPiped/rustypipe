@@ -26,6 +26,7 @@ pub(crate) enum ItemSection {
     #[serde(alias = "musicPlaylistShelfRenderer")]
     MusicShelfRenderer(MusicShelf),
     MusicCarouselShelfRenderer(MusicCarouselShelf),
+    GridRenderer(GridRenderer),
     #[serde(other, deserialize_with = "deserialize_ignore_any")]
     None,
 }
@@ -357,6 +358,41 @@ pub(crate) struct Grid {
 pub(crate) struct GridRenderer {
     #[serde_as(as = "VecLogError<_>")]
     pub items: MapResult<Vec<MusicResponseItem>>,
+    pub header: Option<GridHeader>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct GridHeader {
+    pub grid_header_renderer: GridHeaderRenderer,
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct GridHeaderRenderer {
+    #[serde_as(as = "Text")]
+    pub title: String,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct SingleColumnBrowseResult<T> {
+    pub single_column_browse_results_renderer: ContentsRenderer<T>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct SimpleHeader {
+    pub music_header_renderer: SimpleHeaderRenderer,
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct SimpleHeaderRenderer {
+    #[serde_as(as = "Text")]
+    pub title: String,
 }
 
 /*
@@ -764,10 +800,12 @@ impl MusicListMapper {
                             Ok(Some(MusicEntityType::Album))
                         }
                         MusicPageType::Playlist => {
+                            // When the playlist subtitle has only 1 part, it is a playlist from YT Music
+                            // (featured on the startpage or in genres)
                             let from_ytm = subtitle_p2
                                 .as_ref()
                                 .map(|p| p.first_str() == util::YT_MUSIC_NAME)
-                                .unwrap_or_default();
+                                .unwrap_or(true);
                             let channel = subtitle_p2.and_then(|p| {
                                 p.0.into_iter().find_map(|c| ChannelId::try_from(c).ok())
                             });
