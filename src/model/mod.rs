@@ -10,12 +10,12 @@ pub use ordering::QualityOrd;
 pub use paginator::Paginator;
 use serde_with::serde_as;
 
-use std::ops::Range;
+use std::{collections::BTreeSet, ops::Range};
 
 use serde::{Deserialize, Serialize};
 use time::{Date, OffsetDateTime};
 
-use crate::{error::Error, serializer::DateYmd, util};
+use crate::{error::Error, param::Country, serializer::DateYmd, util};
 
 use self::richtext::RichText;
 
@@ -1250,7 +1250,7 @@ pub struct Lyrics {
     pub footer: String,
 }
 
-/// YouTube Music related entities
+/// YouTube Music entities related to a track
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[non_exhaustive]
 pub struct MusicRelated {
@@ -1264,4 +1264,24 @@ pub struct MusicRelated {
     pub artists: Vec<ArtistItem>,
     /// Related playlists
     pub playlists: Vec<MusicPlaylistItem>,
+}
+
+/// YouTube Music charts
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
+pub struct MusicCharts {
+    /// List of top music videos
+    pub top_tracks: Vec<TrackItem>,
+    /// List of trending music videos
+    pub trending_tracks: Vec<TrackItem>,
+    /// List of top artists
+    pub artists: Vec<ArtistItem>,
+    /// List of playlists (charts by genre, currently only available in US)
+    pub playlists: Vec<MusicPlaylistItem>,
+    /// ID of the playlist containing top music videos
+    pub top_playlist_id: Option<String>,
+    /// ID of the playlist containing trending music videos
+    pub trending_playlist_id: Option<String>,
+    /// Set of available countries to fetch charts from
+    pub available_countries: BTreeSet<Country>,
 }

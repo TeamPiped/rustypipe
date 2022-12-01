@@ -1,0 +1,2559 @@
+---
+source: src/client/music_charts.rs
+expression: map_res.c
+---
+MusicCharts(
+  top_tracks: [
+    TrackItem(
+      id: "zwa7NzNBQig",
+      title: "Tomorrow 2",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/zwa7NzNBQig/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kL9wpTshrMEEZmxcp_3IrCi76Ybg",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/zwa7NzNBQig/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3lMkZUJuf1267Z-FpFH3930cc-4vg",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCiXhCjTprNP0nuQJ9UsLWeg"),
+          name: "GloRilla",
+        ),
+        ArtistId(
+          id: Some("UCoIp9Cj1l7k63B90hFg38Zw"),
+          name: "Cardi B",
+        ),
+      ],
+      artist_id: Some("UCiXhCjTprNP0nuQJ9UsLWeg"),
+      album: None,
+      view_count: Some(55000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "UhbixyxgsiU",
+      title: "Just Wanna Rock",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/UhbixyxgsiU/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lWnqsueoNRp5ldKs9SqfiFE5KzOw",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/UhbixyxgsiU/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3mcSVMPMha_wl92Wf4nr1aKtr0hOg",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCybEdRVR5u_WFoV-BLTEBiA"),
+          name: "Lil Uzi Vert",
+        ),
+      ],
+      artist_id: Some("UCybEdRVR5u_WFoV-BLTEBiA"),
+      album: None,
+      view_count: Some(14000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "saGYMhApaH8",
+      title: "Me porto bonito (feat. Chencho Corleone)",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/saGYMhApaH8/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nTxYSJ5DzWpopSgJtd7TxSkZcFSw",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/saGYMhApaH8/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3kCdpRLCTrgluvY_H2znm7vyMyvxg",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCiY3z8HAGD6BlSNKVn2kSvQ"),
+          name: "Bad Bunny",
+        ),
+      ],
+      artist_id: Some("UCiY3z8HAGD6BlSNKVn2kSvQ"),
+      album: None,
+      view_count: Some(518000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "8n5dJwWXrbo",
+      title: "IShowSpeed - World Cup (Official Music Video)",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/8n5dJwWXrbo/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3k99d8n8pTzbbmHxCRy7nodpuEg4w",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/8n5dJwWXrbo/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3mbp9Z8WmRRLvy60dtC2EqG1FDZGQ",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCWsDFcIhY2DBi3GB5uykGXA"),
+          name: "IShowSpeed",
+        ),
+      ],
+      artist_id: Some("UCWsDFcIhY2DBi3GB5uykGXA"),
+      album: None,
+      view_count: Some(33000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "Cr8K88UcO0s",
+      title: "Tití me preguntó",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/Cr8K88UcO0s/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mu4Hdm_UOoBCvNS809XBhm08VlCQ",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/Cr8K88UcO0s/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3misl8pJvulzaVNxgCldmxIwxkZIQ",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCiY3z8HAGD6BlSNKVn2kSvQ"),
+          name: "Bad Bunny",
+        ),
+      ],
+      artist_id: Some("UCiY3z8HAGD6BlSNKVn2kSvQ"),
+      album: None,
+      view_count: Some(557000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "pfxyk1glEq4",
+      title: "Under The Influence",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/pfxyk1glEq4/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3n2UW2m60wxuID9gsbO0-aNlbDIMw",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/pfxyk1glEq4/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3nv0Dpos9eIG_v3nhrKhSR9XkfM8g",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCMXDyVR2tclKWhbqNforSyA"),
+          name: "Chris Brown",
+        ),
+      ],
+      artist_id: Some("UCMXDyVR2tclKWhbqNforSyA"),
+      album: None,
+      view_count: Some(38000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "VtKcDwz6hiM",
+      title: "No Se Va (En Vivo)",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/VtKcDwz6hiM/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kQaDE21yOZvF6y0EMv-8iKWXn8kw",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/VtKcDwz6hiM/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3mqrtvvKR8W0hWz8TbUMI8rdcc3hA",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCJa2FF4TUB13Mm0GurZAqog"),
+          name: "Grupo Frontera",
+        ),
+      ],
+      artist_id: Some("UCJa2FF4TUB13Mm0GurZAqog"),
+      album: None,
+      view_count: Some(137000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "aAkMkVFwAoo",
+      title: "All I Want for Christmas Is You (Make My Wish Come True Edition)",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/aAkMkVFwAoo/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3keCZ8J1Y0D5MIpPbnjYe9vg2JkcQ",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/aAkMkVFwAoo/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3nmjNhT2Gc73IdXiLgLmzOrPK0BrQ",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCKRnq8aBOCanYlffje7HyvA"),
+          name: "Mariah Carey",
+        ),
+      ],
+      artist_id: Some("UCKRnq8aBOCanYlffje7HyvA"),
+      album: None,
+      view_count: Some(309000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "3V8aen7Flhs",
+      title: "Hi Haters",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/3V8aen7Flhs/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3l1WGtkmSlwXNalDWwLoD-SETEpeg",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/3V8aen7Flhs/sddefault.jpg?sqp=-oaymwEWCKoDEPABIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3louhktufyqzqDEKZyD7iYuOlO4LA",
+          width: 426,
+          height: 240,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCR28YDxjDE3ogQROaNdnRbQ"),
+          name: "YoungBoy Never Broke Again",
+        ),
+      ],
+      artist_id: Some("UCR28YDxjDE3ogQROaNdnRbQ"),
+      album: None,
+      view_count: Some(3500000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "rb0bjyt1OD0",
+      title: "Tukoh Taka - Official FIFA Fan Festival™ Anthem | Nicki Minaj, Maluma, & Myriam Fares (FIFA Sound)",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/rb0bjyt1OD0/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3ncdZ5k8f--HAeT1TqtTvVtqv6WGw",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/rb0bjyt1OD0/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3lC_CqSzwT1M9zrw_lzx4R-9bLVNg",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCpcTrCXblq78GZrTUTLWeBw"),
+          name: "FIFA",
+        ),
+      ],
+      artist_id: Some("UCpcTrCXblq78GZrTUTLWeBw"),
+      album: None,
+      view_count: Some(43000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "-1vsm5bhoyE",
+      title: "No Se Va",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/-1vsm5bhoyE/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3m9caDIMe_hqUVGGpTjSd_Z0n_jAA",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/-1vsm5bhoyE/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3nafXAtBOKX6bzqD5KsGCK0a-AhuA",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCJa2FF4TUB13Mm0GurZAqog"),
+          name: "Grupo Frontera",
+        ),
+      ],
+      artist_id: Some("UCJa2FF4TUB13Mm0GurZAqog"),
+      album: None,
+      view_count: Some(71000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "ao3SN7fkQQU",
+      title: "Billete Grande",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/ao3SN7fkQQU/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3l2ZwYOWzJwhHhU-_9obgawlCuiYA",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/ao3SN7fkQQU/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3nHio9Y64b1rXjr_b7Wsu5fdNVjSw",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCohgH17dyp4c_V7U9LoBLdA"),
+          name: "Edgardo Nuñez",
+        ),
+        ArtistId(
+          id: Some("UC0kxNxFQCK6d2spPz5Sme7Q"),
+          name: "Fuerza Regida",
+        ),
+      ],
+      artist_id: Some("UCohgH17dyp4c_V7U9LoBLdA"),
+      album: None,
+      view_count: Some(76000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "J9QwBwUnhQo",
+      title: "Got It Right",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/J9QwBwUnhQo/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mfATJfiIMnKSBx8F2YbRQp3xyc2Q",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/J9QwBwUnhQo/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3kba4RLh_9xatgsyNeev8SxdeUYgg",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UChWPNW87QHcXAsw2mzlsYNw"),
+          name: "Rod Wave",
+        ),
+      ],
+      artist_id: Some("UChWPNW87QHcXAsw2mzlsYNw"),
+      album: None,
+      view_count: Some(2500000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "WyhU6Zb_fhY",
+      title: "California Breeze",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/WyhU6Zb_fhY/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3k-fjKfX6sGv0FyrAxl_XlXvgMYvQ",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/WyhU6Zb_fhY/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3mZ1YwyF84E8_7gfDfc4HmA1G7Iyw",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC_z9AthnCGSAk_tZf-KqoFA"),
+          name: "Lil Baby",
+        ),
+      ],
+      artist_id: Some("UC_z9AthnCGSAk_tZf-KqoFA"),
+      album: None,
+      view_count: Some(16000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "aV-pJ8BBxj8",
+      title: "Shabooya (feat. Slimeroni & Aleza)",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/aV-pJ8BBxj8/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lW9bZlkA_orZYFHRDnovWu600doQ",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/aV-pJ8BBxj8/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3nnSXD3lmaYjQJrGO9MIZRkBsI0pg",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCdPdi8UM25ZyvzhSJkk1uPw"),
+          name: "K Carbon",
+        ),
+        ArtistId(
+          id: Some("UCDZoXbL2l9RslPvF76NSVCw"),
+          name: "Hitkidd",
+        ),
+        ArtistId(
+          id: Some("UC9Ub8sWSY8HGgXY8ArvNaRw"),
+          name: "Gloss Up",
+        ),
+      ],
+      artist_id: Some("UCdPdi8UM25ZyvzhSJkk1uPw"),
+      album: None,
+      view_count: Some(8200000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "gSeBZqcTHLc",
+      title: "Stand On It",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/gSeBZqcTHLc/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3muZpsl2Q8SyzgG3_S569RLH2kyeg",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/gSeBZqcTHLc/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3noPWFuFksxCSzMHemhKL14KpGkWQ",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC_z9AthnCGSAk_tZf-KqoFA"),
+          name: "Lil Baby",
+        ),
+      ],
+      artist_id: Some("UC_z9AthnCGSAk_tZf-KqoFA"),
+      album: None,
+      view_count: Some(15000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "Vzkr-G1QEh8",
+      title: "Back End",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/Vzkr-G1QEh8/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kyN-iO0dKpz-SKfsz0A6dlCtWJpg",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/Vzkr-G1QEh8/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3lYMVfUOM27m-Ko9IT0gCDuS_uqQQ",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCXT9NWRyDfHJq9Igm1pDQpQ"),
+          name: "Finesse2Tymes",
+        ),
+      ],
+      artist_id: Some("UCXT9NWRyDfHJq9Igm1pDQpQ"),
+      album: None,
+      view_count: Some(31000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "SK37InR9j38",
+      title: "GATÚBELA",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/SK37InR9j38/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nOYqdNpbxJMhB_VIHCZODDmvxOgA",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/SK37InR9j38/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3nv69oVjIjtQAxcykxQGPePD0uWLg",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC7n3gWRN0vQzgiOKc51aZ4w"),
+          name: "KAROL G",
+        ),
+        ArtistId(
+          id: Some("UCsHl7m0iDLkZlOdPcKQN3Tg"),
+          name: "Maldy",
+        ),
+      ],
+      artist_id: Some("UC7n3gWRN0vQzgiOKc51aZ4w"),
+      album: None,
+      view_count: Some(200000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "C2YSX4sV_bA",
+      title: "Letter to Takeoff",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/C2YSX4sV_bA/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3n9DRpudRbYWOgj75luejwwGHxueg",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/C2YSX4sV_bA/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3kPMyaV1AOR1fIp6Bh9QvlrEcud3A",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCGJdT8Qip4XObbQZ98Z1CAA"),
+          name: "Gucci Mane",
+        ),
+      ],
+      artist_id: Some("UCGJdT8Qip4XObbQZ98Z1CAA"),
+      album: None,
+      view_count: Some(4800000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "ca48oMV59LU",
+      title: "PROVENZA",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/ca48oMV59LU/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3k6D3TgwBfNMuTwyxe8zrxRbrbVtA",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/ca48oMV59LU/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3m1L-CJpW2MLjMHBFMDCwc8O9xCtg",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC7n3gWRN0vQzgiOKc51aZ4w"),
+          name: "KAROL G",
+        ),
+      ],
+      artist_id: Some("UC7n3gWRN0vQzgiOKc51aZ4w"),
+      album: None,
+      view_count: Some(543000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "TUbmIriJlp4",
+      title: "Messy",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/TUbmIriJlp4/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nV-kdhUYZWBWPBxeRUKVUSiydU9A",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/TUbmIriJlp4/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3liWvD7IO5sn1zvzuzkdYEMLhgnEg",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC5IkSn-EFsUu3XANYklXc8g"),
+          name: "Quavo",
+        ),
+        ArtistId(
+          id: Some("UCIpP8df8didoERprBbdZoWA"),
+          name: "Takeoff",
+        ),
+      ],
+      artist_id: Some("UC5IkSn-EFsUu3XANYklXc8g"),
+      album: None,
+      view_count: Some(20000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "Z02zptUN8gI",
+      title: "Cairo",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/Z02zptUN8gI/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3n5PM92iiicNOImj3j8IEpxlSM41w",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/Z02zptUN8gI/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3kc2ILSMY2SsvnOgtJPZ9bin2Jp7g",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC7n3gWRN0vQzgiOKc51aZ4w"),
+          name: "KAROL G",
+        ),
+        ArtistId(
+          id: Some("UCtfkGa4ie0BivwCPWCHalOw"),
+          name: "Ovy On The Drums",
+        ),
+      ],
+      artist_id: Some("UC7n3gWRN0vQzgiOKc51aZ4w"),
+      album: None,
+      view_count: Some(34000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "Uq9gPaIzbe8",
+      title: "Unholy (Official Music Video)",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/Uq9gPaIzbe8/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3n3ktvIMrkifia2s8ac9OiM5glP5w",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/Uq9gPaIzbe8/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3mLkBjdVgyQGsqfZk3r69JkngI5hg",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCgpBsaDW2n_6ruzht3wvP0A"),
+          name: "Sam Smith",
+        ),
+        ArtistId(
+          id: Some("UCHG91TZ3WrWbZGD5sbkXsxg"),
+          name: "Kim Petras",
+        ),
+      ],
+      artist_id: Some("UCgpBsaDW2n_6ruzht3wvP0A"),
+      album: None,
+      view_count: Some(64000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "b1kbLwvqugk",
+      title: "Anti-Hero",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/b1kbLwvqugk/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mTWxIS76F_mpp6z63jfh_wtth9RA",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/b1kbLwvqugk/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3k5tqeDj1k0ANtgB5t4aXd5GXqzDg",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCPC0L1d253x-KuMNwa05TpA"),
+          name: "Taylor Swift",
+        ),
+      ],
+      artist_id: Some("UCPC0L1d253x-KuMNwa05TpA"),
+      album: None,
+      view_count: Some(67000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "VF-FGf_ZZiI",
+      title: "Bad Habit (Official Video)",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/VF-FGf_ZZiI/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mRcVFyhrtcXX-FopJz2Ma2Hlk3Uw",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/VF-FGf_ZZiI/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3kXCKyMyAoWQsI7vlje8Y6bPACR3w",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCju-DqP7JNtCnMWFXhLgPHQ"),
+          name: "Steve Lacy",
+        ),
+      ],
+      artist_id: Some("UCju-DqP7JNtCnMWFXhLgPHQ"),
+      album: None,
+      view_count: Some(45000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "Om0rYw6qzb8",
+      title: "Hotel Lobby (Official Video)",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/Om0rYw6qzb8/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kUwBP_lOAF9B2UW-KFt5AFm8p5FQ",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/Om0rYw6qzb8/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3nF-k1jvwgfL0KQ1zRN1hvGniUFOQ",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC5IkSn-EFsUu3XANYklXc8g"),
+          name: "Quavo",
+        ),
+        ArtistId(
+          id: Some("UCIpP8df8didoERprBbdZoWA"),
+          name: "Takeoff",
+        ),
+      ],
+      artist_id: Some("UC5IkSn-EFsUu3XANYklXc8g"),
+      album: None,
+      view_count: Some(43000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "PrSBuEFdRFU",
+      title: "Rich Flex",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/PrSBuEFdRFU/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mOdvdIBi63Unzs2A-Lf6rnKcF34A",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/PrSBuEFdRFU/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3kEkUDC23G8Iag5T9NuzJx6vlii-Q",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCoC_a7lWbj2v7rt4ujp4n2A"),
+          name: "21 Savage",
+        ),
+        ArtistId(
+          id: Some("UCU6cE7pdJPc6DU2jSrKEsdQ"),
+          name: "Drake",
+        ),
+      ],
+      artist_id: Some("UCoC_a7lWbj2v7rt4ujp4n2A"),
+      album: None,
+      view_count: Some(6600000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "9YdgldMKGGU",
+      title: "Get Away (Official Visualizer)",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/9YdgldMKGGU/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nA1er-0A6lGpG41Z5hEslKmZKjnQ",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/9YdgldMKGGU/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3kwSDa7X0uG1msEgU_Q5a0U8ggpcQ",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCvUZUUxWhwtKLVQ9bVRjLEA"),
+          name: "Young Dolph",
+        ),
+      ],
+      artist_id: Some("UCvUZUUxWhwtKLVQ9bVRjLEA"),
+      album: None,
+      view_count: Some(3800000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "kiUIkL4aZ5o",
+      title: "Meek Mill - God Did (Official Video)",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/kiUIkL4aZ5o/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3k18nDG9UArJpkp1EemgrGFjefjjQ",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/kiUIkL4aZ5o/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3kyY6XW7kFEGeA8t1dUedO3QyfR1A",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCr_zAwkma5JAyHOWfVXaouA"),
+          name: "Meek Mill",
+        ),
+      ],
+      artist_id: Some("UCr_zAwkma5JAyHOWfVXaouA"),
+      album: None,
+      view_count: Some(2700000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "mTkPFsVC5NE",
+      title: "Forever (Lyric Video)",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/mTkPFsVC5NE/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lFwyQH_1pJgGviXN5d9MuOdzg6iQ",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/mTkPFsVC5NE/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3m5jt4LMtvTiZ0uWQsZPugVxvGofQ",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC_z9AthnCGSAk_tZf-KqoFA"),
+          name: "Lil Baby",
+        ),
+        ArtistId(
+          id: Some("UC-pCz-F2dI9k6V6pT7huMJg"),
+          name: "Fridayy",
+        ),
+      ],
+      artist_id: Some("UC_z9AthnCGSAk_tZf-KqoFA"),
+      album: None,
+      view_count: Some(10000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "YsMB0i5YTOc",
+      title: "wait in the truck (Official Music Video) (feat. Lainey Wilson)",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/YsMB0i5YTOc/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nVML20MAMr3L-VVXAm5mNFsOHJNw",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/YsMB0i5YTOc/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3knRkTk-0-1YldSGjG1YlA930YV4A",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCBabNBocAdKiN5sz8RBjIDg"),
+          name: "HARDY",
+        ),
+      ],
+      artist_id: Some("UCBabNBocAdKiN5sz8RBjIDg"),
+      album: None,
+      view_count: Some(14000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "3CkLMG5NwUg",
+      title: "You Proof",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/3CkLMG5NwUg/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lkCBOMlscCZ0JEppmREkZ0GskqZA",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/3CkLMG5NwUg/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3mybQdZ1gPIzzBzPp7dPsWqCDvLIg",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC5xaQ6_dP7EGDmGLzVGZ1Ow"),
+          name: "Morgan Wallen",
+        ),
+      ],
+      artist_id: Some("UC5xaQ6_dP7EGDmGLzVGZ1Ow"),
+      album: None,
+      view_count: Some(16000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "9yvzvUgzxxg",
+      title: "Blessed",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/9yvzvUgzxxg/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kN89IAg8Mlfg9rox7O0kFd6kxmAQ",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/9yvzvUgzxxg/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3kMFAucYvaQyTFovyLeB5j-nx6bow",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCiXhCjTprNP0nuQJ9UsLWeg"),
+          name: "GloRilla",
+        ),
+      ],
+      artist_id: Some("UCiXhCjTprNP0nuQJ9UsLWeg"),
+      album: None,
+      view_count: Some(21000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "gPCCYMeXin0",
+      title: "Made You Look",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/gPCCYMeXin0/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nxdVaI3J6dtCJlZDYKzYCGou8IOQ",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/gPCCYMeXin0/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3kRJgWTstCT3xWnEHW8l5va_T_CfA",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC_VCJd8skzwcPktsMLqTz1g"),
+          name: "Meghan Trainor",
+        ),
+      ],
+      artist_id: Some("UC_VCJd8skzwcPktsMLqTz1g"),
+      album: None,
+      view_count: Some(33000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "gkkuezo7kX4",
+      title: "El Gavilán",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/gkkuezo7kX4/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mW38aumQMMSCxF63CQvfpM-ikIaA",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/gkkuezo7kX4/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3kOIWrO5vzDd-YaXJ8blVAH15fDGg",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "Luis R Conriquez",
+        ),
+        ArtistId(
+          id: None,
+          name: "Tony Aguirre",
+        ),
+        ArtistId(
+          id: None,
+          name: "Peso Pluma",
+        ),
+      ],
+      artist_id: None,
+      album: None,
+      view_count: Some(29000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "D2nyu8d7Sq0",
+      title: "2 Million Up (Official Video)",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/D2nyu8d7Sq0/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kFgxeRg-JdHNwHmCjbQDLEeC5QIw",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/D2nyu8d7Sq0/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3n5eYMR_63gU9oG_3Cs-MBWZ7JtYA",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCq_Fb1zqNikdovyMJgRQjcw"),
+          name: "Peezy",
+        ),
+      ],
+      artist_id: Some("UCq_Fb1zqNikdovyMJgRQjcw"),
+      album: None,
+      view_count: Some(18000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "SXrcyqCPu4E",
+      title: "Break My Heart",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/SXrcyqCPu4E/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3l8d-xSKNWPFXsbJvuh47fNffzabQ",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/SXrcyqCPu4E/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3kqLYK6IT48tuIJyWsBFyKUzfD81A",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UChWPNW87QHcXAsw2mzlsYNw"),
+          name: "Rod Wave",
+        ),
+      ],
+      artist_id: Some("UChWPNW87QHcXAsw2mzlsYNw"),
+      album: None,
+      view_count: Some(5200000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "p38WgakuYDo",
+      title: "Moscow Mule",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/p38WgakuYDo/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kV-YaiU3FQzsVscvD6Y_gr2dGLow",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/p38WgakuYDo/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3nvWHdpfQ0J0GTIiq7gsiJBFlvB1A",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCiY3z8HAGD6BlSNKVn2kSvQ"),
+          name: "Bad Bunny",
+        ),
+      ],
+      artist_id: Some("UCiY3z8HAGD6BlSNKVn2kSvQ"),
+      album: None,
+      view_count: Some(311000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "n4Z1cpdkgQU",
+      title: "Son Of A Sinner",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/n4Z1cpdkgQU/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lI5OoWoxzExFxRaDb4nbrk_r8fOQ",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/n4Z1cpdkgQU/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3k1pvYZX0Q_fBklLX9RrZ_w58c_Gg",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC0_1glf30IS53tFQWT8xpxw"),
+          name: "Jelly Roll",
+        ),
+      ],
+      artist_id: Some("UC0_1glf30IS53tFQWT8xpxw"),
+      album: None,
+      view_count: Some(28000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "4F_vcZ6KD9Q",
+      title: "In A Minute",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/4F_vcZ6KD9Q/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kD1u9fWqBHFKk_LQOeD_zBPg9nNg",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/4F_vcZ6KD9Q/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3lqB8IKVuUCA3TDGWBjyxPRNSRvWA",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC_z9AthnCGSAk_tZf-KqoFA"),
+          name: "Lil Baby",
+        ),
+      ],
+      artist_id: Some("UC_z9AthnCGSAk_tZf-KqoFA"),
+      album: None,
+      view_count: Some(97000000),
+      is_video: true,
+      track_nr: None,
+    ),
+  ],
+  trending_tracks: [
+    TrackItem(
+      id: "UhbixyxgsiU",
+      title: "Just Wanna Rock",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/UhbixyxgsiU/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lWnqsueoNRp5ldKs9SqfiFE5KzOw",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCybEdRVR5u_WFoV-BLTEBiA"),
+          name: "Lil Uzi Vert",
+        ),
+      ],
+      artist_id: Some("UCybEdRVR5u_WFoV-BLTEBiA"),
+      album: None,
+      view_count: Some(14000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "_u-7rWKnVVo",
+      title: "Metallica: Lux Æterna (Official Music Video)",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/_u-7rWKnVVo/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nDGvQCp9fFUposHlb1-gOIBbydrg",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCGexNm_Kw4rdQjLxmpb2EKw"),
+          name: "Metallica",
+        ),
+      ],
+      artist_id: Some("UCGexNm_Kw4rdQjLxmpb2EKw"),
+      album: None,
+      view_count: Some(3800000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "rb0bjyt1OD0",
+      title: "Tukoh Taka - Official FIFA Fan Festival™ Anthem | Nicki Minaj, Maluma, & Myriam Fares (FIFA Sound)",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/rb0bjyt1OD0/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3ncdZ5k8f--HAeT1TqtTvVtqv6WGw",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCpcTrCXblq78GZrTUTLWeBw"),
+          name: "FIFA",
+        ),
+      ],
+      artist_id: Some("UCpcTrCXblq78GZrTUTLWeBw"),
+      album: None,
+      view_count: Some(43000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "C2YSX4sV_bA",
+      title: "Letter to Takeoff",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/C2YSX4sV_bA/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3n9DRpudRbYWOgj75luejwwGHxueg",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCGJdT8Qip4XObbQZ98Z1CAA"),
+          name: "Gucci Mane",
+        ),
+      ],
+      artist_id: Some("UCGJdT8Qip4XObbQZ98Z1CAA"),
+      album: None,
+      view_count: Some(4800000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "3V8aen7Flhs",
+      title: "Hi Haters",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/3V8aen7Flhs/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3l1WGtkmSlwXNalDWwLoD-SETEpeg",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCR28YDxjDE3ogQROaNdnRbQ"),
+          name: "YoungBoy Never Broke Again",
+        ),
+      ],
+      artist_id: Some("UCR28YDxjDE3ogQROaNdnRbQ"),
+      album: None,
+      view_count: Some(3500000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "Z02zptUN8gI",
+      title: "Cairo",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/Z02zptUN8gI/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3n5PM92iiicNOImj3j8IEpxlSM41w",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC7n3gWRN0vQzgiOKc51aZ4w"),
+          name: "KAROL G",
+        ),
+        ArtistId(
+          id: Some("UCtfkGa4ie0BivwCPWCHalOw"),
+          name: "Ovy On The Drums",
+        ),
+      ],
+      artist_id: Some("UC7n3gWRN0vQzgiOKc51aZ4w"),
+      album: None,
+      view_count: Some(34000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "9YdgldMKGGU",
+      title: "Get Away (Official Visualizer)",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/9YdgldMKGGU/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nA1er-0A6lGpG41Z5hEslKmZKjnQ",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCvUZUUxWhwtKLVQ9bVRjLEA"),
+          name: "Young Dolph",
+        ),
+      ],
+      artist_id: Some("UCvUZUUxWhwtKLVQ9bVRjLEA"),
+      album: None,
+      view_count: Some(3800000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "5jJJYYaw8vw",
+      title: "Pop Out (Official Video)",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/5jJJYYaw8vw/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kmoUsUaytJlYd_8iui9187UaReDQ",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC_duTRnaqtLLTCDIlqjRTcQ"),
+          name: "Nardo Wick",
+        ),
+        ArtistId(
+          id: Some("UC_z9AthnCGSAk_tZf-KqoFA"),
+          name: "Lil Baby",
+        ),
+      ],
+      artist_id: Some("UC_duTRnaqtLLTCDIlqjRTcQ"),
+      album: None,
+      view_count: Some(3100000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "J9QwBwUnhQo",
+      title: "Got It Right",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/J9QwBwUnhQo/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mfATJfiIMnKSBx8F2YbRQp3xyc2Q",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UChWPNW87QHcXAsw2mzlsYNw"),
+          name: "Rod Wave",
+        ),
+      ],
+      artist_id: Some("UChWPNW87QHcXAsw2mzlsYNw"),
+      album: None,
+      view_count: Some(2500000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "Ut1OzEVUiM4",
+      title: "Red Velvet 레드벨벳 \'Birthday\' MV",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/Ut1OzEVUiM4/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3m3p-zSGvXxBFBF4sLJOS4zkp22tQ",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCEf_Bc-KVd7onSeifS3py9g"),
+          name: "SMTOWN",
+        ),
+      ],
+      artist_id: Some("UCEf_Bc-KVd7onSeifS3py9g"),
+      album: None,
+      view_count: Some(5500000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "QbsfUkogRbA",
+      title: "Fuerza Regida x Grupo Frontera - 911 [Official Video]",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/QbsfUkogRbA/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nGoXX1unLacrhDydChgi2bCmdK8w",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC648rgJOboZlgcDbW00vTSA"),
+          name: "Rancho Humilde",
+        ),
+      ],
+      artist_id: Some("UC648rgJOboZlgcDbW00vTSA"),
+      album: None,
+      view_count: Some(2600000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "kiUIkL4aZ5o",
+      title: "Meek Mill - God Did (Official Video)",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/kiUIkL4aZ5o/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3k18nDG9UArJpkp1EemgrGFjefjjQ",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCr_zAwkma5JAyHOWfVXaouA"),
+          name: "Meek Mill",
+        ),
+      ],
+      artist_id: Some("UCr_zAwkma5JAyHOWfVXaouA"),
+      album: None,
+      view_count: Some(2700000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "rAr3-Pn9yRI",
+      title: "Arcangel - JS4E (Video Oficial) | SR. SANTOS",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/rAr3-Pn9yRI/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kly3hLnWJDXiVjIsmMaOXcDxLNaw",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCVcAt8IIKIeubRSigcYXgtA"),
+          name: "Arcangel",
+        ),
+      ],
+      artist_id: Some("UCVcAt8IIKIeubRSigcYXgtA"),
+      album: None,
+      view_count: Some(11000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "PrSBuEFdRFU",
+      title: "Rich Flex",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/PrSBuEFdRFU/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mOdvdIBi63Unzs2A-Lf6rnKcF34A",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCoC_a7lWbj2v7rt4ujp4n2A"),
+          name: "21 Savage",
+        ),
+        ArtistId(
+          id: Some("UCU6cE7pdJPc6DU2jSrKEsdQ"),
+          name: "Drake",
+        ),
+      ],
+      artist_id: Some("UCoC_a7lWbj2v7rt4ujp4n2A"),
+      album: None,
+      view_count: Some(6600000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "lkO6rffobPA",
+      title: "Love Overdose",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/lkO6rffobPA/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nylgzdkKfP-ke7Bso1XfcbDk6PYA",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UChWPNW87QHcXAsw2mzlsYNw"),
+          name: "Rod Wave",
+        ),
+      ],
+      artist_id: Some("UChWPNW87QHcXAsw2mzlsYNw"),
+      album: None,
+      view_count: Some(932000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "zVHZCe6Slnw",
+      title: "Jupiter\'s Diary",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/zVHZCe6Slnw/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nvwvyT3gL7uwzlhOnRj-tiUoHMHg",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UChWPNW87QHcXAsw2mzlsYNw"),
+          name: "Rod Wave",
+        ),
+      ],
+      artist_id: Some("UChWPNW87QHcXAsw2mzlsYNw"),
+      album: None,
+      view_count: Some(969000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "jEdfjuG0Fx4",
+      title: "정국 (Jung Kook) \'Dreamers\' @ FIFA World Cup Qatar 2022 Opening Ceremony",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/jEdfjuG0Fx4/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lQuqDttsinX7YGKdOA0k3Tjafu8g",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC9vrvNSL3xcWGSkV86REBSg"),
+          name: "BTS",
+        ),
+        ArtistId(
+          id: Some("UC-pOuHFcndLpyfWSPVqXt_A"),
+          name: "Jung Kook",
+        ),
+      ],
+      artist_id: Some("UC9vrvNSL3xcWGSkV86REBSg"),
+      album: None,
+      view_count: Some(43000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "DGCSk7aCI-Y",
+      title: "Who Got It",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/DGCSk7aCI-Y/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lxqsVAyek5ddQD71QVwdJ8n8EUxg",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCkrmjqtFNzQQop4wHYvXhDA"),
+          name: "Big Homiie G",
+        ),
+      ],
+      artist_id: Some("UCkrmjqtFNzQQop4wHYvXhDA"),
+      album: None,
+      view_count: Some(1700000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "0LmtIWvo0ZQ",
+      title: "Destination",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/0LmtIWvo0ZQ/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lqSkqqYQDuPuWoeVQo4z-WS8eQEw",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCdWj-05ljTjLPllS6GGq5Mg"),
+          name: "Crash Adams",
+        ),
+      ],
+      artist_id: Some("UCdWj-05ljTjLPllS6GGq5Mg"),
+      album: None,
+      view_count: Some(33000000),
+      is_video: true,
+      track_nr: None,
+    ),
+    TrackItem(
+      id: "toBTPGfurLc",
+      title: "Rich Spirit",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/toBTPGfurLc/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lVnzF0UrvMG_J6EN-WLyywbX3neA",
+          width: 400,
+          height: 225,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCprAFmT0C6O4X0ToEXpeFTQ"),
+          name: "Kendrick Lamar",
+        ),
+      ],
+      artist_id: Some("UCprAFmT0C6O4X0ToEXpeFTQ"),
+      album: None,
+      view_count: Some(6600000),
+      is_video: true,
+      track_nr: None,
+    ),
+  ],
+  artists: [
+    ArtistItem(
+      id: "UCR28YDxjDE3ogQROaNdnRbQ",
+      name: "YoungBoy Never Broke Again",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/a-/ACNPEu-RvaX1cpYAfkV0KQpG6yUl_W68kl_xQPgP1DUr=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/a-/ACNPEu-RvaX1cpYAfkV0KQpG6yUl_W68kl_xQPgP1DUr=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCiY3z8HAGD6BlSNKVn2kSvQ",
+      name: "Bad Bunny",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/XE2cp2mnVX1H1k8yX80VrnkYDJ4f53m2q9gflVkjdCeaOC75oAih0EEO5X4Xw_OGf1lRSg6rg1CfmA=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/XE2cp2mnVX1H1k8yX80VrnkYDJ4f53m2q9gflVkjdCeaOC75oAih0EEO5X4Xw_OGf1lRSg6rg1CfmA=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCU6cE7pdJPc6DU2jSrKEsdQ",
+      name: "Drake",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/MxNjcRJ-uK4Xvx7u90IhEFLQM8x9LIGTA9VCKHq5U4Wn2jOgiWaMtg-qz329SIzqnCyhdCCB3MpdAGs=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/MxNjcRJ-uK4Xvx7u90IhEFLQM8x9LIGTA9VCKHq5U4Wn2jOgiWaMtg-qz329SIzqnCyhdCCB3MpdAGs=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UC_z9AthnCGSAk_tZf-KqoFA",
+      name: "Lil Baby",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/rMlQJqH8LlSv44stkYH5No003OBuKHy3Innpr-BYpmbmFiacYnOPPmI8DA-PnI6Hxbck6z4QpfuQhUNw=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/rMlQJqH8LlSv44stkYH5No003OBuKHy3Innpr-BYpmbmFiacYnOPPmI8DA-PnI6Hxbck6z4QpfuQhUNw=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UChWPNW87QHcXAsw2mzlsYNw",
+      name: "Rod Wave",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/oKSsf4Erut3zr7ITePkU16st8MNBXxMO-mp_NbGGGzotVguyo7teTV8xz5nMF1yXj9uApHKB3MPHQ1M=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/oKSsf4Erut3zr7ITePkU16st8MNBXxMO-mp_NbGGGzotVguyo7teTV8xz5nMF1yXj9uApHKB3MPHQ1M=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCPC0L1d253x-KuMNwa05TpA",
+      name: "Taylor Swift",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/U1cI80giSCUuNYx3zkRPt_AWytN1qFMlQoL5F7kTZeFzfIMmfHJYLJchX3BxeDLglE9MeVYp4OlN5Xc=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/U1cI80giSCUuNYx3zkRPt_AWytN1qFMlQoL5F7kTZeFzfIMmfHJYLJchX3BxeDLglE9MeVYp4OlN5Xc=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCedvOgsKFzcK3hA5taf3KoQ",
+      name: "Eminem",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/P-rYd_7rYsYjsHg9LwlI-66FpHn3dCSSuoFof_cCf08LWFEfZe4h94-pKnEXvut926ouTf6QU6849Q=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/P-rYd_7rYsYjsHg9LwlI-66FpHn3dCSSuoFof_cCf08LWFEfZe4h94-pKnEXvut926ouTf6QU6849Q=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UC1_liDR4fRFJgH4HoJeV8cw",
+      name: "Future",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/mYms4RlnaMEGUv9PZPABHHrNUuzjNDK9ftVeBEQY1vMQayirfQlJQHevpUwfZcL8lDwM5yQphtpBAQ=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/mYms4RlnaMEGUv9PZPABHHrNUuzjNDK9ftVeBEQY1vMQayirfQlJQHevpUwfZcL8lDwM5yQphtpBAQ=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCMXDyVR2tclKWhbqNforSyA",
+      name: "Chris Brown",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/BWoZ2a1rLr0GwAQOMDv_wSiAVOIfojPVy1dk6g_5slxviqSFL5YZ-oiuk5lqDmxzZUGmCCusH5gNGgY=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/BWoZ2a1rLr0GwAQOMDv_wSiAVOIfojPVy1dk6g_5slxviqSFL5YZ-oiuk5lqDmxzZUGmCCusH5gNGgY=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UClYV6hHlupm_S_ObS1W-DYw",
+      name: "The Weeknd",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/U-SAmNOu4TynE818gLCfKsuHZ0U5YNEtO9mrjSI9WCCKERs98LzrCal5kajBBTQNwdcisoB2Bn-pHp4=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/U-SAmNOu4TynE818gLCfKsuHZ0U5YNEtO9mrjSI9WCCKERs98LzrCal5kajBBTQNwdcisoB2Bn-pHp4=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCOUlVCyTJqvT9AHeUlbK03w",
+      name: "Kevin Gates",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/QTYtxxrCjCQkoBJT4YG-RL-jUk3zw2EIY4LCQkgqdFRAexs1MEfgxjTT-9wrXsFSxMJK0n7GIkQWTfly=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/QTYtxxrCjCQkoBJT4YG-RL-jUk3zw2EIY4LCQkgqdFRAexs1MEfgxjTT-9wrXsFSxMJK0n7GIkQWTfly=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCbn0GRdgsQtl9hlV-IqxFGg",
+      name: "Juice WRLD",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/K6dWhwnKWK1vnY7WNsNdMnCz9d4W8_2XvEIuIB7QN4L0QMTX7HK1uO0FM6aaNaIXBmlDEZR7=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/K6dWhwnKWK1vnY7WNsNdMnCz9d4W8_2XvEIuIB7QN4L0QMTX7HK1uO0FM6aaNaIXBmlDEZR7=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UC8zFXOPlDTI5lhy3fAn6E5w",
+      name: "Kodak Black",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/4JCYP0BPnsTpCCQHOF-qgHy-3izZOb9AlqMxeXhZv5f2bYD1hdDmkODk5uS_SJlkGfqfE3xkqw=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/4JCYP0BPnsTpCCQHOF-qgHy-3izZOb9AlqMxeXhZv5f2bYD1hdDmkODk5uS_SJlkGfqfE3xkqw=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCoC_a7lWbj2v7rt4ujp4n2A",
+      name: "21 Savage",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/_UGe0049ulvg04iFMXKVuXZy1JyxV8c-J5cloT9MyT1mD6P5bdhX7KhWPg9bzotvetqohN-Ij9nHUjir=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/_UGe0049ulvg04iFMXKVuXZy1JyxV8c-J5cloT9MyT1mD6P5bdhX7KhWPg9bzotvetqohN-Ij9nHUjir=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCSWKNHx2g_yk9VlErHqJaMw",
+      name: "Lil Durk",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/4LnMQKEJvsDSBfp8S-xkILIaX98jc_y4feFKCkWFj6BxuP9jwbNCDvIQbK4-KNeSqTfAb6He5c3oyyrY=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/4LnMQKEJvsDSBfp8S-xkILIaX98jc_y4feFKCkWFj6BxuP9jwbNCDvIQbK4-KNeSqTfAb6He5c3oyyrY=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UC7n3gWRN0vQzgiOKc51aZ4w",
+      name: "KAROL G",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/Dhd_gCsH7C1EbNbQkSxlRij0g2nnS-JxFAmd8rLzV2EH2n_M_D2u60f9bMJ6S_U_kpljntNsOD3o_vw=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/Dhd_gCsH7C1EbNbQkSxlRij0g2nnS-JxFAmd8rLzV2EH2n_M_D2u60f9bMJ6S_U_kpljntNsOD3o_vw=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UC5xaQ6_dP7EGDmGLzVGZ1Ow",
+      name: "Morgan Wallen",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wZwV7UXM19ZAIS1FY2MmnrWqecempCuWlYOOPzVQ6GiuISiB4NbuJ6p407---XI1uDkffGy5XSwxIcQ=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wZwV7UXM19ZAIS1FY2MmnrWqecempCuWlYOOPzVQ6GiuISiB4NbuJ6p407---XI1uDkffGy5XSwxIcQ=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCbBaYg2UToDaoOwo-R6xi4g",
+      name: "Anuel AA",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/a-/ACNPEu84Y9kCXzWwAGnz1vOftkESTyRQVIIs6dvHYkSexw=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/a-/ACNPEu84Y9kCXzWwAGnz1vOftkESTyRQVIIs6dvHYkSexw=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCKEFjh4JL-OyMI8z3h5Coaw",
+      name: "Ozuna",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/eaDFsBxhVvG3VQGaIyQFog1WBGoE4usoMhT7VXsaIe9BGrMXTaCAORz_NQ2wVDRz0zxWjgGgLySPMLc=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/eaDFsBxhVvG3VQGaIyQFog1WBGoE4usoMhT7VXsaIe9BGrMXTaCAORz_NQ2wVDRz0zxWjgGgLySPMLc=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UC4IAZ3dowcXyvVYBx4hucSQ",
+      name: "Lil Wayne",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/tpZlhvzqH9HPsXKBygEOKEWfw-KkU5zltB0kBazorZvUg_fvviQvcb3IG8DJfAW8tEVoqYu-8FhAQW0=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/tpZlhvzqH9HPsXKBygEOKEWfw-KkU5zltB0kBazorZvUg_fvviQvcb3IG8DJfAW8tEVoqYu-8FhAQW0=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCJKREB2c3dO8dgdo8FtdO_A",
+      name: "Grupo Firme",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/YTS3HSAGT1O8ZnV7sRPEl3T_SKMyXQy0e5AZ-SRrVoWhu3r_wcK5R3VObUJ74TAYvNNLijtF0T-9Zw=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/YTS3HSAGT1O8ZnV7sRPEl3T_SKMyXQy0e5AZ-SRrVoWhu3r_wcK5R3VObUJ74TAYvNNLijtF0T-9Zw=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCybEdRVR5u_WFoV-BLTEBiA",
+      name: "Lil Uzi Vert",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/5rBwZUjAmTGZp5IA31AER-HUOLIet4SHmT4MKEfnLmt0YvTH0DngwtmMq2GJQDk9p83ICdvadKrLtDk=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/5rBwZUjAmTGZp5IA31AER-HUOLIet4SHmT4MKEfnLmt0YvTH0DngwtmMq2GJQDk9p83ICdvadKrLtDk=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCvWtix2TtWGe9kffqnwdaMw",
+      name: "Rihanna",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/6EZ6nHUoi96zJ9ijYyDrBfSZ_1pY64QQqJUqyWKA-Uy9Gzoio7gFTReBruJJRCjjuQQyHES7pIQchTkT=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/6EZ6nHUoi96zJ9ijYyDrBfSZ_1pY64QQqJUqyWKA-Uy9Gzoio7gFTReBruJJRCjjuQQyHES7pIQchTkT=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCiXhCjTprNP0nuQJ9UsLWeg",
+      name: "GloRilla",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/MAPRapNTRX02gbNkAA7aku6lVEwqH1-INywTHiQ1UGiY53DiDx5O66LN88coUjX7Ofc8PvOQnuWl1Q9AoA=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/MAPRapNTRX02gbNkAA7aku6lVEwqH1-INywTHiQ1UGiY53DiDx5O66LN88coUjX7Ofc8PvOQnuWl1Q9AoA=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCpB_98tUTs3zSiOxZuGPnOA",
+      name: "Romeo Santos",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/RGeXyCNvEmuIeFgv3SwMyeejKoRjEuAHcVZ6BCahIH1tNdIVyFPi75se2ZeAZR4cdmkI7HPLQ-drMxY=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/RGeXyCNvEmuIeFgv3SwMyeejKoRjEuAHcVZ6BCahIH1tNdIVyFPi75se2ZeAZR4cdmkI7HPLQ-drMxY=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCyD3XWRK9ko-izf2nBSFitw",
+      name: "Post Malone",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/48LfK4z6o-CCEWgHQnQfg0ltcT9tbZSN0qjSh0FSJsJI5GF48j2-pH219ciG1ML-PI80ZGD4Vz6sjg=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/48LfK4z6o-CCEWgHQnQfg0ltcT9tbZSN0qjSh0FSJsJI5GF48j2-pH219ciG1ML-PI80ZGD4Vz6sjg=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCIpP8df8didoERprBbdZoWA",
+      name: "Takeoff",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/xDk7ne5nC8vX4NL3v6kgYjad_NFcjob7-D_-WDkmByHLst-kby_VIlebzPZQh7gU2_1sn7MIQ7d3FUs=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/xDk7ne5nC8vX4NL3v6kgYjad_NFcjob7-D_-WDkmByHLst-kby_VIlebzPZQh7gU2_1sn7MIQ7d3FUs=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCKRnq8aBOCanYlffje7HyvA",
+      name: "Mariah Carey",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/zQwYb_8FK0DndP_rrm-y9GW133AYS7shlNgLCsH6gwu8cp6iRhScqviVAE9LO6Qg74WvaLnDKTkiRlM=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/zQwYb_8FK0DndP_rrm-y9GW133AYS7shlNgLCsH6gwu8cp6iRhScqviVAE9LO6Qg74WvaLnDKTkiRlM=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCw_m17sBd4GHxuK83-AZtuA",
+      name: "Rauw Alejandro",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/rb-CNDSDuarHSZ0eH6X0WAA78_5EUK8M-ppZ7xFky_uhC6NnWN3tO8NJ3Lq37un7bNKmOD6Mn2NHO5s=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/rb-CNDSDuarHSZ0eH6X0WAA78_5EUK8M-ppZ7xFky_uhC6NnWN3tO8NJ3Lq37un7bNKmOD6Mn2NHO5s=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCF5D9qC1TAQnFWa4oHuBZcA",
+      name: "Migos",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/_olQJYkbbpcDmTUf1IErgvbzK_sLptfZl6HSjM-NM9w1x_QG0-kiGqswmINWS12HfuByMhUm_YXrQBM=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/_olQJYkbbpcDmTUf1IErgvbzK_sLptfZl6HSjM-NM9w1x_QG0-kiGqswmINWS12HfuByMhUm_YXrQBM=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCTTcTeAszDGxALRSMkJH9FQ",
+      name: "Nicki Minaj",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/dxazpVxrrUIWVdh49h3-GBhkgI5Wl2ALR5lI1AEldaVbUtz5TN4HfmL_ssUddy2ctEKcSPzNGeFOl-c=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/dxazpVxrrUIWVdh49h3-GBhkgI5Wl2ALR5lI1AEldaVbUtz5TN4HfmL_ssUddy2ctEKcSPzNGeFOl-c=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCprAFmT0C6O4X0ToEXpeFTQ",
+      name: "Kendrick Lamar",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/hMjzHmIuTV0XPlvRSjl3wMR6NP-uF-fqF6kkandkFX-hEVp6d3tw-FQG9_smAq0tFwNBT6QLQR-Hkwge=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/hMjzHmIuTV0XPlvRSjl3wMR6NP-uF-fqF6kkandkFX-hEVp6d3tw-FQG9_smAq0tFwNBT6QLQR-Hkwge=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCvUZUUxWhwtKLVQ9bVRjLEA",
+      name: "Young Dolph",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/y5IniTkUbTY9q83OlmvBfEfm9-G5T7tZj_78oCXoLVX6r-Pn4iRaWhYb23EGLe2xIVImlxspjgLbu2Y=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/y5IniTkUbTY9q83OlmvBfEfm9-G5T7tZj_78oCXoLVX6r-Pn4iRaWhYb23EGLe2xIVImlxspjgLbu2Y=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UC5IkSn-EFsUu3XANYklXc8g",
+      name: "Quavo",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/q38Ju3oqy39srQmFGhq66uP7hHFEeUnjJAvi7o7N4BSbyZ8PVxlS7xvYMK7lKXhlC43FDn8op6U3v4U=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/q38Ju3oqy39srQmFGhq66uP7hHFEeUnjJAvi7o7N4BSbyZ8PVxlS7xvYMK7lKXhlC43FDn8op6U3v4U=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCoPQ_TWm8JZ5nJv4a5BzSWA",
+      name: "Beyoncé",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/GAR8Y4xuTIBIrOr0GPSPdhPc-aRvUCOXwiC0O75cKSP7uRoHFvb20K2ZwpaZwxp2IcSoXGBiAgjit-BC=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/GAR8Y4xuTIBIrOr0GPSPdhPc-aRvUCOXwiC0O75cKSP7uRoHFvb20K2ZwpaZwxp2IcSoXGBiAgjit-BC=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UC0kxNxFQCK6d2spPz5Sme7Q",
+      name: "Fuerza Regida",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/ez7fIblaQN4o7bYDr3aKPD9nAftIY-z9ZwHu0w6TFWmXnrqOI71l5R1QTur4rvoRKVDr9slXngLaZQ=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/ez7fIblaQN4o7bYDr3aKPD9nAftIY-z9ZwHu0w6TFWmXnrqOI71l5R1QTur4rvoRKVDr9slXngLaZQ=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCoIOOL7QKuBhQHVKL8y7BEQ",
+      name: "Michael Jackson",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/x-Z35q6HsBB98J85-4oNqPnOen4pZBaNCpHawzf_ejs-pkgh6Eh3D2Fu7S1T4gEj0yWZ0c6DOAHCpA=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/x-Z35q6HsBB98J85-4oNqPnOen4pZBaNCpHawzf_ejs-pkgh6Eh3D2Fu7S1T4gEj0yWZ0c6DOAHCpA=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UC0aXrjVxG5pZr99v77wZdPQ",
+      name: "Imagine Dragons",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/TAadzeojHFGU1EJ5jnOWDn6K8Cf8O2x0F04PVxnZwUEhcaYN0pA0dic49VU7OKGs7oovBTylWx70xhY=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/TAadzeojHFGU1EJ5jnOWDn6K8Cf8O2x0F04PVxnZwUEhcaYN0pA0dic49VU7OKGs7oovBTylWx70xhY=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UC0PsqWsDU7JJKqztI8V6spA",
+      name: "$uicideboy$",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/AgxVBtfE_fdKf6P439aejh842iL1sEwcicfEmEDSfAvsEUyc-OL1s5aAN6Cyf_rjSe6T6gElsJE2HCkU=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/AgxVBtfE_fdKf6P439aejh842iL1sEwcicfEmEDSfAvsEUyc-OL1s5aAN6Cyf_rjSe6T6gElsJE2HCkU=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCwA5HHGsAlpU1UlhwWD52uA",
+      name: "Junior H",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/ZckAQ1ZilmTfr7X-gu4sdBMvsZ-cgfVrg1rJd74FHipMWnbJHDz1yRJ_qZYhTWYrKL4lD2nh4laAyLVX=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/ZckAQ1ZilmTfr7X-gu4sdBMvsZ-cgfVrg1rJd74FHipMWnbJHDz1yRJ_qZYhTWYrKL4lD2nh4laAyLVX=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+  ],
+  playlists: [
+    MusicPlaylistItem(
+      id: "PL4fGSI1pDJn77aK7sAW2AT0oOzo5inWY8",
+      name: "Top 50 Pop Music Videos United States",
+      thumbnail: [
+        Thumbnail(
+          url: "https://yt3.ggpht.com/e6EMQmlAwRvJG_a5dg5OHb2InhYcdyFrDEJUuI0yn1bleYzc-HKEq8-hr9I0X-OjADluNF95ZBQ=s192",
+          width: 192,
+          height: 192,
+        ),
+        Thumbnail(
+          url: "https://yt3.ggpht.com/e6EMQmlAwRvJG_a5dg5OHb2InhYcdyFrDEJUuI0yn1bleYzc-HKEq8-hr9I0X-OjADluNF95ZBQ=s576",
+          width: 576,
+          height: 576,
+        ),
+      ],
+      channel: None,
+      track_count: None,
+      from_ytm: true,
+    ),
+    MusicPlaylistItem(
+      id: "PL4fGSI1pDJn4fmCoF1vKHLtivI0f9yHiF",
+      name: "Top 50 Hip Hop Music Videos United States",
+      thumbnail: [
+        Thumbnail(
+          url: "https://yt3.ggpht.com/6h7YCHgV6NU10BcaLVhfqQDVVV5HpVQXhAonPpbMMZMeqbUrqTX3EZlNCL9cY_X6_na0dVlllVE=s192",
+          width: 192,
+          height: 192,
+        ),
+        Thumbnail(
+          url: "https://yt3.ggpht.com/6h7YCHgV6NU10BcaLVhfqQDVVV5HpVQXhAonPpbMMZMeqbUrqTX3EZlNCL9cY_X6_na0dVlllVE=s576",
+          width: 576,
+          height: 576,
+        ),
+      ],
+      channel: None,
+      track_count: None,
+      from_ytm: true,
+    ),
+    MusicPlaylistItem(
+      id: "PL4fGSI1pDJn5O8siDeZuI_4hbk6JWtTX1",
+      name: "Top 50 Latin Music Videos United States",
+      thumbnail: [
+        Thumbnail(
+          url: "https://yt3.ggpht.com/GtEh8Q9NhqwNNkpQZrCAGnL8ai4J1VMy_gAZoP-UFhL1F366ibLZ8CQeB1alSw8dBI6KvCsdtw=s192",
+          width: 192,
+          height: 192,
+        ),
+        Thumbnail(
+          url: "https://yt3.ggpht.com/GtEh8Q9NhqwNNkpQZrCAGnL8ai4J1VMy_gAZoP-UFhL1F366ibLZ8CQeB1alSw8dBI6KvCsdtw=s576",
+          width: 576,
+          height: 576,
+        ),
+      ],
+      channel: None,
+      track_count: None,
+      from_ytm: true,
+    ),
+    MusicPlaylistItem(
+      id: "PL4fGSI1pDJn4EBsWVeFpcSAVOFMfhyipg",
+      name: "Top 50 Country & Americana Music Videos United States",
+      thumbnail: [
+        Thumbnail(
+          url: "https://yt3.ggpht.com/tzdMgp9H9HQmpLTEZBJ9LgChCIDaJWWQOZkc_KYrk_nfoiFjPePV7uCQ5fWugAlIESo3Ltg_rw=s192",
+          width: 192,
+          height: 192,
+        ),
+        Thumbnail(
+          url: "https://yt3.ggpht.com/tzdMgp9H9HQmpLTEZBJ9LgChCIDaJWWQOZkc_KYrk_nfoiFjPePV7uCQ5fWugAlIESo3Ltg_rw=s576",
+          width: 576,
+          height: 576,
+        ),
+      ],
+      channel: None,
+      track_count: None,
+      from_ytm: true,
+    ),
+    MusicPlaylistItem(
+      id: "PL4fGSI1pDJn5LOptOQixqnzXNGjNXAgYY",
+      name: "Top 50 Rock Music Videos United States",
+      thumbnail: [
+        Thumbnail(
+          url: "https://yt3.ggpht.com/HAKlSpEEujSlx0hoTILc-0rIoNvOiuzJ42a0oSPxT-rbrcMmZq9Dh63Td46v6_n4DIRZp3nmtjwu=s192",
+          width: 192,
+          height: 192,
+        ),
+        Thumbnail(
+          url: "https://yt3.ggpht.com/HAKlSpEEujSlx0hoTILc-0rIoNvOiuzJ42a0oSPxT-rbrcMmZq9Dh63Td46v6_n4DIRZp3nmtjwu=s576",
+          width: 576,
+          height: 576,
+        ),
+      ],
+      channel: None,
+      track_count: None,
+      from_ytm: true,
+    ),
+    MusicPlaylistItem(
+      id: "PL4fGSI1pDJn4w4wTTgOmP_S80PoCtbGrL",
+      name: "Top 50 Hard Rock & Metal Music Videos United States",
+      thumbnail: [
+        Thumbnail(
+          url: "https://yt3.ggpht.com/6DsHz6RqPsPUSs8n_FLiPpB8wTdvbbuANyO2JjBup6nLfE6as6otE3NaS_CSrqc93JPKH5gMs6sL=s192",
+          width: 192,
+          height: 192,
+        ),
+        Thumbnail(
+          url: "https://yt3.ggpht.com/6DsHz6RqPsPUSs8n_FLiPpB8wTdvbbuANyO2JjBup6nLfE6as6otE3NaS_CSrqc93JPKH5gMs6sL=s576",
+          width: 576,
+          height: 576,
+        ),
+      ],
+      channel: None,
+      track_count: None,
+      from_ytm: true,
+    ),
+    MusicPlaylistItem(
+      id: "PL4fGSI1pDJn7Wkr6Ll6ds1AhA42rT8uaU",
+      name: "Top 50 Jazz Music Videos United States",
+      thumbnail: [
+        Thumbnail(
+          url: "https://yt3.ggpht.com/5Pf1dGnEh7GnMACQSChvRpvAK5CYZW95QNGVBgpdCQwPFcsK4l3Dg7h9Jgggj8aJgCavvCYy5g=s192",
+          width: 192,
+          height: 192,
+        ),
+        Thumbnail(
+          url: "https://yt3.ggpht.com/5Pf1dGnEh7GnMACQSChvRpvAK5CYZW95QNGVBgpdCQwPFcsK4l3Dg7h9Jgggj8aJgCavvCYy5g=s576",
+          width: 576,
+          height: 576,
+        ),
+      ],
+      channel: None,
+      track_count: None,
+      from_ytm: true,
+    ),
+    MusicPlaylistItem(
+      id: "PL4fGSI1pDJn4rBU0RHnR6-b1_uE20CzRH",
+      name: "Top 50 Dance & Electronic Music Videos United States",
+      thumbnail: [
+        Thumbnail(
+          url: "https://yt3.ggpht.com/ymqmb7yPU7yh13xxt6vnc0iwDy9ceCvf02rHPe9shpDNKrXuOtKPG_CxlV1FlstWTgGaeUebWL4=s192",
+          width: 192,
+          height: 192,
+        ),
+        Thumbnail(
+          url: "https://yt3.ggpht.com/ymqmb7yPU7yh13xxt6vnc0iwDy9ceCvf02rHPe9shpDNKrXuOtKPG_CxlV1FlstWTgGaeUebWL4=s576",
+          width: 576,
+          height: 576,
+        ),
+      ],
+      channel: None,
+      track_count: None,
+      from_ytm: true,
+    ),
+  ],
+  top_playlist_id: Some("PL4fGSI1pDJn69On1f-8NAvX_CYlx7QyZc"),
+  trending_playlist_id: Some("PLrEnWoR732-DtKgaDdnPkezM_nDidBU9H"),
+  available_countries: [
+    AE,
+    AR,
+    AT,
+    AU,
+    BE,
+    BO,
+    BR,
+    CA,
+    CH,
+    CL,
+    CO,
+    CR,
+    CZ,
+    DE,
+    DK,
+    DO,
+    EC,
+    EE,
+    EG,
+    ES,
+    FI,
+    FR,
+    GB,
+    GT,
+    HN,
+    HU,
+    ID,
+    IE,
+    IL,
+    IN,
+    IS,
+    IT,
+    JP,
+    KE,
+    KR,
+    LU,
+    MX,
+    NG,
+    NI,
+    NL,
+    NO,
+    NZ,
+    PA,
+    PE,
+    PL,
+    PT,
+    PY,
+    RO,
+    RS,
+    RU,
+    SA,
+    SE,
+    SV,
+    TR,
+    TZ,
+    UA,
+    UG,
+    US,
+    UY,
+    ZA,
+    ZW,
+  ],
+)

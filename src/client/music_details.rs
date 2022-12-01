@@ -315,22 +315,22 @@ impl MapResponse<MusicRelated> for response::MusicRelated {
             .iter()
             .find_map(|section| match section {
                 response::music_item::ItemSection::MusicShelfRenderer(_) => None,
-                response::music_item::ItemSection::MusicCarouselShelfRenderer {
-                    header, ..
-                } => header.as_ref().and_then(|h| {
-                    h.music_carousel_shelf_basic_header_renderer
-                        .title
-                        .0
-                        .iter()
-                        .find_map(|c| {
-                            let artist = ArtistId::from(c.clone());
-                            if artist.id.is_some() {
-                                Some(artist)
-                            } else {
-                                None
-                            }
-                        })
-                }),
+                response::music_item::ItemSection::MusicCarouselShelfRenderer(shelf) => {
+                    shelf.header.as_ref().and_then(|h| {
+                        h.music_carousel_shelf_basic_header_renderer
+                            .title
+                            .0
+                            .iter()
+                            .find_map(|c| {
+                                let artist = ArtistId::from(c.clone());
+                                if artist.id.is_some() {
+                                    Some(artist)
+                                } else {
+                                    None
+                                }
+                            })
+                    })
+                }
                 response::music_item::ItemSection::None => None,
             });
 
@@ -341,20 +341,18 @@ impl MapResponse<MusicRelated> for response::MusicRelated {
         };
 
         let mut sections = self.contents.section_list_renderer.contents.into_iter();
-        if let Some(response::music_item::ItemSection::MusicCarouselShelfRenderer {
-            contents,
-            ..
-        }) = sections.next()
+        if let Some(response::music_item::ItemSection::MusicCarouselShelfRenderer(shelf)) =
+            sections.next()
         {
-            mapper_tracks.map_response(contents);
+            mapper_tracks.map_response(shelf.contents);
         }
 
         sections.for_each(|section| match section {
             response::music_item::ItemSection::MusicShelfRenderer(shelf) => {
                 mapper.map_response(shelf.contents);
             }
-            response::music_item::ItemSection::MusicCarouselShelfRenderer { contents, .. } => {
-                mapper.map_response(contents);
+            response::music_item::ItemSection::MusicCarouselShelfRenderer(shelf) => {
+                mapper.map_response(shelf.contents);
             }
             response::music_item::ItemSection::None => {}
         });

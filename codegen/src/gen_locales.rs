@@ -183,6 +183,7 @@ impl FromStr for Country {
     let mut code_langs = r#"/// Available languages
 #[derive(Copy, Clone, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[serde(rename_all = "lowercase")]
+#[non_exhaustive]
 pub enum Language {
 "#
     .to_owned();
@@ -190,6 +191,7 @@ pub enum Language {
     let mut code_countries = r#"/// Available countries
 #[derive(Copy, Clone, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[serde(rename_all = "UPPERCASE")]
+#[non_exhaustive]
 pub enum Country {
 "#
     .to_owned();

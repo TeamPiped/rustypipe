@@ -25,11 +25,7 @@ use super::{
 pub(crate) enum ItemSection {
     #[serde(alias = "musicPlaylistShelfRenderer")]
     MusicShelfRenderer(MusicShelf),
-    MusicCarouselShelfRenderer {
-        header: Option<MusicCarouselShelfHeader>,
-        #[serde_as(as = "VecLogError<_>")]
-        contents: MapResult<Vec<MusicResponseItem>>,
-    },
+    MusicCarouselShelfRenderer(MusicCarouselShelf),
     #[serde(other, deserialize_with = "deserialize_ignore_any")]
     None,
 }
@@ -50,6 +46,15 @@ pub(crate) struct MusicShelf {
     #[serde(default)]
     #[serde_as(as = "DefaultOnError")]
     pub bottom_endpoint: Option<BrowseEndpointWrap>,
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct MusicCarouselShelf {
+    pub header: Option<MusicCarouselShelfHeader>,
+    #[serde_as(as = "VecLogError<_>")]
+    pub contents: MapResult<Vec<MusicResponseItem>>,
 }
 
 #[derive(Debug, Deserialize)]

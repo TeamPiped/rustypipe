@@ -264,9 +264,9 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
         for section in sections {
             match section {
                 response::music_item::ItemSection::MusicShelfRenderer(sh) => shelf = Some(sh),
-                response::music_item::ItemSection::MusicCarouselShelfRenderer {
-                    contents, ..
-                } => album_variants = Some(contents),
+                response::music_item::ItemSection::MusicCarouselShelfRenderer(sh) => {
+                    album_variants = Some(sh.contents)
+                }
                 response::music_item::ItemSection::None => (),
             }
         }

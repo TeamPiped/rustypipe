@@ -4,6 +4,7 @@ pub(crate) mod response;
 
 mod channel;
 mod music_artist;
+mod music_charts;
 mod music_details;
 mod music_new;
 mod music_playlist;

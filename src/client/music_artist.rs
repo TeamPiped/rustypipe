@@ -192,9 +192,9 @@ fn map_artist_page(
 
                 mapper.map_response(shelf.contents);
             }
-            response::music_item::ItemSection::MusicCarouselShelfRenderer { header, contents } => {
+            response::music_item::ItemSection::MusicCarouselShelfRenderer(shelf) => {
                 let mut extendable_albums = false;
-                if let Some(h) = header {
+                if let Some(h) = shelf.header {
                     if let Some(button) = h
                         .music_carousel_shelf_basic_header_renderer
                         .more_content_button
@@ -221,7 +221,7 @@ fn map_artist_page(
                 }
 
                 if !skip_extendables || !extendable_albums {
-                    mapper.map_response(contents);
+                    mapper.map_response(shelf.contents);
                 }
             }
             response::music_item::ItemSection::None => {}

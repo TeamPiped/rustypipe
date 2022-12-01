@@ -9,6 +9,7 @@ use serde::{Deserialize, Serialize};
 /// Available languages
 #[derive(Copy, Clone, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[serde(rename_all = "lowercase")]
+#[non_exhaustive]
 pub enum Language {
     /// Afrikaans
     Af,
@@ -191,6 +192,7 @@ pub enum Language {
 /// Available countries
 #[derive(Copy, Clone, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[serde(rename_all = "UPPERCASE")]
+#[non_exhaustive]
 pub enum Country {
     /// United Arab Emirates
     Ae,

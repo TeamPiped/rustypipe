@@ -143,11 +143,8 @@ impl MapResponse<Paginator<MusicItem>> for response::MusicContinuation {
                             mapper.map_response(shelf.contents);
                             continuations.append(&mut shelf.continuations);
                         }
-                        response::music_item::ItemSection::MusicCarouselShelfRenderer {
-                            contents,
-                            ..
-                        } => {
-                            mapper.map_response(contents);
+                        response::music_item::ItemSection::MusicCarouselShelfRenderer(shelf) => {
+                            mapper.map_response(shelf.contents);
                         }
                         response::music_item::ItemSection::None => {}
                     }
