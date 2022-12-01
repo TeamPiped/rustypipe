@@ -421,7 +421,7 @@ impl RustyPipeBuilder {
     ///
     /// **Info**: you can set this option for individual queries, too
     pub fn country(mut self, country: Country) -> Self {
-        self.default_opts.country = country;
+        self.default_opts.country = validate_country(country);
         self
     }
 
@@ -759,7 +759,7 @@ impl RustyPipeQuery {
     /// Set the country parameter used when accessing the YouTube API.
     /// This will change trends and recommended content.
     pub fn country(mut self, country: Country) -> Self {
-        self.opts.country = country;
+        self.opts.country = validate_country(country);
         self
     }
 
@@ -1192,6 +1192,15 @@ trait MapResponse<T> {
         lang: Language,
         deobf: Option<&Deobfuscator>,
     ) -> Result<MapResult<T>, ExtractionError>;
+}
+
+fn validate_country(country: Country) -> Country {
+    if country == Country::Zz {
+        warn!("Country:Zz (Global) can only be used for fetching music charts, falling back to Country:Us");
+        Country::Us
+    } else {
+        country
+    }
 }
 
 #[cfg(test)]

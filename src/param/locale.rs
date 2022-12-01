@@ -412,6 +412,8 @@ pub enum Country {
     Za,
     /// Zimbabwe
     Zw,
+    /// Global (can only be used for music charts)
+    Zz,
 }
 
 /// Array of all available languages
@@ -822,6 +824,7 @@ impl Country {
             Country::Ye => "Yemen",
             Country::Za => "South Africa",
             Country::Zw => "Zimbabwe",
+            Country::Zz => "Global",
         }
     }
 }

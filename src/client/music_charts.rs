@@ -5,6 +5,7 @@ use serde::Serialize;
 use crate::{
     error::{Error, ExtractionError},
     model::{MusicCharts, TrackItem},
+    param::Country,
     serializer::MapResult,
 };
 
@@ -20,17 +21,17 @@ struct QCharts<'a> {
     browse_id: &'a str,
     params: &'a str,
     #[serde(skip_serializing_if = "Option::is_none")]
-    form_data: Option<FormData<'a>>,
+    form_data: Option<FormData>,
 }
 
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
-struct FormData<'a> {
-    pub selected_values: [&'a str; 1],
+struct FormData {
+    pub selected_values: [Country; 1],
 }
 
 impl RustyPipeQuery {
-    pub async fn music_charts(&self, country: Option<&str>) -> Result<MusicCharts, Error> {
+    pub async fn music_charts(&self, country: Option<Country>) -> Result<MusicCharts, Error> {
         let context = self.get_context(ClientType::DesktopMusic, true, None).await;
         let request_body = QCharts {
             context,
@@ -149,9 +150,8 @@ mod tests {
     use crate::param::Language;
 
     #[rstest]
-    #[case::default("default")]
+    #[case::default("global")]
     #[case::us("US")]
-    #[case::unavailable("unavailable")]
     fn map_music_charts(#[case] name: &str) {
         let filename = format!("testfiles/music_charts/charts_{}.json", name);
         let json_path = Path::new(&filename);

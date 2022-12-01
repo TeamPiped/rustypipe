@@ -235,22 +235,23 @@ pub enum Country {
             .collect::<String>();
 
         // Language enum
-        let _ = write!(code_langs, "    /// {}\n    ", n);
+        write!(code_langs, "    /// {}\n    ", n).unwrap();
         if c.contains('-') {
-            let _ = write!(code_langs, "#[serde(rename = \"{}\")]\n    ", c);
+            write!(code_langs, "#[serde(rename = \"{}\")]\n    ", c).unwrap();
         }
         code_langs += &enum_name;
         code_langs += ",\n";
 
         // Language array
-        let _ = writeln!(code_lang_array, "    Language::{},", enum_name);
+        writeln!(code_lang_array, "    Language::{},", enum_name).unwrap();
 
         // Language names
-        let _ = writeln!(
+        writeln!(
             code_lang_names,
             "            Language::{} => \"{}\",",
             enum_name, n
-        );
+        )
+        .unwrap();
     });
     code_langs += "}\n";
 
@@ -258,19 +259,26 @@ pub enum Country {
         let enum_name = c[0..1].to_owned().to_uppercase() + &c[1..].to_owned().to_lowercase();
 
         // Country enum
-        let _ = writeln!(code_countries, "    /// {}", n);
-        let _ = writeln!(code_countries, "    {},", enum_name);
+        writeln!(code_countries, "    /// {}", n).unwrap();
+        writeln!(code_countries, "    {},", enum_name).unwrap();
 
         // Country array
-        let _ = writeln!(code_country_array, "    Country::{},", enum_name);
+        writeln!(code_country_array, "    Country::{},", enum_name).unwrap();
 
         // Country names
-        let _ = writeln!(
+        writeln!(
             code_country_names,
             "            Country::{} => \"{}\",",
             enum_name, n
-        );
+        )
+        .unwrap();
     });
+
+    // Add Country::Zz / Global
+    code_countries += "    /// Global (can only be used for music charts)\n";
+    code_countries += "    Zz,\n";
+    code_country_names += "            Country::Zz => \"Global\",\n";
+
     code_countries += "}\n";
 
     code_lang_array += "];\n";

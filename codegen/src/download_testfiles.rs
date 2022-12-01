@@ -7,7 +7,10 @@ use std::{
 
 use rustypipe::{
     client::{ClientType, RustyPipe},
-    param::search_filter::{self, Entity, SearchFilter},
+    param::{
+        search_filter::{self, Entity, SearchFilter},
+        Country,
+    },
     report::{Report, Reporter},
 };
 
@@ -830,11 +833,7 @@ async fn music_new_videos(testfiles: &Path) {
 }
 
 async fn music_charts(testfiles: &Path) {
-    for (name, id) in [
-        ("default", None),
-        ("US", Some("US")),
-        ("unavailable", Some("MY")),
-    ] {
+    for (name, country) in [("global", Some(Country::Zz)), ("US", Some(Country::Us))] {
         let mut json_path = testfiles.to_path_buf();
         json_path.push("music_charts");
         json_path.push(&format!("charts_{}.json", name));
@@ -843,6 +842,6 @@ async fn music_charts(testfiles: &Path) {
         }
 
         let rp = rp_testfile(&json_path);
-        rp.query().music_charts(id).await.unwrap();
+        rp.query().music_charts(country).await.unwrap();
     }
 }
