@@ -2183,6 +2183,25 @@ async fn music_genre(#[case] id: &str, #[case] name: &str) {
     }
 }
 
+#[tokio::test]
+async fn music_genre_not_found() {
+    let rp = RustyPipe::builder().strict().build();
+    let err = rp
+        .query()
+        .music_genre("ggMPOg1uX1JOQWZFeDByc2zz")
+        .await
+        .unwrap_err();
+
+    assert!(
+        matches!(
+            err,
+            Error::Extraction(ExtractionError::ContentUnavailable(_))
+        ),
+        "got: {}",
+        err
+    );
+}
+
 //#AB TESTS
 
 const VISITOR_DATA_SEARCH_CHANNEL_HANDLES: &str = "CgszYlc1Yk1WZGRCSSjrwOSbBg%3D%3D";
