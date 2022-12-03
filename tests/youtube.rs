@@ -1625,12 +1625,12 @@ async fn music_search_episode() {
 
 #[rstest]
 #[case::single(
-    "black mamba aespa",
-    "Black Mamba",
-    "MPREb_OpHWHwyNOuY",
-    "aespa",
-    "UCEdZAdnnKqbaHOlv8nM6OtA",
-    2020,
+    "lea zu dir",
+    "Zu dir (Akustik Version)",
+    "MPREb_kaDtXa1zj2Z",
+    "LEA",
+    "UC_MxOdawj_BStPs4CKBYD0Q",
+    2018,
     AlbumType::Single
 )]
 #[case::ep(
@@ -1993,7 +1993,7 @@ async fn music_details_not_found() {
 async fn music_radio_track() {
     let rp = RustyPipe::builder().strict().build();
     let tracks = rp.query().music_radio_track("ZeerrnuLi5E").await.unwrap();
-    assert_next(tracks, rp.query(), 20, 3).await;
+    assert_next_items(tracks, rp.query(), 20).await;
 }
 
 #[tokio::test]
@@ -2023,7 +2023,7 @@ async fn music_radio_playlist() {
         .music_radio_playlist("PL5dDx681T4bR7ZF1IuWzOv1omlRbE7PiJ")
         .await
         .unwrap();
-    assert_next(tracks, rp.query(), 10, 1).await;
+    assert_next_items(tracks, rp.query(), 20).await;
 }
 
 #[tokio::test]
@@ -2259,6 +2259,17 @@ async fn assert_next<T: FromYtItem, Q: AsRef<RustyPipeQuery>>(
             &format!("items on page {}", i + 1),
         );
     }
+}
+
+async fn assert_next_items<T: FromYtItem, Q: AsRef<RustyPipeQuery>>(
+    paginator: Paginator<T>,
+    query: Q,
+    n_items: usize,
+) {
+    let mut p = paginator;
+    let query = query.as_ref();
+    p.extend_limit(query, n_items).await.unwrap();
+    assert_gte(p.items.len(), n_items, "items");
 }
 
 fn assert_video_id(id: &str) {
