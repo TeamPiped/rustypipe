@@ -4,18 +4,20 @@ use std::fmt::Display;
 use fancy_regex::Regex;
 use once_cell::sync::Lazy;
 use rstest::rstest;
-use rustypipe::param::Country;
 use time::macros::date;
 use time::OffsetDateTime;
 
 use rustypipe::client::{ClientType, RustyPipe, RustyPipeQuery};
 use rustypipe::error::{Error, ExtractionError};
-use rustypipe::model::richtext::ToPlaintext;
 use rustypipe::model::{
-    AlbumType, AudioCodec, AudioFormat, Channel, FromYtItem, MusicEntityType, MusicGenre,
-    Paginator, UrlTarget, Verification, VideoCodec, VideoFormat, YouTubeItem, YtStream,
+    richtext::ToPlaintext, AlbumType, AudioCodec, AudioFormat, Channel, FromYtItem,
+    MusicEntityType, MusicGenre, Paginator, UrlTarget, Verification, VideoCodec, VideoFormat,
+    YouTubeItem, YtStream,
 };
-use rustypipe::param::search_filter::{self, SearchFilter};
+use rustypipe::param::{
+    search_filter::{self, SearchFilter},
+    Country,
+};
 
 //#PLAYER
 
@@ -1364,6 +1366,7 @@ async fn music_playlist_not_found() {
 #[case::ep("ep", "MPREb_u1I69lSAe5v")]
 #[case::audiobook("audiobook", "MPREb_gaoNzsQHedo")]
 #[case::show("show", "MPREb_cwzk8EUwypZ")]
+#[case::unavailable("unavailable", "MPREb_AzuWg8qAVVl")]
 #[tokio::test]
 async fn music_album(#[case] name: &str, #[case] id: &str) {
     let rp = RustyPipe::builder().strict().build();

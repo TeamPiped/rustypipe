@@ -580,6 +580,7 @@ async fn music_album(testfiles: &Path) {
         ("various_artists", "MPREb_8QkDeEIawvX"),
         ("single", "MPREb_bHfHGoy7vuv"),
         ("description", "MPREb_PiyfuVl6aYd"),
+        ("unavailable", "MPREb_AzuWg8qAVVl"),
     ] {
         let mut json_path = testfiles.to_path_buf();
         json_path.push("music_playlist");

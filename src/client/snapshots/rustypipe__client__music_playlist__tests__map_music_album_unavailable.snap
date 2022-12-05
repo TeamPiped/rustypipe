@@ -1,0 +1,279 @@
+---
+source: src/client/music_playlist.rs
+expression: map_res.c
+---
+MusicAlbum(
+  id: "MPREb_AzuWg8qAVVl",
+  playlist_id: Some("OLAK5uy_mux5ygfN9sbiR1ma3yh1GHTmqNekZNoAI"),
+  name: "13 Reasons Why (Season 3)",
+  cover: [
+    Thumbnail(
+      url: "https://lh3.googleusercontent.com/-MM-2mTapj54GFHiEC4XrrjnE1jKjRpbOi3Qiy4mkpf2FgvQlD775nRoblwbN5c6sJxMrzVKAXKu-fw=w60-h60-l90-rj",
+      width: 60,
+      height: 60,
+    ),
+    Thumbnail(
+      url: "https://lh3.googleusercontent.com/-MM-2mTapj54GFHiEC4XrrjnE1jKjRpbOi3Qiy4mkpf2FgvQlD775nRoblwbN5c6sJxMrzVKAXKu-fw=w120-h120-l90-rj",
+      width: 120,
+      height: 120,
+    ),
+    Thumbnail(
+      url: "https://lh3.googleusercontent.com/-MM-2mTapj54GFHiEC4XrrjnE1jKjRpbOi3Qiy4mkpf2FgvQlD775nRoblwbN5c6sJxMrzVKAXKu-fw=w226-h226-l90-rj",
+      width: 226,
+      height: 226,
+    ),
+    Thumbnail(
+      url: "https://lh3.googleusercontent.com/-MM-2mTapj54GFHiEC4XrrjnE1jKjRpbOi3Qiy4mkpf2FgvQlD775nRoblwbN5c6sJxMrzVKAXKu-fw=w544-h544-l90-rj",
+      width: 544,
+      height: 544,
+    ),
+  ],
+  artists: [],
+  description: None,
+  album_type: Album,
+  year: Some(2019),
+  by_va: true,
+  tracks: [
+    TrackItem(
+      id: "JWeJHN5P-E8",
+      title: "Teeth",
+      duration: Some(205),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCCj0RlDqqahEB5BXVtDcPqg"),
+          name: "5 Seconds of Summer",
+        ),
+      ],
+      artist_id: Some("UCCj0RlDqqahEB5BXVtDcPqg"),
+      album: Some(AlbumId(
+        id: "MPREb_AzuWg8qAVVl",
+        name: "13 Reasons Why (Season 3)",
+      )),
+      view_count: None,
+      is_video: true,
+      track_nr: Some(1),
+    ),
+    TrackItem(
+      id: "5jd-AhBwcCQ",
+      title: "Die A Little",
+      duration: Some(174),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCMrCoizKiBxqeg5pTpBXn1A"),
+          name: "YUNGBLUD",
+        ),
+      ],
+      artist_id: Some("UCMrCoizKiBxqeg5pTpBXn1A"),
+      album: Some(AlbumId(
+        id: "MPREb_AzuWg8qAVVl",
+        name: "13 Reasons Why (Season 3)",
+      )),
+      view_count: None,
+      is_video: true,
+      track_nr: Some(2),
+    ),
+    TrackItem(
+      id: "_cmORZMgv6I",
+      title: "fuck, i\'m lonely (feat. Anne-Marie)",
+      duration: Some(199),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCWjoDY2SXJ5dvcdunWI6mjQ"),
+          name: "Lauv",
+        ),
+      ],
+      artist_id: Some("UCWjoDY2SXJ5dvcdunWI6mjQ"),
+      album: Some(AlbumId(
+        id: "MPREb_AzuWg8qAVVl",
+        name: "13 Reasons Why (Season 3)",
+      )),
+      view_count: None,
+      is_video: true,
+      track_nr: Some(3),
+    ),
+    TrackItem(
+      id: "M_kVMsFaGYs",
+      title: "Swim Home",
+      duration: Some(187),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UChzK2t3sjnQkWzGnyKXOSSg"),
+          name: "Cautious Clay",
+        ),
+      ],
+      artist_id: Some("UChzK2t3sjnQkWzGnyKXOSSg"),
+      album: Some(AlbumId(
+        id: "MPREb_AzuWg8qAVVl",
+        name: "13 Reasons Why (Season 3)",
+      )),
+      view_count: None,
+      is_video: true,
+      track_nr: Some(5),
+    ),
+    TrackItem(
+      id: "c8AfY6yhdkM",
+      title: "Another Summer Night Without You",
+      duration: Some(159),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCvsgN5NKOzXnAURfaf3TOig"),
+          name: "Alexander 23",
+        ),
+      ],
+      artist_id: Some("UCvsgN5NKOzXnAURfaf3TOig"),
+      album: Some(AlbumId(
+        id: "MPREb_AzuWg8qAVVl",
+        name: "13 Reasons Why (Season 3)",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(6),
+    ),
+    TrackItem(
+      id: "DSQEKEegiH0",
+      title: "Miss U",
+      duration: Some(186),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCI4YNnmHjXFaaKvfdmpWvJQ"),
+          name: "Charli XCX",
+        ),
+      ],
+      artist_id: Some("UCI4YNnmHjXFaaKvfdmpWvJQ"),
+      album: Some(AlbumId(
+        id: "MPREb_AzuWg8qAVVl",
+        name: "13 Reasons Why (Season 3)",
+      )),
+      view_count: None,
+      is_video: true,
+      track_nr: Some(7),
+    ),
+    TrackItem(
+      id: "2TTOKQSzuQY",
+      title: "Favorite Drug",
+      duration: Some(209),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCDaFVUr2n8T7_X1f5yJ1xlw"),
+          name: "daydream Masi",
+        ),
+      ],
+      artist_id: Some("UCDaFVUr2n8T7_X1f5yJ1xlw"),
+      album: Some(AlbumId(
+        id: "MPREb_AzuWg8qAVVl",
+        name: "13 Reasons Why (Season 3)",
+      )),
+      view_count: None,
+      is_video: true,
+      track_nr: Some(8),
+    ),
+    TrackItem(
+      id: "iRaX0BfME70",
+      title: "Keeping It In The Dark",
+      duration: Some(209),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCZcc-WkffIMBVGUr6j9e6aQ"),
+          name: "Daya",
+        ),
+      ],
+      artist_id: Some("UCZcc-WkffIMBVGUr6j9e6aQ"),
+      album: Some(AlbumId(
+        id: "MPREb_AzuWg8qAVVl",
+        name: "13 Reasons Why (Season 3)",
+      )),
+      view_count: None,
+      is_video: true,
+      track_nr: Some(9),
+    ),
+    TrackItem(
+      id: "Kn3cruxYj0c",
+      title: "All That (feat. Jeremih)",
+      duration: Some(174),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCQPPz_A65SWYi2wXX8z76AQ"),
+          name: "Drama Relax",
+        ),
+      ],
+      artist_id: Some("UCQPPz_A65SWYi2wXX8z76AQ"),
+      album: Some(AlbumId(
+        id: "MPREb_AzuWg8qAVVl",
+        name: "13 Reasons Why (Season 3)",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(11),
+    ),
+    TrackItem(
+      id: "-P1FyntN_Uc",
+      title: "This Baby Don’t Cry",
+      duration: Some(185),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UChTOXkDhGJ0JftnfMWjpCCg"),
+          name: "K.Flay",
+        ),
+      ],
+      artist_id: Some("UChTOXkDhGJ0JftnfMWjpCCg"),
+      album: Some(AlbumId(
+        id: "MPREb_AzuWg8qAVVl",
+        name: "13 Reasons Why (Season 3)",
+      )),
+      view_count: None,
+      is_video: true,
+      track_nr: Some(12),
+    ),
+    TrackItem(
+      id: "njdlNT1RRo4",
+      title: "Walk Forever By My Side",
+      duration: Some(237),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCMUB52aO4CqrUXmLwbfRWYA"),
+          name: "Twin Shadow",
+        ),
+      ],
+      artist_id: Some("UCMUB52aO4CqrUXmLwbfRWYA"),
+      album: Some(AlbumId(
+        id: "MPREb_AzuWg8qAVVl",
+        name: "13 Reasons Why (Season 3)",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(13),
+    ),
+    TrackItem(
+      id: "Si-CXM8CHqQ",
+      title: "Ordinary World (feat. White Sea)",
+      duration: Some(246),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UC4YvDAbE1EYwZpj6gQ-lpLw"),
+          name: "Eskmo",
+        ),
+      ],
+      artist_id: Some("UC4YvDAbE1EYwZpj6gQ-lpLw"),
+      album: Some(AlbumId(
+        id: "MPREb_AzuWg8qAVVl",
+        name: "13 Reasons Why (Season 3)",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(18),
+    ),
+  ],
+  variants: [],
+)

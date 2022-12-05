@@ -376,6 +376,7 @@ mod tests {
     #[case::various_artists("various_artists", "MPREb_8QkDeEIawvX")]
     #[case::single("single", "MPREb_bHfHGoy7vuv")]
     #[case::description("description", "MPREb_PiyfuVl6aYd")]
+    #[case::unavailable("unavailable", "MPREb_AzuWg8qAVVl")]
     fn map_music_album(#[case] name: &str, #[case] id: &str) {
         let json_path = path!("testfiles" / "music_playlist" / format!("album_{}.json", name));
         let json_file = File::open(json_path).unwrap();

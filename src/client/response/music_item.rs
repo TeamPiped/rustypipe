@@ -141,6 +141,8 @@ pub(crate) struct ListMusicItem {
     pub flex_column_display_style: FlexColumnDisplayStyle,
     #[serde(default)]
     pub item_height: ItemHeight,
+    #[serde(default)]
+    pub music_item_renderer_display_policy: DisplayPolicy,
     /// Album track number
     #[serde_as(as = "Option<Text>")]
     pub index: Option<String>,
@@ -160,6 +162,15 @@ pub(crate) enum FlexColumnDisplayStyle {
 pub(crate) enum ItemHeight {
     #[serde(rename = "MUSIC_RESPONSIVE_LIST_ITEM_HEIGHT_MEDIUM_COMPACT")]
     Compact,
+    #[default]
+    #[serde(other)]
+    Default,
+}
+
+#[derive(Default, Debug, Copy, Clone, PartialEq, Eq, Deserialize)]
+pub(crate) enum DisplayPolicy {
+    #[serde(rename = "MUSIC_ITEM_RENDERER_DISPLAY_POLICY_GREY_OUT")]
+    GreyOut,
     #[default]
     #[serde(other)]
     Default,
@@ -713,7 +724,13 @@ impl MusicListMapper {
                             MusicPageType::Track { .. } => unreachable!(),
                         }
                     }
-                    None => Err("could not determine item type".to_owned()),
+                    None => {
+                        if item.music_item_renderer_display_policy == DisplayPolicy::GreyOut {
+                            Ok(None)
+                        } else {
+                            Err("could not determine item type".to_owned())
+                        }
+                    }
                 }
             }
             // Tile
