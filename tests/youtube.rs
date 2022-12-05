@@ -1500,13 +1500,7 @@ async fn music_search(#[case] typo: bool) {
         assert_eq!(res.corrected_query, None);
     }
 
-    let (i, track) = &res
-        .tracks
-        .iter()
-        .enumerate()
-        .find(|(_, a)| a.id == "ZeerrnuLi5E")
-        .unwrap();
-    assert!(*i < 3);
+    let track = &res.tracks.iter().find(|a| a.id == "ZeerrnuLi5E").unwrap();
 
     assert_eq!(track.title, "Black Mamba");
     assert_eq!(track.duration.unwrap(), 230);
@@ -1530,14 +1524,12 @@ async fn music_search_tracks() {
     let rp = RustyPipe::builder().strict().build();
     let res = rp.query().music_search_tracks("black mamba").await.unwrap();
 
-    let (i, track) = &res
+    let track = &res
         .items
         .items
         .iter()
-        .enumerate()
-        .find(|(_, a)| a.id == "BL-aIpCLWnU")
+        .find(|a| a.id == "BL-aIpCLWnU")
         .unwrap();
-    assert!(*i < 3);
 
     assert_eq!(track.title, "Black Mamba");
     assert!(!track.cover.is_empty(), "got no cover");
@@ -1566,14 +1558,12 @@ async fn music_search_videos() {
     let rp = RustyPipe::builder().strict().build();
     let res = rp.query().music_search_videos("black mamba").await.unwrap();
 
-    let (i, track) = &res
+    let track = &res
         .items
         .items
         .iter()
-        .enumerate()
-        .find(|(_, a)| a.id == "ZeerrnuLi5E")
+        .find(|a| a.id == "ZeerrnuLi5E")
         .unwrap();
-    assert!(*i < 3);
 
     assert_eq!(track.title, "Black Mamba");
     assert!(!track.cover.is_empty(), "got no cover");
@@ -1595,8 +1585,8 @@ async fn music_search_videos() {
     assert_next(res.items, rp.query(), 15, 2).await;
 }
 
+// This podcast was removed from YouTube Music and I could not find another one
 /*
-This podcast was removed from YouTube Music and I could not find another one
 #[tokio::test]
 async fn music_search_episode() {
     let rp = RustyPipe::builder().strict().build();
@@ -1606,22 +1596,19 @@ async fn music_search_episode() {
         .await
         .unwrap();
 
-    let (i, track) = &res
+    let track = &res
         .items
         .items
         .iter()
-        .enumerate()
-        .find(|(_, a)| a.id == "Zq_-LDy7AgE")
+        .find(|a| a.id == "Zq_-LDy7AgE")
         .unwrap();
-    assert!(*i < 3);
 
     assert_eq!(
         track.title,
         "Blond - Da muss man dabei gewesen sein: Das Hörspiel - Fall #1"
     );
     assert!(!track.cover.is_empty(), "got no cover");
-}
-*/
+}*/
 
 #[rstest]
 #[case::single(
@@ -1664,14 +1651,7 @@ async fn music_search_albums(
     let rp = RustyPipe::builder().strict().build();
     let res = rp.query().music_search_albums(query).await.unwrap();
 
-    let (i, album) = &res
-        .items
-        .items
-        .iter()
-        .enumerate()
-        .find(|(_, a)| a.id == id)
-        .unwrap();
-    assert!(*i < 3);
+    let album = &res.items.items.iter().find(|a| a.id == id).unwrap();
     assert_eq!(album.name, name);
 
     assert_eq!(album.artists.len(), 1);
@@ -1693,14 +1673,12 @@ async fn music_search_artists() {
     let rp = RustyPipe::builder().strict().build();
     let res = rp.query().music_search_artists("namika").await.unwrap();
 
-    let (i, artist) = res
+    let artist = res
         .items
         .items
         .iter()
-        .enumerate()
-        .find(|(_, a)| a.id == "UCIh4j8fXWf2U0ro0qnGU8Mg")
+        .find(|a| a.id == "UCIh4j8fXWf2U0ro0qnGU8Mg")
         .unwrap();
-    assert!(i < 3);
     assert_eq!(artist.name, "Namika");
     assert!(!artist.avatar.is_empty(), "got no avatar");
     assert!(
@@ -1722,7 +1700,7 @@ async fn music_search_artists_cont() {
 
 #[rstest]
 #[case::ytm(false)]
-#[case::ytm_community(true)]
+#[case::default(true)]
 #[tokio::test]
 async fn music_search_playlists(#[case] with_community: bool) {
     let rp = RustyPipe::builder().strict().build();
@@ -1736,15 +1714,13 @@ async fn music_search_playlists(#[case] with_community: bool) {
     };
 
     assert_eq!(res.corrected_query, None);
-    let (i, playlist) = res
+    let playlist = res
         .items
         .items
         .iter()
-        .enumerate()
-        .find(|(_, p)| p.id == "RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk")
+        .find(|p| p.id == "RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk")
         .unwrap();
 
-    assert!(i < 3);
     assert_eq!(playlist.name, "Easy Pop");
     assert!(!playlist.thumbnail.is_empty(), "got no thumbnail");
     assert_gte(playlist.track_count.unwrap(), 80, "tracks");
@@ -1762,15 +1738,13 @@ async fn music_search_playlists_community() {
         .unwrap();
 
     assert_eq!(res.corrected_query, None);
-    let (i, playlist) = res
+    let playlist = res
         .items
         .items
         .iter()
-        .enumerate()
-        .find(|(_, p)| p.id == "PLMC9KNkIncKtGvr2kFRuXBVmBev6cAJ2u")
+        .find(|p| p.id == "PLMC9KNkIncKtGvr2kFRuXBVmBev6cAJ2u")
         .unwrap();
 
-    assert!(i < 3);
     assert_eq!(
         playlist.name,
         "Best Pop Music Videos - Top Pop Hits Playlist"
