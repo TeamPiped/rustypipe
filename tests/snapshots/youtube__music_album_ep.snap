@@ -13,6 +13,7 @@ MusicAlbum(
       name: "Madeline Juno",
     ),
   ],
+  artist_id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
   description: None,
   album_type: Ep,
   year: Some(2016),

@@ -8,6 +8,7 @@ MusicAlbum(
   name: "13 Reasons Why (Season 3)",
   cover: "[cover]",
   artists: [],
+  artist_id: None,
   description: None,
   album_type: Album,
   year: Some(2019),

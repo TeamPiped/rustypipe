@@ -620,7 +620,7 @@ impl MusicListMapper {
                         }
 
                         // Extract artist id from dropdown menu
-                        let artist_id = map_artist_id(item.menu, artists.first());
+                        let artist_id = map_artist_id_fallback(item.menu, artists.first());
 
                         let track_nr = item.index.and_then(|txt| util::parse_numeric(&txt).ok());
 
@@ -946,29 +946,31 @@ pub(crate) fn map_artists(artists_p: Option<TextComponents>) -> (Vec<ArtistId>, 
     (artists, by_va)
 }
 
-pub(crate) fn map_artist_id(
+fn map_artist_id_fallback(
     menu: Option<MusicItemMenu>,
     fallback_artist: Option<&ArtistId>,
 ) -> Option<String> {
-    menu.and_then(|m| {
-        m.menu_renderer.items.into_iter().find_map(|i| {
-            let ep = i
-                .menu_navigation_item_renderer
-                .navigation_endpoint
-                .browse_endpoint;
-            ep.and_then(|ep| {
-                ep.browse_endpoint_context_supported_configs
-                    .and_then(|cfg| {
-                        if cfg.browse_endpoint_context_music_config.page_type == PageType::Artist {
-                            Some(ep.browse_id)
-                        } else {
-                            None
-                        }
-                    })
-            })
+    menu.and_then(|m| map_artist_id(m.menu_renderer.items))
+        .or_else(|| fallback_artist.and_then(|a| a.id.to_owned()))
+}
+
+pub(crate) fn map_artist_id(entries: Vec<MusicItemMenuEntry>) -> Option<String> {
+    entries.into_iter().find_map(|i| {
+        let ep = i
+            .menu_navigation_item_renderer
+            .navigation_endpoint
+            .browse_endpoint;
+        ep.and_then(|ep| {
+            ep.browse_endpoint_context_supported_configs
+                .and_then(|cfg| {
+                    if cfg.browse_endpoint_context_music_config.page_type == PageType::Artist {
+                        Some(ep.browse_id)
+                    } else {
+                        None
+                    }
+                })
         })
     })
-    .or_else(|| fallback_artist.and_then(|a| a.id.to_owned()))
 }
 
 pub(crate) fn map_album_type(txt: &str, lang: Language) -> AlbumType {
@@ -991,7 +993,7 @@ pub(crate) fn map_queue_item(item: QueueMusicItem, lang: Language) -> TrackItem 
 
     let artist_p = subtitle_parts.next();
     let (artists, _) = map_artists(artist_p);
-    let artist_id = map_artist_id(item.menu, artists.first());
+    let artist_id = map_artist_id_fallback(item.menu, artists.first());
 
     let subtitle_p2 = subtitle_parts.next();
     let (album, view_count) = if is_video {

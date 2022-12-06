@@ -38,6 +38,7 @@ MusicAlbum(
       name: "Vanessa Mai",
     ),
   ],
+  artist_id: Some("UCXGYZ-OhdOpPBamHX3K9YRg"),
   description: None,
   album_type: Single,
   year: Some(2020),

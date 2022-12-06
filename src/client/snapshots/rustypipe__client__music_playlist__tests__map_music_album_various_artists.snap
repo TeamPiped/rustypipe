@@ -29,6 +29,7 @@ MusicAlbum(
     ),
   ],
   artists: [],
+  artist_id: None,
   description: None,
   album_type: Single,
   year: Some(2022),

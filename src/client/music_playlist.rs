@@ -10,7 +10,7 @@ use crate::{
 use super::{
     response::{
         self,
-        music_item::{map_album_type, map_artists, MusicListMapper},
+        music_item::{map_album_type, map_artist_id, map_artists, MusicListMapper},
     },
     ClientType, MapResponse, QBrowse, RustyPipeQuery,
 };
@@ -274,17 +274,23 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
             "no sectionListRenderer content",
         )))?;
 
-        let playlist_id = header.menu.and_then(|mut menu| {
-            menu.menu_renderer
-                .top_level_buttons
-                .try_swap_remove(0)
-                .map(|btn| {
-                    btn.button_renderer
-                        .navigation_endpoint
-                        .watch_playlist_endpoint
-                        .playlist_id
-                })
-        });
+        let (artist_id, playlist_id) = header
+            .menu
+            .map(|mut menu| {
+                (
+                    map_artist_id(menu.menu_renderer.items),
+                    menu.menu_renderer
+                        .top_level_buttons
+                        .try_swap_remove(0)
+                        .map(|btn| {
+                            btn.button_renderer
+                                .navigation_endpoint
+                                .watch_playlist_endpoint
+                                .playlist_id
+                        }),
+                )
+            })
+            .unwrap_or_default();
 
         let mut subtitle_split = header.subtitle.split(util::DOT_SEPARATOR);
         let year_txt = subtitle_split.try_swap_remove(2).map(|cmp| cmp.to_string());
@@ -326,6 +332,7 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
                 name: header.title,
                 cover: header.thumbnail.into(),
                 artists,
+                artist_id,
                 description: header.description,
                 album_type,
                 year,

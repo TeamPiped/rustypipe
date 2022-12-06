@@ -34,6 +34,7 @@ MusicAlbum(
       name: "Oonagh",
     ),
   ],
+  artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
   description: None,
   album_type: Album,
   year: Some(2016),

@@ -5,7 +5,8 @@ use crate::serializer::text::{Text, TextComponents};
 
 use super::{
     music_item::{
-        ItemSection, MusicContentsRenderer, MusicThumbnailRenderer, SingleColumnBrowseResult,
+        ItemSection, MusicContentsRenderer, MusicItemMenuEntry, MusicThumbnailRenderer,
+        SingleColumnBrowseResult,
     },
     Tab,
 };
@@ -78,6 +79,8 @@ pub(crate) struct HeaderMenuRenderer {
     #[serde(default)]
     #[serde_as(as = "VecSkipError<_>")]
     pub top_level_buttons: Vec<TopLevelButton>,
+    #[serde_as(as = "VecSkipError<_>")]
+    pub items: Vec<MusicItemMenuEntry>,
 }
 
 #[derive(Debug, Deserialize)]
