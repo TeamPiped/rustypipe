@@ -402,6 +402,7 @@ MusicAlbum(
           name: "Oonagh",
         ),
       ],
+      artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
       album_type: Album,
       year: None,
       by_va: false,

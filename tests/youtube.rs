@@ -1662,6 +1662,7 @@ async fn music_search_albums(
     assert_eq!(album_artist.id.as_ref().unwrap(), artist_id);
     assert_eq!(album_artist.name, artist);
 
+    assert_eq!(album.artist_id.as_ref().unwrap(), artist_id);
     assert!(!album.cover.is_empty(), "got no cover");
     assert_eq!(album.year.as_ref().unwrap(), &year);
     assert_eq!(album.album_type, album_type);

@@ -274,6 +274,19 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
             "no sectionListRenderer content",
         )))?;
 
+        let mut subtitle_split = header.subtitle.split(util::DOT_SEPARATOR);
+        let year_txt = subtitle_split.try_swap_remove(2).map(|cmp| cmp.to_string());
+
+        let artists_p = subtitle_split.try_swap_remove(1);
+        let (artists, by_va) = map_artists(artists_p);
+        let album_type_txt = subtitle_split
+            .try_swap_remove(0)
+            .map(|part| part.to_string())
+            .unwrap_or_default();
+
+        let album_type = map_album_type(album_type_txt.as_str(), lang);
+        let year = year_txt.and_then(|txt| util::parse_numeric(&txt).ok());
+
         let (artist_id, playlist_id) = header
             .menu
             .map(|mut menu| {
@@ -291,19 +304,7 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
                 )
             })
             .unwrap_or_default();
-
-        let mut subtitle_split = header.subtitle.split(util::DOT_SEPARATOR);
-        let year_txt = subtitle_split.try_swap_remove(2).map(|cmp| cmp.to_string());
-
-        let artists_p = subtitle_split.try_swap_remove(1);
-        let (artists, by_va) = map_artists(artists_p);
-        let album_type_txt = subtitle_split
-            .try_swap_remove(0)
-            .map(|part| part.to_string())
-            .unwrap_or_default();
-
-        let album_type = map_album_type(album_type_txt.as_str(), lang);
-        let year = year_txt.and_then(|txt| util::parse_numeric(&txt).ok());
+        let artist_id = artist_id.or_else(|| artists.first().and_then(|a| a.id.to_owned()));
 
         let mut mapper = MusicListMapper::with_album(
             lang,

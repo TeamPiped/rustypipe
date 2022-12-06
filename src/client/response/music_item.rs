@@ -675,6 +675,8 @@ impl MusicListMapper {
 
                                 let (artists, by_va) = map_artists(subtitle_p2);
 
+                                let artist_id = map_artist_id_fallback(item.menu, artists.first());
+
                                 let year = subtitle_p3
                                     .and_then(|st| util::parse_numeric(st.first_str()).ok());
 
@@ -683,6 +685,7 @@ impl MusicListMapper {
                                     name: title,
                                     cover: item.thumbnail.into(),
                                     artists,
+                                    artist_id,
                                     album_type,
                                     year,
                                     by_va,
@@ -809,6 +812,7 @@ impl MusicListMapper {
                                 id,
                                 name: item.title,
                                 cover: item.thumbnail_renderer.into(),
+                                artist_id: artists.first().and_then(|a| a.id.to_owned()),
                                 artists,
                                 album_type,
                                 year,

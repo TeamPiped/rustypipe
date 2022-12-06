@@ -1039,6 +1039,8 @@ pub struct AlbumItem {
     pub cover: Vec<Thumbnail>,
     /// Artists of the album
     pub artists: Vec<ArtistId>,
+    /// Primary artist ID
+    pub artist_id: Option<String>,
     /// Album type (Album/Single/EP)
     pub album_type: AlbumType,
     /// Release year of the album

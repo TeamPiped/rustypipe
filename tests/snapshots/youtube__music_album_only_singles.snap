@@ -21,6 +21,7 @@ MusicArtist(
           name: "Sulli",
         ),
       ],
+      artist_id: Some("UCfwCE5VhPMGxNPFxtVv7lRw"),
       album_type: Single,
       year: Some(2019),
       by_va: false,
