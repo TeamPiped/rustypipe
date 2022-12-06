@@ -1447,7 +1447,7 @@ async fn music_artist(
     // Sort albums to ensure consistent order
     artist.albums.sort_by_key(|a| a.id.to_owned());
 
-    insta::assert_ron_snapshot!(format!("music_album_{}", name), artist, {
+    insta::assert_ron_snapshot!(format!("music_artist_{}", name), artist, {
         ".header_image" => "[header_image]",
         ".subscriber_count" => "[subscriber_count]",
         ".albums[].cover" => "[cover]",
