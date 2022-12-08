@@ -1,9 +1,11 @@
 use serde::Deserialize;
 use serde_with::{rust::deserialize_ignore_any, serde_as, DefaultOnError, VecSkipError};
 
-use super::url_endpoint::NavigationEndpoint;
-use super::{Alert, ChannelBadge, ContentsRenderer, ResponseContext, Thumbnails, YouTubeListItem};
-use crate::serializer::{text::Text, MapResult, VecLogError};
+use super::{
+    video_item::YouTubeListRenderer, Alert, ChannelBadge, ContentsRenderer, ResponseContext,
+    Thumbnails,
+};
+use crate::serializer::text::Text;
 
 #[serde_as]
 #[derive(Debug, Deserialize)]
@@ -39,6 +41,7 @@ pub(crate) struct TabsRenderer {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct TabRendererWrap {
+    #[serde(alias = "expandableTabRenderer")]
     pub tab_renderer: TabRenderer,
 }
 
@@ -56,11 +59,10 @@ pub(crate) struct TabRenderer {
 pub(crate) struct TabContent {
     #[serde(default)]
     #[serde_as(as = "DefaultOnError")]
-    pub section_list_renderer: Option<ContentsRenderer<ItemSectionRendererWrap>>,
-    /// Seems to be currently A/B tested, as of 11.10.2022
+    pub section_list_renderer: Option<YouTubeListRenderer>,
     #[serde(default)]
     #[serde_as(as = "DefaultOnError")]
-    pub rich_grid_renderer: Option<RichGridRenderer>,
+    pub rich_grid_renderer: Option<YouTubeListRenderer>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -79,35 +81,6 @@ pub(crate) struct ChannelTabCommandMetadata {
 #[serde(rename_all = "camelCase")]
 pub(crate) struct ChannelTabWebCommandMetadata {
     pub url: String,
-}
-
-/// Seems to be currently A/B tested, as of 11.10.2022
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct RichGridRenderer {
-    #[serde_as(as = "VecLogError<_>")]
-    pub contents: MapResult<Vec<YouTubeListItem>>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct ItemSectionRendererWrap {
-    pub item_section_renderer: ContentsRenderer<ChannelContent>,
-}
-
-#[serde_as]
-#[derive(Default, Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) enum ChannelContent {
-    GridRenderer {
-        #[serde_as(as = "VecLogError<_>")]
-        items: MapResult<Vec<YouTubeListItem>>,
-    },
-    ChannelAboutFullMetadataRenderer(ChannelFullMetadata),
-    #[default]
-    #[serde(other, deserialize_with = "deserialize_ignore_any")]
-    None,
 }
 
 #[derive(Debug, Deserialize)]
@@ -183,26 +156,4 @@ pub(crate) struct Microformat {
 pub(crate) struct MicroformatDataRenderer {
     #[serde(default)]
     pub tags: Vec<String>,
-}
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct ChannelFullMetadata {
-    #[serde_as(as = "Text")]
-    pub joined_date_text: String,
-    #[serde_as(as = "Option<Text>")]
-    pub view_count_text: Option<String>,
-    #[serde(default)]
-    #[serde_as(as = "VecSkipError<_>")]
-    pub primary_links: Vec<PrimaryLink>,
-}
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct PrimaryLink {
-    #[serde_as(as = "Text")]
-    pub title: String,
-    pub navigation_endpoint: NavigationEndpoint,
 }

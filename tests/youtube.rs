@@ -948,6 +948,19 @@ async fn channel_info() {
         "###);
 }
 
+#[tokio::test]
+async fn channel_search() {
+    let rp = RustyPipe::builder().strict().build();
+    let channel = rp
+        .query()
+        .channel_search("UC2DjFE7Xf11URZqWBigcVOQ", "test")
+        .await
+        .unwrap();
+
+    assert_channel_eevblog(&channel);
+    assert_next(channel.content, rp.query(), 20, 2).await;
+}
+
 fn assert_channel_eevblog<T>(channel: &Channel<T>) {
     assert_eq!(channel.id, "UC2DjFE7Xf11URZqWBigcVOQ");
     assert_eq!(channel.name, "EEVblog");

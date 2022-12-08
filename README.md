@@ -10,7 +10,7 @@ inspired by [NewPipe](https://github.com/TeamNewPipe/NewPipeExtractor).
 - [X] **Player** (video/audio streams, subtitles)
 - [X] **Playlist**
 - [X] **VideoDetails** (metadata, comments, recommended videos)
-- [X] **Channel** (videos, playlists, info)
+- [X] **Channel** (videos, shorts, livestreams, playlists, info, search)
 - [X] **ChannelRSS**
 - [X] **Search** (with filters)
 - [X] **Search suggestions**

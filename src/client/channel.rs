@@ -1,22 +1,17 @@
 use std::borrow::Cow;
 
 use serde::Serialize;
-use time::OffsetDateTime;
 use url::Url;
 
 use crate::{
     error::{Error, ExtractionError},
-    model::{Channel, ChannelInfo, Paginator, PlaylistItem, VideoItem},
+    model::{Channel, ChannelInfo, Paginator, PlaylistItem, VideoItem, YouTubeItem},
     param::Language,
     serializer::MapResult,
-    timeago,
-    util::{self, TryRemove},
+    util,
 };
 
-use super::{
-    response::{self, channel::ChannelContent},
-    ClientType, MapResponse, RustyPipeQuery, YTContext,
-};
+use super::{response, ClientType, MapResponse, RustyPipeQuery, YTContext};
 
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
@@ -24,6 +19,8 @@ struct QChannel<'a> {
     context: YTContext<'a>,
     browse_id: &'a str,
     params: Params,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    query: Option<&'a str>,
 }
 
 #[derive(Debug, Serialize)]
@@ -38,6 +35,8 @@ enum Params {
     Playlists,
     #[serde(rename = "EgVhYm91dPIGBAoCEgA%3D")]
     Info,
+    #[serde(rename = "EgZzZWFyY2jyBgQKAloA")]
+    Search,
 }
 
 impl RustyPipeQuery {
@@ -45,6 +44,7 @@ impl RustyPipeQuery {
         &self,
         channel_id: S,
         params: Params,
+        query: Option<&str>,
         operation: &str,
     ) -> Result<Channel<Paginator<VideoItem>>, Error> {
         let channel_id = channel_id.as_ref();
@@ -53,6 +53,7 @@ impl RustyPipeQuery {
             context,
             browse_id: channel_id,
             params,
+            query,
         };
 
         self.execute_request::<response::Channel, _, _>(
@@ -69,7 +70,7 @@ impl RustyPipeQuery {
         &self,
         channel_id: S,
     ) -> Result<Channel<Paginator<VideoItem>>, Error> {
-        self._channel_videos(channel_id, Params::Videos, "channel_videos")
+        self._channel_videos(channel_id, Params::Videos, None, "channel_videos")
             .await
     }
 
@@ -77,7 +78,7 @@ impl RustyPipeQuery {
         &self,
         channel_id: S,
     ) -> Result<Channel<Paginator<VideoItem>>, Error> {
-        self._channel_videos(channel_id, Params::Shorts, "channel_shorts")
+        self._channel_videos(channel_id, Params::Shorts, None, "channel_shorts")
             .await
     }
 
@@ -85,8 +86,22 @@ impl RustyPipeQuery {
         &self,
         channel_id: S,
     ) -> Result<Channel<Paginator<VideoItem>>, Error> {
-        self._channel_videos(channel_id, Params::Live, "channel_livestreams")
+        self._channel_videos(channel_id, Params::Live, None, "channel_livestreams")
             .await
+    }
+
+    pub async fn channel_search<S: AsRef<str>, S2: AsRef<str>>(
+        &self,
+        channel_id: S,
+        query: S2,
+    ) -> Result<Channel<Paginator<VideoItem>>, Error> {
+        self._channel_videos(
+            channel_id,
+            Params::Search,
+            Some(query.as_ref()),
+            "channel_search",
+        )
+        .await
     }
 
     pub async fn channel_playlists<S: AsRef<str>>(
@@ -99,6 +114,7 @@ impl RustyPipeQuery {
             context,
             browse_id: channel_id,
             params: Params::Playlists,
+            query: None,
         };
 
         self.execute_request::<response::Channel, _, _>(
@@ -121,6 +137,7 @@ impl RustyPipeQuery {
             context,
             browse_id: channel_id,
             params: Params::Info,
+            query: None,
         };
 
         self.execute_request::<response::Channel, _, _>(
@@ -156,29 +173,20 @@ impl MapResponse<Channel<Paginator<VideoItem>>> for response::Channel {
             lang,
         )?;
 
-        let v_res = match content.content {
-            ChannelContent::GridRenderer { items } => {
-                let mut mapper =
-                    response::YouTubeListMapper::<VideoItem>::with_channel(lang, &channel_data);
-                mapper.map_response(items);
-
-                MapResult {
-                    c: Paginator::new_ext(
-                        None,
-                        mapper.items,
-                        mapper.ctoken,
-                        self.response_context.visitor_data,
-                        crate::param::ContinuationEndpoint::Browse,
-                    ),
-                    warnings: mapper.warnings,
-                }
-            }
-            _ => MapResult::default(),
-        };
+        let mut mapper =
+            response::YouTubeListMapper::<VideoItem>::with_channel(lang, &channel_data);
+        mapper.map_response(content.content);
+        let p = Paginator::new_ext(
+            None,
+            mapper.items,
+            mapper.ctoken,
+            self.response_context.visitor_data,
+            crate::param::ContinuationEndpoint::Browse,
+        );
 
         Ok(MapResult {
-            c: combine_channel_data(channel_data, v_res.c),
-            warnings: v_res.warnings,
+            c: combine_channel_data(channel_data, p),
+            warnings: mapper.warnings,
         })
     }
 }
@@ -205,23 +213,14 @@ impl MapResponse<Channel<Paginator<PlaylistItem>>> for response::Channel {
             lang,
         )?;
 
-        let p_res = match content.content {
-            ChannelContent::GridRenderer { items } => {
-                let mut mapper =
-                    response::YouTubeListMapper::<PlaylistItem>::with_channel(lang, &channel_data);
-                mapper.map_response(items);
-
-                MapResult {
-                    c: Paginator::new(None, mapper.items, mapper.ctoken),
-                    warnings: mapper.warnings,
-                }
-            }
-            _ => MapResult::default(),
-        };
+        let mut mapper =
+            response::YouTubeListMapper::<PlaylistItem>::with_channel(lang, &channel_data);
+        mapper.map_response(content.content);
+        let p = Paginator::new(None, mapper.items, mapper.ctoken);
 
         Ok(MapResult {
-            c: combine_channel_data(channel_data, p_res.c),
-            warnings: p_res.warnings,
+            c: combine_channel_data(channel_data, p),
+            warnings: mapper.warnings,
         })
     }
 }
@@ -234,8 +233,6 @@ impl MapResponse<Channel<ChannelInfo>> for response::Channel {
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
     ) -> Result<MapResult<Channel<ChannelInfo>>, ExtractionError> {
         let content = map_channel_content(self.contents, self.alerts)?;
-        let mut warnings = Vec::new();
-
         let channel_data = map_channel(
             MapChannelData {
                 header: self.header,
@@ -249,38 +246,18 @@ impl MapResponse<Channel<ChannelInfo>> for response::Channel {
             lang,
         )?;
 
-        let cinfo = match content.content {
-            response::channel::ChannelContent::ChannelAboutFullMetadataRenderer(meta) => {
-                ChannelInfo {
-                    create_date: timeago::parse_textual_date_or_warn(
-                        lang,
-                        &meta.joined_date_text,
-                        &mut warnings,
-                    )
-                    .map(OffsetDateTime::date),
-                    view_count: meta
-                        .view_count_text
-                        .and_then(|txt| util::parse_numeric_or_warn(&txt, &mut warnings)),
-                    links: meta
-                        .primary_links
-                        .into_iter()
-                        .filter_map(|l| {
-                            l.navigation_endpoint
-                                .url_endpoint
-                                .map(|url| (l.title, util::sanitize_yt_url(&url.url)))
-                        })
-                        .collect(),
-                }
+        let mut mapper = response::YouTubeListMapper::<YouTubeItem>::new(lang);
+        mapper.map_response(content.content);
+        let mut warnings = mapper.warnings;
+
+        let cinfo = mapper.channel_info.unwrap_or_else(|| {
+            warnings.push("no aboutFullMetadata".to_owned());
+            ChannelInfo {
+                create_date: None,
+                view_count: None,
+                links: Vec::new(),
             }
-            _ => {
-                warnings.push("no aboutFullMetadata".to_owned());
-                ChannelInfo {
-                    create_date: None,
-                    view_count: None,
-                    links: Vec::new(),
-                }
-            }
-        };
+        });
 
         Ok(MapResult {
             c: combine_channel_data(channel_data, cinfo),
@@ -406,7 +383,7 @@ fn map_channel(
 }
 
 struct MappedChannelContent {
-    content: response::channel::ChannelContent,
+    content: MapResult<Vec<response::YouTubeListItem>>,
     has_shorts: bool,
     has_live: bool,
 }
@@ -450,31 +427,19 @@ fn map_channel_content(
                 }
             }
 
-            let channel_content = tabs
-                .into_iter()
-                .filter_map(|tab| {
-                    let content = tab.tab_renderer.content;
-                    match (content.rich_grid_renderer, content.section_list_renderer) {
-                        (Some(rich_grid), _) => Some(ChannelContent::GridRenderer {
-                            items: rich_grid.contents,
-                        }),
-                        (None, Some(section_list)) => {
-                            let mut contents = section_list.contents;
-                            contents.try_swap_remove(0).and_then(|mut i| {
-                                i.item_section_renderer.contents.try_swap_remove(0)
-                            })
-                        }
-                        (None, None) => None,
-                    }
-                })
-                .next();
+            let channel_content = tabs.into_iter().find_map(|tab| {
+                tab.tab_renderer
+                    .content
+                    .rich_grid_renderer
+                    .or(tab.tab_renderer.content.section_list_renderer)
+            });
 
             let content = match channel_content {
-                Some(content) => content,
+                Some(list) => list.contents,
                 None => {
                     // YouTube may show the "Featured" tab if the requested tab is empty/does not exist
                     if featured_tab {
-                        response::channel::ChannelContent::None
+                        MapResult::default()
                     } else {
                         return Err(ExtractionError::InvalidData(Cow::Borrowed(
                             "could not extract content",

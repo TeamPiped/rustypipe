@@ -120,6 +120,7 @@ Channel(
     count: Some(0),
     items: [],
     ctoken: None,
+    visitor_data: Some("CgtCV1l2R2Rzb2ZSZyiu4a2ZBg%3D%3D"),
     endpoint: browse,
   ),
 )

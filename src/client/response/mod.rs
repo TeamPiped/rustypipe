@@ -53,6 +53,8 @@ use crate::error::ExtractionError;
 use crate::serializer::MapResult;
 use crate::serializer::{text::Text, VecLogError};
 
+use self::video_item::YouTubeListRenderer;
+
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct ContentRenderer<T> {
@@ -215,15 +217,7 @@ pub(crate) struct ContinuationAction {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct RichGridContinuationContents {
-    pub rich_grid_continuation: RichGridContinuation,
-}
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct RichGridContinuation {
-    #[serde_as(as = "VecLogError<_>")]
-    pub contents: MapResult<Vec<YouTubeListItem>>,
+    pub rich_grid_continuation: YouTubeListRenderer,
 }
 
 #[derive(Debug, Deserialize)]
