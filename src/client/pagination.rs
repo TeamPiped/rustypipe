@@ -1,8 +1,11 @@
 use std::borrow::Cow;
 
 use crate::error::{Error, ExtractionError};
-use crate::model::{Comment, FromYtItem, MusicItem, Paginator, PlaylistVideo, YouTubeItem};
-use crate::param::ContinuationEndpoint;
+use crate::model::{
+    paginator::{ContinuationEndpoint, Paginator},
+    traits::FromYtItem,
+    Comment, MusicItem, PlaylistVideo, YouTubeItem,
+};
 use crate::serializer::MapResult;
 use crate::util::TryRemove;
 
@@ -10,6 +13,7 @@ use super::response::music_item::{map_queue_item, MusicListMapper, PlaylistPanel
 use super::{response, ClientType, MapResponse, QContinuation, RustyPipeQuery};
 
 impl RustyPipeQuery {
+    /// Get more YouTube items from the given continuation token and endpoint
     pub async fn continuation<T: FromYtItem, S: AsRef<str>>(
         &self,
         ctoken: S,
@@ -174,6 +178,7 @@ impl MapResponse<Paginator<MusicItem>> for response::MusicContinuation {
 }
 
 impl<T: FromYtItem> Paginator<T> {
+    /// Get the next page from the paginator (or `None` if the paginator is exhausted)
     pub async fn next<Q: AsRef<RustyPipeQuery>>(&self, query: Q) -> Result<Option<Self>, Error> {
         Ok(match &self.ctoken {
             Some(ctoken) => Some(
@@ -186,6 +191,9 @@ impl<T: FromYtItem> Paginator<T> {
         })
     }
 
+    /// Extend the items of the paginator by the next page
+    ///
+    /// Returns false if the paginator is exhausted.
     pub async fn extend<Q: AsRef<RustyPipeQuery>>(&mut self, query: Q) -> Result<bool, Error> {
         match self.next(query).await {
             Ok(Some(paginator)) => {
@@ -199,6 +207,8 @@ impl<T: FromYtItem> Paginator<T> {
         }
     }
 
+    /// Extend the items of the paginator by the given amount of pages
+    /// or until the paginator is exhausted.
     pub async fn extend_pages<Q: AsRef<RustyPipeQuery>>(
         &mut self,
         query: Q,
@@ -215,6 +225,8 @@ impl<T: FromYtItem> Paginator<T> {
         Ok(())
     }
 
+    /// Extend the items of the paginator until the given amount of items
+    /// is reached or the paginator is exhausted.
     pub async fn extend_limit<Q: AsRef<RustyPipeQuery>>(
         &mut self,
         query: Q,
@@ -233,6 +245,7 @@ impl<T: FromYtItem> Paginator<T> {
 }
 
 impl Paginator<Comment> {
+    /// Get the next page from the paginator (or `None` if the paginator is exhausted)
     pub async fn next<Q: AsRef<RustyPipeQuery>>(&self, query: Q) -> Result<Option<Self>, Error> {
         Ok(match &self.ctoken {
             Some(ctoken) => Some(
@@ -247,6 +260,7 @@ impl Paginator<Comment> {
 }
 
 impl Paginator<PlaylistVideo> {
+    /// Get the next page from the paginator (or `None` if the paginator is exhausted)
     pub async fn next<Q: AsRef<RustyPipeQuery>>(&self, query: Q) -> Result<Option<Self>, Error> {
         Ok(match &self.ctoken {
             Some(ctoken) => Some(query.as_ref().playlist_continuation(ctoken).await?),
@@ -258,6 +272,9 @@ impl Paginator<PlaylistVideo> {
 macro_rules! paginator {
     ($entity_type:ty) => {
         impl Paginator<$entity_type> {
+            /// Extend the items of the paginator by the next page
+            ///
+            /// Returns false if the paginator is exhausted.
             pub async fn extend<Q: AsRef<RustyPipeQuery>>(
                 &mut self,
                 query: Q,
@@ -274,6 +291,8 @@ macro_rules! paginator {
                 }
             }
 
+            /// Extend the items of the paginator by the given amount of pages
+            /// or until the paginator is exhausted.
             pub async fn extend_pages<Q: AsRef<RustyPipeQuery>>(
                 &mut self,
                 query: Q,
@@ -290,6 +309,8 @@ macro_rules! paginator {
                 Ok(())
             }
 
+            /// Extend the items of the paginator until the given amount of items
+            /// is reached or the paginator is exhausted.
             pub async fn extend_limit<Q: AsRef<RustyPipeQuery>>(
                 &mut self,
                 query: Q,

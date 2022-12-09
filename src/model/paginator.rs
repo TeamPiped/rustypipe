@@ -1,8 +1,8 @@
+//! Wrapper model for progressively fetched items
+
 use std::convert::TryInto;
 
 use serde::{Deserialize, Serialize};
-
-use crate::param::ContinuationEndpoint;
 
 /// Wrapper around progressively fetched items
 ///
@@ -34,7 +34,7 @@ pub struct Paginator<T> {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub visitor_data: Option<String>,
     /// YouTube API endpoint to fetch continuations from
-    pub endpoint: ContinuationEndpoint,
+    pub(crate) endpoint: ContinuationEndpoint,
 }
 
 impl<T> Default for Paginator<T> {
@@ -46,6 +46,39 @@ impl<T> Default for Paginator<T> {
             visitor_data: None,
             endpoint: ContinuationEndpoint::Browse,
         }
+    }
+}
+
+/// YouTube API endpoint to fetch continuations from
+#[derive(Debug, Copy, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[serde(rename_all = "snake_case")]
+#[non_exhaustive]
+#[allow(missing_docs)]
+pub enum ContinuationEndpoint {
+    Browse,
+    Search,
+    Next,
+    MusicBrowse,
+    MusicSearch,
+    MusicNext,
+}
+
+impl ContinuationEndpoint {
+    pub(crate) fn as_str(self) -> &'static str {
+        match self {
+            ContinuationEndpoint::Browse | ContinuationEndpoint::MusicBrowse => "browse",
+            ContinuationEndpoint::Search | ContinuationEndpoint::MusicSearch => "search",
+            ContinuationEndpoint::Next | ContinuationEndpoint::MusicNext => "next",
+        }
+    }
+
+    pub(crate) fn is_music(self) -> bool {
+        matches!(
+            self,
+            ContinuationEndpoint::MusicBrowse
+                | ContinuationEndpoint::MusicSearch
+                | ContinuationEndpoint::MusicNext
+        )
     }
 }
 

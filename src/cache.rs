@@ -7,16 +7,31 @@ use std::{
 
 use log::error;
 
+/// RustyPipe has to cache some information fetched from YouTube: specifically
+/// the client versions and the JavaScript code used to deobfuscate the stream URLs.
+///
+/// This trait is used to abstract the cache storage behavior so you can store
+/// cache data in your preferred way (File, SQL, Redis, etc).
+///
+/// The cache is read when building the [`crate::client::RustyPipe`] client and updated
+/// whenever additional data is fetched.
 pub trait CacheStorage: Sync + Send {
+    /// Write the given string to the cache
     fn write(&self, data: &str);
+    /// Read the string from the cache
+    ///
+    /// Returns [`None`] when the cache is empty or the reading failed.
     fn read(&self) -> Option<String>;
 }
 
+/// [`CacheStorage`] implementation that writes the cache to a JSON file
+/// at the given location.
 pub struct FileStorage {
     path: PathBuf,
 }
 
 impl FileStorage {
+    /// Create a new JSON-file based cache storage
     pub fn new<P: AsRef<Path>>(path: P) -> Self {
         Self {
             path: path.as_ref().to_path_buf(),

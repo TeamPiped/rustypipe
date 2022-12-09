@@ -2,7 +2,7 @@ use std::borrow::Cow;
 
 use crate::{
     error::{Error, ExtractionError},
-    model::{AlbumId, ChannelId, MusicAlbum, MusicPlaylist, Paginator, TrackItem},
+    model::{paginator::Paginator, AlbumId, ChannelId, MusicAlbum, MusicPlaylist, TrackItem},
     serializer::MapResult,
     util::{self, TryRemove},
 };
@@ -16,6 +16,7 @@ use super::{
 };
 
 impl RustyPipeQuery {
+    /// Get a playlist from YouTube Music
     pub async fn music_playlist<S: AsRef<str>>(
         &self,
         playlist_id: S,
@@ -37,6 +38,7 @@ impl RustyPipeQuery {
         .await
     }
 
+    /// Get an album from YouTube Music
     pub async fn music_album<S: AsRef<str>>(&self, album_id: S) -> Result<MusicAlbum, Error> {
         let album_id = album_id.as_ref();
         let context = self.get_context(ClientType::DesktopMusic, true, None).await;
@@ -221,14 +223,14 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
                     map_res.c,
                     ctoken,
                     None,
-                    crate::param::ContinuationEndpoint::MusicBrowse,
+                    crate::model::paginator::ContinuationEndpoint::MusicBrowse,
                 ),
                 related_playlists: Paginator::new_ext(
                     None,
                     Vec::new(),
                     related_ctoken,
                     None,
-                    crate::param::ContinuationEndpoint::MusicBrowse,
+                    crate::model::paginator::ContinuationEndpoint::MusicBrowse,
                 ),
             },
             warnings: map_res.warnings,

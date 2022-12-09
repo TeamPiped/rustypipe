@@ -4,7 +4,7 @@ use serde::Serialize;
 
 use crate::{
     error::{Error, ExtractionError},
-    model::{ArtistId, Lyrics, MusicRelated, Paginator, TrackDetails, TrackItem},
+    model::{paginator::Paginator, ArtistId, Lyrics, MusicRelated, TrackDetails, TrackItem},
     param::Language,
     serializer::MapResult,
 };
@@ -37,6 +37,7 @@ struct QRadio<'a> {
 }
 
 impl RustyPipeQuery {
+    /// Get the metadata of a YouTube music track
     pub async fn music_details<S: AsRef<str>>(&self, video_id: S) -> Result<TrackDetails, Error> {
         let video_id = video_id.as_ref();
         let context = self.get_context(ClientType::DesktopMusic, true, None).await;
@@ -58,6 +59,9 @@ impl RustyPipeQuery {
         .await
     }
 
+    /// Get the lyrics of a YouTube music track
+    ///
+    /// The `lyrics_id` has to be obtained using [`RustyPipeQuery::music_details`].
     pub async fn music_lyrics<S: AsRef<str>>(&self, lyrics_id: S) -> Result<Lyrics, Error> {
         let lyrics_id = lyrics_id.as_ref();
         let context = self.get_context(ClientType::DesktopMusic, true, None).await;
@@ -76,6 +80,9 @@ impl RustyPipeQuery {
         .await
     }
 
+    /// Get related items (tracks, playlists, artists) to a YouTube Music track
+    ///
+    /// The `related_id` has to be obtained using [`RustyPipeQuery::music_details`].
     pub async fn music_related<S: AsRef<str>>(&self, related_id: S) -> Result<MusicRelated, Error> {
         let related_id = related_id.as_ref();
         let context = self.get_context(ClientType::DesktopMusic, true, None).await;
@@ -94,6 +101,9 @@ impl RustyPipeQuery {
         .await
     }
 
+    /// Get a YouTube Music radio (a dynamically generated playlist)
+    ///
+    /// The `radio_id` can be obtained using [`RustyPipeQuery::music_artist`] to get an artist's radio.
     pub async fn music_radio<S: AsRef<str>>(
         &self,
         radio_id: S,
@@ -122,6 +132,7 @@ impl RustyPipeQuery {
         .await
     }
 
+    /// Get a YouTube Music radio (a dynamically generated playlist) for a track
     pub async fn music_radio_track<S: AsRef<str>>(
         &self,
         video_id: S,
@@ -130,6 +141,7 @@ impl RustyPipeQuery {
             .await
     }
 
+    /// Get a YouTube Music radio (a dynamically generated playlist) for a playlist
     pub async fn music_radio_playlist<S: AsRef<str>>(
         &self,
         playlist_id: S,
@@ -263,7 +275,7 @@ impl MapResponse<Paginator<TrackItem>> for response::MusicDetails {
                 tracks,
                 ctoken,
                 None,
-                crate::param::ContinuationEndpoint::MusicNext,
+                crate::model::paginator::ContinuationEndpoint::MusicNext,
             ),
             warnings: content.contents.warnings,
         })

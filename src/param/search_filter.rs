@@ -1,13 +1,23 @@
+//! YouTube search filter
+
 use std::collections::BTreeSet;
 
 use crate::util::{self, ProtoBuilder};
 
+/// YouTube search filter
+///
+/// Allows you to filter YouTube's search results by
+/// item type, features (e.g. HD, 3D, Creative commons), upload date
+/// and length.
+///
+/// Additionally you can sort the search results by rating, upload date
+/// or view count.
 #[derive(Default, Debug)]
 pub struct SearchFilter {
     sort: Option<Order>,
     features: BTreeSet<Feature>,
     date: Option<UploadDate>,
-    entity: Option<Entity>,
+    item_type: Option<ItemType>,
     length: Option<Length>,
     verbatim: bool,
 }
@@ -61,9 +71,10 @@ pub enum UploadDate {
     Year = 5,
 }
 
-/// YouTube entity type to filter by
+/// YouTube item type to filter by
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum Entity {
+#[allow(missing_docs)]
+pub enum ItemType {
     Video = 1,
     Channel = 2,
     Playlist = 3,
@@ -81,6 +92,7 @@ pub enum Length {
 }
 
 impl SearchFilter {
+    /// Get a new [`SearchFilter`]
     pub fn new() -> Self {
         Self::default()
     }
@@ -122,14 +134,14 @@ impl SearchFilter {
     }
 
     /// Filter videos by entity type
-    pub fn entity(mut self, entity: Entity) -> Self {
-        self.entity = Some(entity);
+    pub fn item_type(mut self, entity: ItemType) -> Self {
+        self.item_type = Some(entity);
         self
     }
 
     /// Filter videos by entity type
-    pub fn entity_opt(mut self, entity: Option<Entity>) -> Self {
-        self.entity = entity;
+    pub fn item_type_opt(mut self, entity: Option<ItemType>) -> Self {
+        self.item_type = entity;
         self
     }
 
@@ -163,7 +175,7 @@ impl SearchFilter {
         if let Some(date) = self.date {
             filters.varint(1, date as u64);
         }
-        if let Some(entity) = self.entity {
+        if let Some(entity) = self.item_type {
             filters.varint(2, entity as u64);
         }
         if let Some(length) = self.length {
@@ -200,9 +212,9 @@ mod tests {
     use super::*;
 
     #[rstest]
-    #[case(SearchFilter::new().entity(Entity::Video), "EgIQAQ%253D%253D")]
-    #[case(SearchFilter::new().entity(Entity::Channel), "EgIQAg%253D%253D")]
-    #[case(SearchFilter::new().entity(Entity::Playlist), "EgIQAw%253D%253D")]
+    #[case(SearchFilter::new().item_type(ItemType::Video), "EgIQAQ%253D%253D")]
+    #[case(SearchFilter::new().item_type(ItemType::Channel), "EgIQAg%253D%253D")]
+    #[case(SearchFilter::new().item_type(ItemType::Playlist), "EgIQAw%253D%253D")]
     #[case(SearchFilter::new().date(UploadDate::Hour), "EgIIAQ%253D%253D")]
     #[case(SearchFilter::new().date(UploadDate::Day), "EgIIAg%253D%253D")]
     #[case(SearchFilter::new().date(UploadDate::Week), "EgIIAw%253D%253D")]

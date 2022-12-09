@@ -5,7 +5,7 @@ use time::OffsetDateTime;
 use crate::{
     deobfuscate::Deobfuscator,
     error::{Error, ExtractionError},
-    model::{ChannelId, Paginator, Playlist, PlaylistVideo},
+    model::{paginator::Paginator, ChannelId, Playlist, PlaylistVideo},
     param::Language,
     timeago,
     util::{self, TryRemove},
@@ -14,6 +14,7 @@ use crate::{
 use super::{response, ClientType, MapResponse, MapResult, QBrowse, QContinuation, RustyPipeQuery};
 
 impl RustyPipeQuery {
+    /// Get a YouTube playlist
     pub async fn playlist<S: AsRef<str>>(&self, playlist_id: S) -> Result<Playlist, Error> {
         let playlist_id = playlist_id.as_ref();
         let context = self.get_context(ClientType::Desktop, true, None).await;
@@ -32,6 +33,7 @@ impl RustyPipeQuery {
         .await
     }
 
+    /// Get more playlist items using the given continuation token
     pub async fn playlist_continuation<S: AsRef<str>>(
         &self,
         ctoken: S,

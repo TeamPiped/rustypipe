@@ -2,7 +2,7 @@ use std::borrow::Cow;
 
 use crate::{
     error::{Error, ExtractionError},
-    model::{Paginator, VideoItem},
+    model::{paginator::Paginator, VideoItem},
     param::Language,
     serializer::MapResult,
     util::TryRemove,
@@ -11,6 +11,7 @@ use crate::{
 use super::{response, ClientType, MapResponse, QBrowse, RustyPipeQuery};
 
 impl RustyPipeQuery {
+    /// Get the videos from the YouTube startpage
     pub async fn startpage(&self) -> Result<Paginator<VideoItem>, Error> {
         let context = self.get_context(ClientType::Desktop, true, None).await;
         let request_body = QBrowse {
@@ -28,6 +29,7 @@ impl RustyPipeQuery {
         .await
     }
 
+    /// Get the videos from the YouTube trending page
     pub async fn trending(&self) -> Result<Vec<VideoItem>, Error> {
         let context = self.get_context(ClientType::Desktop, true, None).await;
         let request_body = QBrowse {
@@ -110,7 +112,7 @@ fn map_startpage_videos(
             mapper.items,
             mapper.ctoken,
             visitor_data,
-            crate::param::ContinuationEndpoint::Browse,
+            crate::model::paginator::ContinuationEndpoint::Browse,
         ),
         warnings: mapper.warnings,
     }
@@ -124,7 +126,7 @@ mod tests {
 
     use crate::{
         client::{response, MapResponse},
-        model::{Paginator, VideoItem},
+        model::{paginator::Paginator, VideoItem},
         param::Language,
         serializer::MapResult,
     };

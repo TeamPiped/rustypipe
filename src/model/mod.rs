@@ -1,13 +1,13 @@
-//! YouTube API request and response models
+//! YouTube API response models
 
 mod convert;
 mod ordering;
-mod paginator;
+
+pub mod paginator;
 pub mod richtext;
 
-pub use convert::FromYtItem;
-pub use ordering::QualityOrd;
-pub use paginator::Paginator;
+pub mod traits;
+
 use serde_with::serde_as;
 
 use std::{collections::BTreeSet, ops::Range};
@@ -17,7 +17,7 @@ use time::{Date, OffsetDateTime};
 
 use crate::{error::Error, param::Country, serializer::DateYmd, util};
 
-use self::richtext::RichText;
+use self::{paginator::Paginator, richtext::RichText};
 
 /*
 #COMMON
@@ -38,10 +38,36 @@ pub struct Thumbnail {
 /// Entities extracted from a YouTube URL
 #[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
 pub enum UrlTarget {
-    Video { id: String, start_time: u32 },
-    Channel { id: String },
-    Playlist { id: String },
-    Album { id: String },
+    /// YouTube video
+    ///
+    /// Example: <youtube.com/watch?v=ZeerrnuLi5E>
+    Video {
+        /// Unique YouTube video ID
+        id: String,
+        /// Video start time in seconds
+        start_time: u32,
+    },
+    /// YouTube channel
+    ///
+    /// Example: <https://www.youtube.com/channel/UC2DjFE7Xf11URZqWBigcVOQ>
+    Channel {
+        /// Unique YouTube channel ID
+        id: String,
+    },
+    /// YouTube playlist
+    ///
+    /// Example: <https://www.youtube.com/playlist?list=PLKUA473MWUv2jmkqIxzQR3YL4kuPArj4G>
+    Playlist {
+        /// Unique YouTube playlist ID
+        id: String,
+    },
+    /// YouTube Music album
+    ///
+    /// Example: <https://music.youtube.com/browse/MPREb_nlBWQROfvjo>
+    Album {
+        /// Unique YouTube album ID
+        id: String,
+    },
 }
 
 impl ToString for UrlTarget {
@@ -51,10 +77,19 @@ impl ToString for UrlTarget {
 }
 
 impl UrlTarget {
+    /// Convert the URL target to a YouTube URL
+    ///
+    /// Is equivalent to `url_target.to_string()`
     pub fn to_url(&self) -> String {
         self.to_url_yt_host("https://www.youtube.com")
     }
 
+    /// Convert the URL target to a YouTube URL with a specified YouTube host.
+    ///
+    /// Used to redirect to alternative YouTube frontends like Piped or Invidious.
+    ///
+    /// **Note:** Music album URL targets are still converted to `music.youtube.com/browse/*`,
+    /// since these URLs are not supported by Piped or Invidious.
     pub fn to_url_yt_host(&self, yt_host: &str) -> String {
         match self {
             UrlTarget::Video { id, start_time, .. } => match start_time {
@@ -73,6 +108,7 @@ impl UrlTarget {
         }
     }
 
+    /// Validate the YouTube ID from the URL target
     pub(crate) fn validate(&self) -> Result<(), Error> {
         match self {
             UrlTarget::Video { id, .. } => {
@@ -106,11 +142,6 @@ impl UrlTarget {
 /*
 #PLAYER
 */
-
-pub trait FileFormat {
-    /// Get the file extension (".xyz") of the file format
-    fn extension(&self) -> &str;
-}
 
 /// Video player data
 #[derive(Clone, Debug, Serialize, Deserialize)]
@@ -172,13 +203,17 @@ pub struct VideoStream {
     pub url: String,
     /// YouTube stream format identifier
     pub itag: u32,
+    /// Stream bitrate (in bits/second)
     pub bitrate: u32,
+    /// Average stream bitrate (in bits/second)
     pub average_bitrate: u32,
     /// Video file size in bytes
     pub size: Option<u64>,
+    /// Index range (used for DASH streaming)
     pub index_range: Option<Range<u32>>,
+    /// Init range (used for DASH streaming)
     pub init_range: Option<Range<u32>>,
-    // Video duration in milliseconds
+    /// Video duration in milliseconds
     pub duration_ms: Option<u32>,
     /// Video width in pixels
     pub width: u32,
@@ -209,13 +244,17 @@ pub struct AudioStream {
     pub url: String,
     /// YouTube stream format identifier
     pub itag: u32,
+    /// Stream bitrate (in bits/second)
     pub bitrate: u32,
+    /// Average stream bitrate (in bits/second)
     pub average_bitrate: u32,
     /// Audio file size in bytes
     pub size: u64,
+    /// Index range (used for DASH streaming)
     pub index_range: Option<Range<u32>>,
+    /// Init range (used for DASH streaming)
     pub init_range: Option<Range<u32>>,
-    // Audio duration in milliseconds
+    /// Audio duration in milliseconds
     pub duration_ms: Option<u32>,
     /// MIME file type
     pub mime: String,
@@ -241,94 +280,6 @@ pub struct AudioStream {
     pub track: Option<AudioTrack>,
 }
 
-pub trait YtStream {
-    fn url(&self) -> &str;
-    fn itag(&self) -> u32;
-    fn bitrate(&self) -> u32;
-    fn averate_bitrate(&self) -> u32;
-    fn size(&self) -> Option<u64>;
-    fn index_range(&self) -> Option<Range<u32>>;
-    fn init_range(&self) -> Option<Range<u32>>;
-    fn duration_ms(&self) -> Option<u32>;
-    fn mime(&self) -> &str;
-}
-
-impl YtStream for VideoStream {
-    fn url(&self) -> &str {
-        &self.url
-    }
-
-    fn itag(&self) -> u32 {
-        self.itag
-    }
-
-    fn bitrate(&self) -> u32 {
-        self.bitrate
-    }
-
-    fn averate_bitrate(&self) -> u32 {
-        self.average_bitrate
-    }
-
-    fn size(&self) -> Option<u64> {
-        self.size
-    }
-
-    fn index_range(&self) -> Option<Range<u32>> {
-        self.index_range.clone()
-    }
-
-    fn init_range(&self) -> Option<Range<u32>> {
-        self.init_range.clone()
-    }
-
-    fn duration_ms(&self) -> Option<u32> {
-        self.duration_ms
-    }
-
-    fn mime(&self) -> &str {
-        &self.mime
-    }
-}
-
-impl YtStream for AudioStream {
-    fn url(&self) -> &str {
-        &self.url
-    }
-
-    fn itag(&self) -> u32 {
-        self.itag
-    }
-
-    fn bitrate(&self) -> u32 {
-        self.bitrate
-    }
-
-    fn averate_bitrate(&self) -> u32 {
-        self.average_bitrate
-    }
-
-    fn size(&self) -> Option<u64> {
-        Some(self.size)
-    }
-
-    fn index_range(&self) -> Option<Range<u32>> {
-        self.index_range.clone()
-    }
-
-    fn init_range(&self) -> Option<Range<u32>> {
-        self.init_range.clone()
-    }
-
-    fn duration_ms(&self) -> Option<u32> {
-        self.duration_ms
-    }
-
-    fn mime(&self) -> &str {
-        &self.mime
-    }
-}
-
 /// Video codec
 #[derive(
     Default, Copy, Clone, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash,
@@ -336,6 +287,7 @@ impl YtStream for AudioStream {
 #[serde(rename_all = "snake_case")]
 #[non_exhaustive]
 pub enum VideoCodec {
+    /// Unknown codec
     #[default]
     Unknown,
     /// MPEG-4 Part 14 <https://en.wikipedia.org/wiki/MPEG-4_Part_14>
@@ -355,6 +307,7 @@ pub enum VideoCodec {
 #[serde(rename_all = "snake_case")]
 #[non_exhaustive]
 pub enum AudioCodec {
+    /// Unknown codec
     #[default]
     Unknown,
     /// MP4A aka AAC: <https://en.wikipedia.org/wiki/Advanced_Audio_Coding>
@@ -396,16 +349,6 @@ pub struct AudioTrack {
     pub is_default: bool,
 }
 
-impl FileFormat for VideoFormat {
-    fn extension(&self) -> &str {
-        match self {
-            VideoFormat::ThreeGp => ".3gp",
-            VideoFormat::Mp4 => ".mp4",
-            VideoFormat::Webm => ".webm",
-        }
-    }
-}
-
 /// Audio file type
 #[derive(Copy, Clone, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[serde(rename_all = "snake_case")]
@@ -415,15 +358,6 @@ pub enum AudioFormat {
     M4a,
     /// `*.webm`
     Webm,
-}
-
-impl FileFormat for AudioFormat {
-    fn extension(&self) -> &str {
-        match self {
-            AudioFormat::M4a => ".m4a",
-            AudioFormat::Webm => ".webm",
-        }
-    }
 }
 
 /// YouTube provides subtitles in different formats.
@@ -1023,7 +957,9 @@ pub struct ArtistItem {
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[non_exhaustive]
 pub struct ArtistId {
+    /// Unique YouTube channel ID
     pub id: Option<String>,
+    /// Artist name
     pub name: String,
 }
 
@@ -1203,10 +1139,12 @@ pub struct MusicSearchResult {
     pub corrected_query: Option<String>,
     /// Order of the item sections of the search page, starting with
     /// the most relevant.
-    pub order: Vec<MusicEntityType>,
+    pub order: Vec<MusicItemType>,
 }
 
+/// Generic YouTube Music item
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[allow(missing_docs)]
 pub enum MusicItem {
     Track(TrackItem),
     Album(AlbumItem),
@@ -1214,18 +1152,21 @@ pub enum MusicItem {
     Playlist(MusicPlaylistItem),
 }
 
+/// YouTube Music item type
 #[derive(Debug, Copy, Clone, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
-pub enum MusicEntityType {
+#[allow(missing_docs)]
+pub enum MusicItemType {
     Track,
     Album,
     Artist,
     Playlist,
 }
 
-/// Filtered YouTube Music search result
+/// Filtered YouTube Music search result (one item type)
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[non_exhaustive]
 pub struct MusicSearchFiltered<T> {
+    /// Search items
     pub items: Paginator<T>,
     /// Corrected search query
     ///
@@ -1239,8 +1180,11 @@ pub struct MusicSearchFiltered<T> {
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[non_exhaustive]
 pub struct TrackDetails {
+    /// Track metadata
     pub track: TrackItem,
+    /// ID to fetch lyrics
     pub lyrics_id: Option<String>,
+    /// ID to fetch related tracks
     pub related_id: Option<String>,
 }
 
@@ -1254,7 +1198,7 @@ pub struct Lyrics {
     pub footer: String,
 }
 
-/// YouTube Music entities related to a track
+/// YouTube Music items related to a track
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[non_exhaustive]
 pub struct MusicRelated {

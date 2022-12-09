@@ -5,7 +5,7 @@ use url::Url;
 
 use crate::{
     error::{Error, ExtractionError},
-    model::{Channel, ChannelInfo, Paginator, PlaylistItem, VideoItem, YouTubeItem},
+    model::{paginator::Paginator, Channel, ChannelInfo, PlaylistItem, VideoItem, YouTubeItem},
     param::Language,
     serializer::MapResult,
     util,
@@ -66,6 +66,7 @@ impl RustyPipeQuery {
         .await
     }
 
+    /// Get the videos from a YouTube channel
     pub async fn channel_videos<S: AsRef<str>>(
         &self,
         channel_id: S,
@@ -74,6 +75,7 @@ impl RustyPipeQuery {
             .await
     }
 
+    /// Get the short videos from a YouTube channel
     pub async fn channel_shorts<S: AsRef<str>>(
         &self,
         channel_id: S,
@@ -82,6 +84,7 @@ impl RustyPipeQuery {
             .await
     }
 
+    /// Get the livestreams from a YouTube channel
     pub async fn channel_livestreams<S: AsRef<str>>(
         &self,
         channel_id: S,
@@ -90,6 +93,7 @@ impl RustyPipeQuery {
             .await
     }
 
+    /// Search the videos of a channel
     pub async fn channel_search<S: AsRef<str>, S2: AsRef<str>>(
         &self,
         channel_id: S,
@@ -104,6 +108,7 @@ impl RustyPipeQuery {
         .await
     }
 
+    /// Get the playlists of a channel
     pub async fn channel_playlists<S: AsRef<str>>(
         &self,
         channel_id: S,
@@ -127,6 +132,7 @@ impl RustyPipeQuery {
         .await
     }
 
+    /// Get additional metadata from the *About* tab of a channel
     pub async fn channel_info<S: AsRef<str>>(
         &self,
         channel_id: S,
@@ -181,7 +187,7 @@ impl MapResponse<Channel<Paginator<VideoItem>>> for response::Channel {
             mapper.items,
             mapper.ctoken,
             self.response_context.visitor_data,
-            crate::param::ContinuationEndpoint::Browse,
+            crate::model::paginator::ContinuationEndpoint::Browse,
         );
 
         Ok(MapResult {
@@ -487,7 +493,7 @@ mod tests {
 
     use crate::{
         client::{response, MapResponse},
-        model::{Channel, ChannelInfo, Paginator, PlaylistItem, VideoItem},
+        model::{paginator::Paginator, Channel, ChannelInfo, PlaylistItem, VideoItem},
         param::Language,
         serializer::MapResult,
     };

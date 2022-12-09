@@ -26,6 +26,9 @@ struct QBrowseParams<'a> {
 }
 
 impl RustyPipeQuery {
+    /// Get a YouTube Music artist page
+    ///
+    /// Set `all_albums` to [`true`] if you want to fetch the albums behind the *More* buttons, too.
     pub async fn music_artist<S: AsRef<str>>(
         &self,
         artist_id: S,

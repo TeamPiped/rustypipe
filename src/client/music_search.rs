@@ -6,8 +6,8 @@ use crate::{
     client::response::music_item::MusicListMapper,
     error::{Error, ExtractionError},
     model::{
-        AlbumItem, ArtistItem, FromYtItem, MusicPlaylistItem, MusicSearchFiltered,
-        MusicSearchResult, Paginator, TrackItem,
+        paginator::Paginator, traits::FromYtItem, AlbumItem, ArtistItem, MusicPlaylistItem,
+        MusicSearchFiltered, MusicSearchResult, TrackItem,
     },
     serializer::MapResult,
     util::TryRemove,
@@ -50,6 +50,7 @@ enum Params {
 }
 
 impl RustyPipeQuery {
+    /// Search YouTube Music. Returns items from any type.
     pub async fn music_search<S: AsRef<str>>(&self, query: S) -> Result<MusicSearchResult, Error> {
         let query = query.as_ref();
         let context = self.get_context(ClientType::DesktopMusic, true, None).await;
@@ -69,6 +70,7 @@ impl RustyPipeQuery {
         .await
     }
 
+    /// Search YouTube Music tracks
     pub async fn music_search_tracks<S: AsRef<str>>(
         &self,
         query: S,
@@ -76,6 +78,7 @@ impl RustyPipeQuery {
         self._music_search_tracks(query, Params::Tracks).await
     }
 
+    /// Search YouTube Music videos
     pub async fn music_search_videos<S: AsRef<str>>(
         &self,
         query: S,
@@ -106,6 +109,7 @@ impl RustyPipeQuery {
         .await
     }
 
+    /// Search YouTube Music albums
     pub async fn music_search_albums<S: AsRef<str>>(
         &self,
         query: S,
@@ -128,6 +132,7 @@ impl RustyPipeQuery {
         .await
     }
 
+    /// Search YouTube Music artists
     pub async fn music_search_artists(
         &self,
         query: &str,
@@ -149,6 +154,7 @@ impl RustyPipeQuery {
         .await
     }
 
+    /// Search YouTube Music playlists
     pub async fn music_search_playlists<S: AsRef<str>>(
         &self,
         query: S,
@@ -156,6 +162,8 @@ impl RustyPipeQuery {
         self._music_search_playlists(query, Params::Playlists).await
     }
 
+    /// Search YouTube Music playlists that were created by users
+    /// (`community=true`) or by YouTube Music (`community=false`)
     pub async fn music_search_playlists_filter<S: AsRef<str>>(
         &self,
         query: S,
@@ -194,6 +202,7 @@ impl RustyPipeQuery {
         .await
     }
 
+    /// Get YouTube Music search suggestions
     pub async fn music_search_suggestion<S: AsRef<str>>(
         &self,
         query: S,
@@ -316,7 +325,7 @@ impl<T: FromYtItem> MapResponse<MusicSearchFiltered<T>> for response::MusicSearc
                     map_res.c,
                     ctoken,
                     None,
-                    crate::param::ContinuationEndpoint::MusicSearch,
+                    crate::model::paginator::ContinuationEndpoint::MusicSearch,
                 ),
                 corrected_query,
             },

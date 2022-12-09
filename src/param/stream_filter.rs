@@ -3,10 +3,11 @@
 use std::cmp::Ordering;
 
 use crate::model::{
-    AudioCodec, AudioFormat, AudioStream, QualityOrd, VideoCodec, VideoFormat, VideoPlayer,
+    traits::QualityOrd, AudioCodec, AudioFormat, AudioStream, VideoCodec, VideoFormat, VideoPlayer,
     VideoStream,
 };
 
+/// The StreamFilter is used for selecting audio/video streams from an extracted video
 #[derive(Debug, Default, Clone)]
 pub struct StreamFilter<'a> {
     audio_max_bitrate: Option<u32>,
@@ -229,6 +230,7 @@ impl<'a> StreamFilter<'a> {
 }
 
 impl VideoPlayer {
+    /// Select the audio stream which is the best match for the given [`StreamFilter`]
     pub fn select_audio_stream(&self, filter: &StreamFilter) -> Option<&AudioStream> {
         let mut fallback: Option<&AudioStream> = None;
 
@@ -282,14 +284,17 @@ impl VideoPlayer {
             .or(fallback)
     }
 
+    /// Select the video stream which is the best match for the given [`StreamFilter`]
     pub fn select_video_stream(&self, filter: &StreamFilter) -> Option<&VideoStream> {
         Self::_select_video_stream(&self.video_streams, filter)
     }
 
+    /// Select the video-only stream which is the best match for the given [`StreamFilter`]
     pub fn select_video_only_stream(&self, filter: &StreamFilter) -> Option<&VideoStream> {
         Self::_select_video_stream(&self.video_only_streams, filter)
     }
 
+    /// Select a video and audio stream which is the best match for the given [`StreamFilter`]
     pub fn select_video_audio_stream(
         &self,
         filter: &StreamFilter,

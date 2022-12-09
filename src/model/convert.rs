@@ -3,10 +3,19 @@ use super::{
     MusicPlaylistItem, PlaylistItem, TrackItem, VideoItem, YouTubeItem,
 };
 
+/// Trait for casting generic YouTube/YouTube music items to a specific kind.
+///
+/// Returns [`None`] if the item does not match.
 pub trait FromYtItem: Sized {
+    /// Casting from a generic YouTube item to a specific kind
+    ///
+    /// Returns [`None`] if the item does not match.
     fn from_yt_item(_item: YouTubeItem) -> Option<Self> {
         None
     }
+    /// Casting from a generic YouTube Music item to a specific kind
+    ///
+    /// Returns [`None`] if the item does not match.
     fn from_ytm_item(_item: MusicItem) -> Option<Self> {
         None
     }

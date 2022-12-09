@@ -12,7 +12,7 @@ use rand::Rng;
 use regex::Regex;
 use reqwest::{header, Client};
 use rustypipe::{
-    model::{AudioCodec, FileFormat, VideoCodec, VideoPlayer},
+    model::{traits::FileFormat, AudioCodec, VideoCodec, VideoPlayer},
     param::StreamFilter,
 };
 use tokio::{

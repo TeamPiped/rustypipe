@@ -4,7 +4,13 @@ use crate::model::AudioCodec;
 
 use super::{AudioStream, VideoStream};
 
+/// Trait for ordering YouTube video/audio streams by quality
+///
+/// analogous to [`std::cmp::Ord`]
 pub trait QualityOrd {
+    /// Compare two streams by quality
+    ///
+    /// analogous to [`std::cmp::Ord::cmp`]
     fn quality_cmp(&self, other: &Self) -> Ordering;
 }
 

@@ -3,12 +3,13 @@ use std::borrow::Cow;
 use crate::{
     client::response::music_item::MusicListMapper,
     error::{Error, ExtractionError},
-    model::{AlbumItem, FromYtItem, TrackItem},
+    model::{traits::FromYtItem, AlbumItem, TrackItem},
 };
 
 use super::{response, ClientType, MapResponse, QBrowse, RustyPipeQuery};
 
 impl RustyPipeQuery {
+    /// Get the new albums that were released on YouTube Music
     pub async fn music_new_albums(&self) -> Result<Vec<AlbumItem>, Error> {
         let context = self.get_context(ClientType::DesktopMusic, true, None).await;
         let request_body = QBrowse {
@@ -26,6 +27,7 @@ impl RustyPipeQuery {
         .await
     }
 
+    /// Get the new music videos that were released on YouTube Music
     pub async fn music_new_videos(&self) -> Result<Vec<TrackItem>, Error> {
         let context = self.get_context(ClientType::DesktopMusic, true, None).await;
         let request_body = QBrowse {

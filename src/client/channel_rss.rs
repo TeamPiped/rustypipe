@@ -9,6 +9,12 @@ use crate::{
 use super::{response, RustyPipeQuery};
 
 impl RustyPipeQuery {
+    /// Get the 15 latest videos from the channel's RSS feed
+    ///
+    /// Example: <https://www.youtube.com/feeds/videos.xml?channel_id=UC2DjFE7Xf11URZqWBigcVOQ>
+    ///
+    /// Fetching RSS feeds is a lot faster than querying the InnerTube API, so this method is great
+    /// for checking a lot of channels or implementing a subscription feed.
     pub async fn channel_rss<S: AsRef<str>>(&self, channel_id: S) -> Result<ChannelRss, Error> {
         let url = format!(
             "https://www.youtube.com/feeds/videos.xml?channel_id={}",

@@ -20,6 +20,39 @@ struct QResolveUrl<'a> {
 }
 
 impl RustyPipeQuery {
+    /// Resolve the given YouTube URL and return its associated URL target.
+    ///
+    /// Note that the hostname of the URL is not checked, so this function also accepts URLs
+    /// from alternative YouTube frontends like Piped or Invidious.
+    ///
+    /// # Examples
+    /// ```
+    /// # use rustypipe::client::RustyPipe;
+    /// # use rustypipe::model::UrlTarget;
+    /// # let rp = RustyPipe::new();
+    /// # tokio_test::block_on(async {
+    /// // Channel
+    /// assert_eq!(
+    ///     rp.query().resolve_url("https://www.youtube.com/LinusTechTips", true).await.unwrap(),
+    ///     UrlTarget::Channel {id: "UCXuqSBlHAE6Xw-yeJA0Tunw".to_owned()}
+    /// );
+    /// // Video
+    /// assert_eq!(
+    ///     rp.query().resolve_url("https://youtu.be/dQw4w9WgXcQ", true).await.unwrap(),
+    ///     UrlTarget::Video {id: "dQw4w9WgXcQ".to_owned(), start_time: 0}
+    /// );
+    /// // Album
+    /// // You can choose whether album URLs should be resolved to their album id or returned as playlists
+    /// assert_eq!(
+    ///     rp.query().resolve_url("https://music.youtube.com/playlist?list=OLAK5uy_k0yFrZlFRgCf3rLPza-lkRmCrtLPbK9pE", true).await.unwrap(),
+    ///     UrlTarget::Album {id: "MPREb_GyH43gCvdM5".to_owned()}
+    /// );
+    /// assert_eq!(
+    ///     rp.query().resolve_url("https://music.youtube.com/playlist?list=OLAK5uy_k0yFrZlFRgCf3rLPza-lkRmCrtLPbK9pE", false).await.unwrap(),
+    ///     UrlTarget::Playlist {id: "OLAK5uy_k0yFrZlFRgCf3rLPza-lkRmCrtLPbK9pE".to_owned()}
+    /// );
+    /// # });
+    /// ```
     pub async fn resolve_url<S: AsRef<str>>(
         self,
         url: S,
@@ -161,6 +194,29 @@ impl RustyPipeQuery {
         Ok(target)
     }
 
+    /// Resolve an input string and return a YouTube URL target
+    ///
+    /// Accepted input strings include YouTube URLs (see [`RustyPipeQuery::resolve_url`]),
+    /// Video/Channel/Playlist/Album IDs and channel handles / vanity IDs.
+    ///
+    /// # Examples
+    /// ```
+    /// # use rustypipe::client::RustyPipe;
+    /// # use rustypipe::model::UrlTarget;
+    /// # let rp = RustyPipe::new();
+    /// # tokio_test::block_on(async {
+    /// // Channel
+    /// assert_eq!(
+    ///     rp.query().resolve_string("LinusTechTips", true).await.unwrap(),
+    ///     UrlTarget::Channel {id: "UCXuqSBlHAE6Xw-yeJA0Tunw".to_owned()}
+    /// );
+    /// //
+    /// assert_eq!(
+    ///     rp.query().resolve_string("PL4lEESSgxM_5O81EvKCmBIm_JT5Q7JeaI", true).await.unwrap(),
+    ///     UrlTarget::Playlist {id: "PL4lEESSgxM_5O81EvKCmBIm_JT5Q7JeaI".to_owned()}
+    /// );
+    /// # });
+    /// ```
     pub async fn resolve_string(
         self,
         string: &str,

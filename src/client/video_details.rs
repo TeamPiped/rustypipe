@@ -4,7 +4,7 @@ use serde::Serialize;
 
 use crate::{
     error::{Error, ExtractionError},
-    model::{ChannelTag, Chapter, Comment, Paginator, VideoDetails, VideoItem},
+    model::{paginator::Paginator, ChannelTag, Chapter, Comment, VideoDetails, VideoItem},
     param::Language,
     serializer::MapResult,
     timeago,
@@ -28,6 +28,7 @@ struct QVideo<'a> {
 }
 
 impl RustyPipeQuery {
+    /// Get the metadata for a video
     pub async fn video_details(&self, video_id: &str) -> Result<VideoDetails, Error> {
         let context = self.get_context(ClientType::Desktop, true, None).await;
         let request_body = QVideo {
@@ -47,6 +48,7 @@ impl RustyPipeQuery {
         .await
     }
 
+    /// Get the comments for a video using the continuation token obtained from `rusty_pipe_query.video_details()`
     pub async fn video_comments(
         &self,
         ctoken: &str,
@@ -339,14 +341,14 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                     Vec::new(),
                     comment_ctoken,
                     visitor_data.clone(),
-                    crate::param::ContinuationEndpoint::Next,
+                    crate::model::paginator::ContinuationEndpoint::Next,
                 ),
                 latest_comments: Paginator::new_ext(
                     comment_count,
                     Vec::new(),
                     latest_comments_ctoken,
                     visitor_data.clone(),
-                    crate::param::ContinuationEndpoint::Next,
+                    crate::model::paginator::ContinuationEndpoint::Next,
                 ),
                 visitor_data,
             },
@@ -437,7 +439,7 @@ fn map_recommendations(
             mapper.items,
             mapper.ctoken,
             visitor_data,
-            crate::param::ContinuationEndpoint::Next,
+            crate::model::paginator::ContinuationEndpoint::Next,
         ),
         warnings: mapper.warnings,
     }

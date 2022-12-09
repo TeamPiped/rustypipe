@@ -48,20 +48,26 @@ use crate::{
 ///
 /// There are multiple clients for accessing the YouTube API which have
 /// slightly different features
-///
-/// - **Desktop**: used by youtube.com
-/// - **DesktopMusic**: used by music.youtube.com, can access special music data,
-///   cannot access non-music content
-/// - **TvHtml5Embed**: used by Smart TVs, can access age-restricted videos
-/// - **Android**: used by the Android app, no obfuscated URLs, includes lower resolution audio streams
-/// - **Ios**: used by the iOS app, no obfuscated URLs
 #[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq, Eq, Hash)]
 #[serde(rename_all = "snake_case")]
 pub enum ClientType {
+    /// Client used by youtube.com
     Desktop,
+    /// Client used by music.youtube.com
+    ///
+    /// can access YTM-specific data, cannot access non-music content
     DesktopMusic,
+    /// used by Smart TVs
+    ///
+    /// can access age-restricted videos, cannot access non-embeddable videos
     TvHtml5Embed,
+    /// used by the Android app
+    ///
+    /// no obfuscated stream URLs, includes lower resolution audio streams
     Android,
+    /// used by the iOS app
+    ///
+    /// no obfuscated stream URLs
     Ios,
 }
 
@@ -74,6 +80,7 @@ impl ClientType {
     }
 }
 
+/// YouTube context request parameter
 #[derive(Clone, Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct YTContext<'a> {
@@ -204,6 +211,7 @@ struct RustyPipeOpts {
     visitor_data: Option<String>,
 }
 
+/// Builder to construct a new RustyPipe client
 pub struct RustyPipeBuilder {
     storage: Option<Box<dyn CacheStorage>>,
     reporter: Option<Box<dyn Reporter>>,
@@ -212,6 +220,10 @@ pub struct RustyPipeBuilder {
     default_opts: RustyPipeOpts,
 }
 
+/// RustyPipe query object
+///
+/// Contains a reference to the RustyPipe client as well as query-specific
+/// options (e.g. language preference).
 #[derive(Clone)]
 pub struct RustyPipeQuery {
     client: RustyPipe,
@@ -257,7 +269,7 @@ enum CacheEntry<T> {
 }
 
 #[derive(Debug, Default, Clone, Serialize, Deserialize, PartialEq, Eq)]
-pub struct ClientData {
+struct ClientData {
     pub version: String,
 }
 

@@ -3,8 +3,8 @@ use serde_with::{rust::deserialize_ignore_any, serde_as, DefaultOnError, VecSkip
 
 use crate::{
     model::{
-        self, AlbumId, AlbumItem, AlbumType, ArtistId, ArtistItem, ChannelId, FromYtItem,
-        MusicEntityType, MusicItem, MusicPlaylistItem, TrackItem,
+        self, traits::FromYtItem, AlbumId, AlbumItem, AlbumType, ArtistId, ArtistItem, ChannelId,
+        MusicItem, MusicItemType, MusicPlaylistItem, TrackItem,
     },
     param::Language,
     serializer::{
@@ -465,7 +465,7 @@ impl MusicListMapper {
         }
     }
 
-    fn map_item(&mut self, item: MusicResponseItem) -> Result<Option<MusicEntityType>, String> {
+    fn map_item(&mut self, item: MusicResponseItem) -> Result<Option<MusicItemType>, String> {
         match item {
             // List item
             MusicResponseItem::MusicResponsiveListItemRenderer(item) => {
@@ -636,7 +636,7 @@ impl MusicListMapper {
                             is_video,
                             track_nr,
                         }));
-                        Ok(Some(MusicEntityType::Track))
+                        Ok(Some(MusicItemType::Track))
                     }
                     // Artist / Album / Playlist
                     Some((page_type, id)) => {
@@ -666,7 +666,7 @@ impl MusicListMapper {
                                     avatar: item.thumbnail.into(),
                                     subscriber_count,
                                 }));
-                                Ok(Some(MusicEntityType::Artist))
+                                Ok(Some(MusicItemType::Artist))
                             }
                             MusicPageType::Album => {
                                 let album_type = subtitle_p1
@@ -690,7 +690,7 @@ impl MusicListMapper {
                                     year,
                                     by_va,
                                 }));
-                                Ok(Some(MusicEntityType::Album))
+                                Ok(Some(MusicItemType::Album))
                             }
                             MusicPageType::Playlist => {
                                 // Part 1 may be the "Playlist" label
@@ -717,7 +717,7 @@ impl MusicListMapper {
                                     track_count,
                                     from_ytm,
                                 }));
-                                Ok(Some(MusicEntityType::Playlist))
+                                Ok(Some(MusicItemType::Playlist))
                             }
                             MusicPageType::None => {
                                 // There may be broken YT channels from the artist search. They can be skipped.
@@ -762,7 +762,7 @@ impl MusicListMapper {
                                 is_video,
                                 track_nr: None,
                             }));
-                            Ok(Some(MusicEntityType::Track))
+                            Ok(Some(MusicItemType::Track))
                         }
                         MusicPageType::Artist => {
                             let subscriber_count = subtitle_p1
@@ -774,7 +774,7 @@ impl MusicListMapper {
                                 avatar: item.thumbnail_renderer.into(),
                                 subscriber_count,
                             }));
-                            Ok(Some(MusicEntityType::Artist))
+                            Ok(Some(MusicItemType::Artist))
                         }
                         MusicPageType::Album => {
                             let mut year = None;
@@ -818,7 +818,7 @@ impl MusicListMapper {
                                 year,
                                 by_va,
                             }));
-                            Ok(Some(MusicEntityType::Album))
+                            Ok(Some(MusicItemType::Album))
                         }
                         MusicPageType::Playlist => {
                             // When the playlist subtitle has only 1 part, it is a playlist from YT Music
@@ -841,7 +841,7 @@ impl MusicListMapper {
                                 track_count,
                                 from_ytm,
                             }));
-                            Ok(Some(MusicEntityType::Playlist))
+                            Ok(Some(MusicItemType::Playlist))
                         }
                         MusicPageType::None => Ok(None),
                     },
@@ -854,7 +854,7 @@ impl MusicListMapper {
     pub fn map_response(
         &mut self,
         mut res: MapResult<Vec<MusicResponseItem>>,
-    ) -> Option<MusicEntityType> {
+    ) -> Option<MusicItemType> {
         let mut etype = None;
         self.warnings.append(&mut res.warnings);
         res.c

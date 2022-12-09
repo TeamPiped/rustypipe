@@ -30,7 +30,9 @@ use crate::{
 /// Example: "14 hours ago" => `TimeAgo {n: 14, unit: TimeUnit::Hour}`
 #[derive(Debug, Copy, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub struct TimeAgo {
+    /// Number of time units
     pub n: u8,
+    /// Time unit
     pub unit: TimeUnit,
 }
 
@@ -42,12 +44,20 @@ pub struct TimeAgo {
 /// - "2 months ago" => `ParsedDate::Relative(TimeAgo {n: 2, unit: TimeUnit::Month})`
 #[derive(Debug, Copy, Clone, PartialEq, Eq)]
 pub enum ParsedDate {
+    /// Absolute date
+    ///
+    /// Example: "Jul 2, 2014"
     Absolute(Date),
+    /// Relative date
+    ///
+    /// Example: "2 months ago"
     Relative(TimeAgo),
 }
 
+/// Parsed time unit
 #[derive(Debug, Copy, Clone, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[serde(rename_all = "lowercase")]
+#[allow(missing_docs)]
 pub enum TimeUnit {
     Second,
     Minute,

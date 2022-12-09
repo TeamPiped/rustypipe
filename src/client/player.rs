@@ -12,7 +12,7 @@ use crate::{
     deobfuscate::Deobfuscator,
     error::{DeobfError, Error, ExtractionError},
     model::{
-        AudioCodec, AudioFormat, AudioStream, AudioTrack, ChannelId, QualityOrd, Subtitle,
+        traits::QualityOrd, AudioCodec, AudioFormat, AudioStream, AudioTrack, ChannelId, Subtitle,
         VideoCodec, VideoFormat, VideoPlayer, VideoPlayerDetails, VideoStream,
     },
     param::Language,
@@ -58,6 +58,7 @@ struct QContentPlaybackContext {
 }
 
 impl RustyPipeQuery {
+    /// Get YouTube player data (video/audio streams + basic metadata)
     pub async fn player<S: AsRef<str>>(&self, video_id: S) -> Result<VideoPlayer, Error> {
         let video_id = video_id.as_ref();
         let q1 = self.clone();
@@ -86,6 +87,7 @@ impl RustyPipeQuery {
         }
     }
 
+    /// Get YouTube player data (video/audio streams + basic metadata) using the specified client
     pub async fn player_from_client<S: AsRef<str>>(
         &self,
         video_id: S,

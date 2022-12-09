@@ -6,19 +6,31 @@ use crate::util;
 
 use super::UrlTarget;
 
+/// Text content with links
 #[derive(Default, Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[non_exhaustive]
 pub struct RichText(pub Vec<TextComponent>);
 
+/// Text component forming a [`RichText`] object
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[non_exhaustive]
 pub enum TextComponent {
     /// Plain text
     Text(String),
     /// Web link
-    Web { text: String, url: String },
-    /// Link to a YouTube entity
-    YouTube { text: String, target: UrlTarget },
+    Web {
+        /// Link text
+        text: String,
+        /// Link URL
+        url: String,
+    },
+    /// Link to a YouTube item
+    YouTube {
+        /// Link text
+        text: String,
+        /// YouTube URL target
+        target: UrlTarget,
+    },
 }
 
 /// Trait for converting rich text to plain text.
@@ -46,6 +58,7 @@ pub trait ToHtml {
 }
 
 impl TextComponent {
+    /// Get the text from the component
     pub fn get_text(&self) -> &str {
         match self {
             TextComponent::Text(text) => text,
@@ -54,9 +67,12 @@ impl TextComponent {
         }
     }
 
+    /// Get the link URL from the component
+    ///
+    /// Returns an empty string if the component is not a link.
     pub fn get_url(&self, yt_host: &str) -> String {
         match self {
-            TextComponent::Text(_) => "".to_owned(),
+            TextComponent::Text(_) => String::new(),
             TextComponent::Web { url, .. } => url.to_owned(),
             TextComponent::YouTube { target, .. } => target.to_url_yt_host(yt_host),
         }

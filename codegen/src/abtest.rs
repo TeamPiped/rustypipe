@@ -4,7 +4,7 @@ use indicatif::{ProgressBar, ProgressStyle};
 use num_enum::TryFromPrimitive;
 use rustypipe::client::{ClientType, RustyPipe, YTContext};
 use rustypipe::model::YouTubeItem;
-use rustypipe::param::search_filter::{Entity, SearchFilter};
+use rustypipe::param::search_filter::{ItemType, SearchFilter};
 use serde::{Deserialize, Serialize};
 
 #[derive(
@@ -158,7 +158,7 @@ pub async fn channel_handles_in_search_results(rp: &RustyPipe, visitor_data: &st
     let search = rp
         .query()
         .visitor_data(visitor_data)
-        .search_filter("rust", &SearchFilter::new().entity(Entity::Channel))
+        .search_filter("rust", &SearchFilter::new().item_type(ItemType::Channel))
         .await
         .unwrap();
 

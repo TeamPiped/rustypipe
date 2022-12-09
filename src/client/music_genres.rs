@@ -22,6 +22,7 @@ struct QGenre<'a> {
 }
 
 impl RustyPipeQuery {
+    /// Get a list of moods and genres from YouTube Music
     pub async fn music_genres(&self) -> Result<Vec<MusicGenreItem>, Error> {
         let context = self.get_context(ClientType::DesktopMusic, true, None).await;
         let request_body = QBrowse {
@@ -39,6 +40,7 @@ impl RustyPipeQuery {
         .await
     }
 
+    /// Get the playlists from a YouTube Music genre
     pub async fn music_genre<S: AsRef<str>>(&self, genre_id: S) -> Result<MusicGenre, Error> {
         let genre_id = genre_id.as_ref();
         let context = self.get_context(ClientType::DesktopMusic, true, None).await;

@@ -8,7 +8,7 @@ use std::{
 use rustypipe::{
     client::{ClientType, RustyPipe},
     param::{
-        search_filter::{self, Entity, SearchFilter},
+        search_filter::{self, ItemType, SearchFilter},
         Country,
     },
     report::{Report, Reporter},
@@ -449,7 +449,7 @@ async fn search_playlists(testfiles: &Path) {
 
     let rp = rp_testfile(&json_path);
     rp.query()
-        .search_filter("pop", &SearchFilter::new().entity(Entity::Playlist))
+        .search_filter("pop", &SearchFilter::new().item_type(ItemType::Playlist))
         .await
         .unwrap();
 }

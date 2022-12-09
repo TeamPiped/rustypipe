@@ -1,4 +1,20 @@
-//! Error reporting
+//! # Error reporting
+//!
+//! Due to the instability of the Innertube API, RustyPipe may not be able to parse
+//! every item from every YouTube response. To allow for easy debugging, RustyPipe
+//! can create and store error reports.
+//!
+//! These reports contain information about the RustyPipe client, the performed
+//! operation, the request sent to YouTube and the received response data.
+//!
+//! With the report data the error can be reproduced and RustyPipe can be patched to
+//! handle YouTube's changes to the response model.
+//!
+//! By default, RustyPipe stores the reports as JSON files
+//! (e.g `rustypipe_reports/2022-11-05_22-58-59_ERR`).
+//!
+//! By implementing the [`Reporter`] trait you can handle error reports in other ways
+//! (e.g. store them in a database, send them via mail, log to Sentry, etc).
 
 use std::{
     collections::BTreeMap,
@@ -17,11 +33,13 @@ use crate::{deobfuscate::DeobfData, util};
 const FILENAME_FORMAT: &[time::format_description::FormatItem] =
     format_description!("[year]-[month]-[day]_[hour]-[minute]-[second]");
 
+/// RustyPipe error report
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[non_exhaustive]
 pub struct Report {
-    pub info: Info,
-    /// Report level
+    /// Information about the RustyPipe client
+    pub info: RustyPipeInfo,
+    /// Severity of the report
     pub level: Level,
     /// RustyPipe operation (e.g. `get_player`)
     pub operation: String,
@@ -36,9 +54,10 @@ pub struct Report {
     pub http_request: HTTPRequest,
 }
 
+/// Information about the RustyPipe client
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[non_exhaustive]
-pub struct Info {
+pub struct RustyPipeInfo {
     /// Rust package name (`rustypipe`)
     pub package: String,
     /// Package version (`0.1.0`)
@@ -48,6 +67,7 @@ pub struct Info {
     pub date: OffsetDateTime,
 }
 
+/// Reported HTTP request data
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[non_exhaustive]
 pub struct HTTPRequest {
@@ -65,6 +85,7 @@ pub struct HTTPRequest {
     pub resp_body: String,
 }
 
+/// Severity of the report
 #[derive(Copy, Clone, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub enum Level {
     /// **Debug**: Operation successful, report generation was forced by setting
@@ -76,7 +97,7 @@ pub enum Level {
     ERR,
 }
 
-impl Default for Info {
+impl Default for RustyPipeInfo {
     fn default() -> Self {
         Self {
             package: "rustypipe".to_owned(),
@@ -86,15 +107,20 @@ impl Default for Info {
     }
 }
 
+/// Trait used to abstract the report storage behavior, so you can handle RustyPipe's
+/// error reports in your preferred way.
 pub trait Reporter: Sync + Send {
+    /// Store a RustyPipe error report
     fn report(&self, report: &Report);
 }
 
+/// [`Reporter`] implementation that writes reports as JSON files to the given folder
 pub struct FileReporter {
     path: PathBuf,
 }
 
 impl FileReporter {
+    /// Create a new reporter that stores error reports in the given folder
     pub fn new<P: AsRef<Path>>(path: P) -> Self {
         Self {
             path: path.as_ref().to_path_buf(),

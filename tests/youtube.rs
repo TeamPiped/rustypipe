@@ -10,9 +10,11 @@ use time::OffsetDateTime;
 use rustypipe::client::{ClientType, RustyPipe, RustyPipeQuery};
 use rustypipe::error::{Error, ExtractionError};
 use rustypipe::model::{
-    richtext::ToPlaintext, AlbumType, AudioCodec, AudioFormat, Channel, FromYtItem,
-    MusicEntityType, MusicGenre, Paginator, UrlTarget, Verification, VideoCodec, VideoFormat,
-    YouTubeItem, YtStream,
+    paginator::Paginator,
+    richtext::ToPlaintext,
+    traits::{FromYtItem, YtStream},
+    AlbumType, AudioCodec, AudioFormat, Channel, MusicGenre, MusicItemType, UrlTarget,
+    Verification, VideoCodec, VideoFormat, YouTubeItem,
 };
 use rustypipe::param::{
     search_filter::{self, SearchFilter},
@@ -1109,15 +1111,15 @@ async fn search() {
 }
 
 #[rstest]
-#[case::video(search_filter::Entity::Video)]
-#[case::channel(search_filter::Entity::Channel)]
-#[case::playlist(search_filter::Entity::Playlist)]
+#[case::video(search_filter::ItemType::Video)]
+#[case::channel(search_filter::ItemType::Channel)]
+#[case::playlist(search_filter::ItemType::Playlist)]
 #[tokio::test]
-async fn search_filter_entity(#[case] entity: search_filter::Entity) {
+async fn search_filter_item_type(#[case] item_type: search_filter::ItemType) {
     let rp = RustyPipe::builder().strict().build();
     let mut result = rp
         .query()
-        .search_filter("with no videos", &SearchFilter::new().entity(entity))
+        .search_filter("with no videos", &SearchFilter::new().item_type(item_type))
         .await
         .unwrap();
 
@@ -1126,13 +1128,13 @@ async fn search_filter_entity(#[case] entity: search_filter::Entity) {
 
     result.items.items.iter().for_each(|item| match item {
         YouTubeItem::Video(_) => {
-            assert_eq!(entity, search_filter::Entity::Video);
+            assert_eq!(item_type, search_filter::ItemType::Video);
         }
         YouTubeItem::Channel(_) => {
-            assert_eq!(entity, search_filter::Entity::Channel);
+            assert_eq!(item_type, search_filter::ItemType::Channel);
         }
         YouTubeItem::Playlist(_) => {
-            assert_eq!(entity, search_filter::Entity::Playlist);
+            assert_eq!(item_type, search_filter::ItemType::Playlist);
         }
     });
 }
@@ -1249,7 +1251,7 @@ async fn startpage() {
     // The startpage requires visitor data to fetch continuations
     assert!(startpage.visitor_data.is_some());
 
-    assert_next(startpage, rp.query(), 20, 2).await;
+    assert_next(startpage, rp.query(), 15, 2).await;
 }
 
 #[tokio::test]
@@ -1508,7 +1510,7 @@ async fn music_search(#[case] typo: bool) {
     assert!(!res.albums.is_empty(), "no albums");
     assert!(!res.artists.is_empty(), "no artists");
     assert!(!res.playlists.is_empty(), "no playlists");
-    assert_eq!(res.order[0], MusicEntityType::Track);
+    assert_eq!(res.order[0], MusicItemType::Track);
 
     if typo {
         assert_eq!(res.corrected_query.unwrap(), "black mamba");
@@ -2207,7 +2209,7 @@ async fn ab3_search_channel_handles() {
     rp.query()
         .search_filter(
             "test",
-            &SearchFilter::new().entity(search_filter::Entity::Channel),
+            &SearchFilter::new().item_type(search_filter::ItemType::Channel),
         )
         .await
         .unwrap();

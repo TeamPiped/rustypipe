@@ -5,7 +5,7 @@ use serde::{de::IgnoredAny, Serialize};
 use crate::{
     deobfuscate::Deobfuscator,
     error::{Error, ExtractionError},
-    model::{Paginator, SearchResult, YouTubeItem},
+    model::{paginator::Paginator, SearchResult, YouTubeItem},
     param::{search_filter::SearchFilter, Language},
 };
 
@@ -21,6 +21,7 @@ struct QSearch<'a> {
 }
 
 impl RustyPipeQuery {
+    /// Search YouTube
     pub async fn search<S: AsRef<str>>(&self, query: S) -> Result<SearchResult, Error> {
         let query = query.as_ref();
         let context = self.get_context(ClientType::Desktop, true, None).await;
@@ -40,6 +41,7 @@ impl RustyPipeQuery {
         .await
     }
 
+    /// Search YouTube using the given [`SearchFilter`]
     pub async fn search_filter<S: AsRef<str>>(
         &self,
         query: S,
@@ -63,6 +65,7 @@ impl RustyPipeQuery {
         .await
     }
 
+    /// Get YouTube search suggestions
     pub async fn search_suggestion<S: AsRef<str>>(&self, query: S) -> Result<Vec<String>, Error> {
         let url = url::Url::parse_with_params("https://suggestqueries-clients6.youtube.com/complete/search?client=youtube&gs_rn=64&gs_ri=youtube&ds=yt&cp=1&gs_id=4&xhr=t&xssi=t",
             &[("hl", self.opts.lang.to_string()), ("gl", self.opts.country.to_string()), ("q", query.as_ref().to_owned())]
@@ -114,7 +117,7 @@ impl MapResponse<SearchResult> for response::Search {
                     mapper.items,
                     mapper.ctoken,
                     None,
-                    crate::param::ContinuationEndpoint::Search,
+                    crate::model::paginator::ContinuationEndpoint::Search,
                 ),
                 corrected_query: mapper.corrected_query,
                 visitor_data: self.response_context.visitor_data,
