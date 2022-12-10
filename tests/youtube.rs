@@ -1010,8 +1010,6 @@ async fn channel_more(
     assert_channel(&channel_videos, id, name);
     if has_videos {
         assert!(!channel_videos.content.items.is_empty(), "got no videos");
-    } else {
-        assert!(channel_videos.content.items.is_empty(), "got videos");
     }
 
     let channel_playlists = rp.query().channel_playlists(&id).await.unwrap();
@@ -1021,8 +1019,6 @@ async fn channel_more(
             !channel_playlists.content.items.is_empty(),
             "got no playlists"
         );
-    } else {
-        assert!(channel_playlists.content.items.is_empty(), "got playlists");
     }
 
     let channel_info = rp.query().channel_info(&id).await.unwrap();
@@ -1251,7 +1247,7 @@ async fn startpage() {
     // The startpage requires visitor data to fetch continuations
     assert!(startpage.visitor_data.is_some());
 
-    assert_next(startpage, rp.query(), 15, 2).await;
+    assert_next(startpage, rp.query(), 12, 2).await;
 }
 
 #[tokio::test]
