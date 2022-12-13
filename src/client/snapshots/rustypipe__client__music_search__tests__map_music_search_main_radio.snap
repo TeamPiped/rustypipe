@@ -34,6 +34,7 @@ MusicSearchResult(
       view_count: None,
       is_video: false,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "VHLPvrlclmQ",
@@ -65,6 +66,7 @@ MusicSearchResult(
       view_count: None,
       is_video: false,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "R9TPed_ohKM",
@@ -96,6 +98,7 @@ MusicSearchResult(
       view_count: None,
       is_video: false,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "Ej1nxBxFSKc",
@@ -119,6 +122,7 @@ MusicSearchResult(
       view_count: Some(2400000),
       is_video: true,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "26OrUhkRa3c",
@@ -142,6 +146,7 @@ MusicSearchResult(
       view_count: Some(2100000),
       is_video: true,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "Idk-oFqn3kM",
@@ -165,6 +170,7 @@ MusicSearchResult(
       view_count: Some(67000),
       is_video: true,
       track_nr: None,
+      by_va: false,
     ),
   ],
   albums: [

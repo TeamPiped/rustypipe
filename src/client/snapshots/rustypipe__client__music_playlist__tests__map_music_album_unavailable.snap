@@ -54,6 +54,7 @@ MusicAlbum(
       view_count: None,
       is_video: true,
       track_nr: Some(1),
+      by_va: false,
     ),
     TrackItem(
       id: "5jd-AhBwcCQ",
@@ -74,6 +75,7 @@ MusicAlbum(
       view_count: None,
       is_video: true,
       track_nr: Some(2),
+      by_va: false,
     ),
     TrackItem(
       id: "_cmORZMgv6I",
@@ -94,6 +96,7 @@ MusicAlbum(
       view_count: None,
       is_video: true,
       track_nr: Some(3),
+      by_va: false,
     ),
     TrackItem(
       id: "M_kVMsFaGYs",
@@ -114,6 +117,7 @@ MusicAlbum(
       view_count: None,
       is_video: true,
       track_nr: Some(5),
+      by_va: false,
     ),
     TrackItem(
       id: "c8AfY6yhdkM",
@@ -134,6 +138,7 @@ MusicAlbum(
       view_count: None,
       is_video: false,
       track_nr: Some(6),
+      by_va: false,
     ),
     TrackItem(
       id: "DSQEKEegiH0",
@@ -154,6 +159,7 @@ MusicAlbum(
       view_count: None,
       is_video: true,
       track_nr: Some(7),
+      by_va: false,
     ),
     TrackItem(
       id: "2TTOKQSzuQY",
@@ -174,6 +180,7 @@ MusicAlbum(
       view_count: None,
       is_video: true,
       track_nr: Some(8),
+      by_va: false,
     ),
     TrackItem(
       id: "iRaX0BfME70",
@@ -194,6 +201,7 @@ MusicAlbum(
       view_count: None,
       is_video: true,
       track_nr: Some(9),
+      by_va: false,
     ),
     TrackItem(
       id: "Kn3cruxYj0c",
@@ -214,6 +222,7 @@ MusicAlbum(
       view_count: None,
       is_video: false,
       track_nr: Some(11),
+      by_va: false,
     ),
     TrackItem(
       id: "-P1FyntN_Uc",
@@ -234,6 +243,7 @@ MusicAlbum(
       view_count: None,
       is_video: true,
       track_nr: Some(12),
+      by_va: false,
     ),
     TrackItem(
       id: "njdlNT1RRo4",
@@ -254,6 +264,7 @@ MusicAlbum(
       view_count: None,
       is_video: false,
       track_nr: Some(13),
+      by_va: false,
     ),
     TrackItem(
       id: "Si-CXM8CHqQ",
@@ -274,6 +285,7 @@ MusicAlbum(
       view_count: None,
       is_video: false,
       track_nr: Some(18),
+      by_va: false,
     ),
   ],
   variants: [],

@@ -54,6 +54,7 @@ MusicAlbum(
       view_count: None,
       is_video: true,
       track_nr: Some(1),
+      by_va: false,
     ),
     TrackItem(
       id: "9WYpLYAEub0",
@@ -74,6 +75,7 @@ MusicAlbum(
       view_count: None,
       is_video: false,
       track_nr: Some(2),
+      by_va: false,
     ),
     TrackItem(
       id: "R48tE237bW4",
@@ -94,6 +96,7 @@ MusicAlbum(
       view_count: None,
       is_video: false,
       track_nr: Some(3),
+      by_va: false,
     ),
     TrackItem(
       id: "-UzsoR6z-vg",
@@ -114,6 +117,7 @@ MusicAlbum(
       view_count: None,
       is_video: false,
       track_nr: Some(4),
+      by_va: false,
     ),
     TrackItem(
       id: "kbNVyn8Ex28",
@@ -134,6 +138,7 @@ MusicAlbum(
       view_count: None,
       is_video: false,
       track_nr: Some(5),
+      by_va: false,
     ),
     TrackItem(
       id: "NJrQZUzWP5Y",
@@ -154,6 +159,7 @@ MusicAlbum(
       view_count: None,
       is_video: false,
       track_nr: Some(6),
+      by_va: false,
     ),
   ],
   variants: [],

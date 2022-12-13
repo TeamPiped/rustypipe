@@ -40,6 +40,7 @@ MusicSearchFiltered(
         view_count: None,
         is_video: false,
         track_nr: None,
+        by_va: false,
       ),
       TrackItem(
         id: "OJ5ZittaTCk",
@@ -71,6 +72,7 @@ MusicSearchFiltered(
         view_count: None,
         is_video: false,
         track_nr: None,
+        by_va: false,
       ),
       TrackItem(
         id: "H199HKaUk3g",
@@ -102,6 +104,7 @@ MusicSearchFiltered(
         view_count: None,
         is_video: false,
         track_nr: None,
+        by_va: false,
       ),
       TrackItem(
         id: "UlNOkZEcSjQ",
@@ -133,6 +136,7 @@ MusicSearchFiltered(
         view_count: None,
         is_video: false,
         track_nr: None,
+        by_va: false,
       ),
       TrackItem(
         id: "L61sF-655Zw",
@@ -164,6 +168,7 @@ MusicSearchFiltered(
         view_count: None,
         is_video: false,
         track_nr: None,
+        by_va: false,
       ),
       TrackItem(
         id: "bOK90e8P3k0",
@@ -195,6 +200,7 @@ MusicSearchFiltered(
         view_count: None,
         is_video: false,
         track_nr: None,
+        by_va: false,
       ),
       TrackItem(
         id: "oRHLx2mc2zY",
@@ -234,6 +240,7 @@ MusicSearchFiltered(
         view_count: None,
         is_video: false,
         track_nr: None,
+        by_va: false,
       ),
     ],
     ctoken: None,

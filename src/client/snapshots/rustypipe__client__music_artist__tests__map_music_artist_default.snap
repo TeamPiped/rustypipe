@@ -66,6 +66,7 @@ MusicArtist(
       view_count: None,
       is_video: false,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "xTvyyoF_LZY",
@@ -97,6 +98,7 @@ MusicArtist(
       view_count: None,
       is_video: false,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "SlbfAYvA_gI",
@@ -128,6 +130,7 @@ MusicArtist(
       view_count: None,
       is_video: false,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "hJWSZDJb-W4",
@@ -159,6 +162,7 @@ MusicArtist(
       view_count: None,
       is_video: false,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "G1ej5up7JG0",
@@ -190,6 +194,7 @@ MusicArtist(
       view_count: None,
       is_video: false,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "23g5HBOg3Ic",
@@ -218,6 +223,7 @@ MusicArtist(
       view_count: Some(12000000),
       is_video: true,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "VERcf4ALkmo",
@@ -250,6 +256,7 @@ MusicArtist(
       view_count: Some(442000),
       is_video: true,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "2Vv-BfVoq4g",
@@ -278,6 +285,7 @@ MusicArtist(
       view_count: Some(3200000000),
       is_video: true,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "JGwWNGJdvx8",
@@ -306,6 +314,7 @@ MusicArtist(
       view_count: Some(5800000000),
       is_video: true,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "nSDgHBxUbVQ",
@@ -334,6 +343,7 @@ MusicArtist(
       view_count: Some(1200000000),
       is_video: true,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "orJSJGHjBLI",
@@ -362,6 +372,7 @@ MusicArtist(
       view_count: Some(444000000),
       is_video: true,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "Il0S8BoucSA",
@@ -390,6 +401,7 @@ MusicArtist(
       view_count: Some(238000000),
       is_video: true,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "lp-EO5I60KA",
@@ -418,6 +430,7 @@ MusicArtist(
       view_count: Some(3500000000),
       is_video: true,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "5QIbxwNQR0s",
@@ -450,6 +463,7 @@ MusicArtist(
       view_count: Some(14000000),
       is_video: true,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "y83x7MgzWOA",
@@ -482,6 +496,7 @@ MusicArtist(
       view_count: Some(539000000),
       is_video: true,
       track_nr: None,
+      by_va: false,
     ),
   ],
   albums: [

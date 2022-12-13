@@ -609,7 +609,7 @@ impl MusicListMapper {
                         };
                         let album = album.or_else(|| self.album.clone());
 
-                        let (mut artists, _) = map_artists(artists_p);
+                        let (mut artists, by_va) = map_artists(artists_p);
 
                         // Fall back to the artist given when constructing the mapper.
                         // This is used for extracting artist pages.
@@ -635,6 +635,7 @@ impl MusicListMapper {
                             view_count,
                             is_video,
                             track_nr,
+                            by_va,
                         }));
                         Ok(Some(MusicItemType::Track))
                     }
@@ -746,7 +747,7 @@ impl MusicListMapper {
                 match item.navigation_endpoint.music_page() {
                     Some((page_type, id)) => match page_type {
                         MusicPageType::Track { is_video } => {
-                            let artists = map_artists(subtitle_p1).0;
+                            let (artists, by_va) = map_artists(subtitle_p1);
 
                             self.items.push(MusicItem::Track(TrackItem {
                                 id,
@@ -761,6 +762,7 @@ impl MusicListMapper {
                                 }),
                                 is_video,
                                 track_nr: None,
+                                by_va,
                             }));
                             Ok(Some(MusicItemType::Track))
                         }
@@ -996,7 +998,7 @@ pub(crate) fn map_queue_item(item: QueueMusicItem, lang: Language) -> TrackItem 
         .unwrap_or_default();
 
     let artist_p = subtitle_parts.next();
-    let (artists, _) = map_artists(artist_p);
+    let (artists, by_va) = map_artists(artist_p);
     let artist_id = map_artist_id_fallback(item.menu, artists.first());
 
     let subtitle_p2 = subtitle_parts.next();
@@ -1025,6 +1027,7 @@ pub(crate) fn map_queue_item(item: QueueMusicItem, lang: Language) -> TrackItem 
         view_count,
         is_video,
         track_nr: None,
+        by_va,
     }
 }
 

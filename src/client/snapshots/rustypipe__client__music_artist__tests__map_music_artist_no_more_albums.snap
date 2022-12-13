@@ -66,6 +66,7 @@ MusicArtist(
       view_count: None,
       is_video: false,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "pI0Rancanz0",
@@ -97,6 +98,7 @@ MusicArtist(
       view_count: None,
       is_video: false,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "kNdPylPd4JM",
@@ -128,6 +130,7 @@ MusicArtist(
       view_count: None,
       is_video: false,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "DsviLYh1CB0",
@@ -159,6 +162,7 @@ MusicArtist(
       view_count: None,
       is_video: false,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "wNgCQjct_Ys",
@@ -194,6 +198,7 @@ MusicArtist(
       view_count: None,
       is_video: false,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "btPcPR3fJfQ",
@@ -217,6 +222,7 @@ MusicArtist(
       view_count: Some(1000),
       is_video: true,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "dFdac41o3mQ",
@@ -245,6 +251,7 @@ MusicArtist(
       view_count: Some(109000),
       is_video: true,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "C_pGRMlCM3U",
@@ -273,6 +280,7 @@ MusicArtist(
       view_count: Some(13000000),
       is_video: true,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "SUioohuufeE",
@@ -301,6 +309,7 @@ MusicArtist(
       view_count: Some(4500000),
       is_video: true,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "yHv2oXYVbZg",
@@ -329,6 +338,7 @@ MusicArtist(
       view_count: Some(1900000),
       is_video: true,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "QnzAiQZZ1uw",
@@ -357,6 +367,7 @@ MusicArtist(
       view_count: Some(165000),
       is_video: true,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "cnF-BVrVs1M",
@@ -385,6 +396,7 @@ MusicArtist(
       view_count: Some(154000),
       is_video: true,
       track_nr: None,
+      by_va: false,
     ),
   ],
   albums: [

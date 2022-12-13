@@ -66,6 +66,7 @@ MusicArtist(
       view_count: None,
       is_video: false,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "7_Bav4c7UGM",
@@ -97,6 +98,7 @@ MusicArtist(
       view_count: None,
       is_video: false,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "kzUZABVj5UQ",
@@ -128,6 +130,7 @@ MusicArtist(
       view_count: None,
       is_video: false,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "P5uE7KDkDFE",
@@ -156,6 +159,7 @@ MusicArtist(
       view_count: Some(19000000),
       is_video: true,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "kxjZwdLWFrc",
@@ -184,6 +188,7 @@ MusicArtist(
       view_count: Some(206000),
       is_video: true,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "-aneeaddeXc",
@@ -212,6 +217,7 @@ MusicArtist(
       view_count: Some(10000),
       is_video: true,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "YWijFdsj_Ew",
@@ -240,6 +246,7 @@ MusicArtist(
       view_count: Some(3600),
       is_video: true,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "94q_2Zsq2os",
@@ -268,6 +275,7 @@ MusicArtist(
       view_count: Some(2900),
       is_video: true,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "fBce3VihpIQ",
@@ -296,6 +304,7 @@ MusicArtist(
       view_count: Some(11000),
       is_video: true,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "0-HXdJc-zDQ",
@@ -324,6 +333,7 @@ MusicArtist(
       view_count: Some(2200),
       is_video: true,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "Bae4Fv7GlMY",
@@ -352,6 +362,7 @@ MusicArtist(
       view_count: Some(6900),
       is_video: true,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "Rq_JkcROjsI",
@@ -380,6 +391,7 @@ MusicArtist(
       view_count: Some(23000),
       is_video: true,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "STNyxlYFyVY",
@@ -408,6 +420,7 @@ MusicArtist(
       view_count: Some(9900),
       is_video: true,
       track_nr: None,
+      by_va: false,
     ),
   ],
   albums: [

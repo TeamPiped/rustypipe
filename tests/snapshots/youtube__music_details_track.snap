@@ -22,6 +22,7 @@ TrackDetails(
     view_count: "[view_count]",
     is_video: false,
     track_nr: None,
+    by_va: false,
   ),
   lyrics_id: Some("MPLYt_4xbv14CiQJm-1"),
   related_id: Some("MPTRt_4xbv14CiQJm-1"),

@@ -33,6 +33,7 @@ MusicAlbum(
       view_count: None,
       is_video: false,
       track_nr: Some(1),
+      by_va: false,
     ),
     TrackItem(
       id: "t0v0UOgOt18",
@@ -53,6 +54,7 @@ MusicAlbum(
       view_count: None,
       is_video: false,
       track_nr: Some(2),
+      by_va: false,
     ),
     TrackItem(
       id: "HjJYAkUXrxI",
@@ -73,6 +75,7 @@ MusicAlbum(
       view_count: None,
       is_video: false,
       track_nr: Some(3),
+      by_va: false,
     ),
     TrackItem(
       id: "Hg0KUOTL06I",
@@ -93,6 +96,7 @@ MusicAlbum(
       view_count: None,
       is_video: false,
       track_nr: Some(5),
+      by_va: false,
     ),
     TrackItem(
       id: "c8AfY6yhdkM",
@@ -113,6 +117,7 @@ MusicAlbum(
       view_count: None,
       is_video: false,
       track_nr: Some(6),
+      by_va: false,
     ),
     TrackItem(
       id: "_ZmdHjVvwhc",
@@ -133,6 +138,7 @@ MusicAlbum(
       view_count: None,
       is_video: false,
       track_nr: Some(7),
+      by_va: false,
     ),
     TrackItem(
       id: "wBe1Zi3q1n8",
@@ -153,6 +159,7 @@ MusicAlbum(
       view_count: None,
       is_video: false,
       track_nr: Some(8),
+      by_va: false,
     ),
     TrackItem(
       id: "l8Pj8s9uPGc",
@@ -173,6 +180,7 @@ MusicAlbum(
       view_count: None,
       is_video: false,
       track_nr: Some(9),
+      by_va: false,
     ),
     TrackItem(
       id: "Kn3cruxYj0c",
@@ -193,6 +201,7 @@ MusicAlbum(
       view_count: None,
       is_video: false,
       track_nr: Some(11),
+      by_va: false,
     ),
     TrackItem(
       id: "Sy1lIOl1YN0",
@@ -213,6 +222,7 @@ MusicAlbum(
       view_count: None,
       is_video: false,
       track_nr: Some(12),
+      by_va: false,
     ),
     TrackItem(
       id: "njdlNT1RRo4",
@@ -233,6 +243,7 @@ MusicAlbum(
       view_count: None,
       is_video: false,
       track_nr: Some(13),
+      by_va: false,
     ),
     TrackItem(
       id: "Si-CXM8CHqQ",
@@ -253,6 +264,7 @@ MusicAlbum(
       view_count: None,
       is_video: false,
       track_nr: Some(18),
+      by_va: false,
     ),
   ],
   variants: [],

@@ -35,6 +35,7 @@ TrackDetails(
     view_count: Some(235000000),
     is_video: true,
     track_nr: None,
+    by_va: false,
   ),
   lyrics_id: Some("MPLYt_wrKjTn9hmry"),
   related_id: Some("MPTRt_wrKjTn9hmry"),

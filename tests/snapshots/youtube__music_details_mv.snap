@@ -1,6 +1,5 @@
 ---
 source: tests/youtube.rs
-assertion_line: 1770
 expression: track
 ---
 TrackDetails(
@@ -20,6 +19,7 @@ TrackDetails(
     view_count: "[view_count]",
     is_video: true,
     track_nr: None,
+    by_va: false,
   ),
   lyrics_id: Some("MPLYt_wrKjTn9hmry"),
   related_id: Some("MPTRt_wrKjTn9hmry"),

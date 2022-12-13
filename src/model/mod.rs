@@ -935,6 +935,8 @@ pub struct TrackItem {
     ///
     /// [`None`] if the track is not fetched from an album.
     pub track_nr: Option<u16>,
+    /// Is the track by 'Various artists'?
+    pub by_va: bool,
 }
 
 /// YouTube Music artist list item

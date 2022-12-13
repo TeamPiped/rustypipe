@@ -1,6 +1,5 @@
 ---
 source: src/client/music_new.rs
-assertion_line: 125
 expression: map_res.c
 ---
 [
@@ -31,6 +30,7 @@ expression: map_res.c
     view_count: Some(8600000),
     is_video: true,
     track_nr: None,
+    by_va: false,
   ),
   TrackItem(
     id: "gFERoNpcnFU",
@@ -59,6 +59,7 @@ expression: map_res.c
     view_count: Some(244000),
     is_video: true,
     track_nr: None,
+    by_va: false,
   ),
   TrackItem(
     id: "bmEzom5sfCI",
@@ -87,6 +88,7 @@ expression: map_res.c
     view_count: Some(314000),
     is_video: true,
     track_nr: None,
+    by_va: false,
   ),
   TrackItem(
     id: "QHY2pm7uT3k",
@@ -115,6 +117,7 @@ expression: map_res.c
     view_count: Some(265000),
     is_video: true,
     track_nr: None,
+    by_va: false,
   ),
   TrackItem(
     id: "Su42LK7I4NM",
@@ -143,6 +146,7 @@ expression: map_res.c
     view_count: Some(47000),
     is_video: true,
     track_nr: None,
+    by_va: false,
   ),
   TrackItem(
     id: "mly7ha04bEE",
@@ -171,6 +175,7 @@ expression: map_res.c
     view_count: Some(225000),
     is_video: true,
     track_nr: None,
+    by_va: false,
   ),
   TrackItem(
     id: "c91bmLbGt-g",
@@ -207,6 +212,7 @@ expression: map_res.c
     view_count: Some(124000),
     is_video: true,
     track_nr: None,
+    by_va: false,
   ),
   TrackItem(
     id: "IwzkfMmNMpM",
@@ -235,6 +241,7 @@ expression: map_res.c
     view_count: Some(34000000),
     is_video: true,
     track_nr: None,
+    by_va: false,
   ),
   TrackItem(
     id: "_-spkuonX2k",
@@ -267,6 +274,7 @@ expression: map_res.c
     view_count: Some(39000),
     is_video: true,
     track_nr: None,
+    by_va: false,
   ),
   TrackItem(
     id: "48pBUciAbRY",
@@ -295,5 +303,6 @@ expression: map_res.c
     view_count: Some(400000),
     is_video: true,
     track_nr: None,
+    by_va: false,
   ),
 ]

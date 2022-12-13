@@ -34,6 +34,7 @@ MusicRelated(
       view_count: None,
       is_video: false,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "g92HIac9ufA",
@@ -65,6 +66,7 @@ MusicRelated(
       view_count: None,
       is_video: false,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "khgCIMs_lVQ",
@@ -96,6 +98,7 @@ MusicRelated(
       view_count: None,
       is_video: false,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "i2VGa-ETiM4",
@@ -127,6 +130,7 @@ MusicRelated(
       view_count: None,
       is_video: false,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "INLFlN-PZq4",
@@ -158,6 +162,7 @@ MusicRelated(
       view_count: None,
       is_video: false,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "ZzbNM2l-AAA",
@@ -189,6 +194,7 @@ MusicRelated(
       view_count: None,
       is_video: false,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "i4loHXi8f3A",
@@ -220,6 +226,7 @@ MusicRelated(
       view_count: None,
       is_video: false,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "miqQAzOXPBo",
@@ -251,6 +258,7 @@ MusicRelated(
       view_count: None,
       is_video: false,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "hh5GKVa8VtM",
@@ -282,6 +290,7 @@ MusicRelated(
       view_count: None,
       is_video: false,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "dzwSnvfKEtw",
@@ -313,6 +322,7 @@ MusicRelated(
       view_count: None,
       is_video: false,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "REmUidcJt5I",
@@ -344,6 +354,7 @@ MusicRelated(
       view_count: None,
       is_video: false,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "OXWz_x6-dro",
@@ -375,6 +386,7 @@ MusicRelated(
       view_count: None,
       is_video: false,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "aFoqCI75WoY",
@@ -406,6 +418,7 @@ MusicRelated(
       view_count: None,
       is_video: false,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "_Pm74XignKI",
@@ -437,6 +450,7 @@ MusicRelated(
       view_count: None,
       is_video: false,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "-uOShlFu1v8",
@@ -468,6 +482,7 @@ MusicRelated(
       view_count: None,
       is_video: false,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "LP9sF1v-vz4",
@@ -499,6 +514,7 @@ MusicRelated(
       view_count: None,
       is_video: false,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "KJrPsT2X-yk",
@@ -530,6 +546,7 @@ MusicRelated(
       view_count: None,
       is_video: false,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "tkzYyEp4zB4",
@@ -561,6 +578,7 @@ MusicRelated(
       view_count: None,
       is_video: false,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "ZpD59tu5_Rk",
@@ -592,6 +610,7 @@ MusicRelated(
       view_count: None,
       is_video: false,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "_eNXeEx9Hvk",
@@ -623,6 +642,7 @@ MusicRelated(
       view_count: None,
       is_video: false,
       track_nr: None,
+      by_va: false,
     ),
   ],
   other_versions: [
@@ -648,6 +668,7 @@ MusicRelated(
       view_count: Some(35000000),
       is_video: true,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "Yi2nsnpw5h0",
@@ -671,6 +692,7 @@ MusicRelated(
       view_count: Some(836000),
       is_video: true,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "2Qefh0W_H88",
@@ -694,6 +716,7 @@ MusicRelated(
       view_count: Some(1200000),
       is_video: true,
       track_nr: None,
+      by_va: false,
     ),
     TrackItem(
       id: "oo89OQvzkIo",
@@ -717,6 +740,7 @@ MusicRelated(
       view_count: Some(987000),
       is_video: true,
       track_nr: None,
+      by_va: false,
     ),
   ],
   albums: [

@@ -38,6 +38,7 @@ MusicAlbum(
       view_count: None,
       is_video: false,
       track_nr: Some(1),
+      by_va: false,
     ),
     TrackItem(
       id: "fdO6gu4qjRw",
@@ -58,6 +59,7 @@ MusicAlbum(
       view_count: None,
       is_video: false,
       track_nr: Some(2),
+      by_va: false,
     ),
     TrackItem(
       id: "muCxstXirvY",
@@ -78,6 +80,7 @@ MusicAlbum(
       view_count: None,
       is_video: false,
       track_nr: Some(3),
+      by_va: false,
     ),
     TrackItem(
       id: "aG1N0vo__Ng",
@@ -98,6 +101,7 @@ MusicAlbum(
       view_count: None,
       is_video: false,
       track_nr: Some(4),
+      by_va: false,
     ),
     TrackItem(
       id: "roHhLNYS9yo",
@@ -118,6 +122,7 @@ MusicAlbum(
       view_count: None,
       is_video: false,
       track_nr: Some(5),
+      by_va: false,
     ),
     TrackItem(
       id: "nJ49NuLvcAw",
@@ -138,6 +143,7 @@ MusicAlbum(
       view_count: None,
       is_video: false,
       track_nr: Some(6),
+      by_va: false,
     ),
     TrackItem(
       id: "Me119D570h0",
@@ -158,6 +164,7 @@ MusicAlbum(
       view_count: None,
       is_video: false,
       track_nr: Some(7),
+      by_va: false,
     ),
     TrackItem(
       id: "YXnRLK-qKG8",
@@ -178,6 +185,7 @@ MusicAlbum(
       view_count: None,
       is_video: false,
       track_nr: Some(8),
+      by_va: false,
     ),
     TrackItem(
       id: "A61wz1jz9X0",
@@ -198,6 +206,7 @@ MusicAlbum(
       view_count: None,
       is_video: false,
       track_nr: Some(9),
+      by_va: false,
     ),
     TrackItem(
       id: "u_S08EJOTUg",
@@ -218,6 +227,7 @@ MusicAlbum(
       view_count: None,
       is_video: false,
       track_nr: Some(10),
+      by_va: false,
     ),
     TrackItem(
       id: "0qwYJihV1EU",
@@ -238,6 +248,7 @@ MusicAlbum(
       view_count: None,
       is_video: false,
       track_nr: Some(11),
+      by_va: false,
     ),
     TrackItem(
       id: "zjhoyTnEzuQ",
@@ -258,6 +269,7 @@ MusicAlbum(
       view_count: None,
       is_video: false,
       track_nr: Some(12),
+      by_va: false,
     ),
     TrackItem(
       id: "oDjDd0UBzAY",
@@ -278,6 +290,7 @@ MusicAlbum(
       view_count: None,
       is_video: false,
       track_nr: Some(13),
+      by_va: false,
     ),
     TrackItem(
       id: "_3-WVmqgi-Q",
@@ -298,6 +311,7 @@ MusicAlbum(
       view_count: None,
       is_video: false,
       track_nr: Some(14),
+      by_va: false,
     ),
   ],
   variants: [],
