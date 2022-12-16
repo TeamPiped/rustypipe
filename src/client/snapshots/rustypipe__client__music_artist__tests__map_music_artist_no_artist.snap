@@ -32,7 +32,7 @@ MusicArtist(
       height: 1015,
     ),
   ],
-  description: "",
+  description: None,
   wikipedia_url: None,
   subscriber_count: None,
   tracks: [],

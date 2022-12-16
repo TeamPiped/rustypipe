@@ -32,7 +32,7 @@ MusicArtist(
       height: 1200,
     ),
   ],
-  description: "ImagineDragons.lnk.to/Mercury",
+  description: Some("ImagineDragons.lnk.to/Mercury"),
   wikipedia_url: None,
   subscriber_count: Some(29300000),
   tracks: [

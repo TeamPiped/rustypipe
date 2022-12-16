@@ -6,7 +6,7 @@ MusicArtist(
   id: "UCh8gHdtzO2tXd593_bjErWg",
   name: "Doobydobap",
   header_image: "[header_image]",
-  description: "",
+  description: None,
   wikipedia_url: None,
   subscriber_count: "[subscriber_count]",
   tracks: "[tracks]",

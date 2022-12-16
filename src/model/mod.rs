@@ -1099,7 +1099,7 @@ pub struct MusicArtist {
     /// Artist header image
     pub header_image: Vec<Thumbnail>,
     /// Artist description
-    pub description: String,
+    pub description: Option<String>,
     /// URL of the artist's wikipedia page
     pub wikipedia_url: Option<String>,
     /// Artist subscriber count

@@ -34,9 +34,8 @@ pub(crate) struct MusicHeaderRenderer {
     #[serde(default)]
     #[serde_as(as = "DefaultOnError")]
     pub subscription_button: Option<SubscriptionButton>,
-    #[serde(default)]
-    #[serde_as(as = "Text")]
-    pub description: String,
+    #[serde_as(as = "Option<Text>")]
+    pub description: Option<String>,
     #[serde(default)]
     pub thumbnail: MusicThumbnailRenderer,
 }

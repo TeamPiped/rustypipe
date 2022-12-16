@@ -6,7 +6,7 @@ MusicArtist(
   id: "UC_vmjW5e1xEHhYjY2a0kK1A",
   name: "Oonagh",
   header_image: "[header_image]",
-  description: "Senta-Sofia Delliponti is a German singer, songwriter and actress. Since January 2014, she used the stage name Oonagh, until she changed it to Senta in 2022. Her signature musical style is inspired by the mystical lore of J. R. R. Tolkien\'s universe and by ethnic sounds throughout the world.\n\nFrom Wikipedia (https://en.wikipedia.org/wiki/Oonagh_(singer)) under Creative Commons Attribution CC-BY-SA 3.0 (http://creativecommons.org/licenses/by-sa/3.0/legalcode)",
+  description: Some("Senta-Sofia Delliponti is a German singer, songwriter and actress. Since January 2014, she used the stage name Oonagh, until she changed it to Senta in 2022. Her signature musical style is inspired by the mystical lore of J. R. R. Tolkien\'s universe and by ethnic sounds throughout the world.\n\nFrom Wikipedia (https://en.wikipedia.org/wiki/Oonagh_(singer)) under Creative Commons Attribution CC-BY-SA 3.0 (http://creativecommons.org/licenses/by-sa/3.0/legalcode)"),
   wikipedia_url: Some("https://en.wikipedia.org/wiki/Oonagh_"),
   subscriber_count: "[subscriber_count]",
   tracks: "[tracks]",

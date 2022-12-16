@@ -310,8 +310,8 @@ impl RustyPipeBuilder {
     pub fn new() -> Self {
         RustyPipeBuilder {
             default_opts: RustyPipeOpts::default(),
-            storage: Some(Box::new(FileStorage::default())),
-            reporter: Some(Box::new(FileReporter::default())),
+            storage: Some(Box::<FileStorage>::default()),
+            reporter: Some(Box::<FileReporter>::default()),
             n_http_retries: 2,
             user_agent: DEFAULT_UA.to_owned(),
         }

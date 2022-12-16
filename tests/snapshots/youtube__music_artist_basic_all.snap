@@ -6,7 +6,7 @@ MusicArtist(
   id: "UC7cl4MmM6ZZ2TcFyMk_b4pg",
   name: "Unheilig",
   header_image: "[header_image]",
-  description: "Unheilig was a German band that featured a variety of influences, including various pop and electronic styles as well as harder, nihilistic hard rock. The band was founded in 1999 and principally consisted of singer Bernd Heinrich \"Der Graf\" along with various musical partners. He was accompanied for live shows with musicians Christoph \"Licky\" Termühlen, Henning Verlage, and Martin \"Potti\" Potthoff. The group\'s debut, Phosphor, came out in 2000.\n\nFrom Wikipedia (https://en.wikipedia.org/wiki/Unheilig) under Creative Commons Attribution CC-BY-SA 3.0 (http://creativecommons.org/licenses/by-sa/3.0/legalcode)",
+  description: Some("Unheilig was a German band that featured a variety of influences, including various pop and electronic styles as well as harder, nihilistic hard rock. The band was founded in 1999 and principally consisted of singer Bernd Heinrich \"Der Graf\" along with various musical partners. He was accompanied for live shows with musicians Christoph \"Licky\" Termühlen, Henning Verlage, and Martin \"Potti\" Potthoff. The group\'s debut, Phosphor, came out in 2000.\n\nFrom Wikipedia (https://en.wikipedia.org/wiki/Unheilig) under Creative Commons Attribution CC-BY-SA 3.0 (http://creativecommons.org/licenses/by-sa/3.0/legalcode)"),
   wikipedia_url: Some("https://en.wikipedia.org/wiki/Unheilig"),
   subscriber_count: "[subscriber_count]",
   tracks: "[tracks]",

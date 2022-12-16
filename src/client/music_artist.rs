@@ -235,12 +235,14 @@ fn map_artist_page(
 
     static WIKIPEDIA_REGEX: Lazy<Regex> =
         Lazy::new(|| Regex::new(r"https://[a-z]+\.wikipedia.org/wiki/[^()\s]+").unwrap());
-    let wikipedia_url = WIKIPEDIA_REGEX
-        .captures(&header.description)
-        .ok()
-        .flatten()
-        .and_then(|c| c.get(0))
-        .map(|m| m.as_str().to_owned());
+    let wikipedia_url = header.description.as_deref().and_then(|h| {
+        WIKIPEDIA_REGEX
+            .captures(h)
+            .ok()
+            .flatten()
+            .and_then(|c| c.get(0))
+            .map(|m| m.as_str().to_owned())
+    });
 
     Ok(MapResult {
         c: (

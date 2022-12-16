@@ -1924,7 +1924,7 @@ async fn music_related(#[case] id: &str, #[case] full: bool) {
             assert!(!album.cover.is_empty(), "got no cover");
 
             let artist = album.artists.first().unwrap();
-            assert_channel_id(&artist.id.as_ref().unwrap());
+            assert_channel_id(artist.id.as_ref().unwrap());
             assert!(!artist.name.is_empty());
         }
 
