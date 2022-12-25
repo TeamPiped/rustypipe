@@ -1412,7 +1412,7 @@ async fn music_album_not_found() {
 #[rstest]
 #[case::basic_all("basic_all", "UC7cl4MmM6ZZ2TcFyMk_b4pg", true, 15, 2)]
 #[case::basic("basic", "UC7cl4MmM6ZZ2TcFyMk_b4pg", false, 15, 2)]
-#[case::no_more_albums("no_more_albums", "UC_vmjW5e1xEHhYjY2a0kK1A", true, 12, 0)]
+#[case::no_more_albums("no_more_albums", "UCOR4_bSVIXPsGa4BbCSt60Q", true, 15, 0)]
 #[case::only_singles("only_singles", "UCfwCE5VhPMGxNPFxtVv7lRw", false, 13, 0)]
 #[case::no_artist("no_artist", "UCh8gHdtzO2tXd593_bjErWg", false, 0, 2)]
 #[tokio::test]
