@@ -40,7 +40,7 @@ async fn get_player_from_client(#[case] client_type: ClientType) {
     // dbg!(&player_data);
 
     assert_eq!(player_data.details.id, "n4tK7LYFxI0");
-    assert_eq!(player_data.details.title, "Spektrem - Shine [NCS Release]");
+    assert_eq!(player_data.details.name, "Spektrem - Shine [NCS Release]");
     if client_type == ClientType::DesktopMusic {
         assert!(player_data.details.description.is_none());
     } else {
@@ -217,7 +217,7 @@ async fn check_video_stream(s: impl YtStream) {
 #[tokio::test]
 async fn get_player(
     #[case] id: &str,
-    #[case] title: &str,
+    #[case] name: &str,
     #[case] description: &str,
     #[case] length: u32,
     #[case] channel_id: &str,
@@ -231,7 +231,7 @@ async fn get_player(
     let details = player_data.details;
 
     assert_eq!(details.id, id);
-    assert_eq!(details.title, title);
+    assert_eq!(details.name, name);
     let desc = details.description.unwrap();
     assert!(desc.contains(description), "description: {}", desc);
     assert_eq!(details.length, length);
@@ -435,7 +435,7 @@ async fn get_video_details() {
     // dbg!(&details);
 
     assert_eq!(details.id, "ZeerrnuLi5E");
-    assert_eq!(details.title, "aespa 에스파 'Black Mamba' MV");
+    assert_eq!(details.name, "aespa 에스파 'Black Mamba' MV");
     let desc = details.description.to_plaintext();
     assert!(
         desc.contains("Listen and download aespa's debut single \"Black Mamba\""),
@@ -477,7 +477,7 @@ async fn get_video_details_music() {
     // dbg!(&details);
 
     assert_eq!(details.id, "XuM2onMGvTI");
-    assert_eq!(details.title, "Gäa");
+    assert_eq!(details.name, "Gäa");
     let desc = details.description.to_plaintext();
     assert!(desc.contains("Gäa · Oonagh"), "bad description: {}", desc);
 
@@ -520,7 +520,7 @@ async fn get_video_details_ccommons() {
 
     assert_eq!(details.id, "0rb9CfOvojk");
     assert_eq!(
-        details.title,
+        details.name,
         "BahnMining - Pünktlichkeit ist eine Zier (David Kriesel)"
     );
     let desc = details.description.to_plaintext();
@@ -564,7 +564,7 @@ async fn get_video_details_chapters() {
     // dbg!(&details);
 
     assert_eq!(details.id, "nFDBxBUfE74");
-    assert_eq!(details.title, "The Prepper PC");
+    assert_eq!(details.name, "The Prepper PC");
     let desc = details.description.to_plaintext();
     assert!(
             desc.contains("These days, you can game almost anywhere on the planet, anytime. But what if that planet was in the middle of an apocalypse"),
@@ -600,72 +600,72 @@ async fn get_video_details_chapters() {
         }, @r###"
         [
           Chapter(
-            title: "Intro",
+            name: "Intro",
             position: 0,
             thumbnail: "[ok]",
           ),
           Chapter(
-            title: "The PC Built for Super Efficiency",
+            name: "The PC Built for Super Efficiency",
             position: 42,
             thumbnail: "[ok]",
           ),
           Chapter(
-            title: "Our BURIAL ENCLOSURE?!",
+            name: "Our BURIAL ENCLOSURE?!",
             position: 161,
             thumbnail: "[ok]",
           ),
           Chapter(
-            title: "Our Power Solution (Thanks Jackery!)",
+            name: "Our Power Solution (Thanks Jackery!)",
             position: 211,
             thumbnail: "[ok]",
           ),
           Chapter(
-            title: "Diggin\' Holes",
+            name: "Diggin\' Holes",
             position: 287,
             thumbnail: "[ok]",
           ),
           Chapter(
-            title: "Colonoscopy?",
+            name: "Colonoscopy?",
             position: 330,
             thumbnail: "[ok]",
           ),
           Chapter(
-            title: "Diggin\' like a man",
+            name: "Diggin\' like a man",
             position: 424,
             thumbnail: "[ok]",
           ),
           Chapter(
-            title: "The world\'s worst woodsman",
+            name: "The world\'s worst woodsman",
             position: 509,
             thumbnail: "[ok]",
           ),
           Chapter(
-            title: "Backyard cable management",
+            name: "Backyard cable management",
             position: 543,
             thumbnail: "[ok]",
           ),
           Chapter(
-            title: "Time to bury this boy",
+            name: "Time to bury this boy",
             position: 602,
             thumbnail: "[ok]",
           ),
           Chapter(
-            title: "Solar Power Generation",
+            name: "Solar Power Generation",
             position: 646,
             thumbnail: "[ok]",
           ),
           Chapter(
-            title: "Issues",
+            name: "Issues",
             position: 697,
             thumbnail: "[ok]",
           ),
           Chapter(
-            title: "First Play Test",
+            name: "First Play Test",
             position: 728,
             thumbnail: "[ok]",
           ),
           Chapter(
-            title: "Conclusion",
+            name: "Conclusion",
             position: 800,
             thumbnail: "[ok]",
           ),
@@ -690,7 +690,7 @@ async fn get_video_details_live() {
 
     assert_eq!(details.id, "86YLFOog4GM");
     assert_eq!(
-        details.title,
+        details.name,
         "🌎 Nasa Live Stream  - Earth From Space :  Live Views from the ISS"
     );
     let desc = details.description.to_plaintext();
@@ -737,7 +737,7 @@ async fn get_video_details_agegate() {
 
     assert_eq!(details.id, "HRKu0cvrr_o");
     assert_eq!(
-        details.title,
+        details.name,
         "AlphaOmegaSin Fanboy Logic: Likes/Dislikes Disabled = Point Invalid Lol wtf?"
     );
     insta::assert_ron_snapshot!(details.description, @"RichText([])");
@@ -1516,7 +1516,7 @@ async fn music_search(#[case] typo: bool) {
 
     let track = &res.tracks.iter().find(|a| a.id == "ZeerrnuLi5E").unwrap();
 
-    assert_eq!(track.title, "Black Mamba");
+    assert_eq!(track.name, "Black Mamba");
     assert_eq!(track.duration.unwrap(), 230);
     assert!(!track.cover.is_empty(), "got no cover");
 
@@ -1545,7 +1545,7 @@ async fn music_search_tracks() {
         .find(|a| a.id == "BL-aIpCLWnU")
         .unwrap();
 
-    assert_eq!(track.title, "Black Mamba");
+    assert_eq!(track.name, "Black Mamba");
     assert!(!track.cover.is_empty(), "got no cover");
     assert!(!track.is_video);
     assert_eq!(track.track_nr, None);
@@ -1579,7 +1579,7 @@ async fn music_search_videos() {
         .find(|a| a.id == "ZeerrnuLi5E")
         .unwrap();
 
-    assert_eq!(track.title, "Black Mamba");
+    assert_eq!(track.name, "Black Mamba");
     assert!(!track.cover.is_empty(), "got no cover");
     assert!(track.is_video);
     assert_eq!(track.track_nr, None);
@@ -1618,7 +1618,7 @@ async fn music_search_episode() {
         .unwrap();
 
     assert_eq!(
-        track.title,
+        track.name,
         "Blond - Da muss man dabei gewesen sein: Das Hörspiel - Fall #1"
     );
     assert!(!track.cover.is_empty(), "got no cover");
@@ -1879,7 +1879,7 @@ async fn music_related(#[case] id: &str, #[case] full: bool) {
 
     for track in related.tracks {
         assert_video_id(&track.id);
-        assert!(!track.title.is_empty());
+        assert!(!track.name.is_empty());
         assert!(!track.cover.is_empty(), "got no cover");
 
         if let Some(artist_id) = track.artist_id {
@@ -2086,7 +2086,7 @@ async fn music_new_videos() {
 
     for video in videos {
         assert_video_id(&video.id);
-        assert!(!video.title.is_empty());
+        assert!(!video.name.is_empty());
         assert!(!video.cover.is_empty(), "got no cover");
         assert_gte(video.view_count.unwrap(), 1000, "views");
         assert!(video.is_video);

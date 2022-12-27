@@ -7,7 +7,7 @@ Paginator(
   items: [
     TrackItem(
       id: "zMPIobcM2j0",
-      title: "ZUNA feat. AZET & NOIZY - NUMMER 1 prod. by DJ A-BOOM",
+      name: "ZUNA feat. AZET & NOIZY - NUMMER 1 prod. by DJ A-BOOM",
       duration: Some(212),
       cover: [
         Thumbnail(
@@ -31,7 +31,7 @@ Paginator(
     ),
     TrackItem(
       id: "f9g6NCHQrcE",
-      title: "Kriminell (feat. Noizy)",
+      name: "Kriminell (feat. Noizy)",
       duration: Some(230),
       cover: [
         Thumbnail(
@@ -59,7 +59,7 @@ Paginator(
     ),
     TrackItem(
       id: "CAVfEwrwT_o",
-      title: "Immer wieder",
+      name: "Immer wieder",
       duration: Some(227),
       cover: [
         Thumbnail(
@@ -87,7 +87,7 @@ Paginator(
     ),
     TrackItem(
       id: "VUr9JZQ8F2g",
-      title: "Zwischen Himmel & Hölle",
+      name: "Zwischen Himmel & Hölle",
       duration: Some(270),
       cover: [
         Thumbnail(
@@ -111,7 +111,7 @@ Paginator(
     ),
     TrackItem(
       id: "XQat6rNNbdQ",
-      title: "Ayé (KMN Street EP)",
+      name: "Ayé (KMN Street EP)",
       duration: Some(220),
       cover: [
         Thumbnail(
@@ -135,7 +135,7 @@ Paginator(
     ),
     TrackItem(
       id: "EQyU6fGDn0c",
-      title: "Corleone",
+      name: "Corleone",
       duration: Some(220),
       cover: [
         Thumbnail(
@@ -159,7 +159,7 @@ Paginator(
     ),
     TrackItem(
       id: "g4poKgQZX6w",
-      title: "Beverly Hills",
+      name: "Beverly Hills",
       duration: Some(219),
       cover: [
         Thumbnail(
@@ -183,7 +183,7 @@ Paginator(
     ),
     TrackItem(
       id: "YTHr7gxwYUQ",
-      title: "Airmax gegen Kopf (feat. Luciano)",
+      name: "Airmax gegen Kopf (feat. Luciano)",
       duration: Some(167),
       cover: [
         Thumbnail(
@@ -207,7 +207,7 @@ Paginator(
     ),
     TrackItem(
       id: "MfCSDn6q6j4",
-      title: "Direction",
+      name: "Direction",
       duration: Some(182),
       cover: [
         Thumbnail(
@@ -231,7 +231,7 @@ Paginator(
     ),
     TrackItem(
       id: "gx9KFXb5x_o",
-      title: "Egal (feat. Jasmiina)",
+      name: "Egal (feat. Jasmiina)",
       duration: Some(166),
       cover: [
         Thumbnail(
@@ -255,7 +255,7 @@ Paginator(
     ),
     TrackItem(
       id: "d7R7DQ5tlQo",
-      title: "Sag Nix",
+      name: "Sag Nix",
       duration: Some(205),
       cover: [
         Thumbnail(
@@ -279,7 +279,7 @@ Paginator(
     ),
     TrackItem(
       id: "cZPjgcqHSa8",
-      title: "BWA (feat. Hanybal)",
+      name: "BWA (feat. Hanybal)",
       duration: Some(294),
       cover: [
         Thumbnail(
@@ -303,7 +303,7 @@ Paginator(
     ),
     TrackItem(
       id: "ogDLdREonWY",
-      title: "Ketten Cartier",
+      name: "Ketten Cartier",
       duration: Some(198),
       cover: [
         Thumbnail(
@@ -327,7 +327,7 @@ Paginator(
     ),
     TrackItem(
       id: "pRQpKprUUPY",
-      title: "Moe Phoenix - Ching Chang Chong (prod. by FL3X & Unik)",
+      name: "Moe Phoenix - Ching Chang Chong (prod. by FL3X & Unik)",
       duration: Some(226),
       cover: [
         Thumbnail(
@@ -351,7 +351,7 @@ Paginator(
     ),
     TrackItem(
       id: "qZoQw9b4uCo",
-      title: "Handschellen (feat. Ardian Bujupi)",
+      name: "Handschellen (feat. Ardian Bujupi)",
       duration: Some(221),
       cover: [
         Thumbnail(
@@ -375,7 +375,7 @@ Paginator(
     ),
     TrackItem(
       id: "q23qghoF6Nk",
-      title: "Gjynah",
+      name: "Gjynah",
       duration: Some(271),
       cover: [
         Thumbnail(
@@ -399,7 +399,7 @@ Paginator(
     ),
     TrackItem(
       id: "yU0aKa7PFBg",
-      title: "Herzbeben",
+      name: "Herzbeben",
       duration: Some(206),
       cover: [
         Thumbnail(
@@ -423,7 +423,7 @@ Paginator(
     ),
     TrackItem(
       id: "DVCAqvypaCc",
-      title: "Jump",
+      name: "Jump",
       duration: Some(202),
       cover: [
         Thumbnail(
@@ -447,7 +447,7 @@ Paginator(
     ),
     TrackItem(
       id: "XdnI7sm6LeQ",
-      title: "Andere Liga",
+      name: "Andere Liga",
       duration: Some(240),
       cover: [
         Thumbnail(
@@ -471,7 +471,7 @@ Paginator(
     ),
     TrackItem(
       id: "KcOXNSJtFLg",
-      title: "Trikot von Paris",
+      name: "Trikot von Paris",
       duration: Some(255),
       cover: [
         Thumbnail(
@@ -495,7 +495,7 @@ Paginator(
     ),
     TrackItem(
       id: "K0UxHXZwgsg",
-      title: "Pfirsich",
+      name: "Pfirsich",
       duration: Some(245),
       cover: [
         Thumbnail(
@@ -519,7 +519,7 @@ Paginator(
     ),
     TrackItem(
       id: "eyyNwOSQ3Yg",
-      title: "MGP \"BAD BITCH\" (Official Video)",
+      name: "MGP \"BAD BITCH\" (Official Video)",
       duration: Some(166),
       cover: [
         Thumbnail(
@@ -543,7 +543,7 @@ Paginator(
     ),
     TrackItem(
       id: "1yskotqNuXI",
-      title: "Bros",
+      name: "Bros",
       duration: Some(219),
       cover: [
         Thumbnail(
@@ -567,7 +567,7 @@ Paginator(
     ),
     TrackItem(
       id: "C03n4AAiL9w",
-      title: "Geiles Leben (Madizin single mix)",
+      name: "Geiles Leben (Madizin single mix)",
       duration: Some(211),
       cover: [
         Thumbnail(
@@ -591,7 +591,7 @@ Paginator(
     ),
     TrackItem(
       id: "a2wNRTKRusM",
-      title: "Moe Phoenix - Mohammad (prod. by AriBeatz)",
+      name: "Moe Phoenix - Mohammad (prod. by AriBeatz)",
       duration: Some(197),
       cover: [
         Thumbnail(
@@ -615,7 +615,7 @@ Paginator(
     ),
     TrackItem(
       id: "AIf61iHwWMQ",
-      title: "Waffen (feat. Bonez MC, Ufo361 & Gzuz)",
+      name: "Waffen (feat. Bonez MC, Ufo361 & Gzuz)",
       duration: Some(268),
       cover: [
         Thumbnail(
@@ -639,7 +639,7 @@ Paginator(
     ),
     TrackItem(
       id: "BixqbSRjY2Y",
-      title: "Alles probiert (feat. Bonez MC)",
+      name: "Alles probiert (feat. Bonez MC)",
       duration: Some(319),
       cover: [
         Thumbnail(
@@ -663,7 +663,7 @@ Paginator(
     ),
     TrackItem(
       id: "Acgy-3d4P6o",
-      title: "Erfolg ist kein Glück",
+      name: "Erfolg ist kein Glück",
       duration: Some(226),
       cover: [
         Thumbnail(
@@ -687,7 +687,7 @@ Paginator(
     ),
     TrackItem(
       id: "5M_yA9M7yNc",
-      title: "Gotham City",
+      name: "Gotham City",
       duration: Some(156),
       cover: [
         Thumbnail(
@@ -711,7 +711,7 @@ Paginator(
     ),
     TrackItem(
       id: "PjJuezhos3U",
-      title: "Liebe macht blind",
+      name: "Liebe macht blind",
       duration: Some(258),
       cover: [
         Thumbnail(
@@ -735,7 +735,7 @@ Paginator(
     ),
     TrackItem(
       id: "XMutaJI2-kc",
-      title: "Mama ist nicht stolz",
+      name: "Mama ist nicht stolz",
       duration: Some(262),
       cover: [
         Thumbnail(
@@ -759,7 +759,7 @@ Paginator(
     ),
     TrackItem(
       id: "Xac6Q7hcZkQ",
-      title: "Monica Bellucci",
+      name: "Monica Bellucci",
       duration: Some(228),
       cover: [
         Thumbnail(
@@ -783,7 +783,7 @@ Paginator(
     ),
     TrackItem(
       id: "JfwjsjBcDoU",
-      title: "Achterbahn",
+      name: "Achterbahn",
       duration: Some(222),
       cover: [
         Thumbnail(
@@ -807,7 +807,7 @@ Paginator(
     ),
     TrackItem(
       id: "zshiQUV3ohw",
-      title: "MOE PHOENIX feat. VEYSEL - GAUNER (prod. by Ghana Beats)",
+      name: "MOE PHOENIX feat. VEYSEL - GAUNER (prod. by Ghana Beats)",
       duration: Some(226),
       cover: [
         Thumbnail(
@@ -831,7 +831,7 @@ Paginator(
     ),
     TrackItem(
       id: "g1eTAt1_VAM",
-      title: "Hype (feat. Abdi & CELO)",
+      name: "Hype (feat. Abdi & CELO)",
       duration: Some(303),
       cover: [
         Thumbnail(
@@ -859,7 +859,7 @@ Paginator(
     ),
     TrackItem(
       id: "c3rLrFC8igY",
-      title: "Dame - Auf die guten alten Zeiten [Official HD Video]",
+      name: "Dame - Auf die guten alten Zeiten [Official HD Video]",
       duration: Some(252),
       cover: [
         Thumbnail(
@@ -883,7 +883,7 @@ Paginator(
     ),
     TrackItem(
       id: "1im4DNEYzEM",
-      title: "Optimal (instrumental)",
+      name: "Optimal (instrumental)",
       duration: Some(209),
       cover: [
         Thumbnail(
@@ -911,7 +911,7 @@ Paginator(
     ),
     TrackItem(
       id: "8BUxw9ocM2s",
-      title: "EULE aka Jazzy Gudd - Stehaufmädchen (Official Video)",
+      name: "EULE aka Jazzy Gudd - Stehaufmädchen (Official Video)",
       duration: Some(184),
       cover: [
         Thumbnail(
@@ -935,7 +935,7 @@ Paginator(
     ),
     TrackItem(
       id: "g4cSpnGbHPE",
-      title: "Zweistellige Haftstrafen",
+      name: "Zweistellige Haftstrafen",
       duration: Some(201),
       cover: [
         Thumbnail(
@@ -963,7 +963,7 @@ Paginator(
     ),
     TrackItem(
       id: "1Sdj9MiCowQ",
-      title: "187",
+      name: "187",
       duration: Some(296),
       cover: [
         Thumbnail(
@@ -991,7 +991,7 @@ Paginator(
     ),
     TrackItem(
       id: "2DbR35g-0ZY",
-      title: "Der Pate",
+      name: "Der Pate",
       duration: Some(237),
       cover: [
         Thumbnail(
@@ -1015,7 +1015,7 @@ Paginator(
     ),
     TrackItem(
       id: "j09hpp3AxIE",
-      title: "Tage wie diese",
+      name: "Tage wie diese",
       duration: Some(272),
       cover: [
         Thumbnail(
@@ -1039,7 +1039,7 @@ Paginator(
     ),
     TrackItem(
       id: "J3GN6JXjV3g",
-      title: "Frische Luft",
+      name: "Frische Luft",
       duration: Some(200),
       cover: [
         Thumbnail(
@@ -1063,7 +1063,7 @@ Paginator(
     ),
     TrackItem(
       id: "pULl-p02upM",
-      title: "Check (feat. Xatar)",
+      name: "Check (feat. Xatar)",
       duration: Some(240),
       cover: [
         Thumbnail(
@@ -1087,7 +1087,7 @@ Paginator(
     ),
     TrackItem(
       id: "O6By8JeCtQQ",
-      title: "Alles richtig so (Instrumental)",
+      name: "Alles richtig so (Instrumental)",
       duration: Some(210),
       cover: [
         Thumbnail(
@@ -1111,7 +1111,7 @@ Paginator(
     ),
     TrackItem(
       id: "NGn3IYQ7M7E",
-      title: "Vorankommen",
+      name: "Vorankommen",
       duration: Some(228),
       cover: [
         Thumbnail(
@@ -1135,7 +1135,7 @@ Paginator(
     ),
     TrackItem(
       id: "o43oI5x86dI",
-      title: "Schnapp!",
+      name: "Schnapp!",
       duration: Some(166),
       cover: [
         Thumbnail(
@@ -1159,7 +1159,7 @@ Paginator(
     ),
     TrackItem(
       id: "7TNqUrINxzs",
-      title: "Besser als 50 Cent (Instrumental)",
+      name: "Besser als 50 Cent (Instrumental)",
       duration: Some(197),
       cover: [
         Thumbnail(
@@ -1183,7 +1183,7 @@ Paginator(
     ),
     TrackItem(
       id: "f3BD5Zm3cp0",
-      title: "Palmen aus Gold",
+      name: "Palmen aus Gold",
       duration: Some(231),
       cover: [
         Thumbnail(
@@ -1211,7 +1211,7 @@ Paginator(
     ),
     TrackItem(
       id: "sF4yTDp95Eo",
-      title: "Lampedusa",
+      name: "Lampedusa",
       duration: Some(203),
       cover: [
         Thumbnail(
@@ -1235,7 +1235,7 @@ Paginator(
     ),
     TrackItem(
       id: "1EwLNHg6ejY",
-      title: "Ajajaj (feat. Soolking)",
+      name: "Ajajaj (feat. Soolking)",
       duration: Some(224),
       cover: [
         Thumbnail(
@@ -1259,7 +1259,7 @@ Paginator(
     ),
     TrackItem(
       id: "-l75qaSDWe8",
-      title: "Bongzimmer",
+      name: "Bongzimmer",
       duration: Some(287),
       cover: [
         Thumbnail(
@@ -1283,7 +1283,7 @@ Paginator(
     ),
     TrackItem(
       id: "7h7ntYLLrfQ",
-      title: "Kogong",
+      name: "Kogong",
       duration: Some(223),
       cover: [
         Thumbnail(
@@ -1307,7 +1307,7 @@ Paginator(
     ),
     TrackItem(
       id: "ApUl3Ops69M",
-      title: "AZET - FAST LIFE (prod. by m3) #KMNSTREET VOL. 1",
+      name: "AZET - FAST LIFE (prod. by m3) #KMNSTREET VOL. 1",
       duration: Some(179),
       cover: [
         Thumbnail(
@@ -1331,7 +1331,7 @@ Paginator(
     ),
     TrackItem(
       id: "2YcJ8Wightw",
-      title: "CL500",
+      name: "CL500",
       duration: Some(152),
       cover: [
         Thumbnail(
@@ -1355,7 +1355,7 @@ Paginator(
     ),
     TrackItem(
       id: "W3q8Od5qJio",
-      title: "Du hast",
+      name: "Du hast",
       duration: Some(236),
       cover: [
         Thumbnail(
@@ -1379,7 +1379,7 @@ Paginator(
     ),
     TrackItem(
       id: "WPFLAjmWCtk",
-      title: "Astronaut (feat. Andreas Bourani)",
+      name: "Astronaut (feat. Andreas Bourani)",
       duration: Some(268),
       cover: [
         Thumbnail(
@@ -1403,7 +1403,7 @@ Paginator(
     ),
     TrackItem(
       id: "tC76tIp0kBk",
-      title: "So wie du bist (feat. Lary)",
+      name: "So wie du bist (feat. Lary)",
       duration: Some(312),
       cover: [
         Thumbnail(
@@ -1427,7 +1427,7 @@ Paginator(
     ),
     TrackItem(
       id: "kiMG_JV2gbo",
-      title: "Adel Tawil \"Lieder\" (Official Lyrics Video)",
+      name: "Adel Tawil \"Lieder\" (Official Lyrics Video)",
       duration: Some(230),
       cover: [
         Thumbnail(
@@ -1451,7 +1451,7 @@ Paginator(
     ),
     TrackItem(
       id: "CrYYg_atdtk",
-      title: "Marteria, Yasha, Miss Platnum - Lila Wolken (Official Video)",
+      name: "Marteria, Yasha, Miss Platnum - Lila Wolken (Official Video)",
       duration: Some(231),
       cover: [
         Thumbnail(
@@ -1475,7 +1475,7 @@ Paginator(
     ),
     TrackItem(
       id: "XTPGpBBwt1w",
-      title: "Hurra die Welt geht unter (feat. Henning May)",
+      name: "Hurra die Welt geht unter (feat. Henning May)",
       duration: Some(299),
       cover: [
         Thumbnail(
@@ -1499,7 +1499,7 @@ Paginator(
     ),
     TrackItem(
       id: "uC08L4xxjNM",
-      title: "80 Millionen",
+      name: "80 Millionen",
       duration: Some(257),
       cover: [
         Thumbnail(
@@ -1523,7 +1523,7 @@ Paginator(
     ),
     TrackItem(
       id: "5fAoV_AAMf0",
-      title: "Bauch und Kopf (Videoclip)",
+      name: "Bauch und Kopf (Videoclip)",
       duration: Some(257),
       cover: [
         Thumbnail(
@@ -1547,7 +1547,7 @@ Paginator(
     ),
     TrackItem(
       id: "u5Vz7obL460",
-      title: "Keine Maschine",
+      name: "Keine Maschine",
       duration: Some(202),
       cover: [
         Thumbnail(
@@ -1571,7 +1571,7 @@ Paginator(
     ),
     TrackItem(
       id: "ZPJlyRv_IGI",
-      title: "Deichkind - Leider Geil (Official Video)",
+      name: "Deichkind - Leider Geil (Official Video)",
       duration: Some(189),
       cover: [
         Thumbnail(
@@ -1595,7 +1595,7 @@ Paginator(
     ),
     TrackItem(
       id: "s2SLbln-JwE",
-      title: "BIBI & TINA  \" Jungs gegen Mädchen - MÄDCHEN GEGEN JUNGS - Das offizielle Video!",
+      name: "BIBI & TINA  \" Jungs gegen Mädchen - MÄDCHEN GEGEN JUNGS - Das offizielle Video!",
       duration: Some(172),
       cover: [
         Thumbnail(
@@ -1619,7 +1619,7 @@ Paginator(
     ),
     TrackItem(
       id: "28xHtRw6pG8",
-      title: "Patte fließt",
+      name: "Patte fließt",
       duration: Some(206),
       cover: [
         Thumbnail(
@@ -1643,7 +1643,7 @@ Paginator(
     ),
     TrackItem(
       id: "joWoKqUTRvc",
-      title: "Alles & Nichts",
+      name: "Alles & Nichts",
       duration: Some(204),
       cover: [
         Thumbnail(
@@ -1667,7 +1667,7 @@ Paginator(
     ),
     TrackItem(
       id: "XNMFTqhcNrE",
-      title: "Flash mich (Videoclip)",
+      name: "Flash mich (Videoclip)",
       duration: Some(236),
       cover: [
         Thumbnail(
@@ -1691,7 +1691,7 @@ Paginator(
     ),
     TrackItem(
       id: "v3vPLgJ9FX8",
-      title: "Sex",
+      name: "Sex",
       duration: Some(260),
       cover: [
         Thumbnail(
@@ -1719,7 +1719,7 @@ Paginator(
     ),
     TrackItem(
       id: "UFXOd179kOA",
-      title: "Ebbe und Flut (feat. Hanybal & Xatar)",
+      name: "Ebbe und Flut (feat. Hanybal & Xatar)",
       duration: Some(213),
       cover: [
         Thumbnail(
@@ -1743,7 +1743,7 @@ Paginator(
     ),
     TrackItem(
       id: "4xRsDnKgHZc",
-      title: "Hol\' mir dein Cousin",
+      name: "Hol\' mir dein Cousin",
       duration: Some(206),
       cover: [
         Thumbnail(
@@ -1767,7 +1767,7 @@ Paginator(
     ),
     TrackItem(
       id: "mE3IjoEqMqY",
-      title: "Hanybal - VANILLA SKY mit Nimo (prod. von Lucry) [Official 4K Video]",
+      name: "Hanybal - VANILLA SKY mit Nimo (prod. von Lucry) [Official 4K Video]",
       duration: Some(211),
       cover: [
         Thumbnail(
@@ -1791,7 +1791,7 @@ Paginator(
     ),
     TrackItem(
       id: "E7e5vxKerqA",
-      title: "Wer Macht Para? (feat. ENO)",
+      name: "Wer Macht Para? (feat. ENO)",
       duration: Some(195),
       cover: [
         Thumbnail(
@@ -1815,7 +1815,7 @@ Paginator(
     ),
     TrackItem(
       id: "axmZ_5Rx4Go",
-      title: "Zuhause (feat. Matisyahu)",
+      name: "Zuhause (feat. Matisyahu)",
       duration: Some(210),
       cover: [
         Thumbnail(
@@ -1839,7 +1839,7 @@ Paginator(
     ),
     TrackItem(
       id: "44Ig6BsOCYA",
-      title: "Purple Haze",
+      name: "Purple Haze",
       duration: Some(279),
       cover: [
         Thumbnail(
@@ -1863,7 +1863,7 @@ Paginator(
     ),
     TrackItem(
       id: "3iLBFEJjdN0",
-      title: "Löwenzahn (feat. Olexesh)",
+      name: "Löwenzahn (feat. Olexesh)",
       duration: Some(242),
       cover: [
         Thumbnail(
@@ -1887,7 +1887,7 @@ Paginator(
     ),
     TrackItem(
       id: "M-ncq2eHF_k",
-      title: "Ich will nur (Live)",
+      name: "Ich will nur (Live)",
       duration: Some(233),
       cover: [
         Thumbnail(
@@ -1911,7 +1911,7 @@ Paginator(
     ),
     TrackItem(
       id: "-AJoJ-ggiKI",
-      title: "LX & Maxwell feat. Gzuz - HaifischNikez (Jambeatz)",
+      name: "LX & Maxwell feat. Gzuz - HaifischNikez (Jambeatz)",
       duration: Some(215),
       cover: [
         Thumbnail(
@@ -1935,7 +1935,7 @@ Paginator(
     ),
     TrackItem(
       id: "cgb-zp9DDHg",
-      title: "Brot brechen",
+      name: "Brot brechen",
       duration: Some(191),
       cover: [
         Thumbnail(
@@ -1963,7 +1963,7 @@ Paginator(
     ),
     TrackItem(
       id: "Q7ZXg3KQLt0",
-      title: "Genozid",
+      name: "Genozid",
       duration: Some(407),
       cover: [
         Thumbnail(
@@ -1987,7 +1987,7 @@ Paginator(
     ),
     TrackItem(
       id: "ysAEZOwp5rM",
-      title: "John Gotti",
+      name: "John Gotti",
       duration: Some(207),
       cover: [
         Thumbnail(
@@ -2011,7 +2011,7 @@ Paginator(
     ),
     TrackItem(
       id: "m5vfng33SVE",
-      title: "Das ist dein Leben",
+      name: "Das ist dein Leben",
       duration: Some(282),
       cover: [
         Thumbnail(
@@ -2035,7 +2035,7 @@ Paginator(
     ),
     TrackItem(
       id: "yMfgjVlGbUE",
-      title: "Apocalyptic Infinity",
+      name: "Apocalyptic Infinity",
       duration: Some(1622),
       cover: [
         Thumbnail(
@@ -2059,7 +2059,7 @@ Paginator(
     ),
     TrackItem(
       id: "OQIYEPe6DWY",
-      title: "Kraftwerk - Das Model",
+      name: "Kraftwerk - Das Model",
       duration: Some(262),
       cover: [
         Thumbnail(
@@ -2083,7 +2083,7 @@ Paginator(
     ),
     TrackItem(
       id: "5FS8RIH7BpI",
-      title: "Wünsch dir was",
+      name: "Wünsch dir was",
       duration: Some(303),
       cover: [
         Thumbnail(
@@ -2107,7 +2107,7 @@ Paginator(
     ),
     TrackItem(
       id: "zSRKgFB9piY",
-      title: "Keine ist wie Du ( Gregor Meyle Acoustic Cover )",
+      name: "Keine ist wie Du ( Gregor Meyle Acoustic Cover )",
       duration: Some(256),
       cover: [
         Thumbnail(
@@ -2131,7 +2131,7 @@ Paginator(
     ),
     TrackItem(
       id: "e4eHhgwHCME",
-      title: "Sturmmaske auf (Intro)",
+      name: "Sturmmaske auf (Intro)",
       duration: Some(275),
       cover: [
         Thumbnail(
@@ -2159,7 +2159,7 @@ Paginator(
     ),
     TrackItem(
       id: "q3hZvho7jNk",
-      title: "Paper",
+      name: "Paper",
       duration: Some(222),
       cover: [
         Thumbnail(
@@ -2183,7 +2183,7 @@ Paginator(
     ),
     TrackItem(
       id: "0nWysyj_Z4Y",
-      title: "Flouz kommt Flouz geht",
+      name: "Flouz kommt Flouz geht",
       duration: Some(191),
       cover: [
         Thumbnail(
@@ -2207,7 +2207,7 @@ Paginator(
     ),
     TrackItem(
       id: "aGCcLWU0OVo",
-      title: "Gürtel am Arm",
+      name: "Gürtel am Arm",
       duration: Some(218),
       cover: [
         Thumbnail(
@@ -2231,7 +2231,7 @@ Paginator(
     ),
     TrackItem(
       id: "OQsXLK4MeEA",
-      title: "JBB 2013 - SpongeBOZZ vs. Gio (Finale HR) prod. by Digital Drama",
+      name: "JBB 2013 - SpongeBOZZ vs. Gio (Finale HR) prod. by Digital Drama",
       duration: Some(400),
       cover: [
         Thumbnail(
@@ -2255,7 +2255,7 @@ Paginator(
     ),
     TrackItem(
       id: "xm7dxIqOO2M",
-      title: "Halbmond",
+      name: "Halbmond",
       duration: Some(272),
       cover: [
         Thumbnail(
@@ -2279,7 +2279,7 @@ Paginator(
     ),
     TrackItem(
       id: "jlaaByab4Zk",
-      title: "Ljubi me budalo (Radio)",
+      name: "Ljubi me budalo (Radio)",
       duration: Some(224),
       cover: [
         Thumbnail(
@@ -2307,7 +2307,7 @@ Paginator(
     ),
     TrackItem(
       id: "KG9-jSqXz4U",
-      title: "Oft gefragt (AMK Version)",
+      name: "Oft gefragt (AMK Version)",
       duration: Some(205),
       cover: [
         Thumbnail(
@@ -2331,7 +2331,7 @@ Paginator(
     ),
     TrackItem(
       id: "7dISZnwsBSA",
-      title: "1,40m (feat. Philipp Dittberner)",
+      name: "1,40m (feat. Philipp Dittberner)",
       duration: Some(284),
       cover: [
         Thumbnail(
@@ -2355,7 +2355,7 @@ Paginator(
     ),
     TrackItem(
       id: "F_PPdS-PB14",
-      title: "Idéal",
+      name: "Idéal",
       duration: Some(253),
       cover: [
         Thumbnail(
@@ -2379,7 +2379,7 @@ Paginator(
     ),
     TrackItem(
       id: "DMg9idvVY8M",
-      title: "Bitter",
+      name: "Bitter",
       duration: Some(173),
       cover: [
         Thumbnail(
@@ -2403,7 +2403,7 @@ Paginator(
     ),
     TrackItem(
       id: "DGEmoSFI94Y",
-      title: "Kurz Für Immer Bleiben",
+      name: "Kurz Für Immer Bleiben",
       duration: Some(218),
       cover: [
         Thumbnail(
@@ -2427,7 +2427,7 @@ Paginator(
     ),
     TrackItem(
       id: "BtZufymxHvE",
-      title: "Ausser Kontrolle",
+      name: "Ausser Kontrolle",
       duration: Some(159),
       cover: [
         Thumbnail(

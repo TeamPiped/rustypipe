@@ -150,7 +150,7 @@ Channel(
     items: [
       VideoItem(
         id: "hhs95CI6Dsg",
-        title: "MARS 2020 Landing LIVE",
+        name: "MARS 2020 Landing LIVE",
         length: Some(6321),
         thumbnail: [
           Thumbnail(
@@ -191,7 +191,7 @@ Channel(
       ),
       VideoItem(
         id: "cpQk2n-wmQ4",
-        title: "LIVE Soldering",
+        name: "LIVE Soldering",
         length: Some(7046),
         thumbnail: [
           Thumbnail(
@@ -232,7 +232,7 @@ Channel(
       ),
       VideoItem(
         id: "kIDV_XN9oA8",
-        title: "LIVE Soldering",
+        name: "LIVE Soldering",
         length: Some(4353),
         thumbnail: [
           Thumbnail(
@@ -273,7 +273,7 @@ Channel(
       ),
       VideoItem(
         id: "DWS4Qp3Yn0A",
-        title: "Apollo 11 Launch LIVE - 50 Years Later",
+        name: "Apollo 11 Launch LIVE - 50 Years Later",
         length: Some(4560),
         thumbnail: [
           Thumbnail(
@@ -314,7 +314,7 @@ Channel(
       ),
       VideoItem(
         id: "LwjTe3SiVXg",
-        title: "EEVblog LIVE Q&A",
+        name: "EEVblog LIVE Q&A",
         length: Some(3943),
         thumbnail: [
           Thumbnail(
@@ -355,7 +355,7 @@ Channel(
       ),
       VideoItem(
         id: "skPiz3GrVNs",
-        title: "LIVE Keysight Scope Draw #2",
+        name: "LIVE Keysight Scope Draw #2",
         length: Some(2445),
         thumbnail: [
           Thumbnail(
@@ -396,7 +396,7 @@ Channel(
       ),
       VideoItem(
         id: "HZc-Ctvgv5Y",
-        title: "LIVE Keysight Scope Draw",
+        name: "LIVE Keysight Scope Draw",
         length: Some(6455),
         thumbnail: [
           Thumbnail(
@@ -437,7 +437,7 @@ Channel(
       ),
       VideoItem(
         id: "5ilODYy2zGE",
-        title: "Ask Dave LIVE - March 8th 2019",
+        name: "Ask Dave LIVE - March 8th 2019",
         length: Some(10645),
         thumbnail: [
           Thumbnail(
@@ -478,7 +478,7 @@ Channel(
       ),
       VideoItem(
         id: "gQ7TTuiDH1M",
-        title: "Ask Dave LIVE - Jan 28th 2019",
+        name: "Ask Dave LIVE - Jan 28th 2019",
         length: Some(17228),
         thumbnail: [
           Thumbnail(
@@ -519,7 +519,7 @@ Channel(
       ),
       VideoItem(
         id: "qpw9dKxL2Ho",
-        title: "LIVE KiCAD 5 PCB Design",
+        name: "LIVE KiCAD 5 PCB Design",
         length: Some(8003),
         thumbnail: [
           Thumbnail(
@@ -560,7 +560,7 @@ Channel(
       ),
       VideoItem(
         id: "wECZoUNd2GY",
-        title: "EEVblog LIVE DIY TTL Computer Build",
+        name: "EEVblog LIVE DIY TTL Computer Build",
         length: Some(14599),
         thumbnail: [
           Thumbnail(
@@ -601,7 +601,7 @@ Channel(
       ),
       VideoItem(
         id: "bV99dn-tWDk",
-        title: "EEVblog LIVE Scope Draw",
+        name: "EEVblog LIVE Scope Draw",
         length: Some(2694),
         thumbnail: [
           Thumbnail(
@@ -642,7 +642,7 @@ Channel(
       ),
       VideoItem(
         id: "-NGRIFiu_p0",
-        title: "EEVblog LIVE SHOW - End of 2017",
+        name: "EEVblog LIVE SHOW - End of 2017",
         length: Some(12238),
         thumbnail: [
           Thumbnail(
@@ -683,7 +683,7 @@ Channel(
       ),
       VideoItem(
         id: "zgE6_x4rM5k",
-        title: "LIVE Show Giveaway",
+        name: "LIVE Show Giveaway",
         length: Some(5533),
         thumbnail: [
           Thumbnail(
@@ -724,7 +724,7 @@ Channel(
       ),
       VideoItem(
         id: "9DjABCJN2M8",
-        title: "LIVE Testing of the Batteriser",
+        name: "LIVE Testing of the Batteriser",
         length: Some(10747),
         thumbnail: [
           Thumbnail(
@@ -765,7 +765,7 @@ Channel(
       ),
       VideoItem(
         id: "cAsUI2YhqN4",
-        title: "LIVE Unboxing of the Batteriser! (Batteroo)",
+        name: "LIVE Unboxing of the Batteriser! (Batteroo)",
         length: Some(3102),
         thumbnail: [
           Thumbnail(
@@ -806,7 +806,7 @@ Channel(
       ),
       VideoItem(
         id: "CLYKwFMW9J0",
-        title: "Juno Live Again",
+        name: "Juno Live Again",
         length: Some(811),
         thumbnail: [
           Thumbnail(
@@ -847,7 +847,7 @@ Channel(
       ),
       VideoItem(
         id: "nV43vM9VcUA",
-        title: "Juno Live",
+        name: "Juno Live",
         length: Some(190),
         thumbnail: [
           Thumbnail(
@@ -888,7 +888,7 @@ Channel(
       ),
       VideoItem(
         id: "38uFiWzcDnc",
-        title: "Juno Orbital Insertion Live",
+        name: "Juno Orbital Insertion Live",
         length: Some(1731),
         thumbnail: [
           Thumbnail(
@@ -929,7 +929,7 @@ Channel(
       ),
       VideoItem(
         id: "ib80yjc9VlM",
-        title: "Juno Jupiter Live",
+        name: "Juno Jupiter Live",
         length: Some(581),
         thumbnail: [
           Thumbnail(
@@ -970,7 +970,7 @@ Channel(
       ),
       VideoItem(
         id: "rQRakYpb8-g",
-        title: "eevSTREAM: Lab Rearrangement Part 2",
+        name: "eevSTREAM: Lab Rearrangement Part 2",
         length: Some(8616),
         thumbnail: [
           Thumbnail(
@@ -1011,7 +1011,7 @@ Channel(
       ),
       VideoItem(
         id: "DwLEFKu2XWg",
-        title: "eevSTREAM: Lab Rearrangement Part 1",
+        name: "eevSTREAM: Lab Rearrangement Part 1",
         length: Some(768),
         thumbnail: [
           Thumbnail(
@@ -1052,7 +1052,7 @@ Channel(
       ),
       VideoItem(
         id: "VeUDXQR3F2o",
-        title: "Live Show",
+        name: "Live Show",
         length: Some(10360),
         thumbnail: [
           Thumbnail(
@@ -1093,7 +1093,7 @@ Channel(
       ),
       VideoItem(
         id: "PgZx25vVwoI",
-        title: "Live Giveaway",
+        name: "Live Giveaway",
         length: Some(1808),
         thumbnail: [
           Thumbnail(
@@ -1134,7 +1134,7 @@ Channel(
       ),
       VideoItem(
         id: "jUtzoO-ur34",
-        title: "Inventables X-Carve LIVE Build Part 4",
+        name: "Inventables X-Carve LIVE Build Part 4",
         length: Some(10665),
         thumbnail: [
           Thumbnail(
@@ -1175,7 +1175,7 @@ Channel(
       ),
       VideoItem(
         id: "199gtbX1y4M",
-        title: "Inventables X-Carve LIVE Build Part 3 + Batteriser Rant",
+        name: "Inventables X-Carve LIVE Build Part 3 + Batteriser Rant",
         length: Some(6267),
         thumbnail: [
           Thumbnail(
@@ -1216,7 +1216,7 @@ Channel(
       ),
       VideoItem(
         id: "nQH4I_p7-MI",
-        title: "Inventables X-Carve LIVE Build Part 2",
+        name: "Inventables X-Carve LIVE Build Part 2",
         length: Some(17643),
         thumbnail: [
           Thumbnail(
@@ -1257,7 +1257,7 @@ Channel(
       ),
       VideoItem(
         id: "XBMNFXGKpaw",
-        title: "Inventables X-Carve LIVE Build",
+        name: "Inventables X-Carve LIVE Build",
         length: Some(5479),
         thumbnail: [
           Thumbnail(
@@ -1298,7 +1298,7 @@ Channel(
       ),
       VideoItem(
         id: "yl6DGgiE3J8",
-        title: "Apollo Saturn LVDC Live testing",
+        name: "Apollo Saturn LVDC Live testing",
         length: Some(1076),
         thumbnail: [
           Thumbnail(
@@ -1339,7 +1339,7 @@ Channel(
       ),
       VideoItem(
         id: "EEMcIZAcKjc",
-        title: "LIVE EEVblog Mailbag",
+        name: "LIVE EEVblog Mailbag",
         length: Some(7344),
         thumbnail: [
           Thumbnail(

@@ -7,7 +7,7 @@ Paginator(
   items: [
     Video(VideoItem(
       id: "mRmlXh7Hams",
-      title: "Extra 3 vom 12.10.2022 im NDR | extra 3 | NDR",
+      name: "Extra 3 vom 12.10.2022 im NDR | extra 3 | NDR",
       length: Some(1839),
       thumbnail: [
         Thumbnail(
@@ -39,7 +39,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "LsXC5r64Pvc",
-      title: "Most Rarest Plays In Baseball History",
+      name: "Most Rarest Plays In Baseball History",
       length: Some(1975),
       thumbnail: [
         Thumbnail(
@@ -71,7 +71,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "dwPmd1GqQHE",
-      title: "90S RAP & HIPHOP MIX - Notorious B I G , Dr Dre, 50 Cent, Snoop Dogg, 2Pac, DMX, Lil Jon and more",
+      name: "90S RAP & HIPHOP MIX - Notorious B I G , Dr Dre, 50 Cent, Snoop Dogg, 2Pac, DMX, Lil Jon and more",
       length: Some(5457),
       thumbnail: [
         Thumbnail(
@@ -103,7 +103,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "qxI-Ob8lpLE",
-      title: "Schlatt\'s Chips Tier List",
+      name: "Schlatt\'s Chips Tier List",
       length: Some(1071),
       thumbnail: [
         Thumbnail(
@@ -140,7 +140,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "qmrzTUmZ4UU",
-      title: "850€ für den Verrat am System - UCS AT-AT LEGO® Star Wars 75313",
+      name: "850€ für den Verrat am System - UCS AT-AT LEGO® Star Wars 75313",
       length: Some(2043),
       thumbnail: [
         Thumbnail(
@@ -177,7 +177,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "4q4vpQCIZ6w",
-      title: "🌉 Manhattan Jazz 💖  l Relaxing Jazz Piano Music l Background Music",
+      name: "🌉 Manhattan Jazz 💖  l Relaxing Jazz Piano Music l Background Music",
       length: Some(23229),
       thumbnail: [
         Thumbnail(
@@ -214,7 +214,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "Z_k31kqZxaE",
-      title: "1 in 1,000,000 NBA Moments",
+      name: "1 in 1,000,000 NBA Moments",
       length: Some(567),
       thumbnail: [
         Thumbnail(
@@ -251,7 +251,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "zE-a5eqvlv8",
-      title: "Dua Lipa, Coldplay, Martin Garrix & Kygo, The Chainsmokers Style - Feeling Me",
+      name: "Dua Lipa, Coldplay, Martin Garrix & Kygo, The Chainsmokers Style - Feeling Me",
       length: None,
       thumbnail: [
         Thumbnail(
@@ -288,7 +288,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "gNlOk0LXi5M",
-      title: "Soll ich dir 1g GOLD schenken? oder JEMAND anderen DOPPELT?",
+      name: "Soll ich dir 1g GOLD schenken? oder JEMAND anderen DOPPELT?",
       length: Some(704),
       thumbnail: [
         Thumbnail(
@@ -325,7 +325,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "dbMvZjs8Yc8",
-      title: "Brad Pitt- Die Revanche eines Sexsymbols | Doku HD | ARTE",
+      name: "Brad Pitt- Die Revanche eines Sexsymbols | Doku HD | ARTE",
       length: Some(3137),
       thumbnail: [
         Thumbnail(
@@ -362,7 +362,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "mFxi3lOAcFs",
-      title: "Craziest Soviet Machines You Won\'t Believe Exist - Part 1",
+      name: "Craziest Soviet Machines You Won\'t Believe Exist - Part 1",
       length: Some(1569),
       thumbnail: [
         Thumbnail(
@@ -399,7 +399,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "eu7ubm7g59E",
-      title: "People Hated Me For Using This Slab",
+      name: "People Hated Me For Using This Slab",
       length: Some(1264),
       thumbnail: [
         Thumbnail(
@@ -436,7 +436,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "TRGHIN2PGIA",
-      title: "Christian Bale Breaks Down His Most Iconic Characters | GQ",
+      name: "Christian Bale Breaks Down His Most Iconic Characters | GQ",
       length: Some(1381),
       thumbnail: [
         Thumbnail(
@@ -473,7 +473,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "w3tENzcssDU",
-      title: "NFL Trick Plays But They Get Increasingly Higher IQ",
+      name: "NFL Trick Plays But They Get Increasingly Higher IQ",
       length: Some(599),
       thumbnail: [
         Thumbnail(
@@ -510,7 +510,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "gUAd2XXzH7w",
-      title: "⚓\u{fe0f}Found ABANDONED SHIP!!! Big CRUISE SHIP on a desert island☠\u{fe0f} Where did the people go?!?",
+      name: "⚓\u{fe0f}Found ABANDONED SHIP!!! Big CRUISE SHIP on a desert island☠\u{fe0f} Where did the people go?!?",
       length: Some(2949),
       thumbnail: [
         Thumbnail(
@@ -547,7 +547,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "YpGjaJ1ettI",
-      title: "[Working BGM] Comfortable music that makes you feel positive  -- Morning Mood -- Daily Routine",
+      name: "[Working BGM] Comfortable music that makes you feel positive  -- Morning Mood -- Daily Routine",
       length: Some(3651),
       thumbnail: [
         Thumbnail(
@@ -584,7 +584,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "rPAhFD8hKxQ",
-      title: "Survival Camping 9ft/3m Under Snow - Giant Winter Bushcraft Shelter and Quinzee",
+      name: "Survival Camping 9ft/3m Under Snow - Giant Winter Bushcraft Shelter and Quinzee",
       length: Some(1301),
       thumbnail: [
         Thumbnail(
@@ -621,7 +621,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "2rye4u-cCNk",
-      title: "Pink Panther Fights Off Pests | 54 Minute Compilation | The Pink Panther Show",
+      name: "Pink Panther Fights Off Pests | 54 Minute Compilation | The Pink Panther Show",
       length: Some(3158),
       thumbnail: [
         Thumbnail(
@@ -658,7 +658,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "O0xAlfSaBNQ",
-      title: "FC Nantes vs. SC Freiburg – Highlights & Tore | UEFA Europa League",
+      name: "FC Nantes vs. SC Freiburg – Highlights & Tore | UEFA Europa League",
       length: Some(326),
       thumbnail: [
         Thumbnail(
@@ -695,7 +695,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "Mhs9Sbnw19o",
-      title: "Dramatisches Duell: 400 Jahre altes Kästchen erzielt zig-fachen Wunschpreis! | Bares für Rares XXL",
+      name: "Dramatisches Duell: 400 Jahre altes Kästchen erzielt zig-fachen Wunschpreis! | Bares für Rares XXL",
       length: Some(744),
       thumbnail: [
         Thumbnail(
@@ -732,7 +732,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "Bzzp5Cay7DI",
-      title: "Sweet Jazz - Cool autumn Bossa Nova & October Jazz Positive Mood",
+      name: "Sweet Jazz - Cool autumn Bossa Nova & October Jazz Positive Mood",
       length: None,
       thumbnail: [
         Thumbnail(
@@ -769,7 +769,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "SlskTqc9CEc",
-      title: "The Chick-Fil-A Full Menu Challenge",
+      name: "The Chick-Fil-A Full Menu Challenge",
       length: Some(613),
       thumbnail: [
         Thumbnail(
@@ -806,7 +806,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "CwRvM2TfYbs",
-      title: "Gentle healing music of health and to calm the nervous system, deep relaxation! Say Life Yes",
+      name: "Gentle healing music of health and to calm the nervous system, deep relaxation! Say Life Yes",
       length: None,
       thumbnail: [
         Thumbnail(
@@ -843,7 +843,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "7jz0pXSe_kI",
-      title: "Craziest \"Fine...I\'ll Do it Myself\" Moments in Sports History (PART 2)",
+      name: "Craziest \"Fine...I\'ll Do it Myself\" Moments in Sports History (PART 2)",
       length: Some(1822),
       thumbnail: [
         Thumbnail(

@@ -7,7 +7,7 @@ Paginator(
   items: [
     VideoItem(
       id: "_cyJhGsXDDM",
-      title: "Ultimate Criminal Canal Found Magnet Fishing! Police on the Hunt",
+      name: "Ultimate Criminal Canal Found Magnet Fishing! Police on the Hunt",
       length: Some(1096),
       thumbnail: [
         Thumbnail(
@@ -44,7 +44,7 @@ Paginator(
     ),
     VideoItem(
       id: "36YnV9STBqc",
-      title: "The Good Life Radio\u{a0}•\u{a0}24/7 Live Radio | Best Relax House, Chillout, Study, Running, Gym, Happy Music",
+      name: "The Good Life Radio\u{a0}•\u{a0}24/7 Live Radio | Best Relax House, Chillout, Study, Running, Gym, Happy Music",
       length: None,
       thumbnail: [
         Thumbnail(
@@ -81,7 +81,7 @@ Paginator(
     ),
     VideoItem(
       id: "YYD1qgH5qC4",
-      title: "چند شنبه با سینــا | فصل چهـارم | قسمت 5 | با حضور نازنین انصاری مدیر روزنامه کیهان لندن",
+      name: "چند شنبه با سینــا | فصل چهـارم | قسمت 5 | با حضور نازنین انصاری مدیر روزنامه کیهان لندن",
       length: Some(3261),
       thumbnail: [
         Thumbnail(
@@ -118,7 +118,7 @@ Paginator(
     ),
     VideoItem(
       id: "BeJqgI6rw9k",
-      title: "your city is full of fake buildings, here\'s why",
+      name: "your city is full of fake buildings, here\'s why",
       length: Some(725),
       thumbnail: [
         Thumbnail(
@@ -155,7 +155,7 @@ Paginator(
     ),
     VideoItem(
       id: "ma28eWd1oyA",
-      title: "Post Malone, Maroon 5, Adele, Taylor Swift, Ed Sheeran, Shawn Mendes, Pop Hits 2020 Part 6",
+      name: "Post Malone, Maroon 5, Adele, Taylor Swift, Ed Sheeran, Shawn Mendes, Pop Hits 2020 Part 6",
       length: Some(29989),
       thumbnail: [
         Thumbnail(
@@ -187,7 +187,7 @@ Paginator(
     ),
     VideoItem(
       id: "mL2LBRM5GBI",
-      title: "Salahs 6-Minuten-Hattrick & Firmino-Gala: Rangers - FC Liverpool 1:7 | UEFA Champions League | DAZN",
+      name: "Salahs 6-Minuten-Hattrick & Firmino-Gala: Rangers - FC Liverpool 1:7 | UEFA Champions League | DAZN",
       length: Some(355),
       thumbnail: [
         Thumbnail(
@@ -224,7 +224,7 @@ Paginator(
     ),
     VideoItem(
       id: "Ang18qz2IeQ",
-      title: "Satisfying Videos of Workers Doing Their Job Perfectly",
+      name: "Satisfying Videos of Workers Doing Their Job Perfectly",
       length: Some(1186),
       thumbnail: [
         Thumbnail(
@@ -261,7 +261,7 @@ Paginator(
     ),
     VideoItem(
       id: "fjHN4jsJnEU",
-      title: "I Made 200 Players Simulate Survival Island in Minecraft...",
+      name: "I Made 200 Players Simulate Survival Island in Minecraft...",
       length: Some(2361),
       thumbnail: [
         Thumbnail(
@@ -298,7 +298,7 @@ Paginator(
     ),
     VideoItem(
       id: "FI1XrdBJIUI",
-      title: "Epic Construction Fails | Expensive Fails Compilation | FailArmy",
+      name: "Epic Construction Fails | Expensive Fails Compilation | FailArmy",
       length: Some(631),
       thumbnail: [
         Thumbnail(
@@ -335,7 +335,7 @@ Paginator(
     ),
     VideoItem(
       id: "MXdplejK8vU",
-      title: "Chilly autumn Jazz ☕ Smooth September Jazz & Bossa Nova for a great relaxing weekend",
+      name: "Chilly autumn Jazz ☕ Smooth September Jazz & Bossa Nova for a great relaxing weekend",
       length: Some(86403),
       thumbnail: [
         Thumbnail(
@@ -372,7 +372,7 @@ Paginator(
     ),
     VideoItem(
       id: "Jri4_9vBFiQ",
-      title: "Top 100 Best Classic Rock Songs Of All Time 🔥 R.E.M, Queen, Metallica,Guns N’ Roses,Bon Jovi, U2,CCR",
+      name: "Top 100 Best Classic Rock Songs Of All Time 🔥 R.E.M, Queen, Metallica,Guns N’ Roses,Bon Jovi, U2,CCR",
       length: None,
       thumbnail: [
         Thumbnail(
@@ -409,7 +409,7 @@ Paginator(
     ),
     VideoItem(
       id: "ll4d5Lt-Ie8",
-      title: "Relaxing Music Healing Stress, Anxiety and Depressive States Heal Mind, Body and Soul | Sleep music",
+      name: "Relaxing Music Healing Stress, Anxiety and Depressive States Heal Mind, Body and Soul | Sleep music",
       length: Some(42896),
       thumbnail: [
         Thumbnail(
@@ -446,7 +446,7 @@ Paginator(
     ),
     VideoItem(
       id: "Dx2wbKLokuQ",
-      title: "W. Putin: Die Sehnsucht nach dem Imperium | Mit offenen Karten | ARTE",
+      name: "W. Putin: Die Sehnsucht nach dem Imperium | Mit offenen Karten | ARTE",
       length: Some(729),
       thumbnail: [
         Thumbnail(
@@ -483,7 +483,7 @@ Paginator(
     ),
     VideoItem(
       id: "jfKfPfyJRdk",
-      title: "lofi hip hop radio - beats to relax/study to",
+      name: "lofi hip hop radio - beats to relax/study to",
       length: None,
       thumbnail: [
         Thumbnail(
@@ -520,7 +520,7 @@ Paginator(
     ),
     VideoItem(
       id: "qmrzTUmZ4UU",
-      title: "850€ für den Verrat am System - UCS AT-AT LEGO® Star Wars 75313",
+      name: "850€ für den Verrat am System - UCS AT-AT LEGO® Star Wars 75313",
       length: Some(2043),
       thumbnail: [
         Thumbnail(
@@ -557,7 +557,7 @@ Paginator(
     ),
     VideoItem(
       id: "t0Q2otsqC4I",
-      title: "Tom & Jerry | Tom & Jerry in Full Screen | Classic Cartoon Compilation | WB Kids",
+      name: "Tom & Jerry | Tom & Jerry in Full Screen | Classic Cartoon Compilation | WB Kids",
       length: Some(1298),
       thumbnail: [
         Thumbnail(
@@ -594,7 +594,7 @@ Paginator(
     ),
     VideoItem(
       id: "zE-a5eqvlv8",
-      title: "Dua Lipa, Coldplay, Martin Garrix & Kygo, The Chainsmokers Style - Feeling Me",
+      name: "Dua Lipa, Coldplay, Martin Garrix & Kygo, The Chainsmokers Style - Feeling Me",
       length: None,
       thumbnail: [
         Thumbnail(
@@ -631,7 +631,7 @@ Paginator(
     ),
     VideoItem(
       id: "HxCcKzRAGWk",
-      title: "(Music for Man ) Relaxing Whiskey Blues Music - Modern Electric Guitar Blues - JAZZ & BLUES",
+      name: "(Music for Man ) Relaxing Whiskey Blues Music - Modern Electric Guitar Blues - JAZZ & BLUES",
       length: Some(42899),
       thumbnail: [
         Thumbnail(
@@ -668,7 +668,7 @@ Paginator(
     ),
     VideoItem(
       id: "HlHYOdZePSE",
-      title: "Healing Music for Anxiety Disorders, Fears, Depression and Eliminate Negative Thoughts",
+      name: "Healing Music for Anxiety Disorders, Fears, Depression and Eliminate Negative Thoughts",
       length: None,
       thumbnail: [
         Thumbnail(
@@ -705,7 +705,7 @@ Paginator(
     ),
     VideoItem(
       id: "CJ2AH3LJeic",
-      title: "Coldplay Greatest Hits Full Album 2022   New Songs of Coldplay 2022",
+      name: "Coldplay Greatest Hits Full Album 2022   New Songs of Coldplay 2022",
       length: Some(7781),
       thumbnail: [
         Thumbnail(
@@ -742,7 +742,7 @@ Paginator(
     ),
     VideoItem(
       id: "KJwzKxQ81iA",
-      title: "Handmade Candy Making Collection / 수제 사탕 만들기 모음 / Korean Candy Store",
+      name: "Handmade Candy Making Collection / 수제 사탕 만들기 모음 / Korean Candy Store",
       length: Some(3152),
       thumbnail: [
         Thumbnail(

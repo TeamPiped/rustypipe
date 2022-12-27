@@ -38,7 +38,7 @@ MusicArtist(
   tracks: [
     TrackItem(
       id: "BGcUVJXViqQ",
-      title: "고블린 Goblin",
+      name: "고블린 Goblin",
       duration: None,
       cover: [
         Thumbnail(
@@ -70,7 +70,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "7_Bav4c7UGM",
-      title: "온더문 On The Moon",
+      name: "온더문 On The Moon",
       duration: None,
       cover: [
         Thumbnail(
@@ -102,7 +102,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "kzUZABVj5UQ",
-      title: "도로시 Dorothy",
+      name: "도로시 Dorothy",
       duration: None,
       cover: [
         Thumbnail(
@@ -134,7 +134,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "P5uE7KDkDFE",
-      title: "Goblin",
+      name: "Goblin",
       duration: None,
       cover: [
         Thumbnail(
@@ -163,7 +163,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "kxjZwdLWFrc",
-      title: "SULLI 설리\' 온더문 (On The Moon)\' MV",
+      name: "SULLI 설리\' 온더문 (On The Moon)\' MV",
       duration: None,
       cover: [
         Thumbnail(
@@ -192,7 +192,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "-aneeaddeXc",
-      title: "⌗ ₊𓂃 dorothy — sulli 𔘓 sub. español",
+      name: "⌗ ₊𓂃 dorothy — sulli 𔘓 sub. español",
       duration: None,
       cover: [
         Thumbnail(
@@ -221,7 +221,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "YWijFdsj_Ew",
-      title: "sulli - goblin (sped up)",
+      name: "sulli - goblin (sped up)",
       duration: None,
       cover: [
         Thumbnail(
@@ -250,7 +250,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "94q_2Zsq2os",
-      title: "Sulli - On The Moon (sped up)",
+      name: "Sulli - On The Moon (sped up)",
       duration: None,
       cover: [
         Thumbnail(
@@ -279,7 +279,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "fBce3VihpIQ",
-      title: "sulli - goblin (sped up)",
+      name: "sulli - goblin (sped up)",
       duration: None,
       cover: [
         Thumbnail(
@@ -308,7 +308,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "0-HXdJc-zDQ",
-      title: "Sulli - Dorothy (sped up)",
+      name: "Sulli - Dorothy (sped up)",
       duration: None,
       cover: [
         Thumbnail(
@@ -337,7 +337,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "Bae4Fv7GlMY",
-      title: "Sulli\'nin goblin M/V\'sindeki korkutucu detaylar!😱💥",
+      name: "Sulli\'nin goblin M/V\'sindeki korkutucu detaylar!😱💥",
       duration: None,
       cover: [
         Thumbnail(
@@ -366,7 +366,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "Rq_JkcROjsI",
-      title: "𝗀𝗈𝖻𝗅𝗂𝗇 // 𝗌𝗎𝗅𝗅𝗂 ༄ 𝗌𝗅𝗈𝗐𝖾𝖽 + 𝗋𝖾𝗏𝖾𝗋𝖻",
+      name: "𝗀𝗈𝖻𝗅𝗂𝗇 // 𝗌𝗎𝗅𝗅𝗂 ༄ 𝗌𝗅𝗈𝗐𝖾𝖽 + 𝗋𝖾𝗏𝖾𝗋𝖻",
       duration: None,
       cover: [
         Thumbnail(
@@ -395,7 +395,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "STNyxlYFyVY",
-      title: "SULLI - Goblin (Clean Instrumental)",
+      name: "SULLI - Goblin (Clean Instrumental)",
       duration: None,
       cover: [
         Thumbnail(

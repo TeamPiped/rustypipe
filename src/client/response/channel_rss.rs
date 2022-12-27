@@ -103,7 +103,7 @@ impl From<ChannelRss> for crate::model::ChannelRss {
                 .into_iter()
                 .map(|item| crate::model::ChannelRssVideo {
                     id: item.video_id,
-                    title: item.title,
+                    name: item.title,
                     description: item.media_group.description,
                     thumbnail: item.media_group.thumbnail.into(),
                     publish_date: item.published,

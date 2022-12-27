@@ -7,7 +7,7 @@ Paginator(
   items: [
     Video(VideoItem(
       id: "WPdWvnAAurg",
-      title: "aespa 에스파 \'Savage\' MV",
+      name: "aespa 에스파 \'Savage\' MV",
       length: Some(259),
       thumbnail: [
         Thumbnail(
@@ -44,7 +44,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "Y8JFxS1HlDo",
-      title: "IVE 아이브 \'LOVE DIVE\' MV",
+      name: "IVE 아이브 \'LOVE DIVE\' MV",
       length: Some(179),
       thumbnail: [
         Thumbnail(
@@ -81,7 +81,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "NoYKBAajoyo",
-      title: "EVERGLOW (에버글로우) - DUN DUN MV",
+      name: "EVERGLOW (에버글로우) - DUN DUN MV",
       length: Some(209),
       thumbnail: [
         Thumbnail(
@@ -118,7 +118,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "yQUU29NwNF4",
-      title: "aespa(에스파) - Black Mamba @인기가요 inkigayo 20201122",
+      name: "aespa(에스파) - Black Mamba @인기가요 inkigayo 20201122",
       length: Some(213),
       thumbnail: [
         Thumbnail(
@@ -155,7 +155,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "NU611fxGyPU",
-      title: "aespa 에스파 \'Black Mamba\' Dance Practice",
+      name: "aespa 에스파 \'Black Mamba\' Dance Practice",
       length: Some(175),
       thumbnail: [
         Thumbnail(
@@ -192,7 +192,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "EaswWiwMVs8",
-      title: "Stray Kids \"소리꾼(Thunderous)\" M/V",
+      name: "Stray Kids \"소리꾼(Thunderous)\" M/V",
       length: Some(199),
       thumbnail: [
         Thumbnail(
@@ -229,7 +229,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "Ujb-gvqsoi0",
-      title: "Red Velvet - IRENE & SEULGI \'Monster\' MV",
+      name: "Red Velvet - IRENE & SEULGI \'Monster\' MV",
       length: Some(182),
       thumbnail: [
         Thumbnail(
@@ -266,7 +266,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "gQlMMD8auMs",
-      title: "BLACKPINK - ‘Pink Venom’ M/V",
+      name: "BLACKPINK - ‘Pink Venom’ M/V",
       length: Some(194),
       thumbnail: [
         Thumbnail(
@@ -303,7 +303,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "BL-aIpCLWnU",
-      title: "Black Mamba",
+      name: "Black Mamba",
       length: Some(175),
       thumbnail: [
         Thumbnail(
@@ -340,7 +340,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "Jh4QFaPmdss",
-      title: "(G)I-DLE - \'TOMBOY\' Official Music Video",
+      name: "(G)I-DLE - \'TOMBOY\' Official Music Video",
       length: Some(198),
       thumbnail: [
         Thumbnail(
@@ -377,7 +377,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "Fc-fa6cAe2c",
-      title: "KAI 카이 \'음 (Mmmh)\' MV",
+      name: "KAI 카이 \'음 (Mmmh)\' MV",
       length: Some(207),
       thumbnail: [
         Thumbnail(
@@ -414,7 +414,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "dYRITmpFbJ4",
-      title: "aespa 에스파 \'Girls\' MV",
+      name: "aespa 에스파 \'Girls\' MV",
       length: Some(269),
       thumbnail: [
         Thumbnail(
@@ -451,7 +451,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "mH0_XpSHkZo",
-      title: "TWICE \"MORE & MORE\" M/V",
+      name: "TWICE \"MORE & MORE\" M/V",
       length: Some(241),
       thumbnail: [
         Thumbnail(
@@ -488,7 +488,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "uR8Mrt1IpXg",
-      title: "Red Velvet 레드벨벳 \'Psycho\' MV",
+      name: "Red Velvet 레드벨벳 \'Psycho\' MV",
       length: Some(216),
       thumbnail: [
         Thumbnail(
@@ -525,7 +525,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "f5_wn8mexmM",
-      title: "TWICE \"The Feels\" M/V",
+      name: "TWICE \"The Feels\" M/V",
       length: Some(232),
       thumbnail: [
         Thumbnail(
@@ -562,7 +562,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "Ky5RT5oGg0w",
-      title: "aespa 에스파 \'Black Mamba\' The Debut Stage",
+      name: "aespa 에스파 \'Black Mamba\' The Debut Stage",
       length: Some(287),
       thumbnail: [
         Thumbnail(
@@ -599,7 +599,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "gU2HqP4NxUs",
-      title: "BLACKPINK - ‘Pretty Savage’ 1011 SBS Inkigayo",
+      name: "BLACKPINK - ‘Pretty Savage’ 1011 SBS Inkigayo",
       length: Some(208),
       thumbnail: [
         Thumbnail(
@@ -636,7 +636,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "KhTeiaCezwM",
-      title: "[MV] MAMAMOO (마마무) - HIP",
+      name: "[MV] MAMAMOO (마마무) - HIP",
       length: Some(211),
       thumbnail: [
         Thumbnail(
@@ -673,7 +673,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "uxmP4b2a0uY",
-      title: "EXO 엑소 \'Obsession\' MV",
+      name: "EXO 엑소 \'Obsession\' MV",
       length: Some(220),
       thumbnail: [
         Thumbnail(

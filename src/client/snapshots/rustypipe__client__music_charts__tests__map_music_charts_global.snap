@@ -6,7 +6,7 @@ MusicCharts(
   top_tracks: [
     TrackItem(
       id: "rb0bjyt1OD0",
-      title: "Tukoh Taka - Official FIFA Fan Festival™ Anthem | Nicki Minaj, Maluma, & Myriam Fares (FIFA Sound)",
+      name: "Tukoh Taka - Official FIFA Fan Festival™ Anthem | Nicki Minaj, Maluma, & Myriam Fares (FIFA Sound)",
       duration: None,
       cover: [
         Thumbnail(
@@ -35,7 +35,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "jEdfjuG0Fx4",
-      title: "정국 (Jung Kook) \'Dreamers\' @ FIFA World Cup Qatar 2022 Opening Ceremony",
+      name: "정국 (Jung Kook) \'Dreamers\' @ FIFA World Cup Qatar 2022 Opening Ceremony",
       duration: None,
       cover: [
         Thumbnail(
@@ -68,7 +68,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "pRpeEdMmmQ0",
-      title: "Waka Waka (This Time for Africa) (The Official 2010 FIFA Worl... (feat. Freshlyground)",
+      name: "Waka Waka (This Time for Africa) (The Official 2010 FIFA Worl... (feat. Freshlyground)",
       duration: None,
       cover: [
         Thumbnail(
@@ -97,7 +97,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "Gzs60iBgd3E",
-      title: "Duki: Bzrp Music Sessions, Vol. 50",
+      name: "Duki: Bzrp Music Sessions, Vol. 50",
       duration: None,
       cover: [
         Thumbnail(
@@ -130,7 +130,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "sABN7goDbZ8",
-      title: "#Power Star #Pawan Singh का पॉवरफ\u{941}ल #VIDEO | हरी हरी ओढ\u{93c}नी | Ft. #Dimpal Singh | Bhojpuri Song",
+      name: "#Power Star #Pawan Singh का पॉवरफ\u{941}ल #VIDEO | हरी हरी ओढ\u{93c}नी | Ft. #Dimpal Singh | Bhojpuri Song",
       duration: None,
       cover: [
         Thumbnail(
@@ -163,7 +163,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "saGYMhApaH8",
-      title: "Me porto bonito (feat. Chencho Corleone)",
+      name: "Me porto bonito (feat. Chencho Corleone)",
       duration: None,
       cover: [
         Thumbnail(
@@ -192,7 +192,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "zuVV9Y55gvc",
-      title: "Ranjithame",
+      name: "Ranjithame",
       duration: None,
       cover: [
         Thumbnail(
@@ -225,7 +225,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "TiM_TFpT_DE",
-      title: "La Bachata",
+      name: "La Bachata",
       duration: None,
       cover: [
         Thumbnail(
@@ -254,7 +254,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "WcIcVapfqXw",
-      title: "Calm Down",
+      name: "Calm Down",
       duration: None,
       cover: [
         Thumbnail(
@@ -287,7 +287,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "Cr8K88UcO0s",
-      title: "Tití me preguntó",
+      name: "Tití me preguntó",
       duration: None,
       cover: [
         Thumbnail(
@@ -316,7 +316,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "BddP6PYo2gs",
-      title: "Kesariya",
+      name: "Kesariya",
       duration: None,
       cover: [
         Thumbnail(
@@ -345,7 +345,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "POe9SOEKotk",
-      title: "Shut Down",
+      name: "Shut Down",
       duration: None,
       cover: [
         Thumbnail(
@@ -374,7 +374,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "Z02zptUN8gI",
-      title: "Cairo",
+      name: "Cairo",
       duration: None,
       cover: [
         Thumbnail(
@@ -407,7 +407,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "e8laLiWolGg",
-      title: "Arhbo",
+      name: "Arhbo",
       duration: None,
       cover: [
         Thumbnail(
@@ -448,7 +448,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "SK37InR9j38",
-      title: "GATÚBELA",
+      name: "GATÚBELA",
       duration: None,
       cover: [
         Thumbnail(
@@ -481,7 +481,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "5kJMtNWUytY",
-      title: "#Video | Dilwa Le Gaile Raja\u{200b} - दिलवा ल\u{947} गईल\u{947} राजा | #Neelam Giri | #Shilpi Raj | Bhojpuri Song 2022",
+      name: "#Video | Dilwa Le Gaile Raja\u{200b} - दिलवा ल\u{947} गईल\u{947} राजा | #Neelam Giri | #Shilpi Raj | Bhojpuri Song 2022",
       duration: None,
       cover: [
         Thumbnail(
@@ -510,7 +510,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "gQlMMD8auMs",
-      title: "Pink Venom",
+      name: "Pink Venom",
       duration: None,
       cover: [
         Thumbnail(
@@ -539,7 +539,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "D0gWr9K8Lb4",
-      title: "Chann Sitare",
+      name: "Chann Sitare",
       duration: None,
       cover: [
         Thumbnail(
@@ -568,7 +568,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "7ouFkoU8Ap8",
-      title: "Hey Mor (feat. Feid)",
+      name: "Hey Mor (feat. Feid)",
       duration: None,
       cover: [
         Thumbnail(
@@ -597,7 +597,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "-1vsm5bhoyE",
-      title: "No Se Va",
+      name: "No Se Va",
       duration: None,
       cover: [
         Thumbnail(
@@ -626,7 +626,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "gnMdTTeY1FY",
-      title: "ياسر عبد الوهاب & زيد الحبيب - قلبي ( حصريا\u{64b} ) Yaser Abd Alwahab ft Zaid Alhabeeb - Qalby - 2022",
+      name: "ياسر عبد الوهاب & زيد الحبيب - قلبي ( حصريا\u{64b} ) Yaser Abd Alwahab ft Zaid Alhabeeb - Qalby - 2022",
       duration: None,
       cover: [
         Thumbnail(
@@ -655,7 +655,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "ca48oMV59LU",
-      title: "PROVENZA",
+      name: "PROVENZA",
       duration: None,
       cover: [
         Thumbnail(
@@ -684,7 +684,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "VtKcDwz6hiM",
-      title: "No Se Va (En Vivo)",
+      name: "No Se Va (En Vivo)",
       duration: None,
       cover: [
         Thumbnail(
@@ -713,7 +713,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "5g2hT4GmAGU",
-      title: "DESPECHÁ",
+      name: "DESPECHÁ",
       duration: None,
       cover: [
         Thumbnail(
@@ -742,7 +742,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "CQLsdm1ZYAw",
-      title: "Calm Down",
+      name: "Calm Down",
       duration: None,
       cover: [
         Thumbnail(
@@ -775,7 +775,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "UhbixyxgsiU",
-      title: "Just Wanna Rock",
+      name: "Just Wanna Rock",
       duration: None,
       cover: [
         Thumbnail(
@@ -804,7 +804,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "mxF58TYuPaM",
-      title: "Devoto (feat. Elvis de Yongol)",
+      name: "Devoto (feat. Elvis de Yongol)",
       duration: None,
       cover: [
         Thumbnail(
@@ -833,7 +833,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "8n5dJwWXrbo",
-      title: "IShowSpeed - World Cup (Official Music Video)",
+      name: "IShowSpeed - World Cup (Official Music Video)",
       duration: None,
       cover: [
         Thumbnail(
@@ -862,7 +862,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "j5y6xLpRwx4",
-      title: "Monotonía",
+      name: "Monotonía",
       duration: None,
       cover: [
         Thumbnail(
@@ -895,7 +895,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "jRxDUsGmwuc",
-      title: "Feliz Cumpleaños Ferxxo",
+      name: "Feliz Cumpleaños Ferxxo",
       duration: None,
       cover: [
         Thumbnail(
@@ -924,7 +924,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "RgKAFK5djSk",
-      title: "See You Again (feat. Charlie Puth)",
+      name: "See You Again (feat. Charlie Puth)",
       duration: None,
       cover: [
         Thumbnail(
@@ -953,7 +953,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "TGtWWb9emYI",
-      title: "We Are One (Ole Ola) [The Official 2014 FIFA World Cup Song] ... (feat. Claudia Leitte & Jennifer Lopez)",
+      name: "We Are One (Ole Ola) [The Official 2014 FIFA World Cup Song] ... (feat. Claudia Leitte & Jennifer Lopez)",
       duration: None,
       cover: [
         Thumbnail(
@@ -982,7 +982,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "no0RhhdJMlE",
-      title: "Do It Right",
+      name: "Do It Right",
       duration: None,
       cover: [
         Thumbnail(
@@ -1011,7 +1011,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "dzsuE5ugxf4",
-      title: "Waka Waka (Esto es África) (feat. Freshlyground)",
+      name: "Waka Waka (Esto es África) (feat. Freshlyground)",
       duration: None,
       cover: [
         Thumbnail(
@@ -1040,7 +1040,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "aAkMkVFwAoo",
-      title: "All I Want for Christmas Is You (Make My Wish Come True Edition)",
+      name: "All I Want for Christmas Is You (Make My Wish Come True Edition)",
       duration: None,
       cover: [
         Thumbnail(
@@ -1069,7 +1069,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "jpYkoa-uE_c",
-      title: "Jehda Nasha",
+      name: "Jehda Nasha",
       duration: None,
       cover: [
         Thumbnail(
@@ -1106,7 +1106,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "A_g3lMcWVy0",
-      title: "Quevedo: Bzrp Music Sessions, Vol. 52",
+      name: "Quevedo: Bzrp Music Sessions, Vol. 52",
       duration: None,
       cover: [
         Thumbnail(
@@ -1139,7 +1139,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "gIOyB9ZXn8s",
-      title: "Into the Unknown (From \"Frozen 2\")",
+      name: "Into the Unknown (From \"Frozen 2\")",
       duration: None,
       cover: [
         Thumbnail(
@@ -1172,7 +1172,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "MwpMEbgC7DA",
-      title: "Another Love (Official Video)",
+      name: "Another Love (Official Video)",
       duration: None,
       cover: [
         Thumbnail(
@@ -1201,7 +1201,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "AJleGCGFyIg",
-      title: "Dos Besitos (feat. Salastkbron & Gusty dj)",
+      name: "Dos Besitos (feat. Salastkbron & Gusty dj)",
       duration: None,
       cover: [
         Thumbnail(

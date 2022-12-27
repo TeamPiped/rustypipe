@@ -4,7 +4,7 @@ expression: map_res.c
 ---
 VideoDetails(
   id: "ZeerrnuLi5E",
-  title: "aespa 에스파 \'Black Mamba\' MV",
+  name: "aespa 에스파 \'Black Mamba\' MV",
   description: RichText([
     Text("🎧Listen and download aespa\'s debut single \"Black Mamba\": "),
     Web(
@@ -106,7 +106,7 @@ VideoDetails(
     items: [
       VideoItem(
         id: "4TWR90KJl84",
-        title: "aespa 에스파 \'Next Level\' MV",
+        name: "aespa 에스파 \'Next Level\' MV",
         length: Some(236),
         thumbnail: [
           Thumbnail(
@@ -143,7 +143,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "WPdWvnAAurg",
-        title: "aespa 에스파 \'Savage\' MV",
+        name: "aespa 에스파 \'Savage\' MV",
         length: Some(259),
         thumbnail: [
           Thumbnail(
@@ -180,7 +180,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "NoYKBAajoyo",
-        title: "EVERGLOW (에버글로우) - DUN DUN MV",
+        name: "EVERGLOW (에버글로우) - DUN DUN MV",
         length: Some(209),
         thumbnail: [
           Thumbnail(
@@ -217,7 +217,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "KhTeiaCezwM",
-        title: "[MV] MAMAMOO (마마무) - HIP",
+        name: "[MV] MAMAMOO (마마무) - HIP",
         length: Some(211),
         thumbnail: [
           Thumbnail(
@@ -254,7 +254,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "Jh4QFaPmdss",
-        title: "(G)I-DLE - \'TOMBOY\' Official Music Video",
+        name: "(G)I-DLE - \'TOMBOY\' Official Music Video",
         length: Some(198),
         thumbnail: [
           Thumbnail(
@@ -291,7 +291,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "CM4CkVFmTds",
-        title: "TWICE \"I CAN\'T STOP ME\" M/V",
+        name: "TWICE \"I CAN\'T STOP ME\" M/V",
         length: Some(221),
         thumbnail: [
           Thumbnail(
@@ -328,7 +328,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "uR8Mrt1IpXg",
-        title: "Red Velvet 레드벨벳 \'Psycho\' MV",
+        name: "Red Velvet 레드벨벳 \'Psycho\' MV",
         length: Some(216),
         thumbnail: [
           Thumbnail(
@@ -365,7 +365,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "QslJYDX3o8s",
-        title: "Red Velvet 레드벨벳 \'러시안 룰렛 (Russian Roulette)\' MV",
+        name: "Red Velvet 레드벨벳 \'러시안 룰렛 (Russian Roulette)\' MV",
         length: Some(212),
         thumbnail: [
           Thumbnail(
@@ -402,7 +402,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "EaswWiwMVs8",
-        title: "Stray Kids \"소리꾼(Thunderous)\" M/V",
+        name: "Stray Kids \"소리꾼(Thunderous)\" M/V",
         length: Some(199),
         thumbnail: [
           Thumbnail(
@@ -439,7 +439,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "pNfTK39k55U",
-        title: "ITZY \"달라달라(DALLA DALLA)\" M/V @ITZY",
+        name: "ITZY \"달라달라(DALLA DALLA)\" M/V @ITZY",
         length: Some(227),
         thumbnail: [
           Thumbnail(
@@ -476,7 +476,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "dYRITmpFbJ4",
-        title: "aespa 에스파 \'Girls\' MV",
+        name: "aespa 에스파 \'Girls\' MV",
         length: Some(269),
         thumbnail: [
           Thumbnail(
@@ -513,7 +513,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "ioNng23DkIM",
-        title: "BLACKPINK - \'How You Like That\' M/V",
+        name: "BLACKPINK - \'How You Like That\' M/V",
         length: Some(184),
         thumbnail: [
           Thumbnail(
@@ -550,7 +550,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "Ujb-gvqsoi0",
-        title: "Red Velvet - IRENE & SEULGI \'Monster\' MV",
+        name: "Red Velvet - IRENE & SEULGI \'Monster\' MV",
         length: Some(182),
         thumbnail: [
           Thumbnail(
@@ -587,7 +587,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "bwmSjveL3Lc",
-        title: "BLACKPINK - \'붐바야 (BOOMBAYAH)\' M/V",
+        name: "BLACKPINK - \'붐바야 (BOOMBAYAH)\' M/V",
         length: Some(244),
         thumbnail: [
           Thumbnail(
@@ -624,7 +624,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "6uJf2IT2Zh8",
-        title: "Red Velvet 레드벨벳 \'피카부 (Peek-A-Boo)\' MV",
+        name: "Red Velvet 레드벨벳 \'피카부 (Peek-A-Boo)\' MV",
         length: Some(230),
         thumbnail: [
           Thumbnail(
@@ -661,7 +661,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "Y8JFxS1HlDo",
-        title: "IVE 아이브 \'LOVE DIVE\' MV",
+        name: "IVE 아이브 \'LOVE DIVE\' MV",
         length: Some(179),
         thumbnail: [
           Thumbnail(
@@ -698,7 +698,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "2FzSv66c7TQ",
-        title: "A E S P A (에스파) ALL SONGS PLAYLIST 2022 | 에스파 노래 모음",
+        name: "A E S P A (에스파) ALL SONGS PLAYLIST 2022 | 에스파 노래 모음",
         length: Some(3441),
         thumbnail: [
           Thumbnail(
@@ -735,7 +735,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "NU611fxGyPU",
-        title: "aespa 에스파 \'Black Mamba\' Dance Practice",
+        name: "aespa 에스파 \'Black Mamba\' Dance Practice",
         length: Some(175),
         thumbnail: [
           Thumbnail(

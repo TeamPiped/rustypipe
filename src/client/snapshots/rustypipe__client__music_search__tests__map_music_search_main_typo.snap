@@ -6,7 +6,7 @@ MusicSearchResult(
   tracks: [
     TrackItem(
       id: "6485PhOtHzY",
-      title: "Lieblingsmensch",
+      name: "Lieblingsmensch",
       duration: Some(191),
       cover: [
         Thumbnail(
@@ -38,7 +38,7 @@ MusicSearchResult(
     ),
     TrackItem(
       id: "pt0YvfnhGgI",
-      title: "Lieblingsmensch",
+      name: "Lieblingsmensch",
       duration: Some(524),
       cover: [
         Thumbnail(
@@ -70,7 +70,7 @@ MusicSearchResult(
     ),
     TrackItem(
       id: "0yPnvetCm-U",
-      title: "Lieblingsmensch",
+      name: "Lieblingsmensch",
       duration: Some(174),
       cover: [
         Thumbnail(
@@ -102,7 +102,7 @@ MusicSearchResult(
     ),
     TrackItem(
       id: "3ryohiCVq3M",
-      title: "Namika -  Lieblingsmensch (Official Video)",
+      name: "Namika -  Lieblingsmensch (Official Video)",
       duration: Some(191),
       cover: [
         Thumbnail(
@@ -126,7 +126,7 @@ MusicSearchResult(
     ),
     TrackItem(
       id: "6Bt1KeMNqvc",
-      title: "Lieblingsmensch Namika Lyrics",
+      name: "Lieblingsmensch Namika Lyrics",
       duration: Some(188),
       cover: [
         Thumbnail(
@@ -150,7 +150,7 @@ MusicSearchResult(
     ),
     TrackItem(
       id: "5YQRHUItXTI",
-      title: "Namika - Lieblingsmensch 1 Hour Version",
+      name: "Namika - Lieblingsmensch 1 Hour Version",
       duration: Some(3801),
       cover: [
         Thumbnail(

@@ -4,7 +4,7 @@ expression: map_res.c
 ---
 VideoDetails(
   id: "nFDBxBUfE74",
-  title: "The Prepper PC",
+  name: "The Prepper PC",
   description: RichText([
     Text("Thanks to Jackery for sponsoring today\'s video! Check out Jackery\'s Solar Generator 2000 Pro and get 10% off with code LinusTechTips at "),
     Web(
@@ -292,7 +292,7 @@ VideoDetails(
   is_ccommons: false,
   chapters: [
     Chapter(
-      title: "Intro",
+      name: "Intro",
       position: 0,
       thumbnail: [
         Thumbnail(
@@ -308,7 +308,7 @@ VideoDetails(
       ],
     ),
     Chapter(
-      title: "The PC Built for Super Efficiency",
+      name: "The PC Built for Super Efficiency",
       position: 42,
       thumbnail: [
         Thumbnail(
@@ -324,7 +324,7 @@ VideoDetails(
       ],
     ),
     Chapter(
-      title: "Our BURIAL ENCLOSURE?!",
+      name: "Our BURIAL ENCLOSURE?!",
       position: 161,
       thumbnail: [
         Thumbnail(
@@ -340,7 +340,7 @@ VideoDetails(
       ],
     ),
     Chapter(
-      title: "Our Power Solution (Thanks Jackery!)",
+      name: "Our Power Solution (Thanks Jackery!)",
       position: 211,
       thumbnail: [
         Thumbnail(
@@ -356,7 +356,7 @@ VideoDetails(
       ],
     ),
     Chapter(
-      title: "Diggin\' Holes",
+      name: "Diggin\' Holes",
       position: 287,
       thumbnail: [
         Thumbnail(
@@ -372,7 +372,7 @@ VideoDetails(
       ],
     ),
     Chapter(
-      title: "Colonoscopy?",
+      name: "Colonoscopy?",
       position: 330,
       thumbnail: [
         Thumbnail(
@@ -388,7 +388,7 @@ VideoDetails(
       ],
     ),
     Chapter(
-      title: "Diggin\' like a man",
+      name: "Diggin\' like a man",
       position: 424,
       thumbnail: [
         Thumbnail(
@@ -404,7 +404,7 @@ VideoDetails(
       ],
     ),
     Chapter(
-      title: "The world\'s worst woodsman",
+      name: "The world\'s worst woodsman",
       position: 509,
       thumbnail: [
         Thumbnail(
@@ -420,7 +420,7 @@ VideoDetails(
       ],
     ),
     Chapter(
-      title: "Backyard cable management",
+      name: "Backyard cable management",
       position: 543,
       thumbnail: [
         Thumbnail(
@@ -436,7 +436,7 @@ VideoDetails(
       ],
     ),
     Chapter(
-      title: "Time to bury this boy",
+      name: "Time to bury this boy",
       position: 602,
       thumbnail: [
         Thumbnail(
@@ -452,7 +452,7 @@ VideoDetails(
       ],
     ),
     Chapter(
-      title: "Solar Power Generation",
+      name: "Solar Power Generation",
       position: 646,
       thumbnail: [
         Thumbnail(
@@ -468,7 +468,7 @@ VideoDetails(
       ],
     ),
     Chapter(
-      title: "Issues",
+      name: "Issues",
       position: 697,
       thumbnail: [
         Thumbnail(
@@ -484,7 +484,7 @@ VideoDetails(
       ],
     ),
     Chapter(
-      title: "First Play Test",
+      name: "First Play Test",
       position: 728,
       thumbnail: [
         Thumbnail(
@@ -500,7 +500,7 @@ VideoDetails(
       ],
     ),
     Chapter(
-      title: "Conclusion",
+      name: "Conclusion",
       position: 800,
       thumbnail: [
         Thumbnail(
@@ -521,7 +521,7 @@ VideoDetails(
     items: [
       VideoItem(
         id: "AOdp09SYhCc",
-        title: "This Is So Embarrassing!",
+        name: "This Is So Embarrassing!",
         length: Some(1063),
         thumbnail: [
           Thumbnail(
@@ -558,7 +558,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "CY3OQh-7wIk",
-        title: "The Computer I Would Actually BUY",
+        name: "The Computer I Would Actually BUY",
         length: Some(6478),
         thumbnail: [
           Thumbnail(
@@ -595,7 +595,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "LQ95XJAwaoc",
-        title: "My favorite car (sucks)",
+        name: "My favorite car (sucks)",
         length: Some(1162),
         thumbnail: [
           Thumbnail(
@@ -632,7 +632,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "mhMQeJ5Qmp0",
-        title: "The Apple Newton MessagePad.",
+        name: "The Apple Newton MessagePad.",
         length: Some(758),
         thumbnail: [
           Thumbnail(
@@ -669,7 +669,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "1ctXiZsN6ac",
-        title: "The Reviewer Got Reviewed  - WAN Show September 9, 2022",
+        name: "The Reviewer Got Reviewed  - WAN Show September 9, 2022",
         length: Some(10265),
         thumbnail: [
           Thumbnail(
@@ -706,7 +706,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "CMR9z9Xr8GM",
-        title: "Storing Solar Power on my ROOF!!!",
+        name: "Storing Solar Power on my ROOF!!!",
         length: Some(1028),
         thumbnail: [
           Thumbnail(
@@ -743,7 +743,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "fT2KhJ8W-Kg",
-        title: "How gas pumps know when to turn themselves off",
+        name: "How gas pumps know when to turn themselves off",
         length: Some(836),
         thumbnail: [
           Thumbnail(
@@ -780,7 +780,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "12Hcbx33Rb4",
-        title: "BREAKING NEWS! - EVGA will no longer do business with NVIDIA",
+        name: "BREAKING NEWS! - EVGA will no longer do business with NVIDIA",
         length: Some(1262),
         thumbnail: [
           Thumbnail(
@@ -817,7 +817,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "QW1SsqmaIuE",
-        title: "I Surprised My Subscriber with his Dream Gaming Setup! - Season 8",
+        name: "I Surprised My Subscriber with his Dream Gaming Setup! - Season 8",
         length: Some(2177),
         thumbnail: [
           Thumbnail(
@@ -854,7 +854,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "JAcSNL1T3OA",
-        title: "Why Did I Drill 1756 Holes in This?",
+        name: "Why Did I Drill 1756 Holes in This?",
         length: Some(1293),
         thumbnail: [
           Thumbnail(
@@ -891,7 +891,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "ZVtOss1U7_s",
-        title: "VW Beetle converted to electric in a day",
+        name: "VW Beetle converted to electric in a day",
         length: Some(826),
         thumbnail: [
           Thumbnail(
@@ -928,7 +928,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "2kJDTzFtUr4",
-        title: "How ASML, TSMC And Intel Dominate The Chip Market | CNBC Marathon",
+        name: "How ASML, TSMC And Intel Dominate The Chip Market | CNBC Marathon",
         length: Some(3399),
         thumbnail: [
           Thumbnail(
@@ -965,7 +965,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "0rCbfsuKdYw",
-        title: "I bought every Playstation Ever.",
+        name: "I bought every Playstation Ever.",
         length: Some(1046),
         thumbnail: [
           Thumbnail(
@@ -1002,7 +1002,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "sbdU7AkH6QM",
-        title: "Reviewing Free Energy Generators.  A Response to My Video \"Nikola Tesla\'s Greatest Invention\"- 102",
+        name: "Reviewing Free Energy Generators.  A Response to My Video \"Nikola Tesla\'s Greatest Invention\"- 102",
         length: Some(1387),
         thumbnail: [
           Thumbnail(
@@ -1039,7 +1039,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "zcchDu7KoYs",
-        title: "AMD’s Victory Lap - HOLY $H!T Threadripper Pro 5995WX",
+        name: "AMD’s Victory Lap - HOLY $H!T Threadripper Pro 5995WX",
         length: Some(872),
         thumbnail: [
           Thumbnail(
@@ -1076,7 +1076,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "pd6DsSjqhFE",
-        title: "Top Gear Satisfaction Survey Compilation",
+        name: "Top Gear Satisfaction Survey Compilation",
         length: Some(986),
         thumbnail: [
           Thumbnail(
@@ -1113,7 +1113,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "2K5Gqp1cEcM",
-        title: "Why our Screwdriver took 3 YEARS",
+        name: "Why our Screwdriver took 3 YEARS",
         length: Some(1752),
         thumbnail: [
           Thumbnail(
@@ -1150,7 +1150,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "t03rmc-prJo",
-        title: "This PC took 600 HOURS to Build!",
+        name: "This PC took 600 HOURS to Build!",
         length: Some(1505),
         thumbnail: [
           Thumbnail(
@@ -1187,7 +1187,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "QTH9m6MDIfc",
-        title: "One Year Ago I Built an Ecosystem, This Happened",
+        name: "One Year Ago I Built an Ecosystem, This Happened",
         length: Some(485),
         thumbnail: [
           Thumbnail(

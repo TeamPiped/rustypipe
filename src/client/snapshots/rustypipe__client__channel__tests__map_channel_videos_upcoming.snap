@@ -138,7 +138,7 @@ Channel(
     items: [
       VideoItem(
         id: "B-KjpyR4n5Q",
-        title: "The Online Manosphere",
+        name: "The Online Manosphere",
         length: None,
         thumbnail: [
           Thumbnail(
@@ -179,7 +179,7 @@ Channel(
       ),
       VideoItem(
         id: "umDsCyZ67J0",
-        title: "Ukraine - The Beginning of the End",
+        name: "Ukraine - The Beginning of the End",
         length: Some(614),
         thumbnail: [
           Thumbnail(
@@ -220,7 +220,7 @@ Channel(
       ),
       VideoItem(
         id: "dNgKGL8lQck",
-        title: "Honest Russian Military Recruitment Video",
+        name: "Honest Russian Military Recruitment Video",
         length: Some(62),
         thumbnail: [
           Thumbnail(
@@ -261,7 +261,7 @@ Channel(
       ),
       VideoItem(
         id: "UVWciFJeFNA",
-        title: "Self-Driving Cars Will Only Make Traffic Worse",
+        name: "Self-Driving Cars Will Only Make Traffic Worse",
         length: Some(458),
         thumbnail: [
           Thumbnail(
@@ -302,7 +302,7 @@ Channel(
       ),
       VideoItem(
         id: "vyWaax07_ks",
-        title: "NEOM Is The Parody Of The Future",
+        name: "NEOM Is The Parody Of The Future",
         length: Some(636),
         thumbnail: [
           Thumbnail(
@@ -343,7 +343,7 @@ Channel(
       ),
       VideoItem(
         id: "onQ0ICkLEJw",
-        title: "I Got An Email From \"The Dubai Sheikh\'s Personal Friend\"",
+        name: "I Got An Email From \"The Dubai Sheikh\'s Personal Friend\"",
         length: Some(211),
         thumbnail: [
           Thumbnail(
@@ -384,7 +384,7 @@ Channel(
       ),
       VideoItem(
         id: "yDEL1pTYOhs",
-        title: "The \"Meritocracy\" Isn\'t Real",
+        name: "The \"Meritocracy\" Isn\'t Real",
         length: Some(385),
         thumbnail: [
           Thumbnail(
@@ -425,7 +425,7 @@ Channel(
       ),
       VideoItem(
         id: "EnVvlhhqWtw",
-        title: "City Review - Prague: Beautiful and Disappointing",
+        name: "City Review - Prague: Beautiful and Disappointing",
         length: Some(834),
         thumbnail: [
           Thumbnail(
@@ -466,7 +466,7 @@ Channel(
       ),
       VideoItem(
         id: "Oxz4oY0T85Y",
-        title: "European International Rail SUCKS, Here\'s Why",
+        name: "European International Rail SUCKS, Here\'s Why",
         length: Some(810),
         thumbnail: [
           Thumbnail(
@@ -507,7 +507,7 @@ Channel(
       ),
       VideoItem(
         id: "lxUEuOkblws",
-        title: "Why the Straddling Bus Failed",
+        name: "Why the Straddling Bus Failed",
         length: Some(614),
         thumbnail: [
           Thumbnail(
@@ -548,7 +548,7 @@ Channel(
       ),
       VideoItem(
         id: "UG8jiKOtedk",
-        title: "How Canadian Ukrainian Volunteer Got Exposed",
+        name: "How Canadian Ukrainian Volunteer Got Exposed",
         length: Some(538),
         thumbnail: [
           Thumbnail(
@@ -589,7 +589,7 @@ Channel(
       ),
       VideoItem(
         id: "bQld7iJJSyk",
-        title: "Why Roads ALWAYS Fill Up, No Matter How Much We Widen Them",
+        name: "Why Roads ALWAYS Fill Up, No Matter How Much We Widen Them",
         length: Some(159),
         thumbnail: [
           Thumbnail(
@@ -630,7 +630,7 @@ Channel(
       ),
       VideoItem(
         id: "WUK0K5mdQ_s",
-        title: "Egypt\'s New Capital is an Ozymandian Nightmare",
+        name: "Egypt\'s New Capital is an Ozymandian Nightmare",
         length: Some(870),
         thumbnail: [
           Thumbnail(
@@ -671,7 +671,7 @@ Channel(
       ),
       VideoItem(
         id: "LB-vsT1Sl68",
-        title: "Why Car-Centric Cities are a GREAT Idea",
+        name: "Why Car-Centric Cities are a GREAT Idea",
         length: Some(369),
         thumbnail: [
           Thumbnail(
@@ -712,7 +712,7 @@ Channel(
       ),
       VideoItem(
         id: "p8NiM_p8n5A",
-        title: "HE FIXED TRAFFIC",
+        name: "HE FIXED TRAFFIC",
         length: Some(157),
         thumbnail: [
           Thumbnail(
@@ -753,7 +753,7 @@ Channel(
       ),
       VideoItem(
         id: "U9YdnzOf4NQ",
-        title: "Why a Mars Colony is a Stupid and Dangerous Idea",
+        name: "Why a Mars Colony is a Stupid and Dangerous Idea",
         length: Some(1000),
         thumbnail: [
           Thumbnail(
@@ -794,7 +794,7 @@ Channel(
       ),
       VideoItem(
         id: "CH55WpJxF1s",
-        title: "What #Elongate Is Really About",
+        name: "What #Elongate Is Really About",
         length: Some(122),
         thumbnail: [
           Thumbnail(
@@ -835,7 +835,7 @@ Channel(
       ),
       VideoItem(
         id: "PPcsZwUv350",
-        title: "Vladimir Putin\'s Three Choices",
+        name: "Vladimir Putin\'s Three Choices",
         length: Some(505),
         thumbnail: [
           Thumbnail(
@@ -876,7 +876,7 @@ Channel(
       ),
       VideoItem(
         id: "B78-FgNqdc8",
-        title: "Was I WRONG About Electric Buses?",
+        name: "Was I WRONG About Electric Buses?",
         length: Some(1536),
         thumbnail: [
           Thumbnail(
@@ -917,7 +917,7 @@ Channel(
       ),
       VideoItem(
         id: "JCXLwOMSDxk",
-        title: "If We Treated Afghanistan Like Ukraine",
+        name: "If We Treated Afghanistan Like Ukraine",
         length: Some(92),
         thumbnail: [
           Thumbnail(
@@ -958,7 +958,7 @@ Channel(
       ),
       VideoItem(
         id: "IpIWswLYAbA",
-        title: "Who\'s Winning the War for Ukraine?",
+        name: "Who\'s Winning the War for Ukraine?",
         length: Some(646),
         thumbnail: [
           Thumbnail(
@@ -999,7 +999,7 @@ Channel(
       ),
       VideoItem(
         id: "NIItoD1Ebh0",
-        title: "Old Habits Die Hard",
+        name: "Old Habits Die Hard",
         length: Some(107),
         thumbnail: [
           Thumbnail(
@@ -1040,7 +1040,7 @@ Channel(
       ),
       VideoItem(
         id: "pENUV9DLa2g",
-        title: "Anarcho-Capitalism In Practice III - The Final Attempt",
+        name: "Anarcho-Capitalism In Practice III - The Final Attempt",
         length: Some(600),
         thumbnail: [
           Thumbnail(
@@ -1081,7 +1081,7 @@ Channel(
       ),
       VideoItem(
         id: "gFGQI8P9BMg",
-        title: "How The Gravel Institute Lies To You About Ukraine",
+        name: "How The Gravel Institute Lies To You About Ukraine",
         length: Some(2472),
         thumbnail: [
           Thumbnail(
@@ -1122,7 +1122,7 @@ Channel(
       ),
       VideoItem(
         id: "AVLevneWvaE",
-        title: "Why Russia Can\'t Achieve Air Supremacy In Ukraine",
+        name: "Why Russia Can\'t Achieve Air Supremacy In Ukraine",
         length: Some(188),
         thumbnail: [
           Thumbnail(
@@ -1163,7 +1163,7 @@ Channel(
       ),
       VideoItem(
         id: "MfRcY90OccY",
-        title: "Can Ukraine Actually WIN This?",
+        name: "Can Ukraine Actually WIN This?",
         length: Some(606),
         thumbnail: [
           Thumbnail(
@@ -1204,7 +1204,7 @@ Channel(
       ),
       VideoItem(
         id: "dQXwreYzJ40",
-        title: "Here\'s What Will Happen To Ukraine [Update: yep, called it]",
+        name: "Here\'s What Will Happen To Ukraine [Update: yep, called it]",
         length: Some(397),
         thumbnail: [
           Thumbnail(
@@ -1245,7 +1245,7 @@ Channel(
       ),
       VideoItem(
         id: "-OO3RiNMDB8",
-        title: "Assessing The Russian Invasion Threat",
+        name: "Assessing The Russian Invasion Threat",
         length: Some(655),
         thumbnail: [
           Thumbnail(
@@ -1286,7 +1286,7 @@ Channel(
       ),
       VideoItem(
         id: "obMTYs30E9A",
-        title: "Ukraine - The Country That Defied Vladimir Putin",
+        name: "Ukraine - The Country That Defied Vladimir Putin",
         length: Some(2498),
         thumbnail: [
           Thumbnail(
@@ -1327,7 +1327,7 @@ Channel(
       ),
       VideoItem(
         id: "4-2bR1iFlhk",
-        title: "\"Wait, Russia isn\'t in NATO?!\" Insane Debate on Ukraine, US Politics, and more!",
+        name: "\"Wait, Russia isn\'t in NATO?!\" Insane Debate on Ukraine, US Politics, and more!",
         length: Some(12151),
         thumbnail: [
           Thumbnail(

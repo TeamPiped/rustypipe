@@ -4,7 +4,7 @@ expression: map_res.c
 ---
 VideoDetails(
   id: "HRKu0cvrr_o",
-  title: "AlphaOmegaSin Fanboy Logic: Likes/Dislikes Disabled = Point Invalid Lol wtf?",
+  name: "AlphaOmegaSin Fanboy Logic: Likes/Dislikes Disabled = Point Invalid Lol wtf?",
   description: RichText([]),
   channel: ChannelTag(
     id: "UCQT2yul0lr6Ie9qNQNmw-sg",

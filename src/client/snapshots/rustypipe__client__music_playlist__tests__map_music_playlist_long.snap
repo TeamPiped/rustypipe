@@ -34,7 +34,7 @@ MusicPlaylist(
     items: [
       TrackItem(
         id: "Bkj3IVIO2Os",
-        title: "Die immer lacht (radio 2016 mix)",
+        name: "Die immer lacht (radio 2016 mix)",
         duration: Some(216),
         cover: [
           Thumbnail(
@@ -62,7 +62,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "8rRj5ZXRNko",
-        title: "Faded Love",
+        name: "Faded Love",
         duration: Some(191),
         cover: [
           Thumbnail(
@@ -86,7 +86,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "lHZtcC67yrY",
-        title: "Hulapalu",
+        name: "Hulapalu",
         duration: Some(188),
         cover: [
           Thumbnail(
@@ -110,7 +110,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "TSkVVVBS9k8",
-        title: "Was du Liebe nennst",
+        name: "Was du Liebe nennst",
         duration: Some(237),
         cover: [
           Thumbnail(
@@ -134,7 +134,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "lc-cnCRhE7c",
-        title: "Senorita (feat. Pietro Lombardi)",
+        name: "Senorita (feat. Pietro Lombardi)",
         duration: Some(250),
         cover: [
           Thumbnail(
@@ -158,7 +158,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "3ryohiCVq3M",
-        title: "Namika -  Lieblingsmensch (Official Video)",
+        name: "Namika -  Lieblingsmensch (Official Video)",
         duration: Some(191),
         cover: [
           Thumbnail(
@@ -182,7 +182,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "BNHamTwxJ6Q",
-        title: "Warum hast du nicht nein gesagt (Club Mix / Videoclip)",
+        name: "Warum hast du nicht nein gesagt (Club Mix / Videoclip)",
         duration: Some(217),
         cover: [
           Thumbnail(
@@ -210,7 +210,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "5mqelmYUcI0",
-        title: "Louis Louis",
+        name: "Louis Louis",
         duration: Some(218),
         cover: [
           Thumbnail(
@@ -234,7 +234,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "k9EYjn5f_nE",
-        title: "Auf uns",
+        name: "Auf uns",
         duration: Some(244),
         cover: [
           Thumbnail(
@@ -258,7 +258,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "fkMg_X9lHMc",
-        title: "Marteria - Kids (2 Finger an den Kopf) [Offizielles Video]",
+        name: "Marteria - Kids (2 Finger an den Kopf) [Offizielles Video]",
         duration: Some(230),
         cover: [
           Thumbnail(
@@ -282,7 +282,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "4wOoLLDXbDY",
-        title: "Easy",
+        name: "Easy",
         duration: Some(195),
         cover: [
           Thumbnail(
@@ -306,7 +306,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "Z_mf9aCHag8",
-        title: "Bist Du Real (feat. moe.)",
+        name: "Bist Du Real (feat. moe.)",
         duration: Some(186),
         cover: [
           Thumbnail(
@@ -330,7 +330,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "cZ58odQo87A",
-        title: "Ich will nur dass du weißt - Radio Edit (feat. Adel Tawil)",
+        name: "Ich will nur dass du weißt - Radio Edit (feat. Adel Tawil)",
         duration: Some(222),
         cover: [
           Thumbnail(
@@ -354,7 +354,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "1il3RFk5Okw",
-        title: "Chöre (Willkommen bei den Hartmanns Version)",
+        name: "Chöre (Willkommen bei den Hartmanns Version)",
         duration: Some(209),
         cover: [
           Thumbnail(
@@ -378,7 +378,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "8WQMBv2deYQ",
-        title: "Traum",
+        name: "Traum",
         duration: Some(219),
         cover: [
           Thumbnail(
@@ -402,7 +402,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "vGrfFzagzHs",
-        title: "Whatever",
+        name: "Whatever",
         duration: Some(207),
         cover: [
           Thumbnail(
@@ -426,7 +426,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "1gDbpWC_9pE",
-        title: "Wie schön du bist",
+        name: "Wie schön du bist",
         duration: Some(216),
         cover: [
           Thumbnail(
@@ -450,7 +450,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "p-AWcCCbBHw",
-        title: "Heute mit mir",
+        name: "Heute mit mir",
         duration: Some(256),
         cover: [
           Thumbnail(
@@ -474,7 +474,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "RPN88D_HjMU",
-        title: "Xavier Naidoo - Ich kenne nichts (Das so schön ist wie du) [Official Video]",
+        name: "Xavier Naidoo - Ich kenne nichts (Das so schön ist wie du) [Official Video]",
         duration: Some(332),
         cover: [
           Thumbnail(
@@ -502,7 +502,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "5PST7Ld4wWU",
-        title: "Wenn sie tanzt (Single Version)",
+        name: "Wenn sie tanzt (Single Version)",
         duration: Some(225),
         cover: [
           Thumbnail(
@@ -526,7 +526,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "opoDBF_b-fg",
-        title: "Willst du",
+        name: "Willst du",
         duration: Some(307),
         cover: [
           Thumbnail(
@@ -550,7 +550,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "AMT9IOyXmBM",
-        title: "Einer dieser Steine (feat. Mark Forster)",
+        name: "Einer dieser Steine (feat. Mark Forster)",
         duration: Some(258),
         cover: [
           Thumbnail(
@@ -574,7 +574,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "VP5B1UmgHfc",
-        title: "Ne Leiche (feat. Sido)",
+        name: "Ne Leiche (feat. Sido)",
         duration: Some(328),
         cover: [
           Thumbnail(
@@ -598,7 +598,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "vcuQpbs0yT0",
-        title: "Ya Salam",
+        name: "Ya Salam",
         duration: Some(224),
         cover: [
           Thumbnail(
@@ -622,7 +622,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "LeMLVEJLruQ",
-        title: "Ich & Du (feat. Sebastian Hämer)",
+        name: "Ich & Du (feat. Sebastian Hämer)",
         duration: Some(229),
         cover: [
           Thumbnail(
@@ -646,7 +646,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "MtDPKJSsBgc",
-        title: "Au Revoir (Videoclip)",
+        name: "Au Revoir (Videoclip)",
         duration: Some(227),
         cover: [
           Thumbnail(
@@ -670,7 +670,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "4tDpYxNYqPg",
-        title: "Scheissmelodie (Single Edit)",
+        name: "Scheissmelodie (Single Edit)",
         duration: Some(209),
         cover: [
           Thumbnail(
@@ -694,7 +694,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "EkWjaoH7k6w",
-        title: "Ist da jemand (Official Video)",
+        name: "Ist da jemand (Official Video)",
         duration: Some(251),
         cover: [
           Thumbnail(
@@ -718,7 +718,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "tERRFWuYG48",
-        title: "Barfuß am Klavier",
+        name: "Barfuß am Klavier",
         duration: Some(202),
         cover: [
           Thumbnail(
@@ -742,7 +742,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "wCcJuN47UcY",
-        title: "Halt dich an mir fest",
+        name: "Halt dich an mir fest",
         duration: Some(213),
         cover: [
           Thumbnail(
@@ -766,7 +766,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "qdtLCfEcPL4",
-        title: "Alles neu",
+        name: "Alles neu",
         duration: Some(272),
         cover: [
           Thumbnail(
@@ -790,7 +790,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "wjXUBG15eZ8",
-        title: "Holz",
+        name: "Holz",
         duration: Some(214),
         cover: [
           Thumbnail(
@@ -814,7 +814,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "HBjDZMJUduo",
-        title: "Nein, Mann! (Radio Edit)",
+        name: "Nein, Mann! (Radio Edit)",
         duration: Some(231),
         cover: [
           Thumbnail(
@@ -838,7 +838,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "xkXQQ0IAbk0",
-        title: "Bon Voyage (Alistair x KidSoFly Remix (Remix EP))",
+        name: "Bon Voyage (Alistair x KidSoFly Remix (Remix EP))",
         duration: Some(159),
         cover: [
           Thumbnail(
@@ -862,7 +862,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "DraA3PUuoQc",
-        title: "Pocahontas",
+        name: "Pocahontas",
         duration: Some(192),
         cover: [
           Thumbnail(
@@ -886,7 +886,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "wMIGQp4YhuU",
-        title: "Alles kann besser werden",
+        name: "Alles kann besser werden",
         duration: Some(269),
         cover: [
           Thumbnail(
@@ -910,7 +910,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "38lrK74voaI",
-        title: "Magisch (feat. Edin)",
+        name: "Magisch (feat. Edin)",
         duration: Some(270),
         cover: [
           Thumbnail(
@@ -934,7 +934,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "2qW9rOSFF1M",
-        title: "An ihnen vorbei",
+        name: "An ihnen vorbei",
         duration: Some(220),
         cover: [
           Thumbnail(
@@ -962,7 +962,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "tMILH6UEfPA",
-        title: "Kleiner Cabrón (Instrumental)",
+        name: "Kleiner Cabrón (Instrumental)",
         duration: Some(213),
         cover: [
           Thumbnail(
@@ -986,7 +986,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "izHB2EdMngg",
-        title: "Ich sterb für dich",
+        name: "Ich sterb für dich",
         duration: Some(190),
         cover: [
           Thumbnail(
@@ -1010,7 +1010,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "haECT-SerHk",
-        title: "Atemlos durch die Nacht (A | Class Kuduro edit)",
+        name: "Atemlos durch die Nacht (A | Class Kuduro edit)",
         duration: Some(219),
         cover: [
           Thumbnail(
@@ -1034,7 +1034,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "cVikZ8Oe_XA",
-        title: "Rock Me Amadeus",
+        name: "Rock Me Amadeus",
         duration: Some(225),
         cover: [
           Thumbnail(
@@ -1058,7 +1058,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "drFsXLChrWc",
-        title: "Holland",
+        name: "Holland",
         duration: Some(213),
         cover: [
           Thumbnail(
@@ -1082,7 +1082,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "1EMFt7m_8yE",
-        title: "Ich muss immer an dich denken",
+        name: "Ich muss immer an dich denken",
         duration: Some(217),
         cover: [
           Thumbnail(
@@ -1106,7 +1106,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "_yWU0lFghxU",
-        title: "Ding (feat. Saïan Supa Crew)",
+        name: "Ding (feat. Saïan Supa Crew)",
         duration: Some(211),
         cover: [
           Thumbnail(
@@ -1130,7 +1130,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "XlD-LO3ogFM",
-        title: "Wir sind groß (Lyric Video)",
+        name: "Wir sind groß (Lyric Video)",
         duration: Some(204),
         cover: [
           Thumbnail(
@@ -1154,7 +1154,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "nAzjWqNfgvc",
-        title: "Unter meiner Haut (Radio Mix) (feat. Wincent Weiss)",
+        name: "Unter meiner Haut (Radio Mix) (feat. Wincent Weiss)",
         duration: Some(218),
         cover: [
           Thumbnail(
@@ -1182,7 +1182,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "PySC3RGhZJU",
-        title: "Bad Chick",
+        name: "Bad Chick",
         duration: Some(218),
         cover: [
           Thumbnail(
@@ -1206,7 +1206,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "G-iwLoyH6ZE",
-        title: "Nur noch Gucci",
+        name: "Nur noch Gucci",
         duration: Some(232),
         cover: [
           Thumbnail(
@@ -1230,7 +1230,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "fgCOUO-s8nY",
-        title: "Still (Videoclip)",
+        name: "Still (Videoclip)",
         duration: Some(238),
         cover: [
           Thumbnail(
@@ -1254,7 +1254,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "m-Ik3yy728Y",
-        title: "Auf anderen Wegen",
+        name: "Auf anderen Wegen",
         duration: Some(245),
         cover: [
           Thumbnail(
@@ -1278,7 +1278,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "U0_UYW5Y4cM",
-        title: "I sing a Liad für di",
+        name: "I sing a Liad für di",
         duration: Some(188),
         cover: [
           Thumbnail(
@@ -1302,7 +1302,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "rsrDYTEicq8",
-        title: "Primo",
+        name: "Primo",
         duration: Some(214),
         cover: [
           Thumbnail(
@@ -1326,7 +1326,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "2aU4wRgl_0E",
-        title: "Nice Girl 2.0",
+        name: "Nice Girl 2.0",
         duration: Some(169),
         cover: [
           Thumbnail(
@@ -1350,7 +1350,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "FzcJxJAxFtw",
-        title: "Ti amo",
+        name: "Ti amo",
         duration: Some(267),
         cover: [
           Thumbnail(
@@ -1378,7 +1378,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "2hyibXdOp5w",
-        title: "XAVAS (Xavier Naidoo & Kool Savas) \"Schau nicht mehr zurück\" (Official HD Video 2012)",
+        name: "XAVAS (Xavier Naidoo & Kool Savas) \"Schau nicht mehr zurück\" (Official HD Video 2012)",
         duration: Some(234),
         cover: [
           Thumbnail(
@@ -1402,7 +1402,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "YaKG5cUVB30",
-        title: "Ali Bumaye - Sex ohne Grund feat. Shindy",
+        name: "Ali Bumaye - Sex ohne Grund feat. Shindy",
         duration: Some(166),
         cover: [
           Thumbnail(
@@ -1426,7 +1426,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "Ahwc-ouFeTQ",
-        title: "Willst du",
+        name: "Willst du",
         duration: Some(224),
         cover: [
           Thumbnail(
@@ -1450,7 +1450,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "SoImFhORKpg",
-        title: "Bonez MC & RAF Camora feat. Gzuz & Maxwell - Kontrollieren (prod. by Beataura & RAF Camora)",
+        name: "Bonez MC & RAF Camora feat. Gzuz & Maxwell - Kontrollieren (prod. by Beataura & RAF Camora)",
         duration: Some(232),
         cover: [
           Thumbnail(
@@ -1474,7 +1474,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "jP4-XrbGt3M",
-        title: "Sowieso",
+        name: "Sowieso",
         duration: Some(161),
         cover: [
           Thumbnail(
@@ -1498,7 +1498,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "Yy2RsG4lnm4",
-        title: "1000 Träume weit (Tornero)",
+        name: "1000 Träume weit (Tornero)",
         duration: Some(254),
         cover: [
           Thumbnail(
@@ -1522,7 +1522,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "388e_8mu1t4",
-        title: "SDP feat. Sido - Die Nacht von Freitag auf Montag",
+        name: "SDP feat. Sido - Die Nacht von Freitag auf Montag",
         duration: Some(241),
         cover: [
           Thumbnail(
@@ -1546,7 +1546,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "dHHtPi-j7dQ",
-        title: "Wolke 7",
+        name: "Wolke 7",
         duration: Some(239),
         cover: [
           Thumbnail(
@@ -1570,7 +1570,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "d8ERTCVXIUE",
-        title: "Lass sie tanzen (Square Dance) [Instrumental]",
+        name: "Lass sie tanzen (Square Dance) [Instrumental]",
         duration: Some(251),
         cover: [
           Thumbnail(
@@ -1594,7 +1594,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "vQXn3EzzYY4",
-        title: "Weil Du mich nur verarscht hast (Instrumental)",
+        name: "Weil Du mich nur verarscht hast (Instrumental)",
         duration: Some(208),
         cover: [
           Thumbnail(
@@ -1618,7 +1618,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "zA-BTpC-yvI",
-        title: "Qa bone",
+        name: "Qa bone",
         duration: Some(202),
         cover: [
           Thumbnail(
@@ -1642,7 +1642,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "rnzIN9H_G10",
-        title: "Leiser (Pseudo Video)",
+        name: "Leiser (Pseudo Video)",
         duration: Some(209),
         cover: [
           Thumbnail(
@@ -1666,7 +1666,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "fcBbT1GTxqM",
-        title: "Kay One - Ich brech die Herzen",
+        name: "Kay One - Ich brech die Herzen",
         duration: Some(229),
         cover: [
           Thumbnail(
@@ -1690,7 +1690,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "wCDsm_dt1cI",
-        title: "Du schaffst das schon (Oktoberfest-Mix)",
+        name: "Du schaffst das schon (Oktoberfest-Mix)",
         duration: Some(190),
         cover: [
           Thumbnail(
@@ -1714,7 +1714,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "4j3AOJV1J8I",
-        title: "23 - Bushido & Sido feat. Peter Maffay - Erwachsen sein",
+        name: "23 - Bushido & Sido feat. Peter Maffay - Erwachsen sein",
         duration: Some(218),
         cover: [
           Thumbnail(
@@ -1738,7 +1738,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "RtuW08ZIgvg",
-        title: "Und wenn ein Lied - Radio Edit",
+        name: "Und wenn ein Lied - Radio Edit",
         duration: Some(249),
         cover: [
           Thumbnail(
@@ -1762,7 +1762,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "cbTXqKBIQ40",
-        title: "Eiserner Steg [Klavier Version] (feat. Matthias Schweighöfer)",
+        name: "Eiserner Steg [Klavier Version] (feat. Matthias Schweighöfer)",
         duration: Some(250),
         cover: [
           Thumbnail(
@@ -1786,7 +1786,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "oSd0Lph4luY",
-        title: "Deja Vu (Instrumental)",
+        name: "Deja Vu (Instrumental)",
         duration: Some(229),
         cover: [
           Thumbnail(
@@ -1810,7 +1810,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "oq0rrYrufYU",
-        title: "Herz über Kopf (Official Video)",
+        name: "Herz über Kopf (Official Video)",
         duration: Some(209),
         cover: [
           Thumbnail(
@@ -1834,7 +1834,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "0-P_YkS0z8s",
-        title: "Augenblick (feat. Summer Cem)",
+        name: "Augenblick (feat. Summer Cem)",
         duration: Some(208),
         cover: [
           Thumbnail(
@@ -1858,7 +1858,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "4BAKb2p450Q",
-        title: "Nur noch kurz die Welt retten",
+        name: "Nur noch kurz die Welt retten",
         duration: Some(191),
         cover: [
           Thumbnail(
@@ -1882,7 +1882,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "yqObMM_QzVQ",
-        title: "Im Ascheregen",
+        name: "Im Ascheregen",
         duration: Some(303),
         cover: [
           Thumbnail(
@@ -1906,7 +1906,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "dlvStoOyEzE",
-        title: "Du bist schön",
+        name: "Du bist schön",
         duration: Some(246),
         cover: [
           Thumbnail(
@@ -1930,7 +1930,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "VNttGAaek2U",
-        title: "Lass uns gehen",
+        name: "Lass uns gehen",
         duration: Some(214),
         cover: [
           Thumbnail(
@@ -1954,7 +1954,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "TxZMfufRJfo",
-        title: "Oft gefragt",
+        name: "Oft gefragt",
         duration: Some(189),
         cover: [
           Thumbnail(
@@ -1978,7 +1978,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "6agT2asF4as",
-        title: "Mon Chéri",
+        name: "Mon Chéri",
         duration: Some(230),
         cover: [
           Thumbnail(
@@ -2002,7 +2002,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "EcW0n83La5A",
-        title: "Lieblingslied",
+        name: "Lieblingslied",
         duration: Some(212),
         cover: [
           Thumbnail(
@@ -2026,7 +2026,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "_b61hg8UlZM",
-        title: "Lambo Diablo GT",
+        name: "Lambo Diablo GT",
         duration: Some(285),
         cover: [
           Thumbnail(
@@ -2050,7 +2050,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "kDMFranvFuQ",
-        title: "Diese Liebe",
+        name: "Diese Liebe",
         duration: Some(359),
         cover: [
           Thumbnail(
@@ -2074,7 +2074,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "1apku0pVDeE",
-        title: "Feuerwerk",
+        name: "Feuerwerk",
         duration: Some(213),
         cover: [
           Thumbnail(
@@ -2098,7 +2098,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "g6JYzOjglBs",
-        title: "Aufstehn! (feat. CeeLo Green)",
+        name: "Aufstehn! (feat. CeeLo Green)",
         duration: Some(231),
         cover: [
           Thumbnail(
@@ -2122,7 +2122,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "GYK-NfOo7b4",
-        title: "Dickes B (feat. Black Kappa)",
+        name: "Dickes B (feat. Black Kappa)",
         duration: Some(240),
         cover: [
           Thumbnail(
@@ -2146,7 +2146,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "omUuR45iU0g",
-        title: "Hayvan (feat. Summer Cem)",
+        name: "Hayvan (feat. Summer Cem)",
         duration: Some(291),
         cover: [
           Thumbnail(
@@ -2170,7 +2170,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "w7BE3inS-NM",
-        title: "Bis hier und noch weiter (Official Video) (feat. KC Rebell & Summer Cem)",
+        name: "Bis hier und noch weiter (Official Video) (feat. KC Rebell & Summer Cem)",
         duration: Some(228),
         cover: [
           Thumbnail(
@@ -2194,7 +2194,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "FM-5BPMnhm0",
-        title: "Tanz aus der Reihe!",
+        name: "Tanz aus der Reihe!",
         duration: Some(234),
         cover: [
           Thumbnail(
@@ -2218,7 +2218,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "MnNZNfixTOw",
-        title: "Wie soll ein Mensch das ertragen",
+        name: "Wie soll ein Mensch das ertragen",
         duration: Some(278),
         cover: [
           Thumbnail(
@@ -2242,7 +2242,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "qe80EeU8cT8",
-        title: "Wann (MTV Unplugged) (feat. Cassandra Steen)",
+        name: "Wann (MTV Unplugged) (feat. Cassandra Steen)",
         duration: Some(327),
         cover: [
           Thumbnail(
@@ -2266,7 +2266,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "-s2-6KYgqpQ",
-        title: "Narben",
+        name: "Narben",
         duration: Some(264),
         cover: [
           Thumbnail(
@@ -2290,7 +2290,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "RSlp874hESE",
-        title: "Kollegah & Farid Bang - \"ZIEH DEN RUCKSACK AUS\" [ official Video ]",
+        name: "Kollegah & Farid Bang - \"ZIEH DEN RUCKSACK AUS\" [ official Video ]",
         duration: Some(162),
         cover: [
           Thumbnail(
@@ -2318,7 +2318,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "oTI3tRQ_-3k",
-        title: "SDP - Wenn ich groß bin",
+        name: "SDP - Wenn ich groß bin",
         duration: Some(225),
         cover: [
           Thumbnail(
@@ -2342,7 +2342,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "_okA84gaEJw",
-        title: "Von Party zu Party",
+        name: "Von Party zu Party",
         duration: Some(221),
         cover: [
           Thumbnail(
@@ -2366,7 +2366,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "pLHnnJRaP7Q",
-        title: "Herzrasen (Original Radio Edit)",
+        name: "Herzrasen (Original Radio Edit)",
         duration: Some(207),
         cover: [
           Thumbnail(
@@ -2390,7 +2390,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "H2hGrsExuyc",
-        title: "¿ Was hast du gedacht ?",
+        name: "¿ Was hast du gedacht ?",
         duration: Some(188),
         cover: [
           Thumbnail(
@@ -2414,7 +2414,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "RsZvjqG2lec",
-        title: "Wenn Worte meine Sprache wären",
+        name: "Wenn Worte meine Sprache wären",
         duration: Some(196),
         cover: [
           Thumbnail(
@@ -2438,7 +2438,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "qYRCiQ6d35w",
-        title: "Mörder (instrumental)",
+        name: "Mörder (instrumental)",
         duration: Some(240),
         cover: [
           Thumbnail(

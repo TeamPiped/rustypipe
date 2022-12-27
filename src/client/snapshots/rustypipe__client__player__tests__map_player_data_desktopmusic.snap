@@ -5,7 +5,7 @@ expression: map_res.c
 VideoPlayer(
   details: VideoPlayerDetails(
     id: "pPvd8UxmSbQ",
-    title: "Inspiring Cinematic Uplifting",
+    name: "Inspiring Cinematic Uplifting",
     description: None,
     length: 163,
     thumbnail: [

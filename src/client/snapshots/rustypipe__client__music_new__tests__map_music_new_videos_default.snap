@@ -5,7 +5,7 @@ expression: map_res.c
 [
   TrackItem(
     id: "skl6N3zGv-s",
-    title: "Adieu",
+    name: "Adieu",
     duration: None,
     cover: [
       Thumbnail(
@@ -34,7 +34,7 @@ expression: map_res.c
   ),
   TrackItem(
     id: "gFERoNpcnFU",
-    title: "Marteria - Wald (Official Video)",
+    name: "Marteria - Wald (Official Video)",
     duration: None,
     cover: [
       Thumbnail(
@@ -63,7 +63,7 @@ expression: map_res.c
   ),
   TrackItem(
     id: "bmEzom5sfCI",
-    title: "ELIF X PA SPORTS - ICH DENK AN DICH (Official Video)",
+    name: "ELIF X PA SPORTS - ICH DENK AN DICH (Official Video)",
     duration: None,
     cover: [
       Thumbnail(
@@ -92,7 +92,7 @@ expression: map_res.c
   ),
   TrackItem(
     id: "QHY2pm7uT3k",
-    title: "HOME RUN",
+    name: "HOME RUN",
     duration: None,
     cover: [
       Thumbnail(
@@ -121,7 +121,7 @@ expression: map_res.c
   ),
   TrackItem(
     id: "Su42LK7I4NM",
-    title: "R3HAB, Timmy Trumpet, W&W - Poison [Tomorrowland Music]",
+    name: "R3HAB, Timmy Trumpet, W&W - Poison [Tomorrowland Music]",
     duration: None,
     cover: [
       Thumbnail(
@@ -150,7 +150,7 @@ expression: map_res.c
   ),
   TrackItem(
     id: "mly7ha04bEE",
-    title: "SAMRA x JOEL BRANDENSTEIN - REGEN (prod. by Lukas Lulou Loules) [Official Video]",
+    name: "SAMRA x JOEL BRANDENSTEIN - REGEN (prod. by Lukas Lulou Loules) [Official Video]",
     duration: None,
     cover: [
       Thumbnail(
@@ -179,7 +179,7 @@ expression: map_res.c
   ),
   TrackItem(
     id: "c91bmLbGt-g",
-    title: "Der Berg ruft",
+    name: "Der Berg ruft",
     duration: None,
     cover: [
       Thumbnail(
@@ -216,7 +216,7 @@ expression: map_res.c
   ),
   TrackItem(
     id: "IwzkfMmNMpM",
-    title: "정국 Jung Kook (of BTS) featuring Fahad Al Kubaisi - Dreamers | FIFA World Cup 2022 Soundtrack",
+    name: "정국 Jung Kook (of BTS) featuring Fahad Al Kubaisi - Dreamers | FIFA World Cup 2022 Soundtrack",
     duration: None,
     cover: [
       Thumbnail(
@@ -245,7 +245,7 @@ expression: map_res.c
   ),
   TrackItem(
     id: "_-spkuonX2k",
-    title: "Blau zu Grau",
+    name: "Blau zu Grau",
     duration: None,
     cover: [
       Thumbnail(
@@ -278,7 +278,7 @@ expression: map_res.c
   ),
   TrackItem(
     id: "48pBUciAbRY",
-    title: "CAPITAL BRA - BALLERLAIKA (prod. by LUCRY & CESA)",
+    name: "CAPITAL BRA - BALLERLAIKA (prod. by LUCRY & CESA)",
     duration: None,
     cover: [
       Thumbnail(

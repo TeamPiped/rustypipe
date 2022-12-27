@@ -6,7 +6,7 @@ MusicSearchResult(
   tracks: [
     TrackItem(
       id: "ZeerrnuLi5E",
-      title: "Black Mamba",
+      name: "Black Mamba",
       duration: Some(230),
       cover: [
         Thumbnail(
@@ -30,7 +30,7 @@ MusicSearchResult(
     ),
     TrackItem(
       id: "BL-aIpCLWnU",
-      title: "Black Mamba",
+      name: "Black Mamba",
       duration: Some(175),
       cover: [
         Thumbnail(
@@ -62,7 +62,7 @@ MusicSearchResult(
     ),
     TrackItem(
       id: "cATe8Toht70",
-      title: "Black Mamba",
+      name: "Black Mamba",
       duration: Some(74),
       cover: [
         Thumbnail(
@@ -98,7 +98,7 @@ MusicSearchResult(
     ),
     TrackItem(
       id: "WwNKyoizf8k",
-      title: "BLACK MAMBA",
+      name: "BLACK MAMBA",
       duration: Some(182),
       cover: [
         Thumbnail(
@@ -130,7 +130,7 @@ MusicSearchResult(
     ),
     TrackItem(
       id: "yQUU29NwNF4",
-      title: "aespa(에스파) - Black Mamba @인기가요 inkigayo 20201122",
+      name: "aespa(에스파) - Black Mamba @인기가요 inkigayo 20201122",
       duration: Some(213),
       cover: [
         Thumbnail(
@@ -154,7 +154,7 @@ MusicSearchResult(
     ),
     TrackItem(
       id: "Ky5RT5oGg0w",
-      title: "Black Mamba",
+      name: "Black Mamba",
       duration: Some(287),
       cover: [
         Thumbnail(
@@ -178,7 +178,7 @@ MusicSearchResult(
     ),
     TrackItem(
       id: "dz9bieeSVRw",
-      title: "aespa - Black Mamba (Music Bank) | KBS WORLD TV 201127",
+      name: "aespa - Black Mamba (Music Bank) | KBS WORLD TV 201127",
       duration: Some(192),
       cover: [
         Thumbnail(

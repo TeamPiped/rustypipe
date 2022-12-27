@@ -6,7 +6,7 @@ MusicCharts(
   top_tracks: [
     TrackItem(
       id: "zwa7NzNBQig",
-      title: "Tomorrow 2",
+      name: "Tomorrow 2",
       duration: None,
       cover: [
         Thumbnail(
@@ -39,7 +39,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "UhbixyxgsiU",
-      title: "Just Wanna Rock",
+      name: "Just Wanna Rock",
       duration: None,
       cover: [
         Thumbnail(
@@ -68,7 +68,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "saGYMhApaH8",
-      title: "Me porto bonito (feat. Chencho Corleone)",
+      name: "Me porto bonito (feat. Chencho Corleone)",
       duration: None,
       cover: [
         Thumbnail(
@@ -97,7 +97,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "8n5dJwWXrbo",
-      title: "IShowSpeed - World Cup (Official Music Video)",
+      name: "IShowSpeed - World Cup (Official Music Video)",
       duration: None,
       cover: [
         Thumbnail(
@@ -126,7 +126,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "Cr8K88UcO0s",
-      title: "Tití me preguntó",
+      name: "Tití me preguntó",
       duration: None,
       cover: [
         Thumbnail(
@@ -155,7 +155,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "pfxyk1glEq4",
-      title: "Under The Influence",
+      name: "Under The Influence",
       duration: None,
       cover: [
         Thumbnail(
@@ -184,7 +184,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "VtKcDwz6hiM",
-      title: "No Se Va (En Vivo)",
+      name: "No Se Va (En Vivo)",
       duration: None,
       cover: [
         Thumbnail(
@@ -213,7 +213,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "aAkMkVFwAoo",
-      title: "All I Want for Christmas Is You (Make My Wish Come True Edition)",
+      name: "All I Want for Christmas Is You (Make My Wish Come True Edition)",
       duration: None,
       cover: [
         Thumbnail(
@@ -242,7 +242,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "3V8aen7Flhs",
-      title: "Hi Haters",
+      name: "Hi Haters",
       duration: None,
       cover: [
         Thumbnail(
@@ -271,7 +271,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "rb0bjyt1OD0",
-      title: "Tukoh Taka - Official FIFA Fan Festival™ Anthem | Nicki Minaj, Maluma, & Myriam Fares (FIFA Sound)",
+      name: "Tukoh Taka - Official FIFA Fan Festival™ Anthem | Nicki Minaj, Maluma, & Myriam Fares (FIFA Sound)",
       duration: None,
       cover: [
         Thumbnail(
@@ -300,7 +300,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "-1vsm5bhoyE",
-      title: "No Se Va",
+      name: "No Se Va",
       duration: None,
       cover: [
         Thumbnail(
@@ -329,7 +329,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "ao3SN7fkQQU",
-      title: "Billete Grande",
+      name: "Billete Grande",
       duration: None,
       cover: [
         Thumbnail(
@@ -362,7 +362,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "J9QwBwUnhQo",
-      title: "Got It Right",
+      name: "Got It Right",
       duration: None,
       cover: [
         Thumbnail(
@@ -391,7 +391,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "WyhU6Zb_fhY",
-      title: "California Breeze",
+      name: "California Breeze",
       duration: None,
       cover: [
         Thumbnail(
@@ -420,7 +420,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "aV-pJ8BBxj8",
-      title: "Shabooya (feat. Slimeroni & Aleza)",
+      name: "Shabooya (feat. Slimeroni & Aleza)",
       duration: None,
       cover: [
         Thumbnail(
@@ -457,7 +457,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "gSeBZqcTHLc",
-      title: "Stand On It",
+      name: "Stand On It",
       duration: None,
       cover: [
         Thumbnail(
@@ -486,7 +486,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "Vzkr-G1QEh8",
-      title: "Back End",
+      name: "Back End",
       duration: None,
       cover: [
         Thumbnail(
@@ -515,7 +515,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "SK37InR9j38",
-      title: "GATÚBELA",
+      name: "GATÚBELA",
       duration: None,
       cover: [
         Thumbnail(
@@ -548,7 +548,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "C2YSX4sV_bA",
-      title: "Letter to Takeoff",
+      name: "Letter to Takeoff",
       duration: None,
       cover: [
         Thumbnail(
@@ -577,7 +577,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "ca48oMV59LU",
-      title: "PROVENZA",
+      name: "PROVENZA",
       duration: None,
       cover: [
         Thumbnail(
@@ -606,7 +606,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "TUbmIriJlp4",
-      title: "Messy",
+      name: "Messy",
       duration: None,
       cover: [
         Thumbnail(
@@ -639,7 +639,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "Z02zptUN8gI",
-      title: "Cairo",
+      name: "Cairo",
       duration: None,
       cover: [
         Thumbnail(
@@ -672,7 +672,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "Uq9gPaIzbe8",
-      title: "Unholy (Official Music Video)",
+      name: "Unholy (Official Music Video)",
       duration: None,
       cover: [
         Thumbnail(
@@ -705,7 +705,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "b1kbLwvqugk",
-      title: "Anti-Hero",
+      name: "Anti-Hero",
       duration: None,
       cover: [
         Thumbnail(
@@ -734,7 +734,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "VF-FGf_ZZiI",
-      title: "Bad Habit (Official Video)",
+      name: "Bad Habit (Official Video)",
       duration: None,
       cover: [
         Thumbnail(
@@ -763,7 +763,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "Om0rYw6qzb8",
-      title: "Hotel Lobby (Official Video)",
+      name: "Hotel Lobby (Official Video)",
       duration: None,
       cover: [
         Thumbnail(
@@ -796,7 +796,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "PrSBuEFdRFU",
-      title: "Rich Flex",
+      name: "Rich Flex",
       duration: None,
       cover: [
         Thumbnail(
@@ -829,7 +829,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "9YdgldMKGGU",
-      title: "Get Away (Official Visualizer)",
+      name: "Get Away (Official Visualizer)",
       duration: None,
       cover: [
         Thumbnail(
@@ -858,7 +858,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "kiUIkL4aZ5o",
-      title: "Meek Mill - God Did (Official Video)",
+      name: "Meek Mill - God Did (Official Video)",
       duration: None,
       cover: [
         Thumbnail(
@@ -887,7 +887,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "mTkPFsVC5NE",
-      title: "Forever (Lyric Video)",
+      name: "Forever (Lyric Video)",
       duration: None,
       cover: [
         Thumbnail(
@@ -920,7 +920,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "YsMB0i5YTOc",
-      title: "wait in the truck (Official Music Video) (feat. Lainey Wilson)",
+      name: "wait in the truck (Official Music Video) (feat. Lainey Wilson)",
       duration: None,
       cover: [
         Thumbnail(
@@ -949,7 +949,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "3CkLMG5NwUg",
-      title: "You Proof",
+      name: "You Proof",
       duration: None,
       cover: [
         Thumbnail(
@@ -978,7 +978,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "9yvzvUgzxxg",
-      title: "Blessed",
+      name: "Blessed",
       duration: None,
       cover: [
         Thumbnail(
@@ -1007,7 +1007,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "gPCCYMeXin0",
-      title: "Made You Look",
+      name: "Made You Look",
       duration: None,
       cover: [
         Thumbnail(
@@ -1036,7 +1036,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "gkkuezo7kX4",
-      title: "El Gavilán",
+      name: "El Gavilán",
       duration: None,
       cover: [
         Thumbnail(
@@ -1073,7 +1073,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "D2nyu8d7Sq0",
-      title: "2 Million Up (Official Video)",
+      name: "2 Million Up (Official Video)",
       duration: None,
       cover: [
         Thumbnail(
@@ -1102,7 +1102,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "SXrcyqCPu4E",
-      title: "Break My Heart",
+      name: "Break My Heart",
       duration: None,
       cover: [
         Thumbnail(
@@ -1131,7 +1131,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "p38WgakuYDo",
-      title: "Moscow Mule",
+      name: "Moscow Mule",
       duration: None,
       cover: [
         Thumbnail(
@@ -1160,7 +1160,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "n4Z1cpdkgQU",
-      title: "Son Of A Sinner",
+      name: "Son Of A Sinner",
       duration: None,
       cover: [
         Thumbnail(
@@ -1189,7 +1189,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "4F_vcZ6KD9Q",
-      title: "In A Minute",
+      name: "In A Minute",
       duration: None,
       cover: [
         Thumbnail(
@@ -1220,7 +1220,7 @@ MusicCharts(
   trending_tracks: [
     TrackItem(
       id: "_u-7rWKnVVo",
-      title: "Metallica: Lux Æterna (Official Music Video)",
+      name: "Metallica: Lux Æterna (Official Music Video)",
       duration: None,
       cover: [
         Thumbnail(
@@ -1244,7 +1244,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "UhbixyxgsiU",
-      title: "Just Wanna Rock",
+      name: "Just Wanna Rock",
       duration: None,
       cover: [
         Thumbnail(
@@ -1268,7 +1268,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "zugAhfd2r0g",
-      title: "ITZY “Cheshire” M/V @ITZY",
+      name: "ITZY “Cheshire” M/V @ITZY",
       duration: None,
       cover: [
         Thumbnail(
@@ -1292,7 +1292,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "5jJJYYaw8vw",
-      title: "Pop Out (Official Video)",
+      name: "Pop Out (Official Video)",
       duration: None,
       cover: [
         Thumbnail(
@@ -1320,7 +1320,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "VMZefv4Vrwg",
-      title: "Nas ft. @21 Savage -  One Mic, One Gun (Official Audio)",
+      name: "Nas ft. @21 Savage -  One Mic, One Gun (Official Audio)",
       duration: None,
       cover: [
         Thumbnail(
@@ -1344,7 +1344,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "3V8aen7Flhs",
-      title: "Hi Haters",
+      name: "Hi Haters",
       duration: None,
       cover: [
         Thumbnail(
@@ -1368,7 +1368,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "rb0bjyt1OD0",
-      title: "Tukoh Taka - Official FIFA Fan Festival™ Anthem | Nicki Minaj, Maluma, & Myriam Fares (FIFA Sound)",
+      name: "Tukoh Taka - Official FIFA Fan Festival™ Anthem | Nicki Minaj, Maluma, & Myriam Fares (FIFA Sound)",
       duration: None,
       cover: [
         Thumbnail(
@@ -1392,7 +1392,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "Ut1OzEVUiM4",
-      title: "Red Velvet 레드벨벳 \'Birthday\' MV",
+      name: "Red Velvet 레드벨벳 \'Birthday\' MV",
       duration: None,
       cover: [
         Thumbnail(
@@ -1416,7 +1416,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "rAr3-Pn9yRI",
-      title: "JS4E",
+      name: "JS4E",
       duration: None,
       cover: [
         Thumbnail(
@@ -1440,7 +1440,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "PtPewTyPmUg",
-      title: "Jelly Roll - \"she\" (Official Audio)",
+      name: "Jelly Roll - \"she\" (Official Audio)",
       duration: None,
       cover: [
         Thumbnail(
@@ -1464,7 +1464,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "G6xgMW7U0aY",
-      title: "712PM (Directed by Travis Scott)",
+      name: "712PM (Directed by Travis Scott)",
       duration: None,
       cover: [
         Thumbnail(
@@ -1488,7 +1488,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "C2YSX4sV_bA",
-      title: "Letter to Takeoff",
+      name: "Letter to Takeoff",
       duration: None,
       cover: [
         Thumbnail(
@@ -1512,7 +1512,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "kiUIkL4aZ5o",
-      title: "Meek Mill - God Did (Official Video)",
+      name: "Meek Mill - God Did (Official Video)",
       duration: None,
       cover: [
         Thumbnail(
@@ -1536,7 +1536,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "9YdgldMKGGU",
-      title: "Get Away (Official Visualizer)",
+      name: "Get Away (Official Visualizer)",
       duration: None,
       cover: [
         Thumbnail(
@@ -1560,7 +1560,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "Z02zptUN8gI",
-      title: "Cairo",
+      name: "Cairo",
       duration: None,
       cover: [
         Thumbnail(
@@ -1588,7 +1588,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "S0_888ZjlAA",
-      title: "Arcangel, Bad Bunny - La Jumpa (Visualizer) | SR. SANTOS",
+      name: "Arcangel, Bad Bunny - La Jumpa (Visualizer) | SR. SANTOS",
       duration: None,
       cover: [
         Thumbnail(
@@ -1612,7 +1612,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "J9QwBwUnhQo",
-      title: "Got It Right",
+      name: "Got It Right",
       duration: None,
       cover: [
         Thumbnail(
@@ -1636,7 +1636,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "DWRj2BB8YHs",
-      title: "AMG",
+      name: "AMG",
       duration: None,
       cover: [
         Thumbnail(
@@ -1668,7 +1668,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "hX0aI5Jz8i8",
-      title: "Texas",
+      name: "Texas",
       duration: None,
       cover: [
         Thumbnail(
@@ -1692,7 +1692,7 @@ MusicCharts(
     ),
     TrackItem(
       id: "Dw9VmOLwxoM",
-      title: "Thought You Should Know (Official Music Video)",
+      name: "Thought You Should Know (Official Music Video)",
       duration: None,
       cover: [
         Thumbnail(

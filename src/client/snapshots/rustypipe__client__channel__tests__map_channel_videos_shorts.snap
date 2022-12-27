@@ -121,7 +121,7 @@ Channel(
     items: [
       VideoItem(
         id: "JBUZE0mIlg8",
-        title: "small but sure joy",
+        name: "small but sure joy",
         length: None,
         thumbnail: [
           Thumbnail(
@@ -147,7 +147,7 @@ Channel(
       ),
       VideoItem(
         id: "SRrvxFc2b2c",
-        title: "i don\'t believe in long distance relationships",
+        name: "i don\'t believe in long distance relationships",
         length: None,
         thumbnail: [
           Thumbnail(
@@ -173,7 +173,7 @@ Channel(
       ),
       VideoItem(
         id: "l9TiwunjzgA",
-        title: "long distance",
+        name: "long distance",
         length: Some(1043),
         thumbnail: [
           Thumbnail(
@@ -214,7 +214,7 @@ Channel(
       ),
       VideoItem(
         id: "cNx0ql9gnf4",
-        title: "come over :)",
+        name: "come over :)",
         length: None,
         thumbnail: [
           Thumbnail(
@@ -240,7 +240,7 @@ Channel(
       ),
       VideoItem(
         id: "fGQUWI4o__A",
-        title: "Baskin Robbins in South Korea",
+        name: "Baskin Robbins in South Korea",
         length: None,
         thumbnail: [
           Thumbnail(
@@ -266,7 +266,7 @@ Channel(
       ),
       VideoItem(
         id: "Q73VTjdqVA8",
-        title: "dry hot pot",
+        name: "dry hot pot",
         length: None,
         thumbnail: [
           Thumbnail(
@@ -292,7 +292,7 @@ Channel(
       ),
       VideoItem(
         id: "pRVSdUxdsVw",
-        title: "Repairing...",
+        name: "Repairing...",
         length: Some(965),
         thumbnail: [
           Thumbnail(
@@ -333,7 +333,7 @@ Channel(
       ),
       VideoItem(
         id: "gTG2WDbiYGo",
-        title: "time machine",
+        name: "time machine",
         length: None,
         thumbnail: [
           Thumbnail(
@@ -359,7 +359,7 @@ Channel(
       ),
       VideoItem(
         id: "y5JK5YFp92g",
-        title: "tiramissu",
+        name: "tiramissu",
         length: None,
         thumbnail: [
           Thumbnail(
@@ -385,7 +385,7 @@ Channel(
       ),
       VideoItem(
         id: "pvSWHm4wlxY",
-        title: "having kids",
+        name: "having kids",
         length: None,
         thumbnail: [
           Thumbnail(
@@ -411,7 +411,7 @@ Channel(
       ),
       VideoItem(
         id: "2FJVhdOO0F0",
-        title: "a health scare",
+        name: "a health scare",
         length: Some(1238),
         thumbnail: [
           Thumbnail(
@@ -452,7 +452,7 @@ Channel(
       ),
       VideoItem(
         id: "CqFGACRrWJE",
-        title: "just do it",
+        name: "just do it",
         length: None,
         thumbnail: [
           Thumbnail(
@@ -478,7 +478,7 @@ Channel(
       ),
       VideoItem(
         id: "CutR_1SDDzY",
-        title: "feels good to be back",
+        name: "feels good to be back",
         length: Some(1159),
         thumbnail: [
           Thumbnail(
@@ -519,7 +519,7 @@ Channel(
       ),
       VideoItem(
         id: "DdGr6t2NqKc",
-        title: "coming soon",
+        name: "coming soon",
         length: None,
         thumbnail: [
           Thumbnail(
@@ -545,7 +545,7 @@ Channel(
       ),
       VideoItem(
         id: "jKS44NMWuXw",
-        title: "adult money",
+        name: "adult money",
         length: None,
         thumbnail: [
           Thumbnail(
@@ -571,7 +571,7 @@ Channel(
       ),
       VideoItem(
         id: "kx1YtJM_vbI",
-        title: "a fig\'s journey",
+        name: "a fig\'s journey",
         length: None,
         thumbnail: [
           Thumbnail(
@@ -597,7 +597,7 @@ Channel(
       ),
       VideoItem(
         id: "Sdbzs-1WWH0",
-        title: "How to.. Mozzarella 🧀",
+        name: "How to.. Mozzarella 🧀",
         length: None,
         thumbnail: [
           Thumbnail(
@@ -623,7 +623,7 @@ Channel(
       ),
       VideoItem(
         id: "9qBHyJIDous",
-        title: "how to drink like a real korean",
+        name: "how to drink like a real korean",
         length: None,
         thumbnail: [
           Thumbnail(
@@ -649,7 +649,7 @@ Channel(
       ),
       VideoItem(
         id: "mBeFDb4gp8s",
-        title: "mr. krabs soup",
+        name: "mr. krabs soup",
         length: None,
         thumbnail: [
           Thumbnail(
@@ -675,7 +675,7 @@ Channel(
       ),
       VideoItem(
         id: "b38r1UYqoBQ",
-        title: "in five years",
+        name: "in five years",
         length: None,
         thumbnail: [
           Thumbnail(
@@ -701,7 +701,7 @@ Channel(
       ),
       VideoItem(
         id: "KUz7oArksR4",
-        title: "running away",
+        name: "running away",
         length: Some(1023),
         thumbnail: [
           Thumbnail(
@@ -742,7 +742,7 @@ Channel(
       ),
       VideoItem(
         id: "RdFk4WaifEo",
-        title: "a weeknight dinner",
+        name: "a weeknight dinner",
         length: None,
         thumbnail: [
           Thumbnail(
@@ -768,7 +768,7 @@ Channel(
       ),
       VideoItem(
         id: "GuyGyzZcumI",
-        title: "McDonald\'s Michelin Burger",
+        name: "McDonald\'s Michelin Burger",
         length: None,
         thumbnail: [
           Thumbnail(
@@ -794,7 +794,7 @@ Channel(
       ),
       VideoItem(
         id: "07Zipsb3-qU",
-        title: "cwispy potato pancake",
+        name: "cwispy potato pancake",
         length: None,
         thumbnail: [
           Thumbnail(
@@ -820,7 +820,7 @@ Channel(
       ),
       VideoItem(
         id: "3kaePnU6Clo",
-        title: "authenticity is overrated",
+        name: "authenticity is overrated",
         length: None,
         thumbnail: [
           Thumbnail(
@@ -846,7 +846,7 @@ Channel(
       ),
       VideoItem(
         id: "rt4rXMftnpg",
-        title: "you can kimchi anything (T&C applies)",
+        name: "you can kimchi anything (T&C applies)",
         length: None,
         thumbnail: [
           Thumbnail(
@@ -872,7 +872,7 @@ Channel(
       ),
       VideoItem(
         id: "DTyLUvbf128",
-        title: "egg, soy, and perfect pot rice",
+        name: "egg, soy, and perfect pot rice",
         length: None,
         thumbnail: [
           Thumbnail(
@@ -898,7 +898,7 @@ Channel(
       ),
       VideoItem(
         id: "DzjLBgIe_aI",
-        title: "love language",
+        name: "love language",
         length: None,
         thumbnail: [
           Thumbnail(
@@ -924,7 +924,7 @@ Channel(
       ),
       VideoItem(
         id: "sPb2gyN-hnE",
-        title: "worth fighting for",
+        name: "worth fighting for",
         length: Some(1232),
         thumbnail: [
           Thumbnail(
@@ -965,7 +965,7 @@ Channel(
       ),
       VideoItem(
         id: "9JboRKeJ2m4",
-        title: "Rating Italian McDonald\'s",
+        name: "Rating Italian McDonald\'s",
         length: None,
         thumbnail: [
           Thumbnail(

@@ -42,7 +42,7 @@ MusicAlbum(
   tracks: [
     TrackItem(
       id: "g0iRiJ_ck48",
-      title: "Aulë und Yavanna",
+      name: "Aulë und Yavanna",
       duration: Some(216),
       cover: [],
       artists: [
@@ -63,7 +63,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "rREEBXp0y9s",
-      title: "Numenor",
+      name: "Numenor",
       duration: Some(224),
       cover: [],
       artists: [
@@ -84,7 +84,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "zvU5Y8Q19hU",
-      title: "Das Mädchen und die Liebe (feat. Santiano)",
+      name: "Das Mädchen und die Liebe (feat. Santiano)",
       duration: Some(176),
       cover: [],
       artists: [
@@ -105,7 +105,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "ARKLrzzTQA0",
-      title: "Niënna",
+      name: "Niënna",
       duration: Some(215),
       cover: [],
       artists: [
@@ -126,7 +126,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "tstLgN8A_Ng",
-      title: "Der fahle Mond",
+      name: "Der fahle Mond",
       duration: Some(268),
       cover: [],
       artists: [
@@ -147,7 +147,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "k2DjgQOY3Ts",
-      title: "Weise den Weg",
+      name: "Weise den Weg",
       duration: Some(202),
       cover: [],
       artists: [
@@ -168,7 +168,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "azHwhecxEsI",
-      title: "Zeit der Sommernächte",
+      name: "Zeit der Sommernächte",
       duration: Some(185),
       cover: [],
       artists: [
@@ -189,7 +189,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "_FcsdYIQ2co",
-      title: "Märchen enden gut",
+      name: "Märchen enden gut",
       duration: Some(226),
       cover: [],
       artists: [
@@ -210,7 +210,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "27bOWEbshyE",
-      title: "Das Mädchen und der Tod",
+      name: "Das Mädchen und der Tod",
       duration: Some(207),
       cover: [],
       artists: [
@@ -231,7 +231,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "riD_3oZwt8w",
-      title: "Wir sehn uns wieder",
+      name: "Wir sehn uns wieder",
       duration: Some(211),
       cover: [],
       artists: [
@@ -252,7 +252,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "8GNvjF3no9s",
-      title: "Tanz mit mir",
+      name: "Tanz mit mir",
       duration: Some(179),
       cover: [],
       artists: [
@@ -273,7 +273,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "YHMFzf1uN2U",
-      title: "Nachtigall",
+      name: "Nachtigall",
       duration: Some(218),
       cover: [],
       artists: [
@@ -294,7 +294,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "jvV-z5F3oAo",
-      title: "Gayatri Mantra",
+      name: "Gayatri Mantra",
       duration: Some(277),
       cover: [],
       artists: [
@@ -315,7 +315,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "u8_9cxlrh8k",
-      title: "Sing mir deine Lieder",
+      name: "Sing mir deine Lieder",
       duration: Some(204),
       cover: [],
       artists: [
@@ -336,7 +336,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "gSvKcvM1Wk0",
-      title: "Laurië lantar",
+      name: "Laurië lantar",
       duration: Some(202),
       cover: [],
       artists: [
@@ -357,7 +357,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "wQHgKRJ0pDQ",
-      title: "Wächter vor dem Tor",
+      name: "Wächter vor dem Tor",
       duration: Some(222),
       cover: [],
       artists: [
@@ -378,7 +378,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "Ckz5i6-hzf0",
-      title: "Stroh zu Gold",
+      name: "Stroh zu Gold",
       duration: Some(177),
       cover: [],
       artists: [
@@ -399,7 +399,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "y5zuUgyFqrc",
-      title: "Sonnenwendnacht",
+      name: "Sonnenwendnacht",
       duration: Some(220),
       cover: [],
       artists: [

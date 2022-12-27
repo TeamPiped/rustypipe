@@ -10,7 +10,7 @@ Playlist(
     items: [
       PlaylistVideo(
         id: "psuRGfAaju4",
-        title: "Owl City - Fireflies (Official Music Video)",
+        name: "Owl City - Fireflies (Official Music Video)",
         length: 233,
         thumbnail: [
           Thumbnail(
@@ -41,7 +41,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "PMGY8fLwess",
-        title: "James Arthur - Falling Like The Stars",
+        name: "James Arthur - Falling Like The Stars",
         length: 256,
         thumbnail: [
           Thumbnail(
@@ -72,7 +72,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "2n5GKLdrTfk",
-        title: "Benson Boone -  In the Stars (Official Lyric Video)",
+        name: "Benson Boone -  In the Stars (Official Lyric Video)",
         length: 217,
         thumbnail: [
           Thumbnail(
@@ -103,7 +103,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "EptPhiK_q0E",
-        title: "Coldplay X Selena Gomez - Let Somebody Go (Official Lyric Video)",
+        name: "Coldplay X Selena Gomez - Let Somebody Go (Official Lyric Video)",
         length: 242,
         thumbnail: [
           Thumbnail(
@@ -134,7 +134,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "qHm9MG9xw1o",
-        title: "OneRepublic - Secrets (Official Music Video)",
+        name: "OneRepublic - Secrets (Official Music Video)",
         length: 233,
         thumbnail: [
           Thumbnail(
@@ -165,7 +165,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "XPpTgCho5ZA",
-        title: "Maroon 5 - This Love (Official Music Video)",
+        name: "Maroon 5 - This Love (Official Music Video)",
         length: 206,
         thumbnail: [
           Thumbnail(
@@ -196,7 +196,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "1YUBbF24H44",
-        title: "Sabrina Carpenter - because i liked a boy (Official Video)",
+        name: "Sabrina Carpenter - because i liked a boy (Official Video)",
         length: 206,
         thumbnail: [
           Thumbnail(
@@ -227,7 +227,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "UAWcs5H-qgQ",
-        title: "Ed Sheeran - The A Team [Official Music Video]",
+        name: "Ed Sheeran - The A Team [Official Music Video]",
         length: 290,
         thumbnail: [
           Thumbnail(
@@ -258,7 +258,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "bqO3Y5e4Dow",
-        title: "Michele Morrone - Hard For Me (Official Music Video)",
+        name: "Michele Morrone - Hard For Me (Official Music Video)",
         length: 173,
         thumbnail: [
           Thumbnail(
@@ -289,7 +289,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "NgsWGfUlwJI",
-        title: "Joji - Glimpse of Us (Official Video)",
+        name: "Joji - Glimpse of Us (Official Video)",
         length: 235,
         thumbnail: [
           Thumbnail(
@@ -320,7 +320,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "AcTDlsUej2w",
-        title: "Sofia Carson - Come Back Home (From \"Purple Hearts\")",
+        name: "Sofia Carson - Come Back Home (From \"Purple Hearts\")",
         length: 204,
         thumbnail: [
           Thumbnail(
@@ -351,7 +351,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "k6ZoE4RrcDs",
-        title: "Ed Sheeran - Overpass Graffiti [Official Video]",
+        name: "Ed Sheeran - Overpass Graffiti [Official Video]",
         length: 287,
         thumbnail: [
           Thumbnail(
@@ -382,7 +382,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "_JGGLJMpVks",
-        title: "Billie Eilish - TV (Official Lyric Video)",
+        name: "Billie Eilish - TV (Official Lyric Video)",
         length: 282,
         thumbnail: [
           Thumbnail(
@@ -413,7 +413,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "mqiH0ZSkM9I",
-        title: "James Bay - Hold Back The River",
+        name: "James Bay - Hold Back The River",
         length: 247,
         thumbnail: [
           Thumbnail(
@@ -444,7 +444,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "c0wUKCekI34",
-        title: "Michele Morrone - Another Day (Official Music Video)",
+        name: "Michele Morrone - Another Day (Official Music Video)",
         length: 188,
         thumbnail: [
           Thumbnail(
@@ -475,7 +475,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "c4BLVznuWnU",
-        title: "Ed Sheeran - Lego House [Official Music Video]",
+        name: "Ed Sheeran - Lego House [Official Music Video]",
         length: 246,
         thumbnail: [
           Thumbnail(
@@ -506,7 +506,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "ouEezpuPc3A",
-        title: "Andy Grammer - \"Don\'t Give Up On Me\" [Official Video from the Five Feet Apart Film]",
+        name: "Andy Grammer - \"Don\'t Give Up On Me\" [Official Video from the Five Feet Apart Film]",
         length: 216,
         thumbnail: [
           Thumbnail(
@@ -537,7 +537,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "i-qT5n_5Mys",
-        title: "Jaymes Young - Happiest Year [Official Music Video]",
+        name: "Jaymes Young - Happiest Year [Official Music Video]",
         length: 278,
         thumbnail: [
           Thumbnail(
@@ -568,7 +568,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "CA1VHbdq5hY",
-        title: "Giveon - Lie Again (Official Music Video)",
+        name: "Giveon - Lie Again (Official Music Video)",
         length: 236,
         thumbnail: [
           Thumbnail(
@@ -599,7 +599,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "74NhLkjIeMs",
-        title: "Conan Gray - Yours",
+        name: "Conan Gray - Yours",
         length: 201,
         thumbnail: [
           Thumbnail(
@@ -630,7 +630,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "vNfgVjZF8_4",
-        title: "OneRepublic - Someday (Official Music Video)",
+        name: "OneRepublic - Someday (Official Music Video)",
         length: 192,
         thumbnail: [
           Thumbnail(
@@ -661,7 +661,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "2ebfSItB0oM",
-        title: "Jess Glynne - Take Me Home [Official Video]",
+        name: "Jess Glynne - Take Me Home [Official Video]",
         length: 273,
         thumbnail: [
           Thumbnail(
@@ -692,7 +692,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "ilut9TzMfXs",
-        title: "Rag’n’Bone Man & P!nk – Anywhere Away From Here (Official Video)",
+        name: "Rag’n’Bone Man & P!nk – Anywhere Away From Here (Official Video)",
         length: 244,
         thumbnail: [
           Thumbnail(
@@ -723,7 +723,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "-oqAU5VxFWs",
-        title: "Counting Crows - Mr. Jones (Official Music Video)",
+        name: "Counting Crows - Mr. Jones (Official Music Video)",
         length: 270,
         thumbnail: [
           Thumbnail(
@@ -754,7 +754,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "aNzCDt2eidg",
-        title: "Birdy - Skinny Love [Official Music Video]",
+        name: "Birdy - Skinny Love [Official Music Video]",
         length: 214,
         thumbnail: [
           Thumbnail(
@@ -785,7 +785,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "fvXn3rmhdc4",
-        title: "Benson Boone - Better Alone (Official Music Video)",
+        name: "Benson Boone - Better Alone (Official Music Video)",
         length: 209,
         thumbnail: [
           Thumbnail(
@@ -816,7 +816,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "A48hOToMuRE",
-        title: "Dermot Kennedy - Outnumbered",
+        name: "Dermot Kennedy - Outnumbered",
         length: 247,
         thumbnail: [
           Thumbnail(
@@ -847,7 +847,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "goqqohUitmw",
-        title: "Conan Gray - People Watching (Official Video)",
+        name: "Conan Gray - People Watching (Official Video)",
         length: 210,
         thumbnail: [
           Thumbnail(
@@ -878,7 +878,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "8uD6s-X3590",
-        title: "Harry Styles - Sweet Creature (Audio)",
+        name: "Harry Styles - Sweet Creature (Audio)",
         length: 226,
         thumbnail: [
           Thumbnail(
@@ -909,7 +909,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "ljXSjIph5ZM",
-        title: "Niall Horan - Too Much To Ask (Official)",
+        name: "Niall Horan - Too Much To Ask (Official)",
         length: 226,
         thumbnail: [
           Thumbnail(
@@ -940,7 +940,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "E87oYUfI3WY",
-        title: "Maisie Peters - Good Enough [Official Video]",
+        name: "Maisie Peters - Good Enough [Official Video]",
         length: 232,
         thumbnail: [
           Thumbnail(
@@ -971,7 +971,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "DJFMRLIe-0o",
-        title: "Tate McRae x Ali Gatie - lie to me",
+        name: "Tate McRae x Ali Gatie - lie to me",
         length: 191,
         thumbnail: [
           Thumbnail(
@@ -1002,7 +1002,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "tMsbeyeTtpk",
-        title: "Michael Bublé  - I\'ll Never Not Love You (Official Music Video)",
+        name: "Michael Bublé  - I\'ll Never Not Love You (Official Music Video)",
         length: 245,
         thumbnail: [
           Thumbnail(
@@ -1033,7 +1033,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "_LwX7GCE5rI",
-        title: "Miley Cyrus - Slide Away (Audio)",
+        name: "Miley Cyrus - Slide Away (Audio)",
         length: 236,
         thumbnail: [
           Thumbnail(
@@ -1064,7 +1064,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "flv8AEWrRMI",
-        title: "Taylor Swift - Run (Taylor\'s Version) (From The Vault) (Lyric Video) ft. Ed Sheeran",
+        name: "Taylor Swift - Run (Taylor\'s Version) (From The Vault) (Lyric Video) ft. Ed Sheeran",
         length: 241,
         thumbnail: [
           Thumbnail(
@@ -1095,7 +1095,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "bO3S8CKafbE",
-        title: "Niall Horan - Put A Little Love On Me (Official)",
+        name: "Niall Horan - Put A Little Love On Me (Official)",
         length: 235,
         thumbnail: [
           Thumbnail(
@@ -1126,7 +1126,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "26PAgklYYvo",
-        title: "James Morrison - Broken Strings ft. Nelly Furtado (Official Video)",
+        name: "James Morrison - Broken Strings ft. Nelly Furtado (Official Video)",
         length: 261,
         thumbnail: [
           Thumbnail(
@@ -1157,7 +1157,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "KS2Ho8aICMk",
-        title: "Bazzi - Heaven [Official Audio]",
+        name: "Bazzi - Heaven [Official Audio]",
         length: 154,
         thumbnail: [
           Thumbnail(
@@ -1188,7 +1188,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "HtNS1afUOnE",
-        title: "OneRepublic - Stop And Stare (Official Music Video)",
+        name: "OneRepublic - Stop And Stare (Official Music Video)",
         length: 295,
         thumbnail: [
           Thumbnail(
@@ -1219,7 +1219,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "h_m-BjrxmgI",
-        title: "Plain White T\'s - Hey There Delilah (Official Video)",
+        name: "Plain White T\'s - Hey There Delilah (Official Video)",
         length: 243,
         thumbnail: [
           Thumbnail(
@@ -1250,7 +1250,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "ELPOCJvDz3w",
-        title: "Leon Bridges - Beyond (Official Video)",
+        name: "Leon Bridges - Beyond (Official Video)",
         length: 250,
         thumbnail: [
           Thumbnail(
@@ -1281,7 +1281,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "7Lna4Hu4-AQ",
-        title: "MAX & Ali Gatie - Butterflies (Official Music Video)",
+        name: "MAX & Ali Gatie - Butterflies (Official Music Video)",
         length: 195,
         thumbnail: [
           Thumbnail(
@@ -1312,7 +1312,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "5qHRMFQ0pLg",
-        title: "Dermot Kennedy - Dreamer",
+        name: "Dermot Kennedy - Dreamer",
         length: 182,
         thumbnail: [
           Thumbnail(
@@ -1343,7 +1343,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "9f-1VOEUeDY",
-        title: "Maddie Zahm - If It\'s Not God (Official Music Video)",
+        name: "Maddie Zahm - If It\'s Not God (Official Music Video)",
         length: 243,
         thumbnail: [
           Thumbnail(
@@ -1374,7 +1374,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "K9qu2QMBguw",
-        title: "I See Fire (From \"The Hobbit - The Desolation Of Smaug\")",
+        name: "I See Fire (From \"The Hobbit - The Desolation Of Smaug\")",
         length: 301,
         thumbnail: [
           Thumbnail(
@@ -1405,7 +1405,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "X_ZOGHUWwqE",
-        title: "Sam Smith - Kids Again",
+        name: "Sam Smith - Kids Again",
         length: 214,
         thumbnail: [
           Thumbnail(
@@ -1436,7 +1436,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "uWeqeQkjLto",
-        title: "James Blunt - 1973 (Official Music Video)",
+        name: "James Blunt - 1973 (Official Music Video)",
         length: 234,
         thumbnail: [
           Thumbnail(
@@ -1467,7 +1467,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "Ghl_vkEV3tc",
-        title: "Noah Cyrus - Mr. Percocet (Official Video)",
+        name: "Noah Cyrus - Mr. Percocet (Official Video)",
         length: 193,
         thumbnail: [
           Thumbnail(
@@ -1498,7 +1498,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "mHeK0Cwr9sg",
-        title: "Family of the Year - Hero (Official Music Video)",
+        name: "Family of the Year - Hero (Official Music Video)",
         length: 197,
         thumbnail: [
           Thumbnail(
@@ -1529,7 +1529,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "WLoWBe9BRP4",
-        title: "Mimi Webb - Good Without (Official Music Video)",
+        name: "Mimi Webb - Good Without (Official Music Video)",
         length: 187,
         thumbnail: [
           Thumbnail(
@@ -1560,7 +1560,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "7TCncxWNcPU",
-        title: "David Kushner - Mr. Forgettable [Official Music Video]",
+        name: "David Kushner - Mr. Forgettable [Official Music Video]",
         length: 188,
         thumbnail: [
           Thumbnail(
@@ -1591,7 +1591,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "0Bf3CJZ4hvg",
-        title: "James TW - When You Love Someone (Official Video)",
+        name: "James TW - When You Love Someone (Official Video)",
         length: 227,
         thumbnail: [
           Thumbnail(
@@ -1622,7 +1622,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "PxNYvk_0Onw",
-        title: "Gabrielle Aplin - Please Don\'t Say You Love Me (Official Video)",
+        name: "Gabrielle Aplin - Please Don\'t Say You Love Me (Official Video)",
         length: 208,
         thumbnail: [
           Thumbnail(
@@ -1653,7 +1653,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "9JnLIQ5Th9s",
-        title: "Maddie Zahm - Inevitable (Official Music Video)",
+        name: "Maddie Zahm - Inevitable (Official Music Video)",
         length: 228,
         thumbnail: [
           Thumbnail(
@@ -1684,7 +1684,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "1XYLKoEETVA",
-        title: "Zoe Wees - Hold Me Like You Used To",
+        name: "Zoe Wees - Hold Me Like You Used To",
         length: 193,
         thumbnail: [
           Thumbnail(
@@ -1715,7 +1715,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "T8lWjQRhQXY",
-        title: "Lady Gaga - Your Song (Official Audio)",
+        name: "Lady Gaga - Your Song (Official Audio)",
         length: 259,
         thumbnail: [
           Thumbnail(
@@ -1746,7 +1746,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "iEtGv8Ha6ck",
-        title: "Diana Ross - All Is Well",
+        name: "Diana Ross - All Is Well",
         length: 273,
         thumbnail: [
           Thumbnail(
@@ -1777,7 +1777,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "hCjcgoubkPM",
-        title: "Amy Shark - Mess Her Up (Official Video)",
+        name: "Amy Shark - Mess Her Up (Official Video)",
         length: 226,
         thumbnail: [
           Thumbnail(
@@ -1808,7 +1808,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "Nlg3l4MCM7k",
-        title: "ILIRA - Flowers (Official Music Video)",
+        name: "ILIRA - Flowers (Official Music Video)",
         length: 215,
         thumbnail: [
           Thumbnail(
@@ -1839,7 +1839,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "nwXlRq_QyTI",
-        title: "JP Saxe - A Little Bit Yours (Official Music Video)",
+        name: "JP Saxe - A Little Bit Yours (Official Music Video)",
         length: 246,
         thumbnail: [
           Thumbnail(
@@ -1870,7 +1870,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "qIh5QvjiF28",
-        title: "Milow - How Love Works (Official Video)",
+        name: "Milow - How Love Works (Official Video)",
         length: 179,
         thumbnail: [
           Thumbnail(
@@ -1901,7 +1901,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "HRsWSIxYBBA",
-        title: "Noah Cyrus – Ready To Go (Official Visualizer)",
+        name: "Noah Cyrus – Ready To Go (Official Visualizer)",
         length: 188,
         thumbnail: [
           Thumbnail(
@@ -1932,7 +1932,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "1le0xDbrVj8",
-        title: "Oh Wonder - True Romance",
+        name: "Oh Wonder - True Romance",
         length: 244,
         thumbnail: [
           Thumbnail(
@@ -1963,7 +1963,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "YJ4vr53hMuo",
-        title: "Cat Burns ‘Go’ ft. Sam Smith (Hyde Park)",
+        name: "Cat Burns ‘Go’ ft. Sam Smith (Hyde Park)",
         length: 199,
         thumbnail: [
           Thumbnail(
@@ -1994,7 +1994,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "ws-li4Fy1kY",
-        title: "Alexander 23 - The Hardest Part [Official Lyric Video]",
+        name: "Alexander 23 - The Hardest Part [Official Lyric Video]",
         length: 204,
         thumbnail: [
           Thumbnail(
@@ -2025,7 +2025,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "fyrsExw_LUg",
-        title: "James Bay - Bad",
+        name: "James Bay - Bad",
         length: 243,
         thumbnail: [
           Thumbnail(
@@ -2056,7 +2056,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "ZdsER1S3t8k",
-        title: "Noah Kahan - Hurt Somebody (Official Video)",
+        name: "Noah Kahan - Hurt Somebody (Official Video)",
         length: 175,
         thumbnail: [
           Thumbnail(
@@ -2087,7 +2087,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "BS4t017LSoA",
-        title: "Bad Habits (Acoustic Version)",
+        name: "Bad Habits (Acoustic Version)",
         length: 233,
         thumbnail: [
           Thumbnail(
@@ -2118,7 +2118,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "0AYzzzBaPBI",
-        title: "flora cash - They Own This Town (Official Video)",
+        name: "flora cash - They Own This Town (Official Video)",
         length: 246,
         thumbnail: [
           Thumbnail(
@@ -2149,7 +2149,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "zM0K3LC7Aak",
-        title: "James Arthur - Avalanche (Live Session)",
+        name: "James Arthur - Avalanche (Live Session)",
         length: 220,
         thumbnail: [
           Thumbnail(
@@ -2180,7 +2180,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "35VK8yonvsc",
-        title: "James Bay -  Everybody Needs Someone (Official Lyric Video)",
+        name: "James Bay -  Everybody Needs Someone (Official Lyric Video)",
         length: 216,
         thumbnail: [
           Thumbnail(
@@ -2211,7 +2211,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "RdFaKz71-5M",
-        title: "Ruel - LET THE GRASS GROW (Visualizer)",
+        name: "Ruel - LET THE GRASS GROW (Visualizer)",
         length: 181,
         thumbnail: [
           Thumbnail(
@@ -2242,7 +2242,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "IPOC8KuYu7Q",
-        title: "Leon Bridges, Kevin Kaarl - Summer Moon (Official Lyric Video)",
+        name: "Leon Bridges, Kevin Kaarl - Summer Moon (Official Lyric Video)",
         length: 177,
         thumbnail: [
           Thumbnail(
@@ -2273,7 +2273,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "-4szr0EMrgk",
-        title: "Låpsley - 32 Floors (Official Audio)",
+        name: "Låpsley - 32 Floors (Official Audio)",
         length: 185,
         thumbnail: [
           Thumbnail(
@@ -2304,7 +2304,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "WJJLfUwIVR4",
-        title: "christina perri - home [official audio]",
+        name: "christina perri - home [official audio]",
         length: 219,
         thumbnail: [
           Thumbnail(
@@ -2335,7 +2335,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "-uxeu0MbNR0",
-        title: "Jeremy Zucker - oh, mexico (Official Lyric Video)",
+        name: "Jeremy Zucker - oh, mexico (Official Lyric Video)",
         length: 191,
         thumbnail: [
           Thumbnail(
@@ -2366,7 +2366,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "ELD3aRzbVQg",
-        title: "Tom Gregory - Run To You (Official Video HD)",
+        name: "Tom Gregory - Run To You (Official Video HD)",
         length: 201,
         thumbnail: [
           Thumbnail(
@@ -2397,7 +2397,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "726I7op9iq0",
-        title: "AURORA - Cure For Me (Acoustic / Audio)",
+        name: "AURORA - Cure For Me (Acoustic / Audio)",
         length: 214,
         thumbnail: [
           Thumbnail(
@@ -2428,7 +2428,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "8CqQ47SzNU0",
-        title: "Sigrid, Bring Me The Horizon – Bad Life (Stripped Back)",
+        name: "Sigrid, Bring Me The Horizon – Bad Life (Stripped Back)",
         length: 221,
         thumbnail: [
           Thumbnail(
@@ -2459,7 +2459,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "NjW1S0WIiJw",
-        title: "John Legend -  Free (Official Lyric Video)",
+        name: "John Legend -  Free (Official Lyric Video)",
         length: 223,
         thumbnail: [
           Thumbnail(
@@ -2490,7 +2490,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "C7LUFn66OeQ",
-        title: "Joy Oladokun with Maren Morris - Bigger Man (Official Visualizer)",
+        name: "Joy Oladokun with Maren Morris - Bigger Man (Official Visualizer)",
         length: 187,
         thumbnail: [
           Thumbnail(
@@ -2521,7 +2521,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "CY0fLYnw59M",
-        title: "dodie - If I\'m Being Honest",
+        name: "dodie - If I\'m Being Honest",
         length: 310,
         thumbnail: [
           Thumbnail(
@@ -2552,7 +2552,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "BxqtS-7GxFM",
-        title: "TONES AND I - NEVER SEEN THE RAIN (ALTERNATE VERSION)",
+        name: "TONES AND I - NEVER SEEN THE RAIN (ALTERNATE VERSION)",
         length: 296,
         thumbnail: [
           Thumbnail(
@@ -2583,7 +2583,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "KUKt_LbaBnM",
-        title: "Oh Wonder - Better Now (Official Audio)",
+        name: "Oh Wonder - Better Now (Official Audio)",
         length: 200,
         thumbnail: [
           Thumbnail(
@@ -2614,7 +2614,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "teHOy47KAMM",
-        title: "christina perri - back in time (featuring ben rector) [official audio]",
+        name: "christina perri - back in time (featuring ben rector) [official audio]",
         length: 237,
         thumbnail: [
           Thumbnail(
@@ -2645,7 +2645,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "W8c224B8mV0",
-        title: "Kina - only in the night (Official Lyric Video) ft. Sarcastic Sounds",
+        name: "Kina - only in the night (Official Lyric Video) ft. Sarcastic Sounds",
         length: 134,
         thumbnail: [
           Thumbnail(
@@ -2676,7 +2676,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "bhL7A8k6kU8",
-        title: "Anderson East - Madelyn (Official Video)",
+        name: "Anderson East - Madelyn (Official Video)",
         length: 203,
         thumbnail: [
           Thumbnail(
@@ -2707,7 +2707,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "mUN36hFtazE",
-        title: "LÉON – All My Heroes (Official Audio)",
+        name: "LÉON – All My Heroes (Official Audio)",
         length: 206,
         thumbnail: [
           Thumbnail(
@@ -2738,7 +2738,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "Od8FfxY5mXc",
-        title: "Love Runs Deeper (Disney supporting Make-A-Wish)",
+        name: "Love Runs Deeper (Disney supporting Make-A-Wish)",
         length: 163,
         thumbnail: [
           Thumbnail(
@@ -2769,7 +2769,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "fNR_abEgDBQ",
-        title: "Chris James - Don\'t Forget About Me (Official Music Video)",
+        name: "Chris James - Don\'t Forget About Me (Official Music Video)",
         length: 209,
         thumbnail: [
           Thumbnail(
@@ -2800,7 +2800,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "NwoW26zPhLs",
-        title: "Blake Rose - Confidence (Official Audio)",
+        name: "Blake Rose - Confidence (Official Audio)",
         length: 156,
         thumbnail: [
           Thumbnail(
@@ -2831,7 +2831,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "dcBZP_pt0uY",
-        title: "Tom Grennan - Little Bit Of Love (Strings) [Audio]",
+        name: "Tom Grennan - Little Bit Of Love (Strings) [Audio]",
         length: 231,
         thumbnail: [
           Thumbnail(
@@ -2862,7 +2862,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "m342B1Vv3tM",
-        title: "Matt Simons ft. Betty Who - Dust (Official Lyric Video)",
+        name: "Matt Simons ft. Betty Who - Dust (Official Lyric Video)",
         length: 202,
         thumbnail: [
           Thumbnail(
@@ -2893,7 +2893,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "ufxjiU7BgR4",
-        title: "Fall Into Me",
+        name: "Fall Into Me",
         length: 225,
         thumbnail: [
           Thumbnail(
@@ -2924,7 +2924,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "7OfB_8rrtug",
-        title: "Grace (We All Try)",
+        name: "Grace (We All Try)",
         length: 206,
         thumbnail: [
           Thumbnail(
@@ -2955,7 +2955,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "QDULTFB8gSY",
-        title: "Words as Weapons",
+        name: "Words as Weapons",
         length: 199,
         thumbnail: [
           Thumbnail(
@@ -2986,7 +2986,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "Ge2q8a3lXnM",
-        title: "Enough, Enough, Enough",
+        name: "Enough, Enough, Enough",
         length: 164,
         thumbnail: [
           Thumbnail(

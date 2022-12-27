@@ -220,7 +220,7 @@ impl MapResponse<VideoPlayer> for response::Player {
 
         let video_info = VideoPlayerDetails {
             id: video_details.video_id,
-            title: video_details.title,
+            name: video_details.title,
             description: video_details.short_description,
             length: video_details.length_seconds,
             thumbnail: video_details.thumbnail.into(),

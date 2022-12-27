@@ -4,7 +4,7 @@ expression: map_res.c
 ---
 VideoDetails(
   id: "0rb9CfOvojk",
-  title: "BahnMining - Pünktlichkeit ist eine Zier (David Kriesel)",
+  name: "BahnMining - Pünktlichkeit ist eine Zier (David Kriesel)",
   description: RichText([
     Web(
       text: "https://media.ccc.de/v/36c3-10652-bah...",
@@ -53,7 +53,7 @@ VideoDetails(
     items: [
       VideoItem(
         id: "-YpwsdRKt8Q",
-        title: "SpiegelMining – Reverse Engineering von Spiegel-Online (33c3)",
+        name: "SpiegelMining – Reverse Engineering von Spiegel-Online (33c3)",
         length: Some(3526),
         thumbnail: [
           Thumbnail(
@@ -90,7 +90,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "4z3mu63yxII",
-        title: "Gregor Gysi & Martin Sonneborn",
+        name: "Gregor Gysi & Martin Sonneborn",
         length: Some(5272),
         thumbnail: [
           Thumbnail(
@@ -127,7 +127,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "WhgRRpA3b2c",
-        title: "36C3 -  Verkehrswende selber hacken",
+        name: "36C3 -  Verkehrswende selber hacken",
         length: Some(3176),
         thumbnail: [
           Thumbnail(
@@ -164,7 +164,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "5qNHtdN07FM",
-        title: "GPN16: Wie baut man eigentlich Raumschiffe (urs)",
+        name: "GPN16: Wie baut man eigentlich Raumschiffe (urs)",
         length: Some(5172),
         thumbnail: [
           Thumbnail(
@@ -201,7 +201,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "7FeqF1-Z1g0",
-        title: "David Kriesel: Traue keinem Scan, den du nicht selbst gefälscht hast",
+        name: "David Kriesel: Traue keinem Scan, den du nicht selbst gefälscht hast",
         length: Some(3820),
         thumbnail: [
           Thumbnail(
@@ -238,7 +238,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "1vcP9UWrWBI",
-        title: "Easterhegg 2019 - Kernreaktoren",
+        name: "Easterhegg 2019 - Kernreaktoren",
         length: Some(7263),
         thumbnail: [
           Thumbnail(
@@ -275,7 +275,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "jnp1veXQf7U",
-        title: "Blockchain - Ein außer Kontrolle geratenes Laborexperiment? #GPN19",
+        name: "Blockchain - Ein außer Kontrolle geratenes Laborexperiment? #GPN19",
         length: Some(3362),
         thumbnail: [
           Thumbnail(
@@ -312,7 +312,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "77OlKRkaixo",
-        title: "leyrer, MacLemon: E-Mail. Hässlich, aber es funktioniert #eh16",
+        name: "leyrer, MacLemon: E-Mail. Hässlich, aber es funktioniert #eh16",
         length: Some(6998),
         thumbnail: [
           Thumbnail(
@@ -349,7 +349,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "u29--YNGMyg",
-        title: "Physikalisches Kolloquium 22. Juli 2011 - Vortrag von Prof. Dr. Harald Lesch",
+        name: "Physikalisches Kolloquium 22. Juli 2011 - Vortrag von Prof. Dr. Harald Lesch",
         length: Some(6715),
         thumbnail: [
           Thumbnail(
@@ -386,7 +386,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "urt2_ACal9A",
-        title: "CCC-Jahresrückblick 2016 (33c3)",
+        name: "CCC-Jahresrückblick 2016 (33c3)",
         length: Some(8170),
         thumbnail: [
           Thumbnail(
@@ -423,7 +423,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "PnBs9oH2Lx8",
-        title: "Easterhegg 2019 - Wie ich die Regierung gehackt habe",
+        name: "Easterhegg 2019 - Wie ich die Regierung gehackt habe",
         length: Some(3147),
         thumbnail: [
           Thumbnail(
@@ -460,7 +460,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "yaCiVvBD-xc",
-        title: "Mathias Dalheimer: Wie man einen Blackout verursacht",
+        name: "Mathias Dalheimer: Wie man einen Blackout verursacht",
         length: Some(3748),
         thumbnail: [
           Thumbnail(
@@ -497,7 +497,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "1PJnEwoFSXo",
-        title: "Das Geheimnis der Hieroglyphen | Doku HD | ARTE",
+        name: "Das Geheimnis der Hieroglyphen | Doku HD | ARTE",
         length: Some(5541),
         thumbnail: [
           Thumbnail(
@@ -534,7 +534,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "iIDZ8pJKLZA",
-        title: "36C3 ChaosWest:  Bahn API Chaos",
+        name: "36C3 ChaosWest:  Bahn API Chaos",
         length: Some(3056),
         thumbnail: [
           Thumbnail(
@@ -571,7 +571,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "PhUQN6fd5O4",
-        title: "35C3 -  Jahresrückblick des CCC 2018",
+        name: "35C3 -  Jahresrückblick des CCC 2018",
         length: Some(8102),
         thumbnail: [
           Thumbnail(
@@ -608,7 +608,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "bzr0c8qzQoc",
-        title: "GPN19 - Beton",
+        name: "GPN19 - Beton",
         length: Some(3972),
         thumbnail: [
           Thumbnail(
@@ -645,7 +645,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "IeX1F-Jjq9E",
-        title: "Lars “Pylon” Weiler (DC4LW): Weltraumkommunikation",
+        name: "Lars “Pylon” Weiler (DC4LW): Weltraumkommunikation",
         length: Some(5075),
         thumbnail: [
           Thumbnail(
@@ -682,7 +682,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "gsnL4m57MCM",
-        title: "David Kriesel: SpiegelMining – Reverse Engineering von Spiegel-Online",
+        name: "David Kriesel: SpiegelMining – Reverse Engineering von Spiegel-Online",
         length: Some(3526),
         thumbnail: [
           Thumbnail(
@@ -719,7 +719,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "uEEHq6f8RsM",
-        title: "Leyrer: Moderne Linux Kommandozeilenwerkzeuge - Edition \"Allein zu Haus\"",
+        name: "Leyrer: Moderne Linux Kommandozeilenwerkzeuge - Edition \"Allein zu Haus\"",
         length: Some(3716),
         thumbnail: [
           Thumbnail(

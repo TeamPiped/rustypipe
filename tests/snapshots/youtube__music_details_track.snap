@@ -5,7 +5,7 @@ expression: track
 TrackDetails(
   track: TrackItem(
     id: "7nigXQS1Xb0",
-    title: "INVU",
+    name: "INVU",
     duration: Some(205),
     cover: "[cover]",
     artists: [

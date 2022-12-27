@@ -38,7 +38,7 @@ MusicArtist(
   tracks: [
     TrackItem(
       id: "aWxWb6iBC_s",
-      title: "Gäa",
+      name: "Gäa",
       duration: None,
       cover: [
         Thumbnail(
@@ -70,7 +70,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "pI0Rancanz0",
-      title: "Vergiss mein nicht",
+      name: "Vergiss mein nicht",
       duration: None,
       cover: [
         Thumbnail(
@@ -102,7 +102,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "kNdPylPd4JM",
-      title: "Kuliko Jana - Eine neue Zeit",
+      name: "Kuliko Jana - Eine neue Zeit",
       duration: None,
       cover: [
         Thumbnail(
@@ -134,7 +134,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "DsviLYh1CB0",
-      title: "Eldamar",
+      name: "Eldamar",
       duration: None,
       cover: [
         Thumbnail(
@@ -166,7 +166,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "wNgCQjct_Ys",
-      title: "Zeit der Sommernächte (Single Mix)",
+      name: "Zeit der Sommernächte (Single Mix)",
       duration: None,
       cover: [
         Thumbnail(
@@ -202,7 +202,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "btPcPR3fJfQ",
-      title: "Akustik Version „AUFHÖREN“.♥\u{fe0f}",
+      name: "Akustik Version „AUFHÖREN“.♥\u{fe0f}",
       duration: None,
       cover: [
         Thumbnail(
@@ -226,7 +226,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "dFdac41o3mQ",
-      title: "AUFHÖREN",
+      name: "AUFHÖREN",
       duration: None,
       cover: [
         Thumbnail(
@@ -255,7 +255,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "C_pGRMlCM3U",
-      title: "Gäa",
+      name: "Gäa",
       duration: None,
       cover: [
         Thumbnail(
@@ -284,7 +284,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "SUioohuufeE",
-      title: "Eldamar",
+      name: "Eldamar",
       duration: None,
       cover: [
         Thumbnail(
@@ -313,7 +313,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "yHv2oXYVbZg",
-      title: "Zeit der Sommernächte (single mix) (feat. Safri Duo)",
+      name: "Zeit der Sommernächte (single mix) (feat. Safri Duo)",
       duration: None,
       cover: [
         Thumbnail(
@@ -342,7 +342,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "QnzAiQZZ1uw",
-      title: "MUSIK MUSIK",
+      name: "MUSIK MUSIK",
       duration: None,
       cover: [
         Thumbnail(
@@ -371,7 +371,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "cnF-BVrVs1M",
-      title: "Senta - Was immer es ist (Offizielles Video)",
+      name: "Senta - Was immer es ist (Offizielles Video)",
       duration: None,
       cover: [
         Thumbnail(

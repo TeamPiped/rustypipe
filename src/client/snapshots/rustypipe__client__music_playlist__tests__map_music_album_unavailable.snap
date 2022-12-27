@@ -37,7 +37,7 @@ MusicAlbum(
   tracks: [
     TrackItem(
       id: "JWeJHN5P-E8",
-      title: "Teeth",
+      name: "Teeth",
       duration: Some(205),
       cover: [],
       artists: [
@@ -58,7 +58,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "5jd-AhBwcCQ",
-      title: "Die A Little",
+      name: "Die A Little",
       duration: Some(174),
       cover: [],
       artists: [
@@ -79,7 +79,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "_cmORZMgv6I",
-      title: "fuck, i\'m lonely (feat. Anne-Marie)",
+      name: "fuck, i\'m lonely (feat. Anne-Marie)",
       duration: Some(199),
       cover: [],
       artists: [
@@ -100,7 +100,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "M_kVMsFaGYs",
-      title: "Swim Home",
+      name: "Swim Home",
       duration: Some(187),
       cover: [],
       artists: [
@@ -121,7 +121,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "c8AfY6yhdkM",
-      title: "Another Summer Night Without You",
+      name: "Another Summer Night Without You",
       duration: Some(159),
       cover: [],
       artists: [
@@ -142,7 +142,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "DSQEKEegiH0",
-      title: "Miss U",
+      name: "Miss U",
       duration: Some(186),
       cover: [],
       artists: [
@@ -163,7 +163,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "2TTOKQSzuQY",
-      title: "Favorite Drug",
+      name: "Favorite Drug",
       duration: Some(209),
       cover: [],
       artists: [
@@ -184,7 +184,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "iRaX0BfME70",
-      title: "Keeping It In The Dark",
+      name: "Keeping It In The Dark",
       duration: Some(209),
       cover: [],
       artists: [
@@ -205,7 +205,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "Kn3cruxYj0c",
-      title: "All That (feat. Jeremih)",
+      name: "All That (feat. Jeremih)",
       duration: Some(174),
       cover: [],
       artists: [
@@ -226,7 +226,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "-P1FyntN_Uc",
-      title: "This Baby Don’t Cry",
+      name: "This Baby Don’t Cry",
       duration: Some(185),
       cover: [],
       artists: [
@@ -247,7 +247,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "njdlNT1RRo4",
-      title: "Walk Forever By My Side",
+      name: "Walk Forever By My Side",
       duration: Some(237),
       cover: [],
       artists: [
@@ -268,7 +268,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "Si-CXM8CHqQ",
-      title: "Ordinary World (feat. White Sea)",
+      name: "Ordinary World (feat. White Sea)",
       duration: Some(246),
       cover: [],
       artists: [

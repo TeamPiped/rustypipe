@@ -8,7 +8,7 @@ MusicSearchFiltered(
     items: [
       TrackItem(
         id: "ZeerrnuLi5E",
-        title: "Black Mamba",
+        name: "Black Mamba",
         duration: Some(230),
         cover: [
           Thumbnail(
@@ -32,7 +32,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "vbl9KrZxOF8",
-        title: "Black Mamba  DJ set - Boko! Boko!  | @Beatport  Live",
+        name: "Black Mamba  DJ set - Boko! Boko!  | @Beatport  Live",
         duration: Some(4447),
         cover: [
           Thumbnail(
@@ -56,7 +56,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "eMfROJt0a7Q",
-        title: "aespa - \"Black Mamba\" @ KAMP LA 2022 Day 2",
+        name: "aespa - \"Black Mamba\" @ KAMP LA 2022 Day 2",
         duration: Some(198),
         cover: [
           Thumbnail(
@@ -80,7 +80,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "1ktLEhfkBCI",
-        title: "ANKATHIE KOI - BLACK MAMBA (official)",
+        name: "ANKATHIE KOI - BLACK MAMBA (official)",
         duration: Some(230),
         cover: [
           Thumbnail(
@@ -104,7 +104,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "2hAlp3Khsnk",
-        title: "The Black Mamba - Love Is On My Side - Portugal 🇵🇹  - Official Video - Eurovision 2021",
+        name: "The Black Mamba - Love Is On My Side - Portugal 🇵🇹  - Official Video - Eurovision 2021",
         duration: Some(189),
         cover: [
           Thumbnail(
@@ -128,7 +128,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "CHixjhwY0ek",
-        title: "aespa, Black Mamba (에스파, Black Mamba) with Goyang Philharmonic Orchestra [UN DAY CONCERT 2021]",
+        name: "aespa, Black Mamba (에스파, Black Mamba) with Goyang Philharmonic Orchestra [UN DAY CONCERT 2021]",
         duration: Some(238),
         cover: [
           Thumbnail(
@@ -152,7 +152,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "8YXKgZ393Ec",
-        title: "Kronos - Black Mamba",
+        name: "Kronos - Black Mamba",
         duration: Some(157),
         cover: [
           Thumbnail(
@@ -176,7 +176,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "KFNznAXnjXc",
-        title: "AESPA - Black Mamba (Teaser Demo/Instrumental)",
+        name: "AESPA - Black Mamba (Teaser Demo/Instrumental)",
         duration: Some(112),
         cover: [
           Thumbnail(
@@ -200,7 +200,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "hDhJeJZmTDA",
-        title: "aespa (에스파) - Black Mamba | INK Incheon K-Pop Concert | MTV Asia",
+        name: "aespa (에스파) - Black Mamba | INK Incheon K-Pop Concert | MTV Asia",
         duration: Some(178),
         cover: [
           Thumbnail(
@@ -224,7 +224,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "6kKSDXiip_8",
-        title: "aespa エスパ - Black Mamba",
+        name: "aespa エスパ - Black Mamba",
         duration: Some(185),
         cover: [
           Thumbnail(
@@ -248,7 +248,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "vfzlr70ogaI",
-        title: "aespa(에스파) - Black Mamba (Music Bank) | KBS WORLD TV 201211",
+        name: "aespa(에스파) - Black Mamba (Music Bank) | KBS WORLD TV 201211",
         duration: Some(190),
         cover: [
           Thumbnail(
@@ -272,7 +272,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "Fjth6cKGI88",
-        title: "aespa, Black Mamba\u{a0}(에스파, Black Mamba) [THE SHOW 201208]",
+        name: "aespa, Black Mamba\u{a0}(에스파, Black Mamba) [THE SHOW 201208]",
         duration: Some(179),
         cover: [
           Thumbnail(
@@ -296,7 +296,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "fznwvW9Kn4s",
-        title: "Love Is Dope",
+        name: "Love Is Dope",
         duration: Some(371),
         cover: [
           Thumbnail(
@@ -320,7 +320,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "Jore0zZW-_M",
-        title: "The Tunnel — Black Mamba (dj-set)",
+        name: "The Tunnel — Black Mamba (dj-set)",
         duration: Some(3881),
         cover: [
           Thumbnail(
@@ -344,7 +344,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "_THM-2Ph-6I",
-        title: "Black Mamba / Turn to Stone Cover",
+        name: "Black Mamba / Turn to Stone Cover",
         duration: Some(355),
         cover: [
           Thumbnail(
@@ -368,7 +368,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "koJAGIUlnD0",
-        title: "The Black Mamba - Love Is On My Side - Portugal 🇵🇹 - Second Semi-Final - Eurovision 2021",
+        name: "The Black Mamba - Love Is On My Side - Portugal 🇵🇹 - Second Semi-Final - Eurovision 2021",
         duration: Some(204),
         cover: [
           Thumbnail(
@@ -392,7 +392,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "4tvQPrHcR4w",
-        title: "Black Mamba - aespa(에스파) [뮤직뱅크/Music Bank] | KBS 201211 방송",
+        name: "Black Mamba - aespa(에스파) [뮤직뱅크/Music Bank] | KBS 201211 방송",
         duration: Some(181),
         cover: [
           Thumbnail(
@@ -416,7 +416,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "CUh6MTvB_4E",
-        title: "The Black Mamba - Love Is On My Side (long version)",
+        name: "The Black Mamba - Love Is On My Side (long version)",
         duration: Some(343),
         cover: [
           Thumbnail(
@@ -440,7 +440,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "4TWR90KJl84",
-        title: "Next Level",
+        name: "Next Level",
         duration: Some(236),
         cover: [
           Thumbnail(
@@ -464,7 +464,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "Cw7eMibV-Xk",
-        title: "BLACKPINK & AESPA - Pink Venom x Black Mamba (ft.Next Level) (Color Coded Lyrics) @Miggy Smallz",
+        name: "BLACKPINK & AESPA - Pink Venom x Black Mamba (ft.Next Level) (Color Coded Lyrics) @Miggy Smallz",
         duration: Some(241),
         cover: [
           Thumbnail(

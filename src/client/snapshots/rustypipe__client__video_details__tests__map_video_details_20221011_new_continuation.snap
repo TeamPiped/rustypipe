@@ -4,7 +4,7 @@ expression: map_res.c
 ---
 VideoDetails(
   id: "ZeerrnuLi5E",
-  title: "aespa 에스파 \'Black Mamba\' MV",
+  name: "aespa 에스파 \'Black Mamba\' MV",
   description: RichText([
     Text("🎧Listen and download aespa\'s debut single \"Black Mamba\": "),
     Web(
@@ -106,7 +106,7 @@ VideoDetails(
     items: [
       VideoItem(
         id: "WPdWvnAAurg",
-        title: "aespa 에스파 \'Savage\' MV",
+        name: "aespa 에스파 \'Savage\' MV",
         length: Some(259),
         thumbnail: [
           Thumbnail(
@@ -143,7 +143,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "4TWR90KJl84",
-        title: "aespa 에스파 \'Next Level\' MV",
+        name: "aespa 에스파 \'Next Level\' MV",
         length: Some(236),
         thumbnail: [
           Thumbnail(
@@ -180,7 +180,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "uR8Mrt1IpXg",
-        title: "Red Velvet 레드벨벳 \'Psycho\' MV",
+        name: "Red Velvet 레드벨벳 \'Psycho\' MV",
         length: Some(216),
         thumbnail: [
           Thumbnail(
@@ -217,7 +217,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "UUUWIGx3hDE",
-        title: "ITZY \"WANNABE\" Performance Video",
+        name: "ITZY \"WANNABE\" Performance Video",
         length: Some(198),
         thumbnail: [
           Thumbnail(
@@ -254,7 +254,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "NoYKBAajoyo",
-        title: "EVERGLOW (에버글로우) - DUN DUN MV",
+        name: "EVERGLOW (에버글로우) - DUN DUN MV",
         length: Some(209),
         thumbnail: [
           Thumbnail(
@@ -291,7 +291,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "32si5cfrCNc",
-        title: "BLACKPINK - \'How You Like That\' DANCE PERFORMANCE VIDEO",
+        name: "BLACKPINK - \'How You Like That\' DANCE PERFORMANCE VIDEO",
         length: Some(181),
         thumbnail: [
           Thumbnail(
@@ -328,7 +328,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "CM4CkVFmTds",
-        title: "TWICE \"I CAN\'T STOP ME\" M/V",
+        name: "TWICE \"I CAN\'T STOP ME\" M/V",
         length: Some(221),
         thumbnail: [
           Thumbnail(
@@ -365,7 +365,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "UZPZyd5vE1c",
-        title: "Shut Down",
+        name: "Shut Down",
         length: Some(176),
         thumbnail: [
           Thumbnail(
@@ -402,7 +402,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "CKZvWhCqx1s",
-        title: "ROSÉ - \'On The Ground\' M/V",
+        name: "ROSÉ - \'On The Ground\' M/V",
         length: Some(189),
         thumbnail: [
           Thumbnail(
@@ -439,7 +439,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "fE2h3lGlOsk",
-        title: "ITZY \"WANNABE\" M/V @ITZY",
+        name: "ITZY \"WANNABE\" M/V @ITZY",
         length: Some(219),
         thumbnail: [
           Thumbnail(
@@ -476,7 +476,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "Y8JFxS1HlDo",
-        title: "IVE 아이브 \'LOVE DIVE\' MV",
+        name: "IVE 아이브 \'LOVE DIVE\' MV",
         length: Some(179),
         thumbnail: [
           Thumbnail(
@@ -513,7 +513,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "dNCWe_6HAM8",
-        title: "LISA - \'MONEY\' EXCLUSIVE PERFORMANCE VIDEO",
+        name: "LISA - \'MONEY\' EXCLUSIVE PERFORMANCE VIDEO",
         length: Some(171),
         thumbnail: [
           Thumbnail(
@@ -550,7 +550,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "tyrVtwE8Gv0",
-        title: "NCT U 엔시티 유 \'Make A Wish (Birthday Song)\' MV",
+        name: "NCT U 엔시티 유 \'Make A Wish (Birthday Song)\' MV",
         length: Some(249),
         thumbnail: [
           Thumbnail(
@@ -587,7 +587,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "gU2HqP4NxUs",
-        title: "BLACKPINK - ‘Pretty Savage’ 1011 SBS Inkigayo",
+        name: "BLACKPINK - ‘Pretty Savage’ 1011 SBS Inkigayo",
         length: Some(208),
         thumbnail: [
           Thumbnail(
@@ -624,7 +624,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "Ujb-gvqsoi0",
-        title: "Red Velvet - IRENE & SEULGI \'Monster\' MV",
+        name: "Red Velvet - IRENE & SEULGI \'Monster\' MV",
         length: Some(182),
         thumbnail: [
           Thumbnail(
@@ -661,7 +661,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "KhTeiaCezwM",
-        title: "[MV] MAMAMOO (마마무) - HIP",
+        name: "[MV] MAMAMOO (마마무) - HIP",
         length: Some(211),
         thumbnail: [
           Thumbnail(
@@ -698,7 +698,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "XJDPzNzQ3RE",
-        title: "Run BTS! 2022 Special Episode - Fly BTS Fly Part 1",
+        name: "Run BTS! 2022 Special Episode - Fly BTS Fly Part 1",
         length: Some(2070),
         thumbnail: [
           Thumbnail(
@@ -735,7 +735,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "0lXwMdnpoFQ",
-        title: "aespa 에스파 \'도깨비불 (Illusion)\' Dance Practice",
+        name: "aespa 에스파 \'도깨비불 (Illusion)\' Dance Practice",
         length: Some(210),
         thumbnail: [
           Thumbnail(
@@ -772,7 +772,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "IHNzOHi8sJs",
-        title: "BLACKPINK - ‘뚜두뚜두 (DDU-DU DDU-DU)’ M/V",
+        name: "BLACKPINK - ‘뚜두뚜두 (DDU-DU DDU-DU)’ M/V",
         length: Some(216),
         thumbnail: [
           Thumbnail(

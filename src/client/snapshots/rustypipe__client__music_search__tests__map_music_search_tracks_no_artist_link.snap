@@ -8,7 +8,7 @@ MusicSearchFiltered(
     items: [
       TrackItem(
         id: "LYUESTEwXiU",
-        title: "Am sichersten seid ihr im Auto",
+        name: "Am sichersten seid ihr im Auto",
         duration: Some(198),
         cover: [
           Thumbnail(
@@ -44,7 +44,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "OJ5ZittaTCk",
-        title: "Am sichersten sind wir zu Hause",
+        name: "Am sichersten sind wir zu Hause",
         duration: Some(193),
         cover: [
           Thumbnail(
@@ -76,7 +76,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "H199HKaUk3g",
-        title: "Am sichersten sind wir zu Hause (Live)",
+        name: "Am sichersten sind wir zu Hause (Live)",
         duration: Some(180),
         cover: [
           Thumbnail(
@@ -108,7 +108,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "UlNOkZEcSjQ",
-        title: "Fragen an einen Rollstuhlfahrer",
+        name: "Fragen an einen Rollstuhlfahrer",
         duration: Some(464),
         cover: [
           Thumbnail(
@@ -140,7 +140,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "L61sF-655Zw",
-        title: "Urlaub",
+        name: "Urlaub",
         duration: Some(171),
         cover: [
           Thumbnail(
@@ -172,7 +172,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "bOK90e8P3k0",
-        title: "Endlich wieder Skifahrn",
+        name: "Endlich wieder Skifahrn",
         duration: Some(172),
         cover: [
           Thumbnail(
@@ -204,7 +204,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "oRHLx2mc2zY",
-        title: "#50_Sie werden ständig unterschätzt_ Seien Sie froh!.3 & #51_Unsere Schulen produzieren Lebensuntüchtige.1 - #Malehrlich: 52 ungeschminkte Impulse einer Unternehmerin",
+        name: "#50_Sie werden ständig unterschätzt_ Seien Sie froh!.3 & #51_Unsere Schulen produzieren Lebensuntüchtige.1 - #Malehrlich: 52 ungeschminkte Impulse einer Unternehmerin",
         duration: Some(145),
         cover: [
           Thumbnail(

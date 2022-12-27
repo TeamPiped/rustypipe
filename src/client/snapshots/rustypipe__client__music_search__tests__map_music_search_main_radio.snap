@@ -6,7 +6,7 @@ MusicSearchResult(
   tracks: [
     TrackItem(
       id: "ITdJEc_81h4",
-      title: "Pop (Radio Version)",
+      name: "Pop (Radio Version)",
       duration: Some(176),
       cover: [
         Thumbnail(
@@ -38,7 +38,7 @@ MusicSearchResult(
     ),
     TrackItem(
       id: "VHLPvrlclmQ",
-      title: "Pop im Radio",
+      name: "Pop im Radio",
       duration: Some(224),
       cover: [
         Thumbnail(
@@ -70,7 +70,7 @@ MusicSearchResult(
     ),
     TrackItem(
       id: "R9TPed_ohKM",
-      title: "POP!",
+      name: "POP!",
       duration: Some(169),
       cover: [
         Thumbnail(
@@ -102,7 +102,7 @@ MusicSearchResult(
     ),
     TrackItem(
       id: "Ej1nxBxFSKc",
-      title: "Non-Stop-Pop FM (Hosted by Cara Delevingne) [Grand Theft Auto V] | Pop, R&B, Dance-pop Music Mix",
+      name: "Non-Stop-Pop FM (Hosted by Cara Delevingne) [Grand Theft Auto V] | Pop, R&B, Dance-pop Music Mix",
       duration: Some(8752),
       cover: [
         Thumbnail(
@@ -126,7 +126,7 @@ MusicSearchResult(
     ),
     TrackItem(
       id: "26OrUhkRa3c",
-      title: "Top Hits 2020 Video Mix (CLEAN) | Hip Hop 2020 - (POP HITS 2020, TOP 40 HITS, BEST POP HITS,TOP 40)",
+      name: "Top Hits 2020 Video Mix (CLEAN) | Hip Hop 2020 - (POP HITS 2020, TOP 40 HITS, BEST POP HITS,TOP 40)",
       duration: Some(10012),
       cover: [
         Thumbnail(
@@ -150,7 +150,7 @@ MusicSearchResult(
     ),
     TrackItem(
       id: "Idk-oFqn3kM",
-      title: "THE BEST CHARTS POP HITS 2021 I THE BEST MUSIC RADIO CHARTS I",
+      name: "THE BEST CHARTS POP HITS 2021 I THE BEST MUSIC RADIO CHARTS I",
       duration: Some(8795),
       cover: [
         Thumbnail(

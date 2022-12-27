@@ -6,7 +6,7 @@ MusicRelated(
   tracks: [
     TrackItem(
       id: "QiziJ40kTz0",
-      title: "FOREVER 1",
+      name: "FOREVER 1",
       duration: None,
       cover: [
         Thumbnail(
@@ -38,7 +38,7 @@ MusicRelated(
     ),
     TrackItem(
       id: "g92HIac9ufA",
-      title: "After LIKE",
+      name: "After LIKE",
       duration: None,
       cover: [
         Thumbnail(
@@ -70,7 +70,7 @@ MusicRelated(
     ),
     TrackItem(
       id: "khgCIMs_lVQ",
-      title: "삠삠 (BEAM BEAM)",
+      name: "삠삠 (BEAM BEAM)",
       duration: None,
       cover: [
         Thumbnail(
@@ -102,7 +102,7 @@ MusicRelated(
     ),
     TrackItem(
       id: "i2VGa-ETiM4",
-      title: "Life\'s Too Short",
+      name: "Life\'s Too Short",
       duration: None,
       cover: [
         Thumbnail(
@@ -134,7 +134,7 @@ MusicRelated(
     ),
     TrackItem(
       id: "INLFlN-PZq4",
-      title: "Weekend",
+      name: "Weekend",
       duration: None,
       cover: [
         Thumbnail(
@@ -166,7 +166,7 @@ MusicRelated(
     ),
     TrackItem(
       id: "ZzbNM2l-AAA",
-      title: "Hello",
+      name: "Hello",
       duration: None,
       cover: [
         Thumbnail(
@@ -198,7 +198,7 @@ MusicRelated(
     ),
     TrackItem(
       id: "i4loHXi8f3A",
-      title: "Forever 약속",
+      name: "Forever 약속",
       duration: None,
       cover: [
         Thumbnail(
@@ -230,7 +230,7 @@ MusicRelated(
     ),
     TrackItem(
       id: "miqQAzOXPBo",
-      title: "달라달라 DALLA DALLA",
+      name: "달라달라 DALLA DALLA",
       duration: None,
       cover: [
         Thumbnail(
@@ -262,7 +262,7 @@ MusicRelated(
     ),
     TrackItem(
       id: "hh5GKVa8VtM",
-      title: "LOVE DIVE (LOVE DIVE)",
+      name: "LOVE DIVE (LOVE DIVE)",
       duration: None,
       cover: [
         Thumbnail(
@@ -294,7 +294,7 @@ MusicRelated(
     ),
     TrackItem(
       id: "dzwSnvfKEtw",
-      title: "Vanilla",
+      name: "Vanilla",
       duration: None,
       cover: [
         Thumbnail(
@@ -326,7 +326,7 @@ MusicRelated(
     ),
     TrackItem(
       id: "REmUidcJt5I",
-      title: "Savage",
+      name: "Savage",
       duration: None,
       cover: [
         Thumbnail(
@@ -358,7 +358,7 @@ MusicRelated(
     ),
     TrackItem(
       id: "OXWz_x6-dro",
-      title: "Feel My Rhythm",
+      name: "Feel My Rhythm",
       duration: None,
       cover: [
         Thumbnail(
@@ -390,7 +390,7 @@ MusicRelated(
     ),
     TrackItem(
       id: "aFoqCI75WoY",
-      title: "TOMBOY",
+      name: "TOMBOY",
       duration: None,
       cover: [
         Thumbnail(
@@ -422,7 +422,7 @@ MusicRelated(
     ),
     TrackItem(
       id: "_Pm74XignKI",
-      title: "Can\'t Control Myself",
+      name: "Can\'t Control Myself",
       duration: None,
       cover: [
         Thumbnail(
@@ -454,7 +454,7 @@ MusicRelated(
     ),
     TrackItem(
       id: "-uOShlFu1v8",
-      title: "SNEAKERS",
+      name: "SNEAKERS",
       duration: None,
       cover: [
         Thumbnail(
@@ -486,7 +486,7 @@ MusicRelated(
     ),
     TrackItem(
       id: "LP9sF1v-vz4",
-      title: "도깨비불 Illusion",
+      name: "도깨비불 Illusion",
       duration: None,
       cover: [
         Thumbnail(
@@ -518,7 +518,7 @@ MusicRelated(
     ),
     TrackItem(
       id: "KJrPsT2X-yk",
-      title: "Weapon (With Newnion & FLOOR) (Prod. by Czaer)",
+      name: "Weapon (With Newnion & FLOOR) (Prod. by Czaer)",
       duration: None,
       cover: [
         Thumbnail(
@@ -550,7 +550,7 @@ MusicRelated(
     ),
     TrackItem(
       id: "tkzYyEp4zB4",
-      title: "Next Level",
+      name: "Next Level",
       duration: None,
       cover: [
         Thumbnail(
@@ -582,7 +582,7 @@ MusicRelated(
     ),
     TrackItem(
       id: "ZpD59tu5_Rk",
-      title: "ICY",
+      name: "ICY",
       duration: None,
       cover: [
         Thumbnail(
@@ -614,7 +614,7 @@ MusicRelated(
     ),
     TrackItem(
       id: "_eNXeEx9Hvk",
-      title: "You can\'t sit with us (You can\'t sit with us)",
+      name: "You can\'t sit with us (You can\'t sit with us)",
       duration: None,
       cover: [
         Thumbnail(
@@ -648,7 +648,7 @@ MusicRelated(
   other_versions: [
     TrackItem(
       id: "NU611fxGyPU",
-      title: "Black Mamba",
+      name: "Black Mamba",
       duration: None,
       cover: [
         Thumbnail(
@@ -672,7 +672,7 @@ MusicRelated(
     ),
     TrackItem(
       id: "Yi2nsnpw5h0",
-      title: "aespa - Black Mamba (Official Instrumental)",
+      name: "aespa - Black Mamba (Official Instrumental)",
       duration: None,
       cover: [
         Thumbnail(
@@ -696,7 +696,7 @@ MusicRelated(
     ),
     TrackItem(
       id: "2Qefh0W_H88",
-      title: "aespa - black mamba (𝒔𝒍𝒐𝒘𝒆𝒅 𝒏 𝒓𝒆𝒗𝒆𝒓𝒃)",
+      name: "aespa - black mamba (𝒔𝒍𝒐𝒘𝒆𝒅 𝒏 𝒓𝒆𝒗𝒆𝒓𝒃)",
       duration: None,
       cover: [
         Thumbnail(
@@ -720,7 +720,7 @@ MusicRelated(
     ),
     TrackItem(
       id: "oo89OQvzkIo",
-      title: "AESPA (에스파) – BLACK MAMBA [8D USE HEADPHONE] 🎧",
+      name: "AESPA (에스파) – BLACK MAMBA [8D USE HEADPHONE] 🎧",
       duration: None,
       cover: [
         Thumbnail(

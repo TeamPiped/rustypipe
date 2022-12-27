@@ -174,7 +174,7 @@ pub struct VideoPlayerDetails {
     /// Unique YouTube video ID
     pub id: String,
     /// Video title
-    pub title: String,
+    pub name: String,
     /// Video description in plaintext format
     pub description: Option<String>,
     /// Video length in seconds
@@ -524,7 +524,7 @@ pub struct PlaylistVideo {
     /// Unique YouTube video ID
     pub id: String,
     /// Video title
-    pub title: String,
+    pub name: String,
     /// Video length in seconds
     pub length: u32,
     /// Video thumbnail
@@ -555,7 +555,7 @@ pub struct VideoDetails {
     /// Unique YouTube video ID
     pub id: String,
     /// Video title
-    pub title: String,
+    pub name: String,
     /// Video description in rich text format
     pub description: RichText,
     /// Channel of the video
@@ -608,8 +608,8 @@ pub struct VideoDetails {
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[non_exhaustive]
 pub struct Chapter {
-    /// Chapter title
-    pub title: String,
+    /// Chapter name
+    pub name: String,
     /// Chapter position in seconds
     pub position: u32,
     /// Chapter thumbnail
@@ -779,7 +779,7 @@ pub struct ChannelRssVideo {
     /// Unique YouTube video ID
     pub id: String,
     /// Video title
-    pub title: String,
+    pub name: String,
     /// Video description in plaintext format
     pub description: String,
     /// Video thumbnail
@@ -831,7 +831,7 @@ pub struct VideoItem {
     /// Unique YouTube video ID
     pub id: String,
     /// Video title
-    pub title: String,
+    pub name: String,
     /// Video length in seconds.
     ///
     /// Is [`None`] for livestreams.
@@ -911,8 +911,8 @@ pub struct PlaylistItem {
 pub struct TrackItem {
     /// Unique YouTube video ID
     pub id: String,
-    /// Track title
-    pub title: String,
+    /// Track name
+    pub name: String,
     /// Track duration in seconds
     ///
     /// [`None`] when extracted from an artist page or a featured video.

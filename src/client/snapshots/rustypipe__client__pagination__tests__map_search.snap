@@ -7,7 +7,7 @@ Paginator(
   items: [
     Video(VideoItem(
       id: "N5AKQflK1TU",
-      title: "When you impulse buy...",
+      name: "When you impulse buy...",
       length: Some(60),
       thumbnail: [
         Thumbnail(
@@ -39,7 +39,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "OzIFALQ_YtA",
-      title: "taste testing gam!",
+      name: "taste testing gam!",
       length: Some(60),
       thumbnail: [
         Thumbnail(
@@ -71,7 +71,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "zYHB38UlzE0",
-      title: "Q&A l relationships, burnout, privilege, college advice, living alone, and life after youtube?",
+      name: "Q&A l relationships, burnout, privilege, college advice, living alone, and life after youtube?",
       length: Some(775),
       thumbnail: [
         Thumbnail(
@@ -108,7 +108,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "GvutfmW26JQ",
-      title: "👹stay sour 🍋",
+      name: "👹stay sour 🍋",
       length: Some(52),
       thumbnail: [
         Thumbnail(
@@ -140,7 +140,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "gK-jLnvVsb0",
-      title: "Contradicting myself",
+      name: "Contradicting myself",
       length: Some(1381),
       thumbnail: [
         Thumbnail(
@@ -177,7 +177,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "NudTbo2CJMY",
-      title: "Flying to London",
+      name: "Flying to London",
       length: Some(1078),
       thumbnail: [
         Thumbnail(
@@ -214,7 +214,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "Nc0HzyDRjm0",
-      title: "Stekki-don ㅣ After Hours ep.2",
+      name: "Stekki-don ㅣ After Hours ep.2",
       length: Some(749),
       thumbnail: [
         Thumbnail(
@@ -251,7 +251,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "pvSWHm4wlxY",
-      title: "having kids",
+      name: "having kids",
       length: Some(60),
       thumbnail: [
         Thumbnail(
@@ -283,7 +283,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "fGQUWI4o__A",
-      title: "Baskin Robbins in South Korea",
+      name: "Baskin Robbins in South Korea",
       length: Some(53),
       thumbnail: [
         Thumbnail(
@@ -315,7 +315,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "GuyGyzZcumI",
-      title: "McDonald\'s Michelin Burger",
+      name: "McDonald\'s Michelin Burger",
       length: Some(59),
       thumbnail: [
         Thumbnail(
@@ -347,7 +347,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "6VGG19W08UQ",
-      title: "Nostalgia is a powerful ingredient",
+      name: "Nostalgia is a powerful ingredient",
       length: Some(52),
       thumbnail: [
         Thumbnail(
@@ -379,7 +379,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "p3Xhx6aQEXo",
-      title: "Jjajangmyun ㅣ Doob Gourmand ep.2",
+      name: "Jjajangmyun ㅣ Doob Gourmand ep.2",
       length: Some(664),
       thumbnail: [
         Thumbnail(
@@ -416,7 +416,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "35Gu3Q6qEn4",
-      title: "Deal Breakers",
+      name: "Deal Breakers",
       length: Some(60),
       thumbnail: [
         Thumbnail(
@@ -448,7 +448,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "JoUdBrUpBN0",
-      title: "Jjambbong, jjajangmyeon\'s biggest rival",
+      name: "Jjambbong, jjajangmyeon\'s biggest rival",
       length: Some(56),
       thumbnail: [
         Thumbnail(
@@ -480,7 +480,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "l76ovWsPLi8",
-      title: "Jjagglee, Ricotta Persimmon Toast, Plants, and Pringles! l Home Alone All Day Vlog",
+      name: "Jjagglee, Ricotta Persimmon Toast, Plants, and Pringles! l Home Alone All Day Vlog",
       length: Some(673),
       thumbnail: [
         Thumbnail(
@@ -517,7 +517,7 @@ Paginator(
     )),
     Video(VideoItem(
       id: "zt1Lx9L619w",
-      title: "The biggest privilege my rich friends have",
+      name: "The biggest privilege my rich friends have",
       length: Some(58),
       thumbnail: [
         Thumbnail(

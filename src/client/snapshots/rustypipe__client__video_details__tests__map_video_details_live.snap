@@ -4,7 +4,7 @@ expression: map_res.c
 ---
 VideoDetails(
   id: "86YLFOog4GM",
-  title: "🌎 Nasa Live Stream  - Earth From Space :  Live Views from the ISS",
+  name: "🌎 Nasa Live Stream  - Earth From Space :  Live Views from the ISS",
   description: RichText([
     Text("Live NASA - Views Of Earth from Space\nLive video feed of Earth from the International Space Station (ISS) Cameras\n-----------------------------------------------------------------------------------------------------\nWatch our latest video - The Sun - 4K Video / Solar Flares\n"),
     YouTube(
@@ -75,7 +75,7 @@ VideoDetails(
     items: [
       VideoItem(
         id: "SGP6Y0Pnhe4",
-        title: "HOW IT WORKS: The International Space Station",
+        name: "HOW IT WORKS: The International Space Station",
         length: Some(1738),
         thumbnail: [
           Thumbnail(
@@ -112,7 +112,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "ddZu_1Z3BAc",
-        title: "NASA LIVE Stream From The ISS - Live Earth & Space Station Views & Audio",
+        name: "NASA LIVE Stream From The ISS - Live Earth & Space Station Views & Audio",
         length: None,
         thumbnail: [
           Thumbnail(
@@ -149,7 +149,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "oDXBMjg9HKU",
-        title: "APOD: 2022-09-20 - Star Forming Region NGC 3582 without Stars (Narrated by Amy)",
+        name: "APOD: 2022-09-20 - Star Forming Region NGC 3582 without Stars (Narrated by Amy)",
         length: Some(124),
         thumbnail: [
           Thumbnail(
@@ -186,7 +186,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "aU0vNvVHXa8",
-        title: "🌎 LIVE ASTEROID Watch Tracking",
+        name: "🌎 LIVE ASTEROID Watch Tracking",
         length: None,
         thumbnail: [
           Thumbnail(
@@ -223,7 +223,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "6scCF_8YN70",
-        title: "Dramatic footage of the tsunami that hit Japan",
+        name: "Dramatic footage of the tsunami that hit Japan",
         length: Some(133),
         thumbnail: [
           Thumbnail(
@@ -260,7 +260,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "n4IhCSMkADc",
-        title: "EARTH FROM SPACE: Like You\'ve Never Seen Before",
+        name: "EARTH FROM SPACE: Like You\'ve Never Seen Before",
         length: Some(766),
         thumbnail: [
           Thumbnail(
@@ -297,7 +297,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "bgbH4FAmAA0",
-        title: "Winter Cab View from two of the most SCENIC RAILWAYS in the WORLD",
+        name: "Winter Cab View from two of the most SCENIC RAILWAYS in the WORLD",
         length: None,
         thumbnail: [
           Thumbnail(
@@ -334,7 +334,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "uD4izuDMUQA",
-        title: "TIMELAPSE OF THE FUTURE: A Journey to the End of Time (4K)",
+        name: "TIMELAPSE OF THE FUTURE: A Journey to the End of Time (4K)",
         length: Some(1761),
         thumbnail: [
           Thumbnail(
@@ -371,7 +371,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "Z6DpPQ8QdLg",
-        title: "Earthrise - Planet Earth Seen From The Moon - Real Time Journey Across The Lunar Surface",
+        name: "Earthrise - Planet Earth Seen From The Moon - Real Time Journey Across The Lunar Surface",
         length: Some(241),
         thumbnail: [
           Thumbnail(
@@ -408,7 +408,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "1hNF3Wuw0LI",
-        title: "New York City Walk 24/7 Chat Stream",
+        name: "New York City Walk 24/7 Chat Stream",
         length: None,
         thumbnail: [
           Thumbnail(
@@ -445,7 +445,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "ZEyAs3NWH4A",
-        title: "New: Mars In 4K",
+        name: "New: Mars In 4K",
         length: Some(609),
         thumbnail: [
           Thumbnail(
@@ -482,7 +482,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "NF4LQaWJRDg",
-        title: "Hiroshima: Dropping the Bomb",
+        name: "Hiroshima: Dropping the Bomb",
         length: Some(276),
         thumbnail: [
           Thumbnail(
@@ -519,7 +519,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "qhOe_PxiNo8",
-        title: "Imagens, Talvez Inéditas do Tsunami no Japão",
+        name: "Imagens, Talvez Inéditas do Tsunami no Japão",
         length: Some(1202),
         thumbnail: [
           Thumbnail(
@@ -556,7 +556,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "zf3bDpdhUNc",
-        title: "Astronauts accidentally lose a shield in space (GoPro 8K)",
+        name: "Astronauts accidentally lose a shield in space (GoPro 8K)",
         length: Some(566),
         thumbnail: [
           Thumbnail(
@@ -593,7 +593,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "mJxsj51d-Pk",
-        title: "Record breaking space jump - free fall faster than speed of sound - Red Bull Stratos.",
+        name: "Record breaking space jump - free fall faster than speed of sound - Red Bull Stratos.",
         length: Some(503),
         thumbnail: [
           Thumbnail(
@@ -630,7 +630,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "fr_hXLDLc38",
-        title: "Horizons mission - Soyuz: launch to orbit",
+        name: "Horizons mission - Soyuz: launch to orbit",
         length: Some(607),
         thumbnail: [
           Thumbnail(
@@ -667,7 +667,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "Jh-qzwdiAGY",
-        title: "The Earth 4K - Incredible 4K / UHD Video of Earth From Space",
+        name: "The Earth 4K - Incredible 4K / UHD Video of Earth From Space",
         length: Some(3594),
         thumbnail: [
           Thumbnail(
@@ -704,7 +704,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "EPyl1LgNtoQ",
-        title: "The View from Space - Earth\'s Countries and Coastlines",
+        name: "The View from Space - Earth\'s Countries and Coastlines",
         length: Some(227),
         thumbnail: [
           Thumbnail(
@@ -741,7 +741,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "7KXGZAEWzn0",
-        title: "ORBIT - Journey Around Earth in Real Time // 4K Remastered",
+        name: "ORBIT - Journey Around Earth in Real Time // 4K Remastered",
         length: Some(5560),
         thumbnail: [
           Thumbnail(
@@ -778,7 +778,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "KTUa9rG08go",
-        title: "NASA Artemis I Mon Rocket Testing and Inspection LIVE From Launch Complex 39B",
+        name: "NASA Artemis I Mon Rocket Testing and Inspection LIVE From Launch Complex 39B",
         length: None,
         thumbnail: [
           Thumbnail(

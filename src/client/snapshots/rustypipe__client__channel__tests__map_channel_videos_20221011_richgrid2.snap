@@ -150,7 +150,7 @@ Channel(
     items: [
       VideoItem(
         id: "4EcQYK_no5M",
-        title: "EEVblog 1506 - History of Electricity with Kathy Loves Physics",
+        name: "EEVblog 1506 - History of Electricity with Kathy Loves Physics",
         length: Some(6143),
         thumbnail: [
           Thumbnail(
@@ -191,7 +191,7 @@ Channel(
       ),
       VideoItem(
         id: "zEzjVUzNAFA",
-        title: "EEVblog 1505 - 120W Home Phantom Power? Audit Time!",
+        name: "EEVblog 1505 - 120W Home Phantom Power? Audit Time!",
         length: Some(1464),
         thumbnail: [
           Thumbnail(
@@ -232,7 +232,7 @@ Channel(
       ),
       VideoItem(
         id: "YIbQ3nudCA0",
-        title: "EEVblog 1504 - The COOL thing you MISSED at Tesla AI Day 2022",
+        name: "EEVblog 1504 - The COOL thing you MISSED at Tesla AI Day 2022",
         length: Some(1021),
         thumbnail: [
           Thumbnail(
@@ -273,7 +273,7 @@ Channel(
       ),
       VideoItem(
         id: "W1Jl0rMRGSg",
-        title: "EEVblog 1503 - Rigol HDO4000 12bit Oscilloscope TEARDOWN",
+        name: "EEVblog 1503 - Rigol HDO4000 12bit Oscilloscope TEARDOWN",
         length: Some(1798),
         thumbnail: [
           Thumbnail(
@@ -314,7 +314,7 @@ Channel(
       ),
       VideoItem(
         id: "YFKu_emNzpk",
-        title: "EEVblog 1502 - Is Home Battery Storage Financially Viable?",
+        name: "EEVblog 1502 - Is Home Battery Storage Financially Viable?",
         length: Some(1199),
         thumbnail: [
           Thumbnail(
@@ -355,7 +355,7 @@ Channel(
       ),
       VideoItem(
         id: "gremHHvqYTE",
-        title: "EEVblog 1501 - Rigol HDO4000 Low Noise 12bit Oscilloscope Unboxing & First Impression",
+        name: "EEVblog 1501 - Rigol HDO4000 Low Noise 12bit Oscilloscope Unboxing & First Impression",
         length: Some(1794),
         thumbnail: [
           Thumbnail(
@@ -396,7 +396,7 @@ Channel(
       ),
       VideoItem(
         id: "WHO8NBfpaO0",
-        title: "eevBLAB 102 - Last Mile Autonomous Robot Deliveries WILL FAIL",
+        name: "eevBLAB 102 - Last Mile Autonomous Robot Deliveries WILL FAIL",
         length: Some(742),
         thumbnail: [
           Thumbnail(
@@ -437,7 +437,7 @@ Channel(
       ),
       VideoItem(
         id: "W1Q8CxL95_Y",
-        title: "EEVblog 1500 - Automatic Transfer Switch REVERSE ENGINEERED",
+        name: "EEVblog 1500 - Automatic Transfer Switch REVERSE ENGINEERED",
         length: Some(1770),
         thumbnail: [
           Thumbnail(
@@ -478,7 +478,7 @@ Channel(
       ),
       VideoItem(
         id: "lagxSrPeoYg",
-        title: "EEVblog 1499 - EcoFlow Delta Pro 3.6kWh Portable Battery TEARDOWN!",
+        name: "EEVblog 1499 - EcoFlow Delta Pro 3.6kWh Portable Battery TEARDOWN!",
         length: Some(2334),
         thumbnail: [
           Thumbnail(
@@ -519,7 +519,7 @@ Channel(
       ),
       VideoItem(
         id: "qTctWW9_FmE",
-        title: "EEVblog 1498 - TransPod Fluxjet Hyperloop $550M Boondoggle!",
+        name: "EEVblog 1498 - TransPod Fluxjet Hyperloop $550M Boondoggle!",
         length: Some(2399),
         thumbnail: [
           Thumbnail(
@@ -560,7 +560,7 @@ Channel(
       ),
       VideoItem(
         id: "3t9G80wk0pk",
-        title: "eevBLAB 101 - Why Are Tektronix Oscilloscopes So Expensive?",
+        name: "eevBLAB 101 - Why Are Tektronix Oscilloscopes So Expensive?",
         length: Some(1423),
         thumbnail: [
           Thumbnail(
@@ -601,7 +601,7 @@ Channel(
       ),
       VideoItem(
         id: "7dze5CnZnmk",
-        title: "EEVblog 1497 - RIP Fluke. Thanks Energizer. NOT.",
+        name: "EEVblog 1497 - RIP Fluke. Thanks Energizer. NOT.",
         length: Some(1168),
         thumbnail: [
           Thumbnail(
@@ -642,7 +642,7 @@ Channel(
       ),
       VideoItem(
         id: "6XnrZpPYgBg",
-        title: "EEVblog 1496 - Winning Mailbag",
+        name: "EEVblog 1496 - Winning Mailbag",
         length: Some(3139),
         thumbnail: [
           Thumbnail(
@@ -683,7 +683,7 @@ Channel(
       ),
       VideoItem(
         id: "Psp3ltpFvws",
-        title: "eevBLAB 100 - Reuters Attacks Odysee - LOL",
+        name: "eevBLAB 100 - Reuters Attacks Odysee - LOL",
         length: Some(855),
         thumbnail: [
           Thumbnail(
@@ -724,7 +724,7 @@ Channel(
       ),
       VideoItem(
         id: "taVYTYz5vLE",
-        title: "EEVblog 1495 - Quaze Wireless Power (AGAIN!) but for GAMING!",
+        name: "EEVblog 1495 - Quaze Wireless Power (AGAIN!) but for GAMING!",
         length: Some(2592),
         thumbnail: [
           Thumbnail(
@@ -765,7 +765,7 @@ Channel(
       ),
       VideoItem(
         id: "Y6cZrieFw-k",
-        title: "EEVblog 1494 - FIVE Ways to Open a CHEAP SAFE!",
+        name: "EEVblog 1494 - FIVE Ways to Open a CHEAP SAFE!",
         length: Some(1194),
         thumbnail: [
           Thumbnail(
@@ -806,7 +806,7 @@ Channel(
       ),
       VideoItem(
         id: "Kr2XyhpUdUI",
-        title: "EEVblog 1493 - MacGyver Project - Part 2",
+        name: "EEVblog 1493 - MacGyver Project - Part 2",
         length: Some(1785),
         thumbnail: [
           Thumbnail(
@@ -847,7 +847,7 @@ Channel(
       ),
       VideoItem(
         id: "rxGafdgkal8",
-        title: "EEVblog 1492 - $5 Oscilloscope Repaired! + Oz GIVEAWAY",
+        name: "EEVblog 1492 - $5 Oscilloscope Repaired! + Oz GIVEAWAY",
         length: Some(1163),
         thumbnail: [
           Thumbnail(
@@ -888,7 +888,7 @@ Channel(
       ),
       VideoItem(
         id: "4yosozyeIP4",
-        title: "EEVblog 1491 - The MacGyver Project - Part 1",
+        name: "EEVblog 1491 - The MacGyver Project - Part 1",
         length: Some(1706),
         thumbnail: [
           Thumbnail(
@@ -929,7 +929,7 @@ Channel(
       ),
       VideoItem(
         id: "06JtC2DC_dQ",
-        title: "EEVblog 1490 - Insane Jaycar Dumpster Sale! 2022",
+        name: "EEVblog 1490 - Insane Jaycar Dumpster Sale! 2022",
         length: Some(1700),
         thumbnail: [
           Thumbnail(
@@ -970,7 +970,7 @@ Channel(
       ),
       VideoItem(
         id: "piquT76w9TI",
-        title: "EEVblog 1489 - Mystery Teardown!",
+        name: "EEVblog 1489 - Mystery Teardown!",
         length: Some(1466),
         thumbnail: [
           Thumbnail(
@@ -1011,7 +1011,7 @@ Channel(
       ),
       VideoItem(
         id: "pKuUKT-zU-g",
-        title: "EEVblog 1488 - Tilt Five Augmented Reality AR Glasses - First Reaction!",
+        name: "EEVblog 1488 - Tilt Five Augmented Reality AR Glasses - First Reaction!",
         length: Some(2152),
         thumbnail: [
           Thumbnail(
@@ -1052,7 +1052,7 @@ Channel(
       ),
       VideoItem(
         id: "_R4wQQNSO6k",
-        title: "EEVblog 1487 - Do Solar Micro Inverters Take Power at Night?",
+        name: "EEVblog 1487 - Do Solar Micro Inverters Take Power at Night?",
         length: Some(2399),
         thumbnail: [
           Thumbnail(
@@ -1093,7 +1093,7 @@ Channel(
       ),
       VideoItem(
         id: "ikp5BorIo_M",
-        title: "EEVblog 1486 - What you DIDN\'T KNOW About Film Capacitor FAILURES!",
+        name: "EEVblog 1486 - What you DIDN\'T KNOW About Film Capacitor FAILURES!",
         length: Some(1792),
         thumbnail: [
           Thumbnail(
@@ -1134,7 +1134,7 @@ Channel(
       ),
       VideoItem(
         id: "7O-QckjCXNo",
-        title: "eevBLAB 99 - AI SPAM BOT Youtube Space/Science/Tech Channels? - WTF",
+        name: "eevBLAB 99 - AI SPAM BOT Youtube Space/Science/Tech Channels? - WTF",
         length: Some(592),
         thumbnail: [
           Thumbnail(
@@ -1175,7 +1175,7 @@ Channel(
       ),
       VideoItem(
         id: "VutdTxF4E-0",
-        title: "RIP The Old Garage Lab",
+        name: "RIP The Old Garage Lab",
         length: Some(115),
         thumbnail: [
           Thumbnail(
@@ -1216,7 +1216,7 @@ Channel(
       ),
       VideoItem(
         id: "o7xfGuRaq94",
-        title: "EEVblog 1485 - PedalCell CadenceX Bike Generator LOL FAIL!",
+        name: "EEVblog 1485 - PedalCell CadenceX Bike Generator LOL FAIL!",
         length: Some(1026),
         thumbnail: [
           Thumbnail(
@@ -1257,7 +1257,7 @@ Channel(
       ),
       VideoItem(
         id: "3WSIfHOv3fc",
-        title: "EEVblog 1484 - Kaba Mas X-09 High Security Electronic Lock Teardown",
+        name: "EEVblog 1484 - Kaba Mas X-09 High Security Electronic Lock Teardown",
         length: Some(1106),
         thumbnail: [
           Thumbnail(
@@ -1298,7 +1298,7 @@ Channel(
       ),
       VideoItem(
         id: "8yXZJZCKImI",
-        title: "EEVblog 1483 - Holy Mailbag Bomb Batman!",
+        name: "EEVblog 1483 - Holy Mailbag Bomb Batman!",
         length: Some(3373),
         thumbnail: [
           Thumbnail(
@@ -1339,7 +1339,7 @@ Channel(
       ),
       VideoItem(
         id: "vJ4pW6LKJWU",
-        title: "EEVblog 1482 - Mains Capacitor Zener Regulator Circuit",
+        name: "EEVblog 1482 - Mains Capacitor Zener Regulator Circuit",
         length: Some(1132),
         thumbnail: [
           Thumbnail(

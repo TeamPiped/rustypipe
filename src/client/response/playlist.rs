@@ -183,7 +183,7 @@ impl TryFrom<PlaylistVideoRenderer> for crate::model::PlaylistVideo {
     fn try_from(video: PlaylistVideoRenderer) -> Result<Self, Self::Error> {
         Ok(Self {
             id: video.video_id,
-            title: video.title,
+            name: video.title,
             length: video.length_seconds,
             thumbnail: video.thumbnail.into(),
             channel: crate::model::ChannelId::try_from(video.channel)?,

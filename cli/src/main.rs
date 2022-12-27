@@ -82,7 +82,7 @@ async fn download_single_video(
         .await
         .context(format!(
             "Failed to download video '{}' [{}]",
-            player_data.details.title, video_id
+            player_data.details.name, video_id
         ))
     }
     .await;
@@ -167,7 +167,7 @@ async fn download_playlist(
         .map(|video| {
             download_single_video(
                 video.id,
-                video.title,
+                video.name,
                 output_dir,
                 output_fname.to_owned(),
                 resolution,

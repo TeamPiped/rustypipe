@@ -8,7 +8,7 @@ MusicSearchFiltered(
     items: [
       TrackItem(
         id: "6485PhOtHzY",
-        title: "Lieblingsmensch",
+        name: "Lieblingsmensch",
         duration: Some(191),
         cover: [
           Thumbnail(
@@ -40,7 +40,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "pt0YvfnhGgI",
-        title: "Lieblingsmensch",
+        name: "Lieblingsmensch",
         duration: Some(524),
         cover: [
           Thumbnail(
@@ -72,7 +72,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "VinJmH-uidY",
-        title: "Lieblingsmensch",
+        name: "Lieblingsmensch",
         duration: Some(203),
         cover: [
           Thumbnail(
@@ -104,7 +104,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "YmSmymHRnEE",
-        title: "Lieblingsmensch (Edit)",
+        name: "Lieblingsmensch (Edit)",
         duration: Some(220),
         cover: [
           Thumbnail(
@@ -136,7 +136,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "TgfIbiHCOLo",
-        title: "Lieblingsmensch",
+        name: "Lieblingsmensch",
         duration: Some(211),
         cover: [
           Thumbnail(
@@ -168,7 +168,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "lCi6N_uq3vE",
-        title: "Lieblingsmensch",
+        name: "Lieblingsmensch",
         duration: Some(209),
         cover: [
           Thumbnail(
@@ -200,7 +200,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "QIjqe2B3RdQ",
-        title: "Lieblingsmensch",
+        name: "Lieblingsmensch",
         duration: Some(184),
         cover: [
           Thumbnail(
@@ -232,7 +232,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "q2pUotlXPeM",
-        title: "Lieblingsmensch (Beatgees Remix)",
+        name: "Lieblingsmensch (Beatgees Remix)",
         duration: Some(199),
         cover: [
           Thumbnail(
@@ -264,7 +264,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "0yPnvetCm-U",
-        title: "Lieblingsmensch",
+        name: "Lieblingsmensch",
         duration: Some(174),
         cover: [
           Thumbnail(
@@ -296,7 +296,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "EU5Vly60VGU",
-        title: "Lieblingsmensch",
+        name: "Lieblingsmensch",
         duration: Some(205),
         cover: [
           Thumbnail(
@@ -328,7 +328,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "UnxQ0TI4IMs",
-        title: "Lieblingsmensch (Intrumental)",
+        name: "Lieblingsmensch (Intrumental)",
         duration: Some(190),
         cover: [
           Thumbnail(
@@ -360,7 +360,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "ufpny1KxwcU",
-        title: "Lieblingsmensch",
+        name: "Lieblingsmensch",
         duration: Some(196),
         cover: [
           Thumbnail(
@@ -392,7 +392,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "duzWgZFJNwA",
-        title: "Lieblingsmensch (Übernice Remix)",
+        name: "Lieblingsmensch (Übernice Remix)",
         duration: Some(184),
         cover: [
           Thumbnail(
@@ -424,7 +424,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "rnXq-1n0lt0",
-        title: "Lieblingsmensch",
+        name: "Lieblingsmensch",
         duration: Some(223),
         cover: [
           Thumbnail(
@@ -456,7 +456,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "vHkqdC6-rOI",
-        title: "Lieblingsmensch",
+        name: "Lieblingsmensch",
         duration: Some(259),
         cover: [
           Thumbnail(
@@ -488,7 +488,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "nTlceSET_b8",
-        title: "Lieblingsmensch",
+        name: "Lieblingsmensch",
         duration: Some(190),
         cover: [
           Thumbnail(
@@ -520,7 +520,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "D8GhmRiIfxI",
-        title: "Lieblingsmensch",
+        name: "Lieblingsmensch",
         duration: Some(173),
         cover: [
           Thumbnail(
@@ -552,7 +552,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "01CS-jTaY1U",
-        title: "Je Ne Parle Pas Français (Instrumental)",
+        name: "Je Ne Parle Pas Français (Instrumental)",
         duration: Some(196),
         cover: [
           Thumbnail(
@@ -584,7 +584,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "2sKkKKKXO28",
-        title: "Lieblingsmensch",
+        name: "Lieblingsmensch",
         duration: Some(190),
         cover: [
           Thumbnail(
@@ -616,7 +616,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "czlgl6n9voM",
-        title: "Lieblingsmensch (Live @ DELUXE MUSIC SESSION)",
+        name: "Lieblingsmensch (Live @ DELUXE MUSIC SESSION)",
         duration: Some(176),
         cover: [
           Thumbnail(

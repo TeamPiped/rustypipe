@@ -38,7 +38,7 @@ MusicArtist(
   tracks: [
     TrackItem(
       id: "ORrFJ63nlcA",
-      title: "Perfect",
+      name: "Perfect",
       duration: None,
       cover: [
         Thumbnail(
@@ -70,7 +70,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "xTvyyoF_LZY",
-      title: "Shape of You",
+      name: "Shape of You",
       duration: None,
       cover: [
         Thumbnail(
@@ -102,7 +102,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "SlbfAYvA_gI",
-      title: "Photograph",
+      name: "Photograph",
       duration: None,
       cover: [
         Thumbnail(
@@ -134,7 +134,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "hJWSZDJb-W4",
-      title: "Bad Habits",
+      name: "Bad Habits",
       duration: None,
       cover: [
         Thumbnail(
@@ -166,7 +166,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "G1ej5up7JG0",
-      title: "Shivers",
+      name: "Shivers",
       duration: None,
       cover: [
         Thumbnail(
@@ -198,7 +198,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "23g5HBOg3Ic",
-      title: "Celestial",
+      name: "Celestial",
       duration: None,
       cover: [
         Thumbnail(
@@ -227,7 +227,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "VERcf4ALkmo",
-      title: "Noche de Novela",
+      name: "Noche de Novela",
       duration: None,
       cover: [
         Thumbnail(
@@ -260,7 +260,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "2Vv-BfVoq4g",
-      title: "Perfect",
+      name: "Perfect",
       duration: None,
       cover: [
         Thumbnail(
@@ -289,7 +289,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "JGwWNGJdvx8",
-      title: "Shape of You",
+      name: "Shape of You",
       duration: None,
       cover: [
         Thumbnail(
@@ -318,7 +318,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "nSDgHBxUbVQ",
-      title: "Photograph",
+      name: "Photograph",
       duration: None,
       cover: [
         Thumbnail(
@@ -347,7 +347,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "orJSJGHjBLI",
-      title: "Bad Habits",
+      name: "Bad Habits",
       duration: None,
       cover: [
         Thumbnail(
@@ -376,7 +376,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "Il0S8BoucSA",
-      title: "Shivers",
+      name: "Shivers",
       duration: None,
       cover: [
         Thumbnail(
@@ -405,7 +405,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "lp-EO5I60KA",
-      title: "Thinking Out Loud",
+      name: "Thinking Out Loud",
       duration: None,
       cover: [
         Thumbnail(
@@ -434,7 +434,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "5QIbxwNQR0s",
-      title: "Peru",
+      name: "Peru",
       duration: None,
       cover: [
         Thumbnail(
@@ -467,7 +467,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "y83x7MgzWOA",
-      title: "I Don’t Care",
+      name: "I Don’t Care",
       duration: None,
       cover: [
         Thumbnail(

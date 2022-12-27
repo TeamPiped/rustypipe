@@ -300,7 +300,7 @@ pub async fn download_video(
 ) -> Result<()> {
     // Download filepath
     let download_dir = PathBuf::from(output_dir);
-    let title = player_data.details.title.to_owned();
+    let title = player_data.details.name.to_owned();
     let output_fname_set = output_fname.is_some();
     let output_fname = output_fname.unwrap_or_else(|| {
         filenamify::filenamify(format!("{} [{}]", title, player_data.details.id))

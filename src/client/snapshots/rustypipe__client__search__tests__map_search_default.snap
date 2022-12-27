@@ -28,7 +28,7 @@ SearchResult(
       )),
       Video(VideoItem(
         id: "1VW7iXRIrc8",
-        title: "Alone, in the City of Love",
+        name: "Alone, in the City of Love",
         length: Some(1875),
         thumbnail: [
           Thumbnail(
@@ -65,7 +65,7 @@ SearchResult(
       )),
       Video(VideoItem(
         id: "9NuhKCv3crg",
-        title: "the end.",
+        name: "the end.",
         length: Some(982),
         thumbnail: [
           Thumbnail(
@@ -102,7 +102,7 @@ SearchResult(
       )),
       Video(VideoItem(
         id: "hGbQ2WM9nOo",
-        title: "Why does everything bad for you taste good ㅣ CHILI OIL RAMEN",
+        name: "Why does everything bad for you taste good ㅣ CHILI OIL RAMEN",
         length: Some(428),
         thumbnail: [
           Thumbnail(
@@ -139,7 +139,7 @@ SearchResult(
       )),
       Video(VideoItem(
         id: "PxGmP4v_A38",
-        title: "Alone and Thriving l late night korean convenience store, muji kitchenware haul, spring cleaning!",
+        name: "Alone and Thriving l late night korean convenience store, muji kitchenware haul, spring cleaning!",
         length: Some(1437),
         thumbnail: [
           Thumbnail(
@@ -176,7 +176,7 @@ SearchResult(
       )),
       Video(VideoItem(
         id: "38Gd6TdmNVs",
-        title: "KOREAN BARBECUE l doob gourmand ep.3",
+        name: "KOREAN BARBECUE l doob gourmand ep.3",
         length: Some(525),
         thumbnail: [
           Thumbnail(
@@ -213,7 +213,7 @@ SearchResult(
       )),
       Video(VideoItem(
         id: "CutR_1SDDzY",
-        title: "feels good to be back",
+        name: "feels good to be back",
         length: Some(1159),
         thumbnail: [
           Thumbnail(
@@ -250,7 +250,7 @@ SearchResult(
       )),
       Video(VideoItem(
         id: "pRVSdUxdsVw",
-        title: "Repairing...",
+        name: "Repairing...",
         length: Some(965),
         thumbnail: [
           Thumbnail(
@@ -287,7 +287,7 @@ SearchResult(
       )),
       Video(VideoItem(
         id: "KUz7oArksR4",
-        title: "running away",
+        name: "running away",
         length: Some(1023),
         thumbnail: [
           Thumbnail(
@@ -324,7 +324,7 @@ SearchResult(
       )),
       Video(VideoItem(
         id: "sPb2gyN-hnE",
-        title: "worth fighting for",
+        name: "worth fighting for",
         length: Some(1232),
         thumbnail: [
           Thumbnail(
@@ -361,7 +361,7 @@ SearchResult(
       )),
       Video(VideoItem(
         id: "rriwHj8U664",
-        title: "my seoul apartment tour",
+        name: "my seoul apartment tour",
         length: Some(721),
         thumbnail: [
           Thumbnail(
@@ -398,7 +398,7 @@ SearchResult(
       )),
       Video(VideoItem(
         id: "PXsK9-CFoH4",
-        title: "waiting...",
+        name: "waiting...",
         length: Some(1455),
         thumbnail: [
           Thumbnail(
@@ -435,7 +435,7 @@ SearchResult(
       )),
       Video(VideoItem(
         id: "bXbmYelTnhw",
-        title: "Doobydobap rates British desserts!",
+        name: "Doobydobap rates British desserts!",
         length: Some(865),
         thumbnail: [
           Thumbnail(
@@ -472,7 +472,7 @@ SearchResult(
       )),
       Video(VideoItem(
         id: "0onVbAuBGWI",
-        title: "Out of Control",
+        name: "Out of Control",
         length: Some(1125),
         thumbnail: [
           Thumbnail(
@@ -509,7 +509,7 @@ SearchResult(
       )),
       Video(VideoItem(
         id: "FKJtrUeol3o",
-        title: "with quantity comes quality",
+        name: "with quantity comes quality",
         length: Some(1140),
         thumbnail: [
           Thumbnail(
@@ -546,7 +546,7 @@ SearchResult(
       )),
       Video(VideoItem(
         id: "dkMtSrjDLO0",
-        title: "How to make Naruto\'s favorite ramen",
+        name: "How to make Naruto\'s favorite ramen",
         length: Some(802),
         thumbnail: [
           Thumbnail(
@@ -583,7 +583,7 @@ SearchResult(
       )),
       Video(VideoItem(
         id: "r2ye6zW0nbM",
-        title: "a wedding",
+        name: "a wedding",
         length: Some(1207),
         thumbnail: [
           Thumbnail(
@@ -620,7 +620,7 @@ SearchResult(
       )),
       Video(VideoItem(
         id: "NudTbo2CJMY",
-        title: "Flying to London",
+        name: "Flying to London",
         length: Some(1078),
         thumbnail: [
           Thumbnail(
@@ -657,7 +657,7 @@ SearchResult(
       )),
       Video(VideoItem(
         id: "gK-jLnvVsb0",
-        title: "Contradicting myself",
+        name: "Contradicting myself",
         length: Some(1381),
         thumbnail: [
           Thumbnail(
@@ -694,7 +694,7 @@ SearchResult(
       )),
       Video(VideoItem(
         id: "fAFFTOpUNWo",
-        title: "Come Grocery Shopping with Me",
+        name: "Come Grocery Shopping with Me",
         length: Some(1126),
         thumbnail: [
           Thumbnail(

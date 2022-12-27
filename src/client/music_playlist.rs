@@ -67,7 +67,7 @@ impl RustyPipeQuery {
                 .enumerate()
                 .filter_map(|(i, track)| {
                     if track.is_video {
-                        Some((i, track.title.to_owned()))
+                        Some((i, track.name.to_owned()))
                     } else {
                         None
                     }
@@ -79,7 +79,7 @@ impl RustyPipeQuery {
 
                 for (i, title) in to_replace {
                     let found_track = playlist.tracks.items.iter().find_map(|track| {
-                        if track.title == title && !track.is_video {
+                        if track.name == title && !track.is_video {
                             Some((track.id.to_owned(), track.duration))
                         } else {
                             None

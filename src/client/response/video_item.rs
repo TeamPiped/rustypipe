@@ -443,7 +443,7 @@ impl<T> YouTubeListMapper<T> {
 
         VideoItem {
             id: video.video_id,
-            title: video.title,
+            name: video.title,
             length: length_text.and_then(|txt| util::parse_video_length(&txt)),
             thumbnail: video.thumbnail.into(),
             channel: video
@@ -501,7 +501,7 @@ impl<T> YouTubeListMapper<T> {
 
         VideoItem {
             id: video.video_id,
-            title: video.headline,
+            name: video.headline,
             length: video.accessibility.and_then(|acc| {
                 ACCESSIBILITY_SEP_REGEX
                     .captures(&acc)

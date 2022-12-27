@@ -37,7 +37,7 @@ MusicAlbum(
   tracks: [
     TrackItem(
       id: "8IqLxg0GqXc",
-      title: "Waka Boom (My Way) (feat. Lee Young Ji)",
+      name: "Waka Boom (My Way) (feat. Lee Young Ji)",
       duration: Some(274),
       cover: [],
       artists: [
@@ -58,7 +58,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "9WYpLYAEub0",
-      title: "AURA",
+      name: "AURA",
       duration: Some(216),
       cover: [],
       artists: [
@@ -79,7 +79,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "R48tE237bW4",
-      title: "THE GIRLS (Can’t turn me down)",
+      name: "THE GIRLS (Can’t turn me down)",
       duration: Some(239),
       cover: [],
       artists: [
@@ -100,7 +100,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "-UzsoR6z-vg",
-      title: "Red Sun!",
+      name: "Red Sun!",
       duration: Some(254),
       cover: [],
       artists: [
@@ -121,7 +121,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "kbNVyn8Ex28",
-      title: "POSE",
+      name: "POSE",
       duration: Some(187),
       cover: [],
       artists: [
@@ -142,7 +142,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "NJrQZUzWP5Y",
-      title: "Whistle",
+      name: "Whistle",
       duration: Some(224),
       cover: [],
       artists: [

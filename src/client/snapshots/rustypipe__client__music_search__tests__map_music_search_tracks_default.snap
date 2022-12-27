@@ -8,7 +8,7 @@ MusicSearchFiltered(
     items: [
       TrackItem(
         id: "BL-aIpCLWnU",
-        title: "Black Mamba",
+        name: "Black Mamba",
         duration: Some(175),
         cover: [
           Thumbnail(
@@ -40,7 +40,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "cATe8Toht70",
-        title: "Black Mamba",
+        name: "Black Mamba",
         duration: Some(74),
         cover: [
           Thumbnail(
@@ -76,7 +76,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "0I1UpXSYdOQ",
-        title: "Black Mamba (Orchestra Version)",
+        name: "Black Mamba (Orchestra Version)",
         duration: Some(291),
         cover: [
           Thumbnail(
@@ -108,7 +108,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "9G2tG8V5_PY",
-        title: "Black Mamba",
+        name: "Black Mamba",
         duration: Some(210),
         cover: [
           Thumbnail(
@@ -140,7 +140,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "WwNKyoizf8k",
-        title: "BLACK MAMBA",
+        name: "BLACK MAMBA",
         duration: Some(182),
         cover: [
           Thumbnail(
@@ -172,7 +172,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "kS1o36LXQkc",
-        title: "Black Mamba",
+        name: "Black Mamba",
         duration: Some(299),
         cover: [
           Thumbnail(
@@ -204,7 +204,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "UQQ6L1j6mXE",
-        title: "Black Mamba",
+        name: "Black Mamba",
         duration: Some(122),
         cover: [
           Thumbnail(
@@ -236,7 +236,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "9l9dCro-7l8",
-        title: "Black Mamba",
+        name: "Black Mamba",
         duration: Some(246),
         cover: [
           Thumbnail(
@@ -268,7 +268,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "S_PRpDtgUfI",
-        title: "Black Mamba",
+        name: "Black Mamba",
         duration: Some(286),
         cover: [
           Thumbnail(
@@ -300,7 +300,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "Xt_ReZc0gnw",
-        title: "Black Mamba",
+        name: "Black Mamba",
         duration: Some(179),
         cover: [
           Thumbnail(
@@ -332,7 +332,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "diN3WCxpqis",
-        title: "Black Mamba",
+        name: "Black Mamba",
         duration: Some(376),
         cover: [
           Thumbnail(
@@ -364,7 +364,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "9q3FfH_57Rc",
-        title: "Black Mamba",
+        name: "Black Mamba",
         duration: Some(213),
         cover: [
           Thumbnail(
@@ -396,7 +396,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "U29V08A9yBs",
-        title: "BLCK MAMBA",
+        name: "BLCK MAMBA",
         duration: Some(166),
         cover: [
           Thumbnail(
@@ -432,7 +432,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "HHEKbGlLoEM",
-        title: "Black Mamba",
+        name: "Black Mamba",
         duration: Some(215),
         cover: [
           Thumbnail(
@@ -464,7 +464,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "qE_dGvQG1rU",
-        title: "Told Black",
+        name: "Told Black",
         duration: Some(106),
         cover: [
           Thumbnail(
@@ -496,7 +496,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "1tyPs3ccT7E",
-        title: "Black Mamba",
+        name: "Black Mamba",
         duration: Some(414),
         cover: [
           Thumbnail(
@@ -532,7 +532,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "6pSmQ-MHKbg",
-        title: "Black Mamba Jiu Jitsu (feat. Blackwolf SR & OnenD)",
+        name: "Black Mamba Jiu Jitsu (feat. Blackwolf SR & OnenD)",
         duration: Some(188),
         cover: [
           Thumbnail(
@@ -564,7 +564,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "rNsISA-kWzM",
-        title: "Black Mamba Dub",
+        name: "Black Mamba Dub",
         duration: Some(248),
         cover: [
           Thumbnail(
@@ -596,7 +596,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "AdvPpJVvyEg",
-        title: "Black Mamba",
+        name: "Black Mamba",
         duration: Some(126),
         cover: [
           Thumbnail(
@@ -628,7 +628,7 @@ MusicSearchFiltered(
       ),
       TrackItem(
         id: "7q7o-kjIKpo",
-        title: "Black Mamba",
+        name: "Black Mamba",
         duration: Some(126),
         cover: [
           Thumbnail(

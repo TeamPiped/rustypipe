@@ -7,7 +7,7 @@ Paginator(
   items: [
     TrackItem(
       id: "rNsISA-kWzM",
-      title: "Black Mamba Dub",
+      name: "Black Mamba Dub",
       duration: Some(248),
       cover: [
         Thumbnail(
@@ -39,7 +39,7 @@ Paginator(
     ),
     TrackItem(
       id: "vMZqNPZADFw",
-      title: "Black Mamba (feat. Ermal Meta)",
+      name: "Black Mamba (feat. Ermal Meta)",
       duration: Some(287),
       cover: [
         Thumbnail(
@@ -71,7 +71,7 @@ Paginator(
     ),
     TrackItem(
       id: "C8B-nBnB7Bk",
-      title: "Black Mamba",
+      name: "Black Mamba",
       duration: Some(177),
       cover: [
         Thumbnail(
@@ -103,7 +103,7 @@ Paginator(
     ),
     TrackItem(
       id: "29MOu6Y781I",
-      title: "Rip Black Mamba",
+      name: "Rip Black Mamba",
       duration: Some(122),
       cover: [
         Thumbnail(
@@ -135,7 +135,7 @@ Paginator(
     ),
     TrackItem(
       id: "AdvPpJVvyEg",
-      title: "Black Mamba",
+      name: "Black Mamba",
       duration: Some(126),
       cover: [
         Thumbnail(
@@ -167,7 +167,7 @@ Paginator(
     ),
     TrackItem(
       id: "kv3Z269PQvE",
-      title: "Black Mamba",
+      name: "Black Mamba",
       duration: Some(178),
       cover: [
         Thumbnail(
@@ -199,7 +199,7 @@ Paginator(
     ),
     TrackItem(
       id: "y74ZqAkFkK4",
-      title: "Born To Fight",
+      name: "Born To Fight",
       duration: Some(278),
       cover: [
         Thumbnail(
@@ -231,7 +231,7 @@ Paginator(
     ),
     TrackItem(
       id: "ZVnqAUnj-1Y",
-      title: "Black Mamba",
+      name: "Black Mamba",
       duration: Some(188),
       cover: [
         Thumbnail(
@@ -263,7 +263,7 @@ Paginator(
     ),
     TrackItem(
       id: "REmUidcJt5I",
-      title: "Savage",
+      name: "Savage",
       duration: Some(239),
       cover: [
         Thumbnail(
@@ -295,7 +295,7 @@ Paginator(
     ),
     TrackItem(
       id: "63sEilefjtQ",
-      title: "Black Mamba",
+      name: "Black Mamba",
       duration: Some(233),
       cover: [
         Thumbnail(
@@ -327,7 +327,7 @@ Paginator(
     ),
     TrackItem(
       id: "_LGy1K5vmq8",
-      title: "Black Mamba",
+      name: "Black Mamba",
       duration: Some(284),
       cover: [
         Thumbnail(
@@ -359,7 +359,7 @@ Paginator(
     ),
     TrackItem(
       id: "Ak98OIfed8o",
-      title: "Black Mamba",
+      name: "Black Mamba",
       duration: Some(346),
       cover: [
         Thumbnail(
@@ -391,7 +391,7 @@ Paginator(
     ),
     TrackItem(
       id: "_aSqdZKxcuU",
-      title: "Soul Surrender",
+      name: "Soul Surrender",
       duration: Some(273),
       cover: [
         Thumbnail(
@@ -423,7 +423,7 @@ Paginator(
     ),
     TrackItem(
       id: "6Lb4bmEEfnY",
-      title: "Black Mamba Boy",
+      name: "Black Mamba Boy",
       duration: Some(312),
       cover: [
         Thumbnail(
@@ -455,7 +455,7 @@ Paginator(
     ),
     TrackItem(
       id: "4lrp5FWFIak",
-      title: "Black Mamba",
+      name: "Black Mamba",
       duration: Some(558),
       cover: [
         Thumbnail(
@@ -487,7 +487,7 @@ Paginator(
     ),
     TrackItem(
       id: "Kk8vT1o_gYE",
-      title: "Black Mamba",
+      name: "Black Mamba",
       duration: Some(324),
       cover: [
         Thumbnail(
@@ -527,7 +527,7 @@ Paginator(
     ),
     TrackItem(
       id: "FbUrY0GdO88",
-      title: "Black Mamba Blues",
+      name: "Black Mamba Blues",
       duration: Some(186),
       cover: [
         Thumbnail(
@@ -559,7 +559,7 @@ Paginator(
     ),
     TrackItem(
       id: "OFesVwAdT80",
-      title: "Black Mamba",
+      name: "Black Mamba",
       duration: Some(149),
       cover: [
         Thumbnail(
@@ -591,7 +591,7 @@ Paginator(
     ),
     TrackItem(
       id: "lNeJjPPKE1g",
-      title: "Black Mamba",
+      name: "Black Mamba",
       duration: Some(212),
       cover: [
         Thumbnail(
@@ -623,7 +623,7 @@ Paginator(
     ),
     TrackItem(
       id: "SW_woyyA1Bg",
-      title: "Black Mamba Style",
+      name: "Black Mamba Style",
       duration: Some(202),
       cover: [
         Thumbnail(

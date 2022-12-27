@@ -134,7 +134,7 @@ Channel(
     items: [
       VideoItem(
         id: "csP93FGy0bs",
-        title: "Chill Out Music Mix • 24/7 Live Radio | Relaxing Deep House, Chillout Lounge, Vocal & Instrumental",
+        name: "Chill Out Music Mix • 24/7 Live Radio | Relaxing Deep House, Chillout Lounge, Vocal & Instrumental",
         length: None,
         thumbnail: [
           Thumbnail(
@@ -175,7 +175,7 @@ Channel(
       ),
       VideoItem(
         id: "19hKXI1ENrY",
-        title: "Deep House Radio | Relaxing & Chill House, Best Summer Mix 2022, Gym & Workout Music",
+        name: "Deep House Radio | Relaxing & Chill House, Best Summer Mix 2022, Gym & Workout Music",
         length: None,
         thumbnail: [
           Thumbnail(
@@ -216,7 +216,7 @@ Channel(
       ),
       VideoItem(
         id: "CqMUC5eXX7c",
-        title: "Back To School / Work 📚 Deep Focus Chillout Mix | The Good Life Radio #4",
+        name: "Back To School / Work 📚 Deep Focus Chillout Mix | The Good Life Radio #4",
         length: Some(4667),
         thumbnail: [
           Thumbnail(
@@ -257,7 +257,7 @@ Channel(
       ),
       VideoItem(
         id: "A77SYlXKQEM",
-        title: "Chillout Lounge 🏖\u{fe0f} Calm & Relaxing Background Music | The Good Life Radio #3",
+        name: "Chillout Lounge 🏖\u{fe0f} Calm & Relaxing Background Music | The Good Life Radio #3",
         length: Some(1861),
         thumbnail: [
           Thumbnail(
@@ -298,7 +298,7 @@ Channel(
       ),
       VideoItem(
         id: "72vkRHQfjbk",
-        title: "Summer Lovers 💖 A Beautiful & Relaxing Chillout Deep House Mix | The Good Life Radio #2",
+        name: "Summer Lovers 💖 A Beautiful & Relaxing Chillout Deep House Mix | The Good Life Radio #2",
         length: Some(1832),
         thumbnail: [
           Thumbnail(
@@ -339,7 +339,7 @@ Channel(
       ),
       VideoItem(
         id: "AMWMDhibROw",
-        title: "Relaxing & Chill House 🌴 Summer \'21 Chill-Out Mix | The Good Life Radio #1",
+        name: "Relaxing & Chill House 🌴 Summer \'21 Chill-Out Mix | The Good Life Radio #1",
         length: Some(1949),
         thumbnail: [
           Thumbnail(
@@ -380,7 +380,7 @@ Channel(
       ),
       VideoItem(
         id: "9UMxZofMNbA",
-        title: "Chillout Lounge - Calm & Relaxing Background Music | Study, Work, Sleep, Meditation, Chill",
+        name: "Chillout Lounge - Calm & Relaxing Background Music | Study, Work, Sleep, Meditation, Chill",
         length: None,
         thumbnail: [
           Thumbnail(
@@ -421,7 +421,7 @@ Channel(
       ),
       VideoItem(
         id: "a2sEYVwBvX4",
-        title: "Paratone - Heaven Is A Place On Earth (feat. kaii)",
+        name: "Paratone - Heaven Is A Place On Earth (feat. kaii)",
         length: Some(161),
         thumbnail: [
           Thumbnail(
@@ -462,7 +462,7 @@ Channel(
       ),
       VideoItem(
         id: "JAY-prtJnGY",
-        title: "Joseph Feinstein - Where I Belong",
+        name: "Joseph Feinstein - Where I Belong",
         length: Some(126),
         thumbnail: [
           Thumbnail(
@@ -503,7 +503,7 @@ Channel(
       ),
       VideoItem(
         id: "DySa8OrQDi4",
-        title: "LA Vision & Gigi D\'Agostino - Hollywood",
+        name: "LA Vision & Gigi D\'Agostino - Hollywood",
         length: Some(200),
         thumbnail: [
           Thumbnail(
@@ -544,7 +544,7 @@ Channel(
       ),
       VideoItem(
         id: "NqzXULaB8MA",
-        title: "LO - Home",
+        name: "LO - Home",
         length: Some(163),
         thumbnail: [
           Thumbnail(
@@ -585,7 +585,7 @@ Channel(
       ),
       VideoItem(
         id: "UGzy6uhZkmw",
-        title: "Luca - Sunset",
+        name: "Luca - Sunset",
         length: Some(153),
         thumbnail: [
           Thumbnail(
@@ -626,7 +626,7 @@ Channel(
       ),
       VideoItem(
         id: "iuvapHKpW8A",
-        title: "nourii - Better Off (feat. BCS)",
+        name: "nourii - Better Off (feat. BCS)",
         length: Some(126),
         thumbnail: [
           Thumbnail(
@@ -667,7 +667,7 @@ Channel(
       ),
       VideoItem(
         id: "n_1Nwht-Gh4",
-        title: "Deep House Covers & Remixes of Popular Songs 2020 🌴 Deep House, G-House, Chill-Out Music Playlist",
+        name: "Deep House Covers & Remixes of Popular Songs 2020 🌴 Deep House, G-House, Chill-Out Music Playlist",
         length: Some(2940),
         thumbnail: [
           Thumbnail(
@@ -708,7 +708,7 @@ Channel(
       ),
       VideoItem(
         id: "6TptI5BtP5U",
-        title: "The Good Life Radio Mix #2 | Summer Memories ☀\u{fe0f} (Chill Music Playlist 2020)",
+        name: "The Good Life Radio Mix #2 | Summer Memories ☀\u{fe0f} (Chill Music Playlist 2020)",
         length: Some(3448),
         thumbnail: [
           Thumbnail(
@@ -749,7 +749,7 @@ Channel(
       ),
       VideoItem(
         id: "36YnV9STBqc",
-        title: "The Good Life Radio\u{a0}•\u{a0}24/7 Live Radio | Best Relax House, Chillout, Study, Running, Gym, Happy Music",
+        name: "The Good Life Radio\u{a0}•\u{a0}24/7 Live Radio | Best Relax House, Chillout, Study, Running, Gym, Happy Music",
         length: None,
         thumbnail: [
           Thumbnail(
@@ -790,7 +790,7 @@ Channel(
       ),
       VideoItem(
         id: "7x6ii2TcsPE",
-        title: "The Good Life Radio Mix #1 | Relaxing & Chill House Music Playlist 2020",
+        name: "The Good Life Radio Mix #1 | Relaxing & Chill House Music Playlist 2020",
         length: Some(2726),
         thumbnail: [
           Thumbnail(
@@ -831,7 +831,7 @@ Channel(
       ),
       VideoItem(
         id: "mxV5MBZYYDE",
-        title: "Christmas Music with Vocals 🎅 Best Relaxing Christmas Songs 2020",
+        name: "Christmas Music with Vocals 🎅 Best Relaxing Christmas Songs 2020",
         length: Some(5863),
         thumbnail: [
           Thumbnail(
@@ -872,7 +872,7 @@ Channel(
       ),
       VideoItem(
         id: "hh2AOoPoAIo",
-        title: "The Good Life Radio Mix 2019 🎅 Winter & Christmas Relax House Playlist [Best of Part 1]",
+        name: "The Good Life Radio Mix 2019 🎅 Winter & Christmas Relax House Playlist [Best of Part 1]",
         length: Some(2530),
         thumbnail: [
           Thumbnail(
@@ -913,7 +913,7 @@ Channel(
       ),
       VideoItem(
         id: "aFlvhtWsJ0g",
-        title: "Chillout Playlist | Relaxing Summer Music Mix 2019 [Deep & Tropical House]",
+        name: "Chillout Playlist | Relaxing Summer Music Mix 2019 [Deep & Tropical House]",
         length: Some(2483),
         thumbnail: [
           Thumbnail(
@@ -954,7 +954,7 @@ Channel(
       ),
       VideoItem(
         id: "cD-d7u6fnEI",
-        title: "Chill House Playlist | Relaxing Summer Music 2019",
+        name: "Chill House Playlist | Relaxing Summer Music 2019",
         length: Some(3165),
         thumbnail: [
           Thumbnail(

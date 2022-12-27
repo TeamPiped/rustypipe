@@ -34,7 +34,7 @@ MusicPlaylist(
     items: [
       TrackItem(
         id: "X82TrticM4A",
-        title: "Minecraft SHINE (Trailer)",
+        name: "Minecraft SHINE (Trailer)",
         duration: Some(80),
         cover: [
           Thumbnail(
@@ -58,7 +58,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "RPGLMuxkLCs",
-        title: "DAS LAGERFEUERLIED - Minecraft SHINE #001 [Deutsch/HD]",
+        name: "DAS LAGERFEUERLIED - Minecraft SHINE #001 [Deutsch/HD]",
         duration: Some(1356),
         cover: [
           Thumbnail(
@@ -82,7 +82,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "z-ALpnnQLrk",
-        title: "MAGISCHES FURZMONSTER - Minecraft SHINE #002 [Deutsch/HD]",
+        name: "MAGISCHES FURZMONSTER - Minecraft SHINE #002 [Deutsch/HD]",
         duration: Some(1039),
         cover: [
           Thumbnail(
@@ -106,7 +106,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "_rrbTTv8zcQ",
-        title: "UNTERIRDISCHE RIESENPILZHÖHLEN - Minecraft SHINE #003 [Deutsch/HD]",
+        name: "UNTERIRDISCHE RIESENPILZHÖHLEN - Minecraft SHINE #003 [Deutsch/HD]",
         duration: Some(1447),
         cover: [
           Thumbnail(
@@ -130,7 +130,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "JE16OKTawLw",
-        title: "BESTE AXT IM SPIEL GEFUNDEN?! - Minecraft SHINE #004 [Deutsch/HD]",
+        name: "BESTE AXT IM SPIEL GEFUNDEN?! - Minecraft SHINE #004 [Deutsch/HD]",
         duration: Some(1238),
         cover: [
           Thumbnail(
@@ -154,7 +154,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "RQNY0Wzm7DQ",
-        title: "ERZERAUSCH IM MINENSCHACHT - Minecraft SHINE #005 [Deutsch/HD]",
+        name: "ERZERAUSCH IM MINENSCHACHT - Minecraft SHINE #005 [Deutsch/HD]",
         duration: Some(1405),
         cover: [
           Thumbnail(
@@ -178,7 +178,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "uhy24PKBkd0",
-        title: "FUSIONSOFEN & ERSTER IM NETHER?! - Minecraft SHINE #006 [Deutsch/HD]",
+        name: "FUSIONSOFEN & ERSTER IM NETHER?! - Minecraft SHINE #006 [Deutsch/HD]",
         duration: Some(1569),
         cover: [
           Thumbnail(
@@ -202,7 +202,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "OL1hQadBHfs",
-        title: "EPISCHER ROGUEDUNGEON - Minecraft SHINE #007 [Deutsch/HD]",
+        name: "EPISCHER ROGUEDUNGEON - Minecraft SHINE #007 [Deutsch/HD]",
         duration: Some(1534),
         cover: [
           Thumbnail(
@@ -226,7 +226,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "Zge_SUfk0r8",
-        title: "DIAMANTZOMBIES auf NETHEREBENE - Minecraft SHINE #008 [Deutsch/HD]",
+        name: "DIAMANTZOMBIES auf NETHEREBENE - Minecraft SHINE #008 [Deutsch/HD]",
         duration: Some(1726),
         cover: [
           Thumbnail(
@@ -250,7 +250,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "yFGIeU_IDE4",
-        title: "HÖLLISCHE SCHLACHT um 2 DIAMANTBLÖCKE - Minecraft SHINE #009 [Deutsch/HD]",
+        name: "HÖLLISCHE SCHLACHT um 2 DIAMANTBLÖCKE - Minecraft SHINE #009 [Deutsch/HD]",
         duration: Some(1669),
         cover: [
           Thumbnail(
@@ -274,7 +274,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "P6MVqfQzPIg",
-        title: "MAGISCHER OBSIDIANTOTEM?! - Minecraft SHINE #010 [Deutsch/HD]",
+        name: "MAGISCHER OBSIDIANTOTEM?! - Minecraft SHINE #010 [Deutsch/HD]",
         duration: Some(1526),
         cover: [
           Thumbnail(
@@ -298,7 +298,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "9n0pLDn8Z_I",
-        title: "GRÜNER FEUEROGER & WITHERWARZEN - Minecraft SHINE #011 [Deutsch/HD]",
+        name: "GRÜNER FEUEROGER & WITHERWARZEN - Minecraft SHINE #011 [Deutsch/HD]",
         duration: Some(1482),
         cover: [
           Thumbnail(
@@ -322,7 +322,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "oXbx2YtIkeQ",
-        title: "MYSTERIÖSES Grab & ONYX ohne ENDE!! - Minecraft SHINE #012 [Deutsch/HD]",
+        name: "MYSTERIÖSES Grab & ONYX ohne ENDE!! - Minecraft SHINE #012 [Deutsch/HD]",
         duration: Some(1518),
         cover: [
           Thumbnail(
@@ -346,7 +346,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "pfBBTTwxo8Q",
-        title: "ATLANTIS ENTDECKT!! - Minecraft SHINE #013 [Deutsch/HD]",
+        name: "ATLANTIS ENTDECKT!! - Minecraft SHINE #013 [Deutsch/HD]",
         duration: Some(1479),
         cover: [
           Thumbnail(
@@ -370,7 +370,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "WxtRqzxSAh0",
-        title: "ZUSAMMENFASSUNG & Nodop\'s ANGRIFF - Minecraft SHINE #014 [Deutsch/HD]",
+        name: "ZUSAMMENFASSUNG & Nodop\'s ANGRIFF - Minecraft SHINE #014 [Deutsch/HD]",
         duration: Some(1902),
         cover: [
           Thumbnail(
@@ -394,7 +394,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "ianUckvxtLw",
-        title: "FRIEDHOFDUNGEON mit NODÖPCHEN - Minecraft SHINE #016 [Deutsch/HD]",
+        name: "FRIEDHOFDUNGEON mit NODÖPCHEN - Minecraft SHINE #016 [Deutsch/HD]",
         duration: Some(1766),
         cover: [
           Thumbnail(
@@ -418,7 +418,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "eb2Ghj1g1ic",
-        title: "Die BESTE FALLE aller ZEITEN!! - Minecraft SHINE #015 [Deutsch/HD]",
+        name: "Die BESTE FALLE aller ZEITEN!! - Minecraft SHINE #015 [Deutsch/HD]",
         duration: Some(1324),
         cover: [
           Thumbnail(
@@ -442,7 +442,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "8TpEsyVtCog",
-        title: "MEGAGEMETZEL zu FÜNFT - Minecraft SHINE #017 [Deutsch/HD]",
+        name: "MEGAGEMETZEL zu FÜNFT - Minecraft SHINE #017 [Deutsch/HD]",
         duration: Some(1629),
         cover: [
           Thumbnail(
@@ -466,7 +466,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "KD_WAei4LMg",
-        title: "WITHER BOSSFIGHT - Minecraft SHINE #018 [Deutsch/HD]",
+        name: "WITHER BOSSFIGHT - Minecraft SHINE #018 [Deutsch/HD]",
         duration: Some(1645),
         cover: [
           Thumbnail(
@@ -490,7 +490,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "qfpOCrtweKk",
-        title: "LABERSTUNDE mit ArazhulHD - Minecraft SHINE #019 [Deutsch/HD]",
+        name: "LABERSTUNDE mit ArazhulHD - Minecraft SHINE #019 [Deutsch/HD]",
         duration: Some(1052),
         cover: [
           Thumbnail(
@@ -514,7 +514,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "6gv3nrOA_bQ",
-        title: "BUSRITUALE & Seltsame LEHRER - Minecraft SHINE #021 [Deutsch/HD]",
+        name: "BUSRITUALE & Seltsame LEHRER - Minecraft SHINE #021 [Deutsch/HD]",
         duration: Some(1769),
         cover: [
           Thumbnail(
@@ -538,7 +538,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "waaic6UnkU8",
-        title: "LEHM, LEHM und mehr LEEEHM!! - Minecraft SHINE #022  [Deutsch/HD]",
+        name: "LEHM, LEHM und mehr LEEEHM!! - Minecraft SHINE #022  [Deutsch/HD]",
         duration: Some(1081),
         cover: [
           Thumbnail(
@@ -562,7 +562,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "lSy4MLC_uV4",
-        title: "Neue DIMENSIONEN?? - Minecraft SHINE #023 [Deutsch/HD]",
+        name: "Neue DIMENSIONEN?? - Minecraft SHINE #023 [Deutsch/HD]",
         duration: Some(1682),
         cover: [
           Thumbnail(
@@ -586,7 +586,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "BuN8-U_quok",
-        title: "DUNGEONSTATUEN - Minecraft SHINE #024 [Deutsch/HD]",
+        name: "DUNGEONSTATUEN - Minecraft SHINE #024 [Deutsch/HD]",
         duration: Some(1597),
         cover: [
           Thumbnail(
@@ -610,7 +610,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "g_UTG10nzaQ",
-        title: "THYRIUMBOGEN & Dimensional DOORS - Minecraft SHINE #025 [Deutsch/HD]",
+        name: "THYRIUMBOGEN & Dimensional DOORS - Minecraft SHINE #025 [Deutsch/HD]",
         duration: Some(1852),
         cover: [
           Thumbnail(
@@ -634,7 +634,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "kNykFWaDbGw",
-        title: "MEIN ERSTER PVP KILL?! - Minecraft SHINE #026 [Deutsch/HD]",
+        name: "MEIN ERSTER PVP KILL?! - Minecraft SHINE #026 [Deutsch/HD]",
         duration: Some(1869),
         cover: [
           Thumbnail(
@@ -658,7 +658,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "gJF7vxCYTgY",
-        title: "SPELLBOUND FARM - Minecraft SHINE #027 [Deutsch/HD]",
+        name: "SPELLBOUND FARM - Minecraft SHINE #027 [Deutsch/HD]",
         duration: Some(2161),
         cover: [
           Thumbnail(
@@ -682,7 +682,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "CodZMQ_Anc0",
-        title: "VIEEELE bunte ZAUBERPILZE - Minecraft SHINE #028 [Deutsch/HD]",
+        name: "VIEEELE bunte ZAUBERPILZE - Minecraft SHINE #028 [Deutsch/HD]",
         duration: Some(1768),
         cover: [
           Thumbnail(
@@ -706,7 +706,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "oKHMTKJdZ_M",
-        title: "STREAMUPDATE & BIOMREISE - Minecraft SHINE #029 [Deutsch/HD]",
+        name: "STREAMUPDATE & BIOMREISE - Minecraft SHINE #029 [Deutsch/HD]",
         duration: Some(1771),
         cover: [
           Thumbnail(
@@ -730,7 +730,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "--O_Eyok_eE",
-        title: "AUF NACH TROPICRAFT - Minecraft SHINE #030 [Deutsch/HD]",
+        name: "AUF NACH TROPICRAFT - Minecraft SHINE #030 [Deutsch/HD]",
         duration: Some(1661),
         cover: [
           Thumbnail(
@@ -754,7 +754,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "2bT3ljKMSo8",
-        title: "SCHATZTRUHE GEFUNDEN!! - Minecraft SHINE #031 [Deutsch/HD]",
+        name: "SCHATZTRUHE GEFUNDEN!! - Minecraft SHINE #031 [Deutsch/HD]",
         duration: Some(1429),
         cover: [
           Thumbnail(
@@ -778,7 +778,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "YRAX_slrbsI",
-        title: "ZAUBERWALD und TROPISCHER DSCHUNGEL - Minecraft SHINE #032 [Deutsch/HD]",
+        name: "ZAUBERWALD und TROPISCHER DSCHUNGEL - Minecraft SHINE #032 [Deutsch/HD]",
         duration: Some(1257),
         cover: [
           Thumbnail(
@@ -802,7 +802,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "aRRbCEwUSuw",
-        title: "MESABIOM & JOUSTS - Minecraft SHINE #033 [Deutsch/HD]",
+        name: "MESABIOM & JOUSTS - Minecraft SHINE #033 [Deutsch/HD]",
         duration: Some(1131),
         cover: [
           Thumbnail(
@@ -826,7 +826,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "5sV8SzTbJS8",
-        title: "Komplette SMELTERY GEFUNDEN!! - Minecraft SHINE #034 [Deutsch/HD]",
+        name: "Komplette SMELTERY GEFUNDEN!! - Minecraft SHINE #034 [Deutsch/HD]",
         duration: Some(1405),
         cover: [
           Thumbnail(
@@ -850,7 +850,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "ZxxZlU2o1TE",
-        title: "ROGUEDUNGEON EXTREME - Minecraft SHINE #035 [Deutsch/HD]",
+        name: "ROGUEDUNGEON EXTREME - Minecraft SHINE #035 [Deutsch/HD]",
         duration: Some(1555),
         cover: [
           Thumbnail(
@@ -874,7 +874,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "gIjo5at4AxE",
-        title: "LEGENDÄRER LOOT - Minecraft SHINE #036 [Deutsch/HD]",
+        name: "LEGENDÄRER LOOT - Minecraft SHINE #036 [Deutsch/HD]",
         duration: Some(1405),
         cover: [
           Thumbnail(
@@ -898,7 +898,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "NSGk7-kyeEU",
-        title: "I BELIEVE I CAN FLY - Minecraft SHINE #037 [Deutsch/HD]",
+        name: "I BELIEVE I CAN FLY - Minecraft SHINE #037 [Deutsch/HD]",
         duration: Some(829),
         cover: [
           Thumbnail(
@@ -922,7 +922,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "cgJtZ7Otc4Y",
-        title: "ROGUEFRIEDHOF mit WITHERBOSS - Minecraft SHINE #038 [Deutsch/HD]",
+        name: "ROGUEFRIEDHOF mit WITHERBOSS - Minecraft SHINE #038 [Deutsch/HD]",
         duration: Some(1392),
         cover: [
           Thumbnail(
@@ -946,7 +946,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "l5LQu3Q0nWY",
-        title: "MONSTERCALYPSE & RETTUNGSAKTION - Minecraft SHINE #039 [Deutsch/HD]",
+        name: "MONSTERCALYPSE & RETTUNGSAKTION - Minecraft SHINE #039 [Deutsch/HD]",
         duration: Some(1580),
         cover: [
           Thumbnail(
@@ -970,7 +970,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "YX4Z3ZlWUFc",
-        title: "HINTERHALT von GEGNERN!!  - Minecraft SHINE #040 [Deutsch/HD]",
+        name: "HINTERHALT von GEGNERN!!  - Minecraft SHINE #040 [Deutsch/HD]",
         duration: Some(1847),
         cover: [
           Thumbnail(
@@ -994,7 +994,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "LoyvqR41lKw",
-        title: "CARPENTER\'s BLOCKS - Minecraft SHINE #041 [Deutsch/HD]",
+        name: "CARPENTER\'s BLOCKS - Minecraft SHINE #041 [Deutsch/HD]",
         duration: Some(1524),
         cover: [
           Thumbnail(
@@ -1018,7 +1018,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "HbQtMZbtx_Q",
-        title: "DER ETERNAL FROST!! - Minecraft SHINE #043 [Deutsch/HD]",
+        name: "DER ETERNAL FROST!! - Minecraft SHINE #043 [Deutsch/HD]",
         duration: Some(1514),
         cover: [
           Thumbnail(
@@ -1042,7 +1042,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "0DHRbP9ecgw",
-        title: "FROSTDUNGEONS in der OVERWORLD!! - Minecraft SHINE #044 [Deutsch/HD]",
+        name: "FROSTDUNGEONS in der OVERWORLD!! - Minecraft SHINE #044 [Deutsch/HD]",
         duration: Some(1567),
         cover: [
           Thumbnail(
@@ -1066,7 +1066,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "rFOFkvk-xus",
-        title: "BOSSRÜSTUNG XXL - Minecraft SHINE #045 [Deutsch/HD]",
+        name: "BOSSRÜSTUNG XXL - Minecraft SHINE #045 [Deutsch/HD]",
         duration: Some(2050),
         cover: [
           Thumbnail(
@@ -1090,7 +1090,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "P8zxnSihJ_8",
-        title: "ZAUBERN & TROLLEN mit Nodop - Minecraft SHINE #046 [Deutsch/HD]",
+        name: "ZAUBERN & TROLLEN mit Nodop - Minecraft SHINE #046 [Deutsch/HD]",
         duration: Some(1828),
         cover: [
           Thumbnail(
@@ -1114,7 +1114,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "RWgeHl9XkCY",
-        title: "NACHHILFE für BALUI - Minecraft SHINE #047 [Deutsch/HD]",
+        name: "NACHHILFE für BALUI - Minecraft SHINE #047 [Deutsch/HD]",
         duration: Some(1926),
         cover: [
           Thumbnail(
@@ -1138,7 +1138,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "I1n539enNNY",
-        title: "SPIELER GETÖTET!! - Minecraft SHINE #048 [Deutsch/HD]",
+        name: "SPIELER GETÖTET!! - Minecraft SHINE #048 [Deutsch/HD]",
         duration: Some(1836),
         cover: [
           Thumbnail(
@@ -1162,7 +1162,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "70VKekyZz5g",
-        title: "VORBEREITUNG auf den DRACHEN - Minecraft SHINE #049 [Deutsch/HD]",
+        name: "VORBEREITUNG auf den DRACHEN - Minecraft SHINE #049 [Deutsch/HD]",
         duration: Some(1916),
         cover: [
           Thumbnail(
@@ -1186,7 +1186,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "2OWJ1bwFu6Y",
-        title: "Donnernder ENDERDRACHENKAMPF - Minecraft SHINE #050 [Deutsch/HD]",
+        name: "Donnernder ENDERDRACHENKAMPF - Minecraft SHINE #050 [Deutsch/HD]",
         duration: Some(1718),
         cover: [
           Thumbnail(
@@ -1210,7 +1210,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "zLiSA2i-niw",
-        title: "Superspitzhacke & Necrotic Bones - Minecraft SHINE #051 [Deutsch/HD]",
+        name: "Superspitzhacke & Necrotic Bones - Minecraft SHINE #051 [Deutsch/HD]",
         duration: Some(1253),
         cover: [
           Thumbnail(
@@ -1234,7 +1234,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "wyXlw7nMpko",
-        title: "TREMEP, das ENDERAUGE!! - Minecraft SHINE #052 [Deutsch/HD]",
+        name: "TREMEP, das ENDERAUGE!! - Minecraft SHINE #052 [Deutsch/HD]",
         duration: Some(1924),
         cover: [
           Thumbnail(
@@ -1258,7 +1258,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "NrU4fhzvFpA",
-        title: "TORNADO & ENDERPOKALYPSE!! - Minecraft SHINE #053 [Deutsch/HD]",
+        name: "TORNADO & ENDERPOKALYPSE!! - Minecraft SHINE #053 [Deutsch/HD]",
         duration: Some(1654),
         cover: [
           Thumbnail(
@@ -1282,7 +1282,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "1xhKegaA1hQ",
-        title: "RIESIGE SMELTERY - Minecraft SHINE #054 [Deutsch/HD]",
+        name: "RIESIGE SMELTERY - Minecraft SHINE #054 [Deutsch/HD]",
         duration: Some(1796),
         cover: [
           Thumbnail(
@@ -1306,7 +1306,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "9F4lZ8psBtg",
-        title: "TINKER\'s CONSTRUCT - Minecraft SHINE #055 [Deutsch/HD]",
+        name: "TINKER\'s CONSTRUCT - Minecraft SHINE #055 [Deutsch/HD]",
         duration: Some(1514),
         cover: [
           Thumbnail(
@@ -1330,7 +1330,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "G3uUtejX9to",
-        title: "CUTLASS und HAMMERACTION - Minecraft SHINE #056 [Deutsch/HD]",
+        name: "CUTLASS und HAMMERACTION - Minecraft SHINE #056 [Deutsch/HD]",
         duration: Some(1615),
         cover: [
           Thumbnail(
@@ -1354,7 +1354,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "-0Xn5pViCss",
-        title: "QUARZFESTIVAL - Minecraft SHINE #057 [Deutsch/HD]",
+        name: "QUARZFESTIVAL - Minecraft SHINE #057 [Deutsch/HD]",
         duration: Some(1353),
         cover: [
           Thumbnail(
@@ -1378,7 +1378,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "a7u71Fco99I",
-        title: "DUALWITHERKAMPF & EXOSUIT - Minecraft SHINE  #058 [Deutsch/HD]",
+        name: "DUALWITHERKAMPF & EXOSUIT - Minecraft SHINE  #058 [Deutsch/HD]",
         duration: Some(1377),
         cover: [
           Thumbnail(
@@ -1402,7 +1402,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "H6uUbvcgKdk",
-        title: "ALLE GETROLLT?! 1. APRIL!! - Minecraft SHINE #060 [Deutsch/HD]",
+        name: "ALLE GETROLLT?! 1. APRIL!! - Minecraft SHINE #060 [Deutsch/HD]",
         duration: Some(1751),
         cover: [
           Thumbnail(
@@ -1426,7 +1426,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "tPRTCauHtkw",
-        title: "THAUMELONE - Minecraft SHINE #061 [Deutsch/HD]",
+        name: "THAUMELONE - Minecraft SHINE #061 [Deutsch/HD]",
         duration: Some(1604),
         cover: [
           Thumbnail(
@@ -1450,7 +1450,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "pMKAQExcarM",
-        title: "ICH BIN EIN MAGIER!! - Minecraft SHINE #062 [Deutsch/HD]",
+        name: "ICH BIN EIN MAGIER!! - Minecraft SHINE #062 [Deutsch/HD]",
         duration: Some(1202),
         cover: [
           Thumbnail(
@@ -1474,7 +1474,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "7E-z-7KCdBI",
-        title: "ENDER PORTER und SPELLBOUND - Minecraft SHINE #063 [Deutsch/HD]",
+        name: "ENDER PORTER und SPELLBOUND - Minecraft SHINE #063 [Deutsch/HD]",
         duration: Some(1715),
         cover: [
           Thumbnail(
@@ -1498,7 +1498,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "EPtbC0ZVddo",
-        title: "PORTABLE HOLE & Melonenstatuen - Minecraft SHINE #064 [Deutsch/HD]",
+        name: "PORTABLE HOLE & Melonenstatuen - Minecraft SHINE #064 [Deutsch/HD]",
         duration: Some(1696),
         cover: [
           Thumbnail(
@@ -1522,7 +1522,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "TpPHng0eGJs",
-        title: "ZUKUNFT des PROJEKTS - Minecraft SHINE #065 [Deutsch/HD]",
+        name: "ZUKUNFT des PROJEKTS - Minecraft SHINE #065 [Deutsch/HD]",
         duration: Some(1215),
         cover: [
           Thumbnail(
@@ -1546,7 +1546,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "rt2QFQwJYcs",
-        title: "GIGANTISCHER METEOR!! - Minecraft SHINE #066 [Deutsch/HD]",
+        name: "GIGANTISCHER METEOR!! - Minecraft SHINE #066 [Deutsch/HD]",
         duration: Some(1593),
         cover: [
           Thumbnail(
@@ -1570,7 +1570,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "WPyfaztFDQ4",
-        title: "Der EREBUS und die GHAST QUEEN - Minecraft SHINE #067 [Deutsch/HD]",
+        name: "Der EREBUS und die GHAST QUEEN - Minecraft SHINE #067 [Deutsch/HD]",
         duration: Some(1687),
         cover: [
           Thumbnail(
@@ -1594,7 +1594,7 @@ MusicPlaylist(
       ),
       TrackItem(
         id: "5lmumP0DaUw",
-        title: "MINI-BEST OF und KABOOM!! - Minecraft SHINE #069 (Finale) [Deutsch/HD]",
+        name: "MINI-BEST OF und KABOOM!! - Minecraft SHINE #069 (Finale) [Deutsch/HD]",
         duration: Some(1044),
         cover: [
           Thumbnail(

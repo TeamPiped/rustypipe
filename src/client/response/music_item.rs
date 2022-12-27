@@ -626,7 +626,7 @@ impl MusicListMapper {
 
                         self.items.push(MusicItem::Track(TrackItem {
                             id,
-                            title,
+                            name: title,
                             duration,
                             cover: item.thumbnail.into(),
                             artists,
@@ -751,7 +751,7 @@ impl MusicListMapper {
 
                             self.items.push(MusicItem::Track(TrackItem {
                                 id,
-                                title: item.title,
+                                name: item.title,
                                 duration: None,
                                 cover: item.thumbnail_renderer.into(),
                                 artist_id: artists.first().and_then(|a| a.id.to_owned()),
@@ -1016,7 +1016,7 @@ pub(crate) fn map_queue_item(item: QueueMusicItem, lang: Language) -> TrackItem 
 
     TrackItem {
         id: item.video_id,
-        title: item.title,
+        name: item.title,
         duration: item
             .length_text
             .and_then(|txt| util::parse_video_length(&txt)),

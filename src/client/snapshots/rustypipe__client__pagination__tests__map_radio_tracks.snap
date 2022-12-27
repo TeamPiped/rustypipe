@@ -7,7 +7,7 @@ Paginator(
   items: [
     TrackItem(
       id: "u1uvv_yKhH8",
-      title: "Fine",
+      name: "Fine",
       duration: Some(210),
       cover: [
         Thumbnail(
@@ -59,7 +59,7 @@ Paginator(
     ),
     TrackItem(
       id: "hh5GKVa8VtM",
-      title: "LOVE DIVE (LOVE DIVE)",
+      name: "LOVE DIVE (LOVE DIVE)",
       duration: Some(178),
       cover: [
         Thumbnail(
@@ -111,7 +111,7 @@ Paginator(
     ),
     TrackItem(
       id: "RdU3F5vN3_s",
-      title: "Nxde",
+      name: "Nxde",
       duration: Some(179),
       cover: [
         Thumbnail(
@@ -163,7 +163,7 @@ Paginator(
     ),
     TrackItem(
       id: "OXWz_x6-dro",
-      title: "Feel My Rhythm",
+      name: "Feel My Rhythm",
       duration: Some(211),
       cover: [
         Thumbnail(
@@ -215,7 +215,7 @@ Paginator(
     ),
     TrackItem(
       id: "ghrlZIMDzbM",
-      title: "Hype Boy",
+      name: "Hype Boy",
       duration: Some(180),
       cover: [
         Thumbnail(
@@ -267,7 +267,7 @@ Paginator(
     ),
     TrackItem(
       id: "QiziJ40kTz0",
-      title: "FOREVER 1",
+      name: "FOREVER 1",
       duration: Some(203),
       cover: [
         Thumbnail(
@@ -319,7 +319,7 @@ Paginator(
     ),
     TrackItem(
       id: "950BdJKBhGo",
-      title: "Shut Down",
+      name: "Shut Down",
       duration: Some(176),
       cover: [
         Thumbnail(
@@ -371,7 +371,7 @@ Paginator(
     ),
     TrackItem(
       id: "tkzYyEp4zB4",
-      title: "Next Level",
+      name: "Next Level",
       duration: Some(222),
       cover: [
         Thumbnail(
@@ -423,7 +423,7 @@ Paginator(
     ),
     TrackItem(
       id: "ffqliB42Nh4",
-      title: "We Don\'t Talk Anymore (feat. Selena Gomez)",
+      name: "We Don\'t Talk Anymore (feat. Selena Gomez)",
       duration: Some(218),
       cover: [
         Thumbnail(
@@ -475,7 +475,7 @@ Paginator(
     ),
     TrackItem(
       id: "vFFT1iAUNDE",
-      title: "Scared To Be Lonely",
+      name: "Scared To Be Lonely",
       duration: Some(221),
       cover: [
         Thumbnail(
@@ -531,7 +531,7 @@ Paginator(
     ),
     TrackItem(
       id: "8JXc4idKS_c",
-      title: "Roller Coaster",
+      name: "Roller Coaster",
       duration: Some(212),
       cover: [
         Thumbnail(
@@ -583,7 +583,7 @@ Paginator(
     ),
     TrackItem(
       id: "4JJFrjkRxmo",
-      title: "Dolphin",
+      name: "Dolphin",
       duration: Some(177),
       cover: [
         Thumbnail(
@@ -635,7 +635,7 @@ Paginator(
     ),
     TrackItem(
       id: "0EK_M2taRIM",
-      title: "ELEVEN (ELEVEN)",
+      name: "ELEVEN (ELEVEN)",
       duration: Some(179),
       cover: [
         Thumbnail(
@@ -687,7 +687,7 @@ Paginator(
     ),
     TrackItem(
       id: "04tYkKUPPv4",
-      title: "LILAC (라일락)",
+      name: "LILAC (라일락)",
       duration: Some(215),
       cover: [
         Thumbnail(
@@ -739,7 +739,7 @@ Paginator(
     ),
     TrackItem(
       id: "W0x7GcZkvH4",
-      title: "RUN2U (RUN2U)",
+      name: "RUN2U (RUN2U)",
       duration: Some(214),
       cover: [
         Thumbnail(
@@ -791,7 +791,7 @@ Paginator(
     ),
     TrackItem(
       id: "INLFlN-PZq4",
-      title: "Weekend",
+      name: "Weekend",
       duration: Some(234),
       cover: [
         Thumbnail(
@@ -843,7 +843,7 @@ Paginator(
     ),
     TrackItem(
       id: "GhL8GUjXEfk",
-      title: "I\'m a Mess",
+      name: "I\'m a Mess",
       duration: Some(196),
       cover: [
         Thumbnail(
@@ -895,7 +895,7 @@ Paginator(
     ),
     TrackItem(
       id: "TaZkqPK0sbw",
-      title: "My Universe",
+      name: "My Universe",
       duration: Some(229),
       cover: [
         Thumbnail(
@@ -951,7 +951,7 @@ Paginator(
     ),
     TrackItem(
       id: "ogKU5EQ0Wn0",
-      title: "Never Forget You",
+      name: "Never Forget You",
       duration: Some(214),
       cover: [
         Thumbnail(
@@ -1003,7 +1003,7 @@ Paginator(
     ),
     TrackItem(
       id: "g92HIac9ufA",
-      title: "After LIKE",
+      name: "After LIKE",
       duration: Some(177),
       cover: [
         Thumbnail(
@@ -1055,7 +1055,7 @@ Paginator(
     ),
     TrackItem(
       id: "_E6gDU0m_hk",
-      title: "LALISA",
+      name: "LALISA",
       duration: Some(201),
       cover: [
         Thumbnail(
@@ -1107,7 +1107,7 @@ Paginator(
     ),
     TrackItem(
       id: "FrEDny55ch8",
-      title: "Rollin\'",
+      name: "Rollin\'",
       duration: Some(198),
       cover: [
         Thumbnail(
@@ -1159,7 +1159,7 @@ Paginator(
     ),
     TrackItem(
       id: "-uOShlFu1v8",
-      title: "SNEAKERS",
+      name: "SNEAKERS",
       duration: Some(180),
       cover: [
         Thumbnail(
@@ -1211,7 +1211,7 @@ Paginator(
     ),
     TrackItem(
       id: "PyyT5tHbOLw",
-      title: "Psycho",
+      name: "Psycho",
       duration: Some(210),
       cover: [
         Thumbnail(

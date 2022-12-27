@@ -7,7 +7,7 @@ Paginator(
   items: [
     TrackItem(
       id: "4TWR90KJl84",
-      title: "Next Level",
+      name: "Next Level",
       duration: Some(236),
       cover: [
         Thumbnail(
@@ -41,7 +41,7 @@ Paginator(
     ),
     TrackItem(
       id: "Y8JFxS1HlDo",
-      title: "LOVE DIVE",
+      name: "LOVE DIVE",
       duration: Some(179),
       cover: [
         Thumbnail(
@@ -75,7 +75,7 @@ Paginator(
     ),
     TrackItem(
       id: "CM4CkVFmTds",
-      title: "I CAN\'T STOP ME",
+      name: "I CAN\'T STOP ME",
       duration: Some(221),
       cover: [
         Thumbnail(
@@ -109,7 +109,7 @@ Paginator(
     ),
     TrackItem(
       id: "_ysomCGaZLw",
-      title: "In the Morning",
+      name: "In the Morning",
       duration: Some(185),
       cover: [
         Thumbnail(
@@ -143,7 +143,7 @@ Paginator(
     ),
     TrackItem(
       id: "gQlMMD8auMs",
-      title: "Pink Venom",
+      name: "Pink Venom",
       duration: Some(194),
       cover: [
         Thumbnail(
@@ -177,7 +177,7 @@ Paginator(
     ),
     TrackItem(
       id: "uR8Mrt1IpXg",
-      title: "Psycho",
+      name: "Psycho",
       duration: Some(216),
       cover: [
         Thumbnail(
@@ -211,7 +211,7 @@ Paginator(
     ),
     TrackItem(
       id: "PkKnp4SdE-w",
-      title: "Hot Sauce",
+      name: "Hot Sauce",
       duration: Some(212),
       cover: [
         Thumbnail(
@@ -245,7 +245,7 @@ Paginator(
     ),
     TrackItem(
       id: "4vbDFu0PUew",
-      title: "FEARLESS OFFICIAL M/V",
+      name: "FEARLESS OFFICIAL M/V",
       duration: Some(183),
       cover: [
         Thumbnail(
@@ -279,7 +279,7 @@ Paginator(
     ),
     TrackItem(
       id: "A5H8zBb3iao",
-      title: "90\'s Love",
+      name: "90\'s Love",
       duration: Some(227),
       cover: [
         Thumbnail(
@@ -313,7 +313,7 @@ Paginator(
     ),
     TrackItem(
       id: "_xJUCsyMQes",
-      title: "Best Friend (feat. Doja Cat)",
+      name: "Best Friend (feat. Doja Cat)",
       duration: Some(202),
       cover: [
         Thumbnail(
@@ -342,7 +342,7 @@ Paginator(
     ),
     TrackItem(
       id: "n0j5NPptyM0",
-      title: "WA DA DA",
+      name: "WA DA DA",
       duration: Some(198),
       cover: [
         Thumbnail(
@@ -376,7 +376,7 @@ Paginator(
     ),
     TrackItem(
       id: "3GWscde8rM8",
-      title: "O.O",
+      name: "O.O",
       duration: Some(214),
       cover: [
         Thumbnail(
@@ -410,7 +410,7 @@ Paginator(
     ),
     TrackItem(
       id: "uBY1AoiF5Vo",
-      title: "Step Back",
+      name: "Step Back",
       duration: Some(231),
       cover: [
         Thumbnail(
@@ -444,7 +444,7 @@ Paginator(
     ),
     TrackItem(
       id: "WPdWvnAAurg",
-      title: "Savage",
+      name: "Savage",
       duration: Some(259),
       cover: [
         Thumbnail(
@@ -478,7 +478,7 @@ Paginator(
     ),
     TrackItem(
       id: "tyrVtwE8Gv0",
-      title: "Make A Wish (Birthday Song)",
+      name: "Make A Wish (Birthday Song)",
       duration: Some(249),
       cover: [
         Thumbnail(
@@ -512,7 +512,7 @@ Paginator(
     ),
     TrackItem(
       id: "Jh4QFaPmdss",
-      title: "TOMBOY",
+      name: "TOMBOY",
       duration: Some(198),
       cover: [
         Thumbnail(
@@ -546,7 +546,7 @@ Paginator(
     ),
     TrackItem(
       id: "2OvyA2__Eas",
-      title: "英雄; Kick It",
+      name: "英雄; Kick It",
       duration: Some(239),
       cover: [
         Thumbnail(
@@ -580,7 +580,7 @@ Paginator(
     ),
     TrackItem(
       id: "dYRITmpFbJ4",
-      title: "Girls",
+      name: "Girls",
       duration: Some(269),
       cover: [
         Thumbnail(
@@ -614,7 +614,7 @@ Paginator(
     ),
     TrackItem(
       id: "POe9SOEKotk",
-      title: "Shut Down",
+      name: "Shut Down",
       duration: Some(181),
       cover: [
         Thumbnail(
@@ -648,7 +648,7 @@ Paginator(
     ),
     TrackItem(
       id: "pSudEWBAYRE",
-      title: "Love Shot",
+      name: "Love Shot",
       duration: Some(210),
       cover: [
         Thumbnail(
@@ -682,7 +682,7 @@ Paginator(
     ),
     TrackItem(
       id: "nnVjsos40qk",
-      title: "환상동화 (Secret Story of the Swan)",
+      name: "환상동화 (Secret Story of the Swan)",
       duration: Some(202),
       cover: [
         Thumbnail(
@@ -716,7 +716,7 @@ Paginator(
     ),
     TrackItem(
       id: "H69tJmsgd9I",
-      title: "Dreams Come True",
+      name: "Dreams Come True",
       duration: Some(221),
       cover: [
         Thumbnail(
@@ -750,7 +750,7 @@ Paginator(
     ),
     TrackItem(
       id: "0IBSemQmno8",
-      title: "ZOO",
+      name: "ZOO",
       duration: Some(189),
       cover: [
         Thumbnail(
@@ -784,7 +784,7 @@ Paginator(
     ),
     TrackItem(
       id: "MjCZfZfucEc",
-      title: "LOCO",
+      name: "LOCO",
       duration: Some(233),
       cover: [
         Thumbnail(
@@ -813,7 +813,7 @@ Paginator(
     ),
     TrackItem(
       id: "tg2uF3R_Ozo",
-      title: "DUMB DUMB",
+      name: "DUMB DUMB",
       duration: Some(179),
       cover: [
         Thumbnail(

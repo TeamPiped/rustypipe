@@ -5,7 +5,7 @@ expression: track
 TrackDetails(
   track: TrackItem(
     id: "ZeerrnuLi5E",
-    title: "Black Mamba",
+    name: "Black Mamba",
     duration: Some(230),
     cover: "[cover]",
     artists: [

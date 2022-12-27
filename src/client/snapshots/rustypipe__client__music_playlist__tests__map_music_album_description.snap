@@ -42,7 +42,7 @@ MusicAlbum(
   tracks: [
     TrackItem(
       id: "YQHsXMglC9A",
-      title: "Hello",
+      name: "Hello",
       duration: Some(296),
       cover: [],
       artists: [
@@ -63,7 +63,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "fk4BbF7B29w",
-      title: "Send My Love (To Your New Lover)",
+      name: "Send My Love (To Your New Lover)",
       duration: Some(224),
       cover: [],
       artists: [
@@ -84,7 +84,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "z7NEG3SGZ_g",
-      title: "I Miss You",
+      name: "I Miss You",
       duration: Some(349),
       cover: [],
       artists: [
@@ -105,7 +105,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "a1IuJLebHgM",
-      title: "When We Were Young",
+      name: "When We Were Young",
       duration: Some(291),
       cover: [],
       artists: [
@@ -126,7 +126,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "-fsCc7Be1H0",
-      title: "Remedy",
+      name: "Remedy",
       duration: Some(246),
       cover: [],
       artists: [
@@ -147,7 +147,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "l8djdhhFuxo",
-      title: "Water Under the Bridge",
+      name: "Water Under the Bridge",
       duration: Some(241),
       cover: [],
       artists: [
@@ -168,7 +168,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "Qiu59lZShCo",
-      title: "River Lea",
+      name: "River Lea",
       duration: Some(226),
       cover: [],
       artists: [
@@ -189,7 +189,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "-hzFTJDJGkQ",
-      title: "Love in the Dark",
+      name: "Love in the Dark",
       duration: Some(286),
       cover: [],
       artists: [
@@ -210,7 +210,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "Db9ciJPIaEU",
-      title: "Million Years Ago",
+      name: "Million Years Ago",
       duration: Some(228),
       cover: [],
       artists: [
@@ -231,7 +231,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "jb5g4UFHmfQ",
-      title: "All I Ask",
+      name: "All I Ask",
       duration: Some(272),
       cover: [],
       artists: [
@@ -252,7 +252,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "1kZsaRkVEUY",
-      title: "Sweetest Devotion",
+      name: "Sweetest Devotion",
       duration: Some(252),
       cover: [],
       artists: [

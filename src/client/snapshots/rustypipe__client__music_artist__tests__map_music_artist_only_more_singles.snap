@@ -38,7 +38,7 @@ MusicArtist(
   tracks: [
     TrackItem(
       id: "Kx7B-XvmFtE",
-      title: "Believer",
+      name: "Believer",
       duration: None,
       cover: [
         Thumbnail(
@@ -70,7 +70,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "uZpH7EQ_PwE",
-      title: "Bones",
+      name: "Bones",
       duration: None,
       cover: [
         Thumbnail(
@@ -102,7 +102,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "WmQHSkjgyDM",
-      title: "Enemy (from the series Arcane League of Legends)",
+      name: "Enemy (from the series Arcane League of Legends)",
       duration: None,
       cover: [
         Thumbnail(
@@ -146,7 +146,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "9ssQKlLxBdQ",
-      title: "Thunder",
+      name: "Thunder",
       duration: None,
       cover: [
         Thumbnail(
@@ -178,7 +178,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "pXu6JC6-d_o",
-      title: "Natural",
+      name: "Natural",
       duration: None,
       cover: [
         Thumbnail(
@@ -210,7 +210,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "ca8C6EQa5zc",
-      title: "Bones (twocolors Remix) [Official Remix Video]",
+      name: "Bones (twocolors Remix) [Official Remix Video]",
       duration: None,
       cover: [
         Thumbnail(
@@ -243,7 +243,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "30AToHb1ZJM",
-      title: "Enemy (Live from Montreal 2022) (feat. League of Legends, Arcane & JID)",
+      name: "Enemy (Live from Montreal 2022) (feat. League of Legends, Arcane & JID)",
       duration: None,
       cover: [
         Thumbnail(
@@ -272,7 +272,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "iH1YfDu19KM",
-      title: "I Don’t Like Myself (Official Music Video)",
+      name: "I Don’t Like Myself (Official Music Video)",
       duration: None,
       cover: [
         Thumbnail(
@@ -301,7 +301,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "wBb_nAc4TPM",
-      title: "On Top Of The World (Live from Red Rocks, 2013)",
+      name: "On Top Of The World (Live from Red Rocks, 2013)",
       duration: None,
       cover: [
         Thumbnail(
@@ -330,7 +330,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "u2f89b5ha0o",
-      title: "The River (Lyric Video)",
+      name: "The River (Lyric Video)",
       duration: None,
       cover: [
         Thumbnail(
@@ -359,7 +359,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "7wtfhZwyrcc",
-      title: "Believer (Official Music Video)",
+      name: "Believer (Official Music Video)",
       duration: None,
       cover: [
         Thumbnail(
@@ -388,7 +388,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "TO-_3tck2tg",
-      title: "Bones (Official Music Video)",
+      name: "Bones (Official Music Video)",
       duration: None,
       cover: [
         Thumbnail(
@@ -417,7 +417,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "D9G1VOjN_84",
-      title: "Enemy (from the series Arcane League of Legends) (feat. League of Legends, JID & Arcane)",
+      name: "Enemy (from the series Arcane League of Legends) (feat. League of Legends, JID & Arcane)",
       duration: None,
       cover: [
         Thumbnail(
@@ -446,7 +446,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "fKopy74weus",
-      title: "Thunder",
+      name: "Thunder",
       duration: None,
       cover: [
         Thumbnail(
@@ -475,7 +475,7 @@ MusicArtist(
     ),
     TrackItem(
       id: "0I647GU3Jsc",
-      title: "Natural",
+      name: "Natural",
       duration: None,
       cover: [
         Thumbnail(

@@ -10,7 +10,7 @@ Playlist(
     items: [
       PlaylistVideo(
         id: "Bkj3IVIO2Os",
-        title: "Stereoact feat. Kerstin Ott - Die Immer Lacht (Official Video HD)",
+        name: "Stereoact feat. Kerstin Ott - Die Immer Lacht (Official Video HD)",
         length: 216,
         thumbnail: [
           Thumbnail(
@@ -41,7 +41,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "lHZtcC67yrY",
-        title: "Andreas Gabalier - Hulapalu",
+        name: "Andreas Gabalier - Hulapalu",
         length: 188,
         thumbnail: [
           Thumbnail(
@@ -72,7 +72,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "TSkVVVBS9k8",
-        title: "BAUSA - Was du Liebe nennst (Official Music Video) [prod. von Bausa, Jugglerz & The Cratez]",
+        name: "BAUSA - Was du Liebe nennst (Official Music Video) [prod. von Bausa, Jugglerz & The Cratez]",
         length: 237,
         thumbnail: [
           Thumbnail(
@@ -103,7 +103,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "lc-cnCRhE7c",
-        title: "Kay One feat. Pietro Lombardi - Señorita (prod. by Stard Ova)",
+        name: "Kay One feat. Pietro Lombardi - Señorita (prod. by Stard Ova)",
         length: 250,
         thumbnail: [
           Thumbnail(
@@ -134,7 +134,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "3ryohiCVq3M",
-        title: "Namika -  Lieblingsmensch (Official Video)",
+        name: "Namika -  Lieblingsmensch (Official Video)",
         length: 191,
         thumbnail: [
           Thumbnail(
@@ -165,7 +165,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "BNHamTwxJ6Q",
-        title: "Roland Kaiser, Maite Kelly - Warum hast du nicht nein gesagt (Club Mix / Videoclip)",
+        name: "Roland Kaiser, Maite Kelly - Warum hast du nicht nein gesagt (Club Mix / Videoclip)",
         length: 217,
         thumbnail: [
           Thumbnail(
@@ -196,7 +196,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "5mqelmYUcI0",
-        title: "Kay One - Louis Louis (prod. by Stard Ova)",
+        name: "Kay One - Louis Louis (prod. by Stard Ova)",
         length: 218,
         thumbnail: [
           Thumbnail(
@@ -227,7 +227,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "k9EYjn5f_nE",
-        title: "Andreas Bourani - Auf uns (Official Video)",
+        name: "Andreas Bourani - Auf uns (Official Video)",
         length: 244,
         thumbnail: [
           Thumbnail(
@@ -258,7 +258,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "fkMg_X9lHMc",
-        title: "Marteria - Kids (2 Finger an den Kopf) [Offizielles Video]",
+        name: "Marteria - Kids (2 Finger an den Kopf) [Offizielles Video]",
         length: 230,
         thumbnail: [
           Thumbnail(
@@ -289,7 +289,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "4wOoLLDXbDY",
-        title: "CRO - Easy (Official Version)",
+        name: "CRO - Easy (Official Version)",
         length: 195,
         thumbnail: [
           Thumbnail(
@@ -320,7 +320,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "Z_mf9aCHag8",
-        title: "KC Rebell feat. Moé ► BIST DU REAL ◄ [ official Video 4K ] | Dagi Bee",
+        name: "KC Rebell feat. Moé ► BIST DU REAL ◄ [ official Video 4K ] | Dagi Bee",
         length: 186,
         thumbnail: [
           Thumbnail(
@@ -351,7 +351,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "cZ58odQo87A",
-        title: "SDP feat. Adel Tawil - Ich will nur dass du weißt",
+        name: "SDP feat. Adel Tawil - Ich will nur dass du weißt",
         length: 222,
         thumbnail: [
           Thumbnail(
@@ -382,7 +382,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "1il3RFk5Okw",
-        title: "Mark Forster - Chöre (Willkommen bei den Hartmanns Version)",
+        name: "Mark Forster - Chöre (Willkommen bei den Hartmanns Version)",
         length: 209,
         thumbnail: [
           Thumbnail(
@@ -413,7 +413,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "8WQMBv2deYQ",
-        title: "CRO - Traum (Official Version)",
+        name: "CRO - Traum (Official Version)",
         length: 219,
         thumbnail: [
           Thumbnail(
@@ -444,7 +444,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "vGrfFzagzHs",
-        title: "CRO - Whatever (Official Version)",
+        name: "CRO - Whatever (Official Version)",
         length: 207,
         thumbnail: [
           Thumbnail(
@@ -475,7 +475,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "1gDbpWC_9pE",
-        title: "Sarah Connor - Wie schön Du bist (Official Video)",
+        name: "Sarah Connor - Wie schön Du bist (Official Video)",
         length: 216,
         thumbnail: [
           Thumbnail(
@@ -506,7 +506,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "p-AWcCCbBHw",
-        title: "Nimo - HEUTE MIT MIR (prod. von PzY) [Official 4K Video]",
+        name: "Nimo - HEUTE MIT MIR (prod. von PzY) [Official 4K Video]",
         length: 256,
         thumbnail: [
           Thumbnail(
@@ -537,7 +537,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "RPN88D_HjMU",
-        title: "Xavier Naidoo - Ich kenne nichts (Das so schön ist wie du) [Official Video]",
+        name: "Xavier Naidoo - Ich kenne nichts (Das so schön ist wie du) [Official Video]",
         length: 332,
         thumbnail: [
           Thumbnail(
@@ -568,7 +568,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "5PST7Ld4wWU",
-        title: "Max Giesinger - Wenn sie tanzt (Offizielles Video)",
+        name: "Max Giesinger - Wenn sie tanzt (Offizielles Video)",
         length: 225,
         thumbnail: [
           Thumbnail(
@@ -599,7 +599,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "opoDBF_b-fg",
-        title: "ALLIGATOAH - WILLST DU (OFFICIAL HD VERSION AGGRO.TV)",
+        name: "ALLIGATOAH - WILLST DU (OFFICIAL HD VERSION AGGRO.TV)",
         length: 307,
         thumbnail: [
           Thumbnail(
@@ -630,7 +630,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "AMT9IOyXmBM",
-        title: "SIDO feat. Mark Forster - Einer dieser Steine (Official Video)",
+        name: "SIDO feat. Mark Forster - Einer dieser Steine (Official Video)",
         length: 258,
         thumbnail: [
           Thumbnail(
@@ -661,7 +661,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "VP5B1UmgHfc",
-        title: "SDP feat. Sido - Ne Leiche",
+        name: "SDP feat. Sido - Ne Leiche",
         length: 328,
         thumbnail: [
           Thumbnail(
@@ -692,7 +692,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "vcuQpbs0yT0",
-        title: "KURDO - YA SALAM (prod. by Kostas Karagiozidis & Dj Tuneruno )",
+        name: "KURDO - YA SALAM (prod. by Kostas Karagiozidis & Dj Tuneruno )",
         length: 224,
         thumbnail: [
           Thumbnail(
@@ -723,7 +723,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "LeMLVEJLruQ",
-        title: "Gestört aber GeiL feat. Sebastian Hämer - Ich & Du (Official Video HD)",
+        name: "Gestört aber GeiL feat. Sebastian Hämer - Ich & Du (Official Video HD)",
         length: 229,
         thumbnail: [
           Thumbnail(
@@ -754,7 +754,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "MtDPKJSsBgc",
-        title: "Mark Forster - Au Revoir (Videoclip) ft. Sido",
+        name: "Mark Forster - Au Revoir (Videoclip) ft. Sido",
         length: 227,
         thumbnail: [
           Thumbnail(
@@ -785,7 +785,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "4tDpYxNYqPg",
-        title: "Kerstin Ott - Scheissmelodie (Offizielles Musikvideo)",
+        name: "Kerstin Ott - Scheissmelodie (Offizielles Musikvideo)",
         length: 209,
         thumbnail: [
           Thumbnail(
@@ -816,7 +816,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "EkWjaoH7k6w",
-        title: "Adel Tawil - Ist da jemand (Official Video)",
+        name: "Adel Tawil - Ist da jemand (Official Video)",
         length: 251,
         thumbnail: [
           Thumbnail(
@@ -847,7 +847,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "tERRFWuYG48",
-        title: "Barfuß Am Klavier - AnnenMayKantereit",
+        name: "Barfuß Am Klavier - AnnenMayKantereit",
         length: 202,
         thumbnail: [
           Thumbnail(
@@ -878,7 +878,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "wCcJuN47UcY",
-        title: "Revolverheld feat. Marta Jandová - Halt Dich an mir fest (Offizielles Musikvideo)",
+        name: "Revolverheld feat. Marta Jandová - Halt Dich an mir fest (Offizielles Musikvideo)",
         length: 213,
         thumbnail: [
           Thumbnail(
@@ -909,7 +909,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "qdtLCfEcPL4",
-        title: "Peter Fox - Alles neu (offizielles Video)",
+        name: "Peter Fox - Alles neu (offizielles Video)",
         length: 272,
         thumbnail: [
           Thumbnail(
@@ -940,7 +940,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "wjXUBG15eZ8",
-        title: "257ers - Holz (Official HD Video)",
+        name: "257ers - Holz (Official HD Video)",
         length: 214,
         thumbnail: [
           Thumbnail(
@@ -971,7 +971,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "HBjDZMJUduo",
-        title: "Laserkraft 3D - Nein Mann (official Video)",
+        name: "Laserkraft 3D - Nein Mann (official Video)",
         length: 231,
         thumbnail: [
           Thumbnail(
@@ -1002,7 +1002,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "xkXQQ0IAbk0",
-        title: "MIAMI YACINE - BON VOYAGE prod. by AriBeatz (Official 4K Video)",
+        name: "MIAMI YACINE - BON VOYAGE prod. by AriBeatz (Official 4K Video)",
         length: 159,
         thumbnail: [
           Thumbnail(
@@ -1033,7 +1033,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "DraA3PUuoQc",
-        title: "Pocahontas - AnnenMayKantereit",
+        name: "Pocahontas - AnnenMayKantereit",
         length: 192,
         thumbnail: [
           Thumbnail(
@@ -1064,7 +1064,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "wMIGQp4YhuU",
-        title: "Xavier Naidoo - Alles kann besser werden [Official Video]",
+        name: "Xavier Naidoo - Alles kann besser werden [Official Video]",
         length: 269,
         thumbnail: [
           Thumbnail(
@@ -1095,7 +1095,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "38lrK74voaI",
-        title: "Olexesh - MAGISCH feat. Edin (prod. von PzY) [Official 4K Video]",
+        name: "Olexesh - MAGISCH feat. Edin (prod. von PzY) [Official 4K Video]",
         length: 270,
         thumbnail: [
           Thumbnail(
@@ -1126,7 +1126,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "2qW9rOSFF1M",
-        title: "BONEZ MC & RAF CAMORA - AN IHNEN VORBEI",
+        name: "BONEZ MC & RAF CAMORA - AN IHNEN VORBEI",
         length: 220,
         thumbnail: [
           Thumbnail(
@@ -1157,7 +1157,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "tMILH6UEfPA",
-        title: "Veysel - Kleiner Cabrón  (OFFICIAL HD VIDEO) prod. by Macloud",
+        name: "Veysel - Kleiner Cabrón  (OFFICIAL HD VIDEO) prod. by Macloud",
         length: 213,
         thumbnail: [
           Thumbnail(
@@ -1188,7 +1188,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "izHB2EdMngg",
-        title: "Vanessa Mai - Ich sterb für dich",
+        name: "Vanessa Mai - Ich sterb für dich",
         length: 190,
         thumbnail: [
           Thumbnail(
@@ -1219,7 +1219,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "haECT-SerHk",
-        title: "Helene Fischer - Atemlos durch die Nacht",
+        name: "Helene Fischer - Atemlos durch die Nacht",
         length: 219,
         thumbnail: [
           Thumbnail(
@@ -1250,7 +1250,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "cVikZ8Oe_XA",
-        title: "Falco - Rock Me Amadeus (Official Video)",
+        name: "Falco - Rock Me Amadeus (Official Video)",
         length: 225,
         thumbnail: [
           Thumbnail(
@@ -1281,7 +1281,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "drFsXLChrWc",
-        title: "257ers - Holland (Official HD Video)",
+        name: "257ers - Holland (Official HD Video)",
         length: 213,
         thumbnail: [
           Thumbnail(
@@ -1312,7 +1312,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "1EMFt7m_8yE",
-        title: "SDP - Ich muss immer an dich denken",
+        name: "SDP - Ich muss immer an dich denken",
         length: 217,
         thumbnail: [
           Thumbnail(
@@ -1343,7 +1343,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "_yWU0lFghxU",
-        title: "Seeed - Ding (official Video)",
+        name: "Seeed - Ding (official Video)",
         length: 211,
         thumbnail: [
           Thumbnail(
@@ -1374,7 +1374,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "XlD-LO3ogFM",
-        title: "Mark Forster - Wir sind groß (Lyric Video)",
+        name: "Mark Forster - Wir sind groß (Lyric Video)",
         length: 204,
         thumbnail: [
           Thumbnail(
@@ -1405,7 +1405,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "nAzjWqNfgvc",
-        title: "Gestört aber GeiL & Koby Funk feat. Wincent Weiss - Unter Meiner Haut (Official Video HD)",
+        name: "Gestört aber GeiL & Koby Funk feat. Wincent Weiss - Unter Meiner Haut (Official Video HD)",
         length: 218,
         thumbnail: [
           Thumbnail(
@@ -1436,7 +1436,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "PySC3RGhZJU",
-        title: "CRO - Bad Chick (Official Version)",
+        name: "CRO - Bad Chick (Official Version)",
         length: 218,
         thumbnail: [
           Thumbnail(
@@ -1467,7 +1467,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "G-iwLoyH6ZE",
-        title: "CAPITAL BRA - NUR NOCH GUCCI (prod. The Cratez x Hoodboyz)",
+        name: "CAPITAL BRA - NUR NOCH GUCCI (prod. The Cratez x Hoodboyz)",
         length: 232,
         thumbnail: [
           Thumbnail(
@@ -1498,7 +1498,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "fgCOUO-s8nY",
-        title: "Jupiter Jones - Still (Videoclip)",
+        name: "Jupiter Jones - Still (Videoclip)",
         length: 238,
         thumbnail: [
           Thumbnail(
@@ -1529,7 +1529,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "m-Ik3yy728Y",
-        title: "Andreas Bourani - Auf anderen Wegen (Official Video)",
+        name: "Andreas Bourani - Auf anderen Wegen (Official Video)",
         length: 245,
         thumbnail: [
           Thumbnail(
@@ -1560,7 +1560,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "U0_UYW5Y4cM",
-        title: "Andreas Gabalier - I sing a Liad für Di",
+        name: "Andreas Gabalier - I sing a Liad für Di",
         length: 188,
         thumbnail: [
           Thumbnail(
@@ -1591,7 +1591,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "rsrDYTEicq8",
-        title: "RAF CAMORA - Primo (prod. X-Plosive & RAF Camora)",
+        name: "RAF CAMORA - Primo (prod. X-Plosive & RAF Camora)",
         length: 214,
         thumbnail: [
           Thumbnail(
@@ -1622,7 +1622,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "2aU4wRgl_0E",
-        title: "Ufo361 - \"Nice Girl 2.0\" (prod. von AT Beatz) [Official HD Video]",
+        name: "Ufo361 - \"Nice Girl 2.0\" (prod. von AT Beatz) [Official HD Video]",
         length: 169,
         thumbnail: [
           Thumbnail(
@@ -1653,7 +1653,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "FzcJxJAxFtw",
-        title: "VEYSEL & MOZZIK - TI AMO (OFFICIAL VIDEO)",
+        name: "VEYSEL & MOZZIK - TI AMO (OFFICIAL VIDEO)",
         length: 267,
         thumbnail: [
           Thumbnail(
@@ -1684,7 +1684,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "2hyibXdOp5w",
-        title: "XAVAS (Xavier Naidoo & Kool Savas) \"Schau nicht mehr zurück\" (Official HD Video 2012)",
+        name: "XAVAS (Xavier Naidoo & Kool Savas) \"Schau nicht mehr zurück\" (Official HD Video 2012)",
         length: 234,
         thumbnail: [
           Thumbnail(
@@ -1715,7 +1715,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "YaKG5cUVB30",
-        title: "Ali Bumaye - Sex ohne Grund feat. Shindy",
+        name: "Ali Bumaye - Sex ohne Grund feat. Shindy",
         length: 166,
         thumbnail: [
           Thumbnail(
@@ -1746,7 +1746,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "Ahwc-ouFeTQ",
-        title: "ALLIGATOAH - Willst Du (OFFICIAL VIDEO) \'Triebwerke\' Album (HITBOX)",
+        name: "ALLIGATOAH - Willst Du (OFFICIAL VIDEO) \'Triebwerke\' Album (HITBOX)",
         length: 224,
         thumbnail: [
           Thumbnail(
@@ -1777,7 +1777,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "SoImFhORKpg",
-        title: "Bonez MC & RAF Camora feat. Gzuz & Maxwell - Kontrollieren (prod. by Beataura & RAF Camora)",
+        name: "Bonez MC & RAF Camora feat. Gzuz & Maxwell - Kontrollieren (prod. by Beataura & RAF Camora)",
         length: 232,
         thumbnail: [
           Thumbnail(
@@ -1808,7 +1808,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "jP4-XrbGt3M",
-        title: "Mark Forster - Sowieso (Official Video)",
+        name: "Mark Forster - Sowieso (Official Video)",
         length: 161,
         thumbnail: [
           Thumbnail(
@@ -1839,7 +1839,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "Yy2RsG4lnm4",
-        title: "Anna-Maria Zimmermann - 1000 Träume weit (Tornero)",
+        name: "Anna-Maria Zimmermann - 1000 Träume weit (Tornero)",
         length: 254,
         thumbnail: [
           Thumbnail(
@@ -1870,7 +1870,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "388e_8mu1t4",
-        title: "SDP feat. Sido - Die Nacht von Freitag auf Montag",
+        name: "SDP feat. Sido - Die Nacht von Freitag auf Montag",
         length: 241,
         thumbnail: [
           Thumbnail(
@@ -1901,7 +1901,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "dHHtPi-j7dQ",
-        title: "Wolkenfrei - Wolke 7 (Videoclip)",
+        name: "Wolkenfrei - Wolke 7 (Videoclip)",
         length: 239,
         thumbnail: [
           Thumbnail(
@@ -1932,7 +1932,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "d8ERTCVXIUE",
-        title: "Ali As feat. Namika – Lass sie tanzen (Square Dance) // prod. ELI",
+        name: "Ali As feat. Namika – Lass sie tanzen (Square Dance) // prod. ELI",
         length: 251,
         thumbnail: [
           Thumbnail(
@@ -1963,7 +1963,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "vQXn3EzzYY4",
-        title: "Frei.Wild - Weil Du mich nur verarscht hast (2011) [Offizieller Videoclip]",
+        name: "Frei.Wild - Weil Du mich nur verarscht hast (2011) [Offizieller Videoclip]",
         length: 208,
         thumbnail: [
           Thumbnail(
@@ -1994,7 +1994,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "zA-BTpC-yvI",
-        title: "AZET feat. RAF CAMORA - QA BONE  (Official Audio)",
+        name: "AZET feat. RAF CAMORA - QA BONE  (Official Audio)",
         length: 202,
         thumbnail: [
           Thumbnail(
@@ -2025,7 +2025,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "rnzIN9H_G10",
-        title: "LEA - Leiser (Pseudo Video)",
+        name: "LEA - Leiser (Pseudo Video)",
         length: 209,
         thumbnail: [
           Thumbnail(
@@ -2056,7 +2056,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "fcBbT1GTxqM",
-        title: "Kay One - Ich brech die Herzen",
+        name: "Kay One - Ich brech die Herzen",
         length: 229,
         thumbnail: [
           Thumbnail(
@@ -2087,7 +2087,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "wCDsm_dt1cI",
-        title: "KLUBBB3 - Du schaffst das schon (Offizielles Video)",
+        name: "KLUBBB3 - Du schaffst das schon (Offizielles Video)",
         length: 190,
         thumbnail: [
           Thumbnail(
@@ -2118,7 +2118,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "4j3AOJV1J8I",
-        title: "23 - Bushido & Sido feat. Peter Maffay - Erwachsen sein",
+        name: "23 - Bushido & Sido feat. Peter Maffay - Erwachsen sein",
         length: 218,
         thumbnail: [
           Thumbnail(
@@ -2149,7 +2149,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "RtuW08ZIgvg",
-        title: "Söhne Mannheims - Und wenn ein Lied [Official Video]",
+        name: "Söhne Mannheims - Und wenn ein Lied [Official Video]",
         length: 249,
         thumbnail: [
           Thumbnail(
@@ -2180,7 +2180,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "cbTXqKBIQ40",
-        title: "Philipp Poisel - Eiserner Steg (Klavier Version) - Offizielles Video",
+        name: "Philipp Poisel - Eiserner Steg (Klavier Version) - Offizielles Video",
         length: 250,
         thumbnail: [
           Thumbnail(
@@ -2211,7 +2211,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "oSd0Lph4luY",
-        title: "MIKE SINGER - DEJA VU (Offizielles Video)",
+        name: "MIKE SINGER - DEJA VU (Offizielles Video)",
         length: 229,
         thumbnail: [
           Thumbnail(
@@ -2242,7 +2242,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "oq0rrYrufYU",
-        title: "JORIS - Herz über Kopf (Official Video)",
+        name: "JORIS - Herz über Kopf (Official Video)",
         length: 209,
         thumbnail: [
           Thumbnail(
@@ -2273,7 +2273,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "0-P_YkS0z8s",
-        title: "KC Rebell feat. Summer Cem ► AUGENBLICK ◄ [ official Video ] 4K",
+        name: "KC Rebell feat. Summer Cem ► AUGENBLICK ◄ [ official Video ] 4K",
         length: 208,
         thumbnail: [
           Thumbnail(
@@ -2304,7 +2304,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "4BAKb2p450Q",
-        title: "Tim Bendzko - Nur Noch Kurz Die Welt Retten (Offizielles Video)",
+        name: "Tim Bendzko - Nur Noch Kurz Die Welt Retten (Offizielles Video)",
         length: 191,
         thumbnail: [
           Thumbnail(
@@ -2335,7 +2335,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "yqObMM_QzVQ",
-        title: "Casper - Im Ascheregen",
+        name: "Casper - Im Ascheregen",
         length: 303,
         thumbnail: [
           Thumbnail(
@@ -2366,7 +2366,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "dlvStoOyEzE",
-        title: "Alligatoah - Du bist schön (Official Video)",
+        name: "Alligatoah - Du bist schön (Official Video)",
         length: 246,
         thumbnail: [
           Thumbnail(
@@ -2397,7 +2397,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "VNttGAaek2U",
-        title: "Revolverheld - Lass Uns Gehen (Offizielles Musikvideo)",
+        name: "Revolverheld - Lass Uns Gehen (Offizielles Musikvideo)",
         length: 214,
         thumbnail: [
           Thumbnail(
@@ -2428,7 +2428,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "TxZMfufRJfo",
-        title: "Oft Gefragt - AnnenMayKantereit (Official Video)",
+        name: "Oft Gefragt - AnnenMayKantereit (Official Video)",
         length: 189,
         thumbnail: [
           Thumbnail(
@@ -2459,7 +2459,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "6agT2asF4as",
-        title: "CAPO - MON CHÉRI ft. NIMO (prod. von Zeeko & Veteran) [Official Audio]",
+        name: "CAPO - MON CHÉRI ft. NIMO (prod. von Zeeko & Veteran) [Official Audio]",
         length: 230,
         thumbnail: [
           Thumbnail(
@@ -2490,7 +2490,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "EcW0n83La5A",
-        title: "DIE LOCHIS - LIEBLINGSLIED (Offizielles Video) | BEREIT FÜR @HE/RO  ?",
+        name: "DIE LOCHIS - LIEBLINGSLIED (Offizielles Video) | BEREIT FÜR @HE/RO  ?",
         length: 212,
         thumbnail: [
           Thumbnail(
@@ -2521,7 +2521,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "_b61hg8UlZM",
-        title: "CAPO – Lambo Diablo GT feat. Nimo (prod. Von SOTT & Veteran & Zeeko) [Official Audio]",
+        name: "CAPO – Lambo Diablo GT feat. Nimo (prod. Von SOTT & Veteran & Zeeko) [Official Audio]",
         length: 285,
         thumbnail: [
           Thumbnail(
@@ -2552,7 +2552,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "kDMFranvFuQ",
-        title: "Joel Brandenstein - Diese Liebe (Offizielles Musikvideo)",
+        name: "Joel Brandenstein - Diese Liebe (Offizielles Musikvideo)",
         length: 359,
         thumbnail: [
           Thumbnail(
@@ -2583,7 +2583,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "1apku0pVDeE",
-        title: "Wincent Weiss - Feuerwerk (Official Video)",
+        name: "Wincent Weiss - Feuerwerk (Official Video)",
         length: 213,
         thumbnail: [
           Thumbnail(
@@ -2614,7 +2614,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "g6JYzOjglBs",
-        title: "Seeed - Aufstehn (official Video)",
+        name: "Seeed - Aufstehn (official Video)",
         length: 231,
         thumbnail: [
           Thumbnail(
@@ -2645,7 +2645,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "GYK-NfOo7b4",
-        title: "Seeed - Dickes B (official Video)",
+        name: "Seeed - Dickes B (official Video)",
         length: 240,
         thumbnail: [
           Thumbnail(
@@ -2676,7 +2676,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "omUuR45iU0g",
-        title: "KC Rebell feat. Summer Cem: \"HAYVAN\" [official Video]",
+        name: "KC Rebell feat. Summer Cem: \"HAYVAN\" [official Video]",
         length: 291,
         thumbnail: [
           Thumbnail(
@@ -2707,7 +2707,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "w7BE3inS-NM",
-        title: "Adel Tawil - Bis hier und noch weiter (Official Video) ft. KC Rebell, Summer Cem",
+        name: "Adel Tawil - Bis hier und noch weiter (Official Video) ft. KC Rebell, Summer Cem",
         length: 228,
         thumbnail: [
           Thumbnail(
@@ -2738,7 +2738,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "FM-5BPMnhm0",
-        title: "SDP feat. Weekend - Tanz aus der Reihe!",
+        name: "SDP feat. Weekend - Tanz aus der Reihe!",
         length: 234,
         thumbnail: [
           Thumbnail(
@@ -2769,7 +2769,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "MnNZNfixTOw",
-        title: "Philipp Poisel - Wie soll ein Mensch das ertragen",
+        name: "Philipp Poisel - Wie soll ein Mensch das ertragen",
         length: 278,
         thumbnail: [
           Thumbnail(
@@ -2800,7 +2800,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "qe80EeU8cT8",
-        title: "Xavier Naidoo - Wann (feat. Cassandra Steen) [Official Video]",
+        name: "Xavier Naidoo - Wann (feat. Cassandra Steen) [Official Video]",
         length: 327,
         thumbnail: [
           Thumbnail(
@@ -2831,7 +2831,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "-s2-6KYgqpQ",
-        title: "Alligatoah - Narben (Official Video)",
+        name: "Alligatoah - Narben (Official Video)",
         length: 264,
         thumbnail: [
           Thumbnail(
@@ -2862,7 +2862,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "RSlp874hESE",
-        title: "Kollegah & Farid Bang - \"ZIEH DEN RUCKSACK AUS\" [ official Video ]",
+        name: "Kollegah & Farid Bang - \"ZIEH DEN RUCKSACK AUS\" [ official Video ]",
         length: 162,
         thumbnail: [
           Thumbnail(
@@ -2893,7 +2893,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "oTI3tRQ_-3k",
-        title: "SDP - Wenn ich groß bin",
+        name: "SDP - Wenn ich groß bin",
         length: 225,
         thumbnail: [
           Thumbnail(
@@ -2924,7 +2924,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "_okA84gaEJw",
-        title: "SXTN - Von Party zu Party (Official Video)",
+        name: "SXTN - Von Party zu Party (Official Video)",
         length: 221,
         thumbnail: [
           Thumbnail(
@@ -2955,7 +2955,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "pLHnnJRaP7Q",
-        title: "House Rockerz - HerzRasen (Official Video HD)",
+        name: "House Rockerz - HerzRasen (Official Video HD)",
         length: 207,
         thumbnail: [
           Thumbnail(
@@ -2986,7 +2986,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "H2hGrsExuyc",
-        title: "GZUZ \"Was Hast Du Gedacht\" (WSHH Exclusive - Official Music Video)",
+        name: "GZUZ \"Was Hast Du Gedacht\" (WSHH Exclusive - Official Music Video)",
         length: 188,
         thumbnail: [
           Thumbnail(
@@ -3017,7 +3017,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "RsZvjqG2lec",
-        title: "Tim Bendzko - Wenn Worte meine Sprache wären (Offizielles Video)",
+        name: "Tim Bendzko - Wenn Worte meine Sprache wären (Offizielles Video)",
         length: 196,
         thumbnail: [
           Thumbnail(
@@ -3048,7 +3048,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "qYRCiQ6d35w",
-        title: "BONEZ MC & RAF CAMORA feat  GZUZ  - MÖRDER",
+        name: "BONEZ MC & RAF CAMORA feat  GZUZ  - MÖRDER",
         length: 240,
         thumbnail: [
           Thumbnail(
@@ -3079,7 +3079,7 @@ Playlist(
       ),
       PlaylistVideo(
         id: "zMPIobcM2j0",
-        title: "ZUNA feat. AZET & NOIZY - NUMMER 1 prod. by DJ A-BOOM",
+        name: "ZUNA feat. AZET & NOIZY - NUMMER 1 prod. by DJ A-BOOM",
         length: 212,
         thumbnail: [
           Thumbnail(

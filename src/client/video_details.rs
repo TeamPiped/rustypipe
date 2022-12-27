@@ -291,7 +291,7 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                     .c
                     .into_iter()
                     .map(|item| Chapter {
-                        title: item.macro_markers_list_item_renderer.title,
+                        name: item.macro_markers_list_item_renderer.title,
                         position: item
                             .macro_markers_list_item_renderer
                             .on_tap
@@ -317,7 +317,7 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
         Ok(MapResult {
             c: VideoDetails {
                 id: video_id,
-                title,
+                name: title,
                 description,
                 channel: ChannelTag {
                     id: channel_id,

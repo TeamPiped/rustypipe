@@ -21,7 +21,7 @@ MusicAlbum(
   tracks: [
     TrackItem(
       id: "aGd3VKSOTxY",
-      title: "Ich wache auf",
+      name: "Ich wache auf",
       duration: Some(221),
       cover: [],
       artists: [
@@ -42,7 +42,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "Jz-26iiDuYs",
-      title: "Waldbrand",
+      name: "Waldbrand",
       duration: Some(208),
       cover: [],
       artists: [
@@ -63,7 +63,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "Bu26uFtpt58",
-      title: "Verlernt",
+      name: "Verlernt",
       duration: Some(223),
       cover: [],
       artists: [
@@ -84,7 +84,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "RgwNqqiVqdY",
-      title: "In Farbe",
+      name: "In Farbe",
       duration: Some(221),
       cover: [],
       artists: [
@@ -105,7 +105,7 @@ MusicAlbum(
     ),
     TrackItem(
       id: "2TuOh30XbCI",
-      title: "Stadt im Hinterland",
+      name: "Stadt im Hinterland",
       duration: Some(197),
       cover: [],
       artists: [

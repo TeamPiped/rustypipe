@@ -121,7 +121,7 @@ Channel(
     items: [
       VideoItem(
         id: "glyJWxp7a5g",
-        title: "being smart was my personality trait",
+        name: "being smart was my personality trait",
         length: Some(56),
         thumbnail: [
           Thumbnail(
@@ -147,7 +147,7 @@ Channel(
       ),
       VideoItem(
         id: "dd1EZIkANYs",
-        title: "the horror maze",
+        name: "the horror maze",
         length: Some(44),
         thumbnail: [
           Thumbnail(
@@ -173,7 +173,7 @@ Channel(
       ),
       VideoItem(
         id: "enioc_stRww",
-        title: "furikake bagels with wasabi cream cheese",
+        name: "furikake bagels with wasabi cream cheese",
         length: Some(60),
         thumbnail: [
           Thumbnail(
@@ -199,7 +199,7 @@ Channel(
       ),
       VideoItem(
         id: "NUM8kCPas5w",
-        title: "simple is best",
+        name: "simple is best",
         length: Some(49),
         thumbnail: [
           Thumbnail(
@@ -225,7 +225,7 @@ Channel(
       ),
       VideoItem(
         id: "1djkcsFnlYE",
-        title: "edible history lesson!",
+        name: "edible history lesson!",
         length: Some(60),
         thumbnail: [
           Thumbnail(
@@ -251,7 +251,7 @@ Channel(
       ),
       VideoItem(
         id: "cIYrJtAoftI",
-        title: "and I\'m feeling good",
+        name: "and I\'m feeling good",
         length: Some(53),
         thumbnail: [
           Thumbnail(
@@ -277,7 +277,7 @@ Channel(
       ),
       VideoItem(
         id: "cCrH8Er5tf4",
-        title: "Rating Korean Convenience Store Milk Flavors 🥛🍼",
+        name: "Rating Korean Convenience Store Milk Flavors 🥛🍼",
         length: Some(60),
         thumbnail: [
           Thumbnail(
@@ -303,7 +303,7 @@ Channel(
       ),
       VideoItem(
         id: "tav5wsH7pzU",
-        title: "online dating?",
+        name: "online dating?",
         length: Some(58),
         thumbnail: [
           Thumbnail(
@@ -329,7 +329,7 @@ Channel(
       ),
       VideoItem(
         id: "5Vd4_GXjF7o",
-        title: "Creating thumbnails has never been easier with Adobe Express",
+        name: "Creating thumbnails has never been easier with Adobe Express",
         length: Some(26),
         thumbnail: [
           Thumbnail(
@@ -355,7 +355,7 @@ Channel(
       ),
       VideoItem(
         id: "-FN1sEI8HkU",
-        title: "my favorite color is green",
+        name: "my favorite color is green",
         length: Some(45),
         thumbnail: [
           Thumbnail(
@@ -381,7 +381,7 @@ Channel(
       ),
       VideoItem(
         id: "viT-dcl2DGE",
-        title: "frodo baggins?",
+        name: "frodo baggins?",
         length: Some(60),
         thumbnail: [
           Thumbnail(
@@ -407,7 +407,7 @@ Channel(
       ),
       VideoItem(
         id: "N5AKQflK1TU",
-        title: "When you impulse buy...",
+        name: "When you impulse buy...",
         length: Some(60),
         thumbnail: [
           Thumbnail(
@@ -433,7 +433,7 @@ Channel(
       ),
       VideoItem(
         id: "OzIFALQ_YtA",
-        title: "taste testing gam!",
+        name: "taste testing gam!",
         length: Some(60),
         thumbnail: [
           Thumbnail(
@@ -459,7 +459,7 @@ Channel(
       ),
       VideoItem(
         id: "dAcJILbc_0Q",
-        title: "How to: Korean rice wine 🍶 (makgeolli)",
+        name: "How to: Korean rice wine 🍶 (makgeolli)",
         length: Some(59),
         thumbnail: [
           Thumbnail(
@@ -485,7 +485,7 @@ Channel(
       ),
       VideoItem(
         id: "GvutfmW26JQ",
-        title: "👹stay sour 🍋",
+        name: "👹stay sour 🍋",
         length: Some(52),
         thumbnail: [
           Thumbnail(
@@ -511,7 +511,7 @@ Channel(
       ),
       VideoItem(
         id: "MwWdlNamxN0",
-        title: "what I do with leftovers",
+        name: "what I do with leftovers",
         length: Some(60),
         thumbnail: [
           Thumbnail(
@@ -537,7 +537,7 @@ Channel(
       ),
       VideoItem(
         id: "FsYaHsohjBc",
-        title: "osechi ft. slim shady",
+        name: "osechi ft. slim shady",
         length: Some(52),
         thumbnail: [
           Thumbnail(
@@ -563,7 +563,7 @@ Channel(
       ),
       VideoItem(
         id: "o04Yo2qxqcc",
-        title: "trailer l doob gourmand ep.3 k bbq",
+        name: "trailer l doob gourmand ep.3 k bbq",
         length: Some(53),
         thumbnail: [
           Thumbnail(
@@ -589,7 +589,7 @@ Channel(
       ),
       VideoItem(
         id: "JBUZE0mIlg8",
-        title: "small but sure joy",
+        name: "small but sure joy",
         length: Some(29),
         thumbnail: [
           Thumbnail(
@@ -615,7 +615,7 @@ Channel(
       ),
       VideoItem(
         id: "SRrvxFc2b2c",
-        title: "i don\'t believe in long distance relationships",
+        name: "i don\'t believe in long distance relationships",
         length: Some(60),
         thumbnail: [
           Thumbnail(
@@ -641,7 +641,7 @@ Channel(
       ),
       VideoItem(
         id: "cNx0ql9gnf4",
-        title: "come over :)",
+        name: "come over :)",
         length: Some(44),
         thumbnail: [
           Thumbnail(
@@ -667,7 +667,7 @@ Channel(
       ),
       VideoItem(
         id: "fGQUWI4o__A",
-        title: "Baskin Robbins in South Korea",
+        name: "Baskin Robbins in South Korea",
         length: Some(53),
         thumbnail: [
           Thumbnail(
@@ -693,7 +693,7 @@ Channel(
       ),
       VideoItem(
         id: "Q73VTjdqVA8",
-        title: "dry hot pot",
+        name: "dry hot pot",
         length: Some(51),
         thumbnail: [
           Thumbnail(
@@ -719,7 +719,7 @@ Channel(
       ),
       VideoItem(
         id: "gTG2WDbiYGo",
-        title: "time machine",
+        name: "time machine",
         length: Some(49),
         thumbnail: [
           Thumbnail(
@@ -745,7 +745,7 @@ Channel(
       ),
       VideoItem(
         id: "y5JK5YFp92g",
-        title: "tiramissu",
+        name: "tiramissu",
         length: Some(58),
         thumbnail: [
           Thumbnail(
@@ -771,7 +771,7 @@ Channel(
       ),
       VideoItem(
         id: "pvSWHm4wlxY",
-        title: "having kids",
+        name: "having kids",
         length: Some(60),
         thumbnail: [
           Thumbnail(
@@ -797,7 +797,7 @@ Channel(
       ),
       VideoItem(
         id: "CqFGACRrWJE",
-        title: "just do it",
+        name: "just do it",
         length: Some(60),
         thumbnail: [
           Thumbnail(
@@ -823,7 +823,7 @@ Channel(
       ),
       VideoItem(
         id: "DdGr6t2NqKc",
-        title: "coming soon",
+        name: "coming soon",
         length: Some(58),
         thumbnail: [
           Thumbnail(
@@ -849,7 +849,7 @@ Channel(
       ),
       VideoItem(
         id: "jKS44NMWuXw",
-        title: "adult money",
+        name: "adult money",
         length: Some(60),
         thumbnail: [
           Thumbnail(
@@ -875,7 +875,7 @@ Channel(
       ),
       VideoItem(
         id: "kx1YtJM_vbI",
-        title: "a fig\'s journey",
+        name: "a fig\'s journey",
         length: Some(57),
         thumbnail: [
           Thumbnail(
@@ -901,7 +901,7 @@ Channel(
       ),
       VideoItem(
         id: "Sdbzs-1WWH0",
-        title: "How to.. Mozzarella 🧀",
+        name: "How to.. Mozzarella 🧀",
         length: Some(54),
         thumbnail: [
           Thumbnail(
@@ -927,7 +927,7 @@ Channel(
       ),
       VideoItem(
         id: "9qBHyJIDous",
-        title: "how to drink like a real korean",
+        name: "how to drink like a real korean",
         length: Some(57),
         thumbnail: [
           Thumbnail(
@@ -953,7 +953,7 @@ Channel(
       ),
       VideoItem(
         id: "mBeFDb4gp8s",
-        title: "mr. krabs soup",
+        name: "mr. krabs soup",
         length: Some(59),
         thumbnail: [
           Thumbnail(
@@ -979,7 +979,7 @@ Channel(
       ),
       VideoItem(
         id: "b38r1UYqoBQ",
-        title: "in five years",
+        name: "in five years",
         length: Some(57),
         thumbnail: [
           Thumbnail(
@@ -1005,7 +1005,7 @@ Channel(
       ),
       VideoItem(
         id: "RdFk4WaifEo",
-        title: "a weeknight dinner",
+        name: "a weeknight dinner",
         length: Some(59),
         thumbnail: [
           Thumbnail(
@@ -1031,7 +1031,7 @@ Channel(
       ),
       VideoItem(
         id: "GuyGyzZcumI",
-        title: "McDonald\'s Michelin Burger",
+        name: "McDonald\'s Michelin Burger",
         length: Some(59),
         thumbnail: [
           Thumbnail(
@@ -1057,7 +1057,7 @@ Channel(
       ),
       VideoItem(
         id: "07Zipsb3-qU",
-        title: "cwispy potato pancake",
+        name: "cwispy potato pancake",
         length: Some(59),
         thumbnail: [
           Thumbnail(
@@ -1083,7 +1083,7 @@ Channel(
       ),
       VideoItem(
         id: "3kaePnU6Clo",
-        title: "authenticity is overrated",
+        name: "authenticity is overrated",
         length: Some(58),
         thumbnail: [
           Thumbnail(
@@ -1109,7 +1109,7 @@ Channel(
       ),
       VideoItem(
         id: "rt4rXMftnpg",
-        title: "you can kimchi anything (T&C applies)",
+        name: "you can kimchi anything (T&C applies)",
         length: Some(60),
         thumbnail: [
           Thumbnail(
@@ -1135,7 +1135,7 @@ Channel(
       ),
       VideoItem(
         id: "DTyLUvbf128",
-        title: "egg, soy, and perfect pot rice",
+        name: "egg, soy, and perfect pot rice",
         length: Some(60),
         thumbnail: [
           Thumbnail(
@@ -1161,7 +1161,7 @@ Channel(
       ),
       VideoItem(
         id: "DzjLBgIe_aI",
-        title: "love language",
+        name: "love language",
         length: Some(60),
         thumbnail: [
           Thumbnail(
@@ -1187,7 +1187,7 @@ Channel(
       ),
       VideoItem(
         id: "9JboRKeJ2m4",
-        title: "Rating Italian McDonald\'s",
+        name: "Rating Italian McDonald\'s",
         length: Some(60),
         thumbnail: [
           Thumbnail(
@@ -1213,7 +1213,7 @@ Channel(
       ),
       VideoItem(
         id: "_Tl6h81EIn8",
-        title: "Dining at a 3 Michelin Star Restaurant in Korea",
+        name: "Dining at a 3 Michelin Star Restaurant in Korea",
         length: Some(55),
         thumbnail: [
           Thumbnail(
@@ -1239,7 +1239,7 @@ Channel(
       ),
       VideoItem(
         id: "Oap2LXS22AE",
-        title: "a teaser",
+        name: "a teaser",
         length: Some(40),
         thumbnail: [
           Thumbnail(
@@ -1265,7 +1265,7 @@ Channel(
       ),
       VideoItem(
         id: "kCHjQE27i5w",
-        title: "my favorite instant ramen recipe pt.3",
+        name: "my favorite instant ramen recipe pt.3",
         length: Some(47),
         thumbnail: [
           Thumbnail(
@@ -1291,7 +1291,7 @@ Channel(
       ),
       VideoItem(
         id: "W9P0FdBh-LU",
-        title: "cat food onigiri 🍙 (neko manma onigiri)",
+        name: "cat food onigiri 🍙 (neko manma onigiri)",
         length: Some(50),
         thumbnail: [
           Thumbnail(
@@ -1317,7 +1317,7 @@ Channel(
       ),
       VideoItem(
         id: "MmxysCGNaMk",
-        title: "Why I would never date a YouTuber",
+        name: "Why I would never date a YouTuber",
         length: Some(55),
         thumbnail: [
           Thumbnail(
@@ -1343,7 +1343,7 @@ Channel(
       ),
       VideoItem(
         id: "IrR3tT_IqZg",
-        title: "arguing with family",
+        name: "arguing with family",
         length: Some(59),
         thumbnail: [
           Thumbnail(

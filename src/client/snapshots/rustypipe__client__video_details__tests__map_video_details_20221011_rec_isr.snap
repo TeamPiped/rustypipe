@@ -4,7 +4,7 @@ expression: map_res.c
 ---
 VideoDetails(
   id: "nFDBxBUfE74",
-  title: "The Prepper PC",
+  name: "The Prepper PC",
   description: RichText([
     Text("Thanks to Jackery for sponsoring today\'s video! Check out Jackery\'s Solar Generator 2000 Pro and get 10% off with code LinusTechTips at "),
     Web(
@@ -298,7 +298,7 @@ VideoDetails(
   is_ccommons: false,
   chapters: [
     Chapter(
-      title: "Intro",
+      name: "Intro",
       position: 0,
       thumbnail: [
         Thumbnail(
@@ -314,7 +314,7 @@ VideoDetails(
       ],
     ),
     Chapter(
-      title: "The PC Built for Super Efficiency",
+      name: "The PC Built for Super Efficiency",
       position: 42,
       thumbnail: [
         Thumbnail(
@@ -330,7 +330,7 @@ VideoDetails(
       ],
     ),
     Chapter(
-      title: "Our BURIAL ENCLOSURE?!",
+      name: "Our BURIAL ENCLOSURE?!",
       position: 161,
       thumbnail: [
         Thumbnail(
@@ -346,7 +346,7 @@ VideoDetails(
       ],
     ),
     Chapter(
-      title: "Our Power Solution (Thanks Jackery!)",
+      name: "Our Power Solution (Thanks Jackery!)",
       position: 211,
       thumbnail: [
         Thumbnail(
@@ -362,7 +362,7 @@ VideoDetails(
       ],
     ),
     Chapter(
-      title: "Diggin\' Holes",
+      name: "Diggin\' Holes",
       position: 287,
       thumbnail: [
         Thumbnail(
@@ -378,7 +378,7 @@ VideoDetails(
       ],
     ),
     Chapter(
-      title: "Colonoscopy?",
+      name: "Colonoscopy?",
       position: 330,
       thumbnail: [
         Thumbnail(
@@ -394,7 +394,7 @@ VideoDetails(
       ],
     ),
     Chapter(
-      title: "Diggin\' like a man",
+      name: "Diggin\' like a man",
       position: 424,
       thumbnail: [
         Thumbnail(
@@ -410,7 +410,7 @@ VideoDetails(
       ],
     ),
     Chapter(
-      title: "The world\'s worst woodsman",
+      name: "The world\'s worst woodsman",
       position: 509,
       thumbnail: [
         Thumbnail(
@@ -426,7 +426,7 @@ VideoDetails(
       ],
     ),
     Chapter(
-      title: "Backyard cable management",
+      name: "Backyard cable management",
       position: 543,
       thumbnail: [
         Thumbnail(
@@ -442,7 +442,7 @@ VideoDetails(
       ],
     ),
     Chapter(
-      title: "Time to bury this boy",
+      name: "Time to bury this boy",
       position: 602,
       thumbnail: [
         Thumbnail(
@@ -458,7 +458,7 @@ VideoDetails(
       ],
     ),
     Chapter(
-      title: "Solar Power Generation",
+      name: "Solar Power Generation",
       position: 646,
       thumbnail: [
         Thumbnail(
@@ -474,7 +474,7 @@ VideoDetails(
       ],
     ),
     Chapter(
-      title: "Issues",
+      name: "Issues",
       position: 697,
       thumbnail: [
         Thumbnail(
@@ -490,7 +490,7 @@ VideoDetails(
       ],
     ),
     Chapter(
-      title: "First Play Test",
+      name: "First Play Test",
       position: 728,
       thumbnail: [
         Thumbnail(
@@ -506,7 +506,7 @@ VideoDetails(
       ],
     ),
     Chapter(
-      title: "Conclusion",
+      name: "Conclusion",
       position: 800,
       thumbnail: [
         Thumbnail(
@@ -527,7 +527,7 @@ VideoDetails(
     items: [
       VideoItem(
         id: "t03rmc-prJo",
-        title: "This PC took 600 HOURS to Build!",
+        name: "This PC took 600 HOURS to Build!",
         length: Some(1505),
         thumbnail: [
           Thumbnail(
@@ -564,7 +564,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "4ozYlgOuYis",
-        title: "They told me I was stupid - heating my pool with computers",
+        name: "They told me I was stupid - heating my pool with computers",
         length: Some(691),
         thumbnail: [
           Thumbnail(
@@ -601,7 +601,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "THxkY59_xko",
-        title: "Is the fastest GPU ALWAYS the best?",
+        name: "Is the fastest GPU ALWAYS the best?",
         length: Some(979),
         thumbnail: [
           Thumbnail(
@@ -638,7 +638,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "UJ-KZzVUV7U",
-        title: "This toaster cost HOW MUCH?? - Revolution InstaGLO R270 Toaster",
+        name: "This toaster cost HOW MUCH?? - Revolution InstaGLO R270 Toaster",
         length: Some(880),
         thumbnail: [
           Thumbnail(
@@ -675,7 +675,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "yayAQAC1XiE",
-        title: "Intel PLEASE let me Overclock this!",
+        name: "Intel PLEASE let me Overclock this!",
         length: Some(799),
         thumbnail: [
           Thumbnail(
@@ -712,7 +712,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "y4T374GtKLI",
-        title: "When The Grid Goes Down: How To Power Essential Devices (i.e., Refrigerator)",
+        name: "When The Grid Goes Down: How To Power Essential Devices (i.e., Refrigerator)",
         length: Some(1239),
         thumbnail: [
           Thumbnail(
@@ -749,7 +749,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "b3x28s61q3c",
-        title: "The most EXPENSIVE thing I own.",
+        name: "The most EXPENSIVE thing I own.",
         length: Some(887),
         thumbnail: [
           Thumbnail(
@@ -786,7 +786,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "LQ95XJAwaoc",
-        title: "My favorite car (sucks) - Lucid Air GT",
+        name: "My favorite car (sucks) - Lucid Air GT",
         length: Some(1162),
         thumbnail: [
           Thumbnail(
@@ -823,7 +823,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "WVjtK71qqXU",
-        title: "I bought a SECOND GPU… but NOT for gaming…",
+        name: "I bought a SECOND GPU… but NOT for gaming…",
         length: Some(754),
         thumbnail: [
           Thumbnail(
@@ -860,7 +860,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "vtvFVH9JdNI",
-        title: "I bought every Nintendo Console EVER.",
+        name: "I bought every Nintendo Console EVER.",
         length: Some(1381),
         thumbnail: [
           Thumbnail(
@@ -897,7 +897,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "J6Ga4wciA2k",
-        title: "THIS Wish.com Gaming PC is WORSE!",
+        name: "THIS Wish.com Gaming PC is WORSE!",
         length: Some(1545),
         thumbnail: [
           Thumbnail(
@@ -934,7 +934,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "CsoKWsZ-Tyw",
-        title: "The Personal Gaming Theater - HOLY $H!T Samsung Odyssey Ark",
+        name: "The Personal Gaming Theater - HOLY $H!T Samsung Odyssey Ark",
         length: Some(1182),
         thumbnail: [
           Thumbnail(
@@ -971,7 +971,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "9T98VsMe3oo",
-        title: "How are we going to do this?",
+        name: "How are we going to do this?",
         length: Some(1124),
         thumbnail: [
           Thumbnail(
@@ -1008,7 +1008,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "5Hxr9k5Vdc4",
-        title: "Building the $1,000,000 Computer",
+        name: "Building the $1,000,000 Computer",
         length: Some(1659),
         thumbnail: [
           Thumbnail(
@@ -1045,7 +1045,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "12Hcbx33Rb4",
-        title: "BREAKING NEWS! - EVGA will no longer do business with NVIDIA",
+        name: "BREAKING NEWS! - EVGA will no longer do business with NVIDIA",
         length: Some(1262),
         thumbnail: [
           Thumbnail(
@@ -1082,7 +1082,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "EHkkwCjQzsc",
-        title: "Prepper (2016) | Full Post-Apocalyptic Thriller Movie HD",
+        name: "Prepper (2016) | Full Post-Apocalyptic Thriller Movie HD",
         length: Some(5982),
         thumbnail: [
           Thumbnail(
@@ -1119,7 +1119,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "AOdp09SYhCc",
-        title: "This Is So Embarrassing! - Building a PC with My Sister",
+        name: "This Is So Embarrassing! - Building a PC with My Sister",
         length: Some(1063),
         thumbnail: [
           Thumbnail(
@@ -1156,7 +1156,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "CTIpNtHWVtQ",
-        title: "Why Pay $1000 for a 25 year old PC! - NIXSYS Windows 98 PC",
+        name: "Why Pay $1000 for a 25 year old PC! - NIXSYS Windows 98 PC",
         length: Some(1112),
         thumbnail: [
           Thumbnail(
@@ -1193,7 +1193,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "3RIp7CwkBeA",
-        title: "I Hope You Have a LOT of Money... RTX 4000 Announced",
+        name: "I Hope You Have a LOT of Money... RTX 4000 Announced",
         length: Some(569),
         thumbnail: [
           Thumbnail(
@@ -1230,7 +1230,7 @@ VideoDetails(
       ),
       VideoItem(
         id: "HZiaHEmE9PQ",
-        title: "Buying a Chromebook was a BIG MISTAKE",
+        name: "Buying a Chromebook was a BIG MISTAKE",
         length: Some(880),
         thumbnail: [
           Thumbnail(
