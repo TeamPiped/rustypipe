@@ -802,6 +802,8 @@ impl MusicListMapper {
                                             map_album_type(atype_txt.first_str(), self.lang);
                                         map_artists(Some(p2))
                                     }
+                                    // Album on artist page with unknown year
+                                    (None, None, Some(artists), true) => artists.clone(),
                                     _ => {
                                         return Err(format!(
                                             "could not parse subtitle of album {}",
