@@ -61,11 +61,16 @@ impl FilterResult {
 }
 
 impl<'a> StreamFilter<'a> {
+    /// Create a new [`StreamFilter`]
+    pub fn new() -> Self {
+        Self::default()
+    }
+
     /// Set the maximum audio bitrate in bits per second.
     ///
     /// This is a soft filter, so if there is no stream with a bitrate
     /// <= the limit, the stream with the next higher bitrate is returned.
-    pub fn audio_max_bitrate(&mut self, max_bitrate: u32) -> &mut Self {
+    pub fn audio_max_bitrate(mut self, max_bitrate: u32) -> Self {
         self.audio_max_bitrate = Some(max_bitrate);
         self
     }
@@ -78,7 +83,7 @@ impl<'a> StreamFilter<'a> {
     }
 
     /// Set the supported audio container formats
-    pub fn audio_formats(&mut self, formats: &'a [AudioFormat]) -> &mut Self {
+    pub fn audio_formats(mut self, formats: &'a [AudioFormat]) -> Self {
         self.audio_formats = Some(formats);
         self
     }
@@ -91,7 +96,7 @@ impl<'a> StreamFilter<'a> {
     }
 
     /// Set the supported audio codecs
-    pub fn audio_codecs(&mut self, codecs: &'a [AudioCodec]) -> &mut Self {
+    pub fn audio_codecs(mut self, codecs: &'a [AudioCodec]) -> Self {
         self.audio_codecs = Some(codecs);
         self
     }
@@ -109,7 +114,7 @@ impl<'a> StreamFilter<'a> {
     ///
     /// If this filter is unset or no stream matches,
     /// the filter returns the default audio stream.
-    pub fn audio_language(&mut self, language: &'a str) -> &mut Self {
+    pub fn audio_language(mut self, language: &'a str) -> Self {
         self.audio_language = Some(language);
         self
     }
@@ -135,7 +140,7 @@ impl<'a> StreamFilter<'a> {
     ///
     /// This is a soft filter, so if there is no stream with a resolution
     /// <= the limit, the stream with the next higher resolution is returned.
-    pub fn video_max_res(&mut self, max_res: u32) -> &mut Self {
+    pub fn video_max_res(mut self, max_res: u32) -> Self {
         self.video_max_res = Some(max_res);
         self
     }
@@ -151,7 +156,7 @@ impl<'a> StreamFilter<'a> {
     ///
     /// This is a soft filter, so if there is no stream with a framerate
     /// <= the limit, the stream with the next higher framerate is returned.
-    pub fn video_max_fps(&mut self, max_fps: u8) -> &mut Self {
+    pub fn video_max_fps(mut self, max_fps: u8) -> Self {
         self.video_max_fps = Some(max_fps);
         self
     }
@@ -164,7 +169,7 @@ impl<'a> StreamFilter<'a> {
     }
 
     /// Set the supported video container formats
-    pub fn video_formats(&mut self, formats: &'a [VideoFormat]) -> &mut Self {
+    pub fn video_formats(mut self, formats: &'a [VideoFormat]) -> Self {
         self.video_formats = Some(formats);
         self
     }
@@ -177,7 +182,7 @@ impl<'a> StreamFilter<'a> {
     }
 
     /// Set the supported video codecs
-    pub fn video_codecs(&mut self, codecs: &'a [VideoCodec]) -> &mut Self {
+    pub fn video_codecs(mut self, codecs: &'a [VideoCodec]) -> Self {
         self.video_codecs = Some(codecs);
         self
     }
@@ -190,7 +195,7 @@ impl<'a> StreamFilter<'a> {
     }
 
     /// Allow HDR videos
-    pub fn video_hdr(&mut self) -> &mut Self {
+    pub fn video_hdr(mut self) -> Self {
         self.video_hdr = true;
         self
     }
@@ -203,7 +208,7 @@ impl<'a> StreamFilter<'a> {
     }
 
     /// Output no video stream (audio only)
-    pub fn no_video(&mut self) -> &mut Self {
+    pub fn no_video(mut self) -> Self {
         self.video_none = true;
         self
     }

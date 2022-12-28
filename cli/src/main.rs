@@ -60,12 +60,12 @@ async fn download_single_video(
             video_id
         ))?;
 
-        let mut filter = StreamFilter::default();
+        let mut filter = StreamFilter::new();
         if let Some(res) = resolution {
             if res == 0 {
-                filter.no_video();
+                filter = filter.no_video();
             } else {
-                filter.video_max_res(res);
+                filter = filter.video_max_res(res);
             }
         }
 

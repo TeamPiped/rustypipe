@@ -1,0 +1,61 @@
+---
+source: tests/youtube.rs
+expression: album
+---
+MusicAlbum(
+  id: "MPREb_F3Af9UZZVxX",
+  playlist_id: Some("OLAK5uy_nim4i4eycEtlBtS3Ci6j4SvvTmdfBcRX4"),
+  name: "La Ultima Vez (Remix)",
+  cover: "[cover]",
+  artists: [
+    ArtistId(
+      id: Some("UCAJwa_1l4rHzBJyWbeBtGZw"),
+      name: "Omega",
+    ),
+    ArtistId(
+      id: Some("UCbBaYg2UToDaoOwo-R6xi4g"),
+      name: "Anuel AA",
+    ),
+    ArtistId(
+      id: Some("UCiY3z8HAGD6BlSNKVn2kSvQ"),
+      name: "Bad Bunny",
+    ),
+  ],
+  artist_id: Some("UCAJwa_1l4rHzBJyWbeBtGZw"),
+  description: None,
+  album_type: Single,
+  year: None,
+  by_va: false,
+  tracks: [
+    TrackItem(
+      id: "1Sz3lUVGBSM",
+      name: "La Ultima Vez (Remix)",
+      duration: Some(229),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCAJwa_1l4rHzBJyWbeBtGZw"),
+          name: "Omega",
+        ),
+        ArtistId(
+          id: Some("UCbBaYg2UToDaoOwo-R6xi4g"),
+          name: "Anuel AA",
+        ),
+        ArtistId(
+          id: Some("UCiY3z8HAGD6BlSNKVn2kSvQ"),
+          name: "Bad Bunny",
+        ),
+      ],
+      artist_id: Some("UCAJwa_1l4rHzBJyWbeBtGZw"),
+      album: Some(AlbumId(
+        id: "MPREb_F3Af9UZZVxX",
+        name: "La Ultima Vez (Remix)",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(1),
+      by_va: false,
+    ),
+  ],
+  variants: [],
+)

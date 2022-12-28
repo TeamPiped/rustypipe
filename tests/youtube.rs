@@ -1378,6 +1378,7 @@ async fn music_playlist_not_found() {
 #[case::audiobook("audiobook", "MPREb_gaoNzsQHedo")]
 #[case::show("show", "MPREb_cwzk8EUwypZ")]
 #[case::unavailable("unavailable", "MPREb_AzuWg8qAVVl")]
+#[case::no_year("no_year", "MPREb_F3Af9UZZVxX")]
 #[tokio::test]
 async fn music_album(#[case] name: &str, #[case] id: &str) {
     let rp = RustyPipe::builder().strict().build();
