@@ -77,7 +77,7 @@ pub(crate) enum VideoResultsItem {
     VideoPrimaryInfoRenderer {
         #[serde_as(as = "Text")]
         title: String,
-        view_count: ViewCount,
+        view_count: Option<ViewCount>,
         /// Like/Dislike button
         video_actions: VideoActions,
         /// Absolute textual date (e.g. `Dec 29, 2019`)
