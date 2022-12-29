@@ -1,0 +1,139 @@
+---
+source: tests/youtube.rs
+assertion_line: 1391
+expression: album
+---
+MusicAlbum(
+  id: "MPREb_h8ltx5oKvyY",
+  playlist_id: Some("OLAK5uy_lIDfTi_k8V1RJ54MeJJGK_BduAeYbm-0s"),
+  name: "Pedha Rasi Peddamma Katha",
+  cover: "[cover]",
+  artists: [
+    ArtistId(
+      id: Some("UCl4iPtukwe7m0kIxUMskkgA"),
+      name: "S P Balasubramaniam",
+    ),
+    ArtistId(
+      id: Some("UCWgAqlYG7mXTUxrFiLyDSsg"),
+      name: "S Janaki",
+    ),
+  ],
+  artist_id: Some("UCl4iPtukwe7m0kIxUMskkgA"),
+  description: None,
+  album_type: Ep,
+  year: Some(1968),
+  by_va: false,
+  tracks: [
+    TrackItem(
+      id: "AKJ3IJZKPWc",
+      name: "Oh Javaraala",
+      duration: Some(228),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCl4iPtukwe7m0kIxUMskkgA"),
+          name: "S P Balasubramaniam",
+        ),
+        ArtistId(
+          id: Some("UCWgAqlYG7mXTUxrFiLyDSsg"),
+          name: "S Janaki",
+        ),
+      ],
+      artist_id: Some("UCl4iPtukwe7m0kIxUMskkgA"),
+      album: Some(AlbumId(
+        id: "MPREb_h8ltx5oKvyY",
+        name: "Pedha Rasi Peddamma Katha",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(1),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "WnpZuHNB33E",
+      name: "Siva Manoranjani",
+      duration: Some(266),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UC1C05NyYICFB2mVGn9_ttEw"),
+          name: "M Balamuralikrishna",
+        ),
+      ],
+      artist_id: Some("UC1C05NyYICFB2mVGn9_ttEw"),
+      album: Some(AlbumId(
+        id: "MPREb_h8ltx5oKvyY",
+        name: "Pedha Rasi Peddamma Katha",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(2),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "pRqoDGXg1-I",
+      name: "Gulabi Buggalunna",
+      duration: Some(154),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UC_KQPMiRQl3CFAIKTVfCHwA"),
+          name: "L R Eswari",
+        ),
+      ],
+      artist_id: Some("UC_KQPMiRQl3CFAIKTVfCHwA"),
+      album: Some(AlbumId(
+        id: "MPREb_h8ltx5oKvyY",
+        name: "Pedha Rasi Peddamma Katha",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(3),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "20vIKLJxjBY",
+      name: "Kuluku Nadakula",
+      duration: Some(178),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "Ghantasala & Chorus",
+        ),
+      ],
+      artist_id: Some("UCDqpyYkgWy2h03HamIfODjw"),
+      album: Some(AlbumId(
+        id: "MPREb_h8ltx5oKvyY",
+        name: "Pedha Rasi Peddamma Katha",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(4),
+      by_va: false,
+    ),
+  ],
+  variants: [
+    AlbumItem(
+      id: "MPREb_bqWA6mAZFWS",
+      name: "Pedha Rasi Peddamma Katha",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/cyKTDdyucqYv8xfv0t3Vs9CkhmvssXRKsGzlWN_DU6A9uapXvovV0Ys2fXc9-r7Jv7V4UB1OD48iYH5z=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/cyKTDdyucqYv8xfv0t3Vs9CkhmvssXRKsGzlWN_DU6A9uapXvovV0Ys2fXc9-r7Jv7V4UB1OD48iYH5z=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [],
+      artist_id: None,
+      album_type: Ep,
+      year: None,
+      by_va: true,
+    ),
+  ],
+)

@@ -277,9 +277,30 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
         )))?;
 
         let mut subtitle_split = header.subtitle.split(util::DOT_SEPARATOR);
-        let year_txt = subtitle_split.try_swap_remove(2).map(|cmp| cmp.to_string());
 
-        let artists_p = subtitle_split.try_swap_remove(1);
+        let (year_txt, artists_p) = match subtitle_split.len() {
+            3.. => {
+                let year_txt = subtitle_split
+                    .swap_remove(2)
+                    .0
+                    .get(0)
+                    .map(|c| c.as_str().to_owned());
+                (year_txt, subtitle_split.try_swap_remove(1))
+            }
+            2 => {
+                // The second part may either be the year or the artist
+                let p2 = subtitle_split.swap_remove(1);
+                let is_year =
+                    p2.0.len() == 1 && p2.0[0].as_str().chars().all(|c| c.is_ascii_digit());
+                if is_year {
+                    (Some(p2.0[0].as_str().to_owned()), None)
+                } else {
+                    (None, Some(p2))
+                }
+            }
+            _ => (None, None),
+        };
+
         let (artists, by_va) = map_artists(artists_p);
         let album_type_txt = subtitle_split
             .try_swap_remove(0)

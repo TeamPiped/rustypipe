@@ -796,14 +796,20 @@ impl MusicListMapper {
                                             map_album_type(atype_txt.first_str(), self.lang);
                                         artists.clone()
                                     }
+                                    // Album on artist page with unknown year
+                                    (None, None, Some(artists), true) => artists.clone(),
                                     // "Album", <"Oonagh"> (Album variants, new releases)
                                     (Some(atype_txt), Some(p2), _, false) => {
                                         album_type =
                                             map_album_type(atype_txt.first_str(), self.lang);
                                         map_artists(Some(p2))
                                     }
-                                    // Album on artist page with unknown year
-                                    (None, None, Some(artists), true) => artists.clone(),
+                                    // "Album" (Album variants, no artist)
+                                    (Some(atype_txt), None, _, false) => {
+                                        album_type =
+                                            map_album_type(atype_txt.first_str(), self.lang);
+                                        (Vec::new(), true)
+                                    }
                                     _ => {
                                         return Err(format!(
                                             "could not parse subtitle of album {}",

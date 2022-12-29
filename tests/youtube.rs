@@ -1379,6 +1379,8 @@ async fn music_playlist_not_found() {
 #[case::show("show", "MPREb_cwzk8EUwypZ")]
 #[case::unavailable("unavailable", "MPREb_AzuWg8qAVVl")]
 #[case::no_year("no_year", "MPREb_F3Af9UZZVxX")]
+#[case::version_no_artist("version_no_artist", "MPREb_h8ltx5oKvyY")]
+#[case::no_artist("no_artist", "MPREb_bqWA6mAZFWS")]
 #[tokio::test]
 async fn music_album(#[case] name: &str, #[case] id: &str) {
     let rp = RustyPipe::builder().strict().build();
@@ -1913,9 +1915,9 @@ async fn music_related(#[case] id: &str, #[case] full: bool) {
     assert_gte(n_tracks, 20, "tracks");
     assert_gte(n_tracks_ytm, 10, "tracks_ytm");
 
-    assert_gte(track_artists, n_tracks - 3, "track_artists");
-    assert_gte(track_artist_ids, n_tracks - 3, "track_artists");
-    assert_gte(track_albums, n_tracks_ytm - 3, "track_artists");
+    assert_gte(track_artists, n_tracks - 4, "track_artists");
+    assert_gte(track_artist_ids, n_tracks - 4, "track_artists");
+    assert_gte(track_albums, n_tracks_ytm - 4, "track_artists");
 
     if full {
         assert_gte(related.albums.len(), 10, "albums");
