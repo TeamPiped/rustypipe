@@ -120,6 +120,8 @@ pub fn string_from_pb<P: IntoIterator<Item = u8>>(pb: P, field: u32) -> Option<S
 
 #[cfg(test)]
 mod tests {
+    use crate::util;
+
     use super::*;
 
     // #[test]
@@ -130,7 +132,7 @@ mod tests {
     #[test]
     fn t_parse_proto() {
         let p = "GhhVQzl2cnZOU0wzeGNXR1NrVjg2UkVCU2c%3D";
-        let p_bytes = base64::decode(urlencoding::decode(p).unwrap().as_bytes()).unwrap();
+        let p_bytes = util::b64_decode(urlencoding::decode(p).unwrap().as_bytes()).unwrap();
 
         let res = string_from_pb(p_bytes, 3).unwrap();
         assert_eq!(res, "UC9vrvNSL3xcWGSkV86REBSg");

@@ -175,7 +175,7 @@ fn map_artist_page(
 
         let share_channel_id = urlencoding::decode(&pb)
             .ok()
-            .and_then(|pb| base64::decode(pb.as_bytes()).ok())
+            .and_then(|pb| util::b64_decode(pb.as_bytes()).ok())
             .and_then(|pb| util::string_from_pb(pb, 3));
 
         if let Some(share_channel_id) = share_channel_id {

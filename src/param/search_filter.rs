@@ -2,7 +2,7 @@
 
 use std::collections::BTreeSet;
 
-use crate::util::ProtoBuilder;
+use crate::util::{self, ProtoBuilder};
 
 /// YouTube search filter
 ///
@@ -200,7 +200,7 @@ impl SearchFilter {
             pb.embedded(8, extras)
         }
 
-        let b64 = base64::encode(pb.bytes);
+        let b64 = util::b64_encode(pb.bytes);
         urlencoding::encode(&b64).to_string()
     }
 }
