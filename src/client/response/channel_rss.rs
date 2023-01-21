@@ -3,67 +3,81 @@ use time::OffsetDateTime;
 
 use crate::util;
 
-use super::Thumbnail;
-
 #[derive(Debug, Deserialize)]
 pub(crate) struct ChannelRss {
-    #[serde(rename = "$unflatten=yt:channelId")]
+    #[serde(rename = "channelId")]
     pub channel_id: String,
-    #[serde(rename = "$unflatten=title")]
     pub title: String,
     pub author: Author,
-    #[serde(rename = "$unflatten=published", with = "time::serde::rfc3339")]
+    #[serde(rename = "published", with = "time::serde::rfc3339")]
     pub create_date: OffsetDateTime,
     pub entry: Vec<Entry>,
 }
 
 #[derive(Debug, Deserialize)]
 pub(crate) struct Entry {
-    #[serde(rename = "$unflatten=yt:videoId")]
+    #[serde(rename = "videoId")]
     pub video_id: String,
-    #[serde(rename = "$unflatten=yt:channelId")]
+    #[serde(rename = "channelId")]
     pub channel_id: String,
-    #[serde(rename = "$unflatten=title")]
     pub title: String,
-    #[serde(rename = "$unflatten=published", with = "time::serde::rfc3339")]
+    #[serde(with = "time::serde::rfc3339")]
     pub published: OffsetDateTime,
-    #[serde(rename = "$unflatten=updated", with = "time::serde::rfc3339")]
+    #[serde(with = "time::serde::rfc3339")]
     pub updated: OffsetDateTime,
-    #[serde(rename = "$unflatten=media:group")]
+    #[serde(rename = "group")]
     pub media_group: MediaGroup,
 }
 
 #[derive(Debug, Deserialize)]
 pub(crate) struct MediaGroup {
-    #[serde(rename = "$unflatten=media:thumbnail")]
     pub thumbnail: Thumbnail,
-    #[serde(rename = "$unflatten=media:description")]
     pub description: String,
-    #[serde(rename = "$unflatten=media:community")]
     pub community: Community,
 }
 
 #[derive(Debug, Deserialize)]
+pub(crate) struct Thumbnail {
+    #[serde(rename = "@url")]
+    pub url: String,
+    #[serde(rename = "@width")]
+    pub width: u32,
+    #[serde(rename = "@height")]
+    pub height: u32,
+}
+
+#[derive(Debug, Deserialize)]
 pub(crate) struct Community {
-    #[serde(rename = "$unflatten=media:starRating")]
+    #[serde(rename = "starRating")]
     pub rating: Rating,
-    #[serde(rename = "$unflatten=media:statistics")]
     pub statistics: Statistics,
 }
 
 #[derive(Debug, Deserialize)]
 pub(crate) struct Rating {
+    #[serde(rename = "@count")]
     pub count: u64,
 }
 
 #[derive(Debug, Deserialize)]
 pub(crate) struct Statistics {
+    #[serde(rename = "@views")]
     pub views: u64,
 }
 
 #[derive(Debug, Deserialize)]
 pub(crate) struct Author {
     pub uri: String,
+}
+
+impl From<Thumbnail> for crate::model::Thumbnail {
+    fn from(tn: Thumbnail) -> Self {
+        crate::model::Thumbnail {
+            url: tn.url,
+            width: tn.width,
+            height: tn.height,
+        }
+    }
 }
 
 impl From<ChannelRss> for crate::model::ChannelRss {
