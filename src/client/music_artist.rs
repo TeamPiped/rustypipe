@@ -34,6 +34,20 @@ impl RustyPipeQuery {
         artist_id: S,
         all_albums: bool,
     ) -> Result<MusicArtist, Error> {
+        let res = self._music_artist(artist_id, all_albums).await;
+
+        if let Err(Error::Extraction(ExtractionError::Redirect(id))) = res {
+            self._music_artist(&id, all_albums).await.map(|x| *x)
+        } else {
+            res.map(|x| *x)
+        }
+    }
+
+    async fn _music_artist<S: AsRef<str>>(
+        &self,
+        artist_id: S,
+        all_albums: bool,
+    ) -> Result<Box<MusicArtist>, Error> {
         let artist_id = artist_id.as_ref();
 
         if all_albums {
@@ -74,7 +88,7 @@ impl RustyPipeQuery {
                 artist.albums.append(&mut res);
             }
 
-            Ok(artist)
+            Ok(artist.into())
         } else {
             let context = self.get_context(ClientType::DesktopMusic, true, None).await;
             let request_body = QBrowse {
@@ -90,6 +104,7 @@ impl RustyPipeQuery {
                 &request_body,
             )
             .await
+            .map(|x: MusicArtist| x.into())
         }
     }
 
@@ -154,6 +169,21 @@ fn map_artist_page(
     // dbg!(&self);
 
     let header = res.header.music_immersive_header_renderer;
+
+    if let Some(share) = header.share_endpoint {
+        let pb = share.share_entity_endpoint.serialized_share_entity;
+
+        let share_channel_id = urlencoding::decode(&pb)
+            .ok()
+            .and_then(|pb| base64::decode(pb.as_bytes()).ok())
+            .and_then(|pb| util::string_from_pb(pb, 3));
+
+        if let Some(share_channel_id) = share_channel_id {
+            if share_channel_id != id {
+                return Err(ExtractionError::Redirect(share_channel_id));
+            }
+        }
+    }
 
     let mut content = res.contents.single_column_browse_results_renderer.contents;
     let sections = content
@@ -389,5 +419,24 @@ mod tests {
             map_res.warnings
         );
         insta::assert_ron_snapshot!(map_res.c);
+    }
+
+    #[test]
+    fn map_music_artist_secondary_channel() {
+        let json_path = path!("testfiles" / "music_artist" / "artist_secondary_channel.json");
+        let json_file = File::open(json_path).unwrap();
+
+        let artist: response::MusicArtist =
+            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let res: Result<MapResult<MusicArtist>, ExtractionError> =
+            artist.map_response("UCLkAepWjdylmXSltofFvsYQ", Language::En, None);
+        let e = res.unwrap_err();
+
+        match e {
+            ExtractionError::Redirect(id) => {
+                assert_eq!(id, "UCOR4_bSVIXPsGa4BbCSt60Q")
+            }
+            _ => panic!("error: {}", e),
+        }
     }
 }

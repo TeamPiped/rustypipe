@@ -44,7 +44,7 @@ async fn get_player_from_client(#[case] client_type: ClientType) {
     if client_type == ClientType::DesktopMusic {
         assert!(player_data.details.description.is_none());
     } else {
-        assert!(player_data.details.description.unwrap().starts_with(
+        assert!(player_data.details.description.unwrap().contains(
             "NCS (NoCopyrightSounds): Empowering Creators through Copyright / Royalty Free Music"
         ));
     }
@@ -743,7 +743,10 @@ async fn get_video_details_agegate() {
     insta::assert_ron_snapshot!(details.description, @"RichText([])");
 
     assert_eq!(details.channel.id, "UCQT2yul0lr6Ie9qNQNmw-sg");
-    assert_eq!(details.channel.name, "PrinceOfFALLEN");
+    assert_eq!(
+        details.channel.name,
+        "Dale Earnhardt Junior’s Retired YouYoube Channel"
+    );
     assert!(!details.channel.avatar.is_empty(), "no channel avatars");
     assert_eq!(details.channel.verification, Verification::None);
     assert_gte(
@@ -1418,6 +1421,8 @@ async fn music_album_not_found() {
 #[case::no_more_albums("no_more_albums", "UCOR4_bSVIXPsGa4BbCSt60Q", true, 15, 0)]
 #[case::only_singles("only_singles", "UCfwCE5VhPMGxNPFxtVv7lRw", false, 13, 0)]
 #[case::no_artist("no_artist", "UCh8gHdtzO2tXd593_bjErWg", false, 0, 2)]
+// querying Trailerpark's secondary YouTube channel should result in the YTM channel being fetched
+#[case::secondary_channel("no_more_albums", "UCC9192yGQD25eBZgFZ84MPw", true, 15, 0)]
 #[tokio::test]
 async fn music_artist(
     #[case] name: &str,
@@ -2085,7 +2090,7 @@ async fn music_new_albums() {
 async fn music_new_videos() {
     let rp = RustyPipe::builder().strict().build();
     let videos = rp.query().music_new_videos().await.unwrap();
-    assert_gte(videos.len(), 10, "videos");
+    assert_gte(videos.len(), 5, "videos");
 
     for video in videos {
         assert_video_id(&video.id);

@@ -4,7 +4,7 @@ mod protobuf;
 pub mod dictionary;
 
 pub use date::{month_from_n, now_sec, shift_months, shift_years};
-pub use protobuf::ProtoBuilder;
+pub use protobuf::{string_from_pb, ProtoBuilder};
 
 use std::{
     borrow::{Borrow, Cow},
@@ -87,12 +87,6 @@ pub fn url_to_params(url: &str) -> Result<(Url, BTreeMap<String, String>), Error
     parsed_url.set_query(None);
 
     Ok((parsed_url, url_params))
-}
-
-pub fn urlencode(string: &str) -> String {
-    url::form_urlencoded::Serializer::new(String::new())
-        .append_key_only(string)
-        .finish()
 }
 
 /// Parse a string after removing all non-numeric characters

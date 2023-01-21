@@ -2,7 +2,7 @@
 
 use std::collections::BTreeSet;
 
-use crate::util::{self, ProtoBuilder};
+use crate::util::ProtoBuilder;
 
 /// YouTube search filter
 ///
@@ -201,7 +201,7 @@ impl SearchFilter {
         }
 
         let b64 = base64::encode(pb.bytes);
-        util::urlencode(&b64)
+        urlencoding::encode(&b64).to_string()
     }
 }
 
@@ -236,6 +236,6 @@ mod tests {
     #[case(SearchFilter::new().sort(Order::Views), "CAM%253D")]
     #[case(SearchFilter::new().sort(Order::Rating), "CAE%253D")]
     fn t_filter(#[case] filter: SearchFilter, #[case] expect: &str) {
-        assert_eq!(util::urlencode(&filter.encode()), expect);
+        assert_eq!(urlencoding::encode(&filter.encode()), expect);
     }
 }

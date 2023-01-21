@@ -61,8 +61,7 @@ impl RustyPipeQuery {
     /// Get YouTube player data (video/audio streams + basic metadata)
     pub async fn player<S: AsRef<str>>(&self, video_id: S) -> Result<VideoPlayer, Error> {
         let video_id = video_id.as_ref();
-        let q1 = self.clone();
-        let android_res = q1.player_from_client(video_id, ClientType::Android).await;
+        let android_res = self.player_from_client(video_id, ClientType::Android).await;
 
         match android_res {
             Ok(res) => Ok(res),

@@ -38,6 +38,9 @@ pub(crate) struct MusicHeaderRenderer {
     pub description: Option<String>,
     #[serde(default)]
     pub thumbnail: MusicThumbnailRenderer,
+    #[serde(default)]
+    #[serde_as(as = "DefaultOnError")]
+    pub share_endpoint: Option<ShareEndpoint>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -52,6 +55,18 @@ pub(crate) struct SubscriptionButton {
 pub(crate) struct SubscriptionButtonRenderer {
     #[serde_as(as = "Text")]
     pub subscriber_count_text: String,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ShareEndpoint {
+    pub share_entity_endpoint: ShareEntityEndpoint,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ShareEntityEndpoint {
+    pub serialized_share_entity: String,
 }
 
 /// Response model for YouTube Music artist album page

@@ -713,12 +713,13 @@ async fn music_search_suggestion(testfiles: &Path) {
 }
 
 async fn music_artist(testfiles: &Path) {
-    for (name, id) in [
-        ("default", "UClmXPfaYhXOYsNn_QUyheWQ"),
-        ("no_more_albums", "UC_vmjW5e1xEHhYjY2a0kK1A"),
-        ("only_singles", "UCfwCE5VhPMGxNPFxtVv7lRw"),
-        ("no_artist", "UCh8gHdtzO2tXd593_bjErWg"),
-        ("only_more_singles", "UC0aXrjVxG5pZr99v77wZdPQ"),
+    for (name, id, all_albums) in [
+        ("default", "UClmXPfaYhXOYsNn_QUyheWQ", true),
+        ("no_more_albums", "UC_vmjW5e1xEHhYjY2a0kK1A", true),
+        ("only_singles", "UCfwCE5VhPMGxNPFxtVv7lRw", true),
+        ("no_artist", "UCh8gHdtzO2tXd593_bjErWg", true),
+        ("only_more_singles", "UC0aXrjVxG5pZr99v77wZdPQ", true),
+        ("secondary_channel", "UCC9192yGQD25eBZgFZ84MPw", false),
     ] {
         let mut json_path = testfiles.to_path_buf();
         json_path.push("music_artist");
@@ -728,7 +729,7 @@ async fn music_artist(testfiles: &Path) {
         }
 
         let rp = rp_testfile(&json_path);
-        rp.query().music_artist(id, true).await.unwrap();
+        rp.query().music_artist(id, all_albums).await.unwrap();
     }
 }
 

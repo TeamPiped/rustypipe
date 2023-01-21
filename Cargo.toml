@@ -49,6 +49,7 @@ futures = "0.3.21"
 ress = "0.11.4"
 phf = "0.11.1"
 base64 = "0.20.0"
+urlencoding = "2.1.2"
 quick-xml = { version = "0.26.0", features = ["serialize"], optional = true }
 
 [dev-dependencies]

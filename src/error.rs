@@ -87,6 +87,11 @@ pub enum ExtractionError {
     /// Android client.
     #[error("got wrong result from YT: {0}")]
     WrongResult(String),
+    /// YouTube redirects you to another content ID
+    ///
+    /// This is used internally for YouTube Music channels that link to a main channel.
+    #[error("redirecting to: {0}")]
+    Redirect(String),
     /// Warnings occurred during deserialization/mapping
     ///
     /// This error is only returned in strict mode.
