@@ -74,6 +74,9 @@ pub enum ExtractionError {
     /// Content is not available / does not exist
     #[error("Content is not available. Reason: {0}")]
     ContentUnavailable(Cow<'static, str>),
+    /// Bad request (Error 400 from YouTube), probably invalid input parameters
+    #[error("Bad request. Reason: {0}")]
+    BadRequest(Cow<'static, str>),
     /// Error deserializing YouTube's response JSON
     #[error("deserialization error: {0}")]
     Deserialization(#[from] serde_json::Error),

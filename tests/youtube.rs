@@ -2,6 +2,7 @@ use std::collections::HashSet;
 use std::fmt::Display;
 
 use rstest::rstest;
+use rustypipe::model::paginator::ContinuationEndpoint;
 use rustypipe::validate;
 use time::macros::date;
 use time::OffsetDateTime;
@@ -2217,6 +2218,32 @@ async fn ab3_search_channel_handles() {
         )
         .await
         .unwrap();
+}
+
+//#MISCELLANEOUS
+
+#[rstest]
+#[case::desktop(ContinuationEndpoint::Browse)]
+#[case::music(ContinuationEndpoint::MusicBrowse)]
+#[tokio::test]
+async fn invalid_ctoken(#[case] ep: ContinuationEndpoint) {
+    let rp = RustyPipe::builder().strict().build();
+
+    let e = rp
+        .query()
+        .continuation::<YouTubeItem, _>("Abcd", ep, None)
+        .await
+        .unwrap_err();
+
+    match e {
+        Error::Extraction(e) => match e {
+            ExtractionError::BadRequest(msg) => {
+                assert_eq!(msg, "Request contains an invalid argument.")
+            }
+            _ => panic!("invalid error: {}", e),
+        },
+        _ => panic!("invalid error: {}", e),
+    }
 }
 
 //#TESTUTIL

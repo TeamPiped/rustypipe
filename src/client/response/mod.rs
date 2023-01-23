@@ -233,6 +233,20 @@ pub(crate) struct MusicContinuationDataInner {
     pub continuation: String,
 }
 
+// ERROR
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ErrorResponse {
+    pub error: ErrorResponseContent,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ErrorResponseContent {
+    pub message: String,
+}
+
 /*
 #MAPPING
 */

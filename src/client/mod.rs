@@ -29,7 +29,7 @@ use log::{debug, error, warn};
 use once_cell::sync::Lazy;
 use rand::Rng;
 use regex::Regex;
-use reqwest::{header, Client, ClientBuilder, Request, RequestBuilder, Response};
+use reqwest::{header, Client, ClientBuilder, Request, RequestBuilder, Response, StatusCode};
 use serde::{de::DeserializeOwned, Deserialize, Serialize};
 use time::{Duration, OffsetDateTime};
 use tokio::sync::RwLock;
@@ -1087,14 +1087,25 @@ impl RustyPipeQuery {
 
         if status.is_client_error() || status.is_server_error() {
             let status_code = status.as_u16();
-            return if status_code == 404 {
-                Err(Error::Extraction(ExtractionError::ContentUnavailable(
-                    "Not found".into(),
-                )))
-            } else {
-                let e = Error::HttpStatus(status_code);
-                create_report(Level::ERR, Some(e.to_string()), vec![]);
-                Err(e)
+
+            return match status {
+                StatusCode::NOT_FOUND => Err(Error::Extraction(
+                    ExtractionError::ContentUnavailable("404 Not found".into()),
+                )),
+                StatusCode::BAD_REQUEST => {
+                    let error_res = serde_json::from_str::<response::ErrorResponse>(&resp_str);
+                    Err(Error::Extraction(ExtractionError::BadRequest(
+                        error_res
+                            .map(|r| r.error.message)
+                            .unwrap_or_default()
+                            .into(),
+                    )))
+                }
+                _ => {
+                    let e = Error::HttpStatus(status_code);
+                    create_report(Level::ERR, Some(e.to_string()), vec![]);
+                    Err(e)
+                }
             };
         }
 
