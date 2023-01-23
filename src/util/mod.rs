@@ -25,11 +25,12 @@ pub static VIDEO_ID_REGEX: Lazy<Regex> = Lazy::new(|| Regex::new(r"^[A-Za-z0-9_-
 pub static CHANNEL_ID_REGEX: Lazy<Regex> =
     Lazy::new(|| Regex::new(r"^UC[A-Za-z0-9_-]{22}$").unwrap());
 pub static PLAYLIST_ID_REGEX: Lazy<Regex> =
-    Lazy::new(|| Regex::new(r"^(?:PL|RD|OLAK)[A-Za-z0-9_-]{30,}$").unwrap());
+    Lazy::new(|| Regex::new(r"^(?:PL|RDCLAK|OLAK)[A-Za-z0-9_-]{30,50}$").unwrap());
 pub static ALBUM_ID_REGEX: Lazy<Regex> =
     Lazy::new(|| Regex::new(r"^MPREb_[A-Za-z0-9_-]{11}$").unwrap());
-pub static VANITY_PATH_REGEX: Lazy<Regex> =
-    Lazy::new(|| Regex::new(r"^/?(?:(?:c/|user/)?[A-z0-9]+)|(?:@[A-z0-9-_.]+)$").unwrap());
+pub static VANITY_PATH_REGEX: Lazy<Regex> = Lazy::new(|| {
+    Regex::new(r"^/?(?:(?:c/|user/)?[A-z0-9]{1,100})|(?:@[A-z0-9-_.]{1,100})$").unwrap()
+});
 
 /// Separator string for YouTube Music subtitles
 pub const DOT_SEPARATOR: &str = " • ";
