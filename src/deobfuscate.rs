@@ -1,6 +1,7 @@
-use fancy_regex::Regex;
+use fancy_regex::Regex as FancyRegex;
 use log::debug;
 use once_cell::sync::Lazy;
+use regex::Regex;
 use reqwest::Client;
 use serde::{Deserialize, Serialize};
 use std::result::Result::Ok;
@@ -68,18 +69,18 @@ impl From<DeobfData> for Deobfuscator {
 const DEOBFUSCATION_FUNC_NAME: &str = "deobfuscate";
 
 fn get_sig_fn_name(player_js: &str) -> Result<String> {
-    static FUNCTION_REGEXES: Lazy<[Regex; 6]> = Lazy::new(|| {
+    static FUNCTION_REGEXES: Lazy<[FancyRegex; 6]> = Lazy::new(|| {
         [
-        Regex::new("(?:\\b|[^a-zA-Z0-9$])([a-zA-Z0-9$]{2,})\\s*=\\s*function\\(\\s*a\\s*\\)\\s*\\{\\s*a\\s*=\\s*a\\.split\\(\\s*\"\"\\s*\\)").unwrap(),
-        Regex::new("\\bm=([a-zA-Z0-9$]{2,})\\(decodeURIComponent\\(h\\.s\\)\\)").unwrap(),
-        Regex::new("\\bc&&\\(c=([a-zA-Z0-9$]{2,})\\(decodeURIComponent\\(c\\)\\)").unwrap(),
-        Regex::new("([\\w$]+)\\s*=\\s*function\\((\\w+)\\)\\{\\s*\\2=\\s*\\2\\.split\\(\"\"\\)\\s*;").unwrap(),
-        Regex::new("\\b([\\w$]{2,})\\s*=\\s*function\\((\\w+)\\)\\{\\s*\\2=\\s*\\2\\.split\\(\"\"\\)\\s*;").unwrap(),
-        Regex::new("\\bc\\s*&&\\s*d\\.set\\([^,]+\\s*,\\s*(:encodeURIComponent\\s*\\()([a-zA-Z0-9$]+)\\(").unwrap(),
+        FancyRegex::new("(?:\\b|[^a-zA-Z0-9$])([a-zA-Z0-9$]{2,})\\s*=\\s*function\\(\\s*a\\s*\\)\\s*\\{\\s*a\\s*=\\s*a\\.split\\(\\s*\"\"\\s*\\)").unwrap(),
+        FancyRegex::new("\\bm=([a-zA-Z0-9$]{2,})\\(decodeURIComponent\\(h\\.s\\)\\)").unwrap(),
+        FancyRegex::new("\\bc&&\\(c=([a-zA-Z0-9$]{2,})\\(decodeURIComponent\\(c\\)\\)").unwrap(),
+        FancyRegex::new("([\\w$]+)\\s*=\\s*function\\((\\w+)\\)\\{\\s*\\2=\\s*\\2\\.split\\(\"\"\\)\\s*;").unwrap(),
+        FancyRegex::new("\\b([\\w$]{2,})\\s*=\\s*function\\((\\w+)\\)\\{\\s*\\2=\\s*\\2\\.split\\(\"\"\\)\\s*;").unwrap(),
+        FancyRegex::new("\\bc\\s*&&\\s*d\\.set\\([^,]+\\s*,\\s*(:encodeURIComponent\\s*\\()([a-zA-Z0-9$]+)\\(").unwrap(),
     ]
     });
 
-    util::get_cg_from_regexes(FUNCTION_REGEXES.iter(), player_js, 1)
+    util::get_cg_from_fancy_regexes(FUNCTION_REGEXES.iter(), player_js, 1)
         .ok_or(DeobfError::Extraction("deobf function name"))
 }
 
@@ -98,8 +99,6 @@ fn get_sig_fn(player_js: &str) -> Result<String> {
     let deobfuscate_function = "var ".to_owned()
         + function_pattern
             .captures(player_js)
-            .ok()
-            .flatten()
             .ok_or(DeobfError::Extraction("deobf function"))?
             .get(1)
             .unwrap()
@@ -110,8 +109,6 @@ fn get_sig_fn(player_js: &str) -> Result<String> {
         Lazy::new(|| Regex::new(";([A-Za-z0-9_\\$]{2})\\...\\(").unwrap());
     let helper_object_name = HELPER_OBJECT_NAME_REGEX
         .captures(&deobfuscate_function)
-        .ok()
-        .flatten()
         .ok_or(DeobfError::Extraction("helper object name"))?
         .get(1)
         .unwrap()
@@ -124,8 +121,6 @@ fn get_sig_fn(player_js: &str) -> Result<String> {
     let player_js_nonl = player_js.replace('\n', "");
     let helper_object = helper_pattern
         .captures(&player_js_nonl)
-        .ok()
-        .flatten()
         .ok_or(DeobfError::Extraction("helper object"))?
         .get(1)
         .unwrap()
@@ -154,8 +149,6 @@ fn get_nsig_fn_name(player_js: &str) -> Result<String> {
 
     let fname_match = FUNCTION_NAME_REGEX
         .captures(player_js)
-        .ok()
-        .flatten()
         .ok_or(DeobfError::Extraction("n_deobf function"))?;
 
     let function_name = fname_match.get(1).unwrap().as_str();
@@ -171,15 +164,13 @@ fn get_nsig_fn_name(player_js: &str) -> Result<String> {
         .parse::<usize>()
         .or(Err(DeobfError::Other("could not parse array_num")))?;
     let array_pattern_str =
-        "var ".to_owned() + &fancy_regex::escape(function_name) + "\\s*=\\s*\\[(.+?)];";
+        "var ".to_owned() + &regex::escape(function_name) + "\\s*=\\s*\\[(.+?)];";
     let array_pattern = Regex::new(&array_pattern_str).or(Err(DeobfError::Other(
         "could not parse helper pattern regex",
     )))?;
 
     let array_str = array_pattern
         .captures(player_js)
-        .ok()
-        .flatten()
         .ok_or(DeobfError::Extraction("n_deobf array_str"))?
         .get(1)
         .unwrap()
@@ -274,13 +265,10 @@ async fn get_player_js_url(http: &Client) -> Result<String> {
     let text = resp.text().await?;
 
     static PLAYER_HASH_PATTERN: Lazy<Regex> = Lazy::new(|| {
-        Regex::new(r#"https:\\\/\\\/www\.youtube\.com\\\/s\\\/player\\\/([a-z0-9]{8})\\\/"#)
-            .unwrap()
+        Regex::new(r#"https:\\/\\/www\.youtube\.com\\/s\\/player\\/([a-z0-9]{8})\\/"#).unwrap()
     });
     let player_hash = PLAYER_HASH_PATTERN
         .captures(&text)
-        .ok()
-        .flatten()
         .ok_or(DeobfError::Extraction("player hash"))?
         .get(1)
         .unwrap()
@@ -303,8 +291,6 @@ fn get_sts(player_js: &str) -> Result<String> {
 
     Ok(STS_PATTERN
         .captures(player_js)
-        .ok()
-        .flatten()
         .ok_or(DeobfError::Extraction("sts"))?
         .get(1)
         .unwrap()

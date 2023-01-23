@@ -3,8 +3,8 @@ use std::{
     collections::{BTreeMap, HashMap},
 };
 
-use fancy_regex::Regex;
 use once_cell::sync::Lazy;
+use regex::Regex;
 use serde::Serialize;
 use url::Url;
 
@@ -530,8 +530,6 @@ fn map_audio_stream(
                     Some(t) => {
                         let lang = LANG_PATTERN
                             .captures(&t.id)
-                            .ok()
-                            .flatten()
                             .map(|m| m.get(1).unwrap().as_str().to_owned());
 
                         Some(AudioTrack {
@@ -557,7 +555,7 @@ fn parse_mime(mime: &str) -> Option<(&str, Vec<&str>)> {
     static PATTERN: Lazy<Regex> =
         Lazy::new(|| Regex::new(r#"(\w+/\w+);\scodecs="([a-zA-Z-0-9.,\s]*)""#).unwrap());
 
-    let captures = some_or_bail!(PATTERN.captures(mime).ok().flatten(), None);
+    let captures = some_or_bail!(PATTERN.captures(mime), None);
     Some((
         captures.get(1).unwrap().as_str(),
         captures

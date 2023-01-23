@@ -13,9 +13,10 @@ use std::{
 };
 
 use base64::Engine;
-use fancy_regex::Regex;
+use fancy_regex::Regex as FancyRegex;
 use once_cell::sync::Lazy;
 use rand::Rng;
+use regex::Regex;
 use url::Url;
 
 use crate::{error::Error, param::Language};
@@ -28,7 +29,7 @@ pub static PLAYLIST_ID_REGEX: Lazy<Regex> =
 pub static ALBUM_ID_REGEX: Lazy<Regex> =
     Lazy::new(|| Regex::new(r"^MPREb_[A-Za-z0-9_-]{11}$").unwrap());
 pub static VANITY_PATH_REGEX: Lazy<Regex> =
-    Lazy::new(|| Regex::new(r"^/?(?:(?:c\/|user\/)?[A-z0-9]+)|(?:@[A-z0-9-_.]+)$").unwrap());
+    Lazy::new(|| Regex::new(r"^/?(?:(?:c/|user/)?[A-z0-9]+)|(?:@[A-z0-9-_.]+)$").unwrap());
 
 /// Separator string for YouTube Music subtitles
 pub const DOT_SEPARATOR: &str = " • ";
@@ -49,6 +50,16 @@ pub struct MappingError(pub(crate) Cow<'static, str>);
 pub fn get_cg_from_regexes<'a, I>(mut regexes: I, text: &str, cg: usize) -> Option<String>
 where
     I: Iterator<Item = &'a Regex>,
+{
+    regexes
+        .find_map(|pattern| pattern.captures(text))
+        .map(|c| c.get(cg).unwrap().as_str().to_owned())
+}
+
+/// Return the given capture group that matches first in a list of fancy regexes
+pub fn get_cg_from_fancy_regexes<'a, I>(mut regexes: I, text: &str, cg: usize) -> Option<String>
+where
+    I: Iterator<Item = &'a FancyRegex>,
 {
     regexes
         .find_map(|pattern| pattern.captures(text).ok().flatten())
@@ -132,7 +143,7 @@ where
 pub fn parse_video_length(text: &str) -> Option<u32> {
     static VIDEO_LENGTH_REGEX: Lazy<Regex> =
         Lazy::new(|| Regex::new(r#"(?:(\d+):)?(\d{1,2}):(\d{2})"#).unwrap());
-    VIDEO_LENGTH_REGEX.captures(text).ok().flatten().map(|cap| {
+    VIDEO_LENGTH_REGEX.captures(text).map(|cap| {
         let hrs = cap
             .get(1)
             .and_then(|x| x.as_str().parse::<u32>().ok())
@@ -339,8 +350,6 @@ pub fn video_id_from_thumbnail_url(url: &str) -> Option<String> {
         Lazy::new(|| Regex::new(r"^https://i.ytimg.com/vi/([A-Za-z0-9_-]{11})/").unwrap());
     URL_REGEX
         .captures(url)
-        .ok()
-        .flatten()
         .and_then(|cap| cap.get(1).map(|x| x.as_str().to_owned()))
 }
 

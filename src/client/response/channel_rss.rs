@@ -97,7 +97,7 @@ impl From<ChannelRss> for crate::model::ChannelRss {
                         .uri
                         .strip_prefix("https://www.youtube.com/channel/")
                         .and_then(|id| {
-                            if util::CHANNEL_ID_REGEX.is_match(id).unwrap_or_default() {
+                            if util::CHANNEL_ID_REGEX.is_match(id) {
                                 Some(id.to_owned())
                             } else {
                                 None

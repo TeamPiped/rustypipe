@@ -1,7 +1,7 @@
 use std::convert::TryFrom;
 
-use fancy_regex::Regex;
 use once_cell::sync::Lazy;
+use regex::Regex;
 use serde::{Deserialize, Deserializer};
 use serde_with::{serde_as, DeserializeAs};
 

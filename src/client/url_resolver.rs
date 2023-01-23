@@ -112,9 +112,9 @@ impl RustyPipeQuery {
             // Album or channel
             Some("browse") => match path_split.next() {
                 Some(id) => {
-                    if util::CHANNEL_ID_REGEX.is_match(id).unwrap_or_default() {
+                    if util::CHANNEL_ID_REGEX.is_match(id) {
                         Ok(UrlTarget::Channel { id: id.to_owned() })
-                    } else if util::ALBUM_ID_REGEX.is_match(id).unwrap_or_default() {
+                    } else if util::ALBUM_ID_REGEX.is_match(id) {
                         Ok(UrlTarget::Album { id: id.to_owned() })
                     } else {
                         Err(Error::Other("invalid url: no browse id".into()))
@@ -153,10 +153,7 @@ impl RustyPipeQuery {
                         // If there is a timestamp parameter, it has to be a video
                         // First check the innertube API if this is a channel vanity url
                         // If no channel is found and the identifier has the video ID format, assume it is a video
-                        if !params.contains_key("t")
-                            && util::VANITY_PATH_REGEX
-                                .is_match(url.path())
-                                .unwrap_or_default()
+                        if !params.contains_key("t") && util::VANITY_PATH_REGEX.is_match(url.path())
                         {
                             match self
                                 ._navigation_resolve_url(url.path(), ClientType::Desktop)
@@ -164,7 +161,7 @@ impl RustyPipeQuery {
                             {
                                 Ok(target) => Ok(target),
                                 Err(Error::Extraction(ExtractionError::ContentUnavailable(e))) => {
-                                    match util::VIDEO_ID_REGEX.is_match(id).unwrap_or_default() {
+                                    match util::VIDEO_ID_REGEX.is_match(id) {
                                         true => Ok(UrlTarget::Video {
                                             id: id.to_owned(),
                                             start_time: get_start_time(),
@@ -176,7 +173,7 @@ impl RustyPipeQuery {
                                 }
                                 Err(e) => Err(e),
                             }
-                        } else if util::VIDEO_ID_REGEX.is_match(id).unwrap_or_default() {
+                        } else if util::VIDEO_ID_REGEX.is_match(id) {
                             Ok(UrlTarget::Video {
                                 id: id.to_owned(),
                                 start_time: get_start_time(),
@@ -232,16 +229,16 @@ impl RustyPipeQuery {
                 .await
         }
         // ID only
-        else if util::VIDEO_ID_REGEX.is_match(string).unwrap_or_default() {
+        else if util::VIDEO_ID_REGEX.is_match(string) {
             Ok(UrlTarget::Video {
                 id: string.to_owned(),
                 start_time: 0,
             })
-        } else if util::CHANNEL_ID_REGEX.is_match(string).unwrap_or_default() {
+        } else if util::CHANNEL_ID_REGEX.is_match(string) {
             Ok(UrlTarget::Channel {
                 id: string.to_owned(),
             })
-        } else if util::PLAYLIST_ID_REGEX.is_match(string).unwrap_or_default() {
+        } else if util::PLAYLIST_ID_REGEX.is_match(string) {
             if resolve_albums && string.starts_with(util::PLAYLIST_ID_ALBUM_PREFIX) {
                 self._navigation_resolve_url(
                     &format!("/playlist?list={}", string),
@@ -253,13 +250,13 @@ impl RustyPipeQuery {
                     id: string.to_owned(),
                 })
             }
-        } else if util::ALBUM_ID_REGEX.is_match(string).unwrap_or_default() {
+        } else if util::ALBUM_ID_REGEX.is_match(string) {
             Ok(UrlTarget::Album {
                 id: string.to_owned(),
             })
         }
         // Channel name only
-        else if util::VANITY_PATH_REGEX.is_match(string).unwrap_or_default() {
+        else if util::VANITY_PATH_REGEX.is_match(string) {
             self._navigation_resolve_url(
                 &format!("/{}", string.trim_start_matches('/')),
                 ClientType::Desktop,

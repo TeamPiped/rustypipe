@@ -25,10 +25,10 @@ mod channel_rss;
 use std::sync::Arc;
 use std::{borrow::Cow, fmt::Debug};
 
-use fancy_regex::Regex;
 use log::{debug, error, warn};
 use once_cell::sync::Lazy;
 use rand::Rng;
+use regex::Regex;
 use reqwest::{header, Client, ClientBuilder, Request, RequestBuilder, Response};
 use serde::{de::DeserializeOwned, Deserialize, Serialize};
 use time::{Duration, OffsetDateTime};

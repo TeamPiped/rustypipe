@@ -1,8 +1,8 @@
 use std::collections::HashSet;
 use std::fmt::Display;
 
-use fancy_regex::Regex;
 use once_cell::sync::Lazy;
+use regex::Regex;
 use rstest::rstest;
 use time::macros::date;
 use time::OffsetDateTime;
@@ -2272,11 +2272,7 @@ async fn assert_next_items<T: FromYtItem, Q: AsRef<RustyPipeQuery>>(
 fn assert_video_id(id: &str) {
     static VIDEO_ID_REGEX: Lazy<Regex> = Lazy::new(|| Regex::new(r"^[A-Za-z0-9_-]{11}$").unwrap());
 
-    assert!(
-        VIDEO_ID_REGEX.is_match(id).unwrap_or_default(),
-        "invalid video id: `{}`",
-        id
-    );
+    assert!(VIDEO_ID_REGEX.is_match(id), "invalid video id: `{}`", id);
 }
 
 fn assert_channel_id(id: &str) {
@@ -2284,7 +2280,7 @@ fn assert_channel_id(id: &str) {
         Lazy::new(|| Regex::new(r"^UC[A-Za-z0-9_-]{22}$").unwrap());
 
     assert!(
-        CHANNEL_ID_REGEX.is_match(id).unwrap_or_default(),
+        CHANNEL_ID_REGEX.is_match(id),
         "invalid channel id: `{}`",
         id
     );
@@ -2294,20 +2290,12 @@ fn assert_album_id(id: &str) {
     static ALBUM_ID_REGEX: Lazy<Regex> =
         Lazy::new(|| Regex::new(r"^MPREb_[A-Za-z0-9_-]{11}$").unwrap());
 
-    assert!(
-        ALBUM_ID_REGEX.is_match(id).unwrap_or_default(),
-        "invalid album id: `{}`",
-        id
-    );
+    assert!(ALBUM_ID_REGEX.is_match(id), "invalid album id: `{}`", id);
 }
 
 fn assert_playlist_id(id: &str) {
     static PLAYLIST_ID_REGEX: Lazy<Regex> =
         Lazy::new(|| Regex::new(r"^(?:PL|RD|OLAK)[A-Za-z0-9_-]{30,}$").unwrap());
 
-    assert!(
-        PLAYLIST_ID_REGEX.is_match(id).unwrap_or_default(),
-        "invalid album id: `{}`",
-        id
-    );
+    assert!(PLAYLIST_ID_REGEX.is_match(id), "invalid album id: `{}`", id);
 }
