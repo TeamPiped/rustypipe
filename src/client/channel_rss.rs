@@ -25,9 +25,9 @@ impl RustyPipeQuery {
             .http_request_txt(self.client.inner.http.get(&url).build()?)
             .await
             .map_err(|e| match e {
-                Error::HttpStatus(404) => Error::Extraction(ExtractionError::ContentUnavailable(
-                    "Channel not found".into(),
-                )),
+                Error::HttpStatus(404, _) => Error::Extraction(
+                    ExtractionError::ContentUnavailable("Channel not found".into()),
+                ),
                 _ => e,
             })?;
 

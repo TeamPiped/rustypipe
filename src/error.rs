@@ -19,8 +19,8 @@ pub enum Error {
     #[error("http error: {0}")]
     Http(#[from] reqwest::Error),
     /// Erroneous HTTP status code received
-    #[error("http status code: {0}")]
-    HttpStatus(u16),
+    #[error("http status code: {0} message: {1}")]
+    HttpStatus(u16, Cow<'static, str>),
     /// Unspecified error
     #[error("error: {0}")]
     Other(Cow<'static, str>),

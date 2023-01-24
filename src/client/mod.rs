@@ -538,7 +538,7 @@ impl RustyPipe {
         let status = res.status();
 
         if status.is_client_error() || status.is_server_error() {
-            Err(Error::HttpStatus(status.into()))
+            Err(Error::HttpStatus(status.into(), "none".into()))
         } else {
             Ok(res)
         }
@@ -1086,26 +1086,18 @@ impl RustyPipeQuery {
         };
 
         if status.is_client_error() || status.is_server_error() {
-            let status_code = status.as_u16();
+            let error_msg = serde_json::from_str::<response::ErrorResponse>(&resp_str)
+                .map(|r| r.error.message)
+                .unwrap_or_default();
 
             return match status {
                 StatusCode::NOT_FOUND => Err(Error::Extraction(
-                    ExtractionError::ContentUnavailable("404 Not found".into()),
+                    ExtractionError::ContentUnavailable(error_msg.into()),
                 )),
-                StatusCode::BAD_REQUEST => {
-                    let error_res = serde_json::from_str::<response::ErrorResponse>(&resp_str);
-                    Err(Error::Extraction(ExtractionError::BadRequest(
-                        error_res
-                            .map(|r| r.error.message)
-                            .unwrap_or_default()
-                            .into(),
-                    )))
-                }
-                _ => {
-                    let e = Error::HttpStatus(status_code);
-                    create_report(Level::ERR, Some(e.to_string()), vec![]);
-                    Err(e)
-                }
+                StatusCode::BAD_REQUEST => Err(Error::Extraction(ExtractionError::BadRequest(
+                    error_msg.into(),
+                ))),
+                _ => Err(Error::HttpStatus(status.as_u16(), error_msg.into())),
             };
         }
 
