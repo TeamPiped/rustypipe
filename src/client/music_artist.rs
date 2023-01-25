@@ -34,9 +34,13 @@ impl RustyPipeQuery {
         artist_id: S,
         all_albums: bool,
     ) -> Result<MusicArtist, Error> {
+        let artist_id = artist_id.as_ref();
+        log::debug!("Getting music artist {}", artist_id);
+
         let res = self._music_artist(artist_id, all_albums).await;
 
         if let Err(Error::Extraction(ExtractionError::Redirect(id))) = res {
+            log::debug!("Music artist {} redirects to {}", artist_id, &id);
             self._music_artist(&id, all_albums).await.map(|x| *x)
         } else {
             res.map(|x| *x)
@@ -71,9 +75,17 @@ impl RustyPipeQuery {
                 .await?;
 
             let visitor_data = Rc::new(visitor_data);
+            let n_album_pages = album_page_params.len();
             let album_page_results = stream::iter(album_page_params)
-                .map(|params| {
+                .enumerate()
+                .map(|(i, params)| {
                     let visitor_data = visitor_data.clone();
+                    log::debug!(
+                        "Getting music artist {} section {}/{}",
+                        artist_id,
+                        i + 1,
+                        n_album_pages
+                    );
                     async move {
                         self.music_artist_album_page(artist_id, &params, &visitor_data)
                             .await
@@ -237,14 +249,24 @@ fn map_artist_page(
                         {
                             if let Some(cfg) = bep.browse_endpoint_context_supported_configs {
                                 match cfg.browse_endpoint_context_music_config.page_type {
+                                    // Music videos
                                     PageType::Playlist => {
                                         if videos_playlist_id.is_none() {
                                             videos_playlist_id = Some(bep.browse_id);
                                         }
                                     }
+                                    // Albums or playlists
                                     PageType::Artist => {
-                                        album_page_params.push(bep.params);
-                                        extendable_albums = true;
+                                        // Peek at the first item to determine type
+                                        if let Some(response::music_item::MusicResponseItem::MusicTwoRowItemRenderer(item)) = shelf.contents.c.first() {
+                                            if let Some(PageType::Album) = item.navigation_endpoint.browse_endpoint.as_ref().and_then(|be| {
+                                                be.browse_endpoint_context_supported_configs.as_ref().map(|config| {
+                                                        config.browse_endpoint_context_music_config.page_type
+                                                })}) {
+                                                    album_page_params.push(bep.params);
+                                                    extendable_albums = true;
+                                                }
+                                        }
                                     }
                                     _ => {}
                                 }

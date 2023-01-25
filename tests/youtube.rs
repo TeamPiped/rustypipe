@@ -215,6 +215,7 @@ async fn check_video_stream(s: impl YtStream) {
     false
 )]
 #[tokio::test]
+#[allow(clippy::too_many_arguments)]
 async fn get_player(
     #[case] id: &str,
     #[case] name: &str,

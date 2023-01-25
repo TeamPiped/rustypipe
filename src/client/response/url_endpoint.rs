@@ -195,38 +195,37 @@ impl From<PageType> for MusicPageType {
 
 impl NavigationEndpoint {
     pub(crate) fn music_page(self) -> Option<(MusicPageType, String)> {
-        match self.browse_endpoint {
-            Some(browse) => match browse.browse_endpoint_context_supported_configs {
-                Some(config) => Some((
-                    config.browse_endpoint_context_music_config.page_type.into(),
-                    browse.browse_id,
-                )),
-                None => None,
-            },
-            None => None,
-        }
-        .or_else(|| {
-            self.watch_endpoint.map(|watch| {
-                if watch
-                    .playlist_id
-                    .map(|plid| plid.starts_with("RDQM"))
-                    .unwrap_or_default()
-                {
-                    // Genre radios (e.g. "pop radio") will be skipped
-                    (MusicPageType::None, watch.video_id)
-                } else {
+        self.browse_endpoint
+            .and_then(|be| {
+                be.browse_endpoint_context_supported_configs.map(|config| {
                     (
-                        MusicPageType::Track {
-                            is_video: watch
-                                .watch_endpoint_music_supported_configs
-                                .watch_endpoint_music_config
-                                .music_video_type
-                                == MusicVideoType::Video,
-                        },
-                        watch.video_id,
+                        config.browse_endpoint_context_music_config.page_type.into(),
+                        be.browse_id,
                     )
-                }
+                })
             })
-        })
+            .or_else(|| {
+                self.watch_endpoint.map(|watch| {
+                    if watch
+                        .playlist_id
+                        .map(|plid| plid.starts_with("RDQM"))
+                        .unwrap_or_default()
+                    {
+                        // Genre radios (e.g. "pop radio") will be skipped
+                        (MusicPageType::None, watch.video_id)
+                    } else {
+                        (
+                            MusicPageType::Track {
+                                is_video: watch
+                                    .watch_endpoint_music_supported_configs
+                                    .watch_endpoint_music_config
+                                    .music_video_type
+                                    == MusicVideoType::Video,
+                            },
+                            watch.video_id,
+                        )
+                    }
+                })
+            })
     }
 }

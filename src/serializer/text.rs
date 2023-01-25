@@ -538,8 +538,8 @@ mod tests {
             txt: Vec<String>,
         }
 
-        let res_str = serde_json::from_str::<S>(&test_json).unwrap();
-        let res_vec = serde_json::from_str::<SVec>(&test_json).unwrap();
+        let res_str = serde_json::from_str::<S>(test_json).unwrap();
+        let res_vec = serde_json::from_str::<SVec>(test_json).unwrap();
 
         assert_eq!(res_str.txt, exp.join(""));
         assert_eq!(res_vec.txt, exp);
@@ -582,7 +582,7 @@ mod tests {
             }
         }"#;
 
-        let res = serde_json::from_str::<SLink>(&test_json).unwrap();
+        let res = serde_json::from_str::<SLink>(test_json).unwrap();
         insta::assert_debug_snapshot!(res, @r###"
         SLink {
             ln: Video {
@@ -617,7 +617,7 @@ mod tests {
             }
         }"#;
 
-        let res = serde_json::from_str::<SLink>(&test_json).unwrap();
+        let res = serde_json::from_str::<SLink>(test_json).unwrap();
         insta::assert_debug_snapshot!(res, @r###"
         SLink {
             ln: Browse {
@@ -651,7 +651,7 @@ mod tests {
             }
         }"#;
 
-        let res = serde_json::from_str::<SLink>(&test_json).unwrap();
+        let res = serde_json::from_str::<SLink>(test_json).unwrap();
         insta::assert_debug_snapshot!(res, @r###"
         SLink {
             ln: Browse {
@@ -675,7 +675,7 @@ mod tests {
             }
         }"#;
 
-        let res = serde_json::from_str::<SLink>(&test_json).unwrap();
+        let res = serde_json::from_str::<SLink>(test_json).unwrap();
         insta::assert_debug_snapshot!(res, @r###"
         SLink {
             ln: Text {
@@ -710,7 +710,7 @@ mod tests {
             }
         }"#;
 
-        let res = serde_json::from_str::<SLink>(&test_json).unwrap();
+        let res = serde_json::from_str::<SLink>(test_json).unwrap();
         insta::assert_debug_snapshot!(res, @r###"
         SLink {
             ln: Web {
@@ -759,7 +759,7 @@ mod tests {
             }
         }"#;
 
-        let res = serde_json::from_str::<SLinks>(&test_json).unwrap();
+        let res = serde_json::from_str::<SLinks>(test_json).unwrap();
         insta::assert_debug_snapshot!(res, @r###"
         SLinks {
             ln: TextComponents(
@@ -787,7 +787,7 @@ mod tests {
     fn t_links_empty() {
         let test_json = r#"{"ln": {}}"#;
 
-        let res = serde_json::from_str::<SLinks>(&test_json).unwrap();
+        let res = serde_json::from_str::<SLinks>(test_json).unwrap();
         assert!(res.ln.0.is_empty())
     }
 
