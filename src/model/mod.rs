@@ -1111,6 +1111,8 @@ pub struct MusicArtist {
     pub tracks_playlist_id: Option<String>,
     /// ID of the playlist containging the artist's videos
     pub videos_playlist_id: Option<String>,
+    /// ID of the artist radio
+    pub radio_id: Option<String>,
 }
 
 /// YouTube Music search result

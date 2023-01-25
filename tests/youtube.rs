@@ -2031,7 +2031,34 @@ async fn music_radio_playlist_not_found() {
         .music_radio_playlist("PL5dDx681T4bR7ZF1IuWzOv1omlZZZZZZZ")
         .await;
 
-    // Currently this returns valid data
+    if let Err(err) = res {
+        assert!(
+            matches!(
+                err,
+                Error::Extraction(ExtractionError::ContentUnavailable(_))
+            ),
+            "got: {}",
+            err
+        );
+    }
+}
+
+#[tokio::test]
+async fn music_radio_artist() {
+    let rp = RustyPipe::builder().strict().build();
+    let tracks = rp
+        .query()
+        .music_radio("RDEM_Ktu-TilkxtLvmc9wX1MLQ")
+        .await
+        .unwrap();
+    assert_next_items(tracks, rp.query(), 20).await;
+}
+
+#[tokio::test]
+async fn music_radio_not_found() {
+    let rp = RustyPipe::builder().strict().build();
+    let res = rp.query().music_radio("RDEM_Ktu-TilkxtLvmc9wXZZZZ").await;
+
     if let Err(err) = res {
         assert!(
             matches!(

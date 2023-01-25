@@ -3649,4 +3649,5 @@ MusicArtist(
   ],
   tracks_playlist_id: Some("OLAK5uy_mHzt_lZ0Vdnv3NAqvCLQw5CiYe0q96iBs"),
   videos_playlist_id: Some("OLAK5uy_k9FAxC8Xb8T0KqP5wFbn8KsP3VkUjb334"),
+  radio_id: Some("RDEM_Ktu-TilkxtLvmc9wX1MLQ"),
 )

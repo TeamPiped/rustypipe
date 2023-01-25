@@ -1885,4 +1885,5 @@ MusicArtist(
   ],
   tracks_playlist_id: Some("OLAK5uy_nGjQIyWU6PsJZdJst7WOJHVZ7N7DupP04"),
   videos_playlist_id: Some("OLAK5uy_mulXOv4f1FNKi1-0zgY3YouLDTXX2wLu4"),
+  radio_id: Some("RDEMzMxPuaGyofN40xcgHuZAbw"),
 )

@@ -5,7 +5,7 @@ use crate::serializer::text::Text;
 
 use super::{
     music_item::{
-        Grid, ItemSection, MusicThumbnailRenderer, SimpleHeader, SingleColumnBrowseResult,
+        Button, Grid, ItemSection, MusicThumbnailRenderer, SimpleHeader, SingleColumnBrowseResult,
     },
     SectionList, Tab,
 };
@@ -41,6 +41,9 @@ pub(crate) struct MusicHeaderRenderer {
     #[serde(default)]
     #[serde_as(as = "DefaultOnError")]
     pub share_endpoint: Option<ShareEndpoint>,
+    #[serde(default)]
+    #[serde_as(as = "DefaultOnError")]
+    pub start_radio_button: Option<Button>,
 }
 
 #[derive(Debug, Deserialize)]

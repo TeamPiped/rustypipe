@@ -320,14 +320,14 @@ pub(crate) struct MusicCarouselShelfHeader {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct MusicCarouselShelfHeaderRenderer {
-    pub more_content_button: Option<MoreContentButton>,
+    pub more_content_button: Option<Button>,
     #[serde(default)]
     pub title: TextComponents,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub(crate) struct MoreContentButton {
+pub(crate) struct Button {
     pub button_renderer: ButtonRenderer,
 }
 

@@ -151,4 +151,5 @@ MusicArtist(
   similar_artists: "[artists]",
   tracks_playlist_id: Some("OLAK5uy_miHesZCUQY5S9EwqfoNP2tZR9nZ0NBAeU"),
   videos_playlist_id: Some("OLAK5uy_mqbgE6T9uvusUWrAxJGiImf4_P4dM7IvQ"),
+  radio_id: Some("RDEM7AbogW0cCnElSU0WYm1GqA"),
 )

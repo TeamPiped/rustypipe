@@ -15,4 +15,5 @@ MusicArtist(
   similar_artists: "[artists]",
   tracks_playlist_id: None,
   videos_playlist_id: None,
+  radio_id: None,
 )

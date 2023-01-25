@@ -166,7 +166,7 @@ fn map_artist_page(
     lang: crate::param::Language,
     skip_extendables: bool,
 ) -> Result<MapResult<(MusicArtist, Vec<String>)>, ExtractionError> {
-    // dbg!(&self);
+    // dbg!(&res);
 
     let header = res.header.music_immersive_header_renderer;
 
@@ -272,6 +272,13 @@ fn map_artist_page(
             .map(|m| m.as_str().to_owned())
     });
 
+    let radio_id = header.start_radio_button.and_then(|b| {
+        b.button_renderer
+            .navigation_endpoint
+            .watch_endpoint
+            .and_then(|w| w.playlist_id)
+    });
+
     Ok(MapResult {
         c: (
             MusicArtist {
@@ -292,6 +299,7 @@ fn map_artist_page(
                 similar_artists: mapped.c.artists,
                 tracks_playlist_id,
                 videos_playlist_id,
+                radio_id,
             },
             album_page_params,
         ),

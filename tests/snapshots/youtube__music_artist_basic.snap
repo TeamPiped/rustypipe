@@ -316,4 +316,5 @@ MusicArtist(
   similar_artists: "[artists]",
   tracks_playlist_id: Some("OLAK5uy_n6aX-F_lCQxgyTIv4FJhp78bXV93b9NUM"),
   videos_playlist_id: Some("OLAK5uy_nrePwvOEzmO7SydszEFfCDu8gAJxKfFtw"),
+  radio_id: Some("RDEMdgjzN3Qrk_GD7BooQbkJ4A"),
 )
