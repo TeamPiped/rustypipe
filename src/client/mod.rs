@@ -1226,10 +1226,10 @@ fn validate_country(country: Country) -> Country {
 mod tests {
     use super::*;
 
-    #[tokio::test]
-    async fn t_get_ytm_visitor_data() {
+    #[test]
+    fn t_get_ytm_visitor_data() {
         let rp = RustyPipe::new();
-        let visitor_data = rp.get_ytm_visitor_data().await.unwrap();
+        let visitor_data = tokio_test::block_on(rp.get_ytm_visitor_data()).unwrap();
         dbg!(&visitor_data);
         assert!(visitor_data.ends_with("%3D"));
         assert_eq!(visitor_data.len(), 32)
