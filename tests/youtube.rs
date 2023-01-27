@@ -226,7 +226,7 @@ fn get_player(
     assert_eq!(details.id, id);
     assert_eq!(details.name, name);
     let desc = details.description.unwrap();
-    assert!(desc.contains(description), "description: {}", desc);
+    assert!(desc.contains(description), "description: {desc}");
     assert_eq!(details.length, length);
     assert_eq!(details.channel.id, channel_id);
     assert_eq!(details.channel.name, channel_name);
@@ -267,7 +267,7 @@ fn get_player(
                 .collect::<HashSet<_>>();
 
             for l in ["en", "es", "fr", "pt", "ru"] {
-                assert!(langs.contains(l), "missing lang: {}", l);
+                assert!(langs.contains(l), "missing lang: {l}");
             }
         }
         _ => {}
@@ -311,9 +311,7 @@ fn get_player_error(#[case] id: &str, #[case] msg: &str) {
 
     assert!(
         err.starts_with(msg),
-        "got error msg: `{}`, expected: `{}`",
-        err,
-        msg
+        "got error msg: `{err}`, expected: `{msg}`"
     );
 }
 
@@ -400,8 +398,7 @@ fn playlist_not_found() {
             err,
             Error::Extraction(ExtractionError::ContentUnavailable(_))
         ),
-        "got: {}",
-        err
+        "got: {err}"
     );
 }
 
@@ -419,8 +416,7 @@ fn get_video_details() {
     let desc = details.description.to_plaintext();
     assert!(
         desc.contains("Listen and download aespa's debut single \"Black Mamba\""),
-        "bad description: {}",
-        desc
+        "bad description: {desc}"
     );
 
     assert_eq!(details.channel.id, "UCEf_Bc-KVd7onSeifS3py9g");
@@ -459,7 +455,7 @@ fn get_video_details_music() {
     assert_eq!(details.id, "XuM2onMGvTI");
     assert_eq!(details.name, "Gäa");
     let desc = details.description.to_plaintext();
-    assert!(desc.contains("Gäa · Oonagh"), "bad description: {}", desc);
+    assert!(desc.contains("Gäa · Oonagh"), "bad description: {desc}");
 
     assert_eq!(details.channel.id, "UCVGvnqB-5znqPSbMGlhF4Pw");
     assert_eq!(details.channel.name, "Sentamusic");
@@ -506,8 +502,7 @@ fn get_video_details_ccommons() {
     let desc = details.description.to_plaintext();
     assert!(
             desc.contains("Seit Anfang 2019 hat David jeden einzelnen Halt jeder einzelnen Zugfahrt auf jedem einzelnen Fernbahnhof in ganz Deutschland"),
-            "bad description: {}",
-            desc
+            "bad description: {desc}"
         );
 
     assert_eq!(details.channel.id, "UC2TXq_t06Hjdr2g_KdKpHQg");
@@ -548,8 +543,7 @@ fn get_video_details_chapters() {
     let desc = details.description.to_plaintext();
     assert!(
             desc.contains("These days, you can game almost anywhere on the planet, anytime. But what if that planet was in the middle of an apocalypse"),
-            "bad description: {}",
-            desc
+            "bad description: {desc}"
         );
 
     assert_eq!(details.channel.id, "UCXuqSBlHAE6Xw-yeJA0Tunw");
@@ -676,8 +670,7 @@ fn get_video_details_live() {
     let desc = details.description.to_plaintext();
     assert!(
         desc.contains("The station is crewed by NASA astronauts as well as Russian Cosmonauts"),
-        "bad description: {}",
-        desc
+        "bad description: {desc}"
     );
 
     assert_eq!(details.channel.id, "UCakgsb0w7QB0VHdnCc-OVEA");
@@ -758,8 +751,7 @@ fn get_video_details_not_found() {
             err,
             Error::Extraction(ExtractionError::ContentUnavailable(_))
         ),
-        "got: {}",
-        err
+        "got: {err}"
     )
 }
 
@@ -1001,8 +993,7 @@ fn channel_not_found(#[case] id: &str) {
             err,
             Error::Extraction(ExtractionError::ContentUnavailable(_))
         ),
-        "got: {}",
-        err
+        "got: {err}"
     );
 }
 
@@ -1307,8 +1298,7 @@ fn music_playlist_not_found() {
             err,
             Error::Extraction(ExtractionError::ContentUnavailable(_))
         ),
-        "got: {}",
-        err
+        "got: {err}"
     );
 }
 
@@ -1329,7 +1319,7 @@ fn music_album(#[case] name: &str, #[case] id: &str) {
 
     assert!(!album.cover.is_empty(), "got no cover");
 
-    insta::assert_ron_snapshot!(format!("music_album_{}", name), album,
+    insta::assert_ron_snapshot!(format!("music_album_{name}"), album,
         {".cover" => "[cover]"}
     );
 }
@@ -1344,8 +1334,7 @@ fn music_album_not_found() {
             err,
             Error::Extraction(ExtractionError::ContentUnavailable(_))
         ),
-        "got: {}",
-        err
+        "got: {err}"
     );
 }
 
@@ -1401,7 +1390,7 @@ fn music_artist(
     // Sort albums to ensure consistent order
     artist.albums.sort_by_key(|a| a.id.to_owned());
 
-    insta::assert_ron_snapshot!(format!("music_artist_{}", name), artist, {
+    insta::assert_ron_snapshot!(format!("music_artist_{name}"), artist, {
         ".header_image" => "[header_image]",
         ".subscriber_count" => "[subscriber_count]",
         ".albums[].cover" => "[cover]",
@@ -1422,8 +1411,7 @@ fn music_artist_not_found() {
             err,
             Error::Extraction(ExtractionError::ContentUnavailable(_))
         ),
-        "got: {}",
-        err
+        "got: {err}"
     );
 }
 
@@ -1721,14 +1709,11 @@ fn music_search_suggestion(#[case] query: &str, #[case] expect: Option<&str>) {
     match expect {
         Some(expect) => assert!(
             suggestion.iter().any(|s| s == expect),
-            "suggestion: {:?}, expected: {}",
-            suggestion,
-            expect
+            "suggestion: {suggestion:?}, expected: {expect}"
         ),
         None => assert!(
             suggestion.is_empty(),
-            "suggestion: {:?}, expected to be empty",
-            suggestion
+            "suggestion: {suggestion:?}, expected to be empty"
         ),
     }
 }
@@ -1747,7 +1732,7 @@ fn music_details(#[case] name: &str, #[case] id: &str) {
         assert!(track.track.view_count.is_none());
     }
 
-    insta::assert_ron_snapshot!(format!("music_details_{}", name), track,
+    insta::assert_ron_snapshot!(format!("music_details_{name}"), track,
         {
             ".track.cover" => "[cover]",
             ".track.view_count" => "[view_count]"
@@ -1774,8 +1759,7 @@ fn music_lyrics_not_found() {
             err,
             Error::Extraction(ExtractionError::ContentUnavailable(_))
         ),
-        "got: {}",
-        err
+        "got: {err}"
     );
 }
 
@@ -1890,8 +1874,7 @@ fn music_details_not_found() {
             err,
             Error::Extraction(ExtractionError::ContentUnavailable(_))
         ),
-        "got: {}",
-        err
+        "got: {err}"
     );
 }
 
@@ -1912,8 +1895,7 @@ fn music_radio_track_not_found() {
             err,
             Error::Extraction(ExtractionError::ContentUnavailable(_))
         ),
-        "got: {}",
-        err
+        "got: {err}"
     );
 }
 
@@ -1942,8 +1924,7 @@ fn music_radio_playlist_not_found() {
                 err,
                 Error::Extraction(ExtractionError::ContentUnavailable(_))
             ),
-            "got: {}",
-            err
+            "got: {err}"
         );
     }
 }
@@ -1967,8 +1948,7 @@ fn music_radio_not_found() {
             err,
             Error::Extraction(ExtractionError::ContentUnavailable(_))
         ),
-        "got: {}",
-        err
+        "got: {err}"
     );
 }
 
@@ -2117,8 +2097,7 @@ fn music_genre_not_found() {
             err,
             Error::Extraction(ExtractionError::ContentUnavailable(_))
         ),
-        "got: {}",
-        err
+        "got: {err}"
     );
 }
 
@@ -2157,9 +2136,9 @@ fn invalid_ctoken(#[case] ep: ContinuationEndpoint) {
             ExtractionError::BadRequest(msg) => {
                 assert_eq!(msg, "Request contains an invalid argument.")
             }
-            _ => panic!("invalid error: {}", e),
+            _ => panic!("invalid error: {e}"),
         },
-        _ => panic!("invalid error: {}", e),
+        _ => panic!("invalid error: {e}"),
     }
 }
 
@@ -2171,15 +2150,13 @@ fn assert_approx(left: f64, right: f64) {
         let f = left / right;
         assert!(
             0.9 < f && f < 1.1,
-            "{} not within 10% margin of {}",
-            left,
-            right
+            "{left} not within 10% margin of {right}"
         );
     }
 }
 
 fn assert_gte<T: PartialOrd + Display>(a: T, b: T, msg: &str) {
-    assert!(a >= b, "expected {} {}, got {}", b, msg, a);
+    assert!(a >= b, "expected {b} {msg}, got {a}");
 }
 
 /// Assert that the paginator produces at least n pages
@@ -2218,17 +2195,17 @@ fn assert_next_items<T: FromYtItem, Q: AsRef<RustyPipeQuery>>(
 }
 
 fn assert_video_id(id: &str) {
-    assert!(validate::video_id(id), "invalid video id: `{}`", id)
+    assert!(validate::video_id(id), "invalid video id: `{id}`")
 }
 
 fn assert_channel_id(id: &str) {
-    assert!(validate::channel_id(id), "invalid channel id: `{}`", id);
+    assert!(validate::channel_id(id), "invalid channel id: `{id}`");
 }
 
 fn assert_album_id(id: &str) {
-    assert!(validate::album_id(id), "invalid album id: `{}`", id);
+    assert!(validate::album_id(id), "invalid album id: `{id}`");
 }
 
 fn assert_playlist_id(id: &str) {
-    assert!(validate::playlist_id(id), "invalid playlist id: `{}`", id);
+    assert!(validate::playlist_id(id), "invalid playlist id: `{id}`");
 }

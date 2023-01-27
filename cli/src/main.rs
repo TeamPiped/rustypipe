@@ -52,13 +52,14 @@ async fn download_single_video(
     let pb = multi.add(ProgressBar::new(1));
     pb.set_style(ProgressStyle::with_template("{msg}\n{spinner:.green} [{elapsed_precise}] [{wide_bar:.cyan/blue}] {bytes}/{total_bytes} ({bytes_per_sec}, {eta})").unwrap()
         .progress_chars("#>-"));
-    pb.set_message(format!("Fetching player data for {}", video_title));
+    pb.set_message(format!("Fetching player data for {video_title}"));
 
     let res = async {
-        let player_data = rp.query().player(video_id.as_str()).await.context(format!(
-            "Failed to fetch player data for video {}",
-            video_id
-        ))?;
+        let player_data = rp
+            .query()
+            .player(video_id.as_str())
+            .await
+            .context(format!("Failed to fetch player data for video {video_id}"))?;
 
         let mut filter = StreamFilter::new();
         if let Some(res) = resolution {
@@ -124,7 +125,7 @@ async fn download_video(
         None,
     )
     .await
-    .unwrap_or_else(|e| println!("ERROR: {:?}", e));
+    .unwrap_or_else(|e| println!("ERROR: {e:?}"));
 }
 
 async fn download_playlist(
@@ -185,7 +186,7 @@ async fn download_playlist(
         .for_each(|res| match res {
             Ok(_) => {}
             Err(e) => {
-                println!("ERROR: {:?}", e);
+                println!("ERROR: {e:?}");
             }
         });
 }

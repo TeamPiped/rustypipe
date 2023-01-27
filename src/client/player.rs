@@ -105,7 +105,7 @@ impl RustyPipeQuery {
                 playback_context: Some(QPlaybackContext {
                     content_playback_context: QContentPlaybackContext {
                         signature_timestamp: deobf.get_sts(),
-                        referer: format!("https://www.youtube.com/watch?v={}", video_id),
+                        referer: format!("https://www.youtube.com/watch?v={video_id}"),
                     },
                 }),
                 cpn: None,
@@ -374,7 +374,7 @@ fn map_url(
             util::url_to_params(url),
             MapResult {
                 c: None,
-                warnings: vec![format!("Could not parse url `{}`", url)]
+                warnings: vec![format!("Could not parse url `{url}`")]
             }
         ),
         None => match signature_cipher {
@@ -384,8 +384,7 @@ fn map_url(
                     return MapResult {
                         c: None,
                         warnings: vec![format!(
-                            "Could not deobfuscate signatureCipher `{}`: {}",
-                            signature_cipher, e
+                            "Could not deobfuscate signatureCipher `{signature_cipher}`: {e}"
                         )],
                     };
                 }
@@ -403,8 +402,7 @@ fn map_url(
     let mut throttled = false;
     deobf_nsig(&mut url_params, deobf, last_nsig).unwrap_or_else(|e| {
         warnings.push(format!(
-            "Could not deobfuscate nsig (params: {:?}): {}",
-            url_params, e
+            "Could not deobfuscate nsig (params: {url_params:?}): {e}"
         ));
         throttled = true;
     });
@@ -416,8 +414,7 @@ fn map_url(
                 MapResult {
                     c: None,
                     warnings: vec![format!(
-                        "url could not be joined. url: `{}` params: {:?}",
-                        url_base, url_params
+                        "url could not be joined. url: `{url_base}` params: {url_params:?}"
                     )],
                 }
             )
@@ -636,7 +633,7 @@ mod tests {
     #[case::android("android")]
     #[case::ios("ios")]
     fn map_player_data(#[case] name: &str) {
-        let json_path = path!("testfiles" / "player" / format!("{}_video.json", name));
+        let json_path = path!("testfiles" / "player" / format!("{name}_video.json"));
         let json_file = File::open(json_path).unwrap();
 
         let resp: response::Player = serde_json::from_reader(BufReader::new(json_file)).unwrap();
@@ -650,7 +647,7 @@ mod tests {
             map_res.warnings
         );
         let is_desktop = name == "desktop" || name == "desktopmusic";
-        insta::assert_ron_snapshot!(format!("map_player_data_{}", name), map_res.c, {
+        insta::assert_ron_snapshot!(format!("map_player_data_{name}"), map_res.c, {
             ".details.publish_date" => insta::dynamic_redaction(move |value, _path| {
                 if is_desktop {
                     assert!(value.as_str().unwrap().starts_with("2019-05-30T00:00:00"));

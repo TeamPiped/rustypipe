@@ -48,11 +48,7 @@ fn parse_cr_header(cr_header: &str) -> Result<(u64, u64)> {
 
     let captures = PATTERN.captures(cr_header).ok_or_else(|| {
         DownloadError::Progressive(
-            format!(
-                "Content-Range header '{}' does not match pattern",
-                cr_header
-            )
-            .into(),
+            format!("Content-Range header '{cr_header}' does not match pattern").into(),
         )
     })?;
 
@@ -348,7 +344,7 @@ pub async fn download_video(
     match (video, audio) {
         // Downloading combined video/audio stream (no conversion)
         (Some(video), None) => {
-            pb.set_message(format!("Downloading {}", title));
+            pb.set_message(format!("Downloading {title}"));
             download_single_file(
                 &video.url,
                 download_dir.join(output_fname).with_extension(&format),
@@ -386,10 +382,10 @@ pub async fn download_video(
                 })
             }
 
-            pb.set_message(format!("Downloading {}", title));
+            pb.set_message(format!("Downloading {title}"));
             download_streams(&downloads, http, pb.clone()).await?;
 
-            pb.set_message(format!("Converting {}", title));
+            pb.set_message(format!("Converting {title}"));
             pb.set_style(
                 ProgressStyle::with_template("{msg}\n{spinner:.green} [{elapsed_precise}]")
                     .unwrap(),

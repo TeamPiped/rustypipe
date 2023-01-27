@@ -81,8 +81,8 @@ async fn main() {
                         n,
                         occurrences as f32 / n as f32 * 100.0
                     );
-                    eprintln!("visitor_data (present): {:?}", vd_present);
-                    eprintln!("visitor_data (absent):  {:?}", vd_absent);
+                    eprintln!("visitor_data (present): {vd_present:?}");
+                    eprintln!("visitor_data (absent):  {vd_absent:?}");
                 }
                 None => {
                     let res = abtest::run_all_tests(n, cli.concurrency).await;

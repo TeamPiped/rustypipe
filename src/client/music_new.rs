@@ -90,7 +90,7 @@ mod tests {
     #[rstest]
     #[case::default("default")]
     fn map_music_new_albums(#[case] name: &str) {
-        let json_path = path!("testfiles" / "music_new" / format!("albums_{}.json", name));
+        let json_path = path!("testfiles" / "music_new" / format!("albums_{name}.json"));
         let json_file = File::open(json_path).unwrap();
 
         let new_albums: response::MusicNew =
@@ -103,13 +103,13 @@ mod tests {
             "deserialization/mapping warnings: {:?}",
             map_res.warnings
         );
-        insta::assert_ron_snapshot!(format!("map_music_new_albums_{}", name), map_res.c);
+        insta::assert_ron_snapshot!(format!("map_music_new_albums_{name}"), map_res.c);
     }
 
     #[rstest]
     #[case::default("default")]
     fn map_music_new_videos(#[case] name: &str) {
-        let json_path = path!("testfiles" / "music_new" / format!("videos_{}.json", name));
+        let json_path = path!("testfiles" / "music_new" / format!("videos_{name}.json"));
         let json_file = File::open(json_path).unwrap();
 
         let new_albums: response::MusicNew =
@@ -122,6 +122,6 @@ mod tests {
             "deserialization/mapping warnings: {:?}",
             map_res.warnings
         );
-        insta::assert_ron_snapshot!(format!("map_music_new_videos_{}", name), map_res.c);
+        insta::assert_ron_snapshot!(format!("map_music_new_videos_{name}"), map_res.c);
     }
 }

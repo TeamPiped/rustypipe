@@ -154,7 +154,7 @@ mod tests {
     #[case::default("global")]
     #[case::us("US")]
     fn map_music_charts(#[case] name: &str) {
-        let filename = format!("testfiles/music_charts/charts_{}.json", name);
+        let filename = format!("testfiles/music_charts/charts_{name}.json");
         let json_path = Path::new(&filename);
         let json_file = File::open(json_path).unwrap();
 
@@ -167,6 +167,6 @@ mod tests {
             "deserialization/mapping warnings: {:?}",
             map_res.warnings
         );
-        insta::assert_ron_snapshot!(format!("map_music_charts_{}", name), map_res.c);
+        insta::assert_ron_snapshot!(format!("map_music_charts_{name}"), map_res.c);
     }
 }

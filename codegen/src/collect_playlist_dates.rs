@@ -222,9 +222,7 @@ pub fn write_samples_to_dict(project_root: &Path) {
                         n: 3,
                         unit: timeago::TimeUnit::Day
                     }),
-                    "lang: {}, txt: {}",
-                    lang,
-                    datestr
+                    "lang: {lang}, txt: {datestr}"
                 );
             }
 
@@ -246,7 +244,7 @@ pub fn write_samples_to_dict(project_root: &Path) {
                         } else if n == &date.2 {
                             "D"
                         } else {
-                            panic!("invalid number {} in {}", n, datestr);
+                            panic!("invalid number {n} in {datestr}");
                         }
                     })
                     .collect::<String>();
@@ -254,7 +252,7 @@ pub fn write_samples_to_dict(project_root: &Path) {
                 if num_order.is_empty() {
                     num_order = this_num_order;
                 } else {
-                    assert_eq!(this_num_order, num_order, "lang: {}", lang);
+                    assert_eq!(this_num_order, num_order, "lang: {lang}");
                 }
 
                 // Insert words into the map

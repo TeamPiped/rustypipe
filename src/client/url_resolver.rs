@@ -101,7 +101,7 @@ impl RustyPipeQuery {
                 // YouTube Music album has to be resolved by the YTM API
                 if resolve_albums && id.starts_with(util::PLAYLIST_ID_ALBUM_PREFIX) {
                     self._navigation_resolve_url(
-                        &format!("/playlist?list={}", id),
+                        &format!("/playlist?list={id}"),
                         ClientType::DesktopMusic,
                     )
                     .await
@@ -225,7 +225,7 @@ impl RustyPipeQuery {
         }
         // URL without protocol
         else if string.contains('/') && string.contains('.') {
-            self.resolve_url(&format!("https://{}", string), resolve_albums)
+            self.resolve_url(&format!("https://{string}"), resolve_albums)
                 .await
         }
         // ID only
@@ -241,7 +241,7 @@ impl RustyPipeQuery {
         } else if util::PLAYLIST_ID_REGEX.is_match(string) {
             if resolve_albums && string.starts_with(util::PLAYLIST_ID_ALBUM_PREFIX) {
                 self._navigation_resolve_url(
-                    &format!("/playlist?list={}", string),
+                    &format!("/playlist?list={string}"),
                     ClientType::DesktopMusic,
                 )
                 .await

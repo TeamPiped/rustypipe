@@ -391,7 +391,7 @@ mod tests {
     #[case::typo("typo")]
     #[case::radio("radio")]
     fn map_music_search_main(#[case] name: &str) {
-        let json_path = path!("testfiles" / "music_search" / format!("main_{}.json", name));
+        let json_path = path!("testfiles" / "music_search" / format!("main_{name}.json"));
         let json_file = File::open(json_path).unwrap();
 
         let search: response::MusicSearch =
@@ -405,7 +405,7 @@ mod tests {
             map_res.warnings
         );
 
-        insta::assert_ron_snapshot!(format!("map_music_search_main_{}", name), map_res.c);
+        insta::assert_ron_snapshot!(format!("map_music_search_main_{name}"), map_res.c);
     }
 
     #[rstest]
@@ -414,7 +414,7 @@ mod tests {
     #[case::videos("videos")]
     #[case::no_artist_link("no_artist_link")]
     fn map_music_search_tracks(#[case] name: &str) {
-        let json_path = path!("testfiles" / "music_search" / format!("tracks_{}.json", name));
+        let json_path = path!("testfiles" / "music_search" / format!("tracks_{name}.json"));
         let json_file = File::open(json_path).unwrap();
 
         let search: response::MusicSearch =
@@ -428,7 +428,7 @@ mod tests {
             map_res.warnings
         );
 
-        insta::assert_ron_snapshot!(format!("map_music_search_tracks_{}", name), map_res.c);
+        insta::assert_ron_snapshot!(format!("map_music_search_tracks_{name}"), map_res.c);
     }
 
     #[test]
@@ -473,7 +473,7 @@ mod tests {
     #[case::ytm("ytm")]
     #[case::community("community")]
     fn map_music_search_playlists(#[case] name: &str) {
-        let json_path = path!("testfiles" / "music_search" / format!("playlists_{}.json", name));
+        let json_path = path!("testfiles" / "music_search" / format!("playlists_{name}.json"));
         let json_file = File::open(json_path).unwrap();
 
         let search: response::MusicSearch =
@@ -487,14 +487,14 @@ mod tests {
             map_res.warnings
         );
 
-        insta::assert_ron_snapshot!(format!("map_music_search_playlists_{}", name), map_res.c);
+        insta::assert_ron_snapshot!(format!("map_music_search_playlists_{name}"), map_res.c);
     }
 
     #[rstest]
     #[case::default("default")]
     #[case::empty("empty")]
     fn map_music_search_suggestion(#[case] name: &str) {
-        let json_path = path!("testfiles" / "music_search" / format!("suggestion_{}.json", name));
+        let json_path = path!("testfiles" / "music_search" / format!("suggestion_{name}.json"));
         let json_file = File::open(json_path).unwrap();
 
         let suggestion: response::MusicSearchSuggestion =
@@ -508,6 +508,6 @@ mod tests {
             map_res.warnings
         );
 
-        insta::assert_ron_snapshot!(format!("map_music_search_suggestion_{}", name), map_res.c);
+        insta::assert_ron_snapshot!(format!("map_music_search_suggestion_{name}"), map_res.c);
     }
 }

@@ -510,7 +510,7 @@ mod tests {
     #[case::shorts("shorts", "UCh8gHdtzO2tXd593_bjErWg")]
     #[case::livestreams("livestreams", "UC2DjFE7Xf11URZqWBigcVOQ")]
     fn map_channel_videos(#[case] name: &str, #[case] id: &str) {
-        let json_path = path!("testfiles" / "channel" / format!("channel_{}.json", name));
+        let json_path = path!("testfiles" / "channel" / format!("channel_{name}.json"));
         let json_file = File::open(json_path).unwrap();
 
         let channel: response::Channel =
@@ -525,11 +525,11 @@ mod tests {
         );
 
         if name == "videos_upcoming" {
-            insta::assert_ron_snapshot!(format!("map_channel_{}", name), map_res.c, {
+            insta::assert_ron_snapshot!(format!("map_channel_{name}"), map_res.c, {
                 ".content.items[1:].publish_date" => "[date]",
             });
         } else {
-            insta::assert_ron_snapshot!(format!("map_channel_{}", name), map_res.c, {
+            insta::assert_ron_snapshot!(format!("map_channel_{name}"), map_res.c, {
                 ".content.items[].publish_date" => "[date]",
             });
         }

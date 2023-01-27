@@ -142,7 +142,7 @@ async fn player(testfiles: &Path) {
     for client_type in CLIENT_TYPES {
         let mut json_path = testfiles.to_path_buf();
         json_path.push("player");
-        json_path.push(format!("{:?}_video.json", client_type).to_lowercase());
+        json_path.push(format!("{client_type:?}_video.json").to_lowercase());
 
         if json_path.exists() {
             continue;
@@ -162,7 +162,7 @@ async fn player_model(testfiles: &Path) {
     for (name, id) in [("multilanguage", "tVWWp1PqDus"), ("hdr", "LXb3EKWsInQ")] {
         let mut json_path = testfiles.to_path_buf();
         json_path.push("player_model");
-        json_path.push(format!("{}.json", name).to_lowercase());
+        json_path.push(format!("{name}.json").to_lowercase());
 
         if json_path.exists() {
             continue;
@@ -188,7 +188,7 @@ async fn playlist(testfiles: &Path) {
     ] {
         let mut json_path = testfiles.to_path_buf();
         json_path.push("playlist");
-        json_path.push(format!("playlist_{}.json", name));
+        json_path.push(format!("playlist_{name}.json"));
         if json_path.exists() {
             continue;
         }
@@ -228,7 +228,7 @@ async fn video_details(testfiles: &Path) {
     ] {
         let mut json_path = testfiles.to_path_buf();
         json_path.push("video_details");
-        json_path.push(format!("video_details_{}.json", name));
+        json_path.push(format!("video_details_{name}.json"));
         if json_path.exists() {
             continue;
         }
@@ -304,7 +304,7 @@ async fn channel_videos(testfiles: &Path) {
     ] {
         let mut json_path = testfiles.to_path_buf();
         json_path.push("channel");
-        json_path.push(format!("channel_videos_{}.json", name));
+        json_path.push(format!("channel_videos_{name}.json"));
         if json_path.exists() {
             continue;
         }
@@ -521,7 +521,7 @@ async fn music_playlist(testfiles: &Path) {
     ] {
         let mut json_path = testfiles.to_path_buf();
         json_path.push("music_playlist");
-        json_path.push(format!("playlist_{}.json", name));
+        json_path.push(format!("playlist_{name}.json"));
         if json_path.exists() {
             continue;
         }
@@ -584,7 +584,7 @@ async fn music_album(testfiles: &Path) {
     ] {
         let mut json_path = testfiles.to_path_buf();
         json_path.push("music_playlist");
-        json_path.push(format!("album_{}.json", name));
+        json_path.push(format!("album_{name}.json"));
         if json_path.exists() {
             continue;
         }
@@ -602,7 +602,7 @@ async fn music_search(testfiles: &Path) {
     ] {
         let mut json_path = testfiles.to_path_buf();
         json_path.push("music_search");
-        json_path.push(format!("main_{}.json", name));
+        json_path.push(format!("main_{name}.json"));
         if json_path.exists() {
             continue;
         }
@@ -625,7 +625,7 @@ async fn music_search_tracks(testfiles: &Path) {
     ] {
         let mut json_path = testfiles.to_path_buf();
         json_path.push("music_search");
-        json_path.push(format!("tracks_{}.json", name));
+        json_path.push(format!("tracks_{name}.json"));
         if json_path.exists() {
             continue;
         }
@@ -670,7 +670,7 @@ async fn music_search_playlists(testfiles: &Path) {
     for (name, community) in [("ytm", false), ("community", true)] {
         let mut json_path = testfiles.to_path_buf();
         json_path.push("music_search");
-        json_path.push(format!("playlists_{}.json", name));
+        json_path.push(format!("playlists_{name}.json"));
         if json_path.exists() {
             continue;
         }
@@ -702,7 +702,7 @@ async fn music_search_suggestion(testfiles: &Path) {
     for (name, query) in [("default", "t"), ("empty", "reujbhevmfndxnjrze")] {
         let mut json_path = testfiles.to_path_buf();
         json_path.push("music_search");
-        json_path.push(format!("suggestion_{}.json", name));
+        json_path.push(format!("suggestion_{name}.json"));
         if json_path.exists() {
             continue;
         }
@@ -723,7 +723,7 @@ async fn music_artist(testfiles: &Path) {
     ] {
         let mut json_path = testfiles.to_path_buf();
         json_path.push("music_artist");
-        json_path.push(format!("artist_{}.json", name));
+        json_path.push(format!("artist_{name}.json"));
         if json_path.exists() {
             continue;
         }
@@ -737,7 +737,7 @@ async fn music_details(testfiles: &Path) {
     for (name, id) in [("mv", "ZeerrnuLi5E"), ("track", "7nigXQS1Xb0")] {
         let mut json_path = testfiles.to_path_buf();
         json_path.push("music_details");
-        json_path.push(format!("details_{}.json", name));
+        json_path.push(format!("details_{name}.json"));
         if json_path.exists() {
             continue;
         }
@@ -787,7 +787,7 @@ async fn music_radio(testfiles: &Path) {
     for (name, id) in [("mv", "RDAMVMZeerrnuLi5E"), ("track", "RDAMVM7nigXQS1Xb0")] {
         let mut json_path = testfiles.to_path_buf();
         json_path.push("music_details");
-        json_path.push(format!("radio_{}.json", name));
+        json_path.push(format!("radio_{name}.json"));
         if json_path.exists() {
             continue;
         }
@@ -840,7 +840,7 @@ async fn music_charts(testfiles: &Path) {
     for (name, country) in [("global", Some(Country::Zz)), ("US", Some(Country::Us))] {
         let mut json_path = testfiles.to_path_buf();
         json_path.push("music_charts");
-        json_path.push(&format!("charts_{}.json", name));
+        json_path.push(&format!("charts_{name}.json"));
         if json_path.exists() {
             continue;
         }
@@ -869,7 +869,7 @@ async fn music_genre(testfiles: &Path) {
     ] {
         let mut json_path = testfiles.to_path_buf();
         json_path.push("music_genres");
-        json_path.push(&format!("genre_{}.json", name));
+        json_path.push(&format!("genre_{name}.json"));
         if json_path.exists() {
             continue;
         }

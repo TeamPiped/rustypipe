@@ -55,10 +55,10 @@ impl RustyPipeQuery {
                     reporter.report(&report);
                 }
 
-                Err(ExtractionError::InvalidData(
-                    format!("could not deserialize xml: {}", e).into(),
+                Err(
+                    ExtractionError::InvalidData(format!("could not deserialize xml: {e}").into())
+                        .into(),
                 )
-                .into())
             }
         }
     }

@@ -147,7 +147,7 @@ mod tests {
     #[case::empty("empty")]
     #[case::ab3_channel_handles("20221121_AB3_channel_handles")]
     fn t_map_search(#[case] name: &str) {
-        let json_path = path!("testfiles" / "search" / format!("{}.json", name));
+        let json_path = path!("testfiles" / "search" / format!("{name}.json"));
         let json_file = File::open(json_path).unwrap();
 
         let search: response::Search = serde_json::from_reader(BufReader::new(json_file)).unwrap();
@@ -159,7 +159,7 @@ mod tests {
             map_res.warnings
         );
 
-        insta::assert_ron_snapshot!(format!("map_search_{}", name), map_res.c, {
+        insta::assert_ron_snapshot!(format!("map_search_{name}"), map_res.c, {
             ".items.items.*.publish_date" => "[date]",
         });
     }

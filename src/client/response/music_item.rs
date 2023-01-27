@@ -533,7 +533,7 @@ impl MusicListMapper {
                     // Track
                     Some((MusicPageType::Track { is_video }, id)) => {
                         let title =
-                            title.ok_or_else(|| format!("track {}: could not get title", id))?;
+                            title.ok_or_else(|| format!("track {id}: could not get title"))?;
 
                         let (artists_p, album_p, duration_p) = match item.flex_column_display_style
                         {
@@ -549,7 +549,7 @@ impl MusicListMapper {
                                 } else {
                                     let mut subtitle_parts = c2
                                         .ok_or_else(|| {
-                                            format!("track {}: could not get subtitle", id)
+                                            format!("track {id}: could not get subtitle")
                                         })?
                                         .renderer
                                         .text
@@ -649,7 +649,7 @@ impl MusicListMapper {
                             .into_iter();
 
                         let title =
-                            title.ok_or_else(|| format!("track {}: could not get title", id))?;
+                            title.ok_or_else(|| format!("track {id}: could not get title"))?;
 
                         let subtitle_p1 = subtitle_parts.next();
                         let subtitle_p2 = subtitle_parts.next();
@@ -812,8 +812,7 @@ impl MusicListMapper {
                                     }
                                     _ => {
                                         return Err(format!(
-                                            "could not parse subtitle of album {}",
-                                            id
+                                            "could not parse subtitle of album {id}"
                                         ));
                                     }
                                 };
@@ -1057,7 +1056,7 @@ mod tests {
         atype_samples.iter().for_each(|(lang, entry)| {
             entry.iter().for_each(|(album_type, txt)| {
                 let res = map_album_type(txt, *lang);
-                assert_eq!(res, *album_type, "lang: {}, txt: {}", lang, txt);
+                assert_eq!(res, *album_type, "lang: {lang}, txt: {txt}");
             });
         });
     }

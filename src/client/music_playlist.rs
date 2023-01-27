@@ -25,7 +25,7 @@ impl RustyPipeQuery {
         let context = self.get_context(ClientType::DesktopMusic, true, None).await;
         let request_body = QBrowse {
             context,
-            browse_id: &format!("VL{}", playlist_id),
+            browse_id: &format!("VL{playlist_id}"),
         };
 
         self.execute_request::<response::MusicPlaylist, _, _>(
@@ -129,8 +129,7 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
         if let Some(playlist_id) = shelf.playlist_id {
             if playlist_id != id {
                 return Err(ExtractionError::WrongResult(format!(
-                    "got wrong playlist id {}, expected {}",
-                    playlist_id, id
+                    "got wrong playlist id {playlist_id}, expected {id}"
                 )));
             }
         }
@@ -384,7 +383,7 @@ mod tests {
     #[case::long("long", "PL5dDx681T4bR7ZF1IuWzOv1omlRbE7PiJ")]
     #[case::nomusic("nomusic", "PL1J-6JOckZtE_P9Xx8D3b2O6w0idhuKBe")]
     fn map_music_playlist(#[case] name: &str, #[case] id: &str) {
-        let json_path = path!("testfiles" / "music_playlist" / format!("playlist_{}.json", name));
+        let json_path = path!("testfiles" / "music_playlist" / format!("playlist_{name}.json"));
         let json_file = File::open(json_path).unwrap();
 
         let playlist: response::MusicPlaylist =
@@ -397,7 +396,7 @@ mod tests {
             "deserialization/mapping warnings: {:?}",
             map_res.warnings
         );
-        insta::assert_ron_snapshot!(format!("map_music_playlist_{}", name), map_res.c, {
+        insta::assert_ron_snapshot!(format!("map_music_playlist_{name}"), map_res.c, {
             ".last_update" => "[date]"
         });
     }
@@ -409,7 +408,7 @@ mod tests {
     #[case::description("description", "MPREb_PiyfuVl6aYd")]
     #[case::unavailable("unavailable", "MPREb_AzuWg8qAVVl")]
     fn map_music_album(#[case] name: &str, #[case] id: &str) {
-        let json_path = path!("testfiles" / "music_playlist" / format!("album_{}.json", name));
+        let json_path = path!("testfiles" / "music_playlist" / format!("album_{name}.json"));
         let json_file = File::open(json_path).unwrap();
 
         let playlist: response::MusicPlaylist =
@@ -422,6 +421,6 @@ mod tests {
             "deserialization/mapping warnings: {:?}",
             map_res.warnings
         );
-        insta::assert_ron_snapshot!(format!("map_music_album_{}", name), map_res.c);
+        insta::assert_ron_snapshot!(format!("map_music_album_{name}"), map_res.c);
     }
 }

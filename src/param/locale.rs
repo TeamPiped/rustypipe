@@ -848,13 +848,13 @@ impl Display for Country {
 impl FromStr for Language {
     type Err = serde_json::Error;
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        serde_json::from_str(&format!("\"{}\"", s))
+        serde_json::from_str(&format!("\"{s}\""))
     }
 }
 
 impl FromStr for Country {
     type Err = serde_json::Error;
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        serde_json::from_str(&format!("\"{}\"", s))
+        serde_json::from_str(&format!("\"{s}\""))
     }
 }

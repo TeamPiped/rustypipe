@@ -93,17 +93,17 @@ impl UrlTarget {
     pub fn to_url_yt_host(&self, yt_host: &str) -> String {
         match self {
             UrlTarget::Video { id, start_time, .. } => match start_time {
-                0 => format!("{}/watch?v={}", yt_host, id),
-                n => format!("{}/watch?v={}&t={}s", yt_host, id, n),
+                0 => format!("{yt_host}/watch?v={id}"),
+                n => format!("{yt_host}/watch?v={id}&t={n}s"),
             },
             UrlTarget::Channel { id } => {
-                format!("{}/channel/{}", yt_host, id)
+                format!("{yt_host}/channel/{id}")
             }
             UrlTarget::Playlist { id } => {
-                format!("{}/playlist?list={}", yt_host, id)
+                format!("{yt_host}/playlist?list={id}")
             }
             UrlTarget::Album { id } => {
-                format!("https://music.youtube.com/browse/{}", id)
+                format!("https://music.youtube.com/browse/{id}")
             }
         }
     }

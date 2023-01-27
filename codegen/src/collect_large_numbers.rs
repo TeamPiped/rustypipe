@@ -53,14 +53,14 @@ pub async fn collect_large_numbers(project_root: &Path, concurrency: usize) {
             for (n, ch_id) in channels.iter().enumerate() {
                 let channel = get_channel(ch_id, lang)
                     .await
-                    .context(format!("{}-{}", lang, n))
+                    .context(format!("{lang}-{n}"))
                     .unwrap();
 
                 channel.view_counts.iter().for_each(|(num, txt)| {
                     entry.insert(txt.to_owned(), *num);
                 });
 
-                println!("collected {}-{}", lang, n);
+                println!("collected {lang}-{n}");
             }
 
             (lang, entry)
@@ -232,7 +232,7 @@ pub fn write_samples_to_dict(project_root: &Path) {
         // Check for duplicates
         let mut uniq = HashSet::new();
         if !dict_entry.number_tokens.values().all(|x| uniq.insert(x)) {
-            println!("Warning: collected duplicate tokens for {}", lang);
+            println!("Warning: collected duplicate tokens for {lang}");
         }
     }
 

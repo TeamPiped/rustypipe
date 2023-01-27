@@ -209,7 +209,7 @@ pub(crate) fn parse_timeago_or_warn(
 ) -> Option<TimeAgo> {
     let res = parse_timeago(lang, textual_date);
     if res.is_none() {
-        warnings.push(format!("could not parse timeago `{}`", textual_date));
+        warnings.push(format!("could not parse timeago `{textual_date}`"));
     }
     res
 }
@@ -221,7 +221,7 @@ pub(crate) fn parse_timeago_dt_or_warn(
 ) -> Option<OffsetDateTime> {
     let res = parse_timeago_to_dt(lang, textual_date);
     if res.is_none() {
-        warnings.push(format!("could not parse timeago `{}`", textual_date));
+        warnings.push(format!("could not parse timeago `{textual_date}`"));
     }
     res
 }
@@ -288,7 +288,7 @@ pub(crate) fn parse_textual_date_or_warn(
 ) -> Option<OffsetDateTime> {
     let res = parse_textual_date_to_dt(lang, textual_date);
     if res.is_none() {
-        warnings.push(format!("could not parse textual date `{}`", textual_date));
+        warnings.push(format!("could not parse textual date `{textual_date}`"));
     }
     res
 }
@@ -482,9 +482,7 @@ mod tests {
                 assert_eq!(
                     parse_timeago(*lang, s),
                     Some(expect[n]),
-                    "Language: {}, n: {}",
-                    lang,
-                    n
+                    "Language: {lang}, n: {n}"
                 );
             });
         })
@@ -515,9 +513,7 @@ mod tests {
                     assert_eq!(
                         timeago,
                         Some(TimeAgo { n: *n, unit: *t }),
-                        "lang: {}, txt: {}",
-                        lang,
-                        txt
+                        "lang: {lang}, txt: {txt}"
                     );
 
                     n_cases += 1;
@@ -561,8 +557,7 @@ mod tests {
                     n: 0,
                     unit: TimeUnit::Day
                 })),
-                "lang: {}",
-                lang
+                "lang: {lang}"
             );
             assert_eq!(
                 parse_textual_date(*lang, samples.get("Yesterday").unwrap()),
@@ -574,8 +569,7 @@ mod tests {
                     },
                     unit: TimeUnit::Day
                 })),
-                "lang: {}",
-                lang
+                "lang: {lang}"
             );
             assert_eq!(
                 parse_textual_date(*lang, samples.get("Ago").unwrap()),
@@ -583,80 +577,67 @@ mod tests {
                     n: 3,
                     unit: TimeUnit::Day
                 })),
-                "lang: {}",
-                lang
+                "lang: {lang}"
             );
             assert_eq!(
                 parse_textual_date(*lang, samples.get("Jan").unwrap()),
                 Some(ParsedDate::Absolute(date!(2020 - 1 - 3))),
-                "lang: {}",
-                lang
+                "lang: {lang}"
             );
             assert_eq!(
                 parse_textual_date(*lang, samples.get("Feb").unwrap()),
                 Some(ParsedDate::Absolute(date!(2016 - 2 - 7))),
-                "lang: {}",
-                lang
+                "lang: {lang}"
             );
             assert_eq!(
                 parse_textual_date(*lang, samples.get("Mar").unwrap()),
                 Some(ParsedDate::Absolute(date!(2015 - 3 - 9))),
-                "lang: {}",
-                lang
+                "lang: {lang}"
             );
             assert_eq!(
                 parse_textual_date(*lang, samples.get("Apr").unwrap()),
                 Some(ParsedDate::Absolute(date!(2017 - 4 - 2))),
-                "lang: {}",
-                lang
+                "lang: {lang}"
             );
             assert_eq!(
                 parse_textual_date(*lang, samples.get("May").unwrap()),
                 Some(ParsedDate::Absolute(date!(2014 - 5 - 22))),
-                "lang: {}",
-                lang
+                "lang: {lang}"
             );
             assert_eq!(
                 parse_textual_date(*lang, samples.get("Jun").unwrap()),
                 Some(ParsedDate::Absolute(date!(2014 - 6 - 28))),
-                "lang: {}",
-                lang
+                "lang: {lang}"
             );
             assert_eq!(
                 parse_textual_date(*lang, samples.get("Jul").unwrap()),
                 Some(ParsedDate::Absolute(date!(2014 - 7 - 2))),
-                "lang: {}",
-                lang
+                "lang: {lang}"
             );
             assert_eq!(
                 parse_textual_date(*lang, samples.get("Aug").unwrap()),
                 Some(ParsedDate::Absolute(date!(2015 - 8 - 23))),
-                "lang: {}",
-                lang
+                "lang: {lang}"
             );
             assert_eq!(
                 parse_textual_date(*lang, samples.get("Sep").unwrap()),
                 Some(ParsedDate::Absolute(date!(2018 - 9 - 16))),
-                "lang: {}",
-                lang
+                "lang: {lang}"
             );
             assert_eq!(
                 parse_textual_date(*lang, samples.get("Oct").unwrap()),
                 Some(ParsedDate::Absolute(date!(2014 - 10 - 31))),
-                "lang: {}",
-                lang
+                "lang: {lang}"
             );
             assert_eq!(
                 parse_textual_date(*lang, samples.get("Nov").unwrap()),
                 Some(ParsedDate::Absolute(date!(2016 - 11 - 3))),
-                "lang: {}",
-                lang
+                "lang: {lang}"
             );
             assert_eq!(
                 parse_textual_date(*lang, samples.get("Dec").unwrap()),
                 Some(ParsedDate::Absolute(date!(2021 - 12 - 24))),
-                "lang: {}",
-                lang
+                "lang: {lang}"
             );
         })
     }

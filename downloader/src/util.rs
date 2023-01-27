@@ -29,7 +29,7 @@ pub enum DownloadError {
 /// `example.com/api?k1=v1&k2=v2 => example.com/api; {k1: v1, k2: v2}`
 pub fn url_to_params(url: &str) -> Result<(Url, BTreeMap<String, String>), DownloadError> {
     let mut parsed_url = Url::parse(url).map_err(|e| {
-        DownloadError::Other(format!("could not parse url `{}` err: {}", url, e).into())
+        DownloadError::Other(format!("could not parse url `{url}` err: {e}").into())
     })?;
     let url_params: BTreeMap<String, String> = parsed_url
         .query_pairs()

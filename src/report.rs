@@ -130,7 +130,7 @@ impl FileReporter {
     fn _report(&self, report: &Report) -> Result<(), Error> {
         let report_path = get_report_path(&self.path, report, "json")?;
         serde_json::to_writer_pretty(&File::create(report_path)?, &report)
-            .map_err(|e| Error::Other(format!("could not serialize report. err: {}", e).into()))?;
+            .map_err(|e| Error::Other(format!("could not serialize report. err: {e}").into()))?;
         Ok(())
     }
 }
@@ -162,13 +162,13 @@ fn get_report_path(root: &Path, report: &Report, ext: &str) -> Result<PathBuf, E
     );
 
     let mut report_path = root.to_path_buf();
-    report_path.push(format!("{}.{}", filename_prefix, ext));
+    report_path.push(format!("{filename_prefix}.{ext}"));
 
     // ensure unique filename
     for i in 1..u32::MAX {
         if report_path.exists() {
             report_path = root.to_path_buf();
-            report_path.push(format!("{}_{}.{}", filename_prefix, i, ext));
+            report_path.push(format!("{filename_prefix}_{i}.{ext}"));
         } else {
             break;
         }

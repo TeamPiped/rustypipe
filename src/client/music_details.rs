@@ -401,7 +401,7 @@ mod tests {
     #[case::mv("mv", "ZeerrnuLi5E")]
     #[case::track("track", "7nigXQS1Xb0")]
     fn map_music_details(#[case] name: &str, #[case] id: &str) {
-        let json_path = path!("testfiles" / "music_details" / format!("details_{}.json", name));
+        let json_path = path!("testfiles" / "music_details" / format!("details_{name}.json"));
         let json_file = File::open(json_path).unwrap();
 
         let details: response::MusicDetails =
@@ -414,14 +414,14 @@ mod tests {
             "deserialization/mapping warnings: {:?}",
             map_res.warnings
         );
-        insta::assert_ron_snapshot!(format!("map_music_details_{}", name), map_res.c);
+        insta::assert_ron_snapshot!(format!("map_music_details_{name}"), map_res.c);
     }
 
     #[rstest]
     #[case::mv("mv", "RDAMVMZeerrnuLi5E")]
     #[case::track("track", "RDAMVM7nigXQS1Xb0")]
     fn map_music_radio(#[case] name: &str, #[case] id: &str) {
-        let json_path = path!("testfiles" / "music_details" / format!("radio_{}.json", name));
+        let json_path = path!("testfiles" / "music_details" / format!("radio_{name}.json"));
         let json_file = File::open(json_path).unwrap();
 
         let radio: response::MusicDetails =
@@ -434,7 +434,7 @@ mod tests {
             "deserialization/mapping warnings: {:?}",
             map_res.warnings
         );
-        insta::assert_ron_snapshot!(format!("map_music_radio_{}", name), map_res.c);
+        insta::assert_ron_snapshot!(format!("map_music_radio_{name}"), map_res.c);
     }
 
     #[test]

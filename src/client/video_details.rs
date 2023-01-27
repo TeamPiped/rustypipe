@@ -100,8 +100,7 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
         let video_id = current_video_endpoint.watch_endpoint.video_id;
         if id != video_id {
             return Err(ExtractionError::WrongResult(format!(
-                "got wrong playlist id {}, expected {}",
-                video_id, id
+                "got wrong playlist id {video_id}, expected {id}"
             )));
         }
 
@@ -555,8 +554,7 @@ mod tests {
     #[case::new_cont("20221011_new_continuation", "ZeerrnuLi5E")]
     #[case::no_recommends("20221011_rec_isr", "nFDBxBUfE74")]
     fn map_video_details(#[case] name: &str, #[case] id: &str) {
-        let json_path =
-            path!("testfiles" / "video_details" / format!("video_details_{}.json", name));
+        let json_path = path!("testfiles" / "video_details" / format!("video_details_{name}.json"));
         let json_file = File::open(json_path).unwrap();
 
         let details: response::VideoDetails =
@@ -568,7 +566,7 @@ mod tests {
             "deserialization/mapping warnings: {:?}",
             map_res.warnings
         );
-        insta::assert_ron_snapshot!(format!("map_video_details_{}", name), map_res.c, {
+        insta::assert_ron_snapshot!(format!("map_video_details_{name}"), map_res.c, {
             ".publish_date" => "[date]",
             ".recommended.items[].publish_date" => "[date]",
         });
@@ -592,7 +590,7 @@ mod tests {
     #[case::top("top")]
     #[case::latest("latest")]
     fn map_comments(#[case] name: &str) {
-        let json_path = path!("testfiles" / "video_details" / format!("comments_{}.json", name));
+        let json_path = path!("testfiles" / "video_details" / format!("comments_{name}.json"));
         let json_file = File::open(json_path).unwrap();
 
         let comments: response::VideoComments =
@@ -604,7 +602,7 @@ mod tests {
             "deserialization/mapping warnings: {:?}",
             map_res.warnings
         );
-        insta::assert_ron_snapshot!(format!("map_comments_{}", name), map_res.c, {
+        insta::assert_ron_snapshot!(format!("map_comments_{name}"), map_res.c, {
             ".items[].publish_date" => "[date]",
         });
     }

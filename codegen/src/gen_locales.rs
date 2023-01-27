@@ -235,21 +235,20 @@ pub enum Country {
             .collect::<String>();
 
         // Language enum
-        write!(code_langs, "    /// {}\n    ", n).unwrap();
+        write!(code_langs, "    /// {n}\n    ").unwrap();
         if c.contains('-') {
-            write!(code_langs, "#[serde(rename = \"{}\")]\n    ", c).unwrap();
+            write!(code_langs, "#[serde(rename = \"{c}\")]\n    ").unwrap();
         }
         code_langs += &enum_name;
         code_langs += ",\n";
 
         // Language array
-        writeln!(code_lang_array, "    Language::{},", enum_name).unwrap();
+        writeln!(code_lang_array, "    Language::{enum_name},").unwrap();
 
         // Language names
         writeln!(
             code_lang_names,
-            "            Language::{} => \"{}\",",
-            enum_name, n
+            "            Language::{enum_name} => \"{n}\","
         )
         .unwrap();
     });
@@ -259,17 +258,16 @@ pub enum Country {
         let enum_name = c[0..1].to_owned().to_uppercase() + &c[1..].to_owned().to_lowercase();
 
         // Country enum
-        writeln!(code_countries, "    /// {}", n).unwrap();
-        writeln!(code_countries, "    {},", enum_name).unwrap();
+        writeln!(code_countries, "    /// {n}").unwrap();
+        writeln!(code_countries, "    {enum_name},").unwrap();
 
         // Country array
-        writeln!(code_country_array, "    Country::{},", enum_name).unwrap();
+        writeln!(code_country_array, "    Country::{enum_name},").unwrap();
 
         // Country names
         writeln!(
             code_country_names,
-            "            Country::{} => \"{}\",",
-            enum_name, n
+            "            Country::{enum_name} => \"{n}\","
         )
         .unwrap();
     });
@@ -287,15 +285,7 @@ pub enum Country {
     code_country_names += "        }\n    }\n}\n";
 
     let code = format!(
-        "{}\n{}\n{}\n{}\n{}\n{}\n{}\n{}",
-        code_head,
-        code_langs,
-        code_countries,
-        code_lang_array,
-        code_country_array,
-        code_lang_names,
-        code_country_names,
-        code_foot
+        "{code_head}\n{code_langs}\n{code_countries}\n{code_lang_array}\n{code_country_array}\n{code_lang_names}\n{code_country_names}\n{code_foot}"
     );
 
     let mut target_path = project_root.to_path_buf();

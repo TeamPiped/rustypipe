@@ -362,7 +362,7 @@ mod tests {
             "deserialization/mapping warnings: {:?}",
             map_res.warnings
         );
-        insta::assert_ron_snapshot!(format!("map_{}", name), map_res.c, {
+        insta::assert_ron_snapshot!(format!("map_{name}"), map_res.c, {
             ".items.*.publish_date" => "[date]",
         });
     }
@@ -385,7 +385,7 @@ mod tests {
             "deserialization/mapping warnings: {:?}",
             map_res.warnings
         );
-        insta::assert_ron_snapshot!(format!("map_{}", name), paginator);
+        insta::assert_ron_snapshot!(format!("map_{name}"), paginator);
     }
 
     #[rstest]
@@ -408,7 +408,7 @@ mod tests {
             "deserialization/mapping warnings: {:?}",
             map_res.warnings
         );
-        insta::assert_ron_snapshot!(format!("map_{}", name), paginator);
+        insta::assert_ron_snapshot!(format!("map_{name}"), paginator);
     }
 
     #[rstest]
@@ -429,6 +429,6 @@ mod tests {
             "deserialization/mapping warnings: {:?}",
             map_res.warnings
         );
-        insta::assert_ron_snapshot!(format!("map_{}", name), paginator);
+        insta::assert_ron_snapshot!(format!("map_{name}"), paginator);
     }
 }

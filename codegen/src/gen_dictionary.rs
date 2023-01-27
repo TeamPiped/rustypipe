@@ -23,10 +23,10 @@ fn parse_tu(tu: &str) -> (u8, Option<TimeUnit>) {
                 "M" => Some(TimeUnit::Month),
                 "Y" => Some(TimeUnit::Year),
                 "" => None,
-                _ => panic!("invalid time unit: {}", tu),
+                _ => panic!("invalid time unit: {tu}"),
             },
         ),
-        None => panic!("invalid time unit: {}", tu),
+        None => panic!("invalid time unit: {tu}"),
     }
 }
 
@@ -91,9 +91,9 @@ pub(crate) fn entry(lang: Language) -> Entry {
 
     dict.iter().for_each(|(lang, entry)| {
         // Match selector
-        let mut selector = format!("Language::{:?}", lang);
+        let mut selector = format!("Language::{lang:?}");
         entry.equivalent.iter().for_each(|eq| {
-            let _ = write!(selector, " | Language::{:?}", eq);
+            let _ = write!(selector, " | Language::{eq:?}");
         });
 
         // Timeago tokens
@@ -103,9 +103,9 @@ pub(crate) fn entry(lang: Language) -> Entry {
             match unit {
                 Some(unit) => ta_tokens.entry(
                     txt,
-                    &format!("TaToken {{ n: {}, unit: Some(TimeUnit::{:?}) }}", n, unit),
+                    &format!("TaToken {{ n: {n}, unit: Some(TimeUnit::{unit:?}) }}"),
                 ),
-                None => ta_tokens.entry(txt, &format!("TaToken {{ n: {}, unit: None }}", n)),
+                None => ta_tokens.entry(txt, &format!("TaToken {{ n: {n}, unit: None }}")),
             };
         });
 
@@ -122,16 +122,16 @@ pub(crate) fn entry(lang: Language) -> Entry {
             match unit {
                 Some(unit) => ta_nd_tokens.entry(
                     txt,
-                    &format!("TaToken {{ n: {}, unit: Some(TimeUnit::{:?}) }}", n, unit),
+                    &format!("TaToken {{ n: {n}, unit: Some(TimeUnit::{unit:?}) }}"),
                 ),
-                None => ta_nd_tokens.entry(txt, &format!("TaToken {{ n: {}, unit: None }}", n)),
+                None => ta_nd_tokens.entry(txt, &format!("TaToken {{ n: {n}, unit: None }}")),
             };
         });
 
         // Date order
         let mut date_order = "&[".to_owned();
         entry.date_order.chars().for_each(|c| {
-            let _ = write!(date_order, "DateCmp::{}, ", c);
+            let _ = write!(date_order, "DateCmp::{c}, ");
         });
         date_order = date_order.trim_end_matches([' ', ',']).to_owned() + "]";
 
@@ -144,7 +144,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
         // Album types
         let mut album_types = phf_codegen::Map::<&str>::new();
         entry.album_types.iter().for_each(|(txt, album_type)| {
-            album_types.entry(txt, &format!("AlbumType::{:?}", album_type));
+            album_types.entry(txt, &format!("AlbumType::{album_type:?}"));
         });
 
         let code_ta_tokens = &ta_tokens.build().to_string().replace('\n', "\n            ");
@@ -159,7 +159,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
 
     code_timeago_tokens = code_timeago_tokens.trim_end().to_owned() + "\n    }\n}\n";
 
-    let code = format!("{}\n{}", code_head, code_timeago_tokens);
+    let code = format!("{code_head}\n{code_timeago_tokens}");
 
     let mut target_path = project_root.to_path_buf();
     target_path.push(TARGET_PATH);

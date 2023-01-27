@@ -130,8 +130,6 @@ impl Default for RequestYT {
 #[derive(Clone, Debug, Serialize, Default)]
 #[serde(rename_all = "camelCase")]
 struct User {
-    // TODO: provide a way to enable restricted mode with:
-    // "enableSafetyMode": true
     locked_safety_mode: bool,
 }
 
@@ -926,8 +924,7 @@ impl RustyPipeQuery {
                 .inner
                 .http
                 .post(format!(
-                    "{}{}?key={}{}",
-                    YOUTUBEI_V1_URL, endpoint, DESKTOP_API_KEY, DISABLE_PRETTY_PRINT_PARAMETER
+                    "{YOUTUBEI_V1_URL}{endpoint}?key={DESKTOP_API_KEY}{DISABLE_PRETTY_PRINT_PARAMETER}"
                 ))
                 .header(header::ORIGIN, "https://www.youtube.com")
                 .header(header::REFERER, "https://www.youtube.com")
@@ -942,11 +939,7 @@ impl RustyPipeQuery {
                 .inner
                 .http
                 .post(format!(
-                    "{}{}?key={}{}",
-                    YOUTUBE_MUSIC_V1_URL,
-                    endpoint,
-                    DESKTOP_MUSIC_API_KEY,
-                    DISABLE_PRETTY_PRINT_PARAMETER
+                    "{YOUTUBE_MUSIC_V1_URL}{endpoint}?key={DESKTOP_MUSIC_API_KEY}{DISABLE_PRETTY_PRINT_PARAMETER}"
                 ))
                 .header(header::ORIGIN, "https://music.youtube.com")
                 .header(header::REFERER, "https://music.youtube.com")
@@ -961,8 +954,7 @@ impl RustyPipeQuery {
                 .inner
                 .http
                 .post(format!(
-                    "{}{}?key={}{}",
-                    YOUTUBEI_V1_URL, endpoint, DESKTOP_API_KEY, DISABLE_PRETTY_PRINT_PARAMETER
+                    "{YOUTUBEI_V1_URL}{endpoint}?key={DESKTOP_API_KEY}{DISABLE_PRETTY_PRINT_PARAMETER}"
                 ))
                 .header(header::ORIGIN, "https://www.youtube.com")
                 .header(header::REFERER, "https://www.youtube.com")
@@ -973,11 +965,7 @@ impl RustyPipeQuery {
                 .inner
                 .http
                 .post(format!(
-                    "{}{}?key={}{}",
-                    YOUTUBEI_V1_GAPIS_URL,
-                    endpoint,
-                    ANDROID_API_KEY,
-                    DISABLE_PRETTY_PRINT_PARAMETER
+                    "{YOUTUBEI_V1_GAPIS_URL}{endpoint}?key={ANDROID_API_KEY}{DISABLE_PRETTY_PRINT_PARAMETER}"
                 ))
                 .header(
                     header::USER_AGENT,
@@ -992,8 +980,7 @@ impl RustyPipeQuery {
                 .inner
                 .http
                 .post(format!(
-                    "{}{}?key={}{}",
-                    YOUTUBEI_V1_GAPIS_URL, endpoint, IOS_API_KEY, DISABLE_PRETTY_PRINT_PARAMETER
+                    "{YOUTUBEI_V1_GAPIS_URL}{endpoint}?key={IOS_API_KEY}{DISABLE_PRETTY_PRINT_PARAMETER}"
                 ))
                 .header(
                     header::USER_AGENT,
@@ -1065,7 +1052,7 @@ impl RustyPipeQuery {
                 let report = Report {
                     info: Default::default(),
                     level,
-                    operation: format!("{}({})", operation, id),
+                    operation: format!("{operation}({id})"),
                     error,
                     msgs,
                     deobf_data: deobf.map(Deobfuscator::get_data),
@@ -1230,7 +1217,6 @@ mod tests {
     fn t_get_ytm_visitor_data() {
         let rp = RustyPipe::new();
         let visitor_data = tokio_test::block_on(rp.get_ytm_visitor_data()).unwrap();
-        dbg!(&visitor_data);
         assert!(visitor_data.ends_with("%3D"));
         assert_eq!(visitor_data.len(), 32)
     }

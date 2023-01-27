@@ -236,7 +236,7 @@ mod tests {
     #[case::default("default", "ggMPOg1uX1lMbVZmbzl6NlJ3")]
     #[case::mood("mood", "ggMPOg1uX1JOQWZFeDByc2Jm")]
     fn map_music_genre(#[case] name: &str, #[case] id: &str) {
-        let json_path = path!("testfiles" / "music_genres" / format!("genre_{}.json", name));
+        let json_path = path!("testfiles" / "music_genres" / format!("genre_{name}.json"));
         let json_file = File::open(json_path).unwrap();
 
         let playlist: response::MusicGenre =
@@ -249,6 +249,6 @@ mod tests {
             "deserialization/mapping warnings: {:?}",
             map_res.warnings
         );
-        insta::assert_ron_snapshot!(format!("map_music_genre_{}", name), map_res.c);
+        insta::assert_ron_snapshot!(format!("map_music_genre_{name}"), map_res.c);
     }
 }

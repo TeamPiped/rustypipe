@@ -84,7 +84,7 @@ fn get_sig_fn_name(player_js: &str) -> Result<String> {
 }
 
 fn caller_function(fn_name: &str) -> String {
-    format!("var {}={};", DEOBFUSCATION_FUNC_NAME, fn_name)
+    format!("var {DEOBFUSCATION_FUNC_NAME}={fn_name};")
 }
 
 fn get_sig_fn(player_js: &str) -> Result<String> {
@@ -274,8 +274,7 @@ async fn get_player_js_url(http: &Client) -> Result<String> {
         .as_str();
 
     Ok(format!(
-        "https://www.youtube.com/s/player/{}/player_ias.vflset/en_US/base.js",
-        player_hash
+        "https://www.youtube.com/s/player/{player_hash}/player_ias.vflset/en_US/base.js"
     ))
 }
 
@@ -402,8 +401,8 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
         let deobf = tokio_test::block_on(Deobfuscator::new(client)).unwrap();
 
         let deobf_sig = deobf.deobfuscate_sig("GOqGOqGOq0QJ8wRAIgaryQHfplJ9xJSKFywyaSMHuuwZYsoMTAvRvfm51qIGECIA5061zWeyfMPX9hEl_U6f9J0tr7GTJMKyPf5XNrJb5fb5i").unwrap();
-        println!("{}", deobf_sig);
+        println!("{deobf_sig}");
         let deobf_nsig = deobf.deobfuscate_nsig("WHbZ-Nj2TSJxder").unwrap();
-        println!("{}", deobf_nsig);
+        println!("{deobf_nsig}");
     }
 }

@@ -91,7 +91,7 @@ pub fn generate_content_playback_nonce() -> String {
 /// `example.com/api?k1=v1&k2=v2 => example.com/api; {k1: v1, k2: v2}`
 pub fn url_to_params(url: &str) -> Result<(Url, BTreeMap<String, String>), Error> {
     let mut parsed_url = Url::parse(url)
-        .map_err(|e| Error::Other(format!("could not parse url `{}` err: {}", url, e).into()))?;
+        .map_err(|e| Error::Other(format!("could not parse url `{url}` err: {e}").into()))?;
     let url_params: BTreeMap<String, String> = parsed_url
         .query_pairs()
         .map(|(k, v)| (k.to_string(), v.to_string()))
@@ -168,7 +168,7 @@ where
 {
     let res = parse_numeric::<F>(string);
     if res.is_err() {
-        warnings.push(format!("could not parse number `{}`", string));
+        warnings.push(format!("could not parse number `{string}`"));
     }
     res.ok()
 }
@@ -409,10 +409,7 @@ mod tests {
         let res = retry_delay(n, 1000, 60000, 3);
         assert!(
             res >= expect_min && res <= expect_max,
-            "res: {} not within {} and {}",
-            res,
-            expect_min,
-            expect_max
+            "res: {res} not within {expect_min} and {expect_max}"
         );
     }
 
@@ -490,10 +487,6 @@ mod tests {
         };
 
         let res = parse_large_numstr::<u64>(string, lang).expect(string);
-        assert_eq!(
-            res, rounded,
-            "{} (lang: {}, exact: {})",
-            string, lang, expect
-        );
+        assert_eq!(res, rounded, "{string} (lang: {lang}, exact: {expect})");
     }
 }

@@ -380,13 +380,12 @@ mod tests {
     #[case::no_artist("no_artist", "UCh8gHdtzO2tXd593_bjErWg")]
     #[case::only_more_singles("only_more_singles", "UC0aXrjVxG5pZr99v77wZdPQ")]
     fn map_music_artist(#[case] name: &str, #[case] id: &str) {
-        let json_path = path!("testfiles" / "music_artist" / format!("artist_{}.json", name));
+        let json_path = path!("testfiles" / "music_artist" / format!("artist_{name}.json"));
         let json_file = File::open(json_path).unwrap();
 
         let mut album_page_paths = Vec::new();
         for i in 1..=2 {
-            let json_path =
-                path!("testfiles" / "music_artist" / format!("artist_{}_{}.json", name, i));
+            let json_path = path!("testfiles" / "music_artist" / format!("artist_{name}_{i}.json"));
             if !json_path.exists() {
                 break;
             }
@@ -421,7 +420,7 @@ mod tests {
             artist.albums.append(&mut map_res.c);
         }
 
-        insta::assert_ron_snapshot!(format!("map_music_artist_{}", name), artist);
+        insta::assert_ron_snapshot!(format!("map_music_artist_{name}"), artist);
     }
 
     #[test]
@@ -458,7 +457,7 @@ mod tests {
             ExtractionError::Redirect(id) => {
                 assert_eq!(id, "UCOR4_bSVIXPsGa4BbCSt60Q")
             }
-            _ => panic!("error: {}", e),
+            _ => panic!("error: {e}"),
         }
     }
 }
