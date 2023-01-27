@@ -25,7 +25,6 @@ mod channel_rss;
 use std::sync::Arc;
 use std::{borrow::Cow, fmt::Debug};
 
-use log::{debug, error, warn};
 use once_cell::sync::Lazy;
 use rand::Rng;
 use regex::Regex;
@@ -323,6 +322,7 @@ impl RustyPipeBuilder {
             .user_agent(self.user_agent)
             .gzip(true)
             .brotli(true)
+            .redirect(reqwest::redirect::Policy::none())
             .build()
             .unwrap();
 
@@ -331,7 +331,7 @@ impl RustyPipeBuilder {
                 match serde_json::from_str::<CacheData>(&data) {
                     Ok(data) => data,
                     Err(e) => {
-                        error!("Could not deserialize cache. Error: {}", e);
+                        log::error!("Could not deserialize cache. Error: {}", e);
                         CacheData::default()
                     }
                 }
@@ -523,7 +523,7 @@ impl RustyPipe {
             };
 
             let ms = util::retry_delay(n, 1000, 60000, 3);
-            warn!("Retry attempt #{}. Error: {}. Waiting {} ms", n, emsg, ms);
+            log::warn!("Retry attempt #{}. Error: {}. Waiting {} ms", n, emsg, ms);
             tokio::time::sleep(std::time::Duration::from_millis(ms.into())).await;
 
             last_res = Some(res);
@@ -656,7 +656,7 @@ impl RustyPipe {
         match desktop_client.get() {
             Some(cdata) => cdata.version.to_owned(),
             None => {
-                debug!("getting desktop client version");
+                log::debug!("getting desktop client version");
                 match self.extract_desktop_client_version().await {
                     Ok(version) => {
                         *desktop_client = CacheEntry::from(ClientData {
@@ -667,7 +667,7 @@ impl RustyPipe {
                         version
                     }
                     Err(e) => {
-                        warn!("{}, falling back to hardcoded version", e);
+                        log::warn!("{}, falling back to hardcoded version", e);
                         DESKTOP_CLIENT_VERSION.to_owned()
                     }
                 }
@@ -688,7 +688,7 @@ impl RustyPipe {
         match music_client.get() {
             Some(cdata) => cdata.version.to_owned(),
             None => {
-                debug!("getting music client version");
+                log::debug!("getting music client version");
                 match self.extract_music_client_version().await {
                     Ok(version) => {
                         *music_client = CacheEntry::from(ClientData {
@@ -699,7 +699,7 @@ impl RustyPipe {
                         version
                     }
                     Err(e) => {
-                        warn!("{}, falling back to hardcoded version", e);
+                        log::warn!("{}, falling back to hardcoded version", e);
                         DESKTOP_MUSIC_CLIENT_VERSION.to_owned()
                     }
                 }
@@ -715,7 +715,7 @@ impl RustyPipe {
         match deobf.get() {
             Some(deobf) => Ok(Deobfuscator::from(deobf.to_owned())),
             None => {
-                debug!("getting deobfuscator");
+                log::debug!("getting deobfuscator");
                 let new_deobf = Deobfuscator::new(self.inner.http.clone()).await?;
                 *deobf = CacheEntry::from(new_deobf.get_data());
                 drop(deobf);
@@ -736,12 +736,13 @@ impl RustyPipe {
 
             match serde_json::to_string(&cdata) {
                 Ok(data) => storage.write(&data),
-                Err(e) => error!("Could not serialize cache. Error: {}", e),
+                Err(e) => log::error!("Could not serialize cache. Error: {}", e),
             }
         }
     }
 
     async fn get_ytm_visitor_data(&self) -> Result<String, Error> {
+        log::debug!("getting YTM visitor data");
         let resp = self.inner.http.get(YOUTUBE_MUSIC_HOME_URL).send().await?;
 
         resp.headers()
@@ -1040,6 +1041,8 @@ impl RustyPipeQuery {
         body: &B,
         deobf: Option<&Deobfuscator>,
     ) -> Result<M, Error> {
+        log::debug!("getting {}({})", operation, id);
+
         let request = self
             .request_builder(ctype, endpoint)
             .await
@@ -1212,7 +1215,7 @@ trait MapResponse<T> {
 
 fn validate_country(country: Country) -> Country {
     if country == Country::Zz {
-        warn!("Country:Zz (Global) can only be used for fetching music charts, falling back to Country:Us");
+        log::warn!("Country:Zz (Global) can only be used for fetching music charts, falling back to Country:Us");
         Country::Us
     } else {
         country
@@ -1227,6 +1230,7 @@ mod tests {
     async fn t_get_ytm_visitor_data() {
         let rp = RustyPipe::new();
         let visitor_data = rp.get_ytm_visitor_data().await.unwrap();
+        dbg!(&visitor_data);
         assert!(visitor_data.ends_with("%3D"));
         assert_eq!(visitor_data.len(), 32)
     }

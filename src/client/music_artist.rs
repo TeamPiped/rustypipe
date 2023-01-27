@@ -35,88 +35,82 @@ impl RustyPipeQuery {
         all_albums: bool,
     ) -> Result<MusicArtist, Error> {
         let artist_id = artist_id.as_ref();
-        log::debug!("Getting music artist {}", artist_id);
+        let visitor_data = match all_albums {
+            true => Some(self.get_ytm_visitor_data().await?),
+            false => None,
+        };
 
-        let res = self._music_artist(artist_id, all_albums).await;
+        let res = self._music_artist(artist_id, visitor_data.as_deref()).await;
 
         if let Err(Error::Extraction(ExtractionError::Redirect(id))) = res {
-            log::debug!("Music artist {} redirects to {}", artist_id, &id);
-            self._music_artist(&id, all_albums).await.map(|x| *x)
+            log::debug!("music artist {} redirects to {}", artist_id, &id);
+            self._music_artist(&id, visitor_data.as_deref()).await
         } else {
-            res.map(|x| *x)
+            res
         }
     }
 
-    async fn _music_artist<S: AsRef<str>>(
+    async fn _music_artist(
         &self,
-        artist_id: S,
-        all_albums: bool,
-    ) -> Result<Box<MusicArtist>, Error> {
-        let artist_id = artist_id.as_ref();
+        artist_id: &str,
+        all_albums_vdata: Option<&str>,
+    ) -> Result<MusicArtist, Error> {
+        match all_albums_vdata {
+            Some(visitor_data) => {
+                let context = self
+                    .get_context(ClientType::DesktopMusic, true, Some(visitor_data))
+                    .await;
+                let request_body = QBrowse {
+                    context,
+                    browse_id: artist_id,
+                };
 
-        if all_albums {
-            let visitor_data = self.get_ytm_visitor_data().await?;
-            let context = self
-                .get_context(ClientType::DesktopMusic, true, Some(&visitor_data))
-                .await;
-            let request_body = QBrowse {
-                context,
-                browse_id: artist_id,
-            };
+                let (mut artist, album_page_params) = self
+                    .execute_request::<response::MusicArtist, _, _>(
+                        ClientType::DesktopMusic,
+                        "music_artist",
+                        artist_id,
+                        "browse",
+                        &request_body,
+                    )
+                    .await?;
 
-            let (mut artist, album_page_params) = self
-                .execute_request::<response::MusicArtist, _, _>(
+                let visitor_data = Rc::new(visitor_data);
+                let album_page_results = stream::iter(album_page_params)
+                    .map(|params| {
+                        let visitor_data = visitor_data.clone();
+                        async move {
+                            self.music_artist_album_page(artist_id, &params, &visitor_data)
+                                .await
+                        }
+                    })
+                    .buffer_unordered(2)
+                    .collect::<Vec<_>>()
+                    .await;
+
+                for res in album_page_results {
+                    let mut res = res?;
+                    artist.albums.append(&mut res);
+                }
+
+                Ok(artist)
+            }
+            None => {
+                let context = self.get_context(ClientType::DesktopMusic, true, None).await;
+                let request_body = QBrowse {
+                    context,
+                    browse_id: artist_id,
+                };
+
+                self.execute_request::<response::MusicArtist, _, _>(
                     ClientType::DesktopMusic,
                     "music_artist",
                     artist_id,
                     "browse",
                     &request_body,
                 )
-                .await?;
-
-            let visitor_data = Rc::new(visitor_data);
-            let n_album_pages = album_page_params.len();
-            let album_page_results = stream::iter(album_page_params)
-                .enumerate()
-                .map(|(i, params)| {
-                    let visitor_data = visitor_data.clone();
-                    log::debug!(
-                        "Getting music artist {} section {}/{}",
-                        artist_id,
-                        i + 1,
-                        n_album_pages
-                    );
-                    async move {
-                        self.music_artist_album_page(artist_id, &params, &visitor_data)
-                            .await
-                    }
-                })
-                .buffer_unordered(2)
-                .collect::<Vec<_>>()
-                .await;
-
-            for res in album_page_results {
-                let mut res = res?;
-                artist.albums.append(&mut res);
+                .await
             }
-
-            Ok(artist.into())
-        } else {
-            let context = self.get_context(ClientType::DesktopMusic, true, None).await;
-            let request_body = QBrowse {
-                context,
-                browse_id: artist_id,
-            };
-
-            self.execute_request::<response::MusicArtist, _, _>(
-                ClientType::DesktopMusic,
-                "music_artist",
-                artist_id,
-                "browse",
-                &request_body,
-            )
-            .await
-            .map(|x: MusicArtist| x.into())
         }
     }
 

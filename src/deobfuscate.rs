@@ -1,5 +1,4 @@
 use fancy_regex::Regex as FancyRegex;
-use log::debug;
 use once_cell::sync::Lazy;
 use regex::Regex;
 use reqwest::Client;
@@ -27,7 +26,7 @@ impl Deobfuscator {
         let js_url = get_player_js_url(&http).await?;
         let player_js = get_response(&http, &js_url).await?;
 
-        debug!("Downloaded player.js from {}", js_url);
+        log::debug!("downloaded player.js from {}", js_url);
 
         let sig_fn = get_sig_fn(&player_js)?;
         let nsig_fn = get_nsig_fn(&player_js)?;

@@ -1424,8 +1424,8 @@ async fn music_album_not_found() {
 #[case::no_artist("no_artist", "UCh8gHdtzO2tXd593_bjErWg", false, 0, 2)]
 // querying Trailerpark's secondary YouTube channel should result in the YTM channel being fetched
 #[case::secondary_channel("no_more_albums", "UCC9192yGQD25eBZgFZ84MPw", true, 15, 0)]
-#[tokio::test]
-async fn music_artist(
+#[test_log::test]
+fn music_artist(
     #[case] name: &str,
     #[case] id: &str,
     #[case] all_albums: bool,
@@ -1433,7 +1433,8 @@ async fn music_artist(
     #[case] min_playlists: usize,
 ) {
     let rp = RustyPipe::builder().strict().build();
-    let mut artist = rp.query().music_artist(id, all_albums).await.unwrap();
+
+    let mut artist = tokio_test::block_on(rp.query().music_artist(id, all_albums)).unwrap();
 
     assert_gte(artist.tracks.len(), min_tracks, "tracks");
     assert_gte(artist.playlists.len(), min_playlists, "playlists");
