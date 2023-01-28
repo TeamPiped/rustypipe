@@ -1278,3 +1278,13 @@ pub struct MusicGenreSection {
     /// List of playlists of the genre section
     pub playlists: Vec<MusicPlaylistItem>,
 }
+
+/// YouTube Music suggested search terms/items
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
+pub struct MusicSearchSuggestion {
+    /// Suggested search terms
+    pub terms: Vec<String>,
+    /// Suggested music items
+    pub items: Vec<MusicItem>,
+}

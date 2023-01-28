@@ -3,7 +3,10 @@ use serde_with::{rust::deserialize_ignore_any, serde_as, VecSkipError};
 
 use crate::serializer::text::Text;
 
-use super::{music_item::MusicShelf, ContentsRenderer, SectionList, Tab};
+use super::{
+    music_item::{ListMusicItem, MusicShelf},
+    ContentsRenderer, SectionList, Tab,
+};
 
 /// Response model for YouTube Music search
 #[derive(Debug, Deserialize)]
@@ -12,7 +15,7 @@ pub(crate) struct MusicSearch {
     pub contents: Contents,
 }
 
-/// Response model for YouTube Music suggestion
+/// Response model for YouTube Music search suggestion
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -70,6 +73,7 @@ pub(crate) enum SearchSuggestionItem {
         #[serde_as(as = "Text")]
         suggestion: String,
     },
+    MusicResponsiveListItemRenderer(Box<ListMusicItem>),
     #[serde(other, deserialize_with = "deserialize_ignore_any")]
     None,
 }

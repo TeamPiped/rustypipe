@@ -1421,8 +1421,8 @@ fn music_artist_not_found() {
 fn music_search(#[case] typo: bool) {
     let rp = RustyPipe::builder().strict().build();
     let res = tokio_test::block_on(rp.query().music_search(match typo {
-        false => "black mamba",
-        true => "blck mamba",
+        false => "black mamba aespa",
+        true => "blck mamba aespa",
     }))
     .unwrap();
 
@@ -1433,7 +1433,7 @@ fn music_search(#[case] typo: bool) {
     assert_eq!(res.order[0], MusicItemType::Track);
 
     if typo {
-        assert_eq!(res.corrected_query.unwrap(), "black mamba");
+        assert_eq!(res.corrected_query.unwrap(), "black mamba aespa");
     } else {
         assert_eq!(res.corrected_query, None);
     }
@@ -1700,21 +1700,32 @@ fn music_search_genre_radio() {
 }
 
 #[rstest]
-#[case::default("ed sheer", Some("ed sheeran"))]
-#[case::empty("reujbhevmfndxnjrze", None)]
-fn music_search_suggestion(#[case] query: &str, #[case] expect: Option<&str>) {
+#[case::default("ed sheer", Some("ed sheeran"), Some("UClmXPfaYhXOYsNn_QUyheWQ"))]
+#[case::empty("reujbhevmfndxnjrze", None, None)]
+fn music_search_suggestion(
+    #[case] query: &str,
+    #[case] term: Option<&str>,
+    #[case] artist: Option<&str>,
+) {
     let rp = RustyPipe::builder().strict().build();
     let suggestion = tokio_test::block_on(rp.query().music_search_suggestion(query)).unwrap();
 
-    match expect {
+    match term {
         Some(expect) => assert!(
-            suggestion.iter().any(|s| s == expect),
+            suggestion.terms.iter().any(|s| s == expect),
             "suggestion: {suggestion:?}, expected: {expect}"
         ),
         None => assert!(
-            suggestion.is_empty(),
+            suggestion.terms.is_empty(),
             "suggestion: {suggestion:?}, expected to be empty"
         ),
+    }
+
+    if let Some(artist) = artist {
+        assert!(suggestion.items.iter().any(|s| match s {
+            rustypipe::model::MusicItem::Artist(a) => a.id == artist,
+            _ => false,
+        }));
     }
 }
 

@@ -7,7 +7,7 @@ use crate::{
     error::{Error, ExtractionError},
     model::{
         paginator::Paginator, traits::FromYtItem, AlbumItem, ArtistItem, MusicPlaylistItem,
-        MusicSearchFiltered, MusicSearchResult, TrackItem,
+        MusicSearchFiltered, MusicSearchResult, MusicSearchSuggestion, TrackItem,
     },
     serializer::MapResult,
     util::TryRemove,
@@ -206,7 +206,7 @@ impl RustyPipeQuery {
     pub async fn music_search_suggestion<S: AsRef<str>>(
         &self,
         query: S,
-    ) -> Result<Vec<String>, Error> {
+    ) -> Result<MusicSearchSuggestion, Error> {
         let query = query.as_ref();
         let context = self.get_context(ClientType::DesktopMusic, true, None).await;
         let request_body = QSearchSuggestion {
@@ -334,37 +334,40 @@ impl<T: FromYtItem> MapResponse<MusicSearchFiltered<T>> for response::MusicSearc
     }
 }
 
-impl MapResponse<Vec<String>> for response::MusicSearchSuggestion {
+impl MapResponse<MusicSearchSuggestion> for response::MusicSearchSuggestion {
     fn map_response(
         self,
         _id: &str,
-        _lang: crate::param::Language,
+        lang: crate::param::Language,
         _deobf: Option<&crate::deobfuscate::Deobfuscator>,
-    ) -> Result<MapResult<Vec<String>>, ExtractionError> {
-        let items = self
-            .contents
-            .into_iter()
-            .next()
-            .map(|content| {
-                content
-                    .search_suggestions_section_renderer
-                    .contents
-                    .into_iter()
-                    .filter_map(|itm| {
-                        match itm {
+    ) -> Result<MapResult<MusicSearchSuggestion>, ExtractionError> {
+        let mut mapper = MusicListMapper::new(lang);
+        let mut terms = Vec::new();
+
+        for section in self.contents {
+            for item in section.search_suggestions_section_renderer.contents {
+                match item {
                     response::music_search::SearchSuggestionItem::SearchSuggestionRenderer {
                         suggestion,
-                    } => Some(suggestion),
-                    response::music_search::SearchSuggestionItem::None => None,
+                    } => {
+                        terms.push(suggestion);
+                    },
+                    response::music_search::SearchSuggestionItem::MusicResponsiveListItemRenderer(item) => {
+                        mapper.add_response_item(response::music_item::MusicResponseItem::MusicResponsiveListItemRenderer(*item));
+                    }
+                    response::music_search::SearchSuggestionItem::None => {},
                 }
-                    })
-                    .collect::<Vec<_>>()
-            })
-            .unwrap_or_default();
+            }
+        }
+
+        let map_res = mapper.conv_items();
 
         Ok(MapResult {
-            c: items,
-            warnings: Vec::new(),
+            c: MusicSearchSuggestion {
+                terms,
+                items: map_res.c,
+            },
+            warnings: map_res.warnings,
         })
     }
 }
@@ -380,7 +383,7 @@ mod tests {
         client::{response, MapResponse},
         model::{
             AlbumItem, ArtistItem, MusicPlaylistItem, MusicSearchFiltered, MusicSearchResult,
-            TrackItem,
+            MusicSearchSuggestion, TrackItem,
         },
         param::Language,
         serializer::MapResult,
@@ -499,7 +502,7 @@ mod tests {
 
         let suggestion: response::MusicSearchSuggestion =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res: MapResult<Vec<String>> =
+        let map_res: MapResult<MusicSearchSuggestion> =
             suggestion.map_response("", Language::En, None).unwrap();
 
         assert!(

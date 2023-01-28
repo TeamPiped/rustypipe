@@ -866,22 +866,28 @@ impl MusicListMapper {
     ) -> Option<MusicItemType> {
         let mut etype = None;
         self.warnings.append(&mut res.warnings);
-        res.c
-            .into_iter()
-            .for_each(|item| match self.map_item(item) {
-                Ok(Some(et)) => {
-                    if etype.is_none() {
-                        etype = Some(et);
-                    }
+        res.c.into_iter().for_each(|item| {
+            if let Some(et) = self.add_response_item(item) {
+                if etype.is_none() {
+                    etype = Some(et);
                 }
-                Ok(None) => {}
-                Err(e) => self.warnings.push(e),
-            });
+            }
+        });
         etype
     }
 
     pub fn add_item(&mut self, item: MusicItem) {
         self.items.push(item);
+    }
+
+    pub fn add_response_item(&mut self, item: MusicResponseItem) -> Option<MusicItemType> {
+        match self.map_item(item) {
+            Ok(et) => et,
+            Err(e) => {
+                self.warnings.push(e);
+                None
+            }
+        }
     }
 
     pub fn add_warnings(&mut self, warnings: &mut Vec<String>) {
