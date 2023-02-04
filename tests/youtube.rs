@@ -1,7 +1,7 @@
 use std::collections::HashSet;
 use std::fmt::Display;
 
-use rstest::rstest;
+use rstest::{fixture, rstest};
 use rustypipe::model::paginator::ContinuationEndpoint;
 use rustypipe::validate;
 use time::macros::date;
@@ -29,8 +29,7 @@ use rustypipe::param::{
 #[case::android(ClientType::Android)]
 #[case::ios(ClientType::Ios)]
 #[test_log::test]
-fn get_player_from_client(#[case] client_type: ClientType) {
-    let rp = RustyPipe::builder().strict().build();
+fn get_player_from_client(#[case] client_type: ClientType, rp: RustyPipe) {
     let player_data =
         tokio_test::block_on(rp.query().player_from_client("n4tK7LYFxI0", client_type)).unwrap();
 
@@ -219,8 +218,8 @@ fn get_player(
     #[case] views: u64,
     #[case] is_live: bool,
     #[case] is_live_content: bool,
+    rp: RustyPipe,
 ) {
-    let rp = RustyPipe::builder().strict().build();
     let player_data = tokio_test::block_on(rp.query().player(id)).unwrap();
     let details = player_data.details;
 
@@ -304,8 +303,7 @@ fn get_player(
     "extraction error: Video cant be played because of being private. Reason (from YT): "
 )]
 #[case::age_restricted("CUO8secmc0g", "extraction error: Video is age restricted")]
-fn get_player_error(#[case] id: &str, #[case] msg: &str) {
-    let rp = RustyPipe::builder().strict().build();
+fn get_player_error(#[case] id: &str, #[case] msg: &str, rp: RustyPipe) {
     let err = tokio_test::block_on(rp.query().player(id))
         .unwrap_err()
         .to_string();
@@ -346,8 +344,8 @@ fn get_playlist(
     #[case] is_long: bool,
     #[case] description: Option<String>,
     #[case] channel: Option<(&str, &str)>,
+    rp: RustyPipe,
 ) {
-    let rp = RustyPipe::builder().strict().build();
     let playlist = tokio_test::block_on(rp.query().playlist(id)).unwrap();
 
     assert_eq!(playlist.id, id);
@@ -366,9 +364,8 @@ fn get_playlist(
     assert!(!playlist.thumbnail.is_empty());
 }
 
-#[test]
-fn playlist_cont() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn playlist_cont(rp: RustyPipe) {
     let mut playlist =
         tokio_test::block_on(rp.query().playlist("PLbZIPy20-1pN7mqjckepWF78ndb6ci_qi")).unwrap();
 
@@ -377,9 +374,8 @@ fn playlist_cont() {
     assert!(playlist.videos.count.unwrap() > 100);
 }
 
-#[test]
-fn playlist_cont2() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn playlist_cont2(rp: RustyPipe) {
     let mut playlist =
         tokio_test::block_on(rp.query().playlist("PLbZIPy20-1pN7mqjckepWF78ndb6ci_qi")).unwrap();
 
@@ -388,9 +384,8 @@ fn playlist_cont2() {
     assert!(playlist.videos.count.unwrap() > 100);
 }
 
-#[test]
-fn playlist_not_found() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn playlist_not_found(rp: RustyPipe) {
     let err = tokio_test::block_on(rp.query().playlist("PLbZIPy20-1pN7mqjckepWF78ndb6ci_qz"))
         .unwrap_err();
 
@@ -405,9 +400,8 @@ fn playlist_not_found() {
 
 //#VIDEO DETAILS
 
-#[test]
-fn get_video_details() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn get_video_details(rp: RustyPipe) {
     let details = tokio_test::block_on(rp.query().video_details("ZeerrnuLi5E")).unwrap();
 
     // dbg!(&details);
@@ -446,9 +440,8 @@ fn get_video_details() {
     assert!(!details.latest_comments.is_exhausted());
 }
 
-#[test]
-fn get_video_details_music() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn get_video_details_music(rp: RustyPipe) {
     let details = tokio_test::block_on(rp.query().video_details("XuM2onMGvTI")).unwrap();
 
     // dbg!(&details);
@@ -488,9 +481,8 @@ fn get_video_details_music() {
     */
 }
 
-#[test]
-fn get_video_details_ccommons() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn get_video_details_ccommons(rp: RustyPipe) {
     let details = tokio_test::block_on(rp.query().video_details("0rb9CfOvojk")).unwrap();
 
     // dbg!(&details);
@@ -532,9 +524,8 @@ fn get_video_details_ccommons() {
     assert!(!details.latest_comments.is_exhausted());
 }
 
-#[test]
-fn get_video_details_chapters() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn get_video_details_chapters(rp: RustyPipe) {
     let details = tokio_test::block_on(rp.query().video_details("nFDBxBUfE74")).unwrap();
 
     // dbg!(&details);
@@ -656,9 +647,8 @@ fn get_video_details_chapters() {
     assert!(!details.latest_comments.is_exhausted());
 }
 
-#[test]
-fn get_video_details_live() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn get_video_details_live(rp: RustyPipe) {
     let details = tokio_test::block_on(rp.query().video_details("86YLFOog4GM")).unwrap();
 
     // dbg!(&details);
@@ -702,9 +692,8 @@ fn get_video_details_live() {
     assert!(details.latest_comments.is_empty());
 }
 
-#[test]
-fn get_video_details_agegate() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn get_video_details_agegate(rp: RustyPipe) {
     let details = tokio_test::block_on(rp.query().video_details("HRKu0cvrr_o")).unwrap();
 
     // dbg!(&details);
@@ -742,9 +731,8 @@ fn get_video_details_agegate() {
     assert!(details.recommended.items.is_empty());
 }
 
-#[test]
-fn get_video_details_not_found() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn get_video_details_not_found(rp: RustyPipe) {
     let err = tokio_test::block_on(rp.query().video_details("abcdefgLi5X")).unwrap_err();
 
     assert!(
@@ -756,9 +744,8 @@ fn get_video_details_not_found() {
     )
 }
 
-#[test]
-fn get_video_comments() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn get_video_comments(rp: RustyPipe) {
     let details = tokio_test::block_on(rp.query().video_details("ZeerrnuLi5E")).unwrap();
 
     let top_comments = tokio_test::block_on(details.top_comments.next(rp.query()))
@@ -781,9 +768,8 @@ fn get_video_comments() {
 
 //#CHANNEL
 
-#[test]
-fn channel_videos() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn channel_videos(rp: RustyPipe) {
     let channel =
         tokio_test::block_on(rp.query().channel_videos("UC2DjFE7Xf11URZqWBigcVOQ")).unwrap();
 
@@ -804,9 +790,8 @@ fn channel_videos() {
     assert_next(channel.content, rp.query(), 15, 2);
 }
 
-#[test]
-fn channel_shorts() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn channel_shorts(rp: RustyPipe) {
     let channel =
         tokio_test::block_on(rp.query().channel_shorts("UCh8gHdtzO2tXd593_bjErWg")).unwrap();
 
@@ -835,9 +820,8 @@ fn channel_shorts() {
     assert_next(channel.content, rp.query(), 15, 1);
 }
 
-#[test]
-fn channel_livestreams() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn channel_livestreams(rp: RustyPipe) {
     let channel =
         tokio_test::block_on(rp.query().channel_livestreams("UC2DjFE7Xf11URZqWBigcVOQ")).unwrap();
 
@@ -852,9 +836,8 @@ fn channel_livestreams() {
     assert_next(channel.content, rp.query(), 5, 1);
 }
 
-#[test]
-fn channel_playlists() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn channel_playlists(rp: RustyPipe) {
     let channel =
         tokio_test::block_on(rp.query().channel_playlists("UC2DjFE7Xf11URZqWBigcVOQ")).unwrap();
 
@@ -868,9 +851,8 @@ fn channel_playlists() {
     assert_next(channel.content, rp.query(), 15, 1);
 }
 
-#[test]
-fn channel_info() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn channel_info(rp: RustyPipe) {
     let channel =
         tokio_test::block_on(rp.query().channel_info("UC2DjFE7Xf11URZqWBigcVOQ")).unwrap();
 
@@ -905,9 +887,8 @@ fn channel_info() {
         "###);
 }
 
-#[test]
-fn channel_search() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn channel_search(rp: RustyPipe) {
     let channel = tokio_test::block_on(
         rp.query()
             .channel_search("UC2DjFE7Xf11URZqWBigcVOQ", "test"),
@@ -952,9 +933,8 @@ fn channel_more(
     #[case] name: &str,
     #[case] has_videos: bool,
     #[case] has_playlists: bool,
+    rp: RustyPipe,
 ) {
-    let rp = RustyPipe::builder().strict().build();
-
     fn assert_channel<T>(channel: &Channel<T>, id: &str, name: &str) {
         assert_eq!(channel.id, id);
         assert_eq!(channel.name, name);
@@ -985,8 +965,7 @@ fn channel_more(
 #[case::movies("UCuJcl0Ju-gPDoksRjK1ya-w")]
 #[case::sports("UCEgdi0XIXXZ-qJOFPf4JSKw")]
 #[case::learning("UCtFRv9O2AHqOZjjynzrv-xg")]
-fn channel_not_found(#[case] id: &str) {
-    let rp = RustyPipe::builder().strict().build();
+fn channel_not_found(#[case] id: &str, rp: RustyPipe) {
     let err = tokio_test::block_on(rp.query().channel_videos(&id)).unwrap_err();
 
     assert!(
@@ -1005,9 +984,8 @@ mod channel_rss {
     use super::*;
     use time::macros::datetime;
 
-    #[test]
-    fn get_channel_rss() {
-        let rp = RustyPipe::builder().strict().build();
+    #[rstest]
+    fn get_channel_rss(rp: RustyPipe) {
         let channel =
             tokio_test::block_on(rp.query().channel_rss("UCHnyfMqiRRG1u-2MsSQLbXA")).unwrap();
 
@@ -1018,9 +996,8 @@ mod channel_rss {
         assert!(!channel.videos.is_empty());
     }
 
-    #[test]
-    fn get_channel_rss_not_found() {
-        let rp = RustyPipe::builder().strict().build();
+    #[rstest]
+    fn get_channel_rss_not_found(rp: RustyPipe) {
         let err =
             tokio_test::block_on(rp.query().channel_rss("UCHnyfMqiRRG1u-2MsSQLbXZ")).unwrap_err();
 
@@ -1037,9 +1014,8 @@ mod channel_rss {
 
 //#SEARCH
 
-#[test]
-fn search() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn search(rp: RustyPipe) {
     let result = tokio_test::block_on(rp.query().search("doobydoobap")).unwrap();
 
     assert!(
@@ -1056,8 +1032,7 @@ fn search() {
 #[case::video(search_filter::ItemType::Video)]
 #[case::channel(search_filter::ItemType::Channel)]
 #[case::playlist(search_filter::ItemType::Playlist)]
-fn search_filter_item_type(#[case] item_type: search_filter::ItemType) {
-    let rp = RustyPipe::builder().strict().build();
+fn search_filter_item_type(#[case] item_type: search_filter::ItemType, rp: RustyPipe) {
     let mut result = tokio_test::block_on(
         rp.query()
             .search_filter("with no videos", &SearchFilter::new().item_type(item_type)),
@@ -1080,9 +1055,8 @@ fn search_filter_item_type(#[case] item_type: search_filter::ItemType) {
     });
 }
 
-#[test]
-fn search_empty() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn search_empty(rp: RustyPipe) {
     let result = tokio_test::block_on(
         rp.query().search_filter(
             "test",
@@ -1096,17 +1070,15 @@ fn search_empty() {
     assert!(result.items.is_empty());
 }
 
-#[test]
-fn search_suggestion() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn search_suggestion(rp: RustyPipe) {
     let result = tokio_test::block_on(rp.query().search_suggestion("hunger ga")).unwrap();
 
     assert!(result.contains(&"hunger games".to_owned()));
 }
 
-#[test]
-fn search_suggestion_empty() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn search_suggestion_empty(rp: RustyPipe) {
     let result =
         tokio_test::block_on(rp.query().search_suggestion("fjew327%4ifjelwfvnewg49")).unwrap();
 
@@ -1137,8 +1109,7 @@ fn search_suggestion_empty() {
 #[case("https://music.youtube.com/playlist?list=OLAK5uy_k0yFrZlFRgCf3rLPza-lkRmCrtLPbK9pE", UrlTarget::Album {id: "MPREb_GyH43gCvdM5".to_owned()})]
 #[case("https://music.youtube.com/browse/MPREb_GyH43gCvdM5", UrlTarget::Album {id: "MPREb_GyH43gCvdM5".to_owned()})]
 #[case("https://music.youtube.com/browse/UC5I2hjZYiW9gZPVkvzM8_Cw", UrlTarget::Channel {id: "UC5I2hjZYiW9gZPVkvzM8_Cw".to_owned()})]
-fn resolve_url(#[case] url: &str, #[case] expect: UrlTarget) {
-    let rp = RustyPipe::builder().strict().build();
+fn resolve_url(#[case] url: &str, #[case] expect: UrlTarget, rp: RustyPipe) {
     let target = tokio_test::block_on(rp.query().resolve_url(url, true)).unwrap();
     assert_eq!(target, expect);
 }
@@ -1155,15 +1126,13 @@ fn resolve_url(#[case] url: &str, #[case] expect: UrlTarget) {
 #[case("RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk", UrlTarget::Playlist {id: "RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk".to_owned()})]
 #[case("OLAK5uy_k0yFrZlFRgCf3rLPza-lkRmCrtLPbK9pE", UrlTarget::Album {id: "MPREb_GyH43gCvdM5".to_owned()})]
 #[case("MPREb_GyH43gCvdM5", UrlTarget::Album {id: "MPREb_GyH43gCvdM5".to_owned()})]
-fn resolve_string(#[case] string: &str, #[case] expect: UrlTarget) {
-    let rp = RustyPipe::builder().strict().build();
+fn resolve_string(#[case] string: &str, #[case] expect: UrlTarget, rp: RustyPipe) {
     let target = tokio_test::block_on(rp.query().resolve_string(string, true)).unwrap();
     assert_eq!(target, expect);
 }
 
-#[test]
-fn resolve_channel_not_found() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn resolve_channel_not_found(rp: RustyPipe) {
     let err = tokio_test::block_on(
         rp.query()
             .resolve_url("https://www.youtube.com/feeqegnhq3rkwghjq43ruih43io3", true),
@@ -1178,9 +1147,8 @@ fn resolve_channel_not_found() {
 
 //#TRENDS
 
-#[test]
-fn startpage() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn startpage(rp: RustyPipe) {
     let startpage = tokio_test::block_on(rp.query().startpage()).unwrap();
 
     // The startpage requires visitor data to fetch continuations
@@ -1189,9 +1157,8 @@ fn startpage() {
     assert_next(startpage, rp.query(), 12, 2);
 }
 
-#[test]
-fn trending() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn trending(rp: RustyPipe) {
     let result = tokio_test::block_on(rp.query().trending()).unwrap();
 
     assert_gte(result.len(), 50, "items");
@@ -1231,8 +1198,8 @@ fn music_playlist(
     #[case] description: Option<String>,
     #[case] channel: Option<(&str, &str)>,
     #[case] from_ytm: bool,
+    rp: RustyPipe,
 ) {
-    let rp = RustyPipe::builder().strict().build();
     let playlist = tokio_test::block_on(rp.query().music_playlist(id)).unwrap();
 
     assert_eq!(playlist.id, id);
@@ -1252,9 +1219,8 @@ fn music_playlist(
     assert_eq!(playlist.from_ytm, from_ytm);
 }
 
-#[test]
-fn music_playlist_cont() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn music_playlist_cont(rp: RustyPipe) {
     let mut playlist = tokio_test::block_on(
         rp.query()
             .music_playlist("PLbZIPy20-1pN7mqjckepWF78ndb6ci_qi"),
@@ -1267,9 +1233,8 @@ fn music_playlist_cont() {
     assert_gte(playlist.tracks.count.unwrap(), 100, "track count");
 }
 
-#[test]
-fn music_playlist_related() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn music_playlist_related(rp: RustyPipe) {
     let mut playlist = tokio_test::block_on(
         rp.query()
             .music_playlist("PLbZIPy20-1pN7mqjckepWF78ndb6ci_qi"),
@@ -1285,9 +1250,8 @@ fn music_playlist_related() {
     );
 }
 
-#[test]
-fn music_playlist_not_found() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn music_playlist_not_found(rp: RustyPipe) {
     let err = tokio_test::block_on(
         rp.query()
             .music_playlist("PLbZIPy20-1pN7mqjckepWF78ndb6ci_qz"),
@@ -1314,8 +1278,7 @@ fn music_playlist_not_found() {
 #[case::no_year("no_year", "MPREb_F3Af9UZZVxX")]
 #[case::version_no_artist("version_no_artist", "MPREb_h8ltx5oKvyY")]
 #[case::no_artist("no_artist", "MPREb_bqWA6mAZFWS")]
-fn music_album(#[case] name: &str, #[case] id: &str) {
-    let rp = RustyPipe::builder().strict().build();
+fn music_album(#[case] name: &str, #[case] id: &str, rp: RustyPipe) {
     let album = tokio_test::block_on(rp.query().music_album(id)).unwrap();
 
     assert!(!album.cover.is_empty(), "got no cover");
@@ -1325,9 +1288,8 @@ fn music_album(#[case] name: &str, #[case] id: &str) {
     );
 }
 
-#[test]
-fn music_album_not_found() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn music_album_not_found(rp: RustyPipe) {
     let err = tokio_test::block_on(rp.query().music_album("MPREb_nlBWQROfvjoz")).unwrap_err();
 
     assert!(
@@ -1354,9 +1316,8 @@ fn music_artist(
     #[case] all_albums: bool,
     #[case] min_tracks: usize,
     #[case] min_playlists: usize,
+    rp: RustyPipe,
 ) {
-    let rp = RustyPipe::builder().strict().build();
-
     let mut artist = tokio_test::block_on(rp.query().music_artist(id, all_albums)).unwrap();
 
     assert_gte(artist.tracks.len(), min_tracks, "tracks");
@@ -1401,9 +1362,8 @@ fn music_artist(
     });
 }
 
-#[test]
-fn music_artist_not_found() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn music_artist_not_found(rp: RustyPipe) {
     let err = tokio_test::block_on(rp.query().music_artist("UC7cl4MmM6ZZ2TcFyMk_b4pq", false))
         .unwrap_err();
 
@@ -1419,8 +1379,7 @@ fn music_artist_not_found() {
 #[rstest]
 #[case::default(false)]
 #[case::typo(true)]
-fn music_search(#[case] typo: bool) {
-    let rp = RustyPipe::builder().strict().build();
+fn music_search(#[case] typo: bool, rp: RustyPipe) {
     let res = tokio_test::block_on(rp.query().music_search(match typo {
         false => "black mamba aespa",
         true => "blck mamba aespa",
@@ -1458,9 +1417,8 @@ fn music_search(#[case] typo: bool) {
     assert_eq!(track.track_nr, None);
 }
 
-#[test]
-fn music_search_tracks() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn music_search_tracks(rp: RustyPipe) {
     let res = tokio_test::block_on(rp.query().music_search_tracks("black mamba")).unwrap();
 
     let track = &res
@@ -1492,9 +1450,8 @@ fn music_search_tracks() {
     assert_next(res.items, rp.query(), 15, 2);
 }
 
-#[test]
-fn music_search_videos() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn music_search_videos(rp: RustyPipe) {
     let res = tokio_test::block_on(rp.query().music_search_videos("black mamba")).unwrap();
 
     let track = &res
@@ -1585,8 +1542,8 @@ fn music_search_albums(
     #[case] artist_id: &str,
     #[case] year: u16,
     #[case] album_type: AlbumType,
+    rp: RustyPipe,
 ) {
-    let rp = RustyPipe::builder().strict().build();
     let res = tokio_test::block_on(rp.query().music_search_albums(query)).unwrap();
 
     let album = &res.items.items.iter().find(|a| a.id == id).unwrap();
@@ -1607,9 +1564,8 @@ fn music_search_albums(
     assert_next(res.items, rp.query(), 15, 1);
 }
 
-#[test]
-fn music_search_artists() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn music_search_artists(rp: RustyPipe) {
     let res = tokio_test::block_on(rp.query().music_search_artists("namika")).unwrap();
 
     let artist = res
@@ -1628,9 +1584,8 @@ fn music_search_artists() {
     assert_eq!(res.corrected_query, None);
 }
 
-#[test]
-fn music_search_artists_cont() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn music_search_artists_cont(rp: RustyPipe) {
     let res = tokio_test::block_on(rp.query().music_search_artists("band")).unwrap();
 
     assert_eq!(res.corrected_query, None);
@@ -1640,8 +1595,7 @@ fn music_search_artists_cont() {
 #[rstest]
 #[case::ytm(false)]
 #[case::default(true)]
-fn music_search_playlists(#[case] with_community: bool) {
-    let rp = RustyPipe::builder().strict().build();
+fn music_search_playlists(#[case] with_community: bool, rp: RustyPipe) {
     let res = if with_community {
         tokio_test::block_on(rp.query().music_search_playlists("easy pop")).unwrap()
     } else {
@@ -1663,9 +1617,8 @@ fn music_search_playlists(#[case] with_community: bool) {
     assert!(playlist.from_ytm);
 }
 
-#[test]
-fn music_search_playlists_community() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn music_search_playlists_community(rp: RustyPipe) {
     let res = tokio_test::block_on(
         rp.query()
             .music_search_playlists_filter("Best Pop Music Videos - Top Pop Hits Playlist", true),
@@ -1694,9 +1647,8 @@ fn music_search_playlists_community() {
 }
 
 /// The YouTube Music search sometimes shows genre radio items. They should be skipped.
-#[test]
-fn music_search_genre_radio() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn music_search_genre_radio(rp: RustyPipe) {
     tokio_test::block_on(rp.query().music_search("pop radio")).unwrap();
 }
 
@@ -1707,8 +1659,8 @@ fn music_search_suggestion(
     #[case] query: &str,
     #[case] term: Option<&str>,
     #[case] artist: Option<&str>,
+    rp: RustyPipe,
 ) {
-    let rp = RustyPipe::builder().strict().build();
     let suggestion = tokio_test::block_on(rp.query().music_search_suggestion(query)).unwrap();
 
     match term {
@@ -1733,8 +1685,7 @@ fn music_search_suggestion(
 #[rstest]
 #[case::mv("mv", "ZeerrnuLi5E")]
 #[case::track("track", "7nigXQS1Xb0")]
-fn music_details(#[case] name: &str, #[case] id: &str) {
-    let rp = RustyPipe::builder().strict().build();
+fn music_details(#[case] name: &str, #[case] id: &str, rp: RustyPipe) {
     let track = tokio_test::block_on(rp.query().music_details(id)).unwrap();
 
     assert!(!track.track.cover.is_empty(), "got no cover");
@@ -1752,17 +1703,15 @@ fn music_details(#[case] name: &str, #[case] id: &str) {
     );
 }
 
-#[test]
-fn music_lyrics() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn music_lyrics(rp: RustyPipe) {
     let track = tokio_test::block_on(rp.query().music_details("NO8Arj4yeww")).unwrap();
     let lyrics = tokio_test::block_on(rp.query().music_lyrics(&track.lyrics_id.unwrap())).unwrap();
     insta::assert_ron_snapshot!(lyrics);
 }
 
-#[test]
-fn music_lyrics_not_found() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn music_lyrics_not_found(rp: RustyPipe) {
     let track = tokio_test::block_on(rp.query().music_details("ekXI8qrbe1s")).unwrap();
     let err = tokio_test::block_on(rp.query().music_lyrics(&track.lyrics_id.unwrap())).unwrap_err();
 
@@ -1778,8 +1727,7 @@ fn music_lyrics_not_found() {
 #[rstest]
 #[case::a("7nigXQS1Xb0", true)]
 #[case::b("4t3SUDZCBaQ", false)]
-fn music_related(#[case] id: &str, #[case] full: bool) {
-    let rp = RustyPipe::builder().strict().build();
+fn music_related(#[case] id: &str, #[case] full: bool, rp: RustyPipe) {
     let track = tokio_test::block_on(rp.query().music_details(id)).unwrap();
     let related =
         tokio_test::block_on(rp.query().music_related(&track.related_id.unwrap())).unwrap();
@@ -1876,9 +1824,8 @@ fn music_related(#[case] id: &str, #[case] full: bool) {
     }
 }
 
-#[test]
-fn music_details_not_found() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn music_details_not_found(rp: RustyPipe) {
     let err = tokio_test::block_on(rp.query().music_details("7nigXQS1XbZ")).unwrap_err();
 
     assert!(
@@ -1890,16 +1837,14 @@ fn music_details_not_found() {
     );
 }
 
-#[test]
-fn music_radio_track() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn music_radio_track(rp: RustyPipe) {
     let tracks = tokio_test::block_on(rp.query().music_radio_track("ZeerrnuLi5E")).unwrap();
     assert_next_items(tracks, rp.query(), 20);
 }
 
-#[test]
-fn music_radio_track_not_found() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn music_radio_track_not_found(rp: RustyPipe) {
     let err = tokio_test::block_on(rp.query().music_radio_track("7nigXQS1XbZ")).unwrap_err();
 
     assert!(
@@ -1911,9 +1856,8 @@ fn music_radio_track_not_found() {
     );
 }
 
-#[test]
-fn music_radio_playlist() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn music_radio_playlist(rp: RustyPipe) {
     let tracks = tokio_test::block_on(
         rp.query()
             .music_radio_playlist("PL5dDx681T4bR7ZF1IuWzOv1omlRbE7PiJ"),
@@ -1922,9 +1866,8 @@ fn music_radio_playlist() {
     assert_next_items(tracks, rp.query(), 20);
 }
 
-#[test]
-fn music_radio_playlist_not_found() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn music_radio_playlist_not_found(rp: RustyPipe) {
     let res = tokio_test::block_on(
         rp.query()
             .music_radio_playlist("PL5dDx681T4bR7ZF1IuWzOv1omlZZZZZZZ"),
@@ -1941,17 +1884,15 @@ fn music_radio_playlist_not_found() {
     }
 }
 
-#[test]
-fn music_radio_artist() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn music_radio_artist(rp: RustyPipe) {
     let tracks =
         tokio_test::block_on(rp.query().music_radio("RDEM_Ktu-TilkxtLvmc9wX1MLQ")).unwrap();
     assert_next_items(tracks, rp.query(), 20);
 }
 
-#[test]
-fn music_radio_not_found() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn music_radio_not_found(rp: RustyPipe) {
     let err =
         tokio_test::block_on(rp.query().music_radio("RDEM_Ktu-TilkxtLvmc9wXZZZZ")).unwrap_err();
 
@@ -1975,8 +1916,12 @@ fn music_radio_not_found() {
     "PL4fGSI1pDJn69On1f-8NAvX_CYlx7QyZc",
     "PLrEnWoR732-DtKgaDdnPkezM_nDidBU9H"
 )]
-fn music_charts(#[case] country: Country, #[case] plid_top: &str, #[case] plid_trend: &str) {
-    let rp = RustyPipe::builder().strict().build();
+fn music_charts(
+    #[case] country: Country,
+    #[case] plid_top: &str,
+    #[case] plid_trend: &str,
+    rp: RustyPipe,
+) {
     let charts = tokio_test::block_on(rp.query().music_charts(Some(country))).unwrap();
 
     assert_eq!(charts.top_playlist_id.unwrap(), plid_top);
@@ -1992,9 +1937,8 @@ fn music_charts(#[case] country: Country, #[case] plid_top: &str, #[case] plid_t
     }
 }
 
-#[test]
-fn music_new_albums() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn music_new_albums(rp: RustyPipe) {
     let albums = tokio_test::block_on(rp.query().music_new_albums()).unwrap();
     assert_gte(albums.len(), 10, "albums");
 
@@ -2005,9 +1949,8 @@ fn music_new_albums() {
     }
 }
 
-#[test]
-fn music_new_videos() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn music_new_videos(rp: RustyPipe) {
     let videos = tokio_test::block_on(rp.query().music_new_videos()).unwrap();
     assert_gte(videos.len(), 5, "videos");
 
@@ -2020,9 +1963,8 @@ fn music_new_videos() {
     }
 }
 
-#[test]
-fn music_genres() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn music_genres(rp: RustyPipe) {
     let genres = tokio_test::block_on(rp.query().music_genres()).unwrap();
 
     let chill = genres
@@ -2048,8 +1990,7 @@ fn music_genres() {
 #[rstest]
 #[case::chill("ggMPOg1uX1JOQWZFeDByc2Jm", "Chill")]
 #[case::pop("ggMPOg1uX1lMbVZmbzl6NlJ3", "Pop")]
-fn music_genre(#[case] id: &str, #[case] name: &str) {
-    let rp = RustyPipe::builder().strict().build();
+fn music_genre(#[case] id: &str, #[case] name: &str, rp: RustyPipe) {
     let genre = tokio_test::block_on(rp.query().music_genre(id)).unwrap();
 
     fn check_music_genre(genre: MusicGenre, id: &str, name: &str) -> Vec<(String, String)> {
@@ -2099,9 +2040,8 @@ fn music_genre(#[case] id: &str, #[case] name: &str) {
     }
 }
 
-#[test]
-fn music_genre_not_found() {
-    let rp = RustyPipe::builder().strict().build();
+#[rstest]
+fn music_genre_not_found(rp: RustyPipe) {
     let err = tokio_test::block_on(rp.query().music_genre("ggMPOg1uX1JOQWZFeDByc2zz")).unwrap_err();
 
     assert!(
@@ -2119,10 +2059,7 @@ const VISITOR_DATA_SEARCH_CHANNEL_HANDLES: &str = "CgszYlc1Yk1WZGRCSSjrwOSbBg%3D
 
 #[test]
 fn ab3_search_channel_handles() {
-    let rp = RustyPipe::builder()
-        .strict()
-        .visitor_data(VISITOR_DATA_SEARCH_CHANNEL_HANDLES)
-        .build();
+    let rp = rp_visitor_data(VISITOR_DATA_SEARCH_CHANNEL_HANDLES);
 
     tokio_test::block_on(rp.query().search_filter(
         "test",
@@ -2136,10 +2073,7 @@ fn ab3_search_channel_handles() {
 #[rstest]
 #[case::desktop(ContinuationEndpoint::Browse)]
 #[case::music(ContinuationEndpoint::MusicBrowse)]
-#[test]
-fn invalid_ctoken(#[case] ep: ContinuationEndpoint) {
-    let rp = RustyPipe::builder().strict().build();
-
+fn invalid_ctoken(#[case] ep: ContinuationEndpoint, rp: RustyPipe) {
     let e = tokio_test::block_on(rp.query().continuation::<YouTubeItem, _>("Abcd", ep, None))
         .unwrap_err();
 
@@ -2156,6 +2090,17 @@ fn invalid_ctoken(#[case] ep: ContinuationEndpoint) {
 
 //#TESTUTIL
 
+/// Get a new RustyPipe instance
+#[fixture]
+fn rp() -> RustyPipe {
+    RustyPipe::builder().strict().build()
+}
+
+/// Get a new RustyPipe instance with pre-set visitor data
+fn rp_visitor_data(vdata: &str) -> RustyPipe {
+    RustyPipe::builder().strict().visitor_data(vdata).build()
+}
+
 /// Assert equality within 10% margin
 fn assert_approx(left: f64, right: f64) {
     if left != right {
@@ -2167,6 +2112,7 @@ fn assert_approx(left: f64, right: f64) {
     }
 }
 
+/// Assert that number A is greater than or equal to number B
 fn assert_gte<T: PartialOrd + Display>(a: T, b: T, msg: &str) {
     assert!(a >= b, "expected {b} {msg}, got {a}");
 }
