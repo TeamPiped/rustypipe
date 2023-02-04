@@ -3,7 +3,6 @@ use once_cell::sync::Lazy;
 use regex::Regex;
 use reqwest::Client;
 use serde::{Deserialize, Serialize};
-use std::result::Result::Ok;
 
 use crate::{error::DeobfError, util};
 
@@ -11,6 +10,7 @@ type Result<T> = core::result::Result<T, DeobfError>;
 
 pub struct Deobfuscator {
     data: DeobfData,
+    ctx: quick_js::Context,
 }
 
 #[derive(Debug, Default, Clone, Serialize, Deserialize, PartialEq, Eq)]
@@ -21,8 +21,8 @@ pub struct DeobfData {
     pub sts: String,
 }
 
-impl Deobfuscator {
-    pub async fn new(http: Client) -> Result<Self> {
+impl DeobfData {
+    pub async fn download(http: Client) -> Result<Self> {
         let js_url = get_player_js_url(&http).await?;
         let player_js = get_response(&http, &js_url).await?;
 
@@ -33,21 +33,46 @@ impl Deobfuscator {
         let sts = get_sts(&player_js)?;
 
         Ok(Self {
-            data: DeobfData {
-                js_url,
-                nsig_fn,
-                sig_fn,
-                sts,
-            },
+            js_url,
+            sig_fn,
+            nsig_fn,
+            sts,
         })
+    }
+}
+
+impl Deobfuscator {
+    pub fn new(data: DeobfData) -> Result<Self> {
+        let ctx =
+            quick_js::Context::new().or(Err(DeobfError::Other("could not create QuickJS rt")))?;
+        ctx.eval(&data.sig_fn)?;
+        ctx.eval(&data.nsig_fn)?;
+
+        Ok(Self { data, ctx })
     }
 
     pub fn deobfuscate_sig(&self, sig: &str) -> Result<String> {
-        deobfuscate_sig(sig, &self.data.sig_fn)
+        let res = self.ctx.call_function(DEOBF_SIG_FUNC_NAME, vec![sig])?;
+
+        res.as_str().map_or(
+            Err(DeobfError::Other("sig deobfuscation func returned null")),
+            |res| {
+                log::debug!("deobfuscated sig");
+                Ok(res.to_owned())
+            },
+        )
     }
 
     pub fn deobfuscate_nsig(&self, nsig: &str) -> Result<String> {
-        deobfuscate_nsig(nsig, &self.data.nsig_fn)
+        let res = self.ctx.call_function(DEOBF_NSIG_FUNC_NAME, vec![nsig])?;
+
+        res.as_str().map_or(
+            Err(DeobfError::Other("nsig deobfuscation func returned null")),
+            |res| {
+                log::debug!("deobfuscated nsig");
+                Ok(res.to_owned())
+            },
+        )
     }
 
     pub fn get_sts(&self) -> String {
@@ -59,13 +84,8 @@ impl Deobfuscator {
     }
 }
 
-impl From<DeobfData> for Deobfuscator {
-    fn from(data: DeobfData) -> Self {
-        Self { data }
-    }
-}
-
-const DEOBFUSCATION_FUNC_NAME: &str = "deobfuscate";
+const DEOBF_SIG_FUNC_NAME: &str = "deobf_sig";
+const DEOBF_NSIG_FUNC_NAME: &str = "deobf_nsig";
 
 fn get_sig_fn_name(player_js: &str) -> Result<String> {
     static FUNCTION_REGEXES: Lazy<[FancyRegex; 6]> = Lazy::new(|| {
@@ -83,8 +103,8 @@ fn get_sig_fn_name(player_js: &str) -> Result<String> {
         .ok_or(DeobfError::Extraction("deobf function name"))
 }
 
-fn caller_function(fn_name: &str) -> String {
-    format!("var {DEOBFUSCATION_FUNC_NAME}={fn_name};")
+fn caller_function(mapped_name: &str, fn_name: &str) -> String {
+    format!("var {mapped_name}={fn_name};")
 }
 
 fn get_sig_fn(player_js: &str) -> Result<String> {
@@ -125,19 +145,9 @@ fn get_sig_fn(player_js: &str) -> Result<String> {
         .unwrap()
         .as_str();
 
-    Ok(helper_object.to_owned() + &deobfuscate_function + &caller_function(&dfunc_name))
-}
-
-fn deobfuscate_sig(sig: &str, sig_fn: &str) -> Result<String> {
-    let context =
-        quick_js::Context::new().or(Err(DeobfError::Other("could not create QuickJS rt")))?;
-    context.eval(sig_fn)?;
-    let res = context.call_function(DEOBFUSCATION_FUNC_NAME, vec![sig])?;
-
-    res.as_str().map_or(
-        Err(DeobfError::Other("sig deobfuscation func returned null")),
-        |res| Ok(res.to_owned()),
-    )
+    Ok(helper_object.to_owned()
+        + &deobfuscate_function
+        + &caller_function(DEOBF_SIG_FUNC_NAME, &dfunc_name))
 }
 
 fn get_nsig_fn_name(player_js: &str) -> Result<String> {
@@ -240,19 +250,7 @@ fn get_nsig_fn(player_js: &str) -> Result<String> {
     let offset = player_js.find(&function_base).unwrap_or_default();
 
     extract_js_fn(&player_js[offset..], &function_name)
-        .map(|s| s + ";" + &caller_function(&function_name))
-}
-
-fn deobfuscate_nsig(sig: &str, nsig_fn: &str) -> Result<String> {
-    let context =
-        quick_js::Context::new().or(Err(DeobfError::Other("could not create QuickJS rt")))?;
-    context.eval(nsig_fn)?;
-    let res = context.call_function(DEOBFUSCATION_FUNC_NAME, vec![sig])?;
-
-    res.as_str().map_or(
-        Err(DeobfError::Other("nsig deobfuscation func returned null")),
-        |res| Ok(res.to_owned()),
-    )
+        .map(|s| s + ";" + &caller_function(DEOBF_NSIG_FUNC_NAME, &function_name))
 }
 
 async fn get_player_js_url(http: &Client) -> Result<String> {
@@ -300,14 +298,15 @@ fn get_sts(player_js: &str) -> Result<String> {
 mod tests {
     use super::*;
     use path_macro::path;
-    use test_log::test;
+    use rstest::{fixture, rstest};
 
     static TEST_JS: Lazy<String> = Lazy::new(|| {
         let js_path = path!("testfiles" / "deobf" / "dummy_player.js");
         std::fs::read_to_string(js_path).unwrap()
     });
 
-    const N_DEOBF_FUNC: &str = r#"Vo=function(a){var b=a.split(""),c=[function(d,e,f){var h=f.length;d.forEach(function(l,m,n){this.push(n[m]=f[(f.indexOf(l)-f.indexOf(this[m])+m+h--)%f.length])},e.split(""))},
+    const SIG_DEOBF_FUNC: &str = r#"var qB={w8:function(a){a.reverse()},EC:function(a,b){var c=a[0];a[0]=a[b%a.length];a[b%a.length]=c},Np:function(a,b){a.splice(0,b)}};var Rva=function(a){a=a.split("");qB.Np(a,3);qB.w8(a,41);qB.EC(a,55);qB.Np(a,3);qB.w8(a,33);qB.Np(a,3);qB.EC(a,48);qB.EC(a,17);qB.EC(a,43);return a.join("")};var deobf_sig=Rva;"#;
+    const NSIG_DEOBF_FUNC: &str = r#"Vo=function(a){var b=a.split(""),c=[function(d,e,f){var h=f.length;d.forEach(function(l,m,n){this.push(n[m]=f[(f.indexOf(l)-f.indexOf(this[m])+m+h--)%f.length])},e.split(""))},
 928409064,-595856984,1403221911,653089124,-168714481,-1883008765,158931990,1346921902,361518508,1403221911,-362174697,-233641452,function(){for(var d=64,e=[];++d-e.length-32;){switch(d){case 91:d=44;continue;case 123:d=65;break;case 65:d-=18;continue;case 58:d=96;continue;case 46:d=95}e.push(String.fromCharCode(d))}return e},
 b,158931990,791141857,-907319795,-1776185924,1595027902,-829736173,function(d,e){e=(e%d.length+d.length)%d.length;d.splice(0,1,d.splice(e,1,d[0])[0])},
 -1274951142,function(){for(var d=64,e=[];++d-e.length-32;){switch(d){case 91:d=44;continue;case 123:d=65;break;case 65:d-=18;continue;case 58:d=96;continue;case 46:d=95}e.push(String.fromCharCode(d))}return e},
@@ -319,7 +318,18 @@ null,497372841,-1912651541,function(d,e){d.push(e)},
 function(d,e){e=(e%d.length+d.length)%d.length;d.splice(-e).reverse().forEach(function(f){d.unshift(f)})},
 function(d,e){e=(e%d.length+d.length)%d.length;var f=d[0];d[0]=d[e];d[e]=f}];
 c[30]=c;c[40]=c;c[46]=c;try{c[43](c[34]),c[45](c[40],c[47]),c[46](c[51],c[33]),c[16](c[47],c[36]),c[38](c[31],c[49]),c[16](c[11],c[39]),c[0](c[11]),c[35](c[0],c[30]),c[35](c[4],c[17]),c[34](c[48],c[7],c[11]()),c[35](c[4],c[23]),c[35](c[4],c[9]),c[5](c[48],c[28]),c[36](c[46],c[16]),c[4](c[41],c[1]),c[4](c[16],c[28]),c[3](c[40],c[17]),c[9](c[8],c[23]),c[45](c[30],c[4]),c[50](c[3],c[28]),c[36](c[51],c[23]),c[14](c[0],c[24]),c[14](c[35],c[1]),c[20](c[51],c[41]),c[15](c[8],c[0]),c[31](c[35]),c[29](c[26]),
-c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c[47],c[49]),c[1](c[44],c[28]),c[39](c[16]),c[32](c[42],c[22]),c[46](c[14],c[48]),c[26](c[29],c[10]),c[46](c[9],c[3]),c[32](c[45])}catch(d){return"enhanced_except_85UBjOr-_w8_"+a}return b.join("")};var deobfuscate=Vo;"#;
+c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c[47],c[49]),c[1](c[44],c[28]),c[39](c[16]),c[32](c[42],c[22]),c[46](c[14],c[48]),c[26](c[29],c[10]),c[46](c[9],c[3]),c[32](c[45])}catch(d){return"enhanced_except_85UBjOr-_w8_"+a}return b.join("")};var deobf_nsig=Vo;"#;
+
+    #[fixture]
+    fn deobf() -> Deobfuscator {
+        Deobfuscator::new(DeobfData {
+            js_url: String::default(),
+            sig_fn: SIG_DEOBF_FUNC.to_owned(),
+            nsig_fn: NSIG_DEOBF_FUNC.to_owned(),
+            sts: String::default(),
+        })
+        .unwrap()
+    }
 
     #[test]
     fn t_get_sig_fn_name() {
@@ -330,17 +340,13 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
     #[test]
     fn t_get_sig_fn() {
         let dcode = get_sig_fn(&TEST_JS).unwrap();
-        assert_eq!(
-            dcode,
-            r#"var qB={w8:function(a){a.reverse()},EC:function(a,b){var c=a[0];a[0]=a[b%a.length];a[b%a.length]=c},Np:function(a,b){a.splice(0,b)}};var Rva=function(a){a=a.split("");qB.Np(a,3);qB.w8(a,41);qB.EC(a,55);qB.Np(a,3);qB.w8(a,33);qB.Np(a,3);qB.EC(a,48);qB.EC(a,17);qB.EC(a,43);return a.join("")};var deobfuscate=Rva;"#
-        );
+        assert_eq!(dcode, SIG_DEOBF_FUNC);
     }
 
-    #[test]
-    fn t_deobfuscate_sig() {
-        let dcode = get_sig_fn(&TEST_JS).unwrap();
-        let deobf = deobfuscate_sig("GOqGOqGOq0QJ8wRAIgaryQHfplJ9xJSKFywyaSMHuuwZYsoMTAvRvfm51qIGECIA5061zWeyfMPX9hEl_U6f9J0tr7GTJMKyPf5XNrJb5fb5i", &dcode).unwrap();
-        assert_eq!(deobf, "AOq0QJ8wRAIgaryQHmplJ9xJSKFywyaSMHuuwZYsoMTfvRviG51qIGECIA5061zWeyfMPX9hEl_U6f9J0tr7GTJMKyPf5XNrJb5f");
+    #[rstest]
+    fn t_deobfuscate_sig(deobf: Deobfuscator) {
+        let dsig = deobf.deobfuscate_sig("GOqGOqGOq0QJ8wRAIgaryQHfplJ9xJSKFywyaSMHuuwZYsoMTAvRvfm51qIGECIA5061zWeyfMPX9hEl_U6f9J0tr7GTJMKyPf5XNrJb5fb5i").unwrap();
+        assert_eq!(dsig, "AOq0QJ8wRAIgaryQHmplJ9xJSKFywyaSMHuuwZYsoMTfvRviG51qIGECIA5061zWeyfMPX9hEl_U6f9J0tr7GTJMKyPf5XNrJb5f");
     }
 
     #[test]
@@ -361,6 +367,7 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
 
     #[test]
     fn t_extract_js_fn_eviljs() {
+        // Evil JavaScript code containing braces within strings and regular expressions
         let base_js = "Wka = function(d){var x = [/,,/,913,/(,)}/,\"abcdef}\\\"\",];var y = 10/2/1;return x[1][y];}//some={}random-padding+;";
         let res = extract_js_fn(base_js, "Wka").unwrap();
         assert_eq!(
@@ -372,7 +379,7 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
     #[test]
     fn t_get_nsig_fn() {
         let res = get_nsig_fn(&TEST_JS).unwrap();
-        assert_eq!(res, N_DEOBF_FUNC);
+        assert_eq!(res, NSIG_DEOBF_FUNC);
     }
 
     #[test]
@@ -381,9 +388,9 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
         assert_eq!(res, "19187")
     }
 
-    #[test]
-    fn t_deobfuscate_nsig() {
-        let res = deobfuscate_nsig("BI_n4PxQ22is-KKajKUW", N_DEOBF_FUNC).unwrap();
+    #[rstest]
+    fn t_deobfuscate_nsig(deobf: Deobfuscator) {
+        let res = deobf.deobfuscate_nsig("BI_n4PxQ22is-KKajKUW").unwrap();
         assert_eq!(res, "nrkec0fwgTWolw");
     }
 
@@ -398,7 +405,8 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
     #[test]
     fn t_update() {
         let client = Client::new();
-        let deobf = tokio_test::block_on(Deobfuscator::new(client)).unwrap();
+        let deobf_data = tokio_test::block_on(DeobfData::download(client)).unwrap();
+        let deobf = Deobfuscator::new(deobf_data).unwrap();
 
         let deobf_sig = deobf.deobfuscate_sig("GOqGOqGOq0QJ8wRAIgaryQHfplJ9xJSKFywyaSMHuuwZYsoMTAvRvfm51qIGECIA5061zWeyfMPX9hEl_U6f9J0tr7GTJMKyPf5XNrJb5fb5i").unwrap();
         println!("{deobf_sig}");

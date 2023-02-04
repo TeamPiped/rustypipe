@@ -708,15 +708,16 @@ impl RustyPipe {
     /// Instantiate a new deobfuscator from either cached or extracted YouTube JavaScript code.
     async fn get_deobf(&self) -> Result<Deobfuscator, Error> {
         // Write lock here to prevent concurrent tasks from fetching the same data
-        let mut deobf = self.inner.cache.deobf.write().await;
+        let mut deobf_data = self.inner.cache.deobf.write().await;
 
-        match deobf.get() {
-            Some(deobf) => Ok(Deobfuscator::from(deobf.to_owned())),
+        match deobf_data.get() {
+            Some(deobf_data) => Ok(Deobfuscator::new(deobf_data.clone())?),
             None => {
                 log::debug!("getting deobfuscator");
-                let new_deobf = Deobfuscator::new(self.inner.http.clone()).await?;
-                *deobf = CacheEntry::from(new_deobf.get_data());
-                drop(deobf);
+                let data = DeobfData::download(self.inner.http.clone()).await?;
+                let new_deobf = Deobfuscator::new(data.clone())?;
+                *deobf_data = CacheEntry::from(data);
+                drop(deobf_data);
                 self.store_cache().await;
                 Ok(new_deobf)
             }

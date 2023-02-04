@@ -28,6 +28,7 @@ use rustypipe::param::{
 #[case::tv_html5_embed(ClientType::TvHtml5Embed)]
 #[case::android(ClientType::Android)]
 #[case::ios(ClientType::Ios)]
+#[test_log::test]
 fn get_player_from_client(#[case] client_type: ClientType) {
     let rp = RustyPipe::builder().strict().build();
     let player_data =
