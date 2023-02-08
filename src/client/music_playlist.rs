@@ -57,6 +57,19 @@ impl RustyPipeQuery {
             )
             .await?;
 
+        // In rare cases, albums may have track numbers =0 (example: MPREb_RM0QfZ0eSKL)
+        // They should be replaced with the track number derived from the previous track.
+        let mut n_prev = 0;
+        for track in album.tracks.iter_mut() {
+            let tn = track.track_nr.unwrap_or_default();
+            if tn == 0 {
+                n_prev += 1;
+                track.track_nr = Some(n_prev);
+            } else {
+                n_prev = tn;
+            }
+        }
+
         // YouTube Music is replacing album tracks with their respective music videos. To get the original
         // tracks, we have to fetch the album as a playlist and replace the offending track ids.
         if let Some(playlist_id) = &album.playlist_id {
@@ -67,7 +80,7 @@ impl RustyPipeQuery {
                 .enumerate()
                 .filter_map(|(i, track)| {
                     if track.is_video {
-                        Some((i, track.name.to_owned()))
+                        track.track_nr.map(|n| (i, n))
                     } else {
                         None
                     }
@@ -75,27 +88,14 @@ impl RustyPipeQuery {
                 .collect::<Vec<_>>();
 
             if !to_replace.is_empty() {
-                match self.music_playlist(playlist_id).await {
-                    Ok(playlist) => {
-                        for (i, title) in to_replace {
-                            let found_track = playlist.tracks.items.iter().find_map(|track| {
-                                if track.name == title && !track.is_video {
-                                    Some((track.id.to_owned(), track.duration))
-                                } else {
-                                    None
-                                }
-                            });
-                            if let Some((track_id, duration)) = found_track {
-                                album.tracks[i].id = track_id;
-                                if let Some(duration) = duration {
-                                    album.tracks[i].duration = Some(duration);
-                                }
-                                album.tracks[i].is_video = false;
-                            }
-                        }
+                let playlist = self.playlist_w_unavail(playlist_id).await?;
+
+                for (i, track_n) in to_replace {
+                    if let Some(t) = playlist.videos.items.get(track_n as usize - 1) {
+                        album.tracks[i].id = t.id.to_owned();
+                        album.tracks[i].duration = Some(t.length);
+                        album.tracks[i].is_video = false;
                     }
-                    Err(Error::Extraction(_)) => {}
-                    Err(e) => return Err(e),
                 }
             }
         }

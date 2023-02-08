@@ -3,7 +3,6 @@ use std::{borrow::Cow, rc::Rc};
 use futures::{stream, StreamExt};
 use once_cell::sync::Lazy;
 use regex::Regex;
-use serde::Serialize;
 
 use crate::{
     error::{Error, ExtractionError},
@@ -14,16 +13,8 @@ use crate::{
 
 use super::{
     response::{self, music_item::MusicListMapper, url_endpoint::PageType},
-    ClientType, MapResponse, QBrowse, RustyPipeQuery, YTContext,
+    ClientType, MapResponse, QBrowse, QBrowseParams, RustyPipeQuery,
 };
-
-#[derive(Debug, Serialize)]
-#[serde(rename_all = "camelCase")]
-struct QBrowseParams<'a> {
-    context: YTContext<'a>,
-    browse_id: &'a str,
-    params: &'a str,
-}
 
 impl RustyPipeQuery {
     /// Get a YouTube Music artist page

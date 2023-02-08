@@ -1,7 +1,5 @@
 use std::borrow::Cow;
 
-use serde::Serialize;
-
 use crate::{
     error::{Error, ExtractionError},
     model::{MusicGenre, MusicGenreItem, MusicGenreSection},
@@ -10,16 +8,8 @@ use crate::{
 
 use super::{
     response::{self, music_item::MusicListMapper},
-    ClientType, MapResponse, QBrowse, RustyPipeQuery, YTContext,
+    ClientType, MapResponse, QBrowse, QBrowseParams, RustyPipeQuery,
 };
-
-#[derive(Debug, Serialize)]
-#[serde(rename_all = "camelCase")]
-struct QGenre<'a> {
-    context: YTContext<'a>,
-    browse_id: &'a str,
-    params: &'a str,
-}
 
 impl RustyPipeQuery {
     /// Get a list of moods and genres from YouTube Music
@@ -44,7 +34,7 @@ impl RustyPipeQuery {
     pub async fn music_genre<S: AsRef<str>>(&self, genre_id: S) -> Result<MusicGenre, Error> {
         let genre_id = genre_id.as_ref();
         let context = self.get_context(ClientType::DesktopMusic, true, None).await;
-        let request_body = QGenre {
+        let request_body = QBrowseParams {
             context,
             browse_id: "FEmusic_moods_and_genres_category",
             params: genre_id,

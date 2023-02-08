@@ -148,6 +148,14 @@ struct QBrowse<'a> {
 
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
+struct QBrowseParams<'a> {
+    context: YTContext<'a>,
+    browse_id: &'a str,
+    params: &'a str,
+}
+
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
 struct QContinuation<'a> {
     context: YTContext<'a>,
     continuation: &'a str,
