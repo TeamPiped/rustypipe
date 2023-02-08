@@ -191,14 +191,15 @@ fn map_artist_page(
         }
     }
 
-    let mut content = res.contents.single_column_browse_results_renderer.contents;
-    let sections = content
-        .try_swap_remove(0)
-        .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no content")))?
-        .tab_renderer
-        .content
-        .section_list_renderer
-        .contents;
+    let sections = res
+        .contents
+        .single_column_browse_results_renderer
+        .contents
+        .into_iter()
+        .next()
+        .and_then(|tab| tab.tab_renderer.content)
+        .map(|c| c.section_list_renderer.contents)
+        .unwrap_or_default();
 
     let mut mapper = MusicListMapper::with_artist(
         lang,
