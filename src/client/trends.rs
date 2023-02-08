@@ -53,7 +53,7 @@ impl MapResponse<Paginator<VideoItem>> for response::Startpage {
         self,
         _id: &str,
         lang: crate::param::Language,
-        _deobf: Option<&crate::deobfuscate::Deobfuscator>,
+        _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<MapResult<Paginator<VideoItem>>, ExtractionError> {
         let mut contents = self.contents.two_column_browse_results_renderer.tabs;
         let grid = contents
@@ -77,7 +77,7 @@ impl MapResponse<Vec<VideoItem>> for response::Trending {
         self,
         _id: &str,
         lang: crate::param::Language,
-        _deobf: Option<&crate::deobfuscate::Deobfuscator>,
+        _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<MapResult<Vec<VideoItem>>, ExtractionError> {
         let mut contents = self.contents.two_column_browse_results_renderer.tabs;
         let items = contents

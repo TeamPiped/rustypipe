@@ -51,7 +51,7 @@ impl<T: FromYtItem> MapResponse<Vec<T>> for response::MusicNew {
         self,
         _id: &str,
         lang: crate::param::Language,
-        _deobf: Option<&crate::deobfuscate::Deobfuscator>,
+        _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<crate::serializer::MapResult<Vec<T>>, ExtractionError> {
         let items = self
             .contents

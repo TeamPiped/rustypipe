@@ -82,7 +82,7 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
         self,
         id: &str,
         lang: Language,
-        _deobf: Option<&crate::deobfuscate::Deobfuscator>,
+        _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<MapResult<VideoDetails>, ExtractionError> {
         let mut warnings = Vec::new();
 
@@ -367,7 +367,7 @@ impl MapResponse<Paginator<Comment>> for response::VideoComments {
         self,
         _id: &str,
         lang: Language,
-        _deobf: Option<&crate::deobfuscate::Deobfuscator>,
+        _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<MapResult<Paginator<Comment>>, ExtractionError> {
         let received_endpoints = self.on_response_received_endpoints;
         let mut warnings = received_endpoints.warnings;

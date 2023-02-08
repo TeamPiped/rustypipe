@@ -301,7 +301,7 @@ impl MapResponse<UrlTarget> for response::ResolvedUrl {
         self,
         _id: &str,
         _lang: Language,
-        _deobf: Option<&crate::deobfuscate::Deobfuscator>,
+        _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<MapResult<UrlTarget>, ExtractionError> {
         let browse_endpoint = self
             .endpoint

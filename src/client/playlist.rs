@@ -3,10 +3,8 @@ use std::{borrow::Cow, convert::TryFrom};
 use time::OffsetDateTime;
 
 use crate::{
-    deobfuscate::Deobfuscator,
     error::{Error, ExtractionError},
     model::{paginator::Paginator, ChannelId, Playlist, PlaylistVideo},
-    param::Language,
     timeago,
     util::{self, TryRemove},
 };
@@ -60,8 +58,8 @@ impl MapResponse<Playlist> for response::Playlist {
     fn map_response(
         self,
         id: &str,
-        lang: Language,
-        _deobf: Option<&Deobfuscator>,
+        lang: crate::param::Language,
+        _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<MapResult<Playlist>, ExtractionError> {
         let (contents, header) = match (self.contents, self.header) {
             (Some(contents), Some(header)) => (contents, header),
@@ -183,8 +181,8 @@ impl MapResponse<Paginator<PlaylistVideo>> for response::PlaylistCont {
     fn map_response(
         self,
         _id: &str,
-        _lang: Language,
-        _deobf: Option<&Deobfuscator>,
+        _lang: crate::param::Language,
+        _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<MapResult<Paginator<PlaylistVideo>>, ExtractionError> {
         let mut actions = self.on_response_received_actions;
         let action = actions
@@ -234,6 +232,8 @@ mod tests {
 
     use path_macro::path;
     use rstest::rstest;
+
+    use crate::param::Language;
 
     use super::*;
 

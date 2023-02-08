@@ -3,10 +3,9 @@ use std::borrow::Cow;
 use serde::{de::IgnoredAny, Serialize};
 
 use crate::{
-    deobfuscate::Deobfuscator,
     error::{Error, ExtractionError},
     model::{paginator::Paginator, SearchResult, YouTubeItem},
-    param::{search_filter::SearchFilter, Language},
+    param::search_filter::SearchFilter,
 };
 
 use super::{response, ClientType, MapResponse, MapResult, RustyPipeQuery, YTContext};
@@ -97,8 +96,8 @@ impl MapResponse<SearchResult> for response::Search {
     fn map_response(
         self,
         _id: &str,
-        lang: Language,
-        _deobf: Option<&Deobfuscator>,
+        lang: crate::param::Language,
+        _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<MapResult<SearchResult>, ExtractionError> {
         let items = self
             .contents

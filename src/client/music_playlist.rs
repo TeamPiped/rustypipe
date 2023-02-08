@@ -104,7 +104,7 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
         self,
         id: &str,
         lang: crate::param::Language,
-        _deobf: Option<&crate::deobfuscate::Deobfuscator>,
+        _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<MapResult<MusicPlaylist>, ExtractionError> {
         // dbg!(&self);
 
@@ -242,7 +242,7 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
         self,
         id: &str,
         lang: crate::param::Language,
-        _deobf: Option<&crate::deobfuscate::Deobfuscator>,
+        _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<MapResult<MusicAlbum>, ExtractionError> {
         // dbg!(&self);
 

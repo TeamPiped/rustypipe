@@ -98,7 +98,7 @@ impl MapResponse<Paginator<YouTubeItem>> for response::Continuation {
         self,
         _id: &str,
         lang: crate::param::Language,
-        _deobf: Option<&crate::deobfuscate::Deobfuscator>,
+        _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<MapResult<Paginator<YouTubeItem>>, ExtractionError> {
         let items = self
             .on_response_received_actions
@@ -130,7 +130,7 @@ impl MapResponse<Paginator<MusicItem>> for response::MusicContinuation {
         self,
         _id: &str,
         lang: crate::param::Language,
-        _deobf: Option<&crate::deobfuscate::Deobfuscator>,
+        _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<MapResult<Paginator<MusicItem>>, ExtractionError> {
         let mut mapper = MusicListMapper::new(lang);
         let mut continuations = Vec::new();

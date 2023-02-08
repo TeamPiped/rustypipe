@@ -35,7 +35,7 @@ use tokio::sync::RwLock;
 
 use crate::{
     cache::{CacheStorage, FileStorage},
-    deobfuscate::{DeobfData, Deobfuscator},
+    deobfuscate::DeobfData,
     error::{Error, ExtractionError},
     param::{Country, Language},
     report::{FileReporter, Level, Report, Reporter},
@@ -706,20 +706,19 @@ impl RustyPipe {
     }
 
     /// Instantiate a new deobfuscator from either cached or extracted YouTube JavaScript code.
-    async fn get_deobf(&self) -> Result<Deobfuscator, Error> {
+    async fn get_deobf_data(&self) -> Result<DeobfData, Error> {
         // Write lock here to prevent concurrent tasks from fetching the same data
         let mut deobf_data = self.inner.cache.deobf.write().await;
 
         match deobf_data.get() {
-            Some(deobf_data) => Ok(Deobfuscator::new(deobf_data.clone())?),
+            Some(deobf_data) => Ok(deobf_data.clone()),
             None => {
                 log::debug!("getting deobfuscator");
-                let data = DeobfData::download(self.inner.http.clone()).await?;
-                let new_deobf = Deobfuscator::new(data.clone())?;
-                *deobf_data = CacheEntry::from(data);
+                let new_data = DeobfData::download(self.inner.http.clone()).await?;
+                *deobf_data = CacheEntry::from(new_data.clone());
                 drop(deobf_data);
                 self.store_cache().await;
-                Ok(new_deobf)
+                Ok(new_data)
             }
         }
     }
@@ -1027,7 +1026,7 @@ impl RustyPipeQuery {
         id: &str,
         endpoint: &str,
         body: &B,
-        deobf: Option<&Deobfuscator>,
+        deobf: Option<&DeobfData>,
     ) -> Result<M, Error> {
         log::debug!("getting {}({})", operation, id);
 
@@ -1056,7 +1055,7 @@ impl RustyPipeQuery {
                     operation: format!("{operation}({id})"),
                     error,
                     msgs,
-                    deobf_data: deobf.map(Deobfuscator::get_data),
+                    deobf_data: deobf.cloned(),
                     http_request: crate::report::HTTPRequest {
                         url: request_url,
                         method: "POST".to_string(),
@@ -1197,7 +1196,7 @@ trait MapResponse<T> {
         self,
         id: &str,
         lang: Language,
-        deobf: Option<&Deobfuscator>,
+        deobf: Option<&DeobfData>,
     ) -> Result<MapResult<T>, ExtractionError>;
 }
 

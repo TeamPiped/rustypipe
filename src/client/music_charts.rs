@@ -59,7 +59,7 @@ impl MapResponse<MusicCharts> for response::MusicCharts {
         self,
         _id: &str,
         lang: crate::param::Language,
-        _deobf: Option<&crate::deobfuscate::Deobfuscator>,
+        _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<crate::serializer::MapResult<MusicCharts>, crate::error::ExtractionError> {
         let countries = self
             .framework_updates

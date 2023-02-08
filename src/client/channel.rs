@@ -162,7 +162,7 @@ impl MapResponse<Channel<Paginator<VideoItem>>> for response::Channel {
         self,
         id: &str,
         lang: Language,
-        _deobf: Option<&crate::deobfuscate::Deobfuscator>,
+        _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<MapResult<Channel<Paginator<VideoItem>>>, ExtractionError> {
         let content = map_channel_content(self.contents, self.alerts)?;
 
@@ -202,7 +202,7 @@ impl MapResponse<Channel<Paginator<PlaylistItem>>> for response::Channel {
         self,
         id: &str,
         lang: Language,
-        _deobf: Option<&crate::deobfuscate::Deobfuscator>,
+        _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<MapResult<Channel<Paginator<PlaylistItem>>>, ExtractionError> {
         let content = map_channel_content(self.contents, self.alerts)?;
 
@@ -236,7 +236,7 @@ impl MapResponse<Channel<ChannelInfo>> for response::Channel {
         self,
         id: &str,
         lang: Language,
-        _deobf: Option<&crate::deobfuscate::Deobfuscator>,
+        _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<MapResult<Channel<ChannelInfo>>, ExtractionError> {
         let content = map_channel_content(self.contents, self.alerts)?;
         let channel_data = map_channel(

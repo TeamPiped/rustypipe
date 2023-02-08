@@ -66,7 +66,7 @@ impl MapResponse<Vec<MusicGenreItem>> for response::MusicGenres {
         self,
         _id: &str,
         _lang: crate::param::Language,
-        _deobf: Option<&crate::deobfuscate::Deobfuscator>,
+        _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<crate::serializer::MapResult<Vec<MusicGenreItem>>, ExtractionError> {
         let content = self
             .contents
@@ -119,7 +119,7 @@ impl MapResponse<MusicGenre> for response::MusicGenre {
         self,
         id: &str,
         lang: crate::param::Language,
-        _deobf: Option<&crate::deobfuscate::Deobfuscator>,
+        _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<crate::serializer::MapResult<MusicGenre>, ExtractionError> {
         // dbg!(&self);
 

@@ -230,7 +230,7 @@ impl MapResponse<MusicSearchResult> for response::MusicSearch {
         self,
         _id: &str,
         lang: crate::param::Language,
-        _deobf: Option<&crate::deobfuscate::Deobfuscator>,
+        _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<MapResult<MusicSearchResult>, crate::error::ExtractionError> {
         // dbg!(&self);
 
@@ -284,7 +284,7 @@ impl<T: FromYtItem> MapResponse<MusicSearchFiltered<T>> for response::MusicSearc
         self,
         _id: &str,
         lang: crate::param::Language,
-        _deobf: Option<&crate::deobfuscate::Deobfuscator>,
+        _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<MapResult<MusicSearchFiltered<T>>, ExtractionError> {
         // dbg!(&self);
 
@@ -339,7 +339,7 @@ impl MapResponse<MusicSearchSuggestion> for response::MusicSearchSuggestion {
         self,
         _id: &str,
         lang: crate::param::Language,
-        _deobf: Option<&crate::deobfuscate::Deobfuscator>,
+        _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<MapResult<MusicSearchSuggestion>, ExtractionError> {
         let mut mapper = MusicListMapper::new(lang);
         let mut terms = Vec::new();

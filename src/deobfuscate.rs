@@ -9,7 +9,6 @@ use crate::{error::DeobfError, util};
 type Result<T> = core::result::Result<T, DeobfError>;
 
 pub struct Deobfuscator {
-    data: DeobfData,
     ctx: quick_js::Context,
 }
 
@@ -42,13 +41,13 @@ impl DeobfData {
 }
 
 impl Deobfuscator {
-    pub fn new(data: DeobfData) -> Result<Self> {
+    pub fn new(data: &DeobfData) -> Result<Self> {
         let ctx =
             quick_js::Context::new().or(Err(DeobfError::Other("could not create QuickJS rt")))?;
         ctx.eval(&data.sig_fn)?;
         ctx.eval(&data.nsig_fn)?;
 
-        Ok(Self { data, ctx })
+        Ok(Self { ctx })
     }
 
     pub fn deobfuscate_sig(&self, sig: &str) -> Result<String> {
@@ -73,14 +72,6 @@ impl Deobfuscator {
                 Ok(res.to_owned())
             },
         )
-    }
-
-    pub fn get_sts(&self) -> String {
-        self.data.sts.to_owned()
-    }
-
-    pub fn get_data(&self) -> DeobfData {
-        self.data.to_owned()
     }
 }
 
@@ -322,7 +313,7 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
 
     #[fixture]
     fn deobf() -> Deobfuscator {
-        Deobfuscator::new(DeobfData {
+        Deobfuscator::new(&DeobfData {
             js_url: String::default(),
             sig_fn: SIG_DEOBF_FUNC.to_owned(),
             nsig_fn: NSIG_DEOBF_FUNC.to_owned(),
@@ -406,7 +397,7 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
     fn t_update() {
         let client = Client::new();
         let deobf_data = tokio_test::block_on(DeobfData::download(client)).unwrap();
-        let deobf = Deobfuscator::new(deobf_data).unwrap();
+        let deobf = Deobfuscator::new(&deobf_data).unwrap();
 
         let deobf_sig = deobf.deobfuscate_sig("GOqGOqGOq0QJ8wRAIgaryQHfplJ9xJSKFywyaSMHuuwZYsoMTAvRvfm51qIGECIA5061zWeyfMPX9hEl_U6f9J0tr7GTJMKyPf5XNrJb5fb5i").unwrap();
         println!("{deobf_sig}");

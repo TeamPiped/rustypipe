@@ -145,7 +145,7 @@ impl MapResponse<MusicArtist> for response::MusicArtist {
         self,
         id: &str,
         lang: crate::param::Language,
-        _deobf: Option<&crate::deobfuscate::Deobfuscator>,
+        _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<MapResult<MusicArtist>, ExtractionError> {
         let mapped = map_artist_page(self, id, lang, false)?;
         Ok(MapResult {
@@ -160,7 +160,7 @@ impl MapResponse<(MusicArtist, Vec<String>)> for response::MusicArtist {
         self,
         id: &str,
         lang: crate::param::Language,
-        _deobf: Option<&crate::deobfuscate::Deobfuscator>,
+        _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<MapResult<(MusicArtist, Vec<String>)>, ExtractionError> {
         map_artist_page(self, id, lang, true)
     }
@@ -328,7 +328,7 @@ impl MapResponse<Vec<AlbumItem>> for response::MusicArtistAlbums {
         self,
         id: &str,
         lang: crate::param::Language,
-        _deobf: Option<&crate::deobfuscate::Deobfuscator>,
+        _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<MapResult<Vec<AlbumItem>>, ExtractionError> {
         // dbg!(&self);
 

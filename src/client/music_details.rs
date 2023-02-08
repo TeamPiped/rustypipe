@@ -156,7 +156,7 @@ impl MapResponse<TrackDetails> for response::MusicDetails {
         self,
         id: &str,
         lang: Language,
-        _deobf: Option<&crate::deobfuscate::Deobfuscator>,
+        _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<MapResult<TrackDetails>, ExtractionError> {
         let tabs = self
             .contents
@@ -232,7 +232,7 @@ impl MapResponse<Paginator<TrackItem>> for response::MusicDetails {
         self,
         _id: &str,
         lang: Language,
-        _deobf: Option<&crate::deobfuscate::Deobfuscator>,
+        _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<MapResult<Paginator<TrackItem>>, ExtractionError> {
         let tabs = self
             .contents
@@ -287,7 +287,7 @@ impl MapResponse<Lyrics> for response::MusicLyrics {
         self,
         _id: &str,
         _lang: Language,
-        _deobf: Option<&crate::deobfuscate::Deobfuscator>,
+        _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<MapResult<Lyrics>, ExtractionError> {
         let lyrics = self
             .contents
@@ -317,7 +317,7 @@ impl MapResponse<MusicRelated> for response::MusicRelated {
         self,
         _id: &str,
         lang: Language,
-        _deobf: Option<&crate::deobfuscate::Deobfuscator>,
+        _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<MapResult<MusicRelated>, ExtractionError> {
         // Find artist
         let artist_id = self
