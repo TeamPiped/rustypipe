@@ -75,23 +75,27 @@ impl RustyPipeQuery {
                 .collect::<Vec<_>>();
 
             if !to_replace.is_empty() {
-                let playlist = self.music_playlist(playlist_id).await?;
-
-                for (i, title) in to_replace {
-                    let found_track = playlist.tracks.items.iter().find_map(|track| {
-                        if track.name == title && !track.is_video {
-                            Some((track.id.to_owned(), track.duration))
-                        } else {
-                            None
+                match self.music_playlist(playlist_id).await {
+                    Ok(playlist) => {
+                        for (i, title) in to_replace {
+                            let found_track = playlist.tracks.items.iter().find_map(|track| {
+                                if track.name == title && !track.is_video {
+                                    Some((track.id.to_owned(), track.duration))
+                                } else {
+                                    None
+                                }
+                            });
+                            if let Some((track_id, duration)) = found_track {
+                                album.tracks[i].id = track_id;
+                                if let Some(duration) = duration {
+                                    album.tracks[i].duration = Some(duration);
+                                }
+                                album.tracks[i].is_video = false;
+                            }
                         }
-                    });
-                    if let Some((track_id, duration)) = found_track {
-                        album.tracks[i].id = track_id;
-                        if let Some(duration) = duration {
-                            album.tracks[i].duration = Some(duration);
-                        }
-                        album.tracks[i].is_video = false;
                     }
+                    Err(Error::Extraction(_)) => {}
+                    Err(e) => return Err(e),
                 }
             }
         }
