@@ -997,6 +997,17 @@ mod channel_rss {
     }
 
     #[rstest]
+    fn get_channel_rss_empty(rp: RustyPipe) {
+        let channel =
+            tokio_test::block_on(rp.query().channel_rss("UC4fJNIVEOQ1fk15B_sqoOqg")).unwrap();
+
+        assert_eq!(channel.id, "UC4fJNIVEOQ1fk15B_sqoOqg");
+        assert_eq!(channel.name, "Bilal Saeed - Topic");
+
+        assert!(channel.videos.is_empty());
+    }
+
+    #[rstest]
     fn get_channel_rss_not_found(rp: RustyPipe) {
         let err =
             tokio_test::block_on(rp.query().channel_rss("UCHnyfMqiRRG1u-2MsSQLbXZ")).unwrap_err();

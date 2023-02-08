@@ -11,6 +11,7 @@ pub(crate) struct ChannelRss {
     pub author: Author,
     #[serde(rename = "published", with = "time::serde::rfc3339")]
     pub create_date: OffsetDateTime,
+    #[serde(default)]
     pub entry: Vec<Entry>,
 }
 
