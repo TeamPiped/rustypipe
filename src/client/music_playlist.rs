@@ -80,7 +80,7 @@ impl RustyPipeQuery {
                 .enumerate()
                 .filter_map(|(i, track)| {
                     if track.is_video {
-                        track.track_nr.map(|n| (i, n))
+                        Some((i, track.name.to_owned()))
                     } else {
                         None
                     }
@@ -88,12 +88,21 @@ impl RustyPipeQuery {
                 .collect::<Vec<_>>();
 
             if !to_replace.is_empty() {
-                let playlist = self.playlist_w_unavail(playlist_id).await?;
+                let playlist = self.music_playlist(playlist_id).await?;
 
-                for (i, track_n) in to_replace {
-                    if let Some(t) = playlist.videos.items.get(track_n as usize - 1) {
-                        album.tracks[i].id = t.id.to_owned();
-                        album.tracks[i].duration = Some(t.length);
+                for (i, title) in to_replace {
+                    let found_track = playlist.tracks.items.iter().find_map(|track| {
+                        if track.name == title && !track.is_video {
+                            Some((track.id.to_owned(), track.duration))
+                        } else {
+                            None
+                        }
+                    });
+                    if let Some((track_id, duration)) = found_track {
+                        album.tracks[i].id = track_id;
+                        if let Some(duration) = duration {
+                            album.tracks[i].duration = Some(duration);
+                        }
                         album.tracks[i].is_video = false;
                     }
                 }

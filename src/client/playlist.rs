@@ -9,10 +9,7 @@ use crate::{
     util::{self, TryRemove},
 };
 
-use super::{
-    response, ClientType, MapResponse, MapResult, QBrowse, QBrowseParams, QContinuation,
-    RustyPipeQuery,
-};
+use super::{response, ClientType, MapResponse, MapResult, QBrowse, QContinuation, RustyPipeQuery};
 
 impl RustyPipeQuery {
     /// Get a YouTube playlist
@@ -22,29 +19,6 @@ impl RustyPipeQuery {
         let request_body = QBrowse {
             context,
             browse_id: &format!("VL{playlist_id}"),
-        };
-
-        self.execute_request::<response::Playlist, _, _>(
-            ClientType::Desktop,
-            "playlist",
-            playlist_id,
-            "browse",
-            &request_body,
-        )
-        .await
-    }
-
-    /// Get a YouTube playlist including unavailable tracks
-    pub(crate) async fn playlist_w_unavail<S: AsRef<str>>(
-        &self,
-        playlist_id: S,
-    ) -> Result<Playlist, Error> {
-        let playlist_id = playlist_id.as_ref();
-        let context = self.get_context(ClientType::Desktop, true, None).await;
-        let request_body = QBrowseParams {
-            context,
-            browse_id: &format!("VL{playlist_id}"),
-            params: "wgYCCAA%3D",
         };
 
         self.execute_request::<response::Playlist, _, _>(

@@ -1289,7 +1289,6 @@ fn music_playlist_not_found(rp: RustyPipe) {
 #[case::no_year("no_year", "MPREb_F3Af9UZZVxX")]
 #[case::version_no_artist("version_no_artist", "MPREb_h8ltx5oKvyY")]
 #[case::no_artist("no_artist", "MPREb_bqWA6mAZFWS")]
-#[case::tn_zero("tn_zero", "MPREb_RM0QfZ0eSKL")]
 fn music_album(#[case] name: &str, #[case] id: &str, rp: RustyPipe) {
     let album = tokio_test::block_on(rp.query().music_album(id)).unwrap();
 
