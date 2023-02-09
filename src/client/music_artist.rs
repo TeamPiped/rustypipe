@@ -272,12 +272,18 @@ fn map_artist_page(
     let mapped = mapper.group_items();
 
     static WIKIPEDIA_REGEX: Lazy<Regex> =
-        Lazy::new(|| Regex::new(r"https://[a-z]+\.wikipedia.org/wiki/[^()\s]+").unwrap());
+        Lazy::new(|| Regex::new(r"\(?https://[a-z\d-]+\.wikipedia.org/wiki/[^\s]+").unwrap());
     let wikipedia_url = header.description.as_deref().and_then(|h| {
-        WIKIPEDIA_REGEX
-            .captures(h)
-            .and_then(|c| c.get(0))
-            .map(|m| m.as_str().to_owned())
+        WIKIPEDIA_REGEX.captures(h).and_then(|c| c.get(0)).map(|m| {
+            let m = m.as_str();
+            match m.strip_prefix('(') {
+                Some(m) => match m.strip_suffix(')') {
+                    Some(m) => m.to_owned(),
+                    None => m.to_owned(),
+                },
+                None => m.to_owned(),
+            }
+        })
     });
 
     let radio_id = header.start_radio_button.and_then(|b| {
