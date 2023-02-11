@@ -611,16 +611,28 @@ impl MusicListMapper {
 
                         let (mut artists, by_va) = map_artists(artists_p);
 
-                        // Fall back to the artist given when constructing the mapper.
-                        // This is used for extracting artist pages.
-                        if let Some(a) = &self.artists {
-                            if artists.is_empty() {
-                                artists = a.0.clone();
-                            }
-                        }
-
                         // Extract artist id from dropdown menu
                         let artist_id = map_artist_id_fallback(item.menu, artists.first());
+
+                        // Fall back to the artist given when constructing the mapper.
+                        // This is used for extracting artist pages.
+                        // On some albums, the artist name of the tracks is not given but different
+                        // from the album artist. In this case dont copy the album artist.
+                        if let Some((fb_artists, _)) = &self.artists {
+                            if artists.is_empty()
+                                && (self.artist_page
+                                    || artist_id.is_none()
+                                    || fb_artists.iter().any(|fb_id| {
+                                        fb_id
+                                            .id
+                                            .as_deref()
+                                            .map(|aid| artist_id.as_deref() == Some(aid))
+                                            .unwrap_or_default()
+                                    }))
+                            {
+                                artists = fb_artists.clone();
+                            }
+                        }
 
                         let track_nr = item.index.and_then(|txt| util::parse_numeric(&txt).ok());
 
@@ -939,6 +951,7 @@ impl MusicListMapper {
     }
 }
 
+/// Map TextComponents containing artist names to a list of artists and a 'Various Artists' flag
 pub(crate) fn map_artists(artists_p: Option<TextComponents>) -> (Vec<ArtistId>, bool) {
     let mut by_va = false;
     let artists = artists_p
