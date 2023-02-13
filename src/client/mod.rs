@@ -49,6 +49,7 @@ use crate::{
 /// slightly different features
 #[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq, Eq, Hash)]
 #[serde(rename_all = "snake_case")]
+#[non_exhaustive]
 pub enum ClientType {
     /// Client used by youtube.com
     Desktop,
