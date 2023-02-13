@@ -1392,8 +1392,8 @@ fn music_artist_not_found(rp: RustyPipe) {
 #[case::typo(true)]
 fn music_search(#[case] typo: bool, rp: RustyPipe) {
     let res = tokio_test::block_on(rp.query().music_search(match typo {
-        false => "black mamba aespa",
-        true => "blck mamba aespa",
+        false => "lieblingsmensch namika",
+        true => "lieblingsmesch namika",
     }))
     .unwrap();
 
@@ -1404,27 +1404,37 @@ fn music_search(#[case] typo: bool, rp: RustyPipe) {
     assert_eq!(res.order[0], MusicItemType::Track);
 
     if typo {
-        assert_eq!(res.corrected_query.unwrap(), "black mamba aespa");
+        assert_eq!(res.corrected_query.unwrap(), "lieblingsmensch namika");
     } else {
         assert_eq!(res.corrected_query, None);
     }
 
-    let track = &res.tracks.iter().find(|a| a.id == "ZeerrnuLi5E").unwrap();
+    let track = &res
+        .tracks
+        .iter()
+        .find(|a| a.id == "6485PhOtHzY")
+        .unwrap_or_else(|| {
+            panic!("could not find track, got {:#?}", &res.tracks);
+        });
 
-    assert_eq!(track.name, "Black Mamba");
-    assert_eq!(track.duration.unwrap(), 230);
+    assert_eq!(track.name, "Lieblingsmensch");
+    assert_eq!(track.duration.unwrap(), 191);
     assert!(!track.cover.is_empty(), "got no cover");
 
     assert_eq!(track.artists.len(), 1);
     let track_artist = &track.artists[0];
     assert_eq!(
         track_artist.id.as_ref().unwrap(),
-        "UCEdZAdnnKqbaHOlv8nM6OtA"
+        "UCIh4j8fXWf2U0ro0qnGU8Mg"
     );
-    assert_eq!(track_artist.name, "aespa");
-    assert_eq!(track.album, None);
-    assert_gte(track.view_count.unwrap(), 230_000_000, "views");
-    assert!(track.is_video, "got no video");
+    assert_eq!(track_artist.name, "Namika");
+
+    let track_album = track.album.as_ref().unwrap();
+    assert_eq!(track_album.id, "MPREb_RXHxrUFfrvQ");
+    assert_eq!(track_album.name, "Lieblingsmensch");
+
+    assert_eq!(track.view_count, None);
+    assert!(!track.is_video, "got mv");
     assert_eq!(track.track_nr, None);
 }
 
