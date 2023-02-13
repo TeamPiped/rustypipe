@@ -88,7 +88,11 @@ impl RustyPipeQuery {
                 .collect::<Vec<_>>();
 
             if !to_replace.is_empty() {
-                let playlist = self.music_playlist(playlist_id).await?;
+                let mut playlist = self.music_playlist(playlist_id).await?;
+                playlist
+                    .tracks
+                    .extend_limit(&self, album.tracks.len())
+                    .await?;
 
                 for (i, title) in to_replace {
                     let found_track = playlist.tracks.items.iter().find_map(|track| {
