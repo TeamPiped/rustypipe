@@ -61,9 +61,9 @@ impl RustyPipeQuery {
     /// Get YouTube player data (video/audio streams + basic metadata)
     pub async fn player<S: AsRef<str>>(&self, video_id: S) -> Result<VideoPlayer, Error> {
         let video_id = video_id.as_ref();
-        let android_res = self.player_from_client(video_id, ClientType::Android).await;
+        let desktop_res = self.player_from_client(video_id, ClientType::Desktop).await;
 
-        match android_res {
+        match desktop_res {
             Ok(res) => Ok(res),
             Err(Error::Extraction(e)) => {
                 if e.switch_client() {
@@ -72,7 +72,7 @@ impl RustyPipeQuery {
                         .await;
 
                     match tv_res {
-                        // Output android client error if the tv client is unsupported
+                        // Output desktop client error if the tv client is unsupported
                         Err(Error::Extraction(ExtractionError::VideoClientUnsupported(_))) => {
                             Err(Error::Extraction(e))
                         }
@@ -152,25 +152,31 @@ impl MapResponse<VideoPlayer> for response::Player {
             response::player::PlayabilityStatus::Ok { live_streamability } => {
                 live_streamability.is_some()
             }
-            response::player::PlayabilityStatus::Unplayable { reason } => {
-                for word in reason.split_whitespace() {
+            response::player::PlayabilityStatus::Unplayable {
+                reason,
+                error_screen,
+            } => {
+                let mut msg = reason;
+                if let Some(error_screen) = error_screen {
+                    msg.push_str(" - ");
+                    msg.push_str(&error_screen.player_error_message_renderer.subreason);
+                }
+
+                for word in msg.split_whitespace() {
                     match word {
                         // reason: "This video requires payment to watch."
-                        "payment" => return Err(ExtractionError::VideoUnavailable("DRM", reason)),
+                        "payment" => return Err(ExtractionError::VideoUnavailable("DRM", msg)),
                         // reason: "The uploader has not made this video available in your country."
                         "country" => return Err(ExtractionError::VideoGeoblocked),
                         // reason (Android): "This video can only be played on newer versions of Android or other supported devices."
                         // reason (TV client): "Playback on other websites has been disabled by the video owner."
                         "Android" | "websites" => {
-                            return Err(ExtractionError::VideoClientUnsupported(reason))
+                            return Err(ExtractionError::VideoClientUnsupported(msg))
                         }
                         _ => {}
                     }
                 }
-                return Err(ExtractionError::VideoUnavailable(
-                    "being unplayable",
-                    reason,
-                ));
+                return Err(ExtractionError::VideoUnavailable("being unplayable", msg));
             }
             response::player::PlayabilityStatus::LoginRequired { reason } => {
                 // reason (age restriction): "Sign in to confirm your age"

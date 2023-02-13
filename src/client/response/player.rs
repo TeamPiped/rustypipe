@@ -17,6 +17,7 @@ pub(crate) struct Player {
     pub response_context: ResponseContext,
 }
 
+#[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(tag = "status", rename_all = "SCREAMING_SNAKE_CASE")]
 pub(crate) enum PlayabilityStatus {
@@ -24,19 +25,48 @@ pub(crate) enum PlayabilityStatus {
     Ok { live_streamability: Option<Empty> },
     /// Video cant be played because of DRM / Geoblock
     #[serde(rename_all = "camelCase")]
-    Unplayable { reason: String },
+    Unplayable {
+        #[serde(default)]
+        reason: String,
+        #[serde(default)]
+        #[serde_as(deserialize_as = "DefaultOnError")]
+        error_screen: Option<ErrorScreen>,
+    },
     /// Age limit / Private video
     #[serde(rename_all = "camelCase")]
-    LoginRequired { reason: String },
+    LoginRequired {
+        #[serde(default)]
+        reason: String,
+    },
     #[serde(rename_all = "camelCase")]
-    LiveStreamOffline { reason: String },
+    LiveStreamOffline {
+        #[serde(default)]
+        reason: String,
+    },
     /// Video was censored / deleted
     #[serde(rename_all = "camelCase")]
-    Error { reason: String },
+    Error {
+        #[serde(default)]
+        reason: String,
+    },
 }
 
 #[derive(Debug, Deserialize)]
 pub(crate) struct Empty {}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ErrorScreen {
+    pub player_error_message_renderer: ErrorMessage,
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ErrorMessage {
+    #[serde_as(as = "Text")]
+    pub subreason: String,
+}
 
 #[serde_as]
 #[derive(Debug, Deserialize)]
