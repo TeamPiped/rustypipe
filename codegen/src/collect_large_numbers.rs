@@ -2,10 +2,10 @@ use std::collections::{HashMap, HashSet};
 use std::{collections::BTreeMap, fs::File, io::BufReader, path::Path};
 
 use anyhow::{Context, Result};
-use fancy_regex::Regex;
 use futures::{stream, StreamExt};
 use once_cell::sync::Lazy;
 use path_macro::path;
+use regex::Regex;
 use reqwest::{header, Client};
 use rustypipe::param::{locale::LANGUAGES, Language};
 use serde::Deserialize;
@@ -139,7 +139,6 @@ pub fn write_samples_to_dict(project_root: &Path) {
             .find_map(|(mag, (txt, _))| {
                 let point = POINT_REGEX
                     .captures(txt)
-                    .unwrap()
                     .map(|c| c.get(1).unwrap().as_str());
 
                 if let Some(point) = point {

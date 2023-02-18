@@ -1,8 +1,8 @@
 use std::fmt::Write;
 use std::path::Path;
 
-use fancy_regex::Regex;
 use once_cell::sync::Lazy;
+use regex::Regex;
 use rustypipe::timeago::TimeUnit;
 
 use crate::util;
@@ -11,7 +11,7 @@ const TARGET_PATH: &str = "src/util/dictionary.rs";
 
 fn parse_tu(tu: &str) -> (u8, Option<TimeUnit>) {
     static TU_PATTERN: Lazy<Regex> = Lazy::new(|| Regex::new(r"^(\d*)(\w?)$").unwrap());
-    match TU_PATTERN.captures(tu).unwrap() {
+    match TU_PATTERN.captures(tu) {
         Some(cap) => (
             cap.get(1).unwrap().as_str().parse().unwrap_or(1),
             match cap.get(2).unwrap().as_str() {
