@@ -8,7 +8,7 @@ use reqwest::{Client, ClientBuilder};
 use rustypipe::{
     client::RustyPipe,
     model::{UrlTarget, VideoId},
-    param::StreamFilter,
+    param::{search_filter, StreamFilter},
 };
 use serde::Serialize;
 
@@ -50,7 +50,7 @@ enum Commands {
         #[clap(long)]
         pretty: bool,
         /// Limit the number of items to fetch
-        #[clap(long, default_value_t = 100)]
+        #[clap(long, default_value_t = 20)]
         limit: usize,
         /// Channel tab
         #[clap(long, default_value = "videos")]
@@ -64,6 +64,35 @@ enum Commands {
         /// Get lyrics
         #[clap(long)]
         lyrics: bool,
+    },
+    /// Search YouTube
+    Search {
+        /// Search query
+        query: String,
+        /// Output format
+        #[clap(long, value_parser, default_value = "json")]
+        format: Format,
+        /// Pretty-print output
+        #[clap(long)]
+        pretty: bool,
+        /// Limit the number of items to fetch
+        #[clap(long, default_value_t = 20)]
+        limit: usize,
+        /// Filter results by item type
+        #[clap(long)]
+        item_type: Option<SearchItemType>,
+        /// Filter results by video length
+        #[clap(long)]
+        length: Option<SearchLength>,
+        /// Filter results by upload date
+        #[clap(long)]
+        date: Option<SearchUploadDate>,
+        /// Sort search resulus
+        #[clap(long)]
+        order: Option<SearchOrder>,
+        /// YouTube Music search filter
+        #[clap(long)]
+        music: Option<MusicSearchCategory>,
     },
 }
 
@@ -85,6 +114,101 @@ enum ChannelTab {
 enum CommentsOrder {
     Top,
     Latest,
+}
+
+#[derive(Copy, Clone, ValueEnum)]
+enum SearchItemType {
+    Video,
+    Channel,
+    Playlist,
+}
+
+#[derive(Copy, Clone, ValueEnum)]
+enum SearchLength {
+    /// < 4min
+    Short,
+    /// 4-20min
+    Medium,
+    /// > 20min
+    Long,
+}
+
+#[derive(Copy, Clone, ValueEnum)]
+enum SearchUploadDate {
+    /// 1 hour old or newer
+    Hour,
+    /// 1 day old or newer
+    Day,
+    /// 1 week old or newer
+    Week,
+    /// 1 month old or newer
+    Month,
+    /// 1 year old or newer
+    Year,
+}
+
+#[derive(Copy, Clone, ValueEnum)]
+enum SearchOrder {
+    /// Sort by Like/Dislike ratio
+    Rating,
+    /// Sort by upload date
+    Date,
+    /// Sort by view count
+    Views,
+}
+
+#[derive(Copy, Clone, ValueEnum)]
+enum MusicSearchCategory {
+    All,
+    Tracks,
+    Videos,
+    Artists,
+    Albums,
+    Playlists,
+    PlaylistsYtm,
+    PlaylistsCommunity,
+}
+
+impl From<SearchItemType> for search_filter::ItemType {
+    fn from(value: SearchItemType) -> Self {
+        match value {
+            SearchItemType::Video => search_filter::ItemType::Video,
+            SearchItemType::Channel => search_filter::ItemType::Channel,
+            SearchItemType::Playlist => search_filter::ItemType::Playlist,
+        }
+    }
+}
+
+impl From<SearchLength> for search_filter::Length {
+    fn from(value: SearchLength) -> Self {
+        match value {
+            SearchLength::Short => search_filter::Length::Short,
+            SearchLength::Medium => search_filter::Length::Medium,
+            SearchLength::Long => search_filter::Length::Long,
+        }
+    }
+}
+
+impl From<SearchUploadDate> for search_filter::UploadDate {
+    fn from(value: SearchUploadDate) -> Self {
+        match value {
+            SearchUploadDate::Hour => search_filter::UploadDate::Hour,
+            SearchUploadDate::Day => search_filter::UploadDate::Day,
+            SearchUploadDate::Week => search_filter::UploadDate::Week,
+            SearchUploadDate::Month => search_filter::UploadDate::Month,
+            SearchUploadDate::Year => search_filter::UploadDate::Year,
+        }
+    }
+}
+
+impl From<SearchOrder> for search_filter::Order {
+    fn from(value: SearchOrder) -> Self {
+        match value {
+            SearchOrder::Rating => search_filter::Order::Rating,
+            SearchOrder::Date => search_filter::Order::Date,
+            SearchOrder::Views => search_filter::Order::Views,
+        }
+    }
 }
 
 #[allow(clippy::too_many_arguments)]
@@ -474,5 +598,74 @@ async fn main() {
                 }
             }
         }
+        Commands::Search {
+            query,
+            format,
+            pretty,
+            limit,
+            item_type,
+            length,
+            date,
+            order,
+            music,
+        } => match music {
+            None => {
+                let filter = search_filter::SearchFilter::new()
+                    .item_type_opt(item_type.map(search_filter::ItemType::from))
+                    .length_opt(length.map(search_filter::Length::from))
+                    .date_opt(date.map(search_filter::UploadDate::from))
+                    .sort_opt(order.map(search_filter::Order::from));
+                let mut res = rp.query().search_filter(&query, &filter).await.unwrap();
+                res.items.extend_limit(rp.query(), limit).await.unwrap();
+                print_data(&res, format, pretty);
+            }
+            Some(MusicSearchCategory::All) => {
+                let res = rp.query().music_search(&query).await.unwrap();
+                print_data(&res, format, pretty);
+            }
+            Some(MusicSearchCategory::Tracks) => {
+                let mut res = rp.query().music_search_tracks(&query).await.unwrap();
+                res.items.extend_limit(rp.query(), limit).await.unwrap();
+                print_data(&res, format, pretty);
+            }
+            Some(MusicSearchCategory::Videos) => {
+                let mut res = rp.query().music_search_videos(&query).await.unwrap();
+                res.items.extend_limit(rp.query(), limit).await.unwrap();
+                print_data(&res, format, pretty);
+            }
+            Some(MusicSearchCategory::Artists) => {
+                let mut res = rp.query().music_search_artists(&query).await.unwrap();
+                res.items.extend_limit(rp.query(), limit).await.unwrap();
+                print_data(&res, format, pretty);
+            }
+            Some(MusicSearchCategory::Albums) => {
+                let mut res = rp.query().music_search_albums(&query).await.unwrap();
+                res.items.extend_limit(rp.query(), limit).await.unwrap();
+                print_data(&res, format, pretty);
+            }
+            Some(MusicSearchCategory::Playlists) => {
+                let mut res = rp.query().music_search_playlists(&query).await.unwrap();
+                res.items.extend_limit(rp.query(), limit).await.unwrap();
+                print_data(&res, format, pretty);
+            }
+            Some(MusicSearchCategory::PlaylistsYtm) => {
+                let mut res = rp
+                    .query()
+                    .music_search_playlists_filter(&query, false)
+                    .await
+                    .unwrap();
+                res.items.extend_limit(rp.query(), limit).await.unwrap();
+                print_data(&res, format, pretty);
+            }
+            Some(MusicSearchCategory::PlaylistsCommunity) => {
+                let mut res = rp
+                    .query()
+                    .music_search_playlists_filter(&query, true)
+                    .await
+                    .unwrap();
+                res.items.extend_limit(rp.query(), limit).await.unwrap();
+                print_data(&res, format, pretty);
+            }
+        },
     };
 }

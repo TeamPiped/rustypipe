@@ -133,15 +133,15 @@ impl SearchFilter {
         self
     }
 
-    /// Filter videos by entity type
-    pub fn item_type(mut self, entity: ItemType) -> Self {
-        self.item_type = Some(entity);
+    /// Filter videos by item type
+    pub fn item_type(mut self, item_type: ItemType) -> Self {
+        self.item_type = Some(item_type);
         self
     }
 
-    /// Filter videos by entity type
-    pub fn item_type_opt(mut self, entity: Option<ItemType>) -> Self {
-        self.item_type = entity;
+    /// Filter videos by item type
+    pub fn item_type_opt(mut self, item_type: Option<ItemType>) -> Self {
+        self.item_type = item_type;
         self
     }
 
@@ -175,8 +175,8 @@ impl SearchFilter {
         if let Some(date) = self.date {
             filters.varint(1, date as u64);
         }
-        if let Some(entity) = self.item_type {
-            filters.varint(2, entity as u64);
+        if let Some(item_type) = self.item_type {
+            filters.varint(2, item_type as u64);
         }
         if let Some(length) = self.length {
             filters.varint(3, length as u64);
