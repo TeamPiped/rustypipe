@@ -90,6 +90,9 @@ enum Commands {
         /// Sort search resulus
         #[clap(long)]
         order: Option<SearchOrder>,
+        /// Channel ID for searching channel videos
+        #[clap(long)]
+        channel: Option<String>,
         /// YouTube Music search filter
         #[clap(long)]
         music: Option<MusicSearchCategory>,
@@ -607,18 +610,28 @@ async fn main() {
             length,
             date,
             order,
+            channel,
             music,
         } => match music {
-            None => {
-                let filter = search_filter::SearchFilter::new()
-                    .item_type_opt(item_type.map(search_filter::ItemType::from))
-                    .length_opt(length.map(search_filter::Length::from))
-                    .date_opt(date.map(search_filter::UploadDate::from))
-                    .sort_opt(order.map(search_filter::Order::from));
-                let mut res = rp.query().search_filter(&query, &filter).await.unwrap();
-                res.items.extend_limit(rp.query(), limit).await.unwrap();
-                print_data(&res, format, pretty);
-            }
+            None => match channel {
+                Some(channel) => {
+                    if !rustypipe::validate::channel_id(&channel) {
+                        panic!("invalid channel id")
+                    }
+                    let res = rp.query().channel_search(&channel, &query).await.unwrap();
+                    print_data(&res, format, pretty);
+                }
+                None => {
+                    let filter = search_filter::SearchFilter::new()
+                        .item_type_opt(item_type.map(search_filter::ItemType::from))
+                        .length_opt(length.map(search_filter::Length::from))
+                        .date_opt(date.map(search_filter::UploadDate::from))
+                        .sort_opt(order.map(search_filter::Order::from));
+                    let mut res = rp.query().search_filter(&query, &filter).await.unwrap();
+                    res.items.extend_limit(rp.query(), limit).await.unwrap();
+                    print_data(&res, format, pretty);
+                }
+            },
             Some(MusicSearchCategory::All) => {
                 let res = rp.query().music_search(&query).await.unwrap();
                 print_data(&res, format, pretty);
