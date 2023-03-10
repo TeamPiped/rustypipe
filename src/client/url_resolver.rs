@@ -25,6 +25,9 @@ impl RustyPipeQuery {
     /// Note that the hostname of the URL is not checked, so this function also accepts URLs
     /// from alternative YouTube frontends like Piped or Invidious.
     ///
+    /// The `resolve_albums` flag enables resolving YTM album URLs (e.g.
+    /// `OLAK5uy_k0yFrZlFRgCf3rLPza-lkRmCrtLPbK9pE`) to their short album id (`MPREb_GyH43gCvdM5`).
+    ///
     /// # Examples
     /// ```
     /// # use rustypipe::client::RustyPipe;
@@ -196,6 +199,9 @@ impl RustyPipeQuery {
     /// Accepted input strings include YouTube URLs (see [`RustyPipeQuery::resolve_url`]),
     /// Video/Channel/Playlist/Album IDs and channel handles / vanity IDs.
     ///
+    /// The `resolve_albums` flag enables resolving YTM album URLs and IDs (e.g.
+    /// `OLAK5uy_k0yFrZlFRgCf3rLPza-lkRmCrtLPbK9pE`) to their short album id (`MPREb_GyH43gCvdM5`).
+    ///
     /// # Examples
     /// ```
     /// # use rustypipe::client::RustyPipe;
@@ -214,51 +220,47 @@ impl RustyPipeQuery {
     /// );
     /// # });
     /// ```
-    pub async fn resolve_string(
+    pub async fn resolve_string<S: AsRef<str>>(
         self,
-        string: &str,
+        s: S,
         resolve_albums: bool,
     ) -> Result<UrlTarget, Error> {
+        let s = s.as_ref();
+
         // URL with protocol
-        if string.starts_with("http://") || string.starts_with("https://") {
-            self.resolve_url(string, resolve_albums).await
+        if s.starts_with("http://") || s.starts_with("https://") {
+            self.resolve_url(s, resolve_albums).await
         }
         // URL without protocol
-        else if string.contains('/') && string.contains('.') {
-            self.resolve_url(&format!("https://{string}"), resolve_albums)
+        else if s.contains('/') && s.contains('.') {
+            self.resolve_url(&format!("https://{s}"), resolve_albums)
                 .await
         }
         // ID only
-        else if util::VIDEO_ID_REGEX.is_match(string) {
+        else if util::VIDEO_ID_REGEX.is_match(s) {
             Ok(UrlTarget::Video {
-                id: string.to_owned(),
+                id: s.to_owned(),
                 start_time: 0,
             })
-        } else if util::CHANNEL_ID_REGEX.is_match(string) {
-            Ok(UrlTarget::Channel {
-                id: string.to_owned(),
-            })
-        } else if util::PLAYLIST_ID_REGEX.is_match(string) {
-            if resolve_albums && string.starts_with(util::PLAYLIST_ID_ALBUM_PREFIX) {
+        } else if util::CHANNEL_ID_REGEX.is_match(s) {
+            Ok(UrlTarget::Channel { id: s.to_owned() })
+        } else if util::PLAYLIST_ID_REGEX.is_match(s) {
+            if resolve_albums && s.starts_with(util::PLAYLIST_ID_ALBUM_PREFIX) {
                 self._navigation_resolve_url(
-                    &format!("/playlist?list={string}"),
+                    &format!("/playlist?list={s}"),
                     ClientType::DesktopMusic,
                 )
                 .await
             } else {
-                Ok(UrlTarget::Playlist {
-                    id: string.to_owned(),
-                })
+                Ok(UrlTarget::Playlist { id: s.to_owned() })
             }
-        } else if util::ALBUM_ID_REGEX.is_match(string) {
-            Ok(UrlTarget::Album {
-                id: string.to_owned(),
-            })
+        } else if util::ALBUM_ID_REGEX.is_match(s) {
+            Ok(UrlTarget::Album { id: s.to_owned() })
         }
         // Channel name only
-        else if util::VANITY_PATH_REGEX.is_match(string) {
+        else if util::VANITY_PATH_REGEX.is_match(s) {
             self._navigation_resolve_url(
-                &format!("/{}", string.trim_start_matches('/')),
+                &format!("/{}", s.trim_start_matches('/')),
                 ClientType::Desktop,
             )
             .await
