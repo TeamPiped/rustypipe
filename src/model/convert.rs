@@ -1,6 +1,7 @@
 use super::{
-    AlbumItem, ArtistItem, Channel, ChannelId, ChannelItem, ChannelTag, MusicItem,
-    MusicPlaylistItem, PlaylistItem, TrackItem, VideoItem, YouTubeItem,
+    AlbumItem, ArtistId, ArtistItem, Channel, ChannelId, ChannelItem, ChannelTag, MusicArtist,
+    MusicItem, MusicPlaylistItem, PlaylistItem, PlaylistVideo, TrackItem, VideoId, VideoItem,
+    YouTubeItem,
 };
 
 /// Trait for casting generic YouTube/YouTube music items to a specific kind.
@@ -122,6 +123,56 @@ impl<T> From<Channel<T>> for ChannelId {
         Self {
             id: channel.id,
             name: channel.name,
+        }
+    }
+}
+
+impl From<MusicArtist> for ChannelId {
+    fn from(artist: MusicArtist) -> Self {
+        Self {
+            id: artist.id,
+            name: artist.name,
+        }
+    }
+}
+
+impl TryFrom<ArtistId> for ChannelId {
+    type Error = ();
+
+    fn try_from(artist: ArtistId) -> Result<Self, Self::Error> {
+        match artist.id {
+            Some(id) => Ok(Self {
+                id,
+                name: artist.name,
+            }),
+            None => Err(()),
+        }
+    }
+}
+
+impl From<VideoItem> for VideoId {
+    fn from(video: VideoItem) -> Self {
+        Self {
+            id: video.id,
+            name: video.name,
+        }
+    }
+}
+
+impl From<PlaylistVideo> for VideoId {
+    fn from(video: PlaylistVideo) -> Self {
+        Self {
+            id: video.id,
+            name: video.name,
+        }
+    }
+}
+
+impl From<TrackItem> for VideoId {
+    fn from(track: TrackItem) -> Self {
+        Self {
+            id: track.id,
+            name: track.name,
         }
     }
 }

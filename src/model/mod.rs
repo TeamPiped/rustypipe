@@ -893,6 +893,16 @@ pub struct PlaylistItem {
     pub video_count: Option<u64>,
 }
 
+/// YouTube video identifier
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
+pub struct VideoId {
+    /// Video ID
+    pub id: String,
+    /// Video title
+    pub name: String,
+}
+
 /*
 #MUSIC
 */
