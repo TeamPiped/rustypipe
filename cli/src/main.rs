@@ -588,10 +588,20 @@ async fn main() {
                 }
                 UrlTarget::Playlist { id } => {
                     if music {
-                        let playlist = rp.query().music_playlist(&id).await.unwrap();
+                        let mut playlist = rp.query().music_playlist(&id).await.unwrap();
+                        playlist
+                            .tracks
+                            .extend_limit(rp.query(), limit)
+                            .await
+                            .unwrap();
                         print_data(&playlist, format, pretty);
                     } else {
-                        let playlist = rp.query().playlist(&id).await.unwrap();
+                        let mut playlist = rp.query().playlist(&id).await.unwrap();
+                        playlist
+                            .videos
+                            .extend_limit(rp.query(), limit)
+                            .await
+                            .unwrap();
                         print_data(&playlist, format, pretty);
                     }
                 }
