@@ -298,7 +298,7 @@ impl From<MusicThumbnailRenderer> for Vec<model::Thumbnail> {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct MusicContinuation {
-    pub continuation_contents: ContinuationContents,
+    pub continuation_contents: Option<ContinuationContents>,
 }
 
 #[derive(Debug, Deserialize)]

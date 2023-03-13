@@ -136,11 +136,11 @@ impl MapResponse<Paginator<MusicItem>> for response::MusicContinuation {
         let mut continuations = Vec::new();
 
         match self.continuation_contents {
-            response::music_item::ContinuationContents::MusicShelfContinuation(mut shelf) => {
+            Some(response::music_item::ContinuationContents::MusicShelfContinuation(mut shelf)) => {
                 mapper.map_response(shelf.contents);
                 continuations.append(&mut shelf.continuations);
             }
-            response::music_item::ContinuationContents::SectionListContinuation(contents) => {
+            Some(response::music_item::ContinuationContents::SectionListContinuation(contents)) => {
                 for c in contents.contents {
                     match c {
                         response::music_item::ItemSection::MusicShelfRenderer(mut shelf) => {
@@ -154,7 +154,9 @@ impl MapResponse<Paginator<MusicItem>> for response::MusicContinuation {
                     }
                 }
             }
-            response::music_item::ContinuationContents::PlaylistPanelContinuation(mut panel) => {
+            Some(response::music_item::ContinuationContents::PlaylistPanelContinuation(
+                mut panel,
+            )) => {
                 continuations.append(&mut panel.continuations);
                 mapper.add_warnings(&mut panel.contents.warnings);
                 panel.contents.c.into_iter().for_each(|item| {
@@ -163,6 +165,7 @@ impl MapResponse<Paginator<MusicItem>> for response::MusicContinuation {
                     }
                 });
             }
+            None => {}
         }
 
         let map_res = mapper.items();
