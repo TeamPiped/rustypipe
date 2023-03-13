@@ -184,22 +184,25 @@ impl MapResponse<Paginator<PlaylistVideo>> for response::PlaylistCont {
         _lang: crate::param::Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<MapResult<Paginator<PlaylistVideo>>, ExtractionError> {
-        let mut actions = self.on_response_received_actions;
-        let action = actions
-            .try_swap_remove(0)
-            .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
-                "no onResponseReceivedAction",
-            )))?;
+        let action = self.on_response_received_actions.into_iter().next();
 
-        let (items, ctoken) =
-            map_playlist_items(action.append_continuation_items_action.continuation_items.c);
+        let ((items, ctoken), warnings) = action
+            .map(|action| {
+                (
+                    map_playlist_items(
+                        action.append_continuation_items_action.continuation_items.c,
+                    ),
+                    action
+                        .append_continuation_items_action
+                        .continuation_items
+                        .warnings,
+                )
+            })
+            .unwrap_or_default();
 
         Ok(MapResult {
             c: Paginator::new(None, items, ctoken),
-            warnings: action
-                .append_continuation_items_action
-                .continuation_items
-                .warnings,
+            warnings,
         })
     }
 }
