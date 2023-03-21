@@ -64,6 +64,9 @@ enum Commands {
         /// Get lyrics
         #[clap(long)]
         lyrics: bool,
+        /// Get the player
+        #[clap(long)]
+        player: bool,
     },
     /// Search YouTube
     Search {
@@ -504,6 +507,7 @@ async fn main() {
             music,
             comments,
             lyrics,
+            player,
         } => {
             let target = rp.query().resolve_string(&id, false).await.unwrap();
 
@@ -521,6 +525,9 @@ async fn main() {
                     } else if music {
                         let details = rp.query().music_details(&id).await.unwrap();
                         print_data(&details, format, pretty);
+                    } else if player {
+                        let player = rp.query().player(&id).await.unwrap();
+                        print_data(&player, format, pretty);
                     } else {
                         let mut details = rp.query().video_details(&id).await.unwrap();
 

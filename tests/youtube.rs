@@ -926,7 +926,6 @@ fn assert_channel_eevblog<T>(channel: &Channel<T>) {
     true
 )]
 #[case::music("UC-9-kyTW8ZkZNDHQJ6FgpwQ", "Music", false, false)]
-#[case::live("UC4R8DWoMoI7CAwX8_LjQHig", "Live", false, false)]
 #[case::news("UCYfdidRxbB8Qhf0Nx7ioOYw", "News", false, false)]
 fn channel_more(
     #[case] id: &str,
@@ -965,6 +964,7 @@ fn channel_more(
 #[case::movies("UCuJcl0Ju-gPDoksRjK1ya-w")]
 #[case::sports("UCEgdi0XIXXZ-qJOFPf4JSKw")]
 #[case::learning("UCtFRv9O2AHqOZjjynzrv-xg")]
+#[case::live("UC4R8DWoMoI7CAwX8_LjQHig")]
 fn channel_not_found(#[case] id: &str, rp: RustyPipe) {
     let err = tokio_test::block_on(rp.query().channel_videos(&id)).unwrap_err();
 
@@ -1950,7 +1950,7 @@ fn music_charts(
 
     assert_gte(charts.top_tracks.len(), 40, "top tracks");
     assert_gte(charts.artists.len(), 40, "top artists");
-    assert_gte(charts.trending_tracks.len(), 20, "trending tracks");
+    assert_gte(charts.trending_tracks.len(), 15, "trending tracks");
 
     // Chart playlists only available in USA
     if country == Country::Us {

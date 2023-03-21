@@ -486,7 +486,7 @@ impl<T> YouTubeListMapper<T> {
         }
     }
 
-    fn map_short_video(&mut self, video: ReelItemRenderer) -> VideoItem {
+    fn map_short_video(&mut self, video: ReelItemRenderer, lang: Language) -> VideoItem {
         static ACCESSIBILITY_SEP_REGEX: Lazy<Regex> =
             Lazy::new(|| Regex::new(" [-\u{2013}] (.+) [-\u{2013}] ").unwrap());
 
@@ -518,7 +518,7 @@ impl<T> YouTubeListMapper<T> {
             publish_date_txt: pub_date_txt,
             view_count: video
                 .view_count_text
-                .map(|txt| util::parse_numeric(&txt).unwrap_or_default()),
+                .map(|txt| util::parse_large_numstr(&txt, lang).unwrap_or_default()),
             is_live: false,
             is_short: true,
             is_upcoming: false,
@@ -589,7 +589,7 @@ impl YouTubeListMapper<YouTubeItem> {
                 self.items.push(mapped);
             }
             YouTubeListItem::ReelItemRenderer(video) => {
-                let mapped = self.map_short_video(video);
+                let mapped = self.map_short_video(video, self.lang);
                 self.items.push(YouTubeItem::Video(mapped));
             }
             YouTubeListItem::PlaylistRenderer(playlist) => {
@@ -653,7 +653,7 @@ impl YouTubeListMapper<VideoItem> {
                 self.items.push(mapped);
             }
             YouTubeListItem::ReelItemRenderer(video) => {
-                let mapped = self.map_short_video(video);
+                let mapped = self.map_short_video(video, self.lang);
                 self.items.push(mapped);
             }
             YouTubeListItem::ContinuationItemRenderer {
