@@ -393,14 +393,14 @@ mod tests {
     use rstest::rstest;
 
     use super::*;
-    use crate::{model, param::Language};
+    use crate::{model, param::Language, util::tests::TESTFILES};
 
     #[rstest]
     #[case::short("short", "RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk")]
     #[case::long("long", "PL5dDx681T4bR7ZF1IuWzOv1omlRbE7PiJ")]
     #[case::nomusic("nomusic", "PL1J-6JOckZtE_P9Xx8D3b2O6w0idhuKBe")]
     fn map_music_playlist(#[case] name: &str, #[case] id: &str) {
-        let json_path = path!("testfiles" / "music_playlist" / format!("playlist_{name}.json"));
+        let json_path = path!(*TESTFILES / "music_playlist" / format!("playlist_{name}.json"));
         let json_file = File::open(json_path).unwrap();
 
         let playlist: response::MusicPlaylist =
@@ -425,7 +425,7 @@ mod tests {
     #[case::description("description", "MPREb_PiyfuVl6aYd")]
     #[case::unavailable("unavailable", "MPREb_AzuWg8qAVVl")]
     fn map_music_album(#[case] name: &str, #[case] id: &str) {
-        let json_path = path!("testfiles" / "music_playlist" / format!("album_{name}.json"));
+        let json_path = path!(*TESTFILES / "music_playlist" / format!("album_{name}.json"));
         let json_file = File::open(json_path).unwrap();
 
         let playlist: response::MusicPlaylist =

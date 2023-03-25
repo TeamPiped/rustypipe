@@ -138,6 +138,7 @@ mod tests {
         model::SearchResult,
         param::Language,
         serializer::MapResult,
+        util::tests::TESTFILES,
     };
 
     #[rstest]
@@ -146,7 +147,7 @@ mod tests {
     #[case::empty("empty")]
     #[case::ab3_channel_handles("20221121_AB3_channel_handles")]
     fn t_map_search(#[case] name: &str) {
-        let json_path = path!("testfiles" / "search" / format!("{name}.json"));
+        let json_path = path!(*TESTFILES / "search" / format!("{name}.json"));
         let json_file = File::open(json_path).unwrap();
 
         let search: response::Search = serde_json::from_reader(BufReader::new(json_file)).unwrap();

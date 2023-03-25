@@ -387,6 +387,7 @@ mod tests {
         },
         param::Language,
         serializer::MapResult,
+        util::tests::TESTFILES,
     };
 
     #[rstest]
@@ -394,7 +395,7 @@ mod tests {
     #[case::typo("typo")]
     #[case::radio("radio")]
     fn map_music_search_main(#[case] name: &str) {
-        let json_path = path!("testfiles" / "music_search" / format!("main_{name}.json"));
+        let json_path = path!(*TESTFILES / "music_search" / format!("main_{name}.json"));
         let json_file = File::open(json_path).unwrap();
 
         let search: response::MusicSearch =
@@ -417,7 +418,7 @@ mod tests {
     #[case::videos("videos")]
     #[case::no_artist_link("no_artist_link")]
     fn map_music_search_tracks(#[case] name: &str) {
-        let json_path = path!("testfiles" / "music_search" / format!("tracks_{name}.json"));
+        let json_path = path!(*TESTFILES / "music_search" / format!("tracks_{name}.json"));
         let json_file = File::open(json_path).unwrap();
 
         let search: response::MusicSearch =
@@ -436,7 +437,7 @@ mod tests {
 
     #[test]
     fn map_music_search_albums() {
-        let json_path = path!("testfiles" / "music_search" / "albums.json");
+        let json_path = path!(*TESTFILES / "music_search" / "albums.json");
         let json_file = File::open(json_path).unwrap();
 
         let search: response::MusicSearch =
@@ -455,7 +456,7 @@ mod tests {
 
     #[test]
     fn map_music_search_artists() {
-        let json_path = path!("testfiles" / "music_search" / "artists.json");
+        let json_path = path!(*TESTFILES / "music_search" / "artists.json");
         let json_file = File::open(json_path).unwrap();
 
         let search: response::MusicSearch =
@@ -476,7 +477,7 @@ mod tests {
     #[case::ytm("ytm")]
     #[case::community("community")]
     fn map_music_search_playlists(#[case] name: &str) {
-        let json_path = path!("testfiles" / "music_search" / format!("playlists_{name}.json"));
+        let json_path = path!(*TESTFILES / "music_search" / format!("playlists_{name}.json"));
         let json_file = File::open(json_path).unwrap();
 
         let search: response::MusicSearch =
@@ -497,7 +498,7 @@ mod tests {
     #[case::default("default")]
     #[case::empty("empty")]
     fn map_music_search_suggestion(#[case] name: &str) {
-        let json_path = path!("testfiles" / "music_search" / format!("suggestion_{name}.json"));
+        let json_path = path!(*TESTFILES / "music_search" / format!("suggestion_{name}.json"));
         let json_file = File::open(json_path).unwrap();
 
         let suggestion: response::MusicSearchSuggestion =

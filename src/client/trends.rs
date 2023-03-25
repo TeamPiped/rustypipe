@@ -129,11 +129,12 @@ mod tests {
         model::{paginator::Paginator, VideoItem},
         param::Language,
         serializer::MapResult,
+        util::tests::TESTFILES,
     };
 
     #[test]
     fn map_startpage() {
-        let json_path = path!("testfiles" / "trends" / "startpage.json");
+        let json_path = path!(*TESTFILES / "trends" / "startpage.json");
         let json_file = File::open(json_path).unwrap();
 
         let startpage: response::Startpage =
@@ -154,7 +155,7 @@ mod tests {
 
     #[test]
     fn map_trending() {
-        let json_path = path!("testfiles" / "trends" / "trending.json");
+        let json_path = path!(*TESTFILES / "trends" / "trending.json");
         let json_file = File::open(json_path).unwrap();
 
         let startpage: response::Trending =

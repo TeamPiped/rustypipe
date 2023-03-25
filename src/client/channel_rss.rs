@@ -68,7 +68,7 @@ impl RustyPipeQuery {
 mod tests {
     use std::{fs::File, io::BufReader};
 
-    use crate::{client::response, model::ChannelRss};
+    use crate::{client::response, model::ChannelRss, util::tests::TESTFILES};
 
     use path_macro::path;
     use rstest::rstest;
@@ -78,7 +78,7 @@ mod tests {
     #[case::no_likes("no_likes")]
     #[case::no_channel_id("no_channel_id")]
     fn map_channel_rss(#[case] name: &str) {
-        let xml_path = path!("testfiles" / "channel_rss" / format!("{}.xml", name));
+        let xml_path = path!(*TESTFILES / "channel_rss" / format!("{}.xml", name));
         let xml_file = File::open(xml_path).unwrap();
 
         let feed: response::ChannelRss =

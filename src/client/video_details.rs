@@ -543,6 +543,7 @@ mod tests {
     use crate::{
         client::{response, MapResponse},
         param::Language,
+        util::tests::TESTFILES,
     };
 
     #[rstest]
@@ -556,7 +557,7 @@ mod tests {
     #[case::new_cont("20221011_new_continuation", "ZeerrnuLi5E")]
     #[case::no_recommends("20221011_rec_isr", "nFDBxBUfE74")]
     fn map_video_details(#[case] name: &str, #[case] id: &str) {
-        let json_path = path!("testfiles" / "video_details" / format!("video_details_{name}.json"));
+        let json_path = path!(*TESTFILES / "video_details" / format!("video_details_{name}.json"));
         let json_file = File::open(json_path).unwrap();
 
         let details: response::VideoDetails =
@@ -576,7 +577,7 @@ mod tests {
 
     #[test]
     fn map_video_details_not_found() {
-        let json_path = path!("testfiles" / "video_details" / "video_details_not_found.json");
+        let json_path = path!(*TESTFILES / "video_details" / "video_details_not_found.json");
         let json_file = File::open(json_path).unwrap();
 
         let details: response::VideoDetails =
@@ -592,7 +593,7 @@ mod tests {
     #[case::top("top")]
     #[case::latest("latest")]
     fn map_comments(#[case] name: &str) {
-        let json_path = path!("testfiles" / "video_details" / format!("comments_{name}.json"));
+        let json_path = path!(*TESTFILES / "video_details" / format!("comments_{name}.json"));
         let json_file = File::open(json_path).unwrap();
 
         let comments: response::VideoComments =

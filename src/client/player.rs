@@ -622,7 +622,7 @@ mod tests {
     use rstest::rstest;
 
     use super::*;
-    use crate::deobfuscate::DeobfData;
+    use crate::{deobfuscate::DeobfData, util::tests::TESTFILES};
 
     static DEOBF_DATA: Lazy<DeobfData> = Lazy::new(|| {
         DeobfData {
@@ -640,7 +640,7 @@ mod tests {
     #[case::android("android")]
     #[case::ios("ios")]
     fn map_player_data(#[case] name: &str) {
-        let json_path = path!("testfiles" / "player" / format!("{name}_video.json"));
+        let json_path = path!(*TESTFILES / "player" / format!("{name}_video.json"));
         let json_file = File::open(json_path).unwrap();
 
         let resp: response::Player = serde_json::from_reader(BufReader::new(json_file)).unwrap();

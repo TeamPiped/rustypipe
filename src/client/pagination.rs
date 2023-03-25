@@ -344,15 +344,18 @@ mod tests {
     use rstest::rstest;
 
     use super::*;
-    use crate::model::{MusicPlaylistItem, PlaylistItem, TrackItem};
-    use crate::param::Language;
+    use crate::{
+        model::{MusicPlaylistItem, PlaylistItem, TrackItem},
+        param::Language,
+        util::tests::TESTFILES,
+    };
 
     #[rstest]
     #[case("search", path!("search" / "cont.json"))]
     #[case("startpage", path!("trends" / "startpage_cont.json"))]
     #[case("recommendations", path!("video_details" / "recommendations.json"))]
     fn map_continuation_items(#[case] name: &str, #[case] path: PathBuf) {
-        let json_path = path!("testfiles" / path);
+        let json_path = path!(*TESTFILES / path);
         let json_file = File::open(json_path).unwrap();
 
         let items: response::Continuation =
@@ -373,7 +376,7 @@ mod tests {
     #[rstest]
     #[case("channel_playlists", path!("channel" / "channel_playlists_cont.json"))]
     fn map_continuation_playlists(#[case] name: &str, #[case] path: PathBuf) {
-        let json_path = path!("testfiles" / path);
+        let json_path = path!(*TESTFILES / path);
         let json_file = File::open(json_path).unwrap();
 
         let items: response::Continuation =
@@ -396,7 +399,7 @@ mod tests {
     #[case("search_tracks", path!("music_search" / "tracks_cont.json"))]
     #[case("radio_tracks", path!("music_details" / "radio_cont.json"))]
     fn map_continuation_tracks(#[case] name: &str, #[case] path: PathBuf) {
-        let json_path = path!("testfiles" / path);
+        let json_path = path!(*TESTFILES / path);
         let json_file = File::open(json_path).unwrap();
 
         let items: response::MusicContinuation =
@@ -417,7 +420,7 @@ mod tests {
     #[rstest]
     #[case("playlist_related", path!("music_playlist" / "playlist_related.json"))]
     fn map_continuation_music_playlists(#[case] name: &str, #[case] path: PathBuf) {
-        let json_path = path!("testfiles" / path);
+        let json_path = path!(*TESTFILES / path);
         let json_file = File::open(json_path).unwrap();
 
         let items: response::MusicContinuation =

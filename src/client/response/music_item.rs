@@ -1064,10 +1064,11 @@ mod tests {
     use path_macro::path;
 
     use super::*;
+    use crate::util::tests::TESTFILES;
 
     #[test]
     fn map_album_type_samples() {
-        let json_path = path!("testfiles" / "dict" / "album_type_samples.json");
+        let json_path = path!(*TESTFILES / "dict" / "album_type_samples.json");
         let json_file = File::open(json_path).unwrap();
         let atype_samples: BTreeMap<Language, BTreeMap<AlbumType, String>> =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();

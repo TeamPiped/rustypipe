@@ -288,11 +288,12 @@ fn get_sts(player_js: &str) -> Result<String> {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::util::tests::TESTFILES;
     use path_macro::path;
     use rstest::{fixture, rstest};
 
     static TEST_JS: Lazy<String> = Lazy::new(|| {
-        let js_path = path!("testfiles" / "deobf" / "dummy_player.js");
+        let js_path = path!(*TESTFILES / "deobf" / "dummy_player.js");
         std::fs::read_to_string(js_path).unwrap()
     });
 

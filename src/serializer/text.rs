@@ -485,6 +485,7 @@ mod tests {
     use serde_with::serde_as;
 
     use super::*;
+    use crate::util::tests::TESTFILES;
 
     #[rstest]
     #[case(
@@ -793,7 +794,7 @@ mod tests {
 
     #[test]
     fn t_attributed_description() {
-        let json_path = path!("testfiles" / "text" / "attributed_description.json");
+        let json_path = path!(*TESTFILES / "text" / "attributed_description.json");
         let json_file = File::open(json_path).unwrap();
         let res: SAttributed = serde_json::from_reader(BufReader::new(json_file)).unwrap();
         insta::assert_debug_snapshot!(res);

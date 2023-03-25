@@ -395,13 +395,13 @@ mod tests {
     use rstest::rstest;
 
     use super::*;
-    use crate::{model, param::Language};
+    use crate::{model, param::Language, util::tests::TESTFILES};
 
     #[rstest]
     #[case::mv("mv", "ZeerrnuLi5E")]
     #[case::track("track", "7nigXQS1Xb0")]
     fn map_music_details(#[case] name: &str, #[case] id: &str) {
-        let json_path = path!("testfiles" / "music_details" / format!("details_{name}.json"));
+        let json_path = path!(*TESTFILES / "music_details" / format!("details_{name}.json"));
         let json_file = File::open(json_path).unwrap();
 
         let details: response::MusicDetails =
@@ -421,7 +421,7 @@ mod tests {
     #[case::mv("mv", "RDAMVMZeerrnuLi5E")]
     #[case::track("track", "RDAMVM7nigXQS1Xb0")]
     fn map_music_radio(#[case] name: &str, #[case] id: &str) {
-        let json_path = path!("testfiles" / "music_details" / format!("radio_{name}.json"));
+        let json_path = path!(*TESTFILES / "music_details" / format!("radio_{name}.json"));
         let json_file = File::open(json_path).unwrap();
 
         let radio: response::MusicDetails =
@@ -439,7 +439,7 @@ mod tests {
 
     #[test]
     fn map_lyrics() {
-        let json_path = path!("testfiles" / "music_details" / "lyrics.json");
+        let json_path = path!(*TESTFILES / "music_details" / "lyrics.json");
         let json_file = File::open(json_path).unwrap();
 
         let lyrics: response::MusicLyrics =
@@ -456,7 +456,7 @@ mod tests {
 
     #[test]
     fn map_related() {
-        let json_path = path!("testfiles" / "music_details" / "related.json");
+        let json_path = path!(*TESTFILES / "music_details" / "related.json");
         let json_file = File::open(json_path).unwrap();
 
         let lyrics: response::MusicRelated =

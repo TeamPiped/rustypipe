@@ -367,7 +367,7 @@ mod tests {
     use path_macro::path;
     use rstest::rstest;
 
-    use crate::param::Language;
+    use crate::{param::Language, util::tests::TESTFILES};
 
     use super::*;
 
@@ -378,12 +378,12 @@ mod tests {
     #[case::no_artist("no_artist", "UCh8gHdtzO2tXd593_bjErWg")]
     #[case::only_more_singles("only_more_singles", "UC0aXrjVxG5pZr99v77wZdPQ")]
     fn map_music_artist(#[case] name: &str, #[case] id: &str) {
-        let json_path = path!("testfiles" / "music_artist" / format!("artist_{name}.json"));
+        let json_path = path!(*TESTFILES / "music_artist" / format!("artist_{name}.json"));
         let json_file = File::open(json_path).unwrap();
 
         let mut album_page_paths = Vec::new();
         for i in 1..=2 {
-            let json_path = path!("testfiles" / "music_artist" / format!("artist_{name}_{i}.json"));
+            let json_path = path!(*TESTFILES / "music_artist" / format!("artist_{name}_{i}.json"));
             if !json_path.exists() {
                 break;
             }
@@ -423,7 +423,7 @@ mod tests {
 
     #[test]
     fn map_music_artist_no_cont() {
-        let json_path = path!("testfiles" / "music_artist" / "artist_default.json");
+        let json_path = path!(*TESTFILES / "music_artist" / "artist_default.json");
         let json_file = File::open(json_path).unwrap();
 
         let artist: response::MusicArtist =
@@ -442,7 +442,7 @@ mod tests {
 
     #[test]
     fn map_music_artist_secondary_channel() {
-        let json_path = path!("testfiles" / "music_artist" / "artist_secondary_channel.json");
+        let json_path = path!(*TESTFILES / "music_artist" / "artist_secondary_channel.json");
         let json_file = File::open(json_path).unwrap();
 
         let artist: response::MusicArtist =

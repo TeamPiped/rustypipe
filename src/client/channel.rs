@@ -496,6 +496,7 @@ mod tests {
         model::{paginator::Paginator, Channel, ChannelInfo, PlaylistItem, VideoItem},
         param::Language,
         serializer::MapResult,
+        util::tests::TESTFILES,
     };
 
     #[rstest]
@@ -510,7 +511,7 @@ mod tests {
     #[case::shorts("shorts", "UCh8gHdtzO2tXd593_bjErWg")]
     #[case::livestreams("livestreams", "UC2DjFE7Xf11URZqWBigcVOQ")]
     fn map_channel_videos(#[case] name: &str, #[case] id: &str) {
-        let json_path = path!("testfiles" / "channel" / format!("channel_{name}.json"));
+        let json_path = path!(*TESTFILES / "channel" / format!("channel_{name}.json"));
         let json_file = File::open(json_path).unwrap();
 
         let channel: response::Channel =
@@ -535,9 +536,9 @@ mod tests {
         }
     }
 
-    #[test]
+    #[rstest]
     fn map_channel_playlists() {
-        let json_path = path!("testfiles" / "channel" / "channel_playlists.json");
+        let json_path = path!(*TESTFILES / "channel" / "channel_playlists.json");
         let json_file = File::open(json_path).unwrap();
 
         let channel: response::Channel =
@@ -554,9 +555,9 @@ mod tests {
         insta::assert_ron_snapshot!("map_channel_playlists", map_res.c);
     }
 
-    #[test]
+    #[rstest]
     fn map_channel_info() {
-        let json_path = path!("testfiles" / "channel" / "channel_info.json");
+        let json_path = path!(*TESTFILES / "channel" / "channel_info.json");
         let json_file = File::open(json_path).unwrap();
 
         let channel: response::Channel =
