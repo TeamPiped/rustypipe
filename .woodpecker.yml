@@ -1,0 +1,10 @@
+pipeline:
+  test:
+    image: rust:latest
+    environment:
+      - CARGO_REGISTRIES_CRATES_IO_PROTOCOL=sparse
+    commands:
+      - rustup component add rustfmt clippy
+      - cargo fmt --all --check
+      - cargo clippy --all --all-features -- -D warnings
+      - cargo test --workspace
