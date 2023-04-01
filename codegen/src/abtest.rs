@@ -15,6 +15,7 @@ pub enum ABTest {
     AttributedTextDescription = 1,
     ThreeTabChannelLayout = 2,
     ChannelHandlesInSearchResults = 3,
+    TrendsVideoTab = 4,
 }
 
 const TESTS_TO_RUN: [ABTest; 2] = [
@@ -36,6 +37,15 @@ struct QVideo<'a> {
     video_id: &'a str,
     content_check_ok: bool,
     racy_check_ok: bool,
+}
+
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+struct QBrowse<'a> {
+    context: YTContext<'a>,
+    browse_id: &'a str,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    params: Option<&'a str>,
 }
 
 pub async fn run_test(
@@ -72,6 +82,7 @@ pub async fn run_test(
                     ABTest::ChannelHandlesInSearchResults => {
                         channel_handles_in_search_results(&rp, &visitor_data).await
                     }
+                    ABTest::TrendsVideoTab => trends_video_tab(&rp, &visitor_data).await,
                 }
                 .unwrap();
                 pb.inc(1);
@@ -169,4 +180,22 @@ pub async fn channel_handles_in_search_results(rp: &RustyPipe, visitor_data: &st
             .unwrap_or_default(),
         _ => false,
     }))
+}
+
+pub async fn trends_video_tab(rp: &RustyPipe, visitor_data: &str) -> Result<bool> {
+    let query = rp.query().visitor_data(visitor_data);
+    let context = query.get_context(ClientType::Desktop, true, None).await;
+    let res = query
+        .raw(
+            ClientType::Desktop,
+            "browse",
+            &QBrowse {
+                context,
+                browse_id: "FEtrending",
+                params: None,
+            },
+        )
+        .await?;
+
+    Ok(res.contains("\"4gIOGgxtb3N0X3BvcHVsYXI%3D\""))
 }

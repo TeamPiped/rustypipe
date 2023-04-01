@@ -8,7 +8,7 @@ use crate::{
     util::TryRemove,
 };
 
-use super::{response, ClientType, MapResponse, QBrowse, RustyPipeQuery};
+use super::{response, ClientType, MapResponse, QBrowse, QBrowseParams, RustyPipeQuery};
 
 impl RustyPipeQuery {
     /// Get the videos from the YouTube startpage
@@ -32,9 +32,10 @@ impl RustyPipeQuery {
     /// Get the videos from the YouTube trending page
     pub async fn trending(&self) -> Result<Vec<VideoItem>, Error> {
         let context = self.get_context(ClientType::Desktop, true, None).await;
-        let request_body = QBrowse {
+        let request_body = QBrowseParams {
             context,
             browse_id: "FEtrending",
+            params: "4gIOGgxtb3N0X3BvcHVsYXI%3D",
         };
 
         self.execute_request::<response::Trending, _, _>(

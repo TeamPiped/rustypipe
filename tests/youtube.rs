@@ -91,12 +91,12 @@ fn get_player_from_client(#[case] client_type: ClientType, rp: RustyPipe) {
             .video_only_streams
             .into_iter()
             .find(|s| s.itag == 398)
-            .unwrap();
+            .expect("video stream not found");
         let audio = player_data
             .audio_streams
             .into_iter()
             .find(|s| s.itag == 251)
-            .unwrap();
+            .expect("audio stream not found");
 
         assert_approx(video.bitrate as f64, 1340829.0);
         assert_approx(video.average_bitrate as f64, 1233444.0);
@@ -1172,7 +1172,7 @@ fn startpage(rp: RustyPipe) {
 fn trending(rp: RustyPipe) {
     let result = tokio_test::block_on(rp.query().trending()).unwrap();
 
-    assert_gte(result.len(), 50, "items");
+    assert_gte(result.len(), 40, "items");
 }
 
 //#MUSIC

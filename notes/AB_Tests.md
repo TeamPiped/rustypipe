@@ -266,3 +266,23 @@ Note that channels without handles still use the old data model, even on the sam
   }
 }
 ```
+
+## [4] Video tab on the Trending page
+
+- **Encountered on:** 1.04.2023
+- **Impact:** 🟢 Low
+- **Endpoint:** browse (trending videos)
+
+YouTube moved the list of trending videos from the main *trending* page to a
+separate tab (Videos).
+
+The video tab is fetched with the params `4gIOGgxtb3N0X3BvcHVsYXI%3D`. The data model
+of the video tab did not change.
+
+**OLD**
+
+![A/B test 4 old screenshot](./_img/ab_4_old.png)
+
+**NEW**
+
+![A/B test 4 old screenshot](./_img/ab_4_new.png)
