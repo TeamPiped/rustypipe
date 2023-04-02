@@ -276,8 +276,12 @@ Note that channels without handles still use the old data model, even on the sam
 YouTube moved the list of trending videos from the main *trending* page to a
 separate tab (Videos).
 
-The video tab is fetched with the params `4gIOGgxtb3N0X3BvcHVsYXI%3D`. The data model
-of the video tab did not change.
+The video tab is fetched with the params `4gIOGgxtb3N0X3BvcHVsYXI%3D`.
+
+This new tab contains two shelves (video lists), the first one labeled "Trending videos"
+which contains the regular trends and the second one named "Recently trending".
+
+The data model for the video shelves did not change.
 
 **OLD**
 
