@@ -1,5 +1,3 @@
-use std::borrow::Cow;
-
 use crate::error::{Error, ExtractionError};
 use crate::model::{
     paginator::{ContinuationEndpoint, Paginator},
@@ -111,9 +109,7 @@ impl MapResponse<Paginator<YouTubeItem>> for response::Continuation {
                 self.continuation_contents
                     .map(|contents| contents.rich_grid_continuation.contents)
             })
-            .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
-                "no continuation items",
-            )))?;
+            .unwrap_or_default();
 
         let mut mapper = response::YouTubeListMapper::<YouTubeItem>::new(lang);
         mapper.map_response(items);

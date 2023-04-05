@@ -433,7 +433,7 @@ fn get_video_details(rp: RustyPipe) {
     assert!(!details.is_ccommons);
 
     assert!(details.recommended.visitor_data.is_some());
-    assert_next(details.recommended, rp.query(), 10, 2);
+    assert_next(details.recommended, rp.query(), 10, 1);
 
     assert_gte(details.top_comments.count.unwrap(), 700_000, "comments");
     assert!(!details.top_comments.is_exhausted());
@@ -470,7 +470,7 @@ fn get_video_details_music(rp: RustyPipe) {
     assert!(!details.is_ccommons);
 
     assert!(details.recommended.visitor_data.is_some());
-    assert_next(details.recommended, rp.query(), 10, 2);
+    assert_next(details.recommended, rp.query(), 10, 1);
 
     // Update(01.11.2022): comments are sometimes enabled
     /*
@@ -517,7 +517,7 @@ fn get_video_details_ccommons(rp: RustyPipe) {
     assert!(details.is_ccommons);
 
     assert!(details.recommended.visitor_data.is_some());
-    assert_next(details.recommended, rp.query(), 10, 2);
+    assert_next(details.recommended, rp.query(), 10, 1);
 
     assert_gte(details.top_comments.count.unwrap(), 2199, "comments");
     assert!(!details.top_comments.is_exhausted());
@@ -640,7 +640,7 @@ fn get_video_details_chapters(rp: RustyPipe) {
     }
 
     assert!(details.recommended.visitor_data.is_some());
-    assert_next(details.recommended, rp.query(), 10, 2);
+    assert_next(details.recommended, rp.query(), 10, 1);
 
     assert_gte(details.top_comments.count.unwrap(), 3200, "comments");
     assert!(!details.top_comments.is_exhausted());
@@ -683,7 +683,7 @@ fn get_video_details_live(rp: RustyPipe) {
     assert!(!details.is_ccommons);
 
     assert!(details.recommended.visitor_data.is_some());
-    assert_next(details.recommended, rp.query(), 10, 2);
+    assert_next(details.recommended, rp.query(), 10, 1);
 
     // No comments because livestream
     assert_eq!(details.top_comments.count, Some(0));
