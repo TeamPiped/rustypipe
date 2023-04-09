@@ -31,6 +31,8 @@ pub(crate) enum ItemSection {
     None,
 }
 
+/// MusicShelf represents the standard, vertical list of music items
+/// (used in search results, playlist, album).
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -49,11 +51,31 @@ pub(crate) struct MusicShelf {
     pub bottom_endpoint: Option<BrowseEndpointWrap>,
 }
 
+/// MusicCarouselShelf represents a horizontal list of music items displayed with
+/// large covers.
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct MusicCarouselShelf {
     pub header: Option<MusicCarouselShelfHeader>,
+    #[serde_as(as = "VecLogError<_>")]
+    pub contents: MapResult<Vec<MusicResponseItem>>,
+}
+
+/// MusicCardShelf is used to display the top search result. It contains
+/// one main item and optionally a list of sub-items (like an artist + top tracks).
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct MusicCardShelf {
+    #[serde_as(as = "Text")]
+    pub title: String,
+    pub on_tap: NavigationEndpoint,
+    #[serde(default)]
+    pub subtitle: TextComponents,
+    #[serde(default)]
+    pub thumbnail: MusicThumbnailRenderer,
+    #[serde(default)]
     #[serde_as(as = "VecLogError<_>")]
     pub contents: MapResult<Vec<MusicResponseItem>>,
 }
@@ -886,6 +908,120 @@ impl MusicListMapper {
             }
         });
         etype
+    }
+
+    pub fn map_card(&mut self, card: MusicCardShelf) -> Option<MusicItemType> {
+        /*
+        "Artist" " • " "<subscriber count>"
+        "Album" " • " "<artist>"
+        "Song" " • " "<artist>" " • " "<album>" " • " "<duration>"
+        "Video" " • " "<artist>" " • " "<view count>" " • " "<duration>"
+        "Playlist" " • " "<author>" " • " "<track count>" (guessed)
+        */
+        let mut subtitle_parts = card.subtitle.split(util::DOT_SEPARATOR).into_iter();
+        let subtitle_p1 = subtitle_parts.next();
+        let subtitle_p2 = subtitle_parts.next();
+        let subtitle_p3 = subtitle_parts.next();
+        let subtitle_p4 = subtitle_parts.next();
+
+        let item_type = match card.on_tap.music_page() {
+            Some((page_type, id)) => match page_type {
+                MusicPageType::Artist => {
+                    let subscriber_count = subtitle_p2
+                        .and_then(|p| util::parse_large_numstr(p.first_str(), self.lang));
+
+                    self.items.push(MusicItem::Artist(ArtistItem {
+                        id,
+                        name: card.title,
+                        avatar: card.thumbnail.into(),
+                        subscriber_count,
+                    }));
+                    Some(MusicItemType::Artist)
+                }
+                MusicPageType::Album => {
+                    let (artists, by_va) = map_artists(subtitle_p2);
+                    let album_type = subtitle_p1
+                        .map(|p| map_album_type(p.first_str(), self.lang))
+                        .unwrap_or_default();
+
+                    self.items.push(MusicItem::Album(AlbumItem {
+                        id,
+                        name: card.title,
+                        cover: card.thumbnail.into(),
+                        artist_id: artists.first().and_then(|a| a.id.to_owned()),
+                        artists,
+                        album_type,
+                        year: subtitle_p3.and_then(|y| util::parse_numeric(y.first_str()).ok()),
+                        by_va,
+                    }));
+                    Some(MusicItemType::Album)
+                }
+                MusicPageType::Track { is_video } => {
+                    let (artists, by_va) = map_artists(subtitle_p2);
+                    let duration =
+                        subtitle_p4.and_then(|p| util::parse_video_length(p.first_str()));
+                    let (album, view_count) = if is_video {
+                        (
+                            None,
+                            subtitle_p3
+                                .and_then(|p| util::parse_large_numstr(p.first_str(), self.lang)),
+                        )
+                    } else {
+                        (
+                            subtitle_p3.and_then(|p| {
+                                p.0.into_iter().find_map(|c| AlbumId::try_from(c).ok())
+                            }),
+                            None,
+                        )
+                    };
+
+                    self.items.push(MusicItem::Track(TrackItem {
+                        id,
+                        name: card.title,
+                        duration,
+                        cover: card.thumbnail.into(),
+                        artist_id: artists.first().and_then(|a| a.id.to_owned()),
+                        artists,
+                        album,
+                        view_count,
+                        is_video,
+                        track_nr: None,
+                        by_va,
+                    }));
+                    Some(MusicItemType::Track)
+                }
+                MusicPageType::Playlist => {
+                    let from_ytm = subtitle_p2
+                        .as_ref()
+                        .map(|p| p.first_str() == util::YT_MUSIC_NAME)
+                        .unwrap_or(true);
+                    let channel = subtitle_p2
+                        .and_then(|p| p.0.into_iter().find_map(|c| ChannelId::try_from(c).ok()));
+                    let track_count =
+                        subtitle_p3.and_then(|p| util::parse_numeric(p.first_str()).ok());
+
+                    self.items.push(MusicItem::Playlist(MusicPlaylistItem {
+                        id,
+                        name: card.title,
+                        thumbnail: card.thumbnail.into(),
+                        channel,
+                        track_count,
+                        from_ytm,
+                    }));
+                    Some(MusicItemType::Playlist)
+                }
+                MusicPageType::None => None,
+            },
+            None => {
+                self.warnings
+                    .push("could not determine item type".to_owned());
+                None
+            }
+        };
+
+        self.map_response(card.contents);
+
+        item_type
     }
 
     pub fn add_item(&mut self, item: MusicItem) {

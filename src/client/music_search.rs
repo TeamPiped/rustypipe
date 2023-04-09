@@ -255,6 +255,13 @@ impl MapResponse<MusicSearchResult> for response::MusicSearch {
                     }
                 }
             }
+            response::music_search::ItemSection::MusicCardShelfRenderer(card) => {
+                if let Some(etype) = mapper.map_card(card) {
+                    if !order.contains(&etype) {
+                        order.push(etype);
+                    }
+                }
+            }
             response::music_search::ItemSection::ItemSectionRenderer { mut contents } => {
                 if let Some(corrected) = contents.try_swap_remove(0) {
                     corrected_query = Some(corrected.showing_results_for_renderer.corrected_query)
@@ -307,6 +314,9 @@ impl<T: FromYtItem> MapResponse<MusicSearchFiltered<T>> for response::MusicSearc
                 if let Some(cont) = shelf.continuations.try_swap_remove(0) {
                     ctoken = Some(cont.next_continuation_data.continuation);
                 }
+            }
+            response::music_search::ItemSection::MusicCardShelfRenderer(card) => {
+                mapper.map_card(card);
             }
             response::music_search::ItemSection::ItemSectionRenderer { mut contents } => {
                 if let Some(corrected) = contents.try_swap_remove(0) {
@@ -394,6 +404,7 @@ mod tests {
     #[case::default("default")]
     #[case::typo("typo")]
     #[case::radio("radio")]
+    #[case::radio("artist")]
     fn map_music_search_main(#[case] name: &str) {
         let json_path = path!(*TESTFILES / "music_search" / format!("main_{name}.json"));
         let json_file = File::open(json_path).unwrap();

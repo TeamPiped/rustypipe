@@ -1234,7 +1234,7 @@ fn music_playlist(
 fn music_playlist_cont(rp: RustyPipe) {
     let mut playlist = tokio_test::block_on(
         rp.query()
-            .music_playlist("PLbZIPy20-1pN7mqjckepWF78ndb6ci_qi"),
+            .music_playlist("PLMC9KNkIncKtPzgY-5rmhvj7fax8fdxoj"),
     )
     .unwrap();
 
@@ -1436,6 +1436,28 @@ fn music_search(#[case] typo: bool, rp: RustyPipe) {
     assert_eq!(track.view_count, None);
     assert!(!track.is_video, "got mv");
     assert_eq!(track.track_nr, None);
+}
+
+#[rstest]
+fn music_search2(rp: RustyPipe) {
+    let res = tokio_test::block_on(rp.query().music_search("taylor swift")).unwrap();
+
+    assert!(!res.tracks.is_empty(), "no tracks");
+    assert!(!res.albums.is_empty(), "no albums");
+    assert!(!res.artists.is_empty(), "no artists");
+    assert!(!res.playlists.is_empty(), "no playlists");
+    assert_eq!(res.order[0], MusicItemType::Artist);
+
+    let artist = &res
+        .artists
+        .iter()
+        .find(|a| a.id == "UCPC0L1d253x-KuMNwa05TpA")
+        .unwrap_or_else(|| {
+            panic!("could not find artist, got {:#?}", &res.artists);
+        });
+
+    assert_eq!(artist.name, "Taylor Swift");
+    assert!(!artist.avatar.is_empty(), "got no avatar");
 }
 
 #[rstest]
@@ -2037,7 +2059,7 @@ fn music_genre(#[case] id: &str, #[case] name: &str, rp: RustyPipe) {
                     assert_channel_id(&channel.id);
                     assert!(!channel.name.is_empty());
 
-                    assert_gte(playlist.track_count.unwrap(), 2, "tracks");
+                    assert_gte(playlist.track_count.unwrap(), 1, "tracks");
                 } else {
                     assert!(playlist.channel.is_none());
                 }

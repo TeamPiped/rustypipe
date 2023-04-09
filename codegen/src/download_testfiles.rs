@@ -599,6 +599,7 @@ async fn music_search(testfiles: &Path) {
         ("default", "black mamba"),
         ("typo", "liblingsmensch"),
         ("radio", "pop radio"),
+        ("artist", "taylor swift"),
     ] {
         let mut json_path = testfiles.to_path_buf();
         json_path.push("music_search");

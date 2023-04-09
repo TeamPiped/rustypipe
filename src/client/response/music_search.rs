@@ -4,7 +4,7 @@ use serde_with::{rust::deserialize_ignore_any, serde_as, VecSkipError};
 use crate::serializer::text::Text;
 
 use super::{
-    music_item::{ListMusicItem, MusicShelf},
+    music_item::{ListMusicItem, MusicCardShelf, MusicShelf},
     ContentsRenderer, SectionList, Tab,
 };
 
@@ -37,6 +37,7 @@ pub(crate) struct Contents {
 #[serde(rename_all = "camelCase")]
 pub(crate) enum ItemSection {
     MusicShelfRenderer(MusicShelf),
+    MusicCardShelfRenderer(MusicCardShelf),
     ItemSectionRenderer {
         #[serde_as(as = "VecSkipError<_>")]
         contents: Vec<ShowingResultsFor>,
