@@ -18,10 +18,7 @@ pub enum ABTest {
     TrendsVideoTab = 4,
 }
 
-const TESTS_TO_RUN: [ABTest; 2] = [
-    ABTest::AttributedTextDescription,
-    ABTest::ChannelHandlesInSearchResults,
-];
+const TESTS_TO_RUN: [ABTest; 1] = [ABTest::TrendsVideoTab];
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ABTestRes {
@@ -29,6 +26,8 @@ pub struct ABTestRes {
     name: ABTest,
     tests: usize,
     occurrences: usize,
+    vd_present: Option<String>,
+    vd_absent: Option<String>,
 }
 
 #[derive(Debug, Serialize)]
@@ -124,12 +123,14 @@ pub async fn run_all_tests(n: usize, concurrency: usize) -> Vec<ABTestRes> {
     let mut results = Vec::new();
 
     for ab in TESTS_TO_RUN {
-        let (occurrences, _, _) = run_test(ab, n, concurrency).await;
+        let (occurrences, vd_present, vd_absent) = run_test(ab, n, concurrency).await;
         results.push(ABTestRes {
             id: ab as u16,
             name: ab,
             tests: n,
             occurrences,
+            vd_present,
+            vd_absent,
         });
     }
     results
