@@ -57,15 +57,15 @@ pub enum ClientType {
     ///
     /// can access YTM-specific data, cannot access non-music content
     DesktopMusic,
-    /// used by Smart TVs
+    /// Client used by the embedded player for Smart TVs
     ///
     /// can access age-restricted videos, cannot access non-embeddable videos
     TvHtml5Embed,
-    /// used by the Android app
+    /// Client used by the Android app
     ///
     /// no obfuscated stream URLs, includes lower resolution audio streams
     Android,
-    /// used by the iOS app
+    /// Client used by the iOS app
     ///
     /// no obfuscated stream URLs
     Ios,
@@ -110,6 +110,26 @@ struct ClientInfo<'a> {
     visitor_data: Option<&'a str>,
     hl: Language,
     gl: Country,
+    time_zone: &'a str,
+    utc_offset_minutes: i16,
+}
+
+impl Default for ClientInfo<'_> {
+    fn default() -> Self {
+        Self {
+            client_name: Default::default(),
+            client_version: Default::default(),
+            client_screen: None,
+            device_model: None,
+            platform: Default::default(),
+            original_url: None,
+            visitor_data: None,
+            hl: Language::En,
+            gl: Country::Us,
+            time_zone: "UTC",
+            utc_offset_minutes: 0,
+        }
+    }
 }
 
 #[derive(Clone, Debug, Serialize)]
@@ -174,12 +194,14 @@ const YOUTUBE_MUSIC_HOME_URL: &str = "https://music.youtube.com/";
 
 const DISABLE_PRETTY_PRINT_PARAMETER: &str = "&prettyPrint=false";
 
+// Desktop client
 const DESKTOP_CLIENT_VERSION: &str = "2.20230126.00.00";
 const DESKTOP_API_KEY: &str = "AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8";
 const TVHTML5_CLIENT_VERSION: &str = "2.0";
 const DESKTOP_MUSIC_API_KEY: &str = "AIzaSyC9XL3ZjWddXya6X74dJoCTL-WEYFDNX30";
 const DESKTOP_MUSIC_CLIENT_VERSION: &str = "1.20230123.01.01";
 
+// Mobile client
 const MOBILE_CLIENT_VERSION: &str = "18.03.33";
 const ANDROID_API_KEY: &str = "AIzaSyA8eiZmM1FaDVjRy-df2KTyQ_vz_yYM39w";
 const IOS_API_KEY: &str = "AIzaSyB-63vPrdThhKuerbB2N_l7Kwwcxj6yUAc";
@@ -256,6 +278,7 @@ struct CacheHolder {
 }
 
 #[derive(Default, Debug, Clone, Serialize, Deserialize)]
+#[serde(default)]
 struct CacheData {
     desktop_client: CacheEntry<ClientData>,
     music_client: CacheEntry<ClientData>,
@@ -558,61 +581,41 @@ impl RustyPipe {
 
     /// Extract the current version of the YouTube desktop client from the website.
     async fn extract_desktop_client_version(&self) -> Result<String, Error> {
-        let from_swjs = async {
-            let swjs = self
-                .http_request_txt(
-                    self.inner
-                        .http
-                        .get("https://www.youtube.com/sw.js")
-                        .header(header::ORIGIN, "https://www.youtube.com")
-                        .header(header::REFERER, "https://www.youtube.com")
-                        .header(header::COOKIE, self.inner.consent_cookie.to_owned())
-                        .build()
-                        .unwrap(),
-                )
-                .await?;
-
-            util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &swjs, 1).ok_or(
-                Error::Extraction(ExtractionError::InvalidData(Cow::Borrowed(
-                    "Could not find desktop client version in sw.js",
-                ))),
-            )
-        };
-
-        let from_html = async {
-            let html = self
-                .http_request_txt(
-                    self.inner
-                        .http
-                        .get("https://www.youtube.com/results?search_query=")
-                        .build()
-                        .unwrap(),
-                )
-                .await?;
-
-            util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &html, 1).ok_or(
-                Error::Extraction(ExtractionError::InvalidData(Cow::Borrowed(
-                    "Could not find desktop client version on html page",
-                ))),
-            )
-        };
-
-        match from_swjs.await {
-            Ok(client_version) => Ok(client_version),
-            Err(_) => from_html.await,
-        }
+        self.extract_client_version(
+            Some("https://www.youtube.com/sw.js"),
+            "https://www.youtube.com/results?search_query=",
+            "https://www.youtube.com",
+            None,
+        )
+        .await
     }
 
     /// Extract the current version of the YouTube Music desktop client from the website.
     async fn extract_music_client_version(&self) -> Result<String, Error> {
-        let from_swjs = async {
+        self.extract_client_version(
+            Some("https://music.youtube.com/sw.js"),
+            "https://music.youtube.com",
+            "https://music.youtube.com",
+            None,
+        )
+        .await
+    }
+
+    async fn extract_client_version(
+        &self,
+        sw_url: Option<&str>,
+        html_url: &str,
+        origin: &str,
+        ua: Option<&str>,
+    ) -> Result<String, Error> {
+        let from_swjs = sw_url.map(|sw_url| async move {
             let swjs = self
                 .http_request_txt(
                     self.inner
                         .http
-                        .get("https://music.youtube.com/sw.js")
-                        .header(header::ORIGIN, "https://music.youtube.com")
-                        .header(header::REFERER, "https://music.youtube.com")
+                        .get(sw_url)
+                        .header(header::ORIGIN, origin)
+                        .header(header::REFERER, origin)
                         .header(header::COOKIE, self.inner.consent_cookie.to_owned())
                         .build()
                         .unwrap(),
@@ -621,32 +624,33 @@ impl RustyPipe {
 
             util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &swjs, 1).ok_or(
                 Error::Extraction(ExtractionError::InvalidData(Cow::Borrowed(
-                    "Could not find music client version in sw.js",
+                    "Could not find client version in sw.js",
                 ))),
             )
-        };
+        });
 
         let from_html = async {
-            let html = self
-                .http_request_txt(
-                    self.inner
-                        .http
-                        .get("https://music.youtube.com")
-                        .build()
-                        .unwrap(),
-                )
-                .await?;
+            let mut builder = self.inner.http.get(html_url);
+            if let Some(ua) = ua {
+                builder = builder.header(header::USER_AGENT, ua);
+            }
+
+            let html = self.http_request_txt(builder.build().unwrap()).await?;
 
             util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &html, 1).ok_or(
                 Error::Extraction(ExtractionError::InvalidData(Cow::Borrowed(
-                    "Could not find music client version on html page",
+                    "Could not find client version on html page",
                 ))),
             )
         };
 
-        match from_swjs.await {
-            Ok(client_version) => Ok(client_version),
-            Err(_) => from_html.await,
+        if let Some(from_swjs) = from_swjs {
+            match from_swjs.await {
+                Ok(client_version) => Ok(client_version),
+                Err(_) => from_html.await,
+            }
+        } else {
+            from_html.await
         }
     }
 
@@ -674,7 +678,7 @@ impl RustyPipe {
                         version
                     }
                     Err(e) => {
-                        log::warn!("{}, falling back to hardcoded version", e);
+                        log::warn!("{}, falling back to hardcoded desktop client version", e);
                         DESKTOP_CLIENT_VERSION.to_owned()
                     }
                 }
@@ -706,7 +710,7 @@ impl RustyPipe {
                         version
                     }
                     Err(e) => {
-                        log::warn!("{}, falling back to hardcoded version", e);
+                        log::warn!("{}, falling back to hardcoded music client version", e);
                         DESKTOP_MUSIC_CLIENT_VERSION.to_owned()
                     }
                 }
@@ -732,7 +736,7 @@ impl RustyPipe {
         }
     }
 
-    /// Write the given cache data to the storage backend.
+    /// Write the current cache data to the storage backend.
     async fn store_cache(&self) {
         if let Some(storage) = &self.inner.storage {
             let cdata = CacheData {
@@ -838,13 +842,12 @@ impl RustyPipeQuery {
                 client: ClientInfo {
                     client_name: "WEB",
                     client_version: Cow::Owned(self.client.get_desktop_client_version().await),
-                    client_screen: None,
-                    device_model: None,
                     platform: "DESKTOP",
                     original_url: Some("https://www.youtube.com/"),
                     visitor_data,
                     hl,
                     gl,
+                    ..Default::default()
                 },
                 request: Some(RequestYT::default()),
                 user: User::default(),
@@ -854,13 +857,12 @@ impl RustyPipeQuery {
                 client: ClientInfo {
                     client_name: "WEB_REMIX",
                     client_version: Cow::Owned(self.client.get_music_client_version().await),
-                    client_screen: None,
-                    device_model: None,
                     platform: "DESKTOP",
                     original_url: Some("https://music.youtube.com/"),
                     visitor_data,
                     hl,
                     gl,
+                    ..Default::default()
                 },
                 request: Some(RequestYT::default()),
                 user: User::default(),
@@ -871,12 +873,11 @@ impl RustyPipeQuery {
                     client_name: "TVHTML5_SIMPLY_EMBEDDED_PLAYER",
                     client_version: Cow::Borrowed(TVHTML5_CLIENT_VERSION),
                     client_screen: Some("EMBED"),
-                    device_model: None,
                     platform: "TV",
-                    original_url: None,
                     visitor_data,
                     hl,
                     gl,
+                    ..Default::default()
                 },
                 request: Some(RequestYT::default()),
                 user: User::default(),
@@ -888,13 +889,11 @@ impl RustyPipeQuery {
                 client: ClientInfo {
                     client_name: "ANDROID",
                     client_version: Cow::Borrowed(MOBILE_CLIENT_VERSION),
-                    client_screen: None,
-                    device_model: None,
                     platform: "MOBILE",
-                    original_url: None,
                     visitor_data,
                     hl,
                     gl,
+                    ..Default::default()
                 },
                 request: None,
                 user: User::default(),
@@ -904,13 +903,12 @@ impl RustyPipeQuery {
                 client: ClientInfo {
                     client_name: "IOS",
                     client_version: Cow::Borrowed(MOBILE_CLIENT_VERSION),
-                    client_screen: None,
                     device_model: Some(IOS_DEVICE_MODEL),
                     platform: "MOBILE",
-                    original_url: None,
                     visitor_data,
                     hl,
                     gl,
+                    ..Default::default()
                 },
                 request: None,
                 user: User::default(),
@@ -1221,6 +1219,26 @@ fn validate_country(country: Country) -> Country {
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    fn get_major_version(version: &str) -> u32 {
+        let parts = version.split('.').collect::<Vec<_>>();
+        assert_eq!(parts.len(), 4);
+        parts[0].parse().unwrap()
+    }
+
+    #[test]
+    fn t_extract_desktop_client_version() {
+        let rp = RustyPipe::new();
+        let version = tokio_test::block_on(rp.extract_desktop_client_version()).unwrap();
+        assert!(get_major_version(&version) >= 2);
+    }
+
+    #[test]
+    fn t_extract_music_client_version() {
+        let rp = RustyPipe::new();
+        let version = tokio_test::block_on(rp.extract_music_client_version()).unwrap();
+        assert!(get_major_version(&version) >= 1);
+    }
 
     #[test]
     fn t_get_ytm_visitor_data() {

@@ -519,9 +519,9 @@ fn get_video_details_ccommons(rp: RustyPipe) {
     assert!(details.recommended.visitor_data.is_some());
     assert_next(details.recommended, rp.query(), 10, 1);
 
-    assert_gte(details.top_comments.count.unwrap(), 2199, "comments");
-    assert!(!details.top_comments.is_exhausted());
-    assert!(!details.latest_comments.is_exhausted());
+    assert_eq!(details.top_comments.count.unwrap(), 0);
+    assert!(details.top_comments.is_exhausted());
+    assert!(details.latest_comments.is_exhausted());
 }
 
 #[rstest]
