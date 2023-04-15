@@ -122,6 +122,8 @@ pub(crate) enum CarouselHeaderRendererItem {
     TopicChannelDetailsRenderer {
         #[serde_as(as = "Option<Text>")]
         subscriber_count_text: Option<String>,
+        #[serde_as(as = "Option<Text>")]
+        subtitle: Option<String>,
         #[serde(default)]
         avatar: Thumbnails,
     },

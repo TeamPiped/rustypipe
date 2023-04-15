@@ -355,8 +355,9 @@ fn map_channel(
                     match item {
                 response::channel::CarouselHeaderRendererItem::TopicChannelDetailsRenderer {
                     subscriber_count_text,
+                    subtitle,
                     avatar,
-                } => Some((subscriber_count_text, avatar)),
+                } => Some((subscriber_count_text.or(subtitle), avatar)),
                 response::channel::CarouselHeaderRendererItem::None => None,
             }
                 })
@@ -508,6 +509,7 @@ mod tests {
     #[case::upcoming("videos_upcoming", "UCcvfHa-GHSOHFAjU0-Ie57A")]
     #[case::richgrid("videos_20221011_richgrid", "UCh8gHdtzO2tXd593_bjErWg")]
     #[case::richgrid2("videos_20221011_richgrid2", "UC2DjFE7Xf11URZqWBigcVOQ")]
+    #[case::richgrid2("videos_20230415_coachella", "UCHF66aWLOxBW4l6VkSrS3cQ")]
     #[case::shorts("shorts", "UCh8gHdtzO2tXd593_bjErWg")]
     #[case::livestreams("livestreams", "UC2DjFE7Xf11URZqWBigcVOQ")]
     fn map_channel_videos(#[case] name: &str, #[case] id: &str) {
