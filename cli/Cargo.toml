@@ -4,9 +4,15 @@ version = "0.1.0"
 edition = "2021"
 
 [dependencies]
-rustypipe = { path = "../" }
-rustypipe-downloader = { path = "../downloader" }
-reqwest = { version = "0.11.11", default_features = false }
+rustypipe = { path = "../", default-features = false, features = [
+    "rustls-tls-native-roots",
+] }
+rustypipe-downloader = { path = "../downloader", default-features = false, features = [
+    "rustls-tls-native-roots",
+] }
+reqwest = { version = "0.11.11", default_features = false, features = [
+    "rustls-tls-native-roots",
+] }
 tokio = { version = "1.20.0", features = ["macros", "rt-multi-thread"] }
 indicatif = "0.17.0"
 futures = "0.3.21"
