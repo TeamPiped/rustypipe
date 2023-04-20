@@ -18,7 +18,7 @@
 use std::ops::Mul;
 
 use serde::{Deserialize, Serialize};
-use time::{Date, Duration, OffsetDateTime};
+use time::{Date, Duration, Month, OffsetDateTime};
 
 use crate::{
     param::Language,
@@ -261,7 +261,8 @@ pub fn parse_textual_date(lang: Language, textual_date: &str) -> Option<ParsedDa
                 }
 
                 match (y, m, d) {
-                    (Some(y), Some(m), Some(d)) => util::month_from_n(m as u8)
+                    (Some(y), Some(m), Some(d)) => Month::try_from(m as u8)
+                        .ok()
                         .and_then(|m| Date::from_calendar_date(y.into(), m, d as u8).ok())
                         .map(ParsedDate::Absolute),
                     _ => None,
