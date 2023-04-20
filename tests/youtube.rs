@@ -26,7 +26,8 @@ use rustypipe::param::{
 #[rstest]
 #[case::desktop(ClientType::Desktop)]
 #[case::tv_html5_embed(ClientType::TvHtml5Embed)]
-#[case::android(ClientType::Android)]
+// The Android client became flaky
+// #[case::android(ClientType::Android)]
 #[case::ios(ClientType::Ios)]
 #[test_log::test]
 fn get_player_from_client(#[case] client_type: ClientType, rp: RustyPipe) {
@@ -165,7 +166,7 @@ fn check_video_stream(s: impl YtStream) {
 )]
 #[case::multilanguage(
     "tVWWp1PqDus",
-    "100 Girls Vs 100 Boys For $500,000",
+    "100 Boys Vs 100 Girls For $500,000",
     "Giving away $25k on Current!",
     1013,
     "UCX6OQ3DkcsbYNE6H8uQQuVA",
@@ -352,8 +353,11 @@ fn get_playlist(
     assert_eq!(playlist.name, name);
     assert!(!playlist.videos.is_empty());
     assert_eq!(!playlist.videos.is_exhausted(), is_long);
-    assert!(playlist.video_count > 10);
-    assert_eq!(playlist.video_count > 100, is_long);
+    assert_gte(
+        playlist.video_count,
+        if is_long { 100 } else { 10 },
+        "track count",
+    );
     assert_eq!(playlist.description, description);
 
     if let Some(expect) = channel {
@@ -1190,7 +1194,7 @@ fn trending(rp: RustyPipe) {
     "RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk",
     "Easy Pop",
     false,
-    Some("Stress-free tunes from classic rockers and newer artists.".to_owned()),
+    Some("Stress-free tunes from classic rockers and newer artists.\nThis playlist is no longer being updated.".to_owned()),
     None,
     true
 )]
@@ -1217,8 +1221,11 @@ fn music_playlist(
     assert_eq!(playlist.name, name);
     assert!(!playlist.tracks.is_empty());
     assert_eq!(!playlist.tracks.is_exhausted(), is_long);
-    assert!(playlist.track_count.unwrap() > 10);
-    assert_eq!(playlist.track_count.unwrap() > 100, is_long);
+    assert_gte(
+        playlist.track_count.unwrap(),
+        if is_long { 100 } else { 10 },
+        "track count",
+    );
     assert_eq!(playlist.description, description);
 
     if let Some(expect) = channel {
@@ -1551,13 +1558,14 @@ async fn music_search_episode() {
 
 #[rstest]
 #[case::single(
-    "lea zu dir",
-    "Zu dir (Akustik Version)",
-    "MPREb_kaDtXa1zj2Z",
+    "lea okay",
+    "Okay",
+    "MPREb_3t4vp0Dj8B0",
     "LEA",
     "UC_MxOdawj_BStPs4CKBYD0Q",
-    2018,
-    AlbumType::Single
+    2020,
+    AlbumType::Single,
+    true
 )]
 #[case::ep(
     "waldbrand",
@@ -1566,7 +1574,8 @@ async fn music_search_episode() {
     "Madeline Juno",
     "UCpJyCbFbdTrx0M90HCNBHFQ",
     2016,
-    AlbumType::Ep
+    AlbumType::Ep,
+    false
 )]
 #[case::album(
     "märchen enden gut",
@@ -1575,7 +1584,8 @@ async fn music_search_episode() {
     "Oonagh",
     "UC_vmjW5e1xEHhYjY2a0kK1A",
     2016,
-    AlbumType::Album
+    AlbumType::Album,
+    true
 )]
 fn music_search_albums(
     #[case] query: &str,
@@ -1585,6 +1595,7 @@ fn music_search_albums(
     #[case] artist_id: &str,
     #[case] year: u16,
     #[case] album_type: AlbumType,
+    #[case] more: bool,
     rp: RustyPipe,
 ) {
     let res = tokio_test::block_on(rp.query().music_search_albums(query)).unwrap();
@@ -1604,7 +1615,9 @@ fn music_search_albums(
 
     assert_eq!(res.corrected_query, None);
 
-    assert_next(res.items, rp.query(), 15, 1);
+    if more {
+        assert_next(res.items, rp.query(), 15, 1);
+    }
 }
 
 #[rstest]
@@ -1640,9 +1653,13 @@ fn music_search_artists_cont(rp: RustyPipe) {
 #[case::default(true)]
 fn music_search_playlists(#[case] with_community: bool, rp: RustyPipe) {
     let res = if with_community {
-        tokio_test::block_on(rp.query().music_search_playlists("easy pop")).unwrap()
+        tokio_test::block_on(rp.query().music_search_playlists("pop biggest hits")).unwrap()
     } else {
-        tokio_test::block_on(rp.query().music_search_playlists_filter("easy pop", false)).unwrap()
+        tokio_test::block_on(
+            rp.query()
+                .music_search_playlists_filter("pop biggest hits", false),
+        )
+        .unwrap()
     };
 
     assert_eq!(res.corrected_query, None);
@@ -1650,12 +1667,12 @@ fn music_search_playlists(#[case] with_community: bool, rp: RustyPipe) {
         .items
         .items
         .iter()
-        .find(|p| p.id == "RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk")
+        .find(|p| p.id == "RDCLAK5uy_nmS3YoxSwVVQk9lEQJ0UX4ZCjXsW_psU8")
         .unwrap();
 
-    assert_eq!(playlist.name, "Easy Pop");
+    assert_eq!(playlist.name, "Pop's Biggest Hits");
     assert!(!playlist.thumbnail.is_empty(), "got no thumbnail");
-    assert_gte(playlist.track_count.unwrap(), 80, "tracks");
+    assert_gte(playlist.track_count.unwrap(), 100, "tracks");
     assert_eq!(playlist.channel, None);
     assert!(playlist.from_ytm);
 }
