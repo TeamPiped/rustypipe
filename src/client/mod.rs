@@ -242,9 +242,11 @@ struct RustyPipeOpts {
 /// Builder to construct a new RustyPipe client
 pub struct RustyPipeBuilder {
     storage: Option<Box<dyn CacheStorage>>,
+    no_storage: bool,
     reporter: Option<Box<dyn Reporter>>,
+    no_reporter: bool,
     n_http_retries: u32,
-    user_agent: String,
+    user_agent: Option<String>,
     default_opts: RustyPipeOpts,
 }
 
@@ -339,17 +341,19 @@ impl RustyPipeBuilder {
     pub fn new() -> Self {
         RustyPipeBuilder {
             default_opts: RustyPipeOpts::default(),
-            storage: Some(Box::<FileStorage>::default()),
-            reporter: Some(Box::<FileReporter>::default()),
+            storage: None,
+            no_storage: false,
+            reporter: None,
+            no_reporter: false,
             n_http_retries: 2,
-            user_agent: DEFAULT_UA.to_owned(),
+            user_agent: None,
         }
     }
 
     /// Returns a new, configured RustyPipe instance.
     pub fn build(self) -> RustyPipe {
         let http = ClientBuilder::new()
-            .user_agent(self.user_agent)
+            .user_agent(self.user_agent.unwrap_or_else(|| DEFAULT_UA.to_owned()))
             .gzip(true)
             .brotli(true)
             .redirect(reqwest::redirect::Policy::none())
@@ -375,8 +379,22 @@ impl RustyPipeBuilder {
         RustyPipe {
             inner: Arc::new(RustyPipeRef {
                 http,
-                storage: self.storage,
-                reporter: self.reporter,
+                storage: if self.no_storage {
+                    None
+                } else {
+                    Some(
+                        self.storage
+                            .unwrap_or_else(|| Box::<FileStorage>::default()),
+                    )
+                },
+                reporter: if self.no_reporter {
+                    None
+                } else {
+                    Some(
+                        self.reporter
+                            .unwrap_or_else(|| Box::<FileReporter>::default()),
+                    )
+                },
                 n_http_retries: self.n_http_retries,
                 consent_cookie: format!(
                     "{}={}{}",
@@ -394,33 +412,37 @@ impl RustyPipeBuilder {
         }
     }
 
-    /// Add a `CacheStorage` backend for persisting cached information
+    /// Add a [`CacheStorage`] backend for persisting cached information
     /// (YouTube client versions, deobfuscation code) between
     /// program executions.
     ///
-    /// **Default value**: `FileStorage` in `rustypipe_cache.json`
+    /// **Default value**: [`FileStorage`] in `rustypipe_cache.json`
     pub fn storage(mut self, storage: Box<dyn CacheStorage>) -> Self {
         self.storage = Some(storage);
+        self.no_storage = false;
         self
     }
 
     /// Disable cache storage
     pub fn no_storage(mut self) -> Self {
         self.storage = None;
+        self.no_storage = true;
         self
     }
 
     /// Add a `Reporter` to collect error details
     ///
-    ///  **Default value**: `FileReporter` creating reports in `./rustypipe_reports`
+    ///  **Default value**: [`FileReporter`] creating reports in `./rustypipe_reports`
     pub fn reporter(mut self, reporter: Box<dyn Reporter>) -> Self {
         self.reporter = Some(reporter);
+        self.no_reporter = false;
         self
     }
 
     /// Disable the creation of report files in case of errors and warnings.
     pub fn no_reporter(mut self) -> Self {
         self.reporter = None;
+        self.no_reporter = true;
         self
     }
 
@@ -442,7 +464,7 @@ impl RustyPipeBuilder {
     /// **Default value**: `Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0`
     /// (Firefox ESR on Debian)
     pub fn user_agent<S: Into<String>>(mut self, user_agent: S) -> Self {
-        self.user_agent = user_agent.into();
+        self.user_agent = Some(user_agent.into());
         self
     }
 
