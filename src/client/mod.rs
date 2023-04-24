@@ -208,7 +208,7 @@ const IOS_API_KEY: &str = "AIzaSyB-63vPrdThhKuerbB2N_l7Kwwcxj6yUAc";
 const IOS_DEVICE_MODEL: &str = "iPhone14,5";
 
 static CLIENT_VERSION_REGEXES: Lazy<[Regex; 1]> =
-    Lazy::new(|| [Regex::new("INNERTUBE_CONTEXT_CLIENT_VERSION\":\"([0-9\\.]+?)\"").unwrap()]);
+    Lazy::new(|| [Regex::new(r#"INNERTUBE_CONTEXT_CLIENT_VERSION":"([\w\d\._-]+?)""#).unwrap()]);
 
 /// The RustyPipe client used to access YouTube's API
 ///
