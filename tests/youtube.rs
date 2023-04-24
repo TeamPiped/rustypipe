@@ -2,7 +2,6 @@ use std::collections::HashMap;
 use std::fmt::Display;
 use std::str::FromStr;
 
-use reqwest::Client;
 use rstest::{fixture, rstest};
 use rustypipe::model::paginator::ContinuationEndpoint;
 use rustypipe::param::{ChannelOrder, ChannelVideoTab, Language};
@@ -2382,21 +2381,6 @@ fn assert_playlist_id(id: &str) {
     assert!(validate::playlist_id(id), "invalid playlist id: `{id}`");
 }
 
-// fn assert_image(client: &Client, url: &str) {
-//     let resp = tokio_test::block_on(client.get(url).send())
-//         .unwrap()
-//         .error_for_status()
-//         .unwrap();
-//     let ctype = resp
-//         .headers()
-//         .get(reqwest::header::CONTENT_TYPE)
-//         .unwrap()
-//         .to_str()
-//         .unwrap();
-
-//     assert!(ctype.starts_with("image/"), "content type: {ctype}");
-// }
-
 fn assert_frameset(frameset: &Frameset) {
     assert_gte(frameset.frame_height, 20, "frame height");
     assert_gte(frameset.frame_height, 20, "frame width");
@@ -2405,13 +2389,6 @@ fn assert_frameset(frameset: &Frameset) {
     assert_gte(frameset.frames_per_page_x, 5, "frames per page x");
     assert_gte(frameset.frames_per_page_y, 5, "frames per page y");
 
-    // let client = Client::new();
-
-    let n = frameset
-        .urls()
-        // .map(|url| {
-        //     assert_image(&client, &url);
-        // })
-        .count() as u32;
+    let n = frameset.urls().count() as u32;
     assert_eq!(n, frameset.page_count);
 }
