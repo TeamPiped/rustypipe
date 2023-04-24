@@ -2,6 +2,7 @@ use std::collections::HashMap;
 use std::fmt::Display;
 use std::str::FromStr;
 
+use reqwest::Client;
 use rstest::{fixture, rstest};
 use rustypipe::model::paginator::ContinuationEndpoint;
 use rustypipe::param::{ChannelOrder, ChannelVideoTab, Language};
@@ -15,8 +16,8 @@ use rustypipe::model::{
     paginator::Paginator,
     richtext::ToPlaintext,
     traits::{FromYtItem, YtStream},
-    AlbumType, AudioCodec, AudioFormat, AudioTrackType, Channel, MusicGenre, MusicItemType,
-    UrlTarget, Verification, VideoCodec, VideoFormat, YouTubeItem,
+    AlbumType, AudioCodec, AudioFormat, AudioTrackType, Channel, Frameset, MusicGenre,
+    MusicItemType, UrlTarget, Verification, VideoCodec, VideoFormat, YouTubeItem,
 };
 use rustypipe::param::{
     search_filter::{self, SearchFilter},
@@ -287,6 +288,11 @@ fn get_player(
     };
 
     assert_gte(player_data.expires_in_seconds, 10_000, "expiry time");
+
+    if !is_live {
+        assert_gte(player_data.preview_frames.len(), 3, "preview framesets");
+        player_data.preview_frames.iter().for_each(assert_frameset);
+    }
 }
 
 #[rstest]
@@ -2374,4 +2380,38 @@ fn assert_album_id(id: &str) {
 
 fn assert_playlist_id(id: &str) {
     assert!(validate::playlist_id(id), "invalid playlist id: `{id}`");
+}
+
+// fn assert_image(client: &Client, url: &str) {
+//     let resp = tokio_test::block_on(client.get(url).send())
+//         .unwrap()
+//         .error_for_status()
+//         .unwrap();
+//     let ctype = resp
+//         .headers()
+//         .get(reqwest::header::CONTENT_TYPE)
+//         .unwrap()
+//         .to_str()
+//         .unwrap();
+
+//     assert!(ctype.starts_with("image/"), "content type: {ctype}");
+// }
+
+fn assert_frameset(frameset: &Frameset) {
+    assert_gte(frameset.frame_height, 20, "frame height");
+    assert_gte(frameset.frame_height, 20, "frame width");
+    assert_gte(frameset.page_count, 1, "page count");
+    assert_gte(frameset.total_count, 50, "total count");
+    assert_gte(frameset.frames_per_page_x, 5, "frames per page x");
+    assert_gte(frameset.frames_per_page_y, 5, "frames per page y");
+
+    // let client = Client::new();
+
+    let n = frameset
+        .urls()
+        // .map(|url| {
+        //     assert_image(&client, &url);
+        // })
+        .count() as u32;
+    assert_eq!(n, frameset.page_count);
 }

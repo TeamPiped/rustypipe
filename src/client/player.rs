@@ -12,8 +12,8 @@ use crate::{
     deobfuscate::Deobfuscator,
     error::{internal::DeobfError, Error, ExtractionError, UnavailabilityReason},
     model::{
-        traits::QualityOrd, AudioCodec, AudioFormat, AudioStream, AudioTrack, ChannelId, Subtitle,
-        VideoCodec, VideoFormat, VideoPlayer, VideoPlayerDetails, VideoStream,
+        traits::QualityOrd, AudioCodec, AudioFormat, AudioStream, AudioTrack, ChannelId, Frameset,
+        Subtitle, VideoCodec, VideoFormat, VideoPlayer, VideoPlayerDetails, VideoStream,
     },
     param::Language,
     util,
@@ -313,6 +313,54 @@ impl MapResponse<VideoPlayer> for response::Player {
                 .collect()
         });
 
+        let preview_frames = self
+            .storyboards
+            .and_then(|sb| {
+                let spec = sb.player_storyboard_spec_renderer.spec;
+                let mut spec_parts = spec.split('|');
+                let url_tmpl = spec_parts.next()?;
+
+                Some(
+                    spec_parts
+                        .enumerate()
+                        .filter_map(|(i, fs_spec)| {
+                            // Example: 160#90#131#5#5#2000#M$M#rs$AOn4CLCV3TJ2Nty5fbw2r-Lqg4VDOZcVvQ
+                            let mut parts = fs_spec.split('#');
+
+                            let frame_width = parts.next()?.parse().ok()?;
+                            let frame_height = parts.next()?.parse().ok()?;
+                            let total_count = parts.next()?.parse().ok()?;
+                            let frames_per_page_x = parts.next()?.parse().ok()?;
+                            let frames_per_page_y = parts.next()?.parse().ok()?;
+                            let duration_per_frame = parts.next()?.parse().ok()?;
+
+                            let n = parts.next()?;
+                            let sigh = parts.next()?;
+
+                            let url = url_tmpl.replace("$L", &i.to_string()).replace("$N", n)
+                                + "&sigh="
+                                + sigh;
+
+                            let sprite_count = ((total_count as f64)
+                                / (frames_per_page_x * frames_per_page_y) as f64)
+                                .ceil() as u32;
+
+                            Some(Frameset {
+                                url_template: url,
+                                frame_width,
+                                frame_height,
+                                page_count: sprite_count,
+                                total_count,
+                                duration_per_frame,
+                                frames_per_page_x,
+                                frames_per_page_y,
+                            })
+                        })
+                        .collect(),
+                )
+            })
+            .unwrap_or_default();
+
         Ok(MapResult {
             c: VideoPlayer {
                 details: video_info,
@@ -323,6 +371,7 @@ impl MapResponse<VideoPlayer> for response::Player {
                 expires_in_seconds: streaming_data.expires_in_seconds,
                 hls_manifest_url: streaming_data.hls_manifest_url,
                 dash_manifest_url: streaming_data.dash_manifest_url,
+                preview_frames,
                 visitor_data: self.response_context.visitor_data,
             },
             warnings,

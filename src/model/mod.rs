@@ -1,23 +1,22 @@
 //! YouTube API response models
 
 mod convert;
+mod frameset;
 mod ordering;
 
 pub mod paginator;
 pub mod richtext;
-
 pub mod traits;
-
-use serde_with::serde_as;
+pub use frameset::{Frameset, FramesetUrls};
 
 use std::{collections::BTreeSet, ops::Range};
 
 use serde::{Deserialize, Serialize};
+use serde_with::serde_as;
 use time::{Date, OffsetDateTime};
 
-use crate::{error::Error, param::Country, serializer::DateYmd, util};
-
 use self::{paginator::Paginator, richtext::RichText};
+use crate::{error::Error, param::Country, serializer::DateYmd, util};
 
 /*
 #COMMON
@@ -155,6 +154,8 @@ pub struct VideoPlayer {
     pub hls_manifest_url: Option<String>,
     /// Dash manifest URL (for livestreams)
     pub dash_manifest_url: Option<String>,
+    /// Video frames for seek preview
+    pub preview_frames: Vec<Frameset>,
     /// YouTube visitor data cookie
     pub visitor_data: Option<String>,
 }

@@ -7,6 +7,7 @@ use serde_with::{json::JsonString, DefaultOnError};
 use super::{ResponseContext, Thumbnails};
 use crate::serializer::{text::Text, MapResult};
 
+#[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct Player {
@@ -14,6 +15,9 @@ pub(crate) struct Player {
     pub streaming_data: Option<StreamingData>,
     pub captions: Option<Captions>,
     pub video_details: Option<VideoDetails>,
+    #[serde(default)]
+    #[serde_as(deserialize_as = "DefaultOnError")]
+    pub storyboards: Option<Storyboards>,
     pub response_context: ResponseContext,
 }
 
@@ -245,4 +249,16 @@ pub(crate) struct VideoDetails {
     pub view_count: u64,
     pub author: String,
     pub is_live_content: bool,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct Storyboards {
+    pub player_storyboard_spec_renderer: StoryboardRenderer,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct StoryboardRenderer {
+    pub spec: String,
 }
