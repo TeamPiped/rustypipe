@@ -256,9 +256,20 @@ pub struct AudioStream {
     pub codec: AudioCodec,
     /// Number of audio channels
     pub channels: Option<u8>,
-    /// Loudness
+    /// Audio loudness for ReplayGain correction
     ///
-    /// Not available when using the Android client
+    /// The track volume correction factor (0-1) can be calculated using this formula
+    ///
+    /// `10^(-loudness_db/20)`
+    ///
+    /// Note that the value is the inverse of the usual track gain parameter, i.e. a
+    /// value of 6 means the volume should be reduced by 6dB and the ReplayGain track gain
+    /// parameter would be -6.
+    ///
+    /// More information about ReplayGain and how to apply this infomation to audio files
+    /// can be found here: <https://wiki.hydrogenaud.io/index.php?title=ReplayGain_1.0_specification>.
+    ///
+    /// The loudness parameter is not available when using the Android client.
     pub loudness_db: Option<f32>,
     /// True if the deobfuscation of the nsig url parameter failed
     /// and the stream will be throttled
