@@ -373,7 +373,7 @@ fn map_channel(
                         .and_then(|txt| util::parse_large_numstr(txt, lang))
                 }),
                 avatar: hdata.map(|hdata| hdata.1.into()).unwrap_or_default(),
-                verification: crate::model::Verification::None,
+                verification: crate::model::Verification::Verified,
                 description: metadata.description,
                 tags: microformat.microformat_data_renderer.tags,
                 vanity_url,
