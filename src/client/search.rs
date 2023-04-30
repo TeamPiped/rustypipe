@@ -1,5 +1,3 @@
-use std::borrow::Cow;
-
 use serde::{de::IgnoredAny, Serialize};
 
 use crate::{
@@ -66,26 +64,26 @@ impl RustyPipeQuery {
 
     /// Get YouTube search suggestions
     pub async fn search_suggestion<S: AsRef<str>>(&self, query: S) -> Result<Vec<String>, Error> {
-        let url = url::Url::parse_with_params("https://suggestqueries-clients6.youtube.com/complete/search?client=youtube&gs_rn=64&gs_ri=youtube&ds=yt&cp=1&gs_id=4&xhr=t&xssi=t",
-            &[("hl", self.opts.lang.to_string()), ("gl", self.opts.country.to_string()), ("q", query.as_ref().to_owned())]
-        ).map_err(|_| Error::Other("could not build url".into()))?;
+        let url = url::Url::parse_with_params(
+            "https://suggestqueries-clients6.youtube.com/complete/search?client=youtube&xhr=t",
+            &[
+                ("hl", self.opts.lang.to_string()),
+                ("gl", self.opts.country.to_string()),
+                ("q", query.as_ref().to_owned()),
+            ],
+        )
+        .map_err(|_| Error::Other("could not build url".into()))?;
 
         let response = self
             .client
             .http_request_txt(self.client.inner.http.get(url).build()?)
             .await?;
 
-        let trimmed = response
-            .get(5..)
-            .ok_or(Error::Extraction(ExtractionError::InvalidData(
-                Cow::Borrowed("could not get string slice"),
-            )))?;
-
         let parsed = serde_json::from_str::<(
             IgnoredAny,
             Vec<(String, IgnoredAny, IgnoredAny)>,
             IgnoredAny,
-        )>(trimmed)
+        )>(&response)
         .map_err(|e| Error::Extraction(ExtractionError::InvalidData(e.to_string().into())))?;
 
         Ok(parsed.1.into_iter().map(|item| item.0).collect())
