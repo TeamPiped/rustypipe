@@ -1,3 +1,5 @@
+use std::collections::BTreeMap;
+
 use anyhow::{bail, Result};
 use futures::{stream, StreamExt};
 use indicatif::{ProgressBar, ProgressStyle};
@@ -5,6 +7,7 @@ use num_enum::TryFromPrimitive;
 use rustypipe::client::{ClientType, RustyPipe, YTContext};
 use rustypipe::model::YouTubeItem;
 use rustypipe::param::search_filter::{ItemType, SearchFilter};
+use serde::de::IgnoredAny;
 use serde::{Deserialize, Serialize};
 
 #[derive(
@@ -16,6 +19,7 @@ pub enum ABTest {
     ThreeTabChannelLayout = 2,
     ChannelHandlesInSearchResults = 3,
     TrendsVideoTab = 4,
+    TrendsPageHeaderRenderer = 5,
 }
 
 const TESTS_TO_RUN: [ABTest; 1] = [ABTest::TrendsVideoTab];
@@ -82,6 +86,9 @@ pub async fn run_test(
                         channel_handles_in_search_results(&rp, &visitor_data).await
                     }
                     ABTest::TrendsVideoTab => trends_video_tab(&rp, &visitor_data).await,
+                    ABTest::TrendsPageHeaderRenderer => {
+                        trends_page_header_renderer(&rp, &visitor_data).await
+                    }
                 }
                 .unwrap();
                 pb.inc(1);
@@ -199,4 +206,29 @@ pub async fn trends_video_tab(rp: &RustyPipe, visitor_data: &str) -> Result<bool
         .await?;
 
     Ok(res.contains("\"4gIOGgxtb3N0X3BvcHVsYXI%3D\""))
+}
+
+pub async fn trends_page_header_renderer(rp: &RustyPipe, visitor_data: &str) -> Result<bool> {
+    let query = rp.query().visitor_data(visitor_data);
+    let context = query.get_context(ClientType::Desktop, true, None).await;
+    let res = query
+        .raw(
+            ClientType::Desktop,
+            "browse",
+            &QBrowse {
+                context,
+                browse_id: "FEtrending",
+                params: None,
+            },
+        )
+        .await?;
+
+    #[derive(Debug, Deserialize)]
+    struct D {
+        header: BTreeMap<String, IgnoredAny>,
+    }
+
+    let data = serde_json::from_str::<D>(&res)?;
+
+    Ok(data.header.contains_key("pageHeaderRenderer"))
 }

@@ -290,3 +290,58 @@ The data model for the video shelves did not change.
 **NEW**
 
 ![A/B test 4 old screenshot](./_img/ab_4_new.png)
+
+## [5] Page header renderer on the Trending page
+
+- **Encountered on:** 1.05.2023
+- **Impact:** 🟢 Low
+- **Endpoint:** browse (trending videos)
+
+YouTube changed the header renderer type on the trending page to a `pageHeaderRenderer`.
+
+**OLD**
+
+```json
+"c4TabbedHeaderRenderer": {
+  "avatar": {
+    "thumbnails": [
+      {
+        "height": 100,
+        "url": "https://www.youtube.com/img/trending/avatar/trending_avatar.png",
+        "width": 100
+      }
+    ]
+  },
+  "title": "Trending",
+  "trackingParams": "CBAQ8DsiEwiXi_iUht76AhVM6hEIHfgTB2g="
+}
+```
+
+**NEW**
+
+```json
+"pageHeaderRenderer": {
+  "pageTitle": "Trending",
+  "content": {
+    "pageHeaderViewModel": {
+      "title": {
+        "dynamicTextViewModel": { "text": { "content": "Trending" } }
+      },
+      "image": {
+        "contentPreviewImageViewModel": {
+          "image": {
+            "sources": [
+              {
+                "url": "https://www.youtube.com/img/trending/avatar/trending.png",
+                "width": 100,
+                "height": 100
+              }
+            ]
+          },
+          "style": "CONTENT_PREVIEW_IMAGE_STYLE_CIRCLE"
+        }
+      }
+    }
+  }
+}
+```

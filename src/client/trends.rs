@@ -124,6 +124,7 @@ mod tests {
     use std::{fs::File, io::BufReader};
 
     use path_macro::path;
+    use rstest::rstest;
 
     use crate::{
         client::{response, MapResponse},
@@ -154,9 +155,11 @@ mod tests {
         });
     }
 
-    #[test]
-    fn map_trending() {
-        let json_path = path!(*TESTFILES / "trends" / "trending.json");
+    #[rstest]
+    #[case::base("videos")]
+    #[case::page_header_renderer("20230501_page_header_renderer")]
+    fn map_trending(#[case] name: &str) {
+        let json_path = path!(*TESTFILES / "trends" / format!("trending_{name}.json"));
         let json_file = File::open(json_path).unwrap();
 
         let startpage: response::Trending =
@@ -170,7 +173,7 @@ mod tests {
             map_res.warnings
         );
 
-        insta::assert_ron_snapshot!("map_trending", map_res.c, {
+        insta::assert_ron_snapshot!(format!("map_trending_{name}"), map_res.c, {
             "[].publish_date" => "[date]",
         });
     }
