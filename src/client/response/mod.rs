@@ -33,6 +33,7 @@ pub(crate) use player::Player;
 pub(crate) use playlist::Playlist;
 pub(crate) use playlist::PlaylistCont;
 pub(crate) use search::Search;
+pub(crate) use search::SearchSuggestion;
 pub(crate) use trends::Startpage;
 pub(crate) use trends::Trending;
 pub(crate) use url_endpoint::ResolvedUrl;

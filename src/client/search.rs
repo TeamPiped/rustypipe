@@ -1,4 +1,4 @@
-use serde::{de::IgnoredAny, Serialize};
+use serde::Serialize;
 
 use crate::{
     error::{Error, ExtractionError},
@@ -79,12 +79,8 @@ impl RustyPipeQuery {
             .http_request_txt(self.client.inner.http.get(url).build()?)
             .await?;
 
-        let parsed = serde_json::from_str::<(
-            IgnoredAny,
-            Vec<(String, IgnoredAny, IgnoredAny)>,
-            IgnoredAny,
-        )>(&response)
-        .map_err(|e| Error::Extraction(ExtractionError::InvalidData(e.to_string().into())))?;
+        let parsed = serde_json::from_str::<response::SearchSuggestion>(&response)
+            .map_err(|e| Error::Extraction(ExtractionError::InvalidData(e.to_string().into())))?;
 
         Ok(parsed.1.into_iter().map(|item| item.0).collect())
     }

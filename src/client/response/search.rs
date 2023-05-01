@@ -1,4 +1,4 @@
-use serde::Deserialize;
+use serde::{de::IgnoredAny, Deserialize};
 use serde_with::{json::JsonString, serde_as};
 
 use super::{video_item::YouTubeListRendererWrap, ResponseContext};
@@ -24,3 +24,10 @@ pub(crate) struct Contents {
 pub(crate) struct TwoColumnSearchResultsRenderer {
     pub primary_contents: YouTubeListRendererWrap,
 }
+
+#[derive(Debug, Deserialize)]
+pub(crate) struct SearchSuggestion(
+    IgnoredAny,
+    pub Vec<(String, IgnoredAny, IgnoredAny)>,
+    IgnoredAny,
+);
