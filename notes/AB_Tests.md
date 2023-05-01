@@ -3,27 +3,29 @@
 When YouTube introduces a new feature, it does so gradually. When a user creates a new
 session, YouTube decided randomly which new features should be enabled.
 
-YouTube sessions are identified by the visitor data cookie. This cookie is sent with every
-API request using the `context.client.visitor_data` JSON parameter. It is also returned in the
-`responseContext.visitorData` response parameter and stored as the `__SECURE-YEC` cookie.
+YouTube sessions are identified by the visitor data cookie. This cookie is sent with
+every API request using the `context.client.visitor_data` JSON parameter. It is also
+returned in the `responseContext.visitorData` response parameter and stored as the
+`__SECURE-YEC` cookie.
 
-By sending the same visitor data cookie, A/B tests can be reproduced, which is important for testing
-alternative YouTube clients.
+By sending the same visitor data cookie, A/B tests can be reproduced, which is important
+for testing alternative YouTube clients.
 
-This page lists all A/B tests that were encountered while maintaining the RustyPipe client.
+This page lists all A/B tests that were encountered while maintaining the RustyPipe
+client.
 
 **Impact rating:**
 
-The impact ratings shows how much effort it takes to adapt alternative YouTube clients to the
-new feature.
+The impact ratings shows how much effort it takes to adapt alternative YouTube clients
+to the new feature.
 
 - 🟢 **Low** Minor incompatibility (e.g. parameter name change)
 - 🟡 **Medium** Extensive changes to the response data model OR removal of parameters
-- 🔴 **High** Changes to the functionality of YouTube that will require API changes
-  for alternative clients
+- 🔴 **High** Changes to the functionality of YouTube that will require API changes for
+  alternative clients
 
-If you want to check how often these A/B tests occur, you can use the `codegen` tool with the
-following command: `rustypipe-codegen ab-test <id>`.
+If you want to check how often these A/B tests occur, you can use the `codegen` tool
+with the following command: `rustypipe-codegen ab-test <id>`.
 
 ## [1] Attributed text description
 
@@ -33,17 +35,18 @@ following command: `rustypipe-codegen ab-test <id>`.
 
 ![A/B test 1 screenshot](./_img/ab_1.png)
 
-YouTube shows internal links (channels, videos, playlists) in the video description
-as buttons with the YouTube icon. To accomplish this, they completely changed the underlying
-data model.
+YouTube shows internal links (channels, videos, playlists) in the video description as
+buttons with the YouTube icon. To accomplish this, they completely changed the
+underlying data model.
 
-The new format uses a string with the entire plaintext content along with a list of `"commandRuns"`
-which include the link data and the position of the links within the text.
+The new format uses a string with the entire plaintext content along with a list of
+`"commandRuns"` which include the link data and the position of the links within the
+text.
 
 Note that the position and length parameter refer to the number of UTF-16 characters. If
 you are implementing this in a language which does not use UTF-16 as its internal string
-representation, you have to iterate over the unicode codepoints and keep track of the UTF-16
-index seperately.
+representation, you have to iterate over the unicode codepoints and keep track of the
+UTF-16 index seperately.
 
 **OLD**
 
@@ -124,14 +127,15 @@ index seperately.
 YouTube changed their channel page layout, putting livestreams and short videos into
 separate tabs.
 
-Fetching the videos page now only returns a subset of a channel's videos. To get all videos
-from a channel, you would have to run up to 3 queries.
+Fetching the videos page now only returns a subset of a channel's videos. To get all
+videos from a channel, you would have to run up to 3 queries.
 
-Even though it has its disadvantages, the RSS feed is now probably the best way for keeping
-track of a channel's new uploads.
+Even though it has its disadvantages, the RSS feed is now probably the best way for
+keeping track of a channel's new uploads.
 
-Additionally the channel tab response model was slightly changed, now using a `"RichGridRenderer"`.
-Short videos also have their own data models (`"reelItemRenderer"`).
+Additionally the channel tab response model was slightly changed, now using a
+`"RichGridRenderer"`. Short videos also have their own data models
+(`"reelItemRenderer"`).
 
 **RichGrid**
 
@@ -273,8 +277,8 @@ Note that channels without handles still use the old data model, even on the sam
 - **Impact:** 🟢 Low
 - **Endpoint:** browse (trending videos)
 
-YouTube moved the list of trending videos from the main *trending* page to a
-separate tab (Videos).
+YouTube moved the list of trending videos from the main _trending_ page to a separate
+tab (Videos).
 
 The video tab is fetched with the params `4gIOGgxtb3N0X3BvcHVsYXI%3D`.
 
@@ -302,43 +306,47 @@ YouTube changed the header renderer type on the trending page to a `pageHeaderRe
 **OLD**
 
 ```json
-"c4TabbedHeaderRenderer": {
-  "avatar": {
-    "thumbnails": [
-      {
-        "height": 100,
-        "url": "https://www.youtube.com/img/trending/avatar/trending_avatar.png",
-        "width": 100
-      }
-    ]
-  },
-  "title": "Trending",
-  "trackingParams": "CBAQ8DsiEwiXi_iUht76AhVM6hEIHfgTB2g="
+{
+  "c4TabbedHeaderRenderer": {
+    "avatar": {
+      "thumbnails": [
+        {
+          "height": 100,
+          "url": "https://www.youtube.com/img/trending/avatar/trending_avatar.png",
+          "width": 100
+        }
+      ]
+    },
+    "title": "Trending",
+    "trackingParams": "CBAQ8DsiEwiXi_iUht76AhVM6hEIHfgTB2g="
+  }
 }
 ```
 
 **NEW**
 
 ```json
-"pageHeaderRenderer": {
-  "pageTitle": "Trending",
-  "content": {
-    "pageHeaderViewModel": {
-      "title": {
-        "dynamicTextViewModel": { "text": { "content": "Trending" } }
-      },
-      "image": {
-        "contentPreviewImageViewModel": {
-          "image": {
-            "sources": [
-              {
-                "url": "https://www.youtube.com/img/trending/avatar/trending.png",
-                "width": 100,
-                "height": 100
-              }
-            ]
-          },
-          "style": "CONTENT_PREVIEW_IMAGE_STYLE_CIRCLE"
+{
+  "pageHeaderRenderer": {
+    "pageTitle": "Trending",
+    "content": {
+      "pageHeaderViewModel": {
+        "title": {
+          "dynamicTextViewModel": { "text": { "content": "Trending" } }
+        },
+        "image": {
+          "contentPreviewImageViewModel": {
+            "image": {
+              "sources": [
+                {
+                  "url": "https://www.youtube.com/img/trending/avatar/trending.png",
+                  "width": 100,
+                  "height": 100
+                }
+              ]
+            },
+            "style": "CONTENT_PREVIEW_IMAGE_STYLE_CIRCLE"
+          }
         }
       }
     }
