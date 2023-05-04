@@ -98,11 +98,11 @@ pub fn string_from_pb<P: IntoIterator<Item = u8>>(pb: P, field: u32) -> Option<S
             5 => 4,
             // string
             2 => {
-                let len = some_or_bail!(parse_varint(&mut pb), None);
+                let len = parse_varint(&mut pb)?;
                 if this_field == field {
                     let mut buf = Vec::new();
                     for _ in 0..len {
-                        buf.push(some_or_bail!(pb.next(), None));
+                        buf.push(pb.next()?);
                     }
                     return String::from_utf8(buf).ok();
                 } else {

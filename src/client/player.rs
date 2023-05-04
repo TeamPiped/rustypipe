@@ -376,33 +376,24 @@ fn map_url(
     deobf: &Deobfuscator,
     last_nsig: &mut [String; 2],
 ) -> MapResult<Option<(String, bool)>> {
-    let (url_base, mut url_params) = match url {
-        Some(url) => ok_or_bail!(
-            util::url_to_params(url),
-            MapResult {
-                c: None,
-                warnings: vec![format!("Could not parse url `{url}`")]
-            }
-        ),
+    let x = match url {
+        Some(url) => util::url_to_params(url).map_err(|_| format!("Could not parse url `{url}`")),
         None => match signature_cipher {
-            Some(signature_cipher) => match cipher_to_url_params(signature_cipher, deobf) {
-                Ok(res) => res,
-                Err(e) => {
-                    return MapResult {
-                        c: None,
-                        warnings: vec![format!(
-                            "Could not deobfuscate signatureCipher `{signature_cipher}`: {e}"
-                        )],
-                    };
-                }
-            },
-            None => {
-                return MapResult {
-                    c: None,
-                    warnings: vec!["stream contained neither url nor cipher".to_owned()],
-                }
-            }
+            Some(signature_cipher) => cipher_to_url_params(signature_cipher, deobf).map_err(|e| {
+                format!("Could not deobfuscate signatureCipher `{signature_cipher}`: {e}")
+            }),
+            None => Err("stream contained neither url or cipher".to_owned()),
         },
+    };
+
+    let (url_base, mut url_params) = match x {
+        Ok(x) => x,
+        Err(e) => {
+            return MapResult {
+                c: None,
+                warnings: vec![e],
+            }
+        }
     };
 
     let mut warnings = vec![];
@@ -414,21 +405,17 @@ fn map_url(
         throttled = true;
     });
 
-    MapResult {
-        c: Some((
-            ok_or_bail!(
-                Url::parse_with_params(url_base.as_str(), url_params.iter()),
-                MapResult {
-                    c: None,
-                    warnings: vec![format!(
-                        "url could not be joined. url: `{url_base}` params: {url_params:?}"
-                    )],
-                }
-            )
-            .to_string(),
-            throttled,
-        )),
-        warnings,
+    match Url::parse_with_params(url_base.as_str(), url_params.iter()) {
+        Ok(url) => MapResult {
+            c: Some((url.to_string(), throttled)),
+            warnings,
+        },
+        Err(_) => MapResult {
+            c: None,
+            warnings: vec![format!(
+                "url could not be joined. url: `{url_base}` params: {url_params:?}"
+            )],
+        },
     }
 }
 
@@ -437,16 +424,27 @@ fn map_video_stream(
     deobf: &Deobfuscator,
     last_nsig: &mut [String; 2],
 ) -> MapResult<Option<VideoStream>> {
-    let (mtype, codecs) = some_or_bail!(
-        parse_mime(&f.mime_type),
-        MapResult {
-            c: None,
-            warnings: vec![format!(
-                "Invalid mime type `{}` in video format {:?}",
-                &f.mime_type, &f
-            )]
+    let (mtype, codecs) = match parse_mime(&f.mime_type) {
+        Some(x) => x,
+        None => {
+            return MapResult {
+                c: None,
+                warnings: vec![format!(
+                    "Invalid mime type `{}` in video format {:?}",
+                    &f.mime_type, &f
+                )],
+            }
         }
-    );
+    };
+    let format = match get_video_format(mtype) {
+        Some(f) => f,
+        None => {
+            return MapResult {
+                c: None,
+                warnings: vec![format!("invalid video format. itag: {}", f.itag)],
+            }
+        }
+    };
     let map_res = map_url(&f.url, &f.signature_cipher, deobf, last_nsig);
 
     match map_res.c {
@@ -469,13 +467,7 @@ fn map_video_stream(
                 hdr: f.color_info.unwrap_or_default().primaries
                     == player::Primaries::ColorPrimariesBt2020,
                 mime: f.mime_type.to_owned(),
-                format: some_or_bail!(
-                    get_video_format(mtype),
-                    MapResult {
-                        c: None,
-                        warnings: vec![format!("invalid video format. itag: {}", f.itag)]
-                    }
-                ),
+                format,
                 codec: get_video_codec(codecs),
                 throttled,
             }),
@@ -495,16 +487,27 @@ fn map_audio_stream(
 ) -> MapResult<Option<AudioStream>> {
     static LANG_PATTERN: Lazy<Regex> = Lazy::new(|| Regex::new(r#"^([a-z]{2,3})\."#).unwrap());
 
-    let (mtype, codecs) = some_or_bail!(
-        parse_mime(&f.mime_type),
-        MapResult {
-            c: None,
-            warnings: vec![format!(
-                "Invalid mime type `{}` in video format {:?}",
-                &f.mime_type, &f
-            )]
+    let (mtype, codecs) = match parse_mime(&f.mime_type) {
+        Some(x) => x,
+        None => {
+            return MapResult {
+                c: None,
+                warnings: vec![format!(
+                    "Invalid mime type `{}` in video format {:?}",
+                    &f.mime_type, &f
+                )],
+            }
         }
-    );
+    };
+    let format = match get_audio_format(mtype) {
+        Some(f) => f,
+        None => {
+            return MapResult {
+                c: None,
+                warnings: vec![format!("invalid audio format. itag: {}", f.itag)],
+            }
+        }
+    };
     let map_res = map_url(&f.url, &f.signature_cipher, deobf, last_nsig);
 
     match map_res.c {
@@ -519,13 +522,7 @@ fn map_audio_stream(
                 init_range: f.init_range,
                 duration_ms: f.approx_duration_ms,
                 mime: f.mime_type.to_owned(),
-                format: some_or_bail!(
-                    get_audio_format(mtype),
-                    MapResult {
-                        c: None,
-                        warnings: vec![format!("invalid audio format. itag: {}", f.itag)]
-                    }
-                ),
+                format,
                 codec: get_audio_codec(codecs),
                 channels: f.audio_channels,
                 loudness_db: f.loudness_db,
@@ -559,7 +556,7 @@ fn parse_mime(mime: &str) -> Option<(&str, Vec<&str>)> {
     static PATTERN: Lazy<Regex> =
         Lazy::new(|| Regex::new(r#"(\w+/\w+);\scodecs="([a-zA-Z-0-9.,\s]*)""#).unwrap());
 
-    let captures = some_or_bail!(PATTERN.captures(mime), None);
+    let captures = PATTERN.captures(mime)?;
     Some((
         captures.get(1).unwrap().as_str(),
         captures

@@ -1,5 +1,5 @@
 // This code is used to test the deobfuscation javascript extraction.
-// Since YouTube's player code is copyrighted, I can just copy-paste it
+// Since YouTube's player code is copyrighted, I can't just copy-paste it
 // into my project.
 
 /*

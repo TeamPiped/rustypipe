@@ -193,40 +193,43 @@ pub fn retry_delay(
 /// Also strips google analytics tracking parameters
 /// (`utm_source`, `utm_medium`, `utm_campaign`, `utm_content`) because google analytics is bad.
 pub fn sanitize_yt_url(url: &str) -> String {
-    let mut parsed_url = ok_or_bail!(Url::parse(url), url.to_owned());
+    fn sanitize_yt_url_inner(url: &str) -> Option<String> {
+        let mut parsed_url = Url::parse(url).ok()?;
 
-    // Convert redirect url
-    if parsed_url.host_str().unwrap_or_default() == "www.youtube.com"
-        && parsed_url.path() == "/redirect"
-    {
-        if let Some((_, url)) = parsed_url.query_pairs().find(|(k, _)| k == "q") {
-            parsed_url = ok_or_bail!(Url::parse(url.as_ref()), url.to_string());
+        // Convert redirect url
+        if parsed_url.host_str().unwrap_or_default() == "www.youtube.com"
+            && parsed_url.path() == "/redirect"
+        {
+            if let Some((_, url)) = parsed_url.query_pairs().find(|(k, _)| k == "q") {
+                parsed_url = Url::parse(url.as_ref()).ok()?;
+            }
         }
+
+        // Remove GA tracking params
+        if parsed_url.query().is_some() {
+            let params = parsed_url
+                .query_pairs()
+                .filter_map(|(k, v)| match k.borrow() {
+                    "utm_source" | "utm_medium" | "utm_campaign" | "utm_content" => None,
+                    _ => Some((k.to_string(), v.to_string())),
+                })
+                .collect::<Vec<_>>();
+
+            // Set empty query string if there are no parameters to prevent urls from ending with /?
+            if params.is_empty() {
+                parsed_url.set_query(None);
+            } else {
+                parsed_url
+                    .query_pairs_mut()
+                    .clear()
+                    .extend_pairs(params)
+                    .finish();
+            }
+        }
+        Some(parsed_url.to_string())
     }
 
-    // Remove GA tracking params
-    if parsed_url.query().is_some() {
-        let params = parsed_url
-            .query_pairs()
-            .filter_map(|(k, v)| match k.borrow() {
-                "utm_source" | "utm_medium" | "utm_campaign" | "utm_content" => None,
-                _ => Some((k.to_string(), v.to_string())),
-            })
-            .collect::<Vec<_>>();
-
-        // Set empty query string if there are no parameters to prevent urls from ending with /?
-        if params.is_empty() {
-            parsed_url.set_query(None);
-        } else {
-            parsed_url
-                .query_pairs_mut()
-                .clear()
-                .extend_pairs(params)
-                .finish();
-        }
-    }
-
-    parsed_url.to_string()
+    sanitize_yt_url_inner(url).unwrap_or_else(|| url.to_string())
 }
 
 pub trait TryRemove<T> {
@@ -298,7 +301,7 @@ where
                 filtered.push(c);
             }
         }
-        (ok_or_bail!(buf.parse::<u64>(), None), exp, filtered)
+        (buf.parse::<u64>().ok()?, exp, filtered)
     };
 
     let lookup_token = |token: &str| match token {
@@ -318,14 +321,7 @@ where
             .sum::<i32>();
     }
 
-    F::try_from(some_or_bail!(
-        num.checked_mul(some_or_bail!(
-            (10_u64).checked_pow(ok_or_bail!(exp.try_into(), None)),
-            None
-        )),
-        None
-    ))
-    .ok()
+    F::try_from(num.checked_mul((10_u64).checked_pow(exp.try_into().ok()?)?)?).ok()
 }
 
 /// Replace all html control characters to make a string safe for inserting into HTML.

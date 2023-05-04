@@ -1,9 +1,6 @@
 #![doc = include_str!("../README.md")]
 #![warn(missing_docs, clippy::todo, clippy::dbg_macro)]
 
-#[macro_use]
-mod macros;
-
 mod deobfuscate;
 mod serializer;
 mod util;
