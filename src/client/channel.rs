@@ -179,8 +179,11 @@ impl MapResponse<Channel<Paginator<VideoItem>>> for response::Channel {
             lang,
         )?;
 
-        let mut mapper =
-            response::YouTubeListMapper::<VideoItem>::with_channel(lang, &channel_data);
+        let mut mapper = response::YouTubeListMapper::<VideoItem>::with_channel(
+            lang,
+            &channel_data.c,
+            channel_data.warnings,
+        );
         mapper.map_response(content.content);
         let p = Paginator::new_ext(
             None,
@@ -191,7 +194,7 @@ impl MapResponse<Channel<Paginator<VideoItem>>> for response::Channel {
         );
 
         Ok(MapResult {
-            c: combine_channel_data(channel_data, p),
+            c: combine_channel_data(channel_data.c, p),
             warnings: mapper.warnings,
         })
     }
@@ -219,13 +222,16 @@ impl MapResponse<Channel<Paginator<PlaylistItem>>> for response::Channel {
             lang,
         )?;
 
-        let mut mapper =
-            response::YouTubeListMapper::<PlaylistItem>::with_channel(lang, &channel_data);
+        let mut mapper = response::YouTubeListMapper::<PlaylistItem>::with_channel(
+            lang,
+            &channel_data.c,
+            channel_data.warnings,
+        );
         mapper.map_response(content.content);
         let p = Paginator::new(None, mapper.items, mapper.ctoken);
 
         Ok(MapResult {
-            c: combine_channel_data(channel_data, p),
+            c: combine_channel_data(channel_data.c, p),
             warnings: mapper.warnings,
         })
     }
@@ -266,7 +272,7 @@ impl MapResponse<Channel<ChannelInfo>> for response::Channel {
         });
 
         Ok(MapResult {
-            c: combine_channel_data(channel_data, cinfo),
+            c: combine_channel_data(channel_data.c, cinfo),
             warnings,
         })
     }
@@ -297,7 +303,7 @@ fn map_channel(
     d: MapChannelData,
     id: &str,
     lang: Language,
-) -> Result<Channel<()>, ExtractionError> {
+) -> Result<MapResult<Channel<()>>, ExtractionError> {
     let header = d
         .header
         .ok_or(ExtractionError::ContentUnavailable(Cow::Borrowed(
@@ -326,33 +332,35 @@ fn map_channel(
         .vanity_channel_url
         .as_ref()
         .and_then(|url| map_vanity_url(url, id));
+    let mut warnings = Vec::new();
 
-    Ok(match header {
-        response::channel::Header::C4TabbedHeaderRenderer(header) => Channel {
-            id: metadata.external_id,
-            name: metadata.title,
-            subscriber_count: header
-                .subscriber_count_text
-                .and_then(|txt| util::parse_large_numstr(&txt, lang)),
-            avatar: header.avatar.into(),
-            verification: header.badges.into(),
-            description: metadata.description,
-            tags: microformat.microformat_data_renderer.tags,
-            vanity_url,
-            banner: header.banner.into(),
-            mobile_banner: header.mobile_banner.into(),
-            tv_banner: header.tv_banner.into(),
-            has_shorts: d.has_shorts,
-            has_live: d.has_live,
-            visitor_data: d.visitor_data,
-            content: (),
-        },
-        response::channel::Header::CarouselHeaderRenderer(carousel) => {
-            let hdata = carousel
-                .contents
-                .into_iter()
-                .filter_map(|item| {
-                    match item {
+    Ok(MapResult {
+        c: match header {
+            response::channel::Header::C4TabbedHeaderRenderer(header) => Channel {
+                id: metadata.external_id,
+                name: metadata.title,
+                subscriber_count: header
+                    .subscriber_count_text
+                    .and_then(|txt| util::parse_large_numstr_or_warn(&txt, lang, &mut warnings)),
+                avatar: header.avatar.into(),
+                verification: header.badges.into(),
+                description: metadata.description,
+                tags: microformat.microformat_data_renderer.tags,
+                vanity_url,
+                banner: header.banner.into(),
+                mobile_banner: header.mobile_banner.into(),
+                tv_banner: header.tv_banner.into(),
+                has_shorts: d.has_shorts,
+                has_live: d.has_live,
+                visitor_data: d.visitor_data,
+                content: (),
+            },
+            response::channel::Header::CarouselHeaderRenderer(carousel) => {
+                let hdata = carousel
+                    .contents
+                    .into_iter()
+                    .filter_map(|item| {
+                        match item {
                 response::channel::CarouselHeaderRendererItem::TopicChannelDetailsRenderer {
                     subscriber_count_text,
                     subtitle,
@@ -360,32 +368,33 @@ fn map_channel(
                 } => Some((subscriber_count_text.or(subtitle), avatar)),
                 response::channel::CarouselHeaderRendererItem::None => None,
             }
-                })
-                .next();
+                    })
+                    .next();
 
-            Channel {
-                id: metadata.external_id,
-                name: metadata.title,
-                subscriber_count: hdata.as_ref().and_then(|hdata| {
-                    hdata
-                        .0
-                        .as_ref()
-                        .and_then(|txt| util::parse_large_numstr(txt, lang))
-                }),
-                avatar: hdata.map(|hdata| hdata.1.into()).unwrap_or_default(),
-                verification: crate::model::Verification::Verified,
-                description: metadata.description,
-                tags: microformat.microformat_data_renderer.tags,
-                vanity_url,
-                banner: Vec::new(),
-                mobile_banner: Vec::new(),
-                tv_banner: Vec::new(),
-                has_shorts: d.has_shorts,
-                has_live: d.has_live,
-                visitor_data: d.visitor_data,
-                content: (),
+                Channel {
+                    id: metadata.external_id,
+                    name: metadata.title,
+                    subscriber_count: hdata.as_ref().and_then(|hdata| {
+                        hdata.0.as_ref().and_then(|txt| {
+                            util::parse_large_numstr_or_warn(txt, lang, &mut warnings)
+                        })
+                    }),
+                    avatar: hdata.map(|hdata| hdata.1.into()).unwrap_or_default(),
+                    verification: crate::model::Verification::Verified,
+                    description: metadata.description,
+                    tags: microformat.microformat_data_renderer.tags,
+                    vanity_url,
+                    banner: Vec::new(),
+                    mobile_banner: Vec::new(),
+                    tv_banner: Vec::new(),
+                    has_shorts: d.has_shorts,
+                    has_live: d.has_live,
+                    visitor_data: d.visitor_data,
+                    content: (),
+                }
             }
-        }
+        },
+        warnings,
     })
 }
 

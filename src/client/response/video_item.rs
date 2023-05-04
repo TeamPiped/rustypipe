@@ -415,7 +415,7 @@ impl<T> YouTubeListMapper<T> {
         }
     }
 
-    pub fn with_channel<C>(lang: Language, channel: &Channel<C>) -> Self {
+    pub fn with_channel<C>(lang: Language, channel: &Channel<C>, warnings: Vec<String>) -> Self {
         Self {
             lang,
             channel: Some(ChannelTag {
@@ -426,7 +426,7 @@ impl<T> YouTubeListMapper<T> {
                 subscriber_count: channel.subscriber_count,
             }),
             items: Vec::new(),
-            warnings: Vec::new(),
+            warnings,
             ctoken: None,
             corrected_query: None,
             channel_info: None,
@@ -572,10 +572,12 @@ impl<T> YouTubeListMapper<T> {
             name: channel.title,
             avatar: channel.thumbnail.into(),
             verification: channel.owner_badges.into(),
-            subscriber_count: sc_txt
-                .and_then(|txt| util::parse_numeric_or_warn(&txt, &mut self.warnings)),
-            video_count: vc_text
-                .and_then(|txt| util::parse_numeric_or_warn(&txt, &mut self.warnings)),
+            subscriber_count: sc_txt.and_then(|txt| {
+                util::parse_large_numstr_or_warn(&txt, self.lang, &mut self.warnings)
+            }),
+            video_count: vc_text.and_then(|txt| {
+                util::parse_large_numstr_or_warn(&txt, self.lang, &mut self.warnings)
+            }),
             short_description: channel.description_snippet,
         }
     }

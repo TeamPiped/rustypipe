@@ -1,0 +1,155 @@
+---
+source: tests/youtube.rs
+expression: artist
+---
+MusicArtist(
+  id: "UCOR4_bSVIXPsGa4BbCSt60Q",
+  name: "[name]",
+  header_image: "[header_image]",
+  description: "[description]",
+  wikipedia_url: "[wikipedia_url]",
+  subscriber_count: "[subscriber_count]",
+  tracks: "[tracks]",
+  albums: [
+    AlbumItem(
+      id: "MPREb_8PsIyll0LFV",
+      name: "[name]",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+      album_type: Single,
+      year: Some(2014),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_HPXN9BBzFpV",
+      name: "[name]",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+      album_type: Single,
+      year: Some(2017),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_POeT6m0bw9q",
+      name: "[name]",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+      album_type: Ep,
+      year: Some(2014),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_R6EV2L1q0oc",
+      name: "[name]",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+      album_type: Single,
+      year: Some(2017),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_UYdRV1nnK2J",
+      name: "[name]",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+      album_type: Album,
+      year: Some(2017),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_bi34SGT1xlc",
+      name: "[name]",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+      album_type: Album,
+      year: Some(2014),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_hcK0fXETEf9",
+      name: "[name]",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+      album_type: Single,
+      year: Some(2017),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_kLvmX2AzYBL",
+      name: "[name]",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+      album_type: Single,
+      year: Some(2014),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_oHieBHkXn3A",
+      name: "[name]",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+      album_type: Single,
+      year: Some(2014),
+      by_va: false,
+    ),
+  ],
+  playlists: "[playlists]",
+  similar_artists: "[artists]",
+  tracks_playlist_id: Some("OLAK5uy_miHesZCUQY5S9EwqfoNP2tZR9nZ0NBAeU"),
+  videos_playlist_id: Some("OLAK5uy_mqbgE6T9uvusUWrAxJGiImf4_P4dM7IvQ"),
+  radio_id: Some("RDEM7AbogW0cCnElSU0WYm1GqA"),
+)

@@ -536,6 +536,8 @@ pub(crate) struct CommentRenderer {
     pub author_comment_badge: Option<AuthorCommentBadge>,
     #[serde(default)]
     pub reply_count: u64,
+    #[serde_as(as = "Option<Text>")]
+    pub vote_count: Option<String>,
     /// Buttons for comment interaction (Like/Dislike/Reply)
     pub action_buttons: CommentActionButtons,
 }
@@ -581,7 +583,6 @@ pub(crate) struct CommentActionButtons {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct CommentActionButtonsRenderer {
-    pub like_button: ToggleButtonWrap,
     pub creator_heart: Option<CreatorHeart>,
 }
 

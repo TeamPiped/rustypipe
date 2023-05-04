@@ -141,7 +141,8 @@
       "آلاف": 3,
       "ألف": 3,
       "مليار": 9,
-      "مليون": 6
+      "مليون": 6,
+      "واحد": 0
     },
     "album_types": {
       "أغنية منفردة": "Single",
@@ -666,10 +667,7 @@
     }
   },
   "en": {
-    "equivalent": [
-      "en-GB",
-      "en-IN"
-    ],
+    "equivalent": ["en-GB", "en-IN"],
     "by_char": false,
     "timeago_tokens": {
       "day": "D",
@@ -774,9 +772,7 @@
     }
   },
   "es-US": {
-    "equivalent": [
-      "es-419"
-    ],
+    "equivalent": ["es-419"],
     "by_char": false,
     "timeago_tokens": {
       "año": "Y",
@@ -1055,9 +1051,7 @@
     }
   },
   "fr": {
-    "equivalent": [
-      "fr-CA"
-    ],
+    "equivalent": ["fr-CA"],
     "by_char": false,
     "timeago_tokens": {
       "an": "Y",
@@ -3294,7 +3288,9 @@
       "วันที่ผ่านมา": "D",
       "วินาทีที่ผ่านมา": "s",
       "สัปดาห์ที่ผ่านมา": "W",
-      "เดือนที่ผ่านมา": "M"
+      "เดือนที่ผ่านมา": "M",
+      "นาที": "m",
+      "วินาที": "s"
     },
     "date_order": "DY",
     "months": {

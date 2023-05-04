@@ -328,6 +328,21 @@ where
     .ok()
 }
 
+pub fn parse_large_numstr_or_warn<F>(
+    string: &str,
+    lang: Language,
+    warnings: &mut Vec<String>,
+) -> Option<F>
+where
+    F: TryFrom<u64>,
+{
+    let res = parse_large_numstr::<F>(string, lang);
+    if res.is_none() {
+        warnings.push(format!("could not parse numstr `{string}`"));
+    }
+    res
+}
+
 /// Replace all html control characters to make a string safe for inserting into HTML.
 pub fn escape_html(input: &str) -> String {
     let mut buf = String::with_capacity(input.len());

@@ -1,0 +1,429 @@
+---
+source: tests/youtube.rs
+expression: album
+---
+MusicAlbum(
+  id: "MPREb_nlBWQROfvjo",
+  playlist_id: Some("OLAK5uy_myZkBX2d2TzcrlQhIwLy3hCj2MkAMaPR4"),
+  name: "Märchen enden gut",
+  cover: "[cover]",
+  artists: [
+    ArtistId(
+      id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+      name: "[name]",
+    ),
+  ],
+  artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+  description: None,
+  album_type: Album,
+  year: Some(2016),
+  by_va: false,
+  tracks: [
+    TrackItem(
+      id: "g0iRiJ_ck48",
+      name: "[name]",
+      duration: Some(216),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+      album: Some(AlbumId(
+        id: "MPREb_nlBWQROfvjo",
+        name: "Märchen enden gut",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(1),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "rREEBXp0y9s",
+      name: "[name]",
+      duration: Some(224),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+      album: Some(AlbumId(
+        id: "MPREb_nlBWQROfvjo",
+        name: "Märchen enden gut",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(2),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "zvU5Y8Q19hU",
+      name: "[name]",
+      duration: Some(176),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+      album: Some(AlbumId(
+        id: "MPREb_nlBWQROfvjo",
+        name: "Märchen enden gut",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(3),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "ARKLrzzTQA0",
+      name: "[name]",
+      duration: Some(215),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+      album: Some(AlbumId(
+        id: "MPREb_nlBWQROfvjo",
+        name: "Märchen enden gut",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(4),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "tstLgN8A_Ng",
+      name: "[name]",
+      duration: Some(268),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+      album: Some(AlbumId(
+        id: "MPREb_nlBWQROfvjo",
+        name: "Märchen enden gut",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(5),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "k2DjgQOY3Ts",
+      name: "[name]",
+      duration: Some(202),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+      album: Some(AlbumId(
+        id: "MPREb_nlBWQROfvjo",
+        name: "Märchen enden gut",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(6),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "azHwhecxEsI",
+      name: "[name]",
+      duration: Some(185),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+      album: Some(AlbumId(
+        id: "MPREb_nlBWQROfvjo",
+        name: "Märchen enden gut",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(7),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "_FcsdYIQ2co",
+      name: "[name]",
+      duration: Some(226),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+      album: Some(AlbumId(
+        id: "MPREb_nlBWQROfvjo",
+        name: "Märchen enden gut",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(8),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "27bOWEbshyE",
+      name: "[name]",
+      duration: Some(207),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+      album: Some(AlbumId(
+        id: "MPREb_nlBWQROfvjo",
+        name: "Märchen enden gut",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(9),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "riD_3oZwt8w",
+      name: "[name]",
+      duration: Some(211),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+      album: Some(AlbumId(
+        id: "MPREb_nlBWQROfvjo",
+        name: "Märchen enden gut",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(10),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "8GNvjF3no9s",
+      name: "[name]",
+      duration: Some(179),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+      album: Some(AlbumId(
+        id: "MPREb_nlBWQROfvjo",
+        name: "Märchen enden gut",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(11),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "YHMFzf1uN2U",
+      name: "[name]",
+      duration: Some(218),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+      album: Some(AlbumId(
+        id: "MPREb_nlBWQROfvjo",
+        name: "Märchen enden gut",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(12),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "jvV-z5F3oAo",
+      name: "[name]",
+      duration: Some(277),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+      album: Some(AlbumId(
+        id: "MPREb_nlBWQROfvjo",
+        name: "Märchen enden gut",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(13),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "u8_9cxlrh8k",
+      name: "[name]",
+      duration: Some(204),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+      album: Some(AlbumId(
+        id: "MPREb_nlBWQROfvjo",
+        name: "Märchen enden gut",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(14),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "gSvKcvM1Wk0",
+      name: "[name]",
+      duration: Some(202),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+      album: Some(AlbumId(
+        id: "MPREb_nlBWQROfvjo",
+        name: "Märchen enden gut",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(15),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "wQHgKRJ0pDQ",
+      name: "[name]",
+      duration: Some(222),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+      album: Some(AlbumId(
+        id: "MPREb_nlBWQROfvjo",
+        name: "Märchen enden gut",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(16),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "Ckz5i6-hzf0",
+      name: "[name]",
+      duration: Some(177),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+      album: Some(AlbumId(
+        id: "MPREb_nlBWQROfvjo",
+        name: "Märchen enden gut",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(17),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "y5zuUgyFqrc",
+      name: "[name]",
+      duration: Some(220),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+      album: Some(AlbumId(
+        id: "MPREb_nlBWQROfvjo",
+        name: "Märchen enden gut",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(18),
+      by_va: false,
+    ),
+  ],
+  variants: [
+    AlbumItem(
+      id: "MPREb_jk6Msw8izou",
+      name: "Märchen enden gut (Nyáre Ranta (Märchenedition))",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/BKgnW_-hapCHk599AtRfTYZGdXVIo0C4bJp1Bh7qUpGK7fNAXGW8Bhv2x-ukeFM8cuxKbGqqGaTo8fZASA=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/BKgnW_-hapCHk599AtRfTYZGdXVIo0C4bJp1Bh7qUpGK7fNAXGW8Bhv2x-ukeFM8cuxKbGqqGaTo8fZASA=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          name: "Oonagh",
+        ),
+      ],
+      artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+      album_type: Album,
+      year: None,
+      by_va: false,
+    ),
+  ],
+)

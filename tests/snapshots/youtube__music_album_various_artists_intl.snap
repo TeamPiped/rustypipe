@@ -1,0 +1,145 @@
+---
+source: tests/youtube.rs
+expression: album
+---
+MusicAlbum(
+  id: "MPREb_8QkDeEIawvX",
+  playlist_id: Some("OLAK5uy_mEX9ljZeeEWgTM1xLL1isyiGaWXoPyoOk"),
+  name: "＜Queendom2＞ FINAL",
+  cover: "[cover]",
+  artists: [],
+  artist_id: None,
+  description: None,
+  album_type: Single,
+  year: Some(2022),
+  by_va: true,
+  tracks: [
+    TrackItem(
+      id: "Tzai7JXo45w",
+      name: "[name]",
+      duration: Some(274),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "[name]",
+        ),
+      ],
+      artist_id: None,
+      album: Some(AlbumId(
+        id: "MPREb_8QkDeEIawvX",
+        name: "＜Queendom2＞ FINAL",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(1),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "9WYpLYAEub0",
+      name: "[name]",
+      duration: Some(216),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "[name]",
+        ),
+      ],
+      artist_id: None,
+      album: Some(AlbumId(
+        id: "MPREb_8QkDeEIawvX",
+        name: "＜Queendom2＞ FINAL",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(2),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "R48tE237bW4",
+      name: "[name]",
+      duration: Some(239),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCAKvDuIX3m1AUdPpDSqV_3w"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UCAKvDuIX3m1AUdPpDSqV_3w"),
+      album: Some(AlbumId(
+        id: "MPREb_8QkDeEIawvX",
+        name: "＜Queendom2＞ FINAL",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(3),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "-UzsoR6z-vg",
+      name: "[name]",
+      duration: Some(254),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "[name]",
+        ),
+      ],
+      artist_id: None,
+      album: Some(AlbumId(
+        id: "MPREb_8QkDeEIawvX",
+        name: "＜Queendom2＞ FINAL",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(4),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "kbNVyn8Ex28",
+      name: "[name]",
+      duration: Some(187),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "[name]",
+        ),
+      ],
+      artist_id: None,
+      album: Some(AlbumId(
+        id: "MPREb_8QkDeEIawvX",
+        name: "＜Queendom2＞ FINAL",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(5),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "NJrQZUzWP5Y",
+      name: "[name]",
+      duration: Some(224),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: None,
+          name: "[name]",
+        ),
+      ],
+      artist_id: None,
+      album: Some(AlbumId(
+        id: "MPREb_8QkDeEIawvX",
+        name: "＜Queendom2＞ FINAL",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(6),
+      by_va: false,
+    ),
+  ],
+  variants: [],
+)

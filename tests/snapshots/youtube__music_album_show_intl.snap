@@ -1,0 +1,318 @@
+---
+source: tests/youtube.rs
+expression: album
+---
+MusicAlbum(
+  id: "MPREb_cwzk8EUwypZ",
+  playlist_id: Some("OLAK5uy_kODvYZ5CEpYdtd4VPsmg0eRTlpazG0dvA"),
+  name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
+  cover: "[cover]",
+  artists: [
+    ArtistId(
+      id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
+      name: "[name]",
+    ),
+  ],
+  artist_id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
+  description: None,
+  album_type: Show,
+  year: Some(2022),
+  by_va: false,
+  tracks: [
+    TrackItem(
+      id: "lSbKz5LWvKE",
+      name: "[name]",
+      duration: Some(229),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
+      album: Some(AlbumId(
+        id: "MPREb_cwzk8EUwypZ",
+        name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(1),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "fdO6gu4qjRw",
+      name: "[name]",
+      duration: Some(235),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
+      album: Some(AlbumId(
+        id: "MPREb_cwzk8EUwypZ",
+        name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(2),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "muCxstXirvY",
+      name: "[name]",
+      duration: Some(197),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
+      album: Some(AlbumId(
+        id: "MPREb_cwzk8EUwypZ",
+        name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(3),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "aG1N0vo__Ng",
+      name: "[name]",
+      duration: Some(186),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
+      album: Some(AlbumId(
+        id: "MPREb_cwzk8EUwypZ",
+        name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(4),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "roHhLNYS9yo",
+      name: "[name]",
+      duration: Some(188),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
+      album: Some(AlbumId(
+        id: "MPREb_cwzk8EUwypZ",
+        name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(5),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "nJ49NuLvcAw",
+      name: "[name]",
+      duration: Some(205),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
+      album: Some(AlbumId(
+        id: "MPREb_cwzk8EUwypZ",
+        name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(6),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "Me119D570h0",
+      name: "[name]",
+      duration: Some(219),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
+      album: Some(AlbumId(
+        id: "MPREb_cwzk8EUwypZ",
+        name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(7),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "YXnRLK-qKG8",
+      name: "[name]",
+      duration: Some(240),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
+      album: Some(AlbumId(
+        id: "MPREb_cwzk8EUwypZ",
+        name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(8),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "A61wz1jz9X0",
+      name: "[name]",
+      duration: Some(239),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
+      album: Some(AlbumId(
+        id: "MPREb_cwzk8EUwypZ",
+        name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(9),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "u_S08EJOTUg",
+      name: "[name]",
+      duration: Some(197),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
+      album: Some(AlbumId(
+        id: "MPREb_cwzk8EUwypZ",
+        name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(10),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "0qwYJihV1EU",
+      name: "[name]",
+      duration: Some(201),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
+      album: Some(AlbumId(
+        id: "MPREb_cwzk8EUwypZ",
+        name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(11),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "zjhoyTnEzuQ",
+      name: "[name]",
+      duration: Some(187),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
+      album: Some(AlbumId(
+        id: "MPREb_cwzk8EUwypZ",
+        name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(12),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "oDjDd0UBzAY",
+      name: "[name]",
+      duration: Some(183),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
+      album: Some(AlbumId(
+        id: "MPREb_cwzk8EUwypZ",
+        name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(13),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "_3-WVmqgi-Q",
+      name: "[name]",
+      duration: Some(193),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UCNoyEM0e2A7WlsBmP2w3avg"),
+      album: Some(AlbumId(
+        id: "MPREb_cwzk8EUwypZ",
+        name: "Folge 2: Eiszeit (Das Original-Hörspiel zur TV-Serie)",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(14),
+      by_va: false,
+    ),
+  ],
+  variants: [],
+)

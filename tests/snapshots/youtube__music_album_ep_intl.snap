@@ -1,0 +1,129 @@
+---
+source: tests/youtube.rs
+expression: album
+---
+MusicAlbum(
+  id: "MPREb_u1I69lSAe5v",
+  playlist_id: Some("OLAK5uy_lGP_zv0vJDUlecQDzugUJmjcF7pvyVNyY"),
+  name: "Waldbrand",
+  cover: "[cover]",
+  artists: [
+    ArtistId(
+      id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
+      name: "[name]",
+    ),
+  ],
+  artist_id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
+  description: None,
+  album_type: Ep,
+  year: Some(2016),
+  by_va: false,
+  tracks: [
+    TrackItem(
+      id: "aGd3VKSOTxY",
+      name: "[name]",
+      duration: Some(221),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
+      album: Some(AlbumId(
+        id: "MPREb_u1I69lSAe5v",
+        name: "Waldbrand",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(1),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "Jz-26iiDuYs",
+      name: "[name]",
+      duration: Some(208),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
+      album: Some(AlbumId(
+        id: "MPREb_u1I69lSAe5v",
+        name: "Waldbrand",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(2),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "Bu26uFtpt58",
+      name: "[name]",
+      duration: Some(223),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
+      album: Some(AlbumId(
+        id: "MPREb_u1I69lSAe5v",
+        name: "Waldbrand",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(3),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "RgwNqqiVqdY",
+      name: "[name]",
+      duration: Some(221),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
+      album: Some(AlbumId(
+        id: "MPREb_u1I69lSAe5v",
+        name: "Waldbrand",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(4),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "2TuOh30XbCI",
+      name: "[name]",
+      duration: Some(197),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
+      album: Some(AlbumId(
+        id: "MPREb_u1I69lSAe5v",
+        name: "Waldbrand",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(5),
+      by_va: false,
+    ),
+  ],
+  variants: [],
+)

@@ -618,7 +618,11 @@ impl MusicListMapper {
                             (FlexColumnDisplayStyle::TwoLines, true) => (
                                 None,
                                 album_p.and_then(|p| {
-                                    util::parse_large_numstr(p.first_str(), self.lang)
+                                    util::parse_large_numstr_or_warn(
+                                        p.first_str(),
+                                        self.lang,
+                                        &mut self.warnings,
+                                    )
                                 }),
                             ),
                             (_, false) => (
@@ -692,7 +696,11 @@ impl MusicListMapper {
                         match page_type {
                             MusicPageType::Artist => {
                                 let subscriber_count = subtitle_p2.and_then(|p| {
-                                    util::parse_large_numstr(p.first_str(), self.lang)
+                                    util::parse_large_numstr_or_warn(
+                                        p.first_str(),
+                                        self.lang,
+                                        &mut self.warnings,
+                                    )
                                 });
 
                                 self.items.push(MusicItem::Artist(ArtistItem {
@@ -792,7 +800,11 @@ impl MusicListMapper {
                                 artists,
                                 album: None,
                                 view_count: subtitle_p2.and_then(|c| {
-                                    util::parse_large_numstr(c.first_str(), self.lang)
+                                    util::parse_large_numstr_or_warn(
+                                        c.first_str(),
+                                        self.lang,
+                                        &mut self.warnings,
+                                    )
                                 }),
                                 is_video,
                                 track_nr: None,
@@ -801,8 +813,13 @@ impl MusicListMapper {
                             Ok(Some(MusicItemType::Track))
                         }
                         MusicPageType::Artist => {
-                            let subscriber_count = subtitle_p1
-                                .and_then(|p| util::parse_large_numstr(p.first_str(), self.lang));
+                            let subscriber_count = subtitle_p1.and_then(|p| {
+                                util::parse_large_numstr_or_warn(
+                                    p.first_str(),
+                                    self.lang,
+                                    &mut self.warnings,
+                                )
+                            });
 
                             self.items.push(MusicItem::Artist(ArtistItem {
                                 id,
@@ -927,8 +944,13 @@ impl MusicListMapper {
         let item_type = match card.on_tap.music_page() {
             Some((page_type, id)) => match page_type {
                 MusicPageType::Artist => {
-                    let subscriber_count = subtitle_p2
-                        .and_then(|p| util::parse_large_numstr(p.first_str(), self.lang));
+                    let subscriber_count = subtitle_p2.and_then(|p| {
+                        util::parse_large_numstr_or_warn(
+                            p.first_str(),
+                            self.lang,
+                            &mut self.warnings,
+                        )
+                    });
 
                     self.items.push(MusicItem::Artist(ArtistItem {
                         id,
@@ -963,8 +985,13 @@ impl MusicListMapper {
                     let (album, view_count) = if is_video {
                         (
                             None,
-                            subtitle_p3
-                                .and_then(|p| util::parse_large_numstr(p.first_str(), self.lang)),
+                            subtitle_p3.and_then(|p| {
+                                util::parse_large_numstr_or_warn(
+                                    p.first_str(),
+                                    self.lang,
+                                    &mut self.warnings,
+                                )
+                            }),
                         )
                     } else {
                         (
@@ -1149,7 +1176,8 @@ pub(crate) fn map_album_type(txt: &str, lang: Language) -> AlbumType {
         .unwrap_or_default()
 }
 
-pub(crate) fn map_queue_item(item: QueueMusicItem, lang: Language) -> TrackItem {
+pub(crate) fn map_queue_item(item: QueueMusicItem, lang: Language) -> MapResult<TrackItem> {
+    let mut warnings = Vec::new();
     let mut subtitle_parts = item.long_byline_text.split(util::DOT_SEPARATOR).into_iter();
 
     let is_video = !item
@@ -1167,7 +1195,8 @@ pub(crate) fn map_queue_item(item: QueueMusicItem, lang: Language) -> TrackItem 
     let (album, view_count) = if is_video {
         (
             None,
-            subtitle_p2.and_then(|p| util::parse_large_numstr(p.first_str(), lang)),
+            subtitle_p2
+                .and_then(|p| util::parse_large_numstr_or_warn(p.first_str(), lang, &mut warnings)),
         )
     } else {
         (
@@ -1176,20 +1205,23 @@ pub(crate) fn map_queue_item(item: QueueMusicItem, lang: Language) -> TrackItem 
         )
     };
 
-    TrackItem {
-        id: item.video_id,
-        name: item.title,
-        duration: item
-            .length_text
-            .and_then(|txt| util::parse_video_length(&txt)),
-        cover: item.thumbnail.into(),
-        artists,
-        artist_id,
-        album,
-        view_count,
-        is_video,
-        track_nr: None,
-        by_va,
+    MapResult {
+        c: TrackItem {
+            id: item.video_id,
+            name: item.title,
+            duration: item
+                .length_text
+                .and_then(|txt| util::parse_video_length(&txt)),
+            cover: item.thumbnail.into(),
+            artists,
+            artist_id,
+            album,
+            view_count,
+            is_video,
+            track_nr: None,
+            by_va,
+        },
+        warnings,
     }
 }
 

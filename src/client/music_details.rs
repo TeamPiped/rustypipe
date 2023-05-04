@@ -207,22 +207,25 @@ impl MapResponse<TrackDetails> for response::MusicDetails {
                 response::music_item::PlaylistPanelVideo::None => None,
             })
             .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no video item")))?;
-        let track = map_queue_item(track_item, lang);
+        let mut track = map_queue_item(track_item, lang);
 
-        if track.id != id {
+        if track.c.id != id {
             return Err(ExtractionError::WrongResult(format!(
                 "got wrong video id {}, expected {}",
-                track.id, id
+                track.c.id, id
             )));
         }
 
+        let mut warnings = content.contents.warnings;
+        warnings.append(&mut track.warnings);
+
         Ok(MapResult {
             c: TrackDetails {
-                track,
+                track: track.c,
                 lyrics_id,
                 related_id,
             },
-            warnings: content.contents.warnings,
+            warnings,
         })
     }
 }
@@ -251,13 +254,17 @@ impl MapResponse<Paginator<TrackItem>> for response::MusicDetails {
             .content
             .playlist_panel_renderer;
 
+        let mut warnings = content.contents.warnings;
+
         let tracks = content
             .contents
             .c
             .into_iter()
             .filter_map(|item| match item {
                 response::music_item::PlaylistPanelVideo::PlaylistPanelVideoRenderer(item) => {
-                    Some(map_queue_item(item, lang))
+                    let mut track = map_queue_item(item, lang);
+                    warnings.append(&mut track.warnings);
+                    Some(track.c)
                 }
                 response::music_item::PlaylistPanelVideo::None => None,
             })
@@ -277,7 +284,7 @@ impl MapResponse<Paginator<TrackItem>> for response::MusicDetails {
                 None,
                 crate::model::paginator::ContinuationEndpoint::MusicNext,
             ),
-            warnings: content.contents.warnings,
+            warnings,
         })
     }
 }

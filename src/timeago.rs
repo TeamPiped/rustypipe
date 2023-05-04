@@ -198,7 +198,7 @@ pub fn parse_timeago(lang: Language, textual_date: &str) -> Option<TimeAgo> {
 /// Parse a TimeAgo string (e.g. "29 minutes ago") into a Chrono DateTime object.
 ///
 /// Returns None if the date could not be parsed.
-pub fn parse_timeago_to_dt(lang: Language, textual_date: &str) -> Option<OffsetDateTime> {
+pub fn parse_timeago_dt(lang: Language, textual_date: &str) -> Option<OffsetDateTime> {
     parse_timeago(lang, textual_date).map(|ta| ta.into())
 }
 
@@ -219,7 +219,7 @@ pub(crate) fn parse_timeago_dt_or_warn(
     textual_date: &str,
     warnings: &mut Vec<String>,
 ) -> Option<OffsetDateTime> {
-    let res = parse_timeago_to_dt(lang, textual_date);
+    let res = parse_timeago_dt(lang, textual_date);
     if res.is_none() {
         warnings.push(format!("could not parse timeago `{textual_date}`"));
     }

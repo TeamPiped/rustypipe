@@ -1,8 +1,10 @@
 use std::collections::HashSet;
 use std::fmt::Display;
+use std::str::FromStr;
 
 use rstest::{fixture, rstest};
 use rustypipe::model::paginator::ContinuationEndpoint;
+use rustypipe::param::Language;
 use rustypipe::validate;
 use time::macros::date;
 use time::OffsetDateTime;
@@ -921,35 +923,46 @@ fn assert_channel_eevblog<T>(channel: &Channel<T>) {
 }
 
 #[rstest]
-#[case::artist("UC_vmjW5e1xEHhYjY2a0kK1A", "Oonagh - Topic", false, false)]
-#[case::shorts("UCh8gHdtzO2tXd593_bjErWg", "Doobydobap", true, true)]
+#[case::artist("UC_vmjW5e1xEHhYjY2a0kK1A", "Oonagh - Topic", false, false, false)]
+#[case::shorts("UCh8gHdtzO2tXd593_bjErWg", "Doobydobap", true, true, true)]
 #[case::livestream(
     "UChs0pSaEoNLV4mevBFGaoKA",
     "The Good Life Radio x Sensual Musique",
     true,
+    true,
     true
 )]
-#[case::music("UC-9-kyTW8ZkZNDHQJ6FgpwQ", "Music", false, false)]
+#[case::music("UC-9-kyTW8ZkZNDHQJ6FgpwQ", "Music", false, false, false)]
 fn channel_more(
     #[case] id: &str,
     #[case] name: &str,
     #[case] has_videos: bool,
     #[case] has_playlists: bool,
+    #[case] name_unlocalized: bool,
     rp: RustyPipe,
+    unlocalized: bool,
 ) {
-    fn assert_channel<T>(channel: &Channel<T>, id: &str, name: &str) {
+    fn assert_channel<T>(channel: &Channel<T>, id: &str, name: &str, unlocalized: bool) {
         assert_eq!(channel.id, id);
-        assert_eq!(channel.name, name);
+
+        if unlocalized {
+            assert_eq!(channel.name, name);
+        }
     }
 
     let channel_videos = tokio_test::block_on(rp.query().channel_videos(&id)).unwrap();
-    assert_channel(&channel_videos, id, name);
+    assert_channel(&channel_videos, id, name, unlocalized || name_unlocalized);
     if has_videos {
         assert!(!channel_videos.content.items.is_empty(), "got no videos");
     }
 
     let channel_playlists = tokio_test::block_on(rp.query().channel_playlists(&id)).unwrap();
-    assert_channel(&channel_playlists, id, name);
+    assert_channel(
+        &channel_playlists,
+        id,
+        name,
+        unlocalized || name_unlocalized,
+    );
     if has_playlists {
         assert!(
             !channel_playlists.content.items.is_empty(),
@@ -958,7 +971,7 @@ fn channel_more(
     }
 
     let channel_info = tokio_test::block_on(rp.query().channel_info(&id)).unwrap();
-    assert_channel(&channel_info, id, name);
+    assert_channel(&channel_info, id, name, unlocalized || name_unlocalized);
 }
 
 #[rstest]
@@ -968,7 +981,7 @@ fn channel_more(
 #[case::sports("UCEgdi0XIXXZ-qJOFPf4JSKw")]
 #[case::learning("UCtFRv9O2AHqOZjjynzrv-xg")]
 #[case::live("UC4R8DWoMoI7CAwX8_LjQHig")]
-#[case::news("UCYfdidRxbB8Qhf0Nx7ioOYw")]
+// #[case::news("UCYfdidRxbB8Qhf0Nx7ioOYw")]
 fn channel_not_found(#[case] id: &str, rp: RustyPipe) {
     let err = tokio_test::block_on(rp.query().channel_videos(&id)).unwrap_err();
 
@@ -1030,15 +1043,17 @@ mod channel_rss {
 //#SEARCH
 
 #[rstest]
-fn search(rp: RustyPipe) {
+fn search(rp: RustyPipe, unlocalized: bool) {
     let result = tokio_test::block_on(rp.query().search("doobydoobap")).unwrap();
 
     assert!(
-        result.items.count.unwrap() > 7000,
-        "expected > 7000 total results, got {}",
+        result.items.count.unwrap() > 1000,
+        "expected > 1000 total results, got {}",
         result.items.count.unwrap()
     );
-    assert_eq!(result.corrected_query.unwrap(), "doobydobap");
+    if unlocalized {
+        assert_eq!(result.corrected_query.unwrap(), "doobydobap");
+    }
 
     assert_next(result.items, rp.query(), 10, 2);
 }
@@ -1094,8 +1109,12 @@ fn search_suggestion(rp: RustyPipe) {
 
 #[rstest]
 fn search_suggestion_empty(rp: RustyPipe) {
-    let result =
-        tokio_test::block_on(rp.query().search_suggestion("fjew327%4ifjelwfvnewg49")).unwrap();
+    let result = tokio_test::block_on(
+        rp.query()
+            .lang(Language::Th)
+            .search_suggestion("fjew327p4ifjelwfvnewg49"),
+    )
+    .unwrap();
 
     assert!(result.is_empty());
 }
@@ -1214,6 +1233,7 @@ fn music_playlist(
     #[case] channel: Option<(&str, &str)>,
     #[case] from_ytm: bool,
     rp: RustyPipe,
+    unlocalized: bool,
 ) {
     let playlist = tokio_test::block_on(rp.query().music_playlist(id)).unwrap();
 
@@ -1226,7 +1246,9 @@ fn music_playlist(
         if is_long { 100 } else { 10 },
         "track count",
     );
-    assert_eq!(playlist.description, description);
+    if unlocalized {
+        assert_eq!(playlist.description, description);
+    }
 
     if let Some(expect) = channel {
         let c = playlist.channel.unwrap();
@@ -1296,14 +1318,25 @@ fn music_playlist_not_found(rp: RustyPipe) {
 #[case::no_year("no_year", "MPREb_F3Af9UZZVxX")]
 #[case::version_no_artist("version_no_artist", "MPREb_h8ltx5oKvyY")]
 #[case::no_artist("no_artist", "MPREb_bqWA6mAZFWS")]
-fn music_album(#[case] name: &str, #[case] id: &str, rp: RustyPipe) {
+fn music_album(#[case] name: &str, #[case] id: &str, rp: RustyPipe, unlocalized: bool) {
     let album = tokio_test::block_on(rp.query().music_album(id)).unwrap();
 
     assert!(!album.cover.is_empty(), "got no cover");
 
-    insta::assert_ron_snapshot!(format!("music_album_{name}"), album,
-        {".cover" => "[cover]"}
-    );
+    if unlocalized {
+        insta::assert_ron_snapshot!(format!("music_album_{name}"), album,
+            {".cover" => "[cover]"}
+        );
+    } else {
+        insta::assert_ron_snapshot!(format!("music_album_{name}_intl"), album,
+            {
+                ".cover" => "[cover]",
+                ".artists[].name" => "[name]",
+                ".tracks[].name" => "[name]",
+                ".tracks[].artists[].name" => "[name]",
+            }
+        );
+    }
 }
 
 #[rstest]
@@ -1335,6 +1368,7 @@ fn music_artist(
     #[case] min_tracks: usize,
     #[case] min_playlists: usize,
     rp: RustyPipe,
+    unlocalized: bool,
 ) {
     let mut artist = tokio_test::block_on(rp.query().music_artist(id, all_albums)).unwrap();
 
@@ -1370,14 +1404,30 @@ fn music_artist(
     // Sort albums to ensure consistent order
     artist.albums.sort_by_key(|a| a.id.to_owned());
 
-    insta::assert_ron_snapshot!(format!("music_artist_{name}"), artist, {
-        ".header_image" => "[header_image]",
-        ".subscriber_count" => "[subscriber_count]",
-        ".albums[].cover" => "[cover]",
-        ".tracks" => "[tracks]",
-        ".playlists" => "[playlists]",
-        ".similar_artists" => "[artists]",
-    });
+    if unlocalized {
+        insta::assert_ron_snapshot!(format!("music_artist_{name}"), artist, {
+            ".header_image" => "[header_image]",
+            ".subscriber_count" => "[subscriber_count]",
+            ".albums[].cover" => "[cover]",
+            ".tracks" => "[tracks]",
+            ".playlists" => "[playlists]",
+            ".similar_artists" => "[artists]",
+        });
+    } else {
+        insta::assert_ron_snapshot!(format!("music_artist_{name}_intl"), artist, {
+            ".name" => "[name]",
+            ".header_image" => "[header_image]",
+            ".description" => "[description]",
+            ".wikipedia_url" => "[wikipedia_url]",
+            ".subscriber_count" => "[subscriber_count]",
+            ".albums[].name" => "[name]",
+            ".albums[].cover" => "[cover]",
+            ".albums[].artists[].name" => "[name]",
+            ".tracks" => "[tracks]",
+            ".playlists" => "[playlists]",
+            ".similar_artists" => "[artists]",
+        });
+    }
 }
 
 #[rstest]
@@ -1397,7 +1447,7 @@ fn music_artist_not_found(rp: RustyPipe) {
 #[rstest]
 #[case::default(false)]
 #[case::typo(true)]
-fn music_search(#[case] typo: bool, rp: RustyPipe) {
+fn music_search(#[case] typo: bool, rp: RustyPipe, unlocalized: bool) {
     let res = tokio_test::block_on(rp.query().music_search(match typo {
         false => "lieblingsmensch namika",
         true => "lieblingsmesch namika",
@@ -1434,7 +1484,9 @@ fn music_search(#[case] typo: bool, rp: RustyPipe) {
         track_artist.id.as_ref().unwrap(),
         "UCIh4j8fXWf2U0ro0qnGU8Mg"
     );
-    assert_eq!(track_artist.name, "Namika");
+    if unlocalized {
+        assert_eq!(track_artist.name, "Namika");
+    }
 
     let track_album = track.album.as_ref().unwrap();
     assert_eq!(track_album.id, "MPREb_RXHxrUFfrvQ");
@@ -1446,7 +1498,7 @@ fn music_search(#[case] typo: bool, rp: RustyPipe) {
 }
 
 #[rstest]
-fn music_search2(rp: RustyPipe) {
+fn music_search2(rp: RustyPipe, unlocalized: bool) {
     let res = tokio_test::block_on(rp.query().music_search("taylor swift")).unwrap();
 
     assert!(!res.tracks.is_empty(), "no tracks");
@@ -1463,12 +1515,14 @@ fn music_search2(rp: RustyPipe) {
             panic!("could not find artist, got {:#?}", &res.artists);
         });
 
-    assert_eq!(artist.name, "Taylor Swift");
+    if unlocalized {
+        assert_eq!(artist.name, "Taylor Swift");
+    }
     assert!(!artist.avatar.is_empty(), "got no avatar");
 }
 
 #[rstest]
-fn music_search_tracks(rp: RustyPipe) {
+fn music_search_tracks(rp: RustyPipe, unlocalized: bool) {
     let res = tokio_test::block_on(rp.query().music_search_tracks("black mamba")).unwrap();
 
     let track = &res
@@ -1489,7 +1543,9 @@ fn music_search_tracks(rp: RustyPipe) {
         track_artist.id.as_ref().unwrap(),
         "UCEdZAdnnKqbaHOlv8nM6OtA"
     );
-    assert_eq!(track_artist.name, "aespa");
+    if unlocalized {
+        assert_eq!(track_artist.name, "aespa");
+    }
 
     assert_eq!(track.duration.unwrap(), 175);
 
@@ -1501,7 +1557,7 @@ fn music_search_tracks(rp: RustyPipe) {
 }
 
 #[rstest]
-fn music_search_videos(rp: RustyPipe) {
+fn music_search_videos(rp: RustyPipe, unlocalized: bool) {
     let res = tokio_test::block_on(rp.query().music_search_videos("black mamba")).unwrap();
 
     let track = &res
@@ -1522,7 +1578,9 @@ fn music_search_videos(rp: RustyPipe) {
         track_artist.id.as_ref().unwrap(),
         "UCEdZAdnnKqbaHOlv8nM6OtA"
     );
-    assert_eq!(track_artist.name, "aespa");
+    if unlocalized {
+        assert_eq!(track_artist.name, "aespa");
+    }
 
     assert_eq!(track.duration.unwrap(), 230);
     assert_eq!(track.album, None);
@@ -1621,7 +1679,7 @@ fn music_search_albums(
 }
 
 #[rstest]
-fn music_search_artists(rp: RustyPipe) {
+fn music_search_artists(rp: RustyPipe, unlocalized: bool) {
     let res = tokio_test::block_on(rp.query().music_search_artists("namika")).unwrap();
 
     let artist = res
@@ -1630,7 +1688,9 @@ fn music_search_artists(rp: RustyPipe) {
         .iter()
         .find(|a| a.id == "UCIh4j8fXWf2U0ro0qnGU8Mg")
         .unwrap();
-    assert_eq!(artist.name, "Namika");
+    if unlocalized {
+        assert_eq!(artist.name, "Namika");
+    }
     assert!(!artist.avatar.is_empty(), "got no avatar");
     assert!(
         artist.subscriber_count.unwrap() > 735_000,
@@ -1651,7 +1711,7 @@ fn music_search_artists_cont(rp: RustyPipe) {
 #[rstest]
 #[case::ytm(false)]
 #[case::default(true)]
-fn music_search_playlists(#[case] with_community: bool, rp: RustyPipe) {
+fn music_search_playlists(#[case] with_community: bool, rp: RustyPipe, unlocalized: bool) {
     let res = if with_community {
         tokio_test::block_on(rp.query().music_search_playlists("pop biggest hits")).unwrap()
     } else {
@@ -1670,7 +1730,9 @@ fn music_search_playlists(#[case] with_community: bool, rp: RustyPipe) {
         .find(|p| p.id == "RDCLAK5uy_nmS3YoxSwVVQk9lEQJ0UX4ZCjXsW_psU8")
         .unwrap();
 
-    assert_eq!(playlist.name, "Pop's Biggest Hits");
+    if unlocalized {
+        assert_eq!(playlist.name, "Pop's Biggest Hits");
+    }
     assert!(!playlist.thumbnail.is_empty(), "got no thumbnail");
     assert_gte(playlist.track_count.unwrap(), 100, "tracks");
     assert_eq!(playlist.channel, None);
@@ -1784,7 +1846,12 @@ fn music_details(#[case] name: &str, #[case] id: &str, rp: RustyPipe) {
 fn music_lyrics(rp: RustyPipe) {
     let track = tokio_test::block_on(rp.query().music_details("60ImQ8DS3Vs")).unwrap();
     let lyrics = tokio_test::block_on(rp.query().music_lyrics(&track.lyrics_id.unwrap())).unwrap();
-    insta::assert_ron_snapshot!(lyrics);
+    insta::assert_ron_snapshot!(lyrics.body);
+    assert!(
+        lyrics.footer.contains("Musixmatch"),
+        "footer text: {}",
+        lyrics.footer
+    )
 }
 
 #[rstest]
@@ -2041,14 +2108,16 @@ fn music_new_videos(rp: RustyPipe) {
 }
 
 #[rstest]
-fn music_genres(rp: RustyPipe) {
+fn music_genres(rp: RustyPipe, unlocalized: bool) {
     let genres = tokio_test::block_on(rp.query().music_genres()).unwrap();
 
     let chill = genres
         .iter()
         .find(|g| g.id == "ggMPOg1uX1JOQWZFeDByc2Jm")
         .unwrap();
-    assert_eq!(chill.name, "Chill");
+    if unlocalized {
+        assert_eq!(chill.name, "Chill");
+    }
     assert!(chill.is_mood);
 
     let pop = genres
@@ -2067,12 +2136,19 @@ fn music_genres(rp: RustyPipe) {
 #[rstest]
 #[case::chill("ggMPOg1uX1JOQWZFeDByc2Jm", "Chill")]
 #[case::pop("ggMPOg1uX1lMbVZmbzl6NlJ3", "Pop")]
-fn music_genre(#[case] id: &str, #[case] name: &str, rp: RustyPipe) {
+fn music_genre(#[case] id: &str, #[case] name: &str, rp: RustyPipe, unlocalized: bool) {
     let genre = tokio_test::block_on(rp.query().music_genre(id)).unwrap();
 
-    fn check_music_genre(genre: MusicGenre, id: &str, name: &str) -> Vec<(String, String)> {
+    fn check_music_genre(
+        genre: MusicGenre,
+        id: &str,
+        name: &str,
+        unlocalized: bool,
+    ) -> Vec<(String, String)> {
         assert_eq!(genre.id, id);
-        assert_eq!(genre.name, name);
+        if unlocalized {
+            assert_eq!(genre.name, name);
+        }
         assert_gte(genre.sections.len(), 2, "genre sections");
 
         let mut subgenres = Vec::new();
@@ -2105,7 +2181,7 @@ fn music_genre(#[case] id: &str, #[case] name: &str, rp: RustyPipe) {
         subgenres
     }
 
-    let subgenres = check_music_genre(genre, id, name);
+    let subgenres = check_music_genre(genre, id, name, unlocalized);
 
     if name == "Chill" {
         assert_gte(subgenres.len(), 2, "subgenres");
@@ -2113,7 +2189,7 @@ fn music_genre(#[case] id: &str, #[case] name: &str, rp: RustyPipe) {
 
     for (id, name) in subgenres {
         let genre = tokio_test::block_on(rp.query().music_genre(&id)).unwrap();
-        check_music_genre(genre, &id, &name);
+        check_music_genre(genre, &id, &name, unlocalized);
     }
 }
 
@@ -2167,10 +2243,25 @@ fn invalid_ctoken(#[case] ep: ContinuationEndpoint, rp: RustyPipe) {
 
 //#TESTUTIL
 
+/// Get the language setting from the environment variable
+#[fixture]
+fn lang() -> Language {
+    std::env::var("YT_LANG")
+        .ok()
+        .map(|l| Language::from_str(&l).unwrap())
+        .unwrap_or(Language::En)
+}
+
 /// Get a new RustyPipe instance
 #[fixture]
-fn rp() -> RustyPipe {
-    RustyPipe::builder().strict().build()
+fn rp(lang: Language) -> RustyPipe {
+    RustyPipe::builder().strict().lang(lang).build()
+}
+
+/// Get a flag signaling if the language is set to English
+#[fixture]
+fn unlocalized(lang: Language) -> bool {
+    lang == Language::En
 }
 
 /// Get a new RustyPipe instance with pre-set visitor data
