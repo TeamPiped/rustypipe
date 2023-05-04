@@ -177,7 +177,7 @@ fn check_video_stream(s: impl YtStream) {
 )]
 #[case::live(
     "86YLFOog4GM",
-    "🌎 Nasa Live Stream  - Earth From Space :  Live Views from the ISS",
+    "🌎 Earth From Space Live Stream  :  Live Views from the ISS",
     "The station is crewed by NASA astronauts as well as Russian Cosmonauts",
     0,
     "UCakgsb0w7QB0VHdnCc-OVEA",
@@ -660,7 +660,7 @@ fn get_video_details_live(rp: RustyPipe) {
     assert_eq!(details.id, "86YLFOog4GM");
     assert_eq!(
         details.name,
-        "🌎 Nasa Live Stream  - Earth From Space :  Live Views from the ISS"
+        "🌎 Earth From Space Live Stream  :  Live Views from the ISS"
     );
     let desc = details.description.to_plaintext();
     assert!(
@@ -930,7 +930,6 @@ fn assert_channel_eevblog<T>(channel: &Channel<T>) {
     true
 )]
 #[case::music("UC-9-kyTW8ZkZNDHQJ6FgpwQ", "Music", false, false)]
-#[case::news("UCYfdidRxbB8Qhf0Nx7ioOYw", "News", false, false)]
 fn channel_more(
     #[case] id: &str,
     #[case] name: &str,
@@ -969,6 +968,7 @@ fn channel_more(
 #[case::sports("UCEgdi0XIXXZ-qJOFPf4JSKw")]
 #[case::learning("UCtFRv9O2AHqOZjjynzrv-xg")]
 #[case::live("UC4R8DWoMoI7CAwX8_LjQHig")]
+#[case::news("UCYfdidRxbB8Qhf0Nx7ioOYw")]
 fn channel_not_found(#[case] id: &str, rp: RustyPipe) {
     let err = tokio_test::block_on(rp.query().channel_videos(&id)).unwrap_err();
 
@@ -1675,6 +1675,18 @@ fn music_search_playlists(#[case] with_community: bool, rp: RustyPipe) {
     assert_gte(playlist.track_count.unwrap(), 100, "tracks");
     assert_eq!(playlist.channel, None);
     assert!(playlist.from_ytm);
+
+    if with_community {
+        assert!(
+            res.items.items.iter().any(|p| !p.from_ytm),
+            "no community items found"
+        )
+    } else {
+        assert!(
+            res.items.items.iter().all(|p| p.from_ytm),
+            "community items found"
+        )
+    }
 }
 
 #[rstest]
@@ -1704,6 +1716,11 @@ fn music_search_playlists_community(rp: RustyPipe) {
     assert_eq!(channel.id, "UCs72iRpTEuwV3y6pdWYLgiw");
     assert_eq!(channel.name, "Redlist - Just Hits");
     assert!(!playlist.from_ytm);
+
+    assert!(
+        res.items.items.iter().all(|p| !p.from_ytm),
+        "ytm items found"
+    )
 }
 
 /// The YouTube Music search sometimes shows genre radio items. They should be skipped.
@@ -1765,7 +1782,7 @@ fn music_details(#[case] name: &str, #[case] id: &str, rp: RustyPipe) {
 
 #[rstest]
 fn music_lyrics(rp: RustyPipe) {
-    let track = tokio_test::block_on(rp.query().music_details("NO8Arj4yeww")).unwrap();
+    let track = tokio_test::block_on(rp.query().music_details("60ImQ8DS3Vs")).unwrap();
     let lyrics = tokio_test::block_on(rp.query().music_lyrics(&track.lyrics_id.unwrap())).unwrap();
     insta::assert_ron_snapshot!(lyrics);
 }
