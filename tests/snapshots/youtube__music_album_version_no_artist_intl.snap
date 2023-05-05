@@ -5,7 +5,7 @@ expression: album
 MusicAlbum(
   id: "MPREb_h8ltx5oKvyY",
   playlist_id: Some("OLAK5uy_lIDfTi_k8V1RJ54MeJJGK_BduAeYbm-0s"),
-  name: "Pedha Rasi Peddamma Katha",
+  name: "[name]",
   cover: "[cover]",
   artists: [
     ArtistId(
@@ -18,7 +18,7 @@ MusicAlbum(
     ),
   ],
   artist_id: Some("UCl4iPtukwe7m0kIxUMskkgA"),
-  description: None,
+  description: "[description]",
   album_type: Ep,
   year: Some(1968),
   by_va: false,
@@ -41,7 +41,7 @@ MusicAlbum(
       artist_id: Some("UCl4iPtukwe7m0kIxUMskkgA"),
       album: Some(AlbumId(
         id: "MPREb_h8ltx5oKvyY",
-        name: "Pedha Rasi Peddamma Katha",
+        name: "[name]",
       )),
       view_count: None,
       is_video: false,
@@ -62,7 +62,7 @@ MusicAlbum(
       artist_id: Some("UC1C05NyYICFB2mVGn9_ttEw"),
       album: Some(AlbumId(
         id: "MPREb_h8ltx5oKvyY",
-        name: "Pedha Rasi Peddamma Katha",
+        name: "[name]",
       )),
       view_count: None,
       is_video: false,
@@ -83,7 +83,7 @@ MusicAlbum(
       artist_id: Some("UC_KQPMiRQl3CFAIKTVfCHwA"),
       album: Some(AlbumId(
         id: "MPREb_h8ltx5oKvyY",
-        name: "Pedha Rasi Peddamma Katha",
+        name: "[name]",
       )),
       view_count: None,
       is_video: false,
@@ -104,7 +104,7 @@ MusicAlbum(
       artist_id: Some("UCDqpyYkgWy2h03HamIfODjw"),
       album: Some(AlbumId(
         id: "MPREb_h8ltx5oKvyY",
-        name: "Pedha Rasi Peddamma Katha",
+        name: "[name]",
       )),
       view_count: None,
       is_video: false,

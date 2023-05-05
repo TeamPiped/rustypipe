@@ -5,11 +5,11 @@ expression: album
 MusicAlbum(
   id: "MPREb_AzuWg8qAVVl",
   playlist_id: Some("OLAK5uy_mux5ygfN9sbiR1ma3yh1GHTmqNekZNoAI"),
-  name: "13 Reasons Why (Season 3)",
+  name: "[name]",
   cover: "[cover]",
   artists: [],
   artist_id: None,
-  description: None,
+  description: "[description]",
   album_type: Album,
   year: Some(2019),
   by_va: true,
@@ -28,7 +28,7 @@ MusicAlbum(
       artist_id: Some("UCCj0RlDqqahEB5BXVtDcPqg"),
       album: Some(AlbumId(
         id: "MPREb_AzuWg8qAVVl",
-        name: "13 Reasons Why (Season 3)",
+        name: "[name]",
       )),
       view_count: None,
       is_video: false,
@@ -49,7 +49,7 @@ MusicAlbum(
       artist_id: Some("UCMrCoizKiBxqeg5pTpBXn1A"),
       album: Some(AlbumId(
         id: "MPREb_AzuWg8qAVVl",
-        name: "13 Reasons Why (Season 3)",
+        name: "[name]",
       )),
       view_count: None,
       is_video: false,
@@ -70,7 +70,7 @@ MusicAlbum(
       artist_id: Some("UCWjoDY2SXJ5dvcdunWI6mjQ"),
       album: Some(AlbumId(
         id: "MPREb_AzuWg8qAVVl",
-        name: "13 Reasons Why (Season 3)",
+        name: "[name]",
       )),
       view_count: None,
       is_video: false,
@@ -91,7 +91,7 @@ MusicAlbum(
       artist_id: Some("UChzK2t3sjnQkWzGnyKXOSSg"),
       album: Some(AlbumId(
         id: "MPREb_AzuWg8qAVVl",
-        name: "13 Reasons Why (Season 3)",
+        name: "[name]",
       )),
       view_count: None,
       is_video: false,
@@ -112,7 +112,7 @@ MusicAlbum(
       artist_id: Some("UCvsgN5NKOzXnAURfaf3TOig"),
       album: Some(AlbumId(
         id: "MPREb_AzuWg8qAVVl",
-        name: "13 Reasons Why (Season 3)",
+        name: "[name]",
       )),
       view_count: None,
       is_video: false,
@@ -133,7 +133,7 @@ MusicAlbum(
       artist_id: Some("UCI4YNnmHjXFaaKvfdmpWvJQ"),
       album: Some(AlbumId(
         id: "MPREb_AzuWg8qAVVl",
-        name: "13 Reasons Why (Season 3)",
+        name: "[name]",
       )),
       view_count: None,
       is_video: false,
@@ -154,7 +154,7 @@ MusicAlbum(
       artist_id: Some("UCDaFVUr2n8T7_X1f5yJ1xlw"),
       album: Some(AlbumId(
         id: "MPREb_AzuWg8qAVVl",
-        name: "13 Reasons Why (Season 3)",
+        name: "[name]",
       )),
       view_count: None,
       is_video: false,
@@ -175,7 +175,7 @@ MusicAlbum(
       artist_id: Some("UCZcc-WkffIMBVGUr6j9e6aQ"),
       album: Some(AlbumId(
         id: "MPREb_AzuWg8qAVVl",
-        name: "13 Reasons Why (Season 3)",
+        name: "[name]",
       )),
       view_count: None,
       is_video: false,
@@ -196,7 +196,7 @@ MusicAlbum(
       artist_id: Some("UCQPPz_A65SWYi2wXX8z76AQ"),
       album: Some(AlbumId(
         id: "MPREb_AzuWg8qAVVl",
-        name: "13 Reasons Why (Season 3)",
+        name: "[name]",
       )),
       view_count: None,
       is_video: false,
@@ -217,7 +217,7 @@ MusicAlbum(
       artist_id: Some("UChTOXkDhGJ0JftnfMWjpCCg"),
       album: Some(AlbumId(
         id: "MPREb_AzuWg8qAVVl",
-        name: "13 Reasons Why (Season 3)",
+        name: "[name]",
       )),
       view_count: None,
       is_video: false,
@@ -238,7 +238,7 @@ MusicAlbum(
       artist_id: Some("UCMUB52aO4CqrUXmLwbfRWYA"),
       album: Some(AlbumId(
         id: "MPREb_AzuWg8qAVVl",
-        name: "13 Reasons Why (Season 3)",
+        name: "[name]",
       )),
       view_count: None,
       is_video: false,
@@ -259,7 +259,7 @@ MusicAlbum(
       artist_id: Some("UC4YvDAbE1EYwZpj6gQ-lpLw"),
       album: Some(AlbumId(
         id: "MPREb_AzuWg8qAVVl",
-        name: "13 Reasons Why (Season 3)",
+        name: "[name]",
       )),
       view_count: None,
       is_video: false,

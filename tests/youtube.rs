@@ -348,11 +348,14 @@ fn get_playlist(
     #[case] description: Option<String>,
     #[case] channel: Option<(&str, &str)>,
     rp: RustyPipe,
+    unlocalized: bool,
 ) {
     let playlist = tokio_test::block_on(rp.query().playlist(id)).unwrap();
 
     assert_eq!(playlist.id, id);
-    assert_eq!(playlist.name, name);
+    if unlocalized {
+        assert_eq!(playlist.name, name);
+    }
     assert!(!playlist.videos.is_empty());
     assert_eq!(!playlist.videos.is_exhausted(), is_long);
     assert_gte(
@@ -1046,11 +1049,12 @@ mod channel_rss {
 fn search(rp: RustyPipe, unlocalized: bool) {
     let result = tokio_test::block_on(rp.query().search("doobydoobap")).unwrap();
 
-    assert!(
-        result.items.count.unwrap() > 1000,
-        "expected > 1000 total results, got {}",
-        result.items.count.unwrap()
+    assert_gte(
+        result.items.count.unwrap(),
+        if unlocalized { 7000 } else { 150 },
+        "results",
     );
+
     if unlocalized {
         assert_eq!(result.corrected_query.unwrap(), "doobydobap");
     }
@@ -1330,10 +1334,14 @@ fn music_album(#[case] name: &str, #[case] id: &str, rp: RustyPipe, unlocalized:
     } else {
         insta::assert_ron_snapshot!(format!("music_album_{name}_intl"), album,
             {
+                ".name" => "[name]",
                 ".cover" => "[cover]",
+                ".description" => "[description]",
                 ".artists[].name" => "[name]",
                 ".tracks[].name" => "[name]",
+                ".tracks[].album.name" => "[name]",
                 ".tracks[].artists[].name" => "[name]",
+                ".variants[].artists[].name" => "[name]",
             }
         );
     }
@@ -1461,7 +1469,9 @@ fn music_search(#[case] typo: bool, rp: RustyPipe, unlocalized: bool) {
     assert_eq!(res.order[0], MusicItemType::Track);
 
     if typo {
-        assert_eq!(res.corrected_query.unwrap(), "lieblingsmensch namika");
+        if unlocalized {
+            assert_eq!(res.corrected_query.unwrap(), "lieblingsmensch namika");
+        }
     } else {
         assert_eq!(res.corrected_query, None);
     }
@@ -1655,6 +1665,7 @@ fn music_search_albums(
     #[case] album_type: AlbumType,
     #[case] more: bool,
     rp: RustyPipe,
+    unlocalized: bool,
 ) {
     let res = tokio_test::block_on(rp.query().music_search_albums(query)).unwrap();
 
@@ -1664,7 +1675,9 @@ fn music_search_albums(
     assert_eq!(album.artists.len(), 1);
     let album_artist = &album.artists[0];
     assert_eq!(album_artist.id.as_ref().unwrap(), artist_id);
-    assert_eq!(album_artist.name, artist);
+    if unlocalized {
+        assert_eq!(album_artist.name, artist);
+    }
 
     assert_eq!(album.artist_id.as_ref().unwrap(), artist_id);
     assert!(!album.cover.is_empty(), "got no cover");
@@ -1823,7 +1836,7 @@ fn music_search_suggestion(
 
 #[rstest]
 #[case::mv("mv", "ZeerrnuLi5E")]
-#[case::track("track", "7nigXQS1Xb0")]
+#[case::track("track", "qIZ-vvg-wiU")]
 fn music_details(#[case] name: &str, #[case] id: &str, rp: RustyPipe) {
     let track = tokio_test::block_on(rp.query().music_details(id)).unwrap();
 

@@ -5,11 +5,11 @@ expression: album
 MusicAlbum(
   id: "MPREb_bqWA6mAZFWS",
   playlist_id: Some("OLAK5uy_mUiRbMqeQXFUH6h9KB87RcEmNtm45Qvs0"),
-  name: "Pedha Rasi Peddamma Katha",
+  name: "[name]",
   cover: "[cover]",
   artists: [],
   artist_id: None,
-  description: None,
+  description: "[description]",
   album_type: Ep,
   year: Some(1968),
   by_va: false,
@@ -28,7 +28,7 @@ MusicAlbum(
       artist_id: Some("UC1C05NyYICFB2mVGn9_ttEw"),
       album: Some(AlbumId(
         id: "MPREb_bqWA6mAZFWS",
-        name: "Pedha Rasi Peddamma Katha",
+        name: "[name]",
       )),
       view_count: None,
       is_video: false,
@@ -49,7 +49,7 @@ MusicAlbum(
       artist_id: Some("UCDqpyYkgWy2h03HamIfODjw"),
       album: Some(AlbumId(
         id: "MPREb_bqWA6mAZFWS",
-        name: "Pedha Rasi Peddamma Katha",
+        name: "[name]",
       )),
       view_count: None,
       is_video: false,
@@ -70,7 +70,7 @@ MusicAlbum(
       artist_id: None,
       album: Some(AlbumId(
         id: "MPREb_bqWA6mAZFWS",
-        name: "Pedha Rasi Peddamma Katha",
+        name: "[name]",
       )),
       view_count: None,
       is_video: false,
@@ -91,7 +91,7 @@ MusicAlbum(
       artist_id: Some("UCl4iPtukwe7m0kIxUMskkgA"),
       album: Some(AlbumId(
         id: "MPREb_bqWA6mAZFWS",
-        name: "Pedha Rasi Peddamma Katha",
+        name: "[name]",
       )),
       view_count: None,
       is_video: false,
@@ -118,11 +118,11 @@ MusicAlbum(
       artists: [
         ArtistId(
           id: Some("UCl4iPtukwe7m0kIxUMskkgA"),
-          name: "S P Balasubramaniam",
+          name: "[name]",
         ),
         ArtistId(
           id: Some("UCWgAqlYG7mXTUxrFiLyDSsg"),
-          name: "S Janaki",
+          name: "[name]",
         ),
       ],
       artist_id: Some("UCl4iPtukwe7m0kIxUMskkgA"),

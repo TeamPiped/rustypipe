@@ -536,6 +536,11 @@ mod tests {
         "Last updated on Jun 04, 2003",
         Some(ParsedDate::Absolute(date!(2003-6-4)))
     )]
+    #[case(
+        Language::Bn,
+        "যোগ দিয়েছেন 24 সেপ, 2013",
+        Some(ParsedDate::Absolute(date!(2013-9-24)))
+    )]
     fn t_parse_date(
         #[case] lang: Language,
         #[case] textual_date: &str,

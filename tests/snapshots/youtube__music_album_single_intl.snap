@@ -5,7 +5,7 @@ expression: album
 MusicAlbum(
   id: "MPREb_bHfHGoy7vuv",
   playlist_id: Some("OLAK5uy_kdSWBZ-9AZDkYkuy0QCc3p0KO9DEHVNH0"),
-  name: "Der Himmel reißt auf",
+  name: "[name]",
   cover: "[cover]",
   artists: [
     ArtistId(
@@ -18,7 +18,7 @@ MusicAlbum(
     ),
   ],
   artist_id: Some("UCXGYZ-OhdOpPBamHX3K9YRg"),
-  description: None,
+  description: "[description]",
   album_type: Single,
   year: Some(2020),
   by_va: false,
@@ -41,7 +41,7 @@ MusicAlbum(
       artist_id: Some("UCXGYZ-OhdOpPBamHX3K9YRg"),
       album: Some(AlbumId(
         id: "MPREb_bHfHGoy7vuv",
-        name: "Der Himmel reißt auf",
+        name: "[name]",
       )),
       view_count: None,
       is_video: false,

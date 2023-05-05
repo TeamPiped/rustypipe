@@ -5,7 +5,7 @@ expression: album
 MusicAlbum(
   id: "MPREb_u1I69lSAe5v",
   playlist_id: Some("OLAK5uy_lGP_zv0vJDUlecQDzugUJmjcF7pvyVNyY"),
-  name: "Waldbrand",
+  name: "[name]",
   cover: "[cover]",
   artists: [
     ArtistId(
@@ -14,7 +14,7 @@ MusicAlbum(
     ),
   ],
   artist_id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
-  description: None,
+  description: "[description]",
   album_type: Ep,
   year: Some(2016),
   by_va: false,
@@ -33,7 +33,7 @@ MusicAlbum(
       artist_id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
       album: Some(AlbumId(
         id: "MPREb_u1I69lSAe5v",
-        name: "Waldbrand",
+        name: "[name]",
       )),
       view_count: None,
       is_video: false,
@@ -54,7 +54,7 @@ MusicAlbum(
       artist_id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
       album: Some(AlbumId(
         id: "MPREb_u1I69lSAe5v",
-        name: "Waldbrand",
+        name: "[name]",
       )),
       view_count: None,
       is_video: false,
@@ -75,7 +75,7 @@ MusicAlbum(
       artist_id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
       album: Some(AlbumId(
         id: "MPREb_u1I69lSAe5v",
-        name: "Waldbrand",
+        name: "[name]",
       )),
       view_count: None,
       is_video: false,
@@ -96,7 +96,7 @@ MusicAlbum(
       artist_id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
       album: Some(AlbumId(
         id: "MPREb_u1I69lSAe5v",
-        name: "Waldbrand",
+        name: "[name]",
       )),
       view_count: None,
       is_video: false,
@@ -117,7 +117,7 @@ MusicAlbum(
       artist_id: Some("UCpJyCbFbdTrx0M90HCNBHFQ"),
       album: Some(AlbumId(
         id: "MPREb_u1I69lSAe5v",
-        name: "Waldbrand",
+        name: "[name]",
       )),
       view_count: None,
       is_video: false,

@@ -143,7 +143,7 @@ where
 /// and return the duration in seconds.
 pub fn parse_video_length(text: &str) -> Option<u32> {
     static VIDEO_LENGTH_REGEX: Lazy<Regex> =
-        Lazy::new(|| Regex::new(r#"(?:(\d+):)?(\d{1,2}):(\d{2})"#).unwrap());
+        Lazy::new(|| Regex::new(r#"(?:(\d+)[:.])?(\d{1,2})[:.](\d{2})"#).unwrap());
     VIDEO_LENGTH_REGEX.captures(text).map(|cap| {
         let hrs = cap
             .get(1)
@@ -294,11 +294,40 @@ where
                 }
             } else if c == decimal_point {
                 after_point = true;
-            } else if !matches!(c, '\u{200b}' | '.' | ',') {
+            } else if !matches!(
+                c,
+                '\u{200b}'
+                    | '\u{202b}'
+                    | '\u{202c}'
+                    | '\u{202e}'
+                    | '\u{200e}'
+                    | '\u{200f}'
+                    | '.'
+                    | ','
+            ) {
                 filtered.push(c);
             }
         }
-        (ok_or_bail!(buf.parse::<u64>(), None), exp, filtered)
+        if buf.is_empty() {
+            // TODO: integrate into dictionary
+            if lang == Language::Ar && string.contains("واحد")
+                || lang == Language::Iw && string.contains("אחד")
+                || lang == Language::As && string.contains('১') // ১টা
+                || lang == Language::Bn && string.contains('১')
+                || lang == Language::Fa && string.contains('۱')
+                || lang == Language::Is && (string.contains("Eitt ") || string.contains("Einn "))
+                || lang == Language::My && string.contains('၁')
+                || lang == Language::No && string.contains("Én ")
+                || lang == Language::Pt && string.contains("Um ")
+                || lang == Language::Ro && string.contains("Un ")
+            {
+                return 1.try_into().ok();
+            }
+
+            return None;
+        } else {
+            (buf.parse::<u64>().ok()?, exp, filtered)
+        }
     };
 
     let lookup_token = |token: &str| match token {
@@ -464,6 +493,17 @@ pub(crate) mod tests {
     )]
     fn t_sanitize_yt_url(#[case] url: &str, #[case] expect: &str) {
         let res = sanitize_yt_url(url);
+        assert_eq!(res, expect);
+    }
+
+    #[rstest]
+    #[case(
+        Language::Iw,
+        "\u{200f}\u{202b}3.36M\u{200f}\u{202c}\u{200f} \u{200f}מנויים\u{200f}",
+        3360000
+    )]
+    fn t_parse_large_numstr_1(#[case] lang: Language, #[case] string: &str, #[case] expect: u64) {
+        let res = parse_large_numstr::<u64>(string, lang).unwrap();
         assert_eq!(res, expect);
     }
 

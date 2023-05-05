@@ -5,11 +5,11 @@ expression: album
 MusicAlbum(
   id: "MPREb_8QkDeEIawvX",
   playlist_id: Some("OLAK5uy_mEX9ljZeeEWgTM1xLL1isyiGaWXoPyoOk"),
-  name: "＜Queendom2＞ FINAL",
+  name: "[name]",
   cover: "[cover]",
   artists: [],
   artist_id: None,
-  description: None,
+  description: "[description]",
   album_type: Single,
   year: Some(2022),
   by_va: true,
@@ -28,7 +28,7 @@ MusicAlbum(
       artist_id: None,
       album: Some(AlbumId(
         id: "MPREb_8QkDeEIawvX",
-        name: "＜Queendom2＞ FINAL",
+        name: "[name]",
       )),
       view_count: None,
       is_video: false,
@@ -49,7 +49,7 @@ MusicAlbum(
       artist_id: None,
       album: Some(AlbumId(
         id: "MPREb_8QkDeEIawvX",
-        name: "＜Queendom2＞ FINAL",
+        name: "[name]",
       )),
       view_count: None,
       is_video: false,
@@ -70,7 +70,7 @@ MusicAlbum(
       artist_id: Some("UCAKvDuIX3m1AUdPpDSqV_3w"),
       album: Some(AlbumId(
         id: "MPREb_8QkDeEIawvX",
-        name: "＜Queendom2＞ FINAL",
+        name: "[name]",
       )),
       view_count: None,
       is_video: false,
@@ -91,7 +91,7 @@ MusicAlbum(
       artist_id: None,
       album: Some(AlbumId(
         id: "MPREb_8QkDeEIawvX",
-        name: "＜Queendom2＞ FINAL",
+        name: "[name]",
       )),
       view_count: None,
       is_video: false,
@@ -112,7 +112,7 @@ MusicAlbum(
       artist_id: None,
       album: Some(AlbumId(
         id: "MPREb_8QkDeEIawvX",
-        name: "＜Queendom2＞ FINAL",
+        name: "[name]",
       )),
       view_count: None,
       is_video: false,
@@ -133,7 +133,7 @@ MusicAlbum(
       artist_id: None,
       album: Some(AlbumId(
         id: "MPREb_8QkDeEIawvX",
-        name: "＜Queendom2＞ FINAL",
+        name: "[name]",
       )),
       view_count: None,
       is_video: false,

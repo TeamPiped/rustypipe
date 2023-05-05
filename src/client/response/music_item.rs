@@ -587,7 +587,9 @@ impl MusicListMapper {
                                         (subtitle_parts.rev().next(), None, None)
                                     } else {
                                         // Skip first part (track type)
-                                        if subtitle_parts.len() > 3 {
+                                        if subtitle_parts.len() > 3
+                                            || (is_video && subtitle_parts.len() == 2)
+                                        {
                                             subtitle_parts.next();
                                         }
 

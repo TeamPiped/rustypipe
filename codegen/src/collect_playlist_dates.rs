@@ -67,11 +67,8 @@ pub async fn collect_dates(project_root: &Path, concurrency: usize) {
 
     // These are the sample playlists
     let cases = [
-        (
-            DateCase::Today,
-            "RDCLAK5uy_kj3rhiar1LINmyDcuFnXihEO0K1NQa2jI",
-        ),
-        (DateCase::Yesterday, "PL7zsB-C3aNu2yRY2869T0zj1FhtRIu5am"),
+        (DateCase::Today, "PLMC9KNkIncKtPzgY-5rmhvj7fax8fdxoj"),
+        (DateCase::Yesterday, "PLcirGkCPmbmFeQ1sm4wFciF03D_EroIfr"),
         (DateCase::Ago, "PLmB6td997u3kUOrfFwkULZ910ho44oQSy"),
         (DateCase::Jan, "PL1J-6JOckZtFjcni6Xj1pLYglJp6JCpKD"),
         (DateCase::Feb, "PL1J-6JOckZtETrbzwZE7mRIIK6BzWNLAs"),
