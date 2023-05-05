@@ -1,4 +1,5 @@
 use std::collections::{HashMap, HashSet};
+use std::sync::Arc;
 use std::{collections::BTreeMap, fs::File, io::BufReader, path::Path};
 
 use anyhow::{Context, Result};
@@ -6,20 +7,33 @@ use futures::{stream, StreamExt};
 use once_cell::sync::Lazy;
 use path_macro::path;
 use regex::Regex;
-use reqwest::{header, Client};
+use rustypipe::client::{ClientType, RustyPipe, RustyPipeQuery};
 use rustypipe::param::{locale::LANGUAGES, Language};
-use serde::Deserialize;
-use serde_with::serde_as;
-use serde_with::VecSkipError;
+use serde::{Deserialize, Serialize};
+use serde_with::{serde_as, DefaultOnError, VecSkipError};
 
-use crate::util::{self, Text};
+use crate::util::{self, QBrowse, QCont, Text};
 
-type CollectedNumbers = BTreeMap<Language, BTreeMap<u8, (String, u64)>>;
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
+#[serde(untagged)]
+enum NumKey {
+    Mag(u8),
+    S(NumKeyS),
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
+#[serde(rename_all = "lowercase")]
+enum NumKeyS {
+    Zero,
+    One,
+}
+
+type CollectedNumbers = BTreeMap<Language, BTreeMap<NumKey, (String, u64)>>;
 
 /// Collect video view count texts in every supported language
 /// and write them to `testfiles/dict/large_number_samples.json`.
 ///
-/// YouTube's API outputs the subscriber count of a channel only in a
+/// YouTube's API outputs subscriber and view counts only in a
 /// approximated format (e.g *880K subscribers*), which varies
 /// by language.
 ///
@@ -34,36 +48,61 @@ pub async fn collect_large_numbers(project_root: &Path, concurrency: usize) {
     let json_path = path!(project_root / "testfiles" / "dict" / "large_number_samples.json");
     let json_path_all =
         path!(project_root / "testfiles" / "dict" / "large_number_samples_all.json");
+    let rp = RustyPipe::new();
 
     let channels = [
-        "UCq-Fj5jknLsUf-MWSy4_brA", // 10e8 (225M)
-        "UCcdwLMPsaU2ezNSJU1nFoBQ", // 10e7 (60M)
-        "UC6mIxFTvXkWQVEHPsEdflzQ", // 10e6 (1.7M)
-        "UCD0y51PJfvkZNe3y3FR5riw", // 10e5 (125K)
-        "UCNcN0dW43zE0Om3278fjY8A", // 10e4 (27K)
+        "UCq-Fj5jknLsUf-MWSy4_brA", // 10e8 (241M)
+        "UCcdwLMPsaU2ezNSJU1nFoBQ", // 10e7 (67M)
+        "UC6mIxFTvXkWQVEHPsEdflzQ", // 10e6 (1.8M)
+        "UCD0y51PJfvkZNe3y3FR5riw", // 10e5 (126K)
+        "UCNcN0dW43zE0Om3278fjY8A", // 10e4 (33K)
         "UC0QEucPrn0-Ddi3JBTcs5Kw", // 10e3 (5K)
-        "UCXvtcj9xUQhaqPaitFf2DqA", // (170)
-        "UCq-XMc01T641v-4P3hQYJWg", // (636)
+        "UCXvtcj9xUQhaqPaitFf2DqA", // (275)
+        "UCq-XMc01T641v-4P3hQYJWg", // (695)
+        "UCaZL4eLD7a30Fa8QI-sRi_g", // (31K)
+        "UCO-dylEoJozPTxGYd8fTQxA", // (5)
+        "UCQXYK94vDqOEkPbTCyL0OjA", // (1)
     ];
 
-    let collected_numbers_all: BTreeMap<Language, BTreeMap<String, u64>> = stream::iter(LANGUAGES)
-        .map(|lang| async move {
-            let mut entry = BTreeMap::new();
+    // Build a lookup table for the channel's subscriber counts
+    let subscriber_counts: Arc<BTreeMap<String, u64>> = stream::iter(channels)
+        .map(|c| {
+            let rp = rp.query();
+            async move {
+                let channel = get_channel(&rp, c).await.unwrap();
 
-            for (n, ch_id) in channels.iter().enumerate() {
-                let channel = get_channel(ch_id, lang)
-                    .await
-                    .context(format!("{lang}-{n}"))
-                    .unwrap();
-
-                channel.view_counts.iter().for_each(|(num, txt)| {
-                    entry.insert(txt.to_owned(), *num);
-                });
-
-                println!("collected {lang}-{n}");
+                let n = util::parse_largenum_en(&channel.subscriber_count).unwrap();
+                (c.to_owned(), n)
             }
+        })
+        .buffer_unordered(concurrency)
+        .collect::<BTreeMap<_, _>>()
+        .await
+        .into();
 
-            (lang, entry)
+    let collected_numbers_all: BTreeMap<Language, BTreeMap<String, u64>> = stream::iter(LANGUAGES)
+        .map(|lang| {
+            let rp = rp.query().lang(lang);
+            let subscriber_counts = subscriber_counts.clone();
+            async move {
+                let mut entry = BTreeMap::new();
+
+                for (n, ch_id) in channels.iter().enumerate() {
+                    let channel = get_channel(&rp, ch_id)
+                        .await
+                        .context(format!("{lang}-{n}"))
+                        .unwrap();
+
+                    channel.view_counts.iter().for_each(|(num, txt)| {
+                        entry.insert(txt.to_owned(), *num);
+                    });
+                    entry.insert(channel.subscriber_count, subscriber_counts[*ch_id]);
+
+                    println!("collected {lang}-{n}");
+                }
+
+                (lang, entry)
+            }
         })
         .buffer_unordered(concurrency)
         .collect()
@@ -74,7 +113,15 @@ pub async fn collect_large_numbers(project_root: &Path, concurrency: usize) {
         .map(|(lang, entry)| {
             let mut e2 = BTreeMap::new();
             entry.iter().for_each(|(txt, num)| {
-                e2.insert(get_mag(*num), (txt.to_owned(), *num));
+                let key = if num == &0 {
+                    NumKey::S(NumKeyS::Zero)
+                } else if num == &1 {
+                    NumKey::S(NumKeyS::One)
+                } else {
+                    NumKey::Mag(get_mag(*num))
+                };
+
+                e2.insert(key, (txt.to_owned(), *num));
             });
             (*lang, e2)
         })
@@ -136,17 +183,22 @@ pub fn write_samples_to_dict(project_root: &Path) {
             .get(&lang)
             .unwrap()
             .iter()
-            .find_map(|(mag, (txt, _))| {
-                let point = POINT_REGEX
-                    .captures(txt)
-                    .map(|c| c.get(1).unwrap().as_str());
+            .find_map(|(key, (txt, _))| {
+                match key {
+                    NumKey::Mag(mag) => {
+                        let point = POINT_REGEX
+                            .captures(txt)
+                            .map(|c| c.get(1).unwrap().as_str());
 
-                if let Some(point) = point {
-                    let num_all = util::parse_numeric::<u64>(txt).unwrap();
-                    // If the number parsed from all digits has the same order of
-                    // magnitude as the actual number, it must be a separator.
-                    // Otherwise it is a decimal point
-                    return Some((get_mag(num_all) == *mag) ^ (point == ","));
+                        if let Some(point) = point {
+                            let num_all = util::parse_numeric::<u64>(txt).unwrap();
+                            // If the number parsed from all digits has the same order of
+                            // magnitude as the actual number, it must be a separator.
+                            // Otherwise it is a decimal point
+                            return Some((get_mag(num_all) == *mag) ^ (point == ","));
+                        }
+                    }
+                    NumKey::S(_) => {}
                 }
                 None
             })
@@ -182,42 +234,48 @@ pub fn write_samples_to_dict(project_root: &Path) {
         for lang in e_langs {
             let entry = collected_nums.get(&lang).unwrap();
 
-            entry.iter().for_each(|(mag, (txt, _))| {
-                let filtered = util::filter_largenumstr(txt);
+            entry.iter().for_each(|(key, (txt, _))| {
+                match key {
+                    NumKey::Mag(mag) => {
+                        let filtered = util::filter_largenumstr(txt);
 
-                let tokens: Vec<String> = match dict_entry.by_char {
-                    true => filtered.chars().map(|c| c.to_string()).collect(),
-                    false => filtered.split_whitespace().map(|c| c.to_string()).collect(),
-                };
+                        let tokens: Vec<String> = match dict_entry.by_char {
+                            true => filtered.chars().map(|c| c.to_string()).collect(),
+                            false => filtered.split_whitespace().map(|c| c.to_string()).collect(),
+                        };
 
-                let num_before_point =
-                    util::parse_numeric::<u64>(txt.split(decimal_point).next().unwrap()).unwrap();
-                let mag_before_point = get_mag(num_before_point);
-                let mut mag_remaining = mag - mag_before_point;
+                        let num_before_point =
+                            util::parse_numeric::<u64>(txt.split(decimal_point).next().unwrap())
+                                .unwrap();
+                        let mag_before_point = get_mag(num_before_point);
+                        let mut mag_remaining = mag - mag_before_point;
 
-                tokens.iter().for_each(|t| {
-                    // These tokens are correct in all languages
-                    // and are used to parse combined prefixes like `1.1K crore` (en-IN)
-                    let known_tmag: u8 = if t.len() == 1 {
-                        match t.as_str() {
-                            "K" | "k" => 3,
-                            // 'm' means 10^3 in Catalan, 'B' means 10^3 in Turkish
-                            // 'M' means 10^9 in Indonesian
-                            _ => 0,
-                        }
-                    } else {
-                        0
-                    };
+                        tokens.iter().for_each(|t| {
+                            // These tokens are correct in all languages
+                            // and are used to parse combined prefixes like `1.1K crore` (en-IN)
+                            let known_tmag: u8 = if t.len() == 1 {
+                                match t.as_str() {
+                                    "K" | "k" => 3,
+                                    // 'm' means 10^3 in Catalan, 'B' means 10^3 in Turkish
+                                    // 'M' means 10^9 in Indonesian
+                                    _ => 0,
+                                }
+                            } else {
+                                0
+                            };
 
-                    // K/M/B
-                    if known_tmag > 0 {
-                        mag_remaining = mag_remaining
-                            .checked_sub(known_tmag)
-                            .expect("known magnitude incorrect");
-                    } else {
-                        insert_token(t.to_owned(), mag_remaining);
+                            // K/M/B
+                            if known_tmag > 0 {
+                                mag_remaining = mag_remaining
+                                    .checked_sub(known_tmag)
+                                    .expect("known magnitude incorrect");
+                            } else {
+                                insert_token(t.to_owned(), mag_remaining);
+                            }
+                        });
                     }
-                });
+                    NumKey::S(_) => {}
+                }
             });
         }
 
@@ -250,6 +308,19 @@ YouTube channel videos response
 #[serde(rename_all = "camelCase")]
 struct Channel {
     contents: Contents,
+    header: ChannelHeader,
+}
+
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct ChannelHeader {
+    c4_tabbed_header_renderer: HeaderRenderer,
+}
+
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct HeaderRenderer {
+    subscriber_count_text: Text,
 }
 
 #[derive(Clone, Debug, Deserialize)]
@@ -275,113 +346,212 @@ struct TabRendererWrap {
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 struct TabRenderer {
-    content: SectionListRendererWrap,
+    content: RichGridRendererWrap,
 }
 
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-struct SectionListRendererWrap {
-    section_list_renderer: SectionListRenderer,
-}
-
-#[derive(Clone, Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct SectionListRenderer {
-    contents: Vec<ItemSectionRendererWrap>,
-}
-
-#[derive(Clone, Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct ItemSectionRendererWrap {
-    item_section_renderer: ItemSectionRenderer,
-}
-
-#[derive(Clone, Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct ItemSectionRenderer {
-    contents: Vec<GridRendererWrap>,
-}
-
-#[derive(Clone, Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct GridRendererWrap {
-    grid_renderer: GridRenderer,
+struct RichGridRendererWrap {
+    rich_grid_renderer: RichGridRenderer,
 }
 
 #[serde_as]
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-struct GridRenderer {
+struct RichGridRenderer {
     #[serde_as(as = "VecSkipError<_>")]
-    items: Vec<VideoListItem>,
+    contents: Vec<RichItemRendererWrap>,
+    #[serde(default)]
+    #[serde_as(as = "DefaultOnError")]
+    header: Option<RichGridHeader>,
 }
 
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-struct VideoListItem {
-    grid_video_renderer: GridVideoRenderer,
+struct RichItemRendererWrap {
+    rich_item_renderer: RichItemRenderer,
 }
 
 #[derive(Clone, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-struct GridVideoRenderer {
+struct RichItemRenderer {
+    content: VideoRendererWrap,
+}
+
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct VideoRendererWrap {
+    video_renderer: VideoRenderer,
+}
+
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct VideoRenderer {
     /// `24,194 views`
     view_count_text: Text,
     /// `19K views`
     short_view_count_text: Text,
 }
 
-#[derive(Clone, Debug)]
-struct ChannelData {
-    view_counts: Vec<(u64, String)>,
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct RichGridHeader {
+    feed_filter_chip_bar_renderer: ChipBar,
 }
 
-async fn get_channel(channel_id: &str, lang: Language) -> Result<ChannelData> {
-    let client = Client::new();
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct ChipBar {
+    contents: Vec<Chip>,
+}
 
-    let body = format!(
-        "{}{}{}{}{}",
-        r##"{"context":{"client":{"clientName":"WEB","clientVersion":"2.20220914.06.00","platform":"DESKTOP","originalUrl":"https://www.youtube.com/","hl":""##,
-        lang,
-        r##"","gl":"US"},"request":{"internalExperimentFlags":[],"useSsl":true},"user":{"lockedSafetyMode":false}},"params":"EgZ2aWRlb3MYASAAMAE%3D","browseId":""##,
-        channel_id,
-        "\"}"
-    );
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct Chip {
+    chip_cloud_chip_renderer: ChipRenderer,
+}
 
-    let resp = client
-        .post("https://www.youtube.com/youtubei/v1/browse?key=AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8&prettyPrint=false")
-        .header(header::CONTENT_TYPE, "application/json")
-        .body(body)
-        .send().await?
-        .error_for_status()?;
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct ChipRenderer {
+    navigation_endpoint: NavigationEndpoint,
+}
 
-    let channel = resp.json::<Channel>().await?;
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct NavigationEndpoint {
+    continuation_command: ContinuationCommand,
+}
+
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct ContinuationCommand {
+    token: String,
+}
+
+#[serde_as]
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct ContinuationResponse {
+    // #[serde_as(as = "VecSkipError<_>")]
+    on_response_received_actions: Vec<ContinuationAction>,
+}
+
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct ContinuationAction {
+    reload_continuation_items_command: ContinuationItemsWrap,
+}
+
+#[serde_as]
+#[derive(Clone, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct ContinuationItemsWrap {
+    #[serde_as(as = "VecSkipError<_>")]
+    continuation_items: Vec<RichItemRendererWrap>,
+}
+
+#[derive(Clone, Debug)]
+struct ChannelData {
+    view_counts: BTreeMap<u64, String>,
+    subscriber_count: String,
+}
+
+async fn get_channel(query: &RustyPipeQuery, channel_id: &str) -> Result<ChannelData> {
+    let resp = query
+        .raw(
+            ClientType::DesktopMusic,
+            "browse",
+            &QBrowse {
+                context: query.get_context(ClientType::Desktop, true, None).await,
+                browse_id: channel_id,
+                params: Some("EgZ2aWRlb3MYASAAMAE"),
+            },
+        )
+        .await?;
+
+    let channel = serde_json::from_str::<Channel>(&resp)?;
+
+    let tab = &channel.contents.two_column_browse_results_renderer.tabs[0]
+        .tab_renderer
+        .content
+        .rich_grid_renderer;
+
+    let popular_token = tab.header.as_ref().and_then(|h| {
+        h.feed_filter_chip_bar_renderer.contents.get(1).map(|c| {
+            c.chip_cloud_chip_renderer
+                .navigation_endpoint
+                .continuation_command
+                .token
+                .to_owned()
+        })
+    });
+
+    let mut view_counts: BTreeMap<u64, String> = tab
+        .contents
+        .iter()
+        .map(|itm| {
+            let v = &itm.rich_item_renderer.content.video_renderer;
+            (
+                util::parse_numeric(&v.view_count_text.text).unwrap_or_default(),
+                v.short_view_count_text.text.to_owned(),
+            )
+        })
+        .collect();
+
+    if let Some(popular_token) = popular_token {
+        let resp = query
+            .raw(
+                ClientType::Desktop,
+                "browse",
+                &QCont {
+                    context: query.get_context(ClientType::Desktop, true, None).await,
+                    continuation: &popular_token,
+                },
+            )
+            .await?;
+
+        let continuation = serde_json::from_str::<ContinuationResponse>(&resp)?;
+
+        continuation
+            .on_response_received_actions
+            .iter()
+            .for_each(|a| {
+                a.reload_continuation_items_command
+                    .continuation_items
+                    .iter()
+                    .for_each(|itm| {
+                        let v = &itm.rich_item_renderer.content.video_renderer;
+                        view_counts.insert(
+                            util::parse_numeric(&v.view_count_text.text).unwrap(),
+                            v.short_view_count_text.text.to_owned(),
+                        );
+                    })
+            });
+    }
 
     Ok(ChannelData {
-        view_counts: channel
-            .contents
-            .two_column_browse_results_renderer
-            .tabs
-            .get(0)
-            .map(|tab| {
-                tab.tab_renderer.content.section_list_renderer.contents[0]
-                    .item_section_renderer
-                    .contents[0]
-                    .grid_renderer
-                    .items
-                    .iter()
-                    .map(|itm| {
-                        (
-                            util::parse_numeric(&itm.grid_video_renderer.view_count_text.text)
-                                .unwrap(),
-                            itm.grid_video_renderer
-                                .short_view_count_text
-                                .text
-                                .to_owned(),
-                        )
-                    })
-                    .collect()
-            })
-            .unwrap_or_default(),
+        view_counts,
+        subscriber_count: channel
+            .header
+            .c4_tabbed_header_renderer
+            .subscriber_count_text
+            .text,
     })
+}
+
+#[cfg(test)]
+mod tests {
+    use rustypipe::client::RustyPipe;
+
+    use super::*;
+
+    #[tokio::test]
+    async fn t() {
+        let rp = RustyPipe::new();
+        let x = get_channel(&rp.query(), "UCQXYK94vDqOEkPbTCyL0OjA")
+            .await
+            .unwrap();
+        dbg!(&x);
+    }
 }

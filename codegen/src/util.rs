@@ -8,7 +8,7 @@ use std::{
 
 use once_cell::sync::Lazy;
 use path_macro::path;
-use rustypipe::{model::AlbumType, param::Language};
+use rustypipe::{client::YTContext, model::AlbumType, param::Language};
 use serde::{Deserialize, Serialize};
 
 static DICT_PATH: Lazy<PathBuf> = Lazy::new(|| path!("testfiles" / "dict" / "dictionary.json"));
@@ -58,6 +58,22 @@ pub struct DictEntry {
     pub album_types: BTreeMap<String, AlbumType>,
 }
 
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct QBrowse<'a> {
+    pub context: YTContext<'a>,
+    pub browse_id: &'a str,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub params: Option<&'a str>,
+}
+
+#[derive(Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct QCont<'a> {
+    pub context: YTContext<'a>,
+    pub continuation: &'a str,
+}
+
 #[derive(Clone, Debug, Deserialize)]
 pub struct TextRuns {
     pub runs: Vec<Text>,
@@ -100,7 +116,19 @@ pub fn filter_datestr(string: &str) -> String {
 pub fn filter_largenumstr(string: &str) -> String {
     string
         .chars()
-        .filter(|c| !matches!(c, '\u{200b}' | '.' | ',') && !c.is_ascii_digit())
+        .filter(|c| {
+            !matches!(
+                c,
+                '\u{200b}'
+                    | '\u{202b}'
+                    | '\u{202c}'
+                    | '\u{202e}'
+                    | '\u{200e}'
+                    | '\u{200f}'
+                    | '.'
+                    | ','
+            ) && !c.is_ascii_digit()
+        })
         .collect()
 }
 
@@ -139,4 +167,41 @@ where
     }
 
     numbers
+}
+
+pub fn parse_largenum_en(string: &str) -> Option<u64> {
+    let (num, mut exp, filtered) = {
+        let mut buf = String::new();
+        let mut filtered = String::new();
+        let mut exp = 0;
+        let mut after_point = false;
+        for c in string.chars() {
+            if c.is_ascii_digit() {
+                buf.push(c);
+
+                if after_point {
+                    exp -= 1;
+                }
+            } else if c == '.' {
+                after_point = true;
+            } else if !matches!(c, '\u{200b}' | '.' | ',') {
+                filtered.push(c);
+            }
+        }
+        (buf.parse::<u64>().ok()?, exp, filtered)
+    };
+
+    let lookup_token = |token: &str| match token {
+        "K" => Some(3),
+        "M" => Some(6),
+        "B" => Some(9),
+        _ => None,
+    };
+
+    exp += filtered
+        .split_whitespace()
+        .filter_map(lookup_token)
+        .sum::<i32>();
+
+    num.checked_mul((10_u64).checked_pow(exp.try_into().ok()?)?)
 }

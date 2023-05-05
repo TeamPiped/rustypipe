@@ -3,13 +3,13 @@ use std::{collections::BTreeMap, fs::File, io::BufReader, path::Path};
 use futures::stream::{self, StreamExt};
 use path_macro::path;
 use rustypipe::{
-    client::{ClientType, RustyPipe, RustyPipeQuery, YTContext},
+    client::{ClientType, RustyPipe, RustyPipeQuery},
     model::AlbumType,
     param::{locale::LANGUAGES, Language},
 };
-use serde::{Deserialize, Serialize};
+use serde::Deserialize;
 
-use crate::util::{self, TextRuns};
+use crate::util::{self, QBrowse, TextRuns};
 
 pub async fn collect_album_types(project_root: &Path, concurrency: usize) {
     let json_path = path!(project_root / "testfiles" / "dict" / "album_type_samples.json");
@@ -91,13 +91,6 @@ struct HeaderRenderer {
     subtitle: TextRuns,
 }
 
-#[derive(Debug, Serialize)]
-#[serde(rename_all = "camelCase")]
-struct QBrowse<'a> {
-    context: YTContext<'a>,
-    browse_id: &'a str,
-}
-
 async fn get_album_type(query: &RustyPipeQuery, id: &str) -> String {
     let context = query
         .get_context(ClientType::DesktopMusic, true, None)
@@ -105,6 +98,7 @@ async fn get_album_type(query: &RustyPipeQuery, id: &str) -> String {
     let body = QBrowse {
         context,
         browse_id: id,
+        params: None,
     };
     let response_txt = query
         .raw(ClientType::DesktopMusic, "browse", &body)

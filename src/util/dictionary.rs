@@ -339,22 +339,24 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             comma_decimal: false,
             number_tokens: ::phf::Map {
-                key: 10121458955350035957,
+                key: 12913932095322966823,
                 disps: &[
-                    (0, 5),
-                    (6, 0),
+                    (0, 7),
+                    (9, 8),
+                    (0, 0),
                 ],
                 entries: &[
-                    ("ল\u{9be}", 5),
-                    ("কোঃট\u{9be}", 9),
-                    ("নিঃট\u{9be}", 6),
-                    ("হ\u{9be}জ\u{9be}ৰ", 3),
-                    ("ল\u{9be}খট\u{9be}", 5),
-                    ("নিয\u{9c1}ত", 6),
                     ("হ\u{9be}", 3),
-                    ("ল\u{9be}খ", 5),
                     ("হ\u{9be}জ\u{9be}ৰট\u{9be}", 3),
                     ("নিয\u{9c1}তট\u{9be}", 6),
+                    ("হ\u{9be}জ\u{9be}ৰ", 3),
+                    ("ল\u{9be}", 5),
+                    ("ল\u{9be}খট\u{9be}", 5),
+                    ("কোঃট\u{9be}", 9),
+                    ("নিঃট\u{9be}", 6),
+                    ("নিয\u{9c1}ত", 6),
+                    ("নিঃ", 6),
+                    ("ল\u{9be}খ", 5),
                 ],
             },
             album_types: ::phf::Map {
@@ -851,14 +853,14 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             comma_decimal: true,
             number_tokens: ::phf::Map {
-                key: 12913932095322966823,
+                key: 7485420634051515786,
                 disps: &[
                     (2, 0),
                 ],
                 entries: &[
-                    ("mM", 9),
-                    ("M", 6),
                     ("m", 3),
+                    ("kM", 9),
+                    ("M", 6),
                 ],
             },
             album_types: ::phf::Map {
@@ -3181,18 +3183,14 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             comma_decimal: false,
             number_tokens: ::phf::Map {
-                key: 2980949210194914378,
+                key: 12913932095322966823,
                 disps: &[
-                    (1, 3),
-                    (5, 0),
+                    (1, 0),
                 ],
                 entries: &[
-                    ("억명", 8),
-                    ("천명", 3),
-                    ("만회", 4),
-                    ("천회", 3),
-                    ("억회", 8),
-                    ("만명", 4),
+                    ("천", 3),
+                    ("만", 4),
+                    ("억", 8),
                 ],
             },
             album_types: ::phf::Map {
@@ -3964,18 +3962,18 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             comma_decimal: false,
             number_tokens: ::phf::Map {
-                key: 10121458955350035957,
+                key: 12913932095322966823,
                 disps: &[
-                    (5, 1),
-                    (2, 0),
+                    (3, 0),
+                    (0, 2),
                 ],
                 entries: &[
-                    ("ထောင\u{103a}", 3),
-                    ("သန\u{103a}း", 6),
-                    ("က\u{102f}ဋေထ", 10),
+                    ("ထ", 3),
                     ("က\u{102f}ဋေ", 7),
-                    ("သောင\u{103a}း", 4),
+                    ("သန\u{103a}း", 6),
+                    ("ထောင\u{103a}", 3),
                     ("သ\u{102d}န\u{103a}း", 5),
+                    ("သောင\u{103a}း", 4),
                 ],
             },
             album_types: ::phf::Map {

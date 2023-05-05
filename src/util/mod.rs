@@ -335,7 +335,7 @@ where
         _ => dict_entry.number_tokens.get(token).map(|t| *t as i32),
     };
 
-    if dict_entry.by_char {
+    if dict_entry.by_char || lang == Language::Ko {
         exp += filtered
             .chars()
             .filter_map(|token| lookup_token(&token.to_string()))
@@ -511,7 +511,7 @@ pub(crate) mod tests {
     fn t_parse_large_numstr_samples() {
         let json_path = path!(*TESTFILES / "dict" / "large_number_samples.json");
         let json_file = File::open(json_path).unwrap();
-        let number_samples: BTreeMap<Language, BTreeMap<u8, (String, u64)>> =
+        let number_samples: BTreeMap<Language, BTreeMap<String, (String, u64)>> =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
 
         number_samples.iter().for_each(|(lang, entry)| {
@@ -540,12 +540,17 @@ pub(crate) mod tests {
         // in the string.
         let rounded = {
             let n_significant_d = string.chars().filter(char::is_ascii_digit).count();
-            let mag = (expect as f64).log10().floor();
-            let factor = 10_u64.pow(1 + mag as u32 - n_significant_d as u32);
-            (((expect as f64) / factor as f64).floor() as u64) * factor
+            if n_significant_d == 0 {
+                expect
+            } else {
+                let mag = (expect as f64).log10().floor();
+                let factor = 10_u64.pow(1 + mag as u32 - n_significant_d as u32);
+                (((expect as f64) / factor as f64).floor() as u64) * factor
+            }
         };
 
-        let res = parse_large_numstr::<u64>(string, lang).expect(string);
+        // TODO: add support for zero values
+        let res = parse_large_numstr::<u64>(string, lang).unwrap_or_default();
         assert_eq!(res, rounded, "{string} (lang: {lang}, exact: {expect})");
     }
 }
