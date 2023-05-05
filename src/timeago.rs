@@ -142,14 +142,19 @@ fn filter_str(string: &str) -> String {
         .collect()
 }
 
-fn parse_ta_token(entry: &dictionary::Entry, nd: bool, filtered_str: &str) -> Option<TimeAgo> {
+fn parse_ta_token(
+    entry: &dictionary::Entry,
+    by_char: bool,
+    nd: bool,
+    filtered_str: &str,
+) -> Option<TimeAgo> {
     let tokens = match nd {
         true => &entry.timeago_nd_tokens,
         false => &entry.timeago_tokens,
     };
     let mut qu = 1;
 
-    if entry.by_char {
+    if by_char {
         filtered_str.chars().find_map(|word| {
             tokens.get(&word.to_string()).and_then(|t| match t.unit {
                 Some(unit) => Some(TimeAgo { n: t.n * qu, unit }),
@@ -173,14 +178,9 @@ fn parse_ta_token(entry: &dictionary::Entry, nd: bool, filtered_str: &str) -> Op
 }
 
 fn parse_textual_month(entry: &dictionary::Entry, filtered_str: &str) -> Option<u8> {
-    if entry.by_char {
-        // Chinese/Japanese dont use textual months
-        None
-    } else {
-        filtered_str
-            .split_whitespace()
-            .find_map(|word| entry.months.get(word).copied())
-    }
+    filtered_str
+        .split_whitespace()
+        .find_map(|word| entry.months.get(word).copied())
 }
 
 /// Parse a TimeAgo string (e.g. "29 minutes ago") into a TimeAgo object.
@@ -192,7 +192,7 @@ pub fn parse_timeago(lang: Language, textual_date: &str) -> Option<TimeAgo> {
 
     let qu: u8 = util::parse_numeric(textual_date).unwrap_or(1);
 
-    parse_ta_token(&entry, false, &filtered_str).map(|ta| ta * qu)
+    parse_ta_token(&entry, util::lang_by_char(lang), false, &filtered_str).map(|ta| ta * qu)
 }
 
 /// Parse a TimeAgo string (e.g. "29 minutes ago") into a Chrono DateTime object.
@@ -231,16 +231,17 @@ pub(crate) fn parse_timeago_dt_or_warn(
 /// Returns None if the date could not be parsed.
 pub fn parse_textual_date(lang: Language, textual_date: &str) -> Option<ParsedDate> {
     let entry = dictionary::entry(lang);
+    let by_char = util::lang_by_char(lang);
     let filtered_str = filter_str(textual_date);
 
     let nums = util::parse_numeric_vec::<u16>(textual_date);
 
     match nums.len() {
-        0 => match parse_ta_token(&entry, true, &filtered_str) {
+        0 => match parse_ta_token(&entry, by_char, true, &filtered_str) {
             Some(timeago) => Some(ParsedDate::Relative(timeago)),
-            None => parse_ta_token(&entry, false, &filtered_str).map(ParsedDate::Relative),
+            None => parse_ta_token(&entry, by_char, false, &filtered_str).map(ParsedDate::Relative),
         },
-        1 => parse_ta_token(&entry, false, &filtered_str)
+        1 => parse_ta_token(&entry, by_char, false, &filtered_str)
             .map(|timeago| ParsedDate::Relative(timeago * nums[0] as u8)),
         2..=3 => {
             if nums.len() == entry.date_order.len() {
@@ -256,7 +257,8 @@ pub fn parse_textual_date(lang: Language, textual_date: &str) -> Option<ParsedDa
                         DateCmp::D => d = Some(*n),
                     });
 
-                if m.is_none() {
+                // Chinese/Japanese dont use textual months
+                if m.is_none() && !by_char {
                     m = parse_textual_month(&entry, &filtered_str).map(|n| n as u16);
                 }
 

@@ -44,9 +44,6 @@ use crate::{
 /// The dictionary contains the information required to parse dates and numbers
 /// in all supported languages.
 pub(crate) struct Entry {
-    /// Should the language be parsed by character instead of by word?
-    /// (e.g. Chinese/Japanese)
-    pub by_char: bool,
     /// Tokens for parsing timeago strings.
     ///
     /// Format: Parsed token -> \[Quantity\] Identifier
@@ -153,8 +150,8 @@ pub(crate) fn entry(lang: Language) -> Entry {
         let code_number_tokens = &number_tokens.build().to_string().replace('\n', "\n            ");
         let code_album_types = &album_types.build().to_string().replace('\n', "\n            ");
 
-        let _ = write!(code_timeago_tokens, "{} => Entry {{\n            by_char: {:?},\n            timeago_tokens: {},\n            date_order: {},\n            months: {},\n            timeago_nd_tokens: {},\n            comma_decimal: {:?},\n            number_tokens: {},\n            album_types: {},\n        }},\n        ",
-        selector, entry.by_char, code_ta_tokens, date_order, code_months, code_ta_nd_tokens, entry.comma_decimal, code_number_tokens, code_album_types);
+        let _ = write!(code_timeago_tokens, "{} => Entry {{\n            timeago_tokens: {},\n            date_order: {},\n            months: {},\n            timeago_nd_tokens: {},\n            comma_decimal: {:?},\n            number_tokens: {},\n            album_types: {},\n        }},\n        ",
+        selector, code_ta_tokens, date_order, code_months, code_ta_nd_tokens, entry.comma_decimal, code_number_tokens, code_album_types);
     });
 
     code_timeago_tokens = code_timeago_tokens.trim_end().to_owned() + "\n    }\n}\n";

@@ -9,9 +9,6 @@ use crate::{
 /// The dictionary contains the information required to parse dates and numbers
 /// in all supported languages.
 pub(crate) struct Entry {
-    /// Should the language be parsed by character instead of by word?
-    /// (e.g. Chinese/Japanese)
-    pub by_char: bool,
     /// Tokens for parsing timeago strings.
     ///
     /// Format: Parsed token -> \[Quantity\] Identifier
@@ -51,7 +48,6 @@ pub(crate) struct Entry {
 pub(crate) fn entry(lang: Language) -> Entry {
     match lang {
         Language::Af => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -134,7 +130,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Am => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -219,7 +214,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Ar => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -302,7 +296,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::As => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -374,7 +367,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Az => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -452,7 +444,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Be => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -549,7 +540,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Bg => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 7485420634051515786,
                 disps: &[
@@ -619,7 +609,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Bn => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -701,7 +690,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Bs => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -793,7 +781,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Ca => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -878,7 +865,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Cs => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -953,7 +939,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Da => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -1036,7 +1021,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::De => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 345707026197253659,
                 disps: &[
@@ -1105,7 +1089,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::El => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 12213676231523076107,
                 disps: &[
@@ -1190,7 +1173,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::En | Language::EnGb | Language::EnIn => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 7485420634051515786,
                 disps: &[
@@ -1277,7 +1259,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Es => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -1361,7 +1342,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::EsUs | Language::Es419 => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -1445,7 +1425,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Et => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -1533,7 +1512,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Eu => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -1611,7 +1589,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Fa => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -1688,7 +1665,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Fi => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 12213676231523076107,
                 disps: &[
@@ -1758,7 +1734,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Fil => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -1834,7 +1809,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Fr | Language::FrCa => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -1922,7 +1896,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Gl => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -2005,7 +1978,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Gu => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -2083,7 +2055,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Hi => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -2161,7 +2132,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Hr => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 4066803471364472071,
                 disps: &[
@@ -2253,7 +2223,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Hu => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -2341,7 +2310,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Hy => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -2418,7 +2386,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Id => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -2495,7 +2462,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Is => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -2584,7 +2550,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::It => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -2668,7 +2633,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Iw => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -2762,7 +2726,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Ja => Entry {
-            by_char: true,
             timeago_tokens: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -2823,7 +2786,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Ka => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 14108922650502679131,
                 disps: &[
@@ -2902,7 +2864,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Kk => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 7485420634051515786,
                 disps: &[
@@ -2980,7 +2941,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Km => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -3059,7 +3019,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Kn => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -3146,7 +3105,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Ko => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -3208,7 +3166,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Ky => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -3285,7 +3242,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Lo => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 7485420634051515786,
                 disps: &[
@@ -3365,7 +3321,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Lt => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -3447,7 +3402,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Lv => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -3532,7 +3486,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Mk => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -3603,7 +3556,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Ml => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -3679,7 +3631,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Mn => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 2126027241312876569,
                 disps: &[
@@ -3743,7 +3694,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Mr => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -3833,7 +3783,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Ms => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -3909,7 +3858,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::My => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -3991,7 +3939,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Ne => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -4070,7 +4017,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Nl => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 14108922650502679131,
                 disps: &[
@@ -4152,7 +4098,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::No => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 7485420634051515786,
                 disps: &[
@@ -4236,7 +4181,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Or => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 1937371814602216758,
                 disps: &[
@@ -4318,7 +4262,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Pa => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 399332969041170284,
                 disps: &[
@@ -4399,7 +4342,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Pl => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -4493,7 +4435,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Pt => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -4578,7 +4519,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::PtPt => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -4648,7 +4588,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Ro => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 14108922650502679131,
                 disps: &[
@@ -4732,7 +4671,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Ru => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -4824,7 +4762,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Si => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -4901,7 +4838,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Sk => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -4975,7 +4911,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Sl => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -5073,7 +5008,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Sq => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 471159234146692604,
                 disps: &[
@@ -5153,7 +5087,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Sr => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 14108922650502679131,
                 disps: &[
@@ -5228,7 +5161,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::SrLatn => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -5304,7 +5236,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Sv => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -5387,7 +5318,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Sw => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -5466,7 +5396,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Ta => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 7485420634051515786,
                 disps: &[
@@ -5553,7 +5482,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Te => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -5639,7 +5567,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Th => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -5723,7 +5650,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Tr => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -5800,7 +5726,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Uk => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 8694567506910003252,
                 disps: &[
@@ -5892,7 +5817,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Ur => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 7485420634051515786,
                 disps: &[
@@ -5977,7 +5901,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Uz => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -6054,7 +5977,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Vi => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -6117,7 +6039,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::ZhCn => Entry {
-            by_char: true,
             timeago_tokens: ::phf::Map {
                 key: 2980949210194914378,
                 disps: &[
@@ -6178,7 +6099,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::ZhHk => Entry {
-            by_char: true,
             timeago_tokens: ::phf::Map {
                 key: 12213676231523076107,
                 disps: &[
@@ -6240,7 +6160,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::ZhTw => Entry {
-            by_char: true,
             timeago_tokens: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -6301,7 +6220,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Zu => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 8694567506910003252,
                 disps: &[

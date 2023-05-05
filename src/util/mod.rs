@@ -269,6 +269,14 @@ impl<T> TryRemove<T> for Vec<T> {
     }
 }
 
+/// Check if a language should be parsed by character
+pub fn lang_by_char(lang: Language) -> bool {
+    matches!(
+        lang,
+        Language::Ja | Language::ZhCn | Language::ZhHk | Language::ZhTw
+    )
+}
+
 /// Parse a large, textual number (e.g. `1.4M subscribers`, `22K views`)
 pub fn parse_large_numstr<F>(string: &str, lang: Language) -> Option<F>
 where
@@ -335,7 +343,7 @@ where
         _ => dict_entry.number_tokens.get(token).map(|t| *t as i32),
     };
 
-    if dict_entry.by_char || lang == Language::Ko {
+    if lang_by_char(lang) || lang == Language::Ko {
         exp += filtered
             .chars()
             .filter_map(|token| lookup_token(&token.to_string()))
