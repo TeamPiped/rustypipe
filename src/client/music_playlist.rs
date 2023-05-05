@@ -4,7 +4,7 @@ use crate::{
     error::{Error, ExtractionError},
     model::{paginator::Paginator, AlbumId, ChannelId, MusicAlbum, MusicPlaylist, TrackItem},
     serializer::MapResult,
-    util::{self, TryRemove},
+    util::{self, TryRemove, DOT_SEPARATOR},
 };
 
 use super::{
@@ -160,14 +160,19 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
             .try_swap_remove(0)
             .map(|cont| cont.next_continuation_data.continuation);
 
-        let track_count = match ctoken {
-            Some(_) => self.header.as_ref().and_then(|h| {
-                h.music_detail_header_renderer
+        let track_count = if ctoken.is_some() {
+            self.header.as_ref().and_then(|h| {
+                let parts = h
+                    .music_detail_header_renderer
                     .second_subtitle
-                    .first()
-                    .and_then(|txt| util::parse_numeric::<u64>(txt).ok())
-            }),
-            None => Some(map_res.c.len() as u64),
+                    .split(|p| p == DOT_SEPARATOR)
+                    .collect::<Vec<_>>();
+                parts
+                    .get(if parts.len() > 2 { 1 } else { 0 })
+                    .and_then(|txt| util::parse_numeric::<u64>(&txt[0]).ok())
+            })
+        } else {
+            Some(map_res.c.len() as u64)
         };
 
         let related_ctoken = music_contents

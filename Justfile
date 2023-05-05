@@ -28,7 +28,7 @@ testintl:
     )
     for YT_LANG in "${LANGUAGES[@]}"; do \
         echo "---TESTS FOR $YT_LANG ---"; \
-        YT_LANG="$YT_LANG" cargo test --test youtube -- --skip music_artist --skip music_playlist --skip get_video_details --skip startpage; \
+        YT_LANG="$YT_LANG" cargo test --test youtube -- --skip get_video_details --skip startpage; \
         echo "--- $YT_LANG COMPLETED ---"; \
         sleep 10; \
     done
