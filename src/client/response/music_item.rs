@@ -9,7 +9,7 @@ use crate::{
     param::Language,
     serializer::{
         text::{Text, TextComponents},
-        MapResult, VecLogError,
+        MapResult,
     },
     util::{self, dictionary, TryRemove},
 };
@@ -39,7 +39,6 @@ pub(crate) enum ItemSection {
 pub(crate) struct MusicShelf {
     /// Playlist ID (only for playlists)
     pub playlist_id: Option<String>,
-    #[serde_as(as = "VecLogError<_>")]
     pub contents: MapResult<Vec<MusicResponseItem>>,
     /// Continuation token for fetching more (>100) playlist items
     #[serde(default)]
@@ -53,12 +52,10 @@ pub(crate) struct MusicShelf {
 
 /// MusicCarouselShelf represents a horizontal list of music items displayed with
 /// large covers.
-#[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct MusicCarouselShelf {
     pub header: Option<MusicCarouselShelfHeader>,
-    #[serde_as(as = "VecLogError<_>")]
     pub contents: MapResult<Vec<MusicResponseItem>>,
 }
 
@@ -76,7 +73,6 @@ pub(crate) struct MusicCardShelf {
     #[serde(default)]
     pub thumbnail: MusicThumbnailRenderer,
     #[serde(default)]
-    #[serde_as(as = "VecLogError<_>")]
     pub contents: MapResult<Vec<MusicResponseItem>>,
 }
 
@@ -227,7 +223,6 @@ pub(crate) struct CoverMusicItem {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct PlaylistPanelRenderer {
-    #[serde_as(as = "VecLogError<_>")]
     pub contents: MapResult<Vec<PlaylistPanelVideo>>,
     /// Continuation token for fetching more radio items
     #[serde(default)]
@@ -362,15 +357,7 @@ pub(crate) struct ButtonRenderer {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct MusicItemMenu {
-    pub menu_renderer: MusicItemMenuRenderer,
-}
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct MusicItemMenuRenderer {
-    #[serde_as(as = "VecSkipError<_>")]
-    pub items: Vec<MusicItemMenuEntry>,
+    pub menu_renderer: ContentsRenderer<MusicItemMenuEntry>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -385,11 +372,9 @@ pub(crate) struct Grid {
     pub grid_renderer: GridRenderer,
 }
 
-#[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct GridRenderer {
-    #[serde_as(as = "VecLogError<_>")]
     pub items: MapResult<Vec<MusicResponseItem>>,
     pub header: Option<GridHeader>,
 }
@@ -1147,7 +1132,7 @@ fn map_artist_id_fallback(
     menu: Option<MusicItemMenu>,
     fallback_artist: Option<&ArtistId>,
 ) -> Option<String> {
-    menu.and_then(|m| map_artist_id(m.menu_renderer.items))
+    menu.and_then(|m| map_artist_id(m.menu_renderer.contents))
         .or_else(|| fallback_artist.and_then(|a| a.id.to_owned()))
 }
 

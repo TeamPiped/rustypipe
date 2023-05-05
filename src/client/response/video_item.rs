@@ -15,7 +15,7 @@ use crate::{
     param::Language,
     serializer::{
         text::{AccessibilityText, Text, TextComponent},
-        MapResult, VecLogError,
+        MapResult,
     },
     timeago,
     util::{self, TryRemove},
@@ -69,7 +69,6 @@ pub(crate) enum YouTubeListItem {
     #[serde(alias = "expandedShelfContentsRenderer", alias = "gridRenderer")]
     ItemSectionRenderer {
         #[serde(alias = "items")]
-        #[serde_as(as = "VecLogError<_>")]
         contents: MapResult<Vec<YouTubeListItem>>,
     },
 
@@ -206,11 +205,9 @@ pub(crate) struct YouTubeListRendererWrap {
     pub section_list_renderer: YouTubeListRenderer,
 }
 
-#[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct YouTubeListRenderer {
-    #[serde_as(as = "VecLogError<_>")]
     pub contents: MapResult<Vec<YouTubeListItem>>,
 }
 

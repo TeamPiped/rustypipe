@@ -6,7 +6,7 @@ mod vec_log_err;
 
 pub use date::DateYmd;
 pub use range::Range;
-pub use vec_log_err::{VecLogError, VecSkipErrorWrap};
+pub use vec_log_err::VecSkipErrorWrap;
 
 use std::fmt::Debug;
 

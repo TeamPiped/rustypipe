@@ -5,7 +5,7 @@ use serde_with::serde_as;
 use serde_with::{json::JsonString, DefaultOnError};
 
 use super::{ResponseContext, Thumbnails};
-use crate::serializer::{text::Text, MapResult, VecLogError};
+use crate::serializer::{text::Text, MapResult};
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -75,10 +75,8 @@ pub(crate) struct StreamingData {
     #[serde_as(as = "JsonString")]
     pub expires_in_seconds: u32,
     #[serde(default)]
-    #[serde_as(as = "VecLogError<_>")]
     pub formats: MapResult<Vec<Format>>,
     #[serde(default)]
-    #[serde_as(as = "VecLogError<_>")]
     pub adaptive_formats: MapResult<Vec<Format>>,
     /// Only on livestreams
     pub dash_manifest_url: Option<String>,

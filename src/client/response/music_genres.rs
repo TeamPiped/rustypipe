@@ -1,12 +1,12 @@
 use serde::Deserialize;
 use serde_with::{rust::deserialize_ignore_any, serde_as};
 
-use crate::serializer::{text::Text, MapResult, VecLogError};
+use crate::serializer::text::Text;
 
 use super::{
     music_item::{ItemSection, SimpleHeader, SingleColumnBrowseResult},
     url_endpoint::BrowseEndpointWrap,
-    SectionList, Tab,
+    ContentsRendererLogged, SectionList, Tab,
 };
 
 #[derive(Debug, Deserialize)]
@@ -18,15 +18,7 @@ pub(crate) struct MusicGenres {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct Grid {
-    pub grid_renderer: GridRenderer,
-}
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct GridRenderer {
-    #[serde_as(as = "VecLogError<_>")]
-    pub items: MapResult<Vec<NavigationButton>>,
+    pub grid_renderer: ContentsRendererLogged<NavigationButton>,
 }
 
 #[derive(Debug, Deserialize)]

@@ -57,7 +57,7 @@ use serde::{
 use serde_with::{json::JsonString, serde_as, VecSkipError};
 
 use crate::error::ExtractionError;
-use crate::serializer::{text::Text, MapResult, VecLogError, VecSkipErrorWrap};
+use crate::serializer::{text::Text, MapResult, VecSkipErrorWrap};
 
 use self::video_item::YouTubeListRenderer;
 
@@ -70,6 +70,12 @@ pub(crate) struct ContentRenderer<T> {
 #[derive(Debug)]
 pub(crate) struct ContentsRenderer<T> {
     pub contents: Vec<T>,
+}
+
+#[derive(Debug, Deserialize)]
+pub(crate) struct ContentsRendererLogged<T> {
+    #[serde(alias = "items")]
+    pub contents: MapResult<Vec<T>>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -216,11 +222,9 @@ pub(crate) struct ContinuationActionWrap {
     pub append_continuation_items_action: ContinuationAction,
 }
 
-#[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct ContinuationAction {
-    #[serde_as(as = "VecLogError<_>")]
     pub continuation_items: MapResult<Vec<YouTubeListItem>>,
 }
 
@@ -286,9 +290,10 @@ where
                 let mut contents = None;
 
                 while let Some(k) = map.next_key::<Cow<'de, str>>()? {
-                    if k == "contents" || k == "tabs" {
-                        let x = map.next_value::<VecSkipErrorWrap<T>>()?;
-                        contents = Some(ContentsRenderer { contents: x.0 });
+                    if k == "contents" || k == "tabs" || k == "items" {
+                        contents = Some(ContentsRenderer {
+                            contents: map.next_value::<VecSkipErrorWrap<T>>()?.0,
+                        });
                     } else {
                         map.next_value::<IgnoredAny>()?;
                     }

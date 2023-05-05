@@ -94,7 +94,7 @@ impl MapResponse<Playlist> for response::Playlist {
 
         let (thumbnails, last_update_txt) = match self.sidebar {
             Some(sidebar) => {
-                let mut sidebar_items = sidebar.playlist_sidebar_renderer.items;
+                let mut sidebar_items = sidebar.playlist_sidebar_renderer.contents;
                 let mut primary =
                     sidebar_items
                         .try_swap_remove(0)

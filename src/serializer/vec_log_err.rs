@@ -4,7 +4,6 @@ use serde::{
     de::{IgnoredAny, SeqAccess, Visitor},
     Deserialize,
 };
-use serde_with::{de::DeserializeAsWrap, DeserializeAs};
 
 use super::MapResult;
 
@@ -13,39 +12,26 @@ use super::MapResult;
 ///
 /// This is similar to `VecSkipError`, but it does not silently ignore
 /// faulty items.
-pub struct VecLogError<T>(PhantomData<T>);
-
-impl<'de, T, U> DeserializeAs<'de, MapResult<Vec<T>>> for VecLogError<U>
+impl<'de, T> Deserialize<'de> for MapResult<Vec<T>>
 where
-    U: DeserializeAs<'de, T>,
+    T: Deserialize<'de>,
 {
-    fn deserialize_as<D>(deserializer: D) -> Result<MapResult<Vec<T>>, D::Error>
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
     where
         D: serde::Deserializer<'de>,
     {
         #[derive(serde::Deserialize)]
-        #[serde(
-            untagged,
-            bound(deserialize = "DeserializeAsWrap<T, TAs>: Deserialize<'de>")
-        )]
-        enum GoodOrError<'a, T, TAs>
-        where
-            TAs: DeserializeAs<'a, T>,
-        {
-            Good(DeserializeAsWrap<T, TAs>),
-            Error(serde_json::value::Value),
-            #[serde(skip)]
-            _JustAMarkerForTheLifetime(PhantomData<&'a u32>),
+        #[serde(untagged)]
+        enum GoodOrError<T> {
+            Good(T),
+            Error(serde_json::Value),
         }
 
-        struct SeqVisitor<T, U> {
-            marker: PhantomData<T>,
-            marker2: PhantomData<U>,
-        }
+        struct SeqVisitor<T>(PhantomData<T>);
 
-        impl<'de, T, U> Visitor<'de> for SeqVisitor<T, U>
+        impl<'de, T> Visitor<'de> for SeqVisitor<T>
         where
-            U: DeserializeAs<'de, T>,
+            T: Deserialize<'de>,
         {
             type Value = MapResult<Vec<T>>;
 
@@ -62,16 +48,15 @@ where
 
                 while let Some(value) = seq.next_element()? {
                     match value {
-                        GoodOrError::<T, U>::Good(value) => {
-                            values.push(value.into_inner());
+                        GoodOrError::<T>::Good(value) => {
+                            values.push(value);
                         }
-                        GoodOrError::<T, U>::Error(value) => {
+                        GoodOrError::<T>::Error(value) => {
                             warnings.push(format!(
                                 "error deserializing item: {}",
                                 serde_json::to_string(&value).unwrap_or_default()
                             ));
                         }
-                        _ => {}
                     }
                 }
                 Ok(MapResult {
@@ -81,15 +66,11 @@ where
             }
         }
 
-        let visitor = SeqVisitor::<T, U> {
-            marker: PhantomData,
-            marker2: PhantomData,
-        };
-        deserializer.deserialize_seq(visitor)
+        deserializer.deserialize_seq(SeqVisitor(PhantomData::<T>))
     }
 }
 
-/// Reimplementation of VecSkipError using a type wrapper
+/// Reimplementation of VecSkipError using a wrapper type
 /// to allow use with generics
 pub struct VecSkipErrorWrap<T>(pub Vec<T>);
 
@@ -145,16 +126,21 @@ where
 #[cfg(test)]
 mod tests {
     use serde::Deserialize;
-    use serde_with::serde_as;
 
     use crate::serializer::MapResult;
 
-    #[serde_as]
+    use super::VecSkipErrorWrap;
+
     #[derive(Debug, Deserialize)]
     #[allow(dead_code)]
-    struct S {
-        #[serde_as(as = "crate::serializer::VecLogError<_>")]
+    struct SLog {
         items: MapResult<Vec<Item>>,
+    }
+
+    #[derive(Deserialize)]
+    #[allow(dead_code)]
+    struct SSkip {
+        items: VecSkipErrorWrap<Item>,
     }
 
     #[derive(Debug, Deserialize)]
@@ -163,14 +149,30 @@ mod tests {
         name: String,
     }
 
-    #[test]
-    fn test() {
-        let json = r#"{"items": [{"name": "i1"}, {"xyz": "i2"}, {"name": "i3"}, {"namra": "i4"}]}"#;
+    const JSON: &str =
+        r#"{"items": [{"name": "i1"}, {"xyz": "i2"}, {"name": "i3"}, {"namra": "i4"}]}"#;
 
-        let res = serde_json::from_str::<S>(json).unwrap();
+    #[test]
+    fn skip_error() {
+        let res = serde_json::from_str::<SSkip>(JSON).unwrap();
+        insta::assert_debug_snapshot!(res.items.0, @r###"
+        [
+            Item {
+                name: "i1",
+            },
+            Item {
+                name: "i3",
+            },
+        ]
+        "###);
+    }
+
+    #[test]
+    fn log_error() {
+        let res = serde_json::from_str::<SLog>(JSON).unwrap();
 
         insta::assert_debug_snapshot!(res, @r###"
-        S {
+        SLog {
             items: [
                 Item {
                     name: "i1",

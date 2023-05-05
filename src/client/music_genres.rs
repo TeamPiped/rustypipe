@@ -81,7 +81,7 @@ impl MapResponse<Vec<MusicGenreItem>> for response::MusicGenres {
         let genres = content_iter
             .enumerate()
             .flat_map(|(i, grid)| {
-                let mut grid = grid.grid_renderer.items;
+                let mut grid = grid.grid_renderer.contents;
                 warnings.append(&mut grid.warnings);
                 grid.c.into_iter().filter_map(move |section| match section {
                     response::music_genres::NavigationButton::MusicNavigationButtonRenderer(
