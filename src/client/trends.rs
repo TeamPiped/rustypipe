@@ -56,7 +56,7 @@ impl MapResponse<Paginator<VideoItem>> for response::Startpage {
         lang: crate::param::Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<MapResult<Paginator<VideoItem>>, ExtractionError> {
-        let mut contents = self.contents.two_column_browse_results_renderer.tabs;
+        let mut contents = self.contents.two_column_browse_results_renderer.contents;
         let grid = contents
             .try_swap_remove(0)
             .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no contents")))?
@@ -80,7 +80,7 @@ impl MapResponse<Vec<VideoItem>> for response::Trending {
         lang: crate::param::Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<MapResult<Vec<VideoItem>>, ExtractionError> {
-        let mut contents = self.contents.two_column_browse_results_renderer.tabs;
+        let mut contents = self.contents.two_column_browse_results_renderer.contents;
         let items = contents
             .try_swap_remove(0)
             .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no contents")))?

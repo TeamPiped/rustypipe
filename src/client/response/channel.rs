@@ -3,7 +3,7 @@ use serde_with::{rust::deserialize_ignore_any, serde_as, DefaultOnError, VecSkip
 
 use super::{
     video_item::YouTubeListRenderer, Alert, ChannelBadge, ContentsRenderer, ResponseContext,
-    Thumbnails,
+    Thumbnails, TwoColumnBrowseResults,
 };
 use crate::serializer::text::Text;
 
@@ -22,21 +22,7 @@ pub(crate) struct Channel {
     pub response_context: ResponseContext,
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct Contents {
-    pub two_column_browse_results_renderer: TabsRenderer,
-}
-
-/// YouTube channel tab view. Contains multiple tabs
-/// (Home, Videos, Playlists, About...). We can ignore unknown tabs.
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct TabsRenderer {
-    #[serde_as(as = "VecSkipError<_>")]
-    pub tabs: Vec<TabRendererWrap>,
-}
+pub(crate) type Contents = TwoColumnBrowseResults<TabRendererWrap>;
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]

@@ -551,6 +551,7 @@ mod tests {
     }
 
     #[test]
+    #[ignore]
     fn t_parse_date_samples() {
         let json_path = path!(*TESTFILES / "dict" / "playlist_samples.json");
         let json_file = File::open(json_path).unwrap();

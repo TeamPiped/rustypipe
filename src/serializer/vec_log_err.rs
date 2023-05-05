@@ -1,7 +1,7 @@
 use std::{fmt, marker::PhantomData};
 
 use serde::{
-    de::{SeqAccess, Visitor},
+    de::{IgnoredAny, SeqAccess, Visitor},
     Deserialize,
 };
 use serde_with::{de::DeserializeAsWrap, DeserializeAs};
@@ -86,6 +86,59 @@ where
             marker2: PhantomData,
         };
         deserializer.deserialize_seq(visitor)
+    }
+}
+
+/// Reimplementation of VecSkipError using a type wrapper
+/// to allow use with generics
+pub struct VecSkipErrorWrap<T>(pub Vec<T>);
+
+impl<'de, T> Deserialize<'de> for VecSkipErrorWrap<T>
+where
+    T: Deserialize<'de>,
+{
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        #[derive(serde::Deserialize)]
+        #[serde(untagged)]
+        enum GoodOrError<T> {
+            Good(T),
+            Error(IgnoredAny),
+        }
+
+        struct SeqVisitor<T>(PhantomData<T>);
+
+        impl<'de, T> Visitor<'de> for SeqVisitor<T>
+        where
+            T: Deserialize<'de>,
+        {
+            type Value = VecSkipErrorWrap<T>;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+                formatter.write_str("a sequence")
+            }
+
+            fn visit_seq<A>(self, mut seq: A) -> Result<Self::Value, A::Error>
+            where
+                A: SeqAccess<'de>,
+            {
+                let mut values = Vec::with_capacity(seq.size_hint().unwrap_or_default());
+
+                while let Some(value) = seq.next_element()? {
+                    match value {
+                        GoodOrError::<T>::Good(value) => {
+                            values.push(value);
+                        }
+                        GoodOrError::<T>::Error(_) => {}
+                    }
+                }
+                Ok(VecSkipErrorWrap(values))
+            }
+        }
+
+        deserializer.deserialize_seq(SeqVisitor(PhantomData::<T>))
     }
 }
 

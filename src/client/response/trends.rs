@@ -1,7 +1,6 @@
 use serde::Deserialize;
-use serde_with::{serde_as, VecSkipError};
 
-use super::{video_item::YouTubeListRendererWrap, ResponseContext, Tab};
+use super::{video_item::YouTubeListRendererWrap, ResponseContext, Tab, TwoColumnBrowseResults};
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -16,16 +15,4 @@ pub(crate) struct Trending {
     pub contents: Contents,
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct Contents {
-    pub two_column_browse_results_renderer: BrowseResults,
-}
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct BrowseResults {
-    #[serde_as(as = "VecSkipError<_>")]
-    pub tabs: Vec<Tab<YouTubeListRendererWrap>>,
-}
+type Contents = TwoColumnBrowseResults<Tab<YouTubeListRendererWrap>>;

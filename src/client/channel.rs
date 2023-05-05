@@ -410,7 +410,7 @@ fn map_channel_content(
 ) -> Result<MappedChannelContent, ExtractionError> {
     match contents {
         Some(contents) => {
-            let tabs = contents.two_column_browse_results_renderer.tabs;
+            let tabs = contents.two_column_browse_results_renderer.contents;
             if tabs.is_empty() {
                 return Err(ExtractionError::ContentUnavailable(
                     "channel not found".into(),

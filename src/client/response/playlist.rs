@@ -9,14 +9,14 @@ use crate::util::MappingError;
 
 use super::{
     Alert, ContentsRenderer, ContinuationEndpoint, ResponseContext, SectionList, Tab, Thumbnails,
-    ThumbnailsWrap,
+    ThumbnailsWrap, TwoColumnBrowseResults,
 };
 
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct Playlist {
-    pub contents: Option<Contents>,
+    pub contents: Option<TwoColumnBrowseResults<Tab<SectionList<ItemSection>>>>,
     pub header: Option<Header>,
     pub sidebar: Option<Sidebar>,
     #[serde_as(as = "Option<DefaultOnError>")]
@@ -31,12 +31,6 @@ pub(crate) struct PlaylistCont {
     #[serde(default)]
     #[serde_as(as = "VecSkipError<_>")]
     pub on_response_received_actions: Vec<OnResponseReceivedAction>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct Contents {
-    pub two_column_browse_results_renderer: ContentsRenderer<Tab<SectionList<ItemSection>>>,
 }
 
 #[derive(Debug, Deserialize)]
