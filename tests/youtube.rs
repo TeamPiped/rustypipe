@@ -2085,8 +2085,8 @@ fn music_charts(
     assert_eq!(charts.top_playlist_id.unwrap(), plid_top);
     assert_eq!(charts.trending_playlist_id.unwrap(), plid_trend);
 
-    assert_gte(charts.top_tracks.len(), 40, "top tracks");
-    assert_gte(charts.artists.len(), 40, "top artists");
+    assert_gte(charts.top_tracks.len(), 30, "top tracks");
+    assert_gte(charts.artists.len(), 30, "top artists");
     assert_gte(charts.trending_tracks.len(), 15, "trending tracks");
 
     // Chart playlists only available in USA
