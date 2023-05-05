@@ -38,6 +38,8 @@ enum DateCase {
     Dec,
 }
 
+const N_AGO: u8 = 5;
+
 /// Collect 'Playlist updated' dates in every supported language
 /// and write them to `testfiles/dict/playlist_samples.json`.
 ///
@@ -87,6 +89,7 @@ pub async fn collect_dates(project_root: &Path, concurrency: usize) {
     let rp = RustyPipe::new();
     let collected_dates = stream::iter(LANGUAGES)
         .map(|lang| {
+            println!("{lang}");
             let rp = rp.clone();
             async move {
                 let mut map: BTreeMap<DateCase, String> = BTreeMap::new();
@@ -165,19 +168,7 @@ pub fn write_samples_to_dict(project_root: &Path) {
         let collect_nd_tokens = !matches!(
             lang,
             // ND tokens of these languages must be edited manually
-            Language::Ja
-            | Language::ZhCn
-            | Language::ZhHk
-            | Language::ZhTw
-            | Language::Ko
-            | Language::Gu
-            | Language::Pa
-            | Language::Ur
-            | Language::Uz
-            | Language::Te
-            | Language::PtPt
-            // Singhalese YT translation has an error (today == tomorrow)
-            | Language::Si
+            Language::Ja | Language::ZhCn | Language::ZhHk | Language::ZhTw
         );
 
         dict_entry.months = BTreeMap::new();
@@ -216,7 +207,7 @@ pub fn write_samples_to_dict(project_root: &Path) {
                 assert_eq!(
                     tago,
                     Some(TimeAgo {
-                        n: 3,
+                        n: N_AGO,
                         unit: timeago::TimeUnit::Day
                     }),
                     "lang: {lang}, txt: {datestr}"
@@ -288,13 +279,11 @@ pub fn write_samples_to_dict(project_root: &Path) {
                     };
                 });
 
-                if datestr_tables.len() == 1 {
-                    assert_eq!(
-                        dict_entry.timeago_nd_tokens.len(),
-                        2,
-                        "lang: {}, nd_tokens: {:?}",
+                if datestr_tables.len() == 1 && dict_entry.timeago_nd_tokens.len() > 2 {
+                    println!(
+                        "INFO: {} has {} nd_tokens. Check manually.",
                         lang,
-                        &dict_entry.timeago_nd_tokens
+                        dict_entry.timeago_nd_tokens.len()
                     );
                 }
             }

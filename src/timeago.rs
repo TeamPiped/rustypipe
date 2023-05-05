@@ -551,7 +551,6 @@ mod tests {
     }
 
     #[test]
-    #[ignore]
     fn t_parse_date_samples() {
         let json_path = path!(*TESTFILES / "dict" / "playlist_samples.json");
         let json_file = File::open(json_path).unwrap();
@@ -570,11 +569,7 @@ mod tests {
             assert_eq!(
                 parse_textual_date(*lang, samples.get("Yesterday").unwrap()),
                 Some(ParsedDate::Relative(TimeAgo {
-                    // YT's Singhalese translation has an error (yesterday == today)
-                    n: match lang {
-                        Language::Si => 0,
-                        _ => 1,
-                    },
+                    n: 1,
                     unit: TimeUnit::Day
                 })),
                 "lang: {lang}"
@@ -582,7 +577,7 @@ mod tests {
             assert_eq!(
                 parse_textual_date(*lang, samples.get("Ago").unwrap()),
                 Some(ParsedDate::Relative(TimeAgo {
-                    n: 3,
+                    n: 5,
                     unit: TimeUnit::Day
                 })),
                 "lang: {lang}"
