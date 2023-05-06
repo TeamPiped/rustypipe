@@ -9,11 +9,6 @@
 //!
 //! This module can parse these dates using an embedded dictionary which
 //! contains date/time unit tokens for all supported languages.
-//!
-//! Note that this module is public so it can be tested from outside
-//! the crate, which is important for including new languages, too.
-//!
-//! It is not intended to be used to parse textual dates that are not from YouTube.
 
 use std::ops::Mul;
 
@@ -70,12 +65,12 @@ pub enum TimeUnit {
 
 /// Value of a parsed TimeAgo token, used in the dictionary
 #[derive(Debug, Copy, Clone, PartialEq, Eq)]
-pub(crate) struct TaToken {
+pub struct TaToken {
     pub n: u8,
     pub unit: Option<TimeUnit>,
 }
 
-pub(crate) enum DateCmp {
+pub enum DateCmp {
     Y,
     M,
     D,
@@ -202,7 +197,7 @@ pub fn parse_timeago_dt(lang: Language, textual_date: &str) -> Option<OffsetDate
     parse_timeago(lang, textual_date).map(|ta| ta.into())
 }
 
-pub(crate) fn parse_timeago_or_warn(
+pub fn parse_timeago_or_warn(
     lang: Language,
     textual_date: &str,
     warnings: &mut Vec<String>,
@@ -214,7 +209,7 @@ pub(crate) fn parse_timeago_or_warn(
     res
 }
 
-pub(crate) fn parse_timeago_dt_or_warn(
+pub fn parse_timeago_dt_or_warn(
     lang: Language,
     textual_date: &str,
     warnings: &mut Vec<String>,
@@ -284,7 +279,7 @@ pub fn parse_textual_date_to_dt(lang: Language, textual_date: &str) -> Option<Of
     parse_textual_date(lang, textual_date).map(|ta| ta.into())
 }
 
-pub(crate) fn parse_textual_date_or_warn(
+pub fn parse_textual_date_or_warn(
     lang: Language,
     textual_date: &str,
     warnings: &mut Vec<String>,

@@ -7,8 +7,7 @@ use crate::{
     model::{paginator::Paginator, ChannelTag, Chapter, Comment, VideoDetails, VideoItem},
     param::Language,
     serializer::MapResult,
-    timeago,
-    util::{self, TryRemove},
+    util::{self, timeago, TryRemove},
 };
 
 use super::{

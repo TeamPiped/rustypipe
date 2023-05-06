@@ -3,7 +3,7 @@
 use crate::{
     model::AlbumType,
     param::Language,
-    timeago::{DateCmp, TaToken, TimeUnit},
+    util::timeago::{DateCmp, TaToken, TimeUnit},
 };
 
 /// The dictionary contains the information required to parse dates and numbers

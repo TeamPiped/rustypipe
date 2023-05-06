@@ -2,6 +2,7 @@ mod date;
 mod protobuf;
 
 pub mod dictionary;
+pub mod timeago;
 
 pub use date::{now_sec, shift_months, shift_years};
 pub use protobuf::{string_from_pb, ProtoBuilder};

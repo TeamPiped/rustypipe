@@ -5,8 +5,7 @@ use time::OffsetDateTime;
 use crate::{
     error::{Error, ExtractionError},
     model::{paginator::Paginator, ChannelId, Playlist, PlaylistVideo},
-    timeago,
-    util::{self, TryRemove},
+    util::{self, timeago, TryRemove},
 };
 
 use super::{response, ClientType, MapResponse, MapResult, QBrowse, QContinuation, RustyPipeQuery};

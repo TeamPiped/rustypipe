@@ -17,8 +17,7 @@ use crate::{
         text::{AccessibilityText, Text, TextComponent},
         MapResult,
     },
-    timeago,
-    util::{self, TryRemove},
+    util::{self, timeago, TryRemove},
 };
 
 #[serde_as]
