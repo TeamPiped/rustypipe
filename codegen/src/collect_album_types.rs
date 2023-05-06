@@ -1,4 +1,4 @@
-use std::{collections::BTreeMap, fs::File, io::BufReader, path::Path};
+use std::{collections::BTreeMap, fs::File, io::BufReader};
 
 use futures::stream::{self, StreamExt};
 use path_macro::path;
@@ -9,10 +9,13 @@ use rustypipe::{
 };
 use serde::Deserialize;
 
-use crate::util::{self, QBrowse, TextRuns};
+use crate::{
+    model::{QBrowse, TextRuns},
+    util::{self, DICT_DIR},
+};
 
-pub async fn collect_album_types(project_root: &Path, concurrency: usize) {
-    let json_path = path!(project_root / "testfiles" / "dict" / "album_type_samples.json");
+pub async fn collect_album_types(concurrency: usize) {
+    let json_path = path!(*DICT_DIR / "album_type_samples.json");
 
     let album_types = [
         (AlbumType::Album, "MPREb_nlBWQROfvjo"),
@@ -48,13 +51,13 @@ pub async fn collect_album_types(project_root: &Path, concurrency: usize) {
     serde_json::to_writer_pretty(file, &collected_album_types).unwrap();
 }
 
-pub fn write_samples_to_dict(project_root: &Path) {
-    let json_path = path!(project_root / "testfiles" / "dict" / "album_type_samples.json");
+pub fn write_samples_to_dict() {
+    let json_path = path!(*DICT_DIR / "album_type_samples.json");
 
     let json_file = File::open(json_path).unwrap();
     let collected: BTreeMap<Language, BTreeMap<AlbumType, String>> =
         serde_json::from_reader(BufReader::new(json_file)).unwrap();
-    let mut dict = util::read_dict(project_root);
+    let mut dict = util::read_dict();
     let langs = dict.keys().map(|k| k.to_owned()).collect::<Vec<_>>();
 
     for lang in langs {
@@ -72,7 +75,7 @@ pub fn write_samples_to_dict(project_root: &Path) {
         });
     }
 
-    util::write_dict(project_root, dict);
+    util::write_dict(dict);
 }
 
 #[derive(Debug, Deserialize)]

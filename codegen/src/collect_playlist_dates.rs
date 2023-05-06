@@ -3,7 +3,6 @@ use std::{
     fs::File,
     hash::Hash,
     io::BufReader,
-    path::Path,
 };
 
 use futures::{stream, StreamExt};
@@ -11,11 +10,10 @@ use path_macro::path;
 use rustypipe::{
     client::RustyPipe,
     param::{locale::LANGUAGES, Language},
-    timeago::{self, TimeAgo},
 };
 use serde::{Deserialize, Serialize};
 
-use crate::util;
+use crate::util::{self, DICT_DIR};
 
 type CollectedDates = BTreeMap<Language, BTreeMap<DateCase, String>>;
 
@@ -37,8 +35,6 @@ enum DateCase {
     Nov,
     Dec,
 }
-
-const N_AGO: u8 = 5;
 
 /// Collect 'Playlist updated' dates in every supported language
 /// and write them to `testfiles/dict/playlist_samples.json`.
@@ -64,8 +60,8 @@ const N_AGO: u8 = 5;
 ///
 /// Because the relative dates change with time, the first three playlists
 /// have to checked and eventually changed before running the program.
-pub async fn collect_dates(project_root: &Path, concurrency: usize) {
-    let json_path = path!(project_root / "testfiles" / "dict" / "playlist_samples.json");
+pub async fn collect_dates(concurrency: usize) {
+    let json_path = path!(*DICT_DIR / "playlist_samples.json");
 
     // These are the sample playlists
     let cases = [
@@ -115,13 +111,13 @@ pub async fn collect_dates(project_root: &Path, concurrency: usize) {
 ///
 /// The ND (no digit) tokens (today, tomorrow) of some languages cannot be
 /// parsed automatically and require manual work.
-pub fn write_samples_to_dict(project_root: &Path) {
-    let json_path = path!(project_root / "testfiles" / "dict" / "playlist_samples.json");
+pub fn write_samples_to_dict() {
+    let json_path = path!(*DICT_DIR / "playlist_samples.json");
 
     let json_file = File::open(json_path).unwrap();
     let collected_dates: CollectedDates =
         serde_json::from_reader(BufReader::new(json_file)).unwrap();
-    let mut dict = util::read_dict(project_root);
+    let mut dict = util::read_dict();
     let langs = dict.keys().map(|k| k.to_owned()).collect::<Vec<_>>();
 
     let months = [
@@ -198,20 +194,6 @@ pub fn write_samples_to_dict(project_root: &Path) {
                 parse(datestr_table.get(&DateCase::Yesterday).unwrap(), 2);
                 parse(datestr_table.get(&DateCase::Ago).unwrap(), 0);
                 parse(datestr_table.get(&DateCase::Jan).unwrap(), 0);
-            }
-
-            // n days ago
-            {
-                let datestr = datestr_table.get(&DateCase::Ago).unwrap();
-                let tago = timeago::parse_timeago(lang, datestr);
-                assert_eq!(
-                    tago,
-                    Some(TimeAgo {
-                        n: N_AGO,
-                        unit: timeago::TimeUnit::Day
-                    }),
-                    "lang: {lang}, txt: {datestr}"
-                );
             }
 
             // Absolute dates (Jan 3, 2020)
@@ -291,5 +273,5 @@ pub fn write_samples_to_dict(project_root: &Path) {
         dict_entry.date_order = num_order;
     }
 
-    util::write_dict(project_root, dict);
+    util::write_dict(dict);
 }

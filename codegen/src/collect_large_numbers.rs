@@ -3,7 +3,6 @@ use std::{
     collections::{BTreeMap, HashMap, HashSet},
     fs::File,
     io::BufReader,
-    path::Path,
 };
 
 use anyhow::{Context, Result};
@@ -14,9 +13,13 @@ use regex::Regex;
 use rustypipe::client::{ClientType, RustyPipe, RustyPipeQuery};
 use rustypipe::param::{locale::LANGUAGES, Language};
 use serde::Deserialize;
-use serde_with::{serde_as, DefaultOnError, VecSkipError};
 
-use crate::util::{self, QBrowse, QCont, Text, TextRuns};
+use crate::model::{Channel, ContinuationResponse};
+use crate::util::DICT_DIR;
+use crate::{
+    model::{QBrowse, QCont, TextRuns},
+    util,
+};
 
 type CollectedNumbers = BTreeMap<Language, BTreeMap<String, u64>>;
 
@@ -34,8 +37,8 @@ type CollectedNumbers = BTreeMap<Language, BTreeMap<String, u64>>;
 /// We extract these instead of subscriber counts because the YouTube API
 /// outputs view counts both in approximated and exact format, so we can use
 /// the exact counts to figure out the tokens.
-pub async fn collect_large_numbers(project_root: &Path, concurrency: usize) {
-    let json_path = path!(project_root / "testfiles" / "dict" / "large_number_samples_all.json");
+pub async fn collect_large_numbers(concurrency: usize) {
+    let json_path = path!(*DICT_DIR / "large_number_samples_all.json");
     let rp = RustyPipe::new();
 
     let channels = [
@@ -137,13 +140,13 @@ pub async fn collect_large_numbers(project_root: &Path, concurrency: usize) {
 
 /// Attempt to parse the numbers collected by `collect-large-numbers`
 /// and write the results to `dictionary.json`.
-pub fn write_samples_to_dict(project_root: &Path) {
-    let json_path = path!(project_root / "testfiles" / "dict" / "large_number_samples.json");
+pub fn write_samples_to_dict() {
+    let json_path = path!(*DICT_DIR / "large_number_samples.json");
 
     let json_file = File::open(json_path).unwrap();
     let collected_nums: CollectedNumbers =
         serde_json::from_reader(BufReader::new(json_file)).unwrap();
-    let mut dict = util::read_dict(project_root);
+    let mut dict = util::read_dict();
     let langs = dict.keys().map(|k| k.to_owned()).collect::<Vec<_>>();
 
     static POINT_REGEX: Lazy<Regex> = Lazy::new(|| Regex::new(r"\d(\.|,)\d{1,3}(?:\D|$)").unwrap());
@@ -292,162 +295,11 @@ pub fn write_samples_to_dict(project_root: &Path) {
         }
     }
 
-    util::write_dict(project_root, dict);
+    util::write_dict(dict);
 }
 
 fn get_mag(n: u64) -> u8 {
     (n as f64).log10().floor() as u8
-}
-
-/*
-YouTube channel videos response
-*/
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct Channel {
-    contents: Contents,
-    header: ChannelHeader,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct ChannelHeader {
-    c4_tabbed_header_renderer: HeaderRenderer,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct HeaderRenderer {
-    subscriber_count_text: Text,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct Contents {
-    two_column_browse_results_renderer: TabsRenderer,
-}
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct TabsRenderer {
-    #[serde_as(as = "VecSkipError<_>")]
-    tabs: Vec<TabRendererWrap>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct TabRendererWrap {
-    tab_renderer: TabRenderer,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct TabRenderer {
-    content: RichGridRendererWrap,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct RichGridRendererWrap {
-    rich_grid_renderer: RichGridRenderer,
-}
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct RichGridRenderer {
-    #[serde_as(as = "VecSkipError<_>")]
-    contents: Vec<RichItemRendererWrap>,
-    #[serde(default)]
-    #[serde_as(as = "DefaultOnError")]
-    header: Option<RichGridHeader>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct RichItemRendererWrap {
-    rich_item_renderer: RichItemRenderer,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct RichItemRenderer {
-    content: VideoRendererWrap,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct VideoRendererWrap {
-    video_renderer: VideoRenderer,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct VideoRenderer {
-    /// `24,194 views`
-    view_count_text: Text,
-    /// `19K views`
-    short_view_count_text: Text,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct RichGridHeader {
-    feed_filter_chip_bar_renderer: ChipBar,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct ChipBar {
-    contents: Vec<Chip>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct Chip {
-    chip_cloud_chip_renderer: ChipRenderer,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct ChipRenderer {
-    navigation_endpoint: NavigationEndpoint,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct NavigationEndpoint {
-    continuation_command: ContinuationCommand,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct ContinuationCommand {
-    token: String,
-}
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct ContinuationResponse {
-    // #[serde_as(as = "VecSkipError<_>")]
-    on_response_received_actions: Vec<ContinuationAction>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct ContinuationAction {
-    reload_continuation_items_command: ContinuationItemsWrap,
-}
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct ContinuationItemsWrap {
-    #[serde_as(as = "VecSkipError<_>")]
-    continuation_items: Vec<RichItemRendererWrap>,
 }
 
 /*

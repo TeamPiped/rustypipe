@@ -34,7 +34,7 @@ testintl:
     done
 
 testfiles:
-    cargo run -p rustypipe-codegen -- -d . download-testfiles
+    cargo run -p rustypipe-codegen download-testfiles
 
 report2yaml:
     mkdir -p rustypipe_reports/conv

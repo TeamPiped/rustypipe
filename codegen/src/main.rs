@@ -2,12 +2,12 @@ mod abtest;
 mod collect_album_types;
 mod collect_large_numbers;
 mod collect_playlist_dates;
+mod collect_video_durations;
 mod download_testfiles;
 mod gen_dictionary;
 mod gen_locales;
+mod model;
 mod util;
-
-use std::path::PathBuf;
 
 use clap::{Parser, Subcommand};
 
@@ -15,8 +15,6 @@ use clap::{Parser, Subcommand};
 struct Cli {
     #[clap(subcommand)]
     command: Commands,
-    #[clap(short = 'd', default_value = "..")]
-    project_root: PathBuf,
     #[clap(short, default_value = "8")]
     concurrency: usize,
 }
@@ -26,6 +24,7 @@ enum Commands {
     CollectPlaylistDates,
     CollectLargeNumbers,
     CollectAlbumTypes,
+    CollectVideoDurations,
     ParsePlaylistDates,
     ParseLargeNumbers,
     ParseAlbumTypes,
@@ -47,28 +46,25 @@ async fn main() {
 
     match cli.command {
         Commands::CollectPlaylistDates => {
-            collect_playlist_dates::collect_dates(&cli.project_root, cli.concurrency).await;
+            collect_playlist_dates::collect_dates(cli.concurrency).await;
         }
         Commands::CollectLargeNumbers => {
-            collect_large_numbers::collect_large_numbers(&cli.project_root, cli.concurrency).await;
+            collect_large_numbers::collect_large_numbers(cli.concurrency).await;
         }
         Commands::CollectAlbumTypes => {
-            collect_album_types::collect_album_types(&cli.project_root, cli.concurrency).await;
+            collect_album_types::collect_album_types(cli.concurrency).await;
         }
-        Commands::ParsePlaylistDates => {
-            collect_playlist_dates::write_samples_to_dict(&cli.project_root)
+        Commands::CollectVideoDurations => {
+            collect_video_durations::collect_video_durations(cli.concurrency).await;
         }
-        Commands::ParseLargeNumbers => {
-            collect_large_numbers::write_samples_to_dict(&cli.project_root)
-        }
-        Commands::ParseAlbumTypes => collect_album_types::write_samples_to_dict(&cli.project_root),
+        Commands::ParsePlaylistDates => collect_playlist_dates::write_samples_to_dict(),
+        Commands::ParseLargeNumbers => collect_large_numbers::write_samples_to_dict(),
+        Commands::ParseAlbumTypes => collect_album_types::write_samples_to_dict(),
         Commands::GenLocales => {
-            gen_locales::generate_locales(&cli.project_root).await;
+            gen_locales::generate_locales().await;
         }
-        Commands::GenDict => gen_dictionary::generate_dictionary(&cli.project_root),
-        Commands::DownloadTestfiles => {
-            download_testfiles::download_testfiles(&cli.project_root).await
-        }
+        Commands::GenDict => gen_dictionary::generate_dictionary(),
+        Commands::DownloadTestfiles => download_testfiles::download_testfiles().await,
         Commands::AbTest { id, n } => {
             match id {
                 Some(id) => {

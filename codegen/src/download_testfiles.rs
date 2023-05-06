@@ -5,6 +5,7 @@ use std::{
     sync::Mutex,
 };
 
+use path_macro::path;
 use rustypipe::{
     client::{ClientType, RustyPipe},
     param::{
@@ -14,55 +15,54 @@ use rustypipe::{
     report::{Report, Reporter},
 };
 
-pub async fn download_testfiles(project_root: &Path) {
-    let mut testfiles = project_root.to_path_buf();
-    testfiles.push("testfiles");
+use crate::util::TESTFILES_DIR;
 
-    player(&testfiles).await;
-    player_model(&testfiles).await;
-    playlist(&testfiles).await;
-    playlist_cont(&testfiles).await;
-    video_details(&testfiles).await;
-    comments_top(&testfiles).await;
-    comments_latest(&testfiles).await;
-    recommendations(&testfiles).await;
-    channel_videos(&testfiles).await;
-    channel_shorts(&testfiles).await;
-    channel_livestreams(&testfiles).await;
-    channel_playlists(&testfiles).await;
-    channel_info(&testfiles).await;
-    channel_videos_cont(&testfiles).await;
-    channel_playlists_cont(&testfiles).await;
-    search(&testfiles).await;
-    search_cont(&testfiles).await;
-    search_playlists(&testfiles).await;
-    search_empty(&testfiles).await;
-    startpage(&testfiles).await;
-    startpage_cont(&testfiles).await;
-    trending(&testfiles).await;
+pub async fn download_testfiles() {
+    player().await;
+    player_model().await;
+    playlist().await;
+    playlist_cont().await;
+    video_details().await;
+    comments_top().await;
+    comments_latest().await;
+    recommendations().await;
+    channel_videos().await;
+    channel_shorts().await;
+    channel_livestreams().await;
+    channel_playlists().await;
+    channel_info().await;
+    channel_videos_cont().await;
+    channel_playlists_cont().await;
+    search().await;
+    search_cont().await;
+    search_playlists().await;
+    search_empty().await;
+    startpage().await;
+    startpage_cont().await;
+    trending().await;
 
-    music_playlist(&testfiles).await;
-    music_playlist_cont(&testfiles).await;
-    music_playlist_related(&testfiles).await;
-    music_album(&testfiles).await;
-    music_search(&testfiles).await;
-    music_search_tracks(&testfiles).await;
-    music_search_albums(&testfiles).await;
-    music_search_artists(&testfiles).await;
-    music_search_playlists(&testfiles).await;
-    music_search_cont(&testfiles).await;
-    music_search_suggestion(&testfiles).await;
-    music_artist(&testfiles).await;
-    music_details(&testfiles).await;
-    music_lyrics(&testfiles).await;
-    music_related(&testfiles).await;
-    music_radio(&testfiles).await;
-    music_radio_cont(&testfiles).await;
-    music_new_albums(&testfiles).await;
-    music_new_videos(&testfiles).await;
-    music_charts(&testfiles).await;
-    music_genres(&testfiles).await;
-    music_genre(&testfiles).await;
+    music_playlist().await;
+    music_playlist_cont().await;
+    music_playlist_related().await;
+    music_album().await;
+    music_search().await;
+    music_search_tracks().await;
+    music_search_albums().await;
+    music_search_artists().await;
+    music_search_playlists().await;
+    music_search_cont().await;
+    music_search_suggestion().await;
+    music_artist().await;
+    music_details().await;
+    music_lyrics().await;
+    music_related().await;
+    music_radio().await;
+    music_radio_cont().await;
+    music_new_albums().await;
+    music_new_videos().await;
+    music_charts().await;
+    music_genres().await;
+    music_genre().await;
 }
 
 const CLIENT_TYPES: [ClientType; 5] = [
@@ -136,14 +136,12 @@ fn rp_testfile(json_path: &Path) -> RustyPipe {
         .build()
 }
 
-async fn player(testfiles: &Path) {
+async fn player() {
     let video_id = "pPvd8UxmSbQ";
 
     for client_type in CLIENT_TYPES {
-        let mut json_path = testfiles.to_path_buf();
-        json_path.push("player");
-        json_path.push(format!("{client_type:?}_video.json").to_lowercase());
-
+        let json_path =
+            path!(*TESTFILES_DIR / "player" / format!("{client_type:?}_video.json").to_lowercase());
         if json_path.exists() {
             continue;
         }
@@ -156,14 +154,12 @@ async fn player(testfiles: &Path) {
     }
 }
 
-async fn player_model(testfiles: &Path) {
+async fn player_model() {
     let rp = RustyPipe::builder().strict().build();
 
     for (name, id) in [("multilanguage", "tVWWp1PqDus"), ("hdr", "LXb3EKWsInQ")] {
-        let mut json_path = testfiles.to_path_buf();
-        json_path.push("player_model");
-        json_path.push(format!("{name}.json").to_lowercase());
-
+        let json_path =
+            path!(*TESTFILES_DIR / "player_model" / format!("{name}.json").to_lowercase());
         if json_path.exists() {
             continue;
         }
@@ -180,15 +176,13 @@ async fn player_model(testfiles: &Path) {
     }
 }
 
-async fn playlist(testfiles: &Path) {
+async fn playlist() {
     for (name, id) in [
         ("short", "RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk"),
         ("long", "PL5dDx681T4bR7ZF1IuWzOv1omlRbE7PiJ"),
         ("nomusic", "PL1J-6JOckZtE_P9Xx8D3b2O6w0idhuKBe"),
     ] {
-        let mut json_path = testfiles.to_path_buf();
-        json_path.push("playlist");
-        json_path.push(format!("playlist_{name}.json"));
+        let json_path = path!(*TESTFILES_DIR / "playlist" / format!("playlist_{name}.json"));
         if json_path.exists() {
             continue;
         }
@@ -198,10 +192,8 @@ async fn playlist(testfiles: &Path) {
     }
 }
 
-async fn playlist_cont(testfiles: &Path) {
-    let mut json_path = testfiles.to_path_buf();
-    json_path.push("playlist");
-    json_path.push("playlist_cont.json");
+async fn playlist_cont() {
+    let json_path = path!(*TESTFILES_DIR / "playlist" / "playlist_cont.json");
     if json_path.exists() {
         return;
     }
@@ -217,7 +209,7 @@ async fn playlist_cont(testfiles: &Path) {
     playlist.videos.next(rp.query()).await.unwrap().unwrap();
 }
 
-async fn video_details(testfiles: &Path) {
+async fn video_details() {
     for (name, id) in [
         ("music", "XuM2onMGvTI"),
         ("mv", "ZeerrnuLi5E"),
@@ -226,9 +218,8 @@ async fn video_details(testfiles: &Path) {
         ("live", "86YLFOog4GM"),
         ("agegate", "HRKu0cvrr_o"),
     ] {
-        let mut json_path = testfiles.to_path_buf();
-        json_path.push("video_details");
-        json_path.push(format!("video_details_{name}.json"));
+        let json_path =
+            path!(*TESTFILES_DIR / "video_details" / format!("video_details_{name}.json"));
         if json_path.exists() {
             continue;
         }
@@ -238,10 +229,8 @@ async fn video_details(testfiles: &Path) {
     }
 }
 
-async fn comments_top(testfiles: &Path) {
-    let mut json_path = testfiles.to_path_buf();
-    json_path.push("video_details");
-    json_path.push("comments_top.json");
+async fn comments_top() {
+    let json_path = path!(*TESTFILES_DIR / "video_details" / "comments_top.json");
     if json_path.exists() {
         return;
     }
@@ -258,10 +247,8 @@ async fn comments_top(testfiles: &Path) {
         .unwrap();
 }
 
-async fn comments_latest(testfiles: &Path) {
-    let mut json_path = testfiles.to_path_buf();
-    json_path.push("video_details");
-    json_path.push("comments_latest.json");
+async fn comments_latest() {
+    let json_path = path!(*TESTFILES_DIR / "video_details" / "comments_latest.json");
     if json_path.exists() {
         return;
     }
@@ -278,10 +265,8 @@ async fn comments_latest(testfiles: &Path) {
         .unwrap();
 }
 
-async fn recommendations(testfiles: &Path) {
-    let mut json_path = testfiles.to_path_buf();
-    json_path.push("video_details");
-    json_path.push("recommendations.json");
+async fn recommendations() {
+    let json_path = path!(*TESTFILES_DIR / "video_details" / "recommendations.json");
     if json_path.exists() {
         return;
     }
@@ -293,7 +278,7 @@ async fn recommendations(testfiles: &Path) {
     details.recommended.next(rp.query()).await.unwrap();
 }
 
-async fn channel_videos(testfiles: &Path) {
+async fn channel_videos() {
     for (name, id) in [
         ("base", "UC2DjFE7Xf11URZqWBigcVOQ"),
         ("music", "UC_vmjW5e1xEHhYjY2a0kK1A"), // YouTube Music channels have no videos
@@ -302,9 +287,7 @@ async fn channel_videos(testfiles: &Path) {
         ("empty", "UCxBa895m48H5idw5li7h-0g"),
         ("upcoming", "UCcvfHa-GHSOHFAjU0-Ie57A"),
     ] {
-        let mut json_path = testfiles.to_path_buf();
-        json_path.push("channel");
-        json_path.push(format!("channel_videos_{name}.json"));
+        let json_path = path!(*TESTFILES_DIR / "channel" / format!("channel_videos_{name}.json"));
         if json_path.exists() {
             continue;
         }
@@ -314,10 +297,8 @@ async fn channel_videos(testfiles: &Path) {
     }
 }
 
-async fn channel_shorts(testfiles: &Path) {
-    let mut json_path = testfiles.to_path_buf();
-    json_path.push("channel");
-    json_path.push("channel_shorts.json");
+async fn channel_shorts() {
+    let json_path = path!(*TESTFILES_DIR / "channel" / "channel_shorts.json");
     if json_path.exists() {
         return;
     }
@@ -329,10 +310,8 @@ async fn channel_shorts(testfiles: &Path) {
         .unwrap();
 }
 
-async fn channel_livestreams(testfiles: &Path) {
-    let mut json_path = testfiles.to_path_buf();
-    json_path.push("channel");
-    json_path.push("channel_livestreams.json");
+async fn channel_livestreams() {
+    let json_path = path!(*TESTFILES_DIR / "channel" / "channel_livestreams.json");
     if json_path.exists() {
         return;
     }
@@ -344,10 +323,8 @@ async fn channel_livestreams(testfiles: &Path) {
         .unwrap();
 }
 
-async fn channel_playlists(testfiles: &Path) {
-    let mut json_path = testfiles.to_path_buf();
-    json_path.push("channel");
-    json_path.push("channel_playlists.json");
+async fn channel_playlists() {
+    let json_path = path!(*TESTFILES_DIR / "channel" / "channel_playlists.json");
     if json_path.exists() {
         return;
     }
@@ -359,10 +336,8 @@ async fn channel_playlists(testfiles: &Path) {
         .unwrap();
 }
 
-async fn channel_info(testfiles: &Path) {
-    let mut json_path = testfiles.to_path_buf();
-    json_path.push("channel");
-    json_path.push("channel_info.json");
+async fn channel_info() {
+    let json_path = path!(*TESTFILES_DIR / "channel" / "channel_info.json");
     if json_path.exists() {
         return;
     }
@@ -374,10 +349,8 @@ async fn channel_info(testfiles: &Path) {
         .unwrap();
 }
 
-async fn channel_videos_cont(testfiles: &Path) {
-    let mut json_path = testfiles.to_path_buf();
-    json_path.push("channel");
-    json_path.push("channel_videos_cont.json");
+async fn channel_videos_cont() {
+    let json_path = path!(*TESTFILES_DIR / "channel" / "channel_videos_cont.json");
     if json_path.exists() {
         return;
     }
@@ -393,10 +366,8 @@ async fn channel_videos_cont(testfiles: &Path) {
     videos.content.next(rp.query()).await.unwrap().unwrap();
 }
 
-async fn channel_playlists_cont(testfiles: &Path) {
-    let mut json_path = testfiles.to_path_buf();
-    json_path.push("channel");
-    json_path.push("channel_playlists_cont.json");
+async fn channel_playlists_cont() {
+    let json_path = path!(*TESTFILES_DIR / "channel" / "channel_playlists_cont.json");
     if json_path.exists() {
         return;
     }
@@ -412,10 +383,8 @@ async fn channel_playlists_cont(testfiles: &Path) {
     playlists.content.next(rp.query()).await.unwrap().unwrap();
 }
 
-async fn search(testfiles: &Path) {
-    let mut json_path = testfiles.to_path_buf();
-    json_path.push("search");
-    json_path.push("default.json");
+async fn search() {
+    let json_path = path!(*TESTFILES_DIR / "search" / "default.json");
     if json_path.exists() {
         return;
     }
@@ -424,10 +393,8 @@ async fn search(testfiles: &Path) {
     rp.query().search("doobydoobap").await.unwrap();
 }
 
-async fn search_cont(testfiles: &Path) {
-    let mut json_path = testfiles.to_path_buf();
-    json_path.push("search");
-    json_path.push("cont.json");
+async fn search_cont() {
+    let json_path = path!(*TESTFILES_DIR / "search" / "cont.json");
     if json_path.exists() {
         return;
     }
@@ -439,10 +406,8 @@ async fn search_cont(testfiles: &Path) {
     search.items.next(rp.query()).await.unwrap().unwrap();
 }
 
-async fn search_playlists(testfiles: &Path) {
-    let mut json_path = testfiles.to_path_buf();
-    json_path.push("search");
-    json_path.push("playlists.json");
+async fn search_playlists() {
+    let json_path = path!(*TESTFILES_DIR / "search" / "playlists.json");
     if json_path.exists() {
         return;
     }
@@ -454,10 +419,8 @@ async fn search_playlists(testfiles: &Path) {
         .unwrap();
 }
 
-async fn search_empty(testfiles: &Path) {
-    let mut json_path = testfiles.to_path_buf();
-    json_path.push("search");
-    json_path.push("empty.json");
+async fn search_empty() {
+    let json_path = path!(*TESTFILES_DIR / "search" / "empty.json");
     if json_path.exists() {
         return;
     }
@@ -474,10 +437,8 @@ async fn search_empty(testfiles: &Path) {
         .unwrap();
 }
 
-async fn startpage(testfiles: &Path) {
-    let mut json_path = testfiles.to_path_buf();
-    json_path.push("trends");
-    json_path.push("startpage.json");
+async fn startpage() {
+    let json_path = path!(*TESTFILES_DIR / "trends" / "startpage.json");
     if json_path.exists() {
         return;
     }
@@ -486,10 +447,8 @@ async fn startpage(testfiles: &Path) {
     rp.query().startpage().await.unwrap();
 }
 
-async fn startpage_cont(testfiles: &Path) {
-    let mut json_path = testfiles.to_path_buf();
-    json_path.push("trends");
-    json_path.push("startpage_cont.json");
+async fn startpage_cont() {
+    let json_path = path!(*TESTFILES_DIR / "trends" / "startpage_cont.json");
     if json_path.exists() {
         return;
     }
@@ -501,10 +460,8 @@ async fn startpage_cont(testfiles: &Path) {
     startpage.next(rp.query()).await.unwrap();
 }
 
-async fn trending(testfiles: &Path) {
-    let mut json_path = testfiles.to_path_buf();
-    json_path.push("trends");
-    json_path.push("trending.json");
+async fn trending() {
+    let json_path = path!(*TESTFILES_DIR / "trends" / "trending_videos.json");
     if json_path.exists() {
         return;
     }
@@ -513,15 +470,13 @@ async fn trending(testfiles: &Path) {
     rp.query().trending().await.unwrap();
 }
 
-async fn music_playlist(testfiles: &Path) {
+async fn music_playlist() {
     for (name, id) in [
         ("short", "RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk"),
         ("long", "PL5dDx681T4bR7ZF1IuWzOv1omlRbE7PiJ"),
         ("nomusic", "PL1J-6JOckZtE_P9Xx8D3b2O6w0idhuKBe"),
     ] {
-        let mut json_path = testfiles.to_path_buf();
-        json_path.push("music_playlist");
-        json_path.push(format!("playlist_{name}.json"));
+        let json_path = path!(*TESTFILES_DIR / "music_playlist" / format!("playlist_{name}.json"));
         if json_path.exists() {
             continue;
         }
@@ -531,10 +486,8 @@ async fn music_playlist(testfiles: &Path) {
     }
 }
 
-async fn music_playlist_cont(testfiles: &Path) {
-    let mut json_path = testfiles.to_path_buf();
-    json_path.push("music_playlist");
-    json_path.push("playlist_cont.json");
+async fn music_playlist_cont() {
+    let json_path = path!(*TESTFILES_DIR / "music_playlist" / "playlist_cont.json");
     if json_path.exists() {
         return;
     }
@@ -550,10 +503,8 @@ async fn music_playlist_cont(testfiles: &Path) {
     playlist.tracks.next(rp.query()).await.unwrap().unwrap();
 }
 
-async fn music_playlist_related(testfiles: &Path) {
-    let mut json_path = testfiles.to_path_buf();
-    json_path.push("music_playlist");
-    json_path.push("playlist_related.json");
+async fn music_playlist_related() {
+    let json_path = path!(*TESTFILES_DIR / "music_playlist" / "playlist_related.json");
     if json_path.exists() {
         return;
     }
@@ -574,7 +525,7 @@ async fn music_playlist_related(testfiles: &Path) {
         .unwrap();
 }
 
-async fn music_album(testfiles: &Path) {
+async fn music_album() {
     for (name, id) in [
         ("one_artist", "MPREb_nlBWQROfvjo"),
         ("various_artists", "MPREb_8QkDeEIawvX"),
@@ -582,9 +533,7 @@ async fn music_album(testfiles: &Path) {
         ("description", "MPREb_PiyfuVl6aYd"),
         ("unavailable", "MPREb_AzuWg8qAVVl"),
     ] {
-        let mut json_path = testfiles.to_path_buf();
-        json_path.push("music_playlist");
-        json_path.push(format!("album_{name}.json"));
+        let json_path = path!(*TESTFILES_DIR / "music_playlist" / format!("album_{name}.json"));
         if json_path.exists() {
             continue;
         }
@@ -594,16 +543,14 @@ async fn music_album(testfiles: &Path) {
     }
 }
 
-async fn music_search(testfiles: &Path) {
+async fn music_search() {
     for (name, query) in [
         ("default", "black mamba"),
         ("typo", "liblingsmensch"),
         ("radio", "pop radio"),
         ("artist", "taylor swift"),
     ] {
-        let mut json_path = testfiles.to_path_buf();
-        json_path.push("music_search");
-        json_path.push(format!("main_{name}.json"));
+        let json_path = path!(*TESTFILES_DIR / "music_search" / format!("main_{name}.json"));
         if json_path.exists() {
             continue;
         }
@@ -613,7 +560,7 @@ async fn music_search(testfiles: &Path) {
     }
 }
 
-async fn music_search_tracks(testfiles: &Path) {
+async fn music_search_tracks() {
     for (name, query, videos) in [
         ("default", "black mamba", false),
         ("videos", "black mamba", true),
@@ -624,9 +571,7 @@ async fn music_search_tracks(testfiles: &Path) {
             false,
         ),
     ] {
-        let mut json_path = testfiles.to_path_buf();
-        json_path.push("music_search");
-        json_path.push(format!("tracks_{name}.json"));
+        let json_path = path!(*TESTFILES_DIR / "music_search" / format!("tracks_{name}.json"));
         if json_path.exists() {
             continue;
         }
@@ -640,10 +585,8 @@ async fn music_search_tracks(testfiles: &Path) {
     }
 }
 
-async fn music_search_albums(testfiles: &Path) {
-    let mut json_path = testfiles.to_path_buf();
-    json_path.push("music_search");
-    json_path.push("albums.json");
+async fn music_search_albums() {
+    let json_path = path!(*TESTFILES_DIR / "music_search" / "albums.json");
     if json_path.exists() {
         return;
     }
@@ -652,10 +595,8 @@ async fn music_search_albums(testfiles: &Path) {
     rp.query().music_search_albums("black mamba").await.unwrap();
 }
 
-async fn music_search_artists(testfiles: &Path) {
-    let mut json_path = testfiles.to_path_buf();
-    json_path.push("music_search");
-    json_path.push("artists.json");
+async fn music_search_artists() {
+    let json_path = path!(*TESTFILES_DIR / "music_search" / "artists.json");
     if json_path.exists() {
         return;
     }
@@ -667,11 +608,9 @@ async fn music_search_artists(testfiles: &Path) {
         .unwrap();
 }
 
-async fn music_search_playlists(testfiles: &Path) {
+async fn music_search_playlists() {
     for (name, community) in [("ytm", false), ("community", true)] {
-        let mut json_path = testfiles.to_path_buf();
-        json_path.push("music_search");
-        json_path.push(format!("playlists_{name}.json"));
+        let json_path = path!(*TESTFILES_DIR / "music_search" / format!("playlists_{name}.json"));
         if json_path.exists() {
             continue;
         }
@@ -684,10 +623,8 @@ async fn music_search_playlists(testfiles: &Path) {
     }
 }
 
-async fn music_search_cont(testfiles: &Path) {
-    let mut json_path = testfiles.to_path_buf();
-    json_path.push("music_search");
-    json_path.push("tracks_cont.json");
+async fn music_search_cont() {
+    let json_path = path!(*TESTFILES_DIR / "music_search" / "tracks_cont.json");
     if json_path.exists() {
         return;
     }
@@ -699,11 +636,9 @@ async fn music_search_cont(testfiles: &Path) {
     res.items.next(rp.query()).await.unwrap().unwrap();
 }
 
-async fn music_search_suggestion(testfiles: &Path) {
+async fn music_search_suggestion() {
     for (name, query) in [("default", "t"), ("empty", "reujbhevmfndxnjrze")] {
-        let mut json_path = testfiles.to_path_buf();
-        json_path.push("music_search");
-        json_path.push(format!("suggestion_{name}.json"));
+        let json_path = path!(*TESTFILES_DIR / "music_search" / format!("suggestion_{name}.json"));
         if json_path.exists() {
             continue;
         }
@@ -713,7 +648,7 @@ async fn music_search_suggestion(testfiles: &Path) {
     }
 }
 
-async fn music_artist(testfiles: &Path) {
+async fn music_artist() {
     for (name, id, all_albums) in [
         ("default", "UClmXPfaYhXOYsNn_QUyheWQ", true),
         ("no_more_albums", "UC_vmjW5e1xEHhYjY2a0kK1A", true),
@@ -722,9 +657,7 @@ async fn music_artist(testfiles: &Path) {
         ("only_more_singles", "UC0aXrjVxG5pZr99v77wZdPQ", true),
         ("secondary_channel", "UCC9192yGQD25eBZgFZ84MPw", false),
     ] {
-        let mut json_path = testfiles.to_path_buf();
-        json_path.push("music_artist");
-        json_path.push(format!("artist_{name}.json"));
+        let json_path = path!(*TESTFILES_DIR / "music_artist" / format!("artist_{name}.json"));
         if json_path.exists() {
             continue;
         }
@@ -734,11 +667,9 @@ async fn music_artist(testfiles: &Path) {
     }
 }
 
-async fn music_details(testfiles: &Path) {
+async fn music_details() {
     for (name, id) in [("mv", "ZeerrnuLi5E"), ("track", "7nigXQS1Xb0")] {
-        let mut json_path = testfiles.to_path_buf();
-        json_path.push("music_details");
-        json_path.push(format!("details_{name}.json"));
+        let json_path = path!(*TESTFILES_DIR / "music_details" / format!("details_{name}.json"));
         if json_path.exists() {
             continue;
         }
@@ -748,10 +679,8 @@ async fn music_details(testfiles: &Path) {
     }
 }
 
-async fn music_lyrics(testfiles: &Path) {
-    let mut json_path = testfiles.to_path_buf();
-    json_path.push("music_details");
-    json_path.push("lyrics.json");
+async fn music_lyrics() {
+    let json_path = path!(*TESTFILES_DIR / "music_details" / "lyrics.json");
     if json_path.exists() {
         return;
     }
@@ -766,10 +695,8 @@ async fn music_lyrics(testfiles: &Path) {
         .unwrap();
 }
 
-async fn music_related(testfiles: &Path) {
-    let mut json_path = testfiles.to_path_buf();
-    json_path.push("music_details");
-    json_path.push("related.json");
+async fn music_related() {
+    let json_path = path!(*TESTFILES_DIR / "music_details" / "related.json");
     if json_path.exists() {
         return;
     }
@@ -784,11 +711,9 @@ async fn music_related(testfiles: &Path) {
         .unwrap();
 }
 
-async fn music_radio(testfiles: &Path) {
+async fn music_radio() {
     for (name, id) in [("mv", "RDAMVMZeerrnuLi5E"), ("track", "RDAMVM7nigXQS1Xb0")] {
-        let mut json_path = testfiles.to_path_buf();
-        json_path.push("music_details");
-        json_path.push(format!("radio_{name}.json"));
+        let json_path = path!(*TESTFILES_DIR / "music_details" / format!("radio_{name}.json"));
         if json_path.exists() {
             continue;
         }
@@ -798,10 +723,8 @@ async fn music_radio(testfiles: &Path) {
     }
 }
 
-async fn music_radio_cont(testfiles: &Path) {
-    let mut json_path = testfiles.to_path_buf();
-    json_path.push("music_details");
-    json_path.push("radio_cont.json");
+async fn music_radio_cont() {
+    let json_path = path!(*TESTFILES_DIR / "music_details" / "radio_cont.json");
     if json_path.exists() {
         return;
     }
@@ -813,10 +736,8 @@ async fn music_radio_cont(testfiles: &Path) {
     res.next(rp.query()).await.unwrap().unwrap();
 }
 
-async fn music_new_albums(testfiles: &Path) {
-    let mut json_path = testfiles.to_path_buf();
-    json_path.push("music_new");
-    json_path.push("albums_default.json");
+async fn music_new_albums() {
+    let json_path = path!(*TESTFILES_DIR / "music_new" / "albums_default.json");
     if json_path.exists() {
         return;
     }
@@ -825,10 +746,8 @@ async fn music_new_albums(testfiles: &Path) {
     rp.query().music_new_albums().await.unwrap();
 }
 
-async fn music_new_videos(testfiles: &Path) {
-    let mut json_path = testfiles.to_path_buf();
-    json_path.push("music_new");
-    json_path.push("videos_default.json");
+async fn music_new_videos() {
+    let json_path = path!(*TESTFILES_DIR / "music_new" / "videos_default.json");
     if json_path.exists() {
         return;
     }
@@ -837,11 +756,9 @@ async fn music_new_videos(testfiles: &Path) {
     rp.query().music_new_videos().await.unwrap();
 }
 
-async fn music_charts(testfiles: &Path) {
+async fn music_charts() {
     for (name, country) in [("global", Some(Country::Zz)), ("US", Some(Country::Us))] {
-        let mut json_path = testfiles.to_path_buf();
-        json_path.push("music_charts");
-        json_path.push(&format!("charts_{name}.json"));
+        let json_path = path!(*TESTFILES_DIR / "music_charts" / format!("charts_{name}.json"));
         if json_path.exists() {
             continue;
         }
@@ -851,10 +768,8 @@ async fn music_charts(testfiles: &Path) {
     }
 }
 
-async fn music_genres(testfiles: &Path) {
-    let mut json_path = testfiles.to_path_buf();
-    json_path.push("music_genres");
-    json_path.push("genres.json");
+async fn music_genres() {
+    let json_path = path!(*TESTFILES_DIR / "music_genres" / "genres.json");
     if json_path.exists() {
         return;
     }
@@ -863,14 +778,12 @@ async fn music_genres(testfiles: &Path) {
     rp.query().music_genres().await.unwrap();
 }
 
-async fn music_genre(testfiles: &Path) {
+async fn music_genre() {
     for (name, id) in [
         ("default", "ggMPOg1uX1lMbVZmbzl6NlJ3"),
         ("mood", "ggMPOg1uX1JOQWZFeDByc2Jm"),
     ] {
-        let mut json_path = testfiles.to_path_buf();
-        json_path.push("music_genres");
-        json_path.push(&format!("genre_{name}.json"));
+        let json_path = path!(*TESTFILES_DIR / "music_genres" / format!("genre_{name}.json"));
         if json_path.exists() {
             continue;
         }
