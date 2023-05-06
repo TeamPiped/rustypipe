@@ -52,6 +52,10 @@ pub struct DictEntry {
     ///
     /// Format: Parsed token -> decimal power
     pub number_tokens: BTreeMap<String, u8>,
+    /// Tokens for parsing number strings with no digits (e.g. "No videos")
+    ///
+    /// Format: Parsed token -> value
+    pub number_nd_tokens: BTreeMap<String, u8>,
     /// Names of album types (Album, Single, ...)
     ///
     /// Format: Parsed text -> Album type

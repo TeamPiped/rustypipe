@@ -731,7 +731,8 @@ impl MusicListMapper {
 
                                 let from_ytm = channel_p
                                     .as_ref()
-                                    .map(|p| p.first_str() == util::YT_MUSIC_NAME)
+                                    .and_then(|p| p.0.first())
+                                    .map(util::is_ytm)
                                     .unwrap_or_default();
                                 let channel = channel_p.and_then(|p| {
                                     p.0.into_iter().find_map(|c| ChannelId::try_from(c).ok())
@@ -872,7 +873,8 @@ impl MusicListMapper {
                             // (featured on the startpage or in genres)
                             let from_ytm = subtitle_p2
                                 .as_ref()
-                                .map(|p| p.first_str() == util::YT_MUSIC_NAME)
+                                .and_then(|p| p.0.first())
+                                .map(util::is_ytm)
                                 .unwrap_or(true);
                             let channel = subtitle_p2.and_then(|p| {
                                 p.0.into_iter().find_map(|c| ChannelId::try_from(c).ok())
@@ -1007,7 +1009,8 @@ impl MusicListMapper {
                 MusicPageType::Playlist => {
                     let from_ytm = subtitle_p2
                         .as_ref()
-                        .map(|p| p.first_str() == util::YT_MUSIC_NAME)
+                        .and_then(|p| p.0.first())
+                        .map(util::is_ytm)
                         .unwrap_or(true);
                     let channel = subtitle_p2
                         .and_then(|p| p.0.into_iter().find_map(|c| ChannelId::try_from(c).ok()));

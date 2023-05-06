@@ -184,11 +184,7 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
             Some(header) => {
                 let h = header.music_detail_header_renderer;
 
-                let from_ytm = h
-                    .subtitle
-                    .0
-                    .iter()
-                    .any(|c| c.as_str() == util::YT_MUSIC_NAME);
+                let from_ytm = h.subtitle.0.iter().any(util::is_ytm);
                 let channel = h
                     .subtitle
                     .0

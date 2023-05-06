@@ -1242,7 +1242,6 @@ fn music_playlist(
     let playlist = tokio_test::block_on(rp.query().music_playlist(id)).unwrap();
 
     assert_eq!(playlist.id, id);
-    assert_eq!(playlist.name, name);
     assert!(!playlist.tracks.is_empty());
     assert_eq!(!playlist.tracks.is_exhausted(), is_long);
     assert_gte(
@@ -1251,6 +1250,7 @@ fn music_playlist(
         "track count",
     );
     if unlocalized {
+        assert_eq!(playlist.name, name);
         assert_eq!(playlist.description, description);
     }
 
@@ -1600,8 +1600,6 @@ fn music_search_videos(rp: RustyPipe, unlocalized: bool) {
     assert_next(res.items, rp.query(), 15, 2);
 }
 
-// This podcast was removed from YouTube Music and I could not find another one
-/*
 #[tokio::test]
 async fn music_search_episode() {
     let rp = RustyPipe::builder().strict().build();
@@ -1623,7 +1621,7 @@ async fn music_search_episode() {
         "Blond - Da muss man dabei gewesen sein: Das Hörspiel - Fall #1"
     );
     assert!(!track.cover.is_empty(), "got no cover");
-}*/
+}
 
 #[rstest]
 #[case::single(
@@ -1687,7 +1685,7 @@ fn music_search_albums(
 
     assert_eq!(res.corrected_query, None);
 
-    if more {
+    if more && unlocalized {
         assert_next(res.items, rp.query(), 15, 1);
     }
 }

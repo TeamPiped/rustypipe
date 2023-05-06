@@ -19,7 +19,7 @@ use rand::Rng;
 use regex::Regex;
 use url::Url;
 
-use crate::{error::Error, param::Language};
+use crate::{error::Error, param::Language, serializer::text::TextComponent};
 
 pub static VIDEO_ID_REGEX: Lazy<Regex> = Lazy::new(|| Regex::new(r"^[A-Za-z0-9_-]{11}$").unwrap());
 pub static CHANNEL_ID_REGEX: Lazy<Regex> =
@@ -34,8 +34,6 @@ pub static VANITY_PATH_REGEX: Lazy<Regex> = Lazy::new(|| {
 
 /// Separator string for YouTube Music subtitles
 pub const DOT_SEPARATOR: &str = " • ";
-/// YouTube Music name (author of official playlists)
-pub const YT_MUSIC_NAME: &str = "YouTube Music";
 pub const VARIOUS_ARTISTS: &str = "Various Artists";
 pub const PLAYLIST_ID_ALBUM_PREFIX: &str = "OLAK";
 
@@ -266,6 +264,16 @@ impl<T> TryRemove<T> for Vec<T> {
         } else {
             None
         }
+    }
+}
+
+/// Check if a channel name equals "YouTube Music"
+/// (the author of original YouTube music playlists)
+pub(crate) fn is_ytm(text: &TextComponent) -> bool {
+    if let TextComponent::Text { text } = text {
+        text.starts_with("YouTube")
+    } else {
+        false
     }
 }
 

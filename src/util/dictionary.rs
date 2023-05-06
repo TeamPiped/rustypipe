@@ -4233,18 +4233,21 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             comma_decimal: false,
             number_tokens: ::phf::Map {
-                key: 12913932095322966823,
+                key: 15467950696543387533,
                 disps: &[
-                    (0, 1),
-                    (0, 0),
+                    (2, 0),
+                    (2, 1),
                 ],
                 entries: &[
-                    ("ବ\u{b3f}ଜଣ", 9),
-                    ("ହଟ\u{b3f}", 3),
                     ("ନ\u{b3f}ଜଣ", 6),
-                    ("ହଜଣ", 3),
+                    ("ବ\u{b3f}", 9),
+                    ("ନ\u{b3f}", 6),
+                    ("ବ\u{b3f}ଜଣ", 9),
                     ("ବ\u{b3f}ଟ\u{b3f}", 9),
+                    ("ହଜଣ", 3),
                     ("ନ\u{b3f}ଟ\u{b3f}", 6),
+                    ("ହ", 3),
+                    ("ହଟ\u{b3f}", 3),
                 ],
             },
             album_types: ::phf::Map {
