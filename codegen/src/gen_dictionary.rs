@@ -73,6 +73,10 @@ pub(crate) struct Entry {
     ///
     /// Format: Parsed token -> decimal power
     pub number_tokens: phf::Map<&'static str, u8>,
+    /// Tokens for parsing number strings with no digits (e.g. "No videos")
+    ///
+    /// Format: Parsed token -> value
+    pub number_nd_tokens: phf::Map<&'static str, u8>,
     /// Names of album types (Album, Single, ...)
     ///
     /// Format: Parsed text -> Album type
@@ -138,6 +142,12 @@ pub(crate) fn entry(lang: Language) -> Entry {
             number_tokens.entry(txt, &mag.to_string());
         });
 
+        // Number nd tokens
+        let mut number_nd_tokens = phf_codegen::Map::<&str>::new();
+        entry.number_nd_tokens.iter().for_each(|(txt, mag)| {
+            number_nd_tokens.entry(txt, &mag.to_string());
+        });
+
         // Album types
         let mut album_types = phf_codegen::Map::<&str>::new();
         entry.album_types.iter().for_each(|(txt, album_type)| {
@@ -148,10 +158,11 @@ pub(crate) fn entry(lang: Language) -> Entry {
         let code_ta_nd_tokens = &ta_nd_tokens.build().to_string().replace('\n', "\n            ");
         let code_months = &months.build().to_string().replace('\n', "\n            ");
         let code_number_tokens = &number_tokens.build().to_string().replace('\n', "\n            ");
+        let code_number_nd_tokens = &number_nd_tokens.build().to_string().replace('\n', "\n            ");
         let code_album_types = &album_types.build().to_string().replace('\n', "\n            ");
 
-        let _ = write!(code_timeago_tokens, "{} => Entry {{\n            timeago_tokens: {},\n            date_order: {},\n            months: {},\n            timeago_nd_tokens: {},\n            comma_decimal: {:?},\n            number_tokens: {},\n            album_types: {},\n        }},\n        ",
-        selector, code_ta_tokens, date_order, code_months, code_ta_nd_tokens, entry.comma_decimal, code_number_tokens, code_album_types);
+        write!(code_timeago_tokens, "{} => Entry {{\n            timeago_tokens: {},\n            date_order: {},\n            months: {},\n            timeago_nd_tokens: {},\n            comma_decimal: {:?},\n            number_tokens: {},\n            number_nd_tokens: {},\n            album_types: {},\n        }},\n        ",
+        selector, code_ta_tokens, date_order, code_months, code_ta_nd_tokens, entry.comma_decimal, code_number_tokens, code_number_nd_tokens, code_album_types).unwrap();
     });
 
     code_timeago_tokens = code_timeago_tokens.trim_end().to_owned() + "\n    }\n}\n";

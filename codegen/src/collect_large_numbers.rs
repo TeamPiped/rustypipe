@@ -1,6 +1,10 @@
-use std::collections::{HashMap, HashSet};
 use std::sync::Arc;
-use std::{collections::BTreeMap, fs::File, io::BufReader, path::Path};
+use std::{
+    collections::{BTreeMap, HashMap, HashSet},
+    fs::File,
+    io::BufReader,
+    path::Path,
+};
 
 use anyhow::{Context, Result};
 use futures::{stream, StreamExt};
@@ -9,26 +13,12 @@ use path_macro::path;
 use regex::Regex;
 use rustypipe::client::{ClientType, RustyPipe, RustyPipeQuery};
 use rustypipe::param::{locale::LANGUAGES, Language};
-use serde::{Deserialize, Serialize};
+use serde::Deserialize;
 use serde_with::{serde_as, DefaultOnError, VecSkipError};
 
-use crate::util::{self, QBrowse, QCont, Text};
+use crate::util::{self, QBrowse, QCont, Text, TextRuns};
 
-#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
-#[serde(untagged)]
-enum NumKey {
-    Mag(u8),
-    S(NumKeyS),
-}
-
-#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
-#[serde(rename_all = "lowercase")]
-enum NumKeyS {
-    Zero,
-    One,
-}
-
-type CollectedNumbers = BTreeMap<Language, BTreeMap<NumKey, (String, u64)>>;
+type CollectedNumbers = BTreeMap<Language, BTreeMap<String, u64>>;
 
 /// Collect video view count texts in every supported language
 /// and write them to `testfiles/dict/large_number_samples.json`.
@@ -45,9 +35,7 @@ type CollectedNumbers = BTreeMap<Language, BTreeMap<NumKey, (String, u64)>>;
 /// outputs view counts both in approximated and exact format, so we can use
 /// the exact counts to figure out the tokens.
 pub async fn collect_large_numbers(project_root: &Path, concurrency: usize) {
-    let json_path = path!(project_root / "testfiles" / "dict" / "large_number_samples.json");
-    let json_path_all =
-        path!(project_root / "testfiles" / "dict" / "large_number_samples_all.json");
+    let json_path = path!(project_root / "testfiles" / "dict" / "large_number_samples_all.json");
     let rp = RustyPipe::new();
 
     let channels = [
@@ -62,6 +50,16 @@ pub async fn collect_large_numbers(project_root: &Path, concurrency: usize) {
         "UCaZL4eLD7a30Fa8QI-sRi_g", // (31K)
         "UCO-dylEoJozPTxGYd8fTQxA", // (5)
         "UCQXYK94vDqOEkPbTCyL0OjA", // (1)
+    ];
+
+    // YTM outputs the subscriber count in a shortened format in some languages
+    let music_channels = [
+        "UC_1N84buVNgR_-3gDZ9Jtxg", // 10e8 (158M)
+        "UCRw0x9_EfawqmgDI2IgQLLg", // 10e7 (29M)
+        "UChWu2clmvJ5wN_0Ic5dnqmw", // 10e6 (1.9M)
+        "UCOYiPDuimprrGHgFy4_Fw8Q", // 10e5 (149K)
+        "UC8nZf9WyVIxNMly_hy2PTyQ", // 10e4 (17K)
+        "UCaltNL5XvZ7dKvBsBPi-gqg", // 10e3 (8K)
     ];
 
     // Build a lookup table for the channel's subscriber counts
@@ -80,10 +78,26 @@ pub async fn collect_large_numbers(project_root: &Path, concurrency: usize) {
         .await
         .into();
 
-    let collected_numbers_all: BTreeMap<Language, BTreeMap<String, u64>> = stream::iter(LANGUAGES)
+    let music_subscriber_counts: Arc<BTreeMap<String, u64>> = stream::iter(music_channels)
+        .map(|c| {
+            let rp = rp.query();
+            async move {
+                let subscriber_count = music_channel_subscribers(&rp, c).await.unwrap();
+
+                let n = util::parse_largenum_en(&subscriber_count).unwrap();
+                (c.to_owned(), n)
+            }
+        })
+        .buffer_unordered(concurrency)
+        .collect::<BTreeMap<_, _>>()
+        .await
+        .into();
+
+    let collected_numbers: CollectedNumbers = stream::iter(LANGUAGES)
         .map(|lang| {
             let rp = rp.query().lang(lang);
             let subscriber_counts = subscriber_counts.clone();
+            let music_subscriber_counts = music_subscriber_counts.clone();
             async move {
                 let mut entry = BTreeMap::new();
 
@@ -101,6 +115,15 @@ pub async fn collect_large_numbers(project_root: &Path, concurrency: usize) {
                     println!("collected {lang}-{n}");
                 }
 
+                for (n, ch_id) in music_channels.iter().enumerate() {
+                    let subscriber_count = music_channel_subscribers(&rp, ch_id)
+                        .await
+                        .context(format!("{lang}-music-{n}"))
+                        .unwrap();
+                    entry.insert(subscriber_count, music_subscriber_counts[*ch_id]);
+                    println!("collected {lang}-music-{n}");
+                }
+
                 (lang, entry)
             }
         })
@@ -108,61 +131,13 @@ pub async fn collect_large_numbers(project_root: &Path, concurrency: usize) {
         .collect()
         .await;
 
-    let collected_numbers: CollectedNumbers = collected_numbers_all
-        .iter()
-        .map(|(lang, entry)| {
-            let mut e2 = BTreeMap::new();
-            entry.iter().for_each(|(txt, num)| {
-                let key = if num == &0 {
-                    NumKey::S(NumKeyS::Zero)
-                } else if num == &1 {
-                    NumKey::S(NumKeyS::One)
-                } else {
-                    NumKey::Mag(get_mag(*num))
-                };
-
-                e2.insert(key, (txt.to_owned(), *num));
-            });
-            (*lang, e2)
-        })
-        .collect();
-
     let file = File::create(json_path).unwrap();
     serde_json::to_writer_pretty(file, &collected_numbers).unwrap();
-
-    let file = File::create(json_path_all).unwrap();
-    serde_json::to_writer_pretty(file, &collected_numbers_all).unwrap();
 }
 
 /// Attempt to parse the numbers collected by `collect-large-numbers`
 /// and write the results to `dictionary.json`.
 pub fn write_samples_to_dict(project_root: &Path) {
-    /*
-    Manual corrections:
-    as
-    "কোঃটা": 9,
-    "নিঃটা": 6,
-    "নিযুতটা": 6,
-    "লাখটা": 5,
-    "হাজাৰটা": 3
-
-    ar
-    "ألف": 3,
-    "آلاف": 3,
-    "مليار": 9,
-    "مليون": 6
-
-    bn
-    "লাটি": 5,
-    "শত": 2,
-    "হাটি": 3,
-    "কোটি": 7
-
-    es/es-US
-    "mil": 3,
-    "M": 6
-    */
-
     let json_path = path!(project_root / "testfiles" / "dict" / "large_number_samples.json");
 
     let json_file = File::open(json_path).unwrap();
@@ -179,27 +154,21 @@ pub fn write_samples_to_dict(project_root: &Path) {
         let mut e_langs = dict_entry.equivalent.clone();
         e_langs.push(lang);
 
-        let comma_decimal = collected_nums
-            .get(&lang)
-            .unwrap()
+        let comma_decimal = collected_nums[&lang]
             .iter()
-            .find_map(|(key, (txt, _))| {
-                match key {
-                    NumKey::Mag(mag) => {
-                        let point = POINT_REGEX
-                            .captures(txt)
-                            .map(|c| c.get(1).unwrap().as_str());
+            .find_map(|(txt, val)| {
+                let point = POINT_REGEX
+                    .captures(txt)
+                    .map(|c| c.get(1).unwrap().as_str());
 
-                        if let Some(point) = point {
-                            let num_all = util::parse_numeric::<u64>(txt).unwrap();
-                            // If the number parsed from all digits has the same order of
-                            // magnitude as the actual number, it must be a separator.
-                            // Otherwise it is a decimal point
-                            return Some((get_mag(num_all) == *mag) ^ (point == ","));
-                        }
-                    }
-                    NumKey::S(_) => {}
+                if let Some(point) = point {
+                    let num_all = util::parse_numeric::<u64>(txt).unwrap();
+                    // If the number parsed from all digits has the same order of
+                    // magnitude as the actual number, it must be a separator.
+                    // Otherwise it is a decimal point
+                    return Some((get_mag(num_all) == get_mag(*val)) ^ (point == ","));
                 }
+
                 None
             })
             .unwrap();
@@ -217,6 +186,7 @@ pub fn write_samples_to_dict(project_root: &Path) {
         // If the token is found again with a different derived order of magnitude,
         // its value in the map is set to None.
         let mut found_tokens: HashMap<String, Option<u8>> = HashMap::new();
+        let mut found_nd_tokens: HashMap<String, Option<u8>> = HashMap::new();
 
         let mut insert_token = |token: String, mag: u8| {
             let found_token = found_tokens.entry(token).or_insert(match mag {
@@ -231,22 +201,30 @@ pub fn write_samples_to_dict(project_root: &Path) {
             }
         };
 
+        let mut insert_nd_token = |token: String, n: Option<u8>| {
+            let found_token = found_nd_tokens.entry(token).or_insert(n);
+
+            if let Some(f) = found_token {
+                if Some(*f) != n {
+                    *found_token = None;
+                }
+            }
+        };
+
         for lang in e_langs {
             let entry = collected_nums.get(&lang).unwrap();
 
-            entry.iter().for_each(|(key, (txt, _))| {
-                match key {
-                    NumKey::Mag(mag) => {
-                        let filtered = util::filter_largenumstr(txt);
+            entry.iter().for_each(|(txt, val)| {
+                let filtered = util::filter_largenumstr(txt);
+                let mag = get_mag(*val);
 
-                        let tokens: Vec<String> = match dict_entry.by_char {
-                            true => filtered.chars().map(|c| c.to_string()).collect(),
-                            false => filtered.split_whitespace().map(|c| c.to_string()).collect(),
-                        };
+                let tokens: Vec<String> = match dict_entry.by_char || lang == Language::Ko {
+                    true => filtered.chars().map(|c| c.to_string()).collect(),
+                    false => filtered.split_whitespace().map(|c| c.to_string()).collect(),
+                };
 
-                        let num_before_point =
-                            util::parse_numeric::<u64>(txt.split(decimal_point).next().unwrap())
-                                .unwrap();
+                match util::parse_numeric::<u64>(txt.split(decimal_point).next().unwrap()) {
+                    Ok(num_before_point) => {
                         let mag_before_point = get_mag(num_before_point);
                         let mut mag_remaining = mag - mag_before_point;
 
@@ -272,15 +250,32 @@ pub fn write_samples_to_dict(project_root: &Path) {
                             } else {
                                 insert_token(t.to_owned(), mag_remaining);
                             }
+                            insert_nd_token(t.to_owned(), None);
                         });
                     }
-                    NumKey::S(_) => {}
+                    Err(e) => {
+                        if matches!(e.kind(), std::num::IntErrorKind::Empty) {
+                            // Text does not contain any digits, search for nd_tokens
+                            tokens.iter().for_each(|t| {
+                                insert_nd_token(
+                                    t.to_owned(),
+                                    Some((*val).try_into().expect("nd_token value too large")),
+                                );
+                            });
+                        } else {
+                            panic!("{e}, txt: {txt}")
+                        }
+                    }
                 }
             });
         }
 
         // Insert collected data into dictionary
         dict_entry.number_tokens = found_tokens
+            .into_iter()
+            .filter_map(|(k, v)| v.map(|v| (k, v)))
+            .collect();
+        dict_entry.number_nd_tokens = found_nd_tokens
             .into_iter()
             .filter_map(|(k, v)| v.map(|v| (k, v)))
             .collect();
@@ -291,9 +286,13 @@ pub fn write_samples_to_dict(project_root: &Path) {
         if !dict_entry.number_tokens.values().all(|x| uniq.insert(x)) {
             println!("Warning: collected duplicate tokens for {lang}");
         }
+        let mut uniq = HashSet::new();
+        if !dict_entry.number_nd_tokens.values().all(|x| uniq.insert(x)) {
+            println!("Warning: collected duplicate nd_tokens for {lang}");
+        }
     }
 
-    util::write_dict(project_root, &dict);
+    util::write_dict(project_root, dict);
 }
 
 fn get_mag(n: u64) -> u8 {
@@ -304,59 +303,59 @@ fn get_mag(n: u64) -> u8 {
 YouTube channel videos response
 */
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 struct Channel {
     contents: Contents,
     header: ChannelHeader,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 struct ChannelHeader {
     c4_tabbed_header_renderer: HeaderRenderer,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 struct HeaderRenderer {
     subscriber_count_text: Text,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 struct Contents {
     two_column_browse_results_renderer: TabsRenderer,
 }
 
 #[serde_as]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 struct TabsRenderer {
     #[serde_as(as = "VecSkipError<_>")]
     tabs: Vec<TabRendererWrap>,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 struct TabRendererWrap {
     tab_renderer: TabRenderer,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 struct TabRenderer {
     content: RichGridRendererWrap,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 struct RichGridRendererWrap {
     rich_grid_renderer: RichGridRenderer,
 }
 
 #[serde_as]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 struct RichGridRenderer {
     #[serde_as(as = "VecSkipError<_>")]
@@ -366,25 +365,25 @@ struct RichGridRenderer {
     header: Option<RichGridHeader>,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 struct RichItemRendererWrap {
     rich_item_renderer: RichItemRenderer,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 struct RichItemRenderer {
     content: VideoRendererWrap,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 struct VideoRendererWrap {
     video_renderer: VideoRenderer,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 struct VideoRenderer {
     /// `24,194 views`
@@ -393,65 +392,100 @@ struct VideoRenderer {
     short_view_count_text: Text,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 struct RichGridHeader {
     feed_filter_chip_bar_renderer: ChipBar,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 struct ChipBar {
     contents: Vec<Chip>,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 struct Chip {
     chip_cloud_chip_renderer: ChipRenderer,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 struct ChipRenderer {
     navigation_endpoint: NavigationEndpoint,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 struct NavigationEndpoint {
     continuation_command: ContinuationCommand,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 struct ContinuationCommand {
     token: String,
 }
 
 #[serde_as]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 struct ContinuationResponse {
     // #[serde_as(as = "VecSkipError<_>")]
     on_response_received_actions: Vec<ContinuationAction>,
 }
 
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 struct ContinuationAction {
     reload_continuation_items_command: ContinuationItemsWrap,
 }
 
 #[serde_as]
-#[derive(Clone, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 struct ContinuationItemsWrap {
     #[serde_as(as = "VecSkipError<_>")]
     continuation_items: Vec<RichItemRendererWrap>,
 }
 
-#[derive(Clone, Debug)]
+/*
+YouTube Music channel data
+*/
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct MusicChannel {
+    header: MusicHeader,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct MusicHeader {
+    #[serde(alias = "musicVisualHeaderRenderer")]
+    music_immersive_header_renderer: MusicHeaderRenderer,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct MusicHeaderRenderer {
+    subscription_button: SubscriptionButton,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct SubscriptionButton {
+    subscribe_button_renderer: SubscriptionButtonRenderer,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct SubscriptionButtonRenderer {
+    subscriber_count_text: TextRuns,
+}
+
+#[derive(Debug)]
 struct ChannelData {
     view_counts: BTreeMap<u64, String>,
     subscriber_count: String,
@@ -460,7 +494,7 @@ struct ChannelData {
 async fn get_channel(query: &RustyPipeQuery, channel_id: &str) -> Result<ChannelData> {
     let resp = query
         .raw(
-            ClientType::DesktopMusic,
+            ClientType::Desktop,
             "browse",
             &QBrowse {
                 context: query.get_context(ClientType::Desktop, true, None).await,
@@ -540,18 +574,31 @@ async fn get_channel(query: &RustyPipeQuery, channel_id: &str) -> Result<Channel
     })
 }
 
-#[cfg(test)]
-mod tests {
-    use rustypipe::client::RustyPipe;
+async fn music_channel_subscribers(query: &RustyPipeQuery, channel_id: &str) -> Result<String> {
+    let resp = query
+        .raw(
+            ClientType::DesktopMusic,
+            "browse",
+            &QBrowse {
+                context: query
+                    .get_context(ClientType::DesktopMusic, true, None)
+                    .await,
+                browse_id: channel_id,
+                params: None,
+            },
+        )
+        .await?;
 
-    use super::*;
-
-    #[tokio::test]
-    async fn t() {
-        let rp = RustyPipe::new();
-        let x = get_channel(&rp.query(), "UCQXYK94vDqOEkPbTCyL0OjA")
-            .await
-            .unwrap();
-        dbg!(&x);
-    }
+    let channel = serde_json::from_str::<MusicChannel>(&resp)?;
+    channel
+        .header
+        .music_immersive_header_renderer
+        .subscription_button
+        .subscribe_button_renderer
+        .subscriber_count_text
+        .runs
+        .into_iter()
+        .next()
+        .map(|t| t.text)
+        .ok_or_else(|| anyhow::anyhow!("no text"))
 }

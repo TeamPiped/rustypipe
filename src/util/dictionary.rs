@@ -38,6 +38,10 @@ pub(crate) struct Entry {
     ///
     /// Format: Parsed token -> decimal power
     pub number_tokens: phf::Map<&'static str, u8>,
+    /// Tokens for parsing number strings with no digits (e.g. "No videos")
+    ///
+    /// Format: Parsed token -> value
+    pub number_nd_tokens: phf::Map<&'static str, u8>,
     /// Names of album types (Album, Single, ...)
     ///
     /// Format: Parsed text -> Album type
@@ -113,6 +117,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                 entries: &[
                     ("mjd", 9),
                     ("m", 6),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("nie", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -199,6 +212,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("ቢ", 9),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("የለዉም", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -281,6 +303,16 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("مليار", 9),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("واحد", 1),
+                    ("لا", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -350,6 +382,16 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("নিয\u{9c1}ত", 6),
                     ("নিঃ", 6),
                     ("ল\u{9be}খ", 5),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 15467950696543387533,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("ন\u{9be}ই", 0),
+                    ("১", 1),
                 ],
             },
             album_types: ::phf::Map {
@@ -427,6 +469,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                 entries: &[
                     ("mlrd", 9),
                     ("mln", 6),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("yoxdur", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -525,6 +576,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("тыс", 3),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("няма", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -592,6 +652,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("млрд", 9),
                     ("хил", 3),
                     ("млн", 6),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("няма", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -673,6 +742,16 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("কোটি", 7),
                     ("ল\u{9be}", 5),
                     ("ল\u{9be}টি", 5),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("০", 0),
+                    ("১", 1),
                 ],
             },
             album_types: ::phf::Map {
@@ -766,6 +845,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("mil", 6),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("nema", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -840,14 +928,22 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             comma_decimal: true,
             number_tokens: ::phf::Map {
-                key: 7485420634051515786,
+                key: 12913932095322966823,
                 disps: &[
-                    (2, 0),
+                    (0, 0),
                 ],
                 entries: &[
-                    ("m", 3),
-                    ("kM", 9),
-                    ("M", 6),
+                    ("km", 9),
+                    ("m", 6),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("sense", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -922,6 +1018,13 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("mld", 9),
                     ("tis", 3),
                     ("mil", 6),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                ],
+                entries: &[
                 ],
             },
             album_types: ::phf::Map {
@@ -1006,6 +1109,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("mia", 9),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("ingen", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 14108922650502679131,
                 disps: &[
@@ -1067,11 +1179,20 @@ pub(crate) fn entry(lang: Language) -> Entry {
             number_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
-                    (1, 0),
+                    (0, 0),
                 ],
                 entries: &[
-                    ("Mrd", 9),
-                    ("Mio", 6),
+                    ("mrd", 9),
+                    ("mio", 6),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("keine", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -1158,6 +1279,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("δισ", 9),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("καμία", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -1233,15 +1363,24 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             comma_decimal: false,
             number_tokens: ::phf::Map {
-                key: 14108922650502679131,
+                key: 15467950696543387533,
                 disps: &[
-                    (1, 0),
+                    (2, 0),
                 ],
                 entries: &[
-                    ("lakh", 5),
                     ("crore", 7),
-                    ("M", 6),
-                    ("B", 9),
+                    ("m", 6),
+                    ("lakh", 5),
+                    ("b", 9),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("no", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -1320,11 +1459,18 @@ pub(crate) fn entry(lang: Language) -> Entry {
             number_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
-                    (1, 0),
+                    (0, 0),
                 ],
                 entries: &[
                     ("mil", 3),
-                    ("M", 6),
+                    ("m", 6),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                ],
+                entries: &[
                 ],
             },
             album_types: ::phf::Map {
@@ -1403,11 +1549,20 @@ pub(crate) fn entry(lang: Language) -> Entry {
             number_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
-                    (1, 0),
+                    (0, 0),
                 ],
                 entries: &[
                     ("mil", 3),
-                    ("M", 6),
+                    ("m", 6),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("sin", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -1497,6 +1652,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("tuh", 3),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("pole", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -1571,7 +1735,16 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     (0, 0),
                 ],
                 entries: &[
-                    ("M", 6),
+                    ("m", 6),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("ez", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -1650,6 +1823,16 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("هزار", 3),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("بدون", 0),
+                    ("۱", 1),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -1717,6 +1900,16 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("mrd", 9),
                     ("t", 3),
                     ("milj", 6),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 10121458955350035957,
+                disps: &[
+                    (1, 0),
+                ],
+                entries: &[
+                    ("ei", 0),
+                    ("katselukertoja", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -1790,8 +1983,17 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     (0, 0),
                 ],
                 entries: &[
-                    ("M", 6),
-                    ("B", 9),
+                    ("b", 9),
+                    ("m", 6),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("walang", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -1868,14 +2070,24 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             comma_decimal: true,
             number_tokens: ::phf::Map {
-                key: 12913932095322966823,
+                key: 15467950696543387533,
                 disps: &[
-                    (2, 0),
+                    (1, 0),
                 ],
                 entries: &[
-                    ("G", 9),
-                    ("M", 6),
-                    ("Md", 9),
+                    ("g", 9),
+                    ("md", 9),
+                    ("m", 6),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("aucune", 0),
+                    ("aucun", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -1960,7 +2172,16 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     (0, 0),
                 ],
                 entries: &[
-                    ("M", 6),
+                    ("m", 6),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("ningunha", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -2040,6 +2261,13 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("લાખ", 5),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                ],
+                entries: &[
+                ],
+            },
             album_types: ::phf::Map {
                 key: 2980949210194914378,
                 disps: &[
@@ -2115,6 +2343,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("लाख", 5),
                     ("क॰", 7),
                     ("अ॰", 9),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("नही\u{902}", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -2208,6 +2445,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("mil", 6),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("nema", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -2285,14 +2531,23 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             comma_decimal: true,
             number_tokens: ::phf::Map {
-                key: 15467950696543387533,
+                key: 12913932095322966823,
                 disps: &[
                     (2, 0),
                 ],
                 entries: &[
-                    ("E", 3),
-                    ("Mrd", 9),
-                    ("M", 6),
+                    ("e", 3),
+                    ("mrd", 9),
+                    ("m", 6),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("nincs", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -2371,6 +2626,16 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("մլրդ", 9),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("դիտումներ", 0),
+                    ("չկան", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -2437,14 +2702,23 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             comma_decimal: true,
             number_tokens: ::phf::Map {
-                key: 15467950696543387533,
+                key: 12913932095322966823,
+                disps: &[
+                    (2, 0),
+                ],
+                entries: &[
+                    ("rb", 3),
+                    ("jt", 6),
+                    ("m", 9),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
                 disps: &[
                     (0, 0),
                 ],
                 entries: &[
-                    ("jt", 6),
-                    ("M", 9),
-                    ("rb", 3),
+                    ("belum", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -2535,6 +2809,16 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("m", 6),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 10121458955350035957,
+                disps: &[
+                    (1, 0),
+                ],
+                entries: &[
+                    ("ekkert", 0),
+                    ("einn", 1),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 12213676231523076107,
                 disps: &[
@@ -2614,8 +2898,17 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     (0, 0),
                 ],
                 entries: &[
-                    ("Mrd", 9),
-                    ("Mln", 6),
+                    ("mrd", 9),
+                    ("mln", 6),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("nessuna", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -2703,12 +2996,21 @@ pub(crate) fn entry(lang: Language) -> Entry {
             number_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
-                    (1, 0),
+                    (0, 0),
                 ],
                 entries: &[
-                    ("B", 9),
-                    ("K", 3),
-                    ("M", 6),
+                    ("b", 9),
+                    ("m", 6),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("אין", 0),
+                    ("אחד", 1),
                 ],
             },
             album_types: ::phf::Map {
@@ -2769,6 +3071,13 @@ pub(crate) fn entry(lang: Language) -> Entry {
                 entries: &[
                     ("万", 4),
                     ("億", 8),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                ],
+                entries: &[
                 ],
             },
             album_types: ::phf::Map {
@@ -2849,6 +3158,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("ათ", 3),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("არ", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -2924,6 +3242,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("млрд", 9),
                     ("м", 3),
                     ("млн", 6),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("ешкім", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -3002,6 +3329,13 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("លាន", 6),
                     ("ប\u{17ca}\u{17b8}លាន", 9),
                     ("ពាន\u{17cb}", 3),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                ],
+                entries: &[
                 ],
             },
             album_types: ::phf::Map {
@@ -3090,6 +3424,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("ಲಕ\u{ccd}ಷ", 5),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("ವೀಕ\u{ccd}ಷಣ\u{cc6}ಗಳ\u{cbf}ಲ\u{ccd}ಲ", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 9826310008611304355,
                 disps: &[
@@ -3149,6 +3492,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("천", 3),
                     ("만", 4),
                     ("억", 8),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("없", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -3225,6 +3577,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("млд", 9),
                     ("млн", 6),
                     ("миң", 3),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("эч", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -3306,6 +3667,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("ພ\u{eb1}ນ", 3),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("ຍ\u{eb1}ງບ\u{ecd}\u{ec8}ມ\u{eb5}ຄ\u{ebb}ນເບ\u{eb4}\u{ec8}ງເທ\u{eb7}\u{ec8}ອ", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -3385,6 +3755,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("mlrd", 9),
                     ("mln", 6),
                     ("tūkst", 3),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("nėra", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -3471,6 +3850,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("tūkst", 3),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("nav", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 8694567506910003252,
                 disps: &[
@@ -3532,13 +3920,22 @@ pub(crate) fn entry(lang: Language) -> Entry {
             number_tokens: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
-                    (2, 0),
+                    (1, 0),
                 ],
                 entries: &[
-                    ("илј", 3),
                     ("мил", 6),
+                    ("м", 6),
                     ("милј", 9),
-                    ("М", 6),
+                    ("илј", 3),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("нема", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -3616,6 +4013,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("കോടി", 7),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("ഇല\u{d4d}ല", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -3677,6 +4083,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("сая", 6),
                     ("тэрбум", 9),
                     ("мянга", 3),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("үзэлтгүй", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -3768,6 +4183,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("कोटी", 7),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("नाहीत", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -3834,13 +4258,22 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             comma_decimal: false,
             number_tokens: ::phf::Map {
-                key: 12913932095322966823,
+                key: 15467950696543387533,
                 disps: &[
                     (1, 0),
                 ],
                 entries: &[
-                    ("J", 6),
-                    ("B", 9),
+                    ("b", 9),
+                    ("j", 6),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("tiada", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -3924,6 +4357,16 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("သောင\u{103a}း", 4),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 10121458955350035957,
+                disps: &[
+                    (1, 0),
+                ],
+                entries: &[
+                    ("၁", 1),
+                    ("မရ\u{103e}\u{102d}", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -4000,6 +4443,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("अरब", 9),
                     ("हजार", 3),
                     ("लाख", 5),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("छ\u{948}न", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -4083,6 +4535,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("mln", 6),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("geen", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -4164,6 +4625,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                 entries: &[
                     ("mrd", 9),
                     ("mill", 6),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("ingen", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -4250,6 +4720,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("ହଟ\u{b3f}", 3),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("ନ\u{b3e}ହ\u{b3f}\u{b01}", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 2126027241312876569,
                 disps: &[
@@ -4328,6 +4807,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("ਲ\u{a71}ਖ", 5),
                     ("ਹਜ\u{a3c}ਾਰ", 3),
                     ("ਅਰਬ", 9),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("ਨਹੀ\u{a02}", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -4423,6 +4911,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("tys", 3),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("brak", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 351906021642186605,
                 disps: &[
@@ -4507,6 +5004,13 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("mil", 3),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                ],
+                entries: &[
+                ],
+            },
             album_types: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -4568,12 +5072,19 @@ pub(crate) fn entry(lang: Language) -> Entry {
             number_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
-                    (2, 0),
+                    (0, 0),
                 ],
                 entries: &[
-                    ("mM", 9),
-                    ("M", 6),
+                    ("mm", 9),
+                    ("m", 6),
                     ("mil", 3),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                ],
+                entries: &[
                 ],
             },
             album_types: ::phf::Map {
@@ -4657,6 +5168,16 @@ pub(crate) fn entry(lang: Language) -> Entry {
                 entries: &[
                     ("mil", 6),
                     ("mld", 9),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (1, 0),
+                ],
+                entries: &[
+                    ("un", 1),
+                    ("nicio", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -4750,6 +5271,13 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("тыс", 3),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                ],
+                entries: &[
+                ],
+            },
             album_types: ::phf::Map {
                 key: 345707026197253659,
                 disps: &[
@@ -4826,6 +5354,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("ද", 3),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("නැත", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 2126027241312876569,
                 disps: &[
@@ -4897,6 +5434,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("mld", 9),
                     ("tis", 3),
                     ("mil", 6),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("žiadne", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -4996,6 +5542,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("mrd", 9),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("brez", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -5075,6 +5630,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("mijë", 3),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("nuk", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 2980949210194914378,
                 disps: &[
@@ -5147,6 +5711,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("млрд", 9),
                     ("мил", 6),
                     ("хиљ", 3),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("нема", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -5222,6 +5795,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("hilj", 3),
                     ("mlrd", 9),
                     ("mil", 6),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("nema", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -5306,6 +5888,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("md", 9),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("inga", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -5379,9 +5970,18 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     (1, 0),
                 ],
                 entries: &[
-                    ("B", 9),
+                    ("m", 6),
                     ("elfu", 3),
-                    ("M", 6),
+                    ("b", 9),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("haijatazamwa", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -5470,6 +6070,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("கோடி", 7),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("இல\u{bcd}லை", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 106375038446233661,
                 disps: &[
@@ -5555,6 +6164,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("లక\u{c4d}షలు", 5),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("ల\u{c47}వు", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 345707026197253659,
                 disps: &[
@@ -5638,6 +6256,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("ล\u{e49}าน", 6),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("ไม\u{e48}ม\u{e35}การด\u{e39}", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 8694567506910003252,
                 disps: &[
@@ -5704,14 +6331,23 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             comma_decimal: true,
             number_tokens: ::phf::Map {
-                key: 7485420634051515786,
+                key: 12913932095322966823,
                 disps: &[
-                    (1, 0),
+                    (0, 0),
                 ],
                 entries: &[
-                    ("Mn", 6),
-                    ("Mr", 9),
-                    ("B", 3),
+                    ("b", 3),
+                    ("mn", 6),
+                    ("mr", 9),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("yok", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -5805,6 +6441,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("млн", 6),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("жодного", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 14108922650502679131,
                 disps: &[
@@ -5889,6 +6534,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("لاکھ", 5),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("نہیں", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 106375038446233661,
                 disps: &[
@@ -5965,6 +6619,13 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("ming", 3),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                ],
+                entries: &[
+                ],
+            },
             album_types: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -6017,14 +6678,21 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             comma_decimal: true,
             number_tokens: ::phf::Map {
-                key: 10121458955350035957,
+                key: 14108922650502679131,
                 disps: &[
-                    (0, 0),
+                    (1, 0),
                 ],
                 entries: &[
-                    ("T", 9),
-                    ("Tr", 6),
-                    ("N", 3),
+                    ("tr", 6),
+                    ("t", 9),
+                    ("n", 3),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                ],
+                entries: &[
                 ],
             },
             album_types: ::phf::Map {
@@ -6087,6 +6755,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("亿", 8),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("无", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -6144,8 +6821,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     (0, 0),
                 ],
                 entries: &[
-                    ("M", 6),
-                    ("B", 9),
+                    ("b", 9),
+                    ("m", 6),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                ],
+                entries: &[
                 ],
             },
             album_types: ::phf::Map {
@@ -6206,6 +6890,13 @@ pub(crate) fn entry(lang: Language) -> Entry {
                 entries: &[
                     ("萬", 4),
                     ("億", 8),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                ],
+                entries: &[
                 ],
             },
             album_types: ::phf::Map {
@@ -6287,8 +6978,17 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     (0, 0),
                 ],
                 entries: &[
-                    ("M", 6),
-                    ("B", 9),
+                    ("b", 9),
+                    ("m", 6),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("akukho", 0),
                 ],
             },
             album_types: ::phf::Map {

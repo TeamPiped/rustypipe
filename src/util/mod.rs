@@ -290,87 +290,83 @@ pub fn parse_large_numstr<F>(string: &str, lang: Language) -> Option<F>
 where
     F: TryFrom<u64>,
 {
+    // Special case for Gujarati: the "no views" text does not contain
+    // any parseable tokens: the 2 words occur in any view count text.
+    // This may be a translation error.
+    if lang == Language::Gu && string == "જોવાયાની સંખ્યા" {
+        return 0.try_into().ok();
+    }
+
     let dict_entry = dictionary::entry(lang);
+    let by_char = lang_by_char(lang) || lang == Language::Ko;
     let decimal_point = match dict_entry.comma_decimal {
         true => ',',
         false => '.',
     };
 
-    let (num, mut exp, filtered) = {
-        let mut buf = String::new();
-        let mut filtered = String::new();
-        let mut exp = 0;
-        let mut after_point = false;
-        for c in string.chars() {
-            if c.is_ascii_digit() {
-                buf.push(c);
+    let mut digits = String::new();
+    let mut filtered = String::new();
+    let mut exp = 0;
+    let mut after_point = false;
 
-                if after_point {
-                    exp -= 1;
-                }
-            } else if c == decimal_point {
-                after_point = true;
-            } else if !matches!(
-                c,
-                '\u{200b}'
-                    | '\u{202b}'
-                    | '\u{202c}'
-                    | '\u{202e}'
-                    | '\u{200e}'
-                    | '\u{200f}'
-                    | '.'
-                    | ','
-            ) {
-                filtered.push(c);
+    for c in string.chars() {
+        if c.is_ascii_digit() {
+            digits.push(c);
+
+            if after_point {
+                exp -= 1;
             }
+        } else if c == decimal_point {
+            after_point = true;
+        } else if !matches!(
+            c,
+            '\u{200b}' | '\u{202b}' | '\u{202c}' | '\u{202e}' | '\u{200e}' | '\u{200f}' | '.' | ','
+        ) {
+            c.to_lowercase().for_each(|c| filtered.push(c));
         }
-        if buf.is_empty() {
-            // TODO: integrate into dictionary
-            if lang == Language::Ar && string.contains("واحد")
-                || lang == Language::Iw && string.contains("אחד")
-                || lang == Language::As && string.contains('১') // ১টা
-                || lang == Language::Bn && string.contains('১')
-                || lang == Language::Fa && string.contains('۱')
-                || lang == Language::Is && (string.contains("Eitt ") || string.contains("Einn "))
-                || lang == Language::My && string.contains('၁')
-                || lang == Language::No && string.contains("Én ")
-                || lang == Language::Pt && string.contains("Um ")
-                || lang == Language::Ro && string.contains("Un ")
-            {
-                return 1.try_into().ok();
-            }
-
-            return None;
-        } else {
-            (buf.parse::<u64>().ok()?, exp, filtered)
-        }
-    };
-
-    let lookup_token = |token: &str| match token {
-        "K" | "k" => Some(3),
-        _ => dict_entry.number_tokens.get(token).map(|t| *t as i32),
-    };
-
-    if lang_by_char(lang) || lang == Language::Ko {
-        exp += filtered
-            .chars()
-            .filter_map(|token| lookup_token(&token.to_string()))
-            .sum::<i32>();
-    } else {
-        exp += filtered
-            .split_whitespace()
-            .filter_map(lookup_token)
-            .sum::<i32>();
     }
 
-    F::try_from(some_or_bail!(
-        num.checked_mul(some_or_bail!(
-            (10_u64).checked_pow(ok_or_bail!(exp.try_into(), None)),
+    if digits.is_empty() {
+        if by_char {
+            filtered
+                .chars()
+                .find_map(|c| dict_entry.number_nd_tokens.get(&c.to_string()))
+                .and_then(|n| (*n as u64).try_into().ok())
+        } else {
+            filtered
+                .split_whitespace()
+                .find_map(|token| dict_entry.number_nd_tokens.get(token))
+                .and_then(|n| (*n as u64).try_into().ok())
+        }
+    } else {
+        let num = digits.parse::<u64>().ok()?;
+
+        let lookup_token = |token: &str| match token {
+            "k" => Some(3),
+            _ => dict_entry.number_tokens.get(token).map(|t| *t as i32),
+        };
+
+        if by_char {
+            exp += filtered
+                .chars()
+                .filter_map(|token| lookup_token(&token.to_string()))
+                .sum::<i32>();
+        } else {
+            exp += filtered
+                .split_whitespace()
+                .filter_map(lookup_token)
+                .sum::<i32>();
+        }
+
+        F::try_from(some_or_bail!(
+            num.checked_mul(some_or_bail!(
+                (10_u64).checked_pow(ok_or_bail!(exp.try_into(), None)),
+                None
+            )),
             None
-        )),
-        None
-    ))
-    .ok()
+        ))
+        .ok()
+    }
 }
 
 pub fn parse_large_numstr_or_warn<F>(
@@ -516,9 +512,10 @@ pub(crate) mod tests {
     #[case(
         Language::Iw,
         "\u{200f}\u{202b}3.36M\u{200f}\u{202c}\u{200f} \u{200f}מנויים\u{200f}",
-        3360000
+        3_360_000
     )]
-    fn t_parse_large_numstr_1(#[case] lang: Language, #[case] string: &str, #[case] expect: u64) {
+    #[case(Language::As, "১ জন গ্ৰাহক", 1)]
+    fn t_parse_large_numstr(#[case] lang: Language, #[case] string: &str, #[case] expect: u64) {
         let res = parse_large_numstr::<u64>(string, lang).unwrap();
         assert_eq!(res, expect);
     }
@@ -526,20 +523,6 @@ pub(crate) mod tests {
     #[test]
     fn t_parse_large_numstr_samples() {
         let json_path = path!(*TESTFILES / "dict" / "large_number_samples.json");
-        let json_file = File::open(json_path).unwrap();
-        let number_samples: BTreeMap<Language, BTreeMap<String, (String, u64)>> =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
-
-        number_samples.iter().for_each(|(lang, entry)| {
-            entry.iter().for_each(|(_, (txt, expect))| {
-                testcase_parse_large_numstr(txt, *lang, *expect);
-            });
-        });
-    }
-
-    #[test]
-    fn t_parse_large_numstr_samples2() {
-        let json_path = path!(*TESTFILES / "dict" / "large_number_samples_all.json");
         let json_file = File::open(json_path).unwrap();
         let number_samples: BTreeMap<Language, BTreeMap<String, u64>> =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
@@ -565,8 +548,9 @@ pub(crate) mod tests {
             }
         };
 
-        // TODO: add support for zero values
-        let res = parse_large_numstr::<u64>(string, lang).unwrap_or_default();
-        assert_eq!(res, rounded, "{string} (lang: {lang}, exact: {expect})");
+        let emsg = format!("{string} (lang: {lang}, exact: {expect})");
+
+        let res = parse_large_numstr::<u64>(string, lang).expect(&emsg);
+        assert_eq!(res, rounded, "{emsg}");
     }
 }

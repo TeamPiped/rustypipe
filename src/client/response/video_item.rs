@@ -515,7 +515,7 @@ impl<T> YouTubeListMapper<T> {
             publish_date_txt: pub_date_txt,
             view_count: video
                 .view_count_text
-                .map(|txt| util::parse_large_numstr(&txt, lang).unwrap_or_default()),
+                .and_then(|txt| util::parse_large_numstr_or_warn(&txt, lang, &mut self.warnings)),
             is_live: false,
             is_short: true,
             is_upcoming: false,

@@ -12,8 +12,11 @@ use rustypipe::{client::YTContext, model::AlbumType, param::Language};
 use serde::{Deserialize, Serialize};
 
 static DICT_PATH: Lazy<PathBuf> = Lazy::new(|| path!("testfiles" / "dict" / "dictionary.json"));
+static DICT_OVERRIDE_PATH: Lazy<PathBuf> =
+    Lazy::new(|| path!("testfiles" / "dict" / "dictionary_override.json"));
 
 type Dictionary = BTreeMap<Language, DictEntry>;
+type DictionaryOverride = BTreeMap<Language, DictOverrideEntry>;
 
 #[derive(Debug, Default, Serialize, Deserialize)]
 #[serde(default)]
@@ -62,6 +65,13 @@ pub struct DictEntry {
     pub album_types: BTreeMap<String, AlbumType>,
 }
 
+#[derive(Debug, Default, Serialize, Deserialize)]
+#[serde(default)]
+pub struct DictOverrideEntry {
+    pub number_tokens: BTreeMap<String, Option<u8>>,
+    pub number_nd_tokens: BTreeMap<String, Option<u8>>,
+}
+
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct QBrowse<'a> {
@@ -95,10 +105,41 @@ pub fn read_dict(project_root: &Path) -> Dictionary {
     serde_json::from_reader(BufReader::new(json_file)).unwrap()
 }
 
-pub fn write_dict(project_root: &Path, dict: &Dictionary) {
+pub fn read_dict_override(project_root: &Path) -> DictionaryOverride {
+    let json_path = path!(project_root / *DICT_OVERRIDE_PATH);
+    let json_file = File::open(json_path).unwrap();
+    serde_json::from_reader(BufReader::new(json_file)).unwrap()
+}
+
+pub fn write_dict(project_root: &Path, dict: Dictionary) {
+    let dict_override = read_dict_override(project_root);
+
     let json_path = path!(project_root / *DICT_PATH);
     let json_file = File::create(json_path).unwrap();
-    serde_json::to_writer_pretty(json_file, dict).unwrap();
+
+    fn apply_map<K: Clone + Ord, V: Clone>(map: &mut BTreeMap<K, V>, or: &BTreeMap<K, Option<V>>) {
+        or.iter().for_each(|(key, val)| match val {
+            Some(val) => {
+                map.insert(key.clone(), val.clone());
+            }
+            None => {
+                map.remove(key);
+            }
+        });
+    }
+
+    let dict: Dictionary = dict
+        .into_iter()
+        .map(|(lang, mut entry)| {
+            if let Some(or) = dict_override.get(&lang) {
+                apply_map(&mut entry.number_tokens, &or.number_tokens);
+                apply_map(&mut entry.number_nd_tokens, &or.number_nd_tokens);
+            }
+            (lang, entry)
+        })
+        .collect();
+
+    serde_json::to_writer_pretty(json_file, &dict).unwrap();
 }
 
 pub fn filter_datestr(string: &str) -> String {
@@ -133,6 +174,7 @@ pub fn filter_largenumstr(string: &str) -> String {
                     | ','
             ) && !c.is_ascii_digit()
         })
+        .flat_map(char::to_lowercase)
         .collect()
 }
 

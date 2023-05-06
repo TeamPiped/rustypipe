@@ -1,0 +1,163 @@
+{
+  "af": {
+    "number_nd_tokens": {
+      "geen": null
+    }
+  },
+  "am": {
+    "number_nd_tokens": {
+      "ምንም": null
+    }
+  },
+  "as": {
+    "number_tokens": {
+      "লা": 5,
+      "হা": 3,
+      "শঃ": null
+    },
+    "number_nd_tokens": {
+      "কোনো": null
+    }
+  },
+  "bn": {
+    "number_tokens": {
+      "কোটি": 7,
+      "শত": 2
+    }
+  },
+  "es": {
+    "number_tokens": {
+      "m": 6,
+      "mil": 3
+    }
+  },
+  "es-US": {
+    "number_tokens": {
+      "m": 6,
+      "mil": 3
+    }
+  },
+  "et": {
+    "number_nd_tokens": {
+      "vaatamisi": null
+    }
+  },
+  "eu": {
+    "number_nd_tokens": {
+      "dago": null,
+      "ikustaldirik": null
+    }
+  },
+  "fr": {
+    "number_tokens": {
+      "d’abonnés": null
+    }
+  },
+  "hy": {
+    "number_nd_tokens": {
+      "Դիտումներ": null
+    }
+  },
+  "is": {
+    "number_nd_tokens": {
+      "áskrifandi": null,
+      "enn": null
+    }
+  },
+  "iw": {
+    "number_nd_tokens": {
+      "מנוי": null
+    }
+  },
+  "ka": {
+    "number_nd_tokens": {
+      "არის": null,
+      "ნახვები": null
+    }
+  },
+  "kk": {
+    "number_nd_tokens": {
+      "көрмеген": null
+    }
+  },
+  "kn": {
+    "number_nd_tokens": {
+      "ಯಾವುದೇ": null
+    }
+  },
+  "ko": {
+    "number_nd_tokens": {
+      "음": null
+    }
+  },
+  "ky": {
+    "number_nd_tokens": {
+      "ким": null,
+      "көрө": null,
+      "элек": null
+    }
+  },
+  "my": {
+    "number_tokens": {
+      "ကုဋေ": 7,
+      "သောင်း": 4,
+      "ထ": 3
+    }
+  },
+  "ne": {
+    "number_nd_tokens": {
+      "कुनै": null
+    }
+  },
+  "no": {
+    "number_nd_tokens": {
+      "avspillinger": null
+    }
+  },
+  "or": {
+    "number_tokens": {
+      "ବିଜଣ": 9,
+      "ବି": 9
+    },
+    "number_nd_tokens": {
+      "କୌଣସି": null
+    }
+  },
+  "pa": {
+    "number_nd_tokens": {
+      "ਕਿਸੇ": null,
+      "ਨੇ": null
+    }
+  },
+  "ro": {
+    "number_nd_tokens": {
+      "abonat": null,
+      "vizionare": null
+    }
+  },
+  "sq": {
+    "number_nd_tokens": {
+      "ka": null
+    }
+  },
+  "uk": {
+    "number_nd_tokens": {
+      "перегляду": null
+    }
+  },
+  "ur": {
+    "number_nd_tokens": {
+      "کوئی": null
+    }
+  },
+  "zh-CN": {
+    "number_nd_tokens": {
+      "人": null
+    }
+  },
+  "zu": {
+    "number_nd_tokens": {
+      "kubukwa": null
+    }
+  }
+}

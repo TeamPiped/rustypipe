@@ -291,5 +291,5 @@ pub fn write_samples_to_dict(project_root: &Path) {
         dict_entry.date_order = num_order;
     }
 
-    util::write_dict(project_root, &dict);
+    util::write_dict(project_root, dict);
 }

@@ -30,3 +30,5 @@ build a dictionary.
 - Examples: "1.4M views"
 - There is an exception for the value 0 ("no views") and in some languages for the value
   1 (pt: "Um vídeo")
+- Special case: Language "gu", "જોવાયાની સંખ્યા" = "no views", contains no unique tokens
+  to parse

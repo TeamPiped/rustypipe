@@ -72,7 +72,7 @@ pub fn write_samples_to_dict(project_root: &Path) {
         });
     }
 
-    util::write_dict(project_root, &dict);
+    util::write_dict(project_root, dict);
 }
 
 #[derive(Debug, Deserialize)]
