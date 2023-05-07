@@ -3,20 +3,22 @@ use serde_with::{
     json::JsonString, rust::deserialize_ignore_any, serde_as, DefaultOnError, VecSkipError,
 };
 
-use crate::serializer::text::{Text, TextComponent};
-use crate::serializer::{MapResult, VecLogError};
+use crate::serializer::{
+    text::{Text, TextComponent},
+    MapResult,
+};
 use crate::util::MappingError;
 
 use super::{
     Alert, ContentsRenderer, ContinuationEndpoint, ResponseContext, SectionList, Tab, Thumbnails,
-    ThumbnailsWrap,
+    ThumbnailsWrap, TwoColumnBrowseResults,
 };
 
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct Playlist {
-    pub contents: Option<Contents>,
+    pub contents: Option<TwoColumnBrowseResults<Tab<SectionList<ItemSection>>>>,
     pub header: Option<Header>,
     pub sidebar: Option<Sidebar>,
     #[serde_as(as = "Option<DefaultOnError>")]
@@ -35,12 +37,6 @@ pub(crate) struct PlaylistCont {
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub(crate) struct Contents {
-    pub two_column_browse_results_renderer: ContentsRenderer<Tab<SectionList<ItemSection>>>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
 pub(crate) struct ItemSection {
     pub item_section_renderer: ContentsRenderer<PlaylistVideoListRenderer>,
 }
@@ -51,11 +47,9 @@ pub(crate) struct PlaylistVideoListRenderer {
     pub playlist_video_list_renderer: PlaylistVideoList,
 }
 
-#[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct PlaylistVideoList {
-    #[serde_as(as = "VecLogError<_>")]
     pub contents: MapResult<Vec<PlaylistItem>>,
 }
 
@@ -108,15 +102,7 @@ pub(crate) struct BylineRenderer {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct Sidebar {
-    pub playlist_sidebar_renderer: SidebarRenderer,
-}
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct SidebarRenderer {
-    #[serde_as(as = "VecSkipError<_>")]
-    pub items: Vec<SidebarItemPrimary>,
+    pub playlist_sidebar_renderer: ContentsRenderer<SidebarItemPrimary>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -199,10 +185,8 @@ pub(crate) struct OnResponseReceivedAction {
     pub append_continuation_items_action: AppendAction,
 }
 
-#[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct AppendAction {
-    #[serde_as(as = "VecLogError<_>")]
     pub continuation_items: MapResult<Vec<PlaylistItem>>,
 }

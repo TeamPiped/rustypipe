@@ -6,21 +6,20 @@ use serde_with::{rust::deserialize_ignore_any, serde_as, DefaultOnError, VecSkip
 use crate::serializer::text::TextComponent;
 use crate::serializer::{
     text::{AccessibilityText, AttributedText, Text, TextComponents},
-    MapResult, VecLogError,
+    MapResult,
 };
 
 use super::{
     url_endpoint::BrowseEndpointWrap, ContinuationEndpoint, ContinuationItemRenderer, Icon,
     MusicContinuationData, Thumbnails,
 };
-use super::{ChannelBadge, ResponseContext, YouTubeListItem};
+use super::{ChannelBadge, ContentsRendererLogged, ResponseContext, YouTubeListItem};
 
 /*
 #VIDEO DETAILS
 */
 
 /// Video details response
-#[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct VideoDetails {
@@ -29,7 +28,6 @@ pub(crate) struct VideoDetails {
     /// Video ID
     pub current_video_endpoint: Option<CurrentVideoEndpoint>,
     /// Video chapters + comment section
-    #[serde_as(as = "VecLogError<_>")]
     pub engagement_panels: MapResult<Vec<EngagementPanel>>,
     pub response_context: ResponseContext,
 }
@@ -60,11 +58,9 @@ pub(crate) struct VideoResultsWrap {
 }
 
 /// Video metadata items
-#[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct VideoResults {
-    #[serde_as(as = "Option<VecLogError<_>>")]
     pub contents: Option<MapResult<Vec<VideoResultsItem>>>,
 }
 
@@ -303,7 +299,6 @@ pub(crate) struct RecommendationResultsWrap {
 #[serde(rename_all = "camelCase")]
 pub(crate) struct RecommendationResults {
     /// Can be `None` for age-restricted videos
-    #[serde_as(as = "Option<VecLogError<_>>")]
     pub results: Option<MapResult<Vec<YouTubeListItem>>>,
     #[serde_as(as = "Option<VecSkipError<_>>")]
     pub continuations: Option<Vec<MusicContinuationData>>,
@@ -341,16 +336,7 @@ pub(crate) enum EngagementPanelRenderer {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct ChapterMarkersContent {
-    pub macro_markers_list_renderer: MacroMarkersListRenderer,
-}
-
-/// Chapter markers
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct MacroMarkersListRenderer {
-    #[serde_as(as = "VecLogError<_>")]
-    pub contents: MapResult<Vec<MacroMarkersListItem>>,
+    pub macro_markers_list_renderer: ContentsRendererLogged<MacroMarkersListItem>,
 }
 
 /// Chapter marker
@@ -436,7 +422,6 @@ pub(crate) struct CommentItemSectionHeaderMenuItem {
 */
 
 /// Video comments continuation response
-#[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct VideoComments {
@@ -450,7 +435,6 @@ pub(crate) struct VideoComments {
     /// - Comment replies: appendContinuationItemsAction
     ///   - n*commentRenderer, continuationItemRenderer:
     ///     replies + continuation
-    #[serde_as(as = "VecLogError<_>")]
     pub on_response_received_endpoints: MapResult<Vec<CommentsContItem>>,
 }
 
@@ -463,11 +447,9 @@ pub(crate) struct CommentsContItem {
 }
 
 /// Video comments continuation action
-#[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct AppendComments {
-    #[serde_as(as = "VecLogError<_>")]
     pub continuation_items: MapResult<Vec<CommentListItem>>,
 }
 
@@ -536,6 +518,8 @@ pub(crate) struct CommentRenderer {
     pub author_comment_badge: Option<AuthorCommentBadge>,
     #[serde(default)]
     pub reply_count: u64,
+    #[serde_as(as = "Option<Text>")]
+    pub vote_count: Option<String>,
     /// Buttons for comment interaction (Like/Dislike/Reply)
     pub action_buttons: CommentActionButtons,
 }
@@ -581,7 +565,6 @@ pub(crate) struct CommentActionButtons {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct CommentActionButtonsRenderer {
-    pub like_button: ToggleButtonWrap,
     pub creator_heart: Option<CreatorHeart>,
 }
 

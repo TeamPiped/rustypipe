@@ -4,7 +4,7 @@ use serde::Deserialize;
 use serde_with::{
     json::JsonString, rust::deserialize_ignore_any, serde_as, DefaultOnError, VecSkipError,
 };
-use time::{Duration, OffsetDateTime};
+use time::OffsetDateTime;
 
 use super::{url_endpoint::NavigationEndpoint, ChannelBadge, ContinuationEndpoint, Thumbnails};
 use crate::{
@@ -15,10 +15,9 @@ use crate::{
     param::Language,
     serializer::{
         text::{AccessibilityText, Text, TextComponent},
-        MapResult, VecLogError,
+        MapResult,
     },
-    timeago,
-    util::{self, TryRemove},
+    util::{self, timeago, TryRemove},
 };
 
 #[serde_as]
@@ -69,7 +68,6 @@ pub(crate) enum YouTubeListItem {
     #[serde(alias = "expandedShelfContentsRenderer", alias = "gridRenderer")]
     ItemSectionRenderer {
         #[serde(alias = "items")]
-        #[serde_as(as = "VecLogError<_>")]
         contents: MapResult<Vec<YouTubeListItem>>,
     },
 
@@ -206,11 +204,9 @@ pub(crate) struct YouTubeListRendererWrap {
     pub section_list_renderer: YouTubeListRenderer,
 }
 
-#[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct YouTubeListRenderer {
-    #[serde_as(as = "VecLogError<_>")]
     pub contents: MapResult<Vec<YouTubeListItem>>,
 }
 
@@ -415,7 +411,7 @@ impl<T> YouTubeListMapper<T> {
         }
     }
 
-    pub fn with_channel<C>(lang: Language, channel: &Channel<C>) -> Self {
+    pub fn with_channel<C>(lang: Language, channel: &Channel<C>, warnings: Vec<String>) -> Self {
         Self {
             lang,
             channel: Some(ChannelTag {
@@ -426,7 +422,7 @@ impl<T> YouTubeListMapper<T> {
                 subscriber_count: channel.subscriber_count,
             }),
             items: Vec::new(),
-            warnings: Vec::new(),
+            warnings,
             ctoken: None,
             corrected_query: None,
             channel_info: None,
@@ -505,8 +501,11 @@ impl<T> YouTubeListMapper<T> {
             length: video.accessibility.and_then(|acc| {
                 ACCESSIBILITY_SEP_REGEX.captures(&acc).and_then(|cap| {
                     cap.get(1).and_then(|c| {
-                        timeago::parse_timeago_or_warn(self.lang, c.as_str(), &mut self.warnings)
-                            .map(|ta| Duration::from(ta).whole_seconds() as u32)
+                        timeago::parse_video_duration_or_warn(
+                            self.lang,
+                            c.as_str(),
+                            &mut self.warnings,
+                        )
                     })
                 })
             }),
@@ -518,7 +517,7 @@ impl<T> YouTubeListMapper<T> {
             publish_date_txt: pub_date_txt,
             view_count: video
                 .view_count_text
-                .map(|txt| util::parse_large_numstr(&txt, lang).unwrap_or_default()),
+                .and_then(|txt| util::parse_large_numstr_or_warn(&txt, lang, &mut self.warnings)),
             is_live: false,
             is_short: true,
             is_upcoming: false,
@@ -572,10 +571,12 @@ impl<T> YouTubeListMapper<T> {
             name: channel.title,
             avatar: channel.thumbnail.into(),
             verification: channel.owner_badges.into(),
-            subscriber_count: sc_txt
-                .and_then(|txt| util::parse_numeric_or_warn(&txt, &mut self.warnings)),
-            video_count: vc_text
-                .and_then(|txt| util::parse_numeric_or_warn(&txt, &mut self.warnings)),
+            subscriber_count: sc_txt.and_then(|txt| {
+                util::parse_large_numstr_or_warn(&txt, self.lang, &mut self.warnings)
+            }),
+            video_count: vc_text.and_then(|txt| {
+                util::parse_large_numstr_or_warn(&txt, self.lang, &mut self.warnings)
+            }),
             short_description: channel.description_snippet,
         }
     }

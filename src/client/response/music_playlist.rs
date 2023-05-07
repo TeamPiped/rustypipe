@@ -58,6 +58,8 @@ pub(crate) struct HeaderRenderer {
     /// Missing on artist_tracks view.
     ///
     /// `"64 songs", " • ", "3 hours, 40 minutes"`
+    ///
+    /// `"1B views", " • ", "200 songs", " • ", "6+ hours"`
     #[serde(default)]
     #[serde_as(as = "Text")]
     pub second_subtitle: Vec<String>,

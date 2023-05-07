@@ -157,7 +157,9 @@ impl MapResponse<Paginator<MusicItem>> for response::MusicContinuation {
                 mapper.add_warnings(&mut panel.contents.warnings);
                 panel.contents.c.into_iter().for_each(|item| {
                     if let PlaylistPanelVideo::PlaylistPanelVideoRenderer(item) = item {
-                        mapper.add_item(MusicItem::Track(map_queue_item(item, lang)))
+                        let mut track = map_queue_item(item, lang);
+                        mapper.add_item(MusicItem::Track(track.c));
+                        mapper.add_warnings(&mut track.warnings);
                     }
                 });
             }

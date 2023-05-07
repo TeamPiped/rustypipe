@@ -4,26 +4,30 @@ expression: track
 ---
 TrackDetails(
   track: TrackItem(
-    id: "7nigXQS1Xb0",
-    name: "INVU",
-    duration: Some(205),
+    id: "qIZ-vvg-wiU",
+    name: "Scheiße baut sich nicht von alleine",
+    duration: Some(232),
     cover: "[cover]",
     artists: [
       ArtistId(
-        id: Some("UCwzCuKxyMY_sT7hr1E8G1XA"),
-        name: "TAEYEON",
+        id: Some("UCAbxL0lZcmlaQrzoUbrvS3A"),
+        name: "SDP",
+      ),
+      ArtistId(
+        id: Some("UCVRREKn7V1Cb8qvf43dwZ6w"),
+        name: "257ers",
       ),
     ],
-    artist_id: Some("UCwzCuKxyMY_sT7hr1E8G1XA"),
+    artist_id: Some("UCAbxL0lZcmlaQrzoUbrvS3A"),
     album: Some(AlbumId(
-      id: "MPREb_4xbv14CiQJm",
-      name: "INVU - The 3rd Album",
+      id: "MPREb_cjEzeaBgZAq",
+      name: "Ein Gutes Schlechtes Vorbild",
     )),
     view_count: "[view_count]",
     is_video: false,
     track_nr: None,
     by_va: false,
   ),
-  lyrics_id: Some("MPLYt_4xbv14CiQJm-1"),
-  related_id: Some("MPTRt_4xbv14CiQJm-1"),
+  lyrics_id: Some("MPLYt_cjEzeaBgZAq-2"),
+  related_id: Some("MPTRt_cjEzeaBgZAq-2"),
 )

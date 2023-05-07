@@ -9,7 +9,7 @@ use crate::{
     param::Language,
     serializer::{
         text::{Text, TextComponents},
-        MapResult, VecLogError,
+        MapResult,
     },
     util::{self, dictionary, TryRemove},
 };
@@ -39,7 +39,6 @@ pub(crate) enum ItemSection {
 pub(crate) struct MusicShelf {
     /// Playlist ID (only for playlists)
     pub playlist_id: Option<String>,
-    #[serde_as(as = "VecLogError<_>")]
     pub contents: MapResult<Vec<MusicResponseItem>>,
     /// Continuation token for fetching more (>100) playlist items
     #[serde(default)]
@@ -53,12 +52,10 @@ pub(crate) struct MusicShelf {
 
 /// MusicCarouselShelf represents a horizontal list of music items displayed with
 /// large covers.
-#[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct MusicCarouselShelf {
     pub header: Option<MusicCarouselShelfHeader>,
-    #[serde_as(as = "VecLogError<_>")]
     pub contents: MapResult<Vec<MusicResponseItem>>,
 }
 
@@ -76,7 +73,6 @@ pub(crate) struct MusicCardShelf {
     #[serde(default)]
     pub thumbnail: MusicThumbnailRenderer,
     #[serde(default)]
-    #[serde_as(as = "VecLogError<_>")]
     pub contents: MapResult<Vec<MusicResponseItem>>,
 }
 
@@ -227,7 +223,6 @@ pub(crate) struct CoverMusicItem {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct PlaylistPanelRenderer {
-    #[serde_as(as = "VecLogError<_>")]
     pub contents: MapResult<Vec<PlaylistPanelVideo>>,
     /// Continuation token for fetching more radio items
     #[serde(default)]
@@ -362,15 +357,7 @@ pub(crate) struct ButtonRenderer {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct MusicItemMenu {
-    pub menu_renderer: MusicItemMenuRenderer,
-}
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct MusicItemMenuRenderer {
-    #[serde_as(as = "VecSkipError<_>")]
-    pub items: Vec<MusicItemMenuEntry>,
+    pub menu_renderer: ContentsRenderer<MusicItemMenuEntry>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -385,11 +372,9 @@ pub(crate) struct Grid {
     pub grid_renderer: GridRenderer,
 }
 
-#[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct GridRenderer {
-    #[serde_as(as = "VecLogError<_>")]
     pub items: MapResult<Vec<MusicResponseItem>>,
     pub header: Option<GridHeader>,
 }
@@ -587,7 +572,9 @@ impl MusicListMapper {
                                         (subtitle_parts.rev().next(), None, None)
                                     } else {
                                         // Skip first part (track type)
-                                        if subtitle_parts.len() > 3 {
+                                        if subtitle_parts.len() > 3
+                                            || (is_video && subtitle_parts.len() == 2)
+                                        {
                                             subtitle_parts.next();
                                         }
 
@@ -618,7 +605,11 @@ impl MusicListMapper {
                             (FlexColumnDisplayStyle::TwoLines, true) => (
                                 None,
                                 album_p.and_then(|p| {
-                                    util::parse_large_numstr(p.first_str(), self.lang)
+                                    util::parse_large_numstr_or_warn(
+                                        p.first_str(),
+                                        self.lang,
+                                        &mut self.warnings,
+                                    )
                                 }),
                             ),
                             (_, false) => (
@@ -692,7 +683,11 @@ impl MusicListMapper {
                         match page_type {
                             MusicPageType::Artist => {
                                 let subscriber_count = subtitle_p2.and_then(|p| {
-                                    util::parse_large_numstr(p.first_str(), self.lang)
+                                    util::parse_large_numstr_or_warn(
+                                        p.first_str(),
+                                        self.lang,
+                                        &mut self.warnings,
+                                    )
                                 });
 
                                 self.items.push(MusicItem::Artist(ArtistItem {
@@ -736,7 +731,8 @@ impl MusicListMapper {
 
                                 let from_ytm = channel_p
                                     .as_ref()
-                                    .map(|p| p.first_str() == util::YT_MUSIC_NAME)
+                                    .and_then(|p| p.0.first())
+                                    .map(util::is_ytm)
                                     .unwrap_or_default();
                                 let channel = channel_p.and_then(|p| {
                                     p.0.into_iter().find_map(|c| ChannelId::try_from(c).ok())
@@ -792,7 +788,11 @@ impl MusicListMapper {
                                 artists,
                                 album: None,
                                 view_count: subtitle_p2.and_then(|c| {
-                                    util::parse_large_numstr(c.first_str(), self.lang)
+                                    util::parse_large_numstr_or_warn(
+                                        c.first_str(),
+                                        self.lang,
+                                        &mut self.warnings,
+                                    )
                                 }),
                                 is_video,
                                 track_nr: None,
@@ -801,8 +801,13 @@ impl MusicListMapper {
                             Ok(Some(MusicItemType::Track))
                         }
                         MusicPageType::Artist => {
-                            let subscriber_count = subtitle_p1
-                                .and_then(|p| util::parse_large_numstr(p.first_str(), self.lang));
+                            let subscriber_count = subtitle_p1.and_then(|p| {
+                                util::parse_large_numstr_or_warn(
+                                    p.first_str(),
+                                    self.lang,
+                                    &mut self.warnings,
+                                )
+                            });
 
                             self.items.push(MusicItem::Artist(ArtistItem {
                                 id,
@@ -868,7 +873,8 @@ impl MusicListMapper {
                             // (featured on the startpage or in genres)
                             let from_ytm = subtitle_p2
                                 .as_ref()
-                                .map(|p| p.first_str() == util::YT_MUSIC_NAME)
+                                .and_then(|p| p.0.first())
+                                .map(util::is_ytm)
                                 .unwrap_or(true);
                             let channel = subtitle_p2.and_then(|p| {
                                 p.0.into_iter().find_map(|c| ChannelId::try_from(c).ok())
@@ -927,8 +933,13 @@ impl MusicListMapper {
         let item_type = match card.on_tap.music_page() {
             Some((page_type, id)) => match page_type {
                 MusicPageType::Artist => {
-                    let subscriber_count = subtitle_p2
-                        .and_then(|p| util::parse_large_numstr(p.first_str(), self.lang));
+                    let subscriber_count = subtitle_p2.and_then(|p| {
+                        util::parse_large_numstr_or_warn(
+                            p.first_str(),
+                            self.lang,
+                            &mut self.warnings,
+                        )
+                    });
 
                     self.items.push(MusicItem::Artist(ArtistItem {
                         id,
@@ -963,8 +974,13 @@ impl MusicListMapper {
                     let (album, view_count) = if is_video {
                         (
                             None,
-                            subtitle_p3
-                                .and_then(|p| util::parse_large_numstr(p.first_str(), self.lang)),
+                            subtitle_p3.and_then(|p| {
+                                util::parse_large_numstr_or_warn(
+                                    p.first_str(),
+                                    self.lang,
+                                    &mut self.warnings,
+                                )
+                            }),
                         )
                     } else {
                         (
@@ -993,7 +1009,8 @@ impl MusicListMapper {
                 MusicPageType::Playlist => {
                     let from_ytm = subtitle_p2
                         .as_ref()
-                        .map(|p| p.first_str() == util::YT_MUSIC_NAME)
+                        .and_then(|p| p.0.first())
+                        .map(util::is_ytm)
                         .unwrap_or(true);
                     let channel = subtitle_p2
                         .and_then(|p| p.0.into_iter().find_map(|c| ChannelId::try_from(c).ok()));
@@ -1118,7 +1135,7 @@ fn map_artist_id_fallback(
     menu: Option<MusicItemMenu>,
     fallback_artist: Option<&ArtistId>,
 ) -> Option<String> {
-    menu.and_then(|m| map_artist_id(m.menu_renderer.items))
+    menu.and_then(|m| map_artist_id(m.menu_renderer.contents))
         .or_else(|| fallback_artist.and_then(|a| a.id.to_owned()))
 }
 
@@ -1149,7 +1166,8 @@ pub(crate) fn map_album_type(txt: &str, lang: Language) -> AlbumType {
         .unwrap_or_default()
 }
 
-pub(crate) fn map_queue_item(item: QueueMusicItem, lang: Language) -> TrackItem {
+pub(crate) fn map_queue_item(item: QueueMusicItem, lang: Language) -> MapResult<TrackItem> {
+    let mut warnings = Vec::new();
     let mut subtitle_parts = item.long_byline_text.split(util::DOT_SEPARATOR).into_iter();
 
     let is_video = !item
@@ -1167,7 +1185,8 @@ pub(crate) fn map_queue_item(item: QueueMusicItem, lang: Language) -> TrackItem 
     let (album, view_count) = if is_video {
         (
             None,
-            subtitle_p2.and_then(|p| util::parse_large_numstr(p.first_str(), lang)),
+            subtitle_p2
+                .and_then(|p| util::parse_large_numstr_or_warn(p.first_str(), lang, &mut warnings)),
         )
     } else {
         (
@@ -1176,20 +1195,23 @@ pub(crate) fn map_queue_item(item: QueueMusicItem, lang: Language) -> TrackItem 
         )
     };
 
-    TrackItem {
-        id: item.video_id,
-        name: item.title,
-        duration: item
-            .length_text
-            .and_then(|txt| util::parse_video_length(&txt)),
-        cover: item.thumbnail.into(),
-        artists,
-        artist_id,
-        album,
-        view_count,
-        is_video,
-        track_nr: None,
-        by_va,
+    MapResult {
+        c: TrackItem {
+            id: item.video_id,
+            name: item.title,
+            duration: item
+                .length_text
+                .and_then(|txt| util::parse_video_length(&txt)),
+            cover: item.thumbnail.into(),
+            artists,
+            artist_id,
+            album,
+            view_count,
+            is_video,
+            track_nr: None,
+            by_va,
+        },
+        warnings,
     }
 }
 

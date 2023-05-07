@@ -47,12 +47,17 @@ pub(crate) mod channel_rss;
 #[cfg(feature = "rss")]
 pub(crate) use channel_rss::ChannelRss;
 
-use serde::Deserialize;
+use std::borrow::Cow;
+use std::marker::PhantomData;
+
+use serde::{
+    de::{IgnoredAny, Visitor},
+    Deserialize,
+};
 use serde_with::{json::JsonString, serde_as, VecSkipError};
 
 use crate::error::ExtractionError;
-use crate::serializer::MapResult;
-use crate::serializer::{text::Text, VecLogError};
+use crate::serializer::{text::Text, MapResult, VecSkipErrorWrap};
 
 use self::video_item::YouTubeListRenderer;
 
@@ -62,11 +67,15 @@ pub(crate) struct ContentRenderer<T> {
     pub content: T,
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
+#[derive(Debug)]
 pub(crate) struct ContentsRenderer<T> {
-    #[serde(alias = "tabs")]
     pub contents: Vec<T>,
+}
+
+#[derive(Debug, Deserialize)]
+pub(crate) struct ContentsRendererLogged<T> {
+    #[serde(alias = "items")]
+    pub contents: MapResult<Vec<T>>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -79,6 +88,12 @@ pub(crate) struct Tab<T> {
 #[serde(rename_all = "camelCase")]
 pub(crate) struct SectionList<T> {
     pub section_list_renderer: ContentsRenderer<T>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct TwoColumnBrowseResults<T> {
+    pub two_column_browse_results_renderer: ContentsRenderer<T>,
 }
 
 #[derive(Default, Debug, Deserialize)]
@@ -207,11 +222,9 @@ pub(crate) struct ContinuationActionWrap {
     pub append_continuation_items_action: ContinuationAction,
 }
 
-#[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct ContinuationAction {
-    #[serde_as(as = "VecLogError<_>")]
     pub continuation_items: MapResult<Vec<YouTubeListItem>>,
 }
 
@@ -248,9 +261,53 @@ pub(crate) struct ErrorResponseContent {
     pub message: String,
 }
 
-/*
-#MAPPING
-*/
+// DESERIALIZER
+
+impl<'de, T> Deserialize<'de> for ContentsRenderer<T>
+where
+    T: Deserialize<'de>,
+{
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        struct ItemVisitor<T>(PhantomData<T>);
+
+        impl<'de, T> Visitor<'de> for ItemVisitor<T>
+        where
+            T: Deserialize<'de>,
+        {
+            type Value = ContentsRenderer<T>;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter) -> std::fmt::Result {
+                formatter.write_str("map")
+            }
+
+            fn visit_map<A>(self, mut map: A) -> Result<Self::Value, A::Error>
+            where
+                A: serde::de::MapAccess<'de>,
+            {
+                let mut contents = None;
+
+                while let Some(k) = map.next_key::<Cow<'de, str>>()? {
+                    if k == "contents" || k == "tabs" || k == "items" {
+                        contents = Some(ContentsRenderer {
+                            contents: map.next_value::<VecSkipErrorWrap<T>>()?.0,
+                        });
+                    } else {
+                        map.next_value::<IgnoredAny>()?;
+                    }
+                }
+
+                contents.ok_or(serde::de::Error::missing_field("contents"))
+            }
+        }
+
+        deserializer.deserialize_map(ItemVisitor(PhantomData::<T>))
+    }
+}
+
+// MAPPING
 
 impl From<Thumbnail> for crate::model::Thumbnail {
     fn from(tn: Thumbnail) -> Self {

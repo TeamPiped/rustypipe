@@ -2,6 +2,7 @@ mod date;
 mod protobuf;
 
 pub mod dictionary;
+pub mod timeago;
 
 pub use date::{now_sec, shift_months, shift_years};
 pub use protobuf::{string_from_pb, ProtoBuilder};
@@ -19,7 +20,7 @@ use rand::Rng;
 use regex::Regex;
 use url::Url;
 
-use crate::{error::Error, param::Language};
+use crate::{error::Error, param::Language, serializer::text::TextComponent};
 
 pub static VIDEO_ID_REGEX: Lazy<Regex> = Lazy::new(|| Regex::new(r"^[A-Za-z0-9_-]{11}$").unwrap());
 pub static CHANNEL_ID_REGEX: Lazy<Regex> =
@@ -34,8 +35,6 @@ pub static VANITY_PATH_REGEX: Lazy<Regex> = Lazy::new(|| {
 
 /// Separator string for YouTube Music subtitles
 pub const DOT_SEPARATOR: &str = " • ";
-/// YouTube Music name (author of official playlists)
-pub const YT_MUSIC_NAME: &str = "YouTube Music";
 pub const VARIOUS_ARTISTS: &str = "Various Artists";
 pub const PLAYLIST_ID_ALBUM_PREFIX: &str = "OLAK";
 
@@ -143,7 +142,7 @@ where
 /// and return the duration in seconds.
 pub fn parse_video_length(text: &str) -> Option<u32> {
     static VIDEO_LENGTH_REGEX: Lazy<Regex> =
-        Lazy::new(|| Regex::new(r#"(?:(\d+):)?(\d{1,2}):(\d{2})"#).unwrap());
+        Lazy::new(|| Regex::new(r#"(?:(\d+)[:.])?(\d{1,2})[:.](\d{2})"#).unwrap());
     VIDEO_LENGTH_REGEX.captures(text).map(|cap| {
         let hrs = cap
             .get(1)
@@ -272,56 +271,114 @@ impl<T> TryRemove<T> for Vec<T> {
     }
 }
 
+/// Check if a channel name equals "YouTube Music"
+/// (the author of original YouTube music playlists)
+pub(crate) fn is_ytm(text: &TextComponent) -> bool {
+    if let TextComponent::Text { text } = text {
+        text.starts_with("YouTube")
+    } else {
+        false
+    }
+}
+
+/// Check if a language should be parsed by character
+pub fn lang_by_char(lang: Language) -> bool {
+    matches!(
+        lang,
+        Language::Ja | Language::ZhCn | Language::ZhHk | Language::ZhTw
+    )
+}
+
 /// Parse a large, textual number (e.g. `1.4M subscribers`, `22K views`)
 pub fn parse_large_numstr<F>(string: &str, lang: Language) -> Option<F>
 where
     F: TryFrom<u64>,
 {
+    // Special case for Gujarati: the "no views" text does not contain
+    // any parseable tokens: the 2 words occur in any view count text.
+    // This may be a translation error.
+    if lang == Language::Gu && string == "જોવાયાની સંખ્યા" {
+        return 0.try_into().ok();
+    }
+
     let dict_entry = dictionary::entry(lang);
+    let by_char = lang_by_char(lang) || lang == Language::Ko;
     let decimal_point = match dict_entry.comma_decimal {
         true => ',',
         false => '.',
     };
 
-    let (num, mut exp, filtered) = {
-        let mut buf = String::new();
-        let mut filtered = String::new();
-        let mut exp = 0;
-        let mut after_point = false;
-        for c in string.chars() {
-            if c.is_ascii_digit() {
-                buf.push(c);
+    let mut digits = String::new();
+    let mut filtered = String::new();
+    let mut exp = 0;
+    let mut after_point = false;
 
-                if after_point {
-                    exp -= 1;
-                }
-            } else if c == decimal_point {
-                after_point = true;
-            } else if !matches!(c, '\u{200b}' | '.' | ',') {
-                filtered.push(c);
+    for c in string.chars() {
+        if c.is_ascii_digit() {
+            digits.push(c);
+
+            if after_point {
+                exp -= 1;
             }
+        } else if c == decimal_point {
+            after_point = true;
+        } else if !matches!(
+            c,
+            '\u{200b}' | '\u{202b}' | '\u{202c}' | '\u{202e}' | '\u{200e}' | '\u{200f}' | '.' | ','
+        ) {
+            c.to_lowercase().for_each(|c| filtered.push(c));
         }
-        (buf.parse::<u64>().ok()?, exp, filtered)
-    };
-
-    let lookup_token = |token: &str| match token {
-        "K" | "k" => Some(3),
-        _ => dict_entry.number_tokens.get(token).map(|t| *t as i32),
-    };
-
-    if dict_entry.by_char {
-        exp += filtered
-            .chars()
-            .filter_map(|token| lookup_token(&token.to_string()))
-            .sum::<i32>();
-    } else {
-        exp += filtered
-            .split_whitespace()
-            .filter_map(lookup_token)
-            .sum::<i32>();
     }
 
-    F::try_from(num.checked_mul((10_u64).checked_pow(exp.try_into().ok()?)?)?).ok()
+    if digits.is_empty() {
+        if by_char {
+            filtered
+                .chars()
+                .find_map(|c| dict_entry.number_nd_tokens.get(&c.to_string()))
+                .and_then(|n| (*n as u64).try_into().ok())
+        } else {
+            filtered
+                .split_whitespace()
+                .find_map(|token| dict_entry.number_nd_tokens.get(token))
+                .and_then(|n| (*n as u64).try_into().ok())
+        }
+    } else {
+        let num = digits.parse::<u64>().ok()?;
+
+        let lookup_token = |token: &str| match token {
+            "k" => Some(3),
+            _ => dict_entry.number_tokens.get(token).map(|t| *t as i32),
+        };
+
+        if by_char {
+            exp += filtered
+                .chars()
+                .filter_map(|token| lookup_token(&token.to_string()))
+                .sum::<i32>();
+        } else {
+            exp += filtered
+                .split_whitespace()
+                .filter_map(lookup_token)
+                .sum::<i32>();
+        }
+
+        F::try_from(num.checked_mul((10_u64).checked_pow(exp.try_into().ok()?)?)?).ok()
+    }
+}
+
+pub fn parse_large_numstr_or_warn<F>(
+    string: &str,
+    lang: Language,
+    warnings: &mut Vec<String>,
+) -> Option<F>
+where
+    F: TryFrom<u64>,
+{
+    let res = parse_large_numstr::<F>(string, lang);
+    if res.is_none() {
+        warnings.push(format!("could not parse numstr `{string}`"));
+    }
+    res
 }
 
 /// Replace all html control characters to make a string safe for inserting into HTML.
@@ -448,23 +505,21 @@ pub(crate) mod tests {
         assert_eq!(res, expect);
     }
 
-    #[test]
-    fn t_parse_large_numstr_samples() {
-        let json_path = path!(*TESTFILES / "dict" / "large_number_samples.json");
-        let json_file = File::open(json_path).unwrap();
-        let number_samples: BTreeMap<Language, BTreeMap<u8, (String, u64)>> =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
-
-        number_samples.iter().for_each(|(lang, entry)| {
-            entry.iter().for_each(|(_, (txt, expect))| {
-                testcase_parse_large_numstr(txt, *lang, *expect);
-            });
-        });
+    #[rstest]
+    #[case(
+        Language::Iw,
+        "\u{200f}\u{202b}3.36M\u{200f}\u{202c}\u{200f} \u{200f}מנויים\u{200f}",
+        3_360_000
+    )]
+    #[case(Language::As, "১ জন গ্ৰাহক", 1)]
+    fn t_parse_large_numstr(#[case] lang: Language, #[case] string: &str, #[case] expect: u64) {
+        let res = parse_large_numstr::<u64>(string, lang).unwrap();
+        assert_eq!(res, expect);
     }
 
     #[test]
-    fn t_parse_large_numstr_samples2() {
-        let json_path = path!(*TESTFILES / "dict" / "large_number_samples_all.json");
+    fn t_parse_large_numstr_samples() {
+        let json_path = path!(*TESTFILES / "dict" / "large_number_samples.json");
         let json_file = File::open(json_path).unwrap();
         let number_samples: BTreeMap<Language, BTreeMap<String, u64>> =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
@@ -481,12 +536,18 @@ pub(crate) mod tests {
         // in the string.
         let rounded = {
             let n_significant_d = string.chars().filter(char::is_ascii_digit).count();
-            let mag = (expect as f64).log10().floor();
-            let factor = 10_u64.pow(1 + mag as u32 - n_significant_d as u32);
-            (((expect as f64) / factor as f64).floor() as u64) * factor
+            if n_significant_d == 0 {
+                expect
+            } else {
+                let mag = (expect as f64).log10().floor();
+                let factor = 10_u64.pow(1 + mag as u32 - n_significant_d as u32);
+                (((expect as f64) / factor as f64).floor() as u64) * factor
+            }
         };
 
-        let res = parse_large_numstr::<u64>(string, lang).expect(string);
-        assert_eq!(res, rounded, "{string} (lang: {lang}, exact: {expect})");
+        let emsg = format!("{string} (lang: {lang}, exact: {expect})");
+
+        let res = parse_large_numstr::<u64>(string, lang).expect(&emsg);
+        assert_eq!(res, rounded, "{emsg}");
     }
 }

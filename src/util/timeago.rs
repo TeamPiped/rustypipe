@@ -9,11 +9,6 @@
 //!
 //! This module can parse these dates using an embedded dictionary which
 //! contains date/time unit tokens for all supported languages.
-//!
-//! Note that this module is public so it can be tested from outside
-//! the crate, which is important for including new languages, too.
-//!
-//! It is not intended to be used to parse textual dates that are not from YouTube.
 
 use std::ops::Mul;
 
@@ -70,15 +65,35 @@ pub enum TimeUnit {
 
 /// Value of a parsed TimeAgo token, used in the dictionary
 #[derive(Debug, Copy, Clone, PartialEq, Eq)]
-pub(crate) struct TaToken {
+pub struct TaToken {
     pub n: u8,
     pub unit: Option<TimeUnit>,
 }
 
-pub(crate) enum DateCmp {
+pub enum DateCmp {
     Y,
     M,
     D,
+}
+
+impl TimeUnit {
+    pub fn secs(&self) -> i64 {
+        match self {
+            TimeUnit::Second => 1,
+            TimeUnit::Minute => 60,
+            TimeUnit::Hour => 3600,
+            TimeUnit::Day => 24 * 3600,
+            TimeUnit::Week => 7 * 24 * 3600,
+            TimeUnit::Month => 30 * 24 * 3600,
+            TimeUnit::Year => 365 * 24 * 3600,
+        }
+    }
+}
+
+impl TimeAgo {
+    fn secs(&self) -> i64 {
+        i64::from(self.n) * self.unit.secs()
+    }
 }
 
 impl Mul<u8> for TimeAgo {
@@ -94,15 +109,7 @@ impl Mul<u8> for TimeAgo {
 
 impl From<TimeAgo> for Duration {
     fn from(ta: TimeAgo) -> Self {
-        match ta.unit {
-            TimeUnit::Second => Duration::seconds(ta.n as i64),
-            TimeUnit::Minute => Duration::minutes(ta.n as i64),
-            TimeUnit::Hour => Duration::hours(ta.n as i64),
-            TimeUnit::Day => Duration::days(ta.n as i64),
-            TimeUnit::Week => Duration::weeks(ta.n as i64),
-            TimeUnit::Month => Duration::days(ta.n as i64 * 30),
-            TimeUnit::Year => Duration::days(ta.n as i64 * 365),
-        }
+        Duration::seconds(ta.secs())
     }
 }
 
@@ -142,14 +149,19 @@ fn filter_str(string: &str) -> String {
         .collect()
 }
 
-fn parse_ta_token(entry: &dictionary::Entry, nd: bool, filtered_str: &str) -> Option<TimeAgo> {
+fn parse_ta_token(
+    entry: &dictionary::Entry,
+    by_char: bool,
+    nd: bool,
+    filtered_str: &str,
+) -> Option<TimeAgo> {
     let tokens = match nd {
         true => &entry.timeago_nd_tokens,
         false => &entry.timeago_tokens,
     };
     let mut qu = 1;
 
-    if entry.by_char {
+    if by_char {
         filtered_str.chars().find_map(|word| {
             tokens.get(&word.to_string()).and_then(|t| match t.unit {
                 Some(unit) => Some(TimeAgo { n: t.n * qu, unit }),
@@ -172,54 +184,78 @@ fn parse_ta_token(entry: &dictionary::Entry, nd: bool, filtered_str: &str) -> Op
     }
 }
 
-fn parse_textual_month(entry: &dictionary::Entry, filtered_str: &str) -> Option<u8> {
-    if entry.by_char {
-        // Chinese/Japanese dont use textual months
-        None
+fn parse_ta_tokens(
+    entry: &dictionary::Entry,
+    by_char: bool,
+    nd: bool,
+    filtered_str: &str,
+) -> Vec<TimeAgo> {
+    let tokens = match nd {
+        true => &entry.timeago_nd_tokens,
+        false => &entry.timeago_tokens,
+    };
+    let mut qu = 1;
+
+    if by_char {
+        filtered_str
+            .chars()
+            .filter_map(|word| {
+                tokens.get(&word.to_string()).and_then(|t| match t.unit {
+                    Some(unit) => Some(TimeAgo { n: t.n * qu, unit }),
+                    None => {
+                        qu = t.n;
+                        None
+                    }
+                })
+            })
+            .collect()
     } else {
         filtered_str
             .split_whitespace()
-            .find_map(|word| entry.months.get(word).copied())
+            .filter_map(|word| {
+                tokens.get(word).and_then(|t| match t.unit {
+                    Some(unit) => Some(TimeAgo { n: t.n * qu, unit }),
+                    None => {
+                        qu = t.n;
+                        None
+                    }
+                })
+            })
+            .collect()
     }
+}
+
+fn parse_textual_month(entry: &dictionary::Entry, filtered_str: &str) -> Option<u8> {
+    filtered_str
+        .split_whitespace()
+        .find_map(|word| entry.months.get(word).copied())
 }
 
 /// Parse a TimeAgo string (e.g. "29 minutes ago") into a TimeAgo object.
 ///
-/// Returns None if the date could not be parsed.
+/// Returns [`None`] if the date could not be parsed.
 pub fn parse_timeago(lang: Language, textual_date: &str) -> Option<TimeAgo> {
     let entry = dictionary::entry(lang);
     let filtered_str = filter_str(textual_date);
 
     let qu: u8 = util::parse_numeric(textual_date).unwrap_or(1);
 
-    parse_ta_token(&entry, false, &filtered_str).map(|ta| ta * qu)
+    parse_ta_token(&entry, util::lang_by_char(lang), false, &filtered_str).map(|ta| ta * qu)
 }
 
 /// Parse a TimeAgo string (e.g. "29 minutes ago") into a Chrono DateTime object.
 ///
-/// Returns None if the date could not be parsed.
-pub fn parse_timeago_to_dt(lang: Language, textual_date: &str) -> Option<OffsetDateTime> {
+/// Returns [`None`] if the date could not be parsed.
+pub fn parse_timeago_dt(lang: Language, textual_date: &str) -> Option<OffsetDateTime> {
     parse_timeago(lang, textual_date).map(|ta| ta.into())
 }
 
-pub(crate) fn parse_timeago_or_warn(
-    lang: Language,
-    textual_date: &str,
-    warnings: &mut Vec<String>,
-) -> Option<TimeAgo> {
-    let res = parse_timeago(lang, textual_date);
-    if res.is_none() {
-        warnings.push(format!("could not parse timeago `{textual_date}`"));
-    }
-    res
-}
-
-pub(crate) fn parse_timeago_dt_or_warn(
+pub fn parse_timeago_dt_or_warn(
     lang: Language,
     textual_date: &str,
     warnings: &mut Vec<String>,
 ) -> Option<OffsetDateTime> {
-    let res = parse_timeago_to_dt(lang, textual_date);
+    let res = parse_timeago_dt(lang, textual_date);
     if res.is_none() {
         warnings.push(format!("could not parse timeago `{textual_date}`"));
     }
@@ -228,19 +264,20 @@ pub(crate) fn parse_timeago_dt_or_warn(
 
 /// Parse a textual date (e.g. "29 minutes ago" or "Jul 2, 2014") into a ParsedDate object.
 ///
-/// Returns None if the date could not be parsed.
+/// Returns [`None`] if the date could not be parsed.
 pub fn parse_textual_date(lang: Language, textual_date: &str) -> Option<ParsedDate> {
     let entry = dictionary::entry(lang);
+    let by_char = util::lang_by_char(lang);
     let filtered_str = filter_str(textual_date);
 
     let nums = util::parse_numeric_vec::<u16>(textual_date);
 
     match nums.len() {
-        0 => match parse_ta_token(&entry, true, &filtered_str) {
+        0 => match parse_ta_token(&entry, by_char, true, &filtered_str) {
             Some(timeago) => Some(ParsedDate::Relative(timeago)),
-            None => parse_ta_token(&entry, false, &filtered_str).map(ParsedDate::Relative),
+            None => parse_ta_token(&entry, by_char, false, &filtered_str).map(ParsedDate::Relative),
         },
-        1 => parse_ta_token(&entry, false, &filtered_str)
+        1 => parse_ta_token(&entry, by_char, false, &filtered_str)
             .map(|timeago| ParsedDate::Relative(timeago * nums[0] as u8)),
         2..=3 => {
             if nums.len() == entry.date_order.len() {
@@ -256,7 +293,8 @@ pub fn parse_textual_date(lang: Language, textual_date: &str) -> Option<ParsedDa
                         DateCmp::D => d = Some(*n),
                     });
 
-                if m.is_none() {
+                // Chinese/Japanese dont use textual months
+                if m.is_none() && !by_char {
                     m = parse_textual_month(&entry, &filtered_str).map(|n| n as u16);
                 }
 
@@ -282,7 +320,7 @@ pub fn parse_textual_date_to_dt(lang: Language, textual_date: &str) -> Option<Of
     parse_textual_date(lang, textual_date).map(|ta| ta.into())
 }
 
-pub(crate) fn parse_textual_date_or_warn(
+pub fn parse_textual_date_or_warn(
     lang: Language,
     textual_date: &str,
     warnings: &mut Vec<String>,
@@ -292,6 +330,87 @@ pub(crate) fn parse_textual_date_or_warn(
         warnings.push(format!("could not parse textual date `{textual_date}`"));
     }
     res
+}
+
+/// Parse a textual video duration (e.g. "11 minutes, 20 seconds")
+///
+/// Returns None if the duration could not be parsed
+pub fn parse_video_duration(lang: Language, video_duration: &str) -> Option<u32> {
+    let entry = dictionary::entry(lang);
+    let by_char = util::lang_by_char(lang);
+
+    let parts = split_duration_txt(video_duration, matches!(lang, Language::Si | Language::Sw));
+    let mut secs = 0;
+
+    for part in parts {
+        let mut n = if part.digits.is_empty() {
+            1
+        } else {
+            part.digits.parse::<u32>().ok()?
+        };
+        let tokens = parse_ta_tokens(&entry, by_char, false, &part.word);
+        if tokens.is_empty() {
+            return None;
+        }
+
+        tokens.iter().for_each(|ta| {
+            secs += n * ta.secs() as u32;
+            n = 1;
+        });
+    }
+
+    Some(secs)
+}
+
+pub fn parse_video_duration_or_warn(
+    lang: Language,
+    video_duration: &str,
+    warnings: &mut Vec<String>,
+) -> Option<u32> {
+    let res = parse_video_duration(lang, video_duration);
+    if res.is_none() {
+        warnings.push(format!("could not parse video duration `{video_duration}`"));
+    }
+    res
+}
+
+#[derive(Default)]
+struct DurationTxtSegment {
+    digits: String,
+    word: String,
+}
+
+fn split_duration_txt(txt: &str, start_c: bool) -> Vec<DurationTxtSegment> {
+    let mut segments = Vec::new();
+
+    // 1: parse digits, 2: parse word
+    let mut state: u8 = 0;
+    let mut seg = DurationTxtSegment::default();
+
+    for c in txt.chars() {
+        if c.is_ascii_digit() {
+            if state == 2 && (!seg.digits.is_empty() || (!start_c && segments.is_empty())) {
+                segments.push(seg);
+                seg = DurationTxtSegment::default();
+            }
+            seg.digits.push(c);
+            state = 1;
+        } else {
+            if (state == 1) && (!seg.word.is_empty() || (start_c && segments.is_empty())) {
+                segments.push(seg);
+                seg = DurationTxtSegment::default();
+            }
+            if c != ',' {
+                c.to_lowercase().for_each(|c| seg.word.push(c));
+            }
+            state = 2;
+        }
+    }
+    if !seg.word.is_empty() || !seg.digits.is_empty() {
+        segments.push(seg);
+    }
+
+    segments
 }
 
 #[cfg(test)]
@@ -536,6 +655,11 @@ mod tests {
         "Last updated on Jun 04, 2003",
         Some(ParsedDate::Absolute(date!(2003-6-4)))
     )]
+    #[case(
+        Language::Bn,
+        "যোগ দিয়েছেন 24 সেপ, 2013",
+        Some(ParsedDate::Absolute(date!(2013-9-24)))
+    )]
     fn t_parse_date(
         #[case] lang: Language,
         #[case] textual_date: &str,
@@ -564,11 +688,7 @@ mod tests {
             assert_eq!(
                 parse_textual_date(*lang, samples.get("Yesterday").unwrap()),
                 Some(ParsedDate::Relative(TimeAgo {
-                    // YT's Singhalese translation has an error (yesterday == today)
-                    n: match lang {
-                        Language::Si => 0,
-                        _ => 1,
-                    },
+                    n: 1,
                     unit: TimeUnit::Day
                 })),
                 "lang: {lang}"
@@ -576,7 +696,7 @@ mod tests {
             assert_eq!(
                 parse_textual_date(*lang, samples.get("Ago").unwrap()),
                 Some(ParsedDate::Relative(TimeAgo {
-                    n: 3,
+                    n: 5,
                     unit: TimeUnit::Day
                 })),
                 "lang: {lang}"
@@ -642,6 +762,36 @@ mod tests {
                 "lang: {lang}"
             );
         })
+    }
+
+    #[test]
+    fn t_parse_video_duration() {
+        let json_path = path!(*TESTFILES / "dict" / "video_duration_samples.json");
+        let json_file = File::open(json_path).unwrap();
+        let date_samples: BTreeMap<Language, BTreeMap<String, u32>> =
+            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+
+        date_samples.iter().for_each(|(lang, samples)| {
+            samples.iter().for_each(|(txt, duration)| {
+                assert_eq!(
+                    parse_video_duration(*lang, txt),
+                    Some(*duration),
+                    "lang: {lang}; txt: `{txt}`"
+                );
+            })
+        });
+    }
+
+    #[rstest]
+    #[case(Language::Ar, "19 دقيقة وثانيتان", 1142)]
+    #[case(Language::Ar, "دقيقة و13 ثانية", 73)]
+    #[case(Language::Sw, "dakika 1 na sekunde 13", 73)]
+    fn t_parse_video_duration2(
+        #[case] lang: Language,
+        #[case] video_duration: &str,
+        #[case] expect: u32,
+    ) {
+        assert_eq!(parse_video_duration(lang, video_duration), Some(expect));
     }
 
     #[test]

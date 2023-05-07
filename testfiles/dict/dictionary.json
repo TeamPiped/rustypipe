@@ -41,6 +41,9 @@
       "m": 6,
       "mjd": 9
     },
+    "number_nd_tokens": {
+      "nie": 0
+    },
     "album_types": {
       "album": "Album",
       "drama": "Show",
@@ -66,7 +69,9 @@
       "ዓመታት": "Y",
       "ዓመት": "Y",
       "ደቂቃ": "m",
-      "ደቂቃዎች": "m"
+      "ደቂቃዎች": "m",
+      "ደቂቃዎች፣": "m",
+      "ደቂቃ፣": "m"
     },
     "date_order": "DY",
     "months": {
@@ -93,6 +98,9 @@
       "ሺ": 3,
       "ቢ": 9
     },
+    "number_nd_tokens": {
+      "የለዉም": 0
+    },
     "album_types": {
       "ትዕይንት": "Show",
       "ነጠላ": "Single",
@@ -112,10 +120,12 @@
       "أيام": "D",
       "ثانية": "s",
       "ثانيتين": "2s",
+      "ثوان": "s",
       "ثوانٍ": "s",
       "ثوانِ": "s",
       "دقائق": "m",
       "دقيقة": "m",
+      "دقيقتان": "2m",
       "دقيقتين": "2m",
       "ساعات": "h",
       "ساعة": "h",
@@ -126,6 +136,8 @@
       "شهر": "M",
       "شهرين": "2M",
       "شهرًا": "M",
+      "وثانية": "s",
+      "وثانيتان": "2s",
       "يوم": "D",
       "يومين": "2D",
       "يومًا": "D"
@@ -133,8 +145,8 @@
     "date_order": "DMY",
     "months": {},
     "timeago_nd_tokens": {
-      "اليوم": "0D",
-      "بالأمس": "1D"
+      "البارحة": "1D",
+      "اليوم": "0D"
     },
     "comma_decimal": false,
     "number_tokens": {
@@ -142,6 +154,10 @@
       "ألف": 3,
       "مليار": 9,
       "مليون": 6
+    },
+    "number_nd_tokens": {
+      "لا": 0,
+      "واحد": 1
     },
     "album_types": {
       "أغنية منفردة": "Single",
@@ -172,10 +188,20 @@
     "comma_decimal": false,
     "number_tokens": {
       "কোঃটা": 9,
+      "নিঃ": 6,
       "নিঃটা": 6,
+      "নিযুত": 6,
       "নিযুতটা": 6,
+      "লা": 5,
+      "লাখ": 5,
       "লাখটা": 5,
+      "হা": 3,
+      "হাজাৰ": 3,
       "হাজাৰটা": 3
+    },
+    "number_nd_tokens": {
+      "নাই": 0,
+      "১": 1
     },
     "album_types": {
       "ep": "Ep",
@@ -214,12 +240,17 @@
     },
     "timeago_nd_tokens": {
       "bugün": "0D",
-      "dünən": "1D"
+      "dünən": "1D",
+      "güncəlləndi": "1D",
+      "güncəllənib": "0D"
     },
     "comma_decimal": true,
     "number_tokens": {
       "mln": 6,
       "mlrd": 9
+    },
+    "number_nd_tokens": {
+      "yoxdur": 0
     },
     "album_types": {
       "albom": "Album",
@@ -249,12 +280,14 @@
       "месяцаў": "M",
       "месяцы": "M",
       "секунд": "s",
+      "секунда": "s",
       "секунду": "s",
       "секунды": "s",
       "тыдзень": "W",
       "тыдня": "W",
       "тыдні": "W",
       "хвілін": "m",
+      "хвіліна": "m",
       "хвіліну": "m",
       "хвіліны": "m"
     },
@@ -282,6 +315,9 @@
       "млн": 6,
       "млрд": 9,
       "тыс": 3
+    },
+    "number_nd_tokens": {
+      "няма": 0
     },
     "album_types": {
       "альбом": "Album",
@@ -322,6 +358,9 @@
       "млрд": 9,
       "хил": 3
     },
+    "number_nd_tokens": {
+      "няма": 0
+    },
     "album_types": {
       "албум": "Album",
       "аудиокнига": "Audiobook",
@@ -344,18 +383,18 @@
     },
     "date_order": "DY",
     "months": {
-      "অক্টোবর,": 10,
-      "আগস্ট,": 8,
-      "এপ্রিল,": 4,
+      "অক্টো,": 10,
+      "আগ,": 8,
+      "এপ্রি,": 4,
       "জানু,": 1,
       "জুন,": 6,
-      "জুলাই,": 7,
-      "ডিসেম্বর,": 12,
-      "নভেম্বর,": 11,
+      "জুল,": 7,
+      "ডিসে,": 12,
+      "নভে,": 11,
       "ফেব,": 2,
       "মার্চ,": 3,
       "মে,": 5,
-      "সেপ্টেম্বর,": 9
+      "সেপ,": 9
     },
     "timeago_nd_tokens": {
       "আজ": "0D",
@@ -363,10 +402,17 @@
     },
     "comma_decimal": false,
     "number_tokens": {
+      "কো": 7,
       "কোটি": 7,
+      "লা": 5,
       "লাটি": 5,
       "শত": 2,
+      "হা": 3,
       "হাটি": 3
+    },
+    "number_nd_tokens": {
+      "০": 0,
+      "১": 1
     },
     "album_types": {
       "অডিওবুক": "Audiobook",
@@ -396,6 +442,7 @@
       "sati": "h",
       "sedmice": "W",
       "sedmicu": "W",
+      "sekunda": "s",
       "sekunde": "s",
       "sekundi": "s",
       "sekundu": "s"
@@ -424,6 +471,9 @@
       "hilj": 3,
       "mil": 6,
       "mlr": 9
+    },
+    "number_nd_tokens": {
+      "nema": 0
     },
     "album_types": {
       "album": "Album",
@@ -473,9 +523,11 @@
     },
     "comma_decimal": true,
     "number_tokens": {
-      "M": 6,
-      "m": 3,
-      "mM": 9
+      "km": 9,
+      "m": 6
+    },
+    "number_nd_tokens": {
+      "sense": 0
     },
     "album_types": {
       "audiollibre": "Audiobook",
@@ -494,14 +546,20 @@
       "hodinami": "h",
       "hodinou": "h",
       "lety": "Y",
+      "minut": "m",
+      "minuta": "m",
       "minutami": "m",
       "minutou": "m",
+      "minuty": "m",
       "měsícem": "M",
       "měsíci": "M",
       "rokem": "Y",
       "roky": "Y",
+      "sekund": "s",
+      "sekunda": "s",
       "sekundami": "s",
       "sekundou": "s",
+      "sekundy": "s",
       "týdnem": "W",
       "týdny": "W"
     },
@@ -517,6 +575,7 @@
       "mld": 9,
       "tis": 3
     },
+    "number_nd_tokens": {},
     "album_types": {
       "album": "Album",
       "audiokniha": "Audiobook",
@@ -567,6 +626,9 @@
       "mia": 9,
       "mio": 6
     },
+    "number_nd_tokens": {
+      "ingen": 0
+    },
     "album_types": {
       "album": "Album",
       "ep": "Ep",
@@ -602,8 +664,11 @@
     },
     "comma_decimal": true,
     "number_tokens": {
-      "Mio": 6,
-      "Mrd": 9
+      "mio": 6,
+      "mrd": 9
+    },
+    "number_nd_tokens": {
+      "keine": 0
     },
     "album_types": {
       "album": "Album",
@@ -657,6 +722,9 @@
       "εκ": 6,
       "χιλ": 3
     },
+    "number_nd_tokens": {
+      "καμία": 0
+    },
     "album_types": {
       "ep": "Ep",
       "single": "Single",
@@ -709,10 +777,13 @@
     },
     "comma_decimal": false,
     "number_tokens": {
-      "B": 9,
-      "M": 6,
+      "b": 9,
       "crore": 7,
-      "lakh": 5
+      "lakh": 5,
+      "m": 6
+    },
+    "number_nd_tokens": {
+      "no": 0
     },
     "album_types": {
       "album": "Album",
@@ -762,9 +833,10 @@
     },
     "comma_decimal": true,
     "number_tokens": {
-      "M": 6,
+      "m": 6,
       "mil": 3
     },
+    "number_nd_tokens": {},
     "album_types": {
       "audiodrama": "Show",
       "audiolibro": "Audiobook",
@@ -815,8 +887,11 @@
     },
     "comma_decimal": false,
     "number_tokens": {
-      "M": 6,
+      "m": 6,
       "mil": 3
+    },
+    "number_nd_tokens": {
+      "sin": 0
     },
     "album_types": {
       "audiolibro": "Audiobook",
@@ -872,6 +947,9 @@
       "mln": 6,
       "tuh": 3
     },
+    "number_nd_tokens": {
+      "pole": 0
+    },
     "album_types": {
       "album": "Album",
       "audioraamat": "Audiobook",
@@ -916,7 +994,10 @@
     },
     "comma_decimal": true,
     "number_tokens": {
-      "M": 6
+      "m": 6
+    },
+    "number_nd_tokens": {
+      "ez": 0
     },
     "album_types": {
       "albuma": "Album",
@@ -963,6 +1044,10 @@
       "میلیون": 6,
       "هزار": 3
     },
+    "number_nd_tokens": {
+      "بدون": 0,
+      "۱": 1
+    },
     "album_types": {
       "آلبوم": "Album",
       "تک آهنگ": "Single",
@@ -1001,6 +1086,10 @@
       "milj": 6,
       "mrd": 9,
       "t": 3
+    },
+    "number_nd_tokens": {
+      "ei": 0,
+      "katselukertoja": 0
     },
     "album_types": {
       "albumi": "Album",
@@ -1043,8 +1132,11 @@
     },
     "comma_decimal": false,
     "number_tokens": {
-      "B": 9,
-      "M": 6
+      "b": 9,
+      "m": 6
+    },
+    "number_nd_tokens": {
+      "walang": 0
     },
     "album_types": {
       "album": "Album",
@@ -1096,9 +1188,13 @@
     },
     "comma_decimal": true,
     "number_tokens": {
-      "G": 9,
-      "M": 6,
-      "Md": 9
+      "g": 9,
+      "m": 6,
+      "md": 9
+    },
+    "number_nd_tokens": {
+      "aucun": 0,
+      "aucune": 0
     },
     "album_types": {
       "album": "Album",
@@ -1150,7 +1246,10 @@
     },
     "comma_decimal": true,
     "number_tokens": {
-      "M": 6
+      "m": 6
+    },
+    "number_nd_tokens": {
+      "ningunha": 0
     },
     "album_types": {
       "audiolibro": "Audiobook",
@@ -1189,7 +1288,7 @@
     },
     "timeago_nd_tokens": {
       "આજે": "0D",
-      "ગઈ": "1D"
+      "ગઈકાલે": "1D"
     },
     "comma_decimal": false,
     "number_tokens": {
@@ -1198,6 +1297,7 @@
       "લાખ": 5,
       "હજાર": 3
     },
+    "number_nd_tokens": {},
     "album_types": {
       "ep": "Ep",
       "આલ્બમ": "Album",
@@ -1244,6 +1344,9 @@
       "लाख": 5,
       "हज़ार": 3
     },
+    "number_nd_tokens": {
+      "नहीं": 0
+    },
     "album_types": {
       "ईपी": "Ep",
       "एल्‍बम": "Album",
@@ -1270,6 +1373,7 @@
       "sat": "h",
       "sata": "h",
       "sati": "h",
+      "sekunda": "s",
       "sekunde": "s",
       "sekundi": "s",
       "sekundu": "s",
@@ -1301,6 +1405,9 @@
       "mlr": 9,
       "tis": 3
     },
+    "number_nd_tokens": {
+      "nema": 0
+    },
     "album_types": {
       "album": "Album",
       "audioknjiga": "Audiobook",
@@ -1317,10 +1424,12 @@
       "héttel": "W",
       "hónapja": "M",
       "hónappal": "M",
+      "másodperc": "s",
       "másodperccel": "s",
       "másodperce": "s",
       "napja": "D",
       "nappal": "D",
+      "perc": "m",
       "perccel": "m",
       "perce": "m",
       "éve": "Y",
@@ -1349,9 +1458,12 @@
     },
     "comma_decimal": true,
     "number_tokens": {
-      "E": 3,
-      "M": 6,
-      "Mrd": 9
+      "e": 3,
+      "m": 6,
+      "mrd": 9
+    },
+    "number_nd_tokens": {
+      "nincs": 0
     },
     "album_types": {
       "album": "Album",
@@ -1398,6 +1510,10 @@
       "մլն": 6,
       "մլրդ": 9
     },
+    "number_nd_tokens": {
+      "դիտումներ": 0,
+      "չկան": 0
+    },
     "album_types": {
       "ep": "Ep",
       "ալբոմ": "Album",
@@ -1439,9 +1555,12 @@
     },
     "comma_decimal": true,
     "number_tokens": {
-      "M": 9,
       "jt": 6,
+      "m": 9,
       "rb": 3
+    },
+    "number_nd_tokens": {
+      "belum": 0
     },
     "album_types": {
       "acara": "Show",
@@ -1461,10 +1580,14 @@
       "klukkustundum": "h",
       "mánuði": "M",
       "mánuðum": "M",
+      "mínúta": "m",
       "mínútu": "m",
       "mínútum": "m",
+      "mínútur": "m",
+      "sekúnda": "s",
       "sekúndu": "s",
       "sekúndum": "s",
+      "sekúndur": "s",
       "viku": "W",
       "vikum": "W",
       "ári": "Y",
@@ -1494,6 +1617,10 @@
       "m": 6,
       "ma": 9,
       "þ": 3
+    },
+    "number_nd_tokens": {
+      "einn": 1,
+      "ekkert": 0
     },
     "album_types": {
       "ep": "Ep",
@@ -1543,8 +1670,11 @@
     },
     "comma_decimal": true,
     "number_tokens": {
-      "Mln": 6,
-      "Mrd": 9
+      "mln": 6,
+      "mrd": 9
+    },
+    "number_nd_tokens": {
+      "nessuna": 0
     },
     "album_types": {
       "album": "Album",
@@ -1570,6 +1700,7 @@
       "שבועות": "W",
       "שבועיים": "2W",
       "שנה": "Y",
+      "שניה": "s",
       "שניות": "s",
       "שנייה": "s",
       "שנים": "Y",
@@ -1600,9 +1731,12 @@
     },
     "comma_decimal": false,
     "number_tokens": {
-      "‫B‏‬": 9,
-      "‫K‏‬": 3,
-      "‫M‏‬": 6
+      "b": 9,
+      "m": 6
+    },
+    "number_nd_tokens": {
+      "אחד": 1,
+      "אין": 0
     },
     "album_types": {
       "אלבום": "Album",
@@ -1635,6 +1769,7 @@
       "万": 4,
       "億": 8
     },
+    "number_nd_tokens": {},
     "album_types": {
       "ep": "Ep",
       "アルバム": "Album",
@@ -1651,8 +1786,10 @@
       "თვის": "M",
       "კვირის": "W",
       "საათის": "h",
+      "წამი": "s",
       "წამის": "s",
       "წლის": "Y",
+      "წუთი": "m",
       "წუთის": "m"
     },
     "date_order": "DY",
@@ -1679,6 +1816,9 @@
       "ათ": 3,
       "მლნ": 6,
       "მლრდ": 9
+    },
+    "number_nd_tokens": {
+      "არ": 0
     },
     "album_types": {
       "ალბომი": "Album",
@@ -1726,6 +1866,9 @@
       "млрд": 9,
       "мың": 3
     },
+    "number_nd_tokens": {
+      "ешкім": 0
+    },
     "album_types": {
       "ep": "Ep",
       "альбом": "Album",
@@ -1741,8 +1884,10 @@
       "ខែមុន": "M",
       "ឆ្នាំមុន": "Y",
       "ថ្ងៃមុន": "D",
+      "នាទី": "m",
       "នាទីមុន": "m",
       "ម៉ោងមុន": "h",
+      "វិនាទី": "s",
       "វិនាទីមុន": "s",
       "សប្ដាហ៍មុន": "W"
     },
@@ -1762,7 +1907,7 @@
       "ឧសភា": 5
     },
     "timeago_nd_tokens": {
-      "បានធ្វើបច្ចុប្បន្នភាពថ្ងៃនេះ": "0D",
+      "បានធ្វើបច្ចុប្បន្នភាពនៅថ្ងៃនេះ": "0D",
       "បានធ្វើបច្ចុប្បន្នភាពម្សិលមិញ": "1D"
     },
     "comma_decimal": true,
@@ -1771,6 +1916,7 @@
       "ពាន់": 3,
       "លាន": 6
     },
+    "number_nd_tokens": {},
     "album_types": {
       "ep": "Ep",
       "កម្មវិធីទូរទស្សន៍": "Show",
@@ -1790,18 +1936,21 @@
       "ದಿನಗಳ": "D",
       "ದಿನದ": "D",
       "ನಿಮಿಷಗಳ": "m",
+      "ನಿಮಿಷಗಳು": "m",
       "ನಿಮಿಷದ": "m",
+      "ನಿಮಿಷವು": "m",
       "ವರ್ಷಗಳ": "Y",
       "ವರ್ಷದ": "Y",
       "ವಾರಗಳ": "W",
       "ವಾರದ": "W",
       "ಸೆಕೆಂಡುಗಳ": "s",
+      "ಸೆಕೆಂಡುಗಳು": "s",
       "ಸೆಕೆಂಡ್": "s"
     },
     "date_order": "DY",
     "months": {
       "ಅಕ್ಟೋ": 10,
-      "ಆಗ": 8,
+      "ಆಗಸ್ಟ್": 8,
       "ಏಪ್ರಿ": 4,
       "ಜನವರಿ": 1,
       "ಜುಲೈ": 7,
@@ -1821,6 +1970,9 @@
     "number_tokens": {
       "ಕೋಟಿ": 7,
       "ಲಕ್ಷ": 5
+    },
+    "number_nd_tokens": {
+      "ವೀಕ್ಷಣೆಗಳಿಲ್ಲ": 0
     },
     "album_types": {
       "ep": "Ep",
@@ -1845,13 +1997,17 @@
     "date_order": "YMD",
     "months": {},
     "timeago_nd_tokens": {
+      "어제": "1D",
       "오늘": "0D"
     },
     "comma_decimal": false,
     "number_tokens": {
-      "만회": 4,
-      "억회": 8,
-      "천회": 3
+      "만": 4,
+      "억": 8,
+      "천": 3
+    },
+    "number_nd_tokens": {
+      "없": 0
     },
     "album_types": {
       "ep": "Ep",
@@ -1898,6 +2054,9 @@
       "млд": 9,
       "млн": 6
     },
+    "number_nd_tokens": {
+      "эч": 0
+    },
     "album_types": {
       "альбом": "Album",
       "аудиокитеп": "Audiobook",
@@ -1911,9 +2070,11 @@
     "by_char": false,
     "timeago_tokens": {
       "ຊົ່ວໂມງກ່ອນ": "h",
+      "ນາທີ": "m",
       "ນາທີກ່ອນ": "m",
       "ປີກ່ອນ": "Y",
       "ມື້ກ່ອນ": "D",
+      "ວິນາທີ": "s",
       "ວິນາທີກ່ອນ": "s",
       "ອາທິດກ່ອນ": "W",
       "ເດືອນກ່ອນ": "M"
@@ -1934,8 +2095,8 @@
       "ສ.ຫ.": 8
     },
     "timeago_nd_tokens": {
-      "ອັບເດດມື້ນີ້": "0D",
-      "ອັບເດດມື້ວານນີ້": "1D"
+      "ອັດເດດມື້ວານນີ້": "1D",
+      "ອັບເດດມື້ນີ້": "0D"
     },
     "comma_decimal": true,
     "number_tokens": {
@@ -1943,6 +2104,9 @@
       "ຕື້": 9,
       "ພັນ": 3,
       "ລ້ານ": 6
+    },
+    "number_nd_tokens": {
+      "ຍັງບໍ່ມີຄົນເບິ່ງເທື່ອ": 0
     },
     "album_types": {
       "ep": "Ep",
@@ -1963,6 +2127,8 @@
       "metus": "Y",
       "metų": "Y",
       "minutes": "m",
+      "minutė": "m",
+      "minutės": "m",
       "minutę": "m",
       "minučių": "m",
       "mėnesius": "M",
@@ -1972,6 +2138,8 @@
       "savaitę": "W",
       "savaičių": "W",
       "sekundes": "s",
+      "sekundė": "s",
+      "sekundės": "s",
       "sekundę": "s",
       "sekundžių": "s",
       "valandas": "h",
@@ -1990,6 +2158,9 @@
       "mlrd": 9,
       "tūkst": 3
     },
+    "number_nd_tokens": {
+      "nėra": 0
+    },
     "album_types": {
       "albumas": "Album",
       "garsinė knyga": "Audiobook",
@@ -2006,14 +2177,18 @@
       "dienām": "D",
       "gada": "Y",
       "gadiem": "Y",
+      "minūte": "m",
       "minūtes": "m",
       "minūtēm": "m",
+      "minūšu": "m",
       "mēneša": "M",
       "mēnešiem": "M",
       "nedēļas": "W",
       "nedēļām": "W",
+      "sekunde": "s",
       "sekundes": "s",
       "sekundēm": "s",
+      "sekunžu": "s",
       "stundas": "h",
       "stundām": "h"
     },
@@ -2041,6 +2216,9 @@
       "milj": 6,
       "mljrd": 9,
       "tūkst": 3
+    },
+    "number_nd_tokens": {
+      "nav": 0
     },
     "album_types": {
       "albums": "Album",
@@ -2077,10 +2255,13 @@
     },
     "comma_decimal": true,
     "number_tokens": {
-      "М": 6,
       "илј": 3,
+      "м": 6,
       "мил": 6,
       "милј": 9
+    },
+    "number_nd_tokens": {
+      "нема": 0
     },
     "album_types": {
       "ep": "Ep",
@@ -2126,6 +2307,9 @@
       "കോടി": 7,
       "ലക്ഷം": 5
     },
+    "number_nd_tokens": {
+      "ഇല്ല": 0
+    },
     "album_types": {
       "ep": "Ep",
       "ആല്‍‌ബം": "Album",
@@ -2139,8 +2323,10 @@
     "by_char": false,
     "timeago_tokens": {
       "жилийн": "Y",
+      "минут": "m",
       "минутын": "m",
       "сарын": "M",
+      "секунд": "s",
       "секундын": "s",
       "хоногийн": "W",
       "цагийн": "h",
@@ -2157,6 +2343,9 @@
       "мянга": 3,
       "сая": 6,
       "тэрбум": 9
+    },
+    "number_nd_tokens": {
+      "үзэлтгүй": 0
     },
     "album_types": {
       "ep": "Ep",
@@ -2178,10 +2367,13 @@
       "दिवसापूर्वी": "D",
       "महिन्यांपूर्वी": "M",
       "महिन्यापूर्वी": "M",
+      "मिनिट": "m",
       "मिनिटांपूर्वी": "m",
       "मिनिटापूर्वी": "m",
+      "मिनिटे": "m",
       "वर्षांपूर्वी": "Y",
       "वर्षापूर्वी": "Y",
+      "सेकंद": "s",
       "सेकंदांपूर्वी": "s",
       "सेकंदापूर्वी": "s"
     },
@@ -2201,6 +2393,7 @@
       "सप्टें,": 9
     },
     "timeago_nd_tokens": {
+      "today": "0D",
       "आज": "0D",
       "काल": "1D"
     },
@@ -2210,6 +2403,9 @@
       "कोटी": 7,
       "लाख": 5,
       "ह": 3
+    },
+    "number_nd_tokens": {
+      "नाहीत": 0
     },
     "album_types": {
       "अल्बम": "Album",
@@ -2252,8 +2448,11 @@
     },
     "comma_decimal": false,
     "number_tokens": {
-      "B": 9,
-      "J": 6
+      "b": 9,
+      "j": 6
+    },
+    "number_nd_tokens": {
+      "tiada": 0
     },
     "album_types": {
       "album": "Album",
@@ -2272,6 +2471,7 @@
       "နှစ်": "Y",
       "ပတ်": "W",
       "မိနစ်": "m",
+      "မိနစ်နှင့်": "m",
       "ရက်": "D",
       "ရက်က": "D",
       "လ": "M"
@@ -2298,11 +2498,15 @@
     "comma_decimal": false,
     "number_tokens": {
       "ကုဋေ": 7,
-      "ကုဋေထ": 10,
+      "ထ": 3,
       "ထောင်": 3,
       "သန်း": 6,
       "သိန်း": 5,
       "သောင်း": 4
+    },
+    "number_nd_tokens": {
+      "မရှိ": 0,
+      "၁": 1
     },
     "album_types": {
       "ep": "Ep",
@@ -2318,6 +2522,7 @@
     "timeago_tokens": {
       "घण्टा": "h",
       "दिन": "D",
+      "दिनअघि": "D",
       "महिना": "M",
       "मिनेट": "m",
       "वर्ष": "Y",
@@ -2350,6 +2555,9 @@
       "लाख": 5,
       "हजार": 3
     },
+    "number_nd_tokens": {
+      "छैन": 0
+    },
     "album_types": {
       "ep": "Ep",
       "अडियोबुक": "Audiobook",
@@ -2377,18 +2585,18 @@
     },
     "date_order": "DY",
     "months": {
-      "apr.": 4,
-      "aug.": 8,
-      "dec.": 12,
-      "feb.": 2,
-      "jan.": 1,
-      "jul.": 7,
-      "jun.": 6,
+      "apr": 4,
+      "aug": 8,
+      "dec": 12,
+      "feb": 2,
+      "jan": 1,
+      "jul": 7,
+      "jun": 6,
       "mei": 5,
-      "mrt.": 3,
-      "nov.": 11,
-      "okt.": 10,
-      "sep.": 9
+      "mrt": 3,
+      "nov": 11,
+      "okt": 10,
+      "sep": 9
     },
     "timeago_nd_tokens": {
       "gisteren": "1D",
@@ -2398,6 +2606,9 @@
     "number_tokens": {
       "mld": 9,
       "mln": 6
+    },
+    "number_nd_tokens": {
+      "geen": 0
     },
     "album_types": {
       "aflevering": "Show",
@@ -2450,6 +2661,9 @@
       "mill": 6,
       "mrd": 9
     },
+    "number_nd_tokens": {
+      "ingen": 0
+    },
     "album_types": {
       "album": "Album",
       "ep": "Ep",
@@ -2467,6 +2681,7 @@
       "ବର୍ଷ": "Y",
       "ମାସ": "M",
       "ମିନିଟ୍": "m",
+      "ମିନିଟ୍‌": "m",
       "ସପ୍ତାହ": "W",
       "ସେକେଣ୍ଡ": "s"
     },
@@ -2491,9 +2706,18 @@
     },
     "comma_decimal": false,
     "number_tokens": {
+      "ନି": 6,
+      "ନିଜଣ": 6,
       "ନିଟି": 6,
+      "ବି": 9,
+      "ବିଜଣ": 9,
       "ବିଟି": 9,
+      "ହ": 3,
+      "ହଜଣ": 3,
       "ହଟି": 3
+    },
+    "number_nd_tokens": {
+      "ନାହିଁ": 0
     },
     "album_types": {
       "ep": "Ep",
@@ -2535,7 +2759,7 @@
     },
     "timeago_nd_tokens": {
       "ਅੱਜ": "0D",
-      "ਬੀੇਤੇ": "1D"
+      "ਕੱਲ੍ਹ": "1D"
     },
     "comma_decimal": false,
     "number_tokens": {
@@ -2543,6 +2767,9 @@
       "ਕਰੋੜ": 7,
       "ਲੱਖ": 5,
       "ਹਜ਼ਾਰ": 3
+    },
+    "number_nd_tokens": {
+      "ਨਹੀਂ": 0
     },
     "album_types": {
       "ep": "Ep",
@@ -2567,10 +2794,12 @@
       "miesiące": "M",
       "miesięcy": "M",
       "minut": "m",
+      "minuta": "m",
       "minuty": "m",
       "minutę": "m",
       "rok": "Y",
       "sekund": "s",
+      "sekunda": "s",
       "sekundy": "s",
       "sekundę": "s",
       "tydzień": "W",
@@ -2600,6 +2829,9 @@
       "mld": 9,
       "mln": 6,
       "tys": 3
+    },
+    "number_nd_tokens": {
+      "brak": 0
     },
     "album_types": {
       "album": "Album",
@@ -2653,6 +2885,7 @@
       "mi": 6,
       "mil": 3
     },
+    "number_nd_tokens": {},
     "album_types": {
       "audiolivro": "Audiobook",
       "ep": "Ep",
@@ -2688,10 +2921,11 @@
     },
     "comma_decimal": true,
     "number_tokens": {
-      "M": 6,
-      "mM": 9,
-      "mil": 3
+      "m": 6,
+      "mil": 3,
+      "mm": 9
     },
+    "number_nd_tokens": {},
     "album_types": {
       "ep": "Ep",
       "livro áudio": "Audiobook",
@@ -2743,6 +2977,10 @@
       "mil": 6,
       "mld": 9
     },
+    "number_nd_tokens": {
+      "nicio": 0,
+      "un": 1
+    },
     "album_types": {
       "album": "Album",
       "carte audio": "Audiobook",
@@ -2765,11 +3003,13 @@
       "месяца": "M",
       "месяцев": "M",
       "минут": "m",
+      "минута": "m",
       "минуту": "m",
       "минуты": "m",
       "недели": "W",
       "неделю": "W",
       "секунд": "s",
+      "секунда": "s",
       "секунду": "s",
       "секунды": "s",
       "час": "h",
@@ -2801,6 +3041,7 @@
       "млрд": 9,
       "тыс": 3
     },
+    "number_nd_tokens": {},
     "album_types": {
       "ep": "Ep",
       "альбом": "Album",
@@ -2838,7 +3079,6 @@
     },
     "timeago_nd_tokens": {
       "අද": "0D",
-      "ඊයෙ": "1D",
       "ඊයේ": "1D"
     },
     "comma_decimal": false,
@@ -2846,6 +3086,9 @@
       "ද": 3,
       "බි": 9,
       "මි": 6
+    },
+    "number_nd_tokens": {
+      "නැත": 0
     },
     "album_types": {
       "ඇල්බමය": "Album",
@@ -2865,12 +3108,18 @@
       "hodinou": "h",
       "mesiacmi": "M",
       "mesiacom": "M",
+      "minút": "m",
+      "minúta": "m",
       "minútami": "m",
       "minútou": "m",
+      "minúty": "m",
       "rokmi": "Y",
       "rokom": "Y",
+      "sekunda": "s",
       "sekundami": "s",
       "sekundou": "s",
+      "sekundy": "s",
+      "sekúnd": "s",
       "týždňami": "W",
       "týždňom": "W"
     },
@@ -2885,6 +3134,9 @@
       "mil": 6,
       "mld": 9,
       "tis": 3
+    },
+    "number_nd_tokens": {
+      "žiadne": 0
     },
     "album_types": {
       "album": "Album",
@@ -2908,11 +3160,19 @@
       "mesecem": "M",
       "mesecema": "M",
       "meseci": "M",
+      "minut": "m",
+      "minuta": "m",
       "minutama": "m",
       "minutami": "m",
+      "minute": "m",
+      "minuti": "m",
       "minuto": "m",
+      "sekund": "s",
+      "sekunda": "s",
       "sekundama": "s",
       "sekundami": "s",
+      "sekunde": "s",
+      "sekundi": "s",
       "sekundo": "s",
       "tedni": "W",
       "tednom": "W",
@@ -2945,6 +3205,9 @@
       "mio": 6,
       "mrd": 9,
       "tis": 3
+    },
+    "number_nd_tokens": {
+      "brez": 0
     },
     "album_types": {
       "album": "Album",
@@ -2994,6 +3257,9 @@
       "mld": 9,
       "mln": 6
     },
+    "number_nd_tokens": {
+      "nuk": 0
+    },
     "album_types": {
       "album": "Album",
       "ep": "Ep",
@@ -3014,12 +3280,14 @@
       "месец": "M",
       "месеца": "M",
       "месеци": "M",
+      "минут": "m",
       "минута": "m",
       "недеље": "W",
       "недељу": "W",
       "сат": "h",
       "сата": "h",
       "сати": "h",
+      "секунда": "s",
       "секунде": "s",
       "секунди": "s"
     },
@@ -3034,6 +3302,9 @@
       "мил": 6,
       "млрд": 9,
       "хиљ": 3
+    },
+    "number_nd_tokens": {
+      "нема": 0
     },
     "album_types": {
       "ep": "Ep",
@@ -3055,6 +3326,7 @@
       "mesec": "M",
       "meseca": "M",
       "meseci": "M",
+      "minut": "m",
       "minuta": "m",
       "nedelja": "W",
       "nedelje": "W",
@@ -3062,6 +3334,7 @@
       "sat": "h",
       "sata": "h",
       "sati": "h",
+      "sekunda": "s",
       "sekunde": "s",
       "sekundi": "s"
     },
@@ -3076,6 +3349,9 @@
       "hilj": 3,
       "mil": 6,
       "mlrd": 9
+    },
+    "number_nd_tokens": {
+      "nema": 0
     },
     "album_types": {
       "album": "Album",
@@ -3119,13 +3395,16 @@
       "sep.": 9
     },
     "timeago_nd_tokens": {
-      "idag": "0D",
-      "igår": "1D"
+      "dag": "0D",
+      "går": "1D"
     },
     "comma_decimal": true,
     "number_tokens": {
       "md": 9,
       "mn": 6
+    },
+    "number_nd_tokens": {
+      "inga": 0
     },
     "album_types": {
       "album": "Album",
@@ -3170,9 +3449,12 @@
     },
     "comma_decimal": false,
     "number_tokens": {
-      "B": 9,
-      "M": 6,
-      "elfu": 3
+      "b": 9,
+      "elfu": 3,
+      "m": 6
+    },
+    "number_nd_tokens": {
+      "haijatazamwa": 0
     },
     "album_types": {
       "albamu": "Album",
@@ -3191,13 +3473,17 @@
       "நாட்களுக்கு": "D",
       "நாளுக்கு": "D",
       "நிமிடங்களுக்கு": "m",
+      "நிமிடங்கள்": "m",
       "நிமிடத்திற்கு": "m",
+      "நிமிடம்": "m",
       "மணிநேரம்": "h",
       "மாதங்களுக்கு": "M",
       "மாதத்துக்கு": "M",
       "வாரங்களுக்கு": "W",
       "வாரம்": "W",
+      "விநாடி": "s",
       "விநாடிகளுக்கு": "s",
+      "விநாடிகள்": "s",
       "விநாடிக்கு": "s"
     },
     "date_order": "DY",
@@ -3224,6 +3510,9 @@
       "கோடி": 7,
       "லட்சம்": 5
     },
+    "number_nd_tokens": {
+      "இல்லை": 0
+    },
     "album_types": {
       "ep": "Ep",
       "ஆடியோ புத்தகம்": "Audiobook",
@@ -3240,6 +3529,7 @@
       "గంటల": "h",
       "నిమిషం": "m",
       "నిమిషాల": "m",
+      "నిమిషాలు": "m",
       "నెల": "M",
       "నెలల": "M",
       "రోజు": "D",
@@ -3249,7 +3539,8 @@
       "సంవత్సరం": "Y",
       "సంవత్సరాల": "Y",
       "సెకను": "s",
-      "సెకన్ల": "s"
+      "సెకన్ల": "s",
+      "సెకన్లు": "s"
     },
     "date_order": "DY",
     "months": {
@@ -3276,6 +3567,9 @@
       "లక్ష": 5,
       "లక్షలు": 5
     },
+    "number_nd_tokens": {
+      "లేవు": 0
+    },
     "album_types": {
       "ep": "Ep",
       "ఆడియోబుక్": "Audiobook",
@@ -3289,9 +3583,12 @@
     "by_char": false,
     "timeago_tokens": {
       "ชั่วโมงที่ผ่านมา": "h",
+      "นาที": "m",
       "นาทีที่ผ่านมา": "m",
       "ปีที่แล้ว": "Y",
       "วันที่ผ่านมา": "D",
+      "วันที่แล้ว": "D",
+      "วินาที": "s",
       "วินาทีที่ผ่านมา": "s",
       "สัปดาห์ที่ผ่านมา": "W",
       "เดือนที่ผ่านมา": "M"
@@ -3312,8 +3609,8 @@
       "เม.ย.": 4
     },
     "timeago_nd_tokens": {
-      "อัปเดตแล้ววันนี้": "0D",
-      "อัปเดตแล้วเมื่อวาน": "1D"
+      "อัปเดตเมื่อวานนี้": "1D",
+      "อัปเดตแล้ววันนี้": "0D"
     },
     "comma_decimal": false,
     "number_tokens": {
@@ -3323,6 +3620,9 @@
       "หมื่น": 4,
       "หมื่นล้าน": 10,
       "แสน": 5
+    },
+    "number_nd_tokens": {
+      "ไม่มีการดู": 0
     },
     "album_types": {
       "ep": "Ep",
@@ -3365,9 +3665,12 @@
     },
     "comma_decimal": true,
     "number_tokens": {
-      "B": 3,
-      "Mn": 6,
-      "Mr": 9
+      "b": 3,
+      "mn": 6,
+      "mr": 9
+    },
+    "number_nd_tokens": {
+      "yok": 0
     },
     "album_types": {
       "albüm": "Album",
@@ -3394,11 +3697,13 @@
       "років": "Y",
       "рік": "Y",
       "секунд": "s",
+      "секунда": "s",
       "секунди": "s",
       "секунду": "s",
       "тиждень": "W",
       "тижні": "W",
       "хвилин": "m",
+      "хвилина": "m",
       "хвилини": "m",
       "хвилину": "m"
     },
@@ -3427,6 +3732,9 @@
       "млрд": 9,
       "тис": 3
     },
+    "number_nd_tokens": {
+      "жодного": 0
+    },
     "album_types": {
       "альбом": "Album",
       "аудіодрама": "Show",
@@ -3445,6 +3753,7 @@
       "سیکنڈ": "s",
       "سیکنڈز": "s",
       "منٹ": "m",
+      "منٹ،": "m",
       "منٹس": "m",
       "مہینہ": "M",
       "مہینے": "M",
@@ -3478,6 +3787,9 @@
       "لاکھ": 5,
       "کروڑ": 7,
       "ہزار": 3
+    },
+    "number_nd_tokens": {
+      "نہیں": 0
     },
     "album_types": {
       "ep": "Ep",
@@ -3524,6 +3836,7 @@
       "mln": 6,
       "mlrd": 9
     },
+    "number_nd_tokens": {},
     "album_types": {
       "albom": "Album",
       "audiokitob": "Audiobook",
@@ -3553,10 +3866,11 @@
     },
     "comma_decimal": true,
     "number_tokens": {
-      "N": 3,
-      "T": 9,
-      "Tr": 6
+      "n": 3,
+      "t": 9,
+      "tr": 6
     },
+    "number_nd_tokens": {},
     "album_types": {
       "chương trình": "Show",
       "sách nói": "Audiobook",
@@ -3588,6 +3902,9 @@
       "万": 4,
       "亿": 8
     },
+    "number_nd_tokens": {
+      "无": 0
+    },
     "album_types": {
       "专辑": "Album",
       "单曲": "Single",
@@ -3617,9 +3934,10 @@
     },
     "comma_decimal": false,
     "number_tokens": {
-      "B": 9,
-      "M": 6
+      "b": 9,
+      "m": 6
     },
+    "number_nd_tokens": {},
     "album_types": {
       "ep": "Ep",
       "單曲": "Single",
@@ -3651,6 +3969,7 @@
       "億": 8,
       "萬": 4
     },
+    "number_nd_tokens": {},
     "album_types": {
       "ep": "Ep",
       "單曲": "Single",
@@ -3699,8 +4018,11 @@
     },
     "comma_decimal": false,
     "number_tokens": {
-      "B": 9,
-      "M": 6
+      "b": 9,
+      "m": 6
+    },
+    "number_nd_tokens": {
+      "akukho": 0
     },
     "album_types": {
       "bonisa": "Show",

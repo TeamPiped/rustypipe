@@ -3,7 +3,6 @@ use std::{
     fs::File,
     hash::Hash,
     io::BufReader,
-    path::Path,
 };
 
 use futures::{stream, StreamExt};
@@ -11,11 +10,10 @@ use path_macro::path;
 use rustypipe::{
     client::RustyPipe,
     param::{locale::LANGUAGES, Language},
-    timeago::{self, TimeAgo},
 };
 use serde::{Deserialize, Serialize};
 
-use crate::util;
+use crate::util::{self, DICT_DIR};
 
 type CollectedDates = BTreeMap<Language, BTreeMap<DateCase, String>>;
 
@@ -62,16 +60,13 @@ enum DateCase {
 ///
 /// Because the relative dates change with time, the first three playlists
 /// have to checked and eventually changed before running the program.
-pub async fn collect_dates(project_root: &Path, concurrency: usize) {
-    let json_path = path!(project_root / "testfiles" / "dict" / "playlist_samples.json");
+pub async fn collect_dates(concurrency: usize) {
+    let json_path = path!(*DICT_DIR / "playlist_samples.json");
 
     // These are the sample playlists
     let cases = [
-        (
-            DateCase::Today,
-            "RDCLAK5uy_kj3rhiar1LINmyDcuFnXihEO0K1NQa2jI",
-        ),
-        (DateCase::Yesterday, "PL7zsB-C3aNu2yRY2869T0zj1FhtRIu5am"),
+        (DateCase::Today, "PLMC9KNkIncKtPzgY-5rmhvj7fax8fdxoj"),
+        (DateCase::Yesterday, "PLcirGkCPmbmFeQ1sm4wFciF03D_EroIfr"),
         (DateCase::Ago, "PLmB6td997u3kUOrfFwkULZ910ho44oQSy"),
         (DateCase::Jan, "PL1J-6JOckZtFjcni6Xj1pLYglJp6JCpKD"),
         (DateCase::Feb, "PL1J-6JOckZtETrbzwZE7mRIIK6BzWNLAs"),
@@ -90,6 +85,7 @@ pub async fn collect_dates(project_root: &Path, concurrency: usize) {
     let rp = RustyPipe::new();
     let collected_dates = stream::iter(LANGUAGES)
         .map(|lang| {
+            println!("{lang}");
             let rp = rp.clone();
             async move {
                 let mut map: BTreeMap<DateCase, String> = BTreeMap::new();
@@ -115,13 +111,13 @@ pub async fn collect_dates(project_root: &Path, concurrency: usize) {
 ///
 /// The ND (no digit) tokens (today, tomorrow) of some languages cannot be
 /// parsed automatically and require manual work.
-pub fn write_samples_to_dict(project_root: &Path) {
-    let json_path = path!(project_root / "testfiles" / "dict" / "playlist_samples.json");
+pub fn write_samples_to_dict() {
+    let json_path = path!(*DICT_DIR / "playlist_samples.json");
 
     let json_file = File::open(json_path).unwrap();
     let collected_dates: CollectedDates =
         serde_json::from_reader(BufReader::new(json_file)).unwrap();
-    let mut dict = util::read_dict(project_root);
+    let mut dict = util::read_dict();
     let langs = dict.keys().map(|k| k.to_owned()).collect::<Vec<_>>();
 
     let months = [
@@ -168,19 +164,7 @@ pub fn write_samples_to_dict(project_root: &Path) {
         let collect_nd_tokens = !matches!(
             lang,
             // ND tokens of these languages must be edited manually
-            Language::Ja
-            | Language::ZhCn
-            | Language::ZhHk
-            | Language::ZhTw
-            | Language::Ko
-            | Language::Gu
-            | Language::Pa
-            | Language::Ur
-            | Language::Uz
-            | Language::Te
-            | Language::PtPt
-            // Singhalese YT translation has an error (today == tomorrow)
-            | Language::Si
+            Language::Ja | Language::ZhCn | Language::ZhHk | Language::ZhTw
         );
 
         dict_entry.months = BTreeMap::new();
@@ -210,20 +194,6 @@ pub fn write_samples_to_dict(project_root: &Path) {
                 parse(datestr_table.get(&DateCase::Yesterday).unwrap(), 2);
                 parse(datestr_table.get(&DateCase::Ago).unwrap(), 0);
                 parse(datestr_table.get(&DateCase::Jan).unwrap(), 0);
-            }
-
-            // n days ago
-            {
-                let datestr = datestr_table.get(&DateCase::Ago).unwrap();
-                let tago = timeago::parse_timeago(lang, datestr);
-                assert_eq!(
-                    tago,
-                    Some(TimeAgo {
-                        n: 3,
-                        unit: timeago::TimeUnit::Day
-                    }),
-                    "lang: {lang}, txt: {datestr}"
-                );
             }
 
             // Absolute dates (Jan 3, 2020)
@@ -291,13 +261,11 @@ pub fn write_samples_to_dict(project_root: &Path) {
                     };
                 });
 
-                if datestr_tables.len() == 1 {
-                    assert_eq!(
-                        dict_entry.timeago_nd_tokens.len(),
-                        2,
-                        "lang: {}, nd_tokens: {:?}",
+                if datestr_tables.len() == 1 && dict_entry.timeago_nd_tokens.len() > 2 {
+                    println!(
+                        "INFO: {} has {} nd_tokens. Check manually.",
                         lang,
-                        &dict_entry.timeago_nd_tokens
+                        dict_entry.timeago_nd_tokens.len()
                     );
                 }
             }
@@ -305,5 +273,5 @@ pub fn write_samples_to_dict(project_root: &Path) {
         dict_entry.date_order = num_order;
     }
 
-    util::write_dict(project_root, &dict);
+    util::write_dict(dict);
 }

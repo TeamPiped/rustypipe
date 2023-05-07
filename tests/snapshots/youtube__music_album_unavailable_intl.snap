@@ -1,0 +1,271 @@
+---
+source: tests/youtube.rs
+expression: album
+---
+MusicAlbum(
+  id: "MPREb_AzuWg8qAVVl",
+  playlist_id: Some("OLAK5uy_mux5ygfN9sbiR1ma3yh1GHTmqNekZNoAI"),
+  name: "[name]",
+  cover: "[cover]",
+  artists: [],
+  artist_id: None,
+  description: "[description]",
+  album_type: Album,
+  year: Some(2019),
+  by_va: true,
+  tracks: [
+    TrackItem(
+      id: "R3VIKRtzAdE",
+      name: "[name]",
+      duration: Some(205),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCCj0RlDqqahEB5BXVtDcPqg"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UCCj0RlDqqahEB5BXVtDcPqg"),
+      album: Some(AlbumId(
+        id: "MPREb_AzuWg8qAVVl",
+        name: "[name]",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(1),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "t0v0UOgOt18",
+      name: "[name]",
+      duration: Some(174),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCMrCoizKiBxqeg5pTpBXn1A"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UCMrCoizKiBxqeg5pTpBXn1A"),
+      album: Some(AlbumId(
+        id: "MPREb_AzuWg8qAVVl",
+        name: "[name]",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(2),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "HjJYAkUXrxI",
+      name: "[name]",
+      duration: Some(199),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCWjoDY2SXJ5dvcdunWI6mjQ"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UCWjoDY2SXJ5dvcdunWI6mjQ"),
+      album: Some(AlbumId(
+        id: "MPREb_AzuWg8qAVVl",
+        name: "[name]",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(3),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "Hg0KUOTL06I",
+      name: "[name]",
+      duration: Some(187),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UChzK2t3sjnQkWzGnyKXOSSg"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UChzK2t3sjnQkWzGnyKXOSSg"),
+      album: Some(AlbumId(
+        id: "MPREb_AzuWg8qAVVl",
+        name: "[name]",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(5),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "c8AfY6yhdkM",
+      name: "[name]",
+      duration: Some(159),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCvsgN5NKOzXnAURfaf3TOig"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UCvsgN5NKOzXnAURfaf3TOig"),
+      album: Some(AlbumId(
+        id: "MPREb_AzuWg8qAVVl",
+        name: "[name]",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(6),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "_ZmdHjVvwhc",
+      name: "[name]",
+      duration: Some(186),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCI4YNnmHjXFaaKvfdmpWvJQ"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UCI4YNnmHjXFaaKvfdmpWvJQ"),
+      album: Some(AlbumId(
+        id: "MPREb_AzuWg8qAVVl",
+        name: "[name]",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(7),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "wBe1Zi3q1n8",
+      name: "[name]",
+      duration: Some(209),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCDaFVUr2n8T7_X1f5yJ1xlw"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UCDaFVUr2n8T7_X1f5yJ1xlw"),
+      album: Some(AlbumId(
+        id: "MPREb_AzuWg8qAVVl",
+        name: "[name]",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(8),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "l8Pj8s9uPGc",
+      name: "[name]",
+      duration: Some(209),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCZcc-WkffIMBVGUr6j9e6aQ"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UCZcc-WkffIMBVGUr6j9e6aQ"),
+      album: Some(AlbumId(
+        id: "MPREb_AzuWg8qAVVl",
+        name: "[name]",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(9),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "Kn3cruxYj0c",
+      name: "[name]",
+      duration: Some(174),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCQPPz_A65SWYi2wXX8z76AQ"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UCQPPz_A65SWYi2wXX8z76AQ"),
+      album: Some(AlbumId(
+        id: "MPREb_AzuWg8qAVVl",
+        name: "[name]",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(11),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "Sy1lIOl1YN0",
+      name: "[name]",
+      duration: Some(185),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UChTOXkDhGJ0JftnfMWjpCCg"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UChTOXkDhGJ0JftnfMWjpCCg"),
+      album: Some(AlbumId(
+        id: "MPREb_AzuWg8qAVVl",
+        name: "[name]",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(12),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "njdlNT1RRo4",
+      name: "[name]",
+      duration: Some(237),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCMUB52aO4CqrUXmLwbfRWYA"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UCMUB52aO4CqrUXmLwbfRWYA"),
+      album: Some(AlbumId(
+        id: "MPREb_AzuWg8qAVVl",
+        name: "[name]",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(13),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "Si-CXM8CHqQ",
+      name: "[name]",
+      duration: Some(246),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UC4YvDAbE1EYwZpj6gQ-lpLw"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UC4YvDAbE1EYwZpj6gQ-lpLw"),
+      album: Some(AlbumId(
+        id: "MPREb_AzuWg8qAVVl",
+        name: "[name]",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(18),
+      by_va: false,
+    ),
+  ],
+  variants: [],
+)

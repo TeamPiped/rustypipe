@@ -269,7 +269,7 @@ fn map_artist_page(
         }
     }
 
-    let mapped = mapper.group_items();
+    let mut mapped = mapper.group_items();
 
     static WIKIPEDIA_REGEX: Lazy<Regex> =
         Lazy::new(|| Regex::new(r"\(?https://[a-z\d-]+\.wikipedia.org/wiki/[^\s]+").unwrap());
@@ -302,9 +302,10 @@ fn map_artist_page(
                 description: header.description,
                 wikipedia_url,
                 subscriber_count: header.subscription_button.and_then(|btn| {
-                    util::parse_large_numstr(
+                    util::parse_large_numstr_or_warn(
                         &btn.subscribe_button_renderer.subscriber_count_text,
                         lang,
+                        &mut mapped.warnings,
                     )
                 }),
                 tracks: mapped.c.tracks,

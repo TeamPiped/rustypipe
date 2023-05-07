@@ -1,0 +1,61 @@
+---
+source: tests/youtube.rs
+expression: album
+---
+MusicAlbum(
+  id: "MPREb_F3Af9UZZVxX",
+  playlist_id: Some("OLAK5uy_nim4i4eycEtlBtS3Ci6j4SvvTmdfBcRX4"),
+  name: "[name]",
+  cover: "[cover]",
+  artists: [
+    ArtistId(
+      id: Some("UCAJwa_1l4rHzBJyWbeBtGZw"),
+      name: "[name]",
+    ),
+    ArtistId(
+      id: Some("UCbBaYg2UToDaoOwo-R6xi4g"),
+      name: "[name]",
+    ),
+    ArtistId(
+      id: Some("UCiY3z8HAGD6BlSNKVn2kSvQ"),
+      name: "[name]",
+    ),
+  ],
+  artist_id: Some("UCAJwa_1l4rHzBJyWbeBtGZw"),
+  description: "[description]",
+  album_type: Single,
+  year: None,
+  by_va: false,
+  tracks: [
+    TrackItem(
+      id: "1Sz3lUVGBSM",
+      name: "[name]",
+      duration: Some(229),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCAJwa_1l4rHzBJyWbeBtGZw"),
+          name: "[name]",
+        ),
+        ArtistId(
+          id: Some("UCbBaYg2UToDaoOwo-R6xi4g"),
+          name: "[name]",
+        ),
+        ArtistId(
+          id: Some("UCiY3z8HAGD6BlSNKVn2kSvQ"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UCAJwa_1l4rHzBJyWbeBtGZw"),
+      album: Some(AlbumId(
+        id: "MPREb_F3Af9UZZVxX",
+        name: "[name]",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: Some(1),
+      by_va: false,
+    ),
+  ],
+  variants: [],
+)

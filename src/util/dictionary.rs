@@ -3,15 +3,12 @@
 use crate::{
     model::AlbumType,
     param::Language,
-    timeago::{DateCmp, TaToken, TimeUnit},
+    util::timeago::{DateCmp, TaToken, TimeUnit},
 };
 
 /// The dictionary contains the information required to parse dates and numbers
 /// in all supported languages.
 pub(crate) struct Entry {
-    /// Should the language be parsed by character instead of by word?
-    /// (e.g. Chinese/Japanese)
-    pub by_char: bool,
     /// Tokens for parsing timeago strings.
     ///
     /// Format: Parsed token -> \[Quantity\] Identifier
@@ -41,6 +38,10 @@ pub(crate) struct Entry {
     ///
     /// Format: Parsed token -> decimal power
     pub number_tokens: phf::Map<&'static str, u8>,
+    /// Tokens for parsing number strings with no digits (e.g. "No videos")
+    ///
+    /// Format: Parsed token -> value
+    pub number_nd_tokens: phf::Map<&'static str, u8>,
     /// Names of album types (Album, Single, ...)
     ///
     /// Format: Parsed text -> Album type
@@ -51,7 +52,6 @@ pub(crate) struct Entry {
 pub(crate) fn entry(lang: Language) -> Entry {
     match lang {
         Language::Af => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -119,6 +119,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("m", 6),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("nie", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 2980949210194914378,
                 disps: &[
@@ -134,29 +143,31 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Am => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
-                key: 15467950696543387533,
+                key: 10121458955350035957,
                 disps: &[
-                    (0, 9),
-                    (7, 0),
-                    (5, 3),
+                    (2, 0),
+                    (0, 0),
+                    (6, 2),
+                    (0, 11),
                 ],
                 entries: &[
-                    ("ደቂቃ", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                     ("ሳምንታት", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("ዓመታት", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("ዓመት", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("ወር", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("ሰዓቶች", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("ደቂቃዎች፣", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("ሳምንት", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("ሰከንዶች", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("ቀናት", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("ደቂቃ", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("ደቂቃዎች", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("ደቂቃ፣", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                     ("ሰዓት", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
                     ("ቀን", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("ወራት", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("ሰዓቶች", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("ወር", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("ሰከንዶች", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("ዓመት", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
                     ("ሰከንድ", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("ቀናት", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("ደቂቃዎች", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
-                    ("ዓመታት", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("ሳምንት", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("ወራት", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
                 ],
             },
             date_order: &[DateCmp::D, DateCmp::Y],
@@ -204,6 +215,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("ቢ", 9),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("የለዉም", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -219,41 +239,45 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Ar => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
-                key: 15467950696543387533,
+                key: 10121458955350035957,
                 disps: &[
-                    (1, 9),
-                    (5, 0),
-                    (10, 4),
-                    (0, 1),
-                    (7, 19),
+                    (1, 6),
+                    (0, 21),
+                    (1, 15),
+                    (1, 23),
+                    (2, 10),
+                    (2, 0),
                 ],
                 entries: &[
-                    ("سنتين", TaToken { n: 2, unit: Some(TimeUnit::Year) }),
-                    ("سنة", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("دقائق", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
-                    ("ساعة", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("ثوان\u{64d}", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("ثانية", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("ثانيتين", TaToken { n: 2, unit: Some(TimeUnit::Second) }),
-                    ("أسبوعين", TaToken { n: 2, unit: Some(TimeUnit::Week) }),
-                    ("أسبوع", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
-                    ("يومين", TaToken { n: 2, unit: Some(TimeUnit::Day) }),
-                    ("شهر\u{64b}ا", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("أيام", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("شهر", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("يوم", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("سنوات", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("يوم\u{64b}ا", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("شهرين", TaToken { n: 2, unit: Some(TimeUnit::Month) }),
                     ("دقيقة", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
-                    ("ثوان\u{650}", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("دقيقتين", TaToken { n: 2, unit: Some(TimeUnit::Minute) }),
                     ("أسابيع", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("دقيقتين", TaToken { n: 2, unit: Some(TimeUnit::Minute) }),
+                    ("شهر\u{64b}ا", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("ثانية", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("دقائق", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("دقيقتان", TaToken { n: 2, unit: Some(TimeUnit::Minute) }),
+                    ("سنتين", TaToken { n: 2, unit: Some(TimeUnit::Year) }),
                     ("ساعات", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("أشهر", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("وثانية", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("ثوان", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("وثانيتان", TaToken { n: 2, unit: Some(TimeUnit::Second) }),
+                    ("أسبوعين", TaToken { n: 2, unit: Some(TimeUnit::Week) }),
+                    ("ساعة", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("ثانيتين", TaToken { n: 2, unit: Some(TimeUnit::Second) }),
+                    ("شهرين", TaToken { n: 2, unit: Some(TimeUnit::Month) }),
+                    ("يوم\u{64b}ا", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("سنة", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("ثوان\u{650}", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("سنوات", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("أيام", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                     ("ساعتين", TaToken { n: 2, unit: Some(TimeUnit::Hour) }),
+                    ("أشهر", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("يوم", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("أسبوع", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("ثوان\u{64d}", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("يومين", TaToken { n: 2, unit: Some(TimeUnit::Day) }),
+                    ("شهر", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
                 ],
             },
             date_order: &[DateCmp::D, DateCmp::M, DateCmp::Y],
@@ -265,12 +289,12 @@ pub(crate) fn entry(lang: Language) -> Entry {
                 ],
             },
             timeago_nd_tokens: ::phf::Map {
-                key: 15467950696543387533,
+                key: 12913932095322966823,
                 disps: &[
-                    (1, 0),
+                    (0, 0),
                 ],
                 entries: &[
-                    ("بالأمس", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("البارحة", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                     ("اليوم", TaToken { n: 0, unit: Some(TimeUnit::Day) }),
                 ],
             },
@@ -285,6 +309,16 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("مليون", 6),
                     ("ألف", 3),
                     ("مليار", 9),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("واحد", 1),
+                    ("لا", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -302,7 +336,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::As => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -341,14 +374,32 @@ pub(crate) fn entry(lang: Language) -> Entry {
             number_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
-                    (3, 0),
+                    (0, 7),
+                    (9, 8),
+                    (0, 0),
                 ],
                 entries: &[
-                    ("নিয\u{9c1}তট\u{9be}", 6),
+                    ("হ\u{9be}", 3),
                     ("হ\u{9be}জ\u{9be}ৰট\u{9be}", 3),
-                    ("নিঃট\u{9be}", 6),
-                    ("কোঃট\u{9be}", 9),
+                    ("নিয\u{9c1}তট\u{9be}", 6),
+                    ("হ\u{9be}জ\u{9be}ৰ", 3),
+                    ("ল\u{9be}", 5),
                     ("ল\u{9be}খট\u{9be}", 5),
+                    ("কোঃট\u{9be}", 9),
+                    ("নিঃট\u{9be}", 6),
+                    ("নিয\u{9c1}ত", 6),
+                    ("নিঃ", 6),
+                    ("ল\u{9be}খ", 5),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 15467950696543387533,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("ন\u{9be}ই", 0),
+                    ("১", 1),
                 ],
             },
             album_types: ::phf::Map {
@@ -366,7 +417,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Az => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -412,8 +462,10 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     (0, 0),
                 ],
                 entries: &[
-                    ("dünən", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("güncəlləndi", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                     ("bugün", TaToken { n: 0, unit: Some(TimeUnit::Day) }),
+                    ("dünən", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("güncəllənib", TaToken { n: 0, unit: Some(TimeUnit::Day) }),
                 ],
             },
             comma_decimal: true,
@@ -425,6 +477,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                 entries: &[
                     ("mlrd", 9),
                     ("mln", 6),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("yoxdur", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -442,41 +503,43 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Be => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
-                key: 10121458955350035957,
+                key: 14108922650502679131,
                 disps: &[
-                    (2, 0),
-                    (3, 15),
-                    (9, 23),
-                    (1, 18),
-                    (1, 7),
+                    (1, 19),
+                    (15, 14),
+                    (1, 2),
+                    (12, 0),
+                    (2, 10),
+                    (0, 0),
                 ],
                 entries: &[
-                    ("месяца", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("хвіліну", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
-                    ("дні", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("секунды", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("года", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("секунд", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("гадоў", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("месяцы", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("гадзіну", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("год", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("гады", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("тыдні", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
-                    ("гадзін", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("дня", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("хвілін", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
-                    ("дзень", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("хвіліны", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
-                    ("секунду", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("тыдня", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
-                    ("гадзіны", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("месяцаў", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("месяц", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
                     ("тыдзень", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("секунды", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("дзень", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("секунда", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("года", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("месяцаў", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("тыдня", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("месяца", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("тыдні", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("хвілін", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("секунду", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("гадзіну", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("дня", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("год", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
                     ("дзён", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("гадзіны", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("месяцы", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("хвіліну", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("месяц", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("гадзін", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("гадоў", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("хвіліны", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("хвіліна", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("гады", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("дні", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("секунд", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                 ],
             },
             date_order: &[DateCmp::D, DateCmp::Y],
@@ -524,6 +587,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("тыс", 3),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("няма", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -539,7 +611,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Bg => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 7485420634051515786,
                 disps: &[
@@ -594,6 +665,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("млн", 6),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("няма", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -609,7 +689,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Bn => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -628,25 +707,25 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             date_order: &[DateCmp::D, DateCmp::Y],
             months: ::phf::Map {
-                key: 10121458955350035957,
+                key: 15467950696543387533,
                 disps: &[
-                    (3, 0),
-                    (0, 9),
-                    (9, 8),
+                    (3, 4),
+                    (2, 0),
+                    (2, 3),
                 ],
                 entries: &[
-                    ("ডিসেম\u{9cd}বর,", 12),
-                    ("জ\u{9c1}ল\u{9be}ই,", 7),
+                    ("অক\u{9cd}টো,", 10),
                     ("ফেব,", 2),
-                    ("অক\u{9cd}টোবর,", 10),
-                    ("মে,", 5),
-                    ("আগস\u{9cd}ট,", 8),
-                    ("এপ\u{9cd}রিল,", 4),
-                    ("সেপ\u{9cd}টেম\u{9cd}বর,", 9),
+                    ("নভে,", 11),
                     ("জ\u{9be}ন\u{9c1},", 1),
-                    ("নভেম\u{9cd}বর,", 11),
-                    ("জ\u{9c1}ন,", 6),
                     ("ম\u{9be}র\u{9cd}চ,", 3),
+                    ("আগ,", 8),
+                    ("ডিসে,", 12),
+                    ("জ\u{9c1}ন,", 6),
+                    ("এপ\u{9cd}রি,", 4),
+                    ("মে,", 5),
+                    ("সেপ,", 9),
+                    ("জ\u{9c1}ল,", 7),
                 ],
             },
             timeago_nd_tokens: ::phf::Map {
@@ -664,12 +743,26 @@ pub(crate) fn entry(lang: Language) -> Entry {
                 key: 15467950696543387533,
                 disps: &[
                     (0, 0),
+                    (2, 0),
                 ],
                 entries: &[
-                    ("ল\u{9be}টি", 5),
                     ("শত", 2),
+                    ("হ\u{9be}", 3),
                     ("হ\u{9be}টি", 3),
+                    ("কো", 7),
                     ("কোটি", 7),
+                    ("ল\u{9be}", 5),
+                    ("ল\u{9be}টি", 5),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("০", 0),
+                    ("১", 1),
                 ],
             },
             album_types: ::phf::Map {
@@ -687,35 +780,35 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Bs => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
-                key: 12913932095322966823,
+                key: 15467950696543387533,
                 disps: &[
-                    (5, 0),
-                    (3, 12),
-                    (8, 3),
-                    (1, 7),
+                    (7, 18),
+                    (4, 0),
+                    (4, 3),
+                    (7, 9),
                 ],
                 entries: &[
-                    ("sedmice", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
-                    ("dan", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                     ("sekunde", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("minute", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
-                    ("mjeseca", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
                     ("godinu", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("mjesec", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("dana", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("minuta", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
-                    ("godina", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("minutu", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
-                    ("sati", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
                     ("godine", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("sekundu", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("sekundi", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("sedmicu", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("mjeseca", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
                     ("sata", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("sedmice", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("minute", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("minutu", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                     ("sat", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("sekundi", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("godina", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("dana", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("sati", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("mjesec", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("sekundu", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("minuta", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                     ("mjeseci", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("sedmicu", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("sekunda", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("dan", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                 ],
             },
             date_order: &[DateCmp::D, DateCmp::Y],
@@ -763,6 +856,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("mil", 6),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("nema", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -778,7 +880,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Ca => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -840,12 +941,20 @@ pub(crate) fn entry(lang: Language) -> Entry {
             number_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
-                    (2, 0),
+                    (0, 0),
                 ],
                 entries: &[
-                    ("mM", 9),
-                    ("M", 6),
-                    ("m", 3),
+                    ("km", 9),
+                    ("m", 6),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("sense", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -863,30 +972,37 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Cs => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
-                key: 8694567506910003252,
+                key: 12913932095322966823,
                 disps: &[
-                    (2, 10),
-                    (5, 0),
-                    (8, 0),
+                    (1, 0),
+                    (1, 7),
+                    (14, 20),
+                    (1, 11),
+                    (1, 20),
                 ],
                 entries: &[
-                    ("rokem", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("hodinami", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("dnem", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                     ("minutami", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
-                    ("dny", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("lety", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("týdny", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
-                    ("týdnem", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
-                    ("sekundou", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("hodinou", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
                     ("měsícem", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("sekundami", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("roky", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("minutou", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("dnem", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                     ("měsíci", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("týdnem", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("minutou", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("sekund", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("lety", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("minuta", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("sekundou", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("minuty", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("sekundy", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("rokem", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("týdny", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("hodinou", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("sekundami", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("hodinami", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("roky", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("dny", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("sekunda", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("minut", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                 ],
             },
             date_order: &[DateCmp::D, DateCmp::M, DateCmp::Y],
@@ -919,6 +1035,13 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("mil", 6),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                ],
+                entries: &[
+                ],
+            },
             album_types: ::phf::Map {
                 key: 14108922650502679131,
                 disps: &[
@@ -934,7 +1057,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Da => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -1002,6 +1124,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("mia", 9),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("ingen", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 14108922650502679131,
                 disps: &[
@@ -1017,7 +1148,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::De => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 345707026197253659,
                 disps: &[
@@ -1064,11 +1194,20 @@ pub(crate) fn entry(lang: Language) -> Entry {
             number_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
-                    (1, 0),
+                    (0, 0),
                 ],
                 entries: &[
-                    ("Mrd", 9),
-                    ("Mio", 6),
+                    ("mrd", 9),
+                    ("mio", 6),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("keine", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -1086,7 +1225,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::El => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 12213676231523076107,
                 disps: &[
@@ -1156,6 +1294,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("δισ", 9),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("καμία", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -1171,7 +1318,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::En | Language::EnGb | Language::EnIn => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 7485420634051515786,
                 disps: &[
@@ -1232,15 +1378,24 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             comma_decimal: false,
             number_tokens: ::phf::Map {
-                key: 14108922650502679131,
+                key: 15467950696543387533,
                 disps: &[
-                    (1, 0),
+                    (2, 0),
                 ],
                 entries: &[
-                    ("lakh", 5),
                     ("crore", 7),
-                    ("M", 6),
-                    ("B", 9),
+                    ("m", 6),
+                    ("lakh", 5),
+                    ("b", 9),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("no", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -1258,7 +1413,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Es => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -1320,11 +1474,18 @@ pub(crate) fn entry(lang: Language) -> Entry {
             number_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
-                    (1, 0),
+                    (0, 0),
                 ],
                 entries: &[
                     ("mil", 3),
-                    ("M", 6),
+                    ("m", 6),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                ],
+                entries: &[
                 ],
             },
             album_types: ::phf::Map {
@@ -1342,7 +1503,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::EsUs | Language::Es419 => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -1404,11 +1564,20 @@ pub(crate) fn entry(lang: Language) -> Entry {
             number_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
-                    (1, 0),
+                    (0, 0),
                 ],
                 entries: &[
                     ("mil", 3),
-                    ("M", 6),
+                    ("m", 6),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("sin", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -1426,7 +1595,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Et => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -1499,6 +1667,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("tuh", 3),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("pole", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -1514,7 +1691,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Eu => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -1574,7 +1750,16 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     (0, 0),
                 ],
                 entries: &[
-                    ("M", 6),
+                    ("m", 6),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("ez", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -1592,7 +1777,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Fa => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -1654,6 +1838,16 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("هزار", 3),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("بدون", 0),
+                    ("۱", 1),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -1669,7 +1863,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Fi => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 12213676231523076107,
                 disps: &[
@@ -1724,6 +1917,16 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("milj", 6),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 10121458955350035957,
+                disps: &[
+                    (1, 0),
+                ],
+                entries: &[
+                    ("ei", 0),
+                    ("katselukertoja", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 8602556344903797927,
                 disps: &[
@@ -1739,7 +1942,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Fil => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -1796,8 +1998,17 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     (0, 0),
                 ],
                 entries: &[
-                    ("M", 6),
-                    ("B", 9),
+                    ("b", 9),
+                    ("m", 6),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("walang", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -1815,7 +2026,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Fr | Language::FrCa => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -1875,14 +2085,24 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             comma_decimal: true,
             number_tokens: ::phf::Map {
-                key: 12913932095322966823,
+                key: 15467950696543387533,
                 disps: &[
-                    (2, 0),
+                    (1, 0),
                 ],
                 entries: &[
-                    ("G", 9),
-                    ("M", 6),
-                    ("Md", 9),
+                    ("g", 9),
+                    ("md", 9),
+                    ("m", 6),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("aucune", 0),
+                    ("aucun", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -1903,7 +2123,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Gl => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -1968,7 +2187,16 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     (0, 0),
                 ],
                 entries: &[
-                    ("M", 6),
+                    ("m", 6),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("ningunha", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -1986,7 +2214,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Gu => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -2033,7 +2260,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                 ],
                 entries: &[
                     ("આજ\u{ac7}", TaToken { n: 0, unit: Some(TimeUnit::Day) }),
-                    ("ગઈ", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("ગઈકાલ\u{ac7}", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                 ],
             },
             comma_decimal: false,
@@ -2047,6 +2274,13 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("અબજ", 9),
                     ("હજાર", 3),
                     ("લાખ", 5),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                ],
+                entries: &[
                 ],
             },
             album_types: ::phf::Map {
@@ -2064,7 +2298,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Hi => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -2127,6 +2360,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("अ॰", 9),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("नही\u{902}", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -2142,35 +2384,35 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Hr => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
-                key: 15467950696543387533,
+                key: 4066803471364472071,
                 disps: &[
+                    (3, 3),
                     (3, 4),
-                    (3, 0),
-                    (0, 3),
-                    (7, 6),
+                    (0, 0),
+                    (1, 3),
                 ],
                 entries: &[
-                    ("minuta", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
-                    ("minute", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
-                    ("dan", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("tjedan", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
                     ("tjedna", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
-                    ("godine", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("godinu", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("mjeseca", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
                     ("godina", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("godine", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("sat", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("minutu", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("mjeseci", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("sekundi", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("tjedan", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("sata", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("godinu", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("sekunda", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("dana", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                     ("mjesec", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
                     ("sekundu", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("mjeseci", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("minutu", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
-                    ("sata", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("dana", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("sekunde", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("sat", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
                     ("sati", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("sekundi", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("dan", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("minuta", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("sekunde", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("minute", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("mjeseca", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
                 ],
             },
             date_order: &[DateCmp::D, DateCmp::Y],
@@ -2218,6 +2460,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("mil", 6),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("nema", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -2233,29 +2484,31 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Hu => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
-                key: 7485420634051515786,
+                key: 12913932095322966823,
                 disps: &[
-                    (0, 0),
-                    (3, 9),
-                    (3, 11),
+                    (14, 3),
+                    (2, 0),
+                    (1, 0),
+                    (3, 6),
                 ],
                 entries: &[
+                    ("másodperc", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("perc", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("másodperce", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("órája", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("hete", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("nappal", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                     ("perccel", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                     ("perce", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
-                    ("nappal", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("másodperce", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("órával", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("héttel", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
-                    ("hete", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
-                    ("hónappal", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
                     ("másodperccel", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                     ("évvel", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("órája", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
                     ("éve", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("napja", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("héttel", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("órával", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("hónappal", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
                     ("hónapja", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("napja", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                 ],
             },
             date_order: &[DateCmp::Y, DateCmp::D],
@@ -2293,14 +2546,23 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             comma_decimal: true,
             number_tokens: ::phf::Map {
-                key: 15467950696543387533,
+                key: 12913932095322966823,
                 disps: &[
                     (2, 0),
                 ],
                 entries: &[
-                    ("E", 3),
-                    ("Mrd", 9),
-                    ("M", 6),
+                    ("e", 3),
+                    ("mrd", 9),
+                    ("m", 6),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("nincs", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -2318,7 +2580,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Hy => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -2380,6 +2641,16 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("մլրդ", 9),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("դիտումներ", 0),
+                    ("չկան", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -2395,7 +2666,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Id => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -2447,14 +2717,23 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             comma_decimal: true,
             number_tokens: ::phf::Map {
-                key: 15467950696543387533,
+                key: 12913932095322966823,
+                disps: &[
+                    (2, 0),
+                ],
+                entries: &[
+                    ("rb", 3),
+                    ("jt", 6),
+                    ("m", 9),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
                 disps: &[
                     (0, 0),
                 ],
                 entries: &[
-                    ("jt", 6),
-                    ("M", 9),
-                    ("rb", 3),
+                    ("belum", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -2472,29 +2751,33 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Is => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
-                key: 15467950696543387533,
+                key: 12913932095322966823,
                 disps: &[
-                    (1, 2),
-                    (1, 0),
-                    (9, 7),
+                    (2, 0),
+                    (1, 6),
+                    (5, 16),
+                    (4, 6),
                 ],
                 entries: &[
-                    ("mánuðum", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("klukkustundum", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("sekúndu", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("mínútum", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
-                    ("dögum", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("viku", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
-                    ("ári", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("sekúndum", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("mínútu", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
-                    ("mánuði", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
                     ("vikum", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
                     ("degi", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("mínútum", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("mínúta", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("mánuðum", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("mínútu", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("klukkustundum", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("sekúndum", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("sekúnda", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                     ("árum", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("mínútur", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("ári", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("dögum", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("sekúndur", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("mánuði", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("viku", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
                     ("klukkustund", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("sekúndu", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                 ],
             },
             date_order: &[DateCmp::D, DateCmp::Y],
@@ -2542,6 +2825,16 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("m", 6),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 10121458955350035957,
+                disps: &[
+                    (1, 0),
+                ],
+                entries: &[
+                    ("ekkert", 0),
+                    ("einn", 1),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 12213676231523076107,
                 disps: &[
@@ -2557,7 +2850,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::It => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -2622,8 +2914,17 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     (0, 0),
                 ],
                 entries: &[
-                    ("Mrd", 9),
-                    ("Mln", 6),
+                    ("mrd", 9),
+                    ("mln", 6),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("nessuna", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -2641,36 +2942,37 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Iw => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
-                key: 1937371814602216758,
+                key: 15467950696543387533,
                 disps: &[
-                    (0, 0),
-                    (3, 0),
+                    (2, 0),
                     (0, 15),
-                    (2, 15),
+                    (2, 10),
+                    (3, 6),
+                    (0, 2),
                 ],
                 entries: &[
-                    ("יומיים", TaToken { n: 2, unit: Some(TimeUnit::Day) }),
-                    ("שעה", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("חודשים", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("שנים", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("חודש", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("שעות", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("שנה", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
                     ("שנתיים", TaToken { n: 2, unit: Some(TimeUnit::Year) }),
-                    ("שבוע", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
-                    ("שניות", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("שעתיים", TaToken { n: 2, unit: Some(TimeUnit::Hour) }),
-                    ("דקה", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
-                    ("שנייה", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("חודשיים", TaToken { n: 2, unit: Some(TimeUnit::Month) }),
-                    ("יום", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("ימים", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("שתי", TaToken { n: 2, unit: None }),
-                    ("שבועות", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
                     ("דקות", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("שעה", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
                     ("שבועיים", TaToken { n: 2, unit: Some(TimeUnit::Week) }),
+                    ("שניה", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("שנייה", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("שעות", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("שתי", TaToken { n: 2, unit: None }),
+                    ("יום", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("שבוע", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("ימים", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("שנים", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("חודשים", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("שניות", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("חודשיים", TaToken { n: 2, unit: Some(TimeUnit::Month) }),
+                    ("חודש", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("שבועות", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("דקה", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("שנה", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("יומיים", TaToken { n: 2, unit: Some(TimeUnit::Day) }),
+                    ("שעתיים", TaToken { n: 2, unit: Some(TimeUnit::Hour) }),
                 ],
             },
             date_order: &[DateCmp::D, DateCmp::Y],
@@ -2708,14 +3010,23 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             comma_decimal: false,
             number_tokens: ::phf::Map {
-                key: 10121458955350035957,
+                key: 12913932095322966823,
                 disps: &[
-                    (2, 0),
+                    (0, 0),
                 ],
                 entries: &[
-                    ("\u{202b}M\u{200f}\u{202c}", 6),
-                    ("\u{202b}B\u{200f}\u{202c}", 9),
-                    ("\u{202b}K\u{200f}\u{202c}", 3),
+                    ("b", 9),
+                    ("m", 6),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("אין", 0),
+                    ("אחד", 1),
                 ],
             },
             album_types: ::phf::Map {
@@ -2733,7 +3044,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Ja => Entry {
-            by_char: true,
             timeago_tokens: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -2779,6 +3089,13 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("億", 8),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                ],
+                entries: &[
+                ],
+            },
             album_types: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -2794,20 +3111,21 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Ka => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
-                key: 12913932095322966823,
+                key: 14108922650502679131,
                 disps: &[
-                    (1, 4),
-                    (6, 0),
+                    (1, 0),
+                    (0, 3),
                 ],
                 entries: &[
-                    ("საათის", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
                     ("კვირის", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
-                    ("წლის", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("თვის", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("დღის", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                     ("წუთის", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("დღის", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("წუთი", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("საათის", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("წლის", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("წამი", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("თვის", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
                     ("წამის", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                 ],
             },
@@ -2856,6 +3174,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("ათ", 3),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("არ", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -2871,7 +3198,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Kk => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 7485420634051515786,
                 disps: &[
@@ -2934,6 +3260,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("млн", 6),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("ешкім", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 351906021642186605,
                 disps: &[
@@ -2949,21 +3284,22 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Km => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
-                key: 12913932095322966823,
+                key: 15467950696543387533,
                 disps: &[
-                    (0, 3),
-                    (1, 0),
+                    (7, 3),
+                    (7, 0),
                 ],
                 entries: &[
-                    ("សប\u{17d2}ដាហ\u{17cd}ម\u{17bb}ន", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
-                    ("វ\u{17b7}នាទ\u{17b8}ម\u{17bb}ន", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("វ\u{17b7}នាទ\u{17b8}", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                     ("ខែម\u{17bb}ន", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("ថ\u{17d2}ងៃម\u{17bb}ន", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                     ("ម\u{17c9}ោងម\u{17bb}ន", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
                     ("ឆ\u{17d2}នា\u{17c6}ម\u{17bb}ន", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("ថ\u{17d2}ងៃម\u{17bb}ន", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("សប\u{17d2}ដាហ\u{17cd}ម\u{17bb}ន", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("វ\u{17b7}នាទ\u{17b8}ម\u{17bb}ន", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                     ("នាទ\u{17b8}ម\u{17bb}ន", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("នាទ\u{17b8}", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                 ],
             },
             date_order: &[DateCmp::D, DateCmp::Y],
@@ -2995,7 +3331,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     (0, 0),
                 ],
                 entries: &[
-                    ("បានធ\u{17d2}វើបច\u{17d2}ច\u{17bb}ប\u{17d2}បន\u{17d2}នភាពថ\u{17d2}ងៃនេះ", TaToken { n: 0, unit: Some(TimeUnit::Day) }),
+                    ("បានធ\u{17d2}វើបច\u{17d2}ច\u{17bb}ប\u{17d2}បន\u{17d2}នភាពនៅថ\u{17d2}ងៃនេះ", TaToken { n: 0, unit: Some(TimeUnit::Day) }),
                     ("បានធ\u{17d2}វើបច\u{17d2}ច\u{17bb}ប\u{17d2}បន\u{17d2}នភាពម\u{17d2}ស\u{17b7}លម\u{17b7}ញ", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                 ],
             },
@@ -3009,6 +3345,13 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("លាន", 6),
                     ("ប\u{17ca}\u{17b8}លាន", 9),
                     ("ពាន\u{17cb}", 3),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                ],
+                entries: &[
                 ],
             },
             album_types: ::phf::Map {
@@ -3026,28 +3369,31 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Kn => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
-                key: 2980949210194914378,
+                key: 15467950696543387533,
                 disps: &[
-                    (1, 0),
-                    (1, 0),
+                    (0, 4),
+                    (8, 2),
+                    (8, 0),
                     (0, 2),
                 ],
                 entries: &[
-                    ("ಗಂಟ\u{cc6}", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("ವರ\u{ccd}ಷದ", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("ದ\u{cbf}ನದ", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("ತ\u{cbf}ಂಗಳ", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("ನ\u{cbf}ಮ\u{cbf}ಷಗಳ", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
-                    ("ವಾರದ", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
-                    ("ಸ\u{cc6}ಕ\u{cc6}ಂಡುಗಳ", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("ಗಂಟ\u{cc6}ಗಳ", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("ಸ\u{cc6}ಕ\u{cc6}ಂಡ\u{ccd}", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                     ("ನ\u{cbf}ಮ\u{cbf}ಷದ", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
-                    ("ವಾರಗಳ", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("ಸ\u{cc6}ಕ\u{cc6}ಂಡುಗಳು", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("ನ\u{cbf}ಮ\u{cbf}ಷಗಳು", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("ನ\u{cbf}ಮ\u{cbf}ಷಗಳ", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("ಸ\u{cc6}ಕ\u{cc6}ಂಡುಗಳ", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("ಸ\u{cc6}ಕ\u{cc6}ಂಡ\u{ccd}", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("ವರ\u{ccd}ಷದ", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("ತ\u{cbf}ಂಗಳ", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("ಗಂಟ\u{cc6}", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("ದ\u{cbf}ನದ", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                     ("ದ\u{cbf}ನಗಳ", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("ವಾರಗಳ", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("ನ\u{cbf}ಮ\u{cbf}ಷವು", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                     ("ತ\u{cbf}ಂಗಳುಗಳ", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("ವಾರದ", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("ಗಂಟ\u{cc6}ಗಳ", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
                     ("ವರ\u{ccd}ಷಗಳ", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
                 ],
             },
@@ -3056,22 +3402,22 @@ pub(crate) fn entry(lang: Language) -> Entry {
                 key: 12913932095322966823,
                 disps: &[
                     (3, 0),
-                    (1, 2),
-                    (5, 5),
+                    (5, 2),
+                    (2, 6),
                 ],
                 entries: &[
                     ("ಮಾರ\u{ccd}ಚ\u{ccd}", 3),
                     ("ಡ\u{cbf}ಸ\u{cc6}ಂ", 12),
                     ("ನವ\u{cc6}ಂ", 11),
-                    ("ಸ\u{cc6}ಪ\u{ccd}ಟ\u{cc6}ಂ", 9),
+                    ("ಫ\u{cc6}ಬ\u{ccd}ರವರ\u{cbf}", 2),
                     ("ಜ\u{cc2}ನ\u{ccd}", 6),
                     ("ಮೇ", 5),
                     ("ಜನವರ\u{cbf}", 1),
-                    ("ಆಗ", 8),
-                    ("ಏಪ\u{ccd}ರ\u{cbf}", 4),
-                    ("ಫ\u{cc6}ಬ\u{ccd}ರವರ\u{cbf}", 2),
-                    ("ಜುಲೈ", 7),
                     ("ಅಕ\u{ccd}ಟೋ", 10),
+                    ("ಏಪ\u{ccd}ರ\u{cbf}", 4),
+                    ("ಆಗಸ\u{ccd}ಟ\u{ccd}", 8),
+                    ("ಜುಲೈ", 7),
+                    ("ಸ\u{cc6}ಪ\u{ccd}ಟ\u{cc6}ಂ", 9),
                 ],
             },
             timeago_nd_tokens: ::phf::Map {
@@ -3095,6 +3441,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("ಲಕ\u{ccd}ಷ", 5),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("ವೀಕ\u{ccd}ಷಣ\u{cc6}ಗಳ\u{cbf}ಲ\u{ccd}ಲ", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 9826310008611304355,
                 disps: &[
@@ -3110,7 +3465,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Ko => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -3141,19 +3495,29 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     (0, 0),
                 ],
                 entries: &[
+                    ("어제", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                     ("오늘", TaToken { n: 0, unit: Some(TimeUnit::Day) }),
                 ],
             },
             comma_decimal: false,
             number_tokens: ::phf::Map {
-                key: 15467950696543387533,
+                key: 12913932095322966823,
+                disps: &[
+                    (1, 0),
+                ],
+                entries: &[
+                    ("천", 3),
+                    ("만", 4),
+                    ("억", 8),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
                 disps: &[
                     (0, 0),
                 ],
                 entries: &[
-                    ("천회", 3),
-                    ("억회", 8),
-                    ("만회", 4),
+                    ("없", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -3171,7 +3535,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Ky => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -3233,6 +3596,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("миң", 3),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("эч", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -3248,21 +3620,22 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Lo => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
-                key: 12913932095322966823,
+                key: 7485420634051515786,
                 disps: &[
-                    (0, 5),
-                    (0, 0),
+                    (2, 0),
+                    (2, 0),
                 ],
                 entries: &[
-                    ("ນາທ\u{eb5}ກ\u{ec8}ອນ", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
-                    ("ເດ\u{eb7}ອນກ\u{ec8}ອນ", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("ນາທ\u{eb5}", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                     ("ຊ\u{ebb}\u{ec8}ວໂມງກ\u{ec8}ອນ", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("ອາທ\u{eb4}ດກ\u{ec8}ອນ", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("ວ\u{eb4}ນາທ\u{eb5}", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("ນາທ\u{eb5}ກ\u{ec8}ອນ", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                     ("ມ\u{eb7}\u{ec9}ກ\u{ec8}ອນ", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("ປ\u{eb5}ກ\u{ec8}ອນ", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("ອາທ\u{eb4}ດກ\u{ec8}ອນ", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
                     ("ວ\u{eb4}ນາທ\u{eb5}ກ\u{ec8}ອນ", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("ເດ\u{eb7}ອນກ\u{ec8}ອນ", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("ປ\u{eb5}ກ\u{ec8}ອນ", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
                 ],
             },
             date_order: &[DateCmp::D, DateCmp::Y],
@@ -3291,11 +3664,11 @@ pub(crate) fn entry(lang: Language) -> Entry {
             timeago_nd_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
-                    (0, 0),
+                    (1, 0),
                 ],
                 entries: &[
                     ("ອ\u{eb1}ບເດດມ\u{eb7}\u{ec9}ນ\u{eb5}\u{ec9}", TaToken { n: 0, unit: Some(TimeUnit::Day) }),
-                    ("ອ\u{eb1}ບເດດມ\u{eb7}\u{ec9}ວານນ\u{eb5}\u{ec9}", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("ອ\u{eb1}ດເດດມ\u{eb7}\u{ec9}ວານນ\u{eb5}\u{ec9}", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                 ],
             },
             comma_decimal: true,
@@ -3309,6 +3682,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("ລ\u{ec9}ານ", 6),
                     ("ຕ\u{eb7}\u{ec9}", 9),
                     ("ພ\u{eb1}ນ", 3),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("ຍ\u{eb1}ງບ\u{ecd}\u{ec8}ມ\u{eb5}ຄ\u{ebb}ນເບ\u{eb4}\u{ec8}ງເທ\u{eb7}\u{ec8}ອ", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -3326,38 +3708,41 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Lt => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
-                key: 15467950696543387533,
+                key: 12913932095322966823,
                 disps: &[
-                    (0, 19),
-                    (0, 2),
-                    (1, 1),
-                    (2, 0),
-                    (0, 16),
+                    (0, 0),
+                    (3, 23),
+                    (18, 5),
+                    (3, 9),
+                    (2, 17),
                 ],
                 entries: &[
-                    ("mėnesį", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("savaitę", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
-                    ("sekundę", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                     ("valandas", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("dienas", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("d.", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("mėnesių", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("metų", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("mėnesius", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("metus", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("sekundes", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("sekundžių", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                     ("savaičių", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
                     ("minučių", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
-                    ("minutę", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
-                    ("valandą", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
                     ("dienų", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("savaites", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
-                    ("dieną", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("sekundės", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("mėnesį", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("dienas", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                     ("minutes", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("sekundė", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                     ("valandų", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("minutę", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("sekundžių", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("minutės", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("d.", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("dieną", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("metų", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("mėnesių", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("savaitę", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("valandą", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("sekundes", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("metus", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("mėnesius", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("minutė", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("sekundę", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("savaites", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
                 ],
             },
             date_order: &[DateCmp::Y, DateCmp::M, DateCmp::D],
@@ -3390,6 +3775,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("tūkst", 3),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("nėra", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 7485420634051515786,
                 disps: &[
@@ -3405,29 +3799,33 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Lv => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
-                key: 15467950696543387533,
+                key: 10121458955350035957,
                 disps: &[
-                    (2, 0),
-                    (1, 12),
-                    (0, 4),
+                    (2, 4),
+                    (5, 0),
+                    (0, 17),
+                    (5, 6),
                 ],
                 entries: &[
-                    ("dienām", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("gada", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("sekunžu", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("sekundēm", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("gadiem", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("mēneša", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("nedēļas", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
                     ("sekundes", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                     ("stundām", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("stundas", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("nedēļas", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
-                    ("minūtēm", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("minūšu", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                     ("minūtes", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                     ("nedēļām", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
-                    ("gadiem", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("gada", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("mēneša", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("sekundēm", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("mēnešiem", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("sekunde", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("minūtēm", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("dienām", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("stundas", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("minūte", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                     ("dienas", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("mēnešiem", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
                 ],
             },
             date_order: &[DateCmp::Y, DateCmp::D],
@@ -3475,6 +3873,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("tūkst", 3),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("nav", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 8694567506910003252,
                 disps: &[
@@ -3490,7 +3897,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Mk => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -3537,13 +3943,22 @@ pub(crate) fn entry(lang: Language) -> Entry {
             number_tokens: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
-                    (2, 0),
+                    (1, 0),
                 ],
                 entries: &[
-                    ("илј", 3),
                     ("мил", 6),
+                    ("м", 6),
                     ("милј", 9),
-                    ("М", 6),
+                    ("илј", 3),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("нема", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -3561,7 +3976,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Ml => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -3622,6 +4036,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("കോടി", 7),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("ഇല\u{d4d}ല", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -3637,21 +4060,22 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Mn => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
-                key: 12913932095322966823,
+                key: 2126027241312876569,
                 disps: &[
-                    (0, 3),
-                    (5, 0),
+                    (6, 6),
+                    (0, 0),
                 ],
                 entries: &[
-                    ("сарын", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("минутын", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                     ("өдрийн", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("хоногийн", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
-                    ("жилийн", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("цагийн", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
                     ("секундын", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("цагийн", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("жилийн", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("секунд", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("минут", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("хоногийн", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("минутын", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("сарын", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
                 ],
             },
             date_order: &[DateCmp::Y, DateCmp::M, DateCmp::D],
@@ -3684,6 +4108,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("мянга", 3),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("үзэлтгүй", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 8694567506910003252,
                 disps: &[
@@ -3699,29 +4132,32 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Mr => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
-                key: 15467950696543387533,
+                key: 12913932095322966823,
                 disps: &[
-                    (2, 6),
-                    (1, 3),
-                    (6, 0),
+                    (0, 0),
+                    (0, 8),
+                    (7, 4),
+                    (1, 6),
                 ],
                 entries: &[
-                    ("दिवसा\u{902}प\u{942}र\u{94d}वी", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("वर\u{94d}षा\u{902}प\u{942}र\u{94d}वी", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("तासाप\u{942}र\u{94d}वी", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("वर\u{94d}षाप\u{942}र\u{94d}वी", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("महिन\u{94d}याप\u{942}र\u{94d}वी", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("स\u{947}क\u{902}दा\u{902}प\u{942}र\u{94d}वी", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                     ("दिवसाप\u{942}र\u{94d}वी", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                     ("महिन\u{94d}या\u{902}प\u{942}र\u{94d}वी", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("आठवड\u{94d}या\u{902}प\u{942}र\u{94d}वी", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
-                    ("मिनिटाप\u{942}र\u{94d}वी", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
-                    ("स\u{947}क\u{902}दाप\u{942}र\u{94d}वी", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("तासा\u{902}प\u{942}र\u{94d}वी", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("मिनिटा\u{902}प\u{942}र\u{94d}वी", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("दिवसा\u{902}प\u{942}र\u{94d}वी", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                     ("आठवड\u{94d}याप\u{942}र\u{94d}वी", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("मिनिटाप\u{942}र\u{94d}वी", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("स\u{947}क\u{902}द", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("तासा\u{902}प\u{942}र\u{94d}वी", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("स\u{947}क\u{902}दा\u{902}प\u{942}र\u{94d}वी", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("मिनिटा\u{902}प\u{942}र\u{94d}वी", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("महिन\u{94d}याप\u{942}र\u{94d}वी", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("स\u{947}क\u{902}दाप\u{942}र\u{94d}वी", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("मिनिट", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("आठवड\u{94d}या\u{902}प\u{942}र\u{94d}वी", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("वर\u{94d}षाप\u{942}र\u{94d}वी", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("मिनिट\u{947}", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("तासाप\u{942}र\u{94d}वी", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("वर\u{94d}षा\u{902}प\u{942}र\u{94d}वी", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
                 ],
             },
             date_order: &[DateCmp::D, DateCmp::Y],
@@ -3748,13 +4184,14 @@ pub(crate) fn entry(lang: Language) -> Entry {
                 ],
             },
             timeago_nd_tokens: ::phf::Map {
-                key: 12913932095322966823,
+                key: 10121458955350035957,
                 disps: &[
                     (0, 0),
                 ],
                 entries: &[
-                    ("काल", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                     ("आज", TaToken { n: 0, unit: Some(TimeUnit::Day) }),
+                    ("today", TaToken { n: 0, unit: Some(TimeUnit::Day) }),
+                    ("काल", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                 ],
             },
             comma_decimal: false,
@@ -3768,6 +4205,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("अब\u{94d}ज", 9),
                     ("लाख", 5),
                     ("कोटी", 7),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("नाहीत", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -3785,7 +4231,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Ms => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -3837,13 +4282,22 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             comma_decimal: false,
             number_tokens: ::phf::Map {
-                key: 12913932095322966823,
+                key: 15467950696543387533,
                 disps: &[
                     (1, 0),
                 ],
                 entries: &[
-                    ("J", 6),
-                    ("B", 9),
+                    ("b", 9),
+                    ("j", 6),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("tiada", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -3861,22 +4315,22 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::My => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
-                    (4, 0),
-                    (3, 5),
+                    (0, 0),
+                    (7, 3),
                 ],
                 entries: &[
+                    ("မ\u{102d}နစ\u{103a}န\u{103e}င\u{1037}\u{103a}", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                     ("န\u{103e}စ\u{103a}", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("နာရ\u{102e}", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("လ", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("စက\u{1039}ကန\u{1037}\u{103a}", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("ရက\u{103a}", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("ပတ\u{103a}", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
                     ("ရက\u{103a}က", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                     ("မ\u{102d}နစ\u{103a}", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
-                    ("လ", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("နာရ\u{102e}", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("ရက\u{103a}", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("စက\u{1039}ကန\u{1037}\u{103a}", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("ပတ\u{103a}", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
                 ],
             },
             date_order: &[DateCmp::Y, DateCmp::D],
@@ -3914,18 +4368,28 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             comma_decimal: false,
             number_tokens: ::phf::Map {
-                key: 10121458955350035957,
+                key: 12913932095322966823,
                 disps: &[
-                    (5, 1),
-                    (2, 0),
+                    (3, 0),
+                    (0, 2),
                 ],
                 entries: &[
-                    ("ထောင\u{103a}", 3),
-                    ("သန\u{103a}း", 6),
-                    ("က\u{102f}ဋေထ", 10),
+                    ("ထ", 3),
                     ("က\u{102f}ဋေ", 7),
-                    ("သောင\u{103a}း", 4),
+                    ("သန\u{103a}း", 6),
+                    ("ထောင\u{103a}", 3),
                     ("သ\u{102d}န\u{103a}း", 5),
+                    ("သောင\u{103a}း", 4),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 10121458955350035957,
+                disps: &[
+                    (1, 0),
+                ],
+                entries: &[
+                    ("၁", 1),
+                    ("မရ\u{103e}\u{102d}", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -3943,20 +4407,20 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Ne => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
-                    (1, 0),
+                    (4, 0),
                     (1, 3),
                 ],
                 entries: &[
-                    ("घण\u{94d}टा", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("महिना", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("दिन", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("हप\u{94d}ता", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
-                    ("वर\u{94d}ष", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
                     ("मिन\u{947}ट", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("वर\u{94d}ष", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("दिन", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("घण\u{94d}टा", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("दिनअघि", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("हप\u{94d}ता", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("महिना", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
                     ("स\u{947}क\u{947}न\u{94d}ड", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                 ],
             },
@@ -4006,6 +4470,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("लाख", 5),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("छ\u{948}न", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 6581282999337146909,
                 disps: &[
@@ -4021,7 +4494,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Nl => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 14108922650502679131,
                 disps: &[
@@ -4048,23 +4520,23 @@ pub(crate) fn entry(lang: Language) -> Entry {
             months: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
-                    (1, 3),
+                    (7, 0),
+                    (0, 6),
                     (0, 0),
-                    (0, 7),
                 ],
                 entries: &[
-                    ("jan.", 1),
-                    ("dec.", 12),
-                    ("jun.", 6),
-                    ("jul.", 7),
-                    ("sep.", 9),
-                    ("nov.", 11),
-                    ("apr.", 4),
-                    ("feb.", 2),
-                    ("okt.", 10),
-                    ("mrt.", 3),
-                    ("aug.", 8),
+                    ("feb", 2),
+                    ("sep", 9),
+                    ("mrt", 3),
+                    ("jun", 6),
                     ("mei", 5),
+                    ("nov", 11),
+                    ("apr", 4),
+                    ("aug", 8),
+                    ("jul", 7),
+                    ("dec", 12),
+                    ("jan", 1),
+                    ("okt", 10),
                 ],
             },
             timeago_nd_tokens: ::phf::Map {
@@ -4088,6 +4560,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("mln", 6),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("geen", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -4103,7 +4584,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::No => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 7485420634051515786,
                 disps: &[
@@ -4172,6 +4652,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("mill", 6),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("ingen", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 12213676231523076107,
                 disps: &[
@@ -4187,21 +4676,21 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Or => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
-                key: 12913932095322966823,
+                key: 1937371814602216758,
                 disps: &[
-                    (4, 4),
+                    (0, 7),
                     (5, 0),
                 ],
                 entries: &[
                     ("ସେକେଣ\u{b4d}ଡ", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("ବର\u{b4d}ଷ", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("ସପ\u{b4d}ତ\u{b3e}ହ", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
-                    ("ମ\u{b3e}ସ", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("ମ\u{b3f}ନ\u{b3f}ଟ\u{b4d}", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
-                    ("ଘଣ\u{b4d}ଟ\u{b3e}", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("ମ\u{b3f}ନ\u{b3f}ଟ\u{b4d}\u{200c}", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                     ("ଦ\u{b3f}ନ", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("ବର\u{b4d}ଷ", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("ମ\u{b3e}ସ", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("ଘଣ\u{b4d}ଟ\u{b3e}", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("ମ\u{b3f}ନ\u{b3f}ଟ\u{b4d}", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("ସପ\u{b4d}ତ\u{b3e}ହ", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
                 ],
             },
             date_order: &[DateCmp::D, DateCmp::Y],
@@ -4239,14 +4728,30 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             comma_decimal: false,
             number_tokens: ::phf::Map {
-                key: 12913932095322966823,
+                key: 15467950696543387533,
                 disps: &[
                     (2, 0),
+                    (2, 1),
                 ],
                 entries: &[
+                    ("ନ\u{b3f}ଜଣ", 6),
+                    ("ବ\u{b3f}", 9),
+                    ("ନ\u{b3f}", 6),
+                    ("ବ\u{b3f}ଜଣ", 9),
                     ("ବ\u{b3f}ଟ\u{b3f}", 9),
+                    ("ହଜଣ", 3),
                     ("ନ\u{b3f}ଟ\u{b3f}", 6),
+                    ("ହ", 3),
                     ("ହଟ\u{b3f}", 3),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("ନ\u{b3e}ହ\u{b3f}\u{b01}", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -4264,7 +4769,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Pa => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 399332969041170284,
                 disps: &[
@@ -4308,13 +4812,13 @@ pub(crate) fn entry(lang: Language) -> Entry {
                 ],
             },
             timeago_nd_tokens: ::phf::Map {
-                key: 10121458955350035957,
+                key: 15467950696543387533,
                 disps: &[
-                    (0, 0),
+                    (1, 0),
                 ],
                 entries: &[
-                    ("ਬੀ\u{a47}ਤ\u{a47}", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                     ("ਅ\u{a71}ਜ", TaToken { n: 0, unit: Some(TimeUnit::Day) }),
+                    ("ਕ\u{a71}ਲ\u{a4d}ਹ", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                 ],
             },
             comma_decimal: false,
@@ -4328,6 +4832,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("ਲ\u{a71}ਖ", 5),
                     ("ਹਜ\u{a3c}ਾਰ", 3),
                     ("ਅਰਬ", 9),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("ਨਹੀ\u{a02}", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -4345,35 +4858,37 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Pl => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
-                    (13, 4),
-                    (0, 11),
-                    (5, 11),
-                    (8, 0),
+                    (1, 0),
+                    (1, 20),
+                    (0, 16),
+                    (6, 15),
+                    (9, 5),
                 ],
                 entries: &[
-                    ("minuty", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
-                    ("rok", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("dzień", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("tygodnie", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
-                    ("godzin", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("godziny", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("tydzień", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
-                    ("miesięcy", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("lat", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("dni", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("minut", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                     ("sekundę", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("lat", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("rok", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
                     ("sekund", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("godzinę", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("miesiąc", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("lata", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
                     ("miesiące", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("miesięcy", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("minut", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("minuta", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("minuty", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("tydzień", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
                     ("minutę", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                     ("sekundy", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("godzin", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("tygodnie", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("dzień", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("sekunda", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("dni", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("godzinę", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("godziny", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("miesiąc", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("lata", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
                 ],
             },
             date_order: &[DateCmp::D, DateCmp::Y],
@@ -4421,6 +4936,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("tys", 3),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("brak", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 351906021642186605,
                 disps: &[
@@ -4436,7 +4960,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Pt => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -4506,6 +5029,13 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("mil", 3),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                ],
+                entries: &[
+                ],
+            },
             album_types: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -4521,7 +5051,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::PtPt => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -4568,12 +5097,19 @@ pub(crate) fn entry(lang: Language) -> Entry {
             number_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
-                    (2, 0),
+                    (0, 0),
                 ],
                 entries: &[
-                    ("mM", 9),
-                    ("M", 6),
+                    ("mm", 9),
+                    ("m", 6),
                     ("mil", 3),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                ],
+                entries: &[
                 ],
             },
             album_types: ::phf::Map {
@@ -4591,7 +5127,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Ro => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 14108922650502679131,
                 disps: &[
@@ -4660,6 +5195,16 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("mld", 9),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (1, 0),
+                ],
+                entries: &[
+                    ("un", 1),
+                    ("nicio", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 7827257779606437632,
                 disps: &[
@@ -4675,36 +5220,38 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Ru => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
-                key: 15467950696543387533,
+                key: 12913932095322966823,
                 disps: &[
-                    (17, 15),
-                    (7, 8),
-                    (4, 0),
-                    (0, 0),
+                    (2, 0),
+                    (0, 18),
+                    (0, 9),
+                    (7, 3),
+                    (16, 13),
                 ],
                 entries: &[
-                    ("часа", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("год", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
                     ("недели", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
-                    ("дней", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("минуты", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
-                    ("секунду", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("часов", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("секунд", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("минуту", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("месяца", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("месяц", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("месяцев", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
                     ("дня", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                     ("лет", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("неделю", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
-                    ("секунды", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("час", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("месяцев", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("месяц", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("минут", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
-                    ("года", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("минуты", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                     ("день", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("месяца", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("года", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("секунду", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("секунда", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("секунд", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("неделю", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("дней", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("час", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("часа", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("минут", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("минуту", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("секунды", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("год", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("минута", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("часов", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
                 ],
             },
             date_order: &[DateCmp::D, DateCmp::Y],
@@ -4752,6 +5299,13 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("тыс", 3),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                ],
+                entries: &[
+                ],
+            },
             album_types: ::phf::Map {
                 key: 345707026197253659,
                 disps: &[
@@ -4767,7 +5321,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Si => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -4810,12 +5363,11 @@ pub(crate) fn entry(lang: Language) -> Entry {
             timeago_nd_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
-                    (1, 0),
+                    (0, 0),
                 ],
                 entries: &[
-                    ("ඊයෙ", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("ඊයේ", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                     ("අද", TaToken { n: 0, unit: Some(TimeUnit::Day) }),
+                    ("ඊයේ", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                 ],
             },
             comma_decimal: false,
@@ -4828,6 +5380,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("ම\u{dd2}", 6),
                     ("බ\u{dd2}", 9),
                     ("ද", 3),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("නැත", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -4845,29 +5406,35 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Sk => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
-                key: 8694567506910003252,
+                key: 15467950696543387533,
                 disps: &[
-                    (7, 2),
                     (0, 0),
-                    (5, 3),
+                    (1, 8),
+                    (1, 1),
+                    (0, 17),
                 ],
                 entries: &[
-                    ("hodinou", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
                     ("minútou", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
-                    ("dňom", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("sekundou", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("mesiacom", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("minútami", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
-                    ("rokom", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("mesiacmi", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("týždňom", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
-                    ("dňami", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("rokmi", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
                     ("sekundami", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("hodinami", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("minút", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                     ("týždňami", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("sekunda", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("sekundy", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("týždňom", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("sekúnd", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("hodinami", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("hodinou", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("mesiacom", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("rokom", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("minútami", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("minúty", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("mesiacmi", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("dňom", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("dňami", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("sekundou", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("minúta", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("rokmi", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
                 ],
             },
             date_order: &[DateCmp::D, DateCmp::M, DateCmp::Y],
@@ -4900,6 +5467,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("mil", 6),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("žiadne", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 4066803471364472071,
                 disps: &[
@@ -4915,39 +5491,47 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Sl => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
-                key: 15467950696543387533,
+                key: 12913932095322966823,
                 disps: &[
-                    (0, 2),
+                    (1, 2),
+                    (5, 22),
+                    (2, 4),
+                    (0, 22),
+                    (13, 22),
                     (2, 0),
-                    (19, 11),
-                    (3, 10),
-                    (0, 21),
                 ],
                 entries: &[
+                    ("sekund", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("dnem", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("sekunde", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                     ("tednoma", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("minuta", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("meseci", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("minuti", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("minute", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("minuto", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("urami", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("minutami", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("dnevoma", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("sekundi", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                     ("uro", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("letom", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("mesecema", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
                     ("dnevi", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("tedni", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("sekunda", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("mesecem", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("mesecema", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("minutama", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("sekundo", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("letoma", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("letom", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
                     ("tednom", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("urama", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("dnevom", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("minut", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("sekundami", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("tedni", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
                     ("leti", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
                     ("sekundama", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("dnevom", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("mesecem", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("letoma", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("dnevoma", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("minutama", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
-                    ("minutami", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
-                    ("dnem", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("urami", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("meseci", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("minuto", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
-                    ("sekundami", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("sekundo", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("urama", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
                 ],
             },
             date_order: &[DateCmp::D, DateCmp::Y],
@@ -4995,6 +5579,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("mrd", 9),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("brez", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -5010,7 +5603,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Sq => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 471159234146692604,
                 disps: &[
@@ -5075,6 +5667,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("mijë", 3),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("nuk", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 2980949210194914378,
                 disps: &[
@@ -5090,32 +5691,33 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Sr => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
-                key: 10121458955350035957,
+                key: 14108922650502679131,
                 disps: &[
-                    (0, 15),
-                    (15, 0),
-                    (0, 6),
-                    (7, 2),
+                    (16, 6),
+                    (3, 0),
+                    (14, 6),
+                    (5, 13),
                 ],
                 entries: &[
-                    ("секунди", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("дан", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("месеца", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("сат", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("недељу", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
-                    ("месеци", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("секунде", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                     ("дана", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("минут", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("секунда", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("секунди", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("месеца", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("недеље", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
                     ("година", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
                     ("сати", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("секунде", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("сат", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("месеци", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("недељу", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("дан", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                     ("месец", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("сата", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
                     ("године", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("недеље", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
-                    ("годину", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
                     ("минута", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("годину", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("сата", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
                 ],
             },
             date_order: &[DateCmp::D, DateCmp::M, DateCmp::Y],
@@ -5148,6 +5750,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("хиљ", 3),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("нема", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 106375038446233661,
                 disps: &[
@@ -5163,33 +5774,34 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::SrLatn => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
-                key: 15467950696543387533,
+                key: 12913932095322966823,
                 disps: &[
-                    (11, 7),
+                    (3, 0),
+                    (2, 9),
+                    (1, 4),
                     (0, 0),
-                    (8, 3),
-                    (13, 0),
                 ],
                 entries: &[
                     ("dan", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("godine", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("sekunda", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("nedelju", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
                     ("godina", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("godinu", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("godine", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("mesec", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("minut", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("nedelje", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("sekunde", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("meseci", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("minuta", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("sat", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
                     ("meseca", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
                     ("dana", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("sekunde", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("nedelju", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("godinu", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
                     ("sekundi", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                     ("sata", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("minuta", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                     ("sati", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("meseci", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("mesec", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
                     ("nedelja", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
-                    ("nedelje", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
-                    ("sat", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
                 ],
             },
             date_order: &[DateCmp::D, DateCmp::M, DateCmp::Y],
@@ -5222,6 +5834,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("mil", 6),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("nema", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 8694567506910003252,
                 disps: &[
@@ -5237,7 +5858,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Sv => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -5290,8 +5910,8 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     (1, 0),
                 ],
                 entries: &[
-                    ("idag", TaToken { n: 0, unit: Some(TimeUnit::Day) }),
-                    ("igår", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("dag", TaToken { n: 0, unit: Some(TimeUnit::Day) }),
+                    ("går", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                 ],
             },
             comma_decimal: true,
@@ -5303,6 +5923,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                 entries: &[
                     ("mn", 6),
                     ("md", 9),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("inga", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -5320,7 +5949,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Sw => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -5379,9 +6007,18 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     (1, 0),
                 ],
                 entries: &[
-                    ("B", 9),
+                    ("m", 6),
                     ("elfu", 3),
-                    ("M", 6),
+                    ("b", 9),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("haijatazamwa", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -5399,28 +6036,32 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Ta => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
-                key: 7485420634051515786,
+                key: 8694567506910003252,
                 disps: &[
-                    (2, 3),
-                    (12, 0),
-                    (2, 11),
+                    (5, 3),
+                    (2, 13),
+                    (11, 0),
+                    (1, 10),
                 ],
                 entries: &[
-                    ("ஆண\u{bcd}டுகளுக\u{bcd}கு", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("வ\u{bbe}ரங\u{bcd}களுக\u{bcd}கு", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
-                    ("நிமிடங\u{bcd}களுக\u{bcd}கு", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
-                    ("ந\u{bbe}ளுக\u{bcd}கு", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("நிமிடத\u{bcd}திற\u{bcd}கு", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
-                    ("மணிநேரம\u{bcd}", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("விந\u{bbe}டிக\u{bcd}கு", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("விந\u{bbe}டிகளுக\u{bcd}கு", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("ம\u{bbe}தங\u{bcd}களுக\u{bcd}கு", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("விந\u{bbe}டிகள\u{bcd}", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                     ("ம\u{bbe}தத\u{bcd}துக\u{bcd}கு", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("நிமிடத\u{bcd}திற\u{bcd}கு", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("விந\u{bbe}டிகளுக\u{bcd}கு", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("நிமிடங\u{bcd}களுக\u{bcd}கு", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                     ("ஆண\u{bcd}டிற\u{bcd}கு", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("ந\u{bbe}ட\u{bcd}களுக\u{bcd}கு", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("நிமிடங\u{bcd}கள\u{bcd}", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("வ\u{bbe}ரங\u{bcd}களுக\u{bcd}கு", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("விந\u{bbe}டி", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("ஆண\u{bcd}டுகளுக\u{bcd}கு", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("ம\u{bbe}தங\u{bcd}களுக\u{bcd}கு", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("ந\u{bbe}ளுக\u{bcd}கு", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                     ("வ\u{bbe}ரம\u{bcd}", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("மணிநேரம\u{bcd}", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("ந\u{bbe}ட\u{bcd}களுக\u{bcd}கு", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("நிமிடம\u{bcd}", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("விந\u{bbe}டிக\u{bcd}கு", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                 ],
             },
             date_order: &[DateCmp::D, DateCmp::Y],
@@ -5467,6 +6108,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("கோடி", 7),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("இல\u{bcd}லை", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 106375038446233661,
                 disps: &[
@@ -5482,29 +6132,31 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Te => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
-                key: 14108922650502679131,
+                key: 15467950696543387533,
                 disps: &[
-                    (10, 0),
-                    (0, 11),
-                    (1, 11),
+                    (1, 4),
+                    (1, 0),
+                    (5, 0),
+                    (9, 14),
                 ],
                 entries: &[
+                    ("వ\u{c3e}రం", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("ర\u{c4b}జుల", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("గంట", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("వ\u{c3e}ర\u{c3e}ల", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("సంవత\u{c4d}సర\u{c3e}ల", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("స\u{c46}కన\u{c4d}ల", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                     ("న\u{c3f}మ\u{c3f}షం", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                     ("ర\u{c4b}జు", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                     ("న\u{c46}ల", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("ర\u{c4b}జుల", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("న\u{c46}లల", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("గంటల", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("గంట", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("వ\u{c3e}ర\u{c3e}ల", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
-                    ("న\u{c3f}మ\u{c3f}ష\u{c3e}ల", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
-                    ("వ\u{c3e}రం", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
-                    ("స\u{c46}కన\u{c4d}ల", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("స\u{c46}కన\u{c4d}లు", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                     ("సంవత\u{c4d}సరం", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("న\u{c3f}మ\u{c3f}ష\u{c3e}లు", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                     ("స\u{c46}కను", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("సంవత\u{c4d}సర\u{c3e}ల", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("గంటల", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("న\u{c3f}మ\u{c3f}ష\u{c3e}ల", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("న\u{c46}లల", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
                 ],
             },
             date_order: &[DateCmp::D, DateCmp::Y],
@@ -5552,6 +6204,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("లక\u{c4d}షలు", 5),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("ల\u{c47}వు", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 345707026197253659,
                 disps: &[
@@ -5567,21 +6228,23 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Th => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
-                key: 15467950696543387533,
+                key: 12913932095322966823,
                 disps: &[
-                    (3, 5),
                     (0, 0),
+                    (8, 2),
                 ],
                 entries: &[
-                    ("ว\u{e34}นาท\u{e35}ท\u{e35}\u{e48}ผ\u{e48}านมา", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("ว\u{e31}นท\u{e35}\u{e48}ผ\u{e48}านมา", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("นาท\u{e35}ท\u{e35}\u{e48}ผ\u{e48}านมา", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
-                    ("ช\u{e31}\u{e48}วโมงท\u{e35}\u{e48}ผ\u{e48}านมา", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
                     ("ส\u{e31}ปดาห\u{e4c}ท\u{e35}\u{e48}ผ\u{e48}านมา", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("ว\u{e34}นาท\u{e35}", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("ช\u{e31}\u{e48}วโมงท\u{e35}\u{e48}ผ\u{e48}านมา", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("นาท\u{e35}ท\u{e35}\u{e48}ผ\u{e48}านมา", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("นาท\u{e35}", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("ว\u{e31}นท\u{e35}\u{e48}ผ\u{e48}านมา", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                     ("ป\u{e35}ท\u{e35}\u{e48}แล\u{e49}ว", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("ว\u{e31}นท\u{e35}\u{e48}แล\u{e49}ว", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                     ("เด\u{e37}อนท\u{e35}\u{e48}ผ\u{e48}านมา", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("ว\u{e34}นาท\u{e35}ท\u{e35}\u{e48}ผ\u{e48}านมา", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                 ],
             },
             date_order: &[DateCmp::D, DateCmp::Y],
@@ -5608,13 +6271,13 @@ pub(crate) fn entry(lang: Language) -> Entry {
                 ],
             },
             timeago_nd_tokens: ::phf::Map {
-                key: 12913932095322966823,
+                key: 10121458955350035957,
                 disps: &[
                     (0, 0),
                 ],
                 entries: &[
+                    ("อ\u{e31}ปเดตเม\u{e37}\u{e48}อวานน\u{e35}\u{e49}", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                     ("อ\u{e31}ปเดตแล\u{e49}วว\u{e31}นน\u{e35}\u{e49}", TaToken { n: 0, unit: Some(TimeUnit::Day) }),
-                    ("อ\u{e31}ปเดตแล\u{e49}วเม\u{e37}\u{e48}อวาน", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                 ],
             },
             comma_decimal: false,
@@ -5633,6 +6296,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("ล\u{e49}าน", 6),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("ไม\u{e48}ม\u{e35}การด\u{e39}", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 8694567506910003252,
                 disps: &[
@@ -5648,7 +6320,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Tr => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -5700,14 +6371,23 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             comma_decimal: true,
             number_tokens: ::phf::Map {
-                key: 7485420634051515786,
+                key: 12913932095322966823,
                 disps: &[
-                    (1, 0),
+                    (0, 0),
                 ],
                 entries: &[
-                    ("Mn", 6),
-                    ("Mr", 9),
-                    ("B", 3),
+                    ("b", 3),
+                    ("mn", 6),
+                    ("mr", 9),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("yok", 0),
                 ],
             },
             album_types: ::phf::Map {
@@ -5725,36 +6405,38 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Uk => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
-                key: 8694567506910003252,
+                key: 12913932095322966823,
                 disps: &[
-                    (0, 5),
-                    (6, 4),
-                    (4, 0),
-                    (2, 16),
+                    (1, 19),
+                    (10, 3),
+                    (15, 2),
+                    (0, 9),
+                    (0, 0),
                 ],
                 entries: &[
-                    ("місяців", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("роки", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("років", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("секунду", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("рік", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("секунд", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("години", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("місяць", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("хвилину", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
-                    ("день", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("місяці", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("хвилини", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
-                    ("годину", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("тижні", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
-                    ("годин", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("хвилин", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                     ("тиждень", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("тижні", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("місяць", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
                     ("днів", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("рік", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("секунду", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                     ("секунди", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("секунда", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("хвилини", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("хвилина", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("місяці", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("години", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("секунд", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("роки", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("хвилину", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("годин", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("день", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("місяців", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("годину", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("років", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
                     ("дні", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("хвилин", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                 ],
             },
             date_order: &[DateCmp::D, DateCmp::Y],
@@ -5802,6 +6484,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("млн", 6),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("жодного", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 14108922650502679131,
                 disps: &[
@@ -5817,28 +6508,28 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Ur => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
-                key: 7485420634051515786,
+                key: 12213676231523076107,
                 disps: &[
-                    (9, 10),
-                    (0, 11),
-                    (2, 0),
+                    (11, 7),
+                    (0, 10),
+                    (1, 0),
                 ],
                 entries: &[
-                    ("سیکنڈ", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("سیکنڈز", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
-                    ("مہینہ", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("ہفتے", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
-                    ("منٹس", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
-                    ("ہفتہ", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
-                    ("دنوں", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
-                    ("گھنٹہ", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
-                    ("سال", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
-                    ("مہینے", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
-                    ("دن", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                     ("منٹ", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("ہفتے", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("ہفتہ", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
+                    ("منٹ،", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                     ("گھنٹے", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("سال", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
+                    ("سیکنڈز", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("دن", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("سیکنڈ", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
+                    ("دنوں", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
+                    ("منٹس", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
+                    ("مہینہ", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
+                    ("گھنٹہ", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
+                    ("مہینے", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
                 ],
             },
             date_order: &[DateCmp::D, DateCmp::Y],
@@ -5887,6 +6578,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("لاکھ", 5),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("نہیں", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 106375038446233661,
                 disps: &[
@@ -5902,7 +6602,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Uz => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -5964,6 +6663,13 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("ming", 3),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                ],
+                entries: &[
+                ],
+            },
             album_types: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -5979,7 +6685,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Vi => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -6017,14 +6722,21 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             comma_decimal: true,
             number_tokens: ::phf::Map {
-                key: 10121458955350035957,
+                key: 14108922650502679131,
                 disps: &[
-                    (0, 0),
+                    (1, 0),
                 ],
                 entries: &[
-                    ("T", 9),
-                    ("Tr", 6),
-                    ("N", 3),
+                    ("tr", 6),
+                    ("t", 9),
+                    ("n", 3),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                ],
+                entries: &[
                 ],
             },
             album_types: ::phf::Map {
@@ -6042,7 +6754,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::ZhCn => Entry {
-            by_char: true,
             timeago_tokens: ::phf::Map {
                 key: 2980949210194914378,
                 disps: &[
@@ -6088,6 +6799,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("亿", 8),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("无", 0),
+                ],
+            },
             album_types: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -6103,7 +6823,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::ZhHk => Entry {
-            by_char: true,
             timeago_tokens: ::phf::Map {
                 key: 12213676231523076107,
                 disps: &[
@@ -6146,8 +6865,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     (0, 0),
                 ],
                 entries: &[
-                    ("M", 6),
-                    ("B", 9),
+                    ("b", 9),
+                    ("m", 6),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                ],
+                entries: &[
                 ],
             },
             album_types: ::phf::Map {
@@ -6165,7 +6891,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::ZhTw => Entry {
-            by_char: true,
             timeago_tokens: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -6211,6 +6936,13 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("億", 8),
                 ],
             },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                ],
+                entries: &[
+                ],
+            },
             album_types: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -6226,7 +6958,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
         },
         Language::Zu => Entry {
-            by_char: false,
             timeago_tokens: ::phf::Map {
                 key: 8694567506910003252,
                 disps: &[
@@ -6291,8 +7022,17 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     (0, 0),
                 ],
                 entries: &[
-                    ("M", 6),
-                    ("B", 9),
+                    ("b", 9),
+                    ("m", 6),
+                ],
+            },
+            number_nd_tokens: ::phf::Map {
+                key: 12913932095322966823,
+                disps: &[
+                    (0, 0),
+                ],
+                entries: &[
+                    ("akukho", 0),
                 ],
             },
             album_types: ::phf::Map {

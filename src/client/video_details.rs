@@ -7,8 +7,7 @@ use crate::{
     model::{paginator::Paginator, ChannelTag, Chapter, Comment, VideoDetails, VideoItem},
     param::Language,
     serializer::MapResult,
-    timeago,
-    util::{self, TryRemove},
+    util::{self, timeago, TryRemove},
 };
 
 use super::{
@@ -191,9 +190,10 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
             };
 
         let comment_count = comment_count_section.and_then(|s| {
-            util::parse_large_numstr::<u64>(
+            util::parse_large_numstr_or_warn::<u64>(
                 &s.comments_entry_point_header_renderer.comment_count,
                 lang,
+                &mut warnings,
             )
         });
 
@@ -331,9 +331,9 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                     name: channel_name,
                     avatar: owner.thumbnail.into(),
                     verification: owner.badges.into(),
-                    subscriber_count: owner
-                        .subscriber_count_text
-                        .and_then(|txt| util::parse_large_numstr(&txt, lang)),
+                    subscriber_count: owner.subscriber_count_text.and_then(|txt| {
+                        util::parse_large_numstr_or_warn(&txt, lang, &mut warnings)
+                    }),
                 },
                 view_count,
                 like_count,
@@ -505,16 +505,16 @@ fn map_comment(
                 }),
                 _ => None,
             },
-            publish_date: timeago::parse_timeago_to_dt(lang, &c.published_time_text),
-            publish_date_txt: c.published_time_text,
-            like_count: util::parse_numeric_or_warn(
-                &c.action_buttons
-                    .comment_action_buttons_renderer
-                    .like_button
-                    .toggle_button_renderer
-                    .accessibility_data,
+            publish_date: timeago::parse_timeago_dt_or_warn(
+                lang,
+                &c.published_time_text,
                 &mut warnings,
             ),
+            publish_date_txt: c.published_time_text,
+            like_count: match c.vote_count {
+                Some(txt) => util::parse_numeric_or_warn(&txt, &mut warnings),
+                None => Some(0),
+            },
             reply_count: c.reply_count as u32,
             replies: replies
                 .map(|items| Paginator::new(Some(c.reply_count), items, reply_ctoken))
