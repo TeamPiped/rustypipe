@@ -4,9 +4,10 @@ use regex::Regex;
 use reqwest::Client;
 use serde::{Deserialize, Serialize};
 
-use crate::{error::DeobfError, util};
-
-type Result<T> = core::result::Result<T, DeobfError>;
+use crate::{
+    error::{internal::DeobfError, Error},
+    util,
+};
 
 pub struct Deobfuscator {
     ctx: quick_js::Context,
@@ -21,7 +22,7 @@ pub struct DeobfData {
 }
 
 impl DeobfData {
-    pub async fn download(http: Client) -> Result<Self> {
+    pub async fn download(http: Client) -> Result<Self, Error> {
         let js_url = get_player_js_url(&http).await?;
         let player_js = get_response(&http, &js_url).await?;
 
@@ -41,7 +42,7 @@ impl DeobfData {
 }
 
 impl Deobfuscator {
-    pub fn new(data: &DeobfData) -> Result<Self> {
+    pub fn new(data: &DeobfData) -> Result<Self, DeobfError> {
         let ctx =
             quick_js::Context::new().or(Err(DeobfError::Other("could not create QuickJS rt")))?;
         ctx.eval(&data.sig_fn)?;
@@ -50,7 +51,7 @@ impl Deobfuscator {
         Ok(Self { ctx })
     }
 
-    pub fn deobfuscate_sig(&self, sig: &str) -> Result<String> {
+    pub fn deobfuscate_sig(&self, sig: &str) -> Result<String, DeobfError> {
         let res = self.ctx.call_function(DEOBF_SIG_FUNC_NAME, vec![sig])?;
 
         res.as_str().map_or(
@@ -62,7 +63,7 @@ impl Deobfuscator {
         )
     }
 
-    pub fn deobfuscate_nsig(&self, nsig: &str) -> Result<String> {
+    pub fn deobfuscate_nsig(&self, nsig: &str) -> Result<String, DeobfError> {
         let res = self.ctx.call_function(DEOBF_NSIG_FUNC_NAME, vec![nsig])?;
 
         res.as_str().map_or(
@@ -78,7 +79,7 @@ impl Deobfuscator {
 const DEOBF_SIG_FUNC_NAME: &str = "deobf_sig";
 const DEOBF_NSIG_FUNC_NAME: &str = "deobf_nsig";
 
-fn get_sig_fn_name(player_js: &str) -> Result<String> {
+fn get_sig_fn_name(player_js: &str) -> Result<String, DeobfError> {
     static FUNCTION_REGEXES: Lazy<[FancyRegex; 6]> = Lazy::new(|| {
         [
         FancyRegex::new("(?:\\b|[^a-zA-Z0-9$])([a-zA-Z0-9$]{2,})\\s*=\\s*function\\(\\s*a\\s*\\)\\s*\\{\\s*a\\s*=\\s*a\\.split\\(\\s*\"\"\\s*\\)").unwrap(),
@@ -98,7 +99,7 @@ fn caller_function(mapped_name: &str, fn_name: &str) -> String {
     format!("var {mapped_name}={fn_name};")
 }
 
-fn get_sig_fn(player_js: &str) -> Result<String> {
+fn get_sig_fn(player_js: &str) -> Result<String, DeobfError> {
     let dfunc_name = get_sig_fn_name(player_js)?;
 
     let function_pattern_str =
@@ -141,7 +142,7 @@ fn get_sig_fn(player_js: &str) -> Result<String> {
         + &caller_function(DEOBF_SIG_FUNC_NAME, &dfunc_name))
 }
 
-fn get_nsig_fn_name(player_js: &str) -> Result<String> {
+fn get_nsig_fn_name(player_js: &str) -> Result<String, DeobfError> {
     static FUNCTION_NAME_REGEX: Lazy<Regex> = Lazy::new(|| {
         Regex::new("\\.get\\(\"n\"\\)\\)&&\\([a-zA-Z0-9$_]=([a-zA-Z0-9$_]+)(?:\\[(\\d+)])?\\([a-zA-Z0-9$_]\\)")
             .unwrap()
@@ -183,7 +184,7 @@ fn get_nsig_fn_name(player_js: &str) -> Result<String> {
     Ok(name.to_owned())
 }
 
-fn extract_js_fn(js: &str, name: &str) -> Result<String> {
+fn extract_js_fn(js: &str, name: &str) -> Result<String, DeobfError> {
     let scan = ress::Scanner::new(js);
     let mut state = 0;
     let mut level = 0;
@@ -235,7 +236,7 @@ fn extract_js_fn(js: &str, name: &str) -> Result<String> {
     Ok(js[start..end].to_owned())
 }
 
-fn get_nsig_fn(player_js: &str) -> Result<String> {
+fn get_nsig_fn(player_js: &str) -> Result<String, DeobfError> {
     let function_name = get_nsig_fn_name(player_js)?;
     let function_base = function_name.to_owned() + "=function";
     let offset = player_js.find(&function_base).unwrap_or_default();
@@ -244,7 +245,7 @@ fn get_nsig_fn(player_js: &str) -> Result<String> {
         .map(|s| s + ";" + &caller_function(DEOBF_NSIG_FUNC_NAME, &function_name))
 }
 
-async fn get_player_js_url(http: &Client) -> Result<String> {
+async fn get_player_js_url(http: &Client) -> Result<String, Error> {
     let resp = http
         .get("https://www.youtube.com/iframe_api")
         .send()
@@ -267,12 +268,12 @@ async fn get_player_js_url(http: &Client) -> Result<String> {
     ))
 }
 
-async fn get_response(http: &Client, url: &str) -> Result<String> {
+async fn get_response(http: &Client, url: &str) -> Result<String, Error> {
     let resp = http.get(url).send().await?.error_for_status()?;
     Ok(resp.text().await?)
 }
 
-fn get_sts(player_js: &str) -> Result<String> {
+fn get_sts(player_js: &str) -> Result<String, DeobfError> {
     static STS_PATTERN: Lazy<Regex> =
         Lazy::new(|| Regex::new("signatureTimestamp[=:](\\d+)").unwrap());
 

@@ -10,7 +10,7 @@ use url::Url;
 
 use crate::{
     deobfuscate::Deobfuscator,
-    error::{DeobfError, Error, ExtractionError},
+    error::{internal::DeobfError, Error, ExtractionError},
     model::{
         traits::QualityOrd, AudioCodec, AudioFormat, AudioStream, AudioTrack, ChannelId, Subtitle,
         VideoCodec, VideoFormat, VideoPlayer, VideoPlayerDetails, VideoStream,
@@ -143,8 +143,7 @@ impl MapResponse<VideoPlayer> for response::Player {
         _lang: Language,
         deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<super::MapResult<VideoPlayer>, ExtractionError> {
-        let deobf = Deobfuscator::new(deobf.unwrap())
-            .map_err(|e| ExtractionError::InvalidData(e.to_string().into()))?;
+        let deobf = Deobfuscator::new(deobf.unwrap())?;
         let mut warnings = vec![];
 
         // Check playability status

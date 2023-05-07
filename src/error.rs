@@ -2,16 +2,13 @@
 
 use std::borrow::Cow;
 
-/// Custom error type for the RustyPipe library
+/// Error type for the RustyPipe library
 #[derive(thiserror::Error, Debug)]
 #[non_exhaustive]
 pub enum Error {
     /// Error extracting content from YouTube
     #[error("extraction error: {0}")]
     Extraction(#[from] ExtractionError),
-    /// Error from the deobfuscater
-    #[error("deobfuscator error: {0}")]
-    Deobfuscation(#[from] DeobfError),
     /// File IO error
     #[error(transparent)]
     Io(#[from] std::io::Error),
@@ -24,28 +21,6 @@ pub enum Error {
     /// Unspecified error
     #[error("error: {0}")]
     Other(Cow<'static, str>),
-}
-
-/// Error that occurred during the initialization
-/// or use of the YouTube URL signature deobfuscator.
-#[derive(thiserror::Error, Debug)]
-#[non_exhaustive]
-pub enum DeobfError {
-    /// Error from the HTTP client
-    #[error("http error: {0}")]
-    Http(#[from] reqwest::Error),
-    /// Error during JavaScript execution
-    #[error("js execution error: {0}")]
-    JavaScript(#[from] quick_js::ExecutionError),
-    /// Error during JavaScript parsing
-    #[error("js parsing: {0}")]
-    JsParser(#[from] ress::error::Error),
-    /// Could not extract certain data
-    #[error("could not extract {0}")]
-    Extraction(&'static str),
-    /// Unspecified error
-    #[error("error: {0}")]
-    Other(&'static str),
 }
 
 /// Error extracting content from YouTube
@@ -80,6 +55,9 @@ pub enum ExtractionError {
     /// Error deserializing YouTube's response JSON
     #[error("deserialization error: {0}")]
     Deserialization(#[from] serde_json::Error),
+    /// Error deobfuscating YouTube's URL signatures
+    #[error("deobfuscation error: {0}")]
+    Deobfuscation(Cow<'static, str>),
     /// YouTube returned invalid data
     #[error("got invalid data from YT: {0}")]
     InvalidData(Cow<'static, str>),
@@ -100,6 +78,40 @@ pub enum ExtractionError {
     /// This error is only returned in strict mode.
     #[error("Warnings during deserialization/mapping")]
     DeserializationWarnings,
+}
+
+pub(crate) mod internal {
+    use super::*;
+
+    /// Error that occurred during the initialization
+    /// or use of the YouTube URL signature deobfuscator.
+    #[derive(thiserror::Error, Debug)]
+    pub enum DeobfError {
+        /// Error during JavaScript execution
+        #[error("js execution error: {0}")]
+        JavaScript(#[from] quick_js::ExecutionError),
+        /// Error during JavaScript parsing
+        #[error("js parsing: {0}")]
+        JsParser(#[from] ress::error::Error),
+        /// Could not extract certain data
+        #[error("could not extract {0}")]
+        Extraction(&'static str),
+        /// Unspecified error
+        #[error("error: {0}")]
+        Other(&'static str),
+    }
+
+    impl From<DeobfError> for Error {
+        fn from(value: DeobfError) -> Self {
+            Self::Extraction(value.into())
+        }
+    }
+
+    impl From<DeobfError> for ExtractionError {
+        fn from(value: DeobfError) -> Self {
+            Self::Deobfuscation(value.to_string().into())
+        }
+    }
 }
 
 impl ExtractionError {
