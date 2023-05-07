@@ -65,10 +65,11 @@ impl MapResponse<Playlist> for response::Playlist {
             _ => return Err(response::alerts_to_err(self.alerts)),
         };
 
-        let mut tcbr_contents = contents.two_column_browse_results_renderer.contents;
-
-        let video_items = tcbr_contents
-            .try_swap_remove(0)
+        let video_items = contents
+            .two_column_browse_results_renderer
+            .contents
+            .into_iter()
+            .next()
             .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
                 "twoColumnBrowseResultsRenderer empty",
             )))?
@@ -76,13 +77,15 @@ impl MapResponse<Playlist> for response::Playlist {
             .content
             .section_list_renderer
             .contents
-            .try_swap_remove(0)
+            .into_iter()
+            .next()
             .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
                 "sectionListRenderer empty",
             )))?
             .item_section_renderer
             .contents
-            .try_swap_remove(0)
+            .into_iter()
+            .next()
             .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
                 "itemSectionRenderer empty",
             )))?
@@ -93,10 +96,11 @@ impl MapResponse<Playlist> for response::Playlist {
 
         let (thumbnails, last_update_txt) = match self.sidebar {
             Some(sidebar) => {
-                let mut sidebar_items = sidebar.playlist_sidebar_renderer.contents;
+                let sidebar_items = sidebar.playlist_sidebar_renderer.contents;
                 let mut primary =
                     sidebar_items
-                        .try_swap_remove(0)
+                        .into_iter()
+                        .next()
                         .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
                             "no primary sidebar",
                         )))?;

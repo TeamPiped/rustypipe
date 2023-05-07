@@ -10,7 +10,6 @@ use crate::{
         MusicSearchFiltered, MusicSearchResult, MusicSearchSuggestion, TrackItem,
     },
     serializer::MapResult,
-    util::TryRemove,
 };
 
 use super::{response, ClientType, MapResponse, RustyPipeQuery, YTContext};
@@ -234,9 +233,12 @@ impl MapResponse<MusicSearchResult> for response::MusicSearch {
     ) -> Result<MapResult<MusicSearchResult>, crate::error::ExtractionError> {
         // dbg!(&self);
 
-        let mut tabs = self.contents.tabbed_search_results_renderer.contents;
-        let sections = tabs
-            .try_swap_remove(0)
+        let sections = self
+            .contents
+            .tabbed_search_results_renderer
+            .contents
+            .into_iter()
+            .next()
             .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no tab")))?
             .tab_renderer
             .content
@@ -262,8 +264,8 @@ impl MapResponse<MusicSearchResult> for response::MusicSearch {
                     }
                 }
             }
-            response::music_search::ItemSection::ItemSectionRenderer { mut contents } => {
-                if let Some(corrected) = contents.try_swap_remove(0) {
+            response::music_search::ItemSection::ItemSectionRenderer { contents } => {
+                if let Some(corrected) = contents.into_iter().next() {
                     corrected_query = Some(corrected.showing_results_for_renderer.corrected_query)
                 }
             }
@@ -295,9 +297,10 @@ impl<T: FromYtItem> MapResponse<MusicSearchFiltered<T>> for response::MusicSearc
     ) -> Result<MapResult<MusicSearchFiltered<T>>, ExtractionError> {
         // dbg!(&self);
 
-        let mut tabs = self.contents.tabbed_search_results_renderer.contents;
+        let tabs = self.contents.tabbed_search_results_renderer.contents;
         let sections = tabs
-            .try_swap_remove(0)
+            .into_iter()
+            .next()
             .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no tab")))?
             .tab_renderer
             .content
@@ -309,17 +312,17 @@ impl<T: FromYtItem> MapResponse<MusicSearchFiltered<T>> for response::MusicSearc
         let mut mapper = MusicListMapper::new(lang);
 
         sections.into_iter().for_each(|section| match section {
-            response::music_search::ItemSection::MusicShelfRenderer(mut shelf) => {
+            response::music_search::ItemSection::MusicShelfRenderer(shelf) => {
                 mapper.map_response(shelf.contents);
-                if let Some(cont) = shelf.continuations.try_swap_remove(0) {
+                if let Some(cont) = shelf.continuations.into_iter().next() {
                     ctoken = Some(cont.next_continuation_data.continuation);
                 }
             }
             response::music_search::ItemSection::MusicCardShelfRenderer(card) => {
                 mapper.map_card(card);
             }
-            response::music_search::ItemSection::ItemSectionRenderer { mut contents } => {
-                if let Some(corrected) = contents.try_swap_remove(0) {
+            response::music_search::ItemSection::ItemSectionRenderer { contents } => {
+                if let Some(corrected) = contents.into_iter().next() {
                     corrected_query = Some(corrected.showing_results_for_renderer.corrected_query)
                 }
             }

@@ -129,11 +129,11 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
             }
             response::video_details::VideoResultsItem::ItemSectionRenderer(section) => {
                 match section {
-                    response::video_details::ItemSection::CommentsEntryPoint { mut contents } => {
-                        comment_count_section = contents.try_swap_remove(0);
+                    response::video_details::ItemSection::CommentsEntryPoint { contents } => {
+                        comment_count_section = contents.into_iter().next();
                     }
-                    response::video_details::ItemSection::CommentItemSection { mut contents } => {
-                        comment_ctoken_section = contents.try_swap_remove(0);
+                    response::video_details::ItemSection::CommentItemSection { contents } => {
+                        comment_ctoken_section = contents.into_iter().next();
                     }
                     response::video_details::ItemSection::None => {}
                 }

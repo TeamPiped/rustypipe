@@ -477,7 +477,7 @@ impl<T> YouTubeListMapper<T> {
             is_upcoming: video.upcoming_event_data.is_some(),
             short_description: video
                 .detailed_metadata_snippets
-                .and_then(|mut snippets| snippets.try_swap_remove(0).map(|s| s.snippet_text))
+                .and_then(|snippets| snippets.into_iter().next().map(|s| s.snippet_text))
                 .or(video.description_snippet),
         }
     }

@@ -5,7 +5,6 @@ use crate::{
     model::{paginator::Paginator, VideoItem},
     param::Language,
     serializer::MapResult,
-    util::TryRemove,
 };
 
 use super::{response, ClientType, MapResponse, QBrowse, QBrowseParams, RustyPipeQuery};
@@ -56,9 +55,12 @@ impl MapResponse<Paginator<VideoItem>> for response::Startpage {
         lang: crate::param::Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<MapResult<Paginator<VideoItem>>, ExtractionError> {
-        let mut contents = self.contents.two_column_browse_results_renderer.contents;
-        let grid = contents
-            .try_swap_remove(0)
+        let grid = self
+            .contents
+            .two_column_browse_results_renderer
+            .contents
+            .into_iter()
+            .next()
             .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no contents")))?
             .tab_renderer
             .content
@@ -80,9 +82,12 @@ impl MapResponse<Vec<VideoItem>> for response::Trending {
         lang: crate::param::Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<MapResult<Vec<VideoItem>>, ExtractionError> {
-        let mut contents = self.contents.two_column_browse_results_renderer.contents;
-        let items = contents
-            .try_swap_remove(0)
+        let items = self
+            .contents
+            .two_column_browse_results_renderer
+            .contents
+            .into_iter()
+            .next()
             .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no contents")))?
             .tab_renderer
             .content

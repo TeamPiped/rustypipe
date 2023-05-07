@@ -5,7 +5,6 @@ use crate::model::{
     Comment, MusicItem, PlaylistVideo, YouTubeItem,
 };
 use crate::serializer::MapResult;
-use crate::util::TryRemove;
 
 use super::response::music_item::{map_queue_item, MusicListMapper, PlaylistPanelVideo};
 use super::{response, ClientType, MapResponse, QContinuation, RustyPipeQuery};
@@ -100,9 +99,10 @@ impl MapResponse<Paginator<YouTubeItem>> for response::Continuation {
     ) -> Result<MapResult<Paginator<YouTubeItem>>, ExtractionError> {
         let items = self
             .on_response_received_actions
-            .and_then(|mut actions| {
+            .and_then(|actions| {
                 actions
-                    .try_swap_remove(0)
+                    .into_iter()
+                    .next()
                     .map(|action| action.append_continuation_items_action.continuation_items)
             })
             .or_else(|| {
@@ -168,7 +168,8 @@ impl MapResponse<Paginator<MusicItem>> for response::MusicContinuation {
 
         let map_res = mapper.items();
         let ctoken = continuations
-            .try_swap_remove(0)
+            .into_iter()
+            .next()
             .map(|cont| cont.next_continuation_data.continuation);
 
         Ok(MapResult {

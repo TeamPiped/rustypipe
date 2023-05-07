@@ -8,7 +8,7 @@ use crate::{
     error::{Error, ExtractionError},
     model::{AlbumItem, ArtistId, MusicArtist},
     serializer::MapResult,
-    util::{self, TryRemove},
+    util,
 };
 
 use super::{
@@ -331,9 +331,12 @@ impl MapResponse<Vec<AlbumItem>> for response::MusicArtistAlbums {
     ) -> Result<MapResult<Vec<AlbumItem>>, ExtractionError> {
         // dbg!(&self);
 
-        let mut content = self.contents.single_column_browse_results_renderer.contents;
-        let grids = content
-            .try_swap_remove(0)
+        let grids = self
+            .contents
+            .single_column_browse_results_renderer
+            .contents
+            .into_iter()
+            .next()
             .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no content")))?
             .tab_renderer
             .content

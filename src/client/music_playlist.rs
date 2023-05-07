@@ -125,14 +125,17 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
     ) -> Result<MapResult<MusicPlaylist>, ExtractionError> {
         // dbg!(&self);
 
-        let mut content = self.contents.single_column_browse_results_renderer.contents;
-        let mut music_contents = content
-            .try_swap_remove(0)
+        let music_contents = self
+            .contents
+            .single_column_browse_results_renderer
+            .contents
+            .into_iter()
+            .next()
             .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no content")))?
             .tab_renderer
             .content
             .section_list_renderer;
-        let mut shelf = music_contents
+        let shelf = music_contents
             .contents
             .into_iter()
             .find_map(|section| match section {
@@ -157,7 +160,8 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
 
         let ctoken = shelf
             .continuations
-            .try_swap_remove(0)
+            .into_iter()
+            .next()
             .map(|cont| cont.next_continuation_data.continuation);
 
         let track_count = if ctoken.is_some() {
@@ -177,7 +181,8 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
 
         let related_ctoken = music_contents
             .continuations
-            .try_swap_remove(0)
+            .into_iter()
+            .next()
             .map(|c| c.next_continuation_data.continuation);
 
         let (from_ytm, channel, name, thumbnail, description) = match self.header {
@@ -269,9 +274,12 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
             .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no header")))?
             .music_detail_header_renderer;
 
-        let mut content = self.contents.single_column_browse_results_renderer.contents;
-        let sections = content
-            .try_swap_remove(0)
+        let sections = self
+            .contents
+            .single_column_browse_results_renderer
+            .contents
+            .into_iter()
+            .next()
             .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no content")))?
             .tab_renderer
             .content
@@ -320,7 +328,8 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
 
         let (artists, by_va) = map_artists(artists_p);
         let album_type_txt = subtitle_split
-            .try_swap_remove(0)
+            .into_iter()
+            .next()
             .map(|part| part.to_string())
             .unwrap_or_default();
 
@@ -329,12 +338,13 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
 
         let (artist_id, playlist_id) = header
             .menu
-            .map(|mut menu| {
+            .map(|menu| {
                 (
                     map_artist_id(menu.menu_renderer.items),
                     menu.menu_renderer
                         .top_level_buttons
-                        .try_swap_remove(0)
+                        .into_iter()
+                        .next()
                         .map(|btn| {
                             btn.button_renderer
                                 .navigation_endpoint

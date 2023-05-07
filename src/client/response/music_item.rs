@@ -11,7 +11,7 @@ use crate::{
         text::{Text, TextComponents},
         MapResult,
     },
-    util::{self, dictionary, TryRemove},
+    util::{self, dictionary},
 };
 
 use super::{
@@ -587,14 +587,14 @@ impl MusicListMapper {
                                 }
                             }
                             // Playlist item
-                            FlexColumnDisplayStyle::Default => {
-                                let mut fixed_columns = item.fixed_columns;
-                                (
-                                    c2.map(TextComponents::from),
-                                    c3.map(TextComponents::from),
-                                    fixed_columns.try_swap_remove(0).map(TextComponents::from),
-                                )
-                            }
+                            FlexColumnDisplayStyle::Default => (
+                                c2.map(TextComponents::from),
+                                c3.map(TextComponents::from),
+                                item.fixed_columns
+                                    .into_iter()
+                                    .next()
+                                    .map(TextComponents::from),
+                            ),
                         };
 
                         let duration =
