@@ -1,5 +1,7 @@
 # RustyPipe
 
+[![CI status](https://ci.thetadev.de/api/badges/ThetaDev/rustypipe/status.svg)](https://ci.thetadev.de/ThetaDev/rustypipe)
+
 Client for the public YouTube / YouTube Music API (Innertube),
 inspired by [NewPipe](https://github.com/TeamNewPipe/NewPipeExtractor).
 
@@ -7,25 +9,25 @@ inspired by [NewPipe](https://github.com/TeamNewPipe/NewPipeExtractor).
 
 ### YouTube
 
-- [X] **Player** (video/audio streams, subtitles)
-- [X] **Playlist**
-- [X] **VideoDetails** (metadata, comments, recommended videos)
-- [X] **Channel** (videos, shorts, livestreams, playlists, info, search)
-- [X] **ChannelRSS**
-- [X] **Search** (with filters)
-- [X] **Search suggestions**
-- [X] **Trending**
-- [X] **URL resolver**
+- **Player** (video/audio streams, subtitles)
+- **Playlist**
+- **VideoDetails** (metadata, comments, recommended videos)
+- **Channel** (videos, shorts, livestreams, playlists, info, search)
+- **ChannelRSS**
+- **Search** (with filters)
+- **Search suggestions**
+- **Trending**
+- **URL resolver**
 
 ### YouTube Music
 
-- [X] **Playlist**
-- [X] **Album**
-- [X] **Artist**
-- [X] **Search**
-- [X] **Search suggestions**
-- [X] **Radio**
-- [X] **Track details** (lyrics, recommendations)
-- [X] **Moods/Genres**
-- [X] **Charts**
-- [X] **New**
+- **Playlist**
+- **Album**
+- **Artist**
+- **Search**
+- **Search suggestions**
+- **Radio**
+- **Track details** (lyrics, recommendations)
+- **Moods/Genres**
+- **Charts**
+- **New** (albums, music videos)

@@ -17,7 +17,7 @@ use time::{Date, Duration, Month, OffsetDateTime};
 
 use crate::{
     param::Language,
-    util::{self, dictionary},
+    util::{self, dictionary, SplitTokens},
 };
 
 /// Parsed TimeAgo string, contains amount and time unit.
@@ -149,79 +149,39 @@ fn filter_str(string: &str) -> String {
         .collect()
 }
 
-fn parse_ta_token(
-    entry: &dictionary::Entry,
-    by_char: bool,
-    nd: bool,
-    filtered_str: &str,
-) -> Option<TimeAgo> {
-    let tokens = match nd {
-        true => &entry.timeago_nd_tokens,
-        false => &entry.timeago_tokens,
-    };
-    let mut qu = 1;
+struct TaTokenParser<'a> {
+    iter: SplitTokens<'a>,
+    tokens: &'a phf::Map<&'static str, TaToken>,
+}
 
-    if by_char {
-        filtered_str.chars().find_map(|word| {
-            tokens.get(&word.to_string()).and_then(|t| match t.unit {
-                Some(unit) => Some(TimeAgo { n: t.n * qu, unit }),
-                None => {
-                    qu = t.n;
-                    None
-                }
-            })
-        })
-    } else {
-        filtered_str.split_whitespace().find_map(|word| {
-            tokens.get(word).and_then(|t| match t.unit {
-                Some(unit) => Some(TimeAgo { n: t.n * qu, unit }),
-                None => {
-                    qu = t.n;
-                    None
-                }
-            })
-        })
+impl<'a> TaTokenParser<'a> {
+    fn new(entry: &'a dictionary::Entry, by_char: bool, nd: bool, filtered_str: &'a str) -> Self {
+        let tokens = match nd {
+            true => &entry.timeago_nd_tokens,
+            false => &entry.timeago_tokens,
+        };
+        Self {
+            iter: SplitTokens::new(filtered_str, by_char),
+            tokens,
+        }
     }
 }
 
-fn parse_ta_tokens(
-    entry: &dictionary::Entry,
-    by_char: bool,
-    nd: bool,
-    filtered_str: &str,
-) -> Vec<TimeAgo> {
-    let tokens = match nd {
-        true => &entry.timeago_nd_tokens,
-        false => &entry.timeago_tokens,
-    };
-    let mut qu = 1;
+impl<'a> Iterator for TaTokenParser<'a> {
+    type Item = TimeAgo;
 
-    if by_char {
-        filtered_str
-            .chars()
-            .filter_map(|word| {
-                tokens.get(&word.to_string()).and_then(|t| match t.unit {
-                    Some(unit) => Some(TimeAgo { n: t.n * qu, unit }),
-                    None => {
-                        qu = t.n;
-                        None
-                    }
-                })
+    fn next(&mut self) -> Option<Self::Item> {
+        // Quantity for parsing separate quantity + unit tokens
+        let mut qu = 1;
+        self.iter.find_map(|word| {
+            self.tokens.get(word).and_then(|t| match t.unit {
+                Some(unit) => Some(TimeAgo { n: t.n * qu, unit }),
+                None => {
+                    qu = t.n;
+                    None
+                }
             })
-            .collect()
-    } else {
-        filtered_str
-            .split_whitespace()
-            .filter_map(|word| {
-                tokens.get(word).and_then(|t| match t.unit {
-                    Some(unit) => Some(TimeAgo { n: t.n * qu, unit }),
-                    None => {
-                        qu = t.n;
-                        None
-                    }
-                })
-            })
-            .collect()
+        })
     }
 }
 
@@ -240,7 +200,9 @@ pub fn parse_timeago(lang: Language, textual_date: &str) -> Option<TimeAgo> {
 
     let qu: u8 = util::parse_numeric(textual_date).unwrap_or(1);
 
-    parse_ta_token(&entry, util::lang_by_char(lang), false, &filtered_str).map(|ta| ta * qu)
+    TaTokenParser::new(&entry, util::lang_by_char(lang), false, &filtered_str)
+        .next()
+        .map(|ta| ta * qu)
 }
 
 /// Parse a TimeAgo string (e.g. "29 minutes ago") into a Chrono DateTime object.
@@ -273,11 +235,14 @@ pub fn parse_textual_date(lang: Language, textual_date: &str) -> Option<ParsedDa
     let nums = util::parse_numeric_vec::<u16>(textual_date);
 
     match nums.len() {
-        0 => match parse_ta_token(&entry, by_char, true, &filtered_str) {
+        0 => match TaTokenParser::new(&entry, by_char, true, &filtered_str).next() {
             Some(timeago) => Some(ParsedDate::Relative(timeago)),
-            None => parse_ta_token(&entry, by_char, false, &filtered_str).map(ParsedDate::Relative),
+            None => TaTokenParser::new(&entry, by_char, false, &filtered_str)
+                .next()
+                .map(ParsedDate::Relative),
         },
-        1 => parse_ta_token(&entry, by_char, false, &filtered_str)
+        1 => TaTokenParser::new(&entry, by_char, false, &filtered_str)
+            .next()
             .map(|timeago| ParsedDate::Relative(timeago * nums[0] as u8)),
         2..=3 => {
             if nums.len() == entry.date_order.len() {
@@ -348,12 +313,10 @@ pub fn parse_video_duration(lang: Language, video_duration: &str) -> Option<u32>
         } else {
             part.digits.parse::<u32>().ok()?
         };
-        let tokens = parse_ta_tokens(&entry, by_char, false, &part.word);
-        if tokens.is_empty() {
-            return None;
-        }
+        let mut tokens = TaTokenParser::new(&entry, by_char, false, &part.word).peekable();
+        tokens.peek()?;
 
-        tokens.iter().for_each(|ta| {
+        tokens.for_each(|ta| {
             secs += n * ta.secs() as u32;
             n = 1;
         });
@@ -804,5 +767,13 @@ mod tests {
         let date = parse_textual_date_to_dt(Language::En, "1 year ago").unwrap();
         let now = OffsetDateTime::now_utc();
         assert_eq!(date.year(), now.year() - 1);
+    }
+
+    #[test]
+    fn tx() {
+        let s = "Abcdef";
+        let lc: (usize, char) = s.char_indices().last().unwrap();
+        let t = &s[(lc.0 + lc.1.len_utf8())..];
+        dbg!(&t);
     }
 }

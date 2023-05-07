@@ -10,7 +10,7 @@ pub use protobuf::{string_from_pb, ProtoBuilder};
 use std::{
     borrow::{Borrow, Cow},
     collections::BTreeMap,
-    str::FromStr,
+    str::{FromStr, SplitWhitespace},
 };
 
 use base64::Engine;
@@ -331,36 +331,18 @@ where
     }
 
     if digits.is_empty() {
-        if by_char {
-            filtered
-                .chars()
-                .find_map(|c| dict_entry.number_nd_tokens.get(&c.to_string()))
-                .and_then(|n| (*n as u64).try_into().ok())
-        } else {
-            filtered
-                .split_whitespace()
-                .find_map(|token| dict_entry.number_nd_tokens.get(token))
-                .and_then(|n| (*n as u64).try_into().ok())
-        }
+        SplitTokens::new(&filtered, by_char)
+            .find_map(|token| dict_entry.number_nd_tokens.get(token))
+            .and_then(|n| (*n as u64).try_into().ok())
     } else {
         let num = digits.parse::<u64>().ok()?;
 
-        let lookup_token = |token: &str| match token {
-            "k" => Some(3),
-            _ => dict_entry.number_tokens.get(token).map(|t| *t as i32),
-        };
-
-        if by_char {
-            exp += filtered
-                .chars()
-                .filter_map(|token| lookup_token(&token.to_string()))
-                .sum::<i32>();
-        } else {
-            exp += filtered
-                .split_whitespace()
-                .filter_map(lookup_token)
-                .sum::<i32>();
-        }
+        exp += SplitTokens::new(&filtered, by_char)
+            .filter_map(|token| match token {
+                "k" => Some(3),
+                _ => dict_entry.number_tokens.get(token).map(|t| *t as i32),
+            })
+            .sum::<i32>();
 
         F::try_from(num.checked_mul((10_u64).checked_pow(exp.try_into().ok()?)?)?).ok()
     }
@@ -413,6 +395,62 @@ pub fn b64_encode<T: AsRef<[u8]>>(input: T) -> String {
 
 pub fn b64_decode<T: AsRef<[u8]>>(input: T) -> Result<Vec<u8>, base64::DecodeError> {
     base64::engine::general_purpose::STANDARD.decode(input)
+}
+
+/// An iterator over the chars in a string (in str format)
+pub struct SplitChar<'a> {
+    txt: &'a str,
+    index: usize,
+}
+
+impl<'a> From<&'a str> for SplitChar<'a> {
+    fn from(value: &'a str) -> Self {
+        Self {
+            txt: value,
+            index: 0,
+        }
+    }
+}
+
+impl<'a> Iterator for SplitChar<'a> {
+    type Item = &'a str;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        self.txt
+            .get(self.index..)
+            .and_then(|txt| txt.chars().next())
+            .map(|c| {
+                let start = self.index;
+                self.index += c.len_utf8();
+                &self.txt[start..self.index]
+            })
+    }
+}
+
+/// An iterator for parsing strings. It can either iterate over words or characters.
+pub enum SplitTokens<'a> {
+    Word(SplitWhitespace<'a>),
+    Char(SplitChar<'a>),
+}
+
+impl<'a> SplitTokens<'a> {
+    pub fn new(s: &'a str, by_char: bool) -> Self {
+        match by_char {
+            true => Self::Char(SplitChar::from(s)),
+            false => Self::Word(s.split_whitespace()),
+        }
+    }
+}
+
+impl<'a> Iterator for SplitTokens<'a> {
+    type Item = &'a str;
+
+    fn next(&mut self) -> Option<Self::Item> {
+        match self {
+            SplitTokens::Word(iter) => iter.next(),
+            SplitTokens::Char(iter) => iter.next(),
+        }
+    }
 }
 
 #[cfg(test)]
@@ -549,5 +587,23 @@ pub(crate) mod tests {
 
         let res = parse_large_numstr::<u64>(string, lang).expect(&emsg);
         assert_eq!(res, rounded, "{emsg}");
+    }
+
+    #[test]
+    fn split_char() {
+        let teststr = "abc今天更新def";
+        let res = SplitTokens::new(teststr, true).collect::<Vec<_>>();
+        assert_eq!(res.len(), 10);
+        let res_str = res.into_iter().collect::<String>();
+        assert_eq!(res_str, teststr)
+    }
+
+    #[test]
+    fn split_words() {
+        let teststr = "abc 今天更新 ghi";
+        let res = SplitTokens::new(teststr, false).collect::<Vec<_>>();
+        assert_eq!(res.len(), 3);
+        let res_str = res.join(" ");
+        assert_eq!(res_str, teststr)
     }
 }
