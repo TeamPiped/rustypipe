@@ -372,11 +372,4 @@ mod tests {
 
         assert!(!failed);
     }
-
-    #[test]
-    fn t_split_duration_text() {
-        // video duration:
-        let res = split_duration_txt("دقيقة وثانيتان", true);
-        dbg!(&res);
-    }
 }

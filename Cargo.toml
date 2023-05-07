@@ -58,7 +58,6 @@ quick-xml = { version = "0.28.1", features = ["serialize"], optional = true }
 env_logger = "0.10.0"
 test-log = "0.2.11"
 rstest = "0.17.0"
-temp_testdir = "0.2.3"
 tokio-test = "0.4.2"
 insta = { version = "1.17.1", features = ["ron", "redactions"] }
 path_macro = "1.0.0"
