@@ -28,6 +28,7 @@ enum Commands {
     ParsePlaylistDates,
     ParseLargeNumbers,
     ParseAlbumTypes,
+    ParseVideoDurations,
     GenLocales,
     GenDict,
     DownloadTestfiles,
@@ -60,6 +61,7 @@ async fn main() {
         Commands::ParsePlaylistDates => collect_playlist_dates::write_samples_to_dict(),
         Commands::ParseLargeNumbers => collect_large_numbers::write_samples_to_dict(),
         Commands::ParseAlbumTypes => collect_album_types::write_samples_to_dict(),
+        Commands::ParseVideoDurations => collect_video_durations::parse_video_durations(),
         Commands::GenLocales => {
             gen_locales::generate_locales().await;
         }

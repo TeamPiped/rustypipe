@@ -51,6 +51,27 @@ pub struct DictEntry {
     pub album_types: BTreeMap<String, AlbumType>,
 }
 
+/// Parsed TimeAgo string, contains amount and time unit.
+///
+/// Example: "14 hours ago" => `TimeAgo {n: 14, unit: TimeUnit::Hour}`
+#[derive(Debug, Copy, Clone, Serialize, Deserialize, PartialEq, Eq)]
+pub struct TimeAgo {
+    /// Number of time units
+    pub n: u8,
+    /// Time unit
+    pub unit: TimeUnit,
+}
+
+impl ToString for TimeAgo {
+    fn to_string(&self) -> String {
+        if self.n > 1 {
+            format!("{}{}", self.n, self.unit.as_str())
+        } else {
+            self.unit.as_str().to_owned()
+        }
+    }
+}
+
 /// Parsed time unit
 #[derive(Debug, Copy, Clone, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
 #[serde(rename_all = "lowercase")]
@@ -62,6 +83,20 @@ pub enum TimeUnit {
     Week,
     Month,
     Year,
+}
+
+impl TimeUnit {
+    pub fn as_str(&self) -> &str {
+        match self {
+            TimeUnit::Second => "s",
+            TimeUnit::Minute => "m",
+            TimeUnit::Hour => "h",
+            TimeUnit::Day => "D",
+            TimeUnit::Week => "W",
+            TimeUnit::Month => "M",
+            TimeUnit::Year => "Y",
+        }
+    }
 }
 
 #[derive(Debug, Serialize)]

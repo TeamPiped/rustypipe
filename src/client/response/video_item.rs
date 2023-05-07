@@ -4,7 +4,7 @@ use serde::Deserialize;
 use serde_with::{
     json::JsonString, rust::deserialize_ignore_any, serde_as, DefaultOnError, VecSkipError,
 };
-use time::{Duration, OffsetDateTime};
+use time::OffsetDateTime;
 
 use super::{url_endpoint::NavigationEndpoint, ChannelBadge, ContinuationEndpoint, Thumbnails};
 use crate::{
@@ -501,8 +501,11 @@ impl<T> YouTubeListMapper<T> {
             length: video.accessibility.and_then(|acc| {
                 ACCESSIBILITY_SEP_REGEX.captures(&acc).and_then(|cap| {
                     cap.get(1).and_then(|c| {
-                        timeago::parse_timeago_or_warn(self.lang, c.as_str(), &mut self.warnings)
-                            .map(|ta| Duration::from(ta).whole_seconds() as u32)
+                        timeago::parse_video_duration_or_warn(
+                            self.lang,
+                            c.as_str(),
+                            &mut self.warnings,
+                        )
                     })
                 })
             }),

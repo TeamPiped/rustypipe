@@ -1,4 +1,8 @@
-use std::{collections::BTreeMap, fs::File};
+use std::{
+    collections::{BTreeMap, HashMap},
+    fs::File,
+    io::BufReader,
+};
 
 use anyhow::Result;
 use futures::{stream, StreamExt};
@@ -9,7 +13,7 @@ use rustypipe::{
 };
 
 use crate::{
-    model::{Channel, QBrowse},
+    model::{Channel, QBrowse, TimeAgo, TimeUnit},
     util::{self, DICT_DIR},
 };
 
@@ -55,6 +59,205 @@ pub async fn collect_video_durations(concurrency: usize) {
 
     let file = File::create(json_path).unwrap();
     serde_json::to_writer_pretty(file, &durations).unwrap();
+}
+
+pub fn parse_video_durations() {
+    let json_path = path!(*DICT_DIR / "video_duration_samples.json");
+    let json_file = File::open(json_path).unwrap();
+    let durations: CollectedDurations = serde_json::from_reader(BufReader::new(json_file)).unwrap();
+
+    let mut dict = util::read_dict();
+    let langs = dict.keys().map(|k| k.to_owned()).collect::<Vec<_>>();
+
+    for lang in langs {
+        let dict_entry = dict.entry(lang).or_default();
+
+        let mut e_langs = dict_entry.equivalent.clone();
+        e_langs.push(lang);
+
+        for lang in e_langs {
+            let mut words = HashMap::new();
+
+            fn check_add_word(
+                words: &mut HashMap<String, Option<TimeAgo>>,
+                by_char: bool,
+                val: u32,
+                expect: u32,
+                w: String,
+                unit: TimeUnit,
+            ) -> bool {
+                let ok = val == expect || val * 2 == expect;
+                if ok {
+                    let mut ins = |w: &str, val: &mut TimeAgo| {
+                        // Filter stop words
+                        if matches!(
+                            w,
+                            "na" | "y"
+                                | "و"
+                                | "ja"
+                                | "et"
+                                | "e"
+                                | "i"
+                                | "և"
+                                | "og"
+                                | "en"
+                                | "и"
+                                | "a"
+                                | "és"
+                                | "ir"
+                                | "un"
+                                | "și"
+                                | "in"
+                                | "และ"
+                                | "\u{0456}"
+                                | "鐘"
+                                | "eta"
+                                | "અને"
+                                | "और"
+                                | "കൂടാതെ"
+                                | "සහ"
+                        ) {
+                            return;
+                        }
+
+                        let entry = words.entry(w.to_owned()).or_insert(Some(*val));
+                        if let Some(e) = entry {
+                            if e != val {
+                                *entry = None;
+                            }
+                        }
+                    };
+
+                    let mut val = TimeAgo {
+                        n: (expect / val).try_into().unwrap(),
+                        unit,
+                    };
+
+                    if by_char {
+                        w.chars().for_each(|c| {
+                            if !c.is_whitespace() {
+                                ins(&c.to_string(), &mut val);
+                            }
+                        });
+                    } else {
+                        w.split_whitespace().for_each(|w| ins(w, &mut val));
+                    }
+                }
+                ok
+            }
+
+            fn parse(
+                words: &mut HashMap<String, Option<TimeAgo>>,
+                lang: Language,
+                by_char: bool,
+                txt: &str,
+                d: u32,
+            ) {
+                let (m, s) = split_duration(d);
+
+                let mut parts =
+                    split_duration_txt(txt, matches!(lang, Language::Si | Language::Sw))
+                        .into_iter();
+
+                let p1 = parts.next().unwrap();
+                let p1_n = p1.digits.parse::<u32>().unwrap_or(1);
+                let p2: Option<DurationTxtSegment> = parts.next();
+
+                match p2 {
+                    Some(p2) => {
+                        let p2_n = p2.digits.parse::<u32>().unwrap_or(1);
+
+                        assert!(
+                            check_add_word(words, by_char, p1_n, m, p1.word, TimeUnit::Minute),
+                            "{txt}: min parse error"
+                        );
+                        assert!(
+                            check_add_word(words, by_char, p2_n, s, p2.word, TimeUnit::Second),
+                            "{txt}: sec parse error"
+                        );
+                    }
+                    None => {
+                        if s == 0 {
+                            assert!(
+                                check_add_word(words, by_char, p1_n, m, p1.word, TimeUnit::Minute),
+                                "{txt}: min parse error"
+                            );
+                        } else if m == 0 {
+                            assert!(
+                                check_add_word(words, by_char, p1_n, s, p1.word, TimeUnit::Second),
+                                "{txt}: sec parse error"
+                            );
+                        } else {
+                            let p = txt
+                                .find([',', 'و'])
+                                .unwrap_or_else(|| panic!("`{txt}`: only 1 part"));
+                            parse(words, lang, by_char, &txt[0..p], m);
+                            parse(words, lang, by_char, &txt[p..], s);
+                        }
+                    }
+                }
+
+                assert!(parts.next().is_none(), "`{txt}`: more than 2 parts");
+            }
+
+            for (txt, d) in &durations[&lang] {
+                parse(&mut words, lang, dict_entry.by_char, txt, *d);
+            }
+
+            // dbg!(&words);
+
+            words.into_iter().for_each(|(k, v)| {
+                if let Some(v) = v {
+                    dict_entry.timeago_tokens.insert(k, v.to_string());
+                }
+            });
+        }
+    }
+
+    util::write_dict(dict);
+}
+
+fn split_duration(d: u32) -> (u32, u32) {
+    (d / 60, d % 60)
+}
+
+#[derive(Debug, Default)]
+struct DurationTxtSegment {
+    digits: String,
+    word: String,
+}
+
+fn split_duration_txt(txt: &str, start_c: bool) -> Vec<DurationTxtSegment> {
+    let mut segments = Vec::new();
+
+    // 1: parse digits, 2: parse word
+    let mut state: u8 = 0;
+    let mut seg = DurationTxtSegment::default();
+
+    for c in txt.chars() {
+        if c.is_ascii_digit() {
+            if state == 2 && (!seg.digits.is_empty() || (!start_c && segments.is_empty())) {
+                segments.push(seg);
+                seg = DurationTxtSegment::default();
+            }
+            seg.digits.push(c);
+            state = 1;
+        } else {
+            if (state == 1) && (!seg.word.is_empty() || (start_c && segments.is_empty())) {
+                segments.push(seg);
+                seg = DurationTxtSegment::default();
+            }
+            if c != ',' {
+                c.to_lowercase().for_each(|c| seg.word.push(c));
+            }
+            state = 2;
+        }
+    }
+    if !seg.word.is_empty() || !seg.digits.is_empty() {
+        segments.push(seg);
+    }
+
+    segments
 }
 
 async fn get_channel_vlengths(
@@ -129,10 +332,6 @@ mod tests {
     use intl_pluralrules::{PluralRuleType, PluralRules};
     use unic_langid::LanguageIdentifier;
 
-    fn split_duration(d: u32) -> (u32, u32) {
-        (d / 60, d % 60)
-    }
-
     /// Verify that the duration sample set covers all pluralization variants of the languages
     #[test]
     fn check_video_duration_samples() {
@@ -172,5 +371,12 @@ mod tests {
         }
 
         assert!(!failed);
+    }
+
+    #[test]
+    fn t_split_duration_text() {
+        // video duration:
+        let res = split_duration_txt("دقيقة وثانيتان", true);
+        dbg!(&res);
     }
 }
