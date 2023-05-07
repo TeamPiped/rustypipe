@@ -393,13 +393,14 @@ pub(crate) fn entry(lang: Language) -> Entry {
                 ],
             },
             number_nd_tokens: ::phf::Map {
-                key: 15467950696543387533,
+                key: 12913932095322966823,
                 disps: &[
                     (0, 0),
                 ],
                 entries: &[
-                    ("ন\u{9be}ই", 0),
                     ("১", 1),
+                    ("ন\u{9be}ই", 0),
+                    ("১ট\u{9be}", 1),
                 ],
             },
             album_types: ::phf::Map {
@@ -4659,6 +4660,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                 ],
                 entries: &[
                     ("ingen", 0),
+                    ("én", 1),
                 ],
             },
             album_types: ::phf::Map {
@@ -5032,8 +5034,10 @@ pub(crate) fn entry(lang: Language) -> Entry {
             number_nd_tokens: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
+                    (0, 0),
                 ],
                 entries: &[
+                    ("um", 1),
                 ],
             },
             album_types: ::phf::Map {

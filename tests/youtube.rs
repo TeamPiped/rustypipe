@@ -1108,7 +1108,8 @@ fn search_empty(rp: RustyPipe) {
 fn search_suggestion(rp: RustyPipe) {
     let result = tokio_test::block_on(rp.query().search_suggestion("hunger ga")).unwrap();
 
-    assert!(result.contains(&"hunger games".to_owned()));
+    assert!(result.iter().any(|s| s.starts_with("hunger games ")));
+    assert_gte(result.len(), 10, "search suggestions");
 }
 
 #[rstest]

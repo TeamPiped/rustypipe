@@ -201,7 +201,8 @@
     },
     "number_nd_tokens": {
       "নাই": 0,
-      "১": 1
+      "১": 1,
+      "১টা": 1
     },
     "album_types": {
       "ep": "Ep",
@@ -2662,7 +2663,8 @@
       "mrd": 9
     },
     "number_nd_tokens": {
-      "ingen": 0
+      "ingen": 0,
+      "én": 1
     },
     "album_types": {
       "album": "Album",
@@ -2885,7 +2887,9 @@
       "mi": 6,
       "mil": 3
     },
-    "number_nd_tokens": {},
+    "number_nd_tokens": {
+      "um": 1
+    },
     "album_types": {
       "audiolivro": "Audiobook",
       "ep": "Ep",

@@ -16,7 +16,9 @@
       "শঃ": null
     },
     "number_nd_tokens": {
-      "কোনো": null
+      "কোনো": null,
+      "ভিডিঅ’": null,
+      "১টা": 1
     }
   },
   "bn": {
@@ -111,7 +113,8 @@
   },
   "no": {
     "number_nd_tokens": {
-      "avspillinger": null
+      "avspillinger": null,
+      "én": 1
     }
   },
   "or": {
@@ -127,6 +130,11 @@
     "number_nd_tokens": {
       "ਕਿਸੇ": null,
       "ਨੇ": null
+    }
+  },
+  "pt": {
+    "number_nd_tokens": {
+      "um": 1
     }
   },
   "ro": {
