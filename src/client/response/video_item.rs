@@ -484,7 +484,7 @@ impl<T> YouTubeListMapper<T> {
 
     fn map_short_video(&mut self, video: ReelItemRenderer, lang: Language) -> VideoItem {
         static ACCESSIBILITY_SEP_REGEX: Lazy<Regex> =
-            Lazy::new(|| Regex::new(" [-\u{2013}] (.+) [-\u{2013}] ").unwrap());
+            Lazy::new(|| Regex::new(" [-\u{2013}] ").unwrap());
 
         let pub_date_txt = video.navigation_endpoint.map(|n| {
             n.reel_watch_endpoint
@@ -499,14 +499,8 @@ impl<T> YouTubeListMapper<T> {
             id: video.video_id,
             name: video.headline,
             length: video.accessibility.and_then(|acc| {
-                ACCESSIBILITY_SEP_REGEX.captures(&acc).and_then(|cap| {
-                    cap.get(1).and_then(|c| {
-                        timeago::parse_video_duration_or_warn(
-                            self.lang,
-                            c.as_str(),
-                            &mut self.warnings,
-                        )
-                    })
+                ACCESSIBILITY_SEP_REGEX.split(&acc).nth(1).and_then(|s| {
+                    timeago::parse_video_duration_or_warn(self.lang, s, &mut self.warnings)
                 })
             }),
             thumbnail: video.thumbnail.into(),
