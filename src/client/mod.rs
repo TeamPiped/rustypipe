@@ -1141,7 +1141,7 @@ impl RustyPipeQuery {
                     Ok(mapres.c)
                 }
                 Err(e) => {
-                    if e.should_report() {
+                    if e.should_report() || self.opts.report {
                         create_report(Level::ERR, Some(e.to_string()), Vec::new());
                     }
                     Err(e.into())

@@ -1,6 +1,6 @@
 //! RustyPipe error types
 
-use std::borrow::Cow;
+use std::{borrow::Cow, fmt::Display};
 
 /// Error type for the RustyPipe library
 #[derive(thiserror::Error, Debug)]
@@ -9,12 +9,9 @@ pub enum Error {
     /// Error extracting content from YouTube
     #[error("extraction error: {0}")]
     Extraction(#[from] ExtractionError),
-    /// File IO error
-    #[error(transparent)]
-    Io(#[from] std::io::Error),
     /// Error from the HTTP client
     #[error("http error: {0}")]
-    Http(#[from] reqwest::Error),
+    Http(Cow<'static, str>),
     /// Erroneous HTTP status code received
     #[error("http status code: {0} message: {1}")]
     HttpStatus(u16, Cow<'static, str>),
@@ -33,34 +30,25 @@ pub enum ExtractionError {
     /// - Deletion/Censorship
     /// - Private video that requires a Google account
     /// - DRM (Movies and TV shows)
-    #[error("Video cant be played because of {0}. Reason (from YT): {1}")]
-    VideoUnavailable(&'static str, String),
-    /// Video cannot be extracted because it is age restricted.
-    ///
-    /// Age restriction may be circumvented with the [`crate::client::ClientType::TvHtml5Embed`] client.
-    #[error("Video is age restricted")]
-    VideoAgeRestricted,
-    /// Video cannot be extracted because it is not available in your country
-    #[error("Video is not available in your country")]
-    VideoGeoblocked,
-    /// Video cannot be extracted with the specified client
-    #[error("Video cant be played with this client. Reason (from YT): {0}")]
-    VideoClientUnsupported(String),
+    #[error("Video cant be played because it is {reason}. Reason (from YT): {msg}")]
+    VideoUnavailable {
+        /// Reason why the video could not be extracted
+        reason: UnavailabilityReason,
+        /// The error message as returned from YouTube
+        msg: String,
+    },
     /// Content is not available / does not exist
     #[error("Content is not available. Reason: {0}")]
     ContentUnavailable(Cow<'static, str>),
     /// Bad request (Error 400 from YouTube), probably invalid input parameters
     #[error("Bad request. Reason: {0}")]
     BadRequest(Cow<'static, str>),
-    /// Error deserializing YouTube's response JSON
-    #[error("deserialization error: {0}")]
-    Deserialization(#[from] serde_json::Error),
+    /// YouTube returned data that could not be deserialized or parsed
+    #[error("got invalid data from YT: {0}")]
+    InvalidData(Cow<'static, str>),
     /// Error deobfuscating YouTube's URL signatures
     #[error("deobfuscation error: {0}")]
     Deobfuscation(Cow<'static, str>),
-    /// YouTube returned invalid data
-    #[error("got invalid data from YT: {0}")]
-    InvalidData(Cow<'static, str>),
     /// YouTube returned data that does not match the queried ID
     ///
     /// Specifically YouTube may return this video <https://www.youtube.com/watch?v=aQvGIIdgFDM>,
@@ -78,6 +66,53 @@ pub enum ExtractionError {
     /// This error is only returned in strict mode.
     #[error("Warnings during deserialization/mapping")]
     DeserializationWarnings,
+}
+
+/// Reason why a video cannot be extracted
+#[derive(Default, Debug, Copy, Clone, PartialEq, Eq)]
+#[non_exhaustive]
+pub enum UnavailabilityReason {
+    /// Video is age restricted.
+    ///
+    /// Age restriction may be circumvented with the [`crate::client::ClientType::TvHtml5Embed`] client.
+    AgeRestricted,
+    /// Video was deleted or censored
+    Deleted,
+    /// Video is not available in your country
+    Geoblocked,
+    /// Video cannot be extracted with the specified client
+    UnsupportedClient,
+    /// Video is private
+    Private,
+    /// Video needs to be purchased and is protected by digital restrictions management
+    /// (e.g. movies and TV shows)
+    Paid,
+    /// Video is only available to YouTube Premium users
+    Premium,
+    /// Video is only available to channel members
+    MembersOnly,
+    /// Livestream has gone offline
+    OfflineLivestream,
+    /// Video cant be played for other reasons
+    #[default]
+    Unplayable,
+}
+
+impl Display for UnavailabilityReason {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            UnavailabilityReason::AgeRestricted => f.write_str("age restriction"),
+            UnavailabilityReason::Deleted => f.write_str("deleted"),
+            UnavailabilityReason::Geoblocked => f.write_str("geoblocking"),
+            UnavailabilityReason::UnsupportedClient => f.write_str("unsupported by client"),
+            UnavailabilityReason::Private => f.write_str("private"),
+            UnavailabilityReason::Paid => f.write_str("paid"),
+            UnavailabilityReason::Premium => f.write_str("premium-only"),
+            UnavailabilityReason::MembersOnly => f.write_str("members-only"),
+            UnavailabilityReason::OfflineLivestream => f.write_str("an offline stream"),
+            UnavailabilityReason::Unplayable => f.write_str("unplayable"),
+        }
+    }
 }
 
 pub(crate) mod internal {
@@ -114,22 +149,39 @@ pub(crate) mod internal {
     }
 }
 
+impl From<serde_json::Error> for ExtractionError {
+    fn from(value: serde_json::Error) -> Self {
+        Self::InvalidData(value.to_string().into())
+    }
+}
+
+impl From<reqwest::Error> for Error {
+    fn from(value: reqwest::Error) -> Self {
+        if value.is_status() {
+            if let Some(status) = value.status() {
+                return Self::HttpStatus(status.as_u16(), Default::default());
+            }
+        }
+        Self::Http(value.to_string().into())
+    }
+}
+
 impl ExtractionError {
     pub(crate) fn should_report(&self) -> bool {
         matches!(
             self,
-            ExtractionError::Deserialization(_)
-                | ExtractionError::InvalidData(_)
-                | ExtractionError::WrongResult(_)
+            ExtractionError::InvalidData(_) | ExtractionError::WrongResult(_)
         )
     }
 
     pub(crate) fn switch_client(&self) -> bool {
         matches!(
             self,
-            ExtractionError::VideoClientUnsupported(_)
-                | ExtractionError::VideoAgeRestricted
-                | ExtractionError::WrongResult(_)
+            ExtractionError::VideoUnavailable {
+                reason: UnavailabilityReason::AgeRestricted
+                    | UnavailabilityReason::UnsupportedClient,
+                ..
+            } | ExtractionError::WrongResult(_)
         )
     }
 }

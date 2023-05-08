@@ -19,15 +19,14 @@
 use std::{
     collections::BTreeMap,
     fs::File,
+    io::Error,
     path::{Path, PathBuf},
 };
 
 use log::error;
 use serde::{Deserialize, Serialize};
-use time::macros::format_description;
-use time::OffsetDateTime;
+use time::{macros::format_description, OffsetDateTime};
 
-use crate::error::Error;
 use crate::{deobfuscate::DeobfData, util};
 
 const FILENAME_FORMAT: &[time::format_description::FormatItem] =
@@ -127,10 +126,10 @@ impl FileReporter {
         }
     }
 
-    fn _report(&self, report: &Report) -> Result<(), Error> {
-        let report_path = get_report_path(&self.path, report, "json")?;
-        serde_json::to_writer_pretty(&File::create(report_path)?, &report)
-            .map_err(|e| Error::Other(format!("could not serialize report. err: {e}").into()))?;
+    fn _report(&self, report: &Report) -> Result<(), String> {
+        let report_path = get_report_path(&self.path, report, "json").map_err(|e| e.to_string())?;
+        let file = File::create(report_path).map_err(|e| e.to_string())?;
+        serde_json::to_writer_pretty(&file, &report).map_err(|e| e.to_string())?;
         Ok(())
     }
 }

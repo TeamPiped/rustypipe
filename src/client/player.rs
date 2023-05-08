@@ -10,7 +10,7 @@ use url::Url;
 
 use crate::{
     deobfuscate::Deobfuscator,
-    error::{internal::DeobfError, Error, ExtractionError},
+    error::{internal::DeobfError, Error, ExtractionError, UnavailabilityReason},
     model::{
         traits::QualityOrd, AudioCodec, AudioFormat, AudioStream, AudioTrack, ChannelId, Subtitle,
         VideoCodec, VideoFormat, VideoPlayer, VideoPlayerDetails, VideoStream,
@@ -73,9 +73,10 @@ impl RustyPipeQuery {
 
                     match tv_res {
                         // Output desktop client error if the tv client is unsupported
-                        Err(Error::Extraction(ExtractionError::VideoClientUnsupported(_))) => {
-                            Err(Error::Extraction(e))
-                        }
+                        Err(Error::Extraction(ExtractionError::VideoUnavailable {
+                            reason: UnavailabilityReason::UnsupportedClient,
+                            ..
+                        })) => Err(Error::Extraction(e)),
                         _ => tv_res,
                     }
                 } else {
@@ -161,47 +162,54 @@ impl MapResponse<VideoPlayer> for response::Player {
                     msg.push_str(&error_screen.player_error_message_renderer.subreason);
                 }
 
-                for word in msg.split_whitespace() {
-                    match word {
-                        // reason: "This video requires payment to watch."
-                        "payment" => return Err(ExtractionError::VideoUnavailable("DRM", msg)),
-                        // reason: "The uploader has not made this video available in your country."
-                        "country" => return Err(ExtractionError::VideoGeoblocked),
-                        // reason (Android): "This video can only be played on newer versions of Android or other supported devices."
-                        // reason (TV client): "Playback on other websites has been disabled by the video owner."
-                        "Android" | "websites" => {
-                            return Err(ExtractionError::VideoClientUnsupported(msg))
-                        }
-                        _ => {}
-                    }
-                }
-                return Err(ExtractionError::VideoUnavailable("being unplayable", msg));
+                let reason = msg
+                    .split_whitespace()
+                    .find_map(|word| match word {
+                        "payment" => Some(UnavailabilityReason::Paid),
+                        "Premium" => Some(UnavailabilityReason::Premium),
+                        "members-only" => Some(UnavailabilityReason::MembersOnly),
+                        "country" => Some(UnavailabilityReason::Geoblocked),
+                        "Android" | "websites" => Some(UnavailabilityReason::UnsupportedClient),
+                        _ => None,
+                    })
+                    .unwrap_or_default();
+                return Err(ExtractionError::VideoUnavailable { reason, msg });
             }
-            response::player::PlayabilityStatus::LoginRequired { reason } => {
+            response::player::PlayabilityStatus::LoginRequired { reason, messages } => {
+                let mut msg = reason;
+                messages.iter().for_each(|m| {
+                    if !msg.is_empty() {
+                        msg.push(' ');
+                    }
+                    msg.push_str(m);
+                });
+
                 // reason (age restriction): "Sign in to confirm your age"
                 // or: "This video may be inappropriate for some users."
                 // reason (private): "This video is private"
-                if reason
+                let reason = msg
                     .split_whitespace()
-                    .any(|word| word == "age" || word == "inappropriate")
-                {
-                    return Err(ExtractionError::VideoAgeRestricted);
-                }
-                return Err(ExtractionError::VideoUnavailable("being private", reason));
+                    .find_map(|word| match word {
+                        "age" | "inappropriate" => Some(UnavailabilityReason::AgeRestricted),
+                        "private" => Some(UnavailabilityReason::Private),
+                        _ => None,
+                    })
+                    .unwrap_or_default();
+                return Err(ExtractionError::VideoUnavailable { reason, msg });
             }
             response::player::PlayabilityStatus::LiveStreamOffline { reason } => {
-                return Err(ExtractionError::VideoUnavailable(
-                    "offline livestream",
-                    reason,
-                ))
+                return Err(ExtractionError::VideoUnavailable {
+                    reason: UnavailabilityReason::OfflineLivestream,
+                    msg: reason,
+                });
             }
             response::player::PlayabilityStatus::Error { reason } => {
                 // reason (censored): "This video has been removed for violating YouTube's policy on hate speech. Learn more about combating hate speech in your country."
                 // reason: "This video is unavailable"
-                return Err(ExtractionError::VideoUnavailable(
-                    "deletion/censorship",
-                    reason,
-                ));
+                return Err(ExtractionError::VideoUnavailable {
+                    reason: UnavailabilityReason::Deleted,
+                    msg: reason,
+                });
             }
         };
 

@@ -37,6 +37,8 @@ pub(crate) enum PlayabilityStatus {
     LoginRequired {
         #[serde(default)]
         reason: String,
+        #[serde(default)]
+        messages: Vec<String>,
     },
     #[serde(rename_all = "camelCase")]
     LiveStreamOffline {

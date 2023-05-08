@@ -10,7 +10,7 @@ use time::macros::date;
 use time::OffsetDateTime;
 
 use rustypipe::client::{ClientType, RustyPipe, RustyPipeQuery};
-use rustypipe::error::{Error, ExtractionError};
+use rustypipe::error::{Error, ExtractionError, UnavailabilityReason};
 use rustypipe::model::{
     paginator::Paginator,
     richtext::ToPlaintext,
@@ -280,41 +280,25 @@ fn get_player(
 }
 
 #[rstest]
-#[case::not_found(
-    "86abcdefghi",
-    "extraction error: Video cant be played because of deletion/censorship. Reason (from YT): "
-)]
-#[case::deleted(
-    "64DYi_8ESh0",
-    "extraction error: Video cant be played because of deletion/censorship. Reason (from YT): "
-)]
-#[case::censored(
-    "6SJNVb0GnPI",
-    "extraction error: Video cant be played because of deletion/censorship. Reason (from YT): "
-)]
+#[case::not_found("86abcdefghi", UnavailabilityReason::Deleted)]
+#[case::deleted("64DYi_8ESh0", UnavailabilityReason::Deleted)]
+#[case::censored("6SJNVb0GnPI", UnavailabilityReason::Deleted)]
 // This video is geoblocked outside of Japan, so expect this test case to fail when using a Japanese IP address.
-#[case::geoblock(
-    "sJL6WA-aGkQ",
-    "extraction error: Video is not available in your country"
-)]
-#[case::drm(
-    "1bfOsni7EgI",
-    "extraction error: Video cant be played because of DRM. Reason (from YT): "
-)]
-#[case::private(
-    "s7_qI6_mIXc",
-    "extraction error: Video cant be played because of being private. Reason (from YT): "
-)]
-#[case::age_restricted("CUO8secmc0g", "extraction error: Video is age restricted")]
-fn get_player_error(#[case] id: &str, #[case] msg: &str, rp: RustyPipe) {
-    let err = tokio_test::block_on(rp.query().player(id))
-        .unwrap_err()
-        .to_string();
+#[case::geoblock("sJL6WA-aGkQ", UnavailabilityReason::Geoblocked)]
+#[case::drm("1bfOsni7EgI", UnavailabilityReason::Paid)]
+#[case::private("s7_qI6_mIXc", UnavailabilityReason::Private)]
+#[case::age_restricted("CUO8secmc0g", UnavailabilityReason::AgeRestricted)]
+#[case::premium_only("3LvozjEOUxU", UnavailabilityReason::Premium)]
+#[case::members_only("vYmAhoZYg64", UnavailabilityReason::MembersOnly)]
+fn get_player_error(#[case] id: &str, #[case] expect: UnavailabilityReason, rp: RustyPipe) {
+    let err = tokio_test::block_on(rp.query().player(id)).unwrap_err();
 
-    assert!(
-        err.starts_with(msg),
-        "got error msg: `{err}`, expected: `{msg}`"
-    );
+    match err {
+        Error::Extraction(ExtractionError::VideoUnavailable { reason, .. }) => {
+            assert_eq!(reason, expect, "got {err}")
+        }
+        _ => panic!("got {err}"),
+    }
 }
 
 //#PLAYLIST
