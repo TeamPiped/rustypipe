@@ -163,18 +163,22 @@ impl RustyPipeQuery {
                                 .await
                             {
                                 Ok(target) => Ok(target),
-                                Err(Error::Extraction(ExtractionError::ContentUnavailable(e))) => {
-                                    match util::VIDEO_ID_REGEX.is_match(id) {
-                                        true => Ok(UrlTarget::Video {
-                                            id: id.to_owned(),
-                                            start_time: get_start_time(),
-                                        }),
-                                        false => Err(Error::Extraction(
-                                            ExtractionError::ContentUnavailable(e),
-                                        )),
+                                Err(e) => {
+                                    if matches!(
+                                        e,
+                                        Error::Extraction(ExtractionError::NotFound { .. })
+                                    ) {
+                                        match util::VIDEO_ID_REGEX.is_match(id) {
+                                            true => Ok(UrlTarget::Video {
+                                                id: id.to_owned(),
+                                                start_time: get_start_time(),
+                                            }),
+                                            false => Err(e),
+                                        }
+                                    } else {
+                                        Err(e)
                                     }
                                 }
-                                Err(e) => Err(e),
                             }
                         } else if util::VIDEO_ID_REGEX.is_match(id) {
                             Ok(UrlTarget::Video {

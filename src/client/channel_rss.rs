@@ -16,18 +16,20 @@ impl RustyPipeQuery {
     /// Fetching RSS feeds is a lot faster than querying the InnerTube API, so this method is great
     /// for checking a lot of channels or implementing a subscription feed.
     pub async fn channel_rss<S: AsRef<str>>(&self, channel_id: S) -> Result<ChannelRss, Error> {
+        let channel_id = channel_id.as_ref();
         let url = format!(
             "https://www.youtube.com/feeds/videos.xml?channel_id={}",
-            channel_id.as_ref()
+            channel_id,
         );
         let xml = self
             .client
             .http_request_txt(self.client.inner.http.get(&url).build()?)
             .await
             .map_err(|e| match e {
-                Error::HttpStatus(404, _) => Error::Extraction(
-                    ExtractionError::ContentUnavailable("Channel not found".into()),
-                ),
+                Error::HttpStatus(404, _) => Error::Extraction(ExtractionError::NotFound {
+                    id: channel_id.to_owned(),
+                    msg: "404".into(),
+                }),
                 _ => e,
             })?;
 

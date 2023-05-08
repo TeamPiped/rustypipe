@@ -62,7 +62,7 @@ impl MapResponse<Playlist> for response::Playlist {
     ) -> Result<MapResult<Playlist>, ExtractionError> {
         let (contents, header) = match (self.contents, self.header) {
             (Some(contents), Some(header)) => (contents, header),
-            _ => return Err(response::alerts_to_err(self.alerts)),
+            _ => return Err(response::alerts_to_err(id, self.alerts)),
         };
 
         let video_items = contents

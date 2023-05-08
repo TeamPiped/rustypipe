@@ -353,16 +353,18 @@ impl From<Icon> for crate::model::Verification {
     }
 }
 
-pub(crate) fn alerts_to_err(alerts: Option<Vec<Alert>>) -> ExtractionError {
-    match alerts {
-        Some(alerts) => ExtractionError::ContentUnavailable(
-            alerts
-                .into_iter()
-                .map(|a| a.alert_renderer.text)
-                .collect::<Vec<_>>()
-                .join(" ")
-                .into(),
-        ),
-        None => ExtractionError::ContentUnavailable("content not found".into()),
+pub(crate) fn alerts_to_err(id: &str, alerts: Option<Vec<Alert>>) -> ExtractionError {
+    ExtractionError::NotFound {
+        id: id.to_owned(),
+        msg: alerts
+            .map(|alerts| {
+                alerts
+                    .into_iter()
+                    .map(|a| a.alert_renderer.text)
+                    .collect::<Vec<_>>()
+                    .join(" ")
+                    .into()
+            })
+            .unwrap_or_default(),
     }
 }

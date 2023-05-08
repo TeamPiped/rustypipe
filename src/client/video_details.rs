@@ -1,5 +1,3 @@
-use std::borrow::Cow;
-
 use serde::Serialize;
 
 use crate::{
@@ -87,16 +85,16 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
     ) -> Result<MapResult<VideoDetails>, ExtractionError> {
         let mut warnings = Vec::new();
 
-        let contents = self
-            .contents
-            .ok_or(ExtractionError::ContentUnavailable(Cow::Borrowed(
-                "Video not found",
-            )))?;
+        let contents = self.contents.ok_or_else(|| ExtractionError::NotFound {
+            id: id.to_owned(),
+            msg: "no content".into(),
+        })?;
         let current_video_endpoint =
             self.current_video_endpoint
-                .ok_or(ExtractionError::ContentUnavailable(Cow::Borrowed(
-                    "Video not found",
-                )))?;
+                .ok_or_else(|| ExtractionError::NotFound {
+                    id: id.to_owned(),
+                    msg: "no current_video_endpoint".into(),
+                })?;
 
         let video_id = current_video_endpoint.watch_endpoint.video_id;
         if id != video_id {
@@ -110,9 +108,10 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
             .results
             .results
             .contents
-            .ok_or(ExtractionError::ContentUnavailable(Cow::Borrowed(
-                "Video not found",
-            )))?;
+            .ok_or_else(|| ExtractionError::NotFound {
+                id: id.into(),
+                msg: "no primary_results".into(),
+            })?;
         warnings.append(&mut primary_results.warnings);
 
         let mut primary_info = None;
@@ -585,7 +584,7 @@ mod tests {
         let err = details.map_response("", Language::En, None).unwrap_err();
         assert!(matches!(
             err,
-            crate::error::ExtractionError::ContentUnavailable(_)
+            crate::error::ExtractionError::NotFound { .. }
         ))
     }
 

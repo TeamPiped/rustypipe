@@ -383,10 +383,7 @@ fn playlist_not_found(rp: RustyPipe) {
         .unwrap_err();
 
     assert!(
-        matches!(
-            err,
-            Error::Extraction(ExtractionError::ContentUnavailable(_))
-        ),
+        matches!(err, Error::Extraction(ExtractionError::NotFound { .. })),
         "got: {err}"
     );
 }
@@ -729,10 +726,7 @@ fn get_video_details_not_found(rp: RustyPipe) {
     let err = tokio_test::block_on(rp.query().video_details("abcdefgLi5X")).unwrap_err();
 
     assert!(
-        matches!(
-            err,
-            Error::Extraction(ExtractionError::ContentUnavailable(_))
-        ),
+        matches!(err, Error::Extraction(ExtractionError::NotFound { .. })),
         "got: {err}"
     )
 }
@@ -973,10 +967,7 @@ fn channel_not_found(#[case] id: &str, rp: RustyPipe) {
     let err = tokio_test::block_on(rp.query().channel_videos(&id)).unwrap_err();
 
     assert!(
-        matches!(
-            err,
-            Error::Extraction(ExtractionError::ContentUnavailable(_))
-        ),
+        matches!(err, Error::Extraction(ExtractionError::NotFound { .. })),
         "got: {err}"
     );
 }
@@ -1017,10 +1008,7 @@ mod channel_rss {
             tokio_test::block_on(rp.query().channel_rss("UCHnyfMqiRRG1u-2MsSQLbXZ")).unwrap_err();
 
         assert!(
-            matches!(
-                err,
-                Error::Extraction(ExtractionError::ContentUnavailable(_))
-            ),
+            matches!(err, Error::Extraction(ExtractionError::NotFound { .. })),
             "got: {}",
             err
         );
@@ -1164,7 +1152,7 @@ fn resolve_channel_not_found(rp: RustyPipe) {
 
     assert!(matches!(
         err,
-        Error::Extraction(ExtractionError::ContentUnavailable(_))
+        Error::Extraction(ExtractionError::NotFound { .. })
     ));
 }
 
@@ -1288,10 +1276,7 @@ fn music_playlist_not_found(rp: RustyPipe) {
     .unwrap_err();
 
     assert!(
-        matches!(
-            err,
-            Error::Extraction(ExtractionError::ContentUnavailable(_))
-        ),
+        matches!(err, Error::Extraction(ExtractionError::NotFound { .. })),
         "got: {err}"
     );
 }
@@ -1337,10 +1322,7 @@ fn music_album_not_found(rp: RustyPipe) {
     let err = tokio_test::block_on(rp.query().music_album("MPREb_nlBWQROfvjoz")).unwrap_err();
 
     assert!(
-        matches!(
-            err,
-            Error::Extraction(ExtractionError::ContentUnavailable(_))
-        ),
+        matches!(err, Error::Extraction(ExtractionError::NotFound { .. })),
         "got: {err}"
     );
 }
@@ -1430,10 +1412,7 @@ fn music_artist_not_found(rp: RustyPipe) {
         .unwrap_err();
 
     assert!(
-        matches!(
-            err,
-            Error::Extraction(ExtractionError::ContentUnavailable(_))
-        ),
+        matches!(err, Error::Extraction(ExtractionError::NotFound { .. })),
         "got: {err}"
     );
 }
@@ -1857,10 +1836,7 @@ fn music_lyrics_not_found(rp: RustyPipe) {
     let err = tokio_test::block_on(rp.query().music_lyrics(&track.lyrics_id.unwrap())).unwrap_err();
 
     assert!(
-        matches!(
-            err,
-            Error::Extraction(ExtractionError::ContentUnavailable(_))
-        ),
+        matches!(err, Error::Extraction(ExtractionError::NotFound { .. })),
         "got: {err}"
     );
 }
@@ -1970,10 +1946,7 @@ fn music_details_not_found(rp: RustyPipe) {
     let err = tokio_test::block_on(rp.query().music_details("7nigXQS1XbZ")).unwrap_err();
 
     assert!(
-        matches!(
-            err,
-            Error::Extraction(ExtractionError::ContentUnavailable(_))
-        ),
+        matches!(err, Error::Extraction(ExtractionError::NotFound { .. })),
         "got: {err}"
     );
 }
@@ -1989,10 +1962,7 @@ fn music_radio_track_not_found(rp: RustyPipe) {
     let err = tokio_test::block_on(rp.query().music_radio_track("7nigXQS1XbZ")).unwrap_err();
 
     assert!(
-        matches!(
-            err,
-            Error::Extraction(ExtractionError::ContentUnavailable(_))
-        ),
+        matches!(err, Error::Extraction(ExtractionError::NotFound { .. })),
         "got: {err}"
     );
 }
@@ -2016,10 +1986,7 @@ fn music_radio_playlist_not_found(rp: RustyPipe) {
 
     if let Err(err) = res {
         assert!(
-            matches!(
-                err,
-                Error::Extraction(ExtractionError::ContentUnavailable(_))
-            ),
+            matches!(err, Error::Extraction(ExtractionError::NotFound { .. })),
             "got: {err}"
         );
     }
@@ -2038,10 +2005,7 @@ fn music_radio_not_found(rp: RustyPipe) {
         tokio_test::block_on(rp.query().music_radio("RDEM_Ktu-TilkxtLvmc9wXZZZZ")).unwrap_err();
 
     assert!(
-        matches!(
-            err,
-            Error::Extraction(ExtractionError::ContentUnavailable(_))
-        ),
+        matches!(err, Error::Extraction(ExtractionError::NotFound { .. })),
         "got: {err}"
     );
 }
@@ -2195,10 +2159,7 @@ fn music_genre_not_found(rp: RustyPipe) {
     let err = tokio_test::block_on(rp.query().music_genre("ggMPOg1uX1JOQWZFeDByc2zz")).unwrap_err();
 
     assert!(
-        matches!(
-            err,
-            Error::Extraction(ExtractionError::ContentUnavailable(_))
-        ),
+        matches!(err, Error::Extraction(ExtractionError::NotFound { .. })),
         "got: {err}"
     );
 }

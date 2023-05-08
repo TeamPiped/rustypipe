@@ -193,9 +193,10 @@ impl MapResponse<TrackDetails> for response::MusicDetails {
             }
         }
 
-        let content = content.ok_or(ExtractionError::ContentUnavailable(Cow::Borrowed(
-            "track not found",
-        )))?;
+        let content = content.ok_or_else(|| ExtractionError::NotFound {
+            id: id.to_owned(),
+            msg: "no content".into(),
+        })?;
         let track_item = content
             .contents
             .c
@@ -233,7 +234,7 @@ impl MapResponse<TrackDetails> for response::MusicDetails {
 impl MapResponse<Paginator<TrackItem>> for response::MusicDetails {
     fn map_response(
         self,
-        _id: &str,
+        id: &str,
         lang: Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<MapResult<Paginator<TrackItem>>, ExtractionError> {
@@ -247,9 +248,10 @@ impl MapResponse<Paginator<TrackItem>> for response::MusicDetails {
         let content = tabs
             .into_iter()
             .find_map(|t| t.tab_renderer.content)
-            .ok_or(ExtractionError::ContentUnavailable(Cow::Borrowed(
-                "radio unavailable",
-            )))?
+            .ok_or_else(|| ExtractionError::NotFound {
+                id: id.to_owned(),
+                msg: "no content".into(),
+            })?
             .music_queue_renderer
             .content
             .playlist_panel_renderer;
@@ -292,7 +294,7 @@ impl MapResponse<Paginator<TrackItem>> for response::MusicDetails {
 impl MapResponse<Lyrics> for response::MusicLyrics {
     fn map_response(
         self,
-        _id: &str,
+        id: &str,
         _lang: Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<MapResult<Lyrics>, ExtractionError> {
@@ -305,7 +307,10 @@ impl MapResponse<Lyrics> for response::MusicLyrics {
                     .find_map(|item| item.music_description_shelf_renderer)
             })
             .ok_or(match self.contents.message_renderer {
-                Some(msg) => ExtractionError::ContentUnavailable(Cow::Owned(msg.text)),
+                Some(msg) => ExtractionError::NotFound {
+                    id: id.to_owned(),
+                    msg: msg.text.into(),
+                },
                 None => ExtractionError::InvalidData(Cow::Borrowed("no content")),
             })?;
 

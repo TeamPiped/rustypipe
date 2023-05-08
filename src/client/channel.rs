@@ -164,7 +164,7 @@ impl MapResponse<Channel<Paginator<VideoItem>>> for response::Channel {
         lang: Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<MapResult<Channel<Paginator<VideoItem>>>, ExtractionError> {
-        let content = map_channel_content(self.contents, self.alerts)?;
+        let content = map_channel_content(id, self.contents, self.alerts)?;
 
         let channel_data = map_channel(
             MapChannelData {
@@ -207,7 +207,7 @@ impl MapResponse<Channel<Paginator<PlaylistItem>>> for response::Channel {
         lang: Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<MapResult<Channel<Paginator<PlaylistItem>>>, ExtractionError> {
-        let content = map_channel_content(self.contents, self.alerts)?;
+        let content = map_channel_content(id, self.contents, self.alerts)?;
 
         let channel_data = map_channel(
             MapChannelData {
@@ -244,7 +244,7 @@ impl MapResponse<Channel<ChannelInfo>> for response::Channel {
         lang: Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<MapResult<Channel<ChannelInfo>>, ExtractionError> {
-        let content = map_channel_content(self.contents, self.alerts)?;
+        let content = map_channel_content(id, self.contents, self.alerts)?;
         let channel_data = map_channel(
             MapChannelData {
                 header: self.header,
@@ -304,22 +304,21 @@ fn map_channel(
     id: &str,
     lang: Language,
 ) -> Result<MapResult<Channel<()>>, ExtractionError> {
-    let header = d
-        .header
-        .ok_or(ExtractionError::ContentUnavailable(Cow::Borrowed(
-            "channel not found",
-        )))?;
+    let header = d.header.ok_or_else(|| ExtractionError::NotFound {
+        id: id.to_owned(),
+        msg: "no header".into(),
+    })?;
     let metadata = d
         .metadata
-        .ok_or(ExtractionError::ContentUnavailable(Cow::Borrowed(
-            "channel not found",
-        )))?
+        .ok_or_else(|| ExtractionError::NotFound {
+            id: id.to_owned(),
+            msg: "no metadata".into(),
+        })?
         .channel_metadata_renderer;
-    let microformat = d
-        .microformat
-        .ok_or(ExtractionError::ContentUnavailable(Cow::Borrowed(
-            "channel not found",
-        )))?;
+    let microformat = d.microformat.ok_or_else(|| ExtractionError::NotFound {
+        id: id.to_owned(),
+        msg: "no microformat".into(),
+    })?;
 
     if metadata.external_id != id {
         return Err(ExtractionError::WrongResult(format!(
@@ -405,6 +404,7 @@ struct MappedChannelContent {
 }
 
 fn map_channel_content(
+    id: &str,
     contents: Option<response::channel::Contents>,
     alerts: Option<Vec<response::Alert>>,
 ) -> Result<MappedChannelContent, ExtractionError> {
@@ -412,9 +412,10 @@ fn map_channel_content(
         Some(contents) => {
             let tabs = contents.two_column_browse_results_renderer.contents;
             if tabs.is_empty() {
-                return Err(ExtractionError::ContentUnavailable(
-                    "channel not found".into(),
-                ));
+                return Err(ExtractionError::NotFound {
+                    id: id.to_owned(),
+                    msg: "no tabs".into(),
+                });
             }
 
             let cmp_url_suffix = |endpoint: &response::channel::ChannelTabEndpoint,
@@ -470,7 +471,7 @@ fn map_channel_content(
                 has_live,
             })
         }
-        None => Err(response::alerts_to_err(alerts)),
+        None => Err(response::alerts_to_err(id, alerts)),
     }
 }
 

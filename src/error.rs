@@ -30,21 +30,26 @@ pub enum ExtractionError {
     /// - Deletion/Censorship
     /// - Private video that requires a Google account
     /// - DRM (Movies and TV shows)
-    #[error("Video cant be played because it is {reason}. Reason (from YT): {msg}")]
+    #[error("video cant be played because it is {reason}. Reason (from YT): {msg}")]
     VideoUnavailable {
         /// Reason why the video could not be extracted
         reason: UnavailabilityReason,
         /// The error message as returned from YouTube
         msg: String,
     },
-    /// Content is not available / does not exist
-    #[error("Content is not available. Reason: {0}")]
-    ContentUnavailable(Cow<'static, str>),
+    /// Content with the given ID does not exist
+    #[error("content `{id}` was not found ({msg})")]
+    NotFound {
+        /// ID of the requested content
+        id: String,
+        /// Error message
+        msg: Cow<'static, str>,
+    },
     /// Bad request (Error 400 from YouTube), probably invalid input parameters
-    #[error("Bad request. Reason: {0}")]
+    #[error("bad request ({0})")]
     BadRequest(Cow<'static, str>),
     /// YouTube returned data that could not be deserialized or parsed
-    #[error("got invalid data from YT: {0}")]
+    #[error("invalid data from YT: {0}")]
     InvalidData(Cow<'static, str>),
     /// Error deobfuscating YouTube's URL signatures
     #[error("deobfuscation error: {0}")]
@@ -54,7 +59,7 @@ pub enum ExtractionError {
     /// Specifically YouTube may return this video <https://www.youtube.com/watch?v=aQvGIIdgFDM>,
     /// which is a 5 minute error message, instead of the requested video when using an outdated
     /// Android client.
-    #[error("got wrong result from YT: {0}")]
+    #[error("wrong result from YT: {0}")]
     WrongResult(String),
     /// YouTube redirects you to another content ID
     ///
@@ -64,7 +69,7 @@ pub enum ExtractionError {
     /// Warnings occurred during deserialization/mapping
     ///
     /// This error is only returned in strict mode.
-    #[error("Warnings during deserialization/mapping")]
+    #[error("warnings during deserialization/mapping")]
     DeserializationWarnings,
 }
 

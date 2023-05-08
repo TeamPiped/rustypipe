@@ -1106,17 +1106,20 @@ impl RustyPipeQuery {
 
         if status.is_client_error() || status.is_server_error() {
             let error_msg = serde_json::from_str::<response::ErrorResponse>(&resp_str)
-                .map(|r| r.error.message)
-                .unwrap_or_default();
+                .map(|r| Cow::from(r.error.message));
 
             return match status {
-                StatusCode::NOT_FOUND => Err(Error::Extraction(
-                    ExtractionError::ContentUnavailable(error_msg.into()),
-                )),
+                StatusCode::NOT_FOUND => Err(Error::Extraction(ExtractionError::NotFound {
+                    id: id.to_owned(),
+                    msg: error_msg.unwrap_or("404".into()),
+                })),
                 StatusCode::BAD_REQUEST => Err(Error::Extraction(ExtractionError::BadRequest(
-                    error_msg.into(),
+                    error_msg.unwrap_or_default(),
                 ))),
-                _ => Err(Error::HttpStatus(status.as_u16(), error_msg.into())),
+                _ => Err(Error::HttpStatus(
+                    status.as_u16(),
+                    error_msg.unwrap_or_default(),
+                )),
             };
         }
 
