@@ -23,14 +23,14 @@ mod video_details;
 mod channel_rss;
 
 use std::sync::Arc;
-use std::{borrow::Cow, fmt::Debug};
+use std::{borrow::Cow, fmt::Debug, time::Duration};
 
 use once_cell::sync::Lazy;
 use rand::Rng;
 use regex::Regex;
 use reqwest::{header, Client, ClientBuilder, Request, RequestBuilder, Response, StatusCode};
 use serde::{de::DeserializeOwned, Deserialize, Serialize};
-use time::{Duration, OffsetDateTime};
+use time::OffsetDateTime;
 use tokio::sync::RwLock;
 
 use crate::{
@@ -241,13 +241,28 @@ struct RustyPipeOpts {
 
 /// Builder to construct a new RustyPipe client
 pub struct RustyPipeBuilder {
-    storage: Option<Box<dyn CacheStorage>>,
-    no_storage: bool,
-    reporter: Option<Box<dyn Reporter>>,
-    no_reporter: bool,
+    storage: DefaultOpt<Box<dyn CacheStorage>>,
+    reporter: DefaultOpt<Box<dyn Reporter>>,
     n_http_retries: u32,
+    timeout: DefaultOpt<Duration>,
     user_agent: Option<String>,
     default_opts: RustyPipeOpts,
+}
+
+enum DefaultOpt<T> {
+    Some(T),
+    None,
+    Default,
+}
+
+impl<T> DefaultOpt<T> {
+    fn or_default<F: FnOnce() -> T>(self, f: F) -> Option<T> {
+        match self {
+            DefaultOpt::Some(x) => Some(x),
+            DefaultOpt::None => None,
+            DefaultOpt::Default => Some(f()),
+        }
+    }
 }
 
 /// RustyPipe query object
@@ -308,7 +323,7 @@ impl<T> CacheEntry<T> {
     fn get(&self) -> Option<&T> {
         match self {
             CacheEntry::Some { last_update, data } => {
-                if last_update < &(OffsetDateTime::now_utc() - Duration::hours(24)) {
+                if last_update < &(OffsetDateTime::now_utc() - time::Duration::hours(24)) {
                     None
                 } else {
                     Some(data)
@@ -341,10 +356,9 @@ impl RustyPipeBuilder {
     pub fn new() -> Self {
         RustyPipeBuilder {
             default_opts: RustyPipeOpts::default(),
-            storage: None,
-            no_storage: false,
-            reporter: None,
-            no_reporter: false,
+            storage: DefaultOpt::Default,
+            reporter: DefaultOpt::Default,
+            timeout: DefaultOpt::Default,
             n_http_retries: 2,
             user_agent: None,
         }
@@ -352,15 +366,19 @@ impl RustyPipeBuilder {
 
     /// Returns a new, configured RustyPipe instance.
     pub fn build(self) -> RustyPipe {
-        let http = ClientBuilder::new()
+        let mut client_builder = ClientBuilder::new()
             .user_agent(self.user_agent.unwrap_or_else(|| DEFAULT_UA.to_owned()))
             .gzip(true)
             .brotli(true)
-            .redirect(reqwest::redirect::Policy::none())
-            .build()
-            .unwrap();
+            .redirect(reqwest::redirect::Policy::none());
 
-        let cdata = if let Some(storage) = &self.storage {
+        if let Some(timeout) = self.timeout.or_default(|| Duration::from_secs(10)) {
+            client_builder = client_builder.timeout(timeout);
+        }
+
+        let http = client_builder.build().unwrap();
+
+        let cdata = if let DefaultOpt::Some(storage) = &self.storage {
             if let Some(data) = storage.read() {
                 match serde_json::from_str::<CacheData>(&data) {
                     Ok(data) => data,
@@ -379,22 +397,8 @@ impl RustyPipeBuilder {
         RustyPipe {
             inner: Arc::new(RustyPipeRef {
                 http,
-                storage: if self.no_storage {
-                    None
-                } else {
-                    Some(
-                        self.storage
-                            .unwrap_or_else(|| Box::<FileStorage>::default()),
-                    )
-                },
-                reporter: if self.no_reporter {
-                    None
-                } else {
-                    Some(
-                        self.reporter
-                            .unwrap_or_else(|| Box::<FileReporter>::default()),
-                    )
-                },
+                storage: self.storage.or_default(|| Box::<FileStorage>::default()),
+                reporter: self.reporter.or_default(|| Box::<FileReporter>::default()),
                 n_http_retries: self.n_http_retries,
                 consent_cookie: format!(
                     "{}={}{}",
@@ -418,15 +422,13 @@ impl RustyPipeBuilder {
     ///
     /// **Default value**: [`FileStorage`] in `rustypipe_cache.json`
     pub fn storage(mut self, storage: Box<dyn CacheStorage>) -> Self {
-        self.storage = Some(storage);
-        self.no_storage = false;
+        self.storage = DefaultOpt::Some(storage);
         self
     }
 
     /// Disable cache storage
     pub fn no_storage(mut self) -> Self {
-        self.storage = None;
-        self.no_storage = true;
+        self.storage = DefaultOpt::None;
         self
     }
 
@@ -434,15 +436,30 @@ impl RustyPipeBuilder {
     ///
     ///  **Default value**: [`FileReporter`] creating reports in `./rustypipe_reports`
     pub fn reporter(mut self, reporter: Box<dyn Reporter>) -> Self {
-        self.reporter = Some(reporter);
-        self.no_reporter = false;
+        self.reporter = DefaultOpt::Some(reporter);
         self
     }
 
     /// Disable the creation of report files in case of errors and warnings.
     pub fn no_reporter(mut self) -> Self {
-        self.reporter = None;
-        self.no_reporter = true;
+        self.reporter = DefaultOpt::None;
+        self
+    }
+
+    /// Enable a HTTP request timeout
+    ///
+    /// The timeout is applied from when the request starts connecting until the
+    /// response body has finished.
+    ///
+    ///  **Default value**: 10s
+    pub fn timeout(mut self, timeout: Duration) -> Self {
+        self.timeout = DefaultOpt::Some(timeout);
+        self
+    }
+
+    /// Disable the HTTP request timeout.
+    pub fn no_timeout(mut self) -> Self {
+        self.timeout = DefaultOpt::None;
         self
     }
 
@@ -576,7 +593,7 @@ impl RustyPipe {
 
             let ms = util::retry_delay(n, 1000, 60000, 3);
             log::warn!("Retry attempt #{}. Error: {}. Waiting {} ms", n, emsg, ms);
-            tokio::time::sleep(std::time::Duration::from_millis(ms.into())).await;
+            tokio::time::sleep(Duration::from_millis(ms.into())).await;
 
             last_res = Some(res);
         }
