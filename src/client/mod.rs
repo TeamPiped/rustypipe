@@ -22,6 +22,7 @@ mod video_details;
 #[cfg_attr(docsrs, doc(cfg(feature = "rss")))]
 mod channel_rss;
 
+use std::path::PathBuf;
 use std::sync::Arc;
 use std::{borrow::Cow, fmt::Debug, time::Duration};
 
@@ -34,11 +35,11 @@ use time::OffsetDateTime;
 use tokio::sync::RwLock;
 
 use crate::{
-    cache::{CacheStorage, FileStorage},
+    cache::{CacheStorage, FileStorage, DEFAULT_CACHE_FILE},
     deobfuscate::DeobfData,
     error::{Error, ExtractionError},
     param::{Country, Language},
-    report::{FileReporter, Level, Report, Reporter},
+    report::{FileReporter, Level, Report, Reporter, DEFAULT_REPORT_DIR},
     serializer::MapResult,
     util,
 };
@@ -247,6 +248,7 @@ pub struct RustyPipeBuilder {
     timeout: DefaultOpt<Duration>,
     user_agent: Option<String>,
     default_opts: RustyPipeOpts,
+    storage_dir: Option<PathBuf>,
 }
 
 enum DefaultOpt<T> {
@@ -361,6 +363,7 @@ impl RustyPipeBuilder {
             timeout: DefaultOpt::Default,
             n_http_retries: 2,
             user_agent: None,
+            storage_dir: None,
         }
     }
 
@@ -378,7 +381,15 @@ impl RustyPipeBuilder {
 
         let http = client_builder.build().unwrap();
 
-        let cdata = if let DefaultOpt::Some(storage) = &self.storage {
+        let storage_dir = self.storage_dir.unwrap_or_default();
+
+        let storage = self.storage.or_default(|| {
+            let mut cache_file = storage_dir.clone();
+            cache_file.push(DEFAULT_CACHE_FILE);
+            Box::new(FileStorage::new(cache_file))
+        });
+
+        let cdata = if let Some(storage) = &storage {
             if let Some(data) = storage.read() {
                 match serde_json::from_str::<CacheData>(&data) {
                     Ok(data) => data,
@@ -397,8 +408,12 @@ impl RustyPipeBuilder {
         RustyPipe {
             inner: Arc::new(RustyPipeRef {
                 http,
-                storage: self.storage.or_default(|| Box::<FileStorage>::default()),
-                reporter: self.reporter.or_default(|| Box::<FileReporter>::default()),
+                storage,
+                reporter: self.reporter.or_default(|| {
+                    let mut report_dir = storage_dir;
+                    report_dir.push(DEFAULT_REPORT_DIR);
+                    Box::new(FileReporter::new(report_dir))
+                }),
                 n_http_retries: self.n_http_retries,
                 consent_cookie: format!(
                     "{}={}{}",
@@ -414,6 +429,16 @@ impl RustyPipeBuilder {
                 default_opts: self.default_opts,
             }),
         }
+    }
+
+    /// Set the default directory to store the cachefile and reports.
+    ///
+    /// This option has no effect if the storage backend or reporter are manually set or disabled.
+    ///
+    /// **Default value**: current working directory
+    pub fn storage_dir<P: Into<PathBuf>>(mut self, path: P) -> Self {
+        self.storage_dir = Some(path.into());
+        self
     }
 
     /// Add a [`CacheStorage`] backend for persisting cached information

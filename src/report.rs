@@ -29,6 +29,8 @@ use time::{macros::format_description, OffsetDateTime};
 
 use crate::{deobfuscate::DeobfData, util};
 
+pub(crate) const DEFAULT_REPORT_DIR: &str = "rustypipe_reports";
+
 const FILENAME_FORMAT: &[time::format_description::FormatItem] =
     format_description!("[year]-[month]-[day]_[hour]-[minute]-[second]");
 
@@ -137,7 +139,7 @@ impl FileReporter {
 impl Default for FileReporter {
     fn default() -> Self {
         Self {
-            path: Path::new("rustypipe_reports").to_path_buf(),
+            path: Path::new(DEFAULT_REPORT_DIR).to_path_buf(),
         }
     }
 }

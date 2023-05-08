@@ -7,31 +7,11 @@ edition = "2021"
 default = ["rustls-tls-native-roots"]
 
 # Reqwest TLS options
-native-tls = [
-    "reqwest/native-tls",
-    "rustypipe/native-tls",
-    "rustypipe-downloader/native-tls",
-]
-native-tls-alpn = [
-    "reqwest/native-tls-alpn",
-    "rustypipe/native-tls-alpn",
-    "rustypipe-downloader/native-tls-alpn",
-]
-native-tls-vendored = [
-    "reqwest/native-tls-vendored",
-    "rustypipe/native-tls-vendored",
-    "rustypipe-downloader/native-tls-vendored",
-]
-rustls-tls-webpki-roots = [
-    "reqwest/rustls-tls-webpki-roots",
-    "rustypipe/rustls-tls-webpki-roots",
-    "rustypipe-downloader/rustls-tls-webpki-roots",
-]
-rustls-tls-native-roots = [
-    "reqwest/rustls-tls-native-roots",
-    "rustypipe/rustls-tls-native-roots",
-    "rustypipe-downloader/rustls-tls-native-roots",
-]
+native-tls = ["reqwest/native-tls", "rustypipe/native-tls", "rustypipe-downloader/native-tls"]
+native-tls-alpn = ["reqwest/native-tls-alpn", "rustypipe/native-tls-alpn", "rustypipe-downloader/native-tls-alpn"]
+native-tls-vendored = ["reqwest/native-tls-vendored", "rustypipe/native-tls-vendored", "rustypipe-downloader/native-tls-vendored"]
+rustls-tls-webpki-roots = ["reqwest/rustls-tls-webpki-roots", "rustypipe/rustls-tls-webpki-roots", "rustypipe-downloader/rustls-tls-webpki-roots"]
+rustls-tls-native-roots = ["reqwest/rustls-tls-native-roots", "rustypipe/rustls-tls-native-roots", "rustypipe-downloader/rustls-tls-native-roots"]
 
 [dependencies]
 rustypipe = { path = "../", default-features = false }
@@ -46,3 +26,4 @@ env_logger = "0.10.0"
 serde = "1.0"
 serde_json = "1.0.82"
 serde_yaml = "0.9.19"
+dirs = "5.0.0"

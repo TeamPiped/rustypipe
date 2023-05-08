@@ -7,6 +7,8 @@ use std::{
 
 use log::error;
 
+pub(crate) const DEFAULT_CACHE_FILE: &str = "rustypipe_cache.json";
+
 /// RustyPipe has to cache some information fetched from YouTube: specifically
 /// the client versions and the JavaScript code used to deobfuscate the stream URLs.
 ///
@@ -42,7 +44,7 @@ impl FileStorage {
 impl Default for FileStorage {
     fn default() -> Self {
         Self {
-            path: Path::new("rustypipe_cache.json").into(),
+            path: Path::new(DEFAULT_CACHE_FILE).into(),
         }
     }
 }

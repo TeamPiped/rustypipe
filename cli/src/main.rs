@@ -384,7 +384,11 @@ async fn main() {
 
     let cli = Cli::parse();
 
-    let rp = RustyPipe::new();
+    let mut storage_dir = dirs::data_dir().expect("no data dir");
+    storage_dir.push("rustypipe");
+    _ = std::fs::create_dir(&storage_dir);
+
+    let rp = RustyPipe::builder().storage_dir(storage_dir).build();
 
     match cli.command {
         Commands::Download {
