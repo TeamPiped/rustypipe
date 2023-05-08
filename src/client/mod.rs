@@ -389,21 +389,17 @@ impl RustyPipeBuilder {
             Box::new(FileStorage::new(cache_file))
         });
 
-        let cdata = if let Some(storage) = &storage {
-            if let Some(data) = storage.read() {
-                match serde_json::from_str::<CacheData>(&data) {
-                    Ok(data) => data,
-                    Err(e) => {
-                        log::error!("Could not deserialize cache. Error: {}", e);
-                        CacheData::default()
-                    }
+        let cdata = storage
+            .as_ref()
+            .and_then(|storage| storage.read())
+            .and_then(|data| match serde_json::from_str::<CacheData>(&data) {
+                Ok(data) => Some(data),
+                Err(e) => {
+                    log::error!("Could not deserialize cache. Error: {}", e);
+                    None
                 }
-            } else {
-                CacheData::default()
-            }
-        } else {
-            CacheData::default()
-        };
+            })
+            .unwrap_or_default();
 
         RustyPipe {
             inner: Arc::new(RustyPipeRef {
