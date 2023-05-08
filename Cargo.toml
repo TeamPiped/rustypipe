@@ -17,8 +17,11 @@ default = ["default-tls"]
 
 rss = ["quick-xml"]
 
-# Reqwest TLS
+# Reqwest TLS options
 default-tls = ["reqwest/default-tls"]
+native-tls = ["reqwest/native-tls"]
+native-tls-alpn = ["reqwest/native-tls-alpn"]
+native-tls-vendored = ["reqwest/native-tls-vendored"]
 rustls-tls-webpki-roots = ["reqwest/rustls-tls-webpki-roots"]
 rustls-tls-native-roots = ["reqwest/rustls-tls-native-roots"]
 

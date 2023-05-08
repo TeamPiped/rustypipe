@@ -6,5 +6,5 @@ pipeline:
     commands:
       - rustup component add rustfmt clippy
       - cargo fmt --all --check
-      - cargo clippy --all --all-features -- -D warnings
-      - cargo test --workspace
+      - cargo clippy --all --features=rss -- -D warnings
+      - cargo test --features=rss --workspace

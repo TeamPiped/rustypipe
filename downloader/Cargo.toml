@@ -4,8 +4,16 @@ version = "0.1.0"
 edition = "2021"
 
 [features]
-# Reqwest TLS
+default = ["default-tls"]
+
+# Reqwest TLS options
 default-tls = ["reqwest/default-tls", "rustypipe/default-tls"]
+native-tls = ["reqwest/native-tls", "rustypipe/native-tls"]
+native-tls-alpn = ["reqwest/native-tls-alpn", "rustypipe/native-tls-alpn"]
+native-tls-vendored = [
+    "reqwest/native-tls-vendored",
+    "rustypipe/native-tls-vendored",
+]
 rustls-tls-webpki-roots = [
     "reqwest/rustls-tls-webpki-roots",
     "rustypipe/rustls-tls-webpki-roots",

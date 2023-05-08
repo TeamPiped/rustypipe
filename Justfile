@@ -1,18 +1,18 @@
 test:
-    cargo test --all-features
+    cargo test --features=rss
 
 unittest:
-    cargo test --all-features --lib
+    cargo test --features=rss --lib
 
 testyt:
-    cargo test --all-features --test youtube
+    cargo test --features=rss --test youtube
 
 testyt10:
     #!/usr/bin/env bash
     set -e
     for i in {1..10}; do \
         echo "---TEST RUN $i---"; \
-        cargo test --all-features --test youtube; \
+        cargo test --features=rss --test youtube; \
     done
 
 testintl:

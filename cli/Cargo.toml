@@ -3,16 +3,40 @@ name = "rustypipe-cli"
 version = "0.1.0"
 edition = "2021"
 
+[features]
+default = ["rustls-tls-native-roots"]
+
+# Reqwest TLS options
+native-tls = [
+    "reqwest/native-tls",
+    "rustypipe/native-tls",
+    "rustypipe-downloader/native-tls",
+]
+native-tls-alpn = [
+    "reqwest/native-tls-alpn",
+    "rustypipe/native-tls-alpn",
+    "rustypipe-downloader/native-tls-alpn",
+]
+native-tls-vendored = [
+    "reqwest/native-tls-vendored",
+    "rustypipe/native-tls-vendored",
+    "rustypipe-downloader/native-tls-vendored",
+]
+rustls-tls-webpki-roots = [
+    "reqwest/rustls-tls-webpki-roots",
+    "rustypipe/rustls-tls-webpki-roots",
+    "rustypipe-downloader/rustls-tls-webpki-roots",
+]
+rustls-tls-native-roots = [
+    "reqwest/rustls-tls-native-roots",
+    "rustypipe/rustls-tls-native-roots",
+    "rustypipe-downloader/rustls-tls-native-roots",
+]
+
 [dependencies]
-rustypipe = { path = "../", default-features = false, features = [
-    "rustls-tls-native-roots",
-] }
-rustypipe-downloader = { path = "../downloader", default-features = false, features = [
-    "rustls-tls-native-roots",
-] }
-reqwest = { version = "0.11.11", default_features = false, features = [
-    "rustls-tls-native-roots",
-] }
+rustypipe = { path = "../", default-features = false }
+rustypipe-downloader = { path = "../downloader", default-features = false }
+reqwest = { version = "0.11.11", default_features = false }
 tokio = { version = "1.20.0", features = ["macros", "rt-multi-thread"] }
 indicatif = "0.17.0"
 futures = "0.3.21"
