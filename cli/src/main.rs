@@ -1,4 +1,4 @@
-use std::path::PathBuf;
+use std::{path::PathBuf, time::Duration};
 
 use anyhow::{Context, Result};
 use clap::{Parser, Subcommand, ValueEnum};
@@ -300,6 +300,7 @@ async fn download_video(
         .user_agent("Mozilla/5.0 (Windows NT 10.0; Win64; rv:107.0) Gecko/20100101 Firefox/107.0")
         .gzip(true)
         .brotli(true)
+        .timeout(Duration::from_secs(10))
         .build()
         .expect("unable to build the HTTP client");
 
@@ -334,6 +335,7 @@ async fn download_videos(
         .user_agent("Mozilla/5.0 (Windows NT 10.0; Win64; rv:107.0) Gecko/20100101 Firefox/107.0")
         .gzip(true)
         .brotli(true)
+        .timeout(Duration::from_secs(10))
         .build()
         .expect("unable to build the HTTP client");
 
