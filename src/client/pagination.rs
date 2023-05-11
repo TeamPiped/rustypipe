@@ -102,8 +102,12 @@ impl MapResponse<Paginator<YouTubeItem>> for response::Continuation {
             .and_then(|actions| {
                 actions
                     .into_iter()
-                    .next()
                     .map(|action| action.append_continuation_items_action.continuation_items)
+                    .reduce(|mut acc, mut items| {
+                        acc.c.append(&mut items.c);
+                        acc.warnings.append(&mut items.warnings);
+                        acc
+                    })
             })
             .or_else(|| {
                 self.continuation_contents

@@ -1,5 +1,3 @@
-use once_cell::sync::Lazy;
-use regex::Regex;
 use serde::Deserialize;
 use serde_with::{
     json::JsonString, rust::deserialize_ignore_any, serde_as, DefaultOnError, VecSkipError,
@@ -430,11 +428,17 @@ impl<T> YouTubeListMapper<T> {
     }
 
     fn map_video(&mut self, video: VideoRenderer) -> VideoItem {
-        let mut tn_overlays = video.thumbnail_overlays;
+        let is_live = video.thumbnail_overlays.is_live() || video.badges.is_live();
+        let is_short = video.thumbnail_overlays.is_short();
+
         let length_text = video.length_text.or_else(|| {
-            tn_overlays
-                .try_swap_remove(0)
-                .map(|overlay| overlay.thumbnail_overlay_time_status_renderer.text)
+            video
+                .thumbnail_overlays
+                .into_iter()
+                .find(|ol| {
+                    ol.thumbnail_overlay_time_status_renderer.style == TimeOverlayStyle::Default
+                })
+                .map(|ol| ol.thumbnail_overlay_time_status_renderer.text)
         });
 
         VideoItem {
@@ -472,8 +476,8 @@ impl<T> YouTubeListMapper<T> {
             view_count: video
                 .view_count_text
                 .map(|txt| util::parse_numeric(&txt).unwrap_or_default()),
-            is_live: tn_overlays.is_live() || video.badges.is_live(),
-            is_short: tn_overlays.is_short(),
+            is_live,
+            is_short,
             is_upcoming: video.upcoming_event_data.is_some(),
             short_description: video
                 .detailed_metadata_snippets
@@ -483,9 +487,6 @@ impl<T> YouTubeListMapper<T> {
     }
 
     fn map_short_video(&mut self, video: ReelItemRenderer, lang: Language) -> VideoItem {
-        static ACCESSIBILITY_SEP_REGEX: Lazy<Regex> =
-            Lazy::new(|| Regex::new(" [-\u{2013}] ").unwrap());
-
         let pub_date_txt = video.navigation_endpoint.map(|n| {
             n.reel_watch_endpoint
                 .overlay
@@ -499,7 +500,7 @@ impl<T> YouTubeListMapper<T> {
             id: video.video_id,
             name: video.headline,
             length: video.accessibility.and_then(|acc| {
-                ACCESSIBILITY_SEP_REGEX.split(&acc).nth(1).and_then(|s| {
+                acc.rsplit(" - ").nth(1).and_then(|s| {
                     timeago::parse_video_duration_or_warn(self.lang, s, &mut self.warnings)
                 })
             }),

@@ -492,8 +492,6 @@ fn map_audio_stream(
     deobf: &Deobfuscator,
     last_nsig: &mut [String; 2],
 ) -> MapResult<Option<AudioStream>> {
-    static LANG_PATTERN: Lazy<Regex> = Lazy::new(|| Regex::new(r#"^([a-z]{2,3})\."#).unwrap());
-
     let (mtype, codecs) = match parse_mime(&f.mime_type) {
         Some(x) => x,
         None => {
@@ -535,18 +533,12 @@ fn map_audio_stream(
                 loudness_db: f.loudness_db,
                 throttled,
                 track: match f.audio_track {
-                    Some(t) => {
-                        let lang = LANG_PATTERN
-                            .captures(&t.id)
-                            .map(|m| m.get(1).unwrap().as_str().to_owned());
-
-                        Some(AudioTrack {
-                            id: t.id,
-                            lang,
-                            lang_name: t.display_name,
-                            is_default: t.audio_is_default,
-                        })
-                    }
+                    Some(t) => Some(AudioTrack {
+                        lang: t.id.split('.').next().map(str::to_owned),
+                        id: t.id,
+                        lang_name: t.display_name,
+                        is_default: t.audio_is_default,
+                    }),
                     None => None,
                 },
             }),

@@ -27,7 +27,7 @@ impl RustyPipeQuery {
     ) -> Result<MusicArtist, Error> {
         let artist_id = artist_id.as_ref();
         let visitor_data = match all_albums {
-            true => Some(self.get_ytm_visitor_data().await?),
+            true => Some(self.get_visitor_data().await?),
             false => None,
         };
 

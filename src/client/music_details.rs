@@ -109,7 +109,7 @@ impl RustyPipeQuery {
         radio_id: S,
     ) -> Result<Paginator<TrackItem>, Error> {
         let radio_id = radio_id.as_ref();
-        let visitor_data = self.get_ytm_visitor_data().await?;
+        let visitor_data = self.get_visitor_data().await?;
         let context = self
             .get_context(ClientType::DesktopMusic, true, Some(&visitor_data))
             .await;

@@ -83,6 +83,18 @@ pub fn generate_content_playback_nonce() -> String {
     random_string(CONTENT_PLAYBACK_NONCE_ALPHABET, 16)
 }
 
+pub fn random_uuid() -> String {
+    let mut rng = rand::thread_rng();
+    format!(
+        "{:08x}-{:04x}-{:04x}-{:04x}-{:012x}",
+        rng.gen::<u32>(),
+        rng.gen::<u16>(),
+        rng.gen::<u16>(),
+        rng.gen::<u16>(),
+        rng.gen::<u64>() & 0xffffffffffff,
+    )
+}
+
 /// Split an URL into its base string and parameter map
 ///
 /// Example:

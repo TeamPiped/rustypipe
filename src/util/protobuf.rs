@@ -45,6 +45,13 @@ impl ProtoBuilder {
         self._varint(val);
     }
 
+    /// Write a string field
+    pub fn string(&mut self, field: u32, string: &str) {
+        self._field(field, 2);
+        self._varint(string.len() as u64);
+        self.bytes.extend_from_slice(string.as_bytes());
+    }
+
     /// Write an embedded message
     ///
     /// Requires passing another [`ProtoBuilder`] with the embedded message.
@@ -52,6 +59,12 @@ impl ProtoBuilder {
         self._field(field, 2);
         self._varint(pb.bytes.len() as u64);
         self.bytes.append(&mut pb.bytes);
+    }
+
+    /// Base64 + urlencode the protobuf data
+    pub fn to_base64(&self) -> String {
+        let b64 = super::b64_encode(&self.bytes);
+        urlencoding::encode(&b64).to_string()
     }
 }
 
@@ -123,11 +136,6 @@ mod tests {
     use crate::util;
 
     use super::*;
-
-    // #[test]
-    // fn t_parse_varint() {
-
-    // }
 
     #[test]
     fn t_parse_proto() {

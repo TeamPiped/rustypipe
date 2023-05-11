@@ -4,7 +4,7 @@ use std::str::FromStr;
 
 use rstest::{fixture, rstest};
 use rustypipe::model::paginator::ContinuationEndpoint;
-use rustypipe::param::Language;
+use rustypipe::param::{ChannelOrder, ChannelVideoTab, Language};
 use rustypipe::validate;
 use time::macros::date;
 use time::OffsetDateTime;
@@ -261,15 +261,10 @@ fn get_player(
             let langs = player_data
                 .audio_streams
                 .iter()
-                .filter_map(|stream| {
-                    stream
-                        .track
-                        .as_ref()
-                        .map(|t| t.lang.as_ref().unwrap().to_owned())
-                })
+                .filter_map(|stream| stream.track.as_ref().map(|t| t.lang.as_deref().unwrap()))
                 .collect::<HashSet<_>>();
 
-            for l in ["en", "es", "fr", "pt", "ru"] {
+            for l in ["en-US", "es", "fr", "pt", "ru"] {
                 assert!(langs.contains(l), "missing lang: {l}");
             }
         }
@@ -779,8 +774,11 @@ fn channel_videos(rp: RustyPipe) {
 
 #[rstest]
 fn channel_shorts(rp: RustyPipe) {
-    let channel =
-        tokio_test::block_on(rp.query().channel_shorts("UCh8gHdtzO2tXd593_bjErWg")).unwrap();
+    let channel = tokio_test::block_on(
+        rp.query()
+            .channel_videos_tab("UCh8gHdtzO2tXd593_bjErWg", ChannelVideoTab::Shorts),
+    )
+    .unwrap();
 
     // dbg!(&channel);
     assert_eq!(channel.id, "UCh8gHdtzO2tXd593_bjErWg");
@@ -809,8 +807,11 @@ fn channel_shorts(rp: RustyPipe) {
 
 #[rstest]
 fn channel_livestreams(rp: RustyPipe) {
-    let channel =
-        tokio_test::block_on(rp.query().channel_livestreams("UC2DjFE7Xf11URZqWBigcVOQ")).unwrap();
+    let channel = tokio_test::block_on(
+        rp.query()
+            .channel_videos_tab("UC2DjFE7Xf11URZqWBigcVOQ", ChannelVideoTab::Live),
+    )
+    .unwrap();
 
     // dbg!(&channel);
     assert_channel_eevblog(&channel);
@@ -956,6 +957,63 @@ fn channel_more(
 }
 
 #[rstest]
+#[case::videos("UCcdwLMPsaU2ezNSJU1nFoBQ", ChannelVideoTab::Videos, "XqZsoesa55w")]
+#[case::shorts("UCcdwLMPsaU2ezNSJU1nFoBQ", ChannelVideoTab::Shorts, "k91vRvXGwHs")]
+#[case::live("UCvqRdlKsE5Q8mf8YXbdIJLw", ChannelVideoTab::Live, "ojes5ULOqhc")]
+fn channel_order(
+    #[case] id: &str,
+    #[case] tab: ChannelVideoTab,
+    #[case] most_popular: &str,
+    rp: RustyPipe,
+) {
+    let latest = tokio_test::block_on(rp.query().channel_videos_tab_order(
+        id,
+        tab,
+        ChannelOrder::Latest,
+    ))
+    .unwrap();
+    // Upload dates should be in descending order
+    if tab != ChannelVideoTab::Shorts {
+        let mut latest_items = latest.items.iter().peekable();
+        while let (Some(v), Some(next_v)) = (latest_items.next(), latest_items.peek()) {
+            if !v.is_upcoming && !v.is_live && !next_v.is_upcoming && !next_v.is_live {
+                assert_gte(
+                    v.publish_date.unwrap(),
+                    next_v.publish_date.unwrap(),
+                    "latest video date",
+                );
+            }
+        }
+    }
+    assert_next(latest, rp.query(), 15, 2);
+
+    let popular = tokio_test::block_on(rp.query().channel_videos_tab_order(
+        id,
+        tab,
+        ChannelOrder::Popular,
+    ))
+    .unwrap();
+    // Most popular video should be in top 5
+    assert!(
+        popular.items.iter().take(5).any(|v| v.id == most_popular),
+        "most popular video {most_popular} not found"
+    );
+
+    // View counts should be in descending order
+    if tab != ChannelVideoTab::Shorts {
+        let mut popular_items = popular.items.iter().peekable();
+        while let (Some(v), Some(next_v)) = (popular_items.next(), popular_items.peek()) {
+            assert_gte(
+                v.view_count.unwrap(),
+                next_v.view_count.unwrap(),
+                "most popular view count",
+            );
+        }
+    }
+    assert_next(popular, rp.query(), 15, 2);
+}
+
+#[rstest]
 #[case::not_exist("UCOpNcN46UbXVtpKMrmU4Abx")]
 #[case::gaming("UCOpNcN46UbXVtpKMrmU4Abg")]
 #[case::movies("UCuJcl0Ju-gPDoksRjK1ya-w")]
@@ -970,6 +1028,19 @@ fn channel_not_found(#[case] id: &str, rp: RustyPipe) {
         matches!(err, Error::Extraction(ExtractionError::NotFound { .. })),
         "got: {err}"
     );
+}
+
+#[rstest]
+#[case::shorts(ChannelVideoTab::Shorts)]
+#[case::live(ChannelVideoTab::Live)]
+fn channel_tab_not_found(#[case] tab: ChannelVideoTab, rp: RustyPipe) {
+    let channel = tokio_test::block_on(
+        rp.query()
+            .channel_videos_tab("UCGiJh0NZ52wRhYKYnuZI08Q", tab),
+    )
+    .unwrap();
+
+    assert!(channel.content.is_empty(), "got: {:?}", channel.content);
 }
 
 //#CHANNEL_RSS
@@ -2240,7 +2311,7 @@ fn assert_approx(left: f64, right: f64) {
 
 /// Assert that number A is greater than or equal to number B
 fn assert_gte<T: PartialOrd + Display>(a: T, b: T, msg: &str) {
-    assert!(a >= b, "expected {b} {msg}, got {a}");
+    assert!(a >= b, "expected >= {b} {msg}, got {a}");
 }
 
 /// Assert that the paginator produces at least n pages

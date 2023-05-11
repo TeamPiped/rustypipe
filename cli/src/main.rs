@@ -8,7 +8,7 @@ use reqwest::{Client, ClientBuilder};
 use rustypipe::{
     client::RustyPipe,
     model::{UrlTarget, VideoId},
-    param::{search_filter, StreamFilter},
+    param::{search_filter, ChannelVideoTab, StreamFilter},
 };
 use serde::Serialize;
 
@@ -113,6 +113,7 @@ enum ChannelTab {
     Videos,
     Shorts,
     Live,
+    Playlists,
     Info,
 }
 
@@ -564,32 +565,25 @@ async fn main() {
                         print_data(&artist, format, pretty);
                     } else {
                         match tab {
-                            ChannelTab::Videos => {
-                                let mut channel = rp.query().channel_videos(&id).await.unwrap();
-                                channel
-                                    .content
-                                    .extend_limit(rp.query(), limit)
-                                    .await
-                                    .unwrap();
-                                print_data(&channel, format, pretty);
-                            }
-                            ChannelTab::Shorts => {
-                                let mut channel = rp.query().channel_shorts(&id).await.unwrap();
-                                channel
-                                    .content
-                                    .extend_limit(rp.query(), limit)
-                                    .await
-                                    .unwrap();
-                                print_data(&channel, format, pretty);
-                            }
-                            ChannelTab::Live => {
+                            ChannelTab::Videos | ChannelTab::Shorts | ChannelTab::Live => {
+                                let video_tab = match tab {
+                                    ChannelTab::Videos => ChannelVideoTab::Videos,
+                                    ChannelTab::Shorts => ChannelVideoTab::Shorts,
+                                    ChannelTab::Live => ChannelVideoTab::Live,
+                                    _ => unreachable!(),
+                                };
                                 let mut channel =
-                                    rp.query().channel_livestreams(&id).await.unwrap();
+                                    rp.query().channel_videos_tab(&id, video_tab).await.unwrap();
+
                                 channel
                                     .content
                                     .extend_limit(rp.query(), limit)
                                     .await
                                     .unwrap();
+                                print_data(&channel, format, pretty);
+                            }
+                            ChannelTab::Playlists => {
+                                let channel = rp.query().channel_playlists(&id).await.unwrap();
                                 print_data(&channel, format, pretty);
                             }
                             ChannelTab::Info => {

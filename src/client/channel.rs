@@ -1,14 +1,15 @@
-use std::borrow::Cow;
-
 use serde::Serialize;
 use url::Url;
 
 use crate::{
     error::{Error, ExtractionError},
-    model::{paginator::Paginator, Channel, ChannelInfo, PlaylistItem, VideoItem, YouTubeItem},
-    param::Language,
+    model::{
+        paginator::{ContinuationEndpoint, Paginator},
+        Channel, ChannelInfo, PlaylistItem, VideoItem, YouTubeItem,
+    },
+    param::{ChannelOrder, ChannelVideoTab, Language},
     serializer::MapResult,
-    util,
+    util::{self, ProtoBuilder},
 };
 
 use super::{response, ClientType, MapResponse, RustyPipeQuery, YTContext};
@@ -18,13 +19,13 @@ use super::{response, ClientType, MapResponse, RustyPipeQuery, YTContext};
 struct QChannel<'a> {
     context: YTContext<'a>,
     browse_id: &'a str,
-    params: Params,
+    params: ChannelTab,
     #[serde(skip_serializing_if = "Option::is_none")]
     query: Option<&'a str>,
 }
 
 #[derive(Debug, Serialize)]
-enum Params {
+enum ChannelTab {
     #[serde(rename = "EgZ2aWRlb3PyBgQKAjoA")]
     Videos,
     #[serde(rename = "EgZzaG9ydHPyBgUKA5oBAA%3D%3D")]
@@ -39,11 +40,21 @@ enum Params {
     Search,
 }
 
+impl From<ChannelVideoTab> for ChannelTab {
+    fn from(value: ChannelVideoTab) -> Self {
+        match value {
+            ChannelVideoTab::Videos => Self::Videos,
+            ChannelVideoTab::Shorts => Self::Shorts,
+            ChannelVideoTab::Live => Self::Live,
+        }
+    }
+}
+
 impl RustyPipeQuery {
     async fn _channel_videos<S: AsRef<str>>(
         &self,
         channel_id: S,
-        params: Params,
+        params: ChannelTab,
         query: Option<&str>,
         operation: &str,
     ) -> Result<Channel<Paginator<VideoItem>>, Error> {
@@ -71,26 +82,52 @@ impl RustyPipeQuery {
         &self,
         channel_id: S,
     ) -> Result<Channel<Paginator<VideoItem>>, Error> {
-        self._channel_videos(channel_id, Params::Videos, None, "channel_videos")
+        self._channel_videos(channel_id, ChannelTab::Videos, None, "channel_videos")
             .await
     }
 
-    /// Get the short videos from a YouTube channel
-    pub async fn channel_shorts<S: AsRef<str>>(
+    /// Get a ordered list of videos from a YouTube channel
+    ///
+    /// This function does not return channel metadata.
+    pub async fn channel_videos_order<S: AsRef<str>>(
         &self,
         channel_id: S,
-    ) -> Result<Channel<Paginator<VideoItem>>, Error> {
-        self._channel_videos(channel_id, Params::Shorts, None, "channel_shorts")
+        order: ChannelOrder,
+    ) -> Result<Paginator<VideoItem>, Error> {
+        self.channel_videos_tab_order(channel_id, ChannelVideoTab::Videos, order)
             .await
     }
 
-    /// Get the livestreams from a YouTube channel
-    pub async fn channel_livestreams<S: AsRef<str>>(
+    /// Get the specified video tab from a YouTube channel
+    pub async fn channel_videos_tab<S: AsRef<str>>(
         &self,
         channel_id: S,
+        tab: ChannelVideoTab,
     ) -> Result<Channel<Paginator<VideoItem>>, Error> {
-        self._channel_videos(channel_id, Params::Live, None, "channel_livestreams")
+        self._channel_videos(channel_id, tab.into(), None, "channel_videos")
             .await
+    }
+
+    /// Get a ordered list of videos from the specified tab of a YouTube channel
+    ///
+    /// This function does not return channel metadata.
+    pub async fn channel_videos_tab_order<S: AsRef<str>>(
+        &self,
+        channel_id: S,
+        tab: ChannelVideoTab,
+        order: ChannelOrder,
+    ) -> Result<Paginator<VideoItem>, Error> {
+        let visitor_data = match tab {
+            ChannelVideoTab::Shorts => Some(self.get_visitor_data().await?),
+            _ => None,
+        };
+
+        self.continuation(
+            order_ctoken(channel_id.as_ref(), tab, order),
+            ContinuationEndpoint::Browse,
+            visitor_data.as_deref(),
+        )
+        .await
     }
 
     /// Search the videos of a channel
@@ -101,7 +138,7 @@ impl RustyPipeQuery {
     ) -> Result<Channel<Paginator<VideoItem>>, Error> {
         self._channel_videos(
             channel_id,
-            Params::Search,
+            ChannelTab::Search,
             Some(query.as_ref()),
             "channel_search",
         )
@@ -118,7 +155,7 @@ impl RustyPipeQuery {
         let request_body = QChannel {
             context,
             browse_id: channel_id,
-            params: Params::Playlists,
+            params: ChannelTab::Playlists,
             query: None,
         };
 
@@ -142,7 +179,7 @@ impl RustyPipeQuery {
         let request_body = QChannel {
             context,
             browse_id: channel_id,
-            params: Params::Info,
+            params: ChannelTab::Info,
             query: None,
         };
 
@@ -451,16 +488,16 @@ fn map_channel_content(
                     .or(tab.tab_renderer.content.section_list_renderer)
             });
 
-            let content = match channel_content {
-                Some(list) => list.contents,
-                None => {
-                    // YouTube may show the "Featured" tab if the requested tab is empty/does not exist
-                    if featured_tab {
-                        MapResult::default()
-                    } else {
-                        return Err(ExtractionError::InvalidData(Cow::Borrowed(
-                            "could not extract content",
-                        )));
+            // YouTube may show the "Featured" tab if the requested tab is empty/does not exist
+            let content = if featured_tab {
+                MapResult::default()
+            } else {
+                match channel_content {
+                    Some(list) => list.contents,
+                    None => {
+                        return Err(ExtractionError::InvalidData(
+                            "could not extract content".into(),
+                        ))
                     }
                 }
             };
@@ -495,6 +532,47 @@ fn combine_channel_data<T>(channel_data: Channel<()>, content: T) -> Channel<T> 
     }
 }
 
+/// Get the continuation token to fetch channel videos in the given order
+fn order_ctoken(channel_id: &str, tab: ChannelVideoTab, order: ChannelOrder) -> String {
+    _order_ctoken(
+        channel_id,
+        tab,
+        order,
+        &format!("\n${}", util::random_uuid()),
+    )
+}
+
+/// Get the continuation token to fetch channel videos in the given order
+/// (fixed targetId for testing)
+fn _order_ctoken(
+    channel_id: &str,
+    tab: ChannelVideoTab,
+    order: ChannelOrder,
+    target_id: &str,
+) -> String {
+    let mut pb_tab = ProtoBuilder::new();
+    pb_tab.string(2, target_id);
+    pb_tab.varint(3, order as u64);
+
+    let mut pb_3 = ProtoBuilder::new();
+    pb_3.embedded(tab.order_ctoken_id(), pb_tab);
+
+    let mut pb_110 = ProtoBuilder::new();
+    pb_110.embedded(3, pb_3);
+
+    let mut pbi = ProtoBuilder::new();
+    pbi.embedded(110, pb_110);
+
+    let mut pb_80226972 = ProtoBuilder::new();
+    pb_80226972.string(2, channel_id);
+    pb_80226972.string(3, &pbi.to_base64());
+
+    let mut pb = ProtoBuilder::new();
+    pb.embedded(80226972, pb_80226972);
+
+    pb.to_base64()
+}
+
 #[cfg(test)]
 mod tests {
     use std::{fs::File, io::BufReader};
@@ -505,10 +583,12 @@ mod tests {
     use crate::{
         client::{response, MapResponse},
         model::{paginator::Paginator, Channel, ChannelInfo, PlaylistItem, VideoItem},
-        param::Language,
+        param::{ChannelOrder, ChannelVideoTab, Language},
         serializer::MapResult,
         util::tests::TESTFILES,
     };
+
+    use super::_order_ctoken;
 
     #[rstest]
     #[case::base("videos_base", "UC2DjFE7Xf11URZqWBigcVOQ")]
@@ -584,5 +664,34 @@ mod tests {
             map_res.warnings
         );
         insta::assert_ron_snapshot!("map_channel_info", map_res.c);
+    }
+
+    #[test]
+    fn order_ctoken() {
+        let channel_id = "UCXuqSBlHAE6Xw-yeJA0Tunw";
+
+        let videos_popular_token = _order_ctoken(
+            channel_id,
+            ChannelVideoTab::Videos,
+            ChannelOrder::Popular,
+            "\n$6461d7c8-0000-2040-87aa-089e0827e420",
+        );
+        assert_eq!(videos_popular_token, "4qmFsgJkEhhVQ1h1cVNCbEhBRTZYdy15ZUpBMFR1bncaSDhnWXVHaXg2S2hJbUNpUTJORFl4WkRkak9DMHdNREF3TFRJd05EQXRPRGRoWVMwd09EbGxNRGd5TjJVME1qQVlBZyUzRCUzRA%3D%3D");
+
+        let shorts_popular_token = _order_ctoken(
+            channel_id,
+            ChannelVideoTab::Shorts,
+            ChannelOrder::Popular,
+            "\n$64679ffb-0000-26b3-a1bd-582429d2c794",
+        );
+        assert_eq!(shorts_popular_token, "4qmFsgJkEhhVQ1h1cVNCbEhBRTZYdy15ZUpBMFR1bncaSDhnWXVHaXhTS2hJbUNpUTJORFkzT1dabVlpMHdNREF3TFRJMllqTXRZVEZpWkMwMU9ESTBNamxrTW1NM09UUVlBZyUzRCUzRA%3D%3D");
+
+        let live_popular_token = _order_ctoken(
+            channel_id,
+            ChannelVideoTab::Live,
+            ChannelOrder::Popular,
+            "\n$64693069-0000-2a1e-8c7d-582429bd5ba8",
+        );
+        assert_eq!(live_popular_token, "4qmFsgJkEhhVQ1h1cVNCbEhBRTZYdy15ZUpBMFR1bncaSDhnWXVHaXh5S2hJbUNpUTJORFk1TXpBMk9TMHdNREF3TFRKaE1XVXRPR00zWkMwMU9ESTBNamxpWkRWaVlUZ1lBZyUzRCUzRA%3D%3D");
     }
 }

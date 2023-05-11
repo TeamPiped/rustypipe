@@ -219,6 +219,7 @@ pub(crate) struct Continuation {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct ContinuationActionWrap {
+    #[serde(alias = "reloadContinuationItemsCommand")]
     pub append_continuation_items_action: ContinuationAction,
 }
 

@@ -850,7 +850,7 @@ pub struct VideoItem {
     pub publish_date: Option<OffsetDateTime>,
     /// Textual video publish date (e.g. `11 months ago`, depends on language)
     ///
-    /// Is [`None`] for livestreams.
+    /// Is [`None`] for livestreams and upcoming videos.
     pub publish_date_txt: Option<String>,
     /// View count
     ///

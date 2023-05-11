@@ -10,7 +10,7 @@ use rustypipe::{
     client::{ClientType, RustyPipe},
     param::{
         search_filter::{self, ItemType, SearchFilter},
-        Country,
+        ChannelVideoTab, Country,
     },
     report::{Report, Reporter},
 };
@@ -305,7 +305,7 @@ async fn channel_shorts() {
 
     let rp = rp_testfile(&json_path);
     rp.query()
-        .channel_shorts("UCh8gHdtzO2tXd593_bjErWg")
+        .channel_videos_tab("UCh8gHdtzO2tXd593_bjErWg", ChannelVideoTab::Shorts)
         .await
         .unwrap();
 }
@@ -318,7 +318,7 @@ async fn channel_livestreams() {
 
     let rp = rp_testfile(&json_path);
     rp.query()
-        .channel_livestreams("UC2DjFE7Xf11URZqWBigcVOQ")
+        .channel_videos_tab("UC2DjFE7Xf11URZqWBigcVOQ", ChannelVideoTab::Live)
         .await
         .unwrap();
 }

@@ -34,7 +34,7 @@ pub struct Paginator<T> {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub visitor_data: Option<String>,
     /// YouTube API endpoint to fetch continuations from
-    pub(crate) endpoint: ContinuationEndpoint,
+    pub endpoint: ContinuationEndpoint,
 }
 
 impl<T> Default for Paginator<T> {

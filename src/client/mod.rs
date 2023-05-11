@@ -191,6 +191,7 @@ const CONSENT_COOKIE_YES: &str = "YES+yt.462272069.de+FX+";
 const YOUTUBEI_V1_URL: &str = "https://www.youtube.com/youtubei/v1/";
 const YOUTUBEI_V1_GAPIS_URL: &str = "https://youtubei.googleapis.com/youtubei/v1/";
 const YOUTUBE_MUSIC_V1_URL: &str = "https://music.youtube.com/youtubei/v1/";
+const YOUTUBE_HOME_URL: &str = "https://www.youtube.com/";
 const YOUTUBE_MUSIC_HOME_URL: &str = "https://music.youtube.com/";
 
 const DISABLE_PRETTY_PRINT_PARAMETER: &str = "&prettyPrint=false";
@@ -644,7 +645,7 @@ impl RustyPipe {
         self.extract_client_version(
             Some("https://www.youtube.com/sw.js"),
             "https://www.youtube.com/results?search_query=",
-            "https://www.youtube.com",
+            YOUTUBE_HOME_URL,
             None,
         )
         .await
@@ -654,8 +655,8 @@ impl RustyPipe {
     async fn extract_music_client_version(&self) -> Result<String, Error> {
         self.extract_client_version(
             Some("https://music.youtube.com/sw.js"),
-            "https://music.youtube.com",
-            "https://music.youtube.com",
+            YOUTUBE_MUSIC_HOME_URL,
+            YOUTUBE_MUSIC_HOME_URL,
             None,
         )
         .await
@@ -812,7 +813,7 @@ impl RustyPipe {
         }
     }
 
-    async fn get_ytm_visitor_data(&self) -> Result<String, Error> {
+    async fn get_visitor_data(&self) -> Result<String, Error> {
         log::debug!("getting YTM visitor data");
         let resp = self.inner.http.get(YOUTUBE_MUSIC_HOME_URL).send().await?;
 
@@ -903,7 +904,7 @@ impl RustyPipeQuery {
                     client_name: "WEB",
                     client_version: Cow::Owned(self.client.get_desktop_client_version().await),
                     platform: "DESKTOP",
-                    original_url: Some("https://www.youtube.com/"),
+                    original_url: Some(YOUTUBE_HOME_URL),
                     visitor_data,
                     hl,
                     gl,
@@ -918,7 +919,7 @@ impl RustyPipeQuery {
                     client_name: "WEB_REMIX",
                     client_version: Cow::Owned(self.client.get_music_client_version().await),
                     platform: "DESKTOP",
-                    original_url: Some("https://music.youtube.com/"),
+                    original_url: Some(YOUTUBE_MUSIC_HOME_URL),
                     visitor_data,
                     hl,
                     gl,
@@ -942,7 +943,7 @@ impl RustyPipeQuery {
                 request: Some(RequestYT::default()),
                 user: User::default(),
                 third_party: Some(ThirdParty {
-                    embed_url: "https://www.youtube.com/",
+                    embed_url: YOUTUBE_HOME_URL,
                 }),
             },
             ClientType::Android => YTContext {
@@ -993,8 +994,8 @@ impl RustyPipeQuery {
                 .post(format!(
                     "{YOUTUBEI_V1_URL}{endpoint}?key={DESKTOP_API_KEY}{DISABLE_PRETTY_PRINT_PARAMETER}"
                 ))
-                .header(header::ORIGIN, "https://www.youtube.com")
-                .header(header::REFERER, "https://www.youtube.com")
+                .header(header::ORIGIN, YOUTUBE_HOME_URL)
+                .header(header::REFERER, YOUTUBE_HOME_URL)
                 .header(header::COOKIE, self.client.inner.consent_cookie.to_owned())
                 .header("X-YouTube-Client-Name", "1")
                 .header(
@@ -1008,8 +1009,8 @@ impl RustyPipeQuery {
                 .post(format!(
                     "{YOUTUBE_MUSIC_V1_URL}{endpoint}?key={DESKTOP_MUSIC_API_KEY}{DISABLE_PRETTY_PRINT_PARAMETER}"
                 ))
-                .header(header::ORIGIN, "https://music.youtube.com")
-                .header(header::REFERER, "https://music.youtube.com")
+                .header(header::ORIGIN, YOUTUBE_MUSIC_HOME_URL)
+                .header(header::REFERER, YOUTUBE_MUSIC_HOME_URL)
                 .header(header::COOKIE, self.client.inner.consent_cookie.to_owned())
                 .header("X-YouTube-Client-Name", "67")
                 .header(
@@ -1023,8 +1024,8 @@ impl RustyPipeQuery {
                 .post(format!(
                     "{YOUTUBEI_V1_URL}{endpoint}?key={DESKTOP_API_KEY}{DISABLE_PRETTY_PRINT_PARAMETER}"
                 ))
-                .header(header::ORIGIN, "https://www.youtube.com")
-                .header(header::REFERER, "https://www.youtube.com")
+                .header(header::ORIGIN, YOUTUBE_HOME_URL)
+                .header(header::REFERER, YOUTUBE_HOME_URL)
                 .header("X-YouTube-Client-Name", "1")
                 .header("X-YouTube-Client-Version", TVHTML5_CLIENT_VERSION),
             ClientType::Android => self
@@ -1060,11 +1061,11 @@ impl RustyPipeQuery {
         }
     }
 
-    /// Get a YouTube Music visitor data cookie, which is necessary for certain requests
-    async fn get_ytm_visitor_data(&self) -> Result<String, Error> {
+    /// Get a YouTube visitor data cookie, which is necessary for certain requests
+    async fn get_visitor_data(&self) -> Result<String, Error> {
         match &self.opts.visitor_data {
             Some(vd) => Ok(vd.to_owned()),
-            None => self.client.get_ytm_visitor_data().await,
+            None => self.client.get_visitor_data().await,
         }
     }
 
@@ -1304,9 +1305,9 @@ mod tests {
     }
 
     #[test]
-    fn t_get_ytm_visitor_data() {
+    fn t_get_visitor_data() {
         let rp = RustyPipe::new();
-        let visitor_data = tokio_test::block_on(rp.get_ytm_visitor_data()).unwrap();
+        let visitor_data = tokio_test::block_on(rp.get_visitor_data()).unwrap();
         assert!(visitor_data.ends_with("%3D"));
         assert_eq!(visitor_data.len(), 32)
     }
