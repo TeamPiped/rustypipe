@@ -618,4 +618,16 @@ pub(crate) mod tests {
         let res_str = res.join(" ");
         assert_eq!(res_str, teststr)
     }
+
+    #[rstest]
+    #[case("en", Some(Language::En))]
+    #[case("en-GB", Some(Language::EnGb))]
+    #[case("en-US", Some(Language::En))]
+    #[case("en-ZZ", Some(Language::En))]
+    #[case("xy", None)]
+    #[case("xy-ZZ", None)]
+    fn parse_language(#[case] s: &str, #[case] expect: Option<Language>) {
+        let res = Language::from_str(s).ok();
+        assert_eq!(res, expect);
+    }
 }

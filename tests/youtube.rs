@@ -1172,12 +1172,8 @@ fn search_suggestion(rp: RustyPipe) {
 
 #[rstest]
 fn search_suggestion_empty(rp: RustyPipe) {
-    let result = tokio_test::block_on(
-        rp.query()
-            .lang(Language::Th)
-            .search_suggestion("fjew327p4ifjelwfvnewg49"),
-    )
-    .unwrap();
+    let result =
+        tokio_test::block_on(rp.query().search_suggestion("fjew327p4ifjelwfvnewg49")).unwrap();
 
     assert!(result.is_empty());
 }

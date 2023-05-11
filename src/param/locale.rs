@@ -2,6 +2,8 @@
 
 //! Languages and countries
 
+use std::str::FromStr;
+
 use serde::{Deserialize, Serialize};
 
 use crate::error::Error;
@@ -13,31 +15,31 @@ use crate::error::Error;
 pub enum Language {
     /// Afrikaans
     Af,
-    /// አማርኛ
+    /// Amharic / አማርኛ
     Am,
-    /// العربية
+    /// Arabic / العربية
     Ar,
-    /// অসমীয়া
+    /// Assamese / অসমীয়া
     As,
-    /// Azərbaycan
+    /// Azerbaijani / Azərbaycan
     Az,
-    /// Беларуская
+    /// Belarusian / Беларуская
     Be,
-    /// Български
+    /// Bulgarian / Български
     Bg,
-    /// বাংলা
+    /// Bangla / বাংলা
     Bn,
-    /// Bosanski
+    /// Bosnian / Bosanski
     Bs,
-    /// Català
+    /// Catalan / Català
     Ca,
-    /// Čeština
+    /// Czech / Čeština
     Cs,
-    /// Dansk
+    /// Danish / Dansk
     Da,
-    /// Deutsch
+    /// German / Deutsch
     De,
-    /// Ελληνικά
+    /// Greek / Ελληνικά
     El,
     /// English (US)
     En,
@@ -47,145 +49,145 @@ pub enum Language {
     /// English (India)
     #[serde(rename = "en-IN")]
     EnIn,
-    /// Español (España)
+    /// Spanish / Español (España)
     Es,
-    /// Español (Latinoamérica)
+    /// Latin American Spanish / Español (Latinoamérica)
     #[serde(rename = "es-419")]
     Es419,
-    /// Español (US)
+    /// Spanish (United States) / Español (US)
     #[serde(rename = "es-US")]
     EsUs,
-    /// Eesti
+    /// Estonian / Eesti
     Et,
-    /// Euskara
+    /// Basque / Euskara
     Eu,
-    /// فارسی
+    /// Persian / فارسی
     Fa,
-    /// Suomi
+    /// Finnish / Suomi
     Fi,
     /// Filipino
     Fil,
-    /// Français
+    /// French / Français
     Fr,
-    /// Français (Canada)
+    /// Canadian French / Français (Canada)
     #[serde(rename = "fr-CA")]
     FrCa,
-    /// Galego
+    /// Galician / Galego
     Gl,
-    /// ગુજરાતી
+    /// Gujarati / ગુજરાતી
     Gu,
-    /// हिन्दी
+    /// Hindi / हिन्दी
     Hi,
-    /// Hrvatski
+    /// Croatian / Hrvatski
     Hr,
-    /// Magyar
+    /// Hungarian / Magyar
     Hu,
-    /// Հայերեն
+    /// Armenian / Հայերեն
     Hy,
-    /// Bahasa Indonesia
+    /// Indonesian / Bahasa Indonesia
     Id,
-    /// Íslenska
+    /// Icelandic / Íslenska
     Is,
-    /// Italiano
+    /// Italian / Italiano
     It,
-    /// עברית
+    /// Hebrew / עברית
     Iw,
-    /// 日本語
+    /// Japanese / 日本語
     Ja,
-    /// ქართული
+    /// Georgian / ქართული
     Ka,
-    /// Қазақ Тілі
+    /// Kazakh / Қазақ Тілі
     Kk,
-    /// ខ្មែរ
+    /// Khmer / ខ្មែរ
     Km,
-    /// ಕನ್ನಡ
+    /// Kannada / ಕನ್ನಡ
     Kn,
-    /// 한국어
+    /// Korean / 한국어
     Ko,
-    /// Кыргызча
+    /// Kyrgyz / Кыргызча
     Ky,
-    /// ລາວ
+    /// Lao / ລາວ
     Lo,
-    /// Lietuvių
+    /// Lithuanian / Lietuvių
     Lt,
-    /// Latviešu valoda
+    /// Latvian / Latviešu valoda
     Lv,
-    /// Македонски
+    /// Macedonian / Македонски
     Mk,
-    /// മലയാളം
+    /// Malayalam / മലയാളം
     Ml,
-    /// Монгол
+    /// Mongolian / Монгол
     Mn,
-    /// मराठी
+    /// Marathi / मराठी
     Mr,
-    /// Bahasa Malaysia
+    /// Malay / Bahasa Malaysia
     Ms,
-    /// ဗမာ
+    /// Burmese / ဗမာ
     My,
-    /// नेपाली
+    /// Nepali / नेपाली
     Ne,
-    /// Nederlands
+    /// Dutch / Nederlands
     Nl,
-    /// Norsk
+    /// Norwegian / Norsk
     No,
-    /// ଓଡ଼ିଆ
+    /// Odia / ଓଡ଼ିଆ
     Or,
-    /// ਪੰਜਾਬੀ
+    /// Punjabi / ਪੰਜਾਬੀ
     Pa,
-    /// Polski
+    /// Polish / Polski
     Pl,
-    /// Português (Brasil)
+    /// Portuguese / Português (Brasil)
     Pt,
-    /// Português
+    /// European Portuguese / Português
     #[serde(rename = "pt-PT")]
     PtPt,
-    /// Română
+    /// Romanian / Română
     Ro,
-    /// Русский
+    /// Russian / Русский
     Ru,
-    /// සිංහල
+    /// Sinhala / සිංහල
     Si,
-    /// Slovenčina
+    /// Slovak / Slovenčina
     Sk,
-    /// Slovenščina
+    /// Slovenian / Slovenščina
     Sl,
-    /// Shqip
+    /// Albanian / Shqip
     Sq,
-    /// Српски
+    /// Serbian / Српски
     Sr,
-    /// Srpski
+    /// Serbian (Latin) / Srpski
     #[serde(rename = "sr-Latn")]
     SrLatn,
-    /// Svenska
+    /// Swedish / Svenska
     Sv,
-    /// Kiswahili
+    /// Swahili / Kiswahili
     Sw,
-    /// தமிழ்
+    /// Tamil / தமிழ்
     Ta,
-    /// తెలుగు
+    /// Telugu / తెలుగు
     Te,
-    /// ภาษาไทย
+    /// Thai / ภาษาไทย
     Th,
-    /// Türkçe
+    /// Turkish / Türkçe
     Tr,
-    /// Українська
+    /// Ukrainian / Українська
     Uk,
-    /// اردو
+    /// Urdu / اردو
     Ur,
-    /// O‘zbek
+    /// Uzbek / O‘zbek
     Uz,
-    /// Tiếng Việt
+    /// Vietnamese / Tiếng Việt
     Vi,
-    /// 中文 (简体)
+    /// Chinese (China) / 中文 (简体)
     #[serde(rename = "zh-CN")]
     ZhCn,
-    /// 中文 (香港)
+    /// Chinese (Hong Kong) / 中文 (香港)
     #[serde(rename = "zh-HK")]
     ZhHk,
-    /// 中文 (繁體)
+    /// Chinese (Taiwan) / 中文 (繁體)
     #[serde(rename = "zh-TW")]
     ZhTw,
-    /// IsiZulu
+    /// Zulu / IsiZulu
     Zu,
 }
 
@@ -829,7 +831,25 @@ impl Country {
     }
 }
 
-serde_plain::derive_fromstr_from_deserialize!(Language, Error);
+impl FromStr for Language {
+    type Err = Error;
+
+    fn from_str(s: &str) -> Result<Self, Self::Err> {
+        let mut sub = s;
+        loop {
+            if let Ok(v) = serde_plain::from_str(sub) {
+                return Ok(v);
+            }
+            match sub.rfind('-') {
+                Some(pos) => {
+                    sub = &sub[..pos];
+                }
+                None => return Err(Error::Other("could not parse language `{s}`".into())),
+            }
+        }
+    }
+}
+
 serde_plain::derive_display_from_serialize!(Language);
 
 serde_plain::derive_fromstr_from_deserialize!(Country, Error);
