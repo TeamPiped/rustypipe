@@ -1621,6 +1621,7 @@
     },
     "number_nd_tokens": {
       "einn": 1,
+      "eitt": 1,
       "ekkert": 0
     },
     "album_types": {
@@ -2646,7 +2647,9 @@
       "feb.": 2,
       "jan.": 1,
       "jul.": 7,
+      "juli": 7,
       "jun.": 6,
+      "juni": 6,
       "mai": 5,
       "mar.": 3,
       "nov.": 11,

@@ -19,7 +19,8 @@ testintl:
     #!/usr/bin/env bash
     set -e
     LANGUAGES=(
-        "af" "am" "ar" "as" "az" "be" "bg" "bn" "bs" "ca" "cs" "da" "de" "el" "en" "en-GB" "en-IN"
+        "af" "am" "ar" "as" "az" "be" "bg" "bn" "bs" "ca" "cs" "da" "de" "el"
+        "en" "en-GB" "en-IN"
         "es" "es-419" "es-US" "et" "eu" "fa" "fi" "fil" "fr" "fr-CA" "gl" "gu"
         "hi" "hr" "hu" "hy" "id" "is" "it" "iw" "ja" "ka" "kk" "km" "kn" "ko" "ky"
         "lo" "lt" "lv" "mk" "ml" "mn" "mr" "ms" "my" "ne" "nl" "no" "or" "pa" "pl"

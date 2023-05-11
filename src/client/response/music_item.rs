@@ -208,7 +208,9 @@ pub(crate) struct CoverMusicItem {
     ///
     /// `"2022"` Artist singles
     ///
-    /// `"Playlist", " • ", <"ThetaDev"> " • ", "26 songs"`
+    /// `"Playlist", " • ", <"YouTube Music"> " • ", "53 songs"`
+    ///
+    /// `"Playlist", " • ", <"Vevo Playlists"> " • ", "13M views"`
     ///
     /// `"Playlist", " • ", "YouTube Music" Featured on
     #[serde(default)]
@@ -737,8 +739,9 @@ impl MusicListMapper {
                                 let channel = channel_p.and_then(|p| {
                                     p.0.into_iter().find_map(|c| ChannelId::try_from(c).ok())
                                 });
-                                let track_count =
-                                    tcount_p.and_then(|p| util::parse_numeric(p.first_str()).ok());
+                                let track_count = tcount_p
+                                    .filter(|_| from_ytm)
+                                    .and_then(|p| util::parse_numeric(p.first_str()).ok());
 
                                 self.items.push(MusicItem::Playlist(MusicPlaylistItem {
                                     id,
@@ -772,7 +775,6 @@ impl MusicListMapper {
                 let mut subtitle_parts = item.subtitle.split(util::DOT_SEPARATOR).into_iter();
                 let subtitle_p1 = subtitle_parts.next();
                 let subtitle_p2 = subtitle_parts.next();
-                let subtitle_p3 = subtitle_parts.next();
 
                 match item.navigation_endpoint.music_page() {
                     Some((page_type, id)) => match page_type {
@@ -879,15 +881,13 @@ impl MusicListMapper {
                             let channel = subtitle_p2.and_then(|p| {
                                 p.0.into_iter().find_map(|c| ChannelId::try_from(c).ok())
                             });
-                            let track_count =
-                                subtitle_p3.and_then(|p| util::parse_numeric(p.first_str()).ok());
 
                             self.items.push(MusicItem::Playlist(MusicPlaylistItem {
                                 id,
                                 name: item.title,
                                 thumbnail: item.thumbnail_renderer.into(),
                                 channel,
-                                track_count,
+                                track_count: None,
                                 from_ytm,
                             }));
                             Ok(Some(MusicItemType::Playlist))

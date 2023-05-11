@@ -389,7 +389,7 @@ MusicSearchResult(
         id: "UCtZaFx5MXZHIh7VTItJK1lQ",
         name: "Lajos Fülöp",
       )),
-      track_count: Some(29),
+      track_count: None,
       from_ytm: false,
     ),
     MusicPlaylistItem(
@@ -416,7 +416,7 @@ MusicSearchResult(
         id: "UCwFT0vvkbtbohtzVbwx7WjQ",
         name: "Toshihiko KOMINAMI",
       )),
-      track_count: Some(6),
+      track_count: None,
       from_ytm: false,
     ),
     MusicPlaylistItem(
@@ -443,7 +443,7 @@ MusicSearchResult(
         id: "UCEdZAdnnKqbaHOlv8nM6OtA",
         name: "aespa",
       )),
-      track_count: Some(39),
+      track_count: None,
       from_ytm: false,
     ),
   ],

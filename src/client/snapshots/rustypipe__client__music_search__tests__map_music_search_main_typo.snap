@@ -397,7 +397,7 @@ MusicSearchResult(
         id: "UC2iUWrsf_RJIskqCZZHz4tg",
         name: "Saskia Wehmeyer",
       )),
-      track_count: Some(16),
+      track_count: None,
       from_ytm: false,
     ),
     MusicPlaylistItem(
@@ -424,7 +424,7 @@ MusicSearchResult(
         id: "UCSj8sEcs5CEUmeIZMSPB7Ew",
         name: "Daniel Switali",
       )),
-      track_count: Some(16),
+      track_count: None,
       from_ytm: false,
     ),
     MusicPlaylistItem(
@@ -451,7 +451,7 @@ MusicSearchResult(
         id: "UCs2uL32TTzWX0oVoblPF1nQ",
         name: "Nicole Kr",
       )),
-      track_count: Some(6),
+      track_count: None,
       from_ytm: false,
     ),
   ],

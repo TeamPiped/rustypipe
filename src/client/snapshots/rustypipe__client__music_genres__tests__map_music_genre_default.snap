@@ -630,7 +630,7 @@ MusicGenre(
             id: "UCJCV-S6ahhblGOHwJy7OC_Q",
             name: "Toda James",
           )),
-          track_count: Some(50),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -652,7 +652,7 @@ MusicGenre(
             id: "UCF6caQme6smAwcss8ytDZlA",
             name: "Christina Bramsnæs",
           )),
-          track_count: Some(66),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -674,7 +674,7 @@ MusicGenre(
             id: "UCjNbfn7je1FaoB5jTku0FmQ",
             name: "Dolev Revah",
           )),
-          track_count: Some(40),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -696,7 +696,7 @@ MusicGenre(
             id: "UCRpTJcl_StTLn1zsMlS8YIg",
             name: "TheAdventurer64",
           )),
-          track_count: Some(30),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -718,7 +718,7 @@ MusicGenre(
             id: "UCqPO5RAnOmft43Rup8olJWQ",
             name: "Reneé Herrera",
           )),
-          track_count: Some(23),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -740,7 +740,7 @@ MusicGenre(
             id: "UC8JEZU4gc5sGplOXJ0qZ6tA",
             name: "Samantha Tatro",
           )),
-          track_count: Some(38),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -762,7 +762,7 @@ MusicGenre(
             id: "UCI92PaJYiZZUfG1QuRv6B7A",
             name: "Lana Nahapetian",
           )),
-          track_count: Some(25),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -784,7 +784,7 @@ MusicGenre(
             id: "UCF7UgBjfLY3g5Zc2mNu0mkw",
             name: "Justin Longoria",
           )),
-          track_count: Some(20),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -806,7 +806,7 @@ MusicGenre(
             id: "UCKZrE1VncRq36wPg7uTz_Qw",
             name: "laurance Spruell",
           )),
-          track_count: Some(61),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -828,7 +828,7 @@ MusicGenre(
             id: "UC8CQiVn5TFf2-2RaPFRlhXA",
             name: "Greg Duke",
           )),
-          track_count: Some(22),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -850,7 +850,7 @@ MusicGenre(
             id: "UCFKz3UmRXuTOi9FIABqDpEA",
             name: "Randy Gardner Jr.",
           )),
-          track_count: Some(28),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -872,7 +872,7 @@ MusicGenre(
             id: "UCDs46pTxZxx_4bCB74pRSAg",
             name: "83Roll",
           )),
-          track_count: Some(51),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -894,7 +894,7 @@ MusicGenre(
             id: "UCn3bJLS5LaAkpjveSIxUVXQ",
             name: "Bassin-N-NC",
           )),
-          track_count: Some(91),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -916,7 +916,7 @@ MusicGenre(
             id: "UCaxg7nT_axJdagTP0Hy3sxw",
             name: "Franzi Re",
           )),
-          track_count: Some(79),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -938,7 +938,7 @@ MusicGenre(
             id: "UCNUJdLrjgaXTT32gaBG7SsA",
             name: "Seth leGassick",
           )),
-          track_count: Some(25),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -960,7 +960,7 @@ MusicGenre(
             id: "UCG5YLvlq4wR0IHlGMgyOU-Q",
             name: "Charleen Röhr",
           )),
-          track_count: Some(25),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -982,7 +982,7 @@ MusicGenre(
             id: "UCfzNJcAMUWrFxXRZJlKWipQ",
             name: "Maddie Sriphin",
           )),
-          track_count: Some(64),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1004,7 +1004,7 @@ MusicGenre(
             id: "UCpoD1__eSOKJ8BbPjQPcIfA",
             name: "Owen Barrett",
           )),
-          track_count: Some(76),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1026,7 +1026,7 @@ MusicGenre(
             id: "UCv12vedVVfnF6U6CPHVDJcA",
             name: "Lea Christoph",
           )),
-          track_count: Some(25),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1048,7 +1048,7 @@ MusicGenre(
             id: "UC4Z69GjIpvwlGrMAoqinERw",
             name: "Sayuri Naidu",
           )),
-          track_count: Some(22),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1070,7 +1070,7 @@ MusicGenre(
             id: "UCaL3Kg7MNY1qf-pY1MhHCxA",
             name: "David Jones",
           )),
-          track_count: Some(26),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1092,7 +1092,7 @@ MusicGenre(
             id: "UCNRpUvXNTvKIqUj1V_QE0kA",
             name: "Mihail Hristov",
           )),
-          track_count: Some(22),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1114,7 +1114,7 @@ MusicGenre(
             id: "UCLiNI2qE27UsxaWcOnbSwJg",
             name: "Hiedfeld Rio_",
           )),
-          track_count: Some(30),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1136,7 +1136,7 @@ MusicGenre(
             id: "UC7KYnk7TDG0r_nLhwlt_YJg",
             name: "masa 0526",
           )),
-          track_count: Some(38),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1158,7 +1158,7 @@ MusicGenre(
             id: "UC1YC4Iqn3J_EdEC2iHKyxUg",
             name: "Danny Esquivel",
           )),
-          track_count: Some(53),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1180,7 +1180,7 @@ MusicGenre(
             id: "UC51CMnsDOYDJxh4MjC8Zvrg",
             name: "Danilo Neres",
           )),
-          track_count: Some(50),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1202,7 +1202,7 @@ MusicGenre(
             id: "UCv3CeWGxETxrjWIRroRqtPw",
             name: "Christine Funk",
           )),
-          track_count: Some(46),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1224,7 +1224,7 @@ MusicGenre(
             id: "UCFNN2IqDVou0NiQrkOBMCKQ",
             name: "Drohnenflug",
           )),
-          track_count: Some(21),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1246,7 +1246,7 @@ MusicGenre(
             id: "UCCIWYh932q1o_NKqsOoTGkQ",
             name: "Franz Thomas",
           )),
-          track_count: Some(28),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1268,7 +1268,7 @@ MusicGenre(
             id: "UC-YDdf6aAneAHM88HfPpkgQ",
             name: "simon burger",
           )),
-          track_count: Some(61),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1290,7 +1290,7 @@ MusicGenre(
             id: "UCYWZ-fb1VMTPaTyIoA9kTvA",
             name: "Cara W",
           )),
-          track_count: Some(24),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1312,7 +1312,7 @@ MusicGenre(
             id: "UCe2FSIeyh1HoslXjYa8lS2g",
             name: "alessia tarola",
           )),
-          track_count: Some(47),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1334,7 +1334,7 @@ MusicGenre(
             id: "UCUlKZY0Ih0nD5wPA7a4bUKQ",
             name: "Michael Burgmann",
           )),
-          track_count: Some(65),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1356,7 +1356,7 @@ MusicGenre(
             id: "UCiZeZc6NSpvNDoOTq3avrOg",
             name: "Katherine Vorster",
           )),
-          track_count: Some(36),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1378,7 +1378,7 @@ MusicGenre(
             id: "UClnxEIy62BJHlLHJsn6-vjg",
             name: "Colin Johnston",
           )),
-          track_count: Some(20),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1400,7 +1400,7 @@ MusicGenre(
             id: "UCuLltIgY3qcmN4-WFI7UrHA",
             name: "Sheeka Spencer",
           )),
-          track_count: Some(25),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1422,7 +1422,7 @@ MusicGenre(
             id: "UCqH_eIvdqn03UxrLGwmvI8A",
             name: "Amanda Meyers",
           )),
-          track_count: Some(41),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1444,7 +1444,7 @@ MusicGenre(
             id: "UCQ04tL7ApAXFKN7pBK-tqrA",
             name: "Robert Heilhausen",
           )),
-          track_count: Some(40),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1466,7 +1466,7 @@ MusicGenre(
             id: "UCAtzlFsd4PVR3M05rmqCy9A",
             name: "Katj Wenners",
           )),
-          track_count: Some(40),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1488,7 +1488,7 @@ MusicGenre(
             id: "UC_zE0Tvp_jaoi6fHrMdlYhQ",
             name: "Stephanie Wix",
           )),
-          track_count: Some(22),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1510,7 +1510,7 @@ MusicGenre(
             id: "UCGHgI4LHsQYiOF2aGeDnlvw",
             name: "Benjamin C",
           )),
-          track_count: Some(41),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1532,7 +1532,7 @@ MusicGenre(
             id: "UCtY8DPBGKcqlsjW3kIakFnQ",
             name: "Михаил Пак",
           )),
-          track_count: Some(51),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1554,7 +1554,7 @@ MusicGenre(
             id: "UCk-Q3xTEjPOPYNYXF9Xg1gg",
             name: "Geekus",
           )),
-          track_count: Some(24),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1576,7 +1576,7 @@ MusicGenre(
             id: "UCeMJVtiyjKv5p9mvuF7ztbA",
             name: "Jennifer R",
           )),
-          track_count: Some(72),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1598,7 +1598,7 @@ MusicGenre(
             id: "UCzrlzOlA6Vf0jQl2--7vaEw",
             name: "Jessie Daniel",
           )),
-          track_count: Some(27),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1620,7 +1620,7 @@ MusicGenre(
             id: "UCSOsRIc_G4LAeH_ws76KR0Q",
             name: "David Lopez",
           )),
-          track_count: Some(94),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1642,7 +1642,7 @@ MusicGenre(
             id: "UCkW7HHW14r3ojZgOvWKAcJg",
             name: "Andi Kofler",
           )),
-          track_count: Some(64),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1664,7 +1664,7 @@ MusicGenre(
             id: "UCqVTSKemRi_xJy5k9C3W0KQ",
             name: "Colin Simmons",
           )),
-          track_count: Some(22),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1686,7 +1686,7 @@ MusicGenre(
             id: "UCbqW-bEvAkOl9ijzfaVpfKQ",
             name: "Damia Nap",
           )),
-          track_count: Some(50),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1708,7 +1708,7 @@ MusicGenre(
             id: "UCa6FBcbtSFb_DEwijovUFXA",
             name: "Arthur Haltrich",
           )),
-          track_count: Some(29),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1730,7 +1730,7 @@ MusicGenre(
             id: "UCfi844W_auiXMpLQ0Nq_szw",
             name: "Pierre Renaud",
           )),
-          track_count: Some(35),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1752,7 +1752,7 @@ MusicGenre(
             id: "UCWa5zj5HImGAkSNgj3MA-ew",
             name: "Will Hoover",
           )),
-          track_count: Some(20),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1774,7 +1774,7 @@ MusicGenre(
             id: "UCvICPM6-tP32Ry885PFapeQ",
             name: "Jennifer Bower",
           )),
-          track_count: Some(99),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1796,7 +1796,7 @@ MusicGenre(
             id: "UCoUP8HE3A4e9BX1uzj-KLQw",
             name: "George Ghazi",
           )),
-          track_count: Some(26),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1818,7 +1818,7 @@ MusicGenre(
             id: "UC4fW7efcYs1lW-U2YzzWKfw",
             name: "jakirin nelson",
           )),
-          track_count: Some(23),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1840,7 +1840,7 @@ MusicGenre(
             id: "UCUrCJfKzyqH-ZFASlDAG4kA",
             name: "Mathilde Leite Kallevik",
           )),
-          track_count: Some(41),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1862,7 +1862,7 @@ MusicGenre(
             id: "UC9Cv6cOlV89apQybdvY--bQ",
             name: "just.pia.nicole",
           )),
-          track_count: Some(25),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1884,7 +1884,7 @@ MusicGenre(
             id: "UCjea1k_El-7W7aSfQ-z6HKw",
             name: "Ferhat Cevik",
           )),
-          track_count: Some(24),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1906,7 +1906,7 @@ MusicGenre(
             id: "UCjMDVXCnWkKTFR64ZTIcVbg",
             name: "Andreas Duttwyler",
           )),
-          track_count: Some(27),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1928,7 +1928,7 @@ MusicGenre(
             id: "UCUScjTsAqtYz6KKgFXhS6Dw",
             name: "Flexi Kroll",
           )),
-          track_count: Some(33),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1950,7 +1950,7 @@ MusicGenre(
             id: "UCjKnKqNBHh5FnftLCAJVdNA",
             name: "Chelsey Taylor",
           )),
-          track_count: Some(35),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1972,7 +1972,7 @@ MusicGenre(
             id: "UCM2BDhQJH2XpanhhBF1gM-Q",
             name: "mers smith",
           )),
-          track_count: Some(83),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -1994,7 +1994,7 @@ MusicGenre(
             id: "UCYblPTQ9-orNCMYOJujebsg",
             name: "Solo Serio",
           )),
-          track_count: Some(50),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2016,7 +2016,7 @@ MusicGenre(
             id: "UCAwYkZc16XduG5UtwKTmZfQ",
             name: "JMANzLegit",
           )),
-          track_count: Some(86),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2038,7 +2038,7 @@ MusicGenre(
             id: "UCdvrXv8UJzcTD-NSd8KSB0A",
             name: "Prince Zondo",
           )),
-          track_count: Some(23),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2060,7 +2060,7 @@ MusicGenre(
             id: "UCfwjgiQkMWPkLt-OUbMvTLQ",
             name: "Peter Bigg",
           )),
-          track_count: Some(89),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2082,7 +2082,7 @@ MusicGenre(
             id: "UClZzccOxk4a-dlYbY8EUiQw",
             name: "Scott Jones",
           )),
-          track_count: Some(54),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2104,7 +2104,7 @@ MusicGenre(
             id: "UCzL2oHQUhhiRye2NPvNtFTg",
             name: "Nils Lang",
           )),
-          track_count: Some(24),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2126,7 +2126,7 @@ MusicGenre(
             id: "UC114_mB5mkLlielmJZpc2XQ",
             name: "Илья Светлаков",
           )),
-          track_count: Some(89),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2148,7 +2148,7 @@ MusicGenre(
             id: "UCAH_OgnmnfZ4q4-X9RLkBjA",
             name: "chastity hampstead",
           )),
-          track_count: Some(20),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2170,7 +2170,7 @@ MusicGenre(
             id: "UCjNsWQSS7ciWk0JgRDObCCg",
             name: "Colin Bodger",
           )),
-          track_count: Some(92),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2192,7 +2192,7 @@ MusicGenre(
             id: "UCcUcb_7OR3k1UDoyL19ID6A",
             name: "Bernd Page",
           )),
-          track_count: Some(52),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2214,7 +2214,7 @@ MusicGenre(
             id: "UC0eJsV0Q9x4vNuJdD1JCgkA",
             name: "Mauro Carrera",
           )),
-          track_count: Some(50),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2236,7 +2236,7 @@ MusicGenre(
             id: "UCRz7RHjFbynvzcHtDrWyokQ",
             name: "Fabian H",
           )),
-          track_count: Some(26),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2258,7 +2258,7 @@ MusicGenre(
             id: "UCQMAlPb4QcCvpAp0qSB3aOw",
             name: "Лале Салимова",
           )),
-          track_count: Some(26),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2280,7 +2280,7 @@ MusicGenre(
             id: "UC79nGD5tzdvrWQur06jBZ9Q",
             name: "german kohnenkamp",
           )),
-          track_count: Some(25),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2302,7 +2302,7 @@ MusicGenre(
             id: "UCECHtDZha-qA9SAV9eMle8A",
             name: "Jamie Hansen",
           )),
-          track_count: Some(65),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2324,7 +2324,7 @@ MusicGenre(
             id: "UC8uh9_gLI8LptXKb10THfHw",
             name: "Daniel Terbush",
           )),
-          track_count: Some(86),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2346,7 +2346,7 @@ MusicGenre(
             id: "UCguU0xY2_eWnHhQaX4q19RA",
             name: "d.n",
           )),
-          track_count: Some(20),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2368,7 +2368,7 @@ MusicGenre(
             id: "UCPxMgXwB6ZwMqGaMuXdKtDQ",
             name: "Otto Wilhelm Köper",
           )),
-          track_count: Some(30),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2390,7 +2390,7 @@ MusicGenre(
             id: "UCRT8AW_u_kUMtP-a_2aVL7A",
             name: "Ayokunmi Aina",
           )),
-          track_count: Some(20),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2412,7 +2412,7 @@ MusicGenre(
             id: "UCsuaH8Ax3Wi6eREaOZyrebg",
             name: "Sarah Hook",
           )),
-          track_count: Some(91),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2434,7 +2434,7 @@ MusicGenre(
             id: "UCYGmCXupuYMcuMiaeHbiY0w",
             name: "Kian Tajada",
           )),
-          track_count: Some(30),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2456,7 +2456,7 @@ MusicGenre(
             id: "UCyWaLLPSNuyR2dNKw4bo2Ng",
             name: "Luis Martin Maceda Nazario",
           )),
-          track_count: Some(49),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2478,7 +2478,7 @@ MusicGenre(
             id: "UCVcIOeSdYPeJhZrpll-i9ow",
             name: "Alejandro Volkman",
           )),
-          track_count: Some(23),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2500,7 +2500,7 @@ MusicGenre(
             id: "UC3vjRDguM37Fk1GM-f7wc9g",
             name: "Ellie Kampwerth",
           )),
-          track_count: Some(25),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2522,7 +2522,7 @@ MusicGenre(
             id: "UC67qD0L9GgKweULcSkhGVog",
             name: "Katie Murphy",
           )),
-          track_count: Some(65),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2544,7 +2544,7 @@ MusicGenre(
             id: "UCEMJeNR04nFGETFun4Q0Nmw",
             name: "Veronica Bonilla",
           )),
-          track_count: Some(55),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2566,7 +2566,7 @@ MusicGenre(
             id: "UCYO-DRRQJj_cW16nhl0q4Mw",
             name: "Tyler Antikainen",
           )),
-          track_count: Some(25),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2588,7 +2588,7 @@ MusicGenre(
             id: "UC2MJkgRWYnnvb_Y3G3Wh9Rg",
             name: "Michael Mende",
           )),
-          track_count: Some(28),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2610,7 +2610,7 @@ MusicGenre(
             id: "UCd5PloM5KzSwDlguTnH9vkA",
             name: "Aarav Gupta",
           )),
-          track_count: Some(41),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2632,7 +2632,7 @@ MusicGenre(
             id: "UCzEPFFjku1_2dYUu10HJ4eg",
             name: "Miriam Perner",
           )),
-          track_count: Some(49),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2654,7 +2654,7 @@ MusicGenre(
             id: "UC1izA3A5f3v6qiM053p5lyg",
             name: "Uriana Burrell",
           )),
-          track_count: Some(73),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2676,7 +2676,7 @@ MusicGenre(
             id: "UCjuu_fE95a2M6WyrHwcF7RQ",
             name: "Sheree Martin",
           )),
-          track_count: Some(49),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2698,7 +2698,7 @@ MusicGenre(
             id: "UCpCqOLdeTga8LoEcQe1V4Qg",
             name: "Chris Furmanek",
           )),
-          track_count: Some(33),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2720,7 +2720,7 @@ MusicGenre(
             id: "UCoJI2GPf80lr2esYWFOYC7Q",
             name: "Mvibez 4 You",
           )),
-          track_count: Some(33),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2742,7 +2742,7 @@ MusicGenre(
             id: "UCx_STF-ZTbFU7lqpcHwkb-A",
             name: "lea melissa engling",
           )),
-          track_count: Some(25),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2764,7 +2764,7 @@ MusicGenre(
             id: "UCTlmLGzTFM_Zvgn4At7FQsw",
             name: "Let,s Princesse Elisabeth Weißschwann",
           )),
-          track_count: Some(49),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2786,7 +2786,7 @@ MusicGenre(
             id: "UCRRYp0mnPuxUo2OuXBTPgIw",
             name: "MrSchindler5",
           )),
-          track_count: Some(50),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2808,7 +2808,7 @@ MusicGenre(
             id: "UCO-y9Zei-Hq57Fz-kJ5pFIg",
             name: "Team Adam!",
           )),
-          track_count: Some(24),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2830,7 +2830,7 @@ MusicGenre(
             id: "UCUt6RB8qCm_B7lkjC_uI_tg",
             name: "Dzauki Iskandar Syafrudin",
           )),
-          track_count: Some(80),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2852,7 +2852,7 @@ MusicGenre(
             id: "UCmv7JPapDD8EpFRZ3JPb6wA",
             name: "Bobbie Kook",
           )),
-          track_count: Some(93),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2874,7 +2874,7 @@ MusicGenre(
             id: "UC6VhkMQe9xPwmtTid1okEYA",
             name: "Southern Tasmania Inline Hockey",
           )),
-          track_count: Some(73),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2896,7 +2896,7 @@ MusicGenre(
             id: "UCheVMLm22cdOuin7FRfotpw",
             name: "Annette Morgan",
           )),
-          track_count: Some(30),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2918,7 +2918,7 @@ MusicGenre(
             id: "UCM95yzvaCbNYyd0wSlLivLA",
             name: "maddie kreuer",
           )),
-          track_count: Some(24),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2940,7 +2940,7 @@ MusicGenre(
             id: "UCZdhvY3ZRhLPzk63jfBu-Jg",
             name: "Christian Porras",
           )),
-          track_count: Some(51),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2962,7 +2962,7 @@ MusicGenre(
             id: "UCvHv1I-lzMi3yaIaVt9O6Cw",
             name: "Joe",
           )),
-          track_count: Some(23),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -2984,7 +2984,7 @@ MusicGenre(
             id: "UCBXE2_Z_79PCbMqYW7lM0Qw",
             name: "Lachlan Chan",
           )),
-          track_count: Some(73),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -3006,7 +3006,7 @@ MusicGenre(
             id: "UC7Kjn0QXABRhGMNf8jplrYw",
             name: "Omer",
           )),
-          track_count: Some(60),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -3028,7 +3028,7 @@ MusicGenre(
             id: "UCPvUeP07iI1Ump_E9Re9RoQ",
             name: "Rene LeClerc",
           )),
-          track_count: Some(42),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -3050,7 +3050,7 @@ MusicGenre(
             id: "UCPLqqUd3JIUhKrQSWmX9xEA",
             name: "Rosie Bell",
           )),
-          track_count: Some(39),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -3072,7 +3072,7 @@ MusicGenre(
             id: "UCTvzaZ5awMsP7sBc2QqgNpQ",
             name: "Jerah Korol",
           )),
-          track_count: Some(26),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -3094,7 +3094,7 @@ MusicGenre(
             id: "UCeNpX2m43BU8qcsklSgx_fw",
             name: "Catherine Sauvé",
           )),
-          track_count: Some(20),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -3116,7 +3116,7 @@ MusicGenre(
             id: "UC2AyRL_65MQLfAEslK2Tl1g",
             name: "DARK KNIGHT",
           )),
-          track_count: Some(78),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -3138,7 +3138,7 @@ MusicGenre(
             id: "UC8kup9N401zYicNfFkPv2JA",
             name: "Daniel Benk",
           )),
-          track_count: Some(63),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -3160,7 +3160,7 @@ MusicGenre(
             id: "UCaqUlqhB5V7TOm5fj53oGOA",
             name: "Fuxxy",
           )),
-          track_count: Some(50),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -3182,7 +3182,7 @@ MusicGenre(
             id: "UCmy8DKpss3mIp3kPk3F9UTA",
             name: "Tony Smith",
           )),
-          track_count: Some(32),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -3204,7 +3204,7 @@ MusicGenre(
             id: "UCkiXKygjWrLBRWO97DNOZoQ",
             name: "Ruben Aboy",
           )),
-          track_count: Some(72),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -3226,7 +3226,7 @@ MusicGenre(
             id: "UCdYec8qochRRj9YIIeT3jww",
             name: "Liseth Guevara Báez",
           )),
-          track_count: Some(90),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -3248,7 +3248,7 @@ MusicGenre(
             id: "UCckUkL5J6KtIfZ4-25SWtOg",
             name: "Paulo T. Pontes",
           )),
-          track_count: Some(33),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -3270,7 +3270,7 @@ MusicGenre(
             id: "UCYGmCXupuYMcuMiaeHbiY0w",
             name: "Kian Tajada",
           )),
-          track_count: Some(30),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -3292,7 +3292,7 @@ MusicGenre(
             id: "UCOV65XRJchWaXJyFdgb2lzA",
             name: "Damita Lindholm",
           )),
-          track_count: Some(34),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -3314,7 +3314,7 @@ MusicGenre(
             id: "UCbm8JhtvCfxG6hw5GEKBpmA",
             name: "Paul Turcotte",
           )),
-          track_count: Some(37),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -3336,7 +3336,7 @@ MusicGenre(
             id: "UC9Hjs1_UY3pCPGe3yuEsx6w",
             name: "Miguel Andrade",
           )),
-          track_count: Some(99),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -3358,7 +3358,7 @@ MusicGenre(
             id: "UCTVj_-VIXzIH30yuniSmDSQ",
             name: "Roman Oberle",
           )),
-          track_count: Some(32),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -3380,7 +3380,7 @@ MusicGenre(
             id: "UCimMbWRjsVfXHzna9akMntg",
             name: "Reppin Channel",
           )),
-          track_count: Some(20),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -3402,7 +3402,7 @@ MusicGenre(
             id: "UCxWzBcFDA-Aefb5yHmkN-_w",
             name: "William Dyer",
           )),
-          track_count: Some(39),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -3424,7 +3424,7 @@ MusicGenre(
             id: "UC39OAzxmN3aKTTUyBaWNxzg",
             name: "Floris Voges",
           )),
-          track_count: Some(31),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -3446,7 +3446,7 @@ MusicGenre(
             id: "UC5OzEKzfcd54fr9JZCOz0_g",
             name: "Eric Wu",
           )),
-          track_count: Some(53),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -3468,7 +3468,7 @@ MusicGenre(
             id: "UCNAcaEgjx4_hHS2v_GCbR2Q",
             name: "Marília Pereira",
           )),
-          track_count: Some(50),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -3490,7 +3490,7 @@ MusicGenre(
             id: "UCpF2df_OmrVwsA7n2Luaxeg",
             name: "Marco Poinegger",
           )),
-          track_count: Some(22),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -3512,7 +3512,7 @@ MusicGenre(
             id: "UCGWZDIUKZ60pcGr2YpB1uDg",
             name: "Heather Marie Woods",
           )),
-          track_count: Some(42),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -3534,7 +3534,7 @@ MusicGenre(
             id: "UCnQUwx7YN_sR4g3ZcaXNamA",
             name: "Ольга Довгаль",
           )),
-          track_count: Some(28),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -3556,7 +3556,7 @@ MusicGenre(
             id: "UCl1_WAQVo4zXNofT2yn3_Vw",
             name: "Lydia Powers",
           )),
-          track_count: Some(27),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -3578,7 +3578,7 @@ MusicGenre(
             id: "UCNDEOk_usmdUC9hKvesMMsQ",
             name: "Somethinglol ehhhh",
           )),
-          track_count: Some(22),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -3600,7 +3600,7 @@ MusicGenre(
             id: "UCb_WmI-Qasvilq2MtJVZCiQ",
             name: "Діма Зеленський",
           )),
-          track_count: Some(49),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -3622,7 +3622,7 @@ MusicGenre(
             id: "UCNmm1P9aGwu-KgzbZoXn1yw",
             name: "Рина Мана",
           )),
-          track_count: Some(49),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -3644,7 +3644,7 @@ MusicGenre(
             id: "UCr6d6Guxlal_cQew33oxwHg",
             name: "ells.xo.",
           )),
-          track_count: Some(46),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -3666,7 +3666,7 @@ MusicGenre(
             id: "UCgGH1vmxGvwD5MJ_DnqWXdw",
             name: "Robb Rotundo",
           )),
-          track_count: Some(88),
+          track_count: None,
           from_ytm: false,
         ),
         MusicPlaylistItem(
@@ -3688,7 +3688,7 @@ MusicGenre(
             id: "UCRWBNSG-WdBJW60ck1qNXSw",
             name: "Katelyn Powers",
           )),
-          track_count: Some(78),
+          track_count: None,
           from_ytm: false,
         ),
       ],

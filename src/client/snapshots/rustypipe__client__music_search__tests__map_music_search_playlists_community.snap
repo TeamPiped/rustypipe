@@ -30,7 +30,7 @@ MusicSearchFiltered(
           id: "UCX9oPuvJYZsG8wnHTwOBVPA",
           name: "Chillax",
         )),
-        track_count: Some(220),
+        track_count: None,
         from_ytm: false,
       ),
       MusicPlaylistItem(
@@ -57,7 +57,7 @@ MusicSearchFiltered(
           id: "UC8Ojfs-1VLiAO_MosLwvjpQ",
           name: "Redlist - Ultimate Music",
         )),
-        track_count: Some(70),
+        track_count: None,
         from_ytm: false,
       ),
       MusicPlaylistItem(
@@ -84,7 +84,7 @@ MusicSearchFiltered(
           id: "UCE2DEoWWdlUlZsOpolWOgog",
           name: "Jeff Co",
         )),
-        track_count: Some(321),
+        track_count: None,
         from_ytm: false,
       ),
       MusicPlaylistItem(
@@ -111,7 +111,7 @@ MusicSearchFiltered(
           id: "UCf7eNY2yY-cRuYshHmg4IIg",
           name: "Frank Denker",
         )),
-        track_count: Some(106),
+        track_count: None,
         from_ytm: false,
       ),
       MusicPlaylistItem(
@@ -138,7 +138,7 @@ MusicSearchFiltered(
           id: "UCs72iRpTEuwV3y6pdWYLgiw",
           name: "Redlist - Just Hits",
         )),
-        track_count: Some(204),
+        track_count: None,
         from_ytm: false,
       ),
       MusicPlaylistItem(
@@ -165,7 +165,7 @@ MusicSearchFiltered(
           id: "UCesP91XKnuZVd6OJN06hokg",
           name: "Startup Records",
         )),
-        track_count: Some(164),
+        track_count: None,
         from_ytm: false,
       ),
       MusicPlaylistItem(
@@ -192,7 +192,7 @@ MusicSearchFiltered(
           id: "UCHuFqDbnqNhBsZB3KBj_Y0g",
           name: "Redlist - Músicas Internacionais",
         )),
-        track_count: Some(102),
+        track_count: None,
         from_ytm: false,
       ),
       MusicPlaylistItem(
@@ -219,7 +219,7 @@ MusicSearchFiltered(
           id: "UCv9O2E_G8U46Paz8828THJw",
           name: "Victor Vaz",
         )),
-        track_count: Some(50),
+        track_count: None,
         from_ytm: false,
       ),
       MusicPlaylistItem(
@@ -246,7 +246,7 @@ MusicSearchFiltered(
           id: "UCkX96b0MIXbisaGNCYXSRCQ",
           name: "Redlist - Music Tops",
         )),
-        track_count: Some(50),
+        track_count: None,
         from_ytm: false,
       ),
       MusicPlaylistItem(
@@ -273,7 +273,7 @@ MusicSearchFiltered(
           id: "UCRnu4ZIsaCCDOJdFKIJgirw",
           name: "Redlist - Fresh Hits",
         )),
-        track_count: Some(100),
+        track_count: None,
         from_ytm: false,
       ),
       MusicPlaylistItem(
@@ -300,7 +300,7 @@ MusicSearchFiltered(
           id: "UCs72iRpTEuwV3y6pdWYLgiw",
           name: "Redlist - Just Hits",
         )),
-        track_count: Some(180),
+        track_count: None,
         from_ytm: false,
       ),
       MusicPlaylistItem(
@@ -327,7 +327,7 @@ MusicSearchFiltered(
           id: "UCGUHgJb6ZaJoOqQ6FHgV6zw",
           name: "Redlist - World Songs",
         )),
-        track_count: Some(91),
+        track_count: None,
         from_ytm: false,
       ),
       MusicPlaylistItem(
@@ -354,7 +354,7 @@ MusicSearchFiltered(
           id: "UCPVhZsC2od1xjGhgEc2NEPQ",
           name: "Vevo Playlists",
         )),
-        track_count: Some(82),
+        track_count: None,
         from_ytm: false,
       ),
       MusicPlaylistItem(
@@ -381,7 +381,7 @@ MusicSearchFiltered(
           id: "UCNAPgBbQ2iXE94osjz3-m_A",
           name: "Redlist - Top Hits",
         )),
-        track_count: Some(42),
+        track_count: None,
         from_ytm: false,
       ),
       MusicPlaylistItem(
@@ -408,7 +408,7 @@ MusicSearchFiltered(
           id: "UCs72iRpTEuwV3y6pdWYLgiw",
           name: "Redlist - Just Hits",
         )),
-        track_count: Some(254),
+        track_count: None,
         from_ytm: false,
       ),
       MusicPlaylistItem(
@@ -435,7 +435,7 @@ MusicSearchFiltered(
           id: "UC1crMgATGeegnQTZTImZuqA",
           name: "AXEG UK",
         )),
-        track_count: Some(236),
+        track_count: None,
         from_ytm: false,
       ),
       MusicPlaylistItem(
@@ -462,7 +462,7 @@ MusicSearchFiltered(
           id: "UCSjPP6ccJ3MbsK7v-NfhFtw",
           name: "Redlist Grama",
         )),
-        track_count: Some(150),
+        track_count: None,
         from_ytm: false,
       ),
       MusicPlaylistItem(
@@ -489,7 +489,7 @@ MusicSearchFiltered(
           id: "UCdeukGMkFDh8Zs662Z-d2pA",
           name: "Redlist - Melhores Músicas",
         )),
-        track_count: Some(101),
+        track_count: None,
         from_ytm: false,
       ),
       MusicPlaylistItem(
@@ -516,7 +516,7 @@ MusicSearchFiltered(
           id: "UCPVhZsC2od1xjGhgEc2NEPQ",
           name: "Vevo Playlists",
         )),
-        track_count: Some(261),
+        track_count: None,
         from_ytm: false,
       ),
       MusicPlaylistItem(
@@ -543,7 +543,7 @@ MusicSearchFiltered(
           id: "UCPVhZsC2od1xjGhgEc2NEPQ",
           name: "Vevo Playlists",
         )),
-        track_count: Some(52),
+        track_count: None,
         from_ytm: false,
       ),
     ],

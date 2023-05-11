@@ -350,7 +350,7 @@ fn split_duration_txt(txt: &str, start_c: bool) -> Vec<DurationTxtSegment> {
     let mut state: u8 = 0;
     let mut seg = DurationTxtSegment::default();
 
-    for c in txt.chars() {
+    for c in txt.trim().chars() {
         if c.is_ascii_digit() {
             if state == 2 && (!seg.digits.is_empty() || (!start_c && segments.is_empty())) {
                 segments.push(seg);
@@ -363,7 +363,7 @@ fn split_duration_txt(txt: &str, start_c: bool) -> Vec<DurationTxtSegment> {
                 segments.push(seg);
                 seg = DurationTxtSegment::default();
             }
-            if c != ',' {
+            if !matches!(c, '.' | ',') {
                 c.to_lowercase().for_each(|c| seg.word.push(c));
             }
             state = 2;

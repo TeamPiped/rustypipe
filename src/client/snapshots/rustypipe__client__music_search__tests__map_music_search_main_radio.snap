@@ -438,7 +438,7 @@ MusicSearchResult(
         id: "UCEYgc2eKzQXQ9OGCuT4JVPQ",
         name: "Redlist - International Playlists",
       )),
-      track_count: Some(100),
+      track_count: None,
       from_ytm: false,
     ),
     MusicPlaylistItem(
@@ -465,7 +465,7 @@ MusicSearchResult(
         id: "UCjD0UddJFWadpaTrBJPOVGw",
         name: "Raphaël Weissreiner",
       )),
-      track_count: Some(176),
+      track_count: None,
       from_ytm: false,
     ),
     MusicPlaylistItem(
@@ -492,7 +492,7 @@ MusicSearchResult(
         id: "UCesP91XKnuZVd6OJN06hokg",
         name: "Startup Records",
       )),
-      track_count: Some(171),
+      track_count: None,
       from_ytm: false,
     ),
   ],

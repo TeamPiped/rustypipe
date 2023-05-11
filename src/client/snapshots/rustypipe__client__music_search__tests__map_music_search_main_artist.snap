@@ -507,7 +507,7 @@ MusicSearchResult(
         id: "UC0tDRlJxvcgAhXiHwZm4wcQ",
         name: "Elyssa Hamilton",
       )),
-      track_count: Some(155),
+      track_count: None,
       from_ytm: false,
     ),
     MusicPlaylistItem(
@@ -534,7 +534,7 @@ MusicSearchResult(
         id: "UCNpa7-_q_H17TGFfUccs6mw",
         name: "Spencer Ramirez Salas",
       )),
-      track_count: Some(43),
+      track_count: None,
       from_ytm: false,
     ),
     MusicPlaylistItem(
@@ -561,7 +561,7 @@ MusicSearchResult(
         id: "UCrESzB-SUekVTY3QI3Jfqlg",
         name: "N.J. Music",
       )),
-      track_count: Some(96),
+      track_count: None,
       from_ytm: false,
     ),
   ],

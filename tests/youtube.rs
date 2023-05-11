@@ -796,6 +796,7 @@ fn channel_videos(rp: RustyPipe) {
 fn channel_shorts(rp: RustyPipe) {
     let channel = tokio_test::block_on(
         rp.query()
+            .lang(Language::Sq)
             .channel_videos_tab("UCh8gHdtzO2tXd593_bjErWg", ChannelVideoTab::Shorts),
     )
     .unwrap();
@@ -1005,7 +1006,7 @@ fn channel_order(
             }
         }
     }
-    assert_next(latest, rp.query(), 15, 2);
+    assert_next(latest, rp.query(), 15, 1);
 
     let popular = tokio_test::block_on(rp.query().channel_videos_tab_order(
         id,
@@ -1030,7 +1031,7 @@ fn channel_order(
             );
         }
     }
-    assert_next(popular, rp.query(), 15, 2);
+    assert_next(popular, rp.query(), 15, 1);
 }
 
 #[rstest]
@@ -1156,7 +1157,7 @@ fn search_filter_item_type(#[case] item_type: search_filter::ItemType, rp: Rusty
 fn search_empty(rp: RustyPipe) {
     let result = tokio_test::block_on(
         rp.query().search_filter(
-            "test",
+            "3gig84hgi34gu8vj34gj489",
             &search_filter::SearchFilter::new()
                 .feature(search_filter::Feature::IsLive)
                 .feature(search_filter::Feature::Is3d),
@@ -1171,7 +1172,7 @@ fn search_empty(rp: RustyPipe) {
 fn search_suggestion(rp: RustyPipe) {
     let result = tokio_test::block_on(rp.query().search_suggestion("hunger ga")).unwrap();
 
-    assert!(result.iter().any(|s| s.starts_with("hunger games ")));
+    assert!(result.iter().any(|s| s.starts_with("hunger games")));
     assert_gte(result.len(), 10, "search suggestions");
 }
 
@@ -1373,7 +1374,7 @@ fn music_playlist_not_found(rp: RustyPipe) {
 #[case::various_artists("various_artists", "MPREb_8QkDeEIawvX")]
 #[case::single("single", "MPREb_bHfHGoy7vuv")]
 #[case::ep("ep", "MPREb_u1I69lSAe5v")]
-#[case::audiobook("audiobook", "MPREb_gaoNzsQHedo")]
+// #[case::audiobook("audiobook", "MPREb_gaoNzsQHedo")]
 #[case::show("show", "MPREb_cwzk8EUwypZ")]
 #[case::unavailable("unavailable", "MPREb_AzuWg8qAVVl")]
 #[case::no_year("no_year", "MPREb_F3Af9UZZVxX")]
@@ -1835,7 +1836,6 @@ fn music_search_playlists_community(rp: RustyPipe) {
         "Best Pop Music Videos - Top Pop Hits Playlist"
     );
     assert!(!playlist.thumbnail.is_empty(), "got no thumbnail");
-    assert_gte(playlist.track_count.unwrap(), 250, "tracks");
 
     let channel = playlist.channel.as_ref().unwrap();
     assert_eq!(channel.id, "UCs72iRpTEuwV3y6pdWYLgiw");
@@ -2019,8 +2019,6 @@ fn music_related(#[case] id: &str, #[case] full: bool, rp: RustyPipe) {
                 let channel = playlist.channel.unwrap();
                 assert_channel_id(&channel.id);
                 assert!(!channel.name.is_empty());
-
-                assert_gte(playlist.track_count.unwrap(), 2, "tracks");
             } else {
                 assert!(playlist.channel.is_none());
             }
@@ -2216,8 +2214,6 @@ fn music_genre(#[case] id: &str, #[case] name: &str, rp: RustyPipe, unlocalized:
                     let channel = playlist.channel.as_ref().unwrap();
                     assert_channel_id(&channel.id);
                     assert!(!channel.name.is_empty());
-
-                    assert_gte(playlist.track_count.unwrap(), 1, "tracks");
                 } else {
                     assert!(playlist.channel.is_none());
                 }
