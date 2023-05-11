@@ -171,6 +171,12 @@ impl From<reqwest::Error> for Error {
     }
 }
 
+impl From<serde_plain::Error> for Error {
+    fn from(value: serde_plain::Error) -> Self {
+        Self::Other(value.to_string().into())
+    }
+}
+
 impl ExtractionError {
     pub(crate) fn should_report(&self) -> bool {
         matches!(

@@ -1,4 +1,4 @@
-use std::collections::HashSet;
+use std::collections::HashMap;
 use std::fmt::Display;
 use std::str::FromStr;
 
@@ -15,8 +15,8 @@ use rustypipe::model::{
     paginator::Paginator,
     richtext::ToPlaintext,
     traits::{FromYtItem, YtStream},
-    AlbumType, AudioCodec, AudioFormat, Channel, MusicGenre, MusicItemType, UrlTarget,
-    Verification, VideoCodec, VideoFormat, YouTubeItem,
+    AlbumType, AudioCodec, AudioFormat, AudioTrackType, Channel, MusicGenre, MusicItemType,
+    UrlTarget, Verification, VideoCodec, VideoFormat, YouTubeItem,
 };
 use rustypipe::param::{
     search_filter::{self, SearchFilter},
@@ -261,11 +261,26 @@ fn get_player(
             let langs = player_data
                 .audio_streams
                 .iter()
-                .filter_map(|stream| stream.track.as_ref().map(|t| t.lang.as_deref().unwrap()))
-                .collect::<HashSet<_>>();
+                .filter_map(|stream| {
+                    stream
+                        .track
+                        .as_ref()
+                        .map(|t| (t.lang.as_deref().unwrap(), t.track_type.unwrap()))
+                })
+                .collect::<HashMap<_, _>>();
 
-            for l in ["en-US", "es", "fr", "pt", "ru"] {
-                assert!(langs.contains(l), "missing lang: {l}");
+            assert_eq!(
+                langs.get("en-US"),
+                Some(&AudioTrackType::Original),
+                "missing lang: en-US"
+            );
+
+            for l in ["es", "fr", "pt", "ru"] {
+                assert_eq!(
+                    langs.get(l),
+                    Some(&AudioTrackType::Dubbed),
+                    "missing lang: {l}"
+                );
             }
         }
         _ => {}

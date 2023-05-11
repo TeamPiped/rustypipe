@@ -377,12 +377,18 @@ fn deobf_nsig(
     Ok(())
 }
 
+struct UrlMapRes {
+    url: String,
+    throttled: bool,
+    xtags: Option<String>,
+}
+
 fn map_url(
     url: &Option<String>,
     signature_cipher: &Option<String>,
     deobf: &Deobfuscator,
     last_nsig: &mut [String; 2],
-) -> MapResult<Option<(String, bool)>> {
+) -> MapResult<Option<UrlMapRes>> {
     let x = match url {
         Some(url) => util::url_to_params(url).map_err(|_| format!("Could not parse url `{url}`")),
         None => match signature_cipher {
@@ -414,7 +420,11 @@ fn map_url(
 
     match Url::parse_with_params(url_base.as_str(), url_params.iter()) {
         Ok(url) => MapResult {
-            c: Some((url.to_string(), throttled)),
+            c: Some(UrlMapRes {
+                url: url.to_string(),
+                throttled,
+                xtags: url_params.get("xtags").cloned(),
+            }),
             warnings,
         },
         Err(_) => MapResult {
@@ -455,9 +465,9 @@ fn map_video_stream(
     let map_res = map_url(&f.url, &f.signature_cipher, deobf, last_nsig);
 
     match map_res.c {
-        Some((url, throttled)) => MapResult {
+        Some(url) => MapResult {
             c: Some(VideoStream {
-                url,
+                url: url.url,
                 itag: f.itag,
                 bitrate: f.bitrate,
                 average_bitrate: f.average_bitrate.unwrap_or(f.bitrate),
@@ -476,7 +486,7 @@ fn map_video_stream(
                 mime: f.mime_type.to_owned(),
                 format,
                 codec: get_video_codec(codecs),
-                throttled,
+                throttled: url.throttled,
             }),
             warnings: map_res.warnings,
         },
@@ -514,11 +524,12 @@ fn map_audio_stream(
         }
     };
     let map_res = map_url(&f.url, &f.signature_cipher, deobf, last_nsig);
+    let mut warnings = map_res.warnings;
 
     match map_res.c {
-        Some((url, throttled)) => MapResult {
+        Some(url) => MapResult {
             c: Some(AudioStream {
-                url,
+                url: url.url,
                 itag: f.itag,
                 bitrate: f.bitrate,
                 average_bitrate: f.average_bitrate.unwrap_or(f.bitrate),
@@ -531,23 +542,14 @@ fn map_audio_stream(
                 codec: get_audio_codec(codecs),
                 channels: f.audio_channels,
                 loudness_db: f.loudness_db,
-                throttled,
-                track: match f.audio_track {
-                    Some(t) => Some(AudioTrack {
-                        lang: t.id.split('.').next().map(str::to_owned),
-                        id: t.id,
-                        lang_name: t.display_name,
-                        is_default: t.audio_is_default,
-                    }),
-                    None => None,
-                },
+                throttled: url.throttled,
+                track: f
+                    .audio_track
+                    .map(|t| map_audio_track(t, url.xtags, &mut warnings)),
             }),
-            warnings: map_res.warnings,
+            warnings,
         },
-        None => MapResult {
-            c: None,
-            warnings: map_res.warnings,
-        },
+        None => MapResult { c: None, warnings },
     }
 }
 
@@ -608,6 +610,43 @@ fn get_audio_codec(codecs: Vec<&str>) -> AudioCodec {
         }
     }
     AudioCodec::Unknown
+}
+
+fn map_audio_track(
+    track: response::player::AudioTrack,
+    xtags: Option<String>,
+    warnings: &mut Vec<String>,
+) -> AudioTrack {
+    let mut lang = None;
+    let mut track_type = None;
+
+    if let Some(xtags) = xtags {
+        xtags
+            .split(':')
+            .filter_map(|param| param.split_once('='))
+            .for_each(|(k, v)| match k {
+                "lang" => {
+                    lang = Some(v.to_owned());
+                }
+                "acont" => match serde_plain::from_str(v) {
+                    Ok(v) => {
+                        track_type = Some(v);
+                    }
+                    Err(_) => {
+                        warnings.push(format!("could not parse audio track type `{v}`"));
+                    }
+                },
+                _ => {}
+            })
+    }
+
+    AudioTrack {
+        id: track.id,
+        lang,
+        lang_name: track.display_name,
+        is_default: track.audio_is_default,
+        track_type,
+    }
 }
 
 #[cfg(test)]
@@ -674,10 +713,10 @@ mod tests {
             &deobf,
             &mut last_nsig,
         );
-        let (url, throttled) = map_res.c.unwrap();
+        let url = map_res.c.unwrap();
 
-        assert_eq!(url, "https://rr5---sn-h0jelnez.googlevideo.com/videoplayback?c=WEB&clen=3781277&dur=229.301&ei=vb7nYvH5BMK8gAfBj7ToBQ&expire=1659376413&fexp=24001373%2C24007246&fvip=5&gir=yes&id=o-AB_BABwrXZJN428ZwDxq5ScPn2AbcGODnRlTVhCQ3mj2&initcwndbps=1588750&ip=2003%3Ade%3Aaf06%3A6300%3Ac750%3A1b77%3Ac74a%3A80e3&itag=251&keepalive=yes&lmt=1655510291473933&lsig=AG3C_xAwRQIgCKCGJ1iu4wlaGXy3jcJyU3inh9dr1FIfqYOZEG_MdmACIQCbungkQYFk7EhD6K2YvLaHFMjKOFWjw001_tLb0lPDtg%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=hH&mime=audio%2Fwebm&mm=31%2C26&mn=sn-h0jelnez%2Csn-4g5ednsl&ms=au%2Conr&mt=1659354538&mv=m&mvi=5&n=XzXGSfGusw6OCQ&ns=b_Mq_qlTFcSGlG9RpwpM9xQH&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRQIhAPIsKd7-xi4xVHEC9gb__dU4hzfzsHEj9ytd3nt0gEceAiACJWBcw-wFEq9qir35bwKHJZxtQ9mOL7SKiVkLQNDa6A%3D%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cspc%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&spc=lT-Khi831z8dTejFIRCvCEwx_6romtM&txp=4532434&vprv=1");
-        assert!(!throttled);
+        assert_eq!(url.url, "https://rr5---sn-h0jelnez.googlevideo.com/videoplayback?c=WEB&clen=3781277&dur=229.301&ei=vb7nYvH5BMK8gAfBj7ToBQ&expire=1659376413&fexp=24001373%2C24007246&fvip=5&gir=yes&id=o-AB_BABwrXZJN428ZwDxq5ScPn2AbcGODnRlTVhCQ3mj2&initcwndbps=1588750&ip=2003%3Ade%3Aaf06%3A6300%3Ac750%3A1b77%3Ac74a%3A80e3&itag=251&keepalive=yes&lmt=1655510291473933&lsig=AG3C_xAwRQIgCKCGJ1iu4wlaGXy3jcJyU3inh9dr1FIfqYOZEG_MdmACIQCbungkQYFk7EhD6K2YvLaHFMjKOFWjw001_tLb0lPDtg%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=hH&mime=audio%2Fwebm&mm=31%2C26&mn=sn-h0jelnez%2Csn-4g5ednsl&ms=au%2Conr&mt=1659354538&mv=m&mvi=5&n=XzXGSfGusw6OCQ&ns=b_Mq_qlTFcSGlG9RpwpM9xQH&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRQIhAPIsKd7-xi4xVHEC9gb__dU4hzfzsHEj9ytd3nt0gEceAiACJWBcw-wFEq9qir35bwKHJZxtQ9mOL7SKiVkLQNDa6A%3D%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cspc%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&spc=lT-Khi831z8dTejFIRCvCEwx_6romtM&txp=4532434&vprv=1");
+        assert!(!url.throttled);
         assert!(
             map_res.warnings.is_empty(),
             "deserialization/mapping warnings: {:?}",

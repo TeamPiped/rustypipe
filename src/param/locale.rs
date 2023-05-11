@@ -2,9 +2,9 @@
 
 //! Languages and countries
 
-use std::{fmt::Display, str::FromStr};
-
 use serde::{Deserialize, Serialize};
+
+use crate::error::Error;
 
 /// Available languages
 #[derive(Copy, Clone, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
@@ -829,32 +829,8 @@ impl Country {
     }
 }
 
-impl Display for Language {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        f.write_str(
-            &serde_json::to_string(self).map_or("".to_owned(), |s| s[1..s.len() - 1].to_owned()),
-        )
-    }
-}
+serde_plain::derive_fromstr_from_deserialize!(Language, Error);
+serde_plain::derive_display_from_serialize!(Language);
 
-impl Display for Country {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        f.write_str(
-            &serde_json::to_string(self).map_or("".to_owned(), |s| s[1..s.len() - 1].to_owned()),
-        )
-    }
-}
-
-impl FromStr for Language {
-    type Err = serde_json::Error;
-    fn from_str(s: &str) -> Result<Self, Self::Err> {
-        serde_json::from_str(&format!("\"{s}\""))
-    }
-}
-
-impl FromStr for Country {
-    type Err = serde_json::Error;
-    fn from_str(s: &str) -> Result<Self, Self::Err> {
-        serde_json::from_str(&format!("\"{s}\""))
-    }
-}
+serde_plain::derive_fromstr_from_deserialize!(Country, Error);
+serde_plain::derive_display_from_serialize!(Country);

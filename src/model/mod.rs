@@ -342,14 +342,14 @@ pub enum VideoFormat {
 pub struct AudioTrack {
     /// Track ID (e.g. `en.0`)
     pub id: String,
-    /// 2/3 letter language code (e.g. `en`)
-    ///
-    /// Extracted from the track ID
+    /// Language code (e.g. `en-US`, `de`)
     pub lang: Option<String>,
     /// Language name (e.g. "English")
     pub lang_name: String,
     /// True if this is the default audio track
     pub is_default: bool,
+    /// Audio track type (e.g. *Original*, *Dubbed*)
+    pub track_type: Option<AudioTrackType>,
 }
 
 /// Audio file type
@@ -361,6 +361,25 @@ pub enum AudioFormat {
     M4a,
     /// `*.webm`
     Webm,
+}
+
+/// Audio track type
+#[derive(Copy, Clone, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[serde(rename_all = "snake_case")]
+#[non_exhaustive]
+pub enum AudioTrackType {
+    /// An original audio track of the video
+    Original,
+    /// An audio track with the original voices replaced, typically in a different language
+    Dubbed,
+    /// A descriptive audio track
+    ///
+    /// A descriptive audio track is an audio track in which descriptions of visual elements of
+    /// a video are added to the original audio, with the goal to make a video more accessible to
+    /// blind and visually impaired people.
+    ///
+    /// See <https://en.wikipedia.org/wiki/Audio_description>
+    Descriptive,
 }
 
 /// YouTube provides subtitles in different formats.
