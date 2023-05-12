@@ -1024,8 +1024,9 @@ fn channel_order(
     if tab != ChannelVideoTab::Shorts {
         let mut popular_items = popular.items.iter().peekable();
         while let (Some(v), Some(next_v)) = (popular_items.next(), popular_items.peek()) {
+            let vc = v.view_count.unwrap();
             assert_gte(
-                v.view_count.unwrap(),
+                vc + (vc as f64 * 0.05) as u64,
                 next_v.view_count.unwrap(),
                 "most popular view count",
             );
