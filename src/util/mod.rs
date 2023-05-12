@@ -26,7 +26,7 @@ pub static VIDEO_ID_REGEX: Lazy<Regex> = Lazy::new(|| Regex::new(r"^[A-Za-z0-9_-
 pub static CHANNEL_ID_REGEX: Lazy<Regex> =
     Lazy::new(|| Regex::new(r"^UC[A-Za-z0-9_-]{22}$").unwrap());
 pub static PLAYLIST_ID_REGEX: Lazy<Regex> =
-    Lazy::new(|| Regex::new(r"^(?:PL|RDCLAK|OLAK)[A-Za-z0-9_-]{16,50}$").unwrap());
+    Lazy::new(|| Regex::new(r"^(?:PL|RDCLAK|OLAK|UU)[A-Za-z0-9_-]{16,50}$").unwrap());
 pub static ALBUM_ID_REGEX: Lazy<Regex> =
     Lazy::new(|| Regex::new(r"^MPREb_[A-Za-z0-9_-]{11}$").unwrap());
 pub static VANITY_PATH_REGEX: Lazy<Regex> = Lazy::new(|| {

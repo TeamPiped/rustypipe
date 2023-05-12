@@ -1,0 +1,18 @@
+Source: https://github.com/TeamNewPipe/NewPipe/pull/9182#issuecomment-1508938841
+
+Note: we recently discovered that YouTube system playlists exist for regular videos of channels, for livestreams, and shorts as chronological ones (the shorts one was already known) and popular ones.
+They correspond basically to the results of the sort filters available on the channels streams tab on YouTube's interface
+
+So, basically shortcuts for the lazy/incurious?
+
+Same procedure as the one described in the 0.24.1 changelog, except that you need to change the prefix UU (all user uploads) to:
+
+UULF for regular videos only,
+UULV for livestreams only,
+UUSH for shorts only,
+UULP for popular regular videos,
+UUPS for popular shorts,
+UUPV for popular livestreams
+UUMF: members only regular videos
+UUMV: members only livestreams
+UUMS is probably for members-only shorts, we need to found a channel making shorts restricted to channel members
