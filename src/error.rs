@@ -2,6 +2,8 @@
 
 use std::{borrow::Cow, fmt::Display};
 
+use reqwest::StatusCode;
+
 /// Error type for the RustyPipe library
 #[derive(thiserror::Error, Debug)]
 #[non_exhaustive]
@@ -177,14 +179,32 @@ impl From<serde_plain::Error> for Error {
     }
 }
 
-impl ExtractionError {
+impl Error {
+    /// Return true if a report should be generated
     pub(crate) fn should_report(&self) -> bool {
         matches!(
             self,
-            ExtractionError::InvalidData(_) | ExtractionError::WrongResult(_)
+            Self::HttpStatus(_, _)
+                | Self::Extraction(ExtractionError::InvalidData(_))
+                | Self::Extraction(ExtractionError::WrongResult(_))
         )
     }
 
+    /// Return true if the request should be retried
+    pub(crate) fn should_retry(&self) -> bool {
+        match self {
+            Self::HttpStatus(code, _) => match StatusCode::try_from(*code) {
+                Ok(status) => status.is_server_error() || status == StatusCode::TOO_MANY_REQUESTS,
+                Err(_) => false,
+            },
+            Self::Extraction(ExtractionError::InvalidData(_)) => true,
+            _ => false,
+        }
+    }
+}
+
+impl ExtractionError {
+    /// Return true if the video should be fetched with a different client
     pub(crate) fn switch_client(&self) -> bool {
         matches!(
             self,

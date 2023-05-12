@@ -118,6 +118,10 @@ impl MapResponse<MusicCharts> for response::MusicCharts {
                 response::music_charts::ItemSection::None => {}
             });
 
+        mapper_top.check_unknown()?;
+        mapper_trending.check_unknown()?;
+        mapper_other.check_unknown()?;
+
         let mapped_top = mapper_top.conv_items::<TrackItem>();
         let mut mapped_trending = mapper_trending.conv_items::<TrackItem>();
         let mut mapped_other = mapper_other.group_items();

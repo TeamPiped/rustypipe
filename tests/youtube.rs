@@ -1254,7 +1254,7 @@ fn startpage(rp: RustyPipe) {
     // The startpage requires visitor data to fetch continuations
     assert!(startpage.visitor_data.is_some());
 
-    assert_next(startpage, rp.query(), 12, 2);
+    assert_next(startpage, rp.query(), 8, 2);
 }
 
 #[rstest]

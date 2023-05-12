@@ -76,7 +76,7 @@ impl RustyPipeQuery {
 
         let response = self
             .client
-            .http_request_txt(self.client.inner.http.get(url).build()?)
+            .http_request_txt(&self.client.inner.http.get(url).build()?)
             .await?;
 
         let parsed = serde_json::from_str::<response::SearchSuggestion>(&response)

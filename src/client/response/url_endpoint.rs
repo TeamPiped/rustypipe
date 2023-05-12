@@ -160,15 +160,18 @@ pub(crate) enum PageType {
     Channel,
     #[serde(rename = "MUSIC_PAGE_TYPE_PLAYLIST", alias = "WEB_PAGE_TYPE_PLAYLIST")]
     Playlist,
+    #[serde(rename = "MUSIC_PAGE_TYPE_UNKNOWN")]
+    Unknown,
 }
 
 impl PageType {
-    pub(crate) fn to_url_target(self, id: String) -> UrlTarget {
+    pub(crate) fn to_url_target(self, id: String) -> Option<UrlTarget> {
         match self {
-            PageType::Artist => UrlTarget::Channel { id },
-            PageType::Album => UrlTarget::Album { id },
-            PageType::Channel => UrlTarget::Channel { id },
-            PageType::Playlist => UrlTarget::Playlist { id },
+            PageType::Artist => Some(UrlTarget::Channel { id }),
+            PageType::Album => Some(UrlTarget::Album { id }),
+            PageType::Channel => Some(UrlTarget::Channel { id }),
+            PageType::Playlist => Some(UrlTarget::Playlist { id }),
+            PageType::Unknown => None,
         }
     }
 }
@@ -179,6 +182,7 @@ pub(crate) enum MusicPageType {
     Album,
     Playlist,
     Track { is_video: bool },
+    Unknown,
     None,
 }
 
@@ -189,6 +193,7 @@ impl From<PageType> for MusicPageType {
             PageType::Album => MusicPageType::Album,
             PageType::Playlist => MusicPageType::Playlist,
             PageType::Channel => MusicPageType::None,
+            PageType::Unknown => MusicPageType::Unknown,
         }
     }
 }

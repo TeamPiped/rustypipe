@@ -314,7 +314,7 @@ impl MapResponse<UrlTarget> for response::ResolvedUrl {
             .browse_endpoint
             .ok_or(ExtractionError::InvalidData(Cow::Borrowed("No browse ID")))?;
 
-        let page_type = self
+        let target = self
             .endpoint
             .command_metadata
             .map(|c| c.web_command_metadata.web_page_type)
@@ -323,10 +323,11 @@ impl MapResponse<UrlTarget> for response::ResolvedUrl {
                     .browse_endpoint_context_supported_configs
                     .map(|c| c.browse_endpoint_context_music_config.page_type)
             })
+            .and_then(|pt| pt.to_url_target(browse_endpoint.browse_id))
             .ok_or(ExtractionError::InvalidData(Cow::Borrowed("No page type")))?;
 
         Ok(MapResult {
-            c: page_type.to_url_target(browse_endpoint.browse_id),
+            c: target,
             warnings: Vec::new(),
         })
     }

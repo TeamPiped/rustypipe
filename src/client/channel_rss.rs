@@ -23,7 +23,7 @@ impl RustyPipeQuery {
         );
         let xml = self
             .client
-            .http_request_txt(self.client.inner.http.get(&url).build()?)
+            .http_request_txt(&self.client.inner.http.get(&url).build()?)
             .await
             .map_err(|e| match e {
                 Error::HttpStatus(404, _) => Error::Extraction(ExtractionError::NotFound {

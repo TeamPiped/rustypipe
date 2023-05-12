@@ -2,6 +2,7 @@ use serde::Deserialize;
 use serde_with::{rust::deserialize_ignore_any, serde_as, DefaultOnError, VecSkipError};
 
 use crate::{
+    error::ExtractionError,
     model::{
         self, traits::FromYtItem, AlbumId, AlbumItem, AlbumType, ArtistId, ArtistItem, ChannelId,
         MusicItem, MusicItemType, MusicPlaylistItem, TrackItem,
@@ -428,6 +429,8 @@ pub(crate) struct MusicListMapper {
     artist_page: bool,
     items: Vec<MusicItem>,
     warnings: Vec<String>,
+    /// True if unknown items were mapped
+    has_unknown: bool,
 }
 
 #[derive(Debug)]
@@ -447,6 +450,7 @@ impl MusicListMapper {
             artist_page: false,
             items: Vec::new(),
             warnings: Vec::new(),
+            has_unknown: false,
         }
     }
 
@@ -459,6 +463,7 @@ impl MusicListMapper {
             artist_page: true,
             items: Vec::new(),
             warnings: Vec::new(),
+            has_unknown: false,
         }
     }
 
@@ -471,6 +476,7 @@ impl MusicListMapper {
             artist_page: false,
             items: Vec::new(),
             warnings: Vec::new(),
+            has_unknown: false,
         }
     }
 
@@ -759,6 +765,10 @@ impl MusicListMapper {
                             }
                             // Tracks were already handled above
                             MusicPageType::Track { .. } => unreachable!(),
+                            MusicPageType::Unknown => {
+                                self.has_unknown = true;
+                                Ok(None)
+                            }
                         }
                     }
                     None => {
@@ -893,6 +903,10 @@ impl MusicListMapper {
                             Ok(Some(MusicItemType::Playlist))
                         }
                         MusicPageType::None => Ok(None),
+                        MusicPageType::Unknown => {
+                            self.has_unknown = true;
+                            Ok(None)
+                        }
                     },
                     None => Err("could not determine item type".to_owned()),
                 }
@@ -1028,6 +1042,10 @@ impl MusicListMapper {
                     Some(MusicItemType::Playlist)
                 }
                 MusicPageType::None => None,
+                MusicPageType::Unknown => {
+                    self.has_unknown = true;
+                    None
+                }
             },
             None => {
                 self.warnings
@@ -1100,6 +1118,13 @@ impl MusicListMapper {
                 playlists,
             },
             warnings: self.warnings,
+        }
+    }
+
+    pub fn check_unknown(&self) -> Result<(), ExtractionError> {
+        match self.has_unknown {
+            true => Err(ExtractionError::InvalidData("unknown YTM items".into())),
+            false => Ok(()),
         }
     }
 }

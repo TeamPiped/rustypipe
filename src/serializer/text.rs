@@ -384,9 +384,9 @@ impl From<TextComponent> for crate::model::richtext::TextComponent {
                 text,
                 page_type,
                 browse_id,
-            } => Self::YouTube {
-                text,
-                target: page_type.to_url_target(browse_id),
+            } => match page_type.to_url_target(browse_id) {
+                Some(target) => Self::YouTube { text, target },
+                None => Self::Text(text),
             },
             TextComponent::Web { text, url } => Self::Web {
                 text,

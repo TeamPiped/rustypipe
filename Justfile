@@ -17,7 +17,6 @@ testyt10:
 
 testintl:
     #!/usr/bin/env bash
-    set -e
     LANGUAGES=(
         "af" "am" "ar" "as" "az" "be" "bg" "bn" "bs" "ca" "cs" "da" "de" "el"
         "en" "en-GB" "en-IN"
@@ -27,12 +26,21 @@ testintl:
         "pt" "pt-PT" "ro" "ru" "si" "sk" "sl" "sq" "sr" "sr-Latn" "sv" "sw" "ta"
         "te" "th" "tr" "uk" "ur" "uz" "vi" "zh-CN" "zh-HK" "zh-TW" "zu"
     )
-    for YT_LANG in "${LANGUAGES[@]}"; do \
-        echo "---TESTS FOR $YT_LANG ---"; \
-        YT_LANG="$YT_LANG" cargo test --test youtube -- --skip get_video_details --skip startpage; \
-        echo "--- $YT_LANG COMPLETED ---"; \
-        sleep 10; \
+
+    N_FAILED=0
+
+    for YT_LANG in "${LANGUAGES[@]}"; do
+        echo "---TESTS FOR $YT_LANG ---"
+
+        if YT_LANG="$YT_LANG" cargo test --test youtube -- --test-threads 4 --skip resolve; then
+            echo "--- $YT_LANG COMPLETED ---"
+        else
+            echo "--- $YT_LANG FAILED ---"
+            ((N_FAILED++))
+        fi
     done
+
+    exit "$N_FAILED"
 
 testfiles:
     cargo run -p rustypipe-codegen download-testfiles

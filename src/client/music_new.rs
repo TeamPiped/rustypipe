@@ -72,6 +72,7 @@ impl<T: FromYtItem> MapResponse<Vec<T>> for response::MusicNew {
 
         let mut mapper = MusicListMapper::new(lang);
         mapper.map_response(items);
+        mapper.check_unknown()?;
 
         Ok(mapper.conv_items())
     }
