@@ -9,7 +9,7 @@ use futures::{stream, StreamExt};
 use path_macro::path;
 use rustypipe::{
     client::{ClientType, RustyPipe, RustyPipeQuery},
-    param::{locale::LANGUAGES, Language},
+    param::{Language, LANGUAGES},
 };
 
 use crate::{

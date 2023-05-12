@@ -6,6 +6,7 @@ authors = ["ThetaDev <t.testboy@gmail.com>"]
 license = "GPL-3.0"
 description = "Client for the public YouTube / YouTube Music API (Innertube), inspired by NewPipe"
 keywords = ["youtube", "video", "music"]
+categories = ["api-bindings", "multimedia"]
 
 include = ["/src", "README.md", "LICENSE", "!snapshots"]
 

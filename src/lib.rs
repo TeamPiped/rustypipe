@@ -1,6 +1,11 @@
 #![doc = include_str!("../README.md")]
 #![warn(missing_docs, clippy::todo, clippy::dbg_macro)]
 
+//! ## Go to
+//!
+//! - Client ([`rustypipe::client::Rustypipe`](crate::client::RustyPipe))
+//! - Query ([`rustypipe::client::RustypipeQuery`](crate::client::RustyPipeQuery))
+
 mod deobfuscate;
 mod serializer;
 mod util;

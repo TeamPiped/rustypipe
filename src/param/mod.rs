@@ -1,11 +1,14 @@
-//! Query parameters
+//! # Query parameters
+//!
+//! This module contains structs and enums used as input parameters
+//! for the functions in RustyPipe.
 
+mod locale;
 mod stream_filter;
 
-pub mod locale;
 pub mod search_filter;
 
-pub use locale::{Country, Language};
+pub use locale::{Country, Language, COUNTRIES, LANGUAGES};
 pub use stream_filter::StreamFilter;
 
 /// Channel video tab

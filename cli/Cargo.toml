@@ -2,6 +2,11 @@
 name = "rustypipe-cli"
 version = "0.1.0"
 edition = "2021"
+authors = ["ThetaDev <t.testboy@gmail.com>"]
+license = "GPL-3.0"
+description = "CLI for RustyPipe - download videos and extract data from YouTube / YouTube Music"
+keywords = ["youtube", "video", "music"]
+categories = ["multimedia"]
 
 [features]
 default = ["rustls-tls-native-roots"]

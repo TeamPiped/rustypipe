@@ -214,9 +214,9 @@ static CLIENT_VERSION_REGEXES: Lazy<[Regex; 1]> =
 
 /// The RustyPipe client used to access YouTube's API
 ///
-/// RustyPipe includes an `Arc` internally, so if you are using the client
-/// at multiple locations, you can just clone it. Note that options (lang/country/report)
-/// are not shared between clones.
+/// RustyPipe uses an [`Arc`] internally, so if you are using the client
+/// at multiple locations, you can just clone it. Note that query options
+/// (lang/country/report/visitor data) are not shared between clones.
 #[derive(Clone)]
 pub struct RustyPipe {
     inner: Arc<RustyPipeRef>,
@@ -268,10 +268,78 @@ impl<T> DefaultOpt<T> {
     }
 }
 
-/// RustyPipe query object
+/// # RustyPipe query
 ///
-/// Contains a reference to the RustyPipe client as well as query-specific
-/// options (e.g. language preference).
+/// ## Queries
+///
+/// ### YouTube
+///
+/// - **Video**
+///   - [`player`](RustyPipeQuery::player)
+///   - [`video_details`](RustyPipeQuery::video_details)
+///   - [`video_comments`](RustyPipeQuery::video_comments)
+/// - **Channel**
+///   - [`channel_videos`](RustyPipeQuery::channel_videos)
+///   - [`channel_videos_order`](RustyPipeQuery::channel_videos_order)
+///   - [`channel_videos_tab`](RustyPipeQuery::channel_videos_tab)
+///   - [`channel_videos_tab_order`](RustyPipeQuery::channel_videos_tab_order)
+///   - [`channel_playlists`](RustyPipeQuery::channel_playlists)
+///   - [`channel_search`](RustyPipeQuery::channel_search)
+///   - [`channel_info`](RustyPipeQuery::channel_info)
+///   - [`channel_rss`](RustyPipeQuery::channel_rss) (🔒 Feature `rss`)
+/// - **Playlist** [`playlist`](RustyPipeQuery::playlist)
+/// - **Search**
+///   - [`search`](RustyPipeQuery::search)
+///   - [`search_filter`](RustyPipeQuery::search_filter)
+///   - [`search_suggestion`](RustyPipeQuery::search_suggestion)
+/// - **Trending** [`trending`](RustyPipeQuery::trending)
+/// - **Resolver** (convert URLs and strings to YouTube IDs)
+///   - [`resolve_url`](RustyPipeQuery::resolve_url)
+///   - [`resolve_string`](RustyPipeQuery::resolve_string)
+///
+/// ### YouTube Music
+///
+/// - **Playlist** [`music_playlist`](RustyPipeQuery::music_playlist)
+/// - **Album** [`music_album`](RustyPipeQuery::music_album)
+/// - **Artist** [`music_artist`](RustyPipeQuery::music_artist)
+/// - **Search**
+///   - [`music_search`](RustyPipeQuery::music_search)
+///   - [`music_search_tracks`](RustyPipeQuery::music_search_tracks)
+///   - [`music_search_videos`](RustyPipeQuery::music_search_videos)
+///   - [`music_search_albums`](RustyPipeQuery::music_search_albums)
+///   - [`music_search_artists`](RustyPipeQuery::music_search_artists)
+///   - [`music_search_playlists`](RustyPipeQuery::music_search_playlists)
+///   - [`music_search_playlists_filter`](RustyPipeQuery::music_search_playlists_filter)
+///   - [`music_search_suggestion`](RustyPipeQuery::music_search_suggestion)
+/// - **Radio**
+///   - [`music_radio`](RustyPipeQuery::music_radio)
+///   - [`music_radio_playlist`](RustyPipeQuery::music_radio_playlist)
+///   - [`music_radio_track`](RustyPipeQuery::music_radio_track)
+/// - **Track details**
+///   - [`music_details`](RustyPipeQuery::music_details)
+///   - [`music_lyrics`](RustyPipeQuery::music_lyrics)
+///   - [`music_related`](RustyPipeQuery::music_related)
+/// - **Moods/Genres**
+///   - [`music_genres`](RustyPipeQuery::music_genres)
+///   - [`music_genre`](RustyPipeQuery::music_genre)
+/// - **Charts** [`music_charts`](RustyPipeQuery::music_charts)
+/// - **New**
+///   - [`music_new_albums`](RustyPipeQuery::music_new_albums)
+///   - [`music_new_videos`](RustyPipeQuery::music_new_videos)
+///
+/// ## Options
+///
+/// You can set the language, country and visitor data cookie for individual requests.
+///
+/// ```
+/// # use rustypipe::client::RustyPipe;
+/// let rp = RustyPipe::new();
+/// rp.query()
+///     .country(rustypipe::param::Country::De)
+///     .lang(rustypipe::param::Language::De)
+///     .visitor_data("CgthZVRCd1dkbTlRWSj3v_miBg%3D%3D")
+///     .player("ZeerrnuLi5E");
+/// ```
 #[derive(Clone)]
 pub struct RustyPipeQuery {
     client: RustyPipe,
@@ -361,9 +429,9 @@ impl Default for RustyPipeBuilder {
 }
 
 impl RustyPipeBuilder {
-    /// Constructs a new `RustyPipeBuilder`.
+    /// Return a new `RustyPipeBuilder`.
     ///
-    /// This is the same as `RustyPipe::builder()`
+    /// This is the same as [`RustyPipe::builder`]
     pub fn new() -> Self {
         RustyPipeBuilder {
             default_opts: RustyPipeOpts::default(),
@@ -376,7 +444,7 @@ impl RustyPipeBuilder {
         }
     }
 
-    /// Returns a new, configured RustyPipe instance.
+    /// Return a new, configured RustyPipe instance.
     pub fn build(self) -> RustyPipe {
         let mut client_builder = ClientBuilder::new()
             .user_agent(self.user_agent.unwrap_or_else(|| DEFAULT_UA.to_owned()))
@@ -517,6 +585,7 @@ impl RustyPipeBuilder {
     }
 
     /// Set the language parameter used when accessing the YouTube API.
+    ///
     /// This will change multilanguage video titles, descriptions and textual dates
     ///
     /// **Default value**: `Language::En` (English)
@@ -528,6 +597,7 @@ impl RustyPipeBuilder {
     }
 
     /// Set the country parameter used when accessing the YouTube API.
+    ///
     /// This will change trends and recommended content.
     ///
     /// **Default value**: `Country::Us` (USA)
@@ -539,6 +609,7 @@ impl RustyPipeBuilder {
     }
 
     /// Generate a report on every operation.
+    ///
     /// This should only be used for debugging.
     ///
     /// **Info**: you can set this option for individual queries, too
@@ -549,6 +620,7 @@ impl RustyPipeBuilder {
 
     /// Enable strict mode, causing operations to fail if there
     /// are warnings during deserialization (e.g. invalid items).
+    ///
     /// This should only be used for testing.
     ///
     /// **Info**: you can set this option for individual queries, too
@@ -557,15 +629,32 @@ impl RustyPipeBuilder {
         self
     }
 
-    /// Set the default YouTube visitor data cookie
+    /// Set the YouTube visitor data cookie
+    ///
+    /// YouTube assigns a session cookie to each user which is used for personalized
+    /// recommendations. By default, RustyPipe does not send this cookie to preserve
+    /// user privacy. For requests that mandatate the cookie, a new one is requested
+    /// for every query.
+    ///
+    /// This option allows you to manually set the visitor data cookie of your client,
+    /// allowing you to get personalized recommendations or reproduce A/B tests.
+    ///
+    /// Note that YouTube has a rate limit on the number of requests from a single
+    /// visitor, so you should not use the same vistor data cookie for batch operations.
+    ///
+    /// **Info**: you can set this option for individual queries, too
     pub fn visitor_data<S: Into<String>>(mut self, visitor_data: S) -> Self {
         self.default_opts.visitor_data = Some(visitor_data.into());
         self
     }
 
-    /// Set the default YouTube visitor data cookie to an optional value
-    pub fn visitor_data_opt(mut self, visitor_data: Option<String>) -> Self {
-        self.default_opts.visitor_data = visitor_data;
+    /// Set the YouTube visitor data cookie to an optional value
+    ///
+    /// see also [`RustyPipeBuilder::visitor_data`]
+    ///
+    /// **Info**: you can set this option for individual queries, too
+    pub fn visitor_data_opt<S: Into<String>>(mut self, visitor_data: Option<S>) -> Self {
+        self.default_opts.visitor_data = visitor_data.map(S::into);
         self
     }
 }
@@ -579,19 +668,19 @@ impl Default for RustyPipe {
 impl RustyPipe {
     /// Create a new RustyPipe instance with default settings.
     ///
-    /// To create an instance with custom options, use `RustyPipeBuilder` instead.
+    /// To create an instance with custom options, use [`RustyPipeBuilder`] instead.
     pub fn new() -> Self {
         RustyPipeBuilder::new().build()
     }
 
-    /// Constructs a new `RustyPipeBuilder`.
+    /// Create a new [`RustyPipeBuilder`]
     ///
-    /// This is the same as `RustyPipeBuilder::new()`
+    /// This is the same as [`RustyPipeBuilder::new`]
     pub fn builder() -> RustyPipeBuilder {
         RustyPipeBuilder::new()
     }
 
-    /// Constructs a new `RustyPipeQuery`.
+    /// Create a new [`RustyPipeQuery`] to run an API request
     pub fn query(&self) -> RustyPipeQuery {
         RustyPipeQuery {
             client: self.clone(),
@@ -826,8 +915,12 @@ impl RustyPipe {
         }
     }
 
+    /// Request a new visitor data cookie from YouTube
+    ///
+    /// Since the cookie is shared between YT and YTM and the YTM page loads faster,
+    /// we request that.
     async fn get_visitor_data(&self) -> Result<String, Error> {
-        log::debug!("getting YTM visitor data");
+        log::debug!("getting YT visitor data");
         let resp = self.inner.http.get(YOUTUBE_MUSIC_HOME_URL).send().await?;
 
         resp.headers()
@@ -849,6 +942,7 @@ impl RustyPipe {
 
 impl RustyPipeQuery {
     /// Set the language parameter used when accessing the YouTube API
+    ///
     /// This will change multilanguage video titles, descriptions and textual dates
     pub fn lang(mut self, lang: Language) -> Self {
         self.opts.lang = lang;
@@ -856,6 +950,7 @@ impl RustyPipeQuery {
     }
 
     /// Set the country parameter used when accessing the YouTube API.
+    ///
     /// This will change trends and recommended content.
     pub fn country(mut self, country: Country) -> Self {
         self.opts.country = validate_country(country);
@@ -863,6 +958,7 @@ impl RustyPipeQuery {
     }
 
     /// Generate a report on every operation.
+    ///
     /// This should only be used for debugging.
     pub fn report(mut self) -> Self {
         self.opts.report = true;
@@ -871,6 +967,7 @@ impl RustyPipeQuery {
 
     /// Enable strict mode, causing operations to fail if there
     /// are warnings during deserialization (e.g. invalid items).
+    ///
     /// This should only be used for testing.
     pub fn strict(mut self) -> Self {
         self.opts.strict = true;
@@ -878,14 +975,27 @@ impl RustyPipeQuery {
     }
 
     /// Set the YouTube visitor data cookie
+    ///
+    /// YouTube assigns a session cookie to each user which is used for personalized
+    /// recommendations. By default, RustyPipe does not send this cookie to preserve
+    /// user privacy. For requests that mandatate the cookie, a new one is requested
+    /// for every query.
+    ///
+    /// This option allows you to manually set the visitor data cookie of your query,
+    /// allowing you to get personalized recommendations or reproduce A/B tests.
+    ///
+    /// Note that YouTube has a rate limit on the number of requests from a single
+    /// visitor, so you should not use the same vistor data cookie for batch operations.
     pub fn visitor_data<S: Into<String>>(mut self, visitor_data: S) -> Self {
         self.opts.visitor_data = Some(visitor_data.into());
         self
     }
 
     /// Set the YouTube visitor data cookie to an optional value
-    pub fn visitor_data_opt(mut self, visitor_data: Option<String>) -> Self {
-        self.opts.visitor_data = visitor_data;
+    ///
+    /// see also [`RustyPipeQuery::visitor_data`]
+    pub fn visitor_data_opt<S: Into<String>>(mut self, visitor_data: Option<S>) -> Self {
+        self.opts.visitor_data = visitor_data.map(S::into);
         self
     }
 

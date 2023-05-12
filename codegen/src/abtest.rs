@@ -22,7 +22,7 @@ pub enum ABTest {
     TrendsPageHeaderRenderer = 5,
 }
 
-const TESTS_TO_RUN: [ABTest; 1] = [ABTest::TrendsVideoTab];
+const TESTS_TO_RUN: [ABTest; 2] = [ABTest::TrendsVideoTab, ABTest::TrendsPageHeaderRenderer];
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ABTestRes {

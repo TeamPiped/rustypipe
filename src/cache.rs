@@ -1,4 +1,19 @@
-//! Persistent cache storage
+//! # Persistent cache storage
+//!
+//! RustyPipe caches some information fetched from YouTube: specifically
+//! the client versions and the JavaScript code used to deobfuscate the stream URLs.
+//!
+//! Without a persistent cache storage, this information would have to be re-fetched
+//! with every new instantiation of the client. This would make operation a lot slower,
+//! especially with CLI applications. For this reason, persisting the cache between
+//! program executions is recommended.
+//!
+//! Since there are many diferent ways to store this data (Text file, SQL, Redis, etc),
+//! RustyPipe allows you to plug in your own cache storage by implementing the
+//! [`CacheStorage`] trait.
+//!
+//! RustyPipe already comes with the [`FileStorage`] implementation which stores
+//! the cache as a JSON file.
 
 use std::{
     fs,
@@ -9,14 +24,16 @@ use log::error;
 
 pub(crate) const DEFAULT_CACHE_FILE: &str = "rustypipe_cache.json";
 
+/// Cache storage trait
+///
 /// RustyPipe has to cache some information fetched from YouTube: specifically
 /// the client versions and the JavaScript code used to deobfuscate the stream URLs.
 ///
 /// This trait is used to abstract the cache storage behavior so you can store
 /// cache data in your preferred way (File, SQL, Redis, etc).
 ///
-/// The cache is read when building the [`crate::client::RustyPipe`] client and updated
-/// whenever additional data is fetched.
+/// The cache is read when building the [`RustyPipe`](crate::client::RustyPipe)
+/// client and updated whenever additional data is fetched.
 pub trait CacheStorage: Sync + Send {
     /// Write the given string to the cache
     fn write(&self, data: &str);

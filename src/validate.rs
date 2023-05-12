@@ -8,7 +8,7 @@
 //!   [string resolver](crate::client::RustyPipeQuery::resolve_string) is great for handling
 //!   arbitrary input and returns a [`UrlTarget`](crate::model::UrlTarget) enum that tells you
 //!   whether the given URL points to a video, channel, playlist, etc.
-//! - The validation functions of this module are meant vor validating concrete data (video IDs,
+//! - The validation functions of this module are meant vor validating specific data (video IDs,
 //!   channel IDs, playlist IDs) and return [`true`] if the given input is valid
 
 use crate::util;
@@ -138,7 +138,7 @@ pub fn genre_id<S: AsRef<str>>(genre_id: S) -> bool {
     GENRE_ID_REGEX.is_match(genre_id.as_ref())
 }
 
-/// Validate the given related ID
+/// Validate the given related tracks ID
 ///
 /// YouTube related IDs are exactly 17 characters long, start with the characters `MPTRt_`,
 /// followed by 11 of these characters: `A-Za-z0-9_-`.

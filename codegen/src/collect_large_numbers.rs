@@ -11,7 +11,7 @@ use once_cell::sync::Lazy;
 use path_macro::path;
 use regex::Regex;
 use rustypipe::client::{ClientType, RustyPipe, RustyPipeQuery};
-use rustypipe::param::{locale::LANGUAGES, Language};
+use rustypipe::param::{Language, LANGUAGES};
 use serde::Deserialize;
 
 use crate::model::{Channel, ContinuationResponse};

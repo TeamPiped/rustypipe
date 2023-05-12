@@ -9,7 +9,7 @@ use futures::{stream, StreamExt};
 use path_macro::path;
 use rustypipe::{
     client::RustyPipe,
-    param::{locale::LANGUAGES, Language},
+    param::{Language, LANGUAGES},
 };
 use serde::{Deserialize, Serialize};
 

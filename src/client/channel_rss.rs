@@ -15,6 +15,8 @@ impl RustyPipeQuery {
     ///
     /// Fetching RSS feeds is a lot faster than querying the InnerTube API, so this method is great
     /// for checking a lot of channels or implementing a subscription feed.
+    ///
+    /// The downside of using the RSS feed is that it does not provide video durations.
     pub async fn channel_rss<S: AsRef<str>>(&self, channel_id: S) -> Result<ChannelRss, Error> {
         let channel_id = channel_id.as_ref();
         let url = format!(

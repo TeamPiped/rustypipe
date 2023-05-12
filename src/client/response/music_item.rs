@@ -1121,6 +1121,12 @@ impl MusicListMapper {
         }
     }
 
+    /// Sometimes the YT Music API returns responses containing unknown items.
+    ///
+    /// In this case, the response data is likely missing some fields, which leads to
+    /// parsing errors and wrong data being extracted.
+    ///
+    /// Therefore it is safest to discard such responses and retry the request.
     pub fn check_unknown(&self) -> Result<(), ExtractionError> {
         match self.has_unknown {
             true => Err(ExtractionError::InvalidData("unknown YTM items".into())),

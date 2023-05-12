@@ -2,6 +2,11 @@
 name = "rustypipe-downloader"
 version = "0.1.0"
 edition = "2021"
+authors = ["ThetaDev <t.testboy@gmail.com>"]
+license = "GPL-3.0"
+description = "Downloader extension for RustyPipe"
+keywords = ["youtube", "video", "music"]
+categories = ["multimedia"]
 
 [features]
 default = ["default-tls"]

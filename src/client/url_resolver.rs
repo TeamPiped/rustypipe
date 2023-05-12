@@ -26,7 +26,7 @@ impl RustyPipeQuery {
     /// from alternative YouTube frontends like Piped or Invidious.
     ///
     /// The `resolve_albums` flag enables resolving YTM album URLs (e.g.
-    /// `OLAK5uy_k0yFrZlFRgCf3rLPza-lkRmCrtLPbK9pE`) to their short album id (`MPREb_GyH43gCvdM5`).
+    /// `OLAK5uy_k0yFrZlFRgCf3rLPza-lkRmCrtLPbK9pE`) to their short album ids (`MPREb_GyH43gCvdM5`).
     ///
     /// # Examples
     /// ```
@@ -217,7 +217,7 @@ impl RustyPipeQuery {
     ///     rp.query().resolve_string("LinusTechTips", true).await.unwrap(),
     ///     UrlTarget::Channel {id: "UCXuqSBlHAE6Xw-yeJA0Tunw".to_owned()}
     /// );
-    /// //
+    /// // Playlist
     /// assert_eq!(
     ///     rp.query().resolve_string("PL4lEESSgxM_5O81EvKCmBIm_JT5Q7JeaI", true).await.unwrap(),
     ///     UrlTarget::Playlist {id: "PL4lEESSgxM_5O81EvKCmBIm_JT5Q7JeaI".to_owned()}

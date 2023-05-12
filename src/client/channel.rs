@@ -98,7 +98,7 @@ impl RustyPipeQuery {
             .await
     }
 
-    /// Get the specified video tab from a YouTube channel
+    /// Get the videos of the given tab (Shorts, Livestreams) from a YouTube channel
     pub async fn channel_videos_tab<S: AsRef<str>>(
         &self,
         channel_id: S,
@@ -108,7 +108,7 @@ impl RustyPipeQuery {
             .await
     }
 
-    /// Get a ordered list of videos from the specified tab of a YouTube channel
+    /// Get a ordered list of videos from the given tab (Shorts, Livestreams) of a YouTube channel
     ///
     /// This function does not return channel metadata.
     pub async fn channel_videos_tab_order<S: AsRef<str>>(

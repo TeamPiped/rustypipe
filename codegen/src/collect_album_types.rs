@@ -5,7 +5,7 @@ use path_macro::path;
 use rustypipe::{
     client::{ClientType, RustyPipe, RustyPipeQuery},
     model::AlbumType,
-    param::{locale::LANGUAGES, Language},
+    param::{Language, LANGUAGES},
 };
 use serde::Deserialize;
 
