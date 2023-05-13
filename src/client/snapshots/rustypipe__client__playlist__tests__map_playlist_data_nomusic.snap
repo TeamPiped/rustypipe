@@ -8,10 +8,10 @@ Playlist(
   videos: Paginator(
     count: Some(66),
     items: [
-      PlaylistVideo(
+      VideoItem(
         id: "X82TrticM4A",
         name: "Minecraft SHINE (Trailer)",
-        length: 80,
+        length: Some(80),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/X82TrticM4A/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDaqqikBYqqsuVR1SPVW1HPS7a0sA",
@@ -34,15 +34,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(290000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "RPGLMuxkLCs",
         name: "DAS LAGERFEUERLIED - Minecraft SHINE #001 [Deutsch/HD]",
-        length: 1356,
+        length: Some(1356),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/RPGLMuxkLCs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCLYpK285ZyD2y-ipNU2fC_HzhiRg",
@@ -65,15 +75,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(414000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "z-ALpnnQLrk",
         name: "MAGISCHES FURZMONSTER - Minecraft SHINE #002 [Deutsch/HD]",
-        length: 1039,
+        length: Some(1039),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/z-ALpnnQLrk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBLDDABxzfLeE-dQaBBNKG0CJdOWw",
@@ -96,15 +116,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(177000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "_rrbTTv8zcQ",
         name: "UNTERIRDISCHE RIESENPILZHÖHLEN - Minecraft SHINE #003 [Deutsch/HD]",
-        length: 1447,
+        length: Some(1447),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/_rrbTTv8zcQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD0Br8sAmhv9UlFtwHaK6y3PlxIpQ",
@@ -127,15 +157,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(126000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "JE16OKTawLw",
         name: "BESTE AXT IM SPIEL GEFUNDEN?! - Minecraft SHINE #004 [Deutsch/HD]",
-        length: 1238,
+        length: Some(1238),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/JE16OKTawLw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDRk4X8dtihNq68ay7rpARzN9peiQ",
@@ -158,15 +198,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(135000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "RQNY0Wzm7DQ",
         name: "ERZERAUSCH IM MINENSCHACHT - Minecraft SHINE #005 [Deutsch/HD]",
-        length: 1405,
+        length: Some(1405),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/RQNY0Wzm7DQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDMKr2vJvhKw6bxFVsgfR9p5kRuCQ",
@@ -189,15 +239,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(101000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "uhy24PKBkd0",
         name: "FUSIONSOFEN & ERSTER IM NETHER?! - Minecraft SHINE #006 [Deutsch/HD]",
-        length: 1569,
+        length: Some(1569),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/uhy24PKBkd0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA-pynU_AAsgCDh38L8QmHXXryZfg",
@@ -220,15 +280,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(93000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "OL1hQadBHfs",
         name: "EPISCHER ROGUEDUNGEON - Minecraft SHINE #007 [Deutsch/HD]",
-        length: 1534,
+        length: Some(1534),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/OL1hQadBHfs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBeyicluHNPCNdAKEUTLrHE9Rfmtg",
@@ -251,15 +321,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(83000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "Zge_SUfk0r8",
         name: "DIAMANTZOMBIES auf NETHEREBENE - Minecraft SHINE #008 [Deutsch/HD]",
-        length: 1726,
+        length: Some(1726),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/Zge_SUfk0r8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD9jHtok-baqRLQPZowWsXeVQBA6Q",
@@ -282,15 +362,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(76000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "yFGIeU_IDE4",
         name: "HÖLLISCHE SCHLACHT um 2 DIAMANTBLÖCKE - Minecraft SHINE #009 [Deutsch/HD]",
-        length: 1669,
+        length: Some(1669),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/yFGIeU_IDE4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCx02JGJneEQtn_YD7K8KOt3vC26w",
@@ -313,15 +403,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(69000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "P6MVqfQzPIg",
         name: "MAGISCHER OBSIDIANTOTEM?! - Minecraft SHINE #010 [Deutsch/HD]",
-        length: 1526,
+        length: Some(1526),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/P6MVqfQzPIg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCLRzxVNwZaMeOU1ls17wlYDsnvZA",
@@ -344,15 +444,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(66000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "9n0pLDn8Z_I",
         name: "GRÜNER FEUEROGER & WITHERWARZEN - Minecraft SHINE #011 [Deutsch/HD]",
-        length: 1482,
+        length: Some(1482),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/9n0pLDn8Z_I/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBq9_4Ov8kvuTP3uuI7ie8kSCySyw",
@@ -375,15 +485,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(55000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "oXbx2YtIkeQ",
         name: "MYSTERIÖSES Grab & ONYX ohne ENDE!! - Minecraft SHINE #012 [Deutsch/HD]",
-        length: 1518,
+        length: Some(1518),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/oXbx2YtIkeQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBaTkueS0xkMnM6mdCK7vVmH0C-XQ",
@@ -406,15 +526,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(48000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "pfBBTTwxo8Q",
         name: "ATLANTIS ENTDECKT!! - Minecraft SHINE #013 [Deutsch/HD]",
-        length: 1479,
+        length: Some(1479),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/pfBBTTwxo8Q/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCAyzmwdAwcL_ryhGWUi1AB59h8lA",
@@ -437,15 +567,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(59000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "WxtRqzxSAh0",
         name: "ZUSAMMENFASSUNG & Nodop\'s ANGRIFF - Minecraft SHINE #014 [Deutsch/HD]",
-        length: 1902,
+        length: Some(1902),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/WxtRqzxSAh0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBqT5FSFwps0oUUjwVYqrDMYhC5Nw",
@@ -468,15 +608,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(63000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "ianUckvxtLw",
         name: "FRIEDHOFDUNGEON mit NODÖPCHEN - Minecraft SHINE #016 [Deutsch/HD]",
-        length: 1766,
+        length: Some(1766),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/ianUckvxtLw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBIR3LJOBV1CWi3qKugn4d_x8lAEg",
@@ -499,15 +649,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(213000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "eb2Ghj1g1ic",
         name: "Die BESTE FALLE aller ZEITEN!! - Minecraft SHINE #015 [Deutsch/HD]",
-        length: 1324,
+        length: Some(1324),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/eb2Ghj1g1ic/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDiXr6emf5xDnVWPBJvi3lVWa_Khg",
@@ -530,15 +690,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(382000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "8TpEsyVtCog",
         name: "MEGAGEMETZEL zu FÜNFT - Minecraft SHINE #017 [Deutsch/HD]",
-        length: 1629,
+        length: Some(1629),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/8TpEsyVtCog/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAclomWqvh1OIkMf0TxPEhjNVrSNQ",
@@ -561,15 +731,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(113000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "KD_WAei4LMg",
         name: "WITHER BOSSFIGHT - Minecraft SHINE #018 [Deutsch/HD]",
-        length: 1645,
+        length: Some(1645),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/KD_WAei4LMg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAEQDBO22V46yEk4yBwkE0IuVjEVA",
@@ -592,15 +772,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(73000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "qfpOCrtweKk",
         name: "LABERSTUNDE mit ArazhulHD - Minecraft SHINE #019 [Deutsch/HD]",
-        length: 1052,
+        length: Some(1052),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/qfpOCrtweKk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC9xRR01wPaSTq0vL4_L6G-CS5KVw",
@@ -623,15 +813,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(111000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "6gv3nrOA_bQ",
         name: "BUSRITUALE & Seltsame LEHRER - Minecraft SHINE #021 [Deutsch/HD]",
-        length: 1769,
+        length: Some(1769),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/6gv3nrOA_bQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB43mXOVwQ4mRzqakDHn0kHKoY0qA",
@@ -654,15 +854,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(191000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "waaic6UnkU8",
         name: "LEHM, LEHM und mehr LEEEHM!! - Minecraft SHINE #022  [Deutsch/HD]",
-        length: 1081,
+        length: Some(1081),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/waaic6UnkU8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC1k7ynTJNnCRrfImHqEBaTTi85Kw",
@@ -685,15 +895,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(65000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "lSy4MLC_uV4",
         name: "Neue DIMENSIONEN?? - Minecraft SHINE #023 [Deutsch/HD]",
-        length: 1682,
+        length: Some(1682),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/lSy4MLC_uV4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB2wug5u6lgdChlnqxRHcqFN7l0LA",
@@ -716,15 +936,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(59000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "BuN8-U_quok",
         name: "DUNGEONSTATUEN - Minecraft SHINE #024 [Deutsch/HD]",
-        length: 1597,
+        length: Some(1597),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/BuN8-U_quok/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAJe8jzy_ccxC-Z-k4-rVVTLT4HOw",
@@ -747,15 +977,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(64000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "g_UTG10nzaQ",
         name: "THYRIUMBOGEN & Dimensional DOORS - Minecraft SHINE #025 [Deutsch/HD]",
-        length: 1852,
+        length: Some(1852),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/g_UTG10nzaQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB90DMVKNRWSPO51zupoYxPoFmI8Q",
@@ -778,15 +1018,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(58000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "kNykFWaDbGw",
         name: "MEIN ERSTER PVP KILL?! - Minecraft SHINE #026 [Deutsch/HD]",
-        length: 1869,
+        length: Some(1869),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/kNykFWaDbGw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA9gJtMx-vjG3LDYC6Mog9JJ62EYw",
@@ -809,15 +1059,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(66000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "gJF7vxCYTgY",
         name: "SPELLBOUND FARM - Minecraft SHINE #027 [Deutsch/HD]",
-        length: 2161,
+        length: Some(2161),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/gJF7vxCYTgY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBKzKHEYjsk4GnAxw1jhzHI_opNEQ",
@@ -840,15 +1100,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(44000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "CodZMQ_Anc0",
         name: "VIEEELE bunte ZAUBERPILZE - Minecraft SHINE #028 [Deutsch/HD]",
-        length: 1768,
+        length: Some(1768),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/CodZMQ_Anc0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDNdgtoMcy-lYPmsnYVOcxJnCck8g",
@@ -871,15 +1141,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(43000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "oKHMTKJdZ_M",
         name: "STREAMUPDATE & BIOMREISE - Minecraft SHINE #029 [Deutsch/HD]",
-        length: 1771,
+        length: Some(1771),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/oKHMTKJdZ_M/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDlNghAFoCRrLzfippQtyfBiDtG-A",
@@ -902,15 +1182,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(39000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "--O_Eyok_eE",
         name: "AUF NACH TROPICRAFT - Minecraft SHINE #030 [Deutsch/HD]",
-        length: 1661,
+        length: Some(1661),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/--O_Eyok_eE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAjgm528b0H8-NGsHGFQSh0AA4GVw",
@@ -933,15 +1223,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(147000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "2bT3ljKMSo8",
         name: "SCHATZTRUHE GEFUNDEN!! - Minecraft SHINE #031 [Deutsch/HD]",
-        length: 1429,
+        length: Some(1429),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/2bT3ljKMSo8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC_TanSk3-kj26i-m-433iBP893TA",
@@ -964,15 +1264,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(78000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "YRAX_slrbsI",
         name: "ZAUBERWALD und TROPISCHER DSCHUNGEL - Minecraft SHINE #032 [Deutsch/HD]",
-        length: 1257,
+        length: Some(1257),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/YRAX_slrbsI/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCQenXFcDnthdi95vSgMUNontlYhA",
@@ -995,15 +1305,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(45000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "aRRbCEwUSuw",
         name: "MESABIOM & JOUSTS - Minecraft SHINE #033 [Deutsch/HD]",
-        length: 1131,
+        length: Some(1131),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/aRRbCEwUSuw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDxqJBg6ejA-m-emBnzhKuSw7PH0w",
@@ -1026,15 +1346,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(34000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "5sV8SzTbJS8",
         name: "Komplette SMELTERY GEFUNDEN!! - Minecraft SHINE #034 [Deutsch/HD]",
-        length: 1405,
+        length: Some(1405),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/5sV8SzTbJS8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCQvHJJ0CEAzp9ZOT2Wt84vEFNg8A",
@@ -1057,15 +1387,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(45000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "ZxxZlU2o1TE",
         name: "ROGUEDUNGEON EXTREME - Minecraft SHINE #035 [Deutsch/HD]",
-        length: 1555,
+        length: Some(1555),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/ZxxZlU2o1TE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD5Ol6GW-ybn_4pkMWAKhy0ALAMXA",
@@ -1088,15 +1428,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(39000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "gIjo5at4AxE",
         name: "LEGENDÄRER LOOT - Minecraft SHINE #036 [Deutsch/HD]",
-        length: 1405,
+        length: Some(1405),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/gIjo5at4AxE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCBinkghbbcWN5isNzwxekTYfpABQ",
@@ -1119,15 +1469,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(42000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "NSGk7-kyeEU",
         name: "I BELIEVE I CAN FLY - Minecraft SHINE #037 [Deutsch/HD]",
-        length: 829,
+        length: Some(829),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/NSGk7-kyeEU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDzQVO8fGvLFYxX31s1x14XsR2YAw",
@@ -1150,15 +1510,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(39000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "cgJtZ7Otc4Y",
         name: "ROGUEFRIEDHOF mit WITHERBOSS - Minecraft SHINE #038 [Deutsch/HD]",
-        length: 1392,
+        length: Some(1392),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/cgJtZ7Otc4Y/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDK12gzYlhFnRvOaKPfBwCe3ShVCA",
@@ -1181,15 +1551,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(46000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "l5LQu3Q0nWY",
         name: "MONSTERCALYPSE & RETTUNGSAKTION - Minecraft SHINE #039 [Deutsch/HD]",
-        length: 1580,
+        length: Some(1580),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/l5LQu3Q0nWY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAp9sggZ7r8Drcdso3H8mja_pPjOg",
@@ -1212,15 +1592,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(51000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "YX4Z3ZlWUFc",
         name: "HINTERHALT von GEGNERN!!  - Minecraft SHINE #040 [Deutsch/HD]",
-        length: 1847,
+        length: Some(1847),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/YX4Z3ZlWUFc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCiPRQyCDwv4Hg1TOyAx_JQbhgYZA",
@@ -1243,15 +1633,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(51000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "LoyvqR41lKw",
         name: "CARPENTER\'s BLOCKS - Minecraft SHINE #041 [Deutsch/HD]",
-        length: 1524,
+        length: Some(1524),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/LoyvqR41lKw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDwYtpWH35Zh5fLrJeDYW0A1GlJUg",
@@ -1274,15 +1674,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(57000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "HbQtMZbtx_Q",
         name: "DER ETERNAL FROST!! - Minecraft SHINE #043 [Deutsch/HD]",
-        length: 1514,
+        length: Some(1514),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/HbQtMZbtx_Q/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLByqCDZ6hojgwcvO8ykf1EKOCAyMw",
@@ -1305,15 +1715,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(47000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "0DHRbP9ecgw",
         name: "FROSTDUNGEONS in der OVERWORLD!! - Minecraft SHINE #044 [Deutsch/HD]",
-        length: 1567,
+        length: Some(1567),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/0DHRbP9ecgw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD9v_vTHy1VOEM3VGQ30lhEJLfmvw",
@@ -1336,15 +1756,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(63000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "rFOFkvk-xus",
         name: "BOSSRÜSTUNG XXL - Minecraft SHINE #045 [Deutsch/HD]",
-        length: 2050,
+        length: Some(2050),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/rFOFkvk-xus/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAOHW34k4C5B4IDkKsphKd7RpKJEw",
@@ -1367,15 +1797,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(253000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "P8zxnSihJ_8",
         name: "ZAUBERN & TROLLEN mit Nodop - Minecraft SHINE #046 [Deutsch/HD]",
-        length: 1828,
+        length: Some(1828),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/P8zxnSihJ_8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDKgLUdVybxHwVoOxNFvVBz2QI0aQ",
@@ -1398,15 +1838,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(96000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "RWgeHl9XkCY",
         name: "NACHHILFE für BALUI - Minecraft SHINE #047 [Deutsch/HD]",
-        length: 1926,
+        length: Some(1926),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/RWgeHl9XkCY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBktMkUzztN_VwIMmZ-icbRUrED3w",
@@ -1429,15 +1879,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(248000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "I1n539enNNY",
         name: "SPIELER GETÖTET!! - Minecraft SHINE #048 [Deutsch/HD]",
-        length: 1836,
+        length: Some(1836),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/I1n539enNNY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA6GMQFFds97Lr4obHmFRuKi5pscQ",
@@ -1460,15 +1920,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(124000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "70VKekyZz5g",
         name: "VORBEREITUNG auf den DRACHEN - Minecraft SHINE #049 [Deutsch/HD]",
-        length: 1916,
+        length: Some(1916),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/70VKekyZz5g/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD7nTUSM_8kz82LsnWCRNjPRv3fvA",
@@ -1491,15 +1961,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(40000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "2OWJ1bwFu6Y",
         name: "Donnernder ENDERDRACHENKAMPF - Minecraft SHINE #050 [Deutsch/HD]",
-        length: 1718,
+        length: Some(1718),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/2OWJ1bwFu6Y/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDj9YAqHRFD2Zwi9Kvr69EjDnVEBw",
@@ -1522,15 +2002,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(161000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "zLiSA2i-niw",
         name: "Superspitzhacke & Necrotic Bones - Minecraft SHINE #051 [Deutsch/HD]",
-        length: 1253,
+        length: Some(1253),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/zLiSA2i-niw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC1WmiMQp3vCS3mPRS5LfmHhDlPpw",
@@ -1553,15 +2043,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(49000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "wyXlw7nMpko",
         name: "TREMEP, das ENDERAUGE!! - Minecraft SHINE #052 [Deutsch/HD]",
-        length: 1924,
+        length: Some(1924),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/wyXlw7nMpko/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDCplxVSv6_-SIcPEPqgudEk5q30A",
@@ -1584,15 +2084,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(41000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "NrU4fhzvFpA",
         name: "TORNADO & ENDERPOKALYPSE!! - Minecraft SHINE #053 [Deutsch/HD]",
-        length: 1654,
+        length: Some(1654),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/NrU4fhzvFpA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDur1k61uW8f9d8UOA6yqSdCNWvfg",
@@ -1615,15 +2125,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(191000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "1xhKegaA1hQ",
         name: "RIESIGE SMELTERY - Minecraft SHINE #054 [Deutsch/HD]",
-        length: 1796,
+        length: Some(1796),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/1xhKegaA1hQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCM_UOeSqAu0ykS6gTds3NJ901u8Q",
@@ -1646,15 +2166,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(33000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "9F4lZ8psBtg",
         name: "TINKER\'s CONSTRUCT - Minecraft SHINE #055 [Deutsch/HD]",
-        length: 1514,
+        length: Some(1514),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/9F4lZ8psBtg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBGmpBmXNSZP0X0rQSKWFzlM7DGMw",
@@ -1677,15 +2207,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(43000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "G3uUtejX9to",
         name: "CUTLASS und HAMMERACTION - Minecraft SHINE #056 [Deutsch/HD]",
-        length: 1615,
+        length: Some(1615),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/G3uUtejX9to/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCrz9L2HWwY3_6J01GwQWs-sivnNw",
@@ -1708,15 +2248,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(255000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "-0Xn5pViCss",
         name: "QUARZFESTIVAL - Minecraft SHINE #057 [Deutsch/HD]",
-        length: 1353,
+        length: Some(1353),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/-0Xn5pViCss/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC-QHkwmzqNW4mhuE7oJslYUtReRQ",
@@ -1739,15 +2289,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(104000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "a7u71Fco99I",
         name: "DUALWITHERKAMPF & EXOSUIT - Minecraft SHINE  #058 [Deutsch/HD]",
-        length: 1377,
+        length: Some(1377),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/a7u71Fco99I/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC1iNJdmqZHK-ZHSre6MiBKzuPMMw",
@@ -1770,15 +2330,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(126000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "H6uUbvcgKdk",
         name: "ALLE GETROLLT?! 1. APRIL!! - Minecraft SHINE #060 [Deutsch/HD]",
-        length: 1751,
+        length: Some(1751),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/H6uUbvcgKdk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBzSJjNn7zgtAF2kMOHcyBsbS1l-Q",
@@ -1801,15 +2371,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(265000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "tPRTCauHtkw",
         name: "THAUMELONE - Minecraft SHINE #061 [Deutsch/HD]",
-        length: 1604,
+        length: Some(1604),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/tPRTCauHtkw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCbTexd_3GA4grOauyJYk_HY9OQ8Q",
@@ -1832,15 +2412,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(105000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "pMKAQExcarM",
         name: "ICH BIN EIN MAGIER!! - Minecraft SHINE #062 [Deutsch/HD]",
-        length: 1202,
+        length: Some(1202),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/pMKAQExcarM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDd_6WaCpRHtqRugrmQn7gFNo9_LQ",
@@ -1863,15 +2453,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(69000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "7E-z-7KCdBI",
         name: "ENDER PORTER und SPELLBOUND - Minecraft SHINE #063 [Deutsch/HD]",
-        length: 1715,
+        length: Some(1715),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/7E-z-7KCdBI/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBGUzE-YGbouV7fglH5XM9xIFS5mA",
@@ -1894,15 +2494,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(73000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "EPtbC0ZVddo",
         name: "PORTABLE HOLE & Melonenstatuen - Minecraft SHINE #064 [Deutsch/HD]",
-        length: 1696,
+        length: Some(1696),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/EPtbC0ZVddo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDGPl3HlQLwqnYRjxskV1EFD3pAvA",
@@ -1925,15 +2535,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(127000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "TpPHng0eGJs",
         name: "ZUKUNFT des PROJEKTS - Minecraft SHINE #065 [Deutsch/HD]",
-        length: 1215,
+        length: Some(1215),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/TpPHng0eGJs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDrapGS714wjdb3XLYg9KsMQBQwig",
@@ -1956,15 +2576,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(43000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "rt2QFQwJYcs",
         name: "GIGANTISCHER METEOR!! - Minecraft SHINE #066 [Deutsch/HD]",
-        length: 1593,
+        length: Some(1593),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/rt2QFQwJYcs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBf_L_ob5qiPVaGJdyQFyoFEwIstg",
@@ -1987,15 +2617,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(171000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "WPyfaztFDQ4",
         name: "Der EREBUS und die GHAST QUEEN - Minecraft SHINE #067 [Deutsch/HD]",
-        length: 1687,
+        length: Some(1687),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/WPyfaztFDQ4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAeaQHeQX9MUHyne6tlJW9JeycB3A",
@@ -2018,15 +2658,25 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(146000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
-      PlaylistVideo(
+      VideoItem(
         id: "5lmumP0DaUw",
         name: "MINI-BEST OF und KABOOM!! - Minecraft SHINE #069 (Finale) [Deutsch/HD]",
-        length: 1044,
+        length: Some(1044),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/5lmumP0DaUw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDys9BQ_BHV7BhDkYphDT72uJBebQ",
@@ -2049,10 +2699,20 @@ Playlist(
             height: 188,
           ),
         ],
-        channel: ChannelId(
+        channel: Some(ChannelTag(
           id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
           name: "Chaosflo44",
-        ),
+          avatar: [],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 years ago"),
+        view_count: Some(139000),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
       ),
     ],
     ctoken: None,
@@ -2088,5 +2748,5 @@ Playlist(
   )),
   last_update: "[date]",
   last_update_txt: Some("Last updated on Jul 2, 2014"),
-  visitor_data: Some("CgtXY0lqNWN5VlNmTSik8q-YBg%3D%3D"),
+  visitor_data: Some("CgswcW42c0VyR0d0SSjR8P6iBg%3D%3D"),
 )

@@ -329,7 +329,7 @@ where
             if after_point {
                 exp -= 1;
             }
-        } else if c == decimal_point {
+        } else if c == decimal_point && !digits.is_empty() {
             after_point = true;
         } else if !matches!(
             c,
@@ -581,6 +581,7 @@ pub(crate) mod tests {
         3_360_000
     )]
     #[case(Language::As, "১ জন গ্ৰাহক", 1)]
+    #[case(Language::Ru, "Зрителей, ожидающих начала трансляции: 6", 6)]
     fn t_parse_large_numstr(#[case] lang: Language, #[case] string: &str, #[case] expect: u64) {
         let res = parse_large_numstr::<u64>(string, lang).unwrap();
         assert_eq!(res, expect);

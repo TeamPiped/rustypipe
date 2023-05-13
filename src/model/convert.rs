@@ -1,7 +1,7 @@
 use super::{
     AlbumItem, ArtistId, ArtistItem, Channel, ChannelId, ChannelItem, ChannelRssVideo, ChannelTag,
-    MusicArtist, MusicItem, MusicPlaylistItem, PlaylistItem, PlaylistVideo, TrackItem, VideoId,
-    VideoItem, YouTubeItem,
+    MusicArtist, MusicItem, MusicPlaylistItem, PlaylistItem, TrackItem, VideoId, VideoItem,
+    YouTubeItem,
 };
 
 /// Trait for casting generic YouTube/YouTube music items to a specific kind.
@@ -152,15 +152,6 @@ impl TryFrom<ArtistId> for ChannelId {
 
 impl From<VideoItem> for VideoId {
     fn from(video: VideoItem) -> Self {
-        Self {
-            id: video.id,
-            name: video.name,
-        }
-    }
-}
-
-impl From<PlaylistVideo> for VideoId {
-    fn from(video: PlaylistVideo) -> Self {
         Self {
             id: video.id,
             name: video.name,

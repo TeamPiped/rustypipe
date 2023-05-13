@@ -2,7 +2,7 @@ use crate::error::{Error, ExtractionError};
 use crate::model::{
     paginator::{ContinuationEndpoint, Paginator},
     traits::FromYtItem,
-    Comment, MusicItem, PlaylistVideo, YouTubeItem,
+    Comment, MusicItem, YouTubeItem,
 };
 use crate::serializer::MapResult;
 
@@ -265,16 +265,6 @@ impl Paginator<Comment> {
     }
 }
 
-impl Paginator<PlaylistVideo> {
-    /// Get the next page from the paginator (or `None` if the paginator is exhausted)
-    pub async fn next<Q: AsRef<RustyPipeQuery>>(&self, query: Q) -> Result<Option<Self>, Error> {
-        Ok(match &self.ctoken {
-            Some(ctoken) => Some(query.as_ref().playlist_continuation(ctoken).await?),
-            None => None,
-        })
-    }
-}
-
 macro_rules! paginator {
     ($entity_type:ty) => {
         impl Paginator<$entity_type> {
@@ -337,7 +327,6 @@ macro_rules! paginator {
 }
 
 paginator!(Comment);
-paginator!(PlaylistVideo);
 
 #[cfg(test)]
 mod tests {
@@ -348,15 +337,15 @@ mod tests {
 
     use super::*;
     use crate::{
-        model::{MusicPlaylistItem, PlaylistItem, TrackItem},
+        model::{MusicPlaylistItem, PlaylistItem, TrackItem, VideoItem},
         param::Language,
         util::tests::TESTFILES,
     };
 
     #[rstest]
-    #[case("search", path!("search" / "cont.json"))]
-    #[case("startpage", path!("trends" / "startpage_cont.json"))]
-    #[case("recommendations", path!("video_details" / "recommendations.json"))]
+    #[case::search("search", path!("search" / "cont.json"))]
+    #[case::startpage("startpage", path!("trends" / "startpage_cont.json"))]
+    #[case::recommendations("recommendations", path!("video_details" / "recommendations.json"))]
     fn map_continuation_items(#[case] name: &str, #[case] path: PathBuf) {
         let json_path = path!(*TESTFILES / path);
         let json_file = File::open(json_path).unwrap();
@@ -377,7 +366,31 @@ mod tests {
     }
 
     #[rstest]
-    #[case("channel_playlists", path!("channel" / "channel_playlists_cont.json"))]
+    #[case::channel_videos("channel_videos", path!("channel" / "channel_videos_cont.json"))]
+    #[case::playlist("playlist", path!("playlist" / "playlist_cont.json"))]
+    fn map_continuation_videos(#[case] name: &str, #[case] path: PathBuf) {
+        let json_path = path!(*TESTFILES / path);
+        let json_file = File::open(json_path).unwrap();
+
+        let items: response::Continuation =
+            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let map_res: MapResult<Paginator<YouTubeItem>> =
+            items.map_response("", Language::En, None).unwrap();
+        let paginator: Paginator<VideoItem> =
+            map_yt_paginator(map_res.c, None, ContinuationEndpoint::Browse);
+
+        assert!(
+            map_res.warnings.is_empty(),
+            "deserialization/mapping warnings: {:?}",
+            map_res.warnings
+        );
+        insta::assert_ron_snapshot!(format!("map_{name}"), paginator, {
+            ".items[].publish_date" => "[date]",
+        });
+    }
+
+    #[rstest]
+    #[case::channel_playlists("channel_playlists", path!("channel" / "channel_playlists_cont.json"))]
     fn map_continuation_playlists(#[case] name: &str, #[case] path: PathBuf) {
         let json_path = path!(*TESTFILES / path);
         let json_file = File::open(json_path).unwrap();
@@ -398,9 +411,9 @@ mod tests {
     }
 
     #[rstest]
-    #[case("playlist_tracks", path!("music_playlist" / "playlist_cont.json"))]
-    #[case("search_tracks", path!("music_search" / "tracks_cont.json"))]
-    #[case("radio_tracks", path!("music_details" / "radio_cont.json"))]
+    #[case::playlist_tracks("playlist_tracks", path!("music_playlist" / "playlist_cont.json"))]
+    #[case::search_tracks("search_tracks", path!("music_search" / "tracks_cont.json"))]
+    #[case::radio_tracks("radio_tracks", path!("music_details" / "radio_cont.json"))]
     fn map_continuation_tracks(#[case] name: &str, #[case] path: PathBuf) {
         let json_path = path!(*TESTFILES / path);
         let json_file = File::open(json_path).unwrap();
@@ -421,7 +434,7 @@ mod tests {
     }
 
     #[rstest]
-    #[case("playlist_related", path!("music_playlist" / "playlist_related.json"))]
+    #[case::playlist_related("playlist_related", path!("music_playlist" / "playlist_related.json"))]
     fn map_continuation_music_playlists(#[case] name: &str, #[case] path: PathBuf) {
         let json_path = path!(*TESTFILES / path);
         let json_file = File::open(json_path).unwrap();

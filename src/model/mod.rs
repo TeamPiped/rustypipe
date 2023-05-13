@@ -510,7 +510,7 @@ pub struct Playlist {
     /// Playlist name
     pub name: String,
     /// Playlist videos
-    pub videos: Paginator<PlaylistVideo>,
+    pub videos: Paginator<VideoItem>,
     /// Number of videos in the playlist
     pub video_count: u64,
     /// Playlist thumbnail
@@ -526,22 +526,6 @@ pub struct Playlist {
     pub last_update_txt: Option<String>,
     /// YouTube visitor data cookie
     pub visitor_data: Option<String>,
-}
-
-/// YouTube video extracted from a playlist
-#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
-#[non_exhaustive]
-pub struct PlaylistVideo {
-    /// Unique YouTube video ID
-    pub id: String,
-    /// Video title
-    pub name: String,
-    /// Video length in seconds
-    pub length: u32,
-    /// Video thumbnail
-    pub thumbnail: Vec<Thumbnail>,
-    /// Channel of the video
-    pub channel: ChannelId,
 }
 
 /// Channel identifier

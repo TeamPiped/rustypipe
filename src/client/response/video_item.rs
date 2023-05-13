@@ -9,8 +9,8 @@ use time::OffsetDateTime;
 use super::{url_endpoint::NavigationEndpoint, ChannelBadge, ContinuationEndpoint, Thumbnails};
 use crate::{
     model::{
-        Channel, ChannelId, ChannelInfo, ChannelItem, ChannelTag, PlaylistItem, VideoItem,
-        YouTubeItem,
+        Channel, ChannelId, ChannelInfo, ChannelItem, ChannelTag, PlaylistItem, Verification,
+        VideoItem, YouTubeItem,
     },
     param::Language,
     serializer::{
@@ -27,6 +27,7 @@ pub(crate) enum YouTubeListItem {
     #[serde(alias = "gridVideoRenderer", alias = "compactVideoRenderer")]
     VideoRenderer(VideoRenderer),
     ReelItemRenderer(ReelItemRenderer),
+    PlaylistVideoRenderer(PlaylistVideoRenderer),
 
     #[serde(alias = "gridPlaylistRenderer")]
     PlaylistRenderer(PlaylistRenderer),
@@ -143,6 +144,33 @@ pub(crate) struct ReelItemRenderer {
     #[serde(default)]
     #[serde_as(as = "DefaultOnError")]
     pub navigation_endpoint: Option<ReelNavigationEndpoint>,
+}
+
+/// Video displayed in a playlist
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct PlaylistVideoRenderer {
+    pub video_id: String,
+    pub thumbnail: Thumbnails,
+    #[serde_as(as = "Text")]
+    pub title: String,
+    #[serde(rename = "shortBylineText")]
+    pub channel: TextComponent,
+    #[serde_as(as = "Option<JsonString>")]
+    pub length_seconds: Option<u32>,
+    /// Regular video: `["29K views", " • ", "13 years ago"]`
+    /// Livestream: `["66K", " watching"]`
+    /// Upcoming: `["8", " waiting"]`
+    #[serde(default)]
+    #[serde_as(as = "Text")]
+    pub video_info: Vec<String>,
+    /// Contains Short/Live tag
+    #[serde(default)]
+    #[serde_as(as = "VecSkipError<_>")]
+    pub thumbnail_overlays: Vec<TimeOverlay>,
+    /// Release date for upcoming videos
+    pub upcoming_event_data: Option<UpcomingEventData>,
 }
 
 /// Playlist displayed in search results
@@ -492,7 +520,7 @@ impl<T> YouTubeListMapper<T> {
         }
     }
 
-    fn map_short_video(&mut self, video: ReelItemRenderer, lang: Language) -> VideoItem {
+    fn map_short_video(&mut self, video: ReelItemRenderer) -> VideoItem {
         let pub_date_txt = video.navigation_endpoint.map(|n| {
             n.reel_watch_endpoint
                 .overlay
@@ -505,7 +533,7 @@ impl<T> YouTubeListMapper<T> {
         let length = video.accessibility.and_then(|acc| {
             let parts = ACCESSIBILITY_SEP_REGEX.split(&acc).collect::<Vec<_>>();
             if parts.len() > 2 {
-                let i = match lang {
+                let i = match self.lang {
                     Language::Ru => 1,
                     _ => 2,
                 };
@@ -531,12 +559,74 @@ impl<T> YouTubeListMapper<T> {
                 timeago::parse_timeago_dt_or_warn(self.lang, txt, &mut self.warnings)
             }),
             publish_date_txt: pub_date_txt,
-            view_count: video
-                .view_count_text
-                .and_then(|txt| util::parse_large_numstr_or_warn(&txt, lang, &mut self.warnings)),
+            view_count: video.view_count_text.and_then(|txt| {
+                util::parse_large_numstr_or_warn(&txt, self.lang, &mut self.warnings)
+            }),
             is_live: false,
             is_short: true,
             is_upcoming: false,
+            short_description: None,
+        }
+    }
+
+    fn map_playlist_video(&mut self, video: PlaylistVideoRenderer) -> VideoItem {
+        let channel = ChannelId::try_from(video.channel)
+            .ok()
+            .map(|ch| ChannelTag {
+                id: ch.id,
+                name: ch.name,
+                avatar: Vec::new(),
+                verification: Verification::None,
+                subscriber_count: None,
+            });
+
+        let mut video_info = video.video_info.into_iter();
+        let video_info1 = video_info
+            .next()
+            .map(|s| match video_info.next().as_deref() {
+                None | Some(util::DOT_SEPARATOR) => s,
+                Some(s2) => s + s2,
+            });
+        let video_info2 = video_info.next();
+
+        // RU: "7 лет назад" " • " "210 млн просмотров" (order flipped)
+        let (view_count_txt, publish_date_txt) =
+            if self.lang == Language::Ru && video_info2.is_some() {
+                (video_info2, video_info1)
+            } else {
+                (video_info1, video_info2)
+            };
+
+        let is_live = video.thumbnail_overlays.is_live();
+
+        let publish_date = video
+            .upcoming_event_data
+            .as_ref()
+            .and_then(|upc| OffsetDateTime::from_unix_timestamp(upc.start_time).ok())
+            .or_else(|| {
+                if is_live {
+                    None
+                } else {
+                    publish_date_txt.as_ref().and_then(|txt| {
+                        timeago::parse_timeago_dt_or_warn(self.lang, txt, &mut self.warnings)
+                    })
+                }
+            });
+
+        VideoItem {
+            id: video.video_id,
+            name: video.title,
+            length: video.length_seconds,
+            thumbnail: video.thumbnail.into(),
+            channel,
+            publish_date,
+            publish_date_txt,
+            view_count: view_count_txt.and_then(|txt| {
+                util::parse_large_numstr_or_warn(&txt, self.lang, &mut self.warnings)
+            }),
+            is_live,
+            is_short: video.thumbnail_overlays.is_short(),
+            is_upcoming: video.upcoming_event_data.is_some(),
             short_description: None,
         }
     }
@@ -607,7 +697,11 @@ impl YouTubeListMapper<YouTubeItem> {
                 self.items.push(mapped);
             }
             YouTubeListItem::ReelItemRenderer(video) => {
-                let mapped = self.map_short_video(video, self.lang);
+                let mapped = self.map_short_video(video);
+                self.items.push(YouTubeItem::Video(mapped));
+            }
+            YouTubeListItem::PlaylistVideoRenderer(video) => {
+                let mapped = self.map_playlist_video(video);
                 self.items.push(YouTubeItem::Video(mapped));
             }
             YouTubeListItem::PlaylistRenderer(playlist) => {
@@ -671,7 +765,11 @@ impl YouTubeListMapper<VideoItem> {
                 self.items.push(mapped);
             }
             YouTubeListItem::ReelItemRenderer(video) => {
-                let mapped = self.map_short_video(video, self.lang);
+                let mapped = self.map_short_video(video);
+                self.items.push(mapped);
+            }
+            YouTubeListItem::PlaylistVideoRenderer(video) => {
+                let mapped = self.map_playlist_video(video);
                 self.items.push(mapped);
             }
             YouTubeListItem::ContinuationItemRenderer {

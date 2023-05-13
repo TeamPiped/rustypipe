@@ -340,6 +340,13 @@ fn get_player_error(#[case] id: &str, #[case] expect: UnavailabilityReason, rp: 
     Some("SHINE - Survival Hardcore in New Environment: Auf einem Server machen sich tapfere Spieler auf, mystische Welten zu erkunden, magische Technologien zu erforschen und vorallem zu überleben...".to_owned()),
     Some(("UCQM0bS4_04-Y4JuYrgmnpZQ", "Chaosflo44")),
 )]
+#[case::live(
+    "UULVvqRdlKsE5Q8mf8YXbdIJLw",
+    "Live streams",
+    true,
+    None,
+    Some(("UCvqRdlKsE5Q8mf8YXbdIJLw", "LoL Esports"))
+)]
 fn get_playlist(
     #[case] id: &str,
     #[case] name: &str,

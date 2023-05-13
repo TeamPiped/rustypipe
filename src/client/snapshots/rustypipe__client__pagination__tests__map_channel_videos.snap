@@ -1,13 +1,13 @@
 ---
-source: src/client/channel.rs
-expression: map_res.c
+source: src/client/pagination.rs
+expression: paginator
 ---
 Paginator(
   count: None,
   items: [
-    ChannelVideo(
+    VideoItem(
       id: "R2fw2g6WFbg",
-      title: "EEVblog 1477 - TEARDOWN! - NEW Tektronix 2 Series Oscilloscope",
+      name: "EEVblog 1477 - TEARDOWN! - NEW Tektronix 2 Series Oscilloscope",
       length: Some(2718),
       thumbnail: [
         Thumbnail(
@@ -31,16 +31,18 @@ Paginator(
           height: 188,
         ),
       ],
+      channel: None,
       publish_date: "[date]",
       publish_date_txt: Some("3 months ago"),
-      view_count: 80296,
+      view_count: Some(80296),
       is_live: false,
       is_short: false,
       is_upcoming: false,
+      short_description: None,
     ),
-    ChannelVideo(
+    VideoItem(
       id: "JDXKrXJloSw",
-      title: "EEVblog 1476 - Keithley 515A Wheatstone Bridge TEARDOWN & TUTORIAL",
+      name: "EEVblog 1476 - Keithley 515A Wheatstone Bridge TEARDOWN & TUTORIAL",
       length: Some(1721),
       thumbnail: [
         Thumbnail(
@@ -64,16 +66,18 @@ Paginator(
           height: 188,
         ),
       ],
+      channel: None,
       publish_date: "[date]",
       publish_date_txt: Some("3 months ago"),
-      view_count: 36294,
+      view_count: Some(36294),
       is_live: false,
       is_short: false,
       is_upcoming: false,
+      short_description: None,
     ),
-    ChannelVideo(
+    VideoItem(
       id: "H8ot_YPi6QU",
-      title: "eevBLAB 98 - The Pressure Youtubers Are Under",
+      name: "eevBLAB 98 - The Pressure Youtubers Are Under",
       length: Some(431),
       thumbnail: [
         Thumbnail(
@@ -97,16 +101,18 @@ Paginator(
           height: 188,
         ),
       ],
+      channel: None,
       publish_date: "[date]",
       publish_date_txt: Some("3 months ago"),
-      view_count: 34736,
+      view_count: Some(34736),
       is_live: false,
       is_short: false,
       is_upcoming: false,
+      short_description: None,
     ),
-    ChannelVideo(
+    VideoItem(
       id: "i1Ad5jfk_v4",
-      title: "EEVblog 1475 - What\'s This SMD Part?",
+      name: "EEVblog 1475 - What\'s This SMD Part?",
       length: Some(1785),
       thumbnail: [
         Thumbnail(
@@ -130,16 +136,18 @@ Paginator(
           height: 188,
         ),
       ],
+      channel: None,
       publish_date: "[date]",
       publish_date_txt: Some("3 months ago"),
-      view_count: 73544,
+      view_count: Some(73544),
       is_live: false,
       is_short: false,
       is_upcoming: false,
+      short_description: None,
     ),
-    ChannelVideo(
+    VideoItem(
       id: "GHbo4v8pahc",
-      title: "eevBLAB 97 - Is Apple Serious About Right To Repair? (The Verge)",
+      name: "eevBLAB 97 - Is Apple Serious About Right To Repair? (The Verge)",
       length: Some(1186),
       thumbnail: [
         Thumbnail(
@@ -163,16 +171,18 @@ Paginator(
           height: 188,
         ),
       ],
+      channel: None,
       publish_date: "[date]",
       publish_date_txt: Some("4 months ago"),
-      view_count: 67231,
+      view_count: Some(67231),
       is_live: false,
       is_short: false,
       is_upcoming: false,
+      short_description: None,
     ),
-    ChannelVideo(
+    VideoItem(
       id: "Uds-wLoaZmA",
-      title: "EEVblog 1474 - Can You Measure Capacitors IN Circuit?",
+      name: "EEVblog 1474 - Can You Measure Capacitors IN Circuit?",
       length: Some(1407),
       thumbnail: [
         Thumbnail(
@@ -196,16 +206,18 @@ Paginator(
           height: 188,
         ),
       ],
+      channel: None,
       publish_date: "[date]",
       publish_date_txt: Some("4 months ago"),
-      view_count: 44946,
+      view_count: Some(44946),
       is_live: false,
       is_short: false,
       is_upcoming: false,
+      short_description: None,
     ),
-    ChannelVideo(
+    VideoItem(
       id: "D9J-AmCcf4U",
-      title: "EEVblog 1473 - How Your LCR Meter Works",
+      name: "EEVblog 1473 - How Your LCR Meter Works",
       length: Some(1183),
       thumbnail: [
         Thumbnail(
@@ -229,16 +241,18 @@ Paginator(
           height: 188,
         ),
       ],
+      channel: None,
       publish_date: "[date]",
       publish_date_txt: Some("4 months ago"),
-      view_count: 43264,
+      view_count: Some(43264),
       is_live: false,
       is_short: false,
       is_upcoming: false,
+      short_description: None,
     ),
-    ChannelVideo(
+    VideoItem(
       id: "Eoh-JKVQZwg",
-      title: "EEVblog 1472 - Resistor Cube Problem SOLVED",
+      name: "EEVblog 1472 - Resistor Cube Problem SOLVED",
       length: Some(1196),
       thumbnail: [
         Thumbnail(
@@ -262,16 +276,18 @@ Paginator(
           height: 188,
         ),
       ],
+      channel: None,
       publish_date: "[date]",
       publish_date_txt: Some("4 months ago"),
-      view_count: 98175,
+      view_count: Some(98175),
       is_live: false,
       is_short: false,
       is_upcoming: false,
+      short_description: None,
     ),
-    ChannelVideo(
+    VideoItem(
       id: "U81glZBDpIg",
-      title: "EEVblog 1471 - Mailbag",
+      name: "EEVblog 1471 - Mailbag",
       length: Some(2252),
       thumbnail: [
         Thumbnail(
@@ -295,16 +311,18 @@ Paginator(
           height: 188,
         ),
       ],
+      channel: None,
       publish_date: "[date]",
       publish_date_txt: Some("4 months ago"),
-      view_count: 59376,
+      view_count: Some(59376),
       is_live: false,
       is_short: false,
       is_upcoming: false,
+      short_description: None,
     ),
-    ChannelVideo(
+    VideoItem(
       id: "gLfxznVJ2q0",
-      title: "Petition - Australian Standards Should be FREE",
+      name: "Petition - Australian Standards Should be FREE",
       length: Some(585),
       thumbnail: [
         Thumbnail(
@@ -328,16 +346,18 @@ Paginator(
           height: 188,
         ),
       ],
+      channel: None,
       publish_date: "[date]",
       publish_date_txt: Some("5 months ago"),
-      view_count: 25496,
+      view_count: Some(25496),
       is_live: false,
       is_short: false,
       is_upcoming: false,
+      short_description: None,
     ),
-    ChannelVideo(
+    VideoItem(
       id: "GfihUkWPCQQ",
-      title: "EEVblog 1470 - AC Basics Tutorial Part 3 - Complex Numbers are EASY!",
+      name: "EEVblog 1470 - AC Basics Tutorial Part 3 - Complex Numbers are EASY!",
       length: Some(1468),
       thumbnail: [
         Thumbnail(
@@ -361,16 +381,18 @@ Paginator(
           height: 188,
         ),
       ],
+      channel: None,
       publish_date: "[date]",
       publish_date_txt: Some("5 months ago"),
-      view_count: 22982,
+      view_count: Some(22982),
       is_live: false,
       is_short: false,
       is_upcoming: false,
+      short_description: None,
     ),
-    ChannelVideo(
+    VideoItem(
       id: "yEG6pKUdIlg",
-      title: "EEVblog 1469 - AC Basics Tutorial - Part 2 - Phasors",
+      name: "EEVblog 1469 - AC Basics Tutorial - Part 2 - Phasors",
       length: Some(1147),
       thumbnail: [
         Thumbnail(
@@ -394,16 +416,18 @@ Paginator(
           height: 188,
         ),
       ],
+      channel: None,
       publish_date: "[date]",
       publish_date_txt: Some("5 months ago"),
-      view_count: 38804,
+      view_count: Some(38804),
       is_live: false,
       is_short: false,
       is_upcoming: false,
+      short_description: None,
     ),
-    ChannelVideo(
+    VideoItem(
       id: "wPzzPGzxD00",
-      title: "EEVblog 1468 - Electronex Show Tour 2022",
+      name: "EEVblog 1468 - Electronex Show Tour 2022",
       length: Some(2850),
       thumbnail: [
         Thumbnail(
@@ -427,16 +451,18 @@ Paginator(
           height: 188,
         ),
       ],
+      channel: None,
       publish_date: "[date]",
       publish_date_txt: Some("5 months ago"),
-      view_count: 25505,
+      view_count: Some(25505),
       is_live: false,
       is_short: false,
       is_upcoming: false,
+      short_description: None,
     ),
-    ChannelVideo(
+    VideoItem(
       id: "Tdge8vEODeY",
-      title: "EEVblog 1467 - Stanford Solar Power at Nightime!  BUSTED",
+      name: "EEVblog 1467 - Stanford Solar Power at Nightime!  BUSTED",
       length: Some(836),
       thumbnail: [
         Thumbnail(
@@ -460,16 +486,18 @@ Paginator(
           height: 188,
         ),
       ],
+      channel: None,
       publish_date: "[date]",
       publish_date_txt: Some("5 months ago"),
-      view_count: 98432,
+      view_count: Some(98432),
       is_live: false,
       is_short: false,
       is_upcoming: false,
+      short_description: None,
     ),
-    ChannelVideo(
+    VideoItem(
       id: "ebQ2Im5zfT0",
-      title: "EEVblog 1466 - Dumpster Dive Xeon Server",
+      name: "EEVblog 1466 - Dumpster Dive Xeon Server",
       length: Some(1138),
       thumbnail: [
         Thumbnail(
@@ -493,16 +521,18 @@ Paginator(
           height: 188,
         ),
       ],
+      channel: None,
       publish_date: "[date]",
       publish_date_txt: Some("5 months ago"),
-      view_count: 53410,
+      view_count: Some(53410),
       is_live: false,
       is_short: false,
       is_upcoming: false,
+      short_description: None,
     ),
-    ChannelVideo(
+    VideoItem(
       id: "UrS5ezesA9s",
-      title: "EEVblog 1465 - Your Multimeter Can Measure Inductors",
+      name: "EEVblog 1465 - Your Multimeter Can Measure Inductors",
       length: Some(596),
       thumbnail: [
         Thumbnail(
@@ -526,16 +556,18 @@ Paginator(
           height: 188,
         ),
       ],
+      channel: None,
       publish_date: "[date]",
       publish_date_txt: Some("5 months ago"),
-      view_count: 54771,
+      view_count: Some(54771),
       is_live: false,
       is_short: false,
       is_upcoming: false,
+      short_description: None,
     ),
-    ChannelVideo(
+    VideoItem(
       id: "c5M8P6oe9xY",
-      title: "EEVblog 1464 - TOP 5 Jellybean Comparators",
+      name: "EEVblog 1464 - TOP 5 Jellybean Comparators",
       length: Some(2399),
       thumbnail: [
         Thumbnail(
@@ -559,16 +591,18 @@ Paginator(
           height: 188,
         ),
       ],
+      channel: None,
       publish_date: "[date]",
       publish_date_txt: Some("6 months ago"),
-      view_count: 39823,
+      view_count: Some(39823),
       is_live: false,
       is_short: false,
       is_upcoming: false,
+      short_description: None,
     ),
-    ChannelVideo(
+    VideoItem(
       id: "9TDKP9RLlPs",
-      title: "EEVblog 1463 - Mailbag",
+      name: "EEVblog 1463 - Mailbag",
       length: Some(2664),
       thumbnail: [
         Thumbnail(
@@ -592,16 +626,18 @@ Paginator(
           height: 188,
         ),
       ],
+      channel: None,
       publish_date: "[date]",
       publish_date_txt: Some("6 months ago"),
-      view_count: 51596,
+      view_count: Some(51596),
       is_live: false,
       is_short: false,
       is_upcoming: false,
+      short_description: None,
     ),
-    ChannelVideo(
+    VideoItem(
       id: "hwggIw2HQuQ",
-      title: "eevBLAB 96 - BUSTED! - Dymo Gets WORSE!",
+      name: "eevBLAB 96 - BUSTED! - Dymo Gets WORSE!",
       length: Some(347),
       thumbnail: [
         Thumbnail(
@@ -625,16 +661,18 @@ Paginator(
           height: 188,
         ),
       ],
+      channel: None,
       publish_date: "[date]",
       publish_date_txt: Some("6 months ago"),
-      view_count: 125391,
+      view_count: Some(125391),
       is_live: false,
       is_short: false,
       is_upcoming: false,
+      short_description: None,
     ),
-    ChannelVideo(
+    VideoItem(
       id: "xzSDJRC0F6c",
-      title: "EEVblog 1462 - Why Dymo Label Printers SUCK!",
+      name: "EEVblog 1462 - Why Dymo Label Printers SUCK!",
       length: Some(1353),
       thumbnail: [
         Thumbnail(
@@ -658,16 +696,18 @@ Paginator(
           height: 188,
         ),
       ],
+      channel: None,
       publish_date: "[date]",
       publish_date_txt: Some("6 months ago"),
-      view_count: 120457,
+      view_count: Some(120457),
       is_live: false,
       is_short: false,
       is_upcoming: false,
+      short_description: None,
     ),
-    ChannelVideo(
+    VideoItem(
       id: "9wuyPZjjR9k",
-      title: "EEVblog 1461 - The MOSFET Search CHALLENGE",
+      name: "EEVblog 1461 - The MOSFET Search CHALLENGE",
       length: Some(3505),
       thumbnail: [
         Thumbnail(
@@ -691,16 +731,18 @@ Paginator(
           height: 188,
         ),
       ],
+      channel: None,
       publish_date: "[date]",
       publish_date_txt: Some("6 months ago"),
-      view_count: 49062,
+      view_count: Some(49062),
       is_live: false,
       is_short: false,
       is_upcoming: false,
+      short_description: None,
     ),
-    ChannelVideo(
+    VideoItem(
       id: "vyJuMGEFbjQ",
-      title: "EEVblog1460 - REPAIRING a LED Studio Light with a DUMPSTER LAPTOP!",
+      name: "EEVblog1460 - REPAIRING a LED Studio Light with a DUMPSTER LAPTOP!",
       length: Some(1798),
       thumbnail: [
         Thumbnail(
@@ -724,16 +766,18 @@ Paginator(
           height: 188,
         ),
       ],
+      channel: None,
       publish_date: "[date]",
       publish_date_txt: Some("6 months ago"),
-      view_count: 49032,
+      view_count: Some(49032),
       is_live: false,
       is_short: false,
       is_upcoming: false,
+      short_description: None,
     ),
-    ChannelVideo(
+    VideoItem(
       id: "_pETMto-9iE",
-      title: "EEVblog 1459 - Is it worth PARTS SALVAGING an Inkjet Printer/Scanner?",
+      name: "EEVblog 1459 - Is it worth PARTS SALVAGING an Inkjet Printer/Scanner?",
       length: Some(1588),
       thumbnail: [
         Thumbnail(
@@ -757,16 +801,18 @@ Paginator(
           height: 188,
         ),
       ],
+      channel: None,
       publish_date: "[date]",
       publish_date_txt: Some("7 months ago"),
-      view_count: 64108,
+      view_count: Some(64108),
       is_live: false,
       is_short: false,
       is_upcoming: false,
+      short_description: None,
     ),
-    ChannelVideo(
+    VideoItem(
       id: "MvFf9RSJUhk",
-      title: "EEVblog 1458 - Microscope Polarising MAGIC!",
+      name: "EEVblog 1458 - Microscope Polarising MAGIC!",
       length: Some(942),
       thumbnail: [
         Thumbnail(
@@ -790,16 +836,18 @@ Paginator(
           height: 188,
         ),
       ],
+      channel: None,
       publish_date: "[date]",
       publish_date_txt: Some("7 months ago"),
-      view_count: 76831,
+      view_count: Some(76831),
       is_live: false,
       is_short: false,
       is_upcoming: false,
+      short_description: None,
     ),
-    ChannelVideo(
+    VideoItem(
       id: "E6obq3T71vI",
-      title: "EEVblog1457 - Old School Mailbag - ESC Burnout",
+      name: "EEVblog1457 - Old School Mailbag - ESC Burnout",
       length: Some(1552),
       thumbnail: [
         Thumbnail(
@@ -823,16 +871,18 @@ Paginator(
           height: 188,
         ),
       ],
+      channel: None,
       publish_date: "[date]",
       publish_date_txt: Some("7 months ago"),
-      view_count: 49961,
+      view_count: Some(49961),
       is_live: false,
       is_short: false,
       is_upcoming: false,
+      short_description: None,
     ),
-    ChannelVideo(
+    VideoItem(
       id: "ZTwVQmUm6NY",
-      title: "eevBLAB 95 - Why Are Youtube Playlists So BAD?",
+      name: "eevBLAB 95 - Why Are Youtube Playlists So BAD?",
       length: Some(865),
       thumbnail: [
         Thumbnail(
@@ -856,16 +906,18 @@ Paginator(
           height: 188,
         ),
       ],
+      channel: None,
       publish_date: "[date]",
       publish_date_txt: Some("7 months ago"),
-      view_count: 17393,
+      view_count: Some(17393),
       is_live: false,
       is_short: false,
       is_upcoming: false,
+      short_description: None,
     ),
-    ChannelVideo(
+    VideoItem(
       id: "prQinQ4MWmU",
-      title: "EEVblog 1456 - Sega Toys Homestar Planetarium REPAIR",
+      name: "EEVblog 1456 - Sega Toys Homestar Planetarium REPAIR",
       length: Some(899),
       thumbnail: [
         Thumbnail(
@@ -889,16 +941,18 @@ Paginator(
           height: 188,
         ),
       ],
+      channel: None,
       publish_date: "[date]",
       publish_date_txt: Some("7 months ago"),
-      view_count: 38281,
+      view_count: Some(38281),
       is_live: false,
       is_short: false,
       is_upcoming: false,
+      short_description: None,
     ),
-    ChannelVideo(
+    VideoItem(
       id: "yMIzsFAztv4",
-      title: "EEVblog 1455 - Capacitors Produce Current During Reflow Soldering! WTF!",
+      name: "EEVblog 1455 - Capacitors Produce Current During Reflow Soldering! WTF!",
       length: Some(894),
       thumbnail: [
         Thumbnail(
@@ -922,16 +976,18 @@ Paginator(
           height: 188,
         ),
       ],
+      channel: None,
       publish_date: "[date]",
       publish_date_txt: Some("7 months ago"),
-      view_count: 70004,
+      view_count: Some(70004),
       is_live: false,
       is_short: false,
       is_upcoming: false,
+      short_description: None,
     ),
-    ChannelVideo(
+    VideoItem(
       id: "QtqljdMwRyk",
-      title: "EEVblog 1454 - Water from Air AGAIN! - The Kara Pure",
+      name: "EEVblog 1454 - Water from Air AGAIN! - The Kara Pure",
       length: Some(1198),
       thumbnail: [
         Thumbnail(
@@ -955,16 +1011,18 @@ Paginator(
           height: 188,
         ),
       ],
+      channel: None,
       publish_date: "[date]",
       publish_date_txt: Some("7 months ago"),
-      view_count: 93700,
+      view_count: Some(93700),
       is_live: false,
       is_short: false,
       is_upcoming: false,
+      short_description: None,
     ),
-    ChannelVideo(
+    VideoItem(
       id: "kcWwAweWjQg",
-      title: "EEVblog 1453 - Elgato Key Light TEARDOWN",
+      name: "EEVblog 1453 - Elgato Key Light TEARDOWN",
       length: Some(1048),
       thumbnail: [
         Thumbnail(
@@ -988,13 +1046,16 @@ Paginator(
           height: 188,
         ),
       ],
+      channel: None,
       publish_date: "[date]",
       publish_date_txt: Some("7 months ago"),
-      view_count: 37515,
+      view_count: Some(37515),
       is_live: false,
       is_short: false,
       is_upcoming: false,
+      short_description: None,
     ),
   ],
   ctoken: Some("4qmFsgKxARIYVUMyRGpGRTdYZjExVVJacVdCaWdjVk9RGmZFZ1oyYVdSbGIzTVlBeUFBTUFFNEFlb0ROME5uVGtSU1JXdFRRM2RwU1cxMGNUaHpTVVJ6TkhCRlFrdEVTWGRCYW1jNFVXZHpTUzFRUkVodFVWbFJhVzloY0VWclowTlZSRWslM0SaAixicm93c2UtZmVlZFVDMkRqRkU3WGYxMVVSWnFXQmlnY1ZPUXZpZGVvczEwMg%3D%3D"),
+  endpoint: browse,
 )

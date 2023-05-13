@@ -181,6 +181,7 @@ async fn playlist() {
         ("short", "RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk"),
         ("long", "PL5dDx681T4bR7ZF1IuWzOv1omlRbE7PiJ"),
         ("nomusic", "PL1J-6JOckZtE_P9Xx8D3b2O6w0idhuKBe"),
+        ("live", "UULVvqRdlKsE5Q8mf8YXbdIJLw"),
     ] {
         let json_path = path!(*TESTFILES_DIR / "playlist" / format!("playlist_{name}.json"));
         if json_path.exists() {
