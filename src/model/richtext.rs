@@ -57,6 +57,18 @@ pub trait ToHtml {
     fn to_html_yt_host(&self, yt_host: &str) -> String;
 }
 
+/// Trait for converting rich text to markdown.
+pub trait ToMarkdown {
+    /// Convert rich text to markdown.
+    fn to_markdown(&self) -> String {
+        self.to_markdown_yt_host("https://www.youtube.com")
+    }
+    /// Convert rich text to markdown while changing YouTube links to a custom site.
+    ///
+    /// expected yt_host format (no trailing slash): `https://example.com`
+    fn to_markdown_yt_host(&self, yt_host: &str) -> String;
+}
+
 impl TextComponent {
     /// Get the text from the component
     pub fn get_text(&self) -> &str {
@@ -110,6 +122,21 @@ impl ToHtml for TextComponent {
     }
 }
 
+impl ToMarkdown for TextComponent {
+    fn to_markdown_yt_host(&self, yt_host: &str) -> String {
+        match self {
+            TextComponent::Text(text) => util::escape_markdown(text),
+            TextComponent::Web { text, .. } | TextComponent::YouTube { text, .. } => {
+                format!(
+                    "[{}]({})",
+                    util::escape_markdown(text),
+                    self.get_url(yt_host)
+                )
+            }
+        }
+    }
+}
+
 impl ToPlaintext for RichText {
     fn to_plaintext_yt_host(&self, yt_host: &str) -> String {
         self.0
@@ -122,6 +149,15 @@ impl ToPlaintext for RichText {
 impl ToHtml for RichText {
     fn to_html_yt_host(&self, yt_host: &str) -> String {
         self.0.iter().map(|c| c.to_html_yt_host(yt_host)).collect()
+    }
+}
+
+impl ToMarkdown for RichText {
+    fn to_markdown_yt_host(&self, yt_host: &str) -> String {
+        self.0
+            .iter()
+            .map(|c| c.to_markdown_yt_host(yt_host))
+            .collect()
     }
 }
 
@@ -170,7 +206,7 @@ mod tests {
     });
 
     #[test]
-    fn t_to_plaintext() {
+    fn to_plaintext() {
         let richtext = RichText::from(TEXT_SOURCE.clone());
         let plaintext = richtext.to_plaintext_yt_host("https://piped.kavin.rocks");
         assert_eq!(
@@ -197,12 +233,39 @@ aespa 에스파 'Black Mamba' MV ℗ SM Entertainment"#
     }
 
     #[test]
-    fn t_to_html() {
+    fn to_html() {
         let richtext = RichText::from(TEXT_SOURCE.clone());
         let html = richtext.to_html_yt_host("https://piped.kavin.rocks");
         assert_eq!(
             html,
             "🎧Listen and download aespa&#x27;s debut single &quot;Black Mamba&quot;: <a href=\"https://smarturl.it/aespa_BlackMamba\" target=\"_blank\" rel=\"noreferrer\">https://smarturl.it/aespa_BlackMamba</a><br>🐍The Debut Stage <a href=\"https://piped.kavin.rocks/watch?v=Ky5RT5oGg0w\">https://youtu.be/Ky5RT5oGg0w</a><br><br>🎟\u{fe0f} aespa Showcase SYNK in LA! Tickets now on sale: <a href=\"https://www.ticketmaster.com/event/0A005CCD9E871F6E\" target=\"_blank\" rel=\"noreferrer\">https://www.ticketmaster.com/event/0A...</a><br><br>Subscribe to aespa Official YouTube Channel!<br><a href=\"https://www.youtube.com/aespa?sub_confirmation=1\" target=\"_blank\" rel=\"noreferrer\">https://www.youtube.com/aespa?sub_con...</a><br><br>aespa official<br><a href=\"https://www.youtube.com/c/aespa\" target=\"_blank\" rel=\"noreferrer\">https://www.youtube.com/c/aespa</a><br><a href=\"https://www.instagram.com/aespa_official\" target=\"_blank\" rel=\"noreferrer\">https://www.instagram.com/aespa_official</a><br><a href=\"https://www.tiktok.com/@aespa_official\" target=\"_blank\" rel=\"noreferrer\">https://www.tiktok.com/@aespa_official</a><br><a href=\"https://twitter.com/aespa_Official\" target=\"_blank\" rel=\"noreferrer\">https://twitter.com/aespa_Official</a><br><a href=\"https://www.facebook.com/aespa.official\" target=\"_blank\" rel=\"noreferrer\">https://www.facebook.com/aespa.official</a><br><a href=\"https://weibo.com/aespa\" target=\"_blank\" rel=\"noreferrer\">https://weibo.com/aespa</a><br><br>#aespa #æspa #BlackMamba #블랙맘바 #에스파<br>aespa 에스파 &#x27;Black Mamba&#x27; MV ℗ SM Entertainment"
         );
+    }
+
+    #[test]
+    fn to_markdown() {
+        let richtext = RichText::from(TEXT_SOURCE.clone());
+        let markdown = richtext.to_markdown_yt_host("https://piped.kavin.rocks");
+        assert_eq!(
+            markdown,
+            r#"🎧Listen and download aespa's debut single "Black Mamba": [https://smarturl.it/aespa\_BlackMamba](https://smarturl.it/aespa_BlackMamba)<br>
+🐍The Debut Stage [https://youtu.be/Ky5RT5oGg0w](https://piped.kavin.rocks/watch?v=Ky5RT5oGg0w)
+
+🎟️ aespa Showcase SYNK in LA! Tickets now on sale: [https://www.ticketmaster.com/event/0A...](https://www.ticketmaster.com/event/0A005CCD9E871F6E)
+
+Subscribe to aespa Official YouTube Channel!<br>
+[https://www.youtube.com/aespa?sub\_con...](https://www.youtube.com/aespa?sub_confirmation=1)
+
+aespa official<br>
+[https://www.youtube.com/c/aespa](https://www.youtube.com/c/aespa)<br>
+[https://www.instagram.com/aespa\_official](https://www.instagram.com/aespa_official)<br>
+[https://www.tiktok.com/@aespa\_official](https://www.tiktok.com/@aespa_official)<br>
+[https://twitter.com/aespa\_Official](https://twitter.com/aespa_Official)<br>
+[https://www.facebook.com/aespa.official](https://www.facebook.com/aespa.official)<br>
+[https://weibo.com/aespa](https://weibo.com/aespa)
+
+\#aespa \#æspa \#BlackMamba \#블랙맘바 \#에스파<br>
+aespa 에스파 'Black Mamba' MV ℗ SM Entertainment"#
+        )
     }
 }

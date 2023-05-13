@@ -390,6 +390,34 @@ pub fn escape_html(input: &str) -> String {
     buf
 }
 
+/// Replace all markdown control characters to make a string safe for
+/// inserting into Markdown.
+pub fn escape_markdown(input: &str) -> String {
+    let mut buf = String::with_capacity(input.len());
+    let mut chars = input.chars().peekable();
+
+    while let Some(c) = chars.next() {
+        match c {
+            '<' => buf.push_str("&lt;"),
+            '>' => buf.push_str("&gt;"),
+            '\n' => {
+                if chars.peek() == Some(&'\n') {
+                    chars.next();
+                    buf.push_str("\n\n");
+                } else {
+                    buf.push_str("<br>\n");
+                }
+            }
+            '*' | '#' | '(' | ')' | '[' | ']' | '_' | '`' => {
+                buf.push('\\');
+                buf.push(c);
+            }
+            _ => buf.push(c),
+        };
+    }
+    buf
+}
+
 pub fn video_id_from_thumbnail_url(url: &str) -> Option<String> {
     static URL_REGEX: Lazy<Regex> =
         Lazy::new(|| Regex::new(r"^https://i.ytimg.com/vi/([A-Za-z0-9_-]{11})/").unwrap());
