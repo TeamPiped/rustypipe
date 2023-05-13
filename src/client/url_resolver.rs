@@ -168,12 +168,13 @@ impl RustyPipeQuery {
                                         e,
                                         Error::Extraction(ExtractionError::NotFound { .. })
                                     ) {
-                                        match util::VIDEO_ID_REGEX.is_match(id) {
-                                            true => Ok(UrlTarget::Video {
+                                        if util::VIDEO_ID_REGEX.is_match(id) {
+                                            Ok(UrlTarget::Video {
                                                 id: id.to_owned(),
                                                 start_time: get_start_time(),
-                                            }),
-                                            false => Err(e),
+                                            })
+                                        } else {
+                                            Err(e)
                                         }
                                     } else {
                                         Err(e)

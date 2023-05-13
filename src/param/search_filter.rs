@@ -93,77 +93,90 @@ pub enum Length {
 
 impl SearchFilter {
     /// Get a new [`SearchFilter`]
+    #[must_use]
     pub fn new() -> Self {
         Self::default()
     }
 
     /// Sort the search results
+    #[must_use]
     pub fn sort(mut self, sort: Order) -> Self {
         self.sort = Some(sort);
         self
     }
 
     /// Sort the search results
+    #[must_use]
     pub fn sort_opt(mut self, sort: Option<Order>) -> Self {
         self.sort = sort;
         self
     }
 
     /// Filter videos with specific features
+    #[must_use]
     pub fn feature(mut self, feature: Feature) -> Self {
         self.features.insert(feature);
         self
     }
 
     /// Filter videos with specific features
+    #[must_use]
     pub fn features(mut self, features: BTreeSet<Feature>) -> Self {
         self.features = features;
         self
     }
 
     /// Filter videos by upload date range
+    #[must_use]
     pub fn date(mut self, date: UploadDate) -> Self {
         self.date = Some(date);
         self
     }
 
     /// Filter videos by upload date range
+    #[must_use]
     pub fn date_opt(mut self, date: Option<UploadDate>) -> Self {
         self.date = date;
         self
     }
 
     /// Filter videos by item type
+    #[must_use]
     pub fn item_type(mut self, item_type: ItemType) -> Self {
         self.item_type = Some(item_type);
         self
     }
 
     /// Filter videos by item type
+    #[must_use]
     pub fn item_type_opt(mut self, item_type: Option<ItemType>) -> Self {
         self.item_type = item_type;
         self
     }
 
     /// Filter videos by length range
+    #[must_use]
     pub fn length(mut self, length: Length) -> Self {
         self.length = Some(length);
         self
     }
 
     /// Filter videos by length range
+    #[must_use]
     pub fn length_opt(mut self, length: Option<Length>) -> Self {
         self.length = length;
         self
     }
 
     /// Disable the automatic correction of mistyped search terms
+    #[must_use]
     pub fn verbatim(mut self) -> Self {
         self.verbatim = true;
         self
     }
 
     /// Disable the automatic correction of mistyped search terms
+    #[must_use]
     pub fn verbatim_set(mut self, verbatim: bool) -> Self {
         self.verbatim = verbatim;
         self
@@ -197,7 +210,7 @@ impl SearchFilter {
         if self.verbatim {
             let mut extras = ProtoBuilder::new();
             extras.varint(1, 1);
-            pb.embedded(8, extras)
+            pb.embedded(8, extras);
         }
 
         pb.to_base64()

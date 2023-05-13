@@ -393,7 +393,7 @@ impl MapResponse<Paginator<Comment>> for response::VideoComments {
                         lang,
                     );
                     comments.push(res.c);
-                    warnings.append(&mut res.warnings)
+                    warnings.append(&mut res.warnings);
                 }
                 response::video_details::CommentListItem::CommentRenderer(comment) => {
                     let mut res = map_comment(
@@ -403,7 +403,7 @@ impl MapResponse<Paginator<Comment>> for response::VideoComments {
                         lang,
                     );
                     comments.push(res.c);
-                    warnings.append(&mut res.warnings)
+                    warnings.append(&mut res.warnings);
                 }
                 response::video_details::CommentListItem::ContinuationItemRenderer {
                     continuation_endpoint,
@@ -433,11 +433,11 @@ fn map_recommendations(
     let mut mapper = response::YouTubeListMapper::<VideoItem>::new(lang);
     mapper.map_response(r);
 
-    if let Some(continuations) = continuations {
-        continuations.into_iter().for_each(|c| {
-            mapper.ctoken = Some(c.next_continuation_data.continuation);
-        })
-    };
+    mapper.ctoken = mapper.ctoken.or_else(|| {
+        continuations
+            .and_then(|c| c.into_iter().next())
+            .map(|c| c.next_continuation_data.continuation)
+    });
 
     MapResult {
         c: Paginator::new_ext(

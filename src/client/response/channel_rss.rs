@@ -87,11 +87,9 @@ impl From<ChannelRss> for crate::model::ChannelRss {
             feed.entry
                 .iter()
                 .find_map(|entry| {
-                    if !entry.channel_id.is_empty() {
-                        Some(entry.channel_id.to_owned())
-                    } else {
-                        None
-                    }
+                    Some(entry.channel_id.as_str())
+                        .filter(|id| id.is_empty())
+                        .map(str::to_owned)
                 })
                 .or_else(|| {
                     feed.author

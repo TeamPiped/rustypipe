@@ -102,10 +102,10 @@ pub async fn run_test(
     let count = results.iter().filter(|(p, _)| *p).count();
     let vd_present = results
         .iter()
-        .find_map(|(p, vd)| if *p { Some(vd.to_owned()) } else { None });
+        .find_map(|(p, vd)| if *p { Some(vd.clone()) } else { None });
     let vd_absent = results
         .iter()
-        .find_map(|(p, vd)| if !*p { Some(vd.to_owned()) } else { None });
+        .find_map(|(p, vd)| if *p { None } else { Some(vd.clone()) });
 
     (count, vd_present, vd_absent)
 }

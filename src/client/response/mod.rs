@@ -349,7 +349,7 @@ impl From<Icon> for crate::model::Verification {
         match icon.icon_type {
             IconType::Check => Self::Verified,
             IconType::OfficialArtistBadge => Self::Artist,
-            _ => Self::None,
+            IconType::Like => Self::None,
         }
     }
 }

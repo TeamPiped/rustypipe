@@ -53,7 +53,7 @@ fn get_player_from_client(#[case] client_type: ClientType, rp: RustyPipe) {
     assert_eq!(player_data.details.channel.name, "NoCopyrightSounds");
     assert_gte(player_data.details.view_count, 146_818_808, "view count");
     assert_eq!(player_data.details.keywords[0], "spektrem");
-    assert_eq!(player_data.details.is_live_content, false);
+    assert!(!player_data.details.is_live_content);
 
     if client_type == ClientType::Ios {
         let video = player_data
@@ -68,21 +68,21 @@ fn get_player_from_client(#[case] client_type: ClientType, rp: RustyPipe) {
             .unwrap();
 
         // Bitrates may change between requests
-        assert_approx(video.bitrate as f64, 1507068.0);
-        assert_eq!(video.average_bitrate, 1345149);
-        assert_eq!(video.size.unwrap(), 43553412);
+        assert_approx(f64::from(video.bitrate), 1_507_068.0);
+        assert_eq!(video.average_bitrate, 1_345_149);
+        assert_eq!(video.size.unwrap(), 43_553_412);
         assert_eq!(video.width, 1280);
         assert_eq!(video.height, 720);
         assert_eq!(video.fps, 30);
         assert_eq!(video.quality, "720p");
-        assert_eq!(video.hdr, false);
+        assert!(!video.hdr);
         assert_eq!(video.mime, "video/webm; codecs=\"vp09.00.31.08\"");
         assert_eq!(video.format, VideoFormat::Webm);
         assert_eq!(video.codec, VideoCodec::Vp9);
 
-        assert_approx(audio.bitrate as f64, 130685.0);
-        assert_approx(audio.average_bitrate as f64, 129496.0);
-        assert_approx(audio.size as f64, 4193863.0);
+        assert_approx(f64::from(audio.bitrate), 130_685.0);
+        assert_approx(f64::from(audio.average_bitrate), 129_496.0);
+        assert_approx(audio.size as f64, 4_193_863.0);
         assert_eq!(audio.mime, "audio/mp4; codecs=\"mp4a.40.2\"");
         assert_eq!(audio.format, AudioFormat::M4a);
         assert_eq!(audio.codec, AudioCodec::Mp4a);
@@ -101,26 +101,26 @@ fn get_player_from_client(#[case] client_type: ClientType, rp: RustyPipe) {
             .find(|s| s.itag == 251)
             .expect("audio stream not found");
 
-        assert_approx(video.bitrate as f64, 1340829.0);
-        assert_approx(video.average_bitrate as f64, 1233444.0);
-        assert_approx(video.size.unwrap() as f64, 39936630.0);
+        assert_approx(f64::from(video.bitrate), 1_340_829.0);
+        assert_approx(f64::from(video.average_bitrate), 1_233_444.0);
+        assert_approx(video.size.unwrap() as f64, 39_936_630.0);
         assert_eq!(video.width, 1280);
         assert_eq!(video.height, 720);
         assert_eq!(video.fps, 30);
         assert_eq!(video.quality, "720p");
-        assert_eq!(video.hdr, false);
+        assert!(!video.hdr);
         assert_eq!(video.mime, "video/mp4; codecs=\"av01.0.05M.08\"");
         assert_eq!(video.format, VideoFormat::Mp4);
         assert_eq!(video.codec, VideoCodec::Av01);
-        assert_eq!(video.throttled, false);
+        assert!(!video.throttled);
 
-        assert_approx(audio.bitrate as f64, 142718.0);
-        assert_approx(audio.average_bitrate as f64, 130708.0);
-        assert_approx(audio.size as f64, 4232344.0);
+        assert_approx(f64::from(audio.bitrate), 142_718.0);
+        assert_approx(f64::from(audio.average_bitrate), 130_708.0);
+        assert_approx(audio.size as f64, 4_232_344.0);
         assert_eq!(audio.mime, "audio/webm; codecs=\"opus\"");
         assert_eq!(audio.format, AudioFormat::Webm);
         assert_eq!(audio.codec, AudioCodec::Opus);
-        assert_eq!(audio.throttled, false);
+        assert!(!audio.throttled);
 
         check_video_stream(video);
         check_video_stream(audio);
@@ -151,7 +151,7 @@ fn check_video_stream(s: impl YtStream) {
     260,
     "UC2llNlEM62gU-_fXPHfgbDg",
     "Oonagh",
-    830900,
+    830_900,
     false,
     false
 )]
@@ -873,7 +873,7 @@ fn channel_info(rp: RustyPipe) {
 
     assert_gte(
         channel.content.view_count.unwrap(),
-        186854340,
+        186_854_340,
         "channel views",
     );
 
@@ -1467,7 +1467,7 @@ fn music_artist(
         .for_each(|t| assert!(!t.avatar.is_empty()));
 
     // Sort albums to ensure consistent order
-    artist.albums.sort_by_key(|a| a.id.to_owned());
+    artist.albums.sort_by_key(|a| a.id.clone());
 
     if unlocalized {
         insta::assert_ron_snapshot!(format!("music_artist_{name}"), artist, {
@@ -1944,19 +1944,19 @@ fn music_related(#[case] id: &str, #[case] full: bool, rp: RustyPipe) {
     let mut track_albums = 0;
 
     for track in related.tracks {
-        assert_video_id(&track.id);
+        validate::video_id(&track.id).unwrap();
         assert!(!track.name.is_empty());
         assert!(!track.cover.is_empty(), "got no cover");
 
         if let Some(artist_id) = track.artist_id {
-            assert_channel_id(&artist_id);
+            validate::channel_id(&artist_id).unwrap();
             track_artist_ids += 1;
         }
 
         let artist = track.artists.first().unwrap();
         assert!(!artist.name.is_empty());
         if let Some(artist_id) = &artist.id {
-            assert_channel_id(artist_id);
+            validate::channel_id(&artist_id).unwrap();
             track_artists += 1;
         }
 
@@ -1968,7 +1968,7 @@ fn music_related(#[case] id: &str, #[case] full: bool, rp: RustyPipe) {
 
             assert!(track.view_count.is_none());
             if let Some(album) = track.album {
-                assert_album_id(&album.id);
+                validate::album_id(&album.id).unwrap();
                 assert!(!album.name.is_empty());
                 track_albums += 1;
             }
@@ -1985,18 +1985,18 @@ fn music_related(#[case] id: &str, #[case] full: bool, rp: RustyPipe) {
     if full {
         assert_gte(related.albums.len(), 10, "albums");
         for album in related.albums {
-            assert_album_id(&album.id);
+            validate::album_id(&album.id).unwrap();
             assert!(!album.name.is_empty());
             assert!(!album.cover.is_empty(), "got no cover");
 
             let artist = album.artists.first().unwrap();
-            assert_channel_id(artist.id.as_ref().unwrap());
+            validate::channel_id(artist.id.as_ref().unwrap()).unwrap();
             assert!(!artist.name.is_empty());
         }
 
         assert_gte(related.artists.len(), 10, "artists");
         for artist in related.artists {
-            assert_channel_id(&artist.id);
+            validate::channel_id(&artist.id).unwrap();
             assert!(!artist.name.is_empty());
             assert!(!artist.avatar.is_empty(), "got no avatar");
             assert_gte(artist.subscriber_count.unwrap(), 5000, "subscribers")
@@ -2004,7 +2004,7 @@ fn music_related(#[case] id: &str, #[case] full: bool, rp: RustyPipe) {
 
         assert_gte(related.playlists.len(), 10, "playlists");
         for playlist in related.playlists {
-            assert_playlist_id(&playlist.id);
+            validate::playlist_id(&playlist.id).unwrap();
             assert!(!playlist.name.is_empty());
             assert!(
                 !playlist.thumbnail.is_empty(),
@@ -2018,7 +2018,7 @@ fn music_related(#[case] id: &str, #[case] full: bool, rp: RustyPipe) {
                     playlist.id
                 );
                 let channel = playlist.channel.unwrap();
-                assert_channel_id(&channel.id);
+                validate::channel_id(&channel.id).unwrap();
                 assert!(!channel.name.is_empty());
             } else {
                 assert!(playlist.channel.is_none());
@@ -2134,7 +2134,7 @@ fn music_new_albums(rp: RustyPipe) {
     assert_gte(albums.len(), 10, "albums");
 
     for album in albums {
-        assert_album_id(&album.id);
+        validate::album_id(&album.id).unwrap();
         assert!(!album.name.is_empty());
         assert!(!album.cover.is_empty(), "got no cover");
     }
@@ -2146,7 +2146,7 @@ fn music_new_videos(rp: RustyPipe) {
     assert_gte(videos.len(), 5, "videos");
 
     for video in videos {
-        assert_video_id(&video.id);
+        validate::video_id(&video.id).unwrap();
         assert!(!video.name.is_empty());
         assert!(!video.cover.is_empty(), "got no cover");
         assert_gte(video.view_count.unwrap(), 1000, "views");
@@ -2174,10 +2174,10 @@ fn music_genres(rp: RustyPipe, unlocalized: bool) {
     assert_eq!(pop.name, "Pop");
     assert!(!pop.is_mood);
 
-    genres.iter().for_each(|g| {
-        assert!(validate::genre_id(&g.id));
-        assert_gte(g.color, 0xff000000, "color");
-    });
+    for g in &genres {
+        validate::genre_id(&g.id).unwrap();
+        assert_gte(g.color, 0xff00_0000, "color");
+    }
 }
 
 #[rstest]
@@ -2202,7 +2202,7 @@ fn music_genre(#[case] id: &str, #[case] name: &str, rp: RustyPipe, unlocalized:
         genre.sections.iter().for_each(|section| {
             assert!(!section.name.is_empty());
             section.playlists.iter().for_each(|playlist| {
-                assert_playlist_id(&playlist.id);
+                validate::playlist_id(&playlist.id).unwrap();
                 assert!(!playlist.name.is_empty());
                 assert!(!playlist.thumbnail.is_empty(), "got no cover");
 
@@ -2213,14 +2213,14 @@ fn music_genre(#[case] id: &str, #[case] name: &str, rp: RustyPipe, unlocalized:
                         playlist.id
                     );
                     let channel = playlist.channel.as_ref().unwrap();
-                    assert_channel_id(&channel.id);
+                    validate::channel_id(&channel.id).unwrap();
                     assert!(!channel.name.is_empty());
                 } else {
                     assert!(playlist.channel.is_none());
                 }
             });
             if let Some(subgenre_id) = &section.subgenre_id {
-                subgenres.push((subgenre_id.to_owned(), section.name.to_owned()));
+                subgenres.push((subgenre_id.clone(), section.name.clone()));
             }
         });
         subgenres
@@ -2290,8 +2290,7 @@ fn invalid_ctoken(#[case] ep: ContinuationEndpoint, rp: RustyPipe) {
 fn lang() -> Language {
     std::env::var("YT_LANG")
         .ok()
-        .map(|l| Language::from_str(&l).unwrap())
-        .unwrap_or(Language::En)
+        .map_or(Language::En, |l| Language::from_str(&l).unwrap())
 }
 
 /// Get a new RustyPipe instance
@@ -2360,22 +2359,6 @@ fn assert_next_items<T: FromYtItem, Q: AsRef<RustyPipeQuery>>(
     let query = query.as_ref();
     tokio_test::block_on(p.extend_limit(query, n_items)).unwrap();
     assert_gte(p.items.len(), n_items, "items");
-}
-
-fn assert_video_id(id: &str) {
-    assert!(validate::video_id(id), "invalid video id: `{id}`")
-}
-
-fn assert_channel_id(id: &str) {
-    assert!(validate::channel_id(id), "invalid channel id: `{id}`");
-}
-
-fn assert_album_id(id: &str) {
-    assert!(validate::album_id(id), "invalid album id: `{id}`");
-}
-
-fn assert_playlist_id(id: &str) {
-    assert!(validate::playlist_id(id), "invalid playlist id: `{id}`");
 }
 
 fn assert_frameset(frameset: &Frameset) {

@@ -37,13 +37,13 @@ const FILENAME_FORMAT: &[time::format_description::FormatItem] =
 /// RustyPipe error report
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[non_exhaustive]
-pub struct Report {
+pub struct Report<'a> {
     /// Information about the RustyPipe client
-    pub info: RustyPipeInfo,
+    pub info: RustyPipeInfo<'a>,
     /// Severity of the report
     pub level: Level,
     /// RustyPipe operation (e.g. `get_player`)
-    pub operation: String,
+    pub operation: &'a str,
     /// Error (if occurred)
     pub error: Option<String>,
     /// Detailed error/warning messages
@@ -52,17 +52,17 @@ pub struct Report {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub deobf_data: Option<DeobfData>,
     /// HTTP request data
-    pub http_request: HTTPRequest,
+    pub http_request: HTTPRequest<'a>,
 }
 
 /// Information about the RustyPipe client
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[non_exhaustive]
-pub struct RustyPipeInfo {
+pub struct RustyPipeInfo<'a> {
     /// Rust package name (`rustypipe`)
-    pub package: String,
+    pub package: &'a str,
     /// Package version (`0.1.0`)
-    pub version: String,
+    pub version: &'a str,
     /// Date/Time when the event occurred
     #[serde(with = "time::serde::rfc3339")]
     pub date: OffsetDateTime,
@@ -71,13 +71,13 @@ pub struct RustyPipeInfo {
 /// Reported HTTP request data
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[non_exhaustive]
-pub struct HTTPRequest {
+pub struct HTTPRequest<'a> {
     /// Request URL
-    pub url: String,
+    pub url: &'a str,
     /// HTTP method
-    pub method: String,
+    pub method: &'a str,
     /// HTTP request header
-    pub req_header: BTreeMap<String, String>,
+    pub req_header: BTreeMap<&'a str, String>,
     /// HTTP request body
     pub req_body: String,
     /// HTTP response status code
@@ -98,11 +98,11 @@ pub enum Level {
     ERR,
 }
 
-impl Default for RustyPipeInfo {
+impl Default for RustyPipeInfo<'_> {
     fn default() -> Self {
         Self {
-            package: "rustypipe".to_owned(),
-            version: "0.1.0".to_owned(),
+            package: env!("CARGO_PKG_NAME"),
+            version: env!("CARGO_PKG_VERSION"),
             date: util::now_sec(),
         }
     }

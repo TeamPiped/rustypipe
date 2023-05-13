@@ -33,8 +33,8 @@ impl ProtoBuilder {
     ///
     /// Reference: <https://developers.google.com/protocol-buffers/docs/encoding?hl=en#structure>
     fn _field(&mut self, field: u32, wire: u8) {
-        let fbits: u64 = (field as u64) << 3;
-        let wbits = wire as u64 & 0x07;
+        let fbits = u64::from(field) << 3;
+        let wbits = u64::from(wire) & 0x07;
         let val: u64 = fbits | wbits;
         self._varint(val);
     }
@@ -74,7 +74,7 @@ fn parse_varint<P: Iterator<Item = u8>>(pb: &mut P) -> Option<u64> {
 
     for b in pb.by_ref() {
         let value = b & 0x7f;
-        result |= (value as u64) << (7 * num_read);
+        result |= u64::from(value) << (7 * num_read);
         num_read += 1;
 
         if b & 0x80 == 0 {
@@ -118,9 +118,8 @@ pub fn string_from_pb<P: IntoIterator<Item = u8>>(pb: P, field: u32) -> Option<S
                         buf.push(pb.next()?);
                     }
                     return String::from_utf8(buf).ok();
-                } else {
-                    len
                 }
+                len
             }
             _ => return None,
         };

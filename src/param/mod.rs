@@ -33,7 +33,7 @@ pub enum ChannelOrder {
 
 impl ChannelVideoTab {
     /// Get the tab ID used to create ordered continuation tokens
-    pub(crate) const fn order_ctoken_id(&self) -> u32 {
+    pub(crate) const fn order_ctoken_id(self) -> u32 {
         match self {
             ChannelVideoTab::Videos => 15,
             ChannelVideoTab::Shorts => 10,

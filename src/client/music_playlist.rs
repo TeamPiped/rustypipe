@@ -60,7 +60,7 @@ impl RustyPipeQuery {
         // In rare cases, albums may have track numbers =0 (example: MPREb_RM0QfZ0eSKL)
         // They should be replaced with the track number derived from the previous track.
         let mut n_prev = 0;
-        for track in album.tracks.iter_mut() {
+        for track in &mut album.tracks {
             let tn = track.track_nr.unwrap_or_default();
             if tn == 0 {
                 n_prev += 1;
@@ -80,7 +80,7 @@ impl RustyPipeQuery {
                 .enumerate()
                 .filter_map(|(i, track)| {
                     if track.is_video {
-                        Some((i, track.name.to_owned()))
+                        Some((i, track.name.clone()))
                     } else {
                         None
                     }
@@ -97,7 +97,7 @@ impl RustyPipeQuery {
                 for (i, title) in to_replace {
                     let found_track = playlist.tracks.items.iter().find_map(|track| {
                         if track.name == title && !track.is_video {
-                            Some((track.id.to_owned(), track.duration))
+                            Some((track.id.clone(), track.duration))
                         } else {
                             None
                         }
@@ -173,7 +173,7 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
                     .split(|p| p == DOT_SEPARATOR)
                     .collect::<Vec<_>>();
                 parts
-                    .get(if parts.len() > 2 { 1 } else { 0 })
+                    .get(usize::from(parts.len() > 2))
                     .and_then(|txt| util::parse_numeric::<u64>(&txt[0]).ok())
             })
         } else {
@@ -293,7 +293,7 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
             match section {
                 response::music_item::ItemSection::MusicShelfRenderer(sh) => shelf = Some(sh),
                 response::music_item::ItemSection::MusicCarouselShelfRenderer(sh) => {
-                    album_variants = Some(sh.contents)
+                    album_variants = Some(sh.contents);
                 }
                 _ => (),
             }
@@ -355,7 +355,7 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
                 )
             })
             .unwrap_or_default();
-        let artist_id = artist_id.or_else(|| artists.first().and_then(|a| a.id.to_owned()));
+        let artist_id = artist_id.or_else(|| artists.first().and_then(|a| a.id.clone()));
 
         let mut mapper = MusicListMapper::with_album(
             lang,
@@ -363,7 +363,7 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
             by_va,
             AlbumId {
                 id: id.to_owned(),
-                name: header.title.to_owned(),
+                name: header.title.clone(),
             },
         );
         mapper.map_response(shelf.contents);

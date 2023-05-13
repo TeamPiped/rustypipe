@@ -11,7 +11,7 @@
 //! - The validation functions of this module are meant vor validating specific data (video IDs,
 //!   channel IDs, playlist IDs) and return [`true`] if the given input is valid
 
-use crate::util;
+use crate::{error::Error, util};
 use once_cell::sync::Lazy;
 use regex::Regex;
 
@@ -22,12 +22,15 @@ use regex::Regex;
 /// # Examples
 /// ```
 /// # use rustypipe::validate;
-/// assert!(validate::video_id("dQw4w9WgXcQ"));
-/// assert!(!validate::video_id("Abcd"));
-/// assert!(!validate::video_id("dQw4w9WgXc@"));
+/// assert!(validate::video_id("dQw4w9WgXcQ").is_ok());
+/// assert!(validate::video_id("Abcd").is_err());
+/// assert!(validate::video_id("dQw4w9WgXc@").is_err());
 /// ```
-pub fn video_id<S: AsRef<str>>(video_id: S) -> bool {
-    util::VIDEO_ID_REGEX.is_match(video_id.as_ref())
+pub fn video_id<S: AsRef<str>>(video_id: S) -> Result<(), Error> {
+    check(
+        util::VIDEO_ID_REGEX.is_match(video_id.as_ref()),
+        "invalid video id",
+    )
 }
 
 /// Validate the given channel ID
@@ -38,12 +41,15 @@ pub fn video_id<S: AsRef<str>>(video_id: S) -> bool {
 /// # Examples
 /// ```
 /// # use rustypipe::validate;
-/// assert!(validate::channel_id("UC2DjFE7Xf11URZqWBigcVOQ"));
-/// assert!(!validate::channel_id("Abcd"));
-/// assert!(!validate::channel_id("XY2DjFE7Xf11URZqWBigcVOQ"));
+/// assert!(validate::channel_id("UC2DjFE7Xf11URZqWBigcVOQ").is_ok());
+/// assert!(validate::channel_id("Abcd").is_err());
+/// assert!(validate::channel_id("XY2DjFE7Xf11URZqWBigcVOQ").is_err());
 /// ```
-pub fn channel_id<S: AsRef<str>>(channel_id: S) -> bool {
-    util::CHANNEL_ID_REGEX.is_match(channel_id.as_ref())
+pub fn channel_id<S: AsRef<str>>(channel_id: S) -> Result<(), Error> {
+    check(
+        util::CHANNEL_ID_REGEX.is_match(channel_id.as_ref()),
+        "invalid channel id",
+    )
 }
 
 /// Validate the given playlist ID
@@ -55,14 +61,17 @@ pub fn channel_id<S: AsRef<str>>(channel_id: S) -> bool {
 /// # Examples
 /// ```
 /// # use rustypipe::validate;
-/// assert!(validate::playlist_id("PL4lEESSgxM_5O81EvKCmBIm_JT5Q7JeaI"));
-/// assert!(validate::playlist_id("RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk"));
-/// assert!(validate::playlist_id("OLAK5uy_k0yFrZlFRgCf3rLPza-lkRmCrtLPbK9pE"));
+/// assert!(validate::playlist_id("PL4lEESSgxM_5O81EvKCmBIm_JT5Q7JeaI").is_ok());
+/// assert!(validate::playlist_id("RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk").is_ok());
+/// assert!(validate::playlist_id("OLAK5uy_k0yFrZlFRgCf3rLPza-lkRmCrtLPbK9pE").is_ok());
 ///
-/// assert!(!validate::playlist_id("Abcd"));
+/// assert!(validate::playlist_id("Abcd").is_err());
 /// ```
-pub fn playlist_id<S: AsRef<str>>(playlist_id: S) -> bool {
-    util::PLAYLIST_ID_REGEX.is_match(playlist_id.as_ref())
+pub fn playlist_id<S: AsRef<str>>(playlist_id: S) -> Result<(), Error> {
+    check(
+        util::PLAYLIST_ID_REGEX.is_match(playlist_id.as_ref()),
+        "invalid playlist id",
+    )
 }
 
 /// Validate the given album ID
@@ -73,8 +82,8 @@ pub fn playlist_id<S: AsRef<str>>(playlist_id: S) -> bool {
 /// # Examples
 /// ```
 /// # use rustypipe::validate;
-/// assert!(validate::album_id("MPREb_GyH43gCvdM5"));
-/// assert!(!validate::album_id("Abcd_GyH43gCvdM5"));
+/// assert!(validate::album_id("MPREb_GyH43gCvdM5").is_ok());
+/// assert!(validate::album_id("Abcd_GyH43gCvdM5").is_err());
 /// ```
 ///
 /// # Note
@@ -86,8 +95,11 @@ pub fn playlist_id<S: AsRef<str>>(playlist_id: S) -> bool {
 /// If you have the playlist ID of an album and need the album ID, you can use the
 /// [string resolver](crate::client::RustyPipeQuery::resolve_string) with the `resolve_albums`
 /// option enabled.
-pub fn album_id<S: AsRef<str>>(album_id: S) -> bool {
-    util::ALBUM_ID_REGEX.is_match(album_id.as_ref())
+pub fn album_id<S: AsRef<str>>(album_id: S) -> Result<(), Error> {
+    check(
+        util::ALBUM_ID_REGEX.is_match(album_id.as_ref()),
+        "invalid album id",
+    )
 }
 
 /// Validate the given radio ID
@@ -107,15 +119,18 @@ pub fn album_id<S: AsRef<str>>(album_id: S) -> bool {
 ///
 /// ```
 /// # use rustypipe::validate;
-/// assert!(validate::radio_id("RDEMSuoM_jxfse1_g8uCO7MCtg"));
-/// assert!(!validate::radio_id("Abcd"));
-/// assert!(!validate::radio_id("XYEMSuoM_jxfse1_g8uCO7MCtg"));
+/// assert!(validate::radio_id("RDEMSuoM_jxfse1_g8uCO7MCtg").is_ok());
+/// assert!(validate::radio_id("Abcd").is_err());
+/// assert!(validate::radio_id("XYEMSuoM_jxfse1_g8uCO7MCtg").is_err());
 /// ```
-pub fn radio_id<S: AsRef<str>>(radio_id: S) -> bool {
+pub fn radio_id<S: AsRef<str>>(radio_id: S) -> Result<(), Error> {
     static RADIO_ID_REGEX: Lazy<Regex> =
         Lazy::new(|| Regex::new(r"^RD[A-Za-z0-9_-]{22,50}$").unwrap());
 
-    RADIO_ID_REGEX.is_match(radio_id.as_ref())
+    check(
+        RADIO_ID_REGEX.is_match(radio_id.as_ref()),
+        "invalid radio id",
+    )
 }
 
 /// Validate the given genre ID
@@ -127,15 +142,18 @@ pub fn radio_id<S: AsRef<str>>(radio_id: S) -> bool {
 ///
 /// ```
 /// # use rustypipe::validate;
-/// assert!(validate::genre_id("ggMPOg1uX1JOQWZFeDByc2Jm"));
-/// assert!(!validate::genre_id("Abcd"));
-/// assert!(!validate::genre_id("ggAbcg1uX1JOQWZFeDByc2Jm"));
+/// assert!(validate::genre_id("ggMPOg1uX1JOQWZFeDByc2Jm").is_ok());
+/// assert!(validate::genre_id("Abcd").is_err());
+/// assert!(validate::genre_id("ggAbcg1uX1JOQWZFeDByc2Jm").is_err());
 /// ```
-pub fn genre_id<S: AsRef<str>>(genre_id: S) -> bool {
+pub fn genre_id<S: AsRef<str>>(genre_id: S) -> Result<(), Error> {
     static GENRE_ID_REGEX: Lazy<Regex> =
         Lazy::new(|| Regex::new(r"^ggMPO[A-Za-z0-9_-]{19}$").unwrap());
 
-    GENRE_ID_REGEX.is_match(genre_id.as_ref())
+    check(
+        GENRE_ID_REGEX.is_match(genre_id.as_ref()),
+        "invalid genre id",
+    )
 }
 
 /// Validate the given related tracks ID
@@ -147,15 +165,18 @@ pub fn genre_id<S: AsRef<str>>(genre_id: S) -> bool {
 ///
 /// ```
 /// # use rustypipe::validate;
-/// assert!(validate::track_related_id("MPTRt_wrKjTn9hmry"));
-/// assert!(!validate::track_related_id("Abcd"));
-/// assert!(!validate::track_related_id("Abcdt_wrKjTn9hmry"));
+/// assert!(validate::track_related_id("MPTRt_wrKjTn9hmry").is_ok());
+/// assert!(validate::track_related_id("Abcd").is_err());
+/// assert!(validate::track_related_id("Abcdt_wrKjTn9hmry").is_err());
 /// ```
-pub fn track_related_id<S: AsRef<str>>(related_id: S) -> bool {
+pub fn track_related_id<S: AsRef<str>>(related_id: S) -> Result<(), Error> {
     static RELATED_ID_REGEX: Lazy<Regex> =
         Lazy::new(|| Regex::new(r"^MPTRt_[A-Za-z0-9_-]{11}$").unwrap());
 
-    RELATED_ID_REGEX.is_match(related_id.as_ref())
+    check(
+        RELATED_ID_REGEX.is_match(related_id.as_ref()),
+        "invalid related track id",
+    )
 }
 
 /// Validate the given lyrics ID
@@ -167,13 +188,24 @@ pub fn track_related_id<S: AsRef<str>>(related_id: S) -> bool {
 ///
 /// ```
 /// # use rustypipe::validate;
-/// assert!(validate::track_lyrics_id("MPLYt_wrKjTn9hmry"));
-/// assert!(!validate::track_lyrics_id("Abcd"));
-/// assert!(!validate::track_lyrics_id("Abcdt_wrKjTn9hmry"));
+/// assert!(validate::track_lyrics_id("MPLYt_wrKjTn9hmry").is_ok());
+/// assert!(validate::track_lyrics_id("Abcd").is_err());
+/// assert!(validate::track_lyrics_id("Abcdt_wrKjTn9hmry").is_err());
 /// ```
-pub fn track_lyrics_id<S: AsRef<str>>(lyrics_id: S) -> bool {
+pub fn track_lyrics_id<S: AsRef<str>>(lyrics_id: S) -> Result<(), Error> {
     static LYRICS_ID_REGEX: Lazy<Regex> =
         Lazy::new(|| Regex::new(r"^MPLYt_[A-Za-z0-9_-]{11}$").unwrap());
 
-    LYRICS_ID_REGEX.is_match(lyrics_id.as_ref())
+    check(
+        LYRICS_ID_REGEX.is_match(lyrics_id.as_ref()),
+        "invalid lyrics id",
+    )
+}
+
+fn check(res: bool, msg: &'static str) -> Result<(), Error> {
+    if res {
+        Ok(())
+    } else {
+        Err(Error::Other(msg.into()))
+    }
 }

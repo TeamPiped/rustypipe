@@ -1,3 +1,5 @@
+#![warn(clippy::todo)]
+
 mod abtest;
 mod collect_album_types;
 mod collect_large_numbers;
@@ -90,7 +92,7 @@ async fn main() {
                 }
                 None => {
                     let res = abtest::run_all_tests(n, cli.concurrency).await;
-                    println!("{}", serde_json::to_string_pretty(&res).unwrap())
+                    println!("{}", serde_json::to_string_pretty(&res).unwrap());
                 }
             };
         }

@@ -419,8 +419,8 @@ impl<T> YouTubeListMapper<T> {
         Self {
             lang,
             channel: Some(ChannelTag {
-                id: channel.id.to_owned(),
-                name: channel.name.to_owned(),
+                id: channel.id.clone(),
+                name: channel.name.clone(),
                 avatar: Vec::new(),
                 verification: channel.verification,
                 subscriber_count: channel.subscriber_count,
@@ -572,14 +572,15 @@ impl<T> YouTubeListMapper<T> {
 
     fn map_channel(&mut self, channel: ChannelRenderer) -> ChannelItem {
         // channel handle instead of subscriber count (A/B test 3)
-        let (sc_txt, vc_text) = match channel
+        let (sc_txt, vc_text) = if channel
             .subscriber_count_text
             .as_ref()
             .map(|txt| txt.starts_with('@'))
             .unwrap_or_default()
         {
-            true => (channel.video_count_text, None),
-            false => (channel.subscriber_count_text, channel.video_count_text),
+            (channel.video_count_text, None)
+        } else {
+            (channel.subscriber_count_text, channel.video_count_text)
         };
 
         ChannelItem {
@@ -643,7 +644,7 @@ impl YouTubeListMapper<YouTubeItem> {
                                 .map(|url| (l.title, util::sanitize_yt_url(&url.url)))
                         })
                         .collect(),
-                })
+                });
             }
             YouTubeListItem::RichItemRenderer { content } => {
                 self.map_item(*content);
@@ -701,7 +702,7 @@ impl YouTubeListMapper<PlaylistItem> {
         match item {
             YouTubeListItem::PlaylistRenderer(playlist) => {
                 let mapped = self.map_playlist(playlist);
-                self.items.push(mapped)
+                self.items.push(mapped);
             }
             YouTubeListItem::ContinuationItemRenderer {
                 continuation_endpoint,

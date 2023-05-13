@@ -26,9 +26,10 @@ impl RustyPipeQuery {
         all_albums: bool,
     ) -> Result<MusicArtist, Error> {
         let artist_id = artist_id.as_ref();
-        let visitor_data = match all_albums {
-            true => Some(self.get_visitor_data().await?),
-            false => None,
+        let visitor_data = if all_albums {
+            Some(self.get_visitor_data().await?)
+        } else {
+            None
         };
 
         let res = self._music_artist(artist_id, visitor_data.as_deref()).await;
@@ -196,7 +197,7 @@ fn map_artist_page(
         lang,
         ArtistId {
             id: Some(id.to_owned()),
-            name: header.title.to_owned(),
+            name: header.title.clone(),
         },
     );
 

@@ -61,9 +61,9 @@ impl TextComponent {
     /// Get the text from the component
     pub fn get_text(&self) -> &str {
         match self {
-            TextComponent::Text(text) => text,
-            TextComponent::Web { text, .. } => text,
-            TextComponent::YouTube { text, .. } => text,
+            TextComponent::Text(text)
+            | TextComponent::Web { text, .. }
+            | TextComponent::YouTube { text, .. } => text,
         }
     }
 
@@ -73,7 +73,7 @@ impl TextComponent {
     pub fn get_url(&self, yt_host: &str) -> String {
         match self {
             TextComponent::Text(_) => String::new(),
-            TextComponent::Web { url, .. } => url.to_owned(),
+            TextComponent::Web { url, .. } => url.clone(),
             TextComponent::YouTube { target, .. } => target.to_url_yt_host(yt_host),
         }
     }
@@ -82,7 +82,7 @@ impl TextComponent {
 impl ToPlaintext for TextComponent {
     fn to_plaintext_yt_host(&self, yt_host: &str) -> String {
         match self {
-            TextComponent::Text(text) => text.to_owned(),
+            TextComponent::Text(text) => text.clone(),
             _ => self.get_url(yt_host),
         }
     }

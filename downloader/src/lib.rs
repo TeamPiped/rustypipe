@@ -1,3 +1,5 @@
+#![warn(clippy::todo, clippy::dbg_macro)]
+
 //! # YouTube audio/video downloader
 
 mod util;
@@ -25,8 +27,8 @@ use util::DownloadError;
 
 type Result<T> = core::result::Result<T, DownloadError>;
 
-const CHUNK_SIZE_MIN: u64 = 9000000;
-const CHUNK_SIZE_MAX: u64 = 10000000;
+const CHUNK_SIZE_MIN: u64 = 9_000_000;
+const CHUNK_SIZE_MAX: u64 = 10_000_000;
 
 fn get_download_range(offset: u64, size: Option<u64>) -> Range<u64> {
     let mut rng = rand::thread_rng();
@@ -34,7 +36,7 @@ fn get_download_range(offset: u64, size: Option<u64>) -> Range<u64> {
     let mut chunk_end = offset + chunk_size;
 
     if let Some(size) = size {
-        chunk_end = chunk_end.min(size - 1)
+        chunk_end = chunk_end.min(size - 1);
     }
 
     Range {
@@ -296,7 +298,7 @@ pub async fn download_video(
 ) -> Result<()> {
     // Download filepath
     let download_dir = PathBuf::from(output_dir);
-    let title = player_data.details.name.to_owned();
+    let title = player_data.details.name.clone();
     let output_fname_set = output_fname.is_some();
     let output_fname = output_fname.unwrap_or_else(|| {
         filenamify::filenamify(format!("{} [{}]", title, player_data.details.id))
@@ -332,13 +334,12 @@ pub async fn download_video(
             return Err(DownloadError::Input(
                 format!("File {} already exists", output_path.to_string_lossy()).into(),
             ))?;
-        } else {
-            info!(
-                "Downloaded video {} already exists",
-                output_path.to_string_lossy()
-            );
-            return Ok(());
         }
+        info!(
+            "Downloaded video {} already exists",
+            output_path.to_string_lossy()
+        );
+        return Ok(());
     }
 
     match (video, audio) {
@@ -364,7 +365,7 @@ pub async fn download_video(
                         output_fname,
                         v.format.extension()
                     )),
-                    url: v.url.to_owned(),
+                    url: v.url.clone(),
                     video_codec: Some(v.codec),
                     audio_codec: None,
                 });
@@ -376,10 +377,10 @@ pub async fn download_video(
                         output_fname,
                         a.format.extension()
                     )),
-                    url: a.url.to_owned(),
+                    url: a.url.clone(),
                     video_codec: None,
                     audio_codec: Some(a.codec),
-                })
+                });
             }
 
             pb.set_message(format!("Downloading {title}"));
@@ -396,7 +397,7 @@ pub async fn download_video(
 
             // Delete original files
             stream::iter(&downloads)
-                .map(|d| fs::remove_file(d.file.to_owned()))
+                .map(|d| fs::remove_file(d.file.clone()))
                 .buffer_unordered(downloads.len())
                 .collect::<Vec<_>>()
                 .await
@@ -417,7 +418,7 @@ async fn download_streams(
     let n = downloads.len();
 
     stream::iter(downloads)
-        .map(|d| download_single_file(&d.url, d.file.to_owned(), http.clone(), pb.clone()))
+        .map(|d| download_single_file(&d.url, d.file.clone(), http.clone(), pb.clone()))
         .buffer_unordered(n)
         .collect::<Vec<_>>()
         .await
@@ -439,7 +440,7 @@ async fn convert_streams<P: Into<PathBuf>>(
 
     downloads.iter().enumerate().for_each(|(i, d)| {
         args.push("-i".into());
-        args.push(d.file.to_owned().into());
+        args.push(d.file.clone().into());
 
         mapping_args.push("-map".into());
         mapping_args.push(i.to_string().into());

@@ -67,7 +67,7 @@ pub fn parse_video_durations() {
     let durations: CollectedDurations = serde_json::from_reader(BufReader::new(json_file)).unwrap();
 
     let mut dict = util::read_dict();
-    let langs = dict.keys().map(|k| k.to_owned()).collect::<Vec<_>>();
+    let langs = dict.keys().copied().collect::<Vec<_>>();
 
     for lang in langs {
         let dict_entry = dict.entry(lang).or_default();
@@ -83,7 +83,7 @@ pub fn parse_video_durations() {
                 by_char: bool,
                 val: u32,
                 expect: u32,
-                w: String,
+                w: &str,
                 unit: TimeUnit,
             ) -> bool {
                 let ok = val == expect || val * 2 == expect;
@@ -168,23 +168,23 @@ pub fn parse_video_durations() {
                         let p2_n = p2.digits.parse::<u32>().unwrap_or(1);
 
                         assert!(
-                            check_add_word(words, by_char, p1_n, m, p1.word, TimeUnit::Minute),
+                            check_add_word(words, by_char, p1_n, m, &p1.word, TimeUnit::Minute),
                             "{txt}: min parse error"
                         );
                         assert!(
-                            check_add_word(words, by_char, p2_n, s, p2.word, TimeUnit::Second),
+                            check_add_word(words, by_char, p2_n, s, &p2.word, TimeUnit::Second),
                             "{txt}: sec parse error"
                         );
                     }
                     None => {
                         if s == 0 {
                             assert!(
-                                check_add_word(words, by_char, p1_n, m, p1.word, TimeUnit::Minute),
+                                check_add_word(words, by_char, p1_n, m, &p1.word, TimeUnit::Minute),
                                 "{txt}: min parse error"
                             );
                         } else if m == 0 {
                             assert!(
-                                check_add_word(words, by_char, p1_n, s, p1.word, TimeUnit::Second),
+                                check_add_word(words, by_char, p1_n, s, &p1.word, TimeUnit::Second),
                                 "{txt}: sec parse error"
                             );
                         } else {
@@ -206,11 +206,11 @@ pub fn parse_video_durations() {
 
             // dbg!(&words);
 
-            words.into_iter().for_each(|(k, v)| {
+            for (k, v) in words {
                 if let Some(v) = v {
                     dict_entry.timeago_tokens.insert(k, v.to_string());
                 }
-            });
+            }
         }
     }
 
@@ -345,7 +345,8 @@ mod tests {
             let ul: LanguageIdentifier =
                 lang.to_string().split('-').next().unwrap().parse().unwrap();
 
-            let pr = PluralRules::create(ul, PluralRuleType::CARDINAL).expect(&lang.to_string());
+            let pr = PluralRules::create(ul, PluralRuleType::CARDINAL)
+                .unwrap_or_else(|_| panic!("{}", lang.to_string()));
 
             let mut plurals_m: HashSet<PluralCategory> = HashSet::new();
             for n in 1..60 {
@@ -353,11 +354,11 @@ mod tests {
             }
             let mut plurals_s = plurals_m.clone();
 
-            durations.values().for_each(|v| {
+            for v in durations.values() {
                 let (m, s) = split_duration(*v);
                 plurals_m.remove(&pr.select(m).unwrap().into());
                 plurals_s.remove(&pr.select(s).unwrap().into());
-            });
+            }
 
             if !plurals_m.is_empty() {
                 println!("{lang}: missing minutes {plurals_m:?}");

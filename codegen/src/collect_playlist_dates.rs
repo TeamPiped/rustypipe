@@ -118,7 +118,7 @@ pub fn write_samples_to_dict() {
     let collected_dates: CollectedDates =
         serde_json::from_reader(BufReader::new(json_file)).unwrap();
     let mut dict = util::read_dict();
-    let langs = dict.keys().map(|k| k.to_owned()).collect::<Vec<_>>();
+    let langs = dict.keys().copied().collect::<Vec<_>>();
 
     let months = [
         DateCase::Jan,
@@ -159,7 +159,7 @@ pub fn write_samples_to_dict() {
             .for_each(|l| datestr_tables.push(collected_dates.get(l).unwrap()));
 
         let dict_entry = dict.entry(lang).or_default();
-        let mut num_order = "".to_owned();
+        let mut num_order = String::new();
 
         let collect_nd_tokens = !matches!(
             lang,
@@ -236,30 +236,30 @@ pub fn write_samples_to_dict() {
                     });
             });
 
-            month_words.iter().for_each(|(word, m)| {
+            for (word, m) in &month_words {
                 if *m != 0 {
-                    dict_entry.months.insert(word.to_owned(), *m as u8);
+                    dict_entry.months.insert(word.clone(), *m as u8);
                 };
-            });
+            }
 
             if collect_nd_tokens {
-                td_words.iter().for_each(|(word, n)| {
+                for (word, n) in &td_words {
                     match n {
                         // Today
                         1 => {
                             dict_entry
                                 .timeago_nd_tokens
-                                .insert(word.to_owned(), "0D".to_owned());
+                                .insert(word.clone(), "0D".to_owned());
                         }
                         // Yesterday
                         2 => {
                             dict_entry
                                 .timeago_nd_tokens
-                                .insert(word.to_owned(), "1D".to_owned());
+                                .insert(word.clone(), "1D".to_owned());
                         }
                         _ => {}
                     };
-                });
+                }
 
                 if datestr_tables.len() == 1 && dict_entry.timeago_nd_tokens.len() > 2 {
                     println!(

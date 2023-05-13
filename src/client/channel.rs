@@ -322,7 +322,7 @@ fn map_vanity_url(url: &str, id: &str) -> Option<String> {
 
     Url::parse(url).ok().map(|mut parsed_url| {
         // The vanity URL from YouTube is http for some reason
-        let _ = parsed_url.set_scheme("https");
+        _ = parsed_url.set_scheme("https");
         parsed_url.to_string()
     })
 }
@@ -392,11 +392,8 @@ fn map_channel(
                 content: (),
             },
             response::channel::Header::CarouselHeaderRenderer(carousel) => {
-                let hdata = carousel
-                    .contents
-                    .into_iter()
-                    .filter_map(|item| {
-                        match item {
+                let hdata = carousel.contents.into_iter().find_map(|item| {
+                    match item {
                 response::channel::CarouselHeaderRendererItem::TopicChannelDetailsRenderer {
                     subscriber_count_text,
                     subtitle,
@@ -404,8 +401,7 @@ fn map_channel(
                 } => Some((subscriber_count_text.or(subtitle), avatar)),
                 response::channel::CarouselHeaderRendererItem::None => None,
             }
-                    })
-                    .next();
+                });
 
                 Channel {
                     id: metadata.external_id,
@@ -568,7 +564,7 @@ fn _order_ctoken(
     pb_80226972.string(3, &pbi.to_base64());
 
     let mut pb = ProtoBuilder::new();
-    pb.embedded(80226972, pb_80226972);
+    pb.embedded(80_226_972, pb_80226972);
 
     pb.to_base64()
 }

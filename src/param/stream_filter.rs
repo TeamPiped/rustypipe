@@ -32,36 +32,41 @@ enum FilterResult {
 
 impl FilterResult {
     fn hard(val: bool) -> Self {
-        match val {
-            true => Self::Match,
-            false => Self::Deny,
+        if val {
+            Self::Match
+        } else {
+            Self::Deny
         }
     }
 
     fn soft(val: bool) -> Self {
-        match val {
-            true => Self::Match,
-            false => Self::AllowLowest,
+        if val {
+            Self::Match
+        } else {
+            Self::AllowLowest
         }
     }
 
     fn allow(val: bool) -> Self {
-        match val {
-            true => Self::Allow,
-            false => Self::Deny,
+        if val {
+            Self::Allow
+        } else {
+            Self::Deny
         }
     }
 
     fn join(self, other: Self) -> Self {
-        match self == Self::Deny {
-            true => Self::Deny,
-            false => self.min(other),
+        if self == Self::Deny {
+            Self::Deny
+        } else {
+            self.min(other)
         }
     }
 }
 
 impl<'a> StreamFilter<'a> {
     /// Create a new [`StreamFilter`]
+    #[must_use]
     pub fn new() -> Self {
         Self::default()
     }
@@ -70,6 +75,7 @@ impl<'a> StreamFilter<'a> {
     ///
     /// This is a soft filter, so if there is no stream with a bitrate
     /// <= the limit, the stream with the next higher bitrate is returned.
+    #[must_use]
     pub fn audio_max_bitrate(mut self, max_bitrate: u32) -> Self {
         self.audio_max_bitrate = Some(max_bitrate);
         self
@@ -83,6 +89,7 @@ impl<'a> StreamFilter<'a> {
     }
 
     /// Set the supported audio container formats
+    #[must_use]
     pub fn audio_formats(mut self, formats: &'a [AudioFormat]) -> Self {
         self.audio_formats = Some(formats);
         self
@@ -96,6 +103,7 @@ impl<'a> StreamFilter<'a> {
     }
 
     /// Set the supported audio codecs
+    #[must_use]
     pub fn audio_codecs(mut self, codecs: &'a [AudioCodec]) -> Self {
         self.audio_codecs = Some(codecs);
         self
@@ -114,6 +122,7 @@ impl<'a> StreamFilter<'a> {
     ///
     /// If this filter is unset or no stream matches,
     /// the filter returns the default audio stream.
+    #[must_use]
     pub fn audio_language(mut self, language: &'a str) -> Self {
         self.audio_language = Some(language);
         self
@@ -123,10 +132,13 @@ impl<'a> StreamFilter<'a> {
         match &self.audio_language {
             Some(language) => match &stream.track {
                 Some(track) => match &track.lang {
-                    Some(track_lang) => match track_lang == language {
-                        true => FilterResult::Match,
-                        false => FilterResult::allow(track.is_default),
-                    },
+                    Some(track_lang) => {
+                        if track_lang == language {
+                            FilterResult::Match
+                        } else {
+                            FilterResult::allow(track.is_default)
+                        }
+                    }
                     None => FilterResult::allow(track.is_default),
                 },
                 None => FilterResult::Match,
@@ -140,6 +152,7 @@ impl<'a> StreamFilter<'a> {
     ///
     /// This is a soft filter, so if there is no stream with a resolution
     /// <= the limit, the stream with the next higher resolution is returned.
+    #[must_use]
     pub fn video_max_res(mut self, max_res: u32) -> Self {
         self.video_max_res = Some(max_res);
         self
@@ -156,6 +169,7 @@ impl<'a> StreamFilter<'a> {
     ///
     /// This is a soft filter, so if there is no stream with a framerate
     /// <= the limit, the stream with the next higher framerate is returned.
+    #[must_use]
     pub fn video_max_fps(mut self, max_fps: u8) -> Self {
         self.video_max_fps = Some(max_fps);
         self
@@ -169,6 +183,7 @@ impl<'a> StreamFilter<'a> {
     }
 
     /// Set the supported video container formats
+    #[must_use]
     pub fn video_formats(mut self, formats: &'a [VideoFormat]) -> Self {
         self.video_formats = Some(formats);
         self
@@ -182,6 +197,7 @@ impl<'a> StreamFilter<'a> {
     }
 
     /// Set the supported video codecs
+    #[must_use]
     pub fn video_codecs(mut self, codecs: &'a [VideoCodec]) -> Self {
         self.video_codecs = Some(codecs);
         self
@@ -195,6 +211,7 @@ impl<'a> StreamFilter<'a> {
     }
 
     /// Allow HDR videos
+    #[must_use]
     pub fn video_hdr(mut self) -> Self {
         self.video_hdr = true;
         self
@@ -208,6 +225,7 @@ impl<'a> StreamFilter<'a> {
     }
 
     /// Output no video stream (audio only)
+    #[must_use]
     pub fn no_video(mut self) -> Self {
         self.video_none = true;
         self
@@ -236,6 +254,7 @@ impl<'a> StreamFilter<'a> {
 
 impl VideoPlayer {
     /// Select the audio stream which is the best match for the given [`StreamFilter`]
+    #[must_use]
     pub fn select_audio_stream(&self, filter: &StreamFilter) -> Option<&AudioStream> {
         let mut fallback: Option<&AudioStream> = None;
 

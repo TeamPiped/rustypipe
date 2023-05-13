@@ -1,3 +1,5 @@
+#![warn(clippy::todo, clippy::dbg_macro)]
+
 use std::{path::PathBuf, time::Duration};
 
 use anyhow::{Context, Result};
@@ -281,9 +283,9 @@ fn print_data<T: Serialize>(data: &T, format: Format, pretty: bool) {
     match format {
         Format::Json => {
             if pretty {
-                serde_json::to_writer_pretty(stdout, data).unwrap()
+                serde_json::to_writer_pretty(stdout, data).unwrap();
             } else {
-                serde_json::to_writer(stdout, data).unwrap()
+                serde_json::to_writer(stdout, data).unwrap();
             }
         }
         Format::Yaml => serde_yaml::to_writer(stdout, data).unwrap(),
@@ -360,7 +362,7 @@ async fn download_videos(
                 &video.id,
                 &video.name,
                 output_dir,
-                output_fname.to_owned(),
+                output_fname.clone(),
                 resolution,
                 "ffmpeg",
                 rp,
@@ -632,9 +634,7 @@ async fn main() {
         } => match music {
             None => match channel {
                 Some(channel) => {
-                    if !rustypipe::validate::channel_id(&channel) {
-                        panic!("invalid channel id")
-                    }
+                    rustypipe::validate::channel_id(&channel).unwrap();
                     let res = rp.query().channel_search(&channel, &query).await.unwrap();
                     print_data(&res, format, pretty);
                 }

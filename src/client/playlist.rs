@@ -60,9 +60,8 @@ impl MapResponse<Playlist> for response::Playlist {
         lang: crate::param::Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<MapResult<Playlist>, ExtractionError> {
-        let (contents, header) = match (self.contents, self.header) {
-            (Some(contents), Some(header)) => (contents, header),
-            _ => return Err(response::alerts_to_err(id, self.alerts)),
+        let (Some(contents), Some(header)) = (self.contents, self.header) else {
+            return Err(response::alerts_to_err(id, self.alerts));
         };
 
         let video_items = contents

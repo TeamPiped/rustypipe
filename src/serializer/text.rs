@@ -349,15 +349,9 @@ impl From<TextComponent> for crate::model::ArtistId {
                     name: text,
                 },
             },
-            TextComponent::Video { text, .. } => Self {
-                id: None,
-                name: text,
-            },
-            TextComponent::Web { text, .. } => Self {
-                id: None,
-                name: text,
-            },
-            TextComponent::Text { text } => Self {
+            TextComponent::Video { text, .. }
+            | TextComponent::Web { text, .. }
+            | TextComponent::Text { text } => Self {
                 id: None,
                 name: text,
             },
@@ -406,10 +400,10 @@ impl From<TextComponents> for crate::model::richtext::RichText {
 impl TextComponent {
     pub fn as_str(&self) -> &str {
         match self {
-            TextComponent::Video { text, .. } => text,
-            TextComponent::Browse { text, .. } => text,
-            TextComponent::Web { text, .. } => text,
-            TextComponent::Text { text } => text,
+            TextComponent::Video { text, .. }
+            | TextComponent::Browse { text, .. }
+            | TextComponent::Web { text, .. }
+            | TextComponent::Text { text } => text,
         }
     }
 }
@@ -417,7 +411,10 @@ impl TextComponent {
 impl TextComponents {
     /// Return the string representation of the first text component
     pub fn first_str(&self) -> &str {
-        self.0.first().map(|t| t.as_str()).unwrap_or_default()
+        self.0
+            .first()
+            .map(TextComponent::as_str)
+            .unwrap_or_default()
     }
 
     /// Split the text components using the given separation string.
@@ -440,7 +437,7 @@ impl TextComponents {
         }
 
         if !inner.is_empty() {
-            buf.push(TextComponents(inner))
+            buf.push(TextComponents(inner));
         }
 
         buf
@@ -449,7 +446,7 @@ impl TextComponents {
 
 impl ToString for TextComponents {
     fn to_string(&self) -> String {
-        self.0.iter().map(|x| x.as_str()).collect::<String>()
+        self.0.iter().map(TextComponent::as_str).collect::<String>()
     }
 }
 

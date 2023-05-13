@@ -177,12 +177,12 @@ impl MapResponse<VideoPlayer> for response::Player {
             }
             response::player::PlayabilityStatus::LoginRequired { reason, messages } => {
                 let mut msg = reason;
-                messages.iter().for_each(|m| {
+                for m in &messages {
                     if !msg.is_empty() {
                         msg.push(' ');
                     }
                     msg.push_str(m);
-                });
+                }
 
                 // reason (age restriction): "Sign in to confirm your age"
                 // or: "This video may be inappropriate for some users."
@@ -341,9 +341,9 @@ impl MapResponse<VideoPlayer> for response::Player {
                                 + "&sigh="
                                 + sigh;
 
-                            let sprite_count = ((total_count as f64)
-                                / (frames_per_page_x * frames_per_page_y) as f64)
-                                .ceil() as u32;
+                            let sprite_count = (f64::from(total_count)
+                                / f64::from(frames_per_page_x * frames_per_page_y))
+                            .ceil() as u32;
 
                             Some(Frameset {
                                 url_template: url,
@@ -413,11 +413,11 @@ fn deobf_nsig(
     let nsig: String;
     if let Some(n) = url_params.get("n") {
         nsig = if n == &last_nsig[0] {
-            last_nsig[1].to_owned()
+            last_nsig[1].clone()
         } else {
             let nsig = deobf.deobfuscate_nsig(n)?;
             last_nsig[0] = n.to_string();
-            last_nsig[1] = nsig.to_owned();
+            last_nsig[1] = nsig.clone();
             nsig
         };
 
@@ -490,25 +490,19 @@ fn map_video_stream(
     deobf: &Deobfuscator,
     last_nsig: &mut [String; 2],
 ) -> MapResult<Option<VideoStream>> {
-    let (mtype, codecs) = match parse_mime(&f.mime_type) {
-        Some(x) => x,
-        None => {
-            return MapResult {
-                c: None,
-                warnings: vec![format!(
-                    "Invalid mime type `{}` in video format {:?}",
-                    &f.mime_type, &f
-                )],
-            }
+    let Some((mtype, codecs)) = parse_mime(&f.mime_type) else {
+        return MapResult {
+            c: None,
+            warnings: vec![format!(
+                "Invalid mime type `{}` in video format {:?}",
+                &f.mime_type, &f
+            )],
         }
     };
-    let format = match get_video_format(mtype) {
-        Some(f) => f,
-        None => {
-            return MapResult {
-                c: None,
-                warnings: vec![format!("invalid video format. itag: {}", f.itag)],
-            }
+    let Some(format) = get_video_format(mtype) else {
+        return MapResult {
+            c: None,
+            warnings: vec![format!("invalid video format. itag: {}", f.itag)],
         }
     };
     let map_res = map_url(&f.url, &f.signature_cipher, deobf, last_nsig);
@@ -532,9 +526,9 @@ fn map_video_stream(
                 quality: f.quality_label.unwrap(),
                 hdr: f.color_info.unwrap_or_default().primaries
                     == player::Primaries::ColorPrimariesBt2020,
-                mime: f.mime_type.to_owned(),
                 format,
                 codec: get_video_codec(codecs),
+                mime: f.mime_type,
                 throttled: url.throttled,
             }),
             warnings: map_res.warnings,
@@ -551,25 +545,19 @@ fn map_audio_stream(
     deobf: &Deobfuscator,
     last_nsig: &mut [String; 2],
 ) -> MapResult<Option<AudioStream>> {
-    let (mtype, codecs) = match parse_mime(&f.mime_type) {
-        Some(x) => x,
-        None => {
-            return MapResult {
-                c: None,
-                warnings: vec![format!(
-                    "Invalid mime type `{}` in video format {:?}",
-                    &f.mime_type, &f
-                )],
-            }
+    let Some((mtype, codecs)) = parse_mime(&f.mime_type) else {
+        return MapResult {
+            c: None,
+            warnings: vec![format!(
+                "Invalid mime type `{}` in video format {:?}",
+                &f.mime_type, &f
+            )],
         }
     };
-    let format = match get_audio_format(mtype) {
-        Some(f) => f,
-        None => {
-            return MapResult {
-                c: None,
-                warnings: vec![format!("invalid audio format. itag: {}", f.itag)],
-            }
+    let Some(format) = get_audio_format(mtype) else {
+        return MapResult {
+            c: None,
+            warnings: vec![format!("invalid audio format. itag: {}", f.itag)],
         }
     };
     let map_res = map_url(&f.url, &f.signature_cipher, deobf, last_nsig);
@@ -586,9 +574,9 @@ fn map_audio_stream(
                 index_range: f.index_range,
                 init_range: f.init_range,
                 duration_ms: f.approx_duration_ms,
-                mime: f.mime_type.to_owned(),
                 format,
                 codec: get_audio_codec(codecs),
+                mime: f.mime_type,
                 channels: f.audio_channels,
                 loudness_db: f.loudness_db,
                 throttled: url.throttled,
@@ -686,7 +674,7 @@ fn map_audio_track(
                     }
                 },
                 _ => {}
-            })
+            });
     }
 
     AudioTrack {

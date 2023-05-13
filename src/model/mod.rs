@@ -16,7 +16,7 @@ use serde_with::serde_as;
 use time::{Date, OffsetDateTime};
 
 use self::{paginator::Paginator, richtext::RichText};
-use crate::{error::Error, param::Country, serializer::DateYmd, util};
+use crate::{error::Error, param::Country, serializer::DateYmd, validate};
 
 /*
 #COMMON
@@ -110,22 +110,10 @@ impl UrlTarget {
     /// Validate the YouTube ID from the URL target
     pub(crate) fn validate(&self) -> Result<(), Error> {
         match self {
-            UrlTarget::Video { id, .. } => match util::VIDEO_ID_REGEX.is_match(id) {
-                true => Ok(()),
-                false => Err(Error::Other("invalid video id".into())),
-            },
-            UrlTarget::Channel { id } => match util::CHANNEL_ID_REGEX.is_match(id) {
-                true => Ok(()),
-                false => Err(Error::Other("invalid channel id".into())),
-            },
-            UrlTarget::Playlist { id } => match util::PLAYLIST_ID_REGEX.is_match(id) {
-                true => Ok(()),
-                false => Err(Error::Other("invalid playlist id".into())),
-            },
-            UrlTarget::Album { id } => match util::ALBUM_ID_REGEX.is_match(id) {
-                true => Ok(()),
-                false => Err(Error::Other("invalid album id".into())),
-            },
+            UrlTarget::Video { id, .. } => validate::video_id(id),
+            UrlTarget::Channel { id } => validate::channel_id(id),
+            UrlTarget::Playlist { id } => validate::playlist_id(id),
+            UrlTarget::Album { id } => validate::album_id(id),
         }
     }
 }

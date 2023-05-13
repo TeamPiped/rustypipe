@@ -3,7 +3,7 @@ use std::collections::BTreeMap;
 use crate::{
     error::{Error, ExtractionError},
     model::ChannelRss,
-    report::Report,
+    report::{Report, RustyPipeInfo},
 };
 
 use super::{response, RustyPipeQuery};
@@ -19,10 +19,7 @@ impl RustyPipeQuery {
     /// The downside of using the RSS feed is that it does not provide video durations.
     pub async fn channel_rss<S: AsRef<str>>(&self, channel_id: S) -> Result<ChannelRss, Error> {
         let channel_id = channel_id.as_ref();
-        let url = format!(
-            "https://www.youtube.com/feeds/videos.xml?channel_id={}",
-            channel_id,
-        );
+        let url = format!("https://www.youtube.com/feeds/videos.xml?channel_id={channel_id}");
         let xml = self
             .client
             .http_request_txt(&self.client.inner.http.get(&url).build()?)
@@ -40,15 +37,15 @@ impl RustyPipeQuery {
             Err(e) => {
                 if let Some(reporter) = &self.client.inner.reporter {
                     let report = Report {
-                        info: Default::default(),
+                        info: RustyPipeInfo::default(),
                         level: crate::report::Level::ERR,
-                        operation: "channel_rss".to_owned(),
+                        operation: "channel_rss",
                         error: Some(e.to_string()),
                         msgs: Vec::new(),
                         deobf_data: None,
                         http_request: crate::report::HTTPRequest {
-                            url,
-                            method: "GET".to_owned(),
+                            url: &url,
+                            method: "GET",
                             req_header: BTreeMap::new(),
                             req_body: String::new(),
                             status: 200,

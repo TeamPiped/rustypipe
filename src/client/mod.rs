@@ -39,7 +39,7 @@ use crate::{
     deobfuscate::DeobfData,
     error::{Error, ExtractionError},
     param::{Country, Language},
-    report::{FileReporter, Level, Report, Reporter, DEFAULT_REPORT_DIR},
+    report::{FileReporter, Level, Report, Reporter, RustyPipeInfo, DEFAULT_REPORT_DIR},
     serializer::MapResult,
     util,
 };
@@ -73,7 +73,7 @@ pub enum ClientType {
 }
 
 impl ClientType {
-    fn is_web(&self) -> bool {
+    fn is_web(self) -> bool {
         match self {
             ClientType::Desktop | ClientType::DesktopMusic | ClientType::TvHtml5Embed => true,
             ClientType::Android | ClientType::Ios => false,
@@ -118,11 +118,11 @@ struct ClientInfo<'a> {
 impl Default for ClientInfo<'_> {
     fn default() -> Self {
         Self {
-            client_name: Default::default(),
-            client_version: Default::default(),
+            client_name: "",
+            client_version: Cow::default(),
             client_screen: None,
             device_model: None,
-            platform: Default::default(),
+            platform: "",
             original_url: None,
             visitor_data: None,
             hl: Language::En,
@@ -432,6 +432,7 @@ impl RustyPipeBuilder {
     /// Return a new `RustyPipeBuilder`.
     ///
     /// This is the same as [`RustyPipe::builder`]
+    #[must_use]
     pub fn new() -> Self {
         RustyPipeBuilder {
             default_opts: RustyPipeOpts::default(),
@@ -445,6 +446,7 @@ impl RustyPipeBuilder {
     }
 
     /// Return a new, configured RustyPipe instance.
+    #[must_use]
     pub fn build(self) -> RustyPipe {
         let mut client_builder = ClientBuilder::new()
             .user_agent(self.user_agent.unwrap_or_else(|| DEFAULT_UA.to_owned()))
@@ -509,6 +511,7 @@ impl RustyPipeBuilder {
     /// This option has no effect if the storage backend or reporter are manually set or disabled.
     ///
     /// **Default value**: current working directory
+    #[must_use]
     pub fn storage_dir<P: Into<PathBuf>>(mut self, path: P) -> Self {
         self.storage_dir = Some(path.into());
         self
@@ -519,12 +522,14 @@ impl RustyPipeBuilder {
     /// program executions.
     ///
     /// **Default value**: [`FileStorage`] in `rustypipe_cache.json`
+    #[must_use]
     pub fn storage(mut self, storage: Box<dyn CacheStorage>) -> Self {
         self.storage = DefaultOpt::Some(storage);
         self
     }
 
     /// Disable cache storage
+    #[must_use]
     pub fn no_storage(mut self) -> Self {
         self.storage = DefaultOpt::None;
         self
@@ -533,12 +538,14 @@ impl RustyPipeBuilder {
     /// Add a `Reporter` to collect error details
     ///
     ///  **Default value**: [`FileReporter`] creating reports in `./rustypipe_reports`
+    #[must_use]
     pub fn reporter(mut self, reporter: Box<dyn Reporter>) -> Self {
         self.reporter = DefaultOpt::Some(reporter);
         self
     }
 
     /// Disable the creation of report files in case of errors and warnings.
+    #[must_use]
     pub fn no_reporter(mut self) -> Self {
         self.reporter = DefaultOpt::None;
         self
@@ -550,12 +557,14 @@ impl RustyPipeBuilder {
     /// response body has finished.
     ///
     ///  **Default value**: 10s
+    #[must_use]
     pub fn timeout(mut self, timeout: Duration) -> Self {
         self.timeout = DefaultOpt::Some(timeout);
         self
     }
 
     /// Disable the HTTP request timeout.
+    #[must_use]
     pub fn no_timeout(mut self) -> Self {
         self.timeout = DefaultOpt::None;
         self
@@ -570,6 +579,7 @@ impl RustyPipeBuilder {
     /// random jitter to be less predictable).
     ///
     /// **Default value**: 2
+    #[must_use]
     pub fn n_http_retries(mut self, n_retries: u32) -> Self {
         self.n_http_retries = n_retries;
         self
@@ -579,6 +589,7 @@ impl RustyPipeBuilder {
     ///
     /// **Default value**: `Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0`
     /// (Firefox ESR on Debian)
+    #[must_use]
     pub fn user_agent<S: Into<String>>(mut self, user_agent: S) -> Self {
         self.user_agent = Some(user_agent.into());
         self
@@ -591,6 +602,7 @@ impl RustyPipeBuilder {
     /// **Default value**: `Language::En` (English)
     ///
     /// **Info**: you can set this option for individual queries, too
+    #[must_use]
     pub fn lang(mut self, lang: Language) -> Self {
         self.default_opts.lang = lang;
         self
@@ -603,6 +615,7 @@ impl RustyPipeBuilder {
     /// **Default value**: `Country::Us` (USA)
     ///
     /// **Info**: you can set this option for individual queries, too
+    #[must_use]
     pub fn country(mut self, country: Country) -> Self {
         self.default_opts.country = validate_country(country);
         self
@@ -613,6 +626,7 @@ impl RustyPipeBuilder {
     /// This should only be used for debugging.
     ///
     /// **Info**: you can set this option for individual queries, too
+    #[must_use]
     pub fn report(mut self) -> Self {
         self.default_opts.report = true;
         self
@@ -624,6 +638,7 @@ impl RustyPipeBuilder {
     /// This should only be used for testing.
     ///
     /// **Info**: you can set this option for individual queries, too
+    #[must_use]
     pub fn strict(mut self) -> Self {
         self.default_opts.strict = true;
         self
@@ -643,6 +658,7 @@ impl RustyPipeBuilder {
     /// visitor, so you should not use the same vistor data cookie for batch operations.
     ///
     /// **Info**: you can set this option for individual queries, too
+    #[must_use]
     pub fn visitor_data<S: Into<String>>(mut self, visitor_data: S) -> Self {
         self.default_opts.visitor_data = Some(visitor_data.into());
         self
@@ -653,6 +669,7 @@ impl RustyPipeBuilder {
     /// see also [`RustyPipeBuilder::visitor_data`]
     ///
     /// **Info**: you can set this option for individual queries, too
+    #[must_use]
     pub fn visitor_data_opt<S: Into<String>>(mut self, visitor_data: Option<S>) -> Self {
         self.default_opts.visitor_data = visitor_data.map(S::into);
         self
@@ -669,6 +686,7 @@ impl RustyPipe {
     /// Create a new RustyPipe instance with default settings.
     ///
     /// To create an instance with custom options, use [`RustyPipeBuilder`] instead.
+    #[must_use]
     pub fn new() -> Self {
         RustyPipeBuilder::new().build()
     }
@@ -676,11 +694,13 @@ impl RustyPipe {
     /// Create a new [`RustyPipeBuilder`]
     ///
     /// This is the same as [`RustyPipeBuilder::new`]
+    #[must_use]
     pub fn builder() -> RustyPipeBuilder {
         RustyPipeBuilder::new()
     }
 
     /// Create a new [`RustyPipeQuery`] to run an API request
+    #[must_use]
     pub fn query(&self) -> RustyPipeQuery {
         RustyPipeQuery {
             client: self.clone(),
@@ -779,7 +799,7 @@ impl RustyPipe {
                         .get(sw_url)
                         .header(header::ORIGIN, origin)
                         .header(header::REFERER, origin)
-                        .header(header::COOKIE, self.inner.consent_cookie.to_owned())
+                        .header(header::COOKIE, self.inner.consent_cookie.clone())
                         .build()
                         .unwrap(),
                 )
@@ -828,13 +848,13 @@ impl RustyPipe {
         let mut desktop_client = self.inner.cache.desktop_client.write().await;
 
         match desktop_client.get() {
-            Some(cdata) => cdata.version.to_owned(),
+            Some(cdata) => cdata.version.clone(),
             None => {
                 log::debug!("getting desktop client version");
                 match self.extract_desktop_client_version().await {
                     Ok(version) => {
                         *desktop_client = CacheEntry::from(ClientData {
-                            version: version.to_owned(),
+                            version: version.clone(),
                         });
                         drop(desktop_client);
                         self.store_cache().await;
@@ -860,13 +880,13 @@ impl RustyPipe {
         let mut music_client = self.inner.cache.music_client.write().await;
 
         match music_client.get() {
-            Some(cdata) => cdata.version.to_owned(),
+            Some(cdata) => cdata.version.clone(),
             None => {
                 log::debug!("getting music client version");
                 match self.extract_music_client_version().await {
                     Ok(version) => {
                         *music_client = CacheEntry::from(ClientData {
-                            version: version.to_owned(),
+                            version: version.clone(),
                         });
                         drop(music_client);
                         self.store_cache().await;
@@ -944,6 +964,7 @@ impl RustyPipeQuery {
     /// Set the language parameter used when accessing the YouTube API
     ///
     /// This will change multilanguage video titles, descriptions and textual dates
+    #[must_use]
     pub fn lang(mut self, lang: Language) -> Self {
         self.opts.lang = lang;
         self
@@ -952,6 +973,7 @@ impl RustyPipeQuery {
     /// Set the country parameter used when accessing the YouTube API.
     ///
     /// This will change trends and recommended content.
+    #[must_use]
     pub fn country(mut self, country: Country) -> Self {
         self.opts.country = validate_country(country);
         self
@@ -960,6 +982,7 @@ impl RustyPipeQuery {
     /// Generate a report on every operation.
     ///
     /// This should only be used for debugging.
+    #[must_use]
     pub fn report(mut self) -> Self {
         self.opts.report = true;
         self
@@ -969,6 +992,7 @@ impl RustyPipeQuery {
     /// are warnings during deserialization (e.g. invalid items).
     ///
     /// This should only be used for testing.
+    #[must_use]
     pub fn strict(mut self) -> Self {
         self.opts.strict = true;
         self
@@ -986,6 +1010,7 @@ impl RustyPipeQuery {
     ///
     /// Note that YouTube has a rate limit on the number of requests from a single
     /// visitor, so you should not use the same vistor data cookie for batch operations.
+    #[must_use]
     pub fn visitor_data<S: Into<String>>(mut self, visitor_data: S) -> Self {
         self.opts.visitor_data = Some(visitor_data.into());
         self
@@ -994,6 +1019,7 @@ impl RustyPipeQuery {
     /// Set the YouTube visitor data cookie to an optional value
     ///
     /// see also [`RustyPipeQuery::visitor_data`]
+    #[must_use]
     pub fn visitor_data_opt<S: Into<String>>(mut self, visitor_data: Option<S>) -> Self {
         self.opts.visitor_data = visitor_data.map(S::into);
         self
@@ -1011,13 +1037,10 @@ impl RustyPipeQuery {
         localized: bool,
         visitor_data: Option<&'a str>,
     ) -> YTContext {
-        let hl = match localized {
-            true => self.opts.lang,
-            false => Language::En,
-        };
-        let gl = match localized {
-            true => self.opts.country,
-            false => Country::Us,
+        let (hl, gl) = if localized {
+            (self.opts.lang, self.opts.country)
+        } else {
+            (Language::En, Country::Us)
         };
         let visitor_data = self.opts.visitor_data.as_deref().or(visitor_data);
 
@@ -1119,7 +1142,7 @@ impl RustyPipeQuery {
                 ))
                 .header(header::ORIGIN, YOUTUBE_HOME_URL)
                 .header(header::REFERER, YOUTUBE_HOME_URL)
-                .header(header::COOKIE, self.client.inner.consent_cookie.to_owned())
+                .header(header::COOKIE, self.client.inner.consent_cookie.clone())
                 .header("X-YouTube-Client-Name", "1")
                 .header(
                     "X-YouTube-Client-Version",
@@ -1134,7 +1157,7 @@ impl RustyPipeQuery {
                 ))
                 .header(header::ORIGIN, YOUTUBE_MUSIC_HOME_URL)
                 .header(header::REFERER, YOUTUBE_MUSIC_HOME_URL)
-                .header(header::COOKIE, self.client.inner.consent_cookie.to_owned())
+                .header(header::COOKIE, self.client.inner.consent_cookie.clone())
                 .header("X-YouTube-Client-Name", "67")
                 .header(
                     "X-YouTube-Client-Version",
@@ -1187,7 +1210,7 @@ impl RustyPipeQuery {
     /// Get a YouTube visitor data cookie, which is necessary for certain requests
     async fn get_visitor_data(&self) -> Result<String, Error> {
         match &self.opts.visitor_data {
-            Some(vd) => Ok(vd.to_owned()),
+            Some(vd) => Ok(vd.clone()),
             None => self.client.get_visitor_data().await,
         }
     }
@@ -1333,21 +1356,19 @@ impl RustyPipeQuery {
         if level > Level::DBG || self.opts.report {
             if let Some(reporter) = &self.client.inner.reporter {
                 let report = Report {
-                    info: Default::default(),
+                    info: RustyPipeInfo::default(),
                     level,
-                    operation: format!("{operation}({id})"),
+                    operation: &format!("{operation}({id})"),
                     error,
                     msgs,
                     deobf_data: deobf.cloned(),
                     http_request: crate::report::HTTPRequest {
-                        url: request.url().to_string(),
-                        method: "POST".to_string(),
+                        url: request.url().as_str(),
+                        method: request.method().as_str(),
                         req_header: request
                             .headers()
                             .iter()
-                            .map(|(k, v)| {
-                                (k.to_string(), v.to_str().unwrap_or_default().to_owned())
-                            })
+                            .map(|(k, v)| (k.as_str(), v.to_str().unwrap_or_default().to_owned()))
                             .collect(),
                         req_body: serde_json::to_string(body).unwrap_or_default(),
                         status: req_res.status.into(),

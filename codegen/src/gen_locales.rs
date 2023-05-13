@@ -227,7 +227,7 @@ pub enum Country {
 "#
     .to_owned();
 
-    languages.iter().for_each(|(code, native_name)| {
+    for (code, native_name) in &languages {
         let enum_name = code
             .split('-')
             .map(|c| {
@@ -262,10 +262,10 @@ pub enum Country {
             "            Language::{enum_name} => \"{native_name}\","
         )
         .unwrap();
-    });
+    }
     code_langs += "}\n";
 
-    countries.iter().for_each(|(c, n)| {
+    for (c, n) in &countries {
         let enum_name = c[0..1].to_owned().to_uppercase() + &c[1..].to_owned().to_lowercase();
 
         // Country enum
@@ -281,7 +281,7 @@ pub enum Country {
             "            Country::{enum_name} => \"{n}\","
         )
         .unwrap();
-    });
+    }
 
     // Add Country::Zz / Global
     code_countries += "    /// Global (can only be used for music charts)\n";
@@ -368,8 +368,8 @@ fn map_language_section(section: &CompactLinkRendererWrap) -> BTreeMap<String, S
                     .actions[0]
                     .select_language_command
                     .hl
-                    .to_owned(),
-                i.compact_link_renderer.title.text.to_owned(),
+                    .clone(),
+                i.compact_link_renderer.title.text.clone(),
             )
         })
         .collect()

@@ -124,7 +124,7 @@ impl Display for UnavailabilityReason {
 }
 
 pub(crate) mod internal {
-    use super::*;
+    use super::{Error, ExtractionError};
 
     /// Error that occurred during the initialization
     /// or use of the YouTube URL signature deobfuscator.
@@ -167,7 +167,7 @@ impl From<reqwest::Error> for Error {
     fn from(value: reqwest::Error) -> Self {
         if value.is_status() {
             if let Some(status) = value.status() {
-                return Self::HttpStatus(status.as_u16(), Default::default());
+                return Self::HttpStatus(status.as_u16(), Cow::default());
             }
         }
         Self::Http(value.to_string().into())
@@ -186,8 +186,9 @@ impl Error {
         matches!(
             self,
             Self::HttpStatus(_, _)
-                | Self::Extraction(ExtractionError::InvalidData(_))
-                | Self::Extraction(ExtractionError::WrongResult(_))
+                | Self::Extraction(
+                    ExtractionError::InvalidData(_) | ExtractionError::WrongResult(_)
+                )
         )
     }
 

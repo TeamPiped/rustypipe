@@ -77,7 +77,7 @@ pub enum DateCmp {
 }
 
 impl TimeUnit {
-    pub fn secs(&self) -> i64 {
+    pub fn secs(self) -> i64 {
         match self {
             TimeUnit::Second => 1,
             TimeUnit::Minute => 60,
@@ -91,7 +91,7 @@ impl TimeUnit {
 }
 
 impl TimeAgo {
-    fn secs(&self) -> i64 {
+    fn secs(self) -> i64 {
         i64::from(self.n) * self.unit.secs()
     }
 }
@@ -117,8 +117,8 @@ impl From<TimeAgo> for OffsetDateTime {
     fn from(ta: TimeAgo) -> Self {
         let ts = util::now_sec();
         match ta.unit {
-            TimeUnit::Month => ts.replace_date(util::shift_months(ts.date(), -(ta.n as i32))),
-            TimeUnit::Year => ts.replace_date(util::shift_years(ts.date(), -(ta.n as i32))),
+            TimeUnit::Month => ts.replace_date(util::shift_months(ts.date(), -i32::from(ta.n))),
+            TimeUnit::Year => ts.replace_date(util::shift_years(ts.date(), -i32::from(ta.n))),
             _ => ts - Duration::from(ta),
         }
     }
@@ -156,9 +156,10 @@ struct TaTokenParser<'a> {
 
 impl<'a> TaTokenParser<'a> {
     fn new(entry: &'a dictionary::Entry, by_char: bool, nd: bool, filtered_str: &'a str) -> Self {
-        let tokens = match nd {
-            true => &entry.timeago_nd_tokens,
-            false => &entry.timeago_tokens,
+        let tokens = if nd {
+            &entry.timeago_nd_tokens
+        } else {
+            &entry.timeago_tokens
         };
         Self {
             iter: SplitTokens::new(filtered_str, by_char),
@@ -209,7 +210,7 @@ pub fn parse_timeago(lang: Language, textual_date: &str) -> Option<TimeAgo> {
 ///
 /// Returns [`None`] if the date could not be parsed.
 pub fn parse_timeago_dt(lang: Language, textual_date: &str) -> Option<OffsetDateTime> {
-    parse_timeago(lang, textual_date).map(|ta| ta.into())
+    parse_timeago(lang, textual_date).map(OffsetDateTime::from)
 }
 
 pub fn parse_timeago_dt_or_warn(
@@ -260,7 +261,7 @@ pub fn parse_textual_date(lang: Language, textual_date: &str) -> Option<ParsedDa
 
                 // Chinese/Japanese dont use textual months
                 if m.is_none() && !by_char {
-                    m = parse_textual_month(&entry, &filtered_str).map(|n| n as u16);
+                    m = parse_textual_month(&entry, &filtered_str).map(u16::from);
                 }
 
                 match (y, m, d) {
@@ -282,7 +283,7 @@ pub fn parse_textual_date(lang: Language, textual_date: &str) -> Option<ParsedDa
 ///
 /// Returns None if the date could not be parsed.
 pub fn parse_textual_date_to_dt(lang: Language, textual_date: &str) -> Option<OffsetDateTime> {
-    parse_textual_date(lang, textual_date).map(|ta| ta.into())
+    parse_textual_date(lang, textual_date).map(OffsetDateTime::from)
 }
 
 pub fn parse_textual_date_or_warn(

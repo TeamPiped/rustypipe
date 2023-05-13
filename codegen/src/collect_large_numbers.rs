@@ -111,7 +111,7 @@ pub async fn collect_large_numbers(concurrency: usize) {
                         .unwrap();
 
                     channel.view_counts.iter().for_each(|(num, txt)| {
-                        entry.insert(txt.to_owned(), *num);
+                        entry.insert(txt.clone(), *num);
                     });
                     entry.insert(channel.subscriber_count, subscriber_counts[*ch_id]);
 
@@ -147,7 +147,7 @@ pub fn write_samples_to_dict() {
     let collected_nums: CollectedNumbers =
         serde_json::from_reader(BufReader::new(json_file)).unwrap();
     let mut dict = util::read_dict();
-    let langs = dict.keys().map(|k| k.to_owned()).collect::<Vec<_>>();
+    let langs = dict.keys().copied().collect::<Vec<_>>();
 
     static POINT_REGEX: Lazy<Regex> = Lazy::new(|| Regex::new(r"\d(\.|,)\d{1,3}(?:\D|$)").unwrap());
 
@@ -176,10 +176,7 @@ pub fn write_samples_to_dict() {
             })
             .unwrap();
 
-        let decimal_point = match comma_decimal {
-            true => ",",
-            false => ".",
-        };
+        let decimal_point = if comma_decimal { "," } else { "." };
 
         // Search for tokens
 
@@ -217,13 +214,17 @@ pub fn write_samples_to_dict() {
         for lang in e_langs {
             let entry = collected_nums.get(&lang).unwrap();
 
-            entry.iter().for_each(|(txt, val)| {
+            for (txt, val) in entry.iter() {
                 let filtered = util::filter_largenumstr(txt);
                 let mag = get_mag(*val);
 
-                let tokens: Vec<String> = match dict_entry.by_char || lang == Language::Ko {
-                    true => filtered.chars().map(|c| c.to_string()).collect(),
-                    false => filtered.split_whitespace().map(|c| c.to_string()).collect(),
+                let tokens: Vec<String> = if dict_entry.by_char || lang == Language::Ko {
+                    filtered.chars().map(|c| c.to_string()).collect()
+                } else {
+                    filtered
+                        .split_whitespace()
+                        .map(std::string::ToString::to_string)
+                        .collect()
                 };
 
                 match util::parse_numeric::<u64>(txt.split(decimal_point).next().unwrap()) {
@@ -231,7 +232,7 @@ pub fn write_samples_to_dict() {
                         let mag_before_point = get_mag(num_before_point);
                         let mut mag_remaining = mag - mag_before_point;
 
-                        tokens.iter().for_each(|t| {
+                        for t in &tokens {
                             // These tokens are correct in all languages
                             // and are used to parse combined prefixes like `1.1K crore` (en-IN)
                             let known_tmag: u8 = if t.len() == 1 {
@@ -251,26 +252,26 @@ pub fn write_samples_to_dict() {
                                     .checked_sub(known_tmag)
                                     .expect("known magnitude incorrect");
                             } else {
-                                insert_token(t.to_owned(), mag_remaining);
+                                insert_token(t.clone(), mag_remaining);
                             }
-                            insert_nd_token(t.to_owned(), None);
-                        });
+                            insert_nd_token(t.clone(), None);
+                        }
                     }
                     Err(e) => {
                         if matches!(e.kind(), std::num::IntErrorKind::Empty) {
                             // Text does not contain any digits, search for nd_tokens
-                            tokens.iter().for_each(|t| {
+                            for t in &tokens {
                                 insert_nd_token(
-                                    t.to_owned(),
+                                    t.clone(),
                                     Some((*val).try_into().expect("nd_token value too large")),
                                 );
-                            });
+                            }
                         } else {
                             panic!("{e}, txt: {txt}")
                         }
                     }
                 }
-            });
+            }
         }
 
         // Insert collected data into dictionary
@@ -369,7 +370,7 @@ async fn get_channel(query: &RustyPipeQuery, channel_id: &str) -> Result<Channel
                 .navigation_endpoint
                 .continuation_command
                 .token
-                .to_owned()
+                .clone()
         })
     });
 
@@ -380,7 +381,7 @@ async fn get_channel(query: &RustyPipeQuery, channel_id: &str) -> Result<Channel
             let v = &itm.rich_item_renderer.content.video_renderer;
             (
                 util::parse_numeric(&v.view_count_text.text).unwrap_or_default(),
-                v.short_view_count_text.text.to_owned(),
+                v.short_view_count_text.text.clone(),
             )
         })
         .collect();
@@ -399,21 +400,19 @@ async fn get_channel(query: &RustyPipeQuery, channel_id: &str) -> Result<Channel
 
         let continuation = serde_json::from_str::<ContinuationResponse>(&resp)?;
 
-        continuation
-            .on_response_received_actions
-            .iter()
-            .for_each(|a| {
-                a.reload_continuation_items_command
-                    .continuation_items
-                    .iter()
-                    .for_each(|itm| {
-                        let v = &itm.rich_item_renderer.content.video_renderer;
-                        view_counts.insert(
-                            util::parse_numeric(&v.view_count_text.text).unwrap(),
-                            v.short_view_count_text.text.to_owned(),
-                        );
-                    })
-            });
+        for action in &continuation.on_response_received_actions {
+            action
+                .reload_continuation_items_command
+                .continuation_items
+                .iter()
+                .for_each(|itm| {
+                    let v = &itm.rich_item_renderer.content.video_renderer;
+                    view_counts.insert(
+                        util::parse_numeric(&v.view_count_text.text).unwrap(),
+                        v.short_view_count_text.text.clone(),
+                    );
+                });
+        }
     }
 
     Ok(ChannelData {

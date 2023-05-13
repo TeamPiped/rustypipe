@@ -170,9 +170,10 @@ impl RustyPipeQuery {
     ) -> Result<MusicSearchFiltered<MusicPlaylistItem>, Error> {
         self._music_search_playlists(
             query,
-            match community {
-                true => Params::CommunityPlaylists,
-                false => Params::YtmPlaylists,
+            if community {
+                Params::CommunityPlaylists
+            } else {
+                Params::YtmPlaylists
             },
         )
         .await
@@ -266,7 +267,7 @@ impl MapResponse<MusicSearchResult> for response::MusicSearch {
             }
             response::music_search::ItemSection::ItemSectionRenderer { contents } => {
                 if let Some(corrected) = contents.into_iter().next() {
-                    corrected_query = Some(corrected.showing_results_for_renderer.corrected_query)
+                    corrected_query = Some(corrected.showing_results_for_renderer.corrected_query);
                 }
             }
             response::music_search::ItemSection::None => {}
@@ -324,7 +325,7 @@ impl<T: FromYtItem> MapResponse<MusicSearchFiltered<T>> for response::MusicSearc
             }
             response::music_search::ItemSection::ItemSectionRenderer { contents } => {
                 if let Some(corrected) = contents.into_iter().next() {
-                    corrected_query = Some(corrected.showing_results_for_renderer.corrected_query)
+                    corrected_query = Some(corrected.showing_results_for_renderer.corrected_query);
                 }
             }
             response::music_search::ItemSection::None => {}

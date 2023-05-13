@@ -500,7 +500,7 @@ impl MusicListMapper {
 
                 let pt_id = item
                     .navigation_endpoint
-                    .and_then(|ne| ne.music_page())
+                    .and_then(NavigationEndpoint::music_page)
                     .or_else(|| {
                         c1.and_then(|c1| {
                             c1.renderer.text.0.into_iter().next().and_then(|t| match t {
@@ -796,7 +796,7 @@ impl MusicListMapper {
                                 name: item.title,
                                 duration: None,
                                 cover: item.thumbnail_renderer.into(),
-                                artist_id: artists.first().and_then(|a| a.id.to_owned()),
+                                artist_id: artists.first().and_then(|a| a.id.clone()),
                                 artists,
                                 album: None,
                                 view_count: subtitle_p2.and_then(|c| {
@@ -872,7 +872,7 @@ impl MusicListMapper {
                                 id,
                                 name: item.title,
                                 cover: item.thumbnail_renderer.into(),
-                                artist_id: artists.first().and_then(|a| a.id.to_owned()),
+                                artist_id: artists.first().and_then(|a| a.id.clone()),
                                 artists,
                                 album_type,
                                 year,
@@ -886,8 +886,7 @@ impl MusicListMapper {
                             let from_ytm = subtitle_p2
                                 .as_ref()
                                 .and_then(|p| p.0.first())
-                                .map(util::is_ytm)
-                                .unwrap_or(true);
+                                .map_or(true, util::is_ytm);
                             let channel = subtitle_p2.and_then(|p| {
                                 p.0.into_iter().find_map(|c| ChannelId::try_from(c).ok())
                             });
@@ -973,7 +972,7 @@ impl MusicListMapper {
                         id,
                         name: card.title,
                         cover: card.thumbnail.into(),
-                        artist_id: artists.first().and_then(|a| a.id.to_owned()),
+                        artist_id: artists.first().and_then(|a| a.id.clone()),
                         artists,
                         album_type,
                         year: subtitle_p3.and_then(|y| util::parse_numeric(y.first_str()).ok()),
@@ -1010,7 +1009,7 @@ impl MusicListMapper {
                         name: card.title,
                         duration,
                         cover: card.thumbnail.into(),
-                        artist_id: artists.first().and_then(|a| a.id.to_owned()),
+                        artist_id: artists.first().and_then(|a| a.id.clone()),
                         artists,
                         album,
                         view_count,
@@ -1024,8 +1023,7 @@ impl MusicListMapper {
                     let from_ytm = subtitle_p2
                         .as_ref()
                         .and_then(|p| p.0.first())
-                        .map(util::is_ytm)
-                        .unwrap_or(true);
+                        .map_or(true, util::is_ytm);
                     let channel = subtitle_p2
                         .and_then(|p| p.0.into_iter().find_map(|c| ChannelId::try_from(c).ok()));
                     let track_count =
@@ -1128,9 +1126,10 @@ impl MusicListMapper {
     ///
     /// Therefore it is safest to discard such responses and retry the request.
     pub fn check_unknown(&self) -> Result<(), ExtractionError> {
-        match self.has_unknown {
-            true => Err(ExtractionError::InvalidData("unknown YTM items".into())),
-            false => Ok(()),
+        if self.has_unknown {
+            Err(ExtractionError::InvalidData("unknown YTM items".into()))
+        } else {
+            Ok(())
         }
     }
 }
@@ -1167,7 +1166,7 @@ fn map_artist_id_fallback(
     fallback_artist: Option<&ArtistId>,
 ) -> Option<String> {
     menu.and_then(|m| map_artist_id(m.menu_renderer.contents))
-        .or_else(|| fallback_artist.and_then(|a| a.id.to_owned()))
+        .or_else(|| fallback_artist.and_then(|a| a.id.clone()))
 }
 
 pub(crate) fn map_artist_id(entries: Vec<MusicItemMenuEntry>) -> Option<String> {

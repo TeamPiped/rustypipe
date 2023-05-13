@@ -58,7 +58,7 @@ pub fn write_samples_to_dict() {
     let collected: BTreeMap<Language, BTreeMap<AlbumType, String>> =
         serde_json::from_reader(BufReader::new(json_file)).unwrap();
     let mut dict = util::read_dict();
-    let langs = dict.keys().map(|k| k.to_owned()).collect::<Vec<_>>();
+    let langs = dict.keys().copied().collect::<Vec<_>>();
 
     for lang in langs {
         let dict_entry = dict.entry(lang).or_default();
@@ -66,13 +66,13 @@ pub fn write_samples_to_dict() {
         let mut e_langs = dict_entry.equivalent.clone();
         e_langs.push(lang);
 
-        e_langs.iter().for_each(|lang| {
+        for lang in &e_langs {
             collected.get(lang).unwrap().iter().for_each(|(t, v)| {
                 dict_entry
                     .album_types
                     .insert(v.to_lowercase().trim().to_owned(), *t);
             });
-        });
+        }
     }
 
     util::write_dict(dict);

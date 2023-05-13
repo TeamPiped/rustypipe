@@ -69,6 +69,7 @@ impl<'de> Deserialize<'de> for BrowseEndpoint {
         let bep = BEp::deserialize(deserializer)?;
 
         // Remove the VL prefix from the playlist id
+        #[allow(clippy::map_unwrap_or)]
         let browse_id = bep
             .browse_endpoint_context_supported_configs
             .as_ref()
@@ -167,9 +168,8 @@ pub(crate) enum PageType {
 impl PageType {
     pub(crate) fn to_url_target(self, id: String) -> Option<UrlTarget> {
         match self {
-            PageType::Artist => Some(UrlTarget::Channel { id }),
+            PageType::Artist | PageType::Channel => Some(UrlTarget::Channel { id }),
             PageType::Album => Some(UrlTarget::Album { id }),
-            PageType::Channel => Some(UrlTarget::Channel { id }),
             PageType::Playlist => Some(UrlTarget::Playlist { id }),
             PageType::Unknown => None,
         }

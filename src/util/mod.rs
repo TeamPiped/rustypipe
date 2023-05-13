@@ -91,7 +91,7 @@ pub fn random_uuid() -> String {
         rng.gen::<u16>(),
         rng.gen::<u16>(),
         rng.gen::<u16>(),
-        rng.gen::<u64>() & 0xffffffffffff,
+        rng.gen::<u64>() & 0xffff_ffff_ffff,
     )
 }
 
@@ -315,10 +315,7 @@ where
 
     let dict_entry = dictionary::entry(lang);
     let by_char = lang_by_char(lang) || lang == Language::Ko;
-    let decimal_point = match dict_entry.comma_decimal {
-        true => ',',
-        false => '.',
-    };
+    let decimal_point = if dict_entry.comma_decimal { ',' } else { '.' };
 
     let mut digits = String::new();
     let mut filtered = String::new();
@@ -345,14 +342,14 @@ where
     if digits.is_empty() {
         SplitTokens::new(&filtered, by_char)
             .find_map(|token| dict_entry.number_nd_tokens.get(token))
-            .and_then(|n| (*n as u64).try_into().ok())
+            .and_then(|n| (u64::from(*n)).try_into().ok())
     } else {
         let num = digits.parse::<u64>().ok()?;
 
         exp += SplitTokens::new(&filtered, by_char)
             .filter_map(|token| match token {
                 "k" => Some(3),
-                _ => dict_entry.number_tokens.get(token).map(|t| *t as i32),
+                _ => dict_entry.number_tokens.get(token).map(|t| i32::from(*t)),
             })
             .sum::<i32>();
 
@@ -447,9 +444,10 @@ pub enum SplitTokens<'a> {
 
 impl<'a> SplitTokens<'a> {
     pub fn new(s: &'a str, by_char: bool) -> Self {
-        match by_char {
-            true => Self::Char(SplitChar::from(s)),
-            false => Self::Word(s.split_whitespace()),
+        if by_char {
+            Self::Char(SplitChar::from(s))
+        } else {
+            Self::Word(s.split_whitespace())
         }
     }
 }

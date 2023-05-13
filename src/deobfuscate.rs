@@ -238,7 +238,7 @@ fn extract_js_fn(js: &str, name: &str) -> Result<String, DeobfError> {
 
 fn get_nsig_fn(player_js: &str) -> Result<String, DeobfError> {
     let function_name = get_nsig_fn_name(player_js)?;
-    let function_base = function_name.to_owned() + "=function";
+    let function_base = function_name.clone() + "=function";
     let offset = player_js.find(&function_base).unwrap_or_default();
 
     extract_js_fn(&player_js[offset..], &function_name)
