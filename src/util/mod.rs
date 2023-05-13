@@ -394,21 +394,14 @@ pub fn escape_html(input: &str) -> String {
 /// inserting into Markdown.
 pub fn escape_markdown(input: &str) -> String {
     let mut buf = String::with_capacity(input.len());
-    let mut chars = input.chars().peekable();
 
-    while let Some(c) = chars.next() {
+    for c in input.chars() {
         match c {
             '<' => buf.push_str("&lt;"),
             '>' => buf.push_str("&gt;"),
-            '\n' => {
-                if chars.peek() == Some(&'\n') {
-                    chars.next();
-                    buf.push_str("\n\n");
-                } else {
-                    buf.push_str("<br>\n");
-                }
-            }
-            '*' | '#' | '(' | ')' | '[' | ']' | '_' | '`' => {
+            '\n' => buf.push_str("<br>"),
+            '*' | '#' | '(' | ')' | '[' | ']' | '_' | '`' | '~' | '$' | '^' | '=' | ':' | '+'
+            | '\\' => {
                 buf.push('\\');
                 buf.push(c);
             }

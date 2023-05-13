@@ -16,7 +16,10 @@ pub struct RichText(pub Vec<TextComponent>);
 #[non_exhaustive]
 pub enum TextComponent {
     /// Plain text
-    Text(String),
+    Text {
+        /// Plain text
+        text: String,
+    },
     /// Web link
     Web {
         /// Link text
@@ -73,7 +76,7 @@ impl TextComponent {
     /// Get the text from the component
     pub fn get_text(&self) -> &str {
         match self {
-            TextComponent::Text(text)
+            TextComponent::Text { text }
             | TextComponent::Web { text, .. }
             | TextComponent::YouTube { text, .. } => text,
         }
@@ -84,7 +87,7 @@ impl TextComponent {
     /// Returns an empty string if the component is not a link.
     pub fn get_url(&self, yt_host: &str) -> String {
         match self {
-            TextComponent::Text(_) => String::new(),
+            TextComponent::Text { .. } => String::new(),
             TextComponent::Web { url, .. } => url.clone(),
             TextComponent::YouTube { target, .. } => target.to_url_yt_host(yt_host),
         }
@@ -94,7 +97,7 @@ impl TextComponent {
 impl ToPlaintext for TextComponent {
     fn to_plaintext_yt_host(&self, yt_host: &str) -> String {
         match self {
-            TextComponent::Text(text) => text.clone(),
+            TextComponent::Text { text } => text.clone(),
             _ => self.get_url(yt_host),
         }
     }
@@ -103,7 +106,7 @@ impl ToPlaintext for TextComponent {
 impl ToHtml for TextComponent {
     fn to_html_yt_host(&self, yt_host: &str) -> String {
         match self {
-            TextComponent::Text(text) => util::escape_html(text),
+            TextComponent::Text { text } => util::escape_html(text),
             TextComponent::Web { text, .. } => {
                 format!(
                     r#"<a href="{}" target="_blank" rel="noreferrer">{}</a>"#,
@@ -125,7 +128,7 @@ impl ToHtml for TextComponent {
 impl ToMarkdown for TextComponent {
     fn to_markdown_yt_host(&self, yt_host: &str) -> String {
         match self {
-            TextComponent::Text(text) => util::escape_markdown(text),
+            TextComponent::Text { text } => util::escape_markdown(text),
             TextComponent::Web { text, .. } | TextComponent::YouTube { text, .. } => {
                 format!(
                     "[{}]({})",
@@ -246,26 +249,10 @@ aespa 에스파 'Black Mamba' MV ℗ SM Entertainment"#
     fn to_markdown() {
         let richtext = RichText::from(TEXT_SOURCE.clone());
         let markdown = richtext.to_markdown_yt_host("https://piped.kavin.rocks");
+        println!("{}", markdown);
         assert_eq!(
             markdown,
-            r#"🎧Listen and download aespa's debut single "Black Mamba": [https://smarturl.it/aespa\_BlackMamba](https://smarturl.it/aespa_BlackMamba)<br>
-🐍The Debut Stage [https://youtu.be/Ky5RT5oGg0w](https://piped.kavin.rocks/watch?v=Ky5RT5oGg0w)
-
-🎟️ aespa Showcase SYNK in LA! Tickets now on sale: [https://www.ticketmaster.com/event/0A...](https://www.ticketmaster.com/event/0A005CCD9E871F6E)
-
-Subscribe to aespa Official YouTube Channel!<br>
-[https://www.youtube.com/aespa?sub\_con...](https://www.youtube.com/aespa?sub_confirmation=1)
-
-aespa official<br>
-[https://www.youtube.com/c/aespa](https://www.youtube.com/c/aespa)<br>
-[https://www.instagram.com/aespa\_official](https://www.instagram.com/aespa_official)<br>
-[https://www.tiktok.com/@aespa\_official](https://www.tiktok.com/@aespa_official)<br>
-[https://twitter.com/aespa\_Official](https://twitter.com/aespa_Official)<br>
-[https://www.facebook.com/aespa.official](https://www.facebook.com/aespa.official)<br>
-[https://weibo.com/aespa](https://weibo.com/aespa)
-
-\#aespa \#æspa \#BlackMamba \#블랙맘바 \#에스파<br>
-aespa 에스파 'Black Mamba' MV ℗ SM Entertainment"#
+            r#"🎧Listen and download aespa's debut single "Black Mamba"\: [https\://smarturl.it/aespa\_BlackMamba](https://smarturl.it/aespa_BlackMamba)<br>🐍The Debut Stage [https\://youtu.be/Ky5RT5oGg0w](https://piped.kavin.rocks/watch?v=Ky5RT5oGg0w)<br><br>🎟️ aespa Showcase SYNK in LA! Tickets now on sale\: [https\://www.ticketmaster.com/event/0A...](https://www.ticketmaster.com/event/0A005CCD9E871F6E)<br><br>Subscribe to aespa Official YouTube Channel!<br>[https\://www.youtube.com/aespa?sub\_con...](https://www.youtube.com/aespa?sub_confirmation=1)<br><br>aespa official<br>[https\://www.youtube.com/c/aespa](https://www.youtube.com/c/aespa)<br>[https\://www.instagram.com/aespa\_official](https://www.instagram.com/aespa_official)<br>[https\://www.tiktok.com/@aespa\_official](https://www.tiktok.com/@aespa_official)<br>[https\://twitter.com/aespa\_Official](https://twitter.com/aespa_Official)<br>[https\://www.facebook.com/aespa.official](https://www.facebook.com/aespa.official)<br>[https\://weibo.com/aespa](https://weibo.com/aespa)<br><br>\#aespa \#æspa \#BlackMamba \#블랙맘바 \#에스파<br>aespa 에스파 'Black Mamba' MV ℗ SM Entertainment"#
         )
     }
 }

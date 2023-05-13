@@ -6,92 +6,128 @@ VideoDetails(
   id: "nFDBxBUfE74",
   name: "The Prepper PC",
   description: RichText([
-    Text("Thanks to Jackery for sponsoring today\'s video! Check out Jackery\'s Solar Generator 2000 Pro and get 10% off with code LinusTechTips at "),
+    Text(
+      text: "Thanks to Jackery for sponsoring today\'s video! Check out Jackery\'s Solar Generator 2000 Pro and get 10% off with code LinusTechTips at ",
+    ),
     Web(
       text: "https://lmg.gg/SG2000PROLTT",
       url: "https://lmg.gg/SG2000PROLTT",
     ),
-    Text("\n\nThese days, you can game almost anywhere on the planet, anytime. But what if that planet was in the middle of an apocalypse? After you’ve stashed years of food, water, and toilet paper away, how will you pass the time? With this PC, you can be prepared to game until the whole mess to sort itself out. \n\nDiscuss on the forum: "),
+    Text(
+      text: "\n\nThese days, you can game almost anywhere on the planet, anytime. But what if that planet was in the middle of an apocalypse? After you’ve stashed years of food, water, and toilet paper away, how will you pass the time? With this PC, you can be prepared to game until the whole mess to sort itself out. \n\nDiscuss on the forum: ",
+    ),
     Web(
       text: "https://linustechtips.com/topic/14554...",
       url: "https://linustechtips.com/topic/1455447-the-prepper-pc-sponsored/",
     ),
-    Text("\n\nBuy a Jackery Solar Generator 2000 Pro: "),
+    Text(
+      text: "\n\nBuy a Jackery Solar Generator 2000 Pro: ",
+    ),
     Web(
       text: "https://geni.us/034L",
       url: "https://geni.us/034L",
     ),
-    Text("\n\nBuy a Jackery Explorer 2000 Pro: "),
+    Text(
+      text: "\n\nBuy a Jackery Explorer 2000 Pro: ",
+    ),
     Web(
       text: "https://lmg.gg/1dyF4",
       url: "https://lmg.gg/1dyF4",
     ),
-    Text("\n\nBuy a Seasonic Fanless TX: "),
+    Text(
+      text: "\n\nBuy a Seasonic Fanless TX: ",
+    ),
     Web(
       text: "https://geni.us/S0Wt76G",
       url: "https://geni.us/S0Wt76G",
     ),
-    Text("\n\nBuy an Intel Core i3 (12th Gen) i3-12100: "),
+    Text(
+      text: "\n\nBuy an Intel Core i3 (12th Gen) i3-12100: ",
+    ),
     Web(
       text: "https://geni.us/hLZvxa",
       url: "https://geni.us/hLZvxa",
     ),
-    Text("\n\nBuy an RTX 3050: "),
+    Text(
+      text: "\n\nBuy an RTX 3050: ",
+    ),
     Web(
       text: "https://geni.us/6A6hl",
       url: "https://geni.us/6A6hl",
     ),
-    Text("\n\nBuy an RX 6500XT: "),
+    Text(
+      text: "\n\nBuy an RX 6500XT: ",
+    ),
     Web(
       text: "https://geni.us/fUF1p",
       url: "https://geni.us/fUF1p",
     ),
-    Text("\n\nPurchases made through some store links may provide some compensation to Linus Media Group.\n\n► GET MERCH: "),
+    Text(
+      text: "\n\nPurchases made through some store links may provide some compensation to Linus Media Group.\n\n► GET MERCH: ",
+    ),
     Web(
       text: "https://lttstore.com",
       url: "https://lttstore.com/",
     ),
-    Text("\n► SUPPORT US ON FLOATPLANE: "),
+    Text(
+      text: "\n► SUPPORT US ON FLOATPLANE: ",
+    ),
     Web(
       text: "https://www.floatplane.com/ltt",
       url: "https://www.floatplane.com/ltt",
     ),
-    Text("\n► AFFILIATES, SPONSORS & REFERRALS: "),
+    Text(
+      text: "\n► AFFILIATES, SPONSORS & REFERRALS: ",
+    ),
     Web(
       text: "https://lmg.gg/sponsors",
       url: "https://lmg.gg/sponsors",
     ),
-    Text("\n► PODCAST GEAR: "),
+    Text(
+      text: "\n► PODCAST GEAR: ",
+    ),
     Web(
       text: "https://lmg.gg/podcastgear",
       url: "https://lmg.gg/podcastgear",
     ),
-    Text("\n\n\nFOLLOW US \n---------------------------------------------------  \nTwitter: "),
+    Text(
+      text: "\n\n\nFOLLOW US \n---------------------------------------------------  \nTwitter: ",
+    ),
     Web(
       text: "https://twitter.com/linustech",
       url: "https://twitter.com/linustech",
     ),
-    Text("\nFacebook: "),
+    Text(
+      text: "\nFacebook: ",
+    ),
     Web(
       text: "http://www.facebook.com/LinusTech",
       url: "http://www.facebook.com/LinusTech",
     ),
-    Text("\nInstagram: "),
+    Text(
+      text: "\nInstagram: ",
+    ),
     Web(
       text: "https://www.instagram.com/linustech",
       url: "https://www.instagram.com/linustech",
     ),
-    Text("\nTikTok: "),
+    Text(
+      text: "\nTikTok: ",
+    ),
     Web(
       text: "https://www.tiktok.com/@linustech",
       url: "https://www.tiktok.com/@linustech",
     ),
-    Text("\nTwitch: "),
+    Text(
+      text: "\nTwitch: ",
+    ),
     Web(
       text: "https://www.twitch.tv/linustech",
       url: "https://www.twitch.tv/linustech",
     ),
-    Text("\n\nMUSIC CREDIT\n---------------------------------------------------\nIntro: Laszlo - Supernova\nVideo Link: "),
+    Text(
+      text: "\n\nMUSIC CREDIT\n---------------------------------------------------\nIntro: Laszlo - Supernova\nVideo Link: ",
+    ),
     YouTube(
       text: "https://www.youtube.com/watch?v=PKfxm...",
       target: Video(
@@ -99,17 +135,23 @@ VideoDetails(
         start_time: 0,
       ),
     ),
-    Text("\niTunes Download Link: "),
+    Text(
+      text: "\niTunes Download Link: ",
+    ),
     Web(
       text: "https://itunes.apple.com/us/album/sup...",
       url: "https://itunes.apple.com/us/album/supernova/id936805712",
     ),
-    Text("\nArtist Link: "),
+    Text(
+      text: "\nArtist Link: ",
+    ),
     Web(
       text: "https://soundcloud.com/laszlomusic",
       url: "https://soundcloud.com/laszlomusic",
     ),
-    Text("\n\nOutro: Approaching Nirvana - Sugar High\nVideo Link: "),
+    Text(
+      text: "\n\nOutro: Approaching Nirvana - Sugar High\nVideo Link: ",
+    ),
     YouTube(
       text: "https://www.youtube.com/watch?v=ngsGB...",
       target: Video(
@@ -117,37 +159,51 @@ VideoDetails(
         start_time: 0,
       ),
     ),
-    Text("\nListen on Spotify: "),
+    Text(
+      text: "\nListen on Spotify: ",
+    ),
     Web(
       text: "http://spoti.fi/UxWkUw",
       url: "http://spoti.fi/UxWkUw",
     ),
-    Text("\nArtist Link: "),
+    Text(
+      text: "\nArtist Link: ",
+    ),
     Web(
       text: "http://www.youtube.com/approachingnir...",
       url: "http://www.youtube.com/approachingnirvana",
     ),
-    Text("\n\nIntro animation by MBarek Abdelwassaa "),
+    Text(
+      text: "\n\nIntro animation by MBarek Abdelwassaa ",
+    ),
     Web(
       text: "https://www.instagram.com/mbarek_abdel/",
       url: "https://www.instagram.com/mbarek_abdel/",
     ),
-    Text("\nMonitor And Keyboard by vadimmihalkevich / CC BY 4.0  "),
+    Text(
+      text: "\nMonitor And Keyboard by vadimmihalkevich / CC BY 4.0  ",
+    ),
     Web(
       text: "https://geni.us/PgGWp",
       url: "https://geni.us/PgGWp",
     ),
-    Text("\nMechanical RGB Keyboard by BigBrotherECE / CC BY 4.0 "),
+    Text(
+      text: "\nMechanical RGB Keyboard by BigBrotherECE / CC BY 4.0 ",
+    ),
     Web(
       text: "https://geni.us/mj6pHk4",
       url: "https://geni.us/mj6pHk4",
     ),
-    Text("\nMouse Gamer free Model By Oscar Creativo / CC BY 4.0 "),
+    Text(
+      text: "\nMouse Gamer free Model By Oscar Creativo / CC BY 4.0 ",
+    ),
     Web(
       text: "https://geni.us/Ps3XfE",
       url: "https://geni.us/Ps3XfE",
     ),
-    Text("\n\nCHAPTERS\n---------------------------------------------------\n"),
+    Text(
+      text: "\n\nCHAPTERS\n---------------------------------------------------\n",
+    ),
     YouTube(
       text: "0:00",
       target: Video(
@@ -155,7 +211,9 @@ VideoDetails(
         start_time: 0,
       ),
     ),
-    Text(" Intro\n"),
+    Text(
+      text: " Intro\n",
+    ),
     YouTube(
       text: "0:42",
       target: Video(
@@ -163,7 +221,9 @@ VideoDetails(
         start_time: 42,
       ),
     ),
-    Text(" The PC Built for Super Efficiency\n"),
+    Text(
+      text: " The PC Built for Super Efficiency\n",
+    ),
     YouTube(
       text: "2:41",
       target: Video(
@@ -171,7 +231,9 @@ VideoDetails(
         start_time: 161,
       ),
     ),
-    Text(" Our BURIAL ENCLOSURE?!\n"),
+    Text(
+      text: " Our BURIAL ENCLOSURE?!\n",
+    ),
     YouTube(
       text: "3:31",
       target: Video(
@@ -179,7 +241,9 @@ VideoDetails(
         start_time: 211,
       ),
     ),
-    Text(" Our Power Solution (Thanks Jackery!)\n"),
+    Text(
+      text: " Our Power Solution (Thanks Jackery!)\n",
+    ),
     YouTube(
       text: "4:47",
       target: Video(
@@ -187,7 +251,9 @@ VideoDetails(
         start_time: 287,
       ),
     ),
-    Text(" Diggin\' Holes\n"),
+    Text(
+      text: " Diggin\' Holes\n",
+    ),
     YouTube(
       text: "5:30",
       target: Video(
@@ -195,7 +261,9 @@ VideoDetails(
         start_time: 330,
       ),
     ),
-    Text(" Colonoscopy?\n"),
+    Text(
+      text: " Colonoscopy?\n",
+    ),
     YouTube(
       text: "7:04",
       target: Video(
@@ -203,7 +271,9 @@ VideoDetails(
         start_time: 424,
       ),
     ),
-    Text(" Diggin\' like a man\n"),
+    Text(
+      text: " Diggin\' like a man\n",
+    ),
     YouTube(
       text: "8:29",
       target: Video(
@@ -211,7 +281,9 @@ VideoDetails(
         start_time: 509,
       ),
     ),
-    Text(" The world\'s worst woodsman\n"),
+    Text(
+      text: " The world\'s worst woodsman\n",
+    ),
     YouTube(
       text: "9:03",
       target: Video(
@@ -219,7 +291,9 @@ VideoDetails(
         start_time: 543,
       ),
     ),
-    Text(" Backyard cable management\n"),
+    Text(
+      text: " Backyard cable management\n",
+    ),
     YouTube(
       text: "10:02",
       target: Video(
@@ -227,7 +301,9 @@ VideoDetails(
         start_time: 602,
       ),
     ),
-    Text(" Time to bury this boy\n"),
+    Text(
+      text: " Time to bury this boy\n",
+    ),
     YouTube(
       text: "10:46",
       target: Video(
@@ -235,7 +311,9 @@ VideoDetails(
         start_time: 646,
       ),
     ),
-    Text(" Solar Power Generation\n"),
+    Text(
+      text: " Solar Power Generation\n",
+    ),
     YouTube(
       text: "11:37",
       target: Video(
@@ -243,7 +321,9 @@ VideoDetails(
         start_time: 697,
       ),
     ),
-    Text(" Issues\n"),
+    Text(
+      text: " Issues\n",
+    ),
     YouTube(
       text: "12:08",
       target: Video(
@@ -251,7 +331,9 @@ VideoDetails(
         start_time: 728,
       ),
     ),
-    Text(" First Play Test\n"),
+    Text(
+      text: " First Play Test\n",
+    ),
     YouTube(
       text: "13:20",
       target: Video(
@@ -259,7 +341,9 @@ VideoDetails(
         start_time: 800,
       ),
     ),
-    Text(" Conclusion"),
+    Text(
+      text: " Conclusion",
+    ),
   ]),
   channel: ChannelTag(
     id: "UCXuqSBlHAE6Xw-yeJA0Tunw",

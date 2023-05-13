@@ -6,12 +6,16 @@ VideoDetails(
   id: "ZeerrnuLi5E",
   name: "aespa 에스파 \'Black Mamba\' MV",
   description: RichText([
-    Text("🎧Listen and download aespa\'s debut single \"Black Mamba\": "),
+    Text(
+      text: "🎧Listen and download aespa\'s debut single \"Black Mamba\": ",
+    ),
     Web(
       text: "https://smarturl.it/aespa_BlackMamba",
       url: "https://smarturl.it/aespa_BlackMamba",
     ),
-    Text("\n🐍The Debut Stage "),
+    Text(
+      text: "\n🐍The Debut Stage ",
+    ),
     YouTube(
       text: "https://youtu.be/Ky5RT5oGg0w",
       target: Video(
@@ -19,57 +23,95 @@ VideoDetails(
         start_time: 0,
       ),
     ),
-    Text("\n\n🎟\u{fe0f} aespa Showcase SYNK in LA! Tickets now on sale: "),
+    Text(
+      text: "\n\n🎟\u{fe0f} aespa Showcase SYNK in LA! Tickets now on sale: ",
+    ),
     Web(
       text: "https://www.ticketmaster.com/event/0A...",
       url: "https://www.ticketmaster.com/event/0A005CCD9E871F6E",
     ),
-    Text("\n\nSubscribe to aespa Official YouTube Channel!\n"),
+    Text(
+      text: "\n\nSubscribe to aespa Official YouTube Channel!\n",
+    ),
     Web(
       text: "https://www.youtube.com/aespa?sub_con...",
       url: "https://www.youtube.com/aespa?sub_confirmation=1",
     ),
-    Text("\n\naespa official\n"),
+    Text(
+      text: "\n\naespa official\n",
+    ),
     Web(
       text: "https://www.youtube.com/c/aespa",
       url: "https://www.youtube.com/c/aespa",
     ),
-    Text("\n"),
+    Text(
+      text: "\n",
+    ),
     Web(
       text: "https://www.instagram.com/aespa_official",
       url: "https://www.instagram.com/aespa_official",
     ),
-    Text("\n"),
+    Text(
+      text: "\n",
+    ),
     Web(
       text: "https://www.tiktok.com/@aespa_official",
       url: "https://www.tiktok.com/@aespa_official",
     ),
-    Text("\n"),
+    Text(
+      text: "\n",
+    ),
     Web(
       text: "https://twitter.com/aespa_Official",
       url: "https://twitter.com/aespa_Official",
     ),
-    Text("\n"),
+    Text(
+      text: "\n",
+    ),
     Web(
       text: "https://www.facebook.com/aespa.official",
       url: "https://www.facebook.com/aespa.official",
     ),
-    Text("\n"),
+    Text(
+      text: "\n",
+    ),
     Web(
       text: "https://weibo.com/aespa",
       url: "https://weibo.com/aespa",
     ),
-    Text("\n\n"),
-    Text("#aespa"),
-    Text(" "),
-    Text("#æspa"),
-    Text(" "),
-    Text("#BlackMamba"),
-    Text(" "),
-    Text("#블랙맘바"),
-    Text(" "),
-    Text("#에스파"),
-    Text("\naespa 에스파 \'Black Mamba\' MV ℗ SM Entertainment"),
+    Text(
+      text: "\n\n",
+    ),
+    Text(
+      text: "#aespa",
+    ),
+    Text(
+      text: " ",
+    ),
+    Text(
+      text: "#æspa",
+    ),
+    Text(
+      text: " ",
+    ),
+    Text(
+      text: "#BlackMamba",
+    ),
+    Text(
+      text: " ",
+    ),
+    Text(
+      text: "#블랙맘바",
+    ),
+    Text(
+      text: " ",
+    ),
+    Text(
+      text: "#에스파",
+    ),
+    Text(
+      text: "\naespa 에스파 \'Black Mamba\' MV ℗ SM Entertainment",
+    ),
   ]),
   channel: ChannelTag(
     id: "UCEf_Bc-KVd7onSeifS3py9g",

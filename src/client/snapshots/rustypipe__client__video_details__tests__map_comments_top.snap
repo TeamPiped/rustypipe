@@ -8,10 +8,18 @@ Paginator(
     Comment(
       id: "UgwcU73OBV8OmSBOKrt4AaABAg",
       text: RichText([
-        Text("Who\'s excited for the special choreography video?? Let\'s go 100M!!!"),
-        Text("\n"),
-        Text("\n"),
-        Text("👇"),
+        Text(
+          text: "Who\'s excited for the special choreography video?? Let\'s go 100M!!!",
+        ),
+        Text(
+          text: "\n",
+        ),
+        Text(
+          text: "\n",
+        ),
+        Text(
+          text: "👇",
+        ),
       ]),
       author: Some(ChannelTag(
         id: "UC--QwZHg12dkw8UKw5yB1MQ",
@@ -53,7 +61,9 @@ Paginator(
     Comment(
       id: "Ugyrg-RcAMjT9yefZtJ4AaABAg",
       text: RichText([
-        Text("Chicas vamos por los 300M, démosle a todas esas haters chorrillo masivo fulminante de la envidia. Vamos, Mys puede a llegar a  ser poderoso si nos unimos. Vamos por los 300M solo nos falta poco para llegar!!!!!!! Vamos Mys, alcemos nuestro teléfonos y brindemos por lo que puede hacer las Mys por Aespa"),
+        Text(
+          text: "Chicas vamos por los 300M, démosle a todas esas haters chorrillo masivo fulminante de la envidia. Vamos, Mys puede a llegar a  ser poderoso si nos unimos. Vamos por los 300M solo nos falta poco para llegar!!!!!!! Vamos Mys, alcemos nuestro teléfonos y brindemos por lo que puede hacer las Mys por Aespa",
+        ),
       ]),
       author: Some(ChannelTag(
         id: "UCqT9iACjb69o254SFlUjcDQ",
@@ -95,7 +105,9 @@ Paginator(
     Comment(
       id: "UgzP00PlfmotA1LxkS94AaABAg",
       text: RichText([
-        Text("The best 4th gen group debut for me. Camerawork, artistic value, choreography, concept, make up and styling, this one nailed ALL."),
+        Text(
+          text: "The best 4th gen group debut for me. Camerawork, artistic value, choreography, concept, make up and styling, this one nailed ALL.",
+        ),
       ]),
       author: Some(ChannelTag(
         id: "UC00F5JjCjDDum6MlP3eloxw",
@@ -137,7 +149,9 @@ Paginator(
     Comment(
       id: "UgzQJw-ncvJM2tmMstp4AaABAg",
       text: RichText([
-        Text("Black Manba o MV mais icônico do aespa amooooi"),
+        Text(
+          text: "Black Manba o MV mais icônico do aespa amooooi",
+        ),
       ]),
       author: Some(ChannelTag(
         id: "UCbfGo61YSYOlfyF1cWejhng",
@@ -179,7 +193,9 @@ Paginator(
     Comment(
       id: "Ugz3auWqfNwtNT1UCd54AaABAg",
       text: RichText([
-        Text("MYs if we want to make Black Mamba the most debut MV for 4th gen- let us keep on strêaming. Consistency is the key."),
+        Text(
+          text: "MYs if we want to make Black Mamba the most debut MV for 4th gen- let us keep on strêaming. Consistency is the key.",
+        ),
       ]),
       author: Some(ChannelTag(
         id: "UCITMz9SiXQrV-cltI-9Auuw",
@@ -221,12 +237,24 @@ Paginator(
     Comment(
       id: "Ugz9k0J4D8v1l101-zN4AaABAg",
       text: RichText([
-        Text("Usually this type of songs don\'t really click with me, but damn this is a masterpiece"),
-        Text("\n"),
-        Text("Also why i just find out that this is their debut song after listening it many times..."),
-        Text("\n"),
-        Text("\n"),
-        Text("(ps. Winter is my love <3)"),
+        Text(
+          text: "Usually this type of songs don\'t really click with me, but damn this is a masterpiece",
+        ),
+        Text(
+          text: "\n",
+        ),
+        Text(
+          text: "Also why i just find out that this is their debut song after listening it many times...",
+        ),
+        Text(
+          text: "\n",
+        ),
+        Text(
+          text: "\n",
+        ),
+        Text(
+          text: "(ps. Winter is my love <3)",
+        ),
       ]),
       author: Some(ChannelTag(
         id: "UCDaOL1lsanMlpbzaQunz47Q",
@@ -268,13 +296,27 @@ Paginator(
     Comment(
       id: "Ugznd4KqU5k8A7axB7V4AaABAg",
       text: RichText([
-        Text("Keep streaming mys"),
-        Text("\n"),
-        Text("Black Mamba and Next Level --> 200 M"),
-        Text("\n"),
-        Text("Savage --> 160 M"),
-        Text("\n"),
-        Text("Forever, Dreams come true --> 50 M"),
+        Text(
+          text: "Keep streaming mys",
+        ),
+        Text(
+          text: "\n",
+        ),
+        Text(
+          text: "Black Mamba and Next Level --> 200 M",
+        ),
+        Text(
+          text: "\n",
+        ),
+        Text(
+          text: "Savage --> 160 M",
+        ),
+        Text(
+          text: "\n",
+        ),
+        Text(
+          text: "Forever, Dreams come true --> 50 M",
+        ),
       ]),
       author: Some(ChannelTag(
         id: "UC2P4Zx1o4D3VQIjA_MIToQQ",
@@ -316,7 +358,9 @@ Paginator(
     Comment(
       id: "UgzHSudD7eVIrU37HBV4AaABAg",
       text: RichText([
-        Text("Logremos más de 250M Antes de que se termine el año ♡"),
+        Text(
+          text: "Logremos más de 250M Antes de que se termine el año ♡",
+        ),
       ]),
       author: Some(ChannelTag(
         id: "UC5cxR3XtdfVR_XT3sfIKdNg",
@@ -358,7 +402,9 @@ Paginator(
     Comment(
       id: "UgxmAIlOcpyAMGUZOlh4AaABAg",
       text: RichText([
-        Text("Llevemos está Masterpiece a los 300M!! ಥ‿ಥ♡ Don\'t stop My, 230M soon"),
+        Text(
+          text: "Llevemos está Masterpiece a los 300M!! ಥ‿ಥ♡ Don\'t stop My, 230M soon",
+        ),
       ]),
       author: Some(ChannelTag(
         id: "UC5cxR3XtdfVR_XT3sfIKdNg",
@@ -400,7 +446,9 @@ Paginator(
     Comment(
       id: "UgycqtDEEEP5fSwm8tt4AaABAg",
       text: RichText([
-        Text("Keep streaming my\'s let\'s reach 300 million views before aespa\'s full album comeback."),
+        Text(
+          text: "Keep streaming my\'s let\'s reach 300 million views before aespa\'s full album comeback.",
+        ),
       ]),
       author: Some(ChannelTag(
         id: "UCfQOeizIiPTG3hgKa-6MOeA",
@@ -442,9 +490,15 @@ Paginator(
     Comment(
       id: "UgxgsPeAR4eQ_BjEXs94AaABAg",
       text: RichText([
-        Text("Hay que seguir reproduciendo para que llegue a 300 millones pronto antes de que cumpla dos años en noviembre "),
-        Text("\n"),
-        Text("Vamos que si se puede"),
+        Text(
+          text: "Hay que seguir reproduciendo para que llegue a 300 millones pronto antes de que cumpla dos años en noviembre ",
+        ),
+        Text(
+          text: "\n",
+        ),
+        Text(
+          text: "Vamos que si se puede",
+        ),
       ]),
       author: Some(ChannelTag(
         id: "UCgRWbRJqUHCvWv6xOuB4few",
@@ -486,7 +540,9 @@ Paginator(
     Comment(
       id: "UgyTlZ_kkX6rrt5wKEp4AaABAg",
       text: RichText([
-        Text("DENLE LIKE AL MV Q FALTA POCO PARA LOS 4M DE LIKES ¡!¡!¡"),
+        Text(
+          text: "DENLE LIKE AL MV Q FALTA POCO PARA LOS 4M DE LIKES ¡!¡!¡",
+        ),
       ]),
       author: Some(ChannelTag(
         id: "UCBqR9kJhtiHLE6dP-Oo_DMQ",
@@ -528,7 +584,9 @@ Paginator(
     Comment(
       id: "Ugyg3D9dUIErJ4y_L2l4AaABAg",
       text: RichText([
-        Text("146 millones vamos por 147 millones si se puede vamos a por mas GO"),
+        Text(
+          text: "146 millones vamos por 147 millones si se puede vamos a por mas GO",
+        ),
       ]),
       author: Some(ChannelTag(
         id: "UCjbUNOs6PAAAAo3_feDwLQA",
@@ -570,7 +628,9 @@ Paginator(
     Comment(
       id: "UgymMTcc-41D0p8oXL54AaABAg",
       text: RichText([
-        Text("Best MV debut for this gen!"),
+        Text(
+          text: "Best MV debut for this gen!",
+        ),
       ]),
       author: Some(ChannelTag(
         id: "UCjXq-4-e-OKn1S3SB52wHRQ",
@@ -612,7 +672,9 @@ Paginator(
     Comment(
       id: "UgznkUYwXNa5x-m6FNF4AaABAg",
       text: RichText([
-        Text("Ya es 2022 y aún no superó este M/V, stream mys para los 300M!"),
+        Text(
+          text: "Ya es 2022 y aún no superó este M/V, stream mys para los 300M!",
+        ),
       ]),
       author: Some(ChannelTag(
         id: "UCwan9APGANDUfYdYBbU6OeQ",
@@ -654,7 +716,9 @@ Paginator(
     Comment(
       id: "UgxYqYkFAgWb3JaTHYt4AaABAg",
       text: RichText([
-        Text("I get goosebump every single time it comes to NingNing’s high note. Baby you’re amazingggg"),
+        Text(
+          text: "I get goosebump every single time it comes to NingNing’s high note. Baby you’re amazingggg",
+        ),
       ]),
       author: Some(ChannelTag(
         id: "UC3IEDx0AQiUOP8FtC_MlyFQ",
@@ -696,7 +760,9 @@ Paginator(
     Comment(
       id: "Ugy4IPsS4P7c9YzMhT54AaABAg",
       text: RichText([
-        Text("This is still the best K-pop debut <3 MYS LETS STREAM HARD FOR GIRLS"),
+        Text(
+          text: "This is still the best K-pop debut <3 MYS LETS STREAM HARD FOR GIRLS",
+        ),
       ]),
       author: Some(ChannelTag(
         id: "UC2vbH7mtFRTiPGLRt9l_OSw",
@@ -738,7 +804,9 @@ Paginator(
     Comment(
       id: "UgwsT7Wpll7wOJQUcWd4AaABAg",
       text: RichText([
-        Text("Don\'t be shy SM Entertainment! Give the girls another legendary comeback!"),
+        Text(
+          text: "Don\'t be shy SM Entertainment! Give the girls another legendary comeback!",
+        ),
       ]),
       author: Some(ChannelTag(
         id: "UCWgL2cewcYnsIqwN1tMikJg",
@@ -780,7 +848,9 @@ Paginator(
     Comment(
       id: "UgzoZf9nG7VBNhcDLRF4AaABAg",
       text: RichText([
-        Text("aespa\'s debut song is really powerful. I\'ve been listening to this song many times since its release. But, the energy the song is sending me is just as powerful"),
+        Text(
+          text: "aespa\'s debut song is really powerful. I\'ve been listening to this song many times since its release. But, the energy the song is sending me is just as powerful",
+        ),
       ]),
       author: Some(ChannelTag(
         id: "UCN4tkZuSBXlZ5b9E8CETBUw",
@@ -822,9 +892,15 @@ Paginator(
     Comment(
       id: "UgyMeq1WDhSYAIJ3JQh4AaABAg",
       text: RichText([
-        Text("219,2M still one of my fav debut song! "),
-        Text("🔥"),
-        Text("💎"),
+        Text(
+          text: "219,2M still one of my fav debut song! ",
+        ),
+        Text(
+          text: "🔥",
+        ),
+        Text(
+          text: "💎",
+        ),
       ]),
       author: Some(ChannelTag(
         id: "UCoU9ZmBOV-CB2Mjl_JM3-ZA",

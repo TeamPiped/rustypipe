@@ -8,11 +8,21 @@ Paginator(
     Comment(
       id: "UgyrLHPb5Q8yx7XzfKl4AaABAg",
       text: RichText([
-        Text("200.000.000 "),
-        Text("🤘🏻"),
-        Text("🫶"),
-        Text("🏻"),
-        Text("💗"),
+        Text(
+          text: "200.000.000 ",
+        ),
+        Text(
+          text: "🤘🏻",
+        ),
+        Text(
+          text: "🫶",
+        ),
+        Text(
+          text: "🏻",
+        ),
+        Text(
+          text: "💗",
+        ),
       ]),
       author: Some(ChannelTag(
         id: "UCKv2ITDFlBf8sCaM4bGAq9w",
@@ -54,7 +64,9 @@ Paginator(
     Comment(
       id: "UgwgAG_gp2OsyCJhxh54AaABAg",
       text: RichText([
-        Text("Mys, spotify wraps comes in a few months..so start str3ming Aespa all songs on spotify."),
+        Text(
+          text: "Mys, spotify wraps comes in a few months..so start str3ming Aespa all songs on spotify.",
+        ),
       ]),
       author: Some(ChannelTag(
         id: "UCpO0iV02gvz1zY0xaEip-Lw",
@@ -96,8 +108,12 @@ Paginator(
     Comment(
       id: "UgyZRJd_8n_wWXjWk0Z4AaABAg",
       text: RichText([
-        Text("Cerita black mamba kan udah tutup buku. Kira2 nanti konsep comebacknya apa yaa? "),
-        Text("😍"),
+        Text(
+          text: "Cerita black mamba kan udah tutup buku. Kira2 nanti konsep comebacknya apa yaa? ",
+        ),
+        Text(
+          text: "😍",
+        ),
       ]),
       author: Some(ChannelTag(
         id: "UC8Uu90kmT1uBXMuylOe5F2g",
@@ -139,11 +155,21 @@ Paginator(
     Comment(
       id: "UgzHO_WuV1ASUFXXV5Z4AaABAg",
       text: RichText([
-        Text("What do u guys think. Amazing debut song."),
-        Text("\n"),
-        Text("Like if u think so"),
-        Text("\n"),
-        Text("👇"),
+        Text(
+          text: "What do u guys think. Amazing debut song.",
+        ),
+        Text(
+          text: "\n",
+        ),
+        Text(
+          text: "Like if u think so",
+        ),
+        Text(
+          text: "\n",
+        ),
+        Text(
+          text: "👇",
+        ),
       ]),
       author: Some(ChannelTag(
         id: "UCKBVxnCV35xZ9Oe1U6DLENQ",
@@ -185,7 +211,9 @@ Paginator(
     Comment(
       id: "UgyUnq05V9-nzf-LOTV4AaABAg",
       text: RichText([
-        Text("Love this song so much"),
+        Text(
+          text: "Love this song so much",
+        ),
       ]),
       author: Some(ChannelTag(
         id: "UCsJS5T1NM3Ra7HLmiPjxeGg",
@@ -227,7 +255,9 @@ Paginator(
     Comment(
       id: "UgwNsbK2-lmMt0B8LrJ4AaABAg",
       text: RichText([
-        Text("They are the background of our karaoke"),
+        Text(
+          text: "They are the background of our karaoke",
+        ),
       ]),
       author: Some(ChannelTag(
         id: "UCh6Qqw1NFPNi6l7kfU1b4PA",
@@ -269,7 +299,9 @@ Paginator(
     Comment(
       id: "UgyGXKLpUGtLHkg-8n54AaABAg",
       text: RichText([
-        Text("AESPA"),
+        Text(
+          text: "AESPA",
+        ),
       ]),
       author: Some(ChannelTag(
         id: "UCh6Qqw1NFPNi6l7kfU1b4PA",
@@ -311,7 +343,9 @@ Paginator(
     Comment(
       id: "Ugx5WMDdp479KsHnzFx4AaABAg",
       text: RichText([
-        Text("AVATAR EXPERIENCE ASPECT"),
+        Text(
+          text: "AVATAR EXPERIENCE ASPECT",
+        ),
       ]),
       author: Some(ChannelTag(
         id: "UCh6Qqw1NFPNi6l7kfU1b4PA",
@@ -353,7 +387,9 @@ Paginator(
     Comment(
       id: "UgyYed-oE-wKjQriOfp4AaABAg",
       text: RichText([
-        Text("HEIHH!!"),
+        Text(
+          text: "HEIHH!!",
+        ),
       ]),
       author: Some(ChannelTag(
         id: "UCgTOQ5KTAurWso9Hw2IGVow",
@@ -395,7 +431,9 @@ Paginator(
     Comment(
       id: "UgxeiRIMXSk9_z4JhrZ4AaABAg",
       text: RichText([
-        Text("Road to 234M!"),
+        Text(
+          text: "Road to 234M!",
+        ),
       ]),
       author: Some(ChannelTag(
         id: "UCuTNUUpUzXVljMSEy1YooZw",
@@ -437,7 +475,9 @@ Paginator(
     Comment(
       id: "UgyAfVKtB-4GsArpyFt4AaABAg",
       text: RichText([
-        Text("Happy 4m likes!"),
+        Text(
+          text: "Happy 4m likes!",
+        ),
       ]),
       author: Some(ChannelTag(
         id: "UCbfj_QOoelszMm1JlXpY7nw",
@@ -479,7 +519,9 @@ Paginator(
     Comment(
       id: "UgzA83tcCkEQKawjyY54AaABAg",
       text: RichText([
-        Text("MY\'s and aespa go fighting!"),
+        Text(
+          text: "MY\'s and aespa go fighting!",
+        ),
       ]),
       author: Some(ChannelTag(
         id: "UCh6Qqw1NFPNi6l7kfU1b4PA",
@@ -521,7 +563,9 @@ Paginator(
     Comment(
       id: "UgyCWVh43JdpxgevI-Z4AaABAg",
       text: RichText([
-        Text("I hope they bring back this colorful set for the next comeback"),
+        Text(
+          text: "I hope they bring back this colorful set for the next comeback",
+        ),
       ]),
       author: Some(ChannelTag(
         id: "UCh6Qqw1NFPNi6l7kfU1b4PA",
@@ -563,7 +607,9 @@ Paginator(
     Comment(
       id: "Ugz8T4zrMSdovk8PwJl4AaABAg",
       text: RichText([
-        Text("Keep str3aming MY\'s"),
+        Text(
+          text: "Keep str3aming MY\'s",
+        ),
       ]),
       author: Some(ChannelTag(
         id: "UCh6Qqw1NFPNi6l7kfU1b4PA",
@@ -605,7 +651,9 @@ Paginator(
     Comment(
       id: "UgyX8EhFG3R2mzdS57t4AaABAg",
       text: RichText([
-        Text("Ji-min-jeong Cross!"),
+        Text(
+          text: "Ji-min-jeong Cross!",
+        ),
       ]),
       author: Some(ChannelTag(
         id: "UCh6Qqw1NFPNi6l7kfU1b4PA",
@@ -647,7 +695,9 @@ Paginator(
     Comment(
       id: "UgwCYEQKVU2LLcfUaeB4AaABAg",
       text: RichText([
-        Text("BEST DEBUT EVER !!!"),
+        Text(
+          text: "BEST DEBUT EVER !!!",
+        ),
       ]),
       author: Some(ChannelTag(
         id: "UC-wGUUnJO1gTAw011kCGwfQ",
@@ -689,7 +739,9 @@ Paginator(
     Comment(
       id: "UgwV_-ac6tBgXSoIhSt4AaABAg",
       text: RichText([
-        Text("เพลงโครตน\u{e48}าเบ\u{e37}\u{e48}อ  ด\u{e35}แค\u{e48} cg"),
+        Text(
+          text: "เพลงโครตน\u{e48}าเบ\u{e37}\u{e48}อ  ด\u{e35}แค\u{e48} cg",
+        ),
       ]),
       author: Some(ChannelTag(
         id: "UCE7UmaNfXFkZ8iO8SZnx1_g",
@@ -731,7 +783,9 @@ Paginator(
     Comment(
       id: "Ugy0_tjx6M2D6MYACA94AaABAg",
       text: RichText([
-        Text("233230"),
+        Text(
+          text: "233230",
+        ),
       ]),
       author: Some(ChannelTag(
         id: "UCTV1SSSkB8Rr9Y5pD1tN8eA",
