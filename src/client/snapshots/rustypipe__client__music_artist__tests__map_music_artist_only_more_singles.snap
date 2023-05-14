@@ -34,7 +34,7 @@ MusicArtist(
   ],
   description: Some("ImagineDragons.lnk.to/Mercury"),
   wikipedia_url: None,
-  subscriber_count: Some(29300000),
+  subscriber_count: Some(30400000),
   tracks: [
     TrackItem(
       id: "Kx7B-XvmFtE",
@@ -177,17 +177,17 @@ MusicArtist(
       by_va: false,
     ),
     TrackItem(
-      id: "pXu6JC6-d_o",
-      name: "Natural",
+      id: "y4FiCl-tUJc",
+      name: "Demons",
       duration: None,
       cover: [
         Thumbnail(
-          url: "https://lh3.googleusercontent.com/oCN13vvhWWwEfD3aOS6NEmhh32em-I7wQKUvXJWEm6AJygqkJ5YpeZfpcmPiKbKJ72Dek_FTdUlnmlMm=w60-h60-l90-rj",
+          url: "https://lh3.googleusercontent.com/q5PWa2JVJApX31A7QU2vE4RY8i5S_ofYbfpxgDjhz5fagMAxv8ROkEpUr2OAYgYrhzYqJpv0bV94DRCb=w60-h60-l90-rj",
           width: 60,
           height: 60,
         ),
         Thumbnail(
-          url: "https://lh3.googleusercontent.com/oCN13vvhWWwEfD3aOS6NEmhh32em-I7wQKUvXJWEm6AJygqkJ5YpeZfpcmPiKbKJ72Dek_FTdUlnmlMm=w120-h120-l90-rj",
+          url: "https://lh3.googleusercontent.com/q5PWa2JVJApX31A7QU2vE4RY8i5S_ofYbfpxgDjhz5fagMAxv8ROkEpUr2OAYgYrhzYqJpv0bV94DRCb=w120-h120-l90-rj",
           width: 120,
           height: 120,
         ),
@@ -200,8 +200,8 @@ MusicArtist(
       ],
       artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
       album: Some(AlbumId(
-        id: "MPREb_D9808srSbf3",
-        name: "Origins (Deluxe)",
+        id: "MPREb_jsrcqx9Rvjl",
+        name: "Night Visions",
       )),
       view_count: None,
       is_video: false,
@@ -209,50 +209,17 @@ MusicArtist(
       by_va: false,
     ),
     TrackItem(
-      id: "ca8C6EQa5zc",
-      name: "Bones (twocolors Remix) [Official Remix Video]",
+      id: "KSav7HayxtI",
+      name: "Crushed (Official Video)",
       duration: None,
       cover: [
         Thumbnail(
-          url: "https://i.ytimg.com/vi/ca8C6EQa5zc/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3m2g8ZYozqlvnNqKNty3dh-1KYoaw",
+          url: "https://i.ytimg.com/vi/KSav7HayxtI/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kLUi6zOV1gC4Q94is5-CCmvfBUtQ",
           width: 400,
           height: 225,
         ),
         Thumbnail(
-          url: "https://i.ytimg.com/vi/ca8C6EQa5zc/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3kw1J1lh1EPktE6iZ7GKjZOnEGUew",
-          width: 800,
-          height: 450,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCuKzo7qs8JQC7XF0j7Gy2Lw"),
-          name: "twocolors",
-        ),
-        ArtistId(
-          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-          name: "Imagine Dragons",
-        ),
-      ],
-      artist_id: Some("UCuKzo7qs8JQC7XF0j7Gy2Lw"),
-      album: None,
-      view_count: Some(745000),
-      is_video: true,
-      track_nr: None,
-      by_va: false,
-    ),
-    TrackItem(
-      id: "30AToHb1ZJM",
-      name: "Enemy (Live from Montreal 2022) (feat. League of Legends, Arcane & JID)",
-      duration: None,
-      cover: [
-        Thumbnail(
-          url: "https://i.ytimg.com/vi/30AToHb1ZJM/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mdi7T9Lr3CqN_3zbOjuFBE3tXvag",
-          width: 400,
-          height: 225,
-        ),
-        Thumbnail(
-          url: "https://i.ytimg.com/vi/30AToHb1ZJM/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3ne3l3PDlLrXZZR2zQf49MUgT2_mg",
+          url: "https://i.ytimg.com/vi/KSav7HayxtI/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3lisv59frax-crJ_f11b17nJmEV9Q",
           width: 800,
           height: 450,
         ),
@@ -265,94 +232,7 @@ MusicArtist(
       ],
       artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
       album: None,
-      view_count: Some(674000),
-      is_video: true,
-      track_nr: None,
-      by_va: false,
-    ),
-    TrackItem(
-      id: "iH1YfDu19KM",
-      name: "I Don’t Like Myself (Official Music Video)",
-      duration: None,
-      cover: [
-        Thumbnail(
-          url: "https://i.ytimg.com/vi/iH1YfDu19KM/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lur_l2MCvt8VAtIv-JYEEf65Y2-w",
-          width: 400,
-          height: 225,
-        ),
-        Thumbnail(
-          url: "https://i.ytimg.com/vi/iH1YfDu19KM/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3l0YGiCvw36myRS95eVyKMDqDCUDA",
-          width: 800,
-          height: 450,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-          name: "Imagine Dragons",
-        ),
-      ],
-      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-      album: None,
-      view_count: Some(3100000),
-      is_video: true,
-      track_nr: None,
-      by_va: false,
-    ),
-    TrackItem(
-      id: "wBb_nAc4TPM",
-      name: "On Top Of The World (Live from Red Rocks, 2013)",
-      duration: None,
-      cover: [
-        Thumbnail(
-          url: "https://i.ytimg.com/vi/wBb_nAc4TPM/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kRURkp5ANYoC0N-yzBWLYBFK0O1g",
-          width: 400,
-          height: 225,
-        ),
-        Thumbnail(
-          url: "https://i.ytimg.com/vi/wBb_nAc4TPM/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3kFbGQC_g3ilD4W3AcIf_6I6rYkUQ",
-          width: 800,
-          height: 450,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-          name: "Imagine Dragons",
-        ),
-      ],
-      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-      album: None,
-      view_count: Some(298000),
-      is_video: true,
-      track_nr: None,
-      by_va: false,
-    ),
-    TrackItem(
-      id: "u2f89b5ha0o",
-      name: "The River (Lyric Video)",
-      duration: None,
-      cover: [
-        Thumbnail(
-          url: "https://i.ytimg.com/vi/u2f89b5ha0o/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lVhHwtdrU4GShg5-_6gnQo8tbZxw",
-          width: 400,
-          height: 225,
-        ),
-        Thumbnail(
-          url: "https://i.ytimg.com/vi/u2f89b5ha0o/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3lbD4StZLt4XLeHGG_xIhSPwRmypQ",
-          width: 800,
-          height: 450,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-          name: "Imagine Dragons",
-        ),
-      ],
-      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-      album: None,
-      view_count: Some(413000),
+      view_count: Some(2100000),
       is_video: true,
       track_nr: None,
       by_va: false,
@@ -381,7 +261,7 @@ MusicArtist(
       ],
       artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
       album: None,
-      view_count: Some(2300000000),
+      view_count: Some(2400000000),
       is_video: true,
       track_nr: None,
       by_va: false,
@@ -410,14 +290,14 @@ MusicArtist(
       ],
       artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
       album: None,
-      view_count: Some(91000000),
+      view_count: Some(207000000),
       is_video: true,
       track_nr: None,
       by_va: false,
     ),
     TrackItem(
       id: "D9G1VOjN_84",
-      name: "Enemy (from the series Arcane League of Legends) (feat. League of Legends, JID & Arcane)",
+      name: "Enemy (from the series Arcane League of Legends) (feat. League of Legends, Arcane & JID)",
       duration: None,
       cover: [
         Thumbnail(
@@ -439,7 +319,7 @@ MusicArtist(
       ],
       artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
       album: None,
-      view_count: Some(267000000),
+      view_count: Some(324000000),
       is_video: true,
       track_nr: None,
       by_va: false,
@@ -468,7 +348,89 @@ MusicArtist(
       ],
       artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
       album: None,
-      view_count: Some(1800000000),
+      view_count: Some(1900000000),
+      is_video: true,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "mWRsgZuwf_8",
+      name: "Demons",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/mWRsgZuwf_8/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lD1OiwYB15gxJByqnk5M16Cue2FQ",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/mWRsgZuwf_8/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3kM8kf60orqME7oOWypvnQqBfr0wg",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+          name: "Imagine Dragons",
+        ),
+      ],
+      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+      album: None,
+      view_count: Some(1000000000),
+      is_video: true,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "ktvTqknDobU",
+      name: "Radioactive",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/ktvTqknDobU/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3k4jwlWtlmqrEPX_nP-TRWA55B90w",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/ktvTqknDobU/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3kZI3n-PDHLAC2PZJZ9y8L7zmALiQ",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+          name: "Imagine Dragons",
+        ),
+      ],
+      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+      album: None,
+      view_count: Some(1400000000),
+      is_video: true,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "I-QfPUz1es8",
+      name: "Bad Liar (Official Music Video)",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/I-QfPUz1es8/hqdefault.jpg?sqp=-oaymwEWCMACELQBIAQqCghQEJADGFogjgJIWg&rs=AMzJL3kHYn8y8DTaFsquy2diW1yGnUhtFA",
+          width: 320,
+          height: 180,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+          name: "Imagine Dragons",
+        ),
+      ],
+      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+      album: None,
+      view_count: Some(440000000),
       is_video: true,
       track_nr: None,
       by_va: false,
@@ -497,7 +459,36 @@ MusicArtist(
       ],
       artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
       album: None,
-      view_count: Some(520000000),
+      view_count: Some(557000000),
+      is_video: true,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "gOsM-DYAEhY",
+      name: "Whatever It Takes (Official Music Video)",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/gOsM-DYAEhY/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3le70O7Kn17zbxeW_MLmWgflyhu0w",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/gOsM-DYAEhY/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3l9jdxgCnXMdqCvB3cDWcShOjLQJA",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+          name: "Imagine Dragons",
+        ),
+      ],
+      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+      album: None,
+      view_count: Some(877000000),
       is_video: true,
       track_nr: None,
       by_va: false,
@@ -531,6 +522,32 @@ MusicArtist(
       by_va: false,
     ),
     AlbumItem(
+      id: "MPREb_k7facecF3cB",
+      name: "Love Of Mine (Night Visions Demo)",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wVwe0_TyzTUL8y4ihcVtPWS8-lVVV7WfzmNzir_Qy9jiccgvXJSGCI0_GKDlvxBPSHvyOGX_rHEm5g7Pfg=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wVwe0_TyzTUL8y4ihcVtPWS8-lVVV7WfzmNzir_Qy9jiccgvXJSGCI0_GKDlvxBPSHvyOGX_rHEm5g7Pfg=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+          name: "Imagine Dragons",
+        ),
+      ],
+      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+      album_type: Single,
+      year: Some(2022),
+      by_va: false,
+    ),
+    AlbumItem(
       id: "MPREb_jxlYOZ4o4gA",
       name: "Mercury : Acts 1 & 2",
       cover: [
@@ -554,6 +571,214 @@ MusicArtist(
       artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
       album_type: Album,
       year: Some(2022),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_kbJgoqlVPkL",
+      name: "Sharks",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/BCtWQYRgn-dTAyoxwHcWzpEFIoBjGB84v3K4B5S4PPcpfmZqubGkGr9okkNTE-TYeBig6_x2ZsgyUyKX=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/BCtWQYRgn-dTAyoxwHcWzpEFIoBjGB84v3K4B5S4PPcpfmZqubGkGr9okkNTE-TYeBig6_x2ZsgyUyKX=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+          name: "Imagine Dragons",
+        ),
+      ],
+      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+      album_type: Single,
+      year: Some(2022),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_qDEFM12P26q",
+      name: "Bones",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/KuONfkMBij_zPmwXEMDG4y3TdMqZkWAABH6in8kzR2aAlKfDbto2hjvMSRakMeR2nSyPblGFJQ0WaxaR=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/KuONfkMBij_zPmwXEMDG4y3TdMqZkWAABH6in8kzR2aAlKfDbto2hjvMSRakMeR2nSyPblGFJQ0WaxaR=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+          name: "Imagine Dragons",
+        ),
+      ],
+      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+      album_type: Single,
+      year: Some(2022),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_10vqIYHfdiT",
+      name: "Enemy (from the series Arcane League of Legends)",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/Qcw8nCIMSZuMEgGSi4F6MpXVb-5GIoTvzjIpflMWbEA9CUtfBTpLxplvkBDCpt7KKWbZMvVQMgNrnes=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/Qcw8nCIMSZuMEgGSi4F6MpXVb-5GIoTvzjIpflMWbEA9CUtfBTpLxplvkBDCpt7KKWbZMvVQMgNrnes=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+          name: "Imagine Dragons",
+        ),
+      ],
+      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+      album_type: Single,
+      year: Some(2021),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_jrazNXbQcf4",
+      name: "Enemy (from the series Arcane League of Legends)",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/P_0EuEIJCgW_t7qWL1FFDgNhRgkvDJa4GHvwH1PZvjFUyUPtUrd4RbvmGHMtBsgMvSghJGwpCQlGtcw3=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/P_0EuEIJCgW_t7qWL1FFDgNhRgkvDJa4GHvwH1PZvjFUyUPtUrd4RbvmGHMtBsgMvSghJGwpCQlGtcw3=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+          name: "Imagine Dragons",
+        ),
+      ],
+      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+      album_type: Single,
+      year: Some(2021),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_nt0rELYssNe",
+      name: "Wrecked",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/9e8wA35fhJpjwBN4IzZiyco4rS252tyxz8VA_Y7k5R4c-35tgKgl94ZF_eK7N817qi0dMofd5hRIL6Bg=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/9e8wA35fhJpjwBN4IzZiyco4rS252tyxz8VA_Y7k5R4c-35tgKgl94ZF_eK7N817qi0dMofd5hRIL6Bg=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+          name: "Imagine Dragons",
+        ),
+      ],
+      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+      album_type: Single,
+      year: Some(2021),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_YyWn0024L4z",
+      name: "Follow You (Summer ’21 Version)",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/mI2yunj6F0-2jBSf4bZk8KfO7V-WFa_-tDLAhsgj3cTax0LjIPO6cW9y9-xcUQrZkBKVoi8huJ6wu7g=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/mI2yunj6F0-2jBSf4bZk8KfO7V-WFa_-tDLAhsgj3cTax0LjIPO6cW9y9-xcUQrZkBKVoi8huJ6wu7g=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+          name: "Imagine Dragons",
+        ),
+      ],
+      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+      album_type: Single,
+      year: Some(2021),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_T8ND4eXPjaD",
+      name: "Follow You / Cutthroat",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/krvRz3aki_iMlbH-waFCq8JJExuysHvDcs6YFDRSDBOAQ58pPYK9bzgRURVei6QxgkB2cDbYL4-_-3no=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/krvRz3aki_iMlbH-waFCq8JJExuysHvDcs6YFDRSDBOAQ58pPYK9bzgRURVei6QxgkB2cDbYL4-_-3no=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+          name: "Imagine Dragons",
+        ),
+      ],
+      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+      album_type: Single,
+      year: Some(2021),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_hsZNHUhFZ5I",
+      name: "Birds (feat. Elisa)",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/8SYqLgBoF1fbJChtnvogpCiWKBty83xA87ehPxRIzDGR154z6HSauLe4M5qKawLiGpnTgxFGb0k-hGqCAw=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/8SYqLgBoF1fbJChtnvogpCiWKBty83xA87ehPxRIzDGR154z6HSauLe4M5qKawLiGpnTgxFGb0k-hGqCAw=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+          name: "Imagine Dragons",
+        ),
+      ],
+      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+      album_type: Single,
+      year: Some(2019),
       by_va: false,
     ),
     AlbumItem(
@@ -583,6 +808,110 @@ MusicArtist(
       by_va: false,
     ),
     AlbumItem(
+      id: "MPREb_zR7wh4XsAii",
+      name: "Bad Liar – Stripped",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/5RkU8Csm_LlBHmeccY65wxdjnn4tjnWtobZPaI4cLMY6FhbazLQCJXKd0QIBskBXbYzglu4OiYSl5TcE=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/5RkU8Csm_LlBHmeccY65wxdjnn4tjnWtobZPaI4cLMY6FhbazLQCJXKd0QIBskBXbYzglu4OiYSl5TcE=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+          name: "Imagine Dragons",
+        ),
+      ],
+      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+      album_type: Single,
+      year: Some(2018),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_s5T58a5sF4a",
+      name: "Zero (From the Original Motion Picture \"Ralph Breaks The Internet\")",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/TSb3AVJ1FItr-6pEEKJbnw-1fLRLiCVoEyek7tID0X23oKd-wTb-AdX9Jyw46CfFutAnobbbux6VmEnD=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/TSb3AVJ1FItr-6pEEKJbnw-1fLRLiCVoEyek7tID0X23oKd-wTb-AdX9Jyw46CfFutAnobbbux6VmEnD=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+          name: "Imagine Dragons",
+        ),
+      ],
+      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+      album_type: Single,
+      year: Some(2018),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_QsIPEUzppDf",
+      name: "Born To Be Yours",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/r4ibKYsW02BDl9KS5jqlw-R_InP8aYYB4j1HsO8UeZSBQwEctE8wHsztuy92zJuL-dp2vhrP8SlbVDg=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/r4ibKYsW02BDl9KS5jqlw-R_InP8aYYB4j1HsO8UeZSBQwEctE8wHsztuy92zJuL-dp2vhrP8SlbVDg=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+          name: "Imagine Dragons",
+        ),
+      ],
+      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+      album_type: Single,
+      year: Some(2018),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_36k1xBhWsdi",
+      name: "Thunder / Young Dumb & Broke (Medley)",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/CameTE_SD6uoF0_alhuIYWqVeF06Cu1jkeiVNIyEmNY6P7rKiAFcmB3vZMAwqJIzL40W17SDk42_UCo=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/CameTE_SD6uoF0_alhuIYWqVeF06Cu1jkeiVNIyEmNY6P7rKiAFcmB3vZMAwqJIzL40W17SDk42_UCo=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+          name: "Imagine Dragons",
+        ),
+      ],
+      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+      album_type: Single,
+      year: Some(2017),
+      by_va: false,
+    ),
+    AlbumItem(
       id: "MPREb_q16Gzaa1WK8",
       name: "Evolve",
       cover: [
@@ -606,6 +935,136 @@ MusicArtist(
       artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
       album_type: Album,
       year: Some(2017),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_KfgkBaxNvla",
+      name: "Believer (feat. Lil Wayne)",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/Wb3ij6oxASzEqDF3ot8QGTODN_MxMtD7gbRo17TkCfyaLyfxVZfG6_vNrs3OoScAT5cdDGYuWe0by4Pw=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/Wb3ij6oxASzEqDF3ot8QGTODN_MxMtD7gbRo17TkCfyaLyfxVZfG6_vNrs3OoScAT5cdDGYuWe0by4Pw=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+          name: "Imagine Dragons",
+        ),
+      ],
+      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+      album_type: Single,
+      year: Some(2017),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_njSOrtCu9GV",
+      name: "Levitate (From The Original Motion Picture “Passengers”)",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/J7dIKuxAzKAyxoNS4ffkRorGaaP8uCdM2Hl9PnWoL1IsRUan5cV0d6Pxn_Mtb-FJDtb2NcVxKXqbvW_N=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/J7dIKuxAzKAyxoNS4ffkRorGaaP8uCdM2Hl9PnWoL1IsRUan5cV0d6Pxn_Mtb-FJDtb2NcVxKXqbvW_N=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+          name: "Imagine Dragons",
+        ),
+      ],
+      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+      album_type: Single,
+      year: Some(2016),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_wME0ldH7i3I",
+      name: "Sucker for Pain (feat. Logic, Ty Dolla $ign & X Ambassadors)",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/SLdBA0n3t0zS-CjMz9DpuCUjnr1zjpbH2qouzCoYPZtFyRixYc8GPjRuyRlJYp5L4_nzN_duNkI_7_M=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/SLdBA0n3t0zS-CjMz9DpuCUjnr1zjpbH2qouzCoYPZtFyRixYc8GPjRuyRlJYp5L4_nzN_duNkI_7_M=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+          name: "Imagine Dragons",
+        ),
+      ],
+      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+      album_type: Single,
+      year: Some(2016),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_wOFDd68OfGB",
+      name: "I Was Me",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/Vd-6BkY0MNiCq8PDtv_zxiZ6F9ewScrKFI69ZHARMURX2WDMzoXOOhy369sduqsmm46tEZhlIH8neZhkUw=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/Vd-6BkY0MNiCq8PDtv_zxiZ6F9ewScrKFI69ZHARMURX2WDMzoXOOhy369sduqsmm46tEZhlIH8neZhkUw=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+          name: "Imagine Dragons",
+        ),
+      ],
+      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+      album_type: Single,
+      year: Some(2015),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_WjuWnq6jp79",
+      name: "Roots",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/SB2hBTDK6mLdVBr1wRe3aL0qw4IIjeyQ25Hm5uTuSog-6vTro2v6XTk0KxEj-Fw4qMHaTLMvPSCBrqM=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/SB2hBTDK6mLdVBr1wRe3aL0qw4IIjeyQ25Hm5uTuSog-6vTro2v6XTk0KxEj-Fw4qMHaTLMvPSCBrqM=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+          name: "Imagine Dragons",
+        ),
+      ],
+      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
+      album_type: Single,
+      year: Some(2015),
       by_va: false,
     ),
     AlbumItem(
@@ -765,136 +1224,6 @@ MusicArtist(
       by_va: false,
     ),
     AlbumItem(
-      id: "MPREb_k7facecF3cB",
-      name: "Love Of Mine (Night Visions Demo)",
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/wVwe0_TyzTUL8y4ihcVtPWS8-lVVV7WfzmNzir_Qy9jiccgvXJSGCI0_GKDlvxBPSHvyOGX_rHEm5g7Pfg=w226-h226-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/wVwe0_TyzTUL8y4ihcVtPWS8-lVVV7WfzmNzir_Qy9jiccgvXJSGCI0_GKDlvxBPSHvyOGX_rHEm5g7Pfg=w544-h544-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-          name: "Imagine Dragons",
-        ),
-      ],
-      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-      album_type: Single,
-      year: Some(2022),
-      by_va: false,
-    ),
-    AlbumItem(
-      id: "MPREb_kbJgoqlVPkL",
-      name: "Sharks",
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/BCtWQYRgn-dTAyoxwHcWzpEFIoBjGB84v3K4B5S4PPcpfmZqubGkGr9okkNTE-TYeBig6_x2ZsgyUyKX=w226-h226-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/BCtWQYRgn-dTAyoxwHcWzpEFIoBjGB84v3K4B5S4PPcpfmZqubGkGr9okkNTE-TYeBig6_x2ZsgyUyKX=w544-h544-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-          name: "Imagine Dragons",
-        ),
-      ],
-      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-      album_type: Single,
-      year: Some(2022),
-      by_va: false,
-    ),
-    AlbumItem(
-      id: "MPREb_qDEFM12P26q",
-      name: "Bones",
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/KuONfkMBij_zPmwXEMDG4y3TdMqZkWAABH6in8kzR2aAlKfDbto2hjvMSRakMeR2nSyPblGFJQ0WaxaR=w226-h226-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/KuONfkMBij_zPmwXEMDG4y3TdMqZkWAABH6in8kzR2aAlKfDbto2hjvMSRakMeR2nSyPblGFJQ0WaxaR=w544-h544-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-          name: "Imagine Dragons",
-        ),
-      ],
-      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-      album_type: Single,
-      year: Some(2022),
-      by_va: false,
-    ),
-    AlbumItem(
-      id: "MPREb_10vqIYHfdiT",
-      name: "Enemy (from the series Arcane League of Legends)",
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/Qcw8nCIMSZuMEgGSi4F6MpXVb-5GIoTvzjIpflMWbEA9CUtfBTpLxplvkBDCpt7KKWbZMvVQMgNrnes=w226-h226-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/Qcw8nCIMSZuMEgGSi4F6MpXVb-5GIoTvzjIpflMWbEA9CUtfBTpLxplvkBDCpt7KKWbZMvVQMgNrnes=w544-h544-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-          name: "Imagine Dragons",
-        ),
-      ],
-      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-      album_type: Single,
-      year: Some(2021),
-      by_va: false,
-    ),
-    AlbumItem(
-      id: "MPREb_jrazNXbQcf4",
-      name: "Enemy (from the series Arcane League of Legends)",
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/P_0EuEIJCgW_t7qWL1FFDgNhRgkvDJa4GHvwH1PZvjFUyUPtUrd4RbvmGHMtBsgMvSghJGwpCQlGtcw3=w226-h226-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/P_0EuEIJCgW_t7qWL1FFDgNhRgkvDJa4GHvwH1PZvjFUyUPtUrd4RbvmGHMtBsgMvSghJGwpCQlGtcw3=w544-h544-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-          name: "Imagine Dragons",
-        ),
-      ],
-      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-      album_type: Single,
-      year: Some(2021),
-      by_va: false,
-    ),
-    AlbumItem(
       id: "MPREb_URzYgZyROtx",
       name: "Demons (TELYKast Remix)",
       cover: [
@@ -918,214 +1247,6 @@ MusicArtist(
       artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
       album_type: Single,
       year: Some(2021),
-      by_va: false,
-    ),
-    AlbumItem(
-      id: "MPREb_nt0rELYssNe",
-      name: "Wrecked",
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/9e8wA35fhJpjwBN4IzZiyco4rS252tyxz8VA_Y7k5R4c-35tgKgl94ZF_eK7N817qi0dMofd5hRIL6Bg=w226-h226-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/9e8wA35fhJpjwBN4IzZiyco4rS252tyxz8VA_Y7k5R4c-35tgKgl94ZF_eK7N817qi0dMofd5hRIL6Bg=w544-h544-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-          name: "Imagine Dragons",
-        ),
-      ],
-      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-      album_type: Single,
-      year: Some(2021),
-      by_va: false,
-    ),
-    AlbumItem(
-      id: "MPREb_YyWn0024L4z",
-      name: "Follow You (Summer ’21 Version)",
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/mI2yunj6F0-2jBSf4bZk8KfO7V-WFa_-tDLAhsgj3cTax0LjIPO6cW9y9-xcUQrZkBKVoi8huJ6wu7g=w226-h226-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/mI2yunj6F0-2jBSf4bZk8KfO7V-WFa_-tDLAhsgj3cTax0LjIPO6cW9y9-xcUQrZkBKVoi8huJ6wu7g=w544-h544-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-          name: "Imagine Dragons",
-        ),
-      ],
-      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-      album_type: Single,
-      year: Some(2021),
-      by_va: false,
-    ),
-    AlbumItem(
-      id: "MPREb_T8ND4eXPjaD",
-      name: "Follow You / Cutthroat",
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/krvRz3aki_iMlbH-waFCq8JJExuysHvDcs6YFDRSDBOAQ58pPYK9bzgRURVei6QxgkB2cDbYL4-_-3no=w226-h226-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/krvRz3aki_iMlbH-waFCq8JJExuysHvDcs6YFDRSDBOAQ58pPYK9bzgRURVei6QxgkB2cDbYL4-_-3no=w544-h544-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-          name: "Imagine Dragons",
-        ),
-      ],
-      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-      album_type: Single,
-      year: Some(2021),
-      by_va: false,
-    ),
-    AlbumItem(
-      id: "MPREb_hsZNHUhFZ5I",
-      name: "Birds (feat. Elisa)",
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/8SYqLgBoF1fbJChtnvogpCiWKBty83xA87ehPxRIzDGR154z6HSauLe4M5qKawLiGpnTgxFGb0k-hGqCAw=w226-h226-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/8SYqLgBoF1fbJChtnvogpCiWKBty83xA87ehPxRIzDGR154z6HSauLe4M5qKawLiGpnTgxFGb0k-hGqCAw=w544-h544-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-          name: "Imagine Dragons",
-        ),
-      ],
-      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-      album_type: Single,
-      year: Some(2019),
-      by_va: false,
-    ),
-    AlbumItem(
-      id: "MPREb_zR7wh4XsAii",
-      name: "Bad Liar – Stripped",
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/5RkU8Csm_LlBHmeccY65wxdjnn4tjnWtobZPaI4cLMY6FhbazLQCJXKd0QIBskBXbYzglu4OiYSl5TcE=w226-h226-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/5RkU8Csm_LlBHmeccY65wxdjnn4tjnWtobZPaI4cLMY6FhbazLQCJXKd0QIBskBXbYzglu4OiYSl5TcE=w544-h544-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-          name: "Imagine Dragons",
-        ),
-      ],
-      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-      album_type: Single,
-      year: Some(2018),
-      by_va: false,
-    ),
-    AlbumItem(
-      id: "MPREb_s5T58a5sF4a",
-      name: "Zero (From the Original Motion Picture \"Ralph Breaks The Internet\")",
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/TSb3AVJ1FItr-6pEEKJbnw-1fLRLiCVoEyek7tID0X23oKd-wTb-AdX9Jyw46CfFutAnobbbux6VmEnD=w226-h226-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/TSb3AVJ1FItr-6pEEKJbnw-1fLRLiCVoEyek7tID0X23oKd-wTb-AdX9Jyw46CfFutAnobbbux6VmEnD=w544-h544-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-          name: "Imagine Dragons",
-        ),
-      ],
-      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-      album_type: Single,
-      year: Some(2018),
-      by_va: false,
-    ),
-    AlbumItem(
-      id: "MPREb_QsIPEUzppDf",
-      name: "Born To Be Yours",
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/r4ibKYsW02BDl9KS5jqlw-R_InP8aYYB4j1HsO8UeZSBQwEctE8wHsztuy92zJuL-dp2vhrP8SlbVDg=w226-h226-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/r4ibKYsW02BDl9KS5jqlw-R_InP8aYYB4j1HsO8UeZSBQwEctE8wHsztuy92zJuL-dp2vhrP8SlbVDg=w544-h544-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-          name: "Imagine Dragons",
-        ),
-      ],
-      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-      album_type: Single,
-      year: Some(2018),
-      by_va: false,
-    ),
-    AlbumItem(
-      id: "MPREb_36k1xBhWsdi",
-      name: "Thunder / Young Dumb & Broke (Medley)",
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/CameTE_SD6uoF0_alhuIYWqVeF06Cu1jkeiVNIyEmNY6P7rKiAFcmB3vZMAwqJIzL40W17SDk42_UCo=w226-h226-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/CameTE_SD6uoF0_alhuIYWqVeF06Cu1jkeiVNIyEmNY6P7rKiAFcmB3vZMAwqJIzL40W17SDk42_UCo=w544-h544-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-          name: "Imagine Dragons",
-        ),
-      ],
-      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-      album_type: Single,
-      year: Some(2017),
       by_va: false,
     ),
     AlbumItem(
@@ -1207,110 +1328,6 @@ MusicArtist(
       by_va: false,
     ),
     AlbumItem(
-      id: "MPREb_KfgkBaxNvla",
-      name: "Believer (feat. Lil Wayne)",
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/Wb3ij6oxASzEqDF3ot8QGTODN_MxMtD7gbRo17TkCfyaLyfxVZfG6_vNrs3OoScAT5cdDGYuWe0by4Pw=w226-h226-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/Wb3ij6oxASzEqDF3ot8QGTODN_MxMtD7gbRo17TkCfyaLyfxVZfG6_vNrs3OoScAT5cdDGYuWe0by4Pw=w544-h544-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-          name: "Imagine Dragons",
-        ),
-      ],
-      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-      album_type: Single,
-      year: Some(2017),
-      by_va: false,
-    ),
-    AlbumItem(
-      id: "MPREb_njSOrtCu9GV",
-      name: "Levitate (From The Original Motion Picture “Passengers”)",
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/J7dIKuxAzKAyxoNS4ffkRorGaaP8uCdM2Hl9PnWoL1IsRUan5cV0d6Pxn_Mtb-FJDtb2NcVxKXqbvW_N=w226-h226-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/J7dIKuxAzKAyxoNS4ffkRorGaaP8uCdM2Hl9PnWoL1IsRUan5cV0d6Pxn_Mtb-FJDtb2NcVxKXqbvW_N=w544-h544-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-          name: "Imagine Dragons",
-        ),
-      ],
-      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-      album_type: Single,
-      year: Some(2016),
-      by_va: false,
-    ),
-    AlbumItem(
-      id: "MPREb_wME0ldH7i3I",
-      name: "Sucker for Pain (feat. Logic, Ty Dolla $ign & X Ambassadors)",
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/SLdBA0n3t0zS-CjMz9DpuCUjnr1zjpbH2qouzCoYPZtFyRixYc8GPjRuyRlJYp5L4_nzN_duNkI_7_M=w226-h226-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/SLdBA0n3t0zS-CjMz9DpuCUjnr1zjpbH2qouzCoYPZtFyRixYc8GPjRuyRlJYp5L4_nzN_duNkI_7_M=w544-h544-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-          name: "Imagine Dragons",
-        ),
-      ],
-      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-      album_type: Single,
-      year: Some(2016),
-      by_va: false,
-    ),
-    AlbumItem(
-      id: "MPREb_wOFDd68OfGB",
-      name: "I Was Me",
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/Vd-6BkY0MNiCq8PDtv_zxiZ6F9ewScrKFI69ZHARMURX2WDMzoXOOhy369sduqsmm46tEZhlIH8neZhkUw=w226-h226-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/Vd-6BkY0MNiCq8PDtv_zxiZ6F9ewScrKFI69ZHARMURX2WDMzoXOOhy369sduqsmm46tEZhlIH8neZhkUw=w544-h544-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-          name: "Imagine Dragons",
-        ),
-      ],
-      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-      album_type: Single,
-      year: Some(2015),
-      by_va: false,
-    ),
-    AlbumItem(
       id: "MPREb_Dt9N3GTqasf",
       name: "Dream (Jorgen Odegard Remix)",
       cover: [
@@ -1321,32 +1338,6 @@ MusicArtist(
         ),
         Thumbnail(
           url: "https://lh3.googleusercontent.com/2uFheAZcRtRNUkJdD0N1ssMI8J-VEnnDcAyTq3VpHVnT7YK5vdhFyR4cXX-KCm9X3eMcfj5QhNlwnUs=w544-h544-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-          name: "Imagine Dragons",
-        ),
-      ],
-      artist_id: Some("UC0aXrjVxG5pZr99v77wZdPQ"),
-      album_type: Single,
-      year: Some(2015),
-      by_va: false,
-    ),
-    AlbumItem(
-      id: "MPREb_WjuWnq6jp79",
-      name: "Roots",
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/SB2hBTDK6mLdVBr1wRe3aL0qw4IIjeyQ25Hm5uTuSog-6vTro2v6XTk0KxEj-Fw4qMHaTLMvPSCBrqM=w226-h226-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/SB2hBTDK6mLdVBr1wRe3aL0qw4IIjeyQ25Hm5uTuSog-6vTro2v6XTk0KxEj-Fw4qMHaTLMvPSCBrqM=w544-h544-l90-rj",
           width: 544,
           height: 544,
         ),
@@ -1559,35 +1550,16 @@ MusicArtist(
       from_ytm: true,
     ),
     MusicPlaylistItem(
-      id: "RDCLAK5uy_kPR9usfd5aQ8n4rTcEv7y1VLvMm1ewig4",
-      name: "Fun Family Hangout",
-      thumbnail: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/HOKCd93GRcspJYsu87PjoOo4GoJnjPEclSr0IKVdh_WIMSPYM-5zh06Quicv-8LUP9Zr42GMPvIqW4I=w226-h226-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/HOKCd93GRcspJYsu87PjoOo4GoJnjPEclSr0IKVdh_WIMSPYM-5zh06Quicv-8LUP9Zr42GMPvIqW4I=w544-h544-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      channel: None,
-      track_count: None,
-      from_ytm: true,
-    ),
-    MusicPlaylistItem(
       id: "RDCLAK5uy_nbzJVrwitbeDjlcHvjM7fgF7khtUOoHgU",
       name: "Ultimate Radio Hits",
       thumbnail: [
         Thumbnail(
-          url: "https://lh3.googleusercontent.com/ufXcnPwlUAtvPz3HzblgNTJmUMMFZWKL1VUGfEYk6wYBtKaCSjNsG3AL4wWdeO0t2HYvGrIuMaflp_E=w226-h226-l90-rj",
+          url: "https://lh3.googleusercontent.com/xnBLJAaN7RsTr3zN4syLZByllK98xE67AP2BD42J5JN2He-fdrBCj9YQfa471uDn81p9uUHKNjcSSQ=w226-h226-l90-rj",
           width: 226,
           height: 226,
         ),
         Thumbnail(
-          url: "https://lh3.googleusercontent.com/ufXcnPwlUAtvPz3HzblgNTJmUMMFZWKL1VUGfEYk6wYBtKaCSjNsG3AL4wWdeO0t2HYvGrIuMaflp_E=w544-h544-l90-rj",
+          url: "https://lh3.googleusercontent.com/xnBLJAaN7RsTr3zN4syLZByllK98xE67AP2BD42J5JN2He-fdrBCj9YQfa471uDn81p9uUHKNjcSSQ=w544-h544-l90-rj",
           width: 544,
           height: 544,
         ),
@@ -1635,6 +1607,25 @@ MusicArtist(
       from_ytm: true,
     ),
     MusicPlaylistItem(
+      id: "RDCLAK5uy_mgHrXs_5F6wPwPFA47S8yrzCfjCi4AXDE",
+      name: "All-Time Alt",
+      thumbnail: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/I2JVsAIsxuvc9gZpSmm8cuV06Uu5l6mXwFoCn26GyffrePtKKUh9DNrHz-JXpk250yiWT3XF1xdCikU=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/I2JVsAIsxuvc9gZpSmm8cuV06Uu5l6mXwFoCn26GyffrePtKKUh9DNrHz-JXpk250yiWT3XF1xdCikU=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      channel: None,
+      track_count: None,
+      from_ytm: true,
+    ),
+    MusicPlaylistItem(
       id: "RDCLAK5uy_l7u7RCjtiI_I3m5EgnI-V9yWAgx0RNy1E",
       name: "All-Time Pumped-Up Hits",
       thumbnail: [
@@ -1645,6 +1636,25 @@ MusicArtist(
         ),
         Thumbnail(
           url: "https://lh3.googleusercontent.com/222JUk4ErOCMRy-oJHF5VP62Z2Szjhc1POklcyMC86BKQBT7iEIbUo7yRtBBgWLPtOyFeV0BH1Ymudg=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      channel: None,
+      track_count: None,
+      from_ytm: true,
+    ),
+    MusicPlaylistItem(
+      id: "RDCLAK5uy_k7h5535MeHE8xmgHsrZx7HOKH4lb5vAfY",
+      name: "Massive Rock Hits",
+      thumbnail: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/lhbsHZ9EXxNxnI8vbWOo_XfRR2DAQ2JpSQAPO6u2bG4JJkYGO7l4QgXuJ709twt9Fv2Ez8HF4uxwA-rD=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/lhbsHZ9EXxNxnI8vbWOo_XfRR2DAQ2JpSQAPO6u2bG4JJkYGO7l4QgXuJ709twt9Fv2Ez8HF4uxwA-rD=w544-h544-l90-rj",
           width: 544,
           height: 544,
         ),
@@ -1691,25 +1701,6 @@ MusicArtist(
       track_count: None,
       from_ytm: true,
     ),
-    MusicPlaylistItem(
-      id: "RDCLAK5uy_lE8vDUUYCoBsJBbfDuXtEvUFS0T5kno3E",
-      name: "Singalong Hits",
-      thumbnail: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/z-XHpkK4c3tVb_Jk-qQ0wr-qykBZjUssSLw-2CFn5Q8Ckh5CqfiWZN6t15vvNnrBqzgEPsaPIqQoGZs=w226-h226-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/z-XHpkK4c3tVb_Jk-qQ0wr-qykBZjUssSLw-2CFn5Q8Ckh5CqfiWZN6t15vvNnrBqzgEPsaPIqQoGZs=w544-h544-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      channel: None,
-      track_count: None,
-      from_ytm: true,
-    ),
   ],
   similar_artists: [
     ArtistItem(
@@ -1727,24 +1718,7 @@ MusicArtist(
           height: 544,
         ),
       ],
-      subscriber_count: Some(10100000),
-    ),
-    ArtistItem(
-      id: "UCdQICt_YIo4FEOaLtTOi4RA",
-      name: "The Score",
-      avatar: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/g5pnamhs4OXVY21xg-PEDvabGcUAPOdFYPu1TWFcFtFmYZmE_uDain-bjXfJHit-O79qKBZ3XMT6OQ=w226-h226-p-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/g5pnamhs4OXVY21xg-PEDvabGcUAPOdFYPu1TWFcFtFmYZmE_uDain-bjXfJHit-O79qKBZ3XMT6OQ=w544-h544-p-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      subscriber_count: Some(1720000),
+      subscriber_count: Some(10300000),
     ),
     ArtistItem(
       id: "UCw81Qqzprmu2NKgRpZHiPrg",
@@ -1761,58 +1735,41 @@ MusicArtist(
           height: 544,
         ),
       ],
-      subscriber_count: Some(2420000),
+      subscriber_count: Some(2430000),
+    ),
+    ArtistItem(
+      id: "UCdQICt_YIo4FEOaLtTOi4RA",
+      name: "The Score",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/g5pnamhs4OXVY21xg-PEDvabGcUAPOdFYPu1TWFcFtFmYZmE_uDain-bjXfJHit-O79qKBZ3XMT6OQ=w226-h226-p-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/g5pnamhs4OXVY21xg-PEDvabGcUAPOdFYPu1TWFcFtFmYZmE_uDain-bjXfJHit-O79qKBZ3XMT6OQ=w544-h544-p-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(1760000),
     ),
     ArtistItem(
       id: "UCn27y010kAJSwpKKBhTwUuA",
       name: "American Authors",
       avatar: [
         Thumbnail(
-          url: "https://lh3.googleusercontent.com/vd8W2AzY05PhKyN4bw2WGAN75jVD7pl-ZBqkaTQRXvNK4L-q57jFueqxZOQjOpDeUnZbwdoqQONRdflZ=w226-h226-l90-rj",
+          url: "https://lh3.googleusercontent.com/CfVWg8m16AjH0JI1XlKI5I4XPh1UJpxXgEVbJyGpT_tmRsTCX_vuiac1DQvBBATf0aBSAP1xSVVniw=w226-h226-p-l90-rj",
           width: 226,
           height: 226,
         ),
         Thumbnail(
-          url: "https://lh3.googleusercontent.com/vd8W2AzY05PhKyN4bw2WGAN75jVD7pl-ZBqkaTQRXvNK4L-q57jFueqxZOQjOpDeUnZbwdoqQONRdflZ=w544-h544-l90-rj",
+          url: "https://lh3.googleusercontent.com/CfVWg8m16AjH0JI1XlKI5I4XPh1UJpxXgEVbJyGpT_tmRsTCX_vuiac1DQvBBATf0aBSAP1xSVVniw=w544-h544-p-l90-rj",
           width: 544,
           height: 544,
         ),
       ],
-      subscriber_count: Some(827000),
-    ),
-    ArtistItem(
-      id: "UCnX0L9QiftAcWdzeBx31xCw",
-      name: "Twenty One Pilots",
-      avatar: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/IihOopbS0xeSgpYSlgCm57XyF3V-Q3OY9BfUmFiqtnwymkcHaWxOmPscCsXRdhmY56MstGmjam5rZQ=w226-h226-p-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/IihOopbS0xeSgpYSlgCm57XyF3V-Q3OY9BfUmFiqtnwymkcHaWxOmPscCsXRdhmY56MstGmjam5rZQ=w544-h544-p-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      subscriber_count: Some(13000000),
-    ),
-    ArtistItem(
-      id: "UClmXPfaYhXOYsNn_QUyheWQ",
-      name: "Ed Sheeran",
-      avatar: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/jQoBIAS6JjFGpcqQY1M_Mh3AasOvFENCdVRxkgax1a0K6qiq7AgE3MbJ6Jtt-Jndcarvoawmrg66KTny=w226-h226-p-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/jQoBIAS6JjFGpcqQY1M_Mh3AasOvFENCdVRxkgax1a0K6qiq7AgE3MbJ6Jtt-Jndcarvoawmrg66KTny=w544-h544-p-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      subscriber_count: Some(52600000),
+      subscriber_count: Some(837000),
     ),
     ArtistItem(
       id: "UCcV2wQpCkgb34u4O22WG8Dw",
@@ -1829,24 +1786,75 @@ MusicArtist(
           height: 544,
         ),
       ],
-      subscriber_count: Some(1310000),
+      subscriber_count: Some(1330000),
     ),
     ArtistItem(
-      id: "UCdFe4KkWwZ_twpo-UECR-Nw",
-      name: "Maroon 5",
+      id: "UCnX0L9QiftAcWdzeBx31xCw",
+      name: "Twenty One Pilots",
       avatar: [
         Thumbnail(
-          url: "https://lh3.googleusercontent.com/w6lahCp_CVL6Dwd54MGB8Y_I-TXsMmMhDeM4Z_stmWh6B56H4e3x9M1q3juWODInuIBn90SeJl4RrpcN=w226-h226-p-l90-rj",
+          url: "https://lh3.googleusercontent.com/IihOopbS0xeSgpYSlgCm57XyF3V-Q3OY9BfUmFiqtnwymkcHaWxOmPscCsXRdhmY56MstGmjam5rZQ=w226-h226-p-l90-rj",
           width: 226,
           height: 226,
         ),
         Thumbnail(
-          url: "https://lh3.googleusercontent.com/w6lahCp_CVL6Dwd54MGB8Y_I-TXsMmMhDeM4Z_stmWh6B56H4e3x9M1q3juWODInuIBn90SeJl4RrpcN=w544-h544-p-l90-rj",
+          url: "https://lh3.googleusercontent.com/IihOopbS0xeSgpYSlgCm57XyF3V-Q3OY9BfUmFiqtnwymkcHaWxOmPscCsXRdhmY56MstGmjam5rZQ=w544-h544-p-l90-rj",
           width: 544,
           height: 544,
         ),
       ],
-      subscriber_count: Some(36300000),
+      subscriber_count: Some(13100000),
+    ),
+    ArtistItem(
+      id: "UCt75F1_GLecO9UJFuCP27ug",
+      name: "BANNERS",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/a-/ACB-R5T4MY6MksopLmOjogU2w0h60I8654vh6gG-ygiVwg=w226-h226-l90-rj-dcJSac7BkK",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/a-/ACB-R5T4MY6MksopLmOjogU2w0h60I8654vh6gG-ygiVwg=w544-h544-l90-rj-dcJSac7BkK",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(545000),
+    ),
+    ArtistItem(
+      id: "UCpjxqiRSP5nQ4tp1fT2bjHg",
+      name: "Of Monsters And Men",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/eyo9iz6-4A_Ti4a5PxzFrS9XDtbOmfrPhiE2LI0PFS5jZ3-h9rn9puL12uQST-5e6cAZ7Xg2HLvYAUY=w226-h226-p-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/eyo9iz6-4A_Ti4a5PxzFrS9XDtbOmfrPhiE2LI0PFS5jZ3-h9rn9puL12uQST-5e6cAZ7Xg2HLvYAUY=w544-h544-p-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(1470000),
+    ),
+    ArtistItem(
+      id: "UCVQziuk9_iOZe1OBeu4sizQ",
+      name: "Welshly Arms",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/FPPkspm1RqcA4_FGDVhQSAdK3PTOXMHBtLHaMCddm7V_lmBHs1ehGU_NISBZHzVAdVtynkPegNW1aw=w226-h226-p-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/FPPkspm1RqcA4_FGDVhQSAdK3PTOXMHBtLHaMCddm7V_lmBHs1ehGU_NISBZHzVAdVtynkPegNW1aw=w544-h544-p-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(192000),
     ),
     ArtistItem(
       id: "UCIaFw5VBEK8qaW6nRpx_qnw",
@@ -1863,24 +1871,7 @@ MusicArtist(
           height: 544,
         ),
       ],
-      subscriber_count: Some(24100000),
-    ),
-    ArtistItem(
-      id: "UCl1EhIbzUq6d1p2Bb1w22FA",
-      name: "John Newman",
-      avatar: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/PK_zuI9H03kG0p9e6pn0HQePNk5NjTnqGLoL6KxDFAN2xSIx0UDtOeHFM3jSGdCnEVdWlswwQQmLVYY=w226-h226-p-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/PK_zuI9H03kG0p9e6pn0HQePNk5NjTnqGLoL6KxDFAN2xSIx0UDtOeHFM3jSGdCnEVdWlswwQQmLVYY=w544-h544-p-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      subscriber_count: Some(2210000),
+      subscriber_count: Some(24900000),
     ),
   ],
   tracks_playlist_id: Some("OLAK5uy_nGjQIyWU6PsJZdJst7WOJHVZ7N7DupP04"),

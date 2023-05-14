@@ -1,6 +1,5 @@
-use std::{borrow::Cow, rc::Rc};
+use std::borrow::Cow;
 
-use futures::{stream, StreamExt};
 use once_cell::sync::Lazy;
 use regex::Regex;
 
@@ -13,7 +12,7 @@ use crate::{
 
 use super::{
     response::{self, music_item::MusicListMapper, url_endpoint::PageType},
-    ClientType, MapResponse, QBrowse, QBrowseParams, RustyPipeQuery,
+    ClientType, MapResponse, QBrowse, RustyPipeQuery,
 };
 
 impl RustyPipeQuery {
@@ -26,99 +25,57 @@ impl RustyPipeQuery {
         all_albums: bool,
     ) -> Result<MusicArtist, Error> {
         let artist_id = artist_id.as_ref();
-        let visitor_data = if all_albums {
-            Some(self.get_visitor_data().await?)
-        } else {
-            None
-        };
-
-        let res = self._music_artist(artist_id, visitor_data.as_deref()).await;
+        let res = self._music_artist(artist_id, all_albums).await;
 
         if let Err(Error::Extraction(ExtractionError::Redirect(id))) = res {
             log::debug!("music artist {} redirects to {}", artist_id, &id);
-            self._music_artist(&id, visitor_data.as_deref()).await
+            self._music_artist(&id, all_albums).await
         } else {
             res
         }
     }
 
-    async fn _music_artist(
-        &self,
-        artist_id: &str,
-        all_albums_vdata: Option<&str>,
-    ) -> Result<MusicArtist, Error> {
-        match all_albums_vdata {
-            Some(visitor_data) => {
-                let context = self
-                    .get_context(ClientType::DesktopMusic, true, Some(visitor_data))
-                    .await;
-                let request_body = QBrowse {
-                    context,
-                    browse_id: artist_id,
-                };
+    async fn _music_artist(&self, artist_id: &str, all_albums: bool) -> Result<MusicArtist, Error> {
+        let context = self.get_context(ClientType::DesktopMusic, true, None).await;
+        let request_body = QBrowse {
+            context,
+            browse_id: artist_id,
+        };
 
-                let (mut artist, album_page_params) = self
-                    .execute_request::<response::MusicArtist, _, _>(
-                        ClientType::DesktopMusic,
-                        "music_artist",
-                        artist_id,
-                        "browse",
-                        &request_body,
-                    )
-                    .await?;
-
-                let visitor_data = Rc::new(visitor_data);
-                let album_page_results = stream::iter(album_page_params)
-                    .map(|params| {
-                        let visitor_data = visitor_data.clone();
-                        async move {
-                            self.music_artist_album_page(artist_id, &params, &visitor_data)
-                                .await
-                        }
-                    })
-                    .buffer_unordered(2)
-                    .collect::<Vec<_>>()
-                    .await;
-
-                for res in album_page_results {
-                    let mut res = res?;
-                    artist.albums.append(&mut res);
-                }
-
-                Ok(artist)
-            }
-            None => {
-                let context = self.get_context(ClientType::DesktopMusic, true, None).await;
-                let request_body = QBrowse {
-                    context,
-                    browse_id: artist_id,
-                };
-
-                self.execute_request::<response::MusicArtist, _, _>(
+        if all_albums {
+            let (mut artist, can_fetch_more) = self
+                .execute_request::<response::MusicArtist, _, _>(
                     ClientType::DesktopMusic,
                     "music_artist",
                     artist_id,
                     "browse",
                     &request_body,
                 )
-                .await
+                .await?;
+
+            if can_fetch_more {
+                artist.albums = self.music_artist_albums(artist_id).await?;
             }
+
+            Ok(artist)
+        } else {
+            self.execute_request::<response::MusicArtist, _, _>(
+                ClientType::DesktopMusic,
+                "music_artist",
+                artist_id,
+                "browse",
+                &request_body,
+            )
+            .await
         }
     }
 
-    async fn music_artist_album_page(
-        &self,
-        artist_id: &str,
-        params: &str,
-        visitor_data: &str,
-    ) -> Result<Vec<AlbumItem>, Error> {
-        let context = self
-            .get_context(ClientType::DesktopMusic, true, Some(visitor_data))
-            .await;
-        let request_body = QBrowseParams {
+    /// Get a list of all albums of a YouTube Music artist
+    pub async fn music_artist_albums(&self, artist_id: &str) -> Result<Vec<AlbumItem>, Error> {
+        let context = self.get_context(ClientType::DesktopMusic, true, None).await;
+        let request_body = QBrowse {
             context,
-            browse_id: artist_id,
-            params,
+            browse_id: &format!("{}{}", util::ARTIST_DISCOGRAPHY_PREFIX, artist_id),
         };
 
         self.execute_request::<response::MusicArtistAlbums, _, _>(
@@ -147,13 +104,13 @@ impl MapResponse<MusicArtist> for response::MusicArtist {
     }
 }
 
-impl MapResponse<(MusicArtist, Vec<String>)> for response::MusicArtist {
+impl MapResponse<(MusicArtist, bool)> for response::MusicArtist {
     fn map_response(
         self,
         id: &str,
         lang: crate::param::Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
-    ) -> Result<MapResult<(MusicArtist, Vec<String>)>, ExtractionError> {
+    ) -> Result<MapResult<(MusicArtist, bool)>, ExtractionError> {
         map_artist_page(self, id, lang, true)
     }
 }
@@ -163,7 +120,7 @@ fn map_artist_page(
     id: &str,
     lang: crate::param::Language,
     skip_extendables: bool,
-) -> Result<MapResult<(MusicArtist, Vec<String>)>, ExtractionError> {
+) -> Result<MapResult<(MusicArtist, bool)>, ExtractionError> {
     // dbg!(&res);
 
     let header = res.header.music_immersive_header_renderer;
@@ -203,7 +160,7 @@ fn map_artist_page(
 
     let mut tracks_playlist_id = None;
     let mut videos_playlist_id = None;
-    let mut album_page_params = Vec::new();
+    let mut can_fetch_more = false;
 
     for section in sections {
         match section {
@@ -242,6 +199,11 @@ fn map_artist_page(
                                             videos_playlist_id = Some(bep.browse_id);
                                         }
                                     }
+                                    // Albums
+                                    PageType::ArtistDiscography => {
+                                        can_fetch_more = true;
+                                        extendable_albums = true;
+                                    }
                                     // Albums or playlists
                                     PageType::Artist => {
                                         // Peek at the first item to determine type
@@ -250,7 +212,7 @@ fn map_artist_page(
                                                 be.browse_endpoint_context_supported_configs.as_ref().map(|config| {
                                                         config.browse_endpoint_context_music_config.page_type
                                                 })}) {
-                                                    album_page_params.push(bep.params);
+                                                    can_fetch_more = true;
                                                     extendable_albums = true;
                                                 }
                                         }
@@ -318,7 +280,7 @@ fn map_artist_page(
                 videos_playlist_id,
                 radio_id,
             },
-            album_page_params,
+            can_fetch_more,
         ),
         warnings: mapped.warnings,
     })
@@ -332,6 +294,10 @@ impl MapResponse<Vec<AlbumItem>> for response::MusicArtistAlbums {
         _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<MapResult<Vec<AlbumItem>>, ExtractionError> {
         // dbg!(&self);
+
+        let Some(header) = self.header else {
+            return Err(ExtractionError::NotFound { id: id.into(), msg: "no header".into() });
+        };
 
         let grids = self
             .contents
@@ -349,7 +315,7 @@ impl MapResponse<Vec<AlbumItem>> for response::MusicArtistAlbums {
             lang,
             ArtistId {
                 id: Some(id.to_owned()),
-                name: self.header.music_header_renderer.title,
+                name: header.music_header_renderer.title,
             },
         );
 
@@ -380,7 +346,6 @@ mod tests {
 
     #[rstest]
     #[case::default("default", "UClmXPfaYhXOYsNn_QUyheWQ")]
-    #[case::no_more_albums("no_more_albums", "UC_vmjW5e1xEHhYjY2a0kK1A")]
     #[case::only_singles("only_singles", "UCfwCE5VhPMGxNPFxtVv7lRw")]
     #[case::no_artist("no_artist", "UCh8gHdtzO2tXd593_bjErWg")]
     #[case::only_more_singles("only_more_singles", "UC0aXrjVxG5pZr99v77wZdPQ")]
@@ -388,30 +353,27 @@ mod tests {
         let json_path = path!(*TESTFILES / "music_artist" / format!("artist_{name}.json"));
         let json_file = File::open(json_path).unwrap();
 
-        let mut album_page_paths = Vec::new();
-        for i in 1..=2 {
-            let json_path = path!(*TESTFILES / "music_artist" / format!("artist_{name}_{i}.json"));
-            if !json_path.exists() {
-                break;
-            }
-            album_page_paths.push(json_path);
+        let mut album_page_path = None;
+        let json_path = path!(*TESTFILES / "music_artist" / format!("artist_{name}_1.json"));
+        if json_path.exists() {
+            album_page_path = Some(json_path);
         }
 
         let resp: response::MusicArtist =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res: MapResult<(MusicArtist, Vec<String>)> =
+        let map_res: MapResult<(MusicArtist, bool)> =
             resp.map_response(id, Language::En, None).unwrap();
-        let (mut artist, album_page_params) = map_res.c;
+        let (mut artist, can_fetch_more) = map_res.c;
 
         assert!(
             map_res.warnings.is_empty(),
             "deserialization/mapping warnings: {:?}",
             map_res.warnings
         );
-        assert_eq!(album_page_params.len(), album_page_paths.len());
+        assert_eq!(can_fetch_more, album_page_path.is_some());
 
-        for json_path in album_page_paths {
-            let json_file = File::open(json_path).unwrap();
+        if let Some(album_page_path) = album_page_path {
+            let json_file = File::open(album_page_path).unwrap();
             let resp: response::MusicArtistAlbums =
                 serde_json::from_reader(BufReader::new(json_file)).unwrap();
             let mut map_res: MapResult<Vec<AlbumItem>> =

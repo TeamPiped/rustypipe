@@ -37,6 +37,7 @@ pub static VANITY_PATH_REGEX: Lazy<Regex> = Lazy::new(|| {
 pub const DOT_SEPARATOR: &str = " • ";
 pub const VARIOUS_ARTISTS: &str = "Various Artists";
 pub const PLAYLIST_ID_ALBUM_PREFIX: &str = "OLAK";
+pub const ARTIST_DISCOGRAPHY_PREFIX: &str = "MPAD";
 
 const CONTENT_PLAYBACK_NONCE_ALPHABET: &[u8; 64] =
     b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";

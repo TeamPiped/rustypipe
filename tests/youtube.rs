@@ -1,4 +1,4 @@
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 use std::fmt::Display;
 use std::str::FromStr;
 
@@ -1216,6 +1216,7 @@ fn search_suggestion_empty(rp: RustyPipe) {
 #[case("https://music.youtube.com/playlist?list=OLAK5uy_k0yFrZlFRgCf3rLPza-lkRmCrtLPbK9pE", UrlTarget::Album {id: "MPREb_GyH43gCvdM5".to_owned()})]
 #[case("https://music.youtube.com/browse/MPREb_GyH43gCvdM5", UrlTarget::Album {id: "MPREb_GyH43gCvdM5".to_owned()})]
 #[case("https://music.youtube.com/browse/UC5I2hjZYiW9gZPVkvzM8_Cw", UrlTarget::Channel {id: "UC5I2hjZYiW9gZPVkvzM8_Cw".to_owned()})]
+#[case("https://music.youtube.com/browse/MPADUC7cl4MmM6ZZ2TcFyMk_b4pg", UrlTarget::Channel {id: "UC7cl4MmM6ZZ2TcFyMk_b4pg".to_owned()})]
 fn resolve_url(#[case] url: &str, #[case] expect: UrlTarget, rp: RustyPipe) {
     let target = tokio_test::block_on(rp.query().resolve_url(url, true)).unwrap();
     assert_eq!(target, expect);
@@ -1233,6 +1234,7 @@ fn resolve_url(#[case] url: &str, #[case] expect: UrlTarget, rp: RustyPipe) {
 #[case("RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk", UrlTarget::Playlist {id: "RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk".to_owned()})]
 #[case("OLAK5uy_k0yFrZlFRgCf3rLPza-lkRmCrtLPbK9pE", UrlTarget::Album {id: "MPREb_GyH43gCvdM5".to_owned()})]
 #[case("MPREb_GyH43gCvdM5", UrlTarget::Album {id: "MPREb_GyH43gCvdM5".to_owned()})]
+#[case("MPADUC7cl4MmM6ZZ2TcFyMk_b4pg", UrlTarget::Channel {id: "UC7cl4MmM6ZZ2TcFyMk_b4pg".to_owned()})]
 fn resolve_string(#[case] string: &str, #[case] expect: UrlTarget, rp: RustyPipe) {
     let target = tokio_test::block_on(rp.query().resolve_string(string, true)).unwrap();
     assert_eq!(target, expect);
@@ -1424,8 +1426,8 @@ fn music_album_not_found(rp: RustyPipe) {
 }
 
 #[rstest]
-// TODO: fix this/swap artist
-// #[case::basic_all("basic_all", "UC7cl4MmM6ZZ2TcFyMk_b4pg", true, 15, 2)]
+#[case::basic_all("basic_all", "UC7cl4MmM6ZZ2TcFyMk_b4pg", true, 15, 2)]
+// TODO: wait for A/B test 6 to stabilize
 // #[case::basic("basic", "UC7cl4MmM6ZZ2TcFyMk_b4pg", false, 15, 2)]
 #[case::no_more_albums("no_more_albums", "UCOR4_bSVIXPsGa4BbCSt60Q", true, 15, 0)]
 #[case::only_singles("only_singles", "UCfwCE5VhPMGxNPFxtVv7lRw", false, 13, 0)]
@@ -1500,11 +1502,42 @@ fn music_artist(
             ".similar_artists" => "[artists]",
         });
     }
+
+    // Fetch albums seperately
+    if name != "no_artist" {
+        let albums = tokio_test::block_on(rp.query().music_artist_albums(id)).unwrap();
+        let albums_expect = artist
+            .albums
+            .iter()
+            .map(|a| a.id.to_owned())
+            .collect::<HashSet<_>>();
+        let albums_got = albums
+            .iter()
+            .map(|a| a.id.to_owned())
+            .collect::<HashSet<_>>();
+
+        if all_albums {
+            assert_eq!(albums_got, albums_expect);
+        } else {
+            assert!(albums_expect.is_subset(&albums_expect));
+        }
+    }
 }
 
 #[rstest]
 fn music_artist_not_found(rp: RustyPipe) {
     let err = tokio_test::block_on(rp.query().music_artist("UC7cl4MmM6ZZ2TcFyMk_b4pq", false))
+        .unwrap_err();
+
+    assert!(
+        matches!(err, Error::Extraction(ExtractionError::NotFound { .. })),
+        "got: {err}"
+    );
+}
+
+#[rstest]
+fn music_artist_albums_not_found(rp: RustyPipe) {
+    let err = tokio_test::block_on(rp.query().music_artist_albums("UC7cl4MmM6ZZ2TcFyMk_b4pq"))
         .unwrap_err();
 
     assert!(

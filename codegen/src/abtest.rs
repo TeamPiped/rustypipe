@@ -4,7 +4,7 @@ use anyhow::{bail, Result};
 use futures::{stream, StreamExt};
 use indicatif::{ProgressBar, ProgressStyle};
 use num_enum::TryFromPrimitive;
-use rustypipe::client::{ClientType, RustyPipe, YTContext};
+use rustypipe::client::{ClientType, RustyPipe, RustyPipeQuery, YTContext};
 use rustypipe::model::YouTubeItem;
 use rustypipe::param::search_filter::{ItemType, SearchFilter};
 use serde::de::IgnoredAny;
@@ -20,9 +20,14 @@ pub enum ABTest {
     ChannelHandlesInSearchResults = 3,
     TrendsVideoTab = 4,
     TrendsPageHeaderRenderer = 5,
+    DiscographyPage = 6,
 }
 
-const TESTS_TO_RUN: [ABTest; 2] = [ABTest::TrendsVideoTab, ABTest::TrendsPageHeaderRenderer];
+const TESTS_TO_RUN: [ABTest; 3] = [
+    ABTest::TrendsVideoTab,
+    ABTest::TrendsPageHeaderRenderer,
+    ABTest::DiscographyPage,
+];
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ABTestRes {
@@ -75,20 +80,16 @@ pub async fn run_test(
             let http = http.clone();
             async move {
                 let visitor_data = get_visitor_data(&http).await;
+                let query = rp.query().visitor_data(&visitor_data);
                 let is_present = match ab {
-                    ABTest::AttributedTextDescription => {
-                        attributed_text_description(&rp, &visitor_data).await
-                    }
-                    ABTest::ThreeTabChannelLayout => {
-                        three_tab_channel_layout(&rp, &visitor_data).await
-                    }
+                    ABTest::AttributedTextDescription => attributed_text_description(&query).await,
+                    ABTest::ThreeTabChannelLayout => three_tab_channel_layout(&query).await,
                     ABTest::ChannelHandlesInSearchResults => {
-                        channel_handles_in_search_results(&rp, &visitor_data).await
+                        channel_handles_in_search_results(&query).await
                     }
-                    ABTest::TrendsVideoTab => trends_video_tab(&rp, &visitor_data).await,
-                    ABTest::TrendsPageHeaderRenderer => {
-                        trends_page_header_renderer(&rp, &visitor_data).await
-                    }
+                    ABTest::TrendsVideoTab => trends_video_tab(&query).await,
+                    ABTest::TrendsPageHeaderRenderer => trends_page_header_renderer(&query).await,
+                    ABTest::DiscographyPage => discography_page(&query).await,
                 }
                 .unwrap();
                 pb.inc(1);
@@ -143,18 +144,15 @@ pub async fn run_all_tests(n: usize, concurrency: usize) -> Vec<ABTestRes> {
     results
 }
 
-pub async fn attributed_text_description(rp: &RustyPipe, visitor_data: &str) -> Result<bool> {
-    let query = rp.query();
-    let context = query
-        .get_context(ClientType::Desktop, true, Some(visitor_data))
-        .await;
+pub async fn attributed_text_description(rp: &RustyPipeQuery) -> Result<bool> {
+    let context = rp.get_context(ClientType::Desktop, true, None).await;
     let q = QVideo {
         context,
         video_id: "ZeerrnuLi5E",
         content_check_ok: false,
         racy_check_ok: false,
     };
-    let response_txt = query.raw(ClientType::Desktop, "next", &q).await.unwrap();
+    let response_txt = rp.raw(ClientType::Desktop, "next", &q).await.unwrap();
 
     if !response_txt.contains("\"Black Mamba\"") {
         bail!("invalid response data");
@@ -163,20 +161,13 @@ pub async fn attributed_text_description(rp: &RustyPipe, visitor_data: &str) -> 
     Ok(response_txt.contains("\"attributedDescription\""))
 }
 
-pub async fn three_tab_channel_layout(rp: &RustyPipe, visitor_data: &str) -> Result<bool> {
-    let channel = rp
-        .query()
-        .visitor_data(visitor_data)
-        .channel_videos("UCR-DXc1voovS8nhAvccRZhg")
-        .await
-        .unwrap();
+pub async fn three_tab_channel_layout(rp: &RustyPipeQuery) -> Result<bool> {
+    let channel = rp.channel_videos("UCR-DXc1voovS8nhAvccRZhg").await.unwrap();
     Ok(channel.has_live || channel.has_shorts)
 }
 
-pub async fn channel_handles_in_search_results(rp: &RustyPipe, visitor_data: &str) -> Result<bool> {
+pub async fn channel_handles_in_search_results(rp: &RustyPipeQuery) -> Result<bool> {
     let search = rp
-        .query()
-        .visitor_data(visitor_data)
         .search_filter("rust", &SearchFilter::new().item_type(ItemType::Channel))
         .await
         .unwrap();
@@ -190,10 +181,9 @@ pub async fn channel_handles_in_search_results(rp: &RustyPipe, visitor_data: &st
     }))
 }
 
-pub async fn trends_video_tab(rp: &RustyPipe, visitor_data: &str) -> Result<bool> {
-    let query = rp.query().visitor_data(visitor_data);
-    let context = query.get_context(ClientType::Desktop, true, None).await;
-    let res = query
+pub async fn trends_video_tab(rp: &RustyPipeQuery) -> Result<bool> {
+    let context = rp.get_context(ClientType::Desktop, true, None).await;
+    let res = rp
         .raw(
             ClientType::Desktop,
             "browse",
@@ -208,10 +198,9 @@ pub async fn trends_video_tab(rp: &RustyPipe, visitor_data: &str) -> Result<bool
     Ok(res.contains("\"4gIOGgxtb3N0X3BvcHVsYXI%3D\""))
 }
 
-pub async fn trends_page_header_renderer(rp: &RustyPipe, visitor_data: &str) -> Result<bool> {
-    let query = rp.query().visitor_data(visitor_data);
-    let context = query.get_context(ClientType::Desktop, true, None).await;
-    let res = query
+pub async fn trends_page_header_renderer(rp: &RustyPipeQuery) -> Result<bool> {
+    let context = rp.get_context(ClientType::Desktop, true, None).await;
+    let res = rp
         .raw(
             ClientType::Desktop,
             "browse",
@@ -231,4 +220,13 @@ pub async fn trends_page_header_renderer(rp: &RustyPipe, visitor_data: &str) -> 
     let data = serde_json::from_str::<D>(&res)?;
 
     Ok(data.header.contains_key("pageHeaderRenderer"))
+}
+
+pub async fn discography_page(rp: &RustyPipeQuery) -> Result<bool> {
+    let artist = rp
+        .music_artist("UC7cl4MmM6ZZ2TcFyMk_b4pg", false)
+        .await
+        .unwrap();
+
+    Ok(artist.albums.len() <= 10)
 }

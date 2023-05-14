@@ -73,9 +73,12 @@ pub(crate) struct ShareEntityEndpoint {
 }
 
 /// Response model for YouTube Music artist album page
+#[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct MusicArtistAlbums {
-    pub header: SimpleHeader,
+    #[serde(default)]
+    #[serde_as(as = "DefaultOnError")]
+    pub header: Option<SimpleHeader>,
     pub contents: SingleColumnBrowseResult<Tab<SectionList<Grid>>>,
 }

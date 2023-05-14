@@ -7,27 +7,27 @@ MusicArtist(
   name: "Doobydobap",
   header_image: [
     Thumbnail(
-      url: "https://yt3.ggpht.com/BvnAqgiursrXpmS9AgDLtkOSTQfOG_Dqn0KzY5hcwO9XrHTEQTVgaflI913f9KRp7d0U2qBp=w540-h225-p-l90-rj",
+      url: "https://yt3.googleusercontent.com/BvnAqgiursrXpmS9AgDLtkOSTQfOG_Dqn0KzY5hcwO9XrHTEQTVgaflI913f9KRp7d0U2qBp=w540-h225-p-l90-rj",
       width: 540,
       height: 225,
     ),
     Thumbnail(
-      url: "https://yt3.ggpht.com/BvnAqgiursrXpmS9AgDLtkOSTQfOG_Dqn0KzY5hcwO9XrHTEQTVgaflI913f9KRp7d0U2qBp=w816-h340-p-l90-rj",
+      url: "https://yt3.googleusercontent.com/BvnAqgiursrXpmS9AgDLtkOSTQfOG_Dqn0KzY5hcwO9XrHTEQTVgaflI913f9KRp7d0U2qBp=w816-h340-p-l90-rj",
       width: 816,
       height: 340,
     ),
     Thumbnail(
-      url: "https://yt3.ggpht.com/BvnAqgiursrXpmS9AgDLtkOSTQfOG_Dqn0KzY5hcwO9XrHTEQTVgaflI913f9KRp7d0U2qBp=w1440-h600-p-l90-rj",
+      url: "https://yt3.googleusercontent.com/BvnAqgiursrXpmS9AgDLtkOSTQfOG_Dqn0KzY5hcwO9XrHTEQTVgaflI913f9KRp7d0U2qBp=w1440-h600-p-l90-rj",
       width: 1440,
       height: 600,
     ),
     Thumbnail(
-      url: "https://yt3.ggpht.com/BvnAqgiursrXpmS9AgDLtkOSTQfOG_Dqn0KzY5hcwO9XrHTEQTVgaflI913f9KRp7d0U2qBp=w1920-h800-p-l90-rj",
+      url: "https://yt3.googleusercontent.com/BvnAqgiursrXpmS9AgDLtkOSTQfOG_Dqn0KzY5hcwO9XrHTEQTVgaflI913f9KRp7d0U2qBp=w1920-h800-p-l90-rj",
       width: 1920,
       height: 800,
     ),
     Thumbnail(
-      url: "https://yt3.ggpht.com/BvnAqgiursrXpmS9AgDLtkOSTQfOG_Dqn0KzY5hcwO9XrHTEQTVgaflI913f9KRp7d0U2qBp=w2436-h1015-p-l90-rj",
+      url: "https://yt3.googleusercontent.com/BvnAqgiursrXpmS9AgDLtkOSTQfOG_Dqn0KzY5hcwO9XrHTEQTVgaflI913f9KRp7d0U2qBp=w2436-h1015-p-l90-rj",
       width: 2436,
       height: 1015,
     ),
@@ -39,16 +39,82 @@ MusicArtist(
   albums: [],
   playlists: [
     MusicPlaylistItem(
-      id: "PLwkM1QxaP342hjju64dtqG5wKqx2hNgjr",
-      name: "After Hours & Doob Gourmand",
+      id: "PLwkM1QxaP341MxmqdPrw_3ffjqLofZXOj",
+      name: "🌟 best of... doobyvlog",
       thumbnail: [
         Thumbnail(
-          url: "https://i.ytimg.com/vi/38Gd6TdmNVs/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lbh9XVK3zCkDHMxgOnDokkqE3kwg",
+          url: "https://i.ytimg.com/vi/0onVbAuBGWI/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mUFLfu6rAMobj83G1P7wFtrbRuqg",
           width: 400,
           height: 225,
         ),
         Thumbnail(
-          url: "https://i.ytimg.com/vi/38Gd6TdmNVs/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3k4lcTkiScLDPpmxBPfEub3xft7iQ",
+          url: "https://i.ytimg.com/vi/0onVbAuBGWI/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3nU_px4mXhplu4zYKhseBKdYUJh0g",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      channel: Some(ChannelId(
+        id: "UCh8gHdtzO2tXd593_bjErWg",
+        name: "Doobydobap",
+      )),
+      track_count: None,
+      from_ytm: false,
+    ),
+    MusicPlaylistItem(
+      id: "PLwkM1QxaP343YqeP6g5VPGsgJdO1_SV4I",
+      name: "love & relationships",
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/PXsK9-CFoH4/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kaG7qOCwpNsPCgSCEoxkeeFW2SUg",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/PXsK9-CFoH4/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3ktLL_rN7UujT_48Np6bSaK0Un1pA",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      channel: Some(ChannelId(
+        id: "UCh8gHdtzO2tXd593_bjErWg",
+        name: "Doobydobap",
+      )),
+      track_count: None,
+      from_ytm: false,
+    ),
+    MusicPlaylistItem(
+      id: "PLwkM1QxaP340xbkARIPpiD1aHuzJVuZUg",
+      name: "🏠 opening a restaurant",
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/7ebSD1ezP-M/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3n-xqleEhGCII_Qfza-POZT66c3Tg",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/7ebSD1ezP-M/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3ntBQTkAyTuRhx6HNxBEJtc4RpgWQ",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      channel: Some(ChannelId(
+        id: "UCh8gHdtzO2tXd593_bjErWg",
+        name: "Doobydobap",
+      )),
+      track_count: None,
+      from_ytm: false,
+    ),
+    MusicPlaylistItem(
+      id: "PLwkM1QxaP342hjju64dtqG5wKqx2hNgjr",
+      name: "🍽\u{fe0f} after hours & doob gourmand",
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/2tg0MNZwUSQ/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kqvMhctjtDMJ4u84hAp2h5UXT-QA",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/2tg0MNZwUSQ/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3nxfWmvCHZgvWYolc_mlJEWD1TkZQ",
           width: 800,
           height: 450,
         ),
@@ -62,15 +128,15 @@ MusicArtist(
     ),
     MusicPlaylistItem(
       id: "PLwkM1QxaP342v1hhoB3XLiruSQOzmdmBt",
-      name: "doobyvlog",
+      name: "📹 doobyvlog",
       thumbnail: [
         Thumbnail(
-          url: "https://i.ytimg.com/vi/CN-u8_2ixOU/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kCdNu1hqEubXzcLcci_xhWSI9q-Q",
+          url: "https://i.ytimg.com/vi/7ebSD1ezP-M/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3n-xqleEhGCII_Qfza-POZT66c3Tg",
           width: 400,
           height: 225,
         ),
         Thumbnail(
-          url: "https://i.ytimg.com/vi/CN-u8_2ixOU/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3lN1-hs5ItQ_DJXBp-aUQQ-DLjMVg",
+          url: "https://i.ytimg.com/vi/7ebSD1ezP-M/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3ntBQTkAyTuRhx6HNxBEJtc4RpgWQ",
           width: 800,
           height: 450,
         ),

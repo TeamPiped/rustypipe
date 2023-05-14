@@ -119,6 +119,14 @@ impl RustyPipeQuery {
                         Ok(UrlTarget::Channel { id: id.to_owned() })
                     } else if util::ALBUM_ID_REGEX.is_match(id) {
                         Ok(UrlTarget::Album { id: id.to_owned() })
+                    } else if id
+                        .strip_prefix(util::ARTIST_DISCOGRAPHY_PREFIX)
+                        .map(|cid| util::CHANNEL_ID_REGEX.is_match(cid))
+                        .unwrap_or_default()
+                    {
+                        Ok(UrlTarget::Channel {
+                            id: id[4..].to_owned(),
+                        })
                     } else {
                         Err(Error::Other("invalid url: no browse id".into()))
                     }
@@ -261,6 +269,14 @@ impl RustyPipeQuery {
             }
         } else if util::ALBUM_ID_REGEX.is_match(s) {
             Ok(UrlTarget::Album { id: s.to_owned() })
+        } else if s
+            .strip_prefix(util::ARTIST_DISCOGRAPHY_PREFIX)
+            .map(|cid| util::CHANNEL_ID_REGEX.is_match(cid))
+            .unwrap_or_default()
+        {
+            Ok(UrlTarget::Channel {
+                id: s[4..].to_owned(),
+            })
         }
         // Channel name only
         else if util::VANITY_PATH_REGEX.is_match(s) {

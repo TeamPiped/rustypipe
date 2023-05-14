@@ -34,7 +34,7 @@ MusicArtist(
   ],
   description: Some("Choi Jin-ri, better known by her stage name Sulli, was a South Korean actress and singer. She first made her debut as a child actress, appearing as a supporting cast member on the SBS historical drama Ballad of Seodong. Following this, she earned a number of guest roles, appearing in the television series Love Needs a Miracle and Drama City, and the film Vacation. She then subsequently appeared in the independent films Punch Lady and BA:BO, the former being her first time cast in a substantial dramatic role.\nAfter signing a record deal with SM Entertainment, Sulli rose to prominence as a member of the girl group f(x) formed in 2009. The group achieved both critical and commercial success, with four Korean number-one singles and international recognition after becoming the first K-pop act to perform at SXSW. Concurrently with her music career, Sulli returned to acting by starring in the SBS romantic comedy series, To the Beautiful You, a Korean adaptation of the shōjo manga Hana-Kimi where her performance was positively received and earned her two SBS Drama Awards and a nomination at the 49th Paeksang Arts Awards.\n\nFrom Wikipedia (https://en.wikipedia.org/wiki/Sulli) under Creative Commons Attribution CC-BY-SA 3.0 (http://creativecommons.org/licenses/by-sa/3.0/legalcode)"),
   wikipedia_url: Some("https://en.wikipedia.org/wiki/Sulli"),
-  subscriber_count: Some(74400),
+  subscriber_count: Some(80800),
   tracks: [
     TrackItem(
       id: "BGcUVJXViqQ",
@@ -156,7 +156,7 @@ MusicArtist(
       ],
       artist_id: Some("UCfwCE5VhPMGxNPFxtVv7lRw"),
       album: None,
-      view_count: Some(19000000),
+      view_count: Some(20000000),
       is_video: true,
       track_nr: None,
       by_va: false,
@@ -185,7 +185,7 @@ MusicArtist(
       ],
       artist_id: Some("UClGBYGUZmpzUaHgeb9gOBww"),
       album: None,
-      view_count: Some(206000),
+      view_count: Some(211000),
       is_video: true,
       track_nr: None,
       by_va: false,
@@ -209,7 +209,7 @@ MusicArtist(
       artists: [
         ArtistId(
           id: Some("UCfaO3pZL5XOr8BvNZkrKeVA"),
-          name: "iKissesByMaki",
+          name: "ramuditas",
         ),
       ],
       artist_id: Some("UCfaO3pZL5XOr8BvNZkrKeVA"),
@@ -243,152 +243,36 @@ MusicArtist(
       ],
       artist_id: Some("UCgVWicpO5Jn3VfxqgIU6cpA"),
       album: None,
-      view_count: Some(3600),
+      view_count: Some(15000),
       is_video: true,
       track_nr: None,
       by_va: false,
     ),
     TrackItem(
-      id: "94q_2Zsq2os",
-      name: "Sulli - On The Moon (sped up)",
+      id: "N217ZuMQnfY",
+      name: "음악캠프 - Dorothy - Picnic, 도로시 - 소풍, Music Camp 20040417",
       duration: None,
       cover: [
         Thumbnail(
-          url: "https://i.ytimg.com/vi/94q_2Zsq2os/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kf1HgaRExXYDCNGVqeqe-TKxJ2aQ",
+          url: "https://i.ytimg.com/vi/N217ZuMQnfY/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kBmlxLhMmsi9VLaMVosj6Ie4aAyw",
           width: 400,
           height: 225,
         ),
         Thumbnail(
-          url: "https://i.ytimg.com/vi/94q_2Zsq2os/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3mbke4_Zc9nkj4NvVMlYpA7aSrkzQ",
+          url: "https://i.ytimg.com/vi/N217ZuMQnfY/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3mHxVVuDdgr8HxoJjgtvYwaxtVbzA",
           width: 800,
           height: 450,
         ),
       ],
       artists: [
         ArtistId(
-          id: Some("UCgVWicpO5Jn3VfxqgIU6cpA"),
-          name: "Jpn Sch",
+          id: Some("UCe52oeb7Xv_KaJsEzcKXJJg"),
+          name: "MBCkpop",
         ),
       ],
-      artist_id: Some("UCgVWicpO5Jn3VfxqgIU6cpA"),
+      artist_id: Some("UCe52oeb7Xv_KaJsEzcKXJJg"),
       album: None,
-      view_count: Some(2900),
-      is_video: true,
-      track_nr: None,
-      by_va: false,
-    ),
-    TrackItem(
-      id: "fBce3VihpIQ",
-      name: "sulli - goblin (sped up)",
-      duration: None,
-      cover: [
-        Thumbnail(
-          url: "https://i.ytimg.com/vi/fBce3VihpIQ/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nVd442JLu3mxKbipFglRgRift5cA",
-          width: 400,
-          height: 225,
-        ),
-        Thumbnail(
-          url: "https://i.ytimg.com/vi/fBce3VihpIQ/sddefault.jpg?sqp=-oaymwEWCKoDEPABIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nxWW7AAdAGbEGuDXOVFgFaLW3XbA",
-          width: 426,
-          height: 240,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCwZLmi2q2ReEJvt-8bgVwwg"),
-          name: "e p i l o g u e",
-        ),
-      ],
-      artist_id: Some("UCwZLmi2q2ReEJvt-8bgVwwg"),
-      album: None,
-      view_count: Some(11000),
-      is_video: true,
-      track_nr: None,
-      by_va: false,
-    ),
-    TrackItem(
-      id: "0-HXdJc-zDQ",
-      name: "Sulli - Dorothy (sped up)",
-      duration: None,
-      cover: [
-        Thumbnail(
-          url: "https://i.ytimg.com/vi/0-HXdJc-zDQ/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3l_Cj2X9UftBVID7UoJ708Dd6UGUA",
-          width: 400,
-          height: 225,
-        ),
-        Thumbnail(
-          url: "https://i.ytimg.com/vi/0-HXdJc-zDQ/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3n2XskAJVpE4eQ3okG60Lf6dPPFqQ",
-          width: 800,
-          height: 450,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCgVWicpO5Jn3VfxqgIU6cpA"),
-          name: "Jpn Sch",
-        ),
-      ],
-      artist_id: Some("UCgVWicpO5Jn3VfxqgIU6cpA"),
-      album: None,
-      view_count: Some(2200),
-      is_video: true,
-      track_nr: None,
-      by_va: false,
-    ),
-    TrackItem(
-      id: "Bae4Fv7GlMY",
-      name: "Sulli\'nin goblin M/V\'sindeki korkutucu detaylar!😱💥",
-      duration: None,
-      cover: [
-        Thumbnail(
-          url: "https://i.ytimg.com/vi/Bae4Fv7GlMY/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nXyTG8uM24-GkmqaUvx2gQqjJO-g",
-          width: 400,
-          height: 225,
-        ),
-        Thumbnail(
-          url: "https://i.ytimg.com/vi/Bae4Fv7GlMY/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3m2mg6beaz7Lg-zRFebE5jHHbiiJw",
-          width: 800,
-          height: 450,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCuoa8Ie9kA1-AKIjNhsIGxQ"),
-          name: "JenDia` #Emrlsoolarbenim",
-        ),
-      ],
-      artist_id: Some("UCuoa8Ie9kA1-AKIjNhsIGxQ"),
-      album: None,
-      view_count: Some(6900),
-      is_video: true,
-      track_nr: None,
-      by_va: false,
-    ),
-    TrackItem(
-      id: "Rq_JkcROjsI",
-      name: "𝗀𝗈𝖻𝗅𝗂𝗇 // 𝗌𝗎𝗅𝗅𝗂 ༄ 𝗌𝗅𝗈𝗐𝖾𝖽 + 𝗋𝖾𝗏𝖾𝗋𝖻",
-      duration: None,
-      cover: [
-        Thumbnail(
-          url: "https://i.ytimg.com/vi/Rq_JkcROjsI/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3ntvxfQE8ErdwpxdksKA_Gtcza3Rw",
-          width: 400,
-          height: 225,
-        ),
-        Thumbnail(
-          url: "https://i.ytimg.com/vi/Rq_JkcROjsI/sddefault.jpg?sqp=-oaymwEWCKoDEPABIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kyJ7LFsJWz4Ac44uL8GPxsRldOng",
-          width: 426,
-          height: 240,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCMPqKiPdiSoi8eCW5Dou1IQ"),
-          name: "ᴜᴋɪʏᴏ",
-        ),
-      ],
-      artist_id: Some("UCMPqKiPdiSoi8eCW5Dou1IQ"),
-      album: None,
-      view_count: Some(23000),
+      view_count: Some(1200),
       is_video: true,
       track_nr: None,
       by_va: false,
@@ -417,7 +301,123 @@ MusicArtist(
       ],
       artist_id: Some("UCFFvwAcyQhpeQfuAgBN1XZw"),
       album: None,
-      view_count: Some(9900),
+      view_count: Some(12000),
+      is_video: true,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "v5KZ5dalhzU",
+      name: "intp kpop songs (kpop mbti series pt.9)",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/v5KZ5dalhzU/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nMdCDQ1v-pG312TsgWId2TsMo1zw",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/v5KZ5dalhzU/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3mS7zCcBbRf8t29XGtChWkxd3owMg",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UC_xEL8cbkItBH00KrGz9fbQ"),
+          name: "orbitiny사샤",
+        ),
+      ],
+      artist_id: Some("UC_xEL8cbkItBH00KrGz9fbQ"),
+      album: None,
+      view_count: Some(7400),
+      is_video: true,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "vaSSdzgDNw0",
+      name: "Goblin~ Sulli English Cover",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/vaSSdzgDNw0/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lbkZLY174thtujXlmmPqngKOtxvQ",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/vaSSdzgDNw0/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3k5nsO0ap7vTsm8JoihXd9opC9QwA",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCaFqztcJss3HrXNurzQJyqQ"),
+          name: "Bee",
+        ),
+      ],
+      artist_id: Some("UCaFqztcJss3HrXNurzQJyqQ"),
+      album: None,
+      view_count: Some(1400),
+      is_video: true,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "Rq_JkcROjsI",
+      name: "𝗀𝗈𝖻𝗅𝗂𝗇 // 𝗌𝗎𝗅𝗅𝗂 ༄ 𝗌𝗅𝗈𝗐𝖾𝖽 + 𝗋𝖾𝗏𝖾𝗋𝖻",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/Rq_JkcROjsI/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3ntvxfQE8ErdwpxdksKA_Gtcza3Rw",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/Rq_JkcROjsI/sddefault.jpg?sqp=-oaymwEWCKoDEPABIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kyJ7LFsJWz4Ac44uL8GPxsRldOng",
+          width: 426,
+          height: 240,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCMPqKiPdiSoi8eCW5Dou1IQ"),
+          name: "ᴜᴋɪʏᴏ",
+        ),
+      ],
+      artist_id: Some("UCMPqKiPdiSoi8eCW5Dou1IQ"),
+      album: None,
+      view_count: Some(25000),
+      is_video: true,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "5VNZWTzJFso",
+      name: "Dorothy - Picnic, 도로시 - 소풍, Music Camp 20040529",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/5VNZWTzJFso/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3niVh6jZ_8X2utHrUst0PgILeoY4g",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/5VNZWTzJFso/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3nKv3B3uev0Pg01kUNF_F4GHO39qg",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCe52oeb7Xv_KaJsEzcKXJJg"),
+          name: "MBCkpop",
+        ),
+      ],
+      artist_id: Some("UCe52oeb7Xv_KaJsEzcKXJJg"),
+      album: None,
+      view_count: Some(3700),
       is_video: true,
       track_nr: None,
       by_va: false,
@@ -454,89 +454,21 @@ MusicArtist(
   playlists: [],
   similar_artists: [
     ArtistItem(
-      id: "UCHmZYTfdTyVKQEJicLiXEOg",
-      name: "Red Velvet",
+      id: "UCpUChkP-KE20GRsyfjU83_g",
+      name: "CHUNG HA",
       avatar: [
         Thumbnail(
-          url: "https://lh3.googleusercontent.com/eGQ0NAW1LeeaD0V0pe5HFg2ENDqn-T4qJfi4zBrLuoMHmEzYEHzT64p95_45UdXWTB6WTMskbzfXNw=w226-h226-p-l90-rj",
+          url: "https://lh3.googleusercontent.com/gfAf1lvXJt_ExLMV0FqnWrTGyAiFpRZW7zeb1ooahA542nBqjLTzcxdhFQtvVWvR0_jzcKOccjIyiFnP=w226-h226-l90-rj",
           width: 226,
           height: 226,
         ),
         Thumbnail(
-          url: "https://lh3.googleusercontent.com/eGQ0NAW1LeeaD0V0pe5HFg2ENDqn-T4qJfi4zBrLuoMHmEzYEHzT64p95_45UdXWTB6WTMskbzfXNw=w544-h544-p-l90-rj",
+          url: "https://lh3.googleusercontent.com/gfAf1lvXJt_ExLMV0FqnWrTGyAiFpRZW7zeb1ooahA542nBqjLTzcxdhFQtvVWvR0_jzcKOccjIyiFnP=w544-h544-l90-rj",
           width: 544,
           height: 544,
         ),
       ],
-      subscriber_count: Some(5200000),
-    ),
-    ArtistItem(
-      id: "UCvAUJvMNPy1LLVKpFiu-X9w",
-      name: "SEULGI",
-      avatar: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/Gs5_FbRLCCPLjzgZgJ3Rzz9LJ-U4J825o2dTS-JRnEADJEt9qzMENRA52qRdVx8qavapNYsZDJX4jQ=w226-h226-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/Gs5_FbRLCCPLjzgZgJ3Rzz9LJ-U4J825o2dTS-JRnEADJEt9qzMENRA52qRdVx8qavapNYsZDJX4jQ=w544-h544-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      subscriber_count: Some(32100),
-    ),
-    ArtistItem(
-      id: "UCyoD3vxUcLLdU1JQ0MMet-Q",
-      name: "Red Velvet - IRENE & SEULGI",
-      avatar: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/jwZVdeVkLWjvoi5aXAKbT_ipid5krOyDCo9zGlMLm4uysvbtMwnYWHHemKmCLjM7DcsxNHfouD3caA=w226-h226-p-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/jwZVdeVkLWjvoi5aXAKbT_ipid5krOyDCo9zGlMLm4uysvbtMwnYWHHemKmCLjM7DcsxNHfouD3caA=w544-h544-p-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      subscriber_count: Some(34700),
-    ),
-    ArtistItem(
-      id: "UCod8XS1t8Y9JADHv0AWDMLw",
-      name: "Seohyun",
-      avatar: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/0uAuF9rHyOlwm18Q0c6DqjLwRzZWqGFwMLWCh5g802HYpy0AVa6VWs1jNmqXhcB-GAMw2fehnrF0P4s=w226-h226-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/0uAuF9rHyOlwm18Q0c6DqjLwRzZWqGFwMLWCh5g802HYpy0AVa6VWs1jNmqXhcB-GAMw2fehnrF0P4s=w544-h544-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      subscriber_count: Some(24400),
-    ),
-    ArtistItem(
-      id: "UCOCo09j3eIVdj3HkbJ9c40Q",
-      name: "HYOYEON ",
-      avatar: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/N46gjgCRMewGNJBym4Xqa10-GXxo97bcFf_MJeiAxZl2mQpbJn1MWGzzgmYBUG4XUIUlHpkHHrAZlOc=w226-h226-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/N46gjgCRMewGNJBym4Xqa10-GXxo97bcFf_MJeiAxZl2mQpbJn1MWGzzgmYBUG4XUIUlHpkHHrAZlOc=w544-h544-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      subscriber_count: Some(133000),
+      subscriber_count: Some(1470000),
     ),
     ArtistItem(
       id: "UCmeskqhmPRuteGVH4yCXT0A",
@@ -553,24 +485,7 @@ MusicArtist(
           height: 544,
         ),
       ],
-      subscriber_count: Some(1480000),
-    ),
-    ArtistItem(
-      id: "UCF9KUOyCpRNq67dDKlB0tbw",
-      name: "HA:TFELT",
-      avatar: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/9FoZXRMcJp_iIMTqQJ4NHEYumcdwNYN1JfUC2aXUILrRFzbAypG9Yq1r6mMRQzVfDxZ_4OADbruAn5Q=w226-h226-p-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/9FoZXRMcJp_iIMTqQJ4NHEYumcdwNYN1JfUC2aXUILrRFzbAypG9Yq1r6mMRQzVfDxZ_4OADbruAn5Q=w544-h544-p-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      subscriber_count: Some(18300),
+      subscriber_count: Some(1490000),
     ),
     ArtistItem(
       id: "UCVXeNwNQs07XQ8d1HtvuxVg",
@@ -587,41 +502,126 @@ MusicArtist(
           height: 544,
         ),
       ],
-      subscriber_count: Some(26900),
+      subscriber_count: Some(31400),
     ),
     ArtistItem(
-      id: "UCHHz6g3igy0BFUfCSiC_6aw",
-      name: "HyunA",
+      id: "UCvAUJvMNPy1LLVKpFiu-X9w",
+      name: "SEULGI",
       avatar: [
         Thumbnail(
-          url: "https://lh3.googleusercontent.com/L8EVj7a6sEbbj2oszOtVxQo_pJ6Mm1pIyVWcDXPyaEDynkHBa0yRMsxmfkwKBfPJSGLynsIM-CGjmw=w226-h226-p-l90-rj",
+          url: "https://lh3.googleusercontent.com/NT9GLSF-1zyAb76sixVb9SfMuGef0Dh5aiKODfWt_wWvtGYBnAPs_DcRtOErLw36zYZb4xbsQEzM8ek=w226-h226-l90-rj",
           width: 226,
           height: 226,
         ),
         Thumbnail(
-          url: "https://lh3.googleusercontent.com/L8EVj7a6sEbbj2oszOtVxQo_pJ6Mm1pIyVWcDXPyaEDynkHBa0yRMsxmfkwKBfPJSGLynsIM-CGjmw=w544-h544-p-l90-rj",
+          url: "https://lh3.googleusercontent.com/NT9GLSF-1zyAb76sixVb9SfMuGef0Dh5aiKODfWt_wWvtGYBnAPs_DcRtOErLw36zYZb4xbsQEzM8ek=w544-h544-l90-rj",
           width: 544,
           height: 544,
         ),
       ],
-      subscriber_count: Some(3130000),
+      subscriber_count: Some(41100),
     ),
     ArtistItem(
-      id: "UCveaR1hvVMrEQaKR6Xl8NDw",
-      name: "f(x)",
+      id: "UC277cpXD9BLeaGgh3yDP40w",
+      name: "블랙스완 BLACKSWAN",
       avatar: [
         Thumbnail(
-          url: "https://lh3.googleusercontent.com/VQcMudR55EKlNeZCdhQKLy1dh_nojH8YAqwjXPAl515U1hFham1IRGWhcPWITm1X3yUHSQBHUYSWlh0=w226-h226-p-l90-rj",
+          url: "https://lh3.googleusercontent.com/a-/ACB-R5RmPcZVcm8zNXAbprhgqATOJMU6RNbj3OuQyERLHA=w226-h226-l90-rj",
           width: 226,
           height: 226,
         ),
         Thumbnail(
-          url: "https://lh3.googleusercontent.com/VQcMudR55EKlNeZCdhQKLy1dh_nojH8YAqwjXPAl515U1hFham1IRGWhcPWITm1X3yUHSQBHUYSWlh0=w544-h544-p-l90-rj",
+          url: "https://lh3.googleusercontent.com/a-/ACB-R5RmPcZVcm8zNXAbprhgqATOJMU6RNbj3OuQyERLHA=w544-h544-l90-rj",
           width: 544,
           height: 544,
         ),
       ],
-      subscriber_count: Some(474000),
+      subscriber_count: Some(603000),
+    ),
+    ArtistItem(
+      id: "UCrt7YUoF7m7PvV_Dt9xWqJQ",
+      name: "LUNA",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/MISR863mLnf03T-2YBEvxYFQPIvPYJ_clea7H5gZhdsN30i8ufw_2NnvOvVxQTOK7-lx_sRW8Q7A5uM=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/MISR863mLnf03T-2YBEvxYFQPIvPYJ_clea7H5gZhdsN30i8ufw_2NnvOvVxQTOK7-lx_sRW8Q7A5uM=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(4510),
+    ),
+    ArtistItem(
+      id: "UCBj8m2FEsjfovt0Fxq0HEJg",
+      name: "Ladies\' Code",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/JC2ZAjp-IUVIStNvPpxgaJknX_WkUZmV1XqLQvJSr-_Kg9_bVfUJi_3DYztbI1ObFA6LejJimJfKdfjp=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/JC2ZAjp-IUVIStNvPpxgaJknX_WkUZmV1XqLQvJSr-_Kg9_bVfUJi_3DYztbI1ObFA6LejJimJfKdfjp=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(11400),
+    ),
+    ArtistItem(
+      id: "UCdhWlMXp2dQBaG5rZS_aSkQ",
+      name: "DAWN",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/a-/ACB-R5QVBnhjI6XKoLtxuTf6LuijMMtJb7e5S2IlOeqo2Q=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/a-/ACB-R5QVBnhjI6XKoLtxuTf6LuijMMtJb7e5S2IlOeqo2Q=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(802000),
+    ),
+    ArtistItem(
+      id: "UCWT2ZfW7d8YI-HinHEVhyCA",
+      name: "(G)I-DLE",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/uZQSZdDnDJCajJtE6Ig9tqgdO7-uogJpdk9TM0p7iEBmnAQXaSGqYET-W-SHTY-NL9UQ2sdOVtIhd54=w226-h226-p-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/uZQSZdDnDJCajJtE6Ig9tqgdO7-uogJpdk9TM0p7iEBmnAQXaSGqYET-W-SHTY-NL9UQ2sdOVtIhd54=w544-h544-p-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(5310000),
+    ),
+    ArtistItem(
+      id: "UCOCo09j3eIVdj3HkbJ9c40Q",
+      name: "HYO",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/olRNTvkhjENW-kLcKRg9LQDmWwS3V0KHhTtw4Y8ETFpFLNxlI371_EDh22CtTw0UKgm7YpbGJUUf6nEt=w226-h226-p-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/olRNTvkhjENW-kLcKRg9LQDmWwS3V0KHhTtw4Y8ETFpFLNxlI371_EDh22CtTw0UKgm7YpbGJUUf6nEt=w544-h544-p-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(141000),
     ),
   ],
   tracks_playlist_id: None,

@@ -32,10 +32,42 @@ MusicArtist(
       height: 1200,
     ),
   ],
-  description: Some("Edward Christopher Sheeran MBE is an English singer-songwriter. Born in Halifax, West Yorkshire and raised in Framlingham, Suffolk, he began writing songs around the age of eleven. In early 2011, Sheeran independently released the extended play, No. 5 Collaborations Project. He signed with Asylum Records the same year.\nSheeran\'s debut album, +, was released in September 2011 and topped the UK Albums Chart. It contained his first hit single \"The A Team\". In 2012, Sheeran won the Brit Awards for Best British Male Solo Artist and British Breakthrough Act. Sheeran\'s second studio album, ×, topped charts around the world upon its release in June 2014. It was named the second-best-selling album worldwide of 2015. In the same year, × won Album of the Year at the 2015 Brit Awards, and he received the Ivor Novello Award for Songwriter of the Year from the British Academy of Songwriters, Composers and Authors. A single from ×, \"Thinking Out Loud\", earned him the 2016 Grammy Awards for Song of the Year and Best Pop Solo Performance.\nSheeran\'s third album, ÷, was released in March 2017, and was the best-selling album worldwide of 2017.\n\nFrom Wikipedia (https://en.wikipedia.org/wiki/Ed_Sheeran) under Creative Commons Attribution CC-BY-SA 3.0 (http://creativecommons.org/licenses/by-sa/3.0/legalcode)"),
+  description: Some("Edward Christopher Sheeran MBE is an English singer-songwriter. Born in Halifax, West Yorkshire, and raised in Framlingham, Suffolk, he began writing songs around the age of eleven. In early 2011, Sheeran independently released the extended play No. 5 Collaborations Project. He signed with Asylum Records the same year.\nSheeran\'s debut album, +, was released in September 2011 and topped the UK Albums Chart. It contained his first hit single \"The A Team\". In 2012, Sheeran won the Brit Awards for Best British Male Solo Artist and British Breakthrough Act. Sheeran\'s second studio album, ×, topped charts around the world upon its release in June 2014. It was named the second-best-selling album worldwide of 2015. In the same year, × won Album of the Year at the 2015 Brit Awards, and he received the Ivor Novello Award for Songwriter of the Year from the British Academy of Songwriters, Composers and Authors. A single from ×, \"Thinking Out Loud\", earned him the 2016 Grammy Awards for Song of the Year and Best Pop Solo Performance.\nSheeran\'s third album, ÷, was released in March 2017, and was the best-selling album worldwide of 2017.\n\nFrom Wikipedia (https://en.wikipedia.org/wiki/Ed_Sheeran) under Creative Commons Attribution CC-BY-SA 3.0 (http://creativecommons.org/licenses/by-sa/3.0/legalcode)"),
   wikipedia_url: Some("https://en.wikipedia.org/wiki/Ed_Sheeran"),
-  subscriber_count: Some(52600000),
+  subscriber_count: Some(53300000),
   tracks: [
+    TrackItem(
+      id: "xTvyyoF_LZY",
+      name: "Shape of You",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/TMbA3LImAL96nFkm5cI1x6LiEMvMbRg4IRxEeABd9qpXsfmwKhZHRD1MucnjG5QIsVEp0Vpn7h7M51FH3Q=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/TMbA3LImAL96nFkm5cI1x6LiEMvMbRg4IRxEeABd9qpXsfmwKhZHRD1MucnjG5QIsVEp0Vpn7h7M51FH3Q=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
+          name: "Ed Sheeran",
+        ),
+      ],
+      artist_id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
+      album: Some(AlbumId(
+        id: "MPREb_Y8THSupSgRO",
+        name: "Shape of You",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+      by_va: false,
+    ),
     TrackItem(
       id: "ORrFJ63nlcA",
       name: "Perfect",
@@ -69,17 +101,17 @@ MusicArtist(
       by_va: false,
     ),
     TrackItem(
-      id: "xTvyyoF_LZY",
-      name: "Shape of You",
+      id: "pDW0e5SO5Co",
+      name: "Curtains",
       duration: None,
       cover: [
         Thumbnail(
-          url: "https://lh3.googleusercontent.com/TMbA3LImAL96nFkm5cI1x6LiEMvMbRg4IRxEeABd9qpXsfmwKhZHRD1MucnjG5QIsVEp0Vpn7h7M51FH3Q=w60-h60-l90-rj",
+          url: "https://lh3.googleusercontent.com/e9X9JBO2XNUiMatV8gepjLWktB7uGb8W3HWN8zgxjiMFjVr8hVymX-FKgULPMpQBiQaJY5MDEgeFNEKc=w60-h60-l90-rj",
           width: 60,
           height: 60,
         ),
         Thumbnail(
-          url: "https://lh3.googleusercontent.com/TMbA3LImAL96nFkm5cI1x6LiEMvMbRg4IRxEeABd9qpXsfmwKhZHRD1MucnjG5QIsVEp0Vpn7h7M51FH3Q=w120-h120-l90-rj",
+          url: "https://lh3.googleusercontent.com/e9X9JBO2XNUiMatV8gepjLWktB7uGb8W3HWN8zgxjiMFjVr8hVymX-FKgULPMpQBiQaJY5MDEgeFNEKc=w120-h120-l90-rj",
           width: 120,
           height: 120,
         ),
@@ -92,8 +124,40 @@ MusicArtist(
       ],
       artist_id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
       album: Some(AlbumId(
-        id: "MPREb_Y8THSupSgRO",
-        name: "Shape of You",
+        id: "MPREb_9jsAP3C5OSC",
+        name: "- (Deluxe)",
+      )),
+      view_count: None,
+      is_video: false,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "fdz_cabS9BU",
+      name: "Thinking out Loud",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/emeqGnTWaGFe5roPNKOsSe5WFl81hEScrwhlaJkSrmZn8F-rcYVg_VtYKSj5v59eU5ZrUo3uzlbI0wDV=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/emeqGnTWaGFe5roPNKOsSe5WFl81hEScrwhlaJkSrmZn8F-rcYVg_VtYKSj5v59eU5ZrUo3uzlbI0wDV=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
+          name: "Ed Sheeran",
+        ),
+      ],
+      artist_id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
+      album: Some(AlbumId(
+        id: "MPREb_A4r9EfLZzYN",
+        name: "x (Deluxe Edition)",
       )),
       view_count: None,
       is_video: false,
@@ -133,81 +197,17 @@ MusicArtist(
       by_va: false,
     ),
     TrackItem(
-      id: "hJWSZDJb-W4",
-      name: "Bad Habits",
+      id: "2tZjT3L1wD4",
+      name: "Life Goes On",
       duration: None,
       cover: [
         Thumbnail(
-          url: "https://lh3.googleusercontent.com/3xN5Rqah_iSMqbl3ZMCr9MjnEBVyBLmLng0f-MCvFFdfPNhK619ikGwAD0iOBkzCOXIlucWE0lLLXJA=w60-h60-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/3xN5Rqah_iSMqbl3ZMCr9MjnEBVyBLmLng0f-MCvFFdfPNhK619ikGwAD0iOBkzCOXIlucWE0lLLXJA=w120-h120-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
-          name: "Ed Sheeran",
-        ),
-      ],
-      artist_id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
-      album: Some(AlbumId(
-        id: "MPREb_917r4nW96j5",
-        name: "Bad Habits",
-      )),
-      view_count: None,
-      is_video: false,
-      track_nr: None,
-      by_va: false,
-    ),
-    TrackItem(
-      id: "G1ej5up7JG0",
-      name: "Shivers",
-      duration: None,
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/LDjFD-70y9c3aYL3-2zTUXkmlWfNlryJllQpHZLxZgi0i73pGx9JaJkNzDTo2LO9cGBDJx7E4eWdytMA=w60-h60-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/LDjFD-70y9c3aYL3-2zTUXkmlWfNlryJllQpHZLxZgi0i73pGx9JaJkNzDTo2LO9cGBDJx7E4eWdytMA=w120-h120-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
-          name: "Ed Sheeran",
-        ),
-      ],
-      artist_id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
-      album: Some(AlbumId(
-        id: "MPREb_0qzA9qC504a",
-        name: "Shivers",
-      )),
-      view_count: None,
-      is_video: false,
-      track_nr: None,
-      by_va: false,
-    ),
-    TrackItem(
-      id: "23g5HBOg3Ic",
-      name: "Celestial",
-      duration: None,
-      cover: [
-        Thumbnail(
-          url: "https://i.ytimg.com/vi/23g5HBOg3Ic/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nuiNctvTEvTsb2MCoTtz3-k4CO9Q",
+          url: "https://i.ytimg.com/vi/2tZjT3L1wD4/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nIEIwcHRRamRRlklKoD_QXwG1Efg",
           width: 400,
           height: 225,
         ),
         Thumbnail(
-          url: "https://i.ytimg.com/vi/23g5HBOg3Ic/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3mmj6yj18IoS01LS4ZivGeUxUAbsg",
+          url: "https://i.ytimg.com/vi/2tZjT3L1wD4/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3nOvPF3UCMZ0w-ykO-1XeNLFD9GLg",
           width: 800,
           height: 450,
         ),
@@ -220,56 +220,23 @@ MusicArtist(
       ],
       artist_id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
       album: None,
-      view_count: Some(12000000),
+      view_count: Some(419000),
       is_video: true,
       track_nr: None,
       by_va: false,
     ),
     TrackItem(
-      id: "VERcf4ALkmo",
-      name: "Noche de Novela",
+      id: "wLvIBvKNaig",
+      name: "Life Goes On",
       duration: None,
       cover: [
         Thumbnail(
-          url: "https://i.ytimg.com/vi/VERcf4ALkmo/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3meYEvvqSatD75NyMTohWCOmpF0Ow",
+          url: "https://i.ytimg.com/vi/wLvIBvKNaig/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nRNf5VOzrUxF_1e0Lb6mKukUO_rw",
           width: 400,
           height: 225,
         ),
         Thumbnail(
-          url: "https://i.ytimg.com/vi/VERcf4ALkmo/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3nvfuwnL-jViLK17X9twwkScGy6tA",
-          width: 800,
-          height: 450,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCpH92jOmlMe71mRYEkp7riQ"),
-          name: "Paulo Londra",
-        ),
-        ArtistId(
-          id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
-          name: "Ed Sheeran",
-        ),
-      ],
-      artist_id: Some("UCpH92jOmlMe71mRYEkp7riQ"),
-      album: None,
-      view_count: Some(442000),
-      is_video: true,
-      track_nr: None,
-      by_va: false,
-    ),
-    TrackItem(
-      id: "2Vv-BfVoq4g",
-      name: "Perfect",
-      duration: None,
-      cover: [
-        Thumbnail(
-          url: "https://i.ytimg.com/vi/2Vv-BfVoq4g/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3n2i8n23SGKyRYTQaLkXskdUhSbUg",
-          width: 400,
-          height: 225,
-        ),
-        Thumbnail(
-          url: "https://i.ytimg.com/vi/2Vv-BfVoq4g/sddefault.jpg?sqp=-oaymwEWCKoDEPABIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mSbbXliFbBsT3p4boJmO1St6d6-w",
+          url: "https://i.ytimg.com/vi/wLvIBvKNaig/sddefault.jpg?sqp=-oaymwEWCKoDEPABIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3noBnXkkLuga0HeXwNLuY-UJcnTzQ",
           width: 426,
           height: 240,
         ),
@@ -282,7 +249,94 @@ MusicArtist(
       ],
       artist_id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
       album: None,
-      view_count: Some(3200000000),
+      view_count: Some(181000),
+      is_video: true,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "bOr2N0R2mWs",
+      name: "Borderline (Apple Music Live)",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/bOr2N0R2mWs/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lvBTyfHI4DIYCQQY3jlunC0NYu-Q",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/bOr2N0R2mWs/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3nW0d-er5K2MSIMdMFWXeBJpitoOw",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
+          name: "Ed Sheeran",
+        ),
+      ],
+      artist_id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
+      album: None,
+      view_count: Some(127000),
+      is_video: true,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "29lq-cvvlSo",
+      name: "The Hills of Aberfeldy",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/29lq-cvvlSo/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lX75As76WxiWqUwMUXni6K5_1krg",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/29lq-cvvlSo/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3lWnbuFQQ6uWIVVZqXnxEL7Gajg5g",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
+          name: "Ed Sheeran",
+        ),
+      ],
+      artist_id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
+      album: None,
+      view_count: Some(1700000),
+      is_video: true,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "juwh4K2Dvrk",
+      name: "No Strings",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/juwh4K2Dvrk/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3l5GoPZGzrO16keZ1xQkDKuNdK9Ig",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/juwh4K2Dvrk/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3l-rS2t3P8Qw23whGMH8VtNUVF-5g",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
+          name: "Ed Sheeran",
+        ),
+      ],
+      artist_id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
+      album: None,
+      view_count: Some(2100000),
       is_video: true,
       track_nr: None,
       by_va: false,
@@ -311,23 +365,23 @@ MusicArtist(
       ],
       artist_id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
       album: None,
-      view_count: Some(5800000000),
+      view_count: Some(5900000000),
       is_video: true,
       track_nr: None,
       by_va: false,
     ),
     TrackItem(
-      id: "nSDgHBxUbVQ",
-      name: "Photograph",
+      id: "2Vv-BfVoq4g",
+      name: "Perfect",
       duration: None,
       cover: [
         Thumbnail(
-          url: "https://i.ytimg.com/vi/nSDgHBxUbVQ/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kMFqA2LAoRihTLpg4T5P1lypH30g",
+          url: "https://i.ytimg.com/vi/2Vv-BfVoq4g/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3n2i8n23SGKyRYTQaLkXskdUhSbUg",
           width: 400,
           height: 225,
         ),
         Thumbnail(
-          url: "https://i.ytimg.com/vi/nSDgHBxUbVQ/sddefault.jpg?sqp=-oaymwEWCKoDEPABIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kQr-NI6u6P2tVQrzGHUUam09DH-w",
+          url: "https://i.ytimg.com/vi/2Vv-BfVoq4g/sddefault.jpg?sqp=-oaymwEWCKoDEPABIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mSbbXliFbBsT3p4boJmO1St6d6-w",
           width: 426,
           height: 240,
         ),
@@ -340,23 +394,23 @@ MusicArtist(
       ],
       artist_id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
       album: None,
-      view_count: Some(1200000000),
+      view_count: Some(3400000000),
       is_video: true,
       track_nr: None,
       by_va: false,
     ),
     TrackItem(
-      id: "orJSJGHjBLI",
-      name: "Bad Habits",
+      id: "YxSj3TP90SA",
+      name: "Curtains",
       duration: None,
       cover: [
         Thumbnail(
-          url: "https://i.ytimg.com/vi/orJSJGHjBLI/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kuWcj3GFn0KIrIk9yjaPHYxOaIvg",
+          url: "https://i.ytimg.com/vi/YxSj3TP90SA/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nKOD3bA2Sb-8nB5hXGn1aJZzMMFQ",
           width: 400,
           height: 225,
         ),
         Thumbnail(
-          url: "https://i.ytimg.com/vi/orJSJGHjBLI/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3lNMLo9uVag3GNRhhhblGO0NpT4hA",
+          url: "https://i.ytimg.com/vi/YxSj3TP90SA/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3mGg6TjM1kr9OzXxahvmab-1WmPOg",
           width: 800,
           height: 450,
         ),
@@ -369,36 +423,7 @@ MusicArtist(
       ],
       artist_id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
       album: None,
-      view_count: Some(444000000),
-      is_video: true,
-      track_nr: None,
-      by_va: false,
-    ),
-    TrackItem(
-      id: "Il0S8BoucSA",
-      name: "Shivers",
-      duration: None,
-      cover: [
-        Thumbnail(
-          url: "https://i.ytimg.com/vi/Il0S8BoucSA/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3md0OdolJfM7sSx62zb9Wr86LIsEA",
-          width: 400,
-          height: 225,
-        ),
-        Thumbnail(
-          url: "https://i.ytimg.com/vi/Il0S8BoucSA/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3l584OTAFrn2AeZulvXXEqdKVzhjQ",
-          width: 800,
-          height: 450,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
-          name: "Ed Sheeran",
-        ),
-      ],
-      artist_id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
-      album: None,
-      view_count: Some(238000000),
+      view_count: Some(8600000),
       is_video: true,
       track_nr: None,
       by_va: false,
@@ -433,73 +458,62 @@ MusicArtist(
       by_va: false,
     ),
     TrackItem(
-      id: "5QIbxwNQR0s",
-      name: "Peru",
+      id: "nSDgHBxUbVQ",
+      name: "Photograph",
       duration: None,
       cover: [
         Thumbnail(
-          url: "https://i.ytimg.com/vi/5QIbxwNQR0s/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3khgXF0bZRhTc-jz0KgP01WVgueug",
+          url: "https://i.ytimg.com/vi/nSDgHBxUbVQ/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kMFqA2LAoRihTLpg4T5P1lypH30g",
           width: 400,
           height: 225,
         ),
         Thumbnail(
-          url: "https://i.ytimg.com/vi/5QIbxwNQR0s/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3kWU1AM7lTazzpK7V7YLESzMHR7tw",
-          width: 800,
-          height: 450,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
-          name: "Ed Sheeran",
-        ),
-        ArtistId(
-          id: Some("UCt7KNkaOhBpesOJHMx2ASnw"),
-          name: "Fireboy DML",
-        ),
-      ],
-      artist_id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
-      album: None,
-      view_count: Some(14000000),
-      is_video: true,
-      track_nr: None,
-      by_va: false,
-    ),
-    TrackItem(
-      id: "y83x7MgzWOA",
-      name: "I Don’t Care",
-      duration: None,
-      cover: [
-        Thumbnail(
-          url: "https://i.ytimg.com/vi/y83x7MgzWOA/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kMi8W-Bs1zHXE5Lgk3dWDI4h6xVw",
-          width: 400,
-          height: 225,
-        ),
-        Thumbnail(
-          url: "https://i.ytimg.com/vi/y83x7MgzWOA/sddefault.jpg?sqp=-oaymwEWCKoDEPABIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3l7C4n2Xeh0EyPnBnlhDrLAz9FAQQ",
+          url: "https://i.ytimg.com/vi/nSDgHBxUbVQ/sddefault.jpg?sqp=-oaymwEWCKoDEPABIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kQr-NI6u6P2tVQrzGHUUam09DH-w",
           width: 426,
           height: 240,
         ),
       ],
       artists: [
         ArtistId(
-          id: Some("UCGvj8kfUV5Q6lzECIrGY19g"),
-          name: "Justin Bieber",
-        ),
-        ArtistId(
           id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
           name: "Ed Sheeran",
         ),
       ],
-      artist_id: Some("UCGvj8kfUV5Q6lzECIrGY19g"),
+      artist_id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
       album: None,
-      view_count: Some(539000000),
+      view_count: Some(1200000000),
       is_video: true,
       track_nr: None,
       by_va: false,
     ),
   ],
   albums: [
+    AlbumItem(
+      id: "MPREb_9jsAP3C5OSC",
+      name: "- (Deluxe)",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/e9X9JBO2XNUiMatV8gepjLWktB7uGb8W3HWN8zgxjiMFjVr8hVymX-FKgULPMpQBiQaJY5MDEgeFNEKc=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/e9X9JBO2XNUiMatV8gepjLWktB7uGb8W3HWN8zgxjiMFjVr8hVymX-FKgULPMpQBiQaJY5MDEgeFNEKc=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
+          name: "Ed Sheeran",
+        ),
+      ],
+      artist_id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
+      album_type: Album,
+      year: Some(2023),
+      by_va: false,
+    ),
     AlbumItem(
       id: "MPREb_k3zSCIhuy8Z",
       name: "=",
@@ -735,16 +749,16 @@ MusicArtist(
       by_va: false,
     ),
     AlbumItem(
-      id: "MPREb_nJ5BUdCWCr1",
-      name: "You Need Me",
+      id: "MPREb_ZkVjx6hEPfJ",
+      name: "Life Goes On (feat. Luke Combs)",
       cover: [
         Thumbnail(
-          url: "https://lh3.googleusercontent.com/XJ1XRgHQdNcCSYYWXcgwjpLu6F-KimhB-l-pSjjKflqBLe4aRyXLMDbkkZLLfLIX8Dg6OiYFksiCGA4=w226-h226-l90-rj",
+          url: "https://lh3.googleusercontent.com/mfOH1EW7DyYKzQRcbaeeOFsfkiUM58uHMkEL5IBQ4CmdiF1Fw9IbsBjdfsU5_3QIpooTZr3Kg8gSR5k=w226-h226-l90-rj",
           width: 226,
           height: 226,
         ),
         Thumbnail(
-          url: "https://lh3.googleusercontent.com/XJ1XRgHQdNcCSYYWXcgwjpLu6F-KimhB-l-pSjjKflqBLe4aRyXLMDbkkZLLfLIX8Dg6OiYFksiCGA4=w544-h544-l90-rj",
+          url: "https://lh3.googleusercontent.com/mfOH1EW7DyYKzQRcbaeeOFsfkiUM58uHMkEL5IBQ4CmdiF1Fw9IbsBjdfsU5_3QIpooTZr3Kg8gSR5k=w544-h544-l90-rj",
           width: 544,
           height: 544,
         ),
@@ -756,8 +770,138 @@ MusicArtist(
         ),
       ],
       artist_id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
-      album_type: Ep,
-      year: Some(2009),
+      album_type: Single,
+      year: Some(2023),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_WcJCE3syWlv",
+      name: "Boat",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/N9SZ0q0Gk24UKlk1dfn6hcnhP8lwy97a878vVFb28UFOvWstKtwbkG4xadgww1Axw43GJhkxAlrXdaEkBQ=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/N9SZ0q0Gk24UKlk1dfn6hcnhP8lwy97a878vVFb28UFOvWstKtwbkG4xadgww1Axw43GJhkxAlrXdaEkBQ=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
+          name: "Ed Sheeran",
+        ),
+      ],
+      artist_id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
+      album_type: Single,
+      year: Some(2023),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_g9c75ZTnHKo",
+      name: "Eyes Closed (Piano Version)",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/5uy12e0dhXsVO8fKzu7S0mcEQIUayjZ3tYmFNR4JrcW8uNq1D-Q548J6cvJq85tiG3McFE2rcEunllvQ=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/5uy12e0dhXsVO8fKzu7S0mcEQIUayjZ3tYmFNR4JrcW8uNq1D-Q548J6cvJq85tiG3McFE2rcEunllvQ=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
+          name: "Ed Sheeran",
+        ),
+      ],
+      artist_id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
+      album_type: Single,
+      year: Some(2023),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_CrQXpRc2xsH",
+      name: "Eyes Closed",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/80SDGQuRwjkBtPcbtKUOFVMyxKkDj2fpzgJ6-Ks9ryj9ID8Gmhq1A3voXjfv7igr5uh46doHro50UIc=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/80SDGQuRwjkBtPcbtKUOFVMyxKkDj2fpzgJ6-Ks9ryj9ID8Gmhq1A3voXjfv7igr5uh46doHro50UIc=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
+          name: "Ed Sheeran",
+        ),
+      ],
+      artist_id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
+      album_type: Single,
+      year: Some(2023),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_NFPi1ZlYqj0",
+      name: "Eyes Closed (Overmono Remix)",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/kaO2Pv5AIBJbfWePJiBj1dqSD9NUpdKl7zKRZ8OCXfHq3SScTtvkrTNqc8nb_IcOyqLRKZg-RnqxKiZl=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/kaO2Pv5AIBJbfWePJiBj1dqSD9NUpdKl7zKRZ8OCXfHq3SScTtvkrTNqc8nb_IcOyqLRKZg-RnqxKiZl=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
+          name: "Ed Sheeran",
+        ),
+      ],
+      artist_id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
+      album_type: Single,
+      year: Some(2023),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_boUIBO6m7u6",
+      name: "F64",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wSABAc5HUA4f93VV_9-gZYw2fg2COoIAR3aJw1kE-sevkJfsNe4RaoeKqGySlf1cSX3_3hJt4G-CoaY=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/wSABAc5HUA4f93VV_9-gZYw2fg2COoIAR3aJw1kE-sevkJfsNe4RaoeKqGySlf1cSX3_3hJt4G-CoaY=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
+          name: "Ed Sheeran",
+        ),
+      ],
+      artist_id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
+      album_type: Single,
+      year: Some(2023),
       by_va: false,
     ),
     AlbumItem(
@@ -864,162 +1008,6 @@ MusicArtist(
       year: Some(2022),
       by_va: false,
     ),
-    AlbumItem(
-      id: "MPREb_Gt2VWae3Yba",
-      name: "Noche de Novela",
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/mikO-2xGzx0JBXx1j21VxtXzFkGtTthIFX4WsoCV8BRVrFPpJcU1Z7_MSr1eLbyyXpwdroOIlwb7lruyaA=w226-h226-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/mikO-2xGzx0JBXx1j21VxtXzFkGtTthIFX4WsoCV8BRVrFPpJcU1Z7_MSr1eLbyyXpwdroOIlwb7lruyaA=w544-h544-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
-          name: "Ed Sheeran",
-        ),
-      ],
-      artist_id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
-      album_type: Single,
-      year: Some(2022),
-      by_va: false,
-    ),
-    AlbumItem(
-      id: "MPREb_JSWUcZ11cM7",
-      name: "Are You Entertained",
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/WEr3fB_IMs3qNRce0mejdN-rHz2p6gioqM_2tXsbGVtNc9VWQBxek1TqKZLF1i9rUGbZz7uH9x2mhayj=w226-h226-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/WEr3fB_IMs3qNRce0mejdN-rHz2p6gioqM_2tXsbGVtNc9VWQBxek1TqKZLF1i9rUGbZz7uH9x2mhayj=w544-h544-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
-          name: "Ed Sheeran",
-        ),
-      ],
-      artist_id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
-      album_type: Single,
-      year: Some(2022),
-      by_va: false,
-    ),
-    AlbumItem(
-      id: "MPREb_4nNFUnbkX0Y",
-      name: "2step (feat. Denise Chaila)",
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/osqa9lfnMKXUczVcgZEK2Kg-AzuQQWgi3sTYgQ5FnpU8o2ULxK-HhuPZ_GK1xoDTqlEUaqRiNGd4ACzfIw=w226-h226-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/osqa9lfnMKXUczVcgZEK2Kg-AzuQQWgi3sTYgQ5FnpU8o2ULxK-HhuPZ_GK1xoDTqlEUaqRiNGd4ACzfIw=w544-h544-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
-          name: "Ed Sheeran",
-        ),
-      ],
-      artist_id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
-      album_type: Single,
-      year: Some(2022),
-      by_va: false,
-    ),
-    AlbumItem(
-      id: "MPREb_v7yxiLI99I3",
-      name: "2step (feat. Quevedo)",
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/AhL0JM2we0fskaqebQASJkZTuVKLGYrVugS_iEivbKKBu7_l4762XduFkK-jxOsAsz7B75BWx-4WKoqK=w226-h226-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/AhL0JM2we0fskaqebQASJkZTuVKLGYrVugS_iEivbKKBu7_l4762XduFkK-jxOsAsz7B75BWx-4WKoqK=w544-h544-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
-          name: "Ed Sheeran",
-        ),
-      ],
-      artist_id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
-      album_type: Single,
-      year: Some(2022),
-      by_va: false,
-    ),
-    AlbumItem(
-      id: "MPREb_LpecWMcDlit",
-      name: "2step (feat. Armaan Malik)",
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/ZjfQWy3ziZ5RD0cUvgdmKVAjE1Uyl4bUuOdOz-BJiVp65-GmaNaGPKuHt_v5Frwd4zz9AWRZekN7IL6s=w226-h226-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/ZjfQWy3ziZ5RD0cUvgdmKVAjE1Uyl4bUuOdOz-BJiVp65-GmaNaGPKuHt_v5Frwd4zz9AWRZekN7IL6s=w544-h544-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
-          name: "Ed Sheeran",
-        ),
-      ],
-      artist_id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
-      album_type: Single,
-      year: Some(2022),
-      by_va: false,
-    ),
-    AlbumItem(
-      id: "MPREb_8WKj0kvQXSK",
-      name: "2step (feat. Potter Payper)",
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/Tj5VydcslCHaMyFo3wWsGVzyU5oOugihuyjxCz0nfpdqCZJIDzoeEbjwv_yVKxIGvS_5YvU4nsX_h0oD=w226-h226-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/Tj5VydcslCHaMyFo3wWsGVzyU5oOugihuyjxCz0nfpdqCZJIDzoeEbjwv_yVKxIGvS_5YvU4nsX_h0oD=w544-h544-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
-          name: "Ed Sheeran",
-        ),
-      ],
-      artist_id: Some("UClmXPfaYhXOYsNn_QUyheWQ"),
-      album_type: Single,
-      year: Some(2022),
-      by_va: false,
-    ),
   ],
   playlists: [
     MusicPlaylistItem(
@@ -1033,44 +1021,6 @@ MusicArtist(
         ),
         Thumbnail(
           url: "https://lh3.googleusercontent.com/a6b-n9lYKwWFee51jlLIm1Lqz7ImXZqoNHDrhHvLLoPEHX6FlEkfdHxHlTPPgQ-8x7Hs7G-ZfGuGwUM=w544-h544-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      channel: None,
-      track_count: None,
-      from_ytm: true,
-    ),
-    MusicPlaylistItem(
-      id: "RDCLAK5uy_m_0U5VQNyyzwwH1lRi7cPAAGXqNQnAOqY",
-      name: "Laid-Back Sofa Pop",
-      thumbnail: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/IKBTW8jZAxhiUfUkM9u-BLTuuFYrO2833EMuUmH4od_9Acn2pOhh0xOda0iSxo_C24TW3EHGPkkXF2o=w226-h226-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/IKBTW8jZAxhiUfUkM9u-BLTuuFYrO2833EMuUmH4od_9Acn2pOhh0xOda0iSxo_C24TW3EHGPkkXF2o=w544-h544-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      channel: None,
-      track_count: None,
-      from_ytm: true,
-    ),
-    MusicPlaylistItem(
-      id: "RDCLAK5uy_kW-moSFMAFOKAIVYn9IDrZKWEJA3cP9UU",
-      name: "Ultimate Love Songs",
-      thumbnail: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/1XaqYrvh63qNMM2j4XmsNjteKD5uAT6rrF5LWrOaR9Wh-n5zqli2rc0XKCOQYmgPBXahxGuyFjlkVg=w226-h226-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/1XaqYrvh63qNMM2j4XmsNjteKD5uAT6rrF5LWrOaR9Wh-n5zqli2rc0XKCOQYmgPBXahxGuyFjlkVg=w544-h544-l90-rj",
           width: 544,
           height: 544,
         ),
@@ -1118,44 +1068,6 @@ MusicArtist(
       from_ytm: true,
     ),
     MusicPlaylistItem(
-      id: "RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk",
-      name: "Easy Pop",
-      thumbnail: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/yhJZKIN2MC78CA5TOJ0jPlqRVogpV8NCNvXVNPNwqhRE6o5QIz-SIv69lmrAPrMa8MoVCh90EyKx7gE=w226-h226-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/yhJZKIN2MC78CA5TOJ0jPlqRVogpV8NCNvXVNPNwqhRE6o5QIz-SIv69lmrAPrMa8MoVCh90EyKx7gE=w544-h544-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      channel: None,
-      track_count: None,
-      from_ytm: true,
-    ),
-    MusicPlaylistItem(
-      id: "RDCLAK5uy_n6hsOgszxNWyecqA8b5w21MH0rcJhduYA",
-      name: "PG Pop Hits",
-      thumbnail: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/Zp6m7NBKrHd3C566CnsvEdfO0XKlVfNQDWTd5X6pi2i1YMJRXy5FPv087ymevj2pkP8HwYyDMt-t-mM=w226-h226-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/Zp6m7NBKrHd3C566CnsvEdfO0XKlVfNQDWTd5X6pi2i1YMJRXy5FPv087ymevj2pkP8HwYyDMt-t-mM=w544-h544-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      channel: None,
-      track_count: None,
-      from_ytm: true,
-    ),
-    MusicPlaylistItem(
       id: "RDCLAK5uy_nDL8KeBrUagwyISwNmyEiSfYgz1gVCesg",
       name: "Mellow Pop Classics",
       thumbnail: [
@@ -1166,6 +1078,63 @@ MusicArtist(
         ),
         Thumbnail(
           url: "https://lh3.googleusercontent.com/XyREm3Y-HafFR_mxyJF99Pd9zerLQiJ0q62_XEnzPK2g30m_V04iVdzAwyP1T9-_3ruclUASulQFjSY=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      channel: None,
+      track_count: None,
+      from_ytm: true,
+    ),
+    MusicPlaylistItem(
+      id: "RDCLAK5uy_m_0U5VQNyyzwwH1lRi7cPAAGXqNQnAOqY",
+      name: "Laid-Back Sofa Pop",
+      thumbnail: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/IKBTW8jZAxhiUfUkM9u-BLTuuFYrO2833EMuUmH4od_9Acn2pOhh0xOda0iSxo_C24TW3EHGPkkXF2o=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/IKBTW8jZAxhiUfUkM9u-BLTuuFYrO2833EMuUmH4od_9Acn2pOhh0xOda0iSxo_C24TW3EHGPkkXF2o=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      channel: None,
+      track_count: None,
+      from_ytm: true,
+    ),
+    MusicPlaylistItem(
+      id: "RDCLAK5uy_mdwsZFtQhJyGQPuQA612VoRPXp-OJfzx8",
+      name: "Hits Unplugged ",
+      thumbnail: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/65MUtlrAGhOKw4_lh5ZC5RDbScBQMy_PKrFRLPIFkGe-0jPQCfVvXzik3VNvteuvqbmPuLoWC9GzCNE=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/65MUtlrAGhOKw4_lh5ZC5RDbScBQMy_PKrFRLPIFkGe-0jPQCfVvXzik3VNvteuvqbmPuLoWC9GzCNE=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      channel: None,
+      track_count: None,
+      from_ytm: true,
+    ),
+    MusicPlaylistItem(
+      id: "RDCLAK5uy_l1oO11DBO4FD8U7bOrqUKK5Y_PkISUMQM",
+      name: "Sweetheart Pop",
+      thumbnail: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/PgqPJM_3mqB-QZSMPCfMvRKmOYMnNFZtzW-Y6UqT4V9va_nYKC24Y5OGhUAWaaM78eTMlIAWbHbcdQuB=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/PgqPJM_3mqB-QZSMPCfMvRKmOYMnNFZtzW-Y6UqT4V9va_nYKC24Y5OGhUAWaaM78eTMlIAWbHbcdQuB=w544-h544-l90-rj",
           width: 544,
           height: 544,
         ),
@@ -1194,16 +1163,35 @@ MusicArtist(
       from_ytm: true,
     ),
     MusicPlaylistItem(
-      id: "RDCLAK5uy_mfdqvCAl8wodlx2P2_Ai2gNkiRDAufkkI",
-      name: "Happy Pop Hits",
+      id: "RDCLAK5uy_lBNUteBRencHzKelu5iDHwLF6mYqjL-JU",
+      name: "Pop Certified",
       thumbnail: [
         Thumbnail(
-          url: "https://lh3.googleusercontent.com/-ZNC3w71iSs1df7ogBe-LmZj98AzwhHVxJpQVe-nO5VKw8s2M3B8g_7v0mih9NV2dRwX8_a0znewkJI=w226-h226-l90-rj",
+          url: "https://lh3.googleusercontent.com/B26Q3bpmcX4gacK4BWxbB57ABCd1ibmXeKPXK5ISlXKEyRgqxGMOggdrt4gOqky_Ad8tKbpwn1M0mq8U=w226-h226-l90-rj",
           width: 226,
           height: 226,
         ),
         Thumbnail(
-          url: "https://lh3.googleusercontent.com/-ZNC3w71iSs1df7ogBe-LmZj98AzwhHVxJpQVe-nO5VKw8s2M3B8g_7v0mih9NV2dRwX8_a0znewkJI=w544-h544-l90-rj",
+          url: "https://lh3.googleusercontent.com/B26Q3bpmcX4gacK4BWxbB57ABCd1ibmXeKPXK5ISlXKEyRgqxGMOggdrt4gOqky_Ad8tKbpwn1M0mq8U=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      channel: None,
+      track_count: None,
+      from_ytm: true,
+    ),
+    MusicPlaylistItem(
+      id: "RDCLAK5uy_kY7Uomg8uSGAGuvMIKc3HsVg_ipocKTrE",
+      name: "Feel-good Pop Hits",
+      thumbnail: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/PiXWU8bqSkti4dEbt7LKktLiNd0ugLjUv2UC4_j5cmlosNRC5Cuas-sN8w-tLHs1Nvd9fIT72L7kVXqE=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/PiXWU8bqSkti4dEbt7LKktLiNd0ugLjUv2UC4_j5cmlosNRC5Cuas-sN8w-tLHs1Nvd9fIT72L7kVXqE=w544-h544-l90-rj",
           width: 544,
           height: 544,
         ),
@@ -1219,17 +1207,17 @@ MusicArtist(
       name: "Lewis Capaldi",
       avatar: [
         Thumbnail(
-          url: "https://lh3.googleusercontent.com/a-/ACNPEu_v_ytLXCjklZ1G6x-KwOxmZKUtAxQdyZ_wsSd7=w226-h226-l90-rj",
+          url: "https://lh3.googleusercontent.com/a-/ACB-R5QMZT913rWvdAb53sd2bP0-iPjP8MOi-7n5Dcps=w226-h226-l90-rj",
           width: 226,
           height: 226,
         ),
         Thumbnail(
-          url: "https://lh3.googleusercontent.com/a-/ACNPEu_v_ytLXCjklZ1G6x-KwOxmZKUtAxQdyZ_wsSd7=w544-h544-l90-rj",
+          url: "https://lh3.googleusercontent.com/a-/ACB-R5QMZT913rWvdAb53sd2bP0-iPjP8MOi-7n5Dcps=w544-h544-l90-rj",
           width: 544,
           height: 544,
         ),
       ],
-      subscriber_count: Some(6210000),
+      subscriber_count: Some(6630000),
     ),
     ArtistItem(
       id: "UCiDBtu8whAdUgiJ5o1g7sQQ",
@@ -1246,58 +1234,24 @@ MusicArtist(
           height: 544,
         ),
       ],
-      subscriber_count: Some(1940000),
+      subscriber_count: Some(1950000),
     ),
     ArtistItem(
       id: "UCgpBsaDW2n_6ruzht3wvP0A",
       name: "Sam Smith",
       avatar: [
         Thumbnail(
-          url: "https://lh3.googleusercontent.com/X160uSYi6ceV4a41CmfYBYosX4QzYvV9W7ix_RfGvmUdPVi6LW_z-XoiOa-Yq9T5wNuinthoaaHi45Wb=w226-h226-p-l90-rj",
+          url: "https://lh3.googleusercontent.com/TjSOLC2wjZtZZ6vKHV0PfHx6xxsk1csVyV-O-NEeASSAuxhgin8y_TE5Ee-fOuO1jrbaQUi0ZejiMrVv=w226-h226-p-l90-rj",
           width: 226,
           height: 226,
         ),
         Thumbnail(
-          url: "https://lh3.googleusercontent.com/X160uSYi6ceV4a41CmfYBYosX4QzYvV9W7ix_RfGvmUdPVi6LW_z-XoiOa-Yq9T5wNuinthoaaHi45Wb=w544-h544-p-l90-rj",
+          url: "https://lh3.googleusercontent.com/TjSOLC2wjZtZZ6vKHV0PfHx6xxsk1csVyV-O-NEeASSAuxhgin8y_TE5Ee-fOuO1jrbaQUi0ZejiMrVv=w544-h544-p-l90-rj",
           width: 544,
           height: 544,
         ),
       ],
-      subscriber_count: Some(15600000),
-    ),
-    ArtistItem(
-      id: "UCuPY6msZGySMzTpKLjyeO8g",
-      name: "Calum Scott",
-      avatar: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/ptgbSdgMSf2pAwcayHJkQP_kKwV7gXrX3orYW0Yr-w_uDukYjMqD7XJQIj2xBHeokIl3R7JhoPDQSbS-=w226-h226-p-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/ptgbSdgMSf2pAwcayHJkQP_kKwV7gXrX3orYW0Yr-w_uDukYjMqD7XJQIj2xBHeokIl3R7JhoPDQSbS-=w544-h544-p-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      subscriber_count: Some(6240000),
-    ),
-    ArtistItem(
-      id: "UCNAbUat5xDtp6FeBphe2V_Q",
-      name: "James Arthur",
-      avatar: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/VWyzSUVLJjSH6f57sMAo5bDeBU0Hn78p8-Qiydc13N3aMhw3Lr2-4NoHHoqLx93JzXBoMiEX1AqqC2Y=w226-h226-p-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/VWyzSUVLJjSH6f57sMAo5bDeBU0Hn78p8-Qiydc13N3aMhw3Lr2-4NoHHoqLx93JzXBoMiEX1AqqC2Y=w544-h544-p-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      subscriber_count: Some(6700000),
+      subscriber_count: Some(16200000),
     ),
     ArtistItem(
       id: "UCl6-24cszKqIYLkBzo02XzQ",
@@ -1314,58 +1268,7 @@ MusicArtist(
           height: 544,
         ),
       ],
-      subscriber_count: Some(5060000),
-    ),
-    ArtistItem(
-      id: "UCdFe4KkWwZ_twpo-UECR-Nw",
-      name: "Maroon 5",
-      avatar: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/w6lahCp_CVL6Dwd54MGB8Y_I-TXsMmMhDeM4Z_stmWh6B56H4e3x9M1q3juWODInuIBn90SeJl4RrpcN=w226-h226-p-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/w6lahCp_CVL6Dwd54MGB8Y_I-TXsMmMhDeM4Z_stmWh6B56H4e3x9M1q3juWODInuIBn90SeJl4RrpcN=w544-h544-p-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      subscriber_count: Some(36300000),
-    ),
-    ArtistItem(
-      id: "UCrrbm1toLPud8fFIisPuxpg",
-      name: "OneRepublic",
-      avatar: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/qvD1cR5jT6Afoq_irOWSDuu0SXNyvmnZ8TN5kAydv_-UMsiPDvQMUsQv-WPPP1Qolw6AY-OQO_f8w2I=w226-h226-p-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/qvD1cR5jT6Afoq_irOWSDuu0SXNyvmnZ8TN5kAydv_-UMsiPDvQMUsQv-WPPP1Qolw6AY-OQO_f8w2I=w544-h544-p-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      subscriber_count: Some(10100000),
-    ),
-    ArtistItem(
-      id: "UC6HTI9rYRvWIjyR1vU7DB3Q",
-      name: "JP Cooper",
-      avatar: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/EZfCBYt6lfcDpo9usKJLcsdnaifg6WWqZ3H3xw6PMPR-hPZHPLmvBtN_XTA9WUtwHhVn1kCDAuysRaZn=w226-h226-p-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/EZfCBYt6lfcDpo9usKJLcsdnaifg6WWqZ3H3xw6PMPR-hPZHPLmvBtN_XTA9WUtwHhVn1kCDAuysRaZn=w544-h544-p-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      subscriber_count: Some(763000),
+      subscriber_count: Some(5130000),
     ),
     ArtistItem(
       id: "UC6ZjlLJhqP79nqGr3Ic6Adg",
@@ -1382,7 +1285,92 @@ MusicArtist(
           height: 544,
         ),
       ],
-      subscriber_count: Some(29700000),
+      subscriber_count: Some(29900000),
+    ),
+    ArtistItem(
+      id: "UCuPY6msZGySMzTpKLjyeO8g",
+      name: "Calum Scott",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/ptgbSdgMSf2pAwcayHJkQP_kKwV7gXrX3orYW0Yr-w_uDukYjMqD7XJQIj2xBHeokIl3R7JhoPDQSbS-=w226-h226-p-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/ptgbSdgMSf2pAwcayHJkQP_kKwV7gXrX3orYW0Yr-w_uDukYjMqD7XJQIj2xBHeokIl3R7JhoPDQSbS-=w544-h544-p-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(6380000),
+    ),
+    ArtistItem(
+      id: "UCrrbm1toLPud8fFIisPuxpg",
+      name: "OneRepublic",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/qvD1cR5jT6Afoq_irOWSDuu0SXNyvmnZ8TN5kAydv_-UMsiPDvQMUsQv-WPPP1Qolw6AY-OQO_f8w2I=w226-h226-p-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/qvD1cR5jT6Afoq_irOWSDuu0SXNyvmnZ8TN5kAydv_-UMsiPDvQMUsQv-WPPP1Qolw6AY-OQO_f8w2I=w544-h544-p-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(10300000),
+    ),
+    ArtistItem(
+      id: "UCFGwp4FHyvU1pJv9w6Jcx8w",
+      name: "The Script",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/4f5qk1izKPLk5EKm9WO3_RT7PqEo8j2FmZ39UPPVcRagm93fZ2EjzIDuyV6otYS0t22FlIveKty9vlVg=w226-h226-p-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/4f5qk1izKPLk5EKm9WO3_RT7PqEo8j2FmZ39UPPVcRagm93fZ2EjzIDuyV6otYS0t22FlIveKty9vlVg=w544-h544-p-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(4190000),
+    ),
+    ArtistItem(
+      id: "UCNAbUat5xDtp6FeBphe2V_Q",
+      name: "James Arthur",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/VWyzSUVLJjSH6f57sMAo5bDeBU0Hn78p8-Qiydc13N3aMhw3Lr2-4NoHHoqLx93JzXBoMiEX1AqqC2Y=w226-h226-p-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/VWyzSUVLJjSH6f57sMAo5bDeBU0Hn78p8-Qiydc13N3aMhw3Lr2-4NoHHoqLx93JzXBoMiEX1AqqC2Y=w544-h544-p-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(6920000),
+    ),
+    ArtistItem(
+      id: "UCCEzq-Gv6gU-bdM82rtZN4g",
+      name: "James Blunt",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/sXHg22Fqjb3cxKE9Yo1WwF7-RifZ7lYEugJon7AUBI0hzbDe7_WxTAAJEAYGi4r0mLfi2CPn7e0mDg=w226-h226-p-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/sXHg22Fqjb3cxKE9Yo1WwF7-RifZ7lYEugJon7AUBI0hzbDe7_WxTAAJEAYGi4r0mLfi2CPn7e0mDg=w544-h544-p-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(3140000),
     ),
   ],
   tracks_playlist_id: Some("OLAK5uy_mHzt_lZ0Vdnv3NAqvCLQw5CiYe0q96iBs"),

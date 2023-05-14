@@ -353,3 +353,26 @@ YouTube changed the header renderer type on the trending page to a `pageHeaderRe
   }
 }
 ```
+
+## [6] New Music Discography page
+
+- **Encountered on:** 13.05.2023
+- **Impact:** 🟡 Medium
+- **Endpoint:** browse (music artist)
+
+YouTube merged the 2 sections for singles and albums on artist pages together. Now
+there is only a *Top Releases* section.
+
+YouTube also changed the way the full discography page is fetched, surprisingly making
+it easier for alternative clients. The discography page now has its own content ID in
+the format of `MPAD<channel id>` (Music Page Artist Discography). This page can be
+fetched with a regular browse request without requiring parameters to be parsed or a
+visitor data cookie to be set, as it was the case with the old system.
+
+**OLD**
+
+![A/B test 4 old screenshot](./_img/ab_6_old.png)
+
+**NEW**
+
+![A/B test 4 old screenshot](./_img/ab_6_new.png)

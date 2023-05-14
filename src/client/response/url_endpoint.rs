@@ -1,7 +1,7 @@
 use serde::Deserialize;
 use serde_with::{serde_as, DefaultOnError};
 
-use crate::model::UrlTarget;
+use crate::{model::UrlTarget, util};
 
 /// navigation/resolve_url response model
 #[derive(Debug, Deserialize)]
@@ -152,6 +152,8 @@ pub(crate) enum PageType {
         alias = "MUSIC_PAGE_TYPE_AUDIOBOOK_ARTIST"
     )]
     Artist,
+    #[serde(rename = "MUSIC_PAGE_TYPE_ARTIST_DISCOGRAPHY")]
+    ArtistDiscography,
     #[serde(rename = "MUSIC_PAGE_TYPE_ALBUM", alias = "MUSIC_PAGE_TYPE_AUDIOBOOK")]
     Album,
     #[serde(
@@ -169,6 +171,9 @@ impl PageType {
     pub(crate) fn to_url_target(self, id: String) -> Option<UrlTarget> {
         match self {
             PageType::Artist | PageType::Channel => Some(UrlTarget::Channel { id }),
+            PageType::ArtistDiscography => id
+                .strip_prefix(util::ARTIST_DISCOGRAPHY_PREFIX)
+                .map(|id| UrlTarget::Channel { id: id.to_owned() }),
             PageType::Album => Some(UrlTarget::Album { id }),
             PageType::Playlist => Some(UrlTarget::Playlist { id }),
             PageType::Unknown => None,
@@ -192,7 +197,7 @@ impl From<PageType> for MusicPageType {
             PageType::Artist => MusicPageType::Artist,
             PageType::Album => MusicPageType::Album,
             PageType::Playlist => MusicPageType::Playlist,
-            PageType::Channel => MusicPageType::None,
+            PageType::Channel | PageType::ArtistDiscography => MusicPageType::None,
             PageType::Unknown => MusicPageType::Unknown,
         }
     }

@@ -652,7 +652,6 @@ async fn music_search_suggestion() {
 async fn music_artist() {
     for (name, id, all_albums) in [
         ("default", "UClmXPfaYhXOYsNn_QUyheWQ", true),
-        ("no_more_albums", "UC_vmjW5e1xEHhYjY2a0kK1A", true),
         ("only_singles", "UCfwCE5VhPMGxNPFxtVv7lRw", true),
         ("no_artist", "UCh8gHdtzO2tXd593_bjErWg", true),
         ("only_more_singles", "UC0aXrjVxG5pZr99v77wZdPQ", true),
