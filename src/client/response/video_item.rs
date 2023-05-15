@@ -163,7 +163,7 @@ pub(crate) struct PlaylistVideoRenderer {
     /// Livestream: `["66K", " watching"]`
     /// Upcoming: `["8", " waiting"]`
     #[serde(default)]
-    #[serde_as(as = "Text")]
+    #[serde_as(as = "DefaultOnError<Text>")]
     pub video_info: Vec<String>,
     /// Contains Short/Live tag
     #[serde(default)]
