@@ -385,7 +385,7 @@ async fn download_videos(
 
 #[tokio::main]
 async fn main() {
-    env_logger::init();
+    env_logger::builder().format_timestamp_micros().init();
 
     let cli = Cli::parse();
 

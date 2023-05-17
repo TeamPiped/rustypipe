@@ -37,6 +37,12 @@ impl FromYtItem for VideoItem {
     }
 }
 
+impl From<VideoItem> for YouTubeItem {
+    fn from(value: VideoItem) -> Self {
+        Self::Video(value)
+    }
+}
+
 impl FromYtItem for PlaylistItem {
     fn from_yt_item(item: YouTubeItem) -> Option<Self> {
         match item {
@@ -46,12 +52,24 @@ impl FromYtItem for PlaylistItem {
     }
 }
 
+impl From<PlaylistItem> for YouTubeItem {
+    fn from(value: PlaylistItem) -> Self {
+        Self::Playlist(value)
+    }
+}
+
 impl FromYtItem for ChannelItem {
     fn from_yt_item(item: YouTubeItem) -> Option<Self> {
         match item {
             YouTubeItem::Channel(channel) => Some(channel),
             _ => None,
         }
+    }
+}
+
+impl From<ChannelItem> for YouTubeItem {
+    fn from(value: ChannelItem) -> Self {
+        Self::Channel(value)
     }
 }
 
@@ -70,12 +88,24 @@ impl FromYtItem for TrackItem {
     }
 }
 
+impl From<TrackItem> for MusicItem {
+    fn from(value: TrackItem) -> Self {
+        Self::Track(value)
+    }
+}
+
 impl FromYtItem for AlbumItem {
     fn from_ytm_item(item: MusicItem) -> Option<Self> {
         match item {
             MusicItem::Album(album) => Some(album),
             _ => None,
         }
+    }
+}
+
+impl From<AlbumItem> for MusicItem {
+    fn from(value: AlbumItem) -> Self {
+        Self::Album(value)
     }
 }
 
@@ -88,12 +118,24 @@ impl FromYtItem for ArtistItem {
     }
 }
 
+impl From<ArtistItem> for MusicItem {
+    fn from(value: ArtistItem) -> Self {
+        Self::Artist(value)
+    }
+}
+
 impl FromYtItem for MusicPlaylistItem {
     fn from_ytm_item(item: MusicItem) -> Option<Self> {
         match item {
             MusicItem::Playlist(playlist) => Some(playlist),
             _ => None,
         }
+    }
+}
+
+impl From<MusicPlaylistItem> for MusicItem {
+    fn from(value: MusicPlaylistItem) -> Self {
+        Self::Playlist(value)
     }
 }
 

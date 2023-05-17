@@ -7,7 +7,7 @@ use crate::{
 };
 
 use super::{
-    response::{self, music_item::MusicListMapper},
+    response::{self, music_item::MusicListMapper, url_endpoint::NavigationEndpoint},
     ClientType, MapResponse, QBrowse, QBrowseParams, RustyPipeQuery,
 };
 
@@ -144,18 +144,20 @@ impl MapResponse<MusicGenre> for response::MusicGenre {
                             h.music_carousel_shelf_basic_header_renderer
                                 .more_content_button
                                 .and_then(|btn| {
-                                    btn.button_renderer
-                                        .navigation_endpoint
-                                        .browse_endpoint
-                                        .and_then(|browse| {
-                                            if browse.browse_id
-                                                == "FEmusic_moods_and_genres_category"
-                                            {
-                                                Some(browse.params)
-                                            } else {
-                                                None
-                                            }
-                                        })
+                                    if let NavigationEndpoint::Browse {
+                                        browse_endpoint, ..
+                                    } = btn.button_renderer.navigation_endpoint
+                                    {
+                                        if browse_endpoint.browse_id
+                                            == "FEmusic_moods_and_genres_category"
+                                        {
+                                            Some(browse_endpoint.params)
+                                        } else {
+                                            None
+                                        }
+                                    } else {
+                                        None
+                                    }
                                 })
                         }),
                         shelf.contents,

@@ -3,7 +3,7 @@ use std::convert::TryFrom;
 use once_cell::sync::Lazy;
 use regex::Regex;
 use serde::{Deserialize, Deserializer};
-use serde_with::{serde_as, DeserializeAs};
+use serde_with::{serde_as, DeserializeAs, VecSkipError};
 
 use crate::{
     client::response::url_endpoint::{MusicVideoType, NavigationEndpoint, PageType},
@@ -124,18 +124,19 @@ struct RichTextInternal {
 #[serde(rename_all = "camelCase")]
 struct RichTextRun {
     text: String,
-    #[serde(default)]
-    navigation_endpoint: NavigationEndpoint,
+    navigation_endpoint: Option<NavigationEndpoint>,
 }
 
 /// This is a new rich text representation format that YouTube is A/B testing
 /// at the moment. It consists of the full text and an array of ranges describing
 /// the links.
+#[serde_as]
 #[derive(Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct AttributedText {
     content: String,
     #[serde(default)]
+    #[serde_as(as = "VecSkipError<_>")]
     command_runs: Vec<AttributedTextRun>,
 }
 
@@ -160,35 +161,37 @@ impl From<RichTextRun> for TextComponent {
 }
 
 /// Map a single component of a rich text
-fn map_text_component(text: String, nav: NavigationEndpoint) -> TextComponent {
-    match nav.watch_endpoint {
-        Some(w) => TextComponent::Video {
+fn map_text_component(text: String, nav: Option<NavigationEndpoint>) -> TextComponent {
+    match nav {
+        Some(NavigationEndpoint::Watch { watch_endpoint }) => TextComponent::Video {
             text,
-            video_id: w.video_id,
-            start_time: w.start_time_seconds,
-            is_video: w
+            video_id: watch_endpoint.video_id,
+            start_time: watch_endpoint.start_time_seconds,
+            is_video: watch_endpoint
                 .watch_endpoint_music_supported_configs
                 .watch_endpoint_music_config
                 .music_video_type
                 == MusicVideoType::Video,
         },
-        None => match nav.browse_endpoint {
-            Some(b) => TextComponent::Browse {
-                page_type: match &b.browse_endpoint_context_supported_configs {
-                    Some(bc) => bc.browse_endpoint_context_music_config.page_type,
-                    None => match &nav.command_metadata {
-                        Some(cm) => cm.web_command_metadata.web_page_type,
-                        None => return TextComponent::Text { text },
-                    },
+        Some(NavigationEndpoint::Browse {
+            browse_endpoint,
+            command_metadata,
+        }) => TextComponent::Browse {
+            page_type: match &browse_endpoint.browse_endpoint_context_supported_configs {
+                Some(bc) => bc.browse_endpoint_context_music_config.page_type,
+                None => match &command_metadata {
+                    Some(cm) => cm.web_command_metadata.web_page_type,
+                    None => return TextComponent::Text { text },
                 },
-                text,
-                browse_id: b.browse_id,
             },
-            None => match nav.url_endpoint {
-                Some(u) => TextComponent::Web { text, url: u.url },
-                None => TextComponent::Text { text },
-            },
+            text,
+            browse_id: browse_endpoint.browse_id,
         },
+        Some(NavigationEndpoint::Url { url_endpoint }) => TextComponent::Web {
+            text,
+            url: url_endpoint.url,
+        },
+        None => TextComponent::Text { text },
     }
 }
 
@@ -278,7 +281,7 @@ impl<'de> DeserializeAs<'de, TextComponents> for AttributedText {
             }
             components.push(map_text_component(
                 txt_link.to_string(),
-                cmd.on_tap.innertube_command,
+                Some(cmd.on_tap.innertube_command),
             ));
         });
 

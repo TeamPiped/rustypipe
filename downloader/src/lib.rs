@@ -429,7 +429,7 @@ async fn download_streams(
 }
 
 async fn convert_streams<P: Into<PathBuf>>(
-    downloads: &Vec<StreamDownload>,
+    downloads: &[StreamDownload],
     output: P,
     ffmpeg: &str,
 ) -> Result<()> {
@@ -448,11 +448,8 @@ async fn convert_streams<P: Into<PathBuf>>(
 
     args.append(&mut mapping_args);
 
-    // Combining multiple streams, keep codecs
-    if downloads.len() > 1 {
-        args.push("-c".into());
-        args.push("copy".into());
-    }
+    args.push("-c".into());
+    args.push("copy".into());
 
     args.push(output_path.into());
 

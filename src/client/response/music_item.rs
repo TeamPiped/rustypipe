@@ -759,7 +759,7 @@ impl MusicListMapper {
                                 }));
                                 Ok(Some(MusicItemType::Playlist))
                             }
-                            MusicPageType::None => {
+                            MusicPageType::None | MusicPageType::ArtistDiscography => {
                                 // There may be broken YT channels from the artist search. They can be skipped.
                                 Ok(None)
                             }
@@ -901,7 +901,7 @@ impl MusicListMapper {
                             }));
                             Ok(Some(MusicItemType::Playlist))
                         }
-                        MusicPageType::None => Ok(None),
+                        MusicPageType::None | MusicPageType::ArtistDiscography => Ok(None),
                         MusicPageType::Unknown => {
                             self.has_unknown = true;
                             Ok(None)
@@ -1039,7 +1039,7 @@ impl MusicListMapper {
                     }));
                     Some(MusicItemType::Playlist)
                 }
-                MusicPageType::None => None,
+                MusicPageType::None | MusicPageType::ArtistDiscography => None,
                 MusicPageType::Unknown => {
                     self.has_unknown = true;
                     None
@@ -1171,20 +1171,22 @@ fn map_artist_id_fallback(
 
 pub(crate) fn map_artist_id(entries: Vec<MusicItemMenuEntry>) -> Option<String> {
     entries.into_iter().find_map(|i| {
-        let ep = i
-            .menu_navigation_item_renderer
-            .navigation_endpoint
-            .browse_endpoint;
-        ep.and_then(|ep| {
-            ep.browse_endpoint_context_supported_configs
+        if let NavigationEndpoint::Browse {
+            browse_endpoint, ..
+        } = i.menu_navigation_item_renderer.navigation_endpoint
+        {
+            browse_endpoint
+                .browse_endpoint_context_supported_configs
                 .and_then(|cfg| {
                     if cfg.browse_endpoint_context_music_config.page_type == PageType::Artist {
-                        Some(ep.browse_id)
+                        Some(browse_endpoint.browse_id)
                     } else {
                         None
                     }
                 })
-        })
+        } else {
+            None
+        }
     })
 }
 

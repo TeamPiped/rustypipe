@@ -454,7 +454,7 @@ impl RustyPipeBuilder {
             .brotli(true)
             .redirect(reqwest::redirect::Policy::none());
 
-        if let Some(timeout) = self.timeout.or_default(|| Duration::from_secs(10)) {
+        if let Some(timeout) = self.timeout.or_default(|| Duration::from_secs(20)) {
             client_builder = client_builder.timeout(timeout);
         }
 
@@ -556,7 +556,7 @@ impl RustyPipeBuilder {
     /// The timeout is applied from when the request starts connecting until the
     /// response body has finished.
     ///
-    ///  **Default value**: 10s
+    ///  **Default value**: 20s
     #[must_use]
     pub fn timeout(mut self, timeout: Duration) -> Self {
         self.timeout = DefaultOpt::Some(timeout);

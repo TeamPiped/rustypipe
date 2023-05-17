@@ -4,6 +4,7 @@ use once_cell::sync::Lazy;
 use regex::Regex;
 
 use crate::{
+    client::response::url_endpoint::{MusicPageType, NavigationEndpoint},
     error::{Error, ExtractionError},
     model::{AlbumItem, ArtistId, MusicArtist},
     serializer::MapResult,
@@ -188,38 +189,29 @@ fn map_artist_page(
                         .music_carousel_shelf_basic_header_renderer
                         .more_content_button
                     {
-                        if let Some(bep) =
-                            button.button_renderer.navigation_endpoint.browse_endpoint
-                        {
-                            if let Some(cfg) = bep.browse_endpoint_context_supported_configs {
-                                match cfg.browse_endpoint_context_music_config.page_type {
-                                    // Music videos
-                                    PageType::Playlist => {
-                                        if videos_playlist_id.is_none() {
-                                            videos_playlist_id = Some(bep.browse_id);
-                                        }
-                                    }
-                                    // Albums
-                                    PageType::ArtistDiscography => {
+                        match button.button_renderer.navigation_endpoint.music_page() {
+                            // Music videos
+                            Some((MusicPageType::Playlist, id)) => {
+                                if videos_playlist_id.is_none() {
+                                    videos_playlist_id = Some(id);
+                                }
+                            }
+                            // Albums
+                            Some((MusicPageType::ArtistDiscography, _)) => {
+                                can_fetch_more = true;
+                                extendable_albums = true;
+                            }
+                            // Albums or playlists
+                            Some((MusicPageType::Artist, _)) => {
+                                // Peek at the first item to determine type
+                                if let Some(response::music_item::MusicResponseItem::MusicTwoRowItemRenderer(item)) = shelf.contents.c.first() {
+                                    if let Some(PageType::Album) = item.navigation_endpoint.page_type() {
                                         can_fetch_more = true;
                                         extendable_albums = true;
                                     }
-                                    // Albums or playlists
-                                    PageType::Artist => {
-                                        // Peek at the first item to determine type
-                                        if let Some(response::music_item::MusicResponseItem::MusicTwoRowItemRenderer(item)) = shelf.contents.c.first() {
-                                            if let Some(PageType::Album) = item.navigation_endpoint.browse_endpoint.as_ref().and_then(|be| {
-                                                be.browse_endpoint_context_supported_configs.as_ref().map(|config| {
-                                                        config.browse_endpoint_context_music_config.page_type
-                                                })}) {
-                                                    can_fetch_more = true;
-                                                    extendable_albums = true;
-                                                }
-                                        }
-                                    }
-                                    _ => {}
                                 }
                             }
+                            _ => {}
                         }
                     }
                 }
@@ -251,10 +243,12 @@ fn map_artist_page(
     });
 
     let radio_id = header.start_radio_button.and_then(|b| {
-        b.button_renderer
-            .navigation_endpoint
-            .watch_endpoint
-            .and_then(|w| w.playlist_id)
+        if let NavigationEndpoint::Watch { watch_endpoint } = b.button_renderer.navigation_endpoint
+        {
+            watch_endpoint.playlist_id
+        } else {
+            None
+        }
     });
 
     Ok(MapResult {

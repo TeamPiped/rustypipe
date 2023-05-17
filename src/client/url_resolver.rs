@@ -10,7 +10,10 @@ use crate::{
     util,
 };
 
-use super::{response, ClientType, MapResponse, RustyPipeQuery, YTContext};
+use super::{
+    response::{self, url_endpoint::NavigationEndpoint},
+    ClientType, MapResponse, RustyPipeQuery, YTContext,
+};
 
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
@@ -326,26 +329,21 @@ impl MapResponse<UrlTarget> for response::ResolvedUrl {
         _lang: Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
     ) -> Result<MapResult<UrlTarget>, ExtractionError> {
-        let browse_endpoint = self
-            .endpoint
-            .browse_endpoint
-            .ok_or(ExtractionError::InvalidData(Cow::Borrowed("No browse ID")))?;
+        let pt = self.endpoint.page_type();
+        if let NavigationEndpoint::Browse {
+            browse_endpoint, ..
+        } = self.endpoint
+        {
+            let target = pt
+                .and_then(|pt| pt.to_url_target(browse_endpoint.browse_id))
+                .ok_or(ExtractionError::InvalidData(Cow::Borrowed("No page type")))?;
 
-        let target = self
-            .endpoint
-            .command_metadata
-            .map(|c| c.web_command_metadata.web_page_type)
-            .or_else(|| {
-                browse_endpoint
-                    .browse_endpoint_context_supported_configs
-                    .map(|c| c.browse_endpoint_context_music_config.page_type)
+            Ok(MapResult {
+                c: target,
+                warnings: Vec::new(),
             })
-            .and_then(|pt| pt.to_url_target(browse_endpoint.browse_id))
-            .ok_or(ExtractionError::InvalidData(Cow::Borrowed("No page type")))?;
-
-        Ok(MapResult {
-            c: target,
-            warnings: Vec::new(),
-        })
+        } else {
+            Err(ExtractionError::InvalidData(Cow::Borrowed("No browse ID")))
+        }
     }
 }

@@ -11,21 +11,20 @@ pub(crate) struct ResolvedUrl {
 }
 
 #[serde_as]
-#[derive(Debug, Deserialize, Default)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct NavigationEndpoint {
-    #[serde(default)]
-    #[serde_as(deserialize_as = "DefaultOnError")]
-    pub watch_endpoint: Option<WatchEndpoint>,
-    #[serde(default)]
-    #[serde_as(deserialize_as = "DefaultOnError")]
-    pub browse_endpoint: Option<BrowseEndpoint>,
-    #[serde(default)]
-    #[serde_as(deserialize_as = "DefaultOnError")]
-    pub url_endpoint: Option<UrlEndpoint>,
-    #[serde(default)]
-    #[serde_as(deserialize_as = "DefaultOnError")]
-    pub command_metadata: Option<CommandMetadata>,
+#[derive(Debug, Deserialize)]
+#[serde(untagged)]
+pub(crate) enum NavigationEndpoint {
+    #[serde(rename_all = "camelCase")]
+    Watch { watch_endpoint: WatchEndpoint },
+    #[serde(rename_all = "camelCase")]
+    Browse {
+        browse_endpoint: BrowseEndpoint,
+        #[serde(default)]
+        #[serde_as(deserialize_as = "DefaultOnError")]
+        command_metadata: Option<CommandMetadata>,
+    },
+    #[serde(rename_all = "camelCase")]
+    Url { url_endpoint: UrlEndpoint },
 }
 
 #[derive(Debug, Deserialize)]
@@ -184,6 +183,7 @@ impl PageType {
 #[derive(Debug, Copy, Clone, PartialEq, Eq)]
 pub(crate) enum MusicPageType {
     Artist,
+    ArtistDiscography,
     Album,
     Playlist,
     Track { is_video: bool },
@@ -195,47 +195,82 @@ impl From<PageType> for MusicPageType {
     fn from(t: PageType) -> Self {
         match t {
             PageType::Artist => MusicPageType::Artist,
+            PageType::ArtistDiscography => MusicPageType::ArtistDiscography,
             PageType::Album => MusicPageType::Album,
             PageType::Playlist => MusicPageType::Playlist,
-            PageType::Channel | PageType::ArtistDiscography => MusicPageType::None,
+            PageType::Channel => MusicPageType::None,
             PageType::Unknown => MusicPageType::Unknown,
         }
     }
 }
 
 impl NavigationEndpoint {
+    /// Get the YouTube Music page and id from a browse/watch endpoint
     pub(crate) fn music_page(self) -> Option<(MusicPageType, String)> {
-        self.browse_endpoint
-            .and_then(|be| {
-                be.browse_endpoint_context_supported_configs.map(|config| {
+        match self {
+            NavigationEndpoint::Watch { watch_endpoint } => {
+                if watch_endpoint
+                    .playlist_id
+                    .map(|plid| plid.starts_with("RDQM"))
+                    .unwrap_or_default()
+                {
+                    // Genre radios (e.g. "pop radio") will be skipped
+                    Some((MusicPageType::None, watch_endpoint.video_id))
+                } else {
+                    Some((
+                        MusicPageType::Track {
+                            is_video: watch_endpoint
+                                .watch_endpoint_music_supported_configs
+                                .watch_endpoint_music_config
+                                .music_video_type
+                                == MusicVideoType::Video,
+                        },
+                        watch_endpoint.video_id,
+                    ))
+                }
+            }
+            NavigationEndpoint::Browse {
+                browse_endpoint, ..
+            } => browse_endpoint
+                .browse_endpoint_context_supported_configs
+                .map(|config| {
                     (
                         config.browse_endpoint_context_music_config.page_type.into(),
-                        be.browse_id,
+                        browse_endpoint.browse_id,
                     )
+                }),
+            NavigationEndpoint::Url { .. } => None,
+        }
+    }
+
+    /// Get the page type of a browse endpoint
+    pub(crate) fn page_type(&self) -> Option<PageType> {
+        if let NavigationEndpoint::Browse {
+            browse_endpoint,
+            command_metadata,
+        } = self
+        {
+            browse_endpoint
+                .browse_endpoint_context_supported_configs
+                .as_ref()
+                .map(|c| c.browse_endpoint_context_music_config.page_type)
+                .or_else(|| {
+                    command_metadata
+                        .as_ref()
+                        .map(|c| c.web_command_metadata.web_page_type)
                 })
-            })
-            .or_else(|| {
-                self.watch_endpoint.map(|watch| {
-                    if watch
-                        .playlist_id
-                        .map(|plid| plid.starts_with("RDQM"))
-                        .unwrap_or_default()
-                    {
-                        // Genre radios (e.g. "pop radio") will be skipped
-                        (MusicPageType::None, watch.video_id)
-                    } else {
-                        (
-                            MusicPageType::Track {
-                                is_video: watch
-                                    .watch_endpoint_music_supported_configs
-                                    .watch_endpoint_music_config
-                                    .music_video_type
-                                    == MusicVideoType::Video,
-                            },
-                            watch.video_id,
-                        )
-                    }
-                })
-            })
+        } else {
+            None
+        }
+    }
+
+    /// Get the sanitized URL from a url endpoint
+    pub(crate) fn url(&self) -> Option<String> {
+        match self {
+            NavigationEndpoint::Url { url_endpoint } => {
+                Some(util::sanitize_yt_url(&url_endpoint.url))
+            }
+            _ => None,
+        }
     }
 }
