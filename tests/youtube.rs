@@ -1001,7 +1001,7 @@ fn channel_order(
     ))
     .unwrap();
     // Upload dates should be in descending order
-    if tab != ChannelVideoTab::Shorts {
+    if tab == ChannelVideoTab::Videos {
         let mut latest_items = latest.items.iter().peekable();
         while let (Some(v), Some(next_v)) = (latest_items.next(), latest_items.peek()) {
             if !v.is_upcoming && !v.is_live && !next_v.is_upcoming && !next_v.is_live {
