@@ -344,7 +344,21 @@ struct DurationTxtSegment {
     word: String,
 }
 
-fn split_duration_txt(txt: &str, start_c: bool) -> Vec<DurationTxtSegment> {
+/// Split a video duration string into its segments.
+///
+/// Each segment consists of a word and a string of digits (one of them may be empty).
+///
+/// The `start_word` parameter determines whether the segments should start with a word
+/// instead of a number. This is the case in Swahili and Singhalese.
+///
+/// Example (start_word=false):
+/// - `1 minute, 13 seconds` -> `{1;minute} {13;seconds}`
+/// - `foo 1 minute, 13 seconds bar` -> `{foo} {1;minute} {13;seconds bar}`
+///
+/// Example (start_word=true):
+/// - `dakika 1 na sekunde 1` -> `{1;dakika} {1;na sekunde}`
+/// - `foo dakika 1 na sekunde 1 bar` -> `{1;foo dakika} {1;na sekunde} {bar}`
+fn split_duration_txt(txt: &str, start_word: bool) -> Vec<DurationTxtSegment> {
     let mut segments = Vec::new();
 
     // 1: parse digits, 2: parse word
@@ -353,14 +367,14 @@ fn split_duration_txt(txt: &str, start_c: bool) -> Vec<DurationTxtSegment> {
 
     for c in txt.trim().chars() {
         if c.is_ascii_digit() {
-            if state == 2 && (!seg.digits.is_empty() || (!start_c && segments.is_empty())) {
+            if state == 2 && (!seg.digits.is_empty() || (!start_word && segments.is_empty())) {
                 segments.push(seg);
                 seg = DurationTxtSegment::default();
             }
             seg.digits.push(c);
             state = 1;
         } else {
-            if (state == 1) && (!seg.word.is_empty() || (start_c && segments.is_empty())) {
+            if (state == 1) && (!seg.word.is_empty() || (start_word && segments.is_empty())) {
                 segments.push(seg);
                 seg = DurationTxtSegment::default();
             }

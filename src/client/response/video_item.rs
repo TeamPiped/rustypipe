@@ -531,8 +531,15 @@ impl<T> YouTubeListMapper<T> {
         });
 
         let length = video.accessibility.and_then(|acc| {
-            let parts = ACCESSIBILITY_SEP_REGEX.split(&acc).collect::<Vec<_>>();
-            if parts.len() > 2 {
+            // The video title has to be stripped from the beginning because in Swahili
+            // the duration follows the title with no separator (probably a bug).
+            // Example: `what I do with leftoversdakika 1 - cheza video`
+            let parts = ACCESSIBILITY_SEP_REGEX
+                .split(acc.trim_start_matches(&video.headline))
+                .collect::<Vec<_>>();
+            if parts.len() > 1 {
+                // In Russian, the duration is the last part
+                // Example: `Воспроизвести видео – \"hangover food\". Его продолжительность – 58 секунд.`
                 let i = match self.lang {
                     Language::Ru => 1,
                     _ => 2,
