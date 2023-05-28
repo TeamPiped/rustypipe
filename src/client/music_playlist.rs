@@ -122,6 +122,7 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
         id: &str,
         lang: crate::param::Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
+        _vdata: Option<&str>,
     ) -> Result<MapResult<MusicPlaylist>, ExtractionError> {
         // dbg!(&self);
 
@@ -267,6 +268,7 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
         id: &str,
         lang: crate::param::Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
+        _vdata: Option<&str>,
     ) -> Result<MapResult<MusicAlbum>, ExtractionError> {
         // dbg!(&self);
 
@@ -418,7 +420,7 @@ mod tests {
         let playlist: response::MusicPlaylist =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res: MapResult<model::MusicPlaylist> =
-            playlist.map_response(id, Language::En, None).unwrap();
+            playlist.map_response(id, Language::En, None, None).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -443,7 +445,7 @@ mod tests {
         let playlist: response::MusicPlaylist =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res: MapResult<model::MusicAlbum> =
-            playlist.map_response(id, Language::En, None).unwrap();
+            playlist.map_response(id, Language::En, None, None).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),

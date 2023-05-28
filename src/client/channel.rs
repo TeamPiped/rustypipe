@@ -200,15 +200,20 @@ impl MapResponse<Channel<Paginator<VideoItem>>> for response::Channel {
         id: &str,
         lang: Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
+        vdata: Option<&str>,
     ) -> Result<MapResult<Channel<Paginator<VideoItem>>>, ExtractionError> {
         let content = map_channel_content(id, self.contents, self.alerts)?;
+        let visitor_data = self
+            .response_context
+            .visitor_data
+            .or_else(|| vdata.map(str::to_owned));
 
         let channel_data = map_channel(
             MapChannelData {
                 header: self.header,
                 metadata: self.metadata,
                 microformat: self.microformat,
-                visitor_data: self.response_context.visitor_data.clone(),
+                visitor_data: visitor_data.clone(),
                 has_shorts: content.has_shorts,
                 has_live: content.has_live,
             },
@@ -226,7 +231,7 @@ impl MapResponse<Channel<Paginator<VideoItem>>> for response::Channel {
             None,
             mapper.items,
             mapper.ctoken,
-            self.response_context.visitor_data,
+            visitor_data,
             crate::model::paginator::ContinuationEndpoint::Browse,
         );
 
@@ -243,15 +248,20 @@ impl MapResponse<Channel<Paginator<PlaylistItem>>> for response::Channel {
         id: &str,
         lang: Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
+        vdata: Option<&str>,
     ) -> Result<MapResult<Channel<Paginator<PlaylistItem>>>, ExtractionError> {
         let content = map_channel_content(id, self.contents, self.alerts)?;
+        let visitor_data = self
+            .response_context
+            .visitor_data
+            .or_else(|| vdata.map(str::to_owned));
 
         let channel_data = map_channel(
             MapChannelData {
                 header: self.header,
                 metadata: self.metadata,
                 microformat: self.microformat,
-                visitor_data: self.response_context.visitor_data,
+                visitor_data,
                 has_shorts: content.has_shorts,
                 has_live: content.has_live,
             },
@@ -280,6 +290,7 @@ impl MapResponse<Channel<ChannelInfo>> for response::Channel {
         id: &str,
         lang: Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
+        vdata: Option<&str>,
     ) -> Result<MapResult<Channel<ChannelInfo>>, ExtractionError> {
         let content = map_channel_content(id, self.contents, self.alerts)?;
         let channel_data = map_channel(
@@ -287,7 +298,10 @@ impl MapResponse<Channel<ChannelInfo>> for response::Channel {
                 header: self.header,
                 metadata: self.metadata,
                 microformat: self.microformat,
-                visitor_data: self.response_context.visitor_data,
+                visitor_data: self
+                    .response_context
+                    .visitor_data
+                    .or_else(|| vdata.map(str::to_owned)),
                 has_shorts: content.has_shorts,
                 has_live: content.has_live,
             },
@@ -605,7 +619,7 @@ mod tests {
         let channel: response::Channel =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res: MapResult<Channel<Paginator<VideoItem>>> =
-            channel.map_response(id, Language::En, None).unwrap();
+            channel.map_response(id, Language::En, None, None).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -632,7 +646,7 @@ mod tests {
         let channel: response::Channel =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res: MapResult<Channel<Paginator<PlaylistItem>>> = channel
-            .map_response("UC2DjFE7Xf11URZqWBigcVOQ", Language::En, None)
+            .map_response("UC2DjFE7Xf11URZqWBigcVOQ", Language::En, None, None)
             .unwrap();
 
         assert!(
@@ -651,7 +665,7 @@ mod tests {
         let channel: response::Channel =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res: MapResult<Channel<ChannelInfo>> = channel
-            .map_response("UC2DjFE7Xf11URZqWBigcVOQ", Language::En, None)
+            .map_response("UC2DjFE7Xf11URZqWBigcVOQ", Language::En, None, None)
             .unwrap();
 
         assert!(

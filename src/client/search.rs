@@ -92,6 +92,7 @@ impl MapResponse<SearchResult> for response::Search {
         _id: &str,
         lang: crate::param::Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
+        vdata: Option<&str>,
     ) -> Result<MapResult<SearchResult>, ExtractionError> {
         let items = self
             .contents
@@ -113,7 +114,10 @@ impl MapResponse<SearchResult> for response::Search {
                     crate::model::paginator::ContinuationEndpoint::Search,
                 ),
                 corrected_query: mapper.corrected_query,
-                visitor_data: self.response_context.visitor_data,
+                visitor_data: self
+                    .response_context
+                    .visitor_data
+                    .or_else(|| vdata.map(str::to_owned)),
             },
             warnings: mapper.warnings,
         })
@@ -145,7 +149,8 @@ mod tests {
         let json_file = File::open(json_path).unwrap();
 
         let search: response::Search = serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res: MapResult<SearchResult> = search.map_response("", Language::En, None).unwrap();
+        let map_res: MapResult<SearchResult> =
+            search.map_response("", Language::En, None, None).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),

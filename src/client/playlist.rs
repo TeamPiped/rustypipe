@@ -37,6 +37,7 @@ impl MapResponse<Playlist> for response::Playlist {
         id: &str,
         lang: crate::param::Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
+        vdata: Option<&str>,
     ) -> Result<MapResult<Playlist>, ExtractionError> {
         let (Some(contents), Some(header)) = (self.contents, self.header) else {
             return Err(response::alerts_to_err(id, self.alerts));
@@ -152,7 +153,10 @@ impl MapResponse<Playlist> for response::Playlist {
                 channel,
                 last_update,
                 last_update_txt,
-                visitor_data: self.response_context.visitor_data,
+                visitor_data: self
+                    .response_context
+                    .visitor_data
+                    .or_else(|| vdata.map(str::to_owned)),
             },
             warnings: mapper.warnings,
         })
@@ -181,7 +185,7 @@ mod tests {
 
         let playlist: response::Playlist =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res = playlist.map_response(id, Language::En, None).unwrap();
+        let map_res = playlist.map_response(id, Language::En, None, None).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),

@@ -157,6 +157,7 @@ impl MapResponse<TrackDetails> for response::MusicDetails {
         id: &str,
         lang: Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
+        _vdata: Option<&str>,
     ) -> Result<MapResult<TrackDetails>, ExtractionError> {
         let tabs = self
             .contents
@@ -237,6 +238,7 @@ impl MapResponse<Paginator<TrackItem>> for response::MusicDetails {
         id: &str,
         lang: Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
+        _vdata: Option<&str>,
     ) -> Result<MapResult<Paginator<TrackItem>>, ExtractionError> {
         let tabs = self
             .contents
@@ -297,6 +299,7 @@ impl MapResponse<Lyrics> for response::MusicLyrics {
         id: &str,
         _lang: Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
+        _vdata: Option<&str>,
     ) -> Result<MapResult<Lyrics>, ExtractionError> {
         let lyrics = self
             .contents
@@ -330,6 +333,7 @@ impl MapResponse<MusicRelated> for response::MusicRelated {
         _id: &str,
         lang: Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
+        _vdata: Option<&str>,
     ) -> Result<MapResult<MusicRelated>, ExtractionError> {
         // Find artist
         let artist_id = self
@@ -422,7 +426,7 @@ mod tests {
         let details: response::MusicDetails =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res: MapResult<model::TrackDetails> =
-            details.map_response(id, Language::En, None).unwrap();
+            details.map_response(id, Language::En, None, None).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -442,7 +446,7 @@ mod tests {
         let radio: response::MusicDetails =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res: MapResult<Paginator<TrackItem>> =
-            radio.map_response(id, Language::En, None).unwrap();
+            radio.map_response(id, Language::En, None, None).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -459,7 +463,7 @@ mod tests {
 
         let lyrics: response::MusicLyrics =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res: MapResult<Lyrics> = lyrics.map_response("", Language::En, None).unwrap();
+        let map_res: MapResult<Lyrics> = lyrics.map_response("", Language::En, None, None).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -476,7 +480,8 @@ mod tests {
 
         let lyrics: response::MusicRelated =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res: MapResult<MusicRelated> = lyrics.map_response("", Language::En, None).unwrap();
+        let map_res: MapResult<MusicRelated> =
+            lyrics.map_response("", Language::En, None, None).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),

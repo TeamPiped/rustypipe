@@ -2336,7 +2336,12 @@ fn lang() -> Language {
 /// Get a new RustyPipe instance
 #[fixture]
 fn rp(lang: Language) -> RustyPipe {
-    RustyPipe::builder().strict().lang(lang).build()
+    let vdata = std::env::var("YT_VDATA").ok();
+    RustyPipe::builder()
+        .strict()
+        .lang(lang)
+        .visitor_data_opt(vdata)
+        .build()
 }
 
 /// Get a flag signaling if the language is set to English

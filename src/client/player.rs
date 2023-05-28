@@ -143,6 +143,7 @@ impl MapResponse<VideoPlayer> for response::Player {
         id: &str,
         _lang: Language,
         deobf: Option<&crate::deobfuscate::DeobfData>,
+        vdata: Option<&str>,
     ) -> Result<super::MapResult<VideoPlayer>, ExtractionError> {
         let deobf = Deobfuscator::new(deobf.unwrap())?;
         let mut warnings = vec![];
@@ -372,7 +373,10 @@ impl MapResponse<VideoPlayer> for response::Player {
                 hls_manifest_url: streaming_data.hls_manifest_url,
                 dash_manifest_url: streaming_data.dash_manifest_url,
                 preview_frames,
-                visitor_data: self.response_context.visitor_data,
+                visitor_data: self
+                    .response_context
+                    .visitor_data
+                    .or_else(|| vdata.map(str::to_owned)),
             },
             warnings,
         })
@@ -717,7 +721,7 @@ mod tests {
 
         let resp: response::Player = serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res = resp
-            .map_response("pPvd8UxmSbQ", Language::En, Some(&DEOBF_DATA))
+            .map_response("pPvd8UxmSbQ", Language::En, Some(&DEOBF_DATA), None)
             .unwrap();
 
         assert!(

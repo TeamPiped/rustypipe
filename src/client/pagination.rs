@@ -96,6 +96,7 @@ impl MapResponse<Paginator<YouTubeItem>> for response::Continuation {
         _id: &str,
         lang: crate::param::Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
+        _vdata: Option<&str>,
     ) -> Result<MapResult<Paginator<YouTubeItem>>, ExtractionError> {
         let items = self
             .on_response_received_actions
@@ -131,6 +132,7 @@ impl MapResponse<Paginator<MusicItem>> for response::MusicContinuation {
         _id: &str,
         lang: crate::param::Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
+        _vdata: Option<&str>,
     ) -> Result<MapResult<Paginator<MusicItem>>, ExtractionError> {
         let mut mapper = MusicListMapper::new(lang);
         let mut continuations = Vec::new();
@@ -353,7 +355,7 @@ mod tests {
         let items: response::Continuation =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res: MapResult<Paginator<YouTubeItem>> =
-            items.map_response("", Language::En, None).unwrap();
+            items.map_response("", Language::En, None, None).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -375,7 +377,7 @@ mod tests {
         let items: response::Continuation =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res: MapResult<Paginator<YouTubeItem>> =
-            items.map_response("", Language::En, None).unwrap();
+            items.map_response("", Language::En, None, None).unwrap();
         let paginator: Paginator<VideoItem> =
             map_yt_paginator(map_res.c, None, ContinuationEndpoint::Browse);
 
@@ -398,7 +400,7 @@ mod tests {
         let items: response::Continuation =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res: MapResult<Paginator<YouTubeItem>> =
-            items.map_response("", Language::En, None).unwrap();
+            items.map_response("", Language::En, None, None).unwrap();
         let paginator: Paginator<PlaylistItem> =
             map_yt_paginator(map_res.c, None, ContinuationEndpoint::Browse);
 
@@ -421,7 +423,7 @@ mod tests {
         let items: response::MusicContinuation =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res: MapResult<Paginator<MusicItem>> =
-            items.map_response("", Language::En, None).unwrap();
+            items.map_response("", Language::En, None, None).unwrap();
         let paginator: Paginator<TrackItem> =
             map_ytm_paginator(map_res.c, None, ContinuationEndpoint::MusicBrowse);
 
@@ -442,7 +444,7 @@ mod tests {
         let items: response::MusicContinuation =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res: MapResult<Paginator<MusicItem>> =
-            items.map_response("", Language::En, None).unwrap();
+            items.map_response("", Language::En, None, None).unwrap();
         let paginator: Paginator<MusicPlaylistItem> =
             map_ytm_paginator(map_res.c, None, ContinuationEndpoint::MusicBrowse);
 

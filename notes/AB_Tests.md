@@ -376,3 +376,11 @@ visitor data cookie to be set, as it was the case with the old system.
 **NEW**
 
 ![A/B test 4 old screenshot](./_img/ab_6_new.png)
+
+## [7] Short timeago format
+
+- **Encountered on:** 28.05.2023
+- **Impact:** 🟡 Medium
+
+YouTube changed their date format from the long format (*21 hours ago*, *3 days ago*) to
+a short format (*21h ago*, *3d ago*).

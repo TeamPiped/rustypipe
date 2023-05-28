@@ -754,7 +754,14 @@
       "week": "W",
       "weeks": "W",
       "year": "Y",
-      "years": "Y"
+      "years": "Y",
+      "y": "Y",
+      "mo": "M",
+      "w": "W",
+      "d": "D",
+      "h": "h",
+      "min": "m",
+      "s": "s"
     },
     "date_order": "DY",
     "months": {

@@ -96,6 +96,7 @@ impl MapResponse<MusicArtist> for response::MusicArtist {
         id: &str,
         lang: crate::param::Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
+        _vdata: Option<&str>,
     ) -> Result<MapResult<MusicArtist>, ExtractionError> {
         let mapped = map_artist_page(self, id, lang, false)?;
         Ok(MapResult {
@@ -111,6 +112,7 @@ impl MapResponse<(MusicArtist, bool)> for response::MusicArtist {
         id: &str,
         lang: crate::param::Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
+        _vdata: Option<&str>,
     ) -> Result<MapResult<(MusicArtist, bool)>, ExtractionError> {
         map_artist_page(self, id, lang, true)
     }
@@ -286,6 +288,7 @@ impl MapResponse<Vec<AlbumItem>> for response::MusicArtistAlbums {
         id: &str,
         lang: crate::param::Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
+        _vdata: Option<&str>,
     ) -> Result<MapResult<Vec<AlbumItem>>, ExtractionError> {
         // dbg!(&self);
 
@@ -356,7 +359,7 @@ mod tests {
         let resp: response::MusicArtist =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res: MapResult<(MusicArtist, bool)> =
-            resp.map_response(id, Language::En, None).unwrap();
+            resp.map_response(id, Language::En, None, None).unwrap();
         let (mut artist, can_fetch_more) = map_res.c;
 
         assert!(
@@ -371,7 +374,7 @@ mod tests {
             let resp: response::MusicArtistAlbums =
                 serde_json::from_reader(BufReader::new(json_file)).unwrap();
             let mut map_res: MapResult<Vec<AlbumItem>> =
-                resp.map_response(id, Language::En, None).unwrap();
+                resp.map_response(id, Language::En, None, None).unwrap();
 
             assert!(
                 map_res.warnings.is_empty(),
@@ -392,7 +395,7 @@ mod tests {
         let artist: response::MusicArtist =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res: MapResult<MusicArtist> = artist
-            .map_response("UClmXPfaYhXOYsNn_QUyheWQ", Language::En, None)
+            .map_response("UClmXPfaYhXOYsNn_QUyheWQ", Language::En, None, None)
             .unwrap();
 
         assert!(
@@ -411,7 +414,7 @@ mod tests {
         let artist: response::MusicArtist =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let res: Result<MapResult<MusicArtist>, ExtractionError> =
-            artist.map_response("UCLkAepWjdylmXSltofFvsYQ", Language::En, None);
+            artist.map_response("UCLkAepWjdylmXSltofFvsYQ", Language::En, None, None);
         let e = res.unwrap_err();
 
         match e {

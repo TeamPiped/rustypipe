@@ -231,6 +231,7 @@ impl MapResponse<MusicSearchResult> for response::MusicSearch {
         _id: &str,
         lang: crate::param::Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
+        _vdata: Option<&str>,
     ) -> Result<MapResult<MusicSearchResult>, crate::error::ExtractionError> {
         // dbg!(&self);
 
@@ -296,6 +297,7 @@ impl<T: FromYtItem> MapResponse<MusicSearchFiltered<T>> for response::MusicSearc
         _id: &str,
         lang: crate::param::Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
+        _vdata: Option<&str>,
     ) -> Result<MapResult<MusicSearchFiltered<T>>, ExtractionError> {
         // dbg!(&self);
 
@@ -356,6 +358,7 @@ impl MapResponse<MusicSearchSuggestion> for response::MusicSearchSuggestion {
         _id: &str,
         lang: crate::param::Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
+        _vdata: Option<&str>,
     ) -> Result<MapResult<MusicSearchSuggestion>, ExtractionError> {
         let mut mapper = MusicListMapper::new(lang);
         let mut terms = Vec::new();
@@ -419,7 +422,7 @@ mod tests {
         let search: response::MusicSearch =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res: MapResult<MusicSearchResult> =
-            search.map_response("", Language::En, None).unwrap();
+            search.map_response("", Language::En, None, None).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -442,7 +445,7 @@ mod tests {
         let search: response::MusicSearch =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res: MapResult<MusicSearchFiltered<TrackItem>> =
-            search.map_response("", Language::En, None).unwrap();
+            search.map_response("", Language::En, None, None).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -461,7 +464,7 @@ mod tests {
         let search: response::MusicSearch =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res: MapResult<MusicSearchFiltered<AlbumItem>> =
-            search.map_response("", Language::En, None).unwrap();
+            search.map_response("", Language::En, None, None).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -480,7 +483,7 @@ mod tests {
         let search: response::MusicSearch =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res: MapResult<MusicSearchFiltered<ArtistItem>> =
-            search.map_response("", Language::En, None).unwrap();
+            search.map_response("", Language::En, None, None).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -501,7 +504,7 @@ mod tests {
         let search: response::MusicSearch =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res: MapResult<MusicSearchFiltered<MusicPlaylistItem>> =
-            search.map_response("", Language::En, None).unwrap();
+            search.map_response("", Language::En, None, None).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -521,8 +524,9 @@ mod tests {
 
         let suggestion: response::MusicSearchSuggestion =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res: MapResult<MusicSearchSuggestion> =
-            suggestion.map_response("", Language::En, None).unwrap();
+        let map_res: MapResult<MusicSearchSuggestion> = suggestion
+            .map_response("", Language::En, None, None)
+            .unwrap();
 
         assert!(
             map_res.warnings.is_empty(),

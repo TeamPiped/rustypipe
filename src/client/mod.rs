@@ -1247,7 +1247,12 @@ impl RustyPipeQuery {
             })
         } else {
             match serde_json::from_str::<R>(&body) {
-                Ok(deserialized) => match deserialized.map_response(id, self.opts.lang, deobf) {
+                Ok(deserialized) => match deserialized.map_response(
+                    id,
+                    self.opts.lang,
+                    deobf,
+                    self.opts.visitor_data.as_deref(),
+                ) {
                     Ok(mapres) => Ok(mapres),
                     Err(e) => Err(e.into()),
                 },
@@ -1453,11 +1458,13 @@ trait MapResponse<T> {
     ///   that the returned entity matches this ID and return an error instead.
     /// - `lang`: Language of the request. Used for mapping localized information like dates.
     /// - `deobf`: Deobfuscator (if passed to the `execute_request_deobf` method)
+    /// - `vdata`: Visitor data option of the client
     fn map_response(
         self,
         id: &str,
         lang: Language,
         deobf: Option<&DeobfData>,
+        vdata: Option<&str>,
     ) -> Result<MapResult<T>, ExtractionError>;
 }
 

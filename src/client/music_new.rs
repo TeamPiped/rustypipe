@@ -52,6 +52,7 @@ impl<T: FromYtItem> MapResponse<Vec<T>> for response::MusicNew {
         _id: &str,
         lang: crate::param::Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
+        _vdata: Option<&str>,
     ) -> Result<crate::serializer::MapResult<Vec<T>>, ExtractionError> {
         let items = self
             .contents
@@ -96,8 +97,9 @@ mod tests {
 
         let new_albums: response::MusicNew =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res: MapResult<Vec<AlbumItem>> =
-            new_albums.map_response("", Language::En, None).unwrap();
+        let map_res: MapResult<Vec<AlbumItem>> = new_albums
+            .map_response("", Language::En, None, None)
+            .unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -115,8 +117,9 @@ mod tests {
 
         let new_albums: response::MusicNew =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res: MapResult<Vec<TrackItem>> =
-            new_albums.map_response("", Language::En, None).unwrap();
+        let map_res: MapResult<Vec<TrackItem>> = new_albums
+            .map_response("", Language::En, None, None)
+            .unwrap();
 
         assert!(
             map_res.warnings.is_empty(),

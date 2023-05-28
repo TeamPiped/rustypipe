@@ -54,6 +54,7 @@ impl MapResponse<Paginator<VideoItem>> for response::Startpage {
         _id: &str,
         lang: crate::param::Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
+        vdata: Option<&str>,
     ) -> Result<MapResult<Paginator<VideoItem>>, ExtractionError> {
         let grid = self
             .contents
@@ -70,7 +71,9 @@ impl MapResponse<Paginator<VideoItem>> for response::Startpage {
         Ok(map_startpage_videos(
             grid,
             lang,
-            self.response_context.visitor_data,
+            self.response_context
+                .visitor_data
+                .or_else(|| vdata.map(str::to_owned)),
         ))
     }
 }
@@ -81,6 +84,7 @@ impl MapResponse<Vec<VideoItem>> for response::Trending {
         _id: &str,
         lang: crate::param::Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
+        _vdata: Option<&str>,
     ) -> Result<MapResult<Vec<VideoItem>>, ExtractionError> {
         let items = self
             .contents
@@ -146,8 +150,9 @@ mod tests {
 
         let startpage: response::Startpage =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res: MapResult<Paginator<VideoItem>> =
-            startpage.map_response("", Language::En, None).unwrap();
+        let map_res: MapResult<Paginator<VideoItem>> = startpage
+            .map_response("", Language::En, None, None)
+            .unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -169,8 +174,9 @@ mod tests {
 
         let startpage: response::Trending =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res: MapResult<Vec<VideoItem>> =
-            startpage.map_response("", Language::En, None).unwrap();
+        let map_res: MapResult<Vec<VideoItem>> = startpage
+            .map_response("", Language::En, None, None)
+            .unwrap();
 
         assert!(
             map_res.warnings.is_empty(),

@@ -82,6 +82,7 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
         id: &str,
         lang: Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
+        vdata: Option<&str>,
     ) -> Result<MapResult<VideoDetails>, ExtractionError> {
         let mut warnings = Vec::new();
 
@@ -256,7 +257,10 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
             _ => return Err(ExtractionError::InvalidData("invalid channel link".into())),
         };
 
-        let visitor_data = self.response_context.visitor_data;
+        let visitor_data = self
+            .response_context
+            .visitor_data
+            .or_else(|| vdata.map(str::to_owned));
         let recommended = contents
             .two_column_watch_next_results
             .secondary_results
@@ -369,6 +373,7 @@ impl MapResponse<Paginator<Comment>> for response::VideoComments {
         _id: &str,
         lang: Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
+        _vdata: Option<&str>,
     ) -> Result<MapResult<Paginator<Comment>>, ExtractionError> {
         let received_endpoints = self.on_response_received_endpoints;
         let mut warnings = received_endpoints.warnings;
@@ -561,7 +566,7 @@ mod tests {
 
         let details: response::VideoDetails =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res = details.map_response(id, Language::En, None).unwrap();
+        let map_res = details.map_response(id, Language::En, None, None).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -581,7 +586,9 @@ mod tests {
 
         let details: response::VideoDetails =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let err = details.map_response("", Language::En, None).unwrap_err();
+        let err = details
+            .map_response("", Language::En, None, None)
+            .unwrap_err();
         assert!(matches!(
             err,
             crate::error::ExtractionError::NotFound { .. }
@@ -597,7 +604,7 @@ mod tests {
 
         let comments: response::VideoComments =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res = comments.map_response("", Language::En, None).unwrap();
+        let map_res = comments.map_response("", Language::En, None, None).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),

@@ -57,6 +57,7 @@ impl MapResponse<Vec<MusicGenreItem>> for response::MusicGenres {
         _id: &str,
         _lang: crate::param::Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
+        _vdata: Option<&str>,
     ) -> Result<crate::serializer::MapResult<Vec<MusicGenreItem>>, ExtractionError> {
         let content = self
             .contents
@@ -110,6 +111,7 @@ impl MapResponse<MusicGenre> for response::MusicGenre {
         id: &str,
         lang: crate::param::Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
+        _vdata: Option<&str>,
     ) -> Result<crate::serializer::MapResult<MusicGenre>, ExtractionError> {
         // dbg!(&self);
 
@@ -214,7 +216,7 @@ mod tests {
         let playlist: response::MusicGenres =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res: MapResult<Vec<model::MusicGenreItem>> =
-            playlist.map_response("", Language::En, None).unwrap();
+            playlist.map_response("", Language::En, None, None).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -234,7 +236,7 @@ mod tests {
         let playlist: response::MusicGenre =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res: MapResult<model::MusicGenre> =
-            playlist.map_response(id, Language::En, None).unwrap();
+            playlist.map_response(id, Language::En, None, None).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),

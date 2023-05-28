@@ -4,6 +4,8 @@ use anyhow::{bail, Result};
 use futures::{stream, StreamExt};
 use indicatif::{ProgressBar, ProgressStyle};
 use num_enum::TryFromPrimitive;
+use once_cell::sync::Lazy;
+use regex::Regex;
 use rustypipe::client::{ClientType, RustyPipe, RustyPipeQuery, YTContext};
 use rustypipe::model::YouTubeItem;
 use rustypipe::param::search_filter::{ItemType, SearchFilter};
@@ -21,6 +23,7 @@ pub enum ABTest {
     TrendsVideoTab = 4,
     TrendsPageHeaderRenderer = 5,
     DiscographyPage = 6,
+    ShortDateFormat = 7,
 }
 
 const TESTS_TO_RUN: [ABTest; 3] = [
@@ -90,6 +93,7 @@ pub async fn run_test(
                     ABTest::TrendsVideoTab => trends_video_tab(&query).await,
                     ABTest::TrendsPageHeaderRenderer => trends_page_header_renderer(&query).await,
                     ABTest::DiscographyPage => discography_page(&query).await,
+                    ABTest::ShortDateFormat => short_date_format(&query).await,
                 }
                 .unwrap();
                 pb.inc(1);
@@ -223,10 +227,19 @@ pub async fn trends_page_header_renderer(rp: &RustyPipeQuery) -> Result<bool> {
 }
 
 pub async fn discography_page(rp: &RustyPipeQuery) -> Result<bool> {
-    let artist = rp
-        .music_artist("UC7cl4MmM6ZZ2TcFyMk_b4pg", false)
-        .await
-        .unwrap();
+    let artist = rp.music_artist("UC7cl4MmM6ZZ2TcFyMk_b4pg", false).await?;
 
     Ok(artist.albums.len() <= 10)
+}
+
+pub async fn short_date_format(rp: &RustyPipeQuery) -> Result<bool> {
+    static SHORT_DATE: Lazy<Regex> = Lazy::new(|| Regex::new("\\d(?:y|mo|w|d|h|min) ").unwrap());
+    let channel = rp.channel_videos("UC2DjFE7Xf11URZqWBigcVOQ").await?;
+
+    Ok(channel.content.items.iter().any(|itm| {
+        itm.publish_date_txt
+            .as_deref()
+            .map(|d| SHORT_DATE.is_match(d))
+            .unwrap_or_default()
+    }))
 }

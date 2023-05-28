@@ -328,6 +328,7 @@ impl MapResponse<UrlTarget> for response::ResolvedUrl {
         _id: &str,
         _lang: Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
+        _vdata: Option<&str>,
     ) -> Result<MapResult<UrlTarget>, ExtractionError> {
         let pt = self.endpoint.page_type();
         if let NavigationEndpoint::Browse {

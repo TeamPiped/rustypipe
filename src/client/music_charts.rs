@@ -60,6 +60,7 @@ impl MapResponse<MusicCharts> for response::MusicCharts {
         _id: &str,
         lang: crate::param::Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
+        _vdata: Option<&str>,
     ) -> Result<crate::serializer::MapResult<MusicCharts>, crate::error::ExtractionError> {
         let countries = self
             .framework_updates
@@ -164,7 +165,8 @@ mod tests {
 
         let charts: response::MusicCharts =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res: MapResult<MusicCharts> = charts.map_response("", Language::En, None).unwrap();
+        let map_res: MapResult<MusicCharts> =
+            charts.map_response("", Language::En, None, None).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
