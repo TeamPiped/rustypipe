@@ -4,6 +4,7 @@ mod abtest;
 mod collect_album_types;
 mod collect_large_numbers;
 mod collect_playlist_dates;
+mod collect_video_dates;
 mod collect_video_durations;
 mod download_testfiles;
 mod gen_dictionary;
@@ -27,6 +28,7 @@ enum Commands {
     CollectLargeNumbers,
     CollectAlbumTypes,
     CollectVideoDurations,
+    CollectVideoDates,
     ParsePlaylistDates,
     ParseLargeNumbers,
     ParseAlbumTypes,
@@ -59,6 +61,9 @@ async fn main() {
         }
         Commands::CollectVideoDurations => {
             collect_video_durations::collect_video_durations(cli.concurrency).await;
+        }
+        Commands::CollectVideoDates => {
+            collect_video_dates::collect_video_dates(cli.concurrency).await;
         }
         Commands::ParsePlaylistDates => collect_playlist_dates::write_samples_to_dict(),
         Commands::ParseLargeNumbers => collect_large_numbers::write_samples_to_dict(),

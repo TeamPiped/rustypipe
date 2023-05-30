@@ -1,0 +1,12 @@
+{
+  "name": "cldr_data",
+  "version": "1.0.0",
+  "description": "Build the RustyPipe parsing dictionary using CLDR data",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "cldr-dates-modern": "^43.0.0",
+    "cldr-numbers-modern": "^43.0.0"
+  }
+}

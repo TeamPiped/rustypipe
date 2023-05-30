@@ -128,7 +128,35 @@ where
     buf.parse()
 }
 
-/// Parse all numbers occurring in a string and reurn them as a vec
+/// Parse a string after removing all non-numeric characters.
+///
+/// If the string contains multiple numbers, it returns the product of them.
+pub fn parse_numeric_prod<F>(string: &str) -> Option<F>
+where
+    F: FromStr + Copy + std::ops::Mul<Output = F>,
+{
+    let mut n = None;
+    let mut buf = String::new();
+
+    for c in string.chars() {
+        if c.is_ascii_digit() {
+            buf.push(c);
+        } else if !buf.is_empty() {
+            if let Ok(x) = buf.parse::<F>() {
+                n = n.map(|n| n * x).or(Some(x));
+            }
+            buf.clear();
+        }
+    }
+    if !buf.is_empty() {
+        if let Ok(x) = buf.parse::<F>() {
+            n = n.map(|n| n * x).or(Some(x));
+        }
+    }
+    n
+}
+
+/// Parse all numbers occurring in a string and return them as a vec
 pub fn parse_numeric_vec<F>(string: &str) -> Vec<F>
 where
     F: FromStr,

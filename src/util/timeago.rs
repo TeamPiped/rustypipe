@@ -199,7 +199,20 @@ pub fn parse_timeago(lang: Language, textual_date: &str) -> Option<TimeAgo> {
     let entry = dictionary::entry(lang);
     let filtered_str = filter_str(textual_date);
 
-    let qu: u8 = util::parse_numeric(textual_date).unwrap_or(1);
+    let qu: u8 = util::parse_numeric_prod(textual_date).unwrap_or(1);
+
+    // French uses 'a' as a short form of years.
+    // Since 'a' is also a word in French, it cannot be parsed as a token.
+    if matches!(
+        lang,
+        Language::Fr | Language::FrCa | Language::Es | Language::Es419 | Language::EsUs
+    ) && textual_date.ends_with(" a")
+    {
+        return Some(TimeAgo {
+            n: qu,
+            unit: TimeUnit::Year,
+        });
+    }
 
     TaTokenParser::new(&entry, util::lang_by_char(lang), false, &filtered_str)
         .next()
@@ -403,10 +416,10 @@ mod tests {
     use crate::util::tests::TESTFILES;
 
     #[rstest]
-    #[case(Language::De, "vor 1 Sekunde", Some(TimeAgo { n: 1, unit: TimeUnit::Second }))]
-    #[case(Language::Ar, "قبل ساعة واحدة", Some(TimeAgo { n: 1, unit: TimeUnit::Hour }))]
+    #[case::de(Language::De, "vor 1 Sekunde", Some(TimeAgo { n: 1, unit: TimeUnit::Second }))]
+    #[case::ar(Language::Ar, "قبل ساعة واحدة", Some(TimeAgo { n: 1, unit: TimeUnit::Hour }))]
     // No-break space
-    #[case(Language::De, "Vor 3\u{a0}Tagen aktualisiert", Some(TimeAgo { n: 3, unit: TimeUnit::Day }))]
+    #[case::nbsp(Language::De, "Vor 3\u{a0}Tagen aktualisiert", Some(TimeAgo { n: 3, unit: TimeUnit::Day }))]
     fn t_parse(
         #[case] lang: Language,
         #[case] textual_date: &str,
@@ -581,7 +594,196 @@ mod tests {
                 assert_eq!(
                     parse_timeago(*lang, s),
                     Some(expect[n]),
-                    "Language: {lang}, n: {n}"
+                    "Language: {lang}, txt: `{s}`"
+                );
+            });
+        })
+    }
+
+    #[test]
+    fn t_testfile_short() {
+        let json_path = path!(*TESTFILES / "dict" / "timeago_samples_short.json");
+
+        let expect = [
+            TimeAgo {
+                n: 35,
+                unit: TimeUnit::Minute,
+            },
+            TimeAgo {
+                n: 50,
+                unit: TimeUnit::Minute,
+            },
+            TimeAgo {
+                n: 1,
+                unit: TimeUnit::Hour,
+            },
+            TimeAgo {
+                n: 2,
+                unit: TimeUnit::Hour,
+            },
+            TimeAgo {
+                n: 3,
+                unit: TimeUnit::Hour,
+            },
+            TimeAgo {
+                n: 4,
+                unit: TimeUnit::Hour,
+            },
+            TimeAgo {
+                n: 5,
+                unit: TimeUnit::Hour,
+            },
+            TimeAgo {
+                n: 6,
+                unit: TimeUnit::Hour,
+            },
+            TimeAgo {
+                n: 7,
+                unit: TimeUnit::Hour,
+            },
+            TimeAgo {
+                n: 8,
+                unit: TimeUnit::Hour,
+            },
+            TimeAgo {
+                n: 9,
+                unit: TimeUnit::Hour,
+            },
+            TimeAgo {
+                n: 12,
+                unit: TimeUnit::Hour,
+            },
+            TimeAgo {
+                n: 17,
+                unit: TimeUnit::Hour,
+            },
+            TimeAgo {
+                n: 18,
+                unit: TimeUnit::Hour,
+            },
+            TimeAgo {
+                n: 19,
+                unit: TimeUnit::Hour,
+            },
+            TimeAgo {
+                n: 20,
+                unit: TimeUnit::Hour,
+            },
+            TimeAgo {
+                n: 10,
+                unit: TimeUnit::Hour,
+            },
+            TimeAgo {
+                n: 11,
+                unit: TimeUnit::Hour,
+            },
+            TimeAgo {
+                n: 13,
+                unit: TimeUnit::Hour,
+            },
+            TimeAgo {
+                n: 1,
+                unit: TimeUnit::Day,
+            },
+            TimeAgo {
+                n: 2,
+                unit: TimeUnit::Day,
+            },
+            TimeAgo {
+                n: 3,
+                unit: TimeUnit::Day,
+            },
+            TimeAgo {
+                n: 4,
+                unit: TimeUnit::Day,
+            },
+            TimeAgo {
+                n: 6,
+                unit: TimeUnit::Day,
+            },
+            TimeAgo {
+                n: 8,
+                unit: TimeUnit::Day,
+            },
+            TimeAgo {
+                n: 10,
+                unit: TimeUnit::Day,
+            },
+            TimeAgo {
+                n: 11,
+                unit: TimeUnit::Day,
+            },
+            TimeAgo {
+                n: 12,
+                unit: TimeUnit::Day,
+            },
+            TimeAgo {
+                n: 13,
+                unit: TimeUnit::Day,
+            },
+            TimeAgo {
+                n: 2,
+                unit: TimeUnit::Week,
+            },
+            TimeAgo {
+                n: 3,
+                unit: TimeUnit::Week,
+            },
+            TimeAgo {
+                n: 1,
+                unit: TimeUnit::Month,
+            },
+            TimeAgo {
+                n: 4,
+                unit: TimeUnit::Week,
+            },
+            TimeAgo {
+                n: 7,
+                unit: TimeUnit::Month,
+            },
+            TimeAgo {
+                n: 10,
+                unit: TimeUnit::Month,
+            },
+            TimeAgo {
+                n: 1,
+                unit: TimeUnit::Year,
+            },
+            TimeAgo {
+                n: 2,
+                unit: TimeUnit::Year,
+            },
+            TimeAgo {
+                n: 3,
+                unit: TimeUnit::Year,
+            },
+            TimeAgo {
+                n: 4,
+                unit: TimeUnit::Year,
+            },
+            TimeAgo {
+                n: 5,
+                unit: TimeUnit::Year,
+            },
+        ];
+
+        let json_file = File::open(json_path).unwrap();
+        let strings_map: BTreeMap<Language, Vec<String>> =
+            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+
+        strings_map.iter().for_each(|(lang, strings)| {
+            assert_eq!(strings.len(), expect.len(), "Language: {lang}");
+            strings.iter().enumerate().for_each(|(n, s)| {
+                let mut exp = expect[n];
+                if *lang == Language::Mn && exp.unit == TimeUnit::Week {
+                    exp.unit = TimeUnit::Day;
+                    exp.n *= 7;
+                }
+
+                assert_eq!(
+                    parse_timeago(*lang, s),
+                    Some(exp),
+                    "Language: {lang}, txt: `{s}`"
                 );
             });
         })
