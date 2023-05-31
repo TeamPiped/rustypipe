@@ -1695,7 +1695,7 @@ fn music_search_videos(rp: RustyPipe, unlocalized: bool) {
 
 #[tokio::test]
 async fn music_search_episode() {
-    let rp = RustyPipe::builder().strict().build();
+    let rp = RustyPipe::builder().strict().build().unwrap();
     let res = rp
         .query()
         .music_search_videos("Blond - Da muss man dabei gewesen sein: Das Hörspiel - Fall #1")
@@ -2342,6 +2342,7 @@ fn rp(lang: Language) -> RustyPipe {
         .lang(lang)
         .visitor_data_opt(vdata)
         .build()
+        .unwrap()
 }
 
 /// Get a flag signaling if the language is set to English
@@ -2352,7 +2353,11 @@ fn unlocalized(lang: Language) -> bool {
 
 /// Get a new RustyPipe instance with pre-set visitor data
 fn rp_visitor_data(vdata: &str) -> RustyPipe {
-    RustyPipe::builder().strict().visitor_data(vdata).build()
+    RustyPipe::builder()
+        .strict()
+        .visitor_data(vdata)
+        .build()
+        .unwrap()
 }
 
 /// Assert equality within 10% margin

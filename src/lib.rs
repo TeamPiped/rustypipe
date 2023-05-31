@@ -11,8 +11,7 @@
     clippy::cast_sign_loss,
     clippy::cast_precision_loss,
     clippy::single_match_else,
-    clippy::missing_errors_doc,
-    clippy::missing_panics_doc
+    clippy::missing_errors_doc
 )]
 
 //! ## Go to

@@ -393,7 +393,10 @@ async fn main() {
     storage_dir.push("rustypipe");
     _ = std::fs::create_dir(&storage_dir);
 
-    let rp = RustyPipe::builder().storage_dir(storage_dir).build();
+    let rp = RustyPipe::builder()
+        .storage_dir(storage_dir)
+        .build()
+        .unwrap();
 
     match cli.command {
         Commands::Download {

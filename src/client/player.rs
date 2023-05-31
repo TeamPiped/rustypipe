@@ -342,9 +342,8 @@ impl MapResponse<VideoPlayer> for response::Player {
                                 + "&sigh="
                                 + sigh;
 
-                            let sprite_count = (f64::from(total_count)
-                                / f64::from(frames_per_page_x * frames_per_page_y))
-                            .ceil() as u32;
+                            let sprite_count =
+                                util::div_ceil(total_count, frames_per_page_x * frames_per_page_y);
 
                             Some(Frameset {
                                 url_template: url,

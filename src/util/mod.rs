@@ -272,6 +272,17 @@ pub fn sanitize_yt_url(url: &str) -> String {
     sanitize_yt_url_inner(url).unwrap_or_else(|| url.to_string())
 }
 
+pub fn div_ceil(a: u32, b: u32) -> u32 {
+    let d = a / b;
+    let r = a % b;
+
+    if r > 0 && b > 0 {
+        d + 1
+    } else {
+        d
+    }
+}
+
 pub trait TryRemove<T> {
     /// Removes and returns the element at position `index` within the vector,
     /// shifting all elements after it to the left.

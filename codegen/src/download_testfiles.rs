@@ -134,6 +134,7 @@ fn rp_testfile(json_path: &Path) -> RustyPipe {
         .report()
         .strict()
         .build()
+        .unwrap()
 }
 
 async fn player() {
@@ -155,7 +156,7 @@ async fn player() {
 }
 
 async fn player_model() {
-    let rp = RustyPipe::builder().strict().build();
+    let rp = RustyPipe::builder().strict().build().unwrap();
 
     for (name, id) in [("multilanguage", "tVWWp1PqDus"), ("hdr", "LXb3EKWsInQ")] {
         let json_path =

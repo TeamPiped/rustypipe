@@ -77,7 +77,7 @@ pub enum DateCmp {
 }
 
 impl TimeUnit {
-    pub fn secs(self) -> i64 {
+    pub fn secs(self) -> u32 {
         match self {
             TimeUnit::Second => 1,
             TimeUnit::Minute => 60,
@@ -91,8 +91,8 @@ impl TimeUnit {
 }
 
 impl TimeAgo {
-    fn secs(self) -> i64 {
-        i64::from(self.n) * self.unit.secs()
+    fn secs(self) -> u32 {
+        u32::from(self.n) * self.unit.secs()
     }
 }
 
@@ -109,7 +109,7 @@ impl Mul<u8> for TimeAgo {
 
 impl From<TimeAgo> for Duration {
     fn from(ta: TimeAgo) -> Self {
-        Duration::seconds(ta.secs())
+        Duration::seconds(ta.secs().into())
     }
 }
 
@@ -331,7 +331,7 @@ pub fn parse_video_duration(lang: Language, video_duration: &str) -> Option<u32>
         tokens.peek()?;
 
         tokens.for_each(|ta| {
-            secs += n * ta.secs() as u32;
+            secs += n * ta.secs();
             n = 1;
         });
     }

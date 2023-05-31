@@ -16,7 +16,8 @@ pub async fn collect_video_dates(concurrency: usize) {
     let json_path = path!(*DICT_DIR / "timeago_samples_short.json");
     let rp = RustyPipe::builder()
         .visitor_data("Cgtwel9tMkh2eHh0USiyzc6jBg%3D%3D")
-        .build();
+        .build()
+        .unwrap();
 
     let channels = [
         "UCeY0bbntWzzVIaj2z3QigXg",

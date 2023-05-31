@@ -446,8 +446,7 @@ impl RustyPipeBuilder {
     }
 
     /// Return a new, configured RustyPipe instance.
-    #[must_use]
-    pub fn build(self) -> RustyPipe {
+    pub fn build(self) -> Result<RustyPipe, Error> {
         let mut client_builder = ClientBuilder::new()
             .user_agent(self.user_agent.unwrap_or_else(|| DEFAULT_UA.to_owned()))
             .gzip(true)
@@ -458,7 +457,7 @@ impl RustyPipeBuilder {
             client_builder = client_builder.timeout(timeout);
         }
 
-        let http = client_builder.build().unwrap();
+        let http = client_builder.build()?;
 
         let storage_dir = self.storage_dir.unwrap_or_default();
 
@@ -480,7 +479,7 @@ impl RustyPipeBuilder {
             })
             .unwrap_or_default();
 
-        RustyPipe {
+        Ok(RustyPipe {
             inner: Arc::new(RustyPipeRef {
                 http,
                 storage,
@@ -503,7 +502,7 @@ impl RustyPipeBuilder {
                 },
                 default_opts: self.default_opts,
             }),
-        }
+        })
     }
 
     /// Set the default directory to store the cachefile and reports.
@@ -687,8 +686,9 @@ impl RustyPipe {
     ///
     /// To create an instance with custom options, use [`RustyPipeBuilder`] instead.
     #[must_use]
+    #[allow(clippy::missing_panics_doc)]
     pub fn new() -> Self {
-        RustyPipeBuilder::new().build()
+        RustyPipeBuilder::new().build().unwrap()
     }
 
     /// Create a new [`RustyPipeBuilder`]
