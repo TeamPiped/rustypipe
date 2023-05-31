@@ -102,9 +102,12 @@ pub(crate) struct BrowseEndpointConfig {
     pub browse_endpoint_context_music_config: BrowseEndpointMusicConfig,
 }
 
+#[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct BrowseEndpointMusicConfig {
+    #[serde(default)]
+    #[serde_as(as = "DefaultOnError")]
     pub page_type: PageType,
 }
 
@@ -114,9 +117,12 @@ pub(crate) struct CommandMetadata {
     pub web_command_metadata: WebCommandMetadata,
 }
 
+#[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct WebCommandMetadata {
+    #[serde(default)]
+    #[serde_as(as = "DefaultOnError")]
     pub web_page_type: PageType,
 }
 
@@ -144,15 +150,13 @@ pub(crate) enum MusicVideoType {
     Track,
 }
 
-#[derive(Debug, Clone, Copy, Deserialize, PartialEq, Eq)]
+#[derive(Default, Debug, Clone, Copy, Deserialize, PartialEq, Eq)]
 pub(crate) enum PageType {
     #[serde(
         rename = "MUSIC_PAGE_TYPE_ARTIST",
         alias = "MUSIC_PAGE_TYPE_AUDIOBOOK_ARTIST"
     )]
     Artist,
-    #[serde(rename = "MUSIC_PAGE_TYPE_ARTIST_DISCOGRAPHY")]
-    ArtistDiscography,
     #[serde(rename = "MUSIC_PAGE_TYPE_ALBUM", alias = "MUSIC_PAGE_TYPE_AUDIOBOOK")]
     Album,
     #[serde(
@@ -162,7 +166,7 @@ pub(crate) enum PageType {
     Channel,
     #[serde(rename = "MUSIC_PAGE_TYPE_PLAYLIST", alias = "WEB_PAGE_TYPE_PLAYLIST")]
     Playlist,
-    #[serde(rename = "MUSIC_PAGE_TYPE_UNKNOWN")]
+    #[default]
     Unknown,
 }
 
@@ -170,9 +174,6 @@ impl PageType {
     pub(crate) fn to_url_target(self, id: String) -> Option<UrlTarget> {
         match self {
             PageType::Artist | PageType::Channel => Some(UrlTarget::Channel { id }),
-            PageType::ArtistDiscography => id
-                .strip_prefix(util::ARTIST_DISCOGRAPHY_PREFIX)
-                .map(|id| UrlTarget::Channel { id: id.to_owned() }),
             PageType::Album => Some(UrlTarget::Album { id }),
             PageType::Playlist => Some(UrlTarget::Playlist { id }),
             PageType::Unknown => None,
@@ -183,7 +184,6 @@ impl PageType {
 #[derive(Debug, Copy, Clone, PartialEq, Eq)]
 pub(crate) enum MusicPageType {
     Artist,
-    ArtistDiscography,
     Album,
     Playlist,
     Track { is_video: bool },
@@ -195,7 +195,6 @@ impl From<PageType> for MusicPageType {
     fn from(t: PageType) -> Self {
         match t {
             PageType::Artist => MusicPageType::Artist,
-            PageType::ArtistDiscography => MusicPageType::ArtistDiscography,
             PageType::Album => MusicPageType::Album,
             PageType::Playlist => MusicPageType::Playlist,
             PageType::Channel => MusicPageType::None,

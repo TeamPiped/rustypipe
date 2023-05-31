@@ -80,32 +80,42 @@ SAttributed {
             Text {
                 text: "\n\n",
             },
-            Text {
+            Browse {
                 text: "#aespa",
+                page_type: Unknown,
+                browse_id: "FEhashtag",
             },
             Text {
                 text: " ",
             },
-            Text {
+            Browse {
                 text: "#æspa",
+                page_type: Unknown,
+                browse_id: "FEhashtag",
             },
             Text {
                 text: " ",
             },
-            Text {
+            Browse {
                 text: "#BlackMamba",
+                page_type: Unknown,
+                browse_id: "FEhashtag",
             },
             Text {
                 text: " ",
             },
-            Text {
+            Browse {
                 text: "#블랙맘바",
+                page_type: Unknown,
+                browse_id: "FEhashtag",
             },
             Text {
                 text: " ",
             },
-            Text {
+            Browse {
                 text: "#에스파",
+                page_type: Unknown,
+                browse_id: "FEhashtag",
             },
             Text {
                 text: "\naespa 에스파 'Black Mamba' MV ℗ SM Entertainment",

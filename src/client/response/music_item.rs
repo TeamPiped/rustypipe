@@ -759,7 +759,7 @@ impl MusicListMapper {
                                 }));
                                 Ok(Some(MusicItemType::Playlist))
                             }
-                            MusicPageType::None | MusicPageType::ArtistDiscography => {
+                            MusicPageType::None => {
                                 // There may be broken YT channels from the artist search. They can be skipped.
                                 Ok(None)
                             }
@@ -901,7 +901,7 @@ impl MusicListMapper {
                             }));
                             Ok(Some(MusicItemType::Playlist))
                         }
-                        MusicPageType::None | MusicPageType::ArtistDiscography => Ok(None),
+                        MusicPageType::None => Ok(None),
                         MusicPageType::Unknown => {
                             self.has_unknown = true;
                             Ok(None)
@@ -1039,7 +1039,7 @@ impl MusicListMapper {
                     }));
                     Some(MusicItemType::Playlist)
                 }
-                MusicPageType::None | MusicPageType::ArtistDiscography => None,
+                MusicPageType::None => None,
                 MusicPageType::Unknown => {
                     self.has_unknown = true;
                     None

@@ -4,7 +4,7 @@ use once_cell::sync::Lazy;
 use regex::Regex;
 
 use crate::{
-    client::response::url_endpoint::{MusicPageType, NavigationEndpoint},
+    client::response::url_endpoint::NavigationEndpoint,
     error::{Error, ExtractionError},
     model::{AlbumItem, ArtistId, MusicArtist},
     serializer::MapResult,
@@ -191,20 +191,29 @@ fn map_artist_page(
                         .music_carousel_shelf_basic_header_renderer
                         .more_content_button
                     {
-                        match button.button_renderer.navigation_endpoint.music_page() {
+                        if let NavigationEndpoint::Browse {
+                            browse_endpoint, ..
+                        } = button.button_renderer.navigation_endpoint
+                        {
                             // Music videos
-                            Some((MusicPageType::Playlist, id)) => {
+                            if browse_endpoint
+                                .browse_endpoint_context_supported_configs
+                                .map(|cfg| {
+                                    cfg.browse_endpoint_context_music_config.page_type
+                                        == PageType::Playlist
+                                })
+                                .unwrap_or_default()
+                            {
                                 if videos_playlist_id.is_none() {
-                                    videos_playlist_id = Some(id);
+                                    videos_playlist_id = Some(browse_endpoint.browse_id);
                                 }
-                            }
-                            // Albums
-                            Some((MusicPageType::ArtistDiscography, _)) => {
+                            } else if browse_endpoint
+                                .browse_id
+                                .starts_with(util::ARTIST_DISCOGRAPHY_PREFIX)
+                            {
                                 can_fetch_more = true;
                                 extendable_albums = true;
-                            }
-                            // Albums or playlists
-                            Some((MusicPageType::Artist, _)) => {
+                            } else {
                                 // Peek at the first item to determine type
                                 if let Some(response::music_item::MusicResponseItem::MusicTwoRowItemRenderer(item)) = shelf.contents.c.first() {
                                     if let Some(PageType::Album) = item.navigation_endpoint.page_type() {
@@ -213,7 +222,6 @@ fn map_artist_page(
                                     }
                                 }
                             }
-                            _ => {}
                         }
                     }
                 }
