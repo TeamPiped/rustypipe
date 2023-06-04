@@ -1818,11 +1818,11 @@ fn music_search_artists_cont(rp: RustyPipe) {
 #[case::default(true)]
 fn music_search_playlists(#[case] with_community: bool, rp: RustyPipe, unlocalized: bool) {
     let res = if with_community {
-        tokio_test::block_on(rp.query().music_search_playlists("pop biggest hits")).unwrap()
+        tokio_test::block_on(rp.query().music_search_playlists("todays rock hits")).unwrap()
     } else {
         tokio_test::block_on(
             rp.query()
-                .music_search_playlists_filter("pop biggest hits", false),
+                .music_search_playlists_filter("todays rock hits", false),
         )
         .unwrap()
     };
@@ -1832,11 +1832,11 @@ fn music_search_playlists(#[case] with_community: bool, rp: RustyPipe, unlocaliz
         .items
         .items
         .iter()
-        .find(|p| p.id == "RDCLAK5uy_nmS3YoxSwVVQk9lEQJ0UX4ZCjXsW_psU8")
+        .find(|p| p.id == "RDCLAK5uy_nLtxizvEMkzYQUrA-bFf6MnBeR4bGYWUQ")
         .unwrap();
 
     if unlocalized {
-        assert_eq!(playlist.name, "Pop's Biggest Hits");
+        assert_eq!(playlist.name, "Today's Rock Hits");
     }
     assert!(!playlist.thumbnail.is_empty(), "got no thumbnail");
     assert_gte(playlist.track_count.unwrap(), 100, "tracks");
