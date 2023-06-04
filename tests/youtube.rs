@@ -1818,11 +1818,11 @@ fn music_search_artists_cont(rp: RustyPipe) {
 #[case::default(true)]
 fn music_search_playlists(#[case] with_community: bool, rp: RustyPipe, unlocalized: bool) {
     let res = if with_community {
-        tokio_test::block_on(rp.query().music_search_playlists("todays rock hits")).unwrap()
+        tokio_test::block_on(rp.query().music_search_playlists("today's rock hits")).unwrap()
     } else {
         tokio_test::block_on(
             rp.query()
-                .music_search_playlists_filter("todays rock hits", false),
+                .music_search_playlists_filter("today's rock hits", false),
         )
         .unwrap()
     };
@@ -1833,7 +1833,7 @@ fn music_search_playlists(#[case] with_community: bool, rp: RustyPipe, unlocaliz
         .items
         .iter()
         .find(|p| p.id == "RDCLAK5uy_nLtxizvEMkzYQUrA-bFf6MnBeR4bGYWUQ")
-        .unwrap();
+        .expect("no playlist");
 
     if unlocalized {
         assert_eq!(playlist.name, "Today's Rock Hits");
@@ -1870,7 +1870,7 @@ fn music_search_playlists_community(rp: RustyPipe) {
         .items
         .iter()
         .find(|p| p.id == "PLMC9KNkIncKtGvr2kFRuXBVmBev6cAJ2u")
-        .unwrap();
+        .expect("no playlist");
 
     assert_eq!(
         playlist.name,
