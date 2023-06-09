@@ -706,34 +706,28 @@ fn get_video_details_live(rp: RustyPipe) {
 
 #[rstest]
 fn get_video_details_agegate(rp: RustyPipe) {
-    let details = tokio_test::block_on(rp.query().video_details("HRKu0cvrr_o")).unwrap();
+    let details = tokio_test::block_on(rp.query().video_details("laru0QoJUmI")).unwrap();
 
     // dbg!(&details);
 
-    assert_eq!(details.id, "HRKu0cvrr_o");
-    assert_eq!(
-        details.name,
-        "AlphaOmegaSin Fanboy Logic: Likes/Dislikes Disabled = Point Invalid Lol wtf?"
-    );
+    assert_eq!(details.id, "laru0QoJUmI");
+    assert_eq!(details.name, "DJ Robin x Schürze - Layla (Official Video)");
     insta::assert_ron_snapshot!(details.description, @"RichText([])");
 
-    assert_eq!(details.channel.id, "UCQT2yul0lr6Ie9qNQNmw-sg");
-    assert_eq!(
-        details.channel.name,
-        "Dale Earnhardt Junior’s Retired YouYoube Channel"
-    );
+    assert_eq!(details.channel.id, "UCkJfSrMnLonOZWh-q5os5bg");
+    assert_eq!(details.channel.name, "Summerfield Records");
     assert!(!details.channel.avatar.is_empty(), "no channel avatars");
-    assert_eq!(details.channel.verification, Verification::None);
+    assert_eq!(details.channel.verification, Verification::Verified);
     assert_gte(
         details.channel.subscriber_count.unwrap(),
-        1400,
+        250_000,
         "subscribers",
     );
-    assert_gte(details.view_count, 200, "views");
-    assert!(details.like_count.is_none(), "like count not hidden");
+    assert_gte(details.view_count, 10_000_000, "views");
+    assert_gte(details.like_count.unwrap(), 150_000, "likes");
 
     let date = details.publish_date.unwrap();
-    assert_eq!(date.date(), date!(2019 - 1 - 2));
+    assert_eq!(date.date(), date!(2022 - 5 - 13));
 
     assert!(!details.is_live);
     assert!(!details.is_ccommons);
