@@ -79,9 +79,11 @@ pub(crate) struct MusicCardShelf {
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
+#[allow(clippy::enum_variant_names)]
 pub(crate) enum MusicResponseItem {
     MusicResponsiveListItemRenderer(ListMusicItem),
     MusicTwoRowItemRenderer(CoverMusicItem),
+    MessageRenderer(serde::de::IgnoredAny),
 }
 
 #[serde_as]
@@ -910,6 +912,7 @@ impl MusicListMapper {
                     None => Err("could not determine item type".to_owned()),
                 }
             }
+            MusicResponseItem::MessageRenderer(_) => Ok(None),
         }
     }
 

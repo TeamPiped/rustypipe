@@ -178,13 +178,13 @@ fn check_video_stream(s: impl YtStream) {
     false
 )]
 #[case::live(
-    "86YLFOog4GM",
-    "🌎 Earth From Space Live Stream  :  Live Views from the ISS",
-    "The station is crewed by NASA astronauts as well as Russian Cosmonauts",
+    "jfKfPfyJRdk",
+    "lofi hip hop radio 📚 - beats to relax/study to",
+    "Listen on Spotify, Apple music and more",
     0,
-    "UCakgsb0w7QB0VHdnCc-OVEA",
-    "Space Videos",
-    10,
+    "UCSJ4gkVC6NrvII8umztf0Ow",
+    "Lofi Girl",
+    100,
     true,
     true
 )]
@@ -661,23 +661,23 @@ fn get_video_details_chapters(rp: RustyPipe) {
 
 #[rstest]
 fn get_video_details_live(rp: RustyPipe) {
-    let details = tokio_test::block_on(rp.query().video_details("86YLFOog4GM")).unwrap();
+    let details = tokio_test::block_on(rp.query().video_details("jfKfPfyJRdk")).unwrap();
 
     // dbg!(&details);
 
-    assert_eq!(details.id, "86YLFOog4GM");
+    assert_eq!(details.id, "jfKfPfyJRdk");
     assert_eq!(
         details.name,
-        "🌎 Earth From Space Live Stream  :  Live Views from the ISS"
+        "lofi hip hop radio 📚 - beats to relax/study to"
     );
     let desc = details.description.to_plaintext();
     assert!(
-        desc.contains("The station is crewed by NASA astronauts as well as Russian Cosmonauts"),
+        desc.contains("Listen on Spotify, Apple music and more"),
         "bad description: {desc}"
     );
 
-    assert_eq!(details.channel.id, "UCakgsb0w7QB0VHdnCc-OVEA");
-    assert_eq!(details.channel.name, "Space Videos");
+    assert_eq!(details.channel.id, "UCSJ4gkVC6NrvII8umztf0Ow");
+    assert_eq!(details.channel.name, "Lofi Girl");
     assert!(!details.channel.avatar.is_empty(), "no channel avatars");
     assert_eq!(details.channel.verification, Verification::Verified);
     assert_gte(
@@ -685,11 +685,11 @@ fn get_video_details_live(rp: RustyPipe) {
         5_500_000,
         "subscribers",
     );
-    assert_gte(details.view_count, 10, "views");
-    assert_gte(details.like_count.unwrap(), 872_290, "likes");
+    assert_gte(details.view_count, 100, "views");
+    assert_gte(details.like_count.unwrap(), 1_800_000, "likes");
 
     let date = details.publish_date.unwrap();
-    assert_eq!(date.date(), date!(2021 - 9 - 23));
+    assert_eq!(date.date(), date!(2022 - 7 - 12));
 
     assert!(details.is_live);
     assert!(!details.is_ccommons);
