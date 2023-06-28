@@ -82,12 +82,12 @@ const DEOBF_NSIG_FUNC_NAME: &str = "deobf_nsig";
 fn get_sig_fn_name(player_js: &str) -> Result<String, DeobfError> {
     static FUNCTION_REGEXES: Lazy<[FancyRegex; 6]> = Lazy::new(|| {
         [
-        FancyRegex::new("(?:\\b|[^a-zA-Z0-9$])([a-zA-Z0-9$]{2,})\\s*=\\s*function\\(\\s*a\\s*\\)\\s*\\{\\s*a\\s*=\\s*a\\.split\\(\\s*\"\"\\s*\\)").unwrap(),
-        FancyRegex::new("\\bm=([a-zA-Z0-9$]{2,})\\(decodeURIComponent\\(h\\.s\\)\\)").unwrap(),
-        FancyRegex::new("\\bc&&\\(c=([a-zA-Z0-9$]{2,})\\(decodeURIComponent\\(c\\)\\)").unwrap(),
-        FancyRegex::new("([\\w$]+)\\s*=\\s*function\\((\\w+)\\)\\{\\s*\\2=\\s*\\2\\.split\\(\"\"\\)\\s*;").unwrap(),
-        FancyRegex::new("\\b([\\w$]{2,})\\s*=\\s*function\\((\\w+)\\)\\{\\s*\\2=\\s*\\2\\.split\\(\"\"\\)\\s*;").unwrap(),
-        FancyRegex::new("\\bc\\s*&&\\s*d\\.set\\([^,]+\\s*,\\s*(:encodeURIComponent\\s*\\()([a-zA-Z0-9$]+)\\(").unwrap(),
+        FancyRegex::new(r#"(?:\b|[^a-zA-Z0-9$])([a-zA-Z0-9$]{2,})\s*=\s*function\(\s*a\s*\)\s*\{\s*a\s*=\s*a\.split\(\s*""\s*\)"#).unwrap(),
+        FancyRegex::new(r#"\bm=([a-zA-Z0-9$]{2,})\(decodeURIComponent\(h\.s\)\)"#).unwrap(),
+        FancyRegex::new(r#"\bc&&\(c=([a-zA-Z0-9$]{2,})\(decodeURIComponent\(c\)\)"#).unwrap(),
+        FancyRegex::new(r#"([\w$]+)\s*=\s*function\((\w+)\)\{\s*\2=\s*\2\.split\(""\)\s*;"#).unwrap(),
+        FancyRegex::new(r#"\b([\w$]{2,})\s*=\s*function\((\w+)\)\{\s*\2=\s*\2\.split\(""\)\s*;"#).unwrap(),
+        FancyRegex::new(r#"\bc\s*&&\s*d\.set\([^,]+\s*,\s*(:encodeURIComponent\s*\()([a-zA-Z0-9$]+)\("#).unwrap(),
     ]
     });
 
@@ -102,8 +102,10 @@ fn caller_function(mapped_name: &str, fn_name: &str) -> String {
 fn get_sig_fn(player_js: &str) -> Result<String, DeobfError> {
     let dfunc_name = get_sig_fn_name(player_js)?;
 
-    let function_pattern_str =
-        "(".to_owned() + &dfunc_name.replace('$', "\\$") + "=function\\([a-zA-Z0-9_]+\\)\\{.+?\\})";
+    let function_pattern_str = format!(
+        r#"({}=function\([a-zA-Z0-9_]+\)\{{.+?\}})"#,
+        dfunc_name.replace('$', "\\$")
+    );
     let function_pattern = Regex::new(&function_pattern_str)
         .map_err(|_| DeobfError::Other("could not parse function pattern regex"))?;
 
@@ -117,7 +119,7 @@ fn get_sig_fn(player_js: &str) -> Result<String, DeobfError> {
         + ";";
 
     static HELPER_OBJECT_NAME_REGEX: Lazy<Regex> =
-        Lazy::new(|| Regex::new(";([A-Za-z0-9_\\$]{2})\\...\\(").unwrap());
+        Lazy::new(|| Regex::new(r#";([A-Za-z0-9_\$]{2})\...\("#).unwrap());
     let helper_object_name = HELPER_OBJECT_NAME_REGEX
         .captures(&deobfuscate_function)
         .ok_or(DeobfError::Extraction("helper object name"))?
@@ -125,8 +127,10 @@ fn get_sig_fn(player_js: &str) -> Result<String, DeobfError> {
         .unwrap()
         .as_str();
 
-    let helper_pattern_str =
-        "(var ".to_owned() + &helper_object_name.replace('$', "\\$") + "=\\{.+?\\}\\};)";
+    let helper_pattern_str = format!(
+        r#"(var {}=\{{.+?\}}\}};)"#,
+        helper_object_name.replace('$', "\\$")
+    );
     let helper_pattern = Regex::new(&helper_pattern_str)
         .map_err(|_| DeobfError::Other("could not parse helper pattern regex"))?;
     let player_js_nonl = player_js.replace('\n', "");
@@ -144,8 +148,10 @@ fn get_sig_fn(player_js: &str) -> Result<String, DeobfError> {
 
 fn get_nsig_fn_name(player_js: &str) -> Result<String, DeobfError> {
     static FUNCTION_NAME_REGEX: Lazy<Regex> = Lazy::new(|| {
-        Regex::new("\\.get\\(\"n\"\\)\\)&&\\([a-zA-Z0-9$_]=([a-zA-Z0-9$_]+)(?:\\[(\\d+)])?\\([a-zA-Z0-9$_]\\)")
-            .unwrap()
+        Regex::new(
+            r#"\.get\("n"\)\)&&\([a-zA-Z0-9$_]=([a-zA-Z0-9$_]+)(?:\[(\d+)])?\([a-zA-Z0-9$_]\)"#,
+        )
+        .unwrap()
     });
 
     let fname_match = FUNCTION_NAME_REGEX
@@ -164,8 +170,7 @@ fn get_nsig_fn_name(player_js: &str) -> Result<String, DeobfError> {
         .as_str()
         .parse::<usize>()
         .or(Err(DeobfError::Other("could not parse array_num")))?;
-    let array_pattern_str =
-        "var ".to_owned() + &regex::escape(function_name) + "\\s*=\\s*\\[(.+?)];";
+    let array_pattern_str = format!(r#"var {}\s*=\s*\[(.+?)][;,]"#, regex::escape(function_name));
     let array_pattern = Regex::new(&array_pattern_str).or(Err(DeobfError::Other(
         "could not parse helper pattern regex",
     )))?;
