@@ -24,6 +24,7 @@ pub enum ABTest {
     TrendsPageHeaderRenderer = 5,
     DiscographyPage = 6,
     ShortDateFormat = 7,
+    PlaylistsForShorts = 9,
 }
 
 const TESTS_TO_RUN: [ABTest; 3] = [
@@ -94,6 +95,7 @@ pub async fn run_test(
                     ABTest::TrendsPageHeaderRenderer => trends_page_header_renderer(&query).await,
                     ABTest::DiscographyPage => discography_page(&query).await,
                     ABTest::ShortDateFormat => short_date_format(&query).await,
+                    ABTest::PlaylistsForShorts => playlists_for_shorts(&query).await,
                 }
                 .unwrap();
                 pb.inc(1);
@@ -242,4 +244,14 @@ pub async fn short_date_format(rp: &RustyPipeQuery) -> Result<bool> {
             .map(|d| SHORT_DATE.is_match(d))
             .unwrap_or_default()
     }))
+}
+
+pub async fn playlists_for_shorts(rp: &RustyPipeQuery) -> Result<bool> {
+    let playlist = rp.playlist("UUSHh8gHdtzO2tXd593_bjErWg").await?;
+    let v1 = playlist
+        .videos
+        .items
+        .first()
+        .ok_or_else(|| anyhow::anyhow!("no videos"))?;
+    Ok(v1.publish_date_txt.is_none())
 }

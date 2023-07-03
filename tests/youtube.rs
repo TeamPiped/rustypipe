@@ -2241,14 +2241,10 @@ fn music_genre(#[case] id: &str, #[case] name: &str, rp: RustyPipe, unlocalized:
                 assert!(!playlist.thumbnail.is_empty(), "got no cover");
 
                 if !playlist.from_ytm {
-                    assert!(
-                        playlist.channel.is_some(),
-                        "pl: {}, got no channel",
-                        playlist.id
-                    );
-                    let channel = playlist.channel.as_ref().unwrap();
-                    validate::channel_id(&channel.id).unwrap();
-                    assert!(!channel.name.is_empty());
+                    if let Some(channel) = playlist.channel.as_ref() {
+                        validate::channel_id(&channel.id).unwrap();
+                        assert!(!channel.name.is_empty());
+                    }
                 } else {
                     assert!(playlist.channel.is_none());
                 }

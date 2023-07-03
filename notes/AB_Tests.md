@@ -360,8 +360,8 @@ YouTube changed the header renderer type on the trending page to a `pageHeaderRe
 - **Impact:** 🟡 Medium
 - **Endpoint:** browse (music artist)
 
-YouTube merged the 2 sections for singles and albums on artist pages together. Now
-there is only a *Top Releases* section.
+YouTube merged the 2 sections for singles and albums on artist pages together. Now there
+is only a _Top Releases_ section.
 
 YouTube also changed the way the full discography page is fetched, surprisingly making
 it easier for alternative clients. The discography page now has its own content ID in
@@ -382,5 +382,26 @@ visitor data cookie to be set, as it was the case with the old system.
 - **Encountered on:** 28.05.2023
 - **Impact:** 🟡 Medium
 
-YouTube changed their date format from the long format (*21 hours ago*, *3 days ago*) to
-a short format (*21h ago*, *3d ago*).
+YouTube changed their date format from the long format (_21 hours ago_, _3 days ago_) to
+a short format (_21h ago_, _3d ago_).
+
+## [9] Playlists for Shorts
+
+- **Encountered on:** 26.06.2023
+- **Impact:** 🟡 Medium
+- **Endpoint:** browse (playlist)
+
+![A/B test 9 screenshot](./_img/ab_9.png)
+
+Original issue: https://github.com/TeamNewPipe/NewPipeExtractor/issues/10774
+
+YouTube added a filter system for playlists, allowing users to only see shorts/full
+videos.
+
+When shorts filter is enabled or when there are only shorts in a playlist, YouTube
+return shorts UI elements instead of standard video ones, the ones that are also used
+for shorts shelves in searches and suggestions and shorts in the corresponding channel
+tab.
+
+Since the reel items dont include upload date information you can circumvent this new UI
+by using the mobile client. But that may change in the future.

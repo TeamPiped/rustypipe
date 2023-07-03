@@ -29,6 +29,7 @@ pub(crate) struct ItemSection {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct PlaylistVideoListRenderer {
+    #[serde(alias = "richGridRenderer")]
     pub playlist_video_list_renderer: YouTubeListRenderer,
 }
 
