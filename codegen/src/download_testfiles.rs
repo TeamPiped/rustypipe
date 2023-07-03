@@ -619,7 +619,7 @@ async fn music_search_playlists() {
 
         let rp = rp_testfile(&json_path);
         rp.query()
-            .music_search_playlists_filter("pop", community)
+            .music_search_playlists("pop", community)
             .await
             .unwrap();
     }

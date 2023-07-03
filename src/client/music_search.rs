@@ -40,8 +40,6 @@ enum Params {
     Albums,
     #[serde(rename = "EgWKAQIgAWoMEAMQBBAJEA4QChAF")]
     Artists,
-    #[serde(rename = "EgWKAQIoAWoMEAMQBBAJEA4QChAF")]
-    Playlists,
     #[serde(rename = "EgeKAQQoADgBagwQAxAEEAkQDhAKEAU%3D")]
     YtmPlaylists,
     #[serde(rename = "EgeKAQQoAEABagwQAxAEEAkQDhAKEAU%3D")]
@@ -152,44 +150,25 @@ impl RustyPipeQuery {
         )
         .await
     }
-
     /// Search YouTube Music playlists
+    ///
+    /// Playlists are filtered whether they are created by users
+    /// (`community=true`) or by YouTube Music (`community=false`)
     pub async fn music_search_playlists<S: AsRef<str>>(
         &self,
         query: S,
-    ) -> Result<MusicSearchFiltered<MusicPlaylistItem>, Error> {
-        self._music_search_playlists(query, Params::Playlists).await
-    }
-
-    /// Search YouTube Music playlists that were created by users
-    /// (`community=true`) or by YouTube Music (`community=false`)
-    pub async fn music_search_playlists_filter<S: AsRef<str>>(
-        &self,
-        query: S,
         community: bool,
-    ) -> Result<MusicSearchFiltered<MusicPlaylistItem>, Error> {
-        self._music_search_playlists(
-            query,
-            if community {
-                Params::CommunityPlaylists
-            } else {
-                Params::YtmPlaylists
-            },
-        )
-        .await
-    }
-
-    async fn _music_search_playlists<S: AsRef<str>>(
-        &self,
-        query: S,
-        params: Params,
     ) -> Result<MusicSearchFiltered<MusicPlaylistItem>, Error> {
         let query = query.as_ref();
         let context = self.get_context(ClientType::DesktopMusic, true, None).await;
         let request_body = QSearch {
             context,
             query,
-            params: Some(params),
+            params: Some(if community {
+                Params::CommunityPlaylists
+            } else {
+                Params::YtmPlaylists
+            }),
         };
 
         self.execute_request::<response::MusicSearch, _, _>(

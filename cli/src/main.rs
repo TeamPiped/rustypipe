@@ -173,7 +173,6 @@ enum MusicSearchCategory {
     Videos,
     Artists,
     Albums,
-    Playlists,
     PlaylistsYtm,
     PlaylistsCommunity,
 }
@@ -676,15 +675,10 @@ async fn main() {
                 res.items.extend_limit(rp.query(), limit).await.unwrap();
                 print_data(&res, format, pretty);
             }
-            Some(MusicSearchCategory::Playlists) => {
-                let mut res = rp.query().music_search_playlists(&query).await.unwrap();
-                res.items.extend_limit(rp.query(), limit).await.unwrap();
-                print_data(&res, format, pretty);
-            }
             Some(MusicSearchCategory::PlaylistsYtm) => {
                 let mut res = rp
                     .query()
-                    .music_search_playlists_filter(&query, false)
+                    .music_search_playlists(&query, false)
                     .await
                     .unwrap();
                 res.items.extend_limit(rp.query(), limit).await.unwrap();
@@ -693,7 +687,7 @@ async fn main() {
             Some(MusicSearchCategory::PlaylistsCommunity) => {
                 let mut res = rp
                     .query()
-                    .music_search_playlists_filter(&query, true)
+                    .music_search_playlists(&query, true)
                     .await
                     .unwrap();
                 res.items.extend_limit(rp.query(), limit).await.unwrap();

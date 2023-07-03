@@ -1808,18 +1808,12 @@ fn music_search_artists_cont(rp: RustyPipe) {
 }
 
 #[rstest]
-#[case::ytm(false)]
-#[case::default(true)]
-fn music_search_playlists(#[case] with_community: bool, rp: RustyPipe, unlocalized: bool) {
-    let res = if with_community {
-        tokio_test::block_on(rp.query().music_search_playlists("today's rock hits")).unwrap()
-    } else {
-        tokio_test::block_on(
-            rp.query()
-                .music_search_playlists_filter("today's rock hits", false),
-        )
-        .unwrap()
-    };
+fn music_search_playlists(rp: RustyPipe, unlocalized: bool) {
+    let res = tokio_test::block_on(
+        rp.query()
+            .music_search_playlists("today's rock hits", false),
+    )
+    .unwrap();
 
     assert_eq!(res.corrected_query, None);
     let playlist = res
@@ -1837,24 +1831,17 @@ fn music_search_playlists(#[case] with_community: bool, rp: RustyPipe, unlocaliz
     assert_eq!(playlist.channel, None);
     assert!(playlist.from_ytm);
 
-    if with_community {
-        assert!(
-            res.items.items.iter().any(|p| !p.from_ytm),
-            "no community items found"
-        )
-    } else {
-        assert!(
-            res.items.items.iter().all(|p| p.from_ytm),
-            "community items found"
-        )
-    }
+    assert!(
+        res.items.items.iter().all(|p| p.from_ytm),
+        "community items found"
+    )
 }
 
 #[rstest]
 fn music_search_playlists_community(rp: RustyPipe) {
     let res = tokio_test::block_on(
         rp.query()
-            .music_search_playlists_filter("Best Pop Music Videos - Top Pop Hits Playlist", true),
+            .music_search_playlists("Best Pop Music Videos - Top Pop Hits Playlist", true),
     )
     .unwrap();
 
