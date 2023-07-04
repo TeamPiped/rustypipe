@@ -6,6 +6,7 @@ use std::{
 };
 
 use futures::{stream, StreamExt};
+use ordered_hash_map::OrderedHashMap;
 use path_macro::path;
 use rustypipe::{
     client::RustyPipe,
@@ -170,7 +171,7 @@ pub fn write_samples_to_dict() {
         dict_entry.months = BTreeMap::new();
 
         if collect_nd_tokens {
-            dict_entry.timeago_nd_tokens = BTreeMap::new();
+            dict_entry.timeago_nd_tokens = OrderedHashMap::new();
         }
 
         for datestr_table in &datestr_tables {

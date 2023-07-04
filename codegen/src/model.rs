@@ -1,5 +1,6 @@
 use std::collections::BTreeMap;
 
+use ordered_hash_map::OrderedHashMap;
 use rustypipe::{client::YTContext, model::AlbumType, param::Language};
 use serde::{Deserialize, Serialize};
 use serde_with::{serde_as, DefaultOnError, VecSkipError};
@@ -18,7 +19,7 @@ pub struct DictEntry {
     ///
     /// Identifiers: `Y`(ear), `M`(month), `W`(eek), `D`(ay),
     /// `h`(our), `m`(inute), `s`(econd)
-    pub timeago_tokens: BTreeMap<String, String>,
+    pub timeago_tokens: OrderedHashMap<String, String>,
     /// Order in which to parse numeric date components. Formatted as
     /// a string of date identifiers (Y, M, D).
     ///
@@ -34,7 +35,7 @@ pub struct DictEntry {
     /// Tokens for parsing date strings with no digits (e.g. Today, Tomorrow)
     ///
     /// Format: Parsed token -> \[Quantity\] Identifier
-    pub timeago_nd_tokens: BTreeMap<String, String>,
+    pub timeago_nd_tokens: OrderedHashMap<String, String>,
     /// Are commas (instead of points) used as decimal separators?
     pub comma_decimal: bool,
     /// Tokens for parsing decimal prefixes (K, M, B, ...)
@@ -49,6 +50,10 @@ pub struct DictEntry {
     ///
     /// Format: Parsed text -> Album type
     pub album_types: BTreeMap<String, AlbumType>,
+    /// Names of item types (Song, Video, Artist, Playlist)
+    ///
+    /// Format: Parsed text -> Item type
+    pub item_types: BTreeMap<String, ExtItemType>,
 }
 
 /// Parsed TimeAgo string, contains amount and time unit.
@@ -97,6 +102,15 @@ impl TimeUnit {
             TimeUnit::Year => "Y",
         }
     }
+}
+
+#[derive(Debug, Copy, Clone, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
+pub enum ExtItemType {
+    Track,
+    Video,
+    Episode,
+    Playlist,
+    Artist,
 }
 
 #[derive(Debug, Serialize)]

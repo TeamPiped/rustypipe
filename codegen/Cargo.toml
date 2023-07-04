@@ -11,7 +11,9 @@ tokio = { version = "1.20.0", features = ["macros", "rt-multi-thread"] }
 futures = "0.3.21"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0.82"
-serde_with = { version = "3.0.0", default-features = false, features = ["macros"] }
+serde_with = { version = "3.0.0", default-features = false, features = [
+    "macros",
+] }
 anyhow = "1.0"
 log = "0.4.17"
 env_logger = "0.10.0"
@@ -24,3 +26,4 @@ num_enum = "0.6.1"
 path_macro = "1.0.0"
 intl_pluralrules = "7.0.2"
 unic-langid = "0.9.1"
+ordered_hash_map = { version = "0.2.0", features = ["serde"] }
