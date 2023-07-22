@@ -8,7 +8,6 @@ pub use date::{now_sec, shift_months, shift_years};
 pub use protobuf::{string_from_pb, ProtoBuilder};
 
 use std::{
-    borrow::{Borrow, Cow},
     collections::BTreeMap,
     str::{FromStr, SplitWhitespace},
 };
@@ -41,11 +40,6 @@ pub const ARTIST_DISCOGRAPHY_PREFIX: &str = "MPAD";
 
 const CONTENT_PLAYBACK_NONCE_ALPHABET: &[u8; 64] =
     b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
-
-/// Internal error
-#[derive(thiserror::Error, Debug)]
-#[error("mapping error: {0}")]
-pub struct MappingError(pub(crate) Cow<'static, str>);
 
 /// Return the given capture group that matches first in a list of regexes
 pub fn get_cg_from_regexes<'a, I>(mut regexes: I, text: &str, cg: usize) -> Option<String>
@@ -249,7 +243,7 @@ pub fn sanitize_yt_url(url: &str) -> String {
         if parsed_url.query().is_some() {
             let params = parsed_url
                 .query_pairs()
-                .filter_map(|(k, v)| match k.borrow() {
+                .filter_map(|(k, v)| match k.as_ref() {
                     "utm_source" | "utm_medium" | "utm_campaign" | "utm_content" => None,
                     _ => Some((k.to_string(), v.to_string())),
                 })

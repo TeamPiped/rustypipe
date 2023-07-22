@@ -482,436 +482,13 @@ impl MusicListMapper {
         }
     }
 
+    /// Map a MusicResponseItem (list item or tile)
     fn map_item(&mut self, item: MusicResponseItem) -> Result<Option<MusicItemType>, String> {
         match item {
             // List item
-            MusicResponseItem::MusicResponsiveListItemRenderer(item) => {
-                let mut columns = item.flex_columns.into_iter();
-                let c1 = columns.next();
-                let c2 = columns.next();
-                let c3 = columns.next();
-
-                let title = c1.as_ref().map(|col| col.renderer.text.to_string());
-
-                let first_tn = item
-                    .thumbnail
-                    .music_thumbnail_renderer
-                    .thumbnail
-                    .thumbnails
-                    .first();
-
-                let pt_id = item
-                    .navigation_endpoint
-                    .and_then(NavigationEndpoint::music_page)
-                    .or_else(|| {
-                        c1.and_then(|c1| {
-                            c1.renderer.text.0.into_iter().next().and_then(|t| match t {
-                                crate::serializer::text::TextComponent::Video {
-                                    video_id,
-                                    is_video,
-                                    ..
-                                } => Some((MusicPageType::Track { is_video }, video_id)),
-                                crate::serializer::text::TextComponent::Browse {
-                                    page_type,
-                                    browse_id,
-                                    ..
-                                } => Some((page_type.into(), browse_id)),
-                                _ => None,
-                            })
-                        })
-                    })
-                    .or_else(|| {
-                        item.playlist_item_data.map(|d| {
-                            (
-                                MusicPageType::Track {
-                                    is_video: self.album.is_none()
-                                        && !first_tn
-                                            .map(|tn| tn.height == tn.width)
-                                            .unwrap_or_default(),
-                                },
-                                d.video_id,
-                            )
-                        })
-                    })
-                    .or_else(|| {
-                        first_tn.and_then(|tn| {
-                            util::video_id_from_thumbnail_url(&tn.url).map(|id| {
-                                (
-                                    MusicPageType::Track {
-                                        is_video: self.album.is_none() && tn.width != tn.height,
-                                    },
-                                    id,
-                                )
-                            })
-                        })
-                    });
-
-                match pt_id {
-                    // Track
-                    Some((MusicPageType::Track { is_video }, id)) => {
-                        let title =
-                            title.ok_or_else(|| format!("track {id}: could not get title"))?;
-
-                        let (artists_p, album_p, duration_p) = match item.flex_column_display_style
-                        {
-                            // Search result
-                            FlexColumnDisplayStyle::TwoLines => {
-                                // Is this a related track?
-                                if !is_video && item.item_height == ItemHeight::Compact {
-                                    (
-                                        c2.map(TextComponents::from),
-                                        c3.map(TextComponents::from),
-                                        None,
-                                    )
-                                } else {
-                                    let mut subtitle_parts = c2
-                                        .ok_or_else(|| {
-                                            format!("track {id}: could not get subtitle")
-                                        })?
-                                        .renderer
-                                        .text
-                                        .split(util::DOT_SEPARATOR)
-                                        .into_iter();
-
-                                    // Is this a related video?
-                                    if item.item_height == ItemHeight::Compact {
-                                        (subtitle_parts.next(), subtitle_parts.next(), None)
-                                    }
-                                    // Is it a podcast episode?
-                                    else if subtitle_parts.len() <= 3 && c3.is_some() {
-                                        (subtitle_parts.next_back(), None, None)
-                                    } else {
-                                        // Skip first part (track type)
-                                        if subtitle_parts.len() > 3
-                                            || (is_video && subtitle_parts.len() == 2)
-                                        {
-                                            subtitle_parts.next();
-                                        }
-
-                                        (
-                                            subtitle_parts.next(),
-                                            subtitle_parts.next(),
-                                            subtitle_parts.next(),
-                                        )
-                                    }
-                                }
-                            }
-                            // Playlist item
-                            FlexColumnDisplayStyle::Default => (
-                                c2.map(TextComponents::from),
-                                c3.map(TextComponents::from),
-                                item.fixed_columns
-                                    .into_iter()
-                                    .next()
-                                    .map(TextComponents::from),
-                            ),
-                        };
-
-                        let duration =
-                            duration_p.and_then(|p| util::parse_video_length(p.first_str()));
-
-                        let (album, view_count) = match (item.flex_column_display_style, is_video) {
-                            // The album field contains the view count for search videos
-                            (FlexColumnDisplayStyle::TwoLines, true) => (
-                                None,
-                                album_p.and_then(|p| {
-                                    util::parse_large_numstr_or_warn(
-                                        p.first_str(),
-                                        self.lang,
-                                        &mut self.warnings,
-                                    )
-                                }),
-                            ),
-                            (_, false) => (
-                                album_p.and_then(|p| {
-                                    p.0.into_iter().find_map(|c| AlbumId::try_from(c).ok())
-                                }),
-                                None,
-                            ),
-                            (FlexColumnDisplayStyle::Default, true) => (None, None),
-                        };
-                        let album = album.or_else(|| self.album.clone());
-
-                        let (mut artists, by_va) = map_artists(artists_p);
-
-                        // Extract artist id from dropdown menu
-                        let artist_id = map_artist_id_fallback(item.menu, artists.first());
-
-                        // Fall back to the artist given when constructing the mapper.
-                        // This is used for extracting artist pages.
-                        // On some albums, the artist name of the tracks is not given but different
-                        // from the album artist. In this case dont copy the album artist.
-                        if let Some((fb_artists, _)) = &self.artists {
-                            if artists.is_empty()
-                                && (self.artist_page
-                                    || artist_id.is_none()
-                                    || fb_artists.iter().any(|fb_id| {
-                                        fb_id
-                                            .id
-                                            .as_deref()
-                                            .map(|aid| artist_id.as_deref() == Some(aid))
-                                            .unwrap_or_default()
-                                    }))
-                            {
-                                artists = fb_artists.clone();
-                            }
-                        }
-
-                        let track_nr = item.index.and_then(|txt| util::parse_numeric(&txt).ok());
-
-                        self.items.push(MusicItem::Track(TrackItem {
-                            id,
-                            name: title,
-                            duration,
-                            cover: item.thumbnail.into(),
-                            artists,
-                            artist_id,
-                            album,
-                            view_count,
-                            is_video,
-                            track_nr,
-                            by_va,
-                        }));
-                        Ok(Some(MusicItemType::Track))
-                    }
-                    // Artist / Album / Playlist
-                    Some((page_type, id)) => {
-                        let mut subtitle_parts = c2
-                            .ok_or_else(|| "could not get subtitle".to_owned())?
-                            .renderer
-                            .text
-                            .split(util::DOT_SEPARATOR)
-                            .into_iter();
-
-                        let title =
-                            title.ok_or_else(|| format!("track {id}: could not get title"))?;
-
-                        let subtitle_p1 = subtitle_parts.next();
-                        let subtitle_p2 = subtitle_parts.next();
-                        let subtitle_p3 = subtitle_parts.next();
-
-                        match page_type {
-                            MusicPageType::Artist => {
-                                let subscriber_count = subtitle_p2.and_then(|p| {
-                                    util::parse_large_numstr_or_warn(
-                                        p.first_str(),
-                                        self.lang,
-                                        &mut self.warnings,
-                                    )
-                                });
-
-                                self.items.push(MusicItem::Artist(ArtistItem {
-                                    id,
-                                    name: title,
-                                    avatar: item.thumbnail.into(),
-                                    subscriber_count,
-                                }));
-                                Ok(Some(MusicItemType::Artist))
-                            }
-                            MusicPageType::Album => {
-                                let album_type = subtitle_p1
-                                    .map(|st| map_album_type(st.first_str(), self.lang))
-                                    .unwrap_or_default();
-
-                                let (artists, by_va) = map_artists(subtitle_p2);
-
-                                let artist_id = map_artist_id_fallback(item.menu, artists.first());
-
-                                let year = subtitle_p3
-                                    .and_then(|st| util::parse_numeric(st.first_str()).ok());
-
-                                self.items.push(MusicItem::Album(AlbumItem {
-                                    id,
-                                    name: title,
-                                    cover: item.thumbnail.into(),
-                                    artists,
-                                    artist_id,
-                                    album_type,
-                                    year,
-                                    by_va,
-                                }));
-                                Ok(Some(MusicItemType::Album))
-                            }
-                            MusicPageType::Playlist => {
-                                // Part 1 may be the "Playlist" label
-                                let (channel_p, tcount_p) = match subtitle_p3 {
-                                    Some(_) => (subtitle_p2, subtitle_p3),
-                                    None => (subtitle_p1, subtitle_p2),
-                                };
-
-                                let from_ytm = channel_p
-                                    .as_ref()
-                                    .and_then(|p| p.0.first())
-                                    .map(util::is_ytm)
-                                    .unwrap_or_default();
-                                let channel = channel_p.and_then(|p| {
-                                    p.0.into_iter().find_map(|c| ChannelId::try_from(c).ok())
-                                });
-                                let track_count = tcount_p
-                                    .filter(|_| from_ytm)
-                                    .and_then(|p| util::parse_numeric(p.first_str()).ok());
-
-                                self.items.push(MusicItem::Playlist(MusicPlaylistItem {
-                                    id,
-                                    name: title,
-                                    thumbnail: item.thumbnail.into(),
-                                    channel,
-                                    track_count,
-                                    from_ytm,
-                                }));
-                                Ok(Some(MusicItemType::Playlist))
-                            }
-                            MusicPageType::None => {
-                                // There may be broken YT channels from the artist search. They can be skipped.
-                                Ok(None)
-                            }
-                            // Tracks were already handled above
-                            MusicPageType::Track { .. } => unreachable!(),
-                            MusicPageType::Unknown => {
-                                self.has_unknown = true;
-                                Ok(None)
-                            }
-                        }
-                    }
-                    None => {
-                        if item.music_item_renderer_display_policy == DisplayPolicy::GreyOut {
-                            Ok(None)
-                        } else {
-                            Err("could not determine item type".to_owned())
-                        }
-                    }
-                }
-            }
+            MusicResponseItem::MusicResponsiveListItemRenderer(item) => self.map_list_item(item),
             // Tile
-            MusicResponseItem::MusicTwoRowItemRenderer(item) => {
-                let mut subtitle_parts = item.subtitle.split(util::DOT_SEPARATOR).into_iter();
-                let subtitle_p1 = subtitle_parts.next();
-                let subtitle_p2 = subtitle_parts.next();
-
-                match item.navigation_endpoint.music_page() {
-                    Some((page_type, id)) => match page_type {
-                        MusicPageType::Track { is_video } => {
-                            let (artists, by_va) = map_artists(subtitle_p1);
-
-                            self.items.push(MusicItem::Track(TrackItem {
-                                id,
-                                name: item.title,
-                                duration: None,
-                                cover: item.thumbnail_renderer.into(),
-                                artist_id: artists.first().and_then(|a| a.id.clone()),
-                                artists,
-                                album: None,
-                                view_count: subtitle_p2.and_then(|c| {
-                                    util::parse_large_numstr_or_warn(
-                                        c.first_str(),
-                                        self.lang,
-                                        &mut self.warnings,
-                                    )
-                                }),
-                                is_video,
-                                track_nr: None,
-                                by_va,
-                            }));
-                            Ok(Some(MusicItemType::Track))
-                        }
-                        MusicPageType::Artist => {
-                            let subscriber_count = subtitle_p1.and_then(|p| {
-                                util::parse_large_numstr_or_warn(
-                                    p.first_str(),
-                                    self.lang,
-                                    &mut self.warnings,
-                                )
-                            });
-
-                            self.items.push(MusicItem::Artist(ArtistItem {
-                                id,
-                                name: item.title,
-                                avatar: item.thumbnail_renderer.into(),
-                                subscriber_count,
-                            }));
-                            Ok(Some(MusicItemType::Artist))
-                        }
-                        MusicPageType::Album => {
-                            let mut year = None;
-                            let mut album_type = AlbumType::Single;
-
-                            let (artists, by_va) =
-                                match (subtitle_p1, subtitle_p2, &self.artists, self.artist_page) {
-                                    // "2022" (Artist singles)
-                                    (Some(year_txt), None, Some(artists), true) => {
-                                        year = util::parse_numeric(year_txt.first_str()).ok();
-                                        artists.clone()
-                                    }
-                                    // "Album", "2022" (Artist albums)
-                                    (Some(atype_txt), Some(year_txt), Some(artists), true) => {
-                                        year = util::parse_numeric(year_txt.first_str()).ok();
-                                        album_type =
-                                            map_album_type(atype_txt.first_str(), self.lang);
-                                        artists.clone()
-                                    }
-                                    // Album on artist page with unknown year
-                                    (None, None, Some(artists), true) => artists.clone(),
-                                    // "Album", <"Oonagh"> (Album variants, new releases)
-                                    (Some(atype_txt), Some(p2), _, false) => {
-                                        album_type =
-                                            map_album_type(atype_txt.first_str(), self.lang);
-                                        map_artists(Some(p2))
-                                    }
-                                    // "Album" (Album variants, no artist)
-                                    (Some(atype_txt), None, _, false) => {
-                                        album_type =
-                                            map_album_type(atype_txt.first_str(), self.lang);
-                                        (Vec::new(), true)
-                                    }
-                                    _ => {
-                                        return Err(format!(
-                                            "could not parse subtitle of album {id}"
-                                        ));
-                                    }
-                                };
-
-                            self.items.push(MusicItem::Album(AlbumItem {
-                                id,
-                                name: item.title,
-                                cover: item.thumbnail_renderer.into(),
-                                artist_id: artists.first().and_then(|a| a.id.clone()),
-                                artists,
-                                album_type,
-                                year,
-                                by_va,
-                            }));
-                            Ok(Some(MusicItemType::Album))
-                        }
-                        MusicPageType::Playlist => {
-                            // When the playlist subtitle has only 1 part, it is a playlist from YT Music
-                            // (featured on the startpage or in genres)
-                            let from_ytm = subtitle_p2
-                                .as_ref()
-                                .and_then(|p| p.0.first())
-                                .map_or(true, util::is_ytm);
-                            let channel = subtitle_p2.and_then(|p| {
-                                p.0.into_iter().find_map(|c| ChannelId::try_from(c).ok())
-                            });
-
-                            self.items.push(MusicItem::Playlist(MusicPlaylistItem {
-                                id,
-                                name: item.title,
-                                thumbnail: item.thumbnail_renderer.into(),
-                                channel,
-                                track_count: None,
-                                from_ytm,
-                            }));
-                            Ok(Some(MusicItemType::Playlist))
-                        }
-                        MusicPageType::None => Ok(None),
-                        MusicPageType::Unknown => {
-                            self.has_unknown = true;
-                            Ok(None)
-                        }
-                    },
-                    None => Err("could not determine item type".to_owned()),
-                }
-            }
+            MusicResponseItem::MusicTwoRowItemRenderer(item) => self.map_tile(item),
             MusicResponseItem::MessageRenderer(_) => Ok(None),
         }
     }
@@ -932,6 +509,422 @@ impl MusicListMapper {
         etype
     }
 
+    /// Map a ListMusicItem (album/playlist tile)
+    fn map_list_item(&mut self, item: ListMusicItem) -> Result<Option<MusicItemType>, String> {
+        let mut columns = item.flex_columns.into_iter();
+        let c1 = columns.next();
+        let c2 = columns.next();
+        let c3 = columns.next();
+
+        let title = c1.as_ref().map(|col| col.renderer.text.to_string());
+
+        let first_tn = item
+            .thumbnail
+            .music_thumbnail_renderer
+            .thumbnail
+            .thumbnails
+            .first();
+
+        let pt_id = item
+            .navigation_endpoint
+            .and_then(NavigationEndpoint::music_page)
+            .or_else(|| {
+                c1.and_then(|c1| {
+                    c1.renderer.text.0.into_iter().next().and_then(|t| match t {
+                        crate::serializer::text::TextComponent::Video {
+                            video_id,
+                            is_video,
+                            ..
+                        } => Some((MusicPageType::Track { is_video }, video_id)),
+                        crate::serializer::text::TextComponent::Browse {
+                            page_type,
+                            browse_id,
+                            ..
+                        } => Some((page_type.into(), browse_id)),
+                        _ => None,
+                    })
+                })
+            })
+            .or_else(|| {
+                item.playlist_item_data.map(|d| {
+                    (
+                        MusicPageType::Track {
+                            is_video: self.album.is_none()
+                                && !first_tn.map(|tn| tn.height == tn.width).unwrap_or_default(),
+                        },
+                        d.video_id,
+                    )
+                })
+            })
+            .or_else(|| {
+                first_tn.and_then(|tn| {
+                    util::video_id_from_thumbnail_url(&tn.url).map(|id| {
+                        (
+                            MusicPageType::Track {
+                                is_video: self.album.is_none() && tn.width != tn.height,
+                            },
+                            id,
+                        )
+                    })
+                })
+            });
+
+        match pt_id {
+            // Track
+            Some((MusicPageType::Track { is_video }, id)) => {
+                let title = title.ok_or_else(|| format!("track {id}: could not get title"))?;
+
+                let (artists_p, album_p, duration_p) = match item.flex_column_display_style {
+                    // Search result
+                    FlexColumnDisplayStyle::TwoLines => {
+                        // Is this a related track?
+                        if !is_video && item.item_height == ItemHeight::Compact {
+                            (
+                                c2.map(TextComponents::from),
+                                c3.map(TextComponents::from),
+                                None,
+                            )
+                        } else {
+                            let mut subtitle_parts = c2
+                                .ok_or_else(|| format!("track {id}: could not get subtitle"))?
+                                .renderer
+                                .text
+                                .split(util::DOT_SEPARATOR)
+                                .into_iter();
+
+                            // Is this a related video?
+                            if item.item_height == ItemHeight::Compact {
+                                (subtitle_parts.next(), subtitle_parts.next(), None)
+                            }
+                            // Is it a podcast episode?
+                            else if subtitle_parts.len() <= 3 && c3.is_some() {
+                                (subtitle_parts.next_back(), None, None)
+                            } else {
+                                // Skip first part (track type)
+                                if subtitle_parts.len() > 3
+                                    || (is_video && subtitle_parts.len() == 2)
+                                {
+                                    subtitle_parts.next();
+                                }
+
+                                (
+                                    subtitle_parts.next(),
+                                    subtitle_parts.next(),
+                                    subtitle_parts.next(),
+                                )
+                            }
+                        }
+                    }
+                    // Playlist item
+                    FlexColumnDisplayStyle::Default => (
+                        c2.map(TextComponents::from),
+                        c3.map(TextComponents::from),
+                        item.fixed_columns
+                            .into_iter()
+                            .next()
+                            .map(TextComponents::from),
+                    ),
+                };
+
+                let duration = duration_p.and_then(|p| util::parse_video_length(p.first_str()));
+
+                let (album, view_count) = match (item.flex_column_display_style, is_video) {
+                    // The album field contains the view count for search videos
+                    (FlexColumnDisplayStyle::TwoLines, true) => (
+                        None,
+                        album_p.and_then(|p| {
+                            util::parse_large_numstr_or_warn(
+                                p.first_str(),
+                                self.lang,
+                                &mut self.warnings,
+                            )
+                        }),
+                    ),
+                    (_, false) => (
+                        album_p
+                            .and_then(|p| p.0.into_iter().find_map(|c| AlbumId::try_from(c).ok())),
+                        None,
+                    ),
+                    (FlexColumnDisplayStyle::Default, true) => (None, None),
+                };
+                let album = album.or_else(|| self.album.clone());
+
+                let (mut artists, by_va) = map_artists(artists_p);
+
+                // Extract artist id from dropdown menu
+                let artist_id = map_artist_id_fallback(item.menu, artists.first());
+
+                // Fall back to the artist given when constructing the mapper.
+                // This is used for extracting artist pages.
+                // On some albums, the artist name of the tracks is not given but different
+                // from the album artist. In this case dont copy the album artist.
+                if let Some((fb_artists, _)) = &self.artists {
+                    if artists.is_empty()
+                        && (self.artist_page
+                            || artist_id.is_none()
+                            || fb_artists.iter().any(|fb_id| {
+                                fb_id
+                                    .id
+                                    .as_deref()
+                                    .map(|aid| artist_id.as_deref() == Some(aid))
+                                    .unwrap_or_default()
+                            }))
+                    {
+                        artists = fb_artists.clone();
+                    }
+                }
+
+                let track_nr = item.index.and_then(|txt| util::parse_numeric(&txt).ok());
+
+                self.items.push(MusicItem::Track(TrackItem {
+                    id,
+                    name: title,
+                    duration,
+                    cover: item.thumbnail.into(),
+                    artists,
+                    artist_id,
+                    album,
+                    view_count,
+                    is_video,
+                    track_nr,
+                    by_va,
+                }));
+                Ok(Some(MusicItemType::Track))
+            }
+            // Artist / Album / Playlist
+            Some((page_type, id)) => {
+                let mut subtitle_parts = c2
+                    .ok_or_else(|| "could not get subtitle".to_owned())?
+                    .renderer
+                    .text
+                    .split(util::DOT_SEPARATOR)
+                    .into_iter();
+
+                let title = title.ok_or_else(|| format!("track {id}: could not get title"))?;
+
+                let subtitle_p1 = subtitle_parts.next();
+                let subtitle_p2 = subtitle_parts.next();
+                let subtitle_p3 = subtitle_parts.next();
+
+                match page_type {
+                    MusicPageType::Artist => {
+                        let subscriber_count = subtitle_p2.and_then(|p| {
+                            util::parse_large_numstr_or_warn(
+                                p.first_str(),
+                                self.lang,
+                                &mut self.warnings,
+                            )
+                        });
+
+                        self.items.push(MusicItem::Artist(ArtistItem {
+                            id,
+                            name: title,
+                            avatar: item.thumbnail.into(),
+                            subscriber_count,
+                        }));
+                        Ok(Some(MusicItemType::Artist))
+                    }
+                    MusicPageType::Album => {
+                        let album_type = subtitle_p1
+                            .map(|st| map_album_type(st.first_str(), self.lang))
+                            .unwrap_or_default();
+
+                        let (artists, by_va) = map_artists(subtitle_p2);
+
+                        let artist_id = map_artist_id_fallback(item.menu, artists.first());
+
+                        let year =
+                            subtitle_p3.and_then(|st| util::parse_numeric(st.first_str()).ok());
+
+                        self.items.push(MusicItem::Album(AlbumItem {
+                            id,
+                            name: title,
+                            cover: item.thumbnail.into(),
+                            artists,
+                            artist_id,
+                            album_type,
+                            year,
+                            by_va,
+                        }));
+                        Ok(Some(MusicItemType::Album))
+                    }
+                    MusicPageType::Playlist => {
+                        // Part 1 may be the "Playlist" label
+                        let (channel_p, tcount_p) = match subtitle_p3 {
+                            Some(_) => (subtitle_p2, subtitle_p3),
+                            None => (subtitle_p1, subtitle_p2),
+                        };
+
+                        let from_ytm = channel_p
+                            .as_ref()
+                            .and_then(|p| p.0.first())
+                            .map(util::is_ytm)
+                            .unwrap_or_default();
+                        let channel = channel_p.and_then(|p| {
+                            p.0.into_iter().find_map(|c| ChannelId::try_from(c).ok())
+                        });
+                        let track_count = tcount_p
+                            .filter(|_| from_ytm)
+                            .and_then(|p| util::parse_numeric(p.first_str()).ok());
+
+                        self.items.push(MusicItem::Playlist(MusicPlaylistItem {
+                            id,
+                            name: title,
+                            thumbnail: item.thumbnail.into(),
+                            channel,
+                            track_count,
+                            from_ytm,
+                        }));
+                        Ok(Some(MusicItemType::Playlist))
+                    }
+                    MusicPageType::None => {
+                        // There may be broken YT channels from the artist search. They can be skipped.
+                        Ok(None)
+                    }
+                    // Tracks were already handled above
+                    MusicPageType::Track { .. } => unreachable!(),
+                    MusicPageType::Unknown => {
+                        self.has_unknown = true;
+                        Ok(None)
+                    }
+                }
+            }
+            None => {
+                if item.music_item_renderer_display_policy == DisplayPolicy::GreyOut {
+                    Ok(None)
+                } else {
+                    Err("could not determine item type".to_owned())
+                }
+            }
+        }
+    }
+
+    /// Map a CoverMusicItem (album/playlist tile)
+    fn map_tile(&mut self, item: CoverMusicItem) -> Result<Option<MusicItemType>, String> {
+        let mut subtitle_parts = item.subtitle.split(util::DOT_SEPARATOR).into_iter();
+        let subtitle_p1 = subtitle_parts.next();
+        let subtitle_p2 = subtitle_parts.next();
+
+        match item.navigation_endpoint.music_page() {
+            Some((page_type, id)) => match page_type {
+                MusicPageType::Track { is_video } => {
+                    let (artists, by_va) = map_artists(subtitle_p1);
+
+                    self.items.push(MusicItem::Track(TrackItem {
+                        id,
+                        name: item.title,
+                        duration: None,
+                        cover: item.thumbnail_renderer.into(),
+                        artist_id: artists.first().and_then(|a| a.id.clone()),
+                        artists,
+                        album: None,
+                        view_count: subtitle_p2.and_then(|c| {
+                            util::parse_large_numstr_or_warn(
+                                c.first_str(),
+                                self.lang,
+                                &mut self.warnings,
+                            )
+                        }),
+                        is_video,
+                        track_nr: None,
+                        by_va,
+                    }));
+                    Ok(Some(MusicItemType::Track))
+                }
+                MusicPageType::Artist => {
+                    let subscriber_count = subtitle_p1.and_then(|p| {
+                        util::parse_large_numstr_or_warn(
+                            p.first_str(),
+                            self.lang,
+                            &mut self.warnings,
+                        )
+                    });
+
+                    self.items.push(MusicItem::Artist(ArtistItem {
+                        id,
+                        name: item.title,
+                        avatar: item.thumbnail_renderer.into(),
+                        subscriber_count,
+                    }));
+                    Ok(Some(MusicItemType::Artist))
+                }
+                MusicPageType::Album => {
+                    let mut year = None;
+                    let mut album_type = AlbumType::Single;
+
+                    let (artists, by_va) =
+                        match (subtitle_p1, subtitle_p2, &self.artists, self.artist_page) {
+                            // "2022" (Artist singles)
+                            (Some(year_txt), None, Some(artists), true) => {
+                                year = util::parse_numeric(year_txt.first_str()).ok();
+                                artists.clone()
+                            }
+                            // "Album", "2022" (Artist albums)
+                            (Some(atype_txt), Some(year_txt), Some(artists), true) => {
+                                year = util::parse_numeric(year_txt.first_str()).ok();
+                                album_type = map_album_type(atype_txt.first_str(), self.lang);
+                                artists.clone()
+                            }
+                            // Album on artist page with unknown year
+                            (None, None, Some(artists), true) => artists.clone(),
+                            // "Album", <"Oonagh"> (Album variants, new releases)
+                            (Some(atype_txt), Some(p2), _, false) => {
+                                album_type = map_album_type(atype_txt.first_str(), self.lang);
+                                map_artists(Some(p2))
+                            }
+                            // "Album" (Album variants, no artist)
+                            (Some(atype_txt), None, _, false) => {
+                                album_type = map_album_type(atype_txt.first_str(), self.lang);
+                                (Vec::new(), true)
+                            }
+                            _ => {
+                                return Err(format!("could not parse subtitle of album {id}"));
+                            }
+                        };
+
+                    self.items.push(MusicItem::Album(AlbumItem {
+                        id,
+                        name: item.title,
+                        cover: item.thumbnail_renderer.into(),
+                        artist_id: artists.first().and_then(|a| a.id.clone()),
+                        artists,
+                        album_type,
+                        year,
+                        by_va,
+                    }));
+                    Ok(Some(MusicItemType::Album))
+                }
+                MusicPageType::Playlist => {
+                    // When the playlist subtitle has only 1 part, it is a playlist from YT Music
+                    // (featured on the startpage or in genres)
+                    let from_ytm = subtitle_p2
+                        .as_ref()
+                        .and_then(|p| p.0.first())
+                        .map_or(true, util::is_ytm);
+                    let channel = subtitle_p2
+                        .and_then(|p| p.0.into_iter().find_map(|c| ChannelId::try_from(c).ok()));
+
+                    self.items.push(MusicItem::Playlist(MusicPlaylistItem {
+                        id,
+                        name: item.title,
+                        thumbnail: item.thumbnail_renderer.into(),
+                        channel,
+                        track_count: None,
+                        from_ytm,
+                    }));
+                    Ok(Some(MusicItemType::Playlist))
+                }
+                MusicPageType::None => Ok(None),
+                MusicPageType::Unknown => {
+                    self.has_unknown = true;
+                    Ok(None)
+                }
+            },
+            None => Err("could not determine item type".to_owned()),
+        }
+    }
+
+    /// Map a MusicCardShelf (used for the top search result)
     pub fn map_card(&mut self, card: MusicCardShelf) -> Option<MusicItemType> {
         /*
         "Artist" " • " "<subscriber count>"

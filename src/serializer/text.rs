@@ -297,7 +297,7 @@ impl<'de> DeserializeAs<'de, TextComponents> for AttributedText {
 }
 
 impl TryFrom<TextComponent> for crate::model::ChannelId {
-    type Error = util::MappingError;
+    type Error = ();
 
     fn try_from(value: TextComponent) -> Result<Self, Self::Error> {
         match value {
@@ -310,9 +310,9 @@ impl TryFrom<TextComponent> for crate::model::ChannelId {
                     id: browse_id,
                     name: text,
                 }),
-                _ => Err(util::MappingError("invalid channel link type".into())),
+                _ => Err(()),
             },
-            _ => Err(util::MappingError("invalid channel link".into())),
+            _ => Err(()),
         }
     }
 }
