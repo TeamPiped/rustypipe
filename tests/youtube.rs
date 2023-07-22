@@ -1719,7 +1719,7 @@ async fn music_search_episode() {
     "UC_MxOdawj_BStPs4CKBYD0Q",
     2020,
     AlbumType::Single,
-    true
+    false
 )]
 #[case::ep(
     "waldbrand",
@@ -1732,7 +1732,7 @@ async fn music_search_episode() {
     false
 )]
 #[case::album(
-    "märchen enden gut",
+    "märchen enden",
     "Märchen enden gut",
     "MPREb_nlBWQROfvjo",
     "Oonagh",

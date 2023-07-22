@@ -579,7 +579,7 @@ impl MusicListMapper {
                                     }
                                     // Is it a podcast episode?
                                     else if subtitle_parts.len() <= 3 && c3.is_some() {
-                                        (subtitle_parts.rev().next(), None, None)
+                                        (subtitle_parts.next_back(), None, None)
                                     } else {
                                         // Skip first part (track type)
                                         if subtitle_parts.len() > 3
