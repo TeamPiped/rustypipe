@@ -60,12 +60,12 @@ ress = "0.11.4"
 phf = "0.11.1"
 base64 = "0.21.0"
 urlencoding = "2.1.2"
-quick-xml = { version = "0.28.1", features = ["serialize"], optional = true }
+quick-xml = { version = "0.29.0", features = ["serialize"], optional = true }
 
 [dev-dependencies]
 env_logger = "0.10.0"
 test-log = "0.2.11"
-rstest = "0.17.0"
+rstest = "0.18.1"
 tokio-test = "0.4.2"
 insta = { version = "1.17.1", features = ["ron", "redactions"] }
 path_macro = "1.0.0"
