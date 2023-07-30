@@ -201,13 +201,6 @@ impl<'de> Deserialize<'de> for TextComponent {
         D: Deserializer<'de>,
     {
         let mut text = RichTextInternal::deserialize(deserializer)?;
-        if text.runs.len() != 1 {
-            return Err(serde::de::Error::invalid_length(
-                text.runs.len(),
-                &"1 run, use TextComponents for more",
-            ));
-        }
-
         Ok(text.runs.swap_remove(0).into())
     }
 }
