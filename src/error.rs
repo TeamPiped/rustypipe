@@ -6,7 +6,6 @@ use reqwest::StatusCode;
 
 /// Error type for the RustyPipe library
 #[derive(thiserror::Error, Debug)]
-#[non_exhaustive]
 pub enum Error {
     /// Error extracting content from YouTube
     #[error("extraction error: {0}")]
@@ -24,7 +23,6 @@ pub enum Error {
 
 /// Error extracting content from YouTube
 #[derive(thiserror::Error, Debug)]
-#[non_exhaustive]
 pub enum ExtractionError {
     /// Video cannot be extracted with RustyPipe
     ///
