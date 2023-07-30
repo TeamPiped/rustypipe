@@ -40,6 +40,8 @@ struct QPlayer<'a> {
     content_check_ok: bool,
     /// Probably refers to allowing sensitive content, too
     racy_check_ok: bool,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    params: Option<&'a str>,
 }
 
 #[derive(Debug, Serialize)]
@@ -113,6 +115,7 @@ impl RustyPipeQuery {
                 video_id,
                 content_check_ok: true,
                 racy_check_ok: true,
+                params: None,
             }
         } else {
             QPlayer {
@@ -122,6 +125,8 @@ impl RustyPipeQuery {
                 video_id,
                 content_check_ok: true,
                 racy_check_ok: true,
+                // Source: https://github.com/TeamNewPipe/NewPipeExtractor/pull/1084
+                params: Some("CgIQBg").filter(|_| client_type == ClientType::Android),
             }
         };
 

@@ -28,8 +28,7 @@ use rustypipe::param::{
 #[rstest]
 #[case::desktop(ClientType::Desktop)]
 #[case::tv_html5_embed(ClientType::TvHtml5Embed)]
-// The Android client became flaky
-// #[case::android(ClientType::Android)]
+#[case::android(ClientType::Android)]
 #[case::ios(ClientType::Ios)]
 #[test_log::test]
 fn get_player_from_client(#[case] client_type: ClientType, rp: RustyPipe) {
