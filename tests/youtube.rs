@@ -1278,10 +1278,10 @@ fn trending(rp: RustyPipe) {
     false,
 )]
 #[case::short(
-    "RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk",
-    "Easy Pop",
+    "RDCLAK5uy_nLNY4ReQKH2kx5U23cyGMHql9ciHD9RSM",
+    "Presenting BLACKPINK (블랙핑크)",
     false,
-    Some("Stress-free tunes from classic rockers and newer artists.\nThis playlist is no longer being updated.".to_owned()),
+    Some("The most played hits and essential tracks. #blackpink #best #kpop".to_owned()),
     None,
     true
 )]
@@ -2181,7 +2181,7 @@ fn music_genres(rp: RustyPipe, unlocalized: bool) {
     let chill = genres
         .iter()
         .find(|g| g.id == "ggMPOg1uX1JOQWZFeDByc2Jm")
-        .unwrap();
+        .expect("genre: Chill");
     if unlocalized {
         assert_eq!(chill.name, "Chill");
     }
@@ -2189,8 +2189,8 @@ fn music_genres(rp: RustyPipe, unlocalized: bool) {
 
     let pop = genres
         .iter()
-        .find(|g| g.id == "ggMPOg1uX1lMbVZmbzl6NlJ3")
-        .unwrap();
+        .find(|g| g.id == "ggMPOg1uX1lMbVZmbzl6NlJ3" || g.id == "ggMPOg1uX1BmNzc2V2p0YXJ5")
+        .expect("genre: Pop");
     assert_eq!(pop.name, "Pop");
     assert!(!pop.is_mood);
 
