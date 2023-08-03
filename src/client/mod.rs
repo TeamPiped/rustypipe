@@ -399,6 +399,7 @@ struct RequestResult<T> {
 }
 
 impl<T> CacheEntry<T> {
+    /// Get the content of the cache if it is still fresh
     fn get(&self) -> Option<&T> {
         match self {
             CacheEntry::Some { last_update, data } => {
@@ -408,6 +409,14 @@ impl<T> CacheEntry<T> {
                     Some(data)
                 }
             }
+            CacheEntry::None => None,
+        }
+    }
+
+    /// Get the content of the cache, even if it is expired
+    fn get_expired(&self) -> Option<&T> {
+        match self {
+            CacheEntry::Some { data, .. } => Some(data),
             CacheEntry::None => None,
         }
     }
@@ -901,7 +910,7 @@ impl RustyPipe {
         }
     }
 
-    /// Instantiate a new deobfuscator from either cached or extracted YouTube JavaScript code.
+    /// Get deobfuscation data (either from cache or extracted from YouTube's JavaScript code)
     async fn get_deobf_data(&self) -> Result<DeobfData, Error> {
         // Write lock here to prevent concurrent tasks from fetching the same data
         let mut deobf_data = self.inner.cache.deobf.write().await;
@@ -909,12 +918,29 @@ impl RustyPipe {
         match deobf_data.get() {
             Some(deobf_data) => Ok(deobf_data.clone()),
             None => {
-                log::debug!("getting deobfuscator");
-                let new_data = DeobfData::download(self.inner.http.clone()).await?;
-                *deobf_data = CacheEntry::from(new_data.clone());
-                drop(deobf_data);
-                self.store_cache().await;
-                Ok(new_data)
+                log::debug!("getting deobf data");
+
+                match DeobfData::extract(self.inner.http.clone(), self.inner.reporter.as_deref())
+                    .await
+                {
+                    Ok(new_data) => {
+                        // Write new data to the cache
+                        *deobf_data = CacheEntry::from(new_data.clone());
+                        drop(deobf_data);
+                        self.store_cache().await;
+                        Ok(new_data)
+                    }
+                    Err(e) => {
+                        // Try to fall back to expired cache data if available, otherwise return error
+                        match deobf_data.get_expired() {
+                            Some(d) => {
+                                log::warn!("could not get new deobf data ({e}), falling back to expired cache");
+                                Ok(d.clone())
+                            }
+                            None => Err(e),
+                        }
+                    }
+                }
             }
         }
     }
@@ -1370,12 +1396,16 @@ impl RustyPipeQuery {
                     http_request: crate::report::HTTPRequest {
                         url: request.url().as_str(),
                         method: request.method().as_str(),
-                        req_header: request
-                            .headers()
-                            .iter()
-                            .map(|(k, v)| (k.as_str(), v.to_str().unwrap_or_default().to_owned()))
-                            .collect(),
-                        req_body: serde_json::to_string(body).unwrap_or_default(),
+                        req_header: Some(
+                            request
+                                .headers()
+                                .iter()
+                                .map(|(k, v)| {
+                                    (k.as_str(), v.to_str().unwrap_or_default().to_owned())
+                                })
+                                .collect(),
+                        ),
+                        req_body: serde_json::to_string(body).ok(),
                         status: req_res.status.into(),
                         resp_body: req_res.body,
                     },

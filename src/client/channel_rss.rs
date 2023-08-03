@@ -1,5 +1,3 @@
-use std::collections::BTreeMap;
-
 use crate::{
     error::{Error, ExtractionError},
     model::ChannelRss,
@@ -46,9 +44,9 @@ impl RustyPipeQuery {
                         http_request: crate::report::HTTPRequest {
                             url: &url,
                             method: "GET",
-                            req_header: BTreeMap::new(),
-                            req_body: String::new(),
                             status: 200,
+                            req_header: None,
+                            req_body: None,
                             resp_body: xml,
                         },
                     };

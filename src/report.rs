@@ -47,6 +47,7 @@ pub struct Report<'a> {
     /// Error (if occurred)
     pub error: Option<String>,
     /// Detailed error/warning messages
+    #[serde(default, skip_serializing_if = "Vec::is_empty")]
     pub msgs: Vec<String>,
     /// Deobfuscation data (only for player requests)
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -77,9 +78,11 @@ pub struct HTTPRequest<'a> {
     /// HTTP method
     pub method: &'a str,
     /// HTTP request header
-    pub req_header: BTreeMap<&'a str, String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub req_header: Option<BTreeMap<&'a str, String>>,
     /// HTTP request body
-    pub req_body: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub req_body: Option<String>,
     /// HTTP response status code
     pub status: u16,
     /// HTTP response body

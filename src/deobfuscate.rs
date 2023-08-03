@@ -6,6 +6,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::{
     error::{internal::DeobfError, Error},
+    report::{Level, Report, Reporter, RustyPipeInfo},
     util,
 };
 
@@ -22,18 +23,47 @@ pub struct DeobfData {
 }
 
 impl DeobfData {
-    pub async fn download(http: Client) -> Result<Self, Error> {
+    /// Download and extract the latest deobfuscation data from YouTube
+    ///
+    /// Creates a report if the data could not be extracted
+    pub async fn extract(http: Client, reporter: Option<&dyn Reporter>) -> Result<Self, Error> {
         let js_url = get_player_js_url(&http).await?;
         let player_js = get_response(&http, &js_url).await?;
-
         log::debug!("downloaded player.js from {}", js_url);
 
-        let sig_fn = get_sig_fn(&player_js)?;
-        let nsig_fn = get_nsig_fn(&player_js)?;
-        let sts = get_sts(&player_js)?;
+        let res = Self::extract_fns(&js_url, &player_js);
+
+        if let Err(e) = &res {
+            if let Some(reporter) = reporter {
+                let report = Report {
+                    info: RustyPipeInfo::default(),
+                    level: Level::ERR,
+                    operation: "extract_deobf",
+                    error: Some(e.to_string()),
+                    msgs: vec![],
+                    deobf_data: None,
+                    http_request: crate::report::HTTPRequest {
+                        url: &js_url,
+                        method: "GET",
+                        req_header: None,
+                        req_body: None,
+                        status: 200,
+                        resp_body: player_js,
+                    },
+                };
+                reporter.report(&report);
+            }
+        }
+        res
+    }
+
+    fn extract_fns(js_url: &str, player_js: &str) -> Result<Self, Error> {
+        let sig_fn = get_sig_fn(player_js)?;
+        let nsig_fn = get_nsig_fn(player_js)?;
+        let sts = get_sts(player_js)?;
 
         Ok(Self {
-            js_url,
+            js_url: js_url.to_owned(),
             sig_fn,
             nsig_fn,
             sts,
@@ -42,6 +72,7 @@ impl DeobfData {
 }
 
 impl Deobfuscator {
+    /// Instantiate a new deobfuscator with the given data
     pub fn new(data: &DeobfData) -> Result<Self, DeobfError> {
         let ctx =
             quick_js::Context::new().or(Err(DeobfError::Other("could not create QuickJS rt")))?;
@@ -51,6 +82,7 @@ impl Deobfuscator {
         Ok(Self { ctx })
     }
 
+    /// Deobfuscate the `s` parameter from the `signature_cipher` field
     pub fn deobfuscate_sig(&self, sig: &str) -> Result<String, DeobfError> {
         let res = self.ctx.call_function(DEOBF_SIG_FUNC_NAME, vec![sig])?;
 
@@ -63,6 +95,7 @@ impl Deobfuscator {
         )
     }
 
+    /// Deobfuscate the `n` stream URL parameter to circumvent throttling
     pub fn deobfuscate_nsig(&self, nsig: &str) -> Result<String, DeobfError> {
         let res = self.ctx.call_function(DEOBF_NSIG_FUNC_NAME, vec![nsig])?;
 
@@ -403,7 +436,7 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
     #[test]
     fn t_update() {
         let client = Client::new();
-        let deobf_data = tokio_test::block_on(DeobfData::download(client)).unwrap();
+        let deobf_data = tokio_test::block_on(DeobfData::extract(client, None)).unwrap();
         let deobf = Deobfuscator::new(&deobf_data).unwrap();
 
         let deobf_sig = deobf.deobfuscate_sig("GOqGOqGOq0QJ8wRAIgaryQHfplJ9xJSKFywyaSMHuuwZYsoMTAvRvfm51qIGECIA5061zWeyfMPX9hEl_U6f9J0tr7GTJMKyPf5XNrJb5fb5i").unwrap();
