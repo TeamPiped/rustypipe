@@ -32,7 +32,7 @@ VideoDetails(
   view_count: 205,
   like_count: None,
   publish_date: "[date]",
-  publish_date_txt: "Jan 2, 2019",
+  publish_date_txt: Some("Jan 2, 2019"),
   is_live: false,
   is_ccommons: false,
   chapters: [],

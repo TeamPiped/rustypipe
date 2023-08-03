@@ -94,7 +94,7 @@ VideoDetails(
   view_count: 681,
   like_count: Some(872230),
   publish_date: "[date]",
-  publish_date_txt: "Started streaming on Sep 23, 2021",
+  publish_date_txt: Some("Started streaming on Sep 23, 2021"),
   is_live: true,
   is_ccommons: false,
   chapters: [],

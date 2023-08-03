@@ -371,7 +371,7 @@ VideoDetails(
   view_count: 971966,
   like_count: Some(48244),
   publish_date: "[date]",
-  publish_date_txt: "Sep 15, 2022",
+  publish_date_txt: Some("Sep 15, 2022"),
   is_live: false,
   is_ccommons: false,
   chapters: [

@@ -175,7 +175,9 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                         // accessibility_data contains no digits if the like count is hidden,
                         // so we ignore parse errors here for now
                         like_btn.and_then(|btn| util::parse_numeric(&btn.accessibility_data).ok()),
-                        timeago::parse_textual_date_or_warn(lang, &date_text, &mut warnings),
+                        date_text.as_deref().and_then(|txt| {
+                            timeago::parse_textual_date_or_warn(lang, txt, &mut warnings)
+                        }),
                         date_text,
                         view_count
                             .map(|vc| vc.video_view_count_renderer.is_live)

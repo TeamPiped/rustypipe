@@ -567,7 +567,7 @@ pub struct VideoDetails {
     #[serde(with = "time::serde::rfc3339::option")]
     pub publish_date: Option<OffsetDateTime>,
     /// Textual video publishing date (e.g. `Aug 2, 2013`, depends on language)
-    pub publish_date_txt: String,
+    pub publish_date_txt: Option<String>,
     /// Is the video a livestream?
     pub is_live: bool,
     /// Is the video published under the Creative Commons BY 3.0 license?

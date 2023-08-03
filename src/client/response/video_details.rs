@@ -77,8 +77,8 @@ pub(crate) enum VideoResultsItem {
         /// Like/Dislike button
         video_actions: VideoActions,
         /// Absolute textual date (e.g. `Dec 29, 2019`)
-        #[serde_as(as = "Text")]
-        date_text: String,
+        #[serde_as(as = "Option<Text>")]
+        date_text: Option<String>,
     },
     #[serde(rename_all = "camelCase")]
     VideoSecondaryInfoRenderer {

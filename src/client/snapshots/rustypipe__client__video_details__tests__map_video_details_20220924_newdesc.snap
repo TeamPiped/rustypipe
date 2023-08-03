@@ -139,7 +139,7 @@ VideoDetails(
   view_count: 233243423,
   like_count: Some(4015532),
   publish_date: "[date]",
-  publish_date_txt: "Nov 17, 2020",
+  publish_date_txt: Some("Nov 17, 2020"),
   is_live: false,
   is_ccommons: false,
   chapters: [],
