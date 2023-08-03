@@ -19,6 +19,9 @@ use serde::Serialize;
 struct Cli {
     #[clap(subcommand)]
     command: Commands,
+    /// Always generate a report (used for debugging)
+    #[clap(long)]
+    report: bool,
 }
 
 #[derive(Subcommand)]
@@ -392,10 +395,11 @@ async fn main() {
     storage_dir.push("rustypipe");
     _ = std::fs::create_dir(&storage_dir);
 
-    let rp = RustyPipe::builder()
-        .storage_dir(storage_dir)
-        .build()
-        .unwrap();
+    let mut rp = RustyPipe::builder().storage_dir(storage_dir);
+    if cli.report {
+        rp = rp.report();
+    }
+    let rp = rp.build().unwrap();
 
     match cli.command {
         Commands::Download {
