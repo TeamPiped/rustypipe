@@ -41,14 +41,11 @@ pub const ARTIST_DISCOGRAPHY_PREFIX: &str = "MPAD";
 const CONTENT_PLAYBACK_NONCE_ALPHABET: &[u8; 64] =
     b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
 
-/// Return the given capture group that matches first in a list of regexes
-pub fn get_cg_from_regexes<'a, I>(mut regexes: I, text: &str, cg: usize) -> Option<String>
-where
-    I: Iterator<Item = &'a Regex>,
-{
-    regexes
-        .find_map(|pattern| pattern.captures(text))
-        .map(|c| c.get(cg).unwrap().as_str().to_owned())
+/// Return the given capture group that matches the regex
+pub fn get_cg_from_regex(regex: &Regex, text: &str, cg: usize) -> Option<String> {
+    regex
+        .captures(text)
+        .and_then(|c| c.get(cg).map(|c| c.as_str().to_owned()))
 }
 
 /// Return the given capture group that matches first in a list of fancy regexes
@@ -58,7 +55,7 @@ where
 {
     regexes
         .find_map(|pattern| pattern.captures(text).ok().flatten())
-        .map(|c| c.get(cg).unwrap().as_str().to_owned())
+        .and_then(|c| c.get(cg).map(|c| c.as_str().to_owned()))
 }
 
 /// Generate a random string with given length and byte charset.

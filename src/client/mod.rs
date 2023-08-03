@@ -209,8 +209,10 @@ const ANDROID_API_KEY: &str = "AIzaSyA8eiZmM1FaDVjRy-df2KTyQ_vz_yYM39w";
 const IOS_API_KEY: &str = "AIzaSyB-63vPrdThhKuerbB2N_l7Kwwcxj6yUAc";
 const IOS_DEVICE_MODEL: &str = "iPhone14,5";
 
-static CLIENT_VERSION_REGEXES: Lazy<[Regex; 1]> =
-    Lazy::new(|| [Regex::new(r#"INNERTUBE_CONTEXT_CLIENT_VERSION":"([\w\d\._-]+?)""#).unwrap()]);
+static CLIENT_VERSION_REGEX: Lazy<Regex> =
+    Lazy::new(|| Regex::new(r#""INNERTUBE_CONTEXT_CLIENT_VERSION":"([\w\d\._-]+?)""#).unwrap());
+static VISITOR_DATA_REGEX: Lazy<Regex> =
+    Lazy::new(|| Regex::new(r#""visitorData":"([\w\d_\-%]+?)""#).unwrap());
 
 /// The RustyPipe client used to access YouTube's API
 ///
@@ -814,11 +816,11 @@ impl RustyPipe {
                 )
                 .await?;
 
-            util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &swjs, 1).ok_or(
-                Error::Extraction(ExtractionError::InvalidData(Cow::Borrowed(
+            util::get_cg_from_regex(&CLIENT_VERSION_REGEX, &swjs, 1).ok_or(Error::Extraction(
+                ExtractionError::InvalidData(Cow::Borrowed(
                     "Could not find client version in sw.js",
-                ))),
-            )
+                )),
+            ))
         });
 
         let from_html = async {
@@ -829,11 +831,11 @@ impl RustyPipe {
 
             let html = self.http_request_txt(&builder.build().unwrap()).await?;
 
-            util::get_cg_from_regexes(CLIENT_VERSION_REGEXES.iter(), &html, 1).ok_or(
-                Error::Extraction(ExtractionError::InvalidData(Cow::Borrowed(
+            util::get_cg_from_regex(&CLIENT_VERSION_REGEX, &html, 1).ok_or(Error::Extraction(
+                ExtractionError::InvalidData(Cow::Borrowed(
                     "Could not find client version on html page",
-                ))),
-            )
+                )),
+            ))
         };
 
         if let Some(from_swjs) = from_swjs {
@@ -965,11 +967,15 @@ impl RustyPipe {
     ///
     /// Since the cookie is shared between YT and YTM and the YTM page loads faster,
     /// we request that.
+    ///
+    /// Sometimes YouTube does not set the `__Secure-YEC` cookie. In this case, the
+    /// visitor data is extracted from the html page.
     async fn get_visitor_data(&self) -> Result<String, Error> {
         log::debug!("getting YT visitor data");
         let resp = self.inner.http.get(YOUTUBE_MUSIC_HOME_URL).send().await?;
 
-        resp.headers()
+        let vdata = resp
+            .headers()
             .get_all(header::SET_COOKIE)
             .iter()
             .find_map(|c| {
@@ -979,10 +985,27 @@ impl RustyPipe {
                     }
                 }
                 None
-            })
-            .ok_or(Error::Extraction(ExtractionError::InvalidData(
-                Cow::Borrowed("could not get YTM cookies"),
-            )))
+            });
+
+        match vdata {
+            Some(vdata) => Ok(vdata),
+            None => {
+                if resp.status().is_success() {
+                    // Extract visitor data from html
+                    let html = resp.text().await?;
+
+                    util::get_cg_from_regex(&VISITOR_DATA_REGEX, &html, 1).ok_or(Error::Extraction(
+                        ExtractionError::InvalidData(Cow::Borrowed(
+                            "Could not find visitor data on html page",
+                        )),
+                    ))
+                } else {
+                    Err(Error::Extraction(ExtractionError::InvalidData(
+                        format!("Could not get visitor data, status: {}", resp.status()).into(),
+                    )))
+                }
+            }
+        }
     }
 }
 
