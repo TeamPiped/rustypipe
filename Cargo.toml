@@ -31,7 +31,7 @@ quick-js-dtp = { version = "0.4.1", default-features = false, features = [
     "patch-dateparser",
 ] }
 once_cell = "1.12.0"
-regex = "1.6.0"
+regex = ">=1.6.0, <1.9.0"
 fancy-regex = "0.11.0"
 thiserror = "1.0.36"
 url = "2.2.2"
