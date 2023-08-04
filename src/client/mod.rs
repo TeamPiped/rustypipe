@@ -1563,7 +1563,9 @@ mod tests {
     fn t_get_visitor_data() {
         let rp = RustyPipe::new();
         let visitor_data = tokio_test::block_on(rp.get_visitor_data()).unwrap();
-        assert!(visitor_data.ends_with("%3D"));
-        assert_eq!(visitor_data.len(), 32)
+        assert!(
+            visitor_data.ends_with("%3D") && visitor_data.len() == 32,
+            "got: {visitor_data}"
+        );
     }
 }
