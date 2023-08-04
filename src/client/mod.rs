@@ -458,7 +458,12 @@ impl RustyPipeBuilder {
 
     /// Return a new, configured RustyPipe instance.
     pub fn build(self) -> Result<RustyPipe, Error> {
-        let mut client_builder = ClientBuilder::new()
+        self.build_with_client(ClientBuilder::new())
+    }
+
+    /// Return a new, configured RustyPipe instance using a Reqwest client builder.
+    pub fn build_with_client(self, mut client_builder: ClientBuilder) -> Result<RustyPipe, Error> {
+        client_builder = client_builder
             .user_agent(self.user_agent.unwrap_or_else(|| DEFAULT_UA.to_owned()))
             .gzip(true)
             .brotli(true)
