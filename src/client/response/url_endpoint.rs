@@ -15,7 +15,10 @@ pub(crate) struct ResolvedUrl {
 #[serde(untagged)]
 pub(crate) enum NavigationEndpoint {
     #[serde(rename_all = "camelCase")]
-    Watch { watch_endpoint: WatchEndpoint },
+    Watch {
+        #[serde(alias = "reelWatchEndpoint")]
+        watch_endpoint: WatchEndpoint,
+    },
     #[serde(rename_all = "camelCase")]
     Browse {
         browse_endpoint: BrowseEndpoint,
