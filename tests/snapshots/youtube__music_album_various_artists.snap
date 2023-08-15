@@ -126,11 +126,11 @@ MusicAlbum(
       cover: [],
       artists: [
         ArtistId(
-          id: None,
+          id: Some("UChm_d4qO8txdwS4YadlvpSw"),
           name: "Brave Girls",
         ),
       ],
-      artist_id: None,
+      artist_id: Some("UChm_d4qO8txdwS4YadlvpSw"),
       album: Some(AlbumId(
         id: "MPREb_8QkDeEIawvX",
         name: "＜Queendom2＞ FINAL",

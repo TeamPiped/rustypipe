@@ -117,10 +117,7 @@ impl RustyPipeQuery {
         tab: ChannelVideoTab,
         order: ChannelOrder,
     ) -> Result<Paginator<VideoItem>, Error> {
-        let visitor_data = match tab {
-            ChannelVideoTab::Shorts => Some(self.get_visitor_data().await?),
-            _ => None,
-        };
+        let visitor_data = Some(self.get_visitor_data().await?);
 
         self.continuation(
             order_ctoken(channel_id.as_ref(), tab, order),

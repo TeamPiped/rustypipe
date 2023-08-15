@@ -1,5 +1,6 @@
 ---
 source: tests/youtube.rs
+assertion_line: 1396
 expression: album
 ---
 MusicAlbum(
@@ -126,11 +127,11 @@ MusicAlbum(
       cover: [],
       artists: [
         ArtistId(
-          id: None,
+          id: Some("UChm_d4qO8txdwS4YadlvpSw"),
           name: "[name]",
         ),
       ],
-      artist_id: None,
+      artist_id: Some("UChm_d4qO8txdwS4YadlvpSw"),
       album: Some(AlbumId(
         id: "MPREb_8QkDeEIawvX",
         name: "[name]",
