@@ -152,7 +152,7 @@ fn get_sig_fn(player_js: &str) -> Result<String, DeobfError> {
         + ";";
 
     static HELPER_OBJECT_NAME_REGEX: Lazy<Regex> =
-        Lazy::new(|| Regex::new(r#";([A-Za-z0-9_\$]{2})\...\("#).unwrap());
+        Lazy::new(|| Regex::new(r#";([A-Za-z0-9_\$]{2,3})\...\("#).unwrap());
     let helper_object_name = HELPER_OBJECT_NAME_REGEX
         .captures(&deobfuscate_function)
         .ok_or(DeobfError::Extraction("helper object name"))?

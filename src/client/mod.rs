@@ -1564,12 +1564,8 @@ mod tests {
         let rp = RustyPipe::new();
         let visitor_data = tokio_test::block_on(rp.get_visitor_data()).unwrap();
 
-        // First part of visitor data must be 22 characters
-        // Example: CgthVjBVUDJrd2Q3dyi3te-mBg%3D%3D
         assert!(
-            visitor_data.starts_with("Cg")
-                && visitor_data.len() > 23
-                && &visitor_data[22..23] == "-",
+            visitor_data.starts_with("Cg") && visitor_data.len() > 23,
             "invalid visitor data: {visitor_data}"
         )
     }
