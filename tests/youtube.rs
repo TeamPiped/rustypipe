@@ -1042,6 +1042,39 @@ fn channel_order_popular(
 }
 
 #[rstest]
+#[case::videos("UCcdwLMPsaU2ezNSJU1nFoBQ", ChannelVideoTab::Videos, "P2gDffkC0rY")]
+#[case::live("UCvqRdlKsE5Q8mf8YXbdIJLw", ChannelVideoTab::Live, "aW43RH1kQ70")]
+fn channel_order_oldest(
+    #[case] id: &str,
+    #[case] tab: ChannelVideoTab,
+    #[case] oldest: &str,
+    rp: RustyPipe,
+) {
+    let videos = tokio_test::block_on(rp.query().channel_videos_tab_order(
+        id,
+        tab,
+        ChannelOrder::Oldest,
+    ))
+    .unwrap();
+
+    // Check oldest video
+    assert_eq!(videos.items.first().expect("no videos").id, oldest);
+
+    // Upload dates should be in ascending order
+    let mut latest_items = videos.items.iter().peekable();
+    while let (Some(v), Some(next_v)) = (latest_items.next(), latest_items.peek()) {
+        if !v.is_upcoming && !v.is_live && !next_v.is_upcoming && !next_v.is_live {
+            assert_gte(
+                next_v.publish_date.unwrap(),
+                v.publish_date.unwrap(),
+                "oldest video date",
+            );
+        }
+    }
+    assert_next(videos, rp.query(), 15, 1);
+}
+
+#[rstest]
 #[case::not_exist("UCOpNcN46UbXVtpKMrmU4Abx")]
 #[case::gaming("UCOpNcN46UbXVtpKMrmU4Abg")]
 #[case::movies("UCuJcl0Ju-gPDoksRjK1ya-w")]

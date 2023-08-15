@@ -29,6 +29,8 @@ pub enum ChannelOrder {
     Latest = 1,
     /// Order videos with the highest number of views first
     Popular = 2,
+    /// Order videos with the earliest upload date first
+    Oldest = 4,
 }
 
 impl ChannelVideoTab {
