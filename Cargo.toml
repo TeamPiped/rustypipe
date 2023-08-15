@@ -2,7 +2,7 @@
 name = "rustypipe"
 version = "0.1.0"
 edition = "2021"
-authors = ["ThetaDev <t.testboy@gmail.com>"]
+authors = ["ThetaDev <thetadev@magenta.de>"]
 license = "GPL-3.0"
 description = "Client for the public YouTube / YouTube Music API (Innertube), inspired by NewPipe"
 keywords = ["youtube", "video", "music"]
