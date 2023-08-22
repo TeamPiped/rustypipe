@@ -22,6 +22,9 @@ struct Cli {
     /// Always generate a report (used for debugging)
     #[clap(long)]
     report: bool,
+    /// YouTube visitor data cookie
+    #[clap(long)]
+    vdata: Option<String>,
 }
 
 #[derive(Subcommand)]
@@ -391,13 +394,14 @@ async fn main() {
 
     let cli = Cli::parse();
 
-    let mut storage_dir = dirs::data_dir().expect("no data dir");
-    storage_dir.push("rustypipe");
-    std::fs::create_dir_all(&storage_dir).expect("could not create data dir");
-
-    let mut rp = RustyPipe::builder().storage_dir(storage_dir);
+    let mut rp = RustyPipe::builder().visitor_data_opt(cli.vdata);
     if cli.report {
         rp = rp.report();
+    } else {
+        let mut storage_dir = dirs::data_dir().expect("no data dir");
+        storage_dir.push("rustypipe");
+        std::fs::create_dir_all(&storage_dir).expect("could not create data dir");
+        rp = rp.storage_dir(storage_dir);
     }
     let rp = rp.build().unwrap();
 
