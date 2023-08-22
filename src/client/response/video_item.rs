@@ -14,7 +14,7 @@ use crate::{
     },
     param::Language,
     serializer::{
-        text::{AccessibilityText, Text, TextComponent},
+        text::{AccessibilityText, AttributedText, Text, TextComponent},
         MapResult,
     },
     util::{self, timeago, TryRemove},
@@ -369,6 +369,9 @@ pub(crate) struct ChannelFullMetadata {
     #[serde(default)]
     #[serde_as(as = "VecSkipError<_>")]
     pub primary_links: Vec<PrimaryLink>,
+    #[serde(default)]
+    // #[serde_as(as = "VecSkipError<_>")]
+    pub links: Vec<ExternalLink>,
 }
 
 #[serde_as]
@@ -378,6 +381,22 @@ pub(crate) struct PrimaryLink {
     #[serde_as(as = "Text")]
     pub title: String,
     pub navigation_endpoint: NavigationEndpoint,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ExternalLink {
+    pub channel_external_link_view_model: ExternalLinkInner,
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ExternalLinkInner {
+    #[serde_as(as = "AttributedText")]
+    pub title: TextComponent,
+    #[serde_as(as = "AttributedText")]
+    pub link: TextComponent,
 }
 
 trait IsLive {
@@ -726,6 +745,18 @@ impl YouTubeListMapper<YouTubeItem> {
                 self.corrected_query = Some(corrected_query);
             }
             YouTubeListItem::ChannelAboutFullMetadataRenderer(meta) => {
+                let mut links = meta
+                    .primary_links
+                    .into_iter()
+                    .filter_map(|l| l.navigation_endpoint.url().map(|url| (l.title, url)))
+                    .collect::<Vec<_>>();
+                for l in meta.links {
+                    let l = l.channel_external_link_view_model;
+                    if let TextComponent::Web { url, .. } = l.link {
+                        links.push((l.title.into(), util::sanitize_yt_url(&url)));
+                    }
+                }
+
                 self.channel_info = Some(ChannelInfo {
                     create_date: timeago::parse_textual_date_or_warn(
                         self.lang,
@@ -736,11 +767,7 @@ impl YouTubeListMapper<YouTubeItem> {
                     view_count: meta
                         .view_count_text
                         .and_then(|txt| util::parse_numeric_or_warn(&txt, &mut self.warnings)),
-                    links: meta
-                        .primary_links
-                        .into_iter()
-                        .filter_map(|l| l.navigation_endpoint.url().map(|url| (l.title, url)))
-                        .collect(),
+                    links,
                 });
             }
             YouTubeListItem::RichItemRenderer { content } => {

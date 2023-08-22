@@ -224,7 +224,7 @@ pub fn retry_delay(
 /// Also strips google analytics tracking parameters
 /// (`utm_source`, `utm_medium`, `utm_campaign`, `utm_content`) because google analytics is bad.
 pub fn sanitize_yt_url(url: &str) -> String {
-    fn sanitize_yt_url_inner(url: &str) -> Option<String> {
+    fn try_sanitize_yt_url(url: &str) -> Option<String> {
         let mut parsed_url = Url::parse(url).ok()?;
 
         // Convert redirect url
@@ -260,7 +260,7 @@ pub fn sanitize_yt_url(url: &str) -> String {
         Some(parsed_url.to_string())
     }
 
-    sanitize_yt_url_inner(url).unwrap_or_else(|| url.to_string())
+    try_sanitize_yt_url(url).unwrap_or_else(|| url.to_string())
 }
 
 pub fn div_ceil(a: u32, b: u32) -> u32 {

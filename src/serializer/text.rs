@@ -200,8 +200,12 @@ impl<'de> Deserialize<'de> for TextComponent {
     where
         D: Deserializer<'de>,
     {
-        let mut text = RichTextInternal::deserialize(deserializer)?;
-        Ok(text.runs.swap_remove(0).into())
+        let text = RichTextInternal::deserialize(deserializer)?;
+        text.runs
+            .into_iter()
+            .next()
+            .map(TextComponent::from)
+            .ok_or(serde::de::Error::invalid_length(0, &"at least 1"))
     }
 }
 
@@ -286,6 +290,20 @@ impl<'de> DeserializeAs<'de, TextComponents> for AttributedText {
         }
 
         Ok(TextComponents(components))
+    }
+}
+
+impl<'de> DeserializeAs<'de, TextComponent> for AttributedText {
+    fn deserialize_as<D>(deserializer: D) -> Result<TextComponent, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        let components: TextComponents = AttributedText::deserialize_as(deserializer)?;
+        components
+            .0
+            .into_iter()
+            .next()
+            .ok_or(serde::de::Error::invalid_length(0, &"at least 1"))
     }
 }
 
@@ -396,6 +414,17 @@ impl From<TextComponents> for crate::model::richtext::RichText {
 impl TextComponent {
     pub fn as_str(&self) -> &str {
         match self {
+            TextComponent::Video { text, .. }
+            | TextComponent::Browse { text, .. }
+            | TextComponent::Web { text, .. }
+            | TextComponent::Text { text } => text,
+        }
+    }
+}
+
+impl From<TextComponent> for String {
+    fn from(value: TextComponent) -> Self {
+        match value {
             TextComponent::Video { text, .. }
             | TextComponent::Browse { text, .. }
             | TextComponent::Web { text, .. }
