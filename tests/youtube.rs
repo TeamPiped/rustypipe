@@ -1629,7 +1629,6 @@ fn music_search(#[case] typo: bool, rp: RustyPipe, unlocalized: bool) {
     assert_eq!(track_album.id, "MPREb_RXHxrUFfrvQ");
     assert_eq!(track_album.name, "Lieblingsmensch");
 
-    assert_eq!(track.view_count, None);
     assert!(!track.is_video, "got mv");
     assert_eq!(track.track_nr, None);
 }
@@ -1726,22 +1725,41 @@ fn music_search_videos(rp: RustyPipe, unlocalized: bool) {
     assert_next(res.items, rp.query(), 15, 2);
 }
 
-#[tokio::test]
-async fn music_search_episode() {
-    let rp = RustyPipe::builder().strict().build().unwrap();
-    let res = rp
-        .query()
-        .music_search("Blond - Da muss man dabei gewesen sein: Das Hörspiel - Fall #1")
-        .await
-        .unwrap();
+#[rstest]
+#[case::main(false)]
+#[case::videos(true)]
+fn music_search_episode(rp: RustyPipe, #[case] videos: bool) {
+    let query = "Blond - Da muss man dabei gewesen sein: Das Hörspiel - Fall #1";
+    let tracks = if videos {
+        tokio_test::block_on(rp.query().music_search_videos(query))
+            .unwrap()
+            .items
+            .items
+    } else {
+        tokio_test::block_on(rp.query().music_search(query))
+            .unwrap()
+            .tracks
+    };
 
-    let track = &res.tracks.iter().find(|a| a.id == "Zq_-LDy7AgE").unwrap();
+    let track = &tracks.iter().find(|a| a.id == "Zq_-LDy7AgE").unwrap();
 
+    assert_eq!(track.artists.len(), 1);
+    let track_artist = &track.artists[0];
     assert_eq!(
         track.name,
         "Blond - Da muss man dabei gewesen sein: Das Hörspiel - Fall #1"
     );
+    assert_eq!(track_artist.name, "BLOND_OFFICIAL");
+    assert_eq!(
+        track_artist.id.as_ref().unwrap(),
+        "UC8SmM4bue6bKHT4p-_YFZHQ"
+    );
+    assert_eq!(
+        track.artist_id.as_ref().unwrap(),
+        "UC8SmM4bue6bKHT4p-_YFZHQ"
+    );
     assert!(!track.cover.is_empty(), "got no cover");
+    assert!(track.is_video);
 }
 
 #[rstest]
