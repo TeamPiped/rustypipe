@@ -94,8 +94,7 @@ pub(crate) enum TextComponent {
         text: String,
         video_id: String,
         start_time: u32,
-        /// True if the item is a video, false if it is a YTM track
-        is_video: bool,
+        vtype: MusicVideoType,
     },
     Browse {
         text: String,
@@ -167,11 +166,10 @@ fn map_text_component(text: String, nav: Option<NavigationEndpoint>) -> TextComp
             text,
             video_id: watch_endpoint.video_id,
             start_time: watch_endpoint.start_time_seconds,
-            is_video: watch_endpoint
+            vtype: watch_endpoint
                 .watch_endpoint_music_supported_configs
                 .watch_endpoint_music_config
-                .music_video_type
-                == MusicVideoType::Video,
+                .music_video_type,
         },
         Some(NavigationEndpoint::Browse {
             browse_endpoint,
@@ -612,7 +610,7 @@ mod tests {
                 text: "DEEP",
                 video_id: "wZIoIgz5mbs",
                 start_time: 0,
-                is_video: true,
+                vtype: Video,
             },
         }
         "###);

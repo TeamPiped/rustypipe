@@ -7,6 +7,9 @@ unittest:
 testyt:
     cargo test --features=rss --test youtube
 
+testyt-localized:
+    YT_LANG=th cargo test --features=rss --test youtube
+
 testintl:
     #!/usr/bin/env bash
     LANGUAGES=(

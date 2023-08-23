@@ -339,7 +339,7 @@ impl MapResponse<MusicSearchSuggestion> for response::MusicSearchSuggestion {
         _deobf: Option<&crate::deobfuscate::DeobfData>,
         _vdata: Option<&str>,
     ) -> Result<MapResult<MusicSearchSuggestion>, ExtractionError> {
-        let mut mapper = MusicListMapper::new(lang);
+        let mut mapper = MusicListMapper::new_search_suggest(lang);
         let mut terms = Vec::new();
 
         for section in self.contents {

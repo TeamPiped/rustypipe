@@ -170,6 +170,7 @@ mod tests {
 
     use once_cell::sync::Lazy;
 
+    use crate::client::response::url_endpoint::MusicVideoType;
     use crate::serializer::text;
 
     static TEXT_SOURCE: Lazy<text::TextComponents> = Lazy::new(|| {
@@ -177,7 +178,7 @@ mod tests {
             text::TextComponent::Text { text: "🎧Listen and download aespa's debut single \"Black Mamba\": ".to_owned() },
             text::TextComponent::Web { text: "https://smarturl.it/aespa_BlackMamba".to_owned(), url: "https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbFY1QmpQamJPSms0Z1FnVTlQUS00ZFhBZnBJZ3xBQ3Jtc0tuRGJBanludGoyRnphb2dZWVd3cUNnS3dEd0FnNHFOZEY1NHBJaHFmLXpaWUJwX3ZucDZxVnpGeHNGX1FpMzFkZW9jQkI2Mi1wNGJ1UVFNN3h1MnN3R3JLMzdxU01nZ01POHBGcmxHU2puSUk1WHRzQQ&q=https%3A%2F%2Fsmarturl.it%2Faespa_BlackMamba&v=ZeerrnuLi5E".to_owned() },
             text::TextComponent::Text { text: "\n🐍The Debut Stage ".to_owned() },
-            text::TextComponent::Video { text: "https://youtu.be/Ky5RT5oGg0w".to_owned(), video_id: "Ky5RT5oGg0w".to_owned(), start_time: 0, is_video: true },
+            text::TextComponent::Video { text: "https://youtu.be/Ky5RT5oGg0w".to_owned(), video_id: "Ky5RT5oGg0w".to_owned(), start_time: 0, vtype: MusicVideoType::Video },
             text::TextComponent::Text { text: "\n\n🎟️ aespa Showcase SYNK in LA! Tickets now on sale: ".to_owned() },
             text::TextComponent::Web { text: "https://www.ticketmaster.com/event/0A...".to_owned(), url: "https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbFpUMEZiaXJWWkszaVZXaEM0emxWU1JQV3NoQXxBQ3Jtc0tuU2g4VWNPNE5UY3hoSWYtamFzX0h4bUVQLVJiRy1ubDZrTnh3MUpGdDNSaUo0ZlMyT3lUM28ycUVBdHJLMndGcDhla3BkOFpxSVFfOS1QdVJPVHBUTEV1LXpOV0J2QXdhV05lV210cEJtZUJMeHdaTQ&q=https%3A%2F%2Fwww.ticketmaster.com%2Fevent%2F0A005CCD9E871F6E&v=ZeerrnuLi5E".to_owned() },
             text::TextComponent::Text { text: "\n\nSubscribe to aespa Official YouTube Channel!\n".to_owned() },

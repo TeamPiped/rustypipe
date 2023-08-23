@@ -24,6 +24,7 @@ pub enum ABTest {
     TrendsPageHeaderRenderer = 5,
     DiscographyPage = 6,
     ShortDateFormat = 7,
+    TrackViewcount = 8,
     PlaylistsForShorts = 9,
 }
 
@@ -96,6 +97,7 @@ pub async fn run_test(
                     ABTest::DiscographyPage => discography_page(&query).await,
                     ABTest::ShortDateFormat => short_date_format(&query).await,
                     ABTest::PlaylistsForShorts => playlists_for_shorts(&query).await,
+                    ABTest::TrackViewcount => track_viewcount(&query).await,
                 }
                 .unwrap();
                 pb.inc(1);
@@ -244,6 +246,20 @@ pub async fn short_date_format(rp: &RustyPipeQuery) -> Result<bool> {
             .map(|d| SHORT_DATE.is_match(d))
             .unwrap_or_default()
     }))
+}
+
+pub async fn track_viewcount(rp: &RustyPipeQuery) -> Result<bool> {
+    let res = rp.music_search("lieblingsmensch namika").await?;
+
+    let track = &res
+        .tracks
+        .iter()
+        .find(|a| a.id == "6485PhOtHzY")
+        .unwrap_or_else(|| {
+            panic!("could not find track, got {:#?}", &res.tracks);
+        });
+
+    Ok(track.view_count.is_some())
 }
 
 pub async fn playlists_for_shorts(rp: &RustyPipeQuery) -> Result<bool> {

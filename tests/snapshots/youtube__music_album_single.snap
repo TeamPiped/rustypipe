@@ -43,7 +43,7 @@ MusicAlbum(
         id: "MPREb_bHfHGoy7vuv",
         name: "Der Himmel reißt auf",
       )),
-      view_count: None,
+      view_count: "[view_count]",
       is_video: false,
       track_nr: Some(1),
       by_va: false,

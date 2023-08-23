@@ -20,10 +20,10 @@ struct Cli {
     #[clap(subcommand)]
     command: Commands,
     /// Always generate a report (used for debugging)
-    #[clap(long)]
+    #[clap(long, global = true)]
     report: bool,
     /// YouTube visitor data cookie
-    #[clap(long)]
+    #[clap(long, global = true)]
     vdata: Option<String>,
 }
 

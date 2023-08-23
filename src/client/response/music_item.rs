@@ -16,7 +16,9 @@ use crate::{
 };
 
 use super::{
-    url_endpoint::{BrowseEndpointWrap, MusicPageType, NavigationEndpoint, PageType},
+    url_endpoint::{
+        BrowseEndpointWrap, MusicPageType, MusicVideoType, NavigationEndpoint, PageType,
+    },
     ContentsRenderer, MusicContinuationData, Thumbnails, ThumbnailsWrap,
 };
 
@@ -429,6 +431,7 @@ pub(crate) struct MusicListMapper {
     artists: Option<(Vec<ArtistId>, bool)>,
     album: Option<AlbumId>,
     artist_page: bool,
+    search_suggestion: bool,
     items: Vec<MusicItem>,
     warnings: Vec<String>,
     /// True if unknown items were mapped
@@ -450,6 +453,20 @@ impl MusicListMapper {
             artists: None,
             album: None,
             artist_page: false,
+            search_suggestion: false,
+            items: Vec::new(),
+            warnings: Vec::new(),
+            has_unknown: false,
+        }
+    }
+
+    pub fn new_search_suggest(lang: Language) -> Self {
+        Self {
+            lang,
+            artists: None,
+            album: None,
+            artist_page: false,
+            search_suggestion: true,
             items: Vec::new(),
             warnings: Vec::new(),
             has_unknown: false,
@@ -463,6 +480,7 @@ impl MusicListMapper {
             artists: Some((vec![artist], false)),
             album: None,
             artist_page: true,
+            search_suggestion: false,
             items: Vec::new(),
             warnings: Vec::new(),
             has_unknown: false,
@@ -476,6 +494,7 @@ impl MusicListMapper {
             artists: Some((artists, by_va)),
             album: Some(album),
             artist_page: false,
+            search_suggestion: false,
             items: Vec::new(),
             warnings: Vec::new(),
             has_unknown: false,
@@ -515,6 +534,7 @@ impl MusicListMapper {
         let c1 = columns.next();
         let c2 = columns.next();
         let c3 = columns.next();
+        let c4 = columns.next();
 
         let title = c1.as_ref().map(|col| col.renderer.text.to_string());
 
@@ -532,10 +552,8 @@ impl MusicListMapper {
                 c1.and_then(|c1| {
                     c1.renderer.text.0.into_iter().next().and_then(|t| match t {
                         crate::serializer::text::TextComponent::Video {
-                            video_id,
-                            is_video,
-                            ..
-                        } => Some((MusicPageType::Track { is_video }, video_id)),
+                            video_id, vtype, ..
+                        } => Some((MusicPageType::Track { vtype }, video_id)),
                         crate::serializer::text::TextComponent::Browse {
                             page_type,
                             browse_id,
@@ -549,8 +567,12 @@ impl MusicListMapper {
                 item.playlist_item_data.map(|d| {
                     (
                         MusicPageType::Track {
-                            is_video: self.album.is_none()
-                                && !first_tn.map(|tn| tn.height == tn.width).unwrap_or_default(),
+                            vtype: MusicVideoType::from_is_video(
+                                self.album.is_none()
+                                    && !first_tn
+                                        .map(|tn| tn.height == tn.width)
+                                        .unwrap_or_default(),
+                            ),
                         },
                         d.video_id,
                     )
@@ -561,7 +583,9 @@ impl MusicListMapper {
                     util::video_id_from_thumbnail_url(&tn.url).map(|id| {
                         (
                             MusicPageType::Track {
-                                is_video: self.album.is_none() && tn.width != tn.height,
+                                vtype: MusicVideoType::from_is_video(
+                                    self.album.is_none() && tn.width != tn.height,
+                                ),
                             },
                             id,
                         )
@@ -571,19 +595,28 @@ impl MusicListMapper {
 
         match pt_id {
             // Track
-            Some((MusicPageType::Track { is_video }, id)) => {
+            Some((MusicPageType::Track { vtype }, id)) => {
                 let title = title.ok_or_else(|| format!("track {id}: could not get title"))?;
 
-                let (artists_p, album_p, duration_p) = match item.flex_column_display_style {
+                #[derive(Default)]
+                struct Parsed {
+                    artists: Option<TextComponents>,
+                    album: Option<TextComponents>,
+                    duration: Option<TextComponents>,
+                    view_count: Option<TextComponents>,
+                }
+
+                let p = match item.flex_column_display_style {
                     // Search result
                     FlexColumnDisplayStyle::TwoLines => {
-                        // Is this a related track?
-                        if !is_video && item.item_height == ItemHeight::Compact {
-                            (
-                                c2.map(TextComponents::from),
-                                c3.map(TextComponents::from),
-                                None,
-                            )
+                        // Is this a related track (from the "similar titles" tab in the player)?
+                        if vtype != MusicVideoType::Video && item.item_height == ItemHeight::Compact
+                        {
+                            Parsed {
+                                artists: c2.map(TextComponents::from),
+                                album: c3.map(TextComponents::from),
+                                ..Default::default()
+                            }
                         } else {
                             let mut subtitle_parts = c2
                                 .ok_or_else(|| format!("track {id}: could not get subtitle"))?
@@ -594,62 +627,98 @@ impl MusicListMapper {
 
                             // Is this a related video?
                             if item.item_height == ItemHeight::Compact {
-                                (subtitle_parts.next(), subtitle_parts.next(), None)
+                                Parsed {
+                                    artists: subtitle_parts.next(),
+                                    view_count: subtitle_parts.next(),
+                                    ..Default::default()
+                                }
+                            }
+                            // Is this an item from search suggestion?
+                            else if self.search_suggestion {
+                                // Skip first part (track type)
+                                subtitle_parts.next();
+                                Parsed {
+                                    artists: subtitle_parts.next(),
+                                    album: c3.map(TextComponents::from),
+                                    view_count: subtitle_parts.next(),
+                                    ..Default::default()
+                                }
                             }
                             // Is it a podcast episode?
-                            else if subtitle_parts.len() <= 3 && c3.is_some() {
-                                (subtitle_parts.next_back(), None, None)
+                            else if vtype == MusicVideoType::Episode {
+                                Parsed {
+                                    artists: subtitle_parts.next_back(),
+                                    ..Default::default()
+                                }
                             } else {
                                 // Skip first part (track type)
                                 if subtitle_parts.len() > 3
-                                    || (is_video && subtitle_parts.len() == 2)
+                                    || (vtype == MusicVideoType::Video && subtitle_parts.len() == 2)
                                 {
                                     subtitle_parts.next();
                                 }
 
-                                (
-                                    subtitle_parts.next(),
-                                    subtitle_parts.next(),
-                                    subtitle_parts.next(),
-                                )
+                                match vtype {
+                                    MusicVideoType::Video => Parsed {
+                                        artists: subtitle_parts.next(),
+                                        view_count: subtitle_parts.next(),
+                                        duration: subtitle_parts.next(),
+                                        ..Default::default()
+                                    },
+                                    _ => Parsed {
+                                        artists: subtitle_parts.next(),
+                                        album: subtitle_parts.next(),
+                                        duration: subtitle_parts.next(),
+                                        view_count: c3.map(TextComponents::from),
+                                    },
+                                }
                             }
                         }
                     }
                     // Playlist item
-                    FlexColumnDisplayStyle::Default => (
-                        c2.map(TextComponents::from),
-                        c3.map(TextComponents::from),
-                        item.fixed_columns
+                    FlexColumnDisplayStyle::Default => {
+                        let artists = c2.map(TextComponents::from);
+                        let duration = item
+                            .fixed_columns
                             .into_iter()
                             .next()
-                            .map(TextComponents::from),
-                    ),
+                            .map(TextComponents::from);
+                        if self.album.is_some() {
+                            Parsed {
+                                artists,
+                                view_count: c3.map(TextComponents::from),
+                                duration,
+                                ..Default::default()
+                            }
+                        } else if self.artist_page && c4.is_some() {
+                            Parsed {
+                                artists,
+                                view_count: c3.map(TextComponents::from),
+                                album: c4.map(TextComponents::from),
+                                duration,
+                            }
+                        } else {
+                            Parsed {
+                                artists,
+                                album: c3.map(TextComponents::from),
+                                duration,
+                                ..Default::default()
+                            }
+                        }
+                    }
                 };
 
-                let duration = duration_p.and_then(|p| util::parse_video_length(p.first_str()));
-
-                let (album, view_count) = match (item.flex_column_display_style, is_video) {
-                    // The album field contains the view count for search videos
-                    (FlexColumnDisplayStyle::TwoLines, true) => (
-                        None,
-                        album_p.and_then(|p| {
-                            util::parse_large_numstr_or_warn(
-                                p.first_str(),
-                                self.lang,
-                                &mut self.warnings,
-                            )
-                        }),
-                    ),
-                    (_, false) => (
-                        album_p
-                            .and_then(|p| p.0.into_iter().find_map(|c| AlbumId::try_from(c).ok())),
-                        None,
-                    ),
-                    (FlexColumnDisplayStyle::Default, true) => (None, None),
-                };
-                let album = album.or_else(|| self.album.clone());
-
-                let (mut artists, by_va) = map_artists(artists_p);
+                let duration = p
+                    .duration
+                    .and_then(|p| util::parse_video_length(p.first_str()));
+                let album = p
+                    .album
+                    .and_then(|p| p.0.into_iter().find_map(|c| AlbumId::try_from(c).ok()))
+                    .or_else(|| self.album.clone());
+                let view_count = p.view_count.and_then(|p| {
+                    util::parse_large_numstr_or_warn(p.first_str(), self.lang, &mut self.warnings)
+                });
+                let (mut artists, by_va) = map_artists(p.artists);
 
                 // Extract artist id from dropdown menu
                 let artist_id = map_artist_id_fallback(item.menu, artists.first());
@@ -685,7 +754,7 @@ impl MusicListMapper {
                     artist_id,
                     album,
                     view_count,
-                    is_video,
+                    is_video: vtype.is_video(),
                     track_nr,
                     by_va,
                 }));
@@ -807,7 +876,7 @@ impl MusicListMapper {
 
         match item.navigation_endpoint.music_page() {
             Some((page_type, id)) => match page_type {
-                MusicPageType::Track { is_video } => {
+                MusicPageType::Track { vtype } => {
                     let (artists, by_va) = map_artists(subtitle_p1);
 
                     self.items.push(MusicItem::Track(TrackItem {
@@ -825,7 +894,7 @@ impl MusicListMapper {
                                 &mut self.warnings,
                             )
                         }),
-                        is_video,
+                        is_video: vtype.is_video(),
                         track_nr: None,
                         by_va,
                     }));
@@ -976,43 +1045,61 @@ impl MusicListMapper {
                     }));
                     Some(MusicItemType::Album)
                 }
-                MusicPageType::Track { is_video } => {
-                    let (artists, by_va) = map_artists(subtitle_p2);
-                    let duration =
-                        subtitle_p4.and_then(|p| util::parse_video_length(p.first_str()));
-                    let (album, view_count) = if is_video {
-                        (
-                            None,
-                            subtitle_p3.and_then(|p| {
-                                util::parse_large_numstr_or_warn(
-                                    p.first_str(),
-                                    self.lang,
-                                    &mut self.warnings,
-                                )
-                            }),
-                        )
-                    } else {
-                        (
-                            subtitle_p3.and_then(|p| {
-                                p.0.into_iter().find_map(|c| AlbumId::try_from(c).ok())
-                            }),
-                            None,
-                        )
-                    };
+                MusicPageType::Track { vtype } => {
+                    if vtype == MusicVideoType::Episode {
+                        let (artists, by_va) = map_artists(subtitle_p3);
 
-                    self.items.push(MusicItem::Track(TrackItem {
-                        id,
-                        name: card.title,
-                        duration,
-                        cover: card.thumbnail.into(),
-                        artist_id: artists.first().and_then(|a| a.id.clone()),
-                        artists,
-                        album,
-                        view_count,
-                        is_video,
-                        track_nr: None,
-                        by_va,
-                    }));
+                        self.items.push(MusicItem::Track(TrackItem {
+                            id,
+                            name: card.title,
+                            duration: None,
+                            cover: card.thumbnail.into(),
+                            artist_id: artists.first().and_then(|a| a.id.clone()),
+                            artists,
+                            album: None,
+                            view_count: None,
+                            is_video: vtype.is_video(),
+                            track_nr: None,
+                            by_va,
+                        }));
+                    } else {
+                        let (artists, by_va) = map_artists(subtitle_p2);
+                        let duration =
+                            subtitle_p4.and_then(|p| util::parse_video_length(p.first_str()));
+                        let (album, view_count) = if vtype.is_video() {
+                            (
+                                None,
+                                subtitle_p3.and_then(|p| {
+                                    util::parse_large_numstr_or_warn(
+                                        p.first_str(),
+                                        self.lang,
+                                        &mut self.warnings,
+                                    )
+                                }),
+                            )
+                        } else {
+                            (
+                                subtitle_p3.and_then(|p| {
+                                    p.0.into_iter().find_map(|c| AlbumId::try_from(c).ok())
+                                }),
+                                None,
+                            )
+                        };
+
+                        self.items.push(MusicItem::Track(TrackItem {
+                            id,
+                            name: card.title,
+                            duration,
+                            cover: card.thumbnail.into(),
+                            artist_id: artists.first().and_then(|a| a.id.clone()),
+                            artists,
+                            album,
+                            view_count,
+                            is_video: vtype.is_video(),
+                            track_nr: None,
+                            by_va,
+                        }));
+                    }
                     Some(MusicItemType::Track)
                 }
                 MusicPageType::Playlist => {

@@ -151,6 +151,22 @@ pub(crate) enum MusicVideoType {
     Video,
     #[serde(rename = "MUSIC_VIDEO_TYPE_ATV")]
     Track,
+    #[serde(rename = "MUSIC_VIDEO_TYPE_PODCAST_EPISODE")]
+    Episode,
+}
+
+impl MusicVideoType {
+    pub fn is_video(self) -> bool {
+        self != Self::Track
+    }
+
+    pub fn from_is_video(is_video: bool) -> Self {
+        if is_video {
+            Self::Video
+        } else {
+            Self::Track
+        }
+    }
 }
 
 #[derive(Default, Debug, Clone, Copy, Deserialize, PartialEq, Eq)]
@@ -189,7 +205,7 @@ pub(crate) enum MusicPageType {
     Artist,
     Album,
     Playlist,
-    Track { is_video: bool },
+    Track { vtype: MusicVideoType },
     Unknown,
     None,
 }
@@ -221,11 +237,10 @@ impl NavigationEndpoint {
                 } else {
                     Some((
                         MusicPageType::Track {
-                            is_video: watch_endpoint
+                            vtype: watch_endpoint
                                 .watch_endpoint_music_supported_configs
                                 .watch_endpoint_music_config
-                                .music_video_type
-                                == MusicVideoType::Video,
+                                .music_video_type,
                         },
                         watch_endpoint.video_id,
                     ))

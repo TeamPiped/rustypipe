@@ -67,7 +67,10 @@ MusicSearchSuggestion(
         ),
       ],
       artist_id: Some("UC56hLMPuEsERdmTBbR_JGHA"),
-      album: None,
+      album: Some(AlbumId(
+        id: "MPREb_kz546sNB1mH",
+        name: "Was Spaß macht...",
+      )),
       view_count: None,
       is_video: false,
       track_nr: None,

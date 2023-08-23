@@ -1,6 +1,5 @@
 ---
 source: tests/youtube.rs
-assertion_line: 1391
 expression: album
 ---
 MusicAlbum(
@@ -31,7 +30,7 @@ MusicAlbum(
         id: "MPREb_bqWA6mAZFWS",
         name: "Pedha Rasi Peddamma Katha",
       )),
-      view_count: None,
+      view_count: "[view_count]",
       is_video: false,
       track_nr: Some(1),
       by_va: false,
@@ -52,7 +51,7 @@ MusicAlbum(
         id: "MPREb_bqWA6mAZFWS",
         name: "Pedha Rasi Peddamma Katha",
       )),
-      view_count: None,
+      view_count: "[view_count]",
       is_video: false,
       track_nr: Some(2),
       by_va: false,
@@ -73,7 +72,7 @@ MusicAlbum(
         id: "MPREb_bqWA6mAZFWS",
         name: "Pedha Rasi Peddamma Katha",
       )),
-      view_count: None,
+      view_count: "[view_count]",
       is_video: false,
       track_nr: Some(3),
       by_va: false,
@@ -94,7 +93,7 @@ MusicAlbum(
         id: "MPREb_bqWA6mAZFWS",
         name: "Pedha Rasi Peddamma Katha",
       )),
-      view_count: None,
+      view_count: "[view_count]",
       is_video: false,
       track_nr: Some(4),
       by_va: false,

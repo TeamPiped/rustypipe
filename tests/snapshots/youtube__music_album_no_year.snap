@@ -51,7 +51,7 @@ MusicAlbum(
         id: "MPREb_F3Af9UZZVxX",
         name: "La Ultima Vez (Remix)",
       )),
-      view_count: None,
+      view_count: "[view_count]",
       is_video: false,
       track_nr: Some(1),
       by_va: false,

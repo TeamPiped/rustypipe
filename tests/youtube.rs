@@ -1429,7 +1429,7 @@ fn music_album(#[case] name: &str, #[case] id: &str, rp: RustyPipe, unlocalized:
 
     if unlocalized {
         insta::assert_ron_snapshot!(format!("music_album_{name}"), album,
-            {".cover" => "[cover]"}
+            {".cover" => "[cover]", ".tracks[].view_count" => "[view_count]"}
         );
     } else {
         insta::assert_ron_snapshot!(format!("music_album_{name}_intl"), album,
@@ -1439,6 +1439,7 @@ fn music_album(#[case] name: &str, #[case] id: &str, rp: RustyPipe, unlocalized:
                 ".description" => "[description]",
                 ".artists[].name" => "[name]",
                 ".tracks[].name" => "[name]",
+                ".tracks[].view_count" => "[view_count]",
                 ".tracks[].album.name" => "[name]",
                 ".tracks[].artists[].name" => "[name]",
                 ".variants[].artists[].name" => "[name]",
@@ -1730,16 +1731,11 @@ async fn music_search_episode() {
     let rp = RustyPipe::builder().strict().build().unwrap();
     let res = rp
         .query()
-        .music_search_videos("Blond - Da muss man dabei gewesen sein: Das Hörspiel - Fall #1")
+        .music_search("Blond - Da muss man dabei gewesen sein: Das Hörspiel - Fall #1")
         .await
         .unwrap();
 
-    let track = &res
-        .items
-        .items
-        .iter()
-        .find(|a| a.id == "Zq_-LDy7AgE")
-        .unwrap();
+    let track = &res.tracks.iter().find(|a| a.id == "Zq_-LDy7AgE").unwrap();
 
     assert_eq!(
         track.name,

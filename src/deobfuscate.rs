@@ -142,14 +142,15 @@ fn get_sig_fn(player_js: &str) -> Result<String, DeobfError> {
     let function_pattern = Regex::new(&function_pattern_str)
         .map_err(|_| DeobfError::Other("could not parse function pattern regex"))?;
 
-    let deobfuscate_function = "var ".to_owned()
-        + function_pattern
+    let deobfuscate_function = format!(
+        "var {};",
+        function_pattern
             .captures(player_js)
             .ok_or(DeobfError::Extraction("deobf function"))?
             .get(1)
             .unwrap()
             .as_str()
-        + ";";
+    );
 
     static HELPER_OBJECT_NAME_REGEX: Lazy<Regex> =
         Lazy::new(|| Regex::new(r#";([A-Za-z0-9_\$]{2,3})\...\("#).unwrap());
@@ -203,7 +204,7 @@ fn get_nsig_fn_name(player_js: &str) -> Result<String, DeobfError> {
         .as_str()
         .parse::<usize>()
         .or(Err(DeobfError::Other("could not parse array_num")))?;
-    let array_pattern_str = format!(r#"var {}\s*=\s*\[(.+?)][;,]"#, regex::escape(function_name));
+    let array_pattern_str = format!(r#"var {}\s*=\s*\[(.+?)]"#, regex::escape(function_name));
     let array_pattern = Regex::new(&array_pattern_str).or(Err(DeobfError::Other(
         "could not parse helper pattern regex",
     )))?;

@@ -293,7 +293,7 @@ The data model for the video shelves did not change.
 
 **NEW**
 
-![A/B test 4 old screenshot](./_img/ab_4_new.png)
+![A/B test 4 new screenshot](./_img/ab_4_new.png)
 
 ## [5] Page header renderer on the Trending page
 
@@ -371,19 +371,31 @@ visitor data cookie to be set, as it was the case with the old system.
 
 **OLD**
 
-![A/B test 4 old screenshot](./_img/ab_6_old.png)
+![A/B test 6 old screenshot](./_img/ab_6_old.png)
 
 **NEW**
 
-![A/B test 4 old screenshot](./_img/ab_6_new.png)
+![A/B test 6 screenshot](./_img/ab_6_new.png)
 
 ## [7] Short timeago format
 
 - **Encountered on:** 28.05.2023
-- **Impact:** 🟡 Medium
+- **Impact:** 🟢 Low
 
 YouTube changed their date format from the long format (_21 hours ago_, _3 days ago_) to
 a short format (_21h ago_, _3d ago_).
+
+## [8] Track playback count in search results and artist views
+
+- **Encountered on:** 29.06.2023
+- **Impact:** 🟡 Medium
+
+YouTube added the track playback count to search results and top artist tracks.
+In exchange, they removed the "Song" type identifier from search results.
+
+![A/B test 8 old screenshot](./_img/ab_8_old.png)
+
+![A/B test 8 screenshot](./_img/ab_8.png)
 
 ## [9] Playlists for Shorts
 
