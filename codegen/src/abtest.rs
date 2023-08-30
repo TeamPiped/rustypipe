@@ -231,9 +231,20 @@ pub async fn trends_page_header_renderer(rp: &RustyPipeQuery) -> Result<bool> {
 }
 
 pub async fn discography_page(rp: &RustyPipeQuery) -> Result<bool> {
-    let artist = rp.music_artist("UC7cl4MmM6ZZ2TcFyMk_b4pg", false).await?;
-
-    Ok(artist.albums.len() <= 10)
+    let id = "UC7cl4MmM6ZZ2TcFyMk_b4pg";
+    let res = rp
+        .raw(
+            ClientType::DesktopMusic,
+            "browse",
+            &QBrowse {
+                context: rp.get_context(ClientType::DesktopMusic, true, None).await,
+                browse_id: id,
+                params: None,
+            },
+        )
+        .await
+        .unwrap();
+    Ok(res.contains(&format!("\"MPAD{id}\"")))
 }
 
 pub async fn short_date_format(rp: &RustyPipeQuery) -> Result<bool> {
