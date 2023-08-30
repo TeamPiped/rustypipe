@@ -809,7 +809,7 @@ mod tests {
         let test_json = r#"{"ln": {}}"#;
 
         let res = serde_json::from_str::<SLinks>(test_json).unwrap();
-        assert!(res.ln.0.is_empty())
+        assert!(res.ln.0.is_empty());
     }
 
     #[test]

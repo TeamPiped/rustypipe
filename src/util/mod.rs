@@ -174,7 +174,7 @@ where
 /// and return the duration in seconds.
 pub fn parse_video_length(text: &str) -> Option<u32> {
     static VIDEO_LENGTH_REGEX: Lazy<Regex> =
-        Lazy::new(|| Regex::new(r#"(?:(\d+)[:.])?(\d{1,2})[:.](\d{2})"#).unwrap());
+        Lazy::new(|| Regex::new(r"(?:(\d+)[:.])?(\d{1,2})[:.](\d{2})").unwrap());
     VIDEO_LENGTH_REGEX.captures(text).map(|cap| {
         let hrs = cap
             .get(1)
@@ -550,7 +550,7 @@ pub(crate) mod tests {
     #[case("bla 2:02 h3llo w0rld", Some(122))]
     #[case("18:22", Some(1102))]
     #[case("1:48:18", Some(6498))]
-    #[case("102:12:39", Some(367959))]
+    #[case("102:12:39", Some(367_959))]
     #[case("42", None)]
     fn t_parse_video_length(#[case] text: &str, #[case] expect: Option<u32>) {
         let n = parse_video_length(text);
@@ -625,11 +625,11 @@ pub(crate) mod tests {
         let number_samples: BTreeMap<Language, BTreeMap<String, u64>> =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
 
-        number_samples.iter().for_each(|(lang, entry)| {
-            entry.iter().for_each(|(txt, expect)| {
+        for (lang, entry) in &number_samples {
+            for (txt, expect) in entry {
                 testcase_parse_large_numstr(txt, *lang, *expect);
-            });
-        });
+            }
+        }
     }
 
     fn testcase_parse_large_numstr(string: &str, lang: Language, expect: u64) {
@@ -658,7 +658,7 @@ pub(crate) mod tests {
         let res = SplitTokens::new(teststr, true).collect::<Vec<_>>();
         assert_eq!(res.len(), 10);
         let res_str = res.into_iter().collect::<String>();
-        assert_eq!(res_str, teststr)
+        assert_eq!(res_str, teststr);
     }
 
     #[test]
@@ -667,7 +667,7 @@ pub(crate) mod tests {
         let res = SplitTokens::new(teststr, false).collect::<Vec<_>>();
         assert_eq!(res.len(), 3);
         let res_str = res.join(" ");
-        assert_eq!(res_str, teststr)
+        assert_eq!(res_str, teststr);
     }
 
     #[rstest]

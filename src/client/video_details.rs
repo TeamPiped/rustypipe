@@ -594,7 +594,7 @@ mod tests {
         assert!(matches!(
             err,
             crate::error::ExtractionError::NotFound { .. }
-        ))
+        ));
     }
 
     #[rstest]

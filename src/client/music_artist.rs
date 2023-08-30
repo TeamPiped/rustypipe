@@ -301,7 +301,10 @@ impl MapResponse<Vec<AlbumItem>> for response::MusicArtistAlbums {
         // dbg!(&self);
 
         let Some(header) = self.header else {
-            return Err(ExtractionError::NotFound { id: id.into(), msg: "no header".into() });
+            return Err(ExtractionError::NotFound {
+                id: id.into(),
+                msg: "no header".into(),
+            });
         };
 
         let grids = self
@@ -427,7 +430,7 @@ mod tests {
 
         match e {
             ExtractionError::Redirect(id) => {
-                assert_eq!(id, "UCOR4_bSVIXPsGa4BbCSt60Q")
+                assert_eq!(id, "UCOR4_bSVIXPsGa4BbCSt60Q");
             }
             _ => panic!("error: {e}"),
         }

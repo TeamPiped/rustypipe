@@ -309,7 +309,7 @@ async fn get_locales() -> (BTreeMap<String, String>, BTreeMap<String, String>) {
         .post("https://www.youtube.com/youtubei/v1/account/account_menu?key=AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8&prettyPrint=false")
         .header(header::CONTENT_TYPE, "application/json")
         .body(
-            r##"{"context":{"client":{"clientName":"WEB","clientVersion":"2.20220914.06.00","platform":"DESKTOP","originalUrl":"https://www.youtube.com/","hl":"en","gl":"US"},"request":{"internalExperimentFlags":[],"useSsl":true},"user":{"lockedSafetyMode":false}}}"##
+            r#"{"context":{"client":{"clientName":"WEB","clientVersion":"2.20220914.06.00","platform":"DESKTOP","originalUrl":"https://www.youtube.com/","hl":"en","gl":"US"},"request":{"internalExperimentFlags":[],"useSsl":true},"user":{"lockedSafetyMode":false}}}"#
         )
         .send().await
         .unwrap()

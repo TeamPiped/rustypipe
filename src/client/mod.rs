@@ -1567,6 +1567,6 @@ mod tests {
         assert!(
             visitor_data.starts_with("Cg") && visitor_data.len() > 23,
             "invalid visitor data: {visitor_data}"
-        )
+        );
     }
 }

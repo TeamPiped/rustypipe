@@ -597,7 +597,7 @@ mod tests {
                     "Language: {lang}, txt: `{s}`"
                 );
             });
-        })
+        });
     }
 
     #[test]
@@ -786,7 +786,7 @@ mod tests {
                     "Language: {lang}, txt: `{s}`"
                 );
             });
-        })
+        });
     }
 
     #[test]
@@ -808,7 +808,7 @@ mod tests {
         let mut n_cases = 0;
 
         timeago_table.entries.iter().for_each(|(lang, entries)| {
-            entries.iter().for_each(|(t, entry)| {
+            for (t, entry) in entries {
                 entry.cases.iter().for_each(|(txt, n)| {
                     let timeago = parse_timeago(*lang, txt);
                     assert_eq!(
@@ -818,11 +818,11 @@ mod tests {
                     );
 
                     n_cases += 1;
-                })
-            });
+                });
+            }
         });
 
-        assert_eq!(n_cases, 1065)
+        assert_eq!(n_cases, 1065);
     }
 
     #[rstest]
@@ -837,7 +837,7 @@ mod tests {
     )]
     #[case(
         Language::Bn,
-        "যোগ দিয়েছেন 24 সেপ, 2013",
+        "যোগ দিয়েছেন 24 সেপ, 2013",
         Some(ParsedDate::Absolute(date!(2013-9-24)))
     )]
     fn t_parse_date(
@@ -941,7 +941,7 @@ mod tests {
                 Some(ParsedDate::Absolute(date!(2021 - 12 - 24))),
                 "lang: {lang}"
             );
-        })
+        });
     }
 
     #[test]
@@ -951,15 +951,15 @@ mod tests {
         let date_samples: BTreeMap<Language, BTreeMap<String, u32>> =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
 
-        date_samples.iter().for_each(|(lang, samples)| {
+        for (lang, samples) in &date_samples {
             samples.iter().for_each(|(txt, duration)| {
                 assert_eq!(
                     parse_video_duration(*lang, txt),
                     Some(*duration),
                     "lang: {lang}; txt: `{txt}`"
                 );
-            })
-        });
+            });
+        }
     }
 
     #[rstest]
@@ -984,13 +984,5 @@ mod tests {
         let date = parse_textual_date_to_dt(Language::En, "1 year ago").unwrap();
         let now = OffsetDateTime::now_utc();
         assert_eq!(date.year(), now.year() - 1);
-    }
-
-    #[test]
-    fn tx() {
-        let s = "Abcdef";
-        let lc: (usize, char) = s.char_indices().last().unwrap();
-        let t = &s[(lc.0 + lc.1.len_utf8())..];
-        dbg!(&t);
     }
 }

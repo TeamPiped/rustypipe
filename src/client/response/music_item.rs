@@ -1346,11 +1346,11 @@ mod tests {
         let atype_samples: BTreeMap<Language, BTreeMap<AlbumType, String>> =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
 
-        atype_samples.iter().for_each(|(lang, entry)| {
-            entry.iter().for_each(|(album_type, txt)| {
+        for (lang, entry) in &atype_samples {
+            for (album_type, txt) in entry {
                 let res = map_album_type(txt, *lang);
                 assert_eq!(res, *album_type, "lang: {lang}, txt: {txt}");
-            });
-        });
+            }
+        }
     }
 }

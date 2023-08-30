@@ -250,10 +250,10 @@ aespa 에스파 'Black Mamba' MV ℗ SM Entertainment"#
     fn to_markdown() {
         let richtext = RichText::from(TEXT_SOURCE.clone());
         let markdown = richtext.to_markdown_yt_host("https://piped.kavin.rocks");
-        println!("{}", markdown);
+        println!("{markdown}");
         assert_eq!(
             markdown,
             r#"🎧Listen and download aespa's debut single "Black Mamba"\: [https\://smarturl.it/aespa\_BlackMamba](https://smarturl.it/aespa_BlackMamba)<br>🐍The Debut Stage [https\://youtu.be/Ky5RT5oGg0w](https://piped.kavin.rocks/watch?v=Ky5RT5oGg0w)<br><br>🎟️ aespa Showcase SYNK in LA! Tickets now on sale\: [https\://www.ticketmaster.com/event/0A...](https://www.ticketmaster.com/event/0A005CCD9E871F6E)<br><br>Subscribe to aespa Official YouTube Channel!<br>[https\://www.youtube.com/aespa?sub\_con...](https://www.youtube.com/aespa?sub_confirmation=1)<br><br>aespa official<br>[https\://www.youtube.com/c/aespa](https://www.youtube.com/c/aespa)<br>[https\://www.instagram.com/aespa\_official](https://www.instagram.com/aespa_official)<br>[https\://www.tiktok.com/@aespa\_official](https://www.tiktok.com/@aespa_official)<br>[https\://twitter.com/aespa\_Official](https://twitter.com/aespa_Official)<br>[https\://www.facebook.com/aespa.official](https://www.facebook.com/aespa.official)<br>[https\://weibo.com/aespa](https://weibo.com/aespa)<br><br>\#aespa \#æspa \#BlackMamba \#블랙맘바 \#에스파<br>aespa 에스파 'Black Mamba' MV ℗ SM Entertainment"#
-        )
+        );
     }
 }

@@ -186,7 +186,7 @@ pub fn parse_largenum_en(string: &str) -> Option<u64> {
 /// and return the duration in seconds.
 pub fn parse_video_length(text: &str) -> Option<u32> {
     static VIDEO_LENGTH_REGEX: Lazy<Regex> =
-        Lazy::new(|| Regex::new(r#"(?:(\d+)[:.])?(\d{1,2})[:.](\d{2})"#).unwrap());
+        Lazy::new(|| Regex::new(r"(?:(\d+)[:.])?(\d{1,2})[:.](\d{2})").unwrap());
     VIDEO_LENGTH_REGEX.captures(text).map(|cap| {
         let hrs = cap
             .get(1)

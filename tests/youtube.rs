@@ -1,3 +1,5 @@
+#![allow(clippy::too_many_arguments, clippy::items_after_test_module)]
+
 use std::collections::{HashMap, HashSet};
 use std::fmt::Display;
 use std::str::FromStr;
@@ -2029,7 +2031,7 @@ fn music_related(#[case] id: &str, #[case] full: bool, rp: RustyPipe) {
         let artist = track.artists.first().unwrap();
         assert!(!artist.name.is_empty());
         if let Some(artist_id) = &artist.id {
-            validate::channel_id(&artist_id).unwrap();
+            validate::channel_id(artist_id).unwrap();
             track_artists += 1;
         }
 

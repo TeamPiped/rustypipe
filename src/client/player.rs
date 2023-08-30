@@ -505,13 +505,13 @@ fn map_video_stream(
                 "Invalid mime type `{}` in video format {:?}",
                 &f.mime_type, &f
             )],
-        }
+        };
     };
     let Some(format) = get_video_format(mtype) else {
         return MapResult {
             c: None,
             warnings: vec![format!("invalid video format. itag: {}", f.itag)],
-        }
+        };
     };
     let map_res = map_url(&f.url, &f.signature_cipher, deobf, last_nsig);
 
@@ -560,13 +560,13 @@ fn map_audio_stream(
                 "Invalid mime type `{}` in video format {:?}",
                 &f.mime_type, &f
             )],
-        }
+        };
     };
     let Some(format) = get_audio_format(mtype) else {
         return MapResult {
             c: None,
             warnings: vec![format!("invalid audio format. itag: {}", f.itag)],
-        }
+        };
     };
     let map_res = map_url(&f.url, &f.signature_cipher, deobf, last_nsig);
     let mut warnings = map_res.warnings;
@@ -750,7 +750,7 @@ mod tests {
     #[test]
     fn cipher_to_url() {
         let signature_cipher = "s=w%3DAe%3DA6aDNQLkViKS7LOm9QtxZJHKwb53riq9qEFw-ecBWJCAiA%3DcEg0tn3dty9jEHszfzh4Ud__bg9CEHVx4ix-7dKsIPAhIQRw8JQ0qOA&sp=sig&url=https://rr5---sn-h0jelnez.googlevideo.com/videoplayback%3Fexpire%3D1659376413%26ei%3Dvb7nYvH5BMK8gAfBj7ToBQ%26ip%3D2003%253Ade%253Aaf06%253A6300%253Ac750%253A1b77%253Ac74a%253A80e3%26id%3Do-AB_BABwrXZJN428ZwDxq5ScPn2AbcGODnRlTVhCQ3mj2%26itag%3D251%26source%3Dyoutube%26requiressl%3Dyes%26mh%3DhH%26mm%3D31%252C26%26mn%3Dsn-h0jelnez%252Csn-4g5ednsl%26ms%3Dau%252Conr%26mv%3Dm%26mvi%3D5%26pl%3D37%26initcwndbps%3D1588750%26spc%3DlT-Khi831z8dTejFIRCvCEwx_6romtM%26vprv%3D1%26mime%3Daudio%252Fwebm%26ns%3Db_Mq_qlTFcSGlG9RpwpM9xQH%26gir%3Dyes%26clen%3D3781277%26dur%3D229.301%26lmt%3D1655510291473933%26mt%3D1659354538%26fvip%3D5%26keepalive%3Dyes%26fexp%3D24001373%252C24007246%26c%3DWEB%26rbqsm%3Dfr%26txp%3D4532434%26n%3Dd2g6G2hVqWIXxedQ%26sparams%3Dexpire%252Cei%252Cip%252Cid%252Citag%252Csource%252Crequiressl%252Cspc%252Cvprv%252Cmime%252Cns%252Cgir%252Cclen%252Cdur%252Clmt%26lsparams%3Dmh%252Cmm%252Cmn%252Cms%252Cmv%252Cmvi%252Cpl%252Cinitcwndbps%26lsig%3DAG3C_xAwRQIgCKCGJ1iu4wlaGXy3jcJyU3inh9dr1FIfqYOZEG_MdmACIQCbungkQYFk7EhD6K2YvLaHFMjKOFWjw001_tLb0lPDtg%253D%253D";
-        let mut last_nsig: [String; 2] = ["".to_owned(), "".to_owned()];
+        let mut last_nsig: [String; 2] = [String::new(), String::new()];
         let deobf = Deobfuscator::new(&DEOBF_DATA).unwrap();
         let map_res = map_url(
             &None,

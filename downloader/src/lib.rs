@@ -46,7 +46,7 @@ fn get_download_range(offset: u64, size: Option<u64>) -> Range<u64> {
 }
 
 fn parse_cr_header(cr_header: &str) -> Result<(u64, u64)> {
-    static PATTERN: Lazy<Regex> = Lazy::new(|| Regex::new(r#"bytes (\d+)-(\d+)/(\d+)"#).unwrap());
+    static PATTERN: Lazy<Regex> = Lazy::new(|| Regex::new(r"bytes (\d+)-(\d+)/(\d+)").unwrap());
 
     let captures = PATTERN.captures(cr_header).ok_or_else(|| {
         DownloadError::Progressive(
