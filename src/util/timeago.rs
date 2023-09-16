@@ -588,7 +588,7 @@ mod tests {
         let strings_map: BTreeMap<Language, Vec<String>> =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
 
-        strings_map.iter().for_each(|(lang, strings)| {
+        for (lang, strings) in &strings_map {
             assert_eq!(strings.len(), expect.len());
             strings.iter().enumerate().for_each(|(n, s)| {
                 assert_eq!(
@@ -597,7 +597,7 @@ mod tests {
                     "Language: {lang}, txt: `{s}`"
                 );
             });
-        });
+        }
     }
 
     #[test]
@@ -771,7 +771,7 @@ mod tests {
         let strings_map: BTreeMap<Language, Vec<String>> =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
 
-        strings_map.iter().for_each(|(lang, strings)| {
+        for (lang, strings) in &strings_map {
             assert_eq!(strings.len(), expect.len(), "Language: {lang}");
             strings.iter().enumerate().for_each(|(n, s)| {
                 let mut exp = expect[n];
@@ -786,7 +786,7 @@ mod tests {
                     "Language: {lang}, txt: `{s}`"
                 );
             });
-        });
+        }
     }
 
     #[test]
@@ -856,7 +856,7 @@ mod tests {
         let date_samples: BTreeMap<Language, BTreeMap<String, String>> =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
 
-        date_samples.iter().for_each(|(lang, samples)| {
+        for (lang, samples) in &date_samples {
             assert_eq!(
                 parse_textual_date(*lang, samples.get("Today").unwrap()),
                 Some(ParsedDate::Relative(TimeAgo {
@@ -941,7 +941,7 @@ mod tests {
                 Some(ParsedDate::Absolute(date!(2021 - 12 - 24))),
                 "lang: {lang}"
             );
-        });
+        }
     }
 
     #[test]
@@ -952,13 +952,13 @@ mod tests {
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
 
         for (lang, samples) in &date_samples {
-            samples.iter().for_each(|(txt, duration)| {
+            for (txt, duration) in samples {
                 assert_eq!(
                     parse_video_duration(*lang, txt),
                     Some(*duration),
                     "lang: {lang}; txt: `{txt}`"
                 );
-            });
+            }
         }
     }
 
