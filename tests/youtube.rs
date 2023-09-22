@@ -1491,12 +1491,17 @@ fn music_artist(
         assert_gte(artist.subscriber_count.unwrap(), 30000, "subscribers");
     }
 
+    artist.tracks.iter().for_each(|t| {
+        assert!(!t.cover.is_empty());
+        if t.is_video {
+            assert!(t.view_count.is_some());
+        } else {
+            assert!(t.album.is_some());
+        }
+    });
+
     // Check images
     assert!(!artist.header_image.is_empty(), "got no header image");
-    artist
-        .tracks
-        .iter()
-        .for_each(|t| assert!(!t.cover.is_empty()));
     artist
         .albums
         .iter()
