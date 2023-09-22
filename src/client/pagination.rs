@@ -1,3 +1,5 @@
+use std::fmt::Debug;
+
 use crate::error::{Error, ExtractionError};
 use crate::model::{
     paginator::{ContinuationEndpoint, Paginator},
@@ -11,7 +13,8 @@ use super::{response, ClientType, MapResponse, QContinuation, RustyPipeQuery};
 
 impl RustyPipeQuery {
     /// Get more YouTube items from the given continuation token and endpoint
-    pub async fn continuation<T: FromYtItem, S: AsRef<str>>(
+    #[tracing::instrument(skip(self))]
+    pub async fn continuation<T: FromYtItem, S: AsRef<str> + Debug>(
         &self,
         ctoken: S,
         endpoint: ContinuationEndpoint,

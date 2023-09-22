@@ -1,6 +1,7 @@
 use std::{
     borrow::Cow,
     collections::{BTreeMap, HashMap},
+    fmt::Debug,
 };
 
 use once_cell::sync::Lazy;
@@ -61,7 +62,8 @@ struct QContentPlaybackContext<'a> {
 
 impl RustyPipeQuery {
     /// Get YouTube player data (video/audio streams + basic metadata)
-    pub async fn player<S: AsRef<str>>(&self, video_id: S) -> Result<VideoPlayer, Error> {
+    #[tracing::instrument(skip(self))]
+    pub async fn player<S: AsRef<str> + Debug>(&self, video_id: S) -> Result<VideoPlayer, Error> {
         let video_id = video_id.as_ref();
         let desktop_res = self.player_from_client(video_id, ClientType::Desktop).await;
 
@@ -90,7 +92,8 @@ impl RustyPipeQuery {
     }
 
     /// Get YouTube player data (video/audio streams + basic metadata) using the specified client
-    pub async fn player_from_client<S: AsRef<str>>(
+    #[tracing::instrument(skip(self))]
+    pub async fn player_from_client<S: AsRef<str> + Debug>(
         &self,
         video_id: S,
         client_type: ClientType,

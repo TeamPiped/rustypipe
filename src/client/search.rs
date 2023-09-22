@@ -1,3 +1,5 @@
+use std::fmt::Debug;
+
 use serde::Serialize;
 
 use crate::{
@@ -19,7 +21,8 @@ struct QSearch<'a> {
 
 impl RustyPipeQuery {
     /// Search YouTube
-    pub async fn search<S: AsRef<str>>(&self, query: S) -> Result<SearchResult, Error> {
+    #[tracing::instrument(skip(self))]
+    pub async fn search<S: AsRef<str> + Debug>(&self, query: S) -> Result<SearchResult, Error> {
         let query = query.as_ref();
         let context = self.get_context(ClientType::Desktop, true, None).await;
         let request_body = QSearch {
@@ -39,7 +42,8 @@ impl RustyPipeQuery {
     }
 
     /// Search YouTube using the given [`SearchFilter`]
-    pub async fn search_filter<S: AsRef<str>>(
+    #[tracing::instrument(skip(self))]
+    pub async fn search_filter<S: AsRef<str> + Debug>(
         &self,
         query: S,
         filter: &SearchFilter,
@@ -63,7 +67,11 @@ impl RustyPipeQuery {
     }
 
     /// Get YouTube search suggestions
-    pub async fn search_suggestion<S: AsRef<str>>(&self, query: S) -> Result<Vec<String>, Error> {
+    #[tracing::instrument(skip(self))]
+    pub async fn search_suggestion<S: AsRef<str> + Debug>(
+        &self,
+        query: S,
+    ) -> Result<Vec<String>, Error> {
         let url = url::Url::parse_with_params(
             "https://suggestqueries-clients6.youtube.com/complete/search?client=youtube&xhr=t",
             &[

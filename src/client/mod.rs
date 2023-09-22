@@ -489,7 +489,7 @@ impl RustyPipeBuilder {
             .and_then(|data| match serde_json::from_str::<CacheData>(&data) {
                 Ok(data) => Some(data),
                 Err(e) => {
-                    log::error!("Could not deserialize cache. Error: {}", e);
+                    tracing::error!("Could not deserialize cache. Error: {}", e);
                     None
                 }
             })
@@ -745,7 +745,7 @@ impl RustyPipe {
             // Retry in case of a recoverable status code (server err, too many requests)
             if n != self.inner.n_http_retries {
                 let ms = util::retry_delay(n, 1000, 60000, 3);
-                log::warn!(
+                tracing::warn!(
                     "Retry attempt #{}. Error: {}. Waiting {} ms",
                     n + 1,
                     status,
@@ -866,7 +866,7 @@ impl RustyPipe {
         match desktop_client.get() {
             Some(cdata) => cdata.version.clone(),
             None => {
-                log::debug!("getting desktop client version");
+                tracing::debug!("getting desktop client version");
                 match self.extract_desktop_client_version().await {
                     Ok(version) => {
                         *desktop_client = CacheEntry::from(ClientData {
@@ -877,7 +877,7 @@ impl RustyPipe {
                         version
                     }
                     Err(e) => {
-                        log::warn!("{}, falling back to hardcoded desktop client version", e);
+                        tracing::warn!("{}, falling back to hardcoded desktop client version", e);
                         DESKTOP_CLIENT_VERSION.to_owned()
                     }
                 }
@@ -898,7 +898,7 @@ impl RustyPipe {
         match music_client.get() {
             Some(cdata) => cdata.version.clone(),
             None => {
-                log::debug!("getting music client version");
+                tracing::debug!("getting music client version");
                 match self.extract_music_client_version().await {
                     Ok(version) => {
                         *music_client = CacheEntry::from(ClientData {
@@ -909,7 +909,7 @@ impl RustyPipe {
                         version
                     }
                     Err(e) => {
-                        log::warn!("{}, falling back to hardcoded music client version", e);
+                        tracing::warn!("{}, falling back to hardcoded music client version", e);
                         DESKTOP_MUSIC_CLIENT_VERSION.to_owned()
                     }
                 }
@@ -925,7 +925,7 @@ impl RustyPipe {
         match deobf_data.get() {
             Some(deobf_data) => Ok(deobf_data.clone()),
             None => {
-                log::debug!("getting deobf data");
+                tracing::debug!("getting deobf data");
 
                 match DeobfData::extract(self.inner.http.clone(), self.inner.reporter.as_deref())
                     .await
@@ -941,7 +941,7 @@ impl RustyPipe {
                         // Try to fall back to expired cache data if available, otherwise return error
                         match deobf_data.get_expired() {
                             Some(d) => {
-                                log::warn!("could not get new deobf data ({e}), falling back to expired cache");
+                                tracing::warn!("could not get new deobf data ({e}), falling back to expired cache");
                                 Ok(d.clone())
                             }
                             None => Err(e),
@@ -963,7 +963,7 @@ impl RustyPipe {
 
             match serde_json::to_string(&cdata) {
                 Ok(data) => storage.write(&data),
-                Err(e) => log::error!("Could not serialize cache. Error: {}", e),
+                Err(e) => tracing::error!("Could not serialize cache. Error: {}", e),
             }
         }
     }
@@ -976,7 +976,7 @@ impl RustyPipe {
     /// Sometimes YouTube does not set the `__Secure-YEC` cookie. In this case, the
     /// visitor data is extracted from the html page.
     async fn get_visitor_data(&self) -> Result<String, Error> {
-        log::debug!("getting YT visitor data");
+        tracing::debug!("getting YT visitor data");
         let resp = self.inner.http.get(YOUTUBE_MUSIC_HOME_URL).send().await?;
 
         let vdata = resp
@@ -1284,6 +1284,7 @@ impl RustyPipeQuery {
 
         let status = response.status();
         let body = response.text().await?;
+        tracing::debug!("fetched {} bytes from YT", body.len());
 
         let res = if status.is_client_error() || status.is_server_error() {
             let error_msg = serde_json::from_str::<response::ErrorResponse>(&body)
@@ -1314,9 +1315,11 @@ impl RustyPipeQuery {
             }
         };
 
+        tracing::debug!("mapped response");
         Ok(RequestResult { res, status, body })
     }
 
+    #[tracing::instrument(skip_all)]
     async fn yt_request<R: DeserializeOwned + MapResponse<M> + Debug, M>(
         &self,
         request: &Request,
@@ -1339,7 +1342,7 @@ impl RustyPipeQuery {
 
             if n != self.client.inner.n_http_retries {
                 let ms = util::retry_delay(n, 1000, 60000, 3);
-                log::warn!(
+                tracing::warn!(
                     "Retry attempt #{}. Error: {}. Waiting {} ms",
                     n + 1,
                     err,
@@ -1380,7 +1383,7 @@ impl RustyPipeQuery {
         body: &B,
         deobf: Option<&DeobfData>,
     ) -> Result<M, Error> {
-        log::debug!("getting {}({})", operation, id);
+        tracing::debug!("getting {}({})", operation, id);
 
         let request = self
             .request_builder(ctype, endpoint)
@@ -1528,7 +1531,7 @@ trait MapResponse<T> {
 
 fn validate_country(country: Country) -> Country {
     if country == Country::Zz {
-        log::warn!("Country:Zz (Global) can only be used for fetching music charts, falling back to Country:Us");
+        tracing::warn!("Country:Zz (Global) can only be used for fetching music charts, falling back to Country:Us");
         Country::Us
     } else {
         country

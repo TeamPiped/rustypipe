@@ -1,4 +1,4 @@
-use std::borrow::Cow;
+use std::{borrow::Cow, fmt::Debug};
 
 use crate::{
     error::{Error, ExtractionError},
@@ -17,7 +17,8 @@ use super::{
 
 impl RustyPipeQuery {
     /// Get a playlist from YouTube Music
-    pub async fn music_playlist<S: AsRef<str>>(
+    #[tracing::instrument(skip(self))]
+    pub async fn music_playlist<S: AsRef<str> + Debug>(
         &self,
         playlist_id: S,
     ) -> Result<MusicPlaylist, Error> {
@@ -39,7 +40,11 @@ impl RustyPipeQuery {
     }
 
     /// Get an album from YouTube Music
-    pub async fn music_album<S: AsRef<str>>(&self, album_id: S) -> Result<MusicAlbum, Error> {
+    #[tracing::instrument(skip(self))]
+    pub async fn music_album<S: AsRef<str> + Debug>(
+        &self,
+        album_id: S,
+    ) -> Result<MusicAlbum, Error> {
         let album_id = album_id.as_ref();
         let context = self.get_context(ClientType::DesktopMusic, true, None).await;
         let request_body = QBrowse {

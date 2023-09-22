@@ -2,6 +2,7 @@ use std::borrow::Cow;
 
 use once_cell::sync::Lazy;
 use regex::Regex;
+use tracing::debug;
 
 use crate::{
     client::response::url_endpoint::NavigationEndpoint,
@@ -29,7 +30,7 @@ impl RustyPipeQuery {
         let res = self._music_artist(artist_id, all_albums).await;
 
         if let Err(Error::Extraction(ExtractionError::Redirect(id))) = res {
-            log::debug!("music artist {} redirects to {}", artist_id, &id);
+            debug!("music artist {} redirects to {}", artist_id, &id);
             self._music_artist(&id, all_albums).await
         } else {
             res

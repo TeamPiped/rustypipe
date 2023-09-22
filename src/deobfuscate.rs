@@ -29,7 +29,7 @@ impl DeobfData {
     pub async fn extract(http: Client, reporter: Option<&dyn Reporter>) -> Result<Self, Error> {
         let js_url = get_player_js_url(&http).await?;
         let player_js = get_response(&http, &js_url).await?;
-        log::debug!("downloaded player.js from {}", js_url);
+        tracing::debug!("downloaded player.js from {}", js_url);
 
         let res = Self::extract_fns(&js_url, &player_js);
 
@@ -89,7 +89,7 @@ impl Deobfuscator {
         res.as_str().map_or(
             Err(DeobfError::Other("sig deobfuscation func returned null")),
             |res| {
-                log::debug!("deobfuscated sig");
+                tracing::debug!("deobfuscated sig");
                 Ok(res.to_owned())
             },
         )
@@ -102,7 +102,7 @@ impl Deobfuscator {
         res.as_str().map_or(
             Err(DeobfError::Other("nsig deobfuscation func returned null")),
             |res| {
-                log::debug!("deobfuscated nsig");
+                tracing::debug!("deobfuscated nsig");
                 Ok(res.to_owned())
             },
         )

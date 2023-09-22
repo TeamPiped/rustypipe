@@ -1,3 +1,5 @@
+use std::fmt::Debug;
+
 use crate::{
     error::{Error, ExtractionError},
     model::ChannelRss,
@@ -15,7 +17,11 @@ impl RustyPipeQuery {
     /// for checking a lot of channels or implementing a subscription feed.
     ///
     /// The downside of using the RSS feed is that it does not provide video durations.
-    pub async fn channel_rss<S: AsRef<str>>(&self, channel_id: S) -> Result<ChannelRss, Error> {
+    #[tracing::instrument(skip(self))]
+    pub async fn channel_rss<S: AsRef<str> + Debug>(
+        &self,
+        channel_id: S,
+    ) -> Result<ChannelRss, Error> {
         let channel_id = channel_id.as_ref();
         let url = format!("https://www.youtube.com/feeds/videos.xml?channel_id={channel_id}");
         let xml = self

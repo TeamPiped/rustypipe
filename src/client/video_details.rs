@@ -1,3 +1,5 @@
+use std::fmt::Debug;
+
 use serde::Serialize;
 
 use crate::{
@@ -26,7 +28,11 @@ struct QVideo<'a> {
 
 impl RustyPipeQuery {
     /// Get the metadata for a video
-    pub async fn video_details<S: AsRef<str>>(&self, video_id: S) -> Result<VideoDetails, Error> {
+    #[tracing::instrument(skip(self))]
+    pub async fn video_details<S: AsRef<str> + Debug>(
+        &self,
+        video_id: S,
+    ) -> Result<VideoDetails, Error> {
         let video_id = video_id.as_ref();
         let context = self.get_context(ClientType::Desktop, true, None).await;
         let request_body = QVideo {
@@ -47,7 +53,8 @@ impl RustyPipeQuery {
     }
 
     /// Get the comments for a video using the continuation token obtained from `rusty_pipe_query.video_details()`
-    pub async fn video_comments<S: AsRef<str>>(
+    #[tracing::instrument(skip(self))]
+    pub async fn video_comments<S: AsRef<str> + Debug>(
         &self,
         ctoken: S,
         visitor_data: Option<&str>,

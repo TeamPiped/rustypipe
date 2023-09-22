@@ -32,6 +32,7 @@ struct FormData {
 
 impl RustyPipeQuery {
     /// Get the YouTube Music charts for a given country
+    #[tracing::instrument(skip(self))]
     pub async fn music_charts(&self, country: Option<Country>) -> Result<MusicCharts, Error> {
         let context = self.get_context(ClientType::DesktopMusic, true, None).await;
         let request_body = QCharts {

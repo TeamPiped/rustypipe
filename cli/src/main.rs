@@ -390,7 +390,8 @@ async fn download_videos(
 
 #[tokio::main]
 async fn main() {
-    env_logger::builder().format_timestamp_micros().init();
+    // env_logger::builder().format_timestamp_micros().init();
+    tracing_subscriber::fmt::init();
 
     let cli = Cli::parse();
 

@@ -1,3 +1,5 @@
+use std::fmt::Debug;
+
 use serde::Serialize;
 use url::Url;
 
@@ -78,7 +80,8 @@ impl RustyPipeQuery {
     }
 
     /// Get the videos from a YouTube channel
-    pub async fn channel_videos<S: AsRef<str>>(
+    #[tracing::instrument(skip(self))]
+    pub async fn channel_videos<S: AsRef<str> + Debug>(
         &self,
         channel_id: S,
     ) -> Result<Channel<Paginator<VideoItem>>, Error> {
@@ -89,7 +92,8 @@ impl RustyPipeQuery {
     /// Get a ordered list of videos from a YouTube channel
     ///
     /// This function does not return channel metadata.
-    pub async fn channel_videos_order<S: AsRef<str>>(
+    #[tracing::instrument(skip(self))]
+    pub async fn channel_videos_order<S: AsRef<str> + Debug>(
         &self,
         channel_id: S,
         order: ChannelOrder,
@@ -99,7 +103,8 @@ impl RustyPipeQuery {
     }
 
     /// Get the videos of the given tab (Shorts, Livestreams) from a YouTube channel
-    pub async fn channel_videos_tab<S: AsRef<str>>(
+    #[tracing::instrument(skip(self))]
+    pub async fn channel_videos_tab<S: AsRef<str> + Debug>(
         &self,
         channel_id: S,
         tab: ChannelVideoTab,
@@ -111,7 +116,8 @@ impl RustyPipeQuery {
     /// Get a ordered list of videos from the given tab (Shorts, Livestreams) of a YouTube channel
     ///
     /// This function does not return channel metadata.
-    pub async fn channel_videos_tab_order<S: AsRef<str>>(
+    #[tracing::instrument(skip(self))]
+    pub async fn channel_videos_tab_order<S: AsRef<str> + Debug>(
         &self,
         channel_id: S,
         tab: ChannelVideoTab,
@@ -128,7 +134,8 @@ impl RustyPipeQuery {
     }
 
     /// Search the videos of a channel
-    pub async fn channel_search<S: AsRef<str>, S2: AsRef<str>>(
+    #[tracing::instrument(skip(self))]
+    pub async fn channel_search<S: AsRef<str> + Debug, S2: AsRef<str> + Debug>(
         &self,
         channel_id: S,
         query: S2,
@@ -143,7 +150,8 @@ impl RustyPipeQuery {
     }
 
     /// Get the playlists of a channel
-    pub async fn channel_playlists<S: AsRef<str>>(
+    #[tracing::instrument(skip(self))]
+    pub async fn channel_playlists<S: AsRef<str> + Debug>(
         &self,
         channel_id: S,
     ) -> Result<Channel<Paginator<PlaylistItem>>, Error> {
@@ -167,7 +175,8 @@ impl RustyPipeQuery {
     }
 
     /// Get additional metadata from the *About* tab of a channel
-    pub async fn channel_info<S: AsRef<str>>(
+    #[tracing::instrument(skip(self))]
+    pub async fn channel_info<S: AsRef<str> + Debug>(
         &self,
         channel_id: S,
     ) -> Result<Channel<ChannelInfo>, Error> {

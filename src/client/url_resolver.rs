@@ -1,4 +1,4 @@
-use std::borrow::Cow;
+use std::{borrow::Cow, fmt::Debug};
 
 use serde::Serialize;
 
@@ -59,7 +59,8 @@ impl RustyPipeQuery {
     /// );
     /// # });
     /// ```
-    pub async fn resolve_url<S: AsRef<str>>(
+    #[tracing::instrument(skip(self))]
+    pub async fn resolve_url<S: AsRef<str> + Debug>(
         self,
         url: S,
         resolve_albums: bool,
@@ -236,7 +237,8 @@ impl RustyPipeQuery {
     /// );
     /// # });
     /// ```
-    pub async fn resolve_string<S: AsRef<str>>(
+    #[tracing::instrument(skip(self))]
+    pub async fn resolve_string<S: AsRef<str> + Debug>(
         self,
         s: S,
         resolve_albums: bool,

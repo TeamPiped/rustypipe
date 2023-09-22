@@ -35,7 +35,6 @@ regex = "1.6.0"
 fancy-regex = "0.11.0"
 thiserror = "1.0.36"
 url = "2.2.2"
-log = "0.4.17"
 reqwest = { version = "0.11.11", default-features = false, features = [
     "json",
     "gzip",
@@ -61,10 +60,9 @@ phf = "0.11.1"
 base64 = "0.21.0"
 urlencoding = "2.1.2"
 quick-xml = { version = "0.29.0", features = ["serialize"], optional = true }
+tracing = { version = "0.1.37", features = ["log"] }
 
 [dev-dependencies]
-env_logger = "0.10.0"
-test-log = "0.2.11"
 rstest = "0.18.1"
 tokio-test = "0.4.2"
 insta = { version = "1.17.1", features = ["ron", "redactions"] }

@@ -1,4 +1,4 @@
-use std::{borrow::Cow, convert::TryFrom};
+use std::{borrow::Cow, convert::TryFrom, fmt::Debug};
 
 use time::OffsetDateTime;
 
@@ -12,7 +12,8 @@ use super::{response, ClientType, MapResponse, MapResult, QBrowse, RustyPipeQuer
 
 impl RustyPipeQuery {
     /// Get a YouTube playlist
-    pub async fn playlist<S: AsRef<str>>(&self, playlist_id: S) -> Result<Playlist, Error> {
+    #[tracing::instrument(skip(self))]
+    pub async fn playlist<S: AsRef<str> + Debug>(&self, playlist_id: S) -> Result<Playlist, Error> {
         let playlist_id = playlist_id.as_ref();
         let context = self.get_context(ClientType::Desktop, true, None).await;
         let request_body = QBrowse {

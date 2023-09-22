@@ -1,4 +1,4 @@
-use std::borrow::Cow;
+use std::{borrow::Cow, fmt::Debug};
 
 use serde::Serialize;
 
@@ -38,7 +38,11 @@ struct QRadio<'a> {
 
 impl RustyPipeQuery {
     /// Get the metadata of a YouTube music track
-    pub async fn music_details<S: AsRef<str>>(&self, video_id: S) -> Result<TrackDetails, Error> {
+    #[tracing::instrument(skip(self))]
+    pub async fn music_details<S: AsRef<str> + Debug>(
+        &self,
+        video_id: S,
+    ) -> Result<TrackDetails, Error> {
         let video_id = video_id.as_ref();
         let context = self.get_context(ClientType::DesktopMusic, true, None).await;
         let request_body = QMusicDetails {
@@ -62,7 +66,8 @@ impl RustyPipeQuery {
     /// Get the lyrics of a YouTube music track
     ///
     /// The `lyrics_id` has to be obtained using [`RustyPipeQuery::music_details`].
-    pub async fn music_lyrics<S: AsRef<str>>(&self, lyrics_id: S) -> Result<Lyrics, Error> {
+    #[tracing::instrument(skip(self))]
+    pub async fn music_lyrics<S: AsRef<str> + Debug>(&self, lyrics_id: S) -> Result<Lyrics, Error> {
         let lyrics_id = lyrics_id.as_ref();
         let context = self.get_context(ClientType::DesktopMusic, true, None).await;
         let request_body = QBrowse {
@@ -83,7 +88,11 @@ impl RustyPipeQuery {
     /// Get related items (tracks, playlists, artists) to a YouTube Music track
     ///
     /// The `related_id` has to be obtained using [`RustyPipeQuery::music_details`].
-    pub async fn music_related<S: AsRef<str>>(&self, related_id: S) -> Result<MusicRelated, Error> {
+    #[tracing::instrument(skip(self))]
+    pub async fn music_related<S: AsRef<str> + Debug>(
+        &self,
+        related_id: S,
+    ) -> Result<MusicRelated, Error> {
         let related_id = related_id.as_ref();
         let context = self.get_context(ClientType::DesktopMusic, true, None).await;
         let request_body = QBrowse {
@@ -104,7 +113,8 @@ impl RustyPipeQuery {
     /// Get a YouTube Music radio (a dynamically generated playlist)
     ///
     /// The `radio_id` can be obtained using [`RustyPipeQuery::music_artist`] to get an artist's radio.
-    pub async fn music_radio<S: AsRef<str>>(
+    #[tracing::instrument(skip(self))]
+    pub async fn music_radio<S: AsRef<str> + Debug>(
         &self,
         radio_id: S,
     ) -> Result<Paginator<TrackItem>, Error> {
@@ -133,7 +143,8 @@ impl RustyPipeQuery {
     }
 
     /// Get a YouTube Music radio (a dynamically generated playlist) for a track
-    pub async fn music_radio_track<S: AsRef<str>>(
+    #[tracing::instrument(skip(self))]
+    pub async fn music_radio_track<S: AsRef<str> + Debug>(
         &self,
         video_id: S,
     ) -> Result<Paginator<TrackItem>, Error> {
@@ -142,7 +153,8 @@ impl RustyPipeQuery {
     }
 
     /// Get a YouTube Music radio (a dynamically generated playlist) for a playlist
-    pub async fn music_radio_playlist<S: AsRef<str>>(
+    #[tracing::instrument(skip(self))]
+    pub async fn music_radio_playlist<S: AsRef<str> + Debug>(
         &self,
         playlist_id: S,
     ) -> Result<Paginator<TrackItem>, Error> {

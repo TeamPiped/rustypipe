@@ -1,4 +1,4 @@
-use std::borrow::Cow;
+use std::{borrow::Cow, fmt::Debug};
 
 use serde::Serialize;
 
@@ -48,7 +48,11 @@ enum Params {
 
 impl RustyPipeQuery {
     /// Search YouTube Music. Returns items from any type.
-    pub async fn music_search<S: AsRef<str>>(&self, query: S) -> Result<MusicSearchResult, Error> {
+    #[tracing::instrument(skip(self))]
+    pub async fn music_search<S: AsRef<str> + Debug>(
+        &self,
+        query: S,
+    ) -> Result<MusicSearchResult, Error> {
         let query = query.as_ref();
         let context = self.get_context(ClientType::DesktopMusic, true, None).await;
         let request_body = QSearch {
@@ -68,7 +72,8 @@ impl RustyPipeQuery {
     }
 
     /// Search YouTube Music tracks
-    pub async fn music_search_tracks<S: AsRef<str>>(
+    #[tracing::instrument(skip(self))]
+    pub async fn music_search_tracks<S: AsRef<str> + Debug>(
         &self,
         query: S,
     ) -> Result<MusicSearchFiltered<TrackItem>, Error> {
@@ -76,7 +81,8 @@ impl RustyPipeQuery {
     }
 
     /// Search YouTube Music videos
-    pub async fn music_search_videos<S: AsRef<str>>(
+    #[tracing::instrument(skip(self))]
+    pub async fn music_search_videos<S: AsRef<str> + Debug>(
         &self,
         query: S,
     ) -> Result<MusicSearchFiltered<TrackItem>, Error> {
@@ -107,7 +113,8 @@ impl RustyPipeQuery {
     }
 
     /// Search YouTube Music albums
-    pub async fn music_search_albums<S: AsRef<str>>(
+    #[tracing::instrument(skip(self))]
+    pub async fn music_search_albums<S: AsRef<str> + Debug>(
         &self,
         query: S,
     ) -> Result<MusicSearchFiltered<AlbumItem>, Error> {
@@ -130,10 +137,12 @@ impl RustyPipeQuery {
     }
 
     /// Search YouTube Music artists
-    pub async fn music_search_artists(
+    #[tracing::instrument(skip(self))]
+    pub async fn music_search_artists<S: AsRef<str> + Debug>(
         &self,
-        query: &str,
+        query: S,
     ) -> Result<MusicSearchFiltered<ArtistItem>, Error> {
+        let query = query.as_ref();
         let context = self.get_context(ClientType::DesktopMusic, true, None).await;
         let request_body = QSearch {
             context,
@@ -154,7 +163,8 @@ impl RustyPipeQuery {
     ///
     /// Playlists are filtered whether they are created by users
     /// (`community=true`) or by YouTube Music (`community=false`)
-    pub async fn music_search_playlists<S: AsRef<str>>(
+    #[tracing::instrument(skip(self))]
+    pub async fn music_search_playlists<S: AsRef<str> + Debug>(
         &self,
         query: S,
         community: bool,
@@ -182,7 +192,8 @@ impl RustyPipeQuery {
     }
 
     /// Get YouTube Music search suggestions
-    pub async fn music_search_suggestion<S: AsRef<str>>(
+    #[tracing::instrument(skip(self))]
+    pub async fn music_search_suggestion<S: AsRef<str> + Debug>(
         &self,
         query: S,
     ) -> Result<MusicSearchSuggestion, Error> {

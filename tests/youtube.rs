@@ -32,7 +32,6 @@ use rustypipe::param::{
 #[case::tv_html5_embed(ClientType::TvHtml5Embed)]
 #[case::android(ClientType::Android)]
 #[case::ios(ClientType::Ios)]
-#[test_log::test]
 fn get_player_from_client(#[case] client_type: ClientType, rp: RustyPipe) {
     let player_data =
         tokio_test::block_on(rp.query().player_from_client("n4tK7LYFxI0", client_type)).unwrap();
@@ -1469,7 +1468,6 @@ fn music_album_not_found(rp: RustyPipe) {
 #[case::no_artist("no_artist", "UCh8gHdtzO2tXd593_bjErWg", false, 0, 2)]
 // querying Trailerpark's secondary YouTube channel should result in the YTM channel being fetched
 #[case::secondary_channel("no_more_albums", "UCC9192yGQD25eBZgFZ84MPw", true, 15, 0)]
-#[test_log::test]
 fn music_artist(
     #[case] name: &str,
     #[case] id: &str,

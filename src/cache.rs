@@ -20,7 +20,7 @@ use std::{
     path::{Path, PathBuf},
 };
 
-use log::error;
+use tracing::error;
 
 pub(crate) const DEFAULT_CACHE_FILE: &str = "rustypipe_cache.json";
 

@@ -23,9 +23,9 @@ use std::{
     path::{Path, PathBuf},
 };
 
-use log::error;
 use serde::{Deserialize, Serialize};
 use time::{macros::format_description, OffsetDateTime};
+use tracing::error;
 
 use crate::{deobfuscate::DeobfData, util};
 
