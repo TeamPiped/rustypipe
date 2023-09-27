@@ -6,8 +6,10 @@ use crate::{
     client::response::music_item::MusicListMapper,
     error::{Error, ExtractionError},
     model::{
-        paginator::Paginator, traits::FromYtItem, AlbumItem, ArtistItem, MusicPlaylistItem,
-        MusicSearchFiltered, MusicSearchResult, MusicSearchSuggestion, TrackItem,
+        paginator::{ContinuationEndpoint, Paginator},
+        traits::FromYtItem,
+        AlbumItem, ArtistItem, MusicPlaylistItem, MusicSearchFiltered, MusicSearchResult,
+        MusicSearchSuggestion, TrackItem,
     },
     serializer::MapResult,
 };
@@ -287,7 +289,7 @@ impl<T: FromYtItem> MapResponse<MusicSearchFiltered<T>> for response::MusicSearc
         _id: &str,
         lang: crate::param::Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
-        _vdata: Option<&str>,
+        vdata: Option<&str>,
     ) -> Result<MapResult<MusicSearchFiltered<T>>, ExtractionError> {
         // dbg!(&self);
 
@@ -332,8 +334,8 @@ impl<T: FromYtItem> MapResponse<MusicSearchFiltered<T>> for response::MusicSearc
                     None,
                     map_res.c,
                     ctoken,
-                    None,
-                    crate::model::paginator::ContinuationEndpoint::MusicSearch,
+                    vdata.map(str::to_owned),
+                    ContinuationEndpoint::MusicSearch,
                 ),
                 corrected_query,
             },

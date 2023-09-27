@@ -1368,17 +1368,21 @@ fn music_playlist(
 }
 
 #[rstest]
-fn music_playlist_cont(rp: RustyPipe) {
-    let mut playlist = tokio_test::block_on(
-        rp.query()
-            .music_playlist("PLMC9KNkIncKtPzgY-5rmhvj7fax8fdxoj"),
-    )
-    .unwrap();
+#[case::user("PLMC9KNkIncKtPzgY-5rmhvj7fax8fdxoj")]
+#[case::ytm("RDCLAK5uy_kb7EBi6y3GrtJri4_ZH56Ms786DFEimbM")]
+fn music_playlist_cont(#[case] id: &str, rp: RustyPipe) {
+    let mut playlist = tokio_test::block_on(rp.query().music_playlist(id)).unwrap();
 
-    tokio_test::block_on(playlist.tracks.extend_pages(rp.query(), usize::MAX)).unwrap();
+    tokio_test::block_on(playlist.tracks.extend_pages(rp.query(), 5)).unwrap();
 
-    assert_gte(playlist.tracks.items.len(), 100, "tracks");
-    assert_gte(playlist.tracks.count.unwrap(), 100, "track count");
+    let track_count = playlist.track_count.unwrap();
+    assert_gte(track_count, 100, "tracks");
+
+    assert_eq!(track_count, playlist.tracks.count.unwrap());
+    assert_eq!(
+        usize::try_from(track_count).unwrap(),
+        playlist.tracks.items.len()
+    );
 }
 
 #[rstest]

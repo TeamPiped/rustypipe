@@ -238,7 +238,7 @@ impl MapResponse<Channel<Paginator<VideoItem>>> for response::Channel {
             mapper.items,
             mapper.ctoken,
             visitor_data,
-            crate::model::paginator::ContinuationEndpoint::Browse,
+            ContinuationEndpoint::Browse,
         );
 
         Ok(MapResult {

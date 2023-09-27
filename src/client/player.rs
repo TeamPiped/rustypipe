@@ -139,6 +139,7 @@ impl RustyPipeQuery {
             video_id,
             "player",
             &request_body,
+            None,
             Some(&deobf),
         )
         .await

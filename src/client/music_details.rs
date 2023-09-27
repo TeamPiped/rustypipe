@@ -4,7 +4,10 @@ use serde::Serialize;
 
 use crate::{
     error::{Error, ExtractionError},
-    model::{paginator::Paginator, ArtistId, Lyrics, MusicRelated, TrackDetails, TrackItem},
+    model::{
+        paginator::{ContinuationEndpoint, Paginator},
+        ArtistId, Lyrics, MusicRelated, TrackDetails, TrackItem,
+    },
     param::Language,
     serializer::MapResult,
 };
@@ -132,12 +135,13 @@ impl RustyPipeQuery {
             tuner_setting_value: "AUTOMIX_SETTING_NORMAL",
         };
 
-        self.execute_request::<response::MusicDetails, _, _>(
+        self.execute_request_vdata::<response::MusicDetails, _, _>(
             ClientType::DesktopMusic,
             "music_radio",
             radio_id,
             "next",
             &request_body,
+            Some(&visitor_data),
         )
         .await
     }
@@ -293,13 +297,7 @@ impl MapResponse<Paginator<TrackItem>> for response::MusicDetails {
             .map(|c| c.next_continuation_data.continuation);
 
         Ok(MapResult {
-            c: Paginator::new_ext(
-                None,
-                tracks,
-                ctoken,
-                None,
-                crate::model::paginator::ContinuationEndpoint::MusicNext,
-            ),
+            c: Paginator::new_ext(None, tracks, ctoken, None, ContinuationEndpoint::MusicNext),
             warnings,
         })
     }

@@ -1,3 +1,4 @@
+use std::borrow::Cow;
 use std::fmt::Debug;
 
 use crate::error::{Error, ExtractionError};
@@ -22,8 +23,13 @@ impl RustyPipeQuery {
     ) -> Result<Paginator<T>, Error> {
         let ctoken = ctoken.as_ref();
         if endpoint.is_music() {
+            // Visitor data is required for YTM continuations
+            let visitor_data = match visitor_data {
+                Some(vd) => Cow::Borrowed(vd),
+                None => Cow::Owned(self.get_visitor_data().await?),
+            };
             let context = self
-                .get_context(ClientType::DesktopMusic, true, visitor_data)
+                .get_context(ClientType::DesktopMusic, true, Some(&visitor_data))
                 .await;
             let request_body = QContinuation {
                 context,
@@ -31,16 +37,17 @@ impl RustyPipeQuery {
             };
 
             let p = self
-                .execute_request::<response::MusicContinuation, Paginator<MusicItem>, _>(
+                .execute_request_vdata::<response::MusicContinuation, Paginator<MusicItem>, _>(
                     ClientType::DesktopMusic,
                     "music_continuation",
                     ctoken,
                     endpoint.as_str(),
                     &request_body,
+                    Some(&visitor_data),
                 )
                 .await?;
 
-            Ok(map_ytm_paginator(p, visitor_data, endpoint))
+            Ok(map_ytm_paginator(p, Some(&visitor_data), endpoint))
         } else {
             let context = self
                 .get_context(ClientType::Desktop, true, visitor_data)
@@ -211,6 +218,9 @@ impl<T: FromYtItem> Paginator<T> {
                 let mut items = paginator.items;
                 self.items.append(&mut items);
                 self.ctoken = paginator.ctoken;
+                if paginator.visitor_data.is_some() {
+                    self.visitor_data = paginator.visitor_data;
+                }
                 Ok(true)
             }
             Ok(None) => Ok(false),
@@ -285,6 +295,9 @@ macro_rules! paginator {
                         let mut items = paginator.items;
                         self.items.append(&mut items);
                         self.ctoken = paginator.ctoken;
+                        if paginator.visitor_data.is_some() {
+                            self.visitor_data = paginator.visitor_data;
+                        }
                         Ok(true)
                     }
                     Ok(None) => Ok(false),

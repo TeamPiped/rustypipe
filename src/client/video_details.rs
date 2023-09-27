@@ -4,7 +4,10 @@ use serde::Serialize;
 
 use crate::{
     error::{Error, ExtractionError},
-    model::{paginator::Paginator, ChannelTag, Chapter, Comment, VideoDetails, VideoItem},
+    model::{
+        paginator::{ContinuationEndpoint, Paginator},
+        ChannelTag, Chapter, Comment, VideoDetails, VideoItem,
+    },
     param::Language,
     serializer::MapResult,
     util::{self, timeago, TryRemove},
@@ -360,14 +363,14 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                     Vec::new(),
                     comment_ctoken,
                     visitor_data.clone(),
-                    crate::model::paginator::ContinuationEndpoint::Next,
+                    ContinuationEndpoint::Next,
                 ),
                 latest_comments: Paginator::new_ext(
                     comment_count,
                     Vec::new(),
                     latest_comments_ctoken,
                     visitor_data.clone(),
-                    crate::model::paginator::ContinuationEndpoint::Next,
+                    ContinuationEndpoint::Next,
                 ),
                 visitor_data,
             },
@@ -459,7 +462,7 @@ fn map_recommendations(
             mapper.items,
             mapper.ctoken,
             visitor_data,
-            crate::model::paginator::ContinuationEndpoint::Next,
+            ContinuationEndpoint::Next,
         ),
         warnings: mapper.warnings,
     }

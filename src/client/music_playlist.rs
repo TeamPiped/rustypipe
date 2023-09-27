@@ -2,7 +2,10 @@ use std::{borrow::Cow, fmt::Debug};
 
 use crate::{
     error::{Error, ExtractionError},
-    model::{paginator::Paginator, AlbumId, ChannelId, MusicAlbum, MusicPlaylist, TrackItem},
+    model::{
+        paginator::{ContinuationEndpoint, Paginator},
+        AlbumId, ChannelId, MusicAlbum, MusicPlaylist, TrackItem,
+    },
     serializer::MapResult,
     util::{self, TryRemove, DOT_SEPARATOR},
 };
@@ -23,18 +26,27 @@ impl RustyPipeQuery {
         playlist_id: S,
     ) -> Result<MusicPlaylist, Error> {
         let playlist_id = playlist_id.as_ref();
-        let context = self.get_context(ClientType::DesktopMusic, true, None).await;
+        // YTM playlists require visitor data for continuations to work
+        let visitor_data = if playlist_id.starts_with("RD") {
+            Some(self.get_visitor_data().await?)
+        } else {
+            None
+        };
+        let context = self
+            .get_context(ClientType::DesktopMusic, true, visitor_data.as_deref())
+            .await;
         let request_body = QBrowse {
             context,
             browse_id: &format!("VL{playlist_id}"),
         };
 
-        self.execute_request::<response::MusicPlaylist, _, _>(
+        self.execute_request_vdata::<response::MusicPlaylist, _, _>(
             ClientType::DesktopMusic,
             "music_playlist",
             playlist_id,
             "browse",
             &request_body,
+            visitor_data.as_deref(),
         )
         .await
     }
@@ -127,7 +139,7 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
         id: &str,
         lang: crate::param::Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
-        _vdata: Option<&str>,
+        vdata: Option<&str>,
     ) -> Result<MapResult<MusicPlaylist>, ExtractionError> {
         // dbg!(&self);
 
@@ -251,15 +263,15 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
                     track_count,
                     map_res.c,
                     ctoken,
-                    None,
-                    crate::model::paginator::ContinuationEndpoint::MusicBrowse,
+                    vdata.map(str::to_owned),
+                    ContinuationEndpoint::MusicBrowse,
                 ),
                 related_playlists: Paginator::new_ext(
                     None,
                     Vec::new(),
                     related_ctoken,
-                    None,
-                    crate::model::paginator::ContinuationEndpoint::MusicBrowse,
+                    vdata.map(str::to_owned),
+                    ContinuationEndpoint::MusicBrowse,
                 ),
             },
             warnings: map_res.warnings,

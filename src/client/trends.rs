@@ -2,7 +2,10 @@ use std::borrow::Cow;
 
 use crate::{
     error::{Error, ExtractionError},
-    model::{paginator::Paginator, VideoItem},
+    model::{
+        paginator::{ContinuationEndpoint, Paginator},
+        VideoItem,
+    },
     param::Language,
     serializer::MapResult,
 };
@@ -124,7 +127,7 @@ fn map_startpage_videos(
             mapper.items,
             mapper.ctoken,
             visitor_data,
-            crate::model::paginator::ContinuationEndpoint::Browse,
+            ContinuationEndpoint::Browse,
         ),
         warnings: mapper.warnings,
     }

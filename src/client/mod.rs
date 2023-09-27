@@ -1185,8 +1185,14 @@ impl RustyPipeQuery {
     /// - `ctype`: Client type (`Desktop`, `DesktopMusic`, `Android`, ...)
     /// - `method`: HTTP method
     /// - `endpoint`: YouTube API endpoint (`https://www.youtube.com/youtubei/v1/<XYZ>?key=...`)
-    async fn request_builder(&self, ctype: ClientType, endpoint: &str) -> RequestBuilder {
-        match ctype {
+    /// - `visitor_data`: YouTube visitor data cookie
+    async fn request_builder(
+        &self,
+        ctype: ClientType,
+        endpoint: &str,
+        visitor_data: Option<&str>,
+    ) -> RequestBuilder {
+        let mut r = match ctype {
             ClientType::Desktop => self
                 .client
                 .inner
@@ -1215,7 +1221,7 @@ impl RustyPipeQuery {
                 .header("X-YouTube-Client-Name", "67")
                 .header(
                     "X-YouTube-Client-Version",
-                    self.client.get_music_client_version().await,
+                        self.client.get_music_client_version().await
                 ),
             ClientType::TvHtml5Embed => self
                 .client
@@ -1258,7 +1264,11 @@ impl RustyPipeQuery {
                     ),
                 )
                 .header("X-Goog-Api-Format-Version", "2"),
+        };
+        if let Some(vdata) = self.opts.visitor_data.as_deref().or(visitor_data) {
+            r = r.header("X-Goog-EOM-Visitor-Id", vdata);
         }
+        r
     }
 
     /// Get a YouTube visitor data cookie, which is necessary for certain requests
@@ -1273,6 +1283,7 @@ impl RustyPipeQuery {
         &self,
         request: &Request,
         id: &str,
+        visitor_data: Option<&str>,
         deobf: Option<&DeobfData>,
     ) -> Result<RequestResult<M>, Error> {
         let response = self
@@ -1306,7 +1317,7 @@ impl RustyPipeQuery {
                     id,
                     self.opts.lang,
                     deobf,
-                    self.opts.visitor_data.as_deref(),
+                    self.opts.visitor_data.as_deref().or(visitor_data),
                 ) {
                     Ok(mapres) => Ok(mapres),
                     Err(e) => Err(e.into()),
@@ -1324,11 +1335,14 @@ impl RustyPipeQuery {
         &self,
         request: &Request,
         id: &str,
+        visitor_data: Option<&str>,
         deobf: Option<&DeobfData>,
     ) -> Result<RequestResult<M>, Error> {
         let mut last_resp = None;
         for n in 0..=self.client.inner.n_http_retries {
-            let resp = self.yt_request_attempt::<R, M>(request, id, deobf).await?;
+            let resp = self
+                .yt_request_attempt::<R, M>(request, id, visitor_data, deobf)
+                .await?;
 
             let err = match &resp.res {
                 Ok(_) => return Ok(resp),
@@ -1369,7 +1383,9 @@ impl RustyPipeQuery {
     /// - `method`: HTTP method
     /// - `endpoint`: YouTube API endpoint (`https://www.youtube.com/youtubei/v1/<XYZ>?key=...`)
     /// - `body`: Serializable request body to be sent in json format
+    /// - `visitor_data`: YouTube visitor data cookie
     /// - `deobf`: Deobfuscator (is passed to the mapper to deobfuscate stream URLs).
+    #[allow(clippy::too_many_arguments)]
     async fn execute_request_deobf<
         R: DeserializeOwned + MapResponse<M> + Debug,
         M,
@@ -1381,17 +1397,20 @@ impl RustyPipeQuery {
         id: &str,
         endpoint: &str,
         body: &B,
+        visitor_data: Option<&str>,
         deobf: Option<&DeobfData>,
     ) -> Result<M, Error> {
         tracing::debug!("getting {}({})", operation, id);
 
         let request = self
-            .request_builder(ctype, endpoint)
+            .request_builder(ctype, endpoint, visitor_data)
             .await
             .json(body)
             .build()?;
 
-        let req_res = self.yt_request::<R, M>(&request, id, deobf).await?;
+        let req_res = self
+            .yt_request::<R, M>(&request, id, visitor_data, deobf)
+            .await?;
 
         // Uncomment to debug response text
         // println!("{}", &req_res.body);
@@ -1477,11 +1496,55 @@ impl RustyPipeQuery {
         endpoint: &str,
         body: &B,
     ) -> Result<M, Error> {
-        self.execute_request_deobf::<R, M, B>(ctype, operation, id, endpoint, body, None)
+        self.execute_request_deobf::<R, M, B>(ctype, operation, id, endpoint, body, None, None)
             .await
     }
 
+    /// Execute a request to the YouTube API, then map the response.
+    ///
+    /// Creates a report in case of failure for easy debugging.
+    ///
+    /// # Parameters
+    /// - `ctype`: Client type (`Desktop`, `DesktopMusic`, `Android`, ...)
+    /// - `operation`: Name of the RustyPipe operation (only for reporting, e.g. `get_player`)
+    /// - `id`: ID of the requested entity (Video ID, Channel ID, ...).
+    ///   The ID is included in reports and is also passed to the mapper for validating the response.
+    ///   Set it to an empty string if you are not requesting an entity with an ID.
+    /// - `method`: HTTP method
+    /// - `endpoint`: YouTube API endpoint (`https://www.youtube.com/youtubei/v1/<XYZ>?key=...`)
+    /// - `body`: Serializable request body to be sent in json format
+    /// - `visitor_data`: YouTube visitor data cookie
+    async fn execute_request_vdata<
+        R: DeserializeOwned + MapResponse<M> + Debug,
+        M,
+        B: Serialize + ?Sized,
+    >(
+        &self,
+        ctype: ClientType,
+        operation: &str,
+        id: &str,
+        endpoint: &str,
+        body: &B,
+        visitor_data: Option<&str>,
+    ) -> Result<M, Error> {
+        self.execute_request_deobf::<R, M, B>(
+            ctype,
+            operation,
+            id,
+            endpoint,
+            body,
+            visitor_data,
+            None,
+        )
+        .await
+    }
+
     /// Execute a request to the YouTube API and return the response string
+    ///
+    /// # Parameters
+    /// - `ctype`: Client type (`Desktop`, `DesktopMusic`, `Android`, ...)
+    /// - `endpoint`: YouTube API endpoint (`https://www.youtube.com/youtubei/v1/<XYZ>?key=...`)
+    /// - `body`: Serializable request body to be sent in json format
     pub async fn raw<B: Serialize + ?Sized>(
         &self,
         ctype: ClientType,
@@ -1489,7 +1552,7 @@ impl RustyPipeQuery {
         body: &B,
     ) -> Result<String, Error> {
         let request = self
-            .request_builder(ctype, endpoint)
+            .request_builder(ctype, endpoint, None)
             .await
             .json(body)
             .build()?;
@@ -1519,13 +1582,13 @@ trait MapResponse<T> {
     ///   that the returned entity matches this ID and return an error instead.
     /// - `lang`: Language of the request. Used for mapping localized information like dates.
     /// - `deobf`: Deobfuscator (if passed to the `execute_request_deobf` method)
-    /// - `vdata`: Visitor data option of the client
+    /// - `visitor_data`: Visitor data option of the client
     fn map_response(
         self,
         id: &str,
         lang: Language,
         deobf: Option<&DeobfData>,
-        vdata: Option<&str>,
+        visitor_data: Option<&str>,
     ) -> Result<MapResult<T>, ExtractionError>;
 }
 

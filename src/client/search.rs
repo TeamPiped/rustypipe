@@ -4,7 +4,10 @@ use serde::Serialize;
 
 use crate::{
     error::{Error, ExtractionError},
-    model::{paginator::Paginator, SearchResult, YouTubeItem},
+    model::{
+        paginator::{ContinuationEndpoint, Paginator},
+        SearchResult, YouTubeItem,
+    },
     param::search_filter::SearchFilter,
 };
 
@@ -119,7 +122,7 @@ impl MapResponse<SearchResult> for response::Search {
                     mapper.items,
                     mapper.ctoken,
                     None,
-                    crate::model::paginator::ContinuationEndpoint::Search,
+                    ContinuationEndpoint::Search,
                 ),
                 corrected_query: mapper.corrected_query,
                 visitor_data: self
