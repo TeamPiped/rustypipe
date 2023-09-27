@@ -1,6 +1,6 @@
 #![warn(clippy::todo, clippy::dbg_macro)]
 
-use std::{path::PathBuf, time::Duration};
+use std::{path::PathBuf, str::FromStr, time::Duration};
 
 use anyhow::{Context, Result};
 use clap::{Parser, Subcommand, ValueEnum};
@@ -10,7 +10,7 @@ use reqwest::{Client, ClientBuilder};
 use rustypipe::{
     client::RustyPipe,
     model::{UrlTarget, VideoId},
-    param::{search_filter, ChannelVideoTab, StreamFilter},
+    param::{search_filter, ChannelVideoTab, Country, Language, StreamFilter},
 };
 use serde::Serialize;
 
@@ -25,6 +25,12 @@ struct Cli {
     /// YouTube visitor data cookie
     #[clap(long, global = true)]
     vdata: Option<String>,
+    /// YouTube content language
+    #[clap(long, global = true)]
+    lang: Option<String>,
+    /// YouTube content country
+    #[clap(long, global = true)]
+    country: Option<String>,
 }
 
 #[derive(Subcommand)]
@@ -403,6 +409,12 @@ async fn main() {
         storage_dir.push("rustypipe");
         std::fs::create_dir_all(&storage_dir).expect("could not create data dir");
         rp = rp.storage_dir(storage_dir);
+    }
+    if let Some(lang) = cli.lang {
+        rp = rp.lang(Language::from_str(&lang.to_ascii_lowercase()).expect("invalid language"));
+    }
+    if let Some(country) = cli.country {
+        rp = rp.country(Country::from_str(&country.to_ascii_uppercase()).expect("invalid country"));
     }
     let rp = rp.build().unwrap();
 

@@ -844,7 +844,11 @@ impl FromStr for Language {
                 Some(pos) => {
                     sub = &sub[..pos];
                 }
-                None => return Err(Error::Other("could not parse language `{s}`".into())),
+                None => {
+                    return Err(Error::Other(
+                        format!("could not parse language `{s}`").into(),
+                    ))
+                }
             }
         }
     }

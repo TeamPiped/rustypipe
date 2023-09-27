@@ -4,7 +4,10 @@ use time::OffsetDateTime;
 
 use crate::{
     error::{Error, ExtractionError},
-    model::{paginator::Paginator, ChannelId, Playlist, VideoItem},
+    model::{
+        paginator::{ContinuationEndpoint, Paginator},
+        ChannelId, Playlist, VideoItem,
+    },
     util::{self, timeago, TryRemove},
 };
 
@@ -15,18 +18,27 @@ impl RustyPipeQuery {
     #[tracing::instrument(skip(self))]
     pub async fn playlist<S: AsRef<str> + Debug>(&self, playlist_id: S) -> Result<Playlist, Error> {
         let playlist_id = playlist_id.as_ref();
-        let context = self.get_context(ClientType::Desktop, true, None).await;
+        // YTM playlists require visitor data for continuations to work
+        let visitor_data: Option<String> = if playlist_id.starts_with("RD") {
+            Some(self.get_visitor_data().await?)
+        } else {
+            None
+        };
+        let context = self
+            .get_context(ClientType::Desktop, true, visitor_data.as_deref())
+            .await;
         let request_body = QBrowse {
             context,
             browse_id: &format!("VL{playlist_id}"),
         };
 
-        self.execute_request::<response::Playlist, _, _>(
+        self.execute_request_vdata::<response::Playlist, _, _>(
             ClientType::Desktop,
             "playlist",
             playlist_id,
             "browse",
             &request_body,
+            visitor_data.as_deref(),
         )
         .await
     }
@@ -147,7 +159,13 @@ impl MapResponse<Playlist> for response::Playlist {
             c: Playlist {
                 id: playlist_id,
                 name,
-                videos: Paginator::new(Some(n_videos), mapper.items, mapper.ctoken),
+                videos: Paginator::new_ext(
+                    Some(n_videos),
+                    mapper.items,
+                    mapper.ctoken,
+                    vdata.map(str::to_owned),
+                    ContinuationEndpoint::Browse,
+                ),
                 video_count: n_videos,
                 thumbnail: thumbnails.into(),
                 description,
