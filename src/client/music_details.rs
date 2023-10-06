@@ -227,13 +227,6 @@ impl MapResponse<TrackDetails> for response::MusicDetails {
             .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no video item")))?;
         let mut track = map_queue_item(track_item, lang);
 
-        if track.c.id != id {
-            return Err(ExtractionError::WrongResult(format!(
-                "got wrong video id {}, expected {}",
-                track.c.id, id
-            )));
-        }
-
         let mut warnings = content.contents.warnings;
         warnings.append(&mut track.warnings);
 
