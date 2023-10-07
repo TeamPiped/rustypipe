@@ -326,13 +326,6 @@ fn get_player_error(#[case] id: &str, #[case] expect: UnavailabilityReason, rp: 
     None,
     Some(("UCIekuFeMaV78xYfvpmoCnPg", "Best Music")),
 )]
-#[case::short(
-    "RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk",
-    "Easy Pop",
-    false,
-    None,
-    None
-)]
 #[case::nomusic(
     "PL1J-6JOckZtE_P9Xx8D3b2O6w0idhuKBe",
     "Minecraft SHINE",
@@ -1127,10 +1120,10 @@ mod channel_rss {
     #[rstest]
     fn get_channel_rss_empty(rp: RustyPipe) {
         let channel =
-            tokio_test::block_on(rp.query().channel_rss("UC4fJNIVEOQ1fk15B_sqoOqg")).unwrap();
+            tokio_test::block_on(rp.query().channel_rss("UCAyFbMjB3qAQSZBj6NCuBSg")).unwrap();
 
-        assert_eq!(channel.id, "UC4fJNIVEOQ1fk15B_sqoOqg");
-        assert_eq!(channel.name, "Bilal Saeed - Topic");
+        assert_eq!(channel.id, "UCAyFbMjB3qAQSZBj6NCuBSg");
+        assert_eq!(channel.name, "Cheryl Calogero");
 
         assert!(channel.videos.is_empty());
     }

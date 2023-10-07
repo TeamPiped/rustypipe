@@ -134,12 +134,16 @@ where
         if c.is_ascii_digit() {
             buf.push(c);
         } else if !buf.is_empty() {
-            buf.parse::<F>().map_or((), |n| numbers.push(n));
+            if let Ok(n) = buf.parse::<F>() {
+                numbers.push(n);
+            }
             buf.clear();
         }
     }
     if !buf.is_empty() {
-        buf.parse::<F>().map_or((), |n| numbers.push(n));
+        if let Ok(n) = buf.parse::<F>() {
+            numbers.push(n);
+        }
     }
 
     numbers

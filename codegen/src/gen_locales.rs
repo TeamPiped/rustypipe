@@ -228,16 +228,15 @@ pub enum Country {
     .to_owned();
 
     for (code, native_name) in &languages {
-        let enum_name = code
-            .split('-')
-            .map(|c| {
-                format!(
-                    "{}{}",
-                    c[0..1].to_owned().to_uppercase(),
-                    c[1..].to_owned().to_lowercase()
-                )
-            })
-            .collect::<String>();
+        let enum_name = code.split('-').fold(String::new(), |mut output, c| {
+            let _ = write!(
+                output,
+                "{}{}",
+                c[0..1].to_owned().to_uppercase(),
+                c[1..].to_owned().to_lowercase()
+            );
+            output
+        });
 
         let en_name = lang_names.get(code).expect(code);
 
