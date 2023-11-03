@@ -19,7 +19,11 @@ use rand::Rng;
 use regex::Regex;
 use url::Url;
 
-use crate::{error::Error, param::Language, serializer::text::TextComponent};
+use crate::{
+    error::Error,
+    param::{Country, Language, COUNTRIES},
+    serializer::text::TextComponent,
+};
 
 pub static VIDEO_ID_REGEX: Lazy<Regex> = Lazy::new(|| Regex::new(r"^[A-Za-z0-9_-]{11}$").unwrap());
 pub static CHANNEL_ID_REGEX: Lazy<Regex> =
@@ -462,6 +466,14 @@ pub fn b64_decode<T: AsRef<[u8]>>(input: T) -> Result<Vec<u8>, base64::DecodeErr
     base64::engine::general_purpose::STANDARD.decode(input)
 }
 
+/// Get the country from its English name
+pub fn country_from_name(name: &str) -> Option<Country> {
+    COUNTRIES
+        .binary_search_by_key(&name, Country::name)
+        .ok()
+        .map(|i| COUNTRIES[i])
+}
+
 /// An iterator over the chars in a string (in str format)
 pub struct SplitChar<'a> {
     txt: &'a str,
@@ -683,6 +695,15 @@ pub(crate) mod tests {
     #[case("xy-ZZ", None)]
     fn parse_language(#[case] s: &str, #[case] expect: Option<Language>) {
         let res = Language::from_str(s).ok();
+        assert_eq!(res, expect);
+    }
+
+    #[rstest]
+    #[case("United States", Some(Country::Us))]
+    #[case("Zimbabwe", Some(Country::Zw))]
+    #[case("foobar", None)]
+    fn t_country_from_name(#[case] name: &str, #[case] expect: Option<Country>) {
+        let res = country_from_name(name);
         assert_eq!(res, expect);
     }
 }

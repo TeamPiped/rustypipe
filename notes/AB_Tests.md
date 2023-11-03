@@ -417,3 +417,18 @@ tab.
 
 Since the reel items dont include upload date information you can circumvent this new UI
 by using the mobile client. But that may change in the future.
+
+## [10] Channel About modal
+
+- **Encountered on:** 03.11.2023
+- **Impact:** 🟡 Medium
+- **Endpoint:** browse (channel info)
+
+![A/B test 10 screenshot](./_img/ab_10.png)
+
+YouTube replaced the *About* channel tab with a modal. This changes the way additional
+channel metadata has to be fetched.
+
+The new modal uses a continuation request with a token which can be easily generated.
+Attempts to fetch the old about tab with the A/B test enabled will lead to a redirect to
+the main tab.

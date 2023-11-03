@@ -1,7 +1,7 @@
 use serde::Deserialize;
 use serde_with::{serde_as, DefaultOnError};
 
-use crate::{model::UrlTarget, util};
+use crate::model::UrlTarget;
 
 /// navigation/resolve_url response model
 #[derive(Debug, Deserialize)]
@@ -278,16 +278,6 @@ impl NavigationEndpoint {
                 })
         } else {
             None
-        }
-    }
-
-    /// Get the sanitized URL from a url endpoint
-    pub(crate) fn url(&self) -> Option<String> {
-        match self {
-            NavigationEndpoint::Url { url_endpoint } => {
-                Some(util::sanitize_yt_url(&url_endpoint.url))
-            }
-            _ => None,
         }
     }
 }

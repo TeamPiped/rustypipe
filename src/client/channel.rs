@@ -1,20 +1,21 @@
 use std::fmt::Debug;
 
 use serde::Serialize;
+use time::OffsetDateTime;
 use url::Url;
 
 use crate::{
     error::{Error, ExtractionError},
     model::{
         paginator::{ContinuationEndpoint, Paginator},
-        Channel, ChannelInfo, PlaylistItem, VideoItem, YouTubeItem,
+        Channel, ChannelInfo, PlaylistItem, VideoItem,
     },
     param::{ChannelOrder, ChannelVideoTab, Language},
-    serializer::MapResult,
-    util::{self, ProtoBuilder},
+    serializer::{text::TextComponent, MapResult},
+    util::{self, timeago, ProtoBuilder},
 };
 
-use super::{response, ClientType, MapResponse, RustyPipeQuery, YTContext};
+use super::{response, ClientType, MapResponse, QContinuation, RustyPipeQuery, YTContext};
 
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
@@ -36,8 +37,6 @@ enum ChannelTab {
     Live,
     #[serde(rename = "EglwbGF5bGlzdHMgAQ%3D%3D")]
     Playlists,
-    #[serde(rename = "EgVhYm91dPIGBAoCEgA%3D")]
-    Info,
     #[serde(rename = "EgZzZWFyY2jyBgQKAloA")]
     Search,
 }
@@ -126,7 +125,7 @@ impl RustyPipeQuery {
         let visitor_data = Some(self.get_visitor_data().await?);
 
         self.continuation(
-            order_ctoken(channel_id.as_ref(), tab, order),
+            order_ctoken(channel_id.as_ref(), tab, order, &random_target()),
             ContinuationEndpoint::Browse,
             visitor_data.as_deref(),
         )
@@ -179,19 +178,17 @@ impl RustyPipeQuery {
     pub async fn channel_info<S: AsRef<str> + Debug>(
         &self,
         channel_id: S,
-    ) -> Result<Channel<ChannelInfo>, Error> {
+    ) -> Result<ChannelInfo, Error> {
         let channel_id = channel_id.as_ref();
-        let context = self.get_context(ClientType::Desktop, true, None).await;
-        let request_body = QChannel {
+        let context = self.get_context(ClientType::Desktop, false, None).await;
+        let request_body = QContinuation {
             context,
-            browse_id: channel_id,
-            params: ChannelTab::Info,
-            query: None,
+            continuation: &channel_info_ctoken(channel_id, &random_target()),
         };
 
-        self.execute_request::<response::Channel, _, _>(
+        self.execute_request::<response::ChannelAbout, _, _>(
             ClientType::Desktop,
-            "channel_info",
+            "channel_info2",
             channel_id,
             "browse",
             &request_body,
@@ -290,46 +287,64 @@ impl MapResponse<Channel<Paginator<PlaylistItem>>> for response::Channel {
     }
 }
 
-impl MapResponse<Channel<ChannelInfo>> for response::Channel {
+impl MapResponse<ChannelInfo> for response::ChannelAbout {
     fn map_response(
         self,
-        id: &str,
+        _id: &str,
         lang: Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
-        vdata: Option<&str>,
-    ) -> Result<MapResult<Channel<ChannelInfo>>, ExtractionError> {
-        let content = map_channel_content(id, self.contents, self.alerts)?;
-        let channel_data = map_channel(
-            MapChannelData {
-                header: self.header,
-                metadata: self.metadata,
-                microformat: self.microformat,
-                visitor_data: self
-                    .response_context
-                    .visitor_data
-                    .or_else(|| vdata.map(str::to_owned)),
-                has_shorts: content.has_shorts,
-                has_live: content.has_live,
-            },
-            id,
-            lang,
-        )?;
+        _visitor_data: Option<&str>,
+    ) -> Result<MapResult<ChannelInfo>, ExtractionError> {
+        let ep = self
+            .on_response_received_endpoints
+            .into_iter()
+            .next()
+            .ok_or(ExtractionError::InvalidData("no received endpoint".into()))?;
+        let continuations = ep.append_continuation_items_action.continuation_items;
+        let about = continuations
+            .c
+            .into_iter()
+            .next()
+            .ok_or(ExtractionError::InvalidData("no aboutChannel data".into()))?
+            .about_channel_renderer
+            .metadata
+            .about_channel_view_model;
+        let mut warnings = continuations.warnings;
 
-        let mut mapper = response::YouTubeListMapper::<YouTubeItem>::new(lang);
-        mapper.map_response(content.content);
-        let mut warnings = mapper.warnings;
-
-        let cinfo = mapper.channel_info.unwrap_or_else(|| {
-            warnings.push("no aboutFullMetadata".to_owned());
-            ChannelInfo {
-                create_date: None,
-                view_count: None,
-                links: Vec::new(),
-            }
-        });
+        let links = about
+            .links
+            .into_iter()
+            .filter_map(|l| {
+                let lv = l.channel_external_link_view_model;
+                if let TextComponent::Web { url, .. } = lv.link {
+                    Some((String::from(lv.title), util::sanitize_yt_url(&url)))
+                } else {
+                    None
+                }
+            })
+            .collect::<Vec<_>>();
 
         Ok(MapResult {
-            c: combine_channel_data(channel_data.c, cinfo),
+            c: ChannelInfo {
+                id: about.channel_id,
+                url: about.canonical_channel_url,
+                description: about.description,
+                subscriber_count: about
+                    .subscriber_count_text
+                    .and_then(|txt| util::parse_large_numstr_or_warn(&txt, lang, &mut warnings)),
+                video_count: about
+                    .video_count_text
+                    .and_then(|txt| util::parse_numeric_or_warn(&txt, &mut warnings)),
+                create_date: about.joined_date_text.and_then(|txt| {
+                    timeago::parse_textual_date_or_warn(lang, &txt, &mut warnings)
+                        .map(OffsetDateTime::date)
+                }),
+                view_count: about
+                    .view_count_text
+                    .and_then(|txt| util::parse_numeric_or_warn(&txt, &mut warnings)),
+                country: about.country.and_then(|c| util::country_from_name(&c)),
+                links,
+            },
             warnings,
         })
     }
@@ -549,18 +564,7 @@ fn combine_channel_data<T>(channel_data: Channel<()>, content: T) -> Channel<T> 
 }
 
 /// Get the continuation token to fetch channel videos in the given order
-fn order_ctoken(channel_id: &str, tab: ChannelVideoTab, order: ChannelOrder) -> String {
-    _order_ctoken(
-        channel_id,
-        tab,
-        order,
-        &format!("\n${}", util::random_uuid()),
-    )
-}
-
-/// Get the continuation token to fetch channel videos in the given order
-/// (fixed targetId for testing)
-fn _order_ctoken(
+fn order_ctoken(
     channel_id: &str,
     tab: ChannelVideoTab,
     order: ChannelOrder,
@@ -589,6 +593,32 @@ fn _order_ctoken(
     pb.to_base64()
 }
 
+/// Get the continuation token to fetch channel
+fn channel_info_ctoken(channel_id: &str, target_id: &str) -> String {
+    let mut pb_3 = ProtoBuilder::new();
+    pb_3.string(19, target_id);
+
+    let mut pb_110 = ProtoBuilder::new();
+    pb_110.embedded(3, pb_3);
+
+    let mut pbi = ProtoBuilder::new();
+    pbi.embedded(110, pb_110);
+
+    let mut pb_80226972 = ProtoBuilder::new();
+    pb_80226972.string(2, channel_id);
+    pb_80226972.string(3, &pbi.to_base64());
+
+    let mut pb = ProtoBuilder::new();
+    pb.embedded(80_226_972, pb_80226972);
+
+    pb.to_base64()
+}
+
+/// Create a random UUId to build continuation tokens
+fn random_target() -> String {
+    format!("\n${}", util::random_uuid())
+}
+
 #[cfg(test)]
 mod tests {
     use std::{fs::File, io::BufReader};
@@ -604,7 +634,7 @@ mod tests {
         util::tests::TESTFILES,
     };
 
-    use super::_order_ctoken;
+    use super::{channel_info_ctoken, order_ctoken};
 
     #[rstest]
     #[case::base("videos_base", "UC2DjFE7Xf11URZqWBigcVOQ")]
@@ -668,10 +698,10 @@ mod tests {
         let json_path = path!(*TESTFILES / "channel" / "channel_info.json");
         let json_file = File::open(json_path).unwrap();
 
-        let channel: response::Channel =
+        let channel: response::ChannelAbout =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res: MapResult<Channel<ChannelInfo>> = channel
-            .map_response("UC2DjFE7Xf11URZqWBigcVOQ", Language::En, None, None)
+        let map_res: MapResult<ChannelInfo> = channel
+            .map_response("UC2DjFE7Xf11U-RZqWBigcVOQ", Language::En, None, None)
             .unwrap();
 
         assert!(
@@ -683,10 +713,10 @@ mod tests {
     }
 
     #[test]
-    fn order_ctoken() {
+    fn t_order_ctoken() {
         let channel_id = "UCXuqSBlHAE6Xw-yeJA0Tunw";
 
-        let videos_popular_token = _order_ctoken(
+        let videos_popular_token = order_ctoken(
             channel_id,
             ChannelVideoTab::Videos,
             ChannelOrder::Popular,
@@ -694,7 +724,7 @@ mod tests {
         );
         assert_eq!(videos_popular_token, "4qmFsgJkEhhVQ1h1cVNCbEhBRTZYdy15ZUpBMFR1bncaSDhnWXVHaXg2S2hJbUNpUTJORFl4WkRkak9DMHdNREF3TFRJd05EQXRPRGRoWVMwd09EbGxNRGd5TjJVME1qQVlBZyUzRCUzRA%3D%3D");
 
-        let shorts_popular_token = _order_ctoken(
+        let shorts_popular_token = order_ctoken(
             channel_id,
             ChannelVideoTab::Shorts,
             ChannelOrder::Popular,
@@ -702,12 +732,20 @@ mod tests {
         );
         assert_eq!(shorts_popular_token, "4qmFsgJkEhhVQ1h1cVNCbEhBRTZYdy15ZUpBMFR1bncaSDhnWXVHaXhTS2hJbUNpUTJORFkzT1dabVlpMHdNREF3TFRJMllqTXRZVEZpWkMwMU9ESTBNamxrTW1NM09UUVlBZyUzRCUzRA%3D%3D");
 
-        let live_popular_token = _order_ctoken(
+        let live_popular_token = order_ctoken(
             channel_id,
             ChannelVideoTab::Live,
             ChannelOrder::Popular,
             "\n$64693069-0000-2a1e-8c7d-582429bd5ba8",
         );
         assert_eq!(live_popular_token, "4qmFsgJkEhhVQ1h1cVNCbEhBRTZYdy15ZUpBMFR1bncaSDhnWXVHaXh5S2hJbUNpUTJORFk1TXpBMk9TMHdNREF3TFRKaE1XVXRPR00zWkMwMU9ESTBNamxpWkRWaVlUZ1lBZyUzRCUzRA%3D%3D");
+    }
+
+    #[test]
+    fn t_channel_info_ctoken() {
+        let channel_id = "UCh8gHdtzO2tXd593_bjErWg";
+
+        let token = channel_info_ctoken(channel_id, "\n$655b339a-0000-20b9-92dc-582429d254b4");
+        assert_eq!(token, "4qmFsgJgEhhVQ2g4Z0hkdHpPMnRYZDU5M19iakVyV2caRDhnWXJHaW1hQVNZS0pEWTFOV0l6TXpsaExUQXdNREF0TWpCaU9TMDVNbVJqTFRVNE1qUXlPV1F5TlRSaU5BJTNEJTNE");
     }
 }

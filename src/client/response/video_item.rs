@@ -6,15 +6,15 @@ use serde_with::{
 };
 use time::OffsetDateTime;
 
-use super::{url_endpoint::NavigationEndpoint, ChannelBadge, ContinuationEndpoint, Thumbnails};
+use super::{ChannelBadge, ContinuationEndpoint, Thumbnails};
 use crate::{
     model::{
-        Channel, ChannelId, ChannelInfo, ChannelItem, ChannelTag, PlaylistItem, Verification,
-        VideoItem, YouTubeItem,
+        Channel, ChannelId, ChannelItem, ChannelTag, PlaylistItem, Verification, VideoItem,
+        YouTubeItem,
     },
     param::Language,
     serializer::{
-        text::{AccessibilityText, AttributedText, Text, TextComponent},
+        text::{AccessibilityText, Text, TextComponent},
         MapResult,
     },
     util::{self, timeago, TryRemove},
@@ -47,9 +47,6 @@ pub(crate) enum YouTubeListItem {
         #[serde_as(as = "Text")]
         corrected_query: String,
     },
-
-    /// Channel metadata (about tab)
-    ChannelAboutFullMetadataRenderer(ChannelFullMetadata),
 
     /// Contains video on startpage
     ///
@@ -358,47 +355,6 @@ pub(crate) struct ReelPlayerHeaderRenderer {
     pub timestamp_text: String,
 }
 
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct ChannelFullMetadata {
-    #[serde_as(as = "Text")]
-    pub joined_date_text: String,
-    #[serde_as(as = "Option<Text>")]
-    pub view_count_text: Option<String>,
-    #[serde(default)]
-    #[serde_as(as = "VecSkipError<_>")]
-    pub primary_links: Vec<PrimaryLink>,
-    #[serde(default)]
-    // #[serde_as(as = "VecSkipError<_>")]
-    pub links: Vec<ExternalLink>,
-}
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct PrimaryLink {
-    #[serde_as(as = "Text")]
-    pub title: String,
-    pub navigation_endpoint: NavigationEndpoint,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct ExternalLink {
-    pub channel_external_link_view_model: ExternalLinkInner,
-}
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct ExternalLinkInner {
-    #[serde_as(as = "AttributedText")]
-    pub title: TextComponent,
-    #[serde_as(as = "AttributedText")]
-    pub link: TextComponent,
-}
-
 trait IsLive {
     fn is_live(&self) -> bool;
 }
@@ -446,7 +402,6 @@ pub(crate) struct YouTubeListMapper<T> {
     pub warnings: Vec<String>,
     pub ctoken: Option<String>,
     pub corrected_query: Option<String>,
-    pub channel_info: Option<ChannelInfo>,
 }
 
 impl<T> YouTubeListMapper<T> {
@@ -458,7 +413,6 @@ impl<T> YouTubeListMapper<T> {
             warnings: Vec::new(),
             ctoken: None,
             corrected_query: None,
-            channel_info: None,
         }
     }
 
@@ -476,7 +430,6 @@ impl<T> YouTubeListMapper<T> {
             warnings,
             ctoken: None,
             corrected_query: None,
-            channel_info: None,
         }
     }
 
@@ -743,32 +696,6 @@ impl YouTubeListMapper<YouTubeItem> {
             } => self.ctoken = Some(continuation_endpoint.continuation_command.token),
             YouTubeListItem::ShowingResultsForRenderer { corrected_query } => {
                 self.corrected_query = Some(corrected_query);
-            }
-            YouTubeListItem::ChannelAboutFullMetadataRenderer(meta) => {
-                let mut links = meta
-                    .primary_links
-                    .into_iter()
-                    .filter_map(|l| l.navigation_endpoint.url().map(|url| (l.title, url)))
-                    .collect::<Vec<_>>();
-                for l in meta.links {
-                    let l = l.channel_external_link_view_model;
-                    if let TextComponent::Web { url, .. } = l.link {
-                        links.push((l.title.into(), util::sanitize_yt_url(&url)));
-                    }
-                }
-
-                self.channel_info = Some(ChannelInfo {
-                    create_date: timeago::parse_textual_date_or_warn(
-                        self.lang,
-                        &meta.joined_date_text,
-                        &mut self.warnings,
-                    )
-                    .map(OffsetDateTime::date),
-                    view_count: meta
-                        .view_count_text
-                        .and_then(|txt| util::parse_numeric_or_warn(&txt, &mut self.warnings)),
-                    links,
-                });
             }
             YouTubeListItem::RichItemRenderer { content } => {
                 self.map_item(*content);

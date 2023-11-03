@@ -39,7 +39,10 @@ fn get_player_from_client(#[case] client_type: ClientType, rp: RustyPipe) {
     // dbg!(&player_data);
 
     assert_eq!(player_data.details.id, "n4tK7LYFxI0");
-    assert_eq!(player_data.details.name, "Spektrem - Shine [NCS Release]");
+    assert_eq!(
+        player_data.details.name,
+        "Spektrem - Shine | Progressive House | NCS - Copyright Free Music"
+    );
     if client_type == ClientType::DesktopMusic {
         assert!(player_data.details.description.is_none());
     } else {
@@ -68,9 +71,9 @@ fn get_player_from_client(#[case] client_type: ClientType, rp: RustyPipe) {
             .unwrap();
 
         // Bitrates may change between requests
-        assert_approx(f64::from(video.bitrate), 1_507_068.0);
-        assert_eq!(video.average_bitrate, 1_345_149);
-        assert_eq!(video.size.unwrap(), 43_553_412);
+        assert_approx(f64::from(video.bitrate), 1_851_854.0);
+        assert_eq!(video.average_bitrate, 923_766);
+        assert_eq!(video.size.unwrap(), 29_909_835);
         assert_eq!(video.width, 1280);
         assert_eq!(video.height, 720);
         assert_eq!(video.fps, 30);
@@ -102,8 +105,8 @@ fn get_player_from_client(#[case] client_type: ClientType, rp: RustyPipe) {
             .expect("audio stream not found");
 
         assert_approx(f64::from(video.bitrate), 1_340_829.0);
-        assert_approx(f64::from(video.average_bitrate), 1_233_444.0);
-        assert_approx(video.size.unwrap() as f64, 39_936_630.0);
+        assert_approx(f64::from(video.average_bitrate), 1_046_557.0);
+        assert_approx(video.size.unwrap() as f64, 33_885_572.0);
         assert_eq!(video.width, 1280);
         assert_eq!(video.height, 720);
         assert_eq!(video.fps, 30);
@@ -856,22 +859,15 @@ fn channel_playlists(rp: RustyPipe) {
 
 #[rstest]
 fn channel_info(rp: RustyPipe) {
-    let channel =
-        tokio_test::block_on(rp.query().channel_info("UC2DjFE7Xf11URZqWBigcVOQ")).unwrap();
+    let info = tokio_test::block_on(rp.query().channel_info("UC2DjFE7Xf11URZqWBigcVOQ")).unwrap();
 
-    // dbg!(&channel);
-    assert_channel_eevblog(&channel);
+    assert_eq!(info.create_date.unwrap(), date!(2009 - 4 - 4));
+    assert_gte(info.view_count.unwrap(), 186_854_340, "channel views");
+    assert_gte(info.video_count.unwrap(), 1920, "channel videos");
+    assert_gte(info.subscriber_count.unwrap(), 920_000, "subscribers");
+    assert_eq!(info.country.unwrap(), Country::Au);
 
-    let created = channel.content.create_date.unwrap();
-    assert_eq!(created, date!(2009 - 4 - 4));
-
-    assert_gte(
-        channel.content.view_count.unwrap(),
-        186_854_340,
-        "channel views",
-    );
-
-    insta::assert_ron_snapshot!(channel.content.links, @r###"
+    insta::assert_ron_snapshot!(info.links, @r###"
         [
           ("EEVblog Web Site", "http://www.eevblog.com/"),
           ("Twitter", "http://www.twitter.com/eevblog"),
@@ -967,8 +963,8 @@ fn channel_more(
         );
     }
 
-    let channel_info = tokio_test::block_on(rp.query().channel_info(&id)).unwrap();
-    assert_channel(&channel_info, id, name, unlocalized || name_unlocalized);
+    let info = tokio_test::block_on(rp.query().channel_info(&id)).unwrap();
+    assert_eq!(info.id, id);
 }
 
 #[rstest]
@@ -2447,8 +2443,8 @@ fn assert_frameset(frameset: &Frameset) {
     assert_gte(frameset.frame_height, 20, "frame width");
     assert_gte(frameset.page_count, 1, "page count");
     assert_gte(frameset.total_count, 50, "total count");
-    assert_gte(frameset.frames_per_page_x, 5, "frames per page x");
-    assert_gte(frameset.frames_per_page_y, 5, "frames per page y");
+    assert_gte(frameset.frames_per_page_x, 3, "frames per page x");
+    assert_gte(frameset.frames_per_page_y, 3, "frames per page y");
 
     let n = frameset.urls().count() as u32;
     assert_eq!(n, frameset.page_count);

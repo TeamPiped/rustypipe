@@ -2,10 +2,10 @@ use serde::Deserialize;
 use serde_with::{rust::deserialize_ignore_any, serde_as, DefaultOnError, VecSkipError};
 
 use super::{
-    video_item::YouTubeListRenderer, Alert, ChannelBadge, ContentsRenderer, ResponseContext,
-    Thumbnails, TwoColumnBrowseResults,
+    video_item::YouTubeListRenderer, Alert, ChannelBadge, ContentsRenderer, ContinuationActionWrap,
+    ResponseContext, Thumbnails, TwoColumnBrowseResults,
 };
-use crate::serializer::text::Text;
+use crate::serializer::text::{AttributedText, Text, TextComponent};
 
 #[serde_as]
 #[derive(Debug, Deserialize)]
@@ -144,4 +144,67 @@ pub(crate) struct Microformat {
 pub(crate) struct MicroformatDataRenderer {
     #[serde(default)]
     pub tags: Vec<String>,
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ChannelAbout {
+    #[serde_as(as = "VecSkipError<_>")]
+    pub on_response_received_endpoints: Vec<ContinuationActionWrap<AboutChannelRendererWrap>>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct AboutChannelRendererWrap {
+    pub about_channel_renderer: AboutChannelRenderer,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct AboutChannelRenderer {
+    pub metadata: ChannelMetadata,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ChannelMetadata {
+    pub about_channel_view_model: ChannelMetadataView,
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ChannelMetadataView {
+    pub channel_id: String,
+    pub canonical_channel_url: String,
+    pub country: Option<String>,
+    #[serde(default)]
+    pub description: String,
+    #[serde_as(as = "Option<Text>")]
+    pub joined_date_text: Option<String>,
+    #[serde_as(as = "Option<Text>")]
+    pub subscriber_count_text: Option<String>,
+    #[serde_as(as = "Option<Text>")]
+    pub video_count_text: Option<String>,
+    #[serde_as(as = "Option<Text>")]
+    pub view_count_text: Option<String>,
+    #[serde(default)]
+    pub links: Vec<ExternalLink>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ExternalLink {
+    pub channel_external_link_view_model: ExternalLinkInner,
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ExternalLinkInner {
+    #[serde_as(as = "AttributedText")]
+    pub title: TextComponent,
+    #[serde_as(as = "AttributedText")]
+    pub link: TextComponent,
 }

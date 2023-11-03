@@ -16,6 +16,7 @@ pub(crate) mod video_details;
 pub(crate) mod video_item;
 
 pub(crate) use channel::Channel;
+pub(crate) use channel::ChannelAbout;
 pub(crate) use music_artist::MusicArtist;
 pub(crate) use music_artist::MusicArtistAlbums;
 pub(crate) use music_charts::MusicCharts;
@@ -208,7 +209,7 @@ pub(crate) struct Continuation {
         alias = "onResponseReceivedEndpoints"
     )]
     #[serde_as(as = "Option<VecSkipError<_>>")]
-    pub on_response_received_actions: Option<Vec<ContinuationActionWrap>>,
+    pub on_response_received_actions: Option<Vec<ContinuationActionWrap<YouTubeListItem>>>,
     /// Used for channel video rich grid renderer
     ///
     /// A/B test seen on 19.10.2022
@@ -217,15 +218,15 @@ pub(crate) struct Continuation {
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub(crate) struct ContinuationActionWrap {
+pub(crate) struct ContinuationActionWrap<T> {
     #[serde(alias = "reloadContinuationItemsCommand")]
-    pub append_continuation_items_action: ContinuationAction,
+    pub append_continuation_items_action: ContinuationAction<T>,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub(crate) struct ContinuationAction {
-    pub continuation_items: MapResult<Vec<YouTubeListItem>>,
+pub(crate) struct ContinuationAction<T> {
+    pub continuation_items: MapResult<Vec<T>>,
 }
 
 #[derive(Debug, Deserialize)]

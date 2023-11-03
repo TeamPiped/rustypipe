@@ -44,13 +44,14 @@ use crate::{
 #[serde(untagged)]
 pub(crate) enum Text {
     Simple {
-        #[serde(alias = "simpleText")]
+        #[serde(alias = "simpleText", alias = "content")]
         text: String,
     },
     Multiple {
         #[serde_as(as = "Vec<Text>")]
         runs: Vec<String>,
     },
+    Str(String),
 }
 
 impl<'de> DeserializeAs<'de, String> for Text {
@@ -60,7 +61,7 @@ impl<'de> DeserializeAs<'de, String> for Text {
     {
         let text = Text::deserialize(deserializer)?;
         match text {
-            Text::Simple { text } => Ok(text),
+            Text::Simple { text } | Text::Str(text) => Ok(text),
             Text::Multiple { runs } => Ok(runs.join("")),
         }
     }
@@ -73,7 +74,7 @@ impl<'de> DeserializeAs<'de, Vec<String>> for Text {
     {
         let text = Text::deserialize(deserializer)?;
         match text {
-            Text::Simple { text } => Ok(vec![text]),
+            Text::Simple { text } | Text::Str(text) => Ok(vec![text]),
             Text::Multiple { runs } => Ok(runs),
         }
     }
@@ -542,6 +543,7 @@ mod tests {
         }"#,
         vec!["Abo für ", "MBCkpop", " beenden?"]
     )]
+    #[case(r#"{"txt":"Hello World"}"#, vec!["Hello World"])]
     fn t_deserialize_text(#[case] test_json: &str, #[case] exp: Vec<&str>) {
         #[serde_as]
         #[derive(Deserialize)]

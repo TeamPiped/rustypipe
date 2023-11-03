@@ -26,6 +26,7 @@ pub enum ABTest {
     ShortDateFormat = 7,
     TrackViewcount = 8,
     PlaylistsForShorts = 9,
+    ChannelAboutModal = 10,
 }
 
 const TESTS_TO_RUN: [ABTest; 3] = [
@@ -98,6 +99,7 @@ pub async fn run_test(
                     ABTest::ShortDateFormat => short_date_format(&query).await,
                     ABTest::PlaylistsForShorts => playlists_for_shorts(&query).await,
                     ABTest::TrackViewcount => track_viewcount(&query).await,
+                    ABTest::ChannelAboutModal => channel_about_modal(&query).await,
                 }
                 .unwrap();
                 pb.inc(1);
@@ -259,6 +261,16 @@ pub async fn short_date_format(rp: &RustyPipeQuery) -> Result<bool> {
     }))
 }
 
+pub async fn playlists_for_shorts(rp: &RustyPipeQuery) -> Result<bool> {
+    let playlist = rp.playlist("UUSHh8gHdtzO2tXd593_bjErWg").await?;
+    let v1 = playlist
+        .videos
+        .items
+        .first()
+        .ok_or_else(|| anyhow::anyhow!("no videos"))?;
+    Ok(v1.publish_date_txt.is_none())
+}
+
 pub async fn track_viewcount(rp: &RustyPipeQuery) -> Result<bool> {
     let res = rp.music_search("lieblingsmensch namika").await?;
 
@@ -273,12 +285,19 @@ pub async fn track_viewcount(rp: &RustyPipeQuery) -> Result<bool> {
     Ok(track.view_count.is_some())
 }
 
-pub async fn playlists_for_shorts(rp: &RustyPipeQuery) -> Result<bool> {
-    let playlist = rp.playlist("UUSHh8gHdtzO2tXd593_bjErWg").await?;
-    let v1 = playlist
-        .videos
-        .items
-        .first()
-        .ok_or_else(|| anyhow::anyhow!("no videos"))?;
-    Ok(v1.publish_date_txt.is_none())
+pub async fn channel_about_modal(rp: &RustyPipeQuery) -> Result<bool> {
+    let id = "UC2DjFE7Xf11URZqWBigcVOQ";
+    let res = rp
+        .raw(
+            ClientType::Desktop,
+            "browse",
+            &QBrowse {
+                context: rp.get_context(ClientType::Desktop, true, None).await,
+                browse_id: id,
+                params: None,
+            },
+        )
+        .await
+        .unwrap();
+    Ok(!res.contains("\"EgVhYm91dPIGBAoCEgA%3D\""))
 }

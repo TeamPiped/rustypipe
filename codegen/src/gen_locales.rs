@@ -202,11 +202,20 @@ pub enum Country {
     .to_owned();
 
     let mut code_lang_array = format!(
-        "/// Array of all available languages\npub const LANGUAGES: [Language; {}] = [\n",
+        r#"/// Array of all available languages
+/// The languages are sorted by their native names. This array can be used to display
+/// a language selection or to get the language code from a language name using binary search.
+pub const LANGUAGES: [Language; {}] = [
+"#,
         languages.len()
     );
     let mut code_country_array = format!(
-        "/// Array of all available countries\npub const COUNTRIES: [Country; {}] = [\n",
+        r#"/// Array of all available countries
+///
+/// The countries are sorted by their english names. This array can be used to display
+/// a country selection or to get the country code from a country name using binary search.
+pub const COUNTRIES: [Country; {}] = [
+"#,
         countries.len()
     );
 
@@ -252,9 +261,6 @@ pub enum Country {
         code_langs += &enum_name;
         code_langs += ",\n";
 
-        // Language array
-        writeln!(code_lang_array, "    Language::{enum_name},").unwrap();
-
         // Language names
         writeln!(
             code_lang_names,
@@ -264,6 +270,24 @@ pub enum Country {
     }
     code_langs += "}\n";
 
+    // Language array
+    let languages_by_name = languages
+        .iter()
+        .map(|(k, v)| (v, k))
+        .collect::<BTreeMap<_, _>>();
+    for code in languages_by_name.values() {
+        let enum_name = code.split('-').fold(String::new(), |mut output, c| {
+            let _ = write!(
+                output,
+                "{}{}",
+                c[0..1].to_owned().to_uppercase(),
+                c[1..].to_owned().to_lowercase()
+            );
+            output
+        });
+        writeln!(code_lang_array, "    Language::{enum_name},").unwrap();
+    }
+
     for (c, n) in &countries {
         let enum_name = c[0..1].to_owned().to_uppercase() + &c[1..].to_owned().to_lowercase();
 
@@ -271,15 +295,22 @@ pub enum Country {
         writeln!(code_countries, "    /// {n}").unwrap();
         writeln!(code_countries, "    {enum_name},").unwrap();
 
-        // Country array
-        writeln!(code_country_array, "    Country::{enum_name},").unwrap();
-
         // Country names
         writeln!(
             code_country_names,
             "            Country::{enum_name} => \"{n}\","
         )
         .unwrap();
+    }
+
+    // Country array
+    let countries_by_name = countries
+        .iter()
+        .map(|(k, v)| (v, k))
+        .collect::<BTreeMap<_, _>>();
+    for c in countries_by_name.values() {
+        let enum_name = c[0..1].to_owned().to_uppercase() + &c[1..].to_owned().to_lowercase();
+        writeln!(code_country_array, "    Country::{enum_name},").unwrap();
     }
 
     // Add Country::Zz / Global

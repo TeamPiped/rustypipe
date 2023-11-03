@@ -738,16 +738,31 @@ pub struct Channel<T> {
     pub content: T,
 }
 
-/// Additional channel metadata fetched from the "About" tab.
+/// Detailed channel information
 #[serde_as]
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[non_exhaustive]
 pub struct ChannelInfo {
+    /// Unique YouTube Channel-ID (e.g. `UC-lHJZR3Gqxm24_Vd_AJ5Yw`)
+    pub id: String,
+    /// Channel URL
+    pub url: String,
+    /// Channel description text
+    pub description: String,
+    /// Channel subscriber count
+    ///
+    /// [`None`] if the subscriber count was hidden by the owner
+    /// or could not be parsed.
+    pub subscriber_count: Option<u64>,
+    /// Channel video count
+    pub video_count: Option<u64>,
     /// Channel creation date
     #[serde_as(as = "Option<DateYmd>")]
     pub create_date: Option<Date>,
     /// Channel view count
     pub view_count: Option<u64>,
+    /// Channel origin country
+    pub country: Option<Country>,
     /// Links to other websites or social media profiles
     pub links: Vec<(String, String)>,
 }
