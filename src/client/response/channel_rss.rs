@@ -1,8 +1,6 @@
 use serde::Deserialize;
 use time::OffsetDateTime;
 
-use crate::util;
-
 #[derive(Debug, Deserialize)]
 pub(crate) struct ChannelRss {
     #[serde(rename = "channelId")]
@@ -77,55 +75,6 @@ impl From<Thumbnail> for crate::model::Thumbnail {
             url: tn.url,
             width: tn.width,
             height: tn.height,
-        }
-    }
-}
-
-impl From<ChannelRss> for crate::model::ChannelRss {
-    fn from(feed: ChannelRss) -> Self {
-        let id = if feed.channel_id.is_empty() {
-            feed.entry
-                .iter()
-                .find_map(|entry| {
-                    Some(entry.channel_id.as_str())
-                        .filter(|id| id.is_empty())
-                        .map(str::to_owned)
-                })
-                .or_else(|| {
-                    feed.author
-                        .uri
-                        .strip_prefix("https://www.youtube.com/channel/")
-                        .and_then(|id| {
-                            if util::CHANNEL_ID_REGEX.is_match(id) {
-                                Some(id.to_owned())
-                            } else {
-                                None
-                            }
-                        })
-                })
-                .unwrap_or_default()
-        } else {
-            feed.channel_id
-        };
-
-        Self {
-            id,
-            name: feed.title,
-            videos: feed
-                .entry
-                .into_iter()
-                .map(|item| crate::model::ChannelRssVideo {
-                    id: item.video_id,
-                    name: item.title,
-                    description: item.media_group.description,
-                    thumbnail: item.media_group.thumbnail.into(),
-                    publish_date: item.published,
-                    update_date: item.updated,
-                    view_count: item.media_group.community.statistics.views,
-                    like_count: item.media_group.community.rating.count,
-                })
-                .collect(),
-            create_date: feed.create_date,
         }
     }
 }
