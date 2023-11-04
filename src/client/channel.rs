@@ -291,10 +291,14 @@ impl MapResponse<ChannelInfo> for response::ChannelAbout {
     fn map_response(
         self,
         _id: &str,
-        lang: Language,
+        _lang: Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
         _visitor_data: Option<&str>,
     ) -> Result<MapResult<ChannelInfo>, ExtractionError> {
+        // Channel info is always fetched in English. There is no localized data there
+        // and it allows parsing the country name.
+        let lang = Language::En;
+
         let ep = self
             .on_response_received_endpoints
             .into_iter()
