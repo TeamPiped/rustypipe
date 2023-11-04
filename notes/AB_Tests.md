@@ -432,3 +432,35 @@ channel metadata has to be fetched.
 The new modal uses a continuation request with a token which can be easily generated.
 Attempts to fetch the old about tab with the A/B test enabled will lead to a redirect to
 the main tab.
+
+## [11] Like-Button viewmodel
+
+- **Encountered on:** 03.11.2023
+- **Impact:** 🟢 Low
+- **Endpoint:** next
+
+YouTube introduced an updated date model for the like/dislike buttons. The new model
+looks needlessly complex but contains the same parsing-relevant data as the old model
+(accessibility text to get like count).
+
+```json
+{
+  "segmentedLikeDislikeButtonViewModel": {
+    "likeButtonViewModel": {
+      "likeButtonViewModel": {
+        "toggleButtonViewModel": {
+          "toggleButtonViewModel": {
+            "defaultButtonViewModel": {
+              "buttonViewModel": {
+                "iconName": "LIKE",
+                "title": "4.2M",
+                "accessibilityText": "like this video along with 4,209,059 other people"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```

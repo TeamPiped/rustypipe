@@ -147,6 +147,46 @@ pub(crate) enum TopLevelButton {
     SegmentedLikeDislikeButtonRenderer {
         like_button: ToggleButtonWrap,
     },
+    #[serde(rename_all = "camelCase")]
+    SegmentedLikeDislikeButtonViewModel {
+        like_button_view_model: LikeButtonViewModelWrap,
+    },
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct LikeButtonViewModelWrap {
+    pub like_button_view_model: LikeButtonViewModel,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct LikeButtonViewModel {
+    pub toggle_button_view_model: ToggleButtonViewModelWrap,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ToggleButtonViewModelWrap {
+    pub toggle_button_view_model: ToggleButtonViewModel,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ToggleButtonViewModel {
+    pub default_button_view_model: ButtonViewModelWrap,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ButtonViewModelWrap {
+    pub button_view_model: ButtonViewModel,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ButtonViewModel {
+    pub accessibility_text: String,
 }
 
 /// Like/Dislike button

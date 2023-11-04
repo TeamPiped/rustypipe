@@ -27,6 +27,7 @@ pub enum ABTest {
     TrackViewcount = 8,
     PlaylistsForShorts = 9,
     ChannelAboutModal = 10,
+    LikeButtonViewmodel = 11,
 }
 
 const TESTS_TO_RUN: [ABTest; 3] = [
@@ -100,6 +101,7 @@ pub async fn run_test(
                     ABTest::PlaylistsForShorts => playlists_for_shorts(&query).await,
                     ABTest::TrackViewcount => track_viewcount(&query).await,
                     ABTest::ChannelAboutModal => channel_about_modal(&query).await,
+                    ABTest::LikeButtonViewmodel => like_button_viewmodel(&query).await,
                 }
                 .unwrap();
                 pb.inc(1);
@@ -300,4 +302,20 @@ pub async fn channel_about_modal(rp: &RustyPipeQuery) -> Result<bool> {
         .await
         .unwrap();
     Ok(!res.contains("\"EgVhYm91dPIGBAoCEgA%3D\""))
+}
+
+pub async fn like_button_viewmodel(rp: &RustyPipeQuery) -> Result<bool> {
+    let res = rp
+        .raw(
+            ClientType::Desktop,
+            "next",
+            &QVideo {
+                context: rp.get_context(ClientType::Desktop, true, None).await,
+                video_id: "ZeerrnuLi5E",
+                content_check_ok: true,
+                racy_check_ok: true,
+            },
+        )
+        .await?;
+    Ok(res.contains("\"segmentedLikeDislikeButtonViewModel\""))
 }

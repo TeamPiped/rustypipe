@@ -159,17 +159,20 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                     video_actions,
                     date_text,
                 }) => {
-                    let like_btn = video_actions
+                    let like_text = video_actions
                     .menu_renderer
                     .top_level_buttons
                     .into_iter()
                     .find_map(|button| {
-                        let btn = match button {
-                            response::video_details::TopLevelButton::ToggleButtonRenderer(btn) => btn,
-                            response::video_details::TopLevelButton::SegmentedLikeDislikeButtonRenderer { like_button } => like_button.toggle_button_renderer,
+                        let (icon, text) = match button {
+                            response::video_details::TopLevelButton::ToggleButtonRenderer(btn) => (btn.default_icon.icon_type, btn.accessibility_data),
+                            response::video_details::TopLevelButton::SegmentedLikeDislikeButtonRenderer { like_button } => (like_button.toggle_button_renderer.default_icon.icon_type, like_button.toggle_button_renderer.accessibility_data),
+                            response::video_details::TopLevelButton::SegmentedLikeDislikeButtonViewModel { like_button_view_model } => {
+                                (IconType::Like, like_button_view_model.like_button_view_model.toggle_button_view_model.toggle_button_view_model.default_button_view_model.button_view_model.accessibility_text)
+                            },
                         };
-                        match btn.default_icon.icon_type {
-                            IconType::Like => Some(btn),
+                        match icon {
+                            IconType::Like => Some(text),
                             _ => None
                         }
                     });
@@ -184,7 +187,7 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                             .unwrap_or_default(),
                         // accessibility_data contains no digits if the like count is hidden,
                         // so we ignore parse errors here for now
-                        like_btn.and_then(|btn| util::parse_numeric(&btn.accessibility_data).ok()),
+                        like_text.and_then(|txt| util::parse_numeric(&txt).ok()),
                         date_text.as_deref().and_then(|txt| {
                             timeago::parse_textual_date_or_warn(lang, txt, &mut warnings)
                         }),
