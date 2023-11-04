@@ -41,6 +41,8 @@ pub const DOT_SEPARATOR: &str = " • ";
 pub const VARIOUS_ARTISTS: &str = "Various Artists";
 pub const PLAYLIST_ID_ALBUM_PREFIX: &str = "OLAK";
 pub const ARTIST_DISCOGRAPHY_PREFIX: &str = "MPAD";
+pub const PODCAST_PLAYLIST_PREFIX: &str = "MPSP";
+pub const PODCAST_EPISODE_PREFIX: &str = "MPED";
 
 const CONTENT_PLAYBACK_NONCE_ALPHABET: &[u8; 64] =
     b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";
@@ -472,6 +474,11 @@ pub fn country_from_name(name: &str) -> Option<Country> {
         .binary_search_by_key(&name, Country::name)
         .ok()
         .map(|i| COUNTRIES[i])
+}
+
+/// Strip prefix from string if presend
+pub fn strip_prefix(s: &str, prefix: &str) -> String {
+    s.strip_prefix(prefix).unwrap_or(s).to_string()
 }
 
 /// An iterator over the chars in a string (in str format)

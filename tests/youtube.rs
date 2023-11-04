@@ -1664,7 +1664,9 @@ fn music_search_tracks(rp: RustyPipe, unlocalized: bool) {
         .items
         .iter()
         .find(|a| a.id == "BL-aIpCLWnU")
-        .unwrap();
+        .unwrap_or_else(|| {
+            panic!("could not find track, got {:#?}", &res.items.items);
+        });
 
     assert_eq!(track.name, "Black Mamba");
     assert!(!track.cover.is_empty(), "got no cover");
@@ -1699,7 +1701,9 @@ fn music_search_videos(rp: RustyPipe, unlocalized: bool) {
         .items
         .iter()
         .find(|a| a.id == "ZeerrnuLi5E")
-        .unwrap();
+        .unwrap_or_else(|| {
+            panic!("could not find video, got {:#?}", &res.items.items);
+        });
 
     assert_eq!(track.name, "Black Mamba");
     assert!(!track.cover.is_empty(), "got no cover");
@@ -1739,7 +1743,12 @@ fn music_search_episode(rp: RustyPipe, #[case] videos: bool) {
             .tracks
     };
 
-    let track = &tracks.iter().find(|a| a.id == "Zq_-LDy7AgE").unwrap();
+    let track = &tracks
+        .iter()
+        .find(|a| a.id == "Zq_-LDy7AgE")
+        .unwrap_or_else(|| {
+            panic!("could not find episode, got {:#?}", &tracks);
+        });
 
     assert_eq!(track.artists.len(), 1);
     let track_artist = &track.artists[0];
@@ -1805,7 +1814,14 @@ fn music_search_albums(
 ) {
     let res = tokio_test::block_on(rp.query().music_search_albums(query)).unwrap();
 
-    let album = &res.items.items.iter().find(|a| a.id == id).unwrap();
+    let album = &res
+        .items
+        .items
+        .iter()
+        .find(|a| a.id == id)
+        .unwrap_or_else(|| {
+            panic!("could not find album, got {:#?}", &res.items.items);
+        });
     assert_eq!(album.name, name);
 
     assert_eq!(album.artists.len(), 1);
@@ -1836,7 +1852,9 @@ fn music_search_artists(rp: RustyPipe, unlocalized: bool) {
         .items
         .iter()
         .find(|a| a.id == "UCIh4j8fXWf2U0ro0qnGU8Mg")
-        .unwrap();
+        .unwrap_or_else(|| {
+            panic!("could not find artist, got {:#?}", &res.items.items);
+        });
     if unlocalized {
         assert_eq!(artist.name, "Namika");
     }
@@ -1871,7 +1889,9 @@ fn music_search_playlists(rp: RustyPipe, unlocalized: bool) {
         .items
         .iter()
         .find(|p| p.id == "RDCLAK5uy_nLtxizvEMkzYQUrA-bFf6MnBeR4bGYWUQ")
-        .expect("no playlist");
+        .unwrap_or_else(|| {
+            panic!("could not find playlist, got {:#?}", &res.items.items);
+        });
 
     if unlocalized {
         assert_eq!(playlist.name, "Today's Rock Hits");
@@ -1901,7 +1921,9 @@ fn music_search_playlists_community(rp: RustyPipe) {
         .items
         .iter()
         .find(|p| p.id == "PLMC9KNkIncKtGvr2kFRuXBVmBev6cAJ2u")
-        .expect("no playlist");
+        .unwrap_or_else(|| {
+            panic!("could not find playlist, got {:#?}", &res.items.items);
+        });
 
     assert_eq!(
         playlist.name,

@@ -2,14 +2,13 @@ use serde::Deserialize;
 use serde_with::{rust::deserialize_ignore_any, serde_as, DefaultOnError, VecSkipError};
 
 use crate::{
-    error::ExtractionError,
     model::{
         self, traits::FromYtItem, AlbumId, AlbumItem, AlbumType, ArtistId, ArtistItem, ChannelId,
         MusicItem, MusicItemType, MusicPlaylistItem, TrackItem,
     },
     param::Language,
     serializer::{
-        text::{Text, TextComponents},
+        text::{Text, TextComponent, TextComponents},
         MapResult,
     },
     util::{self, dictionary},
@@ -17,7 +16,7 @@ use crate::{
 
 use super::{
     url_endpoint::{
-        BrowseEndpointWrap, MusicPageType, MusicVideoType, NavigationEndpoint, PageType,
+        BrowseEndpointWrap, MusicPage, MusicPageType, MusicVideoType, NavigationEndpoint, PageType,
     },
     ContentsRenderer, MusicContinuationData, Thumbnails, ThumbnailsWrap,
 };
@@ -434,8 +433,6 @@ pub(crate) struct MusicListMapper {
     search_suggestion: bool,
     items: Vec<MusicItem>,
     warnings: Vec<String>,
-    /// True if unknown items were mapped
-    has_unknown: bool,
 }
 
 #[derive(Debug)]
@@ -456,7 +453,6 @@ impl MusicListMapper {
             search_suggestion: false,
             items: Vec::new(),
             warnings: Vec::new(),
-            has_unknown: false,
         }
     }
 
@@ -469,7 +465,6 @@ impl MusicListMapper {
             search_suggestion: true,
             items: Vec::new(),
             warnings: Vec::new(),
-            has_unknown: false,
         }
     }
 
@@ -483,7 +478,6 @@ impl MusicListMapper {
             search_suggestion: false,
             items: Vec::new(),
             warnings: Vec::new(),
-            has_unknown: false,
         }
     }
 
@@ -497,7 +491,6 @@ impl MusicListMapper {
             search_suggestion: false,
             items: Vec::new(),
             warnings: Vec::new(),
-            has_unknown: false,
         }
     }
 
@@ -545,55 +538,44 @@ impl MusicListMapper {
             .thumbnails
             .first();
 
-        let pt_id = item
+        let music_page = item
             .navigation_endpoint
             .and_then(NavigationEndpoint::music_page)
             .or_else(|| {
                 c1.and_then(|c1| {
-                    c1.renderer.text.0.into_iter().next().and_then(|t| match t {
-                        crate::serializer::text::TextComponent::Video {
-                            video_id, vtype, ..
-                        } => Some((MusicPageType::Track { vtype }, video_id)),
-                        crate::serializer::text::TextComponent::Browse {
-                            page_type,
-                            browse_id,
-                            ..
-                        } => Some((page_type.into(), browse_id)),
-                        _ => None,
-                    })
+                    c1.renderer
+                        .text
+                        .0
+                        .into_iter()
+                        .next()
+                        .and_then(TextComponent::music_page)
                 })
             })
             .or_else(|| {
-                item.playlist_item_data.map(|d| {
-                    (
-                        MusicPageType::Track {
-                            vtype: MusicVideoType::from_is_video(
-                                self.album.is_none()
-                                    && !first_tn
-                                        .map(|tn| tn.height == tn.width)
-                                        .unwrap_or_default(),
-                            ),
-                        },
-                        d.video_id,
-                    )
+                item.playlist_item_data.map(|d| MusicPage {
+                    id: d.video_id,
+                    typ: MusicPageType::Track {
+                        vtype: MusicVideoType::from_is_video(
+                            self.album.is_none()
+                                && !first_tn.map(|tn| tn.height == tn.width).unwrap_or_default(),
+                        ),
+                    },
                 })
             })
             .or_else(|| {
                 first_tn.and_then(|tn| {
-                    util::video_id_from_thumbnail_url(&tn.url).map(|id| {
-                        (
-                            MusicPageType::Track {
-                                vtype: MusicVideoType::from_is_video(
-                                    self.album.is_none() && tn.width != tn.height,
-                                ),
-                            },
-                            id,
-                        )
+                    util::video_id_from_thumbnail_url(&tn.url).map(|id| MusicPage {
+                        id,
+                        typ: MusicPageType::Track {
+                            vtype: MusicVideoType::from_is_video(
+                                self.album.is_none() && tn.width != tn.height,
+                            ),
+                        },
                     })
                 })
             });
 
-        match pt_id {
+        match music_page.map(|mp| (mp.typ, mp.id)) {
             // Track
             Some((MusicPageType::Track { vtype }, id)) => {
                 let title = title.ok_or_else(|| format!("track {id}: could not get title"))?;
@@ -852,10 +834,6 @@ impl MusicListMapper {
                     }
                     // Tracks were already handled above
                     MusicPageType::Track { .. } => unreachable!(),
-                    MusicPageType::Unknown => {
-                        self.has_unknown = true;
-                        Ok(None)
-                    }
                 }
             }
             None => {
@@ -875,12 +853,12 @@ impl MusicListMapper {
         let subtitle_p2 = subtitle_parts.next();
 
         match item.navigation_endpoint.music_page() {
-            Some((page_type, id)) => match page_type {
+            Some(music_page) => match music_page.typ {
                 MusicPageType::Track { vtype } => {
                     let (artists, by_va) = map_artists(subtitle_p1);
 
                     self.items.push(MusicItem::Track(TrackItem {
-                        id,
+                        id: music_page.id,
                         name: item.title,
                         duration: None,
                         cover: item.thumbnail_renderer.into(),
@@ -910,7 +888,7 @@ impl MusicListMapper {
                     });
 
                     self.items.push(MusicItem::Artist(ArtistItem {
-                        id,
+                        id: music_page.id,
                         name: item.title,
                         avatar: item.thumbnail_renderer.into(),
                         subscriber_count,
@@ -947,12 +925,15 @@ impl MusicListMapper {
                                 (Vec::new(), true)
                             }
                             _ => {
-                                return Err(format!("could not parse subtitle of album {id}"));
+                                return Err(format!(
+                                    "could not parse subtitle of album {}",
+                                    music_page.id
+                                ));
                             }
                         };
 
                     self.items.push(MusicItem::Album(AlbumItem {
-                        id,
+                        id: music_page.id,
                         name: item.title,
                         cover: item.thumbnail_renderer.into(),
                         artist_id: artists.first().and_then(|a| a.id.clone()),
@@ -974,7 +955,7 @@ impl MusicListMapper {
                         .and_then(|p| p.0.into_iter().find_map(|c| ChannelId::try_from(c).ok()));
 
                     self.items.push(MusicItem::Playlist(MusicPlaylistItem {
-                        id,
+                        id: music_page.id,
                         name: item.title,
                         thumbnail: item.thumbnail_renderer.into(),
                         channel,
@@ -984,10 +965,6 @@ impl MusicListMapper {
                     Ok(Some(MusicItemType::Playlist))
                 }
                 MusicPageType::None => Ok(None),
-                MusicPageType::Unknown => {
-                    self.has_unknown = true;
-                    Ok(None)
-                }
             },
             None => Err("could not determine item type".to_owned()),
         }
@@ -1009,7 +986,7 @@ impl MusicListMapper {
         let subtitle_p4 = subtitle_parts.next();
 
         let item_type = match card.on_tap.music_page() {
-            Some((page_type, id)) => match page_type {
+            Some(music_page) => match music_page.typ {
                 MusicPageType::Artist => {
                     let subscriber_count = subtitle_p2.and_then(|p| {
                         util::parse_large_numstr_or_warn(
@@ -1020,7 +997,7 @@ impl MusicListMapper {
                     });
 
                     self.items.push(MusicItem::Artist(ArtistItem {
-                        id,
+                        id: music_page.id,
                         name: card.title,
                         avatar: card.thumbnail.into(),
                         subscriber_count,
@@ -1034,7 +1011,7 @@ impl MusicListMapper {
                         .unwrap_or_default();
 
                     self.items.push(MusicItem::Album(AlbumItem {
-                        id,
+                        id: music_page.id,
                         name: card.title,
                         cover: card.thumbnail.into(),
                         artist_id: artists.first().and_then(|a| a.id.clone()),
@@ -1050,7 +1027,7 @@ impl MusicListMapper {
                         let (artists, by_va) = map_artists(subtitle_p3);
 
                         self.items.push(MusicItem::Track(TrackItem {
-                            id,
+                            id: music_page.id,
                             name: card.title,
                             duration: None,
                             cover: card.thumbnail.into(),
@@ -1087,7 +1064,7 @@ impl MusicListMapper {
                         };
 
                         self.items.push(MusicItem::Track(TrackItem {
-                            id,
+                            id: music_page.id,
                             name: card.title,
                             duration,
                             cover: card.thumbnail.into(),
@@ -1113,7 +1090,7 @@ impl MusicListMapper {
                         subtitle_p3.and_then(|p| util::parse_numeric(p.first_str()).ok());
 
                     self.items.push(MusicItem::Playlist(MusicPlaylistItem {
-                        id,
+                        id: music_page.id,
                         name: card.title,
                         thumbnail: card.thumbnail.into(),
                         channel,
@@ -1123,10 +1100,6 @@ impl MusicListMapper {
                     Some(MusicItemType::Playlist)
                 }
                 MusicPageType::None => None,
-                MusicPageType::Unknown => {
-                    self.has_unknown = true;
-                    None
-                }
             },
             None => {
                 self.warnings
@@ -1199,20 +1172,6 @@ impl MusicListMapper {
                 playlists,
             },
             warnings: self.warnings,
-        }
-    }
-
-    /// Sometimes the YT Music API returns responses containing unknown items.
-    ///
-    /// In this case, the response data is likely missing some fields, which leads to
-    /// parsing errors and wrong data being extracted.
-    ///
-    /// Therefore it is safest to discard such responses and retry the request.
-    pub fn check_unknown(&self) -> Result<(), ExtractionError> {
-        if self.has_unknown {
-            Err(ExtractionError::InvalidData("unknown YTM items".into()))
-        } else {
-            Ok(())
         }
     }
 }

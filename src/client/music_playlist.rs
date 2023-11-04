@@ -174,7 +174,6 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
 
         let mut mapper = MusicListMapper::new(lang);
         mapper.map_response(shelf.contents);
-        mapper.check_unknown()?;
         let map_res = mapper.conv_items();
 
         let ctoken = shelf

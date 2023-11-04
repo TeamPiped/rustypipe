@@ -98,6 +98,7 @@ impl MapResponse<MusicCharts> for response::MusicCharts {
                         h.music_carousel_shelf_basic_header_renderer
                             .more_content_button
                             .and_then(|btn| btn.button_renderer.navigation_endpoint.music_page())
+                            .map(|mp| (mp.typ, mp.id))
                     }) {
                         Some((MusicPageType::Playlist, id)) => {
                             // Top music videos (first shelf with associated playlist)
@@ -119,10 +120,6 @@ impl MapResponse<MusicCharts> for response::MusicCharts {
                 }
                 response::music_charts::ItemSection::None => {}
             });
-
-        mapper_top.check_unknown()?;
-        mapper_trending.check_unknown()?;
-        mapper_other.check_unknown()?;
 
         let mapped_top = mapper_top.conv_items::<TrackItem>();
         let mut mapped_trending = mapper_trending.conv_items::<TrackItem>();

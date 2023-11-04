@@ -387,9 +387,6 @@ impl MapResponse<MusicRelated> for response::MusicRelated {
             _ => {}
         });
 
-        mapper.check_unknown()?;
-        mapper_tracks.check_unknown()?;
-
         let mapped_tracks = mapper_tracks.conv_items();
         let mut mapped = mapper.group_items();
 

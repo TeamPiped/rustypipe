@@ -6,7 +6,9 @@ use serde::{Deserialize, Deserializer};
 use serde_with::{serde_as, DeserializeAs, VecSkipError};
 
 use crate::{
-    client::response::url_endpoint::{MusicVideoType, NavigationEndpoint, PageType},
+    client::response::url_endpoint::{
+        MusicPage, MusicPageType, MusicVideoType, NavigationEndpoint, PageType,
+    },
     model::UrlTarget,
     util,
 };
@@ -417,6 +419,23 @@ impl TextComponent {
             | TextComponent::Browse { text, .. }
             | TextComponent::Web { text, .. }
             | TextComponent::Text { text } => text,
+        }
+    }
+
+    pub fn music_page(self) -> Option<MusicPage> {
+        match self {
+            TextComponent::Video {
+                video_id, vtype, ..
+            } => Some(MusicPage {
+                id: video_id,
+                typ: MusicPageType::Track { vtype },
+            }),
+            TextComponent::Browse {
+                page_type,
+                browse_id,
+                ..
+            } => Some(MusicPage::from_browse(browse_id, page_type)),
+            _ => None,
         }
     }
 }

@@ -1,7 +1,7 @@
 use serde::Deserialize;
 use serde_with::{serde_as, DefaultOnError};
 
-use crate::model::UrlTarget;
+use crate::{model::UrlTarget, util};
 
 /// navigation/resolve_url response model
 #[derive(Debug, Deserialize)]
@@ -185,6 +185,10 @@ pub(crate) enum PageType {
     Channel,
     #[serde(rename = "MUSIC_PAGE_TYPE_PLAYLIST", alias = "WEB_PAGE_TYPE_PLAYLIST")]
     Playlist,
+    #[serde(rename = "MUSIC_PAGE_TYPE_PODCAST_SHOW_DETAIL_PAGE")]
+    Podcast,
+    #[serde(rename = "MUSIC_PAGE_TYPE_NON_MUSIC_AUDIO_TRACK_PAGE")]
+    Episode,
     #[default]
     Unknown,
 }
@@ -195,6 +199,13 @@ impl PageType {
             PageType::Artist | PageType::Channel => Some(UrlTarget::Channel { id }),
             PageType::Album => Some(UrlTarget::Album { id }),
             PageType::Playlist => Some(UrlTarget::Playlist { id }),
+            PageType::Podcast => Some(UrlTarget::Playlist {
+                id: util::strip_prefix(&id, util::PODCAST_PLAYLIST_PREFIX),
+            }),
+            PageType::Episode => Some(UrlTarget::Video {
+                id: util::strip_prefix(&id, util::PODCAST_EPISODE_PREFIX),
+                start_time: 0,
+            }),
             PageType::Unknown => None,
         }
     }
@@ -206,7 +217,6 @@ pub(crate) enum MusicPageType {
     Album,
     Playlist,
     Track { vtype: MusicVideoType },
-    Unknown,
     None,
 }
 
@@ -215,16 +225,40 @@ impl From<PageType> for MusicPageType {
         match t {
             PageType::Artist => MusicPageType::Artist,
             PageType::Album => MusicPageType::Album,
-            PageType::Playlist => MusicPageType::Playlist,
-            PageType::Channel => MusicPageType::None,
-            PageType::Unknown => MusicPageType::Unknown,
+            PageType::Playlist | PageType::Podcast => MusicPageType::Playlist,
+            PageType::Channel | PageType::Unknown => MusicPageType::None,
+            PageType::Episode => MusicPageType::Track {
+                vtype: MusicVideoType::Episode,
+            },
+        }
+    }
+}
+
+pub(crate) struct MusicPage {
+    pub id: String,
+    pub typ: MusicPageType,
+}
+
+impl MusicPage {
+    /// Create a new MusicPage object, applying the required ID fixes when
+    /// mapping a browse link
+    pub fn from_browse(mut id: String, typ: PageType) -> Self {
+        if typ == PageType::Podcast {
+            id = util::strip_prefix(&id, util::PODCAST_PLAYLIST_PREFIX);
+        } else if typ == PageType::Episode && id.len() == 15 {
+            id = util::strip_prefix(&id, util::PODCAST_EPISODE_PREFIX);
+        }
+
+        Self {
+            id,
+            typ: typ.into(),
         }
     }
 }
 
 impl NavigationEndpoint {
     /// Get the YouTube Music page and id from a browse/watch endpoint
-    pub(crate) fn music_page(self) -> Option<(MusicPageType, String)> {
+    pub(crate) fn music_page(self) -> Option<MusicPage> {
         match self {
             NavigationEndpoint::Watch { watch_endpoint } => {
                 if watch_endpoint
@@ -233,17 +267,20 @@ impl NavigationEndpoint {
                     .unwrap_or_default()
                 {
                     // Genre radios (e.g. "pop radio") will be skipped
-                    Some((MusicPageType::None, watch_endpoint.video_id))
+                    Some(MusicPage {
+                        id: watch_endpoint.video_id,
+                        typ: MusicPageType::None,
+                    })
                 } else {
-                    Some((
-                        MusicPageType::Track {
+                    Some(MusicPage {
+                        id: watch_endpoint.video_id,
+                        typ: MusicPageType::Track {
                             vtype: watch_endpoint
                                 .watch_endpoint_music_supported_configs
                                 .watch_endpoint_music_config
                                 .music_video_type,
                         },
-                        watch_endpoint.video_id,
-                    ))
+                    })
                 }
             }
             NavigationEndpoint::Browse {
@@ -251,9 +288,9 @@ impl NavigationEndpoint {
             } => browse_endpoint
                 .browse_endpoint_context_supported_configs
                 .map(|config| {
-                    (
-                        config.browse_endpoint_context_music_config.page_type.into(),
+                    MusicPage::from_browse(
                         browse_endpoint.browse_id,
+                        config.browse_endpoint_context_music_config.page_type,
                     )
                 }),
             NavigationEndpoint::Url { .. } => None,

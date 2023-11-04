@@ -235,7 +235,6 @@ fn map_artist_page(
         }
     }
 
-    mapper.check_unknown()?;
     let mut mapped = mapper.group_items();
 
     static WIKIPEDIA_REGEX: Lazy<Regex> =
@@ -332,7 +331,6 @@ impl MapResponse<Vec<AlbumItem>> for response::MusicArtistAlbums {
             mapper.map_response(grid.grid_renderer.items);
         }
 
-        mapper.check_unknown()?;
         let mapped = mapper.group_items();
 
         Ok(MapResult {

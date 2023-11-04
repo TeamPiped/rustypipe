@@ -266,7 +266,6 @@ impl MapResponse<MusicSearchResult> for response::MusicSearch {
             response::music_search::ItemSection::None => {}
         });
 
-        mapper.check_unknown()?;
         let map_res = mapper.group_items();
 
         Ok(MapResult {
@@ -325,7 +324,6 @@ impl<T: FromYtItem> MapResponse<MusicSearchFiltered<T>> for response::MusicSearc
             response::music_search::ItemSection::None => {}
         });
 
-        mapper.check_unknown()?;
         let map_res = mapper.conv_items();
 
         Ok(MapResult {
@@ -371,7 +369,6 @@ impl MapResponse<MusicSearchSuggestion> for response::MusicSearchSuggestion {
             }
         }
 
-        mapper.check_unknown()?;
         let map_res = mapper.conv_items();
 
         Ok(MapResult {
