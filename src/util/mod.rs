@@ -362,6 +362,7 @@ where
     let mut filtered = String::new();
     let mut exp = 0;
     let mut after_point = false;
+    let mut last_number = false;
 
     for c in string.chars() {
         if c.is_ascii_digit() {
@@ -370,6 +371,10 @@ where
             if after_point {
                 exp -= 1;
             }
+            if !last_number {
+                filtered.push(' ');
+                last_number = true;
+            }
         } else if c == decimal_point && !digits.is_empty() {
             after_point = true;
         } else if !matches!(
@@ -377,6 +382,7 @@ where
             '\u{200b}' | '\u{202b}' | '\u{202c}' | '\u{202e}' | '\u{200e}' | '\u{200f}' | '.' | ','
         ) {
             c.to_lowercase().for_each(|c| filtered.push(c));
+            last_number = false;
         }
     }
 
@@ -636,6 +642,7 @@ pub(crate) mod tests {
     )]
     #[case(Language::As, "১ জন গ্ৰাহক", 1)]
     #[case(Language::Ru, "Зрителей, ожидающих начала трансляции: 6", 6)]
+    #[case(Language::Si, "වාදන මි4.6ක්", 4_600_000)]
     fn t_parse_large_numstr(#[case] lang: Language, #[case] string: &str, #[case] expect: u64) {
         let res = parse_large_numstr::<u64>(string, lang).unwrap();
         assert_eq!(res, expect);
