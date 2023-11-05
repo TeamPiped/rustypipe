@@ -1,0 +1,906 @@
+---
+source: src/client/video_details.rs
+expression: map_res.c
+---
+VideoDetails(
+  id: "ZeerrnuLi5E",
+  name: "aespa 에스파 \'Black Mamba\' MV",
+  description: RichText([
+    Text(
+      text: "🎧Listen and download aespa\'s debut single \"Black Mamba\": ",
+    ),
+    Web(
+      text: "https://smarturl.it/aespa_BlackMamba",
+      url: "https://smarturl.it/aespa_BlackMamba",
+    ),
+    Text(
+      text: "\n🐍The Debut Stage ",
+    ),
+    YouTube(
+      text: "aespa 에스파 \'Black Mamba\' The Debut Stage",
+      target: Video(
+        id: "Ky5RT5oGg0w",
+        start_time: 0,
+      ),
+    ),
+    Text(
+      text: "\n\n🎟\u{fe0f} aespa Showcase SYNK in LA! Tickets now on sale: ",
+    ),
+    Web(
+      text: "https://www.ticketmaster.com/event/0A...",
+      url: "https://www.ticketmaster.com/event/0A005CCD9E871F6E",
+    ),
+    Text(
+      text: "\n\nSubscribe to aespa Official YouTube Channel!\n",
+    ),
+    Web(
+      text: "https://www.youtube.com/aespa?sub_con...",
+      url: "https://www.youtube.com/aespa?sub_confirmation=1",
+    ),
+    Text(
+      text: "\n\naespa official\n",
+    ),
+    Web(
+      text: "aespa",
+      url: "https://www.youtube.com/c/aespa",
+    ),
+    Text(
+      text: "\n",
+    ),
+    Web(
+      text: "aespa_official",
+      url: "https://www.instagram.com/aespa_official",
+    ),
+    Text(
+      text: "\n",
+    ),
+    Web(
+      text: "aespa_official",
+      url: "https://www.tiktok.com/@aespa_official",
+    ),
+    Text(
+      text: "\n",
+    ),
+    Web(
+      text: "aespa_official",
+      url: "https://twitter.com/aespa_Official",
+    ),
+    Text(
+      text: "\n",
+    ),
+    Web(
+      text: "aespa.official",
+      url: "https://www.facebook.com/aespa.official",
+    ),
+    Text(
+      text: "\n",
+    ),
+    Web(
+      text: "https://weibo.com/aespa",
+      url: "https://weibo.com/aespa",
+    ),
+    Text(
+      text: "\n\n",
+    ),
+    Text(
+      text: "#aespa",
+    ),
+    Text(
+      text: " ",
+    ),
+    Text(
+      text: "#æspa",
+    ),
+    Text(
+      text: " ",
+    ),
+    Text(
+      text: "#BlackMamba",
+    ),
+    Text(
+      text: " ",
+    ),
+    Text(
+      text: "#블랙맘바",
+    ),
+    Text(
+      text: " ",
+    ),
+    Text(
+      text: "#에스파",
+    ),
+    Text(
+      text: "\naespa 에스파 \'Black Mamba\' MV ℗ SM Entertainment",
+    ),
+  ]),
+  channel: ChannelTag(
+    id: "UCEf_Bc-KVd7onSeifS3py9g",
+    name: "SMTOWN",
+    avatar: [
+      Thumbnail(
+        url: "https://yt3.ggpht.com/_1Z4I2qpWaCN9g3BcDd3cVA9MDHOG43lE1YNWDNkKro49haGxkjwuFK-I8faWTKM6Jle9qb4ag=s48-c-k-c0x00ffffff-no-rj",
+        width: 48,
+        height: 48,
+      ),
+      Thumbnail(
+        url: "https://yt3.ggpht.com/_1Z4I2qpWaCN9g3BcDd3cVA9MDHOG43lE1YNWDNkKro49haGxkjwuFK-I8faWTKM6Jle9qb4ag=s88-c-k-c0x00ffffff-no-rj",
+        width: 88,
+        height: 88,
+      ),
+      Thumbnail(
+        url: "https://yt3.ggpht.com/_1Z4I2qpWaCN9g3BcDd3cVA9MDHOG43lE1YNWDNkKro49haGxkjwuFK-I8faWTKM6Jle9qb4ag=s176-c-k-c0x00ffffff-no-rj",
+        width: 176,
+        height: 176,
+      ),
+    ],
+    verification: Verified,
+    subscriber_count: Some(32100000),
+  ),
+  view_count: 255522287,
+  like_count: Some(4209059),
+  publish_date: "[date]",
+  publish_date_txt: Some("Nov 17, 2020"),
+  is_live: false,
+  is_ccommons: false,
+  chapters: [],
+  recommended: Paginator(
+    count: None,
+    items: [
+      VideoItem(
+        id: "4TWR90KJl84",
+        name: "aespa 에스파 \'Next Level\' MV",
+        length: Some(236),
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/4TWR90KJl84/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBYCGc-AKsDC6UpJgIZw2_VsqjVWA",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/4TWR90KJl84/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDh-eDxZBmrNsHcb6pYX0Gyx6gJ8Q",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: Some(ChannelTag(
+          id: "UCEf_Bc-KVd7onSeifS3py9g",
+          name: "SMTOWN",
+          avatar: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/_1Z4I2qpWaCN9g3BcDd3cVA9MDHOG43lE1YNWDNkKro49haGxkjwuFK-I8faWTKM6Jle9qb4ag=s68-c-k-c0x00ffffff-no-rj",
+              width: 68,
+              height: 68,
+            ),
+          ],
+          verification: Verified,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("2 years ago"),
+        view_count: Some(277189882),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
+      ),
+      VideoItem(
+        id: "yQUU29NwNF4",
+        name: "aespa(에스파) - Black Mamba @인기가요 inkigayo 20201122",
+        length: Some(213),
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/yQUU29NwNF4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA4pIWwOFmVuVU-jZ-j7S4GvgxjKw",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/yQUU29NwNF4/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLC4B3H-paMDpjdf_V6NsymGNvVicQ",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: Some(ChannelTag(
+          id: "UCS_hnpJLQTvBkqALgapi_4g",
+          name: "스브스케이팝 X INKIGAYO",
+          avatar: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/Uxpz5J0EcsFJRbqh4Ip7i3TTNsxTh5jVUxfZmV1DTrCQM_ihfzBGMmkfSRGWoFK9M0anhIie=s68-c-k-c0x00ffffff-no-rj",
+              width: 68,
+              height: 68,
+            ),
+          ],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("2 years ago"),
+        view_count: Some(10870401),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
+      ),
+      VideoItem(
+        id: "mTmm0y73ZtM",
+        name: "Secret Missions: 7 Thrilling Spy and Secret Agent Stories",
+        length: Some(6811),
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/mTmm0y73ZtM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDz3aKv3IbWrI5GmtWjWl2br6h7jw",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/mTmm0y73ZtM/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCNnJtMt14Dn6iNSSHZtZL5MsYDtQ",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: Some(ChannelTag(
+          id: "UCSVngVJ_0s0ZX4oiN_4ZkaQ",
+          name: "My Story Shared",
+          avatar: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ytc/APkrFKbfZM35CSjtdsk3QIcEvalm3yoAzCkgZptcgSfNHw=s68-c-k-c0x00ffffff-no-rj",
+              width: 68,
+              height: 68,
+            ),
+          ],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("9 days ago"),
+        view_count: Some(888941),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
+      ),
+      VideoItem(
+        id: "xBnSq8JKlZw",
+        name: "16 Eylül 2023",
+        length: Some(7971),
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/xBnSq8JKlZw/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-BIAC6AKKAgwIABABGGUgUChFMA8=&rs=AOn4CLDBvW0PORHHExpND8qbAa0OCr5MMw",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/xBnSq8JKlZw/hqdefault.jpg?sqp=-oaymwE2CNACELwBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gSAAugCigIMCAAQARhlIFAoRTAP&rs=AOn4CLASNCymIttQ1GwgbWvtxD_KeG5yGw",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: Some(ChannelTag(
+          id: "UCcyqrKg5jlvVJy1nc-0igRQ",
+          name: "Buğlem TV",
+          avatar: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/_kbdhEVJB2pzgy-qLRGQQ5sCPPZnEVeljgVrk0KZxPe8UxT8mm5ZZp7Zn6TGMcBMcpCG-zPi1YI=s68-c-k-c0x00ffffff-no-rj",
+              width: 68,
+              height: 68,
+            ),
+          ],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("1 month ago"),
+        view_count: Some(8407),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
+      ),
+      VideoItem(
+        id: "fE2h3lGlOsk",
+        name: "ITZY \"WANNABE\" M/V @ITZY",
+        length: Some(219),
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/fE2h3lGlOsk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC44Q0lpu5a8rltgTMxi0X2QA6jnQ",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/fE2h3lGlOsk/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLC6F85UnQjP3_9U0gehdYbbF6NTxw",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: Some(ChannelTag(
+          id: "UCaO6TYtlC8U5ttz62hTrZgg",
+          name: "JYP Entertainment",
+          avatar: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/kcV7NQkBm-UvvzVTJvrg1Yf1eHSqi-DLXuZPt_ECa3cHEPefujS951Dxj6KUEQ5i9Z7_fyMUjw=s68-c-k-c0x00ffffff-no-rj",
+              width: 68,
+              height: 68,
+            ),
+          ],
+          verification: Verified,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("3 years ago"),
+        view_count: Some(523737389),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
+      ),
+      VideoItem(
+        id: "NU611fxGyPU",
+        name: "aespa 에스파 \'Black Mamba\' Dance Practice",
+        length: Some(175),
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/NU611fxGyPU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAgKORzcy6WKosI1_PAVWDgcjJ9jA",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/NU611fxGyPU/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDqWWIfLCdtyqy5aIUA_PGcEW2r2g",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: Some(ChannelTag(
+          id: "UC9GtSLeksfK4yuJ_g1lgQbg",
+          name: "aespa",
+          avatar: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/rLxODcRttuDvITkAJruNIDlDkVMEsPVuHJyMQDjeYqoFh80JyGwfXXMOZgZXd6-iKuf9rifqYQ=s88-c-k-c0x00ffffff-no-rj",
+              width: 68,
+              height: 68,
+            ),
+          ],
+          verification: Artist,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("2 years ago"),
+        view_count: Some(40486850),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
+      ),
+      VideoItem(
+        id: "dYRITmpFbJ4",
+        name: "aespa 에스파 \'Girls\' MV",
+        length: Some(269),
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/dYRITmpFbJ4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBOxN6ukbZNOPwUBhRZYgG9r23lng",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/dYRITmpFbJ4/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBLmRDhzBtNHCuokfKRQufiNKKfZg",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: Some(ChannelTag(
+          id: "UCEf_Bc-KVd7onSeifS3py9g",
+          name: "SMTOWN",
+          avatar: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/_1Z4I2qpWaCN9g3BcDd3cVA9MDHOG43lE1YNWDNkKro49haGxkjwuFK-I8faWTKM6Jle9qb4ag=s68-c-k-c0x00ffffff-no-rj",
+              width: 68,
+              height: 68,
+            ),
+          ],
+          verification: Verified,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("1 year ago"),
+        view_count: Some(135870843),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
+      ),
+      VideoItem(
+        id: "jiFBY6gk3Lk",
+        name: "BLACKPINK x AESPA – Pink Venom / Black Mamba MASHUP (feat. Next Level)",
+        length: Some(240),
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/jiFBY6gk3Lk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLARhXJ8KOxiWpj430QpyKF2m3LJFQ",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/jiFBY6gk3Lk/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDGOkNsfHOpy9GLXoHn1rnIOn0CcA",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: Some(ChannelTag(
+          id: "UC5XWNylwy4efFufjMYqcglw",
+          name: "Miggy Smallz",
+          avatar: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ytc/APkrFKYR2j9afW3H0lgdKwD8qPiIZvZBfCSLxAZQRiUB=s68-c-k-c0x00ffffff-no-rj",
+              width: 68,
+              height: 68,
+            ),
+          ],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("1 year ago"),
+        view_count: Some(4218059),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
+      ),
+      VideoItem(
+        id: "CM4CkVFmTds",
+        name: "TWICE \"I CAN\'T STOP ME\" M/V",
+        length: Some(221),
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/CM4CkVFmTds/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBfd7QADIduQSR2ESLIp1k5gxxNDg",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/CM4CkVFmTds/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDRn7hTXV_Ls30E6BQNZQtQjbuEpA",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: Some(ChannelTag(
+          id: "UCaO6TYtlC8U5ttz62hTrZgg",
+          name: "JYP Entertainment",
+          avatar: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/kcV7NQkBm-UvvzVTJvrg1Yf1eHSqi-DLXuZPt_ECa3cHEPefujS951Dxj6KUEQ5i9Z7_fyMUjw=s68-c-k-c0x00ffffff-no-rj",
+              width: 68,
+              height: 68,
+            ),
+          ],
+          verification: Verified,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("3 years ago"),
+        view_count: Some(509192107),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
+      ),
+      VideoItem(
+        id: "WPdWvnAAurg",
+        name: "aespa 에스파 \'Savage\' MV",
+        length: Some(259),
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/WPdWvnAAurg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDQGxlnDkAdMYRm2cdkDmiDbBDpYw",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/WPdWvnAAurg/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAIHFE0eH_r-HP7DRPv1QJJnRDzWw",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: Some(ChannelTag(
+          id: "UCEf_Bc-KVd7onSeifS3py9g",
+          name: "SMTOWN",
+          avatar: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/_1Z4I2qpWaCN9g3BcDd3cVA9MDHOG43lE1YNWDNkKro49haGxkjwuFK-I8faWTKM6Jle9qb4ag=s68-c-k-c0x00ffffff-no-rj",
+              width: 68,
+              height: 68,
+            ),
+          ],
+          verification: Verified,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("2 years ago"),
+        view_count: Some(245301963),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
+      ),
+      VideoItem(
+        id: "OgabtEgG_kg",
+        name: "[ FULL ALBUM ] IVE (아이브) — IVE The 1st EP \' I\'VE MINE TRACKLIST",
+        length: Some(1034),
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/OgabtEgG_kg/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-BIAC6AKKAgwIABABGGkgaShpMA8=&rs=AOn4CLBF1lxbztXMyXmem4owNAWZRqvnBA",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/OgabtEgG_kg/hqdefault.jpg?sqp=-oaymwE2CNACELwBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgB_gSAAugCigIMCAAQARhpIGkoaTAP&rs=AOn4CLAqM-WuOQCGTABX_NmzvOUOhx3rLA",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: Some(ChannelTag(
+          id: "UCo7jZg0Q5jBWs0WSq_SdDoA",
+          name: "x i a o s h i z i",
+          avatar: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ErguVbkzrIKe0hezWviLvuCCGLaQYlrSWQ7Dw6beAwNJnR1ed7NV3pokG_z_I7GQvxfUybB4tg=s68-c-k-c0x00ffffff-no-rj",
+              width: 68,
+              height: 68,
+            ),
+          ],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("7 days ago"),
+        view_count: Some(1719),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
+      ),
+      VideoItem(
+        id: "cSqOY5nktfg",
+        name: "BLACKPINK THE GAME - ‘THE GIRLS’ MV",
+        length: Some(164),
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/cSqOY5nktfg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDkx-bmEWvYbs8ju1cETIRE1AczFQ",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/cSqOY5nktfg/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAYPPC91mec_MPvRxjRBzTpwFDBUQ",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: Some(ChannelTag(
+          id: "UCOmHUn--16B90oW2L6FRR3A",
+          name: "BLACKPINK",
+          avatar: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/hZDUwjoeQqigphL4A1tkg9c6hVp5yXmbboBR7PYFUSFj5PIJSA483NB5v7b0XVoTN9GCku3tqQ=s88-c-k-c0x00ffffff-no-rj",
+              width: 68,
+              height: 68,
+            ),
+          ],
+          verification: Artist,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("2 months ago"),
+        view_count: Some(61284005),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
+      ),
+      VideoItem(
+        id: "i8fRCkq5tbw",
+        name: "aespa 에스파 ‘ep.2 Next Level’ – SM Culture Universe",
+        length: Some(1040),
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/i8fRCkq5tbw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBGcGKSQOqvI_5ZONNturhZZmkysQ",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/i8fRCkq5tbw/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBQsyuNIuuztFQo2FdweYiROIJY3A",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: Some(ChannelTag(
+          id: "UC9GtSLeksfK4yuJ_g1lgQbg",
+          name: "aespa",
+          avatar: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/rLxODcRttuDvITkAJruNIDlDkVMEsPVuHJyMQDjeYqoFh80JyGwfXXMOZgZXd6-iKuf9rifqYQ=s88-c-k-c0x00ffffff-no-rj",
+              width: 68,
+              height: 68,
+            ),
+          ],
+          verification: Artist,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("1 year ago"),
+        view_count: Some(5419659),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
+      ),
+      VideoItem(
+        id: "erCzl8x9Zuo",
+        name: "에스파(AESPA) 2023 lotte family concert Full Ver. (Black Mamba +thirsty + Illusion+next level+ Spicy)",
+        length: Some(1192),
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/erCzl8x9Zuo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBF18qnuz8guk309k2UUh4xnLuazg",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/erCzl8x9Zuo/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLB36E2CQnz-l8QtgUEYQfGADaZJdA",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: Some(ChannelTag(
+          id: "UC8yPhlmo-4MY5ZfF-cw3JRg",
+          name: "Rock Music",
+          avatar: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ytc/APkrFKYogJDjV-mjqi-JeTWKU7PwH_gKL2x9Thq04YuANQ=s68-c-k-c0x00ffffff-no-rj",
+              width: 68,
+              height: 68,
+            ),
+          ],
+          verification: Verified,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("4 months ago"),
+        view_count: Some(392124),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
+      ),
+      VideoItem(
+        id: "7HDeem-JaSY",
+        name: "(여자)아이들((G)I-DLE) - \'퀸카 (Queencard)\' Official Music Video",
+        length: Some(211),
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/7HDeem-JaSY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC_jASE2yooEXAN64rj8-1_AJZl6A",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/7HDeem-JaSY/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDq-8lmFENHZeVvK5bQBvpnqEDFIQ",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: Some(ChannelTag(
+          id: "UCritGVo7pLJLUS8wEu32vow",
+          name: "(G)I-DLE (여자)아이들 (Official YouTube Channel)",
+          avatar: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ytc/APkrFKbGrI182ZniS64zKXUGr2CeJ9tMxoa9w90e6SaZkA=s88-c-k-c0x00ffffff-no-rj",
+              width: 68,
+              height: 68,
+            ),
+          ],
+          verification: Artist,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("5 months ago"),
+        view_count: Some(259400824),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
+      ),
+      VideoItem(
+        id: "9JFi7MmjtGA",
+        name: "VIVIZ (비비지) - \'MANIAC\' MV",
+        length: Some(197),
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/9JFi7MmjtGA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLALaqiHHm-fnm1TQHpD9PG-zGd-hg",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/9JFi7MmjtGA/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLD1uM6lf5nCYUj8ZbzAtNYfwb4Z4Q",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: Some(ChannelTag(
+          id: "UC6YMr57knEIYXOOKMmYAFXQ",
+          name: "BPM Entertainment",
+          avatar: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/jltaW4jLrF76MrBe-HKcIQoop67mOF3QLdGzFiYwB-Pt7qKv4X7VECkCzfvkn037abuy6zV0bg=s68-c-k-c0x00ffffff-no-rj",
+              width: 68,
+              height: 68,
+            ),
+          ],
+          verification: None,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("1 day ago"),
+        view_count: Some(2807502),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
+      ),
+      VideoItem(
+        id: "NoYKBAajoyo",
+        name: "EVERGLOW (에버글로우) - DUN DUN MV",
+        length: Some(209),
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/NoYKBAajoyo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC3OhCUbjpIclmjfV8W8T98nVI5pA",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/NoYKBAajoyo/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA-CdJunWg1z_pnrT55qagTHnxkdQ",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: Some(ChannelTag(
+          id: "UC_pwIXKXNm5KGhdEVzmY60A",
+          name: "Stone Music Entertainment",
+          avatar: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/XIxEtKkvUSLHiDBazM8kYyKpyESz5LM--vG0F7aMsiqOC2o_IZaKztsqDMj2mcn4ciQzFbvu=s68-c-k-c0x00ffffff-no-rj",
+              width: 68,
+              height: 68,
+            ),
+          ],
+          verification: Verified,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("3 years ago"),
+        view_count: Some(286088204),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
+      ),
+      VideoItem(
+        id: "pyf8cbqyfPs",
+        name: "LE SSERAFIM (르세라핌) \'ANTIFRAGILE\' OFFICIAL M/V",
+        length: Some(232),
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/pyf8cbqyfPs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAu-V-1EWwbHjZTNTO-vuP_O_WB3Q",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/pyf8cbqyfPs/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCxVrNDDgEYMZWgOukne2kgOV2Vhg",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: Some(ChannelTag(
+          id: "UC3IZKseVpdzPSBaWxBxundA",
+          name: "HYBE LABELS",
+          avatar: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/ytc/APkrFKaWqx5IfcKbi5z8FgPsM_kA6NQ2zTAx8gr27yQcdQ=s68-c-k-c0x00ffffff-no-rj",
+              width: 68,
+              height: 68,
+            ),
+          ],
+          verification: Verified,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("1 year ago"),
+        view_count: Some(196956308),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
+      ),
+      VideoItem(
+        id: "32si5cfrCNc",
+        name: "BLACKPINK - \'How You Like That\' DANCE PERFORMANCE VIDEO",
+        length: Some(181),
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/32si5cfrCNc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBjimPvMxDwTmPBlKX8Buo9EjMeOg",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/32si5cfrCNc/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDCsJMBcdZaForwAnhjYy3L1JT1hQ",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: Some(ChannelTag(
+          id: "UCOmHUn--16B90oW2L6FRR3A",
+          name: "BLACKPINK",
+          avatar: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/hZDUwjoeQqigphL4A1tkg9c6hVp5yXmbboBR7PYFUSFj5PIJSA483NB5v7b0XVoTN9GCku3tqQ=s88-c-k-c0x00ffffff-no-rj",
+              width: 68,
+              height: 68,
+            ),
+          ],
+          verification: Artist,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("3 years ago"),
+        view_count: Some(1522365959),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
+      ),
+      VideoItem(
+        id: "bwmSjveL3Lc",
+        name: "BLACKPINK - \'붐바야 (BOOMBAYAH)\' M/V",
+        length: Some(244),
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/bwmSjveL3Lc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDRzdujtL9QM0RZ8elD00oS2fXMhg",
+            width: 168,
+            height: 94,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/bwmSjveL3Lc/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBOprayVWEKYsgHjpoCw6GFcV3Hng",
+            width: 336,
+            height: 188,
+          ),
+        ],
+        channel: Some(ChannelTag(
+          id: "UCOmHUn--16B90oW2L6FRR3A",
+          name: "BLACKPINK",
+          avatar: [
+            Thumbnail(
+              url: "https://yt3.ggpht.com/hZDUwjoeQqigphL4A1tkg9c6hVp5yXmbboBR7PYFUSFj5PIJSA483NB5v7b0XVoTN9GCku3tqQ=s88-c-k-c0x00ffffff-no-rj",
+              width: 68,
+              height: 68,
+            ),
+          ],
+          verification: Artist,
+          subscriber_count: None,
+        )),
+        publish_date: "[date]",
+        publish_date_txt: Some("7 years ago"),
+        view_count: Some(1646522795),
+        is_live: false,
+        is_short: false,
+        is_upcoming: false,
+        short_description: None,
+      ),
+    ],
+    ctoken: Some("CBQSExILWmVlcnJudUxpNUXAAQHIAQEYACqjDjJzNkw2d3pUQ2dyUUNnb0Q4ajRBQ2c3Q1Bnc0l6cS1tbFBTLTVKcmhBUW9EOGo0QUNnM0NQZ29JM3I3Z2pfdVl2b2QwQ2c3Q1Bnc0lfZUNBXzQyNl9OV1pBUW9Pd2o0TENQWHE1Y3Z0Z3VlZDVRRUtEc0ktQ3dqazRNencwS19abUpJQkNnM0NQZ29JNHItUm91ZVkxTXBRQ2czQ1Bnb0k4OVRQNGNXMzBJd1JDZzNDUGdvSTRxYmZ6TS11b2ZFRENnN0NQZ3NJX2RIeWs5el9tS0t4QVFvT3dqNExDT24yeE1ycDdKS3JpQUVLRGNJLUNnaVpvcUNKbGFDZ2lVNEtBX0ktQUFvT3dqNExDTjdvd0p1OW04V0N5UUVLQV9JLUFBb093ajRMQ05QTjNmZXkydW1jbVFFS0FfSS1BQW9Pd2o0TENKeXJxcEs4MWZTTXhBRUtBX0ktQUFvTndqNEtDTW4xbEkzbHUtaW1mQW9EOGo0QUNnM0NQZ29JOVpHYjR0LTZyYWMxQ2dQeVBnQUtEY0ktQ2dpZTJaWFM1b21Td25VS0FfSS1BQW9Pd2o0TENMbTVrOEc2ck5DUWpnRUtBX0ktQUFvTndqNEtDTnVibVl1VjBvRG5DQW9EOGo0QUNnM0NQZ29JdVBXQ2dPZlgxZnRZQ2dQeVBnQUtEY0ktQ2dqSV9KdkF4UGFtZ3pvS0FfSS1BQW9Od2o0S0NQanJrcy01ektPVmNRb0Q4ajRBQ2c3Q1Bnc0l2T3ZtMWFTaDlPT0xBUW9EOGo0QUNnM0NQZ29JNnMzMTRfenlyTmg2Q2dQeVBnQUtEc0ktQ3dpbTBxWDhwcy0zdU93QkNnUHlQZ0FLRHNJLUN3amc2STdOek4zWXlQUUJDZ1B5UGdBS0RjSS1DZ2lxeG82MXdNQ0N3ellLQV9JLUFBb093ajRMQ1B2NXlkV2Jqdi1UcHdFS0FfSS1BQW9Pd2o0TENOZVJyTF9jM01pMTN3RUtBX0ktQUFvTndqNEtDTGU1cjd6djBlU0Vid29EOGo0QUNnM0NQZ29JLXNXX3I1ZWI4c01XQ2czQ1Bnb0lpLUdvNjlYMnlfc3JDZzNDUGdvSWlObnc4SmowcHZGbENnM0NQZ29Jczl1ODM4Xzdrc0ZGQ2c3Q1Bnc0k5cnZkNFpqNjlNX2VBUW9Pd2o0TENPQ1VrNG5zbXVMTV9nRUtEc0ktQ3dpMHFySEkzc0R0cGJjQkNnN0NQZ3NJazlxdjZNV2FwY2JhQVFvT3dqNExDTVN6djQyOHhxcUstUUVLRHNJLUN3allfNm5FNXAzVjdMc0JDZzdDUGdzSXNQNjV1ZjdpcEtyV0FRb093ajRMQ05hdWlJWDJwX2VyOFFFS0RzSS1Dd2pvcTlEUG11Nmx6ZEFCQ2c3Q1Bnc0lwNnZFaWNuQ3A1ZUxBUW9Pd2o0TENJQ244cG1vejhuLWlnRUtEY0ktQ2dpSG91emdoS18xdlQwS0RzSS1Dd2pXNE9qcV8tUGFpcHdCQ2c3Q1Bnc0k4ZV9Hbi16bTN2U2pBUW9Od2o0S0NLMjh0WTZJaUtETkd3b093ajRMQ0tfdHlOZXF3T3VCMUFFS0RzSS1Dd2pja3BPWnR0S1AtNDhCQ2c3Q1Bnc0kxSldKNjgyU21lN3dBUW9Od2o0S0NMWE52ZUNUN1pfLVpnb093ajRMQ0pMSHM0eTFrX3FJcXdFU0ZnQUNEUThSRXhVWEdSc2RIeUVqSlNjcEt5MHZNVE1hQkFnQUVBRWFCQWdDRUFNYUJBZ0NFQVFhQkFnQ0VBVWFCQWdDRUFZYUJBZ0NFQWNhQkFnQ0VBZ2FCQWdDRUFrYUJBZ0NFQW9hQkFnQ0VBc2FCQWdDRUF3YUJBZ05FQTRhQkFnUEVCQWFCQWdSRUJJYUJBZ1RFQlFhQkFnVkVCWWFCQWdYRUJnYUJBZ1pFQm9hQkFnYkVCd2FCQWdkRUI0YUJBZ2ZFQ0FhQkFnaEVDSWFCQWdqRUNRYUJBZ2xFQ1lhQkFnbkVDZ2FCQWdwRUNvYUJBZ3JFQ3dhQkFndEVDNGFCQWd2RURBYUJBZ3hFRElhQkFnekVBY2FCQWd6RURRYUJBZ3pFRFVhQkFnekVEWWFCQWd6RURjYUJBZ3pFRGdhQkFnekVEa2FCQWd6RURvYUJBZ3pFRHNhQkFnekVEd2FCQWd6RUQwYUJBZ3pFRDRhQkFnekVBd2FCQWd6RUFVYUJBZ3pFRDhhQkFnekVFQWFCQWd6RUVFYUJBZ3pFRUlhQkFnekVFTWFCQWd6RUVRYUJBZ3pFRVVhQkFnekVBTWFCQWd6RUVZYUJBZ3pFRWNhQkFnekVFZ2FCQWd6RUVrYUJBZ3pFQVlhQkFnekVBUWFCQWd6RUVvYUJBZ3pFRXNxRmdBQ0RROFJFeFVYR1JzZEh5RWpKU2NwS3kwdk1UTWoPd2F0Y2gtbmV4dC1mZWVk"),
+    endpoint: next,
+  ),
+  top_comments: Paginator(
+    count: Some(703000),
+    items: [],
+    ctoken: Some("Eg0SC1plZXJybnVMaTVFGAYyJSIRIgtaZWVycm51TGk1RTAAeAJCEGNvbW1lbnRzLXNlY3Rpb24%3D"),
+    endpoint: next,
+  ),
+  latest_comments: Paginator(
+    count: Some(703000),
+    items: [],
+    ctoken: Some("Eg0SC1plZXJybnVMaTVFGAYyOCIRIgtaZWVycm51TGk1RTABeAIwAUIhZW5nYWdlbWVudC1wYW5lbC1jb21tZW50cy1zZWN0aW9u"),
+    endpoint: next,
+  ),
+  visitor_data: None,
+)

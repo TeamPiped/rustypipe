@@ -110,7 +110,7 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
         let video_id = current_video_endpoint.watch_endpoint.video_id;
         if id != video_id {
             return Err(ExtractionError::WrongResult(format!(
-                "got wrong playlist id {video_id}, expected {id}"
+                "got wrong video id {video_id}, expected {id}"
             )));
         }
 
@@ -572,9 +572,10 @@ mod tests {
     #[case::chapters("chapters", "nFDBxBUfE74")]
     #[case::live("live", "86YLFOog4GM")]
     #[case::agegate("agegate", "HRKu0cvrr_o")]
-    #[case::newdesc("20220924_newdesc", "ZeerrnuLi5E")]
-    #[case::new_cont("20221011_new_continuation", "ZeerrnuLi5E")]
-    #[case::no_recommends("20221011_rec_isr", "nFDBxBUfE74")]
+    #[case::ab_newdesc("20220924_newdesc", "ZeerrnuLi5E")]
+    #[case::ab_new_cont("20221011_new_continuation", "ZeerrnuLi5E")]
+    #[case::ab_no_recommends("20221011_rec_isr", "nFDBxBUfE74")]
+    #[case::ab_new_likes("20231103_likes", "ZeerrnuLi5E")]
     fn map_video_details(#[case] name: &str, #[case] id: &str) {
         let json_path = path!(*TESTFILES / "video_details" / format!("video_details_{name}.json"));
         let json_file = File::open(json_path).unwrap();
