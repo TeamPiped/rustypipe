@@ -5,6 +5,7 @@ use time::OffsetDateTime;
 use url::Url;
 
 use crate::{
+    client::response::YouTubeListItem,
     error::{Error, ExtractionError},
     model::{
         paginator::{ContinuationEndpoint, Paginator},
@@ -290,7 +291,7 @@ impl MapResponse<Channel<Paginator<PlaylistItem>>> for response::Channel {
 impl MapResponse<ChannelInfo> for response::ChannelAbout {
     fn map_response(
         self,
-        _id: &str,
+        id: &str,
         _lang: Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
         _visitor_data: Option<&str>,
@@ -299,11 +300,21 @@ impl MapResponse<ChannelInfo> for response::ChannelAbout {
         // and it allows parsing the country name.
         let lang = Language::En;
 
-        let ep = self
-            .on_response_received_endpoints
-            .into_iter()
-            .next()
-            .ok_or(ExtractionError::InvalidData("no received endpoint".into()))?;
+        let ep = match self {
+            response::ChannelAbout::ReceivedEndpoints {
+                on_response_received_endpoints,
+            } => on_response_received_endpoints
+                .into_iter()
+                .next()
+                .ok_or(ExtractionError::InvalidData("no received endpoint".into()))?,
+            response::ChannelAbout::Content { contents } => {
+                // Handle errors (e.g. age restriction) when regular channel content was returned
+                map_channel_content(id, contents, None)?;
+                return Err(ExtractionError::InvalidData(
+                    "could not extract aboutData".into(),
+                ));
+            }
+        };
         let continuations = ep.append_continuation_items_action.continuation_items;
         let about = continuations
             .c
@@ -483,13 +494,6 @@ fn map_channel_content(
     match contents {
         Some(contents) => {
             let tabs = contents.two_column_browse_results_renderer.contents;
-            if tabs.is_empty() {
-                return Err(ExtractionError::NotFound {
-                    id: id.to_owned(),
-                    msg: "no tabs".into(),
-                });
-            }
-
             let cmp_url_suffix = |endpoint: &response::channel::ChannelTabEndpoint,
                                   expect: &str| {
                 endpoint
@@ -504,24 +508,46 @@ fn map_channel_content(
             let mut featured_tab = false;
 
             for tab in &tabs {
-                if cmp_url_suffix(&tab.tab_renderer.endpoint, "/featured")
-                    && (tab.tab_renderer.content.section_list_renderer.is_some()
-                        || tab.tab_renderer.content.rich_grid_renderer.is_some())
-                {
-                    featured_tab = true;
-                } else if cmp_url_suffix(&tab.tab_renderer.endpoint, "/shorts") {
-                    has_shorts = true;
-                } else if cmp_url_suffix(&tab.tab_renderer.endpoint, "/streams") {
-                    has_live = true;
+                if let Some(endpoint) = &tab.tab_renderer.endpoint {
+                    if cmp_url_suffix(endpoint, "/featured")
+                        && (tab.tab_renderer.content.section_list_renderer.is_some()
+                            || tab.tab_renderer.content.rich_grid_renderer.is_some())
+                    {
+                        featured_tab = true;
+                    } else if cmp_url_suffix(endpoint, "/shorts") {
+                        has_shorts = true;
+                    } else if cmp_url_suffix(endpoint, "/streams") {
+                        has_live = true;
+                    }
+                } else {
+                    // Check for age gate
+                    if let Some(YouTubeListItem::ChannelAgeGateRenderer {
+                        channel_title,
+                        main_text,
+                    }) = &tab
+                        .tab_renderer
+                        .content
+                        .section_list_renderer
+                        .as_ref()
+                        .and_then(|c| c.contents.c.get(0))
+                    {
+                        return Err(ExtractionError::Unavailable {
+                            reason: crate::error::UnavailabilityReason::AgeRestricted,
+                            msg: format!("{channel_title}: {main_text}"),
+                        });
+                    }
                 }
             }
 
-            let channel_content = tabs.into_iter().find_map(|tab| {
-                tab.tab_renderer
-                    .content
-                    .rich_grid_renderer
-                    .or(tab.tab_renderer.content.section_list_renderer)
-            });
+            let channel_content = tabs
+                .into_iter()
+                .filter(|t| t.tab_renderer.endpoint.is_some())
+                .find_map(|tab| {
+                    tab.tab_renderer
+                        .content
+                        .rich_grid_renderer
+                        .or(tab.tab_renderer.content.section_list_renderer)
+                });
 
             // YouTube may show the "Featured" tab if the requested tab is empty/does not exist
             let content = if featured_tab {
@@ -530,9 +556,10 @@ fn map_channel_content(
                 match channel_content {
                     Some(list) => list.contents,
                     None => {
-                        return Err(ExtractionError::InvalidData(
-                            "could not extract content".into(),
-                        ))
+                        return Err(ExtractionError::NotFound {
+                            id: id.to_owned(),
+                            msg: "no tabs".into(),
+                        });
                     }
                 }
             };
@@ -632,6 +659,7 @@ mod tests {
 
     use crate::{
         client::{response, MapResponse},
+        error::{ExtractionError, UnavailabilityReason},
         model::{paginator::Paginator, Channel, ChannelInfo, PlaylistItem, VideoItem},
         param::{ChannelOrder, ChannelVideoTab, Language},
         serializer::MapResult,
@@ -649,7 +677,7 @@ mod tests {
     #[case::upcoming("videos_upcoming", "UCcvfHa-GHSOHFAjU0-Ie57A")]
     #[case::richgrid("videos_20221011_richgrid", "UCh8gHdtzO2tXd593_bjErWg")]
     #[case::richgrid2("videos_20221011_richgrid2", "UC2DjFE7Xf11URZqWBigcVOQ")]
-    #[case::richgrid2("videos_20230415_coachella", "UCHF66aWLOxBW4l6VkSrS3cQ")]
+    #[case::coachella("videos_20230415_coachella", "UCHF66aWLOxBW4l6VkSrS3cQ")]
     #[case::shorts("shorts", "UCh8gHdtzO2tXd593_bjErWg")]
     #[case::livestreams("livestreams", "UC2DjFE7Xf11URZqWBigcVOQ")]
     fn map_channel_videos(#[case] name: &str, #[case] id: &str) {
@@ -675,6 +703,23 @@ mod tests {
             insta::assert_ron_snapshot!(format!("map_channel_{name}"), map_res.c, {
                 ".content.items[].publish_date" => "[date]",
             });
+        }
+    }
+
+    #[test]
+    fn channel_agegate() {
+        let json_path = path!(*TESTFILES / "channel" / format!("channel_agegate.json"));
+        let json_file = File::open(json_path).unwrap();
+
+        let channel: response::Channel =
+            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let res: Result<MapResult<Channel<Paginator<VideoItem>>>, ExtractionError> =
+            channel.map_response("UCbfnHqxXs_K3kvaH-WlNlig", Language::En, None, None);
+        if let Err(ExtractionError::Unavailable { reason, msg }) = res {
+            assert_eq!(reason, UnavailabilityReason::AgeRestricted);
+            assert!(msg.starts_with("Laphroaig Whisky: "));
+        } else {
+            panic!("invalid res: {res:?}")
         }
     }
 

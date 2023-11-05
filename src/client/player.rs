@@ -77,7 +77,7 @@ impl RustyPipeQuery {
 
                     match tv_res {
                         // Output desktop client error if the tv client is unsupported
-                        Err(Error::Extraction(ExtractionError::VideoUnavailable {
+                        Err(Error::Extraction(ExtractionError::Unavailable {
                             reason: UnavailabilityReason::UnsupportedClient,
                             ..
                         })) => Err(Error::Extraction(e)),
@@ -183,7 +183,7 @@ impl MapResponse<VideoPlayer> for response::Player {
                         _ => None,
                     })
                     .unwrap_or_default();
-                return Err(ExtractionError::VideoUnavailable { reason, msg });
+                return Err(ExtractionError::Unavailable { reason, msg });
             }
             response::player::PlayabilityStatus::LoginRequired { reason, messages } => {
                 let mut msg = reason;
@@ -205,10 +205,10 @@ impl MapResponse<VideoPlayer> for response::Player {
                         _ => None,
                     })
                     .unwrap_or_default();
-                return Err(ExtractionError::VideoUnavailable { reason, msg });
+                return Err(ExtractionError::Unavailable { reason, msg });
             }
             response::player::PlayabilityStatus::LiveStreamOffline { reason } => {
-                return Err(ExtractionError::VideoUnavailable {
+                return Err(ExtractionError::Unavailable {
                     reason: UnavailabilityReason::OfflineLivestream,
                     msg: reason,
                 });
@@ -216,7 +216,7 @@ impl MapResponse<VideoPlayer> for response::Player {
             response::player::PlayabilityStatus::Error { reason } => {
                 // reason (censored): "This video has been removed for violating YouTube's policy on hate speech. Learn more about combating hate speech in your country."
                 // reason: "This video is unavailable"
-                return Err(ExtractionError::VideoUnavailable {
+                return Err(ExtractionError::Unavailable {
                     reason: UnavailabilityReason::Deleted,
                     msg: reason,
                 });

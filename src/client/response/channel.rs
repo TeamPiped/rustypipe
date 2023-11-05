@@ -36,7 +36,7 @@ pub(crate) struct TabRendererWrap {
 pub(crate) struct TabRenderer {
     #[serde(default)]
     pub content: TabContent,
-    pub endpoint: ChannelTabEndpoint,
+    pub endpoint: Option<ChannelTabEndpoint>,
 }
 
 #[serde_as]
@@ -148,10 +148,16 @@ pub(crate) struct MicroformatDataRenderer {
 
 #[serde_as]
 #[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct ChannelAbout {
-    #[serde_as(as = "VecSkipError<_>")]
-    pub on_response_received_endpoints: Vec<ContinuationActionWrap<AboutChannelRendererWrap>>,
+#[serde(untagged)]
+pub(crate) enum ChannelAbout {
+    #[serde(rename_all = "camelCase")]
+    ReceivedEndpoints {
+        #[serde_as(as = "VecSkipError<_>")]
+        on_response_received_endpoints: Vec<ContinuationActionWrap<AboutChannelRendererWrap>>,
+    },
+    Content {
+        contents: Option<Contents>,
+    },
 }
 
 #[derive(Debug, Deserialize)]

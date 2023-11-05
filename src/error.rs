@@ -24,14 +24,15 @@ pub enum Error {
 /// Error extracting content from YouTube
 #[derive(thiserror::Error, Debug)]
 pub enum ExtractionError {
-    /// Video cannot be extracted with RustyPipe
+    /// Content cannot be extracted with RustyPipe
     ///
     /// Reasons include:
     /// - Deletion/Censorship
-    /// - Private video that requires a Google account
+    /// - Age restriction
+    /// - Private video
     /// - DRM (Movies and TV shows)
-    #[error("video cant be played because it is {reason}. Reason (from YT): {msg}")]
-    VideoUnavailable {
+    #[error("content unavailable because it is {reason}. Reason (from YT): {msg}")]
+    Unavailable {
         /// Reason why the video could not be extracted
         reason: UnavailabilityReason,
         /// The error message as returned from YouTube
@@ -77,9 +78,9 @@ pub enum ExtractionError {
 #[derive(Default, Debug, Copy, Clone, PartialEq, Eq)]
 #[non_exhaustive]
 pub enum UnavailabilityReason {
-    /// Video is age restricted.
+    /// Video/Channel is age restricted.
     ///
-    /// Age restriction may be circumvented with the
+    /// Video age restriction may be circumvented with the
     /// [`ClientType::TvHtml5Embed`](crate::client::ClientType::TvHtml5Embed) client.
     AgeRestricted,
     /// Video was deleted or censored
@@ -208,7 +209,7 @@ impl ExtractionError {
     pub(crate) fn switch_client(&self) -> bool {
         matches!(
             self,
-            ExtractionError::VideoUnavailable {
+            ExtractionError::Unavailable {
                 reason: UnavailabilityReason::AgeRestricted
                     | UnavailabilityReason::UnsupportedClient,
                 ..

@@ -69,6 +69,14 @@ pub(crate) enum YouTubeListItem {
         contents: MapResult<Vec<YouTubeListItem>>,
     },
 
+    /// Age-restricted channel
+    #[serde(rename_all = "camelCase")]
+    ChannelAgeGateRenderer {
+        channel_title: String,
+        #[serde_as(as = "Text")]
+        main_text: String,
+    },
+
     /// No video list item (e.g. ad) or unimplemented item
     ///
     /// Unimplemented:
@@ -704,7 +712,7 @@ impl YouTubeListMapper<YouTubeItem> {
                 self.warnings.append(&mut contents.warnings);
                 contents.c.into_iter().for_each(|it| self.map_item(it));
             }
-            YouTubeListItem::None => {}
+            YouTubeListItem::None | YouTubeListItem::ChannelAgeGateRenderer { .. } => {}
         }
     }
 

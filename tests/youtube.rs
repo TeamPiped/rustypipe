@@ -312,7 +312,7 @@ fn get_player_error(#[case] id: &str, #[case] expect: UnavailabilityReason, rp: 
     let err = tokio_test::block_on(rp.query().player(id)).unwrap_err();
 
     match err {
-        Error::Extraction(ExtractionError::VideoUnavailable { reason, .. }) => {
+        Error::Extraction(ExtractionError::Unavailable { reason, .. }) => {
             assert_eq!(reason, expect, "got {err}")
         }
         _ => panic!("got {err}"),
@@ -1092,6 +1092,27 @@ fn channel_tab_not_found(#[case] tab: ChannelVideoTab, rp: RustyPipe) {
     .unwrap();
 
     assert!(channel.content.is_empty(), "got: {:?}", channel.content);
+}
+
+#[rstest]
+fn channel_age_restriction(rp: RustyPipe) {
+    let id = "UCbfnHqxXs_K3kvaH-WlNlig";
+
+    let res = tokio_test::block_on(rp.query().channel_videos(&id));
+    if let Err(Error::Extraction(ExtractionError::Unavailable { reason, msg })) = res {
+        assert_eq!(reason, UnavailabilityReason::AgeRestricted);
+        assert!(msg.starts_with("Laphroaig Whisky: "));
+    } else {
+        panic!("invalid res: {res:?}")
+    }
+
+    let res = tokio_test::block_on(rp.query().channel_info(&id));
+    if let Err(Error::Extraction(ExtractionError::Unavailable { reason, msg })) = res {
+        assert_eq!(reason, UnavailabilityReason::AgeRestricted);
+        assert!(msg.starts_with("Laphroaig Whisky: "));
+    } else {
+        panic!("invalid res: {res:?}")
+    }
 }
 
 //#CHANNEL_RSS
