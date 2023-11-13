@@ -54,7 +54,7 @@ use serde::{
     de::{IgnoredAny, Visitor},
     Deserialize,
 };
-use serde_with::{json::JsonString, serde_as, VecSkipError};
+use serde_with::{serde_as, DisplayFromStr, VecSkipError};
 
 use crate::error::ExtractionError;
 use crate::serializer::{text::Text, MapResult, VecSkipErrorWrap};
@@ -202,7 +202,7 @@ pub(crate) struct ResponseContext {
 #[serde(rename_all = "camelCase")]
 pub(crate) struct Continuation {
     /// Number of search results
-    #[serde_as(as = "Option<JsonString>")]
+    #[serde_as(as = "Option<DisplayFromStr>")]
     pub estimated_results: Option<u64>,
     #[serde(
         alias = "onResponseReceivedCommands",

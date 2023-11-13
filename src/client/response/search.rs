@@ -2,7 +2,7 @@ use serde::{
     de::{IgnoredAny, Visitor},
     Deserialize,
 };
-use serde_with::{json::JsonString, serde_as};
+use serde_with::{serde_as, DisplayFromStr};
 
 use super::{video_item::YouTubeListRendererWrap, ResponseContext};
 
@@ -10,7 +10,7 @@ use super::{video_item::YouTubeListRendererWrap, ResponseContext};
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct Search {
-    #[serde_as(as = "Option<JsonString>")]
+    #[serde_as(as = "Option<DisplayFromStr>")]
     pub estimated_results: Option<u64>,
     pub contents: Contents,
     pub response_context: ResponseContext,

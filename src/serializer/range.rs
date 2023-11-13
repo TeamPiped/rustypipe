@@ -1,12 +1,12 @@
 use serde::{Deserialize, Deserializer, Serialize, Serializer};
-use serde_with::{json::JsonString, serde_as, DeserializeAs, SerializeAs};
+use serde_with::{serde_as, DeserializeAs, DisplayFromStr, SerializeAs};
 
 #[serde_as]
 #[derive(Deserialize, Serialize)]
 pub struct Range {
-    #[serde_as(as = "JsonString")]
+    #[serde_as(as = "DisplayFromStr")]
     start: u32,
-    #[serde_as(as = "JsonString")]
+    #[serde_as(as = "DisplayFromStr")]
     end: u32,
 }
 

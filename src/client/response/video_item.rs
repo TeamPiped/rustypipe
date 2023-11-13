@@ -2,7 +2,7 @@ use once_cell::sync::Lazy;
 use regex::Regex;
 use serde::Deserialize;
 use serde_with::{
-    json::JsonString, rust::deserialize_ignore_any, serde_as, DefaultOnError, VecSkipError,
+    rust::deserialize_ignore_any, serde_as, DefaultOnError, DisplayFromStr, VecSkipError,
 };
 use time::OffsetDateTime;
 
@@ -162,7 +162,7 @@ pub(crate) struct PlaylistVideoRenderer {
     pub title: String,
     #[serde(rename = "shortBylineText")]
     pub channel: TextComponent,
-    #[serde_as(as = "Option<JsonString>")]
+    #[serde_as(as = "Option<DisplayFromStr>")]
     pub length_seconds: Option<u32>,
     /// Regular video: `["29K views", " • ", "13 years ago"]`
     /// Livestream: `["66K", " watching"]`
@@ -192,7 +192,7 @@ pub(crate) struct PlaylistRenderer {
     /// The first item of this list contains the playlist thumbnail,
     /// subsequent items contain very small thumbnails of the next playlist videos
     pub thumbnails: Option<Vec<Thumbnails>>,
-    #[serde_as(as = "Option<JsonString>")]
+    #[serde_as(as = "Option<DisplayFromStr>")]
     pub video_count: Option<u64>,
     #[serde_as(as = "Option<Text>")]
     pub video_count_short_text: Option<String>,
@@ -248,7 +248,7 @@ pub(crate) struct YouTubeListRenderer {
 #[serde(rename_all = "camelCase")]
 pub(crate) struct UpcomingEventData {
     /// Unixtime in seconds
-    #[serde_as(as = "JsonString")]
+    #[serde_as(as = "DisplayFromStr")]
     pub start_time: i64,
 }
 

@@ -2,7 +2,7 @@ use std::ops::Range;
 
 use serde::Deserialize;
 use serde_with::serde_as;
-use serde_with::{json::JsonString, DefaultOnError};
+use serde_with::{DefaultOnError, DisplayFromStr};
 
 use super::{ResponseContext, Thumbnails};
 use crate::serializer::{text::Text, MapResult};
@@ -78,7 +78,7 @@ pub(crate) struct ErrorMessage {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct StreamingData {
-    #[serde_as(as = "JsonString")]
+    #[serde_as(as = "DisplayFromStr")]
     pub expires_in_seconds: u32,
     #[serde(default)]
     pub formats: MapResult<Vec<Format>>,
@@ -106,7 +106,7 @@ pub(crate) struct Format {
 
     pub width: Option<u32>,
     pub height: Option<u32>,
-    #[serde_as(as = "Option<JsonString>")]
+    #[serde_as(as = "Option<DisplayFromStr>")]
     pub approx_duration_ms: Option<u32>,
 
     #[serde_as(as = "Option<crate::serializer::Range>")]
@@ -114,7 +114,7 @@ pub(crate) struct Format {
     #[serde_as(as = "Option<crate::serializer::Range>")]
     pub init_range: Option<Range<u32>>,
 
-    #[serde_as(as = "Option<JsonString>")]
+    #[serde_as(as = "Option<DisplayFromStr>")]
     pub content_length: Option<u64>,
 
     #[serde(default)]
@@ -129,7 +129,7 @@ pub(crate) struct Format {
     #[serde(default)]
     #[serde_as(deserialize_as = "DefaultOnError")]
     pub audio_quality: Option<AudioQuality>,
-    #[serde_as(as = "Option<JsonString>")]
+    #[serde_as(as = "Option<DisplayFromStr>")]
     pub audio_sample_rate: Option<u32>,
     pub audio_channels: Option<u8>,
     pub loudness_db: Option<f32>,
@@ -237,7 +237,7 @@ pub(crate) struct CaptionTrack {
 pub(crate) struct VideoDetails {
     pub video_id: String,
     pub title: String,
-    #[serde_as(as = "JsonString")]
+    #[serde_as(as = "DisplayFromStr")]
     pub length_seconds: u32,
     #[serde(default)]
     pub keywords: Vec<String>,
@@ -245,7 +245,7 @@ pub(crate) struct VideoDetails {
     pub short_description: Option<String>,
     #[serde(default)]
     pub thumbnail: Thumbnails,
-    #[serde_as(as = "JsonString")]
+    #[serde_as(as = "DisplayFromStr")]
     pub view_count: u64,
     pub author: String,
     pub is_live_content: bool,
