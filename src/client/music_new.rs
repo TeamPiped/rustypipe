@@ -112,13 +112,14 @@ mod tests {
 
     #[rstest]
     #[case::default("default")]
+    #[case::default("w_podcasts")]
     fn map_music_new_videos(#[case] name: &str) {
         let json_path = path!(*TESTFILES / "music_new" / format!("videos_{name}.json"));
         let json_file = File::open(json_path).unwrap();
 
-        let new_albums: response::MusicNew =
+        let new_videos: response::MusicNew =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res: MapResult<Vec<TrackItem>> = new_albums
+        let map_res: MapResult<Vec<TrackItem>> = new_videos
             .map_response("", Language::En, None, None)
             .unwrap();
 

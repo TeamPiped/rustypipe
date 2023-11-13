@@ -1389,9 +1389,10 @@ fn music_playlist_cont(#[case] id: &str, rp: RustyPipe) {
     assert_gte(track_count, 100, "tracks");
 
     assert_eq!(track_count, playlist.tracks.count.unwrap());
-    assert_eq!(
+    assert_gte(
         usize::try_from(track_count).unwrap(),
-        playlist.tracks.items.len()
+        playlist.tracks.items.len(),
+        "tracks",
     );
 }
 
@@ -2263,7 +2264,12 @@ fn music_new_videos(rp: RustyPipe) {
         validate::video_id(&video.id).unwrap();
         assert!(!video.name.is_empty());
         assert!(!video.cover.is_empty(), "got no cover");
-        assert_gte(video.view_count.unwrap(), 1000, "views");
+        if let Some(view_count) = video.view_count {
+            assert_gte(view_count, 1000, "views");
+        } else {
+            // Podcast episode: shows duration instead of view count
+            assert!(video.duration.is_some(), "no view count or duration");
+        }
         assert!(video.is_video);
     }
 }

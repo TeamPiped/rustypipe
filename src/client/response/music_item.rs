@@ -11,7 +11,7 @@ use crate::{
         text::{Text, TextComponent, TextComponents},
         MapResult,
     },
-    util::{self, dictionary},
+    util::{self, dictionary, timeago},
 };
 
 use super::{
@@ -780,9 +780,16 @@ impl MusicListMapper {
                             .map(|st| map_album_type(st.first_str(), self.lang))
                             .unwrap_or_default();
 
-                        let (artists, by_va) = map_artists(subtitle_p2);
-
+                        let (mut artists, by_va) = map_artists(subtitle_p2);
                         let artist_id = map_artist_id_fallback(item.menu, artists.first());
+
+                        // Album artist links may be invisible on the search page, so
+                        // fall back to menu data
+                        if let Some(a1) = artists.first_mut() {
+                            if a1.id.is_none() {
+                                a1.id = artist_id.clone();
+                            }
+                        }
 
                         let year =
                             subtitle_p3.and_then(|st| util::parse_numeric(st.first_str()).ok());
@@ -855,23 +862,38 @@ impl MusicListMapper {
         match item.navigation_endpoint.music_page() {
             Some(music_page) => match music_page.typ {
                 MusicPageType::Track { vtype } => {
-                    let (artists, by_va) = map_artists(subtitle_p1);
-
-                    self.items.push(MusicItem::Track(TrackItem {
-                        id: music_page.id,
-                        name: item.title,
-                        duration: None,
-                        cover: item.thumbnail_renderer.into(),
-                        artist_id: artists.first().and_then(|a| a.id.clone()),
-                        artists,
-                        album: None,
-                        view_count: subtitle_p2.and_then(|c| {
+                    let (artists, by_va, view_count, duration) = if vtype == MusicVideoType::Episode
+                    {
+                        let (artists, by_va) = map_artists(subtitle_p2);
+                        let duration = subtitle_p1.and_then(|s| {
+                            timeago::parse_video_duration_or_warn(
+                                self.lang,
+                                s.first_str(),
+                                &mut self.warnings,
+                            )
+                        });
+                        (artists, by_va, None, duration)
+                    } else {
+                        let (artists, by_va) = map_artists(subtitle_p1);
+                        let view_count = subtitle_p2.and_then(|c| {
                             util::parse_large_numstr_or_warn(
                                 c.first_str(),
                                 self.lang,
                                 &mut self.warnings,
                             )
-                        }),
+                        });
+                        (artists, by_va, view_count, None)
+                    };
+
+                    self.items.push(MusicItem::Track(TrackItem {
+                        id: music_page.id,
+                        name: item.title,
+                        duration,
+                        cover: item.thumbnail_renderer.into(),
+                        artist_id: artists.first().and_then(|a| a.id.clone()),
+                        artists,
+                        album: None,
+                        view_count,
                         is_video: vtype.is_video(),
                         track_nr: None,
                         by_va,
