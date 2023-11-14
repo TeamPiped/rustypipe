@@ -3,39 +3,39 @@
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
+      "s.": "s",
       "sekonde": "s",
       "sekondes": "s",
-      "s.": "s",
-      "minuut": "m",
-      "minute": "m",
       "min.": "m",
-      "uur": "h",
+      "minute": "m",
+      "minuut": "m",
       "u.": "h",
-      "dag": "D",
+      "uur": "h",
       "dae": "D",
+      "dag": "D",
+      "w.": "W",
       "week": "W",
       "weke": "W",
-      "w.": "W",
       "maand": "M",
       "maande": "M",
       "md.": "M",
-      "jaar": "Y",
-      "j.": "Y"
+      "j.": "Y",
+      "jaar": "Y"
     },
     "date_order": "DY",
     "months": {
-      "apr.": 4,
-      "aug.": 8,
-      "des.": 12,
-      "feb.": 2,
       "jan.": 1,
-      "jul.": 7,
-      "jun.": 6,
-      "mei": 5,
+      "feb.": 2,
       "mrt.": 3,
-      "nov.": 11,
+      "apr.": 4,
+      "mei": 5,
+      "jun.": 6,
+      "jul.": 7,
+      "aug.": 8,
+      "sep.": 9,
       "okt.": 10,
-      "sep.": 9
+      "nov.": 11,
+      "des.": 12
     },
     "timeago_nd_tokens": {
       "vandag": "0D",
@@ -51,10 +51,10 @@
     },
     "album_types": {
       "album": "Album",
-      "drama": "Show",
-      "enkelsnit": "Single",
+      "oudioboek": "Audiobook",
       "ep": "Ep",
-      "oudioboek": "Audiobook"
+      "drama": "Show",
+      "enkelsnit": "Single"
     }
   },
   "am": {
@@ -69,30 +69,30 @@
       "ደቂቃዎች፣": "m",
       "ሰዓት": "h",
       "ሰዓቶች": "h",
-      "ቀን": "D",
       "ቀናት": "D",
+      "ቀን": "D",
       "ቀኖች": "D",
-      "ሳምንት": "W",
       "ሳምንታት": "W",
-      "ወር": "M",
+      "ሳምንት": "W",
       "ወራት": "M",
-      "ዓመት": "Y",
-      "ዓመታት": "Y"
+      "ወር": "M",
+      "ዓመታት": "Y",
+      "ዓመት": "Y"
     },
     "date_order": "DY",
     "months": {
-      "ማርች": 3,
-      "ሜይ": 5,
-      "ሴፕቴ": 9,
-      "ኖቬም": 11,
-      "ኤፕሪ": 4,
-      "ኦክቶ": 10,
-      "ኦገስ": 8,
-      "ዲሴም": 12,
-      "ጁላይ": 7,
-      "ጁን": 6,
       "ጃንዩ": 1,
-      "ፌብሩ": 2
+      "ፌብሩ": 2,
+      "ማርች": 3,
+      "ኤፕሪ": 4,
+      "ሜይ": 5,
+      "ጁን": 6,
+      "ጁላይ": 7,
+      "ኦገስ": 8,
+      "ሴፕቴ": 9,
+      "ኦክቶ": 10,
+      "ኖቬም": 11,
+      "ዲሴም": 12
     },
     "timeago_nd_tokens": {
       "ዛሬ": "0D",
@@ -100,19 +100,19 @@
     },
     "comma_decimal": false,
     "number_tokens": {
-      "ሚ": 6,
       "ሺ": 3,
+      "ሚ": 6,
       "ቢ": 9
     },
     "number_nd_tokens": {
       "የለዉም": 0
     },
     "album_types": {
-      "ትዕይንት": "Show",
-      "ነጠላ": "Single",
       "አልበም": "Album",
       "ኦዲዮ መጽሐፍ": "Audiobook",
-      "የተራዘመ አልበም": "Ep"
+      "የተራዘመ አልበም": "Ep",
+      "ትዕይንት": "Show",
+      "ነጠላ": "Single"
     }
   },
   "ar": {
@@ -120,35 +120,35 @@
     "by_char": false,
     "timeago_tokens": {
       "ثانية": "s",
-      "ثوانِ": "s",
-      "ثوانٍ": "s",
       "ثوان": "s",
+      "ثوانٍ": "s",
+      "ثوانِ": "s",
+      "وثانية": "s",
       "ثانيتين": "2s",
       "وثانيتان": "2s",
       "دقائق": "m",
       "دقيقة": "m",
       "دقيقتان": "2m",
       "دقيقتين": "2m",
-      "ساعتين": "2h",
       "ساعات": "h",
       "ساعة": "h",
-      "يومين": "2D",
+      "ساعتين": "2h",
       "أيام": "D",
-      "يومًا": "D",
       "يوم": "D",
-      "أسبوعين": "2W",
+      "يومًا": "D",
+      "يومين": "2D",
       "أسابيع": "W",
-      "أسبوعًا": "W",
       "أسبوع": "W",
-      "شهرين": "2M",
+      "أسبوعًا": "W",
+      "أسبوعين": "2W",
       "أشهر": "M",
-      "شهرًا": "M",
       "خلال": "M",
       "شهر": "M",
-      "سنتين": "2Y",
-      "سنوات": "Y",
+      "شهرًا": "M",
+      "شهرين": "2M",
       "سنة": "Y",
-      "وثانية": "s"
+      "سنوات": "Y",
+      "سنتين": "2Y"
     },
     "date_order": "DMY",
     "months": {},
@@ -160,19 +160,19 @@
     "number_tokens": {
       "آلاف": 3,
       "ألف": 3,
-      "مليار": 9,
-      "مليون": 6
+      "مليون": 6,
+      "مليار": 9
     },
     "number_nd_tokens": {
       "لا": 0,
       "واحد": 1
     },
     "album_types": {
-      "أغنية منفردة": "Single",
       "ألبوم": "Album",
-      "ألبوم قصير": "Ep",
       "الكتب المسموعة": "Audiobook",
-      "عرض": "Show"
+      "ألبوم قصير": "Ep",
+      "عرض": "Show",
+      "أغنية منفردة": "Single"
     }
   },
   "as": {
@@ -195,17 +195,17 @@
     },
     "comma_decimal": false,
     "number_tokens": {
-      "কোঃটা": 9,
+      "হা": 3,
+      "হাজাৰ": 3,
+      "হাজাৰটা": 3,
+      "লা": 5,
+      "লাখ": 5,
+      "লাখটা": 5,
       "নিঃ": 6,
       "নিঃটা": 6,
       "নিযুত": 6,
       "নিযুতটা": 6,
-      "লা": 5,
-      "লাখ": 5,
-      "লাখটা": 5,
-      "হা": 3,
-      "হাজাৰ": 3,
-      "হাজাৰটা": 3
+      "কোঃটা": 9
     },
     "number_nd_tokens": {
       "নাই": 0,
@@ -213,11 +213,11 @@
       "১টা": 1
     },
     "album_types": {
-      "ep": "Ep",
-      "অডিঅ’বুক": "Audiobook",
-      "একক": "Single",
       "এলবাম": "Album",
-      "শ্ব’": "Show"
+      "অডিঅ’বুক": "Audiobook",
+      "ep": "Ep",
+      "শ্ব’": "Show",
+      "একক": "Single"
     }
   },
   "az": {
@@ -234,18 +234,18 @@
     },
     "date_order": "DY",
     "months": {
-      "apr": 4,
-      "avq": 8,
-      "dek": 12,
+      "yan": 1,
       "fev": 2,
-      "iyl": 7,
-      "iyn": 6,
       "mar": 3,
+      "apr": 4,
       "may": 5,
-      "noy": 11,
-      "okt": 10,
+      "iyn": 6,
+      "iyl": 7,
+      "avq": 8,
       "sen": 9,
-      "yan": 1
+      "okt": 10,
+      "noy": 11,
+      "dek": 12
     },
     "timeago_nd_tokens": {
       "bugün": "0D",
@@ -263,62 +263,62 @@
       "albom": "Album",
       "audio kitab": "Audiobook",
       "ep": "Ep",
-      "tək": "Single",
-      "şou": "Show"
+      "şou": "Show",
+      "tək": "Single"
     }
   },
   "be": {
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
-      "секунду": "s",
-      "секунды": "s",
+      "с": "s",
       "секунд": "s",
       "секунда": "s",
-      "с": "s",
-      "хвіліну": "m",
-      "хвіліны": "m",
+      "секунду": "s",
+      "секунды": "s",
+      "хв": "m",
       "хвілін": "m",
       "хвіліна": "m",
-      "хв": "m",
+      "хвіліну": "m",
+      "хвіліны": "m",
+      "гадз": "h",
+      "гадзін": "h",
       "гадзіну": "h",
       "гадзіны": "h",
-      "гадзін": "h",
-      "гадз": "h",
+      "дзён": "D",
       "дзень": "D",
       "дні": "D",
-      "дзён": "D",
       "дня": "D",
+      "тыд": "W",
       "тыдзень": "W",
       "тыдні": "W",
-      "тыдняў": "W",
       "тыдня": "W",
-      "тыд": "W",
-      "месяц": "M",
-      "месяцы": "M",
-      "месяцаў": "M",
-      "месяца": "M",
+      "тыдняў": "W",
       "мес.": "M",
-      "год": "Y",
-      "гады": "Y",
+      "месяц": "M",
+      "месяца": "M",
+      "месяцаў": "M",
+      "месяцы": "M",
+      "г.": "Y",
       "гадоў": "Y",
-      "года": "Y",
-      "г.": "Y"
+      "гады": "Y",
+      "год": "Y",
+      "года": "Y"
     },
     "date_order": "DY",
     "months": {
-      "вер": 9,
-      "жні": 8,
-      "кас": 10,
-      "кра": 4,
-      "лют": 2,
-      "ліп": 7,
-      "ліс": 11,
-      "мая": 5,
-      "сак": 3,
-      "сне": 12,
       "сту": 1,
-      "чэр": 6
+      "лют": 2,
+      "сак": 3,
+      "кра": 4,
+      "мая": 5,
+      "чэр": 6,
+      "ліп": 7,
+      "жні": 8,
+      "вер": 9,
+      "кас": 10,
+      "ліс": 11,
+      "сне": 12
     },
     "timeago_nd_tokens": {
       "сёння": "0D",
@@ -326,9 +326,9 @@
     },
     "comma_decimal": true,
     "number_tokens": {
+      "тыс": 3,
       "млн": 6,
-      "млрд": 9,
-      "тыс": 3
+      "млрд": 9
     },
     "number_nd_tokens": {
       "няма": 0
@@ -337,34 +337,34 @@
       "альбом": "Album",
       "аўдыякніга": "Audiobook",
       "міні-альбом": "Ep",
-      "сінгл": "Single",
-      "шоу": "Show"
+      "шоу": "Show",
+      "сінгл": "Single"
     }
   },
   "bg": {
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
+      "сек": "s",
       "секунда": "s",
       "секунди": "s",
-      "сек": "s",
+      "мин": "m",
       "минута": "m",
       "минути": "m",
-      "мин": "m",
+      "ч": "h",
       "час": "h",
       "часа": "h",
-      "ч": "h",
       "ден": "D",
       "дни": "D",
+      "седм.": "W",
       "седмица": "W",
       "седмици": "W",
-      "седм.": "W",
+      "м.": "M",
       "месец": "M",
       "месеца": "M",
-      "м.": "M",
+      "г.": "Y",
       "година": "Y",
-      "години": "Y",
-      "г.": "Y"
+      "години": "Y"
     },
     "date_order": "DMY",
     "months": {},
@@ -374,9 +374,9 @@
     },
     "comma_decimal": true,
     "number_tokens": {
+      "хил": 3,
       "млн": 6,
-      "млрд": 9,
-      "хил": 3
+      "млрд": 9
     },
     "number_nd_tokens": {
       "няма": 0
@@ -403,18 +403,18 @@
     },
     "date_order": "DY",
     "months": {
-      "অক্টো,": 10,
-      "আগ,": 8,
-      "এপ্রি,": 4,
       "জানু,": 1,
-      "জুন,": 6,
-      "জুল,": 7,
-      "ডিসে,": 12,
-      "নভে,": 11,
       "ফেব,": 2,
       "মার্চ,": 3,
+      "এপ্রি,": 4,
       "মে,": 5,
-      "সেপ,": 9
+      "জুন,": 6,
+      "জুল,": 7,
+      "আগ,": 8,
+      "সেপ,": 9,
+      "অক্টো,": 10,
+      "নভে,": 11,
+      "ডিসে,": 12
     },
     "timeago_nd_tokens": {
       "আজ": "0D",
@@ -422,21 +422,21 @@
     },
     "comma_decimal": false,
     "number_tokens": {
-      "কো": 7,
-      "কোটি": 7,
-      "লা": 5,
-      "লাটি": 5,
       "শত": 2,
       "হা": 3,
-      "হাটি": 3
+      "হাটি": 3,
+      "লা": 5,
+      "লাটি": 5,
+      "কো": 7,
+      "কোটি": 7
     },
     "number_nd_tokens": {
       "০": 0,
       "১": 1
     },
     "album_types": {
-      "অডিওবুক": "Audiobook",
       "অ্যালবাম": "Album",
+      "অডিওবুক": "Audiobook",
       "ইপি": "Ep",
       "শো": "Show",
       "সিঙ্গেল": "Single"
@@ -446,48 +446,48 @@
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
-      "sekundu": "s",
+      "sek.": "s",
+      "sekunda": "s",
       "sekunde": "s",
       "sekundi": "s",
-      "sekunda": "s",
-      "sek.": "s",
-      "minutu": "m",
-      "minute": "m",
-      "minuta": "m",
+      "sekundu": "s",
       "min.": "m",
+      "minuta": "m",
+      "minute": "m",
+      "minutu": "m",
       "sat": "h",
       "sata": "h",
       "sati": "h",
+      "d.": "D",
       "dan": "D",
       "dana": "D",
-      "d.": "D",
-      "sedmicu": "W",
-      "sedmice": "W",
-      "sedmica": "W",
       "sed.": "W",
+      "sedmica": "W",
+      "sedmice": "W",
+      "sedmicu": "W",
+      "mj.": "M",
       "mjesec": "M",
       "mjeseca": "M",
       "mjeseci": "M",
-      "mj.": "M",
-      "godinu": "Y",
-      "godine": "Y",
+      "god.": "Y",
       "godina": "Y",
-      "god.": "Y"
+      "godine": "Y",
+      "godinu": "Y"
     },
     "date_order": "DY",
     "months": {
-      "apr": 4,
-      "aug": 8,
-      "dec": 12,
-      "feb": 2,
       "jan": 1,
-      "jul": 7,
-      "jun": 6,
-      "maj": 5,
+      "feb": 2,
       "mar": 3,
-      "nov": 11,
+      "apr": 4,
+      "maj": 5,
+      "jun": 6,
+      "jul": 7,
+      "aug": 8,
+      "sep": 9,
       "okt": 10,
-      "sep": 9
+      "nov": 11,
+      "dec": 12
     },
     "timeago_nd_tokens": {
       "danas": "0D",
@@ -514,20 +514,20 @@
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
+      "s": "s",
       "segon": "s",
       "segons": "s",
-      "s": "s",
+      "min": "m",
       "minut": "m",
       "minuts": "m",
-      "min": "m",
+      "h": "h",
       "hora": "h",
       "hores": "h",
-      "h": "h",
       "dia": "D",
       "dies": "D",
+      "setm.": "W",
       "setmana": "W",
       "setmanes": "W",
-      "setm.": "W",
       "mes": "M",
       "mesos": "M",
       "any": "Y",
@@ -535,18 +535,18 @@
     },
     "date_order": "DY",
     "months": {
-      "des.": 12,
-      "d’abr.": 4,
-      "d’ag.": 8,
-      "d’oct.": 10,
-      "febr.": 2,
       "gen.": 1,
-      "jul.": 7,
-      "juny": 6,
-      "maig": 5,
+      "febr.": 2,
       "març": 3,
+      "d’abr.": 4,
+      "maig": 5,
+      "juny": 6,
+      "jul.": 7,
+      "d’ag.": 8,
+      "set.": 9,
+      "d’oct.": 10,
       "nov.": 11,
-      "set.": 9
+      "des.": 12
     },
     "timeago_nd_tokens": {
       "avui": "0D",
@@ -554,57 +554,57 @@
     },
     "comma_decimal": true,
     "number_tokens": {
-      "km": 9,
-      "m": 6
+      "m": 6,
+      "km": 9
     },
     "number_nd_tokens": {
       "sense": 0
     },
     "album_types": {
+      "àlbum": "Album",
       "audiollibre": "Audiobook",
       "ep": "Ep",
       "programa": "Show",
-      "single": "Single",
-      "àlbum": "Album"
+      "single": "Single"
     }
   },
   "cs": {
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
-      "sekundou": "s",
-      "sekundami": "s",
-      "sekundy": "s",
+      "s": "s",
       "sekund": "s",
       "sekunda": "s",
-      "s": "s",
-      "minutou": "m",
-      "minutami": "m",
-      "minuty": "m",
+      "sekundami": "s",
+      "sekundou": "s",
+      "sekundy": "s",
+      "min": "m",
       "minut": "m",
       "minuta": "m",
-      "min": "m",
-      "hodinou": "h",
-      "hodinami": "h",
-      "hodiny": "h",
+      "minutami": "m",
+      "minutou": "m",
+      "minuty": "m",
       "h": "h",
+      "hodinami": "h",
+      "hodinou": "h",
+      "hodiny": "h",
+      "dne": "D",
       "dnem": "D",
       "dny": "D",
-      "dne": "D",
+      "týd.": "W",
+      "týdne": "W",
       "týdnem": "W",
       "týdny": "W",
-      "týdne": "W",
-      "týd.": "W",
+      "měs.": "M",
+      "měsíce": "M",
       "měsícem": "M",
       "měsíci": "M",
-      "měsíce": "M",
-      "měs.": "M",
-      "rokem": "Y",
+      "l.": "Y",
       "lety": "Y",
-      "roku": "Y",
-      "roky": "Y",
       "r.": "Y",
-      "l.": "Y"
+      "rokem": "Y",
+      "roku": "Y",
+      "roky": "Y"
     },
     "date_order": "DMY",
     "months": {},
@@ -614,29 +614,29 @@
     },
     "comma_decimal": true,
     "number_tokens": {
+      "tis": 3,
       "mil": 6,
-      "mld": 9,
-      "tis": 3
+      "mld": 9
     },
     "number_nd_tokens": {},
     "album_types": {
       "album": "Album",
       "audiokniha": "Audiobook",
       "ep": "Ep",
-      "singl": "Single",
-      "zobrazit": "Show"
+      "zobrazit": "Show",
+      "singl": "Single"
     }
   },
   "da": {
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
+      "sek.": "s",
       "sekund": "s",
       "sekunder": "s",
-      "sek.": "s",
+      "min.": "m",
       "minut": "m",
       "minutter": "m",
-      "min.": "m",
       "time": "h",
       "timer": "h",
       "dag": "D",
@@ -651,18 +651,18 @@
     },
     "date_order": "DY",
     "months": {
-      "apr.": 4,
-      "aug.": 8,
-      "dec.": 12,
-      "feb.": 2,
       "jan.": 1,
-      "jul.": 7,
-      "jun.": 6,
-      "maj": 5,
+      "feb.": 2,
       "mar.": 3,
-      "nov.": 11,
+      "apr.": 4,
+      "maj": 5,
+      "jun.": 6,
+      "jul.": 7,
+      "aug.": 8,
+      "sep.": 9,
       "okt.": 10,
-      "sep.": 9
+      "nov.": 11,
+      "dec.": 12
     },
     "timeago_nd_tokens": {
       "dag": "0D",
@@ -670,16 +670,16 @@
     },
     "comma_decimal": true,
     "number_tokens": {
-      "mia": 9,
-      "mio": 6
+      "mio": 6,
+      "mia": 9
     },
     "number_nd_tokens": {
       "ingen": 0
     },
     "album_types": {
       "album": "Album",
-      "ep": "Ep",
       "lydbog": "Audiobook",
+      "ep": "Ep",
       "lyddrama": "Show",
       "single": "Single"
     }
@@ -688,15 +688,15 @@
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
+      "sek.": "s",
       "sekunde": "s",
       "sekunden": "s",
-      "sek.": "s",
+      "min.": "m",
       "minute": "m",
       "minuten": "m",
-      "min.": "m",
+      "std.": "h",
       "stunde": "h",
       "stunden": "h",
-      "std.": "h",
       "tag": "D",
       "tagen": "D",
       "woche": "W",
@@ -722,8 +722,8 @@
     },
     "album_types": {
       "album": "Album",
-      "ep": "Ep",
       "hörbuch": "Audiobook",
+      "ep": "Ep",
       "hörspiel": "Show",
       "single": "Single"
     }
@@ -732,40 +732,40 @@
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
-      "δευτερόλεπτο": "s",
-      "δευτερόλεπτα": "s",
       "δευτ.": "s",
-      "λεπτό": "m",
-      "λεπτά": "m",
+      "δευτερόλεπτα": "s",
+      "δευτερόλεπτο": "s",
       "λεπ.": "m",
+      "λεπτά": "m",
+      "λεπτό": "m",
+      "ώ.": "h",
       "ώρα": "h",
       "ώρες": "h",
-      "ώ.": "h",
+      "ημ.": "D",
       "ημέρα": "D",
       "ημέρες": "D",
-      "ημ.": "D",
+      "εβδ.": "W",
       "εβδομάδα": "W",
       "εβδομάδες": "W",
-      "εβδ.": "W",
       "μήνα": "M",
       "μήνες": "M",
-      "έτος": "Y",
-      "έτη": "Y"
+      "έτη": "Y",
+      "έτος": "Y"
     },
     "date_order": "DY",
     "months": {
-      "απρ": 4,
-      "αυγ": 8,
-      "δεκ": 12,
       "ιαν": 1,
-      "ιουλ": 7,
-      "ιουν": 6,
-      "μαΐ": 5,
+      "φεβ": 2,
       "μαρ": 3,
-      "νοε": 11,
-      "οκτ": 10,
+      "απρ": 4,
+      "μαΐ": 5,
+      "ιουν": 6,
+      "ιουλ": 7,
+      "αυγ": 8,
       "σεπ": 9,
-      "φεβ": 2
+      "οκτ": 10,
+      "νοε": 11,
+      "δεκ": 12
     },
     "timeago_nd_tokens": {
       "σήμερα": "0D",
@@ -773,67 +773,70 @@
     },
     "comma_decimal": true,
     "number_tokens": {
-      "δισ": 9,
+      "χιλ": 3,
       "εκ": 6,
-      "χιλ": 3
+      "δισ": 9
     },
     "number_nd_tokens": {
       "καμία": 0
     },
     "album_types": {
-      "ep": "Ep",
-      "single": "Single",
       "άλμπουμ": "Album",
+      "ηχητικό βιβλίο": "Audiobook",
+      "ep": "Ep",
       "εκπομπή": "Show",
-      "ηχητικό βιβλίο": "Audiobook"
+      "single": "Single"
     }
   },
   "en": {
-    "equivalent": ["en-GB", "en-IN"],
+    "equivalent": [
+      "en-GB",
+      "en-IN"
+    ],
     "by_char": false,
     "timeago_tokens": {
+      "s": "s",
+      "sec": "s",
       "second": "s",
       "seconds": "s",
-      "sec": "s",
-      "s": "s",
+      "m": "m",
+      "min": "m",
       "minute": "m",
       "minutes": "m",
-      "min": "m",
-      "m": "m",
+      "h": "h",
       "hour": "h",
       "hours": "h",
       "hr": "h",
-      "h": "h",
+      "d": "D",
       "day": "D",
       "days": "D",
-      "d": "D",
+      "w": "W",
       "week": "W",
       "weeks": "W",
       "wk": "W",
-      "w": "W",
+      "mo": "M",
       "month": "M",
       "months": "M",
-      "mo": "M",
+      "y": "Y",
       "year": "Y",
       "years": "Y",
-      "yr": "Y",
-      "y": "Y"
+      "yr": "Y"
     },
     "date_order": "DY",
     "months": {
-      "apr": 4,
-      "aug": 8,
-      "dec": 12,
-      "feb": 2,
       "jan": 1,
-      "jul": 7,
-      "jun": 6,
+      "feb": 2,
       "mar": 3,
+      "apr": 4,
       "may": 5,
-      "nov": 11,
-      "oct": 10,
+      "jun": 6,
+      "jul": 7,
+      "aug": 8,
       "sep": 9,
-      "sept": 9
+      "sept": 9,
+      "oct": 10,
+      "nov": 11,
+      "dec": 12
     },
     "timeago_nd_tokens": {
       "today": "0D",
@@ -841,10 +844,10 @@
     },
     "comma_decimal": false,
     "number_tokens": {
-      "b": 9,
-      "crore": 7,
       "lakh": 5,
-      "m": 6
+      "m": 6,
+      "crore": 7,
+      "b": 9
     },
     "number_nd_tokens": {
       "no": 0
@@ -861,41 +864,41 @@
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
+      "s": "s",
       "segundo": "s",
       "segundos": "s",
-      "s": "s",
+      "min": "m",
       "minuto": "m",
       "minutos": "m",
-      "min": "m",
+      "h": "h",
       "hora": "h",
       "horas": "h",
-      "h": "h",
+      "d": "D",
       "día": "D",
       "días": "D",
-      "d": "D",
+      "sem.": "W",
       "semana": "W",
       "semanas": "W",
-      "sem.": "W",
+      "m": "M",
       "mes": "M",
       "meses": "M",
-      "m": "M",
       "año": "Y",
       "años": "Y"
     },
     "date_order": "DY",
     "months": {
-      "abr": 4,
-      "ago": 8,
-      "dic": 12,
       "ene": 1,
       "feb": 2,
-      "jul": 7,
-      "jun": 6,
       "mar": 3,
+      "abr": 4,
       "may": 5,
-      "nov": 11,
+      "jun": 6,
+      "jul": 7,
+      "ago": 8,
+      "sept": 9,
       "oct": 10,
-      "sept": 9
+      "nov": 11,
+      "dic": 12
     },
     "timeago_nd_tokens": {
       "hoy": "0D",
@@ -903,56 +906,58 @@
     },
     "comma_decimal": true,
     "number_tokens": {
-      "m": 6,
-      "mil": 3
+      "mil": 3,
+      "m": 6
     },
     "number_nd_tokens": {},
     "album_types": {
-      "audiodrama": "Show",
+      "álbum": "Album",
       "audiolibro": "Audiobook",
       "ep": "Ep",
-      "single": "Single",
-      "álbum": "Album"
+      "audiodrama": "Show",
+      "single": "Single"
     }
   },
   "es-US": {
-    "equivalent": ["es-419"],
+    "equivalent": [
+      "es-419"
+    ],
     "by_char": false,
     "timeago_tokens": {
+      "s": "s",
       "segundo": "s",
       "segundos": "s",
-      "s": "s",
+      "min": "m",
       "minuto": "m",
       "minutos": "m",
-      "min": "m",
+      "h": "h",
       "hora": "h",
       "horas": "h",
-      "h": "h",
       "día": "D",
       "días": "D",
+      "sem.": "W",
       "semana": "W",
       "semanas": "W",
-      "sem.": "W",
+      "m": "M",
       "mes": "M",
       "meses": "M",
-      "m": "M",
       "año": "Y",
       "años": "Y"
     },
     "date_order": "DY",
     "months": {
-      "abr": 4,
-      "ago": 8,
-      "dic": 12,
       "ene": 1,
       "feb": 2,
-      "jul": 7,
-      "jun": 6,
       "mar": 3,
+      "abr": 4,
       "may": 5,
-      "nov": 11,
+      "jun": 6,
+      "jul": 7,
+      "ago": 8,
+      "sept": 9,
       "oct": 10,
-      "sept": 9
+      "nov": 11,
+      "dic": 12
     },
     "timeago_nd_tokens": {
       "hoy": "0D",
@@ -960,59 +965,59 @@
     },
     "comma_decimal": false,
     "number_tokens": {
-      "m": 6,
-      "mil": 3
+      "mil": 3,
+      "m": 6
     },
     "number_nd_tokens": {
       "sin": 0
     },
     "album_types": {
+      "álbum": "Album",
       "audiolibro": "Audiobook",
       "ep": "Ep",
       "programa": "Show",
-      "sencillo": "Single",
-      "álbum": "Album"
+      "sencillo": "Single"
     }
   },
   "et": {
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
-      "sekundi": "s",
-      "sekund": "s",
-      "sekundit": "s",
       "sek": "s",
-      "minuti": "m",
-      "minut": "m",
-      "minutit": "m",
+      "sekund": "s",
+      "sekundi": "s",
+      "sekundit": "s",
       "min": "m",
-      "tunni": "h",
+      "minut": "m",
+      "minuti": "m",
+      "minutit": "m",
       "t": "h",
+      "tunni": "h",
+      "p": "D",
       "päev": "D",
       "päeva": "D",
-      "p": "D",
-      "nädala": "W",
-      "nädal": "W",
       "näd": "W",
+      "nädal": "W",
+      "nädala": "W",
       "kuu": "M",
       "kuud": "M",
-      "aasta": "Y",
-      "a": "Y"
+      "a": "Y",
+      "aasta": "Y"
     },
     "date_order": "DY",
     "months": {
-      "apr": 4,
-      "aug": 8,
-      "dets": 12,
       "jaan": 1,
-      "juuli": 7,
-      "juuni": 6,
-      "mai": 5,
+      "veebr": 2,
       "märts": 3,
-      "nov": 11,
-      "okt": 10,
+      "apr": 4,
+      "mai": 5,
+      "juuni": 6,
+      "juuli": 7,
+      "aug": 8,
       "sept": 9,
-      "veebr": 2
+      "okt": 10,
+      "nov": 11,
+      "dets": 12
     },
     "timeago_nd_tokens": {
       "täna": "0D",
@@ -1020,9 +1025,9 @@
     },
     "comma_decimal": true,
     "number_tokens": {
-      "mld": 9,
+      "tuh": 3,
       "mln": 6,
-      "tuh": 3
+      "mld": 9
     },
     "number_nd_tokens": {
       "pole": 0
@@ -1049,18 +1054,18 @@
     },
     "date_order": "YD",
     "months": {
-      "abe.": 12,
-      "abu.": 8,
-      "api.": 4,
-      "aza.": 11,
-      "eka.": 6,
-      "ira.": 9,
-      "mai.": 5,
-      "mar.": 3,
-      "ots.": 2,
-      "urr.": 10,
       "urt.": 1,
-      "uzt.": 7
+      "ots.": 2,
+      "mar.": 3,
+      "api.": 4,
+      "mai.": 5,
+      "eka.": 6,
+      "uzt.": 7,
+      "abu.": 8,
+      "ira.": 9,
+      "urr.": 10,
+      "aza.": 11,
+      "abe.": 12
     },
     "timeago_nd_tokens": {
       "gaur": "0D",
@@ -1095,18 +1100,18 @@
     },
     "date_order": "DY",
     "months": {
-      "آوریل": 4,
-      "اوت": 8,
-      "اکتبر": 10,
-      "دسامبر": 12,
-      "سپتامبر": 9,
+      "ژانویه": 1,
       "فوریه": 2,
       "مارس": 3,
+      "آوریل": 4,
       "مه": 5,
-      "نوامبر": 11,
-      "ژانویه": 1,
       "ژوئن": 6,
-      "ژوئیه": 7
+      "ژوئیه": 7,
+      "اوت": 8,
+      "سپتامبر": 9,
+      "اکتبر": 10,
+      "نوامبر": 11,
+      "دسامبر": 12
     },
     "timeago_nd_tokens": {
       "امروز": "0D",
@@ -1114,9 +1119,9 @@
     },
     "comma_decimal": false,
     "number_tokens": {
-      "میلیارد": 9,
+      "هزار": 3,
       "میلیون": 6,
-      "هزار": 3
+      "میلیارد": 9
     },
     "number_nd_tokens": {
       "بدون": 0,
@@ -1124,37 +1129,37 @@
     },
     "album_types": {
       "آلبوم": "Album",
-      "تک آهنگ": "Single",
-      "نمایش": "Show",
+      "کتاب صوتی": "Audiobook",
       "پخش فوق‌العاده": "Ep",
-      "کتاب صوتی": "Audiobook"
+      "نمایش": "Show",
+      "تک آهنگ": "Single"
     }
   },
   "fi": {
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
+      "s": "s",
       "sekunti": "s",
       "sekuntia": "s",
-      "s": "s",
+      "min": "m",
       "minuutti": "m",
       "minuuttia": "m",
-      "min": "m",
+      "t": "h",
       "tunti": "h",
       "tuntia": "h",
-      "t": "h",
       "päivä": "D",
       "päivää": "D",
       "pv": "D",
       "viikko": "W",
       "viikkoa": "W",
       "vk": "W",
+      "kk": "M",
       "kuukausi": "M",
       "kuukautta": "M",
-      "kk": "M",
+      "v": "Y",
       "vuosi": "Y",
-      "vuotta": "Y",
-      "v": "Y"
+      "vuotta": "Y"
     },
     "date_order": "DMY",
     "months": {},
@@ -1164,9 +1169,9 @@
     },
     "comma_decimal": true,
     "number_tokens": {
+      "t": 3,
       "milj": 6,
-      "mrd": 9,
-      "t": 3
+      "mrd": 9
     },
     "number_nd_tokens": {
       "ei": 0,
@@ -1174,20 +1179,20 @@
     },
     "album_types": {
       "albumi": "Album",
+      "äänikirja": "Audiobook",
       "ep": "Ep",
       "näytä": "Show",
-      "single": "Single",
-      "äänikirja": "Audiobook"
+      "single": "Single"
     }
   },
   "fil": {
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
-      "segundo": "s",
       "seg.": "s",
-      "minuto": "m",
+      "segundo": "s",
       "min.": "m",
+      "minuto": "m",
       "oras": "h",
       "araw": "D",
       "linggo": "W",
@@ -1196,18 +1201,18 @@
     },
     "date_order": "DY",
     "months": {
-      "abr": 4,
-      "ago": 8,
-      "dis": 12,
       "ene": 1,
-      "hul": 7,
-      "hun": 6,
-      "mar": 3,
-      "may": 5,
-      "nob": 11,
-      "okt": 10,
       "peb": 2,
-      "set": 9
+      "mar": 3,
+      "abr": 4,
+      "may": 5,
+      "hun": 6,
+      "hul": 7,
+      "ago": 8,
+      "set": 9,
+      "okt": 10,
+      "nob": 11,
+      "dis": 12
     },
     "timeago_nd_tokens": {
       "ngayong": "0D",
@@ -1215,8 +1220,8 @@
     },
     "comma_decimal": false,
     "number_tokens": {
-      "b": 9,
-      "m": 6
+      "m": 6,
+      "b": 9
     },
     "number_nd_tokens": {
       "walang": 0
@@ -1230,44 +1235,46 @@
     }
   },
   "fr": {
-    "equivalent": ["fr-CA"],
+    "equivalent": [
+      "fr-CA"
+    ],
     "by_char": false,
     "timeago_tokens": {
+      "s": "s",
       "seconde": "s",
       "secondes": "s",
-      "s": "s",
+      "min": "m",
       "minute": "m",
       "minutes": "m",
-      "min": "m",
+      "h": "h",
       "heure": "h",
       "heures": "h",
-      "h": "h",
+      "j": "D",
       "jour": "D",
       "jours": "D",
-      "j": "D",
+      "sem.": "W",
       "semaine": "W",
       "semaines": "W",
-      "sem.": "W",
-      "mois": "M",
       "m.": "M",
+      "mois": "M",
       "an": "Y",
       "ans": "Y"
     },
     "date_order": "DY",
     "months": {
-      "août": 8,
-      "avr.": 4,
-      "déc.": 12,
-      "févr.": 2,
       "janv.": 1,
+      "févr.": 2,
+      "mars": 3,
+      "avr.": 4,
+      "mai": 5,
+      "juin": 6,
       "juil.": 7,
       "juill.": 7,
-      "juin": 6,
-      "mai": 5,
-      "mars": 3,
-      "nov.": 11,
+      "août": 8,
+      "sept.": 9,
       "oct.": 10,
-      "sept.": 9
+      "nov.": 11,
+      "déc.": 12
     },
     "timeago_nd_tokens": {
       "aujourd'hui": "0D",
@@ -1275,8 +1282,8 @@
     },
     "comma_decimal": true,
     "number_tokens": {
-      "g": 9,
       "m": 6,
+      "g": 9,
       "md": 9
     },
     "number_nd_tokens": {
@@ -1285,32 +1292,32 @@
     },
     "album_types": {
       "album": "Album",
-      "ep": "Ep",
       "livre audio": "Audiobook",
+      "ep": "Ep",
       "microalbum": "Ep",
+      "émission": "Show",
       "simple": "Single",
-      "single": "Single",
-      "émission": "Show"
+      "single": "Single"
     }
   },
   "gl": {
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
+      "s": "s",
       "segundo": "s",
       "segundos": "s",
-      "s": "s",
+      "min": "m",
       "minuto": "m",
       "minutos": "m",
-      "min": "m",
+      "h": "h",
       "hora": "h",
       "horas": "h",
-      "h": "h",
       "día": "D",
       "días": "D",
+      "sem.": "W",
       "semana": "W",
       "semanas": "W",
-      "sem.": "W",
       "mes": "M",
       "meses": "M",
       "ano": "Y",
@@ -1318,18 +1325,18 @@
     },
     "date_order": "DY",
     "months": {
-      "abr.": 4,
-      "ago.": 8,
-      "dec.": 12,
-      "feb.": 2,
-      "maio": 5,
-      "mar.": 3,
-      "nov.": 11,
-      "out.": 10,
-      "set.": 9,
       "xan.": 1,
+      "feb.": 2,
+      "mar.": 3,
+      "abr.": 4,
+      "maio": 5,
+      "xuño": 6,
       "xul.": 7,
-      "xuño": 6
+      "ago.": 8,
+      "set.": 9,
+      "out.": 10,
+      "nov.": 11,
+      "dec.": 12
     },
     "timeago_nd_tokens": {
       "hoxe": "0D",
@@ -1343,11 +1350,11 @@
       "ningunha": 0
     },
     "album_types": {
+      "álbum": "Album",
       "audiolibro": "Audiobook",
       "ep": "Ep",
       "programa": "Show",
-      "single": "Single",
-      "álbum": "Album"
+      "single": "Single"
     }
   },
   "gu": {
@@ -1358,25 +1365,25 @@
       "મિનિટ": "m",
       "કલાક": "h",
       "દિવસ": "D",
-      "અઠવાડિયા": "W",
       "અઠ.": "W",
+      "અઠવાડિયા": "W",
       "મહિના": "M",
       "વર્ષ": "Y"
     },
     "date_order": "DY",
     "months": {
-      "એપ્રિલ,": 4,
-      "ઑક્ટો,": 10,
-      "ઑગસ્ટ,": 8,
       "જાન્યુ,": 1,
-      "જુલાઈ,": 7,
-      "જૂન,": 6,
-      "ડિસે,": 12,
-      "નવે,": 11,
       "ફેબ્રુ,": 2,
       "માર્ચ,": 3,
+      "એપ્રિલ,": 4,
       "મે,": 5,
-      "સપ્ટે,": 9
+      "જૂન,": 6,
+      "જુલાઈ,": 7,
+      "ઑગસ્ટ,": 8,
+      "સપ્ટે,": 9,
+      "ઑક્ટો,": 10,
+      "નવે,": 11,
+      "ડિસે,": 12
     },
     "timeago_nd_tokens": {
       "આજે": "0D",
@@ -1384,16 +1391,16 @@
     },
     "comma_decimal": false,
     "number_tokens": {
-      "અબજ": 9,
-      "કરોડ": 7,
+      "હજાર": 3,
       "લાખ": 5,
-      "હજાર": 3
+      "કરોડ": 7,
+      "અબજ": 9
     },
     "number_nd_tokens": {},
     "album_types": {
-      "ep": "Ep",
       "આલ્બમ": "Album",
       "ઑડિયોબુક": "Audiobook",
+      "ep": "Ep",
       "શો": "Show",
       "સિંગલ": "Single"
     }
@@ -1402,12 +1409,12 @@
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
-      "सेकंड": "s",
       "से॰": "s",
-      "मिनट": "m",
+      "सेकंड": "s",
       "मि॰": "m",
-      "घंटे": "h",
+      "मिनट": "m",
       "घं॰": "h",
+      "घंटे": "h",
       "दिन": "D",
       "सप्ताह": "W",
       "माह": "M",
@@ -1415,18 +1422,18 @@
     },
     "date_order": "DY",
     "months": {
-      "अक्तू॰": 10,
-      "अग॰": 8,
-      "अप्रैल": 4,
       "जन॰": 1,
-      "जुल॰": 7,
-      "जून": 6,
-      "दिस॰": 12,
-      "नव॰": 11,
       "फ़र॰": 2,
-      "मई": 5,
       "मार्च": 3,
-      "सित॰": 9
+      "अप्रैल": 4,
+      "मई": 5,
+      "जून": 6,
+      "जुल॰": 7,
+      "अग॰": 8,
+      "सित॰": 9,
+      "अक्तू॰": 10,
+      "नव॰": 11,
+      "दिस॰": 12
     },
     "timeago_nd_tokens": {
       "आज": "0D",
@@ -1434,18 +1441,18 @@
     },
     "comma_decimal": false,
     "number_tokens": {
-      "अ॰": 9,
-      "क॰": 7,
+      "हज़ार": 3,
       "लाख": 5,
-      "हज़ार": 3
+      "क॰": 7,
+      "अ॰": 9
     },
     "number_nd_tokens": {
       "नहीं": 0
     },
     "album_types": {
-      "ईपी": "Ep",
       "एल्‍बम": "Album",
       "ऑडियो बुक": "Audiobook",
+      "ईपी": "Ep",
       "शो": "Show",
       "सिंगल": "Single"
     }
@@ -1454,48 +1461,48 @@
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
-      "sekundu": "s",
+      "s": "s",
+      "sekunda": "s",
       "sekunde": "s",
       "sekundi": "s",
-      "sekunda": "s",
-      "s": "s",
-      "minutu": "m",
-      "minute": "m",
-      "minuta": "m",
+      "sekundu": "s",
       "min": "m",
+      "minuta": "m",
+      "minute": "m",
+      "minutu": "m",
+      "h": "h",
       "sat": "h",
       "sata": "h",
       "sati": "h",
-      "h": "h",
       "dan": "D",
       "dana": "D",
-      "tjedan": "W",
-      "tjedna": "W",
-      "tjedana": "W",
       "tj.": "W",
+      "tjedan": "W",
+      "tjedana": "W",
+      "tjedna": "W",
+      "mj.": "M",
       "mjesec": "M",
       "mjeseca": "M",
       "mjeseci": "M",
-      "mj.": "M",
-      "godinu": "Y",
-      "godine": "Y",
+      "g.": "Y",
       "godina": "Y",
-      "g.": "Y"
+      "godine": "Y",
+      "godinu": "Y"
     },
     "date_order": "DY",
     "months": {
-      "kol": 8,
-      "lip": 6,
-      "lis": 10,
-      "ožu": 3,
-      "pro": 12,
-      "ruj": 9,
       "sij": 1,
-      "srp": 7,
-      "stu": 11,
-      "svi": 5,
+      "velj": 2,
+      "ožu": 3,
       "tra": 4,
-      "velj": 2
+      "svi": 5,
+      "lip": 6,
+      "srp": 7,
+      "kol": 8,
+      "ruj": 9,
+      "lis": 10,
+      "stu": 11,
+      "pro": 12
     },
     "timeago_nd_tokens": {
       "danas": "0D",
@@ -1503,9 +1510,9 @@
     },
     "comma_decimal": true,
     "number_tokens": {
+      "tis": 3,
       "mil": 6,
-      "mlr": 9,
-      "tis": 3
+      "mlr": 9
     },
     "number_nd_tokens": {
       "nema": 0
@@ -1541,18 +1548,18 @@
     },
     "date_order": "YD",
     "months": {
-      "aug.": 8,
-      "dec.": 12,
-      "febr.": 2,
       "jan.": 1,
-      "júl.": 7,
-      "jún.": 6,
-      "máj.": 5,
+      "febr.": 2,
       "márc.": 3,
-      "nov.": 11,
-      "okt.": 10,
+      "ápr.": 4,
+      "máj.": 5,
+      "jún.": 6,
+      "júl.": 7,
+      "aug.": 8,
       "szept.": 9,
-      "ápr.": 4
+      "okt.": 10,
+      "nov.": 11,
+      "dec.": 12
     },
     "timeago_nd_tokens": {
       "ma": "0D",
@@ -1569,10 +1576,10 @@
     },
     "album_types": {
       "album": "Album",
-      "ep": "Ep",
       "hangoskönyv": "Audiobook",
-      "kislemez": "Single",
-      "műsor": "Show"
+      "ep": "Ep",
+      "műsor": "Show",
+      "kislemez": "Single"
     }
   },
   "hy": {
@@ -1581,31 +1588,31 @@
     "timeago_tokens": {
       "վայրկյան": "s",
       "վրկ": "s",
-      "րոպե": "m",
       "ր": "m",
-      "ժամ": "h",
+      "րոպե": "m",
       "ժ": "h",
+      "ժամ": "h",
       "օր": "D",
-      "շաբաթ": "W",
       "շաբ": "W",
+      "շաբաթ": "W",
       "ամիս": "M",
-      "տարի": "Y",
-      "տ": "Y"
+      "տ": "Y",
+      "տարի": "Y"
     },
     "date_order": "DY",
     "months": {
-      "ապր,": 4,
-      "դեկ,": 12,
-      "հլս,": 7,
-      "հնս,": 6,
       "հնվ,": 1,
-      "հոկ,": 10,
-      "մյս,": 5,
-      "մրտ,": 3,
-      "նոյ,": 11,
-      "սեպ,": 9,
       "փտվ,": 2,
-      "օգս,": 8
+      "մրտ,": 3,
+      "ապր,": 4,
+      "մյս,": 5,
+      "հնս,": 6,
+      "հլս,": 7,
+      "օգս,": 8,
+      "սեպ,": 9,
+      "հոկ,": 10,
+      "նոյ,": 11,
+      "դեկ,": 12
     },
     "timeago_nd_tokens": {
       "այսօր": "0D",
@@ -1622,9 +1629,9 @@
       "չկան": 0
     },
     "album_types": {
-      "ep": "Ep",
       "ալբոմ": "Album",
       "աուդիոգիրք": "Audiobook",
+      "ep": "Ep",
       "աուդիոդրամա": "Show",
       "սինգլ": "Single"
     }
@@ -1638,29 +1645,29 @@
       "menit": "m",
       "mnt": "m",
       "jam": "h",
-      "hari": "D",
       "h": "D",
-      "minggu": "W",
+      "hari": "D",
       "mgg": "W",
-      "bulan": "M",
+      "minggu": "W",
       "bln": "M",
+      "bulan": "M",
       "tahun": "Y",
       "thn": "Y"
     },
     "date_order": "DY",
     "months": {
-      "agu": 8,
-      "apr": 4,
-      "des": 12,
-      "feb": 2,
       "jan": 1,
-      "jul": 7,
-      "jun": 6,
+      "feb": 2,
       "mar": 3,
+      "apr": 4,
       "mei": 5,
-      "nov": 11,
+      "jun": 6,
+      "jul": 7,
+      "agu": 8,
+      "sep": 9,
       "okt": 10,
-      "sep": 9
+      "nov": 11,
+      "des": 12
     },
     "timeago_nd_tokens": {
       "ini": "0D",
@@ -1668,18 +1675,18 @@
     },
     "comma_decimal": true,
     "number_tokens": {
+      "rb": 3,
       "jt": 6,
-      "m": 9,
-      "rb": 3
+      "m": 9
     },
     "number_nd_tokens": {
       "belum": 0
     },
     "album_types": {
-      "acara": "Show",
       "album": "Album",
       "buku audio": "Audiobook",
       "ep": "Ep",
+      "acara": "Show",
       "single": "Single"
     }
   },
@@ -1687,43 +1694,43 @@
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
+      "sek.": "s",
+      "sekúnda": "s",
       "sekúndu": "s",
       "sekúndum": "s",
-      "sekúnda": "s",
       "sekúndur": "s",
-      "sek.": "s",
+      "mín.": "m",
+      "mínúta": "m",
       "mínútu": "m",
       "mínútum": "m",
-      "mínúta": "m",
       "mínútur": "m",
-      "mín.": "m",
+      "klst.": "h",
       "klukkustund": "h",
       "klukkustundum": "h",
-      "klst.": "h",
       "degi": "D",
       "dögum": "D",
       "viku": "W",
       "vikum": "W",
+      "mán.": "M",
       "mánuði": "M",
       "mánuðum": "M",
-      "mán.": "M",
       "ári": "Y",
       "árum": "Y"
     },
     "date_order": "DY",
     "months": {
-      "apr.": 4,
-      "des.": 12,
-      "feb.": 2,
       "jan.": 1,
-      "júl.": 7,
-      "jún.": 6,
+      "feb.": 2,
       "mar.": 3,
+      "apr.": 4,
       "maí": 5,
-      "nóv.": 11,
-      "okt.": 10,
+      "jún.": 6,
+      "júl.": 7,
+      "ágú.": 8,
       "sep.": 9,
-      "ágú.": 8
+      "okt.": 10,
+      "nóv.": 11,
+      "des.": 12
     },
     "timeago_nd_tokens": {
       "dag": "0D",
@@ -1731,62 +1738,62 @@
     },
     "comma_decimal": true,
     "number_tokens": {
+      "þ": 3,
       "m": 6,
-      "ma": 9,
-      "þ": 3
+      "ma": 9
     },
     "number_nd_tokens": {
+      "ekkert": 0,
       "einn": 1,
-      "eitt": 1,
-      "ekkert": 0
+      "eitt": 1
     },
     "album_types": {
-      "ep": "Ep",
-      "hljóðbók": "Audiobook",
       "plata": "Album",
-      "smáskífa": "Single",
-      "þáttur": "Show"
+      "hljóðbók": "Audiobook",
+      "ep": "Ep",
+      "þáttur": "Show",
+      "smáskífa": "Single"
     }
   },
   "it": {
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
-      "secondo": "s",
-      "secondi": "s",
       "sec.": "s",
-      "minuto": "m",
-      "minuti": "m",
+      "secondi": "s",
+      "secondo": "s",
       "min": "m",
+      "minuti": "m",
+      "minuto": "m",
+      "h": "h",
       "ora": "h",
       "ore": "h",
-      "h": "h",
-      "giorno": "D",
-      "giorni": "D",
       "g": "D",
       "gg": "D",
+      "giorni": "D",
+      "giorno": "D",
+      "sett.": "W",
       "settimana": "W",
       "settimane": "W",
-      "sett.": "W",
       "mese": "M",
       "mesi": "M",
-      "anno": "Y",
-      "anni": "Y"
+      "anni": "Y",
+      "anno": "Y"
     },
     "date_order": "DY",
     "months": {
-      "ago": 8,
-      "apr": 4,
-      "dic": 12,
-      "feb": 2,
       "gen": 1,
+      "feb": 2,
+      "mar": 3,
+      "apr": 4,
+      "mag": 5,
       "giu": 6,
       "lug": 7,
-      "mag": 5,
-      "mar": 3,
-      "nov": 11,
+      "ago": 8,
+      "set": 9,
       "ott": 10,
-      "set": 9
+      "nov": 11,
+      "dic": 12
     },
     "timeago_nd_tokens": {
       "oggi": "0D",
@@ -1815,43 +1822,43 @@
       "שניה": "s",
       "שניות": "s",
       "שנייה": "1s",
-      "דקה": "1m",
       "דק׳": "m",
       "דקות": "m",
+      "דקה": "1m",
+      "שע׳": "h",
+      "שעות": "h",
       "שעה": "1h",
       "שעתיים": "2h",
-      "שעות": "h",
-      "שע׳": "h",
       "יום": "D",
-      "יומיים": "2D",
       "ימים": "D",
       "אתמול": "1D",
+      "שתי": "2",
+      "יומיים": "2D",
+      "שב׳": "W",
+      "שבועות": "W",
       "שבוע": "1W",
       "שבועיים": "2W",
-      "שבועות": "W",
-      "שב׳": "W",
+      "חודשים": "M",
       "חודש": "1M",
       "חודשיים": "2M",
-      "חודשים": "M",
-      "שנתיים": "2Y",
-      "שנים": "Y",
       "שנה": "Y",
-      "שתי": "2"
+      "שנים": "Y",
+      "שנתיים": "2Y"
     },
     "date_order": "DY",
     "months": {
-      "באוג׳": 8,
-      "באוק׳": 10,
-      "באפר׳": 4,
-      "בדצמ׳": 12,
-      "ביולי": 7,
-      "ביוני": 6,
       "בינו׳": 1,
-      "במאי": 5,
+      "בפבר׳": 2,
       "במרץ": 3,
-      "בנוב׳": 11,
+      "באפר׳": 4,
+      "במאי": 5,
+      "ביוני": 6,
+      "ביולי": 7,
+      "באוג׳": 8,
       "בספט׳": 9,
-      "בפבר׳": 2
+      "באוק׳": 10,
+      "בנוב׳": 11,
+      "בדצמ׳": 12
     },
     "timeago_nd_tokens": {
       "היום": "0D",
@@ -1859,19 +1866,19 @@
     },
     "comma_decimal": false,
     "number_tokens": {
-      "b": 9,
-      "m": 6
+      "m": 6,
+      "b": 9
     },
     "number_nd_tokens": {
-      "אחד": 1,
-      "אין": 0
+      "אין": 0,
+      "אחד": 1
     },
     "album_types": {
       "אלבום": "Album",
-      "מיני-אלבום": "Ep",
-      "סינגל": "Single",
       "ספר אודיו": "Audiobook",
-      "תסכית": "Show"
+      "מיני-אלבום": "Ep",
+      "תסכית": "Show",
+      "סינגל": "Single"
     }
   },
   "ja": {
@@ -1899,11 +1906,11 @@
     },
     "number_nd_tokens": {},
     "album_types": {
-      "ep": "Ep",
       "アルバム": "Album",
       "オーディオブック": "Audiobook",
-      "シングル": "Single",
-      "表示": "Show"
+      "ep": "Ep",
+      "表示": "Show",
+      "シングル": "Single"
     }
   },
   "ka": {
@@ -1913,31 +1920,31 @@
       "წამი": "s",
       "წამის": "s",
       "წმ": "s",
+      "წთ": "m",
       "წუთი": "m",
       "წუთის": "m",
-      "წთ": "m",
       "საათის": "h",
       "სთ": "h",
       "დღის": "D",
-      "თვის": "M",
-      "კვირის": "W",
       "კვ.": "W",
+      "კვირის": "W",
+      "თვის": "M",
       "წლის": "Y"
     },
     "date_order": "DY",
     "months": {
-      "აგვ.": 8,
-      "აპრ.": 4,
-      "დეკ.": 12,
-      "თებ.": 2,
       "იან.": 1,
-      "ივლ.": 7,
-      "ივნ.": 6,
-      "მაი.": 5,
+      "თებ.": 2,
       "მარ.": 3,
-      "ნოე.": 11,
+      "აპრ.": 4,
+      "მაი.": 5,
+      "ივნ.": 6,
+      "ივლ.": 7,
+      "აგვ.": 8,
+      "სექ.": 9,
       "ოქტ.": 10,
-      "სექ.": 9
+      "ნოე.": 11,
+      "დეკ.": 12
     },
     "timeago_nd_tokens": {
       "დღეს": "0D",
@@ -1956,41 +1963,41 @@
       "ალბომი": "Album",
       "აუდიოწიგნი": "Audiobook",
       "მინი-ალბომი": "Ep",
-      "სინგლი": "Single",
-      "ჩვენება": "Show"
+      "ჩვენება": "Show",
+      "სინგლი": "Single"
     }
   },
   "kk": {
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
-      "секунд": "s",
       "сек.": "s",
-      "минут": "m",
+      "секунд": "s",
       "мин.": "m",
-      "сағат": "h",
+      "минут": "m",
       "сағ.": "h",
+      "сағат": "h",
       "күн": "D",
-      "апта": "W",
       "ап.": "W",
+      "апта": "W",
       "ай": "M",
-      "жыл": "Y",
-      "ж.": "Y"
+      "ж.": "Y",
+      "жыл": "Y"
     },
     "date_order": "YD",
     "months": {
+      "қаң.": 1,
       "ақп.": 2,
-      "жел.": 12,
-      "мам.": 5,
-      "мау.": 6,
       "нау.": 3,
       "сәу.": 4,
-      "там.": 8,
+      "мам.": 5,
+      "мау.": 6,
       "шіл.": 7,
+      "там.": 8,
+      "қыр.": 9,
       "қаз.": 10,
       "қар.": 11,
-      "қаң.": 1,
-      "қыр.": 9
+      "жел.": 12
     },
     "timeago_nd_tokens": {
       "бүгін": "0D",
@@ -1999,49 +2006,49 @@
     "comma_decimal": true,
     "number_tokens": {
       "м": 3,
+      "мың": 3,
       "млн": 6,
-      "млрд": 9,
-      "мың": 3
+      "млрд": 9
     },
     "number_nd_tokens": {
       "ешкім": 0
     },
     "album_types": {
-      "ep": "Ep",
       "альбом": "Album",
       "аудиокітап": "Audiobook",
-      "сингл": "Single",
-      "шоу": "Show"
+      "ep": "Ep",
+      "шоу": "Show",
+      "сингл": "Single"
     }
   },
   "km": {
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
-      "ខែមុន": "M",
-      "ឆ្នាំមុន": "Y",
-      "ថ្ងៃមុន": "D",
+      "វិនាទី": "s",
+      "វិនាទីមុន": "s",
       "នាទី": "m",
       "នាទីមុន": "m",
       "ម៉ោងមុន": "h",
-      "វិនាទី": "s",
-      "វិនាទីមុន": "s",
-      "សប្ដាហ៍មុន": "W"
+      "ថ្ងៃមុន": "D",
+      "សប្ដាហ៍មុន": "W",
+      "ខែមុន": "M",
+      "ឆ្នាំមុន": "Y"
     },
     "date_order": "DY",
     "months": {
-      "កក្កដា": 7,
-      "កញ្ញា": 9,
-      "កុម្ភៈ": 2,
-      "តុលា": 10,
-      "ធ្នូ": 12,
       "មករា": 1,
-      "មិថុនា": 6,
+      "កុម្ភៈ": 2,
       "មីនា": 3,
       "មេសា": 4,
-      "វិច្ឆិកា": 11,
+      "ឧសភា": 5,
+      "មិថុនា": 6,
+      "កក្កដា": 7,
       "សីហា": 8,
-      "ឧសភា": 5
+      "កញ្ញា": 9,
+      "តុលា": 10,
+      "វិច្ឆិកា": 11,
+      "ធ្នូ": 12
     },
     "timeago_nd_tokens": {
       "បានធ្វើបច្ចុប្បន្នភាពនៅថ្ងៃនេះ": "0D",
@@ -2049,56 +2056,56 @@
     },
     "comma_decimal": true,
     "number_tokens": {
-      "ប៊ីលាន": 9,
       "ពាន់": 3,
-      "លាន": 6
+      "លាន": 6,
+      "ប៊ីលាន": 9
     },
     "number_nd_tokens": {},
     "album_types": {
+      "អាល់ប៊ុម": "Album",
+      "សៀវភៅ​ជា​សំឡេង": "Audiobook",
       "ep": "Ep",
       "កម្មវិធីទូរទស្សន៍": "Show",
-      "ចម្រៀងទោល": "Single",
-      "សៀវភៅ​ជា​សំឡេង": "Audiobook",
-      "អាល់ប៊ុម": "Album"
+      "ចម្រៀងទោល": "Single"
     }
   },
   "kn": {
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
-      "ಸೆಕೆಂಡ್": "s",
       "ಸೆಕೆಂಡುಗಳ": "s",
       "ಸೆಕೆಂಡುಗಳು": "s",
-      "ನಿಮಿಷದ": "m",
+      "ಸೆಕೆಂಡ್": "s",
       "ನಿಮಿಷಗಳ": "m",
       "ನಿಮಿಷಗಳು": "m",
+      "ನಿಮಿಷದ": "m",
       "ನಿಮಿಷವು": "m",
       "ಗಂಟೆ": "h",
       "ಗಂಟೆಗಳ": "h",
-      "ದಿನದ": "D",
       "ದಿನಗಳ": "D",
-      "ವಾರದ": "W",
+      "ದಿನದ": "D",
       "ವಾರಗಳ": "W",
+      "ವಾರದ": "W",
       "ತಿಂಗಳ": "M",
-      "ತಿಂಗಳುಗಳ": "M",
       "ತಿಂಗಳು": "M",
-      "ವರ್ಷದ": "Y",
-      "ವರ್ಷಗಳ": "Y"
+      "ತಿಂಗಳುಗಳ": "M",
+      "ವರ್ಷಗಳ": "Y",
+      "ವರ್ಷದ": "Y"
     },
     "date_order": "DY",
     "months": {
-      "ಅಕ್ಟೋ": 10,
-      "ಆಗಸ್ಟ್": 8,
-      "ಏಪ್ರಿ": 4,
       "ಜನವರಿ": 1,
-      "ಜುಲೈ": 7,
-      "ಜೂನ್": 6,
-      "ಡಿಸೆಂ": 12,
-      "ನವೆಂ": 11,
       "ಫೆಬ್ರವರಿ": 2,
       "ಮಾರ್ಚ್": 3,
+      "ಏಪ್ರಿ": 4,
       "ಮೇ": 5,
-      "ಸೆಪ್ಟೆಂ": 9
+      "ಜೂನ್": 6,
+      "ಜುಲೈ": 7,
+      "ಆಗಸ್ಟ್": 8,
+      "ಸೆಪ್ಟೆಂ": 9,
+      "ಅಕ್ಟೋ": 10,
+      "ನವೆಂ": 11,
+      "ಡಿಸೆಂ": 12
     },
     "timeago_nd_tokens": {
       "ಇಂದು": "0D",
@@ -2106,18 +2113,18 @@
     },
     "comma_decimal": false,
     "number_tokens": {
-      "ಕೋಟಿ": 7,
-      "ಲಕ್ಷ": 5
+      "ಲಕ್ಷ": 5,
+      "ಕೋಟಿ": 7
     },
     "number_nd_tokens": {
       "ವೀಕ್ಷಣೆಗಳಿಲ್ಲ": 0
     },
     "album_types": {
-      "ep": "Ep",
-      "ಆಡಿಯೋಬುಕ್": "Audiobook",
       "ಆಲ್ಬಮ್": "Album",
-      "ಒಂದೇ": "Single",
-      "ಶೋ": "Show"
+      "ಆಡಿಯೋಬುಕ್": "Audiobook",
+      "ep": "Ep",
+      "ಶೋ": "Show",
+      "ಒಂದೇ": "Single"
     }
   },
   "ko": {
@@ -2140,51 +2147,51 @@
     },
     "comma_decimal": false,
     "number_tokens": {
+      "천": 3,
       "만": 4,
-      "억": 8,
-      "천": 3
+      "억": 8
     },
     "number_nd_tokens": {
       "없": 0
     },
     "album_types": {
-      "ep": "Ep",
-      "싱글": "Single",
       "앨범": "Album",
       "오디오북": "Audiobook",
-      "표시": "Show"
+      "ep": "Ep",
+      "표시": "Show",
+      "싱글": "Single"
     }
   },
   "ky": {
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
-      "секунд": "s",
       "сек.": "s",
-      "мүнөт": "m",
+      "секунд": "s",
       "мүн.": "m",
+      "мүнөт": "m",
       "саат": "h",
       "саат.": "h",
       "күн": "D",
-      "апта": "W",
       "апт.": "W",
+      "апта": "W",
       "ай": "M",
       "жыл": "Y"
     },
     "date_order": "YD",
     "months": {
-      "авг.": 8,
-      "апр.": 4,
-      "дек.": 12,
-      "июл.": 7,
-      "июн.": 6,
-      "май": 5,
-      "мар.": 3,
-      "ноя.": 11,
-      "окт.": 10,
-      "сен.": 9,
+      "янв.": 1,
       "фев.": 2,
-      "янв.": 1
+      "мар.": 3,
+      "апр.": 4,
+      "май": 5,
+      "июн.": 6,
+      "июл.": 7,
+      "авг.": 8,
+      "сен.": 9,
+      "окт.": 10,
+      "ноя.": 11,
+      "дек.": 12
     },
     "timeago_nd_tokens": {
       "бүгүн": "0D",
@@ -2193,8 +2200,8 @@
     "comma_decimal": true,
     "number_tokens": {
       "миң": 3,
-      "млд": 9,
-      "млн": 6
+      "млн": 6,
+      "млд": 9
     },
     "number_nd_tokens": {
       "эч": 0
@@ -2202,44 +2209,44 @@
     "album_types": {
       "альбом": "Album",
       "аудиокитеп": "Audiobook",
-      "сингл": "Single",
       "чакан альбом": "Ep",
-      "шоу": "Show"
+      "шоу": "Show",
+      "сингл": "Single"
     }
   },
   "lo": {
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
-      "ວິນາທີກ່ອນ": "s",
-      "ວິນາທີ": "s",
       "ວິ.": "s",
-      "ນາທີກ່ອນ": "m",
-      "ນາທີ": "m",
+      "ວິນາທີ": "s",
+      "ວິນາທີກ່ອນ": "s",
       "ນທ.": "m",
-      "ຊົ່ວໂມງກ່ອນ": "h",
+      "ນາທີ": "m",
+      "ນາທີກ່ອນ": "m",
       "ຊມ.": "h",
+      "ຊົ່ວໂມງກ່ອນ": "h",
       "ມື້ກ່ອນ": "D",
-      "ອາທິດກ່ອນ": "W",
       "ອທ.": "W",
-      "ເດືອນກ່ອນ": "M",
+      "ອາທິດກ່ອນ": "W",
       "ດ.": "M",
+      "ເດືອນກ່ອນ": "M",
       "ປີກ່ອນ": "Y"
     },
     "date_order": "DY",
     "months": {
-      "ກ.ຍ.": 9,
-      "ກ.ພ.": 2,
-      "ກ.ລ.": 7,
-      "ຕ.ລ.": 10,
-      "ທ.ວ.": 12,
-      "ພ.ຈ.": 11,
-      "ພ.ພ.": 5,
       "ມ.ກ.": 1,
+      "ກ.ພ.": 2,
       "ມ.ນ.": 3,
       "ມ.ສ.": 4,
+      "ພ.ພ.": 5,
       "ມິ.ຖ.": 6,
-      "ສ.ຫ.": 8
+      "ກ.ລ.": 7,
+      "ສ.ຫ.": 8,
+      "ກ.ຍ.": 9,
+      "ຕ.ລ.": 10,
+      "ພ.ຈ.": 11,
+      "ທ.ວ.": 12
     },
     "timeago_nd_tokens": {
       "ອັບເດດມື້ນີ້": "0D",
@@ -2248,60 +2255,60 @@
     "comma_decimal": true,
     "number_tokens": {
       "ກີບ": 3,
-      "ຕື້": 9,
       "ພັນ": 3,
-      "ລ້ານ": 6
+      "ລ້ານ": 6,
+      "ຕື້": 9
     },
     "number_nd_tokens": {
       "ຍັງບໍ່ມີຄົນເບິ່ງເທື່ອ": 0
     },
     "album_types": {
-      "ep": "Ep",
-      "ຊິງເກິນ": "Single",
+      "ອະລະບໍ້າ": "Album",
       "ປຶ້ມສຽງ": "Audiobook",
+      "ep": "Ep",
       "ສະແດງ": "Show",
-      "ອະລະບໍ້າ": "Album"
+      "ຊິງເກິນ": "Single"
     }
   },
   "lt": {
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
+      "sek.": "s",
+      "sekundė": "s",
       "sekundę": "s",
       "sekundes": "s",
       "sekundės": "s",
-      "sekundė": "s",
       "sekundžių": "s",
-      "sek.": "s",
+      "min.": "m",
+      "minučių": "m",
+      "minutė": "m",
       "minutę": "m",
       "minutes": "m",
       "minutės": "m",
-      "minutė": "m",
-      "minučių": "m",
-      "min.": "m",
+      "val.": "h",
       "valandą": "h",
       "valandas": "h",
       "valandos": "h",
       "valandų": "h",
-      "val.": "h",
+      "d.": "D",
       "dieną": "D",
       "dienas": "D",
       "dienos": "D",
       "dienų": "D",
-      "d.": "D",
+      "sav.": "W",
+      "savaičių": "W",
       "savaitę": "W",
       "savaites": "W",
       "savaitės": "W",
-      "savaičių": "W",
-      "sav.": "W",
+      "mėn.": "M",
       "mėnesį": "M",
-      "mėnesius": "M",
       "mėnesio": "M",
       "mėnesių": "M",
-      "mėn.": "M",
-      "metus": "Y",
+      "mėnesius": "M",
+      "m.": "Y",
       "metų": "Y",
-      "m.": "Y"
+      "metus": "Y"
     },
     "date_order": "YMD",
     "months": {},
@@ -2311,9 +2318,9 @@
     },
     "comma_decimal": true,
     "number_tokens": {
+      "tūkst": 3,
       "mln": 6,
-      "mlrd": 9,
-      "tūkst": 3
+      "mlrd": 9
     },
     "number_nd_tokens": {
       "nėra": 0
@@ -2330,46 +2337,46 @@
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
+      "sek.": "s",
+      "sekunde": "s",
       "sekundēm": "s",
       "sekundes": "s",
-      "sekunde": "s",
       "sekunžu": "s",
-      "sek.": "s",
+      "min.": "m",
+      "minūšu": "m",
+      "minūte": "m",
       "minūtēm": "m",
       "minūtes": "m",
-      "minūte": "m",
-      "minūšu": "m",
-      "min.": "m",
+      "st.": "h",
       "stundām": "h",
       "stundas": "h",
-      "st.": "h",
+      "d.": "D",
       "dienām": "D",
       "dienas": "D",
-      "d.": "D",
+      "ned.": "W",
       "nedēļām": "W",
       "nedēļas": "W",
-      "ned.": "W",
-      "mēnešiem": "M",
-      "mēneša": "M",
       "mēn.": "M",
-      "gadiem": "Y",
+      "mēneša": "M",
+      "mēnešiem": "M",
+      "g.": "Y",
       "gada": "Y",
-      "g.": "Y"
+      "gadiem": "Y"
     },
     "date_order": "YD",
     "months": {
-      "apr.": 4,
-      "aug.": 8,
-      "dec.": 12,
-      "febr.": 2,
       "janv.": 1,
-      "jūl.": 7,
-      "jūn.": 6,
-      "maijs": 5,
+      "febr.": 2,
       "marts": 3,
-      "nov.": 11,
+      "apr.": 4,
+      "maijs": 5,
+      "jūn.": 6,
+      "jūl.": 7,
+      "aug.": 8,
+      "sept.": 9,
       "okt.": 10,
-      "sept.": 9
+      "nov.": 11,
+      "dec.": 12
     },
     "timeago_nd_tokens": {
       "šodien": "0D",
@@ -2377,9 +2384,9 @@
     },
     "comma_decimal": true,
     "number_tokens": {
+      "tūkst": 3,
       "milj": 6,
-      "mljrd": 9,
-      "tūkst": 3
+      "mljrd": 9
     },
     "number_nd_tokens": {
       "nav": 0
@@ -2396,12 +2403,12 @@
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
+      "сек.": "s",
       "секунда": "s",
       "секунди": "s",
-      "сек.": "s",
+      "мин.": "m",
       "минута": "m",
       "минути": "m",
-      "мин.": "m",
       "час": "h",
       "часа": "h",
       "ден": "D",
@@ -2410,9 +2417,9 @@
       "седмици": "W",
       "месец": "M",
       "месеци": "M",
+      "год.": "Y",
       "година": "Y",
-      "години": "Y",
-      "год.": "Y"
+      "години": "Y"
     },
     "date_order": "DMY",
     "months": {},
@@ -2431,9 +2438,9 @@
       "нема": 0
     },
     "album_types": {
-      "ep": "Ep",
       "албум": "Album",
       "аудиокнига": "Audiobook",
+      "ep": "Ep",
       "серија": "Show",
       "сингл": "Single"
     }
@@ -2452,18 +2459,18 @@
     },
     "date_order": "YD",
     "months": {
-      "ഏപ്രി": 4,
-      "ഒക്ടോ": 10,
-      "ഓഗ": 8,
       "ജനു": 1,
-      "ജൂലൈ": 7,
-      "ജൂൺ": 6,
-      "ഡിസം": 12,
-      "നവം": 11,
       "ഫെബ്രു": 2,
       "മാർ": 3,
+      "ഏപ്രി": 4,
       "മേയ്": 5,
-      "സെപ്റ്റം": 9
+      "ജൂൺ": 6,
+      "ജൂലൈ": 7,
+      "ഓഗ": 8,
+      "സെപ്റ്റം": 9,
+      "ഒക്ടോ": 10,
+      "നവം": 11,
+      "ഡിസം": 12
     },
     "timeago_nd_tokens": {
       "ഇന്ന്": "0D",
@@ -2471,16 +2478,16 @@
     },
     "comma_decimal": false,
     "number_tokens": {
-      "കോടി": 7,
-      "ലക്ഷം": 5
+      "ലക്ഷം": 5,
+      "കോടി": 7
     },
     "number_nd_tokens": {
       "ഇല്ല": 0
     },
     "album_types": {
-      "ep": "Ep",
       "ആല്‍‌ബം": "Album",
       "ഓഡിയോ ബുക്ക്": "Audiobook",
+      "ep": "Ep",
       "ഷോ": "Show",
       "സിംഗിൾ": "Single"
     }
@@ -2489,14 +2496,14 @@
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
-      "секундын": "s",
-      "секунд": "s",
       "сек": "s",
-      "минутын": "m",
-      "минут": "m",
+      "секунд": "s",
+      "секундын": "s",
       "мин": "m",
-      "цагийн": "h",
+      "минут": "m",
+      "минутын": "m",
       "ц": "h",
+      "цагийн": "h",
       "өдрийн": "D",
       "хоногийн": "D",
       "долоо": "W",
@@ -2519,26 +2526,26 @@
       "үзэлтгүй": 0
     },
     "album_types": {
-      "ep": "Ep",
+      "цомог": "Album",
       "аудио ном": "Audiobook",
+      "ep": "Ep",
       "жүжиг": "Show",
-      "сингл": "Single",
-      "цомог": "Album"
+      "сингл": "Single"
     }
   },
   "mr": {
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
+      "से.": "s",
+      "सेकंद": "s",
       "सेकंदापूर्वी": "s",
       "सेकंदांपूर्वी": "s",
-      "सेकंद": "s",
-      "से.": "s",
+      "मिनि.": "m",
+      "मिनिट": "m",
       "मिनिटापूर्वी": "m",
       "मिनिटांपूर्वी": "m",
-      "मिनिट": "m",
       "मिनिटे": "m",
-      "मिनि.": "m",
       "तासापूर्वी": "h",
       "तासांपूर्वी": "h",
       "दिवसापूर्वी": "D",
@@ -2552,18 +2559,18 @@
     },
     "date_order": "DY",
     "months": {
-      "एप्रि,": 4,
-      "ऑक्टो,": 10,
-      "ऑग,": 8,
       "जाने,": 1,
-      "जुलै,": 7,
-      "जून,": 6,
-      "डिसें,": 12,
-      "नोव्हें,": 11,
       "फेब्रु,": 2,
       "मार्च,": 3,
+      "एप्रि,": 4,
       "मे,": 5,
-      "सप्टें,": 9
+      "जून,": 6,
+      "जुलै,": 7,
+      "ऑग,": 8,
+      "सप्टें,": 9,
+      "ऑक्टो,": 10,
+      "नोव्हें,": 11,
+      "डिसें,": 12
     },
     "timeago_nd_tokens": {
       "today": "0D",
@@ -2572,10 +2579,10 @@
     },
     "comma_decimal": false,
     "number_tokens": {
-      "अब्ज": 9,
-      "कोटी": 7,
+      "ह": 3,
       "लाख": 5,
-      "ह": 3
+      "कोटी": 7,
+      "अब्ज": 9
     },
     "number_nd_tokens": {
       "नाहीत": 0
@@ -2593,31 +2600,31 @@
     "by_char": false,
     "timeago_tokens": {
       "saat": "s",
-      "minit": "m",
       "min": "m",
+      "minit": "m",
       "jam": "h",
       "hari": "D",
-      "minggu": "W",
       "mgu": "W",
-      "bulan": "M",
+      "minggu": "W",
       "bln": "M",
+      "bulan": "M",
       "tahun": "Y",
       "thn": "Y"
     },
     "date_order": "DY",
     "months": {
-      "apr": 4,
-      "dis": 12,
-      "feb": 2,
       "jan": 1,
-      "jul": 7,
-      "jun": 6,
+      "feb": 2,
       "mac": 3,
+      "apr": 4,
       "mei": 5,
-      "nov": 11,
+      "jun": 6,
+      "jul": 7,
       "ogo": 8,
+      "sep": 9,
       "okt": 10,
-      "sep": 9
+      "nov": 11,
+      "dis": 12
     },
     "timeago_nd_tokens": {
       "ini": "0D",
@@ -2625,8 +2632,8 @@
     },
     "comma_decimal": false,
     "number_tokens": {
-      "b": 9,
-      "j": 6
+      "j": 6,
+      "b": 9
     },
     "number_nd_tokens": {
       "tiada": 0
@@ -2644,29 +2651,29 @@
     "by_char": false,
     "timeago_tokens": {
       "စက္ကန့်": "s",
-      "နာရီ": "h",
-      "နှစ်": "Y",
-      "ပတ်": "W",
       "မိနစ်": "m",
       "မိနစ်နှင့်": "m",
+      "နာရီ": "h",
       "ရက်": "D",
       "ရက်က": "D",
-      "လ": "M"
+      "ပတ်": "W",
+      "လ": "M",
+      "နှစ်": "Y"
     },
     "date_order": "YD",
     "months": {
-      "စက်": 9,
       "ဇန်": 1,
-      "ဇူ": 7,
-      "ဇွန်": 6,
-      "ဒီ": 12,
-      "နို": 11,
       "ဖေ": 2,
       "မတ်": 3,
-      "မေ": 5,
-      "အောက်": 10,
       "ဧ": 4,
-      "ဩ": 8
+      "မေ": 5,
+      "ဇွန်": 6,
+      "ဇူ": 7,
+      "ဩ": 8,
+      "စက်": 9,
+      "အောက်": 10,
+      "နို": 11,
+      "ဒီ": 12
     },
     "timeago_nd_tokens": {
       "ယနေ့": "0D",
@@ -2674,52 +2681,52 @@
     },
     "comma_decimal": false,
     "number_tokens": {
-      "ကုဋေ": 7,
       "ထ": 3,
       "ထောင်": 3,
-      "သန်း": 6,
+      "သောင်း": 4,
       "သိန်း": 5,
-      "သောင်း": 4
+      "သန်း": 6,
+      "ကုဋေ": 7
     },
     "number_nd_tokens": {
       "မရှိ": 0,
       "၁": 1
     },
     "album_types": {
-      "ep": "Ep",
-      "တစ်ကိုယ်တော်": "Single",
-      "ရှိုး": "Show",
       "အယ်လ်ဘမ်": "Album",
-      "အော်ဒီယိုစာအုပ်": "Audiobook"
+      "အော်ဒီယိုစာအုပ်": "Audiobook",
+      "ep": "Ep",
+      "ရှိုး": "Show",
+      "တစ်ကိုယ်တော်": "Single"
     }
   },
   "ne": {
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
+      "सेकेन्ड": "s",
+      "मिनेट": "m",
       "घण्टा": "h",
       "दिन": "D",
       "दिनअघि": "D",
+      "हप्ता": "W",
       "महिना": "M",
-      "मिनेट": "m",
-      "वर्ष": "Y",
-      "सेकेन्ड": "s",
-      "हप्ता": "W"
+      "वर्ष": "Y"
     },
     "date_order": "YD",
     "months": {
-      "अक्टोबर": 10,
-      "अगस्ट": 8,
-      "अप्रिल": 4,
       "जनवरी": 1,
-      "जुन": 6,
-      "जुलाई": 7,
-      "डिसेम्बर": 12,
-      "नोभेम्बर": 11,
       "फेब्रुअरी": 2,
       "मार्च": 3,
+      "अप्रिल": 4,
       "मे": 5,
-      "सेप्टेम्बर": 9
+      "जुन": 6,
+      "जुलाई": 7,
+      "अगस्ट": 8,
+      "सेप्टेम्बर": 9,
+      "अक्टोबर": 10,
+      "नोभेम्बर": 11,
+      "डिसेम्बर": 12
     },
     "timeago_nd_tokens": {
       "आज": "0D",
@@ -2727,32 +2734,32 @@
     },
     "comma_decimal": false,
     "number_tokens": {
-      "अरब": 9,
-      "करोड": 7,
+      "हजार": 3,
       "लाख": 5,
-      "हजार": 3
+      "करोड": 7,
+      "अरब": 9
     },
     "number_nd_tokens": {
       "छैन": 0
     },
     "album_types": {
-      "ep": "Ep",
-      "अडियोबुक": "Audiobook",
-      "एकल एल्बम": "Single",
       "एल्बम": "Album",
-      "टिभी सो": "Show"
+      "अडियोबुक": "Audiobook",
+      "ep": "Ep",
+      "टिभी सो": "Show",
+      "एकल एल्बम": "Single"
     }
   },
   "nl": {
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
+      "sec.": "s",
       "seconde": "s",
       "seconden": "s",
-      "sec.": "s",
-      "minuut": "m",
-      "minuten": "m",
       "min.": "m",
+      "minuten": "m",
+      "minuut": "m",
       "uur": "h",
       "dag": "D",
       "dagen": "D",
@@ -2765,18 +2772,18 @@
     },
     "date_order": "DY",
     "months": {
-      "apr": 4,
-      "aug": 8,
-      "dec": 12,
-      "feb": 2,
       "jan": 1,
-      "jul": 7,
-      "jun": 6,
-      "mei": 5,
+      "feb": 2,
       "mrt": 3,
-      "nov": 11,
+      "apr": 4,
+      "mei": 5,
+      "jun": 6,
+      "jul": 7,
+      "aug": 8,
+      "sep": 9,
       "okt": 10,
-      "sep": 9
+      "nov": 11,
+      "dec": 12
     },
     "timeago_nd_tokens": {
       "vandaag": "0D",
@@ -2784,17 +2791,17 @@
     },
     "comma_decimal": true,
     "number_tokens": {
-      "mld": 9,
-      "mln": 6
+      "mln": 6,
+      "mld": 9
     },
     "number_nd_tokens": {
       "geen": 0
     },
     "album_types": {
-      "aflevering": "Show",
       "album": "Album",
       "audioboek": "Audiobook",
       "ep": "Ep",
+      "aflevering": "Show",
       "single": "Single"
     }
   },
@@ -2802,22 +2809,22 @@
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
+      "sek": "s",
       "sekund": "s",
       "sekunder": "s",
-      "sek": "s",
+      "min": "m",
       "minutt": "m",
       "minutter": "m",
-      "min": "m",
+      "t": "h",
       "time": "h",
       "timer": "h",
-      "t": "h",
+      "d.": "D",
       "dag": "D",
       "dager": "D",
       "døgn": "D",
-      "d.": "D",
+      "u.": "W",
       "uke": "W",
       "uker": "W",
-      "u.": "W",
       "måned": "M",
       "måneder": "M",
       "md.": "M",
@@ -2825,20 +2832,20 @@
     },
     "date_order": "DY",
     "months": {
-      "apr.": 4,
-      "aug.": 8,
-      "des.": 12,
-      "feb.": 2,
       "jan.": 1,
-      "jul.": 7,
-      "juli": 7,
+      "feb.": 2,
+      "mar.": 3,
+      "apr.": 4,
+      "mai": 5,
       "jun.": 6,
       "juni": 6,
-      "mai": 5,
-      "mar.": 3,
-      "nov.": 11,
+      "jul.": 7,
+      "juli": 7,
+      "aug.": 8,
+      "sep.": 9,
       "okt.": 10,
-      "sep.": 9
+      "nov.": 11,
+      "des.": 12
     },
     "timeago_nd_tokens": {
       "dag": "0D",
@@ -2855,9 +2862,9 @@
     },
     "album_types": {
       "album": "Album",
+      "lydbok": "Audiobook",
       "ep": "Ep",
       "hørespill": "Show",
-      "lydbok": "Audiobook",
       "singel": "Single"
     }
   },
@@ -2865,35 +2872,35 @@
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
-      "ସେକେଣ୍ଡ": "s",
       "ସେ.": "s",
+      "ସେକେଣ୍ଡ": "s",
+      "ମି.": "m",
       "ମିନିଟ୍": "m",
       "ମିନିଟ୍‌": "m",
-      "ମି.": "m",
-      "ଘଣ୍ଟା": "h",
       "ଘ.": "h",
+      "ଘଣ୍ଟା": "h",
       "ଦିନ": "D",
-      "ସପ୍ତାହ": "W",
       "ସପ୍ତା.": "W",
-      "ମାସ": "M",
+      "ସପ୍ତାହ": "W",
       "ମା.": "M",
-      "ବର୍ଷ": "Y",
-      "ବ.": "Y"
+      "ମାସ": "M",
+      "ବ.": "Y",
+      "ବର୍ଷ": "Y"
     },
     "date_order": "DY",
     "months": {
-      "ଅକ୍ଟୋବର": 10,
-      "ଅଗଷ୍ଟ": 8,
-      "ଅପ୍ରେଲ": 4,
       "ଜାନୁଆରୀ": 1,
+      "ଫେବୃଆରୀ": 2,
+      "ମାର୍ଚ୍ଚ": 3,
+      "ଅପ୍ରେଲ": 4,
+      "ମଇ": 5,
       "ଜୁନ": 6,
       "ଜୁଲାଇ": 7,
-      "ଡିସେମ୍ବର": 12,
+      "ଅଗଷ୍ଟ": 8,
+      "ସେପ୍ଟେମ୍ବର": 9,
+      "ଅକ୍ଟୋବର": 10,
       "ନଭେମ୍ବର": 11,
-      "ଫେବୃଆରୀ": 2,
-      "ମଇ": 5,
-      "ମାର୍ଚ୍ଚ": 3,
-      "ସେପ୍ଟେମ୍ବର": 9
+      "ଡିସେମ୍ବର": 12
     },
     "timeago_nd_tokens": {
       "ଆଜି": "0D",
@@ -2901,23 +2908,23 @@
     },
     "comma_decimal": false,
     "number_tokens": {
+      "ହ": 3,
+      "ହଜଣ": 3,
+      "ହଟି": 3,
       "ନି": 6,
       "ନିଜଣ": 6,
       "ନିଟି": 6,
       "ବି": 9,
       "ବିଜଣ": 9,
-      "ବିଟି": 9,
-      "ହ": 3,
-      "ହଜଣ": 3,
-      "ହଟି": 3
+      "ବିଟି": 9
     },
     "number_nd_tokens": {
       "ନାହିଁ": 0
     },
     "album_types": {
-      "ep": "Ep",
-      "ଅଡିଓବୁକ୍": "Audiobook",
       "ଆଲବମ୍": "Album",
+      "ଅଡିଓବୁକ୍": "Audiobook",
+      "ep": "Ep",
       "ଶୋ": "Show",
       "ସିଙ୍ଗଲ୍": "Single"
     }
@@ -2939,18 +2946,18 @@
     },
     "date_order": "DY",
     "months": {
-      "ਅਕਤੂ": 10,
-      "ਅਗ": 8,
-      "ਅਪ੍ਰੈ": 4,
       "ਜਨ": 1,
-      "ਜੁਲਾ": 7,
-      "ਜੂਨ": 6,
-      "ਦਸੰ": 12,
-      "ਨਵੰ": 11,
       "ਫ਼ਰ": 2,
-      "ਮਈ": 5,
       "ਮਾਰਚ": 3,
-      "ਸਤੰ": 9
+      "ਅਪ੍ਰੈ": 4,
+      "ਮਈ": 5,
+      "ਜੂਨ": 6,
+      "ਜੁਲਾ": 7,
+      "ਅਗ": 8,
+      "ਸਤੰ": 9,
+      "ਅਕਤੂ": 10,
+      "ਨਵੰ": 11,
+      "ਦਸੰ": 12
     },
     "timeago_nd_tokens": {
       "ਅੱਜ": "0D",
@@ -2958,18 +2965,18 @@
     },
     "comma_decimal": false,
     "number_tokens": {
-      "ਅਰਬ": 9,
-      "ਕਰੋੜ": 7,
+      "ਹਜ਼ਾਰ": 3,
       "ਲੱਖ": 5,
-      "ਹਜ਼ਾਰ": 3
+      "ਕਰੋੜ": 7,
+      "ਅਰਬ": 9
     },
     "number_nd_tokens": {
       "ਨਹੀਂ": 0
     },
     "album_types": {
-      "ep": "Ep",
-      "ਆਡੀਓ-ਕਿਤਾਬ": "Audiobook",
       "ਐਲਬਮ": "Album",
+      "ਆਡੀਓ-ਕਿਤਾਬ": "Audiobook",
+      "ep": "Ep",
       "ਸ਼ੋਅ": "Show",
       "ਸਿੰਗਲ": "Single"
     }
@@ -2978,53 +2985,53 @@
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
+      "sek.": "s",
+      "sekund": "s",
+      "sekunda": "s",
       "sekundę": "s",
       "sekundy": "s",
-      "sekunda": "s",
-      "sekund": "s",
-      "sek.": "s",
-      "minutę": "m",
-      "minuty": "m",
+      "min": "m",
       "minut": "m",
       "minuta": "m",
-      "min": "m",
+      "minutę": "m",
+      "minuty": "m",
+      "godz.": "h",
+      "godzin": "h",
       "godzinę": "h",
       "godziny": "h",
-      "godzin": "h",
-      "godz.": "h",
-      "dzień": "D",
       "dni": "D",
       "dnia": "D",
+      "dzień": "D",
+      "tydz.": "W",
       "tydzień": "W",
-      "tygodnie": "W",
+      "tyg.": "W",
       "tygodni": "W",
       "tygodnia": "W",
-      "tydz.": "W",
-      "tyg.": "W",
+      "tygodnie": "W",
+      "mies.": "M",
       "miesiąc": "M",
+      "miesiąca": "M",
       "miesiące": "M",
       "miesięcy": "M",
-      "miesiąca": "M",
-      "mies.": "M",
-      "rok": "Y",
-      "lata": "Y",
       "lat": "Y",
+      "lata": "Y",
+      "rok": "Y",
       "roku": "Y"
     },
     "date_order": "DY",
     "months": {
-      "cze": 6,
-      "gru": 12,
-      "kwi": 4,
-      "lip": 7,
-      "lis": 11,
-      "lut": 2,
-      "maj": 5,
-      "mar": 3,
-      "paź": 10,
-      "sie": 8,
       "sty": 1,
-      "wrz": 9
+      "lut": 2,
+      "mar": 3,
+      "kwi": 4,
+      "maj": 5,
+      "cze": 6,
+      "lip": 7,
+      "sie": 8,
+      "wrz": 9,
+      "paź": 10,
+      "lis": 11,
+      "gru": 12
     },
     "timeago_nd_tokens": {
       "dzisiaj": "0D",
@@ -3032,9 +3039,9 @@
     },
     "comma_decimal": true,
     "number_tokens": {
-      "mld": 9,
+      "tys": 3,
       "mln": 6,
-      "tys": 3
+      "mld": 9
     },
     "number_nd_tokens": {
       "brak": 0
@@ -3043,28 +3050,28 @@
       "album": "Album",
       "audiobook": "Audiobook",
       "ep": "Ep",
-      "singiel": "Single",
-      "słuchowisko": "Show"
+      "słuchowisko": "Show",
+      "singiel": "Single"
     }
   },
   "pt": {
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
+      "seg.": "s",
       "segundo": "s",
       "segundos": "s",
-      "seg.": "s",
+      "min.": "m",
       "minuto": "m",
       "minutos": "m",
-      "min.": "m",
+      "h": "h",
       "hora": "h",
       "horas": "h",
-      "h": "h",
       "dia": "D",
       "dias": "D",
+      "sem.": "W",
       "semana": "W",
       "semanas": "W",
-      "sem.": "W",
       "mês": "M",
       "meses": "M",
       "ano": "Y",
@@ -3072,18 +3079,18 @@
     },
     "date_order": "DY",
     "months": {
-      "abr.": 4,
-      "ago.": 8,
-      "dez.": 12,
-      "fev.": 2,
       "jan.": 1,
-      "jul.": 7,
-      "jun.": 6,
-      "mai.": 5,
+      "fev.": 2,
       "mar.": 3,
-      "nov.": 11,
+      "abr.": 4,
+      "mai.": 5,
+      "jun.": 6,
+      "jul.": 7,
+      "ago.": 8,
+      "set.": 9,
       "out.": 10,
-      "set.": 9
+      "nov.": 11,
+      "dez.": 12
     },
     "timeago_nd_tokens": {
       "hoje": "0D",
@@ -3091,39 +3098,39 @@
     },
     "comma_decimal": true,
     "number_tokens": {
-      "bi": 9,
+      "mil": 3,
       "mi": 6,
-      "mil": 3
+      "bi": 9
     },
     "number_nd_tokens": {
       "um": 1
     },
     "album_types": {
+      "álbum": "Album",
       "audiolivro": "Audiobook",
       "ep": "Ep",
       "programa": "Show",
-      "single": "Single",
-      "álbum": "Album"
+      "single": "Single"
     }
   },
   "pt-PT": {
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
+      "s": "s",
       "segundo": "s",
       "segundos": "s",
-      "s": "s",
+      "min": "m",
       "minuto": "m",
       "minutos": "m",
-      "min": "m",
+      "h": "h",
       "hora": "h",
       "horas": "h",
-      "h": "h",
       "dia": "D",
       "dias": "D",
+      "sem.": "W",
       "semana": "W",
       "semanas": "W",
-      "sem.": "W",
       "mês": "M",
       "meses": "M",
       "ano": "Y",
@@ -3137,37 +3144,37 @@
     },
     "comma_decimal": true,
     "number_tokens": {
-      "m": 6,
       "mil": 3,
+      "m": 6,
       "mm": 9
     },
     "number_nd_tokens": {},
     "album_types": {
-      "ep": "Ep",
+      "álbum": "Album",
       "livro áudio": "Audiobook",
+      "ep": "Ep",
       "programa": "Show",
-      "single": "Single",
-      "álbum": "Album"
+      "single": "Single"
     }
   },
   "ro": {
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
+      "sec.": "s",
       "secundă": "s",
       "secunde": "s",
-      "sec.": "s",
+      "min.": "m",
       "minut": "m",
       "minute": "m",
-      "min.": "m",
+      "h": "h",
       "oră": "h",
       "ore": "h",
-      "h": "h",
       "zi": "D",
       "zile": "D",
+      "săpt.": "W",
       "săptămână": "W",
       "săptămâni": "W",
-      "săpt.": "W",
       "lună": "M",
       "luni": "M",
       "an": "Y",
@@ -3175,18 +3182,18 @@
     },
     "date_order": "DY",
     "months": {
-      "apr.": 4,
-      "aug.": 8,
-      "dec.": 12,
-      "feb.": 2,
       "ian.": 1,
-      "iul.": 7,
-      "iun.": 6,
-      "mai": 5,
+      "feb.": 2,
       "mar.": 3,
-      "nov.": 11,
+      "apr.": 4,
+      "mai": 5,
+      "iun.": 6,
+      "iul.": 7,
+      "aug.": 8,
+      "sept.": 9,
       "oct.": 10,
-      "sept.": 9
+      "nov.": 11,
+      "dec.": 12
     },
     "timeago_nd_tokens": {
       "astăzi": "0D",
@@ -3204,8 +3211,8 @@
     "album_types": {
       "album": "Album",
       "carte audio": "Audiobook",
-      "emisiune": "Show",
       "ep": "Ep",
+      "emisiune": "Show",
       "single": "Single"
     }
   },
@@ -3213,52 +3220,52 @@
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
-      "секунду": "s",
-      "секунды": "s",
+      "сек.": "s",
       "секунд": "s",
       "секунда": "s",
-      "сек.": "s",
-      "минуту": "m",
-      "минуты": "m",
+      "секунду": "s",
+      "секунды": "s",
+      "мин.": "m",
       "минут": "m",
       "минута": "m",
-      "мин.": "m",
+      "минуту": "m",
+      "минуты": "m",
+      "ч": "h",
       "час": "h",
       "часа": "h",
       "часов": "h",
-      "ч": "h",
       "день": "D",
-      "дня": "D",
-      "дней": "D",
       "дн.": "D",
-      "неделю": "W",
+      "дней": "D",
+      "дня": "D",
+      "нед.": "W",
       "недели": "W",
       "недель": "W",
-      "нед.": "W",
+      "неделю": "W",
+      "мес.": "M",
       "месяц": "M",
       "месяца": "M",
       "месяцев": "M",
-      "мес.": "M",
+      "г.": "Y",
       "год": "Y",
       "года": "Y",
-      "лет": "Y",
-      "г.": "Y",
-      "л.": "Y"
+      "л.": "Y",
+      "лет": "Y"
     },
     "date_order": "DY",
     "months": {
-      "авг.": 8,
-      "апр.": 4,
-      "дек.": 12,
-      "июл.": 7,
-      "июн.": 6,
-      "мар.": 3,
-      "мая": 5,
-      "нояб.": 11,
-      "окт.": 10,
-      "сент.": 9,
+      "янв.": 1,
       "февр.": 2,
-      "янв.": 1
+      "мар.": 3,
+      "апр.": 4,
+      "мая": 5,
+      "июн.": 6,
+      "июл.": 7,
+      "авг.": 8,
+      "сент.": 9,
+      "окт.": 10,
+      "нояб.": 11,
+      "дек.": 12
     },
     "timeago_nd_tokens": {
       "сегодня": "0D",
@@ -3266,15 +3273,15 @@
     },
     "comma_decimal": true,
     "number_tokens": {
+      "тыс": 3,
       "млн": 6,
-      "млрд": 9,
-      "тыс": 3
+      "млрд": 9
     },
     "number_nd_tokens": {},
     "album_types": {
-      "ep": "Ep",
       "альбом": "Album",
       "аудиокнига": "Audiobook",
+      "ep": "Ep",
       "аудиошоу": "Show",
       "сингл": "Single"
     }
@@ -3293,18 +3300,18 @@
     },
     "date_order": "YD",
     "months": {
-      "අගෝ": 8,
-      "අප්‍රේල්": 4,
-      "ඔක්": 10,
       "ජන": 1,
-      "ජූනි": 6,
-      "ජූලි": 7,
-      "දෙසැ": 12,
-      "නොවැ": 11,
       "පෙබ": 2,
       "මාර්තු": 3,
+      "අප්‍රේල්": 4,
       "මැයි": 5,
-      "සැප්": 9
+      "ජූනි": 6,
+      "ජූලි": 7,
+      "අගෝ": 8,
+      "සැප්": 9,
+      "ඔක්": 10,
+      "නොවැ": 11,
+      "දෙසැ": 12
     },
     "timeago_nd_tokens": {
       "අද": "0D",
@@ -3313,55 +3320,55 @@
     "comma_decimal": false,
     "number_tokens": {
       "ද": 3,
-      "බි": 9,
-      "මි": 6
+      "මි": 6,
+      "බි": 9
     },
     "number_nd_tokens": {
       "නැත": 0
     },
     "album_types": {
       "ඇල්බමය": "Album",
-      "තනි": "Single",
-      "දීවා": "Ep",
       "ශ්‍රව්‍යපොත": "Audiobook",
-      "සංදර්ශනය": "Show"
+      "දීවා": "Ep",
+      "සංදර්ශනය": "Show",
+      "තනි": "Single"
     }
   },
   "sk": {
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
-      "sekundou": "s",
-      "sekundami": "s",
-      "sekundy": "s",
-      "sekunda": "s",
-      "sekúnd": "s",
       "s": "s",
-      "minútou": "m",
-      "minútami": "m",
-      "minúty": "m",
+      "sekúnd": "s",
+      "sekunda": "s",
+      "sekundami": "s",
+      "sekundou": "s",
+      "sekundy": "s",
+      "min": "m",
       "minút": "m",
       "minúta": "m",
-      "min": "m",
-      "hodinou": "h",
-      "hodinami": "h",
+      "minútami": "m",
+      "minútou": "m",
+      "minúty": "m",
       "h": "h",
-      "dňom": "D",
-      "dňami": "D",
-      "dňa": "D",
+      "hodinami": "h",
+      "hodinou": "h",
       "d.": "D",
-      "týždňom": "W",
-      "týždňami": "W",
-      "týždňa": "W",
+      "dňa": "D",
+      "dňami": "D",
+      "dňom": "D",
       "týž.": "W",
-      "mesiacom": "M",
-      "mesiacmi": "M",
-      "mesiaca": "M",
+      "týždňa": "W",
+      "týždňami": "W",
+      "týždňom": "W",
       "mes.": "M",
-      "rokom": "Y",
-      "rokmi": "Y",
+      "mesiaca": "M",
+      "mesiacmi": "M",
+      "mesiacom": "M",
+      "r.": "Y",
       "roka": "Y",
-      "r.": "Y"
+      "rokmi": "Y",
+      "rokom": "Y"
     },
     "date_order": "DMY",
     "months": {},
@@ -3371,9 +3378,9 @@
     },
     "comma_decimal": true,
     "number_tokens": {
+      "tis": 3,
       "mil": 6,
-      "mld": 9,
-      "tis": 3
+      "mld": 9
     },
     "number_nd_tokens": {
       "žiadne": 0
@@ -3390,55 +3397,55 @@
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
+      "s": "s",
       "sekund": "s",
       "sekunda": "s",
+      "sekundama": "s",
+      "sekundami": "s",
       "sekunde": "s",
       "sekundi": "s",
       "sekundo": "s",
-      "sekundama": "s",
-      "sekundami": "s",
-      "s": "s",
+      "min.": "m",
       "minut": "m",
       "minuta": "m",
+      "minutama": "m",
+      "minutami": "m",
       "minute": "m",
       "minuti": "m",
       "minuto": "m",
-      "minutama": "m",
-      "minutami": "m",
-      "min.": "m",
-      "uro": "h",
       "urama": "h",
       "urami": "h",
+      "uro": "h",
+      "dnem": "D",
+      "dnevi": "D",
       "dnevom": "D",
       "dnevoma": "D",
-      "dnevi": "D",
-      "dnem": "D",
+      "ted.": "W",
+      "tedni": "W",
       "tednom": "W",
       "tednoma": "W",
-      "tedni": "W",
-      "ted.": "W",
+      "mes.": "M",
       "mesecem": "M",
       "mesecema": "M",
       "meseci": "M",
-      "mes.": "M",
+      "leti": "Y",
       "letom": "Y",
-      "letoma": "Y",
-      "leti": "Y"
+      "letoma": "Y"
     },
     "date_order": "DY",
     "months": {
-      "apr.": 4,
-      "avg.": 8,
-      "dec.": 12,
-      "feb.": 2,
       "jan.": 1,
-      "jul.": 7,
-      "jun.": 6,
-      "maj": 5,
+      "feb.": 2,
       "mar.": 3,
-      "nov.": 11,
+      "apr.": 4,
+      "maj": 5,
+      "jun.": 6,
+      "jul.": 7,
+      "avg.": 8,
+      "sep.": 9,
       "okt.": 10,
-      "sep.": 9
+      "nov.": 11,
+      "dec.": 12
     },
     "timeago_nd_tokens": {
       "danes": "0D",
@@ -3446,31 +3453,31 @@
     },
     "comma_decimal": true,
     "number_tokens": {
+      "tis": 3,
       "mio": 6,
-      "mrd": 9,
-      "tis": 3
+      "mrd": 9
     },
     "number_nd_tokens": {
       "brez": 0
     },
     "album_types": {
       "album": "Album",
+      "zvočna knjiga": "Audiobook",
       "ep": "Ep",
       "oddaja": "Show",
-      "singel": "Single",
-      "zvočna knjiga": "Audiobook"
+      "singel": "Single"
     }
   },
   "sq": {
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
-      "sekondë": "s",
-      "sekonda": "s",
       "sek": "s",
-      "minutë": "m",
-      "minuta": "m",
+      "sekonda": "s",
+      "sekondë": "s",
       "min": "m",
+      "minuta": "m",
+      "minutë": "m",
       "orë": "h",
       "ditë": "D",
       "javë": "W",
@@ -3480,18 +3487,18 @@
     },
     "date_order": "DY",
     "months": {
-      "dhj": 12,
-      "gush": 8,
       "jan": 1,
-      "korr": 7,
-      "maj": 5,
-      "mar": 3,
-      "nën": 11,
-      "pri": 4,
-      "qer": 6,
       "shk": 2,
+      "mar": 3,
+      "pri": 4,
+      "maj": 5,
+      "qer": 6,
+      "korr": 7,
+      "gush": 8,
       "sht": 9,
-      "tet": 10
+      "tet": 10,
+      "nën": 11,
+      "dhj": 12
     },
     "timeago_nd_tokens": {
       "sot": "0D",
@@ -3500,16 +3507,16 @@
     "comma_decimal": true,
     "number_tokens": {
       "mijë": 3,
-      "mld": 9,
-      "mln": 6
+      "mln": 6,
+      "mld": 9
     },
     "number_nd_tokens": {
       "nuk": 0
     },
     "album_types": {
       "album": "Album",
-      "ep": "Ep",
       "libër me audio": "Audiobook",
+      "ep": "Ep",
       "shfaq": "Show",
       "single": "Single"
     }
@@ -3518,27 +3525,27 @@
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
+      "сек.": "s",
+      "секунда": "s",
       "секунде": "s",
       "секунди": "s",
-      "секунда": "s",
-      "сек.": "s",
-      "минута": "m",
-      "минут": "m",
       "мин.": "m",
+      "минут": "m",
+      "минута": "m",
       "сата": "h",
       "сати": "h",
       "ч.": "h",
-      "дана": "D",
       "д.": "D",
-      "недеље": "W",
-      "недеља": "W",
+      "дана": "D",
       "нед.": "W",
+      "недеља": "W",
+      "недеље": "W",
+      "мес.": "M",
       "месеца": "M",
       "месеци": "M",
-      "мес.": "M",
-      "године": "Y",
+      "год.": "Y",
       "година": "Y",
-      "год.": "Y"
+      "године": "Y"
     },
     "date_order": "DMY",
     "months": {},
@@ -3548,17 +3555,17 @@
     },
     "comma_decimal": true,
     "number_tokens": {
+      "хиљ": 3,
       "мил": 6,
-      "млрд": 9,
-      "хиљ": 3
+      "млрд": 9
     },
     "number_nd_tokens": {
       "нема": 0
     },
     "album_types": {
-      "ep": "Ep",
       "албум": "Album",
       "аудио-књига": "Audiobook",
+      "ep": "Ep",
       "серија": "Show",
       "сингл": "Single"
     }
@@ -3567,27 +3574,27 @@
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
+      "sek.": "s",
+      "sekunda": "s",
       "sekunde": "s",
       "sekundi": "s",
-      "sekunda": "s",
-      "sek.": "s",
-      "minuta": "m",
-      "minut": "m",
       "min.": "m",
+      "minut": "m",
+      "minuta": "m",
+      "č.": "h",
       "sata": "h",
       "sati": "h",
-      "č.": "h",
-      "dana": "D",
       "d.": "D",
-      "nedelje": "W",
-      "nedelja": "W",
+      "dana": "D",
       "ned.": "W",
+      "nedelja": "W",
+      "nedelje": "W",
+      "mes.": "M",
       "meseca": "M",
       "meseci": "M",
-      "mes.": "M",
-      "godine": "Y",
+      "god.": "Y",
       "godina": "Y",
-      "god.": "Y"
+      "godine": "Y"
     },
     "date_order": "DMY",
     "months": {},
@@ -3616,40 +3623,40 @@
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
+      "s": "s",
       "sekund": "s",
       "sekunder": "s",
-      "s": "s",
+      "min": "m",
       "minut": "m",
       "minuter": "m",
-      "min": "m",
-      "timme": "h",
-      "timmar": "h",
       "tim": "h",
+      "timmar": "h",
+      "timme": "h",
+      "d": "D",
       "dag": "D",
       "dagar": "D",
-      "d": "D",
+      "v.": "W",
       "vecka": "W",
       "veckor": "W",
-      "v.": "W",
+      "mån.": "M",
       "månad": "M",
       "månader": "M",
-      "mån.": "M",
       "år": "Y"
     },
     "date_order": "DY",
     "months": {
-      "apr.": 4,
-      "aug.": 8,
-      "dec.": 12,
-      "feb.": 2,
       "jan.": 1,
-      "juli": 7,
-      "juni": 6,
-      "maj": 5,
+      "feb.": 2,
       "mars": 3,
-      "nov.": 11,
+      "apr.": 4,
+      "maj": 5,
+      "juni": 6,
+      "juli": 7,
+      "aug.": 8,
+      "sep.": 9,
       "okt.": 10,
-      "sep.": 9
+      "nov.": 11,
+      "dec.": 12
     },
     "timeago_nd_tokens": {
       "dag": "0D",
@@ -3657,16 +3664,16 @@
     },
     "comma_decimal": true,
     "number_tokens": {
-      "md": 9,
-      "mn": 6
+      "mn": 6,
+      "md": 9
     },
     "number_nd_tokens": {
       "inga": 0
     },
     "album_types": {
       "album": "Album",
-      "ep": "Ep",
       "ljudbok": "Audiobook",
+      "ep": "Ep",
       "ljuddrama": "Show",
       "singel": "Single"
     }
@@ -3680,25 +3687,25 @@
       "saa": "h",
       "siku": "D",
       "wiki": "W",
-      "mwezi": "M",
       "miezi": "M",
-      "mwaka": "Y",
-      "miaka": "Y"
+      "mwezi": "M",
+      "miaka": "Y",
+      "mwaka": "Y"
     },
     "date_order": "DY",
     "months": {
-      "ago": 8,
-      "apr": 4,
-      "des": 12,
-      "feb": 2,
       "jan": 1,
-      "jul": 7,
-      "jun": 6,
+      "feb": 2,
       "mac": 3,
+      "apr": 4,
       "mei": 5,
-      "nov": 11,
+      "jun": 6,
+      "jul": 7,
+      "ago": 8,
+      "sep": 9,
       "okt": 10,
-      "sep": 9
+      "nov": 11,
+      "des": 12
     },
     "timeago_nd_tokens": {
       "leo": "0D",
@@ -3706,18 +3713,18 @@
     },
     "comma_decimal": false,
     "number_tokens": {
-      "b": 9,
       "elfu": 3,
-      "m": 6
+      "m": 6,
+      "b": 9
     },
     "number_nd_tokens": {
       "haijatazamwa": 0
     },
     "album_types": {
       "albamu": "Album",
+      "kitabu cha kusikiliza": "Audiobook",
       "ep": "Ep",
       "kipindi": "Show",
-      "kitabu cha kusikiliza": "Audiobook",
       "singo": "Single"
     }
   },
@@ -3725,43 +3732,43 @@
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
-      "விநாடிக்கு": "s",
-      "விநாடிகளுக்கு": "s",
       "விநா.": "s",
       "விநாடி": "s",
+      "விநாடிகளுக்கு": "s",
       "விநாடிகள்": "s",
-      "நிமிடத்திற்கு": "m",
-      "நிமிடங்களுக்கு": "m",
+      "விநாடிக்கு": "s",
       "நிமி.": "m",
+      "நிமிடங்களுக்கு": "m",
       "நிமிடங்கள்": "m",
+      "நிமிடத்திற்கு": "m",
       "நிமிடம்": "m",
-      "மணிநேரம்": "h",
       "மணி.": "h",
-      "நாளுக்கு": "D",
+      "மணிநேரம்": "h",
       "நாட்களுக்கு": "D",
-      "வாரத்திற்கு": "W",
-      "வாரங்களுக்கு": "W",
+      "நாளுக்கு": "D",
       "வார.": "W",
-      "மாதத்துக்கு": "M",
-      "மாதங்களுக்கு": "M",
+      "வாரங்களுக்கு": "W",
+      "வாரத்திற்கு": "W",
       "மாத.": "M",
+      "மாதங்களுக்கு": "M",
+      "மாதத்துக்கு": "M",
       "ஆண்டிற்கு": "Y",
       "ஆண்டுகளுக்கு": "Y"
     },
     "date_order": "DY",
     "months": {
-      "அக்.,": 10,
-      "ஆக.,": 8,
-      "ஏப்.,": 4,
-      "செப்.,": 9,
       "ஜன.,": 1,
-      "ஜூன்,": 6,
-      "ஜூலை,": 7,
-      "டிச.,": 12,
-      "நவ.,": 11,
       "பிப்.,": 2,
       "மார்.,": 3,
-      "மே,": 5
+      "ஏப்.,": 4,
+      "மே,": 5,
+      "ஜூன்,": 6,
+      "ஜூலை,": 7,
+      "ஆக.,": 8,
+      "செப்.,": 9,
+      "அக்.,": 10,
+      "நவ.,": 11,
+      "டிச.,": 12
     },
     "timeago_nd_tokens": {
       "இன்று": "0D",
@@ -3769,17 +3776,17 @@
     },
     "comma_decimal": false,
     "number_tokens": {
-      "கோடி": 7,
-      "லட்சம்": 5
+      "லட்சம்": 5,
+      "கோடி": 7
     },
     "number_nd_tokens": {
       "இல்லை": 0
     },
     "album_types": {
-      "ep": "Ep",
-      "ஆடியோ புத்தகம்": "Audiobook",
-      "ஆடியோ ஷோ": "Show",
       "ஆல்பம்": "Album",
+      "ஆடியோ புத்தகம்": "Audiobook",
+      "ep": "Ep",
+      "ஆடியோ ஷோ": "Show",
       "சிங்கிள்": "Single"
     }
   },
@@ -3787,41 +3794,41 @@
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
+      "సెక.": "s",
       "సెకను": "s",
       "సెకన్ల": "s",
       "సెకన్లు": "s",
-      "సెక.": "s",
+      "నిమి.": "m",
       "నిమిషం": "m",
       "నిమిషాల": "m",
       "నిమిషాలు": "m",
-      "నిమి.": "m",
+      "గం.": "h",
       "గంట": "h",
       "గంటల": "h",
-      "గం.": "h",
       "రోజు": "D",
       "రోజుల": "D",
       "వారం": "W",
       "వారాల": "W",
       "నెల": "M",
       "నెలల": "M",
+      "సం.": "Y",
       "సంవత్సరం": "Y",
-      "సంవత్సరాల": "Y",
-      "సం.": "Y"
+      "సంవత్సరాల": "Y"
     },
     "date_order": "DY",
     "months": {
-      "అక్టో,": 10,
-      "ఆగ,": 8,
-      "ఏప్రి,": 4,
       "జన,": 1,
-      "జులై,": 7,
-      "జూన్,": 6,
-      "డిసెం,": 12,
-      "నవం,": 11,
       "ఫిబ్ర,": 2,
       "మార్చి,": 3,
+      "ఏప్రి,": 4,
       "మే,": 5,
-      "సెప్టెం,": 9
+      "జూన్,": 6,
+      "జులై,": 7,
+      "ఆగ,": 8,
+      "సెప్టెం,": 9,
+      "అక్టో,": 10,
+      "నవం,": 11,
+      "డిసెం,": 12
     },
     "timeago_nd_tokens": {
       "ఈ": "0D",
@@ -3829,17 +3836,17 @@
     },
     "comma_decimal": false,
     "number_tokens": {
-      "కోట్లు": 7,
       "లక్ష": 5,
-      "లక్షలు": 5
+      "లక్షలు": 5,
+      "కోట్లు": 7
     },
     "number_nd_tokens": {
       "లేవు": 0
     },
     "album_types": {
-      "ep": "Ep",
-      "ఆడియోబుక్": "Audiobook",
       "ఆల్బమ్": "Album",
+      "ఆడియోబుక్": "Audiobook",
+      "ep": "Ep",
       "చూపించు": "Show",
       "సింగిల్": "Single"
     }
@@ -3848,14 +3855,14 @@
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
+      "วินาที": "s",
       "วินาทีที่ผ่านมา": "s",
       "วินาทีที่แล้ว": "s",
-      "วินาที": "s",
+      "นาที": "m",
       "นาทีที่ผ่านมา": "m",
       "นาทีที่แล้ว": "m",
-      "นาที": "m",
-      "ชั่วโมงที่ผ่านมา": "h",
       "ชม.": "h",
+      "ชั่วโมงที่ผ่านมา": "h",
       "ที่แล้ว": "h",
       "วันที่ผ่านมา": "D",
       "วันที่แล้ว": "D",
@@ -3867,18 +3874,18 @@
     },
     "date_order": "DY",
     "months": {
-      "ก.ค.": 7,
+      "ม.ค.": 1,
       "ก.พ.": 2,
+      "มี.ค.": 3,
+      "เม.ย.": 4,
+      "พ.ค.": 5,
+      "มิ.ย.": 6,
+      "ก.ค.": 7,
+      "ส.ค.": 8,
       "ก.ย.": 9,
       "ต.ค.": 10,
-      "ธ.ค.": 12,
-      "พ.ค.": 5,
       "พ.ย.": 11,
-      "ม.ค.": 1,
-      "มิ.ย.": 6,
-      "มี.ค.": 3,
-      "ส.ค.": 8,
-      "เม.ย.": 4
+      "ธ.ค.": 12
     },
     "timeago_nd_tokens": {
       "อัปเดตแล้ววันนี้": "0D",
@@ -3887,21 +3894,21 @@
     "comma_decimal": false,
     "number_tokens": {
       "พัน": 3,
-      "พันล้าน": 9,
-      "ล้าน": 6,
       "หมื่น": 4,
-      "หมื่นล้าน": 10,
-      "แสน": 5
+      "แสน": 5,
+      "ล้าน": 6,
+      "พันล้าน": 9,
+      "หมื่นล้าน": 10
     },
     "number_nd_tokens": {
       "ไม่มีการดู": 0
     },
     "album_types": {
-      "ep": "Ep",
-      "ซิงเกิล": "Single",
-      "รายการ": "Show",
+      "อัลบั้ม": "Album",
       "หนังสือเสียง": "Audiobook",
-      "อัลบั้ม": "Album"
+      "ep": "Ep",
+      "รายการ": "Show",
+      "ซิงเกิล": "Single"
     }
   },
   "tr": {
@@ -3912,8 +3919,8 @@
       "sn.": "s",
       "dakika": "m",
       "dk.": "m",
-      "saat": "h",
       "sa.": "h",
+      "saat": "h",
       "gün": "D",
       "hafta": "W",
       "hf.": "W",
@@ -3922,18 +3929,18 @@
     },
     "date_order": "DY",
     "months": {
-      "ara": 12,
-      "ağu": 8,
-      "eki": 10,
-      "eyl": 9,
-      "haz": 6,
-      "kas": 11,
-      "mar": 3,
-      "may": 5,
-      "nis": 4,
       "oca": 1,
+      "şub": 2,
+      "mar": 3,
+      "nis": 4,
+      "may": 5,
+      "haz": 6,
       "tem": 7,
-      "şub": 2
+      "ağu": 8,
+      "eyl": 9,
+      "eki": 10,
+      "kas": 11,
+      "ara": 12
     },
     "timeago_nd_tokens": {
       "bugün": "0D",
@@ -3950,9 +3957,9 @@
     },
     "album_types": {
       "albüm": "Album",
+      "sesli kitap": "Audiobook",
       "ep": "Ep",
       "program": "Show",
-      "sesli kitap": "Audiobook",
       "single": "Single"
     }
   },
@@ -3960,55 +3967,55 @@
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
-      "секунду": "s",
-      "секунди": "s",
+      "с": "s",
       "секунд": "s",
       "секунда": "s",
-      "с": "s",
-      "хвилину": "m",
-      "хвилини": "m",
+      "секунди": "s",
+      "секунду": "s",
+      "хв": "m",
       "хвилин": "m",
       "хвилина": "m",
-      "хв": "m",
-      "годину": "h",
-      "години": "h",
-      "годин": "h",
+      "хвилини": "m",
+      "хвилину": "m",
       "год": "h",
+      "годин": "h",
+      "години": "h",
+      "годину": "h",
       "день": "D",
+      "дн.": "D",
       "дні": "D",
       "днів": "D",
       "дня": "D",
-      "дн.": "D",
+      "тиж.": "W",
       "тиждень": "W",
       "тижні": "W",
       "тижнів": "W",
       "тижня": "W",
-      "тиж.": "W",
-      "місяць": "M",
+      "міс.": "M",
       "місяці": "M",
       "місяців": "M",
+      "місяць": "M",
       "місяця": "M",
-      "міс.": "M",
+      "р.": "Y",
       "рік": "Y",
       "роки": "Y",
       "років": "Y",
-      "року": "Y",
-      "р.": "Y"
+      "року": "Y"
     },
     "date_order": "DY",
     "months": {
-      "бер.": 3,
-      "вер.": 9,
-      "груд.": 12,
-      "жовт.": 10,
-      "квіт.": 4,
-      "лип.": 7,
-      "лист.": 11,
-      "лют.": 2,
-      "серп.": 8,
       "січ.": 1,
+      "лют.": 2,
+      "бер.": 3,
+      "квіт.": 4,
       "трав.": 5,
-      "черв.": 6
+      "черв.": 6,
+      "лип.": 7,
+      "серп.": 8,
+      "вер.": 9,
+      "жовт.": 10,
+      "лист.": 11,
+      "груд.": 12
     },
     "timeago_nd_tokens": {
       "сьогодні": "0D",
@@ -4016,18 +4023,18 @@
     },
     "comma_decimal": true,
     "number_tokens": {
+      "тис": 3,
       "млн": 6,
-      "млрд": 9,
-      "тис": 3
+      "млрд": 9
     },
     "number_nd_tokens": {
       "жодного": 0
     },
     "album_types": {
       "альбом": "Album",
-      "аудіодрама": "Show",
       "аудіокнига": "Audiobook",
       "мініальбом": "Ep",
+      "аудіодрама": "Show",
       "сингл": "Single"
     }
   },
@@ -4035,8 +4042,8 @@
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
-      "سیکنڈز": "s",
       "سیکنڈ": "s",
+      "سیکنڈز": "s",
       "منٹ": "m",
       "منٹ،": "m",
       "منٹس": "m",
@@ -4046,25 +4053,25 @@
       "دنوں": "D",
       "ہفتہ": "W",
       "ہفتے": "W",
+      "ماہ": "M",
       "مہینہ": "M",
       "مہینے": "M",
-      "ماہ": "M",
       "سال": "Y"
     },
     "date_order": "DY",
     "months": {
-      "اپریل،": 4,
-      "اکتوبر،": 10,
-      "اگست،": 8,
       "جنوری،": 1,
-      "جولائی،": 7,
-      "جون،": 6,
-      "دسمبر،": 12,
-      "ستمبر،": 9,
       "فروری،": 2,
-      "مئی،": 5,
       "مارچ،": 3,
-      "نومبر،": 11
+      "اپریل،": 4,
+      "مئی،": 5,
+      "جون،": 6,
+      "جولائی،": 7,
+      "اگست،": 8,
+      "ستمبر،": 9,
+      "اکتوبر،": 10,
+      "نومبر،": 11,
+      "دسمبر،": 12
     },
     "timeago_nd_tokens": {
       "آج": "0D",
@@ -4072,18 +4079,18 @@
     },
     "comma_decimal": false,
     "number_tokens": {
-      "ارب": 9,
+      "ہزار": 3,
       "لاکھ": 5,
       "کروڑ": 7,
-      "ہزار": 3
+      "ارب": 9
     },
     "number_nd_tokens": {
       "نہیں": 0
     },
     "album_types": {
-      "ep": "Ep",
-      "آڈیو بک": "Audiobook",
       "البم": "Album",
+      "آڈیو بک": "Audiobook",
+      "ep": "Ep",
       "شو": "Show",
       "واحد": "Single"
     }
@@ -4102,18 +4109,18 @@
     },
     "date_order": "DY",
     "months": {
-      "apr,": 4,
-      "avg,": 8,
-      "dek,": 12,
+      "yan,": 1,
       "fev,": 2,
-      "iyl,": 7,
-      "iyn,": 6,
       "mar,": 3,
+      "apr,": 4,
       "may,": 5,
-      "noy,": 11,
-      "okt,": 10,
+      "iyn,": 6,
+      "iyl,": 7,
+      "avg,": 8,
       "sen,": 9,
-      "yan,": 1
+      "okt,": 10,
+      "noy,": 11,
+      "dek,": 12
     },
     "timeago_nd_tokens": {
       "bugun": "0D",
@@ -4155,15 +4162,15 @@
     "comma_decimal": true,
     "number_tokens": {
       "n": 3,
-      "t": 9,
-      "tr": 6
+      "tr": 6,
+      "t": 9
     },
     "number_nd_tokens": {},
     "album_types": {
-      "chương trình": "Show",
-      "sách nói": "Audiobook",
       "đĩa nhạc": "Album",
+      "sách nói": "Audiobook",
       "đĩa nhạc mở rộng (ep)": "Ep",
+      "chương trình": "Show",
       "đĩa đơn": "Single"
     }
   },
@@ -4195,10 +4202,10 @@
     },
     "album_types": {
       "专辑": "Album",
-      "单曲": "Single",
-      "广播剧": "Show",
       "有声读物": "Audiobook",
-      "迷你专辑": "Ep"
+      "迷你专辑": "Ep",
+      "广播剧": "Show",
+      "单曲": "Single"
     }
   },
   "zh-HK": {
@@ -4222,29 +4229,29 @@
     },
     "comma_decimal": false,
     "number_tokens": {
-      "b": 9,
-      "m": 6
+      "m": 6,
+      "b": 9
     },
     "number_nd_tokens": {},
     "album_types": {
-      "ep": "Ep",
-      "單曲": "Single",
       "專輯": "Album",
       "有聲書": "Audiobook",
-      "節目": "Show"
+      "ep": "Ep",
+      "節目": "Show",
+      "單曲": "Single"
     }
   },
   "zh-TW": {
     "equivalent": [],
     "by_char": true,
     "timeago_tokens": {
-      "分": "m",
-      "天": "D",
-      "小": "h",
-      "年": "Y",
-      "月": "M",
       "秒": "s",
-      "週": "W"
+      "分": "m",
+      "小": "h",
+      "天": "D",
+      "週": "W",
+      "月": "M",
+      "年": "Y"
     },
     "date_order": "YMD",
     "months": {},
@@ -4254,60 +4261,60 @@
     },
     "comma_decimal": false,
     "number_tokens": {
-      "億": 8,
-      "萬": 4
+      "萬": 4,
+      "億": 8
     },
     "number_nd_tokens": {},
     "album_types": {
-      "ep": "Ep",
-      "單曲": "Single",
       "專輯": "Album",
       "有聲書": "Audiobook",
-      "節目": "Show"
+      "ep": "Ep",
+      "節目": "Show",
+      "單曲": "Single"
     }
   },
   "zu": {
     "equivalent": [],
     "by_char": false,
     "timeago_tokens": {
-      "isekhondi": "s",
       "amasekhondi": "s",
-      "iminithi": "m",
+      "isekhondi": "s",
       "amaminithi": "m",
-      "ihora": "h",
+      "iminithi": "m",
       "emahoreni": "h",
-      "osukwini": "D",
+      "ihora": "h",
+      "ezedlule.": "D",
+      "ezingu": "D",
+      "ezinsukwini": "D",
+      "izinsuku": "D",
       "olungu": "D",
       "olwedlule": "D",
-      "ezinsukwini": "D",
-      "ezingu": "D",
-      "ezedlule.": "D",
+      "osukwini": "D",
       "usuku": "D",
-      "izinsuku": "D",
-      "iviki": "W",
-      "evikini": "W",
-      "elingu": "W",
       "amaviki": "W",
+      "elingu": "W",
+      "evikini": "W",
+      "iviki": "W",
       "inyanga": "M",
       "izinyanga": "M",
-      "unyaka": "Y",
+      "iminyaka": "Y",
       "odlule": "Y",
-      "iminyaka": "Y"
+      "unyaka": "Y"
     },
     "date_order": "DY",
     "months": {
-      "aga": 8,
-      "dis": 12,
-      "eph": 4,
-      "feb": 2,
       "jan": 1,
-      "jul": 7,
-      "jun": 6,
+      "feb": 2,
       "mas": 3,
+      "eph": 4,
       "mey": 5,
-      "nov": 11,
+      "jun": 6,
+      "jul": 7,
+      "aga": 8,
+      "sep": 9,
       "okt": 10,
-      "sep": 9
+      "nov": 11,
+      "dis": 12
     },
     "timeago_nd_tokens": {
       "namuhla": "0D",
@@ -4315,17 +4322,17 @@
     },
     "comma_decimal": false,
     "number_tokens": {
-      "b": 9,
-      "m": 6
+      "m": 6,
+      "b": 9
     },
     "number_nd_tokens": {
       "akukho": 0
     },
     "album_types": {
-      "bonisa": "Show",
       "i-albhamu": "Album",
       "i-audiobook": "Audiobook",
       "i-ep": "Ep",
+      "bonisa": "Show",
       "i-single": "Single"
     }
   }
