@@ -133,12 +133,13 @@ impl From<ParsedDate> for OffsetDateTime {
     }
 }
 
-fn filter_str(string: &str) -> String {
+/// Prepare the datestring for parsing: lowercase and filter out unnecessary punctuation
+fn filter_datestr(string: &str) -> String {
     string
         .to_lowercase()
         .chars()
         .filter_map(|c| {
-            if c == '\u{200b}' || c.is_ascii_digit() {
+            if matches!(c, '\u{200b}' | '.') || c.is_ascii_digit() {
                 None
             } else if c == '-' {
                 Some(' ')
@@ -197,7 +198,7 @@ fn parse_textual_month(entry: &dictionary::Entry, filtered_str: &str) -> Option<
 /// Returns [`None`] if the date could not be parsed.
 pub fn parse_timeago(lang: Language, textual_date: &str) -> Option<TimeAgo> {
     let entry = dictionary::entry(lang);
-    let filtered_str = filter_str(textual_date);
+    let filtered_str = filter_datestr(textual_date);
 
     let qu: u8 = util::parse_numeric_prod(textual_date).unwrap_or(1);
 
@@ -244,7 +245,7 @@ pub fn parse_timeago_dt_or_warn(
 pub fn parse_textual_date(lang: Language, textual_date: &str) -> Option<ParsedDate> {
     let entry = dictionary::entry(lang);
     let by_char = util::lang_by_char(lang);
-    let filtered_str = filter_str(textual_date);
+    let filtered_str = filter_datestr(textual_date);
 
     let nums = util::parse_numeric_vec::<u16>(textual_date);
 

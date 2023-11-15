@@ -57,4 +57,4 @@ for (const [mainLang, entry] of Object.entries(dict)) {
   }
 }
 
-fs.writeFileSync(DICT_PATH, JSON.stringify(dict, null, 2));
+fs.writeFileSync(DICT_PATH, JSON.stringify(dict, null, 2) + "\n");
