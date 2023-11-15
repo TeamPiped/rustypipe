@@ -967,6 +967,8 @@ mod tests {
     #[case(Language::Ar, "19 دقيقة وثانيتان", 1142)]
     #[case(Language::Ar, "دقيقة و13 ثانية", 73)]
     #[case(Language::Sw, "dakika 1 na sekunde 13", 73)]
+    #[case(Language::Ar, "1 س و41 د", 6060)]
+    #[case(Language::Ar, "4 د و33 ث", 273)]
     fn t_parse_video_duration2(
         #[case] lang: Language,
         #[case] video_duration: &str,
