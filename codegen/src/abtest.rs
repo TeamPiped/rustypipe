@@ -7,7 +7,7 @@ use num_enum::TryFromPrimitive;
 use once_cell::sync::Lazy;
 use regex::Regex;
 use rustypipe::client::{ClientType, RustyPipe, RustyPipeQuery, YTContext};
-use rustypipe::model::YouTubeItem;
+use rustypipe::model::{MusicItem, YouTubeItem};
 use rustypipe::param::search_filter::{ItemType, SearchFilter};
 use serde::de::IgnoredAny;
 use serde::{Deserialize, Serialize};
@@ -274,14 +274,25 @@ pub async fn playlists_for_shorts(rp: &RustyPipeQuery) -> Result<bool> {
 }
 
 pub async fn track_viewcount(rp: &RustyPipeQuery) -> Result<bool> {
-    let res = rp.music_search("lieblingsmensch namika").await?;
+    let res = rp.music_search_main("lieblingsmensch namika").await?;
 
     let track = &res
-        .tracks
+        .items
+        .items
         .iter()
-        .find(|a| a.id == "6485PhOtHzY")
+        .find_map(|itm| {
+            if let MusicItem::Track(track) = itm {
+                if track.id == "6485PhOtHzY" {
+                    Some(track)
+                } else {
+                    None
+                }
+            } else {
+                None
+            }
+        })
         .unwrap_or_else(|| {
-            panic!("could not find track, got {:#?}", &res.tracks);
+            panic!("could not find track, got {:#?}", &res.items.items);
         });
 
     Ok(track.view_count.is_some())

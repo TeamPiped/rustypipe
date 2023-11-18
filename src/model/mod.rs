@@ -810,9 +810,9 @@ pub struct ChannelRssVideo {
 
 /// YouTube search result
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
-pub struct SearchResult {
+pub struct SearchResult<T> {
     /// Search result items
-    pub items: Paginator<YouTubeItem>,
+    pub items: Paginator<T>,
     /// Corrected search query
     ///
     /// If the search term containes a typo, YouTube instead searches
@@ -1143,29 +1143,6 @@ pub struct MusicArtist {
     pub radio_id: Option<String>,
 }
 
-/// YouTube Music search result
-#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
-#[non_exhaustive]
-pub struct MusicSearchResult {
-    /// Found tracks
-    pub tracks: Vec<TrackItem>,
-    /// Found albums
-    pub albums: Vec<AlbumItem>,
-    /// Found artists
-    pub artists: Vec<ArtistItem>,
-    /// Found playlists
-    pub playlists: Vec<MusicPlaylistItem>,
-    /// Corrected search query
-    ///
-    /// If the search term containes a typo, YouTube instead searches
-    /// for the corrected search term and displays it on top of the
-    /// search results page.
-    pub corrected_query: Option<String>,
-    /// Order of the item sections of the search page, starting with
-    /// the most relevant.
-    pub order: Vec<MusicItemType>,
-}
-
 /// Generic YouTube Music item
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[allow(missing_docs)]
@@ -1186,10 +1163,10 @@ pub enum MusicItemType {
     Playlist,
 }
 
-/// Filtered YouTube Music search result (one item type)
+/// YouTube Music search result
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[non_exhaustive]
-pub struct MusicSearchFiltered<T> {
+pub struct MusicSearchResult<T> {
     /// Search items
     pub items: Paginator<T>,
     /// Corrected search query

@@ -5,25 +5,22 @@ use std::fmt::Display;
 use std::str::FromStr;
 
 use rstest::{fixture, rstest};
-use rustypipe::model::paginator::ContinuationEndpoint;
-use rustypipe::param::{ChannelOrder, ChannelVideoTab, Language};
-use rustypipe::validate;
-use time::macros::date;
-use time::OffsetDateTime;
+use time::{macros::date, OffsetDateTime};
 
 use rustypipe::client::{ClientType, RustyPipe, RustyPipeQuery};
 use rustypipe::error::{Error, ExtractionError, UnavailabilityReason};
 use rustypipe::model::{
-    paginator::Paginator,
+    paginator::{ContinuationEndpoint, Paginator},
     richtext::ToPlaintext,
     traits::{FromYtItem, YtStream},
-    AlbumType, AudioCodec, AudioFormat, AudioTrackType, Channel, Frameset, MusicGenre,
-    MusicItemType, UrlTarget, Verification, VideoCodec, VideoFormat, YouTubeItem,
+    AlbumType, AudioCodec, AudioFormat, AudioTrackType, Channel, Frameset, MusicGenre, MusicItem,
+    UrlTarget, Verification, VideoCodec, VideoFormat, YouTubeItem,
 };
 use rustypipe::param::{
     search_filter::{self, SearchFilter},
-    Country,
+    ChannelOrder, ChannelVideoTab, Country, Language,
 };
+use rustypipe::validate;
 
 //#PLAYER
 
@@ -1162,7 +1159,7 @@ mod channel_rss {
 
 #[rstest]
 fn search(rp: RustyPipe, unlocalized: bool) {
-    let result = tokio_test::block_on(rp.query().search("doobydoobap")).unwrap();
+    let result = tokio_test::block_on(rp.query().search::<YouTubeItem, _>("doobydoobap")).unwrap();
 
     assert_gte(
         result.items.count.unwrap(),
@@ -1182,10 +1179,10 @@ fn search(rp: RustyPipe, unlocalized: bool) {
 #[case::channel(search_filter::ItemType::Channel)]
 #[case::playlist(search_filter::ItemType::Playlist)]
 fn search_filter_item_type(#[case] item_type: search_filter::ItemType, rp: RustyPipe) {
-    let mut result = tokio_test::block_on(
-        rp.query()
-            .search_filter("with no videos", &SearchFilter::new().item_type(item_type)),
-    )
+    let mut result = tokio_test::block_on(rp.query().search_filter::<YouTubeItem, _>(
+        "with no videos",
+        &SearchFilter::new().item_type(item_type),
+    ))
     .unwrap();
 
     tokio_test::block_on(result.items.extend(rp.query())).unwrap();
@@ -1207,7 +1204,7 @@ fn search_filter_item_type(#[case] item_type: search_filter::ItemType, rp: Rusty
 #[rstest]
 fn search_empty(rp: RustyPipe) {
     let result = tokio_test::block_on(
-        rp.query().search_filter(
+        rp.query().search_filter::<YouTubeItem, _>(
             "3gig84hgi34gu8vj34gj489",
             &search_filter::SearchFilter::new()
                 .feature(search_filter::Feature::IsLive)
@@ -1602,18 +1599,15 @@ fn music_artist_albums_not_found(rp: RustyPipe) {
 #[rstest]
 #[case::default(false)]
 #[case::typo(true)]
-fn music_search(#[case] typo: bool, rp: RustyPipe, unlocalized: bool) {
-    let res = tokio_test::block_on(rp.query().music_search(match typo {
+fn music_search_main(#[case] typo: bool, rp: RustyPipe, unlocalized: bool) {
+    let res = tokio_test::block_on(rp.query().music_search_main(match typo {
         false => "lieblingsmensch namika",
         true => "lieblingsmesch namika",
     }))
     .unwrap();
+    let items = res.items.items;
 
-    assert!(!res.tracks.is_empty(), "no tracks");
-    assert!(!res.albums.is_empty(), "no albums");
-    assert!(!res.artists.is_empty(), "no artists");
-    assert!(!res.playlists.is_empty(), "no playlists");
-    assert_eq!(res.order[0], MusicItemType::Track);
+    check_search_result(&items);
 
     if typo {
         if unlocalized {
@@ -1623,12 +1617,21 @@ fn music_search(#[case] typo: bool, rp: RustyPipe, unlocalized: bool) {
         assert_eq!(res.corrected_query, None);
     }
 
-    let track = &res
-        .tracks
+    let track = items
         .iter()
-        .find(|a| a.id == "6485PhOtHzY")
+        .find_map(|itm| {
+            if let MusicItem::Track(track) = itm {
+                if track.id == "6485PhOtHzY" {
+                    Some(track)
+                } else {
+                    None
+                }
+            } else {
+                None
+            }
+        })
         .unwrap_or_else(|| {
-            panic!("could not find track, got {:#?}", &res.tracks);
+            panic!("could not find track, got {:#?}", &items);
         });
 
     assert_eq!(track.name, "Lieblingsmensch");
@@ -1654,27 +1657,64 @@ fn music_search(#[case] typo: bool, rp: RustyPipe, unlocalized: bool) {
 }
 
 #[rstest]
-fn music_search2(rp: RustyPipe, unlocalized: bool) {
-    let res = tokio_test::block_on(rp.query().music_search("taylor swift")).unwrap();
+fn music_search_main2(rp: RustyPipe, unlocalized: bool) {
+    let res = tokio_test::block_on(rp.query().music_search_main("taylor swift")).unwrap();
+    let items = res.items.items;
 
-    assert!(!res.tracks.is_empty(), "no tracks");
-    assert!(!res.albums.is_empty(), "no albums");
-    assert!(!res.artists.is_empty(), "no artists");
-    assert!(!res.playlists.is_empty(), "no playlists");
-    assert_eq!(res.order[0], MusicItemType::Artist);
+    check_search_result(&items);
 
-    let artist = &res
-        .artists
+    let artist = items
         .iter()
-        .find(|a| a.id == "UCPC0L1d253x-KuMNwa05TpA")
+        .find_map(|itm| {
+            if let MusicItem::Artist(artist) = itm {
+                if artist.id == "UCPC0L1d253x-KuMNwa05TpA" {
+                    Some(artist)
+                } else {
+                    None
+                }
+            } else {
+                None
+            }
+        })
         .unwrap_or_else(|| {
-            panic!("could not find artist, got {:#?}", &res.artists);
+            panic!("could not find artist, got {:#?}", &items);
         });
 
     if unlocalized {
         assert_eq!(artist.name, "Taylor Swift");
     }
     assert!(!artist.avatar.is_empty(), "got no avatar");
+}
+
+fn check_search_result(items: &[MusicItem]) {
+    assert_gte(items.len(), 10, "search results");
+
+    let mut has_tracks = false;
+    let mut has_videos = false;
+    let mut has_albums = false;
+    let mut has_artists = false;
+    let mut has_playlists = false;
+
+    for itm in items {
+        match itm {
+            MusicItem::Track(t) => {
+                if t.is_video {
+                    has_videos = true
+                } else {
+                    has_tracks = true
+                }
+            }
+            MusicItem::Album(_) => has_albums = true,
+            MusicItem::Artist(_) => has_artists = true,
+            MusicItem::Playlist(_) => has_playlists = true,
+        }
+    }
+
+    assert!(has_tracks, "no tracks");
+    assert!(has_videos, "no videos");
+    assert!(has_albums, "no albums");
+    assert!(has_artists, "no artists");
+    assert!(has_playlists, "no playlists");
 }
 
 #[rstest]
@@ -1754,23 +1794,35 @@ fn music_search_videos(rp: RustyPipe, unlocalized: bool) {
 #[case::videos(true)]
 fn music_search_episode(rp: RustyPipe, #[case] videos: bool) {
     let query = "Blond - Da muss man dabei gewesen sein: Das Hörspiel - Fall #1";
-    let tracks = if videos {
-        tokio_test::block_on(rp.query().music_search_videos(query))
-            .unwrap()
-            .items
-            .items
-    } else {
-        tokio_test::block_on(rp.query().music_search(query))
-            .unwrap()
-            .tracks
-    };
+    let track_id = "Zq_-LDy7AgE";
 
-    let track = &tracks
-        .iter()
-        .find(|a| a.id == "Zq_-LDy7AgE")
-        .unwrap_or_else(|| {
-            panic!("could not find episode, got {:#?}", &tracks);
-        });
+    let track = if videos {
+        let items = tokio_test::block_on(rp.query().music_search_videos(query))
+            .unwrap()
+            .items
+            .items;
+        items.iter().find(|a| a.id == track_id).cloned()
+    } else {
+        let items = tokio_test::block_on(rp.query().music_search_main(query))
+            .unwrap()
+            .items
+            .items;
+        items
+            .iter()
+            .find_map(|itm| {
+                if let MusicItem::Track(track) = itm {
+                    if track.id == track_id {
+                        Some(track)
+                    } else {
+                        None
+                    }
+                } else {
+                    None
+                }
+            })
+            .cloned()
+    }
+    .expect("could not find episode");
 
     assert_eq!(track.artists.len(), 1);
     let track_artist = &track.artists[0];
@@ -1967,7 +2019,7 @@ fn music_search_playlists_community(rp: RustyPipe) {
 /// The YouTube Music search sometimes shows genre radio items. They should be skipped.
 #[rstest]
 fn music_search_genre_radio(rp: RustyPipe) {
-    tokio_test::block_on(rp.query().music_search("pop radio")).unwrap();
+    tokio_test::block_on(rp.query().music_search_main("pop radio")).unwrap();
 }
 
 #[rstest]
@@ -2372,7 +2424,7 @@ const VISITOR_DATA_SEARCH_CHANNEL_HANDLES: &str = "CgszYlc1Yk1WZGRCSSjrwOSbBg%3D
 fn ab3_search_channel_handles() {
     let rp = rp_visitor_data(VISITOR_DATA_SEARCH_CHANNEL_HANDLES);
 
-    tokio_test::block_on(rp.query().search_filter(
+    tokio_test::block_on(rp.query().search_filter::<YouTubeItem, _>(
         "test",
         &SearchFilter::new().item_type(search_filter::ItemType::Channel),
     ))

@@ -217,6 +217,38 @@ impl SearchFilter {
     }
 }
 
+/// YouTube Music search filter
+///
+/// Allows you to filter YTM search results by item type.
+#[derive(Debug, Copy, Clone, PartialEq, Eq)]
+pub enum MusicSearchFilter {
+    /// YouTube Music tracks
+    Tracks,
+    /// YouTube videos
+    Videos,
+    /// Albums
+    Albums,
+    /// Artists
+    Artists,
+    /// Playlists created by YouTube Music
+    YtmPlaylists,
+    /// Playlists created by YouTube users
+    CommunityPlaylists,
+}
+
+impl MusicSearchFilter {
+    pub(crate) fn params(self) -> &'static str {
+        match self {
+            MusicSearchFilter::Tracks => "EgWKAQIIAWoMEAMQBBAJEA4QChAF",
+            MusicSearchFilter::Videos => "EgWKAQIQAWoMEAMQBBAJEA4QChAF",
+            MusicSearchFilter::Albums => "EgWKAQIYAWoMEAMQBBAJEA4QChAF",
+            MusicSearchFilter::Artists => "EgWKAQIgAWoMEAMQBBAJEA4QChAF",
+            MusicSearchFilter::YtmPlaylists => "EgeKAQQoADgBagwQAxAEEAkQDhAKEAU%3D",
+            MusicSearchFilter::CommunityPlaylists => "EgeKAQQoAEABagwQAxAEEAkQDhAKEAU%3D",
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use rstest::rstest;

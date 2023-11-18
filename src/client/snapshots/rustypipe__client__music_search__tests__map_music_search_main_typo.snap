@@ -3,463 +3,456 @@ source: src/client/music_search.rs
 expression: map_res.c
 ---
 MusicSearchResult(
-  tracks: [
-    TrackItem(
-      id: "6485PhOtHzY",
-      name: "Lieblingsmensch",
-      duration: Some(191),
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/dwrJ5NnlZU7CBziLRlTm1uizuolakRAX7g34-eKeqEZQGZgwmvhqcs3TiZClfm7v6a-KYHieitdakpPo=w60-h60-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/dwrJ5NnlZU7CBziLRlTm1uizuolakRAX7g34-eKeqEZQGZgwmvhqcs3TiZClfm7v6a-KYHieitdakpPo=w120-h120-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCIh4j8fXWf2U0ro0qnGU8Mg"),
-          name: "Namika",
-        ),
-      ],
-      artist_id: Some("UCIh4j8fXWf2U0ro0qnGU8Mg"),
-      album: Some(AlbumId(
+  items: Paginator(
+    count: Some(16),
+    items: [
+      Album(AlbumItem(
         id: "MPREb_RXHxrUFfrvQ",
         name: "Lieblingsmensch",
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/dwrJ5NnlZU7CBziLRlTm1uizuolakRAX7g34-eKeqEZQGZgwmvhqcs3TiZClfm7v6a-KYHieitdakpPo=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/dwrJ5NnlZU7CBziLRlTm1uizuolakRAX7g34-eKeqEZQGZgwmvhqcs3TiZClfm7v6a-KYHieitdakpPo=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/dwrJ5NnlZU7CBziLRlTm1uizuolakRAX7g34-eKeqEZQGZgwmvhqcs3TiZClfm7v6a-KYHieitdakpPo=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/dwrJ5NnlZU7CBziLRlTm1uizuolakRAX7g34-eKeqEZQGZgwmvhqcs3TiZClfm7v6a-KYHieitdakpPo=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCIh4j8fXWf2U0ro0qnGU8Mg"),
+            name: "Namika",
+          ),
+        ],
+        artist_id: Some("UCIh4j8fXWf2U0ro0qnGU8Mg"),
+        album_type: Single,
+        year: Some(2015),
+        by_va: false,
       )),
-      view_count: None,
-      is_video: false,
-      track_nr: None,
-      by_va: false,
-    ),
-    TrackItem(
-      id: "pt0YvfnhGgI",
-      name: "Lieblingsmensch",
-      duration: Some(524),
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/38mrm1ntm4MQfmB4Pl2EdY7o6McbLq06sC7qqLxDMqOfL-eqySheDnfl3IOpZYIE_ozt6Bywlmjj2DCe=w60-h60-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/38mrm1ntm4MQfmB4Pl2EdY7o6McbLq06sC7qqLxDMqOfL-eqySheDnfl3IOpZYIE_ozt6Bywlmjj2DCe=w120-h120-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCCpID8TTjkkjLCwBybAfHSg"),
-          name: "Boris Brejcha",
-        ),
-      ],
-      artist_id: Some("UCCpID8TTjkkjLCwBybAfHSg"),
-      album: Some(AlbumId(
+      Track(TrackItem(
+        id: "6485PhOtHzY",
+        name: "Lieblingsmensch",
+        duration: Some(191),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/dwrJ5NnlZU7CBziLRlTm1uizuolakRAX7g34-eKeqEZQGZgwmvhqcs3TiZClfm7v6a-KYHieitdakpPo=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/dwrJ5NnlZU7CBziLRlTm1uizuolakRAX7g34-eKeqEZQGZgwmvhqcs3TiZClfm7v6a-KYHieitdakpPo=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCIh4j8fXWf2U0ro0qnGU8Mg"),
+            name: "Namika",
+          ),
+        ],
+        artist_id: Some("UCIh4j8fXWf2U0ro0qnGU8Mg"),
+        album: Some(AlbumId(
+          id: "MPREb_RXHxrUFfrvQ",
+          name: "Lieblingsmensch",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      )),
+      Track(TrackItem(
+        id: "pt0YvfnhGgI",
+        name: "Lieblingsmensch",
+        duration: Some(524),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/38mrm1ntm4MQfmB4Pl2EdY7o6McbLq06sC7qqLxDMqOfL-eqySheDnfl3IOpZYIE_ozt6Bywlmjj2DCe=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/38mrm1ntm4MQfmB4Pl2EdY7o6McbLq06sC7qqLxDMqOfL-eqySheDnfl3IOpZYIE_ozt6Bywlmjj2DCe=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCCpID8TTjkkjLCwBybAfHSg"),
+            name: "Boris Brejcha",
+          ),
+        ],
+        artist_id: Some("UCCpID8TTjkkjLCwBybAfHSg"),
+        album: Some(AlbumId(
+          id: "MPREb_VFqQlfPhsFW",
+          name: "Lieblingsmensch",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      )),
+      Track(TrackItem(
+        id: "0yPnvetCm-U",
+        name: "Lieblingsmensch",
+        duration: Some(174),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/RORTouE503-ZZqgAov66r2cK-YyTJbZIwbM1Hz58ja7jNgWSG_xjTLxK41nwAT8ejRvY7U35dMm4OOYhYg=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/RORTouE503-ZZqgAov66r2cK-YyTJbZIwbM1Hz58ja7jNgWSG_xjTLxK41nwAT8ejRvY7U35dMm4OOYhYg=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCvfUKCnUBfsZAVHgF-pYmJg"),
+            name: "Voyce",
+          ),
+        ],
+        artist_id: Some("UCvfUKCnUBfsZAVHgF-pYmJg"),
+        album: Some(AlbumId(
+          id: "MPREb_SpT32xAd4YR",
+          name: "Gegenstück EP",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      )),
+      Track(TrackItem(
+        id: "3ryohiCVq3M",
+        name: "Namika -  Lieblingsmensch (Official Video)",
+        duration: Some(191),
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/3ryohiCVq3M/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nsa7wZ13z3ie49RzcBHKQAmjlU9w",
+            width: 400,
+            height: 225,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCIh4j8fXWf2U0ro0qnGU8Mg"),
+            name: "Namika",
+          ),
+        ],
+        artist_id: Some("UCIh4j8fXWf2U0ro0qnGU8Mg"),
+        album: None,
+        view_count: Some(108000000),
+        is_video: true,
+        track_nr: None,
+        by_va: false,
+      )),
+      Track(TrackItem(
+        id: "6Bt1KeMNqvc",
+        name: "Lieblingsmensch Namika Lyrics",
+        duration: Some(188),
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/6Bt1KeMNqvc/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3n9IkVmxE5YqesHGPS0xtJemxrNzQ",
+            width: 400,
+            height: 225,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCgoJMRKimbxB374QjHgE6kA"),
+            name: "jessika adam",
+          ),
+        ],
+        artist_id: Some("UCgoJMRKimbxB374QjHgE6kA"),
+        album: None,
+        view_count: Some(10000000),
+        is_video: true,
+        track_nr: None,
+        by_va: false,
+      )),
+      Track(TrackItem(
+        id: "5YQRHUItXTI",
+        name: "Namika - Lieblingsmensch 1 Hour Version",
+        duration: Some(3801),
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/5YQRHUItXTI/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kP0NYgZ5YbsGdULVIXOu08eoHGrw",
+            width: 400,
+            height: 225,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCiQjRO2m3dBBlg7sqTaFA_A"),
+            name: "ZockerAlarm",
+          ),
+        ],
+        artist_id: Some("UCiQjRO2m3dBBlg7sqTaFA_A"),
+        album: None,
+        view_count: Some(56000),
+        is_video: true,
+        track_nr: None,
+        by_va: false,
+      )),
+      Album(AlbumItem(
+        id: "MPREb_V5f8YfHKp2j",
+        name: "Lieblingsmensch",
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/vh1NIdzUQTuH3jlZFTJ-XK3f_QIUVJGZe1qTE-O1O8MZtylnx7JpYtd0NPSUWFFgIzlysNfbUOaeryr5Zw=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/vh1NIdzUQTuH3jlZFTJ-XK3f_QIUVJGZe1qTE-O1O8MZtylnx7JpYtd0NPSUWFFgIzlysNfbUOaeryr5Zw=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/vh1NIdzUQTuH3jlZFTJ-XK3f_QIUVJGZe1qTE-O1O8MZtylnx7JpYtd0NPSUWFFgIzlysNfbUOaeryr5Zw=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/vh1NIdzUQTuH3jlZFTJ-XK3f_QIUVJGZe1qTE-O1O8MZtylnx7JpYtd0NPSUWFFgIzlysNfbUOaeryr5Zw=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCIh4j8fXWf2U0ro0qnGU8Mg"),
+            name: "Namika",
+          ),
+        ],
+        artist_id: Some("UCIh4j8fXWf2U0ro0qnGU8Mg"),
+        album_type: Ep,
+        year: Some(2015),
+        by_va: false,
+      )),
+      Album(AlbumItem(
+        id: "MPREb_AlIjxpnBKtn",
+        name: "Lieblingsmensch (Edit)",
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/52NEd25MuR_LmWQw_sbHEm1s4jdiUm1SB25aLeFSaz70Z89GTdghmRNd21YgggAFbAg4NgMHiGpSdCyANw=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/52NEd25MuR_LmWQw_sbHEm1s4jdiUm1SB25aLeFSaz70Z89GTdghmRNd21YgggAFbAg4NgMHiGpSdCyANw=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/52NEd25MuR_LmWQw_sbHEm1s4jdiUm1SB25aLeFSaz70Z89GTdghmRNd21YgggAFbAg4NgMHiGpSdCyANw=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/52NEd25MuR_LmWQw_sbHEm1s4jdiUm1SB25aLeFSaz70Z89GTdghmRNd21YgggAFbAg4NgMHiGpSdCyANw=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCCpID8TTjkkjLCwBybAfHSg"),
+            name: "Boris Brejcha",
+          ),
+        ],
+        artist_id: Some("UCCpID8TTjkkjLCwBybAfHSg"),
+        album_type: Single,
+        year: Some(2019),
+        by_va: false,
+      )),
+      Album(AlbumItem(
         id: "MPREb_VFqQlfPhsFW",
         name: "Lieblingsmensch",
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/38mrm1ntm4MQfmB4Pl2EdY7o6McbLq06sC7qqLxDMqOfL-eqySheDnfl3IOpZYIE_ozt6Bywlmjj2DCe=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/38mrm1ntm4MQfmB4Pl2EdY7o6McbLq06sC7qqLxDMqOfL-eqySheDnfl3IOpZYIE_ozt6Bywlmjj2DCe=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/38mrm1ntm4MQfmB4Pl2EdY7o6McbLq06sC7qqLxDMqOfL-eqySheDnfl3IOpZYIE_ozt6Bywlmjj2DCe=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/38mrm1ntm4MQfmB4Pl2EdY7o6McbLq06sC7qqLxDMqOfL-eqySheDnfl3IOpZYIE_ozt6Bywlmjj2DCe=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCCpID8TTjkkjLCwBybAfHSg"),
+            name: "Boris Brejcha",
+          ),
+        ],
+        artist_id: Some("UCCpID8TTjkkjLCwBybAfHSg"),
+        album_type: Single,
+        year: Some(2019),
+        by_va: false,
       )),
-      view_count: None,
-      is_video: false,
-      track_nr: None,
-      by_va: false,
-    ),
-    TrackItem(
-      id: "0yPnvetCm-U",
-      name: "Lieblingsmensch",
-      duration: Some(174),
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/RORTouE503-ZZqgAov66r2cK-YyTJbZIwbM1Hz58ja7jNgWSG_xjTLxK41nwAT8ejRvY7U35dMm4OOYhYg=w60-h60-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/RORTouE503-ZZqgAov66r2cK-YyTJbZIwbM1Hz58ja7jNgWSG_xjTLxK41nwAT8ejRvY7U35dMm4OOYhYg=w120-h120-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCvfUKCnUBfsZAVHgF-pYmJg"),
-          name: "Voyce",
-        ),
-      ],
-      artist_id: Some("UCvfUKCnUBfsZAVHgF-pYmJg"),
-      album: Some(AlbumId(
-        id: "MPREb_SpT32xAd4YR",
-        name: "Gegenstück EP",
+      Playlist(MusicPlaylistItem(
+        id: "PL46jG0sBz4EabjYqv0tVEd1RvrZRjfJ8m",
+        name: "Lieblingsmensch",
+        thumbnail: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/by72Kvz8N4he_jFPWRBMwQhNJiFa-Zy-rstO8aVacuFMZiH6tYQUMLbUtNZOs_8m2evJ59ccTKM=s192",
+            width: 192,
+            height: 192,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/by72Kvz8N4he_jFPWRBMwQhNJiFa-Zy-rstO8aVacuFMZiH6tYQUMLbUtNZOs_8m2evJ59ccTKM=s576",
+            width: 576,
+            height: 576,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/by72Kvz8N4he_jFPWRBMwQhNJiFa-Zy-rstO8aVacuFMZiH6tYQUMLbUtNZOs_8m2evJ59ccTKM=s1200",
+            width: 1200,
+            height: 1200,
+          ),
+        ],
+        channel: Some(ChannelId(
+          id: "UC2iUWrsf_RJIskqCZZHz4tg",
+          name: "Saskia Wehmeyer",
+        )),
+        track_count: None,
+        from_ytm: false,
       )),
-      view_count: None,
-      is_video: false,
-      track_nr: None,
-      by_va: false,
-    ),
-    TrackItem(
-      id: "3ryohiCVq3M",
-      name: "Namika -  Lieblingsmensch (Official Video)",
-      duration: Some(191),
-      cover: [
-        Thumbnail(
-          url: "https://i.ytimg.com/vi/3ryohiCVq3M/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nsa7wZ13z3ie49RzcBHKQAmjlU9w",
-          width: 400,
-          height: 225,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCIh4j8fXWf2U0ro0qnGU8Mg"),
-          name: "Namika",
-        ),
-      ],
-      artist_id: Some("UCIh4j8fXWf2U0ro0qnGU8Mg"),
-      album: None,
-      view_count: Some(108000000),
-      is_video: true,
-      track_nr: None,
-      by_va: false,
-    ),
-    TrackItem(
-      id: "6Bt1KeMNqvc",
-      name: "Lieblingsmensch Namika Lyrics",
-      duration: Some(188),
-      cover: [
-        Thumbnail(
-          url: "https://i.ytimg.com/vi/6Bt1KeMNqvc/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3n9IkVmxE5YqesHGPS0xtJemxrNzQ",
-          width: 400,
-          height: 225,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCgoJMRKimbxB374QjHgE6kA"),
-          name: "jessika adam",
-        ),
-      ],
-      artist_id: Some("UCgoJMRKimbxB374QjHgE6kA"),
-      album: None,
-      view_count: Some(10000000),
-      is_video: true,
-      track_nr: None,
-      by_va: false,
-    ),
-    TrackItem(
-      id: "5YQRHUItXTI",
-      name: "Namika - Lieblingsmensch 1 Hour Version",
-      duration: Some(3801),
-      cover: [
-        Thumbnail(
-          url: "https://i.ytimg.com/vi/5YQRHUItXTI/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kP0NYgZ5YbsGdULVIXOu08eoHGrw",
-          width: 400,
-          height: 225,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCiQjRO2m3dBBlg7sqTaFA_A"),
-          name: "ZockerAlarm",
-        ),
-      ],
-      artist_id: Some("UCiQjRO2m3dBBlg7sqTaFA_A"),
-      album: None,
-      view_count: Some(56000),
-      is_video: true,
-      track_nr: None,
-      by_va: false,
-    ),
-  ],
-  albums: [
-    AlbumItem(
-      id: "MPREb_RXHxrUFfrvQ",
-      name: "Lieblingsmensch",
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/dwrJ5NnlZU7CBziLRlTm1uizuolakRAX7g34-eKeqEZQGZgwmvhqcs3TiZClfm7v6a-KYHieitdakpPo=w60-h60-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/dwrJ5NnlZU7CBziLRlTm1uizuolakRAX7g34-eKeqEZQGZgwmvhqcs3TiZClfm7v6a-KYHieitdakpPo=w120-h120-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/dwrJ5NnlZU7CBziLRlTm1uizuolakRAX7g34-eKeqEZQGZgwmvhqcs3TiZClfm7v6a-KYHieitdakpPo=w226-h226-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/dwrJ5NnlZU7CBziLRlTm1uizuolakRAX7g34-eKeqEZQGZgwmvhqcs3TiZClfm7v6a-KYHieitdakpPo=w544-h544-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCIh4j8fXWf2U0ro0qnGU8Mg"),
-          name: "Namika",
-        ),
-      ],
-      artist_id: Some("UCIh4j8fXWf2U0ro0qnGU8Mg"),
-      album_type: Single,
-      year: Some(2015),
-      by_va: false,
-    ),
-    AlbumItem(
-      id: "MPREb_V5f8YfHKp2j",
-      name: "Lieblingsmensch",
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/vh1NIdzUQTuH3jlZFTJ-XK3f_QIUVJGZe1qTE-O1O8MZtylnx7JpYtd0NPSUWFFgIzlysNfbUOaeryr5Zw=w60-h60-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/vh1NIdzUQTuH3jlZFTJ-XK3f_QIUVJGZe1qTE-O1O8MZtylnx7JpYtd0NPSUWFFgIzlysNfbUOaeryr5Zw=w120-h120-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/vh1NIdzUQTuH3jlZFTJ-XK3f_QIUVJGZe1qTE-O1O8MZtylnx7JpYtd0NPSUWFFgIzlysNfbUOaeryr5Zw=w226-h226-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/vh1NIdzUQTuH3jlZFTJ-XK3f_QIUVJGZe1qTE-O1O8MZtylnx7JpYtd0NPSUWFFgIzlysNfbUOaeryr5Zw=w544-h544-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCIh4j8fXWf2U0ro0qnGU8Mg"),
-          name: "Namika",
-        ),
-      ],
-      artist_id: Some("UCIh4j8fXWf2U0ro0qnGU8Mg"),
-      album_type: Ep,
-      year: Some(2015),
-      by_va: false,
-    ),
-    AlbumItem(
-      id: "MPREb_AlIjxpnBKtn",
-      name: "Lieblingsmensch (Edit)",
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/52NEd25MuR_LmWQw_sbHEm1s4jdiUm1SB25aLeFSaz70Z89GTdghmRNd21YgggAFbAg4NgMHiGpSdCyANw=w60-h60-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/52NEd25MuR_LmWQw_sbHEm1s4jdiUm1SB25aLeFSaz70Z89GTdghmRNd21YgggAFbAg4NgMHiGpSdCyANw=w120-h120-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/52NEd25MuR_LmWQw_sbHEm1s4jdiUm1SB25aLeFSaz70Z89GTdghmRNd21YgggAFbAg4NgMHiGpSdCyANw=w226-h226-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/52NEd25MuR_LmWQw_sbHEm1s4jdiUm1SB25aLeFSaz70Z89GTdghmRNd21YgggAFbAg4NgMHiGpSdCyANw=w544-h544-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCCpID8TTjkkjLCwBybAfHSg"),
-          name: "Boris Brejcha",
-        ),
-      ],
-      artist_id: Some("UCCpID8TTjkkjLCwBybAfHSg"),
-      album_type: Single,
-      year: Some(2019),
-      by_va: false,
-    ),
-    AlbumItem(
-      id: "MPREb_VFqQlfPhsFW",
-      name: "Lieblingsmensch",
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/38mrm1ntm4MQfmB4Pl2EdY7o6McbLq06sC7qqLxDMqOfL-eqySheDnfl3IOpZYIE_ozt6Bywlmjj2DCe=w60-h60-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/38mrm1ntm4MQfmB4Pl2EdY7o6McbLq06sC7qqLxDMqOfL-eqySheDnfl3IOpZYIE_ozt6Bywlmjj2DCe=w120-h120-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/38mrm1ntm4MQfmB4Pl2EdY7o6McbLq06sC7qqLxDMqOfL-eqySheDnfl3IOpZYIE_ozt6Bywlmjj2DCe=w226-h226-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/38mrm1ntm4MQfmB4Pl2EdY7o6McbLq06sC7qqLxDMqOfL-eqySheDnfl3IOpZYIE_ozt6Bywlmjj2DCe=w544-h544-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCCpID8TTjkkjLCwBybAfHSg"),
-          name: "Boris Brejcha",
-        ),
-      ],
-      artist_id: Some("UCCpID8TTjkkjLCwBybAfHSg"),
-      album_type: Single,
-      year: Some(2019),
-      by_va: false,
-    ),
-  ],
-  artists: [
-    ArtistItem(
-      id: "UCIh4j8fXWf2U0ro0qnGU8Mg",
-      name: "Namika",
-      avatar: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/iY5H0k9sMP6hevj7ttwx2WibgxmJ9OMoK9TuVHwUMvdA8ZrrJCdGYT_BG-HhgYcVDihVJMQqSKbOcpk=w60-h60-p-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/iY5H0k9sMP6hevj7ttwx2WibgxmJ9OMoK9TuVHwUMvdA8ZrrJCdGYT_BG-HhgYcVDihVJMQqSKbOcpk=w120-h120-p-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-      ],
-      subscriber_count: Some(737000),
-    ),
-    ArtistItem(
-      id: "UCCpID8TTjkkjLCwBybAfHSg",
-      name: "Boris Brejcha",
-      avatar: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/2aw3EVIIy1zbuvkl0txoqPBGUjvkv056NUzc6Qdz5ZdmknsJr28AQig7HTy_q9xqYC4LjVsyffl-9shZ=w60-h60-p-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/2aw3EVIIy1zbuvkl0txoqPBGUjvkv056NUzc6Qdz5ZdmknsJr28AQig7HTy_q9xqYC4LjVsyffl-9shZ=w120-h120-p-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-      ],
-      subscriber_count: Some(988000),
-    ),
-    ArtistItem(
-      id: "UCZnutiGgJ2LrrwzDH_ElSDg",
-      name: "Dendemann",
-      avatar: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/G_nI16FH_wiRKj1HAhmltOA-vTifD8UVwsNcJGKu40c6Y2A6Pg2S6o6f5EajkIZguv8JAt1mU9V66dw=w60-h60-p-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/G_nI16FH_wiRKj1HAhmltOA-vTifD8UVwsNcJGKu40c6Y2A6Pg2S6o6f5EajkIZguv8JAt1mU9V66dw=w120-h120-p-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-      ],
-      subscriber_count: Some(22700),
-    ),
-  ],
-  playlists: [
-    MusicPlaylistItem(
-      id: "PL46jG0sBz4EabjYqv0tVEd1RvrZRjfJ8m",
-      name: "Lieblingsmensch",
-      thumbnail: [
-        Thumbnail(
-          url: "https://yt3.ggpht.com/by72Kvz8N4he_jFPWRBMwQhNJiFa-Zy-rstO8aVacuFMZiH6tYQUMLbUtNZOs_8m2evJ59ccTKM=s192",
-          width: 192,
-          height: 192,
-        ),
-        Thumbnail(
-          url: "https://yt3.ggpht.com/by72Kvz8N4he_jFPWRBMwQhNJiFa-Zy-rstO8aVacuFMZiH6tYQUMLbUtNZOs_8m2evJ59ccTKM=s576",
-          width: 576,
-          height: 576,
-        ),
-        Thumbnail(
-          url: "https://yt3.ggpht.com/by72Kvz8N4he_jFPWRBMwQhNJiFa-Zy-rstO8aVacuFMZiH6tYQUMLbUtNZOs_8m2evJ59ccTKM=s1200",
-          width: 1200,
-          height: 1200,
-        ),
-      ],
-      channel: Some(ChannelId(
-        id: "UC2iUWrsf_RJIskqCZZHz4tg",
-        name: "Saskia Wehmeyer",
+      Playlist(MusicPlaylistItem(
+        id: "PL-2Z-8cOvEixQ2EKumbXXW8XivJG6U7-D",
+        name: "Namika - Lieblingsmensch",
+        thumbnail: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/wQgbTyXbuwVAO1fK5Ssk6CfhXuRO0w-k8ipIv8nNsrD88lIL4wWMPkeDenb3Dy-XbqcCZNOVOkk=s192",
+            width: 192,
+            height: 192,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/wQgbTyXbuwVAO1fK5Ssk6CfhXuRO0w-k8ipIv8nNsrD88lIL4wWMPkeDenb3Dy-XbqcCZNOVOkk=s576",
+            width: 576,
+            height: 576,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/wQgbTyXbuwVAO1fK5Ssk6CfhXuRO0w-k8ipIv8nNsrD88lIL4wWMPkeDenb3Dy-XbqcCZNOVOkk=s1200",
+            width: 1200,
+            height: 1200,
+          ),
+        ],
+        channel: Some(ChannelId(
+          id: "UCSj8sEcs5CEUmeIZMSPB7Ew",
+          name: "Daniel Switali",
+        )),
+        track_count: None,
+        from_ytm: false,
       )),
-      track_count: None,
-      from_ytm: false,
-    ),
-    MusicPlaylistItem(
-      id: "PL-2Z-8cOvEixQ2EKumbXXW8XivJG6U7-D",
-      name: "Namika - Lieblingsmensch",
-      thumbnail: [
-        Thumbnail(
-          url: "https://yt3.ggpht.com/wQgbTyXbuwVAO1fK5Ssk6CfhXuRO0w-k8ipIv8nNsrD88lIL4wWMPkeDenb3Dy-XbqcCZNOVOkk=s192",
-          width: 192,
-          height: 192,
-        ),
-        Thumbnail(
-          url: "https://yt3.ggpht.com/wQgbTyXbuwVAO1fK5Ssk6CfhXuRO0w-k8ipIv8nNsrD88lIL4wWMPkeDenb3Dy-XbqcCZNOVOkk=s576",
-          width: 576,
-          height: 576,
-        ),
-        Thumbnail(
-          url: "https://yt3.ggpht.com/wQgbTyXbuwVAO1fK5Ssk6CfhXuRO0w-k8ipIv8nNsrD88lIL4wWMPkeDenb3Dy-XbqcCZNOVOkk=s1200",
-          width: 1200,
-          height: 1200,
-        ),
-      ],
-      channel: Some(ChannelId(
-        id: "UCSj8sEcs5CEUmeIZMSPB7Ew",
-        name: "Daniel Switali",
+      Playlist(MusicPlaylistItem(
+        id: "PLDnJKuRrOR5sx_jZ8-dsweq1OdayL_kpz",
+        name: "Lieblingsmensch",
+        thumbnail: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/xij8t1OQqD8qwjx4AaYBbKkXsQDB5L70hKuFBicbaw7fQ2m9NMdsm_86bxyIIeyblwcm9FaWiA=s192",
+            width: 192,
+            height: 192,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/xij8t1OQqD8qwjx4AaYBbKkXsQDB5L70hKuFBicbaw7fQ2m9NMdsm_86bxyIIeyblwcm9FaWiA=s576",
+            width: 576,
+            height: 576,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/xij8t1OQqD8qwjx4AaYBbKkXsQDB5L70hKuFBicbaw7fQ2m9NMdsm_86bxyIIeyblwcm9FaWiA=s1200",
+            width: 1200,
+            height: 1200,
+          ),
+        ],
+        channel: Some(ChannelId(
+          id: "UCs2uL32TTzWX0oVoblPF1nQ",
+          name: "Nicole Kr",
+        )),
+        track_count: None,
+        from_ytm: false,
       )),
-      track_count: None,
-      from_ytm: false,
-    ),
-    MusicPlaylistItem(
-      id: "PLDnJKuRrOR5sx_jZ8-dsweq1OdayL_kpz",
-      name: "Lieblingsmensch",
-      thumbnail: [
-        Thumbnail(
-          url: "https://yt3.ggpht.com/xij8t1OQqD8qwjx4AaYBbKkXsQDB5L70hKuFBicbaw7fQ2m9NMdsm_86bxyIIeyblwcm9FaWiA=s192",
-          width: 192,
-          height: 192,
-        ),
-        Thumbnail(
-          url: "https://yt3.ggpht.com/xij8t1OQqD8qwjx4AaYBbKkXsQDB5L70hKuFBicbaw7fQ2m9NMdsm_86bxyIIeyblwcm9FaWiA=s576",
-          width: 576,
-          height: 576,
-        ),
-        Thumbnail(
-          url: "https://yt3.ggpht.com/xij8t1OQqD8qwjx4AaYBbKkXsQDB5L70hKuFBicbaw7fQ2m9NMdsm_86bxyIIeyblwcm9FaWiA=s1200",
-          width: 1200,
-          height: 1200,
-        ),
-      ],
-      channel: Some(ChannelId(
-        id: "UCs2uL32TTzWX0oVoblPF1nQ",
-        name: "Nicole Kr",
+      Artist(ArtistItem(
+        id: "UCIh4j8fXWf2U0ro0qnGU8Mg",
+        name: "Namika",
+        avatar: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/iY5H0k9sMP6hevj7ttwx2WibgxmJ9OMoK9TuVHwUMvdA8ZrrJCdGYT_BG-HhgYcVDihVJMQqSKbOcpk=w60-h60-p-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/iY5H0k9sMP6hevj7ttwx2WibgxmJ9OMoK9TuVHwUMvdA8ZrrJCdGYT_BG-HhgYcVDihVJMQqSKbOcpk=w120-h120-p-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        subscriber_count: Some(737000),
       )),
-      track_count: None,
-      from_ytm: false,
-    ),
-  ],
+      Artist(ArtistItem(
+        id: "UCCpID8TTjkkjLCwBybAfHSg",
+        name: "Boris Brejcha",
+        avatar: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/2aw3EVIIy1zbuvkl0txoqPBGUjvkv056NUzc6Qdz5ZdmknsJr28AQig7HTy_q9xqYC4LjVsyffl-9shZ=w60-h60-p-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/2aw3EVIIy1zbuvkl0txoqPBGUjvkv056NUzc6Qdz5ZdmknsJr28AQig7HTy_q9xqYC4LjVsyffl-9shZ=w120-h120-p-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        subscriber_count: Some(988000),
+      )),
+      Artist(ArtistItem(
+        id: "UCZnutiGgJ2LrrwzDH_ElSDg",
+        name: "Dendemann",
+        avatar: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/G_nI16FH_wiRKj1HAhmltOA-vTifD8UVwsNcJGKu40c6Y2A6Pg2S6o6f5EajkIZguv8JAt1mU9V66dw=w60-h60-p-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/G_nI16FH_wiRKj1HAhmltOA-vTifD8UVwsNcJGKu40c6Y2A6Pg2S6o6f5EajkIZguv8JAt1mU9V66dw=w120-h120-p-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        subscriber_count: Some(22700),
+      )),
+    ],
+    ctoken: None,
+    endpoint: music_search,
+  ),
   corrected_query: Some("lieblingsmensch"),
-  order: [
-    Album,
-    Track,
-    Playlist,
-    Artist,
-  ],
 )

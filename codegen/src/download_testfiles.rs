@@ -8,6 +8,7 @@ use std::{
 use path_macro::path;
 use rustypipe::{
     client::{ClientType, RustyPipe},
+    model::YouTubeItem,
     param::{
         search_filter::{self, ItemType, SearchFilter},
         ChannelVideoTab, Country,
@@ -392,7 +393,10 @@ async fn search() {
     }
 
     let rp = rp_testfile(&json_path);
-    rp.query().search("doobydoobap").await.unwrap();
+    rp.query()
+        .search::<YouTubeItem, _>("doobydoobap")
+        .await
+        .unwrap();
 }
 
 async fn search_cont() {
@@ -402,7 +406,11 @@ async fn search_cont() {
     }
 
     let rp = RustyPipe::new();
-    let search = rp.query().search("doobydoobap").await.unwrap();
+    let search = rp
+        .query()
+        .search::<YouTubeItem, _>("doobydoobap")
+        .await
+        .unwrap();
 
     let rp = rp_testfile(&json_path);
     search.items.next(rp.query()).await.unwrap().unwrap();
@@ -416,7 +424,7 @@ async fn search_playlists() {
 
     let rp = rp_testfile(&json_path);
     rp.query()
-        .search_filter("pop", &SearchFilter::new().item_type(ItemType::Playlist))
+        .search_filter::<YouTubeItem, _>("pop", &SearchFilter::new().item_type(ItemType::Playlist))
         .await
         .unwrap();
 }
@@ -429,7 +437,7 @@ async fn search_empty() {
 
     let rp = rp_testfile(&json_path);
     rp.query()
-        .search_filter(
+        .search_filter::<YouTubeItem, _>(
             "test",
             &SearchFilter::new()
                 .feature(search_filter::Feature::IsLive)
@@ -558,7 +566,7 @@ async fn music_search() {
         }
 
         let rp = rp_testfile(&json_path);
-        rp.query().music_search(query).await.unwrap();
+        rp.query().music_search_main(query).await.unwrap();
     }
 }
 

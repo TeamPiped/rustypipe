@@ -9,7 +9,7 @@ use indicatif::{MultiProgress, ProgressBar, ProgressStyle};
 use reqwest::{Client, ClientBuilder};
 use rustypipe::{
     client::RustyPipe,
-    model::{UrlTarget, VideoId},
+    model::{UrlTarget, VideoId, YouTubeItem},
     param::{search_filter, ChannelVideoTab, Country, Language, StreamFilter},
 };
 use serde::Serialize;
@@ -178,7 +178,7 @@ enum SearchOrder {
     Views,
 }
 
-#[derive(Copy, Clone, ValueEnum)]
+#[derive(Copy, Clone, PartialEq, Eq, ValueEnum)]
 enum MusicSearchCategory {
     All,
     Tracks,
@@ -667,13 +667,17 @@ async fn main() {
                         .length_opt(length.map(search_filter::Length::from))
                         .date_opt(date.map(search_filter::UploadDate::from))
                         .sort_opt(order.map(search_filter::Order::from));
-                    let mut res = rp.query().search_filter(&query, &filter).await.unwrap();
+                    let mut res = rp
+                        .query()
+                        .search_filter::<YouTubeItem, _>(&query, &filter)
+                        .await
+                        .unwrap();
                     res.items.extend_limit(rp.query(), limit).await.unwrap();
                     print_data(&res, format, pretty);
                 }
             },
             Some(MusicSearchCategory::All) => {
-                let res = rp.query().music_search(&query).await.unwrap();
+                let res = rp.query().music_search_main(&query).await.unwrap();
                 print_data(&res, format, pretty);
             }
             Some(MusicSearchCategory::Tracks) => {
@@ -696,19 +700,13 @@ async fn main() {
                 res.items.extend_limit(rp.query(), limit).await.unwrap();
                 print_data(&res, format, pretty);
             }
-            Some(MusicSearchCategory::PlaylistsYtm) => {
+            Some(MusicSearchCategory::PlaylistsYtm | MusicSearchCategory::PlaylistsCommunity) => {
                 let mut res = rp
                     .query()
-                    .music_search_playlists(&query, false)
-                    .await
-                    .unwrap();
-                res.items.extend_limit(rp.query(), limit).await.unwrap();
-                print_data(&res, format, pretty);
-            }
-            Some(MusicSearchCategory::PlaylistsCommunity) => {
-                let mut res = rp
-                    .query()
-                    .music_search_playlists(&query, true)
+                    .music_search_playlists(
+                        &query,
+                        music == Some(MusicSearchCategory::PlaylistsCommunity),
+                    )
                     .await
                     .unwrap();
                 res.items.extend_limit(rp.query(), limit).await.unwrap();

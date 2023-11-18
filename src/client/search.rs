@@ -6,6 +6,7 @@ use crate::{
     error::{Error, ExtractionError},
     model::{
         paginator::{ContinuationEndpoint, Paginator},
+        traits::FromYtItem,
         SearchResult, YouTubeItem,
     },
     param::search_filter::SearchFilter,
@@ -25,7 +26,10 @@ struct QSearch<'a> {
 impl RustyPipeQuery {
     /// Search YouTube
     #[tracing::instrument(skip(self))]
-    pub async fn search<S: AsRef<str> + Debug>(&self, query: S) -> Result<SearchResult, Error> {
+    pub async fn search<T: FromYtItem, S: AsRef<str> + Debug>(
+        &self,
+        query: S,
+    ) -> Result<SearchResult<T>, Error> {
         let query = query.as_ref();
         let context = self.get_context(ClientType::Desktop, true, None).await;
         let request_body = QSearch {
@@ -46,11 +50,11 @@ impl RustyPipeQuery {
 
     /// Search YouTube using the given [`SearchFilter`]
     #[tracing::instrument(skip(self))]
-    pub async fn search_filter<S: AsRef<str> + Debug>(
+    pub async fn search_filter<T: FromYtItem, S: AsRef<str> + Debug>(
         &self,
         query: S,
         filter: &SearchFilter,
-    ) -> Result<SearchResult, Error> {
+    ) -> Result<SearchResult<T>, Error> {
         let query = query.as_ref();
         let context = self.get_context(ClientType::Desktop, true, None).await;
         let request_body = QSearch {
@@ -97,14 +101,14 @@ impl RustyPipeQuery {
     }
 }
 
-impl MapResponse<SearchResult> for response::Search {
+impl<T: FromYtItem> MapResponse<SearchResult<T>> for response::Search {
     fn map_response(
         self,
         _id: &str,
         lang: crate::param::Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
         vdata: Option<&str>,
-    ) -> Result<MapResult<SearchResult>, ExtractionError> {
+    ) -> Result<MapResult<SearchResult<T>>, ExtractionError> {
         let items = self
             .contents
             .two_column_search_results_renderer
@@ -119,7 +123,11 @@ impl MapResponse<SearchResult> for response::Search {
             c: SearchResult {
                 items: Paginator::new_ext(
                     self.estimated_results,
-                    mapper.items,
+                    mapper
+                        .items
+                        .into_iter()
+                        .filter_map(T::from_yt_item)
+                        .collect(),
                     mapper.ctoken,
                     None,
                     ContinuationEndpoint::Search,
@@ -144,7 +152,7 @@ mod tests {
 
     use crate::{
         client::{response, MapResponse},
-        model::SearchResult,
+        model::{SearchResult, YouTubeItem},
         param::Language,
         serializer::MapResult,
         util::tests::TESTFILES,
@@ -160,7 +168,7 @@ mod tests {
         let json_file = File::open(json_path).unwrap();
 
         let search: response::Search = serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res: MapResult<SearchResult> =
+        let map_res: MapResult<SearchResult<YouTubeItem>> =
             search.map_response("", Language::En, None, None).unwrap();
 
         assert!(

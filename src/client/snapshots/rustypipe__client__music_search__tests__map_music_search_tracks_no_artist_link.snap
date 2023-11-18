@@ -2,7 +2,7 @@
 source: src/client/music_search.rs
 expression: map_res.c
 ---
-MusicSearchFiltered(
+MusicSearchResult(
   items: Paginator(
     count: Some(7),
     items: [

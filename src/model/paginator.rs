@@ -1,7 +1,5 @@
 //! Wrapper model for progressively fetched items
 
-use std::convert::TryInto;
-
 use serde::{Deserialize, Serialize};
 
 /// Wrapper around progressively fetched items

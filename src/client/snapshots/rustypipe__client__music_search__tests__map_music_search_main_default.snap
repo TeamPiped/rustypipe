@@ -3,455 +3,448 @@ source: src/client/music_search.rs
 expression: map_res.c
 ---
 MusicSearchResult(
-  tracks: [
-    TrackItem(
-      id: "ZeerrnuLi5E",
-      name: "Black Mamba",
-      duration: Some(230),
-      cover: [
-        Thumbnail(
-          url: "https://i.ytimg.com/vi/ZeerrnuLi5E/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3maNxpYzTFmXZBd8s1w1iE6rTBDaw",
-          width: 400,
-          height: 225,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
-          name: "aespa",
-        ),
-      ],
-      artist_id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
-      album: None,
-      view_count: Some(235000000),
-      is_video: true,
-      track_nr: None,
-      by_va: false,
-    ),
-    TrackItem(
-      id: "BL-aIpCLWnU",
-      name: "Black Mamba",
-      duration: Some(175),
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/MOL4_Ula9hocErkX2xK_7mISFiWvQz51vReT14KCHF9wsqCEH6sO8iilFFelWMn7JOYIk2WFa-gMmw2uvw=w60-h60-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/MOL4_Ula9hocErkX2xK_7mISFiWvQz51vReT14KCHF9wsqCEH6sO8iilFFelWMn7JOYIk2WFa-gMmw2uvw=w120-h120-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
-          name: "aespa",
-        ),
-      ],
-      artist_id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
-      album: Some(AlbumId(
+  items: Paginator(
+    count: Some(16),
+    items: [
+      Track(TrackItem(
+        id: "ZeerrnuLi5E",
+        name: "Black Mamba",
+        duration: Some(230),
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/ZeerrnuLi5E/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3maNxpYzTFmXZBd8s1w1iE6rTBDaw",
+            width: 400,
+            height: 225,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
+            name: "aespa",
+          ),
+        ],
+        artist_id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
+        album: None,
+        view_count: Some(235000000),
+        is_video: true,
+        track_nr: None,
+        by_va: false,
+      )),
+      Track(TrackItem(
+        id: "BL-aIpCLWnU",
+        name: "Black Mamba",
+        duration: Some(175),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/MOL4_Ula9hocErkX2xK_7mISFiWvQz51vReT14KCHF9wsqCEH6sO8iilFFelWMn7JOYIk2WFa-gMmw2uvw=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/MOL4_Ula9hocErkX2xK_7mISFiWvQz51vReT14KCHF9wsqCEH6sO8iilFFelWMn7JOYIk2WFa-gMmw2uvw=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
+            name: "aespa",
+          ),
+        ],
+        artist_id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
+        album: Some(AlbumId(
+          id: "MPREb_OpHWHwyNOuY",
+          name: "Black Mamba",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      )),
+      Track(TrackItem(
+        id: "cATe8Toht70",
+        name: "Black Mamba",
+        duration: Some(74),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/ZesxRmV1_bDW89z70eojCd6DofYPbzbgGaXSIRP3UjmE4nIAkOuWc8pXaozR4AwrzPQublDCKrg6vcxHOg=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/ZesxRmV1_bDW89z70eojCd6DofYPbzbgGaXSIRP3UjmE4nIAkOuWc8pXaozR4AwrzPQublDCKrg6vcxHOg=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCfCNL5oajlQBAlyjWv1ChVw"),
+            name: "Hans Zimmer",
+          ),
+          ArtistId(
+            id: Some("UCvTXGTZf9EvuCAwZOkoR2iQ"),
+            name: "Lorne Balfe",
+          ),
+        ],
+        artist_id: Some("UCfCNL5oajlQBAlyjWv1ChVw"),
+        album: Some(AlbumId(
+          id: "MPREb_UmDOhLpDsc0",
+          name: "Megamind (Music from the Motion Picture)",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      )),
+      Track(TrackItem(
+        id: "WwNKyoizf8k",
+        name: "BLACK MAMBA",
+        duration: Some(182),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/gall0XXuwoV_SYR3S6EgtOGaBC3YOR5wOpQxCyqgxC3Xht3Jc95Y-sFg-sGAcQl946MfurGY_xSv0YBT=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/gall0XXuwoV_SYR3S6EgtOGaBC3YOR5wOpQxCyqgxC3Xht3Jc95Y-sFg-sGAcQl946MfurGY_xSv0YBT=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCz6yr3CgFGrrrPDa2asbWMQ"),
+            name: "Bayamon PR Tribe",
+          ),
+        ],
+        artist_id: Some("UCz6yr3CgFGrrrPDa2asbWMQ"),
+        album: Some(AlbumId(
+          id: "MPREb_RV0PGHyGfkp",
+          name: "LISTEN ME",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      )),
+      Track(TrackItem(
+        id: "yQUU29NwNF4",
+        name: "aespa(에스파) - Black Mamba @인기가요 inkigayo 20201122",
+        duration: Some(213),
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/yQUU29NwNF4/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3k0HD8CTPlz4YU0hvy1GqKSf2HKUQ",
+            width: 400,
+            height: 225,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCS_hnpJLQTvBkqALgapi_4g"),
+            name: "스브스케이팝 X INKIGAYO",
+          ),
+        ],
+        artist_id: Some("UCS_hnpJLQTvBkqALgapi_4g"),
+        album: None,
+        view_count: Some(10000000),
+        is_video: true,
+        track_nr: None,
+        by_va: false,
+      )),
+      Track(TrackItem(
+        id: "Ky5RT5oGg0w",
+        name: "Black Mamba",
+        duration: Some(287),
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/Ky5RT5oGg0w/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mB-DDgCruC-dhPM0v66ckiZJQnJg",
+            width: 400,
+            height: 225,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
+            name: "aespa",
+          ),
+        ],
+        artist_id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
+        album: None,
+        view_count: Some(18000000),
+        is_video: true,
+        track_nr: None,
+        by_va: false,
+      )),
+      Track(TrackItem(
+        id: "dz9bieeSVRw",
+        name: "aespa - Black Mamba (Music Bank) | KBS WORLD TV 201127",
+        duration: Some(192),
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/dz9bieeSVRw/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lsJGKTqJhnt-ckrJtBLlvSp46Y5g",
+            width: 400,
+            height: 225,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UC5BMQOsAB8hKUyHu9KI6yig"),
+            name: "KBS WORLD TV",
+          ),
+        ],
+        artist_id: Some("UC5BMQOsAB8hKUyHu9KI6yig"),
+        album: None,
+        view_count: Some(3200000),
+        is_video: true,
+        track_nr: None,
+        by_va: false,
+      )),
+      Album(AlbumItem(
         id: "MPREb_OpHWHwyNOuY",
         name: "Black Mamba",
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/MOL4_Ula9hocErkX2xK_7mISFiWvQz51vReT14KCHF9wsqCEH6sO8iilFFelWMn7JOYIk2WFa-gMmw2uvw=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/MOL4_Ula9hocErkX2xK_7mISFiWvQz51vReT14KCHF9wsqCEH6sO8iilFFelWMn7JOYIk2WFa-gMmw2uvw=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/MOL4_Ula9hocErkX2xK_7mISFiWvQz51vReT14KCHF9wsqCEH6sO8iilFFelWMn7JOYIk2WFa-gMmw2uvw=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/MOL4_Ula9hocErkX2xK_7mISFiWvQz51vReT14KCHF9wsqCEH6sO8iilFFelWMn7JOYIk2WFa-gMmw2uvw=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
+            name: "aespa",
+          ),
+        ],
+        artist_id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
+        album_type: Single,
+        year: Some(2020),
+        by_va: false,
       )),
-      view_count: None,
-      is_video: false,
-      track_nr: None,
-      by_va: false,
-    ),
-    TrackItem(
-      id: "cATe8Toht70",
-      name: "Black Mamba",
-      duration: Some(74),
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/ZesxRmV1_bDW89z70eojCd6DofYPbzbgGaXSIRP3UjmE4nIAkOuWc8pXaozR4AwrzPQublDCKrg6vcxHOg=w60-h60-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/ZesxRmV1_bDW89z70eojCd6DofYPbzbgGaXSIRP3UjmE4nIAkOuWc8pXaozR4AwrzPQublDCKrg6vcxHOg=w120-h120-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCfCNL5oajlQBAlyjWv1ChVw"),
-          name: "Hans Zimmer",
-        ),
-        ArtistId(
-          id: Some("UCvTXGTZf9EvuCAwZOkoR2iQ"),
-          name: "Lorne Balfe",
-        ),
-      ],
-      artist_id: Some("UCfCNL5oajlQBAlyjWv1ChVw"),
-      album: Some(AlbumId(
-        id: "MPREb_UmDOhLpDsc0",
-        name: "Megamind (Music from the Motion Picture)",
+      Album(AlbumItem(
+        id: "MPREb_pvdHyqvGjbI",
+        name: "Girls - The 2nd Mini Album",
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/JYOTl7neLJLMUEVjdg_qIqz7XjUZB2AQAx_sRDlNVd5jSYiv1xA0v68ZN8Kn0KKf1fSfQnTaeakGeQgI=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/JYOTl7neLJLMUEVjdg_qIqz7XjUZB2AQAx_sRDlNVd5jSYiv1xA0v68ZN8Kn0KKf1fSfQnTaeakGeQgI=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/JYOTl7neLJLMUEVjdg_qIqz7XjUZB2AQAx_sRDlNVd5jSYiv1xA0v68ZN8Kn0KKf1fSfQnTaeakGeQgI=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/JYOTl7neLJLMUEVjdg_qIqz7XjUZB2AQAx_sRDlNVd5jSYiv1xA0v68ZN8Kn0KKf1fSfQnTaeakGeQgI=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
+            name: "aespa",
+          ),
+        ],
+        artist_id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
+        album_type: Album,
+        year: Some(2022),
+        by_va: false,
       )),
-      view_count: None,
-      is_video: false,
-      track_nr: None,
-      by_va: false,
-    ),
-    TrackItem(
-      id: "WwNKyoizf8k",
-      name: "BLACK MAMBA",
-      duration: Some(182),
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/gall0XXuwoV_SYR3S6EgtOGaBC3YOR5wOpQxCyqgxC3Xht3Jc95Y-sFg-sGAcQl946MfurGY_xSv0YBT=w60-h60-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/gall0XXuwoV_SYR3S6EgtOGaBC3YOR5wOpQxCyqgxC3Xht3Jc95Y-sFg-sGAcQl946MfurGY_xSv0YBT=w120-h120-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCz6yr3CgFGrrrPDa2asbWMQ"),
-          name: "Bayamon PR Tribe",
-        ),
-      ],
-      artist_id: Some("UCz6yr3CgFGrrrPDa2asbWMQ"),
-      album: Some(AlbumId(
-        id: "MPREb_RV0PGHyGfkp",
-        name: "LISTEN ME",
+      Album(AlbumItem(
+        id: "MPREb_CznUTKnATw6",
+        name: "Black Mamba (feat. Foolio)",
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/3ut0tvS5LYcfHjLwrYPSYNbraALbFb9ov28b2GXHB8ABaMGWILUko_BJa1jpsSVrELE_B8so3NtYMVfb1g=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/3ut0tvS5LYcfHjLwrYPSYNbraALbFb9ov28b2GXHB8ABaMGWILUko_BJa1jpsSVrELE_B8so3NtYMVfb1g=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/3ut0tvS5LYcfHjLwrYPSYNbraALbFb9ov28b2GXHB8ABaMGWILUko_BJa1jpsSVrELE_B8so3NtYMVfb1g=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/3ut0tvS5LYcfHjLwrYPSYNbraALbFb9ov28b2GXHB8ABaMGWILUko_BJa1jpsSVrELE_B8so3NtYMVfb1g=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCZK5n7V2-iPHfUXLV2tDvzw"),
+            name: "Cojack",
+          ),
+        ],
+        artist_id: Some("UCZK5n7V2-iPHfUXLV2tDvzw"),
+        album_type: Single,
+        year: Some(2020),
+        by_va: false,
       )),
-      view_count: None,
-      is_video: false,
-      track_nr: None,
-      by_va: false,
-    ),
-    TrackItem(
-      id: "yQUU29NwNF4",
-      name: "aespa(에스파) - Black Mamba @인기가요 inkigayo 20201122",
-      duration: Some(213),
-      cover: [
-        Thumbnail(
-          url: "https://i.ytimg.com/vi/yQUU29NwNF4/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3k0HD8CTPlz4YU0hvy1GqKSf2HKUQ",
-          width: 400,
-          height: 225,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCS_hnpJLQTvBkqALgapi_4g"),
-          name: "스브스케이팝 X INKIGAYO",
-        ),
-      ],
-      artist_id: Some("UCS_hnpJLQTvBkqALgapi_4g"),
-      album: None,
-      view_count: Some(10000000),
-      is_video: true,
-      track_nr: None,
-      by_va: false,
-    ),
-    TrackItem(
-      id: "Ky5RT5oGg0w",
-      name: "Black Mamba",
-      duration: Some(287),
-      cover: [
-        Thumbnail(
-          url: "https://i.ytimg.com/vi/Ky5RT5oGg0w/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mB-DDgCruC-dhPM0v66ckiZJQnJg",
-          width: 400,
-          height: 225,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
-          name: "aespa",
-        ),
-      ],
-      artist_id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
-      album: None,
-      view_count: Some(18000000),
-      is_video: true,
-      track_nr: None,
-      by_va: false,
-    ),
-    TrackItem(
-      id: "dz9bieeSVRw",
-      name: "aespa - Black Mamba (Music Bank) | KBS WORLD TV 201127",
-      duration: Some(192),
-      cover: [
-        Thumbnail(
-          url: "https://i.ytimg.com/vi/dz9bieeSVRw/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lsJGKTqJhnt-ckrJtBLlvSp46Y5g",
-          width: 400,
-          height: 225,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UC5BMQOsAB8hKUyHu9KI6yig"),
-          name: "KBS WORLD TV",
-        ),
-      ],
-      artist_id: Some("UC5BMQOsAB8hKUyHu9KI6yig"),
-      album: None,
-      view_count: Some(3200000),
-      is_video: true,
-      track_nr: None,
-      by_va: false,
-    ),
-  ],
-  albums: [
-    AlbumItem(
-      id: "MPREb_OpHWHwyNOuY",
-      name: "Black Mamba",
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/MOL4_Ula9hocErkX2xK_7mISFiWvQz51vReT14KCHF9wsqCEH6sO8iilFFelWMn7JOYIk2WFa-gMmw2uvw=w60-h60-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/MOL4_Ula9hocErkX2xK_7mISFiWvQz51vReT14KCHF9wsqCEH6sO8iilFFelWMn7JOYIk2WFa-gMmw2uvw=w120-h120-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/MOL4_Ula9hocErkX2xK_7mISFiWvQz51vReT14KCHF9wsqCEH6sO8iilFFelWMn7JOYIk2WFa-gMmw2uvw=w226-h226-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/MOL4_Ula9hocErkX2xK_7mISFiWvQz51vReT14KCHF9wsqCEH6sO8iilFFelWMn7JOYIk2WFa-gMmw2uvw=w544-h544-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
-          name: "aespa",
-        ),
-      ],
-      artist_id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
-      album_type: Single,
-      year: Some(2020),
-      by_va: false,
-    ),
-    AlbumItem(
-      id: "MPREb_pvdHyqvGjbI",
-      name: "Girls - The 2nd Mini Album",
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/JYOTl7neLJLMUEVjdg_qIqz7XjUZB2AQAx_sRDlNVd5jSYiv1xA0v68ZN8Kn0KKf1fSfQnTaeakGeQgI=w60-h60-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/JYOTl7neLJLMUEVjdg_qIqz7XjUZB2AQAx_sRDlNVd5jSYiv1xA0v68ZN8Kn0KKf1fSfQnTaeakGeQgI=w120-h120-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/JYOTl7neLJLMUEVjdg_qIqz7XjUZB2AQAx_sRDlNVd5jSYiv1xA0v68ZN8Kn0KKf1fSfQnTaeakGeQgI=w226-h226-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/JYOTl7neLJLMUEVjdg_qIqz7XjUZB2AQAx_sRDlNVd5jSYiv1xA0v68ZN8Kn0KKf1fSfQnTaeakGeQgI=w544-h544-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
-          name: "aespa",
-        ),
-      ],
-      artist_id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
-      album_type: Album,
-      year: Some(2022),
-      by_va: false,
-    ),
-    AlbumItem(
-      id: "MPREb_CznUTKnATw6",
-      name: "Black Mamba (feat. Foolio)",
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/3ut0tvS5LYcfHjLwrYPSYNbraALbFb9ov28b2GXHB8ABaMGWILUko_BJa1jpsSVrELE_B8so3NtYMVfb1g=w60-h60-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/3ut0tvS5LYcfHjLwrYPSYNbraALbFb9ov28b2GXHB8ABaMGWILUko_BJa1jpsSVrELE_B8so3NtYMVfb1g=w120-h120-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/3ut0tvS5LYcfHjLwrYPSYNbraALbFb9ov28b2GXHB8ABaMGWILUko_BJa1jpsSVrELE_B8so3NtYMVfb1g=w226-h226-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/3ut0tvS5LYcfHjLwrYPSYNbraALbFb9ov28b2GXHB8ABaMGWILUko_BJa1jpsSVrELE_B8so3NtYMVfb1g=w544-h544-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCZK5n7V2-iPHfUXLV2tDvzw"),
-          name: "Cojack",
-        ),
-      ],
-      artist_id: Some("UCZK5n7V2-iPHfUXLV2tDvzw"),
-      album_type: Single,
-      year: Some(2020),
-      by_va: false,
-    ),
-  ],
-  artists: [
-    ArtistItem(
-      id: "UCEdZAdnnKqbaHOlv8nM6OtA",
-      name: "aespa",
-      avatar: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/gV8Sbt3iKraNm_H9ZaH3oh6ERRdN0Dj6qHmTLPiQQ4WS8uGNN09HlpujMJOWwei_z5yC9Th1cZXyOQ=w60-h60-p-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/gV8Sbt3iKraNm_H9ZaH3oh6ERRdN0Dj6qHmTLPiQQ4WS8uGNN09HlpujMJOWwei_z5yC9Th1cZXyOQ=w120-h120-p-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-      ],
-      subscriber_count: Some(4120000),
-    ),
-    ArtistItem(
-      id: "UCaDT20-B3U8h-tPg_VMvntw",
-      name: "The Black Mamba",
-      avatar: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/Vq3Jc5g2QNJCdkwHbk4uShyhlzwKx0oVovyBXH_AzQs7i6lF7eRN149E56bo4OP_rP2TPvYem8RV3DhV=w60-h60-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/Vq3Jc5g2QNJCdkwHbk4uShyhlzwKx0oVovyBXH_AzQs7i6lF7eRN149E56bo4OP_rP2TPvYem8RV3DhV=w120-h120-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-      ],
-      subscriber_count: Some(2640),
-    ),
-    ArtistItem(
-      id: "UCLcwLJIGBDDvbfq8JERV6Ag",
-      name: "Black Mamba",
-      avatar: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/qPN6oDatmKgTxytO4b8ScN1qGGMBpsF2_vH9OG1sSDn8Hew28J8vy9y4WNWOJYvSCyHbghIs_B5aGgkJ=w60-h60-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/qPN6oDatmKgTxytO4b8ScN1qGGMBpsF2_vH9OG1sSDn8Hew28J8vy9y4WNWOJYvSCyHbghIs_B5aGgkJ=w120-h120-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-      ],
-      subscriber_count: Some(9),
-    ),
-  ],
-  playlists: [
-    MusicPlaylistItem(
-      id: "PLk76iSbFqNJsu_Gozn9SkEXxQ7t-bpXid",
-      name: "IRMA MIRTILLA Black Mamba",
-      thumbnail: [
-        Thumbnail(
-          url: "https://i.ytimg.com/vi/md19pon3B9o/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kR84wE4E_UufGzATfZhAsFWEieaA",
-          width: 400,
-          height: 225,
-        ),
-        Thumbnail(
-          url: "https://i.ytimg.com/vi/md19pon3B9o/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3nxumiGKYWYiiTokZB8M6rwtK5mRw",
-          width: 800,
-          height: 450,
-        ),
-        Thumbnail(
-          url: "https://i.ytimg.com/vi/md19pon3B9o/hq720.jpg?sqp=-oaymwEXCNUGEOADIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3mEU1yvpIHQXYgVnCyXx8Rlzilg6Q",
-          width: 853,
-          height: 480,
-        ),
-      ],
-      channel: Some(ChannelId(
-        id: "UCtZaFx5MXZHIh7VTItJK1lQ",
-        name: "Lajos Fülöp",
-      )),
-      track_count: None,
-      from_ytm: false,
-    ),
-    MusicPlaylistItem(
-      id: "PLIL9Q2jz6euDEJZKHd4QaG4iic944_vKY",
-      name: "Black Mamba",
-      thumbnail: [
-        Thumbnail(
-          url: "https://yt3.ggpht.com/jsvBK6isPIQ0ERSc1xV6PoaYxbYZqCzqr90lHZNEfUcQL2lP0oNzrdimX8KIBchE6X8myc58zwyS=s192",
-          width: 192,
-          height: 192,
-        ),
-        Thumbnail(
-          url: "https://yt3.ggpht.com/jsvBK6isPIQ0ERSc1xV6PoaYxbYZqCzqr90lHZNEfUcQL2lP0oNzrdimX8KIBchE6X8myc58zwyS=s576",
-          width: 576,
-          height: 576,
-        ),
-        Thumbnail(
-          url: "https://yt3.ggpht.com/jsvBK6isPIQ0ERSc1xV6PoaYxbYZqCzqr90lHZNEfUcQL2lP0oNzrdimX8KIBchE6X8myc58zwyS=s1200",
-          width: 1200,
-          height: 1200,
-        ),
-      ],
-      channel: Some(ChannelId(
-        id: "UCwFT0vvkbtbohtzVbwx7WjQ",
-        name: "Toshihiko KOMINAMI",
-      )),
-      track_count: None,
-      from_ytm: false,
-    ),
-    MusicPlaylistItem(
-      id: "PLinm7-cvTdN7RqadpfNrncUGqkdyKNpn6",
-      name: "Black Mamba",
-      thumbnail: [
-        Thumbnail(
-          url: "https://yt3.ggpht.com/hj6EywHSUD3UEnRQPHaEjHPC1VRi9UcsrkW8zGiOaXhRGlyNikLw6Iv0VnHTSuo2MlVBiQaskqo=s192",
-          width: 192,
-          height: 192,
-        ),
-        Thumbnail(
-          url: "https://yt3.ggpht.com/hj6EywHSUD3UEnRQPHaEjHPC1VRi9UcsrkW8zGiOaXhRGlyNikLw6Iv0VnHTSuo2MlVBiQaskqo=s576",
-          width: 576,
-          height: 576,
-        ),
-        Thumbnail(
-          url: "https://yt3.ggpht.com/hj6EywHSUD3UEnRQPHaEjHPC1VRi9UcsrkW8zGiOaXhRGlyNikLw6Iv0VnHTSuo2MlVBiQaskqo=s1200",
-          width: 1200,
-          height: 1200,
-        ),
-      ],
-      channel: Some(ChannelId(
+      Artist(ArtistItem(
         id: "UCEdZAdnnKqbaHOlv8nM6OtA",
         name: "aespa",
+        avatar: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/gV8Sbt3iKraNm_H9ZaH3oh6ERRdN0Dj6qHmTLPiQQ4WS8uGNN09HlpujMJOWwei_z5yC9Th1cZXyOQ=w60-h60-p-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/gV8Sbt3iKraNm_H9ZaH3oh6ERRdN0Dj6qHmTLPiQQ4WS8uGNN09HlpujMJOWwei_z5yC9Th1cZXyOQ=w120-h120-p-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        subscriber_count: Some(4120000),
       )),
-      track_count: None,
-      from_ytm: false,
-    ),
-  ],
+      Artist(ArtistItem(
+        id: "UCaDT20-B3U8h-tPg_VMvntw",
+        name: "The Black Mamba",
+        avatar: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Vq3Jc5g2QNJCdkwHbk4uShyhlzwKx0oVovyBXH_AzQs7i6lF7eRN149E56bo4OP_rP2TPvYem8RV3DhV=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Vq3Jc5g2QNJCdkwHbk4uShyhlzwKx0oVovyBXH_AzQs7i6lF7eRN149E56bo4OP_rP2TPvYem8RV3DhV=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        subscriber_count: Some(2640),
+      )),
+      Artist(ArtistItem(
+        id: "UCLcwLJIGBDDvbfq8JERV6Ag",
+        name: "Black Mamba",
+        avatar: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/qPN6oDatmKgTxytO4b8ScN1qGGMBpsF2_vH9OG1sSDn8Hew28J8vy9y4WNWOJYvSCyHbghIs_B5aGgkJ=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/qPN6oDatmKgTxytO4b8ScN1qGGMBpsF2_vH9OG1sSDn8Hew28J8vy9y4WNWOJYvSCyHbghIs_B5aGgkJ=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        subscriber_count: Some(9),
+      )),
+      Playlist(MusicPlaylistItem(
+        id: "PLk76iSbFqNJsu_Gozn9SkEXxQ7t-bpXid",
+        name: "IRMA MIRTILLA Black Mamba",
+        thumbnail: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/md19pon3B9o/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kR84wE4E_UufGzATfZhAsFWEieaA",
+            width: 400,
+            height: 225,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/md19pon3B9o/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3nxumiGKYWYiiTokZB8M6rwtK5mRw",
+            width: 800,
+            height: 450,
+          ),
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/md19pon3B9o/hq720.jpg?sqp=-oaymwEXCNUGEOADIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3mEU1yvpIHQXYgVnCyXx8Rlzilg6Q",
+            width: 853,
+            height: 480,
+          ),
+        ],
+        channel: Some(ChannelId(
+          id: "UCtZaFx5MXZHIh7VTItJK1lQ",
+          name: "Lajos Fülöp",
+        )),
+        track_count: None,
+        from_ytm: false,
+      )),
+      Playlist(MusicPlaylistItem(
+        id: "PLIL9Q2jz6euDEJZKHd4QaG4iic944_vKY",
+        name: "Black Mamba",
+        thumbnail: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/jsvBK6isPIQ0ERSc1xV6PoaYxbYZqCzqr90lHZNEfUcQL2lP0oNzrdimX8KIBchE6X8myc58zwyS=s192",
+            width: 192,
+            height: 192,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/jsvBK6isPIQ0ERSc1xV6PoaYxbYZqCzqr90lHZNEfUcQL2lP0oNzrdimX8KIBchE6X8myc58zwyS=s576",
+            width: 576,
+            height: 576,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/jsvBK6isPIQ0ERSc1xV6PoaYxbYZqCzqr90lHZNEfUcQL2lP0oNzrdimX8KIBchE6X8myc58zwyS=s1200",
+            width: 1200,
+            height: 1200,
+          ),
+        ],
+        channel: Some(ChannelId(
+          id: "UCwFT0vvkbtbohtzVbwx7WjQ",
+          name: "Toshihiko KOMINAMI",
+        )),
+        track_count: None,
+        from_ytm: false,
+      )),
+      Playlist(MusicPlaylistItem(
+        id: "PLinm7-cvTdN7RqadpfNrncUGqkdyKNpn6",
+        name: "Black Mamba",
+        thumbnail: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/hj6EywHSUD3UEnRQPHaEjHPC1VRi9UcsrkW8zGiOaXhRGlyNikLw6Iv0VnHTSuo2MlVBiQaskqo=s192",
+            width: 192,
+            height: 192,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/hj6EywHSUD3UEnRQPHaEjHPC1VRi9UcsrkW8zGiOaXhRGlyNikLw6Iv0VnHTSuo2MlVBiQaskqo=s576",
+            width: 576,
+            height: 576,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/hj6EywHSUD3UEnRQPHaEjHPC1VRi9UcsrkW8zGiOaXhRGlyNikLw6Iv0VnHTSuo2MlVBiQaskqo=s1200",
+            width: 1200,
+            height: 1200,
+          ),
+        ],
+        channel: Some(ChannelId(
+          id: "UCEdZAdnnKqbaHOlv8nM6OtA",
+          name: "aespa",
+        )),
+        track_count: None,
+        from_ytm: false,
+      )),
+    ],
+    ctoken: None,
+    endpoint: music_search,
+  ),
   corrected_query: None,
-  order: [
-    Track,
-    Album,
-    Artist,
-    Playlist,
-  ],
 )

@@ -8,9 +8,10 @@ use crate::{
     model::{
         paginator::{ContinuationEndpoint, Paginator},
         traits::FromYtItem,
-        AlbumItem, ArtistItem, MusicPlaylistItem, MusicSearchFiltered, MusicSearchResult,
+        AlbumItem, ArtistItem, MusicItem, MusicPlaylistItem, MusicSearchResult,
         MusicSearchSuggestion, TrackItem,
     },
+    param::search_filter::MusicSearchFilter,
     serializer::MapResult,
 };
 
@@ -22,7 +23,7 @@ struct QSearch<'a> {
     context: YTContext<'a>,
     query: &'a str,
     #[serde(skip_serializing_if = "Option::is_none")]
-    params: Option<Params>,
+    params: Option<&'a str>,
 }
 
 #[derive(Debug, Serialize)]
@@ -32,76 +33,22 @@ struct QSearchSuggestion<'a> {
     input: &'a str,
 }
 
-#[derive(Debug, Serialize)]
-enum Params {
-    #[serde(rename = "EgWKAQIIAWoMEAMQBBAJEA4QChAF")]
-    Tracks,
-    #[serde(rename = "EgWKAQIQAWoMEAMQBBAJEA4QChAF")]
-    Videos,
-    #[serde(rename = "EgWKAQIYAWoMEAMQBBAJEA4QChAF")]
-    Albums,
-    #[serde(rename = "EgWKAQIgAWoMEAMQBBAJEA4QChAF")]
-    Artists,
-    #[serde(rename = "EgeKAQQoADgBagwQAxAEEAkQDhAKEAU%3D")]
-    YtmPlaylists,
-    #[serde(rename = "EgeKAQQoAEABagwQAxAEEAkQDhAKEAU%3D")]
-    CommunityPlaylists,
-}
-
 impl RustyPipeQuery {
-    /// Search YouTube Music. Returns items from any type.
-    #[tracing::instrument(skip(self))]
-    pub async fn music_search<S: AsRef<str> + Debug>(
+    /// Search YouTube Music.
+    ///
+    /// This is a generic implementation which casts items to the given type or filters
+    /// them out.
+    pub async fn music_search<T: FromYtItem, S: AsRef<str>>(
         &self,
         query: S,
-    ) -> Result<MusicSearchResult, Error> {
+        filter: Option<MusicSearchFilter>,
+    ) -> Result<MusicSearchResult<T>, Error> {
         let query = query.as_ref();
         let context = self.get_context(ClientType::DesktopMusic, true, None).await;
         let request_body = QSearch {
             context,
             query,
-            params: None,
-        };
-
-        self.execute_request::<response::MusicSearch, _, _>(
-            ClientType::DesktopMusic,
-            "music_search",
-            query,
-            "search",
-            &request_body,
-        )
-        .await
-    }
-
-    /// Search YouTube Music tracks
-    #[tracing::instrument(skip(self))]
-    pub async fn music_search_tracks<S: AsRef<str> + Debug>(
-        &self,
-        query: S,
-    ) -> Result<MusicSearchFiltered<TrackItem>, Error> {
-        self._music_search_tracks(query, Params::Tracks).await
-    }
-
-    /// Search YouTube Music videos
-    #[tracing::instrument(skip(self))]
-    pub async fn music_search_videos<S: AsRef<str> + Debug>(
-        &self,
-        query: S,
-    ) -> Result<MusicSearchFiltered<TrackItem>, Error> {
-        self._music_search_tracks(query, Params::Videos).await
-    }
-
-    async fn _music_search_tracks<S: AsRef<str>>(
-        &self,
-        query: S,
-        params: Params,
-    ) -> Result<MusicSearchFiltered<TrackItem>, Error> {
-        let query = query.as_ref();
-        let context = self.get_context(ClientType::DesktopMusic, true, None).await;
-        let request_body = QSearch {
-            context,
-            query,
-            params: Some(params),
+            params: filter.map(MusicSearchFilter::params),
         };
 
         self.execute_request::<response::MusicSearch, _, _>(
@@ -114,81 +61,66 @@ impl RustyPipeQuery {
         .await
     }
 
-    /// Search YouTube Music albums
-    #[tracing::instrument(skip(self))]
-    pub async fn music_search_albums<S: AsRef<str> + Debug>(
+    /// Search YouTube music and return items of all types
+    pub async fn music_search_main<S: AsRef<str>>(
         &self,
         query: S,
-    ) -> Result<MusicSearchFiltered<AlbumItem>, Error> {
-        let query = query.as_ref();
-        let context = self.get_context(ClientType::DesktopMusic, true, None).await;
-        let request_body = QSearch {
-            context,
-            query,
-            params: Some(Params::Albums),
-        };
-
-        self.execute_request::<response::MusicSearch, _, _>(
-            ClientType::DesktopMusic,
-            "music_search_albums",
-            query,
-            "search",
-            &request_body,
-        )
-        .await
+    ) -> Result<MusicSearchResult<MusicItem>, Error> {
+        self.music_search(query, None).await
     }
 
     /// Search YouTube Music artists
-    #[tracing::instrument(skip(self))]
-    pub async fn music_search_artists<S: AsRef<str> + Debug>(
+    pub async fn music_search_artists<S: AsRef<str>>(
         &self,
         query: S,
-    ) -> Result<MusicSearchFiltered<ArtistItem>, Error> {
-        let query = query.as_ref();
-        let context = self.get_context(ClientType::DesktopMusic, true, None).await;
-        let request_body = QSearch {
-            context,
-            query,
-            params: Some(Params::Artists),
-        };
-
-        self.execute_request::<response::MusicSearch, _, _>(
-            ClientType::DesktopMusic,
-            "music_search_albums",
-            query,
-            "search",
-            &request_body,
-        )
-        .await
+    ) -> Result<MusicSearchResult<ArtistItem>, Error> {
+        self.music_search(query, Some(MusicSearchFilter::Artists))
+            .await
     }
+
+    /// Search YouTube Music albums
+    pub async fn music_search_albums<S: AsRef<str>>(
+        &self,
+        query: S,
+    ) -> Result<MusicSearchResult<AlbumItem>, Error> {
+        self.music_search(query, Some(MusicSearchFilter::Albums))
+            .await
+    }
+
+    /// Search YouTube Music tracks
+    pub async fn music_search_tracks<S: AsRef<str>>(
+        &self,
+        query: S,
+    ) -> Result<MusicSearchResult<TrackItem>, Error> {
+        self.music_search(query, Some(MusicSearchFilter::Tracks))
+            .await
+    }
+
+    /// Search YouTube Music videos
+    pub async fn music_search_videos<S: AsRef<str>>(
+        &self,
+        query: S,
+    ) -> Result<MusicSearchResult<TrackItem>, Error> {
+        self.music_search(query, Some(MusicSearchFilter::Videos))
+            .await
+    }
+
     /// Search YouTube Music playlists
     ///
     /// Playlists are filtered whether they are created by users
     /// (`community=true`) or by YouTube Music (`community=false`)
-    #[tracing::instrument(skip(self))]
     pub async fn music_search_playlists<S: AsRef<str> + Debug>(
         &self,
         query: S,
         community: bool,
-    ) -> Result<MusicSearchFiltered<MusicPlaylistItem>, Error> {
-        let query = query.as_ref();
-        let context = self.get_context(ClientType::DesktopMusic, true, None).await;
-        let request_body = QSearch {
-            context,
+    ) -> Result<MusicSearchResult<MusicPlaylistItem>, Error> {
+        self.music_search(
             query,
-            params: Some(if community {
-                Params::CommunityPlaylists
+            Some(if community {
+                MusicSearchFilter::CommunityPlaylists
             } else {
-                Params::YtmPlaylists
+                MusicSearchFilter::YtmPlaylists
             }),
-        };
-
-        self.execute_request::<response::MusicSearch, _, _>(
-            ClientType::DesktopMusic,
-            "music_search_playlists",
-            query,
-            "search",
-            &request_body,
         )
         .await
     }
@@ -217,79 +149,14 @@ impl RustyPipeQuery {
     }
 }
 
-impl MapResponse<MusicSearchResult> for response::MusicSearch {
-    fn map_response(
-        self,
-        _id: &str,
-        lang: crate::param::Language,
-        _deobf: Option<&crate::deobfuscate::DeobfData>,
-        _vdata: Option<&str>,
-    ) -> Result<MapResult<MusicSearchResult>, crate::error::ExtractionError> {
-        // dbg!(&self);
-
-        let sections = self
-            .contents
-            .tabbed_search_results_renderer
-            .contents
-            .into_iter()
-            .next()
-            .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no tab")))?
-            .tab_renderer
-            .content
-            .section_list_renderer
-            .contents;
-
-        let mut corrected_query = None;
-        let mut order = Vec::new();
-        let mut mapper = MusicListMapper::new(lang);
-
-        sections.into_iter().for_each(|section| match section {
-            response::music_search::ItemSection::MusicShelfRenderer(shelf) => {
-                if let Some(etype) = mapper.map_response(shelf.contents) {
-                    if !order.contains(&etype) {
-                        order.push(etype);
-                    }
-                }
-            }
-            response::music_search::ItemSection::MusicCardShelfRenderer(card) => {
-                if let Some(etype) = mapper.map_card(card) {
-                    if !order.contains(&etype) {
-                        order.push(etype);
-                    }
-                }
-            }
-            response::music_search::ItemSection::ItemSectionRenderer { contents } => {
-                if let Some(corrected) = contents.into_iter().next() {
-                    corrected_query = Some(corrected.showing_results_for_renderer.corrected_query);
-                }
-            }
-            response::music_search::ItemSection::None => {}
-        });
-
-        let map_res = mapper.group_items();
-
-        Ok(MapResult {
-            c: MusicSearchResult {
-                tracks: map_res.c.tracks,
-                albums: map_res.c.albums,
-                artists: map_res.c.artists,
-                playlists: map_res.c.playlists,
-                corrected_query,
-                order,
-            },
-            warnings: map_res.warnings,
-        })
-    }
-}
-
-impl<T: FromYtItem> MapResponse<MusicSearchFiltered<T>> for response::MusicSearch {
+impl<T: FromYtItem> MapResponse<MusicSearchResult<T>> for response::MusicSearch {
     fn map_response(
         self,
         _id: &str,
         lang: crate::param::Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
         vdata: Option<&str>,
-    ) -> Result<MapResult<MusicSearchFiltered<T>>, ExtractionError> {
+    ) -> Result<MapResult<MusicSearchResult<T>>, ExtractionError> {
         // dbg!(&self);
 
         let tabs = self.contents.tabbed_search_results_renderer.contents;
@@ -327,7 +194,7 @@ impl<T: FromYtItem> MapResponse<MusicSearchFiltered<T>> for response::MusicSearc
         let map_res = mapper.conv_items();
 
         Ok(MapResult {
-            c: MusicSearchFiltered {
+            c: MusicSearchResult {
                 items: Paginator::new_ext(
                     None,
                     map_res.c,
@@ -391,7 +258,7 @@ mod tests {
     use crate::{
         client::{response, MapResponse},
         model::{
-            AlbumItem, ArtistItem, MusicPlaylistItem, MusicSearchFiltered, MusicSearchResult,
+            AlbumItem, ArtistItem, MusicItem, MusicPlaylistItem, MusicSearchResult,
             MusicSearchSuggestion, TrackItem,
         },
         param::Language,
@@ -410,7 +277,7 @@ mod tests {
 
         let search: response::MusicSearch =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res: MapResult<MusicSearchResult> =
+        let map_res: MapResult<MusicSearchResult<MusicItem>> =
             search.map_response("", Language::En, None, None).unwrap();
 
         assert!(
@@ -433,7 +300,7 @@ mod tests {
 
         let search: response::MusicSearch =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res: MapResult<MusicSearchFiltered<TrackItem>> =
+        let map_res: MapResult<MusicSearchResult<TrackItem>> =
             search.map_response("", Language::En, None, None).unwrap();
 
         assert!(
@@ -452,7 +319,7 @@ mod tests {
 
         let search: response::MusicSearch =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res: MapResult<MusicSearchFiltered<AlbumItem>> =
+        let map_res: MapResult<MusicSearchResult<AlbumItem>> =
             search.map_response("", Language::En, None, None).unwrap();
 
         assert!(
@@ -471,7 +338,7 @@ mod tests {
 
         let search: response::MusicSearch =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res: MapResult<MusicSearchFiltered<ArtistItem>> =
+        let map_res: MapResult<MusicSearchResult<ArtistItem>> =
             search.map_response("", Language::En, None, None).unwrap();
 
         assert!(
@@ -492,7 +359,7 @@ mod tests {
 
         let search: response::MusicSearch =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res: MapResult<MusicSearchFiltered<MusicPlaylistItem>> =
+        let map_res: MapResult<MusicSearchResult<MusicPlaylistItem>> =
             search.map_response("", Language::En, None, None).unwrap();
 
         assert!(
