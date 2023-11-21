@@ -72,6 +72,13 @@ pub trait ToMarkdown {
     fn to_markdown_yt_host(&self, yt_host: &str) -> String;
 }
 
+impl RichText {
+    /// Returns `true` if the rich text contains no text components.
+    pub fn is_empty(&self) -> bool {
+        self.0.is_empty()
+    }
+}
+
 impl TextComponent {
     /// Get the text from the component
     pub fn get_text(&self) -> &str {

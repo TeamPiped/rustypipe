@@ -731,6 +731,29 @@ fn get_video_details_agegate(rp: RustyPipe) {
 }
 
 #[rstest]
+fn get_video_details_no_desc(rp: RustyPipe) {
+    let details = tokio_test::block_on(rp.query().video_details("VYJNSQ_ANyA")).unwrap();
+
+    assert_eq!(details.id, "VYJNSQ_ANyA");
+    assert_eq!(details.name, "Cricket comedy by Modi");
+    assert_eq!(details.channel.id, "UC8gBy2lByHxIyoPMglerNWg");
+    assert_eq!(details.channel.name, "TMP VIBES");
+    assert!(!details.channel.avatar.is_empty(), "no channel avatars");
+
+    assert!(
+        details.description.is_empty(),
+        "got desc: `{}`",
+        details.description.to_plaintext()
+    );
+
+    let date = details.publish_date.unwrap();
+    assert_eq!(date.date(), date!(2023 - 11 - 21));
+
+    assert!(!details.is_live);
+    assert!(!details.is_ccommons);
+}
+
+#[rstest]
 fn get_video_details_not_found(rp: RustyPipe) {
     let err = tokio_test::block_on(rp.query().video_details("abcdefgLi5X")).unwrap_err();
 
