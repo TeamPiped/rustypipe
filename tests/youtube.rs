@@ -300,7 +300,6 @@ fn get_player(
 #[case::censored("6SJNVb0GnPI", UnavailabilityReason::Deleted)]
 // This video is geoblocked outside of Japan, so expect this test case to fail when using a Japanese IP address.
 #[case::geoblock("sJL6WA-aGkQ", UnavailabilityReason::Geoblocked)]
-#[case::drm("1bfOsni7EgI", UnavailabilityReason::Paid)]
 #[case::private("s7_qI6_mIXc", UnavailabilityReason::Private)]
 #[case::age_restricted("CUO8secmc0g", UnavailabilityReason::AgeRestricted)]
 #[case::premium_only("3LvozjEOUxU", UnavailabilityReason::Premium)]
@@ -311,6 +310,24 @@ fn get_player_error(#[case] id: &str, #[case] expect: UnavailabilityReason, rp: 
     match err {
         Error::Extraction(ExtractionError::Unavailable { reason, .. }) => {
             assert_eq!(reason, expect, "got {err}")
+        }
+        _ => panic!("got {err}"),
+    }
+}
+
+#[rstest]
+fn get_player_error_paid(rp: RustyPipe) {
+    let err = tokio_test::block_on(rp.query().player("N8ee9OLumrs")).unwrap_err();
+    match err {
+        // Sometimes YouTube shows an 'unplayable' error on paid videos
+        Error::Extraction(ExtractionError::Unavailable { reason, .. }) => {
+            assert!(
+                matches!(
+                    reason,
+                    UnavailabilityReason::Paid | UnavailabilityReason::Unplayable
+                ),
+                "got {err}"
+            )
         }
         _ => panic!("got {err}"),
     }
@@ -1448,12 +1465,12 @@ fn music_playlist_not_found(rp: RustyPipe) {
 }
 
 #[rstest]
-#[case::one_artist("one_artist", "MPREb_nlBWQROfvjo")]
+#[case::one_artist("one_artist", "MPREb_mXdQvyCqLnx")]
 #[case::various_artists("various_artists", "MPREb_8QkDeEIawvX")]
 #[case::single("single", "MPREb_bHfHGoy7vuv")]
 #[case::ep("ep", "MPREb_u1I69lSAe5v")]
-// #[case::audiobook("audiobook", "MPREb_gaoNzsQHedo")]
-#[case::show("show", "MPREb_cwzk8EUwypZ")]
+#[case::audiobook("audiobook", "MPREb_gaoNzsQHedo")]
+#[case::show("show", "MPREb_aDDw2kVEFtM")]
 #[case::unavailable("unavailable", "MPREb_AzuWg8qAVVl")]
 #[case::no_year("no_year", "MPREb_F3Af9UZZVxX")]
 #[case::version_no_artist("version_no_artist", "MPREb_h8ltx5oKvyY")]
@@ -1495,7 +1512,7 @@ fn music_album_not_found(rp: RustyPipe) {
 }
 
 #[rstest]
-#[case::basic_all("basic_all", "UC7cl4MmM6ZZ2TcFyMk_b4pg", true, 15, 2)]
+#[case::basic_all("basic_all", "UCNezSmfQ8VIgvHUNj1Gzx6A", true, 15, 1)]
 // TODO: wait for A/B test 6 to stabilize
 // #[case::basic("basic", "UC7cl4MmM6ZZ2TcFyMk_b4pg", false, 15, 2)]
 #[case::no_more_albums("no_more_albums", "UCOR4_bSVIXPsGa4BbCSt60Q", true, 15, 0)]
@@ -1521,7 +1538,7 @@ fn music_artist(
         assert!(artist.similar_artists.is_empty());
         assert!(artist.subscriber_count.is_none());
     } else {
-        assert_gte(artist.subscriber_count.unwrap(), 30000, "subscribers");
+        assert_gte(artist.subscriber_count.unwrap(), 10_000, "subscribers");
     }
 
     artist.tracks.iter().for_each(|t| {
@@ -1888,12 +1905,12 @@ fn music_search_episode(rp: RustyPipe, #[case] videos: bool) {
     false
 )]
 #[case::album(
-    "märchen enden",
-    "Märchen enden gut",
-    "MPREb_nlBWQROfvjo",
-    "Oonagh",
-    "UC_vmjW5e1xEHhYjY2a0kK1A",
-    2016,
+    "demi",
+    "Demi",
+    "MPREb_mXdQvyCqLnx",
+    "Demi Lovato",
+    "UCwem2sj-QUJCiWiPAo9JuAw",
+    2013,
     AlbumType::Album,
     true
 )]

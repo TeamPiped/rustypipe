@@ -3,36 +3,36 @@ source: tests/youtube.rs
 expression: album
 ---
 MusicAlbum(
-  id: "MPREb_nlBWQROfvjo",
-  playlist_id: Some("OLAK5uy_myZkBX2d2TzcrlQhIwLy3hCj2MkAMaPR4"),
+  id: "MPREb_mXdQvyCqLnx",
+  playlist_id: Some("OLAK5uy_mAg4o-PpgUtVY97PDxaY3DRTZt37WUDaQ"),
   name: "[name]",
   cover: "[cover]",
   artists: [
     ArtistId(
-      id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+      id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
       name: "[name]",
     ),
   ],
-  artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+  artist_id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
   description: "[description]",
   album_type: Album,
-  year: Some(2016),
+  year: Some(2013),
   by_va: false,
   tracks: [
     TrackItem(
-      id: "g0iRiJ_ck48",
+      id: "8DmPZaCLMcE",
       name: "[name]",
-      duration: Some(217),
+      duration: Some(211),
       cover: [],
       artists: [
         ArtistId(
-          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
           name: "[name]",
         ),
       ],
-      artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+      artist_id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
       album: Some(AlbumId(
-        id: "MPREb_nlBWQROfvjo",
+        id: "MPREb_mXdQvyCqLnx",
         name: "[name]",
       )),
       view_count: "[view_count]",
@@ -41,19 +41,19 @@ MusicAlbum(
       by_va: false,
     ),
     TrackItem(
-      id: "rREEBXp0y9s",
+      id: "RRE0hz60t8I",
       name: "[name]",
-      duration: Some(225),
+      duration: Some(197),
       cover: [],
       artists: [
         ArtistId(
-          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
           name: "[name]",
         ),
       ],
-      artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+      artist_id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
       album: Some(AlbumId(
-        id: "MPREb_nlBWQROfvjo",
+        id: "MPREb_mXdQvyCqLnx",
         name: "[name]",
       )),
       view_count: "[view_count]",
@@ -62,19 +62,19 @@ MusicAlbum(
       by_va: false,
     ),
     TrackItem(
-      id: "zvU5Y8Q19hU",
+      id: "O38fBJpWqGM",
       name: "[name]",
-      duration: Some(177),
+      duration: Some(236),
       cover: [],
       artists: [
         ArtistId(
-          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
           name: "[name]",
         ),
       ],
-      artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+      artist_id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
       album: Some(AlbumId(
-        id: "MPREb_nlBWQROfvjo",
+        id: "MPREb_mXdQvyCqLnx",
         name: "[name]",
       )),
       view_count: "[view_count]",
@@ -83,19 +83,19 @@ MusicAlbum(
       by_va: false,
     ),
     TrackItem(
-      id: "ARKLrzzTQA0",
+      id: "BB1Q5XjCOho",
       name: "[name]",
-      duration: Some(216),
+      duration: Some(234),
       cover: [],
       artists: [
         ArtistId(
-          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
           name: "[name]",
         ),
       ],
-      artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+      artist_id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
       album: Some(AlbumId(
-        id: "MPREb_nlBWQROfvjo",
+        id: "MPREb_mXdQvyCqLnx",
         name: "[name]",
       )),
       view_count: "[view_count]",
@@ -104,19 +104,19 @@ MusicAlbum(
       by_va: false,
     ),
     TrackItem(
-      id: "tstLgN8A_Ng",
+      id: "0VOm-MoZ3Xg",
       name: "[name]",
-      duration: Some(269),
+      duration: Some(266),
       cover: [],
       artists: [
         ArtistId(
-          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
           name: "[name]",
         ),
       ],
-      artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+      artist_id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
       album: Some(AlbumId(
-        id: "MPREb_nlBWQROfvjo",
+        id: "MPREb_mXdQvyCqLnx",
         name: "[name]",
       )),
       view_count: "[view_count]",
@@ -125,19 +125,19 @@ MusicAlbum(
       by_va: false,
     ),
     TrackItem(
-      id: "k2DjgQOY3Ts",
+      id: "vvm-XtXQ7wI",
       name: "[name]",
-      duration: Some(203),
+      duration: Some(217),
       cover: [],
       artists: [
         ArtistId(
-          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
           name: "[name]",
         ),
       ],
-      artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+      artist_id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
       album: Some(AlbumId(
-        id: "MPREb_nlBWQROfvjo",
+        id: "MPREb_mXdQvyCqLnx",
         name: "[name]",
       )),
       view_count: "[view_count]",
@@ -146,19 +146,19 @@ MusicAlbum(
       by_va: false,
     ),
     TrackItem(
-      id: "azHwhecxEsI",
+      id: "CJYhllodSAc",
       name: "[name]",
-      duration: Some(186),
+      duration: Some(215),
       cover: [],
       artists: [
         ArtistId(
-          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
           name: "[name]",
         ),
       ],
-      artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+      artist_id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
       album: Some(AlbumId(
-        id: "MPREb_nlBWQROfvjo",
+        id: "MPREb_mXdQvyCqLnx",
         name: "[name]",
       )),
       view_count: "[view_count]",
@@ -167,19 +167,19 @@ MusicAlbum(
       by_va: false,
     ),
     TrackItem(
-      id: "_FcsdYIQ2co",
+      id: "tTmJoiCIebg",
       name: "[name]",
-      duration: Some(227),
+      duration: Some(202),
       cover: [],
       artists: [
         ArtistId(
-          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
           name: "[name]",
         ),
       ],
-      artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+      artist_id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
       album: Some(AlbumId(
-        id: "MPREb_nlBWQROfvjo",
+        id: "MPREb_mXdQvyCqLnx",
         name: "[name]",
       )),
       view_count: "[view_count]",
@@ -188,19 +188,19 @@ MusicAlbum(
       by_va: false,
     ),
     TrackItem(
-      id: "27bOWEbshyE",
+      id: "qmGtn0TQ8Fk",
       name: "[name]",
-      duration: Some(208),
+      duration: Some(205),
       cover: [],
       artists: [
         ArtistId(
-          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
           name: "[name]",
         ),
       ],
-      artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+      artist_id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
       album: Some(AlbumId(
-        id: "MPREb_nlBWQROfvjo",
+        id: "MPREb_mXdQvyCqLnx",
         name: "[name]",
       )),
       view_count: "[view_count]",
@@ -209,19 +209,19 @@ MusicAlbum(
       by_va: false,
     ),
     TrackItem(
-      id: "riD_3oZwt8w",
+      id: "Bb_j4TTlEZA",
       name: "[name]",
-      duration: Some(212),
+      duration: Some(198),
       cover: [],
       artists: [
         ArtistId(
-          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
           name: "[name]",
         ),
       ],
-      artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+      artist_id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
       album: Some(AlbumId(
-        id: "MPREb_nlBWQROfvjo",
+        id: "MPREb_mXdQvyCqLnx",
         name: "[name]",
       )),
       view_count: "[view_count]",
@@ -230,19 +230,19 @@ MusicAlbum(
       by_va: false,
     ),
     TrackItem(
-      id: "8GNvjF3no9s",
+      id: "rVey1Qgn1vc",
       name: "[name]",
-      duration: Some(180),
+      duration: Some(237),
       cover: [],
       artists: [
         ArtistId(
-          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
           name: "[name]",
         ),
       ],
-      artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+      artist_id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
       album: Some(AlbumId(
-        id: "MPREb_nlBWQROfvjo",
+        id: "MPREb_mXdQvyCqLnx",
         name: "[name]",
       )),
       view_count: "[view_count]",
@@ -251,19 +251,19 @@ MusicAlbum(
       by_va: false,
     ),
     TrackItem(
-      id: "YHMFzf1uN2U",
+      id: "mdXNWcYYZ10",
       name: "[name]",
-      duration: Some(219),
+      duration: Some(230),
       cover: [],
       artists: [
         ArtistId(
-          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
           name: "[name]",
         ),
       ],
-      artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+      artist_id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
       album: Some(AlbumId(
-        id: "MPREb_nlBWQROfvjo",
+        id: "MPREb_mXdQvyCqLnx",
         name: "[name]",
       )),
       view_count: "[view_count]",
@@ -272,19 +272,19 @@ MusicAlbum(
       by_va: false,
     ),
     TrackItem(
-      id: "jvV-z5F3oAo",
+      id: "yX40-XWjWe0",
       name: "[name]",
-      duration: Some(278),
+      duration: Some(232),
       cover: [],
       artists: [
         ArtistId(
-          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
           name: "[name]",
         ),
       ],
-      artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+      artist_id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
       album: Some(AlbumId(
-        id: "MPREb_nlBWQROfvjo",
+        id: "MPREb_mXdQvyCqLnx",
         name: "[name]",
       )),
       view_count: "[view_count]",
@@ -292,135 +292,30 @@ MusicAlbum(
       track_nr: Some(13),
       by_va: false,
     ),
-    TrackItem(
-      id: "u8_9cxlrh8k",
-      name: "[name]",
-      duration: Some(205),
-      cover: [],
-      artists: [
-        ArtistId(
-          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
-          name: "[name]",
-        ),
-      ],
-      artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
-      album: Some(AlbumId(
-        id: "MPREb_nlBWQROfvjo",
-        name: "[name]",
-      )),
-      view_count: "[view_count]",
-      is_video: false,
-      track_nr: Some(14),
-      by_va: false,
-    ),
-    TrackItem(
-      id: "gSvKcvM1Wk0",
-      name: "[name]",
-      duration: Some(203),
-      cover: [],
-      artists: [
-        ArtistId(
-          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
-          name: "[name]",
-        ),
-      ],
-      artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
-      album: Some(AlbumId(
-        id: "MPREb_nlBWQROfvjo",
-        name: "[name]",
-      )),
-      view_count: "[view_count]",
-      is_video: false,
-      track_nr: Some(15),
-      by_va: false,
-    ),
-    TrackItem(
-      id: "wQHgKRJ0pDQ",
-      name: "[name]",
-      duration: Some(223),
-      cover: [],
-      artists: [
-        ArtistId(
-          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
-          name: "[name]",
-        ),
-      ],
-      artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
-      album: Some(AlbumId(
-        id: "MPREb_nlBWQROfvjo",
-        name: "[name]",
-      )),
-      view_count: "[view_count]",
-      is_video: false,
-      track_nr: Some(16),
-      by_va: false,
-    ),
-    TrackItem(
-      id: "Ckz5i6-hzf0",
-      name: "[name]",
-      duration: Some(178),
-      cover: [],
-      artists: [
-        ArtistId(
-          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
-          name: "[name]",
-        ),
-      ],
-      artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
-      album: Some(AlbumId(
-        id: "MPREb_nlBWQROfvjo",
-        name: "[name]",
-      )),
-      view_count: "[view_count]",
-      is_video: false,
-      track_nr: Some(17),
-      by_va: false,
-    ),
-    TrackItem(
-      id: "y5zuUgyFqrc",
-      name: "[name]",
-      duration: Some(221),
-      cover: [],
-      artists: [
-        ArtistId(
-          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
-          name: "[name]",
-        ),
-      ],
-      artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
-      album: Some(AlbumId(
-        id: "MPREb_nlBWQROfvjo",
-        name: "[name]",
-      )),
-      view_count: "[view_count]",
-      is_video: false,
-      track_nr: Some(18),
-      by_va: false,
-    ),
   ],
   variants: [
     AlbumItem(
-      id: "MPREb_jk6Msw8izou",
-      name: "Märchen enden gut (Nyáre Ranta (Märchenedition))",
+      id: "MPREb_bURBKIaURqK",
+      name: "Demi (Deluxe)",
       cover: [
         Thumbnail(
-          url: "https://lh3.googleusercontent.com/BKgnW_-hapCHk599AtRfTYZGdXVIo0C4bJp1Bh7qUpGK7fNAXGW8Bhv2x-ukeFM8cuxKbGqqGaTo8fZASA=w226-h226-l90-rj",
+          url: "https://lh3.googleusercontent.com/p6Fy9_hfUY-Y6BXzdsIfOKpSZBhjGkDrpPcbA8DNrR1zvCFUL7p3cCeUywx8PxQ6FX7eb30MsWq3fpn2=w226-h226-l90-rj",
           width: 226,
           height: 226,
         ),
         Thumbnail(
-          url: "https://lh3.googleusercontent.com/BKgnW_-hapCHk599AtRfTYZGdXVIo0C4bJp1Bh7qUpGK7fNAXGW8Bhv2x-ukeFM8cuxKbGqqGaTo8fZASA=w544-h544-l90-rj",
+          url: "https://lh3.googleusercontent.com/p6Fy9_hfUY-Y6BXzdsIfOKpSZBhjGkDrpPcbA8DNrR1zvCFUL7p3cCeUywx8PxQ6FX7eb30MsWq3fpn2=w544-h544-l90-rj",
           width: 544,
           height: 544,
         ),
       ],
       artists: [
         ArtistId(
-          id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+          id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
           name: "[name]",
         ),
       ],
-      artist_id: Some("UC_vmjW5e1xEHhYjY2a0kK1A"),
+      artist_id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
       album_type: Album,
       year: None,
       by_va: false,
