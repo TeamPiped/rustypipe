@@ -1465,7 +1465,7 @@ fn music_playlist_not_found(rp: RustyPipe) {
 }
 
 #[rstest]
-#[case::one_artist("one_artist", "MPREb_mXdQvyCqLnx")]
+#[case::one_artist("one_artist", "MPREb_rMegpebUBPU")]
 #[case::various_artists("various_artists", "MPREb_8QkDeEIawvX")]
 #[case::single("single", "MPREb_bHfHGoy7vuv")]
 #[case::ep("ep", "MPREb_u1I69lSAe5v")]
@@ -1512,7 +1512,7 @@ fn music_album_not_found(rp: RustyPipe) {
 }
 
 #[rstest]
-#[case::basic_all("basic_all", "UCNezSmfQ8VIgvHUNj1Gzx6A", true, 15, 1)]
+#[case::basic_all("basic_all", "UCFKUUtHjT4iq3p0JJA13SOA", true, 15, 1)]
 // TODO: wait for A/B test 6 to stabilize
 // #[case::basic("basic", "UC7cl4MmM6ZZ2TcFyMk_b4pg", false, 15, 2)]
 #[case::no_more_albums("no_more_albums", "UCOR4_bSVIXPsGa4BbCSt60Q", true, 15, 0)]
@@ -1905,12 +1905,12 @@ fn music_search_episode(rp: RustyPipe, #[case] videos: bool) {
     false
 )]
 #[case::album(
-    "demi",
-    "Demi",
-    "MPREb_mXdQvyCqLnx",
+    "unbroken",
+    "Unbroken",
+    "MPREb_rMegpebUBPU",
     "Demi Lovato",
     "UCwem2sj-QUJCiWiPAo9JuAw",
-    2013,
+    2011,
     AlbumType::Album,
     true
 )]

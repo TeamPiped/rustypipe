@@ -3,9 +3,9 @@ source: tests/youtube.rs
 expression: album
 ---
 MusicAlbum(
-  id: "MPREb_mXdQvyCqLnx",
-  playlist_id: Some("OLAK5uy_mAg4o-PpgUtVY97PDxaY3DRTZt37WUDaQ"),
-  name: "Demi",
+  id: "MPREb_rMegpebUBPU",
+  playlist_id: Some("OLAK5uy_nZzwnG9SLy5l-hd5Ze0FH4LfTWMqDXQdY"),
+  name: "Unbroken",
   cover: "[cover]",
   artists: [
     ArtistId(
@@ -14,15 +14,15 @@ MusicAlbum(
     ),
   ],
   artist_id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
-  description: Some("Demi is the fourth studio album by American singer Demi Lovato. It was released on May 10, 2013, by Hollywood Records. Looking to transition from her self-described \"generic\" third album Unbroken, Lovato wanted her fourth album to \"have songs that excited her\". Demi is primarily a pop record with elements of synthpop, and bubblegum pop.\nDemi received generally favorable reviews from music critics, who complimented Lovato\'s vocal performance. The album debuted at number three on the US Billboard 200 with first-week sales of 110,000 copies. The album also reached the top five in Canada, Ireland, Italy, Mexico and Spain. It has since sold 490,000 digital copies in the US and been certified Gold by the RIAA.\nThe album\'s lead single, \"Heart Attack\" peaked at number ten on the Billboard Hot 100, marking Lovato\'s third US top-ten single, and has been certified double platinum by the RIAA. The second single \"Made in the USA\" peaked at number 80, while later singles \"Neon Lights\" and \"Really Don\'t Care\" both reached the top 40 peaking at 36 and 26, respectively, and both have been certified platinum by RIAA.\n\nFrom Wikipedia (https://en.wikipedia.org/wiki/Demi_(album)) under Creative Commons Attribution CC-BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0/legalcode)"),
+  description: Some("Unbroken is the third studio album by American singer Demi Lovato. It was released on September 20, 2011, by Hollywood Records. Primarily a pop record, Lovato described the album as \"more mature\" and with more R&B elements than her previous material, citing Rihanna as the major influence. While some of the album\'s lyrical content was heavily influenced by Lovato\'s personal struggles, it also deals with lighter subjects, such as love, self-empowerment, and having fun. Contributions to the album\'s production came from a wide range of producers, including Toby Gad, Ryan Tedder, Timbaland, Jim Beanz and Rock Mafia.\nLovato initially began recording her third studio album in 2010 before going on tour with the Jonas Brothers on their Live in Concert Tour. After withdrawing from the tour to seek treatment for physical and emotional issues, Lovato continued work on the album and described the recording process as therapeutic. She collaborated with artists such as Missy Elliott, Timbaland, Dev, Iyaz, and Jason Derulo on several tracks.\n\nFrom Wikipedia (https://en.wikipedia.org/wiki/Unbroken_(Demi_Lovato_album)) under Creative Commons Attribution CC-BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0/legalcode)"),
   album_type: Album,
-  year: Some(2013),
+  year: Some(2011),
   by_va: false,
   tracks: [
     TrackItem(
-      id: "8DmPZaCLMcE",
-      name: "Heart Attack",
-      duration: Some(211),
+      id: "js0moD0CIRQ",
+      name: "All Night Long",
+      duration: Some(195),
       cover: [],
       artists: [
         ArtistId(
@@ -32,8 +32,8 @@ MusicAlbum(
       ],
       artist_id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
       album: Some(AlbumId(
-        id: "MPREb_mXdQvyCqLnx",
-        name: "Demi",
+        id: "MPREb_rMegpebUBPU",
+        name: "Unbroken",
       )),
       view_count: "[view_count]",
       is_video: false,
@@ -41,9 +41,9 @@ MusicAlbum(
       by_va: false,
     ),
     TrackItem(
-      id: "RRE0hz60t8I",
-      name: "Made In The USA",
-      duration: Some(197),
+      id: "-xFJfXE2Cms",
+      name: "Who\'s That Boy",
+      duration: Some(193),
       cover: [],
       artists: [
         ArtistId(
@@ -53,8 +53,8 @@ MusicAlbum(
       ],
       artist_id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
       album: Some(AlbumId(
-        id: "MPREb_mXdQvyCqLnx",
-        name: "Demi",
+        id: "MPREb_rMegpebUBPU",
+        name: "Unbroken",
       )),
       view_count: "[view_count]",
       is_video: false,
@@ -62,9 +62,9 @@ MusicAlbum(
       by_va: false,
     ),
     TrackItem(
-      id: "O38fBJpWqGM",
-      name: "Without The Love",
-      duration: Some(236),
+      id: "KWDAaQDq8CQ",
+      name: "You\'re My Only Shorty",
+      duration: Some(187),
       cover: [],
       artists: [
         ArtistId(
@@ -74,8 +74,8 @@ MusicAlbum(
       ],
       artist_id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
       album: Some(AlbumId(
-        id: "MPREb_mXdQvyCqLnx",
-        name: "Demi",
+        id: "MPREb_rMegpebUBPU",
+        name: "Unbroken",
       )),
       view_count: "[view_count]",
       is_video: false,
@@ -83,9 +83,9 @@ MusicAlbum(
       by_va: false,
     ),
     TrackItem(
-      id: "BB1Q5XjCOho",
-      name: "Neon Lights",
-      duration: Some(234),
+      id: "0bcovdD1gQo",
+      name: "Together",
+      duration: Some(274),
       cover: [],
       artists: [
         ArtistId(
@@ -95,8 +95,8 @@ MusicAlbum(
       ],
       artist_id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
       album: Some(AlbumId(
-        id: "MPREb_mXdQvyCqLnx",
-        name: "Demi",
+        id: "MPREb_rMegpebUBPU",
+        name: "Unbroken",
       )),
       view_count: "[view_count]",
       is_video: false,
@@ -104,9 +104,9 @@ MusicAlbum(
       by_va: false,
     ),
     TrackItem(
-      id: "0VOm-MoZ3Xg",
-      name: "Two Pieces",
-      duration: Some(266),
+      id: "lJsqxERcxR8",
+      name: "Lightweight",
+      duration: Some(242),
       cover: [],
       artists: [
         ArtistId(
@@ -116,8 +116,8 @@ MusicAlbum(
       ],
       artist_id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
       album: Some(AlbumId(
-        id: "MPREb_mXdQvyCqLnx",
-        name: "Demi",
+        id: "MPREb_rMegpebUBPU",
+        name: "Unbroken",
       )),
       view_count: "[view_count]",
       is_video: false,
@@ -125,9 +125,9 @@ MusicAlbum(
       by_va: false,
     ),
     TrackItem(
-      id: "vvm-XtXQ7wI",
-      name: "Nightingale",
-      duration: Some(217),
+      id: "iLfB6-slQdc",
+      name: "Unbroken",
+      duration: Some(199),
       cover: [],
       artists: [
         ArtistId(
@@ -137,8 +137,8 @@ MusicAlbum(
       ],
       artist_id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
       album: Some(AlbumId(
-        id: "MPREb_mXdQvyCqLnx",
-        name: "Demi",
+        id: "MPREb_rMegpebUBPU",
+        name: "Unbroken",
       )),
       view_count: "[view_count]",
       is_video: false,
@@ -146,9 +146,9 @@ MusicAlbum(
       by_va: false,
     ),
     TrackItem(
-      id: "CJYhllodSAc",
-      name: "In Case",
-      duration: Some(215),
+      id: "4DjGZIdMcZk",
+      name: "Fix a Heart",
+      duration: Some(194),
       cover: [],
       artists: [
         ArtistId(
@@ -158,8 +158,8 @@ MusicAlbum(
       ],
       artist_id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
       album: Some(AlbumId(
-        id: "MPREb_mXdQvyCqLnx",
-        name: "Demi",
+        id: "MPREb_rMegpebUBPU",
+        name: "Unbroken",
       )),
       view_count: "[view_count]",
       is_video: false,
@@ -167,9 +167,9 @@ MusicAlbum(
       by_va: false,
     ),
     TrackItem(
-      id: "tTmJoiCIebg",
-      name: "Really Don\'t Care (feat. Cher Lloyd)",
-      duration: Some(202),
+      id: "hakoZyX4QIc",
+      name: "Hold Up",
+      duration: Some(172),
       cover: [],
       artists: [
         ArtistId(
@@ -179,8 +179,8 @@ MusicAlbum(
       ],
       artist_id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
       album: Some(AlbumId(
-        id: "MPREb_mXdQvyCqLnx",
-        name: "Demi",
+        id: "MPREb_rMegpebUBPU",
+        name: "Unbroken",
       )),
       view_count: "[view_count]",
       is_video: false,
@@ -188,9 +188,9 @@ MusicAlbum(
       by_va: false,
     ),
     TrackItem(
-      id: "qmGtn0TQ8Fk",
-      name: "Fire Starter",
-      duration: Some(205),
+      id: "GOh96GiHVgI",
+      name: "Mistake",
+      duration: Some(214),
       cover: [],
       artists: [
         ArtistId(
@@ -200,8 +200,8 @@ MusicAlbum(
       ],
       artist_id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
       album: Some(AlbumId(
-        id: "MPREb_mXdQvyCqLnx",
-        name: "Demi",
+        id: "MPREb_rMegpebUBPU",
+        name: "Unbroken",
       )),
       view_count: "[view_count]",
       is_video: false,
@@ -209,9 +209,9 @@ MusicAlbum(
       by_va: false,
     ),
     TrackItem(
-      id: "Bb_j4TTlEZA",
-      name: "Something That We\'re Not",
-      duration: Some(198),
+      id: "ne_jRAHABx0",
+      name: "Give Your Heart a Break",
+      duration: Some(206),
       cover: [],
       artists: [
         ArtistId(
@@ -221,8 +221,8 @@ MusicAlbum(
       ],
       artist_id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
       album: Some(AlbumId(
-        id: "MPREb_mXdQvyCqLnx",
-        name: "Demi",
+        id: "MPREb_rMegpebUBPU",
+        name: "Unbroken",
       )),
       view_count: "[view_count]",
       is_video: false,
@@ -230,9 +230,9 @@ MusicAlbum(
       by_va: false,
     ),
     TrackItem(
-      id: "rVey1Qgn1vc",
-      name: "Never Been Hurt",
-      duration: Some(237),
+      id: "g8oyC2g5V64",
+      name: "Skyscraper",
+      duration: Some(222),
       cover: [],
       artists: [
         ArtistId(
@@ -242,8 +242,8 @@ MusicAlbum(
       ],
       artist_id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
       album: Some(AlbumId(
-        id: "MPREb_mXdQvyCqLnx",
-        name: "Demi",
+        id: "MPREb_rMegpebUBPU",
+        name: "Unbroken",
       )),
       view_count: "[view_count]",
       is_video: false,
@@ -251,9 +251,9 @@ MusicAlbum(
       by_va: false,
     ),
     TrackItem(
-      id: "mdXNWcYYZ10",
-      name: "Shouldn\'t Come Back",
-      duration: Some(230),
+      id: "RxTEv7wXvG0",
+      name: "In Real Life",
+      duration: Some(178),
       cover: [],
       artists: [
         ArtistId(
@@ -263,8 +263,8 @@ MusicAlbum(
       ],
       artist_id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
       album: Some(AlbumId(
-        id: "MPREb_mXdQvyCqLnx",
-        name: "Demi",
+        id: "MPREb_rMegpebUBPU",
+        name: "Unbroken",
       )),
       view_count: "[view_count]",
       is_video: false,
@@ -272,9 +272,9 @@ MusicAlbum(
       by_va: false,
     ),
     TrackItem(
-      id: "yX40-XWjWe0",
-      name: "Warrior",
-      duration: Some(232),
+      id: "V8iVLlSZeNs",
+      name: "My Love Is Like a Star",
+      duration: Some(231),
       cover: [],
       artists: [
         ArtistId(
@@ -284,31 +284,19 @@ MusicAlbum(
       ],
       artist_id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
       album: Some(AlbumId(
-        id: "MPREb_mXdQvyCqLnx",
-        name: "Demi",
+        id: "MPREb_rMegpebUBPU",
+        name: "Unbroken",
       )),
       view_count: "[view_count]",
       is_video: false,
       track_nr: Some(13),
       by_va: false,
     ),
-  ],
-  variants: [
-    AlbumItem(
-      id: "MPREb_bURBKIaURqK",
-      name: "Demi (Deluxe)",
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/p6Fy9_hfUY-Y6BXzdsIfOKpSZBhjGkDrpPcbA8DNrR1zvCFUL7p3cCeUywx8PxQ6FX7eb30MsWq3fpn2=w226-h226-l90-rj",
-          width: 226,
-          height: 226,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/p6Fy9_hfUY-Y6BXzdsIfOKpSZBhjGkDrpPcbA8DNrR1zvCFUL7p3cCeUywx8PxQ6FX7eb30MsWq3fpn2=w544-h544-l90-rj",
-          width: 544,
-          height: 544,
-        ),
-      ],
+    TrackItem(
+      id: "OESslKlpao4",
+      name: "For the Love of a Daughter",
+      duration: Some(241),
+      cover: [],
       artists: [
         ArtistId(
           id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
@@ -316,9 +304,36 @@ MusicAlbum(
         ),
       ],
       artist_id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
-      album_type: Album,
-      year: None,
+      album: Some(AlbumId(
+        id: "MPREb_rMegpebUBPU",
+        name: "Unbroken",
+      )),
+      view_count: "[view_count]",
+      is_video: false,
+      track_nr: Some(14),
+      by_va: false,
+    ),
+    TrackItem(
+      id: "ennw5cHAebo",
+      name: "Skyscraper (Wizz Dumb Remix)",
+      duration: Some(223),
+      cover: [],
+      artists: [
+        ArtistId(
+          id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
+          name: "Demi Lovato",
+        ),
+      ],
+      artist_id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
+      album: Some(AlbumId(
+        id: "MPREb_rMegpebUBPU",
+        name: "Unbroken",
+      )),
+      view_count: "[view_count]",
+      is_video: false,
+      track_nr: Some(15),
       by_va: false,
     ),
   ],
+  variants: [],
 )
