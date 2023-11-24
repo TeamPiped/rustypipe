@@ -3,7 +3,7 @@ use std::convert::TryFrom;
 use once_cell::sync::Lazy;
 use regex::Regex;
 use serde::{Deserialize, Deserializer};
-use serde_with::{serde_as, DeserializeAs, VecSkipError};
+use serde_with::{serde_as, DefaultOnError, DeserializeAs, VecSkipError};
 
 use crate::{
     client::response::url_endpoint::{
@@ -122,10 +122,13 @@ struct RichTextInternal {
 }
 
 /// TextLinkRun is a single component from a YouTube text with links
+#[serde_as]
 #[derive(Deserialize)]
 #[serde(rename_all = "camelCase")]
 struct RichTextRun {
     text: String,
+    #[serde(default)]
+    #[serde_as(as = "DefaultOnError")]
     navigation_endpoint: Option<NavigationEndpoint>,
 }
 
