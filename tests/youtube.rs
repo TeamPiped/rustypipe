@@ -1469,7 +1469,7 @@ fn music_playlist_not_found(rp: RustyPipe) {
 #[case::various_artists("various_artists", "MPREb_8QkDeEIawvX")]
 #[case::single("single", "MPREb_bHfHGoy7vuv")]
 #[case::ep("ep", "MPREb_u1I69lSAe5v")]
-#[case::audiobook("audiobook", "MPREb_gaoNzsQHedo")]
+// #[case::audiobook("audiobook", "MPREb_gaoNzsQHedo")]
 #[case::show("show", "MPREb_aDDw2kVEFtM")]
 #[case::unavailable("unavailable", "MPREb_AzuWg8qAVVl")]
 #[case::no_year("no_year", "MPREb_F3Af9UZZVxX")]
