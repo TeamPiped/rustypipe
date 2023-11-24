@@ -340,7 +340,7 @@ async fn channel_playlists() {
 }
 
 async fn channel_info() {
-    let json_path = path!(*TESTFILES_DIR / "channel" / "channel_info2.json");
+    let json_path = path!(*TESTFILES_DIR / "channel" / "channel_info.json");
     if json_path.exists() {
         return;
     }

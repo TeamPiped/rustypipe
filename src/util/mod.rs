@@ -467,11 +467,11 @@ pub fn video_id_from_thumbnail_url(url: &str) -> Option<String> {
 }
 
 pub fn b64_encode<T: AsRef<[u8]>>(input: T) -> String {
-    base64::engine::general_purpose::STANDARD.encode(input)
+    base64::engine::general_purpose::URL_SAFE.encode(input)
 }
 
 pub fn b64_decode<T: AsRef<[u8]>>(input: T) -> Result<Vec<u8>, base64::DecodeError> {
-    base64::engine::general_purpose::STANDARD.decode(input)
+    base64::engine::general_purpose::URL_SAFE.decode(input)
 }
 
 /// Get the country from its English name

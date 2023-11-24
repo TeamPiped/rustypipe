@@ -189,7 +189,7 @@ impl RustyPipeQuery {
 
         self.execute_request::<response::ChannelAbout, _, _>(
             ClientType::Desktop,
-            "channel_info2",
+            "channel_info",
             channel_id,
             "browse",
             &request_body,
