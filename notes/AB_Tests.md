@@ -32,6 +32,7 @@ with the following command: `rustypipe-codegen ab-test <id>`.
 - **Encountered on:** 24.09.2022
 - **Impact:** 🟡 Medium
 - **Endpoint:** next (video details)
+- **Status:** Stabilized
 
 ![A/B test 1 screenshot](./_img/ab_1.png)
 
@@ -121,6 +122,7 @@ UTF-16 index seperately.
 - **Encountered on:** 11.10.2022
 - **Impact:** 🔴 High
 - **Endpoint:** browse (channel videos)
+- **Status:** Stabilized
 
 ![A/B test 2 screenshot](./_img/ab_2.webp)
 
@@ -217,6 +219,7 @@ Additionally the channel tab response model was slightly changed, now using a
 - **Encountered on:** 20.11.2022
 - **Impact:** 🟡 Medium
 - **Endpoint:** search
+- **Status:** Stabilized
 
 ![A/B test 3 screenshot](./_img/ab_3.png)
 
@@ -276,6 +279,7 @@ Note that channels without handles still use the old data model, even on the sam
 - **Encountered on:** 1.04.2023
 - **Impact:** 🟢 Low
 - **Endpoint:** browse (trending videos)
+- **Status:** Discontinued
 
 YouTube moved the list of trending videos from the main _trending_ page to a separate
 tab (Videos).
@@ -300,6 +304,7 @@ The data model for the video shelves did not change.
 - **Encountered on:** 1.05.2023
 - **Impact:** 🟢 Low
 - **Endpoint:** browse (trending videos)
+- **Status:** Frequent (99%)
 
 YouTube changed the header renderer type on the trending page to a `pageHeaderRenderer`.
 
@@ -359,6 +364,7 @@ YouTube changed the header renderer type on the trending page to a `pageHeaderRe
 - **Encountered on:** 13.05.2023
 - **Impact:** 🟡 Medium
 - **Endpoint:** browse (music artist)
+- **Status:** Stabilized
 
 YouTube merged the 2 sections for singles and albums on artist pages together. Now there
 is only a _Top Releases_ section.
@@ -381,6 +387,7 @@ visitor data cookie to be set, as it was the case with the old system.
 
 - **Encountered on:** 28.05.2023
 - **Impact:** 🟢 Low
+- **Status:** Discontinued
 
 YouTube changed their date format from the long format (_21 hours ago_, _3 days ago_) to
 a short format (_21h ago_, _3d ago_).
@@ -389,6 +396,7 @@ a short format (_21h ago_, _3d ago_).
 
 - **Encountered on:** 29.06.2023
 - **Impact:** 🟡 Medium
+- **Status:** Experimental (9%)
 
 YouTube added the track playback count to search results and top artist tracks.
 In exchange, they removed the "Song" type identifier from search results.
@@ -402,6 +410,7 @@ In exchange, they removed the "Song" type identifier from search results.
 - **Encountered on:** 26.06.2023
 - **Impact:** 🟡 Medium
 - **Endpoint:** browse (playlist)
+- **Status:** Stabilized
 
 ![A/B test 9 screenshot](./_img/ab_9.png)
 
@@ -423,6 +432,7 @@ by using the mobile client. But that may change in the future.
 - **Encountered on:** 03.11.2023
 - **Impact:** 🟡 Medium
 - **Endpoint:** browse (channel info)
+- **Status:** Stabilized
 
 ![A/B test 10 screenshot](./_img/ab_10.png)
 
@@ -438,6 +448,7 @@ the main tab.
 - **Encountered on:** 03.11.2023
 - **Impact:** 🟢 Low
 - **Endpoint:** next
+- **Status:** Experimental (7%)
 
 YouTube introduced an updated date model for the like/dislike buttons. The new model
 looks needlessly complex but contains the same parsing-relevant data as the old model
