@@ -1,10 +1,8 @@
 pub mod text;
 
-mod date;
 mod range;
 mod vec_log_err;
 
-pub use date::DateYmd;
 pub use range::Range;
 pub use vec_log_err::VecSkipErrorWrap;
 

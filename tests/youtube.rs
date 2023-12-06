@@ -754,7 +754,7 @@ fn get_video_details_no_desc(rp: RustyPipe) {
     assert_eq!(details.id, "VYJNSQ_ANyA");
     assert_eq!(details.name, "Cricket comedy by Modi");
     assert_eq!(details.channel.id, "UC8gBy2lByHxIyoPMglerNWg");
-    assert_eq!(details.channel.name, "TMP VIBES");
+    assert_eq!(details.channel.name, "TMP Shorts");
     assert!(!details.channel.avatar.is_empty(), "no channel avatars");
 
     assert!(

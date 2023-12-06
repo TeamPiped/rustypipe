@@ -12,11 +12,10 @@ pub use frameset::{Frameset, FramesetUrls};
 use std::{collections::BTreeSet, ops::Range};
 
 use serde::{Deserialize, Serialize};
-use serde_with::serde_as;
 use time::{Date, OffsetDateTime};
 
 use self::{paginator::Paginator, richtext::RichText};
-use crate::{error::Error, param::Country, serializer::DateYmd, validate};
+use crate::{error::Error, param::Country, validate};
 
 /*
 #COMMON
@@ -501,7 +500,6 @@ pub struct Subtitle {
 */
 
 /// YouTube playlist
-#[serde_as]
 #[derive(Clone, Debug, Serialize, Deserialize)]
 #[non_exhaustive]
 pub struct Playlist {
@@ -520,7 +518,6 @@ pub struct Playlist {
     /// Channel of the playlist
     pub channel: Option<ChannelId>,
     /// Last update date
-    #[serde_as(as = "Option<DateYmd>")]
     pub last_update: Option<Date>,
     /// Textual last update date
     pub last_update_txt: Option<String>,
@@ -739,7 +736,6 @@ pub struct Channel<T> {
 }
 
 /// Detailed channel information
-#[serde_as]
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[non_exhaustive]
 pub struct ChannelInfo {
@@ -757,7 +753,6 @@ pub struct ChannelInfo {
     /// Channel video count
     pub video_count: Option<u64>,
     /// Channel creation date
-    #[serde_as(as = "Option<DateYmd>")]
     pub create_date: Option<Date>,
     /// Channel view count
     pub view_count: Option<u64>,

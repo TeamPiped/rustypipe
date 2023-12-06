@@ -5,6 +5,7 @@ edition = "2021"
 authors = ["ThetaDev <thetadev@magenta.de>"]
 license = "GPL-3.0"
 description = "Client for the public YouTube / YouTube Music API (Innertube), inspired by NewPipe"
+repository = "https://code.thetadev.de/ThetaDev/rustypipe"
 keywords = ["youtube", "video", "music"]
 categories = ["api-bindings", "multimedia"]
 
@@ -51,7 +52,7 @@ serde_plain = "1.0.1"
 rand = "0.8.5"
 time = { version = "0.3.15", features = [
     "macros",
-    "serde",
+    "serde-human-readable",
     "serde-well-known",
 ] }
 futures = "0.3.21"
