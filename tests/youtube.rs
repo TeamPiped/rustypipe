@@ -2294,8 +2294,7 @@ fn music_radio_artist(rp: RustyPipe) {
 
 #[rstest]
 fn music_radio_not_found(rp: RustyPipe) {
-    let err =
-        tokio_test::block_on(rp.query().music_radio("RDEM_Ktu-TilkxtLvmc9wXZZZZ")).unwrap_err();
+    let err = tokio_test::block_on(rp.query().music_radio("RDEM_foo")).unwrap_err();
 
     assert!(
         matches!(err, Error::Extraction(ExtractionError::NotFound { .. })),
