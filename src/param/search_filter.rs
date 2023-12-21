@@ -212,6 +212,8 @@ impl SearchFilter {
             extras.varint(1, 1);
             pb.embedded(8, extras);
         }
+        // Disable filter for sensitive topics (e.g. suicide)
+        pb.varint(30, 1);
 
         pb.to_base64()
     }
@@ -256,29 +258,29 @@ mod tests {
     use super::*;
 
     #[rstest]
-    #[case(SearchFilter::new().item_type(ItemType::Video), "EgIQAQ%253D%253D")]
-    #[case(SearchFilter::new().item_type(ItemType::Channel), "EgIQAg%253D%253D")]
-    #[case(SearchFilter::new().item_type(ItemType::Playlist), "EgIQAw%253D%253D")]
-    #[case(SearchFilter::new().date(UploadDate::Hour), "EgIIAQ%253D%253D")]
-    #[case(SearchFilter::new().date(UploadDate::Day), "EgIIAg%253D%253D")]
-    #[case(SearchFilter::new().date(UploadDate::Week), "EgIIAw%253D%253D")]
-    #[case(SearchFilter::new().date(UploadDate::Month), "EgIIBA%253D%253D")]
-    #[case(SearchFilter::new().date(UploadDate::Year), "EgIIBQ%253D%253D")]
-    #[case(SearchFilter::new().length(Length::Short), "EgIYAQ%253D%253D")]
-    #[case(SearchFilter::new().length(Length::Medium), "EgIYAw%253D%253D")]
-    #[case(SearchFilter::new().length(Length::Long), "EgIYAg%253D%253D")]
-    #[case(SearchFilter::new().feature(Feature::IsLive), "EgJAAQ%253D%253D")]
-    #[case(SearchFilter::new().feature(Feature::Is4k), "EgJwAQ%253D%253D")]
-    #[case(SearchFilter::new().feature(Feature::IsHd), "EgIgAQ%253D%253D")]
-    #[case(SearchFilter::new().feature(Feature::Subtitles), "EgIoAQ%253D%253D")]
-    #[case(SearchFilter::new().feature(Feature::CCommons), "EgIwAQ%253D%253D")]
-    #[case(SearchFilter::new().feature(Feature::Is360), "EgJ4AQ%253D%253D")]
-    #[case(SearchFilter::new().feature(Feature::IsVr180), "EgPQAQE%253D")]
-    #[case(SearchFilter::new().feature(Feature::Is3d), "EgI4AQ%253D%253D")]
-    #[case(SearchFilter::new().feature(Feature::IsHdr), "EgPIAQE%253D")]
-    #[case(SearchFilter::new().sort(Order::Date), "CAI%253D")]
-    #[case(SearchFilter::new().sort(Order::Views), "CAM%253D")]
-    #[case(SearchFilter::new().sort(Order::Rating), "CAE%253D")]
+    #[case(SearchFilter::new().item_type(ItemType::Video), "EgIQAfABAQ%253D%253D")]
+    #[case(SearchFilter::new().item_type(ItemType::Channel), "EgIQAvABAQ%253D%253D")]
+    #[case(SearchFilter::new().item_type(ItemType::Playlist), "EgIQA_ABAQ%253D%253D")]
+    #[case(SearchFilter::new().date(UploadDate::Hour), "EgIIAfABAQ%253D%253D")]
+    #[case(SearchFilter::new().date(UploadDate::Day), "EgIIAvABAQ%253D%253D")]
+    #[case(SearchFilter::new().date(UploadDate::Week), "EgIIA_ABAQ%253D%253D")]
+    #[case(SearchFilter::new().date(UploadDate::Month), "EgIIBPABAQ%253D%253D")]
+    #[case(SearchFilter::new().date(UploadDate::Year), "EgIIBfABAQ%253D%253D")]
+    #[case(SearchFilter::new().length(Length::Short), "EgIYAfABAQ%253D%253D")]
+    #[case(SearchFilter::new().length(Length::Medium), "EgIYA_ABAQ%253D%253D")]
+    #[case(SearchFilter::new().length(Length::Long), "EgIYAvABAQ%253D%253D")]
+    #[case(SearchFilter::new().feature(Feature::IsLive), "EgJAAfABAQ%253D%253D")]
+    #[case(SearchFilter::new().feature(Feature::Is4k), "EgJwAfABAQ%253D%253D")]
+    #[case(SearchFilter::new().feature(Feature::IsHd), "EgIgAfABAQ%253D%253D")]
+    #[case(SearchFilter::new().feature(Feature::Subtitles), "EgIoAfABAQ%253D%253D")]
+    #[case(SearchFilter::new().feature(Feature::CCommons), "EgIwAfABAQ%253D%253D")]
+    #[case(SearchFilter::new().feature(Feature::Is360), "EgJ4AfABAQ%253D%253D")]
+    #[case(SearchFilter::new().feature(Feature::IsVr180), "EgPQAQHwAQE%253D")]
+    #[case(SearchFilter::new().feature(Feature::Is3d), "EgI4AfABAQ%253D%253D")]
+    #[case(SearchFilter::new().feature(Feature::IsHdr), "EgPIAQHwAQE%253D")]
+    #[case(SearchFilter::new().sort(Order::Date), "CALwAQE%253D")]
+    #[case(SearchFilter::new().sort(Order::Views), "CAPwAQE%253D")]
+    #[case(SearchFilter::new().sort(Order::Rating), "CAHwAQE%253D")]
     fn t_filter(#[case] filter: SearchFilter, #[case] expect: &str) {
         assert_eq!(urlencoding::encode(&filter.encode()), expect);
     }

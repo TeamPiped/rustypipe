@@ -19,8 +19,7 @@ use super::{response, ClientType, MapResponse, MapResult, RustyPipeQuery, YTCont
 struct QSearch<'a> {
     context: YTContext<'a>,
     query: &'a str,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    params: Option<String>,
+    params: &'a str,
 }
 
 impl RustyPipeQuery {
@@ -35,7 +34,7 @@ impl RustyPipeQuery {
         let request_body = QSearch {
             context,
             query,
-            params: None,
+            params: "8AEB",
         };
 
         self.execute_request::<response::Search, _, _>(
@@ -60,7 +59,7 @@ impl RustyPipeQuery {
         let request_body = QSearch {
             context,
             query,
-            params: Some(filter.encode()),
+            params: &filter.encode(),
         };
 
         self.execute_request::<response::Search, _, _>(

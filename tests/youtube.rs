@@ -754,7 +754,7 @@ fn get_video_details_no_desc(rp: RustyPipe) {
     assert_eq!(details.id, "VYJNSQ_ANyA");
     assert_eq!(details.name, "Cricket comedy by Modi");
     assert_eq!(details.channel.id, "UC8gBy2lByHxIyoPMglerNWg");
-    assert_eq!(details.channel.name, "TMP Shorts");
+    assert_eq!(details.channel.name, "TMP Mix Veg");
     assert!(!details.channel.avatar.is_empty(), "no channel avatars");
 
     assert!(
@@ -1254,6 +1254,24 @@ fn search_empty(rp: RustyPipe) {
     .unwrap();
 
     assert!(result.items.is_empty());
+}
+
+#[rstest]
+#[case::no_filter(false)]
+#[case::filter(true)]
+fn search_sensitive(rp: RustyPipe, #[case] filter: bool) {
+    let q = "suicide";
+    let result = if filter {
+        tokio_test::block_on(
+            rp.query()
+                .search_filter::<YouTubeItem, _>(q, &search_filter::SearchFilter::new()),
+        )
+    } else {
+        tokio_test::block_on(rp.query().search::<YouTubeItem, _>(q))
+    }
+    .unwrap();
+    assert_gte(result.items.count.unwrap(), 10_000, "results");
+    assert_next(result.items, rp.query(), 10, 2);
 }
 
 #[rstest]
