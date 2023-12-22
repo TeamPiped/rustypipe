@@ -27,7 +27,6 @@ use std::sync::Arc;
 use std::{borrow::Cow, fmt::Debug, time::Duration};
 
 use once_cell::sync::Lazy;
-use rand::Rng;
 use regex::Regex;
 use reqwest::{header, Client, ClientBuilder, Request, RequestBuilder, Response, StatusCode};
 use serde::{de::DeserializeOwned, Deserialize, Serialize};
@@ -185,8 +184,7 @@ struct QContinuation<'a> {
 
 const DEFAULT_UA: &str = "Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0";
 
-const CONSENT_COOKIE: &str = "CONSENT";
-const CONSENT_COOKIE_YES: &str = "YES+yt.462272069.de+FX+";
+const CONSENT_COOKIE: &str = "SOCS=CAISAiAD";
 
 const YOUTUBEI_V1_URL: &str = "https://www.youtube.com/youtubei/v1/";
 const YOUTUBEI_V1_GAPIS_URL: &str = "https://youtubei.googleapis.com/youtubei/v1/";
@@ -229,7 +227,6 @@ struct RustyPipeRef {
     storage: Option<Box<dyn CacheStorage>>,
     reporter: Option<Box<dyn Reporter>>,
     n_http_retries: u32,
-    consent_cookie: String,
     cache: CacheHolder,
     default_opts: RustyPipeOpts,
 }
@@ -505,12 +502,6 @@ impl RustyPipeBuilder {
                     Box::new(FileReporter::new(report_dir))
                 }),
                 n_http_retries: self.n_http_retries,
-                consent_cookie: format!(
-                    "{}={}{}",
-                    CONSENT_COOKIE,
-                    CONSENT_COOKIE_YES,
-                    rand::thread_rng().gen_range(100..1000)
-                ),
                 cache: CacheHolder {
                     desktop_client: RwLock::new(cdata.desktop_client),
                     music_client: RwLock::new(cdata.music_client),
@@ -815,7 +806,7 @@ impl RustyPipe {
                         .get(sw_url)
                         .header(header::ORIGIN, origin)
                         .header(header::REFERER, origin)
-                        .header(header::COOKIE, self.inner.consent_cookie.clone())
+                        .header(header::COOKIE, CONSENT_COOKIE)
                         .build()
                         .unwrap(),
                 )
@@ -1202,7 +1193,7 @@ impl RustyPipeQuery {
                 ))
                 .header(header::ORIGIN, YOUTUBE_HOME_URL)
                 .header(header::REFERER, YOUTUBE_HOME_URL)
-                .header(header::COOKIE, self.client.inner.consent_cookie.clone())
+                .header(header::COOKIE, CONSENT_COOKIE)
                 .header("X-YouTube-Client-Name", "1")
                 .header(
                     "X-YouTube-Client-Version",
@@ -1217,7 +1208,7 @@ impl RustyPipeQuery {
                 ))
                 .header(header::ORIGIN, YOUTUBE_MUSIC_HOME_URL)
                 .header(header::REFERER, YOUTUBE_MUSIC_HOME_URL)
-                .header(header::COOKIE, self.client.inner.consent_cookie.clone())
+                .header(header::COOKIE, CONSENT_COOKIE)
                 .header("X-YouTube-Client-Name", "67")
                 .header(
                     "X-YouTube-Client-Version",
