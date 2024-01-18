@@ -29,6 +29,14 @@ MusicAlbum(
           id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
           name: "[name]",
         ),
+        ArtistId(
+          id: Some("UCKqVP7_535ELJu2OeEd3zzQ"),
+          name: "[name]",
+        ),
+        ArtistId(
+          id: Some("UCStR3TnjvL7CL8ZNFPKmRXw"),
+          name: "[name]",
+        ),
       ],
       artist_id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
       album: Some(AlbumId(
@@ -48,6 +56,10 @@ MusicAlbum(
       artists: [
         ArtistId(
           id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
+          name: "[name]",
+        ),
+        ArtistId(
+          id: Some("UC58M_VmdxEw-h-p_HgeE0Zg"),
           name: "[name]",
         ),
       ],
@@ -71,6 +83,10 @@ MusicAlbum(
           id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
           name: "[name]",
         ),
+        ArtistId(
+          id: Some("UC0tIFKS5uijPeJLjH8uAWJg"),
+          name: "[name]",
+        ),
       ],
       artist_id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
       album: Some(AlbumId(
@@ -90,6 +106,10 @@ MusicAlbum(
       artists: [
         ArtistId(
           id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
+          name: "[name]",
+        ),
+        ArtistId(
+          id: Some("UCA7oqkXUZIlT8QXhxaIR4RA"),
           name: "[name]",
         ),
       ],

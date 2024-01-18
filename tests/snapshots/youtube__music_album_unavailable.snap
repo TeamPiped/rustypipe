@@ -7,12 +7,25 @@ MusicAlbum(
   playlist_id: Some("OLAK5uy_mux5ygfN9sbiR1ma3yh1GHTmqNekZNoAI"),
   name: "13 Reasons Why (Season 3)",
   cover: "[cover]",
-  artists: [],
-  artist_id: None,
+  artists: [
+    ArtistId(
+      id: Some("UCCj0RlDqqahEB5BXVtDcPqg"),
+      name: "5 Seconds of Summer",
+    ),
+    ArtistId(
+      id: Some("UCMrCoizKiBxqeg5pTpBXn1A"),
+      name: "YUNGBLUD",
+    ),
+    ArtistId(
+      id: Some("UCvsgN5NKOzXnAURfaf3TOig"),
+      name: "Alexander 23",
+    ),
+  ],
+  artist_id: Some("UCCj0RlDqqahEB5BXVtDcPqg"),
   description: None,
   album_type: Album,
   year: Some(2019),
-  by_va: true,
+  by_va: false,
   tracks: [
     TrackItem(
       id: "R3VIKRtzAdE",
@@ -252,11 +265,15 @@ MusicAlbum(
       cover: [],
       artists: [
         ArtistId(
+          id: Some("UCRBHsrbsZDxjHkcgMKEJwpw"),
+          name: "Brendan Angelides",
+        ),
+        ArtistId(
           id: Some("UC4YvDAbE1EYwZpj6gQ-lpLw"),
           name: "Eskmo",
         ),
       ],
-      artist_id: Some("UC4YvDAbE1EYwZpj6gQ-lpLw"),
+      artist_id: Some("UCRBHsrbsZDxjHkcgMKEJwpw"),
       album: Some(AlbumId(
         id: "MPREb_AzuWg8qAVVl",
         name: "13 Reasons Why (Season 3)",

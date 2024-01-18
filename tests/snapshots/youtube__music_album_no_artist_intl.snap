@@ -63,11 +63,11 @@ MusicAlbum(
       cover: [],
       artists: [
         ArtistId(
-          id: None,
+          id: Some("UCUhWwvF6gIPWTYlYb4-icLA"),
           name: "[name]",
         ),
       ],
-      artist_id: None,
+      artist_id: Some("UCUhWwvF6gIPWTYlYb4-icLA"),
       album: Some(AlbumId(
         id: "MPREb_bqWA6mAZFWS",
         name: "[name]",

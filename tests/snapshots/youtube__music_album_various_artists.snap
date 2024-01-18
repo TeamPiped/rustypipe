@@ -105,11 +105,11 @@ MusicAlbum(
       cover: [],
       artists: [
         ArtistId(
-          id: None,
+          id: Some("UCa4ZqZPRjz9MYYnfpoh2few"),
           name: "LOONA",
         ),
       ],
-      artist_id: None,
+      artist_id: Some("UCa4ZqZPRjz9MYYnfpoh2few"),
       album: Some(AlbumId(
         id: "MPREb_8QkDeEIawvX",
         name: "＜Queendom2＞ FINAL",

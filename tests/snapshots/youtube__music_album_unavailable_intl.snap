@@ -7,12 +7,25 @@ MusicAlbum(
   playlist_id: Some("OLAK5uy_mux5ygfN9sbiR1ma3yh1GHTmqNekZNoAI"),
   name: "[name]",
   cover: "[cover]",
-  artists: [],
-  artist_id: None,
+  artists: [
+    ArtistId(
+      id: Some("UCCj0RlDqqahEB5BXVtDcPqg"),
+      name: "[name]",
+    ),
+    ArtistId(
+      id: Some("UCMrCoizKiBxqeg5pTpBXn1A"),
+      name: "[name]",
+    ),
+    ArtistId(
+      id: Some("UCvsgN5NKOzXnAURfaf3TOig"),
+      name: "[name]",
+    ),
+  ],
+  artist_id: Some("UCCj0RlDqqahEB5BXVtDcPqg"),
   description: "[description]",
   album_type: Album,
   year: Some(2019),
-  by_va: true,
+  by_va: false,
   tracks: [
     TrackItem(
       id: "R3VIKRtzAdE",
@@ -252,11 +265,15 @@ MusicAlbum(
       cover: [],
       artists: [
         ArtistId(
+          id: Some("UCRBHsrbsZDxjHkcgMKEJwpw"),
+          name: "[name]",
+        ),
+        ArtistId(
           id: Some("UC4YvDAbE1EYwZpj6gQ-lpLw"),
           name: "[name]",
         ),
       ],
-      artist_id: Some("UC4YvDAbE1EYwZpj6gQ-lpLw"),
+      artist_id: Some("UCRBHsrbsZDxjHkcgMKEJwpw"),
       album: Some(AlbumId(
         id: "MPREb_AzuWg8qAVVl",
         name: "[name]",

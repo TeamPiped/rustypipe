@@ -147,6 +147,21 @@ MusicArtist(
       by_va: false,
     ),
     AlbumItem(
+      id: "MPREb_ghrNI6BJSM8",
+      name: "[name]",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UCFKUUtHjT4iq3p0JJA13SOA"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UCFKUUtHjT4iq3p0JJA13SOA"),
+      album_type: Album,
+      year: Some(2017),
+      by_va: false,
+    ),
+    AlbumItem(
       id: "MPREb_h0UZr2ALQXf",
       name: "[name]",
       cover: "[cover]",

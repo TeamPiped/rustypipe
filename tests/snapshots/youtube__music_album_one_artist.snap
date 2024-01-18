@@ -29,6 +29,14 @@ MusicAlbum(
           id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
           name: "Demi Lovato",
         ),
+        ArtistId(
+          id: Some("UCKqVP7_535ELJu2OeEd3zzQ"),
+          name: "Missy Elliott",
+        ),
+        ArtistId(
+          id: Some("UCStR3TnjvL7CL8ZNFPKmRXw"),
+          name: "Timbaland",
+        ),
       ],
       artist_id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
       album: Some(AlbumId(
@@ -49,6 +57,10 @@ MusicAlbum(
         ArtistId(
           id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
           name: "Demi Lovato",
+        ),
+        ArtistId(
+          id: Some("UC58M_VmdxEw-h-p_HgeE0Zg"),
+          name: "Dev",
         ),
       ],
       artist_id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
@@ -71,6 +83,10 @@ MusicAlbum(
           id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
           name: "Demi Lovato",
         ),
+        ArtistId(
+          id: Some("UC0tIFKS5uijPeJLjH8uAWJg"),
+          name: "Iyaz",
+        ),
       ],
       artist_id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
       album: Some(AlbumId(
@@ -91,6 +107,10 @@ MusicAlbum(
         ArtistId(
           id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
           name: "Demi Lovato",
+        ),
+        ArtistId(
+          id: Some("UCA7oqkXUZIlT8QXhxaIR4RA"),
+          name: "Jason Derulo",
         ),
       ],
       artist_id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
