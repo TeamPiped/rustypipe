@@ -1,19 +1,6 @@
 #![doc = include_str!("../README.md")]
-#![warn(missing_docs, clippy::todo, clippy::dbg_macro, clippy::pedantic)]
-#![allow(
-    clippy::doc_markdown,
-    clippy::similar_names,
-    clippy::struct_field_names,
-    clippy::items_after_statements,
-    clippy::too_many_lines,
-    clippy::module_name_repetitions,
-    clippy::must_use_candidate,
-    clippy::cast_possible_truncation,
-    clippy::cast_sign_loss,
-    clippy::cast_precision_loss,
-    clippy::single_match_else,
-    clippy::missing_errors_doc
-)]
+#![forbid(unsafe_code)]
+#![warn(missing_docs, clippy::todo, clippy::dbg_macro)]
 
 //! ## Go to
 //!
