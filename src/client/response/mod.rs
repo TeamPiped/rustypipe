@@ -335,12 +335,14 @@ impl From<Thumbnails> for Vec<crate::model::Thumbnail> {
 
 impl From<Vec<ChannelBadge>> for crate::model::Verification {
     fn from(badges: Vec<ChannelBadge>) -> Self {
-        badges.get(0).map_or(crate::model::Verification::None, |b| {
-            match b.metadata_badge_renderer.style {
-                ChannelBadgeStyle::BadgeStyleTypeVerified => Self::Verified,
-                ChannelBadgeStyle::BadgeStyleTypeVerifiedArtist => Self::Artist,
-            }
-        })
+        badges
+            .first()
+            .map_or(crate::model::Verification::None, |b| {
+                match b.metadata_badge_renderer.style {
+                    ChannelBadgeStyle::BadgeStyleTypeVerified => Self::Verified,
+                    ChannelBadgeStyle::BadgeStyleTypeVerifiedArtist => Self::Artist,
+                }
+            })
     }
 }
 

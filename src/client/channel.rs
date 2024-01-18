@@ -529,7 +529,7 @@ fn map_channel_content(
                         .content
                         .section_list_renderer
                         .as_ref()
-                        .and_then(|c| c.contents.c.get(0))
+                        .and_then(|c| c.contents.c.first())
                     {
                         return Err(ExtractionError::Unavailable {
                             reason: crate::error::UnavailabilityReason::AgeRestricted,

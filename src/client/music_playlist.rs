@@ -327,7 +327,7 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
                 let year_txt = subtitle_split
                     .swap_remove(2)
                     .0
-                    .get(0)
+                    .first()
                     .map(|c| c.as_str().to_owned());
                 (year_txt, subtitle_split.try_swap_remove(1))
             }

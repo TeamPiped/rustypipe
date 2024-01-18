@@ -3,6 +3,7 @@
 #![allow(
     clippy::doc_markdown,
     clippy::similar_names,
+    clippy::struct_field_names,
     clippy::items_after_statements,
     clippy::too_many_lines,
     clippy::module_name_repetitions,
