@@ -1,5 +1,3 @@
-use once_cell::sync::Lazy;
-use regex::Regex;
 use serde::Deserialize;
 use serde_with::{
     rust::deserialize_ignore_any, serde_as, DefaultOnError, DisplayFromStr, VecSkipError,
@@ -14,7 +12,7 @@ use crate::{
     },
     param::Language,
     serializer::{
-        text::{AccessibilityText, Text, TextComponent},
+        text::{Text, TextComponent},
         MapResult,
     },
     util::{self, timeago, TryRemove},
@@ -139,13 +137,6 @@ pub(crate) struct ReelItemRenderer {
     /// Contains `No views` if the view count is zero
     #[serde_as(as = "Option<Text>")]
     pub view_count_text: Option<String>,
-    /// video duration
-    ///
-    /// Example: `the horror maze - 44 seconds - play video`
-    ///
-    /// Dashes may be `\u2013` (emdash)
-    #[serde_as(as = "Option<AccessibilityText>")]
-    pub accessibility: Option<String>,
     #[serde(default)]
     #[serde_as(as = "DefaultOnError")]
     pub navigation_endpoint: Option<ReelNavigationEndpoint>,
@@ -395,10 +386,6 @@ impl IsShort for Vec<TimeOverlay> {
     }
 }
 
-static ACCESSIBILITY_SEP_REGEX: Lazy<Regex> = Lazy::new(|| {
-    Regex::new("(?:[ \u{00a0}][-\u{2013}\u{2014}] )|\u{2013}|(?:\u{055d} )|(?:\", )").unwrap()
-});
-
 /// Result of mapping a list of different YouTube enities
 /// (videos, channels, playlists)
 #[derive(Debug)]
@@ -510,36 +497,10 @@ impl<T> YouTubeListMapper<T> {
                 .timestamp_text
         });
 
-        let length = video.accessibility.and_then(|acc| {
-            // The video title has to be stripped from the beginning because in Swahili
-            // the duration follows the title with no separator (probably a bug).
-            // Example: `what I do with leftoversdakika 1 - cheza video`
-            let parts = ACCESSIBILITY_SEP_REGEX
-                .split(acc.trim_start_matches(&video.headline))
-                .collect::<Vec<_>>();
-            if parts.len() > 1 {
-                // In Russian, the duration is the last part
-                // Example: `Воспроизвести видео – \"hangover food\". Его продолжительность – 58 секунд.`
-                let i = match self.lang {
-                    Language::Ru => 1,
-                    _ => 2,
-                };
-                timeago::parse_video_duration_or_warn(
-                    self.lang,
-                    parts[parts.len() - i],
-                    &mut self.warnings,
-                )
-            } else {
-                self.warnings
-                    .push(format!("could not split video duration `{acc}`"));
-                None
-            }
-        });
-
         VideoItem {
             id: video.video_id,
             name: video.headline,
-            length,
+            length: None,
             thumbnail: video.thumbnail.into(),
             channel: self.channel.clone(),
             publish_date: pub_date_txt.as_ref().and_then(|txt| {
@@ -787,52 +748,5 @@ impl YouTubeListMapper<PlaylistItem> {
     pub(crate) fn map_response(&mut self, mut res: MapResult<Vec<YouTubeListItem>>) {
         self.warnings.append(&mut res.warnings);
         res.c.into_iter().for_each(|item| self.map_item(item));
-    }
-}
-
-#[cfg(test)]
-mod tests {
-    use super::ACCESSIBILITY_SEP_REGEX;
-
-    use rstest::rstest;
-
-    #[rstest]
-    #[case::af(
-        "BTS - Permission to Dance Cover #shorts #pinkfong – 50 sekondes – speel video",
-        "50 sekondes"
-    )]
-    #[case::de(
-        "Point of view: Me VS My mom #shorts – 8 Sekunden – Video wiedergeben",
-        "8 Sekunden"
-    )]
-    #[case::be(
-        "Point of view: Me VS My mom #shorts–8 секунд – прайграць відэа",
-        "8 секунд"
-    )]
-    #[case::fil("do u wanna get swole? - 53 segundo - i-play ang video", "53 segundo")]
-    #[case::ar(
-        "«the holy trinity of korean street food»՝ 1 րոպե՝ նվագարկել տեսանյութը",
-        "1 րոպե"
-    )]
-    #[case::lv(
-        "what i ate in google japan — 1 minūte — atskaņot videoklipu",
-        "1 minūte"
-    )]
-    #[case::sq("When you impulse buy... - 1 minutë - luaj videon", "1 minutë")]
-    #[case::uk(
-        "\"Point of view: Me VS My mom #shorts\", 8 секунд – відтворити відео",
-        "8 секунд"
-    )]
-    // INFO: sw is unparseable "coming soonsekunde 58 - cheza video"
-    fn split_duration_txt(#[case] s: &str, #[case] expect: &str) {
-        let parts = ACCESSIBILITY_SEP_REGEX.split(s).collect::<Vec<_>>();
-        assert_eq!(parts[parts.len() - 2], expect);
-    }
-
-    #[test]
-    fn split_duration_txt_ru() {
-        let s = "Воспроизвести видео – \"the holy trinity of korean street food\". Его продолжительность – 1 минута.";
-        let parts = ACCESSIBILITY_SEP_REGEX.split(s).collect::<Vec<_>>();
-        assert_eq!(parts[parts.len() - 1], "1 минута.");
     }
 }

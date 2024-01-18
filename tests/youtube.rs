@@ -831,7 +831,6 @@ fn channel_videos(rp: RustyPipe) {
 fn channel_shorts(rp: RustyPipe) {
     let channel = tokio_test::block_on(
         rp.query()
-            .lang(Language::Sq)
             .channel_videos_tab("UCh8gHdtzO2tXd593_bjErWg", ChannelVideoTab::Shorts),
     )
     .unwrap();

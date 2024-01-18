@@ -322,6 +322,10 @@ pub fn parse_video_duration(lang: Language, video_duration: &str) -> Option<u32>
     let parts = split_duration_txt(video_duration, matches!(lang, Language::Si | Language::Sw));
     let mut secs = 0;
 
+    if parts.is_empty() {
+        return None;
+    }
+
     for part in parts {
         let mut n = if part.digits.is_empty() {
             1
