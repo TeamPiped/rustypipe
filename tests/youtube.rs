@@ -2011,23 +2011,27 @@ fn music_search_artists_cont(rp: RustyPipe) {
 
 #[rstest]
 fn music_search_playlists(rp: RustyPipe, unlocalized: bool) {
-    let res = tokio_test::block_on(rp.query().music_search_playlists("rock hits", false)).unwrap();
+    let res = tokio_test::block_on(
+        rp.query()
+            .music_search_playlists("Massive Rock Hits", false),
+    )
+    .unwrap();
 
     assert_eq!(res.corrected_query, None);
     let playlist = res
         .items
         .items
         .iter()
-        .find(|p| p.id == "RDCLAK5uy_nLtxizvEMkzYQUrA-bFf6MnBeR4bGYWUQ")
+        .find(|p| p.id == "RDCLAK5uy_k7h5535MeHE8xmgHsrZx7HOKH4lb5vAfY")
         .unwrap_or_else(|| {
             panic!("could not find playlist, got {:#?}", &res.items.items);
         });
 
     if unlocalized {
-        assert_eq!(playlist.name, "Rock Hits");
+        assert_eq!(playlist.name, "Massive Rock Hits");
     }
     assert!(!playlist.thumbnail.is_empty(), "got no thumbnail");
-    assert_gte(playlist.track_count.unwrap(), 100, "tracks");
+    assert_gte(playlist.track_count.unwrap(), 40, "tracks");
     assert_eq!(playlist.channel, None);
     assert!(playlist.from_ytm);
 
