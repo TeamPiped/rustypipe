@@ -1537,7 +1537,7 @@ fn music_album_not_found(rp: RustyPipe) {
 // #[case::basic("basic", "UC7cl4MmM6ZZ2TcFyMk_b4pg", false, 15, 2)]
 #[case::no_more_albums("no_more_albums", "UCOR4_bSVIXPsGa4BbCSt60Q", true, 15, 0)]
 #[case::only_singles("only_singles", "UCfwCE5VhPMGxNPFxtVv7lRw", false, 13, 0)]
-#[case::no_artist("no_artist", "UCh8gHdtzO2tXd593_bjErWg", false, 0, 2)]
+#[case::no_artist("no_artist", "UCh8gHdtzO2tXd593_bjErWg", false, 0, 0)]
 // querying Trailerpark's secondary YouTube channel should result in the YTM channel being fetched
 #[case::secondary_channel("no_more_albums", "UCC9192yGQD25eBZgFZ84MPw", true, 15, 0)]
 fn music_artist(
@@ -1960,12 +1960,12 @@ fn music_search_albums(
 
     assert_eq!(album.artists.len(), 1);
     let album_artist = &album.artists[0];
-    assert_eq!(album_artist.id.as_ref().unwrap(), artist_id);
+    assert_eq!(album_artist.id.as_ref().expect("artist.id"), artist_id);
     if unlocalized {
         assert_eq!(album_artist.name, artist);
     }
 
-    assert_eq!(album.artist_id.as_ref().unwrap(), artist_id);
+    assert_eq!(album.artist_id.as_ref().expect("artist_id"), artist_id);
     assert!(!album.cover.is_empty(), "got no cover");
     assert_eq!(album.year.as_ref().unwrap(), &year);
     assert_eq!(album.album_type, album_type);
@@ -2011,11 +2011,7 @@ fn music_search_artists_cont(rp: RustyPipe) {
 
 #[rstest]
 fn music_search_playlists(rp: RustyPipe, unlocalized: bool) {
-    let res = tokio_test::block_on(
-        rp.query()
-            .music_search_playlists("today's rock hits", false),
-    )
-    .unwrap();
+    let res = tokio_test::block_on(rp.query().music_search_playlists("rock hits", false)).unwrap();
 
     assert_eq!(res.corrected_query, None);
     let playlist = res
@@ -2028,7 +2024,7 @@ fn music_search_playlists(rp: RustyPipe, unlocalized: bool) {
         });
 
     if unlocalized {
-        assert_eq!(playlist.name, "Today's Rock Hits");
+        assert_eq!(playlist.name, "Rock Hits");
     }
     assert!(!playlist.thumbnail.is_empty(), "got no thumbnail");
     assert_gte(playlist.track_count.unwrap(), 100, "tracks");

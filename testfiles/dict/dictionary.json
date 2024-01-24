@@ -203,6 +203,7 @@
       "হা": 3,
       "হাজাৰ": 3,
       "হাজাৰটা": 3,
+      "কোঃ": 5,
       "লা": 5,
       "লাখ": 5,
       "লাখটা": 5,
@@ -504,7 +505,8 @@
     "number_tokens": {
       "hilj": 3,
       "mil": 6,
-      "mlr": 9
+      "mlr": 9,
+      "mlrd": 9
     },
     "number_nd_tokens": {
       "nema": 0
@@ -1818,6 +1820,7 @@
     },
     "comma_decimal": true,
     "number_tokens": {
+      "mio": 6,
       "mln": 6,
       "mrd": 9
     },

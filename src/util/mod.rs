@@ -643,6 +643,9 @@ pub(crate) mod tests {
     #[case(Language::As, "১ জন গ্ৰাহক", 1)]
     #[case(Language::Ru, "Зрителей, ожидающих начала трансляции: 6", 6)]
     #[case(Language::Si, "වාදන මි4.6ක්", 4_600_000)]
+    #[case(Language::As, "3.7 শঃ কোঃ বাৰ প্লে’ কৰা হৈছে", 370_000)]
+    #[case(Language::Bs, "3,3 mlrd. pregleda", 3_300_000_000)]
+    #[case(Language::It, "3,73 Mio di iscritti", 3_730_000)]
     fn t_parse_large_numstr(#[case] lang: Language, #[case] string: &str, #[case] expect: u64) {
         let res = parse_large_numstr::<u64>(string, lang).unwrap();
         assert_eq!(res, expect);

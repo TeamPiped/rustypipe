@@ -391,24 +391,25 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             comma_decimal: false,
             number_tokens: ::phf::Map {
-                key: 12913932095322966823,
+                key: 10121458955350035957,
                 disps: &[
-                    (0, 7),
-                    (9, 8),
-                    (0, 0),
+                    (1, 0),
+                    (3, 6),
+                    (1, 4),
                 ],
                 entries: &[
                     ("হ\u{9be}", 3),
-                    ("হ\u{9be}জ\u{9be}ৰট\u{9be}", 3),
-                    ("নিয\u{9c1}তট\u{9be}", 6),
-                    ("হ\u{9be}জ\u{9be}ৰ", 3),
-                    ("ল\u{9be}", 5),
+                    ("কোঃ", 5),
                     ("ল\u{9be}খট\u{9be}", 5),
-                    ("কোঃট\u{9be}", 9),
-                    ("নিঃট\u{9be}", 6),
-                    ("নিয\u{9c1}ত", 6),
-                    ("নিঃ", 6),
                     ("ল\u{9be}খ", 5),
+                    ("নিঃট\u{9be}", 6),
+                    ("হ\u{9be}জ\u{9be}ৰট\u{9be}", 3),
+                    ("কোঃট\u{9be}", 9),
+                    ("নিঃ", 6),
+                    ("নিয\u{9c1}তট\u{9be}", 6),
+                    ("ল\u{9be}", 5),
+                    ("নিয\u{9c1}ত", 6),
+                    ("হ\u{9be}জ\u{9be}ৰ", 3),
                 ],
             },
             number_nd_tokens: ::phf::Map {
@@ -890,14 +891,15 @@ pub(crate) fn entry(lang: Language) -> Entry {
             },
             comma_decimal: true,
             number_tokens: ::phf::Map {
-                key: 12913932095322966823,
+                key: 10121458955350035957,
                 disps: &[
                     (2, 0),
                 ],
                 entries: &[
-                    ("hilj", 3),
-                    ("mlr", 9),
                     ("mil", 6),
+                    ("mlr", 9),
+                    ("hilj", 3),
+                    ("mlrd", 9),
                 ],
             },
             number_nd_tokens: ::phf::Map {
@@ -3094,8 +3096,9 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     (0, 0),
                 ],
                 entries: &[
-                    ("mrd", 9),
+                    ("mio", 6),
                     ("mln", 6),
+                    ("mrd", 9),
                 ],
             },
             number_nd_tokens: ::phf::Map {
