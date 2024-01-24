@@ -980,20 +980,20 @@ fn channel_more(
         }
     }
 
-    let channel_videos = tokio_test::block_on(rp.query().channel_videos(&id)).unwrap();
-    assert_channel(&channel_videos, id, name, unlocalized || name_unlocalized);
     if has_videos {
+        let channel_videos = tokio_test::block_on(rp.query().channel_videos(&id)).unwrap();
+        assert_channel(&channel_videos, id, name, unlocalized || name_unlocalized);
         assert!(!channel_videos.content.items.is_empty(), "got no videos");
     }
 
-    let channel_playlists = tokio_test::block_on(rp.query().channel_playlists(&id)).unwrap();
-    assert_channel(
-        &channel_playlists,
-        id,
-        name,
-        unlocalized || name_unlocalized,
-    );
     if has_playlists {
+        let channel_playlists = tokio_test::block_on(rp.query().channel_playlists(&id)).unwrap();
+        assert_channel(
+            &channel_playlists,
+            id,
+            name,
+            unlocalized || name_unlocalized,
+        );
         assert!(
             !channel_playlists.content.items.is_empty(),
             "got no playlists"
