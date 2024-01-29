@@ -396,7 +396,7 @@ a short format (_21h ago_, _3d ago_).
 
 - **Encountered on:** 29.06.2023
 - **Impact:** 🟡 Medium
-- **Status:** Experimental (9%)
+- **Status:** Stabilized
 
 YouTube added the track playback count to search results and top artist tracks. In
 exchange, they removed the "Song" type identifier from search results.
@@ -448,7 +448,7 @@ the main tab.
 - **Encountered on:** 03.11.2023
 - **Impact:** 🟢 Low
 - **Endpoint:** next
-- **Status:** Experimental (7%)
+- **Status:** Stabilized
 
 YouTube introduced an updated data model for the like/dislike buttons. The new model
 looks needlessly complex but contains the same parsing-relevant data as the old model
