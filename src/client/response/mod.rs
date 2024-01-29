@@ -108,7 +108,7 @@ pub(crate) struct ThumbnailsWrap {
 #[derive(Default, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct Thumbnails {
-    #[serde(default)]
+    #[serde(default, alias = "sources")]
     pub thumbnails: Vec<Thumbnail>,
 }
 

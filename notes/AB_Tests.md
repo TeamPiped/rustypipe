@@ -398,8 +398,8 @@ a short format (_21h ago_, _3d ago_).
 - **Impact:** 🟡 Medium
 - **Status:** Experimental (9%)
 
-YouTube added the track playback count to search results and top artist tracks.
-In exchange, they removed the "Song" type identifier from search results.
+YouTube added the track playback count to search results and top artist tracks. In
+exchange, they removed the "Song" type identifier from search results.
 
 ![A/B test 8 old screenshot](./_img/ab_8_old.png)
 
@@ -436,7 +436,7 @@ by using the mobile client. But that may change in the future.
 
 ![A/B test 10 screenshot](./_img/ab_10.png)
 
-YouTube replaced the *About* channel tab with a modal. This changes the way additional
+YouTube replaced the _About_ channel tab with a modal. This changes the way additional
 channel metadata has to be fetched.
 
 The new modal uses a continuation request with a token which can be easily generated.
@@ -450,7 +450,7 @@ the main tab.
 - **Endpoint:** next
 - **Status:** Experimental (7%)
 
-YouTube introduced an updated date model for the like/dislike buttons. The new model
+YouTube introduced an updated data model for the like/dislike buttons. The new model
 looks needlessly complex but contains the same parsing-relevant data as the old model
 (accessibility text to get like count).
 
@@ -469,6 +469,115 @@ looks needlessly complex but contains the same parsing-relevant data as the old 
               }
             }
           }
+        }
+      }
+    }
+  }
+}
+```
+
+## [12] New channel page header
+
+- **Encountered on:** 29.01.2024
+- **Impact:** 🟢 Low
+- **Endpoint:** browse
+- **Status:** Experimental (<1%)
+
+YouTube introduced a new data model for channel headers, based on a
+`"pageHeaderRenderer"`. The new model comes with more needless complexity that needs to
+be accomodated. There are also no mobile/TV header images available any more.
+
+```json
+{
+  "pageHeaderViewModel": {
+    "title": {
+      "dynamicTextViewModel": {
+        "text": {
+          "content": "Doobydobap",
+          "attachmentRuns": [
+            {
+              "startIndex": 10,
+              "length": 0,
+              "element": {
+                "type": {
+                  "imageType": {
+                    "image": {
+                      "sources": [
+                        {
+                          "clientResource": {
+                            "imageName": "CHECK_CIRCLE_FILLED"
+                          },
+                          "width": 14,
+                          "height": 14
+                        }
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "image": {
+      "decoratedAvatarViewModel": {
+        "avatar": {
+          "avatarViewModel": {
+            "image": {
+              "sources": [
+                {
+                  "url": "https://yt3.googleusercontent.com/dm5Aq93xvVJz0NoVO88ieBkDXmuShCujGPlZ7qETMEPTrXvPUCFI3-BB6Xs_P-r6Uk3mnBy9zA=s72-c-k-c0x00ffffff-no-rj",
+                  "width": 72,
+                  "height": 72
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "metadata": {
+      "contentMetadataViewModel": {
+        "metadataRows": [
+          {
+            "metadataParts": [
+              {
+                "text": {
+                  "content": "@Doobydobap"
+                }
+              },
+              {
+                "text": {
+                  "content": "3.74M subscribers"
+                }
+              },
+              {
+                "text": {
+                  "content": "345 videos",
+                  "styleRuns": [
+                    {
+                      "startIndex": 0,
+                      "length": 10
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    "banner": {
+      "imageBannerViewModel": {
+        "image": {
+          "sources": [
+            {
+              "url": "https://yt3.googleusercontent.com/BvnAqgiursrXpmS9AgDLtkOSTQfOG_Dqn0KzY5hcwO9XrHTEQTVgaflI913f9KRp7d0U2qBp=w1060-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj",
+              "width": 1060,
+              "height": 175
+            }
+          ]
         }
       }
     }

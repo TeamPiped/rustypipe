@@ -9,6 +9,7 @@ use regex::Regex;
 use rustypipe::client::{ClientType, RustyPipe, RustyPipeQuery, YTContext};
 use rustypipe::model::{MusicItem, YouTubeItem};
 use rustypipe::param::search_filter::{ItemType, SearchFilter};
+use rustypipe::param::ChannelVideoTab;
 use serde::de::IgnoredAny;
 use serde::{Deserialize, Serialize};
 
@@ -28,6 +29,7 @@ pub enum ABTest {
     PlaylistsForShorts = 9,
     ChannelAboutModal = 10,
     LikeButtonViewmodel = 11,
+    ChannelPageHeader = 12,
 }
 
 const TESTS_TO_RUN: [ABTest; 3] = [
@@ -102,6 +104,7 @@ pub async fn run_test(
                     ABTest::TrackViewcount => track_viewcount(&query).await,
                     ABTest::ChannelAboutModal => channel_about_modal(&query).await,
                     ABTest::LikeButtonViewmodel => like_button_viewmodel(&query).await,
+                    ABTest::ChannelPageHeader => channel_page_header(&query).await,
                 }
                 .unwrap();
                 pb.inc(1);
@@ -329,4 +332,11 @@ pub async fn like_button_viewmodel(rp: &RustyPipeQuery) -> Result<bool> {
         )
         .await?;
     Ok(res.contains("\"segmentedLikeDislikeButtonViewModel\""))
+}
+
+pub async fn channel_page_header(rp: &RustyPipeQuery) -> Result<bool> {
+    let channel = rp
+        .channel_videos_tab("UCh8gHdtzO2tXd593_bjErWg", ChannelVideoTab::Shorts)
+        .await?;
+    Ok(channel.mobile_banner.is_empty() && channel.tv_banner.is_empty())
 }

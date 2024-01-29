@@ -462,11 +462,50 @@ fn map_channel(
                         })
                     }),
                     avatar: hdata.map(|hdata| hdata.1.into()).unwrap_or_default(),
+                    // Since the carousel header is only used for YT-internal channels or special events
+                    // (World Cup, Coachella, etc.) we can assume the channel to be verified
                     verification: crate::model::Verification::Verified,
                     description: metadata.description,
                     tags: microformat.microformat_data_renderer.tags,
                     vanity_url,
                     banner: Vec::new(),
+                    mobile_banner: Vec::new(),
+                    tv_banner: Vec::new(),
+                    has_shorts: d.has_shorts,
+                    has_live: d.has_live,
+                    visitor_data: d.visitor_data,
+                    content: (),
+                }
+            }
+            response::channel::Header::PageHeaderRenderer(header) => {
+                let hdata = header.content.page_header_view_model;
+                // channel handle - subscriber count - video count
+                let subscriber_count = hdata
+                    .metadata
+                    .content_metadata_view_model
+                    .metadata_rows
+                    .first()
+                    .and_then(|md| {
+                        md.metadata_parts.get(1).and_then(|t| {
+                            util::parse_large_numstr_or_warn::<u64>(&t.text, lang, &mut warnings)
+                        })
+                    });
+                Channel {
+                    id: metadata.external_id,
+                    name: metadata.title,
+                    subscriber_count,
+                    avatar: hdata
+                        .image
+                        .decorated_avatar_view_model
+                        .avatar
+                        .avatar_view_model
+                        .image
+                        .into(),
+                    verification: hdata.title.into(),
+                    description: metadata.description,
+                    tags: microformat.microformat_data_renderer.tags,
+                    vanity_url,
+                    banner: hdata.banner.image_banner_view_model.image.into(),
                     mobile_banner: Vec::new(),
                     tv_banner: Vec::new(),
                     has_shorts: d.has_shorts,
@@ -680,6 +719,7 @@ mod tests {
     #[case::coachella("videos_20230415_coachella", "UCHF66aWLOxBW4l6VkSrS3cQ")]
     #[case::shorts("shorts", "UCh8gHdtzO2tXd593_bjErWg")]
     #[case::livestreams("livestreams", "UC2DjFE7Xf11URZqWBigcVOQ")]
+    #[case::pageheader("shorts_20240129_pageheader", "UCh8gHdtzO2tXd593_bjErWg")]
     fn map_channel_videos(#[case] name: &str, #[case] id: &str) {
         let json_path = path!(*TESTFILES / "channel" / format!("channel_{name}.json"));
         let json_file = File::open(json_path).unwrap();

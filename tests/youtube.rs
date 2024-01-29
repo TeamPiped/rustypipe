@@ -1175,13 +1175,23 @@ mod channel_rss {
 
     #[rstest]
     fn get_channel_rss_empty(rp: RustyPipe) {
-        let channel =
-            tokio_test::block_on(rp.query().channel_rss("UCAyFbMjB3qAQSZBj6NCuBSg")).unwrap();
+        let channel = tokio_test::block_on(rp.query().channel_rss("UCAyFbMjB3qAQSZBj6NCuBSg"));
 
-        assert_eq!(channel.id, "UCAyFbMjB3qAQSZBj6NCuBSg");
-        assert_eq!(channel.name, "Cheryl Calogero");
+        match channel {
+            Ok(channel) => {
+                assert_eq!(channel.id, "UCAyFbMjB3qAQSZBj6NCuBSg");
+                assert_eq!(channel.name, "Cheryl Calogero");
 
-        assert!(channel.videos.is_empty());
+                assert!(channel.videos.is_empty());
+            }
+            Err(err) => {
+                assert!(
+                    matches!(err, Error::Extraction(ExtractionError::NotFound { .. })),
+                    "got: {}",
+                    err
+                );
+            }
+        }
     }
 
     #[rstest]

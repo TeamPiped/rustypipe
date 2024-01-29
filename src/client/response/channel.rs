@@ -2,8 +2,8 @@ use serde::Deserialize;
 use serde_with::{rust::deserialize_ignore_any, serde_as, DefaultOnError, VecSkipError};
 
 use super::{
-    video_item::YouTubeListRenderer, Alert, ChannelBadge, ContentsRenderer, ContinuationActionWrap,
-    ResponseContext, Thumbnails, TwoColumnBrowseResults,
+    video_item::YouTubeListRenderer, Alert, ChannelBadge, ContentRenderer, ContentsRenderer,
+    ContinuationActionWrap, ResponseContext, Thumbnails, TwoColumnBrowseResults,
 };
 use crate::serializer::text::{AttributedText, Text, TextComponent};
 
@@ -71,10 +71,12 @@ pub(crate) struct ChannelTabWebCommandMetadata {
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
+#[allow(clippy::enum_variant_names)]
 pub(crate) enum Header {
     C4TabbedHeaderRenderer(HeaderRenderer),
     /// Used for special channels like YouTube Music
     CarouselHeaderRenderer(ContentsRenderer<CarouselHeaderRendererItem>),
+    PageHeaderRenderer(ContentRenderer<PageHeaderRenderer>),
 }
 
 #[serde_as]
@@ -115,6 +117,149 @@ pub(crate) enum CarouselHeaderRendererItem {
     },
     #[serde(other, deserialize_with = "deserialize_ignore_any")]
     None,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct PageHeaderRenderer {
+    pub page_header_view_model: PageHeaderRendererInner,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct PageHeaderRendererInner {
+    pub title: PhTitleView,
+    pub image: PhAvatarView,
+    pub metadata: PhMetadataView,
+    pub banner: PhBannerView,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct PhTitleView {
+    pub dynamic_text_view_model: PhTitleView2,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct PhTitleView2 {
+    pub text: PhTitleView3,
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct PhTitleView3 {
+    #[serde_as(as = "VecSkipError<_>")]
+    pub attachment_runs: Vec<AttachmentRun>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct AttachmentRun {
+    pub element: AttachmentRunElement,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct AttachmentRunElement {
+    #[serde(rename = "type")]
+    pub typ: AttachmentRunElementType,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct AttachmentRunElementType {
+    pub image_type: AttachmentRunElementImageType,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct AttachmentRunElementImageType {
+    pub image: AttachmentRunElementImage,
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct AttachmentRunElementImage {
+    #[serde_as(as = "VecSkipError<_>")]
+    pub sources: Vec<AttachmentRunElementImageSource>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct AttachmentRunElementImageSource {
+    pub client_resource: ClientResource,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ClientResource {
+    pub image_name: IconName,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+pub(crate) enum IconName {
+    CheckCircleFilled,
+    MusicFilled,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct PhAvatarView {
+    pub decorated_avatar_view_model: PhAvatarView2,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct PhAvatarView2 {
+    pub avatar: PhAvatarView3,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct PhAvatarView3 {
+    pub avatar_view_model: ImageView,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ImageView {
+    pub image: Thumbnails,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct PhMetadataView {
+    pub content_metadata_view_model: PhMetadataView2,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct PhMetadataView2 {
+    pub metadata_rows: Vec<PhMetadataRow>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct PhMetadataRow {
+    pub metadata_parts: Vec<TextWrap>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct PhBannerView {
+    pub image_banner_view_model: ImageView,
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct TextWrap {
+    #[serde_as(deserialize_as = "Text")]
+    pub text: String,
 }
 
 #[derive(Debug, Deserialize)]
@@ -213,4 +358,23 @@ pub(crate) struct ExternalLinkInner {
     pub title: TextComponent,
     #[serde_as(as = "AttributedText")]
     pub link: TextComponent,
+}
+
+impl From<PhTitleView> for crate::model::Verification {
+    fn from(value: PhTitleView) -> Self {
+        value
+            .dynamic_text_view_model
+            .text
+            .attachment_runs
+            .iter()
+            .find_map(|r| {
+                r.element.typ.image_type.image.sources.first().map(|s| {
+                    match s.client_resource.image_name {
+                        IconName::CheckCircleFilled => crate::model::Verification::Verified,
+                        IconName::MusicFilled => crate::model::Verification::Artist,
+                    }
+                })
+            })
+            .unwrap_or_default()
+    }
 }
