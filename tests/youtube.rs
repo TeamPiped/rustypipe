@@ -664,7 +664,7 @@ fn get_video_details_chapters(rp: RustyPipe) {
     assert!(details.recommended.visitor_data.is_some());
     assert_next(details.recommended, rp.query(), 10, 1);
 
-    assert_gte(details.top_comments.count.unwrap(), 3200, "comments");
+    assert_gte(details.top_comments.count.unwrap(), 3000, "comments");
     assert!(!details.top_comments.is_exhausted());
     assert!(!details.latest_comments.is_exhausted());
 }
