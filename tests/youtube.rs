@@ -454,8 +454,11 @@ fn get_video_details(rp: RustyPipe) {
     assert!(!details.is_live);
     assert!(!details.is_ccommons);
 
+    /*
+    As of 01.02.2024 this video does not show any recommendations
     assert!(details.recommended.visitor_data.is_some());
-    assert_next(details.recommended, rp.query(), 10, 1);
+    assert_next(details.recommended, rp.query(), 10, 1, false);
+    */
 
     assert_gte(details.top_comments.count.unwrap(), 700_000, "comments");
     assert!(!details.top_comments.is_exhausted());
@@ -492,7 +495,7 @@ fn get_video_details_music(rp: RustyPipe) {
     assert!(!details.is_ccommons);
 
     assert!(details.recommended.visitor_data.is_some());
-    assert_next(details.recommended, rp.query(), 10, 1);
+    assert_next(details.recommended, rp.query(), 10, 1, false);
 
     // Update(01.11.2022): comments are sometimes enabled
     /*
@@ -539,7 +542,7 @@ fn get_video_details_ccommons(rp: RustyPipe) {
     assert!(details.is_ccommons);
 
     assert!(details.recommended.visitor_data.is_some());
-    assert_next(details.recommended, rp.query(), 10, 1);
+    assert_next(details.recommended, rp.query(), 10, 1, false);
 
     assert_eq!(details.top_comments.count.unwrap(), 0);
     assert!(details.top_comments.is_exhausted());
@@ -662,7 +665,7 @@ fn get_video_details_chapters(rp: RustyPipe) {
     }
 
     assert!(details.recommended.visitor_data.is_some());
-    assert_next(details.recommended, rp.query(), 10, 1);
+    assert_next(details.recommended, rp.query(), 10, 1, false);
 
     assert_gte(details.top_comments.count.unwrap(), 3000, "comments");
     assert!(!details.top_comments.is_exhausted());
@@ -705,7 +708,7 @@ fn get_video_details_live(rp: RustyPipe) {
     assert!(!details.is_ccommons);
 
     assert!(details.recommended.visitor_data.is_some());
-    assert_next(details.recommended, rp.query(), 10, 1);
+    assert_next(details.recommended, rp.query(), 10, 1, false);
 
     // No comments because livestream
     assert_eq!(details.top_comments.count, Some(0));
@@ -823,7 +826,7 @@ fn channel_videos(rp: RustyPipe) {
 
     assert!(age_days < 60, "latest video older than 60 days");
 
-    assert_next(channel.content, rp.query(), 15, 2);
+    assert_next(channel.content, rp.query(), 15, 2, true);
 }
 
 #[rstest]
@@ -857,7 +860,7 @@ fn channel_shorts(rp: RustyPipe) {
         "got no shorts"
     );
 
-    assert_next(channel.content, rp.query(), 15, 1);
+    assert_next(channel.content, rp.query(), 15, 1, true);
 }
 
 #[rstest]
@@ -876,7 +879,7 @@ fn channel_livestreams(rp: RustyPipe) {
         "got no streams"
     );
 
-    assert_next(channel.content, rp.query(), 5, 1);
+    assert_next(channel.content, rp.query(), 5, 1, true);
 }
 
 #[rstest]
@@ -891,7 +894,7 @@ fn channel_playlists(rp: RustyPipe) {
         "got no playlists"
     );
 
-    assert_next(channel.content, rp.query(), 15, 1);
+    assert_next(channel.content, rp.query(), 15, 1, true);
 }
 
 #[rstest]
@@ -932,7 +935,7 @@ fn channel_search(rp: RustyPipe) {
     .unwrap();
 
     assert_channel_eevblog(&channel);
-    assert_next(channel.content, rp.query(), 20, 2);
+    assert_next(channel.content, rp.query(), 20, 2, true);
 }
 
 fn assert_channel_eevblog<T>(channel: &Channel<T>) {
@@ -1029,7 +1032,7 @@ fn channel_order_latest(#[case] id: &str, #[case] tab: ChannelVideoTab, rp: Rust
             }
         }
     }
-    assert_next(latest, rp.query(), 15, 1);
+    assert_next(latest, rp.query(), 15, 1, true);
 }
 
 #[rstest]
@@ -1067,7 +1070,7 @@ fn channel_order_popular(
             );
         }
     }
-    assert_next(popular, rp.query(), 15, 1);
+    assert_next(popular, rp.query(), 15, 1, true);
 }
 
 #[rstest]
@@ -1100,7 +1103,7 @@ fn channel_order_oldest(
             );
         }
     }
-    assert_next(videos, rp.query(), 15, 1);
+    assert_next(videos, rp.query(), 15, 1, true);
 }
 
 #[rstest]
@@ -1213,7 +1216,7 @@ fn search(rp: RustyPipe, unlocalized: bool) {
         assert_eq!(result.corrected_query.unwrap(), "doobydobap");
     }
 
-    assert_next(result.items, rp.query(), 10, 2);
+    assert_next(result.items, rp.query(), 10, 2, true);
 }
 
 #[rstest]
@@ -1273,7 +1276,7 @@ fn search_sensitive(rp: RustyPipe, #[case] filter: bool) {
     }
     .unwrap();
     assert_gte(result.items.count.unwrap(), 10_000, "results");
-    assert_next(result.items, rp.query(), 10, 2);
+    assert_next(result.items, rp.query(), 10, 2, true);
 }
 
 #[rstest]
@@ -1363,7 +1366,7 @@ fn startpage(rp: RustyPipe) {
     // The startpage requires visitor data to fetch continuations
     assert!(startpage.visitor_data.is_some());
 
-    assert_next(startpage, rp.query(), 8, 2);
+    assert_next(startpage, rp.query(), 8, 2, true);
 }
 
 #[rstest]
@@ -1811,7 +1814,7 @@ fn music_search_tracks(rp: RustyPipe, unlocalized: bool) {
     assert_eq!(album.id, "MPREb_OpHWHwyNOuY");
     assert_eq!(album.name, "Black Mamba");
 
-    assert_next(res.items, rp.query(), 15, 2);
+    assert_next(res.items, rp.query(), 15, 2, true);
 }
 
 #[rstest]
@@ -1846,7 +1849,7 @@ fn music_search_videos(rp: RustyPipe, unlocalized: bool) {
     assert_eq!(track.album, None);
     assert_gte(track.view_count.unwrap(), 230_000_000, "views");
 
-    assert_next(res.items, rp.query(), 15, 2);
+    assert_next(res.items, rp.query(), 15, 2, true);
 }
 
 #[rstest]
@@ -1973,7 +1976,7 @@ fn music_search_albums(
     assert_eq!(res.corrected_query, None);
 
     if more && unlocalized {
-        assert_next(res.items, rp.query(), 15, 1);
+        assert_next(res.items, rp.query(), 15, 1, true);
     }
 }
 
@@ -2006,7 +2009,7 @@ fn music_search_artists_cont(rp: RustyPipe) {
     let res = tokio_test::block_on(rp.query().music_search_artists("band")).unwrap();
 
     assert_eq!(res.corrected_query, None);
-    assert_next(res.items, rp.query(), 15, 2);
+    assert_next(res.items, rp.query(), 15, 2, true);
 }
 
 #[rstest]
@@ -2341,12 +2344,19 @@ fn music_charts(
 ) {
     let charts = tokio_test::block_on(rp.query().music_charts(Some(country))).unwrap();
 
-    assert_eq!(charts.top_playlist_id.unwrap(), plid_top);
-    assert_eq!(charts.trending_playlist_id.unwrap(), plid_trend);
+    assert_eq!(charts.top_playlist_id.expect("top_playlist_id"), plid_top);
 
     assert_gte(charts.top_tracks.len(), 30, "top tracks");
     assert_gte(charts.artists.len(), 30, "top artists");
-    assert_gte(charts.trending_tracks.len(), 15, "trending tracks");
+
+    // Currently (01.02.2024) is no trending playlist shown for Global and US
+    if country != Country::Us {
+        assert_eq!(
+            charts.trending_playlist_id.expect("trending_playlist_id"),
+            plid_trend
+        );
+        assert_gte(charts.trending_tracks.len(), 15, "trending tracks");
+    }
 
     // Chart playlists only available in USA
     if country == Country::Us {
@@ -2569,10 +2579,13 @@ fn assert_next<T: FromYtItem, Q: AsRef<RustyPipeQuery>>(
     query: Q,
     min_items: usize,
     n_pages: usize,
+    on_first: bool,
 ) {
     let mut p = paginator;
     let query = query.as_ref();
-    assert_gte(p.items.len(), min_items, "items on page 0");
+    if on_first {
+        assert_gte(p.items.len(), min_items, "items on page 0");
+    }
 
     for i in 0..n_pages {
         p = tokio_test::block_on(p.next(query))
