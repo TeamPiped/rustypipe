@@ -14,6 +14,8 @@ jobs:
           components: clippy
       - name: 📥 Setup Rust cache
         uses: https://github.com/Swatinem/rust-cache@v2
+        with:
+          cache-on-failure: "true"
 
       - name: 📎 Clippy
         run: cargo clippy --all --features=rss -- -D warnings
