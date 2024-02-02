@@ -17,5 +17,6 @@ jobs:
 
       - name: 📎 Clippy
         run: cargo clippy --all --features=rss -- -D warnings
+
       - name: 🧪 Test
         run: cargo test --features=rss --workspace
