@@ -454,11 +454,8 @@ fn get_video_details(rp: RustyPipe) {
     assert!(!details.is_live);
     assert!(!details.is_ccommons);
 
-    /*
-    As of 01.02.2024 this video does not show any recommendations
     assert!(details.recommended.visitor_data.is_some());
     assert_next(details.recommended, rp.query(), 10, 1, false);
-    */
 
     assert_gte(details.top_comments.count.unwrap(), 700_000, "comments");
     assert!(!details.top_comments.is_exhausted());
