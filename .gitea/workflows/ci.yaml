@@ -1,0 +1,21 @@
+name: CI
+on: [push, pull_request]
+
+jobs:
+  Test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 📦 Checkout repository
+        uses: actions/checkout@v3
+      - name: 🦀 Setup Rust
+        uses: https://github.com/ATiltedTree/setup-rust@v1
+        with:
+          rust-version: stable
+          components: clippy
+      - name: 📥 Setup Rust cache
+        uses: https://github.com/Swatinem/rust-cache@v2
+
+      - name: 📎 Clippy
+        run: cargo clippy --all --features=rss -- -D warnings
+      - name: 🧪 Test
+        run: cargo test --features=rss --workspace
