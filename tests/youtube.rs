@@ -749,12 +749,15 @@ fn get_video_details_agegate(rp: RustyPipe) {
 
 #[rstest]
 fn get_video_details_no_desc(rp: RustyPipe) {
-    let details = tokio_test::block_on(rp.query().video_details("VYJNSQ_ANyA")).unwrap();
+    let details = tokio_test::block_on(rp.query().video_details("BXpTGEEZpV8")).unwrap();
 
-    assert_eq!(details.id, "VYJNSQ_ANyA");
-    assert_eq!(details.name, "Cricket comedy by Modi");
-    assert_eq!(details.channel.id, "UC8gBy2lByHxIyoPMglerNWg");
-    assert_eq!(details.channel.name, "TMP Mix Veg");
+    assert_eq!(details.id, "BXpTGEEZpV8");
+    assert_eq!(
+        details.name,
+        "The Streets Make Me Feel Alive  Stitches  Official Audio"
+    );
+    assert_eq!(details.channel.id, "UC3oJqv3NXiHkBVUW4i9R_pQ");
+    assert_eq!(details.channel.name, "Test Upload channel");
     assert!(!details.channel.avatar.is_empty(), "no channel avatars");
 
     assert!(
@@ -764,7 +767,7 @@ fn get_video_details_no_desc(rp: RustyPipe) {
     );
 
     let date = details.publish_date.unwrap();
-    assert_eq!(date.date(), date!(2023 - 11 - 21));
+    assert_eq!(date.date(), date!(2017 - 4 - 28));
 
     assert!(!details.is_live);
     assert!(!details.is_ccommons);
@@ -2326,7 +2329,7 @@ fn music_radio_not_found(rp: RustyPipe) {
 #[case::de(
     Country::De,
     "PL4fGSI1pDJn4X-OicSCOy-dChXWdTgziQ",
-    "PL0sHkSjKd2rpxgOMD-vlUlIDqvQ5ChYJh"
+    "OLAK5uy_nPQBmQpOIYYxuvYW4gIHsjgDqX9kc--Dg"
 )]
 #[case::us(
     Country::Us,
