@@ -265,15 +265,11 @@ MusicAlbum(
       cover: [],
       artists: [
         ArtistId(
-          id: Some("UCRBHsrbsZDxjHkcgMKEJwpw"),
-          name: "[name]",
-        ),
-        ArtistId(
-          id: Some("UC4YvDAbE1EYwZpj6gQ-lpLw"),
+          id: Some("UCCu_bk4x0KOg4NnCKoerDaw"),
           name: "[name]",
         ),
       ],
-      artist_id: Some("UCRBHsrbsZDxjHkcgMKEJwpw"),
+      artist_id: Some("UCCu_bk4x0KOg4NnCKoerDaw"),
       album: Some(AlbumId(
         id: "MPREb_AzuWg8qAVVl",
         name: "[name]",
