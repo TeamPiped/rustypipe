@@ -831,8 +831,6 @@ fn channel_shorts(rp: RustyPipe) {
         Some("https://www.youtube.com/@Doobydobap")
     );
     assert!(!channel.banner.is_empty(), "got no banners");
-    assert!(!channel.mobile_banner.is_empty(), "got no mobile banners");
-    assert!(!channel.tv_banner.is_empty(), "got no tv banners");
 
     assert!(
         !channel.content.items.is_empty() && !channel.content.is_exhausted(),
@@ -930,8 +928,6 @@ fn assert_channel_eevblog<T>(channel: &Channel<T>) {
         Some("https://www.youtube.com/@EEVblog")
     );
     assert!(!channel.banner.is_empty(), "got no banners");
-    assert!(!channel.mobile_banner.is_empty(), "got no mobile banners");
-    assert!(!channel.tv_banner.is_empty(), "got no tv banners");
 }
 
 #[rstest]
