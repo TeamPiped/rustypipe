@@ -43,7 +43,11 @@ fn get_player_from_client(#[case] client_type: ClientType, rp: RustyPipe) {
     if client_type == ClientType::DesktopMusic {
         assert!(player_data.details.description.is_none());
     } else {
-        assert!(player_data.details.description.unwrap().contains(
+        assert!(player_data
+            .details
+            .description
+            .expect("description")
+            .contains(
             "NCS (NoCopyrightSounds): Empowering Creators through Copyright / Royalty Free Music"
         ));
     }
@@ -60,17 +64,17 @@ fn get_player_from_client(#[case] client_type: ClientType, rp: RustyPipe) {
             .video_only_streams
             .into_iter()
             .find(|s| s.itag == 247)
-            .unwrap();
+            .expect("video #247");
         let audio = player_data
             .audio_streams
             .into_iter()
             .find(|s| s.itag == 140)
-            .unwrap();
+            .expect("audio #140");
 
         // Bitrates may change between requests
         assert_approx(f64::from(video.bitrate), 1_851_854.0);
         assert_eq!(video.average_bitrate, 923_766);
-        assert_eq!(video.size.unwrap(), 29_909_835);
+        assert_eq!(video.size, Some(29_909_835));
         assert_eq!(video.width, 1280);
         assert_eq!(video.height, 720);
         assert_eq!(video.fps, 30);
@@ -103,7 +107,7 @@ fn get_player_from_client(#[case] client_type: ClientType, rp: RustyPipe) {
 
         assert_approx(f64::from(video.bitrate), 1_340_829.0);
         assert_approx(f64::from(video.average_bitrate), 1_046_557.0);
-        assert_approx(video.size.unwrap() as f64, 33_885_572.0);
+        assert_approx(video.size.expect("video size") as f64, 33_885_572.0);
         assert_eq!(video.width, 1280);
         assert_eq!(video.height, 720);
         assert_eq!(video.fps, 30);
@@ -139,7 +143,7 @@ fn check_video_stream(s: impl YtStream) {
         .unwrap();
 
     if let Some(size) = s.size() {
-        assert_eq!(resp.content_length().unwrap(), size)
+        assert_eq!(resp.content_length(), Some(size))
     }
 }
 
@@ -228,7 +232,7 @@ fn get_player(
 
     assert_eq!(details.id, id);
     assert_eq!(details.name, name);
-    let desc = details.description.unwrap();
+    let desc = details.description.expect("description");
     assert!(desc.contains(description), "description: {desc}");
     assert_eq!(details.length, length);
     assert_eq!(details.channel.id, channel_id);
@@ -382,7 +386,7 @@ fn get_playlist(
     assert_eq!(playlist.description, description);
 
     if let Some(expect) = channel {
-        let c = playlist.channel.unwrap();
+        let c = playlist.channel.expect("channel");
         assert_eq!(c.id, expect.0);
         assert_eq!(c.name, expect.1);
     }
@@ -395,8 +399,8 @@ fn playlist_cont(rp: RustyPipe) {
         tokio_test::block_on(rp.query().playlist("PLbZIPy20-1pN7mqjckepWF78ndb6ci_qi")).unwrap();
 
     tokio_test::block_on(playlist.videos.extend_pages(rp.query(), usize::MAX)).unwrap();
-    assert!(playlist.videos.items.len() > 100);
-    assert!(playlist.videos.count.unwrap() > 100);
+    assert_gte(playlist.videos.items.len(), 101, "video items");
+    assert_gteo(playlist.videos.count, 101, "video count");
 }
 
 #[rstest]
@@ -405,8 +409,8 @@ fn playlist_cont2(rp: RustyPipe) {
         tokio_test::block_on(rp.query().playlist("PLbZIPy20-1pN7mqjckepWF78ndb6ci_qi")).unwrap();
 
     tokio_test::block_on(playlist.videos.extend_limit(rp.query(), 101)).unwrap();
-    assert!(playlist.videos.items.len() > 100);
-    assert!(playlist.videos.count.unwrap() > 100);
+    assert_gte(playlist.videos.items.len(), 101, "video items");
+    assert_gteo(playlist.videos.count, 101, "video count");
 }
 
 #[rstest]
@@ -440,15 +444,11 @@ fn get_video_details(rp: RustyPipe) {
     assert_eq!(details.channel.name, "SMTOWN");
     assert!(!details.channel.avatar.is_empty(), "no channel avatars");
     assert_eq!(details.channel.verification, Verification::Verified);
-    assert_gte(
-        details.channel.subscriber_count.unwrap(),
-        30_000_000,
-        "subscribers",
-    );
+    assert_gteo(details.channel.subscriber_count, 30_000_000, "subscribers");
     assert_gte(details.view_count, 232_000_000, "views");
-    assert_gte(details.like_count.unwrap(), 4_000_000, "likes");
+    assert_gteo(details.like_count, 4_000_000, "likes");
 
-    let date = details.publish_date.unwrap();
+    let date = details.publish_date.expect("publish_date");
     assert_eq!(date.date(), date!(2020 - 11 - 17));
 
     assert!(!details.is_live);
@@ -457,7 +457,7 @@ fn get_video_details(rp: RustyPipe) {
     assert!(details.recommended.visitor_data.is_some());
     assert_next(details.recommended, rp.query(), 10, 1, false);
 
-    assert_gte(details.top_comments.count.unwrap(), 700_000, "comments");
+    assert_gteo(details.top_comments.count, 700_000, "comments");
     assert!(!details.top_comments.is_exhausted());
     assert!(!details.latest_comments.is_exhausted());
 }
@@ -477,13 +477,9 @@ fn get_video_details_music(rp: RustyPipe) {
     assert_eq!(details.channel.name, "Sentamusic");
     assert!(!details.channel.avatar.is_empty(), "no channel avatars");
     assert_eq!(details.channel.verification, Verification::Artist);
-    assert_gte(
-        details.channel.subscriber_count.unwrap(),
-        33_000,
-        "subscribers",
-    );
+    assert_gteo(details.channel.subscriber_count, 33_000, "subscribers");
     assert_gte(details.view_count, 20_309, "views");
-    assert_gte(details.like_count.unwrap(), 145, "likes");
+    assert_gteo(details.like_count, 145, "likes");
 
     let date = details.publish_date.unwrap();
     assert_eq!(date.date(), date!(2020 - 8 - 6));
@@ -524,15 +520,11 @@ fn get_video_details_ccommons(rp: RustyPipe) {
     assert_eq!(details.channel.name, "media.ccc.de");
     assert!(!details.channel.avatar.is_empty(), "no channel avatars");
     assert_eq!(details.channel.verification, Verification::None);
-    assert_gte(
-        details.channel.subscriber_count.unwrap(),
-        170_000,
-        "subscribers",
-    );
+    assert_gteo(details.channel.subscriber_count, 170_000, "subscribers");
     assert_gte(details.view_count, 2_517_358, "views");
-    assert_gte(details.like_count.unwrap(), 52_330, "likes");
+    assert_gteo(details.like_count, 52_330, "likes");
 
-    let date = details.publish_date.unwrap();
+    let date = details.publish_date.expect("publish_date");
     assert_eq!(date.date(), date!(2019 - 12 - 29));
 
     assert!(!details.is_live);
@@ -564,15 +556,11 @@ fn get_video_details_chapters(rp: RustyPipe) {
     assert_eq!(details.channel.name, "Linus Tech Tips");
     assert!(!details.channel.avatar.is_empty(), "no channel avatars");
     assert_eq!(details.channel.verification, Verification::Verified);
-    assert_gte(
-        details.channel.subscriber_count.unwrap(),
-        14_700_000,
-        "subscribers",
-    );
+    assert_gteo(details.channel.subscriber_count, 14_700_000, "subscribers");
     assert_gte(details.view_count, 1_157_262, "views");
-    assert_gte(details.like_count.unwrap(), 54_670, "likes");
+    assert_gteo(details.like_count, 54_670, "likes");
 
-    let date = details.publish_date.unwrap();
+    let date = details.publish_date.expect("publish_date");
     assert_eq!(date.date(), date!(2022 - 9 - 15));
 
     assert!(!details.is_live);
@@ -664,7 +652,7 @@ fn get_video_details_chapters(rp: RustyPipe) {
     assert!(details.recommended.visitor_data.is_some());
     assert_next(details.recommended, rp.query(), 10, 1, false);
 
-    assert_gte(details.top_comments.count.unwrap(), 3000, "comments");
+    assert_gteo(details.top_comments.count, 3000, "comments");
     assert!(!details.top_comments.is_exhausted());
     assert!(!details.latest_comments.is_exhausted());
 }
@@ -690,15 +678,11 @@ fn get_video_details_live(rp: RustyPipe) {
     assert_eq!(details.channel.name, "Lofi Girl");
     assert!(!details.channel.avatar.is_empty(), "no channel avatars");
     assert_eq!(details.channel.verification, Verification::Verified);
-    assert_gte(
-        details.channel.subscriber_count.unwrap(),
-        5_500_000,
-        "subscribers",
-    );
+    assert_gteo(details.channel.subscriber_count, 5_500_000, "subscribers");
     assert_gte(details.view_count, 100, "views");
-    assert_gte(details.like_count.unwrap(), 1_800_000, "likes");
+    assert_gteo(details.like_count, 1_800_000, "likes");
 
-    let date = details.publish_date.unwrap();
+    let date = details.publish_date.expect("publish_date");
     assert_eq!(date.date(), date!(2022 - 7 - 12));
 
     assert!(details.is_live);
@@ -728,15 +712,11 @@ fn get_video_details_agegate(rp: RustyPipe) {
     assert_eq!(details.channel.name, "Summerfield Records");
     assert!(!details.channel.avatar.is_empty(), "no channel avatars");
     assert_eq!(details.channel.verification, Verification::Verified);
-    assert_gte(
-        details.channel.subscriber_count.unwrap(),
-        250_000,
-        "subscribers",
-    );
+    assert_gteo(details.channel.subscriber_count, 250_000, "subscribers");
     assert_gte(details.view_count, 10_000_000, "views");
-    assert_gte(details.like_count.unwrap(), 150_000, "likes");
+    assert_gteo(details.like_count, 150_000, "likes");
 
-    let date = details.publish_date.unwrap();
+    let date = details.publish_date.expect("publish_date");
     assert_eq!(date.date(), date!(2022 - 5 - 13));
 
     assert!(!details.is_live);
@@ -766,7 +746,7 @@ fn get_video_details_no_desc(rp: RustyPipe) {
         details.description.to_plaintext()
     );
 
-    let date = details.publish_date.unwrap();
+    let date = details.publish_date.expect("publish_date");
     assert_eq!(date.date(), date!(2017 - 4 - 28));
 
     assert!(!details.is_live);
@@ -794,8 +774,7 @@ fn get_video_comments(rp: RustyPipe) {
     assert!(!top_comments.is_exhausted());
     assert!(top_comments.visitor_data.is_some());
 
-    let n_comments = top_comments.count.unwrap();
-    assert_gte(n_comments, 700_000, "comments");
+    assert_gteo(top_comments.count, 700_000, "comments");
 
     let latest_comments = tokio_test::block_on(details.latest_comments.next(rp.query()))
         .unwrap()
@@ -841,15 +820,15 @@ fn channel_shorts(rp: RustyPipe) {
     // dbg!(&channel);
     assert_eq!(channel.id, "UCh8gHdtzO2tXd593_bjErWg");
     assert_eq!(channel.name, "Doobydobap");
-    assert_gte(channel.subscriber_count.unwrap(), 2_800_000, "subscribers");
+    assert_gteo(channel.subscriber_count, 2_800_000, "subscribers");
     assert!(!channel.avatar.is_empty(), "got no thumbnails");
     assert_eq!(channel.verification, Verification::Verified);
     assert!(channel
         .description
         .contains("Hi, I\u{2019}m Tina, aka Doobydobap"));
     assert_eq!(
-        channel.vanity_url.as_ref().unwrap(),
-        "https://www.youtube.com/@Doobydobap"
+        channel.vanity_url.as_deref(),
+        Some("https://www.youtube.com/@Doobydobap")
     );
     assert!(!channel.banner.is_empty(), "got no banners");
     assert!(!channel.mobile_banner.is_empty(), "got no mobile banners");
@@ -901,11 +880,11 @@ fn channel_playlists(rp: RustyPipe) {
 fn channel_info(rp: RustyPipe) {
     let info = tokio_test::block_on(rp.query().channel_info("UC2DjFE7Xf11URZqWBigcVOQ")).unwrap();
 
-    assert_eq!(info.create_date.unwrap(), date!(2009 - 4 - 4));
-    assert_gte(info.view_count.unwrap(), 186_854_340, "channel views");
-    assert_gte(info.video_count.unwrap(), 1920, "channel videos");
-    assert_gte(info.subscriber_count.unwrap(), 920_000, "subscribers");
-    assert_eq!(info.country.unwrap(), Country::Au);
+    assert_eq!(info.create_date, Some(date!(2009 - 4 - 4)));
+    assert_gteo(info.view_count, 186_854_340, "channel views");
+    assert_gteo(info.video_count, 1920, "channel videos");
+    assert_gteo(info.subscriber_count, 920_000, "subscribers");
+    assert_eq!(info.country, Some(Country::Au));
 
     insta::assert_ron_snapshot!(info.links, @r###"
         [
@@ -941,14 +920,14 @@ fn channel_search(rp: RustyPipe) {
 fn assert_channel_eevblog<T>(channel: &Channel<T>) {
     assert_eq!(channel.id, "UC2DjFE7Xf11URZqWBigcVOQ");
     assert_eq!(channel.name, "EEVblog");
-    assert_gte(channel.subscriber_count.unwrap(), 880_000, "subscribers");
+    assert_gteo(channel.subscriber_count, 880_000, "subscribers");
     assert!(!channel.avatar.is_empty(), "got no thumbnails");
     assert_eq!(channel.verification, Verification::Verified);
     assert_eq!(channel.description, "NO SCRIPT, NO FEAR, ALL OPINION\nAn off-the-cuff Video Blog about Electronics Engineering, for engineers, hobbyists, enthusiasts, hackers and Makers\nHosted by Dave Jones from Sydney Australia\n\nDONATIONS:\nBitcoin: 3KqyH1U3qrMPnkLufM2oHDU7YB4zVZeFyZ\nEthereum: 0x99ccc4d2654ba40744a1f678d9868ecb15e91206\nPayPal: david@alternatezone.com\n\nPatreon: https://www.patreon.com/eevblog\n\nEEVblog2: http://www.youtube.com/EEVblog2\nEEVdiscover: https://www.youtube.com/channel/UCkGvUEt8iQLmq3aJIMjT2qQ\n\nEMAIL:\nAdvertising/Commercial: eevblog+business@gmail.com\nFan mail: eevblog+fan@gmail.com\nHate Mail: eevblog+hate@gmail.com\n\nI DON'T DO PAID VIDEO SPONSORSHIPS, DON'T ASK!\n\nPLEASE:\nDo NOT ask for personal advice on something, post it in the EEVblog forum.\nI read ALL email, but please don't be offended if I don't have time to reply, I get a LOT of email.\n\nMailbag\nPO Box 7949\nBaulkham Hills NSW 2153\nAUSTRALIA");
     assert!(!channel.tags.is_empty(), "got no tags");
     assert_eq!(
-        channel.vanity_url.as_ref().unwrap(),
-        "https://www.youtube.com/@EEVblog"
+        channel.vanity_url.as_deref(),
+        Some("https://www.youtube.com/@EEVblog")
     );
     assert!(!channel.banner.is_empty(), "got no banners");
     assert!(!channel.mobile_banner.is_empty(), "got no mobile banners");
@@ -1025,8 +1004,8 @@ fn channel_order_latest(#[case] id: &str, #[case] tab: ChannelVideoTab, rp: Rust
         while let (Some(v), Some(next_v)) = (latest_items.next(), latest_items.peek()) {
             if !v.is_upcoming && !v.is_live && !next_v.is_upcoming && !next_v.is_live {
                 assert_gte(
-                    v.publish_date.unwrap(),
-                    next_v.publish_date.unwrap(),
+                    v.publish_date.expect("publish_date"),
+                    next_v.publish_date.expect("publish_date"),
                     "latest video date",
                 );
             }
@@ -1062,10 +1041,10 @@ fn channel_order_popular(
     if tab != ChannelVideoTab::Shorts {
         let mut popular_items = popular.items.iter().peekable();
         while let (Some(v), Some(next_v)) = (popular_items.next(), popular_items.peek()) {
-            let vc = v.view_count.unwrap();
+            let vc = v.view_count.expect("views");
             assert_gte(
                 vc + (vc as f64 * 0.05) as u64,
-                next_v.view_count.unwrap(),
+                next_v.view_count.expect("views"),
                 "most popular view count",
             );
         }
@@ -1097,8 +1076,8 @@ fn channel_order_oldest(
     while let (Some(v), Some(next_v)) = (latest_items.next(), latest_items.peek()) {
         if !v.is_upcoming && !v.is_live && !next_v.is_upcoming && !next_v.is_live {
             assert_gte(
-                next_v.publish_date.unwrap(),
-                v.publish_date.unwrap(),
+                next_v.publish_date.expect("publish_date"),
+                v.publish_date.expect("publish_date"),
                 "oldest video date",
             );
         }
@@ -1206,14 +1185,14 @@ mod channel_rss {
 fn search(rp: RustyPipe, unlocalized: bool) {
     let result = tokio_test::block_on(rp.query().search::<YouTubeItem, _>("doobydoobap")).unwrap();
 
-    assert_gte(
-        result.items.count.unwrap(),
+    assert_gteo(
+        result.items.count,
         if unlocalized { 7000 } else { 150 },
         "results",
     );
 
     if unlocalized {
-        assert_eq!(result.corrected_query.unwrap(), "doobydobap");
+        assert_eq!(result.corrected_query.as_deref(), Some("doobydobap"));
     }
 
     assert_next(result.items, rp.query(), 10, 2, true);
@@ -1275,7 +1254,7 @@ fn search_sensitive(rp: RustyPipe, #[case] filter: bool) {
         tokio_test::block_on(rp.query().search::<YouTubeItem, _>(q))
     }
     .unwrap();
-    assert_gte(result.items.count.unwrap(), 10_000, "results");
+    assert_gteo(result.items.count, 10_000, "results");
     assert_next(result.items, rp.query(), 10, 2, true);
 }
 
@@ -1418,8 +1397,8 @@ fn music_playlist(
     assert_eq!(playlist.id, id);
     assert!(!playlist.tracks.is_empty());
     assert_eq!(!playlist.tracks.is_exhausted(), is_long);
-    assert_gte(
-        playlist.track_count.unwrap(),
+    assert_gteo(
+        playlist.track_count,
         if is_long { 100 } else { 10 },
         "track count",
     );
@@ -1429,7 +1408,7 @@ fn music_playlist(
     }
 
     if let Some(expect) = channel {
-        let c = playlist.channel.unwrap();
+        let c = playlist.channel.expect("channel");
         assert_eq!(c.id, expect.0);
         assert_eq!(c.name, expect.1);
     }
@@ -1561,7 +1540,7 @@ fn music_artist(
         assert!(artist.similar_artists.is_empty());
         assert!(artist.subscriber_count.is_none());
     } else {
-        assert_gte(artist.subscriber_count.unwrap(), 10_000, "subscribers");
+        assert_gteo(artist.subscriber_count, 10_000, "subscribers");
     }
 
     artist.tracks.iter().for_each(|t| {
@@ -1674,7 +1653,10 @@ fn music_search_main(#[case] typo: bool, rp: RustyPipe, unlocalized: bool) {
 
     if typo {
         if unlocalized {
-            assert_eq!(res.corrected_query.unwrap(), "lieblingsmensch namika");
+            assert_eq!(
+                res.corrected_query.as_deref(),
+                Some("lieblingsmensch namika")
+            );
         }
     } else {
         assert_eq!(res.corrected_query, None);
@@ -1698,20 +1680,17 @@ fn music_search_main(#[case] typo: bool, rp: RustyPipe, unlocalized: bool) {
         });
 
     assert_eq!(track.name, "Lieblingsmensch");
-    assert_eq!(track.duration.unwrap(), 191);
+    assert_eq!(track.duration, Some(191));
     assert!(!track.cover.is_empty(), "got no cover");
 
     assert_eq!(track.artists.len(), 1);
     let track_artist = &track.artists[0];
-    assert_eq!(
-        track_artist.id.as_ref().unwrap(),
-        "UCIh4j8fXWf2U0ro0qnGU8Mg"
-    );
+    assert_eq!(track_artist.id.as_deref(), Some("UCIh4j8fXWf2U0ro0qnGU8Mg"));
     if unlocalized {
         assert_eq!(track_artist.name, "Namika");
     }
 
-    let track_album = track.album.as_ref().unwrap();
+    let track_album = track.album.as_ref().expect("track_album");
     assert_eq!(track_album.id, "MPREb_RXHxrUFfrvQ");
     assert_eq!(track_album.name, "Lieblingsmensch");
 
@@ -1800,17 +1779,14 @@ fn music_search_tracks(rp: RustyPipe, unlocalized: bool) {
 
     assert_eq!(track.artists.len(), 1);
     let track_artist = &track.artists[0];
-    assert_eq!(
-        track_artist.id.as_ref().unwrap(),
-        "UCEdZAdnnKqbaHOlv8nM6OtA"
-    );
+    assert_eq!(track_artist.id.as_deref(), Some("UCEdZAdnnKqbaHOlv8nM6OtA"));
     if unlocalized {
         assert_eq!(track_artist.name, "aespa");
     }
 
-    assert_eq!(track.duration.unwrap(), 175);
+    assert_eq!(track.duration, Some(175));
 
-    let album = track.album.as_ref().unwrap();
+    let album = track.album.as_ref().expect("track_album");
     assert_eq!(album.id, "MPREb_OpHWHwyNOuY");
     assert_eq!(album.name, "Black Mamba");
 
@@ -1837,17 +1813,14 @@ fn music_search_videos(rp: RustyPipe, unlocalized: bool) {
 
     assert_eq!(track.artists.len(), 1);
     let track_artist = &track.artists[0];
-    assert_eq!(
-        track_artist.id.as_ref().unwrap(),
-        "UCEdZAdnnKqbaHOlv8nM6OtA"
-    );
+    assert_eq!(track_artist.id.as_deref(), Some("UCEdZAdnnKqbaHOlv8nM6OtA"));
     if unlocalized {
         assert_eq!(track_artist.name, "aespa");
     }
 
-    assert_eq!(track.duration.unwrap(), 230);
+    assert_eq!(track.duration, Some(230));
     assert_eq!(track.album, None);
-    assert_gte(track.view_count.unwrap(), 230_000_000, "views");
+    assert_gteo(track.view_count, 230_000_000, "views");
 
     assert_next(res.items, rp.query(), 15, 2, true);
 }
@@ -1894,14 +1867,8 @@ fn music_search_episode(rp: RustyPipe, #[case] videos: bool) {
         "Blond - Da muss man dabei gewesen sein: Das Hörspiel - Fall #1"
     );
     assert_eq!(track_artist.name, "BLOND_OFFICIAL");
-    assert_eq!(
-        track_artist.id.as_ref().unwrap(),
-        "UC8SmM4bue6bKHT4p-_YFZHQ"
-    );
-    assert_eq!(
-        track.artist_id.as_ref().unwrap(),
-        "UC8SmM4bue6bKHT4p-_YFZHQ"
-    );
+    assert_eq!(track_artist.id.as_deref(), Some("UC8SmM4bue6bKHT4p-_YFZHQ"));
+    assert_eq!(track.artist_id.as_deref(), Some("UC8SmM4bue6bKHT4p-_YFZHQ"));
     assert!(!track.cover.is_empty(), "got no cover");
     assert!(track.is_video);
 }
@@ -1970,7 +1937,7 @@ fn music_search_albums(
 
     assert_eq!(album.artist_id.as_ref().expect("artist_id"), artist_id);
     assert!(!album.cover.is_empty(), "got no cover");
-    assert_eq!(album.year.as_ref().unwrap(), &year);
+    assert_eq!(album.year, Some(year));
     assert_eq!(album.album_type, album_type);
 
     assert_eq!(res.corrected_query, None);
@@ -1996,11 +1963,7 @@ fn music_search_artists(rp: RustyPipe, unlocalized: bool) {
         assert_eq!(artist.name, "Namika");
     }
     assert!(!artist.avatar.is_empty(), "got no avatar");
-    assert!(
-        artist.subscriber_count.unwrap() > 735_000,
-        "expected >735K subscribers, got {}",
-        artist.subscriber_count.unwrap()
-    );
+    assert_gteo(artist.subscriber_count, 735_000, "subscribers");
     assert_eq!(res.corrected_query, None);
 }
 
@@ -2034,7 +1997,7 @@ fn music_search_playlists(rp: RustyPipe, unlocalized: bool) {
         assert_eq!(playlist.name, "Massive Rock Hits");
     }
     assert!(!playlist.thumbnail.is_empty(), "got no thumbnail");
-    assert_gte(playlist.track_count.unwrap(), 40, "tracks");
+    assert_gteo(playlist.track_count, 40, "tracks");
     assert_eq!(playlist.channel, None);
     assert!(playlist.from_ytm);
 
@@ -2123,7 +2086,7 @@ fn music_details(#[case] name: &str, #[case] id: &str, rp: RustyPipe) {
 
     assert!(!track.track.cover.is_empty(), "got no cover");
     if name == "mv" {
-        assert_gte(track.track.view_count.unwrap(), 235_000_000, "view count");
+        assert_gteo(track.track.view_count, 235_000_000, "view count");
     } else {
         assert!(track.track.view_count.is_none());
     }
@@ -2183,7 +2146,7 @@ fn music_related(#[case] id: &str, #[case] full: bool, rp: RustyPipe) {
             track_artist_ids += 1;
         }
 
-        let artist = track.artists.first().unwrap();
+        let artist = track.artists.first().expect("track_artist");
         assert!(!artist.name.is_empty());
         if let Some(artist_id) = &artist.id {
             validate::channel_id(artist_id).unwrap();
@@ -2192,7 +2155,7 @@ fn music_related(#[case] id: &str, #[case] full: bool, rp: RustyPipe) {
 
         if track.is_video {
             assert!(track.album.is_none());
-            assert_gte(track.view_count.unwrap(), 10_000, "views")
+            assert_gteo(track.view_count, 10_000, "views")
         } else {
             n_tracks_ytm += 1;
 
@@ -2219,8 +2182,8 @@ fn music_related(#[case] id: &str, #[case] full: bool, rp: RustyPipe) {
             assert!(!album.name.is_empty());
             assert!(!album.cover.is_empty(), "got no cover");
 
-            let artist = album.artists.first().unwrap();
-            validate::channel_id(artist.id.as_ref().unwrap()).unwrap();
+            let artist = album.artists.first().expect("album artist");
+            validate::channel_id(artist.id.as_ref().expect("artist id")).unwrap();
             assert!(!artist.name.is_empty());
         }
 
@@ -2229,7 +2192,7 @@ fn music_related(#[case] id: &str, #[case] full: bool, rp: RustyPipe) {
             validate::channel_id(&artist.id).unwrap();
             assert!(!artist.name.is_empty());
             assert!(!artist.avatar.is_empty(), "got no avatar");
-            assert_gte(artist.subscriber_count.unwrap(), 5000, "subscribers")
+            assert_gteo(artist.subscriber_count, 5000, "subscribers")
         }
 
         assert_gte(related.playlists.len(), 10, "playlists");
@@ -2247,7 +2210,7 @@ fn music_related(#[case] id: &str, #[case] full: bool, rp: RustyPipe) {
                     "pl: {}, got no channel",
                     playlist.id
                 );
-                let channel = playlist.channel.unwrap();
+                let channel = playlist.channel.expect("playlist channel");
                 validate::channel_id(&channel.id).unwrap();
                 assert!(!channel.name.is_empty());
             } else {
@@ -2558,6 +2521,7 @@ fn rp_visitor_data(vdata: &str) -> RustyPipe {
 }
 
 /// Assert equality within 10% margin
+#[track_caller]
 fn assert_approx(left: f64, right: f64) {
     if left != right {
         let f = left / right;
@@ -2569,11 +2533,22 @@ fn assert_approx(left: f64, right: f64) {
 }
 
 /// Assert that number A is greater than or equal to number B
+#[track_caller]
 fn assert_gte<T: PartialOrd + Display>(a: T, b: T, msg: &str) {
     assert!(a >= b, "expected >= {b} {msg}, got {a}");
 }
 
+/// Assert that optional number A is greater than or equal to number B
+#[track_caller]
+fn assert_gteo<T: PartialOrd + Display>(a: Option<T>, b: T, msg: &str) {
+    match a {
+        Some(a) => assert_gte(a, b, msg),
+        None => panic!("expected >= {b} {msg}, got None"),
+    }
+}
+
 /// Assert that the paginator produces at least n pages
+#[track_caller]
 fn assert_next<T: FromYtItem, Q: AsRef<RustyPipeQuery>>(
     paginator: Paginator<T>,
     query: Q,
@@ -2600,6 +2575,7 @@ fn assert_next<T: FromYtItem, Q: AsRef<RustyPipeQuery>>(
 }
 
 /// Assert that the paginator produces at least n items
+#[track_caller]
 fn assert_next_items<T: FromYtItem, Q: AsRef<RustyPipeQuery>>(
     paginator: Paginator<T>,
     query: Q,
@@ -2611,6 +2587,7 @@ fn assert_next_items<T: FromYtItem, Q: AsRef<RustyPipeQuery>>(
     assert_gte(p.items.len(), n_items, "items");
 }
 
+#[track_caller]
 fn assert_frameset(frameset: &Frameset) {
     assert_gte(frameset.frame_height, 20, "frame height");
     assert_gte(frameset.frame_height, 20, "frame width");
