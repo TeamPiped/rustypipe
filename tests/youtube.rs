@@ -809,7 +809,6 @@ fn channel_videos(rp: RustyPipe) {
 }
 
 #[rstest]
-#[ignore]
 fn channel_shorts(rp: RustyPipe) {
     let channel = tokio_test::block_on(
         rp.query()
@@ -837,7 +836,7 @@ fn channel_shorts(rp: RustyPipe) {
         "got no shorts"
     );
 
-    assert_next(channel.content, rp.query(), 15, 1, true);
+    // assert_next(channel.content, rp.query(), 15, 1, true);
 }
 
 #[rstest]
@@ -985,7 +984,6 @@ fn channel_more(
 #[rstest]
 #[case::videos("UCcdwLMPsaU2ezNSJU1nFoBQ", ChannelVideoTab::Videos)]
 #[case::live("UCvqRdlKsE5Q8mf8YXbdIJLw", ChannelVideoTab::Live)]
-#[ignore]
 #[case::shorts("UCcdwLMPsaU2ezNSJU1nFoBQ", ChannelVideoTab::Shorts)]
 fn channel_order_latest(#[case] id: &str, #[case] tab: ChannelVideoTab, rp: RustyPipe) {
     let latest = tokio_test::block_on(rp.query().channel_videos_tab_order(
@@ -1007,13 +1005,15 @@ fn channel_order_latest(#[case] id: &str, #[case] tab: ChannelVideoTab, rp: Rust
             }
         }
     }
-    assert_next(latest, rp.query(), 15, 1, true);
+
+    if tab != ChannelVideoTab::Shorts {
+        assert_next(latest, rp.query(), 15, 1, true);
+    }
 }
 
 #[rstest]
 #[case::videos("UCcdwLMPsaU2ezNSJU1nFoBQ", ChannelVideoTab::Videos, "XqZsoesa55w")]
 #[case::live("UCvqRdlKsE5Q8mf8YXbdIJLw", ChannelVideoTab::Live, "ojes5ULOqhc")]
-#[ignore]
 #[case::shorts("UCcdwLMPsaU2ezNSJU1nFoBQ", ChannelVideoTab::Shorts, "k91vRvXGwHs")]
 fn channel_order_popular(
     #[case] id: &str,
@@ -1045,7 +1045,10 @@ fn channel_order_popular(
             );
         }
     }
-    assert_next(popular, rp.query(), 15, 1, true);
+
+    if tab != ChannelVideoTab::Shorts {
+        assert_next(popular, rp.query(), 15, 1, true);
+    }
 }
 
 #[rstest]

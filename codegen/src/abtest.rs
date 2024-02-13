@@ -32,11 +32,7 @@ pub enum ABTest {
     ChannelPageHeader = 12,
 }
 
-const TESTS_TO_RUN: [ABTest; 3] = [
-    ABTest::TrendsVideoTab,
-    ABTest::TrendsPageHeaderRenderer,
-    ABTest::DiscographyPage,
-];
+const TESTS_TO_RUN: [ABTest; 1] = [ABTest::ChannelPageHeader];
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ABTestRes {
