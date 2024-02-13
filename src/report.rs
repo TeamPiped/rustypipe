@@ -27,7 +27,7 @@ use serde::{Deserialize, Serialize};
 use time::{macros::format_description, OffsetDateTime};
 use tracing::error;
 
-use crate::{deobfuscate::DeobfData, util};
+use crate::{deobfuscate::DeobfData, param::Language, util};
 
 pub(crate) const DEFAULT_REPORT_DIR: &str = "rustypipe_reports";
 
@@ -67,6 +67,9 @@ pub struct RustyPipeInfo<'a> {
     /// Date/Time when the event occurred
     #[serde(with = "time::serde::rfc3339")]
     pub date: OffsetDateTime,
+    /// YouTube content language
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub language: Option<Language>,
 }
 
 /// Reported HTTP request data
@@ -101,12 +104,13 @@ pub enum Level {
     ERR,
 }
 
-impl Default for RustyPipeInfo<'_> {
-    fn default() -> Self {
+impl RustyPipeInfo<'_> {
+    pub(crate) fn new(language: Option<Language>) -> Self {
         Self {
             package: env!("CARGO_PKG_NAME"),
             version: env!("CARGO_PKG_VERSION"),
             date: util::now_sec(),
+            language,
         }
     }
 }

@@ -1428,7 +1428,7 @@ impl RustyPipeQuery {
         if level > Level::DBG || self.opts.report {
             if let Some(reporter) = &self.client.inner.reporter {
                 let report = Report {
-                    info: RustyPipeInfo::default(),
+                    info: RustyPipeInfo::new(Some(self.opts.lang)),
                     level,
                     operation: &format!("{operation}({id})"),
                     error,

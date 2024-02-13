@@ -45,7 +45,7 @@ impl RustyPipeQuery {
             Err(e) => {
                 if let Some(reporter) = &self.client.inner.reporter {
                     let report = Report {
-                        info: RustyPipeInfo::default(),
+                        info: RustyPipeInfo::new(Some(self.opts.lang)),
                         level: crate::report::Level::ERR,
                         operation: "channel_rss",
                         error: Some(e.to_string()),
