@@ -195,6 +195,13 @@ fn map_text_component(text: String, nav: Option<NavigationEndpoint>) -> TextComp
             text,
             url: url_endpoint.url,
         },
+        Some(NavigationEndpoint::WatchPlaylist {
+            watch_playlist_endpoint,
+        }) => TextComponent::Browse {
+            text,
+            page_type: PageType::Playlist,
+            browse_id: watch_playlist_endpoint.playlist_id,
+        },
         None => TextComponent::Text { text },
     }
 }

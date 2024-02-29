@@ -5,23 +5,37 @@ use crate::serializer::text::{Text, TextComponents};
 
 use super::{
     music_item::{
-        ItemSection, MusicContentsRenderer, MusicItemMenuEntry, MusicThumbnailRenderer,
-        SingleColumnBrowseResult,
+        Button, ItemSection, MusicContentsRenderer, MusicItemMenuEntry, MusicThumbnailRenderer,
     },
-    Tab,
+    ContentsRenderer, SectionList, Tab,
 };
 
 /// Response model for YouTube Music playlists and albums
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct MusicPlaylist {
-    pub contents: SingleColumnBrowseResult<Tab<SectionList>>,
+    pub contents: Contents,
     pub header: Option<Header>,
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) enum Contents {
+    SingleColumnBrowseResultsRenderer(ContentsRenderer<Tab<PlSectionList>>),
+    #[serde(rename_all = "camelCase")]
+    TwoColumnBrowseResultsRenderer {
+        /// List content
+        secondary_contents: PlSectionList,
+        /// Header
+        #[serde_as(as = "VecSkipError<_>")]
+        tabs: Vec<Tab<SectionList<Header>>>,
+    },
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub(crate) struct SectionList {
+pub(crate) struct PlSectionList {
     /// Includes a continuation token for fetching recommendations
     pub section_list_renderer: MusicContentsRenderer<ItemSection>,
 }
@@ -29,6 +43,7 @@ pub(crate) struct SectionList {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct Header {
+    #[serde(alias = "musicResponsiveHeaderRenderer")]
     pub music_detail_header_renderer: HeaderRenderer,
 }
 
@@ -48,12 +63,13 @@ pub(crate) struct HeaderRenderer {
     pub subtitle: TextComponents,
     /// Playlist/album description. May contain hashtags which are
     /// displayed as search links on the YouTube website.
-    #[serde_as(as = "Option<Text>")]
-    pub description: Option<String>,
+    pub description: Option<Description>,
     /// Playlist thumbnail / album cover.
     /// Missing on artist_tracks view.
     #[serde(default)]
     pub thumbnail: MusicThumbnailRenderer,
+    /// Channel (only on TwoColumnBrowseResultsRenderer)
+    pub strapline_text_one: Option<TextComponents>,
     /// Number of tracks + playtime.
     /// Missing on artist_tracks view.
     ///
@@ -66,6 +82,28 @@ pub(crate) struct HeaderRenderer {
     #[serde(default)]
     #[serde_as(as = "DefaultOnError")]
     pub menu: Option<HeaderMenu>,
+    #[serde(default)]
+    #[serde_as(as = "VecSkipError<_>")]
+    pub buttons: Vec<HeaderMenu>,
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(untagged)]
+pub(crate) enum Description {
+    Text(#[serde_as(as = "Text")] String),
+    #[serde(rename_all = "camelCase")]
+    Shelf {
+        music_description_shelf_renderer: DescriptionShelf,
+    },
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct DescriptionShelf {
+    #[serde_as(as = "Text")]
+    pub description: String,
 }
 
 #[derive(Debug, Deserialize)]
@@ -80,31 +118,18 @@ pub(crate) struct HeaderMenu {
 pub(crate) struct HeaderMenuRenderer {
     #[serde(default)]
     #[serde_as(as = "VecSkipError<_>")]
-    pub top_level_buttons: Vec<TopLevelButton>,
+    pub top_level_buttons: Vec<Button>,
     #[serde_as(as = "VecSkipError<_>")]
     pub items: Vec<MusicItemMenuEntry>,
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct TopLevelButton {
-    pub button_renderer: ButtonRenderer,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct ButtonRenderer {
-    pub navigation_endpoint: PlaylistEndpoint,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct PlaylistEndpoint {
-    pub watch_playlist_endpoint: PlaylistWatchEndpoint,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct PlaylistWatchEndpoint {
-    pub playlist_id: String,
+impl From<Description> for String {
+    fn from(value: Description) -> Self {
+        match value {
+            Description::Text(v) => v,
+            Description::Shelf {
+                music_description_shelf_renderer,
+            } => music_description_shelf_renderer.description,
+        }
+    }
 }

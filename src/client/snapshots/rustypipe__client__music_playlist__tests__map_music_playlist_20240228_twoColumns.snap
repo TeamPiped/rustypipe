@@ -1,0 +1,3251 @@
+---
+source: src/client/music_playlist.rs
+expression: map_res.c
+---
+MusicPlaylist(
+  id: "RDCLAK5uy_kb7EBi6y3GrtJri4_ZH56Ms786DFEimbM",
+  name: "Lofi Loft",
+  thumbnail: [
+    Thumbnail(
+      url: "https://lh3.googleusercontent.com/9I45SYZAfTeR17ByV9i2yDpWhQ5DTWMCrW3Lei8vMIiZzeyUnf2zRFUDBob4TGwgUkXAAR_x1Xa8VA=w60-h60-l90-rj",
+      width: 60,
+      height: 60,
+    ),
+    Thumbnail(
+      url: "https://lh3.googleusercontent.com/9I45SYZAfTeR17ByV9i2yDpWhQ5DTWMCrW3Lei8vMIiZzeyUnf2zRFUDBob4TGwgUkXAAR_x1Xa8VA=w120-h120-l90-rj",
+      width: 120,
+      height: 120,
+    ),
+    Thumbnail(
+      url: "https://lh3.googleusercontent.com/9I45SYZAfTeR17ByV9i2yDpWhQ5DTWMCrW3Lei8vMIiZzeyUnf2zRFUDBob4TGwgUkXAAR_x1Xa8VA=w226-h226-l90-rj",
+      width: 226,
+      height: 226,
+    ),
+    Thumbnail(
+      url: "https://lh3.googleusercontent.com/9I45SYZAfTeR17ByV9i2yDpWhQ5DTWMCrW3Lei8vMIiZzeyUnf2zRFUDBob4TGwgUkXAAR_x1Xa8VA=w544-h544-l90-rj",
+      width: 544,
+      height: 544,
+    ),
+  ],
+  channel: None,
+  description: Some("Kick back and coast to these chillhop and lofi beats. #hiphop #chill #beats"),
+  track_count: Some(127),
+  from_ytm: true,
+  tracks: Paginator(
+    count: Some(127),
+    items: [
+      TrackItem(
+        id: "uJv3YCk9wD4",
+        name: "Floater",
+        duration: Some(123),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/jW7XJb2Qw7iWn8RggdgrU-y_Zc6oNF69holS07lnT-7g_fRGLKAUHZIXseWK6YYvDH8liOXL7owTkSOL=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/jW7XJb2Qw7iWn8RggdgrU-y_Zc6oNF69holS07lnT-7g_fRGLKAUHZIXseWK6YYvDH8liOXL7owTkSOL=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCUyZ-kct4FzEsTU4-NUhEwQ"),
+            name: "Auxjack",
+          ),
+        ],
+        artist_id: Some("UCUyZ-kct4FzEsTU4-NUhEwQ"),
+        album: Some(AlbumId(
+          id: "MPREb_zCLqS3dKm3s",
+          name: "Welcome to My Lofi House",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "P-zJCLBqZc4",
+        name: "Jazzy Wave",
+        duration: Some(127),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/010jIK0gaG1xFWguPKZ5MRNXJ4MNFCJGhQjHRBW-m_WHqafWd5F5jppzIFioyiujiYs9zPCS4i0Q4pyhpw=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/010jIK0gaG1xFWguPKZ5MRNXJ4MNFCJGhQjHRBW-m_WHqafWd5F5jppzIFioyiujiYs9zPCS4i0Q4pyhpw=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UC7-wFiqQzVSc6x92zaNeUyA"),
+            name: "yourneighborsclassicbeats",
+          ),
+        ],
+        artist_id: Some("UC7-wFiqQzVSc6x92zaNeUyA"),
+        album: Some(AlbumId(
+          id: "MPREb_IOf91IXRVZx",
+          name: "Jazzy Wave",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "_mAPAtjWZGE",
+        name: "Controlla",
+        duration: Some(108),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/rLYilYswNGiotfjqBaBFPWZaNk4AUyq3YIGGRawAT6GyIPn6u2q_BxMnkSltRCqLKoHsb5T-hxYmiNfvuQ=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/rLYilYswNGiotfjqBaBFPWZaNk4AUyq3YIGGRawAT6GyIPn6u2q_BxMnkSltRCqLKoHsb5T-hxYmiNfvuQ=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCOc-AHiKRo_Z8rSHPM74Wag"),
+            name: "Idealism",
+          ),
+        ],
+        artist_id: Some("UCOc-AHiKRo_Z8rSHPM74Wag"),
+        album: Some(AlbumId(
+          id: "MPREb_X0cIsoynT4m",
+          name: "rainy evening",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "JbXkjRqWTxc",
+        name: "Started Ballin\'",
+        duration: Some(162),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/-odKvyqp_cP7btwm_2TxoIL1G3mSL0NJDUjToPmt1sZRaTURZ0jFN9wVsKvDshQ6Xv1AZxrahDvWHDKZdw=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/-odKvyqp_cP7btwm_2TxoIL1G3mSL0NJDUjToPmt1sZRaTURZ0jFN9wVsKvDshQ6Xv1AZxrahDvWHDKZdw=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UC8ecAdKa5eWHiwg3_XEH1rQ"),
+            name: "Brenk Sinatra",
+          ),
+          ArtistId(
+            id: Some("UC7pJH1OrLG-EY6SUiN3_DSg"),
+            name: "Shuko",
+          ),
+        ],
+        artist_id: Some("UC8ecAdKa5eWHiwg3_XEH1rQ"),
+        album: Some(AlbumId(
+          id: "MPREb_xprDSCXDyWi",
+          name: "Started Ballin\'",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "72b8D6s_y_U",
+        name: "Wonderful Day",
+        duration: Some(144),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/FTqfzCFHkvu5RbBDa8uTD0mn3-QccZdHtZQFuyEjdheymVthTxZiYpERqitBzTW47b60LcKfnsiIIkMixg=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/FTqfzCFHkvu5RbBDa8uTD0mn3-QccZdHtZQFuyEjdheymVthTxZiYpERqitBzTW47b60LcKfnsiIIkMixg=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UC5um6VkmGipcqmL1lvYO-1A"),
+            name: "Kind Puppy",
+          ),
+        ],
+        artist_id: Some("UC5um6VkmGipcqmL1lvYO-1A"),
+        album: Some(AlbumId(
+          id: "MPREb_13Va9UD8ZQY",
+          name: "Wonderful Day",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "mHKNroJOcig",
+        name: "Santa Anna",
+        duration: Some(121),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/8Fp9TSYMEefqt6Lbk5YhKZB9In6WMZTQionlutGf3iNIxQABsnk_vjfDsLpsUstDnq-UYsrb3yneQqTeVA=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/8Fp9TSYMEefqt6Lbk5YhKZB9In6WMZTQionlutGf3iNIxQABsnk_vjfDsLpsUstDnq-UYsrb3yneQqTeVA=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCotGPRFFzALsbBw3UjCSpLQ"),
+            name: "Tom Doolie",
+          ),
+        ],
+        artist_id: Some("UCotGPRFFzALsbBw3UjCSpLQ"),
+        album: Some(AlbumId(
+          id: "MPREb_SukQAzJZbVm",
+          name: "Santa Anna",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "0C1NFu4NB_4",
+        name: "Far Away",
+        duration: Some(116),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/otGMRVpiG-qGsBYQxbnh-zv4MCMTtdXAYMsCodEryPV252k2mkdyAb-02SMlZUF4UDOhEpxxNWU_dWfAxQ=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/otGMRVpiG-qGsBYQxbnh-zv4MCMTtdXAYMsCodEryPV252k2mkdyAb-02SMlZUF4UDOhEpxxNWU_dWfAxQ=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCimnUVaSSTvPBzkxuXZ8CZA"),
+            name: "sleepsleepsleep",
+          ),
+        ],
+        artist_id: Some("UCimnUVaSSTvPBzkxuXZ8CZA"),
+        album: Some(AlbumId(
+          id: "MPREb_Tl4FlKK75jj",
+          name: "Far Away",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "EnLWwwtO1-A",
+        name: "Bees And Apple Trees",
+        duration: Some(110),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/liqLYCwVaZgMSrIngr4WIvZzpbZpbeLq10_6QymSxjMF9PgOeFhyRl5OdH4J7b9ThKRTb5Th71pWioD3AQ=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/liqLYCwVaZgMSrIngr4WIvZzpbZpbeLq10_6QymSxjMF9PgOeFhyRl5OdH4J7b9ThKRTb5Th71pWioD3AQ=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCQeQQKVnvl_5jKLniN-hadQ"),
+            name: "Heinrich Schlupf",
+          ),
+          ArtistId(
+            id: Some("UCdwzwHmlCJcXnuOV5CANx0A"),
+            name: "Loufish",
+          ),
+        ],
+        artist_id: Some("UCQeQQKVnvl_5jKLniN-hadQ"),
+        album: Some(AlbumId(
+          id: "MPREb_ADPOLEdANqf",
+          name: "Bees And Apple Trees",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "cafxLTAWi-g",
+        name: "Bustlin",
+        duration: Some(106),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/zh8HjZM0kzWyZMUQIzIuobJm4mn3D0IAU5FNXnKjIwNyQhewmwMf-kHz8pEGTFZBpOO8olJWPdtiUeef=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/zh8HjZM0kzWyZMUQIzIuobJm4mn3D0IAU5FNXnKjIwNyQhewmwMf-kHz8pEGTFZBpOO8olJWPdtiUeef=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCnyM4vA_s3LujuQD-j6PnHw"),
+            name: "LESKY",
+          ),
+          ArtistId(
+            id: Some("UCBfBBdCXQQ_mL0Z4nA_CFFQ"),
+            name: "Midan",
+          ),
+        ],
+        artist_id: Some("UCnyM4vA_s3LujuQD-j6PnHw"),
+        album: Some(AlbumId(
+          id: "MPREb_8qOk7PAcoOq",
+          name: "Bustlin",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "uyemSV1SpnE",
+        name: "The Afternoon",
+        duration: Some(128),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/wYJP_QiQG1a7HfwQNe80JBK6B_undJ3EtDv7T1nkar5etbbGcculS4kWHJyolCqz44ntZck1Oyf42zDRvA=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/wYJP_QiQG1a7HfwQNe80JBK6B_undJ3EtDv7T1nkar5etbbGcculS4kWHJyolCqz44ntZck1Oyf42zDRvA=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UC7aTEW2EYpngNt9-vWcXw0A"),
+            name: "Boztown",
+          ),
+        ],
+        artist_id: Some("UC7aTEW2EYpngNt9-vWcXw0A"),
+        album: Some(AlbumId(
+          id: "MPREb_J8X5tFHzmqc",
+          name: "The Afternoon",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "ogc58xMpPCc",
+        name: "Mramor",
+        duration: Some(140),
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/ogc58xMpPCc/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3n71dzmQVtzH3NPrx7oa7GN9nY5oA",
+            width: 400,
+            height: 225,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCBuzyCWvAZmYl0uecMEVVzg"),
+            name: "Chau Sara",
+          ),
+        ],
+        artist_id: Some("UCBuzyCWvAZmYl0uecMEVVzg"),
+        album: None,
+        view_count: None,
+        is_video: true,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "tsw1LgVkFjE",
+        name: "Nonchalant (feat. Hiroshi Suzuki)",
+        duration: Some(82),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/pDjXoIMTLXcoLxcFVKnavOqKHpwYoMu7_YEHVitz1R24bB7AHWunGiMssJ6CmLwGZn7OVK8Cx-oNNr7S6g=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/pDjXoIMTLXcoLxcFVKnavOqKHpwYoMu7_YEHVitz1R24bB7AHWunGiMssJ6CmLwGZn7OVK8Cx-oNNr7S6g=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCf9z2DPfu7mrcVjLY5Q1_oA"),
+            name: "Dire Beats",
+          ),
+        ],
+        artist_id: Some("UCf9z2DPfu7mrcVjLY5Q1_oA"),
+        album: Some(AlbumId(
+          id: "MPREb_2Dt7ni7wCGw",
+          name: "Nonchalant",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "xSB8trUFX1A",
+        name: "i\'m closing my eyes",
+        duration: Some(119),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/9RdlXUjbO7v_yj6flRr3z3vFqE3QQaABDPh5Urm0WaEBDzMT0AT1ZT4qYW2_EcZuGzAKoqkfqN0mMaE=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/9RdlXUjbO7v_yj6flRr3z3vFqE3QQaABDPh5Urm0WaEBDzMT0AT1ZT4qYW2_EcZuGzAKoqkfqN0mMaE=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCxBu7h_ACXyfvnpG_rQKI9w"),
+            name: "potsu",
+          ),
+        ],
+        artist_id: Some("UCxBu7h_ACXyfvnpG_rQKI9w"),
+        album: Some(AlbumId(
+          id: "MPREb_JDuUooRZ16a",
+          name: "i\'m closing my eyes",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "yEKTrciCvvY",
+        name: "Sonria",
+        duration: Some(117),
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/yEKTrciCvvY/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mRbuas1DdAuSpuy0ZDsXKiQoJTcg",
+            width: 400,
+            height: 225,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCVyclYZZ-sCbkuy7svZca7A"),
+            name: "Chris Mazuera",
+          ),
+        ],
+        artist_id: Some("UCVyclYZZ-sCbkuy7svZca7A"),
+        album: None,
+        view_count: None,
+        is_video: true,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "LbHsWjX9dv4",
+        name: "Affection",
+        duration: Some(118),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/k1HLQ-KtSYppyp4_ttz-t7usH6hlu7m4Fjs_TdVj1l0CHkUp0VvGIPFh_vZqhlzwxmNVXzLlulRJjjBG=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/k1HLQ-KtSYppyp4_ttz-t7usH6hlu7m4Fjs_TdVj1l0CHkUp0VvGIPFh_vZqhlzwxmNVXzLlulRJjjBG=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UClpcunja__49WB1aKj-18Eg"),
+            name: "Jinsang",
+          ),
+        ],
+        artist_id: Some("UClpcunja__49WB1aKj-18Eg"),
+        album: Some(AlbumId(
+          id: "MPREb_qB7kQZtwCTr",
+          name: "Life",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "L2apFB6EF-Y",
+        name: "grainy days",
+        duration: Some(144),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/v8yjlwK9qUZXnhGQpzupDoRc7hBzNXnLgoFtAP0M1UhpaWSmQMNiy2c5y6EYfXF6D6G9oxQbj3oA0_3kIg=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/v8yjlwK9qUZXnhGQpzupDoRc7hBzNXnLgoFtAP0M1UhpaWSmQMNiy2c5y6EYfXF6D6G9oxQbj3oA0_3kIg=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCzZHHeveVbnB3xZN5Q-ZzJw"),
+            name: "Moody.",
+          ),
+        ],
+        artist_id: Some("UCzZHHeveVbnB3xZN5Q-ZzJw"),
+        album: Some(AlbumId(
+          id: "MPREb_97ydr5LMzOl",
+          name: "grainy days",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "uCW2sZZofhk",
+        name: "Aftermath",
+        duration: Some(175),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/3okAgZhzENAORY3J_wMKshWFqtdlnTiWeNHs3IJ6WHxcKnGXH2bx8CPwAAZWKursvR9338ahsRRPoLfX=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/3okAgZhzENAORY3J_wMKshWFqtdlnTiWeNHs3IJ6WHxcKnGXH2bx8CPwAAZWKursvR9338ahsRRPoLfX=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCoqZErD2-sutqarLyDxi6Uw"),
+            name: "Beamer",
+          ),
+        ],
+        artist_id: Some("UCoqZErD2-sutqarLyDxi6Uw"),
+        album: Some(AlbumId(
+          id: "MPREb_93IKQbuT0Ki",
+          name: "Aftermath",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "XZ9DKiNZszM",
+        name: "Lofi Hip Hop | 5:32PM",
+        duration: Some(138),
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/XZ9DKiNZszM/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kUbphGSdyE1rzI-P60rly6Kq1a3w",
+            width: 400,
+            height: 225,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UC6wELQwGiCxNs3NaL7Suy9g"),
+            name: "TSN Vibes",
+          ),
+        ],
+        artist_id: Some("UC6wELQwGiCxNs3NaL7Suy9g"),
+        album: None,
+        view_count: None,
+        is_video: true,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "J1AOKFRqCjg",
+        name: "Summer Soft",
+        duration: Some(150),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/d36eXQIDZXRFBbCxagxeTrf5wdmRDF0HEov6RIZ8OpjMMYRRRJT8Vl6JU9ieVbXOTSUFIeSR75zAsnNg=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/d36eXQIDZXRFBbCxagxeTrf5wdmRDF0HEov6RIZ8OpjMMYRRRJT8Vl6JU9ieVbXOTSUFIeSR75zAsnNg=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UC7pJH1OrLG-EY6SUiN3_DSg"),
+            name: "Shuko",
+          ),
+          ArtistId(
+            id: Some("UCdltCBFLglVYUCuyvMEk7BA"),
+            name: "Ruck P",
+          ),
+        ],
+        artist_id: Some("UC7pJH1OrLG-EY6SUiN3_DSg"),
+        album: Some(AlbumId(
+          id: "MPREb_CFB5jpjnFr9",
+          name: "Summer Soft",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "XNd6d6H1LBo",
+        name: "mommy x Philanthrope - thinking of you w/ Kyle McEvoy (Music Video)",
+        duration: Some(131),
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/XNd6d6H1LBo/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mRamrCgjFtcbI5ix-lyFujuSIqKQ",
+            width: 400,
+            height: 225,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCZPnrhcbLNIt2a4kxVmZaQQ"),
+            name: "Kyle McEvoy",
+          ),
+        ],
+        artist_id: Some("UCZPnrhcbLNIt2a4kxVmZaQQ"),
+        album: None,
+        view_count: None,
+        is_video: true,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "SSy4VdjEJKM",
+        name: "Moony",
+        duration: Some(127),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/ilStzGkoDOzg2YezEDCTaglSBfflHRFVTZh___NfisCy5wygkwvmVfrikstLOpz4IsQxJDL1m8qYbvE=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/ilStzGkoDOzg2YezEDCTaglSBfflHRFVTZh___NfisCy5wygkwvmVfrikstLOpz4IsQxJDL1m8qYbvE=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCUpSQ-USjolH0eKOAjgBrtA"),
+            name: "The BREED",
+          ),
+        ],
+        artist_id: Some("UCUpSQ-USjolH0eKOAjgBrtA"),
+        album: Some(AlbumId(
+          id: "MPREb_mzBhunjS3YU",
+          name: "Moony",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "0am_BfODDvc",
+        name: "Lost In This Moment",
+        duration: Some(230),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/YwfKR9bEnu88c3fbJfr7kYt384-Qkkwlv38aTZcy4SYGR8FuksdueSsd7CGWnnvQuYYmUSy6x21P_o4x=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/YwfKR9bEnu88c3fbJfr7kYt384-Qkkwlv38aTZcy4SYGR8FuksdueSsd7CGWnnvQuYYmUSy6x21P_o4x=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCg2TAN484obS3oqbATNdaEw"),
+            name: "Evil Needle",
+          ),
+          ArtistId(
+            id: Some("UC_SB5UbFWpV4bZHvfNauLvg"),
+            name: "Misha",
+          ),
+        ],
+        artist_id: Some("UCg2TAN484obS3oqbATNdaEw"),
+        album: Some(AlbumId(
+          id: "MPREb_xjsoTPwDAUP",
+          name: "Chillhop Essentials Summer 2022",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "xv3qKrCq2w8",
+        name: "she",
+        duration: Some(186),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/uV33B9ccermkNN-e-50Y5Yqmcn7C3BjTKFh8ACNCrEdsAm9IO8FxQnZdSnoch1oXefKy4IaK66lHp90=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/uV33B9ccermkNN-e-50Y5Yqmcn7C3BjTKFh8ACNCrEdsAm9IO8FxQnZdSnoch1oXefKy4IaK66lHp90=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCKobx_oGcWleIU6-4lmx7cw"),
+            name: "Sans",
+          ),
+        ],
+        artist_id: Some("UCKobx_oGcWleIU6-4lmx7cw"),
+        album: Some(AlbumId(
+          id: "MPREb_98EUqYbhqSP",
+          name: "she",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "pZC82a-2eo0",
+        name: "Traveller",
+        duration: Some(131),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/34K-F2QDeR3wntZ55UQw11zLDBV22S2lJdxGEVfCdN_vaOvG38rMQexbzmbFAdbWNaGy-OoZihEVAV6B5A=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/34K-F2QDeR3wntZ55UQw11zLDBV22S2lJdxGEVfCdN_vaOvG38rMQexbzmbFAdbWNaGy-OoZihEVAV6B5A=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UC-s1iUHeqoKj45kek86To0g"),
+            name: "Dualizm",
+          ),
+        ],
+        artist_id: Some("UC-s1iUHeqoKj45kek86To0g"),
+        album: Some(AlbumId(
+          id: "MPREb_wVnew3DgOLz",
+          name: "Traveller",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "kOmmYiigFLE",
+        name: "Gardenia",
+        duration: Some(125),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/uUYl29TZP1uqgJlZNClhAcwZ4KpqV_ROk5RQqsy1XTx1ta2fuOSEVCavhhXHaQrnryH6C_-KZ5EUChN5hQ=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/uUYl29TZP1uqgJlZNClhAcwZ4KpqV_ROk5RQqsy1XTx1ta2fuOSEVCavhhXHaQrnryH6C_-KZ5EUChN5hQ=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCqsc-Uy-e30XwU0R3o03kYA"),
+            name: "DRWN.",
+          ),
+        ],
+        artist_id: Some("UCqsc-Uy-e30XwU0R3o03kYA"),
+        album: Some(AlbumId(
+          id: "MPREb_64n6OIA4nVu",
+          name: "Gardenia",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "Jcp48M-vRJw",
+        name: "Azimuth",
+        duration: Some(101),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/elMc-oxiZ32LyZv0KrAvvZkSOmLJVvGT-EnPxqPdN0oL4IPlfAp1Vr3ywxRzV_Jplwuc_xF2jMn6-Lck=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/elMc-oxiZ32LyZv0KrAvvZkSOmLJVvGT-EnPxqPdN0oL4IPlfAp1Vr3ywxRzV_Jplwuc_xF2jMn6-Lck=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCJkeQLgGCXmwgEdpF6a5wVQ"),
+            name: "Dpsht",
+          ),
+        ],
+        artist_id: Some("UCJkeQLgGCXmwgEdpF6a5wVQ"),
+        album: Some(AlbumId(
+          id: "MPREb_fcaqavEUxn9",
+          name: "Azimuth",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "YeSgtLJQGJs",
+        name: "Opiate",
+        duration: Some(171),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/XPTHuBqAX1YNRvi140IrXXlc0kg279dlpTEtO053yGGxKZgm0RRixh0_jxloy7lSMR6QVmo2xZHv5Jc=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/XPTHuBqAX1YNRvi140IrXXlc0kg279dlpTEtO053yGGxKZgm0RRixh0_jxloy7lSMR6QVmo2xZHv5Jc=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCg2TAN484obS3oqbATNdaEw"),
+            name: "Evil Needle",
+          ),
+        ],
+        artist_id: Some("UCg2TAN484obS3oqbATNdaEw"),
+        album: Some(AlbumId(
+          id: "MPREb_5CQccES4HFF",
+          name: "Chillhop Essentials Spring 2022",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "_LY6aFUVmOU",
+        name: "Future",
+        duration: Some(149),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/OzxMa2FVJy_QbHvWdqysXyivGzWO59dKGyTRvn2dsutwXgAVRsaORdyixvFoaLueNWUAlMdAXxN888ak=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/OzxMa2FVJy_QbHvWdqysXyivGzWO59dKGyTRvn2dsutwXgAVRsaORdyixvFoaLueNWUAlMdAXxN888ak=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UC5ot4mOP8C2-c0SY1o0EOUQ"),
+            name: "Paul Grant",
+          ),
+          ArtistId(
+            id: Some("UCH8TnNtIrONmD9MQc4W2q9w"),
+            name: "Astairé",
+          ),
+        ],
+        artist_id: Some("UC5ot4mOP8C2-c0SY1o0EOUQ"),
+        album: Some(AlbumId(
+          id: "MPREb_DkzjLbIKmrV",
+          name: "Future",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "SCTMdJ1cuoU",
+        name: "Rainbow Roll",
+        duration: Some(126),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/8H6RLikby6K3_nrNCzTW-2llkIvC8QroXJ4KGyH9iX2kUKXI14jxdFRQwl4E1OtnwSI3MKVh1HtgqsnnLw=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/8H6RLikby6K3_nrNCzTW-2llkIvC8QroXJ4KGyH9iX2kUKXI14jxdFRQwl4E1OtnwSI3MKVh1HtgqsnnLw=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCi1CfmLS3woDqVp88qgkjtw"),
+            name: "Strehlow",
+          ),
+        ],
+        artist_id: Some("UCi1CfmLS3woDqVp88qgkjtw"),
+        album: Some(AlbumId(
+          id: "MPREb_V41hwhlLOLT",
+          name: "Late Night Essentials",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "TEOwoK-CMes",
+        name: "1. Dreams",
+        duration: Some(96),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/wtVam5dHloW1mEHVewOMhZyz-sIFGp_pP5AB4rTCO1wjsqDFLvB6oRJYz32y2JuO6e96KQvuRcgN0VFa=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/wtVam5dHloW1mEHVewOMhZyz-sIFGp_pP5AB4rTCO1wjsqDFLvB6oRJYz32y2JuO6e96KQvuRcgN0VFa=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCgrjICyfm3HWFIVCWPWdNnA"),
+            name: "briqs",
+          ),
+        ],
+        artist_id: Some("UCgrjICyfm3HWFIVCWPWdNnA"),
+        album: Some(AlbumId(
+          id: "MPREb_kqmmDxh8i5j",
+          name: "Dreams",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "JgI6z6aQhEA",
+        name: "Velocities",
+        duration: Some(192),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/ZKAKV3kwk5fG4b6kYOxgCIZ0uPrX4vU99adCmZaWhW0K2fwqwbumt3_AK11cfT4l3yHJbwJ8YAPOtUqG=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/ZKAKV3kwk5fG4b6kYOxgCIZ0uPrX4vU99adCmZaWhW0K2fwqwbumt3_AK11cfT4l3yHJbwJ8YAPOtUqG=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCNR1Pzl2T9biZWAbOXZPUwQ"),
+            name: "Sleepy Fish",
+          ),
+        ],
+        artist_id: Some("UCNR1Pzl2T9biZWAbOXZPUwQ"),
+        album: Some(AlbumId(
+          id: "MPREb_K964FdsoM8O",
+          name: "Velocities",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "1FxeCa6kypU",
+        name: "Still",
+        duration: Some(214),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/hpUxFfQImVH7UEk2RgRrbk32K6sfORXCy8mshn1DBY--zl0om8VJCUp2PUn6JxHKrlhOnlfy2ifAc7fc5w=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/hpUxFfQImVH7UEk2RgRrbk32K6sfORXCy8mshn1DBY--zl0om8VJCUp2PUn6JxHKrlhOnlfy2ifAc7fc5w=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCOc-AHiKRo_Z8rSHPM74Wag"),
+            name: "Idealism",
+          ),
+          ArtistId(
+            id: Some("UCiKzz-4FjwL037dNANU8oPA"),
+            name: "Philanthrope",
+          ),
+        ],
+        artist_id: Some("UCOc-AHiKRo_Z8rSHPM74Wag"),
+        album: Some(AlbumId(
+          id: "MPREb_2IFKaLBqVc1",
+          name: "Chillhop Daydreams 2",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "hG6YzmvbosI",
+        name: "for when it’s warmer",
+        duration: Some(217),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/HoV_Q7CVP59SidrkuGXWl88QAOHc28rSjD-xMljYaadYfthJEWnG0E-yYMNFadLGcFSDDj02HI6cIARsPQ=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/HoV_Q7CVP59SidrkuGXWl88QAOHc28rSjD-xMljYaadYfthJEWnG0E-yYMNFadLGcFSDDj02HI6cIARsPQ=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCNR1Pzl2T9biZWAbOXZPUwQ"),
+            name: "Sleepy Fish",
+          ),
+        ],
+        artist_id: Some("UCNR1Pzl2T9biZWAbOXZPUwQ"),
+        album: Some(AlbumId(
+          id: "MPREb_9UNCTFZa4Lk",
+          name: "Chillhop Essentials Summer 2019",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "y3PKcVd7UtM",
+        name: "Daybreak",
+        duration: Some(209),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/ltamBecph9IgpqqiHI6UaTF4Jg3S6iMEMjEXg4OlTgDJU8mYMyApUcwTBQOCuCJcKV0Kg91kfucX9UHc=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/ltamBecph9IgpqqiHI6UaTF4Jg3S6iMEMjEXg4OlTgDJU8mYMyApUcwTBQOCuCJcKV0Kg91kfucX9UHc=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCGufCXbmC64ajXVhIaCTpqw"),
+            name: "cocabona",
+          ),
+        ],
+        artist_id: Some("UCGufCXbmC64ajXVhIaCTpqw"),
+        album: Some(AlbumId(
+          id: "MPREb_XTa1qL3The5",
+          name: "Daybreak",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "UiCRuNo4dGg",
+        name: "A Day at the Beach",
+        duration: Some(170),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/1j4AsbAtaT2-TawsmmBppawlg82ZU1oJ691Pyzfa98t-MNDDLAS5mgVgh5_JPbXcgVBIQhQMyVYVaUjvAg=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/1j4AsbAtaT2-TawsmmBppawlg82ZU1oJ691Pyzfa98t-MNDDLAS5mgVgh5_JPbXcgVBIQhQMyVYVaUjvAg=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Pandrezz & j’san",
+          ),
+        ],
+        artist_id: Some("UCMWhZrB0x7Q_THK_xatyH1A"),
+        album: Some(AlbumId(
+          id: "MPREb_b7H8uSxtruz",
+          name: "Hometown",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "3uXHaVENo6E",
+        name: "Eternal Youth",
+        duration: Some(206),
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/3uXHaVENo6E/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nTGKzz2Qjo2yWc8jzSSp-_2Io7Sw",
+            width: 400,
+            height: 225,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UC3rcrZxH9VW73L2gZtHlU2g"),
+            name: "RŮDE",
+          ),
+        ],
+        artist_id: Some("UC3rcrZxH9VW73L2gZtHlU2g"),
+        album: None,
+        view_count: None,
+        is_video: true,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "EX2d37tT5fo",
+        name: "Birds Fly Higher Than The Moon",
+        duration: Some(164),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/x30L14C5o9dT8pMPLD2BQWwiiG1P9TlyuN8NefTGf5Ag9g95HKMZ1rV7CeRSQ7UFrt_JcozotK0cd4E1Uw=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/x30L14C5o9dT8pMPLD2BQWwiiG1P9TlyuN8NefTGf5Ag9g95HKMZ1rV7CeRSQ7UFrt_JcozotK0cd4E1Uw=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCo0JVM02GNDSKXAoE4JrUYQ"),
+            name: "Yasper",
+          ),
+        ],
+        artist_id: Some("UCo0JVM02GNDSKXAoE4JrUYQ"),
+        album: Some(AlbumId(
+          id: "MPREb_MmnO8w7IGKa",
+          name: "Birds Fly Higher Than The Moon",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "RjQxmy90hTg",
+        name: "Snacks Pt. 1",
+        duration: Some(177),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/JEeuSfrANbXUnUWmQrdrTJQ1URU-VOUwao2Iy1TqNdSIpaam5dgo0PR-6hzAXqidK5_dCyhnljiX1iBBxg=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/JEeuSfrANbXUnUWmQrdrTJQ1URU-VOUwao2Iy1TqNdSIpaam5dgo0PR-6hzAXqidK5_dCyhnljiX1iBBxg=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCraRksyJpUyJQexB7-hdoTQ"),
+            name: "No Spirit",
+          ),
+          ArtistId(
+            id: Some("UCzIwP0r8MyFoanmns0RRv-A"),
+            name: "Kyle McEvoy",
+          ),
+          ArtistId(
+            id: Some("UCiKzz-4FjwL037dNANU8oPA"),
+            name: "Philanthrope",
+          ),
+          ArtistId(
+            id: Some("UCO42OOwmNfYVF9ON5Gj50ow"),
+            name: "Louk",
+          ),
+        ],
+        artist_id: Some("UCraRksyJpUyJQexB7-hdoTQ"),
+        album: Some(AlbumId(
+          id: "MPREb_1u0JsT5PFFd",
+          name: "Snacks",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "IsLFK8TkaVw",
+        name: "Fireplace",
+        duration: Some(159),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/3AcaWn5FbFOpjh5q_0dAf8jDAQoK7NJzUCehj9AcGQV8W24G3uRscGecKk15PP7HSsNWQFJXNuBtHbiU_g=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/3AcaWn5FbFOpjh5q_0dAf8jDAQoK7NJzUCehj9AcGQV8W24G3uRscGecKk15PP7HSsNWQFJXNuBtHbiU_g=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCNR1Pzl2T9biZWAbOXZPUwQ"),
+            name: "Sleepy Fish",
+          ),
+        ],
+        artist_id: Some("UCNR1Pzl2T9biZWAbOXZPUwQ"),
+        album: Some(AlbumId(
+          id: "MPREb_2uw65z8wMFd",
+          name: "Beneath Your Waves",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "myRx1SRqxic",
+        name: "Samui Sunrise",
+        duration: Some(204),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/sBBORUfljZtNCVCEb8gTjqsyTkTXOMlCZlKesIhPGBNSRkRdpIKjNBS7h-g5JaeJCLIWr_B4Z1eAruSG=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/sBBORUfljZtNCVCEb8gTjqsyTkTXOMlCZlKesIhPGBNSRkRdpIKjNBS7h-g5JaeJCLIWr_B4Z1eAruSG=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCw02oGFeqYXl14LcyKhOTYw"),
+            name: "Saib",
+          ),
+        ],
+        artist_id: Some("UCw02oGFeqYXl14LcyKhOTYw"),
+        album: Some(AlbumId(
+          id: "MPREb_HaEmVU54nQv",
+          name: "Samui Sunrise",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "BDuDCIt2eiY",
+        name: "Spirits",
+        duration: Some(189),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Mi0Fwr8CLxF7x7DRbh_51n5cJj_gRmf9f0mYiPh_Efpxr1mcTNIJoc0z7PR40vIApsL0nnmqX-1_nVasCA=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Mi0Fwr8CLxF7x7DRbh_51n5cJj_gRmf9f0mYiPh_Efpxr1mcTNIJoc0z7PR40vIApsL0nnmqX-1_nVasCA=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UC_SB5UbFWpV4bZHvfNauLvg"),
+            name: "Misha",
+          ),
+          ArtistId(
+            id: Some("UCg2TAN484obS3oqbATNdaEw"),
+            name: "Evil Needle",
+          ),
+        ],
+        artist_id: Some("UC_SB5UbFWpV4bZHvfNauLvg"),
+        album: Some(AlbumId(
+          id: "MPREb_euC9NAX4Yk4",
+          name: "Chillhop Essentials Fall 2021",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "Do0lH6GDy7w",
+        name: "After Dark",
+        duration: Some(166),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/fWmprSP_TSBdf2JJVzEZ4PchAq7r3JD8_h--079nVIL3X9X1T3p_1melFeW8JKG8-RMGxp1OK5RxSPCnsQ=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/fWmprSP_TSBdf2JJVzEZ4PchAq7r3JD8_h--079nVIL3X9X1T3p_1melFeW8JKG8-RMGxp1OK5RxSPCnsQ=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCDAF5qrmMYNk-bkfavTQyFA"),
+            name: "Sugi.wa",
+          ),
+        ],
+        artist_id: Some("UCDAF5qrmMYNk-bkfavTQyFA"),
+        album: Some(AlbumId(
+          id: "MPREb_xO2P6qgw5iY",
+          name: "After Dark",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "g2oZ6FSl9TU",
+        name: "back to the gates",
+        duration: Some(168),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/oVdMgwqyvWmYTYIMbITHMpZfwY3cGEh6mxd-1avsTcdC8GzfMZj-7a5pQzBTBtBZxr12gG3oBLDGyw8=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/oVdMgwqyvWmYTYIMbITHMpZfwY3cGEh6mxd-1avsTcdC8GzfMZj-7a5pQzBTBtBZxr12gG3oBLDGyw8=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCkebuhCKcVJOeDIXDkLynfA"),
+            name: "DRWN.",
+          ),
+        ],
+        artist_id: Some("UCkebuhCKcVJOeDIXDkLynfA"),
+        album: Some(AlbumId(
+          id: "MPREb_W5ncMuRXVG9",
+          name: "shadows",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "cHc3cXXIydc",
+        name: "Save",
+        duration: Some(204),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/7BGsgOS-f1Xgch4PkUnD80vUmERDB6U1cihbnIV6zMIQjztJ1foL6cCUuXOPOmhr0GTP67uiZ0cYHI3M=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/7BGsgOS-f1Xgch4PkUnD80vUmERDB6U1cihbnIV6zMIQjztJ1foL6cCUuXOPOmhr0GTP67uiZ0cYHI3M=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCA2cvvsRWweKNAnQaF0elhw"),
+            name: "Olswel",
+          ),
+        ],
+        artist_id: Some("UCA2cvvsRWweKNAnQaF0elhw"),
+        album: Some(AlbumId(
+          id: "MPREb_qAWvBDwgz4S",
+          name: "Save",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "ITW3C8lIQlk",
+        name: "All My Life",
+        duration: Some(198),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/0Tf2PN4_gU4cO5w7KWTOYpHwzI7RobvZYvnQUGQ3ExF7EWSb7sseIv_bQ2tqxfC3TLSCkskUcFmyO3Og=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/0Tf2PN4_gU4cO5w7KWTOYpHwzI7RobvZYvnQUGQ3ExF7EWSb7sseIv_bQ2tqxfC3TLSCkskUcFmyO3Og=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UC8ecAdKa5eWHiwg3_XEH1rQ"),
+            name: "Brenk Sinatra",
+          ),
+        ],
+        artist_id: Some("UC8ecAdKa5eWHiwg3_XEH1rQ"),
+        album: Some(AlbumId(
+          id: "MPREb_Y7hZZripeGx",
+          name: "Boss Spieler University",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "rKGRuQBnatM",
+        name: "why dont we",
+        duration: Some(198),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/OJgZygge-poTBJSSjGRnDG7_Sf7KsEOk0F4n5vKFLKu0u9D7aKLm1nkOgqmm_TV3XKX9epO3FpPeykFU-A=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/OJgZygge-poTBJSSjGRnDG7_Sf7KsEOk0F4n5vKFLKu0u9D7aKLm1nkOgqmm_TV3XKX9epO3FpPeykFU-A=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCKobx_oGcWleIU6-4lmx7cw"),
+            name: "sans",
+          ),
+        ],
+        artist_id: Some("UCKobx_oGcWleIU6-4lmx7cw"),
+        album: Some(AlbumId(
+          id: "MPREb_fzth3KYFd0S",
+          name: "why dont we",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "JstDN42iDDo",
+        name: "kaleidoscope",
+        duration: Some(189),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/J_ifRgDMdQM5v9PuEAG5YM_X-Ae_3VZW30PNah1qZIN1rp0zw1l8e9sELH6mrchkN_JGb40dvo8-AcRzrg=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/J_ifRgDMdQM5v9PuEAG5YM_X-Ae_3VZW30PNah1qZIN1rp0zw1l8e9sELH6mrchkN_JGb40dvo8-AcRzrg=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCByoqey1fiKaopKgRIO2vuw"),
+            name: "Delayde",
+          ),
+          ArtistId(
+            id: Some("UCowCrK4-MQPvCU8rzABI-7Q"),
+            name: "Lilac",
+          ),
+        ],
+        artist_id: Some("UCByoqey1fiKaopKgRIO2vuw"),
+        album: Some(AlbumId(
+          id: "MPREb_ScSNAHdx1gY",
+          name: "kaleidoscope",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "POcbY0NTG9w",
+        name: "Near Dark",
+        duration: Some(162),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/i_e5_8zoVkHsfRzX_jzLi-uCoNpGXqm7zeCcnbLoQYfE1aYNnVoKj9APWFyHnM2riNcyXpHJvYnTYmdL=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/i_e5_8zoVkHsfRzX_jzLi-uCoNpGXqm7zeCcnbLoQYfE1aYNnVoKj9APWFyHnM2riNcyXpHJvYnTYmdL=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Bluewerks & Arbour",
+          ),
+        ],
+        artist_id: Some("UCQtxp-PLwkUHL4Q7qe58yrw"),
+        album: Some(AlbumId(
+          id: "MPREb_nnCqWhxnsND",
+          name: "Bluewerks Vol. 4: Drift Off",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "Jf3JOkPsogI",
+        name: "SLIT",
+        duration: Some(200),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/aG1DYUdWc7gkiya8dOKpOH14z54kNhFjSMUTmQoX7ZHPGc1zRNvmNqY8W4yrMNObTjOp1ZXSfnWJ2gQ=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/aG1DYUdWc7gkiya8dOKpOH14z54kNhFjSMUTmQoX7ZHPGc1zRNvmNqY8W4yrMNObTjOp1ZXSfnWJ2gQ=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCzCr2nhM6IdLstVh2GnDauA"),
+            name: "Herzeloyde",
+          ),
+          ArtistId(
+            id: Some("UCL09TDfIHnde3qj1U6yMWZg"),
+            name: "Chromonicci",
+          ),
+        ],
+        artist_id: Some("UCzCr2nhM6IdLstVh2GnDauA"),
+        album: Some(AlbumId(
+          id: "MPREb_f2VDpOUO2mk",
+          name: "SLIT",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "lKLGceNzFAM",
+        name: "Marmots Dance",
+        duration: Some(145),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/F8vypQcTNalvoKFrc24Iy3zrDX26_jdvOtnF6q-oHkvZs51uWBD34qVDsnybgj2NfUk_1ANSxPK_0hki=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/F8vypQcTNalvoKFrc24Iy3zrDX26_jdvOtnF6q-oHkvZs51uWBD34qVDsnybgj2NfUk_1ANSxPK_0hki=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCvigM90f0EHyL00jVW3WShA"),
+            name: "Plusma",
+          ),
+        ],
+        artist_id: Some("UCvigM90f0EHyL00jVW3WShA"),
+        album: Some(AlbumId(
+          id: "MPREb_GkGDgCcCDKC",
+          name: "Chillhop Essentials Spring 2019",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "XNupKC5A6jc",
+        name: "Dali \'96",
+        duration: Some(152),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/xVZEMDFZ6U9ECJEw3t7UWjR1AGUWCqSz1rBR3atBKkpM6Dw3HCBNcm4d7J38VzZTca1LtCQhA5trr7w=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/xVZEMDFZ6U9ECJEw3t7UWjR1AGUWCqSz1rBR3atBKkpM6Dw3HCBNcm4d7J38VzZTca1LtCQhA5trr7w=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UC8ecAdKa5eWHiwg3_XEH1rQ"),
+            name: "Brenk Sinatra",
+          ),
+        ],
+        artist_id: Some("UC8ecAdKa5eWHiwg3_XEH1rQ"),
+        album: Some(AlbumId(
+          id: "MPREb_YJC6kiZF7rl",
+          name: "Midnite Ride II",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "BDWxBtjUyWQ",
+        name: "Moss",
+        duration: Some(140),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/_xi7GnNy643kYRksZnDRhCPw2kevjwfEv7b1TQN7gxhpGIbW9Nl4BripnQFDkcLt6ko642VEEBYIab_f=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/_xi7GnNy643kYRksZnDRhCPw2kevjwfEv7b1TQN7gxhpGIbW9Nl4BripnQFDkcLt6ko642VEEBYIab_f=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCXDXGJcbXFnzsiyh9EVD7FQ"),
+            name: "Kupla",
+          ),
+        ],
+        artist_id: Some("UCXDXGJcbXFnzsiyh9EVD7FQ"),
+        album: Some(AlbumId(
+          id: "MPREb_MOGRiiHdBnN",
+          name: "Coniferous",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "7LZIEUxH9Ro",
+        name: "Transcend",
+        duration: Some(173),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/BEVAwJ1VVaaLB3JUXpZEr7CBx_DdGD3plprbLQG7LgCIsqszxk5jBByzGN5f1UjvIlYIHchoqaYi3zg=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/BEVAwJ1VVaaLB3JUXpZEr7CBx_DdGD3plprbLQG7LgCIsqszxk5jBByzGN5f1UjvIlYIHchoqaYi3zg=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCg2TAN484obS3oqbATNdaEw"),
+            name: "Evil Needle",
+          ),
+        ],
+        artist_id: Some("UCg2TAN484obS3oqbATNdaEw"),
+        album: Some(AlbumId(
+          id: "MPREb_LvLicYrT4HL",
+          name: "Chillhop Essentials Winter 2021",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "5K9y2WGUl0E",
+        name: "Silk",
+        duration: Some(203),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/UQss0d5ixagxWJNzLgYl2PM7hYiPByh3OsisDUBA0FTN2HCQai1YUWyp4kWhblEYSzav31TwignSJIw-=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/UQss0d5ixagxWJNzLgYl2PM7hYiPByh3OsisDUBA0FTN2HCQai1YUWyp4kWhblEYSzav31TwignSJIw-=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCuCff-m0XUPP_hRhBLotGlg"),
+            name: "Handbook",
+          ),
+        ],
+        artist_id: Some("UCuCff-m0XUPP_hRhBLotGlg"),
+        album: Some(AlbumId(
+          id: "MPREb_ksZvQl0pEem",
+          name: "Silk",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "UzuQCBPpZ7U",
+        name: "Blue Lounge",
+        duration: Some(199),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/619tMhMvhrd3cyhB6R3o-Ay32R1HnW3vzv8vN8vbtATEwWNGxldAQNbRqaJ0pBiGKbQUtTU5kMx-BTot=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/619tMhMvhrd3cyhB6R3o-Ay32R1HnW3vzv8vN8vbtATEwWNGxldAQNbRqaJ0pBiGKbQUtTU5kMx-BTot=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCJahGuHugLVO2WivEABMeog"),
+            name: "ØDYSSEE",
+          ),
+          ArtistId(
+            id: Some("UCPl0RSKdK-bDuJgjKUtE-aA"),
+            name: "B-Side",
+          ),
+        ],
+        artist_id: Some("UCJahGuHugLVO2WivEABMeog"),
+        album: Some(AlbumId(
+          id: "MPREb_9PCNrTzLoCn",
+          name: "Blue Lounge",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "SU20Ah4PE48",
+        name: "Detour",
+        duration: Some(181),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/n53K7_GRS_Zv41zSo9Jc490BAOkXmztrKkBbaJdKsq327C9yuwI-F_htLR8ALMZ3WGINqX3pbnjJVKtw=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/n53K7_GRS_Zv41zSo9Jc490BAOkXmztrKkBbaJdKsq327C9yuwI-F_htLR8ALMZ3WGINqX3pbnjJVKtw=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCy-K5iymXAQqzIrKACKpzSg"),
+            name: "The Kount",
+          ),
+        ],
+        artist_id: Some("UCy-K5iymXAQqzIrKACKpzSg"),
+        album: Some(AlbumId(
+          id: "MPREb_SW7ovhg8Hbi",
+          name: "Detour",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "3RI2LsrZ9OE",
+        name: "martians",
+        duration: Some(176),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Y1z3MXP_IkHDxiSPuDfuREF51EL-dyXIclGVK5CxVqQi0UpkYhtaI2Jboy7o57Iej9p6577TD8geWyE=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Y1z3MXP_IkHDxiSPuDfuREF51EL-dyXIclGVK5CxVqQi0UpkYhtaI2Jboy7o57Iej9p6577TD8geWyE=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: None,
+            name: "MVCO & Mareaux",
+          ),
+        ],
+        artist_id: Some("UCns32zlYPT6lbgXQl94hXdA"),
+        album: Some(AlbumId(
+          id: "MPREb_3Zaz8FNkm6q",
+          name: "coffee & chill",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "2KoWN3sAFms",
+        name: "bonus funk",
+        duration: Some(216),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/QlkGyykXX2v55lJlm2gP2k2hXHLB6sqm5wDTkxOqW3hYahrBR9lmyYqQU-4B2OA1vMXKcky68_qf2SY=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/QlkGyykXX2v55lJlm2gP2k2hXHLB6sqm5wDTkxOqW3hYahrBR9lmyYqQU-4B2OA1vMXKcky68_qf2SY=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCzCr2nhM6IdLstVh2GnDauA"),
+            name: "Herzeloyde",
+          ),
+        ],
+        artist_id: Some("UCzCr2nhM6IdLstVh2GnDauA"),
+        album: Some(AlbumId(
+          id: "MPREb_ze1Nv3DyZff",
+          name: "bonus funk",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "EcHhTnHOzAk",
+        name: "Saudade",
+        duration: Some(152),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/PppYpHXQm83CEAx_sxtFs5dRfwYCUst-t2wvRBV8Tsx2xd0cQDGt4DdkJLpcF3d3M-YZwwhSRLAC5o5H=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/PppYpHXQm83CEAx_sxtFs5dRfwYCUst-t2wvRBV8Tsx2xd0cQDGt4DdkJLpcF3d3M-YZwwhSRLAC5o5H=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCXDXGJcbXFnzsiyh9EVD7FQ"),
+            name: "Kupla",
+          ),
+        ],
+        artist_id: Some("UCXDXGJcbXFnzsiyh9EVD7FQ"),
+        album: Some(AlbumId(
+          id: "MPREb_8WOSB3wAcmd",
+          name: "Taiga Native",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "NjjMprtE004",
+        name: "blueberries",
+        duration: Some(168),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/kQRoTzPSo4ippZQwrC7nFKTU3I08dYoWrLk75S_lxIEcOugCpO9la88NhK6OYg6tpIv_6C2ZmzFHijUo=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/kQRoTzPSo4ippZQwrC7nFKTU3I08dYoWrLk75S_lxIEcOugCpO9la88NhK6OYg6tpIv_6C2ZmzFHijUo=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCe1esolq77K8mpQDUTf4ClA"),
+            name: "rosarummet",
+          ),
+        ],
+        artist_id: Some("UCe1esolq77K8mpQDUTf4ClA"),
+        album: Some(AlbumId(
+          id: "MPREb_tYRp6oJiXF5",
+          name: "daydreams",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "gk5sKJ4PgPU",
+        name: "Restart.",
+        duration: Some(208),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/J7IqDluyKwcu6A7IUiLmSAc4e4Ci_vrbnnejp9Mqs4afiMy25JSd80DyE8a5pqUZqAupEGpcU8vdLdQf=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/J7IqDluyKwcu6A7IUiLmSAc4e4Ci_vrbnnejp9Mqs4afiMy25JSd80DyE8a5pqUZqAupEGpcU8vdLdQf=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCfSrfvkoFa_OUsDzl4t5DdQ"),
+            name: "barnacle boi",
+          ),
+        ],
+        artist_id: Some("UCfSrfvkoFa_OUsDzl4t5DdQ"),
+        album: Some(AlbumId(
+          id: "MPREb_wBKZksdbnBi",
+          name: "Restart.",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "K81Cfizqe9A",
+        name: "Sunset Drive",
+        duration: Some(184),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/rhM5xXBzVs9kKRlraaAjr3kHhU2FkE5GuSVdZW0lAbRYxwlX5rDZeA0pKxT1TTE4pJtrFIPMO4T0U2Cp=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/rhM5xXBzVs9kKRlraaAjr3kHhU2FkE5GuSVdZW0lAbRYxwlX5rDZeA0pKxT1TTE4pJtrFIPMO4T0U2Cp=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCRV-lDbMnvsOFoTl-Qdnbwg"),
+            name: "C Y G N",
+          ),
+        ],
+        artist_id: Some("UCRV-lDbMnvsOFoTl-Qdnbwg"),
+        album: Some(AlbumId(
+          id: "MPREb_KqxYtVy2Iqy",
+          name: "Astrovibes",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "bM7QN9S0Dno",
+        name: "Fly Shit (Forever Nip)",
+        duration: Some(213),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/MKX1uxIA6NaoXI7mFpN3h10rt29LJy6ICP3naKkQE7s2Gqhmi3otFCUYl3YIimdMXPT7UsIMxr2g-L24VA=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/MKX1uxIA6NaoXI7mFpN3h10rt29LJy6ICP3naKkQE7s2Gqhmi3otFCUYl3YIimdMXPT7UsIMxr2g-L24VA=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UC8ecAdKa5eWHiwg3_XEH1rQ"),
+            name: "Brenk Sinatra",
+          ),
+        ],
+        artist_id: Some("UC8ecAdKa5eWHiwg3_XEH1rQ"),
+        album: Some(AlbumId(
+          id: "MPREb_KZH1UuAa0qD",
+          name: "Fly Shit (Forever Nip)",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "07O7i2BzqUM",
+        name: "Proud of You (feat. Alicks)",
+        duration: Some(183),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/10pk9ltHZob37wNUpJwvAzOQ4_9DHHKSoM-ODPNk294WNt7tv8qRvcrAetp_0ddX4JGbGCDB1BbV_6g=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/10pk9ltHZob37wNUpJwvAzOQ4_9DHHKSoM-ODPNk294WNt7tv8qRvcrAetp_0ddX4JGbGCDB1BbV_6g=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCwO1d0KbLcgjncMtDfbWhRw"),
+            name: "A L E X",
+          ),
+        ],
+        artist_id: Some("UCwO1d0KbLcgjncMtDfbWhRw"),
+        album: Some(AlbumId(
+          id: "MPREb_GHz3TB6j1lP",
+          name: "Growing Up, Vol. 2",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "m2mJGmMtBfA",
+        name: "Palms",
+        duration: Some(251),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/knqcpic-jtzPJAhPQ9fs3q-HgEpNqCoJszLjwPMvKr693RGOqO9wAl8aikggC-84UBgOdZUfWitBuKY=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/knqcpic-jtzPJAhPQ9fs3q-HgEpNqCoJszLjwPMvKr693RGOqO9wAl8aikggC-84UBgOdZUfWitBuKY=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCvVm6vg_In1V0P0dHsqa09g"),
+            name: "OAKK",
+          ),
+        ],
+        artist_id: Some("UCvVm6vg_In1V0P0dHsqa09g"),
+        album: Some(AlbumId(
+          id: "MPREb_duN8uZl42YE",
+          name: "Palms/Canary",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "0gTcGawN9xk",
+        name: "Bastia",
+        duration: Some(161),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Aim0bKqV4hctLD76hT74ichs8CTDX2OeEJdN6aYaO4TRHhwBMHYoSJVwJ7v8Hyfo4PIIB3ozuQGitMc6=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Aim0bKqV4hctLD76hT74ichs8CTDX2OeEJdN6aYaO4TRHhwBMHYoSJVwJ7v8Hyfo4PIIB3ozuQGitMc6=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCG12s40QV1eeNf3IOjP85yg"),
+            name: "illiterate",
+          ),
+        ],
+        artist_id: Some("UCG12s40QV1eeNf3IOjP85yg"),
+        album: Some(AlbumId(
+          id: "MPREb_DxJfMw6yod2",
+          name: "Chillhop Essentials Fall 2018",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "_tbHFWpYFbA",
+        name: "Partly Sunny",
+        duration: Some(174),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/RE6kpHa2VrBZ1lIoe8DrQ-jbZaksNpxdgYHkq8pSCglyPInJ8eJh0kAAACD7118FL_FwO_hesMpQi3DQEQ=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/RE6kpHa2VrBZ1lIoe8DrQ-jbZaksNpxdgYHkq8pSCglyPInJ8eJh0kAAACD7118FL_FwO_hesMpQi3DQEQ=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCT2-ZDqZq35BUz_gA7tYRWg"),
+            name: "Joey Pecoraro",
+          ),
+        ],
+        artist_id: Some("UCT2-ZDqZq35BUz_gA7tYRWg"),
+        album: Some(AlbumId(
+          id: "MPREb_ZdF9uGZX6Fb",
+          name: "Tired Boy",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "X2rGbIe14Ys",
+        name: "Dusk",
+        duration: Some(203),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/zcCXHNeE2YESLd1hIShxSlPXGNavkJOEWpixWV_3csit7ZJOeVBwUKAra48JoE5fvgm9br6htrHgOr026g=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/zcCXHNeE2YESLd1hIShxSlPXGNavkJOEWpixWV_3csit7ZJOeVBwUKAra48JoE5fvgm9br6htrHgOr026g=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCUD8Gceq_mUapynTKiVr-9g"),
+            name: "ford.",
+          ),
+        ],
+        artist_id: Some("UCUD8Gceq_mUapynTKiVr-9g"),
+        album: Some(AlbumId(
+          id: "MPREb_I7SQ73hu3I1",
+          name: "Craving / Dusk",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "HIVVqNy5w_g",
+        name: "Suuurf",
+        duration: Some(201),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/fUvxMMexCaWvJS0sgNtv-vPrmNNo7AMc3o_OvqigiEEfW82keJ3FVRD0O1MzsfjmoDjV5r5YU1m6Gno=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/fUvxMMexCaWvJS0sgNtv-vPrmNNo7AMc3o_OvqigiEEfW82keJ3FVRD0O1MzsfjmoDjV5r5YU1m6Gno=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCJahGuHugLVO2WivEABMeog"),
+            name: "ØDYSSEE",
+          ),
+          ArtistId(
+            id: Some("UChYc1vg_Y-Y8GWWJZwqVySg"),
+            name: "Hubert Daviz",
+          ),
+        ],
+        artist_id: Some("UCJahGuHugLVO2WivEABMeog"),
+        album: Some(AlbumId(
+          id: "MPREb_OWiXfTo5PwF",
+          name: "Suuurf",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "cJH0qBxeBmI",
+        name: "Dans la salle à manger",
+        duration: Some(175),
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/cJH0qBxeBmI/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kd-vr3M-J_H0bzsEOi813R2vuNSQ",
+            width: 400,
+            height: 225,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCiH2wHGFEdhMbpxTbTHnbZA"),
+            name: "Sadtoi",
+          ),
+        ],
+        artist_id: Some("UCiH2wHGFEdhMbpxTbTHnbZA"),
+        album: None,
+        view_count: None,
+        is_video: true,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "a0C_z75ES4A",
+        name: "Nothing changes: everything is different",
+        duration: Some(170),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/LTgVcO21cR_qIb4WST6bhxQvdD6oLbPARx8Mbecmg_MWIbh8t5-dlJIKEj1m3_OIZ71JEYaPQ7I5yPvB=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/LTgVcO21cR_qIb4WST6bhxQvdD6oLbPARx8Mbecmg_MWIbh8t5-dlJIKEj1m3_OIZ71JEYaPQ7I5yPvB=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCUiRy4WPJkIYIwIMJa7jnGA"),
+            name: "H.1",
+          ),
+        ],
+        artist_id: Some("UCUiRy4WPJkIYIwIMJa7jnGA"),
+        album: Some(AlbumId(
+          id: "MPREb_byCyTD5G5Xi",
+          name: "Nothing changes: everything is different",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "jJQAZKK5_5I",
+        name: "virgo",
+        duration: Some(62),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/g25oyNe6qmh8gZITWurfxVI4P-waS49BjAvn3ljN6SbQLZXnsQjniGxrubx-CwMA0UFozJnVHlkCw9I=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/g25oyNe6qmh8gZITWurfxVI4P-waS49BjAvn3ljN6SbQLZXnsQjniGxrubx-CwMA0UFozJnVHlkCw9I=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCUdVKO39sFqVoO-DP2FbG3A"),
+            name: "Jadu Jadu",
+          ),
+        ],
+        artist_id: Some("UCUdVKO39sFqVoO-DP2FbG3A"),
+        album: Some(AlbumId(
+          id: "MPREb_PZ6EH8TV20n",
+          name: "virgo",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "FcBaTjGk5Cg",
+        name: "Tree Tunk",
+        duration: Some(176),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/6Ntj-wb8KCbGdTfYjvfoX7Jn0faoqSpPTBlZHYfuw_afZcPhYnh0L2pCOld80bi39gTaoMQEcGORmai9=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/6Ntj-wb8KCbGdTfYjvfoX7Jn0faoqSpPTBlZHYfuw_afZcPhYnh0L2pCOld80bi39gTaoMQEcGORmai9=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCOB7T1p1dSa7-Ia9NErvGjg"),
+            name: "Ais.Hill",
+          ),
+        ],
+        artist_id: Some("UCOB7T1p1dSa7-Ia9NErvGjg"),
+        album: Some(AlbumId(
+          id: "MPREb_NEfXHlDQKuT",
+          name: "Tree Tunk",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "vwNNfKpGw00",
+        name: "Perpetual",
+        duration: Some(184),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/5ytvPkf-Dp5WGeX_RMMOXF6JNvxTIIGA7MeLRFsnehCyZiuqiU1yFF_eued1-FumX_1UCes1W1t0iMI=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/5ytvPkf-Dp5WGeX_RMMOXF6JNvxTIIGA7MeLRFsnehCyZiuqiU1yFF_eued1-FumX_1UCes1W1t0iMI=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCAbNvwkWc1OS-XV9TndZ8MQ"),
+            name: "goosetaf",
+          ),
+        ],
+        artist_id: Some("UCAbNvwkWc1OS-XV9TndZ8MQ"),
+        album: Some(AlbumId(
+          id: "MPREb_mOhhQaC4MBB",
+          name: "Perpetual",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "UKwFZI9zHlY",
+        name: "Nice Weather for Surfing",
+        duration: Some(179),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/layrcZnqVdlYvRZ5l6FbFe7i9zFMwSIS_QlSlba_NH4uOXXPThaQMfyME3myLru8M0gkBxK7-jsSRA8CuQ=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/layrcZnqVdlYvRZ5l6FbFe7i9zFMwSIS_QlSlba_NH4uOXXPThaQMfyME3myLru8M0gkBxK7-jsSRA8CuQ=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCq4CN8ZnYHTPx6U_S7gcmIA"),
+            name: "Oilix",
+          ),
+        ],
+        artist_id: Some("UCq4CN8ZnYHTPx6U_S7gcmIA"),
+        album: Some(AlbumId(
+          id: "MPREb_emPljSJ86nb",
+          name: "Jellify",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "x62rX6BYeYE",
+        name: "A Reason",
+        duration: Some(201),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/eelUI9yvq8tfw5cjyql0XfEXVKIYTXi7TceZ7sEsNab9dTQErIXObDxQzUsiVg_DMcSLZrQbWSHXh4Wv=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/eelUI9yvq8tfw5cjyql0XfEXVKIYTXi7TceZ7sEsNab9dTQErIXObDxQzUsiVg_DMcSLZrQbWSHXh4Wv=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCsiRhG42SedBrMRmGXW3gFA"),
+            name: "Alicks",
+          ),
+        ],
+        artist_id: Some("UCsiRhG42SedBrMRmGXW3gFA"),
+        album: Some(AlbumId(
+          id: "MPREb_uGI6nDQHDPD",
+          name: "Help Me Out",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "9BXn7ZNc35Q",
+        name: "Live It Everyday",
+        duration: Some(168),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/6R4QNEj5vBHUG6H3Ui69XRB8g-hBioC0LaiOon8_Oe3URRy7ICSmVQhUuAm7KpmGtVVD0JmUVS9QqfhM=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/6R4QNEj5vBHUG6H3Ui69XRB8g-hBioC0LaiOon8_Oe3URRy7ICSmVQhUuAm7KpmGtVVD0JmUVS9QqfhM=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCLt1LmimPihLLfsRt8prL1g"),
+            name: "Mono:Massive",
+          ),
+          ArtistId(
+            id: Some("UCiKzz-4FjwL037dNANU8oPA"),
+            name: "Philanthrope",
+          ),
+        ],
+        artist_id: Some("UCLt1LmimPihLLfsRt8prL1g"),
+        album: Some(AlbumId(
+          id: "MPREb_1csCcZ8OyLY",
+          name: "Monothrope",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "QKYN0pLq1ew",
+        name: "Mirror Universe",
+        duration: Some(157),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/fLuE2lKEDRP0I6TTxkaX1xXw52exMmnExjMcZD3Ecx4mLd0NLiEUvXFyv2Xp6mMYKEiyl-xaM8ZDKeTd=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/fLuE2lKEDRP0I6TTxkaX1xXw52exMmnExjMcZD3Ecx4mLd0NLiEUvXFyv2Xp6mMYKEiyl-xaM8ZDKeTd=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCXDXGJcbXFnzsiyh9EVD7FQ"),
+            name: "Kupla",
+          ),
+        ],
+        artist_id: Some("UCXDXGJcbXFnzsiyh9EVD7FQ"),
+        album: Some(AlbumId(
+          id: "MPREb_bNCpWPiaipj",
+          name: "Mirror Universe",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "P5Aq3oxynt4",
+        name: "Tuesday",
+        duration: Some(225),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/pajTGM11Arg9V0_cuH18GwpkHKXzQAuGi8xNfEbIVBxS0WINXKw9CFi-A9aRJUUMXVp_v5QRJ6IwiTs-=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/pajTGM11Arg9V0_cuH18GwpkHKXzQAuGi8xNfEbIVBxS0WINXKw9CFi-A9aRJUUMXVp_v5QRJ6IwiTs-=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCQ2_kTDMFlrRy8vCQWQHRvA"),
+            name: "Tennyson & Mr. Carmack",
+          ),
+        ],
+        artist_id: Some("UCQ2_kTDMFlrRy8vCQWQHRvA"),
+        album: Some(AlbumId(
+          id: "MPREb_QV0T9WBdPWe",
+          name: "Tuesday",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "tYbZqVBulkU",
+        name: "Thinking",
+        duration: Some(199),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/hW0A4zt5OifM2u8hUleZAV0xqhFl9kHWM3EfeuUddJdC-5lkrSadg1pv-_kuehAU6DgnMKNLD6ythY3e=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/hW0A4zt5OifM2u8hUleZAV0xqhFl9kHWM3EfeuUddJdC-5lkrSadg1pv-_kuehAU6DgnMKNLD6ythY3e=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCr32T_IovfI63EworvISNxg"),
+            name: "Laxcity",
+          ),
+        ],
+        artist_id: Some("UCr32T_IovfI63EworvISNxg"),
+        album: Some(AlbumId(
+          id: "MPREb_7bD8XzDsri1",
+          name: "2018 – 2021 (mixtape)",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "KUpIwlt3TAA",
+        name: "Aloe Fantasy",
+        duration: Some(119),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/mZuL6OTGSwy_H4H4nF9tdQYgKjxO7T3RLjtIwPUpSuJ5nKSL7l9aCN9eW_SVHg4nGWKKsz60TTbprs2b=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/mZuL6OTGSwy_H4H4nF9tdQYgKjxO7T3RLjtIwPUpSuJ5nKSL7l9aCN9eW_SVHg4nGWKKsz60TTbprs2b=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UColgwPc56vNoJifSMCkpTqw"),
+            name: "sloh rou",
+          ),
+        ],
+        artist_id: Some("UColgwPc56vNoJifSMCkpTqw"),
+        album: Some(AlbumId(
+          id: "MPREb_CzKk9F5gRBC",
+          name: "Aloe Fantasy",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "nlkNJ4oavoQ",
+        name: "All the People",
+        duration: Some(172),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/vnE2W9wwPJ-RiYSSxIBKcGok3UEXJdsbg9eY3cmy1MRNGF1hENk72tS3mjM_xRb3Y8YlOextTYw-E3V6Ng=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/vnE2W9wwPJ-RiYSSxIBKcGok3UEXJdsbg9eY3cmy1MRNGF1hENk72tS3mjM_xRb3Y8YlOextTYw-E3V6Ng=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCBb82EMFywo4Byo70oGHPdA"),
+            name: "j\'san",
+          ),
+        ],
+        artist_id: Some("UCBb82EMFywo4Byo70oGHPdA"),
+        album: Some(AlbumId(
+          id: "MPREb_te32UPwEHP8",
+          name: "Moods Vol. 1",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "pduHLli6NnA",
+        name: "Hanging Lanterns",
+        duration: Some(234),
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/pduHLli6NnA/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3njo67a0Cz78fl5P_51TsUOypD0vA",
+            width: 400,
+            height: 225,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCnX3dJnTo1kf0zZuPcED_FA"),
+            name: "Kalaido",
+          ),
+        ],
+        artist_id: Some("UCnX3dJnTo1kf0zZuPcED_FA"),
+        album: None,
+        view_count: None,
+        is_video: true,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "rbNpTesNEuw",
+        name: "Don\'t Think About Tomorrow.",
+        duration: Some(155),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/frQ2Qurd8wZuYqvjmN5G-reDsTc231bVZ60ZChnm18BlAgzQa1ww2mQzMxSxqvg3XZ9UxP-WjdIeXmd5=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/frQ2Qurd8wZuYqvjmN5G-reDsTc231bVZ60ZChnm18BlAgzQa1ww2mQzMxSxqvg3XZ9UxP-WjdIeXmd5=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCVP1F5TF-aBurJkAdPMpW6g"),
+            name: "fantompower",
+          ),
+        ],
+        artist_id: Some("UCVP1F5TF-aBurJkAdPMpW6g"),
+        album: Some(AlbumId(
+          id: "MPREb_Hz2q5WH1R6K",
+          name: "Don\'t Think About Tomorrow.",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "ecMLL1XKbQA",
+        name: "Friday Height",
+        duration: Some(132),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/0qpOdjbc9_y6s9cnApZDFHsdY_0ZQtVC0hE25ZS9XGuWS_oMdP50gtiGLdo7XzZHjN_n3JodtVDDc3fNoA=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/0qpOdjbc9_y6s9cnApZDFHsdY_0ZQtVC0hE25ZS9XGuWS_oMdP50gtiGLdo7XzZHjN_n3JodtVDDc3fNoA=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCRyHJ7gwhDOydqkA2kAc92Q"),
+            name: "bitbeats",
+          ),
+        ],
+        artist_id: Some("UCRyHJ7gwhDOydqkA2kAc92Q"),
+        album: Some(AlbumId(
+          id: "MPREb_MfNbn3vEnl5",
+          name: "Friday Height",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "OvfD_geCvkI",
+        name: "Fainting of Rejection (feat. Sixcube)",
+        duration: Some(117),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/epLa1qnrYXbqKhHLFLvywvestMCbt-kqV58yFVblcfTvZC6t4ai_HUgDzbpzjO4t5oEjAvHBhc-ufsUW=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/epLa1qnrYXbqKhHLFLvywvestMCbt-kqV58yFVblcfTvZC6t4ai_HUgDzbpzjO4t5oEjAvHBhc-ufsUW=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCiLWaDBmO5EfpTGoCcIquHQ"),
+            name: "Figub Brazlevič",
+          ),
+        ],
+        artist_id: Some("UCiLWaDBmO5EfpTGoCcIquHQ"),
+        album: Some(AlbumId(
+          id: "MPREb_6CVbuzeHPVB",
+          name: "EXPEDITion 100, Vol.1: Figub Hadzi-Jusuf",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "Qg9ea0wi_18",
+        name: "funtime!",
+        duration: Some(133),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/XNnS-1jtOlUwiLL4FHXyUDgvHtHrkqcmkwT6deSHv2cbpLFEKp0TsiNBlFxM3ZFqKM0l83bR-9maba4=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/XNnS-1jtOlUwiLL4FHXyUDgvHtHrkqcmkwT6deSHv2cbpLFEKp0TsiNBlFxM3ZFqKM0l83bR-9maba4=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Lucid Monday & slowly, slowly",
+          ),
+        ],
+        artist_id: Some("UCNAExlW_qFfsXU1XL_uOJ3w"),
+        album: Some(AlbumId(
+          id: "MPREb_edQY30xuDmV",
+          name: "LM026",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "z5bVgD6KjQU",
+        name: "Kudasai (3 AM Feels)",
+        duration: Some(203),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/mKMVObA5ZkN-db-E_iJTBoavzjtIMsddiXawW3wZuayU9w7HeemD4KnIK3TJP2pq66h5IK7xXX5F3-Yf=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/mKMVObA5ZkN-db-E_iJTBoavzjtIMsddiXawW3wZuayU9w7HeemD4KnIK3TJP2pq66h5IK7xXX5F3-Yf=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCr-JNc73SVVBSLZQVJbGWJw"),
+            name: "Ethnic Girls",
+          ),
+          ArtistId(
+            id: Some("UCyxqBO1Q7MCrjglh3qUvc7g"),
+            name: "Ambient",
+          ),
+        ],
+        artist_id: Some("UCr-JNc73SVVBSLZQVJbGWJw"),
+        album: Some(AlbumId(
+          id: "MPREb_26DWasXa1p5",
+          name: "Lo-Fever: Sober Saturday Night Radio and Instrumental Chillwave Beats to Relax and Study",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "UqiemFNeprQ",
+        name: "Lost Sight",
+        duration: Some(179),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Wi0QKzBqCVPaaeM8oPeeiRwglxxm4ejmJyGsW1g_4v1yuPQqjakjd-6P-JFOYfhJDulMkbaiCXduN_6b=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Wi0QKzBqCVPaaeM8oPeeiRwglxxm4ejmJyGsW1g_4v1yuPQqjakjd-6P-JFOYfhJDulMkbaiCXduN_6b=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCfmu4G4cEgyAkhmPxsXbnOg"),
+            name: "Elaquent",
+          ),
+        ],
+        artist_id: Some("UCfmu4G4cEgyAkhmPxsXbnOg"),
+        album: Some(AlbumId(
+          id: "MPREb_j7AWuH0SCDl",
+          name: "Bedtime Stories II",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "1yAcDPQ7bPs",
+        name: "Tears",
+        duration: Some(210),
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/1yAcDPQ7bPs/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3mviVz9EhGkYOwp4fp1e_LDtg-kvQ",
+            width: 400,
+            height: 225,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCz2MxlGEVX4X1WyrTz7IpXA"),
+            name: "sebjin",
+          ),
+        ],
+        artist_id: Some("UCz2MxlGEVX4X1WyrTz7IpXA"),
+        album: None,
+        view_count: None,
+        is_video: true,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "xbHdNkV1Bgg",
+        name: "Turbulences",
+        duration: Some(88),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/DTP2Cw0M_aK82gzsX0g1O9U-q0hN3KsSMU8uGaL_mP-fxHye_YUAx-xMqo8YDBe0upeRPu9z-gVUv1U=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/DTP2Cw0M_aK82gzsX0g1O9U-q0hN3KsSMU8uGaL_mP-fxHye_YUAx-xMqo8YDBe0upeRPu9z-gVUv1U=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCDreaB8ifZLFc5vIRLopWYQ"),
+            name: "Wilczynski",
+          ),
+          ArtistId(
+            id: Some("UC41SNtmDL53DuIyWSGlkuIQ"),
+            name: "High John",
+          ),
+        ],
+        artist_id: Some("UCDreaB8ifZLFc5vIRLopWYQ"),
+        album: Some(AlbumId(
+          id: "MPREb_qQbYCFmCp27",
+          name: "Beats with Brothers, Vol. 5",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "AjGbzsAH2dI",
+        name: "Perspective",
+        duration: Some(173),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/lO5c_5DbPXP0Ahfyt2WJ-m_7N0gyVTKKFrQMq0VrWIBLHUN_nDXsNSqHtkDUpF6fLd93F8HvTyGWQKpjZA=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/lO5c_5DbPXP0Ahfyt2WJ-m_7N0gyVTKKFrQMq0VrWIBLHUN_nDXsNSqHtkDUpF6fLd93F8HvTyGWQKpjZA=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCVyclYZZ-sCbkuy7svZca7A"),
+            name: "Chris Mazuera",
+          ),
+          ArtistId(
+            id: Some("UCFglOnZA5-J52TDHEGgd6iQ"),
+            name: "tender spring",
+          ),
+        ],
+        artist_id: Some("UCVyclYZZ-sCbkuy7svZca7A"),
+        album: Some(AlbumId(
+          id: "MPREb_uluJy9CDv6N",
+          name: "Perspective",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "29OvRKJlOX4",
+        name: "don\'t be shy",
+        duration: Some(182),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/c_YEa9djzecj-x9vsZ6Dbcx0b48ZnWIKeTfkqC8tUJzOOKOJ4B1rCffdZ39SfSTXj_wdRGjADYHuoKs=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/c_YEa9djzecj-x9vsZ6Dbcx0b48ZnWIKeTfkqC8tUJzOOKOJ4B1rCffdZ39SfSTXj_wdRGjADYHuoKs=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCTSQkqJvWLE8-vh3jfkinpg"),
+            name: "Sensi Sye",
+          ),
+        ],
+        artist_id: Some("UCTSQkqJvWLE8-vh3jfkinpg"),
+        album: Some(AlbumId(
+          id: "MPREb_ccERB5rMVQ3",
+          name: "Lost Track",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "JVUypCxmfQA",
+        name: "Frosted Wood",
+        duration: Some(172),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/NRoRIqULZ6co-0m-QsCJyk47lxXNFw5PrSEbHqh_2pV0qRx-XifGDi5vdGO15nZffKR1jfP0jaBTr_nAIw=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/NRoRIqULZ6co-0m-QsCJyk47lxXNFw5PrSEbHqh_2pV0qRx-XifGDi5vdGO15nZffKR1jfP0jaBTr_nAIw=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCfwWm8Ivy5MwFeu88OwQ68Q"),
+            name: "A[way]",
+          ),
+        ],
+        artist_id: Some("UCfwWm8Ivy5MwFeu88OwQ68Q"),
+        album: Some(AlbumId(
+          id: "MPREb_9HUzlkWo45J",
+          name: "Frozen Roses",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "KWIfPu8860w",
+        name: "Pyrite Blue (feat. Jesse Boykins III)",
+        duration: Some(276),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/lQrKZL3D0V7F6lijEGPEi-gouTsAjpwmIJSE4WhrhLEA--uc1zPn2Z8-fcqrmQLYYML5uO0_TH81Kxdk=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/lQrKZL3D0V7F6lijEGPEi-gouTsAjpwmIJSE4WhrhLEA--uc1zPn2Z8-fcqrmQLYYML5uO0_TH81Kxdk=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCrDW_qcOPA0nzciJr0NtSBg"),
+            name: "J-E-T-S",
+          ),
+        ],
+        artist_id: Some("UCrDW_qcOPA0nzciJr0NtSBg"),
+        album: Some(AlbumId(
+          id: "MPREb_ucJEZ2cX5O2",
+          name: "The Chants",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "x1DGqCmCeaE",
+        name: "Moment Is Eternal. (feat. Ideism)",
+        duration: Some(140),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Op4Vp5wOlxem9t3mdVwNSVvUK7m5gqkrsGgtA9WIKn9TqYcFUf4N4iUYCVdVlH7VSCRI6hXxBtZf3xi-=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Op4Vp5wOlxem9t3mdVwNSVvUK7m5gqkrsGgtA9WIKn9TqYcFUf4N4iUYCVdVlH7VSCRI6hXxBtZf3xi-=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCVP1F5TF-aBurJkAdPMpW6g"),
+            name: "fantompower",
+          ),
+        ],
+        artist_id: Some("UCVP1F5TF-aBurJkAdPMpW6g"),
+        album: Some(AlbumId(
+          id: "MPREb_uVPoDnZ2yO1",
+          name: "Summertime and the Livings Easier.",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "Of5EmGLKEn4",
+        name: "Velvet Garden",
+        duration: Some(234),
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/Of5EmGLKEn4/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lCoL8swG4SjBq_xQVBviW5d5PaBA",
+            width: 400,
+            height: 225,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCWGqmBzWyhxn8a-YDSfb_LA"),
+            name: "City Girl",
+          ),
+        ],
+        artist_id: Some("UCWGqmBzWyhxn8a-YDSfb_LA"),
+        album: None,
+        view_count: None,
+        is_video: true,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "T9_p5vicleo",
+        name: "Weekend",
+        duration: Some(159),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Wu_Y8YrPO9OpRzj8nmuTcglGIJvZSjYz-g8x7NpI1pxv75WL2LGkz-wLVtxl_JSw0DUX74kaTxuIL4DE=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Wu_Y8YrPO9OpRzj8nmuTcglGIJvZSjYz-g8x7NpI1pxv75WL2LGkz-wLVtxl_JSw0DUX74kaTxuIL4DE=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UChM3ZzFj4iQPdOen_QxWMHQ"),
+            name: "GYVUS",
+          ),
+        ],
+        artist_id: Some("UChM3ZzFj4iQPdOen_QxWMHQ"),
+        album: Some(AlbumId(
+          id: "MPREb_T172WreZ7m3",
+          name: "Lounge Masters Vibes vol. 18",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "R_X1K3arztQ",
+        name: "Spanish Galleon",
+        duration: Some(55),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/nGuhQZIqKP4eysu_TiCtz4ajgnXf3o5u9zWD8e8PUTCp_Ib1Bk0n_B6nH7AujTqi9M1wdc1EiSL0UhM9=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/nGuhQZIqKP4eysu_TiCtz4ajgnXf3o5u9zWD8e8PUTCp_Ib1Bk0n_B6nH7AujTqi9M1wdc1EiSL0UhM9=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCHg0Fk93W8dITmSnb2lxYIw"),
+            name: "Wun Two",
+          ),
+        ],
+        artist_id: Some("UCHg0Fk93W8dITmSnb2lxYIw"),
+        album: Some(AlbumId(
+          id: "MPREb_KH1gxbP5QWr",
+          name: "Pirata",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+      TrackItem(
+        id: "VTFALCPPUN4",
+        name: "NY Vibes",
+        duration: Some(153),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/9PPrw3PeHfgrzvTa2ghUUqzhmIJKQvjdKMHsJr2Kmyeq_s2FefyGOXKghUZQiD_69oIhtq-tJ43V5pO-=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/9PPrw3PeHfgrzvTa2ghUUqzhmIJKQvjdKMHsJr2Kmyeq_s2FefyGOXKghUZQiD_69oIhtq-tJ43V5pO-=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCk7MIuk-OOqXtmFSXA7NgZA"),
+            name: "Bonus Points",
+          ),
+        ],
+        artist_id: Some("UCk7MIuk-OOqXtmFSXA7NgZA"),
+        album: Some(AlbumId(
+          id: "MPREb_CYt8YgWVPFT",
+          name: "NY Vibes",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+    ],
+    ctoken: Some("4qmFsgJbEi1WTFJEQ0xBSzV1eV9rYjdFQmk2eTNHcnRKcmk0X1pINTZNczc4NkRGRWltYk0aKmVoVlFWRHBGWjNSWFZrVmFRbFJGVGxGVlJsWlBUa0dTQVFNSXVnUSUzRA%3D%3D"),
+    endpoint: music_browse,
+  ),
+  related_playlists: Paginator(
+    count: None,
+    items: [],
+    ctoken: Some("4qmFsgI5Ei1WTFJEQ0xBSzV1eV9rYjdFQmk2eTNHcnRKcmk0X1pINTZNczc4NkRGRWltYk0aCGtnRURDTTBH"),
+    endpoint: music_browse,
+  ),
+)

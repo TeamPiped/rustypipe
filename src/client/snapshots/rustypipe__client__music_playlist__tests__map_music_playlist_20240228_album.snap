@@ -1,0 +1,73 @@
+---
+source: src/client/music_playlist.rs
+expression: map_res.c
+---
+MusicPlaylist(
+  id: "OLAK5uy_kdSWBZ-9AZDkYkuy0QCc3p0KO9DEHVNH0",
+  name: "Der Himmel reißt auf",
+  thumbnail: [
+    Thumbnail(
+      url: "https://lh3.googleusercontent.com/sfYeIuiLljpCsDLSooCOkNON1jZwHsEui3fD1FnLSyCMYjLCPQtEgy4_6qBmSGOz3eNWyS-aW4WcZMo8=w60-h60-l90-rj",
+      width: 60,
+      height: 60,
+    ),
+    Thumbnail(
+      url: "https://lh3.googleusercontent.com/sfYeIuiLljpCsDLSooCOkNON1jZwHsEui3fD1FnLSyCMYjLCPQtEgy4_6qBmSGOz3eNWyS-aW4WcZMo8=w120-h120-l90-rj",
+      width: 120,
+      height: 120,
+    ),
+  ],
+  channel: None,
+  description: None,
+  track_count: Some(1),
+  from_ytm: true,
+  tracks: Paginator(
+    count: Some(1),
+    items: [
+      TrackItem(
+        id: "VU6lEv0PKAo",
+        name: "Der Himmel reißt auf",
+        duration: Some(183),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/sfYeIuiLljpCsDLSooCOkNON1jZwHsEui3fD1FnLSyCMYjLCPQtEgy4_6qBmSGOz3eNWyS-aW4WcZMo8=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/sfYeIuiLljpCsDLSooCOkNON1jZwHsEui3fD1FnLSyCMYjLCPQtEgy4_6qBmSGOz3eNWyS-aW4WcZMo8=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCXGYZ-OhdOpPBamHX3K9YRg"),
+            name: "Joel Brandenstein",
+          ),
+          ArtistId(
+            id: Some("UCFTcSVPYRWlDoHisR-ZKwgw"),
+            name: "Vanessa Mai",
+          ),
+        ],
+        artist_id: Some("UCXGYZ-OhdOpPBamHX3K9YRg"),
+        album: Some(AlbumId(
+          id: "MPREb_bHfHGoy7vuv",
+          name: "Der Himmel reißt auf",
+        )),
+        view_count: None,
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      ),
+    ],
+    ctoken: None,
+    endpoint: music_browse,
+  ),
+  related_playlists: Paginator(
+    count: Some(0),
+    items: [],
+    ctoken: None,
+    endpoint: music_browse,
+  ),
+)

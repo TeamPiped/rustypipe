@@ -24,6 +24,13 @@ to the new feature.
 - 🔴 **High** Changes to the functionality of YouTube that will require API changes for
   alternative clients
 
+**Status:**
+
+- Experimental (<3%)
+- Common (>3%)
+- Frequent (>40%)
+- Stabilized (100%)
+
 If you want to check how often these A/B tests occur, you can use the `codegen` tool
 with the following command: `rustypipe-codegen ab-test <id>`.
 
@@ -584,3 +591,16 @@ be accomodated. There are also no mobile/TV header images available any more.
   }
 }
 ```
+
+
+## [13] Music album/playlist 2-column layout
+
+- **Encountered on:** 29.02.2024
+- **Impact:** 🟢 Low
+- **Endpoint:** browse
+- **Status:** Common (6%)
+
+![A/B test 13 screenshot](./_img/ab_13.png)
+
+YouTube Music updated the layout of album and playlist pages. The new layout shows
+the cover on the left side of the playlist content.

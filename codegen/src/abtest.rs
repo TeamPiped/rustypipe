@@ -30,9 +30,11 @@ pub enum ABTest {
     ChannelAboutModal = 10,
     LikeButtonViewmodel = 11,
     ChannelPageHeader = 12,
+    MusicPlaylistTwoColumn = 13,
 }
 
-const TESTS_TO_RUN: [ABTest; 1] = [ABTest::ChannelPageHeader];
+/// List of active A/B tests that are run when none is manually specified
+const TESTS_TO_RUN: [ABTest; 2] = [ABTest::ChannelPageHeader, ABTest::MusicPlaylistTwoColumn];
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ABTestRes {
@@ -101,6 +103,7 @@ pub async fn run_test(
                     ABTest::ChannelAboutModal => channel_about_modal(&query).await,
                     ABTest::LikeButtonViewmodel => like_button_viewmodel(&query).await,
                     ABTest::ChannelPageHeader => channel_page_header(&query).await,
+                    ABTest::MusicPlaylistTwoColumn => music_playlist_two_column(&query).await,
                 }
                 .unwrap();
                 pb.inc(1);
@@ -335,4 +338,21 @@ pub async fn channel_page_header(rp: &RustyPipeQuery) -> Result<bool> {
         .channel_videos_tab("UCh8gHdtzO2tXd593_bjErWg", ChannelVideoTab::Shorts)
         .await?;
     Ok(channel.mobile_banner.is_empty() && channel.tv_banner.is_empty())
+}
+
+pub async fn music_playlist_two_column(rp: &RustyPipeQuery) -> Result<bool> {
+    let id = "VLRDCLAK5uy_kb7EBi6y3GrtJri4_ZH56Ms786DFEimbM";
+    let res = rp
+        .raw(
+            ClientType::DesktopMusic,
+            "browse",
+            &QBrowse {
+                context: rp.get_context(ClientType::DesktopMusic, true, None).await,
+                browse_id: id,
+                params: None,
+            },
+        )
+        .await
+        .unwrap();
+    Ok(res.contains("\"musicResponsiveHeaderRenderer\""))
 }

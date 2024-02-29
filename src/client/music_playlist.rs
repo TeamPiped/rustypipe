@@ -1,6 +1,7 @@
 use std::{borrow::Cow, fmt::Debug};
 
 use crate::{
+    client::response::url_endpoint::NavigationEndpoint,
     error::{Error, ExtractionError},
     model::{
         paginator::{ContinuationEndpoint, Paginator},
@@ -143,16 +144,35 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
     ) -> Result<MapResult<MusicPlaylist>, ExtractionError> {
         // dbg!(&self);
 
-        let music_contents = self
-            .contents
-            .single_column_browse_results_renderer
-            .contents
-            .into_iter()
-            .next()
-            .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no content")))?
-            .tab_renderer
-            .content
-            .section_list_renderer;
+        let (header, music_contents) = match self.contents {
+            response::music_playlist::Contents::SingleColumnBrowseResultsRenderer(c) => (
+                self.header,
+                c.contents
+                    .into_iter()
+                    .next()
+                    .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no content")))?
+                    .tab_renderer
+                    .content
+                    .section_list_renderer,
+            ),
+            response::music_playlist::Contents::TwoColumnBrowseResultsRenderer {
+                secondary_contents,
+                tabs,
+            } => (
+                tabs.into_iter()
+                    .next()
+                    .and_then(|t| {
+                        t.tab_renderer
+                            .content
+                            .section_list_renderer
+                            .contents
+                            .into_iter()
+                            .next()
+                    })
+                    .or(self.header),
+                secondary_contents.section_list_renderer,
+            ),
+        };
         let shelf = music_contents
             .contents
             .into_iter()
@@ -183,7 +203,7 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
             .map(|cont| cont.next_continuation_data.continuation);
 
         let track_count = if ctoken.is_some() {
-            self.header.as_ref().and_then(|h| {
+            header.as_ref().and_then(|h| {
                 let parts = h
                     .music_detail_header_renderer
                     .second_subtitle
@@ -203,23 +223,24 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
             .next()
             .map(|c| c.next_continuation_data.continuation);
 
-        let (from_ytm, channel, name, thumbnail, description) = match self.header {
+        let (from_ytm, channel, name, thumbnail, description) = match header {
             Some(header) => {
                 let h = header.music_detail_header_renderer;
 
-                let from_ytm = h.subtitle.0.iter().any(util::is_ytm);
-                let channel = h
-                    .subtitle
-                    .0
-                    .into_iter()
-                    .find_map(|c| ChannelId::try_from(c).ok());
+                let st = match h.strapline_text_one {
+                    Some(s) => s,
+                    None => h.subtitle,
+                };
+
+                let from_ytm = st.0.iter().any(util::is_ytm);
+                let channel = st.0.into_iter().find_map(|c| ChannelId::try_from(c).ok());
 
                 (
                     from_ytm,
                     channel,
                     h.title,
                     h.thumbnail.into(),
-                    h.description,
+                    h.description.map(String::from),
                 )
             }
             None => {
@@ -288,22 +309,39 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
     ) -> Result<MapResult<MusicAlbum>, ExtractionError> {
         // dbg!(&self);
 
-        let header = self
-            .header
+        let (header, sections) = match self.contents {
+            response::music_playlist::Contents::SingleColumnBrowseResultsRenderer(c) => (
+                self.header,
+                c.contents
+                    .into_iter()
+                    .next()
+                    .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no content")))?
+                    .tab_renderer
+                    .content
+                    .section_list_renderer
+                    .contents,
+            ),
+            response::music_playlist::Contents::TwoColumnBrowseResultsRenderer {
+                secondary_contents,
+                tabs,
+            } => (
+                tabs.into_iter()
+                    .next()
+                    .and_then(|t| {
+                        t.tab_renderer
+                            .content
+                            .section_list_renderer
+                            .contents
+                            .into_iter()
+                            .next()
+                    })
+                    .or(self.header),
+                secondary_contents.section_list_renderer.contents,
+            ),
+        };
+        let header = header
             .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no header")))?
             .music_detail_header_renderer;
-
-        let sections = self
-            .contents
-            .single_column_browse_results_renderer
-            .contents
-            .into_iter()
-            .next()
-            .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no content")))?
-            .tab_renderer
-            .content
-            .section_list_renderer
-            .contents;
 
         let mut shelf = None;
         let mut album_variants = None;
@@ -322,27 +360,37 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
 
         let mut subtitle_split = header.subtitle.split(util::DOT_SEPARATOR);
 
-        let (year_txt, artists_p) = match subtitle_split.len() {
-            3.. => {
+        let (year_txt, artists_p) = match header.strapline_text_one {
+            Some(sl) => {
                 let year_txt = subtitle_split
-                    .swap_remove(2)
+                    .swap_remove(1)
                     .0
                     .first()
                     .map(|c| c.as_str().to_owned());
-                (year_txt, subtitle_split.try_swap_remove(1))
+                (year_txt, Some(sl))
             }
-            2 => {
-                // The second part may either be the year or the artist
-                let p2 = subtitle_split.swap_remove(1);
-                let is_year =
-                    p2.0.len() == 1 && p2.0[0].as_str().chars().all(|c| c.is_ascii_digit());
-                if is_year {
-                    (Some(p2.0[0].as_str().to_owned()), None)
-                } else {
-                    (None, Some(p2))
+            None => match subtitle_split.len() {
+                3.. => {
+                    let year_txt = subtitle_split
+                        .swap_remove(2)
+                        .0
+                        .first()
+                        .map(|c| c.as_str().to_owned());
+                    (year_txt, subtitle_split.try_swap_remove(1))
                 }
-            }
-            _ => (None, None),
+                2 => {
+                    // The second part may either be the year or the artist
+                    let p2 = subtitle_split.swap_remove(1);
+                    let is_year =
+                        p2.0.len() == 1 && p2.0[0].as_str().chars().all(|c| c.is_ascii_digit());
+                    if is_year {
+                        (Some(p2.0[0].as_str().to_owned()), None)
+                    } else {
+                        (None, Some(p2))
+                    }
+                }
+                _ => (None, None),
+            },
         };
 
         let (artists, by_va) = map_artists(artists_p);
@@ -355,21 +403,34 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
         let album_type = map_album_type(album_type_txt.as_str(), lang);
         let year = year_txt.and_then(|txt| util::parse_numeric(&txt).ok());
 
-        let (artist_id, playlist_id) = header
+        fn map_playlist_id(ep: &NavigationEndpoint) -> Option<String> {
+            if let NavigationEndpoint::WatchPlaylist {
+                watch_playlist_endpoint,
+            } = ep
+            {
+                Some(watch_playlist_endpoint.playlist_id.to_owned())
+            } else {
+                None
+            }
+        }
+
+        let (playlist_id, artist_id) = header
             .menu
+            .or_else(|| header.buttons.into_iter().next())
             .map(|menu| {
                 (
-                    map_artist_id(menu.menu_renderer.items),
                     menu.menu_renderer
                         .top_level_buttons
-                        .into_iter()
-                        .next()
-                        .map(|btn| {
-                            btn.button_renderer
-                                .navigation_endpoint
-                                .watch_playlist_endpoint
-                                .playlist_id
+                        .iter()
+                        .find_map(|btn| map_playlist_id(&btn.button_renderer.navigation_endpoint))
+                        .or_else(|| {
+                            menu.menu_renderer.items.iter().find_map(|itm| {
+                                map_playlist_id(
+                                    &itm.menu_navigation_item_renderer.navigation_endpoint,
+                                )
+                            })
                         }),
+                    map_artist_id(menu.menu_renderer.items),
                 )
             })
             .unwrap_or_default();
@@ -403,7 +464,7 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
                 cover: header.thumbnail.into(),
                 artists,
                 artist_id,
-                description: header.description,
+                description: header.description.map(String::from),
                 album_type,
                 year,
                 by_va,
@@ -429,6 +490,8 @@ mod tests {
     #[case::short("short", "RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk")]
     #[case::long("long", "PL5dDx681T4bR7ZF1IuWzOv1omlRbE7PiJ")]
     #[case::nomusic("nomusic", "PL1J-6JOckZtE_P9Xx8D3b2O6w0idhuKBe")]
+    #[case::two_columns("20240228_twoColumns", "RDCLAK5uy_kb7EBi6y3GrtJri4_ZH56Ms786DFEimbM")]
+    #[case::n_album("20240228_album", "OLAK5uy_kdSWBZ-9AZDkYkuy0QCc3p0KO9DEHVNH0")]
     fn map_music_playlist(#[case] name: &str, #[case] id: &str) {
         let json_path = path!(*TESTFILES / "music_playlist" / format!("playlist_{name}.json"));
         let json_file = File::open(json_path).unwrap();
@@ -454,6 +517,8 @@ mod tests {
     #[case::single("single", "MPREb_bHfHGoy7vuv")]
     #[case::description("description", "MPREb_PiyfuVl6aYd")]
     #[case::unavailable("unavailable", "MPREb_AzuWg8qAVVl")]
+    #[case::unavailable("unavailable", "MPREb_AzuWg8qAVVl")]
+    #[case::two_columns("20240228_twoColumns", "MPREb_bHfHGoy7vuv")]
     fn map_music_album(#[case] name: &str, #[case] id: &str) {
         let json_path = path!(*TESTFILES / "music_playlist" / format!("album_{name}.json"));
         let json_file = File::open(json_path).unwrap();

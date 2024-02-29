@@ -28,6 +28,10 @@ pub(crate) enum NavigationEndpoint {
     },
     #[serde(rename_all = "camelCase")]
     Url { url_endpoint: UrlEndpoint },
+    #[serde(rename_all = "camelCase")]
+    WatchPlaylist {
+        watch_playlist_endpoint: WatchPlaylistEndpoint,
+    },
 }
 
 #[derive(Debug, Deserialize)]
@@ -52,6 +56,12 @@ pub(crate) struct BrowseEndpoint {
 #[serde(rename_all = "camelCase")]
 pub(crate) struct BrowseEndpointWrap {
     pub browse_endpoint: BrowseEndpoint,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct WatchPlaylistEndpoint {
+    pub playlist_id: String,
 }
 
 impl<'de> Deserialize<'de> for BrowseEndpoint {
@@ -294,6 +304,12 @@ impl NavigationEndpoint {
                     )
                 }),
             NavigationEndpoint::Url { .. } => None,
+            NavigationEndpoint::WatchPlaylist {
+                watch_playlist_endpoint,
+            } => Some(MusicPage {
+                id: watch_playlist_endpoint.playlist_id,
+                typ: MusicPageType::Playlist,
+            }),
         }
     }
 

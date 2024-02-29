@@ -67,6 +67,9 @@ pub(crate) struct ContentRenderer<T> {
     pub content: T,
 }
 
+/// Deserializes any object with an array field named `contents`, `tabs` or `items`.
+///
+/// Invalid items are skipped
 #[derive(Debug)]
 pub(crate) struct ContentsRenderer<T> {
     pub contents: Vec<T>,
