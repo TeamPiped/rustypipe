@@ -3,16 +3,11 @@ on: [push, pull_request]
 
 jobs:
   Test:
-    runs-on: ubuntu-latest
+    runs-on: cimaster-latest
     steps:
       - name: 📦 Checkout repository
         uses: actions/checkout@v3
-      - name: 🦀 Setup Rust
-        uses: https://github.com/ATiltedTree/setup-rust@v1
-        with:
-          rust-version: stable
-          components: clippy
-      - name: 📥 Setup Rust cache
+      - name: 🦀 Setup Rust cache
         uses: https://github.com/Swatinem/rust-cache@v2
         with:
           cache-on-failure: "true"
