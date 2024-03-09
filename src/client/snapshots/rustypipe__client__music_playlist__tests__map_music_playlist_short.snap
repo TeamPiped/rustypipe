@@ -28,7 +28,11 @@ MusicPlaylist(
     ),
   ],
   channel: None,
-  description: Some("Stress-free tunes from classic rockers and newer artists."),
+  description: Some(RichText([
+    Text(
+      text: "Stress-free tunes from classic rockers and newer artists.",
+    ),
+  ])),
   track_count: Some(87),
   from_ytm: true,
   tracks: Paginator(

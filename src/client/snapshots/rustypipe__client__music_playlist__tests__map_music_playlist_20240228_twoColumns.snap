@@ -28,7 +28,26 @@ MusicPlaylist(
     ),
   ],
   channel: None,
-  description: Some("Kick back and coast to these chillhop and lofi beats. #hiphop #chill #beats"),
+  description: Some(RichText([
+    Text(
+      text: "Kick back and coast to these chillhop and lofi beats. ",
+    ),
+    Text(
+      text: "#hiphop",
+    ),
+    Text(
+      text: " ",
+    ),
+    Text(
+      text: "#chill",
+    ),
+    Text(
+      text: " ",
+    ),
+    Text(
+      text: "#beats",
+    ),
+  ])),
   track_count: Some(127),
   from_ytm: true,
   tracks: Paginator(

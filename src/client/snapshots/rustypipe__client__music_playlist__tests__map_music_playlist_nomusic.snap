@@ -26,7 +26,11 @@ MusicPlaylist(
     id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
     name: "Chaosflo44",
   )),
-  description: Some("SHINE - Survival Hardcore in New Environment: Auf einem Server machen sich tapfere Spieler auf, mystische Welten zu erkunden, magische Technologien zu erforschen und vorallem zu überleben..."),
+  description: Some(RichText([
+    Text(
+      text: "SHINE - Survival Hardcore in New Environment: Auf einem Server machen sich tapfere Spieler auf, mystische Welten zu erkunden, magische Technologien zu erforschen und vorallem zu überleben...",
+    ),
+  ])),
   track_count: Some(66),
   from_ytm: false,
   tracks: Paginator(

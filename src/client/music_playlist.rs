@@ -5,9 +5,10 @@ use crate::{
     error::{Error, ExtractionError},
     model::{
         paginator::{ContinuationEndpoint, Paginator},
+        richtext::RichText,
         AlbumId, ChannelId, MusicAlbum, MusicPlaylist, TrackItem,
     },
-    serializer::MapResult,
+    serializer::{text::TextComponents, MapResult},
     util::{self, TryRemove, DOT_SEPARATOR},
 };
 
@@ -240,7 +241,7 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
                     channel,
                     h.title,
                     h.thumbnail.into(),
-                    h.description.map(String::from),
+                    h.description.map(TextComponents::from),
                 )
             }
             None => {
@@ -276,7 +277,7 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
                 name,
                 thumbnail,
                 channel,
-                description,
+                description: description.map(RichText::from),
                 track_count,
                 from_ytm,
                 tracks: Paginator::new_ext(
@@ -361,14 +362,14 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
         let mut subtitle_split = header.subtitle.split(util::DOT_SEPARATOR);
 
         let (year_txt, artists_p) = match header.strapline_text_one {
+            // New (2column) album layout
             Some(sl) => {
                 let year_txt = subtitle_split
-                    .swap_remove(1)
-                    .0
-                    .first()
-                    .map(|c| c.as_str().to_owned());
+                    .try_swap_remove(1)
+                    .and_then(|t| t.0.first().map(|c| c.as_str().to_owned()));
                 (year_txt, Some(sl))
             }
+            // Old album layout
             None => match subtitle_split.len() {
                 3.. => {
                     let year_txt = subtitle_split
@@ -414,22 +415,32 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
             }
         }
 
+        let playlist_id = self.microformat.and_then(|mf| {
+            mf.microformat_data_renderer
+                .url_canonical
+                .strip_prefix("https://music.youtube.com/playlist?list=")
+                .map(str::to_owned)
+        });
         let (playlist_id, artist_id) = header
             .menu
             .or_else(|| header.buttons.into_iter().next())
             .map(|menu| {
                 (
-                    menu.menu_renderer
-                        .top_level_buttons
-                        .iter()
-                        .find_map(|btn| map_playlist_id(&btn.button_renderer.navigation_endpoint))
-                        .or_else(|| {
-                            menu.menu_renderer.items.iter().find_map(|itm| {
-                                map_playlist_id(
-                                    &itm.menu_navigation_item_renderer.navigation_endpoint,
-                                )
+                    playlist_id.or_else(|| {
+                        menu.menu_renderer
+                            .top_level_buttons
+                            .iter()
+                            .find_map(|btn| {
+                                map_playlist_id(&btn.button_renderer.navigation_endpoint)
                             })
-                        }),
+                            .or_else(|| {
+                                menu.menu_renderer.items.iter().find_map(|itm| {
+                                    map_playlist_id(
+                                        &itm.menu_navigation_item_renderer.navigation_endpoint,
+                                    )
+                                })
+                            })
+                    }),
                     map_artist_id(menu.menu_renderer.items),
                 )
             })
@@ -464,7 +475,9 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
                 cover: header.thumbnail.into(),
                 artists,
                 artist_id,
-                description: header.description.map(String::from),
+                description: header
+                    .description
+                    .map(|t| RichText::from(TextComponents::from(t))),
                 album_type,
                 year,
                 by_va,

@@ -1,7 +1,7 @@
 use serde::Deserialize;
 use serde_with::{serde_as, DefaultOnError};
 
-use crate::serializer::text::{Text, TextComponent};
+use crate::serializer::text::{Text, TextComponent, TextComponents};
 
 use super::{
     video_item::YouTubeListRenderer, Alert, ContentsRenderer, ResponseContext, SectionList, Tab,
@@ -95,6 +95,7 @@ pub(crate) struct SidebarItemPrimary {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct SidebarPrimaryInfoRenderer {
+    pub description: Option<TextComponents>,
     pub thumbnail_renderer: PlaylistThumbnailRenderer,
     /// - `"495", " videos"`
     /// - `"3,310,996 views"`

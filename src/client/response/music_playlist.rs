@@ -11,11 +11,15 @@ use super::{
 };
 
 /// Response model for YouTube Music playlists and albums
+#[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct MusicPlaylist {
     pub contents: Contents,
     pub header: Option<Header>,
+    #[serde(default)]
+    #[serde_as(as = "DefaultOnError")]
+    pub microformat: Option<Microformat>,
 }
 
 #[serde_as]
@@ -87,23 +91,20 @@ pub(crate) struct HeaderRenderer {
     pub buttons: Vec<HeaderMenu>,
 }
 
-#[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(untagged)]
 pub(crate) enum Description {
-    Text(#[serde_as(as = "Text")] String),
     #[serde(rename_all = "camelCase")]
     Shelf {
         music_description_shelf_renderer: DescriptionShelf,
     },
+    Text(TextComponents),
 }
 
-#[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct DescriptionShelf {
-    #[serde_as(as = "Text")]
-    pub description: String,
+    pub description: TextComponents,
 }
 
 #[derive(Debug, Deserialize)]
@@ -123,7 +124,7 @@ pub(crate) struct HeaderMenuRenderer {
     pub items: Vec<MusicItemMenuEntry>,
 }
 
-impl From<Description> for String {
+impl From<Description> for TextComponents {
     fn from(value: Description) -> Self {
         match value {
             Description::Text(v) => v,
@@ -132,4 +133,16 @@ impl From<Description> for String {
             } => music_description_shelf_renderer.description,
         }
     }
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct Microformat {
+    pub microformat_data_renderer: MicroformatData,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct MicroformatData {
+    pub url_canonical: String,
 }

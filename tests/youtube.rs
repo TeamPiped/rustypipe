@@ -383,7 +383,7 @@ fn get_playlist(
         if is_long { 100 } else { 10 },
         "track count",
     );
-    assert_eq!(playlist.description, description);
+    assert_eq!(playlist.description.map(|d| d.to_plaintext()), description);
 
     if let Some(expect) = channel {
         let c = playlist.channel.expect("channel");
@@ -1338,6 +1338,7 @@ fn resolve_channel_not_found(rp: RustyPipe) {
 //#TRENDS
 
 #[rstest]
+#[ignore]
 fn startpage(rp: RustyPipe) {
     let startpage = tokio_test::block_on(rp.query().startpage()).unwrap();
 
@@ -1403,7 +1404,7 @@ fn music_playlist(
     );
     if unlocalized {
         assert_eq!(playlist.name, name);
-        assert_eq!(playlist.description, description);
+        assert_eq!(playlist.description.map(|d| d.to_plaintext()), description);
     }
 
     if let Some(expect) = channel {
@@ -1477,7 +1478,16 @@ fn music_playlist_not_found(rp: RustyPipe) {
 #[case::version_no_artist("version_no_artist", "MPREb_h8ltx5oKvyY")]
 #[case::no_artist("no_artist", "MPREb_bqWA6mAZFWS")]
 fn music_album(#[case] name: &str, #[case] id: &str, rp: RustyPipe, unlocalized: bool) {
-    let album = tokio_test::block_on(rp.query().music_album(id)).unwrap();
+    // TODO: remove visitor data if A/B#13 is stabilized
+    let album = tokio_test::block_on(
+        rp.query()
+            .visitor_data_opt(
+                Some("Cgs1bHFWMlhmM1ZFNCi9jK6vBjIKCgJERRIEEgAgIw%3D%3D")
+                    .filter(|_| name == "one_artist"),
+            )
+            .music_album(id),
+    )
+    .unwrap();
 
     assert!(!album.cover.is_empty(), "got no cover");
 

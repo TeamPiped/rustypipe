@@ -513,8 +513,8 @@ pub struct Playlist {
     pub video_count: u64,
     /// Playlist thumbnail
     pub thumbnail: Vec<Thumbnail>,
-    /// Playlist description in plaintext format
-    pub description: Option<String>,
+    /// Playlist description in rich text format
+    pub description: Option<RichText>,
     /// Channel of the playlist
     pub channel: Option<ChannelId>,
     /// Last update date
@@ -1061,8 +1061,8 @@ pub struct MusicPlaylist {
     pub thumbnail: Vec<Thumbnail>,
     /// Channel of the playlist
     pub channel: Option<ChannelId>,
-    /// Playlist description in plaintext format
-    pub description: Option<String>,
+    /// Playlist description in rich text format
+    pub description: Option<RichText>,
     /// Number of tracks in the playlist
     pub track_count: Option<u64>,
     /// True if the playlist is from YouTube Music
@@ -1089,8 +1089,8 @@ pub struct MusicAlbum {
     pub artists: Vec<ArtistId>,
     /// Primary artist ID
     pub artist_id: Option<String>,
-    /// Album description in plaintext format
-    pub description: Option<String>,
+    /// Album description in rich text format
+    pub description: Option<RichText>,
     /// Album type (Album/Single/EP)
     pub album_type: AlbumType,
     /// Release year

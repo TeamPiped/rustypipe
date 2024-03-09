@@ -2741,7 +2741,11 @@ Playlist(
       height: 188,
     ),
   ],
-  description: Some("SHINE - Survival Hardcore in New Environment: Auf einem Server machen sich tapfere Spieler auf, mystische Welten zu erkunden, magische Technologien zu erforschen und vorallem zu überleben..."),
+  description: Some(RichText([
+    Text(
+      text: "SHINE - Survival Hardcore in New Environment: Auf einem Server machen sich tapfere Spieler auf, mystische Welten zu erkunden, magische Technologien zu erforschen und vorallem zu überleben...",
+    ),
+  ])),
   channel: Some(ChannelId(
     id: "UCQM0bS4_04-Y4JuYrgmnpZQ",
     name: "Chaosflo44",

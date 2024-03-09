@@ -6,8 +6,10 @@ use crate::{
     error::{Error, ExtractionError},
     model::{
         paginator::{ContinuationEndpoint, Paginator},
+        richtext::RichText,
         ChannelId, Playlist, VideoItem,
     },
+    serializer::text::{TextComponent, TextComponents},
     util::{self, timeago, TryRemove},
 };
 
@@ -86,7 +88,7 @@ impl MapResponse<Playlist> for response::Playlist {
         let mut mapper = response::YouTubeListMapper::<VideoItem>::new(lang);
         mapper.map_response(video_items);
 
-        let (thumbnails, last_update_txt) = match self.sidebar {
+        let (description, thumbnails, last_update_txt) = match self.sidebar {
             Some(sidebar) => {
                 let sidebar_items = sidebar.playlist_sidebar_renderer.contents;
                 let mut primary =
@@ -98,6 +100,10 @@ impl MapResponse<Playlist> for response::Playlist {
                         )))?;
 
                 (
+                    primary
+                        .playlist_sidebar_primary_info_renderer
+                        .description
+                        .filter(|d| !d.0.is_empty()),
                     primary
                         .playlist_sidebar_primary_info_renderer
                         .thumbnail_renderer
@@ -123,6 +129,7 @@ impl MapResponse<Playlist> for response::Playlist {
                     .map(|b| b.playlist_byline_renderer.text);
 
                 (
+                    None,
                     header_banner.hero_playlist_thumbnail_renderer.thumbnail,
                     last_update_txt,
                 )
@@ -144,7 +151,14 @@ impl MapResponse<Playlist> for response::Playlist {
         }
 
         let name = header.playlist_header_renderer.title;
-        let description = header.playlist_header_renderer.description_text;
+        let description = description
+            .or_else(|| {
+                header
+                    .playlist_header_renderer
+                    .description_text
+                    .map(|text| TextComponents(vec![TextComponent::Text { text }]))
+            })
+            .map(RichText::from);
         let channel = header
             .playlist_header_renderer
             .owner_text
