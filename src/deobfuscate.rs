@@ -426,18 +426,18 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
         assert_eq!(res, "nrkec0fwgTWolw");
     }
 
-    #[test]
-    fn t_get_player_js_url() {
+    #[tokio::test]
+    async fn t_get_player_js_url() {
         let client = Client::new();
-        let url = tokio_test::block_on(get_player_js_url(&client)).unwrap();
+        let url = get_player_js_url(&client).await.unwrap();
         assert!(url.starts_with("https://www.youtube.com/s/player"));
         assert_eq!(url.len(), 73);
     }
 
-    #[test]
-    fn t_update() {
+    #[tokio::test]
+    async fn t_update() {
         let client = Client::new();
-        let deobf_data = tokio_test::block_on(DeobfData::extract(client, None)).unwrap();
+        let deobf_data = DeobfData::extract(client, None).await.unwrap();
         let deobf = Deobfuscator::new(&deobf_data).unwrap();
 
         let deobf_sig = deobf.deobfuscate_sig("GOqGOqGOq0QJ8wRAIgaryQHfplJ9xJSKFywyaSMHuuwZYsoMTAvRvfm51qIGECIA5061zWeyfMPX9hEl_U6f9J0tr7GTJMKyPf5XNrJb5fb5i").unwrap();

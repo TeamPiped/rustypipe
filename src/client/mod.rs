@@ -1602,24 +1602,24 @@ mod tests {
         parts[0].parse().unwrap()
     }
 
-    #[test]
-    fn t_extract_desktop_client_version() {
+    #[tokio::test]
+    async fn t_extract_desktop_client_version() {
         let rp = RustyPipe::new();
-        let version = tokio_test::block_on(rp.extract_desktop_client_version()).unwrap();
+        let version = rp.extract_desktop_client_version().await.unwrap();
         assert!(get_major_version(&version) >= 2);
     }
 
-    #[test]
-    fn t_extract_music_client_version() {
+    #[tokio::test]
+    async fn t_extract_music_client_version() {
         let rp = RustyPipe::new();
-        let version = tokio_test::block_on(rp.extract_music_client_version()).unwrap();
+        let version = rp.extract_music_client_version().await.unwrap();
         assert!(get_major_version(&version) >= 1);
     }
 
-    #[test]
-    fn t_get_visitor_data() {
+    #[tokio::test]
+    async fn t_get_visitor_data() {
         let rp = RustyPipe::new();
-        let visitor_data = tokio_test::block_on(rp.get_visitor_data()).unwrap();
+        let visitor_data = rp.get_visitor_data().await.unwrap();
 
         assert!(
             visitor_data.starts_with("Cg") && visitor_data.len() > 23,
