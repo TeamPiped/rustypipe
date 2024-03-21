@@ -41,14 +41,15 @@ rustls-tls-native-roots = [
 [dependencies]
 rustypipe = { path = "../", default-features = false }
 rustypipe-downloader = { path = "../downloader", default-features = false }
-reqwest = { version = "0.11.11", default_features = false }
-tokio = { version = "1.20.0", features = ["macros", "rt-multi-thread"] }
-indicatif = "0.17.0"
-futures = "0.3.21"
-anyhow = "1.0"
-clap = { version = "4.0.29", features = ["derive"] }
-tracing-subscriber = "0.3.17"
-serde = "1.0"
-serde_json = "1.0.82"
-serde_yaml = "0.9.19"
-dirs = "5.0.0"
+reqwest.workspace = true
+tokio = { workspace = true, features = ["macros", "rt-multi-thread"] }
+futures.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+
+indicatif.workspace = true
+anyhow.workspace = true
+clap.workspace = true
+tracing-subscriber.workspace = true
+serde_yaml.workspace = true
+dirs.workspace = true

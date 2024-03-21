@@ -8,7 +8,6 @@ use std::{borrow::Cow, cmp::Ordering, ffi::OsString, ops::Range, path::PathBuf, 
 
 use futures::stream::{self, StreamExt};
 use indicatif::{ProgressBar, ProgressStyle};
-use log::{debug, info};
 use once_cell::sync::Lazy;
 use rand::Rng;
 use regex::Regex;
@@ -22,6 +21,7 @@ use tokio::{
     io::AsyncWriteExt,
     process::Command,
 };
+use tracing::{debug, info};
 
 use util::DownloadError;
 

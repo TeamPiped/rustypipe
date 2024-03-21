@@ -14,20 +14,7 @@ include = ["/src", "README.md", "LICENSE", "!snapshots"]
 [workspace]
 members = [".", "codegen", "downloader", "cli"]
 
-[features]
-default = ["default-tls"]
-
-rss = ["quick-xml"]
-
-# Reqwest TLS options
-default-tls = ["reqwest/default-tls"]
-native-tls = ["reqwest/native-tls"]
-native-tls-alpn = ["reqwest/native-tls-alpn"]
-native-tls-vendored = ["reqwest/native-tls-vendored"]
-rustls-tls-webpki-roots = ["reqwest/rustls-tls-webpki-roots"]
-rustls-tls-native-roots = ["reqwest/rustls-tls-native-roots"]
-
-[dependencies]
+[workspace.dependencies]
 quick-js-dtp = { version = "0.4.1", default-features = false, features = [
     "patch-dateparser",
 ] }
@@ -36,12 +23,8 @@ regex = "1.6.0"
 fancy-regex = "0.13.0"
 thiserror = "1.0.36"
 url = "2.2.2"
-reqwest = { version = "0.11.11", default-features = false, features = [
-    "json",
-    "gzip",
-    "brotli",
-] }
-tokio = { version = "1.20.0", features = ["macros", "time"] }
+reqwest = { version = "0.12.0", default-features = false }
+tokio = "1.20.0"
 serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0.82"
 serde_with = { version = "3.0.0", default-features = false, features = [
@@ -58,13 +41,64 @@ time = { version = "0.3.15", features = [
 futures = "0.3.21"
 ress = "0.11.4"
 phf = "0.11.1"
+phf_codegen = "0.11.1"
 base64 = "0.22.0"
 urlencoding = "2.1.2"
-quick-xml = { version = "0.31.0", features = ["serialize"], optional = true }
+quick-xml = { version = "0.31.0", features = ["serialize"] }
 tracing = { version = "0.1.37", features = ["log"] }
 
-[dev-dependencies]
+# CLI
+indicatif = "0.17.0"
+anyhow = "1.0"
+clap = { version = "4.0.29", features = ["derive"] }
+tracing-subscriber = "0.3.17"
+serde_yaml = "0.9.19"
+dirs = "5.0.0"
+filenamify = "0.1.0"
+
+# Testing
 rstest = "0.18.1"
 tokio-test = "0.4.2"
 insta = { version = "1.17.1", features = ["ron", "redactions"] }
 path_macro = "1.0.0"
+
+[features]
+default = ["default-tls"]
+
+rss = ["quick-xml"]
+
+# Reqwest TLS options
+default-tls = ["reqwest/default-tls"]
+native-tls = ["reqwest/native-tls"]
+native-tls-alpn = ["reqwest/native-tls-alpn"]
+native-tls-vendored = ["reqwest/native-tls-vendored"]
+rustls-tls-webpki-roots = ["reqwest/rustls-tls-webpki-roots"]
+rustls-tls-native-roots = ["reqwest/rustls-tls-native-roots"]
+
+[dependencies]
+quick-js-dtp.workspace = true
+once_cell.workspace = true
+regex.workspace = true
+fancy-regex.workspace = true
+thiserror.workspace = true
+url.workspace = true
+reqwest = { workspace = true, features = ["json", "gzip", "brotli"] }
+tokio = { workspace = true, features = ["macros", "time"] }
+serde.workspace = true
+serde_json.workspace = true
+serde_with.workspace = true
+serde_plain.workspace = true
+rand.workspace = true
+time.workspace = true
+ress.workspace = true
+phf.workspace = true
+base64.workspace = true
+urlencoding.workspace = true
+tracing.workspace = true
+quick-xml = { workspace = true, optional = true }
+
+[dev-dependencies]
+rstest.workspace = true
+tokio-test.workspace = true
+insta.workspace = true
+path_macro.workspace = true
