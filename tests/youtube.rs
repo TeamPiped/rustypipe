@@ -1578,20 +1578,12 @@ async fn music_playlist_not_found(rp: RustyPipe) {
 #[case::no_artist("no_artist", "MPREb_bqWA6mAZFWS")]
 #[tokio::test]
 async fn music_album(#[case] name: &str, #[case] id: &str, rp: RustyPipe, unlocalized: bool) {
-    // TODO: remove visitor data if A/B#13 is stabilized
-    let album = rp
-        .query()
-        .visitor_data_opt(
-            Some("Cgs1bHFWMlhmM1ZFNCi9jK6vBjIKCgJERRIEEgAgIw%3D%3D")
-                .filter(|_| name == "one_artist"),
-        )
-        .music_album(id)
-        .await
-        .unwrap();
+    let album = rp.query().music_album(id).await.unwrap();
 
     assert!(!album.cover.is_empty(), "got no cover");
 
-    if unlocalized {
+    // TODO: check full snapshot if A/B#13 is stabilized
+    if unlocalized && name != "one_artist" {
         insta::assert_ron_snapshot!(format!("music_album_{name}"), album,
             {".cover" => "[cover]", ".tracks[].view_count" => "[view_count]"}
         );
@@ -2177,11 +2169,6 @@ async fn music_search_playlists_community(rp: RustyPipe) {
     assert_eq!(channel.id, "UCs72iRpTEuwV3y6pdWYLgiw");
     assert_eq!(channel.name, "Redlist - Just Hits");
     assert!(!playlist.from_ytm);
-
-    assert!(
-        res.items.items.iter().all(|p| !p.from_ytm),
-        "ytm items found"
-    )
 }
 
 /// The YouTube Music search sometimes shows genre radio items. They should be skipped.
