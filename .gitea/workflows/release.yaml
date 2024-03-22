@@ -13,9 +13,15 @@ jobs:
 
       - name: Get variables
         run: |
-          echo "CRATE=$(echo '${{ github.ref_name }}' | awk 'BEGIN{RS="/"} NR==1{print}')" >> $GITHUB_ENV
-          echo "CRATE_VERSION=$(echo '${{ github.ref_name }}' | awk 'BEGIN{RS="/"} NR==2{print}')" >> $GITHUB_ENV
-          echo "CHANGELOG=$(git show -s --format=%N "${{ github.ref_name }}" | tail -n +4)" >> $GITHUB_ENV
+          git fetch --tags --force #the checkout action does not load the tag message
+
+          echo "CRATE=$(echo '${{ github.ref_name }}' | awk 'BEGIN{RS="/"} NR==1{print}')" >> "$GITHUB_ENV"
+          echo "CRATE_VERSION=$(echo '${{ github.ref_name }}' | awk 'BEGIN{RS="/"} NR==2{print}')" >> "$GITHUB_ENV"
+          {
+            echo 'CHANGELOG<<END_OF_FILE'
+            git show -s --format=%N "${{ github.ref_name }}" | tail -n +4 | awk 'BEGIN{RS="-----BEGIN PGP SIGNATURE-----"} NR==1{printf $0}'
+            echo END_OF_FILE
+          } >> "$GITHUB_ENV"
 
       - name: 📤 Publish crate
         run: |

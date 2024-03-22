@@ -86,4 +86,4 @@ release crate="rustypipe":
     git add "$CHANGELOG" "$CARGO_TOML"
     git commit -m "chore(release): release $CRATE v$VERSION"
 
-    awk 'BEGIN{RS="(^|\n)## "} NR==2 { print "##",$0 }' "$CHANGELOG" | git tag -a -F - --cleanup whitespace "${CRATE}/v${VERSION}"
+    awk 'BEGIN{RS="(^|\n)## [^\n]+\n*"} NR==2 { print }' "$CHANGELOG" | git tag -as -F - --cleanup whitespace "${CRATE}/v${VERSION}"
