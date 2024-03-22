@@ -63,8 +63,8 @@ insta = { version = "1.17.1", features = ["ron", "redactions"] }
 path_macro = "1.0.0"
 
 # Included crates
-rustypipe = { path = ".", default-features = false }
-rustypipe-downloader = { path = "./downloader", default-features = false }
+rustypipe = { path = ".", version = "0.1.0", default-features = false }
+rustypipe-downloader = { path = "./downloader", version = "0.1.0", default-features = false }
 
 [features]
 default = ["default-tls"]
