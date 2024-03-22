@@ -1,7 +1,5 @@
 # RustyPipe
 
-[![CI status](https://ci.thetadev.de/api/badges/ThetaDev/rustypipe/status.svg)](https://ci.thetadev.de/ThetaDev/rustypipe)
-
 Client for the public YouTube / YouTube Music API (Innertube), inspired by
 [NewPipe](https://github.com/TeamNewPipe/NewPipeExtractor).
 

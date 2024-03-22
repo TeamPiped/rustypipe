@@ -51,7 +51,6 @@ release crate="rustypipe":
     CRATE="{{crate}}"
     INCLUDES='--include-path README.md --include-path LICENSE --include-path Cargo.toml'
     CHANGELOG="CHANGELOG.md"
-    CARGO_TOML="Cargo.toml"
 
     if [ "$CRATE" = "rustypipe" ]; then
         INCLUDES="$INCLUDES --include-path src/** --include-path tests/** --include-path testfiles/**"
@@ -61,19 +60,16 @@ release crate="rustypipe":
         fi
         INCLUDES="$INCLUDES --include-path $CRATE/**"
         CHANGELOG="$CRATE/$CHANGELOG"
-        CARGO_TOML="$CRATE/Cargo.toml"
         CRATE="rustypipe-$CRATE" # Add crate name prefix
     fi
 
-    VERSION=$(git-cliff $INCLUDES --bumped-version | grep -Po '\d+\.\d+\.\d+$')
-    echo "Releasing $VERSION:"
+    VERSION=$(cargo pkgid --package "$CRATE" | tr '#@' '\n' | tail -n 1)
+    TAG="${CRATE}/v${VERSION}"
+    echo "Releasing $TAG:"
 
-    if [ -n "$(git status --porcelain)" ]; then echo "Workdir must be clean"; exit 1; fi
-    if git rev-parse "${CRATE}/v${VERSION}" >/dev/null 2>&1; then echo "version tag v${VERSION} already exists"; exit 1; fi
+    if git rev-parse "$TAG" >/dev/null 2>&1; then echo "version tag $TAG already exists"; exit 1; fi
 
-    cargo semver -c "$CARGO_TOML" set "$VERSION"
-
-    CLIFF_ARGS="--tag v${VERSION} --unreleased $INCLUDES"
+    CLIFF_ARGS="--tag v${VERSION} --tag-pattern ${CRATE}/* --unreleased $INCLUDES"
     echo "git-cliff $CLIFF_ARGS"
     if [ -f "$CHANGELOG" ]; then
         git-cliff $CLIFF_ARGS --prepend "$CHANGELOG"
@@ -83,7 +79,9 @@ release crate="rustypipe":
 
     editor "$CHANGELOG"
 
-    git add "$CHANGELOG" "$CARGO_TOML"
+    git add "$CHANGELOG"
     git commit -m "chore(release): release $CRATE v$VERSION"
 
-    awk 'BEGIN{RS="(^|\n)## [^\n]+\n*"} NR==2 { print }' "$CHANGELOG" | git tag -as -F - --cleanup whitespace "${CRATE}/v${VERSION}"
+    awk 'BEGIN{RS="(^|\n)## [^\n]+\n*"} NR==2 { print }' "$CHANGELOG" | git tag -as -F - --cleanup whitespace "$TAG"
+
+    echo "🚀 Run 'git push origin $TAG' to publish"
