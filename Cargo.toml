@@ -1,18 +1,26 @@
 [package]
 name = "rustypipe"
 version = "0.1.0"
-edition = "2021"
-authors = ["ThetaDev <thetadev@magenta.de>"]
-license = "GPL-3.0"
+edition.workspace = true
+authors.workspace = true
+license.workspace = true
+repository.workspace = true
+keywords.workspace = true
+categories.workspace = true
 description = "Client for the public YouTube / YouTube Music API (Innertube), inspired by NewPipe"
-repository = "https://code.thetadev.de/ThetaDev/rustypipe"
-keywords = ["youtube", "video", "music"]
-categories = ["api-bindings", "multimedia"]
 
 include = ["/src", "README.md", "LICENSE", "!snapshots"]
 
 [workspace]
 members = [".", "codegen", "downloader", "cli"]
+
+[workspace.package]
+edition = "2021"
+authors = ["ThetaDev <thetadev@magenta.de>"]
+license = "GPL-3.0"
+repository = "https://code.thetadev.de/ThetaDev/rustypipe"
+keywords = ["youtube", "video", "music"]
+categories = ["api-bindings", "multimedia"]
 
 [workspace.dependencies]
 quick-js-dtp = { version = "0.4.1", default-features = false, features = [
