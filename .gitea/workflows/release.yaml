@@ -20,7 +20,7 @@ jobs:
       - name: 📤 Publish crate
         run: |
           mkdir -p ~/.cargo
-          printf '[registries.thetadev]\nindex = "https://code.thetadev.de/ThetaDev/_cargo-index.git"\ntoken = "Bearer ${{ secrets.GITHUB_TOKEN }}"\n' >> ~/.cargo/config.toml
+          printf '[registries.thetadev]\nindex = "https://code.thetadev.de/ThetaDev/_cargo-index.git"\ntoken = "Bearer ${{ secrets.TOKEN_GITEA }}"\n' >> ~/.cargo/config.toml
           cargo publish --registry thetadev --package "${{ env.CRATE }}"
 
       - name: 🎉 Publish release
