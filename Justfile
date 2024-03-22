@@ -68,22 +68,22 @@ release crate="rustypipe":
     VERSION=$(git-cliff $INCLUDES --bumped-version | grep -Po '\d+\.\d+\.\d+$')
     echo "Releasing $VERSION:"
 
-    # if [ -n "$(git status --porcelain)" ]; then echo "Workdir must be clean"; exit 1; fi
+    if [ -n "$(git status --porcelain)" ]; then echo "Workdir must be clean"; exit 1; fi
     if git rev-parse "${CRATE}/v${VERSION}" >/dev/null 2>&1; then echo "version tag v${VERSION} already exists"; exit 1; fi
 
     cargo semver -c "$CARGO_TOML" set "$VERSION"
 
-    CLIFF_ARGS="--tag v${VERSION}"
+    CLIFF_ARGS="--tag v${VERSION} --unreleased $INCLUDES"
+    echo "git-cliff $CLIFF_ARGS"
     if [ -f "$CHANGELOG" ]; then
-        CLIFF_ARGS="$CLIFF_ARGS --unreleased $INCLUDES"
-        CLIFF_OUT="--prepend $CHANGELOG"
+        git-cliff $CLIFF_ARGS --prepend "$CHANGELOG"
     else
-        CLIFF_OUT="--output $CHANGELOG"
+        git-cliff $CLIFF_ARGS --output "$CHANGELOG"
     fi
 
-    echo "git-cliff $CLIFF_ARGS $CLIFF_OUT"
-    eval "git-cliff $CLIFF_ARGS $CLIFF_OUT"
+    editor "$CHANGELOG"
+
     git add "$CHANGELOG" "$CARGO_TOML"
     git commit -m "chore(release): release $CRATE v$VERSION"
 
-    eval "git-cliff $CLIFF_ARGS --strip all" | git tag -a -F - --cleanup whitespace "${CRATE}/v${VERSION}"
+    awk 'BEGIN{RS="(^|\n)## "} NR==2 { print "##",$0 }' "$CHANGELOG" | git tag -a -F - --cleanup whitespace "${CRATE}/v${VERSION}"

@@ -14,8 +14,13 @@ All notable changes to this project will be documented in this file.\n
 # template for the changelog body
 # https://keats.github.io/tera/docs/#introduction
 body = """
+{% set repo_url = "https://code.thetadev.de/ThetaDev/rustypipe" %}\
 {% if version %}\
-    ## [{{ version | trim_start_matches(pat="v") }}] - {{ timestamp | date(format="%Y-%m-%d") }}
+    {%if previous.version %}\
+        ## [{{ version }}]({{ repo_url }}/compare/{{ previous.version }}..{{ version }})\
+    {% else %}\
+        ## {{ version }}\
+    {% endif %} - {{ timestamp | date(format="%Y-%m-%d") }}
 {% else %}\
     ## [unreleased]
 {% endif %}\
@@ -25,7 +30,8 @@ body = """
     {% for commit in commits %}
         - {% if commit.scope %}*({{ commit.scope }})* {% endif %}\
             {% if commit.breaking %}[**breaking**] {% endif %}\
-            {{ commit.message | upper_first }}\
+            {{ commit.message | upper_first }} - \
+            ([{{ commit.id | truncate(length=7, end="") }}]({{ repo_url }}/commit/{{ commit.id }}))\
     {% endfor %}
 {% endfor %}\
 {% else %}
