@@ -1,0 +1,29 @@
+name: Release
+on:
+  push:
+    tags:
+      - "*/v*.*.*"
+
+jobs:
+  Release:
+    runs-on: cimaster-latest
+    steps:
+      - name: 📦 Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Get variables
+        run: |
+          echo "CRATE=$(echo '${{ github.ref_name }}' | awk 'BEGIN{RS="/"} NR==1{print}')" >> $GITHUB_ENV
+          echo "CRATE_VERSION=$(echo '${{ github.ref_name }}' | awk 'BEGIN{RS="/"} NR==2{print}')" >> $GITHUB_ENV
+          echo "CHANGELOG=$(git show -s --format=%N "${{ github.ref_name }}" | tail -n +4)" >> $GITHUB_ENV
+
+      - name: 📤 Publish crate
+        run: |
+          printf '[registries.thetadev]\nindex = "https://code.thetadev.de/ThetaDev/_cargo-index.git"\ntoken = "Bearer ${{ secrets.GITHUB_TOKEN }}"\n' >> ~/.cargo/config.toml
+          cargo publish --registry thetadev --package "${{ env.CRATE }}"
+
+      - name: 🎉 Publish release
+        uses: https://gitea.com/actions/release-action@main
+        with:
+          title: "${{ env.CRATE }} ${{ env.CRATE_VERSION }}"
+          body: "${{ env.CHANGELOG }}"

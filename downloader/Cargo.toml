@@ -29,7 +29,7 @@ rustls-tls-native-roots = [
 ]
 
 [dependencies]
-rustypipe = { path = "../", default-features = false }
+rustypipe.workspace = true
 once_cell.workspace = true
 regex.workspace = true
 thiserror.workspace = true
