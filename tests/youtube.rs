@@ -1169,10 +1169,16 @@ async fn channel_tab_not_found(#[case] tab: ChannelVideoTab, rp: RustyPipe) {
     let channel = rp
         .query()
         .channel_videos_tab("UCGiJh0NZ52wRhYKYnuZI08Q", tab)
-        .await
-        .unwrap();
+        .await;
 
-    assert!(channel.content.is_empty(), "got: {:?}", channel.content);
+    // YouTube removed empty tabs from the menu, so they may return no data
+    match channel {
+        Ok(channel) => assert!(channel.content.is_empty(), "got: {:?}", channel.content),
+        Err(err) => assert!(
+            matches!(err, Error::Extraction(ExtractionError::NotFound { .. })),
+            "got: {err}"
+        ),
+    }
 }
 
 #[rstest]
