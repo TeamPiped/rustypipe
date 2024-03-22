@@ -43,3 +43,47 @@ testfiles:
 report2yaml:
     mkdir -p rustypipe_reports/conv
     for f in rustypipe_reports/*.json; do yq '.http_request.resp_body' $f | yq -o json -P > rustypipe_reports/conv/`basename $f .json`_body.json; yq e -Pi "del(.http_request.resp_body)" $f; mv $f rustypipe_reports/conv/`basename $f .json`.yaml; done;
+
+release crate="rustypipe":
+    #!/usr/bin/env bash
+    set -e
+
+    CRATE="{{crate}}"
+    INCLUDES='--include-path README.md --include-path LICENSE --include-path Cargo.toml'
+    CHANGELOG="CHANGELOG.md"
+    CARGO_TOML="Cargo.toml"
+
+    if [ "$CRATE" = "rustypipe" ]; then
+        INCLUDES="$INCLUDES --include-path src/** --include-path tests/** --include-path testfiles/**"
+    else
+        if [ ! -d "$CRATE" ]; then
+            echo "$CRATE does not exist."; exit 1
+        fi
+        INCLUDES="$INCLUDES --include-path $CRATE/**"
+        CHANGELOG="$CRATE/$CHANGELOG"
+        CARGO_TOML="$CRATE/Cargo.toml"
+        CRATE="rustypipe-$CRATE" # Add crate name prefix
+    fi
+
+    VERSION=$(git-cliff $INCLUDES --bumped-version | grep -Po '\d+\.\d+\.\d+$')
+    echo "Releasing $VERSION:"
+
+    # if [ -n "$(git status --porcelain)" ]; then echo "Workdir must be clean"; exit 1; fi
+    if git rev-parse "${CRATE}/v${VERSION}" >/dev/null 2>&1; then echo "version tag v${VERSION} already exists"; exit 1; fi
+
+    cargo semver -c "$CARGO_TOML" set "$VERSION"
+
+    CLIFF_ARGS="--tag v${VERSION}"
+    if [ -f "$CHANGELOG" ]; then
+        CLIFF_ARGS="$CLIFF_ARGS --unreleased $INCLUDES"
+        CLIFF_OUT="--prepend $CHANGELOG"
+    else
+        CLIFF_OUT="--output $CHANGELOG"
+    fi
+
+    echo "git-cliff $CLIFF_ARGS $CLIFF_OUT"
+    eval "git-cliff $CLIFF_ARGS $CLIFF_OUT"
+    git add "$CHANGELOG" "$CARGO_TOML"
+    git commit -m "chore(release): release $CRATE v$VERSION"
+
+    eval "git-cliff $CLIFF_ARGS --strip all" | git tag -a -F - --cleanup whitespace "${CRATE}/v${VERSION}"
