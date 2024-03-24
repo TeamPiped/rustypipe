@@ -2218,6 +2218,7 @@ async fn music_search_suggestion(
 #[rstest]
 #[case::mv("mv", "ZeerrnuLi5E")]
 #[case::track("track", "qIZ-vvg-wiU")]
+#[case::track_details("track_details", "1eekOcpx_iQ")]
 #[tokio::test]
 async fn music_details(#[case] name: &str, #[case] id: &str, rp: RustyPipe) {
     let track = rp.query().music_details(id).await.unwrap();

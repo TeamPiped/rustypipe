@@ -1,6 +1,5 @@
 use serde::Deserialize;
-use serde_with::serde_as;
-use serde_with::DefaultOnError;
+use serde_with::{serde_as, DefaultOnError, VecSkipError};
 
 use crate::serializer::text::Text;
 
@@ -36,9 +35,11 @@ pub(crate) struct TabbedRenderer {
     pub watch_next_tabbed_results_renderer: TabbedRendererInner,
 }
 
+#[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct TabbedRendererInner {
+    #[serde_as(as = "VecSkipError<_>")]
     pub tabs: Vec<Tab>,
 }
 

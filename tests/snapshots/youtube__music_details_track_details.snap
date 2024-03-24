@@ -1,0 +1,26 @@
+---
+source: tests/youtube.rs
+expression: track
+---
+TrackDetails(
+  track: TrackItem(
+    id: "1eekOcpx_iQ",
+    name: "NCT 127 \'Highway to Heaven\' NEO CITY Tour Film ver.",
+    duration: Some(202),
+    cover: "[cover]",
+    artists: [
+      ArtistId(
+        id: Some("UCk2E0dbAyEJWnrN2bbQOcbg"),
+        name: "NCT 127",
+      ),
+    ],
+    artist_id: Some("UCk2E0dbAyEJWnrN2bbQOcbg"),
+    album: None,
+    view_count: "[view_count]",
+    is_video: true,
+    track_nr: None,
+    by_va: false,
+  ),
+  lyrics_id: None,
+  related_id: None,
+)
