@@ -480,16 +480,16 @@ fn map_channel(
             response::channel::Header::PageHeaderRenderer(header) => {
                 let hdata = header.content.page_header_view_model;
                 // channel handle - subscriber count - video count
-                let subscriber_count = hdata
-                    .metadata
-                    .content_metadata_view_model
-                    .metadata_rows
-                    .first()
-                    .and_then(|md| {
-                        md.metadata_parts.get(1).and_then(|t| {
-                            util::parse_large_numstr_or_warn::<u64>(&t.text, lang, &mut warnings)
-                        })
-                    });
+                let md_rows = hdata.metadata.content_metadata_view_model.metadata_rows;
+                let sub_part = if md_rows.len() > 1 {
+                    md_rows.get(1).and_then(|md| md.metadata_parts.first())
+                } else {
+                    md_rows.first().and_then(|md| md.metadata_parts.get(1))
+                };
+                let subscriber_count = sub_part.and_then(|t| {
+                    util::parse_large_numstr_or_warn::<u64>(&t.text, lang, &mut warnings)
+                });
+
                 Channel {
                     id: metadata.external_id,
                     name: metadata.title,
@@ -720,6 +720,7 @@ mod tests {
     #[case::shorts("shorts", "UCh8gHdtzO2tXd593_bjErWg")]
     #[case::livestreams("livestreams", "UC2DjFE7Xf11URZqWBigcVOQ")]
     #[case::pageheader("shorts_20240129_pageheader", "UCh8gHdtzO2tXd593_bjErWg")]
+    #[case::pageheader2("videos_20240324_pageheader2", "UC2DjFE7Xf11URZqWBigcVOQ")]
     fn map_channel_videos(#[case] name: &str, #[case] id: &str) {
         let json_path = path!(*TESTFILES / "channel" / format!("channel_{name}.json"));
         let json_file = File::open(json_path).unwrap();
