@@ -182,7 +182,7 @@ struct QContinuation<'a> {
     continuation: &'a str,
 }
 
-const DEFAULT_UA: &str = "Mozilla/5.0 (X11; Linux x86_64; rv:102.0) Gecko/20100101 Firefox/102.0";
+const DEFAULT_UA: &str = "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0";
 
 const CONSENT_COOKIE: &str = "SOCS=CAISAiAD";
 
