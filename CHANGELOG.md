@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v0.1.2](https://code.thetadev.de/ThetaDev/rustypipe/compare/rustypipe/v0.1.1..v0.1.2) - 2024-03-26
+
+### 🐛 Bug Fixes
+
+- Correctly parse subscriber count with new channel header - ([180dd98](https://code.thetadev.de/ThetaDev/rustypipe/commit/180dd9891a14b4da9f130a73d73aecc3822fce2f))
+
 ## [v0.1.1](https://code.thetadev.de/ThetaDev/rustypipe/compare/rustypipe-cli/v0.1.0..v0.1.1) - 2024-03-26
 
 ### 🐛 Bug Fixes
