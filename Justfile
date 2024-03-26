@@ -53,12 +53,12 @@ release crate="rustypipe":
     CHANGELOG="CHANGELOG.md"
 
     if [ "$CRATE" = "rustypipe" ]; then
-        INCLUDES="$INCLUDES --include-path src/** --include-path tests/** --include-path testfiles/**"
+        INCLUDES="$INCLUDES --include-path 'src/**' --include-path 'tests/**' --include-path 'testfiles/**'"
     else
         if [ ! -d "$CRATE" ]; then
             echo "$CRATE does not exist."; exit 1
         fi
-        INCLUDES="$INCLUDES --include-path $CRATE/**"
+        INCLUDES="$INCLUDES --include-path '$CRATE/**'"
         CHANGELOG="$CRATE/$CHANGELOG"
         CRATE="rustypipe-$CRATE" # Add crate name prefix
     fi
@@ -69,12 +69,12 @@ release crate="rustypipe":
 
     if git rev-parse "$TAG" >/dev/null 2>&1; then echo "version tag $TAG already exists"; exit 1; fi
 
-    CLIFF_ARGS="--tag v${VERSION} --tag-pattern ${CRATE}/* --unreleased $INCLUDES"
+    CLIFF_ARGS="--tag 'v${VERSION}' --tag-pattern '${CRATE}/*' --unreleased $INCLUDES"
     echo "git-cliff $CLIFF_ARGS"
     if [ -f "$CHANGELOG" ]; then
-        git-cliff $CLIFF_ARGS --prepend "$CHANGELOG"
+        eval "git-cliff $CLIFF_ARGS --prepend '$CHANGELOG'"
     else
-        git-cliff $CLIFF_ARGS --output "$CHANGELOG"
+        eval "git-cliff $CLIFF_ARGS --output '$CHANGELOG'"
     fi
 
     editor "$CHANGELOG"
