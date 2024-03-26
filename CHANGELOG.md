@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v0.1.1](https://code.thetadev.de/ThetaDev/rustypipe/compare/rustypipe-cli/v0.1.0..v0.1.1) - 2024-03-26
+
+### 🐛 Bug Fixes
+
+- Parsing music details with video description tab - ([a81c3e8](https://code.thetadev.de/ThetaDev/rustypipe/commit/a81c3e83366fdf72d01dd3ee00fb2e831f7aaa26))
+
+### ⚙️ Miscellaneous Tasks
+
+- Update user agent (FF 115.0) - ([be314d5](https://code.thetadev.de/ThetaDev/rustypipe/commit/be314d57ea1d99bfdc80649351ee3e7845541238))
+
 ## v0.1.0 - 2024-03-22
 
 Initial release
