@@ -36,7 +36,7 @@ Client for the public YouTube / YouTube Music API (Innertube), inspired by
 
 ```toml
 [dependencies]
-rustypipe = "0.1.2"
+rustypipe = "0.1.3"
 tokio = { version = "1.20.0", features = ["macros", "rt-multi-thread"] }
 ```
 

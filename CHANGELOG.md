@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v0.1.3](https://code.thetadev.de/ThetaDev/rustypipe/compare/rustypipe/v0.1.2..v0.1.3) - 2024-04-01
+
+### 🐛 Bug Fixes
+
+- Parse new comment model (A/B#14 frameworkUpdates) - ([b0331f7](https://code.thetadev.de/ThetaDev/rustypipe/commit/b0331f7250f5d7d61a45209150739d2cb08b4280))
+
+### ◀️ Revert
+
+- "fix: improve VecLogErr messages" (leads to infinite loop) - ([348c852](https://code.thetadev.de/ThetaDev/rustypipe/commit/348c8523fe847f2f6ce98317375a7ab65e778ed2))
+
 ## [v0.1.2](https://code.thetadev.de/ThetaDev/rustypipe/compare/rustypipe/v0.1.1..v0.1.2) - 2024-03-26
 
 ### 🐛 Bug Fixes
