@@ -48,6 +48,7 @@ pub(crate) mod channel_rss;
 pub(crate) use channel_rss::ChannelRss;
 
 use std::borrow::Cow;
+use std::collections::HashMap;
 use std::marker::PhantomData;
 
 use serde::{
@@ -104,6 +105,12 @@ pub(crate) struct TwoColumnBrowseResults<T> {
 pub(crate) struct ThumbnailsWrap {
     #[serde(default)]
     pub thumbnail: Thumbnails,
+}
+
+#[derive(Default, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ImageView {
+    pub image: Thumbnails,
 }
 
 /// List of images in different resolutions.
@@ -372,5 +379,89 @@ pub(crate) fn alerts_to_err(id: &str, alerts: Option<Vec<Alert>>) -> ExtractionE
                     .into()
             })
             .unwrap_or_default(),
+    }
+}
+
+// FRAMEWORK UPDATES
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct FrameworkUpdates<T> {
+    pub entity_batch_update: EntityBatchUpdate<T>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct EntityBatchUpdate<T> {
+    pub mutations: FrameworkUpdateMutations<T>,
+}
+
+/// List of update mutations that deserializes into a HashMap (entity_key => payload)
+#[derive(Debug)]
+pub(crate) struct FrameworkUpdateMutations<T> {
+    pub items: HashMap<String, T>,
+    pub warnings: Vec<String>,
+}
+
+impl<'de, T> Deserialize<'de> for FrameworkUpdateMutations<T>
+where
+    T: Deserialize<'de>,
+{
+    fn deserialize<D>(deserializer: D) -> Result<Self, D::Error>
+    where
+        D: serde::Deserializer<'de>,
+    {
+        struct SeqVisitor<T>(PhantomData<T>);
+
+        #[derive(serde::Deserialize)]
+        #[serde(untagged)]
+        enum MutationOrError<T> {
+            #[serde(rename_all = "camelCase")]
+            Good {
+                entity_key: String,
+                payload: T,
+            },
+            Error(serde_json::Value),
+        }
+
+        impl<'de, T> Visitor<'de> for SeqVisitor<T>
+        where
+            T: Deserialize<'de>,
+        {
+            type Value = FrameworkUpdateMutations<T>;
+
+            fn expecting(&self, formatter: &mut std::fmt::Formatter) -> std::fmt::Result {
+                formatter.write_str("sequence of entity mutations")
+            }
+
+            fn visit_seq<A>(self, mut seq: A) -> Result<Self::Value, A::Error>
+            where
+                A: serde::de::SeqAccess<'de>,
+            {
+                let mut items = HashMap::with_capacity(seq.size_hint().unwrap_or_default());
+                let mut warnings = Vec::new();
+
+                while let Some(value) = seq.next_element::<MutationOrError<T>>()? {
+                    match value {
+                        MutationOrError::Good {
+                            entity_key,
+                            payload,
+                        } => {
+                            items.insert(entity_key, payload);
+                        }
+                        MutationOrError::Error(value) => {
+                            warnings.push(format!(
+                                "error deserializing item: {}",
+                                serde_json::to_string(&value).unwrap_or_default()
+                            ));
+                        }
+                    }
+                }
+
+                Ok(FrameworkUpdateMutations { items, warnings })
+            }
+        }
+
+        deserializer.deserialize_seq(SeqVisitor(PhantomData::<T>))
     }
 }

@@ -1,4 +1,4 @@
-use std::fmt::Debug;
+use std::{collections::HashMap, fmt::Debug};
 
 use serde::Serialize;
 
@@ -6,7 +6,7 @@ use crate::{
     error::{Error, ExtractionError},
     model::{
         paginator::{ContinuationEndpoint, Paginator},
-        ChannelTag, Chapter, Comment, VideoDetails, VideoItem,
+        ChannelTag, Chapter, Comment, Verification, VideoDetails, VideoItem,
     },
     param::Language,
     serializer::MapResult,
@@ -14,7 +14,7 @@ use crate::{
 };
 
 use super::{
-    response::{self, IconType},
+    response::{self, video_details::Payload, IconType},
     ClientType, MapResponse, QContinuation, RustyPipeQuery, YTContext,
 };
 
@@ -391,44 +391,73 @@ impl MapResponse<Paginator<Comment>> for response::VideoComments {
         _vdata: Option<&str>,
     ) -> Result<MapResult<Paginator<Comment>>, ExtractionError> {
         let received_endpoints = self.on_response_received_endpoints;
-        let mut warnings = received_endpoints.warnings;
+        let mut warnings = Vec::new();
 
         let mut comments = Vec::new();
         let mut comment_count = None;
         let mut ctoken = None;
 
+        let mut mutations = if let Some(upd) = self.framework_updates {
+            let mut m = upd.entity_batch_update.mutations;
+            warnings.append(&mut m.warnings);
+            m.items
+        } else {
+            HashMap::new()
+        };
+
         received_endpoints.c.into_iter().for_each(|citem| {
             let mut items = citem.append_continuation_items_action.continuation_items;
             warnings.append(&mut items.warnings);
             items.c.into_iter().for_each(|item| match item {
-                response::video_details::CommentListItem::CommentThreadRenderer {
-                    comment,
-                    replies,
-                    rendering_priority,
-                } => {
-                    let mut res = map_comment(
-                        comment.comment_renderer,
-                        Some(replies),
-                        rendering_priority,
-                        lang,
-                    );
-                    comments.push(res.c);
-                    warnings.append(&mut res.warnings);
+                response::video_details::CommentListItem::CommentThreadRenderer(thread) => {
+                    if let Some(comment) = thread.comment {
+                        comments.push(map_comment(
+                            comment.comment_renderer,
+                            Some(thread.replies),
+                            thread.rendering_priority,
+                            lang,
+                            &mut warnings,
+                        ));
+                    } else if let Some(vm) = thread.comment_view_model {
+                        if let Some(c) = map_comment_vm(
+                            vm.comment_view_model,
+                            &mut mutations,
+                            Some(thread.replies),
+                            thread.rendering_priority,
+                            lang,
+                            &mut warnings,
+                        ) {
+                            comments.push(c);
+                        }
+                    } else {
+                        warnings.push(
+                            "comment does not contain comment or commentViewModel field".to_owned(),
+                        );
+                    }
                 }
                 response::video_details::CommentListItem::CommentRenderer(comment) => {
-                    let mut res = map_comment(
+                    comments.push(map_comment(
                         comment,
                         None,
                         response::video_details::CommentPriority::RenderingPriorityUnknown,
                         lang,
-                    );
-                    comments.push(res.c);
-                    warnings.append(&mut res.warnings);
+                        &mut warnings,
+                    ));
                 }
-                response::video_details::CommentListItem::ContinuationItemRenderer {
-                    continuation_endpoint,
-                } => {
-                    ctoken = Some(continuation_endpoint.continuation_command.token);
+                response::video_details::CommentListItem::CommentViewModel(vm) => {
+                    if let Some(c) = map_comment_vm(
+                        vm,
+                        &mut mutations,
+                        None,
+                        response::video_details::CommentPriority::RenderingPriorityUnknown,
+                        lang,
+                        &mut warnings,
+                    ) {
+                        comments.push(c);
+                    }
+                }
+                response::video_details::CommentListItem::ContinuationItemRenderer(cont) => {
+                    ctoken = Some(cont.token());
                 }
                 response::video_details::CommentListItem::CommentsHeaderRenderer { count_text } => {
                     comment_count = count_text
@@ -471,85 +500,150 @@ fn map_recommendations(
     }
 }
 
+fn map_replies(
+    replies: Option<response::video_details::Replies>,
+    lang: Language,
+    warnings: &mut Vec<String>,
+) -> (Vec<Comment>, Option<String>) {
+    let mut reply_ctoken = None;
+    let replies = replies
+        .map(|replies| {
+            replies
+                .comment_replies_renderer
+                .contents
+                .into_iter()
+                .filter_map(|item| match item {
+                    response::video_details::CommentListItem::CommentRenderer(comment) => {
+                        Some(map_comment(
+                            comment,
+                            None,
+                            response::video_details::CommentPriority::default(),
+                            lang,
+                            warnings,
+                        ))
+                    }
+                    response::video_details::CommentListItem::ContinuationItemRenderer(cont) => {
+                        reply_ctoken = Some(cont.token());
+                        None
+                    }
+                    _ => None,
+                })
+                .collect::<Vec<_>>()
+        })
+        .unwrap_or_default();
+    (replies, reply_ctoken)
+}
+
 fn map_comment(
     c: response::video_details::CommentRenderer,
     replies: Option<response::video_details::Replies>,
     priority: response::video_details::CommentPriority,
     lang: Language,
-) -> MapResult<Comment> {
-    let mut warnings = Vec::new();
+    warnings: &mut Vec<String>,
+) -> Comment {
+    let (replies, reply_ctoken) = map_replies(replies, lang, warnings);
 
-    let mut reply_ctoken = None;
-    let replies = replies.map(|replies| {
-        replies
-            .comment_replies_renderer
-            .contents
-            .into_iter()
-            .filter_map(|item| match item {
-                response::video_details::CommentListItem::CommentRenderer(comment) => {
-                    let mut res = map_comment(
-                        comment,
-                        None,
-                        response::video_details::CommentPriority::default(),
-                        lang,
-                    );
-                    warnings.append(&mut res.warnings);
-                    Some(res.c)
-                }
-                response::video_details::CommentListItem::ContinuationItemRenderer {
-                    continuation_endpoint,
-                } => {
-                    reply_ctoken = Some(continuation_endpoint.continuation_command.token);
-                    None
-                }
-                _ => None,
-            })
-            .collect::<Vec<_>>()
-    });
-
-    MapResult {
-        c: Comment {
-            id: c.comment_id,
-            text: c.content_text.into(),
-            author: match (c.author_endpoint, c.author_text) {
-                (Some(aep), Some(name)) => Some(ChannelTag {
-                    id: aep.browse_endpoint.browse_id,
-                    name,
-                    avatar: c.author_thumbnail.into(),
-                    verification: c
-                        .author_comment_badge
-                        .map(|b| b.author_comment_badge_renderer.icon.into())
-                        .unwrap_or_default(),
-                    subscriber_count: None,
-                }),
-                _ => None,
-            },
-            publish_date: timeago::parse_timeago_dt_or_warn(
-                lang,
-                &c.published_time_text,
-                &mut warnings,
-            ),
-            publish_date_txt: c.published_time_text,
-            like_count: match c.vote_count {
-                Some(txt) => util::parse_numeric_or_warn(&txt, &mut warnings),
-                None => Some(0),
-            },
-            reply_count: c.reply_count as u32,
-            replies: replies
-                .map(|items| Paginator::new(Some(c.reply_count), items, reply_ctoken))
-                .unwrap_or_default(),
-            by_owner: c.author_is_channel_owner,
-            pinned: priority
-                == response::video_details::CommentPriority::RenderingPriorityPinnedComment,
-            hearted: c
-                .action_buttons
-                .comment_action_buttons_renderer
-                .creator_heart
-                .map(|h| h.creator_heart_renderer.is_hearted)
-                .unwrap_or_default(),
+    Comment {
+        id: c.comment_id,
+        text: c.content_text.into(),
+        author: match (c.author_endpoint, c.author_text) {
+            (Some(aep), Some(name)) => Some(ChannelTag {
+                id: aep.browse_endpoint.browse_id,
+                name,
+                avatar: c.author_thumbnail.into(),
+                verification: c
+                    .author_comment_badge
+                    .map(|b| b.author_comment_badge_renderer.icon.into())
+                    .unwrap_or_default(),
+                subscriber_count: None,
+            }),
+            _ => None,
         },
-        warnings,
+        publish_date: timeago::parse_timeago_dt_or_warn(lang, &c.published_time_text, warnings),
+        publish_date_txt: c.published_time_text,
+        like_count: match c.vote_count {
+            Some(txt) => util::parse_numeric_or_warn(&txt, warnings),
+            None => Some(0),
+        },
+        reply_count: c.reply_count as u32,
+        replies: Paginator::new(Some(c.reply_count), replies, reply_ctoken),
+        by_owner: c.author_is_channel_owner,
+        pinned: priority.into(),
+        hearted: c
+            .action_buttons
+            .comment_action_buttons_renderer
+            .creator_heart
+            .map(|h| h.creator_heart_renderer.is_hearted)
+            .unwrap_or_default(),
     }
+}
+
+fn map_comment_vm(
+    vm: response::video_details::CommentViewModel,
+    mutations: &mut HashMap<String, response::video_details::Payload>,
+    replies: Option<response::video_details::Replies>,
+    priority: response::video_details::CommentPriority,
+    lang: Language,
+    warnings: &mut Vec<String>,
+) -> Option<Comment> {
+    let (replies, reply_ctoken) = map_replies(replies, lang, warnings);
+
+    let ce = if let Some(Payload::CommentEntityPayload(ce)) = mutations.remove(&vm.comment_key) {
+        ce
+    } else {
+        warnings.push(format!(
+            "comment `{}` does not have entity payload (key: `{}`)",
+            vm.comment_id, vm.comment_key
+        ));
+        return None;
+    };
+    let hearted = if let Some(Payload::EngagementToolbarStateEntityPayload { heart_state }) =
+        mutations.get(&vm.toolbar_state_key)
+    {
+        (*heart_state).into()
+    } else {
+        false
+    };
+
+    let mut parse_num = |s: &str| -> Option<u32> {
+        if s.is_empty() || s == " " {
+            Some(0)
+        } else {
+            util::parse_large_numstr_or_warn(s, lang, warnings)
+        }
+    };
+
+    let reply_count = parse_num(&ce.toolbar.reply_count).unwrap_or_default();
+
+    Some(Comment {
+        id: vm.comment_id,
+        text: ce.properties.content.into(),
+        by_owner: ce.author.as_ref().map(|a| a.is_creator).unwrap_or_default(),
+        author: ce.author.map(|a| ChannelTag {
+            id: a.channel_id,
+            name: a.display_name,
+            avatar: ce.avatar.image.into(),
+            verification: if a.is_artist {
+                Verification::Artist
+            } else if a.is_verified {
+                Verification::Verified
+            } else {
+                Verification::None
+            },
+            subscriber_count: None,
+        }),
+        like_count: parse_num(&ce.toolbar.like_count_notliked),
+        reply_count,
+        replies: Paginator::new(Some(reply_count.into()), replies, reply_ctoken),
+        publish_date: timeago::parse_timeago_dt_or_warn(
+            lang,
+            &ce.properties.published_time,
+            warnings,
+        ),
+        publish_date_txt: ce.properties.published_time,
+        pinned: priority.into(),
+        hearted,
+    })
 }
 
 #[cfg(test)]
@@ -614,6 +708,8 @@ mod tests {
     #[rstest]
     #[case::top("top")]
     #[case::latest("latest")]
+    #[case::frameworkupd("20240401_frameworkupd")]
+    #[case::frameworkupd_reply("20240401_frameworkupd_reply")]
     fn map_comments(#[case] name: &str) {
         let json_path = path!(*TESTFILES / "video_details" / format!("comments_{name}.json"));
         let json_file = File::open(json_path).unwrap();

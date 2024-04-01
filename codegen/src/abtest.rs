@@ -13,6 +13,8 @@ use rustypipe::param::ChannelVideoTab;
 use serde::de::IgnoredAny;
 use serde::{Deserialize, Serialize};
 
+use crate::model::QCont;
+
 #[derive(
     Debug, Clone, Copy, PartialEq, Eq, PartialOrd, Ord, TryFromPrimitive, Serialize, Deserialize,
 )]
@@ -31,10 +33,15 @@ pub enum ABTest {
     LikeButtonViewmodel = 11,
     ChannelPageHeader = 12,
     MusicPlaylistTwoColumn = 13,
+    CommentsFrameworkUpdate = 14,
 }
 
 /// List of active A/B tests that are run when none is manually specified
-const TESTS_TO_RUN: [ABTest; 2] = [ABTest::ChannelPageHeader, ABTest::MusicPlaylistTwoColumn];
+const TESTS_TO_RUN: [ABTest; 3] = [
+    ABTest::ChannelPageHeader,
+    ABTest::MusicPlaylistTwoColumn,
+    ABTest::CommentsFrameworkUpdate,
+];
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ABTestRes {
@@ -104,6 +111,7 @@ pub async fn run_test(
                     ABTest::LikeButtonViewmodel => like_button_viewmodel(&query).await,
                     ABTest::ChannelPageHeader => channel_page_header(&query).await,
                     ABTest::MusicPlaylistTwoColumn => music_playlist_two_column(&query).await,
+                    ABTest::CommentsFrameworkUpdate => comments_framework_update(&query).await,
                 }
                 .unwrap();
                 pb.inc(1);
@@ -355,4 +363,21 @@ pub async fn music_playlist_two_column(rp: &RustyPipeQuery) -> Result<bool> {
         .await
         .unwrap();
     Ok(res.contains("\"musicResponsiveHeaderRenderer\""))
+}
+
+pub async fn comments_framework_update(rp: &RustyPipeQuery) -> Result<bool> {
+    let continuation =
+        "Eg0SC3dMZHBSN2d1S3k4GAYyJSIRIgt3TGRwUjdndUt5ODAAeAJCEGNvbW1lbnRzLXNlY3Rpb24%3D";
+    let res = rp
+        .raw(
+            ClientType::Desktop,
+            "next",
+            &QCont {
+                context: rp.get_context(ClientType::Desktop, true, None).await,
+                continuation,
+            },
+        )
+        .await
+        .unwrap();
+    Ok(res.contains("\"frameworkUpdates\""))
 }

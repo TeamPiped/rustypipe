@@ -1,0 +1,691 @@
+---
+source: src/client/video_details.rs
+expression: map_res.c
+---
+Paginator(
+  count: Some(20617),
+  items: [
+    Comment(
+      id: "UgyNTT8uxDEjgYqybIF4AaABAg",
+      text: RichText([
+        Text(
+          text: "⚠\u{fe0f} Important notice: if you put any symbol immediately after markup, it will not work: *here is the comma*, without space.\n\nYou should leave space before and after , to make it work.\n\nSame for _underscore_, and -hyphen-.\n\nLeave space before opening and after closing underscore and hyphen. Put all dots and commas inside markup.",
+        ),
+      ]),
+      author: Some(ChannelTag(
+        id: "UCUJfyiofeHQTmxKwZ6cCwIg",
+        name: "@kibizoid",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/ytc/AIdro_nY2PkIyojDqs9Bk5RY6J90-U7wePswTYl799DNJQ=s88-c-k-c0x00ffffff-no-rj",
+            width: 88,
+            height: 88,
+          ),
+        ],
+        verification: None,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: "2 years ago (edited)",
+      like_count: Some(293),
+      reply_count: 220,
+      replies: Paginator(
+        count: Some(220),
+        items: [],
+        ctoken: Some("Eg0SC1FpcDFWa1R1TTcwGAYygwEaUBIaVWd5TlRUOHV4REVqZ1lxeWJJRjRBYUFCQWciAggAKhhVQ3lhZmx6ek9IMEdDNjgzRGxRLWZ6d2cyC1FpcDFWa1R1TTcwQAFICoIBAggBQi9jb21tZW50LXJlcGxpZXMtaXRlbS1VZ3lOVFQ4dXhERWpnWXF5YklGNEFhQUJBZw%3D%3D"),
+        endpoint: browse,
+      ),
+      by_owner: false,
+      pinned: true,
+      hearted: true,
+    ),
+    Comment(
+      id: "UgycWgNOoon0A4EV9LZ4AaABAg",
+      text: RichText([
+        Text(
+          text: "Me: tests out fonts\nFriend: Why are you doing this?\nMe: my goals are beyond your understanding",
+        ),
+      ]),
+      author: Some(ChannelTag(
+        id: "UCr0PeEY_am9P-GobbfvKECw",
+        name: "@userfjdrg",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/Zr2PmQsrD4obL2n5HS18X3jKXGJ-HFjIJS_OcZv4I5VAk5HuLRCpzFprY5Hh7n23-FCURVJi=s88-c-k-c0x00ffffff-no-rj",
+            width: 88,
+            height: 88,
+          ),
+        ],
+        verification: None,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: "2 years ago",
+      like_count: Some(80),
+      reply_count: 34,
+      replies: Paginator(
+        count: Some(34),
+        items: [],
+        ctoken: Some("Eg0SC1FpcDFWa1R1TTcwGAYygwEaUBIaVWd5Y1dnTk9vb24wQTRFVjlMWjRBYUFCQWciAggAKhhVQ3lhZmx6ek9IMEdDNjgzRGxRLWZ6d2cyC1FpcDFWa1R1TTcwQAFICoIBAggBQi9jb21tZW50LXJlcGxpZXMtaXRlbS1VZ3ljV2dOT29vbjBBNEVWOUxaNEFhQUJBZw%3D%3D"),
+        endpoint: browse,
+      ),
+      by_owner: false,
+      pinned: false,
+      hearted: true,
+    ),
+    Comment(
+      id: "Ugy5iq4M1c3WS3lGmih4AaABAg",
+      text: RichText([
+        Text(
+          text: "To-do list\n• be dumb\n• get kicked out when i can legally live alone\n• spend money on pointless things",
+        ),
+      ]),
+      author: Some(ChannelTag(
+        id: "UCDB5XvpUB8cEvjbWewlp28w",
+        name: "@T0r0xFan",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/PPL5vj6-pXFpaLa41yet34OHGcEYt06WPQLmruaiFJSM0eLmn9ZQW0QgTtdafDBO-kNy2oukVA=s88-c-k-c0x00ffffff-no-rj",
+            width: 88,
+            height: 88,
+          ),
+        ],
+        verification: None,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: "2 years ago (edited)",
+      like_count: Some(48),
+      reply_count: 22,
+      replies: Paginator(
+        count: Some(22),
+        items: [],
+        ctoken: Some("Eg0SC1FpcDFWa1R1TTcwGAYygwEaUBIaVWd5NWlxNE0xYzNXUzNsR21paDRBYUFCQWciAggAKhhVQ3lhZmx6ek9IMEdDNjgzRGxRLWZ6d2cyC1FpcDFWa1R1TTcwQAFICoIBAggBQi9jb21tZW50LXJlcGxpZXMtaXRlbS1VZ3k1aXE0TTFjM1dTM2xHbWloNEFhQUJBZw%3D%3D"),
+        endpoint: browse,
+      ),
+      by_owner: false,
+      pinned: false,
+      hearted: true,
+    ),
+    Comment(
+      id: "UgxqDIVVcoigjtx4Dtl4AaABAg",
+      text: RichText([
+        Text(
+          text: "omg thank you! Ive been looking for this tutorial for a year forever",
+        ),
+      ]),
+      author: Some(ChannelTag(
+        id: "UCxa4xER0-cFbcIYp0ZIeVaw",
+        name: "@LunasVibe",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/P5Io1kQb7GRwe4pgNsaYFEm30hDl_T7Tp5rZo7aYWFkqbV6Yp_lCYVuaaK7O3SEsnIX_5iC1Hw=s88-c-k-c0x00ffffff-no-rj",
+            width: 88,
+            height: 88,
+          ),
+        ],
+        verification: None,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: "1 month ago",
+      like_count: Some(0),
+      reply_count: 0,
+      replies: Paginator(
+        count: Some(0),
+        items: [],
+        ctoken: None,
+        endpoint: browse,
+      ),
+      by_owner: false,
+      pinned: false,
+      hearted: false,
+    ),
+    Comment(
+      id: "UgxDQfVQdYaWR-VUM-94AaABAg",
+      text: RichText([
+        Text(
+          text: "tysm\ni finally learned it\nother channel never go straight to the point",
+        ),
+      ]),
+      author: Some(ChannelTag(
+        id: "UC8cojSRuyZT74Bs_b5AecTA",
+        name: "@Bp_bts_skz_for_life",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/0zFBRYv8wo2JqzkyMk29xgC8zD1nKYNSSoD3Zo9XP8t9rHrbTYEEt0gdu0O3XS7Scpza3JJKog=s88-c-k-c0x00ffffff-no-rj",
+            width: 88,
+            height: 88,
+          ),
+        ],
+        verification: None,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: "1 month ago (edited)",
+      like_count: Some(1),
+      reply_count: 1,
+      replies: Paginator(
+        count: Some(1),
+        items: [],
+        ctoken: Some("Eg0SC1FpcDFWa1R1TTcwGAYygwEaUBIaVWd4RFFmVlFkWWFXUi1WVU0tOTRBYUFCQWciAggAKhhVQ3lhZmx6ek9IMEdDNjgzRGxRLWZ6d2cyC1FpcDFWa1R1TTcwQAFICoIBAggBQi9jb21tZW50LXJlcGxpZXMtaXRlbS1VZ3hEUWZWUWRZYVdSLVZVTS05NEFhQUJBZw%3D%3D"),
+        endpoint: browse,
+      ),
+      by_owner: false,
+      pinned: false,
+      hearted: false,
+    ),
+    Comment(
+      id: "UgxFvrmwec-jmfQyGRR4AaABAg",
+      text: RichText([
+        Text(
+          text: "I like how this was straight to the point. Unlike other channels lol Thank you!",
+        ),
+      ]),
+      author: Some(ChannelTag(
+        id: "UCCyIVS_s1-jA48pPft8AifA",
+        name: "@ishouldbesleepingalready",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/N90y_XdoDP6Rd1v6Z5OpDH8jMtvqpU1qnF6DJoIL6qcLiWfZK7ok8u_IxqSxJazaQH6oqhEbqA=s88-c-k-c0x00ffffff-no-rj",
+            width: 88,
+            height: 88,
+          ),
+        ],
+        verification: None,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: "2 years ago",
+      like_count: Some(241),
+      reply_count: 65,
+      replies: Paginator(
+        count: Some(65),
+        items: [],
+        ctoken: Some("Eg0SC1FpcDFWa1R1TTcwGAYygwEaUBIaVWd4RnZybXdlYy1qbWZReUdSUjRBYUFCQWciAggAKhhVQ3lhZmx6ek9IMEdDNjgzRGxRLWZ6d2cyC1FpcDFWa1R1TTcwQAFICoIBAggBQi9jb21tZW50LXJlcGxpZXMtaXRlbS1VZ3hGdnJtd2VjLWptZlF5R1JSNEFhQUJBZw%3D%3D"),
+        endpoint: browse,
+      ),
+      by_owner: false,
+      pinned: false,
+      hearted: false,
+    ),
+    Comment(
+      id: "Ugy-3OYEcwxkvyrrCqN4AaABAg",
+      text: RichText([
+        Text(
+          text: "To the person who is reading this: You\'re intelligent and smart, stay safe",
+        ),
+      ]),
+      author: Some(ChannelTag(
+        id: "UCQklgcA8quxZm5pgNAsVJAQ",
+        name: "@blocking948",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/ytc/AIdro_nAg9bEjW4otWlryJwqAgiDRLzy8ZX-ROqkDY1ksQ=s88-c-k-c0x00ffffff-no-rj",
+            width: 88,
+            height: 88,
+          ),
+        ],
+        verification: None,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: "3 years ago (edited)",
+      like_count: Some(711),
+      reply_count: 250,
+      replies: Paginator(
+        count: Some(250),
+        items: [],
+        ctoken: Some("Eg0SC1FpcDFWa1R1TTcwGAYygwEaUBIaVWd5LTNPWUVjd3hrdnlyckNxTjRBYUFCQWciAggAKhhVQ3lhZmx6ek9IMEdDNjgzRGxRLWZ6d2cyC1FpcDFWa1R1TTcwQAFICoIBAggBQi9jb21tZW50LXJlcGxpZXMtaXRlbS1VZ3ktM09ZRWN3eGt2eXJyQ3FONEFhQUJBZw%3D%3D"),
+        endpoint: browse,
+      ),
+      by_owner: false,
+      pinned: false,
+      hearted: true,
+    ),
+    Comment(
+      id: "Ugylw3ss_xv9svWbRud4AaABAg",
+      text: RichText([
+        Text(
+          text: "‘ life could be a dream, life could be a dream ‘",
+        ),
+      ]),
+      author: Some(ChannelTag(
+        id: "UCSyjdP7Duhns4Ybncy6ObZA",
+        name: "@malarchee0899",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/dSwRzOfoKrN4yc58uhFlIyqBXmbi6B14-On-wEEM_S6Nr6aDHTkG-xVkI1-u-uBwqKqodEgrMro=s88-c-k-c0x00ffffff-no-rj",
+            width: 88,
+            height: 88,
+          ),
+        ],
+        verification: None,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: "13 days ago",
+      like_count: Some(2),
+      reply_count: 1,
+      replies: Paginator(
+        count: Some(1),
+        items: [],
+        ctoken: Some("Eg0SC1FpcDFWa1R1TTcwGAYygwEaUBIaVWd5bHczc3NfeHY5c3ZXYlJ1ZDRBYUFCQWciAggAKhhVQ3lhZmx6ek9IMEdDNjgzRGxRLWZ6d2cyC1FpcDFWa1R1TTcwQAFICoIBAggBQi9jb21tZW50LXJlcGxpZXMtaXRlbS1VZ3lsdzNzc194djlzdldiUnVkNEFhQUJBZw%3D%3D"),
+        endpoint: browse,
+      ),
+      by_owner: false,
+      pinned: false,
+      hearted: false,
+    ),
+    Comment(
+      id: "UgydXobRB0F5dW1KVsF4AaABAg",
+      text: RichText([
+        Text(
+          text: "Woah! thank you for showing me this I really needed it!",
+        ),
+      ]),
+      author: Some(ChannelTag(
+        id: "UC9f9uJgwsCBBHA4CioIzdkA",
+        name: "@fatimagarcia3162",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/cKmBVKqq9mkW4F355y3UtUw4POwTWKi-0LUYLDx85vffRd7pU-LECXvudUrHH_9qobo6A1kM=s88-c-k-c0x00ffffff-no-rj",
+            width: 88,
+            height: 88,
+          ),
+        ],
+        verification: None,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: "1 month ago",
+      like_count: Some(0),
+      reply_count: 0,
+      replies: Paginator(
+        count: Some(0),
+        items: [],
+        ctoken: None,
+        endpoint: browse,
+      ),
+      by_owner: false,
+      pinned: false,
+      hearted: false,
+    ),
+    Comment(
+      id: "UgwmFn6ejKltcZ_BZvl4AaABAg",
+      text: RichText([
+        Text(
+          text: "The fitness gram pacer test is a multistage aerobic capacity test that progressively gets more difficult as it continues.",
+        ),
+      ]),
+      author: Some(ChannelTag(
+        id: "UCIymYi-_AJ10pYrh8sqTBTg",
+        name: "@No-du9is",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/ytc/AIdro_lPWhGGvIIA08s4u_-Lwyx88rGSRksOFeYHipE=s88-c-k-c0x00ffffff-no-rj",
+            width: 88,
+            height: 88,
+          ),
+        ],
+        verification: None,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: "2 years ago",
+      like_count: Some(22),
+      reply_count: 12,
+      replies: Paginator(
+        count: Some(12),
+        items: [],
+        ctoken: Some("Eg0SC1FpcDFWa1R1TTcwGAYygwEaUBIaVWd3bUZuNmVqS2x0Y1pfQlp2bDRBYUFCQWciAggAKhhVQ3lhZmx6ek9IMEdDNjgzRGxRLWZ6d2cyC1FpcDFWa1R1TTcwQAFICoIBAggBQi9jb21tZW50LXJlcGxpZXMtaXRlbS1VZ3dtRm42ZWpLbHRjWl9CWnZsNEFhQUJBZw%3D%3D"),
+        endpoint: browse,
+      ),
+      by_owner: false,
+      pinned: false,
+      hearted: true,
+    ),
+    Comment(
+      id: "UgxtXH6bWRWm8ahavfR4AaABAg",
+      text: RichText([
+        Text(
+          text: "YouTube got a new update(or probably it\'s a bug) and for that it\'s not showing bold/strikethrough/italic on the app but it\'s showing on other places.",
+        ),
+      ]),
+      author: Some(ChannelTag(
+        id: "UCyaflzzOH0GC683DlQ-fzwg",
+        name: "@HaruXen",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/YMmDD0zp5wT6l5ozqVMEMuqm5W07QFqmMHzOJ9QKGnSf9xpgEQ0rznstfXlBDxlFpLIrltQxRg=s88-c-k-c0x00ffffff-no-rj",
+            width: 88,
+            height: 88,
+          ),
+        ],
+        verification: None,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: "3 years ago",
+      like_count: Some(167),
+      reply_count: 337,
+      replies: Paginator(
+        count: Some(337),
+        items: [],
+        ctoken: Some("Eg0SC1FpcDFWa1R1TTcwGAYygwEaUBIaVWd4dFhINmJXUldtOGFoYXZmUjRBYUFCQWciAggAKhhVQ3lhZmx6ek9IMEdDNjgzRGxRLWZ6d2cyC1FpcDFWa1R1TTcwQAFICoIBAggBQi9jb21tZW50LXJlcGxpZXMtaXRlbS1VZ3h0WEg2YldSV204YWhhdmZSNEFhQUJBZw%3D%3D"),
+        endpoint: browse,
+      ),
+      by_owner: true,
+      pinned: false,
+      hearted: false,
+    ),
+    Comment(
+      id: "UgyHg3XnjBV935da_Lh4AaABAg",
+      text: RichText([
+        Text(
+          text: "omg it works i actuallly cant believe this ive been wanting to do this for ages thankyou so much!",
+        ),
+      ]),
+      author: Some(ChannelTag(
+        id: "UCFL5d8rMCfbxppODSbRLOgQ",
+        name: "@Auf-dem-weg-zum-sieg",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/oi4vbSV3Cx9G97QcHkSMWL98LksC6rnTLoq93T5sOO8MNuZPXWEXq9Nqkp8XYF93L2WklHADmNY=s88-c-k-c0x00ffffff-no-rj",
+            width: 88,
+            height: 88,
+          ),
+        ],
+        verification: None,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: "4 days ago",
+      like_count: Some(0),
+      reply_count: 0,
+      replies: Paginator(
+        count: Some(0),
+        items: [],
+        ctoken: None,
+        endpoint: browse,
+      ),
+      by_owner: false,
+      pinned: false,
+      hearted: false,
+    ),
+    Comment(
+      id: "UgxIL5emXyn42htlfZZ4AaABAg",
+      text: RichText([
+        Text(
+          text: "I did know how to do that writing where the text is highlighted before, and now after I watched this video I knew even how to write those styles of text.",
+        ),
+      ]),
+      author: Some(ChannelTag(
+        id: "UChkVaXCYN_QcaE50zETAMOg",
+        name: "@CasamTheAnimator",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/ctUbv8QpWPZRZumEBTVhlSSxg0JfiyvJ40nrWj_0ivOy5s6OoPK7iNp01diskRLs1Hig4ZE82w=s88-c-k-c0x00ffffff-no-rj",
+            width: 88,
+            height: 88,
+          ),
+        ],
+        verification: None,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: "3 weeks ago",
+      like_count: Some(0),
+      reply_count: 0,
+      replies: Paginator(
+        count: Some(0),
+        items: [],
+        ctoken: None,
+        endpoint: browse,
+      ),
+      by_owner: false,
+      pinned: false,
+      hearted: false,
+    ),
+    Comment(
+      id: "UgwMKY-89XCdCVB9bXp4AaABAg",
+      text: RichText([
+        Text(
+          text: "Nobody asked for, but everyone needed",
+        ),
+      ]),
+      author: Some(ChannelTag(
+        id: "UCDezbPSXn3awzhxVm7qhGtg",
+        name: "@0_Ed",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/4DWdgRIJ0lEV-e4GZFrdf8MGxQBtML2aix2orKBt3iM6QBrh7Kg1ur1FZlyRmqWpWnRPRIex9w=s88-c-k-c0x00ffffff-no-rj",
+            width: 88,
+            height: 88,
+          ),
+        ],
+        verification: None,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: "3 years ago",
+      like_count: Some(12),
+      reply_count: 5,
+      replies: Paginator(
+        count: Some(5),
+        items: [],
+        ctoken: Some("Eg0SC1FpcDFWa1R1TTcwGAYygwEaUBIaVWd3TUtZLTg5WENkQ1ZCOWJYcDRBYUFCQWciAggAKhhVQ3lhZmx6ek9IMEdDNjgzRGxRLWZ6d2cyC1FpcDFWa1R1TTcwQAFICoIBAggBQi9jb21tZW50LXJlcGxpZXMtaXRlbS1VZ3dNS1ktODlYQ2RDVkI5YlhwNEFhQUJBZw%3D%3D"),
+        endpoint: browse,
+      ),
+      by_owner: false,
+      pinned: false,
+      hearted: true,
+    ),
+    Comment(
+      id: "UgyfuG2sCDvgnRUYHJp4AaABAg",
+      text: RichText([
+        Text(
+          text: "me: types bold\n\nHaruTutorial: your bald",
+        ),
+      ]),
+      author: Some(ChannelTag(
+        id: "UCge96FdHXkARBjzPhdYl8Sg",
+        name: "@stargazeu",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/JoeW_qNuf9b6BusB3E6JShizqRLB4jR3NaTnsnzvpUQ1KW88OcS74_Sx1h6vjZiXK2uOxnrUNeY=s88-c-k-c0x00ffffff-no-rj",
+            width: 88,
+            height: 88,
+          ),
+        ],
+        verification: None,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: "3 years ago",
+      like_count: Some(42),
+      reply_count: 15,
+      replies: Paginator(
+        count: Some(15),
+        items: [],
+        ctoken: Some("Eg0SC1FpcDFWa1R1TTcwGAYygwEaUBIaVWd5ZnVHMnNDRHZnblJVWUhKcDRBYUFCQWciAggAKhhVQ3lhZmx6ek9IMEdDNjgzRGxRLWZ6d2cyC1FpcDFWa1R1TTcwQAFICoIBAggBQi9jb21tZW50LXJlcGxpZXMtaXRlbS1VZ3lmdUcyc0NEdmduUlVZSEpwNEFhQUJBZw%3D%3D"),
+        endpoint: browse,
+      ),
+      by_owner: false,
+      pinned: false,
+      hearted: true,
+    ),
+    Comment(
+      id: "UgwAXndNNEa1h-VVIC94AaABAg",
+      text: RichText([
+        Text(
+          text: "the McDonald’s don’t feel like turning the Icecream machine on",
+        ),
+      ]),
+      author: Some(ChannelTag(
+        id: "UCkmY4kQ8e8gDRllV485Rd9g",
+        name: "@Flowershowrise",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/c2iMsq-wFjKRjTDqPy14UpMI1B9hNms4moW9H7xtPjOMI0vjaHwN94me23upYar-8CE3s6QkFw=s88-c-k-c0x00ffffff-no-rj",
+            width: 88,
+            height: 88,
+          ),
+        ],
+        verification: None,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: "1 month ago",
+      like_count: Some(2),
+      reply_count: 0,
+      replies: Paginator(
+        count: Some(0),
+        items: [],
+        ctoken: None,
+        endpoint: browse,
+      ),
+      by_owner: false,
+      pinned: false,
+      hearted: false,
+    ),
+    Comment(
+      id: "UgwwEBqareQ0tpsW7RR4AaABAg",
+      text: RichText([
+        Text(
+          text: "YOOO THIS IS SICK! THANK YOU MAN!",
+        ),
+      ]),
+      author: Some(ChannelTag(
+        id: "UChIbg4dGguUwzg7O-xmi57g",
+        name: "@ziaaaaa.",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/HEAdH93oAQu2ScXNmiKIISapv5O9dKSVLuT3gD1zJhSgHqTaptL7JPun6A5GZqg58_C75_OPkQ=s88-c-k-c0x00ffffff-no-rj",
+            width: 88,
+            height: 88,
+          ),
+        ],
+        verification: None,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: "1 month ago",
+      like_count: Some(0),
+      reply_count: 0,
+      replies: Paginator(
+        count: Some(0),
+        items: [],
+        ctoken: None,
+        endpoint: browse,
+      ),
+      by_owner: false,
+      pinned: false,
+      hearted: false,
+    ),
+    Comment(
+      id: "UgxnFMLrpvbCWzHidml4AaABAg",
+      text: RichText([
+        Text(
+          text: "Someone must honor him , this man is the best  , no , he is a LEGEND .  We must all thank him for his video and for getting to the point immediately.",
+        ),
+      ]),
+      author: Some(ChannelTag(
+        id: "UCeGJuvHZqqebHTE_Kz2zyug",
+        name: "@Dahackabarade",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/csf-cEr2z4uWg8ZpVEPqgS2D2ZUHKBAJWnIbnzQCRtAlioSlUbtQZAyx76tnyfpXpixrsKke6DE=s88-c-k-c0x00ffffff-no-rj",
+            width: 88,
+            height: 88,
+          ),
+        ],
+        verification: None,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: "2 years ago (edited)",
+      like_count: Some(11),
+      reply_count: 5,
+      replies: Paginator(
+        count: Some(5),
+        items: [],
+        ctoken: Some("Eg0SC1FpcDFWa1R1TTcwGAYygwEaUBIaVWd4bkZNTHJwdmJDV3pIaWRtbDRBYUFCQWciAggAKhhVQ3lhZmx6ek9IMEdDNjgzRGxRLWZ6d2cyC1FpcDFWa1R1TTcwQAFICoIBAggBQi9jb21tZW50LXJlcGxpZXMtaXRlbS1VZ3huRk1McnB2YkNXekhpZG1sNEFhQUJBZw%3D%3D"),
+        endpoint: browse,
+      ),
+      by_owner: false,
+      pinned: false,
+      hearted: false,
+    ),
+    Comment(
+      id: "UgwCIwmF6synP7UF_wV4AaABAg",
+      text: RichText([
+        Text(
+          text: "Never gonna give you up. Im gonna let u down",
+        ),
+      ]),
+      author: Some(ChannelTag(
+        id: "UCyrDrBrWvXwIhf2s2F1dq-Q",
+        name: "@imnotjust...2326",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/Clzb1GD_KnRm9u7mOAN165HZO_H0jhXQlRG8YvEjqkDuBUNibGkclRyRZIdhi-yJhC4hHorGLQ=s88-c-k-c0x00ffffff-no-rj",
+            width: 88,
+            height: 88,
+          ),
+        ],
+        verification: None,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: "2 years ago",
+      like_count: Some(14),
+      reply_count: 0,
+      replies: Paginator(
+        count: Some(0),
+        items: [],
+        ctoken: None,
+        endpoint: browse,
+      ),
+      by_owner: false,
+      pinned: false,
+      hearted: true,
+    ),
+    Comment(
+      id: "Ugyb5Wy91Yon69o3wLh4AaABAg",
+      text: RichText([
+        Text(
+          text: "Thank you for being A Legend No, The Goat Lets go dude",
+        ),
+      ]),
+      author: Some(ChannelTag(
+        id: "UCPCgaC_EJlS5RpRRWPHWvKA",
+        name: "@gfghdgfghd6391",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/ytc/AIdro_n0lpwvjOP9HO_XHxzInwQoqQ7qIXeR0SqZVbCE=s88-c-k-c0x00ffffff-no-rj",
+            width: 88,
+            height: 88,
+          ),
+        ],
+        verification: None,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: "1 month ago",
+      like_count: Some(0),
+      reply_count: 0,
+      replies: Paginator(
+        count: Some(0),
+        items: [],
+        ctoken: None,
+        endpoint: browse,
+      ),
+      by_owner: false,
+      pinned: false,
+      hearted: false,
+    ),
+  ],
+  ctoken: Some("Eg0SC1FpcDFWa1R1TTcwGAYy4gIKuAJnZXRfcmFua2VkX3N0cmVhbXMtLUNxWUJDSUFFRlJlMzBUZ2Ftd0VLbGdFSTJGOFFnQVFZQnlLTEFSdUNtdFZ5a3dZMFFzVVVvM3I0LUY0OWU2d3RGSGFjbDIxS0Nsd3M4ZFZNaGdDdm9VWFhac2NZNXVncURIaUNiQVpveUczUEh6MTRPQ0tJV1BZTm9PTnN6dlFPVDZkaFZXMGRiSlZNelJXSW5QTm5QY0pyTmhQbzAyT1ZuamlVcHJTTHc1UEZxVHFBRkxlYXEtSHQtdU5uZkp1SzItMXVhQkp2aWE3S183QzgzOURiekJhY2tFeVRzUUFRRkJJRkNJZ2dHQUFTQndpSElCQUJHQUFTQlFpb0lCZ0FFZ1VJaVNBWUFCSUhDSVVnRUFrWUFSSUhDSVFnRUFzWUFSZ0EiESILUWlwMVZrVHVNNzAwAHgBKBRCEGNvbW1lbnRzLXNlY3Rpb24%3D"),
+  endpoint: browse,
+)

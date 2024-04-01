@@ -592,7 +592,6 @@ be accomodated. There are also no mobile/TV header images available any more.
 }
 ```
 
-
 ## [13] Music album/playlist 2-column layout
 
 - **Encountered on:** 29.02.2024
@@ -602,5 +601,149 @@ be accomodated. There are also no mobile/TV header images available any more.
 
 ![A/B test 13 screenshot](./_img/ab_13.png)
 
-YouTube Music updated the layout of album and playlist pages. The new layout shows
-the cover on the left side of the playlist content.
+YouTube Music updated the layout of album and playlist pages. The new layout shows the
+cover on the left side of the playlist content.
+
+## [14] Comments Framework update
+
+- **Encountered on:** 31.01.2024
+- **Impact:** 🟢 Low
+- **Endpoint:** next
+- **Status:** Common (50%)
+
+YouTube changed the data model for YouTube comments, now putting the content into a
+seperate framework update object
+
+```json
+{
+  "frameworkUpdates": {
+    "onResponseReceivedEndpoints": [
+      {
+        "clickTrackingParams": "CAAQg2ciEwi64q3dmKGFAxWvy0IFHc14BKM=",
+        "reloadContinuationItemsCommand": {
+          "targetId": "comments-section",
+          "continuationItems": [
+            {
+              "commentThreadRenderer": {
+                "replies": {
+                  "commentRepliesRenderer": {
+                    "contents": [
+                      {
+                        "continuationItemRenderer": {
+                          "trigger": "CONTINUATION_TRIGGER_ON_ITEM_SHOWN",
+                          "continuationEndpoint": {
+                            "clickTrackingParams": "CHgQvnUiEwi64q3dmKGFAxWvy0IFHc14BKM=",
+                            "commandMetadata": {
+                              "webCommandMetadata": {
+                                "sendPost": true,
+                                "apiUrl": "/youtubei/v1/next"
+                              }
+                            },
+                            "continuationCommand": {
+                              "token": "Eg0SC1FpcDFWa1R1TTcwGAYygwEaUBIaVWd5TlRUOHV4REVqZ1lxeWJJRjRBYUFCQWciAggAKhhVQ3lhZmx6ek9IMEdDNjgzRGxRLWZ6d2cyC1FpcDFWa1R1TTcwQAFICoIBAggBQi9jb21tZW50LXJlcGxpZXMtaXRlbS1VZ3lOVFQ4dXhERWpnWXF5YklGNEFhQUJBZw%3D%3D",
+                              "request": "CONTINUATION_REQUEST_TYPE_WATCH_NEXT"
+                            }
+                          }
+                        }
+                      }
+                    ],
+                    "trackingParams": "CHgQvnUiEwi64q3dmKGFAxWvy0IFHc14BKM=",
+                    "viewReplies": {
+                      "buttonRenderer": {
+                        "text": { "runs": [{ "text": "220 replies" }] },
+                        "icon": { "iconType": "ARROW_DROP_DOWN" },
+                        "trackingParams": "CHoQosAEIhMIuuKt3ZihhQMVr8tCBR3NeASj",
+                        "iconPosition": "BUTTON_ICON_POSITION_TYPE_LEFT_OF_TEXT"
+                      }
+                    },
+                    "hideReplies": {
+                      "buttonRenderer": {
+                        "text": { "runs": [{ "text": "220 replies" }] },
+                        "icon": { "iconType": "ARROW_DROP_UP" },
+                        "trackingParams": "CHkQ280EIhMIuuKt3ZihhQMVr8tCBR3NeASj",
+                        "iconPosition": "BUTTON_ICON_POSITION_TYPE_LEFT_OF_TEXT"
+                      }
+                    },
+                    "targetId": "comment-replies-item-UgyNTT8uxDEjgYqybIF4AaABAg"
+                  }
+                },
+                "trackingParams": "CHYQwnUYywEiEwi64q3dmKGFAxWvy0IFHc14BKM=",
+                "renderingPriority": "RENDERING_PRIORITY_PINNED_COMMENT",
+                "isModeratedElqComment": false,
+                "commentViewModel": {
+                  "commentViewModel": {
+                    "commentId": "UgyNTT8uxDEjgYqybIF4AaABAg"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "entityBatchUpdate": {
+      "mutations": [
+        {
+          "entityKey": "EhpVZ3lOVFQ4dXhERWpnWXF5YklGNEFhQUJBZyAoKAE%3D",
+          "type": "ENTITY_MUTATION_TYPE_REPLACE",
+          "payload": {
+            "commentEntityPayload": {
+              "key": "EhpVZ3lOVFQ4dXhERWpnWXF5YklGNEFhQUJBZyAoKAE%3D",
+              "properties": {
+                "commentId": "UgyNTT8uxDEjgYqybIF4AaABAg",
+                "content": {
+                  "content": "⚠️ Important notice: if you put any symbol immediately after markup, it will not work: *here is the comma*, without space.\n\nYou should leave space before and after , to make it work.\n\nSame for _underscore_, and -hyphen-.\n\nLeave space before opening and after closing underscore and hyphen. Put all dots and commas inside markup.",
+                  "styleRuns": [
+                    {
+                      "startIndex": 135,
+                      "length": 28,
+                      "weightLabel": "FONT_WEIGHT_MEDIUM"
+                    },
+                    {
+                      "startIndex": 267,
+                      "length": 10,
+                      "weightLabel": "FONT_WEIGHT_NORMAL",
+                      "italic": true
+                    },
+                    {
+                      "startIndex": 282,
+                      "length": 7,
+                      "weightLabel": "FONT_WEIGHT_NORMAL",
+                      "strikethrough": "LINE_STYLE_SINGLE"
+                    }
+                  ]
+                },
+                "publishedTime": "2 years ago (edited)",
+                "replyLevel": 0,
+                "authorButtonA11y": "@kibizoid",
+                "toolbarStateKey": "EhpVZ3lOVFQ4dXhERWpnWXF5YklGNEFhQUJBZyAsKAE%3D",
+                "translateButtonEntityKey": "EhpVZ3lOVFQ4dXhERWpnWXF5YklGNEFhQUJBZyD_ASgB"
+              },
+              "author": {
+                "channelId": "UCUJfyiofeHQTmxKwZ6cCwIg",
+                "displayName": "@kibizoid",
+                "avatarThumbnailUrl": "https://yt3.ggpht.com/ytc/AIdro_nY2PkIyojDqs9Bk5RY6J90-U7wePswTYl799DNJQ=s88-c-k-c0x00ffffff-no-rj",
+                "isVerified": false,
+                "isCurrentUser": false,
+                "isCreator": false,
+                "isArtist": false
+              },
+              "avatar": {
+                "image": {
+                  "sources": [
+                    {
+                      "url": "https://yt3.ggpht.com/ytc/AIdro_nY2PkIyojDqs9Bk5RY6J90-U7wePswTYl799DNJQ=s88-c-k-c0x00ffffff-no-rj",
+                      "width": 88,
+                      "height": 88
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+```

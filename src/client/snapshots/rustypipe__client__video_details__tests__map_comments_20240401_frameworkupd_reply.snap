@@ -1,0 +1,351 @@
+---
+source: src/client/video_details.rs
+expression: map_res.c
+---
+Paginator(
+  count: None,
+  items: [
+    Comment(
+      id: "Ugzu-t48vV9SjdeWIMh4AaABAg.A-Grr7qN9uaA-GzThFMUcw",
+      text: RichText([
+        Text(
+          text: "Fact🙌🏻",
+        ),
+      ]),
+      author: Some(ChannelTag(
+        id: "UC4I0-MXGyTRsc1tsJrDMh2A",
+        name: "@Sadaf788",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/uIXOBEBIhYn6Y8cQHlhaGGnCqOqS8PI5YR_Cx28qR_Y_p1qkjHC8V68iwxfeJ20eQ3zp81owJ64=s88-c-k-c0x00ffffff-no-rj",
+            width: 88,
+            height: 88,
+          ),
+        ],
+        verification: None,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: "2 months ago",
+      like_count: Some(800),
+      reply_count: 0,
+      replies: Paginator(
+        count: Some(0),
+        items: [],
+        ctoken: None,
+        endpoint: browse,
+      ),
+      by_owner: false,
+      pinned: false,
+      hearted: false,
+    ),
+    Comment(
+      id: "Ugzu-t48vV9SjdeWIMh4AaABAg.A-Grr7qN9uaA-H295I5iMZ",
+      text: RichText([
+        Text(
+          text: "Facts",
+        ),
+      ]),
+      author: Some(ChannelTag(
+        id: "UCdJ0CAWWa1rRjRbVrQUrU_w",
+        name: "@Biggest_Onceu",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/dHe_Zmr-7EueUz0R-BbuFoGwRyNMXwa3gb_GJMgAie9yU5PM6LbgTlNJ1zivRxnjiFg2nrlF1Es=s88-c-k-c0x00ffffff-no-rj",
+            width: 88,
+            height: 88,
+          ),
+        ],
+        verification: None,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: "2 months ago",
+      like_count: Some(530),
+      reply_count: 0,
+      replies: Paginator(
+        count: Some(0),
+        items: [],
+        ctoken: None,
+        endpoint: browse,
+      ),
+      by_owner: false,
+      pinned: false,
+      hearted: false,
+    ),
+    Comment(
+      id: "Ugzu-t48vV9SjdeWIMh4AaABAg.A-Grr7qN9uaA-H73oLoHkI",
+      text: RichText([
+        Text(
+          text: "Faacttts",
+        ),
+      ]),
+      author: Some(ChannelTag(
+        id: "UCPPhfcNhQ768F0Hhk3-25hA",
+        name: "@neni996",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/t__fCiOIhKCg2BwaxaRog9F_a5uemd8rTEvwzWYl6WeLn-nN9xEW0FvxUtM0fQrh2Dj_6ENsGQ=s88-c-k-c0x00ffffff-no-rj",
+            width: 88,
+            height: 88,
+          ),
+        ],
+        verification: None,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: "2 months ago",
+      like_count: Some(412),
+      reply_count: 0,
+      replies: Paginator(
+        count: Some(0),
+        items: [],
+        ctoken: None,
+        endpoint: browse,
+      ),
+      by_owner: false,
+      pinned: false,
+      hearted: false,
+    ),
+    Comment(
+      id: "Ugzu-t48vV9SjdeWIMh4AaABAg.A-Grr7qN9uaA-H7nBbPD5z",
+      text: RichText([
+        Text(
+          text: "REAL",
+        ),
+      ]),
+      author: Some(ChannelTag(
+        id: "UCQyomFJDEQtC2lbQ6E7QUGA",
+        name: "@momolvs",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/nt6GjcwAs8NPgaF29pn-cHTPmPAwQC_e_lXQHGDjZJGSRKzsH4s3le8Wpg0ByAUvPwTSHWe0OA=s88-c-k-c0x00ffffff-no-rj",
+            width: 88,
+            height: 88,
+          ),
+        ],
+        verification: None,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: "2 months ago",
+      like_count: Some(312),
+      reply_count: 0,
+      replies: Paginator(
+        count: Some(0),
+        items: [],
+        ctoken: None,
+        endpoint: browse,
+      ),
+      by_owner: false,
+      pinned: false,
+      hearted: false,
+    ),
+    Comment(
+      id: "Ugzu-t48vV9SjdeWIMh4AaABAg.A-Grr7qN9uaA-H9s3LvStZ",
+      text: RichText([
+        Text(
+          text: "FR!!",
+        ),
+      ]),
+      author: Some(ChannelTag(
+        id: "UC9HOPOf3gD3aw6Ej9WZ-rYg",
+        name: "@user-vv9yp1fh8w",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/ytc/AIdro_nqyUCWW7jqWrg_39XNQ18-acPouL6wyHeQnZOMbmlSa9x2YGWINkfU1DLcvaXw=s88-c-k-c0x00ffffff-no-rj",
+            width: 88,
+            height: 88,
+          ),
+        ],
+        verification: None,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: "2 months ago",
+      like_count: Some(187),
+      reply_count: 0,
+      replies: Paginator(
+        count: Some(0),
+        items: [],
+        ctoken: None,
+        endpoint: browse,
+      ),
+      by_owner: false,
+      pinned: false,
+      hearted: false,
+    ),
+    Comment(
+      id: "Ugzu-t48vV9SjdeWIMh4AaABAg.A-Grr7qN9uaA-HB52Dv3SL",
+      text: RichText([
+        Text(
+          text: "fato.",
+        ),
+      ]),
+      author: Some(ChannelTag(
+        id: "UCW6ua0VDEFz7SyVMX01fTCA",
+        name: "@millenatwice",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/rInaNzUF3JLL_pCNfZtZlf2cHipf1yM4grr8VGJRHocwOQiuq1x7kUVi24q3ydtDC0j8bqbw2vA=s88-c-k-c0x00ffffff-no-rj",
+            width: 88,
+            height: 88,
+          ),
+        ],
+        verification: None,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: "2 months ago",
+      like_count: Some(165),
+      reply_count: 0,
+      replies: Paginator(
+        count: Some(0),
+        items: [],
+        ctoken: None,
+        endpoint: browse,
+      ),
+      by_owner: false,
+      pinned: false,
+      hearted: false,
+    ),
+    Comment(
+      id: "Ugzu-t48vV9SjdeWIMh4AaABAg.A-Grr7qN9uaA-HDLrM1OPD",
+      text: RichText([
+        Text(
+          text: "For sure!! TWICE is always TWICE!! They always give GOOD MUSIC",
+        ),
+      ]),
+      author: Some(ChannelTag(
+        id: "UCqDSps4SV0v8Dzf8esr6ScQ",
+        name: "@Its_me_hi_good",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/ytc/AIdro_nfh9rWK7_gae1YkUgKuq13G9OUpxQCqrXAAi1hfPkCvHeHORbq3DUTYm7b5eoy=s88-c-k-c0x00ffffff-no-rj",
+            width: 88,
+            height: 88,
+          ),
+        ],
+        verification: None,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: "2 months ago",
+      like_count: Some(341),
+      reply_count: 0,
+      replies: Paginator(
+        count: Some(0),
+        items: [],
+        ctoken: None,
+        endpoint: browse,
+      ),
+      by_owner: false,
+      pinned: false,
+      hearted: false,
+    ),
+    Comment(
+      id: "Ugzu-t48vV9SjdeWIMh4AaABAg.A-Grr7qN9uaA-HIAbm3Him",
+      text: RichText([
+        Text(
+          text: "Fr",
+        ),
+      ]),
+      author: Some(ChannelTag(
+        id: "UCFA4BaLyvM1DDNsFyE_BHqQ",
+        name: "@amanpreetbrar7836",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/ytc/AIdro_n1M-xxgSLIqe17kDv-i-tPn23FT1ywabpRAQ=s88-c-k-c0x00ffffff-no-rj",
+            width: 88,
+            height: 88,
+          ),
+        ],
+        verification: None,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: "2 months ago",
+      like_count: Some(84),
+      reply_count: 0,
+      replies: Paginator(
+        count: Some(0),
+        items: [],
+        ctoken: None,
+        endpoint: browse,
+      ),
+      by_owner: false,
+      pinned: false,
+      hearted: false,
+    ),
+    Comment(
+      id: "Ugzu-t48vV9SjdeWIMh4AaABAg.A-Grr7qN9uaA-HIrpOKIi7",
+      text: RichText([
+        Text(
+          text: "Presave I got you and with youth on spotify",
+        ),
+      ]),
+      author: Some(ChannelTag(
+        id: "UCxMDESp088wGItVM4xXACgw",
+        name: "@RitaOnce9",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/hVTumbLCpmtJw0c2mq1B-ES5W3kdYPqnNrtzEcUhxCoUN6dAutXc6exaPRnBMLM6Jw1ILPoBDg=s88-c-k-c0x00ffffff-no-rj",
+            width: 88,
+            height: 88,
+          ),
+        ],
+        verification: None,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: "2 months ago",
+      like_count: Some(112),
+      reply_count: 0,
+      replies: Paginator(
+        count: Some(0),
+        items: [],
+        ctoken: None,
+        endpoint: browse,
+      ),
+      by_owner: false,
+      pinned: false,
+      hearted: false,
+    ),
+    Comment(
+      id: "Ugzu-t48vV9SjdeWIMh4AaABAg.A-Grr7qN9uaA-HKMOSBnLK",
+      text: RichText([
+        Text(
+          text: "real",
+        ),
+      ]),
+      author: Some(ChannelTag(
+        id: "UCqeOr9ddrs_d6OgboKjk6zw",
+        name: "@twiceupremacy",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/ytc/AIdro_lpKYjxtRm1HSjv3tFvGwrvnRILmJoQrPTBBOFG=s88-c-k-c0x00ffffff-no-rj",
+            width: 88,
+            height: 88,
+          ),
+        ],
+        verification: None,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: "2 months ago",
+      like_count: Some(75),
+      reply_count: 0,
+      replies: Paginator(
+        count: Some(0),
+        items: [],
+        ctoken: None,
+        endpoint: browse,
+      ),
+      by_owner: false,
+      pinned: false,
+      hearted: false,
+    ),
+  ],
+  ctoken: Some("Eg0SC2hhZjY3ZUtGMHVvGAYy1wEKUGdldF9jb21tZW50X3dpdGhfcmVwbGllc19zdHJlYW0tLUNnZ0lnQVFWRjdmUk9CSUZDS0FnR0FFWUFDSU9DZ3dJeXUzdXJRWVE2Tkt2NGdFGlASGlVnenUtdDQ4dlY5U2pkZVdJTWg0QWFBQkFnIgIIACoYVUNhTzZUWXRsQzhVNXR0ejYyaFRyWmdnMgtoYWY2N2VLRjB1b0AASDKCAQIIASgKQi9jb21tZW50LXJlcGxpZXMtaXRlbS1VZ3p1LXQ0OHZWOVNqZGVXSU1oNEFhQUJBZw%3D%3D"),
+  endpoint: browse,
+)

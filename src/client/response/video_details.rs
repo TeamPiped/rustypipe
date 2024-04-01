@@ -3,9 +3,8 @@
 use serde::Deserialize;
 use serde_with::{rust::deserialize_ignore_any, serde_as, DefaultOnError, VecSkipError};
 
-use crate::serializer::text::TextComponent;
 use crate::serializer::{
-    text::{AccessibilityText, AttributedText, Text, TextComponents},
+    text::{AccessibilityText, AttributedText, Text, TextComponent, TextComponents},
     MapResult,
 };
 
@@ -13,7 +12,10 @@ use super::{
     url_endpoint::BrowseEndpointWrap, ContinuationEndpoint, ContinuationItemRenderer, Icon,
     MusicContinuationData, Thumbnails,
 };
-use super::{ChannelBadge, ContentsRendererLogged, ResponseContext, YouTubeListItem};
+use super::{
+    ChannelBadge, ContentsRendererLogged, FrameworkUpdates, ImageView, ResponseContext,
+    YouTubeListItem,
+};
 
 /*
 #VIDEO DETAILS
@@ -476,6 +478,7 @@ pub(crate) struct VideoComments {
     ///   - n*commentRenderer, continuationItemRenderer:
     ///     replies + continuation
     pub on_response_received_endpoints: MapResult<Vec<CommentsContItem>>,
+    pub framework_updates: Option<FrameworkUpdates<Payload>>,
 }
 
 /// Video comments continuation
@@ -498,23 +501,13 @@ pub(crate) struct AppendComments {
 #[serde(rename_all = "camelCase")]
 pub(crate) enum CommentListItem {
     /// Top-level comment
-    #[serde(rename_all = "camelCase")]
-    CommentThreadRenderer {
-        comment: Comment,
-        /// Continuation token to fetch replies
-        #[serde(default)]
-        replies: Replies,
-        #[serde(default)]
-        #[serde_as(deserialize_as = "DefaultOnError")]
-        rendering_priority: CommentPriority,
-    },
+    CommentThreadRenderer(CommentThreadRenderer),
     /// Reply comment
     CommentRenderer(CommentRenderer),
+    /// Reply comment (A/B #14)
+    CommentViewModel(CommentViewModel),
     /// Continuation token to fetch more comments
-    #[serde(rename_all = "camelCase")]
-    ContinuationItemRenderer {
-        continuation_endpoint: ContinuationEndpoint,
-    },
+    ContinuationItemRenderer(ContinuationItemVariants),
     /// Header of the comment section (contains number of comments)
     #[serde(rename_all = "camelCase")]
     CommentsHeaderRenderer {
@@ -522,6 +515,46 @@ pub(crate) enum CommentListItem {
         #[serde_as(as = "Option<Text>")]
         count_text: Option<String>,
     },
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(untagged)]
+pub(crate) enum ContinuationItemVariants {
+    #[serde(rename_all = "camelCase")]
+    Ep {
+        continuation_endpoint: ContinuationEndpoint,
+    },
+    Btn {
+        button: ContinuationButton,
+    },
+}
+
+impl ContinuationItemVariants {
+    pub fn token(self) -> String {
+        match self {
+            ContinuationItemVariants::Ep {
+                continuation_endpoint,
+            } => continuation_endpoint,
+            ContinuationItemVariants::Btn { button } => button.button_renderer.command,
+        }
+        .continuation_command
+        .token
+    }
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct CommentThreadRenderer {
+    /// Missing on the FrameworkUpdate data model (A/B #14)
+    pub comment: Option<Comment>,
+    pub comment_view_model: Option<CommentViewModelWrap>,
+    /// Continuation token to fetch replies
+    #[serde(default)]
+    pub replies: Replies,
+    #[serde(default)]
+    #[serde_as(deserialize_as = "DefaultOnError")]
+    pub rendering_priority: CommentPriority,
 }
 
 #[derive(Debug, Deserialize)]
@@ -564,7 +597,7 @@ pub(crate) struct CommentRenderer {
     pub action_buttons: CommentActionButtons,
 }
 
-#[derive(Default, Clone, Copy, Debug, Deserialize, PartialEq, Eq)]
+#[derive(Default, Clone, Copy, Debug, Deserialize)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub(crate) enum CommentPriority {
     /// Default rendering priority
@@ -572,6 +605,26 @@ pub(crate) enum CommentPriority {
     RenderingPriorityUnknown,
     /// Comment pinned by the creator
     RenderingPriorityPinnedComment,
+}
+
+impl From<CommentPriority> for bool {
+    fn from(value: CommentPriority) -> Self {
+        matches!(value, CommentPriority::RenderingPriorityPinnedComment)
+    }
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct CommentViewModelWrap {
+    pub comment_view_model: CommentViewModel,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct CommentViewModel {
+    pub comment_id: String,
+    pub comment_key: String,
+    pub toolbar_state_key: String,
 }
 
 /// Does not contain replies directly but a continuation token
@@ -636,4 +689,86 @@ pub(crate) struct AuthorCommentBadgeRenderer {
     ///
     /// Artist: `OFFICIAL_ARTIST_BADGE`
     pub icon: Icon,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) enum Payload {
+    CommentEntityPayload(CommentEntityPayload),
+    #[serde(rename_all = "camelCase")]
+    EngagementToolbarStateEntityPayload {
+        heart_state: HeartState,
+    },
+    #[serde(other, deserialize_with = "deserialize_ignore_any")]
+    None,
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct CommentEntityPayload {
+    pub properties: CommentProperties,
+    #[serde(default)]
+    #[serde_as(as = "DefaultOnError")]
+    pub author: Option<CommentAuthor>,
+    pub toolbar: CommentToolbar,
+    #[serde(default)]
+    pub avatar: ImageView,
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct CommentProperties {
+    #[serde_as(as = "AttributedText")]
+    pub content: TextComponents,
+    pub published_time: String,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct CommentAuthor {
+    pub channel_id: String,
+    pub display_name: String,
+    #[serde(default)]
+    pub is_verified: bool,
+    #[serde(default)]
+    pub is_artist: bool,
+    #[serde(default)]
+    pub is_creator: bool,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct CommentToolbar {
+    pub like_count_notliked: String,
+    pub reply_count: String,
+}
+
+#[derive(Debug, Copy, Clone, Deserialize)]
+#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+pub(crate) enum HeartState {
+    ToolbarHeartStateUnhearted,
+    ToolbarHeartStateHearted,
+}
+
+impl From<HeartState> for bool {
+    fn from(value: HeartState) -> Self {
+        match value {
+            HeartState::ToolbarHeartStateUnhearted => false,
+            HeartState::ToolbarHeartStateHearted => true,
+        }
+    }
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ContinuationButton {
+    pub button_renderer: ContinuationButtonRenderer,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ContinuationButtonRenderer {
+    pub command: ContinuationEndpoint,
 }

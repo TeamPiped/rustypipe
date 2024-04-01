@@ -3,7 +3,7 @@ use serde_with::{rust::deserialize_ignore_any, serde_as, DefaultOnError, VecSkip
 
 use super::{
     video_item::YouTubeListRenderer, Alert, ChannelBadge, ContentRenderer, ContentsRenderer,
-    ContinuationActionWrap, ResponseContext, Thumbnails, TwoColumnBrowseResults,
+    ContinuationActionWrap, ImageView, ResponseContext, Thumbnails, TwoColumnBrowseResults,
 };
 use crate::serializer::text::{AttributedText, Text, TextComponent};
 
@@ -222,12 +222,6 @@ pub(crate) struct PhAvatarView2 {
 #[serde(rename_all = "camelCase")]
 pub(crate) struct PhAvatarView3 {
     pub avatar_view_model: ImageView,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct ImageView {
-    pub image: Thumbnails,
 }
 
 #[derive(Debug, Deserialize)]
