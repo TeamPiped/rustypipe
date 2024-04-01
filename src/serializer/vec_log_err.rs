@@ -20,6 +20,13 @@ where
     where
         D: serde::Deserializer<'de>,
     {
+        #[derive(serde::Deserialize)]
+        #[serde(untagged)]
+        enum GoodOrError<T> {
+            Good(T),
+            Error(serde_json::Value),
+        }
+
         struct SeqVisitor<T>(PhantomData<T>);
 
         impl<'de, T> Visitor<'de> for SeqVisitor<T>
@@ -39,14 +46,16 @@ where
                 let mut values = Vec::with_capacity(seq.size_hint().unwrap_or_default());
                 let mut warnings = Vec::new();
 
-                loop {
-                    match seq.next_element::<T>() {
-                        Ok(val) => match val {
-                            Some(val) => values.push(val),
-                            None => break,
-                        },
-                        Err(e) => {
-                            warnings.push(format!("error deserializing item: {e}"));
+                while let Some(value) = seq.next_element()? {
+                    match value {
+                        GoodOrError::<T>::Good(value) => {
+                            values.push(value);
+                        }
+                        GoodOrError::<T>::Error(value) => {
+                            warnings.push(format!(
+                                "error deserializing item: {}",
+                                serde_json::to_string(&value).unwrap_or_default()
+                            ));
                         }
                     }
                 }
@@ -177,8 +186,8 @@ mod tests {
 
         insta::assert_debug_snapshot!(res.items.warnings, @r###"
         [
-            "error deserializing item: missing field `name` at line 1 column 40",
-            "error deserializing item: missing field `name` at line 1 column 73",
+            "error deserializing item: {\"xyz\":\"i2\"}",
+            "error deserializing item: {\"namra\":\"i4\"}",
         ]
         "###);
     }
