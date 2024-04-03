@@ -1,0 +1,31 @@
+{
+  "ln": {
+    "content": "Bold: Awesome\nItalic: Great\nCut: Dumb\n\nMixed: Mixer",
+    "styleRuns": [
+      {
+        "startIndex": 6,
+        "length": 7,
+        "weightLabel": "FONT_WEIGHT_MEDIUM"
+      },
+      {
+        "startIndex": 22,
+        "length": 5,
+        "weightLabel": "FONT_WEIGHT_NORMAL",
+        "italic": true
+      },
+      {
+        "startIndex": 33,
+        "length": 4,
+        "weightLabel": "FONT_WEIGHT_NORMAL",
+        "strikethrough": "LINE_STYLE_SINGLE"
+      },
+      {
+        "startIndex": 46,
+        "length": 5,
+        "weightLabel": "FONT_WEIGHT_MEDIUM",
+        "italic": true,
+        "strikethrough": "LINE_STYLE_SINGLE"
+      }
+    ]
+  }
+}

@@ -95,6 +95,9 @@ VideoDetails(
     ),
     Text(
       text: "-------------------------------------------------",
+      style: Style(
+        strikethrough: true,
+      ),
     ),
     Text(
       text: "  \nTwitter: ",
@@ -136,6 +139,9 @@ VideoDetails(
     ),
     Text(
       text: "-------------------------------------------------",
+      style: Style(
+        strikethrough: true,
+      ),
     ),
     Text(
       text: "\nIntro: Laszlo - Supernova\nVideo Link: ",
@@ -218,6 +224,9 @@ VideoDetails(
     ),
     Text(
       text: "-------------------------------------------------",
+      style: Style(
+        strikethrough: true,
+      ),
     ),
     Text(
       text: "\n",

@@ -327,7 +327,7 @@ impl<T> TryRemove<T> for Vec<T> {
 /// Check if a channel name equals "YouTube Music"
 /// (the author of original YouTube music playlists)
 pub(crate) fn is_ytm(text: &TextComponent) -> bool {
-    if let TextComponent::Text { text } = text {
+    if let TextComponent::Text { text, .. } = text {
         text.starts_with("YouTube")
     } else {
         false
@@ -422,7 +422,11 @@ where
 /// Replace all html control characters to make a string safe for inserting into HTML.
 pub fn escape_html(input: &str) -> String {
     let mut buf = String::with_capacity(input.len());
+    escape_html_append(input, &mut buf);
+    buf
+}
 
+pub fn escape_html_append(input: &str, buf: &mut String) {
     for c in input.chars() {
         match c {
             '<' => buf.push_str("&lt;"),
@@ -434,14 +438,17 @@ pub fn escape_html(input: &str) -> String {
             _ => buf.push(c),
         };
     }
-    buf
 }
 
 /// Replace all markdown control characters to make a string safe for
 /// inserting into Markdown.
 pub fn escape_markdown(input: &str) -> String {
     let mut buf = String::with_capacity(input.len());
+    escape_markdown_append(input, &mut buf);
+    buf
+}
 
+pub fn escape_markdown_append(input: &str, buf: &mut String) {
     for c in input.chars() {
         match c {
             '<' => buf.push_str("&lt;"),
@@ -455,7 +462,6 @@ pub fn escape_markdown(input: &str) -> String {
             _ => buf.push(c),
         };
     }
-    buf
 }
 
 pub fn video_id_from_thumbnail_url(url: &str) -> Option<String> {

@@ -1,0 +1,50 @@
+---
+source: src/serializer/text.rs
+expression: split
+---
+[
+    TextComponents(
+        [
+            Text {
+                text: "Hello",
+                style: Style {
+                    bold: false,
+                    italic: false,
+                    strikethrough: false,
+                },
+            },
+            Text {
+                text: " World",
+                style: Style {
+                    bold: false,
+                    italic: false,
+                    strikethrough: false,
+                },
+            },
+        ],
+    ),
+    TextComponents(
+        [
+            Text {
+                text: "T2",
+                style: Style {
+                    bold: false,
+                    italic: false,
+                    strikethrough: false,
+                },
+            },
+        ],
+    ),
+    TextComponents(
+        [
+            Text {
+                text: "T3",
+                style: Style {
+                    bold: false,
+                    italic: false,
+                    strikethrough: false,
+                },
+            },
+        ],
+    ),
+]

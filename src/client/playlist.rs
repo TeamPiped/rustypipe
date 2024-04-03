@@ -156,7 +156,7 @@ impl MapResponse<Playlist> for response::Playlist {
                 header
                     .playlist_header_renderer
                     .description_text
-                    .map(|text| TextComponents(vec![TextComponent::Text { text }]))
+                    .map(|text| TextComponents(vec![TextComponent::new(text)]))
             })
             .map(RichText::from);
         let channel = header

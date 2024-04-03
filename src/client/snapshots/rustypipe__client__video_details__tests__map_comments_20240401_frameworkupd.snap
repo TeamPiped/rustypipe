@@ -9,7 +9,34 @@ Paginator(
       id: "UgyNTT8uxDEjgYqybIF4AaABAg",
       text: RichText([
         Text(
-          text: "⚠\u{fe0f} Important notice: if you put any symbol immediately after markup, it will not work: *here is the comma*, without space.\n\nYou should leave space before and after , to make it work.\n\nSame for _underscore_, and -hyphen-.\n\nLeave space before opening and after closing underscore and hyphen. Put all dots and commas inside markup.",
+          text: "⚠\u{fe0f} Important notice: if you put any symbol immediately after markup, it will not work: *here is the comma*, without space.\n\nYou should ",
+        ),
+        Text(
+          text: "leave space before and after",
+          style: Style(
+            bold: true,
+          ),
+        ),
+        Text(
+          text: " , to make it work.\n\nSame for _underscore_, and -hyphen-.\n\nLeave space before opening and after closing ",
+        ),
+        Text(
+          text: "underscore",
+          style: Style(
+            italic: true,
+          ),
+        ),
+        Text(
+          text: " and ",
+        ),
+        Text(
+          text: "hyphen.",
+          style: Style(
+            strikethrough: true,
+          ),
+        ),
+        Text(
+          text: " Put all dots and commas inside markup.",
         ),
       ]),
       author: Some(ChannelTag(
@@ -43,7 +70,28 @@ Paginator(
       id: "UgycWgNOoon0A4EV9LZ4AaABAg",
       text: RichText([
         Text(
-          text: "Me: tests out fonts\nFriend: Why are you doing this?\nMe: my goals are beyond your understanding",
+          text: "Me: tests out fonts",
+          style: Style(
+            bold: true,
+          ),
+        ),
+        Text(
+          text: "\nFriend: ",
+        ),
+        Text(
+          text: "Why are you doing this?",
+          style: Style(
+            bold: true,
+          ),
+        ),
+        Text(
+          text: "\nMe: ",
+        ),
+        Text(
+          text: "my goals are beyond your understanding",
+          style: Style(
+            italic: true,
+          ),
         ),
       ]),
       author: Some(ChannelTag(
@@ -77,7 +125,31 @@ Paginator(
       id: "Ugy5iq4M1c3WS3lGmih4AaABAg",
       text: RichText([
         Text(
-          text: "To-do list\n• be dumb\n• get kicked out when i can legally live alone\n• spend money on pointless things",
+          text: "To-do list\n• ",
+        ),
+        Text(
+          text: "be dumb",
+          style: Style(
+            strikethrough: true,
+          ),
+        ),
+        Text(
+          text: "\n• ",
+        ),
+        Text(
+          text: "get kicked out when i can legally live alone",
+          style: Style(
+            strikethrough: true,
+          ),
+        ),
+        Text(
+          text: "\n• ",
+        ),
+        Text(
+          text: "spend money on pointless things",
+          style: Style(
+            strikethrough: true,
+          ),
         ),
       ]),
       author: Some(ChannelTag(
@@ -111,7 +183,31 @@ Paginator(
       id: "UgxqDIVVcoigjtx4Dtl4AaABAg",
       text: RichText([
         Text(
-          text: "omg thank you! Ive been looking for this tutorial for a year forever",
+          text: "omg ",
+        ),
+        Text(
+          text: "thank",
+          style: Style(
+            italic: true,
+          ),
+        ),
+        Text(
+          text: " you! Ive been looking for this tutorial for a ",
+        ),
+        Text(
+          text: "year",
+          style: Style(
+            strikethrough: true,
+          ),
+        ),
+        Text(
+          text: " ",
+        ),
+        Text(
+          text: "forever",
+          style: Style(
+            bold: true,
+          ),
         ),
       ]),
       author: Some(ChannelTag(
@@ -145,7 +241,28 @@ Paginator(
       id: "UgxDQfVQdYaWR-VUM-94AaABAg",
       text: RichText([
         Text(
-          text: "tysm\ni finally learned it\nother channel never go straight to the point",
+          text: "tysm",
+          style: Style(
+            bold: true,
+          ),
+        ),
+        Text(
+          text: "\n",
+        ),
+        Text(
+          text: "i finally learned it",
+          style: Style(
+            italic: true,
+          ),
+        ),
+        Text(
+          text: "\n",
+        ),
+        Text(
+          text: "other channel never go straight to the point",
+          style: Style(
+            strikethrough: true,
+          ),
         ),
       ]),
       author: Some(ChannelTag(
@@ -179,7 +296,28 @@ Paginator(
       id: "UgxFvrmwec-jmfQyGRR4AaABAg",
       text: RichText([
         Text(
-          text: "I like how this was straight to the point. Unlike other channels lol Thank you!",
+          text: "I like how this was straight to the point.",
+          style: Style(
+            italic: true,
+          ),
+        ),
+        Text(
+          text: " ",
+        ),
+        Text(
+          text: "Unlike other channels lol",
+          style: Style(
+            strikethrough: true,
+          ),
+        ),
+        Text(
+          text: " ",
+        ),
+        Text(
+          text: "Thank you!",
+          style: Style(
+            bold: true,
+          ),
         ),
       ]),
       author: Some(ChannelTag(
@@ -213,7 +351,13 @@ Paginator(
       id: "Ugy-3OYEcwxkvyrrCqN4AaABAg",
       text: RichText([
         Text(
-          text: "To the person who is reading this: You\'re intelligent and smart, stay safe",
+          text: "To the person who is reading this: ",
+        ),
+        Text(
+          text: "You\'re intelligent and smart, stay safe",
+          style: Style(
+            bold: true,
+          ),
         ),
       ]),
       author: Some(ChannelTag(
@@ -247,7 +391,17 @@ Paginator(
       id: "Ugylw3ss_xv9svWbRud4AaABAg",
       text: RichText([
         Text(
-          text: "‘ life could be a dream, life could be a dream ‘",
+          text: "‘ ",
+        ),
+        Text(
+          text: "life could be a dream, life could be a dream",
+          style: Style(
+            bold: true,
+            italic: true,
+          ),
+        ),
+        Text(
+          text: " ‘",
         ),
       ]),
       author: Some(ChannelTag(
@@ -281,7 +435,28 @@ Paginator(
       id: "UgydXobRB0F5dW1KVsF4AaABAg",
       text: RichText([
         Text(
-          text: "Woah! thank you for showing me this I really needed it!",
+          text: "Woah!",
+          style: Style(
+            bold: true,
+          ),
+        ),
+        Text(
+          text: " ",
+        ),
+        Text(
+          text: "thank you for showing me this",
+          style: Style(
+            strikethrough: true,
+          ),
+        ),
+        Text(
+          text: " ",
+        ),
+        Text(
+          text: "I really needed it!",
+          style: Style(
+            italic: true,
+          ),
         ),
       ]),
       author: Some(ChannelTag(
@@ -316,6 +491,9 @@ Paginator(
       text: RichText([
         Text(
           text: "The fitness gram pacer test is a multistage aerobic capacity test that progressively gets more difficult as it continues.",
+          style: Style(
+            bold: true,
+          ),
         ),
       ]),
       author: Some(ChannelTag(
@@ -384,6 +562,9 @@ Paginator(
       text: RichText([
         Text(
           text: "omg it works i actuallly cant believe this ive been wanting to do this for ages thankyou so much!",
+          style: Style(
+            strikethrough: true,
+          ),
         ),
       ]),
       author: Some(ChannelTag(
@@ -485,7 +666,13 @@ Paginator(
       id: "UgyfuG2sCDvgnRUYHJp4AaABAg",
       text: RichText([
         Text(
-          text: "me: types bold\n\nHaruTutorial: your bald",
+          text: "me: types bold\n\nHaruTutorial: ",
+        ),
+        Text(
+          text: "your bald",
+          style: Style(
+            bold: true,
+          ),
         ),
       ]),
       author: Some(ChannelTag(
@@ -520,6 +707,9 @@ Paginator(
       text: RichText([
         Text(
           text: "the McDonald’s don’t feel like turning the Icecream machine on",
+          style: Style(
+            italic: true,
+          ),
         ),
       ]),
       author: Some(ChannelTag(
@@ -554,6 +744,11 @@ Paginator(
       text: RichText([
         Text(
           text: "YOOO THIS IS SICK! THANK YOU MAN!",
+          style: Style(
+            bold: true,
+            italic: true,
+            strikethrough: true,
+          ),
         ),
       ]),
       author: Some(ChannelTag(
@@ -587,7 +782,46 @@ Paginator(
       id: "UgxnFMLrpvbCWzHidml4AaABAg",
       text: RichText([
         Text(
-          text: "Someone must honor him , this man is the best  , no , he is a LEGEND .  We must all thank him for his video and for getting to the point immediately.",
+          text: "Someone must honor him",
+          style: Style(
+            bold: true,
+          ),
+        ),
+        Text(
+          text: " , this man is ",
+        ),
+        Text(
+          text: "the best",
+          style: Style(
+            strikethrough: true,
+          ),
+        ),
+        Text(
+          text: "  , no , he is a ",
+        ),
+        Text(
+          text: "LEGEND",
+          style: Style(
+            bold: true,
+          ),
+        ),
+        Text(
+          text: " .  ",
+        ),
+        Text(
+          text: "We must all thank him for his video",
+          style: Style(
+            italic: true,
+          ),
+        ),
+        Text(
+          text: " and for ",
+        ),
+        Text(
+          text: "getting to the point immediately.",
+          style: Style(
+            bold: true,
+          ),
         ),
       ]),
       author: Some(ChannelTag(
@@ -621,7 +855,13 @@ Paginator(
       id: "UgwCIwmF6synP7UF_wV4AaABAg",
       text: RichText([
         Text(
-          text: "Never gonna give you up. Im gonna let u down",
+          text: "Never gonna give you up.",
+          style: Style(
+            bold: true,
+          ),
+        ),
+        Text(
+          text: " Im gonna let u down",
         ),
       ]),
       author: Some(ChannelTag(
@@ -655,7 +895,31 @@ Paginator(
       id: "Ugyb5Wy91Yon69o3wLh4AaABAg",
       text: RichText([
         Text(
-          text: "Thank you for being A Legend No, The Goat Lets go dude",
+          text: "Thank you for being ",
+        ),
+        Text(
+          text: "A Legend",
+          style: Style(
+            strikethrough: true,
+          ),
+        ),
+        Text(
+          text: " No, ",
+        ),
+        Text(
+          text: "The Goat",
+          style: Style(
+            bold: true,
+          ),
+        ),
+        Text(
+          text: " ",
+        ),
+        Text(
+          text: "Lets go dude",
+          style: Style(
+            italic: true,
+          ),
         ),
       ]),
       author: Some(ChannelTag(

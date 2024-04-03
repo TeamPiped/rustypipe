@@ -9,7 +9,7 @@ use crate::{
     client::response::url_endpoint::{
         MusicPage, MusicPageType, MusicVideoType, NavigationEndpoint, PageType,
     },
-    model::UrlTarget,
+    model::{richtext::Style, UrlTarget},
     util,
 };
 
@@ -110,6 +110,7 @@ pub(crate) enum TextComponent {
     },
     Text {
         text: String,
+        style: Style,
     },
 }
 
@@ -130,6 +131,12 @@ struct RichTextRun {
     #[serde(default)]
     #[serde_as(as = "DefaultOnError")]
     navigation_endpoint: Option<NavigationEndpoint>,
+    #[serde(default)]
+    bold: bool,
+    #[serde(default)]
+    italic: bool,
+    #[serde(default)]
+    strikethrough: bool,
 }
 
 /// This is a new rich text representation format that YouTube is A/B testing
@@ -142,15 +149,49 @@ pub(crate) struct AttributedText {
     content: String,
     #[serde(default)]
     #[serde_as(as = "VecSkipError<_>")]
-    command_runs: Vec<AttributedTextRun>,
+    command_runs: Vec<CommandRun>,
+    #[serde(default)]
+    #[serde_as(as = "VecSkipError<_>")]
+    style_runs: Vec<StyleRun>,
 }
 
 #[derive(Deserialize)]
 #[serde(rename_all = "camelCase")]
-struct AttributedTextRun {
+struct CommandRun {
     start_index: usize,
     length: usize,
     on_tap: AttributedTextOnTap,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct StyleRun {
+    start_index: usize,
+    length: usize,
+    #[serde(default)]
+    weight_label: WeightLabel,
+    #[serde(default)]
+    italic: bool,
+    #[serde(default)]
+    strikethrough: Strikethrough,
+}
+
+#[derive(Default, Deserialize)]
+#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+enum WeightLabel {
+    FontWeightMedium,
+    #[default]
+    #[serde(other)]
+    FontWeightNormal,
+}
+
+#[derive(Default, Deserialize)]
+#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+enum Strikethrough {
+    LineStyleSingle,
+    #[default]
+    #[serde(other)]
+    None,
 }
 
 #[derive(Deserialize)]
@@ -159,14 +200,66 @@ struct AttributedTextOnTap {
     innertube_command: NavigationEndpoint,
 }
 
+struct AttributedTextRun {
+    start_index: usize,
+    length: usize,
+    content: AttributedTextRunContent,
+}
+
+enum AttributedTextRunContent {
+    Link(NavigationEndpoint),
+    Style(Style),
+}
+
 impl From<RichTextRun> for TextComponent {
     fn from(run: RichTextRun) -> Self {
-        map_text_component(run.text, run.navigation_endpoint)
+        map_text_component(
+            run.text,
+            Style {
+                bold: run.bold,
+                italic: run.italic,
+                strikethrough: run.strikethrough,
+            },
+            run.navigation_endpoint,
+        )
+    }
+}
+
+impl From<CommandRun> for AttributedTextRun {
+    fn from(value: CommandRun) -> Self {
+        Self {
+            start_index: value.start_index,
+            length: value.length,
+            content: AttributedTextRunContent::Link(value.on_tap.innertube_command),
+        }
+    }
+}
+
+impl StyleRun {
+    fn into_attributed_text_run(self) -> Option<AttributedTextRun> {
+        let style = Style {
+            bold: matches!(self.weight_label, WeightLabel::FontWeightMedium),
+            italic: self.italic,
+            strikethrough: matches!(self.strikethrough, Strikethrough::LineStyleSingle),
+        };
+        if style.is_styled() {
+            Some(AttributedTextRun {
+                start_index: self.start_index,
+                length: self.length,
+                content: AttributedTextRunContent::Style(style),
+            })
+        } else {
+            None
+        }
     }
 }
 
 /// Map a single component of a rich text
-fn map_text_component(text: String, nav: Option<NavigationEndpoint>) -> TextComponent {
+fn map_text_component(
+    text: String,
+    style: Style,
+    nav: Option<NavigationEndpoint>,
+) -> TextComponent {
     match nav {
         Some(NavigationEndpoint::Watch { watch_endpoint }) => TextComponent::Video {
             text,
@@ -185,7 +278,7 @@ fn map_text_component(text: String, nav: Option<NavigationEndpoint>) -> TextComp
                 Some(bc) => bc.browse_endpoint_context_music_config.page_type,
                 None => match &command_metadata {
                     Some(cm) => cm.web_command_metadata.web_page_type,
-                    None => return TextComponent::Text { text },
+                    None => return TextComponent::Text { text, style },
                 },
             },
             text,
@@ -202,7 +295,7 @@ fn map_text_component(text: String, nav: Option<NavigationEndpoint>) -> TextComp
             page_type: PageType::Playlist,
             browse_id: watch_playlist_endpoint.playlist_id,
         },
-        None => TextComponent::Text { text },
+        None => TextComponent::Text { text, style },
     }
 }
 
@@ -267,37 +360,51 @@ impl<'de> DeserializeAs<'de, TextComponents> for AttributedText {
             buf
         };
 
-        let mut components = Vec::with_capacity(text.command_runs.len() + 1);
-        text.command_runs.into_iter().for_each(|cmd| {
-            let txt_before = take_chars(cmd.start_index);
-            let txt_link = take_chars(cmd.start_index + cmd.length);
+        let mut runs = text
+            .command_runs
+            .into_iter()
+            .map(AttributedTextRun::from)
+            .collect::<Vec<_>>();
+        runs.extend(
+            text.style_runs
+                .into_iter()
+                .filter_map(StyleRun::into_attributed_text_run),
+        );
+        runs.sort_by_key(|run| run.start_index);
 
-            // Trim link text:
-            // 3xnbsp, (/ •), nbsp, Name, 2xnbsp
-            // Channel: `\u{a0}\u{a0}\u{a0}/\u{a0}aespa\u{a0}\u{a0}`
-            // Video: `\u{a0}\u{a0}\u{a0}•\u{a0}aespa\u{a0}에스파\u{a0}'Black\u{a0}...\u{a0}\u{a0}`
-
-            // Replace no-break spaces, trim off whitespace and prefix character
-            let txt_link = txt_link.trim();
-            let txt_link = txt_link.replace('\u{a0}', " ");
-
-            static LINK_PREFIX: Lazy<Regex> = Lazy::new(|| Regex::new("^[/•] *").unwrap());
-            let txt_link = LINK_PREFIX.replace(&txt_link, "");
+        let mut components = Vec::with_capacity(runs.len() + 1);
+        for run in runs {
+            let txt_before = take_chars(run.start_index);
+            let txt_run = take_chars(run.start_index + run.length);
 
             if !txt_before.is_empty() {
-                components.push(TextComponent::Text { text: txt_before });
+                components.push(TextComponent::new(txt_before));
             }
-            components.push(map_text_component(
-                txt_link.to_string(),
-                Some(cmd.on_tap.innertube_command),
-            ));
-        });
+            components.push(match run.content {
+                AttributedTextRunContent::Link(link) => {
+                    // Trim link text:
+                    // 3xnbsp, (/ •), nbsp, Name, 2xnbsp
+                    // Channel: `\u{a0}\u{a0}\u{a0}/\u{a0}aespa\u{a0}\u{a0}`
+                    // Video: `\u{a0}\u{a0}\u{a0}•\u{a0}aespa\u{a0}에스파\u{a0}'Black\u{a0}...\u{a0}\u{a0}`
+
+                    // Replace no-break spaces, trim off whitespace and prefix character
+                    let txt_link = txt_run.trim();
+                    let txt_link = txt_link.replace('\u{a0}', " ");
+
+                    static LINK_PREFIX: Lazy<Regex> = Lazy::new(|| Regex::new("^[/•] *").unwrap());
+                    let txt_link = LINK_PREFIX.replace(&txt_link, "");
+
+                    map_text_component(txt_link.to_string(), Style::default(), Some(link))
+                }
+                AttributedTextRunContent::Style(style) => {
+                    map_text_component(txt_run.to_string(), style, None)
+                }
+            })
+        }
 
         let end = chars.as_str();
         if !end.is_empty() {
-            components.push(TextComponent::Text {
-                text: end.to_owned(),
-            });
+            components.push(TextComponent::new(end));
         }
 
         Ok(TextComponents(components))
@@ -376,7 +483,7 @@ impl From<TextComponent> for crate::model::ArtistId {
             },
             TextComponent::Video { text, .. }
             | TextComponent::Web { text, .. }
-            | TextComponent::Text { text } => Self {
+            | TextComponent::Text { text, .. } => Self {
                 id: None,
                 name: text,
             },
@@ -405,13 +512,16 @@ impl From<TextComponent> for crate::model::richtext::TextComponent {
                 browse_id,
             } => match page_type.to_url_target(browse_id) {
                 Some(target) => Self::YouTube { text, target },
-                None => Self::Text { text },
+                None => Self::Text {
+                    text,
+                    style: Default::default(),
+                },
             },
             TextComponent::Web { text, url } => Self::Web {
                 text,
                 url: util::sanitize_yt_url(&url),
             },
-            TextComponent::Text { text } => Self::Text { text },
+            TextComponent::Text { text, style } => Self::Text { text, style },
         }
     }
 }
@@ -423,12 +533,19 @@ impl From<TextComponents> for crate::model::richtext::RichText {
 }
 
 impl TextComponent {
+    pub fn new<S: Into<String>>(s: S) -> Self {
+        Self::Text {
+            text: s.into(),
+            style: Style::default(),
+        }
+    }
+
     pub fn as_str(&self) -> &str {
         match self {
             TextComponent::Video { text, .. }
             | TextComponent::Browse { text, .. }
             | TextComponent::Web { text, .. }
-            | TextComponent::Text { text } => text,
+            | TextComponent::Text { text, .. } => text,
         }
     }
 
@@ -456,7 +573,7 @@ impl From<TextComponent> for String {
             TextComponent::Video { text, .. }
             | TextComponent::Browse { text, .. }
             | TextComponent::Web { text, .. }
-            | TextComponent::Text { text } => text,
+            | TextComponent::Text { text, .. } => text,
         }
     }
 }
@@ -732,6 +849,11 @@ mod tests {
         SLink {
             ln: Text {
                 text: "Hello World",
+                style: Style {
+                    bold: false,
+                    italic: false,
+                    strikethrough: false,
+                },
             },
         }
         "###);
@@ -823,6 +945,11 @@ mod tests {
                     },
                     Text {
                         text: " & ",
+                        style: Style {
+                            bold: false,
+                            italic: false,
+                            strikethrough: false,
+                        },
                     },
                     Browse {
                         text: "Maite Kelly",
@@ -852,56 +979,25 @@ mod tests {
     }
 
     #[test]
+    fn styled_comment() {
+        let json_path = path!(*TESTFILES / "text" / "styled_comment.json");
+        let json_file = File::open(json_path).unwrap();
+        let res: SAttributed = serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        insta::assert_debug_snapshot!(res);
+    }
+
+    #[test]
     fn split_text_cmp() {
         let text = TextComponents(vec![
-            TextComponent::Text {
-                text: "Hello".to_owned(),
-            },
-            TextComponent::Text {
-                text: " World".to_owned(),
-            },
-            TextComponent::Text {
-                text: util::DOT_SEPARATOR.to_owned(),
-            },
-            TextComponent::Text {
-                text: "T2".to_owned(),
-            },
-            TextComponent::Text {
-                text: util::DOT_SEPARATOR.to_owned(),
-            },
-            TextComponent::Text {
-                text: "T3".to_owned(),
-            },
+            TextComponent::new("Hello"),
+            TextComponent::new(" World"),
+            TextComponent::new(util::DOT_SEPARATOR),
+            TextComponent::new("T2"),
+            TextComponent::new(util::DOT_SEPARATOR),
+            TextComponent::new("T3"),
         ]);
 
         let split = text.split(util::DOT_SEPARATOR);
-        insta::assert_debug_snapshot!(split, @r###"
-        [
-            TextComponents(
-                [
-                    Text {
-                        text: "Hello",
-                    },
-                    Text {
-                        text: " World",
-                    },
-                ],
-            ),
-            TextComponents(
-                [
-                    Text {
-                        text: "T2",
-                    },
-                ],
-            ),
-            TextComponents(
-                [
-                    Text {
-                        text: "T3",
-                    },
-                ],
-            ),
-        ]
-        "###);
+        insta::assert_debug_snapshot!(split);
     }
 }

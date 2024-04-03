@@ -1,0 +1,74 @@
+---
+source: src/serializer/text.rs
+expression: res
+---
+SAttributed {
+    ln: TextComponents(
+        [
+            Text {
+                text: "Bold: ",
+                style: Style {
+                    bold: false,
+                    italic: false,
+                    strikethrough: false,
+                },
+            },
+            Text {
+                text: "Awesome",
+                style: Style {
+                    bold: true,
+                    italic: false,
+                    strikethrough: false,
+                },
+            },
+            Text {
+                text: "\nItalic: ",
+                style: Style {
+                    bold: false,
+                    italic: false,
+                    strikethrough: false,
+                },
+            },
+            Text {
+                text: "Great",
+                style: Style {
+                    bold: false,
+                    italic: true,
+                    strikethrough: false,
+                },
+            },
+            Text {
+                text: "\nCut: ",
+                style: Style {
+                    bold: false,
+                    italic: false,
+                    strikethrough: false,
+                },
+            },
+            Text {
+                text: "Dumb",
+                style: Style {
+                    bold: false,
+                    italic: false,
+                    strikethrough: true,
+                },
+            },
+            Text {
+                text: "\n\nMixed: ",
+                style: Style {
+                    bold: false,
+                    italic: false,
+                    strikethrough: false,
+                },
+            },
+            Text {
+                text: "Mixer",
+                style: Style {
+                    bold: true,
+                    italic: true,
+                    strikethrough: true,
+                },
+            },
+        ],
+    ),
+}
