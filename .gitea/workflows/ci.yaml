@@ -9,7 +9,7 @@ jobs:
     runs-on: cimaster-latest
     steps:
       - name: 📦 Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: 🦀 Setup Rust cache
         uses: https://github.com/Swatinem/rust-cache@v2
         with:
