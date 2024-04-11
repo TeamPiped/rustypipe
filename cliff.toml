@@ -16,10 +16,11 @@ All notable changes to this project will be documented in this file.\n
 body = """
 {% set repo_url = "https://code.thetadev.de/ThetaDev/rustypipe" %}\
 {% if version %}\
+    {%set vname = version | split(pat="/") | last %}
     {%if previous.version %}\
-        ## [{{ version }}]({{ repo_url }}/compare/{{ previous.version }}..{{ version }})\
+        ## [{{ vname }}]({{ repo_url }}/compare/{{ previous.version }}..{{ version }})\
     {% else %}\
-        ## {{ version }}\
+        ## [{{ vname }}]({{ repo_url }}/commits/tag/{{ version }})\
     {% endif %} - {{ timestamp | date(format="%Y-%m-%d") }}
 {% else %}\
     ## [unreleased]

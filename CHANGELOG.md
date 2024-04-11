@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [v0.1.3](https://code.thetadev.de/ThetaDev/rustypipe/compare/rustypipe/v0.1.2..v0.1.3) - 2024-04-01
+## [v0.1.3](https://code.thetadev.de/ThetaDev/rustypipe/compare/rustypipe/v0.1.2..rustypipe/v0.1.3) - 2024-04-01
 
 ### 🐛 Bug Fixes
 
@@ -12,13 +12,13 @@ All notable changes to this project will be documented in this file.
 
 - "fix: improve VecLogErr messages" (leads to infinite loop) - ([348c852](https://code.thetadev.de/ThetaDev/rustypipe/commit/348c8523fe847f2f6ce98317375a7ab65e778ed2))
 
-## [v0.1.2](https://code.thetadev.de/ThetaDev/rustypipe/compare/rustypipe/v0.1.1..v0.1.2) - 2024-03-26
+## [v0.1.2](https://code.thetadev.de/ThetaDev/rustypipe/compare/rustypipe/v0.1.1..rustypipe/v0.1.2) - 2024-03-26
 
 ### 🐛 Bug Fixes
 
 - Correctly parse subscriber count with new channel header - ([180dd98](https://code.thetadev.de/ThetaDev/rustypipe/commit/180dd9891a14b4da9f130a73d73aecc3822fce2f))
 
-## [v0.1.1](https://code.thetadev.de/ThetaDev/rustypipe/compare/rustypipe-cli/v0.1.0..v0.1.1) - 2024-03-26
+## [v0.1.1](https://code.thetadev.de/ThetaDev/rustypipe/compare/rustypipe/v0.1.0..rustypipe/v0.1.1) - 2024-03-26
 
 ### 🐛 Bug Fixes
 
@@ -28,7 +28,7 @@ All notable changes to this project will be documented in this file.
 
 - Update user agent (FF 115.0) - ([be314d5](https://code.thetadev.de/ThetaDev/rustypipe/commit/be314d57ea1d99bfdc80649351ee3e7845541238))
 
-## v0.1.0 - 2024-03-22
+## [v0.1.0](https://code.thetadev.de/ThetaDev/rustypipe/commits/tag/rustypipe/v0.1.0) - 2024-03-22
 
 Initial release
 

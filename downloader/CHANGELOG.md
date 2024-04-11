@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## v0.1.0 - 2024-03-22
+## [v0.1.0](https://code.thetadev.de/ThetaDev/rustypipe/commits/tag/rustypipe-downloader/v0.1.0) - 2024-03-22
 
 Initial release
 
