@@ -10,11 +10,11 @@ jobs:
     steps:
       - name: 📦 Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Get variables
         run: |
-          git fetch --tags --force #the checkout action does not load the tag message
-
           echo "CRATE=$(echo '${{ github.ref_name }}' | awk 'BEGIN{RS="/"} NR==1{print}')" >> "$GITHUB_ENV"
           echo "CRATE_VERSION=$(echo '${{ github.ref_name }}' | awk 'BEGIN{RS="/"} NR==2{print}')" >> "$GITHUB_ENV"
           {
