@@ -26,7 +26,7 @@ SAttributed {
                 },
             },
             Video {
-                text: "aespa 에스파 'Black ...",
+                text: "aespa 에스파 'Black Mamba' The Debut Stage",
                 video_id: "Ky5RT5oGg0w",
                 start_time: 0,
                 vtype: Video,
@@ -64,7 +64,7 @@ SAttributed {
                 },
             },
             Web {
-                text: "aespa",
+                text: "YouTube: aespa",
                 url: "https://www.youtube.com/c/aespa",
             },
             Text {
@@ -76,7 +76,7 @@ SAttributed {
                 },
             },
             Web {
-                text: "https://www.instagram.com/aespa_official",
+                text: "Instagram: aespa_official",
                 url: "https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbE9FVEtZZkVLUExjdFBnZjZnZ19KNWRYOVZUd3xBQ3Jtc0tsbHpCa1hLTVJ6MEllczlzUEpoVi1IQ2F5NG1jMnlOT3p3bnlFeE80ZzlsaG5CUXlFQnFGTkMtN19DcVYzQkw3bVlVVmNwQlpYQWZnNGNsME45WE1WQ21sR3V1Z3k5RG9DUDE0VTZQTm53Mk9vTWhiOA&q=https%3A%2F%2Fwww.instagram.com%2Faespa_official&v=ZeerrnuLi5E",
             },
             Text {
@@ -88,7 +88,7 @@ SAttributed {
                 },
             },
             Web {
-                text: "https://www.tiktok.com/@aespa_official",
+                text: "TikTok: aespa_official",
                 url: "https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbVdlSGk3eDd5U0dUVG16VFJCQnhKVFBEUUxMQXxBQ3Jtc0tuX3ZJbENNY1ZSN0FFemdxTFdlcTVvc3AwZE05NEFvRW5nOHpZWDUtZG9ORHBnT1JGc2UySDh3WWl3MU53VjFvbHRSdjdxMUlGM2Z6SmdaLTVaWWxhamJEems0Uld3MGlTT0Z0bkh5Y0hpcnY1aXptSQ&q=https%3A%2F%2Fwww.tiktok.com%2F%40aespa_official&v=ZeerrnuLi5E",
             },
             Text {
@@ -100,7 +100,7 @@ SAttributed {
                 },
             },
             Web {
-                text: "https://twitter.com/aespa_Official",
+                text: "Twitter: aespa_official",
                 url: "https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqa3lNcG1lMHkwSzNLQVBrUXFNTXl0N1hNa04wUXxBQ3Jtc0tubm1sQkdaVjNYR04xOHpJV3NxZVBpb3I5V1FVOHVFNC1uWE5vb211ZmZKYzhTZXZfbjlkY09fanBRdHpjUkdRVGJJYS0xZ3NBNkVZQVhWSS0xVDYwRlRzQ0J3ODQxNDE0ODAxd1Q0cG5icVlNWndscw&q=https%3A%2F%2Ftwitter.com%2Faespa_Official&v=ZeerrnuLi5E",
             },
             Text {
@@ -112,7 +112,7 @@ SAttributed {
                 },
             },
             Web {
-                text: "https://www.facebook.com/aespa.official",
+                text: "Facebook: aespa.official",
                 url: "https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqbjdBNG5yVEFwU0JMNGZaLUpQZ1ZoeGgwT0xOZ3xBQ3Jtc0tuRFdFNlJNV29PMThRNWo5MHZrREZ1ZU5oZlkxVmE4ZlU5STFCZW1mUFVSdXJ3VUQxUnNVVkUzLWJQMS1uRzVjdkRCV2ZxSWJ6cFNxRVVzejY0SDltZFZPc2xwS3ZPZGIxcFZ6cndIVkMtUjVtZ054cw&q=https%3A%2F%2Fwww.facebook.com%2Faespa.official&v=ZeerrnuLi5E",
             },
             Text {

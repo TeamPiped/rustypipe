@@ -1,7 +1,5 @@
 use std::convert::TryFrom;
 
-use once_cell::sync::Lazy;
-use regex::Regex;
 use serde::{Deserialize, Deserializer};
 use serde_with::{serde_as, DefaultOnError, DeserializeAs, VecSkipError};
 
@@ -155,12 +153,16 @@ pub(crate) struct AttributedText {
     style_runs: Vec<StyleRun>,
 }
 
+#[serde_as]
 #[derive(Deserialize)]
 #[serde(rename_all = "camelCase")]
 struct CommandRun {
     start_index: usize,
     length: usize,
     on_tap: AttributedTextOnTap,
+    #[serde(default)]
+    #[serde_as(as = "DefaultOnError<_>")]
+    on_tap_options: Option<AttributedTextOnTapOptions>,
 }
 
 #[derive(Deserialize)]
@@ -200,6 +202,18 @@ struct AttributedTextOnTap {
     innertube_command: NavigationEndpoint,
 }
 
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct AttributedTextOnTapOptions {
+    accessibility_info: AccessibilityInfo,
+}
+
+#[derive(Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct AccessibilityInfo {
+    accessibility_label: String,
+}
+
 struct AttributedTextRun {
     start_index: usize,
     length: usize,
@@ -207,7 +221,7 @@ struct AttributedTextRun {
 }
 
 enum AttributedTextRunContent {
-    Link(NavigationEndpoint),
+    Link(NavigationEndpoint, Option<String>),
     Style(Style),
 }
 
@@ -230,7 +244,12 @@ impl From<CommandRun> for AttributedTextRun {
         Self {
             start_index: value.start_index,
             length: value.length,
-            content: AttributedTextRunContent::Link(value.on_tap.innertube_command),
+            content: AttributedTextRunContent::Link(
+                value.on_tap.innertube_command,
+                value
+                    .on_tap_options
+                    .map(|o| o.accessibility_info.accessibility_label),
+            ),
         }
     }
 }
@@ -381,7 +400,7 @@ impl<'de> DeserializeAs<'de, TextComponents> for AttributedText {
                 components.push(TextComponent::new(txt_before));
             }
             components.push(match run.content {
-                AttributedTextRunContent::Link(link) => {
+                AttributedTextRunContent::Link(link, label) => {
                     // Trim link text:
                     // 3xnbsp, (/ •), nbsp, Name, 2xnbsp
                     // Channel: `\u{a0}\u{a0}\u{a0}/\u{a0}aespa\u{a0}\u{a0}`
@@ -391,10 +410,35 @@ impl<'de> DeserializeAs<'de, TextComponents> for AttributedText {
                     let txt_link = txt_run.trim();
                     let txt_link = txt_link.replace('\u{a0}', " ");
 
-                    static LINK_PREFIX: Lazy<Regex> = Lazy::new(|| Regex::new("^[/•] *").unwrap());
-                    let txt_link = LINK_PREFIX.replace(&txt_link, "");
-
-                    map_text_component(txt_link.to_string(), Style::default(), Some(link))
+                    if let Some(txt_link) = txt_link.strip_prefix(['/', '•']) {
+                        let txt_link = txt_link.trim_start();
+                        match (&link, label) {
+                            (NavigationEndpoint::Url { .. }, Some(label)) => {
+                                // Prefix chip-style web links with the service name from accessibility label
+                                // Example: `Twitter: aespa_official`
+                                if let Some(first_word) = label.split_whitespace().next() {
+                                    map_text_component(
+                                        format!("{first_word}: {txt_link}"),
+                                        Style::default(),
+                                        Some(link),
+                                    )
+                                } else {
+                                    map_text_component(
+                                        txt_link.to_owned(),
+                                        Style::default(),
+                                        Some(link),
+                                    )
+                                }
+                            }
+                            _ => map_text_component(
+                                txt_link.to_owned(),
+                                Style::default(),
+                                Some(link),
+                            ),
+                        }
+                    } else {
+                        map_text_component(txt_link, Style::default(), Some(link))
+                    }
                 }
                 AttributedTextRunContent::Style(style) => {
                     map_text_component(txt_run.to_string(), style, None)

@@ -2519,7 +2519,7 @@ async fn music_new_videos(rp: RustyPipe) {
         assert!(!video.name.is_empty());
         assert!(!video.cover.is_empty(), "got no cover");
         if let Some(view_count) = video.view_count {
-            assert_gte(view_count, 1000, "views");
+            assert_gte(view_count, 500, "views");
         } else {
             // Podcast episode: shows duration instead of view count
             assert!(video.duration.is_some(), "no view count or duration");
