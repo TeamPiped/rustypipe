@@ -12,21 +12,28 @@ All notable changes to this project will be documented in this file.
 
 - "fix: improve VecLogErr messages" (leads to infinite loop) - ([348c852](https://code.thetadev.de/ThetaDev/rustypipe/commit/348c8523fe847f2f6ce98317375a7ab65e778ed2))
 
+
 ## [v0.1.2](https://code.thetadev.de/ThetaDev/rustypipe/compare/rustypipe/v0.1.1..rustypipe/v0.1.2) - 2024-03-26
 
 ### 🐛 Bug Fixes
 
 - Correctly parse subscriber count with new channel header - ([180dd98](https://code.thetadev.de/ThetaDev/rustypipe/commit/180dd9891a14b4da9f130a73d73aecc3822fce2f))
 
+
 ## [v0.1.1](https://code.thetadev.de/ThetaDev/rustypipe/compare/rustypipe/v0.1.0..rustypipe/v0.1.1) - 2024-03-26
 
 ### 🐛 Bug Fixes
 
+- Specify internal dependency versions - ([6598a23](https://code.thetadev.de/ThetaDev/rustypipe/commit/6598a23d0699e6fe298275a67e0146a19c422c88))
+- Move package attributes to workspace - ([e4b204e](https://code.thetadev.de/ThetaDev/rustypipe/commit/e4b204eae65f450471be0890b0198d2f30714b3b))
 - Parsing music details with video description tab - ([a81c3e8](https://code.thetadev.de/ThetaDev/rustypipe/commit/a81c3e83366fdf72d01dd3ee00fb2e831f7aaa26))
 
 ### ⚙️ Miscellaneous Tasks
 
+- Changes to release command - ([0bcced1](https://code.thetadev.de/ThetaDev/rustypipe/commit/0bcced1db377198a54c9c7d03b8d038125a2bfe4))
 - Update user agent (FF 115.0) - ([be314d5](https://code.thetadev.de/ThetaDev/rustypipe/commit/be314d57ea1d99bfdc80649351ee3e7845541238))
+- Fix release script (unquoted include paths) - ([78ba9cb](https://code.thetadev.de/ThetaDev/rustypipe/commit/78ba9cb34c6bba3aba177583b242d3f76ea9847d))
+
 
 ## [v0.1.0](https://code.thetadev.de/ThetaDev/rustypipe/commits/tag/rustypipe/v0.1.0) - 2024-03-22
 

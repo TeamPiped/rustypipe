@@ -69,7 +69,7 @@ release crate="rustypipe":
 
     if git rev-parse "$TAG" >/dev/null 2>&1; then echo "version tag $TAG already exists"; exit 1; fi
 
-    CLIFF_ARGS="--tag '${TAG}' --tag-pattern '${CRATE}/*' --unreleased $INCLUDES"
+    CLIFF_ARGS="--tag '${TAG}' --tag-pattern '${CRATE}/v*' --unreleased $INCLUDES"
     echo "git-cliff $CLIFF_ARGS"
     if [ -f "$CHANGELOG" ]; then
         eval "git-cliff $CLIFF_ARGS --prepend '$CHANGELOG'"
