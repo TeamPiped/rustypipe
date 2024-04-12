@@ -49,16 +49,15 @@ release crate="rustypipe":
     set -e
 
     CRATE="{{crate}}"
-    INCLUDES='--include-path README.md --include-path LICENSE --include-path Cargo.toml'
     CHANGELOG="CHANGELOG.md"
 
     if [ "$CRATE" = "rustypipe" ]; then
-        INCLUDES="$INCLUDES --include-path 'src/**' --include-path 'tests/**' --include-path 'testfiles/**'"
+        INCLUDES="--exclude-path 'notes/**' --exclude-path 'cli/**' --exclude-path 'downloader/**'"
     else
         if [ ! -d "$CRATE" ]; then
             echo "$CRATE does not exist."; exit 1
         fi
-        INCLUDES="$INCLUDES --include-path '$CRATE/**'"
+        INCLUDES="--include-path README.md --include-path LICENSE --include-path Cargo.toml --include-path '$CRATE/**'"
         CHANGELOG="$CRATE/$CHANGELOG"
         CRATE="rustypipe-$CRATE" # Add crate name prefix
     fi
