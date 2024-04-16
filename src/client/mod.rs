@@ -192,19 +192,15 @@ const YOUTUBE_MUSIC_V1_URL: &str = "https://music.youtube.com/youtubei/v1/";
 const YOUTUBE_HOME_URL: &str = "https://www.youtube.com/";
 const YOUTUBE_MUSIC_HOME_URL: &str = "https://music.youtube.com/";
 
-const DISABLE_PRETTY_PRINT_PARAMETER: &str = "&prettyPrint=false";
+const DISABLE_PRETTY_PRINT_PARAMETER: &str = "prettyPrint=false";
 
 // Desktop client
 const DESKTOP_CLIENT_VERSION: &str = "2.20230126.00.00";
-const DESKTOP_API_KEY: &str = "AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8";
 const TVHTML5_CLIENT_VERSION: &str = "2.0";
-const DESKTOP_MUSIC_API_KEY: &str = "AIzaSyC9XL3ZjWddXya6X74dJoCTL-WEYFDNX30";
 const DESKTOP_MUSIC_CLIENT_VERSION: &str = "1.20230123.01.01";
 
 // Mobile client
 const MOBILE_CLIENT_VERSION: &str = "18.03.33";
-const ANDROID_API_KEY: &str = "AIzaSyA8eiZmM1FaDVjRy-df2KTyQ_vz_yYM39w";
-const IOS_API_KEY: &str = "AIzaSyB-63vPrdThhKuerbB2N_l7Kwwcxj6yUAc";
 const IOS_DEVICE_MODEL: &str = "iPhone14,5";
 
 static CLIENT_VERSION_REGEX: Lazy<Regex> =
@@ -1189,7 +1185,7 @@ impl RustyPipeQuery {
                 .inner
                 .http
                 .post(format!(
-                    "{YOUTUBEI_V1_URL}{endpoint}?key={DESKTOP_API_KEY}{DISABLE_PRETTY_PRINT_PARAMETER}"
+                    "{YOUTUBEI_V1_URL}{endpoint}?{DISABLE_PRETTY_PRINT_PARAMETER}"
                 ))
                 .header(header::ORIGIN, YOUTUBE_HOME_URL)
                 .header(header::REFERER, YOUTUBE_HOME_URL)
@@ -1204,7 +1200,7 @@ impl RustyPipeQuery {
                 .inner
                 .http
                 .post(format!(
-                    "{YOUTUBE_MUSIC_V1_URL}{endpoint}?key={DESKTOP_MUSIC_API_KEY}{DISABLE_PRETTY_PRINT_PARAMETER}"
+                    "{YOUTUBE_MUSIC_V1_URL}{endpoint}?{DISABLE_PRETTY_PRINT_PARAMETER}"
                 ))
                 .header(header::ORIGIN, YOUTUBE_MUSIC_HOME_URL)
                 .header(header::REFERER, YOUTUBE_MUSIC_HOME_URL)
@@ -1212,14 +1208,14 @@ impl RustyPipeQuery {
                 .header("X-YouTube-Client-Name", "67")
                 .header(
                     "X-YouTube-Client-Version",
-                        self.client.get_music_client_version().await
+                    self.client.get_music_client_version().await,
                 ),
             ClientType::TvHtml5Embed => self
                 .client
                 .inner
                 .http
                 .post(format!(
-                    "{YOUTUBEI_V1_URL}{endpoint}?key={DESKTOP_API_KEY}{DISABLE_PRETTY_PRINT_PARAMETER}"
+                    "{YOUTUBEI_V1_URL}{endpoint}?{DISABLE_PRETTY_PRINT_PARAMETER}"
                 ))
                 .header(header::ORIGIN, YOUTUBE_HOME_URL)
                 .header(header::REFERER, YOUTUBE_HOME_URL)
@@ -1230,7 +1226,7 @@ impl RustyPipeQuery {
                 .inner
                 .http
                 .post(format!(
-                    "{YOUTUBEI_V1_GAPIS_URL}{endpoint}?key={ANDROID_API_KEY}{DISABLE_PRETTY_PRINT_PARAMETER}"
+                    "{YOUTUBEI_V1_GAPIS_URL}{endpoint}?{DISABLE_PRETTY_PRINT_PARAMETER}"
                 ))
                 .header(
                     header::USER_AGENT,
@@ -1245,7 +1241,7 @@ impl RustyPipeQuery {
                 .inner
                 .http
                 .post(format!(
-                    "{YOUTUBEI_V1_GAPIS_URL}{endpoint}?key={IOS_API_KEY}{DISABLE_PRETTY_PRINT_PARAMETER}"
+                    "{YOUTUBEI_V1_GAPIS_URL}{endpoint}?{DISABLE_PRETTY_PRINT_PARAMETER}"
                 ))
                 .header(
                     header::USER_AGENT,

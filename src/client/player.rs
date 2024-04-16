@@ -128,8 +128,8 @@ impl RustyPipeQuery {
                 video_id,
                 content_check_ok: true,
                 racy_check_ok: true,
-                // Source: https://github.com/TeamNewPipe/NewPipeExtractor/pull/1084
-                params: Some("CgIQBg").filter(|_| client_type == ClientType::Android),
+                // Source: https://github.com/TeamNewPipe/NewPipeExtractor/pull/1168
+                params: Some("CgIIAQ%3D%3D").filter(|_| client_type == ClientType::Android),
             }
         };
 
