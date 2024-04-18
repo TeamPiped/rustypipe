@@ -7,7 +7,7 @@ use super::AlertRenderer;
 use super::ContentsRenderer;
 use super::{
     music_item::{ItemSection, PlaylistPanelRenderer},
-    ContentRenderer, SectionList,
+    ContentRenderer,
 };
 
 /// Response model for YouTube Music track details
@@ -108,14 +108,14 @@ pub(crate) struct PlaylistPanel {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct MusicLyrics {
-    pub contents: LyricsContents,
+    pub contents: ListOrMessage<LyricsSection>,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub(crate) struct LyricsContents {
-    pub message_renderer: Option<AlertRenderer>,
-    pub section_list_renderer: Option<ContentsRenderer<LyricsSection>>,
+pub(crate) enum ListOrMessage<T> {
+    SectionListRenderer(ContentsRenderer<T>),
+    MessageRenderer(AlertRenderer),
 }
 
 #[derive(Debug, Deserialize)]
@@ -137,5 +137,14 @@ pub(crate) struct LyricsRenderer {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct MusicRelated {
-    pub contents: SectionList<ItemSection>,
+    pub contents: ListOrMessage<ItemSection>,
+}
+
+impl<T> ListOrMessage<T> {
+    pub fn into_res(self) -> Result<Vec<T>, String> {
+        match self {
+            ListOrMessage::SectionListRenderer(c) => Ok(c.contents),
+            ListOrMessage::MessageRenderer(msg) => Err(msg.text),
+        }
+    }
 }

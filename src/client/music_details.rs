@@ -306,19 +306,14 @@ impl MapResponse<Lyrics> for response::MusicLyrics {
     ) -> Result<MapResult<Lyrics>, ExtractionError> {
         let lyrics = self
             .contents
-            .section_list_renderer
-            .and_then(|sl| {
-                sl.contents
-                    .into_iter()
-                    .find_map(|item| item.music_description_shelf_renderer)
-            })
-            .ok_or(match self.contents.message_renderer {
-                Some(msg) => ExtractionError::NotFound {
-                    id: id.to_owned(),
-                    msg: msg.text.into(),
-                },
-                None => ExtractionError::InvalidData(Cow::Borrowed("no content")),
-            })?;
+            .into_res()
+            .map_err(|msg| ExtractionError::NotFound {
+                id: id.to_owned(),
+                msg: msg.into(),
+            })?
+            .into_iter()
+            .find_map(|item| item.music_description_shelf_renderer)
+            .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no content")))?;
 
         Ok(MapResult {
             c: Lyrics {
@@ -333,36 +328,39 @@ impl MapResponse<Lyrics> for response::MusicLyrics {
 impl MapResponse<MusicRelated> for response::MusicRelated {
     fn map_response(
         self,
-        _id: &str,
+        id: &str,
         lang: Language,
         _deobf: Option<&crate::deobfuscate::DeobfData>,
         _vdata: Option<&str>,
     ) -> Result<MapResult<MusicRelated>, ExtractionError> {
+        let contents = self
+            .contents
+            .into_res()
+            .map_err(|msg| ExtractionError::NotFound {
+                id: id.to_owned(),
+                msg: msg.into(),
+            })?;
+
         // Find artist
-        let artist_id = self
-            .contents
-            .section_list_renderer
-            .contents
-            .iter()
-            .find_map(|section| match section {
-                response::music_item::ItemSection::MusicCarouselShelfRenderer(shelf) => {
-                    shelf.header.as_ref().and_then(|h| {
-                        h.music_carousel_shelf_basic_header_renderer
-                            .title
-                            .0
-                            .iter()
-                            .find_map(|c| {
-                                let artist = ArtistId::from(c.clone());
-                                if artist.id.is_some() {
-                                    Some(artist)
-                                } else {
-                                    None
-                                }
-                            })
-                    })
-                }
-                _ => None,
-            });
+        let artist_id = contents.iter().find_map(|section| match section {
+            response::music_item::ItemSection::MusicCarouselShelfRenderer(shelf) => {
+                shelf.header.as_ref().and_then(|h| {
+                    h.music_carousel_shelf_basic_header_renderer
+                        .title
+                        .0
+                        .iter()
+                        .find_map(|c| {
+                            let artist = ArtistId::from(c.clone());
+                            if artist.id.is_some() {
+                                Some(artist)
+                            } else {
+                                None
+                            }
+                        })
+                })
+            }
+            _ => None,
+        });
 
         let mut mapper_tracks = MusicListMapper::new(lang);
         let mut mapper = match artist_id {
@@ -370,7 +368,7 @@ impl MapResponse<MusicRelated> for response::MusicRelated {
             None => MusicListMapper::new(lang),
         };
 
-        let mut sections = self.contents.section_list_renderer.contents.into_iter();
+        let mut sections = contents.into_iter();
         if let Some(response::music_item::ItemSection::MusicCarouselShelfRenderer(shelf)) =
             sections.next()
         {
