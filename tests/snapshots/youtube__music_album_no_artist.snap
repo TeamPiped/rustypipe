@@ -63,11 +63,11 @@ MusicAlbum(
       cover: [],
       artists: [
         ArtistId(
-          id: Some("UCUhWwvF6gIPWTYlYb4-icLA"),
+          id: Some("UC_KQPMiRQl3CFAIKTVfCHwA"),
           name: "L.r. Eswari",
         ),
       ],
-      artist_id: Some("UCUhWwvF6gIPWTYlYb4-icLA"),
+      artist_id: Some("UC_KQPMiRQl3CFAIKTVfCHwA"),
       album: Some(AlbumId(
         id: "MPREb_bqWA6mAZFWS",
         name: "Pedha Rasi Peddamma Katha",
