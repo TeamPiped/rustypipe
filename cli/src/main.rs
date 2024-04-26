@@ -8,7 +8,7 @@ use futures::stream::{self, StreamExt};
 use indicatif::{MultiProgress, ProgressBar, ProgressStyle};
 use reqwest::{Client, ClientBuilder};
 use rustypipe::{
-    client::RustyPipe,
+    client::{ClientType, RustyPipe},
     model::{UrlTarget, VideoId, YouTubeItem},
     param::{search_filter, ChannelVideoTab, Country, Language, StreamFilter},
 };
@@ -81,6 +81,8 @@ enum Commands {
         /// Get the player
         #[clap(long)]
         player: bool,
+        #[clap(long)]
+        player_type: Option<PlayerType>,
     },
     /// Search YouTube
     Search {
@@ -189,6 +191,14 @@ enum MusicSearchCategory {
     PlaylistsCommunity,
 }
 
+#[derive(Copy, Clone, PartialEq, Eq, ValueEnum)]
+enum PlayerType {
+    Desktop,
+    Tv,
+    Android,
+    Ios,
+}
+
 impl From<SearchItemType> for search_filter::ItemType {
     fn from(value: SearchItemType) -> Self {
         match value {
@@ -227,6 +237,17 @@ impl From<SearchOrder> for search_filter::Order {
             SearchOrder::Rating => search_filter::Order::Rating,
             SearchOrder::Date => search_filter::Order::Date,
             SearchOrder::Views => search_filter::Order::Views,
+        }
+    }
+}
+
+impl From<PlayerType> for ClientType {
+    fn from(value: PlayerType) -> Self {
+        match value {
+            PlayerType::Desktop => Self::Desktop,
+            PlayerType::Tv => Self::TvHtml5Embed,
+            PlayerType::Android => Self::Android,
+            PlayerType::Ios => Self::Ios,
         }
     }
 }
@@ -540,6 +561,7 @@ async fn main() {
             comments,
             lyrics,
             player,
+            player_type,
         } => {
             let target = rp.query().resolve_string(&id, false).await.unwrap();
 
@@ -558,7 +580,12 @@ async fn main() {
                         let details = rp.query().music_details(&id).await.unwrap();
                         print_data(&details, format, pretty);
                     } else if player {
-                        let player = rp.query().player(&id).await.unwrap();
+                        let player = if let Some(player_type) = player_type {
+                            rp.query().player_from_client(&id, player_type.into()).await
+                        } else {
+                            rp.query().player(&id).await
+                        }
+                        .unwrap();
                         print_data(&player, format, pretty);
                     } else {
                         let mut details = rp.query().video_details(&id).await.unwrap();
