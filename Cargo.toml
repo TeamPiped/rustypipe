@@ -2,6 +2,7 @@
 name = "rustypipe"
 version = "0.1.3"
 edition.workspace = true
+rust-version.workspace = true
 authors.workspace = true
 license.workspace = true
 repository.workspace = true
@@ -16,6 +17,7 @@ members = [".", "codegen", "downloader", "cli"]
 
 [workspace.package]
 edition = "2021"
+rust-version = "1.67.1"
 authors = ["ThetaDev <thetadev@magenta.de>"]
 license = "GPL-3.0"
 repository = "https://code.thetadev.de/ThetaDev/rustypipe"
