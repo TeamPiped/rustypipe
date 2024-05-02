@@ -67,12 +67,12 @@ pub struct TimeAgo {
     pub unit: TimeUnit,
 }
 
-impl ToString for TimeAgo {
-    fn to_string(&self) -> String {
+impl std::fmt::Display for TimeAgo {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         if self.n > 1 {
-            format!("{}{}", self.n, self.unit.as_str())
+            write!(f, "{}{}", self.n, self.unit.as_str())
         } else {
-            self.unit.as_str().to_owned()
+            f.write_str(self.unit.as_str())
         }
     }
 }

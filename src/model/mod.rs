@@ -68,9 +68,9 @@ pub enum UrlTarget {
     },
 }
 
-impl ToString for UrlTarget {
-    fn to_string(&self) -> String {
-        self.to_url()
+impl std::fmt::Display for UrlTarget {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.write_str(&self.to_url())
     }
 }
 

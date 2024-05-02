@@ -429,7 +429,7 @@ fn deobf_nsig(
         } else {
             let nsig = deobf.deobfuscate_nsig(n)?;
             last_nsig[0] = n.to_string();
-            last_nsig[1] = nsig.clone();
+            last_nsig[1].clone_from(&nsig);
             nsig
         };
 

@@ -284,6 +284,7 @@ pub fn div_ceil(a: u32, b: u32) -> u32 {
     }
 }
 
+#[allow(dead_code)]
 pub trait TryRemove<T> {
     /// Removes and returns the element at position `index` within the vector,
     /// shifting all elements after it to the left.

@@ -721,7 +721,7 @@ impl MusicListMapper {
                                     .unwrap_or_default()
                             }))
                     {
-                        artists = fb_artists.clone();
+                        artists.clone_from(fb_artists);
                     }
                 }
 
@@ -787,7 +787,7 @@ impl MusicListMapper {
                         // fall back to menu data
                         if let Some(a1) = artists.first_mut() {
                             if a1.id.is_none() {
-                                a1.id = artist_id.clone();
+                                a1.id.clone_from(&artist_id);
                             }
                         }
 

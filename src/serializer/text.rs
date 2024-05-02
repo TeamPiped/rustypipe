@@ -658,9 +658,12 @@ impl TextComponents {
     }
 }
 
-impl ToString for TextComponents {
-    fn to_string(&self) -> String {
-        self.0.iter().map(TextComponent::as_str).collect::<String>()
+impl std::fmt::Display for TextComponents {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        for t in &self.0 {
+            f.write_str(t.as_str())?;
+        }
+        Ok(())
     }
 }
 
