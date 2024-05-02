@@ -22,7 +22,7 @@ MusicAlbum(
     TrackItem(
       id: "aGd3VKSOTxY",
       name: "[name]",
-      duration: Some(221),
+      duration: Some(222),
       cover: [],
       artists: [
         ArtistId(
@@ -43,7 +43,7 @@ MusicAlbum(
     TrackItem(
       id: "Jz-26iiDuYs",
       name: "[name]",
-      duration: Some(208),
+      duration: Some(209),
       cover: [],
       artists: [
         ArtistId(
@@ -64,7 +64,7 @@ MusicAlbum(
     TrackItem(
       id: "Bu26uFtpt58",
       name: "[name]",
-      duration: Some(223),
+      duration: Some(224),
       cover: [],
       artists: [
         ArtistId(
@@ -85,7 +85,7 @@ MusicAlbum(
     TrackItem(
       id: "RgwNqqiVqdY",
       name: "[name]",
-      duration: Some(221),
+      duration: Some(222),
       cover: [],
       artists: [
         ArtistId(
@@ -106,7 +106,7 @@ MusicAlbum(
     TrackItem(
       id: "2TuOh30XbCI",
       name: "[name]",
-      duration: Some(197),
+      duration: Some(198),
       cover: [],
       artists: [
         ArtistId(
