@@ -76,9 +76,9 @@ async fn get_player_from_client(#[case] client_type: ClientType, rp: RustyPipe) 
             .expect("audio #140");
 
         // Bitrates may change between requests
-        assert_approx(f64::from(video.bitrate), 1_851_854.0);
-        assert_eq!(video.average_bitrate, 923_766);
-        assert_eq!(video.size, Some(29_909_835));
+        assert_approx(video.bitrate, 1_500_162);
+        assert_eq!(video.average_bitrate, 1_360_266);
+        assert_eq!(video.size, Some(44_042_868));
         assert_eq!(video.width, 1280);
         assert_eq!(video.height, 720);
         assert_eq!(video.fps, 30);
@@ -88,9 +88,9 @@ async fn get_player_from_client(#[case] client_type: ClientType, rp: RustyPipe) 
         assert_eq!(video.format, VideoFormat::Webm);
         assert_eq!(video.codec, VideoCodec::Vp9);
 
-        assert_approx(f64::from(audio.bitrate), 130_685.0);
-        assert_approx(f64::from(audio.average_bitrate), 129_496.0);
-        assert_approx(audio.size as f64, 4_193_863.0);
+        assert_approx(audio.bitrate, 130_685);
+        assert_approx(audio.average_bitrate, 129_496);
+        assert_approx(audio.size as f64, 4_193_863);
         assert_eq!(audio.mime, "audio/mp4; codecs=\"mp4a.40.2\"");
         assert_eq!(audio.format, AudioFormat::M4a);
         assert_eq!(audio.codec, AudioCodec::Mp4a);
@@ -109,9 +109,9 @@ async fn get_player_from_client(#[case] client_type: ClientType, rp: RustyPipe) 
             .find(|s| s.itag == 251)
             .expect("audio stream not found");
 
-        assert_approx(f64::from(video.bitrate), 1_340_829.0);
-        assert_approx(f64::from(video.average_bitrate), 1_046_557.0);
-        assert_approx(video.size.expect("video size") as f64, 33_885_572.0);
+        assert_approx(video.bitrate, 1_340_829);
+        assert_approx(video.average_bitrate, 1_046_557);
+        assert_approx(video.size.expect("video size") as f64, 33_885_572);
         assert_eq!(video.width, 1280);
         assert_eq!(video.height, 720);
         assert_eq!(video.fps, 30);
@@ -122,9 +122,9 @@ async fn get_player_from_client(#[case] client_type: ClientType, rp: RustyPipe) 
         assert_eq!(video.codec, VideoCodec::Av01);
         assert!(!video.throttled);
 
-        assert_approx(f64::from(audio.bitrate), 142_718.0);
-        assert_approx(f64::from(audio.average_bitrate), 130_708.0);
-        assert_approx(audio.size as f64, 4_232_344.0);
+        assert_approx(audio.bitrate, 142_718);
+        assert_approx(audio.average_bitrate, 130_708);
+        assert_approx(audio.size as f64, 4_232_344);
         assert_eq!(audio.mime, "audio/webm; codecs=\"opus\"");
         assert_eq!(audio.format, AudioFormat::Webm);
         assert_eq!(audio.codec, AudioCodec::Opus);
@@ -2705,7 +2705,9 @@ fn rp_visitor_data(vdata: &str) -> RustyPipe {
 
 /// Assert equality within 10% margin
 #[track_caller]
-fn assert_approx(left: f64, right: f64) {
+fn assert_approx<A: Into<f64>, B: Into<f64>>(left: A, right: B) {
+    let left = left.into();
+    let right = right.into();
     if left != right {
         let f = left / right;
         assert!(

@@ -1592,9 +1592,11 @@ fn validate_country(country: Country) -> Country {
 mod tests {
     use super::*;
 
+    // 1.20240506.01.00-canary_control_1.20240508.01.01
+    // 1.20240508.01.01-canary_experiment_1.20240506.01.00
     fn get_major_version(version: &str) -> u32 {
         let parts = version.split('.').collect::<Vec<_>>();
-        assert_eq!(parts.len(), 4);
+        assert!(parts.len() >= 4, "version: {version}");
         parts[0].parse().unwrap()
     }
 

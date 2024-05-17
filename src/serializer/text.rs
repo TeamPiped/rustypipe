@@ -476,15 +476,12 @@ impl TryFrom<TextComponent> for crate::model::ChannelId {
         match value {
             TextComponent::Browse {
                 text,
-                page_type,
+                page_type: PageType::Channel | PageType::Artist,
                 browse_id,
-            } => match page_type {
-                PageType::Channel | PageType::Artist => Ok(crate::model::ChannelId {
-                    id: browse_id,
-                    name: text,
-                }),
-                _ => Err(()),
-            },
+            } => Ok(crate::model::ChannelId {
+                id: browse_id,
+                name: text,
+            }),
             _ => Err(()),
         }
     }
