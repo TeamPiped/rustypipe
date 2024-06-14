@@ -1,14 +1,15 @@
 test:
-    cargo test --features=rss
+    # cargo test --features=rss
+    cargo nextest run --features=rss --no-fail-fast --failure-output final
 
 unittest:
-    cargo test --features=rss --lib
+    cargo nextest run --features=rss --no-fail-fast --failure-output final --lib
 
 testyt:
-    cargo test --features=rss --test youtube
+    cargo nextest run --features=rss --no-fail-fast --failure-output final --test youtube
 
 testyt-localized:
-    YT_LANG=th cargo test --features=rss --test youtube
+    YT_LANG=th cargo nextest run --features=rss --no-fail-fast --failure-output final --test youtube
 
 testintl:
     #!/usr/bin/env bash

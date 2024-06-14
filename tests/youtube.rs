@@ -67,8 +67,8 @@ async fn get_player_from_client(#[case] client_type: ClientType, rp: RustyPipe) 
         let video = player_data
             .video_only_streams
             .into_iter()
-            .find(|s| s.itag == 247)
-            .expect("video #247");
+            .find(|s| s.itag == 136)
+            .expect("video #136");
         let audio = player_data
             .audio_streams
             .into_iter()
@@ -76,17 +76,17 @@ async fn get_player_from_client(#[case] client_type: ClientType, rp: RustyPipe) 
             .expect("audio #140");
 
         // Bitrates may change between requests
-        assert_approx(video.bitrate, 1_500_162);
-        assert_eq!(video.average_bitrate, 1_360_266);
-        assert_eq!(video.size, Some(44_042_868));
+        assert_approx(video.bitrate, 2_341_408);
+        assert_eq!(video.average_bitrate, 1_660_210);
+        assert_eq!(video.size, Some(53_754_490));
         assert_eq!(video.width, 1280);
         assert_eq!(video.height, 720);
         assert_eq!(video.fps, 30);
         assert_eq!(video.quality, "720p");
         assert!(!video.hdr);
-        assert_eq!(video.mime, "video/webm; codecs=\"vp09.00.31.08\"");
-        assert_eq!(video.format, VideoFormat::Webm);
-        assert_eq!(video.codec, VideoCodec::Vp9);
+        assert_eq!(video.mime, "video/mp4; codecs=\"avc1.4D401F\"");
+        assert_eq!(video.format, VideoFormat::Mp4);
+        assert_eq!(video.codec, VideoCodec::Avc1);
 
         assert_approx(audio.bitrate, 130_685);
         assert_approx(audio.average_bitrate, 129_496);
@@ -1576,12 +1576,11 @@ async fn music_playlist_not_found(rp: RustyPipe) {
 #[case::various_artists("various_artists", "MPREb_8QkDeEIawvX")]
 #[case::single("single", "MPREb_bHfHGoy7vuv")]
 #[case::ep("ep", "MPREb_u1I69lSAe5v")]
-// #[case::audiobook("audiobook", "MPREb_gaoNzsQHedo")]
+#[case::audiobook("audiobook", "MPREb_gaoNzsQHedo")]
 #[case::show("show", "MPREb_aDDw2kVEFtM")]
 #[case::unavailable("unavailable", "MPREb_AzuWg8qAVVl")]
 #[case::no_year("no_year", "MPREb_F3Af9UZZVxX")]
-#[case::version_no_artist("version_no_artist", "MPREb_h8ltx5oKvyY")]
-#[case::no_artist("no_artist", "MPREb_bqWA6mAZFWS")]
+#[case::no_artist("no_artist", "MPREb_Z81wHtF9fhC")]
 #[tokio::test]
 async fn music_album(#[case] name: &str, #[case] id: &str, rp: RustyPipe, unlocalized: bool) {
     let album = rp.query().music_album(id).await.unwrap();
