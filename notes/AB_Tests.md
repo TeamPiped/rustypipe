@@ -26,6 +26,7 @@ to the new feature.
 
 **Status:**
 
+- Discontinued (0%)
 - Experimental (<3%)
 - Common (>3%)
 - Frequent (>40%)
@@ -488,7 +489,7 @@ looks needlessly complex but contains the same parsing-relevant data as the old 
 - **Encountered on:** 29.01.2024
 - **Impact:** 🟢 Low
 - **Endpoint:** browse
-- **Status:** Experimental (<1%)
+- **Status:** Frequent (55%)
 
 YouTube introduced a new data model for channel headers, based on a
 `"pageHeaderRenderer"`. The new model comes with more needless complexity that needs to
@@ -597,7 +598,7 @@ be accomodated. There are also no mobile/TV header images available any more.
 - **Encountered on:** 29.02.2024
 - **Impact:** 🟢 Low
 - **Endpoint:** browse
-- **Status:** Common (6%)
+- **Status:** Discontinued (0%)
 
 ![A/B test 13 screenshot](./_img/ab_13.png)
 
@@ -609,7 +610,7 @@ cover on the left side of the playlist content.
 - **Encountered on:** 31.01.2024
 - **Impact:** 🟢 Low
 - **Endpoint:** next
-- **Status:** Common (50%)
+- **Status:** Frequent (98%)
 
 YouTube changed the data model for YouTube comments, now putting the content into a
 seperate framework update object

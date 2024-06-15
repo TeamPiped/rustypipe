@@ -14,7 +14,7 @@ use rustypipe::model::{
     richtext::ToPlaintext,
     traits::{FromYtItem, YtStream},
     AlbumType, AudioCodec, AudioFormat, AudioTrackType, Channel, Frameset, MusicGenre, MusicItem,
-    UrlTarget, Verification, VideoCodec, VideoFormat, YouTubeItem,
+    UrlTarget, Verification, VideoCodec, VideoFormat, VideoId, YouTubeItem,
 };
 use rustypipe::param::{
     search_filter::{self, SearchFilter},
@@ -418,6 +418,8 @@ async fn playlist_cont(rp: RustyPipe) {
         .extend_pages(rp.query(), usize::MAX)
         .await
         .unwrap();
+
+    check_duplicates(&playlist.videos.items);
     assert_gte(playlist.videos.items.len(), 101, "video items");
     assert_gteo(playlist.videos.count, 101, "video count");
 }
@@ -432,6 +434,7 @@ async fn playlist_cont2(rp: RustyPipe) {
         .unwrap();
 
     playlist.videos.extend_limit(rp.query(), 101).await.unwrap();
+    check_duplicates(&playlist.videos.items);
     assert_gte(playlist.videos.items.len(), 101, "video items");
     assert_gteo(playlist.videos.count, 101, "video count");
 }
@@ -1527,6 +1530,8 @@ async fn music_playlist_cont(#[case] id: &str, rp: RustyPipe) {
 
     playlist.tracks.extend_pages(rp.query(), 5).await.unwrap();
 
+    check_duplicates(&playlist.tracks.items);
+
     let track_count = playlist.track_count.unwrap();
     assert_gte(track_count, 100, "tracks");
 
@@ -1626,8 +1631,7 @@ async fn music_album_not_found(rp: RustyPipe) {
 
 #[rstest]
 #[case::basic_all("basic_all", "UCFKUUtHjT4iq3p0JJA13SOA", true, 15, 1)]
-// TODO: wait for A/B test 6 to stabilize
-// #[case::basic("basic", "UC7cl4MmM6ZZ2TcFyMk_b4pg", false, 15, 2)]
+#[case::basic("basic", "UC7cl4MmM6ZZ2TcFyMk_b4pg", false, 15, 2)]
 #[case::no_more_albums("no_more_albums", "UCOR4_bSVIXPsGa4BbCSt60Q", true, 15, 0)]
 #[case::only_singles("only_singles", "UCfwCE5VhPMGxNPFxtVv7lRw", false, 13, 0)]
 #[case::no_artist("no_artist", "UCh8gHdtzO2tXd593_bjErWg", false, 0, 0)]
@@ -2778,4 +2782,13 @@ fn assert_frameset(frameset: &Frameset) {
 
     let n = frameset.urls().count() as u32;
     assert_eq!(n, frameset.page_count);
+}
+
+#[track_caller]
+fn check_duplicates<T: Clone + Into<VideoId>>(items: &[T]) {
+    let ids = items
+        .iter()
+        .map(|itm| itm.clone().into().id)
+        .collect::<HashSet<String>>();
+    assert_eq!(ids.len(), items.len(), "duplicate items");
 }
