@@ -4,7 +4,7 @@ use std::ops::Range;
 
 pub use super::{convert::FromYtItem, ordering::QualityOrd};
 
-use super::{AudioFormat, AudioStream, VideoFormat, VideoStream};
+use super::*;
 
 /// Trait for YouTube streams (video and audio)
 pub trait YtStream {
@@ -128,3 +128,67 @@ impl FileFormat for AudioFormat {
         }
     }
 }
+
+/// Trait for YouTube entities (Videos, Channels, Playlists)
+pub trait YtEntity {
+    /// ID
+    fn id(&self) -> &str;
+    /// Name
+    fn name(&self) -> &str;
+}
+
+macro_rules! yt_entity {
+    ($entity_type:ty) => {
+        impl YtEntity for $entity_type {
+            fn id(&self) -> &str {
+                &self.id
+            }
+
+            fn name(&self) -> &str {
+                &self.name
+            }
+        }
+    };
+}
+
+impl YtEntity for VideoPlayer {
+    fn id(&self) -> &str {
+        &self.details.id
+    }
+
+    fn name(&self) -> &str {
+        &self.details.name
+    }
+}
+
+impl<T> YtEntity for Channel<T> {
+    fn id(&self) -> &str {
+        &self.id
+    }
+
+    fn name(&self) -> &str {
+        &self.name
+    }
+}
+
+yt_entity! {VideoPlayerDetails}
+yt_entity! {Playlist}
+yt_entity! {ChannelId}
+yt_entity! {VideoDetails}
+yt_entity! {ChannelTag}
+yt_entity! {ChannelRss}
+yt_entity! {ChannelRssVideo}
+yt_entity! {VideoItem}
+yt_entity! {ChannelItem}
+yt_entity! {PlaylistItem}
+yt_entity! {VideoId}
+yt_entity! {TrackItem}
+yt_entity! {ArtistItem}
+yt_entity! {AlbumItem}
+yt_entity! {MusicPlaylistItem}
+yt_entity! {AlbumId}
+yt_entity! {MusicPlaylist}
+yt_entity! {MusicAlbum}
+yt_entity! {MusicArtist}
+yt_entity! {MusicGenreItem}
+yt_entity! {MusicGenre}
