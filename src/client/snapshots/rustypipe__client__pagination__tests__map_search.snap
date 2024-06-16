@@ -8,7 +8,7 @@ Paginator(
     Video(VideoItem(
       id: "N5AKQflK1TU",
       name: "When you impulse buy...",
-      length: Some(60),
+      duration: Some(60),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/N5AKQflK1TU/hq720_2.jpg?sqp=-oaymwEdCJUDENAFSFXyq4qpAw8IARUAAIhCcAHAAQbQAQE=&rs=AOn4CLAsKUEXxvFyA6J9cUPJlYYtRBjxmg",
@@ -40,7 +40,7 @@ Paginator(
     Video(VideoItem(
       id: "OzIFALQ_YtA",
       name: "taste testing gam!",
-      length: Some(60),
+      duration: Some(60),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/OzIFALQ_YtA/hq720_2.jpg?sqp=-oaymwEdCJUDENAFSFXyq4qpAw8IARUAAIhCcAHAAQbQAQE=&rs=AOn4CLD1E-eWjZrzHcfzh-DBWeZ6ewxNNg",
@@ -72,7 +72,7 @@ Paginator(
     Video(VideoItem(
       id: "zYHB38UlzE0",
       name: "Q&A l relationships, burnout, privilege, college advice, living alone, and life after youtube?",
-      length: Some(775),
+      duration: Some(775),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/zYHB38UlzE0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLD8--BbjAvsTyJg680DxjOYtxPmgw",
@@ -109,7 +109,7 @@ Paginator(
     Video(VideoItem(
       id: "GvutfmW26JQ",
       name: "👹stay sour 🍋",
-      length: Some(52),
+      duration: Some(52),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/GvutfmW26JQ/hq720_2.jpg?sqp=-oaymwEdCJUDENAFSFXyq4qpAw8IARUAAIhCcAHAAQbQAQE=&rs=AOn4CLATzHy4VrMbKmNT14yfqCUBvElmpQ",
@@ -141,7 +141,7 @@ Paginator(
     Video(VideoItem(
       id: "gK-jLnvVsb0",
       name: "Contradicting myself",
-      length: Some(1381),
+      duration: Some(1381),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/gK-jLnvVsb0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAuF_YftS_qXHPsyZC38Ghdif_L-A",
@@ -178,7 +178,7 @@ Paginator(
     Video(VideoItem(
       id: "NudTbo2CJMY",
       name: "Flying to London",
-      length: Some(1078),
+      duration: Some(1078),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/NudTbo2CJMY/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDLD0fdpkRaLvP-wJLtDJKt3QPiTQ",
@@ -215,7 +215,7 @@ Paginator(
     Video(VideoItem(
       id: "Nc0HzyDRjm0",
       name: "Stekki-don ㅣ After Hours ep.2",
-      length: Some(749),
+      duration: Some(749),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/Nc0HzyDRjm0/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAwvID8-W_Ap8qGo17-LcvO2EFXUQ",
@@ -252,7 +252,7 @@ Paginator(
     Video(VideoItem(
       id: "pvSWHm4wlxY",
       name: "having kids",
-      length: Some(60),
+      duration: Some(60),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/pvSWHm4wlxY/hq720_2.jpg?sqp=-oaymwEdCJUDENAFSFXyq4qpAw8IARUAAIhCcAHAAQbQAQE=&rs=AOn4CLDt7ZAwQoObfa5A7gC_hJnU1WH4Ug",
@@ -284,7 +284,7 @@ Paginator(
     Video(VideoItem(
       id: "fGQUWI4o__A",
       name: "Baskin Robbins in South Korea",
-      length: Some(53),
+      duration: Some(53),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/fGQUWI4o__A/hq720_2.jpg?sqp=-oaymwEdCJUDENAFSFXyq4qpAw8IARUAAIhCcAHAAQbQAQE=&rs=AOn4CLDyPuI762qzLAZM0QikxjFKVpoF9w",
@@ -316,7 +316,7 @@ Paginator(
     Video(VideoItem(
       id: "GuyGyzZcumI",
       name: "McDonald\'s Michelin Burger",
-      length: Some(59),
+      duration: Some(59),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/GuyGyzZcumI/hq720_2.jpg?sqp=-oaymwEdCJUDENAFSFXyq4qpAw8IARUAAIhCcAHAAQbQAQE=&rs=AOn4CLDtmyilZAgMw8VWNy518etIKi4phA",
@@ -348,7 +348,7 @@ Paginator(
     Video(VideoItem(
       id: "6VGG19W08UQ",
       name: "Nostalgia is a powerful ingredient",
-      length: Some(52),
+      duration: Some(52),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/6VGG19W08UQ/hq720_2.jpg?sqp=-oaymwEdCI4CEOADSFXyq4qpAw8IARUAAIhCcAHAAQbQAQE=&rs=AOn4CLDMwP_7D3vLsNxwKorwHfB3CH8Ufg",
@@ -380,7 +380,7 @@ Paginator(
     Video(VideoItem(
       id: "p3Xhx6aQEXo",
       name: "Jjajangmyun ㅣ Doob Gourmand ep.2",
-      length: Some(664),
+      duration: Some(664),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/p3Xhx6aQEXo/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBgdlq5Jo12Sh6E6Q5Q7Dt9dcI7Xw",
@@ -417,7 +417,7 @@ Paginator(
     Video(VideoItem(
       id: "35Gu3Q6qEn4",
       name: "Deal Breakers",
-      length: Some(60),
+      duration: Some(60),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/35Gu3Q6qEn4/hq720_2.jpg?sqp=-oaymwEdCI4CEOADSFXyq4qpAw8IARUAAIhCcAHAAQbQAQE=&rs=AOn4CLAuZwNttZi9nuuNpt4ddruoeyebHg",
@@ -449,7 +449,7 @@ Paginator(
     Video(VideoItem(
       id: "JoUdBrUpBN0",
       name: "Jjambbong, jjajangmyeon\'s biggest rival",
-      length: Some(56),
+      duration: Some(56),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/JoUdBrUpBN0/hq720_2.jpg?sqp=-oaymwEdCI4CEOADSFXyq4qpAw8IARUAAIhCcAHAAQbQAQE=&rs=AOn4CLDgEw8JDViwrHKRTv9wcjolELJgJg",
@@ -481,7 +481,7 @@ Paginator(
     Video(VideoItem(
       id: "l76ovWsPLi8",
       name: "Jjagglee, Ricotta Persimmon Toast, Plants, and Pringles! l Home Alone All Day Vlog",
-      length: Some(673),
+      duration: Some(673),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/l76ovWsPLi8/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDzoSXa3HTC78qSTARfNPUN3PAomA",
@@ -518,7 +518,7 @@ Paginator(
     Video(VideoItem(
       id: "zt1Lx9L619w",
       name: "The biggest privilege my rich friends have",
-      length: Some(58),
+      duration: Some(58),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/zt1Lx9L619w/hq720_2.jpg?sqp=-oaymwEdCI4CEOADSFXyq4qpAw8IARUAAIhCcAHAAQbQAQE=&rs=AOn4CLCqMZy8XJJZH_CVWMBkIeDCC98brw",

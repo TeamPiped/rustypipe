@@ -70,7 +70,7 @@ Channel(
       VideoItem(
         id: "LJAt2RHBhYA",
         name: "Rating Korean Traditional Desserts out of 10!!!",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/LJAt2RHBhYA/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLBs1ulw5vkRkR_SG6pp7Wuy90QK0Q",
@@ -96,7 +96,7 @@ Channel(
       VideoItem(
         id: "apL97zDoAY0",
         name: "best bang for your buck",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/apL97zDoAY0/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLDTJ5F-kzUTGBPolJgqloUZWve4GQ",
@@ -122,7 +122,7 @@ Channel(
       VideoItem(
         id: "6au8hFOnUXI",
         name: "don\'t judge a book by its cover",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/6au8hFOnUXI/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLCACe2S2wBTr0KVSFWzGda61k8Epw",
@@ -148,7 +148,7 @@ Channel(
       VideoItem(
         id: "4wJAOnnPYsI",
         name: "I ❤\u{fe0f} feet",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/4wJAOnnPYsI/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLCwFBUxJXMhuiv1ZevlM6r2x7Wq-Q",
@@ -174,7 +174,7 @@ Channel(
       VideoItem(
         id: "DDsWN4HcoWQ",
         name: "Trying North Korean Food 🇰🇵 and Rating it out of 10",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/DDsWN4HcoWQ/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLBIBARX0aoleQ1NFxd_DGhhHT4gDg",
@@ -200,7 +200,7 @@ Channel(
       VideoItem(
         id: "oMIIEp8JMT0",
         name: "get that bag 💰",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/oMIIEp8JMT0/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLBKsO5-KQzqU-bJinHsPDWrEQBIzQ",
@@ -226,7 +226,7 @@ Channel(
       VideoItem(
         id: "ElEgDnx3Dfk",
         name: "My Mom\'s 10-step Korean Skincare Routine",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/ElEgDnx3Dfk/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLD4uT5fSWvTnjAh_BC6hsW48zoH1w",
@@ -252,7 +252,7 @@ Channel(
       VideoItem(
         id: "kNpFjW0VAUQ",
         name: "What Koreans eat on New Year\'s",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/kNpFjW0VAUQ/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLBJTK-xhUMSzq8MBJ3s4kSXR7pFlw",
@@ -278,7 +278,7 @@ Channel(
       VideoItem(
         id: "0_5Y3ZBo5cw",
         name: "DOOBYMART",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/0_5Y3ZBo5cw/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLBlcI8i0DqG2vKRFGDzIQXBEsifFQ",
@@ -304,7 +304,7 @@ Channel(
       VideoItem(
         id: "VyVs3GCQlG0",
         name: "I love ogres",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/VyVs3GCQlG0/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLBsbPYKlWAAZNphAPobZQReZzk-lA",
@@ -330,7 +330,7 @@ Channel(
       VideoItem(
         id: "_yMEpzXq3yI",
         name: "Are you broke?😞📉📉📉",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/_yMEpzXq3yI/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLCRyJDCY-7MsSYbsl2ZZoC8DxPkKw",
@@ -356,7 +356,7 @@ Channel(
       VideoItem(
         id: "sM1jIMnq0M0",
         name: "best tteokbokki & dark sketchy alleys",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/sM1jIMnq0M0/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLCIQyuEFF2m676ZX7UpcK3hVHTzzw",
@@ -382,7 +382,7 @@ Channel(
       VideoItem(
         id: "nZg_Qoknu_M",
         name: "moist.",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/nZg_Qoknu_M/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLCcXipLuXAs9D8d1nRJbMh-BZkK1Q",
@@ -408,7 +408,7 @@ Channel(
       VideoItem(
         id: "CgS55gL33nY",
         name: "Do you have any Korean Friends?",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/CgS55gL33nY/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLCVh8B6HRomEnQX6dyDJVbYhE-RGA",
@@ -434,7 +434,7 @@ Channel(
       VideoItem(
         id: "VOxXkxFNOpM",
         name: "take my money",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/VOxXkxFNOpM/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLAkP1n1_Oe8pBGluy_lyi4I3pO4SQ",
@@ -460,7 +460,7 @@ Channel(
       VideoItem(
         id: "aZW65r9uUXA",
         name: "i\'m a mother?",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/aZW65r9uUXA/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLDIcJpRgW65hGv0GM8ak-L0PyErUw",
@@ -486,7 +486,7 @@ Channel(
       VideoItem(
         id: "CnI9or-Ings",
         name: "moshi moshi (ASMR)",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/CnI9or-Ings/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLDIoImzeIOlO25vkY7j92YwUhAOdw",
@@ -512,7 +512,7 @@ Channel(
       VideoItem(
         id: "oYAp2v4PxdQ",
         name: "perfect procrastination",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/oYAp2v4PxdQ/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLA3PsooCO5Cot_z-vLFCF1Kdtshtg",
@@ -538,7 +538,7 @@ Channel(
       VideoItem(
         id: "1ivqsJSGghU",
         name: "THREE CHILI MAPO TOFU (Vegan)",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/1ivqsJSGghU/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLCk5IRHy8TmJPzE9yD3M_OGXdww_g",
@@ -564,7 +564,7 @@ Channel(
       VideoItem(
         id: "s56ctQoFi70",
         name: "day 1 leaving seoul",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/s56ctQoFi70/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLCfn6oYumOdPd33WlDWaqBUZzaEiw",
@@ -590,7 +590,7 @@ Channel(
       VideoItem(
         id: "8XHcYgsJJjs",
         name: "I love Korea but",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/8XHcYgsJJjs/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLAtj-QeOzONDGPzDWC8IdFGigmKYA",
@@ -616,7 +616,7 @@ Channel(
       VideoItem(
         id: "DXYbvkJEYzw",
         name: "demogorgon rice",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/DXYbvkJEYzw/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLDd33uW_fC4Dz5JqYlDtGWGdMQn8A",
@@ -642,7 +642,7 @@ Channel(
       VideoItem(
         id: "3YGVw8RrB3U",
         name: "Rating Everything I Ate at McDonald\'s Singapore 🇸🇬🤡",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/3YGVw8RrB3U/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLAV2y-_1JXq9RecS8ELjyUsoN52NA",
@@ -668,7 +668,7 @@ Channel(
       VideoItem(
         id: "VWh8hm-GlXw",
         name: "the magic number: 25",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/VWh8hm-GlXw/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLD1wp7tz9TU3Kx2Oho7mrVoFys8Jw",
@@ -694,7 +694,7 @@ Channel(
       VideoItem(
         id: "ewpJQHj5jWY",
         name: "How we started✨ the garden ✨",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/ewpJQHj5jWY/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLAOw5ntEtOhIgNJy2y1QQCFLUtGBQ",
@@ -720,7 +720,7 @@ Channel(
       VideoItem(
         id: "SRnHMGMJ6mM",
         name: "How to Shop at Costco ✨economical milf✨",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/SRnHMGMJ6mM/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLDrwe86eXSemFBKB3xLGnRIDcL_qA",
@@ -746,7 +746,7 @@ Channel(
       VideoItem(
         id: "bGXP83AU3Mc",
         name: "do u wanna get swole?",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/bGXP83AU3Mc/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLBLGuAqqpjhQ_Y81P2pxchz-z971g",
@@ -772,7 +772,7 @@ Channel(
       VideoItem(
         id: "E52sSgZlgYs",
         name: "the holy trinity of korean street food",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/E52sSgZlgYs/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLAZr5j2o2IdpTLXUoSKT5QK-DFJgw",
@@ -798,7 +798,7 @@ Channel(
       VideoItem(
         id: "ovaHmfy3O6U",
         name: "hangover food",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/ovaHmfy3O6U/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLBg-kG4rAi-BQ8Xkp2hOtOu-oXDLQ",
@@ -824,7 +824,7 @@ Channel(
       VideoItem(
         id: "FHTQmKTZnlI",
         name: "pig trotter raguuuuuuuuu 💅",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/FHTQmKTZnlI/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLBaPmdp59deKec5AiRRJ_c6oWOpuA",
@@ -850,7 +850,7 @@ Channel(
       VideoItem(
         id: "1AXB0l_wKMs",
         name: "what i ate in google japan",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/1AXB0l_wKMs/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLAwymbQoerZLtr77RuARo1iok4_WQ",
@@ -876,7 +876,7 @@ Channel(
       VideoItem(
         id: "1ARLtk3HiB0",
         name: "succumb to your cravings",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/1ARLtk3HiB0/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLDSjiCiBhM1i7n68LVRv_G5GW5vRw",
@@ -902,7 +902,7 @@ Channel(
       VideoItem(
         id: "0FfDoDHpaN8",
         name: "you can\'t let the what ifs rule your life",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/0FfDoDHpaN8/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLAJK1Av4zHRIWRBMSEfYRXxpwCSlQ",
@@ -928,7 +928,7 @@ Channel(
       VideoItem(
         id: "kuT90_RIdF0",
         name: "duck confit lollipop 🦆🍭",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/kuT90_RIdF0/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLCt9L5XUhmlkwuxMuupIt4kCnxctA",
@@ -954,7 +954,7 @@ Channel(
       VideoItem(
         id: "aPJLhrcM4Yg",
         name: "HOUSE TOUR",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/aPJLhrcM4Yg/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLBCLF6yI6Ke96PIrfo1s5BhYfeWvg",
@@ -980,7 +980,7 @@ Channel(
       VideoItem(
         id: "DKQrG_hJJX4",
         name: "how to meal prep like a korean",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/DKQrG_hJJX4/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLDZTyFRl919wEGdUg95-XrNIH99mg",
@@ -1006,7 +1006,7 @@ Channel(
       VideoItem(
         id: "lNizW_P_oVw",
         name: "Rating Everything I ate at McDonald\'s Japan 🇯🇵",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/lNizW_P_oVw/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLAAiwuuJufebYj3P4aTo7wyBjh9Kw",
@@ -1032,7 +1032,7 @@ Channel(
       VideoItem(
         id: "kbWyJjrCjwA",
         name: "enemies as fertilizer √(veg)",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/kbWyJjrCjwA/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLCItmfFh3UD53WvNCWd9HAItdubgg",
@@ -1058,7 +1058,7 @@ Channel(
       VideoItem(
         id: "xAp910JTDig",
         name: "let\'s make some cabbage rolls for lunch",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/xAp910JTDig/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLD0jor2XgDSjgk4IdMhCOGNqv0Vag",
@@ -1084,7 +1084,7 @@ Channel(
       VideoItem(
         id: "vSL7dhKatEk",
         name: "Rating Everything I ate at IKEA Korea",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/vSL7dhKatEk/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLD1jtkvWyabnlTD7ktUQCWYvKctFQ",
@@ -1110,7 +1110,7 @@ Channel(
       VideoItem(
         id: "LZzhUpACXSk",
         name: "I\'m done being the bigger person",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/LZzhUpACXSk/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLBKpbXJ3fj1mWw8YLEGgqqQJFPapw",
@@ -1136,7 +1136,7 @@ Channel(
       VideoItem(
         id: "5C7nqNDfhis",
         name: "we\'re cooking a whole bird today",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/5C7nqNDfhis/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLAywBcN0oFzKJrq2jxAcYU8Gz5mQQ",
@@ -1162,7 +1162,7 @@ Channel(
       VideoItem(
         id: "6mj4Af0kUOQ",
         name: "men will disappoint but never potatoes",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/6mj4Af0kUOQ/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLB3pIz2cfevgV0ccu3bQM4IDaBSKg",
@@ -1188,7 +1188,7 @@ Channel(
       VideoItem(
         id: "1c3axhSJiaQ",
         name: "I used to hate korean food",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/1c3axhSJiaQ/hq720_2.jpg?sqp=-oaymwEdCJUDENAFSFXyq4qpAw8IARUAAIhCcAHAAQbQAQE=&rs=AOn4CLBucOEbTsWTDjOOCjNa-fAvz1yxyA",
@@ -1214,7 +1214,7 @@ Channel(
       VideoItem(
         id: "F9Vz0m7DPeU",
         name: "Rating everything I got at 7/11 Hawaii ( ft. Mauna Kea )",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/F9Vz0m7DPeU/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLD1w_8DhU37Mv_R3tQ9Kb6ouIU_VA",
@@ -1240,7 +1240,7 @@ Channel(
       VideoItem(
         id: "Uey7kl56wks",
         name: "Grabbing Snacks from 7/11 Hawaii",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/Uey7kl56wks/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLCybGwQAf9s43HoSQJGvWlOmmLPgw",
@@ -1266,7 +1266,7 @@ Channel(
       VideoItem(
         id: "3un2eUAr6Dg",
         name: "cheesy korean corn balls hit different",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/3un2eUAr6Dg/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLC9I2IQJx0hUPF9mcw4lvs1I6Bj4A",
@@ -1292,7 +1292,7 @@ Channel(
       VideoItem(
         id: "rI5tWrGpDJA",
         name: "hawaiian tajin?!?",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/rI5tWrGpDJA/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLCkg-RG2ToW-gXsSdYwO57sis0DkA",

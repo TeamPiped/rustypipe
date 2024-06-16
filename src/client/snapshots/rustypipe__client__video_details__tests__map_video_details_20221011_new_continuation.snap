@@ -149,7 +149,7 @@ VideoDetails(
       VideoItem(
         id: "WPdWvnAAurg",
         name: "aespa 에스파 \'Savage\' MV",
-        length: Some(259),
+        duration: Some(259),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/WPdWvnAAurg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDQGxlnDkAdMYRm2cdkDmiDbBDpYw",
@@ -186,7 +186,7 @@ VideoDetails(
       VideoItem(
         id: "4TWR90KJl84",
         name: "aespa 에스파 \'Next Level\' MV",
-        length: Some(236),
+        duration: Some(236),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/4TWR90KJl84/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBYCGc-AKsDC6UpJgIZw2_VsqjVWA",
@@ -223,7 +223,7 @@ VideoDetails(
       VideoItem(
         id: "uR8Mrt1IpXg",
         name: "Red Velvet 레드벨벳 \'Psycho\' MV",
-        length: Some(216),
+        duration: Some(216),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/uR8Mrt1IpXg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAnAsLcZaI1uWDB4nag1KnNotAUWw",
@@ -260,7 +260,7 @@ VideoDetails(
       VideoItem(
         id: "UUUWIGx3hDE",
         name: "ITZY \"WANNABE\" Performance Video",
-        length: Some(198),
+        duration: Some(198),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/UUUWIGx3hDE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAe05b8SVKrrSU0MSOcxluyp1R_aA",
@@ -297,7 +297,7 @@ VideoDetails(
       VideoItem(
         id: "NoYKBAajoyo",
         name: "EVERGLOW (에버글로우) - DUN DUN MV",
-        length: Some(209),
+        duration: Some(209),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/NoYKBAajoyo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC3OhCUbjpIclmjfV8W8T98nVI5pA",
@@ -334,7 +334,7 @@ VideoDetails(
       VideoItem(
         id: "32si5cfrCNc",
         name: "BLACKPINK - \'How You Like That\' DANCE PERFORMANCE VIDEO",
-        length: Some(181),
+        duration: Some(181),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/32si5cfrCNc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBjimPvMxDwTmPBlKX8Buo9EjMeOg",
@@ -371,7 +371,7 @@ VideoDetails(
       VideoItem(
         id: "CM4CkVFmTds",
         name: "TWICE \"I CAN\'T STOP ME\" M/V",
-        length: Some(221),
+        duration: Some(221),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/CM4CkVFmTds/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBfd7QADIduQSR2ESLIp1k5gxxNDg",
@@ -408,7 +408,7 @@ VideoDetails(
       VideoItem(
         id: "UZPZyd5vE1c",
         name: "Shut Down",
-        length: Some(176),
+        duration: Some(176),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/UZPZyd5vE1c/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD0elXCfbeIuNyk1C4xJkfSUZrJPg",
@@ -445,7 +445,7 @@ VideoDetails(
       VideoItem(
         id: "CKZvWhCqx1s",
         name: "ROSÉ - \'On The Ground\' M/V",
-        length: Some(189),
+        duration: Some(189),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/CKZvWhCqx1s/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC4uq8-ViYtFE0-2feawfW_IEADxg",
@@ -482,7 +482,7 @@ VideoDetails(
       VideoItem(
         id: "fE2h3lGlOsk",
         name: "ITZY \"WANNABE\" M/V @ITZY",
-        length: Some(219),
+        duration: Some(219),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/fE2h3lGlOsk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC44Q0lpu5a8rltgTMxi0X2QA6jnQ",
@@ -519,7 +519,7 @@ VideoDetails(
       VideoItem(
         id: "Y8JFxS1HlDo",
         name: "IVE 아이브 \'LOVE DIVE\' MV",
-        length: Some(179),
+        duration: Some(179),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/Y8JFxS1HlDo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDf8U7fRH0R-qXbbGwKwpKBCeOa4A",
@@ -556,7 +556,7 @@ VideoDetails(
       VideoItem(
         id: "dNCWe_6HAM8",
         name: "LISA - \'MONEY\' EXCLUSIVE PERFORMANCE VIDEO",
-        length: Some(171),
+        duration: Some(171),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/dNCWe_6HAM8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDdT1JD7bbEJ3z7fsQQ59tWeQUwkw",
@@ -593,7 +593,7 @@ VideoDetails(
       VideoItem(
         id: "tyrVtwE8Gv0",
         name: "NCT U 엔시티 유 \'Make A Wish (Birthday Song)\' MV",
-        length: Some(249),
+        duration: Some(249),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/tyrVtwE8Gv0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDjumgWjrKFVPhKG0HyX9aEdP203g",
@@ -630,7 +630,7 @@ VideoDetails(
       VideoItem(
         id: "gU2HqP4NxUs",
         name: "BLACKPINK - ‘Pretty Savage’ 1011 SBS Inkigayo",
-        length: Some(208),
+        duration: Some(208),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/gU2HqP4NxUs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD_x0P5jlgH-Xg013D6_0HCVjmpEQ",
@@ -667,7 +667,7 @@ VideoDetails(
       VideoItem(
         id: "Ujb-gvqsoi0",
         name: "Red Velvet - IRENE & SEULGI \'Monster\' MV",
-        length: Some(182),
+        duration: Some(182),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/Ujb-gvqsoi0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBrGO-Gkm-UqCln07oFNKfFgioXYQ",
@@ -704,7 +704,7 @@ VideoDetails(
       VideoItem(
         id: "KhTeiaCezwM",
         name: "[MV] MAMAMOO (마마무) - HIP",
-        length: Some(211),
+        duration: Some(211),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/KhTeiaCezwM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCMGgSAC2vrBvhW5_JvAG6-DmNv_Q",
@@ -741,7 +741,7 @@ VideoDetails(
       VideoItem(
         id: "XJDPzNzQ3RE",
         name: "Run BTS! 2022 Special Episode - Fly BTS Fly Part 1",
-        length: Some(2070),
+        duration: Some(2070),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/XJDPzNzQ3RE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDLdeTJMU0EXsKD20_m1oPEHNfJig",
@@ -778,7 +778,7 @@ VideoDetails(
       VideoItem(
         id: "0lXwMdnpoFQ",
         name: "aespa 에스파 \'도깨비불 (Illusion)\' Dance Practice",
-        length: Some(210),
+        duration: Some(210),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/0lXwMdnpoFQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDvTjZu5GC9ZxiNY88whzTOHX-g1Q",
@@ -815,7 +815,7 @@ VideoDetails(
       VideoItem(
         id: "IHNzOHi8sJs",
         name: "BLACKPINK - ‘뚜두뚜두 (DDU-DU DDU-DU)’ M/V",
-        length: Some(216),
+        duration: Some(216),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/IHNzOHi8sJs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCzBqBp42z958fkbmx3yCOebx3aaA",

@@ -139,7 +139,7 @@ Channel(
       VideoItem(
         id: "B-KjpyR4n5Q",
         name: "The Online Manosphere",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/B-KjpyR4n5Q/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC_J9WgOnkXvtw1uUhZASVDLPlrZg",
@@ -180,7 +180,7 @@ Channel(
       VideoItem(
         id: "umDsCyZ67J0",
         name: "Ukraine - The Beginning of the End",
-        length: Some(614),
+        duration: Some(614),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/umDsCyZ67J0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBih3bLoQ9xphjCDt3lqXTLKtE52g",
@@ -221,7 +221,7 @@ Channel(
       VideoItem(
         id: "dNgKGL8lQck",
         name: "Honest Russian Military Recruitment Video",
-        length: Some(62),
+        duration: Some(62),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/dNgKGL8lQck/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDrbxxCEBDfZP2wA0bIJpzbtmyARw",
@@ -262,7 +262,7 @@ Channel(
       VideoItem(
         id: "UVWciFJeFNA",
         name: "Self-Driving Cars Will Only Make Traffic Worse",
-        length: Some(458),
+        duration: Some(458),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/UVWciFJeFNA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDJhcm03VJaYQU5xAIg2w5h0SOaUA",
@@ -303,7 +303,7 @@ Channel(
       VideoItem(
         id: "vyWaax07_ks",
         name: "NEOM Is The Parody Of The Future",
-        length: Some(636),
+        duration: Some(636),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/vyWaax07_ks/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD-sXnmtClcL6lcjjAR_05F1IpndA",
@@ -344,7 +344,7 @@ Channel(
       VideoItem(
         id: "onQ0ICkLEJw",
         name: "I Got An Email From \"The Dubai Sheikh\'s Personal Friend\"",
-        length: Some(211),
+        duration: Some(211),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/onQ0ICkLEJw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAmwCI9t6a_pXPPteQ835LNPgcYbw",
@@ -385,7 +385,7 @@ Channel(
       VideoItem(
         id: "yDEL1pTYOhs",
         name: "The \"Meritocracy\" Isn\'t Real",
-        length: Some(385),
+        duration: Some(385),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/yDEL1pTYOhs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDmKg0HtcuQfJUsjVj_3WIUtOkZDg",
@@ -426,7 +426,7 @@ Channel(
       VideoItem(
         id: "EnVvlhhqWtw",
         name: "City Review - Prague: Beautiful and Disappointing",
-        length: Some(834),
+        duration: Some(834),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/EnVvlhhqWtw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDFUovL8XJ7tUzOh_sdB1ymKJS4Qg",
@@ -467,7 +467,7 @@ Channel(
       VideoItem(
         id: "Oxz4oY0T85Y",
         name: "European International Rail SUCKS, Here\'s Why",
-        length: Some(810),
+        duration: Some(810),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/Oxz4oY0T85Y/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAdlPQSSzVGixQsH_uXsd1VVsfMcQ",
@@ -508,7 +508,7 @@ Channel(
       VideoItem(
         id: "lxUEuOkblws",
         name: "Why the Straddling Bus Failed",
-        length: Some(614),
+        duration: Some(614),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/lxUEuOkblws/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAaUchMwc5d_yNfH9BM0VlexxjPtQ",
@@ -549,7 +549,7 @@ Channel(
       VideoItem(
         id: "UG8jiKOtedk",
         name: "How Canadian Ukrainian Volunteer Got Exposed",
-        length: Some(538),
+        duration: Some(538),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/UG8jiKOtedk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB7OMkifWaF0tbm5qu0IZmxuK7AtA",
@@ -590,7 +590,7 @@ Channel(
       VideoItem(
         id: "bQld7iJJSyk",
         name: "Why Roads ALWAYS Fill Up, No Matter How Much We Widen Them",
-        length: Some(159),
+        duration: Some(159),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/bQld7iJJSyk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA-9aUtPGBCwAO2wl2JG5JnwWh-iA",
@@ -631,7 +631,7 @@ Channel(
       VideoItem(
         id: "WUK0K5mdQ_s",
         name: "Egypt\'s New Capital is an Ozymandian Nightmare",
-        length: Some(870),
+        duration: Some(870),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/WUK0K5mdQ_s/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCViMWL1-G3s7PBgMgo1mVdFSx9Rw",
@@ -672,7 +672,7 @@ Channel(
       VideoItem(
         id: "LB-vsT1Sl68",
         name: "Why Car-Centric Cities are a GREAT Idea",
-        length: Some(369),
+        duration: Some(369),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/LB-vsT1Sl68/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDfLhC6VYMirWX_lL0eXhZCpAYabA",
@@ -713,7 +713,7 @@ Channel(
       VideoItem(
         id: "p8NiM_p8n5A",
         name: "HE FIXED TRAFFIC",
-        length: Some(157),
+        duration: Some(157),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/p8NiM_p8n5A/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDTl0EgGk8_v6gPMJY0IF5tUvDGAg",
@@ -754,7 +754,7 @@ Channel(
       VideoItem(
         id: "U9YdnzOf4NQ",
         name: "Why a Mars Colony is a Stupid and Dangerous Idea",
-        length: Some(1000),
+        duration: Some(1000),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/U9YdnzOf4NQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLARNVQBbhiSGasL6fMQUU1ITgHuDQ",
@@ -795,7 +795,7 @@ Channel(
       VideoItem(
         id: "CH55WpJxF1s",
         name: "What #Elongate Is Really About",
-        length: Some(122),
+        duration: Some(122),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/CH55WpJxF1s/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLACITT6pFDi4KlXA0E6lLB5FHVxbQ",
@@ -836,7 +836,7 @@ Channel(
       VideoItem(
         id: "PPcsZwUv350",
         name: "Vladimir Putin\'s Three Choices",
-        length: Some(505),
+        duration: Some(505),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/PPcsZwUv350/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBnYUqduIFS2zR6BQwWIdWH0eyIng",
@@ -877,7 +877,7 @@ Channel(
       VideoItem(
         id: "B78-FgNqdc8",
         name: "Was I WRONG About Electric Buses?",
-        length: Some(1536),
+        duration: Some(1536),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/B78-FgNqdc8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD4r2bdbKCxbgvGoKGauCaZDBp3mw",
@@ -918,7 +918,7 @@ Channel(
       VideoItem(
         id: "JCXLwOMSDxk",
         name: "If We Treated Afghanistan Like Ukraine",
-        length: Some(92),
+        duration: Some(92),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/JCXLwOMSDxk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBhu3_HO7U63sl-DBLhRbDllmFoRA",
@@ -959,7 +959,7 @@ Channel(
       VideoItem(
         id: "IpIWswLYAbA",
         name: "Who\'s Winning the War for Ukraine?",
-        length: Some(646),
+        duration: Some(646),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/IpIWswLYAbA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDpoUqVQJOt4bR1niy4QTCpbNo8cg",
@@ -1000,7 +1000,7 @@ Channel(
       VideoItem(
         id: "NIItoD1Ebh0",
         name: "Old Habits Die Hard",
-        length: Some(107),
+        duration: Some(107),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/NIItoD1Ebh0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBHqsrLzPqmebGr4w1j40V31wgRcQ",
@@ -1041,7 +1041,7 @@ Channel(
       VideoItem(
         id: "pENUV9DLa2g",
         name: "Anarcho-Capitalism In Practice III - The Final Attempt",
-        length: Some(600),
+        duration: Some(600),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/pENUV9DLa2g/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCmoujwlLKjddw_4xZGN0iY0-uO_g",
@@ -1082,7 +1082,7 @@ Channel(
       VideoItem(
         id: "gFGQI8P9BMg",
         name: "How The Gravel Institute Lies To You About Ukraine",
-        length: Some(2472),
+        duration: Some(2472),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/gFGQI8P9BMg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBpJDqK5bFk3L2AuDsyN8SrCv4fKA",
@@ -1123,7 +1123,7 @@ Channel(
       VideoItem(
         id: "AVLevneWvaE",
         name: "Why Russia Can\'t Achieve Air Supremacy In Ukraine",
-        length: Some(188),
+        duration: Some(188),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/AVLevneWvaE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAjh4bMN4kEdZqI94bBJlK60-6WWA",
@@ -1164,7 +1164,7 @@ Channel(
       VideoItem(
         id: "MfRcY90OccY",
         name: "Can Ukraine Actually WIN This?",
-        length: Some(606),
+        duration: Some(606),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/MfRcY90OccY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCxpbaMlVdngsFBMi1pYqCTkhnk4g",
@@ -1205,7 +1205,7 @@ Channel(
       VideoItem(
         id: "dQXwreYzJ40",
         name: "Here\'s What Will Happen To Ukraine [Update: yep, called it]",
-        length: Some(397),
+        duration: Some(397),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/dQXwreYzJ40/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBCyh95CRe_cTECmF4XY9oq3jtFjw",
@@ -1246,7 +1246,7 @@ Channel(
       VideoItem(
         id: "-OO3RiNMDB8",
         name: "Assessing The Russian Invasion Threat",
-        length: Some(655),
+        duration: Some(655),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/-OO3RiNMDB8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAWbC-UhcsGON1ERqF0BToXXwNXdA",
@@ -1287,7 +1287,7 @@ Channel(
       VideoItem(
         id: "obMTYs30E9A",
         name: "Ukraine - The Country That Defied Vladimir Putin",
-        length: Some(2498),
+        duration: Some(2498),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/obMTYs30E9A/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDsLbeOIYyrq_a3srmaShg1BXt6IA",
@@ -1328,7 +1328,7 @@ Channel(
       VideoItem(
         id: "4-2bR1iFlhk",
         name: "\"Wait, Russia isn\'t in NATO?!\" Insane Debate on Ukraine, US Politics, and more!",
-        length: Some(12151),
+        duration: Some(12151),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/4-2bR1iFlhk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDi8mzVinfZpO33L7lijfeQJdsVuA",

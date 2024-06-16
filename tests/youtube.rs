@@ -55,7 +55,7 @@ async fn get_player_from_client(#[case] client_type: ClientType, rp: RustyPipe) 
             "NCS (NoCopyrightSounds): Empowering Creators through Copyright / Royalty Free Music"
         ));
     }
-    assert_eq!(player_data.details.length, 259);
+    assert_eq!(player_data.details.duration, 259);
     assert!(!player_data.details.thumbnail.is_empty());
     assert_eq!(player_data.details.channel.id, "UC_aEa8K-EOJ3D6gOs7HcyNg");
     assert_eq!(player_data.details.channel.name, "NoCopyrightSounds");
@@ -227,7 +227,7 @@ async fn get_player(
     #[case] id: &str,
     #[case] name: &str,
     #[case] description: &str,
-    #[case] length: u32,
+    #[case] duration: u32,
     #[case] channel_id: &str,
     #[case] channel_name: &str,
     #[case] views: u64,
@@ -242,7 +242,7 @@ async fn get_player(
     assert_eq!(details.name, name);
     let desc = details.description.expect("description");
     assert!(desc.contains(description), "description: {desc}");
-    assert_eq!(details.length, length);
+    assert_eq!(details.duration, duration);
     assert_eq!(details.channel.id, channel_id);
     assert_eq!(details.channel.name, channel_name);
     assert_gte(details.view_count, views, "views");

@@ -606,7 +606,7 @@ VideoDetails(
       VideoItem(
         id: "AOdp09SYhCc",
         name: "This Is So Embarrassing!",
-        length: Some(1063),
+        duration: Some(1063),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/AOdp09SYhCc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBfBYl-n346B6prZx03Mm7Ww5KNzQ",
@@ -643,7 +643,7 @@ VideoDetails(
       VideoItem(
         id: "CY3OQh-7wIk",
         name: "The Computer I Would Actually BUY",
-        length: Some(6478),
+        duration: Some(6478),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/CY3OQh-7wIk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBIWrkhu20Ak_TnmZIE4ZNnwwJjxg",
@@ -680,7 +680,7 @@ VideoDetails(
       VideoItem(
         id: "LQ95XJAwaoc",
         name: "My favorite car (sucks)",
-        length: Some(1162),
+        duration: Some(1162),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/LQ95XJAwaoc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCipJpt-2zTzIpJu3bTaXsTai4Avw",
@@ -717,7 +717,7 @@ VideoDetails(
       VideoItem(
         id: "mhMQeJ5Qmp0",
         name: "The Apple Newton MessagePad.",
-        length: Some(758),
+        duration: Some(758),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/mhMQeJ5Qmp0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBUv25424vMzv7t_u2JaFGBUFyzLQ",
@@ -754,7 +754,7 @@ VideoDetails(
       VideoItem(
         id: "1ctXiZsN6ac",
         name: "The Reviewer Got Reviewed  - WAN Show September 9, 2022",
-        length: Some(10265),
+        duration: Some(10265),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/1ctXiZsN6ac/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD9wu_ZcDUUeXLmcHsQlyFk2ZGz8w",
@@ -791,7 +791,7 @@ VideoDetails(
       VideoItem(
         id: "CMR9z9Xr8GM",
         name: "Storing Solar Power on my ROOF!!!",
-        length: Some(1028),
+        duration: Some(1028),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/CMR9z9Xr8GM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDHV3LspFbeyp3aKgDaga_48rKnhg",
@@ -828,7 +828,7 @@ VideoDetails(
       VideoItem(
         id: "fT2KhJ8W-Kg",
         name: "How gas pumps know when to turn themselves off",
-        length: Some(836),
+        duration: Some(836),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/fT2KhJ8W-Kg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAtidUhcZzKU4a3ojinamyCP33ing",
@@ -865,7 +865,7 @@ VideoDetails(
       VideoItem(
         id: "12Hcbx33Rb4",
         name: "BREAKING NEWS! - EVGA will no longer do business with NVIDIA",
-        length: Some(1262),
+        duration: Some(1262),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/12Hcbx33Rb4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAM7iCw78-SfuzT5AgSv6ACOVDelQ",
@@ -902,7 +902,7 @@ VideoDetails(
       VideoItem(
         id: "QW1SsqmaIuE",
         name: "I Surprised My Subscriber with his Dream Gaming Setup! - Season 8",
-        length: Some(2177),
+        duration: Some(2177),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/QW1SsqmaIuE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLArhaU2nMbylc2HtPaCCFwJmbFduQ",
@@ -939,7 +939,7 @@ VideoDetails(
       VideoItem(
         id: "JAcSNL1T3OA",
         name: "Why Did I Drill 1756 Holes in This?",
-        length: Some(1293),
+        duration: Some(1293),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/JAcSNL1T3OA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAVN2pIRLDii6QneiJiH7SuohQLLw",
@@ -976,7 +976,7 @@ VideoDetails(
       VideoItem(
         id: "ZVtOss1U7_s",
         name: "VW Beetle converted to electric in a day",
-        length: Some(826),
+        duration: Some(826),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/ZVtOss1U7_s/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD4hPp1mBczpO6sO6vWdZQYakxwyg",
@@ -1013,7 +1013,7 @@ VideoDetails(
       VideoItem(
         id: "2kJDTzFtUr4",
         name: "How ASML, TSMC And Intel Dominate The Chip Market | CNBC Marathon",
-        length: Some(3399),
+        duration: Some(3399),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/2kJDTzFtUr4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA6X3e701I0PwLNZJamLICU4oJsxg",
@@ -1050,7 +1050,7 @@ VideoDetails(
       VideoItem(
         id: "0rCbfsuKdYw",
         name: "I bought every Playstation Ever.",
-        length: Some(1046),
+        duration: Some(1046),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/0rCbfsuKdYw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAQvrfQzF3A7fsTrp6uVnunsFrjIA",
@@ -1087,7 +1087,7 @@ VideoDetails(
       VideoItem(
         id: "sbdU7AkH6QM",
         name: "Reviewing Free Energy Generators.  A Response to My Video \"Nikola Tesla\'s Greatest Invention\"- 102",
-        length: Some(1387),
+        duration: Some(1387),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/sbdU7AkH6QM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBDpUTKGdp0-KWb06jcJ1nBcyO6Dw",
@@ -1124,7 +1124,7 @@ VideoDetails(
       VideoItem(
         id: "zcchDu7KoYs",
         name: "AMD’s Victory Lap - HOLY $H!T Threadripper Pro 5995WX",
-        length: Some(872),
+        duration: Some(872),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/zcchDu7KoYs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAo1iXQgQA0Vdil-2ka_mG7maCGMg",
@@ -1161,7 +1161,7 @@ VideoDetails(
       VideoItem(
         id: "pd6DsSjqhFE",
         name: "Top Gear Satisfaction Survey Compilation",
-        length: Some(986),
+        duration: Some(986),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/pd6DsSjqhFE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA5XluAGur-H4y64PT8dtddYidDfQ",
@@ -1198,7 +1198,7 @@ VideoDetails(
       VideoItem(
         id: "2K5Gqp1cEcM",
         name: "Why our Screwdriver took 3 YEARS",
-        length: Some(1752),
+        duration: Some(1752),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/2K5Gqp1cEcM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBVNWWFKgajHVbNYGFdRXXNTH7aEg",
@@ -1235,7 +1235,7 @@ VideoDetails(
       VideoItem(
         id: "t03rmc-prJo",
         name: "This PC took 600 HOURS to Build!",
-        length: Some(1505),
+        duration: Some(1505),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/t03rmc-prJo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDCfqUXpZWf6Gv320YOu1UW02Sv5Q",
@@ -1272,7 +1272,7 @@ VideoDetails(
       VideoItem(
         id: "QTH9m6MDIfc",
         name: "One Year Ago I Built an Ecosystem, This Happened",
-        length: Some(485),
+        duration: Some(485),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/QTH9m6MDIfc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD3ZF3LguKP_5_qUVgX3_FXSA6ABA",

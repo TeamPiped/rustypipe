@@ -8,7 +8,7 @@ Paginator(
     VideoItem(
       id: "R2fw2g6WFbg",
       name: "EEVblog 1477 - TEARDOWN! - NEW Tektronix 2 Series Oscilloscope",
-      length: Some(2718),
+      duration: Some(2718),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/R2fw2g6WFbg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBwd6wqvFI0HcPpOkDW_XDzWSPH_w",
@@ -43,7 +43,7 @@ Paginator(
     VideoItem(
       id: "JDXKrXJloSw",
       name: "EEVblog 1476 - Keithley 515A Wheatstone Bridge TEARDOWN & TUTORIAL",
-      length: Some(1721),
+      duration: Some(1721),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/JDXKrXJloSw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCk0u4EnX8f6ud7s704sbv5UGFZug",
@@ -78,7 +78,7 @@ Paginator(
     VideoItem(
       id: "H8ot_YPi6QU",
       name: "eevBLAB 98 - The Pressure Youtubers Are Under",
-      length: Some(431),
+      duration: Some(431),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/H8ot_YPi6QU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBiimvgnZx6akYlMkU-hxSuIM33Mg",
@@ -113,7 +113,7 @@ Paginator(
     VideoItem(
       id: "i1Ad5jfk_v4",
       name: "EEVblog 1475 - What\'s This SMD Part?",
-      length: Some(1785),
+      duration: Some(1785),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/i1Ad5jfk_v4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCxhWKrpuy11lTv5po8m7OyQYxbvA",
@@ -148,7 +148,7 @@ Paginator(
     VideoItem(
       id: "GHbo4v8pahc",
       name: "eevBLAB 97 - Is Apple Serious About Right To Repair? (The Verge)",
-      length: Some(1186),
+      duration: Some(1186),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/GHbo4v8pahc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBKNYL8XTxa9LDJKG6L7unv3CJG9Q",
@@ -183,7 +183,7 @@ Paginator(
     VideoItem(
       id: "Uds-wLoaZmA",
       name: "EEVblog 1474 - Can You Measure Capacitors IN Circuit?",
-      length: Some(1407),
+      duration: Some(1407),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/Uds-wLoaZmA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLASo0gEqEXqljW-KjeCb2jcr8Wxkw",
@@ -218,7 +218,7 @@ Paginator(
     VideoItem(
       id: "D9J-AmCcf4U",
       name: "EEVblog 1473 - How Your LCR Meter Works",
-      length: Some(1183),
+      duration: Some(1183),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/D9J-AmCcf4U/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBO_KDd4KRJX5K0ea3of2pm_Pp3dw",
@@ -253,7 +253,7 @@ Paginator(
     VideoItem(
       id: "Eoh-JKVQZwg",
       name: "EEVblog 1472 - Resistor Cube Problem SOLVED",
-      length: Some(1196),
+      duration: Some(1196),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/Eoh-JKVQZwg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA7JkB7fkv4gOeXl4-B9VWSSsbkDw",
@@ -288,7 +288,7 @@ Paginator(
     VideoItem(
       id: "U81glZBDpIg",
       name: "EEVblog 1471 - Mailbag",
-      length: Some(2252),
+      duration: Some(2252),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/U81glZBDpIg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCfgd3GSfLFioa89tLill31Zl7gOg",
@@ -323,7 +323,7 @@ Paginator(
     VideoItem(
       id: "gLfxznVJ2q0",
       name: "Petition - Australian Standards Should be FREE",
-      length: Some(585),
+      duration: Some(585),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/gLfxznVJ2q0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDCSXOJMOfUPep7AbUFPFEW2e-KFA",
@@ -358,7 +358,7 @@ Paginator(
     VideoItem(
       id: "GfihUkWPCQQ",
       name: "EEVblog 1470 - AC Basics Tutorial Part 3 - Complex Numbers are EASY!",
-      length: Some(1468),
+      duration: Some(1468),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/GfihUkWPCQQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBTbyr1AEDanXKDJg18zCEDN5YKCg",
@@ -393,7 +393,7 @@ Paginator(
     VideoItem(
       id: "yEG6pKUdIlg",
       name: "EEVblog 1469 - AC Basics Tutorial - Part 2 - Phasors",
-      length: Some(1147),
+      duration: Some(1147),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/yEG6pKUdIlg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAavMqXRQQP8Qs6jPDdCaZdjj28sw",
@@ -428,7 +428,7 @@ Paginator(
     VideoItem(
       id: "wPzzPGzxD00",
       name: "EEVblog 1468 - Electronex Show Tour 2022",
-      length: Some(2850),
+      duration: Some(2850),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/wPzzPGzxD00/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA3HoFx0YDm9C54Wn8lPV-hqHmLBA",
@@ -463,7 +463,7 @@ Paginator(
     VideoItem(
       id: "Tdge8vEODeY",
       name: "EEVblog 1467 - Stanford Solar Power at Nightime!  BUSTED",
-      length: Some(836),
+      duration: Some(836),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/Tdge8vEODeY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCcLhiajXRRNS9OAmsMeX1ploYVog",
@@ -498,7 +498,7 @@ Paginator(
     VideoItem(
       id: "ebQ2Im5zfT0",
       name: "EEVblog 1466 - Dumpster Dive Xeon Server",
-      length: Some(1138),
+      duration: Some(1138),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/ebQ2Im5zfT0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBfBPfDfHepn92nrxb-l3GoEUJxNg",
@@ -533,7 +533,7 @@ Paginator(
     VideoItem(
       id: "UrS5ezesA9s",
       name: "EEVblog 1465 - Your Multimeter Can Measure Inductors",
-      length: Some(596),
+      duration: Some(596),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/UrS5ezesA9s/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDhubVMAa4lD0PEkWJwxngLFy2g5A",
@@ -568,7 +568,7 @@ Paginator(
     VideoItem(
       id: "c5M8P6oe9xY",
       name: "EEVblog 1464 - TOP 5 Jellybean Comparators",
-      length: Some(2399),
+      duration: Some(2399),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/c5M8P6oe9xY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBBbPtmLMOKuiIB4l1Z_VuF8ajH1g",
@@ -603,7 +603,7 @@ Paginator(
     VideoItem(
       id: "9TDKP9RLlPs",
       name: "EEVblog 1463 - Mailbag",
-      length: Some(2664),
+      duration: Some(2664),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/9TDKP9RLlPs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBC8e8sMlrwsvUamlxaJGvSAB1vAQ",
@@ -638,7 +638,7 @@ Paginator(
     VideoItem(
       id: "hwggIw2HQuQ",
       name: "eevBLAB 96 - BUSTED! - Dymo Gets WORSE!",
-      length: Some(347),
+      duration: Some(347),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/hwggIw2HQuQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBrARGU_K_yrxFuO5Fx0a2sznKUCA",
@@ -673,7 +673,7 @@ Paginator(
     VideoItem(
       id: "xzSDJRC0F6c",
       name: "EEVblog 1462 - Why Dymo Label Printers SUCK!",
-      length: Some(1353),
+      duration: Some(1353),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/xzSDJRC0F6c/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAG9svGIbJ61gBv2XurBBjdj7eWaA",
@@ -708,7 +708,7 @@ Paginator(
     VideoItem(
       id: "9wuyPZjjR9k",
       name: "EEVblog 1461 - The MOSFET Search CHALLENGE",
-      length: Some(3505),
+      duration: Some(3505),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/9wuyPZjjR9k/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBhLudpzPSKR-vnRpUF61-upI5W4A",
@@ -743,7 +743,7 @@ Paginator(
     VideoItem(
       id: "vyJuMGEFbjQ",
       name: "EEVblog1460 - REPAIRING a LED Studio Light with a DUMPSTER LAPTOP!",
-      length: Some(1798),
+      duration: Some(1798),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/vyJuMGEFbjQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLConLvhiiORxzI4W53cK838-oimWA",
@@ -778,7 +778,7 @@ Paginator(
     VideoItem(
       id: "_pETMto-9iE",
       name: "EEVblog 1459 - Is it worth PARTS SALVAGING an Inkjet Printer/Scanner?",
-      length: Some(1588),
+      duration: Some(1588),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/_pETMto-9iE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLANwQQorgH71g8SZTkT6gi8SjkDCQ",
@@ -813,7 +813,7 @@ Paginator(
     VideoItem(
       id: "MvFf9RSJUhk",
       name: "EEVblog 1458 - Microscope Polarising MAGIC!",
-      length: Some(942),
+      duration: Some(942),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/MvFf9RSJUhk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAOkBS4oJiQHsbt_NMdXftPeUaR8A",
@@ -848,7 +848,7 @@ Paginator(
     VideoItem(
       id: "E6obq3T71vI",
       name: "EEVblog1457 - Old School Mailbag - ESC Burnout",
-      length: Some(1552),
+      duration: Some(1552),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/E6obq3T71vI/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA24jAiRp_-m1MJQATFhdbrRqFnHA",
@@ -883,7 +883,7 @@ Paginator(
     VideoItem(
       id: "ZTwVQmUm6NY",
       name: "eevBLAB 95 - Why Are Youtube Playlists So BAD?",
-      length: Some(865),
+      duration: Some(865),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/ZTwVQmUm6NY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAi4YH3QhTYvY5be4zeqST3PZ7EBA",
@@ -918,7 +918,7 @@ Paginator(
     VideoItem(
       id: "prQinQ4MWmU",
       name: "EEVblog 1456 - Sega Toys Homestar Planetarium REPAIR",
-      length: Some(899),
+      duration: Some(899),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/prQinQ4MWmU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDXaQgmCdFsIkM5Yt0Req7NWHELjQ",
@@ -953,7 +953,7 @@ Paginator(
     VideoItem(
       id: "yMIzsFAztv4",
       name: "EEVblog 1455 - Capacitors Produce Current During Reflow Soldering! WTF!",
-      length: Some(894),
+      duration: Some(894),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/yMIzsFAztv4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDcBhR3clJQxbrPONzQJ9nUNd_0OA",
@@ -988,7 +988,7 @@ Paginator(
     VideoItem(
       id: "QtqljdMwRyk",
       name: "EEVblog 1454 - Water from Air AGAIN! - The Kara Pure",
-      length: Some(1198),
+      duration: Some(1198),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/QtqljdMwRyk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDERzxdJPJQ7T_UhqojqFaACgzFvA",
@@ -1023,7 +1023,7 @@ Paginator(
     VideoItem(
       id: "kcWwAweWjQg",
       name: "EEVblog 1453 - Elgato Key Light TEARDOWN",
-      length: Some(1048),
+      duration: Some(1048),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/kcWwAweWjQg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLASIZUAaqbklehN0AG_xn6QDrREog",

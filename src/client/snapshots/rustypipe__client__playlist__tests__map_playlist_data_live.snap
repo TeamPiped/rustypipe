@@ -11,7 +11,7 @@ Playlist(
       VideoItem(
         id: "G1eQAxaim7I",
         name: "Bracket Stage Day 6 | MSI 2023",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/G1eQAxaim7I/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAec-R8N3ePlZu5R4vXvQ-b5rDjlw",
@@ -52,7 +52,7 @@ Playlist(
       VideoItem(
         id: "e2ikfdaqgQw",
         name: "(REBROADCAST) Brackets Stage Day 5 | MSI 2023",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/e2ikfdaqgQw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBVijuor2a5yElnWqnlONL8bBtadg",
@@ -93,7 +93,7 @@ Playlist(
       VideoItem(
         id: "eeRJ6gKEdGw",
         name: "MAD vs. G2 | Bracket Stage Day 5 | MSI 2023",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/eeRJ6gKEdGw/hqdefault_live.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBJnEZdD6DPyuxAirKBBVvf8tf1EA",
@@ -134,7 +134,7 @@ Playlist(
       VideoItem(
         id: "f6_LVfu4TBM",
         name: "C9 vs. BLG | Brackets Stage Day 3 | MSI 2023",
-        length: Some(16296),
+        duration: Some(16296),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/f6_LVfu4TBM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA3bXUGDK_XN1sd4SpY5uyqKPLcXg",
@@ -175,7 +175,7 @@ Playlist(
       VideoItem(
         id: "k1T5q5vCseA",
         name: "MAD vs. T1 | Brackets Stage Day 2 | MSI 2023",
-        length: Some(14656),
+        duration: Some(14656),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/k1T5q5vCseA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAKwXBozWNoyoPOTLxU-KTEcPdGNg",
@@ -216,7 +216,7 @@ Playlist(
       VideoItem(
         id: "SfSRvJAepao",
         name: "GEN vs. G2 | Brackets Stage Day 1 | MSI 2023",
-        length: Some(17253),
+        duration: Some(17253),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/SfSRvJAepao/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAHSVlRBTH5fTkJuZZ1TM023aiRJw",
@@ -257,7 +257,7 @@ Playlist(
       VideoItem(
         id: "iLh5u7b9cBA",
         name: "Grand Final | 2021 Mid-Season Invitational",
-        length: Some(22019),
+        duration: Some(22019),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/iLh5u7b9cBA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDf-JLHFDDTrEh0PNDOf0YFDC8Gng",
@@ -298,7 +298,7 @@ Playlist(
       VideoItem(
         id: "H0-Xedaum2M",
         name: "DK vs. MAD | Semifinals Day 2 | 2021 Mid-Season Invitational | DWG KIA vs. MAD Lions",
-        length: Some(20799),
+        duration: Some(20799),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/H0-Xedaum2M/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAyxdqkPntzMldI_O4fj7DknKtedg",
@@ -339,7 +339,7 @@ Playlist(
       VideoItem(
         id: "SfRj_PfmD1o",
         name: "RNG vs. PSG | Semifinals Day 1 | 2021 Mid-Season Invitational | Royal Never Give Up vs. PSG Talon",
-        length: Some(17930),
+        duration: Some(17930),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/SfRj_PfmD1o/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCXykcy-nthXWw7ZJBiXh5k2PRidg",
@@ -380,7 +380,7 @@ Playlist(
       VideoItem(
         id: "Ey7gCktJKxs",
         name: "Groups Day 6 | 2021 Mid-Season Invitational",
-        length: Some(26565),
+        duration: Some(26565),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/Ey7gCktJKxs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLADorMS1EykOI1XejSGx9oZ8fRdsw",
@@ -421,7 +421,7 @@ Playlist(
       VideoItem(
         id: "A0zFe_YqSmk",
         name: "(REBROADCAST) LEC/LCS Superstar Showdown | All-Star Event 2020",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/A0zFe_YqSmk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD9AouCkLOruMF-a6GpHbusSO51VA",
@@ -462,7 +462,7 @@ Playlist(
       VideoItem(
         id: "s1bRE7hHEFQ",
         name: "(REBROADCAST) LCK/LPL Superstar Showdown | All-Star Event 2020",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/s1bRE7hHEFQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDFE2VvCKI9WbFGauIQjOEpXzJkgw",
@@ -503,7 +503,7 @@ Playlist(
       VideoItem(
         id: "JyrZr3adP9o",
         name: "(REBROADCAST) LEC/LCS Underdog Uprising | All-Star Event 2020",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/JyrZr3adP9o/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDDSe8Rt1Z2WVvwWSOwCXPvrlIpGg",
@@ -544,7 +544,7 @@ Playlist(
       VideoItem(
         id: "_HieTC6XHzg",
         name: "The Americas | Monuments of Power Seasonal Tournament",
-        length: Some(24819),
+        duration: Some(24819),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/_HieTC6XHzg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBXu5atOXzFyrWOHIgEJBIINbNgYw",
@@ -585,7 +585,7 @@ Playlist(
       VideoItem(
         id: "iDg1__bD4Pg",
         name: "OG vs. G2 | Playoffs Round 3 | LEC Spring | Origen vs. G2 Esports (2020)",
-        length: Some(21800),
+        duration: Some(21800),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/iDg1__bD4Pg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBZ6dTtMZGDgsBGEVIyDASGSEiKiQ",
@@ -626,7 +626,7 @@ Playlist(
       VideoItem(
         id: "i9lwd0rkKj0",
         name: "C9 vs. EG | Playoffs Round 2 | LCS Spring Split | Cloud9 vs. Evil Geniuses (2020)",
-        length: Some(17920),
+        duration: Some(17920),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/i9lwd0rkKj0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDcU2lnI3YdS8-_n_C_JLPwGsuRlg",
@@ -667,7 +667,7 @@ Playlist(
       VideoItem(
         id: "Id5lJcI0w5w",
         name: "FNC vs. MAD | Playoffs Round 2 | LEC Spring | Fnatic vs. MAD Lions (2020)",
-        length: Some(16280),
+        duration: Some(16280),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/Id5lJcI0w5w/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDdTZD3sa5NQWB0TBqLuHn0uPoYHA",
@@ -708,7 +708,7 @@ Playlist(
       VideoItem(
         id: "6_jP8fxeiM0",
         name: "FLY vs. GG | Playoffs Round 1 | LCS Spring Split | FlyQuest vs. Golden Guardians (2020)",
-        length: Some(15646),
+        duration: Some(15646),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/6_jP8fxeiM0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAbZuV71R4bD0Qno7bEtiA-VB2qqg",
@@ -749,7 +749,7 @@ Playlist(
       VideoItem(
         id: "1QgMXWEDNr8",
         name: "Week 8 Day 1 | LEC Spring Split (2020)",
-        length: Some(28130),
+        duration: Some(28130),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/1QgMXWEDNr8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDaNPojzZIDSWY0uwV469pql68VmQ",
@@ -790,7 +790,7 @@ Playlist(
       VideoItem(
         id: "Q0tddAzhBiA",
         name: "2019 All-Star Event: Day 3",
-        length: Some(26378),
+        duration: Some(26378),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/Q0tddAzhBiA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAF0R5UdX_lgiUkM5ebll38HarV_g",
@@ -831,7 +831,7 @@ Playlist(
       VideoItem(
         id: "xFAUCYK0ltI",
         name: "2019 All-Star Event: Day 2",
-        length: Some(28589),
+        duration: Some(28589),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/xFAUCYK0ltI/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDm5ZuBI4L0jmMCygrM93wILLj_qQ",
@@ -872,7 +872,7 @@ Playlist(
       VideoItem(
         id: "u4LNyvbOPMQ",
         name: "2019 All-Star Event: Day 1",
-        length: Some(25967),
+        duration: Some(25967),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/u4LNyvbOPMQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC6_67njGnGOut8X8MltMAfKicA8A",
@@ -913,7 +913,7 @@ Playlist(
       VideoItem(
         id: "ojes5ULOqhc",
         name: "G2 vs. FPX | Finals | 2019 World Championship | G2 Esports vs. FunPlus Phoenix",
-        length: Some(42901),
+        duration: Some(42901),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/ojes5ULOqhc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAstiHqJRwyKG7CTswwMfVY3H1XhQ",
@@ -954,7 +954,7 @@ Playlist(
       VideoItem(
         id: "prBto1zrirs",
         name: "Red Bull Rise of the Elements Invitational (Day 2)",
-        length: Some(22332),
+        duration: Some(22332),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/prBto1zrirs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDn7-K82Puf2rNIdrM5_esqEYBb1A",
@@ -995,7 +995,7 @@ Playlist(
       VideoItem(
         id: "sRBHLewK5-0",
         name: "Red Bull Rise of the Elements Invitational (Day 1)",
-        length: Some(35261),
+        duration: Some(35261),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/sRBHLewK5-0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA2j62QeYg43w94lEUIh71_suXppQ",
@@ -1036,7 +1036,7 @@ Playlist(
       VideoItem(
         id: "euppkm2ztdM",
         name: "Groups Day 8 | 2019 World Championship",
-        length: Some(27138),
+        duration: Some(27138),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/euppkm2ztdM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDUKthHPGA5IQVK1psj53zHWg_O1g",
@@ -1077,7 +1077,7 @@ Playlist(
       VideoItem(
         id: "FQ0Tw6EuQRk",
         name: "Groups Day 7 | 2019 World Championship",
-        length: Some(27869),
+        duration: Some(27869),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/FQ0Tw6EuQRk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAd0UcTflY5R2FMpYH0ndRYIeB-8A",
@@ -1118,7 +1118,7 @@ Playlist(
       VideoItem(
         id: "KvcqXRNVH9M",
         name: "Groups Day 6 | 2019 World Championship",
-        length: Some(29407),
+        duration: Some(29407),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/KvcqXRNVH9M/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCmqmJPsjuvnBrJaJ79wX4HxnrtRw",
@@ -1159,7 +1159,7 @@ Playlist(
       VideoItem(
         id: "srFwxG-e5SQ",
         name: "Groups Day 5 | 2019 World Championship",
-        length: Some(29310),
+        duration: Some(29310),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/srFwxG-e5SQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCpamG0koxWwHXEjacOAEKUzRXHOg",
@@ -1200,7 +1200,7 @@ Playlist(
       VideoItem(
         id: "EN4W4O-leW4",
         name: "Groups Day 4 | 2019 World Championship",
-        length: Some(27544),
+        duration: Some(27544),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/EN4W4O-leW4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCdEWMFaBol4tK-obwLs7-UrbFxYA",
@@ -1241,7 +1241,7 @@ Playlist(
       VideoItem(
         id: "16O-OqVSj78",
         name: "Groups Day 3 | 2019 World Championship",
-        length: Some(27787),
+        duration: Some(27787),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/16O-OqVSj78/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD6fOlnXog4cAvNq9KBSj1ZVhGt-g",
@@ -1282,7 +1282,7 @@ Playlist(
       VideoItem(
         id: "2Fa_EnY3AyI",
         name: "IG vs. JDG | Round 1 | LPL Regional Qualifier | Invictus Gaming vs. JD Gaming (2019)",
-        length: Some(19872),
+        duration: Some(19872),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/2Fa_EnY3AyI/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAzEvZy2AzjuEwPrc6HEB9bQ_IifQ",
@@ -1323,7 +1323,7 @@ Playlist(
       VideoItem(
         id: "O4vl13XhEXk",
         name: "(REBROADCAST) TSM vs. CG | Quarterfinals Day 1 | LCS Summer Split (2019)",
-        length: Some(13839),
+        duration: Some(13839),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/O4vl13XhEXk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLApiEn5mhalZEe23902mlEsGZe53A",
@@ -1364,7 +1364,7 @@ Playlist(
       VideoItem(
         id: "qnz4VC7jaQg",
         name: "Week 5 Day 2 | LCS Summer Split (2019)",
-        length: Some(27224),
+        duration: Some(27224),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/qnz4VC7jaQg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCkiAk6gorlhecUv_Fdu5CZAUS8cA",
@@ -1405,7 +1405,7 @@ Playlist(
       VideoItem(
         id: "ZXUTMEOkPd8",
         name: "Week 4 Day 2 | LCS Summer Split (2019)",
-        length: Some(28136),
+        duration: Some(28136),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/ZXUTMEOkPd8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCl90692Yu6ZCs-EQtjtmNfAqicsw",
@@ -1446,7 +1446,7 @@ Playlist(
       VideoItem(
         id: "qkurBGLdrYc",
         name: "Play-In Draw Show | 2019 Mid-Season Invitational",
-        length: Some(5589),
+        duration: Some(5589),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/qkurBGLdrYc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAWDbFYHKPPgZWYnpAH_I8NkTIdSw",
@@ -1487,7 +1487,7 @@ Playlist(
       VideoItem(
         id: "iaZoFqcQauQ",
         name: "VSG vs. KT - ESS vs. JAG| Round 1 | LCK Summer Promotion (2019)",
-        length: Some(19229),
+        duration: Some(19229),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/iaZoFqcQauQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCdgsIUjDiII5xmTBXL0yJ5D_ymUg",
@@ -1528,7 +1528,7 @@ Playlist(
       VideoItem(
         id: "V5uwgkx-dWw",
         name: "The Dive Live @ STL | Spring Finals (2019)",
-        length: Some(10905),
+        duration: Some(10905),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/V5uwgkx-dWw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBAPOA_Appn-PUvqvP9YtwyOqYjcw",
@@ -1569,7 +1569,7 @@ Playlist(
       VideoItem(
         id: "twx9WFSWGuI",
         name: "HLE vs. KT - KZ vs. GRF | Week 10 Day 2 | LCK Spring Split (2019)",
-        length: Some(17619),
+        duration: Some(17619),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/twx9WFSWGuI/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD2sxbdz5s3atLGJPGFQBcrpFzw7Q",
@@ -1610,7 +1610,7 @@ Playlist(
       VideoItem(
         id: "PH9u7c_6vkk",
         name: "(REBROADCAST) 2018 All-Star Event: Day 1",
-        length: Some(26998),
+        duration: Some(26998),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/PH9u7c_6vkk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAcet50MJc_TuXxoLTUZWtF_klwqg",
@@ -1651,7 +1651,7 @@ Playlist(
       VideoItem(
         id: "8yt60WWCyro",
         name: "(REBROADCAST) 2018 All-Star Event: Day 2",
-        length: Some(22513),
+        duration: Some(22513),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/8yt60WWCyro/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAmLmu3C70JM-8OrfgJvXtdGk_yOA",
@@ -1692,7 +1692,7 @@ Playlist(
       VideoItem(
         id: "ksaG3KvyRuM",
         name: "(REBROADCAST) FNC vs. IG | Finals | World Championship | Fnatic vs. Invictus Gaming (2018)",
-        length: Some(17792),
+        duration: Some(17792),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/ksaG3KvyRuM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDtUULLHFN-bDBtejGRQXeqAXKz3Q",
@@ -1733,7 +1733,7 @@ Playlist(
       VideoItem(
         id: "kLM4Pah5BOg",
         name: "FNC vs. IG | Finals | World Championship | Fnatic vs. Invictus Gaming (2018)",
-        length: Some(16909),
+        duration: Some(16909),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/kLM4Pah5BOg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA_HEPvPOoM-H5cn8eKB3hYTI3qhA",
@@ -1774,7 +1774,7 @@ Playlist(
       VideoItem(
         id: "178rKXU7JLw",
         name: "(REBROADCAST) FNC vs. C9 | Semifinal | World Championship | Fnatic vs. Cloud9 (2018)",
-        length: Some(13676),
+        duration: Some(13676),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/178rKXU7JLw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAF_nWtAqaiEq5ZhTaQZF7ljzS4Dg",
@@ -1815,7 +1815,7 @@ Playlist(
       VideoItem(
         id: "K2wc3tvwHPw",
         name: "(REBROADCAST) G2 vs. IG | Semifinal | World Championship | G2 Esports vs. Invictus Gaming (2018)",
-        length: Some(12914),
+        duration: Some(12914),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/K2wc3tvwHPw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAAS64LheAsybx0esJDA64Ia6GgNw",
@@ -1856,7 +1856,7 @@ Playlist(
       VideoItem(
         id: "6px5QTgCNhA",
         name: "(REBROADCAST) C9 vs. AFS - FNC vs. EDG | Quarterfinals Day 2 | 2018 World Championship",
-        length: Some(27422),
+        duration: Some(27422),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/6px5QTgCNhA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA8a4cryD26Zigkjp2glGZMAzltNQ",
@@ -1897,7 +1897,7 @@ Playlist(
       VideoItem(
         id: "nljxMmzFK4s",
         name: "(REBROADCAST) KT vs. IG - RNG vs. G2 | Quarterfinals Day 1 | 2018 World Championship",
-        length: Some(35934),
+        duration: Some(35934),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/nljxMmzFK4s/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBdOiwwM_S7VRkZyFl_35lQmOZSLQ",
@@ -1938,7 +1938,7 @@ Playlist(
       VideoItem(
         id: "q0Z2vytKUQ0",
         name: "(REBROADCAST) 2018 World Championship: Group Stage Day 8",
-        length: Some(26434),
+        duration: Some(26434),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/q0Z2vytKUQ0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCzY2x0VBqkFJTP7bBZLjQrsELMlQ",
@@ -1979,7 +1979,7 @@ Playlist(
       VideoItem(
         id: "ILjZQp6UFFs",
         name: "(REBROADCAST) 2018 World Championship: Group Stage Day 7",
-        length: Some(22695),
+        duration: Some(22695),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/ILjZQp6UFFs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDswF4og8mMHnElcHXmk4fWX_Odfg",
@@ -2020,7 +2020,7 @@ Playlist(
       VideoItem(
         id: "n4IIRmF7iXs",
         name: "(REBROADCAST) 2018 World Championship: Group Stage Day 6",
-        length: Some(29727),
+        duration: Some(29727),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/n4IIRmF7iXs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAKSijfzAkiRAMND-8pArMptw0R_w",
@@ -2061,7 +2061,7 @@ Playlist(
       VideoItem(
         id: "sYu_jF6ih3c",
         name: "(REBROADCAST) 2018 World Championship: Group Stage Day 5",
-        length: Some(27421),
+        duration: Some(27421),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/sYu_jF6ih3c/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCf-vBRXhpKHzTUDOwZZW256gSlzg",
@@ -2102,7 +2102,7 @@ Playlist(
       VideoItem(
         id: "qXG1RCEZoh8",
         name: "(REBROADCAST) 2018 World Championship: Group Stage Day 4",
-        length: Some(22957),
+        duration: Some(22957),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/qXG1RCEZoh8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCxEK00Of3hYUA79k7fy_BoJKm68w",
@@ -2143,7 +2143,7 @@ Playlist(
       VideoItem(
         id: "wipHTkJcV2g",
         name: "(REBROADCAST) 2018 World Championship: Group Stage Day 3",
-        length: Some(10817),
+        duration: Some(10817),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/wipHTkJcV2g/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD7ENiQeGLBaeEEW5cX_0-QyN6ByA",
@@ -2184,7 +2184,7 @@ Playlist(
       VideoItem(
         id: "P0EHhWMcEMQ",
         name: "(REBROADCAST) 2018 World Championship: Group Stage Day 2",
-        length: Some(26051),
+        duration: Some(26051),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/P0EHhWMcEMQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLClIWW0SHy1cVFIjCdmNhnf5JIjYA",
@@ -2225,7 +2225,7 @@ Playlist(
       VideoItem(
         id: "w3hbpaD3zsM",
         name: "(REBROADCAST) G2 vs. INF - GRX vs. SUP | Play-In Knockouts | 2018 World Championship",
-        length: Some(32025),
+        duration: Some(32025),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/w3hbpaD3zsM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBzDVbWhEvklYq6CSTppvlibBqlrw",
@@ -2266,7 +2266,7 @@ Playlist(
       VideoItem(
         id: "58Lhxzj8DsI",
         name: "(REBROADCAST) C9 vs. GMB - EDG vs. DFM | Play-In Knockouts | 2018 World Championship",
-        length: Some(28827),
+        duration: Some(28827),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/58Lhxzj8DsI/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBIjEmr7L55ABPcAdZcRz28uq8Ifw",
@@ -2307,7 +2307,7 @@ Playlist(
       VideoItem(
         id: "22yDZ5WZpA4",
         name: "(REBROADCAST) 2018 World Championship: Play-In Day 4",
-        length: Some(26890),
+        duration: Some(26890),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/22yDZ5WZpA4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBdlbKelcczYsmECaSiQ2r1mwk6Dw",
@@ -2348,7 +2348,7 @@ Playlist(
       VideoItem(
         id: "iC6Fz9uUepk",
         name: "(REBROADCAST) 2018 World Championship: Play-In Day 3",
-        length: Some(26780),
+        duration: Some(26780),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/iC6Fz9uUepk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC2tpNtmMiLhKohSZBODekwBuNUnQ",
@@ -2389,7 +2389,7 @@ Playlist(
       VideoItem(
         id: "bNskvqxedow",
         name: "(REBROADCAST) 2018 World Championship: Play-In Day 2",
-        length: Some(23337),
+        duration: Some(23337),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/bNskvqxedow/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAF5uns6inQftxlGdgjyNT7hOnnFw",
@@ -2430,7 +2430,7 @@ Playlist(
       VideoItem(
         id: "Sm1LmwghwcA",
         name: "BTC vs. MVP | Day 4 | LCK Spring Promotion | Team Battlecomics vs. MVP  (2019)",
-        length: Some(14759),
+        duration: Some(14759),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/Sm1LmwghwcA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAaHny-WRN-mXTvaqxo3OQ-GlOmkA",
@@ -2471,7 +2471,7 @@ Playlist(
       VideoItem(
         id: "mtqnA3Jh3ig",
         name: "BTC vs. DWG | Day 2 | LCK Spring Promotion | Team Battlecomics vs. DAMWON Gaming  (2019)",
-        length: Some(16587),
+        duration: Some(16587),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/mtqnA3Jh3ig/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAAa4WUrB19WsutFfEDsIupCFFVlA",
@@ -2512,7 +2512,7 @@ Playlist(
       VideoItem(
         id: "uQAiGTmAvFQ",
         name: "(REBROADCAST) S04 vs. G2 | Final | EU LCS Regional Qualifier (2018)",
-        length: Some(17359),
+        duration: Some(17359),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/uQAiGTmAvFQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDWUVb2NPq89SrZS7BppKGi8lMYrA",
@@ -2553,7 +2553,7 @@ Playlist(
       VideoItem(
         id: "WrlWqcawOnE",
         name: "G2 vs. SPY | Round 2 | EU LCS Regional Qualifier | G2 Esports vs. Splyce (2018)",
-        length: Some(24439),
+        duration: Some(24439),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/WrlWqcawOnE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDsCTbEOJrElm7iYgRXVnf4GqDdgg",
@@ -2594,7 +2594,7 @@ Playlist(
       VideoItem(
         id: "s9lFG8o9a6s",
         name: "EDG vs. JDG | Round 1 | LPL Regional Qualifier | Edward Gaming vs. JD Gaming (2018)",
-        length: Some(28081),
+        duration: Some(28081),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/s9lFG8o9a6s/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLArfENrcbL8BY_f2DyyzbODSOn5FQ",
@@ -2635,7 +2635,7 @@ Playlist(
       VideoItem(
         id: "Cd5SJe5Pf3M",
         name: "(REBROADCAST) SPY vs. MSF | Round 1 | EU LCS Regional Qualifier (2018)",
-        length: Some(20830),
+        duration: Some(20830),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/Cd5SJe5Pf3M/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBXpL1gSmWZ0OBajE7mCsHqLpHqoA",
@@ -2676,7 +2676,7 @@ Playlist(
       VideoItem(
         id: "_hGU5DNRC0Y",
         name: "SPY vs. MSF | Round 1 | EU LCS Regional Qualifier | Splyce vs. Misfits Gaming (2018)",
-        length: Some(24359),
+        duration: Some(24359),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/_hGU5DNRC0Y/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDbFqZhyO-NPJkjPW6TQXgRk8oxCQ",
@@ -2717,7 +2717,7 @@ Playlist(
       VideoItem(
         id: "fr-yiGaRRao",
         name: "(REBROADCAST) S04 vs. FNC | Finals | EU LCS Summer (2018)",
-        length: Some(17878),
+        duration: Some(17878),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/fr-yiGaRRao/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCr3rI-JP9Tb-RvdaWdQJLclNqqlg",
@@ -2758,7 +2758,7 @@ Playlist(
       VideoItem(
         id: "3kQc5eEJ0ds",
         name: "EDG vs. JDG | Round 2 | LPL Summer Playoffs | Edward Gaming vs. JD Gaming (2018)",
-        length: Some(15156),
+        duration: Some(15156),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/3kQc5eEJ0ds/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAfntTV9t6PHrClBaGgkRT8njyc5g",
@@ -2799,7 +2799,7 @@ Playlist(
       VideoItem(
         id: "gynnT1i3TsE",
         name: "RNG vs. TOP | Round 2 | LPL Summer Playoffs | Royal Never Give Up vs. Topsports Gaming (2018)",
-        length: Some(15850),
+        duration: Some(15850),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/gynnT1i3TsE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB4sbHCjzLbp9g8FMaBXcmS7o4LIQ",
@@ -2840,7 +2840,7 @@ Playlist(
       VideoItem(
         id: "YM2XgQ7OGKI",
         name: "The Dive: Live from Oakland",
-        length: Some(7420),
+        duration: Some(7420),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/YM2XgQ7OGKI/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD2Je3-9D5WsxKf0xf8RRsv9NkuOw",
@@ -2881,7 +2881,7 @@ Playlist(
       VideoItem(
         id: "bcJYNWDWCz8",
         name: "POV Stream | FNC Hylissang | Semifinals | EU LCS Summer Split (2018)",
-        length: Some(12719),
+        duration: Some(12719),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/bcJYNWDWCz8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC3zWItAHRbS2Bv2eBS1Y09NJjTnA",
@@ -2922,7 +2922,7 @@ Playlist(
       VideoItem(
         id: "6J6oBjmjpvA",
         name: "FPX vs. EDG - SS vs. WE | Week 11 Day 1 | LPL Summer Split (2018)",
-        length: Some(22136),
+        duration: Some(22136),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/6J6oBjmjpvA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAvvdBMr-dm-pbsNXulGJCxF04Pbg",
@@ -2963,7 +2963,7 @@ Playlist(
       VideoItem(
         id: "cgsJ7SsZdxk",
         name: "(REBROADCAST) G2 vs. MSF | Quarterfinals | EU LCS Summer (2018)",
-        length: Some(14319),
+        duration: Some(14319),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/cgsJ7SsZdxk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBrkh6HD3j7H5vxPunSCcS0WvOTZQ",
@@ -3004,7 +3004,7 @@ Playlist(
       VideoItem(
         id: "T62zlBmloo8",
         name: "POV Stream | G2 Perkz | Quarterfinals | EU LCS Summer Split (2018)",
-        length: Some(10294),
+        duration: Some(10294),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/T62zlBmloo8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDScrnvnLzThZptM9QrTHLBYsq0IQ",
@@ -3045,7 +3045,7 @@ Playlist(
       VideoItem(
         id: "NOVxAEtu20U",
         name: "C9A vs. FLYA | Semifinals | NA Academy Summer Split | C9 Academy vs. FLY Academy (2018)",
-        length: Some(17701),
+        duration: Some(17701),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/NOVxAEtu20U/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCqHCRMLW7uj1fkMYO9k8-IDWPwIw",
@@ -3086,7 +3086,7 @@ Playlist(
       VideoItem(
         id: "mKdQQ44oLa0",
         name: "POV Stream | SPY Odoamne | Quarterfinals | EU LCS Summer Split (2018)",
-        length: Some(19451),
+        duration: Some(19451),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/mKdQQ44oLa0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC6Lnf_nAhaOz9TJj-KxQrraulmaA",
@@ -3127,7 +3127,7 @@ Playlist(
       VideoItem(
         id: "vHZdBkFRD9Q",
         name: "SNG vs. VG - JDG vs. IG  | Week 10 Day 3| LPL Summer Split (2018)",
-        length: Some(19755),
+        duration: Some(19755),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/vHZdBkFRD9Q/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDNNAMpIgYAwxP0ys8a5HUtsWePkQ",
@@ -3168,7 +3168,7 @@ Playlist(
       VideoItem(
         id: "FmaHvMUxWso",
         name: "GRF vs. AFS | Round 2 | LCK Summer Playoffs | Griffin vs. Afreeca Freecs (2018)",
-        length: Some(21819),
+        duration: Some(21819),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/FmaHvMUxWso/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB94OCuz0M4oYxwqOcpUE8pMJTccQ",
@@ -3209,7 +3209,7 @@ Playlist(
       VideoItem(
         id: "2kGzzR_vlNM",
         name: "FPX vs. SS | Week 9 Day 5 | LPL Summer Split (2018)",
-        length: Some(11244),
+        duration: Some(11244),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/2kGzzR_vlNM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAAS0zYTOjxMj4pWyPrB0lRu-WRuQ",
@@ -3250,7 +3250,7 @@ Playlist(
       VideoItem(
         id: "GBa3IM39Hyo",
         name: "NA Academy Summer Split (2018) | Week 2 Day 2",
-        length: Some(20037),
+        duration: Some(20037),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/GBa3IM39Hyo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAGkLqe-martteiLTYH57IztUrPEw",
@@ -3291,7 +3291,7 @@ Playlist(
       VideoItem(
         id: "KwG0hE485_k",
         name: "POV Stream | S04 Nukeduck | Week 9 | EU LCS Summer Split (2018)",
-        length: Some(4157),
+        duration: Some(4157),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/KwG0hE485_k/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD3v3jjPXRiP_LgbL3lvrqe7fbdXg",
@@ -3332,7 +3332,7 @@ Playlist(
       VideoItem(
         id: "lr31odgHt2c",
         name: "VG vs. JDG - LGD vs. IG | Week 9 Day 4 | LPL Summer Split (2018)",
-        length: Some(20601),
+        duration: Some(20601),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/lr31odgHt2c/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAkoncTBbDMzTsKPPI7577pdDnTtQ",
@@ -3373,7 +3373,7 @@ Playlist(
       VideoItem(
         id: "YAe0kfvsQGk",
         name: "CGA vs. FLYA | Quarterfinals Day 1 | NA Academy Summer Split (2018)",
-        length: Some(23680),
+        duration: Some(23680),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/YAe0kfvsQGk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDKy96uTs82fVINHZn1V5pzPOTHew",
@@ -3414,7 +3414,7 @@ Playlist(
       VideoItem(
         id: "Dr9SRrRWPNo",
         name: "OMG vs. EDG - FPX vs. WE | Week 9 Day 1 | LPL Summer Split (2018)",
-        length: Some(19018),
+        duration: Some(19018),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/Dr9SRrRWPNo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAaNS5exSDvr234gLv_lEDHP6eRdw",
@@ -3455,7 +3455,7 @@ Playlist(
       VideoItem(
         id: "Y3pICd8FHFI",
         name: "POV Stream | G2 Perkz | Week 8 | EU LCS Summer Split (2018)",
-        length: Some(3184),
+        duration: Some(3184),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/Y3pICd8FHFI/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBXEMAoe4Q7djr2gmrfdyEP8aWhZQ",
@@ -3496,7 +3496,7 @@ Playlist(
       VideoItem(
         id: "YT1vPiTn1eI",
         name: "TOP vs. FPX - WE vs. EDG - OMG vs. RW | Week 8 Day 5 | LPL Summer Split (2018)",
-        length: Some(34489),
+        duration: Some(34489),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/YT1vPiTn1eI/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAY9-6hYO652_UWGVrbbvawGa6s9A",
@@ -3537,7 +3537,7 @@ Playlist(
       VideoItem(
         id: "oGNm5gCCMGY",
         name: "(REBROADCAST) EU LCS Summer Split (2018) | Week 8 Day 1",
-        length: Some(24028),
+        duration: Some(24028),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/oGNm5gCCMGY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBuyX9FnPq3MFfVdcv7njedQiLjlA",
@@ -3578,7 +3578,7 @@ Playlist(
       VideoItem(
         id: "gbmTaLw-3i0",
         name: "WE vs. TOP - FPX vs. OMG | Week 8 Day 1 | LPL Summer Split (2018)",
-        length: Some(19248),
+        duration: Some(19248),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/gbmTaLw-3i0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAg51LZ1zbbHd9xLxfuEaIGb4ep4g",
@@ -3619,7 +3619,7 @@ Playlist(
       VideoItem(
         id: "qq_EhiJoQg4",
         name: "LGD vs. FPX - BLG vs. WE | Week 7 Day 4 | LPL Summer Split (2018)",
-        length: Some(21853),
+        duration: Some(21853),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/qq_EhiJoQg4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDZ2CsPgM6kx4qMGSIJJtCsWA8k4A",
@@ -3660,7 +3660,7 @@ Playlist(
       VideoItem(
         id: "CzczOzdUfIM",
         name: "HLE vs. MVP - JAG vs. KT | Week 7 Day 3 | LCK Summer Split (2018)",
-        length: Some(24106),
+        duration: Some(24106),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/CzczOzdUfIM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCMcLRoEZSzjuKR_TMztpslGTmY_g",
@@ -3701,7 +3701,7 @@ Playlist(
       VideoItem(
         id: "TbKELxKkiTw",
         name: "RW vs. EDG | Week 7 Day 4 | LPL Summer Split (2018)",
-        length: Some(10205),
+        duration: Some(10205),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/TbKELxKkiTw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBO0bWOdj-TgOb49fRptDZUAJGCww",
@@ -3742,7 +3742,7 @@ Playlist(
       VideoItem(
         id: "MeDei67Zr4E",
         name: "BLG vs. FPX - VG vs. RW | Week 7 Day 1 | LPL Summer Split (2018)",
-        length: Some(18248),
+        duration: Some(18248),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/MeDei67Zr4E/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAPsnZgv4WAFI_ULwdjXkIgCoskWg",
@@ -3783,7 +3783,7 @@ Playlist(
       VideoItem(
         id: "sQP1mk4G9mg",
         name: "NA LCS Summer (2018) | Week 6 Day 2",
-        length: Some(25630),
+        duration: Some(25630),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/sQP1mk4G9mg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCFD_l6CcmfulXBzMtQzuc-ZfrfLA",
@@ -3824,7 +3824,7 @@ Playlist(
       VideoItem(
         id: "RK4olvfXT5g",
         name: "POV Stream | S04 Nukeduck | Week 6 | EU LCS Summer Split (2018)",
-        length: Some(3079),
+        duration: Some(3079),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/RK4olvfXT5g/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBqcBh47BxOEhoECPaePJuIMOLZoQ",
@@ -3865,7 +3865,7 @@ Playlist(
       VideoItem(
         id: "YexHW88A5Wg",
         name: "BBQ vs. HLE - JAG vs. SKT | Week 6 Day 4 | LCK Summer Split (2018)",
-        length: Some(20830),
+        duration: Some(20830),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/YexHW88A5Wg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLByMY9DN-kTcbtG9BMF4M2S7dI5uQ",
@@ -3906,7 +3906,7 @@ Playlist(
       VideoItem(
         id: "UvV0Miw17mU",
         name: "VG vs. FPX - RNG vs. WE | Week 6 Day 4 | LPL Summer Split (2018)",
-        length: Some(19509),
+        duration: Some(19509),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/UvV0Miw17mU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAzWkKXl3h0P068_xdkJDfQSglSGw",
@@ -3947,7 +3947,7 @@ Playlist(
       VideoItem(
         id: "nvCq0PidTB0",
         name: "KZ vs. KT - GEN vs. GRF | Week 6 Day 3 | LCK Summer Split (2018)",
-        length: Some(23704),
+        duration: Some(23704),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/nvCq0PidTB0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAQc8yz7HNxKrg6Vv--W_xzwdfOnw",
@@ -3988,7 +3988,7 @@ Playlist(
       VideoItem(
         id: "79cK5C6nQbg",
         name: "POV Stream | FNC Hylissang | Week 5 | EU LCS Summer Split (2018)",
-        length: Some(2878),
+        duration: Some(2878),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/79cK5C6nQbg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDMy7RDVDH6joZbXr0ngfi3Wsr_nQ",
@@ -4029,7 +4029,7 @@ Playlist(
       VideoItem(
         id: "8DYyu2cW-Ok",
         name: "GRF vs. KT - SKT vs. HLE | Week 5 Day 5 | LCK Summer Split (2018)",
-        length: Some(23108),
+        duration: Some(23108),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/8DYyu2cW-Ok/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAZd_smHTzLcvfVkVXiOsKEIpFPuQ",
@@ -4070,7 +4070,7 @@ Playlist(
       VideoItem(
         id: "pjJwzd06acg",
         name: "IG vs. TOP - SNG vs. EDG | Week 5 Day 5 | LPL Summer Split (2018)",
-        length: Some(19864),
+        duration: Some(19864),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/pjJwzd06acg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAlt220pFX6dtn2MdNi_l8-QG5c6Q",

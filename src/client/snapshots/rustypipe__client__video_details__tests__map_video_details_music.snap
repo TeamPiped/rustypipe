@@ -46,7 +46,7 @@ VideoDetails(
       VideoItem(
         id: "XtV_HGppS6A",
         name: "Vergiss mein nicht",
-        length: Some(263),
+        duration: Some(263),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/XtV_HGppS6A/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC4oeSAhTiX-CO6nISLrR5b-c-lwQ",
@@ -83,7 +83,7 @@ VideoDetails(
       VideoItem(
         id: "BcqM8Qshx7U",
         name: "Kuliko Jana - Eine neue Zeit",
-        length: Some(210),
+        duration: Some(210),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/BcqM8Qshx7U/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCTOMybYKiZ2jPlKUFcoYLngroaJw",
@@ -120,7 +120,7 @@ VideoDetails(
       VideoItem(
         id: "IUFUIgZOcow",
         name: "Silmaril - Schöner als die Sterne",
-        length: Some(205),
+        duration: Some(205),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/IUFUIgZOcow/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDraypAb-39OjGj6XeSxb5ZWuCntQ",
@@ -157,7 +157,7 @@ VideoDetails(
       VideoItem(
         id: "UtP9J88Jzg0",
         name: "Ruinen im Sand",
-        length: Some(195),
+        duration: Some(195),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/UtP9J88Jzg0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCmkebFxTlBZCOUHBFkMHv0DodLFQ",
@@ -194,7 +194,7 @@ VideoDetails(
       VideoItem(
         id: "sg6j-zfUF_A",
         name: "Eldamar",
-        length: Some(223),
+        duration: Some(223),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/sg6j-zfUF_A/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDk_V_5woDmnABodJnokWXNeyUulg",
@@ -231,7 +231,7 @@ VideoDetails(
       VideoItem(
         id: "u2XCC1rKxV0",
         name: "Faolan",
-        length: Some(256),
+        duration: Some(256),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/u2XCC1rKxV0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDd4Q0v9znAMTV6GLYt4Jq40MWX0w",
@@ -268,7 +268,7 @@ VideoDetails(
       VideoItem(
         id: "oOBBBl3fywU",
         name: "Aeria - Vom Wind",
-        length: Some(260),
+        duration: Some(260),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/oOBBBl3fywU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDCGpN0DnijJM8UhMKcFsTC6CFNEA",
@@ -305,7 +305,7 @@ VideoDetails(
       VideoItem(
         id: "pI0Rancanz0",
         name: "Vergiss mein nicht",
-        length: Some(263),
+        duration: Some(263),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/pI0Rancanz0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC_VG_5tF7ygcOE7baJcqsqyo_Ygw",
@@ -342,7 +342,7 @@ VideoDetails(
       VideoItem(
         id: "DsviLYh1CB0",
         name: "Eldamar",
-        length: Some(222),
+        duration: Some(222),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/DsviLYh1CB0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAc_WXeia9Pd2hK1PwTpTaGCKtlgA",
@@ -379,7 +379,7 @@ VideoDetails(
       VideoItem(
         id: "Ctpe9kafn78",
         name: "So still mein Herz",
-        length: Some(259),
+        duration: Some(259),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/Ctpe9kafn78/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDJqIxVeJPDgMFXTavr1aaYBuaY6w",
@@ -416,7 +416,7 @@ VideoDetails(
       VideoItem(
         id: "y252630WbIk",
         name: "Oonagh und Santiano: Vergiss mein nicht (mit lyrics)",
-        length: Some(260),
+        duration: Some(260),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/y252630WbIk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCgH4BN_8psoaGXUedP2Rr98O7OiA",
@@ -453,7 +453,7 @@ VideoDetails(
       VideoItem(
         id: "YgUZtELr_jw",
         name: "Aulë und Yavanna",
-        length: Some(216),
+        duration: Some(216),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/YgUZtELr_jw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA8840OzkwuDCpmkn_HS2w3EnlPwA",
@@ -490,7 +490,7 @@ VideoDetails(
       VideoItem(
         id: "ABKSs0aU4C0",
         name: "Gäa (Akustik Version)",
-        length: Some(235),
+        duration: Some(235),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/ABKSs0aU4C0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBtmUrTNQYkg0ATqAkPyvUPHzf9Gg",
@@ -527,7 +527,7 @@ VideoDetails(
       VideoItem(
         id: "O0I3rJsHikA",
         name: "Orome (A-Class Remix)",
-        length: Some(199),
+        duration: Some(199),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/O0I3rJsHikA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBLWSYj7yLNMsJkr2Hs4JOx2Rfpqg",

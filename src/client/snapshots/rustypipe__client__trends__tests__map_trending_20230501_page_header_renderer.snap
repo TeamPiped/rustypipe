@@ -6,7 +6,7 @@ expression: map_res.c
   VideoItem(
     id: "OLcdyDte2e8",
     name: "THE EQUALIZER 3 Trailer German Deutsch (2023)",
-    length: Some(159),
+    duration: Some(159),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/OLcdyDte2e8/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDSQWUCHxZpKpiaN87tETWCmwq3Gw",
@@ -48,7 +48,7 @@ expression: map_res.c
   VideoItem(
     id: "bV031nK_ipg",
     name: "Yalı Çapkını 30. Bölüm 1. Fragmanı | Olacaklara Hazır Ol!",
-    length: Some(48),
+    duration: Some(48),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/bV031nK_ipg/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCst780fpKDVMFjc1199-x0du0ySA",
@@ -90,7 +90,7 @@ expression: map_res.c
   VideoItem(
     id: "Mk4vH7xWBKs",
     name: "\u{200b}Kızılcık Şerbeti 24. Bölüm 1. Fragman | \"Hayatımın o karanlık dönemi sona erdi...\"",
-    length: Some(55),
+    duration: Some(55),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/Mk4vH7xWBKs/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDwAUm72bW_iLbmchMYfmhVyRodSw",
@@ -132,7 +132,7 @@ expression: map_res.c
   VideoItem(
     id: "WonRyXzq89w",
     name: "Camdaki Kız 77. Bölüm Fragmanı | Bittim Artık Ben!",
-    length: Some(43),
+    duration: Some(43),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/WonRyXzq89w/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAkp3CwjmEyEZdqthocRMQXyBIicg",
@@ -174,7 +174,7 @@ expression: map_res.c
   VideoItem(
     id: "2_OBxvKRYns",
     name: "Gülcemal 5. Bölüm 1. Fragmanı",
-    length: Some(55),
+    duration: Some(55),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/2_OBxvKRYns/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC4O5boUqlYlIsDZwbo6fnsanCl7Q",
@@ -216,7 +216,7 @@ expression: map_res.c
   VideoItem(
     id: "EUlC8ue8NFI",
     name: "The Witcher: Season 3 | Official Teaser | Netflix",
-    length: Some(72),
+    duration: Some(72),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/EUlC8ue8NFI/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD4D9fynrZqM2a13VlyRgsiuok4iw",
@@ -258,7 +258,7 @@ expression: map_res.c
   VideoItem(
     id: "RDE6Uz73A7g",
     name: "The Hunger Games: The Ballad of Songbirds & Snakes (2023) Official Trailer",
-    length: Some(169),
+    duration: Some(169),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/RDE6Uz73A7g/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDfw5gszhsKfBDVKANGxvbjYqUrMA",
@@ -300,7 +300,7 @@ expression: map_res.c
   VideoItem(
     id: "W-h9kvKG2KA",
     name: "Aile 9. Bölüm 2. Fragman",
-    length: Some(87),
+    duration: Some(87),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/W-h9kvKG2KA/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBxWt_mjWojiOncMWNHGatqWikccQ",
@@ -342,7 +342,7 @@ expression: map_res.c
   VideoItem(
     id: "wvijjwnljVU",
     name: "Yargı 63. Bölüm Fragman (Sezon Finali)",
-    length: Some(64),
+    duration: Some(64),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/wvijjwnljVU/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBOq9xG0GL3g1KrGSPG4aMtl8X-aA",
@@ -384,7 +384,7 @@ expression: map_res.c
   VideoItem(
     id: "vMYWPpJAbvc",
     name: "Gülcemal 5. Bölüm 1. Fragmanı | Kimse Gülcemal\'i Aptal Yerine Koyamaz!",
-    length: Some(40),
+    duration: Some(40),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/vMYWPpJAbvc/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB2g7wt5xFM0vB8U3rMGAabwrYlNg",
@@ -426,7 +426,7 @@ expression: map_res.c
   VideoItem(
     id: "PdhjMlyPjCU",
     name: "Kuruluş Osman 124.Bölüm Fragmanı",
-    length: Some(48),
+    duration: Some(48),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/PdhjMlyPjCU/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC_lGSiNFJ8e8e_Ch0yeeuWiCoBXQ",
@@ -468,7 +468,7 @@ expression: map_res.c
   VideoItem(
     id: "19ikl8vy4zs",
     name: "THE EQUALIZER 3 - Official Red Band Trailer (HD)",
-    length: Some(183),
+    duration: Some(183),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/19ikl8vy4zs/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAu8SQ-1bqOwsfayIuxkXoAgIXCpQ",
@@ -510,7 +510,7 @@ expression: map_res.c
   VideoItem(
     id: "HnzNZ0Mdx4I",
     name: "Ahsoka | Teaser Trailer | Disney+",
-    length: Some(112),
+    duration: Some(112),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/HnzNZ0Mdx4I/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBtihmDSlK3fAkKe_XDCkc45aGLbw",
@@ -552,7 +552,7 @@ expression: map_res.c
   VideoItem(
     id: "Qz_yH-06Yi8",
     name: "Gönül Dağı 96. Bölüm Fragmanı",
-    length: Some(50),
+    duration: Some(50),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/Qz_yH-06Yi8/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLARf_E6GKdpN8mKH5Zlx_CB46hsbw",
@@ -594,7 +594,7 @@ expression: map_res.c
   VideoItem(
     id: "c9YhvwuFZyk",
     name: "DUNE: PART TWO – First Trailer (2023) Warner Bros. Pictures & Max",
-    length: Some(82),
+    duration: Some(82),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/c9YhvwuFZyk/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDS3E7kp_6wZ0s6nQmaMzt4AbWrsA",
@@ -636,7 +636,7 @@ expression: map_res.c
   VideoItem(
     id: "iuk77TjvfmE",
     name: "Marvel Studios’ The Marvels | Teaser Trailer",
-    length: Some(117),
+    duration: Some(117),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/iuk77TjvfmE/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLANzHhP5yCjp4Vi6_sbR7eUIJSxQg",
@@ -678,7 +678,7 @@ expression: map_res.c
   VideoItem(
     id: "itnqEauWQZM",
     name: "Transformers: Rise of the Beasts | Official Trailer (2023 Movie)",
-    length: Some(153),
+    duration: Some(153),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/itnqEauWQZM/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBq7T9kux2hDE86LXKo0CVuOOvRXQ",
@@ -720,7 +720,7 @@ expression: map_res.c
   VideoItem(
     id: "0RPBk5awAIg",
     name: "Ben Bu Cihana Sığmazam 28. Bölüm Fragmanı | \'\'Kurbanı takip edeceksin...\'\' @atvturkiye",
-    length: Some(51),
+    duration: Some(51),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/0RPBk5awAIg/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDrlh_mZMpdQNJu3agq1lq7NqrT5Q",
@@ -762,7 +762,7 @@ expression: map_res.c
   VideoItem(
     id: "_Hz5t58ePKs",
     name: "Üç Kız Kardeş 48. Bölüm Fragmanı | Türkan, gerçekleri Somer\'in yüzüne vuruyor!",
-    length: Some(56),
+    duration: Some(56),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/_Hz5t58ePKs/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAlr1DQooJjngcDHKtrnc5O3cGjfg",
@@ -804,7 +804,7 @@ expression: map_res.c
   VideoItem(
     id: "lLMEejtqb0Q",
     name: "Kuruluş Osman 124. Bölüm Fragmanı | \"Yenişehir\'e saldıracak\" @atvturkiye",
-    length: Some(67),
+    duration: Some(67),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/lLMEejtqb0Q/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBw4qDswxhGwWZThSUiFGXbbDOltQ",
@@ -846,7 +846,7 @@ expression: map_res.c
   VideoItem(
     id: "ZsrahE6znRA",
     name: "THE EQUALIZER 3 Official Trailer (2023)",
-    length: Some(200),
+    duration: Some(200),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/ZsrahE6znRA/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLASkb818kKUEwexK0a_Jk6l3kYLQA",
@@ -888,7 +888,7 @@ expression: map_res.c
   VideoItem(
     id: "GRyt3Ov4zz0",
     name: "Barbie | Teaser Trailer 2",
-    length: Some(105),
+    duration: Some(105),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/GRyt3Ov4zz0/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAnUrsc1AVHZ-RebWj2AQY_5EJx6g",
@@ -930,7 +930,7 @@ expression: map_res.c
   VideoItem(
     id: "-fjqPyZPNB4",
     name: "Kraliçe 6. Bölüm 2. Fragmanı | Artık Kolay Kurtulamazsın",
-    length: Some(41),
+    duration: Some(41),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/-fjqPyZPNB4/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBYi8YOTivyUau0HXZhD7z8V_807g",
@@ -972,7 +972,7 @@ expression: map_res.c
   VideoItem(
     id: "qUsGi4CSy-I",
     name: "Ömer 14. Bölüm 1. Fragmanı | Beni Sevdiğini Biliyorum!",
-    length: Some(54),
+    duration: Some(54),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/qUsGi4CSy-I/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD-yc6Yw6YsqqMsfPnd1pd1c-PqYQ",
@@ -1014,7 +1014,7 @@ expression: map_res.c
   VideoItem(
     id: "cDPY7R2Hfrs",
     name: "Yalı Çapkını 31. Bölüm Fragmanı | \"Seyran\'ı Yıkan Haber\"",
-    length: Some(61),
+    duration: Some(61),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/cDPY7R2Hfrs/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLClKfy6N0I_csMaicmSRIhLYdn4Hg",
@@ -1056,7 +1056,7 @@ expression: map_res.c
   VideoItem(
     id: "RJbR1MzR3k8",
     name: "Ömer 15. Bölüm 2. Fragman",
-    length: Some(56),
+    duration: Some(56),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/RJbR1MzR3k8/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDQ1TQ81aBzwvebUorA_ePbHx-G7Q",
@@ -1098,7 +1098,7 @@ expression: map_res.c
   VideoItem(
     id: "iv6Bx_JwY_k",
     name: "Aldatmak 28. Bölüm Fragmanı | \'\'Ben boşanmak istemiyorum, Güzide affet beni\"",
-    length: Some(51),
+    duration: Some(51),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/iv6Bx_JwY_k/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC6diXarynpK0dUNRN2SbykWjavLA",
@@ -1140,7 +1140,7 @@ expression: map_res.c
   VideoItem(
     id: "vrK13rVnVa8",
     name: "Aile 9. Bölüm 1. Fragman | “İlyas Koruzade oğlunu öldürdüğümüzü öğrenirse…”",
-    length: Some(68),
+    duration: Some(68),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/vrK13rVnVa8/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD6SVQaSpsjHzT0I8-3gPxvvH4Zvw",
@@ -1182,7 +1182,7 @@ expression: map_res.c
   VideoItem(
     id: "iOG94aAeh9U",
     name: "Çöp Adam 18. Bölüm 2. Fragmanı | Kapat Beni!",
-    length: Some(63),
+    duration: Some(63),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/iOG94aAeh9U/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBr6zymASMNB8xszHbQwt2b1bMY_g",
@@ -1224,7 +1224,7 @@ expression: map_res.c
   VideoItem(
     id: "7cuBIM5culc",
     name: "Tetikçinin Oğlu 4. Bölüm Fragmanı | \"Cenazeden Sonra Başlatırız...\"",
-    length: Some(54),
+    duration: Some(54),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/7cuBIM5culc/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCZCNzleOQsQFHIi-vGQr_x4p5ltw",

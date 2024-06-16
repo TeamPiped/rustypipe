@@ -44,7 +44,7 @@ Channel(
       VideoItem(
         id: "vFc_pAywtKc",
         name: "The Murder Capital - Return My Head - Live at Coachella 2023",
-        length: Some(194),
+        duration: Some(194),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/vFc_pAywtKc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAPDC5UHtj76ursSNJqBD-jAiSxHg",
@@ -85,7 +85,7 @@ Channel(
       VideoItem(
         id: "3JprxZgfcHU",
         name: "BENEE - Supaloney -  ft. Gus Dapperton - Live at Coachella 2023",
-        length: Some(270),
+        duration: Some(270),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/3JprxZgfcHU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCs4cytf-M3ksr1YZB0Iu22b3_Baw",
@@ -126,7 +126,7 @@ Channel(
       VideoItem(
         id: "a4QufICobaA",
         name: "Doechii - What It Is - Live at Coachella 2023",
-        length: Some(185),
+        duration: Some(185),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/a4QufICobaA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC1bg4wXk4z0Tcp-PgPodKlRsf8lA",
@@ -167,7 +167,7 @@ Channel(
       VideoItem(
         id: "QoRm-xhVqYU",
         name: "Gabriels - Blame - Live at Coachella 2023",
-        length: Some(170),
+        duration: Some(170),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/QoRm-xhVqYU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD9H8nfnmu-G2jIfTelbBNbiAWvqw",
@@ -208,7 +208,7 @@ Channel(
       VideoItem(
         id: "28DbQYSsn1w",
         name: "Kaytranada - Intimidate - ft H.E.R. - Live at Coachella 2023",
-        length: Some(252),
+        duration: Some(252),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/28DbQYSsn1w/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAF_nO2I3hjct93i3p6V3H1Rmadcg",
@@ -249,7 +249,7 @@ Channel(
       VideoItem(
         id: "nLFZFp3go3o",
         name: "SG Lewis - Impact - ft. Channel Tres - Live at Coachella 2023",
-        length: Some(365),
+        duration: Some(365),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/nLFZFp3go3o/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBgQvHlztxcmQ3pkFNMKQpgvgMusA",
@@ -290,7 +290,7 @@ Channel(
       VideoItem(
         id: "RWJMmYcPTR4",
         name: "MUNA - Silk Chiffon - Live at Coachella 2023",
-        length: Some(220),
+        duration: Some(220),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/RWJMmYcPTR4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBFk7y7WiMC9pZ9zE1YSlh0TA5o5Q",
@@ -331,7 +331,7 @@ Channel(
       VideoItem(
         id: "gcrW53SoTKs",
         name: "Pusha T - Diet Coke - Live at Coachella 2023",
-        length: Some(175),
+        duration: Some(175),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/gcrW53SoTKs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAlGMLr4aBbSqb-8HBAPeXGLtkOGg",
@@ -372,7 +372,7 @@ Channel(
       VideoItem(
         id: "7pYqbVztRtk",
         name: "Blink 182 - I Miss You - Live at Coachella 2023",
-        length: Some(267),
+        duration: Some(267),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/7pYqbVztRtk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD4rIf8atgIc2nEptj4CjgOPqXVWw",
@@ -413,7 +413,7 @@ Channel(
       VideoItem(
         id: "yzmSlPiaeRU",
         name: "Blink 182 - Whats My Age Again - Live at Coachella 2023",
-        length: Some(157),
+        duration: Some(157),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/yzmSlPiaeRU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAzhu2omZ6arr3cGIEM1IGoIp_i3w",
@@ -454,7 +454,7 @@ Channel(
       VideoItem(
         id: "r3Kpm4lEXmg",
         name: "Discover the Mirage, Part 2 - Coachella 2023",
-        length: Some(96),
+        duration: Some(96),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/r3Kpm4lEXmg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBLfc6awfa8Mv7I1nTLxfJRY4XUKQ",
@@ -495,7 +495,7 @@ Channel(
       VideoItem(
         id: "LqrLCWoXR_k",
         name: "Coachella on YouTube 2023",
-        length: Some(31),
+        duration: Some(31),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/LqrLCWoXR_k/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCgX8ylcJLaYZiR3Nvr5WrS_6mw8g",
@@ -536,7 +536,7 @@ Channel(
       VideoItem(
         id: "J1cmYPtABo0",
         name: "Discover the Mirage, Part 1 - Coachella 2023",
-        length: Some(91),
+        duration: Some(91),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/J1cmYPtABo0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAEDuvdZhNVkmvG-usGm9tmgJt7QQ",
@@ -577,7 +577,7 @@ Channel(
       VideoItem(
         id: "a0BuUhI3f20",
         name: "Coachella 2023 featuring Bad Bunny, BLACKPINK, Frank Ocean and more 🌵",
-        length: Some(31),
+        duration: Some(31),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/a0BuUhI3f20/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGGUgUCg-MA8=&rs=AOn4CLBDwxWN_SrIR8rCSQVokx1wfe1iqQ",
@@ -618,7 +618,7 @@ Channel(
       VideoItem(
         id: "G2p-YqRGh80",
         name: "MEUTE Interview – Coachella Curated 2022",
-        length: Some(224),
+        duration: Some(224),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/G2p-YqRGh80/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGGUgSSg-MA8=&rs=AOn4CLBWAFod2tomSeOXcy3y5EOIjimn9g",
@@ -659,7 +659,7 @@ Channel(
       VideoItem(
         id: "eLZq4l37G7k",
         name: "Belly - Interview - Coachella 2022",
-        length: Some(302),
+        duration: Some(302),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/eLZq4l37G7k/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGHIgPyg6MA8=&rs=AOn4CLBtjJQRABeVsxDVsYK2RwoTETjE8A",
@@ -700,7 +700,7 @@ Channel(
       VideoItem(
         id: "ViPAf8JpMXY",
         name: "Still Woozy - Interview - Coachella 2022",
-        length: Some(304),
+        duration: Some(304),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/ViPAf8JpMXY/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGGUgUyhEMA8=&rs=AOn4CLBFMadm51TmtXHYl-3B3s1DS1NLoQ",
@@ -741,7 +741,7 @@ Channel(
       VideoItem(
         id: "4PKCIRUOZRE",
         name: "Slander - Interview - Coachella 2022",
-        length: Some(259),
+        duration: Some(259),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/4PKCIRUOZRE/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGGUgUChCMA8=&rs=AOn4CLD6iAmhCyMAwfcKJl18WeC_BrjyFQ",
@@ -782,7 +782,7 @@ Channel(
       VideoItem(
         id: "0O7abvoOxro",
         name: "Run The Jewels - Interview Coachella",
-        length: Some(408),
+        duration: Some(408),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/0O7abvoOxro/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGGUgXihNMA8=&rs=AOn4CLCYxlSf_-9OXuvGCVfY8caFGVaGeQ",
@@ -823,7 +823,7 @@ Channel(
       VideoItem(
         id: "z1Q7ahNLU9o",
         name: "Rina Sawayama - Interview - Coachella 2022",
-        length: Some(297),
+        duration: Some(297),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/z1Q7ahNLU9o/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGGUgWCg_MA8=&rs=AOn4CLAFBsN92p3Xd5jd75JOkVQmFpRaOQ",
@@ -864,7 +864,7 @@ Channel(
       VideoItem(
         id: "VB71WJvcdsM",
         name: "Rich Brian - Interview - Coachella 2022",
-        length: Some(371),
+        duration: Some(371),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/VB71WJvcdsM/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGGUgVyhAMA8=&rs=AOn4CLAnNIA4THR0-WH60GnpECd_KRhUEQ",
@@ -905,7 +905,7 @@ Channel(
       VideoItem(
         id: "FYr3OasngBI",
         name: "Masego - Interview - Coachella 2022",
-        length: Some(323),
+        duration: Some(323),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/FYr3OasngBI/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGHIgXyg6MA8=&rs=AOn4CLAAT-2gUtrDLaKVDQmsUkKmkE__Lg",
@@ -946,7 +946,7 @@ Channel(
       VideoItem(
         id: "BwDnV5sbFeU",
         name: "Louis The Child - Interview - Coachella 2022",
-        length: Some(360),
+        duration: Some(360),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/BwDnV5sbFeU/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGGUgWig2MA8=&rs=AOn4CLAXRG17JkByDUun5WIfMdVARqYwtg",
@@ -987,7 +987,7 @@ Channel(
       VideoItem(
         id: "iH8KFwkMurQ",
         name: "Kim Petras - Interview - Coachella 2022",
-        length: Some(294),
+        duration: Some(294),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/iH8KFwkMurQ/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGGUgVChIMA8=&rs=AOn4CLBzJcKvWEWZmdtorJ8P7tfMT1306A",
@@ -1028,7 +1028,7 @@ Channel(
       VideoItem(
         id: "NK96m-YTUaE",
         name: "Joe Kay - Interview - Coachella 2022",
-        length: Some(189),
+        duration: Some(189),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/NK96m-YTUaE/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGGUgWyhJMA8=&rs=AOn4CLD6ptJ2_2cwyY2pkGieoYscFjlVpQ",
@@ -1069,7 +1069,7 @@ Channel(
       VideoItem(
         id: "jnG1qLK0SiI",
         name: "Japanese Breakfast - Interview - Coachella 2022",
-        length: Some(312),
+        duration: Some(312),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/jnG1qLK0SiI/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGHIgWCguMA8=&rs=AOn4CLBTEvxp-kJ7uYZwIaiylaohW_7wGQ",
@@ -1110,7 +1110,7 @@ Channel(
       VideoItem(
         id: "NdKnb1e9_qA",
         name: "Idles  - Interview - Coachella 2022",
-        length: Some(395),
+        duration: Some(395),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/NdKnb1e9_qA/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGGUgWihTMA8=&rs=AOn4CLBEHQoRUkshAo-28mmB520wlFwlxA",
@@ -1151,7 +1151,7 @@ Channel(
       VideoItem(
         id: "o8LEidp-Dq8",
         name: "Freddie Gibbs - Interview - Coachella 2022",
-        length: Some(207),
+        duration: Some(207),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/o8LEidp-Dq8/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGHIgNyhKMA8=&rs=AOn4CLBqrWHD5sKYIrl_Fj6dTSixhqFAbw",
@@ -1192,7 +1192,7 @@ Channel(
       VideoItem(
         id: "4-sEy0jxh-U",
         name: "Epik High - Interview - Coachella 2022",
-        length: Some(386),
+        duration: Some(386),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/4-sEy0jxh-U/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGGUgUCg9MA8=&rs=AOn4CLBqn7VHNUlbgYidF-k2x8b_W-_xWQ",
@@ -1233,7 +1233,7 @@ Channel(
       VideoItem(
         id: "YN5CjIFmx88",
         name: "Duke Dumont - Interview - Coachella 2022",
-        length: Some(443),
+        duration: Some(443),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/YN5CjIFmx88/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGHIgUyhCMA8=&rs=AOn4CLAPYvywgTRHRSLHZaQXLC1-pdsIIg",

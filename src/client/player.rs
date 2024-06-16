@@ -246,7 +246,7 @@ impl MapResponse<VideoPlayer> for response::Player {
             id: video_details.video_id,
             name: video_details.title,
             description: video_details.short_description,
-            length: video_details.length_seconds,
+            duration: video_details.length_seconds,
             thumbnail: video_details.thumbnail.into(),
             channel: ChannelId {
                 id: video_details.channel_id,

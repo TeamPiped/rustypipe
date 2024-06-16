@@ -122,7 +122,7 @@ Channel(
       VideoItem(
         id: "bGXP83AU3Mc",
         name: "do u wanna get swole?",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/bGXP83AU3Mc/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLC9bzCBeHDbZFLE84Up3IiBIsxmmA",
@@ -148,7 +148,7 @@ Channel(
       VideoItem(
         id: "E52sSgZlgYs",
         name: "the holy trinity of korean street food",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/E52sSgZlgYs/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLDBahtFRcfBInHuA8CjXFPWkF2jHg",
@@ -174,7 +174,7 @@ Channel(
       VideoItem(
         id: "ovaHmfy3O6U",
         name: "hangover food",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/ovaHmfy3O6U/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLCHmvWlG06h-DT6oxfmh69JGQ69KA",
@@ -200,7 +200,7 @@ Channel(
       VideoItem(
         id: "FHTQmKTZnlI",
         name: "pig trotter raguuuuuuuuu 💅",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/FHTQmKTZnlI/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLD0xhka1osA4nI3VCwhQusn3ND3Hg",
@@ -226,7 +226,7 @@ Channel(
       VideoItem(
         id: "1AXB0l_wKMs",
         name: "what i ate in google japan",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/1AXB0l_wKMs/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLBsfYJ0KffUNn-9jBzNRTqetyFr8g",
@@ -252,7 +252,7 @@ Channel(
       VideoItem(
         id: "1ARLtk3HiB0",
         name: "succumb to your cravings",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/1ARLtk3HiB0/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLBY9E40Ehvq862CVItJy0Uj_pS5bg",
@@ -278,7 +278,7 @@ Channel(
       VideoItem(
         id: "0FfDoDHpaN8",
         name: "you can\'t let the what ifs rule your life",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/0FfDoDHpaN8/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLBiV2TVPO-VbIjoNtwCKmFuxmj6LA",
@@ -304,7 +304,7 @@ Channel(
       VideoItem(
         id: "kuT90_RIdF0",
         name: "duck confit lollipop 🦆🍭",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/kuT90_RIdF0/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLCUN-DW72m7sAXJMgVkWNxPYpJBcQ",
@@ -330,7 +330,7 @@ Channel(
       VideoItem(
         id: "aPJLhrcM4Yg",
         name: "HOUSE TOUR",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/aPJLhrcM4Yg/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLD1TbWAIbzyWq8AXLoW0xqaji3ukQ",
@@ -356,7 +356,7 @@ Channel(
       VideoItem(
         id: "DKQrG_hJJX4",
         name: "how to meal prep like a korean",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/DKQrG_hJJX4/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLBE2DnpLFvtXsZOu1Ta4JQeOToVAw",
@@ -382,7 +382,7 @@ Channel(
       VideoItem(
         id: "lNizW_P_oVw",
         name: "Rating Everything I ate at McDonald\'s Japan 🇯🇵",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/lNizW_P_oVw/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLBI5XrkQ9Hesbf4lWELy7Uk3yMGMg",
@@ -408,7 +408,7 @@ Channel(
       VideoItem(
         id: "kbWyJjrCjwA",
         name: "enemies as fertilizer √(veg)",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/kbWyJjrCjwA/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLDlk30Km1M0jze1M3O90fB2LdvoAQ",
@@ -434,7 +434,7 @@ Channel(
       VideoItem(
         id: "xAp910JTDig",
         name: "let\'s make some cabbage rolls for lunch",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/xAp910JTDig/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLAJtpPGRgffBu9WDXACbtiGa_oRgA",
@@ -460,7 +460,7 @@ Channel(
       VideoItem(
         id: "vSL7dhKatEk",
         name: "Rating Everything I ate at IKEA Korea",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/vSL7dhKatEk/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLBYpIDYbwwWiCqRNVi6PlfEfjrt4A",
@@ -486,7 +486,7 @@ Channel(
       VideoItem(
         id: "LZzhUpACXSk",
         name: "I\'m done being the bigger person",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/LZzhUpACXSk/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLAFTvhtVUP7QZ4P7U70-0XH7PzDDg",
@@ -512,7 +512,7 @@ Channel(
       VideoItem(
         id: "5C7nqNDfhis",
         name: "we\'re cooking a whole bird today",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/5C7nqNDfhis/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLA9I9irDsRjikwd0aqp1FWNFtjAqA",
@@ -538,7 +538,7 @@ Channel(
       VideoItem(
         id: "6mj4Af0kUOQ",
         name: "men will disappoint but never potatoes",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/6mj4Af0kUOQ/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLAVxl-FPt878AQXPBhbV1VSGeR8sw",
@@ -564,7 +564,7 @@ Channel(
       VideoItem(
         id: "1c3axhSJiaQ",
         name: "I used to hate korean food",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/1c3axhSJiaQ/hq720_2.jpg?sqp=-oaymwEdCJUDENAFSFXyq4qpAw8IARUAAIhCcAHAAQbQAQE=&rs=AOn4CLBucOEbTsWTDjOOCjNa-fAvz1yxyA",
@@ -590,7 +590,7 @@ Channel(
       VideoItem(
         id: "F9Vz0m7DPeU",
         name: "Rating everything I got at 7/11 Hawaii ( ft. Mauna Kea )",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/F9Vz0m7DPeU/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLDOoCVL6la3ztUeQ6vP4iL1cEBRjQ",
@@ -616,7 +616,7 @@ Channel(
       VideoItem(
         id: "Uey7kl56wks",
         name: "Grabbing Snacks from 7/11 Hawaii",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/Uey7kl56wks/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLCWmgajinNtIEbiPbqEtDvkC7Ydrg",
@@ -642,7 +642,7 @@ Channel(
       VideoItem(
         id: "3un2eUAr6Dg",
         name: "cheesy korean corn balls hit different",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/3un2eUAr6Dg/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLD4LziL6GHd1jg8btMJDIM_RhgE_A",
@@ -668,7 +668,7 @@ Channel(
       VideoItem(
         id: "rI5tWrGpDJA",
         name: "hawaiian tajin?!?",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/rI5tWrGpDJA/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLAjNiKHdFSKGavBrZRDxi9WdR-gJw",
@@ -694,7 +694,7 @@ Channel(
       VideoItem(
         id: "WQiGksTxr5g",
         name: "Rating everything I ate at Hawaiian Supermarket 🌺🏰 pt.2",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/WQiGksTxr5g/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLCvzC5xVdTEJX8xtiOqzmeKvmouIg",
@@ -720,7 +720,7 @@ Channel(
       VideoItem(
         id: "G7aw-QOsagk",
         name: "Grocery Shopping at Hawaiian Supermarket 🌺🏰 pt.1",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/G7aw-QOsagk/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLAoKEkj2lqYU07yW_DU35TNHEOq4w",
@@ -746,7 +746,7 @@ Channel(
       VideoItem(
         id: "Y_F1_Yf-DKQ",
         name: "Breakfast at Hawaiian McDonald\'s  🌺",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/Y_F1_Yf-DKQ/hq720_2.jpg?sqp=-oaymwEdCJUDENAFSFXyq4qpAw8IARUAAIhCcAHAAQbQAQE=&rs=AOn4CLDTLFBwRThZUk0eugFSNxc-CKI_HQ",
@@ -772,7 +772,7 @@ Channel(
       VideoItem(
         id: "Q_ZMcP8faw4",
         name: "crab rangoon toast 🦀 🍞",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/Q_ZMcP8faw4/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLATLiHTNqLoBKsEKbOckkGjXMvoHA",
@@ -798,7 +798,7 @@ Channel(
       VideoItem(
         id: "1aedyP3r3D0",
         name: "my secret hot pot sauce 🧙\u{200d}♀\u{fe0f}🍃",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/1aedyP3r3D0/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLCh2MpR5k3jCS_wfX-wjtVuIcu7YQ",
@@ -824,7 +824,7 @@ Channel(
       VideoItem(
         id: "fkPkHZ1yyBU",
         name: "the good vs the bad",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/fkPkHZ1yyBU/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLCMngiRtLrBPppmfPnJwJ-cYMwttA",
@@ -850,7 +850,7 @@ Channel(
       VideoItem(
         id: "NbQcySLMLmA",
         name: "cooking with waste?!🗑\u{fe0f}",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/NbQcySLMLmA/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLCvxPQo9eqYwjk4cxyBnrHed-tcZg",
@@ -876,7 +876,7 @@ Channel(
       VideoItem(
         id: "3w_5vzM1Pc4",
         name: "Shrek burger 🍔🍀👹",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/3w_5vzM1Pc4/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLB64zOKgmhOt7bvQseeIbjKBICDAg",
@@ -902,7 +902,7 @@ Channel(
       VideoItem(
         id: "girJP2r_zLg",
         name: "$$$ on food",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/girJP2r_zLg/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLBg2hmruZvx30aiP4Jb4dhz03qOZA",
@@ -928,7 +928,7 @@ Channel(
       VideoItem(
         id: "zHp7sZ5OONM",
         name: "pumpkin spice churro?! 🎃",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/zHp7sZ5OONM/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLD8ZrcI6mq91ARKnRb_vg-0Qv2raw",
@@ -954,7 +954,7 @@ Channel(
       VideoItem(
         id: "iqMl3gQEZ0E",
         name: "3,000,000",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/iqMl3gQEZ0E/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLBUC1sw84NlLiyTJTcfnDWFjVC75w",
@@ -980,7 +980,7 @@ Channel(
       VideoItem(
         id: "glyJWxp7a5g",
         name: "being smart was my personality trait",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/glyJWxp7a5g/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLBbrWwLndPt5ZV5x4dnqmTC_aAhig",
@@ -1006,7 +1006,7 @@ Channel(
       VideoItem(
         id: "dd1EZIkANYs",
         name: "the horror maze",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/dd1EZIkANYs/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLBlqz2BM3K2VeLlXMPBVwXNXih6vg",
@@ -1032,7 +1032,7 @@ Channel(
       VideoItem(
         id: "enioc_stRww",
         name: "furikake bagels with wasabi cream cheese",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/enioc_stRww/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLBz9Qo96FWssNsMhQ54DMxdYYwLfQ",
@@ -1058,7 +1058,7 @@ Channel(
       VideoItem(
         id: "NUM8kCPas5w",
         name: "simple is best",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/NUM8kCPas5w/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLC8N3YRr9A6-u6L0AtMynct4C_GzQ",
@@ -1084,7 +1084,7 @@ Channel(
       VideoItem(
         id: "1djkcsFnlYE",
         name: "edible history lesson!",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/1djkcsFnlYE/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLBHn_6yOrnRXH_zbxVaAuKzSulcew",
@@ -1110,7 +1110,7 @@ Channel(
       VideoItem(
         id: "cIYrJtAoftI",
         name: "and I\'m feeling good",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/cIYrJtAoftI/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLC4q0VcbBZroejhAztDkdlk7Ww5Og",
@@ -1136,7 +1136,7 @@ Channel(
       VideoItem(
         id: "cCrH8Er5tf4",
         name: "Rating Korean Convenience Store Milk Flavors 🥛🍼",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/cCrH8Er5tf4/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLBwc2ikrGH_gZfcyqTnZDfHjt5LuA",
@@ -1162,7 +1162,7 @@ Channel(
       VideoItem(
         id: "tav5wsH7pzU",
         name: "online dating?",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/tav5wsH7pzU/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLCheup7XAM_O1UAMEO5Iqup4-lGRQ",
@@ -1188,7 +1188,7 @@ Channel(
       VideoItem(
         id: "5Vd4_GXjF7o",
         name: "Creating thumbnails has never been easier with Adobe Express",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/5Vd4_GXjF7o/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLCbYkH7INYGHW0IcO3DKip5iD2PCA",
@@ -1214,7 +1214,7 @@ Channel(
       VideoItem(
         id: "-FN1sEI8HkU",
         name: "my favorite color is green",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/-FN1sEI8HkU/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLCLWKPrR-VCdsXagJ1MIyah7dDdDQ",
@@ -1240,7 +1240,7 @@ Channel(
       VideoItem(
         id: "viT-dcl2DGE",
         name: "frodo baggins?",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/viT-dcl2DGE/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLDb0oYC_3V79CSR0j-4sR4CuNQekQ",
@@ -1266,7 +1266,7 @@ Channel(
       VideoItem(
         id: "N5AKQflK1TU",
         name: "When you impulse buy...",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/N5AKQflK1TU/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLDwfPTcuQHyziYsmTrSkg9xi1jnag",
@@ -1292,7 +1292,7 @@ Channel(
       VideoItem(
         id: "OzIFALQ_YtA",
         name: "taste testing gam!",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/OzIFALQ_YtA/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLBMcyG6Fu4rrXk-JQL5tx0hzSAxlw",
@@ -1318,7 +1318,7 @@ Channel(
       VideoItem(
         id: "dAcJILbc_0Q",
         name: "How to: Korean rice wine 🍶 (makgeolli)",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/dAcJILbc_0Q/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLAXbHym4PFTTO25GCI4n1tjSaQVCw",
@@ -1344,7 +1344,7 @@ Channel(
       VideoItem(
         id: "GvutfmW26JQ",
         name: "👹stay sour 🍋",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/GvutfmW26JQ/oar2.jpg?sqp=-oaymwEaCJUDENAFSFXyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLBgCJ06W3wOend0UgkuBKoHOg0eig",

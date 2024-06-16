@@ -445,7 +445,7 @@ impl<T> YouTubeListMapper<T> {
         VideoItem {
             id: video.video_id,
             name: video.title,
-            length: length_text.and_then(|txt| util::parse_video_length(&txt)),
+            duration: length_text.and_then(|txt| util::parse_video_length(&txt)),
             thumbnail: video.thumbnail.into(),
             channel: video
                 .channel
@@ -500,7 +500,7 @@ impl<T> YouTubeListMapper<T> {
         VideoItem {
             id: video.video_id,
             name: video.headline,
-            length: None,
+            duration: None,
             thumbnail: video.thumbnail.into(),
             channel: self.channel.clone(),
             publish_date: pub_date_txt.as_ref().and_then(|txt| {
@@ -564,7 +564,7 @@ impl<T> YouTubeListMapper<T> {
         VideoItem {
             id: video.video_id,
             name: video.title,
-            length: video.length_seconds,
+            duration: video.length_seconds,
             thumbnail: video.thumbnail.into(),
             channel,
             publish_date,

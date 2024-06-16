@@ -122,7 +122,7 @@ Channel(
       VideoItem(
         id: "EIcmfSzeaKk",
         name: "our new normal",
-        length: Some(1106),
+        duration: Some(1106),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/EIcmfSzeaKk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAsYqYyFrXWHOkwiw0oqls2tGrKQg",
@@ -163,7 +163,7 @@ Channel(
       VideoItem(
         id: "9NuhKCv3crg",
         name: "the end.",
-        length: Some(982),
+        duration: Some(982),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/9NuhKCv3crg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDB0KHjIok8E-gjwidP56UeDJy7Bg",
@@ -204,7 +204,7 @@ Channel(
       VideoItem(
         id: "38Gd6TdmNVs",
         name: "KOREAN BARBECUE l doob gourmand ep.3",
-        length: Some(525),
+        duration: Some(525),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/38Gd6TdmNVs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBRo5niO28TGS9JNluTU9wCLCGBQA",
@@ -245,7 +245,7 @@ Channel(
       VideoItem(
         id: "l9TiwunjzgA",
         name: "long distance",
-        length: Some(1043),
+        duration: Some(1043),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/l9TiwunjzgA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDjM6SZ7ScyfFRr13QdVmIvWEWWrQ",
@@ -286,7 +286,7 @@ Channel(
       VideoItem(
         id: "pRVSdUxdsVw",
         name: "Repairing...",
-        length: Some(965),
+        duration: Some(965),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/pRVSdUxdsVw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAQWneuYcJcccgooBfa3WI4LdYF3w",
@@ -327,7 +327,7 @@ Channel(
       VideoItem(
         id: "2FJVhdOO0F0",
         name: "a health scare",
-        length: Some(1238),
+        duration: Some(1238),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/2FJVhdOO0F0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA5ambaz-euRsB9VG5ANaYFUUSEbg",
@@ -368,7 +368,7 @@ Channel(
       VideoItem(
         id: "CutR_1SDDzY",
         name: "feels good to be back",
-        length: Some(1159),
+        duration: Some(1159),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/CutR_1SDDzY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAt413Uk4xhHjYwpLI5-DXuOsFouA",
@@ -409,7 +409,7 @@ Channel(
       VideoItem(
         id: "KUz7oArksR4",
         name: "running away",
-        length: Some(1023),
+        duration: Some(1023),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/KUz7oArksR4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD1NwuIgJuJy2oPAiHqMre6rbcuPA",
@@ -450,7 +450,7 @@ Channel(
       VideoItem(
         id: "sPb2gyN-hnE",
         name: "worth fighting for",
-        length: Some(1232),
+        duration: Some(1232),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/sPb2gyN-hnE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBidXnS47SJMkvOlqt2DgzHxr6wKQ",
@@ -491,7 +491,7 @@ Channel(
       VideoItem(
         id: "PXsK9-CFoH4",
         name: "waiting...",
-        length: Some(1455),
+        duration: Some(1455),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/PXsK9-CFoH4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBJ-57qZ-dOIsdFy5H8WT9UsS2W9w",
@@ -532,7 +532,7 @@ Channel(
       VideoItem(
         id: "r2ye6zW0nbM",
         name: "a wedding",
-        length: Some(1207),
+        duration: Some(1207),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/r2ye6zW0nbM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB3L2DVtMtxaPaFjVPcNnjDHE5Wvw",
@@ -573,7 +573,7 @@ Channel(
       VideoItem(
         id: "rriwHj8U664",
         name: "my seoul apartment tour",
-        length: Some(721),
+        duration: Some(721),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/rriwHj8U664/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCy6zauLaf2KLJ6R41q0CPM8298PA",
@@ -614,7 +614,7 @@ Channel(
       VideoItem(
         id: "FKJtrUeol3o",
         name: "with quantity comes quality",
-        length: Some(1140),
+        duration: Some(1140),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/FKJtrUeol3o/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD7U0hZPrEiHZcTVcicymOllR05qw",
@@ -655,7 +655,7 @@ Channel(
       VideoItem(
         id: "zYHB38UlzE0",
         name: "Q&A l relationships, burnout, privilege, college advice, living alone, and life after youtube?",
-        length: Some(775),
+        duration: Some(775),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/zYHB38UlzE0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDAO5etokCiF7cvyR-7kobN9RhTLA",
@@ -696,7 +696,7 @@ Channel(
       VideoItem(
         id: "hGbQ2WM9nOo",
         name: "Why does everything bad for you taste good ㅣ CHILI OIL RAMEN",
-        length: Some(428),
+        duration: Some(428),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/hGbQ2WM9nOo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD_bMKoJhW-ifemEiqSBj-6dvEnUg",
@@ -737,7 +737,7 @@ Channel(
       VideoItem(
         id: "PxGmP4v_A38",
         name: "Alone and Thriving l late night korean convenience store, muji kitchenware haul, spring cleaning!",
-        length: Some(1437),
+        duration: Some(1437),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/PxGmP4v_A38/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLArZRyFU5e71-vMdGZzuxCCroEkww",
@@ -778,7 +778,7 @@ Channel(
       VideoItem(
         id: "8t-WyYcpEDE",
         name: "What I hate most",
-        length: Some(61),
+        duration: Some(61),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/8t-WyYcpEDE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDsJHHXMP4fUEFqn-LExXU5yPyZ-Q",
@@ -819,7 +819,7 @@ Channel(
       VideoItem(
         id: "RroYpLxxNjY",
         name: "I\'m Back. ㅣ cooking korean food, eating alone, working out, and 2M!",
-        length: Some(1313),
+        duration: Some(1313),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/RroYpLxxNjY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBYJ_dcqUt2kR-4jOAUu8O0Ja9SLA",
@@ -860,7 +860,7 @@ Channel(
       VideoItem(
         id: "l47QuudsZ34",
         name: "We ate our way through Florence (ft. mamadooby)",
-        length: Some(1109),
+        duration: Some(1109),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/l47QuudsZ34/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB0Vwc7DhN_hFXSRuDAiivLnGGc2A",
@@ -901,7 +901,7 @@ Channel(
       VideoItem(
         id: "1VW7iXRIrc8",
         name: "Alone, in the City of Love",
-        length: Some(1875),
+        duration: Some(1875),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/1VW7iXRIrc8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBbNxPLmGzJlvJ-3o5Dz9I5LOGu1A",
@@ -942,7 +942,7 @@ Channel(
       VideoItem(
         id: "6c58-749p6Y",
         name: "Old Friends & New",
-        length: Some(774),
+        duration: Some(774),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/6c58-749p6Y/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLClRrTlOF_Q3feHLoM0T5_DFygbIw",
@@ -983,7 +983,7 @@ Channel(
       VideoItem(
         id: "Q2G53LuEUaU",
         name: "Where we stand",
-        length: Some(858),
+        duration: Some(858),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/Q2G53LuEUaU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC1ppNrqK-xlQ6Sxnn62dp8QXoJBQ",
@@ -1024,7 +1024,7 @@ Channel(
       VideoItem(
         id: "8rAOeowNQrI",
         name: "That\'s so last year",
-        length: Some(1286),
+        duration: Some(1286),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/8rAOeowNQrI/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCSBW_fD0pttfFh4Yc_Kx1UIZHzfg",
@@ -1065,7 +1065,7 @@ Channel(
       VideoItem(
         id: "0RGIdIKkbSI",
         name: "The Muffin Man",
-        length: Some(1052),
+        duration: Some(1052),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/0RGIdIKkbSI/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDo42DBFMfLKVHtXETG5yuU20FVMw",
@@ -1106,7 +1106,7 @@ Channel(
       VideoItem(
         id: "NudTbo2CJMY",
         name: "Flying to London",
-        length: Some(1078),
+        duration: Some(1078),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/NudTbo2CJMY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDEdvWWmhSaDTTx7b2kJUauMFnQJQ",
@@ -1147,7 +1147,7 @@ Channel(
       VideoItem(
         id: "8mJk1ncGZig",
         name: "(not so) Teenage Angst",
-        length: Some(1376),
+        duration: Some(1376),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/8mJk1ncGZig/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB1kTcJ6oRyNfaGJbvl6V5UxRhagg",
@@ -1188,7 +1188,7 @@ Channel(
       VideoItem(
         id: "qvgCi2WpbfE",
         name: "can\'t smell :s",
-        length: Some(875),
+        duration: Some(875),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/qvgCi2WpbfE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBdSLKkLlOTxprZAH9BajRpHiujrw",
@@ -1229,7 +1229,7 @@ Channel(
       VideoItem(
         id: "Sm4Yqtqr9f8",
         name: "I have covid",
-        length: Some(814),
+        duration: Some(814),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/Sm4Yqtqr9f8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDAAWaXioP-Xz_cwkE3APR_5fpkqw",
@@ -1270,7 +1270,7 @@ Channel(
       VideoItem(
         id: "ZRtf4ksF3qs",
         name: "Everything I ate in Busan & make up tutorial??",
-        length: Some(1026),
+        duration: Some(1026),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/ZRtf4ksF3qs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBnRStN9mU3cu7vDQIkUcO3WiyVZw",
@@ -1311,7 +1311,7 @@ Channel(
       VideoItem(
         id: "oG4Wth1oVBQ",
         name: "On the other side",
-        length: Some(1592),
+        duration: Some(1592),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/oG4Wth1oVBQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDO45Wm2zkuD6ZukxaoxfgGkpuZHg",

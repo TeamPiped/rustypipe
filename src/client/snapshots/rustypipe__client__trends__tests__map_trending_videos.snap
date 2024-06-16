@@ -6,7 +6,7 @@ expression: map_res.c
   VideoItem(
     id: "6T67I2w1G2U",
     name: "Extreme $1,000,000 Minecraft Challenge!",
-    length: Some(643),
+    duration: Some(643),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/6T67I2w1G2U/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB3pX_5AAn1wpsBoaAOycfn0VTKFw",
@@ -48,7 +48,7 @@ expression: map_res.c
   VideoItem(
     id: "8TzH0ayIcdo",
     name: "The Darkest Story I\'ve Ever Read",
-    length: Some(4383),
+    duration: Some(4383),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/8TzH0ayIcdo/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCA_OSaK05YpZIF5EdSLzLT0YU58g",
@@ -90,7 +90,7 @@ expression: map_res.c
   VideoItem(
     id: "s9PzYuVwCSE",
     name: "Lil Yachty - Poland (Directed by Cole Bennett)",
-    length: Some(89),
+    duration: Some(89),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/s9PzYuVwCSE/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBAAmFE81Aur-4JT0tewcUo2_9I8g",
@@ -132,7 +132,7 @@ expression: map_res.c
   VideoItem(
     id: "y8qhSduN6sk",
     name: "PC Games on Console - Scott The Woz",
-    length: Some(1912),
+    duration: Some(1912),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/y8qhSduN6sk/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAKr5KTGdpoHjcP4E_wswYN46eDFA",
@@ -174,7 +174,7 @@ expression: map_res.c
   VideoItem(
     id: "U9HAaHc3wnc",
     name: "Guess Iono’s Partner Pokémon! 🤔 | Pokémon Scarlet and Pokémon Violet",
-    length: Some(211),
+    duration: Some(211),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/U9HAaHc3wnc/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBN7eQhGDi_EFbN4jlcxln2ZM_lFw",
@@ -216,7 +216,7 @@ expression: map_res.c
   VideoItem(
     id: "MBzi6hRrkww",
     name: "Celebrating Tito Puente",
-    length: Some(65),
+    duration: Some(65),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/MBzi6hRrkww/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCHXUw09LPtzYbP4SesBrr18DapJA",
@@ -258,7 +258,7 @@ expression: map_res.c
   VideoItem(
     id: "DvkTX-AquQo",
     name: "Impossible 0.00001% Odds!",
-    length: Some(481),
+    duration: Some(481),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/DvkTX-AquQo/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBDyzgTEw_hcJsgbdkES1jpVf5JRQ",
@@ -300,7 +300,7 @@ expression: map_res.c
   VideoItem(
     id: "T-8fCPT-ZKI",
     name: "DDG - Bulletproof Maybach (Official Music Video) ft. Offset",
-    length: Some(189),
+    duration: Some(189),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/T-8fCPT-ZKI/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDDUSR0YqD6Z3cqOnGQQ-BOToWQYg",
@@ -342,7 +342,7 @@ expression: map_res.c
   VideoItem(
     id: "dFlDRhvM4L0",
     name: "『チェンソーマン』ノンクレジットオープニング / CHAINSAW MAN  Opening│米津玄師 「KICK BACK」",
-    length: Some(90),
+    duration: Some(90),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/dFlDRhvM4L0/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBEBYFDdOM1Ozmr3W9LOopJxN_P0A",
@@ -384,7 +384,7 @@ expression: map_res.c
   VideoItem(
     id: "G9W8CSckzAc",
     name: "why I disappeared",
-    length: Some(461),
+    duration: Some(461),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/G9W8CSckzAc/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDq0swwcUrhHDtJHYuMTVU8IIoQew",
@@ -426,7 +426,7 @@ expression: map_res.c
   VideoItem(
     id: "PuOUI2kwftA",
     name: "Brooklyn\'s Wedding Day Vlog | Behind the Scenes",
-    length: Some(1265),
+    duration: Some(1265),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/PuOUI2kwftA/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBmzQC0d4E9Pi1ZmpbY9bWm0IdRbA",
@@ -468,7 +468,7 @@ expression: map_res.c
   VideoItem(
     id: "lkOGhJX6LKU",
     name: "Social Security payments set for big increase; here’s what you need to know",
-    length: Some(120),
+    duration: Some(120),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/lkOGhJX6LKU/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCBjZbCrftL5Cs0RtJZSo4sWEtyCg",
@@ -510,7 +510,7 @@ expression: map_res.c
   VideoItem(
     id: "zkvIzKwzYNc",
     name: "Kep1er 케플러 | ‘We Fresh\' M/V",
-    length: Some(225),
+    duration: Some(225),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/zkvIzKwzYNc/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAAz9DC0biWYPzEq5jaKrIKmNQQqQ",
@@ -552,7 +552,7 @@ expression: map_res.c
   VideoItem(
     id: "foMQG_Bpcag",
     name: "*After 4* DESTROYED my last brain cell",
-    length: Some(2169),
+    duration: Some(2169),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/foMQG_Bpcag/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBGs9GSfJIKNbMnAjys9wM3lHZuUg",
@@ -594,7 +594,7 @@ expression: map_res.c
   VideoItem(
     id: "iquXFFSEKyE",
     name: "NLE Choppa - Do It Again (ft. 2Rare) [HipHop Dance Musical] MEMPHIS EDITION",
-    length: Some(239),
+    duration: Some(239),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/iquXFFSEKyE/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC_lsIMgQGkprvJ2XNrzzYmJwDR6A",
@@ -636,7 +636,7 @@ expression: map_res.c
   VideoItem(
     id: "ijj_hheGEi0",
     name: "Queen - Face It Alone (Official Lyric Video)",
-    length: Some(257),
+    duration: Some(257),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/ijj_hheGEi0/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCZg5Tsu_SO-83YbNiH2xZhsRcCJw",
@@ -678,7 +678,7 @@ expression: map_res.c
   VideoItem(
     id: "nwMxp7mRbx4",
     name: "Dimension 20: Neverafter Trailer",
-    length: Some(154),
+    duration: Some(154),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/nwMxp7mRbx4/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDOW_yf8647tavIGT5QD2GEl4a6Pw",
@@ -720,7 +720,7 @@ expression: map_res.c
   VideoItem(
     id: "7IGD5URBGZ8",
     name: "We Got Engaged",
-    length: Some(1325),
+    duration: Some(1325),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/7IGD5URBGZ8/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLArNHqdfOCsU-_-O9g4hGna9iKODw",
@@ -762,7 +762,7 @@ expression: map_res.c
   VideoItem(
     id: "eKAIQDxai9Y",
     name: "I remade every mob into Rainbow Friends in Minecraft",
-    length: Some(811),
+    duration: Some(811),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/eKAIQDxai9Y/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDhMxh2lEFEwSprWt_yuU7hkMZM-Q",
@@ -804,7 +804,7 @@ expression: map_res.c
   VideoItem(
     id: "5sRVxb2wkGM",
     name: "We Bought Every Weird Ad We Saw",
-    length: Some(1602),
+    duration: Some(1602),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/5sRVxb2wkGM/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAXej_beyPyWOtxMGWzPqyqZTqoTA",
@@ -846,7 +846,7 @@ expression: map_res.c
   VideoItem(
     id: "9gbScp1JVN4",
     name: "Making Renaissance Costumes IN ONE DAY[ish]",
-    length: Some(1317),
+    duration: Some(1317),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/9gbScp1JVN4/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAJBAPNoEovYX80iONt3IzuOVuA6Q",
@@ -888,7 +888,7 @@ expression: map_res.c
   VideoItem(
     id: "qRao6FARFRo",
     name: "TURN THE TIDES - Harbor Agent Trailer // VALORANT",
-    length: Some(228),
+    duration: Some(228),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/qRao6FARFRo/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDsDWarEGRn1W9V3MLrVO7d3WY-IQ",
@@ -930,7 +930,7 @@ expression: map_res.c
   VideoItem(
     id: "F8sGGKxSYNM",
     name: "Chares Oliveira: I’ll shock the world vs. Islam Makhachev at UFC 280 | ESPN MMA",
-    length: Some(231),
+    duration: Some(231),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/F8sGGKxSYNM/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDyGsylKlErNaV715pyvBrZauSkeA",
@@ -972,7 +972,7 @@ expression: map_res.c
   VideoItem(
     id: "ZnQP13rYpUY",
     name: "Rochy RD,  Tivi Gunz , Harryson, Onguito Wa, El Perrote Wz - Lokisla (Video Oficial) @Izy Music",
-    length: Some(265),
+    duration: Some(265),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/ZnQP13rYpUY/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC7ChfY-IfOWPIkxa1xWoyLk0xYbg",
@@ -1014,7 +1014,7 @@ expression: map_res.c
   VideoItem(
     id: "WArWsWRmdJw",
     name: "I made GeoGuessr in Among Us to challenge my friends...",
-    length: Some(1340),
+    duration: Some(1340),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/WArWsWRmdJw/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBYZitzXsjECJhDvadhWwuWOVwZag",
@@ -1056,7 +1056,7 @@ expression: map_res.c
   VideoItem(
     id: "wP9zsx04fWY",
     name: "WE ARE COMING! to a city near you!",
-    length: Some(59),
+    duration: Some(59),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/wP9zsx04fWY/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBIjDcaW7ckphUnayl-n6pzlAYFjg",
@@ -1098,7 +1098,7 @@ expression: map_res.c
   VideoItem(
     id: "Wz0Gb4_Q5rM",
     name: "Mariners vs. Astros ALDS Game 1 Highlights (10/11/22) | MLB Highlights",
-    length: Some(584),
+    duration: Some(584),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/Wz0Gb4_Q5rM/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB3PeeIiEOIsG032IQ3Px9SR_jiBQ",
@@ -1140,7 +1140,7 @@ expression: map_res.c
   VideoItem(
     id: "ICULY_gTngs",
     name: "The MCU Has Been Taking Us For Granted.",
-    length: Some(1025),
+    duration: Some(1025),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/ICULY_gTngs/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD2bUs7W_ix398D2rVgylzSIBnFGA",
@@ -1182,7 +1182,7 @@ expression: map_res.c
   VideoItem(
     id: "bunhaERjxmE",
     name: "Frog Slime 🐸✨ | Ep. 11 | Minecraft Empires S2 1.19",
-    length: Some(608),
+    duration: Some(608),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/bunhaERjxmE/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBY6YgyyGN7BI_IeutMirrxP5QUGQ",
@@ -1224,7 +1224,7 @@ expression: map_res.c
   VideoItem(
     id: "tDhfNCUqZDs",
     name: "Bandmanrill x Sha Ek - “Jiggy In Jersey Pt2” (Shot by @RARI DIGITAL)",
-    length: Some(110),
+    duration: Some(110),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/tDhfNCUqZDs/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC6lvjmM55o1L6INcwpSPLeFCzaQQ",
@@ -1266,7 +1266,7 @@ expression: map_res.c
   VideoItem(
     id: "MEZe4chAeZA",
     name: "Dog and Chainsaw | Chainsawman Ep 1 Reaction",
-    length: Some(1077),
+    duration: Some(1077),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/MEZe4chAeZA/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDYfqfJ9h6UWtybU8JFDtzUXJuV5w",
@@ -1308,7 +1308,7 @@ expression: map_res.c
   VideoItem(
     id: "NMA_isZYsYQ",
     name: "KICK BACK",
-    length: Some(194),
+    duration: Some(194),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/NMA_isZYsYQ/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAU2OWhYt6nZn7kbdr6cs_PPjbDJQ",
@@ -1350,7 +1350,7 @@ expression: map_res.c
   VideoItem(
     id: "qe6Oy8oEOhI",
     name: "Top 50 Amazon Prime Day October 2022 Deals (DAY 2!) 🔥 Better Deals Than Yesterday?!",
-    length: Some(752),
+    duration: Some(752),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/qe6Oy8oEOhI/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDd34j8LOCJih9Fsnu-WS-M3qngVg",
@@ -1392,7 +1392,7 @@ expression: map_res.c
   VideoItem(
     id: "odWKEfp2QMY",
     name: "Måneskin - THE LONELIEST (Official Video)",
-    length: Some(288),
+    duration: Some(288),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/odWKEfp2QMY/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD7SeHmB9MNWYkX8nDeCdXoAKZ6Yg",
@@ -1434,7 +1434,7 @@ expression: map_res.c
   VideoItem(
     id: "BRb4U99OU80",
     name: "M3GAN - official trailer",
-    length: Some(148),
+    duration: Some(148),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/BRb4U99OU80/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAw-yFnWg5tK761MdrhmJOdMuMDGQ",
@@ -1476,7 +1476,7 @@ expression: map_res.c
   VideoItem(
     id: "F-7rQBY8uIQ",
     name: "Lil Baby - Heyy (Official Video)",
-    length: Some(193),
+    duration: Some(193),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/F-7rQBY8uIQ/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDY7ymysPG8lRSheq3-W4MbhtRmBg",
@@ -1518,7 +1518,7 @@ expression: map_res.c
   VideoItem(
     id: "3sPxvgrKwEg",
     name: "Overwatch 2 - SEASON 1 HERO TIER LIST",
-    length: Some(1183),
+    duration: Some(1183),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/3sPxvgrKwEg/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBA6xO6RKysWCSeACOsc3C1SBxPfA",
@@ -1560,7 +1560,7 @@ expression: map_res.c
   VideoItem(
     id: "_akEYecFdyM",
     name: "Overwatch 2 is free but I still feel scammed",
-    length: Some(904),
+    duration: Some(904),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/_akEYecFdyM/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBbbuGm0P2mw1kuXHeVE2F0hFx7Yg",
@@ -1602,7 +1602,7 @@ expression: map_res.c
   VideoItem(
     id: "6MKcY5wTcpY",
     name: "LEE CHAE YEON (이채연) - HUSH RUSH MV",
-    length: Some(221),
+    duration: Some(221),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/6MKcY5wTcpY/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD_0r3q7jLRcKOUvJGLeRjArMovGQ",
@@ -1644,7 +1644,7 @@ expression: map_res.c
   VideoItem(
     id: "xIeYK9w03i4",
     name: "『チェンソーマン』第１話スペシャルエンディング / CHAINSAW MAN #1 Ending│Vaundy 「CHAINSAW BLOOD」",
-    length: Some(92),
+    duration: Some(92),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/xIeYK9w03i4/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDWY5s8vA9p6_XE8aRRmVRuvHOqBw",
@@ -1686,7 +1686,7 @@ expression: map_res.c
   VideoItem(
     id: "s4y_kzpCthQ",
     name: "Blaqbonez - Back In Uni (Official Music Video)",
-    length: Some(209),
+    duration: Some(209),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/s4y_kzpCthQ/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBPk5VXjRm8aE7lX1CVMAxIrWzapA",
@@ -1728,7 +1728,7 @@ expression: map_res.c
   VideoItem(
     id: "_SKVFtLtJws",
     name: "Charli D\'Amelio and Mark Ballas Jazz (Week 4) | Dancing With The Stars on Disney+",
-    length: Some(92),
+    duration: Some(92),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/_SKVFtLtJws/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDRpcP_LvuCOJdrLUwX8lnxrR2YmQ",
@@ -1770,7 +1770,7 @@ expression: map_res.c
   VideoItem(
     id: "BtJPMqyhj_M",
     name: "Money Man - Armed & Dangerous (Official Video)",
-    length: Some(110),
+    duration: Some(110),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/BtJPMqyhj_M/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAKQaUzq6QdywoVb9EkcReN98vaWg",
@@ -1812,7 +1812,7 @@ expression: map_res.c
   VideoItem(
     id: "rge0deYBVv0",
     name: "Top 50 Amazon Prime Day October 2022 Deals 🤑 (Updated Hourly!!)",
-    length: Some(780),
+    duration: Some(780),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/rge0deYBVv0/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAzmN2M4RTZM-dvs0bL5T4kTJ0lLg",
@@ -1854,7 +1854,7 @@ expression: map_res.c
   VideoItem(
     id: "luXUJ9LJcy0",
     name: "Sounds from the Sideline: Week 5 at LAR | 2022",
-    length: Some(432),
+    duration: Some(432),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/luXUJ9LJcy0/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCCpmvZp_lVu3h3X6-6ABP1Nc-PCQ",
@@ -1896,7 +1896,7 @@ expression: map_res.c
   VideoItem(
     id: "avUEfUTGbhM",
     name: "Welding an excavator bucket and digging pond",
-    length: Some(1756),
+    duration: Some(1756),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/avUEfUTGbhM/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLANh1l5mzaeB_Y3b7VdTwMCBT3Crw",
@@ -1938,7 +1938,7 @@ expression: map_res.c
   VideoItem(
     id: "bqEgXmTU2SI",
     name: "NEW 5-5-5 ACE PARAGON - The Goliath Doomship! (Bloons TD 6)",
-    length: Some(950),
+    duration: Some(950),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/bqEgXmTU2SI/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDTLMyn3TvV9ujsk_FCwTb7gLmLsA",
@@ -1980,7 +1980,7 @@ expression: map_res.c
   VideoItem(
     id: "xhYj9JJnLHM",
     name: "DDG 25th SURPRISE BIRTHDAY PARTY!!",
-    length: Some(3252),
+    duration: Some(3252),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/xhYj9JJnLHM/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCGD3YlTctkj1ph4cwE3vVHXtb5Ag",
@@ -2022,7 +2022,7 @@ expression: map_res.c
   VideoItem(
     id: "RlbajBvxR0M",
     name: "Werewolf by Night - The MCU Tries to Be Creative Again",
-    length: Some(366),
+    duration: Some(366),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/RlbajBvxR0M/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDrKJhTwLFv537H7iODNIm-rdJAaA",
@@ -2064,7 +2064,7 @@ expression: map_res.c
   VideoItem(
     id: "yX_DwPnkycc",
     name: "THE BEST RESULTS I\'VE SEEN YET! (PROGRESS UPDATE)",
-    length: Some(906),
+    duration: Some(906),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/yX_DwPnkycc/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAPXdY5LCTadxPxXkG17mX25xiqoA",
@@ -2106,7 +2106,7 @@ expression: map_res.c
   VideoItem(
     id: "CtpdMkKvB6U",
     name: "hi, I\'m Dream.",
-    length: Some(342),
+    duration: Some(342),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/CtpdMkKvB6U/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCQqAxmXw6s3xgVPE4f9--KO_vctQ",
@@ -2148,7 +2148,7 @@ expression: map_res.c
   VideoItem(
     id: "t6fIp7mMJ90",
     name: "what happened.",
-    length: Some(332),
+    duration: Some(332),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/t6fIp7mMJ90/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAU4FUfZhmWVoLFj0XTx8S9qa40xw",
@@ -2190,7 +2190,7 @@ expression: map_res.c
   VideoItem(
     id: "dFlDRhvM4L0",
     name: "『チェンソーマン』ノンクレジットオープニング / CHAINSAW MAN  Opening│米津玄師 「KICK BACK」",
-    length: Some(90),
+    duration: Some(90),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/dFlDRhvM4L0/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBEBYFDdOM1Ozmr3W9LOopJxN_P0A",
@@ -2232,7 +2232,7 @@ expression: map_res.c
   VideoItem(
     id: "6T67I2w1G2U",
     name: "Extreme $1,000,000 Minecraft Challenge!",
-    length: Some(643),
+    duration: Some(643),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/6T67I2w1G2U/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB3pX_5AAn1wpsBoaAOycfn0VTKFw",
@@ -2274,7 +2274,7 @@ expression: map_res.c
   VideoItem(
     id: "DvkTX-AquQo",
     name: "Impossible 0.00001% Odds!",
-    length: Some(481),
+    duration: Some(481),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/DvkTX-AquQo/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBDyzgTEw_hcJsgbdkES1jpVf5JRQ",
@@ -2316,7 +2316,7 @@ expression: map_res.c
   VideoItem(
     id: "F-7rQBY8uIQ",
     name: "Lil Baby - Heyy (Official Video)",
-    length: Some(193),
+    duration: Some(193),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/F-7rQBY8uIQ/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDY7ymysPG8lRSheq3-W4MbhtRmBg",
@@ -2358,7 +2358,7 @@ expression: map_res.c
   VideoItem(
     id: "atwHMKZ0SLU",
     name: "Boosie in the trap!",
-    length: Some(9879),
+    duration: Some(9879),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/atwHMKZ0SLU/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBwEo-0SV6JIHJv5C570MVj8NOF0g",
@@ -2400,7 +2400,7 @@ expression: map_res.c
   VideoItem(
     id: "Ut68FBnWbAI",
     name: "ok, let\'s talk about it. - The TryPod Ep. 181",
-    length: Some(4226),
+    duration: Some(4226),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/Ut68FBnWbAI/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBYyU_Bn4adi0X5zYDC4SiLWvbBgw",
@@ -2442,7 +2442,7 @@ expression: map_res.c
   VideoItem(
     id: "_Z3QKkl1WyM",
     name: "Marvel Studios’ Black Panther: Wakanda Forever | Official Trailer",
-    length: Some(131),
+    duration: Some(131),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/_Z3QKkl1WyM/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA4FKEkGFypg_-RKBiNwaYebu2-Ag",
@@ -2484,7 +2484,7 @@ expression: map_res.c
   VideoItem(
     id: "nMPCXuvL8EM",
     name: "The Super Mario Bros. Movie Direct",
-    length: Some(482),
+    duration: Some(482),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/nMPCXuvL8EM/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBYYByVEhQgy1LwCBhwJQI0yTRt-A",
@@ -2526,7 +2526,7 @@ expression: map_res.c
   VideoItem(
     id: "SS7HXxy3_2c",
     name: "Try Guys - SNL",
-    length: Some(352),
+    duration: Some(352),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/SS7HXxy3_2c/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD82-aIeAntzTzLV2B2r_DxDZsspw",
@@ -2568,7 +2568,7 @@ expression: map_res.c
   VideoItem(
     id: "rvInpw0WGLc",
     name: "Town Hall 15 Is Here! Clash of Clans New Update Available Now!",
-    length: Some(71),
+    duration: Some(71),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/rvInpw0WGLc/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCQvtDnFgRNeKVUdta-byfT-GB5Zg",
@@ -2610,7 +2610,7 @@ expression: map_res.c
   VideoItem(
     id: "etV_nxVU6l8",
     name: "Wedding Stereotypes",
-    length: Some(676),
+    duration: Some(676),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/etV_nxVU6l8/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAnKF_WbQvYdKrkG8ATtN_vXzJxYg",
@@ -2652,7 +2652,7 @@ expression: map_res.c
   VideoItem(
     id: "i7ytY9Onf9o",
     name: "I Met Dream In Real Life",
-    length: Some(569),
+    duration: Some(569),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/i7ytY9Onf9o/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDBZtBV46pYtkX9iYznLGYBDV2sTg",
@@ -2694,7 +2694,7 @@ expression: map_res.c
   VideoItem(
     id: "jYSlpC6Ud2A",
     name: "Stray Kids \"CASE 143\" M/V",
-    length: Some(221),
+    duration: Some(221),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/jYSlpC6Ud2A/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD2-XAcmCTxdI3vOWaftHv6XoRIjA",
@@ -2736,7 +2736,7 @@ expression: map_res.c
   VideoItem(
     id: "XKRW1zgkCVc",
     name: "Where Animals\' Scientific Names Come From",
-    length: Some(581),
+    duration: Some(581),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/XKRW1zgkCVc/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDMs2hX0Ck9rFu-oRkmrL0eHM71qw",
@@ -2778,7 +2778,7 @@ expression: map_res.c
   VideoItem(
     id: "Th_O5kayAM0",
     name: "Que Vas A Hacer - Nivel Codiciado X Jose Mejia (Video Oficial)",
-    length: Some(189),
+    duration: Some(189),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/Th_O5kayAM0/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBgHmQpwmdauYj6wsz55dkPM39TAA",
@@ -2820,7 +2820,7 @@ expression: map_res.c
   VideoItem(
     id: "O-mtWoF8umw",
     name: "Yahritza Y Su Esencia & Ivan Cornejo - Inseparables (Official Video)",
-    length: Some(178),
+    duration: Some(178),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/O-mtWoF8umw/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCtdQW2CJyeeztP1cI0vepZg97Hig",
@@ -2862,7 +2862,7 @@ expression: map_res.c
   VideoItem(
     id: "rFO1iqDpMZU",
     name: "I Collected Every Illegal Item In Minecraft Hardcore",
-    length: Some(1402),
+    duration: Some(1402),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/rFO1iqDpMZU/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCcLAY1WamnInJO-1Nboej_DM9-6A",
@@ -2904,7 +2904,7 @@ expression: map_res.c
   VideoItem(
     id: "-1vsm5bhoyE",
     name: "Grupo Frontera - No Se Va (Letra Oficial)",
-    length: Some(192),
+    duration: Some(192),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/-1vsm5bhoyE/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDD0Coytauq-4Xhp5W4b864_CsLpQ",
@@ -2946,7 +2946,7 @@ expression: map_res.c
   VideoItem(
     id: "XQUiabixHzo",
     name: "I Speedran the $0.01 Challenge",
-    length: Some(933),
+    duration: Some(933),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/XQUiabixHzo/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAKl4svV224P1eNszwLKSlbVjp5ug",
@@ -2988,7 +2988,7 @@ expression: map_res.c
   VideoItem(
     id: "8TzH0ayIcdo",
     name: "The Darkest Story I\'ve Ever Read",
-    length: Some(4383),
+    duration: Some(4383),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/8TzH0ayIcdo/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCA_OSaK05YpZIF5EdSLzLT0YU58g",
@@ -3030,7 +3030,7 @@ expression: map_res.c
   VideoItem(
     id: "xkwc5TZmdIs",
     name: "GloRilla Glows Up In Every Way With Performance Of \"Tomorrow!\" & \"F.N.F.\" | Hip Hop Awards \'22",
-    length: Some(146),
+    duration: Some(146),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/xkwc5TZmdIs/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCAvkSqlB9LUtsH5VyLSR-wRYcl6w",
@@ -3072,7 +3072,7 @@ expression: map_res.c
   VideoItem(
     id: "eJPLiT1kCSM",
     name: "Museums: Last Week Tonight with John Oliver (HBO)",
-    length: Some(2049),
+    duration: Some(2049),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/eJPLiT1kCSM/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBN3_gN9YEBvh7PwVYx3KysJjhuxg",
@@ -3114,7 +3114,7 @@ expression: map_res.c
   VideoItem(
     id: "zwa7NzNBQig",
     name: "GloRilla, Cardi B - Tomorrow 2 (Official Music Video)",
-    length: Some(214),
+    duration: Some(214),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/zwa7NzNBQig/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAPmMVF2V__0t_FLFknkZ-bUtDklA",
@@ -3156,7 +3156,7 @@ expression: map_res.c
   VideoItem(
     id: "BHFcF0zcCgA",
     name: "Hurricane Ian Destroyed My Hometown!",
-    length: Some(647),
+    duration: Some(647),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/BHFcF0zcCgA/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB8rqMEm3EvFYXSRQoYAWJ_NIQCAQ",
@@ -3198,7 +3198,7 @@ expression: map_res.c
   VideoItem(
     id: "xhYj9JJnLHM",
     name: "DDG 25th SURPRISE BIRTHDAY PARTY!!",
-    length: Some(3252),
+    duration: Some(3252),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/xhYj9JJnLHM/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCGD3YlTctkj1ph4cwE3vVHXtb5Ag",
@@ -3240,7 +3240,7 @@ expression: map_res.c
   VideoItem(
     id: "9YsEQaW0f2c",
     name: "Eddie Robinson Jr. goes off on Deion Sanders and Coach Prime responds",
-    length: Some(439),
+    duration: Some(439),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/9YsEQaW0f2c/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDfutvJ5xzE0mXHpl-ND0ejlF7GSQ",
@@ -3282,7 +3282,7 @@ expression: map_res.c
   VideoItem(
     id: "m-SB3cpzLUU",
     name: "i\'m sorry.",
-    length: Some(322),
+    duration: Some(322),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/m-SB3cpzLUU/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLADeuenvZbbzaLfUD76EmkqoK2XqQ",
@@ -3324,7 +3324,7 @@ expression: map_res.c
   VideoItem(
     id: "TRGHIN2PGIA",
     name: "Christian Bale Breaks Down His Most Iconic Characters | GQ",
-    length: Some(1381),
+    duration: Some(1381),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/TRGHIN2PGIA/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDPK6QNVDxrPskvyPbELvgi5ER-9Q",
@@ -3366,7 +3366,7 @@ expression: map_res.c
   VideoItem(
     id: "U9HAaHc3wnc",
     name: "Guess Iono’s Partner Pokémon! 🤔 | Pokémon Scarlet and Pokémon Violet",
-    length: Some(211),
+    duration: Some(211),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/U9HAaHc3wnc/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBN7eQhGDi_EFbN4jlcxln2ZM_lFw",
@@ -3408,7 +3408,7 @@ expression: map_res.c
   VideoItem(
     id: "4ywb2pXRYZI",
     name: "Quavo & Takeoff - To The Bone feat. YoungBoy Never Broke Again (Official visualizer)",
-    length: Some(284),
+    duration: Some(284),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/4ywb2pXRYZI/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDmcKY4axF-lri29VZdveVQ-PnhoQ",
@@ -3450,7 +3450,7 @@ expression: map_res.c
   VideoItem(
     id: "wP9zsx04fWY",
     name: "WE ARE COMING! to a city near you!",
-    length: Some(59),
+    duration: Some(59),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/wP9zsx04fWY/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBIjDcaW7ckphUnayl-n6pzlAYFjg",
@@ -3492,7 +3492,7 @@ expression: map_res.c
   VideoItem(
     id: "9acxn7qAST4",
     name: "Overwatch 2 Animated Short | “Kiriko”",
-    length: Some(587),
+    duration: Some(587),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/9acxn7qAST4/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDdF-kdruGuT-XY8lfOvcyuHICr0g",
@@ -3534,7 +3534,7 @@ expression: map_res.c
   VideoItem(
     id: "8-tQKwB3RKw",
     name: "Big Boogie - Backend (Remix) Shot by @Camera Gawd",
-    length: Some(164),
+    duration: Some(164),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/8-tQKwB3RKw/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC_ya-jo9iSbGcwaV4bcKKpnuNUcw",
@@ -3576,7 +3576,7 @@ expression: map_res.c
   VideoItem(
     id: "5HNy7b6bz4g",
     name: "I Tried Out for an NBA Team and This Happened…",
-    length: Some(805),
+    duration: Some(805),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/5HNy7b6bz4g/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBFGg1F188jylbs7w7_LC1vIGmrHA",
@@ -3618,7 +3618,7 @@ expression: map_res.c
   VideoItem(
     id: "Uq9gPaIzbe8",
     name: "Sam Smith, Kim Petras - Unholy",
-    length: Some(276),
+    duration: Some(276),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/Uq9gPaIzbe8/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB20DY1i0dGRazj2X17cJ9ac2B_ZA",
@@ -3660,7 +3660,7 @@ expression: map_res.c
   VideoItem(
     id: "78sCR9mwBV4",
     name: "How Draymond Green Was after hitting Jordan Poole in practice",
-    length: Some(76),
+    duration: Some(76),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/78sCR9mwBV4/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBjPBTgNYle-y44-wEwqvCuR81VUw",
@@ -3702,7 +3702,7 @@ expression: map_res.c
   VideoItem(
     id: "2U9kNnHvE8o",
     name: "LAKERS at WARRIORS | NBA PRESEASON FULL GAME HIGHLIGHTS | October 9, 2022",
-    length: Some(585),
+    duration: Some(585),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/2U9kNnHvE8o/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAio7KicdLbL_aj4CxCaxBZ6NtYkA",
@@ -3744,7 +3744,7 @@ expression: map_res.c
   VideoItem(
     id: "xXGFb19rLtE",
     name: "Bray Wyatt returns to WWE: WWE Extreme Rules 2022 (WWE Network Exclusive)",
-    length: Some(106),
+    duration: Some(106),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/xXGFb19rLtE/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBb72TJR1vnUOrlV2LA4_bJjmi_5A",
@@ -3786,7 +3786,7 @@ expression: map_res.c
   VideoItem(
     id: "7IGD5URBGZ8",
     name: "We Got Engaged",
-    length: Some(1325),
+    duration: Some(1325),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/7IGD5URBGZ8/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLArNHqdfOCsU-_-O9g4hGna9iKODw",
@@ -3828,7 +3828,7 @@ expression: map_res.c
   VideoItem(
     id: "5sRVxb2wkGM",
     name: "We Bought Every Weird Ad We Saw",
-    length: Some(1602),
+    duration: Some(1602),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/5sRVxb2wkGM/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAXej_beyPyWOtxMGWzPqyqZTqoTA",
@@ -3870,7 +3870,7 @@ expression: map_res.c
   VideoItem(
     id: "4YEEDqke-D0",
     name: "Jump into a Paldean Journey | Pokémon Scarlet and Pokémon Violet",
-    length: Some(847),
+    duration: Some(847),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/4YEEDqke-D0/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDSK4tHB8wlTj2l2WVLtwX_ybVr6Q",
@@ -3912,7 +3912,7 @@ expression: map_res.c
   VideoItem(
     id: "rYjmxcV1se4",
     name: "Film Theory: Dora is CURSED! (Dora The Explorer)",
-    length: Some(1085),
+    duration: Some(1085),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/rYjmxcV1se4/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA-U-oTzZlg6Tw4UDUaUdLuqbVpHQ",
@@ -3954,7 +3954,7 @@ expression: map_res.c
   VideoItem(
     id: "y8qhSduN6sk",
     name: "PC Games on Console - Scott The Woz",
-    length: Some(1912),
+    duration: Some(1912),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/y8qhSduN6sk/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAKr5KTGdpoHjcP4E_wswYN46eDFA",
@@ -3996,7 +3996,7 @@ expression: map_res.c
   VideoItem(
     id: "yTLzGSJJ5ts",
     name: "I Spent 50 Hours Customizing The World\'s Largest Xbox!",
-    length: Some(886),
+    duration: Some(886),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/yTLzGSJJ5ts/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD_jLg-SFII8oghifvKnU8q_witGA",
@@ -4038,7 +4038,7 @@ expression: map_res.c
   VideoItem(
     id: "x1u8-i2pWg0",
     name: "Witness Hurricane Ian As It Hits My Home In Cape Coral, FL And View The Aftermath",
-    length: Some(855),
+    duration: Some(855),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/x1u8-i2pWg0/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB1rjvuJLU6f3DpFqIoA6tFDQJvGg",
@@ -4080,7 +4080,7 @@ expression: map_res.c
   VideoItem(
     id: "FfWtIaDtfYk",
     name: "Let’s Travel to The Most Extreme Place in The Universe",
-    length: Some(766),
+    duration: Some(766),
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/FfWtIaDtfYk/hqdefault.jpg?sqp=-oaymwEbCNIBEHZIVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBvWiqbrr3zFTch1lCD52GIojWf8Q",

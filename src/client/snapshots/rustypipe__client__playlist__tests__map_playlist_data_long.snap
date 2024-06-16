@@ -11,7 +11,7 @@ Playlist(
       VideoItem(
         id: "Bkj3IVIO2Os",
         name: "Stereoact feat. Kerstin Ott - Die Immer Lacht (Official Video HD)",
-        length: Some(216),
+        duration: Some(216),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/Bkj3IVIO2Os/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCdvrHLT_gdx5zxxO6SPig0sRLshQ",
@@ -52,7 +52,7 @@ Playlist(
       VideoItem(
         id: "8rRj5ZXRNko",
         name: "Uzzah - Faded Love (Official Lyrics Video)",
-        length: Some(191),
+        duration: Some(191),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/8rRj5ZXRNko/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-DoACuAiKAgwIABABGGMgYyhjMA8=&rs=AOn4CLBJHMbtsiMa4OaReWs02k9vxDVU5Q",
@@ -93,7 +93,7 @@ Playlist(
       VideoItem(
         id: "lHZtcC67yrY",
         name: "Andreas Gabalier - Hulapalu",
-        length: Some(188),
+        duration: Some(188),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/lHZtcC67yrY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDEYbpOXNx1VkAE7MDYQxK30ySK3Q",
@@ -134,7 +134,7 @@ Playlist(
       VideoItem(
         id: "TSkVVVBS9k8",
         name: "BAUSA - Was du Liebe nennst (Official Music Video) [prod. von Bausa, Jugglerz & The Cratez]",
-        length: Some(237),
+        duration: Some(237),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/TSkVVVBS9k8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCHZwNmGrLnYEsd6H7vzVAl0wDccw",
@@ -175,7 +175,7 @@ Playlist(
       VideoItem(
         id: "lc-cnCRhE7c",
         name: "Kay One feat. Pietro Lombardi - Señorita (prod. by Stard Ova)",
-        length: Some(250),
+        duration: Some(250),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/lc-cnCRhE7c/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAr2qEMqH5qnJkqLU-CRGFgoDN1DQ",
@@ -216,7 +216,7 @@ Playlist(
       VideoItem(
         id: "3ryohiCVq3M",
         name: "Namika -  Lieblingsmensch (Official Video)",
-        length: Some(191),
+        duration: Some(191),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/3ryohiCVq3M/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAnminoxsvobc_U0CE2lgZm9_0qeQ",
@@ -257,7 +257,7 @@ Playlist(
       VideoItem(
         id: "BNHamTwxJ6Q",
         name: "Roland Kaiser, Maite Kelly - Warum hast du nicht nein gesagt (Club Mix / Videoclip)",
-        length: Some(217),
+        duration: Some(217),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/BNHamTwxJ6Q/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA2EhfLWBk74_06c21rrSdz7tOrGQ",
@@ -298,7 +298,7 @@ Playlist(
       VideoItem(
         id: "5mqelmYUcI0",
         name: "Kay One - Louis Louis (prod. by Stard Ova)",
-        length: Some(218),
+        duration: Some(218),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/5mqelmYUcI0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCwnyUxowXZ244j5y8alOFPC0vX-Q",
@@ -339,7 +339,7 @@ Playlist(
       VideoItem(
         id: "k9EYjn5f_nE",
         name: "Andreas Bourani - Auf uns (Official Video)",
-        length: Some(244),
+        duration: Some(244),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/k9EYjn5f_nE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCyAbU3awWGYzOrjTrmQbVV7ifNXg",
@@ -380,7 +380,7 @@ Playlist(
       VideoItem(
         id: "fkMg_X9lHMc",
         name: "Marteria - Kids (2 Finger an den Kopf) [Offizielles Video]",
-        length: Some(230),
+        duration: Some(230),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/fkMg_X9lHMc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC8Ugdq8rK6ypi11IMafwoaTagQ7Q",
@@ -421,7 +421,7 @@ Playlist(
       VideoItem(
         id: "4wOoLLDXbDY",
         name: "CRO - Easy (Official Version)",
-        length: Some(195),
+        duration: Some(195),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/4wOoLLDXbDY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB8UXJLvwcuTIhh4Vi5GTeC40Up7w",
@@ -462,7 +462,7 @@ Playlist(
       VideoItem(
         id: "Z_mf9aCHag8",
         name: "KC Rebell feat. Moé ► BIST DU REAL ◄ [ official Video 4K ] | Dagi Bee",
-        length: Some(186),
+        duration: Some(186),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/Z_mf9aCHag8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAo2HLlXaCQEKzkHjBVsS0yqDQexQ",
@@ -503,7 +503,7 @@ Playlist(
       VideoItem(
         id: "cZ58odQo87A",
         name: "SDP feat. Adel Tawil - Ich will nur dass du weißt",
-        length: Some(222),
+        duration: Some(222),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/cZ58odQo87A/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCO8i1BvBLWn_LuKwvOwyZQNWxZgA",
@@ -544,7 +544,7 @@ Playlist(
       VideoItem(
         id: "1il3RFk5Okw",
         name: "Mark Forster - Chöre (Willkommen bei den Hartmanns Version)",
-        length: Some(209),
+        duration: Some(209),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/1il3RFk5Okw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDy8VAlVslYo3IXr7Cier_CGEh3aA",
@@ -585,7 +585,7 @@ Playlist(
       VideoItem(
         id: "8WQMBv2deYQ",
         name: "CRO - Traum (Official Version)",
-        length: Some(219),
+        duration: Some(219),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/8WQMBv2deYQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCeZJ96xE-bI9aQybOxIbOOZj8W5g",
@@ -626,7 +626,7 @@ Playlist(
       VideoItem(
         id: "vGrfFzagzHs",
         name: "CRO - Whatever (Official Version)",
-        length: Some(207),
+        duration: Some(207),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/vGrfFzagzHs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD5eTJevRx2iLio640dzb5l5ViNNA",
@@ -667,7 +667,7 @@ Playlist(
       VideoItem(
         id: "1gDbpWC_9pE",
         name: "Sarah Connor - Wie schön Du bist (Official Video)",
-        length: Some(216),
+        duration: Some(216),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/1gDbpWC_9pE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDLRfYnE54l7T8UX4HYeIQqpkQJYw",
@@ -708,7 +708,7 @@ Playlist(
       VideoItem(
         id: "p-AWcCCbBHw",
         name: "Nimo - HEUTE MIT MIR (prod. von PzY) [Official 4K Video]",
-        length: Some(256),
+        duration: Some(256),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/p-AWcCCbBHw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC7Mf1odYlMKp9fElxeWX5BZ6I-kQ",
@@ -749,7 +749,7 @@ Playlist(
       VideoItem(
         id: "RPN88D_HjMU",
         name: "Xavier Naidoo - Ich kenne nichts (Das so schön ist wie du) [Official Video]",
-        length: Some(332),
+        duration: Some(332),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/RPN88D_HjMU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDNkYiCJsMDWsLD8SoTG7fGjA2h1A",
@@ -790,7 +790,7 @@ Playlist(
       VideoItem(
         id: "5PST7Ld4wWU",
         name: "Max Giesinger - Wenn sie tanzt (Offizielles Video)",
-        length: Some(225),
+        duration: Some(225),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/5PST7Ld4wWU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBd_J44LO8vi882xka68dBcawvkFw",
@@ -831,7 +831,7 @@ Playlist(
       VideoItem(
         id: "opoDBF_b-fg",
         name: "ALLIGATOAH - WILLST DU (OFFICIAL HD VERSION AGGRO.TV)",
-        length: Some(307),
+        duration: Some(307),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/opoDBF_b-fg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAymd4m1ekevbFUIs-zGRuhlpfI-g",
@@ -872,7 +872,7 @@ Playlist(
       VideoItem(
         id: "AMT9IOyXmBM",
         name: "SIDO feat. Mark Forster - Einer dieser Steine (Official Video)",
-        length: Some(258),
+        duration: Some(258),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/AMT9IOyXmBM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDvYWerCDxj5Xrgz6bz5j0Xr7-YOQ",
@@ -913,7 +913,7 @@ Playlist(
       VideoItem(
         id: "VP5B1UmgHfc",
         name: "SDP feat. Sido - Ne Leiche",
-        length: Some(328),
+        duration: Some(328),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/VP5B1UmgHfc/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGH8gFCgUMA8=&rs=AOn4CLCteTEN-lCVEO4GSydpfXRPqxFPUw",
@@ -954,7 +954,7 @@ Playlist(
       VideoItem(
         id: "vcuQpbs0yT0",
         name: "KURDO - YA SALAM (prod. by Kostas Karagiozidis & Dj Tuneruno )",
-        length: Some(224),
+        duration: Some(224),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/vcuQpbs0yT0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCDn8gtSond6Yn5MLlzZDv_IrS-zQ",
@@ -995,7 +995,7 @@ Playlist(
       VideoItem(
         id: "LeMLVEJLruQ",
         name: "Gestört aber GeiL feat. Sebastian Hämer - Ich & Du (Official Video HD)",
-        length: Some(229),
+        duration: Some(229),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/LeMLVEJLruQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDDKCM7JzUUlgc-EgWM4lOn3g6qLw",
@@ -1036,7 +1036,7 @@ Playlist(
       VideoItem(
         id: "MtDPKJSsBgc",
         name: "Mark Forster - Au Revoir (Videoclip) ft. Sido",
-        length: Some(227),
+        duration: Some(227),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/MtDPKJSsBgc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDFPEql4pa1PPNZMBCe0ZHR7nfh1g",
@@ -1077,7 +1077,7 @@ Playlist(
       VideoItem(
         id: "4tDpYxNYqPg",
         name: "Kerstin Ott - Scheissmelodie (Offizielles Musikvideo)",
-        length: Some(209),
+        duration: Some(209),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/4tDpYxNYqPg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBmM1gywMKE8-hbZ42Wdsul8hlleg",
@@ -1118,7 +1118,7 @@ Playlist(
       VideoItem(
         id: "EkWjaoH7k6w",
         name: "Adel Tawil - Ist da jemand (Official Video)",
-        length: Some(251),
+        duration: Some(251),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/EkWjaoH7k6w/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC4WbamH3V3SpCVPeC4_Rs3v3tF8w",
@@ -1159,7 +1159,7 @@ Playlist(
       VideoItem(
         id: "tERRFWuYG48",
         name: "Barfuß Am Klavier - AnnenMayKantereit",
-        length: Some(202),
+        duration: Some(202),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/tERRFWuYG48/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCFhWEwvzfax4dm8E1GnztHWxUYuw",
@@ -1200,7 +1200,7 @@ Playlist(
       VideoItem(
         id: "wCcJuN47UcY",
         name: "Revolverheld feat. Marta Jandová - Halt Dich an mir fest (Offizielles Musikvideo)",
-        length: Some(213),
+        duration: Some(213),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/wCcJuN47UcY/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AHUBoAC4AOKAgwIABABGGUgZShlMA8=&rs=AOn4CLA5LeFhIoLs3UAwKeDVnoLtwo8K5w",
@@ -1241,7 +1241,7 @@ Playlist(
       VideoItem(
         id: "qdtLCfEcPL4",
         name: "Peter Fox - Alles neu (offizielles Video)",
-        length: Some(272),
+        duration: Some(272),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/qdtLCfEcPL4/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGGUgZShlMA8=&rs=AOn4CLAC0F0ZEumZfz7z85oUCm7c14Ta3A",
@@ -1282,7 +1282,7 @@ Playlist(
       VideoItem(
         id: "wjXUBG15eZ8",
         name: "257ers - Holz (Official HD Video)",
-        length: Some(214),
+        duration: Some(214),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/wjXUBG15eZ8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAw3Swj8ibFWFcgpsexNE0N_w_BUQ",
@@ -1323,7 +1323,7 @@ Playlist(
       VideoItem(
         id: "HBjDZMJUduo",
         name: "Laserkraft 3D - Nein Mann (official Video)",
-        length: Some(231),
+        duration: Some(231),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/HBjDZMJUduo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCOR8giEhNzblFrPfgfUqwQ2UEy7g",
@@ -1364,7 +1364,7 @@ Playlist(
       VideoItem(
         id: "xkXQQ0IAbk0",
         name: "MIAMI YACINE - BON VOYAGE prod. by AriBeatz (Official 4K Video)",
-        length: Some(159),
+        duration: Some(159),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/xkXQQ0IAbk0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAoi1jtQunAO2qbyn9GXNcSrgSEPg",
@@ -1405,7 +1405,7 @@ Playlist(
       VideoItem(
         id: "DraA3PUuoQc",
         name: "Pocahontas - AnnenMayKantereit",
-        length: Some(192),
+        duration: Some(192),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/DraA3PUuoQc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDq-oBTOdVzgce4FdS5tHTBe3eKlA",
@@ -1446,7 +1446,7 @@ Playlist(
       VideoItem(
         id: "wMIGQp4YhuU",
         name: "Xavier Naidoo - Alles kann besser werden [Official Video]",
-        length: Some(269),
+        duration: Some(269),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/wMIGQp4YhuU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAXuvRD27RqHtAyFm48dMnsYrUlbg",
@@ -1487,7 +1487,7 @@ Playlist(
       VideoItem(
         id: "38lrK74voaI",
         name: "Olexesh - MAGISCH feat. Edin (prod. von PzY) [Official 4K Video]",
-        length: Some(270),
+        duration: Some(270),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/38lrK74voaI/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAVoqbTLnv6uPAj7t0HrAn5GAK_Jg",
@@ -1528,7 +1528,7 @@ Playlist(
       VideoItem(
         id: "2qW9rOSFF1M",
         name: "BONEZ MC & RAF CAMORA - AN IHNEN VORBEI",
-        length: Some(220),
+        duration: Some(220),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/2qW9rOSFF1M/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCLHCbKTgchLUipdthOFsHIMos8eA",
@@ -1569,7 +1569,7 @@ Playlist(
       VideoItem(
         id: "tMILH6UEfPA",
         name: "Veysel - Kleiner Cabrón  (OFFICIAL HD VIDEO) prod. by Macloud",
-        length: Some(213),
+        duration: Some(213),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/tMILH6UEfPA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBTUsW-P8-fIzLCRb-Xt-2Ky4I58w",
@@ -1610,7 +1610,7 @@ Playlist(
       VideoItem(
         id: "izHB2EdMngg",
         name: "Vanessa Mai - Ich sterb für dich (Official Video)",
-        length: Some(190),
+        duration: Some(190),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/izHB2EdMngg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC5CFXBJ0W9DQQZ_tiM6gP12e1aug",
@@ -1651,7 +1651,7 @@ Playlist(
       VideoItem(
         id: "haECT-SerHk",
         name: "Helene Fischer - Atemlos durch die Nacht",
-        length: Some(219),
+        duration: Some(219),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/haECT-SerHk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB5wAkVuIyWU6lEavR0LDUJ-e9G_w",
@@ -1692,7 +1692,7 @@ Playlist(
       VideoItem(
         id: "cVikZ8Oe_XA",
         name: "Falco - Rock Me Amadeus (Official Video)",
-        length: Some(225),
+        duration: Some(225),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/cVikZ8Oe_XA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBRKYqET6zOciMAnASNDuj_vEWhHA",
@@ -1733,7 +1733,7 @@ Playlist(
       VideoItem(
         id: "drFsXLChrWc",
         name: "257ers - Holland (Official HD Video)",
-        length: Some(213),
+        duration: Some(213),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/drFsXLChrWc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDHzQXboNJT9agtNoiAYeGBQT7u9Q",
@@ -1774,7 +1774,7 @@ Playlist(
       VideoItem(
         id: "1EMFt7m_8yE",
         name: "SDP - Ich muss immer an dich denken",
-        length: Some(217),
+        duration: Some(217),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/1EMFt7m_8yE/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGH8gUygTMA8=&rs=AOn4CLBOV1cHPcLmIF0gKSmu5j1RZ9XTtg",
@@ -1815,7 +1815,7 @@ Playlist(
       VideoItem(
         id: "_yWU0lFghxU",
         name: "Seeed - Ding (official Video)",
-        length: Some(211),
+        duration: Some(211),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/_yWU0lFghxU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBo9Yn5w6pbo5JylVv3XuhFvz_-jw",
@@ -1856,7 +1856,7 @@ Playlist(
       VideoItem(
         id: "XlD-LO3ogFM",
         name: "Mark Forster - Wir sind groß (Lyric Video)",
-        length: Some(204),
+        duration: Some(204),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/XlD-LO3ogFM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDtxcZ0KznZi1B8TC_zDO4EAhSi2w",
@@ -1897,7 +1897,7 @@ Playlist(
       VideoItem(
         id: "nAzjWqNfgvc",
         name: "Gestört aber GeiL & Koby Funk feat. Wincent Weiss - Unter Meiner Haut (Official Video HD)",
-        length: Some(218),
+        duration: Some(218),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/nAzjWqNfgvc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAn2zwZvNQZDxYyEakap6O-qscr_w",
@@ -1938,7 +1938,7 @@ Playlist(
       VideoItem(
         id: "PySC3RGhZJU",
         name: "CRO - Bad Chick (Official Version)",
-        length: Some(218),
+        duration: Some(218),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/PySC3RGhZJU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDNUnL8j0tGJ2fsmqLaE7WMEkYToQ",
@@ -1979,7 +1979,7 @@ Playlist(
       VideoItem(
         id: "G-iwLoyH6ZE",
         name: "CAPITAL BRA - NUR NOCH GUCCI (prod. The Cratez x Hoodboyz)",
-        length: Some(232),
+        duration: Some(232),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/G-iwLoyH6ZE/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGGUgZShlMA8=&rs=AOn4CLBIe3Gr5VkhHVW2-vmSh7khbpWVUA",
@@ -2020,7 +2020,7 @@ Playlist(
       VideoItem(
         id: "fgCOUO-s8nY",
         name: "Jupiter Jones - Still (Videoclip)",
-        length: Some(238),
+        duration: Some(238),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/fgCOUO-s8nY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC0_6dsucrR1b1SFRH3mWIW4aG2MA",
@@ -2061,7 +2061,7 @@ Playlist(
       VideoItem(
         id: "m-Ik3yy728Y",
         name: "Andreas Bourani - Auf anderen Wegen (Official Video)",
-        length: Some(245),
+        duration: Some(245),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/m-Ik3yy728Y/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBdf4h8llXdfJ-OKgHzWj3IOWlnYQ",
@@ -2102,7 +2102,7 @@ Playlist(
       VideoItem(
         id: "U0_UYW5Y4cM",
         name: "Andreas Gabalier - I sing a Liad für Di",
-        length: Some(188),
+        duration: Some(188),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/U0_UYW5Y4cM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBl8yQKNQcbq4noIXXbagrBI2cuzA",
@@ -2143,7 +2143,7 @@ Playlist(
       VideoItem(
         id: "rsrDYTEicq8",
         name: "RAF CAMORA - Primo (prod. X-Plosive & RAF Camora)",
-        length: Some(214),
+        duration: Some(214),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/rsrDYTEicq8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAUWuhlHy43NeJWne-7SoaXRm_ctw",
@@ -2184,7 +2184,7 @@ Playlist(
       VideoItem(
         id: "2aU4wRgl_0E",
         name: "Ufo361 - \"Nice Girl 2.0\" (prod. von AT Beatz) [Official HD Video]",
-        length: Some(169),
+        duration: Some(169),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/2aU4wRgl_0E/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGHIgYigvMA8=&rs=AOn4CLBj0RHC0Whmrzg2QyLRXziGny_rNg",
@@ -2225,7 +2225,7 @@ Playlist(
       VideoItem(
         id: "FzcJxJAxFtw",
         name: "VEYSEL & MOZZIK - TI AMO (OFFICIAL VIDEO)",
-        length: Some(267),
+        duration: Some(267),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/FzcJxJAxFtw/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGEcgZChlMA8=&rs=AOn4CLAyzFFm0iraqh04myGY7Iwdjaz1Dg",
@@ -2266,7 +2266,7 @@ Playlist(
       VideoItem(
         id: "2hyibXdOp5w",
         name: "XAVAS (Xavier Naidoo & Kool Savas) \"Schau nicht mehr zurück\" (Official HD Video 2012)",
-        length: Some(234),
+        duration: Some(234),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/2hyibXdOp5w/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAd-py6tq-UGFdYc5FqW5ljYJ8HKw",
@@ -2307,7 +2307,7 @@ Playlist(
       VideoItem(
         id: "YaKG5cUVB30",
         name: "Ali Bumaye - Sex ohne Grund feat. Shindy",
-        length: Some(166),
+        duration: Some(166),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/YaKG5cUVB30/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGDYgVih_MA8=&rs=AOn4CLB1So27J3KTakO1MV-OkY7KlGu7oQ",
@@ -2348,7 +2348,7 @@ Playlist(
       VideoItem(
         id: "Ahwc-ouFeTQ",
         name: "ALLIGATOAH - Willst Du (OFFICIAL VIDEO) \'Triebwerke\' Album (HITBOX)",
-        length: Some(224),
+        duration: Some(224),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/Ahwc-ouFeTQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCO4zch0lItASVd_nSl1E2_GBr1QQ",
@@ -2389,7 +2389,7 @@ Playlist(
       VideoItem(
         id: "SoImFhORKpg",
         name: "Bonez MC & RAF Camora feat. Gzuz & Maxwell - Kontrollieren (prod. by Beataura & RAF Camora)",
-        length: Some(232),
+        duration: Some(232),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/SoImFhORKpg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDRnP4vZtk2hUwHQ_hDsfN3iDMe9Q",
@@ -2430,7 +2430,7 @@ Playlist(
       VideoItem(
         id: "jP4-XrbGt3M",
         name: "Mark Forster - Sowieso (Official Video)",
-        length: Some(161),
+        duration: Some(161),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/jP4-XrbGt3M/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAzLDUfpE6upRMnrDEqvp2BZrtCkw",
@@ -2471,7 +2471,7 @@ Playlist(
       VideoItem(
         id: "Yy2RsG4lnm4",
         name: "Anna-Maria Zimmermann - 1000 Träume weit (Tornero)",
-        length: Some(254),
+        duration: Some(254),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/Yy2RsG4lnm4/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGGUgWChSMA8=&rs=AOn4CLCxUywS0PujveirI2Ge3MGi_Omlfw",
@@ -2512,7 +2512,7 @@ Playlist(
       VideoItem(
         id: "388e_8mu1t4",
         name: "SDP feat. Sido - Die Nacht von Freitag auf Montag",
-        length: Some(241),
+        duration: Some(241),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/388e_8mu1t4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC1op5KQFtiQ3GJv_yt8lcCojrRWw",
@@ -2553,7 +2553,7 @@ Playlist(
       VideoItem(
         id: "dHHtPi-j7dQ",
         name: "Wolkenfrei - Wolke 7 (Offizielles Video)",
-        length: Some(239),
+        duration: Some(239),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/dHHtPi-j7dQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCZKYNdCzFGKh8z1XPSXT42h8EegQ",
@@ -2594,7 +2594,7 @@ Playlist(
       VideoItem(
         id: "d8ERTCVXIUE",
         name: "Ali As feat. Namika – Lass sie tanzen (Square Dance) // prod. ELI",
-        length: Some(251),
+        duration: Some(251),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/d8ERTCVXIUE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDRc1pnQEIAdibeOsDU5HUkjq6tEw",
@@ -2635,7 +2635,7 @@ Playlist(
       VideoItem(
         id: "vQXn3EzzYY4",
         name: "Frei.Wild - Weil Du mich nur verarscht hast (2011) [Offizieller Videoclip]",
-        length: Some(208),
+        duration: Some(208),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/vQXn3EzzYY4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCqfVJX6ABnvqJSkj7Hyw6f4rV2TA",
@@ -2676,7 +2676,7 @@ Playlist(
       VideoItem(
         id: "zA-BTpC-yvI",
         name: "AZET feat. RAF CAMORA - QA BONE  (Official Audio)",
-        length: Some(202),
+        duration: Some(202),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/zA-BTpC-yvI/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGE4gXChlMA8=&rs=AOn4CLBkH-lnzH83AI28xUBWA-ELuE28QQ",
@@ -2717,7 +2717,7 @@ Playlist(
       VideoItem(
         id: "rnzIN9H_G10",
         name: "LEA - Leiser (Pseudo Video)",
-        length: Some(209),
+        duration: Some(209),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/rnzIN9H_G10/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA2pFb14I8adKkilycBZCpcF0j5xQ",
@@ -2758,7 +2758,7 @@ Playlist(
       VideoItem(
         id: "fcBbT1GTxqM",
         name: "Kay One - Ich brech die Herzen",
-        length: Some(229),
+        duration: Some(229),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/fcBbT1GTxqM/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-BIAC6AKKAgwIABABGH8gFSgxMA8=&rs=AOn4CLC0M2hJ0_SW5zjBuLh8h96RKHuBvQ",
@@ -2799,7 +2799,7 @@ Playlist(
       VideoItem(
         id: "wCDsm_dt1cI",
         name: "KLUBBB3 - Du schaffst das schon (Offizielles Video)",
-        length: Some(190),
+        duration: Some(190),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/wCDsm_dt1cI/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCJisdr1A-P-lXCyrM0RoJRUyPDAQ",
@@ -2840,7 +2840,7 @@ Playlist(
       VideoItem(
         id: "4j3AOJV1J8I",
         name: "23 - Bushido & Sido feat. Peter Maffay - Erwachsen sein",
-        length: Some(218),
+        duration: Some(218),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/4j3AOJV1J8I/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBt7kmNDbeo0vtVApiHs2J5zMaylg",
@@ -2881,7 +2881,7 @@ Playlist(
       VideoItem(
         id: "RtuW08ZIgvg",
         name: "Söhne Mannheims - Und wenn ein Lied [Official Video]",
-        length: Some(249),
+        duration: Some(249),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/RtuW08ZIgvg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDM7u-sy9EvIS8VMTjJ9cLcM47zQA",
@@ -2922,7 +2922,7 @@ Playlist(
       VideoItem(
         id: "cbTXqKBIQ40",
         name: "Philipp Poisel - Eiserner Steg (Klavier Version) - Offizielles Video",
-        length: Some(250),
+        duration: Some(250),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/cbTXqKBIQ40/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AHUBoAC4AOKAgwIABABGGUgXihUMA8=&rs=AOn4CLAF0HVb8hFfclGtL2LXX-kBxl50Nw",
@@ -2963,7 +2963,7 @@ Playlist(
       VideoItem(
         id: "oSd0Lph4luY",
         name: "MIKE SINGER - DEJA VU (Offizielles Video)",
-        length: Some(229),
+        duration: Some(229),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/oSd0Lph4luY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDUSdlW64Vrr23hmhIBXoXWA5UuhQ",
@@ -3004,7 +3004,7 @@ Playlist(
       VideoItem(
         id: "oq0rrYrufYU",
         name: "JORIS - Herz über Kopf (Official Video)",
-        length: Some(209),
+        duration: Some(209),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/oq0rrYrufYU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBYbbtDe_9DmmmA3qpRrk3NphV69Q",
@@ -3045,7 +3045,7 @@ Playlist(
       VideoItem(
         id: "0-P_YkS0z8s",
         name: "KC Rebell feat. Summer Cem ► AUGENBLICK ◄ [ official Video ] 4K",
-        length: Some(208),
+        duration: Some(208),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/0-P_YkS0z8s/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBo7ZebER3EyU-cxcGJKMYdTZqVXA",
@@ -3086,7 +3086,7 @@ Playlist(
       VideoItem(
         id: "4BAKb2p450Q",
         name: "Tim Bendzko - Nur Noch Kurz Die Welt Retten (Offizielles Video)",
-        length: Some(191),
+        duration: Some(191),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/4BAKb2p450Q/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-DoACuAiKAgwIABABGGUgXChJMA8=&rs=AOn4CLBQz7BrG-FtU-G_9vRd8aUdskRrVQ",
@@ -3127,7 +3127,7 @@ Playlist(
       VideoItem(
         id: "yqObMM_QzVQ",
         name: "Casper - Im Ascheregen",
-        length: Some(303),
+        duration: Some(303),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/yqObMM_QzVQ/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGEsgZShZMA8=&rs=AOn4CLBoJTeRO6ARhLifQ_JSzkMpJsbfXA",
@@ -3168,7 +3168,7 @@ Playlist(
       VideoItem(
         id: "dlvStoOyEzE",
         name: "Alligatoah - Du bist schön (Official Video)",
-        length: Some(246),
+        duration: Some(246),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/dlvStoOyEzE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCfTATo6sXEoKHxikJD9t9Hg3E01g",
@@ -3209,7 +3209,7 @@ Playlist(
       VideoItem(
         id: "VNttGAaek2U",
         name: "Revolverheld - Lass Uns Gehen (Offizielles Musikvideo)",
-        length: Some(214),
+        duration: Some(214),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/VNttGAaek2U/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCwcuHMTixpi0vJg-4G20w5fbqI4w",
@@ -3250,7 +3250,7 @@ Playlist(
       VideoItem(
         id: "TxZMfufRJfo",
         name: "Oft Gefragt - AnnenMayKantereit (Official Video)",
-        length: Some(189),
+        duration: Some(189),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/TxZMfufRJfo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBhWEPjvLiv1Khiuod09arTjc8g7A",
@@ -3291,7 +3291,7 @@ Playlist(
       VideoItem(
         id: "6agT2asF4as",
         name: "CAPO - MON CHÉRI ft. NIMO (prod. von Zeeko & Veteran) [Official Audio]",
-        length: Some(230),
+        duration: Some(230),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/6agT2asF4as/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGH8gGyhXMA8=&rs=AOn4CLBJHfWuSafCA1Ps5tkucBNXDZ47SQ",
@@ -3332,7 +3332,7 @@ Playlist(
       VideoItem(
         id: "EcW0n83La5A",
         name: "DIE LOCHIS - LIEBLINGSLIED (Offizielles Video) | BEREIT FÜR @YouAreHero  ?",
-        length: Some(212),
+        duration: Some(212),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/EcW0n83La5A/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDfc1-Y5K_6Jjjs4e7wJRasjkAvqg",
@@ -3373,7 +3373,7 @@ Playlist(
       VideoItem(
         id: "_b61hg8UlZM",
         name: "CAPO – Lambo Diablo GT feat. Nimo (prod. Von SOTT & Veteran & Zeeko) [Official Audio]",
-        length: Some(285),
+        duration: Some(285),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/_b61hg8UlZM/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGH8gEygWMA8=&rs=AOn4CLDKZqTZ1RolhUZ6N1TBH_xHISnWGg",
@@ -3414,7 +3414,7 @@ Playlist(
       VideoItem(
         id: "kDMFranvFuQ",
         name: "Joel Brandenstein - Diese Liebe (Offizielles Musikvideo)",
-        length: Some(359),
+        duration: Some(359),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/kDMFranvFuQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBVFYsYNdvEy9fuONolAtBkZRvc9A",
@@ -3455,7 +3455,7 @@ Playlist(
       VideoItem(
         id: "1apku0pVDeE",
         name: "Wincent Weiss - Feuerwerk (Official Video)",
-        length: Some(213),
+        duration: Some(213),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/1apku0pVDeE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAgkN2roTs3SdVc46CRRd4BIi4k7Q",
@@ -3496,7 +3496,7 @@ Playlist(
       VideoItem(
         id: "g6JYzOjglBs",
         name: "Seeed - Aufstehn (official Video)",
-        length: Some(231),
+        duration: Some(231),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/g6JYzOjglBs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCkmBTXk2YaRyjaTgjq4bwcpzWWGA",
@@ -3537,7 +3537,7 @@ Playlist(
       VideoItem(
         id: "GYK-NfOo7b4",
         name: "Seeed - Dickes B (official Video)",
-        length: Some(240),
+        duration: Some(240),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/GYK-NfOo7b4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAavUCF3vlRnCAL2QsfDgMOh5aHaQ",
@@ -3578,7 +3578,7 @@ Playlist(
       VideoItem(
         id: "omUuR45iU0g",
         name: "KC Rebell feat. Summer Cem: \"HAYVAN\" [official Video]",
-        length: Some(291),
+        duration: Some(291),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/omUuR45iU0g/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBNyuNT14kxJH-TQe-PUes0vkP2bw",
@@ -3619,7 +3619,7 @@ Playlist(
       VideoItem(
         id: "w7BE3inS-NM",
         name: "Adel Tawil - Bis hier und noch weiter (Official Video) ft. KC Rebell, Summer Cem",
-        length: Some(228),
+        duration: Some(228),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/w7BE3inS-NM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAe887jFMndrO7vV9mifoa6a1Ectg",
@@ -3660,7 +3660,7 @@ Playlist(
       VideoItem(
         id: "FM-5BPMnhm0",
         name: "SDP feat. Weekend - Tanz aus der Reihe!",
-        length: Some(234),
+        duration: Some(234),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/FM-5BPMnhm0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBUFO3IacA956tmnSO4Tkq_5bJJDg",
@@ -3701,7 +3701,7 @@ Playlist(
       VideoItem(
         id: "MnNZNfixTOw",
         name: "Philipp Poisel - Wie soll ein Mensch das ertragen",
-        length: Some(278),
+        duration: Some(278),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/MnNZNfixTOw/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AHUBoAC4AOKAgwIABABGGUgWShHMA8=&rs=AOn4CLCuEjvonMHcDqcShO6UJbDrzshyDg",
@@ -3742,7 +3742,7 @@ Playlist(
       VideoItem(
         id: "qe80EeU8cT8",
         name: "Xavier Naidoo - Wann (feat. Cassandra Steen) [Official Video]",
-        length: Some(327),
+        duration: Some(327),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/qe80EeU8cT8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLATTKLPexjqGruzgsU7M3Kldk0J2w",
@@ -3783,7 +3783,7 @@ Playlist(
       VideoItem(
         id: "-s2-6KYgqpQ",
         name: "Alligatoah - Narben (Official Video)",
-        length: Some(264),
+        duration: Some(264),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/-s2-6KYgqpQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDWniVg-b300HVTRYrQGrrSK1G8uw",
@@ -3824,7 +3824,7 @@ Playlist(
       VideoItem(
         id: "RSlp874hESE",
         name: "Kollegah & Farid Bang - \"ZIEH DEN RUCKSACK AUS\" [ official Video ]",
-        length: Some(162),
+        duration: Some(162),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/RSlp874hESE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAU7YZ5dh9VaC9R5wfTKYMChxTplQ",
@@ -3865,7 +3865,7 @@ Playlist(
       VideoItem(
         id: "oTI3tRQ_-3k",
         name: "SDP - Wenn ich groß bin",
-        length: Some(225),
+        duration: Some(225),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/oTI3tRQ_-3k/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDkk0a9nwy9qYSc-V0ZRSIGS_Wttg",
@@ -3906,7 +3906,7 @@ Playlist(
       VideoItem(
         id: "_okA84gaEJw",
         name: "SXTN - Von Party zu Party (Official Video)",
-        length: Some(221),
+        duration: Some(221),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/_okA84gaEJw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDA6bykIGVF3WqUx3emOpgnuapb0w",
@@ -3947,7 +3947,7 @@ Playlist(
       VideoItem(
         id: "pLHnnJRaP7Q",
         name: "House Rockerz - HerzRasen (Official Video HD)",
-        length: Some(207),
+        duration: Some(207),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/pLHnnJRaP7Q/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDFElTxgC4PWAel2yN43ku_gWpLtw",
@@ -3988,7 +3988,7 @@ Playlist(
       VideoItem(
         id: "H2hGrsExuyc",
         name: "GZUZ \"Was Hast Du Gedacht\" (WSHH Exclusive - Official Music Video)",
-        length: Some(188),
+        duration: Some(188),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/H2hGrsExuyc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB_OAq5Mb2xjIZW5dNyKZRWJ7PLsA",
@@ -4029,7 +4029,7 @@ Playlist(
       VideoItem(
         id: "RsZvjqG2lec",
         name: "Tim Bendzko - Wenn Worte meine Sprache wären (Offizielles Video)",
-        length: Some(196),
+        duration: Some(196),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/RsZvjqG2lec/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBh5wlp7smaJJU4TQy1iKD1U2sqQQ",
@@ -4070,7 +4070,7 @@ Playlist(
       VideoItem(
         id: "qYRCiQ6d35w",
         name: "BONEZ MC & RAF CAMORA feat  GZUZ  - MÖRDER",
-        length: Some(240),
+        duration: Some(240),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/qYRCiQ6d35w/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGGUgWShVMA8=&rs=AOn4CLC2U3dzqvzsZhxZKif1rwtE6vQ8Vg",

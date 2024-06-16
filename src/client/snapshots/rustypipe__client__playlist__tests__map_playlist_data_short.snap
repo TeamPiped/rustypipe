@@ -11,7 +11,7 @@ Playlist(
       VideoItem(
         id: "nBZlrbrBO1I",
         name: "Lewis Capaldi - Forget Me (Official Video)",
-        length: Some(257),
+        duration: Some(257),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/nBZlrbrBO1I/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDYE-KokyXCncPHIweXZd3jO0FtCg",
@@ -52,7 +52,7 @@ Playlist(
       VideoItem(
         id: "k6ZoE4RrcDs",
         name: "Ed Sheeran - Overpass Graffiti [Official Video]",
-        length: Some(287),
+        duration: Some(287),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/k6ZoE4RrcDs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLClylvwlo7lJP-guD59zx46AJ-FhA",
@@ -93,7 +93,7 @@ Playlist(
       VideoItem(
         id: "_JGGLJMpVks",
         name: "Billie Eilish - TV (Official Lyric Video)",
-        length: Some(282),
+        duration: Some(282),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/_JGGLJMpVks/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD2M9JavMUXxkoqzNoTG-W4y8f6ng",
@@ -134,7 +134,7 @@ Playlist(
       VideoItem(
         id: "2n5GKLdrTfk",
         name: "Benson Boone -  In the Stars (Official Lyric Video)",
-        length: Some(217),
+        duration: Some(217),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/2n5GKLdrTfk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBgZfqXCaEvs5iiS7Uf8_th3FHi0Q",
@@ -175,7 +175,7 @@ Playlist(
       VideoItem(
         id: "psuRGfAaju4",
         name: "Owl City - Fireflies (Official Music Video)",
-        length: Some(233),
+        duration: Some(233),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/psuRGfAaju4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD9bUyhPoTTV2wN8BSQ1GCiZfEHRg",
@@ -216,7 +216,7 @@ Playlist(
       VideoItem(
         id: "AcTDlsUej2w",
         name: "Sofia Carson - Come Back Home (From \"Purple Hearts\")",
-        length: Some(204),
+        duration: Some(204),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/AcTDlsUej2w/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBZ4neL2CBKzCLMIK_-dU9jcjgU7g",
@@ -257,7 +257,7 @@ Playlist(
       VideoItem(
         id: "ospQ06jJe-I",
         name: "Rihanna - Lift Me Up (Visualizer)",
-        length: Some(197),
+        duration: Some(197),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/ospQ06jJe-I/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDP9VhXSsZyfokzYMG-bPeAtvwPYQ",
@@ -298,7 +298,7 @@ Playlist(
       VideoItem(
         id: "mqiH0ZSkM9I",
         name: "James Bay - Hold Back The River",
-        length: Some(247),
+        duration: Some(247),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/mqiH0ZSkM9I/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDL1DI86uhS0N-7Iln6wBSdwxzSTw",
@@ -339,7 +339,7 @@ Playlist(
       VideoItem(
         id: "UAWcs5H-qgQ",
         name: "Ed Sheeran - The A Team [Official Music Video]",
-        length: Some(290),
+        duration: Some(290),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/UAWcs5H-qgQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAQe32l8lKUCEYlEu3qvN61HJfhZQ",
@@ -380,7 +380,7 @@ Playlist(
       VideoItem(
         id: "c4BLVznuWnU",
         name: "Ed Sheeran - Lego House [Official Music Video]",
-        length: Some(246),
+        duration: Some(246),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/c4BLVznuWnU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCGv3Z17ZP7qUJBjyKS6XqEfd6vFA",
@@ -421,7 +421,7 @@ Playlist(
       VideoItem(
         id: "ouEezpuPc3A",
         name: "Andy Grammer - \"Don\'t Give Up On Me\" [Official Video from the Five Feet Apart Film]",
-        length: Some(216),
+        duration: Some(216),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/ouEezpuPc3A/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLATK7bjvuTcCR3tLGpTByugeeApBw",
@@ -462,7 +462,7 @@ Playlist(
       VideoItem(
         id: "i-qT5n_5Mys",
         name: "Jaymes Young - Happiest Year [Official Music Video]",
-        length: Some(278),
+        duration: Some(278),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/i-qT5n_5Mys/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBVoIW7CvV2T6J4lKS4ke0oG5T76Q",
@@ -503,7 +503,7 @@ Playlist(
       VideoItem(
         id: "bqO3Y5e4Dow",
         name: "Michele Morrone - Hard For Me (Official Music Video)",
-        length: Some(173),
+        duration: Some(173),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/bqO3Y5e4Dow/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCP6Zgm-3gvaYxZkCT5OS3GjJM2vQ",
@@ -544,7 +544,7 @@ Playlist(
       VideoItem(
         id: "VqXYVrsMGnk",
         name: "Cian Ducrot - I\'ll Be Waiting (Official Video)",
-        length: Some(186),
+        duration: Some(186),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/VqXYVrsMGnk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBewlDTtOME4lW9VOPol71lN1frvw",
@@ -585,7 +585,7 @@ Playlist(
       VideoItem(
         id: "qHm9MG9xw1o",
         name: "OneRepublic - Secrets (Official Music Video)",
-        length: Some(233),
+        duration: Some(233),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/qHm9MG9xw1o/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAEc7ChL1aU4sWnM23BEdbqUfYpoA",
@@ -626,7 +626,7 @@ Playlist(
       VideoItem(
         id: "-oqAU5VxFWs",
         name: "Counting Crows - Mr. Jones (Official Music Video)",
-        length: Some(270),
+        duration: Some(270),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/-oqAU5VxFWs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAOiV1ty7HPrBwp-3zZq3x_VY9YbQ",
@@ -667,7 +667,7 @@ Playlist(
       VideoItem(
         id: "XPpTgCho5ZA",
         name: "Maroon 5 - This Love (Official Music Video)",
-        length: Some(206),
+        duration: Some(206),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/XPpTgCho5ZA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAJLr7-wCPWd1_-QSELXsmZxsuUQA",
@@ -708,7 +708,7 @@ Playlist(
       VideoItem(
         id: "PMGY8fLwess",
         name: "James Arthur - Falling Like The Stars",
-        length: Some(256),
+        duration: Some(256),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/PMGY8fLwess/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCET20Nd4_3twDEy-t_LBeJFI5Lng",
@@ -749,7 +749,7 @@ Playlist(
       VideoItem(
         id: "vNfgVjZF8_4",
         name: "OneRepublic - Someday (Official Music Video)",
-        length: Some(192),
+        duration: Some(192),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/vNfgVjZF8_4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAiolwWxGplthlYKy2jJkAxw_-u2Q",
@@ -790,7 +790,7 @@ Playlist(
       VideoItem(
         id: "aNzCDt2eidg",
         name: "Birdy - Skinny Love (Official Music Video)",
-        length: Some(214),
+        duration: Some(214),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/aNzCDt2eidg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB33o_fslw86LZxcC1Jf8Oy8X94tg",
@@ -831,7 +831,7 @@ Playlist(
       VideoItem(
         id: "1YUBbF24H44",
         name: "Sabrina Carpenter - because i liked a boy (Official Video)",
-        length: Some(206),
+        duration: Some(206),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/1YUBbF24H44/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB_FDT3RYF6Db3q5vW9KsL9RCIcUA",
@@ -872,7 +872,7 @@ Playlist(
       VideoItem(
         id: "A48hOToMuRE",
         name: "Dermot Kennedy - Outnumbered (Official Music Video)",
-        length: Some(247),
+        duration: Some(247),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/A48hOToMuRE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD331J7kou1P60yR_eWHyDtzD6ATQ",
@@ -913,7 +913,7 @@ Playlist(
       VideoItem(
         id: "c0wUKCekI34",
         name: "Michele Morrone - Another Day (Official Music Video)",
-        length: Some(188),
+        duration: Some(188),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/c0wUKCekI34/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDnIgpAY_IWghMmR2H5lMfpPJhhKQ",
@@ -954,7 +954,7 @@ Playlist(
       VideoItem(
         id: "CA1VHbdq5hY",
         name: "Giveon - Lie Again (Official Music Video)",
-        length: Some(236),
+        duration: Some(236),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/CA1VHbdq5hY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDxIcgCqYhMN-NtLCF7P9SvaZF5ag",
@@ -995,7 +995,7 @@ Playlist(
       VideoItem(
         id: "ljXSjIph5ZM",
         name: "Niall Horan - Too Much To Ask (Official Video)",
-        length: Some(226),
+        duration: Some(226),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/ljXSjIph5ZM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBswSaH9Elc6hO18X9NQnbcnCTTrw",
@@ -1036,7 +1036,7 @@ Playlist(
       VideoItem(
         id: "HUAvAYcDBos",
         name: "Jessie Murph - How Could You (Official Video)",
-        length: Some(188),
+        duration: Some(188),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/HUAvAYcDBos/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDMs-vI_VZV6deBCj4gwoQTvwyflg",
@@ -1077,7 +1077,7 @@ Playlist(
       VideoItem(
         id: "P0N0h_EOS-c",
         name: "Jess Glynne - Take Me Home [One Shot]",
-        length: Some(276),
+        duration: Some(276),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/P0N0h_EOS-c/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGGUgTShXMA8=&rs=AOn4CLDkdQ5y1KrQH72YrAe3H3Azl2nrNw",
@@ -1118,7 +1118,7 @@ Playlist(
       VideoItem(
         id: "goqqohUitmw",
         name: "Conan Gray - People Watching (Official Video)",
-        length: Some(210),
+        duration: Some(210),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/goqqohUitmw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBctikDTiHTYFwrnwU3twVrMoMg0w",
@@ -1159,7 +1159,7 @@ Playlist(
       VideoItem(
         id: "EptPhiK_q0E",
         name: "Coldplay X Selena Gomez - Let Somebody Go (Official Lyric Video)",
-        length: Some(242),
+        duration: Some(242),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/EptPhiK_q0E/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGBMgUSh_MA8=&rs=AOn4CLCOd0ATwH2KxF7cfK-rWosCNT3IBA",
@@ -1200,7 +1200,7 @@ Playlist(
       VideoItem(
         id: "74NhLkjIeMs",
         name: "Conan Gray - Yours",
-        length: Some(201),
+        duration: Some(201),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/74NhLkjIeMs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA2yej0cyHG33At8O7nYsh0W0CjWQ",
@@ -1241,7 +1241,7 @@ Playlist(
       VideoItem(
         id: "DJFMRLIe-0o",
         name: "Tate McRae x Ali Gatie - lie to me",
-        length: Some(191),
+        duration: Some(191),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/DJFMRLIe-0o/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBxB2LhvsmbZFj8u3HHpZqw_QLQYQ",
@@ -1282,7 +1282,7 @@ Playlist(
       VideoItem(
         id: "26PAgklYYvo",
         name: "James Morrison - Broken Strings ft. Nelly Furtado (Official Video)",
-        length: Some(261),
+        duration: Some(261),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/26PAgklYYvo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBBWaF5iUZuRhd5CXJczxE_uIhvuQ",
@@ -1323,7 +1323,7 @@ Playlist(
       VideoItem(
         id: "_LwX7GCE5rI",
         name: "Miley Cyrus - Slide Away (Audio)",
-        length: Some(236),
+        duration: Some(236),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/_LwX7GCE5rI/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDARZ6g8GJ5ZQJKLBn_f7EUz5zQbw",
@@ -1364,7 +1364,7 @@ Playlist(
       VideoItem(
         id: "bO3S8CKafbE",
         name: "Niall Horan - Put A Little Love On Me (Official Video)",
-        length: Some(235),
+        duration: Some(235),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/bO3S8CKafbE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBkGMciyWKUevmBLwdIEfdyEUGtLQ",
@@ -1405,7 +1405,7 @@ Playlist(
       VideoItem(
         id: "HtNS1afUOnE",
         name: "OneRepublic - Stop And Stare (Official Music Video)",
-        length: Some(295),
+        duration: Some(295),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/HtNS1afUOnE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAxlKe00QtM12L4lSRNPFQwpSMyVA",
@@ -1446,7 +1446,7 @@ Playlist(
       VideoItem(
         id: "tMsbeyeTtpk",
         name: "Michael Bublé  - I\'ll Never Not Love You (Official Music Video)",
-        length: Some(245),
+        duration: Some(245),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/tMsbeyeTtpk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDAr49jYgSm566rAeQY2EDCJf8TiA",
@@ -1487,7 +1487,7 @@ Playlist(
       VideoItem(
         id: "K9qu2QMBguw",
         name: "I See Fire (From \"The Hobbit - The Desolation Of Smaug\")",
-        length: Some(301),
+        duration: Some(301),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/K9qu2QMBguw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCws9zOceVajoYy1goACyhUMpUp0A",
@@ -1528,7 +1528,7 @@ Playlist(
       VideoItem(
         id: "uWeqeQkjLto",
         name: "James Blunt - 1973 (Official Music Video)",
-        length: Some(234),
+        duration: Some(234),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/uWeqeQkjLto/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGFQgZShhMA8=&rs=AOn4CLAs8gUVPdNh55dqwd900xx-5wDFZg",
@@ -1569,7 +1569,7 @@ Playlist(
       VideoItem(
         id: "44u7_wQ1s0g",
         name: "John Legend - Wonder Woman (Official Music Video)",
-        length: Some(167),
+        duration: Some(167),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/44u7_wQ1s0g/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBkfXiCxIPRshRfnR2iyQwi4ygCvw",
@@ -1610,7 +1610,7 @@ Playlist(
       VideoItem(
         id: "7TCncxWNcPU",
         name: "David Kushner - Mr. Forgettable [Official Music Video]",
-        length: Some(188),
+        duration: Some(188),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/7TCncxWNcPU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBUjrfYGwMuSGUQXZ8S5NpzULk04A",
@@ -1651,7 +1651,7 @@ Playlist(
       VideoItem(
         id: "7Lna4Hu4-AQ",
         name: "MAX & Ali Gatie - Butterflies (Official Music Video)",
-        length: Some(195),
+        duration: Some(195),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/7Lna4Hu4-AQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCwk82yvmb0b2bT2LQdLDCm7AdPVw",
@@ -1692,7 +1692,7 @@ Playlist(
       VideoItem(
         id: "mHeK0Cwr9sg",
         name: "Family of the Year - Hero (Official Music Video)",
-        length: Some(197),
+        duration: Some(197),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/mHeK0Cwr9sg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBNQKaAvQ3wiH3m5VvXJqLq7evrcw",
@@ -1733,7 +1733,7 @@ Playlist(
       VideoItem(
         id: "0Bf3CJZ4hvg",
         name: "James TW - When You Love Someone (Official Video)",
-        length: Some(227),
+        duration: Some(227),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/0Bf3CJZ4hvg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDcZtU4lYU7SoyX-KWmY83qSZpKNA",
@@ -1774,7 +1774,7 @@ Playlist(
       VideoItem(
         id: "PxNYvk_0Onw",
         name: "Gabrielle Aplin - Please Don\'t Say You Love Me (Official Video)",
-        length: Some(208),
+        duration: Some(208),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/PxNYvk_0Onw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAzBncBZkxQA-sIftjEl-so3MFXDQ",
@@ -1815,7 +1815,7 @@ Playlist(
       VideoItem(
         id: "E0WRQpjckYg",
         name: "5 Seconds of Summer - Older (feat. Sierra Deaton) [Official Music Video]",
-        length: Some(197),
+        duration: Some(197),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/E0WRQpjckYg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBBqsOulvLGwgBYkEMsWZrn9t5z5Q",
@@ -1856,7 +1856,7 @@ Playlist(
       VideoItem(
         id: "X_ZOGHUWwqE",
         name: "Sam Smith - Kids Again (Official Music Video)",
-        length: Some(214),
+        duration: Some(214),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/X_ZOGHUWwqE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA07XEXQDNHBEgYBzrUaFeuuOhgYw",
@@ -1897,7 +1897,7 @@ Playlist(
       VideoItem(
         id: "fvXn3rmhdc4",
         name: "Benson Boone - Better Alone (Official Music Video)",
-        length: Some(209),
+        duration: Some(209),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/fvXn3rmhdc4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBXyC7NRsIpcSf-3xM6lJpRjufFBg",
@@ -1938,7 +1938,7 @@ Playlist(
       VideoItem(
         id: "WLoWBe9BRP4",
         name: "Mimi Webb - Good Without (Official Music Video)",
-        length: Some(187),
+        duration: Some(187),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/WLoWBe9BRP4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCXfMk1yjQeGOIv-JWTLz_Sv-fneA",
@@ -1979,7 +1979,7 @@ Playlist(
       VideoItem(
         id: "1XYLKoEETVA",
         name: "Zoe Wees - Hold Me Like You Used To",
-        length: Some(193),
+        duration: Some(193),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/1XYLKoEETVA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA1vOD1X-dWXRvJME8Rbamezkj3zQ",
@@ -2020,7 +2020,7 @@ Playlist(
       VideoItem(
         id: "7aF4epqLMPs",
         name: "Dermot Kennedy - One Life (Sonder Lyric Video)",
-        length: Some(238),
+        duration: Some(238),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/7aF4epqLMPs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDZepQgbOdk9xu0Umpn8ydSn92qeQ",
@@ -2061,7 +2061,7 @@ Playlist(
       VideoItem(
         id: "ufbDvPaVrzs",
         name: "Dermot Kennedy - Innocence and Sadness (Live From Mission Sound Studios, Brooklyn)",
-        length: Some(252),
+        duration: Some(252),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/ufbDvPaVrzs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAMZEWQx_Mzyg0dDRx35B8WBh7rWQ",
@@ -2102,7 +2102,7 @@ Playlist(
       VideoItem(
         id: "Ghl_vkEV3tc",
         name: "Noah Cyrus - Mr. Percocet (Official Video)",
-        length: Some(193),
+        duration: Some(193),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/Ghl_vkEV3tc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDoZ_f8kKEnHOjHUaQOuGK_2rFEzA",
@@ -2143,7 +2143,7 @@ Playlist(
       VideoItem(
         id: "hCjcgoubkPM",
         name: "Amy Shark - Mess Her Up (Official Video)",
-        length: Some(226),
+        duration: Some(226),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/hCjcgoubkPM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCJ7TmHDCPS_O4TuOcjvPGrH9uQig",
@@ -2184,7 +2184,7 @@ Playlist(
       VideoItem(
         id: "5qHRMFQ0pLg",
         name: "Dermot Kennedy - Dreamer",
-        length: Some(182),
+        duration: Some(182),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/5qHRMFQ0pLg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA0CeUiMuMAYUlwd6OSvfGbV2fiyA",
@@ -2225,7 +2225,7 @@ Playlist(
       VideoItem(
         id: "nwXlRq_QyTI",
         name: "JP Saxe - A Little Bit Yours (Official Music Video)",
-        length: Some(246),
+        duration: Some(246),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/nwXlRq_QyTI/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAeMKBjb-xLVknOBO0jnBI0nKGRrw",
@@ -2266,7 +2266,7 @@ Playlist(
       VideoItem(
         id: "7KHPC-kEQOA",
         name: "Rosa Linn, Duncan Laurence - WDIA (Would Do It Again) (Official Lyric Video)",
-        length: Some(193),
+        duration: Some(193),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/7KHPC-kEQOA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLChepS9Al_mePp9OUSvU3KCfiqT-Q",
@@ -2307,7 +2307,7 @@ Playlist(
       VideoItem(
         id: "ZdsER1S3t8k",
         name: "Noah Kahan - Hurt Somebody (Official Video)",
-        length: Some(175),
+        duration: Some(175),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/ZdsER1S3t8k/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCMXZbK3xM4AVAHT-1INttn80orFg",
@@ -2348,7 +2348,7 @@ Playlist(
       VideoItem(
         id: "fyrsExw_LUg",
         name: "James Bay - Bad",
-        length: Some(243),
+        duration: Some(243),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/fyrsExw_LUg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAIYoOZeb6YLJs-k7q7gUYDyEw5hQ",
@@ -2389,7 +2389,7 @@ Playlist(
       VideoItem(
         id: "X-vispdELDo",
         name: "Ashley Kutcher - Survive My Own Mind (Official Music Video)",
-        length: Some(199),
+        duration: Some(199),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/X-vispdELDo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCNjK3LA0b0HcekazbiyJw79ZV0zQ",
@@ -2430,7 +2430,7 @@ Playlist(
       VideoItem(
         id: "2p4n7JgdCsc",
         name: "a-ha - As If (Official Video)",
-        length: Some(336),
+        duration: Some(336),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/2p4n7JgdCsc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLClrUza7VFr3E5Vm_N3l-8uXzlTwg",
@@ -2471,7 +2471,7 @@ Playlist(
       VideoItem(
         id: "BS4t017LSoA",
         name: "Bad Habits (Acoustic Version)",
-        length: Some(233),
+        duration: Some(233),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/BS4t017LSoA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAoxqVY-e_4hIjPTQ2FLvQTy2e5KQ",
@@ -2512,7 +2512,7 @@ Playlist(
       VideoItem(
         id: "0AYzzzBaPBI",
         name: "flora cash - They Own This Town (Official Video)",
-        length: Some(246),
+        duration: Some(246),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/0AYzzzBaPBI/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDw2F7ryxqDLcERqtiIuz0pokrhcQ",
@@ -2553,7 +2553,7 @@ Playlist(
       VideoItem(
         id: "zM0K3LC7Aak",
         name: "James Arthur - Avalanche (Live Session)",
-        length: Some(220),
+        duration: Some(220),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/zM0K3LC7Aak/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLACABCozlS3B9tiR0oHa3A13tsKzg",
@@ -2594,7 +2594,7 @@ Playlist(
       VideoItem(
         id: "-uxeu0MbNR0",
         name: "Jeremy Zucker - oh, mexico (Official Lyric Video)",
-        length: Some(191),
+        duration: Some(191),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/-uxeu0MbNR0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAh2ApdiwlYs3vSs_rNVURKcwVjOw",
@@ -2635,7 +2635,7 @@ Playlist(
       VideoItem(
         id: "ELD3aRzbVQg",
         name: "Tom Gregory - Run To You (Official Video HD)",
-        length: Some(201),
+        duration: Some(201),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/ELD3aRzbVQg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA9S7vhfJ0vZ9jFNIPnuhZ47IV5VA",
@@ -2676,7 +2676,7 @@ Playlist(
       VideoItem(
         id: "RdFaKz71-5M",
         name: "Ruel - LET THE GRASS GROW (Visualizer)",
-        length: Some(181),
+        duration: Some(181),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/RdFaKz71-5M/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB2vXg0jRY42m1wZOLaDw8uhUIUvQ",
@@ -2717,7 +2717,7 @@ Playlist(
       VideoItem(
         id: "H1_icnjg6MY",
         name: "Sigrid - Blue (Official Audio)",
-        length: Some(207),
+        duration: Some(207),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/H1_icnjg6MY/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGHIgSSgkMA8=&rs=AOn4CLB6_p8MIO4i6qW1jroGhnYOm859MQ",
@@ -2758,7 +2758,7 @@ Playlist(
       VideoItem(
         id: "il_L6c_fOvs",
         name: "amnesia - Camylio (Visualizer)",
-        length: Some(173),
+        duration: Some(173),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/il_L6c_fOvs/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGGUgZShlMA8=&rs=AOn4CLAyT-vzu4WOeAaDksDfPYhIZro4Gg",
@@ -2799,7 +2799,7 @@ Playlist(
       VideoItem(
         id: "R3Wo_4tMlhQ",
         name: "Dean Lewis - All For You (Official Lyric Video)",
-        length: Some(226),
+        duration: Some(226),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/R3Wo_4tMlhQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAtJ6woo9TtO2c8S5_3-3Aml0fQug",
@@ -2840,7 +2840,7 @@ Playlist(
       VideoItem(
         id: "1le0xDbrVj8",
         name: "Oh Wonder - True Romance",
-        length: Some(244),
+        duration: Some(244),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/1le0xDbrVj8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLACfT_oOjcoB51P7qdJBdRJqMk6Bg",
@@ -2881,7 +2881,7 @@ Playlist(
       VideoItem(
         id: "35VK8yonvsc",
         name: "James Bay -  Everybody Needs Someone (Official Lyric Video)",
-        length: Some(216),
+        duration: Some(216),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/35VK8yonvsc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBm5zTCEBdVI4kL94VNJsrVw_D7Sg",
@@ -2922,7 +2922,7 @@ Playlist(
       VideoItem(
         id: "T05TN5RYvLk",
         name: "Jessica Darrow - A Little More",
-        length: Some(185),
+        duration: Some(185),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/T05TN5RYvLk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAnYNLEBPA_1w-VjM6VQ64WSpoRew",
@@ -2963,7 +2963,7 @@ Playlist(
       VideoItem(
         id: "NjW1S0WIiJw",
         name: "John Legend -  Free (Official Lyric Video)",
-        length: Some(223),
+        duration: Some(223),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/NjW1S0WIiJw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCoe2g-AJhPWV6uGi_Cb5BgOA9ggA",
@@ -3004,7 +3004,7 @@ Playlist(
       VideoItem(
         id: "KUKt_LbaBnM",
         name: "Oh Wonder - Better Now (Official Audio)",
-        length: Some(200),
+        duration: Some(200),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/KUKt_LbaBnM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBqi7ONpAild4T_KUgenSVpZnINJQ",
@@ -3045,7 +3045,7 @@ Playlist(
       VideoItem(
         id: "BxqtS-7GxFM",
         name: "TONES AND I - NEVER SEEN THE RAIN (ALTERNATE VERSION)",
-        length: Some(296),
+        duration: Some(296),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/BxqtS-7GxFM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAzNbc2LI1u0U7MJeDbYJ7CGcRsOg",
@@ -3086,7 +3086,7 @@ Playlist(
       VideoItem(
         id: "BD7HwXv18aU",
         name: "Blue - Magnetic (packshot video)",
-        length: Some(192),
+        duration: Some(192),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/BD7HwXv18aU/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGGUgZShlMA8=&rs=AOn4CLAm0onEcUfS8OL06MztPxxW0haT9Q",
@@ -3127,7 +3127,7 @@ Playlist(
       VideoItem(
         id: "WJJLfUwIVR4",
         name: "christina perri - home [official audio]",
-        length: Some(219),
+        duration: Some(219),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/WJJLfUwIVR4/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGFogNyh_MA8=&rs=AOn4CLAHxpiqOgT9nMZImsynQmXC57ccrw",
@@ -3168,7 +3168,7 @@ Playlist(
       VideoItem(
         id: "bhL7A8k6kU8",
         name: "Anderson East - Madelyn (Official Video)",
-        length: Some(203),
+        duration: Some(203),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/bhL7A8k6kU8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDjFwOL3uhYgUyn9Y_lCG9Obu_VLw",
@@ -3209,7 +3209,7 @@ Playlist(
       VideoItem(
         id: "-4szr0EMrgk",
         name: "Låpsley - 32 Floors (Official Audio)",
-        length: Some(185),
+        duration: Some(185),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/-4szr0EMrgk/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGE0gRyhZMA8=&rs=AOn4CLC8esxHISkHu2sudY4BhImbxCCF9A",
@@ -3250,7 +3250,7 @@ Playlist(
       VideoItem(
         id: "mUN36hFtazE",
         name: "LÉON – All My Heroes (Official Audio)",
-        length: Some(206),
+        duration: Some(206),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/mUN36hFtazE/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYACzgWKAgwIABABGH8gLigsMA8=&rs=AOn4CLAY7-0ugMLVK_gKfpJNSIWx81o0aQ",
@@ -3291,7 +3291,7 @@ Playlist(
       VideoItem(
         id: "dcBZP_pt0uY",
         name: "Tom Grennan - Little Bit Of Love (Strings) [Audio]",
-        length: Some(231),
+        duration: Some(231),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/dcBZP_pt0uY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCkKdl0vdveGOQRTVcDQSjM39eaNA",
@@ -3332,7 +3332,7 @@ Playlist(
       VideoItem(
         id: "m342B1Vv3tM",
         name: "Matt Simons ft. Betty Who - Dust (Official Lyric Video)",
-        length: Some(202),
+        duration: Some(202),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/m342B1Vv3tM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCtlnYdNrjQmFoSByaqszmoizosdw",
@@ -3373,7 +3373,7 @@ Playlist(
       VideoItem(
         id: "N_5RiRBvPSk",
         name: "SHIVERS (image of you)",
-        length: Some(178),
+        duration: Some(178),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/N_5RiRBvPSk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCHvtumFR7-GUGlU31AlGM0NA775A",
@@ -3414,7 +3414,7 @@ Playlist(
       VideoItem(
         id: "iOZj0Y8bAb8",
         name: "Rhys Lewis - The Middle",
-        length: Some(196),
+        duration: Some(196),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/iOZj0Y8bAb8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBxyTmcXXOFV5zDI-K8PTF7DbZqqg",
@@ -3455,7 +3455,7 @@ Playlist(
       VideoItem(
         id: "7OfB_8rrtug",
         name: "Grace (We All Try)",
-        length: Some(206),
+        duration: Some(206),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/7OfB_8rrtug/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC007M9IO9aWRv-SNVJkBxaGXzm-w",
@@ -3496,7 +3496,7 @@ Playlist(
       VideoItem(
         id: "ufxjiU7BgR4",
         name: "Fall Into Me",
-        length: Some(225),
+        duration: Some(225),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/ufxjiU7BgR4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCukjpfKjBu1BlRU6okhJcCeO33vQ",
@@ -3537,7 +3537,7 @@ Playlist(
       VideoItem(
         id: "QDULTFB8gSY",
         name: "Words as Weapons",
-        length: Some(199),
+        duration: Some(199),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/QDULTFB8gSY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCfNJGl46bsXtx8TaG9S1dGBP5CSg",
@@ -3578,7 +3578,7 @@ Playlist(
       VideoItem(
         id: "Q5kH0wg_sKo",
         name: "Will You Love Me Tomorrow",
-        length: Some(173),
+        duration: Some(173),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/Q5kH0wg_sKo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBqza1PqIiUCIgWRUkjX6LwsWdlBA",

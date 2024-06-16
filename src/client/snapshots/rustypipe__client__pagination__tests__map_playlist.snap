@@ -8,7 +8,7 @@ Paginator(
     VideoItem(
       id: "zMPIobcM2j0",
       name: "ZUNA feat. AZET & NOIZY - NUMMER 1 prod. by DJ A-BOOM",
-      length: Some(212),
+      duration: Some(212),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/zMPIobcM2j0/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGGUgUSg9MA8=&rs=AOn4CLAuU5Z3UBZEtKPrFsMT8zuSdLpCaQ",
@@ -49,7 +49,7 @@ Paginator(
     VideoItem(
       id: "f9g6NCHQrcE",
       name: "AZET ft. ZUNA & NOIZY - KRIMINELL (prod. by DJ A-BOOM)",
-      length: Some(230),
+      duration: Some(230),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/f9g6NCHQrcE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAMGepmuIe_XAharqN6EnCXvp0xYw",
@@ -90,7 +90,7 @@ Paginator(
     VideoItem(
       id: "CAVfEwrwT_o",
       name: "Rooz x MoTrip - Immer Wieder (eng: Again and Again) (prod SOTT)",
-      length: Some(227),
+      duration: Some(227),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/CAVfEwrwT_o/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBUrGnudhiLRS7_j5qb_973rHrTMw",
@@ -131,7 +131,7 @@ Paginator(
     VideoItem(
       id: "VUr9JZQ8F2g",
       name: "Kontra K - Zwischen Himmel & Hölle (Official Video)",
-      length: Some(270),
+      duration: Some(270),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/VUr9JZQ8F2g/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB_wUNlasFg6HhHNUdiLvaGljPqRg",
@@ -172,7 +172,7 @@ Paginator(
     VideoItem(
       id: "XQat6rNNbdQ",
       name: "ZUNA - AYE prod. by LUCRY #KMNSTREET VOL. 7",
-      length: Some(220),
+      duration: Some(220),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/XQat6rNNbdQ/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGGUgZShlMA8=&rs=AOn4CLAfXnFLscSl_ts58Ud5Vic-qwrwsg",
@@ -213,7 +213,7 @@ Paginator(
     VideoItem(
       id: "EQyU6fGDn0c",
       name: "RAF Camora - CORLEONE (prod. by X-Plosive,The Cratez & RAF Camora)",
-      length: Some(220),
+      duration: Some(220),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/EQyU6fGDn0c/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCZtiHGorHDDYBp-sPHB2MACq4XJg",
@@ -254,7 +254,7 @@ Paginator(
     VideoItem(
       id: "g4poKgQZX6w",
       name: "Ufo361 - „BEVERLY HILLS“ (prod. von AT Beatz/Jimmy Torrio) [Official HD Video]",
-      length: Some(219),
+      duration: Some(219),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/g4poKgQZX6w/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBog509zw2F56xrdDsQkeRiuEC-xg",
@@ -295,7 +295,7 @@ Paginator(
     VideoItem(
       id: "YTHr7gxwYUQ",
       name: "DARDAN X LUCIANO - AIRMAX GEGEN KOPF (prod. by Leryk)",
-      length: Some(167),
+      duration: Some(167),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/YTHr7gxwYUQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAgyAHaOHTo5EebRbB0J0b6nA_-aA",
@@ -336,7 +336,7 @@ Paginator(
     VideoItem(
       id: "MfCSDn6q6j4",
       name: "YONII - DIRECTION prod. by LUCRY (Official 4K Video)",
-      length: Some(182),
+      duration: Some(182),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/MfCSDn6q6j4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBEG2udEnlreWP8ezpx5j-1RpYrwg",
@@ -377,7 +377,7 @@ Paginator(
     VideoItem(
       id: "gx9KFXb5x_o",
       name: "Anstandslos & Durchgeknallt - Egal ft. Jasmiina (Official Video)",
-      length: Some(166),
+      duration: Some(166),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/gx9KFXb5x_o/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCQmzWXiU6YGpce9EAK0b1z2Y_QyQ",
@@ -418,7 +418,7 @@ Paginator(
     VideoItem(
       id: "d7R7DQ5tlQo",
       name: "RAF Camora - SAG NIX (Anthrazit RR) #02",
-      length: Some(205),
+      duration: Some(205),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/d7R7DQ5tlQo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDeUBwyhvVq_h9-oRTQ82-tcP7cYg",
@@ -459,7 +459,7 @@ Paginator(
     VideoItem(
       id: "cZPjgcqHSa8",
       name: "Olexesh - BWA feat. Celo & Abdi, Hanybal (prod. von Drunken Masters) [Official Video]",
-      length: Some(294),
+      duration: Some(294),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/cZPjgcqHSa8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDnL4R2RjYxajSHM2MYHHPIGSEbHg",
@@ -500,7 +500,7 @@ Paginator(
     VideoItem(
       id: "ogDLdREonWY",
       name: "AZET - KETTEN CARTIER (Beat by zeeko & Veteran / prod. by DJ A-Boom)",
-      length: Some(198),
+      duration: Some(198),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/ogDLdREonWY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCE-WB-D8k22SnqNqjlGIv3PopaKA",
@@ -541,7 +541,7 @@ Paginator(
     VideoItem(
       id: "pRQpKprUUPY",
       name: "Moe Phoenix - Ching Chang Chong (prod. by FL3X & Unik)",
-      length: Some(226),
+      duration: Some(226),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/pRQpKprUUPY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC1RCyBcVxcI7USDT0EdCYwzsgYbQ",
@@ -582,7 +582,7 @@ Paginator(
     VideoItem(
       id: "qZoQw9b4uCo",
       name: "PAYY x ARDIAN BUJUPI - Handschellen (Prod. by Remoe & Kostas Karagiozidis) [ OFFICIAL VIDEO ]",
-      length: Some(221),
+      duration: Some(221),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/qZoQw9b4uCo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD_Yap-tgk3XSsxA3-WPIDbffMP5g",
@@ -623,7 +623,7 @@ Paginator(
     VideoItem(
       id: "q23qghoF6Nk",
       name: "AZET - GJYNAH (beat by Lucry) (Official 4K Video)",
-      length: Some(271),
+      duration: Some(271),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/q23qghoF6Nk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAon_vcMLc5GY3dZ857wU4_6sM7bQ",
@@ -664,7 +664,7 @@ Paginator(
     VideoItem(
       id: "yU0aKa7PFBg",
       name: "Helene Fischer | Herzbeben (Live aus dem Kesselhaus München)",
-      length: Some(206),
+      duration: Some(206),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/yU0aKa7PFBg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDmZE8ywbjxjg8l1xwMeSJzMj27Ng",
@@ -705,7 +705,7 @@ Paginator(
     VideoItem(
       id: "DVCAqvypaCc",
       name: "DARDAN - JUMP (prod. by Oster)",
-      length: Some(202),
+      duration: Some(202),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/DVCAqvypaCc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDzU84UNl1l4W0cTdgmX9xthBVhHw",
@@ -746,7 +746,7 @@ Paginator(
     VideoItem(
       id: "XdnI7sm6LeQ",
       name: "RAF Camora - Andere Liga (prod. Beataura & RAF Camora)",
-      length: Some(240),
+      duration: Some(240),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/XdnI7sm6LeQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLALhffgTUDPZfO74mZauERCfDWLFw",
@@ -787,7 +787,7 @@ Paginator(
     VideoItem(
       id: "KcOXNSJtFLg",
       name: "Sugar MMFK - Trikot von Paris (prod. by Penacho) [4K VIDEO]",
-      length: Some(255),
+      duration: Some(255),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/KcOXNSJtFLg/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGDggYyhyMA8=&rs=AOn4CLDP_rdjW8feJ1ZoIRxZT6P218hhdg",
@@ -828,7 +828,7 @@ Paginator(
     VideoItem(
       id: "K0UxHXZwgsg",
       name: "FLER ✖\u{fe0f}Pfirsich/Late Check-Out ✖\u{fe0f}► [ official Video ] prod. by Simes Add. Vocals by Mosenu",
-      length: Some(245),
+      duration: Some(245),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/K0UxHXZwgsg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD1XTfZEJtsHmu1PYtlGFwz4bAiOw",
@@ -869,7 +869,7 @@ Paginator(
     VideoItem(
       id: "eyyNwOSQ3Yg",
       name: "MGP \"BAD BITCH\" (Official Video)",
-      length: Some(166),
+      duration: Some(166),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/eyyNwOSQ3Yg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCrGr9LT69Q4tZzNwFIuUzoUAYwSQ",
@@ -910,7 +910,7 @@ Paginator(
     VideoItem(
       id: "1yskotqNuXI",
       name: "RIN - Bros (prod. Minhtendo)",
-      length: Some(219),
+      duration: Some(219),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/1yskotqNuXI/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLABT4efReL1QrSECDJwROBI-pRCzw",
@@ -951,7 +951,7 @@ Paginator(
     VideoItem(
       id: "C03n4AAiL9w",
       name: "Glasperlenspiel - Geiles Leben (Lyric Video)",
-      length: Some(211),
+      duration: Some(211),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/C03n4AAiL9w/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCKvhEqesIgEalpxUZClNFcg65cig",
@@ -992,7 +992,7 @@ Paginator(
     VideoItem(
       id: "a2wNRTKRusM",
       name: "Moe Phoenix - Mohammad (prod. by AriBeatz)",
-      length: Some(197),
+      duration: Some(197),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/a2wNRTKRusM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBBKdUFUQEPrf091_3-GxUDfOuwzA",
@@ -1033,7 +1033,7 @@ Paginator(
     VideoItem(
       id: "AIf61iHwWMQ",
       name: "RAF Camora feat. UFO 361, GZUZ & Bonez MC - WAFFEN (Anthrazit RR) #07",
-      length: Some(268),
+      duration: Some(268),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/AIf61iHwWMQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDOB2LLlsczwY-nRhzA0m4rzWF7yg",
@@ -1074,7 +1074,7 @@ Paginator(
     VideoItem(
       id: "BixqbSRjY2Y",
       name: "RAF Camora - ALLES PROBIERT feat. BONEZ MC (prod.by Beataura & RAF Camora)",
-      length: Some(319),
+      duration: Some(319),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/BixqbSRjY2Y/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGGUgUiheMA8=&rs=AOn4CLBqs2J7SrhDv0y0nukTRhu3nBf0RQ",
@@ -1115,7 +1115,7 @@ Paginator(
     VideoItem(
       id: "Acgy-3d4P6o",
       name: "Kontra K - Erfolg ist kein Glück (Official Video)",
-      length: Some(226),
+      duration: Some(226),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/Acgy-3d4P6o/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGEsgXyhlMA8=&rs=AOn4CLBPlFkfape542W2wqX_C2tcWypxKQ",
@@ -1156,7 +1156,7 @@ Paginator(
     VideoItem(
       id: "5M_yA9M7yNc",
       name: "RAF Camora - GOTHAM CITY (Anthrazit RR) #03",
-      length: Some(156),
+      duration: Some(156),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/5M_yA9M7yNc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCviCUA-ubhSSDyG7yt8Q1FEbCdtQ",
@@ -1197,7 +1197,7 @@ Paginator(
     VideoItem(
       id: "PjJuezhos3U",
       name: "Fard - \"LIEBE MACHT BLIND\" (Official Video) prod.by Abaz & X-Plosive",
-      length: Some(258),
+      duration: Some(258),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/PjJuezhos3U/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAulYAOlEdmCEOUhn3IQDk6lWuC5A",
@@ -1238,7 +1238,7 @@ Paginator(
     VideoItem(
       id: "XMutaJI2-kc",
       name: "18 Karat ✖\u{fe0f}• MAMA IST NICHT STOLZ •✖\u{fe0f} [ official Video ]",
-      length: Some(262),
+      duration: Some(262),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/XMutaJI2-kc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCCJIA4Omo1CkTXkOzYVdNbP0Mkrw",
@@ -1279,7 +1279,7 @@ Paginator(
     VideoItem(
       id: "Xac6Q7hcZkQ",
       name: "RIN - Monica Bellucci (prod. Alexis Troy)",
-      length: Some(228),
+      duration: Some(228),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/Xac6Q7hcZkQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDkwIz_hDDGLXX8i3uaKaWIl9ZH1Q",
@@ -1320,7 +1320,7 @@ Paginator(
     VideoItem(
       id: "JfwjsjBcDoU",
       name: "Helene Fischer - Achterbahn",
-      length: Some(222),
+      duration: Some(222),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/JfwjsjBcDoU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDMhxxaiLymi4ZQ3WvJpovkdQfqSQ",
@@ -1361,7 +1361,7 @@ Paginator(
     VideoItem(
       id: "zshiQUV3ohw",
       name: "MOE PHOENIX feat. VEYSEL - GAUNER (prod. by Ghana Beats)",
-      length: Some(226),
+      duration: Some(226),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/zshiQUV3ohw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAqPtA9IBm0Dp_o89aj1F18oYvRnw",
@@ -1402,7 +1402,7 @@ Paginator(
     VideoItem(
       id: "g1eTAt1_VAM",
       name: "Nimo - HYPE feat. Celo & Abdi (prod. von Matveï) [Official 4K Video]",
-      length: Some(303),
+      duration: Some(303),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/g1eTAt1_VAM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBuGSL6ChVGrfHZvlpcgOnkQmDnkg",
@@ -1443,7 +1443,7 @@ Paginator(
     VideoItem(
       id: "c3rLrFC8igY",
       name: "Dame - Auf die guten alten Zeiten [Official HD Video]",
-      length: Some(252),
+      duration: Some(252),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/c3rLrFC8igY/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGHIgRig8MA8=&rs=AOn4CLDwPn1CndxsMh6zW-hj5sxAmTVMcA",
@@ -1484,7 +1484,7 @@ Paginator(
     VideoItem(
       id: "1im4DNEYzEM",
       name: "Gzuz - Optimal (Jambeatz)",
-      length: Some(209),
+      duration: Some(209),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/1im4DNEYzEM/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGGUgTyhMMA8=&rs=AOn4CLBx6JS1pZn9Qgq-BchE8fv8lUP6nA",
@@ -1525,7 +1525,7 @@ Paginator(
     VideoItem(
       id: "8BUxw9ocM2s",
       name: "EULE aka Jazzy Gudd - Stehaufmädchen (Official Video)",
-      length: Some(184),
+      duration: Some(184),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/8BUxw9ocM2s/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD07FNMfJFNvAE1cQaM6d0TKN3thA",
@@ -1566,7 +1566,7 @@ Paginator(
     VideoItem(
       id: "g4cSpnGbHPE",
       name: "CAPITAL BRA & KING KHALIL - ZWEISTELLIGE HAFTSTRAFEN (PROD. SAVEN MUSIQ)",
-      length: Some(201),
+      duration: Some(201),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/g4cSpnGbHPE/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGHIgWyhCMA8=&rs=AOn4CLDm0FhfKylnfery4UqpUghgot5oaA",
@@ -1607,7 +1607,7 @@ Paginator(
     VideoItem(
       id: "1Sdj9MiCowQ",
       name: "187 Strassenbande - 10 Jahre (Jambeatz)",
-      length: Some(296),
+      duration: Some(296),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/1Sdj9MiCowQ/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGGUgVShMMA8=&rs=AOn4CLAAZTsrfwImW7FvwIYWJ9K0JnNVkA",
@@ -1648,7 +1648,7 @@ Paginator(
     VideoItem(
       id: "2DbR35g-0ZY",
       name: "Ufo361 - \"DER PATE\" (prod. von Broke Boys) [Official HD Video]",
-      length: Some(237),
+      duration: Some(237),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/2DbR35g-0ZY/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGH8gHig8MA8=&rs=AOn4CLAAOdr62yoknUpc5OIvFP4ewD01dw",
@@ -1689,7 +1689,7 @@ Paginator(
     VideoItem(
       id: "j09hpp3AxIE",
       name: "Die Toten Hosen // „Tage wie diese\" [Offizielles Musikvideo]",
-      length: Some(272),
+      duration: Some(272),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/j09hpp3AxIE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD9AYFv29sGfmmdT8U1dqKUjY5ALw",
@@ -1730,7 +1730,7 @@ Paginator(
     VideoItem(
       id: "J3GN6JXjV3g",
       name: "Wincent Weiss - Frische Luft",
-      length: Some(200),
+      duration: Some(200),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/J3GN6JXjV3g/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB66Ro2vGeZvHM0dnqbT6HVGtuQNA",
@@ -1771,7 +1771,7 @@ Paginator(
     VideoItem(
       id: "pULl-p02upM",
       name: "Eunique ► CHECK (feat. Xatar) ◄ music by Lucry / prod. by Michael Jackson [Official Video]",
-      length: Some(240),
+      duration: Some(240),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/pULl-p02upM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAjH5lXg2mtjBxznFQpauBgpZ6S5g",
@@ -1812,7 +1812,7 @@ Paginator(
     VideoItem(
       id: "O6By8JeCtQQ",
       name: "KING KHALIL FT. CELO & ABDI - ALLES RICHTIG SO (PROD.BY THE CRATEZ)",
-      length: Some(210),
+      duration: Some(210),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/O6By8JeCtQQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBeEDlx_Qtv47nY5CUFqHFv3eJAJQ",
@@ -1853,7 +1853,7 @@ Paginator(
     VideoItem(
       id: "NGn3IYQ7M7E",
       name: "LUCIANO - VORANKOMMEN (prod. by Chryziz Beats)",
-      length: Some(228),
+      duration: Some(228),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/NGn3IYQ7M7E/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGDIgYChyMA8=&rs=AOn4CLA2wpgBg-MXTT_iZyBlTP7ur2bZBw",
@@ -1894,7 +1894,7 @@ Paginator(
     VideoItem(
       id: "o43oI5x86dI",
       name: "Gzuz feat. LX- Schnapp! (prod. P.M.B.)",
-      length: Some(166),
+      duration: Some(166),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/o43oI5x86dI/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDeGB5wc8URrV5zjwsfhU2-lAd2Bg",
@@ -1935,7 +1935,7 @@ Paginator(
     VideoItem(
       id: "7TNqUrINxzs",
       name: "Veysel - Besser als 50 Cent (OFFICIAL HD VIDEO) prod. by Fonty",
-      length: Some(197),
+      duration: Some(197),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/7TNqUrINxzs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDGpJi_1puIgwODMepICvhX3qrmvw",
@@ -1976,7 +1976,7 @@ Paginator(
     VideoItem(
       id: "f3BD5Zm3cp0",
       name: "BONEZ MC & RAF CAMORA - PALMEN AUS GOLD",
-      length: Some(231),
+      duration: Some(231),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/f3BD5Zm3cp0/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGEUgVihlMA8=&rs=AOn4CLAiVFr5c0yW81qlZDUAapLUrvLF5Q",
@@ -2017,7 +2017,7 @@ Paginator(
     VideoItem(
       id: "sF4yTDp95Eo",
       name: "YONII - LAMPEDUSA prod. by LUCRY (Official 4K Video)",
-      length: Some(203),
+      duration: Some(203),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/sF4yTDp95Eo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBvg9CIthGa9KJrDHLjeZjkDegElw",
@@ -2058,7 +2058,7 @@ Paginator(
     VideoItem(
       id: "1EwLNHg6ejY",
       name: "Mert ft. SOOLKING - AJAJAJ (prod. by ARIBEATZ)",
-      length: Some(224),
+      duration: Some(224),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/1EwLNHg6ejY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBxADlCvmeGhe-SPNkvZcVQk7wu4g",
@@ -2099,7 +2099,7 @@ Paginator(
     VideoItem(
       id: "-l75qaSDWe8",
       name: "SXTN - Bongzimmer (Official Video)",
-      length: Some(287),
+      duration: Some(287),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/-l75qaSDWe8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCMJGvaVHhQX1wQsr-3Kd2djDVIRQ",
@@ -2140,7 +2140,7 @@ Paginator(
     VideoItem(
       id: "7h7ntYLLrfQ",
       name: "Mark Forster - Kogong",
-      length: Some(223),
+      duration: Some(223),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/7h7ntYLLrfQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAtAzQLSNQvigkTqhdfBgz8WSOyTA",
@@ -2181,7 +2181,7 @@ Paginator(
     VideoItem(
       id: "ApUl3Ops69M",
       name: "AZET - FAST LIFE (prod. by m3) #KMNSTREET VOL. 1",
-      length: Some(179),
+      duration: Some(179),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/ApUl3Ops69M/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDb2436I_Kp7y4gMe6w7nh_DN0F2Q",
@@ -2222,7 +2222,7 @@ Paginator(
     VideoItem(
       id: "2YcJ8Wightw",
       name: "GZUZ - CL500 (Jambeatz)",
-      length: Some(152),
+      duration: Some(152),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/2YcJ8Wightw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBafY_AaRX5vaAIfpdctKTL8ZbUqQ",
@@ -2263,7 +2263,7 @@ Paginator(
     VideoItem(
       id: "W3q8Od5qJio",
       name: "Rammstein - Du Hast (Official 4K Video)",
-      length: Some(236),
+      duration: Some(236),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/W3q8Od5qJio/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBy8BHWAiUz5cUmZdLkDTTIS7w5bA",
@@ -2304,7 +2304,7 @@ Paginator(
     VideoItem(
       id: "WPFLAjmWCtk",
       name: "SIDO - Astronaut (feat. Andreas Bourani) OFFICIAL VIDEO",
-      length: Some(268),
+      duration: Some(268),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/WPFLAjmWCtk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBA6n25WXYSKiK6KbfsZk-monR1BQ",
@@ -2345,7 +2345,7 @@ Paginator(
     VideoItem(
       id: "tC76tIp0kBk",
       name: "MoTrip - So wie du bist (feat. Lary)",
-      length: Some(312),
+      duration: Some(312),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/tC76tIp0kBk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBCSXdft-cKXNbKDFWX-UBvjgjeOQ",
@@ -2386,7 +2386,7 @@ Paginator(
     VideoItem(
       id: "kiMG_JV2gbo",
       name: "Adel Tawil \"Lieder\" (Official Lyrics Video)",
-      length: Some(230),
+      duration: Some(230),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/kiMG_JV2gbo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDuETow7IpKT30ZdSsh-9L6ns1Uww",
@@ -2427,7 +2427,7 @@ Paginator(
     VideoItem(
       id: "CrYYg_atdtk",
       name: "Marteria, Yasha, Miss Platnum - Lila Wolken (Official Video)",
-      length: Some(231),
+      duration: Some(231),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/CrYYg_atdtk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB_8mGL48FutWtNIFldaMsVmhlhnw",
@@ -2468,7 +2468,7 @@ Paginator(
     VideoItem(
       id: "XTPGpBBwt1w",
       name: "K.I.Z. - Hurra die Welt geht unter ft. Henning May (Official Video)",
-      length: Some(299),
+      duration: Some(299),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/XTPGpBBwt1w/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAcYXhOsrGetd_0wuibgBFV7YBnIg",
@@ -2509,7 +2509,7 @@ Paginator(
     VideoItem(
       id: "uC08L4xxjNM",
       name: "Max Giesinger - 80 Millionen (Offizielles Video)",
-      length: Some(257),
+      duration: Some(257),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/uC08L4xxjNM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAOc-MPZ_rsmax81mL3f8AgLsX90Q",
@@ -2550,7 +2550,7 @@ Paginator(
     VideoItem(
       id: "5fAoV_AAMf0",
       name: "Mark Forster - Bauch und Kopf (Videoclip)",
-      length: Some(257),
+      duration: Some(257),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/5fAoV_AAMf0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDfOpErDWIsYZ61_NlNduG5z2W5Cg",
@@ -2591,7 +2591,7 @@ Paginator(
     VideoItem(
       id: "u5Vz7obL460",
       name: "Tim Bendzko - Keine Maschine (Offizielles Video)",
-      length: Some(202),
+      duration: Some(202),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/u5Vz7obL460/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGFIgXihlMA8=&rs=AOn4CLC1InTb9tzurJ8KYVVxYlr_mAviGw",
@@ -2632,7 +2632,7 @@ Paginator(
     VideoItem(
       id: "ZPJlyRv_IGI",
       name: "Deichkind - Leider Geil (Official Video)",
-      length: Some(189),
+      duration: Some(189),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/ZPJlyRv_IGI/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-DoACuAiKAgwIABABGH8gLigsMA8=&rs=AOn4CLAsa5xqoVmmalzKDlxm2W274NBygg",
@@ -2673,7 +2673,7 @@ Paginator(
     VideoItem(
       id: "s2SLbln-JwE",
       name: "BIBI & TINA  \" Jungs gegen Mädchen - MÄDCHEN GEGEN JUNGS - Das offizielle Video!",
-      length: Some(172),
+      duration: Some(172),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/s2SLbln-JwE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDURk566C-Rh1vwMamXVandCsnDvQ",
@@ -2714,7 +2714,7 @@ Paginator(
     VideoItem(
       id: "28xHtRw6pG8",
       name: "AZET - PATTE FLIESST prod. by LUCRY #KMNSTREET VOL. 5",
-      length: Some(206),
+      duration: Some(206),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/28xHtRw6pG8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAZB8XpsXloeCqWZpyZt8YNvV2IxQ",
@@ -2755,7 +2755,7 @@ Paginator(
     VideoItem(
       id: "joWoKqUTRvc",
       name: "KC Rebell ► ALLES & NICHTS ◄ [ official Video ]",
-      length: Some(204),
+      duration: Some(204),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/joWoKqUTRvc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDAwlxydPxzE_jwb1rNbqmjdMEEoQ",
@@ -2796,7 +2796,7 @@ Paginator(
     VideoItem(
       id: "XNMFTqhcNrE",
       name: "Mark Forster - Flash mich (Videoclip)",
-      length: Some(236),
+      duration: Some(236),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/XNMFTqhcNrE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBTr_B4ekTBT9hupTStE4MOf52PVw",
@@ -2837,7 +2837,7 @@ Paginator(
     VideoItem(
       id: "v3vPLgJ9FX8",
       name: "Cheat Codes - Sex (Official Video)",
-      length: Some(260),
+      duration: Some(260),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/v3vPLgJ9FX8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA_hmNsTwTENDy4Bjh6gh__yW3GIQ",
@@ -2878,7 +2878,7 @@ Paginator(
     VideoItem(
       id: "UFXOd179kOA",
       name: "GZUZ - EBBE & FLUT (mit Xatar & Hanybal)",
-      length: Some(213),
+      duration: Some(213),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/UFXOd179kOA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD-tY05WssNwj08bjU_P1qVrXP3Ag",
@@ -2919,7 +2919,7 @@ Paginator(
     VideoItem(
       id: "4xRsDnKgHZc",
       name: "ZUNA feat. NIMO - HOL MIR DEIN COUSIN (Official 4K Video)",
-      length: Some(206),
+      duration: Some(206),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/4xRsDnKgHZc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD2YQRMQrDjFZXKHm-HPOKNZY-kmw",
@@ -2960,7 +2960,7 @@ Paginator(
     VideoItem(
       id: "mE3IjoEqMqY",
       name: "Hanybal - VANILLA SKY mit Nimo (prod. von Lucry) [Official 4K Video]",
-      length: Some(211),
+      duration: Some(211),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/mE3IjoEqMqY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLARArW0ieGDVRQ4Qhp8JWepnfeDtg",
@@ -3001,7 +3001,7 @@ Paginator(
     VideoItem(
       id: "E7e5vxKerqA",
       name: "DARDAN FT. ENO - WER MACHT PARA? (Official Video)",
-      length: Some(195),
+      duration: Some(195),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/E7e5vxKerqA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBYmNJ23r8Y5wE4xpfNz2ms6i3omw",
@@ -3042,7 +3042,7 @@ Paginator(
     VideoItem(
       id: "axmZ_5Rx4Go",
       name: "Adel Tawil \"Zuhause\" (Official Music Video)",
-      length: Some(210),
+      duration: Some(210),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/axmZ_5Rx4Go/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDh0E0WIHz_QeECpxh9OcCQgP80Tw",
@@ -3083,7 +3083,7 @@ Paginator(
     VideoItem(
       id: "44Ig6BsOCYA",
       name: "Olexesh - PURPLE HAZE (Offizielles Video)",
-      length: Some(279),
+      duration: Some(279),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/44Ig6BsOCYA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDAwH-0B_Aadbi2O9ba4EJUr3kyCA",
@@ -3124,7 +3124,7 @@ Paginator(
     VideoItem(
       id: "3iLBFEJjdN0",
       name: "SIDO - Löwenzahn feat. Olexesh  (prod. by DJ Desue & x-plosive)",
-      length: Some(242),
+      duration: Some(242),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/3iLBFEJjdN0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA2pjLj4MppP5puOVVw960xZHlEZQ",
@@ -3165,7 +3165,7 @@ Paginator(
     VideoItem(
       id: "M-ncq2eHF_k",
       name: "Philipp Poisel - Ich will nur (Offizielles Video)",
-      length: Some(233),
+      duration: Some(233),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/M-ncq2eHF_k/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGGUgUyhAMA8=&rs=AOn4CLAMdawKceSh6Dzs15D6GxrLI5K_rQ",
@@ -3206,7 +3206,7 @@ Paginator(
     VideoItem(
       id: "cgb-zp9DDHg",
       name: "Bushido X Shindy - Brot brechen",
-      length: Some(191),
+      duration: Some(191),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/cgb-zp9DDHg/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGGUgYShJMA8=&rs=AOn4CLDlEBGR7d_j3XjTUqjAe6Ymzsyb5g",
@@ -3247,7 +3247,7 @@ Paginator(
     VideoItem(
       id: "Q7ZXg3KQLt0",
       name: "KOLLEGAH - Genozid (prod. von B-Case & Alexis Troy) (Official HD Video)",
-      length: Some(407),
+      duration: Some(407),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/Q7ZXg3KQLt0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCntzPVc1exjqTv4dMIRNj9l_fPFA",
@@ -3288,7 +3288,7 @@ Paginator(
     VideoItem(
       id: "ysAEZOwp5rM",
       name: "KOLLEGAH - John Gotti (prod. von Alexis Troy) (Official HD Video)",
-      length: Some(207),
+      duration: Some(207),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/ysAEZOwp5rM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAq4pm6ReaUxi45Ao_rQqFb-zTDqQ",
@@ -3329,7 +3329,7 @@ Paginator(
     VideoItem(
       id: "m5vfng33SVE",
       name: "Philipp Dittberner - Das ist dein Leben (Official Video)",
-      length: Some(282),
+      duration: Some(282),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/m5vfng33SVE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCy3rZ_vNJbHC6MPjBKfkH9OF4KxQ",
@@ -3370,7 +3370,7 @@ Paginator(
     VideoItem(
       id: "yMfgjVlGbUE",
       name: "SpongeBOZZ - SFTB/Apocalyptic Infinity/Payback #forsundiego (Prod. by Digital Drama)",
-      length: Some(1622),
+      duration: Some(1622),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/yMfgjVlGbUE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCImbZOtOhsu1n5GRh-mVYWhoCNGA",
@@ -3411,7 +3411,7 @@ Paginator(
     VideoItem(
       id: "OQIYEPe6DWY",
       name: "Kraftwerk - Das Model",
-      length: Some(262),
+      duration: Some(262),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/OQIYEPe6DWY/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-BIAC6AKKAgwIABABGH8gHSgjMA8=&rs=AOn4CLATOckzhpynBc2knPq7R4_a1tHfVw",
@@ -3452,7 +3452,7 @@ Paginator(
     VideoItem(
       id: "5FS8RIH7BpI",
       name: "GENETIKK - Wünsch dir was (Official HD Video)",
-      length: Some(303),
+      duration: Some(303),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/5FS8RIH7BpI/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAuSraLlm5j-ap1h2ePrD79sxdoNQ",
@@ -3493,7 +3493,7 @@ Paginator(
     VideoItem(
       id: "zSRKgFB9piY",
       name: "Keine ist wie Du - Joel Brandenstein & Chrisoula Botsika  ( Gregor Meyle Acoustic Cover )",
-      length: Some(256),
+      duration: Some(256),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/zSRKgFB9piY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAbaAoyp05Ae7eWUZvCAzFdRN6BMQ",
@@ -3534,7 +3534,7 @@ Paginator(
     VideoItem(
       id: "e4eHhgwHCME",
       name: "Kollegah & Farid Bang ✖\u{fe0f}STURMMASKE AUF ✖\u{fe0f} [official video]",
-      length: Some(275),
+      duration: Some(275),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/e4eHhgwHCME/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDj3vRRbJlmnPr4rqKRkmZs-JIN7A",
@@ -3575,7 +3575,7 @@ Paginator(
     VideoItem(
       id: "q3hZvho7jNk",
       name: "KC Rebell ✖\u{fe0f} PAPER ✖\u{fe0f} [ official Video ] GEE Futuristic, Nikki 3k & Joshimixu",
-      length: Some(222),
+      duration: Some(222),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/q3hZvho7jNk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCLwp5luIJpaNOWk7bSXdYfTn0sBA",
@@ -3616,7 +3616,7 @@ Paginator(
     VideoItem(
       id: "0nWysyj_Z4Y",
       name: "Nimo - FLOUZ KOMMT FLOUZ GEHT (prod. von Jimmy Torrio) [Official 4K Video]",
-      length: Some(191),
+      duration: Some(191),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/0nWysyj_Z4Y/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDQGu4QNzr3EMjQcAiTkPrm3q60nQ",
@@ -3657,7 +3657,7 @@ Paginator(
     VideoItem(
       id: "aGCcLWU0OVo",
       name: "SIDO - Gürtel am Arm",
-      length: Some(218),
+      duration: Some(218),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/aGCcLWU0OVo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDArDAbvY0RsPSuJPBh4uyPYSr4Bw",
@@ -3698,7 +3698,7 @@ Paginator(
     VideoItem(
       id: "OQsXLK4MeEA",
       name: "JBB 2013 - SpongeBOZZ vs. Gio (Finale HR) prod. by Digital Drama",
-      length: Some(400),
+      duration: Some(400),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/OQsXLK4MeEA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBZWiGbF4RrO7JLpICvTuC-eHpfuw",
@@ -3739,7 +3739,7 @@ Paginator(
     VideoItem(
       id: "xm7dxIqOO2M",
       name: "KURDO - Halbmond (prod. by Amir & Kostas)",
-      length: Some(272),
+      duration: Some(272),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/xm7dxIqOO2M/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBxxl3-2dozhr306-FrORMGygKXoQ",
@@ -3780,7 +3780,7 @@ Paginator(
     VideoItem(
       id: "jlaaByab4Zk",
       name: "Mc Yankoo feat.  Milica Todorovic - Ljubi me budalo (official Video)",
-      length: Some(224),
+      duration: Some(224),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/jlaaByab4Zk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBG5CJRj0SjU1Vm1l9EIGnWOG1mUQ",
@@ -3821,7 +3821,7 @@ Paginator(
     VideoItem(
       id: "KG9-jSqXz4U",
       name: "Oft Gefragt - AnnenMayKantereit (Official Video)",
-      length: Some(205),
+      duration: Some(205),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/KG9-jSqXz4U/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGGUgXyhVMA8=&rs=AOn4CLBxjTyoo39W0zf7cntnv35M9-2-Aw",
@@ -3862,7 +3862,7 @@ Paginator(
     VideoItem(
       id: "7dISZnwsBSA",
       name: "Prinz Pi - 1,40m (feat. Philipp Dittberner)",
-      length: Some(284),
+      duration: Some(284),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/7dISZnwsBSA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA2ZhuSJUc-O8GnUa12UH5Z08qWlA",
@@ -3903,7 +3903,7 @@ Paginator(
     VideoItem(
       id: "F_PPdS-PB14",
       name: "Nimo - IDÉAL (prod. von SOTT) [Official 4K Video]",
-      length: Some(253),
+      duration: Some(253),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/F_PPdS-PB14/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCIcbTSt6Q1Xo8sqLnyEbbXSuLBcg",
@@ -3944,7 +3944,7 @@ Paginator(
     VideoItem(
       id: "DMg9idvVY8M",
       name: "Nimo - BITTER (prod. von Jimmy Torrio) [Official 4K Video]",
-      length: Some(173),
+      duration: Some(173),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/DMg9idvVY8M/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCIg_8ZAGGj-OC9R8sh4txS_8bQHw",
@@ -3985,7 +3985,7 @@ Paginator(
     VideoItem(
       id: "DGEmoSFI94Y",
       name: "SDP - Kurz für immer bleiben",
-      length: Some(218),
+      duration: Some(218),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/DGEmoSFI94Y/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB2H8YGPqxgGisgCPfV-svTSrBY3g",
@@ -4026,7 +4026,7 @@ Paginator(
     VideoItem(
       id: "BtZufymxHvE",
       name: "LX & Maxwell - Ausser Kontrolle (Jambeatz)",
-      length: Some(159),
+      duration: Some(159),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/BtZufymxHvE/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGGIgYihiMA8=&rs=AOn4CLBk573xWrbGYjsGZKTLo6inp8DKjw",
@@ -4067,7 +4067,7 @@ Paginator(
     VideoItem(
       id: "xFnlPF3KUqo",
       name: "Johannes Oerding - Jemanden wie dich (Musikvideo)",
-      length: Some(235),
+      duration: Some(235),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/xFnlPF3KUqo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD3CtkM4WHFt8EfDbOiE2oUbEi91Q",

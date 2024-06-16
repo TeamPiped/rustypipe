@@ -157,10 +157,10 @@ pub struct VideoPlayerDetails {
     pub name: String,
     /// Video description in plaintext format
     pub description: Option<String>,
-    /// Video length in seconds
+    /// Video duration in seconds
     ///
     /// Is zero for livestreams
-    pub length: u32,
+    pub duration: u32,
     /// Video thumbnail
     pub thumbnail: Vec<Thumbnail>,
     /// Channel of the video
@@ -837,10 +837,10 @@ pub struct VideoItem {
     pub id: String,
     /// Video title
     pub name: String,
-    /// Video length in seconds.
+    /// Video duration in seconds.
     ///
     /// Is [`None`] for livestreams.
-    pub length: Option<u32>,
+    pub duration: Option<u32>,
     /// Video thumbnail
     pub thumbnail: Vec<Thumbnail>,
     /// Channel of the video

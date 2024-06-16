@@ -8,7 +8,7 @@ Paginator(
     Video(VideoItem(
       id: "WPdWvnAAurg",
       name: "aespa 에스파 \'Savage\' MV",
-      length: Some(259),
+      duration: Some(259),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/WPdWvnAAurg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDQGxlnDkAdMYRm2cdkDmiDbBDpYw",
@@ -45,7 +45,7 @@ Paginator(
     Video(VideoItem(
       id: "Y8JFxS1HlDo",
       name: "IVE 아이브 \'LOVE DIVE\' MV",
-      length: Some(179),
+      duration: Some(179),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/Y8JFxS1HlDo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDf8U7fRH0R-qXbbGwKwpKBCeOa4A",
@@ -82,7 +82,7 @@ Paginator(
     Video(VideoItem(
       id: "NoYKBAajoyo",
       name: "EVERGLOW (에버글로우) - DUN DUN MV",
-      length: Some(209),
+      duration: Some(209),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/NoYKBAajoyo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC3OhCUbjpIclmjfV8W8T98nVI5pA",
@@ -119,7 +119,7 @@ Paginator(
     Video(VideoItem(
       id: "yQUU29NwNF4",
       name: "aespa(에스파) - Black Mamba @인기가요 inkigayo 20201122",
-      length: Some(213),
+      duration: Some(213),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/yQUU29NwNF4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA4pIWwOFmVuVU-jZ-j7S4GvgxjKw",
@@ -156,7 +156,7 @@ Paginator(
     Video(VideoItem(
       id: "NU611fxGyPU",
       name: "aespa 에스파 \'Black Mamba\' Dance Practice",
-      length: Some(175),
+      duration: Some(175),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/NU611fxGyPU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAgKORzcy6WKosI1_PAVWDgcjJ9jA",
@@ -193,7 +193,7 @@ Paginator(
     Video(VideoItem(
       id: "EaswWiwMVs8",
       name: "Stray Kids \"소리꾼(Thunderous)\" M/V",
-      length: Some(199),
+      duration: Some(199),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/EaswWiwMVs8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC2hrj6yzhYrHdiS7z5i99gt15fNw",
@@ -230,7 +230,7 @@ Paginator(
     Video(VideoItem(
       id: "Ujb-gvqsoi0",
       name: "Red Velvet - IRENE & SEULGI \'Monster\' MV",
-      length: Some(182),
+      duration: Some(182),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/Ujb-gvqsoi0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBrGO-Gkm-UqCln07oFNKfFgioXYQ",
@@ -267,7 +267,7 @@ Paginator(
     Video(VideoItem(
       id: "gQlMMD8auMs",
       name: "BLACKPINK - ‘Pink Venom’ M/V",
-      length: Some(194),
+      duration: Some(194),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/gQlMMD8auMs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCj78qKZEzgUEGZFed9G0gU30GOLw",
@@ -304,7 +304,7 @@ Paginator(
     Video(VideoItem(
       id: "BL-aIpCLWnU",
       name: "Black Mamba",
-      length: Some(175),
+      duration: Some(175),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/BL-aIpCLWnU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBFFU1Bs-mHwS-BGXCbvWM2SS41kw",
@@ -341,7 +341,7 @@ Paginator(
     Video(VideoItem(
       id: "Jh4QFaPmdss",
       name: "(G)I-DLE - \'TOMBOY\' Official Music Video",
-      length: Some(198),
+      duration: Some(198),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/Jh4QFaPmdss/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAQf02NuUqxsFasUAqJQYGS6SMDkw",
@@ -378,7 +378,7 @@ Paginator(
     Video(VideoItem(
       id: "Fc-fa6cAe2c",
       name: "KAI 카이 \'음 (Mmmh)\' MV",
-      length: Some(207),
+      duration: Some(207),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/Fc-fa6cAe2c/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDstHiMkONiE2lMJVWO9-yOeF1GkA",
@@ -415,7 +415,7 @@ Paginator(
     Video(VideoItem(
       id: "dYRITmpFbJ4",
       name: "aespa 에스파 \'Girls\' MV",
-      length: Some(269),
+      duration: Some(269),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/dYRITmpFbJ4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBOxN6ukbZNOPwUBhRZYgG9r23lng",
@@ -452,7 +452,7 @@ Paginator(
     Video(VideoItem(
       id: "mH0_XpSHkZo",
       name: "TWICE \"MORE & MORE\" M/V",
-      length: Some(241),
+      duration: Some(241),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/mH0_XpSHkZo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCSj0FWw50vVV42c19quxnLJJDg2w",
@@ -489,7 +489,7 @@ Paginator(
     Video(VideoItem(
       id: "uR8Mrt1IpXg",
       name: "Red Velvet 레드벨벳 \'Psycho\' MV",
-      length: Some(216),
+      duration: Some(216),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/uR8Mrt1IpXg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAnAsLcZaI1uWDB4nag1KnNotAUWw",
@@ -526,7 +526,7 @@ Paginator(
     Video(VideoItem(
       id: "f5_wn8mexmM",
       name: "TWICE \"The Feels\" M/V",
-      length: Some(232),
+      duration: Some(232),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/f5_wn8mexmM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC-tykU4D6qLBX-nq1pKpdhgUkOFw",
@@ -563,7 +563,7 @@ Paginator(
     Video(VideoItem(
       id: "Ky5RT5oGg0w",
       name: "aespa 에스파 \'Black Mamba\' The Debut Stage",
-      length: Some(287),
+      duration: Some(287),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/Ky5RT5oGg0w/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDJkgSdPQbJFvU3MAgGaK16luJMyQ",
@@ -600,7 +600,7 @@ Paginator(
     Video(VideoItem(
       id: "gU2HqP4NxUs",
       name: "BLACKPINK - ‘Pretty Savage’ 1011 SBS Inkigayo",
-      length: Some(208),
+      duration: Some(208),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/gU2HqP4NxUs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD_x0P5jlgH-Xg013D6_0HCVjmpEQ",
@@ -637,7 +637,7 @@ Paginator(
     Video(VideoItem(
       id: "KhTeiaCezwM",
       name: "[MV] MAMAMOO (마마무) - HIP",
-      length: Some(211),
+      duration: Some(211),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/KhTeiaCezwM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCMGgSAC2vrBvhW5_JvAG6-DmNv_Q",
@@ -674,7 +674,7 @@ Paginator(
     Video(VideoItem(
       id: "uxmP4b2a0uY",
       name: "EXO 엑소 \'Obsession\' MV",
-      length: Some(220),
+      duration: Some(220),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/uxmP4b2a0uY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDBrxdx72hHbvjdKHWiwEHwmBtaQg",

@@ -149,7 +149,7 @@ VideoDetails(
       VideoItem(
         id: "4TWR90KJl84",
         name: "aespa 에스파 \'Next Level\' MV",
-        length: Some(236),
+        duration: Some(236),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/4TWR90KJl84/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBYCGc-AKsDC6UpJgIZw2_VsqjVWA",
@@ -186,7 +186,7 @@ VideoDetails(
       VideoItem(
         id: "WPdWvnAAurg",
         name: "aespa 에스파 \'Savage\' MV",
-        length: Some(259),
+        duration: Some(259),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/WPdWvnAAurg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDQGxlnDkAdMYRm2cdkDmiDbBDpYw",
@@ -223,7 +223,7 @@ VideoDetails(
       VideoItem(
         id: "NoYKBAajoyo",
         name: "EVERGLOW (에버글로우) - DUN DUN MV",
-        length: Some(209),
+        duration: Some(209),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/NoYKBAajoyo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC3OhCUbjpIclmjfV8W8T98nVI5pA",
@@ -260,7 +260,7 @@ VideoDetails(
       VideoItem(
         id: "KhTeiaCezwM",
         name: "[MV] MAMAMOO (마마무) - HIP",
-        length: Some(211),
+        duration: Some(211),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/KhTeiaCezwM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCMGgSAC2vrBvhW5_JvAG6-DmNv_Q",
@@ -297,7 +297,7 @@ VideoDetails(
       VideoItem(
         id: "Jh4QFaPmdss",
         name: "(G)I-DLE - \'TOMBOY\' Official Music Video",
-        length: Some(198),
+        duration: Some(198),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/Jh4QFaPmdss/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAQf02NuUqxsFasUAqJQYGS6SMDkw",
@@ -334,7 +334,7 @@ VideoDetails(
       VideoItem(
         id: "CM4CkVFmTds",
         name: "TWICE \"I CAN\'T STOP ME\" M/V",
-        length: Some(221),
+        duration: Some(221),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/CM4CkVFmTds/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBfd7QADIduQSR2ESLIp1k5gxxNDg",
@@ -371,7 +371,7 @@ VideoDetails(
       VideoItem(
         id: "uR8Mrt1IpXg",
         name: "Red Velvet 레드벨벳 \'Psycho\' MV",
-        length: Some(216),
+        duration: Some(216),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/uR8Mrt1IpXg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAnAsLcZaI1uWDB4nag1KnNotAUWw",
@@ -408,7 +408,7 @@ VideoDetails(
       VideoItem(
         id: "QslJYDX3o8s",
         name: "Red Velvet 레드벨벳 \'러시안 룰렛 (Russian Roulette)\' MV",
-        length: Some(212),
+        duration: Some(212),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/QslJYDX3o8s/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAsWKGsqhHRSd2Q5s0Gh-PrmOywIA",
@@ -445,7 +445,7 @@ VideoDetails(
       VideoItem(
         id: "EaswWiwMVs8",
         name: "Stray Kids \"소리꾼(Thunderous)\" M/V",
-        length: Some(199),
+        duration: Some(199),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/EaswWiwMVs8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC2hrj6yzhYrHdiS7z5i99gt15fNw",
@@ -482,7 +482,7 @@ VideoDetails(
       VideoItem(
         id: "pNfTK39k55U",
         name: "ITZY \"달라달라(DALLA DALLA)\" M/V @ITZY",
-        length: Some(227),
+        duration: Some(227),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/pNfTK39k55U/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDnW6UNp_Ny3hCIowtq-42AopJc7Q",
@@ -519,7 +519,7 @@ VideoDetails(
       VideoItem(
         id: "dYRITmpFbJ4",
         name: "aespa 에스파 \'Girls\' MV",
-        length: Some(269),
+        duration: Some(269),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/dYRITmpFbJ4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBOxN6ukbZNOPwUBhRZYgG9r23lng",
@@ -556,7 +556,7 @@ VideoDetails(
       VideoItem(
         id: "ioNng23DkIM",
         name: "BLACKPINK - \'How You Like That\' M/V",
-        length: Some(184),
+        duration: Some(184),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/ioNng23DkIM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLANTO784ijwW2y4bhZaWcfKzEe9iQ",
@@ -593,7 +593,7 @@ VideoDetails(
       VideoItem(
         id: "Ujb-gvqsoi0",
         name: "Red Velvet - IRENE & SEULGI \'Monster\' MV",
-        length: Some(182),
+        duration: Some(182),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/Ujb-gvqsoi0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBrGO-Gkm-UqCln07oFNKfFgioXYQ",
@@ -630,7 +630,7 @@ VideoDetails(
       VideoItem(
         id: "bwmSjveL3Lc",
         name: "BLACKPINK - \'붐바야 (BOOMBAYAH)\' M/V",
-        length: Some(244),
+        duration: Some(244),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/bwmSjveL3Lc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDRzdujtL9QM0RZ8elD00oS2fXMhg",
@@ -667,7 +667,7 @@ VideoDetails(
       VideoItem(
         id: "6uJf2IT2Zh8",
         name: "Red Velvet 레드벨벳 \'피카부 (Peek-A-Boo)\' MV",
-        length: Some(230),
+        duration: Some(230),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/6uJf2IT2Zh8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA8MvitHoGOKv_kHXY3RqkB7qr7tw",
@@ -704,7 +704,7 @@ VideoDetails(
       VideoItem(
         id: "Y8JFxS1HlDo",
         name: "IVE 아이브 \'LOVE DIVE\' MV",
-        length: Some(179),
+        duration: Some(179),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/Y8JFxS1HlDo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDf8U7fRH0R-qXbbGwKwpKBCeOa4A",
@@ -741,7 +741,7 @@ VideoDetails(
       VideoItem(
         id: "2FzSv66c7TQ",
         name: "A E S P A (에스파) ALL SONGS PLAYLIST 2022 | 에스파 노래 모음",
-        length: Some(3441),
+        duration: Some(3441),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/2FzSv66c7TQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBJl1tQDODos5G6RJlpg4R-pvWNZA",
@@ -778,7 +778,7 @@ VideoDetails(
       VideoItem(
         id: "NU611fxGyPU",
         name: "aespa 에스파 \'Black Mamba\' Dance Practice",
-        length: Some(175),
+        duration: Some(175),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/NU611fxGyPU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAgKORzcy6WKosI1_PAVWDgcjJ9jA",

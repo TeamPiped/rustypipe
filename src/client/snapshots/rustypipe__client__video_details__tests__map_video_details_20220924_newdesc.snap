@@ -149,7 +149,7 @@ VideoDetails(
       VideoItem(
         id: "aRpkasmB6so",
         name: "18 de setembro de 2022",
-        length: Some(184),
+        duration: Some(184),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/aRpkasmB6so/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBeNO-THn7_jo4Qy5uA9y_3ilD2TA",
@@ -186,7 +186,7 @@ VideoDetails(
       VideoItem(
         id: "lCXqNCd0m10",
         name: "aespa(エスパ) Savage + Next Level + Black Mamba💕Stage Mix Compilation🔥에스파 무대모음 KBS Music Bank",
-        length: Some(898),
+        duration: Some(898),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/lCXqNCd0m10/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAHH0ng9zLs0Vy4d6oTsahpPFj31w",
@@ -223,7 +223,7 @@ VideoDetails(
       VideoItem(
         id: "tDukIfFzX18",
         name: "[MV] Hwa Sa(화사) _ Maria(마리아)",
-        length: Some(231),
+        duration: Some(231),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/tDukIfFzX18/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA0F06QIAvjOJc_7TmQYcfKN5Zfaw",
@@ -260,7 +260,7 @@ VideoDetails(
       VideoItem(
         id: "e-ORhEE9VVg",
         name: "Taylor Swift - Blank Space",
-        length: Some(273),
+        duration: Some(273),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/e-ORhEE9VVg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBK6z4g715U9cgNRnG2IZ4wEQZBkA",
@@ -297,7 +297,7 @@ VideoDetails(
       VideoItem(
         id: "qfVuRQX0ydQ",
         name: "[MV] Weeekly(위클리) _ After School",
-        length: Some(225),
+        duration: Some(225),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/qfVuRQX0ydQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLArxgEVeqsLChXxDMe7SmFGnesqmQ",
@@ -334,7 +334,7 @@ VideoDetails(
       VideoItem(
         id: "tyrVtwE8Gv0",
         name: "NCT U 엔시티 유 \'Make A Wish (Birthday Song)\' MV",
-        length: Some(249),
+        duration: Some(249),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/tyrVtwE8Gv0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDjumgWjrKFVPhKG0HyX9aEdP203g",
@@ -371,7 +371,7 @@ VideoDetails(
       VideoItem(
         id: "X-uJtV8ScYk",
         name: "Stray Kids \"Back Door\" M/V",
-        length: Some(218),
+        duration: Some(218),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/X-uJtV8ScYk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDTw325wBimEPkWb6vRUPSj2b13gw",
@@ -408,7 +408,7 @@ VideoDetails(
       VideoItem(
         id: "MjCZfZfucEc",
         name: "ITZY “LOCO” M/V @ITZY",
-        length: Some(233),
+        duration: Some(233),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/MjCZfZfucEc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB6oWVmDxMyArxL6GuaFhT_vwg_nA",
@@ -445,7 +445,7 @@ VideoDetails(
       VideoItem(
         id: "2FzSv66c7TQ",
         name: "A E S P A (에스파) ALL SONGS PLAYLIST 2022 | 에스파 노래 모음",
-        length: Some(3441),
+        duration: Some(3441),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/2FzSv66c7TQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBJl1tQDODos5G6RJlpg4R-pvWNZA",
@@ -482,7 +482,7 @@ VideoDetails(
       VideoItem(
         id: "CevxZvSJLk8",
         name: "Katy Perry - Roar (Official)",
-        length: Some(270),
+        duration: Some(270),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/CevxZvSJLk8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCEgRARw7Hrci5d3vmqm-ZWYOe-zA",
@@ -519,7 +519,7 @@ VideoDetails(
       VideoItem(
         id: "bwmSjveL3Lc",
         name: "BLACKPINK - \'붐바야 (BOOMBAYAH)\' M/V",
-        length: Some(244),
+        duration: Some(244),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/bwmSjveL3Lc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDRzdujtL9QM0RZ8elD00oS2fXMhg",
@@ -556,7 +556,7 @@ VideoDetails(
       VideoItem(
         id: "CM4CkVFmTds",
         name: "TWICE \"I CAN\'T STOP ME\" M/V",
-        length: Some(221),
+        duration: Some(221),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/CM4CkVFmTds/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBfd7QADIduQSR2ESLIp1k5gxxNDg",
@@ -593,7 +593,7 @@ VideoDetails(
       VideoItem(
         id: "ioNng23DkIM",
         name: "BLACKPINK - \'How You Like That\' M/V",
-        length: Some(184),
+        duration: Some(184),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/ioNng23DkIM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLANTO784ijwW2y4bhZaWcfKzEe9iQ",
@@ -630,7 +630,7 @@ VideoDetails(
       VideoItem(
         id: "BL-aIpCLWnU",
         name: "Black Mamba",
-        length: Some(175),
+        duration: Some(175),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/BL-aIpCLWnU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBFFU1Bs-mHwS-BGXCbvWM2SS41kw",
@@ -667,7 +667,7 @@ VideoDetails(
       VideoItem(
         id: "Jh4QFaPmdss",
         name: "(G)I-DLE - \'TOMBOY\' Official Music Video",
-        length: Some(198),
+        duration: Some(198),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/Jh4QFaPmdss/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAQf02NuUqxsFasUAqJQYGS6SMDkw",
@@ -704,7 +704,7 @@ VideoDetails(
       VideoItem(
         id: "WPdWvnAAurg",
         name: "aespa 에스파 \'Savage\' MV",
-        length: Some(259),
+        duration: Some(259),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/WPdWvnAAurg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDQGxlnDkAdMYRm2cdkDmiDbBDpYw",
@@ -741,7 +741,7 @@ VideoDetails(
       VideoItem(
         id: "Z7yNvMzz2zg",
         name: "Red Velvet 레드벨벳 \'Psycho\' Performance Video",
-        length: Some(216),
+        duration: Some(216),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/Z7yNvMzz2zg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD2ES19GaWF-U_La_tC7pFwGAL2fQ",

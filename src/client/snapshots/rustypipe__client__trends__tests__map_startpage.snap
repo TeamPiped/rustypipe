@@ -8,7 +8,7 @@ Paginator(
     VideoItem(
       id: "_cyJhGsXDDM",
       name: "Ultimate Criminal Canal Found Magnet Fishing! Police on the Hunt",
-      length: Some(1096),
+      duration: Some(1096),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/_cyJhGsXDDM/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBBz_ErMMfhKLRZRfcAPTlMTujziw",
@@ -45,7 +45,7 @@ Paginator(
     VideoItem(
       id: "36YnV9STBqc",
       name: "The Good Life Radio\u{a0}•\u{a0}24/7 Live Radio | Best Relax House, Chillout, Study, Running, Gym, Happy Music",
-      length: None,
+      duration: None,
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/36YnV9STBqc/hq720_live.jpg?sqp=COjxqZoG-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLASUZkzmRJDiyIJmcsAdcDGan805Q",
@@ -82,7 +82,7 @@ Paginator(
     VideoItem(
       id: "YYD1qgH5qC4",
       name: "چند شنبه با سینــا | فصل چهـارم | قسمت 5 | با حضور نازنین انصاری مدیر روزنامه کیهان لندن",
-      length: Some(3261),
+      duration: Some(3261),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/YYD1qgH5qC4/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBkvD-kVL12hteMVVLRZvJHOdlPzQ",
@@ -119,7 +119,7 @@ Paginator(
     VideoItem(
       id: "BeJqgI6rw9k",
       name: "your city is full of fake buildings, here\'s why",
-      length: Some(725),
+      duration: Some(725),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/BeJqgI6rw9k/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAvkJGHa6h2vzXrG1ueGQA8JysqEg",
@@ -156,7 +156,7 @@ Paginator(
     VideoItem(
       id: "ma28eWd1oyA",
       name: "Post Malone, Maroon 5, Adele, Taylor Swift, Ed Sheeran, Shawn Mendes, Pop Hits 2020 Part 6",
-      length: Some(29989),
+      duration: Some(29989),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/ma28eWd1oyA/hqdefault.jpg?sqp=-oaymwEcCOADEI4CSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCznoPDMo_F1NCRBWoD4Ps5IjctxQ",
@@ -188,7 +188,7 @@ Paginator(
     VideoItem(
       id: "mL2LBRM5GBI",
       name: "Salahs 6-Minuten-Hattrick & Firmino-Gala: Rangers - FC Liverpool 1:7 | UEFA Champions League | DAZN",
-      length: Some(355),
+      duration: Some(355),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/mL2LBRM5GBI/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBhsDaEALJodPurmS3DywUoRRwzwg",
@@ -225,7 +225,7 @@ Paginator(
     VideoItem(
       id: "Ang18qz2IeQ",
       name: "Satisfying Videos of Workers Doing Their Job Perfectly",
-      length: Some(1186),
+      duration: Some(1186),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/Ang18qz2IeQ/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA3Cd49wYUuSEXz2MwhO2aqCMq5ZA",
@@ -262,7 +262,7 @@ Paginator(
     VideoItem(
       id: "fjHN4jsJnEU",
       name: "I Made 200 Players Simulate Survival Island in Minecraft...",
-      length: Some(2361),
+      duration: Some(2361),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/fjHN4jsJnEU/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDwTosIfmAhNHIzU1sSXrTKT8vjNQ",
@@ -299,7 +299,7 @@ Paginator(
     VideoItem(
       id: "FI1XrdBJIUI",
       name: "Epic Construction Fails | Expensive Fails Compilation | FailArmy",
-      length: Some(631),
+      duration: Some(631),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/FI1XrdBJIUI/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBe2jCnLhTsXmZQefyAe-WqImk6-g",
@@ -336,7 +336,7 @@ Paginator(
     VideoItem(
       id: "MXdplejK8vU",
       name: "Chilly autumn Jazz ☕ Smooth September Jazz & Bossa Nova for a great relaxing weekend",
-      length: Some(86403),
+      duration: Some(86403),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/MXdplejK8vU/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAIOe93l-1elIK0DfMLk0f3nDWgSA",
@@ -373,7 +373,7 @@ Paginator(
     VideoItem(
       id: "Jri4_9vBFiQ",
       name: "Top 100 Best Classic Rock Songs Of All Time 🔥 R.E.M, Queen, Metallica,Guns N’ Roses,Bon Jovi, U2,CCR",
-      length: None,
+      duration: None,
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/Jri4_9vBFiQ/hq720_live.jpg?sqp=COjxqZoG-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLA1ZqDfSLi3Mf5qvpUFSYyDIODNQw",
@@ -410,7 +410,7 @@ Paginator(
     VideoItem(
       id: "ll4d5Lt-Ie8",
       name: "Relaxing Music Healing Stress, Anxiety and Depressive States Heal Mind, Body and Soul | Sleep music",
-      length: Some(42896),
+      duration: Some(42896),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/ll4d5Lt-Ie8/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAqdY2bQaQ3JHl5FYoTPuZFxXRKIQ",
@@ -447,7 +447,7 @@ Paginator(
     VideoItem(
       id: "Dx2wbKLokuQ",
       name: "W. Putin: Die Sehnsucht nach dem Imperium | Mit offenen Karten | ARTE",
-      length: Some(729),
+      duration: Some(729),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/Dx2wbKLokuQ/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBHQXnaEYo6frjkJ3FFuAPkAyOCKQ",
@@ -484,7 +484,7 @@ Paginator(
     VideoItem(
       id: "jfKfPfyJRdk",
       name: "lofi hip hop radio - beats to relax/study to",
-      length: None,
+      duration: None,
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/jfKfPfyJRdk/hq720_live.jpg?sqp=COjxqZoG-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCR-bHqcvOP14sSUsNt9PTuf3ZI4Q",
@@ -521,7 +521,7 @@ Paginator(
     VideoItem(
       id: "qmrzTUmZ4UU",
       name: "850€ für den Verrat am System - UCS AT-AT LEGO® Star Wars 75313",
-      length: Some(2043),
+      duration: Some(2043),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/qmrzTUmZ4UU/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAsI3VS-wxnt1s_zS4M_YbVrV1pAg",
@@ -558,7 +558,7 @@ Paginator(
     VideoItem(
       id: "t0Q2otsqC4I",
       name: "Tom & Jerry | Tom & Jerry in Full Screen | Classic Cartoon Compilation | WB Kids",
-      length: Some(1298),
+      duration: Some(1298),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/t0Q2otsqC4I/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCFcrz2zM6mPUmJiCsC7c7suOzSug",
@@ -595,7 +595,7 @@ Paginator(
     VideoItem(
       id: "zE-a5eqvlv8",
       name: "Dua Lipa, Coldplay, Martin Garrix & Kygo, The Chainsmokers Style - Feeling Me",
-      length: None,
+      duration: None,
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/zE-a5eqvlv8/hq720_live.jpg?sqp=COjxqZoG-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCDyvujcpz62sEsL9Ke4ADBpXWqOA",
@@ -632,7 +632,7 @@ Paginator(
     VideoItem(
       id: "HxCcKzRAGWk",
       name: "(Music for Man ) Relaxing Whiskey Blues Music - Modern Electric Guitar Blues - JAZZ & BLUES",
-      length: Some(42899),
+      duration: Some(42899),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/HxCcKzRAGWk/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLD5CNX5XaQAKrLpPq0nxmyUjP5yUw",
@@ -669,7 +669,7 @@ Paginator(
     VideoItem(
       id: "HlHYOdZePSE",
       name: "Healing Music for Anxiety Disorders, Fears, Depression and Eliminate Negative Thoughts",
-      length: None,
+      duration: None,
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/HlHYOdZePSE/hq720_live.jpg?sqp=COjxqZoG-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLBeqmmnli6rVdK1k7vcHlwE3kiNaw",
@@ -706,7 +706,7 @@ Paginator(
     VideoItem(
       id: "CJ2AH3LJeic",
       name: "Coldplay Greatest Hits Full Album 2022   New Songs of Coldplay 2022",
-      length: Some(7781),
+      duration: Some(7781),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/CJ2AH3LJeic/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLC3A9sBlWQZmFUI9BYe5KzvATqiqw",
@@ -743,7 +743,7 @@ Paginator(
     VideoItem(
       id: "KJwzKxQ81iA",
       name: "Handmade Candy Making Collection / 수제 사탕 만들기 모음 / Korean Candy Store",
-      length: Some(3152),
+      duration: Some(3152),
       thumbnail: [
         Thumbnail(
           url: "https://i.ytimg.com/vi/KJwzKxQ81iA/hq720.jpg?sqp=-oaymwEcCOgCEMoBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLCtm3YNbp3mK6RjsACZuz7fs-TUYA",

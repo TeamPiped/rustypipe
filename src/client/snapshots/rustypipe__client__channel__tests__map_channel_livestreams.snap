@@ -151,7 +151,7 @@ Channel(
       VideoItem(
         id: "hhs95CI6Dsg",
         name: "MARS 2020 Landing LIVE",
-        length: Some(6321),
+        duration: Some(6321),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/hhs95CI6Dsg/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AHUBoAC4AOKAgwIABABGGUgZShlMA8=&rs=AOn4CLAlPp2e1tF8gyf1cJisZGTMleissg",
@@ -192,7 +192,7 @@ Channel(
       VideoItem(
         id: "cpQk2n-wmQ4",
         name: "LIVE Soldering",
-        length: Some(7046),
+        duration: Some(7046),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/cpQk2n-wmQ4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCoS3qwdY2rDbhkWJOWHisORlMKnA",
@@ -233,7 +233,7 @@ Channel(
       VideoItem(
         id: "kIDV_XN9oA8",
         name: "LIVE Soldering",
-        length: Some(4353),
+        duration: Some(4353),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/kIDV_XN9oA8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBG3KVoFpBFIYCG2mrox_kEq6Arug",
@@ -274,7 +274,7 @@ Channel(
       VideoItem(
         id: "DWS4Qp3Yn0A",
         name: "Apollo 11 Launch LIVE - 50 Years Later",
-        length: Some(4560),
+        duration: Some(4560),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/DWS4Qp3Yn0A/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAFkIQ4er8qDNMlD9H8lPzfSnE99g",
@@ -315,7 +315,7 @@ Channel(
       VideoItem(
         id: "LwjTe3SiVXg",
         name: "EEVblog LIVE Q&A",
-        length: Some(3943),
+        duration: Some(3943),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/LwjTe3SiVXg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAzTlnjBJLT3KJVN4teMlX_svuaNA",
@@ -356,7 +356,7 @@ Channel(
       VideoItem(
         id: "skPiz3GrVNs",
         name: "LIVE Keysight Scope Draw #2",
-        length: Some(2445),
+        duration: Some(2445),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/skPiz3GrVNs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBFiIfUBfoL0Q9CLR9Pc8bXy-zclg",
@@ -397,7 +397,7 @@ Channel(
       VideoItem(
         id: "HZc-Ctvgv5Y",
         name: "LIVE Keysight Scope Draw",
-        length: Some(6455),
+        duration: Some(6455),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/HZc-Ctvgv5Y/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDQM1_QPh6u5_BFonLCdFPz-AcpkQ",
@@ -438,7 +438,7 @@ Channel(
       VideoItem(
         id: "5ilODYy2zGE",
         name: "Ask Dave LIVE - March 8th 2019",
-        length: Some(10645),
+        duration: Some(10645),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/5ilODYy2zGE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCft4f7Lw3l3_u55bzUibWXr-UHTQ",
@@ -479,7 +479,7 @@ Channel(
       VideoItem(
         id: "gQ7TTuiDH1M",
         name: "Ask Dave LIVE - Jan 28th 2019",
-        length: Some(17228),
+        duration: Some(17228),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/gQ7TTuiDH1M/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAUPZz1xzckl5xzdBRonA_1WNWIyg",
@@ -520,7 +520,7 @@ Channel(
       VideoItem(
         id: "qpw9dKxL2Ho",
         name: "LIVE KiCAD 5 PCB Design",
-        length: Some(8003),
+        duration: Some(8003),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/qpw9dKxL2Ho/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAC-kI2770I7JgVCTYExG0vXoYoxA",
@@ -561,7 +561,7 @@ Channel(
       VideoItem(
         id: "wECZoUNd2GY",
         name: "EEVblog LIVE DIY TTL Computer Build",
-        length: Some(14599),
+        duration: Some(14599),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/wECZoUNd2GY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDzZwAD6bQQEaYuZEzmQ0sgQKc1yA",
@@ -602,7 +602,7 @@ Channel(
       VideoItem(
         id: "bV99dn-tWDk",
         name: "EEVblog LIVE Scope Draw",
-        length: Some(2694),
+        duration: Some(2694),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/bV99dn-tWDk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAR4ckJxAituVMFCyWpYhHXozqQRA",
@@ -643,7 +643,7 @@ Channel(
       VideoItem(
         id: "-NGRIFiu_p0",
         name: "EEVblog LIVE SHOW - End of 2017",
-        length: Some(12238),
+        duration: Some(12238),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/-NGRIFiu_p0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBjMmIdgjiSMBQ2X73h6-NtVUIqSg",
@@ -684,7 +684,7 @@ Channel(
       VideoItem(
         id: "zgE6_x4rM5k",
         name: "LIVE Show Giveaway",
-        length: Some(5533),
+        duration: Some(5533),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/zgE6_x4rM5k/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBjb92wUNqOvTKs9TCLCThvdkdz3A",
@@ -725,7 +725,7 @@ Channel(
       VideoItem(
         id: "9DjABCJN2M8",
         name: "LIVE Testing of the Batteriser",
-        length: Some(10747),
+        duration: Some(10747),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/9DjABCJN2M8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBXhnnHCuNfSzHZC64KFsfHPPJDNg",
@@ -766,7 +766,7 @@ Channel(
       VideoItem(
         id: "cAsUI2YhqN4",
         name: "LIVE Unboxing of the Batteriser! (Batteroo)",
-        length: Some(3102),
+        duration: Some(3102),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/cAsUI2YhqN4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCOE1MyG1nFXs9D2qdK78bpN1mc_g",
@@ -807,7 +807,7 @@ Channel(
       VideoItem(
         id: "CLYKwFMW9J0",
         name: "Juno Live Again",
-        length: Some(811),
+        duration: Some(811),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/CLYKwFMW9J0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC7WO4HX0e7M58ddoJD5dkVjdKHYQ",
@@ -848,7 +848,7 @@ Channel(
       VideoItem(
         id: "nV43vM9VcUA",
         name: "Juno Live",
-        length: Some(190),
+        duration: Some(190),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/nV43vM9VcUA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCy-zEVPDvomCCi8YoP8Ig_Hrhzfw",
@@ -889,7 +889,7 @@ Channel(
       VideoItem(
         id: "38uFiWzcDnc",
         name: "Juno Orbital Insertion Live",
-        length: Some(1731),
+        duration: Some(1731),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/38uFiWzcDnc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLALhrDygxFH4T2c-4efZqVaJnYY7g",
@@ -930,7 +930,7 @@ Channel(
       VideoItem(
         id: "ib80yjc9VlM",
         name: "Juno Jupiter Live",
-        length: Some(581),
+        duration: Some(581),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/ib80yjc9VlM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDbJJvzoEmwUc7nAm6GLJpoZJKmgQ",
@@ -971,7 +971,7 @@ Channel(
       VideoItem(
         id: "rQRakYpb8-g",
         name: "eevSTREAM: Lab Rearrangement Part 2",
-        length: Some(8616),
+        duration: Some(8616),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/rQRakYpb8-g/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAdGJH0yhCQ7kmI3d3JXVv_7xzJAQ",
@@ -1012,7 +1012,7 @@ Channel(
       VideoItem(
         id: "DwLEFKu2XWg",
         name: "eevSTREAM: Lab Rearrangement Part 1",
-        length: Some(768),
+        duration: Some(768),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/DwLEFKu2XWg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCXvSePgZ8NIKQTviqWvROVZFRPpA",
@@ -1053,7 +1053,7 @@ Channel(
       VideoItem(
         id: "VeUDXQR3F2o",
         name: "Live Show",
-        length: Some(10360),
+        duration: Some(10360),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/VeUDXQR3F2o/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDmgrfQXMTaGMahuP8F_UHJAomFbg",
@@ -1094,7 +1094,7 @@ Channel(
       VideoItem(
         id: "PgZx25vVwoI",
         name: "Live Giveaway",
-        length: Some(1808),
+        duration: Some(1808),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/PgZx25vVwoI/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDTrMmoCfISxG0YSqC4oEyKGHdK_A",
@@ -1135,7 +1135,7 @@ Channel(
       VideoItem(
         id: "jUtzoO-ur34",
         name: "Inventables X-Carve LIVE Build Part 4",
-        length: Some(10665),
+        duration: Some(10665),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/jUtzoO-ur34/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCO35sFP8D_Q08HxMZkNHFO8MmpDg",
@@ -1176,7 +1176,7 @@ Channel(
       VideoItem(
         id: "199gtbX1y4M",
         name: "Inventables X-Carve LIVE Build Part 3 + Batteriser Rant",
-        length: Some(6267),
+        duration: Some(6267),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/199gtbX1y4M/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAg3bMS00xpSXmNn1f5hXu_jWWC1w",
@@ -1217,7 +1217,7 @@ Channel(
       VideoItem(
         id: "nQH4I_p7-MI",
         name: "Inventables X-Carve LIVE Build Part 2",
-        length: Some(17643),
+        duration: Some(17643),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/nQH4I_p7-MI/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBMIA1YzQefFwGj5UFikXuYS2Nkng",
@@ -1258,7 +1258,7 @@ Channel(
       VideoItem(
         id: "XBMNFXGKpaw",
         name: "Inventables X-Carve LIVE Build",
-        length: Some(5479),
+        duration: Some(5479),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/XBMNFXGKpaw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCV980wWO8tdx0aFDXwPn9aBQ2xlA",
@@ -1299,7 +1299,7 @@ Channel(
       VideoItem(
         id: "yl6DGgiE3J8",
         name: "Apollo Saturn LVDC Live testing",
-        length: Some(1076),
+        duration: Some(1076),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/yl6DGgiE3J8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCugABHuqqPZQjV9cEm0JFh7R5aiA",
@@ -1340,7 +1340,7 @@ Channel(
       VideoItem(
         id: "EEMcIZAcKjc",
         name: "LIVE EEVblog Mailbag",
-        length: Some(7344),
+        duration: Some(7344),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/EEMcIZAcKjc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCg16HpJqC9mNwkYOf8b0cfAuNLOA",

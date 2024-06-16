@@ -60,7 +60,7 @@ VideoDetails(
       VideoItem(
         id: "-YpwsdRKt8Q",
         name: "SpiegelMining – Reverse Engineering von Spiegel-Online (33c3)",
-        length: Some(3526),
+        duration: Some(3526),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/-YpwsdRKt8Q/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAitMEufI5dstlwxmzUBy5R55YqvA",
@@ -97,7 +97,7 @@ VideoDetails(
       VideoItem(
         id: "4z3mu63yxII",
         name: "Gregor Gysi & Martin Sonneborn",
-        length: Some(5272),
+        duration: Some(5272),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/4z3mu63yxII/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDreV7oQC-p3dvg_goG62wPliIS9Q",
@@ -134,7 +134,7 @@ VideoDetails(
       VideoItem(
         id: "WhgRRpA3b2c",
         name: "36C3 -  Verkehrswende selber hacken",
-        length: Some(3176),
+        duration: Some(3176),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/WhgRRpA3b2c/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDvqwVUjB6Xurm8rFTueHcWHuPfZA",
@@ -171,7 +171,7 @@ VideoDetails(
       VideoItem(
         id: "5qNHtdN07FM",
         name: "GPN16: Wie baut man eigentlich Raumschiffe (urs)",
-        length: Some(5172),
+        duration: Some(5172),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/5qNHtdN07FM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDpjJM0fDLemesPUcU3VcN_gv9lHQ",
@@ -208,7 +208,7 @@ VideoDetails(
       VideoItem(
         id: "7FeqF1-Z1g0",
         name: "David Kriesel: Traue keinem Scan, den du nicht selbst gefälscht hast",
-        length: Some(3820),
+        duration: Some(3820),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/7FeqF1-Z1g0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDlpdGFYSadvgkHzSGulKmjV3wokQ",
@@ -245,7 +245,7 @@ VideoDetails(
       VideoItem(
         id: "1vcP9UWrWBI",
         name: "Easterhegg 2019 - Kernreaktoren",
-        length: Some(7263),
+        duration: Some(7263),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/1vcP9UWrWBI/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBUQVIIaiRE6GWywG8JwHDYAJpnZg",
@@ -282,7 +282,7 @@ VideoDetails(
       VideoItem(
         id: "jnp1veXQf7U",
         name: "Blockchain - Ein außer Kontrolle geratenes Laborexperiment? #GPN19",
-        length: Some(3362),
+        duration: Some(3362),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/jnp1veXQf7U/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAPdUkK2Ck1bwqQKZyMKKtAP4AMdA",
@@ -319,7 +319,7 @@ VideoDetails(
       VideoItem(
         id: "77OlKRkaixo",
         name: "leyrer, MacLemon: E-Mail. Hässlich, aber es funktioniert #eh16",
-        length: Some(6998),
+        duration: Some(6998),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/77OlKRkaixo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD4xyH2Wm3PRfFNYPGKLO69SFfcYw",
@@ -356,7 +356,7 @@ VideoDetails(
       VideoItem(
         id: "u29--YNGMyg",
         name: "Physikalisches Kolloquium 22. Juli 2011 - Vortrag von Prof. Dr. Harald Lesch",
-        length: Some(6715),
+        duration: Some(6715),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/u29--YNGMyg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCykSwmdalE18JSUKAH4PLZ54YpzQ",
@@ -393,7 +393,7 @@ VideoDetails(
       VideoItem(
         id: "urt2_ACal9A",
         name: "CCC-Jahresrückblick 2016 (33c3)",
-        length: Some(8170),
+        duration: Some(8170),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/urt2_ACal9A/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLChs8FeQ4a0ab1PeF0yFI58lHD2Ew",
@@ -430,7 +430,7 @@ VideoDetails(
       VideoItem(
         id: "PnBs9oH2Lx8",
         name: "Easterhegg 2019 - Wie ich die Regierung gehackt habe",
-        length: Some(3147),
+        duration: Some(3147),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/PnBs9oH2Lx8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDCYEqGF-6ovzXSwysiuU3EPQPBBQ",
@@ -467,7 +467,7 @@ VideoDetails(
       VideoItem(
         id: "yaCiVvBD-xc",
         name: "Mathias Dalheimer: Wie man einen Blackout verursacht",
-        length: Some(3748),
+        duration: Some(3748),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/yaCiVvBD-xc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD0kgmNW_38RP2zrFbHZ8yMaeltXw",
@@ -504,7 +504,7 @@ VideoDetails(
       VideoItem(
         id: "1PJnEwoFSXo",
         name: "Das Geheimnis der Hieroglyphen | Doku HD | ARTE",
-        length: Some(5541),
+        duration: Some(5541),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/1PJnEwoFSXo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBECHmEUHzkloG0szufbTTPeQxJcg",
@@ -541,7 +541,7 @@ VideoDetails(
       VideoItem(
         id: "iIDZ8pJKLZA",
         name: "36C3 ChaosWest:  Bahn API Chaos",
-        length: Some(3056),
+        duration: Some(3056),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/iIDZ8pJKLZA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD4Yav7T6P0SXZSw0mhg9jL1aot7A",
@@ -578,7 +578,7 @@ VideoDetails(
       VideoItem(
         id: "PhUQN6fd5O4",
         name: "35C3 -  Jahresrückblick des CCC 2018",
-        length: Some(8102),
+        duration: Some(8102),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/PhUQN6fd5O4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAO_0bZOBr6aGmQdiA-5bUOxNeTaQ",
@@ -615,7 +615,7 @@ VideoDetails(
       VideoItem(
         id: "bzr0c8qzQoc",
         name: "GPN19 - Beton",
-        length: Some(3972),
+        duration: Some(3972),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/bzr0c8qzQoc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCY6DB5oe1CQxUXIc9wpl_WyB9REA",
@@ -652,7 +652,7 @@ VideoDetails(
       VideoItem(
         id: "IeX1F-Jjq9E",
         name: "Lars “Pylon” Weiler (DC4LW): Weltraumkommunikation",
-        length: Some(5075),
+        duration: Some(5075),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/IeX1F-Jjq9E/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDHnqHZmt01FMVG1lPBXYtZXWWY9Q",
@@ -689,7 +689,7 @@ VideoDetails(
       VideoItem(
         id: "gsnL4m57MCM",
         name: "David Kriesel: SpiegelMining – Reverse Engineering von Spiegel-Online",
-        length: Some(3526),
+        duration: Some(3526),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/gsnL4m57MCM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAzdNK5qr49otzmiOcFYQGCAcoIBA",
@@ -726,7 +726,7 @@ VideoDetails(
       VideoItem(
         id: "uEEHq6f8RsM",
         name: "Leyrer: Moderne Linux Kommandozeilenwerkzeuge - Edition \"Allein zu Haus\"",
-        length: Some(3716),
+        duration: Some(3716),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/uEEHq6f8RsM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAEBt4P-qj4seCLNwABBxmHbSjFXQ",

@@ -99,7 +99,7 @@ Channel(
       VideoItem(
         id: "BpW_DxGRCRw",
         name: "EEVblog 1605 - Chasing Fart Noises - JBL Charge 3 \"Repair\"",
-        length: Some(1676),
+        duration: Some(1676),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/BpW_DxGRCRw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBHX3HMauysp5rOpOOuhvfEsTxqHQ",
@@ -140,7 +140,7 @@ Channel(
       VideoItem(
         id: "GRRvGj8OT_A",
         name: "EEVblog 1604 - BEWARE! Multimeter Burden Voltage",
-        length: Some(383),
+        duration: Some(383),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/GRRvGj8OT_A/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGGMgYyhjMA8=&rs=AOn4CLByLXyg74bCFFJH8-ZqVMLtFqzniQ",
@@ -181,7 +181,7 @@ Channel(
       VideoItem(
         id: "Nl9NL1oup3Q",
         name: "EEVblog 1603 - Colas Wattway Solar Roadways is DEAD",
-        length: Some(1055),
+        duration: Some(1055),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/Nl9NL1oup3Q/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD8mC5yQTccSI3dqhCBNgbw8D981w",
@@ -222,7 +222,7 @@ Channel(
       VideoItem(
         id: "u6tuZ7plOa4",
         name: "EEVblog 1602 - Sony Amplifier REPAIR ADVENTURE",
-        length: Some(2691),
+        duration: Some(2691),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/u6tuZ7plOa4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBa5FnB0TzCXbwoequOCmRm_VSIDw",
@@ -263,7 +263,7 @@ Channel(
       VideoItem(
         id: "gZIRPJt69sM",
         name: "EEVblog 1601 - How VFD (Vacuum Fluorescent) Displays Work",
-        length: Some(606),
+        duration: Some(606),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/gZIRPJt69sM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAgHSw4ma5wo_wloJIzb_3L6-BAaQ",
@@ -304,7 +304,7 @@ Channel(
       VideoItem(
         id: "SGwHRImfE4E",
         name: "EEVblog 1600 - Rouute: Road Based Energy BUSTED",
-        length: Some(1317),
+        duration: Some(1317),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/SGwHRImfE4E/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAX6ecM7rCaBFym8pyYPrWnYwbGuA",
@@ -345,7 +345,7 @@ Channel(
       VideoItem(
         id: "XYdmX8w8xwI",
         name: "EEVblog 1599 - TOP 5 Jellybean Bipolar Transistors",
-        length: Some(1370),
+        duration: Some(1370),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/XYdmX8w8xwI/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBrEHr6sXxajy0arfVzB9rlF1APVg",
@@ -386,7 +386,7 @@ Channel(
       VideoItem(
         id: "igQoD_I7Arw",
         name: "EEVblog 1598 - ANENG AC11 Socket Tester TEARDOWN + SCHEMATIC Reverse Eng",
-        length: Some(1187),
+        duration: Some(1187),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/igQoD_I7Arw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDh-14EGoep-9LhQ2xkHz4xkUD3jA",
@@ -427,7 +427,7 @@ Channel(
       VideoItem(
         id: "kpzNVsSmUu0",
         name: "EEVblog 1597 - Zoyi ZT-703S $80 2CH 50MHz Oscilloscope/Multimeter Review",
-        length: Some(1792),
+        duration: Some(1792),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/kpzNVsSmUu0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAPg-goL1Tq9bpbFq9Ni64B0n3o_A",
@@ -468,7 +468,7 @@ Channel(
       VideoItem(
         id: "AUsENwVjiDQ",
         name: "EEVblog 1596 - NEW Digilent Analog Discovery Pro ADP2230 TEARDOWN",
-        length: Some(1212),
+        duration: Some(1212),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/AUsENwVjiDQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCfOMU68_jSX9nkY3L8dhS8Cv4kOQ",
@@ -509,7 +509,7 @@ Channel(
       VideoItem(
         id: "nEmO8DcOap4",
         name: "EEVblog 1595 - 50 Year Chinese Nuclear Diamond Battery!",
-        length: Some(1051),
+        duration: Some(1051),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/nEmO8DcOap4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCajo6A-qIwGioGsM1c0wzSBfiing",
@@ -550,7 +550,7 @@ Channel(
       VideoItem(
         id: "fIEH4-P2nyQ",
         name: "EEVblog 1594 - Inside a Quantum Computer! with Andrea Morello",
-        length: Some(5650),
+        duration: Some(5650),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/fIEH4-P2nyQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCRMUDhvpmmRPm6XLU21VstvzTzRw",
@@ -591,7 +591,7 @@ Channel(
       VideoItem(
         id: "cO45J-8qTZ4",
         name: "EEVblog 1593 - 16kV ESD Tester REPAIR - Part 2",
-        length: Some(1636),
+        duration: Some(1636),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/cO45J-8qTZ4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA4xdKXs7GYV215wv6CHdGcgCSKkg",
@@ -632,7 +632,7 @@ Channel(
       VideoItem(
         id: "AFz0qmkq4LM",
         name: "EEVblog 1592 - Fluke 287 Multimeter Teardown",
-        length: Some(1022),
+        duration: Some(1022),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/AFz0qmkq4LM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA7MqMPizOmrSHoXDsieAhELhYHCg",
@@ -673,7 +673,7 @@ Channel(
       VideoItem(
         id: "bnQCKa6GNWo",
         name: "EEVblog 1591 - MORE Colas Wattway Solar Cycleways in the Netherlands!",
-        length: Some(1343),
+        duration: Some(1343),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/bnQCKa6GNWo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA71_sOs1fDAGBk2WJtxxOi6R_4KA",
@@ -714,7 +714,7 @@ Channel(
       VideoItem(
         id: "-g-MD69V0CU",
         name: "EEVblog 1590 - Cheap $33 Boombox Teardown",
-        length: Some(1191),
+        duration: Some(1191),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/-g-MD69V0CU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDjLnRunCSuUYAmnxKgbuSTJHshrA",
@@ -755,7 +755,7 @@ Channel(
       VideoItem(
         id: "KKMrT2HeRsQ",
         name: "EEVblog 1589 - CCD Scanner Array",
-        length: Some(872),
+        duration: Some(872),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/KKMrT2HeRsQ/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGGIgZShbMA8=&rs=AOn4CLBigIAgMdNzHkMH9gB4lgiwfXy-Yg",
@@ -796,7 +796,7 @@ Channel(
       VideoItem(
         id: "W_W_BDcebao",
         name: "EEVblog 1588 - Virgin Hyperloop One Goes BUST!",
-        length: Some(1783),
+        duration: Some(1783),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/W_W_BDcebao/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAgwPWx85cGEbBtxXot2PtP7Z12bQ",
@@ -837,7 +837,7 @@ Channel(
       VideoItem(
         id: "FknxWtZkuUE",
         name: "EEVblog 1587 - Dumpster FAX Teardown",
-        length: Some(1185),
+        duration: Some(1185),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/FknxWtZkuUE/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-CYAC0AWKAgwIABABGGUgXChUMA8=&rs=AOn4CLBGke3u13MxDYsi4cLbME7jckVKuw",
@@ -878,7 +878,7 @@ Channel(
       VideoItem(
         id: "AuFSMpFzAnw",
         name: "eevBLAB 117 - The Youtube Bot Comment Problem",
-        length: Some(299),
+        duration: Some(299),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/AuFSMpFzAnw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCrpv-fSn1pwpshPv-QWXV6jeFCiw",
@@ -919,7 +919,7 @@ Channel(
       VideoItem(
         id: "WIEb1Zd1NdI",
         name: "EEVblog 1586 -  Stranger Things Decade Resistor Box + Repair",
-        length: Some(968),
+        duration: Some(968),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/WIEb1Zd1NdI/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD5ndIPZJndQkkrCcT_SbrBWdBXaA",
@@ -960,7 +960,7 @@ Channel(
       VideoItem(
         id: "PhGPacEg3zw",
         name: "EEVblog 1585 - SCAM! Portable Kinetic Molecular Heater BUSTED",
-        length: Some(1166),
+        duration: Some(1166),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/PhGPacEg3zw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBluu7atTRGHN9p5mhKoCjtJcQCQA",
@@ -1001,7 +1001,7 @@ Channel(
       VideoItem(
         id: "sisD61ohzK0",
         name: "EEVblog 1584 - Wireless Freakin\' EV Charging Roads! A $250M Boondoggle",
-        length: Some(1785),
+        duration: Some(1785),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/sisD61ohzK0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAX1Q1G-ek-lBZwvIlTXGO6UYPmEA",
@@ -1042,7 +1042,7 @@ Channel(
       VideoItem(
         id: "1YK_GlnUlI8",
         name: "EEVblog 1583 - Advanced Oscilloscope Triggering: Glitch/Pulse/Runt/Interval",
-        length: Some(1339),
+        duration: Some(1339),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/1YK_GlnUlI8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA6wJK1kBMorZs7ba2ny9fNdGA8yQ",
@@ -1083,7 +1083,7 @@ Channel(
       VideoItem(
         id: "HR6_Lp7fH_c",
         name: "EEVblog 1582 - FNIRSI DPOX180H 180MHz DPO for $123?",
-        length: Some(1650),
+        duration: Some(1650),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/HR6_Lp7fH_c/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA5ywdoHcjG1ge9V3fGZNJdrhDoxg",
@@ -1124,7 +1124,7 @@ Channel(
       VideoItem(
         id: "m_8jh_MpWBE",
         name: "EEVblog 1581 - Tesla Roadster now OPEN SOURCE?",
-        length: Some(1032),
+        duration: Some(1032),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/m_8jh_MpWBE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDHUvTCcc_XQO0MDCBTBOuXvixyuQ",
@@ -1165,7 +1165,7 @@ Channel(
       VideoItem(
         id: "eeNKvh2cFPQ",
         name: "EEVblog 1580 - MacGruber Mailbag",
-        length: Some(2235),
+        duration: Some(2235),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/eeNKvh2cFPQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBy8szo9U24ueqgaeinBiQSTiNdcw",
@@ -1206,7 +1206,7 @@ Channel(
       VideoItem(
         id: "5M5MF6KE-jY",
         name: "EEVblog 1579 - Nuclear Diamond Battery FRAUD Lawsuit by SEC!",
-        length: Some(1077),
+        duration: Some(1077),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/5M5MF6KE-jY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBq8h9yVCll1FPCLA5FdQTAWiaCAg",
@@ -1247,7 +1247,7 @@ Channel(
       VideoItem(
         id: "IWHS2FDyh7s",
         name: "EEVblog 1578 - No one can be told what the Metrix is.",
-        length: Some(1794),
+        duration: Some(1794),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/IWHS2FDyh7s/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDru0L9uKllbOsCuLX_39XvlAAN5g",
@@ -1288,7 +1288,7 @@ Channel(
       VideoItem(
         id: "CnJ7mQ_Fo-8",
         name: "EEVblog 1577 - History of Television & Cathode Ray Tubes with Kathy Loves Physics",
-        length: Some(4693),
+        duration: Some(4693),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/CnJ7mQ_Fo-8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCIxRMt80uMLr-xNjaez0XsbalQsA",

@@ -633,7 +633,7 @@ VideoDetails(
       VideoItem(
         id: "t03rmc-prJo",
         name: "This PC took 600 HOURS to Build!",
-        length: Some(1505),
+        duration: Some(1505),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/t03rmc-prJo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDCfqUXpZWf6Gv320YOu1UW02Sv5Q",
@@ -670,7 +670,7 @@ VideoDetails(
       VideoItem(
         id: "4ozYlgOuYis",
         name: "They told me I was stupid - heating my pool with computers",
-        length: Some(691),
+        duration: Some(691),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/4ozYlgOuYis/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA4mG_tVV8TLuMJDGCGvTmjfwtddQ",
@@ -707,7 +707,7 @@ VideoDetails(
       VideoItem(
         id: "THxkY59_xko",
         name: "Is the fastest GPU ALWAYS the best?",
-        length: Some(979),
+        duration: Some(979),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/THxkY59_xko/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCmaBvFJBMIkBuT8khxFcTtfaZ2XA",
@@ -744,7 +744,7 @@ VideoDetails(
       VideoItem(
         id: "UJ-KZzVUV7U",
         name: "This toaster cost HOW MUCH?? - Revolution InstaGLO R270 Toaster",
-        length: Some(880),
+        duration: Some(880),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/UJ-KZzVUV7U/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBurQQ2fWpDYmCQ4aqgowGEBfWEYg",
@@ -781,7 +781,7 @@ VideoDetails(
       VideoItem(
         id: "yayAQAC1XiE",
         name: "Intel PLEASE let me Overclock this!",
-        length: Some(799),
+        duration: Some(799),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/yayAQAC1XiE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAZerWHd_ctrAd3FaOyCFXvh-N5-A",
@@ -818,7 +818,7 @@ VideoDetails(
       VideoItem(
         id: "y4T374GtKLI",
         name: "When The Grid Goes Down: How To Power Essential Devices (i.e., Refrigerator)",
-        length: Some(1239),
+        duration: Some(1239),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/y4T374GtKLI/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDzlGsbn7uLQb0yPGGU8kTLU4kPJg",
@@ -855,7 +855,7 @@ VideoDetails(
       VideoItem(
         id: "b3x28s61q3c",
         name: "The most EXPENSIVE thing I own.",
-        length: Some(887),
+        duration: Some(887),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/b3x28s61q3c/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAWb5ZrdRdn4SCsBxY_w8QILUmdbA",
@@ -892,7 +892,7 @@ VideoDetails(
       VideoItem(
         id: "LQ95XJAwaoc",
         name: "My favorite car (sucks) - Lucid Air GT",
-        length: Some(1162),
+        duration: Some(1162),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/LQ95XJAwaoc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCipJpt-2zTzIpJu3bTaXsTai4Avw",
@@ -929,7 +929,7 @@ VideoDetails(
       VideoItem(
         id: "WVjtK71qqXU",
         name: "I bought a SECOND GPU… but NOT for gaming…",
-        length: Some(754),
+        duration: Some(754),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/WVjtK71qqXU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDKEZ4b5LpUceHDgWzrKoASZh8WYA",
@@ -966,7 +966,7 @@ VideoDetails(
       VideoItem(
         id: "vtvFVH9JdNI",
         name: "I bought every Nintendo Console EVER.",
-        length: Some(1381),
+        duration: Some(1381),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/vtvFVH9JdNI/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCztBNH12-uuinjoT7QXyYAHJaWpg",
@@ -1003,7 +1003,7 @@ VideoDetails(
       VideoItem(
         id: "J6Ga4wciA2k",
         name: "THIS Wish.com Gaming PC is WORSE!",
-        length: Some(1545),
+        duration: Some(1545),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/J6Ga4wciA2k/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLB6GXKbOi7UeTFxMZvVU2v4Mefzaw",
@@ -1040,7 +1040,7 @@ VideoDetails(
       VideoItem(
         id: "CsoKWsZ-Tyw",
         name: "The Personal Gaming Theater - HOLY $H!T Samsung Odyssey Ark",
-        length: Some(1182),
+        duration: Some(1182),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/CsoKWsZ-Tyw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDY9DPUvV7_iZ4Q_Vs5aH04-D1Wiw",
@@ -1077,7 +1077,7 @@ VideoDetails(
       VideoItem(
         id: "9T98VsMe3oo",
         name: "How are we going to do this?",
-        length: Some(1124),
+        duration: Some(1124),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/9T98VsMe3oo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLARsAavwhjYXofUNZb9CHY-F2GyVg",
@@ -1114,7 +1114,7 @@ VideoDetails(
       VideoItem(
         id: "5Hxr9k5Vdc4",
         name: "Building the $1,000,000 Computer",
-        length: Some(1659),
+        duration: Some(1659),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/5Hxr9k5Vdc4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAWGQOhyUyIkDDwX1V0dSNuvKVvTw",
@@ -1151,7 +1151,7 @@ VideoDetails(
       VideoItem(
         id: "12Hcbx33Rb4",
         name: "BREAKING NEWS! - EVGA will no longer do business with NVIDIA",
-        length: Some(1262),
+        duration: Some(1262),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/12Hcbx33Rb4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAM7iCw78-SfuzT5AgSv6ACOVDelQ",
@@ -1188,7 +1188,7 @@ VideoDetails(
       VideoItem(
         id: "EHkkwCjQzsc",
         name: "Prepper (2016) | Full Post-Apocalyptic Thriller Movie HD",
-        length: Some(5982),
+        duration: Some(5982),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/EHkkwCjQzsc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDSjdCyfQ-R4ButwCMS4bFpYZn3VA",
@@ -1225,7 +1225,7 @@ VideoDetails(
       VideoItem(
         id: "AOdp09SYhCc",
         name: "This Is So Embarrassing! - Building a PC with My Sister",
-        length: Some(1063),
+        duration: Some(1063),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/AOdp09SYhCc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBfBYl-n346B6prZx03Mm7Ww5KNzQ",
@@ -1262,7 +1262,7 @@ VideoDetails(
       VideoItem(
         id: "CTIpNtHWVtQ",
         name: "Why Pay $1000 for a 25 year old PC! - NIXSYS Windows 98 PC",
-        length: Some(1112),
+        duration: Some(1112),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/CTIpNtHWVtQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAgegiq7MYL_WWdEFX2psylbO2KHw",
@@ -1299,7 +1299,7 @@ VideoDetails(
       VideoItem(
         id: "3RIp7CwkBeA",
         name: "I Hope You Have a LOT of Money... RTX 4000 Announced",
-        length: Some(569),
+        duration: Some(569),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/3RIp7CwkBeA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA0yHfBWVDIOWz5wFNO6A6xwHDl8A",
@@ -1336,7 +1336,7 @@ VideoDetails(
       VideoItem(
         id: "HZiaHEmE9PQ",
         name: "Buying a Chromebook was a BIG MISTAKE",
-        length: Some(880),
+        duration: Some(880),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/HZiaHEmE9PQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBXXl872fFTYsfwBvUbF0oBvsZSrw",

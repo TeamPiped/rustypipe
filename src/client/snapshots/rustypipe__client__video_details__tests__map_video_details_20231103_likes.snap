@@ -149,7 +149,7 @@ VideoDetails(
       VideoItem(
         id: "4TWR90KJl84",
         name: "aespa 에스파 \'Next Level\' MV",
-        length: Some(236),
+        duration: Some(236),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/4TWR90KJl84/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBYCGc-AKsDC6UpJgIZw2_VsqjVWA",
@@ -186,7 +186,7 @@ VideoDetails(
       VideoItem(
         id: "yQUU29NwNF4",
         name: "aespa(에스파) - Black Mamba @인기가요 inkigayo 20201122",
-        length: Some(213),
+        duration: Some(213),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/yQUU29NwNF4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA4pIWwOFmVuVU-jZ-j7S4GvgxjKw",
@@ -223,7 +223,7 @@ VideoDetails(
       VideoItem(
         id: "mTmm0y73ZtM",
         name: "Secret Missions: 7 Thrilling Spy and Secret Agent Stories",
-        length: Some(6811),
+        duration: Some(6811),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/mTmm0y73ZtM/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDz3aKv3IbWrI5GmtWjWl2br6h7jw",
@@ -260,7 +260,7 @@ VideoDetails(
       VideoItem(
         id: "xBnSq8JKlZw",
         name: "16 Eylül 2023",
-        length: Some(7971),
+        duration: Some(7971),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/xBnSq8JKlZw/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-BIAC6AKKAgwIABABGGUgUChFMA8=&rs=AOn4CLDBvW0PORHHExpND8qbAa0OCr5MMw",
@@ -297,7 +297,7 @@ VideoDetails(
       VideoItem(
         id: "fE2h3lGlOsk",
         name: "ITZY \"WANNABE\" M/V @ITZY",
-        length: Some(219),
+        duration: Some(219),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/fE2h3lGlOsk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC44Q0lpu5a8rltgTMxi0X2QA6jnQ",
@@ -334,7 +334,7 @@ VideoDetails(
       VideoItem(
         id: "NU611fxGyPU",
         name: "aespa 에스파 \'Black Mamba\' Dance Practice",
-        length: Some(175),
+        duration: Some(175),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/NU611fxGyPU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAgKORzcy6WKosI1_PAVWDgcjJ9jA",
@@ -371,7 +371,7 @@ VideoDetails(
       VideoItem(
         id: "dYRITmpFbJ4",
         name: "aespa 에스파 \'Girls\' MV",
-        length: Some(269),
+        duration: Some(269),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/dYRITmpFbJ4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBOxN6ukbZNOPwUBhRZYgG9r23lng",
@@ -408,7 +408,7 @@ VideoDetails(
       VideoItem(
         id: "jiFBY6gk3Lk",
         name: "BLACKPINK x AESPA – Pink Venom / Black Mamba MASHUP (feat. Next Level)",
-        length: Some(240),
+        duration: Some(240),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/jiFBY6gk3Lk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLARhXJ8KOxiWpj430QpyKF2m3LJFQ",
@@ -445,7 +445,7 @@ VideoDetails(
       VideoItem(
         id: "CM4CkVFmTds",
         name: "TWICE \"I CAN\'T STOP ME\" M/V",
-        length: Some(221),
+        duration: Some(221),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/CM4CkVFmTds/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBfd7QADIduQSR2ESLIp1k5gxxNDg",
@@ -482,7 +482,7 @@ VideoDetails(
       VideoItem(
         id: "WPdWvnAAurg",
         name: "aespa 에스파 \'Savage\' MV",
-        length: Some(259),
+        duration: Some(259),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/WPdWvnAAurg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDQGxlnDkAdMYRm2cdkDmiDbBDpYw",
@@ -519,7 +519,7 @@ VideoDetails(
       VideoItem(
         id: "OgabtEgG_kg",
         name: "[ FULL ALBUM ] IVE (아이브) — IVE The 1st EP \' I\'VE MINE TRACKLIST",
-        length: Some(1034),
+        duration: Some(1034),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/OgabtEgG_kg/hqdefault.jpg?sqp=-oaymwE1CKgBEF5IVfKriqkDKAgBFQAAiEIYAXABwAEG8AEB-AH-BIAC6AKKAgwIABABGGkgaShpMA8=&rs=AOn4CLBF1lxbztXMyXmem4owNAWZRqvnBA",
@@ -556,7 +556,7 @@ VideoDetails(
       VideoItem(
         id: "cSqOY5nktfg",
         name: "BLACKPINK THE GAME - ‘THE GIRLS’ MV",
-        length: Some(164),
+        duration: Some(164),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/cSqOY5nktfg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDkx-bmEWvYbs8ju1cETIRE1AczFQ",
@@ -593,7 +593,7 @@ VideoDetails(
       VideoItem(
         id: "i8fRCkq5tbw",
         name: "aespa 에스파 ‘ep.2 Next Level’ – SM Culture Universe",
-        length: Some(1040),
+        duration: Some(1040),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/i8fRCkq5tbw/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBGcGKSQOqvI_5ZONNturhZZmkysQ",
@@ -630,7 +630,7 @@ VideoDetails(
       VideoItem(
         id: "erCzl8x9Zuo",
         name: "에스파(AESPA) 2023 lotte family concert Full Ver. (Black Mamba +thirsty + Illusion+next level+ Spicy)",
-        length: Some(1192),
+        duration: Some(1192),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/erCzl8x9Zuo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBF18qnuz8guk309k2UUh4xnLuazg",
@@ -667,7 +667,7 @@ VideoDetails(
       VideoItem(
         id: "7HDeem-JaSY",
         name: "(여자)아이들((G)I-DLE) - \'퀸카 (Queencard)\' Official Music Video",
-        length: Some(211),
+        duration: Some(211),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/7HDeem-JaSY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC_jASE2yooEXAN64rj8-1_AJZl6A",
@@ -704,7 +704,7 @@ VideoDetails(
       VideoItem(
         id: "9JFi7MmjtGA",
         name: "VIVIZ (비비지) - \'MANIAC\' MV",
-        length: Some(197),
+        duration: Some(197),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/9JFi7MmjtGA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLALaqiHHm-fnm1TQHpD9PG-zGd-hg",
@@ -741,7 +741,7 @@ VideoDetails(
       VideoItem(
         id: "NoYKBAajoyo",
         name: "EVERGLOW (에버글로우) - DUN DUN MV",
-        length: Some(209),
+        duration: Some(209),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/NoYKBAajoyo/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC3OhCUbjpIclmjfV8W8T98nVI5pA",
@@ -778,7 +778,7 @@ VideoDetails(
       VideoItem(
         id: "pyf8cbqyfPs",
         name: "LE SSERAFIM (르세라핌) \'ANTIFRAGILE\' OFFICIAL M/V",
-        length: Some(232),
+        duration: Some(232),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/pyf8cbqyfPs/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAu-V-1EWwbHjZTNTO-vuP_O_WB3Q",
@@ -815,7 +815,7 @@ VideoDetails(
       VideoItem(
         id: "32si5cfrCNc",
         name: "BLACKPINK - \'How You Like That\' DANCE PERFORMANCE VIDEO",
-        length: Some(181),
+        duration: Some(181),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/32si5cfrCNc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBjimPvMxDwTmPBlKX8Buo9EjMeOg",
@@ -852,7 +852,7 @@ VideoDetails(
       VideoItem(
         id: "bwmSjveL3Lc",
         name: "BLACKPINK - \'붐바야 (BOOMBAYAH)\' M/V",
-        length: Some(244),
+        duration: Some(244),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/bwmSjveL3Lc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDRzdujtL9QM0RZ8elD00oS2fXMhg",

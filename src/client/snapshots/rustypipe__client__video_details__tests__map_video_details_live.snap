@@ -104,7 +104,7 @@ VideoDetails(
       VideoItem(
         id: "SGP6Y0Pnhe4",
         name: "HOW IT WORKS: The International Space Station",
-        length: Some(1738),
+        duration: Some(1738),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/SGP6Y0Pnhe4/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAChuc2Ih-sBZQC5x7o0gghn85nJw",
@@ -141,7 +141,7 @@ VideoDetails(
       VideoItem(
         id: "ddZu_1Z3BAc",
         name: "NASA LIVE Stream From The ISS - Live Earth & Space Station Views & Audio",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/ddZu_1Z3BAc/hqdefault_live.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCi5eV9lF_2VW5JPzM1Vk5UUNqkHQ",
@@ -178,7 +178,7 @@ VideoDetails(
       VideoItem(
         id: "oDXBMjg9HKU",
         name: "APOD: 2022-09-20 - Star Forming Region NGC 3582 without Stars (Narrated by Amy)",
-        length: Some(124),
+        duration: Some(124),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/oDXBMjg9HKU/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDQx56iTlsHGslGMkJ74MTqRDD1Og",
@@ -215,7 +215,7 @@ VideoDetails(
       VideoItem(
         id: "aU0vNvVHXa8",
         name: "🌎 LIVE ASTEROID Watch Tracking",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/aU0vNvVHXa8/hqdefault_live.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBK26DJlPwe8sxoySl9hGivR0svQQ",
@@ -252,7 +252,7 @@ VideoDetails(
       VideoItem(
         id: "6scCF_8YN70",
         name: "Dramatic footage of the tsunami that hit Japan",
-        length: Some(133),
+        duration: Some(133),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/6scCF_8YN70/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA5oP2ObSoxifqGHzx7OfEzpnFHIA",
@@ -289,7 +289,7 @@ VideoDetails(
       VideoItem(
         id: "n4IhCSMkADc",
         name: "EARTH FROM SPACE: Like You\'ve Never Seen Before",
-        length: Some(766),
+        duration: Some(766),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/n4IhCSMkADc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAhEA9mKd5lvhDnmtV5xXY22Zjfdg",
@@ -326,7 +326,7 @@ VideoDetails(
       VideoItem(
         id: "bgbH4FAmAA0",
         name: "Winter Cab View from two of the most SCENIC RAILWAYS in the WORLD",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/bgbH4FAmAA0/hqdefault_live.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDK5dHaUNVD62cFE9pVq-zw4N8Qkw",
@@ -363,7 +363,7 @@ VideoDetails(
       VideoItem(
         id: "uD4izuDMUQA",
         name: "TIMELAPSE OF THE FUTURE: A Journey to the End of Time (4K)",
-        length: Some(1761),
+        duration: Some(1761),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/uD4izuDMUQA/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDjQYM5oXPQlFF0E-qc9n3mGlDRJQ",
@@ -400,7 +400,7 @@ VideoDetails(
       VideoItem(
         id: "Z6DpPQ8QdLg",
         name: "Earthrise - Planet Earth Seen From The Moon - Real Time Journey Across The Lunar Surface",
-        length: Some(241),
+        duration: Some(241),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/Z6DpPQ8QdLg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAOLBguftqGZ-KSwoUPACRpCVwOGQ",
@@ -437,7 +437,7 @@ VideoDetails(
       VideoItem(
         id: "1hNF3Wuw0LI",
         name: "New York City Walk 24/7 Chat Stream",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/1hNF3Wuw0LI/hqdefault_live.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD-mGKGIK69-Ozcl3h9LAdqTpNE9A",
@@ -474,7 +474,7 @@ VideoDetails(
       VideoItem(
         id: "ZEyAs3NWH4A",
         name: "New: Mars In 4K",
-        length: Some(609),
+        duration: Some(609),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/ZEyAs3NWH4A/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAdzoD50ree_56JKW0-yPFWKnpTUw",
@@ -511,7 +511,7 @@ VideoDetails(
       VideoItem(
         id: "NF4LQaWJRDg",
         name: "Hiroshima: Dropping the Bomb",
-        length: Some(276),
+        duration: Some(276),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/NF4LQaWJRDg/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDhvEsHXRIBs2CuAXkqHh07B4CDeg",
@@ -548,7 +548,7 @@ VideoDetails(
       VideoItem(
         id: "qhOe_PxiNo8",
         name: "Imagens, Talvez Inéditas do Tsunami no Japão",
-        length: Some(1202),
+        duration: Some(1202),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/qhOe_PxiNo8/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDqvJn8j2qyzBpIwpchGDhU449YtA",
@@ -585,7 +585,7 @@ VideoDetails(
       VideoItem(
         id: "zf3bDpdhUNc",
         name: "Astronauts accidentally lose a shield in space (GoPro 8K)",
-        length: Some(566),
+        duration: Some(566),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/zf3bDpdhUNc/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLAg0e6zMCEA7X4dx2H7uWmL6DuTfQ",
@@ -622,7 +622,7 @@ VideoDetails(
       VideoItem(
         id: "mJxsj51d-Pk",
         name: "Record breaking space jump - free fall faster than speed of sound - Red Bull Stratos.",
-        length: Some(503),
+        duration: Some(503),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/mJxsj51d-Pk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLBmhCf2s6IuaCOzdRvSI-qnlR33xA",
@@ -659,7 +659,7 @@ VideoDetails(
       VideoItem(
         id: "fr_hXLDLc38",
         name: "Horizons mission - Soyuz: launch to orbit",
-        length: Some(607),
+        duration: Some(607),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/fr_hXLDLc38/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLCtdCzVkOkNo2YAzImB4VdRi5mbgQ",
@@ -696,7 +696,7 @@ VideoDetails(
       VideoItem(
         id: "Jh-qzwdiAGY",
         name: "The Earth 4K - Incredible 4K / UHD Video of Earth From Space",
-        length: Some(3594),
+        duration: Some(3594),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/Jh-qzwdiAGY/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDxyeDTGe_ou8OatbRvZJjocjvEfw",
@@ -733,7 +733,7 @@ VideoDetails(
       VideoItem(
         id: "EPyl1LgNtoQ",
         name: "The View from Space - Earth\'s Countries and Coastlines",
-        length: Some(227),
+        duration: Some(227),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/EPyl1LgNtoQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLA7DtUC7ZI8nVXddLnRs2hCDAW6PA",
@@ -770,7 +770,7 @@ VideoDetails(
       VideoItem(
         id: "7KXGZAEWzn0",
         name: "ORBIT - Journey Around Earth in Real Time // 4K Remastered",
-        length: Some(5560),
+        duration: Some(5560),
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/7KXGZAEWzn0/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLC18tscsYVoOweHeG46RxP93pExiA",
@@ -807,7 +807,7 @@ VideoDetails(
       VideoItem(
         id: "KTUa9rG08go",
         name: "NASA Artemis I Mon Rocket Testing and Inspection LIVE From Launch Complex 39B",
-        length: None,
+        duration: None,
         thumbnail: [
           Thumbnail(
             url: "https://i.ytimg.com/vi/KTUa9rG08go/hqdefault_live.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLDONYcbg3bgmkGnu5k4koV9aPgy2g",

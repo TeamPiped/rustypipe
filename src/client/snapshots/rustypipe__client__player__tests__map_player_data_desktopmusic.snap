@@ -7,7 +7,7 @@ VideoPlayer(
     id: "pPvd8UxmSbQ",
     name: "Inspiring Cinematic Uplifting",
     description: None,
-    length: 163,
+    duration: 163,
     thumbnail: [
       Thumbnail(
         url: "https://i.ytimg.com/vi/pPvd8UxmSbQ/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AOn4CLC-0nIQMyPuy8CtzqTMl6z1rmG_XQ",
