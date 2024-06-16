@@ -180,6 +180,7 @@ impl MapResponse<VideoPlayer> for response::Player {
                         "members-only" => Some(UnavailabilityReason::MembersOnly),
                         "country" => Some(UnavailabilityReason::Geoblocked),
                         "Android" | "websites" => Some(UnavailabilityReason::UnsupportedClient),
+                        "bot" => Some(UnavailabilityReason::IpBan),
                         _ => None,
                     })
                     .unwrap_or_default();

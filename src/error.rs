@@ -31,7 +31,7 @@ pub enum ExtractionError {
     /// - Age restriction
     /// - Private video
     /// - DRM (Movies and TV shows)
-    #[error("content unavailable because it is {reason}. Reason (from YT): {msg}")]
+    #[error("content unavailable ({reason}). Reason (from YT): {msg}")]
     Unavailable {
         /// Reason why the video could not be extracted
         reason: UnavailabilityReason,
@@ -100,6 +100,8 @@ pub enum UnavailabilityReason {
     MembersOnly,
     /// Livestream has gone offline
     OfflineLivestream,
+    /// YouTube banned your IP address from accessing the platform without an account
+    IpBan,
     /// Video cant be played for other reasons
     #[default]
     Unplayable,
@@ -108,15 +110,16 @@ pub enum UnavailabilityReason {
 impl Display for UnavailabilityReason {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
-            UnavailabilityReason::AgeRestricted => f.write_str("age restriction"),
+            UnavailabilityReason::AgeRestricted => f.write_str("age-restricted"),
             UnavailabilityReason::Deleted => f.write_str("deleted"),
-            UnavailabilityReason::Geoblocked => f.write_str("geoblocking"),
+            UnavailabilityReason::Geoblocked => f.write_str("geoblocked"),
             UnavailabilityReason::UnsupportedClient => f.write_str("unsupported by client"),
             UnavailabilityReason::Private => f.write_str("private"),
             UnavailabilityReason::Paid => f.write_str("paid"),
             UnavailabilityReason::Premium => f.write_str("premium-only"),
             UnavailabilityReason::MembersOnly => f.write_str("members-only"),
-            UnavailabilityReason::OfflineLivestream => f.write_str("an offline stream"),
+            UnavailabilityReason::OfflineLivestream => f.write_str("offline stream"),
+            UnavailabilityReason::IpBan => f.write_str("ip-ban"),
             UnavailabilityReason::Unplayable => f.write_str("unplayable"),
         }
     }
