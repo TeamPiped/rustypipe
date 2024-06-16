@@ -79,7 +79,6 @@ pub async fn run_test(
 
     let rp = RustyPipe::new();
     let pb = ProgressBar::new(n as u64);
-    let http = reqwest::Client::default();
     pb.set_style(
         ProgressStyle::with_template(
             "{msg} [{elapsed_precise}] [{wide_bar:.cyan/blue}] {pos}/{len}",
@@ -91,9 +90,8 @@ pub async fn run_test(
         .map(|_| {
             let rp = rp.clone();
             let pb = pb.clone();
-            let http = http.clone();
             async move {
-                let visitor_data = get_visitor_data(&http).await;
+                let visitor_data = rp.query().get_visitor_data().await.unwrap();
                 let query = rp.query().visitor_data(&visitor_data);
                 let is_present = match ab {
                     ABTest::AttributedTextDescription => attributed_text_description(&query).await,
@@ -131,22 +129,6 @@ pub async fn run_test(
         .find_map(|(p, vd)| if *p { None } else { Some(vd.clone()) });
 
     (count, vd_present, vd_absent)
-}
-
-async fn get_visitor_data(http: &reqwest::Client) -> String {
-    let resp = http.get("https://www.youtube.com").send().await.unwrap();
-    resp.headers()
-        .get_all(reqwest::header::SET_COOKIE)
-        .iter()
-        .find_map(|c| {
-            if let Ok(cookie) = c.to_str() {
-                if let Some(after) = cookie.strip_prefix("__Secure-YEC=") {
-                    return after.split_once(';').map(|s| s.0.to_owned());
-                }
-            }
-            None
-        })
-        .unwrap()
 }
 
 pub async fn run_all_tests(n: usize, concurrency: usize) -> Vec<ABTestRes> {

@@ -1259,7 +1259,7 @@ impl RustyPipeQuery {
     }
 
     /// Get a YouTube visitor data cookie, which is necessary for certain requests
-    async fn get_visitor_data(&self) -> Result<String, Error> {
+    pub async fn get_visitor_data(&self) -> Result<String, Error> {
         match &self.opts.visitor_data {
             Some(vd) => Ok(vd.clone()),
             None => self.client.get_visitor_data().await,
