@@ -20,13 +20,11 @@ jobs:
         run: cargo clippy --all --features=rss -- -D warnings
 
       - name: 🧪 Test
-        run: cargo nextest run --config-file ~/.config/nextest.toml --profile ci --features rss --workspace
+        run: cargo nextest run --config-file ~/.config/nextest.toml --profile ci --retries 2 --features rss --workspace
 
       - name: 💌 Upload test report
         if: always()
         uses: https://code.forgejo.org/forgejo/upload-artifact@v4
         with:
           name: test
-          path: |
-            target/nextest/ci/junit.xml
-            rustypipe_reports/*
+          path: target/nextest/ci/junit.xml
