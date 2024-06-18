@@ -1592,8 +1592,7 @@ async fn music_album(#[case] name: &str, #[case] id: &str, rp: RustyPipe, unloca
 
     assert!(!album.cover.is_empty(), "got no cover");
 
-    // TODO: check full snapshot if A/B#13 is stabilized
-    if unlocalized && name != "one_artist" {
+    if unlocalized {
         insta::assert_ron_snapshot!(format!("music_album_{name}"), album,
             {".cover" => "[cover]", ".tracks[].view_count" => "[view_count]"}
         );

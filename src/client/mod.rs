@@ -304,7 +304,6 @@ impl<T> DefaultOpt<T> {
 ///   - [`music_search_albums`](RustyPipeQuery::music_search_albums)
 ///   - [`music_search_artists`](RustyPipeQuery::music_search_artists)
 ///   - [`music_search_playlists`](RustyPipeQuery::music_search_playlists)
-///   - [`music_search_playlists_filter`](RustyPipeQuery::music_search_playlists_filter)
 ///   - [`music_search_suggestion`](RustyPipeQuery::music_search_suggestion)
 /// - **Radio**
 ///   - [`music_radio`](RustyPipeQuery::music_radio)
