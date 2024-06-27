@@ -26,7 +26,7 @@ jobs:
       - name: 📤 Publish crate on code.thetadev.de
         run: |
           mkdir -p ~/.cargo
-          printf '[registries.thetadev]\nindex = "https://code.thetadev.de/ThetaDev/_cargo-index.git"\ntoken = "Bearer ${{ secrets.TOKEN_GITEA }}"\n' >> ~/.cargo/config.toml
+          printf '\n\n[registries.thetadev]\nindex = "https://code.thetadev.de/ThetaDev/_cargo-index.git"\ntoken = "Bearer ${{ secrets.FORGEJO_CI_TOKEN }}"\n' >> ~/.cargo/config.toml
           sed -i "s/^rustypipe.*=\s*{/\0 registry = \"thetadev\",/g" Cargo.toml
           cargo publish --registry thetadev --allow-dirty --package "${{ env.CRATE }}"
           git restore Cargo.toml
