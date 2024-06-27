@@ -36,7 +36,7 @@ jobs:
           RENOVATE_ENDPOINT: ${{ github.server_url }}
           RENOVATE_PLATFORM: gitea
           RENOVATE_REPOSITORY_CACHE: 'enabled'
-          RENOVATE_TOKEN: ${{ secrets.FORGEJO_CI_TOKEN }}
+          RENOVATE_TOKEN: ${{ secrets.FORGEJO_CI_BOT_TOKEN }}
           RENOVATE_GIT_AUTHOR: 'Renovate Bot <forgejo-renovate-action@forgejo.org>'
 
           RENOVATE_X_SQLITE_PACKAGE_CACHE: true
