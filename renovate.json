@@ -3,7 +3,6 @@
   "extends": [
     "config:best-practices",
     ":approveMajorUpdates",
-    ":maintainLockFilesWeekly",
     "schedule:daily"
   ],
   "semanticCommits": "enabled",
