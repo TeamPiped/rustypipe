@@ -1,0 +1,59 @@
+name: renovate
+
+on:
+  push:
+    branches: ["main"]
+    paths: [".forgejo/workflows/renovate.yaml"]
+  schedule:
+    - cron: "0 0 * * *"
+
+env:
+  RENOVATE_REPOSITORIES: ${{ github.repository }}
+
+jobs:
+  renovate:
+    runs-on: docker
+    container:
+      image: ghcr.io/visualon/renovate:latest
+
+    steps:
+      - name: Load renovate repo cache
+        uses: actions/cache/restore@v4
+        with:
+          path: |
+            .tmp/cache/renovate/repository
+            .tmp/cache/renovate/renovate-cache-sqlite
+            .tmp/osv
+          key: repo-cache-${{ github.run_id }}
+          restore-keys: |
+            repo-cache-
+
+      - name: Run renovate
+        run: renovate
+        env:
+          LOG_LEVEL: debug
+          RENOVATE_BASE_DIR: ${{ github.workspace }}/.tmp
+          RENOVATE_ENDPOINT: ${{ github.server_url }}
+          RENOVATE_PLATFORM: gitea
+          RENOVATE_REPOSITORY_CACHE: 'enabled'
+          RENOVATE_TOKEN: ${{ secrets.FORGEJO_CI_TOKEN }}
+          RENOVATE_GIT_AUTHOR: 'Renovate Bot <forgejo-renovate-action@forgejo.org>'
+
+          RENOVATE_X_SQLITE_PACKAGE_CACHE: true
+
+          GIT_AUTHOR_NAME: 'Renovate Bot'
+          GIT_AUTHOR_EMAIL: 'forgejo-renovate-action@forgejo.org'
+          GIT_COMMITTER_NAME: 'Renovate Bot'
+          GIT_COMMITTER_EMAIL: 'forgejo-renovate-action@forgejo.org'
+
+          OSV_OFFLINE_ROOT_DIR: ${{ github.workspace }}/.tmp/osv
+
+      - name: Save renovate repo cache
+        if: always() && env.RENOVATE_DRY_RUN != 'full'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            .tmp/cache/renovate/repository
+            .tmp/cache/renovate/renovate-cache-sqlite
+            .tmp/osv
+          key: repo-cache-${{ github.run_id }}
