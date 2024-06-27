@@ -3,7 +3,9 @@ name: renovate
 on:
   push:
     branches: ["main"]
-    paths: [".forgejo/workflows/renovate.yaml"]
+    paths:
+      - ".forgejo/workflows/renovate.yaml"
+      - "renovate.json"
   schedule:
     - cron: "0 0 * * *"
 
