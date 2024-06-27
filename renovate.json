@@ -10,5 +10,6 @@
   "automergeStrategy": "squash",
   "osvVulnerabilityAlerts": true,
   "labels": ["dependency-upgrade"],
-  "enabledManagers": ["cargo"]
+  "enabledManagers": ["cargo"],
+  "prHourlyLimit": 5
 }
