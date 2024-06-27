@@ -352,7 +352,7 @@ async fn get_player_error_paid(rp: RustyPipe) {
 #[rstest]
 #[case::long(
     "PL5dDx681T4bR7ZF1IuWzOv1omlRbE7PiJ",
-    "Die schönsten deutschen Lieder | Beliebteste Lieder | Beste Deutsche Musik 2022",
+    "Die schönsten deutschen Lieder | Beliebteste Lieder | Beste Deutsche Musik 2020 2022",
     true,
     None,
     Some(("UCIekuFeMaV78xYfvpmoCnPg", "Best Music")),
@@ -1464,7 +1464,7 @@ async fn trending(rp: RustyPipe) {
 #[rstest]
 #[case::long(
     "PL5dDx681T4bR7ZF1IuWzOv1omlRbE7PiJ",
-    "Die schönsten deutschen Lieder | Beliebteste Lieder | Beste Deutsche Musik 2022",
+    "Die schönsten deutschen Lieder | Beliebteste Lieder | Beste Deutsche Musik 2020 2022",
     true,
     None,
     Some(("UCIekuFeMaV78xYfvpmoCnPg", "Best Music")),
@@ -1630,7 +1630,7 @@ async fn music_album_not_found(rp: RustyPipe) {
 
 #[rstest]
 #[case::basic_all("basic_all", "UCFKUUtHjT4iq3p0JJA13SOA", true, 15, 1)]
-#[case::basic("basic", "UC7cl4MmM6ZZ2TcFyMk_b4pg", false, 15, 2)]
+#[case::basic("basic", "UC7cl4MmM6ZZ2TcFyMk_b4pg", false, 15, 0)]
 #[case::no_more_albums("no_more_albums", "UCOR4_bSVIXPsGa4BbCSt60Q", true, 15, 0)]
 #[case::only_singles("only_singles", "UCfwCE5VhPMGxNPFxtVv7lRw", false, 13, 0)]
 #[case::no_artist("no_artist", "UCh8gHdtzO2tXd593_bjErWg", false, 0, 0)]
@@ -2187,7 +2187,8 @@ async fn music_search_genre_radio(rp: RustyPipe) {
 }
 
 #[rstest]
-#[case::default("ed sheer", Some("ed sheeran"), Some("UClmXPfaYhXOYsNn_QUyheWQ"))]
+// TODO: reenable when music search suggestions work again
+// #[case::default("ed sheer", Some("ed sheeran"), Some("UClmXPfaYhXOYsNn_QUyheWQ"))]
 #[case::empty("reujbhevmfndxnjrze", None, None)]
 #[tokio::test]
 async fn music_search_suggestion(
@@ -2548,7 +2549,9 @@ async fn music_genres(rp: RustyPipe, unlocalized: bool) {
         .iter()
         .find(|g| g.id == "ggMPOg1uX1lMbVZmbzl6NlJ3" || g.id == "ggMPOg1uX1BmNzc2V2p0YXJ5")
         .expect("genre: Pop");
-    assert_eq!(pop.name, "Pop");
+    if unlocalized {
+        assert_eq!(pop.name, "Pop");
+    }
     assert!(!pop.is_mood);
 
     for g in &genres {

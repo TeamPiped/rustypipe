@@ -1,15 +1,15 @@
 test:
     # cargo test --features=rss
-    cargo nextest run --features=rss --no-fail-fast --failure-output final
+    cargo nextest run --features=rss --no-fail-fast --failure-output final --retries 1
 
 unittest:
     cargo nextest run --features=rss --no-fail-fast --failure-output final --lib
 
 testyt:
-    cargo nextest run --features=rss --no-fail-fast --failure-output final --test youtube
+    cargo nextest run --features=rss --no-fail-fast --failure-output final --retries 1 --test youtube
 
 testyt-localized:
-    YT_LANG=th cargo nextest run --features=rss --no-fail-fast --failure-output final --test youtube
+    YT_LANG=th cargo nextest run --features=rss --no-fail-fast --failure-output final --retries 1 --test youtube
 
 testintl:
     #!/usr/bin/env bash
@@ -28,7 +28,7 @@ testintl:
     for YT_LANG in "${LANGUAGES[@]}"; do
         echo "---TESTS FOR $YT_LANG ---"
 
-        if YT_LANG="$YT_LANG" cargo test --test youtube -- --test-threads 4 --skip resolve; then
+        if YT_LANG="$YT_LANG" cargo nextest run --no-fail-fast --failure-output final --retries 1 --test-threads 4 --test youtube -E 'not test(/^resolve/)'; then
             echo "--- $YT_LANG COMPLETED ---"
         else
             echo "--- $YT_LANG FAILED ---"

@@ -16,7 +16,21 @@ MusicAlbum(
   artist_id: Some("UCwem2sj-QUJCiWiPAo9JuAw"),
   description: Some(RichText([
     Text(
-      text: "Unbroken is the third studio album by American singer Demi Lovato. It was released on September 20, 2011, by Hollywood Records. Primarily a pop record, Lovato described the album as \"more mature\" and with more R&B elements than her previous material, citing Rihanna as the major influence. While some of the album\'s lyrical content was heavily influenced by Lovato\'s personal struggles, it also deals with lighter subjects, such as love and self empowerment. Contributions to the album\'s production came from a wide range of producers, including Toby Gad, Ryan Tedder, Timbaland, Jim Beanz and Rock Mafia.\nLovato initially began recording her third studio album in 2010 before going on tour with the Jonas Brothers on their Live in Concert Tour. After withdrawing from the tour to seek treatment for physical and emotional issues, Lovato continued work on the album and described the recording process as therapeutic. She collaborated with artists such as Missy Elliott, Timbaland, Dev, Iyaz, and Jason Derulo on several tracks.\n\nFrom Wikipedia (https://en.wikipedia.org/wiki/Unbroken_(Demi_Lovato_album)) under Creative Commons Attribution CC-BY-SA 3.0 (https://creativecommons.org/licenses/by-sa/3.0/legalcode)",
+      text: "Unbroken is the third studio album by American singer Demi Lovato. It was released on September 20, 2011, by Hollywood Records. Primarily a pop record, Lovato described the album as \"more mature\" and with more R&B elements than her previous material, citing Rihanna as the major influence. While some of the album\'s lyrical content was heavily influenced by Lovato\'s personal struggles, it also deals with lighter subjects, such as love and self empowerment. Contributions to the album\'s production came from a wide range of producers, including Toby Gad, Ryan Tedder, Timbaland, Jim Beanz and Rock Mafia.\nLovato initially began recording her third studio album in 2010 before going on tour with the Jonas Brothers on their Live in Concert Tour. After withdrawing from the tour to seek treatment for physical and emotional issues, Lovato continued work on the album and described the recording process as therapeutic. She collaborated with artists such as Missy Elliott, Timbaland, Dev, Iyaz, and Jason Derulo on several tracks.\n\nFrom Wikipedia (",
+    ),
+    Web(
+      text: "https://en.wikipedia.org/wiki/Unbroke...",
+      url: "https://en.wikipedia.org/wiki/Unbroken_(Demi_Lovato_album)",
+    ),
+    Text(
+      text: ") under Creative Commons Attribution CC-BY-SA 3.0 (",
+    ),
+    Web(
+      text: "https://creativecommons.org/licenses/...",
+      url: "https://creativecommons.org/licenses/by-sa/3.0/legalcode",
+    ),
+    Text(
+      text: ")",
     ),
   ])),
   album_type: Album,

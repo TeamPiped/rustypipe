@@ -159,6 +159,7 @@ Subscribers: 1780000
 
 - Current version of stable Rust
 - [`just`](https://github.com/casey/just) task runner
+- [`nextest`](https://nexte.st) test runner
 - [`pre-commit`](https://pre-commit.com/)
 - yq (YAML processor)
 
