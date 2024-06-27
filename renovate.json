@@ -1,0 +1,14 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:best-practices",
+    ":approveMajorUpdates",
+    ":maintainLockFilesWeekly",
+    "schedule:daily"
+  ],
+  "semanticCommits": "enabled",
+  "automergeStrategy": "squash",
+  "osvVulnerabilityAlerts": true,
+  "labels": ["dependency-upgrade"],
+  "enabledManagers": ["cargo"]
+}
