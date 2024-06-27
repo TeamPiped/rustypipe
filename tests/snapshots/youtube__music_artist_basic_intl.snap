@@ -42,7 +42,7 @@ MusicArtist(
       by_va: false,
     ),
     AlbumItem(
-      id: "MPREb_HrCgErOdgCv",
+      id: "MPREb_6PEkIQE7sWY",
       name: "[name]",
       cover: "[cover]",
       artists: [
@@ -52,8 +52,23 @@ MusicArtist(
         ),
       ],
       artist_id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
-      album_type: Album,
-      year: Some(2004),
+      album_type: Ep,
+      year: Some(2008),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_88p7e6nBtgz",
+      name: "[name]",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+      album_type: Single,
+      year: Some(2012),
       by_va: false,
     ),
     AlbumItem(
@@ -87,7 +102,7 @@ MusicArtist(
       by_va: false,
     ),
     AlbumItem(
-      id: "MPREb_QEClJsuO9xM",
+      id: "MPREb_QyGCcLWExXj",
       name: "[name]",
       cover: "[cover]",
       artists: [
@@ -98,7 +113,7 @@ MusicArtist(
       ],
       artist_id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
       album_type: Single,
-      year: Some(2012),
+      year: Some(2014),
       by_va: false,
     ),
     AlbumItem(
@@ -192,21 +207,6 @@ MusicArtist(
       by_va: false,
     ),
     AlbumItem(
-      id: "MPREb_bUKkpmkyv9M",
-      name: "[name]",
-      cover: "[cover]",
-      artists: [
-        ArtistId(
-          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
-          name: "[name]",
-        ),
-      ],
-      artist_id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
-      album_type: Single,
-      year: Some(2014),
-      by_va: false,
-    ),
-    AlbumItem(
       id: "MPREb_f4MhYbccbPi",
       name: "[name]",
       cover: "[cover]",
@@ -252,21 +252,6 @@ MusicArtist(
       by_va: false,
     ),
     AlbumItem(
-      id: "MPREb_ohcGTZrqKPZ",
-      name: "[name]",
-      cover: "[cover]",
-      artists: [
-        ArtistId(
-          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
-          name: "[name]",
-        ),
-      ],
-      artist_id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
-      album_type: Album,
-      year: Some(2004),
-      by_va: false,
-    ),
-    AlbumItem(
       id: "MPREb_pWpeXxATZYb",
       name: "[name]",
       cover: "[cover]",
@@ -279,6 +264,21 @@ MusicArtist(
       artist_id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
       album_type: Single,
       year: Some(2014),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_rHhaDLqalbT",
+      name: "[name]",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+      album_type: Ep,
+      year: Some(2010),
       by_va: false,
     ),
     AlbumItem(

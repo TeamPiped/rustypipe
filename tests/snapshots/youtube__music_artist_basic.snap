@@ -6,7 +6,7 @@ MusicArtist(
   id: "UC7cl4MmM6ZZ2TcFyMk_b4pg",
   name: "Unheilig",
   header_image: "[header_image]",
-  description: Some("Unheilig is a German band that draws from a variety of influences, including various pop and electronic styles as well as heavier, nihilistic hard rock. The band was founded in Aachen in 1999 and principally consisted of singer Bernd Heinrich \"Der Graf\" along with various musical partners. He was accompanied for live shows with musicians Christoph \"Licky\" Termühlen, Henning Verlage, and Martin \"Potti\" Potthoff. The group\'s debut, Phosphor, came out in 2000.\n\nFrom Wikipedia (https://en.wikipedia.org/wiki/Unheilig) under Creative Commons Attribution CC-BY-SA 3.0 (http://creativecommons.org/licenses/by-sa/3.0/legalcode)"),
+  description: Some("Unheilig was a German band that featured a variety of influences, including various pop and electronic styles as well as harder, nihilistic hard rock. The band was founded in 1999 and principally consisted of singer Bernd Heinrich \"Der Graf\" along with various musical partners. He was accompanied for live shows with musicians Christoph \"Licky\" Termühlen, Henning Verlage, and Martin \"Potti\" Potthoff. The group\'s debut, Phosphor, came out in 2000.\n\nFrom Wikipedia (https://en.wikipedia.org/wiki/Unheilig) under Creative Commons Attribution CC-BY-SA 3.0 (http://creativecommons.org/licenses/by-sa/3.0/legalcode)"),
   wikipedia_url: Some("https://en.wikipedia.org/wiki/Unheilig"),
   subscriber_count: "[subscriber_count]",
   tracks: "[tracks]",
@@ -42,8 +42,8 @@ MusicArtist(
       by_va: false,
     ),
     AlbumItem(
-      id: "MPREb_HrCgErOdgCv",
-      name: "Freiheit",
+      id: "MPREb_6PEkIQE7sWY",
+      name: "An deiner Seite (Online Version)",
       cover: "[cover]",
       artists: [
         ArtistId(
@@ -52,8 +52,23 @@ MusicArtist(
         ),
       ],
       artist_id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
-      album_type: Album,
-      year: Some(2004),
+      album_type: Ep,
+      year: Some(2008),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_88p7e6nBtgz",
+      name: "Lichter der Stadt",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      artist_id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+      album_type: Single,
+      year: Some(2012),
       by_va: false,
     ),
     AlbumItem(
@@ -87,8 +102,8 @@ MusicArtist(
       by_va: false,
     ),
     AlbumItem(
-      id: "MPREb_QEClJsuO9xM",
-      name: "So wie Du warst",
+      id: "MPREb_QyGCcLWExXj",
+      name: "Als wär\'s das erste Mal (Exklusive Piano Version)",
       cover: "[cover]",
       artists: [
         ArtistId(
@@ -98,7 +113,7 @@ MusicArtist(
       ],
       artist_id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
       album_type: Single,
-      year: Some(2012),
+      year: Some(2014),
       by_va: false,
     ),
     AlbumItem(
@@ -192,21 +207,6 @@ MusicArtist(
       by_va: false,
     ),
     AlbumItem(
-      id: "MPREb_bUKkpmkyv9M",
-      name: "Als wär\'s das erste Mal",
-      cover: "[cover]",
-      artists: [
-        ArtistId(
-          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
-          name: "Unheilig",
-        ),
-      ],
-      artist_id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
-      album_type: Single,
-      year: Some(2014),
-      by_va: false,
-    ),
-    AlbumItem(
       id: "MPREb_f4MhYbccbPi",
       name: "Moderne Zeiten",
       cover: "[cover]",
@@ -252,21 +252,6 @@ MusicArtist(
       by_va: false,
     ),
     AlbumItem(
-      id: "MPREb_ohcGTZrqKPZ",
-      name: "Zelluloid",
-      cover: "[cover]",
-      artists: [
-        ArtistId(
-          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
-          name: "Unheilig",
-        ),
-      ],
-      artist_id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
-      album_type: Album,
-      year: Some(2004),
-      by_va: false,
-    ),
-    AlbumItem(
       id: "MPREb_pWpeXxATZYb",
       name: "Wir sind alle wie eins",
       cover: "[cover]",
@@ -279,6 +264,21 @@ MusicArtist(
       artist_id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
       album_type: Single,
       year: Some(2014),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_rHhaDLqalbT",
+      name: "Winter (EP)",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+          name: "Unheilig",
+        ),
+      ],
+      artist_id: Some("UC7cl4MmM6ZZ2TcFyMk_b4pg"),
+      album_type: Ep,
+      year: Some(2010),
       by_va: false,
     ),
     AlbumItem(
