@@ -79,7 +79,7 @@ release crate="rustypipe":
 
     editor "$CHANGELOG"
 
-    git add "$CHANGELOG"
+    git add .
     git commit -m "chore(release): release $CRATE v$VERSION"
 
     awk 'BEGIN{RS="(^|\n)## [^\n]+\n*"} NR==2 { print }' "$CHANGELOG" | git tag -as -F - --cleanup whitespace "$TAG"
