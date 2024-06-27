@@ -10,16 +10,17 @@ jobs:
     steps:
       - name: 📦 Checkout repository
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Get variables
         run: |
-          echo "CRATE=$(echo '${{ github.ref_name }}' | awk 'BEGIN{RS="/"} NR==1{print}')" >> "$GITHUB_ENV"
+          CRATE=$(echo '${{ github.ref_name }}' | awk 'BEGIN{RS="/"} NR==1{print}')
+          echo "CRATE=$CRATE" >> "$GITHUB_ENV"
           echo "CRATE_VERSION=$(echo '${{ github.ref_name }}' | awk 'BEGIN{RS="/"} NR==2{print}')" >> "$GITHUB_ENV"
+          CL_PATH="CHANGELOG.md"
+          if [[ "$CRATE" != "rustypipe" ]]; then pfx="rustypipe-"; CL_PATH="${CRATE#"$pfx"}/$CL_PATH"; fi
           {
             echo 'CHANGELOG<<END_OF_FILE'
-            git show -s --format=%N "${{ github.ref_name }}" | tail -n +4 | awk 'BEGIN{RS="-----BEGIN PGP SIGNATURE-----"} NR==1{printf $0}'
+            awk 'BEGIN{RS="(^|\n)## [^\n]+\n*"} NR==2 { print }' "$CL_PATH"
             echo END_OF_FILE
           } >> "$GITHUB_ENV"
 
