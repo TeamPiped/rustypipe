@@ -1,6 +1,6 @@
-# RustyPipe
+# ![RustyPipe](https://code.thetadev.de/ThetaDev/rustypipe/raw/branch/main/notes/logo.svg)
 
-Client for the public YouTube / YouTube Music API (Innertube), inspired by
+Rust client for the public YouTube / YouTube Music API (Innertube), inspired by
 [NewPipe](https://github.com/TeamNewPipe/NewPipeExtractor).
 
 ## Features
