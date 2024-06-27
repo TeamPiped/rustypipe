@@ -3184,7 +3184,7 @@
     "number_nd_tokens": {},
     "album_types": {
       "álbum": "Album",
-      "livro áudio": "Audiobook",
+      "audiolivro": "Audiobook",
       "ep": "Ep",
       "programa": "Show",
       "single": "Single"
