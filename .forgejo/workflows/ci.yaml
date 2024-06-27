@@ -34,4 +34,4 @@ jobs:
         run: |
           if [[ "$GITEA_ACTIONS" == "true" ]]; then RUN_NUMBER="$GITHUB_RUN_NUMBER"; else RUN_NUMBER="$GITHUB_RUN_ID"; fi
           curl -SsL --fail-with-body -w "\n" -X POST https://av.thetadev.de/.well-known/api/prComment -H "Content-Type: application/json" \
-            --data '{"url": "'"$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$RUN_NUMBER"'", "pr": ${{ github.event.number }}}'
+            --data '{"url": "'"$GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$RUN_NUMBER"'", "pr": ${{ github.event.number }}, "artifact_titles": {"test":"🧪 Test report"}, "artifact_paths": {"test":"/junit.xml?viewer=1"}}'
