@@ -2,6 +2,32 @@
 
 All notable changes to this project will be documented in this file.
 
+
+## [v0.1.1](https://code.thetadev.de/ThetaDev/rustypipe/compare/rustypipe-cli/v0.1.0..rustypipe-cli/v0.1.1) - 2024-06-27
+
+### 🚀 Features
+
+- CLI: setting player type - ([16e0e28](https://code.thetadev.de/ThetaDev/rustypipe/commit/16e0e28c4866bb69d8e4c06eef94176f329a1c27))
+
+### 🐛 Bug Fixes
+
+- Clippy warning - ([8420c2f](https://code.thetadev.de/ThetaDev/rustypipe/commit/8420c2f8dbd2791b524ceca2e19fb68e5b918bfa))
+
+### 📚 Documentation
+
+- Add logo - ([6646078](https://code.thetadev.de/ThetaDev/rustypipe/commit/66460789449be0d5984cbdb6ec372e69323b7a88))
+
+### ⚙️ Miscellaneous Tasks
+
+- Changelog: fix incorrect version URLs - ([97b6f07](https://code.thetadev.de/ThetaDev/rustypipe/commit/97b6f07399e80e00a6c015d013e744568be125dd))
+- Update rstest to v0.19.0 - ([50fd1f0](https://code.thetadev.de/ThetaDev/rustypipe/commit/50fd1f08caf39c1298654e06059cc393543e925b))
+- Introduce MSRV - ([5dbb288](https://code.thetadev.de/ThetaDev/rustypipe/commit/5dbb288a496d53a299effa2026f5258af7b1f176))
+- Fix clippy lints - ([45b9f2a](https://code.thetadev.de/ThetaDev/rustypipe/commit/45b9f2a627b4e7075ba0b1c5f16efcc19aef7922))
+- *(deps)* Update rust crate tokio to 1.20.4 [security] (#4) - ([ce3ec34](https://code.thetadev.de/ThetaDev/rustypipe/commit/ce3ec34337b8acac41410ea39264aab7423d5801))
+- *(deps)* Update rust crate quick-xml to 0.34.0 (#5) - ([1e8a1af](https://code.thetadev.de/ThetaDev/rustypipe/commit/1e8a1af08c873cee7feadf63c2eff62753a78f64))
+- *(deps)* Update rust crate rstest to 0.21.0 (#7) - ([c3af918](https://code.thetadev.de/ThetaDev/rustypipe/commit/c3af918ba53c6230c0e4aef822a0cb2cf120bf3f))
+- Update rustypipe to 0.2.0
+
 ## [v0.1.0](https://code.thetadev.de/ThetaDev/rustypipe/commits/tag/rustypipe-cli/v0.1.0) - 2024-03-22
 
 Initial release
