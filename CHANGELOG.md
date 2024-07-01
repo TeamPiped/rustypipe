@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 
 
+## [v0.2.1](https://code.thetadev.de/ThetaDev/rustypipe/compare/rustypipe/v0.2.0..rustypipe/v0.2.1) - 2024-07-01
+
+### 🐛 Bug Fixes
+
+- *(deps)* Update quick-xml to v0.35.0 - ([298e4de](https://code.thetadev.de/ThetaDev/rustypipe/commit/298e4def93d1595fba91be103f014aa645a08937))
+
+
 ## [v0.2.0](https://code.thetadev.de/ThetaDev/rustypipe/compare/rustypipe/v0.1.3..rustypipe/v0.2.0) - 2024-06-27
 
 ### 🚀 Features
