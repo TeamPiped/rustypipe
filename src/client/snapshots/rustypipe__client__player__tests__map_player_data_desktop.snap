@@ -84,7 +84,6 @@ VideoPlayer(
       mime: "video/mp4; codecs=\"avc1.42001E, mp4a.40.2\"",
       format: mp4,
       codec: avc1,
-      throttled: false,
     ),
   ],
   video_only_streams: [
@@ -111,7 +110,6 @@ VideoPlayer(
       mime: "video/webm; codecs=\"vp9\"",
       format: webm,
       codec: vp9,
-      throttled: false,
     ),
     VideoStream(
       url: "https://rr4---sn-h0jelnez.googlevideo.com/videoplayback?aitags=133%2C134%2C135%2C136%2C160%2C242%2C243%2C244%2C247%2C278%2C298%2C299%2C302%2C303%2C394%2C395%2C396%2C397%2C398%2C399&c=WEB&clen=1224002&dur=163.029&ei=q1jpYtq3BJCX1gKVyJGQDg&expire=1659481355&fexp=24001373%2C24007246&fvip=4&gir=yes&id=o-AGfBIFoT5D_NZAwXN7lVCS2VYLDMMegfaJQqvSJp-Hhy&initcwndbps=1513750&ip=2003%3Ade%3Aaf0e%3A2f00%3Ade47%3A297%3Aa6db%3A774e&itag=394&keepalive=yes&lmt=1608045375671513&lsig=AG3C_xAwRgIhANxHzq0WC6OvdTpPJp52z3eGAm-jzUX7fcKiWlJ0T9kEAiEA02Bjesi_an2-pUh0kHdKQe0s_7micbcv3JKiBlxsYGs%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=mQ&mime=video%2Fmp4&mm=31%2C26&mn=sn-h0jelnez%2Csn-4g5edn6k&ms=au%2Conr&mt=1659459429&mv=m&mvi=4&n=T16m7p0RvV7UhQ&ns=tWuNfisHu8yiCA6Avm7nUlwH&otfp=1&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRQIhAI-uoNLUkMHpH35niVh1tBvwwFLtmSbeHyknmyCvccFVAiB2XriyJd0u2q-tGIRTx5qtKt6bJCs5ndXtMsdSxOheuA%3D%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cspc%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cotfp%2Cdur%2Clmt&spc=lT-KhrZGE2opztWyVdAtyUNlb8dXPDs&txp=1311222&vprv=1",
@@ -136,7 +134,6 @@ VideoPlayer(
       mime: "video/mp4; codecs=\"av01.0.00M.08\"",
       format: mp4,
       codec: av01,
-      throttled: false,
     ),
     VideoStream(
       url: "https://rr4---sn-h0jelnez.googlevideo.com/videoplayback?aitags=133%2C134%2C135%2C136%2C160%2C242%2C243%2C244%2C247%2C278%2C298%2C299%2C302%2C303%2C394%2C395%2C396%2C397%2C398%2C399&c=WEB&clen=2973283&dur=163.029&ei=q1jpYtq3BJCX1gKVyJGQDg&expire=1659481355&fexp=24001373%2C24007246&fvip=4&gir=yes&id=o-AGfBIFoT5D_NZAwXN7lVCS2VYLDMMegfaJQqvSJp-Hhy&initcwndbps=1513750&ip=2003%3Ade%3Aaf0e%3A2f00%3Ade47%3A297%3Aa6db%3A774e&itag=242&keepalive=yes&lmt=1608509388282028&lsig=AG3C_xAwRgIhANxHzq0WC6OvdTpPJp52z3eGAm-jzUX7fcKiWlJ0T9kEAiEA02Bjesi_an2-pUh0kHdKQe0s_7micbcv3JKiBlxsYGs%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=mQ&mime=video%2Fwebm&mm=31%2C26&mn=sn-h0jelnez%2Csn-4g5edn6k&ms=au%2Conr&mt=1659459429&mv=m&mvi=4&n=T16m7p0RvV7UhQ&ns=tWuNfisHu8yiCA6Avm7nUlwH&otfp=1&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRQIgEleuqkeo7x7BsHur5aGPfHaT6KjKEG4c1d_xXwqlrsYCIQD85X_m050XwWyYlfLiWtZz-TX--H8H0UvfZCWKpY7m4Q%3D%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cspc%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cotfp%2Cdur%2Clmt&spc=lT-KhrZGE2opztWyVdAtyUNlb8dXPDs&txp=1311222&vprv=1",
@@ -161,7 +158,6 @@ VideoPlayer(
       mime: "video/webm; codecs=\"vp9\"",
       format: webm,
       codec: vp9,
-      throttled: false,
     ),
     VideoStream(
       url: "https://rr4---sn-h0jelnez.googlevideo.com/videoplayback?aitags=133%2C134%2C135%2C136%2C160%2C242%2C243%2C244%2C247%2C278%2C298%2C299%2C302%2C303%2C394%2C395%2C396%2C397%2C398%2C399&c=WEB&clen=2238952&dur=163.029&ei=q1jpYtq3BJCX1gKVyJGQDg&expire=1659481355&fexp=24001373%2C24007246&fvip=4&gir=yes&id=o-AGfBIFoT5D_NZAwXN7lVCS2VYLDMMegfaJQqvSJp-Hhy&initcwndbps=1513750&ip=2003%3Ade%3Aaf0e%3A2f00%3Ade47%3A297%3Aa6db%3A774e&itag=395&keepalive=yes&lmt=1608045728968690&lsig=AG3C_xAwRgIhANxHzq0WC6OvdTpPJp52z3eGAm-jzUX7fcKiWlJ0T9kEAiEA02Bjesi_an2-pUh0kHdKQe0s_7micbcv3JKiBlxsYGs%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=mQ&mime=video%2Fmp4&mm=31%2C26&mn=sn-h0jelnez%2Csn-4g5edn6k&ms=au%2Conr&mt=1659459429&mv=m&mvi=4&n=T16m7p0RvV7UhQ&ns=tWuNfisHu8yiCA6Avm7nUlwH&otfp=1&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRQIhAIBttTR02kTdGb4vdxQ9Gro88JOAY7u5z69nJbdmVS1sAiBr61rqkUtra4PHLdnp2w-s8ZSaN_4qZ3OEeeuIr5C13w%3D%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cspc%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cotfp%2Cdur%2Clmt&spc=lT-KhrZGE2opztWyVdAtyUNlb8dXPDs&txp=1311222&vprv=1",
@@ -186,7 +182,6 @@ VideoPlayer(
       mime: "video/mp4; codecs=\"av01.0.00M.08\"",
       format: mp4,
       codec: av01,
-      throttled: false,
     ),
     VideoStream(
       url: "https://rr4---sn-h0jelnez.googlevideo.com/videoplayback?aitags=133%2C134%2C135%2C136%2C160%2C242%2C243%2C244%2C247%2C278%2C298%2C299%2C302%2C303%2C394%2C395%2C396%2C397%2C398%2C399&c=WEB&clen=7808990&dur=163.029&ei=q1jpYtq3BJCX1gKVyJGQDg&expire=1659481355&fexp=24001373%2C24007246&fvip=4&gir=yes&id=o-AGfBIFoT5D_NZAwXN7lVCS2VYLDMMegfaJQqvSJp-Hhy&initcwndbps=1513750&ip=2003%3Ade%3Aaf0e%3A2f00%3Ade47%3A297%3Aa6db%3A774e&itag=134&keepalive=yes&lmt=1580005649163759&lsig=AG3C_xAwRgIhANxHzq0WC6OvdTpPJp52z3eGAm-jzUX7fcKiWlJ0T9kEAiEA02Bjesi_an2-pUh0kHdKQe0s_7micbcv3JKiBlxsYGs%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=mQ&mime=video%2Fmp4&mm=31%2C26&mn=sn-h0jelnez%2Csn-4g5edn6k&ms=au%2Conr&mt=1659459429&mv=m&mvi=4&n=T16m7p0RvV7UhQ&ns=tWuNfisHu8yiCA6Avm7nUlwH&otfp=1&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRgIhAMBRhMAZ5GXFSZHN6D-XhXRdG_EWSNwnN2eLPlwVNQ6PAiEA75eH0iJLgwRkujaABZnaJxG2ni-4irYHEGD42x6uaQg%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cspc%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cotfp%2Cdur%2Clmt&spc=lT-KhrZGE2opztWyVdAtyUNlb8dXPDs&txp=2211222&vprv=1",
@@ -211,7 +206,6 @@ VideoPlayer(
       mime: "video/mp4; codecs=\"avc1.4d401e\"",
       format: mp4,
       codec: avc1,
-      throttled: false,
     ),
     VideoStream(
       url: "https://rr4---sn-h0jelnez.googlevideo.com/videoplayback?aitags=133%2C134%2C135%2C136%2C160%2C242%2C243%2C244%2C247%2C278%2C298%2C299%2C302%2C303%2C394%2C395%2C396%2C397%2C398%2C399&c=WEB&clen=5169510&dur=163.029&ei=q1jpYtq3BJCX1gKVyJGQDg&expire=1659481355&fexp=24001373%2C24007246&fvip=4&gir=yes&id=o-AGfBIFoT5D_NZAwXN7lVCS2VYLDMMegfaJQqvSJp-Hhy&initcwndbps=1513750&ip=2003%3Ade%3Aaf0e%3A2f00%3Ade47%3A297%3Aa6db%3A774e&itag=243&keepalive=yes&lmt=1608509388282405&lsig=AG3C_xAwRgIhANxHzq0WC6OvdTpPJp52z3eGAm-jzUX7fcKiWlJ0T9kEAiEA02Bjesi_an2-pUh0kHdKQe0s_7micbcv3JKiBlxsYGs%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=mQ&mime=video%2Fwebm&mm=31%2C26&mn=sn-h0jelnez%2Csn-4g5edn6k&ms=au%2Conr&mt=1659459429&mv=m&mvi=4&n=T16m7p0RvV7UhQ&ns=tWuNfisHu8yiCA6Avm7nUlwH&otfp=1&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRAIgNi0fwQbep6oKsEeEGfms2Ay4x2OL2G0hUX5GFhycgKkCIANiC-j-Gz3-noxsNeSKKPxy--T9mFBu_8V7Vi5-zDYS&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cspc%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cotfp%2Cdur%2Clmt&spc=lT-KhrZGE2opztWyVdAtyUNlb8dXPDs&txp=1311222&vprv=1",
@@ -236,7 +230,6 @@ VideoPlayer(
       mime: "video/webm; codecs=\"vp9\"",
       format: webm,
       codec: vp9,
-      throttled: false,
     ),
     VideoStream(
       url: "https://rr4---sn-h0jelnez.googlevideo.com/videoplayback?aitags=133%2C134%2C135%2C136%2C160%2C242%2C243%2C244%2C247%2C278%2C298%2C299%2C302%2C303%2C394%2C395%2C396%2C397%2C398%2C399&c=WEB&clen=4130385&dur=163.029&ei=q1jpYtq3BJCX1gKVyJGQDg&expire=1659481355&fexp=24001373%2C24007246&fvip=4&gir=yes&id=o-AGfBIFoT5D_NZAwXN7lVCS2VYLDMMegfaJQqvSJp-Hhy&initcwndbps=1513750&ip=2003%3Ade%3Aaf0e%3A2f00%3Ade47%3A297%3Aa6db%3A774e&itag=396&keepalive=yes&lmt=1608045761576250&lsig=AG3C_xAwRgIhANxHzq0WC6OvdTpPJp52z3eGAm-jzUX7fcKiWlJ0T9kEAiEA02Bjesi_an2-pUh0kHdKQe0s_7micbcv3JKiBlxsYGs%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=mQ&mime=video%2Fmp4&mm=31%2C26&mn=sn-h0jelnez%2Csn-4g5edn6k&ms=au%2Conr&mt=1659459429&mv=m&mvi=4&n=T16m7p0RvV7UhQ&ns=tWuNfisHu8yiCA6Avm7nUlwH&otfp=1&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRAIgFuBoOIkqwq0D1_OmnNJx3C0jmhHUyskpzPrTMoaWRYECIFZ1Y4QbQ41GsWS8yRHox8l_nGVosfXhXfKu3v18AyeT&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cspc%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cotfp%2Cdur%2Clmt&spc=lT-KhrZGE2opztWyVdAtyUNlb8dXPDs&txp=1311222&vprv=1",
@@ -261,7 +254,6 @@ VideoPlayer(
       mime: "video/mp4; codecs=\"av01.0.01M.08\"",
       format: mp4,
       codec: av01,
-      throttled: false,
     ),
     VideoStream(
       url: "https://rr4---sn-h0jelnez.googlevideo.com/videoplayback?aitags=133%2C134%2C135%2C136%2C160%2C242%2C243%2C244%2C247%2C278%2C298%2C299%2C302%2C303%2C394%2C395%2C396%2C397%2C398%2C399&c=WEB&clen=8890590&dur=163.029&ei=q1jpYtq3BJCX1gKVyJGQDg&expire=1659481355&fexp=24001373%2C24007246&fvip=4&gir=yes&id=o-AGfBIFoT5D_NZAwXN7lVCS2VYLDMMegfaJQqvSJp-Hhy&initcwndbps=1513750&ip=2003%3Ade%3Aaf0e%3A2f00%3Ade47%3A297%3Aa6db%3A774e&itag=244&keepalive=yes&lmt=1608509388284632&lsig=AG3C_xAwRgIhANxHzq0WC6OvdTpPJp52z3eGAm-jzUX7fcKiWlJ0T9kEAiEA02Bjesi_an2-pUh0kHdKQe0s_7micbcv3JKiBlxsYGs%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=mQ&mime=video%2Fwebm&mm=31%2C26&mn=sn-h0jelnez%2Csn-4g5edn6k&ms=au%2Conr&mt=1659459429&mv=m&mvi=4&n=T16m7p0RvV7UhQ&ns=tWuNfisHu8yiCA6Avm7nUlwH&otfp=1&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRAIgMYF0KQQNgYI8oOhgdCwyRY6E_hvFnJiaAadyMf89MRoCIHnDnROTvUoy0iIBM3MzFAxJh_bLA-2vFl9KFDrHOf1B&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cspc%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cotfp%2Cdur%2Clmt&spc=lT-KhrZGE2opztWyVdAtyUNlb8dXPDs&txp=1311222&vprv=1",
@@ -286,7 +278,6 @@ VideoPlayer(
       mime: "video/webm; codecs=\"vp9\"",
       format: webm,
       codec: vp9,
-      throttled: false,
     ),
     VideoStream(
       url: "https://rr4---sn-h0jelnez.googlevideo.com/videoplayback?aitags=133%2C134%2C135%2C136%2C160%2C242%2C243%2C244%2C247%2C278%2C298%2C299%2C302%2C303%2C394%2C395%2C396%2C397%2C398%2C399&c=WEB&clen=6873325&dur=163.029&ei=q1jpYtq3BJCX1gKVyJGQDg&expire=1659481355&fexp=24001373%2C24007246&fvip=4&gir=yes&id=o-AGfBIFoT5D_NZAwXN7lVCS2VYLDMMegfaJQqvSJp-Hhy&initcwndbps=1513750&ip=2003%3Ade%3Aaf0e%3A2f00%3Ade47%3A297%3Aa6db%3A774e&itag=397&keepalive=yes&lmt=1608045990917419&lsig=AG3C_xAwRgIhANxHzq0WC6OvdTpPJp52z3eGAm-jzUX7fcKiWlJ0T9kEAiEA02Bjesi_an2-pUh0kHdKQe0s_7micbcv3JKiBlxsYGs%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=mQ&mime=video%2Fmp4&mm=31%2C26&mn=sn-h0jelnez%2Csn-4g5edn6k&ms=au%2Conr&mt=1659459429&mv=m&mvi=4&n=T16m7p0RvV7UhQ&ns=tWuNfisHu8yiCA6Avm7nUlwH&otfp=1&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRgIhAOtLGFoFtLHIXzNRoSrR7ULbIz91OYmaVQkcSatqNKAiAiEA23ZF7h2BZZCAGc0Zdd2p3PWRotmwLDyH6yYCuQpE8xw%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cspc%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cotfp%2Cdur%2Clmt&spc=lT-KhrZGE2opztWyVdAtyUNlb8dXPDs&txp=1311222&vprv=1",
@@ -311,7 +302,6 @@ VideoPlayer(
       mime: "video/mp4; codecs=\"av01.0.04M.08\"",
       format: mp4,
       codec: av01,
-      throttled: false,
     ),
     VideoStream(
       url: "https://rr4---sn-h0jelnez.googlevideo.com/videoplayback?aitags=133%2C134%2C135%2C136%2C160%2C242%2C243%2C244%2C247%2C278%2C298%2C299%2C302%2C303%2C394%2C395%2C396%2C397%2C398%2C399&c=WEB&clen=16547577&dur=163.029&ei=q1jpYtq3BJCX1gKVyJGQDg&expire=1659481355&fexp=24001373%2C24007246&fvip=4&gir=yes&id=o-AGfBIFoT5D_NZAwXN7lVCS2VYLDMMegfaJQqvSJp-Hhy&initcwndbps=1513750&ip=2003%3Ade%3Aaf0e%3A2f00%3Ade47%3A297%3Aa6db%3A774e&itag=247&keepalive=yes&lmt=1608509388326822&lsig=AG3C_xAwRgIhANxHzq0WC6OvdTpPJp52z3eGAm-jzUX7fcKiWlJ0T9kEAiEA02Bjesi_an2-pUh0kHdKQe0s_7micbcv3JKiBlxsYGs%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=mQ&mime=video%2Fwebm&mm=31%2C26&mn=sn-h0jelnez%2Csn-4g5edn6k&ms=au%2Conr&mt=1659459429&mv=m&mvi=4&n=T16m7p0RvV7UhQ&ns=tWuNfisHu8yiCA6Avm7nUlwH&otfp=1&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRQIgfYKbT_196P-2EtjuqcTKdataiM480y65Ko0a73dv7WECIQC6nqWienQvu7swC1OW9HlwFWRH7VwTwj6H4yjY6FYvzg%3D%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cspc%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cotfp%2Cdur%2Clmt&spc=lT-KhrZGE2opztWyVdAtyUNlb8dXPDs&txp=1311222&vprv=1",
@@ -336,7 +326,6 @@ VideoPlayer(
       mime: "video/webm; codecs=\"vp9\"",
       format: webm,
       codec: vp9,
-      throttled: false,
     ),
     VideoStream(
       url: "https://rr4---sn-h0jelnez.googlevideo.com/videoplayback?aitags=133%2C134%2C135%2C136%2C160%2C242%2C243%2C244%2C247%2C278%2C298%2C299%2C302%2C303%2C394%2C395%2C396%2C397%2C398%2C399&c=WEB&clen=35955780&dur=163.046&ei=q1jpYtq3BJCX1gKVyJGQDg&expire=1659481355&fexp=24001373%2C24007246&fvip=4&gir=yes&id=o-AGfBIFoT5D_NZAwXN7lVCS2VYLDMMegfaJQqvSJp-Hhy&initcwndbps=1513750&ip=2003%3Ade%3Aaf0e%3A2f00%3Ade47%3A297%3Aa6db%3A774e&itag=302&keepalive=yes&lmt=1608509234088626&lsig=AG3C_xAwRgIhANxHzq0WC6OvdTpPJp52z3eGAm-jzUX7fcKiWlJ0T9kEAiEA02Bjesi_an2-pUh0kHdKQe0s_7micbcv3JKiBlxsYGs%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=mQ&mime=video%2Fwebm&mm=31%2C26&mn=sn-h0jelnez%2Csn-4g5edn6k&ms=au%2Conr&mt=1659459429&mv=m&mvi=4&n=T16m7p0RvV7UhQ&ns=tWuNfisHu8yiCA6Avm7nUlwH&otfp=1&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRAIgQG8GPj3w_5_Lr2apagmte66IFBY3bYcZ2KnhwnUpshYCIFgvHYIZsz8WdYGSk9adpfMNKX0pzSP_l8cW47Gq2RTi&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cspc%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cotfp%2Cdur%2Clmt&spc=lT-KhrZGE2opztWyVdAtyUNlb8dXPDs&txp=1311222&vprv=1",
@@ -361,7 +350,6 @@ VideoPlayer(
       mime: "video/webm; codecs=\"vp9\"",
       format: webm,
       codec: vp9,
-      throttled: false,
     ),
     VideoStream(
       url: "https://rr4---sn-h0jelnez.googlevideo.com/videoplayback?aitags=133%2C134%2C135%2C136%2C160%2C242%2C243%2C244%2C247%2C278%2C298%2C299%2C302%2C303%2C394%2C395%2C396%2C397%2C398%2C399&c=WEB&clen=22365208&dur=163.046&ei=q1jpYtq3BJCX1gKVyJGQDg&expire=1659481355&fexp=24001373%2C24007246&fvip=4&gir=yes&id=o-AGfBIFoT5D_NZAwXN7lVCS2VYLDMMegfaJQqvSJp-Hhy&initcwndbps=1513750&ip=2003%3Ade%3Aaf0e%3A2f00%3Ade47%3A297%3Aa6db%3A774e&itag=398&keepalive=yes&lmt=1608048380553749&lsig=AG3C_xAwRgIhANxHzq0WC6OvdTpPJp52z3eGAm-jzUX7fcKiWlJ0T9kEAiEA02Bjesi_an2-pUh0kHdKQe0s_7micbcv3JKiBlxsYGs%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=mQ&mime=video%2Fmp4&mm=31%2C26&mn=sn-h0jelnez%2Csn-4g5edn6k&ms=au%2Conr&mt=1659459429&mv=m&mvi=4&n=T16m7p0RvV7UhQ&ns=tWuNfisHu8yiCA6Avm7nUlwH&otfp=1&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRgIhAI-VhcBU6o8LGmeuVYC2_zbxeGvC6XWf7yIOQ1RvjURhAiEA0YcZlVOI2ZUtKl-31__Hzax2SOUPeekCRjqjfw4m15s%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cspc%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cotfp%2Cdur%2Clmt&spc=lT-KhrZGE2opztWyVdAtyUNlb8dXPDs&txp=1311222&vprv=1",
@@ -386,7 +374,6 @@ VideoPlayer(
       mime: "video/mp4; codecs=\"av01.0.08M.08\"",
       format: mp4,
       codec: av01,
-      throttled: false,
     ),
     VideoStream(
       url: "https://rr4---sn-h0jelnez.googlevideo.com/videoplayback?aitags=133%2C134%2C135%2C136%2C160%2C242%2C243%2C244%2C247%2C278%2C298%2C299%2C302%2C303%2C394%2C395%2C396%2C397%2C398%2C399&c=WEB&clen=65400181&dur=163.046&ei=q1jpYtq3BJCX1gKVyJGQDg&expire=1659481355&fexp=24001373%2C24007246&fvip=4&gir=yes&id=o-AGfBIFoT5D_NZAwXN7lVCS2VYLDMMegfaJQqvSJp-Hhy&initcwndbps=1513750&ip=2003%3Ade%3Aaf0e%3A2f00%3Ade47%3A297%3Aa6db%3A774e&itag=299&keepalive=yes&lmt=1580005649161486&lsig=AG3C_xAwRgIhANxHzq0WC6OvdTpPJp52z3eGAm-jzUX7fcKiWlJ0T9kEAiEA02Bjesi_an2-pUh0kHdKQe0s_7micbcv3JKiBlxsYGs%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=mQ&mime=video%2Fmp4&mm=31%2C26&mn=sn-h0jelnez%2Csn-4g5edn6k&ms=au%2Conr&mt=1659459429&mv=m&mvi=4&n=T16m7p0RvV7UhQ&ns=tWuNfisHu8yiCA6Avm7nUlwH&otfp=1&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRgIhAIdbG-deTvLhp7mD2b-QZYQamPFv75l1bNBEEOMihrxPAiEA1NYvRlFphbRRvFIBCP-Ij9-5q8OTwUskgsL6LyIrD7c%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cspc%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cotfp%2Cdur%2Clmt&spc=lT-KhrZGE2opztWyVdAtyUNlb8dXPDs&txp=2211222&vprv=1",
@@ -411,7 +398,6 @@ VideoPlayer(
       mime: "video/mp4; codecs=\"avc1.64002a\"",
       format: mp4,
       codec: avc1,
-      throttled: false,
     ),
     VideoStream(
       url: "https://rr4---sn-h0jelnez.googlevideo.com/videoplayback?aitags=133%2C134%2C135%2C136%2C160%2C242%2C243%2C244%2C247%2C278%2C298%2C299%2C302%2C303%2C394%2C395%2C396%2C397%2C398%2C399&c=WEB&clen=62993617&dur=163.046&ei=q1jpYtq3BJCX1gKVyJGQDg&expire=1659481355&fexp=24001373%2C24007246&fvip=4&gir=yes&id=o-AGfBIFoT5D_NZAwXN7lVCS2VYLDMMegfaJQqvSJp-Hhy&initcwndbps=1513750&ip=2003%3Ade%3Aaf0e%3A2f00%3Ade47%3A297%3Aa6db%3A774e&itag=303&keepalive=yes&lmt=1608509371758331&lsig=AG3C_xAwRgIhANxHzq0WC6OvdTpPJp52z3eGAm-jzUX7fcKiWlJ0T9kEAiEA02Bjesi_an2-pUh0kHdKQe0s_7micbcv3JKiBlxsYGs%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=mQ&mime=video%2Fwebm&mm=31%2C26&mn=sn-h0jelnez%2Csn-4g5edn6k&ms=au%2Conr&mt=1659459429&mv=m&mvi=4&n=T16m7p0RvV7UhQ&ns=tWuNfisHu8yiCA6Avm7nUlwH&otfp=1&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRQIhAJ8n34LQhg6iEg1Ux9rDkk48e8l3vBR4WwuHeIpKnorlAiBopK4z-nq-pJTPTmrdbbKPW1Lfufdz2f9sGUKY-dzk5A%3D%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cspc%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cotfp%2Cdur%2Clmt&spc=lT-KhrZGE2opztWyVdAtyUNlb8dXPDs&txp=1311222&vprv=1",
@@ -436,7 +422,6 @@ VideoPlayer(
       mime: "video/webm; codecs=\"vp9\"",
       format: webm,
       codec: vp9,
-      throttled: false,
     ),
     VideoStream(
       url: "https://rr4---sn-h0jelnez.googlevideo.com/videoplayback?aitags=133%2C134%2C135%2C136%2C160%2C242%2C243%2C244%2C247%2C278%2C298%2C299%2C302%2C303%2C394%2C395%2C396%2C397%2C398%2C399&c=WEB&clen=42567727&dur=163.046&ei=q1jpYtq3BJCX1gKVyJGQDg&expire=1659481355&fexp=24001373%2C24007246&fvip=4&gir=yes&id=o-AGfBIFoT5D_NZAwXN7lVCS2VYLDMMegfaJQqvSJp-Hhy&initcwndbps=1513750&ip=2003%3Ade%3Aaf0e%3A2f00%3Ade47%3A297%3Aa6db%3A774e&itag=399&keepalive=yes&lmt=1608052932785283&lsig=AG3C_xAwRgIhANxHzq0WC6OvdTpPJp52z3eGAm-jzUX7fcKiWlJ0T9kEAiEA02Bjesi_an2-pUh0kHdKQe0s_7micbcv3JKiBlxsYGs%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=mQ&mime=video%2Fmp4&mm=31%2C26&mn=sn-h0jelnez%2Csn-4g5edn6k&ms=au%2Conr&mt=1659459429&mv=m&mvi=4&n=T16m7p0RvV7UhQ&ns=tWuNfisHu8yiCA6Avm7nUlwH&otfp=1&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRQIhAMewAT3SgJRGn7wqDaDzNWcsAfrjFRu6k0wm7O_5YJeQAiANVhGmILp_gmNXnmixDesxsZ44_72YBT2SqjLLSZV32w%3D%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cspc%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cotfp%2Cdur%2Clmt&spc=lT-KhrZGE2opztWyVdAtyUNlb8dXPDs&txp=1311222&vprv=1",
@@ -461,7 +446,6 @@ VideoPlayer(
       mime: "video/mp4; codecs=\"av01.0.09M.08\"",
       format: mp4,
       codec: av01,
-      throttled: false,
     ),
   ],
   audio_streams: [
@@ -485,7 +469,6 @@ VideoPlayer(
       codec: opus,
       channels: Some(2),
       loudness_db: Some(5.2200003),
-      throttled: false,
       track: None,
     ),
     AudioStream(
@@ -508,7 +491,6 @@ VideoPlayer(
       codec: opus,
       channels: Some(2),
       loudness_db: Some(5.2200003),
-      throttled: false,
       track: None,
     ),
     AudioStream(
@@ -531,7 +513,6 @@ VideoPlayer(
       codec: mp4a,
       channels: Some(2),
       loudness_db: Some(5.2159004),
-      throttled: false,
       track: None,
     ),
     AudioStream(
@@ -554,7 +535,6 @@ VideoPlayer(
       codec: opus,
       channels: Some(2),
       loudness_db: Some(5.2200003),
-      throttled: false,
       track: None,
     ),
   ],

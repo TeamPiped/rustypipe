@@ -211,9 +211,6 @@ pub struct VideoStream {
     pub format: VideoFormat,
     /// Video codec
     pub codec: VideoCodec,
-    /// True if the deobfuscation of the nsig url parameter failed
-    /// and the stream will be throttled
-    pub throttled: bool,
 }
 
 /// Audio stream
@@ -259,9 +256,6 @@ pub struct AudioStream {
     ///
     /// The loudness parameter is not available when using the Android client.
     pub loudness_db: Option<f32>,
-    /// True if the deobfuscation of the nsig url parameter failed
-    /// and the stream will be throttled
-    pub throttled: bool,
     /// Audio track information
     ///
     /// Videos can have multiple audio tracks (different languages).

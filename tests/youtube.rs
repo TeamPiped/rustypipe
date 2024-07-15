@@ -120,7 +120,6 @@ async fn get_player_from_client(#[case] client_type: ClientType, rp: RustyPipe) 
         assert_eq!(video.mime, "video/mp4; codecs=\"av01.0.05M.08\"");
         assert_eq!(video.format, VideoFormat::Mp4);
         assert_eq!(video.codec, VideoCodec::Av01);
-        assert!(!video.throttled);
 
         assert_approx(audio.bitrate, 142_718);
         assert_approx(audio.average_bitrate, 130_708);
@@ -128,7 +127,6 @@ async fn get_player_from_client(#[case] client_type: ClientType, rp: RustyPipe) 
         assert_eq!(audio.mime, "audio/webm; codecs=\"opus\"");
         assert_eq!(audio.format, AudioFormat::Webm);
         assert_eq!(audio.codec, AudioCodec::Opus);
-        assert!(!audio.throttled);
 
         check_video_stream(video).await;
         check_video_stream(audio).await;
@@ -1266,11 +1264,7 @@ mod channel_rss {
 #[rstest]
 #[tokio::test]
 async fn search(rp: RustyPipe, unlocalized: bool) {
-    let result = rp
-        .query()
-        .search::<YouTubeItem, _>("doobydoobap")
-        .await
-        .unwrap();
+    let result = rp.query().search::<YouTubeItem, _>("testt").await.unwrap();
 
     assert_gteo(
         result.items.count,
@@ -1279,7 +1273,7 @@ async fn search(rp: RustyPipe, unlocalized: bool) {
     );
 
     if unlocalized {
-        assert_eq!(result.corrected_query.as_deref(), Some("doobydobap"));
+        assert_eq!(result.corrected_query.as_deref(), Some("test"));
     }
 
     assert_next(result.items, rp.query(), 10, 2, true).await;
