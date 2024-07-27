@@ -1,4 +1,4 @@
-use std::{borrow::Cow, collections::BTreeMap};
+use std::{borrow::Cow, collections::BTreeMap, path::PathBuf};
 
 use reqwest::Url;
 
@@ -6,18 +6,28 @@ use reqwest::Url;
 #[derive(thiserror::Error, Debug)]
 #[non_exhaustive]
 pub enum DownloadError {
+    /// RustyPipe error
+    #[error("{0}")]
+    RustyPipe(#[from] rustypipe::error::Error),
     /// Error from the HTTP client
     #[error("http error: {0}")]
     Http(#[from] reqwest::Error),
     /// File IO error
     #[error(transparent)]
     Io(#[from] std::io::Error),
+    /// FFmpeg returned an error
     #[error("FFmpeg error: {0}")]
     Ffmpeg(Cow<'static, str>),
+    /// Error parsing ranges for progressive download
     #[error("Progressive download error: {0}")]
     Progressive(Cow<'static, str>),
+    /// Video could not be downloaded because of invalid player data
     #[error("input error: {0}")]
     Input(Cow<'static, str>),
+    /// Download target already exists
+    #[error("file {0} already exists")]
+    Exists(PathBuf),
+    /// Other error
     #[error("error: {0}")]
     Other(Cow<'static, str>),
 }

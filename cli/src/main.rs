@@ -1,18 +1,19 @@
 #![warn(clippy::todo, clippy::dbg_macro)]
 
-use std::{path::PathBuf, str::FromStr, time::Duration};
+use std::{path::PathBuf, str::FromStr};
 
-use anyhow::{Context, Result};
 use clap::{Parser, Subcommand, ValueEnum};
 use futures::stream::{self, StreamExt};
 use indicatif::{MultiProgress, ProgressBar, ProgressStyle};
-use reqwest::{Client, ClientBuilder};
 use rustypipe::{
     client::{ClientType, RustyPipe},
     model::{UrlTarget, VideoId, YouTubeItem},
     param::{search_filter, ChannelVideoTab, Country, Language, StreamFilter},
 };
+use rustypipe_downloader::{DownloadQuery, DownloaderBuilder};
 use serde::Serialize;
+use tracing::level_filters::LevelFilter;
+use tracing_subscriber::{fmt::MakeWriter, EnvFilter};
 
 #[derive(Parser)]
 #[clap(author, version, about, long_about = None)]
@@ -33,6 +34,41 @@ struct Cli {
     country: Option<String>,
 }
 
+#[derive(Parser)]
+#[group(multiple = false)]
+struct DownloadTarget {
+    #[clap(short, long)]
+    output: Option<PathBuf>,
+    #[clap(long)]
+    output_file: Option<PathBuf>,
+    #[clap(long)]
+    template: Option<String>,
+}
+
+impl DownloadTarget {
+    fn assert_dir(&self) {
+        if self.output_file.is_some() {
+            panic!("Cannot download multiple videos to a single file")
+        } else if let Some(template) = &self.template {
+            if !template.contains("{id}") && !template.contains("{title}") {
+                panic!("Template must contain {{id}} or {{title}} variables")
+            }
+        }
+    }
+
+    fn apply(&self, q: DownloadQuery) -> DownloadQuery {
+        if let Some(output_file) = &self.output_file {
+            q.to_file(output_file)
+        } else if let Some(output) = &self.output {
+            q.to_dir(output)
+        } else if let Some(template) = &self.template {
+            q.to_template(template)
+        } else {
+            q
+        }
+    }
+}
+
 #[derive(Subcommand)]
 enum Commands {
     /// Download a video, playlist, album or channel
@@ -40,18 +76,22 @@ enum Commands {
     Download {
         /// ID or URL
         id: String,
-        /// Output path
-        #[clap(short, default_value = ".")]
-        output: PathBuf,
+        #[clap(flatten)]
+        target: DownloadTarget,
         /// Video resolution (e.g. 720, 1080). Set to 0 for audio-only.
         #[clap(short, long)]
         resolution: Option<u32>,
         /// Number of videos downloaded in parallel
         #[clap(short, long, default_value_t = 8)]
         parallel: usize,
+        /// Use YouTube Music for downloading playlists
+        #[clap(long)]
+        music: bool,
         /// Limit the number of videos to download
         #[clap(long, default_value_t = 1000)]
         limit: usize,
+        #[clap(long)]
+        player_type: Option<PlayerType>,
     },
     /// Extract video, playlist, album or channel data
     Get {
@@ -116,6 +156,7 @@ enum Commands {
         #[clap(long)]
         music: Option<MusicSearchCategory>,
     },
+    Vdata,
 }
 
 #[derive(Copy, Clone, ValueEnum)]
@@ -252,64 +293,6 @@ impl From<PlayerType> for ClientType {
     }
 }
 
-#[allow(clippy::too_many_arguments)]
-async fn download_single_video(
-    video_id: &str,
-    video_title: &str,
-    output_dir: &str,
-    output_fname: Option<String>,
-    resolution: Option<u32>,
-    ffmpeg: &str,
-    rp: &RustyPipe,
-    http: Client,
-    multi: MultiProgress,
-    main: Option<ProgressBar>,
-) -> Result<()> {
-    let pb = multi.add(ProgressBar::new(1));
-    pb.set_style(ProgressStyle::with_template("{msg}\n{spinner:.green} [{elapsed_precise}] [{wide_bar:.cyan/blue}] {bytes}/{total_bytes} ({bytes_per_sec}, {eta})").unwrap()
-        .progress_chars("#>-"));
-    pb.set_message(format!("Fetching player data for {video_title}"));
-
-    let res = async {
-        let player_data = rp
-            .query()
-            .player(video_id)
-            .await
-            .context(format!("Failed to fetch player data for video {video_id}"))?;
-
-        let mut filter = StreamFilter::new();
-        if let Some(res) = resolution {
-            if res == 0 {
-                filter = filter.no_video();
-            } else {
-                filter = filter.video_max_res(res);
-            }
-        }
-
-        rustypipe_downloader::download_video(
-            &player_data,
-            output_dir,
-            output_fname,
-            None,
-            &filter,
-            ffmpeg,
-            http,
-            pb,
-        )
-        .await
-        .context(format!(
-            "Failed to download video '{}' [{}]",
-            player_data.details.name, video_id
-        ))
-    }
-    .await;
-
-    if let Some(main) = main {
-        main.inc(1);
-    }
-    res
-}
-
 fn print_data<T: Serialize>(data: &T, format: Format, pretty: bool) {
     let stdout = std::io::stdout().lock();
     match format {
@@ -327,55 +310,59 @@ fn print_data<T: Serialize>(data: &T, format: Format, pretty: bool) {
 async fn download_video(
     rp: &RustyPipe,
     id: &str,
-    output_dir: &str,
-    output_fname: Option<String>,
+    target: &DownloadTarget,
     resolution: Option<u32>,
+    player_type: Option<PlayerType>,
+    multi: MultiProgress,
 ) {
-    let http = ClientBuilder::new()
-        .user_agent("Mozilla/5.0 (Windows NT 10.0; Win64; rv:107.0) Gecko/20100101 Firefox/107.0")
-        .gzip(true)
-        .brotli(true)
-        .timeout(Duration::from_secs(10))
-        .build()
-        .expect("unable to build the HTTP client");
-
-    // Indicatif setup
-    let multi = MultiProgress::new();
-
-    download_single_video(
-        id,
-        id,
-        output_dir,
-        output_fname,
-        resolution,
-        "ffmpeg",
-        rp,
-        http,
-        multi,
-        None,
-    )
-    .await
-    .unwrap_or_else(|e| println!("ERROR: {e:?}"));
+    let mut filter = StreamFilter::new();
+    if let Some(res) = resolution {
+        if res == 0 {
+            filter = filter.no_video();
+        } else {
+            filter = filter.video_max_res(res);
+        }
+    }
+    let dl = DownloaderBuilder::new()
+        .client(rp)
+        .stream_filter(filter)
+        .progress_bar(multi)
+        .build();
+    let mut q = target.apply(dl.download_id(id));
+    if let Some(player_type) = player_type {
+        q = q.player_type(player_type.into());
+    }
+    let res = q.download().await;
+    if let Err(e) = res {
+        tracing::error!("{e}")
+    }
 }
 
 async fn download_videos(
     rp: &RustyPipe,
     videos: &[VideoId],
-    output_dir: &str,
-    output_fname: Option<String>,
+    target: &DownloadTarget,
     resolution: Option<u32>,
     parallel: usize,
+    player_type: Option<PlayerType>,
+    multi: MultiProgress,
 ) {
-    let http = ClientBuilder::new()
-        .user_agent("Mozilla/5.0 (Windows NT 10.0; Win64; rv:107.0) Gecko/20100101 Firefox/107.0")
-        .gzip(true)
-        .brotli(true)
-        .timeout(Duration::from_secs(10))
-        .build()
-        .expect("unable to build the HTTP client");
+    let mut filter = StreamFilter::new();
+    if let Some(res) = resolution {
+        if res == 0 {
+            filter = filter.no_video();
+        } else {
+            filter = filter.video_max_res(res);
+        }
+    }
+    let dl = DownloaderBuilder::new()
+        .client(rp)
+        .stream_filter(filter)
+        .progress_bar(multi.clone())
+        .path_precheck()
+        .build();
 
     // Indicatif setup
-    let multi = MultiProgress::new();
     let main = multi.add(ProgressBar::new(
         videos.len().try_into().unwrap_or_default(),
     ));
@@ -389,38 +376,61 @@ async fn download_videos(
     main.tick();
 
     stream::iter(videos)
-        .map(|video| {
-            download_single_video(
-                &video.id,
-                &video.name,
-                output_dir,
-                output_fname.clone(),
-                resolution,
-                "ffmpeg",
-                rp,
-                http.clone(),
-                multi.clone(),
-                Some(main.clone()),
-            )
-        })
-        .buffer_unordered(parallel)
-        .collect::<Vec<_>>()
-        .await
-        .into_iter()
-        .for_each(|res| match res {
-            Ok(_) => {}
-            Err(e) => {
-                println!("ERROR: {e:?}");
+        .for_each_concurrent(parallel, |video| {
+            let dl = dl.clone();
+            let main = main.clone();
+
+            let mut q = target.apply(dl.download_entity(video));
+            if let Some(player_type) = player_type {
+                q = q.player_type(player_type.into());
             }
-        });
+
+            async move {
+                if let Err(e) = q.download().await {
+                    tracing::error!("{e:?}");
+                } else {
+                    main.inc(1);
+                }
+            }
+        })
+        .await;
+}
+
+/// Stderr writer that suspends the progress bars before printing logs
+#[derive(Clone)]
+struct ProgWriter(MultiProgress);
+
+impl<'a> MakeWriter<'a> for ProgWriter {
+    type Writer = ProgWriter;
+
+    fn make_writer(&'a self) -> Self::Writer {
+        self.clone()
+    }
+}
+
+impl std::io::Write for ProgWriter {
+    fn write(&mut self, buf: &[u8]) -> std::io::Result<usize> {
+        self.0.suspend(|| std::io::stderr().write(buf))
+    }
+
+    fn flush(&mut self) -> std::io::Result<()> {
+        std::io::stderr().flush()
+    }
 }
 
 #[tokio::main]
 async fn main() {
-    // env_logger::builder().format_timestamp_micros().init();
-    tracing_subscriber::fmt::init();
-
     let cli = Cli::parse();
+    let multi = MultiProgress::new();
+
+    tracing_subscriber::fmt::SubscriberBuilder::default()
+        .with_env_filter(
+            EnvFilter::builder()
+                .with_default_directive(LevelFilter::INFO.into())
+                .from_env_lossy(),
+        )
+        .with_writer(ProgWriter(multi.clone()))
+        .init();
 
     let mut rp = RustyPipe::builder().visitor_data_opt(cli.vdata);
     if cli.report {
@@ -442,48 +452,20 @@ async fn main() {
     match cli.command {
         Commands::Download {
             id,
-            output,
+            target,
             resolution,
             parallel,
+            music,
             limit,
+            player_type,
         } => {
-            // Cases: Existing folder, non-existing file with existing parent folder,
-            // Error cases: non-existing parent folder, existing file
-            let output_path = std::fs::canonicalize(output).unwrap();
-            if output_path.is_file() {
-                println!("Output file already exists");
-                return;
-            }
-            let (output_dir, output_fname) = if output_path.is_dir() {
-                (output_path.to_string_lossy().to_string(), None)
-            } else {
-                let output_dir_parent = output_path.parent().unwrap();
-                if !output_dir_parent.is_dir() {
-                    println!(
-                        "Parent folder {} does not exist",
-                        output_dir_parent.to_string_lossy()
-                    );
-                    return;
-                }
-
-                (
-                    output_dir_parent.to_string_lossy().to_string(),
-                    Some(
-                        output_path
-                            .file_name()
-                            .unwrap()
-                            .to_string_lossy()
-                            .to_string(),
-                    ),
-                )
-            };
-
-            let target = rp.query().resolve_string(&id, false).await.unwrap();
-            match target {
+            let url_target = rp.query().resolve_string(&id, false).await.unwrap();
+            match url_target {
                 UrlTarget::Video { id, .. } => {
-                    download_video(&rp, &id, &output_dir, output_fname, resolution).await;
+                    download_video(&rp, &id, &target, resolution, player_type, multi).await;
                 }
                 UrlTarget::Channel { id } => {
+                    target.assert_dir();
                     let mut channel = rp.query().channel_videos(id).await.unwrap();
                     channel
                         .content
@@ -500,38 +482,58 @@ async fn main() {
                     download_videos(
                         &rp,
                         &videos,
-                        &output_dir,
-                        output_fname,
+                        &target,
                         resolution,
                         parallel,
+                        player_type,
+                        multi,
                     )
                     .await;
                 }
                 UrlTarget::Playlist { id } => {
-                    let mut playlist = rp.query().playlist(id).await.unwrap();
-                    playlist
-                        .videos
-                        .extend_limit(&rp.query(), limit)
-                        .await
-                        .unwrap();
-                    let videos: Vec<VideoId> = playlist
-                        .videos
-                        .items
-                        .into_iter()
-                        .take(limit)
-                        .map(VideoId::from)
-                        .collect();
+                    target.assert_dir();
+                    let videos: Vec<VideoId> = if music {
+                        let mut playlist = rp.query().music_playlist(id).await.unwrap();
+                        playlist
+                            .tracks
+                            .extend_limit(&rp.query(), limit)
+                            .await
+                            .unwrap();
+                        playlist
+                            .tracks
+                            .items
+                            .into_iter()
+                            .take(limit)
+                            .map(VideoId::from)
+                            .collect()
+                    } else {
+                        let mut playlist = rp.query().playlist(id).await.unwrap();
+                        playlist
+                            .videos
+                            .extend_limit(&rp.query(), limit)
+                            .await
+                            .unwrap();
+                        playlist
+                            .videos
+                            .items
+                            .into_iter()
+                            .take(limit)
+                            .map(VideoId::from)
+                            .collect()
+                    };
                     download_videos(
                         &rp,
                         &videos,
-                        &output_dir,
-                        output_fname,
+                        &target,
                         resolution,
                         parallel,
+                        player_type,
+                        multi,
                     )
                     .await;
                 }
                 UrlTarget::Album { id } => {
+                    target.assert_dir();
                     let album = rp.query().music_album(id).await.unwrap();
                     let videos: Vec<VideoId> = album
                         .tracks
@@ -542,10 +544,11 @@ async fn main() {
                     download_videos(
                         &rp,
                         &videos,
-                        &output_dir,
-                        output_fname,
+                        &target,
                         resolution,
                         parallel,
+                        player_type,
+                        multi,
                     )
                     .await;
                 }
@@ -740,5 +743,9 @@ async fn main() {
                 print_data(&res, format, pretty);
             }
         },
+        Commands::Vdata => {
+            let vd = rp.query().get_visitor_data().await.unwrap();
+            println!("{vd}");
+        }
     };
 }
