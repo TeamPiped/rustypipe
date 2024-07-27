@@ -466,5 +466,6 @@ VideoPlayer(
       frames_per_page_y: 5,
     ),
   ],
+  client_type: android,
   visitor_data: Some("Cgt2aHFtQU5YZFBvYyirsaWXBg%3D%3D"),
 )

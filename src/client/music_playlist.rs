@@ -17,7 +17,7 @@ use super::{
         self,
         music_item::{map_album_type, map_artist_id, map_artists, MusicListMapper},
     },
-    ClientType, MapResponse, QBrowse, RustyPipeQuery,
+    ClientType, MapRespCtx, MapResponse, QBrowse, RustyPipeQuery,
 };
 
 impl RustyPipeQuery {
@@ -138,10 +138,7 @@ impl RustyPipeQuery {
 impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
     fn map_response(
         self,
-        id: &str,
-        lang: crate::param::Language,
-        _deobf: Option<&crate::deobfuscate::DeobfData>,
-        vdata: Option<&str>,
+        ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<MusicPlaylist>, ExtractionError> {
         // dbg!(&self);
 
@@ -186,14 +183,15 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
             )))?;
 
         if let Some(playlist_id) = shelf.playlist_id {
-            if playlist_id != id {
+            if playlist_id != ctx.id {
                 return Err(ExtractionError::WrongResult(format!(
-                    "got wrong playlist id {playlist_id}, expected {id}"
+                    "got wrong playlist id {}, expected {}",
+                    playlist_id, ctx.id
                 )));
             }
         }
 
-        let mut mapper = MusicListMapper::new(lang);
+        let mut mapper = MusicListMapper::new(ctx.lang);
         mapper.map_response(shelf.contents);
         let map_res = mapper.conv_items();
 
@@ -273,7 +271,7 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
 
         Ok(MapResult {
             c: MusicPlaylist {
-                id: id.to_owned(),
+                id: ctx.id.to_owned(),
                 name,
                 thumbnail,
                 channel,
@@ -284,14 +282,14 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
                     track_count,
                     map_res.c,
                     ctoken,
-                    vdata.map(str::to_owned),
+                    ctx.visitor_data.map(str::to_owned),
                     ContinuationEndpoint::MusicBrowse,
                 ),
                 related_playlists: Paginator::new_ext(
                     None,
                     Vec::new(),
                     related_ctoken,
-                    vdata.map(str::to_owned),
+                    ctx.visitor_data.map(str::to_owned),
                     ContinuationEndpoint::MusicBrowse,
                 ),
             },
@@ -301,13 +299,7 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
 }
 
 impl MapResponse<MusicAlbum> for response::MusicPlaylist {
-    fn map_response(
-        self,
-        id: &str,
-        lang: crate::param::Language,
-        _deobf: Option<&crate::deobfuscate::DeobfData>,
-        _vdata: Option<&str>,
-    ) -> Result<MapResult<MusicAlbum>, ExtractionError> {
+    fn map_response(self, ctx: &MapRespCtx<'_>) -> Result<MapResult<MusicAlbum>, ExtractionError> {
         // dbg!(&self);
 
         let (header, sections) = match self.contents {
@@ -401,7 +393,7 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
             .map(|part| part.to_string())
             .unwrap_or_default();
 
-        let album_type = map_album_type(album_type_txt.as_str(), lang);
+        let album_type = map_album_type(album_type_txt.as_str(), ctx.lang);
         let year = year_txt.and_then(|txt| util::parse_numeric(&txt).ok());
 
         fn map_playlist_id(ep: &NavigationEndpoint) -> Option<String> {
@@ -448,11 +440,11 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
         let artist_id = artist_id.or_else(|| artists.first().and_then(|a| a.id.clone()));
 
         let mut mapper = MusicListMapper::with_album(
-            lang,
+            ctx.lang,
             artists.clone(),
             by_va,
             AlbumId {
-                id: id.to_owned(),
+                id: ctx.id.to_owned(),
                 name: header.title.clone(),
             },
         );
@@ -460,7 +452,7 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
         let tracks_res = mapper.conv_items();
         let mut warnings = tracks_res.warnings;
 
-        let mut variants_mapper = MusicListMapper::new(lang);
+        let mut variants_mapper = MusicListMapper::new(ctx.lang);
         if let Some(res) = album_variants {
             variants_mapper.map_response(res);
         }
@@ -469,7 +461,7 @@ impl MapResponse<MusicAlbum> for response::MusicPlaylist {
 
         Ok(MapResult {
             c: MusicAlbum {
-                id: id.to_owned(),
+                id: ctx.id.to_owned(),
                 playlist_id,
                 name: header.title,
                 cover: header.thumbnail.into(),
@@ -497,7 +489,7 @@ mod tests {
     use rstest::rstest;
 
     use super::*;
-    use crate::{model, param::Language, util::tests::TESTFILES};
+    use crate::{model, util::tests::TESTFILES};
 
     #[rstest]
     #[case::short("short", "RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk")]
@@ -512,7 +504,7 @@ mod tests {
         let playlist: response::MusicPlaylist =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res: MapResult<model::MusicPlaylist> =
-            playlist.map_response(id, Language::En, None, None).unwrap();
+            playlist.map_response(&MapRespCtx::test(id)).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -539,7 +531,7 @@ mod tests {
         let playlist: response::MusicPlaylist =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res: MapResult<model::MusicAlbum> =
-            playlist.map_response(id, Language::En, None, None).unwrap();
+            playlist.map_response(&MapRespCtx::test(id)).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),

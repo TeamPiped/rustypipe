@@ -8,7 +8,7 @@ use crate::{
 
 use super::{
     response::{self, music_item::MusicListMapper, url_endpoint::NavigationEndpoint},
-    ClientType, MapResponse, QBrowse, QBrowseParams, RustyPipeQuery,
+    ClientType, MapRespCtx, MapResponse, QBrowse, QBrowseParams, RustyPipeQuery,
 };
 
 impl RustyPipeQuery {
@@ -59,11 +59,8 @@ impl RustyPipeQuery {
 impl MapResponse<Vec<MusicGenreItem>> for response::MusicGenres {
     fn map_response(
         self,
-        _id: &str,
-        _lang: crate::param::Language,
-        _deobf: Option<&crate::deobfuscate::DeobfData>,
-        _vdata: Option<&str>,
-    ) -> Result<crate::serializer::MapResult<Vec<MusicGenreItem>>, ExtractionError> {
+        _ctx: &MapRespCtx<'_>,
+    ) -> Result<MapResult<Vec<MusicGenreItem>>, ExtractionError> {
         let content = self
             .contents
             .single_column_browse_results_renderer
@@ -111,13 +108,7 @@ impl MapResponse<Vec<MusicGenreItem>> for response::MusicGenres {
 }
 
 impl MapResponse<MusicGenre> for response::MusicGenre {
-    fn map_response(
-        self,
-        id: &str,
-        lang: crate::param::Language,
-        _deobf: Option<&crate::deobfuscate::DeobfData>,
-        _vdata: Option<&str>,
-    ) -> Result<crate::serializer::MapResult<MusicGenre>, ExtractionError> {
+    fn map_response(self, ctx: &MapRespCtx<'_>) -> Result<MapResult<MusicGenre>, ExtractionError> {
         // dbg!(&self);
 
         let content = self
@@ -179,7 +170,7 @@ impl MapResponse<MusicGenre> for response::MusicGenre {
                     _ => return None,
                 };
 
-                let mut mapper = MusicListMapper::new(lang);
+                let mut mapper = MusicListMapper::new(ctx.lang);
                 mapper.map_response(items);
                 let mut mapped = mapper.conv_items();
                 warnings.append(&mut mapped.warnings);
@@ -194,7 +185,7 @@ impl MapResponse<MusicGenre> for response::MusicGenre {
 
         Ok(MapResult {
             c: MusicGenre {
-                id: id.to_owned(),
+                id: ctx.id.to_owned(),
                 name: self.header.music_header_renderer.title,
                 sections,
             },
@@ -211,7 +202,7 @@ mod tests {
     use rstest::rstest;
 
     use super::*;
-    use crate::{model, param::Language, util::tests::TESTFILES};
+    use crate::{model, util::tests::TESTFILES};
 
     #[test]
     fn map_music_genres() {
@@ -221,7 +212,7 @@ mod tests {
         let playlist: response::MusicGenres =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res: MapResult<Vec<model::MusicGenreItem>> =
-            playlist.map_response("", Language::En, None, None).unwrap();
+            playlist.map_response(&MapRespCtx::test("")).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -241,7 +232,7 @@ mod tests {
         let playlist: response::MusicGenre =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res: MapResult<model::MusicGenre> =
-            playlist.map_response(id, Language::En, None, None).unwrap();
+            playlist.map_response(&MapRespCtx::test(id)).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),

@@ -14,7 +14,7 @@ use crate::{
 
 use super::{
     response::{self, music_item::MusicListMapper, url_endpoint::PageType},
-    ClientType, MapResponse, QBrowse, RustyPipeQuery,
+    ClientType, MapRespCtx, MapResponse, QBrowse, RustyPipeQuery,
 };
 
 impl RustyPipeQuery {
@@ -92,14 +92,8 @@ impl RustyPipeQuery {
 }
 
 impl MapResponse<MusicArtist> for response::MusicArtist {
-    fn map_response(
-        self,
-        id: &str,
-        lang: crate::param::Language,
-        _deobf: Option<&crate::deobfuscate::DeobfData>,
-        _vdata: Option<&str>,
-    ) -> Result<MapResult<MusicArtist>, ExtractionError> {
-        let mapped = map_artist_page(self, id, lang, false)?;
+    fn map_response(self, ctx: &MapRespCtx<'_>) -> Result<MapResult<MusicArtist>, ExtractionError> {
+        let mapped = map_artist_page(self, ctx, false)?;
         Ok(MapResult {
             c: mapped.c.0,
             warnings: mapped.warnings,
@@ -110,19 +104,15 @@ impl MapResponse<MusicArtist> for response::MusicArtist {
 impl MapResponse<(MusicArtist, bool)> for response::MusicArtist {
     fn map_response(
         self,
-        id: &str,
-        lang: crate::param::Language,
-        _deobf: Option<&crate::deobfuscate::DeobfData>,
-        _vdata: Option<&str>,
+        ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<(MusicArtist, bool)>, ExtractionError> {
-        map_artist_page(self, id, lang, true)
+        map_artist_page(self, ctx, true)
     }
 }
 
 fn map_artist_page(
     res: response::MusicArtist,
-    id: &str,
-    lang: crate::param::Language,
+    ctx: &MapRespCtx<'_>,
     skip_extendables: bool,
 ) -> Result<MapResult<(MusicArtist, bool)>, ExtractionError> {
     // dbg!(&res);
@@ -138,7 +128,7 @@ fn map_artist_page(
             .and_then(|pb| util::string_from_pb(pb, 3));
 
         if let Some(share_channel_id) = share_channel_id {
-            if share_channel_id != id {
+            if share_channel_id != ctx.id {
                 return Err(ExtractionError::Redirect(share_channel_id));
             }
         }
@@ -155,9 +145,9 @@ fn map_artist_page(
         .unwrap_or_default();
 
     let mut mapper = MusicListMapper::with_artist(
-        lang,
+        ctx.lang,
         ArtistId {
-            id: Some(id.to_owned()),
+            id: Some(ctx.id.to_owned()),
             name: header.title.clone(),
         },
     );
@@ -264,7 +254,7 @@ fn map_artist_page(
     Ok(MapResult {
         c: (
             MusicArtist {
-                id: id.to_owned(),
+                id: ctx.id.to_owned(),
                 name: header.title,
                 header_image: header.thumbnail.into(),
                 description: header.description,
@@ -272,7 +262,7 @@ fn map_artist_page(
                 subscriber_count: header.subscription_button.and_then(|btn| {
                     util::parse_large_numstr_or_warn(
                         &btn.subscribe_button_renderer.subscriber_count_text,
-                        lang,
+                        ctx.lang,
                         &mut mapped.warnings,
                     )
                 }),
@@ -293,16 +283,13 @@ fn map_artist_page(
 impl MapResponse<Vec<AlbumItem>> for response::MusicArtistAlbums {
     fn map_response(
         self,
-        id: &str,
-        lang: crate::param::Language,
-        _deobf: Option<&crate::deobfuscate::DeobfData>,
-        _vdata: Option<&str>,
+        ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<Vec<AlbumItem>>, ExtractionError> {
         // dbg!(&self);
 
         let Some(header) = self.header else {
             return Err(ExtractionError::NotFound {
-                id: id.into(),
+                id: ctx.id.into(),
                 msg: "no header".into(),
             });
         };
@@ -320,9 +307,9 @@ impl MapResponse<Vec<AlbumItem>> for response::MusicArtistAlbums {
             .contents;
 
         let mut mapper = MusicListMapper::with_artist(
-            lang,
+            ctx.lang,
             ArtistId {
-                id: Some(id.to_owned()),
+                id: Some(ctx.id.to_owned()),
                 name: header.music_header_renderer.title,
             },
         );
@@ -347,7 +334,7 @@ mod tests {
     use path_macro::path;
     use rstest::rstest;
 
-    use crate::{param::Language, util::tests::TESTFILES};
+    use crate::util::tests::TESTFILES;
 
     use super::*;
 
@@ -369,7 +356,7 @@ mod tests {
         let resp: response::MusicArtist =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res: MapResult<(MusicArtist, bool)> =
-            resp.map_response(id, Language::En, None, None).unwrap();
+            resp.map_response(&MapRespCtx::test(id)).unwrap();
         let (mut artist, can_fetch_more) = map_res.c;
 
         assert!(
@@ -384,7 +371,7 @@ mod tests {
             let resp: response::MusicArtistAlbums =
                 serde_json::from_reader(BufReader::new(json_file)).unwrap();
             let mut map_res: MapResult<Vec<AlbumItem>> =
-                resp.map_response(id, Language::En, None, None).unwrap();
+                resp.map_response(&MapRespCtx::test(id)).unwrap();
 
             assert!(
                 map_res.warnings.is_empty(),
@@ -405,7 +392,7 @@ mod tests {
         let artist: response::MusicArtist =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res: MapResult<MusicArtist> = artist
-            .map_response("UClmXPfaYhXOYsNn_QUyheWQ", Language::En, None, None)
+            .map_response(&MapRespCtx::test("UClmXPfaYhXOYsNn_QUyheWQ"))
             .unwrap();
 
         assert!(
@@ -424,7 +411,7 @@ mod tests {
         let artist: response::MusicArtist =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let res: Result<MapResult<MusicArtist>, ExtractionError> =
-            artist.map_response("UCLkAepWjdylmXSltofFvsYQ", Language::En, None, None);
+            artist.map_response(&MapRespCtx::test("UCLkAepWjdylmXSltofFvsYQ"));
         let e = res.unwrap_err();
 
         match e {

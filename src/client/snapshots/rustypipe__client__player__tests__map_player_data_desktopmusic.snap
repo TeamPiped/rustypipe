@@ -405,5 +405,6 @@ VideoPlayer(
       frames_per_page_y: 5,
     ),
   ],
+  client_type: desktop_music,
   visitor_data: Some("CgszSHZWNWs0SDhpTSiS4aWXBg%3D%3D"),
 )

@@ -4,9 +4,10 @@ use crate::{
     client::response::music_item::MusicListMapper,
     error::{Error, ExtractionError},
     model::{traits::FromYtItem, AlbumItem, TrackItem},
+    serializer::MapResult,
 };
 
-use super::{response, ClientType, MapResponse, QBrowse, RustyPipeQuery};
+use super::{response, ClientType, MapRespCtx, MapResponse, QBrowse, RustyPipeQuery};
 
 impl RustyPipeQuery {
     /// Get the new albums that were released on YouTube Music
@@ -49,13 +50,7 @@ impl RustyPipeQuery {
 }
 
 impl<T: FromYtItem> MapResponse<Vec<T>> for response::MusicNew {
-    fn map_response(
-        self,
-        _id: &str,
-        lang: crate::param::Language,
-        _deobf: Option<&crate::deobfuscate::DeobfData>,
-        _vdata: Option<&str>,
-    ) -> Result<crate::serializer::MapResult<Vec<T>>, ExtractionError> {
+    fn map_response(self, ctx: &MapRespCtx<'_>) -> Result<MapResult<Vec<T>>, ExtractionError> {
         let items = self
             .contents
             .single_column_browse_results_renderer
@@ -73,7 +68,7 @@ impl<T: FromYtItem> MapResponse<Vec<T>> for response::MusicNew {
             .grid_renderer
             .items;
 
-        let mut mapper = MusicListMapper::new(lang);
+        let mut mapper = MusicListMapper::new(ctx.lang);
         mapper.map_response(items);
 
         Ok(mapper.conv_items())
@@ -88,7 +83,7 @@ mod tests {
     use rstest::rstest;
 
     use super::*;
-    use crate::{param::Language, serializer::MapResult, util::tests::TESTFILES};
+    use crate::{serializer::MapResult, util::tests::TESTFILES};
 
     #[rstest]
     #[case::default("default")]
@@ -98,9 +93,8 @@ mod tests {
 
         let new_albums: response::MusicNew =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res: MapResult<Vec<AlbumItem>> = new_albums
-            .map_response("", Language::En, None, None)
-            .unwrap();
+        let map_res: MapResult<Vec<AlbumItem>> =
+            new_albums.map_response(&MapRespCtx::test("")).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -119,9 +113,8 @@ mod tests {
 
         let new_videos: response::MusicNew =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res: MapResult<Vec<TrackItem>> = new_videos
-            .map_response("", Language::En, None, None)
-            .unwrap();
+        let map_res: MapResult<Vec<TrackItem>> =
+            new_videos.map_response(&MapRespCtx::test("")).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),

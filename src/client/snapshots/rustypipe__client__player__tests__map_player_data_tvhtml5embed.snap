@@ -581,5 +581,6 @@ VideoPlayer(
       frames_per_page_y: 5,
     ),
   ],
+  client_type: tv_html5_embed,
   visitor_data: Some("CgtacUJOMG81dTI3cyirsaWXBg%3D%3D"),
 )

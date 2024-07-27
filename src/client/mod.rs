@@ -432,7 +432,7 @@ impl Default for RustyPipeBuilder {
 }
 
 impl RustyPipeBuilder {
-    /// Return a new `RustyPipeBuilder`.
+    /// Create a new [`RustyPipeBuilder`].
     ///
     /// This is the same as [`RustyPipe::builder`]
     #[must_use]
@@ -448,12 +448,12 @@ impl RustyPipeBuilder {
         }
     }
 
-    /// Return a new, configured RustyPipe instance.
+    /// Create a new, configured [`RustyPipe`] instance.
     pub fn build(self) -> Result<RustyPipe, Error> {
         self.build_with_client(ClientBuilder::new())
     }
 
-    /// Return a new, configured RustyPipe instance using a Reqwest client builder.
+    /// Create a new, configured RustyPipe instance using a Reqwest client builder.
     pub fn build_with_client(self, mut client_builder: ClientBuilder) -> Result<RustyPipe, Error> {
         client_builder = client_builder
             .user_agent(self.user_agent.unwrap_or_else(|| DEFAULT_UA.to_owned()))
@@ -1268,9 +1268,7 @@ impl RustyPipeQuery {
     async fn yt_request_attempt<R: DeserializeOwned + MapResponse<M> + Debug, M>(
         &self,
         request: &Request,
-        id: &str,
-        visitor_data: Option<&str>,
-        deobf: Option<&DeobfData>,
+        ctx: &MapRespCtx<'_>,
     ) -> Result<RequestResult<M>, Error> {
         let response = self
             .client
@@ -1289,7 +1287,7 @@ impl RustyPipeQuery {
 
             Err(match status {
                 StatusCode::NOT_FOUND => Error::Extraction(ExtractionError::NotFound {
-                    id: id.to_owned(),
+                    id: ctx.id.to_owned(),
                     msg: error_msg.unwrap_or("404".into()),
                 }),
                 StatusCode::BAD_REQUEST => {
@@ -1299,12 +1297,7 @@ impl RustyPipeQuery {
             })
         } else {
             match serde_json::from_str::<R>(&body) {
-                Ok(deserialized) => match deserialized.map_response(
-                    id,
-                    self.opts.lang,
-                    deobf,
-                    self.opts.visitor_data.as_deref().or(visitor_data),
-                ) {
+                Ok(deserialized) => match deserialized.map_response(ctx) {
                     Ok(mapres) => Ok(mapres),
                     Err(e) => Err(e.into()),
                 },
@@ -1320,15 +1313,11 @@ impl RustyPipeQuery {
     async fn yt_request<R: DeserializeOwned + MapResponse<M> + Debug, M>(
         &self,
         request: &Request,
-        id: &str,
-        visitor_data: Option<&str>,
-        deobf: Option<&DeobfData>,
+        ctx: &MapRespCtx<'_>,
     ) -> Result<RequestResult<M>, Error> {
         let mut last_resp = None;
         for n in 0..=self.client.inner.n_http_retries {
-            let resp = self
-                .yt_request_attempt::<R, M>(request, id, visitor_data, deobf)
-                .await?;
+            let resp = self.yt_request_attempt::<R, M>(request, ctx).await?;
 
             let err = match &resp.res {
                 Ok(_) => return Ok(resp),
@@ -1394,9 +1383,15 @@ impl RustyPipeQuery {
             .json(body)
             .build()?;
 
-        let req_res = self
-            .yt_request::<R, M>(&request, id, visitor_data, deobf)
-            .await?;
+        let ctx = MapRespCtx {
+            id,
+            lang: self.opts.lang,
+            deobf,
+            visitor_data,
+            client_type: ctype,
+        };
+
+        let req_res = self.yt_request::<R, M>(&request, &ctx).await?;
 
         // Uncomment to debug response text
         // println!("{}", &req_res.body);
@@ -1553,6 +1548,28 @@ impl AsRef<RustyPipeQuery> for RustyPipeQuery {
     }
 }
 
+struct MapRespCtx<'a> {
+    id: &'a str,
+    lang: Language,
+    deobf: Option<&'a DeobfData>,
+    visitor_data: Option<&'a str>,
+    client_type: ClientType,
+}
+
+impl<'a> MapRespCtx<'a> {
+    /// Create a [`MapRespCtx`] for testing
+    #[cfg(test)]
+    fn test(id: &'a str) -> Self {
+        Self {
+            id,
+            lang: Language::En,
+            deobf: None,
+            visitor_data: None,
+            client_type: ClientType::Desktop,
+        }
+    }
+}
+
 /// Implement this for YouTube API response structs that need to be mapped to
 /// RustyPipe models.
 trait MapResponse<T> {
@@ -1569,13 +1586,7 @@ trait MapResponse<T> {
     /// - `lang`: Language of the request. Used for mapping localized information like dates.
     /// - `deobf`: Deobfuscator (if passed to the `execute_request_deobf` method)
     /// - `visitor_data`: Visitor data option of the client
-    fn map_response(
-        self,
-        id: &str,
-        lang: Language,
-        deobf: Option<&DeobfData>,
-        visitor_data: Option<&str>,
-    ) -> Result<MapResult<T>, ExtractionError>;
+    fn map_response(self, ctx: &MapRespCtx<'_>) -> Result<MapResult<T>, ExtractionError>;
 }
 
 fn validate_country(country: Country) -> Country {

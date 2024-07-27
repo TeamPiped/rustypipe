@@ -12,7 +12,7 @@ use crate::{
     param::search_filter::SearchFilter,
 };
 
-use super::{response, ClientType, MapResponse, MapResult, RustyPipeQuery, YTContext};
+use super::{response, ClientType, MapRespCtx, MapResponse, MapResult, RustyPipeQuery, YTContext};
 
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
@@ -103,10 +103,7 @@ impl RustyPipeQuery {
 impl<T: FromYtItem> MapResponse<SearchResult<T>> for response::Search {
     fn map_response(
         self,
-        _id: &str,
-        lang: crate::param::Language,
-        _deobf: Option<&crate::deobfuscate::DeobfData>,
-        vdata: Option<&str>,
+        ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<SearchResult<T>>, ExtractionError> {
         let items = self
             .contents
@@ -115,7 +112,7 @@ impl<T: FromYtItem> MapResponse<SearchResult<T>> for response::Search {
             .section_list_renderer
             .contents;
 
-        let mut mapper = response::YouTubeListMapper::<YouTubeItem>::new(lang);
+        let mut mapper = response::YouTubeListMapper::<YouTubeItem>::new(ctx.lang);
         mapper.map_response(items);
 
         Ok(MapResult {
@@ -135,7 +132,7 @@ impl<T: FromYtItem> MapResponse<SearchResult<T>> for response::Search {
                 visitor_data: self
                     .response_context
                     .visitor_data
-                    .or_else(|| vdata.map(str::to_owned)),
+                    .or_else(|| ctx.visitor_data.map(str::to_owned)),
             },
             warnings: mapper.warnings,
         })
@@ -150,9 +147,8 @@ mod tests {
     use rstest::rstest;
 
     use crate::{
-        client::{response, MapResponse},
+        client::{response, MapRespCtx, MapResponse},
         model::{SearchResult, YouTubeItem},
-        param::Language,
         serializer::MapResult,
         util::tests::TESTFILES,
     };
@@ -168,7 +164,7 @@ mod tests {
 
         let search: response::Search = serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res: MapResult<SearchResult<YouTubeItem>> =
-            search.map_response("", Language::En, None, None).unwrap();
+            search.map_response(&MapRespCtx::test("")).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),

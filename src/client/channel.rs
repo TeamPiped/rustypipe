@@ -16,7 +16,9 @@ use crate::{
     util::{self, timeago, ProtoBuilder},
 };
 
-use super::{response, ClientType, MapResponse, QContinuation, RustyPipeQuery, YTContext};
+use super::{
+    response, ClientType, MapRespCtx, MapResponse, QContinuation, RustyPipeQuery, YTContext,
+};
 
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
@@ -201,16 +203,13 @@ impl RustyPipeQuery {
 impl MapResponse<Channel<Paginator<VideoItem>>> for response::Channel {
     fn map_response(
         self,
-        id: &str,
-        lang: Language,
-        _deobf: Option<&crate::deobfuscate::DeobfData>,
-        vdata: Option<&str>,
+        ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<Channel<Paginator<VideoItem>>>, ExtractionError> {
-        let content = map_channel_content(id, self.contents, self.alerts)?;
+        let content = map_channel_content(ctx.id, self.contents, self.alerts)?;
         let visitor_data = self
             .response_context
             .visitor_data
-            .or_else(|| vdata.map(str::to_owned));
+            .or_else(|| ctx.visitor_data.map(str::to_owned));
 
         let channel_data = map_channel(
             MapChannelData {
@@ -221,12 +220,11 @@ impl MapResponse<Channel<Paginator<VideoItem>>> for response::Channel {
                 has_shorts: content.has_shorts,
                 has_live: content.has_live,
             },
-            id,
-            lang,
+            ctx,
         )?;
 
         let mut mapper = response::YouTubeListMapper::<VideoItem>::with_channel(
-            lang,
+            ctx.lang,
             &channel_data.c,
             channel_data.warnings,
         );
@@ -249,16 +247,13 @@ impl MapResponse<Channel<Paginator<VideoItem>>> for response::Channel {
 impl MapResponse<Channel<Paginator<PlaylistItem>>> for response::Channel {
     fn map_response(
         self,
-        id: &str,
-        lang: Language,
-        _deobf: Option<&crate::deobfuscate::DeobfData>,
-        vdata: Option<&str>,
+        ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<Channel<Paginator<PlaylistItem>>>, ExtractionError> {
-        let content = map_channel_content(id, self.contents, self.alerts)?;
+        let content = map_channel_content(ctx.id, self.contents, self.alerts)?;
         let visitor_data = self
             .response_context
             .visitor_data
-            .or_else(|| vdata.map(str::to_owned));
+            .or_else(|| ctx.visitor_data.map(str::to_owned));
 
         let channel_data = map_channel(
             MapChannelData {
@@ -269,12 +264,11 @@ impl MapResponse<Channel<Paginator<PlaylistItem>>> for response::Channel {
                 has_shorts: content.has_shorts,
                 has_live: content.has_live,
             },
-            id,
-            lang,
+            ctx,
         )?;
 
         let mut mapper = response::YouTubeListMapper::<PlaylistItem>::with_channel(
-            lang,
+            ctx.lang,
             &channel_data.c,
             channel_data.warnings,
         );
@@ -289,13 +283,7 @@ impl MapResponse<Channel<Paginator<PlaylistItem>>> for response::Channel {
 }
 
 impl MapResponse<ChannelInfo> for response::ChannelAbout {
-    fn map_response(
-        self,
-        id: &str,
-        _lang: Language,
-        _deobf: Option<&crate::deobfuscate::DeobfData>,
-        _visitor_data: Option<&str>,
-    ) -> Result<MapResult<ChannelInfo>, ExtractionError> {
+    fn map_response(self, ctx: &MapRespCtx<'_>) -> Result<MapResult<ChannelInfo>, ExtractionError> {
         // Channel info is always fetched in English. There is no localized data there
         // and it allows parsing the country name.
         let lang = Language::En;
@@ -309,7 +297,7 @@ impl MapResponse<ChannelInfo> for response::ChannelAbout {
                 .ok_or(ExtractionError::InvalidData("no received endpoint".into()))?,
             response::ChannelAbout::Content { contents } => {
                 // Handle errors (e.g. age restriction) when regular channel content was returned
-                map_channel_content(id, contents, None)?;
+                map_channel_content(ctx.id, contents, None)?;
                 return Err(ExtractionError::InvalidData(
                     "could not extract aboutData".into(),
                 ));
@@ -388,36 +376,35 @@ struct MapChannelData {
 
 fn map_channel(
     d: MapChannelData,
-    id: &str,
-    lang: Language,
+    ctx: &MapRespCtx<'_>,
 ) -> Result<MapResult<Channel<()>>, ExtractionError> {
     let header = d.header.ok_or_else(|| ExtractionError::NotFound {
-        id: id.to_owned(),
+        id: ctx.id.to_owned(),
         msg: "no header".into(),
     })?;
     let metadata = d
         .metadata
         .ok_or_else(|| ExtractionError::NotFound {
-            id: id.to_owned(),
+            id: ctx.id.to_owned(),
             msg: "no metadata".into(),
         })?
         .channel_metadata_renderer;
     let microformat = d.microformat.ok_or_else(|| ExtractionError::NotFound {
-        id: id.to_owned(),
+        id: ctx.id.to_owned(),
         msg: "no microformat".into(),
     })?;
 
-    if metadata.external_id != id {
+    if metadata.external_id != ctx.id {
         return Err(ExtractionError::WrongResult(format!(
             "got wrong channel id {}, expected {}",
-            metadata.external_id, id
+            metadata.external_id, ctx.id
         )));
     }
 
     let vanity_url = metadata
         .vanity_channel_url
         .as_ref()
-        .and_then(|url| map_vanity_url(url, id));
+        .and_then(|url| map_vanity_url(url, ctx.id));
     let mut warnings = Vec::new();
 
     Ok(MapResult {
@@ -425,9 +412,9 @@ fn map_channel(
             response::channel::Header::C4TabbedHeaderRenderer(header) => Channel {
                 id: metadata.external_id,
                 name: metadata.title,
-                subscriber_count: header
-                    .subscriber_count_text
-                    .and_then(|txt| util::parse_large_numstr_or_warn(&txt, lang, &mut warnings)),
+                subscriber_count: header.subscriber_count_text.and_then(|txt| {
+                    util::parse_large_numstr_or_warn(&txt, ctx.lang, &mut warnings)
+                }),
                 avatar: header.avatar.into(),
                 verification: header.badges.into(),
                 description: metadata.description,
@@ -458,7 +445,7 @@ fn map_channel(
                     name: metadata.title,
                     subscriber_count: hdata.as_ref().and_then(|hdata| {
                         hdata.0.as_ref().and_then(|txt| {
-                            util::parse_large_numstr_or_warn(txt, lang, &mut warnings)
+                            util::parse_large_numstr_or_warn(txt, ctx.lang, &mut warnings)
                         })
                     }),
                     avatar: hdata.map(|hdata| hdata.1.into()).unwrap_or_default(),
@@ -487,7 +474,7 @@ fn map_channel(
                     md_rows.first().and_then(|md| md.metadata_parts.get(1))
                 };
                 let subscriber_count = sub_part.and_then(|t| {
-                    util::parse_large_numstr_or_warn::<u64>(&t.text, lang, &mut warnings)
+                    util::parse_large_numstr_or_warn::<u64>(&t.text, ctx.lang, &mut warnings)
                 });
 
                 Channel {
@@ -697,10 +684,10 @@ mod tests {
     use rstest::rstest;
 
     use crate::{
-        client::{response, MapResponse},
+        client::{response, MapRespCtx, MapResponse},
         error::{ExtractionError, UnavailabilityReason},
         model::{paginator::Paginator, Channel, ChannelInfo, PlaylistItem, VideoItem},
-        param::{ChannelOrder, ChannelVideoTab, Language},
+        param::{ChannelOrder, ChannelVideoTab},
         serializer::MapResult,
         util::tests::TESTFILES,
     };
@@ -728,7 +715,7 @@ mod tests {
         let channel: response::Channel =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res: MapResult<Channel<Paginator<VideoItem>>> =
-            channel.map_response(id, Language::En, None, None).unwrap();
+            channel.map_response(&MapRespCtx::test(id)).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -755,7 +742,7 @@ mod tests {
         let channel: response::Channel =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let res: Result<MapResult<Channel<Paginator<VideoItem>>>, ExtractionError> =
-            channel.map_response("UCbfnHqxXs_K3kvaH-WlNlig", Language::En, None, None);
+            channel.map_response(&MapRespCtx::test("UCbfnHqxXs_K3kvaH-WlNlig"));
         if let Err(ExtractionError::Unavailable { reason, msg }) = res {
             assert_eq!(reason, UnavailabilityReason::AgeRestricted);
             assert!(msg.starts_with("Laphroaig Whisky: "));
@@ -772,7 +759,7 @@ mod tests {
         let channel: response::Channel =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res: MapResult<Channel<Paginator<PlaylistItem>>> = channel
-            .map_response("UC2DjFE7Xf11URZqWBigcVOQ", Language::En, None, None)
+            .map_response(&MapRespCtx::test("UC2DjFE7Xf11URZqWBigcVOQ"))
             .unwrap();
 
         assert!(
@@ -791,7 +778,7 @@ mod tests {
         let channel: response::ChannelAbout =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res: MapResult<ChannelInfo> = channel
-            .map_response("UC2DjFE7Xf11U-RZqWBigcVOQ", Language::En, None, None)
+            .map_response(&MapRespCtx::test("UC2DjFE7Xf11U-RZqWBigcVOQ"))
             .unwrap();
 
         assert!(

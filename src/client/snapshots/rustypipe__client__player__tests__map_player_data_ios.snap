@@ -196,5 +196,6 @@ VideoPlayer(
       frames_per_page_y: 5,
     ),
   ],
+  client_type: ios,
   visitor_data: Some("Cgs4TXV4dk13WVEyWSirsaWXBg%3D%3D"),
 )

@@ -16,13 +16,12 @@ use crate::{
         traits::QualityOrd, AudioCodec, AudioFormat, AudioStream, AudioTrack, ChannelId, Frameset,
         Subtitle, VideoCodec, VideoFormat, VideoPlayer, VideoPlayerDetails, VideoStream,
     },
-    param::Language,
     util,
 };
 
 use super::{
     response::{self, player},
-    ClientType, MapResponse, MapResult, RustyPipeQuery, YTContext,
+    ClientType, MapRespCtx, MapResponse, MapResult, RustyPipeQuery, YTContext,
 };
 
 #[derive(Debug, Serialize)]
@@ -149,12 +148,9 @@ impl RustyPipeQuery {
 impl MapResponse<VideoPlayer> for response::Player {
     fn map_response(
         self,
-        id: &str,
-        _lang: Language,
-        deobf: Option<&crate::deobfuscate::DeobfData>,
-        vdata: Option<&str>,
+        ctx: &MapRespCtx<'_>,
     ) -> Result<super::MapResult<VideoPlayer>, ExtractionError> {
-        let deobf = Deobfuscator::new(deobf.unwrap())?;
+        let deobf = Deobfuscator::new(ctx.deobf.unwrap())?;
         let mut warnings = vec![];
 
         // Check playability status
@@ -235,10 +231,10 @@ impl MapResponse<VideoPlayer> for response::Player {
                     "no video details",
                 )))?;
 
-        if video_details.video_id != id {
+        if video_details.video_id != ctx.id {
             return Err(ExtractionError::WrongResult(format!(
                 "video id {}, expected {}",
-                video_details.video_id, id
+                video_details.video_id, ctx.id
             )));
         }
 
@@ -375,10 +371,11 @@ impl MapResponse<VideoPlayer> for response::Player {
                 hls_manifest_url: streaming_data.hls_manifest_url,
                 dash_manifest_url: streaming_data.dash_manifest_url,
                 preview_frames,
+                client_type: ctx.client_type,
                 visitor_data: self
                     .response_context
                     .visitor_data
-                    .or_else(|| vdata.map(str::to_owned)),
+                    .or_else(|| ctx.visitor_data.map(str::to_owned)),
             },
             warnings,
         })
@@ -657,7 +654,7 @@ mod tests {
     use rstest::rstest;
 
     use super::*;
-    use crate::{deobfuscate::DeobfData, util::tests::TESTFILES};
+    use crate::{deobfuscate::DeobfData, param::Language, util::tests::TESTFILES};
 
     static DEOBF_DATA: Lazy<DeobfData> = Lazy::new(|| {
         DeobfData {
@@ -669,18 +666,27 @@ mod tests {
     });
 
     #[rstest]
-    #[case::desktop("desktop")]
-    #[case::desktop_music("desktopmusic")]
-    #[case::tv_html5_embed("tvhtml5embed")]
-    #[case::android("android")]
-    #[case::ios("ios")]
-    fn map_player_data(#[case] name: &str) {
+    #[case::desktop(ClientType::Desktop)]
+    #[case::desktop_music(ClientType::DesktopMusic)]
+    #[case::tv_html5_embed(ClientType::TvHtml5Embed)]
+    #[case::android(ClientType::Android)]
+    #[case::ios(ClientType::Ios)]
+    fn map_player_data(#[case] client_type: ClientType) {
+        let name = serde_plain::to_string(&client_type)
+            .unwrap()
+            .replace('_', "");
         let json_path = path!(*TESTFILES / "player" / format!("{name}_video.json"));
         let json_file = File::open(json_path).unwrap();
 
         let resp: response::Player = serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res = resp
-            .map_response("pPvd8UxmSbQ", Language::En, Some(&DEOBF_DATA), None)
+            .map_response(&MapRespCtx {
+                id: "pPvd8UxmSbQ",
+                lang: Language::En,
+                deobf: Some(&DEOBF_DATA),
+                visitor_data: None,
+                client_type,
+            })
             .unwrap();
 
         assert!(

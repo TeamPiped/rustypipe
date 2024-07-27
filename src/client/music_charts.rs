@@ -11,7 +11,7 @@ use crate::{
 
 use super::{
     response::{self, music_item::MusicListMapper, url_endpoint::MusicPageType},
-    ClientType, MapResponse, RustyPipeQuery, YTContext,
+    ClientType, MapRespCtx, MapResponse, RustyPipeQuery, YTContext,
 };
 
 #[derive(Debug, Serialize)]
@@ -56,13 +56,7 @@ impl RustyPipeQuery {
 }
 
 impl MapResponse<MusicCharts> for response::MusicCharts {
-    fn map_response(
-        self,
-        _id: &str,
-        lang: crate::param::Language,
-        _deobf: Option<&crate::deobfuscate::DeobfData>,
-        _vdata: Option<&str>,
-    ) -> Result<crate::serializer::MapResult<MusicCharts>, crate::error::ExtractionError> {
+    fn map_response(self, ctx: &MapRespCtx<'_>) -> Result<MapResult<MusicCharts>, ExtractionError> {
         let countries = self
             .framework_updates
             .map(|fwu| {
@@ -77,9 +71,9 @@ impl MapResponse<MusicCharts> for response::MusicCharts {
         let mut top_playlist_id = None;
         let mut trending_playlist_id = None;
 
-        let mut mapper_top = MusicListMapper::new(lang);
-        let mut mapper_trending = MusicListMapper::new(lang);
-        let mut mapper_other = MusicListMapper::new(lang);
+        let mut mapper_top = MusicListMapper::new(ctx.lang);
+        let mut mapper_trending = MusicListMapper::new(ctx.lang);
+        let mut mapper_other = MusicListMapper::new(ctx.lang);
 
         self.contents
             .single_column_browse_results_renderer
@@ -151,7 +145,6 @@ mod tests {
     use rstest::rstest;
 
     use super::*;
-    use crate::param::Language;
 
     #[rstest]
     #[case::default("global")]
@@ -163,8 +156,7 @@ mod tests {
 
         let charts: response::MusicCharts =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res: MapResult<MusicCharts> =
-            charts.map_response("", Language::En, None, None).unwrap();
+        let map_res: MapResult<MusicCharts> = charts.map_response(&MapRespCtx::test("")).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),

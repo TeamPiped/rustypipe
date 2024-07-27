@@ -15,7 +15,7 @@ use serde::{Deserialize, Serialize};
 use time::{Date, OffsetDateTime};
 
 use self::{paginator::Paginator, richtext::RichText};
-use crate::{error::Error, param::Country, validate};
+use crate::{client::ClientType, error::Error, param::Country, validate};
 
 /*
 #COMMON
@@ -143,6 +143,8 @@ pub struct VideoPlayer {
     pub dash_manifest_url: Option<String>,
     /// Video frames for seek preview
     pub preview_frames: Vec<Frameset>,
+    /// Client type with which the player was fetched
+    pub client_type: ClientType,
     /// YouTube visitor data cookie
     pub visitor_data: Option<String>,
 }
@@ -823,7 +825,7 @@ pub enum YouTubeItem {
     Channel(ChannelItem),
 }
 
-/// YouTube video list item
+/// YouTube video list item (from search results, recommendations, playlists)
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[non_exhaustive]
 pub struct VideoItem {
@@ -862,7 +864,7 @@ pub struct VideoItem {
     pub short_description: Option<String>,
 }
 
-/// YouTube channel list item
+/// YouTube channel list item (from search results)
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[non_exhaustive]
 pub struct ChannelItem {
@@ -884,7 +886,7 @@ pub struct ChannelItem {
     pub short_description: String,
 }
 
-/// YouTube playlist list item
+/// YouTube playlist list item (from search results)
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[non_exhaustive]
 pub struct PlaylistItem {

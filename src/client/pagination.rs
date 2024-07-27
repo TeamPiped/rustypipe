@@ -10,7 +10,7 @@ use crate::model::{
 use crate::serializer::MapResult;
 
 use super::response::music_item::{map_queue_item, MusicListMapper, PlaylistPanelVideo};
-use super::{response, ClientType, MapResponse, QContinuation, RustyPipeQuery};
+use super::{response, ClientType, MapRespCtx, MapResponse, QContinuation, RustyPipeQuery};
 
 impl RustyPipeQuery {
     /// Get more YouTube items from the given continuation token and endpoint
@@ -103,10 +103,7 @@ fn map_ytm_paginator<T: FromYtItem>(
 impl MapResponse<Paginator<YouTubeItem>> for response::Continuation {
     fn map_response(
         self,
-        _id: &str,
-        lang: crate::param::Language,
-        _deobf: Option<&crate::deobfuscate::DeobfData>,
-        _vdata: Option<&str>,
+        ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<Paginator<YouTubeItem>>, ExtractionError> {
         let items = self
             .on_response_received_actions
@@ -126,7 +123,7 @@ impl MapResponse<Paginator<YouTubeItem>> for response::Continuation {
             })
             .unwrap_or_default();
 
-        let mut mapper = response::YouTubeListMapper::<YouTubeItem>::new(lang);
+        let mut mapper = response::YouTubeListMapper::<YouTubeItem>::new(ctx.lang);
         mapper.map_response(items);
 
         Ok(MapResult {
@@ -139,12 +136,9 @@ impl MapResponse<Paginator<YouTubeItem>> for response::Continuation {
 impl MapResponse<Paginator<MusicItem>> for response::MusicContinuation {
     fn map_response(
         self,
-        _id: &str,
-        lang: crate::param::Language,
-        _deobf: Option<&crate::deobfuscate::DeobfData>,
-        _vdata: Option<&str>,
+        ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<Paginator<MusicItem>>, ExtractionError> {
-        let mut mapper = MusicListMapper::new(lang);
+        let mut mapper = MusicListMapper::new(ctx.lang);
         let mut continuations = Vec::new();
 
         match self.continuation_contents {
@@ -173,7 +167,7 @@ impl MapResponse<Paginator<MusicItem>> for response::MusicContinuation {
                 mapper.add_warnings(&mut panel.contents.warnings);
                 panel.contents.c.into_iter().for_each(|item| {
                     if let PlaylistPanelVideo::PlaylistPanelVideoRenderer(item) = item {
-                        let mut track = map_queue_item(item, lang);
+                        let mut track = map_queue_item(item, ctx.lang);
                         mapper.add_item(MusicItem::Track(track.c));
                         mapper.add_warnings(&mut track.warnings);
                     }
@@ -356,7 +350,6 @@ mod tests {
     use super::*;
     use crate::{
         model::{MusicPlaylistItem, PlaylistItem, TrackItem, VideoItem},
-        param::Language,
         util::tests::TESTFILES,
     };
 
@@ -371,7 +364,7 @@ mod tests {
         let items: response::Continuation =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res: MapResult<Paginator<YouTubeItem>> =
-            items.map_response("", Language::En, None, None).unwrap();
+            items.map_response(&MapRespCtx::test("")).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -393,7 +386,7 @@ mod tests {
         let items: response::Continuation =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res: MapResult<Paginator<YouTubeItem>> =
-            items.map_response("", Language::En, None, None).unwrap();
+            items.map_response(&MapRespCtx::test("")).unwrap();
         let paginator: Paginator<VideoItem> =
             map_yt_paginator(map_res.c, None, ContinuationEndpoint::Browse);
 
@@ -416,7 +409,7 @@ mod tests {
         let items: response::Continuation =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res: MapResult<Paginator<YouTubeItem>> =
-            items.map_response("", Language::En, None, None).unwrap();
+            items.map_response(&MapRespCtx::test("")).unwrap();
         let paginator: Paginator<PlaylistItem> =
             map_yt_paginator(map_res.c, None, ContinuationEndpoint::Browse);
 
@@ -439,7 +432,7 @@ mod tests {
         let items: response::MusicContinuation =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res: MapResult<Paginator<MusicItem>> =
-            items.map_response("", Language::En, None, None).unwrap();
+            items.map_response(&MapRespCtx::test("")).unwrap();
         let paginator: Paginator<TrackItem> =
             map_ytm_paginator(map_res.c, None, ContinuationEndpoint::MusicBrowse);
 
@@ -460,7 +453,7 @@ mod tests {
         let items: response::MusicContinuation =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res: MapResult<Paginator<MusicItem>> =
-            items.map_response("", Language::En, None, None).unwrap();
+            items.map_response(&MapRespCtx::test("")).unwrap();
         let paginator: Paginator<MusicPlaylistItem> =
             map_ytm_paginator(map_res.c, None, ContinuationEndpoint::MusicBrowse);
 

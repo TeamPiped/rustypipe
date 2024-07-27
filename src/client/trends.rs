@@ -10,7 +10,9 @@ use crate::{
     serializer::MapResult,
 };
 
-use super::{response, ClientType, MapResponse, QBrowse, QBrowseParams, RustyPipeQuery};
+use super::{
+    response, ClientType, MapRespCtx, MapResponse, QBrowse, QBrowseParams, RustyPipeQuery,
+};
 
 impl RustyPipeQuery {
     /// Get the videos from the YouTube startpage
@@ -56,10 +58,7 @@ impl RustyPipeQuery {
 impl MapResponse<Paginator<VideoItem>> for response::Startpage {
     fn map_response(
         self,
-        _id: &str,
-        lang: crate::param::Language,
-        _deobf: Option<&crate::deobfuscate::DeobfData>,
-        vdata: Option<&str>,
+        ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<Paginator<VideoItem>>, ExtractionError> {
         let grid = self
             .contents
@@ -75,10 +74,10 @@ impl MapResponse<Paginator<VideoItem>> for response::Startpage {
 
         Ok(map_startpage_videos(
             grid,
-            lang,
+            ctx.lang,
             self.response_context
                 .visitor_data
-                .or_else(|| vdata.map(str::to_owned)),
+                .or_else(|| ctx.visitor_data.map(str::to_owned)),
         ))
     }
 }
@@ -86,10 +85,7 @@ impl MapResponse<Paginator<VideoItem>> for response::Startpage {
 impl MapResponse<Vec<VideoItem>> for response::Trending {
     fn map_response(
         self,
-        _id: &str,
-        lang: crate::param::Language,
-        _deobf: Option<&crate::deobfuscate::DeobfData>,
-        _vdata: Option<&str>,
+        ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<Vec<VideoItem>>, ExtractionError> {
         let items = self
             .contents
@@ -103,7 +99,7 @@ impl MapResponse<Vec<VideoItem>> for response::Trending {
             .section_list_renderer
             .contents;
 
-        let mut mapper = response::YouTubeListMapper::<VideoItem>::new(lang);
+        let mut mapper = response::YouTubeListMapper::<VideoItem>::new(ctx.lang);
         mapper.map_response(items);
 
         Ok(MapResult {
@@ -141,9 +137,8 @@ mod tests {
     use rstest::rstest;
 
     use crate::{
-        client::{response, MapResponse},
+        client::{response, MapRespCtx, MapResponse},
         model::{paginator::Paginator, VideoItem},
-        param::Language,
         serializer::MapResult,
         util::tests::TESTFILES,
     };
@@ -155,9 +150,8 @@ mod tests {
 
         let startpage: response::Startpage =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res: MapResult<Paginator<VideoItem>> = startpage
-            .map_response("", Language::En, None, None)
-            .unwrap();
+        let map_res: MapResult<Paginator<VideoItem>> =
+            startpage.map_response(&MapRespCtx::test("")).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -179,9 +173,8 @@ mod tests {
 
         let startpage: response::Trending =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res: MapResult<Vec<VideoItem>> = startpage
-            .map_response("", Language::En, None, None)
-            .unwrap();
+        let map_res: MapResult<Vec<VideoItem>> =
+            startpage.map_response(&MapRespCtx::test("")).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),

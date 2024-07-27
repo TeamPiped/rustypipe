@@ -5,14 +5,13 @@ use serde::Serialize;
 use crate::{
     error::{Error, ExtractionError},
     model::UrlTarget,
-    param::Language,
     serializer::MapResult,
     util,
 };
 
 use super::{
     response::{self, url_endpoint::NavigationEndpoint},
-    ClientType, MapResponse, RustyPipeQuery, YTContext,
+    ClientType, MapRespCtx, MapResponse, RustyPipeQuery, YTContext,
 };
 
 #[derive(Debug, Serialize)]
@@ -325,13 +324,7 @@ impl RustyPipeQuery {
 }
 
 impl MapResponse<UrlTarget> for response::ResolvedUrl {
-    fn map_response(
-        self,
-        _id: &str,
-        _lang: Language,
-        _deobf: Option<&crate::deobfuscate::DeobfData>,
-        _vdata: Option<&str>,
-    ) -> Result<MapResult<UrlTarget>, ExtractionError> {
+    fn map_response(self, _ctx: &MapRespCtx<'_>) -> Result<MapResult<UrlTarget>, ExtractionError> {
         let pt = self.endpoint.page_type();
         if let NavigationEndpoint::Browse {
             browse_endpoint, ..

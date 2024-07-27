@@ -13,7 +13,7 @@ use crate::{
     util::{self, timeago, TryRemove},
 };
 
-use super::{response, ClientType, MapResponse, MapResult, QBrowse, RustyPipeQuery};
+use super::{response, ClientType, MapRespCtx, MapResponse, MapResult, QBrowse, RustyPipeQuery};
 
 impl RustyPipeQuery {
     /// Get a YouTube playlist
@@ -47,15 +47,9 @@ impl RustyPipeQuery {
 }
 
 impl MapResponse<Playlist> for response::Playlist {
-    fn map_response(
-        self,
-        id: &str,
-        lang: crate::param::Language,
-        _deobf: Option<&crate::deobfuscate::DeobfData>,
-        vdata: Option<&str>,
-    ) -> Result<MapResult<Playlist>, ExtractionError> {
+    fn map_response(self, ctx: &MapRespCtx<'_>) -> Result<MapResult<Playlist>, ExtractionError> {
         let (Some(contents), Some(header)) = (self.contents, self.header) else {
-            return Err(response::alerts_to_err(id, self.alerts));
+            return Err(response::alerts_to_err(ctx.id, self.alerts));
         };
 
         let video_items = contents
@@ -85,7 +79,7 @@ impl MapResponse<Playlist> for response::Playlist {
             .playlist_video_list_renderer
             .contents;
 
-        let mut mapper = response::YouTubeListMapper::<VideoItem>::new(lang);
+        let mut mapper = response::YouTubeListMapper::<VideoItem>::new(ctx.lang);
         mapper.map_response(video_items);
 
         let (description, thumbnails, last_update_txt) = match self.sidebar {
@@ -144,9 +138,10 @@ impl MapResponse<Playlist> for response::Playlist {
         };
 
         let playlist_id = header.playlist_header_renderer.playlist_id;
-        if playlist_id != id {
+        if playlist_id != ctx.id {
             return Err(ExtractionError::WrongResult(format!(
-                "got wrong playlist id {playlist_id}, expected {id}"
+                "got wrong playlist id {}, expected {}",
+                playlist_id, ctx.id
             )));
         }
 
@@ -165,7 +160,7 @@ impl MapResponse<Playlist> for response::Playlist {
             .and_then(|link| ChannelId::try_from(link).ok());
 
         let last_update = last_update_txt.as_ref().and_then(|txt| {
-            timeago::parse_textual_date_or_warn(lang, txt, &mut mapper.warnings)
+            timeago::parse_textual_date_or_warn(ctx.lang, txt, &mut mapper.warnings)
                 .map(OffsetDateTime::date)
         });
 
@@ -177,7 +172,7 @@ impl MapResponse<Playlist> for response::Playlist {
                     Some(n_videos),
                     mapper.items,
                     mapper.ctoken,
-                    vdata.map(str::to_owned),
+                    ctx.visitor_data.map(str::to_owned),
                     ContinuationEndpoint::Browse,
                 ),
                 video_count: n_videos,
@@ -189,7 +184,7 @@ impl MapResponse<Playlist> for response::Playlist {
                 visitor_data: self
                     .response_context
                     .visitor_data
-                    .or_else(|| vdata.map(str::to_owned)),
+                    .or_else(|| ctx.visitor_data.map(str::to_owned)),
             },
             warnings: mapper.warnings,
         })
@@ -203,7 +198,7 @@ mod tests {
     use path_macro::path;
     use rstest::rstest;
 
-    use crate::{param::Language, util::tests::TESTFILES};
+    use crate::util::tests::TESTFILES;
 
     use super::*;
 
@@ -218,7 +213,7 @@ mod tests {
 
         let playlist: response::Playlist =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res = playlist.map_response(id, Language::En, None, None).unwrap();
+        let map_res = playlist.map_response(&MapRespCtx::test(id)).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),

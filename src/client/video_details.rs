@@ -15,7 +15,7 @@ use crate::{
 
 use super::{
     response::{self, video_details::Payload, IconType},
-    ClientType, MapResponse, QContinuation, RustyPipeQuery, YTContext,
+    ClientType, MapRespCtx, MapResponse, QContinuation, RustyPipeQuery, YTContext,
 };
 
 #[derive(Debug, Serialize)]
@@ -89,28 +89,26 @@ impl RustyPipeQuery {
 impl MapResponse<VideoDetails> for response::VideoDetails {
     fn map_response(
         self,
-        id: &str,
-        lang: Language,
-        _deobf: Option<&crate::deobfuscate::DeobfData>,
-        vdata: Option<&str>,
+        ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<VideoDetails>, ExtractionError> {
         let mut warnings = Vec::new();
 
         let contents = self.contents.ok_or_else(|| ExtractionError::NotFound {
-            id: id.to_owned(),
+            id: ctx.id.to_owned(),
             msg: "no content".into(),
         })?;
         let current_video_endpoint =
             self.current_video_endpoint
                 .ok_or_else(|| ExtractionError::NotFound {
-                    id: id.to_owned(),
+                    id: ctx.id.to_owned(),
                     msg: "no current_video_endpoint".into(),
                 })?;
 
         let video_id = current_video_endpoint.watch_endpoint.video_id;
-        if id != video_id {
+        if ctx.id != video_id {
             return Err(ExtractionError::WrongResult(format!(
-                "got wrong video id {video_id}, expected {id}"
+                "got wrong video id {}, expected {}",
+                video_id, ctx.id
             )));
         }
 
@@ -120,7 +118,7 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
             .results
             .contents
             .ok_or_else(|| ExtractionError::NotFound {
-                id: id.into(),
+                id: ctx.id.into(),
                 msg: "no primary_results".into(),
             })?;
         warnings.append(&mut primary_results.warnings);
@@ -189,7 +187,7 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                         // so we ignore parse errors here for now
                         like_text.and_then(|txt| util::parse_numeric(&txt).ok()),
                         date_text.as_deref().and_then(|txt| {
-                            timeago::parse_textual_date_or_warn(lang, txt, &mut warnings)
+                            timeago::parse_textual_date_or_warn(ctx.lang, txt, &mut warnings)
                         }),
                         date_text,
                         view_count
@@ -207,7 +205,7 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
         let comment_count = comment_count_section.and_then(|s| {
             util::parse_large_numstr_or_warn::<u64>(
                 &s.comments_entry_point_header_renderer.comment_count,
-                lang,
+                ctx.lang,
                 &mut warnings,
             )
         });
@@ -275,7 +273,7 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
         let visitor_data = self
             .response_context
             .visitor_data
-            .or_else(|| vdata.map(str::to_owned));
+            .or_else(|| ctx.visitor_data.map(str::to_owned));
         let recommended = contents
             .two_column_watch_next_results
             .secondary_results
@@ -285,7 +283,7 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                         r,
                         sr.secondary_results.continuations,
                         visitor_data.clone(),
-                        lang,
+                        ctx.lang,
                     );
                     warnings.append(&mut res.warnings);
                     res.c
@@ -350,7 +348,7 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                     avatar: owner.thumbnail.into(),
                     verification: owner.badges.into(),
                     subscriber_count: owner.subscriber_count_text.and_then(|txt| {
-                        util::parse_large_numstr_or_warn(&txt, lang, &mut warnings)
+                        util::parse_large_numstr_or_warn(&txt, ctx.lang, &mut warnings)
                     }),
                 },
                 view_count,
@@ -385,10 +383,7 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
 impl MapResponse<Paginator<Comment>> for response::VideoComments {
     fn map_response(
         self,
-        _id: &str,
-        lang: Language,
-        _deobf: Option<&crate::deobfuscate::DeobfData>,
-        _vdata: Option<&str>,
+        ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<Paginator<Comment>>, ExtractionError> {
         let received_endpoints = self.on_response_received_endpoints;
         let mut warnings = Vec::new();
@@ -415,7 +410,7 @@ impl MapResponse<Paginator<Comment>> for response::VideoComments {
                             comment.comment_renderer,
                             Some(thread.replies),
                             thread.rendering_priority,
-                            lang,
+                            ctx.lang,
                             &mut warnings,
                         ));
                     } else if let Some(vm) = thread.comment_view_model {
@@ -424,7 +419,7 @@ impl MapResponse<Paginator<Comment>> for response::VideoComments {
                             &mut mutations,
                             Some(thread.replies),
                             thread.rendering_priority,
-                            lang,
+                            ctx.lang,
                             &mut warnings,
                         ) {
                             comments.push(c);
@@ -440,7 +435,7 @@ impl MapResponse<Paginator<Comment>> for response::VideoComments {
                         comment,
                         None,
                         response::video_details::CommentPriority::RenderingPriorityUnknown,
-                        lang,
+                        ctx.lang,
                         &mut warnings,
                     ));
                 }
@@ -450,7 +445,7 @@ impl MapResponse<Paginator<Comment>> for response::VideoComments {
                         &mut mutations,
                         None,
                         response::video_details::CommentPriority::RenderingPriorityUnknown,
-                        lang,
+                        ctx.lang,
                         &mut warnings,
                     ) {
                         comments.push(c);
@@ -654,8 +649,7 @@ mod tests {
     use rstest::rstest;
 
     use crate::{
-        client::{response, MapResponse},
-        param::Language,
+        client::{response, MapRespCtx, MapResponse},
         util::tests::TESTFILES,
     };
 
@@ -676,7 +670,7 @@ mod tests {
 
         let details: response::VideoDetails =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res = details.map_response(id, Language::En, None, None).unwrap();
+        let map_res = details.map_response(&MapRespCtx::test(id)).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -696,9 +690,7 @@ mod tests {
 
         let details: response::VideoDetails =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let err = details
-            .map_response("", Language::En, None, None)
-            .unwrap_err();
+        let err = details.map_response(&MapRespCtx::test("")).unwrap_err();
         assert!(matches!(
             err,
             crate::error::ExtractionError::NotFound { .. }
@@ -716,7 +708,7 @@ mod tests {
 
         let comments: response::VideoComments =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res = comments.map_response("", Language::En, None, None).unwrap();
+        let map_res = comments.map_response(&MapRespCtx::test("")).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),

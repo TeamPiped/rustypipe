@@ -8,7 +8,6 @@ use crate::{
         paginator::{ContinuationEndpoint, Paginator},
         ArtistId, Lyrics, MusicRelated, TrackDetails, TrackItem,
     },
-    param::Language,
     serializer::MapResult,
 };
 
@@ -17,7 +16,7 @@ use super::{
         self,
         music_item::{map_queue_item, MusicListMapper},
     },
-    ClientType, MapResponse, QBrowse, RustyPipeQuery, YTContext,
+    ClientType, MapRespCtx, MapResponse, QBrowse, RustyPipeQuery, YTContext,
 };
 
 #[derive(Debug, Serialize)]
@@ -170,10 +169,7 @@ impl RustyPipeQuery {
 impl MapResponse<TrackDetails> for response::MusicDetails {
     fn map_response(
         self,
-        id: &str,
-        lang: Language,
-        _deobf: Option<&crate::deobfuscate::DeobfData>,
-        _vdata: Option<&str>,
+        ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<TrackDetails>, ExtractionError> {
         let tabs = self
             .contents
@@ -211,7 +207,7 @@ impl MapResponse<TrackDetails> for response::MusicDetails {
         }
 
         let content = content.ok_or_else(|| ExtractionError::NotFound {
-            id: id.to_owned(),
+            id: ctx.id.to_owned(),
             msg: "no content".into(),
         })?;
         let track_item = content
@@ -225,7 +221,7 @@ impl MapResponse<TrackDetails> for response::MusicDetails {
                 response::music_item::PlaylistPanelVideo::None => None,
             })
             .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no video item")))?;
-        let mut track = map_queue_item(track_item, lang);
+        let mut track = map_queue_item(track_item, ctx.lang);
 
         let mut warnings = content.contents.warnings;
         warnings.append(&mut track.warnings);
@@ -244,10 +240,7 @@ impl MapResponse<TrackDetails> for response::MusicDetails {
 impl MapResponse<Paginator<TrackItem>> for response::MusicDetails {
     fn map_response(
         self,
-        id: &str,
-        lang: Language,
-        _deobf: Option<&crate::deobfuscate::DeobfData>,
-        _vdata: Option<&str>,
+        ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<Paginator<TrackItem>>, ExtractionError> {
         let tabs = self
             .contents
@@ -260,7 +253,7 @@ impl MapResponse<Paginator<TrackItem>> for response::MusicDetails {
             .into_iter()
             .find_map(|t| t.tab_renderer.content)
             .ok_or_else(|| ExtractionError::NotFound {
-                id: id.to_owned(),
+                id: ctx.id.to_owned(),
                 msg: "no content".into(),
             })?
             .music_queue_renderer
@@ -275,7 +268,7 @@ impl MapResponse<Paginator<TrackItem>> for response::MusicDetails {
             .into_iter()
             .filter_map(|item| match item {
                 response::music_item::PlaylistPanelVideo::PlaylistPanelVideoRenderer(item) => {
-                    let mut track = map_queue_item(item, lang);
+                    let mut track = map_queue_item(item, ctx.lang);
                     warnings.append(&mut track.warnings);
                     Some(track.c)
                 }
@@ -297,18 +290,12 @@ impl MapResponse<Paginator<TrackItem>> for response::MusicDetails {
 }
 
 impl MapResponse<Lyrics> for response::MusicLyrics {
-    fn map_response(
-        self,
-        id: &str,
-        _lang: Language,
-        _deobf: Option<&crate::deobfuscate::DeobfData>,
-        _vdata: Option<&str>,
-    ) -> Result<MapResult<Lyrics>, ExtractionError> {
+    fn map_response(self, ctx: &MapRespCtx<'_>) -> Result<MapResult<Lyrics>, ExtractionError> {
         let lyrics = self
             .contents
             .into_res()
             .map_err(|msg| ExtractionError::NotFound {
-                id: id.to_owned(),
+                id: ctx.id.to_owned(),
                 msg: msg.into(),
             })?
             .into_iter()
@@ -328,16 +315,13 @@ impl MapResponse<Lyrics> for response::MusicLyrics {
 impl MapResponse<MusicRelated> for response::MusicRelated {
     fn map_response(
         self,
-        id: &str,
-        lang: Language,
-        _deobf: Option<&crate::deobfuscate::DeobfData>,
-        _vdata: Option<&str>,
+        ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<MusicRelated>, ExtractionError> {
         let contents = self
             .contents
             .into_res()
             .map_err(|msg| ExtractionError::NotFound {
-                id: id.to_owned(),
+                id: ctx.id.to_owned(),
                 msg: msg.into(),
             })?;
 
@@ -362,10 +346,10 @@ impl MapResponse<MusicRelated> for response::MusicRelated {
             _ => None,
         });
 
-        let mut mapper_tracks = MusicListMapper::new(lang);
+        let mut mapper_tracks = MusicListMapper::new(ctx.lang);
         let mut mapper = match artist_id {
-            Some(artist_id) => MusicListMapper::with_artist(lang, artist_id),
-            None => MusicListMapper::new(lang),
+            Some(artist_id) => MusicListMapper::with_artist(ctx.lang, artist_id),
+            None => MusicListMapper::new(ctx.lang),
         };
 
         let mut sections = contents.into_iter();
@@ -412,7 +396,7 @@ mod tests {
     use rstest::rstest;
 
     use super::*;
-    use crate::{model, param::Language, util::tests::TESTFILES};
+    use crate::{model, util::tests::TESTFILES};
 
     #[rstest]
     #[case::mv("mv", "ZeerrnuLi5E")]
@@ -424,7 +408,7 @@ mod tests {
         let details: response::MusicDetails =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res: MapResult<model::TrackDetails> =
-            details.map_response(id, Language::En, None, None).unwrap();
+            details.map_response(&MapRespCtx::test(id)).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -444,7 +428,7 @@ mod tests {
         let radio: response::MusicDetails =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res: MapResult<Paginator<TrackItem>> =
-            radio.map_response(id, Language::En, None, None).unwrap();
+            radio.map_response(&MapRespCtx::test(id)).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -461,7 +445,7 @@ mod tests {
 
         let lyrics: response::MusicLyrics =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res: MapResult<Lyrics> = lyrics.map_response("", Language::En, None, None).unwrap();
+        let map_res: MapResult<Lyrics> = lyrics.map_response(&MapRespCtx::test("")).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
@@ -478,8 +462,7 @@ mod tests {
 
         let lyrics: response::MusicRelated =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res: MapResult<MusicRelated> =
-            lyrics.map_response("", Language::En, None, None).unwrap();
+        let map_res: MapResult<MusicRelated> = lyrics.map_response(&MapRespCtx::test("")).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
