@@ -225,6 +225,7 @@ struct RustyPipeRef {
     n_http_retries: u32,
     cache: CacheHolder,
     default_opts: RustyPipeOpts,
+    user_agent: Cow<'static, str>,
 }
 
 #[derive(Clone)]
@@ -455,8 +456,13 @@ impl RustyPipeBuilder {
 
     /// Create a new, configured RustyPipe instance using a Reqwest client builder.
     pub fn build_with_client(self, mut client_builder: ClientBuilder) -> Result<RustyPipe, Error> {
+        let user_agent = self
+            .user_agent
+            .map(Cow::Owned)
+            .unwrap_or(Cow::Borrowed(DEFAULT_UA));
+
         client_builder = client_builder
-            .user_agent(self.user_agent.unwrap_or_else(|| DEFAULT_UA.to_owned()))
+            .user_agent(user_agent.as_ref())
             .gzip(true)
             .brotli(true)
             .redirect(reqwest::redirect::Policy::none());
@@ -503,6 +509,7 @@ impl RustyPipeBuilder {
                     deobf: RwLock::new(cdata.deobf),
                 },
                 default_opts: self.default_opts,
+                user_agent,
             }),
         })
     }
@@ -708,6 +715,14 @@ impl RustyPipe {
             client: self.clone(),
             opts: self.inner.default_opts.clone(),
         }
+    }
+
+    /// Get the internal HTTP client
+    ///
+    /// Can be used for downloading videos or custom YT requests.
+    #[must_use]
+    pub fn http_client(&self) -> &Client {
+        &self.inner.http
     }
 
     /// Execute the given http request.
@@ -963,7 +978,14 @@ impl RustyPipe {
     /// visitor data is extracted from the html page.
     async fn get_visitor_data(&self) -> Result<String, Error> {
         tracing::debug!("getting YT visitor data");
-        let resp = self.inner.http.get(YOUTUBE_MUSIC_HOME_URL).send().await?;
+        let resp = self
+            .inner
+            .http
+            .get(YOUTUBE_MUSIC_HOME_URL)
+            .header(header::ORIGIN, YOUTUBE_MUSIC_HOME_URL)
+            .header(header::REFERER, YOUTUBE_MUSIC_HOME_URL)
+            .send()
+            .await?;
 
         let vdata = resp
             .headers()
@@ -972,7 +994,10 @@ impl RustyPipe {
             .find_map(|c| {
                 if let Ok(cookie) = c.to_str() {
                     if let Some(after) = cookie.strip_prefix("__Secure-YEC=") {
-                        return after.split_once(';').map(|s| s.0.to_owned());
+                        return after
+                            .split_once(';')
+                            .map(|s| s.0.to_owned())
+                            .filter(|s| !s.is_empty());
                     }
                 }
                 None
@@ -1063,6 +1088,27 @@ impl RustyPipeQuery {
     pub fn visitor_data_opt<S: Into<String>>(mut self, visitor_data: Option<S>) -> Self {
         self.opts.visitor_data = visitor_data.map(S::into);
         self
+    }
+
+    /// Get the user agent for the given client type
+    ///
+    /// This can be used for additional HTTP requests (e.g. downloading/streaming)
+    pub fn user_agent(&self, ctype: ClientType) -> Cow<'_, str> {
+        match ctype {
+            ClientType::Desktop | ClientType::DesktopMusic | ClientType::TvHtml5Embed => {
+                Cow::Borrowed(&self.client.inner.user_agent)
+            }
+            ClientType::Android => format!(
+                "com.google.android.youtube/{} (Linux; U; Android 12; {}) gzip",
+                MOBILE_CLIENT_VERSION, self.opts.country
+            )
+            .into(),
+            ClientType::Ios => format!(
+                "com.google.ios.youtube/{} ({}; U; CPU iOS 15_4 like Mac OS X; {})",
+                MOBILE_CLIENT_VERSION, IOS_DEVICE_MODEL, self.opts.country
+            )
+            .into(),
+        }
     }
 
     /// Create a new context object, which is included in every request to
@@ -1227,13 +1273,6 @@ impl RustyPipeQuery {
                 .post(format!(
                     "{YOUTUBEI_V1_GAPIS_URL}{endpoint}?{DISABLE_PRETTY_PRINT_PARAMETER}"
                 ))
-                .header(
-                    header::USER_AGENT,
-                    format!(
-                        "com.google.android.youtube/{} (Linux; U; Android 12; {}) gzip",
-                        MOBILE_CLIENT_VERSION, self.opts.country
-                    ),
-                )
                 .header("X-Goog-Api-Format-Version", "2"),
             ClientType::Ios => self
                 .client
@@ -1242,15 +1281,9 @@ impl RustyPipeQuery {
                 .post(format!(
                     "{YOUTUBEI_V1_GAPIS_URL}{endpoint}?{DISABLE_PRETTY_PRINT_PARAMETER}"
                 ))
-                .header(
-                    header::USER_AGENT,
-                    format!(
-                        "com.google.ios.youtube/{} ({}; U; CPU iOS 15_4 like Mac OS X; {})",
-                        MOBILE_CLIENT_VERSION, IOS_DEVICE_MODEL, self.opts.country
-                    ),
-                )
                 .header("X-Goog-Api-Format-Version", "2"),
         };
+        r = r.header(header::USER_AGENT, self.user_agent(ctype).as_ref());
         if let Some(vdata) = self.opts.visitor_data.as_deref().or(visitor_data) {
             r = r.header("X-Goog-EOM-Visitor-Id", vdata);
         }
