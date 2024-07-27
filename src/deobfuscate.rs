@@ -181,53 +181,44 @@ fn get_sig_fn(player_js: &str) -> Result<String, DeobfError> {
 }
 
 fn get_nsig_fn_name(player_js: &str) -> Result<String, DeobfError> {
-    static FUNCTION_REGEXES: Lazy<[FancyRegex; 2]> = Lazy::new(|| {
-        [
-            FancyRegex::new(
-                r#"\((?<char>[a-zA-Z0-9$_])=String\.fromCharCode\(110\),[a-zA-Z0-9$_]=[a-zA-Z0-9$_]\.get\(\k<char>\)\)&&\([a-zA-Z0-9$_]=(?<fname>[a-zA-Z0-9$_]+)(?:\[(?<idx>\d+)])?\([a-zA-Z0-9$_]\)"#,
-            )
-            .unwrap(),
-            FancyRegex::new(
-                r#"\.get\("n"\)\)&&\([a-zA-Z0-9$_]=(?<fname>[a-zA-Z0-9$_]+)(?:\[(?<idx>\d+)])?\([a-zA-Z0-9$_]\)"#,
-            )
-            .unwrap(),
-        ]
+    static FUNCTION_NAME_REGEX: Lazy<Regex> = Lazy::new(|| {
+        // x.get( .. y=functionName[array_num](z) .. x.set(
+        Regex::new(r#"\w\.get\(.+\w=(\w{2,})\[(\d+)\]\(\w\).+\w\.set\("#).unwrap()
     });
 
-    let fname_match = FUNCTION_REGEXES
-        .iter()
-        .find_map(|pattern| pattern.captures(player_js).ok().flatten())
+    let fname_match = FUNCTION_NAME_REGEX
+        .captures(player_js)
         .ok_or(DeobfError::Extraction("n_deobf function"))?;
 
-    let function_name = fname_match.name("fname").unwrap().as_str();
+    let function_name = fname_match.get(1).unwrap().as_str();
 
-    match fname_match.name("idx") {
-        Some(idx) => {
-            let array_num = idx
-                .as_str()
-                .parse::<usize>()
-                .or(Err(DeobfError::Other("could not parse array_num")))?;
-            let array_pattern_str =
-                format!(r#"var {}\s*=\s*\[(.+?)]"#, regex::escape(function_name));
-            let array_pattern = Regex::new(&array_pattern_str).or(Err(DeobfError::Other(
-                "could not parse helper pattern regex",
-            )))?;
-
-            let array_str = array_pattern
-                .captures(player_js)
-                .ok_or(DeobfError::Extraction("n_deobf array_str"))?
-                .get(1)
-                .unwrap()
-                .as_str();
-
-            let mut names = array_str.split(',');
-            let name = names
-                .nth(array_num)
-                .ok_or(DeobfError::Extraction("n_deobf function name"))?;
-            Ok(name.to_owned())
-        }
-        None => Ok(function_name.to_owned()),
+    if fname_match.len() == 1 {
+        return Ok(function_name.to_owned());
     }
+
+    let array_num = fname_match
+        .get(2)
+        .unwrap()
+        .as_str()
+        .parse::<usize>()
+        .or(Err(DeobfError::Other("could not parse array_num")))?;
+    let array_pattern_str = format!(r#"var {}\s*=\s*\[(.+?)]"#, regex::escape(function_name));
+    let array_pattern = Regex::new(&array_pattern_str).or(Err(DeobfError::Other(
+        "could not parse helper pattern regex",
+    )))?;
+
+    let array_str = array_pattern
+        .captures(player_js)
+        .ok_or(DeobfError::Extraction("n_deobf array_str"))?
+        .get(1)
+        .unwrap()
+        .as_str();
+
+    let mut names = array_str.split(',');
+    let name = names
+        .nth(array_num)
+        .ok_or(DeobfError::Extraction("n_deobf function name"))?;
+    Ok(name.to_owned())
 }
 
 fn extract_js_fn(js: &str, name: &str) -> Result<String, DeobfError> {
