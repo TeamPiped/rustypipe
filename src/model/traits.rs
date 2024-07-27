@@ -135,6 +135,14 @@ pub trait YtEntity {
     fn id(&self) -> &str;
     /// Name
     fn name(&self) -> &str;
+    /// Channel id
+    ///
+    /// `None` if the entity does not belong to a channel
+    fn channel_id(&self) -> Option<&str>;
+    /// Channel name
+    ///
+    /// `None` if the entity does not belong to a channel
+    fn channel_name(&self) -> Option<&str>;
 }
 
 macro_rules! yt_entity {
@@ -146,6 +154,80 @@ macro_rules! yt_entity {
 
             fn name(&self) -> &str {
                 &self.name
+            }
+
+            fn channel_id(&self) -> Option<&str> {
+                None
+            }
+
+            fn channel_name(&self) -> Option<&str> {
+                None
+            }
+        }
+    };
+}
+
+macro_rules! yt_entity_owner {
+    ($entity_type:ty) => {
+        impl YtEntity for $entity_type {
+            fn id(&self) -> &str {
+                &self.id
+            }
+
+            fn name(&self) -> &str {
+                &self.name
+            }
+
+            fn channel_id(&self) -> Option<&str> {
+                Some(&self.channel.id)
+            }
+
+            fn channel_name(&self) -> Option<&str> {
+                Some(&self.channel.name)
+            }
+        }
+    };
+}
+
+macro_rules! yt_entity_owner_opt {
+    ($entity_type:ty) => {
+        impl YtEntity for $entity_type {
+            fn id(&self) -> &str {
+                &self.id
+            }
+
+            fn name(&self) -> &str {
+                &self.name
+            }
+
+            fn channel_id(&self) -> Option<&str> {
+                self.channel.as_ref().map(|c| c.id.as_str())
+            }
+
+            fn channel_name(&self) -> Option<&str> {
+                self.channel.as_ref().map(|c| c.name.as_str())
+            }
+        }
+    };
+}
+
+macro_rules! yt_entity_owner_music {
+    ($entity_type:ty) => {
+        impl YtEntity for $entity_type {
+            fn id(&self) -> &str {
+                &self.id
+            }
+
+            fn name(&self) -> &str {
+                &self.name
+            }
+
+            fn channel_id(&self) -> Option<&str> {
+                self.artists.first().and_then(|a| a.id.as_deref())
+            }
+
+            fn channel_name(&self) -> Option<&str> {
+                self.artists.first().map(|a| a.name.as_str())
             }
         }
     };
@@ -159,6 +241,14 @@ impl YtEntity for VideoPlayer {
     fn name(&self) -> &str {
         &self.details.name
     }
+
+    fn channel_id(&self) -> Option<&str> {
+        Some(&self.details.channel.id)
+    }
+
+    fn channel_name(&self) -> Option<&str> {
+        Some(&self.details.channel.name)
+    }
 }
 
 impl<T> YtEntity for Channel<T> {
@@ -169,26 +259,34 @@ impl<T> YtEntity for Channel<T> {
     fn name(&self) -> &str {
         &self.name
     }
+
+    fn channel_id(&self) -> Option<&str> {
+        None
+    }
+
+    fn channel_name(&self) -> Option<&str> {
+        None
+    }
 }
 
-yt_entity! {VideoPlayerDetails}
-yt_entity! {Playlist}
+yt_entity_owner! {VideoPlayerDetails}
+yt_entity_owner_opt! {Playlist}
 yt_entity! {ChannelId}
-yt_entity! {VideoDetails}
+yt_entity_owner! {VideoDetails}
 yt_entity! {ChannelTag}
 yt_entity! {ChannelRss}
 yt_entity! {ChannelRssVideo}
-yt_entity! {VideoItem}
+yt_entity_owner_opt! {VideoItem}
 yt_entity! {ChannelItem}
-yt_entity! {PlaylistItem}
+yt_entity_owner_opt! {PlaylistItem}
 yt_entity! {VideoId}
-yt_entity! {TrackItem}
+yt_entity_owner_music! {TrackItem}
 yt_entity! {ArtistItem}
-yt_entity! {AlbumItem}
-yt_entity! {MusicPlaylistItem}
+yt_entity_owner_music! {AlbumItem}
+yt_entity_owner_opt! {MusicPlaylistItem}
 yt_entity! {AlbumId}
-yt_entity! {MusicPlaylist}
-yt_entity! {MusicAlbum}
+yt_entity_owner_opt! {MusicPlaylist}
+yt_entity_owner_music! {MusicAlbum}
 yt_entity! {MusicArtist}
 yt_entity! {MusicGenreItem}
 yt_entity! {MusicGenre}
