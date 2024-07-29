@@ -34,7 +34,7 @@ use tokio::{
     process::Command,
 };
 
-use util::DownloadError;
+pub use util::DownloadError;
 
 type Result<T> = core::result::Result<T, DownloadError>;
 
@@ -64,6 +64,8 @@ pub struct DownloaderBuilder {
 struct DownloaderInner {
     /// YT client
     rp: RustyPipe,
+    /// HTTP client
+    http: Client,
     /// Path to the ffmpeg binary
     ffmpeg: String,
     /// Global progress
@@ -217,7 +219,7 @@ impl DownloaderBuilder {
 
     /// Use a custom [`RustyPipe`] client
     #[must_use]
-    pub fn client(mut self, rp: &RustyPipe) -> Self {
+    pub fn rustypipe(mut self, rp: &RustyPipe) -> Self {
         self.rp = Some(rp.clone());
         self
     }
@@ -277,9 +279,20 @@ impl DownloaderBuilder {
 
     /// Create a new, configured [`Downloader`] instance
     pub fn build(self) -> Downloader {
+        self.build_with_client(
+            Client::builder()
+                .timeout(Duration::from_secs(20))
+                .build()
+                .expect("http client"),
+        )
+    }
+
+    /// Create a new, configured [`Downloader`] instance using a custom Reqwest [`Client`]
+    pub fn build_with_client(self, http_client: Client) -> Downloader {
         Downloader {
             i: Arc::new(DownloaderInner {
                 rp: self.rp.unwrap_or_default(),
+                http: http_client,
                 ffmpeg: self.ffmpeg,
                 multi: self.multi,
                 filter: self.filter,
@@ -300,7 +313,7 @@ impl Default for Downloader {
 impl Downloader {
     /// Create a new [`Downloader`] using the given [`RustyPipe`] instance
     pub fn new(rp: &RustyPipe) -> Self {
-        DownloaderBuilder::new().client(rp).build()
+        DownloaderBuilder::new().rustypipe(rp).build()
     }
 
     /// Create a new [`DownloaderBuilder`]
@@ -442,7 +455,7 @@ impl DownloadQuery {
             let err = match self.download_attempt(&pb, n).await {
                 Ok(res) => return Ok(res),
                 Err(DownloadError::Http(e)) => {
-                    if e.status() != Some(StatusCode::FORBIDDEN) {
+                    if !e.is_timeout() && e.status() != Some(StatusCode::FORBIDDEN) {
                         return Err(DownloadError::Http(e));
                     }
                     DownloadError::Http(e)
@@ -521,7 +534,24 @@ impl DownloadQuery {
             },
         };
 
-        let pv = DownloadVideo::from_video(&player_data);
+        let (name, details) = match &player_data.details.name {
+            Some(n) => (n.to_owned(), None),
+            None => {
+                let details = self.dl.i.rp.query().video_details(&self.video.id).await?;
+                (details.name.to_owned(), Some(details))
+            }
+        };
+
+        let pv = DownloadVideo {
+            id: player_data.details.id.to_owned(),
+            name: Some(name.to_owned()),
+            channel_id: Some(player_data.details.channel_id.to_owned()),
+            channel_name: player_data
+                .details
+                .channel_name
+                .clone()
+                .or(details.map(|d| d.channel.name)),
+        };
         let output_path = self.dest.get_dest_path(&pv).with_extension(extension);
 
         if output_path.exists() {
@@ -551,22 +581,12 @@ impl DownloadQuery {
         }
 
         if let Some(pb) = pb {
-            pb.set_message(format!(
-                "Downloading {}{}",
-                player_data.name(),
-                attempt_suffix
-            ))
+            pb.set_message(format!("Downloading {name}{attempt_suffix}"))
         }
-        download_streams(
-            &downloads,
-            self.dl.i.rp.http_client(),
-            &user_agent,
-            pb.clone(),
-        )
-        .await?;
+        download_streams(&downloads, &self.dl.i.http, &user_agent, pb.clone()).await?;
 
         if let Some(pb) = &pb {
-            pb.set_message(format!("Converting {}", player_data.name()));
+            pb.set_message(format!("Converting {name}"));
             pb.set_style(
                 ProgressStyle::with_template("{msg}\n{spinner:.green} [{elapsed_precise}]")
                     .unwrap(),
@@ -574,13 +594,7 @@ impl DownloadQuery {
             pb.enable_steady_tick(Duration::from_millis(500));
         }
 
-        convert_streams(
-            &downloads,
-            &output_path,
-            &self.dl.i.ffmpeg,
-            player_data.name(),
-        )
-        .await?;
+        convert_streams(&downloads, &output_path, &self.dl.i.ffmpeg, &name).await?;
         if let Some(pb) = pb {
             pb.disable_steady_tick();
         }
@@ -787,6 +801,12 @@ async fn download_chunks_by_header(
             .await?
             .error_for_status()?;
 
+        if res.content_length().unwrap_or_default() == 0 {
+            return Err(DownloadError::Progressive(
+                format!("empty chunk {}-{}", range.start, range.end).into(),
+            ));
+        }
+
         // Content-Range: bytes 0-100/451368980
         let cr_header = res
             .headers()
@@ -859,7 +879,12 @@ async fn download_chunks_by_param(
             .await?
             .error_for_status()?;
 
-        let clen = res.content_length().unwrap();
+        let clen = res.content_length().unwrap_or_default();
+        if clen == 0 {
+            return Err(DownloadError::Progressive(
+                format!("empty chunk {}-{}", range.start, range.end).into(),
+            ));
+        }
 
         tracing::debug!("Retrieving chunks...");
         let mut stream = res.bytes_stream();

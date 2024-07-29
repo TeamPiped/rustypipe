@@ -5,7 +5,7 @@ expression: map_res.c
 VideoPlayer(
   details: VideoPlayerDetails(
     id: "pPvd8UxmSbQ",
-    name: "Inspiring Cinematic Uplifting",
+    name: Some("Inspiring Cinematic Uplifting"),
     description: None,
     duration: 163,
     thumbnail: [
@@ -25,11 +25,9 @@ VideoPlayer(
         height: 480,
       ),
     ],
-    channel: ChannelId(
-      id: "UCbxxEi-ImPlbLx5F-fHetEg",
-      name: "Romansenykmusic",
-    ),
-    view_count: 426583,
+    channel_id: "UCbxxEi-ImPlbLx5F-fHetEg",
+    channel_name: Some("Romansenykmusic"),
+    view_count: Some(426583),
     keywords: [],
     is_live: false,
     is_live_content: false,

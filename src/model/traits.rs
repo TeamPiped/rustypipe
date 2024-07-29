@@ -233,6 +233,7 @@ macro_rules! yt_entity_owner_music {
     };
 }
 
+/*
 impl YtEntity for VideoPlayer {
     fn id(&self) -> &str {
         &self.details.id
@@ -243,13 +244,32 @@ impl YtEntity for VideoPlayer {
     }
 
     fn channel_id(&self) -> Option<&str> {
-        Some(&self.details.channel.id)
+        Some(&self.details.channel_id)
     }
 
     fn channel_name(&self) -> Option<&str> {
-        Some(&self.details.channel.name)
+        self.details.channel_name.as_deref()
     }
 }
+
+impl YtEntity for VideoPlayerDetails {
+    fn id(&self) -> &str {
+        &self.channel_id
+    }
+
+    fn name(&self) -> &str {
+        &self.name
+    }
+
+    fn channel_id(&self) -> Option<&str> {
+        Some(&self.channel_id)
+    }
+
+    fn channel_name(&self) -> Option<&str> {
+        self.channel_name.as_deref()
+    }
+}
+*/
 
 impl<T> YtEntity for Channel<T> {
     fn id(&self) -> &str {
@@ -269,7 +289,6 @@ impl<T> YtEntity for Channel<T> {
     }
 }
 
-yt_entity_owner! {VideoPlayerDetails}
 yt_entity_owner_opt! {Playlist}
 yt_entity! {ChannelId}
 yt_entity_owner! {VideoDetails}

@@ -13,8 +13,8 @@ use crate::{
     deobfuscate::Deobfuscator,
     error::{internal::DeobfError, Error, ExtractionError, UnavailabilityReason},
     model::{
-        traits::QualityOrd, AudioCodec, AudioFormat, AudioStream, AudioTrack, ChannelId, Frameset,
-        Subtitle, VideoCodec, VideoFormat, VideoPlayer, VideoPlayerDetails, VideoStream,
+        traits::QualityOrd, AudioCodec, AudioFormat, AudioStream, AudioTrack, Frameset, Subtitle,
+        VideoCodec, VideoFormat, VideoPlayer, VideoPlayerDetails, VideoStream,
     },
     util,
 };
@@ -265,10 +265,8 @@ impl MapResponse<VideoPlayer> for response::Player {
             description: video_details.short_description,
             duration: video_details.length_seconds,
             thumbnail: video_details.thumbnail.into(),
-            channel: ChannelId {
-                id: video_details.channel_id,
-                name: video_details.author,
-            },
+            channel_id: video_details.channel_id,
+            channel_name: video_details.author,
             view_count: video_details.view_count,
             keywords: video_details.keywords,
             is_live,
@@ -737,6 +735,7 @@ mod tests {
     #[rstest]
     #[case::desktop(ClientType::Desktop)]
     #[case::desktop_music(ClientType::DesktopMusic)]
+    #[case::tv(ClientType::Tv)]
     #[case::tv_html5_embed(ClientType::TvHtml5Embed)]
     #[case::android(ClientType::Android)]
     #[case::ios(ClientType::Ios)]

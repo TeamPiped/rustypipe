@@ -156,7 +156,7 @@ pub struct VideoPlayerDetails {
     /// Unique YouTube video ID
     pub id: String,
     /// Video title
-    pub name: String,
+    pub name: Option<String>,
     /// Video description in plaintext format
     pub description: Option<String>,
     /// Video duration in seconds
@@ -165,10 +165,12 @@ pub struct VideoPlayerDetails {
     pub duration: u32,
     /// Video thumbnail
     pub thumbnail: Vec<Thumbnail>,
-    /// Channel of the video
-    pub channel: ChannelId,
+    /// Channel ID of the video
+    pub channel_id: String,
+    /// Channel name of the video
+    pub channel_name: Option<String>,
     /// Number of views / current viewers in case of a livestream.
-    pub view_count: u64,
+    pub view_count: Option<u64>,
     /// List of words that describe the topic of the video
     pub keywords: Vec<String>,
     /// True if the video is an active livestream

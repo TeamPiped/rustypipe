@@ -1,6 +1,6 @@
 #![warn(clippy::todo, clippy::dbg_macro)]
 
-use std::{path::PathBuf, str::FromStr};
+use std::{path::PathBuf, str::FromStr, time::Duration};
 
 use clap::{Parser, Subcommand, ValueEnum};
 use futures::stream::{self, StreamExt};
@@ -10,7 +10,7 @@ use rustypipe::{
     model::{UrlTarget, VideoId, YouTubeItem},
     param::{search_filter, ChannelVideoTab, Country, Language, StreamFilter},
 };
-use rustypipe_downloader::{DownloadQuery, DownloaderBuilder};
+use rustypipe_downloader::{DownloadError, DownloadQuery, DownloaderBuilder};
 use serde::Serialize;
 use tracing::level_filters::LevelFilter;
 use tracing_subscriber::{fmt::MakeWriter, EnvFilter};
@@ -236,6 +236,7 @@ enum MusicSearchCategory {
 enum PlayerType {
     Desktop,
     Tv,
+    TvEmbed,
     Android,
     Ios,
 }
@@ -286,7 +287,8 @@ impl From<PlayerType> for ClientType {
     fn from(value: PlayerType) -> Self {
         match value {
             PlayerType::Desktop => Self::Desktop,
-            PlayerType::Tv => Self::TvHtml5Embed,
+            PlayerType::TvEmbed => Self::TvHtml5Embed,
+            PlayerType::Tv => Self::Tv,
             PlayerType::Android => Self::Android,
             PlayerType::Ios => Self::Ios,
         }
@@ -324,7 +326,7 @@ async fn download_video(
         }
     }
     let dl = DownloaderBuilder::new()
-        .client(rp)
+        .rustypipe(rp)
         .stream_filter(filter)
         .progress_bar(multi)
         .build();
@@ -356,7 +358,7 @@ async fn download_videos(
         }
     }
     let dl = DownloaderBuilder::new()
-        .client(rp)
+        .rustypipe(rp)
         .stream_filter(filter)
         .progress_bar(multi.clone())
         .path_precheck()
@@ -388,10 +390,11 @@ async fn download_videos(
 
             async move {
                 if let Err(e) = q.download().await {
-                    tracing::error!("[{id}]: {e}");
-                } else {
-                    main.inc(1);
+                    if !matches!(e, DownloadError::Exists(_)) {
+                        tracing::error!("[{id}]: {e}");
+                    }
                 }
+                main.inc(1);
             }
         })
         .await;
@@ -433,7 +436,9 @@ async fn main() {
         .with_writer(ProgWriter(multi.clone()))
         .init();
 
-    let mut rp = RustyPipe::builder().visitor_data_opt(cli.vdata);
+    let mut rp = RustyPipe::builder()
+        .visitor_data_opt(cli.vdata)
+        .timeout(Duration::from_secs(15));
     if cli.report {
         rp = rp.report();
     } else {

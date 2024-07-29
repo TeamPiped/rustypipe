@@ -26,6 +26,7 @@ use rustypipe::validate;
 
 #[rstest]
 #[case::desktop(ClientType::Desktop)]
+#[case::tv(ClientType::Tv)]
 #[case::tv_html5_embed(ClientType::TvHtml5Embed)]
 #[case::android(ClientType::Android)]
 #[case::ios(ClientType::Ios)]
@@ -40,13 +41,26 @@ async fn get_player_from_client(#[case] client_type: ClientType, rp: RustyPipe) 
     // dbg!(&player_data);
 
     assert_eq!(player_data.details.id, "n4tK7LYFxI0");
-    assert_eq!(
-        player_data.details.name,
-        "Spektrem - Shine | Progressive House | NCS - Copyright Free Music"
-    );
-    if client_type == ClientType::DesktopMusic {
-        assert!(player_data.details.description.is_none());
-    } else {
+    assert_eq!(player_data.details.duration, 259);
+    assert!(!player_data.details.thumbnail.is_empty());
+    assert_eq!(player_data.details.channel_id, "UC_aEa8K-EOJ3D6gOs7HcyNg");
+    assert!(!player_data.details.is_live_content);
+
+    // The TV client dows not output most video metadata
+    if client_type != ClientType::Tv {
+        assert_eq!(
+            player_data.details.name.expect("name"),
+            "Spektrem - Shine | Progressive House | NCS - Copyright Free Music"
+        );
+        assert_eq!(
+            player_data.details.channel_name.expect("channel name"),
+            "NoCopyrightSounds"
+        );
+        assert_gte(
+            player_data.details.view_count.expect("view count"),
+            146_818_808,
+            "view count",
+        );
         assert!(player_data
             .details
             .description
@@ -54,15 +68,10 @@ async fn get_player_from_client(#[case] client_type: ClientType, rp: RustyPipe) 
             .contains(
             "NCS (NoCopyrightSounds): Empowering Creators through Copyright / Royalty Free Music"
         ));
+        assert_eq!(player_data.details.keywords[0], "spektrem");
     }
-    assert_eq!(player_data.details.duration, 259);
-    assert!(!player_data.details.thumbnail.is_empty());
-    assert_eq!(player_data.details.channel.id, "UC_aEa8K-EOJ3D6gOs7HcyNg");
-    assert_eq!(player_data.details.channel.name, "NoCopyrightSounds");
-    assert_gte(player_data.details.view_count, 146_818_808, "view count");
-    assert_eq!(player_data.details.keywords[0], "spektrem");
-    assert!(!player_data.details.is_live_content);
 
+    // Ios uses different A/V formats
     if client_type == ClientType::Ios {
         let video = player_data
             .video_only_streams
@@ -237,13 +246,13 @@ async fn get_player(
     let details = player_data.details;
 
     assert_eq!(details.id, id);
-    assert_eq!(details.name, name);
+    assert_eq!(details.name.expect("name"), name);
     let desc = details.description.expect("description");
     assert!(desc.contains(description), "description: {desc}");
     assert_eq!(details.duration, duration);
-    assert_eq!(details.channel.id, channel_id);
-    assert_eq!(details.channel.name, channel_name);
-    assert_gte(details.view_count, views, "views");
+    assert_eq!(details.channel_id, channel_id);
+    assert_eq!(details.channel_name.expect("channel name"), channel_name);
+    assert_gte(details.view_count.expect("view count"), views, "views");
     assert_eq!(details.is_live, is_live);
     assert_eq!(details.is_live_content, is_live_content);
 

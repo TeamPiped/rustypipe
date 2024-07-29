@@ -61,6 +61,8 @@ pub enum ClientType {
     ///
     /// can access age-restricted videos, cannot access non-embeddable videos
     TvHtml5Embed,
+    /// Client used by youtube.com/tv
+    Tv,
     /// Client used by the Android app
     ///
     /// no obfuscated stream URLs, includes lower resolution audio streams
@@ -74,7 +76,10 @@ pub enum ClientType {
 impl ClientType {
     fn is_web(self) -> bool {
         match self {
-            ClientType::Desktop | ClientType::DesktopMusic | ClientType::TvHtml5Embed => true,
+            ClientType::Desktop
+            | ClientType::DesktopMusic
+            | ClientType::TvHtml5Embed
+            | ClientType::Tv => true,
             ClientType::Android | ClientType::Ios => false,
         }
     }
@@ -183,6 +188,7 @@ struct QContinuation<'a> {
 }
 
 const DEFAULT_UA: &str = "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0";
+const TV_UA: &str = "Mozilla/5.0 (SMART-TV; Linux; Tizen 5.0) AppleWebKit/538.1 (KHTML, like Gecko) Version/5.0 NativeTVAds Safari/538.1";
 
 const CONSENT_COOKIE: &str = "SOCS=CAISAiAD";
 
@@ -191,12 +197,14 @@ const YOUTUBEI_V1_GAPIS_URL: &str = "https://youtubei.googleapis.com/youtubei/v1
 const YOUTUBE_MUSIC_V1_URL: &str = "https://music.youtube.com/youtubei/v1/";
 const YOUTUBE_HOME_URL: &str = "https://www.youtube.com/";
 const YOUTUBE_MUSIC_HOME_URL: &str = "https://music.youtube.com/";
+const YOUTUBE_TV_URL: &str = "https://www.youtube.com/tv";
 
 const DISABLE_PRETTY_PRINT_PARAMETER: &str = "prettyPrint=false";
 
 // Desktop client
 const DESKTOP_CLIENT_VERSION: &str = "2.20230126.00.00";
 const TVHTML5_CLIENT_VERSION: &str = "2.0";
+const TV_CLIENT_VERSION: &str = "7.20240724.13.00";
 const DESKTOP_MUSIC_CLIENT_VERSION: &str = "1.20230123.01.01";
 
 // Mobile client
@@ -454,7 +462,7 @@ impl RustyPipeBuilder {
         self.build_with_client(ClientBuilder::new())
     }
 
-    /// Create a new, configured RustyPipe instance using a Reqwest client builder.
+    /// Create a new, configured RustyPipe instance using a Reqwest [`ClientBuilder`].
     pub fn build_with_client(self, mut client_builder: ClientBuilder) -> Result<RustyPipe, Error> {
         let user_agent = self
             .user_agent
@@ -717,31 +725,33 @@ impl RustyPipe {
         }
     }
 
-    /// Get the internal HTTP client
-    ///
-    /// Can be used for downloading videos or custom YT requests.
-    #[must_use]
-    pub fn http_client(&self) -> &Client {
-        &self.inner.http
-    }
-
     /// Execute the given http request.
     async fn http_request(&self, request: &Request) -> Result<Response, reqwest::Error> {
         let mut last_resp = None;
         for n in 0..=self.inner.n_http_retries {
-            let resp = self
-                .inner
-                .http
-                .execute(request.try_clone().unwrap())
-                .await?;
+            let resp = self.inner.http.execute(request.try_clone().unwrap()).await;
 
-            let status = resp.status();
-            // Immediately return in case of success or unrecoverable status code
-            if status.is_success()
-                || (!status.is_server_error() && status != StatusCode::TOO_MANY_REQUESTS)
-            {
-                return Ok(resp);
-            }
+            let err = match resp {
+                Ok(resp) => {
+                    let status = resp.status();
+                    // Immediately return in case of success or unrecoverable status code
+                    if status.is_success()
+                        || (!status.is_server_error() && status != StatusCode::TOO_MANY_REQUESTS)
+                    {
+                        return Ok(resp);
+                    }
+                    last_resp = Some(Ok(resp));
+                    status.to_string()
+                }
+                Err(e) => {
+                    // Retry in case of a timeout error
+                    if !e.is_timeout() {
+                        return Err(e);
+                    }
+                    last_resp = Some(Err(e));
+                    "timeout".to_string()
+                }
+            };
 
             // Retry in case of a recoverable status code (server err, too many requests)
             if n != self.inner.n_http_retries {
@@ -749,15 +759,13 @@ impl RustyPipe {
                 tracing::warn!(
                     "Retry attempt #{}. Error: {}. Waiting {} ms",
                     n + 1,
-                    status,
+                    err,
                     ms
                 );
                 tokio::time::sleep(Duration::from_millis(ms.into())).await;
             }
-
-            last_resp = Some(resp);
         }
-        Ok(last_resp.unwrap())
+        last_resp.unwrap()
     }
 
     /// Execute the given http request, returning an error in case of a
@@ -1098,6 +1106,7 @@ impl RustyPipeQuery {
             ClientType::Desktop | ClientType::DesktopMusic | ClientType::TvHtml5Embed => {
                 Cow::Borrowed(&self.client.inner.user_agent)
             }
+            ClientType::Tv => TV_UA.into(),
             ClientType::Android => format!(
                 "com.google.android.youtube/{} (Linux; U; Android 12; {}) gzip",
                 MOBILE_CLIENT_VERSION, self.opts.country
@@ -1176,6 +1185,24 @@ impl RustyPipeQuery {
                 user: User::default(),
                 third_party: Some(ThirdParty {
                     embed_url: YOUTUBE_HOME_URL,
+                }),
+            },
+            ClientType::Tv => YTContext {
+                client: ClientInfo {
+                    client_name: "TVHTML5",
+                    client_version: Cow::Borrowed(TV_CLIENT_VERSION),
+                    client_screen: Some("WATCH"),
+                    platform: "TV",
+                    device_model: Some("SmartTV"),
+                    visitor_data,
+                    hl,
+                    gl,
+                    ..Default::default()
+                },
+                request: Some(RequestYT::default()),
+                user: User::default(),
+                third_party: Some(ThirdParty {
+                    embed_url: YOUTUBE_TV_URL,
                 }),
             },
             ClientType::Android => YTContext {
@@ -1266,6 +1293,17 @@ impl RustyPipeQuery {
                 .header(header::REFERER, YOUTUBE_HOME_URL)
                 .header("X-YouTube-Client-Name", "1")
                 .header("X-YouTube-Client-Version", TVHTML5_CLIENT_VERSION),
+            ClientType::Tv => self
+                .client
+                .inner
+                .http
+                .post(format!(
+                    "{YOUTUBEI_V1_URL}{endpoint}?{DISABLE_PRETTY_PRINT_PARAMETER}"
+                ))
+                .header(header::ORIGIN, YOUTUBE_HOME_URL)
+                .header(header::REFERER, YOUTUBE_TV_URL)
+                .header("X-YouTube-Client-Name", "7")
+                .header("X-YouTube-Client-Version", TV_CLIENT_VERSION),
             ClientType::Android => self
                 .client
                 .inner

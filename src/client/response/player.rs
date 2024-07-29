@@ -236,7 +236,7 @@ pub(crate) struct CaptionTrack {
 #[serde(rename_all = "camelCase")]
 pub(crate) struct VideoDetails {
     pub video_id: String,
-    pub title: String,
+    pub title: Option<String>,
     #[serde_as(as = "DisplayFromStr")]
     pub length_seconds: u32,
     #[serde(default)]
@@ -245,9 +245,9 @@ pub(crate) struct VideoDetails {
     pub short_description: Option<String>,
     #[serde(default)]
     pub thumbnail: Thumbnails,
-    #[serde_as(as = "DisplayFromStr")]
-    pub view_count: u64,
-    pub author: String,
+    #[serde_as(as = "Option<DisplayFromStr>")]
+    pub view_count: Option<u64>,
+    pub author: Option<String>,
     pub is_live_content: bool,
 }
 
