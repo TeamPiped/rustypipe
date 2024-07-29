@@ -64,33 +64,52 @@ struct QContentPlaybackContext<'a> {
 
 impl RustyPipeQuery {
     /// Get YouTube player data (video/audio streams + basic metadata)
-    #[tracing::instrument(skip(self))]
     pub async fn player<S: AsRef<str> + Debug>(&self, video_id: S) -> Result<VideoPlayer, Error> {
+        self.player_from_clients(video_id, &[ClientType::Desktop, ClientType::TvHtml5Embed])
+            .await
+    }
+
+    /// Get YouTube player data (video/audio streams + basic metadata) using a list of clients.
+    ///
+    /// The clients are used in the given order. If a client cannot fetch the requested video,
+    /// an attempt is made with the next one.
+    pub async fn player_from_clients<S: AsRef<str> + Debug>(
+        &self,
+        video_id: S,
+        clients: &[ClientType],
+    ) -> Result<VideoPlayer, Error> {
         let video_id = video_id.as_ref();
-        let desktop_res = self.player_from_client(video_id, ClientType::Desktop).await;
+        let mut last_e = Error::Other("no clients".into());
+        // Prefer to output age restriction error (e.g. if video cannot be played
+        // by Desktop because of age restriction and by TvHtml5Embed because it is non-embeddable)
+        let mut age_restricted_e = None;
 
-        match desktop_res {
-            Ok(res) => Ok(res),
-            Err(Error::Extraction(e)) => {
-                if e.switch_client() {
-                    let tv_res = self
-                        .player_from_client(video_id, ClientType::TvHtml5Embed)
-                        .await;
-
-                    match tv_res {
-                        // Output desktop client error if the tv client is unsupported
-                        Err(Error::Extraction(ExtractionError::Unavailable {
-                            reason: UnavailabilityReason::UnsupportedClient,
-                            ..
-                        })) => Err(Error::Extraction(e)),
-                        _ => tv_res,
+        for client in clients {
+            let res = self.player_from_client(video_id, *client).await;
+            match res {
+                Ok(res) => return Ok(res),
+                Err(Error::Extraction(e)) => {
+                    if e.switch_client() {
+                        if let ExtractionError::Unavailable {
+                            reason: UnavailabilityReason::AgeRestricted,
+                            msg,
+                        } = &e
+                        {
+                            age_restricted_e =
+                                Some(Error::Extraction(ExtractionError::Unavailable {
+                                    reason: UnavailabilityReason::AgeRestricted,
+                                    msg: msg.to_owned(),
+                                }));
+                        }
+                        last_e = Error::Extraction(e);
+                    } else {
+                        return Err(Error::Extraction(e));
                     }
-                } else {
-                    Err(Error::Extraction(e))
                 }
+                Err(e) => return Err(e),
             }
-            Err(e) => Err(e),
         }
+        Err(age_restricted_e.unwrap_or(last_e))
     }
 
     /// Get YouTube player data (video/audio streams + basic metadata) using the specified client
