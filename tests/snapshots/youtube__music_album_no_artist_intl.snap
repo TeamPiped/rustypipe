@@ -201,11 +201,11 @@ MusicAlbum(
       cover: [],
       artists: [
         ArtistId(
-          id: Some("UCxByvsK9hDZk2MnnF9jsFGw"),
+          id: Some("UCzXI_RZ1Uqy8L8TiurTFTIg"),
           name: "[name]",
         ),
       ],
-      artist_id: Some("UCxByvsK9hDZk2MnnF9jsFGw"),
+      artist_id: Some("UCzXI_RZ1Uqy8L8TiurTFTIg"),
       album: Some(AlbumId(
         id: "MPREb_Z81wHtF9fhC",
         name: "[name]",

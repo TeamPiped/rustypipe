@@ -1264,7 +1264,11 @@ mod channel_rss {
 #[rstest]
 #[tokio::test]
 async fn search(rp: RustyPipe, unlocalized: bool) {
-    let result = rp.query().search::<YouTubeItem, _>("testt").await.unwrap();
+    let result = rp
+        .query()
+        .search::<YouTubeItem, _>("arudino")
+        .await
+        .unwrap();
 
     assert_gteo(
         result.items.count,
@@ -1273,7 +1277,7 @@ async fn search(rp: RustyPipe, unlocalized: bool) {
     );
 
     if unlocalized {
-        assert_eq!(result.corrected_query.as_deref(), Some("test"));
+        assert_eq!(result.corrected_query.as_deref(), Some("arduino"));
     }
 
     assert_next(result.items, rp.query(), 10, 2, true).await;
