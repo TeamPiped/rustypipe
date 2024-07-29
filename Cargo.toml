@@ -70,6 +70,7 @@ rstest = "0.21.0"
 tokio-test = "0.4.2"
 insta = { version = "1.17.1", features = ["ron", "redactions"] }
 path_macro = "1.0.0"
+tracing-test = "0.2.5"
 
 # Included crates
 rustypipe = { path = ".", version = "0.2.0", default-features = false }
@@ -115,3 +116,4 @@ rstest.workspace = true
 tokio-test.workspace = true
 insta.workspace = true
 path_macro.workspace = true
+tracing-test.workspace = true

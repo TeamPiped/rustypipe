@@ -84,28 +84,19 @@ impl Deobfuscator {
 
     /// Deobfuscate the `s` parameter from the `signature_cipher` field
     pub fn deobfuscate_sig(&self, sig: &str) -> Result<String, DeobfError> {
-        let res = self.ctx.call_function(DEOBF_SIG_FUNC_NAME, vec![sig])?;
+        let res = self.ctx.call_function(DEOBF_SIG_FUNC_NAME, [sig])?;
 
-        res.as_str().map_or(
-            Err(DeobfError::Other("sig deobfuscation func returned null")),
-            |res| {
-                tracing::debug!("deobfuscated sig");
-                Ok(res.to_owned())
-            },
-        )
+        res.into_string()
+            .ok_or(DeobfError::Other("sig deobfuscation fn returned no string"))
     }
 
     /// Deobfuscate the `n` stream URL parameter to circumvent throttling
     pub fn deobfuscate_nsig(&self, nsig: &str) -> Result<String, DeobfError> {
-        let res = self.ctx.call_function(DEOBF_NSIG_FUNC_NAME, vec![nsig])?;
+        let res = self.ctx.call_function(DEOBF_NSIG_FUNC_NAME, [nsig])?;
 
-        res.as_str().map_or(
-            Err(DeobfError::Other("nsig deobfuscation func returned null")),
-            |res| {
-                tracing::debug!("deobfuscated nsig");
-                Ok(res.to_owned())
-            },
-        )
+        res.into_string().ok_or(DeobfError::Other(
+            "nsig deobfuscation fn returned no string",
+        ))
     }
 }
 
@@ -144,12 +135,9 @@ fn get_sig_fn(player_js: &str) -> Result<String, DeobfError> {
 
     let deobfuscate_function = format!(
         "var {};",
-        function_pattern
+        &function_pattern
             .captures(player_js)
-            .ok_or(DeobfError::Extraction("deobf function"))?
-            .get(1)
-            .unwrap()
-            .as_str()
+            .ok_or(DeobfError::Extraction("deobf function"))?[1]
     );
 
     static HELPER_OBJECT_NAME_REGEX: Lazy<Regex> =
@@ -168,57 +156,37 @@ fn get_sig_fn(player_js: &str) -> Result<String, DeobfError> {
     let helper_pattern = Regex::new(&helper_pattern_str)
         .map_err(|_| DeobfError::Other("could not parse helper pattern regex"))?;
     let player_js_nonl = player_js.replace('\n', "");
-    let helper_object = helper_pattern
+    let helper_object = &helper_pattern
         .captures(&player_js_nonl)
-        .ok_or(DeobfError::Extraction("helper object"))?
-        .get(1)
-        .unwrap()
-        .as_str();
+        .ok_or(DeobfError::Extraction("helper object"))?[1];
 
-    Ok(helper_object.to_owned()
+    let js_fn = helper_object.to_owned()
         + &deobfuscate_function
-        + &caller_function(DEOBF_SIG_FUNC_NAME, &dfunc_name))
+        + &caller_function(DEOBF_SIG_FUNC_NAME, &dfunc_name);
+    verify_fn(&js_fn, DEOBF_SIG_FUNC_NAME)?;
+
+    Ok(js_fn)
 }
 
-fn get_nsig_fn_name(player_js: &str) -> Result<String, DeobfError> {
+fn get_nsig_fn_names(player_js: &str) -> impl Iterator<Item = String> + '_ {
     static FUNCTION_NAME_REGEX: Lazy<Regex> = Lazy::new(|| {
         // x.get( .. y=functionName[array_num](z) .. x.set(
         Regex::new(r#"\w\.get\(.+\w=(\w{2,})\[(\d+)\]\(\w\).+\w\.set\("#).unwrap()
     });
 
-    let fname_match = FUNCTION_NAME_REGEX
-        .captures(player_js)
-        .ok_or(DeobfError::Extraction("n_deobf function"))?;
+    FUNCTION_NAME_REGEX
+        .captures_iter(player_js)
+        .filter_map(|fname_match| {
+            let function_name = &fname_match[1];
 
-    let function_name = fname_match.get(1).unwrap().as_str();
+            let array_num = fname_match[2].parse::<usize>().ok()?;
+            let array_pattern_str =
+                format!(r#"var {}\s*=\s*\[(.+?)]"#, regex::escape(function_name));
+            let array_pattern = Regex::new(&array_pattern_str).ok()?;
 
-    if fname_match.len() == 1 {
-        return Ok(function_name.to_owned());
-    }
-
-    let array_num = fname_match
-        .get(2)
-        .unwrap()
-        .as_str()
-        .parse::<usize>()
-        .or(Err(DeobfError::Other("could not parse array_num")))?;
-    let array_pattern_str = format!(r#"var {}\s*=\s*\[(.+?)]"#, regex::escape(function_name));
-    let array_pattern = Regex::new(&array_pattern_str).or(Err(DeobfError::Other(
-        "could not parse helper pattern regex",
-    )))?;
-
-    let array_str = array_pattern
-        .captures(player_js)
-        .ok_or(DeobfError::Extraction("n_deobf array_str"))?
-        .get(1)
-        .unwrap()
-        .as_str();
-
-    let mut names = array_str.split(',');
-    let name = names
-        .nth(array_num)
-        .ok_or(DeobfError::Extraction("n_deobf function name"))?;
-    Ok(name.to_owned())
+            let array_str = &array_pattern.captures(player_js)?[1];
+            array_str.split(',').nth(array_num).map(str::to_owned)
+        })
 }
 
 fn extract_js_fn(js: &str, name: &str) -> Result<String, DeobfError> {
@@ -273,13 +241,44 @@ fn extract_js_fn(js: &str, name: &str) -> Result<String, DeobfError> {
     Ok(js[start..end].to_owned())
 }
 
-fn get_nsig_fn(player_js: &str) -> Result<String, DeobfError> {
-    let function_name = get_nsig_fn_name(player_js)?;
-    let function_base = function_name.clone() + "=function";
-    let offset = player_js.find(&function_base).unwrap_or_default();
+/// Verify if the deobfuscation function successfully processes a random input string
+fn verify_fn(js_fn: &str, fn_name: &str) -> Result<(), DeobfError> {
+    let ctx = quick_js::Context::new().or(Err(DeobfError::Other("could not create QuickJS rt")))?;
+    ctx.eval(js_fn)?;
+    let res = ctx
+        .call_function(fn_name, [util::generate_content_playback_nonce()])?
+        .into_string()
+        .ok_or(DeobfError::Other("deobfuscation fn returned no string"))?;
+    if res.is_empty() {
+        return Err(DeobfError::Other("deobfuscation fn returned empty string"));
+    }
+    Ok(())
+}
 
-    extract_js_fn(&player_js[offset..], &function_name)
-        .map(|s| s + ";" + &caller_function(DEOBF_NSIG_FUNC_NAME, &function_name))
+fn get_nsig_fn(player_js: &str) -> Result<String, DeobfError> {
+    let extract_fn = |name: &str| -> Result<String, DeobfError> {
+        let function_base = format!("{name}=function");
+        let offset = player_js
+            .find(&function_base)
+            .ok_or(DeobfError::Extraction("could not find function base"))?;
+
+        let js_fn = extract_js_fn(&player_js[offset..], name)
+            .map(|s| s + ";" + &caller_function(DEOBF_NSIG_FUNC_NAME, name))?;
+        verify_fn(&js_fn, DEOBF_NSIG_FUNC_NAME)?;
+        tracing::info!("Successfully extracted nsig fn `{name}`");
+        Ok(js_fn)
+    };
+
+    util::find_map_or_last_err(
+        get_nsig_fn_names(player_js),
+        DeobfError::Extraction("no nsig fn name found"),
+        |name| {
+            extract_fn(&name).map_err(|e| {
+                tracing::warn!("Failed to extract nsig fn `{name}`: {e}");
+                e
+            })
+        },
+    )
 }
 
 async fn get_player_js_url(http: &Client) -> Result<String, Error> {
@@ -293,12 +292,9 @@ async fn get_player_js_url(http: &Client) -> Result<String, Error> {
     static PLAYER_HASH_PATTERN: Lazy<Regex> = Lazy::new(|| {
         Regex::new(r"https:\\/\\/www\.youtube\.com\\/s\\/player\\/([a-z0-9]{8})\\/").unwrap()
     });
-    let player_hash = PLAYER_HASH_PATTERN
+    let player_hash = &PLAYER_HASH_PATTERN
         .captures(&text)
-        .ok_or(DeobfError::Extraction("player hash"))?
-        .get(1)
-        .unwrap()
-        .as_str();
+        .ok_or(DeobfError::Extraction("player hash"))?[1];
 
     Ok(format!(
         "https://www.youtube.com/s/player/{player_hash}/player_ias.vflset/en_US/base.js"
@@ -316,10 +312,7 @@ fn get_sts(player_js: &str) -> Result<String, DeobfError> {
 
     Ok(STS_PATTERN
         .captures(player_js)
-        .ok_or(DeobfError::Extraction("sts"))?
-        .get(1)
-        .unwrap()
-        .as_str()
+        .ok_or(DeobfError::Extraction("sts"))?[1]
         .to_owned())
 }
 
@@ -329,6 +322,7 @@ mod tests {
     use crate::util::tests::TESTFILES;
     use path_macro::path;
     use rstest::{fixture, rstest};
+    use tracing_test::traced_test;
 
     static TEST_JS: Lazy<String> = Lazy::new(|| {
         let js_path = path!(*TESTFILES / "deobf" / "dummy_player.js");
@@ -380,9 +374,9 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
     }
 
     #[test]
-    fn t_get_nsig_fn_name() {
-        let name = get_nsig_fn_name(&TEST_JS).unwrap();
-        assert_eq!(name, "Vo");
+    fn t_get_nsig_fn_names() {
+        let names = get_nsig_fn_names(&TEST_JS).collect::<Vec<_>>();
+        assert_eq!(names, ["Vo"]);
     }
 
     #[test]
@@ -433,14 +427,15 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
     }
 
     #[tokio::test]
+    #[traced_test]
     async fn t_update() {
         let client = Client::new();
         let deobf_data = DeobfData::extract(client, None).await.unwrap();
         let deobf = Deobfuscator::new(&deobf_data).unwrap();
 
         let deobf_sig = deobf.deobfuscate_sig("GOqGOqGOq0QJ8wRAIgaryQHfplJ9xJSKFywyaSMHuuwZYsoMTAvRvfm51qIGECIA5061zWeyfMPX9hEl_U6f9J0tr7GTJMKyPf5XNrJb5fb5i").unwrap();
-        println!("{deobf_sig}");
+        assert!(deobf_sig.len() >= 100);
         let deobf_nsig = deobf.deobfuscate_nsig("WHbZ-Nj2TSJxder").unwrap();
-        println!("{deobf_nsig}");
+        assert!(deobf_nsig.len() >= 10);
     }
 }

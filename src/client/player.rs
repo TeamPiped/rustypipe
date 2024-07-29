@@ -20,7 +20,10 @@ use crate::{
 };
 
 use super::{
-    response::{self, player},
+    response::{
+        self,
+        player::{self, Format},
+    },
     ClientType, MapRespCtx, MapResponse, MapResult, RustyPipeQuery, YTContext,
 };
 
@@ -150,7 +153,6 @@ impl MapResponse<VideoPlayer> for response::Player {
         self,
         ctx: &MapRespCtx<'_>,
     ) -> Result<super::MapResult<VideoPlayer>, ExtractionError> {
-        let deobf = Deobfuscator::new(ctx.deobf.unwrap())?;
         let mut warnings = vec![];
 
         // Check playability status
@@ -220,7 +222,7 @@ impl MapResponse<VideoPlayer> for response::Player {
             }
         };
 
-        let mut streaming_data =
+        let streaming_data =
             self.streaming_data
                 .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
                     "no streaming data",
@@ -254,47 +256,16 @@ impl MapResponse<VideoPlayer> for response::Player {
             is_live_content: video_details.is_live_content,
         };
 
-        let mut formats = streaming_data.formats.c;
-        formats.append(&mut streaming_data.adaptive_formats.c);
-
-        let mut video_streams: Vec<VideoStream> = Vec::new();
-        let mut video_only_streams: Vec<VideoStream> = Vec::new();
-        let mut audio_streams: Vec<AudioStream> = Vec::new();
-
-        if !is_live {
-            let mut last_nsig: [String; 2] = [String::new(), String::new()];
-
-            warnings.append(&mut streaming_data.formats.warnings);
-            warnings.append(&mut streaming_data.adaptive_formats.warnings);
-
-            for f in formats {
-                if f.format_type == player::FormatType::FormatStreamTypeOtf {
-                    continue;
-                }
-
-                match (f.is_video(), f.is_audio()) {
-                    (true, true) => match map_video_stream(f, &deobf, &mut last_nsig) {
-                        Ok(c) => video_streams.push(c),
-                        Err(e) => warnings.push(e.to_string()),
-                    },
-                    (true, false) => match map_video_stream(f, &deobf, &mut last_nsig) {
-                        Ok(c) => video_only_streams.push(c),
-                        Err(e) => warnings.push(e.to_string()),
-                    },
-                    (false, true) => {
-                        match map_audio_stream(f, &deobf, &mut last_nsig, &mut warnings) {
-                            Ok(c) => audio_streams.push(c),
-                            Err(e) => warnings.push(e.to_string()),
-                        }
-                    }
-                    (false, false) => warnings.push(format!("invalid stream: itag {}", f.itag)),
-                }
-            }
-        }
-
-        video_streams.sort_by(QualityOrd::quality_cmp);
-        video_only_streams.sort_by(QualityOrd::quality_cmp);
-        audio_streams.sort_by(QualityOrd::quality_cmp);
+        let streams = if !is_live {
+            let mut mapper = StreamsMapper::new(Deobfuscator::new(ctx.deobf.unwrap())?);
+            mapper.map_streams(streaming_data.formats);
+            mapper.map_streams(streaming_data.adaptive_formats);
+            let mut res = mapper.output()?;
+            warnings.append(&mut res.warnings);
+            res.c
+        } else {
+            Streams::default()
+        };
 
         let subtitles = self.captions.map_or(Vec::new(), |captions| {
             captions
@@ -363,9 +334,9 @@ impl MapResponse<VideoPlayer> for response::Player {
         Ok(MapResult {
             c: VideoPlayer {
                 details: video_info,
-                video_streams,
-                video_only_streams,
-                audio_streams,
+                video_streams: streams.video_streams,
+                video_only_streams: streams.video_only_streams,
+                audio_streams: streams.audio_streams,
                 subtitles,
                 expires_in_seconds: streaming_data.expires_in_seconds,
                 hls_manifest_url: streaming_data.hls_manifest_url,
@@ -382,172 +353,288 @@ impl MapResponse<VideoPlayer> for response::Player {
     }
 }
 
-fn cipher_to_url_params(
-    signature_cipher: &str,
-    deobf: &Deobfuscator,
-) -> Result<(Url, BTreeMap<String, String>), DeobfError> {
-    let params: HashMap<Cow<str>, Cow<str>> =
-        url::form_urlencoded::parse(signature_cipher.as_bytes()).collect();
-
-    // Parameters:
-    // `s`: Obfuscated signature
-    // `sp`: Signature parameter
-    // `url`: URL that is missing the signature parameter
-
-    let sig = params.get("s").ok_or(DeobfError::Extraction("s param"))?;
-    let sp = params.get("sp").ok_or(DeobfError::Extraction("sp param"))?;
-    let raw_url = params
-        .get("url")
-        .ok_or(DeobfError::Extraction("no url param"))?;
-    let (url_base, mut url_params) =
-        util::url_to_params(raw_url).or(Err(DeobfError::Extraction("url params")))?;
-
-    let deobf_sig = deobf.deobfuscate_sig(sig)?;
-    url_params.insert(sp.to_string(), deobf_sig);
-
-    Ok((url_base, url_params))
+struct StreamsMapper {
+    deobf: Deobfuscator,
+    streams: Streams,
+    warnings: Vec<String>,
+    /// First stream mapping error
+    first_err: Option<ExtractionError>,
+    /// Last obfuscated nsig parameter (cache)
+    last_nsig: String,
+    /// Last deobfuscated nsig parameter
+    last_nsig_deobf: String,
 }
 
-fn deobf_nsig(
-    url_params: &mut BTreeMap<String, String>,
-    deobf: &Deobfuscator,
-    last_nsig: &mut [String; 2],
-) -> Result<(), DeobfError> {
-    let nsig: String;
-    if let Some(n) = url_params.get("n") {
-        nsig = if n == &last_nsig[0] {
-            last_nsig[1].clone()
-        } else {
-            let nsig = deobf.deobfuscate_nsig(n)?;
-            last_nsig[0] = n.to_string();
-            last_nsig[1].clone_from(&nsig);
-            nsig
+#[derive(Default)]
+struct Streams {
+    video_streams: Vec<VideoStream>,
+    video_only_streams: Vec<VideoStream>,
+    audio_streams: Vec<AudioStream>,
+}
+
+impl StreamsMapper {
+    fn new(deobf: Deobfuscator) -> Self {
+        Self {
+            deobf,
+            streams: Streams::default(),
+            warnings: Vec::new(),
+            first_err: None,
+            last_nsig: String::new(),
+            last_nsig_deobf: String::new(),
+        }
+    }
+
+    fn map_streams(&mut self, mut streams: MapResult<Vec<Format>>) {
+        self.warnings.append(&mut streams.warnings);
+
+        let map_e = |m: &mut Self, e: ExtractionError| {
+            m.warnings.push(e.to_string());
+            if m.first_err.is_none() {
+                m.first_err = Some(e);
+            }
         };
 
-        url_params.insert("n".to_owned(), nsig);
-    };
-    Ok(())
+        for f in streams.c {
+            if f.format_type == player::FormatType::FormatStreamTypeOtf {
+                continue;
+            }
+
+            match (f.is_video(), f.is_audio()) {
+                (true, true) => match self.map_video_stream(f) {
+                    Ok(c) => self.streams.video_streams.push(c),
+                    Err(e) => map_e(self, e),
+                },
+                (true, false) => match self.map_video_stream(f) {
+                    Ok(c) => self.streams.video_only_streams.push(c),
+                    Err(e) => map_e(self, e),
+                },
+                (false, true) => match self.map_audio_stream(f) {
+                    Ok(c) => self.streams.audio_streams.push(c),
+                    Err(e) => map_e(self, e),
+                },
+                (false, false) => self
+                    .warnings
+                    .push(format!("invalid stream: itag {}", f.itag)),
+            }
+        }
+    }
+
+    fn output(mut self) -> Result<MapResult<Streams>, ExtractionError> {
+        // If we did not extract any streams and there were mapping errors, fail with the first error
+        if self.streams.video_streams.is_empty()
+            && (self.streams.video_only_streams.is_empty() || self.streams.audio_streams.is_empty())
+        {
+            if let Some(e) = self.first_err {
+                return Err(e);
+            }
+        }
+
+        self.streams.video_streams.sort_by(QualityOrd::quality_cmp);
+        self.streams
+            .video_only_streams
+            .sort_by(QualityOrd::quality_cmp);
+        self.streams.audio_streams.sort_by(QualityOrd::quality_cmp);
+
+        Ok(MapResult {
+            c: self.streams,
+            warnings: self.warnings,
+        })
+    }
+
+    fn cipher_to_url_params(
+        &self,
+        signature_cipher: &str,
+    ) -> Result<(Url, BTreeMap<String, String>), DeobfError> {
+        let params: HashMap<Cow<str>, Cow<str>> =
+            url::form_urlencoded::parse(signature_cipher.as_bytes()).collect();
+
+        // Parameters:
+        // `s`: Obfuscated signature
+        // `sp`: Signature parameter
+        // `url`: URL that is missing the signature parameter
+
+        let sig = params.get("s").ok_or(DeobfError::Extraction("s param"))?;
+        let sp = params.get("sp").ok_or(DeobfError::Extraction("sp param"))?;
+        let raw_url = params
+            .get("url")
+            .ok_or(DeobfError::Extraction("no url param"))?;
+        let (url_base, mut url_params) =
+            util::url_to_params(raw_url).or(Err(DeobfError::Extraction("url params")))?;
+
+        let deobf_sig = self.deobf.deobfuscate_sig(sig)?;
+        url_params.insert(sp.to_string(), deobf_sig);
+
+        Ok((url_base, url_params))
+    }
+
+    fn deobf_nsig(&mut self, url_params: &mut BTreeMap<String, String>) -> Result<(), DeobfError> {
+        if let Some(n) = url_params.get("n") {
+            let nsig = if n == &self.last_nsig {
+                self.last_nsig_deobf.to_owned()
+            } else {
+                let nsig = self.deobf.deobfuscate_nsig(n)?;
+                self.last_nsig.clone_from(n);
+                self.last_nsig_deobf.clone_from(&nsig);
+                nsig
+            };
+
+            url_params.insert("n".to_owned(), nsig);
+        };
+        Ok(())
+    }
+
+    fn map_url(
+        &mut self,
+        url: &Option<String>,
+        signature_cipher: &Option<String>,
+    ) -> Result<UrlMapRes, ExtractionError> {
+        let (url_base, mut url_params) =
+            match url {
+                Some(url) => util::url_to_params(url).map_err(|_| {
+                    ExtractionError::InvalidData(format!("Could not parse url `{url}`").into())
+                }),
+                None => match signature_cipher {
+                    Some(signature_cipher) => {
+                        self.cipher_to_url_params(signature_cipher).map_err(|e| {
+                            ExtractionError::InvalidData(
+                        format!("Could not deobfuscate signatureCipher `{signature_cipher}`: {e}")
+                            .into(),
+                    )
+                        })
+                    }
+                    None => Err(ExtractionError::InvalidData(
+                        "stream contained neither url or cipher".into(),
+                    )),
+                },
+            }?;
+
+        self.deobf_nsig(&mut url_params)?;
+        let url = Url::parse_with_params(url_base.as_str(), url_params.iter())
+            .map_err(|_| ExtractionError::InvalidData("could not combine URL".into()))?;
+
+        Ok(UrlMapRes {
+            url: url.to_string(),
+            xtags: url_params.get("xtags").cloned(),
+        })
+    }
+
+    fn map_video_stream(&mut self, f: player::Format) -> Result<VideoStream, ExtractionError> {
+        let Some((mtype, codecs)) = parse_mime(&f.mime_type) else {
+            return Err(ExtractionError::InvalidData(
+                format!(
+                    "Invalid mime type `{}` in video format {:?}",
+                    &f.mime_type, &f
+                )
+                .into(),
+            ));
+        };
+        let Some(format) = get_video_format(mtype) else {
+            return Err(ExtractionError::InvalidData(
+                format!("invalid video format. itag: {}", f.itag).into(),
+            ));
+        };
+        let map_res = self.map_url(&f.url, &f.signature_cipher)?;
+
+        Ok(VideoStream {
+            url: map_res.url,
+            itag: f.itag,
+            bitrate: f.bitrate,
+            average_bitrate: f.average_bitrate.unwrap_or(f.bitrate),
+            size: f.content_length,
+            index_range: f.index_range,
+            init_range: f.init_range,
+            duration_ms: f.approx_duration_ms,
+            // Note that the format has already been verified using
+            // is_video(), so these unwraps are safe
+            width: f.width.unwrap(),
+            height: f.height.unwrap(),
+            fps: f.fps.unwrap(),
+            quality: f.quality_label.unwrap(),
+            hdr: f.color_info.unwrap_or_default().primaries
+                == player::Primaries::ColorPrimariesBt2020,
+            format,
+            codec: get_video_codec(codecs),
+            mime: f.mime_type,
+        })
+    }
+
+    fn map_audio_stream(&mut self, f: player::Format) -> Result<AudioStream, ExtractionError> {
+        let Some((mtype, codecs)) = parse_mime(&f.mime_type) else {
+            return Err(ExtractionError::InvalidData(
+                format!(
+                    "Invalid mime type `{}` in video format {:?}",
+                    &f.mime_type, &f
+                )
+                .into(),
+            ));
+        };
+        let format = get_audio_format(mtype).ok_or_else(|| {
+            ExtractionError::InvalidData(format!("invalid audio format. itag: {}", f.itag).into())
+        })?;
+        let map_res = self.map_url(&f.url, &f.signature_cipher)?;
+
+        Ok(AudioStream {
+            url: map_res.url,
+            itag: f.itag,
+            bitrate: f.bitrate,
+            average_bitrate: f.average_bitrate.unwrap_or(f.bitrate),
+            size: f.content_length.unwrap(),
+            index_range: f.index_range,
+            init_range: f.init_range,
+            duration_ms: f.approx_duration_ms,
+            format,
+            codec: get_audio_codec(codecs),
+            mime: f.mime_type,
+            channels: f.audio_channels,
+            loudness_db: f.loudness_db,
+            track: f
+                .audio_track
+                .map(|t| self.map_audio_track(t, map_res.xtags)),
+        })
+    }
+
+    fn map_audio_track(
+        &mut self,
+        track: response::player::AudioTrack,
+        xtags: Option<String>,
+    ) -> AudioTrack {
+        let mut lang = None;
+        let mut track_type = None;
+
+        if let Some(xtags) = xtags {
+            xtags
+                .split(':')
+                .filter_map(|param| param.split_once('='))
+                .for_each(|(k, v)| match k {
+                    "lang" => {
+                        lang = Some(v.to_owned());
+                    }
+                    "acont" => match serde_plain::from_str(v) {
+                        Ok(v) => {
+                            track_type = Some(v);
+                        }
+                        Err(_) => {
+                            self.warnings
+                                .push(format!("could not parse audio track type `{v}`"));
+                        }
+                    },
+                    _ => {}
+                });
+        }
+
+        AudioTrack {
+            id: track.id,
+            lang,
+            lang_name: track.display_name,
+            is_default: track.audio_is_default,
+            track_type,
+        }
+    }
 }
 
 struct UrlMapRes {
     url: String,
     xtags: Option<String>,
-}
-
-fn map_url(
-    url: &Option<String>,
-    signature_cipher: &Option<String>,
-    deobf: &Deobfuscator,
-    last_nsig: &mut [String; 2],
-) -> Result<UrlMapRes, ExtractionError> {
-    let (url_base, mut url_params) = match url {
-        Some(url) => util::url_to_params(url).map_err(|_| {
-            ExtractionError::InvalidData(format!("Could not parse url `{url}`").into())
-        }),
-        None => match signature_cipher {
-            Some(signature_cipher) => cipher_to_url_params(signature_cipher, deobf).map_err(|e| {
-                ExtractionError::InvalidData(
-                    format!("Could not deobfuscate signatureCipher `{signature_cipher}`: {e}")
-                        .into(),
-                )
-            }),
-            None => Err(ExtractionError::InvalidData(
-                "stream contained neither url or cipher".into(),
-            )),
-        },
-    }?;
-
-    deobf_nsig(&mut url_params, deobf, last_nsig)?;
-    let url = Url::parse_with_params(url_base.as_str(), url_params.iter())
-        .map_err(|_| ExtractionError::InvalidData("could not combine URL".into()))?;
-
-    Ok(UrlMapRes {
-        url: url.to_string(),
-        xtags: url_params.get("xtags").cloned(),
-    })
-}
-
-fn map_video_stream(
-    f: player::Format,
-    deobf: &Deobfuscator,
-    last_nsig: &mut [String; 2],
-) -> Result<VideoStream, ExtractionError> {
-    let Some((mtype, codecs)) = parse_mime(&f.mime_type) else {
-        return Err(ExtractionError::InvalidData(
-            format!(
-                "Invalid mime type `{}` in video format {:?}",
-                &f.mime_type, &f
-            )
-            .into(),
-        ));
-    };
-    let Some(format) = get_video_format(mtype) else {
-        return Err(ExtractionError::InvalidData(
-            format!("invalid video format. itag: {}", f.itag).into(),
-        ));
-    };
-    let map_res = map_url(&f.url, &f.signature_cipher, deobf, last_nsig)?;
-
-    Ok(VideoStream {
-        url: map_res.url,
-        itag: f.itag,
-        bitrate: f.bitrate,
-        average_bitrate: f.average_bitrate.unwrap_or(f.bitrate),
-        size: f.content_length,
-        index_range: f.index_range,
-        init_range: f.init_range,
-        duration_ms: f.approx_duration_ms,
-        // Note that the format has already been verified using
-        // is_video(), so these unwraps are safe
-        width: f.width.unwrap(),
-        height: f.height.unwrap(),
-        fps: f.fps.unwrap(),
-        quality: f.quality_label.unwrap(),
-        hdr: f.color_info.unwrap_or_default().primaries == player::Primaries::ColorPrimariesBt2020,
-        format,
-        codec: get_video_codec(codecs),
-        mime: f.mime_type,
-    })
-}
-
-fn map_audio_stream(
-    f: player::Format,
-    deobf: &Deobfuscator,
-    last_nsig: &mut [String; 2],
-    warnings: &mut Vec<String>,
-) -> Result<AudioStream, ExtractionError> {
-    let Some((mtype, codecs)) = parse_mime(&f.mime_type) else {
-        return Err(ExtractionError::InvalidData(
-            format!(
-                "Invalid mime type `{}` in video format {:?}",
-                &f.mime_type, &f
-            )
-            .into(),
-        ));
-    };
-    let format = get_audio_format(mtype).ok_or_else(|| {
-        ExtractionError::InvalidData(format!("invalid audio format. itag: {}", f.itag).into())
-    })?;
-    let map_res = map_url(&f.url, &f.signature_cipher, deobf, last_nsig)?;
-
-    Ok(AudioStream {
-        url: map_res.url,
-        itag: f.itag,
-        bitrate: f.bitrate,
-        average_bitrate: f.average_bitrate.unwrap_or(f.bitrate),
-        size: f.content_length.unwrap(),
-        index_range: f.index_range,
-        init_range: f.init_range,
-        duration_ms: f.approx_duration_ms,
-        format,
-        codec: get_audio_codec(codecs),
-        mime: f.mime_type,
-        channels: f.audio_channels,
-        loudness_db: f.loudness_db,
-        track: f
-            .audio_track
-            .map(|t| map_audio_track(t, map_res.xtags, warnings)),
-    })
 }
 
 fn parse_mime(mime: &str) -> Option<(&str, Vec<&str>)> {
@@ -607,43 +694,6 @@ fn get_audio_codec(codecs: Vec<&str>) -> AudioCodec {
         }
     }
     AudioCodec::Unknown
-}
-
-fn map_audio_track(
-    track: response::player::AudioTrack,
-    xtags: Option<String>,
-    warnings: &mut Vec<String>,
-) -> AudioTrack {
-    let mut lang = None;
-    let mut track_type = None;
-
-    if let Some(xtags) = xtags {
-        xtags
-            .split(':')
-            .filter_map(|param| param.split_once('='))
-            .for_each(|(k, v)| match k {
-                "lang" => {
-                    lang = Some(v.to_owned());
-                }
-                "acont" => match serde_plain::from_str(v) {
-                    Ok(v) => {
-                        track_type = Some(v);
-                    }
-                    Err(_) => {
-                        warnings.push(format!("could not parse audio track type `{v}`"));
-                    }
-                },
-                _ => {}
-            });
-    }
-
-    AudioTrack {
-        id: track.id,
-        lang,
-        lang_name: track.display_name,
-        is_default: track.audio_is_default,
-        track_type,
-    }
 }
 
 #[cfg(test)]
@@ -711,16 +761,11 @@ mod tests {
     #[test]
     fn cipher_to_url() {
         let signature_cipher = "s=w%3DAe%3DA6aDNQLkViKS7LOm9QtxZJHKwb53riq9qEFw-ecBWJCAiA%3DcEg0tn3dty9jEHszfzh4Ud__bg9CEHVx4ix-7dKsIPAhIQRw8JQ0qOA&sp=sig&url=https://rr5---sn-h0jelnez.googlevideo.com/videoplayback%3Fexpire%3D1659376413%26ei%3Dvb7nYvH5BMK8gAfBj7ToBQ%26ip%3D2003%253Ade%253Aaf06%253A6300%253Ac750%253A1b77%253Ac74a%253A80e3%26id%3Do-AB_BABwrXZJN428ZwDxq5ScPn2AbcGODnRlTVhCQ3mj2%26itag%3D251%26source%3Dyoutube%26requiressl%3Dyes%26mh%3DhH%26mm%3D31%252C26%26mn%3Dsn-h0jelnez%252Csn-4g5ednsl%26ms%3Dau%252Conr%26mv%3Dm%26mvi%3D5%26pl%3D37%26initcwndbps%3D1588750%26spc%3DlT-Khi831z8dTejFIRCvCEwx_6romtM%26vprv%3D1%26mime%3Daudio%252Fwebm%26ns%3Db_Mq_qlTFcSGlG9RpwpM9xQH%26gir%3Dyes%26clen%3D3781277%26dur%3D229.301%26lmt%3D1655510291473933%26mt%3D1659354538%26fvip%3D5%26keepalive%3Dyes%26fexp%3D24001373%252C24007246%26c%3DWEB%26rbqsm%3Dfr%26txp%3D4532434%26n%3Dd2g6G2hVqWIXxedQ%26sparams%3Dexpire%252Cei%252Cip%252Cid%252Citag%252Csource%252Crequiressl%252Cspc%252Cvprv%252Cmime%252Cns%252Cgir%252Cclen%252Cdur%252Clmt%26lsparams%3Dmh%252Cmm%252Cmn%252Cms%252Cmv%252Cmvi%252Cpl%252Cinitcwndbps%26lsig%3DAG3C_xAwRQIgCKCGJ1iu4wlaGXy3jcJyU3inh9dr1FIfqYOZEG_MdmACIQCbungkQYFk7EhD6K2YvLaHFMjKOFWjw001_tLb0lPDtg%253D%253D";
-        let mut last_nsig: [String; 2] = [String::new(), String::new()];
-        let deobf = Deobfuscator::new(&DEOBF_DATA).unwrap();
-        let url = map_url(
-            &None,
-            &Some(signature_cipher.to_owned()),
-            &deobf,
-            &mut last_nsig,
-        )
-        .unwrap()
-        .url;
+        let mut mapper = StreamsMapper::new(Deobfuscator::new(&DEOBF_DATA).unwrap());
+        let url = mapper
+            .map_url(&None, &Some(signature_cipher.to_owned()))
+            .unwrap()
+            .url;
 
         assert_eq!(url, "https://rr5---sn-h0jelnez.googlevideo.com/videoplayback?c=WEB&clen=3781277&dur=229.301&ei=vb7nYvH5BMK8gAfBj7ToBQ&expire=1659376413&fexp=24001373%2C24007246&fvip=5&gir=yes&id=o-AB_BABwrXZJN428ZwDxq5ScPn2AbcGODnRlTVhCQ3mj2&initcwndbps=1588750&ip=2003%3Ade%3Aaf06%3A6300%3Ac750%3A1b77%3Ac74a%3A80e3&itag=251&keepalive=yes&lmt=1655510291473933&lsig=AG3C_xAwRQIgCKCGJ1iu4wlaGXy3jcJyU3inh9dr1FIfqYOZEG_MdmACIQCbungkQYFk7EhD6K2YvLaHFMjKOFWjw001_tLb0lPDtg%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=hH&mime=audio%2Fwebm&mm=31%2C26&mn=sn-h0jelnez%2Csn-4g5ednsl&ms=au%2Conr&mt=1659354538&mv=m&mvi=5&n=XzXGSfGusw6OCQ&ns=b_Mq_qlTFcSGlG9RpwpM9xQH&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRQIhAPIsKd7-xi4xVHEC9gb__dU4hzfzsHEj9ytd3nt0gEceAiACJWBcw-wFEq9qir35bwKHJZxtQ9mOL7SKiVkLQNDa6A%3D%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cspc%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&spc=lT-Khi831z8dTejFIRCvCEwx_6romtM&txp=4532434&vprv=1");
     }

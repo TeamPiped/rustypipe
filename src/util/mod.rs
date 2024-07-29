@@ -551,6 +551,24 @@ impl<'a> Iterator for SplitTokens<'a> {
     }
 }
 
+/// Applies function to the elements of iterator and returns the first successful result
+/// or the last error if the function fails on all elements. If the iterator is empty, e_empty
+/// is returned.
+pub fn find_map_or_last_err<I, T, P, O, E>(mut iter: I, e_empty: E, mut f: P) -> Result<O, E>
+where
+    I: Iterator<Item = T>,
+    P: FnMut(T) -> Result<O, E>,
+{
+    let res = iter.try_fold(e_empty, |_, itm| match f(itm) {
+        Ok(o) => Err(o),
+        Err(e) => Ok(e),
+    });
+    match res {
+        Ok(e) => Err(e),
+        Err(o) => Ok(o),
+    }
+}
+
 #[cfg(test)]
 pub(crate) mod tests {
     use std::{fs::File, io::BufReader, path::PathBuf};
@@ -729,5 +747,28 @@ pub(crate) mod tests {
     fn t_country_from_name(#[case] name: &str, #[case] expect: Option<Country>) {
         let res = country_from_name(name);
         assert_eq!(res, expect);
+    }
+
+    #[test]
+    fn t_find_map_or_last_err() {
+        // Success
+        let res = find_map_or_last_err([1, 2, 3].into_iter(), 0, |x: i32| {
+            if x > 2 {
+                Ok(true)
+            } else {
+                Err(x)
+            }
+        });
+        assert_eq!(res, Ok(true));
+
+        // Error
+        let res = find_map_or_last_err([1, 2, 3].into_iter(), 0, |x: i32| Err::<(), _>(x));
+        assert_eq!(res, Err(3));
+
+        // Empty iterator
+        assert_eq!(
+            find_map_or_last_err(std::iter::empty(), 0, |_: i32| Ok(true)),
+            Err(0)
+        );
     }
 }
