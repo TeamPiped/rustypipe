@@ -334,7 +334,7 @@ async fn download_video(
     }
     let res = q.download().await;
     if let Err(e) = res {
-        tracing::error!("{e}")
+        tracing::error!("[{id}]: {e}")
     }
 }
 
@@ -379,6 +379,7 @@ async fn download_videos(
         .for_each_concurrent(parallel, |video| {
             let dl = dl.clone();
             let main = main.clone();
+            let id = &video.id;
 
             let mut q = target.apply(dl.download_entity(video));
             if let Some(player_type) = player_type {
@@ -387,7 +388,7 @@ async fn download_videos(
 
             async move {
                 if let Err(e) = q.download().await {
-                    tracing::error!("{e:?}");
+                    tracing::error!("[{id}]: {e}");
                 } else {
                     main.inc(1);
                 }
