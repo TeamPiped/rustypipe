@@ -53,7 +53,7 @@ phf = "0.11.1"
 phf_codegen = "0.11.1"
 base64 = "0.22.0"
 urlencoding = "2.1.2"
-quick-xml = { version = "0.35.0", features = ["serialize"] }
+quick-xml = { version = "0.36.0", features = ["serialize"] }
 tracing = { version = "0.1.37", features = ["log"] }
 
 # CLI
