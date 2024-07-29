@@ -4,6 +4,7 @@
     "config:best-practices"
   ],
   "semanticCommits": "enabled",
+  "automerge": true,
   "automergeStrategy": "squash",
   "osvVulnerabilityAlerts": true,
   "labels": ["dependency-upgrade"],
