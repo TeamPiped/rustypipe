@@ -74,7 +74,10 @@ tracing-test = "0.2.5"
 
 # Included crates
 rustypipe = { path = ".", version = "0.2.0", default-features = false }
-rustypipe-downloader = { path = "./downloader", version = "0.1.0", default-features = false }
+rustypipe-downloader = { path = "./downloader", version = "0.1.0", default-features = false, features = [
+    "indicatif",
+    "audiotag",
+] }
 
 [features]
 default = ["default-tls"]

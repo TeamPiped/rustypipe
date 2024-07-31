@@ -329,6 +329,8 @@ async fn download_video(
         .rustypipe(rp)
         .stream_filter(filter)
         .progress_bar(multi)
+        .audio_tag()
+        .crop_cover()
         .build();
     let mut q = target.apply(dl.download_id(id));
     if let Some(player_type) = player_type {
@@ -361,6 +363,8 @@ async fn download_videos(
         .rustypipe(rp)
         .stream_filter(filter)
         .progress_bar(multi.clone())
+        .audio_tag()
+        .crop_cover()
         .path_precheck()
         .build();
 

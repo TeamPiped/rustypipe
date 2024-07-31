@@ -27,9 +27,27 @@ pub enum DownloadError {
     /// Download target already exists
     #[error("file {0} already exists")]
     Exists(PathBuf),
+    #[cfg(feature = "audiotag")]
+    /// Audio tagging error
+    #[error("Audio tag error: {0}")]
+    AudioTag(Cow<'static, str>),
     /// Other error
     #[error("error: {0}")]
     Other(Cow<'static, str>),
+}
+
+#[cfg(feature = "audiotag")]
+impl From<lofty::error::LoftyError> for DownloadError {
+    fn from(value: lofty::error::LoftyError) -> Self {
+        Self::AudioTag(value.to_string().into())
+    }
+}
+
+#[cfg(feature = "audiotag")]
+impl From<image::ImageError> for DownloadError {
+    fn from(value: image::ImageError) -> Self {
+        Self::AudioTag(value.to_string().into())
+    }
 }
 
 /// Split an URL into its base string and parameter map

@@ -8,6 +8,7 @@ use std::{
     borrow::Cow,
     cmp::Ordering,
     ffi::OsString,
+    io::Cursor,
     ops::Range,
     path::{Path, PathBuf},
     sync::Arc,
@@ -15,7 +16,6 @@ use std::{
 };
 
 use futures::stream::{self, StreamExt};
-use indicatif::{MultiProgress, ProgressBar, ProgressStyle};
 use once_cell::sync::Lazy;
 use rand::Rng;
 use regex::Regex;
@@ -23,16 +23,24 @@ use reqwest::{header, Client, StatusCode};
 use rustypipe::{
     client::{ClientType, RustyPipe},
     model::{
+        richtext::ToPlaintext,
         traits::{FileFormat, YtEntity},
-        AudioCodec, VideoCodec, VideoPlayer,
+        AudioCodec, TrackItem, VideoCodec, VideoDetails, VideoPlayer,
     },
     param::StreamFilter,
 };
+use time::{Date, OffsetDateTime};
 use tokio::{
     fs::{self, File},
     io::AsyncWriteExt,
     process::Command,
 };
+
+#[cfg(feature = "indicatif")]
+use indicatif::{MultiProgress, ProgressBar, ProgressStyle};
+
+#[cfg(feature = "audiotag")]
+use lofty::{config::WriteOptions, picture::Picture, prelude::*, tag::Tag};
 
 pub use util::DownloadError;
 
@@ -54,11 +62,16 @@ pub struct Downloader {
 pub struct DownloaderBuilder {
     rp: Option<RustyPipe>,
     ffmpeg: String,
+    #[cfg(feature = "indicatif")]
     multi: Option<MultiProgress>,
     filter: StreamFilter,
     video_format: DownloadVideoFormat,
     n_retries: u32,
     path_precheck: bool,
+    #[cfg(feature = "audiotag")]
+    audio_tag: bool,
+    #[cfg(feature = "audiotag")]
+    crop_cover: bool,
 }
 
 struct DownloaderInner {
@@ -69,6 +82,7 @@ struct DownloaderInner {
     /// Path to the ffmpeg binary
     ffmpeg: String,
     /// Global progress
+    #[cfg(feature = "indicatif")]
     multi: Option<MultiProgress>,
     /// Default stream filter
     filter: StreamFilter,
@@ -78,6 +92,12 @@ struct DownloaderInner {
     n_retries: u32,
     /// Check if destination path exists before player is fetched
     path_precheck: bool,
+    /// Apply metadata to audio files
+    #[cfg(feature = "audiotag")]
+    audio_tag: bool,
+    /// Crop YT thumbnails to ensure square album covers
+    #[cfg(feature = "audiotag")]
+    crop_cover: bool,
 }
 
 /// Download query
@@ -89,6 +109,7 @@ pub struct DownloadQuery {
     /// Destination
     dest: DownloadDest,
     /// Progress bar
+    #[cfg(feature = "indicatif")]
     multi: Option<MultiProgress>,
     /// Stream filter
     filter: Option<StreamFilter>,
@@ -200,11 +221,16 @@ impl Default for DownloaderBuilder {
         Self {
             rp: None,
             ffmpeg: "ffmpeg".to_owned(),
+            #[cfg(feature = "indicatif")]
             multi: None,
             filter: StreamFilter::new(),
             video_format: DownloadVideoFormat::Mp4,
             n_retries: 3,
             path_precheck: false,
+            #[cfg(feature = "audiotag")]
+            audio_tag: false,
+            #[cfg(feature = "audiotag")]
+            crop_cover: false,
         }
     }
 }
@@ -235,6 +261,7 @@ impl DownloaderBuilder {
 
     /// Set the indicatif [`MultiProgress`] used to show download progress
     /// for all downloads
+    #[cfg(feature = "indicatif")]
     #[must_use]
     pub fn progress_bar(mut self, progress: MultiProgress) -> Self {
         self.multi = Some(progress);
@@ -277,6 +304,22 @@ impl DownloaderBuilder {
         self
     }
 
+    /// Enable audio tagging
+    #[cfg(feature = "audiotag")]
+    #[must_use]
+    pub fn audio_tag(mut self) -> Self {
+        self.audio_tag = true;
+        self
+    }
+
+    /// Crop YouTube thumbnails to get square album covers
+    #[cfg(feature = "audiotag")]
+    #[must_use]
+    pub fn crop_cover(mut self) -> Self {
+        self.crop_cover = true;
+        self
+    }
+
     /// Create a new, configured [`Downloader`] instance
     pub fn build(self) -> Downloader {
         self.build_with_client(
@@ -294,11 +337,16 @@ impl DownloaderBuilder {
                 rp: self.rp.unwrap_or_default(),
                 http: http_client,
                 ffmpeg: self.ffmpeg,
+                #[cfg(feature = "indicatif")]
                 multi: self.multi,
                 filter: self.filter,
                 video_format: self.video_format,
                 n_retries: self.n_retries,
                 path_precheck: self.path_precheck,
+                #[cfg(feature = "audiotag")]
+                audio_tag: self.audio_tag,
+                #[cfg(feature = "audiotag")]
+                crop_cover: self.crop_cover,
             }),
         }
     }
@@ -328,6 +376,7 @@ impl Downloader {
             dl: self.clone(),
             video,
             dest: DownloadDest::Default,
+            #[cfg(feature = "indicatif")]
             multi: None,
             filter: None,
             video_format: None,
@@ -414,6 +463,7 @@ impl DownloadQuery {
     }
 
     /// Use a [`MultiProgress`] progress bar for all downloads
+    #[cfg(feature = "indicatif")]
     pub fn progress_bar(mut self, progress: MultiProgress) -> Self {
         self.multi = Some(progress);
         self
@@ -443,16 +493,26 @@ impl DownloadQuery {
         let mut last_err = None;
 
         // Progress bar
-        let multi = self.multi.clone().or_else(|| self.dl.i.multi.clone());
-        let pb = multi.map(|m| {
-            let pb = ProgressBar::new(1);
-            pb.set_style(ProgressStyle::with_template("{msg}\n{spinner:.green} [{elapsed_precise}] [{wide_bar:.cyan/blue}] {bytes}/{total_bytes} ({bytes_per_sec}, {eta})").unwrap()
-                .progress_chars("#>-"));
-            m.add(pb)
-        });
+        #[cfg(feature = "indicatif")]
+        let pb = {
+            let multi = self.multi.clone().or_else(|| self.dl.i.multi.clone());
+            multi.map(|m| {
+                let pb = ProgressBar::new(1);
+                pb.set_style(ProgressStyle::with_template("{msg}\n{spinner:.green} [{elapsed_precise}] [{wide_bar:.cyan/blue}] {bytes}/{total_bytes} ({bytes_per_sec}, {eta})").unwrap()
+                    .progress_chars("#>-"));
+                m.add(pb)
+            })
+        };
 
         for n in 0..=self.dl.i.n_retries {
-            let err = match self.download_attempt(&pb, n).await {
+            let err = match self
+                .download_attempt(
+                    n,
+                    #[cfg(feature = "indicatif")]
+                    &pb,
+                )
+                .await
+            {
                 Ok(res) => return Ok(res),
                 Err(DownloadError::Http(e)) => {
                     if !e.is_timeout() && e.status() != Some(StatusCode::FORBIDDEN) {
@@ -472,7 +532,11 @@ impl DownloadQuery {
         Err(last_err.unwrap())
     }
 
-    async fn download_attempt(&self, pb: &Option<ProgressBar>, n: u32) -> Result<DownloadResult> {
+    async fn download_attempt(
+        &self,
+        #[allow(unused_variables)] n: u32,
+        #[cfg(feature = "indicatif")] pb: &Option<ProgressBar>,
+    ) -> Result<DownloadResult> {
         let filter = self.filter.as_ref().unwrap_or(&self.dl.i.filter);
         let video_format = self.video_format.unwrap_or(self.dl.i.video_format);
 
@@ -495,11 +559,13 @@ impl DownloadQuery {
             }
         }
 
+        #[cfg(feature = "indicatif")]
         let attempt_suffix = if n > 0 {
             format!(" (retry #{n})")
         } else {
             String::new()
         };
+        #[cfg(feature = "indicatif")]
         if let Some(pb) = pb {
             pb.set_message(format!(
                 "Fetching player data for {}{}",
@@ -550,7 +616,7 @@ impl DownloadQuery {
                 .details
                 .channel_name
                 .clone()
-                .or(details.map(|d| d.channel.name)),
+                .or(details.as_ref().map(|d| d.channel.name.to_owned())),
         };
         let output_path = self.dest.get_dest_path(&pv).with_extension(extension);
 
@@ -580,11 +646,20 @@ impl DownloadQuery {
             });
         }
 
+        #[cfg(feature = "indicatif")]
         if let Some(pb) = pb {
             pb.set_message(format!("Downloading {name}{attempt_suffix}"))
         }
-        download_streams(&downloads, &self.dl.i.http, &user_agent, pb.clone()).await?;
+        download_streams(
+            &downloads,
+            &self.dl.i.http,
+            &user_agent,
+            #[cfg(feature = "indicatif")]
+            pb.clone(),
+        )
+        .await?;
 
+        #[cfg(feature = "indicatif")]
         if let Some(pb) = &pb {
             pb.set_message(format!("Converting {name}"));
             pb.set_style(
@@ -595,6 +670,25 @@ impl DownloadQuery {
         }
 
         convert_streams(&downloads, &output_path, &self.dl.i.ffmpeg, &name).await?;
+
+        // Tag audio file
+        #[cfg(feature = "audiotag")]
+        if self.dl.i.audio_tag && video.is_none() {
+            let (details, track) = match details {
+                Some(d) => (d, self.dl.i.rp.query().music_details(&self.video.id).await?),
+                None => {
+                    let q = self.dl.i.rp.query();
+                    tokio::try_join!(
+                        q.video_details(&self.video.id),
+                        q.music_details(&self.video.id)
+                    )?
+                }
+            };
+            self.apply_audio_tags(&output_path, details, track.track)
+                .await?;
+        }
+
+        #[cfg(feature = "indicatif")]
         if let Some(pb) = pb {
             pb.disable_steady_tick();
         }
@@ -606,8 +700,9 @@ impl DownloadQuery {
             .collect::<Vec<_>>()
             .await
             .into_iter()
-            .collect::<core::result::Result<_, _>>()?;
+            .collect::<core::result::Result<(), _>>()?;
 
+        #[cfg(feature = "indicatif")]
         if let Some(pb) = pb {
             pb.finish_and_clear();
         }
@@ -615,6 +710,107 @@ impl DownloadQuery {
             dest: output_path,
             player_data,
         })
+    }
+
+    #[cfg(feature = "audiotag")]
+    async fn apply_audio_tags(
+        &self,
+        file: &Path,
+        details: VideoDetails,
+        track: TrackItem,
+    ) -> Result<()> {
+        use std::num::NonZeroU32;
+
+        use image::codecs::jpeg::JpegEncoder;
+
+        let mut tagged_file = lofty::read_from_path(file)?;
+        let tag = match tagged_file.primary_tag_mut() {
+            Some(primary_tag) => primary_tag,
+            None => {
+                if let Some(first_tag) = tagged_file.first_tag_mut() {
+                    first_tag
+                } else {
+                    let tag_type = tagged_file.primary_tag_type();
+                    tagged_file.insert_tag(Tag::new(tag_type));
+
+                    tagged_file.primary_tag_mut().unwrap()
+                }
+            }
+        };
+
+        let description = details.description.to_plaintext();
+
+        tag.set_album(
+            track
+                .album
+                .map(|b| b.name)
+                .unwrap_or_else(|| track.name.clone()),
+        );
+        tag.set_artist(
+            track
+                .artists
+                .into_iter()
+                .next()
+                .map(|a| a.name)
+                .unwrap_or(details.channel.name),
+        );
+        tag.set_title(track.name);
+        if let Some(release_date) = extract_yt_release_date(&description, details.publish_date) {
+            if let Ok(date_str) = release_date.format(&YMD_FORMAT) {
+                tag.insert_text(ItemKey::RecordingDate, date_str);
+            }
+        }
+        tag.set_comment(description);
+
+        let thumbnail = track.cover.into_iter().max_by_key(|c| c.height);
+        if let Some(thumbnail) = thumbnail {
+            let resp = self
+                .dl
+                .i
+                .http
+                .get(thumbnail.url)
+                .send()
+                .await?
+                .error_for_status()?;
+            let img_type = resp
+                .headers()
+                .get(header::CONTENT_TYPE)
+                .and_then(|fmt| fmt.to_str().ok())
+                .and_then(image::ImageFormat::from_mime_type);
+            let img_bts = resp.bytes().await?;
+
+            let mut lofty_img = if self.dl.i.crop_cover {
+                let mut img = if let Some(fmt) = img_type {
+                    image::load_from_memory_with_format(&img_bts, fmt)?
+                } else {
+                    image::load_from_memory(&img_bts)?
+                };
+
+                // Crop cover image if it is not square
+                if img.height() != img.width() && img.height() > 0 {
+                    let crop = smartcrop::find_best_crop(&img, NonZeroU32::MIN, NonZeroU32::MIN)
+                        .unwrap()
+                        .crop;
+                    img = img.crop_imm(crop.x, crop.y, crop.width, crop.height);
+                    let mut enc_bts = Vec::new();
+                    img.write_with_encoder(JpegEncoder::new_with_quality(&mut enc_bts, 90))?;
+                    let mut rd = Cursor::new(enc_bts);
+                    Picture::from_reader(&mut rd)?
+                } else {
+                    let mut rd = Cursor::new(img_bts);
+                    Picture::from_reader(&mut rd)?
+                }
+            } else {
+                let mut rd = Cursor::new(img_bts);
+                Picture::from_reader(&mut rd)?
+            };
+
+            lofty_img.set_pic_type(lofty::picture::PictureType::CoverFront);
+            tag.set_picture(0, lofty_img);
+        }
+
+        tag.save_to_path(file, WriteOptions::default())?;
+        Ok(())
     }
 }
 
@@ -666,12 +862,12 @@ fn filenamify_lim(name: &str) -> String {
     }
 }
 
-async fn download_single_file<P: Into<PathBuf>>(
+async fn download_single_file(
     url: &str,
-    output: P,
+    output: &Path,
     http: &Client,
     user_agent: &str,
-    pb: Option<ProgressBar>,
+    #[cfg(feature = "indicatif")] pb: Option<ProgressBar>,
 ) -> Result<()> {
     // Check if file is already downloaded
     let output_path: PathBuf = output.into();
@@ -729,6 +925,7 @@ async fn download_single_file<P: Into<PathBuf>>(
                 size = Some(original_size);
                 offset = file_size;
 
+                #[cfg(feature = "indicatif")]
                 if let Some(pb) = &pb {
                     pb.inc_length(original_size);
                     pb.inc(offset);
@@ -759,10 +956,29 @@ async fn download_single_file<P: Into<PathBuf>>(
         .await?;
 
     if is_gvideo && size.is_some() {
-        download_chunks_by_param(http, &mut file, url, size.unwrap(), offset, user_agent, pb)
-            .await?;
+        download_chunks_by_param(
+            http,
+            &mut file,
+            url,
+            size.unwrap(),
+            offset,
+            user_agent,
+            #[cfg(feature = "indicatif")]
+            pb,
+        )
+        .await?;
     } else {
-        download_chunks_by_header(http, &mut file, url, size, offset, user_agent, pb).await?;
+        download_chunks_by_header(
+            http,
+            &mut file,
+            url,
+            size,
+            offset,
+            user_agent,
+            #[cfg(feature = "indicatif")]
+            pb,
+        )
+        .await?;
     }
 
     fs::rename(&output_path_tmp, &output_path).await?;
@@ -779,7 +995,7 @@ async fn download_chunks_by_header(
     size: Option<u64>,
     offset: u64,
     user_agent: &str,
-    pb: Option<ProgressBar>,
+    #[cfg(feature = "indicatif")] pb: Option<ProgressBar>,
 ) -> Result<()> {
     let mut offset = offset;
     let mut size = size;
@@ -826,6 +1042,7 @@ async fn download_chunks_by_header(
         offset = parsed_offset + 1;
         if size.is_none() {
             size = Some(parsed_size);
+            #[cfg(feature = "indicatif")]
             if let Some(pb) = &pb {
                 pb.inc_length(parsed_size);
             }
@@ -836,6 +1053,7 @@ async fn download_chunks_by_header(
         while let Some(item) = stream.next().await {
             // Retrieve chunk.
             let mut chunk = item?;
+            #[cfg(feature = "indicatif")]
             if let Some(pb) = &pb {
                 pb.inc(chunk.len() as u64);
             }
@@ -859,9 +1077,10 @@ async fn download_chunks_by_param(
     size: u64,
     offset: u64,
     user_agent: &str,
-    pb: Option<ProgressBar>,
+    #[cfg(feature = "indicatif")] pb: Option<ProgressBar>,
 ) -> Result<()> {
     let mut offset = offset;
+    #[cfg(feature = "indicatif")]
     if let Some(pb) = &pb {
         pb.inc_length(size);
     }
@@ -891,6 +1110,7 @@ async fn download_chunks_by_param(
         while let Some(item) = stream.next().await {
             // Retrieve chunk.
             let mut chunk = item?;
+            #[cfg(feature = "indicatif")]
             if let Some(pb) = &pb {
                 pb.inc(chunk.len() as u64);
             }
@@ -918,12 +1138,21 @@ async fn download_streams(
     downloads: &Vec<StreamDownload>,
     http: &Client,
     user_agent: &str,
-    pb: Option<ProgressBar>,
+    #[cfg(feature = "indicatif")] pb: Option<ProgressBar>,
 ) -> Result<()> {
     let n = downloads.len();
 
     stream::iter(downloads)
-        .map(|d| download_single_file(&d.url, d.file.clone(), http, user_agent, pb.clone()))
+        .map(|d| {
+            download_single_file(
+                &d.url,
+                &d.file,
+                http,
+                user_agent,
+                #[cfg(feature = "indicatif")]
+                pb.clone(),
+            )
+        })
         .buffer_unordered(n)
         .collect::<Vec<_>>()
         .await
@@ -933,9 +1162,9 @@ async fn download_streams(
     Ok(())
 }
 
-async fn convert_streams<P: Into<PathBuf>>(
+async fn convert_streams(
     downloads: &[StreamDownload],
-    output: P,
+    output: &Path,
     ffmpeg: &str,
     title: &str,
 ) -> Result<()> {
@@ -974,4 +1203,34 @@ async fn convert_streams<P: Into<PathBuf>>(
         ));
     }
     Ok(())
+}
+
+const YMD_FORMAT: &[time::format_description::FormatItem] =
+    time::macros::format_description!("[year]-[month]-[day]");
+
+fn extract_yt_release_date(
+    description: &str,
+    publish_date: Option<OffsetDateTime>,
+) -> Option<Date> {
+    static RELEASE_DATE_REGEX: Lazy<Regex> =
+        Lazy::new(|| Regex::new(r"Released on: (\d{4}-\d{2}-\d{2})").unwrap());
+
+    RELEASE_DATE_REGEX
+        .captures(description)
+        .and_then(|cap| {
+            let raw_date = &cap[1];
+            Date::parse(raw_date, YMD_FORMAT).ok()
+        })
+        .map(|release_date| {
+            if let Some(upload_date) = publish_date {
+                // Prefer the video upload date if it lies within 4 days of the release date
+                let upload_date = upload_date.date();
+                let diff = (upload_date - release_date).abs();
+                if diff < time::Duration::days(4) {
+                    return upload_date;
+                }
+            }
+            release_date
+        })
+        .or_else(|| publish_date.map(|d| d.date()))
 }
