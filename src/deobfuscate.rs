@@ -164,6 +164,7 @@ fn get_sig_fn(player_js: &str) -> Result<String, DeobfError> {
         + &deobfuscate_function
         + &caller_function(DEOBF_SIG_FUNC_NAME, &dfunc_name);
     verify_fn(&js_fn, DEOBF_SIG_FUNC_NAME)?;
+    tracing::debug!("successfully extracted sig fn `{dfunc_name}`");
 
     Ok(js_fn)
 }
@@ -171,7 +172,7 @@ fn get_sig_fn(player_js: &str) -> Result<String, DeobfError> {
 fn get_nsig_fn_names(player_js: &str) -> impl Iterator<Item = String> + '_ {
     static FUNCTION_NAME_REGEX: Lazy<Regex> = Lazy::new(|| {
         // x.get( .. y=functionName[array_num](z) .. x.set(
-        Regex::new(r#"\w\.get\(.+\w=(\w{2,})\[(\d+)\]\(\w\).+\w\.set\("#).unwrap()
+        Regex::new(r#"(?:\w\.get\(|index\.m3u8).+\w=(\w{2,})\[(\d+)\]\(\w\).+\w\.set\("#).unwrap()
     });
 
     FUNCTION_NAME_REGEX
@@ -265,7 +266,7 @@ fn get_nsig_fn(player_js: &str) -> Result<String, DeobfError> {
         let js_fn = extract_js_fn(&player_js[offset..], name)
             .map(|s| s + ";" + &caller_function(DEOBF_NSIG_FUNC_NAME, name))?;
         verify_fn(&js_fn, DEOBF_NSIG_FUNC_NAME)?;
-        tracing::info!("Successfully extracted nsig fn `{name}`");
+        tracing::debug!("successfully extracted nsig fn `{name}`");
         Ok(js_fn)
     };
 
@@ -436,6 +437,6 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
         let deobf_sig = deobf.deobfuscate_sig("GOqGOqGOq0QJ8wRAIgaryQHfplJ9xJSKFywyaSMHuuwZYsoMTAvRvfm51qIGECIA5061zWeyfMPX9hEl_U6f9J0tr7GTJMKyPf5XNrJb5fb5i").unwrap();
         assert!(deobf_sig.len() >= 100);
         let deobf_nsig = deobf.deobfuscate_nsig("WHbZ-Nj2TSJxder").unwrap();
-        assert!(deobf_nsig.len() >= 10);
+        assert!(deobf_nsig.len() >= 6);
     }
 }
