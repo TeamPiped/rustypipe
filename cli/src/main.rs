@@ -7,10 +7,10 @@ use futures::stream::{self, StreamExt};
 use indicatif::{MultiProgress, ProgressBar, ProgressStyle};
 use rustypipe::{
     client::{ClientType, RustyPipe},
-    model::{UrlTarget, VideoId, YouTubeItem},
+    model::{UrlTarget, YouTubeItem},
     param::{search_filter, ChannelVideoTab, Country, Language, StreamFilter},
 };
-use rustypipe_downloader::{DownloadError, DownloadQuery, DownloaderBuilder};
+use rustypipe_downloader::{DownloadError, DownloadQuery, DownloadVideo, DownloaderBuilder};
 use serde::Serialize;
 use tracing::level_filters::LevelFilter;
 use tracing_subscriber::{fmt::MakeWriter, EnvFilter};
@@ -344,7 +344,7 @@ async fn download_video(
 
 async fn download_videos(
     rp: &RustyPipe,
-    videos: &[VideoId],
+    videos: Vec<DownloadVideo>,
     target: &DownloadTarget,
     resolution: Option<u32>,
     parallel: usize,
@@ -385,9 +385,9 @@ async fn download_videos(
         .for_each_concurrent(parallel, |video| {
             let dl = dl.clone();
             let main = main.clone();
-            let id = &video.id;
+            let id = video.id().to_owned();
 
-            let mut q = target.apply(dl.download_entity(video));
+            let mut q = target.apply(dl.download_video(video));
             if let Some(player_type) = player_type {
                 q = q.player_type(player_type.into());
             }
@@ -482,16 +482,16 @@ async fn main() {
                         .extend_limit(&rp.query(), limit)
                         .await
                         .unwrap();
-                    let videos: Vec<VideoId> = channel
+                    let videos = channel
                         .content
                         .items
                         .into_iter()
                         .take(limit)
-                        .map(VideoId::from)
+                        .map(|v| DownloadVideo::from_entity(&v))
                         .collect();
                     download_videos(
                         &rp,
-                        &videos,
+                        videos,
                         &target,
                         resolution,
                         parallel,
@@ -502,7 +502,7 @@ async fn main() {
                 }
                 UrlTarget::Playlist { id } => {
                     target.assert_dir();
-                    let videos: Vec<VideoId> = if music {
+                    let videos = if music {
                         let mut playlist = rp.query().music_playlist(id).await.unwrap();
                         playlist
                             .tracks
@@ -514,7 +514,7 @@ async fn main() {
                             .items
                             .into_iter()
                             .take(limit)
-                            .map(VideoId::from)
+                            .map(|v| DownloadVideo::from_track(&v))
                             .collect()
                     } else {
                         let mut playlist = rp.query().playlist(id).await.unwrap();
@@ -528,12 +528,12 @@ async fn main() {
                             .items
                             .into_iter()
                             .take(limit)
-                            .map(VideoId::from)
+                            .map(|v| DownloadVideo::from_entity(&v))
                             .collect()
                     };
                     download_videos(
                         &rp,
-                        &videos,
+                        videos,
                         &target,
                         resolution,
                         parallel,
@@ -545,15 +545,15 @@ async fn main() {
                 UrlTarget::Album { id } => {
                     target.assert_dir();
                     let album = rp.query().music_album(id).await.unwrap();
-                    let videos: Vec<VideoId> = album
+                    let videos = album
                         .tracks
                         .into_iter()
                         .take(limit)
-                        .map(VideoId::from)
+                        .map(|v| DownloadVideo::from_track(&v))
                         .collect();
                     download_videos(
                         &rp,
-                        &videos,
+                        videos,
                         &target,
                         resolution,
                         parallel,

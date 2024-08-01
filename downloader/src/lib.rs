@@ -9,6 +9,7 @@ use std::{
     cmp::Ordering,
     ffi::OsString,
     io::Cursor,
+    num::NonZeroU32,
     ops::Range,
     path::{Path, PathBuf},
     sync::Arc,
@@ -25,7 +26,7 @@ use rustypipe::{
     model::{
         richtext::ToPlaintext,
         traits::{FileFormat, YtEntity},
-        AudioCodec, TrackItem, VideoCodec, VideoDetails, VideoPlayer,
+        AudioCodec, TrackItem, VideoCodec, VideoDetails, VideoPlayer, VideoPlayerDetails,
     },
     param::StreamFilter,
 };
@@ -119,16 +120,26 @@ pub struct DownloadQuery {
     player_type: Option<ClientType>,
 }
 
+/// Video to be downloaded
 #[derive(Default)]
-struct DownloadVideo {
+pub struct DownloadVideo {
     id: String,
     name: Option<String>,
     channel_id: Option<String>,
     channel_name: Option<String>,
+    album_id: Option<String>,
+    album_name: Option<String>,
+    track_nr: Option<u16>,
 }
 
 impl DownloadVideo {
-    fn from_video(video: &impl YtEntity) -> Self {
+    /// Get the YouTube video id
+    pub fn id(&self) -> &str {
+        &self.id
+    }
+
+    /// Create a new DownloadVideo from a YouTube entity
+    pub fn from_entity(video: &impl YtEntity) -> Self {
         DownloadVideo {
             id: video.id().to_owned(),
             name: Some(video.name().to_owned()),
@@ -136,6 +147,26 @@ impl DownloadVideo {
             channel_name: video
                 .channel_name()
                 .map(|n| n.strip_suffix(" - Topic").unwrap_or(n).to_owned()),
+            album_id: None,
+            album_name: None,
+            track_nr: None,
+        }
+    }
+
+    /// Create a new DownloadVideo from a YTM track
+    pub fn from_track(track: &TrackItem) -> Self {
+        DownloadVideo {
+            id: track.id.to_owned(),
+            name: Some(track.name.to_owned()),
+            channel_id: track.channel_id().map(str::to_owned),
+            channel_name: if track.by_va {
+                Some("Various Artists".to_owned())
+            } else {
+                track.channel_name().map(str::to_owned)
+            },
+            album_id: track.album.as_ref().map(|b| b.id.to_owned()),
+            album_name: track.album.as_ref().map(|b| b.name.to_owned()),
+            track_nr: track.track_nr,
         }
     }
 }
@@ -149,11 +180,11 @@ enum DownloadDest {
 }
 
 fn video_filename(v: &DownloadVideo) -> String {
-    filenamify_lim(&format!(
-        "{} [{}]",
-        v.name.as_deref().unwrap_or_default(),
-        v.id
-    ))
+    let mut n = format!("{} [{}]", v.name.as_deref().unwrap_or_default(), v.id);
+    if let Some(track_nr) = v.track_nr {
+        n = format!("{track_nr:02} {n}");
+    }
+    filenamify_lim(&n)
 }
 
 /// Video container format for downloading
@@ -191,6 +222,8 @@ impl DownloadVideoFormat {
 
 impl DownloadDest {
     fn get_dest_path(&self, v: &DownloadVideo) -> PathBuf {
+        static RE_TEMPLATE: Lazy<Regex> = Lazy::new(|| Regex::new(r#"\{\w+\} *"#).unwrap());
+
         match self {
             DownloadDest::Default => PathBuf::from(video_filename(v)),
             DownloadDest::File(p) => p.clone(),
@@ -199,17 +232,38 @@ impl DownloadDest {
                 .iter()
                 .map(|part| {
                     let s = part.to_string_lossy();
-                    let mut s = s.replace("{id}", &v.id);
-                    if let Some(name) = &v.name {
-                        s = s.replace("{title}", name)
+
+                    let (mut replaced, last_end) = RE_TEMPLATE.find_iter(&s).fold(
+                        (String::new(), 0),
+                        |(mut acc, last_end), m| {
+                            acc += &s[last_end..m.start()];
+                            let ms = m.as_str();
+                            let trimmed = ms.trim_end_matches(' ');
+                            let repl: Option<Cow<str>> = match trimmed.trim_matches(['{', '}']) {
+                                "id" => Some(v.id.as_str().into()),
+                                "title" => v.name.as_deref().map(Cow::from),
+                                "channel" => v.channel_name.as_deref().map(Cow::from),
+                                "channelId" => v.channel_id.as_deref().map(Cow::from),
+                                "album" => v.album_name.as_deref().map(Cow::from),
+                                "albumId" => v.album_id.as_deref().map(Cow::from),
+                                "track" => v.track_nr.map(|n| format!("{n:02}").into()),
+                                _ => None,
+                            };
+                            if let Some(repl) = repl {
+                                acc += &repl;
+                                acc += &ms[trimmed.len()..];
+                            }
+                            (acc, m.end())
+                        },
+                    );
+                    replaced += &s[last_end..];
+                    replaced = replaced.trim().to_owned();
+
+                    if replaced.is_empty() {
+                        "-".to_owned()
+                    } else {
+                        filenamify_lim(&replaced)
                     }
-                    if let Some(channel) = &v.channel_name {
-                        s = s.replace("{channel}", channel)
-                    }
-                    if let Some(id) = &v.channel_id {
-                        s = s.replace("{channelId}", id);
-                    }
-                    filenamify_lim(&s)
                 })
                 .collect(),
         }
@@ -392,12 +446,27 @@ impl Downloader {
         })
     }
 
+    /// Download a video from a DownloadVideo object
+    pub fn download_video(&self, video: DownloadVideo) -> DownloadQuery {
+        self.query(video)
+    }
+
     /// Download a video from a [`YtEntity`] object (e.g. playlist/channel video)
     ///
     /// Providing an entity has the advantage that the download path can be determined before the video
     /// is fetched, so already downloaded videos get skipped right away.
     pub fn download_entity(&self, video: &impl YtEntity) -> DownloadQuery {
-        self.query(DownloadVideo::from_video(video))
+        self.query(DownloadVideo::from_entity(video))
+    }
+
+    /// Download a video from a [`TrackItem`] (YouTube music album/playlist item)
+    ///
+    /// Providing an entity has the advantage that the download path can be determined before the video
+    /// is fetched, so already downloaded videos get skipped right away.
+    ///
+    /// If an album track is downloaded, this method will also add the track number to the downloaded file
+    pub fn download_track(&self, track: &TrackItem) -> DownloadQuery {
+        self.query(DownloadVideo::from_track(track))
     }
 }
 
@@ -617,6 +686,9 @@ impl DownloadQuery {
                 .channel_name
                 .clone()
                 .or(details.as_ref().map(|d| d.channel.name.to_owned())),
+            album_id: self.video.album_id.to_owned(),
+            album_name: self.video.album_name.to_owned(),
+            track_nr: self.video.track_nr,
         };
         let output_path = self.dest.get_dest_path(&pv).with_extension(extension);
 
@@ -684,8 +756,14 @@ impl DownloadQuery {
                     )?
                 }
             };
-            self.apply_audio_tags(&output_path, details, track.track)
-                .await?;
+            self.apply_audio_tags(
+                &output_path,
+                details,
+                &player_data.details,
+                track.track,
+                pv.track_nr,
+            )
+            .await?;
         }
 
         #[cfg(feature = "indicatif")]
@@ -717,12 +795,10 @@ impl DownloadQuery {
         &self,
         file: &Path,
         details: VideoDetails,
+        player_details: &VideoPlayerDetails,
         track: TrackItem,
+        track_nr: Option<u16>,
     ) -> Result<()> {
-        use std::num::NonZeroU32;
-
-        use image::codecs::jpeg::JpegEncoder;
-
         let mut tagged_file = lofty::read_from_path(file)?;
         let tag = match tagged_file.primary_tag_mut() {
             Some(primary_tag) => primary_tag,
@@ -761,8 +837,30 @@ impl DownloadQuery {
             }
         }
         tag.set_comment(description);
+        if let Some(track_nr) = track_nr {
+            tag.set_track(track_nr.into());
+        }
 
-        let thumbnail = track.cover.into_iter().max_by_key(|c| c.height);
+        // For YTM tracks the music details contain a high quality, square cover image, but for music videos
+        // the cover images are cropped and of worse resolution.
+        // Therefore we switch to the thumbnails from the player data if the music details contain no square
+        // thumbnails.
+        let thumbnail_music = track.cover.into_iter().max_by_key(|c| c.height);
+        let thumbnail = if thumbnail_music
+            .as_ref()
+            .map(|tn| tn.height == tn.width)
+            .unwrap_or_default()
+        {
+            thumbnail_music
+        } else {
+            let thumbnail_player = player_details
+                .thumbnail
+                .iter()
+                .max_by_key(|c| c.height)
+                .cloned();
+            thumbnail_player.or(thumbnail_music)
+        };
+
         if let Some(thumbnail) = thumbnail {
             let resp = self
                 .dl
@@ -780,20 +878,23 @@ impl DownloadQuery {
             let img_bts = resp.bytes().await?;
 
             let mut lofty_img = if self.dl.i.crop_cover {
-                let mut img = if let Some(fmt) = img_type {
-                    image::load_from_memory_with_format(&img_bts, fmt)?
-                } else {
-                    image::load_from_memory(&img_bts)?
-                };
-
                 // Crop cover image if it is not square
-                if img.height() != img.width() && img.height() > 0 {
+                if thumbnail.height != thumbnail.width {
+                    let mut img = if let Some(fmt) = img_type {
+                        image::load_from_memory_with_format(&img_bts, fmt)?
+                    } else {
+                        image::load_from_memory(&img_bts)?
+                    };
+
                     let crop = smartcrop::find_best_crop(&img, NonZeroU32::MIN, NonZeroU32::MIN)
-                        .unwrap()
+                        .map_err(|e| DownloadError::AudioTag(format!("image crop: {e}").into()))?
                         .crop;
                     img = img.crop_imm(crop.x, crop.y, crop.width, crop.height);
                     let mut enc_bts = Vec::new();
-                    img.write_with_encoder(JpegEncoder::new_with_quality(&mut enc_bts, 90))?;
+                    img.write_with_encoder(image::codecs::jpeg::JpegEncoder::new_with_quality(
+                        &mut enc_bts,
+                        90,
+                    ))?;
                     let mut rd = Cursor::new(enc_bts);
                     Picture::from_reader(&mut rd)?
                 } else {
@@ -1233,4 +1334,53 @@ fn extract_yt_release_date(
             release_date
         })
         .or_else(|| publish_date.map(|d| d.date()))
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn template() {
+        let dest =
+            DownloadDest::Template(PathBuf::from("{channel}/{album}/{track} {title} [{id}]"));
+        let track_path = dest.get_dest_path(&DownloadVideo {
+            id: "a3Fo1vYyiDw".to_owned(),
+            name: Some("Volle Kraft voraus".to_owned()),
+            channel_id: Some("UCE7_p3lcXA-YXRZp2PjrgYw".to_owned()),
+            channel_name: Some("Helene Fischer".to_owned()),
+            album_id: Some("MPREb_O2gXCdCVGsZ".to_owned()),
+            album_name: Some("Rausch (Deluxe)".to_owned()),
+            track_nr: Some(1),
+        });
+        assert_eq!(
+            track_path.to_str().unwrap(),
+            "Helene Fischer/Rausch (Deluxe)/01 Volle Kraft voraus [a3Fo1vYyiDw]"
+        );
+
+        let video_path = dest.get_dest_path(&DownloadVideo {
+            id: "5en96GIijXk".to_owned(),
+            name: Some("a pretty cloud, and a happy duck".to_owned()),
+            channel_id: Some("UCl2mFZoRqjw_ELax4Yisf6w".to_owned()),
+            channel_name: Some("Louis Rossmann".to_owned()),
+            album_id: None,
+            album_name: None,
+            track_nr: None,
+        });
+        assert_eq!(
+            video_path.to_str().unwrap(),
+            "Louis Rossmann/-/a pretty cloud, and a happy duck [5en96GIijXk]"
+        );
+
+        let ido_path = dest.get_dest_path(&DownloadVideo {
+            id: "5en96GIijXk".to_owned(),
+            name: None,
+            channel_id: None,
+            channel_name: None,
+            album_id: None,
+            album_name: None,
+            track_nr: None,
+        });
+        assert_eq!(ido_path.to_str().unwrap(), "-/-/[5en96GIijXk]");
+    }
 }
