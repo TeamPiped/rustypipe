@@ -264,7 +264,7 @@ fn get_nsig_fn(player_js: &str) -> Result<String, DeobfError> {
             .ok_or(DeobfError::Extraction("could not find function base"))?;
 
         let js_fn = extract_js_fn(&player_js[offset..], name)
-            .map(|s| s + ";" + &caller_function(DEOBF_NSIG_FUNC_NAME, name))?;
+            .map(|s| format!("var {};{}", s, caller_function(DEOBF_NSIG_FUNC_NAME, name)))?;
         verify_fn(&js_fn, DEOBF_NSIG_FUNC_NAME)?;
         tracing::debug!("successfully extracted nsig fn `{name}`");
         Ok(js_fn)
@@ -331,7 +331,7 @@ mod tests {
     });
 
     const SIG_DEOBF_FUNC: &str = r#"var qB={w8:function(a){a.reverse()},EC:function(a,b){var c=a[0];a[0]=a[b%a.length];a[b%a.length]=c},Np:function(a,b){a.splice(0,b)}};var Rva=function(a){a=a.split("");qB.Np(a,3);qB.w8(a,41);qB.EC(a,55);qB.Np(a,3);qB.w8(a,33);qB.Np(a,3);qB.EC(a,48);qB.EC(a,17);qB.EC(a,43);return a.join("")};var deobf_sig=Rva;"#;
-    const NSIG_DEOBF_FUNC: &str = r#"Vo=function(a){var b=a.split(""),c=[function(d,e,f){var h=f.length;d.forEach(function(l,m,n){this.push(n[m]=f[(f.indexOf(l)-f.indexOf(this[m])+m+h--)%f.length])},e.split(""))},
+    const NSIG_DEOBF_FUNC: &str = r#"var Vo=function(a){var b=a.split(""),c=[function(d,e,f){var h=f.length;d.forEach(function(l,m,n){this.push(n[m]=f[(f.indexOf(l)-f.indexOf(this[m])+m+h--)%f.length])},e.split(""))},
 928409064,-595856984,1403221911,653089124,-168714481,-1883008765,158931990,1346921902,361518508,1403221911,-362174697,-233641452,function(){for(var d=64,e=[];++d-e.length-32;){switch(d){case 91:d=44;continue;case 123:d=65;break;case 65:d-=18;continue;case 58:d=96;continue;case 46:d=95}e.push(String.fromCharCode(d))}return e},
 b,158931990,791141857,-907319795,-1776185924,1595027902,-829736173,function(d,e){e=(e%d.length+d.length)%d.length;d.splice(0,1,d.splice(e,1,d[0])[0])},
 -1274951142,function(){for(var d=64,e=[];++d-e.length-32;){switch(d){case 91:d=44;continue;case 123:d=65;break;case 65:d-=18;continue;case 58:d=96;continue;case 46:d=95}e.push(String.fromCharCode(d))}return e},
