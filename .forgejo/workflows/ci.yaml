@@ -17,7 +17,7 @@ jobs:
           cache-on-failure: "true"
 
       - name: 📎 Clippy
-        run: cargo clippy --all --features=rss -- -D warnings
+        run: cargo clippy --all --tests --features=rss,indicatif,audiotag -- -D warnings
 
       - name: 🧪 Test
         run: cargo nextest run --config-file ~/.config/nextest.toml --profile ci --retries 2 --features rss --workspace

@@ -1,6 +1,5 @@
+#![doc = include_str!("../README.md")]
 #![warn(missing_docs, clippy::todo, clippy::dbg_macro)]
-
-//! # YouTube audio/video downloader
 
 mod util;
 
@@ -8,8 +7,6 @@ use std::{
     borrow::Cow,
     cmp::Ordering,
     ffi::OsString,
-    io::Cursor,
-    num::NonZeroU32,
     ops::Range,
     path::{Path, PathBuf},
     sync::Arc,
@@ -24,13 +21,11 @@ use reqwest::{header, Client, StatusCode};
 use rustypipe::{
     client::{ClientType, RustyPipe},
     model::{
-        richtext::ToPlaintext,
         traits::{FileFormat, YtEntity},
-        AudioCodec, TrackItem, VideoCodec, VideoDetails, VideoPlayer, VideoPlayerDetails,
+        AudioCodec, TrackItem, VideoCodec, VideoPlayer,
     },
     param::StreamFilter,
 };
-use time::{Date, OffsetDateTime};
 use tokio::{
     fs::{self, File},
     io::AsyncWriteExt,
@@ -42,6 +37,10 @@ use indicatif::{MultiProgress, ProgressBar, ProgressStyle};
 
 #[cfg(feature = "audiotag")]
 use lofty::{config::WriteOptions, picture::Picture, prelude::*, tag::Tag};
+#[cfg(feature = "audiotag")]
+use rustypipe::model::{richtext::ToPlaintext, VideoDetails, VideoPlayerDetails};
+#[cfg(feature = "audiotag")]
+use time::{Date, OffsetDateTime};
 
 pub use util::DownloadError;
 
@@ -65,6 +64,8 @@ pub struct DownloaderBuilder {
     ffmpeg: String,
     #[cfg(feature = "indicatif")]
     multi: Option<MultiProgress>,
+    #[cfg(feature = "indicatif")]
+    progress_style: Option<ProgressStyle>,
     filter: StreamFilter,
     video_format: DownloadVideoFormat,
     n_retries: u32,
@@ -85,6 +86,9 @@ struct DownloaderInner {
     /// Global progress
     #[cfg(feature = "indicatif")]
     multi: Option<MultiProgress>,
+    /// Progress style
+    #[cfg(feature = "indicatif")]
+    progress_style: ProgressStyle,
     /// Default stream filter
     filter: StreamFilter,
     /// Default video format
@@ -111,7 +115,7 @@ pub struct DownloadQuery {
     dest: DownloadDest,
     /// Progress bar
     #[cfg(feature = "indicatif")]
-    multi: Option<MultiProgress>,
+    progress: Option<ProgressBar>,
     /// Stream filter
     filter: Option<StreamFilter>,
     /// Target video format
@@ -251,7 +255,7 @@ impl DownloadDest {
                             };
                             if let Some(repl) = repl {
                                 acc += &repl;
-                                acc += &ms[trimmed.len()..];
+                                acc += &ms[trimmed.len()..]; // preceeding whitespace
                             }
                             (acc, m.end())
                         },
@@ -277,6 +281,8 @@ impl Default for DownloaderBuilder {
             ffmpeg: "ffmpeg".to_owned(),
             #[cfg(feature = "indicatif")]
             multi: None,
+            #[cfg(feature = "indicatif")]
+            progress_style: None,
             filter: StreamFilter::new(),
             video_format: DownloadVideoFormat::Mp4,
             n_retries: 3,
@@ -317,8 +323,16 @@ impl DownloaderBuilder {
     /// for all downloads
     #[cfg(feature = "indicatif")]
     #[must_use]
-    pub fn progress_bar(mut self, progress: MultiProgress) -> Self {
+    pub fn multi_progress(mut self, progress: MultiProgress) -> Self {
         self.multi = Some(progress);
+        self
+    }
+
+    /// Set the indicatif [`ProgressStyle`] for the progress bars displayed under `multi_progress`
+    #[cfg(feature = "indicatif")]
+    #[must_use]
+    pub fn progress_style(mut self, style: ProgressStyle) -> Self {
+        self.progress_style = Some(style);
         self
     }
 
@@ -393,6 +407,12 @@ impl DownloaderBuilder {
                 ffmpeg: self.ffmpeg,
                 #[cfg(feature = "indicatif")]
                 multi: self.multi,
+                #[cfg(feature = "indicatif")]
+                progress_style: self.progress_style.unwrap_or_else(|| {
+                    ProgressStyle::with_template("{msg}\n{spinner:.green} [{elapsed_precise}] [{wide_bar:.cyan/blue}] {bytes}/{total_bytes} ({bytes_per_sec}, {eta})")
+                        .unwrap()
+                        .progress_chars("#>-")
+                }),
                 filter: self.filter,
                 video_format: self.video_format,
                 n_retries: self.n_retries,
@@ -431,7 +451,7 @@ impl Downloader {
             video,
             dest: DownloadDest::Default,
             #[cfg(feature = "indicatif")]
-            multi: None,
+            progress: None,
             filter: None,
             video_format: None,
             player_type: None,
@@ -439,7 +459,8 @@ impl Downloader {
     }
 
     /// Download a video with the given ID
-    pub fn download_id<S: Into<String>>(&self, video_id: S) -> DownloadQuery {
+    #[must_use]
+    pub fn id<S: Into<String>>(&self, video_id: S) -> DownloadQuery {
         self.query(DownloadVideo {
             id: video_id.into(),
             ..Default::default()
@@ -447,7 +468,8 @@ impl Downloader {
     }
 
     /// Download a video from a DownloadVideo object
-    pub fn download_video(&self, video: DownloadVideo) -> DownloadQuery {
+    #[must_use]
+    pub fn video(&self, video: DownloadVideo) -> DownloadQuery {
         self.query(video)
     }
 
@@ -455,7 +477,8 @@ impl Downloader {
     ///
     /// Providing an entity has the advantage that the download path can be determined before the video
     /// is fetched, so already downloaded videos get skipped right away.
-    pub fn download_entity(&self, video: &impl YtEntity) -> DownloadQuery {
+    #[must_use]
+    pub fn entity(&self, video: &impl YtEntity) -> DownloadQuery {
         self.query(DownloadVideo::from_entity(video))
     }
 
@@ -465,7 +488,8 @@ impl Downloader {
     /// is fetched, so already downloaded videos get skipped right away.
     ///
     /// If an album track is downloaded, this method will also add the track number to the downloaded file
-    pub fn download_track(&self, track: &TrackItem) -> DownloadQuery {
+    #[must_use]
+    pub fn track(&self, track: &TrackItem) -> DownloadQuery {
         self.query(DownloadVideo::from_track(track))
     }
 }
@@ -495,6 +519,7 @@ impl DownloadQuery {
     ///
     /// Note that the file extension may be changed to fit the reuested video/audio format.
     /// Refer to the [`DownloadResult`] to get the actual path after downloading.
+    #[must_use]
     pub fn to_file<P: Into<PathBuf>>(mut self, file: P) -> Self {
         let file = file.into();
         self.update_video_format(&file);
@@ -504,15 +529,16 @@ impl DownloadQuery {
 
     /// Download to the given directory
     ///
-    /// The filename is created by this template: `{title} [{id}]`.
+    /// The filename is created by this template: `{track} {title} [{id}]`.
     ///
     /// You can use a custom filename template using [`DownloadQuery::to_template`]
+    #[must_use]
     pub fn to_dir<P: Into<PathBuf>>(mut self, dir: P) -> Self {
         self.dest = DownloadDest::Dir(dir.into());
         self
     }
 
-    /// Download to the given filename template
+    /// Download to a path determined by a template
     ///
     /// Templates are paths that may contain variables for video metadata.
     ///
@@ -521,9 +547,17 @@ impl DownloadQuery {
     /// - `{title}` Video title
     /// - `{channel}` Channel name
     /// - `{channel_id}` Channel ID
+    /// - `{album}` Album
+    /// - `{album_id}` Album ID
+    /// - `{track}` Track number
+    ///
+    /// Whitespace between template variables is automatically removed if a variable
+    /// contains no data (e.g. `{track} {name}` is equal to `{name}` if a video without
+    /// track number is downloaded).
     ///
     /// Note that the file extension may be changed to fit the reuested video/audio format.
     /// Refer to the [`DownloadResult`] to get the actual path after downloading.
+    #[must_use]
     pub fn to_template<P: Into<PathBuf>>(mut self, tmpl: P) -> Self {
         let tmpl = tmpl.into();
         self.update_video_format(&tmpl);
@@ -531,46 +565,52 @@ impl DownloadQuery {
         self
     }
 
-    /// Use a [`MultiProgress`] progress bar for all downloads
+    /// Show the progress of this download using a Indicatif [`ProgressBar`]
     #[cfg(feature = "indicatif")]
-    pub fn progress_bar(mut self, progress: MultiProgress) -> Self {
-        self.multi = Some(progress);
+    #[must_use]
+    pub fn progress_bar(mut self, progress: ProgressBar) -> Self {
+        self.progress = Some(progress);
         self
     }
 
     /// Set a [`StreamFilter`] for choosing a stream to be downloaded
+    #[must_use]
     pub fn stream_filter(mut self, filter: StreamFilter) -> Self {
         self.filter = Some(filter);
         self
     }
 
     /// Set the [`VideoFormat`] of downloaded videos
+    #[must_use]
     pub fn video_format(mut self, video_format: DownloadVideoFormat) -> Self {
         self.video_format = Some(video_format);
         self
     }
 
     /// Set the [`ClientType`] used to fetch the YT player
+    #[must_use]
     pub fn player_type(mut self, player_type: ClientType) -> Self {
         self.player_type = Some(player_type);
         self
     }
 
     /// Download the video
+    ///
+    /// If no download path is set, the video is downloaded to the current directory
+    /// with a filename created by this template: `{track} {title} [{id}]`.
     #[tracing::instrument(skip(self), fields(id = self.video.id))]
     pub async fn download(&self) -> Result<DownloadResult> {
         let mut last_err = None;
 
         // Progress bar
         #[cfg(feature = "indicatif")]
-        let pb = {
-            let multi = self.multi.clone().or_else(|| self.dl.i.multi.clone());
-            multi.map(|m| {
+        let pb = match &self.progress {
+            Some(progress) => Some(progress.clone()),
+            None => self.dl.i.multi.clone().map(|m| {
                 let pb = ProgressBar::new(1);
-                pb.set_style(ProgressStyle::with_template("{msg}\n{spinner:.green} [{elapsed_precise}] [{wide_bar:.cyan/blue}] {bytes}/{total_bytes} ({bytes_per_sec}, {eta})").unwrap()
-                    .progress_chars("#>-"));
+                pb.set_style(self.dl.i.progress_style.clone());
                 m.add(pb)
-            })
+            }),
         };
 
         for n in 0..=self.dl.i.n_retries {
@@ -799,6 +839,8 @@ impl DownloadQuery {
         track: TrackItem,
         track_nr: Option<u16>,
     ) -> Result<()> {
+        use std::{io::Cursor, num::NonZeroU32};
+
         let mut tagged_file = lofty::read_from_path(file)?;
         let tag = match tagged_file.primary_tag_mut() {
             Some(primary_tag) => primary_tag,
@@ -1306,9 +1348,11 @@ async fn convert_streams(
     Ok(())
 }
 
+#[cfg(feature = "audiotag")]
 const YMD_FORMAT: &[time::format_description::FormatItem] =
     time::macros::format_description!("[year]-[month]-[day]");
 
+#[cfg(feature = "audiotag")]
 fn extract_yt_release_date(
     description: &str,
     publish_date: Option<OffsetDateTime>,

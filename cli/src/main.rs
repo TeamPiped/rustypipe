@@ -1,3 +1,4 @@
+#![doc = include_str!("../README.md")]
 #![warn(clippy::todo, clippy::dbg_macro)]
 
 use std::{path::PathBuf, str::FromStr, time::Duration};
@@ -10,7 +11,9 @@ use rustypipe::{
     model::{UrlTarget, YouTubeItem},
     param::{search_filter, ChannelVideoTab, Country, Language, StreamFilter},
 };
-use rustypipe_downloader::{DownloadError, DownloadQuery, DownloadVideo, DownloaderBuilder};
+use rustypipe_downloader::{
+    DownloadError, DownloadQuery, DownloadVideo, Downloader, DownloaderBuilder,
+};
 use serde::Serialize;
 use tracing::level_filters::LevelFilter;
 use tracing_subscriber::{fmt::MakeWriter, EnvFilter};
@@ -310,29 +313,12 @@ fn print_data<T: Serialize>(data: &T, format: Format, pretty: bool) {
 }
 
 async fn download_video(
-    rp: &RustyPipe,
+    dl: &Downloader,
     id: &str,
     target: &DownloadTarget,
-    resolution: Option<u32>,
     player_type: Option<PlayerType>,
-    multi: MultiProgress,
 ) {
-    let mut filter = StreamFilter::new();
-    if let Some(res) = resolution {
-        if res == 0 {
-            filter = filter.no_video();
-        } else {
-            filter = filter.video_max_res(res);
-        }
-    }
-    let dl = DownloaderBuilder::new()
-        .rustypipe(rp)
-        .stream_filter(filter)
-        .progress_bar(multi)
-        .audio_tag()
-        .crop_cover()
-        .build();
-    let mut q = target.apply(dl.download_id(id));
+    let mut q = target.apply(dl.id(id));
     if let Some(player_type) = player_type {
         q = q.player_type(player_type.into());
     }
@@ -343,31 +329,13 @@ async fn download_video(
 }
 
 async fn download_videos(
-    rp: &RustyPipe,
+    dl: &Downloader,
     videos: Vec<DownloadVideo>,
     target: &DownloadTarget,
-    resolution: Option<u32>,
     parallel: usize,
     player_type: Option<PlayerType>,
     multi: MultiProgress,
 ) {
-    let mut filter = StreamFilter::new();
-    if let Some(res) = resolution {
-        if res == 0 {
-            filter = filter.no_video();
-        } else {
-            filter = filter.video_max_res(res);
-        }
-    }
-    let dl = DownloaderBuilder::new()
-        .rustypipe(rp)
-        .stream_filter(filter)
-        .progress_bar(multi.clone())
-        .audio_tag()
-        .crop_cover()
-        .path_precheck()
-        .build();
-
     // Indicatif setup
     let main = multi.add(ProgressBar::new(
         videos.len().try_into().unwrap_or_default(),
@@ -387,7 +355,7 @@ async fn download_videos(
             let main = main.clone();
             let id = video.id().to_owned();
 
-            let mut q = target.apply(dl.download_video(video));
+            let mut q = target.apply(dl.video(video));
             if let Some(player_type) = player_type {
                 q = q.player_type(player_type.into());
             }
@@ -470,9 +438,27 @@ async fn main() {
             player_type,
         } => {
             let url_target = rp.query().resolve_string(&id, false).await.unwrap();
+
+            let mut filter = StreamFilter::new();
+            if let Some(res) = resolution {
+                if res == 0 {
+                    filter = filter.no_video();
+                } else {
+                    filter = filter.video_max_res(res);
+                }
+            }
+            let dl = DownloaderBuilder::new()
+                .rustypipe(&rp)
+                .stream_filter(filter)
+                .multi_progress(multi.clone())
+                .audio_tag()
+                .crop_cover()
+                .path_precheck()
+                .build();
+
             match url_target {
                 UrlTarget::Video { id, .. } => {
-                    download_video(&rp, &id, &target, resolution, player_type, multi).await;
+                    download_video(&dl, &id, &target, player_type).await;
                 }
                 UrlTarget::Channel { id } => {
                     target.assert_dir();
@@ -489,16 +475,7 @@ async fn main() {
                         .take(limit)
                         .map(|v| DownloadVideo::from_entity(&v))
                         .collect();
-                    download_videos(
-                        &rp,
-                        videos,
-                        &target,
-                        resolution,
-                        parallel,
-                        player_type,
-                        multi,
-                    )
-                    .await;
+                    download_videos(&dl, videos, &target, parallel, player_type, multi).await;
                 }
                 UrlTarget::Playlist { id } => {
                     target.assert_dir();
@@ -531,16 +508,7 @@ async fn main() {
                             .map(|v| DownloadVideo::from_entity(&v))
                             .collect()
                     };
-                    download_videos(
-                        &rp,
-                        videos,
-                        &target,
-                        resolution,
-                        parallel,
-                        player_type,
-                        multi,
-                    )
-                    .await;
+                    download_videos(&dl, videos, &target, parallel, player_type, multi).await;
                 }
                 UrlTarget::Album { id } => {
                     target.assert_dir();
@@ -551,16 +519,7 @@ async fn main() {
                         .take(limit)
                         .map(|v| DownloadVideo::from_track(&v))
                         .collect();
-                    download_videos(
-                        &rp,
-                        videos,
-                        &target,
-                        resolution,
-                        parallel,
-                        player_type,
-                        multi,
-                    )
-                    .await;
+                    download_videos(&dl, videos, &target, parallel, player_type, multi).await;
                 }
             }
         }

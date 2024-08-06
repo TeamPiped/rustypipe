@@ -10,4 +10,4 @@ repos:
     hooks:
       - id: cargo-fmt
       - id: cargo-clippy
-        args: ["--all", "--tests", "--features=rss", "--", "-D", "warnings"]
+        args: ["--all", "--tests", "--features=rss,indicatif,audiotag", "--", "-D", "warnings"]
