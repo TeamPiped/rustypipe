@@ -634,7 +634,6 @@ pub struct ChannelTag {
 #[derive(
     Default, Copy, Clone, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash,
 )]
-#[non_exhaustive]
 pub enum Verification {
     #[default]
     /// Unverified channel (default)
