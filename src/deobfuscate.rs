@@ -272,7 +272,7 @@ fn get_nsig_fn(player_js: &str) -> Result<String, DeobfError> {
 
     util::find_map_or_last_err(
         get_nsig_fn_names(player_js),
-        DeobfError::Extraction("no nsig fn name found"),
+        DeobfError::Extraction("nsig function name"),
         |name| {
             extract_fn(&name).map_err(|e| {
                 tracing::warn!("Failed to extract nsig fn `{name}`: {e}");
