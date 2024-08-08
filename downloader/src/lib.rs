@@ -121,7 +121,7 @@ pub struct DownloadQuery {
     /// Target video format
     video_format: Option<DownloadVideoFormat>,
     /// ClientType type for fetching videos
-    player_type: Option<ClientType>,
+    client_type: Option<ClientType>,
 }
 
 /// Video to be downloaded
@@ -163,11 +163,7 @@ impl DownloadVideo {
             id: track.id.to_owned(),
             name: Some(track.name.to_owned()),
             channel_id: track.channel_id().map(str::to_owned),
-            channel_name: if track.by_va {
-                Some("Various Artists".to_owned())
-            } else {
-                track.channel_name().map(str::to_owned)
-            },
+            channel_name: track.channel_name().map(str::to_owned),
             album_id: track.album.as_ref().map(|b| b.id.to_owned()),
             album_name: track.album.as_ref().map(|b| b.name.to_owned()),
             track_nr: track.track_nr,
@@ -454,7 +450,7 @@ impl Downloader {
             progress: None,
             filter: None,
             video_format: None,
-            player_type: None,
+            client_type: None,
         }
     }
 
@@ -589,8 +585,8 @@ impl DownloadQuery {
 
     /// Set the [`ClientType`] used to fetch the YT player
     #[must_use]
-    pub fn player_type(mut self, player_type: ClientType) -> Self {
-        self.player_type = Some(player_type);
+    pub fn client_type(mut self, client_type: ClientType) -> Self {
+        self.client_type = Some(client_type);
         self
     }
 
@@ -684,8 +680,8 @@ impl DownloadQuery {
         }
 
         let q = self.dl.i.rp.query();
-        let player_data = match self.player_type {
-            Some(player_type) => q.player_from_client(&self.video.id, player_type).await?,
+        let player_data = match self.client_type {
+            Some(client_type) => q.player_from_client(&self.video.id, client_type).await?,
             None => q.player(&self.video.id).await?,
         };
         let user_agent = q.user_agent(player_data.client_type);

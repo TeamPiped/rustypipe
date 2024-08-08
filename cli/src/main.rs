@@ -4,11 +4,15 @@
 use std::{path::PathBuf, str::FromStr, time::Duration};
 
 use clap::{Parser, Subcommand, ValueEnum};
+use color_print::{cprint, cprintln};
 use futures::stream::{self, StreamExt};
 use indicatif::{MultiProgress, ProgressBar, ProgressStyle};
 use rustypipe::{
     client::{ClientType, RustyPipe},
-    model::{UrlTarget, YouTubeItem},
+    model::{
+        richtext::ToPlaintext, traits::YtEntity, ArtistId, MusicSearchResult, TrackItem, UrlTarget,
+        YouTubeItem,
+    },
     param::{search_filter, ChannelVideoTab, Country, Language, StreamFilter},
 };
 use rustypipe_downloader::{
@@ -84,6 +88,9 @@ enum Commands {
         /// Video resolution (e.g. 720, 1080). Set to 0 for audio-only.
         #[clap(short, long)]
         resolution: Option<u32>,
+        /// Download only the audio track
+        #[clap(long)]
+        audio: bool,
         /// Number of videos downloaded in parallel
         #[clap(short, long, default_value_t = 8)]
         parallel: usize,
@@ -93,8 +100,9 @@ enum Commands {
         /// Limit the number of videos to download
         #[clap(long, default_value_t = 1000)]
         limit: usize,
+        /// YT Client used to fetch player data
         #[clap(long)]
-        player_type: Option<PlayerType>,
+        client_type: Option<PlayerType>,
     },
     /// Extract video, playlist, album or channel data
     Get {
@@ -106,6 +114,9 @@ enum Commands {
         /// Pretty-print output
         #[clap(long)]
         pretty: bool,
+        /// Output as text
+        #[clap(long)]
+        txt: bool,
         /// Limit the number of items to fetch
         #[clap(long, default_value_t = 20)]
         limit: usize,
@@ -118,14 +129,15 @@ enum Commands {
         /// Get comments
         #[clap(long)]
         comments: Option<CommentsOrder>,
-        /// Get lyrics
+        /// Get lyrics for YTM tracks
         #[clap(long)]
         lyrics: bool,
-        /// Get the player
+        /// Get the player data instead of the video details
         #[clap(long)]
         player: bool,
+        /// YT Client used to fetch player data
         #[clap(long)]
-        player_type: Option<PlayerType>,
+        client_type: Option<PlayerType>,
     },
     /// Search YouTube
     Search {
@@ -137,6 +149,9 @@ enum Commands {
         /// Pretty-print output
         #[clap(long)]
         pretty: bool,
+        /// Output as text
+        #[clap(long)]
+        txt: bool,
         /// Limit the number of items to fetch
         #[clap(long, default_value_t = 20)]
         limit: usize,
@@ -168,7 +183,7 @@ enum Format {
     Yaml,
 }
 
-#[derive(Copy, Clone, ValueEnum)]
+#[derive(Debug, Copy, Clone, ValueEnum)]
 enum ChannelTab {
     Videos,
     Shorts,
@@ -312,15 +327,91 @@ fn print_data<T: Serialize>(data: &T, format: Format, pretty: bool) {
     };
 }
 
+fn print_entities(items: &[impl YtEntity]) {
+    for e in items {
+        cprint!("[{}] <b>{}</b>", e.id(), e.name());
+        if let Some(n) = e.channel_name() {
+            cprint!(" - <c>{}</c>", n);
+        }
+        println!();
+    }
+}
+
+fn print_tracks(tracks: &[TrackItem]) {
+    for t in tracks {
+        if let Some(n) = t.track_nr {
+            cprint!("<y><bold>{n:02}</bold></y> ");
+        }
+        cprint!("[{}] <b>{}</b> - ", t.id, t.name);
+        print_artists(&t.artists);
+        print_duration(t.duration);
+        println!();
+    }
+}
+
+fn print_artists(artists: &[ArtistId]) {
+    for (i, a) in artists.iter().enumerate() {
+        if i > 0 {
+            print!(", ");
+        }
+        cprint!("<c>{}</c>", a.name);
+        if let Some(id) = &a.id {
+            print!(" [{id}]");
+        }
+    }
+}
+
+fn print_duration(duration: Option<u32>) {
+    if let Some(d) = duration {
+        print!(" ");
+        let hours = d / 3600;
+        let minutes = (d / 60) % 60;
+        let seconds = d % 60;
+        if hours > 0 {
+            cprint!("<y>{hours:02}:");
+        }
+        cprint!("<y>{minutes:02}:{seconds:02}</y>");
+    }
+}
+
+fn print_music_search<T: Serialize + YtEntity>(
+    data: &MusicSearchResult<T>,
+    format: Format,
+    pretty: bool,
+    txt: bool,
+) {
+    if txt {
+        if let Some(corr) = &data.corrected_query {
+            cprintln!("Did you mean <m>`{}`</m>?", corr);
+        }
+        print_entities(&data.items.items);
+    } else {
+        print_data(data, format, pretty)
+    }
+}
+
+fn print_description(desc: Option<String>) {
+    if let Some(desc) = desc {
+        if !desc.is_empty() {
+            print_h2("Description");
+            cprintln!("{}", desc);
+        }
+    }
+}
+
+fn print_h2(title: &str) {
+    cprintln!("\n<g><u>{}:</u></g>", title);
+}
+
 async fn download_video(
     dl: &Downloader,
     id: &str,
     target: &DownloadTarget,
-    player_type: Option<PlayerType>,
+    client_type: Option<PlayerType>,
 ) {
     let mut q = target.apply(dl.id(id));
-    if let Some(player_type) = player_type {
-        q = q.player_type(player_type.into());
+    if let Some(client_type) = client_type {
+        q = q.client_type(client_type.into());
     }
     let res = q.download().await;
     if let Err(e) = res {
@@ -333,7 +424,7 @@ async fn download_videos(
     videos: Vec<DownloadVideo>,
     target: &DownloadTarget,
     parallel: usize,
-    player_type: Option<PlayerType>,
+    client_type: Option<PlayerType>,
     multi: MultiProgress,
 ) {
     // Indicatif setup
@@ -356,8 +447,8 @@ async fn download_videos(
             let id = video.id().to_owned();
 
             let mut q = target.apply(dl.video(video));
-            if let Some(player_type) = player_type {
-                q = q.player_type(player_type.into());
+            if let Some(client_type) = client_type {
+                q = q.client_type(client_type.into());
             }
 
             async move {
@@ -432,10 +523,11 @@ async fn main() {
             id,
             target,
             resolution,
+            audio,
             parallel,
             music,
             limit,
-            player_type,
+            client_type,
         } => {
             let url_target = rp.query().resolve_string(&id, false).await.unwrap();
 
@@ -447,18 +539,19 @@ async fn main() {
                     filter = filter.video_max_res(res);
                 }
             }
-            let dl = DownloaderBuilder::new()
+            let mut dl = DownloaderBuilder::new()
                 .rustypipe(&rp)
-                .stream_filter(filter)
                 .multi_progress(multi.clone())
-                .audio_tag()
-                .crop_cover()
-                .path_precheck()
-                .build();
+                .path_precheck();
+            if audio {
+                dl = dl.audio_tag().crop_cover();
+                filter = filter.no_video();
+            }
+            let dl = dl.stream_filter(filter).build();
 
             match url_target {
                 UrlTarget::Video { id, .. } => {
-                    download_video(&dl, &id, &target, player_type).await;
+                    download_video(&dl, &id, &target, client_type).await;
                 }
                 UrlTarget::Channel { id } => {
                     target.assert_dir();
@@ -475,7 +568,7 @@ async fn main() {
                         .take(limit)
                         .map(|v| DownloadVideo::from_entity(&v))
                         .collect();
-                    download_videos(&dl, videos, &target, parallel, player_type, multi).await;
+                    download_videos(&dl, videos, &target, parallel, client_type, multi).await;
                 }
                 UrlTarget::Playlist { id } => {
                     target.assert_dir();
@@ -508,7 +601,7 @@ async fn main() {
                             .map(|v| DownloadVideo::from_entity(&v))
                             .collect()
                     };
-                    download_videos(&dl, videos, &target, parallel, player_type, multi).await;
+                    download_videos(&dl, videos, &target, parallel, client_type, multi).await;
                 }
                 UrlTarget::Album { id } => {
                     target.assert_dir();
@@ -519,13 +612,14 @@ async fn main() {
                         .take(limit)
                         .map(|v| DownloadVideo::from_track(&v))
                         .collect();
-                    download_videos(&dl, videos, &target, parallel, player_type, multi).await;
+                    download_videos(&dl, videos, &target, parallel, client_type, multi).await;
                 }
             }
         }
         Commands::Get {
             id,
             format,
+            txt,
             pretty,
             limit,
             tab,
@@ -533,7 +627,7 @@ async fn main() {
             comments,
             lyrics,
             player,
-            player_type,
+            client_type,
         } => {
             let target = rp.query().resolve_string(&id, false).await.unwrap();
 
@@ -544,16 +638,47 @@ async fn main() {
                         match details.lyrics_id {
                             Some(lyrics_id) => {
                                 let lyrics = rp.query().music_lyrics(lyrics_id).await.unwrap();
-                                print_data(&lyrics, format, pretty);
+                                if txt {
+                                    println!("{}\n\n{}", lyrics.body, lyrics.footer);
+                                } else {
+                                    print_data(&lyrics, format, pretty);
+                                }
                             }
                             None => eprintln!("no lyrics found"),
                         }
                     } else if music {
                         let details = rp.query().music_details(&id).await.unwrap();
-                        print_data(&details, format, pretty);
+                        if txt {
+                            if details.track.is_video {
+                                println!("[MV]");
+                            } else {
+                                println!("[Track]");
+                            }
+                            print!("{} [{}]", details.track.name, details.track.id);
+                            print_duration(details.track.duration);
+                            println!();
+                            print_artists(&details.track.artists);
+                            println!();
+                            if !details.track.is_video {
+                                println!(
+                                    "Album: {}",
+                                    details
+                                        .track
+                                        .album
+                                        .as_ref()
+                                        .map(|b| b.id.as_str())
+                                        .unwrap_or("None")
+                                )
+                            }
+                            if let Some(view_count) = details.track.view_count {
+                                println!("Views: {view_count}");
+                            }
+                        } else {
+                            print_data(&details, format, pretty);
+                        }
                     } else if player {
-                        let player = if let Some(player_type) = player_type {
-                            rp.query().player_from_client(&id, player_type.into()).await
+                        let player = if let Some(client_type) = client_type {
+                            rp.query().player_from_client(&id, client_type.into()).await
                         } else {
                             rp.query().player(&id).await
                         }
@@ -580,13 +705,116 @@ async fn main() {
                             None => {}
                         }
 
-                        print_data(&details, format, pretty);
+                        if txt {
+                            cprintln!(
+                                "<G><k>[Video]</k></G>\n<g><bold>{}</bold></g> [{}]",
+                                details.name,
+                                details.id
+                            );
+                            cprintln!(
+                                "<b>Channel:</b> {} [{}]",
+                                details.channel.name,
+                                details.channel.id
+                            );
+                            if let Some(subs) = details.channel.subscriber_count {
+                                cprintln!("<b>Subscribers:</b> {}", subs);
+                            }
+                            if let Some(date) = details.publish_date {
+                                cprintln!("<b>Date:</b> {}", date);
+                            }
+                            cprintln!("<b>Views</b>: {}", details.view_count);
+                            if let Some(likes) = details.like_count {
+                                cprintln!("<b>Likes:</b> {}", likes);
+                            }
+                            if let Some(comments) = details.top_comments.count {
+                                cprintln!("<b>Comments:</b> {}", comments);
+                            }
+                            if details.is_ccommons {
+                                cprintln!("<g>Creative Commons</g>");
+                            }
+                            if details.is_live {
+                                cprintln!("<r>Livestream</r>");
+                            }
+                            print_description(Some(details.description.to_plaintext()));
+                            if !details.recommended.is_empty() {
+                                print_h2("Recommended");
+                                print_entities(&details.recommended.items);
+                            }
+                            let comment_list = comments.map(|c| match c {
+                                CommentsOrder::Top => &details.top_comments.items,
+                                CommentsOrder::Latest => &details.latest_comments.items,
+                            });
+                            if let Some(comment_list) = comment_list {
+                                print_h2("Comments");
+                                for c in comment_list {
+                                    if let Some(author) = &c.author {
+                                        cprint!("<c>{}</c> [{}]", author.name, author.id);
+                                    } else {
+                                        cprint!("<m>Unknown author</m>");
+                                    }
+                                    if c.by_owner {
+                                        print!(" (Owner)");
+                                    }
+                                    println!();
+                                    println!("{}", c.text.to_plaintext());
+                                    cprint!("<b>Likes:</b> {}", c.like_count.unwrap_or_default());
+                                    if c.hearted {
+                                        cprint!(" <r>♥</r>");
+                                    }
+                                    println!("\n");
+                                }
+                            }
+                        } else {
+                            print_data(&details, format, pretty);
+                        }
                     }
                 }
                 UrlTarget::Channel { id } => {
                     if music {
                         let artist = rp.query().music_artist(&id, true).await.unwrap();
-                        print_data(&artist, format, pretty);
+                        if txt {
+                            cprintln!(
+                                "<G><k>[Artist]</k></G>\n<g><bold>{}</bold></g> [{}]",
+                                artist.name,
+                                artist.id
+                            );
+                            if let Some(subs) = artist.subscriber_count {
+                                cprintln!("<b>Subscribers:</b> {subs}");
+                            }
+                            if let Some(url) = artist.wikipedia_url {
+                                cprintln!("<b>Wikipedia:</b> {url}");
+                            }
+                            if let Some(id) = artist.tracks_playlist_id {
+                                cprintln!("<b>All tracks:</b> {id}");
+                            }
+                            if let Some(id) = artist.videos_playlist_id {
+                                cprintln!("<b>All videos:</b> {id}");
+                            }
+                            if let Some(id) = artist.radio_id {
+                                cprintln!("<b>Radio:</b> {id}");
+                            }
+                            print_description(artist.description);
+                            if !artist.albums.is_empty() {
+                                print_h2("Albums");
+                                for b in artist.albums {
+                                    cprint!("[{}] <b>{}</b> ({:?}", b.id, b.name, b.album_type);
+                                    if let Some(y) = b.year {
+                                        print!(", {y}");
+                                    }
+                                    println!(")");
+                                }
+                            }
+                            if !artist.playlists.is_empty() {
+                                print_h2("Playlists");
+                                print_entities(&artist.playlists);
+                            }
+                            if !artist.similar_artists.is_empty() {
+                                print_h2("Similar artists");
+                                print_entities(&artist.similar_artists);
+                            }
+                        } else {
+                            print_data(&artist, format, pretty);
+                        }
                     } else {
                         match tab {
                             ChannelTab::Videos | ChannelTab::Shorts | ChannelTab::Live => {
@@ -604,15 +832,74 @@ async fn main() {
                                     .extend_limit(rp.query(), limit)
                                     .await
                                     .unwrap();
-                                print_data(&channel, format, pretty);
+
+                                if txt {
+                                    cprintln!(
+                                        "<G><k>[Channel {:?}]</k></G>\n<g><bold>{}</bold></g> [{}]",
+                                        tab,
+                                        channel.name,
+                                        channel.id
+                                    );
+                                    print_description(Some(channel.description));
+                                    if let Some(subs) = channel.subscriber_count {
+                                        cprintln!("<b>Subscribers:</b> {subs}");
+                                    }
+                                    println!();
+                                    print_entities(&channel.content.items);
+                                } else {
+                                    print_data(&channel, format, pretty);
+                                }
                             }
                             ChannelTab::Playlists => {
                                 let channel = rp.query().channel_playlists(&id).await.unwrap();
-                                print_data(&channel, format, pretty);
+
+                                if txt {
+                                    cprintln!(
+                                        "<G><k>[Channel {:?}]</k></G>\n<g><bold>{}</bold></g> [{}]",
+                                        tab,
+                                        channel.name,
+                                        channel.id
+                                    );
+                                    print_description(Some(channel.description));
+                                    if let Some(subs) = channel.subscriber_count {
+                                        cprintln!("<b>Subscribers:</b> {subs}");
+                                    }
+                                    println!();
+                                    print_entities(&channel.content.items);
+                                } else {
+                                    print_data(&channel, format, pretty);
+                                }
                             }
                             ChannelTab::Info => {
-                                let channel = rp.query().channel_info(&id).await.unwrap();
-                                print_data(&channel, format, pretty);
+                                let info = rp.query().channel_info(&id).await.unwrap();
+
+                                if txt {
+                                    cprintln!(
+                                        "<G><k>[Channel info]</k></G>\n<b>ID:</b>{}",
+                                        info.id
+                                    );
+                                    print_description(Some(info.description));
+                                    if let Some(subs) = info.subscriber_count {
+                                        cprintln!("<b>Subscribers:</b> {subs}");
+                                    }
+                                    if let Some(vids) = info.video_count {
+                                        cprintln!("<b>Videos:</b> {vids}");
+                                    }
+                                    if let Some(views) = info.view_count {
+                                        cprintln!("<b>Views:</b> {views}");
+                                    }
+                                    if let Some(created) = info.create_date {
+                                        cprintln!("<b>Created on:</b> {created}");
+                                    }
+                                    if !info.links.is_empty() {
+                                        print_h2("Links");
+                                        for (name, url) in &info.links {
+                                            cprintln!("<b>{name}:</b> {url}");
+                                        }
+                                    }
+                                } else {
+                                    print_data(&info, format, pretty);
+                                }
                             }
                         }
                     }
@@ -625,7 +912,26 @@ async fn main() {
                             .extend_limit(rp.query(), limit)
                             .await
                             .unwrap();
-                        print_data(&playlist, format, pretty);
+                        if txt {
+                            cprintln!(
+                                "<G><k>[MusicPlaylist]</k></G>\n<g><bold>{}</bold></g> [{}]\n<b>Tracks:</b> {}",
+                                playlist.name,
+                                playlist.id,
+                                playlist.track_count.unwrap_or_default(),
+                            );
+                            if let Some(n) = playlist.channel_name() {
+                                cprint!("<b>Author:</b> {n}");
+                                if let Some(id) = playlist.channel_id() {
+                                    print!(" [{id}]");
+                                }
+                                println!();
+                            }
+                            print_description(playlist.description.map(|d| d.to_plaintext()));
+                            println!();
+                            print_tracks(&playlist.tracks.items);
+                        } else {
+                            print_data(&playlist, format, pretty);
+                        }
                     } else {
                         let mut playlist = rp.query().playlist(&id).await.unwrap();
                         playlist
@@ -633,12 +939,54 @@ async fn main() {
                             .extend_limit(rp.query(), limit)
                             .await
                             .unwrap();
-                        print_data(&playlist, format, pretty);
+                        if txt {
+                            cprintln!(
+                                "<G><k>[Playlist]</k></G>\n<g><bold>{}</bold></g> [{}]\n<b>Videos:</b> {}",
+                                playlist.name, playlist.id, playlist.video_count,
+                            );
+                            if let Some(n) = playlist.channel_name() {
+                                cprint!("<b>Author:</b> {n}");
+                                if let Some(id) = playlist.channel_id() {
+                                    print!(" [{id}]");
+                                }
+                                println!();
+                            }
+                            if let Some(last_update) = playlist.last_update {
+                                cprintln!("<b>Last update:</b> {last_update}");
+                            }
+                            print_description(playlist.description.map(|d| d.to_plaintext()));
+                            println!();
+                            print_entities(&playlist.videos.items);
+                        } else {
+                            print_data(&playlist, format, pretty);
+                        }
                     }
                 }
                 UrlTarget::Album { id } => {
                     let album = rp.query().music_album(&id).await.unwrap();
-                    print_data(&album, format, pretty);
+                    if txt {
+                        cprint!(
+                            "<G><k>[Album]</k></G>\n<g><bold>{}</bold></g> [{}] ({:?}",
+                            album.name,
+                            album.id,
+                            album.album_type
+                        );
+                        if let Some(year) = album.year {
+                            print!(", {year}");
+                        }
+                        println!(")");
+                        if let Some(n) = album.channel_name() {
+                            cprint!("<b>Artist:</b> {}", n);
+                            if let Some(id) = album.channel_id() {
+                                print!(" [{id}]");
+                            }
+                        }
+                        print_description(album.description.map(|d| d.to_plaintext()));
+                        println!();
+                        print_tracks(&album.tracks);
+                    } else {
+                        print_data(&album, format, pretty);
+                    }
                 }
             }
         }
@@ -646,6 +994,7 @@ async fn main() {
             query,
             format,
             pretty,
+            txt,
             limit,
             item_type,
             length,
@@ -672,32 +1021,40 @@ async fn main() {
                         .await
                         .unwrap();
                     res.items.extend_limit(rp.query(), limit).await.unwrap();
-                    print_data(&res, format, pretty);
+
+                    if txt {
+                        if let Some(corr) = res.corrected_query {
+                            cprintln!("Did you mean <m>`{}`</m>?", corr);
+                        }
+                        print_entities(&res.items.items);
+                    } else {
+                        print_data(&res, format, pretty);
+                    }
                 }
             },
             Some(MusicSearchCategory::All) => {
                 let res = rp.query().music_search_main(&query).await.unwrap();
-                print_data(&res, format, pretty);
+                print_music_search(&res, format, pretty, txt);
             }
             Some(MusicSearchCategory::Tracks) => {
                 let mut res = rp.query().music_search_tracks(&query).await.unwrap();
                 res.items.extend_limit(rp.query(), limit).await.unwrap();
-                print_data(&res, format, pretty);
+                print_music_search(&res, format, pretty, txt);
             }
             Some(MusicSearchCategory::Videos) => {
                 let mut res = rp.query().music_search_videos(&query).await.unwrap();
                 res.items.extend_limit(rp.query(), limit).await.unwrap();
-                print_data(&res, format, pretty);
+                print_music_search(&res, format, pretty, txt);
             }
             Some(MusicSearchCategory::Artists) => {
                 let mut res = rp.query().music_search_artists(&query).await.unwrap();
                 res.items.extend_limit(rp.query(), limit).await.unwrap();
-                print_data(&res, format, pretty);
+                print_music_search(&res, format, pretty, txt);
             }
             Some(MusicSearchCategory::Albums) => {
                 let mut res = rp.query().music_search_albums(&query).await.unwrap();
                 res.items.extend_limit(rp.query(), limit).await.unwrap();
-                print_data(&res, format, pretty);
+                print_music_search(&res, format, pretty, txt);
             }
             Some(MusicSearchCategory::PlaylistsYtm | MusicSearchCategory::PlaylistsCommunity) => {
                 let mut res = rp
@@ -709,7 +1066,7 @@ async fn main() {
                     .await
                     .unwrap();
                 res.items.extend_limit(rp.query(), limit).await.unwrap();
-                print_data(&res, format, pretty);
+                print_music_search(&res, format, pretty, txt);
             }
         },
         Commands::Vdata => {

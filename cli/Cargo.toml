@@ -56,3 +56,5 @@ tracing.workspace = true
 tracing-subscriber.workspace = true
 serde_yaml.workspace = true
 dirs.workspace = true
+
+color-print = "0.3.6"
