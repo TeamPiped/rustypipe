@@ -4,14 +4,14 @@
 use std::{path::PathBuf, str::FromStr, time::Duration};
 
 use clap::{Parser, Subcommand, ValueEnum};
-use color_print::{cprint, cprintln};
 use futures::stream::{self, StreamExt};
 use indicatif::{MultiProgress, ProgressBar, ProgressStyle};
+use owo_colors::OwoColorize;
 use rustypipe::{
     client::{ClientType, RustyPipe},
     model::{
         richtext::ToPlaintext, traits::YtEntity, ArtistId, MusicSearchResult, TrackItem, UrlTarget,
-        YouTubeItem,
+        Verification, YouTubeItem,
     },
     param::{search_filter, ChannelVideoTab, Country, Language, StreamFilter},
 };
@@ -329,9 +329,9 @@ fn print_data<T: Serialize>(data: &T, format: Format, pretty: bool) {
 
 fn print_entities(items: &[impl YtEntity]) {
     for e in items {
-        cprint!("[{}] <b>{}</b>", e.id(), e.name());
+        anstream::print!("[{}] {}", e.id(), e.name().bold());
         if let Some(n) = e.channel_name() {
-            cprint!(" - <c>{}</c>", n);
+            anstream::print!(" - {}", n.cyan());
         }
         println!();
     }
@@ -340,9 +340,9 @@ fn print_entities(items: &[impl YtEntity]) {
 fn print_tracks(tracks: &[TrackItem]) {
     for t in tracks {
         if let Some(n) = t.track_nr {
-            cprint!("<y><bold>{n:02}</bold></y> ");
+            anstream::print!("{} ", format!("{n:02}").yellow().bold());
         }
-        cprint!("[{}] <b>{}</b> - ", t.id, t.name);
+        anstream::print!("[{}] {} - ", t.id, t.name.bold());
         print_artists(&t.artists);
         print_duration(t.duration);
         println!();
@@ -354,7 +354,7 @@ fn print_artists(artists: &[ArtistId]) {
         if i > 0 {
             print!(", ");
         }
-        cprint!("<c>{}</c>", a.name);
+        anstream::print!("{}", a.name.cyan());
         if let Some(id) = &a.id {
             print!(" [{id}]");
         }
@@ -368,9 +368,9 @@ fn print_duration(duration: Option<u32>) {
         let minutes = (d / 60) % 60;
         let seconds = d % 60;
         if hours > 0 {
-            cprint!("<y>{hours:02}:");
+            anstream::print!("{}", format!("{hours:02}:").yellow());
         }
-        cprint!("<y>{minutes:02}:{seconds:02}</y>");
+        anstream::print!("{}", format!("{minutes:02}:{seconds:02}").yellow());
     }
 }
 
@@ -382,7 +382,7 @@ fn print_music_search<T: Serialize + YtEntity>(
 ) {
     if txt {
         if let Some(corr) = &data.corrected_query {
-            cprintln!("Did you mean <m>`{}`</m>?", corr);
+            anstream::println!("Did you mean `{}`?", corr.magenta());
         }
         print_entities(&data.items.items);
     } else {
@@ -394,13 +394,21 @@ fn print_description(desc: Option<String>) {
     if let Some(desc) = desc {
         if !desc.is_empty() {
             print_h2("Description");
-            cprintln!("{}", desc);
+            println!("{}", desc);
         }
     }
 }
 
 fn print_h2(title: &str) {
-    cprintln!("\n<g><u>{}:</u></g>", title);
+    anstream::println!("\n{}", format!("{title}:").green().underline());
+}
+
+fn print_verification(verification: Verification) {
+    match verification {
+        Verification::None => {}
+        Verification::Verified => print!(" ✓"),
+        Verification::Artist => print!(" ♪"),
+    }
 }
 
 async fn download_video(
@@ -706,34 +714,36 @@ async fn main() {
                         }
 
                         if txt {
-                            cprintln!(
-                                "<G><k>[Video]</k></G>\n<g><bold>{}</bold></g> [{}]",
-                                details.name,
+                            anstream::println!(
+                                "{}\n{} [{}]",
+                                "[Video]".on_green().black(),
+                                details.name.green().bold(),
                                 details.id
                             );
-                            cprintln!(
-                                "<b>Channel:</b> {} [{}]",
+                            anstream::println!(
+                                "{} {} [{}]",
+                                "Channel:".blue(),
                                 details.channel.name,
                                 details.channel.id
                             );
                             if let Some(subs) = details.channel.subscriber_count {
-                                cprintln!("<b>Subscribers:</b> {}", subs);
+                                anstream::println!("{} {}", "Subscribers:".blue(), subs);
                             }
                             if let Some(date) = details.publish_date {
-                                cprintln!("<b>Date:</b> {}", date);
+                                anstream::println!("{} {}", "Date:".blue(), date);
                             }
-                            cprintln!("<b>Views</b>: {}", details.view_count);
+                            anstream::println!("{} {}", "Views:".blue(), details.view_count);
                             if let Some(likes) = details.like_count {
-                                cprintln!("<b>Likes:</b> {}", likes);
+                                anstream::println!("{} {}", "Likes:".blue(), likes);
                             }
                             if let Some(comments) = details.top_comments.count {
-                                cprintln!("<b>Comments:</b> {}", comments);
+                                anstream::println!("{} {}", "Comments:".blue(), comments);
                             }
                             if details.is_ccommons {
-                                cprintln!("<g>Creative Commons</g>");
+                                anstream::println!("{}", "Creative Commons".green());
                             }
                             if details.is_live {
-                                cprintln!("<r>Livestream</r>");
+                                anstream::println!("{}", "Livestream".red());
                             }
                             print_description(Some(details.description.to_plaintext()));
                             if !details.recommended.is_empty() {
@@ -748,18 +758,23 @@ async fn main() {
                                 print_h2("Comments");
                                 for c in comment_list {
                                     if let Some(author) = &c.author {
-                                        cprint!("<c>{}</c> [{}]", author.name, author.id);
+                                        anstream::print!("{} [{}]", author.name.cyan(), author.id);
+                                        print_verification(author.verification);
                                     } else {
-                                        cprint!("<m>Unknown author</m>");
+                                        anstream::print!("{}", "Unknown author".magenta());
                                     }
                                     if c.by_owner {
                                         print!(" (Owner)");
                                     }
                                     println!();
                                     println!("{}", c.text.to_plaintext());
-                                    cprint!("<b>Likes:</b> {}", c.like_count.unwrap_or_default());
+                                    anstream::print!(
+                                        "{} {}",
+                                        "Likes:".blue(),
+                                        c.like_count.unwrap_or_default()
+                                    );
                                     if c.hearted {
-                                        cprint!(" <r>♥</r>");
+                                        anstream::print!(" {}", "♥".red());
                                     }
                                     println!("\n");
                                 }
@@ -773,31 +788,37 @@ async fn main() {
                     if music {
                         let artist = rp.query().music_artist(&id, true).await.unwrap();
                         if txt {
-                            cprintln!(
-                                "<G><k>[Artist]</k></G>\n<g><bold>{}</bold></g> [{}]",
-                                artist.name,
+                            anstream::println!(
+                                "{}\n{} [{}]",
+                                "[Artist]".on_green().black(),
+                                artist.name.green().bold(),
                                 artist.id
                             );
                             if let Some(subs) = artist.subscriber_count {
-                                cprintln!("<b>Subscribers:</b> {subs}");
+                                anstream::println!("{} {}", "Subscribers:".blue(), subs);
                             }
                             if let Some(url) = artist.wikipedia_url {
-                                cprintln!("<b>Wikipedia:</b> {url}");
+                                anstream::println!("{} {}", "Wikipedia:".blue(), url);
                             }
                             if let Some(id) = artist.tracks_playlist_id {
-                                cprintln!("<b>All tracks:</b> {id}");
+                                anstream::println!("{} {}", "All tracks:".blue(), id);
                             }
                             if let Some(id) = artist.videos_playlist_id {
-                                cprintln!("<b>All videos:</b> {id}");
+                                anstream::println!("{} {}", "All videos:".blue(), id);
                             }
                             if let Some(id) = artist.radio_id {
-                                cprintln!("<b>Radio:</b> {id}");
+                                anstream::println!("{} {}", "Radio:".blue(), id);
                             }
                             print_description(artist.description);
                             if !artist.albums.is_empty() {
                                 print_h2("Albums");
                                 for b in artist.albums {
-                                    cprint!("[{}] <b>{}</b> ({:?}", b.id, b.name, b.album_type);
+                                    anstream::print!(
+                                        "[{}] {} ({:?}",
+                                        b.id,
+                                        b.name.bold(),
+                                        b.album_type
+                                    );
                                     if let Some(y) = b.year {
                                         print!(", {y}");
                                     }
@@ -834,16 +855,18 @@ async fn main() {
                                     .unwrap();
 
                                 if txt {
-                                    cprintln!(
-                                        "<G><k>[Channel {:?}]</k></G>\n<g><bold>{}</bold></g> [{}]",
-                                        tab,
-                                        channel.name,
+                                    anstream::print!(
+                                        "{}\n{} [{}]",
+                                        format!("[Channel {tab:?}]").on_green().black(),
+                                        channel.name.green().bold(),
                                         channel.id
                                     );
-                                    print_description(Some(channel.description));
+                                    print_verification(channel.verification);
+                                    println!();
                                     if let Some(subs) = channel.subscriber_count {
-                                        cprintln!("<b>Subscribers:</b> {subs}");
+                                        anstream::println!("{} {}", "Subscribers:".blue(), subs);
                                     }
+                                    print_description(Some(channel.description));
                                     println!();
                                     print_entities(&channel.content.items);
                                 } else {
@@ -854,15 +877,15 @@ async fn main() {
                                 let channel = rp.query().channel_playlists(&id).await.unwrap();
 
                                 if txt {
-                                    cprintln!(
-                                        "<G><k>[Channel {:?}]</k></G>\n<g><bold>{}</bold></g> [{}]",
-                                        tab,
-                                        channel.name,
+                                    anstream::println!(
+                                        "{}\n{} [{}]",
+                                        format!("[Channel {tab:?}]").on_green().black(),
+                                        channel.name.green().bold(),
                                         channel.id
                                     );
                                     print_description(Some(channel.description));
                                     if let Some(subs) = channel.subscriber_count {
-                                        cprintln!("<b>Subscribers:</b> {subs}");
+                                        anstream::println!("{} {}", "Subscribers:".blue(), subs);
                                     }
                                     println!();
                                     print_entities(&channel.content.items);
@@ -874,27 +897,28 @@ async fn main() {
                                 let info = rp.query().channel_info(&id).await.unwrap();
 
                                 if txt {
-                                    cprintln!(
-                                        "<G><k>[Channel info]</k></G>\n<b>ID:</b>{}",
+                                    anstream::println!(
+                                        "{}\n<b>ID:</b>{}",
+                                        "[Channel info]".on_green().black(),
                                         info.id
                                     );
                                     print_description(Some(info.description));
                                     if let Some(subs) = info.subscriber_count {
-                                        cprintln!("<b>Subscribers:</b> {subs}");
+                                        anstream::println!("{} {}", "Subscribers:".blue(), subs);
                                     }
                                     if let Some(vids) = info.video_count {
-                                        cprintln!("<b>Videos:</b> {vids}");
+                                        anstream::println!("{} {}", "Videos:".blue(), vids);
                                     }
                                     if let Some(views) = info.view_count {
-                                        cprintln!("<b>Views:</b> {views}");
+                                        anstream::println!("{} {}", "Views:".blue(), views);
                                     }
                                     if let Some(created) = info.create_date {
-                                        cprintln!("<b>Created on:</b> {created}");
+                                        anstream::println!("{} {}", "Created on:".blue(), created);
                                     }
                                     if !info.links.is_empty() {
                                         print_h2("Links");
                                         for (name, url) in &info.links {
-                                            cprintln!("<b>{name}:</b> {url}");
+                                            anstream::println!("{} {}", name.blue(), url);
                                         }
                                     }
                                 } else {
@@ -913,14 +937,16 @@ async fn main() {
                             .await
                             .unwrap();
                         if txt {
-                            cprintln!(
-                                "<G><k>[MusicPlaylist]</k></G>\n<g><bold>{}</bold></g> [{}]\n<b>Tracks:</b> {}",
-                                playlist.name,
+                            anstream::println!(
+                                "{}\n{} [{}]\n{} {}",
+                                "[MusicPlaylist]".on_green().black(),
+                                playlist.name.green().bold(),
                                 playlist.id,
+                                "Tracks:".blue(),
                                 playlist.track_count.unwrap_or_default(),
                             );
                             if let Some(n) = playlist.channel_name() {
-                                cprint!("<b>Author:</b> {n}");
+                                anstream::print!("{} {}", "Author:".blue(), n.bold());
                                 if let Some(id) = playlist.channel_id() {
                                     print!(" [{id}]");
                                 }
@@ -940,19 +966,23 @@ async fn main() {
                             .await
                             .unwrap();
                         if txt {
-                            cprintln!(
-                                "<G><k>[Playlist]</k></G>\n<g><bold>{}</bold></g> [{}]\n<b>Videos:</b> {}",
-                                playlist.name, playlist.id, playlist.video_count,
+                            anstream::println!(
+                                "{}\n{} [{}]\n{} {}",
+                                "[Playlist]".on_green().black(),
+                                playlist.name.green().bold(),
+                                playlist.id,
+                                "Videos:".blue(),
+                                playlist.video_count,
                             );
                             if let Some(n) = playlist.channel_name() {
-                                cprint!("<b>Author:</b> {n}");
+                                anstream::print!("{} {}", "Author:".blue(), n.bold());
                                 if let Some(id) = playlist.channel_id() {
                                     print!(" [{id}]");
                                 }
                                 println!();
                             }
                             if let Some(last_update) = playlist.last_update {
-                                cprintln!("<b>Last update:</b> {last_update}");
+                                anstream::println!("{} {}", "Last update:".blue(), last_update);
                             }
                             print_description(playlist.description.map(|d| d.to_plaintext()));
                             println!();
@@ -965,9 +995,10 @@ async fn main() {
                 UrlTarget::Album { id } => {
                     let album = rp.query().music_album(&id).await.unwrap();
                     if txt {
-                        cprint!(
-                            "<G><k>[Album]</k></G>\n<g><bold>{}</bold></g> [{}] ({:?}",
-                            album.name,
+                        anstream::print!(
+                            "{}\n{} [{}] ({:?}",
+                            "[Album]".on_green().black(),
+                            album.name.green().bold(),
                             album.id,
                             album.album_type
                         );
@@ -976,7 +1007,7 @@ async fn main() {
                         }
                         println!(")");
                         if let Some(n) = album.channel_name() {
-                            cprint!("<b>Artist:</b> {}", n);
+                            anstream::print!("{} {}", "Artist:".blue(), n);
                             if let Some(id) = album.channel_id() {
                                 print!(" [{id}]");
                             }
@@ -1024,7 +1055,7 @@ async fn main() {
 
                     if txt {
                         if let Some(corr) = res.corrected_query {
-                            cprintln!("Did you mean <m>`{}`</m>?", corr);
+                            anstream::println!("Did you mean `{}`?", corr.magenta());
                         }
                         print_entities(&res.items.items);
                     } else {
