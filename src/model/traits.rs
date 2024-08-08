@@ -227,49 +227,15 @@ macro_rules! yt_entity_owner_music {
             }
 
             fn channel_name(&self) -> Option<&str> {
-                self.artists.first().map(|a| a.name.as_str())
+                if self.by_va {
+                    Some(crate::util::VARIOUS_ARTISTS)
+                } else {
+                    self.artists.first().map(|a| a.name.as_str())
+                }
             }
         }
     };
 }
-
-/*
-impl YtEntity for VideoPlayer {
-    fn id(&self) -> &str {
-        &self.details.id
-    }
-
-    fn name(&self) -> &str {
-        &self.details.name
-    }
-
-    fn channel_id(&self) -> Option<&str> {
-        Some(&self.details.channel_id)
-    }
-
-    fn channel_name(&self) -> Option<&str> {
-        self.details.channel_name.as_deref()
-    }
-}
-
-impl YtEntity for VideoPlayerDetails {
-    fn id(&self) -> &str {
-        &self.channel_id
-    }
-
-    fn name(&self) -> &str {
-        &self.name
-    }
-
-    fn channel_id(&self) -> Option<&str> {
-        Some(&self.channel_id)
-    }
-
-    fn channel_name(&self) -> Option<&str> {
-        self.channel_name.as_deref()
-    }
-}
-*/
 
 impl<T> YtEntity for Channel<T> {
     fn id(&self) -> &str {
@@ -286,6 +252,78 @@ impl<T> YtEntity for Channel<T> {
 
     fn channel_name(&self) -> Option<&str> {
         None
+    }
+}
+
+impl YtEntity for YouTubeItem {
+    fn id(&self) -> &str {
+        match self {
+            YouTubeItem::Video(v) => &v.id,
+            YouTubeItem::Playlist(p) => &p.id,
+            YouTubeItem::Channel(c) => &c.id,
+        }
+    }
+
+    fn name(&self) -> &str {
+        match self {
+            YouTubeItem::Video(v) => &v.name,
+            YouTubeItem::Playlist(p) => &p.name,
+            YouTubeItem::Channel(c) => &c.name,
+        }
+    }
+
+    fn channel_id(&self) -> Option<&str> {
+        match self {
+            YouTubeItem::Video(v) => v.channel_id(),
+            YouTubeItem::Playlist(p) => p.channel_id(),
+            YouTubeItem::Channel(_) => None,
+        }
+    }
+
+    fn channel_name(&self) -> Option<&str> {
+        match self {
+            YouTubeItem::Video(v) => v.channel_name(),
+            YouTubeItem::Playlist(p) => p.channel_name(),
+            YouTubeItem::Channel(_) => None,
+        }
+    }
+}
+
+impl YtEntity for MusicItem {
+    fn id(&self) -> &str {
+        match self {
+            MusicItem::Track(t) => &t.id,
+            MusicItem::Album(b) => &b.id,
+            MusicItem::Artist(a) => &a.id,
+            MusicItem::Playlist(p) => &p.id,
+        }
+    }
+
+    fn name(&self) -> &str {
+        match self {
+            MusicItem::Track(t) => &t.name,
+            MusicItem::Album(b) => &b.name,
+            MusicItem::Artist(a) => &a.name,
+            MusicItem::Playlist(p) => &p.name,
+        }
+    }
+
+    fn channel_id(&self) -> Option<&str> {
+        match self {
+            MusicItem::Track(t) => t.channel_id(),
+            MusicItem::Album(b) => b.channel_id(),
+            MusicItem::Artist(_) => None,
+            MusicItem::Playlist(p) => p.channel_id(),
+        }
+    }
+
+    fn channel_name(&self) -> Option<&str> {
+        match self {
+            MusicItem::Track(t) => t.channel_name(),
+            MusicItem::Album(b) => b.channel_name(),
+            MusicItem::Artist(_) => None,
+            MusicItem::Playlist(p) => p.channel_id(),
+        }
     }
 }
 
