@@ -103,6 +103,9 @@ enum Commands {
         /// YT Client used to fetch player data
         #[clap(long)]
         client_type: Option<PlayerType>,
+        /// Pot token to circumvent bot detection
+        #[clap(long)]
+        pot: Option<String>,
     },
     /// Extract video, playlist, album or channel data
     Get {
@@ -536,6 +539,7 @@ async fn main() {
             music,
             limit,
             client_type,
+            pot,
         } => {
             let url_target = rp.query().resolve_string(&id, false).await.unwrap();
 
@@ -554,6 +558,9 @@ async fn main() {
             if audio {
                 dl = dl.audio_tag().crop_cover();
                 filter = filter.no_video();
+            }
+            if let Some(pot) = pot {
+                dl = dl.pot(pot);
             }
             let dl = dl.stream_filter(filter).build();
 
