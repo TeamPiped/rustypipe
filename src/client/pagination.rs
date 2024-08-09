@@ -14,7 +14,7 @@ use super::{response, ClientType, MapRespCtx, MapResponse, QContinuation, RustyP
 
 impl RustyPipeQuery {
     /// Get more YouTube items from the given continuation token and endpoint
-    #[tracing::instrument(skip(self))]
+    #[tracing::instrument(skip(self), level = "error")]
     pub async fn continuation<T: FromYtItem, S: AsRef<str> + Debug>(
         &self,
         ctoken: S,

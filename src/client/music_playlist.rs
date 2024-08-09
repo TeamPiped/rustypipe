@@ -22,7 +22,7 @@ use super::{
 
 impl RustyPipeQuery {
     /// Get a playlist from YouTube Music
-    #[tracing::instrument(skip(self))]
+    #[tracing::instrument(skip(self), level = "error")]
     pub async fn music_playlist<S: AsRef<str> + Debug>(
         &self,
         playlist_id: S,
@@ -54,7 +54,7 @@ impl RustyPipeQuery {
     }
 
     /// Get an album from YouTube Music
-    #[tracing::instrument(skip(self))]
+    #[tracing::instrument(skip(self), level = "error")]
     pub async fn music_album<S: AsRef<str> + Debug>(
         &self,
         album_id: S,

@@ -31,7 +31,7 @@ struct QVideo<'a> {
 
 impl RustyPipeQuery {
     /// Get the metadata for a video
-    #[tracing::instrument(skip(self))]
+    #[tracing::instrument(skip(self), level = "error")]
     pub async fn video_details<S: AsRef<str> + Debug>(
         &self,
         video_id: S,
@@ -56,7 +56,7 @@ impl RustyPipeQuery {
     }
 
     /// Get the comments for a video using the continuation token obtained from `rusty_pipe_query.video_details()`
-    #[tracing::instrument(skip(self))]
+    #[tracing::instrument(skip(self), level = "error")]
     pub async fn video_comments<S: AsRef<str> + Debug>(
         &self,
         ctoken: S,

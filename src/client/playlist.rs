@@ -17,7 +17,7 @@ use super::{response, ClientType, MapRespCtx, MapResponse, MapResult, QBrowse, R
 
 impl RustyPipeQuery {
     /// Get a YouTube playlist
-    #[tracing::instrument(skip(self))]
+    #[tracing::instrument(skip(self), level = "error")]
     pub async fn playlist<S: AsRef<str> + Debug>(&self, playlist_id: S) -> Result<Playlist, Error> {
         let playlist_id = playlist_id.as_ref();
         // YTM playlists require visitor data for continuations to work

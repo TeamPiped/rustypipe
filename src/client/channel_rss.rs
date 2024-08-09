@@ -18,7 +18,7 @@ impl RustyPipeQuery {
     /// for checking a lot of channels or implementing a subscription feed.
     ///
     /// The downside of using the RSS feed is that it does not provide video durations.
-    #[tracing::instrument(skip(self))]
+    #[tracing::instrument(skip(self), level = "error")]
     pub async fn channel_rss<S: AsRef<str> + Debug>(
         &self,
         channel_id: S,

@@ -82,7 +82,7 @@ impl RustyPipeQuery {
     }
 
     /// Get the videos from a YouTube channel
-    #[tracing::instrument(skip(self))]
+    #[tracing::instrument(skip(self), level = "error")]
     pub async fn channel_videos<S: AsRef<str> + Debug>(
         &self,
         channel_id: S,
@@ -94,7 +94,7 @@ impl RustyPipeQuery {
     /// Get a ordered list of videos from a YouTube channel
     ///
     /// This function does not return channel metadata.
-    #[tracing::instrument(skip(self))]
+    #[tracing::instrument(skip(self), level = "error")]
     pub async fn channel_videos_order<S: AsRef<str> + Debug>(
         &self,
         channel_id: S,
@@ -105,7 +105,7 @@ impl RustyPipeQuery {
     }
 
     /// Get the videos of the given tab (Shorts, Livestreams) from a YouTube channel
-    #[tracing::instrument(skip(self))]
+    #[tracing::instrument(skip(self), level = "error")]
     pub async fn channel_videos_tab<S: AsRef<str> + Debug>(
         &self,
         channel_id: S,
@@ -118,7 +118,7 @@ impl RustyPipeQuery {
     /// Get a ordered list of videos from the given tab (Shorts, Livestreams) of a YouTube channel
     ///
     /// This function does not return channel metadata.
-    #[tracing::instrument(skip(self))]
+    #[tracing::instrument(skip(self), level = "error")]
     pub async fn channel_videos_tab_order<S: AsRef<str> + Debug>(
         &self,
         channel_id: S,
@@ -136,7 +136,7 @@ impl RustyPipeQuery {
     }
 
     /// Search the videos of a channel
-    #[tracing::instrument(skip(self))]
+    #[tracing::instrument(skip(self), level = "error")]
     pub async fn channel_search<S: AsRef<str> + Debug, S2: AsRef<str> + Debug>(
         &self,
         channel_id: S,
@@ -152,7 +152,7 @@ impl RustyPipeQuery {
     }
 
     /// Get the playlists of a channel
-    #[tracing::instrument(skip(self))]
+    #[tracing::instrument(skip(self), level = "error")]
     pub async fn channel_playlists<S: AsRef<str> + Debug>(
         &self,
         channel_id: S,
@@ -177,7 +177,7 @@ impl RustyPipeQuery {
     }
 
     /// Get additional metadata from the *About* tab of a channel
-    #[tracing::instrument(skip(self))]
+    #[tracing::instrument(skip(self), level = "error")]
     pub async fn channel_info<S: AsRef<str> + Debug>(
         &self,
         channel_id: S,

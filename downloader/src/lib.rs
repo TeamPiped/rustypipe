@@ -632,7 +632,7 @@ impl DownloadQuery {
     ///
     /// If no download path is set, the video is downloaded to the current directory
     /// with a filename created by this template: `{track} {title} [{id}]`.
-    #[tracing::instrument(skip(self), fields(id = self.video.id))]
+    #[tracing::instrument(skip(self), level="error", fields(id = self.video.id))]
     pub async fn download(&self) -> Result<DownloadResult> {
         let mut last_err = None;
 

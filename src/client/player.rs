@@ -113,7 +113,7 @@ impl RustyPipeQuery {
     }
 
     /// Get YouTube player data (video/audio streams + basic metadata) using the specified client
-    #[tracing::instrument(skip(self))]
+    #[tracing::instrument(skip(self), level = "error")]
     pub async fn player_from_client<S: AsRef<str> + Debug>(
         &self,
         video_id: S,

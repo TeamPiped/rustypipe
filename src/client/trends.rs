@@ -16,7 +16,7 @@ use super::{
 
 impl RustyPipeQuery {
     /// Get the videos from the YouTube startpage
-    #[tracing::instrument(skip(self))]
+    #[tracing::instrument(skip(self), level = "error")]
     pub async fn startpage(&self) -> Result<Paginator<VideoItem>, Error> {
         let context = self.get_context(ClientType::Desktop, true, None).await;
         let request_body = QBrowse {
@@ -35,7 +35,7 @@ impl RustyPipeQuery {
     }
 
     /// Get the videos from the YouTube trending page
-    #[tracing::instrument(skip(self))]
+    #[tracing::instrument(skip(self), level = "error")]
     pub async fn trending(&self) -> Result<Vec<VideoItem>, Error> {
         let context = self.get_context(ClientType::Desktop, true, None).await;
         let request_body = QBrowseParams {

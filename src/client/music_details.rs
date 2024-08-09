@@ -40,7 +40,7 @@ struct QRadio<'a> {
 
 impl RustyPipeQuery {
     /// Get the metadata of a YouTube music track
-    #[tracing::instrument(skip(self))]
+    #[tracing::instrument(skip(self), level = "error")]
     pub async fn music_details<S: AsRef<str> + Debug>(
         &self,
         video_id: S,
@@ -68,7 +68,7 @@ impl RustyPipeQuery {
     /// Get the lyrics of a YouTube music track
     ///
     /// The `lyrics_id` has to be obtained using [`RustyPipeQuery::music_details`].
-    #[tracing::instrument(skip(self))]
+    #[tracing::instrument(skip(self), level = "error")]
     pub async fn music_lyrics<S: AsRef<str> + Debug>(&self, lyrics_id: S) -> Result<Lyrics, Error> {
         let lyrics_id = lyrics_id.as_ref();
         let context = self.get_context(ClientType::DesktopMusic, true, None).await;
@@ -90,7 +90,7 @@ impl RustyPipeQuery {
     /// Get related items (tracks, playlists, artists) to a YouTube Music track
     ///
     /// The `related_id` has to be obtained using [`RustyPipeQuery::music_details`].
-    #[tracing::instrument(skip(self))]
+    #[tracing::instrument(skip(self), level = "error")]
     pub async fn music_related<S: AsRef<str> + Debug>(
         &self,
         related_id: S,
@@ -115,7 +115,7 @@ impl RustyPipeQuery {
     /// Get a YouTube Music radio (a dynamically generated playlist)
     ///
     /// The `radio_id` can be obtained using [`RustyPipeQuery::music_artist`] to get an artist's radio.
-    #[tracing::instrument(skip(self))]
+    #[tracing::instrument(skip(self), level = "error")]
     pub async fn music_radio<S: AsRef<str> + Debug>(
         &self,
         radio_id: S,
@@ -146,7 +146,7 @@ impl RustyPipeQuery {
     }
 
     /// Get a YouTube Music radio (a dynamically generated playlist) for a track
-    #[tracing::instrument(skip(self))]
+    #[tracing::instrument(skip(self), level = "error")]
     pub async fn music_radio_track<S: AsRef<str> + Debug>(
         &self,
         video_id: S,
@@ -156,7 +156,7 @@ impl RustyPipeQuery {
     }
 
     /// Get a YouTube Music radio (a dynamically generated playlist) for a playlist
-    #[tracing::instrument(skip(self))]
+    #[tracing::instrument(skip(self), level = "error")]
     pub async fn music_radio_playlist<S: AsRef<str> + Debug>(
         &self,
         playlist_id: S,

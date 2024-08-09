@@ -13,7 +13,7 @@ use super::{
 
 impl RustyPipeQuery {
     /// Get a list of moods and genres from YouTube Music
-    #[tracing::instrument(skip(self))]
+    #[tracing::instrument(skip(self), level = "error")]
     pub async fn music_genres(&self) -> Result<Vec<MusicGenreItem>, Error> {
         let context = self.get_context(ClientType::DesktopMusic, true, None).await;
         let request_body = QBrowse {
@@ -32,7 +32,7 @@ impl RustyPipeQuery {
     }
 
     /// Get the playlists from a YouTube Music genre
-    #[tracing::instrument(skip(self))]
+    #[tracing::instrument(skip(self), level = "error")]
     pub async fn music_genre<S: AsRef<str> + Debug>(
         &self,
         genre_id: S,

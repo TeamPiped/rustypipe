@@ -126,7 +126,7 @@ impl RustyPipeQuery {
     }
 
     /// Get YouTube Music search suggestions
-    #[tracing::instrument(skip(self))]
+    #[tracing::instrument(skip(self), level = "error")]
     pub async fn music_search_suggestion<S: AsRef<str> + Debug>(
         &self,
         query: S,

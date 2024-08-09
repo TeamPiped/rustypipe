@@ -58,7 +58,7 @@ impl RustyPipeQuery {
     /// );
     /// # });
     /// ```
-    #[tracing::instrument(skip(self))]
+    #[tracing::instrument(skip(self), level = "error")]
     pub async fn resolve_url<S: AsRef<str> + Debug>(
         self,
         url: S,
@@ -236,7 +236,7 @@ impl RustyPipeQuery {
     /// );
     /// # });
     /// ```
-    #[tracing::instrument(skip(self))]
+    #[tracing::instrument(skip(self), level = "error")]
     pub async fn resolve_string<S: AsRef<str> + Debug>(
         self,
         s: S,

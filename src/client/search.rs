@@ -24,7 +24,7 @@ struct QSearch<'a> {
 
 impl RustyPipeQuery {
     /// Search YouTube
-    #[tracing::instrument(skip(self))]
+    #[tracing::instrument(skip(self), level = "error")]
     pub async fn search<T: FromYtItem, S: AsRef<str> + Debug>(
         &self,
         query: S,
@@ -48,7 +48,7 @@ impl RustyPipeQuery {
     }
 
     /// Search YouTube using the given [`SearchFilter`]
-    #[tracing::instrument(skip(self))]
+    #[tracing::instrument(skip(self), level = "error")]
     pub async fn search_filter<T: FromYtItem, S: AsRef<str> + Debug>(
         &self,
         query: S,
@@ -73,7 +73,7 @@ impl RustyPipeQuery {
     }
 
     /// Get YouTube search suggestions
-    #[tracing::instrument(skip(self))]
+    #[tracing::instrument(skip(self), level = "error")]
     pub async fn search_suggestion<S: AsRef<str> + Debug>(
         &self,
         query: S,
