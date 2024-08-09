@@ -1,7 +1,12 @@
 #![doc = include_str!("../README.md")]
 #![warn(clippy::todo, clippy::dbg_macro)]
 
-use std::{path::PathBuf, str::FromStr, time::Duration};
+use std::{
+    path::PathBuf,
+    str::FromStr,
+    sync::{atomic::AtomicUsize, Arc},
+    time::Duration,
+};
 
 use clap::{Parser, Subcommand, ValueEnum};
 use futures::stream::{self, StreamExt};
@@ -177,6 +182,7 @@ enum Commands {
         #[clap(long)]
         music: Option<MusicSearchCategory>,
     },
+    /// Get a YouTube visitor data cookie
     Vdata,
 }
 
@@ -437,7 +443,7 @@ async fn download_videos(
     parallel: usize,
     client_type: Option<PlayerType>,
     multi: MultiProgress,
-) {
+) -> anyhow::Result<()> {
     // Indicatif setup
     let main = multi.add(ProgressBar::new(
         videos.len().try_into().unwrap_or_default(),
@@ -451,11 +457,14 @@ async fn download_videos(
     );
     main.tick();
 
+    let n_failed = Arc::new(AtomicUsize::default());
+
     stream::iter(videos)
         .for_each_concurrent(parallel, |video| {
             let dl = dl.clone();
             let main = main.clone();
             let id = video.id().to_owned();
+            let n_failed = n_failed.clone();
 
             let mut q = target.apply(dl.video(video));
             if let Some(client_type) = client_type {
@@ -466,12 +475,20 @@ async fn download_videos(
                 if let Err(e) = q.download().await {
                     if !matches!(e, DownloadError::Exists(_)) {
                         tracing::error!("[{id}]: {e}");
+                        n_failed.fetch_add(1, std::sync::atomic::Ordering::Relaxed);
                     }
+                } else {
+                    main.inc(1);
                 }
-                main.inc(1);
             }
         })
         .await;
+
+    let n_failed = n_failed.load(std::sync::atomic::Ordering::Relaxed);
+    if n_failed > 0 {
+        anyhow::bail!("{n_failed} downloads failed");
+    }
+    Ok(())
 }
 
 /// Stderr writer that suspends the progress bars before printing logs
@@ -498,6 +515,14 @@ impl std::io::Write for ProgWriter {
 
 #[tokio::main]
 async fn main() {
+    if let Err(e) = run().await {
+        println!("{}", "Error:".red().bold());
+        println!("{}", e);
+        std::process::exit(1);
+    }
+}
+
+async fn run() -> anyhow::Result<()> {
     let cli = Cli::parse();
     let multi = MultiProgress::new();
 
@@ -527,7 +552,7 @@ async fn main() {
     if let Some(country) = cli.country {
         rp = rp.country(Country::from_str(&country.to_ascii_uppercase()).expect("invalid country"));
     }
-    let rp = rp.build().unwrap();
+    let rp = rp.build()?;
 
     match cli.command {
         Commands::Download {
@@ -541,7 +566,7 @@ async fn main() {
             client_type,
             pot,
         } => {
-            let url_target = rp.query().resolve_string(&id, false).await.unwrap();
+            let url_target = rp.query().resolve_string(&id, false).await?;
 
             let mut filter = StreamFilter::new();
             if let Some(res) = resolution {
@@ -570,12 +595,8 @@ async fn main() {
                 }
                 UrlTarget::Channel { id } => {
                     target.assert_dir();
-                    let mut channel = rp.query().channel_videos(id).await.unwrap();
-                    channel
-                        .content
-                        .extend_limit(&rp.query(), limit)
-                        .await
-                        .unwrap();
+                    let mut channel = rp.query().channel_videos(id).await?;
+                    channel.content.extend_limit(&rp.query(), limit).await?;
                     let videos = channel
                         .content
                         .items
@@ -583,17 +604,13 @@ async fn main() {
                         .take(limit)
                         .map(|v| DownloadVideo::from_entity(&v))
                         .collect();
-                    download_videos(&dl, videos, &target, parallel, client_type, multi).await;
+                    download_videos(&dl, videos, &target, parallel, client_type, multi).await?;
                 }
                 UrlTarget::Playlist { id } => {
                     target.assert_dir();
                     let videos = if music {
-                        let mut playlist = rp.query().music_playlist(id).await.unwrap();
-                        playlist
-                            .tracks
-                            .extend_limit(&rp.query(), limit)
-                            .await
-                            .unwrap();
+                        let mut playlist = rp.query().music_playlist(id).await?;
+                        playlist.tracks.extend_limit(&rp.query(), limit).await?;
                         playlist
                             .tracks
                             .items
@@ -602,12 +619,8 @@ async fn main() {
                             .map(|v| DownloadVideo::from_track(&v))
                             .collect()
                     } else {
-                        let mut playlist = rp.query().playlist(id).await.unwrap();
-                        playlist
-                            .videos
-                            .extend_limit(&rp.query(), limit)
-                            .await
-                            .unwrap();
+                        let mut playlist = rp.query().playlist(id).await?;
+                        playlist.videos.extend_limit(&rp.query(), limit).await?;
                         playlist
                             .videos
                             .items
@@ -616,18 +629,18 @@ async fn main() {
                             .map(|v| DownloadVideo::from_entity(&v))
                             .collect()
                     };
-                    download_videos(&dl, videos, &target, parallel, client_type, multi).await;
+                    download_videos(&dl, videos, &target, parallel, client_type, multi).await?;
                 }
                 UrlTarget::Album { id } => {
                     target.assert_dir();
-                    let album = rp.query().music_album(id).await.unwrap();
+                    let album = rp.query().music_album(id).await?;
                     let videos = album
                         .tracks
                         .into_iter()
                         .take(limit)
                         .map(|v| DownloadVideo::from_track(&v))
                         .collect();
-                    download_videos(&dl, videos, &target, parallel, client_type, multi).await;
+                    download_videos(&dl, videos, &target, parallel, client_type, multi).await?;
                 }
             }
         }
@@ -644,15 +657,15 @@ async fn main() {
             player,
             client_type,
         } => {
-            let target = rp.query().resolve_string(&id, false).await.unwrap();
+            let target = rp.query().resolve_string(&id, false).await?;
 
             match target {
                 UrlTarget::Video { id, .. } => {
                     if lyrics {
-                        let details = rp.query().music_details(&id).await.unwrap();
+                        let details = rp.query().music_details(&id).await?;
                         match details.lyrics_id {
                             Some(lyrics_id) => {
-                                let lyrics = rp.query().music_lyrics(lyrics_id).await.unwrap();
+                                let lyrics = rp.query().music_lyrics(lyrics_id).await?;
                                 if txt {
                                     println!("{}\n\n{}", lyrics.body, lyrics.footer);
                                 } else {
@@ -662,7 +675,7 @@ async fn main() {
                             None => eprintln!("no lyrics found"),
                         }
                     } else if music {
-                        let details = rp.query().music_details(&id).await.unwrap();
+                        let details = rp.query().music_details(&id).await?;
                         if txt {
                             if details.track.is_video {
                                 println!("[MV]");
@@ -696,26 +709,20 @@ async fn main() {
                             rp.query().player_from_client(&id, client_type.into()).await
                         } else {
                             rp.query().player(&id).await
-                        }
-                        .unwrap();
+                        }?;
                         print_data(&player, format, pretty);
                     } else {
-                        let mut details = rp.query().video_details(&id).await.unwrap();
+                        let mut details = rp.query().video_details(&id).await?;
 
                         match comments {
                             Some(CommentsOrder::Top) => {
-                                details
-                                    .top_comments
-                                    .extend_limit(rp.query(), limit)
-                                    .await
-                                    .unwrap();
+                                details.top_comments.extend_limit(rp.query(), limit).await?;
                             }
                             Some(CommentsOrder::Latest) => {
                                 details
                                     .latest_comments
                                     .extend_limit(rp.query(), limit)
-                                    .await
-                                    .unwrap();
+                                    .await?;
                             }
                             None => {}
                         }
@@ -793,7 +800,7 @@ async fn main() {
                 }
                 UrlTarget::Channel { id } => {
                     if music {
-                        let artist = rp.query().music_artist(&id, true).await.unwrap();
+                        let artist = rp.query().music_artist(&id, true).await?;
                         if txt {
                             anstream::println!(
                                 "{}\n{} [{}]",
@@ -853,13 +860,9 @@ async fn main() {
                                     _ => unreachable!(),
                                 };
                                 let mut channel =
-                                    rp.query().channel_videos_tab(&id, video_tab).await.unwrap();
+                                    rp.query().channel_videos_tab(&id, video_tab).await?;
 
-                                channel
-                                    .content
-                                    .extend_limit(rp.query(), limit)
-                                    .await
-                                    .unwrap();
+                                channel.content.extend_limit(rp.query(), limit).await?;
 
                                 if txt {
                                     anstream::print!(
@@ -881,7 +884,7 @@ async fn main() {
                                 }
                             }
                             ChannelTab::Playlists => {
-                                let channel = rp.query().channel_playlists(&id).await.unwrap();
+                                let channel = rp.query().channel_playlists(&id).await?;
 
                                 if txt {
                                     anstream::println!(
@@ -901,7 +904,7 @@ async fn main() {
                                 }
                             }
                             ChannelTab::Info => {
-                                let info = rp.query().channel_info(&id).await.unwrap();
+                                let info = rp.query().channel_info(&id).await?;
 
                                 if txt {
                                     anstream::println!(
@@ -937,12 +940,8 @@ async fn main() {
                 }
                 UrlTarget::Playlist { id } => {
                     if music {
-                        let mut playlist = rp.query().music_playlist(&id).await.unwrap();
-                        playlist
-                            .tracks
-                            .extend_limit(rp.query(), limit)
-                            .await
-                            .unwrap();
+                        let mut playlist = rp.query().music_playlist(&id).await?;
+                        playlist.tracks.extend_limit(rp.query(), limit).await?;
                         if txt {
                             anstream::println!(
                                 "{}\n{} [{}]\n{} {}",
@@ -966,12 +965,8 @@ async fn main() {
                             print_data(&playlist, format, pretty);
                         }
                     } else {
-                        let mut playlist = rp.query().playlist(&id).await.unwrap();
-                        playlist
-                            .videos
-                            .extend_limit(rp.query(), limit)
-                            .await
-                            .unwrap();
+                        let mut playlist = rp.query().playlist(&id).await?;
+                        playlist.videos.extend_limit(rp.query(), limit).await?;
                         if txt {
                             anstream::println!(
                                 "{}\n{} [{}]\n{} {}",
@@ -1000,7 +995,7 @@ async fn main() {
                     }
                 }
                 UrlTarget::Album { id } => {
-                    let album = rp.query().music_album(&id).await.unwrap();
+                    let album = rp.query().music_album(&id).await?;
                     if txt {
                         anstream::print!(
                             "{}\n{} [{}] ({:?}",
@@ -1043,8 +1038,8 @@ async fn main() {
         } => match music {
             None => match channel {
                 Some(channel) => {
-                    rustypipe::validate::channel_id(&channel).unwrap();
-                    let res = rp.query().channel_search(&channel, &query).await.unwrap();
+                    rustypipe::validate::channel_id(&channel)?;
+                    let res = rp.query().channel_search(&channel, &query).await?;
                     print_data(&res, format, pretty);
                 }
                 None => {
@@ -1056,9 +1051,8 @@ async fn main() {
                     let mut res = rp
                         .query()
                         .search_filter::<YouTubeItem, _>(&query, &filter)
-                        .await
-                        .unwrap();
-                    res.items.extend_limit(rp.query(), limit).await.unwrap();
+                        .await?;
+                    res.items.extend_limit(rp.query(), limit).await?;
 
                     if txt {
                         if let Some(corr) = res.corrected_query {
@@ -1071,27 +1065,27 @@ async fn main() {
                 }
             },
             Some(MusicSearchCategory::All) => {
-                let res = rp.query().music_search_main(&query).await.unwrap();
+                let res = rp.query().music_search_main(&query).await?;
                 print_music_search(&res, format, pretty, txt);
             }
             Some(MusicSearchCategory::Tracks) => {
-                let mut res = rp.query().music_search_tracks(&query).await.unwrap();
-                res.items.extend_limit(rp.query(), limit).await.unwrap();
+                let mut res = rp.query().music_search_tracks(&query).await?;
+                res.items.extend_limit(rp.query(), limit).await?;
                 print_music_search(&res, format, pretty, txt);
             }
             Some(MusicSearchCategory::Videos) => {
-                let mut res = rp.query().music_search_videos(&query).await.unwrap();
-                res.items.extend_limit(rp.query(), limit).await.unwrap();
+                let mut res = rp.query().music_search_videos(&query).await?;
+                res.items.extend_limit(rp.query(), limit).await?;
                 print_music_search(&res, format, pretty, txt);
             }
             Some(MusicSearchCategory::Artists) => {
-                let mut res = rp.query().music_search_artists(&query).await.unwrap();
-                res.items.extend_limit(rp.query(), limit).await.unwrap();
+                let mut res = rp.query().music_search_artists(&query).await?;
+                res.items.extend_limit(rp.query(), limit).await?;
                 print_music_search(&res, format, pretty, txt);
             }
             Some(MusicSearchCategory::Albums) => {
-                let mut res = rp.query().music_search_albums(&query).await.unwrap();
-                res.items.extend_limit(rp.query(), limit).await.unwrap();
+                let mut res = rp.query().music_search_albums(&query).await?;
+                res.items.extend_limit(rp.query(), limit).await?;
                 print_music_search(&res, format, pretty, txt);
             }
             Some(MusicSearchCategory::PlaylistsYtm | MusicSearchCategory::PlaylistsCommunity) => {
@@ -1101,15 +1095,15 @@ async fn main() {
                         &query,
                         music == Some(MusicSearchCategory::PlaylistsCommunity),
                     )
-                    .await
-                    .unwrap();
-                res.items.extend_limit(rp.query(), limit).await.unwrap();
+                    .await?;
+                res.items.extend_limit(rp.query(), limit).await?;
                 print_music_search(&res, format, pretty, txt);
             }
         },
         Commands::Vdata => {
-            let vd = rp.query().get_visitor_data().await.unwrap();
+            let vd = rp.query().get_visitor_data().await?;
             println!("{vd}");
         }
     };
+    Ok(())
 }
