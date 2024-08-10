@@ -519,8 +519,7 @@ impl std::io::Write for ProgWriter {
 #[tokio::main]
 async fn main() {
     if let Err(e) = run().await {
-        println!("{}", "Error:".red().bold());
-        println!("{}", e);
+        println!("{} {}", "Error:".red().bold(), e);
         std::process::exit(1);
     }
 }

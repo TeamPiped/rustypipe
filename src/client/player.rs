@@ -221,6 +221,7 @@ impl MapResponse<VideoPlayer> for response::Player {
                     .find_map(|word| match word {
                         "age" | "inappropriate" => Some(UnavailabilityReason::AgeRestricted),
                         "private" => Some(UnavailabilityReason::Private),
+                        "bot" => Some(UnavailabilityReason::IpBan),
                         _ => None,
                     })
                     .unwrap_or_default();
