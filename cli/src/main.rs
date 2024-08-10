@@ -107,7 +107,7 @@ enum Commands {
         limit: usize,
         /// YT Client used to fetch player data
         #[clap(long)]
-        client_type: Option<PlayerType>,
+        client_type: Option<Vec<ClientTypeArg>>,
         /// Pot token to circumvent bot detection
         #[clap(long)]
         pot: Option<String>,
@@ -145,7 +145,7 @@ enum Commands {
         player: bool,
         /// YT Client used to fetch player data
         #[clap(long)]
-        client_type: Option<PlayerType>,
+        client_type: Option<ClientTypeArg>,
     },
     /// Search YouTube
     Search {
@@ -260,7 +260,7 @@ enum MusicSearchCategory {
 }
 
 #[derive(Copy, Clone, PartialEq, Eq, ValueEnum)]
-enum PlayerType {
+enum ClientTypeArg {
     Desktop,
     Tv,
     TvEmbed,
@@ -310,14 +310,14 @@ impl From<SearchOrder> for search_filter::Order {
     }
 }
 
-impl From<PlayerType> for ClientType {
-    fn from(value: PlayerType) -> Self {
+impl From<ClientTypeArg> for ClientType {
+    fn from(value: ClientTypeArg) -> Self {
         match value {
-            PlayerType::Desktop => Self::Desktop,
-            PlayerType::TvEmbed => Self::TvHtml5Embed,
-            PlayerType::Tv => Self::Tv,
-            PlayerType::Android => Self::Android,
-            PlayerType::Ios => Self::Ios,
+            ClientTypeArg::Desktop => Self::Desktop,
+            ClientTypeArg::TvEmbed => Self::TvHtml5Embed,
+            ClientTypeArg::Tv => Self::Tv,
+            ClientTypeArg::Android => Self::Android,
+            ClientTypeArg::Ios => Self::Ios,
         }
     }
 }
@@ -424,11 +424,11 @@ async fn download_video(
     dl: &Downloader,
     id: &str,
     target: &DownloadTarget,
-    client_type: Option<PlayerType>,
+    client_types: Option<&[ClientType]>,
 ) {
     let mut q = target.apply(dl.id(id));
-    if let Some(client_type) = client_type {
-        q = q.client_type(client_type.into());
+    if let Some(client_types) = client_types {
+        q = q.client_types(client_types);
     }
     let res = q.download().await;
     if let Err(e) = res {
@@ -441,7 +441,7 @@ async fn download_videos(
     videos: Vec<DownloadVideo>,
     target: &DownloadTarget,
     parallel: usize,
-    client_type: Option<PlayerType>,
+    client_types: Option<&[ClientType]>,
     multi: MultiProgress,
 ) -> anyhow::Result<()> {
     // Indicatif setup
@@ -467,8 +467,8 @@ async fn download_videos(
             let n_failed = n_failed.clone();
 
             let mut q = target.apply(dl.video(video));
-            if let Some(client_type) = client_type {
-                q = q.client_type(client_type.into());
+            if let Some(client_types) = client_types {
+                q = q.client_types(client_types);
             }
 
             async move {
@@ -589,9 +589,11 @@ async fn run() -> anyhow::Result<()> {
             }
             let dl = dl.stream_filter(filter).build();
 
+            let cts = client_type.map(|c| c.into_iter().map(ClientType::from).collect::<Vec<_>>());
+
             match url_target {
                 UrlTarget::Video { id, .. } => {
-                    download_video(&dl, &id, &target, client_type).await;
+                    download_video(&dl, &id, &target, cts.as_deref()).await;
                 }
                 UrlTarget::Channel { id } => {
                     target.assert_dir();
@@ -604,7 +606,7 @@ async fn run() -> anyhow::Result<()> {
                         .take(limit)
                         .map(|v| DownloadVideo::from_entity(&v))
                         .collect();
-                    download_videos(&dl, videos, &target, parallel, client_type, multi).await?;
+                    download_videos(&dl, videos, &target, parallel, cts.as_deref(), multi).await?;
                 }
                 UrlTarget::Playlist { id } => {
                     target.assert_dir();
@@ -629,7 +631,7 @@ async fn run() -> anyhow::Result<()> {
                             .map(|v| DownloadVideo::from_entity(&v))
                             .collect()
                     };
-                    download_videos(&dl, videos, &target, parallel, client_type, multi).await?;
+                    download_videos(&dl, videos, &target, parallel, cts.as_deref(), multi).await?;
                 }
                 UrlTarget::Album { id } => {
                     target.assert_dir();
@@ -640,7 +642,7 @@ async fn run() -> anyhow::Result<()> {
                         .take(limit)
                         .map(|v| DownloadVideo::from_track(&v))
                         .collect();
-                    download_videos(&dl, videos, &target, parallel, client_type, multi).await?;
+                    download_videos(&dl, videos, &target, parallel, cts.as_deref(), multi).await?;
                 }
             }
         }

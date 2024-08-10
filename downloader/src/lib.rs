@@ -74,6 +74,7 @@ pub struct DownloaderBuilder {
     audio_tag: bool,
     #[cfg(feature = "audiotag")]
     crop_cover: bool,
+    client_types: Option<Vec<ClientType>>,
     pot: Option<String>,
 }
 
@@ -104,6 +105,8 @@ struct DownloaderInner {
     /// Crop YT thumbnails to ensure square album covers
     #[cfg(feature = "audiotag")]
     crop_cover: bool,
+    /// Client types for fetching videos
+    client_types: Option<Vec<ClientType>>,
     /// Pot token to circumvent bot detection
     pot: Option<String>,
 }
@@ -123,8 +126,8 @@ pub struct DownloadQuery {
     filter: Option<StreamFilter>,
     /// Target video format
     video_format: Option<DownloadVideoFormat>,
-    /// ClientType type for fetching videos
-    client_type: Option<ClientType>,
+    /// Client types for fetching videos
+    client_types: Option<Vec<ClientType>>,
     /// Pot token to circumvent bot detection
     pot: Option<String>,
 }
@@ -292,6 +295,7 @@ impl Default for DownloaderBuilder {
             audio_tag: false,
             #[cfg(feature = "audiotag")]
             crop_cover: false,
+            client_types: None,
             pot: None,
         }
     }
@@ -390,6 +394,23 @@ impl DownloaderBuilder {
         self
     }
 
+    /// Set the [`ClientType`] used to fetch the YT player
+    #[must_use]
+    pub fn client_type(mut self, client_type: ClientType) -> Self {
+        self.client_types = Some(vec![client_type]);
+        self
+    }
+
+    /// Set a list of client types used to fetch the YT player
+    ///
+    /// The clients are used in the given order. If a client cannot fetch the requested video,
+    /// an attempt is made with the next one.
+    #[must_use]
+    pub fn client_types<T: Into<Vec<ClientType>>>(mut self, client_types: T) -> Self {
+        self.client_types = Some(client_types.into());
+        self
+    }
+
     /// Set the `pot` token to circumvent bot detection
     ///
     /// YouTube has implemented the token to prevent other clients from downloading YouTube videos.
@@ -438,6 +459,7 @@ impl DownloaderBuilder {
                 audio_tag: self.audio_tag,
                 #[cfg(feature = "audiotag")]
                 crop_cover: self.crop_cover,
+                client_types: self.client_types,
                 pot: self.pot,
             }),
         }
@@ -472,7 +494,7 @@ impl Downloader {
             progress: None,
             filter: None,
             video_format: None,
-            client_type: None,
+            client_types: None,
             pot: None,
         }
     }
@@ -609,7 +631,17 @@ impl DownloadQuery {
     /// Set the [`ClientType`] used to fetch the YT player
     #[must_use]
     pub fn client_type(mut self, client_type: ClientType) -> Self {
-        self.client_type = Some(client_type);
+        self.client_types = Some(vec![client_type]);
+        self
+    }
+
+    /// Set a list of client types used to fetch the YT player
+    ///
+    /// The clients are used in the given order. If a client cannot fetch the requested video,
+    /// an attempt is made with the next one.
+    #[must_use]
+    pub fn client_types<T: Into<Vec<ClientType>>>(mut self, client_types: T) -> Self {
+        self.client_types = Some(client_types.into());
         self
     }
 
@@ -710,16 +742,20 @@ impl DownloadQuery {
         };
         #[cfg(feature = "indicatif")]
         if let Some(pb) = pb {
-            pb.set_message(format!(
-                "Fetching player data for {}{}",
-                self.video.name.as_deref().unwrap_or_default(),
-                attempt_suffix
-            ))
+            if let Some(n) = &self.video.name {
+                pb.set_message(format!("Fetching player data for {n}{attempt_suffix}"));
+            } else {
+                pb.set_message(format!("Fetching player data{attempt_suffix}"));
+            }
         }
 
         let q = self.dl.i.rp.query();
-        let player_data = match self.client_type {
-            Some(client_type) => q.player_from_client(&self.video.id, client_type).await?,
+        let player_data = match self
+            .client_types
+            .as_ref()
+            .or(self.dl.i.client_types.as_ref())
+        {
+            Some(client_types) => q.player_from_clients(&self.video.id, client_types).await?,
             None => q.player(&self.video.id).await?,
         };
         let user_agent = q.user_agent(player_data.client_type);
