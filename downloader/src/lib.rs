@@ -19,7 +19,7 @@ use rand::Rng;
 use regex::Regex;
 use reqwest::{header, Client, StatusCode, Url};
 use rustypipe::{
-    client::{ClientType, RustyPipe},
+    client::{ClientType, RustyPipe, DEFAULT_PLAYER_CLIENT_ORDER},
     model::{
         traits::{FileFormat, YtEntity},
         AudioCodec, TrackItem, VideoCodec, VideoPlayer,
@@ -667,6 +667,7 @@ impl DownloadQuery {
     #[tracing::instrument(skip(self), level="error", fields(id = self.video.id))]
     pub async fn download(&self) -> Result<DownloadResult> {
         let mut last_err = None;
+        let mut failed_client = None;
 
         // Progress bar
         #[cfg(feature = "indicatif")]
@@ -683,14 +684,19 @@ impl DownloadQuery {
             let err = match self
                 .download_attempt(
                     n,
+                    failed_client,
                     #[cfg(feature = "indicatif")]
                     &pb,
                 )
                 .await
             {
                 Ok(res) => return Ok(res),
+                Err(DownloadError::Forbidden(c)) => {
+                    failed_client = Some(c);
+                    DownloadError::Forbidden(c)
+                }
                 Err(DownloadError::Http(e)) => {
-                    if !e.is_timeout() && e.status() != Some(StatusCode::FORBIDDEN) {
+                    if !e.is_timeout() {
                         return Err(DownloadError::Http(e));
                     }
                     DownloadError::Http(e)
@@ -710,6 +716,7 @@ impl DownloadQuery {
     async fn download_attempt(
         &self,
         #[allow(unused_variables)] n: u32,
+        failed_client: Option<ClientType>,
         #[cfg(feature = "indicatif")] pb: &Option<ProgressBar>,
     ) -> Result<DownloadResult> {
         let filter = self.filter.as_ref().unwrap_or(&self.dl.i.filter);
@@ -750,14 +757,28 @@ impl DownloadQuery {
         }
 
         let q = self.dl.i.rp.query();
-        let player_data = match self
-            .client_types
-            .as_ref()
-            .or(self.dl.i.client_types.as_ref())
-        {
-            Some(client_types) => q.player_from_clients(&self.video.id, client_types).await?,
-            None => q.player(&self.video.id).await?,
-        };
+
+        let mut client_types = Cow::Borrowed(
+            self.client_types
+                .as_ref()
+                .or(self.dl.i.client_types.as_ref())
+                .map(Vec::as_slice)
+                .unwrap_or(DEFAULT_PLAYER_CLIENT_ORDER),
+        );
+
+        // If the last download failed, try another client if possible
+        if let Some(failed_client) = failed_client {
+            if let Some(pos) = client_types.iter().position(|c| c == &failed_client) {
+                let p2 = pos + 1;
+                if p2 < client_types.len() {
+                    let mut v = client_types[p2..].to_vec();
+                    v.extend(&client_types[..p2]);
+                    client_types = v.into();
+                }
+            }
+        }
+
+        let player_data = q.player_from_clients(&self.video.id, &client_types).await?;
         let user_agent = q.user_agent(player_data.client_type);
         let pot = if matches!(
             player_data.client_type,
@@ -848,7 +869,15 @@ impl DownloadQuery {
             #[cfg(feature = "indicatif")]
             pb.clone(),
         )
-        .await?;
+        .await
+        .map_err(|e| {
+            if let DownloadError::Http(e) = &e {
+                if e.status() == Some(StatusCode::FORBIDDEN) {
+                    return DownloadError::Forbidden(player_data.client_type);
+                }
+            }
+            e
+        })?;
 
         #[cfg(feature = "indicatif")]
         if let Some(pb) = &pb {

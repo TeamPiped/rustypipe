@@ -94,21 +94,21 @@ enum Commands {
         #[clap(short, long)]
         resolution: Option<u32>,
         /// Download only the audio track
-        #[clap(long)]
+        #[clap(short, long)]
         audio: bool,
         /// Number of videos downloaded in parallel
         #[clap(short, long, default_value_t = 8)]
         parallel: usize,
         /// Use YouTube Music for downloading playlists
-        #[clap(long)]
+        #[clap(short, long)]
         music: bool,
         /// Limit the number of videos to download
-        #[clap(long, default_value_t = 1000)]
+        #[clap(short, long, default_value_t = 1000)]
         limit: usize,
         /// YT Client used to fetch player data
-        #[clap(long)]
+        #[clap(short, long)]
         client_type: Option<Vec<ClientTypeArg>>,
-        /// Pot token to circumvent bot detection
+        /// `pot` token to circumvent bot detection
         #[clap(long)]
         pot: Option<String>,
     },
@@ -123,16 +123,16 @@ enum Commands {
         #[clap(long)]
         pretty: bool,
         /// Output as text
-        #[clap(long)]
+        #[clap(short, long)]
         txt: bool,
         /// Limit the number of items to fetch
-        #[clap(long, default_value_t = 20)]
+        #[clap(short, long, default_value_t = 20)]
         limit: usize,
         /// Channel tab
         #[clap(long, default_value = "videos")]
         tab: ChannelTab,
         /// Use YouTube Music
-        #[clap(long)]
+        #[clap(short, long)]
         music: bool,
         /// Get comments
         #[clap(long)]
@@ -144,7 +144,7 @@ enum Commands {
         #[clap(long)]
         player: bool,
         /// YT Client used to fetch player data
-        #[clap(long)]
+        #[clap(short, long)]
         client_type: Option<ClientTypeArg>,
     },
     /// Search YouTube
@@ -158,10 +158,10 @@ enum Commands {
         #[clap(long)]
         pretty: bool,
         /// Output as text
-        #[clap(long)]
+        #[clap(short, long)]
         txt: bool,
         /// Limit the number of items to fetch
-        #[clap(long, default_value_t = 20)]
+        #[clap(short, long, default_value_t = 20)]
         limit: usize,
         /// Filter results by item type
         #[clap(long)]
@@ -179,7 +179,7 @@ enum Commands {
         #[clap(long)]
         channel: Option<String>,
         /// YouTube Music search filter
-        #[clap(long)]
+        #[clap(short, long)]
         music: Option<MusicSearchCategory>,
     },
     /// Get a YouTube visitor data cookie

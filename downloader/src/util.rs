@@ -1,6 +1,7 @@
 use std::{borrow::Cow, collections::BTreeMap, path::PathBuf};
 
 use reqwest::Url;
+use rustypipe::client::ClientType;
 
 /// Error from the video downloader
 #[derive(thiserror::Error, Debug)]
@@ -12,6 +13,9 @@ pub enum DownloadError {
     /// Error from the HTTP client
     #[error("http error: {0}")]
     Http(#[from] reqwest::Error),
+    /// 403 error trying to download video
+    #[error("YouTube returned 403 error")]
+    Forbidden(ClientType),
     /// File IO error
     #[error(transparent)]
     Io(#[from] std::io::Error),
