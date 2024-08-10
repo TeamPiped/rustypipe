@@ -41,7 +41,7 @@ rustls-tls-native-roots = [
 ]
 
 [dependencies]
-rustypipe.workspace = true
+rustypipe = { workspace = true, features = ["rss"] }
 rustypipe-downloader.workspace = true
 reqwest.workspace = true
 tokio = { workspace = true, features = ["macros", "rt-multi-thread"] }

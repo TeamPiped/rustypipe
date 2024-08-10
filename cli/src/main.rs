@@ -134,6 +134,9 @@ enum Commands {
         /// Use YouTube Music
         #[clap(short, long)]
         music: bool,
+        /// Use the RSS feed of a channel
+        #[clap(long)]
+        rss: bool,
         /// Get comments
         #[clap(long)]
         comments: Option<CommentsOrder>,
@@ -654,6 +657,7 @@ async fn run() -> anyhow::Result<()> {
             limit,
             tab,
             music,
+            rss,
             comments,
             lyrics,
             player,
@@ -669,7 +673,7 @@ async fn run() -> anyhow::Result<()> {
                             Some(lyrics_id) => {
                                 let lyrics = rp.query().music_lyrics(lyrics_id).await?;
                                 if txt {
-                                    println!("{}\n\n{}", lyrics.body, lyrics.footer);
+                                    println!("{}\n\n{}", lyrics.body, lyrics.footer.blue());
                                 } else {
                                     print_data(&lyrics, format, pretty);
                                 }
@@ -680,18 +684,23 @@ async fn run() -> anyhow::Result<()> {
                         let details = rp.query().music_details(&id).await?;
                         if txt {
                             if details.track.is_video {
-                                println!("[MV]");
+                                anstream::println!("{}", "[MV]".on_green().black());
                             } else {
-                                println!("[Track]");
+                                anstream::println!("{}", "[Track]".on_green().black());
                             }
-                            print!("{} [{}]", details.track.name, details.track.id);
+                            anstream::print!(
+                                "{} [{}]",
+                                details.track.name.green().bold(),
+                                details.track.id
+                            );
                             print_duration(details.track.duration);
                             println!();
                             print_artists(&details.track.artists);
                             println!();
                             if !details.track.is_video {
-                                println!(
-                                    "Album: {}",
+                                anstream::println!(
+                                    "{} {}",
+                                    "Album:".blue(),
                                     details
                                         .track
                                         .album
@@ -701,7 +710,7 @@ async fn run() -> anyhow::Result<()> {
                                 )
                             }
                             if let Some(view_count) = details.track.view_count {
-                                println!("Views: {view_count}");
+                                anstream::println!("{} {}", "Views:".blue(), view_count);
                             }
                         } else {
                             print_data(&details, format, pretty);
@@ -851,6 +860,31 @@ async fn run() -> anyhow::Result<()> {
                             }
                         } else {
                             print_data(&artist, format, pretty);
+                        }
+                    } else if rss {
+                        let rss = rp.query().channel_rss(&id).await?;
+
+                        if txt {
+                            anstream::println!(
+                                "{}\n{} [{}]\n{} {}",
+                                "[Channel RSS]".on_green().black(),
+                                rss.name.green().bold(),
+                                rss.id,
+                                "Created on:".blue(),
+                                rss.create_date,
+                            );
+                            if let Some(v) = rss.videos.first() {
+                                anstream::println!(
+                                    "{} {} [{}]",
+                                    "Latest video:".blue(),
+                                    v.publish_date,
+                                    v.id
+                                );
+                            }
+                            println!();
+                            print_entities(&rss.videos);
+                        } else {
+                            print_data(&rss, format, pretty);
                         }
                     } else {
                         match tab {
