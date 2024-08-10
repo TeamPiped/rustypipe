@@ -11,7 +11,7 @@ categories.workspace = true
 description = "CLI for RustyPipe - download videos and extract data from YouTube / YouTube Music"
 
 [features]
-default = ["rustls-tls-native-roots"]
+default = ["native-tls"]
 
 # Reqwest TLS options
 native-tls = [
