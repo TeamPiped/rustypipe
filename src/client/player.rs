@@ -25,6 +25,7 @@ use super::{
         player::{self, Format},
     },
     ClientType, MapRespCtx, MapResponse, MapResult, RustyPipeQuery, YTContext,
+    DEFAULT_PLAYER_CLIENT_ORDER,
 };
 
 #[derive(Debug, Serialize)]
@@ -65,7 +66,7 @@ struct QContentPlaybackContext<'a> {
 impl RustyPipeQuery {
     /// Get YouTube player data (video/audio streams + basic metadata)
     pub async fn player<S: AsRef<str> + Debug>(&self, video_id: S) -> Result<VideoPlayer, Error> {
-        self.player_from_clients(video_id, &[ClientType::Desktop, ClientType::TvHtml5Embed])
+        self.player_from_clients(video_id, DEFAULT_PLAYER_CLIENT_ORDER)
             .await
     }
 

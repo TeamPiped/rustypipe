@@ -216,6 +216,17 @@ static CLIENT_VERSION_REGEX: Lazy<Regex> =
 static VISITOR_DATA_REGEX: Lazy<Regex> =
     Lazy::new(|| Regex::new(r#""visitorData":"([\w\d_\-%]+?)""#).unwrap());
 
+/// Default order of client types when fetching player data
+///
+/// The order may change in the future in case YouTube applies changes to their
+/// platform that disable a client or make it less reliable.
+pub const DEFAULT_PLAYER_CLIENT_ORDER: &[ClientType] = &[
+    ClientType::Tv,
+    ClientType::TvHtml5Embed,
+    ClientType::Android,
+    ClientType::Ios,
+];
+
 /// The RustyPipe client used to access YouTube's API
 ///
 /// RustyPipe uses an [`Arc`] internally, so if you are using the client
