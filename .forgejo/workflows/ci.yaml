@@ -7,6 +7,14 @@ on:
 jobs:
   Test:
     runs-on: cimaster-latest
+    services:
+      warpproxy:
+        image: thetadev256/warpproxy
+        env:
+          WARP_DEVICE_ID: ${{ secrets.WARP_DEVICE_ID }}
+          WARP_ACCESS_TOKEN: ${{ secrets.WARP_ACCESS_TOKEN }}
+          WARP_LICENSE_KEY: ${{ secrets.WARP_LICENSE_KEY }}
+          WARP_PRIVATE_KEY: ${{ secrets.WARP_PRIVATE_KEY }}
     steps:
       - name: 📦 Checkout repository
         uses: actions/checkout@v4
@@ -21,6 +29,8 @@ jobs:
 
       - name: 🧪 Test
         run: cargo nextest run --config-file ~/.config/nextest.toml --profile ci --retries 2 --features rss --workspace
+        env:
+          ALL_PROXY: "http://warpproxy:8124"
 
       - name: 💌 Upload test report
         if: always()
