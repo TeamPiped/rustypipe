@@ -1,1 +1,94 @@
-# RustyPipe CLI
+# ![RustyPipe](https://code.thetadev.de/ThetaDev/rustypipe/raw/branch/main/notes/logo.svg) CLI
+
+[![Current crates.io version](https://img.shields.io/crates/v/rustypipe-cli.svg)](https://crates.io/crates/rustypipe-cli)
+[![License](https://img.shields.io/badge/License-GPL--3-blue.svg?style=flat)](http://opensource.org/licenses/MIT)
+[![CI status](https://code.thetadev.de/ThetaDev/rustypipe/actions/workflows/ci.yaml/badge.svg?style=flat&label=CI)](https://code.thetadev.de/ThetaDev/rustypipe/actions/?workflow=ci.yaml)
+
+The RustyPipe CLI is a powerful YouTube client for the command line. It allows you to
+access most of the features of the RustyPipe crate: getting data from YouTube and
+downloading videos.
+
+The following subcommands are included:
+
+## `get`: Fetch information
+
+You can call the get command with any YouTube entity ID or URL and RustyPipe will fetch
+the associated metadata. It can fetch channels, playlists, albums and videos.
+
+**Usage:** `rustypipe get UC2TXq_t06Hjdr2g_KdKpHQg`
+
+- `-l`, `--limit` Limit the number of list items to fetch
+- ``-t, --tab` Channel tab (options: **videos**, shorts, live, playlists, info)
+- `-m, --music` Use the YouTube Music API
+- `--rss`Fetch the RSS feed of a channel
+- `--comments` Get comments (options: top, latest)
+- `--lyrics` Get the lyrics for YTM tracks
+- `--player` Get the player data instead of the video details when fetching videos
+- `-c, --client-type` YT clients used to fetch player data (options: desktop, tv,
+  tv-embed, android, ios; if multiple clients are specified, they are attempted in
+  order)
+
+## `search`: Search YouTube
+
+With the search command you can search the entire YouTube platform or individual
+channels. YouTube Music search is also supported.
+
+Note that search filters are only supported when searching YouTube. They have no effect
+when searching YTM or individual channels.
+
+**Usage:** `rustypipe search "query"`
+
+### Options
+
+- `-l`, `--limit` Limit the number of list items to fetch
+
+- `--item-type` Filter results by item type
+- `--length` Filter results by video length
+- `--date` Filter results by upload date (options: hour, day, week, month, year)
+- `--order` Sort search results (options: rating, date, views)
+- `--channel` Channel ID for searching channel videos
+- `-m, --music` Search YouTube Music in the given category (options: all, tracks,
+  videos, artists, albums, playlists-ytm, playlists-community)
+
+## `dl`: Download videos
+
+The downloader can download individual videos, playlists, albums and channels. Multiple
+videos can be downloaded in parallel for improved performance.
+
+**Usage:** `rustypipe dl eRsGyueVLvQ`
+
+### Options
+
+- `-o`, `--output` Download to the given directory
+- `--output-file` Download to the given file
+- `--template` Download to a path determined by a template
+
+- `-r`, `--resolution` Video resolution (e.g. 720, 1080). Set to 0 for audio-only
+- `-a`, `--audio` Download only the audio track and write track metadata + album cover
+- `-p`, `--parallel` Number of videos downloaded in parallel (default: 8)
+- `-m, --music` Use YouTube Music for downloading playlists
+- `-l`, `--limit` Limit the number of videos to download (default: 1000)
+- `-c`, `--client-type` YT clients used to fetch player data (options: desktop, tv,
+  tv-embed, android, ios; if multiple clients are specified, they are attempted in
+  order)
+- `--pot` token to circumvent bot detection
+
+## `vdata`: Get visitor data
+
+You can use the vdata command to get a new visitor data cookie. This feature may come in
+handy for testing and reproducing A/B tests.
+
+## Global options
+
+- **Proxy:** RustyPipe respects the environment variables `HTTP_PROXY`, `HTTPS_PROXY`
+  and `ALL_PROXY`
+- **Logging:** You can change the log level with the `RUST_LOG` environment variable, it
+  is set to `info` by default
+- **Visitor data:** A custom visitor data cookie can be used with the `--vdata` flag
+- `--report`
+
+### Output format
+
+By default, the CLI outputs YouTube data in a human-readable text format. If you want to
+store the data or process it with a script, you should choose a machine readable output
+format. You can choose both JSON and YAML with the `-f, --format` flag.
