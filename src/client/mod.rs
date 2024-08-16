@@ -220,12 +220,8 @@ static VISITOR_DATA_REGEX: Lazy<Regex> =
 ///
 /// The order may change in the future in case YouTube applies changes to their
 /// platform that disable a client or make it less reliable.
-pub const DEFAULT_PLAYER_CLIENT_ORDER: &[ClientType] = &[
-    ClientType::Tv,
-    ClientType::TvHtml5Embed,
-    ClientType::Android,
-    ClientType::Ios,
-];
+pub const DEFAULT_PLAYER_CLIENT_ORDER: &[ClientType] =
+    &[ClientType::Tv, ClientType::Android, ClientType::Ios];
 
 /// The RustyPipe client used to access YouTube's API
 ///

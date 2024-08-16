@@ -74,6 +74,9 @@ impl RustyPipeQuery {
     ///
     /// The clients are used in the given order. If a client cannot fetch the requested video,
     /// an attempt is made with the next one.
+    ///
+    /// If an age-restricted video is detected, it will automatically use the [`ClientType::TvHtml5Embed`]
+    /// since it is the only one that can circumvent age restrictions.
     pub async fn player_from_clients<S: AsRef<str> + Debug>(
         &self,
         video_id: S,
@@ -81,9 +84,6 @@ impl RustyPipeQuery {
     ) -> Result<VideoPlayer, Error> {
         let video_id = video_id.as_ref();
         let mut last_e = Error::Other("no clients".into());
-        // Prefer to output age restriction error (e.g. if video cannot be played
-        // by Desktop because of age restriction and by TvHtml5Embed because it is non-embeddable)
-        let mut age_restricted_e = None;
 
         for client in clients {
             let res = self.player_from_client(video_id, *client).await;
@@ -96,11 +96,17 @@ impl RustyPipeQuery {
                             msg,
                         } = &e
                         {
-                            age_restricted_e =
-                                Some(Error::Extraction(ExtractionError::Unavailable {
+                            if let Ok(res) = self
+                                .player_from_client(video_id, ClientType::TvHtml5Embed)
+                                .await
+                            {
+                                return Ok(res);
+                            } else {
+                                return Err(Error::Extraction(ExtractionError::Unavailable {
                                     reason: UnavailabilityReason::AgeRestricted,
                                     msg: msg.to_owned(),
                                 }));
+                            }
                         }
                         last_e = Error::Extraction(e);
                     } else {
@@ -110,7 +116,7 @@ impl RustyPipeQuery {
                 Err(e) => return Err(e),
             }
         }
-        Err(age_restricted_e.unwrap_or(last_e))
+        Err(last_e)
     }
 
     /// Get YouTube player data (video/audio streams + basic metadata) using the specified client
