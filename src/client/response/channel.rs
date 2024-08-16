@@ -125,29 +125,35 @@ pub(crate) struct PageHeaderRenderer {
     pub page_header_view_model: PageHeaderRendererInner,
 }
 
+#[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct PageHeaderRendererInner {
+    /// Channel title (only used to extract verification badges)
+    #[serde_as(as = "DefaultOnError")]
     pub title: PhTitleView,
+    /// Channel avatar
     pub image: PhAvatarView,
+    /// Channel metadata (subscribers, video count)
     pub metadata: PhMetadataView,
+    #[serde(default)]
     pub banner: PhBannerView,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Default, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct PhTitleView {
     pub dynamic_text_view_model: PhTitleView2,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Default, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct PhTitleView2 {
     pub text: PhTitleView3,
 }
 
 #[serde_as]
-#[derive(Debug, Deserialize)]
+#[derive(Default, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct PhTitleView3 {
     #[serde_as(as = "VecSkipError<_>")]
@@ -242,7 +248,7 @@ pub(crate) struct PhMetadataRow {
     pub metadata_parts: Vec<TextWrap>,
 }
 
-#[derive(Debug, Deserialize)]
+#[derive(Default, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct PhBannerView {
     pub image_banner_view_model: ImageView,
