@@ -1,6 +1,6 @@
 test:
     # cargo test --features=rss
-    cargo nextest run --features=rss --no-fail-fast --failure-output final --retries 1
+    cargo nextest run --workspace --features=rss --no-fail-fast --failure-output final --retries 1
 
 unittest:
     cargo nextest run --features=rss --no-fail-fast --failure-output final --lib

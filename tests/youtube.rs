@@ -2697,6 +2697,7 @@ fn rp(lang: Language) -> RustyPipe {
     let vdata = std::env::var("YT_VDATA").ok();
     RustyPipe::builder()
         .strict()
+        .storage_dir(env!("CARGO_MANIFEST_DIR"))
         .lang(lang)
         .visitor_data_opt(vdata)
         .build()

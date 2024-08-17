@@ -10,7 +10,7 @@ keywords.workspace = true
 categories.workspace = true
 description = "Client for the public YouTube / YouTube Music API (Innertube), inspired by NewPipe"
 
-include = ["/src", "README.md", "LICENSE", "!snapshots"]
+include = ["/src", "README.md", "CHANGELOG.md", "LICENSE", "!snapshots"]
 
 [workspace]
 members = [".", "codegen", "downloader", "cli"]

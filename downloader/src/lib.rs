@@ -1,6 +1,7 @@
 #![doc = include_str!("../README.md")]
 #![warn(missing_docs, clippy::todo, clippy::dbg_macro)]
 
+mod error;
 mod util;
 
 use std::{
@@ -42,7 +43,7 @@ use rustypipe::model::{richtext::ToPlaintext, VideoDetails, VideoPlayerDetails};
 #[cfg(feature = "audiotag")]
 use time::{Date, OffsetDateTime};
 
-pub use util::DownloadError;
+pub use error::DownloadError;
 
 type Result<T> = core::result::Result<T, DownloadError>;
 
