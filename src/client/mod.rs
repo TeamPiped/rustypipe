@@ -203,9 +203,9 @@ const DISABLE_PRETTY_PRINT_PARAMETER: &str = "prettyPrint=false";
 
 // Desktop client
 const DESKTOP_CLIENT_VERSION: &str = "2.20230126.00.00";
-const TVHTML5_CLIENT_VERSION: &str = "2.0";
-const TV_CLIENT_VERSION: &str = "7.20240724.13.00";
 const DESKTOP_MUSIC_CLIENT_VERSION: &str = "1.20230123.01.01";
+const TV_CLIENT_VERSION: &str = "7.20240724.13.00";
+const TVHTML5_CLIENT_VERSION: &str = "2.0";
 
 // Mobile client
 const MOBILE_CLIENT_VERSION: &str = "18.03.33";
@@ -372,14 +372,20 @@ impl Default for RustyPipeOpts {
 struct CacheHolder {
     desktop_client: RwLock<CacheEntry<ClientData>>,
     music_client: RwLock<CacheEntry<ClientData>>,
+    tv_client: RwLock<CacheEntry<ClientData>>,
     deobf: RwLock<CacheEntry<DeobfData>>,
 }
 
 #[derive(Default, Debug, Clone, Serialize, Deserialize)]
 #[serde(default)]
 struct CacheData {
+    #[serde(skip_serializing_if = "CacheEntry::is_none")]
     desktop_client: CacheEntry<ClientData>,
+    #[serde(skip_serializing_if = "CacheEntry::is_none")]
     music_client: CacheEntry<ClientData>,
+    #[serde(skip_serializing_if = "CacheEntry::is_none")]
+    tv_client: CacheEntry<ClientData>,
+    #[serde(skip_serializing_if = "CacheEntry::is_none")]
     deobf: CacheEntry<DeobfData>,
 }
 
@@ -429,6 +435,10 @@ impl<T> CacheEntry<T> {
             CacheEntry::Some { data, .. } => Some(data),
             CacheEntry::None => None,
         }
+    }
+
+    fn is_none(&self) -> bool {
+        matches!(self, Self::None)
     }
 }
 
@@ -521,6 +531,7 @@ impl RustyPipeBuilder {
                 cache: CacheHolder {
                     desktop_client: RwLock::new(cdata.desktop_client),
                     music_client: RwLock::new(cdata.music_client),
+                    tv_client: RwLock::new(cdata.tv_client),
                     deobf: RwLock::new(cdata.deobf),
                 },
                 default_opts: self.default_opts,
@@ -815,6 +826,12 @@ impl RustyPipe {
         .await
     }
 
+    /// Extract the current version of the YouTube TV client from the website.
+    async fn extract_tv_client_version(&self) -> Result<String, Error> {
+        self.extract_client_version(None, YOUTUBE_TV_URL, YOUTUBE_TV_URL, Some(TV_UA))
+            .await
+    }
+
     async fn extract_client_version(
         &self,
         sw_url: Option<&str>,
@@ -933,6 +950,37 @@ impl RustyPipe {
         }
     }
 
+    /// Get the current version of the YouTube TV client from the following sources
+    ///
+    /// 1. from cache
+    /// 2. from the YouTube TV website
+    /// 3. fall back to the hardcoded version
+    async fn get_tv_client_version(&self) -> String {
+        // Write lock here to prevent concurrent tasks from fetching the same data
+        let mut tv_client = self.inner.cache.tv_client.write().await;
+
+        match tv_client.get() {
+            Some(cdata) => cdata.version.clone(),
+            None => {
+                tracing::debug!("getting TV client version");
+                match self.extract_tv_client_version().await {
+                    Ok(version) => {
+                        *tv_client = CacheEntry::from(ClientData {
+                            version: version.clone(),
+                        });
+                        drop(tv_client);
+                        self.store_cache().await;
+                        version
+                    }
+                    Err(e) => {
+                        tracing::warn!("{}, falling back to hardcoded TV client version", e);
+                        DESKTOP_MUSIC_CLIENT_VERSION.to_owned()
+                    }
+                }
+            }
+        }
+    }
+
     /// Get deobfuscation data (either from cache or extracted from YouTube's JavaScript code)
     async fn get_deobf_data(&self) -> Result<DeobfData, Error> {
         // Write lock here to prevent concurrent tasks from fetching the same data
@@ -974,6 +1022,7 @@ impl RustyPipe {
             let cdata = CacheData {
                 desktop_client: self.inner.cache.desktop_client.read().await.clone(),
                 music_client: self.inner.cache.music_client.read().await.clone(),
+                tv_client: self.inner.cache.tv_client.read().await.clone(),
                 deobf: self.inner.cache.deobf.read().await.clone(),
             };
 
@@ -1197,7 +1246,7 @@ impl RustyPipeQuery {
             ClientType::Tv => YTContext {
                 client: ClientInfo {
                     client_name: "TVHTML5",
-                    client_version: Cow::Borrowed(TV_CLIENT_VERSION),
+                    client_version: Cow::Owned(self.client.get_tv_client_version().await),
                     client_screen: Some("WATCH"),
                     platform: "TV",
                     device_model: Some("SmartTV"),
@@ -1689,21 +1738,28 @@ mod tests {
     }
 
     #[tokio::test]
-    async fn t_extract_desktop_client_version() {
+    async fn extract_desktop_client_version() {
         let rp = RustyPipe::new();
         let version = rp.extract_desktop_client_version().await.unwrap();
         assert!(get_major_version(&version) >= 2);
     }
 
     #[tokio::test]
-    async fn t_extract_music_client_version() {
+    async fn extract_music_client_version() {
         let rp = RustyPipe::new();
         let version = rp.extract_music_client_version().await.unwrap();
         assert!(get_major_version(&version) >= 1);
     }
 
     #[tokio::test]
-    async fn t_get_visitor_data() {
+    async fn extract_tv_client_version() {
+        let rp = RustyPipe::new();
+        let version = rp.extract_tv_client_version().await.unwrap();
+        assert!(get_major_version(&version) >= 7);
+    }
+
+    #[tokio::test]
+    async fn get_visitor_data() {
         let rp = RustyPipe::new();
         let visitor_data = rp.get_visitor_data().await.unwrap();
 
