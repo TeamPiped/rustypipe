@@ -327,7 +327,7 @@ pub async fn channel_page_header(rp: &RustyPipeQuery) -> Result<bool> {
     let channel = rp
         .channel_videos_tab("UCh8gHdtzO2tXd593_bjErWg", ChannelVideoTab::Shorts)
         .await?;
-    Ok(channel.mobile_banner.is_empty() && channel.tv_banner.is_empty())
+    Ok(channel.video_count.is_some())
 }
 
 pub async fn music_playlist_two_column(rp: &RustyPipeQuery) -> Result<bool> {

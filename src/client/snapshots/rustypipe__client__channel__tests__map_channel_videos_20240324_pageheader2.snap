@@ -5,7 +5,9 @@ expression: map_res.c
 Channel(
   id: "UC2DjFE7Xf11URZqWBigcVOQ",
   name: "EEVblog",
+  handle: Some("@EEVblog"),
   subscriber_count: Some(933000),
+  video_count: Some(19),
   avatar: [
     Thumbnail(
       url: "https://yt3.googleusercontent.com/ytc/AIdro_lagjGDfXbXlQXhznx3CDRitOBdxvebllQd_YP1ag=s72-c-k-c0x00ffffff-no-rj",
@@ -55,7 +57,6 @@ Channel(
     "dumpster diving",
     "debunking",
   ],
-  vanity_url: Some("https://www.youtube.com/@EEVblog"),
   banner: [
     Thumbnail(
       url: "https://yt3.googleusercontent.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w1060-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj",
@@ -88,8 +89,6 @@ Channel(
       height: 424,
     ),
   ],
-  mobile_banner: [],
-  tv_banner: [],
   has_shorts: true,
   has_live: true,
   visitor_data: None,

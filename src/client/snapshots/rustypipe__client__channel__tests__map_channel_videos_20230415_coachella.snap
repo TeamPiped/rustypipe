@@ -5,7 +5,9 @@ expression: map_res.c
 Channel(
   id: "UCHF66aWLOxBW4l6VkSrS3cQ",
   name: "Coachella",
+  handle: Some("@Coachella"),
   subscriber_count: Some(2710000),
+  video_count: None,
   avatar: [
     Thumbnail(
       url: "//yt3.googleusercontent.com/RDZ6VWFjHEMFm_QcmCCf-yG_UiGo9YWXEmVRuiHSC8SvP02dgeBEtAjd4CnEKGLo0V2gGdIRDQ=s88-c-k-c0x00ffffff-no-rj-mo",
@@ -31,10 +33,7 @@ Channel(
     "indio",
     "california",
   ],
-  vanity_url: Some("https://www.youtube.com/@Coachella"),
   banner: [],
-  mobile_banner: [],
-  tv_banner: [],
   has_shorts: true,
   has_live: true,
   visitor_data: Some("CgtjSUhDeVJ6SU5wNCj75uyhBg%3D%3D"),

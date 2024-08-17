@@ -5,7 +5,9 @@ expression: map_res.c
 Channel(
   id: "UC2DjFE7Xf11URZqWBigcVOQ",
   name: "EEVblog",
+  handle: None,
   subscriber_count: Some(880000),
+  video_count: None,
   avatar: [
     Thumbnail(
       url: "https://yt3.ggpht.com/ytc/AMLnZu9eKk4Nd16fX4Rn1TF1G7ReluwOl6M5558FTYAM=s48-c-k-c0x00ffffff-no-rj",
@@ -55,7 +57,6 @@ Channel(
     "dumpster diving",
     "debunking",
   ],
-  vanity_url: Some("https://www.youtube.com/c/EevblogDave"),
   banner: [
     Thumbnail(
       url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w1060-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj",
@@ -86,60 +87,6 @@ Channel(
       url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w2560-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj",
       width: 2560,
       height: 424,
-    ),
-  ],
-  mobile_banner: [
-    Thumbnail(
-      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w320-fcrop64=1,32b75a57cd48a5a8-k-c0xffffffff-no-nd-rj",
-      width: 320,
-      height: 88,
-    ),
-    Thumbnail(
-      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w640-fcrop64=1,32b75a57cd48a5a8-k-c0xffffffff-no-nd-rj",
-      width: 640,
-      height: 175,
-    ),
-    Thumbnail(
-      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w960-fcrop64=1,32b75a57cd48a5a8-k-c0xffffffff-no-nd-rj",
-      width: 960,
-      height: 263,
-    ),
-    Thumbnail(
-      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w1280-fcrop64=1,32b75a57cd48a5a8-k-c0xffffffff-no-nd-rj",
-      width: 1280,
-      height: 351,
-    ),
-    Thumbnail(
-      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w1440-fcrop64=1,32b75a57cd48a5a8-k-c0xffffffff-no-nd-rj",
-      width: 1440,
-      height: 395,
-    ),
-  ],
-  tv_banner: [
-    Thumbnail(
-      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w320-fcrop64=1,00000000ffffffff-k-c0xffffffff-no-nd-rj",
-      width: 320,
-      height: 180,
-    ),
-    Thumbnail(
-      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w854-fcrop64=1,00000000ffffffff-k-c0xffffffff-no-nd-rj",
-      width: 854,
-      height: 480,
-    ),
-    Thumbnail(
-      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w1280-fcrop64=1,00000000ffffffff-k-c0xffffffff-no-nd-rj",
-      width: 1280,
-      height: 720,
-    ),
-    Thumbnail(
-      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w1920-fcrop64=1,00000000ffffffff-k-c0xffffffff-no-nd-rj",
-      width: 1920,
-      height: 1080,
-    ),
-    Thumbnail(
-      url: "https://yt3.ggpht.com/yIJ9ad80n49rK-YUcZLe_8bLmR-aGyg5ybDH_XKIc0GDWrC6s1Wzz8lxnq3_hux_5b6NHPZ9=w2120-fcrop64=1,00000000ffffffff-k-c0xffffffff-no-nd-rj",
-      width: 2120,
-      height: 1192,
     ),
   ],
   has_shorts: false,

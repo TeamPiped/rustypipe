@@ -5,7 +5,9 @@ expression: map_res.c
 Channel(
   id: "UCh8gHdtzO2tXd593_bjErWg",
   name: "Doobydobap",
+  handle: Some("@Doobydobap"),
   subscriber_count: Some(3740000),
+  video_count: None,
   avatar: [
     Thumbnail(
       url: "https://yt3.googleusercontent.com/dm5Aq93xvVJz0NoVO88ieBkDXmuShCujGPlZ7qETMEPTrXvPUCFI3-BB6Xs_P-r6Uk3mnBy9zA=s72-c-k-c0x00ffffff-no-rj",
@@ -26,7 +28,6 @@ Channel(
   verification: Verified,
   description: "Hi, I’m Tina, aka Doobydobap!\n\nFood is the medium I use to tell stories and connect with people who share the same passion as I do. Whether it’s because you’re hungry at midnight or trying to learn how to cook, I hope you enjoy watching my content and recipes. Don\'t yuck my yum!\n\nwww.doobydobap.com\n",
   tags: [],
-  vanity_url: Some("https://www.youtube.com/@Doobydobap"),
   banner: [
     Thumbnail(
       url: "https://yt3.googleusercontent.com/BvnAqgiursrXpmS9AgDLtkOSTQfOG_Dqn0KzY5hcwO9XrHTEQTVgaflI913f9KRp7d0U2qBp=w1060-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj",
@@ -59,8 +60,6 @@ Channel(
       height: 424,
     ),
   ],
-  mobile_banner: [],
-  tv_banner: [],
   has_shorts: true,
   has_live: false,
   visitor_data: None,

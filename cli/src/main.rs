@@ -911,9 +911,10 @@ async fn run() -> anyhow::Result<()> {
                                     Some(format) => print_data(&channel, format, pretty),
                                     None => {
                                         anstream::print!(
-                                            "{}\n{} [{}]",
+                                            "{}\n{} {} [{}]",
                                             format!("[Channel {tab:?}]").on_green().black(),
                                             channel.name.green().bold(),
+                                            channel.handle.unwrap_or_default(),
                                             channel.id
                                         );
                                         print_verification(channel.verification);
@@ -924,6 +925,9 @@ async fn run() -> anyhow::Result<()> {
                                                 "Subscribers:".blue(),
                                                 subs
                                             );
+                                        }
+                                        if let Some(vids) = channel.video_count {
+                                            anstream::println!("{} {}", "Videos:".blue(), vids);
                                         }
                                         print_description(Some(channel.description));
                                         println!();
@@ -938,9 +942,10 @@ async fn run() -> anyhow::Result<()> {
                                     Some(format) => print_data(&channel, format, pretty),
                                     None => {
                                         anstream::println!(
-                                            "{}\n{} [{}]",
+                                            "{}\n{} {} [{}]",
                                             format!("[Channel {tab:?}]").on_green().black(),
                                             channel.name.green().bold(),
+                                            channel.handle.unwrap_or_default(),
                                             channel.id
                                         );
                                         print_description(Some(channel.description));
@@ -950,6 +955,9 @@ async fn run() -> anyhow::Result<()> {
                                                 "Subscribers:".blue(),
                                                 subs
                                             );
+                                        }
+                                        if let Some(vids) = channel.video_count {
+                                            anstream::println!("{} {}", "Videos:".blue(), vids);
                                         }
                                         println!();
                                         print_entities(&channel.content.items);
@@ -987,6 +995,9 @@ async fn run() -> anyhow::Result<()> {
                                                 "Created on:".blue(),
                                                 created
                                             );
+                                        }
+                                        if let Some(country) = info.country {
+                                            anstream::println!("{} {}", "Country:".blue(), country);
                                         }
                                         if !info.links.is_empty() {
                                             print_h2("Links");

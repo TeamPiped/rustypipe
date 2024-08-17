@@ -353,18 +353,6 @@ impl MapResponse<ChannelInfo> for response::ChannelAbout {
     }
 }
 
-fn map_vanity_url(url: &str, id: &str) -> Option<String> {
-    if url.contains(id) {
-        return None;
-    }
-
-    Url::parse(url).ok().map(|mut parsed_url| {
-        // The vanity URL from YouTube is http for some reason
-        _ = parsed_url.set_scheme("https");
-        parsed_url.to_string()
-    })
-}
-
 struct MapChannelData {
     header: Option<response::channel::Header>,
     metadata: Option<response::channel::Metadata>,
@@ -401,10 +389,16 @@ fn map_channel(
         )));
     }
 
-    let vanity_url = metadata
+    let handle = metadata
         .vanity_channel_url
         .as_ref()
-        .and_then(|url| map_vanity_url(url, ctx.id));
+        .and_then(|url| Url::parse(url).ok())
+        .and_then(|url| {
+            url.path()
+                .strip_prefix('/')
+                .filter(|handle| util::CHANNEL_HANDLE_REGEX.is_match(handle))
+                .map(str::to_owned)
+        });
     let mut warnings = Vec::new();
 
     Ok(MapResult {
@@ -412,17 +406,16 @@ fn map_channel(
             response::channel::Header::C4TabbedHeaderRenderer(header) => Channel {
                 id: metadata.external_id,
                 name: metadata.title,
+                handle,
                 subscriber_count: header.subscriber_count_text.and_then(|txt| {
                     util::parse_large_numstr_or_warn(&txt, ctx.lang, &mut warnings)
                 }),
+                video_count: None,
                 avatar: header.avatar.into(),
                 verification: header.badges.into(),
                 description: metadata.description,
                 tags: microformat.microformat_data_renderer.tags,
-                vanity_url,
                 banner: header.banner.into(),
-                mobile_banner: header.mobile_banner.into(),
-                tv_banner: header.tv_banner.into(),
                 has_shorts: d.has_shorts,
                 has_live: d.has_live,
                 visitor_data: d.visitor_data,
@@ -443,21 +436,20 @@ fn map_channel(
                 Channel {
                     id: metadata.external_id,
                     name: metadata.title,
+                    handle,
                     subscriber_count: hdata.as_ref().and_then(|hdata| {
                         hdata.0.as_ref().and_then(|txt| {
                             util::parse_large_numstr_or_warn(txt, ctx.lang, &mut warnings)
                         })
                     }),
+                    video_count: None,
                     avatar: hdata.map(|hdata| hdata.1.into()).unwrap_or_default(),
                     // Since the carousel header is only used for YT-internal channels or special events
                     // (World Cup, Coachella, etc.) we can assume the channel to be verified
                     verification: crate::model::Verification::Verified,
                     description: metadata.description,
                     tags: microformat.microformat_data_renderer.tags,
-                    vanity_url,
                     banner: Vec::new(),
-                    mobile_banner: Vec::new(),
-                    tv_banner: Vec::new(),
                     has_shorts: d.has_shorts,
                     has_live: d.has_live,
                     visitor_data: d.visitor_data,
@@ -468,19 +460,33 @@ fn map_channel(
                 let hdata = header.content.page_header_view_model;
                 // channel handle - subscriber count - video count
                 let md_rows = hdata.metadata.content_metadata_view_model.metadata_rows;
-                let sub_part = if md_rows.len() > 1 {
-                    md_rows.get(1).and_then(|md| md.metadata_parts.first())
+                let (sub_part, vc_part) = if md_rows.len() > 1 {
+                    let mp = &md_rows[1].metadata_parts;
+                    (mp.first(), mp.get(1))
                 } else {
-                    md_rows.first().and_then(|md| md.metadata_parts.get(1))
+                    (
+                        md_rows.first().and_then(|md| md.metadata_parts.get(1)),
+                        None,
+                    )
                 };
                 let subscriber_count = sub_part.and_then(|t| {
                     util::parse_large_numstr_or_warn::<u64>(&t.text, ctx.lang, &mut warnings)
                 });
+                let video_count =
+                    vc_part.and_then(|t| util::parse_numeric_or_warn(&t.text, &mut warnings));
 
                 Channel {
                     id: metadata.external_id,
                     name: metadata.title,
+                    handle: handle.or_else(|| {
+                        md_rows
+                            .first()
+                            .and_then(|md| md.metadata_parts.get(1))
+                            .map(|txt| txt.text.to_owned())
+                            .filter(|txt| util::CHANNEL_HANDLE_REGEX.is_match(txt))
+                    }),
                     subscriber_count,
+                    video_count,
                     avatar: hdata
                         .image
                         .decorated_avatar_view_model
@@ -491,10 +497,7 @@ fn map_channel(
                     verification: hdata.title.into(),
                     description: metadata.description,
                     tags: microformat.microformat_data_renderer.tags,
-                    vanity_url,
                     banner: hdata.banner.image_banner_view_model.image.into(),
-                    mobile_banner: Vec::new(),
-                    tv_banner: Vec::new(),
                     has_shorts: d.has_shorts,
                     has_live: d.has_live,
                     visitor_data: d.visitor_data,
@@ -604,15 +607,14 @@ fn combine_channel_data<T>(channel_data: Channel<()>, content: T) -> Channel<T> 
     Channel {
         id: channel_data.id,
         name: channel_data.name,
+        handle: channel_data.handle,
         subscriber_count: channel_data.subscriber_count,
+        video_count: channel_data.video_count,
         avatar: channel_data.avatar,
         verification: channel_data.verification,
         description: channel_data.description,
         tags: channel_data.tags,
-        vanity_url: channel_data.vanity_url,
         banner: channel_data.banner,
-        mobile_banner: channel_data.mobile_banner,
-        tv_banner: channel_data.tv_banner,
         has_shorts: channel_data.has_shorts,
         has_live: channel_data.has_live,
         visitor_data: channel_data.visitor_data,

@@ -700,11 +700,15 @@ pub struct Channel<T> {
     pub id: String,
     /// Channel name
     pub name: String,
+    /// YouTube channel handle (e.g. `@EEVblog`)
+    pub handle: Option<String>,
     /// Channel subscriber count
     ///
     /// [`None`] if the subscriber count was hidden by the owner
     /// or could not be parsed.
     pub subscriber_count: Option<u64>,
+    /// Number of videos
+    pub video_count: Option<u64>,
     /// Channel avatar / profile picture
     pub avatar: Vec<Thumbnail>,
     /// Channel verification mark
@@ -713,15 +717,8 @@ pub struct Channel<T> {
     pub description: String,
     /// List of words to describe the topic of the channel
     pub tags: Vec<String>,
-    /// Custom URL set by the channel owner
-    /// (e.g. <https://www.youtube.com/c/EevblogDave>)
-    pub vanity_url: Option<String>,
     /// Banner image shown above the channel
     pub banner: Vec<Thumbnail>,
-    /// Banner image shown above the channel (small format for mobile)
-    pub mobile_banner: Vec<Thumbnail>,
-    /// Banner image shown above the channel (16:9 fullscreen format for TV)
-    pub tv_banner: Vec<Thumbnail>,
     /// Does the channel have a *Shorts* tab?
     pub has_shorts: bool,
     /// Does the channel have a *Live* tab?

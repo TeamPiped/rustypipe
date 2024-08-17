@@ -5,7 +5,9 @@ expression: map_res.c
 Channel(
   id: "UChs0pSaEoNLV4mevBFGaoKA",
   name: "The Good Life Radio x Sensual Musique",
+  handle: None,
   subscriber_count: Some(760000),
+  video_count: None,
   avatar: [
     Thumbnail(
       url: "https://yt3.ggpht.com/ytc/AMLnZu_V9mOdHaorjNFqGXCecFeOBZhDWB8tVYG_I8gJwA=s48-c-k-c0x00ffffff-no-rj",
@@ -39,7 +41,6 @@ Channel(
     "tropical house",
     "house music",
   ],
-  vanity_url: Some("https://www.youtube.com/c/TheGoodLiferadio"),
   banner: [
     Thumbnail(
       url: "https://yt3.ggpht.com/fL4x31Q80O_BvnhVIMI9YlV3apsiFvBENwGiSA-Hw9An6djAGw92RSOFax6z2r_rJNbRWPMA=w1060-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj",
@@ -70,60 +71,6 @@ Channel(
       url: "https://yt3.ggpht.com/fL4x31Q80O_BvnhVIMI9YlV3apsiFvBENwGiSA-Hw9An6djAGw92RSOFax6z2r_rJNbRWPMA=w2560-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj",
       width: 2560,
       height: 424,
-    ),
-  ],
-  mobile_banner: [
-    Thumbnail(
-      url: "https://yt3.ggpht.com/fL4x31Q80O_BvnhVIMI9YlV3apsiFvBENwGiSA-Hw9An6djAGw92RSOFax6z2r_rJNbRWPMA=w320-fcrop64=1,32b75a57cd48a5a8-k-c0xffffffff-no-nd-rj",
-      width: 320,
-      height: 88,
-    ),
-    Thumbnail(
-      url: "https://yt3.ggpht.com/fL4x31Q80O_BvnhVIMI9YlV3apsiFvBENwGiSA-Hw9An6djAGw92RSOFax6z2r_rJNbRWPMA=w640-fcrop64=1,32b75a57cd48a5a8-k-c0xffffffff-no-nd-rj",
-      width: 640,
-      height: 175,
-    ),
-    Thumbnail(
-      url: "https://yt3.ggpht.com/fL4x31Q80O_BvnhVIMI9YlV3apsiFvBENwGiSA-Hw9An6djAGw92RSOFax6z2r_rJNbRWPMA=w960-fcrop64=1,32b75a57cd48a5a8-k-c0xffffffff-no-nd-rj",
-      width: 960,
-      height: 263,
-    ),
-    Thumbnail(
-      url: "https://yt3.ggpht.com/fL4x31Q80O_BvnhVIMI9YlV3apsiFvBENwGiSA-Hw9An6djAGw92RSOFax6z2r_rJNbRWPMA=w1280-fcrop64=1,32b75a57cd48a5a8-k-c0xffffffff-no-nd-rj",
-      width: 1280,
-      height: 351,
-    ),
-    Thumbnail(
-      url: "https://yt3.ggpht.com/fL4x31Q80O_BvnhVIMI9YlV3apsiFvBENwGiSA-Hw9An6djAGw92RSOFax6z2r_rJNbRWPMA=w1440-fcrop64=1,32b75a57cd48a5a8-k-c0xffffffff-no-nd-rj",
-      width: 1440,
-      height: 395,
-    ),
-  ],
-  tv_banner: [
-    Thumbnail(
-      url: "https://yt3.ggpht.com/fL4x31Q80O_BvnhVIMI9YlV3apsiFvBENwGiSA-Hw9An6djAGw92RSOFax6z2r_rJNbRWPMA=w320-fcrop64=1,00000000ffffffff-k-c0xffffffff-no-nd-rj",
-      width: 320,
-      height: 180,
-    ),
-    Thumbnail(
-      url: "https://yt3.ggpht.com/fL4x31Q80O_BvnhVIMI9YlV3apsiFvBENwGiSA-Hw9An6djAGw92RSOFax6z2r_rJNbRWPMA=w854-fcrop64=1,00000000ffffffff-k-c0xffffffff-no-nd-rj",
-      width: 854,
-      height: 480,
-    ),
-    Thumbnail(
-      url: "https://yt3.ggpht.com/fL4x31Q80O_BvnhVIMI9YlV3apsiFvBENwGiSA-Hw9An6djAGw92RSOFax6z2r_rJNbRWPMA=w1280-fcrop64=1,00000000ffffffff-k-c0xffffffff-no-nd-rj",
-      width: 1280,
-      height: 720,
-    ),
-    Thumbnail(
-      url: "https://yt3.ggpht.com/fL4x31Q80O_BvnhVIMI9YlV3apsiFvBENwGiSA-Hw9An6djAGw92RSOFax6z2r_rJNbRWPMA=w1920-fcrop64=1,00000000ffffffff-k-c0xffffffff-no-nd-rj",
-      width: 1920,
-      height: 1080,
-    ),
-    Thumbnail(
-      url: "https://yt3.ggpht.com/fL4x31Q80O_BvnhVIMI9YlV3apsiFvBENwGiSA-Hw9An6djAGw92RSOFax6z2r_rJNbRWPMA=w2120-fcrop64=1,00000000ffffffff-k-c0xffffffff-no-nd-rj",
-      width: 2120,
-      height: 1192,
     ),
   ],
   has_shorts: false,

@@ -11,7 +11,10 @@
 //! - The validation functions of this module are meant vor validating specific data (video IDs,
 //!   channel IDs, playlist IDs) and return [`true`] if the given input is valid
 
-use crate::{error::Error, util};
+use crate::{
+    error::Error,
+    util::{self, CHANNEL_HANDLE_REGEX},
+};
 use once_cell::sync::Lazy;
 use regex::Regex;
 
@@ -199,6 +202,32 @@ pub fn track_lyrics_id<S: AsRef<str>>(lyrics_id: S) -> Result<(), Error> {
     check(
         LYRICS_ID_REGEX.is_match(lyrics_id.as_ref()),
         "invalid lyrics id",
+    )
+}
+
+/// Validate the given channel handle
+///
+/// YouTube channel handles can be up to 30 characters long and start with an `@`.
+/// Allowed characters are letters and numbers (Unicode), underscores (`_`), hyphens (`-`),
+/// full stops (`.`) and middle dots (`· U+00B7`)
+///
+/// There are more fine-grained rules for specific scripts. Verifying these is not implemented.
+///
+/// Reference: <https://support.google.com/youtube/answer/11585688>
+///
+/// ```
+/// # use rustypipe::validate;
+/// assert!(validate::channel_handle("@EEVBlog").is_ok());
+/// assert!(validate::channel_handle("@Āll·._-").is_ok());
+/// assert!(validate::channel_handle("@한국").is_ok());
+///
+/// assert!(validate::channel_handle("noat").is_err());
+/// assert!(validate::channel_handle("@no space").is_err());
+/// ```
+pub fn channel_handle<S: AsRef<str>>(channel_handle: S) -> Result<(), Error> {
+    check(
+        CHANNEL_HANDLE_REGEX.is_match(channel_handle.as_ref()),
+        "invalid channel handle",
     )
 }
 

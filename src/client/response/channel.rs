@@ -95,11 +95,6 @@ pub(crate) struct HeaderRenderer {
     pub badges: Vec<ChannelBadge>,
     #[serde(default)]
     pub banner: Thumbnails,
-    #[serde(default)]
-    pub mobile_banner: Thumbnails,
-    /// Fullscreen (16:9) channel banner
-    #[serde(default)]
-    pub tv_banner: Thumbnails,
 }
 
 #[serde_as]

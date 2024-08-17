@@ -885,16 +885,13 @@ async fn channel_shorts(rp: RustyPipe) {
     // dbg!(&channel);
     assert_eq!(channel.id, "UCh8gHdtzO2tXd593_bjErWg");
     assert_eq!(channel.name, "Doobydobap");
+    assert_eq!(channel.handle.as_deref(), Some("@Doobydobap"));
     assert_gteo(channel.subscriber_count, 2_800_000, "subscribers");
     assert!(!channel.avatar.is_empty(), "got no thumbnails");
     assert_eq!(channel.verification, Verification::Verified);
     assert!(channel
         .description
         .contains("Hi, I\u{2019}m Tina, aka Doobydobap"));
-    assert_eq!(
-        channel.vanity_url.as_deref(),
-        Some("https://www.youtube.com/@Doobydobap")
-    );
     assert!(!channel.banner.is_empty(), "got no banners");
 
     assert!(
@@ -994,15 +991,12 @@ async fn channel_search(rp: RustyPipe) {
 fn assert_channel_eevblog<T>(channel: &Channel<T>) {
     assert_eq!(channel.id, "UC2DjFE7Xf11URZqWBigcVOQ");
     assert_eq!(channel.name, "EEVblog");
+    assert_eq!(channel.handle.as_deref(), Some("@EEVblog"));
     assert_gteo(channel.subscriber_count, 880_000, "subscribers");
     assert!(!channel.avatar.is_empty(), "got no thumbnails");
     assert_eq!(channel.verification, Verification::Verified);
     assert_eq!(channel.description, "NO SCRIPT, NO FEAR, ALL OPINION\nAn off-the-cuff Video Blog about Electronics Engineering, for engineers, hobbyists, enthusiasts, hackers and Makers\nHosted by Dave Jones from Sydney Australia\n\nDONATIONS:\nBitcoin: 3KqyH1U3qrMPnkLufM2oHDU7YB4zVZeFyZ\nEthereum: 0x99ccc4d2654ba40744a1f678d9868ecb15e91206\nPayPal: david@alternatezone.com\n\nPatreon: https://www.patreon.com/eevblog\n\nEEVblog2: http://www.youtube.com/EEVblog2\nEEVdiscover: https://www.youtube.com/channel/UCkGvUEt8iQLmq3aJIMjT2qQ\n\nEMAIL:\nAdvertising/Commercial: eevblog+business@gmail.com\nFan mail: eevblog+fan@gmail.com\nHate Mail: eevblog+hate@gmail.com\n\nI DON'T DO PAID VIDEO SPONSORSHIPS, DON'T ASK!\n\nPLEASE:\nDo NOT ask for personal advice on something, post it in the EEVblog forum.\nI read ALL email, but please don't be offended if I don't have time to reply, I get a LOT of email.\n\nMailbag\nPO Box 7949\nBaulkham Hills NSW 2153\nAUSTRALIA");
     assert!(!channel.tags.is_empty(), "got no tags");
-    assert_eq!(
-        channel.vanity_url.as_deref(),
-        Some("https://www.youtube.com/@EEVblog")
-    );
     assert!(!channel.banner.is_empty(), "got no banners");
 }
 

@@ -158,7 +158,7 @@ impl DownloadVideo {
             channel_id: video.channel_id().map(str::to_owned),
             channel_name: video
                 .channel_name()
-                .map(|n| n.strip_suffix(" - Topic").unwrap_or(n).to_owned()),
+                .map(|n| n.strip_suffix("- Topic").unwrap_or(n).trim().to_owned()),
             album_id: None,
             album_name: None,
             track_nr: None,

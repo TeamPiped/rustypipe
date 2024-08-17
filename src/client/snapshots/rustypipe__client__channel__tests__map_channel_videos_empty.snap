@@ -5,7 +5,9 @@ expression: map_res.c
 Channel(
   id: "UCxBa895m48H5idw5li7h-0g",
   name: "Sebastian Figurroa",
+  handle: None,
   subscriber_count: None,
+  video_count: None,
   avatar: [
     Thumbnail(
       url: "https://yt3.ggpht.com/ytc/AMLnZu_hsZ1XlUXHzXsGNHJw0np79WhWZcC4j8eFdy-tiUCDBKAjJyJOzE5kXFRiqL2S=s48-c-k-c0x00ffffff-no-rj",
@@ -26,10 +28,7 @@ Channel(
   verification: None,
   description: "",
   tags: [],
-  vanity_url: None,
   banner: [],
-  mobile_banner: [],
-  tv_banner: [],
   has_shorts: false,
   has_live: false,
   visitor_data: Some("Cgtvc2s4UllvTGl6byigxseZBg%3D%3D"),
