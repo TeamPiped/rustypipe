@@ -1,8 +1,8 @@
-# ![RustyPipe](https://code.thetadev.de/ThetaDev/rustypipe/raw/branch/main/notes/logo.svg) Downloader
+# ![RustyPipe](https://codeberg.org/ThetaDev/rustypipe/raw/branch/main/notes/logo.svg) Downloader
 
 [![Current crates.io version](https://img.shields.io/crates/v/rustypipe-downloader.svg)](https://crates.io/crates/rustypipe-downloader)
 [![License](https://img.shields.io/badge/License-GPL--3-blue.svg?style=flat)](http://opensource.org/licenses/MIT)
-[![CI status](https://code.thetadev.de/ThetaDev/rustypipe/actions/workflows/ci.yaml/badge.svg?style=flat&label=CI)](https://code.thetadev.de/ThetaDev/rustypipe/actions/?workflow=ci.yaml)
+[![CI status](https://codeberg.org/ThetaDev/rustypipe/actions/workflows/ci.yaml/badge.svg?style=flat&label=CI)](https://codeberg.org/ThetaDev/rustypipe/actions/?workflow=ci.yaml)
 
 The downloader is a companion crate for RustyPipe that allows for easy and fast
 downloading of video and audio files.

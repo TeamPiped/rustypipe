@@ -19,7 +19,7 @@ members = [".", "codegen", "downloader", "cli"]
 edition = "2021"
 authors = ["ThetaDev <thetadev@magenta.de>"]
 license = "GPL-3.0"
-repository = "https://code.thetadev.de/ThetaDev/rustypipe"
+repository = "https://codeberg.org/ThetaDev/rustypipe"
 keywords = ["youtube", "video", "music"]
 categories = ["api-bindings", "multimedia"]
 
