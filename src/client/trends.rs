@@ -2,38 +2,13 @@ use std::borrow::Cow;
 
 use crate::{
     error::{Error, ExtractionError},
-    model::{
-        paginator::{ContinuationEndpoint, Paginator},
-        VideoItem,
-    },
-    param::Language,
+    model::VideoItem,
     serializer::MapResult,
 };
 
-use super::{
-    response, ClientType, MapRespCtx, MapResponse, QBrowse, QBrowseParams, RustyPipeQuery,
-};
+use super::{response, ClientType, MapRespCtx, MapResponse, QBrowseParams, RustyPipeQuery};
 
 impl RustyPipeQuery {
-    /// Get the videos from the YouTube startpage
-    #[tracing::instrument(skip(self), level = "error")]
-    pub async fn startpage(&self) -> Result<Paginator<VideoItem>, Error> {
-        let context = self.get_context(ClientType::Desktop, true, None).await;
-        let request_body = QBrowse {
-            context,
-            browse_id: "FEwhat_to_watch",
-        };
-
-        self.execute_request::<response::Startpage, _, _>(
-            ClientType::Desktop,
-            "startpage",
-            "",
-            "browse",
-            &request_body,
-        )
-        .await
-    }
-
     /// Get the videos from the YouTube trending page
     #[tracing::instrument(skip(self), level = "error")]
     pub async fn trending(&self) -> Result<Vec<VideoItem>, Error> {
@@ -52,33 +27,6 @@ impl RustyPipeQuery {
             &request_body,
         )
         .await
-    }
-}
-
-impl MapResponse<Paginator<VideoItem>> for response::Startpage {
-    fn map_response(
-        self,
-        ctx: &MapRespCtx<'_>,
-    ) -> Result<MapResult<Paginator<VideoItem>>, ExtractionError> {
-        let grid = self
-            .contents
-            .two_column_browse_results_renderer
-            .contents
-            .into_iter()
-            .next()
-            .ok_or(ExtractionError::InvalidData(Cow::Borrowed("no contents")))?
-            .tab_renderer
-            .content
-            .section_list_renderer
-            .contents;
-
-        Ok(map_startpage_videos(
-            grid,
-            ctx.lang,
-            self.response_context
-                .visitor_data
-                .or_else(|| ctx.visitor_data.map(str::to_owned)),
-        ))
     }
 }
 
@@ -109,26 +57,6 @@ impl MapResponse<Vec<VideoItem>> for response::Trending {
     }
 }
 
-fn map_startpage_videos(
-    videos: MapResult<Vec<response::YouTubeListItem>>,
-    lang: Language,
-    visitor_data: Option<String>,
-) -> MapResult<Paginator<VideoItem>> {
-    let mut mapper = response::YouTubeListMapper::<VideoItem>::new(lang);
-    mapper.map_response(videos);
-
-    MapResult {
-        c: Paginator::new_ext(
-            None,
-            mapper.items,
-            mapper.ctoken,
-            visitor_data,
-            ContinuationEndpoint::Browse,
-        ),
-        warnings: mapper.warnings,
-    }
-}
-
 #[cfg(test)]
 mod tests {
     use std::{fs::File, io::BufReader};
@@ -138,31 +66,10 @@ mod tests {
 
     use crate::{
         client::{response, MapRespCtx, MapResponse},
-        model::{paginator::Paginator, VideoItem},
+        model::VideoItem,
         serializer::MapResult,
         util::tests::TESTFILES,
     };
-
-    #[test]
-    fn map_startpage() {
-        let json_path = path!(*TESTFILES / "trends" / "startpage.json");
-        let json_file = File::open(json_path).unwrap();
-
-        let startpage: response::Startpage =
-            serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res: MapResult<Paginator<VideoItem>> =
-            startpage.map_response(&MapRespCtx::test("")).unwrap();
-
-        assert!(
-            map_res.warnings.is_empty(),
-            "deserialization/mapping warnings: {:?}",
-            map_res.warnings
-        );
-
-        insta::assert_ron_snapshot!("map_startpage", map_res.c, {
-            ".items[].publish_date" => "[date]",
-        });
-    }
 
     #[rstest]
     #[case::base("videos")]
@@ -171,10 +78,10 @@ mod tests {
         let json_path = path!(*TESTFILES / "trends" / format!("trending_{name}.json"));
         let json_file = File::open(json_path).unwrap();
 
-        let startpage: response::Trending =
+        let trending: response::Trending =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
         let map_res: MapResult<Vec<VideoItem>> =
-            startpage.map_response(&MapRespCtx::test("")).unwrap();
+            trending.map_response(&MapRespCtx::test("")).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),

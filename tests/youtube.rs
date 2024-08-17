@@ -1451,18 +1451,6 @@ async fn resolve_channel_not_found(rp: RustyPipe) {
 
 #[rstest]
 #[tokio::test]
-#[ignore]
-async fn startpage(rp: RustyPipe) {
-    let startpage = rp.query().startpage().await.unwrap();
-
-    // The startpage requires visitor data to fetch continuations
-    assert!(startpage.visitor_data.is_some());
-
-    assert_next(startpage, rp.query(), 8, 2, true).await;
-}
-
-#[rstest]
-#[tokio::test]
 async fn trending(rp: RustyPipe) {
     let result = rp.query().trending().await.unwrap();
 

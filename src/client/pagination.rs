@@ -355,7 +355,6 @@ mod tests {
 
     #[rstest]
     #[case::search("search", path!("search" / "cont.json"))]
-    #[case::startpage("startpage", path!("trends" / "startpage_cont.json"))]
     #[case::recommendations("recommendations", path!("video_details" / "recommendations.json"))]
     fn map_continuation_items(#[case] name: &str, #[case] path: PathBuf) {
         let json_path = path!(*TESTFILES / path);
