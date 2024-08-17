@@ -19,6 +19,7 @@ use rustypipe::{
         Verification, YouTubeItem,
     },
     param::{search_filter, ChannelVideoTab, Country, Language, StreamFilter},
+    report::FileReporter,
 };
 use rustypipe_downloader::{
     DownloadError, DownloadQuery, DownloadVideo, Downloader, DownloaderBuilder,
@@ -535,16 +536,18 @@ async fn run() -> anyhow::Result<()> {
         .with_writer(ProgWriter(multi.clone()))
         .init();
 
+    let mut storage_dir = dirs::data_dir().expect("no data dir");
+    storage_dir.push("rustypipe");
+    std::fs::create_dir_all(&storage_dir).expect("could not create data dir");
+
     let mut rp = RustyPipe::builder()
+        .storage_dir(storage_dir)
         .visitor_data_opt(cli.vdata)
         .timeout(Duration::from_secs(15));
     if cli.report {
-        rp = rp.report();
-    } else {
-        let mut storage_dir = dirs::data_dir().expect("no data dir");
-        storage_dir.push("rustypipe");
-        std::fs::create_dir_all(&storage_dir).expect("could not create data dir");
-        rp = rp.storage_dir(storage_dir);
+        rp = rp
+            .report()
+            .reporter(Box::new(FileReporter::new("rustypipe_reports")));
     }
     if let Some(lang) = cli.lang {
         rp = rp.lang(Language::from_str(&lang.to_ascii_lowercase()).expect("invalid language"));
