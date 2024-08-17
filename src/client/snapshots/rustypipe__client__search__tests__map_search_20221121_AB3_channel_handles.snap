@@ -9,6 +9,7 @@ SearchResult(
       Channel(ChannelItem(
         id: "UCMwePVHRpDdfeUcwtDZu2Dw",
         name: "Monstafluff Music",
+        handle: Some("@MonstafluffMusic"),
         avatar: [
           Thumbnail(
             url: "//yt3.ggpht.com/ytc/AMLnZu9YhTzdAoL6P4PYq51PCF076ITDrgLitxSDPqv6sw=s88-c-k-c0x00ffffff-no-rj-mo",
@@ -23,12 +24,12 @@ SearchResult(
         ],
         verification: Verified,
         subscriber_count: Some(582000),
-        video_count: None,
         short_description: "Music Submissions: https://monstafluff.edmdistrict.com/",
       )),
       Channel(ChannelItem(
         id: "UCLxAS02eWvfZK4icRNzWD_g",
         name: "Music Travel Love",
+        handle: Some("@MusicTravelLove"),
         avatar: [
           Thumbnail(
             url: "https://yt3.ggpht.com/ytc/AMLnZu9njNDLU_VtFjfGUaTArBp4AJFhJIxb_CxP7knf3A=s88-c-k-c0x00ffffff-no-rj-mo",
@@ -43,12 +44,12 @@ SearchResult(
         ],
         verification: Artist,
         subscriber_count: Some(4030000),
-        video_count: None,
         short_description: "Welcome to the official Music Travel Love YouTube channel! We travel the world making music, friends, videos and memories!",
       )),
       Channel(ChannelItem(
         id: "UCxKxjNPyL9UO5LRWHzp5JxA",
         name: "Black&White Music",
+        handle: Some("@blackwhitemusic5836"),
         avatar: [
           Thumbnail(
             url: "//yt3.ggpht.com/FDjW2-Cb6tFbtNv02D1UX4XtvP7P3eEWB93hGimeP4pb2TadVhAgxSVMZLZDp5NiBWGLT5eprA=s88-c-k-c0x00ffffff-no-rj-mo",
@@ -63,12 +64,12 @@ SearchResult(
         ],
         verification: Verified,
         subscriber_count: Some(167000),
-        video_count: None,
         short_description: "MUSIC IN HARMONY WITH YOUR LIFE!!! If any producer, label, artist or photographer has an issue with any of the music or\u{a0}...",
       )),
       Channel(ChannelItem(
         id: "UCGIygiYkKxn7g7fFNFdXskg",
         name: "HAEVN MUSIC",
+        handle: Some("@HAEVNMUSIC"),
         avatar: [
           Thumbnail(
             url: "//yt3.ggpht.com/EYlGIfqhvwtfkCyi5vpqfY_kDHr6L3OeCmkudNiAyhvz6UCnTZQOQaM-8PelFDGofdIqeF7Mb4E=s88-c-k-c0x00ffffff-no-rj-mo",
@@ -83,12 +84,12 @@ SearchResult(
         ],
         verification: Artist,
         subscriber_count: Some(411000),
-        video_count: None,
         short_description: "The official YouTube channel of HAEVN Music. Receiving a piano from his grandfather had a great impact on Jorrit\'s life.",
       )),
       Channel(ChannelItem(
         id: "UClvNJkDHdc1gvFGN_Fr_qPw",
         name: "Artemis Music",
+        handle: Some("@artemismusic1000"),
         avatar: [
           Thumbnail(
             url: "//yt3.ggpht.com/rGXIwYAhI49rKBQmw_pKFMv9yEt4euHnmXOE0OOCD6ApdQXGnuPmEv7TK7cDjrjt0rUXYHuw=s88-c-k-c0x00ffffff-no-rj-mo",
@@ -103,12 +104,12 @@ SearchResult(
         ],
         verification: None,
         subscriber_count: Some(31200),
-        video_count: None,
         short_description: "Hello and welcome to \"Artemis Music\"! Music can play an effective role in helping us lead a better and more productive life.",
       )),
       Channel(ChannelItem(
         id: "UC5r3j8tQsB3MYZiwQFGKrdA",
         name: "Disco Music",
+        handle: Some("@discomusic9273"),
         avatar: [
           Thumbnail(
             url: "//yt3.ggpht.com/5nqhAdf26KoSKbfUB8kvhJo6rpMQw3XS345h8ZNmeXScqlB1KjJAM0T371r3QcS1mA1LZg9B1Po=s88-c-k-c0x00ffffff-no-rj-mo",
@@ -123,12 +124,12 @@ SearchResult(
         ],
         verification: Verified,
         subscriber_count: Some(372000),
-        video_count: None,
         short_description: "Music is the only language in which you cannot say a mean or sarcastic thing. Have fun listening to music.",
       )),
       Channel(ChannelItem(
         id: "UCNZYpcqym8gHcNg2GWcC6nQ",
         name: "S!X - Music",
+        handle: Some("@s1x-music"),
         avatar: [
           Thumbnail(
             url: "//yt3.googleusercontent.com/ytc/AMLnZu_1NOzbZUJWZjtmD4NTsb9BR-TNIAzNoajv0TisvQ=s88-c-k-c0x00ffffff-no-rj-mo",
@@ -143,12 +144,12 @@ SearchResult(
         ],
         verification: Verified,
         subscriber_count: Some(178000),
-        video_count: None,
         short_description: "S!X - Music is an independent Hip-Hop label. Soundcloud : https://soundcloud.com/s1xmusic Facebook\u{a0}...",
       )),
       Channel(ChannelItem(
         id: "UCoEryX-WO7IHBGqTAC5r9Zw",
         name: "Shake Music",
+        handle: Some("@ShakeMusic"),
         avatar: [
           Thumbnail(
             url: "//yt3.googleusercontent.com/ytc/AMLnZu9fMXUALsloNUJ_wLpqCS0ovprvc5W-XwfrpmWqIw=s88-c-k-c0x00ffffff-no-rj-mo",
@@ -163,12 +164,12 @@ SearchResult(
         ],
         verification: Verified,
         subscriber_count: Some(1040000),
-        video_count: None,
         short_description: "Welcome to Shake Music, a Trap & Bass Channel / Record Label dedicated to bringing you the best tracks. All tracks on Shake\u{a0}...",
       )),
       Channel(ChannelItem(
         id: "UCTJ9Qg-1vBu2pP_YrWUfGnQ",
         name: "Miracle Music",
+        handle: Some("@miraclemusic2328"),
         avatar: [
           Thumbnail(
             url: "//yt3.ggpht.com/3RMarDSmUSIexCXWCpMUkqV64uiHDXTidBLwsObHstx5-AbB8h_n8Zy1W9JymURd7ivzlDEGFw=s88-c-k-c0x00ffffff-no-rj-mo",
@@ -183,12 +184,12 @@ SearchResult(
         ],
         verification: Verified,
         subscriber_count: Some(822000),
-        video_count: None,
         short_description: "Welcome to Miracle Music! On this channel you will find a wide variety of different Deep House, Tropical House, Chill Out, EDM,.",
       )),
       Channel(ChannelItem(
         id: "UCp6_KuNhT0kcFk-jXw9Tivg",
         name: "Magic Music",
+        handle: Some("@MagicMusicGroup"),
         avatar: [
           Thumbnail(
             url: "//yt3.googleusercontent.com/ytc/AMLnZu-fgSc_lceD4fRL_y0b3MKd2k54DF-laDAR3Avbuw=s88-c-k-c0x00ffffff-no-rj-mo",
@@ -203,12 +204,12 @@ SearchResult(
         ],
         verification: Verified,
         subscriber_count: Some(4620000),
-        video_count: None,
         short_description: "",
       )),
       Channel(ChannelItem(
         id: "UCe55Gy-hFDvLZp8C8BZhBnw",
         name: "Nightblue Music",
+        handle: Some("@NightblueMusic"),
         avatar: [
           Thumbnail(
             url: "//yt3.googleusercontent.com/ytc/AMLnZu-29SYt5qpqMP9Xi2A98mqL8ymI5Lg7Vzx-qpY09w=s88-c-k-c0x00ffffff-no-rj-mo",
@@ -223,12 +224,12 @@ SearchResult(
         ],
         verification: Verified,
         subscriber_count: Some(1050000),
-        video_count: None,
         short_description: "BRINGING YOU ONLY THE BEST EDM - TRAP Submit your own track for promotion here:\u{a0}...",
       )),
       Channel(ChannelItem(
         id: "UC2fVSthyWxWSjsiEAHPzriQ",
         name: "Mr_MoMo Music",
+        handle: Some("@MrMoMoMusic"),
         avatar: [
           Thumbnail(
             url: "//yt3.ggpht.com/7YG4jSrhx_Mfi2TsV0rJFlFARaR8kl7ilcIyzs6gSeNjwn-J88DvDWD8PSNd5o03qJRzpvhs=s88-c-k-c0x00ffffff-no-rj-mo",
@@ -243,12 +244,12 @@ SearchResult(
         ],
         verification: Verified,
         subscriber_count: Some(709000),
-        video_count: None,
         short_description: "Hey there! I am Mr MoMo My channel focus on Japan music, lofi, trap & bass type beat and Japanese instrumental. I mindfully\u{a0}...",
       )),
       Channel(ChannelItem(
         id: "UCN31w7dRjjz8CeP0GfSIo8A",
         name: "Danit Music Official",
+        handle: Some("@danitmusicofficial5734"),
         avatar: [
           Thumbnail(
             url: "//yt3.ggpht.com/ytc/AMLnZu9rUKtDsY-aSoE5WEwAQxvQTXiuAPYMBoJQ2mYTUA=s88-c-k-c0x00ffffff-no-rj-mo",
@@ -263,12 +264,12 @@ SearchResult(
         ],
         verification: None,
         subscriber_count: Some(54400),
-        video_count: None,
         short_description: "",
       )),
       Channel(ChannelItem(
         id: "UCpEHWiTMk1eEBAdzBnAb3rA",
         name: "Energy Transformation Relaxing Music ",
+        handle: Some("@energytransformationrelaxi5596"),
         avatar: [
           Thumbnail(
             url: "//yt3.ggpht.com/RR7upyAvT7N0_qlZWfLlDSRPhLufX4W4X6-qahWvuvDCLn2cWCs0yh_HXB2iwGbk_MTwSqwWEQ=s88-c-k-c0x00ffffff-no-rj-mo",
@@ -283,12 +284,12 @@ SearchResult(
         ],
         verification: None,
         subscriber_count: Some(3590),
-        video_count: None,
         short_description: "Welcome to our Energy Transformation Relaxing Music . This chakra music channel will focus on developing the best chakra\u{a0}...",
       )),
       Channel(ChannelItem(
         id: "UCqswUMaC5yWUrkQszr8fuBA",
         name: "Nonstop Music",
+        handle: Some("@nonstopmusic9993"),
         avatar: [
           Thumbnail(
             url: "//yt3.googleusercontent.com/ytc/AMLnZu9vLN62RxNbnpa20r5XreWRlVjHXbHf7BMcvSBxoQ=s88-c-k-c0x00ffffff-no-rj-mo",
@@ -303,12 +304,12 @@ SearchResult(
         ],
         verification: Verified,
         subscriber_count: Some(416000),
-        video_count: None,
         short_description: "Nonstop Music - Home of 1h videos of your favourite songs and mixes. Nonstop Genres: Pop • Chillout • Tropical House • Deep\u{a0}...",
       )),
       Channel(ChannelItem(
         id: "UChO8h2G8UjOVc081rgYU8XQ",
         name: "Vibe Music",
+        handle: Some("@vibemusic."),
         avatar: [
           Thumbnail(
             url: "//yt3.googleusercontent.com/ytc/AMLnZu9Br5pt87kuDLRFbh1MqMXeFlCLbUrwFlDIzU4s=s88-c-k-c0x00ffffff-no-rj-mo",
@@ -323,12 +324,12 @@ SearchResult(
         ],
         verification: Verified,
         subscriber_count: Some(3000000),
-        video_count: None,
         short_description: "Vibe Music strives to bring the best lyric videos of popular Rap & Hip Hop songs. Be sure to Subscribe to see new videos we\u{a0}...",
       )),
       Channel(ChannelItem(
         id: "UClV8b2EhIhIASKw-etzegyw",
         name: "Suits Music",
+        handle: Some("@SuitsMusic"),
         avatar: [
           Thumbnail(
             url: "//yt3.googleusercontent.com/ytc/AMLnZu9Aj5RtZZMdK_B_YD-8rOfi9c5ddFw5t1s4GYEeOQ=s88-c-k-c0x00ffffff-no-rj-mo",
@@ -343,12 +344,12 @@ SearchResult(
         ],
         verification: None,
         subscriber_count: Some(120000),
-        video_count: None,
         short_description: "",
       )),
       Channel(ChannelItem(
         id: "UCI2hwz3r5phXpOtViIA5inA",
         name: "Rock Music Collection",
+        handle: Some("@rockmusiccollection4332"),
         avatar: [
           Thumbnail(
             url: "//yt3.ggpht.com/kB4gWvROUIWFuJN8xwIqmPl1QV2_gXMat6COAJjXZT07E3xomc4b2JwGtDg05t1MmhgqImSifhc=s88-c-k-c0x00ffffff-no-rj-mo",
@@ -363,12 +364,12 @@ SearchResult(
         ],
         verification: None,
         subscriber_count: Some(81700),
-        video_count: None,
         short_description: "",
       )),
       Channel(ChannelItem(
         id: "UC9w8My3S7h-bQZ-4R-0ZPsw",
         name: "Helios Music",
+        handle: Some("@heliosmusic55"),
         avatar: [
           Thumbnail(
             url: "//yt3.ggpht.com/bi08T8zuYI1PlbM8M5fyZzjVvNJRJFFcQoonRQvS30opJ-OqGIq5OPrZ19qga29PIAit7OO3=s88-c-k-c0x00ffffff-no-rj-mo",
@@ -383,12 +384,12 @@ SearchResult(
         ],
         verification: None,
         subscriber_count: Some(53000),
-        video_count: None,
         short_description: "Welcome to my channel - Helios Music. I created this channel to help people have the most relaxing, refreshing and comfortable\u{a0}...",
       )),
       Channel(ChannelItem(
         id: "UC_ODKC5gTs2LvdHXDRdDm0w",
         name: "Music On",
+        handle: Some("@MilanPavlovic91"),
         avatar: [
           Thumbnail(
             url: "//yt3.googleusercontent.com/ytc/AMLnZu8lUOYw4RdRwQf2Kz8RCExSmuWC78oetXF7VL67SA=s88-c-k-c0x00ffffff-no-rj-mo",
@@ -403,7 +404,6 @@ SearchResult(
         ],
         verification: None,
         subscriber_count: Some(129000),
-        video_count: None,
         short_description: "Music On (UNOFFICIAL CHANNEL)",
       )),
     ],

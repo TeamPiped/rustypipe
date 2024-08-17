@@ -179,7 +179,7 @@ pub async fn channel_handles_in_search_results(rp: &RustyPipeQuery) -> Result<bo
     Ok(search.items.items.iter().any(|itm| match itm {
         YouTubeItem::Channel(channel) => channel
             .subscriber_count
-            .map(|sc| sc > 100 && channel.video_count.is_none())
+            .map(|sc| sc > 100 && channel.handle.is_some())
             .unwrap_or_default(),
         _ => false,
     }))

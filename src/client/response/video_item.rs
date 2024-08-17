@@ -610,26 +610,24 @@ impl<T> YouTubeListMapper<T> {
 
     fn map_channel(&mut self, channel: ChannelRenderer) -> ChannelItem {
         // channel handle instead of subscriber count (A/B test 3)
-        let (sc_txt, vc_text) = if channel
+        let (handle, sc_txt) = if channel
             .subscriber_count_text
             .as_ref()
             .map(|txt| txt.starts_with('@'))
             .unwrap_or_default()
         {
-            (channel.video_count_text, None)
-        } else {
             (channel.subscriber_count_text, channel.video_count_text)
+        } else {
+            (None, channel.subscriber_count_text)
         };
 
         ChannelItem {
             id: channel.channel_id,
             name: channel.title,
+            handle,
             avatar: channel.thumbnail.into(),
             verification: channel.owner_badges.into(),
             subscriber_count: sc_txt.and_then(|txt| {
-                util::parse_large_numstr_or_warn(&txt, self.lang, &mut self.warnings)
-            }),
-            video_count: vc_text.and_then(|txt| {
                 util::parse_large_numstr_or_warn(&txt, self.lang, &mut self.warnings)
             }),
             short_description: channel.description_snippet,

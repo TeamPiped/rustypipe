@@ -870,6 +870,8 @@ pub struct ChannelItem {
     pub id: String,
     /// Channel name
     pub name: String,
+    /// YouTube channel handle (e.g. `@EEVblog`)
+    pub handle: Option<String>,
     /// Channel avatar/profile picture
     pub avatar: Vec<Thumbnail>,
     /// Channel verification mark
@@ -878,8 +880,6 @@ pub struct ChannelItem {
     ///
     /// [`None`] if hidden by the owner or not present.
     pub subscriber_count: Option<u64>,
-    /// Number of videos from the channel
-    pub video_count: Option<u64>,
     /// Abbreviated channel description
     pub short_description: String,
 }
