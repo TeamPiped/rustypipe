@@ -120,3 +120,9 @@ tokio-test.workspace = true
 insta.workspace = true
 path_macro.workspace = true
 tracing-test.workspace = true
+
+[package.metadata.docs.rs]
+# To build locally:
+# RUSTDOCFLAGS="--cfg docsrs" cargo +nightly doc --features rss --no-deps --open
+features = ["rss"]
+rustdoc-args = ["--cfg", "docsrs"]

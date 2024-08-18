@@ -54,3 +54,9 @@ path_macro.workspace = true
 rstest.workspace = true
 serde_json.workspace = true
 temp_testdir = "0.2.3"
+
+[package.metadata.docs.rs]
+# To build locally:
+# RUSTDOCFLAGS="--cfg docsrs" cargo +nightly doc --features indicatif,audiotag --no-deps --open
+features = ["indicatif", "audiotag"]
+rustdoc-args = ["--cfg", "docsrs"]

@@ -1,4 +1,5 @@
 #![doc = include_str!("../README.md")]
+#![cfg_attr(docsrs, feature(doc_cfg))]
 #![warn(missing_docs, clippy::todo, clippy::dbg_macro)]
 
 mod error;
@@ -354,7 +355,7 @@ impl DownloaderBuilder {
         self
     }
 
-    /// Set the [`VideoFormat`] of downloaded videos
+    /// Set the [`DownloadVideoFormat`] of downloaded videos
     #[must_use]
     pub fn video_format(mut self, video_format: DownloadVideoFormat) -> Self {
         self.video_format = video_format;
@@ -627,7 +628,7 @@ impl DownloadQuery {
         self
     }
 
-    /// Set the [`VideoFormat`] of downloaded videos
+    /// Set the [`DownloadVideoFormat`] of downloaded videos
     #[must_use]
     pub fn video_format(mut self, video_format: DownloadVideoFormat) -> Self {
         self.video_format = Some(video_format);
