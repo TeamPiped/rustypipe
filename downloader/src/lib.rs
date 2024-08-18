@@ -329,6 +329,7 @@ impl DownloaderBuilder {
     /// Set the indicatif [`MultiProgress`] used to show download progress
     /// for all downloads
     #[cfg(feature = "indicatif")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "indicatif")))]
     #[must_use]
     pub fn multi_progress(mut self, progress: MultiProgress) -> Self {
         self.multi = Some(progress);
@@ -337,6 +338,7 @@ impl DownloaderBuilder {
 
     /// Set the indicatif [`ProgressStyle`] for the progress bars displayed under `multi_progress`
     #[cfg(feature = "indicatif")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "indicatif")))]
     #[must_use]
     pub fn progress_style(mut self, style: ProgressStyle) -> Self {
         self.progress_style = Some(style);
@@ -381,6 +383,7 @@ impl DownloaderBuilder {
 
     /// Enable audio tagging
     #[cfg(feature = "audiotag")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "audiotag")))]
     #[must_use]
     pub fn audio_tag(mut self) -> Self {
         self.audio_tag = true;
@@ -389,6 +392,7 @@ impl DownloaderBuilder {
 
     /// Crop YouTube thumbnails to get square album covers
     #[cfg(feature = "audiotag")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "audiotag")))]
     #[must_use]
     pub fn crop_cover(mut self) -> Self {
         self.crop_cover = true;
@@ -609,6 +613,7 @@ impl DownloadQuery {
 
     /// Show the progress of this download using a Indicatif [`ProgressBar`]
     #[cfg(feature = "indicatif")]
+    #[cfg_attr(docsrs, doc(cfg(feature = "indicatif")))]
     #[must_use]
     pub fn progress_bar(mut self, progress: ProgressBar) -> Self {
         self.progress = Some(progress);
