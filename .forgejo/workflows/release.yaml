@@ -24,13 +24,8 @@ jobs:
             echo END_OF_FILE
           } >> "$GITHUB_ENV"
 
-      - name: 📤 Publish crate on code.thetadev.de
-        run: |
-          mkdir -p ~/.cargo
-          printf '\n\n[registries.thetadev]\nindex = "https://code.thetadev.de/ThetaDev/_cargo-index.git"\ntoken = "Bearer ${{ secrets.FORGEJO_CI_TOKEN }}"\n' >> ~/.cargo/config.toml
-          sed -i "s/^rustypipe.*=\s*{/\0 registry = \"thetadev\",/g" Cargo.toml
-          cargo publish --registry thetadev --allow-dirty --package "${{ env.CRATE }}"
-          git restore Cargo.toml
+      - name: 📤 Publish crate on crates.io
+        run: cargo publish --token ${{ secrets.CARGO_TOKEN }} --package "${{ env.CRATE }}"
 
       - name: 🎉 Publish release
         uses: https://gitea.com/actions/release-action@main
