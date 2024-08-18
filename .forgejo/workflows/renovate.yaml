@@ -8,6 +8,7 @@ on:
       - "renovate.json"
   schedule:
     - cron: "0 0 * * *"
+  workflow_dispatch:
 
 env:
   RENOVATE_REPOSITORIES: ${{ github.repository }}
