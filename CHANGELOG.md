@@ -3,6 +3,55 @@
 All notable changes to this project will be documented in this file.
 
 
+## [v0.3.0](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe/v0.2.1..rustypipe/v0.3.0) - 2024-08-18
+
+### 🚀 Features
+
+- Add client_type to VideoPlayer, simplify MapResponse trait - ([90540c6](https://codeberg.org/ThetaDev/rustypipe/commit/90540c6aaad658d4ce24ed41450d8509bac711bd))
+- Add http_client method to RustyPipe and user_agent method to RustyPipeQuery - ([3d6de53](https://codeberg.org/ThetaDev/rustypipe/commit/3d6de5354599ea691351e0ca161154e53f2e0b41))
+- Add channel_id and channel_name getters to YtEntity trait - ([bbbe9b4](https://codeberg.org/ThetaDev/rustypipe/commit/bbbe9b4b322c6b5b30764772e282c6823aeea524))
+- [**breaking**] Make StreamFilter use Vec internally, remove lifetime - ([821984b](https://codeberg.org/ThetaDev/rustypipe/commit/821984bbd51d65cf96b1d14087417ef968eaf9b2))
+- Overhauled downloader - ([11a0038](https://codeberg.org/ThetaDev/rustypipe/commit/11a00383502917cd98245c3da349107289ba3aa9))
+- Add player_from_clients function to specify client order - ([72b5dfe](https://codeberg.org/ThetaDev/rustypipe/commit/72b5dfec69ec25445b94cb0976662416a5df56ef))
+- [**breaking**] Add TV client - ([e608811](https://codeberg.org/ThetaDev/rustypipe/commit/e608811e5f5615416241e67561671330097092cb))
+- Downloader: add audio tagging - ([1e1315a](https://codeberg.org/ThetaDev/rustypipe/commit/1e1315a8378bd0ad25b5f1614e83dabc4a0b40d5))
+- Add audiotag+indicatif features to downloader - ([97fb057](https://codeberg.org/ThetaDev/rustypipe/commit/97fb0578b5c4954a596d8dee0c4b6e1d773a9300))
+- Add YtEntity trait to YouTubeItem and MusicItem - ([114a86a](https://codeberg.org/ThetaDev/rustypipe/commit/114a86a3823a175875aa2aeb31a61a6799ef13bc))
+- Change default player client order - ([97904d7](https://codeberg.org/ThetaDev/rustypipe/commit/97904d77374c2c937a49dc7905759c2d8e8ef9ae))
+- [**breaking**] Update channel model, addd handle + video_count, remove tv/mobile banner - ([e671570](https://codeberg.org/ThetaDev/rustypipe/commit/e6715700d950912031d5fbc1263f8770b6ffc49c))
+- [**breaking**] Add handle to ChannelItem, remove video_count - ([1cffb27](https://codeberg.org/ThetaDev/rustypipe/commit/1cffb27cc0b64929f9627f5839df2d73b81988a4))
+- [**breaking**] Remove startpage - ([3599aca](https://codeberg.org/ThetaDev/rustypipe/commit/3599acafef1a21fa6f8dea97902eb4a3fb048c14))
+
+### 🐛 Bug Fixes
+
+- [**breaking**] Extracting nsig function, remove field `throttled` from Video/Audio stream model - ([dd0565b](https://codeberg.org/ThetaDev/rustypipe/commit/dd0565ba98acb3289ed220fd2a3aaf86bb8b0788))
+- Make nsig_fn regex more generic - ([fb7af3b](https://codeberg.org/ThetaDev/rustypipe/commit/fb7af3b96698b452b6b24d1e094ba13a245cb83c))
+- Improve deobfuscator (support multiple nsig name matches, error if mapping all streams fails) - ([8152ce6](https://codeberg.org/ThetaDev/rustypipe/commit/8152ce6b088b57be9b8419b754aca93805e5f34d))
+- Nsig fn extraction - ([3c83e11](https://codeberg.org/ThetaDev/rustypipe/commit/3c83e11e753f8eb6efea5d453a7c819c487b3464))
+- Add var to deobf fn assignment - ([c6bd03f](https://codeberg.org/ThetaDev/rustypipe/commit/c6bd03fb70871ae1b764be18f88e86e71818fc56))
+- Make Verification enum exhaustive - ([d053ac3](https://codeberg.org/ThetaDev/rustypipe/commit/d053ac3eba810a7241df91f2f50bcbe1fd968c86))
+- Extraction error message - ([d36ba59](https://codeberg.org/ThetaDev/rustypipe/commit/d36ba595dab0bbaef1012ebfa8930fc0e6bf8167))
+- Set tracing instrumentation level to Error - ([9da3b25](https://codeberg.org/ThetaDev/rustypipe/commit/9da3b25be2b2577f7bd0282c09d10d368ac8b73f))
+- Detect ip-ban error message - ([da39c64](https://codeberg.org/ThetaDev/rustypipe/commit/da39c64f302bc2edc4214bbe25a0a9eb54063b09))
+- Player_from_clients: fall back to TvHtml5Embed client - ([d0ae796](https://codeberg.org/ThetaDev/rustypipe/commit/d0ae7961ba91d56c8b9a8d1c545875e869b818f5))
+- Parsing channels without banner - ([5a6b2c3](https://codeberg.org/ThetaDev/rustypipe/commit/5a6b2c3a621f6b20c1324ea8b9c03426e3d8018b))
+- Get TV client version - ([ee3ae40](https://codeberg.org/ThetaDev/rustypipe/commit/ee3ae40395263c5989784c7e00038ff13bc1151a))
+
+### ⚙️ Miscellaneous Tasks
+
+- Renovate: disable approveMajorUpdates - ([4743f9d](https://codeberg.org/ThetaDev/rustypipe/commit/4743f9d8e101b58ad6a43548495da9f4f381b9f4))
+- Renovate: disable scheduleDaily - ([015bd6f](https://codeberg.org/ThetaDev/rustypipe/commit/015bd6fcbf04163565fcb190b163ecfdb5664e11))
+- Renovate: enable automerge - ([882abc5](https://codeberg.org/ThetaDev/rustypipe/commit/882abc53ca894229ee78ec0edaa723d9ea61bbcb))
+- *(deps)* Update rust crate quick-xml to 0.36.0 (#8) - ([b6bc05c](https://codeberg.org/ThetaDev/rustypipe/commit/b6bc05c1f39da9a846b2e3d1d24bcbccb031203b))
+- *(deps)* Update rust crate rstest to 0.22.0 (#9) - ([abb7832](https://codeberg.org/ThetaDev/rustypipe/commit/abb783219aba4b492c1dff03c2148acf1f51a55d))
+- Change repo URL to Codeberg - ([1793331](https://codeberg.org/ThetaDev/rustypipe/commit/17933315d947f76d5fe1aa52abf7ea24c3ce6381))
+- Adjust dependency versions - ([70c6f8c](https://codeberg.org/ThetaDev/rustypipe/commit/70c6f8c3b97baefd316fff90cc727524516657af))
+
+### Todo
+
+- Update metadata - ([8692ca8](https://codeberg.org/ThetaDev/rustypipe/commit/8692ca81d972d0d2acf6fb4da79b9e0f5ebf4daf))
+
+
 ## [v0.2.1](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe/v0.2.0..rustypipe/v0.2.1) - 2024-07-01
 
 ### 🐛 Bug Fixes
