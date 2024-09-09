@@ -1407,6 +1407,8 @@ async fn search_suggestion_empty(rp: RustyPipe) {
 #[case("https://music.youtube.com/browse/MPREb_GyH43gCvdM5", UrlTarget::Album {id: "MPREb_GyH43gCvdM5".to_owned()})]
 #[case("https://music.youtube.com/browse/UC5I2hjZYiW9gZPVkvzM8_Cw", UrlTarget::Channel {id: "UC5I2hjZYiW9gZPVkvzM8_Cw".to_owned()})]
 #[case("https://music.youtube.com/browse/MPADUC7cl4MmM6ZZ2TcFyMk_b4pg", UrlTarget::Channel {id: "UC7cl4MmM6ZZ2TcFyMk_b4pg".to_owned()})]
+// Music album playlist URL from regular YouTube site (redirects to music album)
+#[case("https://music.youtube.com/playlist?list=OLAK5uy_noT8bq6-DUEJ5KsdX1D4-wWcYtjiuYEnU", UrlTarget::Album {id: "MPREb_5CPCpzS3imM".to_owned()})]
 #[tokio::test]
 async fn resolve_url(#[case] url: &str, #[case] expect: UrlTarget, rp: RustyPipe) {
     let target = rp.query().resolve_url(url, true).await.unwrap();
