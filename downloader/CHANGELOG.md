@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 
 
+## [v0.2.1](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe-downloader/v0.2.0..rustypipe-downloader/v0.2.1) - 2024-09-10
+
+### 📚 Documentation
+
+- Fix license badge URL - ([4a253e1](https://codeberg.org/ThetaDev/rustypipe/commit/4a253e1a47317e9999e6ad31ac5c411956a0986a))
+
+### ⚙️ Miscellaneous Tasks
+
+- *(deps)* Update rust crate tokio to 1.20.4 [security] (#10) - ([a445e51](https://codeberg.org/ThetaDev/rustypipe/commit/a445e51b54a9afc44cd9657260a0b3d2abddbfa6))
+
+
 ## [v0.2.0](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe-downloader/v0.1.1..rustypipe-downloader/v0.2.0) - 2024-08-18
 
 ### 🚀 Features
