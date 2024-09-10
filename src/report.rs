@@ -108,7 +108,7 @@ impl RustyPipeInfo<'_> {
     pub(crate) fn new(language: Option<Language>) -> Self {
         Self {
             package: env!("CARGO_PKG_NAME"),
-            version: env!("CARGO_PKG_VERSION"),
+            version: crate::VERSION,
             date: util::now_sec(),
             language,
         }

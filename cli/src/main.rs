@@ -9,6 +9,7 @@ use std::{
 };
 
 use clap::{Parser, Subcommand, ValueEnum};
+use const_format::formatcp;
 use futures::stream::{self, StreamExt};
 use indicatif::{MultiProgress, ProgressBar, ProgressStyle};
 use owo_colors::OwoColorize;
@@ -29,7 +30,12 @@ use tracing::level_filters::LevelFilter;
 use tracing_subscriber::{fmt::MakeWriter, EnvFilter};
 
 #[derive(Parser)]
-#[clap(author, version, about, long_about = None)]
+#[clap(
+    author,
+    version = formatcp!("{}\nrustypipe {}", env!("CARGO_PKG_VERSION"), rustypipe::VERSION),
+    about,
+    long_about = None
+)]
 struct Cli {
     #[clap(subcommand)]
     command: Commands,

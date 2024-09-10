@@ -19,3 +19,6 @@ pub mod model;
 pub mod param;
 pub mod report;
 pub mod validate;
+
+/// Version of the RustyPipe crate
+pub const VERSION: &str = env!("CARGO_PKG_VERSION");
