@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 
 
+## [v0.4.0](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe/v0.3.0..rustypipe/v0.4.0) - 2024-09-10
+
+### 🚀 Features
+
+- Add RustyPipe version constant - ([7a019f5](https://codeberg.org/ThetaDev/rustypipe/commit/7a019f5706e19f7fe9f2e16e3b94d7b98cc8aca9))
+
+### 🐛 Bug Fixes
+
+- Show docs.rs feature flags - ([67a231d](https://codeberg.org/ThetaDev/rustypipe/commit/67a231d6d1b6427f500667729a59032f2b28cc65))
+- A/B test 15 (parsing channel shortsLockupViewModel) - ([7972df0](https://codeberg.org/ThetaDev/rustypipe/commit/7972df0df498edd7801e25037b9b2456367f9204))
+
+### 📚 Documentation
+
+- Fix license badge URL - ([4a253e1](https://codeberg.org/ThetaDev/rustypipe/commit/4a253e1a47317e9999e6ad31ac5c411956a0986a))
+
+### ⚙️ Miscellaneous Tasks
+
+- *(deps)* Update rust crate tokio to 1.20.4 [security] (#10) - ([a445e51](https://codeberg.org/ThetaDev/rustypipe/commit/a445e51b54a9afc44cd9657260a0b3d2abddbfa6))
+
+
 ## [v0.3.0](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe/v0.2.1..rustypipe/v0.3.0) - 2024-08-18
 
 ### 🚀 Features
