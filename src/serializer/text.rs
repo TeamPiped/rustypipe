@@ -469,6 +469,19 @@ impl<'de> DeserializeAs<'de, TextComponent> for AttributedText {
     }
 }
 
+impl<'de> DeserializeAs<'de, String> for AttributedText {
+    fn deserialize_as<D>(deserializer: D) -> Result<String, D::Error>
+    where
+        D: Deserializer<'de>,
+    {
+        let components: TextComponents = AttributedText::deserialize_as(deserializer)?;
+        Ok(components
+            .0
+            .into_iter()
+            .fold(String::new(), |acc, c| acc + c.as_str()))
+    }
+}
+
 impl TryFrom<TextComponent> for crate::model::ChannelId {
     type Error = ();
 

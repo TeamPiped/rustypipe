@@ -221,13 +221,13 @@ async fn check_video_stream(s: impl YtStream) {
     true
 )]
 #[case::agelimit(
-    "laru0QoJUmI",
-    "DJ Robin x Schürze - Layla (Official Video)",
-    "Endlich ist es soweit! Zwei Männer aus dem Schwabenland",
-    188,
-    "UCkJfSrMnLonOZWh-q5os5bg",
-    "Summerfield Records",
-    10_000_000,
+    "ZDKQmBWTRnw",
+    "The Rinky Pink Pounder.  Hitachi Magic Wand clone teardown.",
+    "violent adult toys for disassembly",
+    1333,
+    "UCtM5z2gkrGRuWd0JQMx76qA",
+    "bigclivedotcom",
+    250_000,
     false,
     false
 )]
@@ -717,7 +717,7 @@ async fn get_video_details_live(rp: RustyPipe) {
     assert_eq!(details.id, "jfKfPfyJRdk");
     assert_eq!(
         details.name,
-        "lofi hip hop radio 📚 - beats to relax/study to"
+        "lofi hip hop radio 📚 beats to relax/study to"
     );
     let desc = details.description.to_plaintext();
     assert!(
@@ -752,24 +752,27 @@ async fn get_video_details_live(rp: RustyPipe) {
 #[rstest]
 #[tokio::test]
 async fn get_video_details_agegate(rp: RustyPipe) {
-    let details = rp.query().video_details("laru0QoJUmI").await.unwrap();
+    let details = rp.query().video_details("ZDKQmBWTRnw").await.unwrap();
 
     // dbg!(&details);
 
-    assert_eq!(details.id, "laru0QoJUmI");
-    assert_eq!(details.name, "DJ Robin x Schürze - Layla (Official Video)");
+    assert_eq!(details.id, "ZDKQmBWTRnw");
+    assert_eq!(
+        details.name,
+        "The Rinky Pink Pounder.  Hitachi Magic Wand clone teardown."
+    );
     insta::assert_ron_snapshot!(details.description, @"RichText([])");
 
-    assert_eq!(details.channel.id, "UCkJfSrMnLonOZWh-q5os5bg");
-    assert_eq!(details.channel.name, "Summerfield Records");
+    assert_eq!(details.channel.id, "UCtM5z2gkrGRuWd0JQMx76qA");
+    assert_eq!(details.channel.name, "bigclivedotcom");
     assert!(!details.channel.avatar.is_empty(), "no channel avatars");
     assert_eq!(details.channel.verification, Verification::Verified);
-    assert_gteo(details.channel.subscriber_count, 250_000, "subscribers");
-    assert_gte(details.view_count, 10_000_000, "views");
-    assert_gteo(details.like_count, 150_000, "likes");
+    assert_gteo(details.channel.subscriber_count, 1_000_000, "subscribers");
+    assert_gte(details.view_count, 250_000, "views");
+    assert_gteo(details.like_count, 5_000, "likes");
 
     let date = details.publish_date.expect("publish_date");
-    assert_eq!(date.date(), date!(2022 - 5 - 13));
+    assert_eq!(date.date(), date!(2017 - 3 - 09));
 
     assert!(!details.is_live);
     assert!(!details.is_ccommons);
@@ -876,8 +879,11 @@ async fn channel_videos(rp: RustyPipe) {
 #[rstest]
 #[tokio::test]
 async fn channel_shorts(rp: RustyPipe) {
+    let vd = rp.query().get_visitor_data().await.unwrap();
+
     let channel = rp
         .query()
+        .visitor_data(vd)
         .channel_videos_tab("UCh8gHdtzO2tXd593_bjErWg", ChannelVideoTab::Shorts)
         .await
         .unwrap();
@@ -2153,7 +2159,7 @@ async fn music_search_playlists(rp: RustyPipe, unlocalized: bool) {
 async fn music_search_playlists_community(rp: RustyPipe) {
     let res = rp
         .query()
-        .music_search_playlists("Best Pop Music Videos - Top Pop Hits Playlist", true)
+        .music_search_playlists("Miku my beloved (Jaiden Animation Miku Playlist)", true)
         .await
         .unwrap();
 
@@ -2162,20 +2168,20 @@ async fn music_search_playlists_community(rp: RustyPipe) {
         .items
         .items
         .iter()
-        .find(|p| p.id == "PLMC9KNkIncKtGvr2kFRuXBVmBev6cAJ2u")
+        .find(|p| p.id == "PLgAAMoX4rK3KhSGmIsN0LEoC3qowEr2Lz")
         .unwrap_or_else(|| {
             panic!("could not find playlist, got {:#?}", &res.items.items);
         });
 
     assert_eq!(
         playlist.name,
-        "Best Pop Music Videos - Top Pop Hits Playlist"
+        "Miku my beloved (Jaiden Animation Miku Playlist)"
     );
     assert!(!playlist.thumbnail.is_empty(), "got no thumbnail");
 
     let channel = playlist.channel.as_ref().unwrap();
-    assert_eq!(channel.id, "UCs72iRpTEuwV3y6pdWYLgiw");
-    assert_eq!(channel.name, "Redlist - Just Hits");
+    assert_eq!(channel.id, "UCsXOMpqp3_ZPOmk-HGKEPRg");
+    assert_eq!(channel.name, "Beanie Bean");
     assert!(!playlist.from_ytm);
 }
 

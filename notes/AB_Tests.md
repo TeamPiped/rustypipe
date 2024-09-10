@@ -748,3 +748,42 @@ seperate framework update object
   }
 }
 ```
+
+## [15] Channel shorts: shortsLockupViewModel
+
+- **Encountered on:** 10.09.2024
+- **Impact:** 🟢 Low
+- **Endpoint:** browse
+- **Status:** Common
+
+YouTube changed the data model for the channel shorts tab
+
+```json
+{
+  "richItemRenderer": {
+    "content": {
+      "shortsLockupViewModel": {
+        "entityId": "shorts-shelf-item-ovaHmfy3O6U",
+        "accessibilityText": "hangover food, 17 million views - play Short",
+        "thumbnail": {
+          "sources": [
+            {
+              "url": "https://i.ytimg.com/vi/ovaHmfy3O6U/oar2.jpg?sqp=-oaymwEdCJUDENAFSFWQAgHyq4qpAwwIARUAAIhCcAHAAQY=&rs=AOn4CLBg-kG4rAi-BQ8Xkp2hOtOu-oXDLQ",
+              "width": 405,
+              "height": 720
+            }
+          ]
+        },
+        "overlayMetadata": {
+          "primaryText": {
+            "content": "hangover food"
+          },
+          "secondaryText": {
+            "content": "17M views"
+          }
+        }
+      }
+    }
+  }
+}
+```

@@ -12,7 +12,7 @@ use crate::{
     },
     param::Language,
     serializer::{
-        text::{Text, TextComponent},
+        text::{AttributedText, Text, TextComponent},
         MapResult,
     },
     util::{self, timeago, TryRemove},
@@ -25,6 +25,7 @@ pub(crate) enum YouTubeListItem {
     #[serde(alias = "gridVideoRenderer", alias = "compactVideoRenderer")]
     VideoRenderer(VideoRenderer),
     ReelItemRenderer(ReelItemRenderer),
+    ShortsLockupViewModel(ShortsLockupViewModel),
     PlaylistVideoRenderer(PlaylistVideoRenderer),
 
     #[serde(alias = "gridPlaylistRenderer")]
@@ -140,6 +141,28 @@ pub(crate) struct ReelItemRenderer {
     #[serde(default)]
     #[serde_as(as = "DefaultOnError")]
     pub navigation_endpoint: Option<ReelNavigationEndpoint>,
+}
+
+// New short video item
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ShortsLockupViewModel {
+    /// `shorts-shelf-item-[video_id]`
+    pub entity_id: String,
+    pub thumbnail: Thumbnails,
+    pub overlay_metadata: ShortsOverlayMetadata,
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ShortsOverlayMetadata {
+    /// Title
+    #[serde_as(as = "AttributedText")]
+    pub primary_text: String,
+    /// View count
+    #[serde_as(as = "Option<AttributedText>")]
+    pub secondary_text: Option<String>,
 }
 
 /// Video displayed in a playlist
@@ -517,6 +540,31 @@ impl<T> YouTubeListMapper<T> {
         }
     }
 
+    fn map_short_video2(&mut self, video: ShortsLockupViewModel) -> Option<VideoItem> {
+        if let Some(video_id) = video.entity_id.strip_prefix("shorts-shelf-item-") {
+            Some(VideoItem {
+                id: video_id.to_owned(),
+                name: video.overlay_metadata.primary_text,
+                duration: None,
+                thumbnail: video.thumbnail.into(),
+                channel: self.channel.clone(),
+                publish_date: None,
+                publish_date_txt: None,
+                view_count: video.overlay_metadata.secondary_text.and_then(|txt| {
+                    util::parse_large_numstr_or_warn(&txt, self.lang, &mut self.warnings)
+                }),
+                is_live: false,
+                is_short: true,
+                is_upcoming: false,
+                short_description: None,
+            })
+        } else {
+            self.warnings
+                .push(format!("invalid shorts entityId: {}", video.entity_id));
+            None
+        }
+    }
+
     fn map_playlist_video(&mut self, video: PlaylistVideoRenderer) -> VideoItem {
         let channel = ChannelId::try_from(video.channel)
             .ok()
@@ -642,6 +690,11 @@ impl YouTubeListMapper<YouTubeItem> {
                 let mapped = YouTubeItem::Video(self.map_video(video));
                 self.items.push(mapped);
             }
+            YouTubeListItem::ShortsLockupViewModel(video) => {
+                if let Some(mapped) = self.map_short_video2(video) {
+                    self.items.push(YouTubeItem::Video(mapped));
+                }
+            }
             YouTubeListItem::ReelItemRenderer(video) => {
                 let mapped = self.map_short_video(video);
                 self.items.push(YouTubeItem::Video(mapped));
@@ -691,6 +744,11 @@ impl YouTubeListMapper<VideoItem> {
             YouTubeListItem::ReelItemRenderer(video) => {
                 let mapped = self.map_short_video(video);
                 self.items.push(mapped);
+            }
+            YouTubeListItem::ShortsLockupViewModel(video) => {
+                if let Some(mapped) = self.map_short_video2(video) {
+                    self.items.push(mapped);
+                }
             }
             YouTubeListItem::PlaylistVideoRenderer(video) => {
                 let mapped = self.map_playlist_video(video);

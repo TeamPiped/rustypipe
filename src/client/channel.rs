@@ -710,6 +710,7 @@ mod tests {
     #[case::livestreams("livestreams", "UC2DjFE7Xf11URZqWBigcVOQ")]
     #[case::pageheader("shorts_20240129_pageheader", "UCh8gHdtzO2tXd593_bjErWg")]
     #[case::pageheader2("videos_20240324_pageheader2", "UC2DjFE7Xf11URZqWBigcVOQ")]
+    #[case::shorts2("shorts_20240910_lockup", "UCh8gHdtzO2tXd593_bjErWg")]
     fn map_channel_videos(#[case] name: &str, #[case] id: &str) {
         let json_path = path!(*TESTFILES / "channel" / format!("channel_{name}.json"));
         let json_file = File::open(json_path).unwrap();
