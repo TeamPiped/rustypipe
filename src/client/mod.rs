@@ -1193,7 +1193,7 @@ impl RustyPipeQuery {
         } else {
             (Language::En, Country::Us)
         };
-        let visitor_data = self.opts.visitor_data.as_deref().or(visitor_data);
+        let visitor_data = visitor_data.or(self.opts.visitor_data.as_deref());
 
         match ctype {
             ClientType::Desktop => YTContext {
@@ -1514,7 +1514,7 @@ impl RustyPipeQuery {
             id,
             lang: self.opts.lang,
             deobf,
-            visitor_data,
+            visitor_data: visitor_data.or(self.opts.visitor_data.as_deref()),
             client_type: ctype,
         };
 
