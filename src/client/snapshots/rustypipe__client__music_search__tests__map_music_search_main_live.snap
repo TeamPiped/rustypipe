@@ -1,0 +1,658 @@
+---
+source: src/client/music_search.rs
+expression: map_res.c
+---
+MusicSearchResult(
+  items: Paginator(
+    count: Some(24),
+    items: [
+      Playlist(MusicPlaylistItem(
+        id: "RDATficG9wIHJhZGlv",
+        name: "Radio • Pop radio",
+        thumbnail: [
+          Thumbnail(
+            url: "https://music.youtube.com/image/radioart?r=CjYKDS9nLzExYnhmeXNrY2cKCi9tLzAyODhjNGcKCi9tLzB2emdsdHQKDS9nLzExY2prcF95bTkQyAEYyAE",
+            width: 200,
+            height: 200,
+          ),
+          Thumbnail(
+            url: "https://music.youtube.com/image/radioart?r=CjYKDS9nLzExYnhmeXNrY2cKCi9tLzAyODhjNGcKCi9tLzB2emdsdHQKDS9nLzExY2prcF95bTkQ2AQY2AQ",
+            width: 600,
+            height: 600,
+          ),
+          Thumbnail(
+            url: "https://music.youtube.com/image/radioart?r=CjYKDS9nLzExYnhmeXNrY2cKCi9tLzAyODhjNGcKCi9tLzB2emdsdHQKDS9nLzExY2prcF95bTkQoAYYoAY",
+            width: 800,
+            height: 800,
+          ),
+          Thumbnail(
+            url: "https://music.youtube.com/image/radioart?r=CjYKDS9nLzExYnhmeXNrY2cKCi9tLzAyODhjNGcKCi9tLzB2emdsdHQKDS9nLzExY2prcF95bTkQ6AcY6Ac",
+            width: 1000,
+            height: 1000,
+          ),
+        ],
+        channel: None,
+        track_count: None,
+        from_ytm: true,
+      )),
+      Track(TrackItem(
+        id: "t-xeMn8D53o",
+        name: "Greatest Hits of the 50S Medley 1: Oh Carol! / Dream Lover / Livin\' Doll / Unchained Melody / Diana / Venus / Lipstick on Your Collar / For Your Precious Love / Maybe Tomorrow / Smoke Gets in Your Eyes / Rockin\' Robin / A Kiss from Your Lips / It\'s All In",
+        duration: Some(4572),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Q1u5_zhRsAFtOHzVNX2DBU9HXOzUZ1mp-nECamkI3yUaYKvvw84iL3hmZdWnZu-rvqYQr4NklyeAF-R5=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Q1u5_zhRsAFtOHzVNX2DBU9HXOzUZ1mp-nECamkI3yUaYKvvw84iL3hmZdWnZu-rvqYQr4NklyeAF-R5=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCIYXS1cfdBZkRdHRw3rfzJQ"),
+            name: "Various Artists",
+          ),
+        ],
+        artist_id: Some("UCIYXS1cfdBZkRdHRw3rfzJQ"),
+        album: Some(AlbumId(
+          id: "MPREb_soN0tFtPdTE",
+          name: "A Taste Of The 50\'s",
+        )),
+        view_count: Some(12000000),
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      )),
+      Track(TrackItem(
+        id: "Yx-sGL0xX-U",
+        name: "The Mega Kids Continuous Party Mix",
+        duration: Some(2637),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/rmPNW2T881pJc7lh_oOvk-peoqja2sYmpbG9A20pp_5yCGPKQFi0lpPLhrlZMnZCPIFnow6Ang8JcppZ=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/rmPNW2T881pJc7lh_oOvk-peoqja2sYmpbG9A20pp_5yCGPKQFi0lpPLhrlZMnZCPIFnow6Ang8JcppZ=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCRSKTrl7fcrfANL_WKpQYuA"),
+            name: "Kids Party DJs",
+          ),
+        ],
+        artist_id: Some("UCRSKTrl7fcrfANL_WKpQYuA"),
+        album: Some(AlbumId(
+          id: "MPREb_8DJc4Lj5xtw",
+          name: "Top 20 Kids Pop Chart Hits - The Very Best Children\'s Party Smash Hits!",
+        )),
+        view_count: Some(1800000),
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      )),
+      Track(TrackItem(
+        id: "HzdD8kbDzZA",
+        name: "Take on Me",
+        duration: Some(226),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/8YZqnYRc52GUz0iyQTRZvzh8RSbCNTTC0NSrpRlKf8UfSyu87K7ziegM8aFfAyMgUXBisxT_weHb4pFE=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/8YZqnYRc52GUz0iyQTRZvzh8RSbCNTTC0NSrpRlKf8UfSyu87K7ziegM8aFfAyMgUXBisxT_weHb4pFE=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCx00XxqRCfPS6zaTzRm3H2A"),
+            name: "a-ha",
+          ),
+        ],
+        artist_id: Some("UCx00XxqRCfPS6zaTzRm3H2A"),
+        album: Some(AlbumId(
+          id: "MPREb_5xYAryDnQqC",
+          name: "Hunting High and Low",
+        )),
+        view_count: Some(2400000000),
+        is_video: false,
+        track_nr: None,
+        by_va: false,
+      )),
+      Track(TrackItem(
+        id: "Zh7Un8gVFak",
+        name: "Japanese City Pop Radio: A Side",
+        duration: Some(8075),
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/Zh7Un8gVFak/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kX-I5KVMB8bE1JxrFBwQLYhp0TkQ",
+            width: 400,
+            height: 225,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCUUjvLsLlT1rj6N2oqM_tnw"),
+            name: "Coffee and Music Radio",
+          ),
+        ],
+        artist_id: Some("UCUUjvLsLlT1rj6N2oqM_tnw"),
+        album: None,
+        view_count: Some(53000),
+        is_video: true,
+        track_nr: None,
+        by_va: false,
+      )),
+      Track(TrackItem(
+        id: "BMnD36Abw_0",
+        name: "Hits Radio 1 Live Pop Radio\' Top Hits 2022 Pop Music 2022 New Songs 2023 Best English Songs 2022 New",
+        duration: Some(1491),
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/BMnD36Abw_0/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3ktKIjmM-6-_FNbu99jO-21dPvz3g",
+            width: 400,
+            height: 225,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCKxW3x-6j8r0Yzm1i6bs9WA"),
+            name: "Best Of Mix",
+          ),
+        ],
+        artist_id: Some("UCKxW3x-6j8r0Yzm1i6bs9WA"),
+        album: None,
+        view_count: Some(23000),
+        is_video: true,
+        track_nr: None,
+        by_va: false,
+      )),
+      Album(AlbumItem(
+        id: "MPREb_UQFAF6UM4DN",
+        name: "Pop (Radio)",
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/YhDl79RlxB5oQqMdp5B4_fMkx_4M2Z01M9Y9RytYeA6pzi_NtJ-ERxb34ukuA6AqoN0JSJFiyrMZFfZKEQ=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/YhDl79RlxB5oQqMdp5B4_fMkx_4M2Z01M9Y9RytYeA6pzi_NtJ-ERxb34ukuA6AqoN0JSJFiyrMZFfZKEQ=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/YhDl79RlxB5oQqMdp5B4_fMkx_4M2Z01M9Y9RytYeA6pzi_NtJ-ERxb34ukuA6AqoN0JSJFiyrMZFfZKEQ=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/YhDl79RlxB5oQqMdp5B4_fMkx_4M2Z01M9Y9RytYeA6pzi_NtJ-ERxb34ukuA6AqoN0JSJFiyrMZFfZKEQ=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UC9StjndgeeKQmwjy47-FxyA"),
+            name: "Lou Jefe",
+          ),
+        ],
+        artist_id: Some("UC9StjndgeeKQmwjy47-FxyA"),
+        album_type: Single,
+        year: Some(2024),
+        by_va: false,
+      )),
+      Album(AlbumItem(
+        id: "MPREb_nLZMWyIu23q",
+        name: "Pop Radio",
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/DzRT5Xr4VwiAORI8UCTZScRj34Qw4UkK3fGoORTEsEM1Ijzss4LiqMUyP--uo3jA7rG--U3GP8FkXodtnw=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/DzRT5Xr4VwiAORI8UCTZScRj34Qw4UkK3fGoORTEsEM1Ijzss4LiqMUyP--uo3jA7rG--U3GP8FkXodtnw=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/DzRT5Xr4VwiAORI8UCTZScRj34Qw4UkK3fGoORTEsEM1Ijzss4LiqMUyP--uo3jA7rG--U3GP8FkXodtnw=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/DzRT5Xr4VwiAORI8UCTZScRj34Qw4UkK3fGoORTEsEM1Ijzss4LiqMUyP--uo3jA7rG--U3GP8FkXodtnw=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UC0Gx6D-oHq-17IftnDlWPGA"),
+            name: "Universal Production Music",
+          ),
+        ],
+        artist_id: Some("UC0Gx6D-oHq-17IftnDlWPGA"),
+        album_type: Album,
+        year: Some(2014),
+        by_va: false,
+      )),
+      Album(AlbumItem(
+        id: "MPREb_W5z6dgGATp9",
+        name: "Pop Radio",
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/vHVuF-fdKqYTCvw_kqYcCKSQ5AzQva18iDSf1b0l5jlkUDnX3r_8-M0AfQ96BqURlQIK2buNHBbG2lwa=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/vHVuF-fdKqYTCvw_kqYcCKSQ5AzQva18iDSf1b0l5jlkUDnX3r_8-M0AfQ96BqURlQIK2buNHBbG2lwa=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/vHVuF-fdKqYTCvw_kqYcCKSQ5AzQva18iDSf1b0l5jlkUDnX3r_8-M0AfQ96BqURlQIK2buNHBbG2lwa=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/vHVuF-fdKqYTCvw_kqYcCKSQ5AzQva18iDSf1b0l5jlkUDnX3r_8-M0AfQ96BqURlQIK2buNHBbG2lwa=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCpqFkivR-Erb2npqfQEaaPQ"),
+            name: "Cody Price",
+          ),
+        ],
+        artist_id: Some("UCpqFkivR-Erb2npqfQEaaPQ"),
+        album_type: Album,
+        year: Some(2020),
+        by_va: false,
+      )),
+      Playlist(MusicPlaylistItem(
+        id: "RDCLAK5uy_nmS3YoxSwVVQk9lEQJ0UX4ZCjXsW_psU8",
+        name: "Pop\'s Biggest Hits",
+        thumbnail: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/ih5QdpqpkVNRXtD-joBWj3jo1woxAXJFyAoA3hWYNWAKX0M9B825HH2VOh7aDX-unf67oyCyJGN9TljR=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/ih5QdpqpkVNRXtD-joBWj3jo1woxAXJFyAoA3hWYNWAKX0M9B825HH2VOh7aDX-unf67oyCyJGN9TljR=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/ih5QdpqpkVNRXtD-joBWj3jo1woxAXJFyAoA3hWYNWAKX0M9B825HH2VOh7aDX-unf67oyCyJGN9TljR=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/ih5QdpqpkVNRXtD-joBWj3jo1woxAXJFyAoA3hWYNWAKX0M9B825HH2VOh7aDX-unf67oyCyJGN9TljR=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        channel: None,
+        track_count: Some(110),
+        from_ytm: true,
+      )),
+      Playlist(MusicPlaylistItem(
+        id: "RDCLAK5uy_nwiihKFMxWvkwG-hJlHX0VxKYFlbL3Muk",
+        name: "\'00s Pop Divas",
+        thumbnail: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/688p9Z4QwPzW8ZLnLP5L30qozF3FcyFaok_0yZXVEmSAc7-yHoQuckYE7MrDCK_f2KTxy1Ve3nGXbbc=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/688p9Z4QwPzW8ZLnLP5L30qozF3FcyFaok_0yZXVEmSAc7-yHoQuckYE7MrDCK_f2KTxy1Ve3nGXbbc=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/688p9Z4QwPzW8ZLnLP5L30qozF3FcyFaok_0yZXVEmSAc7-yHoQuckYE7MrDCK_f2KTxy1Ve3nGXbbc=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/688p9Z4QwPzW8ZLnLP5L30qozF3FcyFaok_0yZXVEmSAc7-yHoQuckYE7MrDCK_f2KTxy1Ve3nGXbbc=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        channel: None,
+        track_count: Some(154),
+        from_ytm: true,
+      )),
+      Playlist(MusicPlaylistItem(
+        id: "RDCLAK5uy_kskrFUGb5Tnz3-x4wyK9Q5j8RgfwQvq4k",
+        name: "Fresh Feel-good Morning Pop",
+        thumbnail: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/rz0JsK3pMOla5w8jS-5nlk69VnbhE8Y_6gsys800bZ0Pmuq2k2M0dyUUqufH9IHc4qO3pAgo_uleZA=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/rz0JsK3pMOla5w8jS-5nlk69VnbhE8Y_6gsys800bZ0Pmuq2k2M0dyUUqufH9IHc4qO3pAgo_uleZA=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/rz0JsK3pMOla5w8jS-5nlk69VnbhE8Y_6gsys800bZ0Pmuq2k2M0dyUUqufH9IHc4qO3pAgo_uleZA=w226-h226-l90-rj",
+            width: 226,
+            height: 226,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/rz0JsK3pMOla5w8jS-5nlk69VnbhE8Y_6gsys800bZ0Pmuq2k2M0dyUUqufH9IHc4qO3pAgo_uleZA=w544-h544-l90-rj",
+            width: 544,
+            height: 544,
+          ),
+        ],
+        channel: None,
+        track_count: Some(85),
+        from_ytm: true,
+      )),
+      Playlist(MusicPlaylistItem(
+        id: "PLjPrfFZlhTgrv14nDcvsD5Ni9EYgdowe4",
+        name: "radio COLDPLAY (OneRepublic, Florence + The Machine, Adele, Maroon 5, Blur, Keane, Ed Sheeran, Artic Monkeys, James Blunt, King of Leon, etc)",
+        thumbnail: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/BPS-G0J69HKcTT8wl_YNsBG7Uwca_NMSCifd3VuEyxl8co36DlCxqji4IlM_SbsNL6yBAUpv81Q=s192",
+            width: 192,
+            height: 192,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/BPS-G0J69HKcTT8wl_YNsBG7Uwca_NMSCifd3VuEyxl8co36DlCxqji4IlM_SbsNL6yBAUpv81Q=s576",
+            width: 576,
+            height: 576,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/BPS-G0J69HKcTT8wl_YNsBG7Uwca_NMSCifd3VuEyxl8co36DlCxqji4IlM_SbsNL6yBAUpv81Q=s1200",
+            width: 1200,
+            height: 1200,
+          ),
+        ],
+        channel: Some(ChannelId(
+          id: "UCujpSyP1YSh-Z81uaZF-otg",
+          name: "Tiago Pace",
+        )),
+        track_count: None,
+        from_ytm: false,
+      )),
+      Playlist(MusicPlaylistItem(
+        id: "PLGBuKfnErZlB3AThAEKz8_3kbYTocgfbB",
+        name: "Greatest 2010s Hits - Best Pop Songs of the Decade Playlist (Top Pop Music 2010 to 2019)",
+        thumbnail: [
+          Thumbnail(
+            url: "https://yt3.googleusercontent.com/5SZBzsrGtSRhDVdowKwN7Nq1N07vtW-1PX_5edyNa3SomINr_3Nu6gSQ-RxzV35d865NcRZJJn18=s192",
+            width: 192,
+            height: 192,
+          ),
+          Thumbnail(
+            url: "https://yt3.googleusercontent.com/5SZBzsrGtSRhDVdowKwN7Nq1N07vtW-1PX_5edyNa3SomINr_3Nu6gSQ-RxzV35d865NcRZJJn18=s576",
+            width: 576,
+            height: 576,
+          ),
+          Thumbnail(
+            url: "https://yt3.googleusercontent.com/5SZBzsrGtSRhDVdowKwN7Nq1N07vtW-1PX_5edyNa3SomINr_3Nu6gSQ-RxzV35d865NcRZJJn18=s1200",
+            width: 1200,
+            height: 1200,
+          ),
+        ],
+        channel: Some(ChannelId(
+          id: "UCwtKO1Vwz-7g0nBxBQcU4bg",
+          name: "Redlist Decades",
+        )),
+        track_count: None,
+        from_ytm: false,
+      )),
+      Playlist(MusicPlaylistItem(
+        id: "PLBUQc1r4P3Zn8_48OHdcw_2w7wCTA87vo",
+        name: "2014 - Top 100 Pop Som do Rádio",
+        thumbnail: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/wJD96HbZqZq_xCYgy2EZeKXLz9a5XgXwNbMfnni0sUm3o9aFHpePQJ37Iki23tFIJy3ekBJg72Kr=s192",
+            width: 192,
+            height: 192,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/wJD96HbZqZq_xCYgy2EZeKXLz9a5XgXwNbMfnni0sUm3o9aFHpePQJ37Iki23tFIJy3ekBJg72Kr=s576",
+            width: 576,
+            height: 576,
+          ),
+          Thumbnail(
+            url: "https://yt3.ggpht.com/wJD96HbZqZq_xCYgy2EZeKXLz9a5XgXwNbMfnni0sUm3o9aFHpePQJ37Iki23tFIJy3ekBJg72Kr=s1200",
+            width: 1200,
+            height: 1200,
+          ),
+        ],
+        channel: Some(ChannelId(
+          id: "UCwWlgHlHoOvS1Yv-ZOz_l3g",
+          name: "Ronaldo Mouro",
+        )),
+        track_count: None,
+        from_ytm: false,
+      )),
+      Artist(ArtistItem(
+        id: "UCBXkAv-NKkbiqWntYOfrX1g",
+        name: "Pop Radio",
+        avatar: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/OWekWvgAF96ZvGJYUtKGMj8av444mc2aPYWKvnC4pCYGZ9ByB6_JfAke4OgCJpU1W0X9UEXDQmpwyVUZ=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/OWekWvgAF96ZvGJYUtKGMj8av444mc2aPYWKvnC4pCYGZ9ByB6_JfAke4OgCJpU1W0X9UEXDQmpwyVUZ=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        subscriber_count: Some(14),
+      )),
+      Artist(ArtistItem(
+        id: "UCsmNP7U8ilAk6UzHO07Ytlw",
+        name: "Musica Pop Radio",
+        avatar: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Cpg_Uo9J8_MH1frw4nNwGFYWlcuCiu9Gjb8Hee0H-iNGMi569j-znlsGcHfFM_SAlQtiJEizdPza__EP=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/Cpg_Uo9J8_MH1frw4nNwGFYWlcuCiu9Gjb8Hee0H-iNGMi569j-znlsGcHfFM_SAlQtiJEizdPza__EP=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        subscriber_count: Some(7),
+      )),
+      Artist(ArtistItem(
+        id: "UCL_NoCEau0Gj1dQ4ru7UzcA",
+        name: "City Pop Radio",
+        avatar: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/qboJ2C1DmazfBiGgi0h5rBOOyy6QP0R-mMwInkCv0gUavon8KBRRA4xV2MlO_DozAIMFCwNCfKq9clAxIQ=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/qboJ2C1DmazfBiGgi0h5rBOOyy6QP0R-mMwInkCv0gUavon8KBRRA4xV2MlO_DozAIMFCwNCfKq9clAxIQ=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        subscriber_count: Some(5),
+      )),
+      Playlist(MusicPlaylistItem(
+        id: "PL-ijX1Uy5ZgUFapzL2MFyTggZQBHC7xH2",
+        name: "Culture Pop Radio Season 2",
+        thumbnail: [
+          Thumbnail(
+            url: "https://www.gstatic.com/youtube/media/ytm/images/pbg/playlist-empty-state-@192.png",
+            width: 192,
+            height: 192,
+          ),
+          Thumbnail(
+            url: "https://www.gstatic.com/youtube/media/ytm/images/pbg/playlist-empty-state-@576.png",
+            width: 576,
+            height: 576,
+          ),
+          Thumbnail(
+            url: "https://www.gstatic.com/youtube/media/ytm/images/pbg/playlist-empty-state-@1200.png",
+            width: 1200,
+            height: 1200,
+          ),
+        ],
+        channel: None,
+        track_count: None,
+        from_ytm: false,
+      )),
+      Playlist(MusicPlaylistItem(
+        id: "PL-ijX1Uy5ZgU4hGBeJ6jLDvQeRaiFhNTd",
+        name: "Culture Pop Radio Season 3",
+        thumbnail: [
+          Thumbnail(
+            url: "https://www.gstatic.com/youtube/media/ytm/images/pbg/playlist-empty-state-@192.png",
+            width: 192,
+            height: 192,
+          ),
+          Thumbnail(
+            url: "https://www.gstatic.com/youtube/media/ytm/images/pbg/playlist-empty-state-@576.png",
+            width: 576,
+            height: 576,
+          ),
+          Thumbnail(
+            url: "https://www.gstatic.com/youtube/media/ytm/images/pbg/playlist-empty-state-@1200.png",
+            width: 1200,
+            height: 1200,
+          ),
+        ],
+        channel: None,
+        track_count: None,
+        from_ytm: false,
+      )),
+      Playlist(MusicPlaylistItem(
+        id: "PL-ijX1Uy5ZgU1drn0TYDYHwr0dJ1qc_yD",
+        name: "Culture Pop Radio Season 4",
+        thumbnail: [
+          Thumbnail(
+            url: "https://www.gstatic.com/youtube/media/ytm/images/pbg/playlist-empty-state-@192.png",
+            width: 192,
+            height: 192,
+          ),
+          Thumbnail(
+            url: "https://www.gstatic.com/youtube/media/ytm/images/pbg/playlist-empty-state-@576.png",
+            width: 576,
+            height: 576,
+          ),
+          Thumbnail(
+            url: "https://www.gstatic.com/youtube/media/ytm/images/pbg/playlist-empty-state-@1200.png",
+            width: 1200,
+            height: 1200,
+          ),
+        ],
+        channel: None,
+        track_count: None,
+        from_ytm: false,
+      )),
+      Track(TrackItem(
+        id: "M5q3wMm6D7Y",
+        name: "POPradio S2E6 Maglera Doe Boy - Trapping, Street Life, Champion Music, Diaspora album, Klerksdorp",
+        duration: None,
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/M5q3wMm6D7Y/hqdefault.jpg?sqp=-oaymwEWCOADEI4CIAQqCggAEOADGC0guwJIWg&rs=AMzJL3llTe-klOXWsYhrgo6uI2cDeZoE7A",
+            width: 480,
+            height: 270,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: None,
+            name: "POPradio Season 2",
+          ),
+        ],
+        artist_id: None,
+        album: None,
+        view_count: None,
+        is_video: true,
+        track_nr: None,
+        by_va: false,
+      )),
+      Track(TrackItem(
+        id: "MiVivWh7zrA",
+        name: "Jueves 11/01/24 Noche Paranormal Estreno Héctor Rossi Pop Radio 101.5 | Podcast Paranormal",
+        duration: None,
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/MiVivWh7zrA/hqdefault.jpg?sqp=-oaymwEWCOADEI4CIAQqCggAEOADGC0guwJIWg&rs=AMzJL3nYL-RCk85pNuNZ9Dq3nTUyi9DPbw",
+            width: 480,
+            height: 270,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Trasnoche Paranormal | CANAL OFICIAL",
+          ),
+        ],
+        artist_id: None,
+        album: None,
+        view_count: None,
+        is_video: true,
+        track_nr: None,
+        by_va: false,
+      )),
+      Track(TrackItem(
+        id: "7-hMhhUO8b8",
+        name: "Martes 02/04/24 Noche Paranormal Estreno Héctor Rossi Pop Radio 101.5 | Podcast Paranormal",
+        duration: None,
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/7-hMhhUO8b8/hqdefault.jpg?sqp=-oaymwEWCOADEI4CIAQqCggAEOADGC0guwJIWg&rs=AMzJL3nXrzAvG_nCkm5LjlRtSecicpaKdw",
+            width: 480,
+            height: 270,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: None,
+            name: "Trasnoche Paranormal | CANAL OFICIAL",
+          ),
+        ],
+        artist_id: None,
+        album: None,
+        view_count: None,
+        is_video: true,
+        track_nr: None,
+        by_va: false,
+      )),
+    ],
+    ctoken: None,
+    endpoint: music_search,
+  ),
+  corrected_query: None,
+)

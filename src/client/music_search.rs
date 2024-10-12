@@ -264,6 +264,7 @@ mod tests {
     #[case::typo("typo")]
     #[case::radio("radio")]
     #[case::artist("artist")]
+    #[case::live("live")]
     fn map_music_search_main(#[case] name: &str) {
         let json_path = path!(*TESTFILES / "music_search" / format!("main_{name}.json"));
         let json_file = File::open(json_path).unwrap();

@@ -169,6 +169,9 @@ pub(crate) struct ListMusicItem {
     #[serde_as(as = "Option<Text>")]
     pub index: Option<String>,
     pub menu: Option<MusicItemMenu>,
+    #[serde(default)]
+    #[serde_as(deserialize_as = "VecSkipError<_>")]
+    pub badges: Vec<TrackBadge>,
 }
 
 #[derive(Default, Debug, Copy, Clone, Deserialize)]
@@ -419,6 +422,12 @@ pub(crate) struct SimpleHeaderRenderer {
     pub title: String,
 }
 
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) enum TrackBadge {
+    LiveBadgeRenderer {},
+}
+
 /*
 #MAPPER
 */
@@ -586,6 +595,15 @@ impl MusicListMapper {
                     album: Option<TextComponents>,
                     duration: Option<TextComponents>,
                     view_count: Option<TextComponents>,
+                }
+
+                // Dont map music livestreams
+                if item
+                    .badges
+                    .iter()
+                    .any(|b| matches!(b, TrackBadge::LiveBadgeRenderer {}))
+                {
+                    return Ok(None);
                 }
 
                 let p = match item.flex_column_display_style {
