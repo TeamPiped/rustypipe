@@ -85,6 +85,10 @@ pub(crate) struct Entry {
     ///
     /// Format: Parsed text -> Album type
     pub album_types: phf::Map<&'static str, AlbumType>,
+    /// Channel name prefix on playlist pages (e.g. `by`)
+    pub chan_prefix: &'static str,
+    /// Channel name suffix on playlist pages
+    pub chan_suffix: &'static str,
 }
 "#;
 
@@ -180,8 +184,8 @@ pub(crate) fn entry(lang: Language) -> Entry {
             .to_string()
             .replace('\n', "\n            ");
 
-        write!(code_timeago_tokens, "{} => Entry {{\n            timeago_tokens: {},\n            date_order: {},\n            months: {},\n            timeago_nd_tokens: {},\n            comma_decimal: {:?},\n            number_tokens: {},\n            number_nd_tokens: {},\n            album_types: {},\n        }},\n        ",
-        selector, code_ta_tokens, date_order, code_months, code_ta_nd_tokens, entry.comma_decimal, code_number_tokens, code_number_nd_tokens, code_album_types).unwrap();
+        write!(code_timeago_tokens, "{} => Entry {{\n            timeago_tokens: {},\n            date_order: {},\n            months: {},\n            timeago_nd_tokens: {},\n            comma_decimal: {:?},\n            number_tokens: {},\n            number_nd_tokens: {},\n            album_types: {},\n            chan_prefix: {:?},\n            chan_suffix: {:?},\n        }},\n        ",
+        selector, code_ta_tokens, date_order, code_months, code_ta_nd_tokens, entry.comma_decimal, code_number_tokens, code_number_nd_tokens, code_album_types, entry.chan_prefix, entry.chan_suffix).unwrap();
     }
 
     code_timeago_tokens = code_timeago_tokens.trim_end().to_owned() + "\n    }\n}\n";

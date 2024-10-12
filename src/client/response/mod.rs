@@ -57,7 +57,8 @@ use serde::{
 use serde_with::{serde_as, DisplayFromStr, VecSkipError};
 
 use crate::error::ExtractionError;
-use crate::serializer::{text::Text, MapResult, VecSkipErrorWrap};
+use crate::serializer::text::{AttributedText, Text, TextComponent};
+use crate::serializer::{MapResult, VecSkipErrorWrap};
 
 use self::video_item::YouTubeListRenderer;
 
@@ -463,4 +464,62 @@ where
 
         deserializer.deserialize_seq(SeqVisitor(PhantomData::<T>))
     }
+}
+
+// PAGE HEADER
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct PageHeaderRendererContent<T> {
+    pub page_header_view_model: T,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct PhMetadataView {
+    pub content_metadata_view_model: PhMetadataView2,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct PhMetadataView2 {
+    pub metadata_rows: Vec<PhMetadataRow>,
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct PhMetadataRow {
+    #[serde_as(as = "VecSkipError<_>")]
+    pub metadata_parts: Vec<MetadataPart>,
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) enum MetadataPart {
+    Text(#[serde_as(deserialize_as = "AttributedText")] String),
+    #[serde(rename_all = "camelCase")]
+    AvatarStack {
+        avatar_stack_view_model: AvatarStackViewModel,
+    },
+}
+
+impl MetadataPart {
+    pub fn as_str(&self) -> &str {
+        match self {
+            MetadataPart::Text(s) => s,
+            MetadataPart::AvatarStack {
+                avatar_stack_view_model,
+            } => avatar_stack_view_model.text.as_str(),
+        }
+    }
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct AvatarStackViewModel {
+    #[serde_as(deserialize_as = "AttributedText")]
+    pub text: TextComponent,
 }

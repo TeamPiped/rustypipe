@@ -312,7 +312,7 @@ The data model for the video shelves did not change.
 - **Encountered on:** 1.05.2023
 - **Impact:** 🟢 Low
 - **Endpoint:** browse (trending videos)
-- **Status:** Frequent (99%)
+- **Status:** Stabilized
 
 YouTube changed the header renderer type on the trending page to a `pageHeaderRenderer`.
 
@@ -489,7 +489,7 @@ looks needlessly complex but contains the same parsing-relevant data as the old 
 - **Encountered on:** 29.01.2024
 - **Impact:** 🟢 Low
 - **Endpoint:** browse
-- **Status:** Frequent (55%)
+- **Status:** Stabilized
 
 YouTube introduced a new data model for channel headers, based on a
 `"pageHeaderRenderer"`. The new model comes with more needless complexity that needs to
@@ -598,7 +598,7 @@ be accomodated. There are also no mobile/TV header images available any more.
 - **Encountered on:** 29.02.2024
 - **Impact:** 🟢 Low
 - **Endpoint:** browse
-- **Status:** Discontinued (0%)
+- **Status:** Stabilized
 
 ![A/B test 13 screenshot](./_img/ab_13.png)
 
@@ -610,7 +610,7 @@ cover on the left side of the playlist content.
 - **Encountered on:** 31.01.2024
 - **Impact:** 🟢 Low
 - **Endpoint:** next
-- **Status:** Frequent (98%)
+- **Status:** Stabilized
 
 YouTube changed the data model for YouTube comments, now putting the content into a
 seperate framework update object
@@ -754,7 +754,7 @@ seperate framework update object
 - **Encountered on:** 10.09.2024
 - **Impact:** 🟢 Low
 - **Endpoint:** browse
-- **Status:** Common
+- **Status:** Stabilized
 
 YouTube changed the data model for the channel shorts tab
 
@@ -780,6 +780,118 @@ YouTube changed the data model for the channel shorts tab
           },
           "secondaryText": {
             "content": "17M views"
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+## [16] New playlist header renderer
+
+- **Encountered on:** 11.10.2024
+- **Impact:** 🟢 Low
+- **Endpoint:** browse
+- **Status:** Common (99%)
+
+```json
+{
+  "pageHeaderRenderer": {
+    "pageTitle": "LilyPichu",
+    "content": {
+      "pageHeaderViewModel": {
+        "title": {
+          "dynamicTextViewModel": {
+            "text": {
+              "content": "LilyPichu"
+            }
+          }
+        },
+        "metadata": {
+          "contentMetadataViewModel": {
+            "metadataRows": [
+              {
+                "metadataParts": [
+                  {
+                    "avatarStack": {
+                      "avatarStackViewModel": {
+                        "avatars": [
+                          {
+                            "avatarViewModel": {
+                              "image": {
+                                "sources": [
+                                  {
+                                    "url": "https://yt3.ggpht.com/ytc/AIdro_kcjhSY2e8WlYjQABOB65Za8n3QYycNHP9zXwxjKpBfOg=s48-c-k-c0x00ffffff-no-rj",
+                                    "width": 48,
+                                    "height": 48
+                                  }
+                                ]
+                              }
+                            }
+                          }
+                        ],
+                        "text": {
+                          "content": "by Kevin Ramirez",
+                          "commandRuns": [
+                            {
+                              "startIndex": 0,
+                              "length": 16,
+                              "onTap": {
+                                "innertubeCommand": {
+                                  "browseEndpoint": {
+                                    "browseId": "UCai7BcI5lrXC2vdc3ySku8A",
+                                    "canonicalBaseUrl": "/@XxthekevinramirezxX"
+                                  }
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "metadataParts": [
+                  {
+                    "text": {
+                      "content": "Playlist"
+                    }
+                  },
+                  {
+                    "text": {
+                      "content": "10 videos"
+                    }
+                  },
+                  {
+                    "text": {
+                      "content": "856 views"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "actions": {},
+        "description": {
+          "descriptionPreviewViewModel": {
+            "description": { "content": "Hello World" }
+          }
+        },
+        "heroImage": {
+          "contentPreviewImageViewModel": {
+            "image": {
+              "sources": [
+                {
+                  "url": "https://i.ytimg.com/vi/DXuNJ267Vss/hqdefault.jpg?sqp=-oaymwEWCKgBEF5IWvKriqkDCQgBFQAAiEIYAQ==&rs=AOn4CLAHp6V96b70x4SWm9Pe6WEHnQhP6A",
+                  "width": 168,
+                  "height": 94
+                }
+              ]
+            }
           }
         }
       }

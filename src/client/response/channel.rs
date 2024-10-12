@@ -3,7 +3,8 @@ use serde_with::{rust::deserialize_ignore_any, serde_as, DefaultOnError, VecSkip
 
 use super::{
     video_item::YouTubeListRenderer, Alert, ChannelBadge, ContentRenderer, ContentsRenderer,
-    ContinuationActionWrap, ImageView, ResponseContext, Thumbnails, TwoColumnBrowseResults,
+    ContinuationActionWrap, ImageView, PageHeaderRendererContent, PhMetadataView, ResponseContext,
+    Thumbnails, TwoColumnBrowseResults,
 };
 use crate::serializer::text::{AttributedText, Text, TextComponent};
 
@@ -76,7 +77,7 @@ pub(crate) enum Header {
     C4TabbedHeaderRenderer(HeaderRenderer),
     /// Used for special channels like YouTube Music
     CarouselHeaderRenderer(ContentsRenderer<CarouselHeaderRendererItem>),
-    PageHeaderRenderer(ContentRenderer<PageHeaderRenderer>),
+    PageHeaderRenderer(ContentRenderer<PageHeaderRendererContent<PageHeaderRendererInner>>),
 }
 
 #[serde_as]
@@ -112,12 +113,6 @@ pub(crate) enum CarouselHeaderRendererItem {
     },
     #[serde(other, deserialize_with = "deserialize_ignore_any")]
     None,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct PageHeaderRenderer {
-    pub page_header_view_model: PageHeaderRendererInner,
 }
 
 #[serde_as]
@@ -225,36 +220,10 @@ pub(crate) struct PhAvatarView3 {
     pub avatar_view_model: ImageView,
 }
 
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct PhMetadataView {
-    pub content_metadata_view_model: PhMetadataView2,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct PhMetadataView2 {
-    pub metadata_rows: Vec<PhMetadataRow>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct PhMetadataRow {
-    pub metadata_parts: Vec<TextWrap>,
-}
-
 #[derive(Default, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct PhBannerView {
     pub image_banner_view_model: ImageView,
-}
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct TextWrap {
-    #[serde_as(deserialize_as = "Text")]
-    pub text: String,
 }
 
 #[derive(Debug, Deserialize)]

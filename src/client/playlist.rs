@@ -10,7 +10,7 @@ use crate::{
         ChannelId, Playlist, VideoItem,
     },
     serializer::text::{TextComponent, TextComponents},
-    util::{self, timeago, TryRemove},
+    util::{self, dictionary, timeago, TryRemove},
 };
 
 use super::{response, ClientType, MapRespCtx, MapResponse, MapResult, QBrowse, RustyPipeQuery};
@@ -98,46 +98,105 @@ impl MapResponse<Playlist> for response::Playlist {
                         .playlist_sidebar_primary_info_renderer
                         .description
                         .filter(|d| !d.0.is_empty()),
-                    primary
-                        .playlist_sidebar_primary_info_renderer
-                        .thumbnail_renderer
-                        .playlist_video_thumbnail_renderer
-                        .thumbnail,
+                    Some(
+                        primary
+                            .playlist_sidebar_primary_info_renderer
+                            .thumbnail_renderer
+                            .playlist_video_thumbnail_renderer
+                            .thumbnail,
+                    ),
                     primary
                         .playlist_sidebar_primary_info_renderer
                         .stats
                         .try_swap_remove(2),
                 )
             }
-            None => {
-                let header_banner = header
-                    .playlist_header_renderer
-                    .playlist_header_banner
-                    .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
-                        "no thumbnail found",
-                    )))?;
-
-                let mut byline = header.playlist_header_renderer.byline;
-                let last_update_txt = byline
-                    .try_swap_remove(1)
-                    .map(|b| b.playlist_byline_renderer.text);
-
-                (
-                    None,
-                    header_banner.hero_playlist_thumbnail_renderer.thumbnail,
-                    last_update_txt,
-                )
-            }
+            None => (None, None, None),
         };
 
+        let (name, playlist_id, channel, n_videos_txt, description2, thumbnails2, last_update_txt2) =
+            match header {
+                response::playlist::Header::PlaylistHeaderRenderer(header_renderer) => {
+                    let mut byline = header_renderer.byline;
+                    let last_update_txt = byline
+                        .try_swap_remove(1)
+                        .map(|b| b.playlist_byline_renderer.text);
+
+                    (
+                        header_renderer.title,
+                        header_renderer.playlist_id,
+                        header_renderer
+                            .owner_text
+                            .and_then(|link| ChannelId::try_from(link).ok()),
+                        header_renderer.num_videos_text,
+                        header_renderer
+                            .description_text
+                            .map(|text| TextComponents(vec![TextComponent::new(text)])),
+                        header_renderer
+                            .playlist_header_banner
+                            .map(|b| b.hero_playlist_thumbnail_renderer.thumbnail),
+                        last_update_txt,
+                    )
+                }
+                response::playlist::Header::PageHeaderRenderer(content_renderer) => {
+                    let h = content_renderer.content.page_header_view_model;
+                    let rows = h.metadata.content_metadata_view_model.metadata_rows;
+                    let n_videos_txt = rows
+                        .get(1)
+                        .and_then(|r| r.metadata_parts.get(1))
+                        .map(|p| p.as_str().to_owned())
+                        .ok_or(ExtractionError::InvalidData("no video count".into()))?;
+                    let mut channel = rows
+                        .into_iter()
+                        .next()
+                        .and_then(|r| r.metadata_parts.into_iter().next())
+                        .and_then(|p| match p {
+                            response::MetadataPart::Text(_) => None,
+                            response::MetadataPart::AvatarStack {
+                                avatar_stack_view_model,
+                            } => ChannelId::try_from(avatar_stack_view_model.text).ok(),
+                        });
+                    // remove "by" prefix
+                    if let Some(c) = channel.as_mut() {
+                        let entry = dictionary::entry(ctx.lang);
+                        let n = c.name.strip_prefix(entry.chan_prefix).unwrap_or(&c.name);
+                        let n = n.strip_suffix(entry.chan_suffix).unwrap_or(n);
+                        c.name = n.trim().to_owned();
+                    }
+
+                    let playlist_id = h
+                        .actions
+                        .flexible_actions_view_model
+                        .actions_rows
+                        .into_iter()
+                        .next()
+                        .and_then(|r| r.actions.into_iter().next())
+                        .and_then(|a| {
+                            a.button_view_model
+                                .on_tap
+                                .innertube_command
+                                .into_playlist_id()
+                        })
+                        .ok_or(ExtractionError::InvalidData("no playlist id".into()))?;
+                    (
+                        h.title.dynamic_text_view_model.text,
+                        playlist_id,
+                        channel,
+                        n_videos_txt,
+                        h.description.description_preview_view_model.description,
+                        h.hero_image.content_preview_image_view_model.image.into(),
+                        None,
+                    )
+                }
+            };
+
         let n_videos = if mapper.ctoken.is_some() {
-            util::parse_numeric(&header.playlist_header_renderer.num_videos_text)
-                .map_err(|_| ExtractionError::InvalidData(Cow::Borrowed("no video count")))?
+            util::parse_numeric(&n_videos_txt)
+                .map_err(|_| ExtractionError::InvalidData("no video count".into()))?
         } else {
             mapper.items.len() as u64
         };
 
-        let playlist_id = header.playlist_header_renderer.playlist_id;
         if playlist_id != ctx.id {
             return Err(ExtractionError::WrongResult(format!(
                 "got wrong playlist id {}, expected {}",
@@ -145,24 +204,19 @@ impl MapResponse<Playlist> for response::Playlist {
             )));
         }
 
-        let name = header.playlist_header_renderer.title;
-        let description = description
-            .or_else(|| {
-                header
-                    .playlist_header_renderer
-                    .description_text
-                    .map(|text| TextComponents(vec![TextComponent::new(text)]))
-            })
-            .map(RichText::from);
-        let channel = header
-            .playlist_header_renderer
-            .owner_text
-            .and_then(|link| ChannelId::try_from(link).ok());
-
-        let last_update = last_update_txt.as_ref().and_then(|txt| {
-            timeago::parse_textual_date_or_warn(ctx.lang, txt, &mut mapper.warnings)
-                .map(OffsetDateTime::date)
-        });
+        let description = description.or(description2).map(RichText::from);
+        let thumbnails = thumbnails
+            .or(thumbnails2)
+            .ok_or(ExtractionError::InvalidData(Cow::Borrowed(
+                "no thumbnail found",
+            )))?;
+        let last_update = last_update_txt
+            .as_deref()
+            .or(last_update_txt2.as_deref())
+            .and_then(|txt| {
+                timeago::parse_textual_date_or_warn(ctx.lang, txt, &mut mapper.warnings)
+                    .map(OffsetDateTime::date)
+            });
 
         Ok(MapResult {
             c: Playlist {
@@ -207,6 +261,7 @@ mod tests {
     #[case::long("long", "PL5dDx681T4bR7ZF1IuWzOv1omlRbE7PiJ")]
     #[case::nomusic("nomusic", "PL1J-6JOckZtE_P9Xx8D3b2O6w0idhuKBe")]
     #[case::live("live", "UULVvqRdlKsE5Q8mf8YXbdIJLw")]
+    #[case::pageheader("20241011_pageheader", "PLT2w2oBf1TZKyvY_M6JsASs73m-wjLzH5")]
     fn map_playlist_data(#[case] name: &str, #[case] id: &str) {
         let json_path = path!(*TESTFILES / "playlist" / format!("playlist_{name}.json"));
         let json_file = File::open(json_path).unwrap();

@@ -50,10 +50,10 @@ pub struct DictEntry {
     ///
     /// Format: Parsed text -> Album type
     pub album_types: BTreeMap<String, AlbumType>,
-    /// Names of item types (Song, Video, Artist, Playlist)
-    ///
-    /// Format: Parsed text -> Item type
-    pub item_types: BTreeMap<String, ExtItemType>,
+    /// Channel name prefix on playlist pages (e.g. `by`)
+    pub chan_prefix: String,
+    /// Channel name suffix on playlist pages
+    pub chan_suffix: String,
 }
 
 /// Parsed TimeAgo string, contains amount and time unit.

@@ -470,10 +470,10 @@ fn map_channel(
                     )
                 };
                 let subscriber_count = sub_part.and_then(|t| {
-                    util::parse_large_numstr_or_warn::<u64>(&t.text, ctx.lang, &mut warnings)
+                    util::parse_large_numstr_or_warn::<u64>(t.as_str(), ctx.lang, &mut warnings)
                 });
                 let video_count =
-                    vc_part.and_then(|t| util::parse_numeric_or_warn(&t.text, &mut warnings));
+                    vc_part.and_then(|t| util::parse_numeric_or_warn(t.as_str(), &mut warnings));
 
                 Channel {
                     id: metadata.external_id,
@@ -482,7 +482,7 @@ fn map_channel(
                         md_rows
                             .first()
                             .and_then(|md| md.metadata_parts.get(1))
-                            .map(|txt| txt.text.to_owned())
+                            .map(|txt| txt.as_str().to_owned())
                             .filter(|txt| util::CHANNEL_HANDLE_REGEX.is_match(txt))
                     }),
                     subscriber_count,
@@ -710,7 +710,7 @@ mod tests {
     #[case::livestreams("livestreams", "UC2DjFE7Xf11URZqWBigcVOQ")]
     #[case::pageheader("shorts_20240129_pageheader", "UCh8gHdtzO2tXd593_bjErWg")]
     #[case::pageheader2("videos_20240324_pageheader2", "UC2DjFE7Xf11URZqWBigcVOQ")]
-    #[case::shorts2("shorts_20240910_lockup", "UCh8gHdtzO2tXd593_bjErWg")]
+    #[case::lockup("shorts_20240910_lockup", "UCh8gHdtzO2tXd593_bjErWg")]
     fn map_channel_videos(#[case] name: &str, #[case] id: &str) {
         let json_path = path!(*TESTFILES / "channel" / format!("channel_{name}.json"));
         let json_file = File::open(json_path).unwrap();

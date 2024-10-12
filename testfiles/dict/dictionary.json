@@ -55,7 +55,9 @@
       "ep": "Ep",
       "drama": "Show",
       "enkelsnit": "Single"
-    }
+    },
+    "chan_prefix": "deur",
+    "chan_suffix": ""
   },
   "am": {
     "equivalent": [],
@@ -117,7 +119,9 @@
       "የተራዘመ አልበም": "Ep",
       "ትዕይንት": "Show",
       "ነጠላ": "Single"
-    }
+    },
+    "chan_prefix": "በ",
+    "chan_suffix": ""
   },
   "ar": {
     "equivalent": [],
@@ -180,7 +184,9 @@
       "ألبوم قصير": "Ep",
       "عرض": "Show",
       "أغنية منفردة": "Single"
-    }
+    },
+    "chan_prefix": "بواسطة",
+    "chan_suffix": ""
   },
   "as": {
     "equivalent": [],
@@ -226,7 +232,9 @@
       "ep": "Ep",
       "শ্ব’": "Show",
       "একক": "Single"
-    }
+    },
+    "chan_prefix": "",
+    "chan_suffix": "ৰ দ্বাৰা"
   },
   "az": {
     "equivalent": [],
@@ -275,7 +283,9 @@
       "ep": "Ep",
       "şou": "Show",
       "tək": "Single"
-    }
+    },
+    "chan_prefix": "by",
+    "chan_suffix": ""
   },
   "be": {
     "equivalent": [],
@@ -349,7 +359,9 @@
       "міні-альбом": "Ep",
       "шоу": "Show",
       "сінгл": "Single"
-    }
+    },
+    "chan_prefix": "ад",
+    "chan_suffix": ""
   },
   "bg": {
     "equivalent": [],
@@ -397,7 +409,9 @@
       "миниалбум": "Ep",
       "предаване": "Show",
       "сингъл": "Single"
-    }
+    },
+    "chan_prefix": "от",
+    "chan_suffix": ""
   },
   "bn": {
     "equivalent": [],
@@ -450,7 +464,9 @@
       "ইপি": "Ep",
       "শো": "Show",
       "সিঙ্গেল": "Single"
-    }
+    },
+    "chan_prefix": ",",
+    "chan_suffix": "দ্বারা"
   },
   "bs": {
     "equivalent": [],
@@ -519,7 +535,9 @@
       "ep": "Ep",
       "serija": "Show",
       "singl": "Single"
-    }
+    },
+    "chan_prefix": "od",
+    "chan_suffix": ""
   },
   "ca": {
     "equivalent": [],
@@ -577,7 +595,9 @@
       "ep": "Ep",
       "programa": "Show",
       "single": "Single"
-    }
+    },
+    "chan_prefix": "de:",
+    "chan_suffix": ""
   },
   "cs": {
     "equivalent": [],
@@ -636,7 +656,9 @@
       "ep": "Ep",
       "zobrazit": "Show",
       "singl": "Single"
-    }
+    },
+    "chan_prefix": "autor:",
+    "chan_suffix": ""
   },
   "da": {
     "equivalent": [],
@@ -693,7 +715,9 @@
       "ep": "Ep",
       "lyddrama": "Show",
       "single": "Single"
-    }
+    },
+    "chan_prefix": "af",
+    "chan_suffix": ""
   },
   "de": {
     "equivalent": [],
@@ -737,7 +761,9 @@
       "ep": "Ep",
       "hörspiel": "Show",
       "single": "Single"
-    }
+    },
+    "chan_prefix": "von",
+    "chan_suffix": ""
   },
   "el": {
     "equivalent": [],
@@ -798,7 +824,9 @@
       "ep": "Ep",
       "εκπομπή": "Show",
       "single": "Single"
-    }
+    },
+    "chan_prefix": "από το χρήστη",
+    "chan_suffix": ""
   },
   "en": {
     "equivalent": [
@@ -872,7 +900,9 @@
       "ep": "Ep",
       "show": "Show",
       "single": "Single"
-    }
+    },
+    "chan_prefix": "by",
+    "chan_suffix": ""
   },
   "es": {
     "equivalent": [],
@@ -930,7 +960,9 @@
       "ep": "Ep",
       "audiodrama": "Show",
       "single": "Single"
-    }
+    },
+    "chan_prefix": "de",
+    "chan_suffix": ""
   },
   "es-US": {
     "equivalent": [
@@ -991,7 +1023,9 @@
       "ep": "Ep",
       "programa": "Show",
       "sencillo": "Single"
-    }
+    },
+    "chan_prefix": "de",
+    "chan_suffix": ""
   },
   "et": {
     "equivalent": [],
@@ -1052,7 +1086,9 @@
       "ep": "Ep",
       "sari": "Show",
       "singel": "Single"
-    }
+    },
+    "chan_prefix": "kanalilt",
+    "chan_suffix": ""
   },
   "eu": {
     "equivalent": [],
@@ -1101,7 +1137,9 @@
       "ep": "Ep",
       "saioa": "Show",
       "singlea": "Single"
-    }
+    },
+    "chan_prefix": "egilea:",
+    "chan_suffix": ""
   },
   "fa": {
     "equivalent": [],
@@ -1150,7 +1188,9 @@
       "پخش فوق‌العاده": "Ep",
       "نمایش": "Show",
       "تک آهنگ": "Single"
-    }
+    },
+    "chan_prefix": "توسط",
+    "chan_suffix": ""
   },
   "fi": {
     "equivalent": [],
@@ -1200,7 +1240,9 @@
       "ep": "Ep",
       "näytä": "Show",
       "single": "Single"
-    }
+    },
+    "chan_prefix": "tekijä:",
+    "chan_suffix": ""
   },
   "fil": {
     "equivalent": [],
@@ -1249,7 +1291,9 @@
       "ep": "Ep",
       "palabas": "Show",
       "single": "Single"
-    }
+    },
+    "chan_prefix": "ni/ng",
+    "chan_suffix": ""
   },
   "fr": {
     "equivalent": [
@@ -1315,7 +1359,9 @@
       "émission": "Show",
       "simple": "Single",
       "single": "Single"
-    }
+    },
+    "chan_prefix": "de",
+    "chan_suffix": ""
   },
   "gl": {
     "equivalent": [],
@@ -1372,7 +1418,9 @@
       "ep": "Ep",
       "programa": "Show",
       "single": "Single"
-    }
+    },
+    "chan_prefix": "de",
+    "chan_suffix": ""
   },
   "gu": {
     "equivalent": [],
@@ -1420,7 +1468,9 @@
       "ep": "Ep",
       "શો": "Show",
       "સિંગલ": "Single"
-    }
+    },
+    "chan_prefix": "",
+    "chan_suffix": "દ્વારા"
   },
   "hi": {
     "equivalent": [],
@@ -1472,7 +1522,9 @@
       "ईपी": "Ep",
       "शो": "Show",
       "सिंगल": "Single"
-    }
+    },
+    "chan_prefix": "",
+    "chan_suffix": "के ज़रिए"
   },
   "hr": {
     "equivalent": [],
@@ -1540,7 +1592,9 @@
       "ep": "Ep",
       "serija": "Show",
       "singl": "Single"
-    }
+    },
+    "chan_prefix": "omogućio kanal",
+    "chan_suffix": ""
   },
   "hu": {
     "equivalent": [],
@@ -1600,7 +1654,9 @@
       "ep": "Ep",
       "műsor": "Show",
       "kislemez": "Single"
-    }
+    },
+    "chan_prefix": "",
+    "chan_suffix": "csatornától"
   },
   "hy": {
     "equivalent": [],
@@ -1654,7 +1710,9 @@
       "ep": "Ep",
       "աուդիոդրամա": "Show",
       "սինգլ": "Single"
-    }
+    },
+    "chan_prefix": "հեղինակ՝",
+    "chan_suffix": ""
   },
   "id": {
     "equivalent": [],
@@ -1708,7 +1766,9 @@
       "ep": "Ep",
       "acara": "Show",
       "single": "Single"
-    }
+    },
+    "chan_prefix": "oleh",
+    "chan_suffix": ""
   },
   "is": {
     "equivalent": [],
@@ -1773,7 +1833,9 @@
       "ep": "Ep",
       "þáttur": "Show",
       "smáskífa": "Single"
-    }
+    },
+    "chan_prefix": "eftir",
+    "chan_suffix": ""
   },
   "it": {
     "equivalent": [],
@@ -1835,7 +1897,9 @@
       "ep": "Ep",
       "programma": "Show",
       "singolo": "Single"
-    }
+    },
+    "chan_prefix": "di",
+    "chan_suffix": ""
   },
   "iw": {
     "equivalent": [],
@@ -1902,7 +1966,9 @@
       "מיני-אלבום": "Ep",
       "תסכית": "Show",
       "סינגל": "Single"
-    }
+    },
+    "chan_prefix": "מאת",
+    "chan_suffix": ""
   },
   "ja": {
     "equivalent": [],
@@ -1934,7 +2000,9 @@
       "ep": "Ep",
       "表示": "Show",
       "シングル": "Single"
-    }
+    },
+    "chan_prefix": "作成者:",
+    "chan_suffix": ""
   },
   "ka": {
     "equivalent": [],
@@ -1988,7 +2056,9 @@
       "მინი-ალბომი": "Ep",
       "ჩვენება": "Show",
       "სინგლი": "Single"
-    }
+    },
+    "chan_prefix": "",
+    "chan_suffix": "-ის მიერ"
   },
   "kk": {
     "equivalent": [],
@@ -2043,7 +2113,9 @@
       "ep": "Ep",
       "шоу": "Show",
       "сингл": "Single"
-    }
+    },
+    "chan_prefix": "қосқан",
+    "chan_suffix": ""
   },
   "km": {
     "equivalent": [],
@@ -2091,7 +2163,9 @@
       "ep": "Ep",
       "កម្មវិធីទូរទស្សន៍": "Show",
       "ចម្រៀងទោល": "Single"
-    }
+    },
+    "chan_prefix": "ដោយ",
+    "chan_suffix": ""
   },
   "kn": {
     "equivalent": [],
@@ -2152,7 +2226,9 @@
       "ep": "Ep",
       "ಶೋ": "Show",
       "ಒಂದೇ": "Single"
-    }
+    },
+    "chan_prefix": "",
+    "chan_suffix": "ಚಾನಲ್‌ನಿಂದ"
   },
   "ko": {
     "equivalent": [],
@@ -2187,7 +2263,9 @@
       "ep": "Ep",
       "표시": "Show",
       "싱글": "Single"
-    }
+    },
+    "chan_prefix": "게시자:",
+    "chan_suffix": ""
   },
   "ky": {
     "equivalent": [],
@@ -2238,7 +2316,9 @@
       "чакан альбом": "Ep",
       "шоу": "Show",
       "сингл": "Single"
-    }
+    },
+    "chan_prefix": "",
+    "chan_suffix": "каналы аркылуу"
   },
   "lo": {
     "equivalent": [],
@@ -2294,7 +2374,9 @@
       "ep": "Ep",
       "ສະແດງ": "Show",
       "ຊິງເກິນ": "Single"
-    }
+    },
+    "chan_prefix": "ໂດຍ",
+    "chan_suffix": ""
   },
   "lt": {
     "equivalent": [],
@@ -2357,7 +2439,9 @@
       "mini albumas": "Ep",
       "serialas": "Show",
       "singlas": "Single"
-    }
+    },
+    "chan_prefix": "pridėjo",
+    "chan_suffix": ""
   },
   "lv": {
     "equivalent": [],
@@ -2423,7 +2507,9 @@
       "ep ieraksts": "Ep",
       "pārraide": "Show",
       "singls": "Single"
-    }
+    },
+    "chan_prefix": "autors:",
+    "chan_suffix": ""
   },
   "mk": {
     "equivalent": [],
@@ -2469,7 +2555,9 @@
       "ep": "Ep",
       "серија": "Show",
       "сингл": "Single"
-    }
+    },
+    "chan_prefix": "од",
+    "chan_suffix": ""
   },
   "ml": {
     "equivalent": [],
@@ -2519,7 +2607,9 @@
       "ep": "Ep",
       "ഷോ": "Show",
       "സിംഗിൾ": "Single"
-    }
+    },
+    "chan_prefix": "",
+    "chan_suffix": "മുഖേന"
   },
   "mn": {
     "equivalent": [],
@@ -2560,7 +2650,9 @@
       "ep": "Ep",
       "жүжиг": "Show",
       "сингл": "Single"
-    }
+    },
+    "chan_prefix": "сувгийн нэр:",
+    "chan_suffix": ""
   },
   "mr": {
     "equivalent": [],
@@ -2623,7 +2715,9 @@
       "भाग": "Ep",
       "शो": "Show",
       "सिंगल": "Single"
-    }
+    },
+    "chan_prefix": "",
+    "chan_suffix": "द्वारे"
   },
   "ms": {
     "equivalent": [],
@@ -2674,7 +2768,9 @@
       "ep": "Ep",
       "rancangan": "Show",
       "rekod single": "Single"
-    }
+    },
+    "chan_prefix": "oleh",
+    "chan_suffix": ""
   },
   "my": {
     "equivalent": [],
@@ -2729,7 +2825,9 @@
       "ep": "Ep",
       "ရှိုး": "Show",
       "တစ်ကိုယ်တော်": "Single"
-    }
+    },
+    "chan_prefix": "",
+    "chan_suffix": "မှ"
   },
   "ne": {
     "equivalent": [],
@@ -2779,7 +2877,9 @@
       "ep": "Ep",
       "टिभी सो": "Show",
       "एकल एल्बम": "Single"
-    }
+    },
+    "chan_prefix": "",
+    "chan_suffix": "द्वारा"
   },
   "nl": {
     "equivalent": [],
@@ -2834,7 +2934,9 @@
       "ep": "Ep",
       "aflevering": "Show",
       "single": "Single"
-    }
+    },
+    "chan_prefix": "door",
+    "chan_suffix": ""
   },
   "no": {
     "equivalent": [],
@@ -2898,7 +3000,9 @@
       "ep": "Ep",
       "hørespill": "Show",
       "singel": "Single"
-    }
+    },
+    "chan_prefix": "av",
+    "chan_suffix": ""
   },
   "or": {
     "equivalent": [],
@@ -2959,7 +3063,9 @@
       "ep": "Ep",
       "ଶୋ": "Show",
       "ସିଙ୍ଗଲ୍": "Single"
-    }
+    },
+    "chan_prefix": "",
+    "chan_suffix": "ଦ୍ଵାରା"
   },
   "pa": {
     "equivalent": [],
@@ -3011,7 +3117,9 @@
       "ep": "Ep",
       "ਸ਼ੋਅ": "Show",
       "ਸਿੰਗਲ": "Single"
-    }
+    },
+    "chan_prefix": "",
+    "chan_suffix": "ਵੱਲੋਂ"
   },
   "pl": {
     "equivalent": [],
@@ -3084,7 +3192,9 @@
       "ep": "Ep",
       "słuchowisko": "Show",
       "singiel": "Single"
-    }
+    },
+    "chan_prefix": "autor:",
+    "chan_suffix": ""
   },
   "pt": {
     "equivalent": [],
@@ -3144,7 +3254,9 @@
       "ep": "Ep",
       "programa": "Show",
       "single": "Single"
-    }
+    },
+    "chan_prefix": "por",
+    "chan_suffix": ""
   },
   "pt-PT": {
     "equivalent": [],
@@ -3188,7 +3300,9 @@
       "ep": "Ep",
       "programa": "Show",
       "single": "Single"
-    }
+    },
+    "chan_prefix": "de",
+    "chan_suffix": ""
   },
   "ro": {
     "equivalent": [],
@@ -3248,7 +3362,9 @@
       "ep": "Ep",
       "emisiune": "Show",
       "single": "Single"
-    }
+    },
+    "chan_prefix": "de",
+    "chan_suffix": ""
   },
   "ru": {
     "equivalent": [],
@@ -3319,7 +3435,9 @@
       "ep": "Ep",
       "аудиошоу": "Show",
       "сингл": "Single"
-    }
+    },
+    "chan_prefix": "",
+    "chan_suffix": ""
   },
   "si": {
     "equivalent": [],
@@ -3369,7 +3487,9 @@
       "දීවා": "Ep",
       "සංදර්ශනය": "Show",
       "තනි": "Single"
-    }
+    },
+    "chan_prefix": "",
+    "chan_suffix": "විසින්"
   },
   "sk": {
     "equivalent": [],
@@ -3428,7 +3548,9 @@
       "ep": "Ep",
       "relácia": "Show",
       "singel": "Single"
-    }
+    },
+    "chan_prefix": "Autori:",
+    "chan_suffix": ""
   },
   "sl": {
     "equivalent": [],
@@ -3505,7 +3627,9 @@
       "ep": "Ep",
       "oddaja": "Show",
       "singel": "Single"
-    }
+    },
+    "chan_prefix": "kanal",
+    "chan_suffix": ""
   },
   "sq": {
     "equivalent": [],
@@ -3558,7 +3682,9 @@
       "ep": "Ep",
       "shfaq": "Show",
       "single": "Single"
-    }
+    },
+    "chan_prefix": "nga",
+    "chan_suffix": ""
   },
   "sr": {
     "equivalent": [],
@@ -3608,7 +3734,9 @@
       "ep": "Ep",
       "серија": "Show",
       "сингл": "Single"
-    }
+    },
+    "chan_prefix": "са канала",
+    "chan_suffix": ""
   },
   "sr-Latn": {
     "equivalent": [],
@@ -3658,7 +3786,9 @@
       "ep": "Ep",
       "serija": "Show",
       "singl": "Single"
-    }
+    },
+    "chan_prefix": "sa kanala",
+    "chan_suffix": ""
   },
   "sv": {
     "equivalent": [],
@@ -3717,7 +3847,9 @@
       "ep": "Ep",
       "ljuddrama": "Show",
       "singel": "Single"
-    }
+    },
+    "chan_prefix": "från",
+    "chan_suffix": ""
   },
   "sw": {
     "equivalent": [],
@@ -3767,7 +3899,9 @@
       "ep": "Ep",
       "kipindi": "Show",
       "singo": "Single"
-    }
+    },
+    "chan_prefix": "kutoka",
+    "chan_suffix": ""
   },
   "ta": {
     "equivalent": [],
@@ -3830,7 +3964,9 @@
       "ep": "Ep",
       "ஆடியோ ஷோ": "Show",
       "சிங்கிள்": "Single"
-    }
+    },
+    "chan_prefix": "வழங்கியவர்:",
+    "chan_suffix": ""
   },
   "te": {
     "equivalent": [],
@@ -3891,7 +4027,9 @@
       "ep": "Ep",
       "చూపించు": "Show",
       "సింగిల్": "Single"
-    }
+    },
+    "chan_prefix": "",
+    "chan_suffix": "ఛానెల్ ద్వారా"
   },
   "th": {
     "equivalent": [],
@@ -3952,7 +4090,9 @@
       "ep": "Ep",
       "รายการ": "Show",
       "ซิงเกิล": "Single"
-    }
+    },
+    "chan_prefix": "โดย",
+    "chan_suffix": ""
   },
   "tr": {
     "equivalent": [],
@@ -4004,7 +4144,9 @@
       "ep": "Ep",
       "program": "Show",
       "single": "Single"
-    }
+    },
+    "chan_prefix": "",
+    "chan_suffix": "tarafından"
   },
   "uk": {
     "equivalent": [],
@@ -4079,7 +4221,9 @@
       "мініальбом": "Ep",
       "аудіодрама": "Show",
       "сингл": "Single"
-    }
+    },
+    "chan_prefix": "власник:",
+    "chan_suffix": ""
   },
   "ur": {
     "equivalent": [],
@@ -4136,7 +4280,9 @@
       "ep": "Ep",
       "شو": "Show",
       "واحد": "Single"
-    }
+    },
+    "chan_prefix": "منجانب",
+    "chan_suffix": ""
   },
   "uz": {
     "equivalent": [],
@@ -4184,7 +4330,9 @@
       "ep": "Ep",
       "shou": "Show",
       "singl": "Single"
-    }
+    },
+    "chan_prefix": "muallif:",
+    "chan_suffix": ""
   },
   "vi": {
     "equivalent": [],
@@ -4217,7 +4365,9 @@
       "đĩa nhạc mở rộng (ep)": "Ep",
       "chương trình": "Show",
       "đĩa đơn": "Single"
-    }
+    },
+    "chan_prefix": "của",
+    "chan_suffix": ""
   },
   "zh-CN": {
     "equivalent": [],
@@ -4251,7 +4401,9 @@
       "迷你专辑": "Ep",
       "广播剧": "Show",
       "单曲": "Single"
-    }
+    },
+    "chan_prefix": "创建者：",
+    "chan_suffix": ""
   },
   "zh-HK": {
     "equivalent": [],
@@ -4284,7 +4436,9 @@
       "ep": "Ep",
       "節目": "Show",
       "單曲": "Single"
-    }
+    },
+    "chan_prefix": "來自",
+    "chan_suffix": ""
   },
   "zh-TW": {
     "equivalent": [],
@@ -4316,7 +4470,9 @@
       "ep": "Ep",
       "節目": "Show",
       "單曲": "Single"
-    }
+    },
+    "chan_prefix": "由",
+    "chan_suffix": "建立"
   },
   "zu": {
     "equivalent": [],
@@ -4380,6 +4536,8 @@
       "i-ep": "Ep",
       "bonisa": "Show",
       "i-single": "Single"
-    }
+    },
+    "chan_prefix": "ka-",
+    "chan_suffix": ""
   }
 }

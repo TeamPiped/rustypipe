@@ -157,7 +157,7 @@ pub(crate) struct WatchEndpointConfig {
 #[derive(Default, Debug, Clone, Copy, Deserialize, PartialEq, Eq)]
 pub(crate) enum MusicVideoType {
     #[default]
-    #[serde(rename = "MUSIC_VIDEO_TYPE_OMV")]
+    #[serde(rename = "MUSIC_VIDEO_TYPE_OMV", alias = "MUSIC_VIDEO_TYPE_UGC")]
     Video,
     #[serde(rename = "MUSIC_VIDEO_TYPE_ATV")]
     Track,
@@ -331,6 +331,28 @@ impl NavigationEndpoint {
                 })
         } else {
             None
+        }
+    }
+
+    pub(crate) fn into_playlist_id(self) -> Option<String> {
+        match self {
+            NavigationEndpoint::Watch { watch_endpoint } => watch_endpoint.playlist_id,
+            NavigationEndpoint::Browse {
+                browse_endpoint,
+                command_metadata,
+            } => Some(browse_endpoint.browse_id).filter(|_| {
+                browse_endpoint
+                    .browse_endpoint_context_supported_configs
+                    .map(|c| c.browse_endpoint_context_music_config.page_type == PageType::Playlist)
+                    .unwrap_or_default()
+                    || command_metadata
+                        .map(|c| c.web_command_metadata.web_page_type == PageType::Playlist)
+                        .unwrap_or_default()
+            }),
+            NavigationEndpoint::Url { .. } => None,
+            NavigationEndpoint::WatchPlaylist {
+                watch_playlist_endpoint,
+            } => Some(watch_playlist_endpoint.playlist_id),
         }
     }
 }

@@ -35,6 +35,7 @@ pub enum ABTest {
     MusicPlaylistTwoColumn = 13,
     CommentsFrameworkUpdate = 14,
     ChannelShortsLockup = 15,
+    PlaylistPageHeader = 16,
 }
 
 /// List of active A/B tests that are run when none is manually specified
@@ -112,6 +113,7 @@ pub async fn run_test(
                     ABTest::MusicPlaylistTwoColumn => music_playlist_two_column(&query).await,
                     ABTest::CommentsFrameworkUpdate => comments_framework_update(&query).await,
                     ABTest::ChannelShortsLockup => channel_shorts_lockup(&query).await,
+                    ABTest::PlaylistPageHeader => playlist_page_header_renderer(&query).await,
                 }
                 .unwrap();
                 pb.inc(1);
@@ -381,4 +383,21 @@ pub async fn channel_shorts_lockup(rp: &RustyPipeQuery) -> Result<bool> {
         .await
         .unwrap();
     Ok(res.contains("\"shortsLockupViewModel\""))
+}
+
+pub async fn playlist_page_header_renderer(rp: &RustyPipeQuery) -> Result<bool> {
+    let id = "VLPLZN_exA7d4RVmCQrG5VlWIjMOkMFZVVOc";
+    let res = rp
+        .raw(
+            ClientType::Desktop,
+            "browse",
+            &QBrowse {
+                context: rp.get_context(ClientType::Desktop, true, None).await,
+                browse_id: id,
+                params: None,
+            },
+        )
+        .await
+        .unwrap();
+    Ok(res.contains("\"pageHeaderRenderer\""))
 }

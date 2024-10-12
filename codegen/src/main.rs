@@ -2,6 +2,7 @@
 
 mod abtest;
 mod collect_album_types;
+mod collect_chan_prefixes;
 mod collect_large_numbers;
 mod collect_playlist_dates;
 mod collect_video_dates;
@@ -29,10 +30,12 @@ enum Commands {
     CollectAlbumTypes,
     CollectVideoDurations,
     CollectVideoDates,
+    CollectChanPrefixes,
     ParsePlaylistDates,
     ParseLargeNumbers,
     ParseAlbumTypes,
     ParseVideoDurations,
+    ParseChanPrefixes,
     GenLocales,
     GenDict,
     DownloadTestfiles,
@@ -65,10 +68,14 @@ async fn main() {
         Commands::CollectVideoDates => {
             collect_video_dates::collect_video_dates(cli.concurrency).await;
         }
+        Commands::CollectChanPrefixes => {
+            collect_chan_prefixes::collect_chan_prefixes().await;
+        }
         Commands::ParsePlaylistDates => collect_playlist_dates::write_samples_to_dict(),
         Commands::ParseLargeNumbers => collect_large_numbers::write_samples_to_dict(),
         Commands::ParseAlbumTypes => collect_album_types::write_samples_to_dict(),
         Commands::ParseVideoDurations => collect_video_durations::parse_video_durations(),
+        Commands::ParseChanPrefixes => collect_chan_prefixes::write_samples_to_dict(),
         Commands::GenLocales => {
             gen_locales::generate_locales().await;
         }
