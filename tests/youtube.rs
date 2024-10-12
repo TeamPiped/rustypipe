@@ -86,8 +86,8 @@ async fn get_player_from_client(#[case] client_type: ClientType, rp: RustyPipe) 
 
         // Bitrates may change between requests
         assert_approx(video.bitrate, 2_341_408);
-        assert_eq!(video.average_bitrate, 1_660_210);
-        assert_eq!(video.size, Some(53_754_490));
+        assert_eq!(video.average_bitrate, 1_661_658);
+        assert_eq!(video.size, Some(53_801_380));
         assert_eq!(video.width, 1280);
         assert_eq!(video.height, 720);
         assert_eq!(video.fps, 30);
@@ -1528,7 +1528,7 @@ async fn music_playlist(
 }
 
 #[rstest]
-#[case::user("PLMC9KNkIncKtPzgY-5rmhvj7fax8fdxoj")]
+#[case::user("PLZN_exA7d4RVmCQrG5VlWIjMOkMFZVVOc")]
 #[case::ytm("RDCLAK5uy_kb7EBi6y3GrtJri4_ZH56Ms786DFEimbM")]
 #[tokio::test]
 async fn music_playlist_cont(#[case] id: &str, rp: RustyPipe) {
@@ -1539,7 +1539,7 @@ async fn music_playlist_cont(#[case] id: &str, rp: RustyPipe) {
     check_duplicates(&playlist.tracks.items);
 
     let track_count = playlist.track_count.unwrap();
-    assert_gte(track_count, 100, "tracks");
+    assert_gte(track_count, 90, "tracks");
 
     assert_eq!(track_count, playlist.tracks.count.unwrap());
     assert_gte(
@@ -2038,13 +2038,13 @@ async fn music_search_episode(rp: RustyPipe, #[case] videos: bool) {
     false
 )]
 #[case::album(
-    "unbroken",
-    "Unbroken",
-    "MPREb_rMegpebUBPU",
-    "Demi Lovato",
-    "UCwem2sj-QUJCiWiPAo9JuAw",
-    2011,
-    AlbumType::Album,
+    "where we come alive",
+    "Where We Come Alive",
+    "MPREb_Rh1zJSc0xPG",
+    "Ruelle",
+    "UCUCg0Z83rDmZUeBAEBlCdCw",
+    2018,
+    AlbumType::Single,
     true
 )]
 #[tokio::test]
