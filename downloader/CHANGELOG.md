@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 
 
+## [v0.2.2](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe-downloader/v0.2.1..rustypipe-downloader/v0.2.2) - 2024-10-13
+
+### ⚙️ Miscellaneous Tasks
+
+- *(deps)* Update rust crate rstest to 0.23.0 (#12) - ([96776e9](https://codeberg.org/ThetaDev/rustypipe/commit/96776e98d76fa1d31d5f84dbceafbe8f9dfd9085))
+- *(deps)* Update rustypipe to 0.5.0
+
+
 ## [v0.2.1](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe-downloader/v0.2.0..rustypipe-downloader/v0.2.1) - 2024-09-10
 
 ### 📚 Documentation
