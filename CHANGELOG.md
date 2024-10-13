@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 
 
+## [v0.5.0](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe/v0.4.0..rustypipe/v0.5.0) - 2024-10-13
+
+### 🚀 Features
+
+- Add mobile client - ([71d3ec6](https://codeberg.org/ThetaDev/rustypipe/commit/71d3ec65ddafa966ef6b41cf4eb71687ba4b594c))
+
+### 🐛 Bug Fixes
+
+- Prioritize visitor_data argument before opts - ([ace0fae](https://codeberg.org/ThetaDev/rustypipe/commit/ace0fae1005217cd396000176e7c01682eae026f))
+- Ignore live tracks in YTM searches - ([f3f2e1d](https://codeberg.org/ThetaDev/rustypipe/commit/f3f2e1d3ca1e9c838c682356bb5a7ded6951c8e5))
+- A/B test 16 (pageHeaderRenderer on playlist pages) - ([e65f145](https://codeberg.org/ThetaDev/rustypipe/commit/e65f14556f3003fa59fee3f9f1410fb5ddf63219))
+
+### ⚙️ Miscellaneous Tasks
+
+- *(deps)* Update rust crate rstest to 0.23.0 (#12) - ([96776e9](https://codeberg.org/ThetaDev/rustypipe/commit/96776e98d76fa1d31d5f84dbceafbe8f9dfd9085))
+
+
 ## [v0.4.0](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe/v0.3.0..rustypipe/v0.4.0) - 2024-09-10
 
 ### 🚀 Features
