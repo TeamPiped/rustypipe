@@ -395,6 +395,7 @@ struct CacheHolder {
 #[serde(default)]
 struct CacheData {
     clients: HashMap<ClientType, CacheEntry<ClientData>>,
+    #[serde(skip_serializing_if = "CacheEntry::is_none")]
     deobf: CacheEntry<DeobfData>,
 }
 
@@ -444,6 +445,10 @@ impl<T> CacheEntry<T> {
             CacheEntry::Some { data, .. } => Some(data),
             CacheEntry::None => None,
         }
+    }
+
+    fn is_none(&self) -> bool {
+        matches!(self, Self::None)
     }
 }
 
@@ -958,7 +963,10 @@ impl RustyPipe {
     async fn store_cache(&self) {
         let mut cache_clients = HashMap::new();
         for (c, lk) in &self.inner.cache.clients {
-            cache_clients.insert(*c, lk.read().await.clone());
+            let v = lk.read().await.clone();
+            if !v.is_none() {
+                cache_clients.insert(*c, v);
+            }
         }
 
         if let Some(storage) = &self.inner.storage {
