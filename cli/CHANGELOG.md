@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 
 
+## [v0.2.2](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe-cli/v0.2.1..rustypipe-cli/v0.2.2) - 2024-10-13
+
+### 🚀 Features
+
+- Add mobile client - ([71d3ec6](https://codeberg.org/ThetaDev/rustypipe/commit/71d3ec65ddafa966ef6b41cf4eb71687ba4b594c))
+
+### ⚙️ Miscellaneous Tasks
+
+- *(deps)* Update rust crate rstest to 0.23.0 (#12) - ([96776e9](https://codeberg.org/ThetaDev/rustypipe/commit/96776e98d76fa1d31d5f84dbceafbe8f9dfd9085))
+- *(deps)* Update rustypipe to 0.5.0
+
+
 ## [v0.2.1](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe-cli/v0.2.0..rustypipe-cli/v0.2.1) - 2024-09-10
 
 ### 🚀 Features
