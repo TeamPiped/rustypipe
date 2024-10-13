@@ -270,6 +270,7 @@ enum MusicSearchCategory {
 #[derive(Copy, Clone, PartialEq, Eq, ValueEnum)]
 enum ClientTypeArg {
     Desktop,
+    Mobile,
     Tv,
     TvEmbed,
     Android,
@@ -322,6 +323,7 @@ impl From<ClientTypeArg> for ClientType {
     fn from(value: ClientTypeArg) -> Self {
         match value {
             ClientTypeArg::Desktop => Self::Desktop,
+            ClientTypeArg::Mobile => Self::Mobile,
             ClientTypeArg::TvEmbed => Self::TvHtml5Embed,
             ClientTypeArg::Tv => Self::Tv,
             ClientTypeArg::Android => Self::Android,

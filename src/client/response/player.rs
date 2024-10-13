@@ -170,11 +170,13 @@ pub(crate) enum Quality {
 
 #[derive(Clone, Copy, Debug, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
 pub(crate) enum AudioQuality {
-    #[serde(rename = "AUDIO_QUALITY_LOW", alias = "low")]
+    #[serde(rename = "AUDIO_QUALITY_ULTRALOW")]
+    UltraLow,
+    #[serde(rename = "AUDIO_QUALITY_LOW")]
     Low,
-    #[serde(rename = "AUDIO_QUALITY_MEDIUM", alias = "medium")]
+    #[serde(rename = "AUDIO_QUALITY_MEDIUM")]
     Medium,
-    #[serde(rename = "AUDIO_QUALITY_HIGH", alias = "high")]
+    #[serde(rename = "AUDIO_QUALITY_HIGH")]
     High,
 }
 

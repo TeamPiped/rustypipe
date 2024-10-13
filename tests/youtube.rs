@@ -27,6 +27,7 @@ use rustypipe::validate;
 #[rstest]
 #[case::desktop(ClientType::Desktop)]
 #[case::tv(ClientType::Tv)]
+#[case::mobile(ClientType::Mobile)]
 #[case::tv_html5_embed(ClientType::TvHtml5Embed)]
 #[case::android(ClientType::Android)]
 #[case::ios(ClientType::Ios)]
@@ -200,7 +201,7 @@ async fn check_video_stream(s: impl YtStream) {
 )]
 #[case::live(
     "jfKfPfyJRdk",
-    "lofi hip hop radio 📚 - beats to relax/study to",
+    "lofi hip hop radio 📚 beats to relax/study to",
     "Listen on Spotify, Apple music and more",
     0,
     "UCSJ4gkVC6NrvII8umztf0Ow",
@@ -2193,8 +2194,7 @@ async fn music_search_genre_radio(rp: RustyPipe) {
 }
 
 #[rstest]
-// TODO: reenable when music search suggestions work again
-// #[case::default("ed sheer", Some("ed sheeran"), Some("UClmXPfaYhXOYsNn_QUyheWQ"))]
+#[case::default("ed sheer", Some("ed sheeran"), Some("UClmXPfaYhXOYsNn_QUyheWQ"))]
 #[case::empty("reujbhevmfndxnjrze", None, None)]
 #[tokio::test]
 async fn music_search_suggestion(

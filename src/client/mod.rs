@@ -22,6 +22,7 @@ mod video_details;
 #[cfg_attr(docsrs, doc(cfg(feature = "rss")))]
 mod channel_rss;
 
+use std::collections::HashMap;
 use std::path::PathBuf;
 use std::sync::Arc;
 use std::{borrow::Cow, fmt::Debug, time::Duration};
@@ -55,21 +56,32 @@ pub enum ClientType {
     Desktop,
     /// Client used by music.youtube.com
     ///
-    /// can access YTM-specific data, cannot access non-music content
+    /// - can access YTM-specific data
+    /// - cannot access non-music content
     DesktopMusic,
+    /// Client used by m.youtube.com
+    ///
+    /// - includes lower resolution audio streams
+    /// - does not return audio tracks in different languages
+    Mobile,
     /// Client used by the embedded player for Smart TVs
     ///
-    /// can access age-restricted videos, cannot access non-embeddable videos
+    /// - can access age-restricted videos
+    /// - cannot access non-embeddable videos
     TvHtml5Embed,
     /// Client used by youtube.com/tv
+    ///
+    /// - Does not return video metadata when fetching the player
     Tv,
     /// Client used by the Android app
     ///
-    /// no obfuscated stream URLs, includes lower resolution audio streams
+    /// - no obfuscated stream URLs
+    /// - includes lower resolution audio streams
     Android,
     /// Client used by the iOS app
     ///
-    /// no obfuscated stream URLs
+    /// - no obfuscated stream URLs
+    /// - does not include opus audio streams
     Ios,
 }
 
@@ -78,6 +90,7 @@ impl ClientType {
         match self {
             ClientType::Desktop
             | ClientType::DesktopMusic
+            | ClientType::Mobile
             | ClientType::TvHtml5Embed
             | ClientType::Tv => true,
             ClientType::Android | ClientType::Ios => false,
@@ -188,6 +201,7 @@ struct QContinuation<'a> {
 }
 
 const DEFAULT_UA: &str = "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0";
+const MOBILE_UA: &str = "Mozilla/5.0 (Android 14; Mobile; rv:129.0) Gecko/129.0 Firefox/129.0";
 const TV_UA: &str = "Mozilla/5.0 (SMART-TV; Linux; Tizen 5.0) AppleWebKit/538.1 (KHTML, like Gecko) Version/5.0 NativeTVAds Safari/538.1";
 
 const CONSENT_COOKIE: &str = "SOCS=CAISAiAD";
@@ -195,20 +209,23 @@ const CONSENT_COOKIE: &str = "SOCS=CAISAiAD";
 const YOUTUBEI_V1_URL: &str = "https://www.youtube.com/youtubei/v1/";
 const YOUTUBEI_V1_GAPIS_URL: &str = "https://youtubei.googleapis.com/youtubei/v1/";
 const YOUTUBE_MUSIC_V1_URL: &str = "https://music.youtube.com/youtubei/v1/";
+const YOUTUBEI_MOBILE_V1_URL: &str = "https://m.youtube.com/youtubei/v1/";
 const YOUTUBE_HOME_URL: &str = "https://www.youtube.com/";
 const YOUTUBE_MUSIC_HOME_URL: &str = "https://music.youtube.com/";
+const YOUTUBE_MOBILE_HOME_URL: &str = "https://m.youtube.com/";
 const YOUTUBE_TV_URL: &str = "https://www.youtube.com/tv";
 
 const DISABLE_PRETTY_PRINT_PARAMETER: &str = "prettyPrint=false";
 
-// Desktop client
-const DESKTOP_CLIENT_VERSION: &str = "2.20230126.00.00";
-const DESKTOP_MUSIC_CLIENT_VERSION: &str = "1.20230123.01.01";
-const TV_CLIENT_VERSION: &str = "7.20240724.13.00";
+// Web client
+const DESKTOP_CLIENT_VERSION: &str = "2.20241010.09.00";
+const DESKTOP_MUSIC_CLIENT_VERSION: &str = "1.20241007.00.00";
+const MOBILE_CLIENT_VERSION: &str = "2.20241011.01.00";
+const TV_CLIENT_VERSION: &str = "7.20241008.14.02";
 const TVHTML5_CLIENT_VERSION: &str = "2.0";
 
-// Mobile client
-const MOBILE_CLIENT_VERSION: &str = "18.03.33";
+// Mobile app client
+const APP_CLIENT_VERSION: &str = "18.03.33";
 const IOS_DEVICE_MODEL: &str = "iPhone14,5";
 
 static CLIENT_VERSION_REGEX: Lazy<Regex> =
@@ -370,22 +387,14 @@ impl Default for RustyPipeOpts {
 
 #[derive(Default, Debug)]
 struct CacheHolder {
-    desktop_client: RwLock<CacheEntry<ClientData>>,
-    music_client: RwLock<CacheEntry<ClientData>>,
-    tv_client: RwLock<CacheEntry<ClientData>>,
+    clients: HashMap<ClientType, RwLock<CacheEntry<ClientData>>>,
     deobf: RwLock<CacheEntry<DeobfData>>,
 }
 
 #[derive(Default, Debug, Clone, Serialize, Deserialize)]
 #[serde(default)]
 struct CacheData {
-    #[serde(skip_serializing_if = "CacheEntry::is_none")]
-    desktop_client: CacheEntry<ClientData>,
-    #[serde(skip_serializing_if = "CacheEntry::is_none")]
-    music_client: CacheEntry<ClientData>,
-    #[serde(skip_serializing_if = "CacheEntry::is_none")]
-    tv_client: CacheEntry<ClientData>,
-    #[serde(skip_serializing_if = "CacheEntry::is_none")]
+    clients: HashMap<ClientType, CacheEntry<ClientData>>,
     deobf: CacheEntry<DeobfData>,
 }
 
@@ -435,10 +444,6 @@ impl<T> CacheEntry<T> {
             CacheEntry::Some { data, .. } => Some(data),
             CacheEntry::None => None,
         }
-    }
-
-    fn is_none(&self) -> bool {
-        matches!(self, Self::None)
     }
 }
 
@@ -506,7 +511,7 @@ impl RustyPipeBuilder {
             Box::new(FileStorage::new(cache_file))
         });
 
-        let cdata = storage
+        let mut cdata = storage
             .as_ref()
             .and_then(|storage| storage.read())
             .and_then(|data| match serde_json::from_str::<CacheData>(&data) {
@@ -517,6 +522,16 @@ impl RustyPipeBuilder {
                 }
             })
             .unwrap_or_default();
+
+        let cache_clients = [
+            ClientType::Desktop,
+            ClientType::DesktopMusic,
+            ClientType::Mobile,
+            ClientType::Tv,
+        ]
+        .into_iter()
+        .map(|c| (c, RwLock::new(cdata.clients.remove(&c).unwrap_or_default())))
+        .collect::<HashMap<_, _>>();
 
         Ok(RustyPipe {
             inner: Arc::new(RustyPipeRef {
@@ -529,9 +544,7 @@ impl RustyPipeBuilder {
                 }),
                 n_http_retries: self.n_http_retries,
                 cache: CacheHolder {
-                    desktop_client: RwLock::new(cdata.desktop_client),
-                    music_client: RwLock::new(cdata.music_client),
-                    tv_client: RwLock::new(cdata.tv_client),
+                    clients: cache_clients,
                     deobf: RwLock::new(cdata.deobf),
                 },
                 default_opts: self.default_opts,
@@ -804,41 +817,30 @@ impl RustyPipe {
         Ok(self.http_request_estatus(request).await?.text().await?)
     }
 
-    /// Extract the current version of the YouTube desktop client from the website.
-    async fn extract_desktop_client_version(&self) -> Result<String, Error> {
-        self.extract_client_version(
-            Some("https://www.youtube.com/sw.js"),
-            "https://www.youtube.com/results?search_query=",
-            YOUTUBE_HOME_URL,
-            None,
-        )
-        .await
-    }
+    async fn extract_client_version(&self, client_type: ClientType) -> Result<String, Error> {
+        let (sw_url, html_url, origin, ua) = match client_type {
+            ClientType::Desktop => (
+                Some("https://www.youtube.com/sw.js"),
+                "https://www.youtube.com/results?search_query=",
+                YOUTUBE_HOME_URL,
+                None,
+            ),
+            ClientType::DesktopMusic => (
+                Some("https://music.youtube.com/sw.js"),
+                YOUTUBE_MUSIC_HOME_URL,
+                YOUTUBE_MUSIC_HOME_URL,
+                None,
+            ),
+            ClientType::Mobile => (
+                Some("https://m.youtube.com/sw.js"),
+                "https://m.youtube.com/results?search_query=",
+                YOUTUBE_MUSIC_HOME_URL,
+                Some(MOBILE_UA),
+            ),
+            ClientType::Tv => (None, YOUTUBE_TV_URL, YOUTUBE_TV_URL, Some(TV_UA)),
+            _ => panic!("cannot extract client version for {client_type:?}"),
+        };
 
-    /// Extract the current version of the YouTube Music desktop client from the website.
-    async fn extract_music_client_version(&self) -> Result<String, Error> {
-        self.extract_client_version(
-            Some("https://music.youtube.com/sw.js"),
-            YOUTUBE_MUSIC_HOME_URL,
-            YOUTUBE_MUSIC_HOME_URL,
-            None,
-        )
-        .await
-    }
-
-    /// Extract the current version of the YouTube TV client from the website.
-    async fn extract_tv_client_version(&self) -> Result<String, Error> {
-        self.extract_client_version(None, YOUTUBE_TV_URL, YOUTUBE_TV_URL, Some(TV_UA))
-            .await
-    }
-
-    async fn extract_client_version(
-        &self,
-        sw_url: Option<&str>,
-        html_url: &str,
-        origin: &str,
-        ua: Option<&str>,
-    ) -> Result<String, Error> {
         let from_swjs = sw_url.map(|sw_url| async move {
             let swjs = self
                 .http_request_txt(
@@ -855,9 +857,7 @@ impl RustyPipe {
                 .await?;
 
             util::get_cg_from_regex(&CLIENT_VERSION_REGEX, &swjs, 1).ok_or(Error::Extraction(
-                ExtractionError::InvalidData(Cow::Borrowed(
-                    "Could not find client version in sw.js",
-                )),
+                ExtractionError::InvalidData("Could not find client version in sw.js".into()),
             ))
         });
 
@@ -870,9 +870,7 @@ impl RustyPipe {
             let html = self.http_request_txt(&builder.build().unwrap()).await?;
 
             util::get_cg_from_regex(&CLIENT_VERSION_REGEX, &html, 1).ok_or(Error::Extraction(
-                ExtractionError::InvalidData(Cow::Borrowed(
-                    "Could not find client version on html page",
-                )),
+                ExtractionError::InvalidData("Could not find client version on html page".into()),
             ))
         };
 
@@ -886,95 +884,35 @@ impl RustyPipe {
         }
     }
 
-    /// Get the current version of the YouTube web client from the following sources
-    ///
-    /// 1. from cache
-    /// 2. from YouTube's service worker script (`sw.js`)
-    /// 3. from the YouTube website
-    /// 4. fall back to the hardcoded version
-    async fn get_desktop_client_version(&self) -> String {
+    async fn get_client_version(&self, client_type: ClientType) -> Cow<'static, str> {
         // Write lock here to prevent concurrent tasks from fetching the same data
-        let mut desktop_client = self.inner.cache.desktop_client.write().await;
+        let mut client = self.inner.cache.clients[&client_type].write().await;
 
-        match desktop_client.get() {
-            Some(cdata) => cdata.version.clone(),
+        match client.get() {
+            Some(cdata) => cdata.version.clone().into(),
             None => {
-                tracing::debug!("getting desktop client version");
-                match self.extract_desktop_client_version().await {
+                tracing::debug!("getting {client_type:?} client version");
+                match self.extract_client_version(client_type).await {
                     Ok(version) => {
-                        *desktop_client = CacheEntry::from(ClientData {
+                        *client = CacheEntry::from(ClientData {
                             version: version.clone(),
                         });
-                        drop(desktop_client);
+                        drop(client);
                         self.store_cache().await;
-                        version
+                        version.into()
                     }
                     Err(e) => {
-                        tracing::warn!("{}, falling back to hardcoded desktop client version", e);
-                        DESKTOP_CLIENT_VERSION.to_owned()
-                    }
-                }
-            }
-        }
-    }
-
-    /// Get the current version of the YouTube Music web client from the following sources
-    ///
-    /// 1. from cache
-    /// 2. from YouTube Music's service worker script (`sw.js`)
-    /// 3. from the YouTube Music website
-    /// 4. fall back to the hardcoded version
-    async fn get_music_client_version(&self) -> String {
-        // Write lock here to prevent concurrent tasks from fetching the same data
-        let mut music_client = self.inner.cache.music_client.write().await;
-
-        match music_client.get() {
-            Some(cdata) => cdata.version.clone(),
-            None => {
-                tracing::debug!("getting music client version");
-                match self.extract_music_client_version().await {
-                    Ok(version) => {
-                        *music_client = CacheEntry::from(ClientData {
-                            version: version.clone(),
-                        });
-                        drop(music_client);
-                        self.store_cache().await;
-                        version
-                    }
-                    Err(e) => {
-                        tracing::warn!("{}, falling back to hardcoded music client version", e);
-                        DESKTOP_MUSIC_CLIENT_VERSION.to_owned()
-                    }
-                }
-            }
-        }
-    }
-
-    /// Get the current version of the YouTube TV client from the following sources
-    ///
-    /// 1. from cache
-    /// 2. from the YouTube TV website
-    /// 3. fall back to the hardcoded version
-    async fn get_tv_client_version(&self) -> String {
-        // Write lock here to prevent concurrent tasks from fetching the same data
-        let mut tv_client = self.inner.cache.tv_client.write().await;
-
-        match tv_client.get() {
-            Some(cdata) => cdata.version.clone(),
-            None => {
-                tracing::debug!("getting TV client version");
-                match self.extract_tv_client_version().await {
-                    Ok(version) => {
-                        *tv_client = CacheEntry::from(ClientData {
-                            version: version.clone(),
-                        });
-                        drop(tv_client);
-                        self.store_cache().await;
-                        version
-                    }
-                    Err(e) => {
-                        tracing::warn!("{}, falling back to hardcoded TV client version", e);
-                        DESKTOP_MUSIC_CLIENT_VERSION.to_owned()
+                        tracing::warn!(
+                            "{e}, falling back to hardcoded {client_type:?} client version"
+                        );
+                        match client_type {
+                            ClientType::Desktop => DESKTOP_CLIENT_VERSION,
+                            ClientType::DesktopMusic => DESKTOP_MUSIC_CLIENT_VERSION,
+                            ClientType::Mobile => MOBILE_CLIENT_VERSION,
+                            ClientType::Tv => TV_CLIENT_VERSION,
+                            _ => unreachable!(),
+                        }
+                        .into()
                     }
                 }
             }
@@ -1018,11 +956,14 @@ impl RustyPipe {
 
     /// Write the current cache data to the storage backend.
     async fn store_cache(&self) {
+        let mut cache_clients = HashMap::new();
+        for (c, lk) in &self.inner.cache.clients {
+            cache_clients.insert(*c, lk.read().await.clone());
+        }
+
         if let Some(storage) = &self.inner.storage {
             let cdata = CacheData {
-                desktop_client: self.inner.cache.desktop_client.read().await.clone(),
-                music_client: self.inner.cache.music_client.read().await.clone(),
-                tv_client: self.inner.cache.tv_client.read().await.clone(),
+                clients: cache_clients,
                 deobf: self.inner.cache.deobf.read().await.clone(),
             };
 
@@ -1075,9 +1016,9 @@ impl RustyPipe {
                     let html = resp.text().await?;
 
                     util::get_cg_from_regex(&VISITOR_DATA_REGEX, &html, 1).ok_or(Error::Extraction(
-                        ExtractionError::InvalidData(Cow::Borrowed(
-                            "Could not find visitor data on html page",
-                        )),
+                        ExtractionError::InvalidData(
+                            "Could not find visitor data on html page".into(),
+                        ),
                     ))
                 } else {
                     Err(Error::Extraction(ExtractionError::InvalidData(
@@ -1162,15 +1103,16 @@ impl RustyPipeQuery {
             ClientType::Desktop | ClientType::DesktopMusic | ClientType::TvHtml5Embed => {
                 Cow::Borrowed(&self.client.inner.user_agent)
             }
+            ClientType::Mobile => MOBILE_UA.into(),
             ClientType::Tv => TV_UA.into(),
             ClientType::Android => format!(
                 "com.google.android.youtube/{} (Linux; U; Android 12; {}) gzip",
-                MOBILE_CLIENT_VERSION, self.opts.country
+                APP_CLIENT_VERSION, self.opts.country
             )
             .into(),
             ClientType::Ios => format!(
                 "com.google.ios.youtube/{} ({}; U; CPU iOS 15_4 like Mac OS X; {})",
-                MOBILE_CLIENT_VERSION, IOS_DEVICE_MODEL, self.opts.country
+                APP_CLIENT_VERSION, IOS_DEVICE_MODEL, self.opts.country
             )
             .into(),
         }
@@ -1199,7 +1141,7 @@ impl RustyPipeQuery {
             ClientType::Desktop => YTContext {
                 client: ClientInfo {
                     client_name: "WEB",
-                    client_version: Cow::Owned(self.client.get_desktop_client_version().await),
+                    client_version: self.client.get_client_version(ctype).await,
                     platform: "DESKTOP",
                     original_url: Some(YOUTUBE_HOME_URL),
                     visitor_data,
@@ -1214,9 +1156,24 @@ impl RustyPipeQuery {
             ClientType::DesktopMusic => YTContext {
                 client: ClientInfo {
                     client_name: "WEB_REMIX",
-                    client_version: Cow::Owned(self.client.get_music_client_version().await),
+                    client_version: self.client.get_client_version(ctype).await,
                     platform: "DESKTOP",
                     original_url: Some(YOUTUBE_MUSIC_HOME_URL),
+                    visitor_data,
+                    hl,
+                    gl,
+                    ..Default::default()
+                },
+                request: Some(RequestYT::default()),
+                user: User::default(),
+                third_party: None,
+            },
+            ClientType::Mobile => YTContext {
+                client: ClientInfo {
+                    client_name: "MWEB",
+                    client_version: self.client.get_client_version(ctype).await,
+                    platform: "MOBILE",
+                    original_url: Some(YOUTUBE_MOBILE_HOME_URL),
                     visitor_data,
                     hl,
                     gl,
@@ -1229,7 +1186,7 @@ impl RustyPipeQuery {
             ClientType::TvHtml5Embed => YTContext {
                 client: ClientInfo {
                     client_name: "TVHTML5_SIMPLY_EMBEDDED_PLAYER",
-                    client_version: Cow::Borrowed(TVHTML5_CLIENT_VERSION),
+                    client_version: TVHTML5_CLIENT_VERSION.into(),
                     client_screen: Some("EMBED"),
                     platform: "TV",
                     visitor_data,
@@ -1246,7 +1203,7 @@ impl RustyPipeQuery {
             ClientType::Tv => YTContext {
                 client: ClientInfo {
                     client_name: "TVHTML5",
-                    client_version: Cow::Owned(self.client.get_tv_client_version().await),
+                    client_version: self.client.get_client_version(ctype).await,
                     client_screen: Some("WATCH"),
                     platform: "TV",
                     device_model: Some("SmartTV"),
@@ -1264,7 +1221,7 @@ impl RustyPipeQuery {
             ClientType::Android => YTContext {
                 client: ClientInfo {
                     client_name: "ANDROID",
-                    client_version: Cow::Borrowed(MOBILE_CLIENT_VERSION),
+                    client_version: APP_CLIENT_VERSION.into(),
                     platform: "MOBILE",
                     visitor_data,
                     hl,
@@ -1278,7 +1235,7 @@ impl RustyPipeQuery {
             ClientType::Ios => YTContext {
                 client: ClientInfo {
                     client_name: "IOS",
-                    client_version: Cow::Borrowed(MOBILE_CLIENT_VERSION),
+                    client_version: APP_CLIENT_VERSION.into(),
                     device_model: Some(IOS_DEVICE_MODEL),
                     platform: "MOBILE",
                     visitor_data,
@@ -1321,7 +1278,7 @@ impl RustyPipeQuery {
                 .header("X-YouTube-Client-Name", "1")
                 .header(
                     "X-YouTube-Client-Version",
-                    self.client.get_desktop_client_version().await,
+                    self.client.get_client_version(ctype).await.into_owned(),
                 ),
             ClientType::DesktopMusic => self
                 .client
@@ -1336,7 +1293,22 @@ impl RustyPipeQuery {
                 .header("X-YouTube-Client-Name", "67")
                 .header(
                     "X-YouTube-Client-Version",
-                    self.client.get_music_client_version().await,
+                    self.client.get_client_version(ctype).await.into_owned(),
+                ),
+            ClientType::Mobile => self
+                .client
+                .inner
+                .http
+                .post(format!(
+                    "{YOUTUBEI_MOBILE_V1_URL}{endpoint}?{DISABLE_PRETTY_PRINT_PARAMETER}"
+                ))
+                .header(header::ORIGIN, YOUTUBE_MUSIC_HOME_URL)
+                .header(header::REFERER, YOUTUBE_MUSIC_HOME_URL)
+                .header(header::COOKIE, CONSENT_COOKIE)
+                .header("X-YouTube-Client-Name", "2")
+                .header(
+                    "X-YouTube-Client-Version",
+                    self.client.get_client_version(ctype).await.into_owned(),
                 ),
             ClientType::TvHtml5Embed => self
                 .client
@@ -1359,7 +1331,10 @@ impl RustyPipeQuery {
                 .header(header::ORIGIN, YOUTUBE_HOME_URL)
                 .header(header::REFERER, YOUTUBE_TV_URL)
                 .header("X-YouTube-Client-Name", "7")
-                .header("X-YouTube-Client-Version", TV_CLIENT_VERSION),
+                .header(
+                    "X-YouTube-Client-Version",
+                    self.client.get_client_version(ctype).await.into_owned(),
+                ),
             ClientType::Android => self
                 .client
                 .inner
@@ -1729,6 +1704,8 @@ fn validate_country(country: Country) -> Country {
 mod tests {
     use super::*;
 
+    use rstest::rstest;
+
     // 1.20240506.01.00-canary_control_1.20240508.01.01
     // 1.20240508.01.01-canary_experiment_1.20240506.01.00
     fn get_major_version(version: &str) -> u32 {
@@ -1737,25 +1714,16 @@ mod tests {
         parts[0].parse().unwrap()
     }
 
+    #[rstest]
+    #[case(ClientType::Desktop, 2)]
+    #[case(ClientType::DesktopMusic, 1)]
+    #[case(ClientType::Mobile, 2)]
+    #[case(ClientType::Tv, 1)]
     #[tokio::test]
-    async fn extract_desktop_client_version() {
+    async fn extract_desktop_client_version(#[case] client_type: ClientType, #[case] major: u32) {
         let rp = RustyPipe::new();
-        let version = rp.extract_desktop_client_version().await.unwrap();
-        assert!(get_major_version(&version) >= 2);
-    }
-
-    #[tokio::test]
-    async fn extract_music_client_version() {
-        let rp = RustyPipe::new();
-        let version = rp.extract_music_client_version().await.unwrap();
-        assert!(get_major_version(&version) >= 1);
-    }
-
-    #[tokio::test]
-    async fn extract_tv_client_version() {
-        let rp = RustyPipe::new();
-        let version = rp.extract_tv_client_version().await.unwrap();
-        assert!(get_major_version(&version) >= 7);
+        let version = rp.extract_client_version(client_type).await.unwrap();
+        assert!(get_major_version(&version) >= major);
     }
 
     #[tokio::test]

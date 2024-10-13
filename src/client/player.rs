@@ -127,6 +127,7 @@ impl RustyPipeQuery {
         client_type: ClientType,
     ) -> Result<VideoPlayer, Error> {
         let video_id = video_id.as_ref();
+        // let vdata = self.get_visitor_data().await?;
         let (context, deobf) = tokio::join!(
             self.get_context(client_type, false, None),
             self.client.get_deobf_data()
