@@ -631,7 +631,33 @@ fn order_ctoken(
 ) -> String {
     let mut pb_tab = ProtoBuilder::new();
     pb_tab.string(2, target_id);
-    pb_tab.varint(3, order as u64);
+
+    match tab {
+        ChannelVideoTab::Videos => match order {
+            ChannelOrder::Latest => {
+                pb_tab.varint(3, 1);
+                pb_tab.varint(4, 4);
+            }
+            ChannelOrder::Popular => {
+                pb_tab.varint(3, 2);
+                pb_tab.varint(4, 2);
+            }
+            ChannelOrder::Oldest => {
+                pb_tab.varint(3, 4);
+                pb_tab.varint(4, 5);
+            }
+        },
+        ChannelVideoTab::Shorts => match order {
+            ChannelOrder::Latest => pb_tab.varint(4, 4),
+            ChannelOrder::Popular => pb_tab.varint(4, 2),
+            ChannelOrder::Oldest => pb_tab.varint(4, 5),
+        },
+        ChannelVideoTab::Live => match order {
+            ChannelOrder::Latest => pb_tab.varint(5, 12),
+            ChannelOrder::Popular => pb_tab.varint(5, 14),
+            ChannelOrder::Oldest => pb_tab.varint(5, 13),
+        },
+    }
 
     let mut pb_3 = ProtoBuilder::new();
     pb_3.embedded(tab.order_ctoken_id(), pb_tab);
@@ -802,7 +828,7 @@ mod tests {
             ChannelOrder::Popular,
             "\n$6461d7c8-0000-2040-87aa-089e0827e420",
         );
-        assert_eq!(videos_popular_token, "4qmFsgJkEhhVQ1h1cVNCbEhBRTZYdy15ZUpBMFR1bncaSDhnWXVHaXg2S2hJbUNpUTJORFl4WkRkak9DMHdNREF3TFRJd05EQXRPRGRoWVMwd09EbGxNRGd5TjJVME1qQVlBZyUzRCUzRA%3D%3D");
+        assert_eq!(videos_popular_token, "4qmFsgJgEhhVQ1h1cVNCbEhBRTZYdy15ZUpBMFR1bncaRDhnWXdHaTU2TEJJbUNpUTJORFl4WkRkak9DMHdNREF3TFRJd05EQXRPRGRoWVMwd09EbGxNRGd5TjJVME1qQVlBaUFD");
 
         let shorts_popular_token = order_ctoken(
             channel_id,
@@ -810,7 +836,7 @@ mod tests {
             ChannelOrder::Popular,
             "\n$64679ffb-0000-26b3-a1bd-582429d2c794",
         );
-        assert_eq!(shorts_popular_token, "4qmFsgJkEhhVQ1h1cVNCbEhBRTZYdy15ZUpBMFR1bncaSDhnWXVHaXhTS2hJbUNpUTJORFkzT1dabVlpMHdNREF3TFRJMllqTXRZVEZpWkMwMU9ESTBNamxrTW1NM09UUVlBZyUzRCUzRA%3D%3D");
+        assert_eq!(shorts_popular_token, "4qmFsgJkEhhVQ1h1cVNCbEhBRTZYdy15ZUpBMFR1bncaSDhnWXVHaXhTS2hJbUNpUTJORFkzT1dabVlpMHdNREF3TFRJMllqTXRZVEZpWkMwMU9ESTBNamxrTW1NM09UUWdBZyUzRCUzRA%3D%3D");
 
         let live_popular_token = order_ctoken(
             channel_id,
@@ -818,7 +844,7 @@ mod tests {
             ChannelOrder::Popular,
             "\n$64693069-0000-2a1e-8c7d-582429bd5ba8",
         );
-        assert_eq!(live_popular_token, "4qmFsgJkEhhVQ1h1cVNCbEhBRTZYdy15ZUpBMFR1bncaSDhnWXVHaXh5S2hJbUNpUTJORFk1TXpBMk9TMHdNREF3TFRKaE1XVXRPR00zWkMwMU9ESTBNamxpWkRWaVlUZ1lBZyUzRCUzRA%3D%3D");
+        assert_eq!(live_popular_token, "4qmFsgJkEhhVQ1h1cVNCbEhBRTZYdy15ZUpBMFR1bncaSDhnWXVHaXh5S2hJbUNpUTJORFk1TXpBMk9TMHdNREF3TFRKaE1XVXRPR00zWkMwMU9ESTBNamxpWkRWaVlUZ29EZyUzRCUzRA%3D%3D");
     }
 
     #[test]

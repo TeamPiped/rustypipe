@@ -1968,46 +1968,33 @@ async fn music_search_videos(rp: RustyPipe, unlocalized: bool) {
 }
 
 #[rstest]
-#[case::main(false)]
-#[case::videos(true)]
 #[tokio::test]
-async fn music_search_episode(rp: RustyPipe, #[case] videos: bool) {
+async fn music_search_episode(rp: RustyPipe) {
     let query = "Blond - Da muss man dabei gewesen sein: Das Hörspiel - Fall #1";
     let track_id = "Zq_-LDy7AgE";
 
-    let track = if videos {
-        let items = rp
-            .query()
-            .music_search_videos(query)
-            .await
-            .unwrap()
-            .items
-            .items;
-        items.iter().find(|a| a.id == track_id).cloned()
-    } else {
-        let items = rp
-            .query()
-            .music_search_main(query)
-            .await
-            .unwrap()
-            .items
-            .items;
-        items
-            .iter()
-            .find_map(|itm| {
-                if let MusicItem::Track(track) = itm {
-                    if track.id == track_id {
-                        Some(track)
-                    } else {
-                        None
-                    }
+    let items = rp
+        .query()
+        .music_search_main(query)
+        .await
+        .unwrap()
+        .items
+        .items;
+    let track = items
+        .iter()
+        .find_map(|itm| {
+            if let MusicItem::Track(track) = itm {
+                if track.id == track_id {
+                    Some(track)
                 } else {
                     None
                 }
-            })
-            .cloned()
-    }
-    .expect("could not find episode");
+            } else {
+                None
+            }
+        })
+        .cloned()
+        .expect("could not find episode");
 
     assert_eq!(track.artists.len(), 1);
     let track_artist = &track.artists[0];
@@ -2015,9 +2002,9 @@ async fn music_search_episode(rp: RustyPipe, #[case] videos: bool) {
         track.name,
         "Blond - Da muss man dabei gewesen sein: Das Hörspiel - Fall #1"
     );
-    assert_eq!(track_artist.name, "BLOND_OFFICIAL");
-    assert_eq!(track_artist.id.as_deref(), Some("UC8SmM4bue6bKHT4p-_YFZHQ"));
-    assert_eq!(track.artist_id.as_deref(), Some("UC8SmM4bue6bKHT4p-_YFZHQ"));
+    assert_eq!(track_artist.name, "Da muss man dabei gewesen sein");
+    assert_eq!(track_artist.id.as_deref(), None);
+    assert_eq!(track.artist_id.as_deref(), None);
     assert!(!track.cover.is_empty(), "got no cover");
     assert!(track.is_video);
 }

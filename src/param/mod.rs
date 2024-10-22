@@ -27,11 +27,11 @@ pub enum ChannelVideoTab {
 pub enum ChannelOrder {
     /// Order videos with the latest upload date first (default)
     #[default]
-    Latest = 1,
+    Latest, // video 3=1,4=4; shorts 4=4; live 5=12
     /// Order videos with the highest number of views first
-    Popular = 2,
+    Popular, // video 3=2,4=2; shorts 4=2; live 5=14
     /// Order videos with the earliest upload date first
-    Oldest = 4,
+    Oldest, // video 3=4,4=5; shorts 4=5; live 5=13
 }
 
 impl ChannelVideoTab {
