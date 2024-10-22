@@ -38,6 +38,7 @@ use crate::{
     cache::{CacheStorage, FileStorage, DEFAULT_CACHE_FILE},
     deobfuscate::DeobfData,
     error::{Error, ExtractionError},
+    model::ArtistId,
     param::{Country, Language},
     report::{FileReporter, Level, Report, Reporter, RustyPipeInfo, DEFAULT_REPORT_DIR},
     serializer::MapResult,
@@ -1415,7 +1416,7 @@ impl RustyPipeQuery {
             }
         };
 
-        tracing::debug!("mapped response");
+        tracing::trace!("mapped response");
         Ok(RequestResult { res, status, body })
     }
 
@@ -1468,10 +1469,9 @@ impl RustyPipeQuery {
     /// - `method`: HTTP method
     /// - `endpoint`: YouTube API endpoint (`https://www.youtube.com/youtubei/v1/<XYZ>?key=...`)
     /// - `body`: Serializable request body to be sent in json format
-    /// - `visitor_data`: YouTube visitor data cookie
-    /// - `deobf`: Deobfuscator (is passed to the mapper to deobfuscate stream URLs).
+    /// - `ctx_src`: Context source (additional parameters for fetching and mapping, used to build the MapRespCtx)
     #[allow(clippy::too_many_arguments)]
-    async fn execute_request_deobf<
+    async fn execute_request_ctx<
         R: DeserializeOwned + MapResponse<M> + Debug,
         M,
         B: Serialize + ?Sized,
@@ -1482,24 +1482,24 @@ impl RustyPipeQuery {
         id: &str,
         endpoint: &str,
         body: &B,
-        visitor_data: Option<&str>,
-        deobf: Option<&DeobfData>,
+        ctx_src: MapRespCtxSource<'_>,
     ) -> Result<M, Error> {
         tracing::debug!("getting {}({})", operation, id);
-
-        let request = self
-            .request_builder(ctype, endpoint, visitor_data)
-            .await
-            .json(body)
-            .build()?;
 
         let ctx = MapRespCtx {
             id,
             lang: self.opts.lang,
-            deobf,
-            visitor_data: visitor_data.or(self.opts.visitor_data.as_deref()),
+            deobf: ctx_src.deobf,
+            visitor_data: ctx_src.visitor_data.or(self.opts.visitor_data.as_deref()),
             client_type: ctype,
+            artist: ctx_src.artist,
         };
+
+        let request = self
+            .request_builder(ctype, endpoint, ctx.visitor_data)
+            .await
+            .json(body)
+            .build()?;
 
         let req_res = self.yt_request::<R, M>(&request, &ctx).await?;
 
@@ -1533,7 +1533,7 @@ impl RustyPipeQuery {
                     operation: &format!("{operation}({id})"),
                     error,
                     msgs,
-                    deobf_data: deobf.cloned(),
+                    deobf_data: ctx.deobf.cloned(),
                     http_request: crate::report::HTTPRequest {
                         url: request.url().as_str(),
                         method: request.method().as_str(),
@@ -1587,10 +1587,18 @@ impl RustyPipeQuery {
         endpoint: &str,
         body: &B,
     ) -> Result<M, Error> {
-        self.execute_request_deobf::<R, M, B>(ctype, operation, id, endpoint, body, None, None)
-            .await
+        self.execute_request_ctx::<R, M, B>(
+            ctype,
+            operation,
+            id,
+            endpoint,
+            body,
+            MapRespCtxSource::default(),
+        )
+        .await
     }
 
+    /*
     /// Execute a request to the YouTube API, then map the response.
     ///
     /// Creates a report in case of failure for easy debugging.
@@ -1629,6 +1637,7 @@ impl RustyPipeQuery {
         )
         .await
     }
+    */
 
     /// Execute a request to the YouTube API and return the response string
     ///
@@ -1664,6 +1673,14 @@ struct MapRespCtx<'a> {
     deobf: Option<&'a DeobfData>,
     visitor_data: Option<&'a str>,
     client_type: ClientType,
+    artist: Option<ArtistId>,
+}
+
+#[derive(Default)]
+struct MapRespCtxSource<'a> {
+    visitor_data: Option<&'a str>,
+    deobf: Option<&'a DeobfData>,
+    artist: Option<ArtistId>,
 }
 
 impl<'a> MapRespCtx<'a> {
@@ -1676,6 +1693,16 @@ impl<'a> MapRespCtx<'a> {
             deobf: None,
             visitor_data: None,
             client_type: ClientType::Desktop,
+            artist: None,
+        }
+    }
+}
+
+impl<'a> MapRespCtxSource<'a> {
+    fn visitor_data(visitor_data: &'a str) -> Self {
+        Self {
+            visitor_data: Some(visitor_data),
+            ..Default::default()
         }
     }
 }

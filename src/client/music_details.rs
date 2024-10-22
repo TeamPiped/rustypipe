@@ -16,7 +16,7 @@ use super::{
         self,
         music_item::{map_queue_item, MusicListMapper},
     },
-    ClientType, MapRespCtx, MapResponse, QBrowse, RustyPipeQuery, YTContext,
+    ClientType, MapRespCtx, MapRespCtxSource, MapResponse, QBrowse, RustyPipeQuery, YTContext,
 };
 
 #[derive(Debug, Serialize)]
@@ -134,13 +134,13 @@ impl RustyPipeQuery {
             tuner_setting_value: "AUTOMIX_SETTING_NORMAL",
         };
 
-        self.execute_request_vdata::<response::MusicDetails, _, _>(
+        self.execute_request_ctx::<response::MusicDetails, _, _>(
             ClientType::DesktopMusic,
             "music_radio",
             radio_id,
             "next",
             &request_body,
-            Some(&visitor_data),
+            MapRespCtxSource::visitor_data(&visitor_data),
         )
         .await
     }

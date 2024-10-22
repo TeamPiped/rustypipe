@@ -10,7 +10,9 @@ use crate::model::{
 use crate::serializer::MapResult;
 
 use super::response::music_item::{map_queue_item, MusicListMapper, PlaylistPanelVideo};
-use super::{response, ClientType, MapRespCtx, MapResponse, QContinuation, RustyPipeQuery};
+use super::{
+    response, ClientType, MapRespCtx, MapRespCtxSource, MapResponse, QContinuation, RustyPipeQuery,
+};
 
 impl RustyPipeQuery {
     /// Get more YouTube items from the given continuation token and endpoint
@@ -37,13 +39,13 @@ impl RustyPipeQuery {
             };
 
             let p = self
-                .execute_request_vdata::<response::MusicContinuation, Paginator<MusicItem>, _>(
+                .execute_request_ctx::<response::MusicContinuation, Paginator<MusicItem>, _>(
                     ClientType::DesktopMusic,
                     "music_continuation",
                     ctoken,
                     endpoint.as_str(),
                     &request_body,
-                    Some(&visitor_data),
+                    MapRespCtxSource::visitor_data(&visitor_data),
                 )
                 .await?;
 
@@ -138,7 +140,11 @@ impl MapResponse<Paginator<MusicItem>> for response::MusicContinuation {
         self,
         ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<Paginator<MusicItem>>, ExtractionError> {
-        let mut mapper = MusicListMapper::new(ctx.lang);
+        let mut mapper = if let Some(artist) = &ctx.artist {
+            MusicListMapper::with_artist(ctx.lang, artist.clone())
+        } else {
+            MusicListMapper::new(ctx.lang)
+        };
         let mut continuations = Vec::new();
 
         match self.continuation_contents {
@@ -156,7 +162,11 @@ impl MapResponse<Paginator<MusicItem>> for response::MusicContinuation {
                         response::music_item::ItemSection::MusicCarouselShelfRenderer(shelf) => {
                             mapper.map_response(shelf.contents);
                         }
-                        _ => {}
+                        response::music_item::ItemSection::GridRenderer(mut grid) => {
+                            mapper.map_response(grid.items);
+                            continuations.append(&mut grid.continuations);
+                        }
+                        response::music_item::ItemSection::None => {}
                     }
                 }
             }
@@ -172,6 +182,10 @@ impl MapResponse<Paginator<MusicItem>> for response::MusicContinuation {
                         mapper.add_warnings(&mut track.warnings);
                     }
                 });
+            }
+            Some(response::music_item::ContinuationContents::GridContinuation(mut grid)) => {
+                mapper.map_response(grid.items);
+                continuations.append(&mut grid.continuations);
             }
             None => {}
         }
@@ -257,6 +271,19 @@ impl<T: FromYtItem> Paginator<T> {
         }
         Ok(())
     }
+
+    /// Extend the items of the paginator until the paginator is exhausted.
+    pub async fn extend_all<Q: AsRef<RustyPipeQuery>>(&mut self, query: Q) -> Result<(), Error> {
+        let query = query.as_ref();
+        loop {
+            match self.extend(query).await {
+                Ok(false) => break,
+                Err(e) => return Err(e),
+                _ => {}
+            }
+        }
+        Ok(())
+    }
 }
 
 impl Paginator<Comment> {
@@ -326,6 +353,22 @@ macro_rules! paginator {
             ) -> Result<(), Error> {
                 let query = query.as_ref();
                 while self.items.len() < n_items {
+                    match self.extend(query).await {
+                        Ok(false) => break,
+                        Err(e) => return Err(e),
+                        _ => {}
+                    }
+                }
+                Ok(())
+            }
+
+            /// Extend the items of the paginator until the paginator is exhausted.
+            pub async fn extend_all<Q: AsRef<RustyPipeQuery>>(
+                &mut self,
+                query: Q,
+            ) -> Result<(), Error> {
+                let query = query.as_ref();
+                loop {
                     match self.extend(query).await {
                         Ok(false) => break,
                         Err(e) => return Err(e),

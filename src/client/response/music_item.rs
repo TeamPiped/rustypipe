@@ -335,6 +335,7 @@ pub(crate) enum ContinuationContents {
     MusicShelfContinuation(MusicShelf),
     SectionListContinuation(ContentsRenderer<ItemSection>),
     PlaylistPanelContinuation(PlaylistPanelRenderer),
+    GridContinuation(GridRenderer),
 }
 
 #[derive(Debug, Deserialize)]
@@ -381,11 +382,15 @@ pub(crate) struct Grid {
     pub grid_renderer: GridRenderer,
 }
 
+#[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct GridRenderer {
     pub items: MapResult<Vec<MusicResponseItem>>,
     pub header: Option<GridHeader>,
+    #[serde(default)]
+    #[serde_as(as = "VecSkipError<_>")]
+    pub continuations: Vec<MusicContinuationData>,
 }
 
 #[derive(Debug, Deserialize)]

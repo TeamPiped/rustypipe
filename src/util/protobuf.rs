@@ -1,7 +1,7 @@
 /// [`ProtoBuilder`] is used to construct protobuf messages using a builder pattern
 #[derive(Debug, Default)]
 pub struct ProtoBuilder {
-    pub bytes: Vec<u8>,
+    bytes: Vec<u8>,
 }
 
 impl ProtoBuilder {
@@ -39,6 +39,11 @@ impl ProtoBuilder {
         self._varint(val);
     }
 
+    /// Returns `true` if the builder contains no data
+    pub fn is_empty(&self) -> bool {
+        self.bytes.is_empty()
+    }
+
     /// Write a varint field
     pub fn varint(&mut self, field: u32, val: u64) {
         self._field(field, 0);
@@ -50,6 +55,13 @@ impl ProtoBuilder {
         self._field(field, 2);
         self._varint(string.len() as u64);
         self.bytes.extend_from_slice(string.as_bytes());
+    }
+
+    /// Write a bytes field
+    pub fn bytes(&mut self, field: u32, bytes: &[u8]) {
+        self._field(field, 2);
+        self._varint(bytes.len() as u64);
+        self.bytes.extend_from_slice(bytes);
     }
 
     /// Write an embedded message

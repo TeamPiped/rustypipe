@@ -204,7 +204,7 @@ impl SearchFilter {
         if let Some(sort) = self.sort {
             pb.varint(1, sort as u64);
         }
-        if !filters.bytes.is_empty() {
+        if !filters.is_empty() {
             pb.embedded(2, filters);
         }
         if self.verbatim {

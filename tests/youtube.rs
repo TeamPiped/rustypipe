@@ -5,6 +5,7 @@ use std::fmt::Display;
 use std::str::FromStr;
 
 use rstest::{fixture, rstest};
+use rustypipe::param::{AlbumOrder, LANGUAGES};
 use time::{macros::date, OffsetDateTime};
 
 use rustypipe::client::{ClientType, RustyPipe, RustyPipeQuery};
@@ -1719,7 +1720,11 @@ async fn music_artist(
 
     // Fetch albums seperately
     if name != "no_artist" {
-        let albums = rp.query().music_artist_albums(id).await.unwrap();
+        let albums = rp
+            .query()
+            .music_artist_albums(id, None, Some(AlbumOrder::Recency))
+            .await
+            .unwrap();
         let albums_expect = artist
             .albums
             .iter()
@@ -1758,7 +1763,7 @@ async fn music_artist_not_found(rp: RustyPipe) {
 async fn music_artist_albums_not_found(rp: RustyPipe) {
     let err = rp
         .query()
-        .music_artist_albums("UC7cl4MmM6ZZ2TcFyMk_b4pq")
+        .music_artist_albums("UC7cl4MmM6ZZ2TcFyMk_b4pq", None, None)
         .await
         .unwrap_err();
 
@@ -2636,23 +2641,6 @@ async fn music_genre_not_found(rp: RustyPipe) {
     );
 }
 
-//#AB TESTS
-
-const VISITOR_DATA_SEARCH_CHANNEL_HANDLES: &str = "CgszYlc1Yk1WZGRCSSjrwOSbBg%3D%3D";
-
-#[tokio::test]
-async fn ab3_search_channel_handles() {
-    let rp = rp_visitor_data(VISITOR_DATA_SEARCH_CHANNEL_HANDLES);
-
-    rp.query()
-        .search_filter::<YouTubeItem, _>(
-            "test",
-            &SearchFilter::new().item_type(search_filter::ItemType::Channel),
-        )
-        .await
-        .unwrap();
-}
-
 //#MISCELLANEOUS
 
 #[rstest]
@@ -2674,6 +2662,25 @@ async fn invalid_ctoken(#[case] ep: ContinuationEndpoint, rp: RustyPipe) {
             _ => panic!("invalid error: {e}"),
         },
         _ => panic!("invalid error: {e}"),
+    }
+}
+
+#[rstest]
+#[tokio::test]
+async fn isrc_search_languages(rp: RustyPipe) {
+    for lang in LANGUAGES {
+        let tracks = rp
+            .query()
+            .lang(lang)
+            .music_search_tracks("DEUM71602459")
+            .await
+            .unwrap();
+        let working = tracks.items.items.iter().any(|t| t.id == "g0iRiJ_ck48");
+        assert_eq!(
+            working,
+            !matches!(lang, Language::En | Language::EnGb | Language::EnIn),
+            "lang: {lang}"
+        );
     }
 }
 
@@ -2706,6 +2713,7 @@ fn unlocalized(lang: Language) -> bool {
     lang == Language::En
 }
 
+/*
 /// Get a new RustyPipe instance with pre-set visitor data
 fn rp_visitor_data(vdata: &str) -> RustyPipe {
     RustyPipe::builder()
@@ -2713,7 +2721,7 @@ fn rp_visitor_data(vdata: &str) -> RustyPipe {
         .visitor_data(vdata)
         .build()
         .unwrap()
-}
+}*/
 
 /// Assert equality within 10% margin
 #[track_caller]

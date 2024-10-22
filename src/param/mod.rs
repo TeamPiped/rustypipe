@@ -23,9 +23,10 @@ pub enum ChannelVideoTab {
 }
 
 /// Sort order for channel videos
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+#[derive(Default, Debug, Clone, Copy, PartialEq, Eq)]
 pub enum ChannelOrder {
     /// Order videos with the latest upload date first (default)
+    #[default]
     Latest = 1,
     /// Order videos with the highest number of views first
     Popular = 2,
@@ -42,4 +43,24 @@ impl ChannelVideoTab {
             ChannelVideoTab::Live => 14,
         }
     }
+}
+
+/// Sort order for YTM artist albums
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum AlbumOrder {
+    /// Sort albums by release date
+    Recency = 1,
+    /// Sort albums by popularity
+    Popularity = 2,
+    /// Sort albums by their name
+    Alphabetical = 3,
+}
+
+/// Filter for YTM artist albums
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub enum AlbumFilter {
+    /// Only show albums
+    Albums = 1,
+    /// Only show singles
+    Singles = 2,
 }

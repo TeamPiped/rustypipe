@@ -17,7 +17,7 @@ use super::{
         self,
         music_item::{map_album_type, map_artist_id, map_artists, MusicListMapper},
     },
-    ClientType, MapRespCtx, MapResponse, QBrowse, RustyPipeQuery,
+    ClientType, MapRespCtx, MapRespCtxSource, MapResponse, QBrowse, RustyPipeQuery,
 };
 
 impl RustyPipeQuery {
@@ -42,13 +42,16 @@ impl RustyPipeQuery {
             browse_id: &format!("VL{playlist_id}"),
         };
 
-        self.execute_request_vdata::<response::MusicPlaylist, _, _>(
+        self.execute_request_ctx::<response::MusicPlaylist, _, _>(
             ClientType::DesktopMusic,
             "music_playlist",
             playlist_id,
             "browse",
             &request_body,
-            visitor_data.as_deref(),
+            MapRespCtxSource {
+                visitor_data: visitor_data.as_deref(),
+                ..Default::default()
+            },
         )
         .await
     }

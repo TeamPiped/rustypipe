@@ -5,16 +5,19 @@ use regex::Regex;
 use tracing::debug;
 
 use crate::{
-    client::response::url_endpoint::NavigationEndpoint,
+    client::{response::url_endpoint::NavigationEndpoint, MapRespCtxSource, QContinuation},
     error::{Error, ExtractionError},
-    model::{AlbumItem, ArtistId, MusicArtist},
+    model::{
+        paginator::Paginator, traits::FromYtItem, AlbumItem, ArtistId, MusicArtist, MusicItem,
+    },
+    param::{AlbumFilter, AlbumOrder},
     serializer::MapResult,
-    util,
+    util::{self, ProtoBuilder},
 };
 
 use super::{
     response::{self, music_item::MusicListMapper, url_endpoint::PageType},
-    ClientType, MapRespCtx, MapResponse, QBrowse, RustyPipeQuery,
+    ClientType, MapRespCtx, MapResponse, QBrowse, QBrowseParams, RustyPipeQuery,
 };
 
 impl RustyPipeQuery {
@@ -56,7 +59,9 @@ impl RustyPipeQuery {
                 .await?;
 
             if can_fetch_more {
-                artist.albums = self.music_artist_albums(artist_id).await?;
+                artist.albums = self
+                    .music_artist_albums(artist_id, None, Some(AlbumOrder::Recency))
+                    .await?;
             }
 
             Ok(artist)
@@ -73,21 +78,62 @@ impl RustyPipeQuery {
     }
 
     /// Get a list of all albums of a YouTube Music artist
-    pub async fn music_artist_albums(&self, artist_id: &str) -> Result<Vec<AlbumItem>, Error> {
-        let context = self.get_context(ClientType::DesktopMusic, true, None).await;
-        let request_body = QBrowse {
-            context,
+    pub async fn music_artist_albums(
+        &self,
+        artist_id: &str,
+        filter: Option<AlbumFilter>,
+        order: Option<AlbumOrder>,
+    ) -> Result<Vec<AlbumItem>, Error> {
+        let visitor_data = self.get_visitor_data().await?;
+        let context = self
+            .get_context(ClientType::DesktopMusic, true, Some(&visitor_data))
+            .await;
+        let request_body = QBrowseParams {
+            context: context.clone(),
             browse_id: &format!("{}{}", util::ARTIST_DISCOGRAPHY_PREFIX, artist_id),
+            params: &albums_param(filter, order),
         };
 
-        self.execute_request::<response::MusicArtistAlbums, _, _>(
-            ClientType::DesktopMusic,
-            "music_artist_albums",
-            artist_id,
-            "browse",
-            &request_body,
-        )
-        .await
+        let first_page = self
+            .execute_request_ctx::<response::MusicArtistAlbums, _, _>(
+                ClientType::DesktopMusic,
+                "music_artist_albums",
+                artist_id,
+                "browse",
+                &request_body,
+                MapRespCtxSource::visitor_data(&visitor_data),
+            )
+            .await?;
+
+        let mut albums = first_page.albums;
+        let mut ctoken = first_page.ctoken;
+
+        while let Some(tkn) = &ctoken {
+            let request_body = QContinuation {
+                context: context.clone(),
+                continuation: tkn,
+            };
+            let resp: Paginator<MusicItem> = self
+                .execute_request_ctx::<response::MusicContinuation, Paginator<MusicItem>, _>(
+                    ClientType::DesktopMusic,
+                    "music_artist_albums_cont",
+                    artist_id,
+                    "browse",
+                    &request_body,
+                    MapRespCtxSource {
+                        artist: Some(first_page.artist.clone()),
+                        visitor_data: Some(&visitor_data),
+                        ..Default::default()
+                    },
+                )
+                .await?;
+            if resp.items.is_empty() {
+                tracing::warn!("artist albums [{artist_id}] empty continuation");
+            }
+            ctoken = resp.ctoken;
+            albums.extend(resp.items.into_iter().filter_map(AlbumItem::from_ytm_item));
+        }
+        Ok(albums)
     }
 }
 
@@ -280,11 +326,18 @@ fn map_artist_page(
     })
 }
 
-impl MapResponse<Vec<AlbumItem>> for response::MusicArtistAlbums {
+#[derive(Debug)]
+struct FirstAlbumPage {
+    albums: Vec<AlbumItem>,
+    ctoken: Option<String>,
+    artist: ArtistId,
+}
+
+impl MapResponse<FirstAlbumPage> for response::MusicArtistAlbums {
     fn map_response(
         self,
         ctx: &MapRespCtx<'_>,
-    ) -> Result<MapResult<Vec<AlbumItem>>, ExtractionError> {
+    ) -> Result<MapResult<FirstAlbumPage>, ExtractionError> {
         // dbg!(&self);
 
         let Some(header) = self.header else {
@@ -306,25 +359,53 @@ impl MapResponse<Vec<AlbumItem>> for response::MusicArtistAlbums {
             .section_list_renderer
             .contents;
 
-        let mut mapper = MusicListMapper::with_artist(
-            ctx.lang,
-            ArtistId {
-                id: Some(ctx.id.to_owned()),
-                name: header.music_header_renderer.title,
-            },
-        );
-
+        let artist_id = ArtistId {
+            id: Some(ctx.id.to_owned()),
+            name: header.music_header_renderer.title,
+        };
+        let mut mapper = MusicListMapper::with_artist(ctx.lang, artist_id.clone());
+        let mut ctoken = None;
         for grid in grids {
             mapper.map_response(grid.grid_renderer.items);
+            if ctoken.is_none() {
+                ctoken = grid
+                    .grid_renderer
+                    .continuations
+                    .into_iter()
+                    .next()
+                    .map(|g| g.next_continuation_data.continuation);
+            }
         }
 
         let mapped = mapper.group_items();
 
         Ok(MapResult {
-            c: mapped.c.albums,
+            c: FirstAlbumPage {
+                albums: mapped.c.albums,
+                ctoken,
+                artist: artist_id,
+            },
             warnings: mapped.warnings,
         })
     }
+}
+
+fn albums_param(filter: Option<AlbumFilter>, order: Option<AlbumOrder>) -> String {
+    let mut pb_filter = ProtoBuilder::new();
+    if let Some(filter) = filter {
+        pb_filter.varint(1, filter as u64);
+    }
+    if let Some(order) = order {
+        pb_filter.varint(2, order as u64);
+    }
+    pb_filter.bytes(3, &[1, 2]);
+
+    let mut pb_48 = ProtoBuilder::new();
+    pb_48.embedded(15, pb_filter);
+
+    let mut pb_3 = ProtoBuilder::new();
+    pb_3.embedded(48, pb_48);
+    pb_3.to_base64()
 }
 
 #[cfg(test)]
@@ -366,11 +447,12 @@ mod tests {
         );
         assert_eq!(can_fetch_more, album_page_path.is_some());
 
+        // Album overview
         if let Some(album_page_path) = album_page_path {
             let json_file = File::open(album_page_path).unwrap();
             let resp: response::MusicArtistAlbums =
                 serde_json::from_reader(BufReader::new(json_file)).unwrap();
-            let mut map_res: MapResult<Vec<AlbumItem>> =
+            let map_res: MapResult<FirstAlbumPage> =
                 resp.map_response(&MapRespCtx::test(id)).unwrap();
 
             assert!(
@@ -378,7 +460,29 @@ mod tests {
                 "deserialization/mapping warnings: {:?}",
                 map_res.warnings
             );
-            artist.albums.append(&mut map_res.c);
+            artist.albums = map_res.c.albums;
+
+            // Album overview continuation
+            for i in 2..10 {
+                let cont_path =
+                    path!(*TESTFILES / "music_artist" / format!("artist_{name}_{i}.json"));
+                if !cont_path.is_file() {
+                    break;
+                }
+                let json_file = File::open(cont_path).unwrap();
+                let resp: response::MusicContinuation =
+                    serde_json::from_reader(BufReader::new(json_file)).unwrap();
+                let map_res: MapResult<Paginator<MusicItem>> =
+                    resp.map_response(&MapRespCtx::test(id)).unwrap();
+                assert!(!map_res.c.items.is_empty());
+                artist.albums.extend(
+                    map_res
+                        .c
+                        .items
+                        .into_iter()
+                        .filter_map(AlbumItem::from_ytm_item),
+                );
+            }
         }
 
         insta::assert_ron_snapshot!(format!("map_music_artist_{name}"), artist);

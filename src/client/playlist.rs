@@ -13,7 +13,10 @@ use crate::{
     util::{self, dictionary, timeago, TryRemove},
 };
 
-use super::{response, ClientType, MapRespCtx, MapResponse, MapResult, QBrowse, RustyPipeQuery};
+use super::{
+    response, ClientType, MapRespCtx, MapRespCtxSource, MapResponse, MapResult, QBrowse,
+    RustyPipeQuery,
+};
 
 impl RustyPipeQuery {
     /// Get a YouTube playlist
@@ -34,13 +37,16 @@ impl RustyPipeQuery {
             browse_id: &format!("VL{playlist_id}"),
         };
 
-        self.execute_request_vdata::<response::Playlist, _, _>(
+        self.execute_request_ctx::<response::Playlist, _, _>(
             ClientType::Desktop,
             "playlist",
             playlist_id,
             "browse",
             &request_body,
-            visitor_data.as_deref(),
+            MapRespCtxSource {
+                visitor_data: visitor_data.as_deref(),
+                ..Default::default()
+            },
         )
         .await
     }

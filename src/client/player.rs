@@ -24,7 +24,7 @@ use super::{
         self,
         player::{self, Format},
     },
-    ClientType, MapRespCtx, MapResponse, MapResult, RustyPipeQuery, YTContext,
+    ClientType, MapRespCtx, MapRespCtxSource, MapResponse, MapResult, RustyPipeQuery, YTContext,
     DEFAULT_PLAYER_CLIENT_ORDER,
 };
 
@@ -162,14 +162,16 @@ impl RustyPipeQuery {
             }
         };
 
-        self.execute_request_deobf::<response::Player, _, _>(
+        self.execute_request_ctx::<response::Player, _, _>(
             client_type,
             "player",
             video_id,
             "player",
             &request_body,
-            None,
-            Some(&deobf),
+            MapRespCtxSource {
+                deobf: Some(&deobf),
+                ..Default::default()
+            },
         )
         .await
     }
@@ -763,6 +765,7 @@ mod tests {
                 deobf: Some(&DEOBF_DATA),
                 visitor_data: None,
                 client_type,
+                artist: None,
             })
             .unwrap();
 
