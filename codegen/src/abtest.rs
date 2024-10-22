@@ -6,7 +6,7 @@ use indicatif::{ProgressBar, ProgressStyle};
 use num_enum::TryFromPrimitive;
 use once_cell::sync::Lazy;
 use regex::Regex;
-use rustypipe::client::{ClientType, RustyPipe, RustyPipeQuery, YTContext};
+use rustypipe::client::{ClientType, RustyPipe, RustyPipeQuery};
 use rustypipe::model::{MusicItem, YouTubeItem};
 use rustypipe::param::search_filter::{ItemType, SearchFilter};
 use rustypipe::param::ChannelVideoTab;
@@ -57,7 +57,6 @@ pub struct ABTestRes {
 
 #[derive(Debug, Serialize)]
 struct QVideo<'a> {
-    context: YTContext<'a>,
     video_id: &'a str,
     content_check_ok: bool,
     racy_check_ok: bool,
@@ -66,7 +65,6 @@ struct QVideo<'a> {
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 struct QBrowse<'a> {
-    context: YTContext<'a>,
     browse_id: &'a str,
     #[serde(skip_serializing_if = "Option::is_none")]
     params: Option<&'a str>,
@@ -153,9 +151,7 @@ pub async fn run_all_tests(n: usize, concurrency: usize) -> Vec<ABTestRes> {
 }
 
 pub async fn attributed_text_description(rp: &RustyPipeQuery) -> Result<bool> {
-    let context = rp.get_context(ClientType::Desktop, true, None).await;
     let q = QVideo {
-        context,
         video_id: "ZeerrnuLi5E",
         content_check_ok: false,
         racy_check_ok: false,
@@ -190,13 +186,11 @@ pub async fn channel_handles_in_search_results(rp: &RustyPipeQuery) -> Result<bo
 }
 
 pub async fn trends_video_tab(rp: &RustyPipeQuery) -> Result<bool> {
-    let context = rp.get_context(ClientType::Desktop, true, None).await;
     let res = rp
         .raw(
             ClientType::Desktop,
             "browse",
             &QBrowse {
-                context,
                 browse_id: "FEtrending",
                 params: None,
             },
@@ -207,13 +201,11 @@ pub async fn trends_video_tab(rp: &RustyPipeQuery) -> Result<bool> {
 }
 
 pub async fn trends_page_header_renderer(rp: &RustyPipeQuery) -> Result<bool> {
-    let context = rp.get_context(ClientType::Desktop, true, None).await;
     let res = rp
         .raw(
             ClientType::Desktop,
             "browse",
             &QBrowse {
-                context,
                 browse_id: "FEtrending",
                 params: None,
             },
@@ -237,7 +229,6 @@ pub async fn discography_page(rp: &RustyPipeQuery) -> Result<bool> {
             ClientType::DesktopMusic,
             "browse",
             &QBrowse {
-                context: rp.get_context(ClientType::DesktopMusic, true, None).await,
                 browse_id: id,
                 params: None,
             },
@@ -301,7 +292,6 @@ pub async fn channel_about_modal(rp: &RustyPipeQuery) -> Result<bool> {
             ClientType::Desktop,
             "browse",
             &QBrowse {
-                context: rp.get_context(ClientType::Desktop, true, None).await,
                 browse_id: id,
                 params: None,
             },
@@ -317,7 +307,6 @@ pub async fn like_button_viewmodel(rp: &RustyPipeQuery) -> Result<bool> {
             ClientType::Desktop,
             "next",
             &QVideo {
-                context: rp.get_context(ClientType::Desktop, true, None).await,
                 video_id: "ZeerrnuLi5E",
                 content_check_ok: true,
                 racy_check_ok: true,
@@ -341,7 +330,6 @@ pub async fn music_playlist_two_column(rp: &RustyPipeQuery) -> Result<bool> {
             ClientType::DesktopMusic,
             "browse",
             &QBrowse {
-                context: rp.get_context(ClientType::DesktopMusic, true, None).await,
                 browse_id: id,
                 params: None,
             },
@@ -355,14 +343,7 @@ pub async fn comments_framework_update(rp: &RustyPipeQuery) -> Result<bool> {
     let continuation =
         "Eg0SC3dMZHBSN2d1S3k4GAYyJSIRIgt3TGRwUjdndUt5ODAAeAJCEGNvbW1lbnRzLXNlY3Rpb24%3D";
     let res = rp
-        .raw(
-            ClientType::Desktop,
-            "next",
-            &QCont {
-                context: rp.get_context(ClientType::Desktop, true, None).await,
-                continuation,
-            },
-        )
+        .raw(ClientType::Desktop, "next", &QCont { continuation })
         .await
         .unwrap();
     Ok(res.contains("\"frameworkUpdates\""))
@@ -375,7 +356,6 @@ pub async fn channel_shorts_lockup(rp: &RustyPipeQuery) -> Result<bool> {
             ClientType::Desktop,
             "browse",
             &QBrowse {
-                context: rp.get_context(ClientType::Desktop, true, None).await,
                 browse_id: id,
                 params: Some("EgZzaG9ydHPyBgUKA5oBAA%3D%3D"),
             },
@@ -392,7 +372,6 @@ pub async fn playlist_page_header_renderer(rp: &RustyPipeQuery) -> Result<bool> 
             ClientType::Desktop,
             "browse",
             &QBrowse {
-                context: rp.get_context(ClientType::Desktop, true, None).await,
                 browse_id: id,
                 params: None,
             },

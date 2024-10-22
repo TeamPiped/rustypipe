@@ -95,11 +95,7 @@ struct HeaderRenderer {
 }
 
 async fn get_album_type(query: &RustyPipeQuery, id: &str) -> String {
-    let context = query
-        .get_context(ClientType::DesktopMusic, true, None)
-        .await;
     let body = QBrowse {
-        context,
         browse_id: id,
         params: None,
     };

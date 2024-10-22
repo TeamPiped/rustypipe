@@ -1,7 +1,7 @@
 use std::collections::BTreeMap;
 
 use ordered_hash_map::OrderedHashMap;
-use rustypipe::{client::YTContext, model::AlbumType, param::Language};
+use rustypipe::{model::AlbumType, param::Language};
 use serde::{Deserialize, Serialize};
 use serde_with::{serde_as, DefaultOnError, VecSkipError};
 
@@ -116,7 +116,6 @@ pub enum ExtItemType {
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct QBrowse<'a> {
-    pub context: YTContext<'a>,
     pub browse_id: &'a str,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub params: Option<&'a str>,
@@ -125,7 +124,6 @@ pub struct QBrowse<'a> {
 #[derive(Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct QCont<'a> {
-    pub context: YTContext<'a>,
     pub continuation: &'a str,
 }
 

@@ -12,12 +12,11 @@ use crate::{
     param::search_filter::SearchFilter,
 };
 
-use super::{response, ClientType, MapRespCtx, MapResponse, MapResult, RustyPipeQuery, YTContext};
+use super::{response, ClientType, MapRespCtx, MapResponse, MapResult, RustyPipeQuery};
 
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 struct QSearch<'a> {
-    context: YTContext<'a>,
     query: &'a str,
     params: &'a str,
 }
@@ -30,9 +29,7 @@ impl RustyPipeQuery {
         query: S,
     ) -> Result<SearchResult<T>, Error> {
         let query = query.as_ref();
-        let context = self.get_context(ClientType::Desktop, true, None).await;
         let request_body = QSearch {
-            context,
             query,
             params: "8AEB",
         };
@@ -55,9 +52,7 @@ impl RustyPipeQuery {
         filter: &SearchFilter,
     ) -> Result<SearchResult<T>, Error> {
         let query = query.as_ref();
-        let context = self.get_context(ClientType::Desktop, true, None).await;
         let request_body = QSearch {
-            context,
             query,
             params: &filter.encode(),
         };

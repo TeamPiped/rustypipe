@@ -16,14 +16,11 @@ use crate::{
     util::{self, timeago, ProtoBuilder},
 };
 
-use super::{
-    response, ClientType, MapRespCtx, MapResponse, QContinuation, RustyPipeQuery, YTContext,
-};
+use super::{response, ClientType, MapRespCtx, MapResponse, QContinuation, RustyPipeQuery};
 
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 struct QChannel<'a> {
-    context: YTContext<'a>,
     browse_id: &'a str,
     params: ChannelTab,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -63,9 +60,7 @@ impl RustyPipeQuery {
         operation: &str,
     ) -> Result<Channel<Paginator<VideoItem>>, Error> {
         let channel_id = channel_id.as_ref();
-        let context = self.get_context(ClientType::Desktop, true, None).await;
         let request_body = QChannel {
-            context,
             browse_id: channel_id,
             params,
             query,
@@ -125,12 +120,10 @@ impl RustyPipeQuery {
         tab: ChannelVideoTab,
         order: ChannelOrder,
     ) -> Result<Paginator<VideoItem>, Error> {
-        let visitor_data = Some(self.get_visitor_data().await?);
-
         self.continuation(
             order_ctoken(channel_id.as_ref(), tab, order, &random_target()),
             ContinuationEndpoint::Browse,
-            visitor_data.as_deref(),
+            None,
         )
         .await
     }
@@ -158,9 +151,7 @@ impl RustyPipeQuery {
         channel_id: S,
     ) -> Result<Channel<Paginator<PlaylistItem>>, Error> {
         let channel_id = channel_id.as_ref();
-        let context = self.get_context(ClientType::Desktop, true, None).await;
         let request_body = QChannel {
-            context,
             browse_id: channel_id,
             params: ChannelTab::Playlists,
             query: None,
@@ -183,9 +174,7 @@ impl RustyPipeQuery {
         channel_id: S,
     ) -> Result<ChannelInfo, Error> {
         let channel_id = channel_id.as_ref();
-        let context = self.get_context(ClientType::Desktop, false, None).await;
         let request_body = QContinuation {
-            context,
             continuation: &channel_info_ctoken(channel_id, &random_target()),
         };
 

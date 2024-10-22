@@ -15,12 +15,11 @@ use crate::{
     serializer::MapResult,
 };
 
-use super::{response, ClientType, MapRespCtx, MapResponse, RustyPipeQuery, YTContext};
+use super::{response, ClientType, MapRespCtx, MapResponse, RustyPipeQuery};
 
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 struct QSearch<'a> {
-    context: YTContext<'a>,
     query: &'a str,
     #[serde(skip_serializing_if = "Option::is_none")]
     params: Option<&'a str>,
@@ -29,7 +28,6 @@ struct QSearch<'a> {
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 struct QSearchSuggestion<'a> {
-    context: YTContext<'a>,
     input: &'a str,
 }
 
@@ -44,9 +42,7 @@ impl RustyPipeQuery {
         filter: Option<MusicSearchFilter>,
     ) -> Result<MusicSearchResult<T>, Error> {
         let query = query.as_ref();
-        let context = self.get_context(ClientType::DesktopMusic, true, None).await;
         let request_body = QSearch {
-            context,
             query,
             params: filter.map(MusicSearchFilter::params),
         };
@@ -132,11 +128,7 @@ impl RustyPipeQuery {
         query: S,
     ) -> Result<MusicSearchSuggestion, Error> {
         let query = query.as_ref();
-        let context = self.get_context(ClientType::DesktopMusic, true, None).await;
-        let request_body = QSearchSuggestion {
-            context,
-            input: query,
-        };
+        let request_body = QSearchSuggestion { input: query };
 
         self.execute_request::<response::MusicSearchSuggestion, _, _>(
             ClientType::DesktopMusic,

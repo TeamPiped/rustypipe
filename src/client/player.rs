@@ -24,14 +24,13 @@ use super::{
         self,
         player::{self, Format},
     },
-    ClientType, MapRespCtx, MapRespCtxSource, MapResponse, MapResult, RustyPipeQuery, YTContext,
+    ClientType, MapRespCtx, MapRespCtxSource, MapResponse, MapResult, RustyPipeQuery,
     DEFAULT_PLAYER_CLIENT_ORDER,
 };
 
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 struct QPlayer<'a> {
-    context: YTContext<'a>,
     /// Website playback context
     #[serde(skip_serializing_if = "Option::is_none")]
     playback_context: Option<QPlaybackContext<'a>>,
@@ -124,16 +123,10 @@ impl RustyPipeQuery {
         client_type: ClientType,
     ) -> Result<VideoPlayer, Error> {
         let video_id = video_id.as_ref();
-        // let vdata = self.get_visitor_data().await?;
-        let (context, deobf) = tokio::join!(
-            self.get_context(client_type, false, None),
-            self.client.get_deobf_data()
-        );
-        let deobf = deobf?;
+        let deobf = self.client.get_deobf_data().await?;
 
         let request_body = if client_type.is_web() {
             QPlayer {
-                context,
                 playback_context: Some(QPlaybackContext {
                     content_playback_context: QContentPlaybackContext {
                         signature_timestamp: &deobf.sts,
@@ -148,7 +141,6 @@ impl RustyPipeQuery {
             }
         } else {
             QPlayer {
-                context,
                 playback_context: None,
                 cpn: Some(util::generate_content_playback_nonce()),
                 video_id,

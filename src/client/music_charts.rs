@@ -11,13 +11,12 @@ use crate::{
 
 use super::{
     response::{self, music_item::MusicListMapper, url_endpoint::MusicPageType},
-    ClientType, MapRespCtx, MapResponse, RustyPipeQuery, YTContext,
+    ClientType, MapRespCtx, MapResponse, RustyPipeQuery,
 };
 
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 struct QCharts<'a> {
-    context: YTContext<'a>,
     browse_id: &'a str,
     params: &'a str,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -34,9 +33,7 @@ impl RustyPipeQuery {
     /// Get the YouTube Music charts for a given country
     #[tracing::instrument(skip(self), level = "error")]
     pub async fn music_charts(&self, country: Option<Country>) -> Result<MusicCharts, Error> {
-        let context = self.get_context(ClientType::DesktopMusic, true, None).await;
         let request_body = QCharts {
-            context,
             browse_id: "FEmusic_charts",
             params: "sgYPRkVtdXNpY19leHBsb3Jl",
             form_data: country.map(|c| FormData {

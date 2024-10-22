@@ -96,7 +96,7 @@ impl ClientType {
 /// YouTube context request parameter
 #[derive(Clone, Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
-pub struct YTContext<'a> {
+struct YTContext<'a> {
     client: ClientInfo<'a>,
     /// only used on desktop
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -119,8 +119,7 @@ struct ClientInfo<'a> {
     platform: &'a str,
     #[serde(skip_serializing_if = "Option::is_none")]
     original_url: Option<&'a str>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    visitor_data: Option<&'a str>,
+    visitor_data: &'a str,
     hl: Language,
     gl: Country,
     time_zone: &'a str,
@@ -136,7 +135,7 @@ impl Default for ClientInfo<'_> {
             device_model: None,
             platform: "",
             original_url: None,
-            visitor_data: None,
+            visitor_data: "",
             hl: Language::En,
             gl: Country::Us,
             time_zone: "UTC",
@@ -174,16 +173,21 @@ struct ThirdParty<'a> {
 }
 
 #[derive(Debug, Serialize)]
+struct QBody<'a, T> {
+    context: YTContext<'a>,
+    #[serde(flatten)]
+    body: T,
+}
+
+#[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 struct QBrowse<'a> {
-    context: YTContext<'a>,
     browse_id: &'a str,
 }
 
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 struct QBrowseParams<'a> {
-    context: YTContext<'a>,
     browse_id: &'a str,
     params: &'a str,
 }
@@ -191,7 +195,6 @@ struct QBrowseParams<'a> {
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
 struct QContinuation<'a> {
-    context: YTContext<'a>,
     continuation: &'a str,
 }
 
@@ -1126,18 +1129,17 @@ impl RustyPipeQuery {
     /// # Parameters
     /// - `ctype`: Client type (`Desktop`, `DesktopMusic`, `Android`, ...)
     /// - `localized`: Whether to include the configured language and country
-    pub async fn get_context<'a>(
+    async fn get_context<'a>(
         &'a self,
         ctype: ClientType,
         localized: bool,
-        visitor_data: Option<&'a str>,
+        visitor_data: &'a str,
     ) -> YTContext {
         let (hl, gl) = if localized {
             (self.opts.lang, self.opts.country)
         } else {
             (Language::En, Country::Us)
         };
-        let visitor_data = visitor_data.or(self.opts.visitor_data.as_deref());
 
         match ctype {
             ClientType::Desktop => YTContext {
@@ -1451,11 +1453,22 @@ impl RustyPipeQuery {
     ) -> Result<M, Error> {
         tracing::debug!("getting {}({})", operation, id);
 
+        let visitor_data = ctx_src
+            .visitor_data
+            .or(self.opts.visitor_data.as_deref())
+            .map(Cow::Borrowed)
+            .unwrap_or_else(|| util::random_visitor_data(self.opts.country).into());
+
+        let context = self
+            .get_context(ctype, !ctx_src.unlocalized, &visitor_data)
+            .await;
+        let req_body = QBody { context, body };
+
         let ctx = MapRespCtx {
             id,
             lang: self.opts.lang,
             deobf: ctx_src.deobf,
-            visitor_data: ctx_src.visitor_data.or(self.opts.visitor_data.as_deref()),
+            visitor_data: Some(&visitor_data),
             client_type: ctype,
             artist: ctx_src.artist,
         };
@@ -1463,7 +1476,7 @@ impl RustyPipeQuery {
         let request = self
             .request_builder(ctype, endpoint, ctx.visitor_data)
             .await
-            .json(body)
+            .json(&req_body)
             .build()?;
 
         let req_res = self.yt_request::<R, M>(&request, &ctx).await?;
@@ -1563,47 +1576,6 @@ impl RustyPipeQuery {
         .await
     }
 
-    /*
-    /// Execute a request to the YouTube API, then map the response.
-    ///
-    /// Creates a report in case of failure for easy debugging.
-    ///
-    /// # Parameters
-    /// - `ctype`: Client type (`Desktop`, `DesktopMusic`, `Android`, ...)
-    /// - `operation`: Name of the RustyPipe operation (only for reporting, e.g. `get_player`)
-    /// - `id`: ID of the requested entity (Video ID, Channel ID, ...).
-    ///   The ID is included in reports and is also passed to the mapper for validating the response.
-    ///   Set it to an empty string if you are not requesting an entity with an ID.
-    /// - `method`: HTTP method
-    /// - `endpoint`: YouTube API endpoint (`https://www.youtube.com/youtubei/v1/<XYZ>?key=...`)
-    /// - `body`: Serializable request body to be sent in json format
-    /// - `visitor_data`: YouTube visitor data cookie
-    async fn execute_request_vdata<
-        R: DeserializeOwned + MapResponse<M> + Debug,
-        M,
-        B: Serialize + ?Sized,
-    >(
-        &self,
-        ctype: ClientType,
-        operation: &str,
-        id: &str,
-        endpoint: &str,
-        body: &B,
-        visitor_data: Option<&str>,
-    ) -> Result<M, Error> {
-        self.execute_request_deobf::<R, M, B>(
-            ctype,
-            operation,
-            id,
-            endpoint,
-            body,
-            visitor_data,
-            None,
-        )
-        .await
-    }
-    */
-
     /// Execute a request to the YouTube API and return the response string
     ///
     /// # Parameters
@@ -1616,10 +1588,20 @@ impl RustyPipeQuery {
         endpoint: &str,
         body: &B,
     ) -> Result<String, Error> {
+        let visitor_data = self
+            .opts
+            .visitor_data
+            .as_deref()
+            .map(Cow::Borrowed)
+            .unwrap_or_else(|| util::random_visitor_data(self.opts.country).into());
+
+        let context = self.get_context(ctype, true, &visitor_data).await;
+        let req_body = QBody { context, body };
+
         let request = self
             .request_builder(ctype, endpoint, None)
             .await
-            .json(body)
+            .json(&req_body)
             .build()?;
 
         self.client.http_request_txt(&request).await
@@ -1646,6 +1628,7 @@ struct MapRespCtxSource<'a> {
     visitor_data: Option<&'a str>,
     deobf: Option<&'a DeobfData>,
     artist: Option<ArtistId>,
+    unlocalized: bool,
 }
 
 impl<'a> MapRespCtx<'a> {
@@ -1659,15 +1642,6 @@ impl<'a> MapRespCtx<'a> {
             visitor_data: None,
             client_type: ClientType::Desktop,
             artist: None,
-        }
-    }
-}
-
-impl<'a> MapRespCtxSource<'a> {
-    fn visitor_data(visitor_data: &'a str) -> Self {
-        Self {
-            visitor_data: Some(visitor_data),
-            ..Default::default()
         }
     }
 }

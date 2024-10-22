@@ -1,4 +1,3 @@
-use std::borrow::Cow;
 use std::fmt::Debug;
 
 use crate::error::{Error, ExtractionError};
@@ -25,16 +24,7 @@ impl RustyPipeQuery {
     ) -> Result<Paginator<T>, Error> {
         let ctoken = ctoken.as_ref();
         if endpoint.is_music() {
-            // Visitor data is required for YTM continuations
-            let visitor_data = match visitor_data {
-                Some(vd) => Cow::Borrowed(vd),
-                None => Cow::Owned(self.get_visitor_data().await?),
-            };
-            let context = self
-                .get_context(ClientType::DesktopMusic, true, Some(&visitor_data))
-                .await;
             let request_body = QContinuation {
-                context,
                 continuation: ctoken,
             };
 
@@ -45,59 +35,60 @@ impl RustyPipeQuery {
                     ctoken,
                     endpoint.as_str(),
                     &request_body,
-                    MapRespCtxSource::visitor_data(&visitor_data),
+                    MapRespCtxSource {
+                        visitor_data,
+                        ..Default::default()
+                    },
                 )
                 .await?;
 
-            Ok(map_ytm_paginator(p, Some(&visitor_data), endpoint))
+            Ok(map_ytm_paginator(p, endpoint))
         } else {
-            let context = self
-                .get_context(ClientType::Desktop, true, visitor_data)
-                .await;
             let request_body = QContinuation {
-                context,
                 continuation: ctoken,
             };
 
             let p = self
-                .execute_request::<response::Continuation, Paginator<YouTubeItem>, _>(
+                .execute_request_ctx::<response::Continuation, Paginator<YouTubeItem>, _>(
                     ClientType::Desktop,
                     "continuation",
                     ctoken,
                     endpoint.as_str(),
                     &request_body,
+                    MapRespCtxSource {
+                        visitor_data,
+                        ..Default::default()
+                    },
                 )
                 .await?;
 
-            Ok(map_yt_paginator(p, visitor_data, endpoint))
+            Ok(map_yt_paginator(p, endpoint))
         }
     }
 }
 
 fn map_yt_paginator<T: FromYtItem>(
     p: Paginator<YouTubeItem>,
-    visitor_data: Option<&str>,
     endpoint: ContinuationEndpoint,
 ) -> Paginator<T> {
     Paginator {
         count: p.count,
         items: p.items.into_iter().filter_map(T::from_yt_item).collect(),
         ctoken: p.ctoken,
-        visitor_data: visitor_data.map(str::to_owned),
+        visitor_data: p.visitor_data,
         endpoint,
     }
 }
 
 fn map_ytm_paginator<T: FromYtItem>(
     p: Paginator<MusicItem>,
-    visitor_data: Option<&str>,
     endpoint: ContinuationEndpoint,
 ) -> Paginator<T> {
     Paginator {
         count: p.count,
         items: p.items.into_iter().filter_map(T::from_ytm_item).collect(),
         ctoken: p.ctoken,
-        visitor_data: visitor_data.map(str::to_owned),
+        visitor_data: p.visitor_data,
         endpoint,
     }
 }
@@ -430,7 +421,7 @@ mod tests {
         let map_res: MapResult<Paginator<YouTubeItem>> =
             items.map_response(&MapRespCtx::test("")).unwrap();
         let paginator: Paginator<VideoItem> =
-            map_yt_paginator(map_res.c, None, ContinuationEndpoint::Browse);
+            map_yt_paginator(map_res.c, ContinuationEndpoint::Browse);
 
         assert!(
             map_res.warnings.is_empty(),
@@ -453,7 +444,7 @@ mod tests {
         let map_res: MapResult<Paginator<YouTubeItem>> =
             items.map_response(&MapRespCtx::test("")).unwrap();
         let paginator: Paginator<PlaylistItem> =
-            map_yt_paginator(map_res.c, None, ContinuationEndpoint::Browse);
+            map_yt_paginator(map_res.c, ContinuationEndpoint::Browse);
 
         assert!(
             map_res.warnings.is_empty(),
@@ -476,7 +467,7 @@ mod tests {
         let map_res: MapResult<Paginator<MusicItem>> =
             items.map_response(&MapRespCtx::test("")).unwrap();
         let paginator: Paginator<TrackItem> =
-            map_ytm_paginator(map_res.c, None, ContinuationEndpoint::MusicBrowse);
+            map_ytm_paginator(map_res.c, ContinuationEndpoint::MusicBrowse);
 
         assert!(
             map_res.warnings.is_empty(),
@@ -497,7 +488,7 @@ mod tests {
         let map_res: MapResult<Paginator<MusicItem>> =
             items.map_response(&MapRespCtx::test("")).unwrap();
         let paginator: Paginator<MusicPlaylistItem> =
-            map_ytm_paginator(map_res.c, None, ContinuationEndpoint::MusicBrowse);
+            map_ytm_paginator(map_res.c, ContinuationEndpoint::MusicBrowse);
 
         assert!(
             map_res.warnings.is_empty(),

@@ -13,9 +13,7 @@ impl RustyPipeQuery {
     /// Get the new albums that were released on YouTube Music
     #[tracing::instrument(skip(self), level = "error")]
     pub async fn music_new_albums(&self) -> Result<Vec<AlbumItem>, Error> {
-        let context = self.get_context(ClientType::DesktopMusic, true, None).await;
         let request_body = QBrowse {
-            context,
             browse_id: "FEmusic_new_releases_albums",
         };
 
@@ -32,9 +30,7 @@ impl RustyPipeQuery {
     /// Get the new music videos that were released on YouTube Music
     #[tracing::instrument(skip(self), level = "error")]
     pub async fn music_new_videos(&self) -> Result<Vec<TrackItem>, Error> {
-        let context = self.get_context(ClientType::DesktopMusic, true, None).await;
         let request_body = QBrowse {
-            context,
             browse_id: "FEmusic_new_releases_videos",
         };
 

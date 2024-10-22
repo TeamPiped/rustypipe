@@ -12,9 +12,7 @@ impl RustyPipeQuery {
     /// Get the videos from the YouTube trending page
     #[tracing::instrument(skip(self), level = "error")]
     pub async fn trending(&self) -> Result<Vec<VideoItem>, Error> {
-        let context = self.get_context(ClientType::Desktop, true, None).await;
         let request_body = QBrowseParams {
-            context,
             browse_id: "FEtrending",
             params: "4gIOGgxtb3N0X3BvcHVsYXI%3D",
         };

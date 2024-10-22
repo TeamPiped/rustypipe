@@ -15,12 +15,11 @@ use crate::{
 
 use super::{
     response::{self, video_details::Payload, IconType},
-    ClientType, MapRespCtx, MapResponse, QContinuation, RustyPipeQuery, YTContext,
+    ClientType, MapRespCtx, MapResponse, QContinuation, RustyPipeQuery,
 };
 
 #[derive(Debug, Serialize)]
 struct QVideo<'a> {
-    context: YTContext<'a>,
     /// YouTube video ID
     video_id: &'a str,
     /// Set to true to allow extraction of streams with sensitive content
@@ -37,9 +36,7 @@ impl RustyPipeQuery {
         video_id: S,
     ) -> Result<VideoDetails, Error> {
         let video_id = video_id.as_ref();
-        let context = self.get_context(ClientType::Desktop, true, None).await;
         let request_body = QVideo {
-            context,
             video_id,
             content_check_ok: true,
             racy_check_ok: true,
@@ -63,11 +60,7 @@ impl RustyPipeQuery {
         visitor_data: Option<&str>,
     ) -> Result<Paginator<Comment>, Error> {
         let ctoken = ctoken.as_ref();
-        let context = self
-            .get_context(ClientType::Desktop, true, visitor_data)
-            .await;
         let request_body = QContinuation {
-            context,
             continuation: ctoken,
         };
 

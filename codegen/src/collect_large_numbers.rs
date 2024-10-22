@@ -350,7 +350,6 @@ async fn get_channel(query: &RustyPipeQuery, channel_id: &str) -> Result<Channel
             ClientType::Desktop,
             "browse",
             &QBrowse {
-                context: query.get_context(ClientType::Desktop, true, None).await,
                 browse_id: channel_id,
                 params: Some("EgZ2aWRlb3MYASAAMAE"),
             },
@@ -392,7 +391,6 @@ async fn get_channel(query: &RustyPipeQuery, channel_id: &str) -> Result<Channel
                 ClientType::Desktop,
                 "browse",
                 &QCont {
-                    context: query.get_context(ClientType::Desktop, true, None).await,
                     continuation: &popular_token,
                 },
             )
@@ -431,9 +429,6 @@ async fn music_channel_subscribers(query: &RustyPipeQuery, channel_id: &str) -> 
             ClientType::DesktopMusic,
             "browse",
             &QBrowse {
-                context: query
-                    .get_context(ClientType::DesktopMusic, true, None)
-                    .await,
                 browse_id: channel_id,
                 params: None,
             },

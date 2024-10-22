@@ -13,40 +13,23 @@ use crate::{
     util::{self, dictionary, timeago, TryRemove},
 };
 
-use super::{
-    response, ClientType, MapRespCtx, MapRespCtxSource, MapResponse, MapResult, QBrowse,
-    RustyPipeQuery,
-};
+use super::{response, ClientType, MapRespCtx, MapResponse, MapResult, QBrowse, RustyPipeQuery};
 
 impl RustyPipeQuery {
     /// Get a YouTube playlist
     #[tracing::instrument(skip(self), level = "error")]
     pub async fn playlist<S: AsRef<str> + Debug>(&self, playlist_id: S) -> Result<Playlist, Error> {
         let playlist_id = playlist_id.as_ref();
-        // YTM playlists require visitor data for continuations to work
-        let visitor_data: Option<String> = if playlist_id.starts_with("RD") {
-            Some(self.get_visitor_data().await?)
-        } else {
-            None
-        };
-        let context = self
-            .get_context(ClientType::Desktop, true, visitor_data.as_deref())
-            .await;
         let request_body = QBrowse {
-            context,
             browse_id: &format!("VL{playlist_id}"),
         };
 
-        self.execute_request_ctx::<response::Playlist, _, _>(
+        self.execute_request::<response::Playlist, _, _>(
             ClientType::Desktop,
             "playlist",
             playlist_id,
             "browse",
             &request_body,
-            MapRespCtxSource {
-                visitor_data: visitor_data.as_deref(),
-                ..Default::default()
-            },
         )
         .await
     }

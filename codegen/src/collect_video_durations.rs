@@ -270,7 +270,6 @@ async fn get_channel_vlengths(
             ClientType::Desktop,
             "browse",
             &QBrowse {
-                context: query.get_context(ClientType::Desktop, true, None).await,
                 browse_id: channel_id,
                 params: Some("EgZ2aWRlb3MYASAAMAE"),
             },

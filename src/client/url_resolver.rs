@@ -11,13 +11,12 @@ use crate::{
 
 use super::{
     response::{self, url_endpoint::NavigationEndpoint},
-    ClientType, MapRespCtx, MapResponse, RustyPipeQuery, YTContext,
+    ClientType, MapRespCtx, MapResponse, RustyPipeQuery,
 };
 
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
-struct QResolveUrl<'a> {
-    context: YTContext<'a>,
+struct QResolveUrl {
     url: String,
 }
 
@@ -299,9 +298,7 @@ impl RustyPipeQuery {
         url_path: &str,
         ctype: ClientType,
     ) -> Result<UrlTarget, Error> {
-        let context = self.get_context(ctype, true, None).await;
         let request_body = QResolveUrl {
-            context,
             url: format!(
                 "https://{}.youtube.com{}",
                 match ctype {

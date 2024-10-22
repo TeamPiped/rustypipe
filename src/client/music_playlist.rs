@@ -17,7 +17,7 @@ use super::{
         self,
         music_item::{map_album_type, map_artist_id, map_artists, MusicListMapper},
     },
-    ClientType, MapRespCtx, MapRespCtxSource, MapResponse, QBrowse, RustyPipeQuery,
+    ClientType, MapRespCtx, MapResponse, QBrowse, RustyPipeQuery,
 };
 
 impl RustyPipeQuery {
@@ -28,30 +28,16 @@ impl RustyPipeQuery {
         playlist_id: S,
     ) -> Result<MusicPlaylist, Error> {
         let playlist_id = playlist_id.as_ref();
-        // YTM playlists require visitor data for continuations to work
-        let visitor_data = if playlist_id.starts_with("RD") {
-            Some(self.get_visitor_data().await?)
-        } else {
-            None
-        };
-        let context = self
-            .get_context(ClientType::DesktopMusic, true, visitor_data.as_deref())
-            .await;
         let request_body = QBrowse {
-            context,
             browse_id: &format!("VL{playlist_id}"),
         };
 
-        self.execute_request_ctx::<response::MusicPlaylist, _, _>(
+        self.execute_request::<response::MusicPlaylist, _, _>(
             ClientType::DesktopMusic,
             "music_playlist",
             playlist_id,
             "browse",
             &request_body,
-            MapRespCtxSource {
-                visitor_data: visitor_data.as_deref(),
-                ..Default::default()
-            },
         )
         .await
     }
@@ -63,9 +49,7 @@ impl RustyPipeQuery {
         album_id: S,
     ) -> Result<MusicAlbum, Error> {
         let album_id = album_id.as_ref();
-        let context = self.get_context(ClientType::DesktopMusic, true, None).await;
         let request_body = QBrowse {
-            context,
             browse_id: album_id,
         };
 

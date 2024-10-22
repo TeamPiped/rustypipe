@@ -15,9 +15,7 @@ impl RustyPipeQuery {
     /// Get a list of moods and genres from YouTube Music
     #[tracing::instrument(skip(self), level = "error")]
     pub async fn music_genres(&self) -> Result<Vec<MusicGenreItem>, Error> {
-        let context = self.get_context(ClientType::DesktopMusic, true, None).await;
         let request_body = QBrowse {
-            context,
             browse_id: "FEmusic_moods_and_genres",
         };
 
@@ -38,9 +36,7 @@ impl RustyPipeQuery {
         genre_id: S,
     ) -> Result<MusicGenre, Error> {
         let genre_id = genre_id.as_ref();
-        let context = self.get_context(ClientType::DesktopMusic, true, None).await;
         let request_body = QBrowseParams {
-            context,
             browse_id: "FEmusic_moods_and_genres_category",
             params: genre_id,
         };

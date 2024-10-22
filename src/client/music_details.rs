@@ -16,12 +16,11 @@ use super::{
         self,
         music_item::{map_queue_item, MusicListMapper},
     },
-    ClientType, MapRespCtx, MapRespCtxSource, MapResponse, QBrowse, RustyPipeQuery, YTContext,
+    ClientType, MapRespCtx, MapResponse, QBrowse, RustyPipeQuery,
 };
 
 #[derive(Debug, Serialize)]
 struct QMusicDetails<'a> {
-    context: YTContext<'a>,
     video_id: &'a str,
     enable_persistent_playlist_panel: bool,
     is_audio_only: bool,
@@ -30,7 +29,6 @@ struct QMusicDetails<'a> {
 
 #[derive(Debug, Serialize)]
 struct QRadio<'a> {
-    context: YTContext<'a>,
     playlist_id: &'a str,
     params: &'a str,
     enable_persistent_playlist_panel: bool,
@@ -46,9 +44,7 @@ impl RustyPipeQuery {
         video_id: S,
     ) -> Result<TrackDetails, Error> {
         let video_id = video_id.as_ref();
-        let context = self.get_context(ClientType::DesktopMusic, true, None).await;
         let request_body = QMusicDetails {
-            context,
             video_id,
             enable_persistent_playlist_panel: true,
             is_audio_only: true,
@@ -71,9 +67,7 @@ impl RustyPipeQuery {
     #[tracing::instrument(skip(self), level = "error")]
     pub async fn music_lyrics<S: AsRef<str> + Debug>(&self, lyrics_id: S) -> Result<Lyrics, Error> {
         let lyrics_id = lyrics_id.as_ref();
-        let context = self.get_context(ClientType::DesktopMusic, true, None).await;
         let request_body = QBrowse {
-            context,
             browse_id: lyrics_id,
         };
 
@@ -96,9 +90,7 @@ impl RustyPipeQuery {
         related_id: S,
     ) -> Result<MusicRelated, Error> {
         let related_id = related_id.as_ref();
-        let context = self.get_context(ClientType::DesktopMusic, true, None).await;
         let request_body = QBrowse {
-            context,
             browse_id: related_id,
         };
 
@@ -121,12 +113,7 @@ impl RustyPipeQuery {
         radio_id: S,
     ) -> Result<Paginator<TrackItem>, Error> {
         let radio_id = radio_id.as_ref();
-        let visitor_data = self.get_visitor_data().await?;
-        let context = self
-            .get_context(ClientType::DesktopMusic, true, Some(&visitor_data))
-            .await;
         let request_body = QRadio {
-            context,
             playlist_id: radio_id,
             params: "wAEB8gECeAE%3D",
             enable_persistent_playlist_panel: true,
@@ -134,13 +121,12 @@ impl RustyPipeQuery {
             tuner_setting_value: "AUTOMIX_SETTING_NORMAL",
         };
 
-        self.execute_request_ctx::<response::MusicDetails, _, _>(
+        self.execute_request::<response::MusicDetails, _, _>(
             ClientType::DesktopMusic,
             "music_radio",
             radio_id,
             "next",
             &request_body,
-            MapRespCtxSource::visitor_data(&visitor_data),
         )
         .await
     }

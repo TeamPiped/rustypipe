@@ -41,9 +41,7 @@ impl RustyPipeQuery {
     }
 
     async fn _music_artist(&self, artist_id: &str, all_albums: bool) -> Result<MusicArtist, Error> {
-        let context = self.get_context(ClientType::DesktopMusic, true, None).await;
         let request_body = QBrowse {
-            context,
             browse_id: artist_id,
         };
 
@@ -84,24 +82,18 @@ impl RustyPipeQuery {
         filter: Option<AlbumFilter>,
         order: Option<AlbumOrder>,
     ) -> Result<Vec<AlbumItem>, Error> {
-        let visitor_data = self.get_visitor_data().await?;
-        let context = self
-            .get_context(ClientType::DesktopMusic, true, Some(&visitor_data))
-            .await;
         let request_body = QBrowseParams {
-            context: context.clone(),
             browse_id: &format!("{}{}", util::ARTIST_DISCOGRAPHY_PREFIX, artist_id),
             params: &albums_param(filter, order),
         };
 
         let first_page = self
-            .execute_request_ctx::<response::MusicArtistAlbums, _, _>(
+            .execute_request::<response::MusicArtistAlbums, _, _>(
                 ClientType::DesktopMusic,
                 "music_artist_albums",
                 artist_id,
                 "browse",
                 &request_body,
-                MapRespCtxSource::visitor_data(&visitor_data),
             )
             .await?;
 
@@ -109,10 +101,7 @@ impl RustyPipeQuery {
         let mut ctoken = first_page.ctoken;
 
         while let Some(tkn) = &ctoken {
-            let request_body = QContinuation {
-                context: context.clone(),
-                continuation: tkn,
-            };
+            let request_body = QContinuation { continuation: tkn };
             let resp: Paginator<MusicItem> = self
                 .execute_request_ctx::<response::MusicContinuation, Paginator<MusicItem>, _>(
                     ClientType::DesktopMusic,
@@ -122,7 +111,6 @@ impl RustyPipeQuery {
                     &request_body,
                     MapRespCtxSource {
                         artist: Some(first_page.artist.clone()),
-                        visitor_data: Some(&visitor_data),
                         ..Default::default()
                     },
                 )
