@@ -213,10 +213,20 @@ impl ExtractionError {
         matches!(
             self,
             ExtractionError::Unavailable {
-                reason: UnavailabilityReason::AgeRestricted
-                    | UnavailabilityReason::UnsupportedClient,
+                reason: UnavailabilityReason::UnsupportedClient,
                 ..
             } | ExtractionError::WrongResult(_)
+        )
+    }
+
+    /// Return true if the video should be fetched as a logged in user
+    pub(crate) fn use_login(&self) -> bool {
+        matches!(
+            self,
+            ExtractionError::Unavailable {
+                reason: UnavailabilityReason::AgeRestricted | UnavailabilityReason::IpBan,
+                ..
+            }
         )
     }
 }

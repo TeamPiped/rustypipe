@@ -272,7 +272,6 @@ enum ClientTypeArg {
     Desktop,
     Mobile,
     Tv,
-    TvEmbed,
     Android,
     Ios,
 }
@@ -324,7 +323,6 @@ impl From<ClientTypeArg> for ClientType {
         match value {
             ClientTypeArg::Desktop => Self::Desktop,
             ClientTypeArg::Mobile => Self::Mobile,
-            ClientTypeArg::TvEmbed => Self::TvHtml5Embed,
             ClientTypeArg::Tv => Self::Tv,
             ClientTypeArg::Android => Self::Android,
             ClientTypeArg::Ios => Self::Ios,

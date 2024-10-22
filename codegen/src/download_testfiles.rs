@@ -64,11 +64,10 @@ pub async fn download_testfiles() {
     music_genre().await;
 }
 
-const CLIENT_TYPES: [ClientType; 6] = [
+const CLIENT_TYPES: [ClientType; 5] = [
     ClientType::Desktop,
     ClientType::DesktopMusic,
     ClientType::Tv,
-    ClientType::TvHtml5Embed,
     ClientType::Android,
     ClientType::Ios,
 ];

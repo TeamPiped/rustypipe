@@ -65,11 +65,6 @@ pub enum ClientType {
     /// - includes lower resolution audio streams
     /// - does not return audio tracks in different languages
     Mobile,
-    /// Client used by the embedded player for Smart TVs
-    ///
-    /// - can access age-restricted videos
-    /// - cannot access non-embeddable videos
-    TvHtml5Embed,
     /// Client used by youtube.com/tv
     ///
     /// - Does not return video metadata when fetching the player
@@ -92,7 +87,6 @@ impl ClientType {
             ClientType::Desktop
             | ClientType::DesktopMusic
             | ClientType::Mobile
-            | ClientType::TvHtml5Embed
             | ClientType::Tv => true,
             ClientType::Android | ClientType::Ios => false,
         }
@@ -223,7 +217,6 @@ const DESKTOP_CLIENT_VERSION: &str = "2.20241010.09.00";
 const DESKTOP_MUSIC_CLIENT_VERSION: &str = "1.20241007.00.00";
 const MOBILE_CLIENT_VERSION: &str = "2.20241011.01.00";
 const TV_CLIENT_VERSION: &str = "7.20241008.14.02";
-const TVHTML5_CLIENT_VERSION: &str = "2.0";
 
 // Mobile app client
 const APP_CLIENT_VERSION: &str = "18.03.33";
@@ -1109,7 +1102,7 @@ impl RustyPipeQuery {
     /// This can be used for additional HTTP requests (e.g. downloading/streaming)
     pub fn user_agent(&self, ctype: ClientType) -> Cow<'_, str> {
         match ctype {
-            ClientType::Desktop | ClientType::DesktopMusic | ClientType::TvHtml5Embed => {
+            ClientType::Desktop | ClientType::DesktopMusic => {
                 Cow::Borrowed(&self.client.inner.user_agent)
             }
             ClientType::Mobile => MOBILE_UA.into(),
@@ -1191,23 +1184,6 @@ impl RustyPipeQuery {
                 request: Some(RequestYT::default()),
                 user: User::default(),
                 third_party: None,
-            },
-            ClientType::TvHtml5Embed => YTContext {
-                client: ClientInfo {
-                    client_name: "TVHTML5_SIMPLY_EMBEDDED_PLAYER",
-                    client_version: TVHTML5_CLIENT_VERSION.into(),
-                    client_screen: Some("EMBED"),
-                    platform: "TV",
-                    visitor_data,
-                    hl,
-                    gl,
-                    ..Default::default()
-                },
-                request: Some(RequestYT::default()),
-                user: User::default(),
-                third_party: Some(ThirdParty {
-                    embed_url: YOUTUBE_HOME_URL,
-                }),
             },
             ClientType::Tv => YTContext {
                 client: ClientInfo {
@@ -1319,17 +1295,6 @@ impl RustyPipeQuery {
                     "X-YouTube-Client-Version",
                     self.client.get_client_version(ctype).await.into_owned(),
                 ),
-            ClientType::TvHtml5Embed => self
-                .client
-                .inner
-                .http
-                .post(format!(
-                    "{YOUTUBEI_V1_URL}{endpoint}?{DISABLE_PRETTY_PRINT_PARAMETER}"
-                ))
-                .header(header::ORIGIN, YOUTUBE_HOME_URL)
-                .header(header::REFERER, YOUTUBE_HOME_URL)
-                .header("X-YouTube-Client-Name", "1")
-                .header("X-YouTube-Client-Version", TVHTML5_CLIENT_VERSION),
             ClientType::Tv => self
                 .client
                 .inner

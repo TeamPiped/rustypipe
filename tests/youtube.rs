@@ -29,7 +29,6 @@ use rustypipe::validate;
 #[case::desktop(ClientType::Desktop)]
 #[case::tv(ClientType::Tv)]
 #[case::mobile(ClientType::Mobile)]
-#[case::tv_html5_embed(ClientType::TvHtml5Embed)]
 #[case::android(ClientType::Android)]
 #[case::ios(ClientType::Ios)]
 #[tokio::test]
@@ -222,6 +221,8 @@ async fn check_video_stream(s: impl YtStream) {
     false,
     true
 )]
+/*
+TODO: add login
 #[case::agelimit(
     "ZDKQmBWTRnw",
     "The Rinky Pink Pounder.  Hitachi Magic Wand clone teardown.",
@@ -233,6 +234,7 @@ async fn check_video_stream(s: impl YtStream) {
     false,
     false
 )]
+*/
 #[tokio::test]
 #[allow(clippy::too_many_arguments)]
 async fn get_player(

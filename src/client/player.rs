@@ -83,33 +83,30 @@ impl RustyPipeQuery {
         clients: &[ClientType],
     ) -> Result<VideoPlayer, Error> {
         let video_id = video_id.as_ref();
-        let mut last_e = Error::Other("no clients".into());
+        let last_e = Error::Other("no clients".into());
 
         for client in clients {
             let res = self.player_from_client(video_id, *client).await;
             match res {
                 Ok(res) => return Ok(res),
                 Err(Error::Extraction(e)) => {
-                    if e.switch_client() {
-                        if let ExtractionError::Unavailable {
-                            reason: UnavailabilityReason::AgeRestricted,
-                            msg,
-                        } = &e
-                        {
-                            if let Ok(res) = self
-                                .player_from_client(video_id, ClientType::TvHtml5Embed)
-                                .await
-                            {
-                                return Ok(res);
-                            } else {
-                                return Err(Error::Extraction(ExtractionError::Unavailable {
-                                    reason: UnavailabilityReason::AgeRestricted,
-                                    msg: msg.to_owned(),
-                                }));
+                    // TODO: fetch age-restricted videos with login
+                    /*
+                    if e.use_login() {
+                        tracing::info!("{e}; fetching player with login");
+
+                        match self.player_from_client(video_id, *client).await {
+                            Ok(res) => return Ok(res),
+                            Err(Error::Extraction(e)) => {
+                                if !e.switch_client() {
+                                    return Err(Error::Extraction(e));
+                                }
                             }
+                            Err(e) => return Err(e),
                         }
                         last_e = Error::Extraction(e);
-                    } else {
+                    } else*/
+                    if !e.switch_client() {
                         return Err(Error::Extraction(e));
                     }
                 }
@@ -747,7 +744,6 @@ mod tests {
     #[case::desktop(ClientType::Desktop)]
     #[case::desktop_music(ClientType::DesktopMusic)]
     #[case::tv(ClientType::Tv)]
-    #[case::tv_html5_embed(ClientType::TvHtml5Embed)]
     #[case::android(ClientType::Android)]
     #[case::ios(ClientType::Ios)]
     fn map_player_data(#[case] client_type: ClientType) {
