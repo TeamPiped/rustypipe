@@ -1336,7 +1336,6 @@ impl RustyPipe {
             .json(&token_request)
             .send()
             .await?
-            .error_for_status()?
             .json::<OauthTokenResponse>()
             .await?;
 
@@ -1742,6 +1741,7 @@ impl RustyPipeQuery {
                 StatusCode::BAD_REQUEST => {
                     Error::Extraction(ExtractionError::BadRequest(error_msg.unwrap_or_default()))
                 }
+                StatusCode::UNAUTHORIZED => Error::Auth(AuthError::NoLogin),
                 _ => Error::HttpStatus(status.as_u16(), error_msg.unwrap_or_default()),
             })
         } else {
