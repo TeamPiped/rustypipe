@@ -1255,6 +1255,15 @@ impl RustyPipe {
         Ok(())
     }
 
+    /// Log out the user and remove the OAuth token from the cache
+    pub async fn user_auth_logout(&self) {
+        {
+            let mut cache_token = self.inner.cache.oauth_token.write().unwrap();
+            *cache_token = None;
+        }
+        self.store_cache().await;
+    }
+
     async fn refresh_token(&self, refresh_token: &str) -> Result<OauthToken, Error> {
         tracing::debug!("refreshing OAuth token");
 
