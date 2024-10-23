@@ -221,8 +221,6 @@ async fn check_video_stream(s: impl YtStream) {
     false,
     true
 )]
-/*
-TODO: add login
 #[case::agelimit(
     "ZDKQmBWTRnw",
     "The Rinky Pink Pounder.  Hitachi Magic Wand clone teardown.",
@@ -234,7 +232,6 @@ TODO: add login
     false,
     false
 )]
-*/
 #[tokio::test]
 #[allow(clippy::too_many_arguments)]
 async fn get_player(
@@ -249,6 +246,11 @@ async fn get_player(
     #[case] is_live_content: bool,
     rp: RustyPipe,
 ) {
+    if id == "ZDKQmBWTRnw" && !rp.query().auth_enabled() {
+        tracing::warn!("unauthenticated; age-limited video cannot be tested");
+        return;
+    }
+
     let player_data = rp.query().player(id).await.unwrap();
     let details = player_data.details;
 
@@ -338,7 +340,7 @@ async fn get_player(
 #[case::members_only("vYmAhoZYg64", UnavailabilityReason::MembersOnly)]
 #[tokio::test]
 async fn get_player_error(#[case] id: &str, #[case] expect: UnavailabilityReason, rp: RustyPipe) {
-    let err = rp.query().player(id).await.unwrap_err();
+    let err = rp.query().unauthenticated().player(id).await.unwrap_err();
 
     match err {
         Error::Extraction(ExtractionError::Unavailable { reason, .. }) => {
@@ -755,7 +757,7 @@ async fn get_video_details_live(rp: RustyPipe) {
 
 #[rstest]
 #[tokio::test]
-async fn get_video_details_agegate(rp: RustyPipe) {
+async fn get_video_details_agelimit(rp: RustyPipe) {
     let details = rp.query().video_details("ZDKQmBWTRnw").await.unwrap();
 
     // dbg!(&details);
@@ -781,7 +783,7 @@ async fn get_video_details_agegate(rp: RustyPipe) {
     assert!(!details.is_live);
     assert!(!details.is_ccommons);
 
-    // No recommendations because agegate
+    // No recommendations because age limit
     assert_eq!(details.recommended.count, Some(0));
     assert!(details.recommended.items.is_empty());
 }

@@ -82,19 +82,22 @@ impl RustyPipeQuery {
         clients: &[ClientType],
     ) -> Result<VideoPlayer, Error> {
         let video_id = video_id.as_ref();
-        let last_e = Error::Other("no clients".into());
+        let mut last_e = Error::Other("no clients".into());
 
         for client in clients {
             let res = self.player_from_client(video_id, *client).await;
             match res {
                 Ok(res) => return Ok(res),
                 Err(Error::Extraction(e)) => {
-                    // TODO: fetch age-restricted videos with login
-                    /*
-                    if e.use_login() {
+                    if e.use_login() && self.auth_enabled() {
                         tracing::info!("{e}; fetching player with login");
 
-                        match self.player_from_client(video_id, *client).await {
+                        match self
+                            .clone()
+                            .authenticated()
+                            .player_from_client(video_id, *client)
+                            .await
+                        {
                             Ok(res) => return Ok(res),
                             Err(Error::Extraction(e)) => {
                                 if !e.switch_client() {
@@ -104,8 +107,7 @@ impl RustyPipeQuery {
                             Err(e) => return Err(e),
                         }
                         last_e = Error::Extraction(e);
-                    } else*/
-                    if !e.switch_client() {
+                    } else if !e.switch_client() {
                         return Err(Error::Extraction(e));
                     }
                 }

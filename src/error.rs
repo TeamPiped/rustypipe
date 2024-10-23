@@ -16,6 +16,9 @@ pub enum Error {
     /// Erroneous HTTP status code received
     #[error("http status code: {0} message: {1}")]
     HttpStatus(u16, Cow<'static, str>),
+    /// Authentication error
+    #[error("auth error: {0}")]
+    Auth(#[from] AuthError),
     /// Unspecified error
     #[error("error: {0}")]
     Other(Cow<'static, str>),
@@ -123,6 +126,25 @@ impl Display for UnavailabilityReason {
             UnavailabilityReason::Unplayable => f.write_str("unplayable"),
         }
     }
+}
+
+/// Error authenticating a YouTube user
+#[derive(thiserror::Error, Debug)]
+pub enum AuthError {
+    /// No user is logged in
+    #[error("you are not logged in")]
+    NoLogin,
+    /// The device code for user login has expired.
+    ///
+    /// Generate a new device code and try again
+    #[error("device code expired; try again")]
+    DeviceCodeExpired,
+    /// The access token could not be refreshed
+    #[error("error refreshing token: {0}; log in again")]
+    Refresh(String),
+    /// Unhandled OAuth error
+    #[error("unhandled OAuth error: {0}")]
+    Other(String),
 }
 
 pub(crate) mod internal {

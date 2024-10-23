@@ -24,7 +24,7 @@ mod channel_rss;
 
 use std::collections::HashMap;
 use std::path::PathBuf;
-use std::sync::Arc;
+use std::sync::{Arc, RwLock};
 use std::{borrow::Cow, fmt::Debug, time::Duration};
 
 use once_cell::sync::Lazy;
@@ -32,8 +32,9 @@ use regex::Regex;
 use reqwest::{header, Client, ClientBuilder, Request, RequestBuilder, Response, StatusCode};
 use serde::{de::DeserializeOwned, Deserialize, Serialize};
 use time::OffsetDateTime;
-use tokio::sync::RwLock;
+use tokio::sync::RwLock as AsyncRwLock;
 
+use crate::error::AuthError;
 use crate::{
     cache::{CacheStorage, FileStorage, DEFAULT_CACHE_FILE},
     deobfuscate::DeobfData,
@@ -198,6 +199,87 @@ struct QContinuation<'a> {
     continuation: &'a str,
 }
 
+#[derive(Debug, Serialize)]
+struct OauthCodeRequest {
+    client_id: &'static str,
+    device_id: String,
+    device_model: &'static str,
+    scope: &'static str,
+}
+
+/// Device code used for logging a user into YouTube
+///
+/// The login process works as follows:
+/// 1. Obtain a user code and show it to the user
+/// 2. The user opens the login page under <https://google.com/device>, enters the code and logs in with his account
+/// 3. The application has to check periodically if the login has succeeded using [`RustyPipe::oauth_login`] or [`RustyPipe::oauth_wait_for_login`]
+/// 4. If the login is successful, the application receives a valid access/refresh token pair which can be used to access YouTube
+#[derive(Debug, Deserialize)]
+pub struct OauthDeviceCode {
+    device_code: String,
+    /// Code to be shown to the user to log himself in
+    pub user_code: String,
+    /// Time in seconds until the code expires
+    pub expires_in: u32,
+    /// Interval in seconds for checking if the login was completed
+    pub interval: u32,
+    /// URL to the login page (<https://google.com/device>)
+    pub verification_url: String,
+}
+
+#[derive(Debug, Serialize)]
+struct OauthTokenRequest<'a> {
+    client_id: &'static str,
+    client_secret: &'static str,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    code: Option<&'a str>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    refresh_token: Option<&'a str>,
+    grant_type: &'static str,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(untagged)]
+enum OauthTokenResponse {
+    Ok(OauthTokenResponseInner),
+    Error {
+        error: String,
+        #[serde(default)]
+        error_description: String,
+    },
+}
+
+#[derive(Debug, Deserialize)]
+struct OauthTokenResponseInner {
+    access_token: String,
+    refresh_token: Option<String>,
+    expires_in: u32,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+struct OauthToken {
+    access_token: String,
+    refresh_token: String,
+    #[serde(with = "time::serde::rfc3339")]
+    expires_at: OffsetDateTime,
+}
+
+impl OauthToken {
+    fn from_response(
+        value: OauthTokenResponseInner,
+        refresh_token: Option<String>,
+    ) -> Result<Self, Error> {
+        Ok(Self {
+            access_token: value.access_token,
+            refresh_token: value
+                .refresh_token
+                .or(refresh_token)
+                .ok_or(Error::Other("missing refresh token".into()))?,
+            expires_at: util::now_sec() + Duration::from_secs(value.expires_in.into()),
+        })
+    }
+}
+
 const DEFAULT_UA: &str = "Mozilla/5.0 (X11; Linux x86_64; rv:109.0) Gecko/20100101 Firefox/115.0";
 const MOBILE_UA: &str = "Mozilla/5.0 (Android 14; Mobile; rv:129.0) Gecko/129.0 Firefox/129.0";
 const TV_UA: &str = "Mozilla/5.0 (SMART-TV; Linux; Tizen 5.0) AppleWebKit/538.1 (KHTML, like Gecko) Version/5.0 NativeTVAds Safari/538.1";
@@ -224,6 +306,11 @@ const TV_CLIENT_VERSION: &str = "7.20241008.14.02";
 // Mobile app client
 const APP_CLIENT_VERSION: &str = "18.03.33";
 const IOS_DEVICE_MODEL: &str = "iPhone14,5";
+
+const OAUTH_CLIENT_ID: &str =
+    "861556708454-d6dlm3lh05idd8npek18k6be8ba3oc68.apps.googleusercontent.com";
+const OAUTH_CLIENT_SECRET: &str = "SboVhoG9s0rNafixCSGGKXAT";
+const OAUTH_SCOPES: &str = "http://gdata.youtube.com https://www.googleapis.com/auth/youtube";
 
 static CLIENT_VERSION_REGEX: Lazy<Regex> =
     Lazy::new(|| Regex::new(r#""INNERTUBE_CONTEXT_CLIENT_VERSION":"([\w\d\._-]+?)""#).unwrap());
@@ -263,6 +350,7 @@ struct RustyPipeOpts {
     country: Country,
     report: bool,
     strict: bool,
+    auth: Option<bool>,
     visitor_data: Option<String>,
 }
 
@@ -377,6 +465,7 @@ impl Default for RustyPipeOpts {
             country: Country::Us,
             report: false,
             strict: false,
+            auth: None,
             visitor_data: None,
         }
     }
@@ -384,8 +473,9 @@ impl Default for RustyPipeOpts {
 
 #[derive(Default, Debug)]
 struct CacheHolder {
-    clients: HashMap<ClientType, RwLock<CacheEntry<ClientData>>>,
-    deobf: RwLock<CacheEntry<DeobfData>>,
+    clients: HashMap<ClientType, AsyncRwLock<CacheEntry<ClientData>>>,
+    deobf: AsyncRwLock<CacheEntry<DeobfData>>,
+    oauth_token: RwLock<Option<OauthToken>>,
 }
 
 #[derive(Default, Debug, Clone, Serialize, Deserialize)]
@@ -394,6 +484,8 @@ struct CacheData {
     clients: HashMap<ClientType, CacheEntry<ClientData>>,
     #[serde(skip_serializing_if = "CacheEntry::is_none")]
     deobf: CacheEntry<DeobfData>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    oauth_token: Option<OauthToken>,
 }
 
 #[derive(Default, Debug, Clone, Serialize, Deserialize)]
@@ -532,7 +624,12 @@ impl RustyPipeBuilder {
             ClientType::Tv,
         ]
         .into_iter()
-        .map(|c| (c, RwLock::new(cdata.clients.remove(&c).unwrap_or_default())))
+        .map(|c| {
+            (
+                c,
+                AsyncRwLock::new(cdata.clients.remove(&c).unwrap_or_default()),
+            )
+        })
         .collect::<HashMap<_, _>>();
 
         Ok(RustyPipe {
@@ -547,7 +644,8 @@ impl RustyPipeBuilder {
                 n_http_retries: self.n_http_retries,
                 cache: CacheHolder {
                     clients: cache_clients,
-                    deobf: RwLock::new(cdata.deobf),
+                    deobf: AsyncRwLock::new(cdata.deobf),
+                    oauth_token: RwLock::new(cdata.oauth_token),
                 },
                 default_opts: self.default_opts,
                 user_agent,
@@ -690,6 +788,20 @@ impl RustyPipeBuilder {
     #[must_use]
     pub fn strict(mut self) -> Self {
         self.default_opts.strict = true;
+        self
+    }
+
+    /// Enable authentication for all requests
+    #[must_use]
+    pub fn authenticated(mut self) -> Self {
+        self.default_opts.auth = Some(true);
+        self
+    }
+
+    /// Disable authentication for all requests
+    #[must_use]
+    pub fn unauthenticated(mut self) -> Self {
+        self.default_opts.auth = Some(false);
         self
     }
 
@@ -970,6 +1082,7 @@ impl RustyPipe {
             let cdata = CacheData {
                 clients: cache_clients,
                 deobf: self.inner.cache.deobf.read().await.clone(),
+                oauth_token: self.inner.cache.oauth_token.read().unwrap().clone(),
             };
 
             match serde_json::to_string(&cdata) {
@@ -1033,6 +1146,175 @@ impl RustyPipe {
             }
         }
     }
+
+    /// Get a new device code for logging into YouTube
+    pub async fn user_auth_get_code(&self) -> Result<OauthDeviceCode, Error> {
+        tracing::debug!("getting OAuth user code");
+
+        let code_request = OauthCodeRequest {
+            client_id: OAUTH_CLIENT_ID,
+            device_id: util::random_uuid(),
+            device_model: "ytlr:samsung:smarttv",
+            scope: OAUTH_SCOPES,
+        };
+
+        self.inner
+            .http
+            .post("https://www.youtube.com/o/oauth2/device/code")
+            .header(header::USER_AGENT, TV_UA)
+            .header(header::ORIGIN, YOUTUBE_HOME_URL)
+            .header(header::REFERER, YOUTUBE_TV_URL)
+            .json(&code_request)
+            .send()
+            .await?
+            .error_for_status()?
+            .json::<OauthDeviceCode>()
+            .await
+            .map_err(Error::from)
+    }
+
+    /// Attempt to log in the user using the given device code
+    ///
+    /// Returns `true` if the user has successfully logged in using the code.
+    ///
+    /// Returns `false` if the user has not logged in yet, in this case repeat
+    /// the login attempt after a few seconds.
+    /// The function [`RustyPipe::oauth_wait_for_login`] does this automatically.
+    pub async fn user_auth_login(&self, code: &OauthDeviceCode) -> Result<bool, Error> {
+        tracing::debug!("OAuth login attempt (user_code: {})", code.user_code);
+
+        let token_request = OauthTokenRequest {
+            client_id: OAUTH_CLIENT_ID,
+            client_secret: OAUTH_CLIENT_SECRET,
+            code: Some(&code.device_code),
+            refresh_token: None,
+            grant_type: "http://oauth.net/grant_type/device/1.0",
+        };
+
+        let token_response = self
+            .inner
+            .http
+            .post("https://www.youtube.com/o/oauth2/token")
+            .header(header::USER_AGENT, TV_UA)
+            .header(header::ORIGIN, YOUTUBE_HOME_URL)
+            .header(header::REFERER, YOUTUBE_TV_URL)
+            .json(&token_request)
+            .send()
+            .await?
+            .error_for_status()?
+            .json::<OauthTokenResponse>()
+            .await?;
+
+        match token_response {
+            OauthTokenResponse::Ok(token) => {
+                let token = OauthToken::from_response(token, None)?;
+                {
+                    let mut cache_token = self.inner.cache.oauth_token.write().unwrap();
+                    *cache_token = Some(token);
+                }
+                self.store_cache().await;
+                Ok(true)
+            }
+            OauthTokenResponse::Error {
+                error,
+                error_description,
+            } => match error.as_str() {
+                "authorization_pending" => Ok(false),
+                "expired_token" => Err(Error::Auth(AuthError::DeviceCodeExpired)),
+                _ => Err(Error::Auth(AuthError::Other(format!(
+                    "{error}: {error_description}"
+                )))),
+            },
+        }
+    }
+
+    /// Attempt to refresh the OAuth access token to check if the user is successfully logged in
+    /// and the session is still valid.
+    pub async fn user_auth_check_login(&self) -> Result<(), Error> {
+        let cache_token = self.inner.cache.oauth_token.read().unwrap().clone();
+        if let Some(token) = cache_token {
+            let token = self.refresh_token(&token.refresh_token).await?;
+            {
+                let mut cache_token = self.inner.cache.oauth_token.write().unwrap();
+                *cache_token = Some(token.clone());
+            }
+            self.store_cache().await;
+            Ok(())
+        } else {
+            Err(Error::Auth(AuthError::NoLogin))
+        }
+    }
+
+    /// Attempt to log in the user using the given device code.
+    ///
+    /// This function waits until the login was successful or an error occurred.
+    pub async fn user_auth_wait_for_login(&self, code: &OauthDeviceCode) -> Result<(), Error> {
+        while !self.user_auth_login(code).await? {
+            tokio::time::sleep(Duration::from_secs(code.interval.into())).await;
+        }
+        Ok(())
+    }
+
+    async fn refresh_token(&self, refresh_token: &str) -> Result<OauthToken, Error> {
+        tracing::debug!("refreshing OAuth token");
+
+        let token_request = OauthTokenRequest {
+            client_id: OAUTH_CLIENT_ID,
+            client_secret: OAUTH_CLIENT_SECRET,
+            code: None,
+            refresh_token: Some(refresh_token),
+            grant_type: "refresh_token",
+        };
+
+        let token_response = self
+            .inner
+            .http
+            .post("https://www.youtube.com/o/oauth2/token")
+            .header(header::USER_AGENT, TV_UA)
+            .header(header::ORIGIN, YOUTUBE_HOME_URL)
+            .header(header::REFERER, YOUTUBE_TV_URL)
+            .json(&token_request)
+            .send()
+            .await?
+            .error_for_status()?
+            .json::<OauthTokenResponse>()
+            .await?;
+
+        match token_response {
+            OauthTokenResponse::Ok(token) => {
+                OauthToken::from_response(token, Some(refresh_token.to_owned()))
+            }
+            OauthTokenResponse::Error {
+                error,
+                error_description,
+            } => Err(Error::Auth(AuthError::Refresh(format!(
+                "{error}: {error_description}"
+            )))),
+        }
+    }
+
+    /// Get the OAuth access token for accessing YouTube as an authenticated user
+    pub async fn user_auth_access_token(&self) -> Result<String, Error> {
+        let cache_token = self.inner.cache.oauth_token.read().unwrap().clone();
+        if let Some(token) = cache_token {
+            if token.expires_at < (OffsetDateTime::now_utc() + Duration::from_secs(60)) {
+                let token = self.refresh_token(&token.refresh_token).await?;
+                let access_token = token.access_token.to_owned();
+
+                {
+                    let mut cache_token = self.inner.cache.oauth_token.write().unwrap();
+                    *cache_token = Some(token.clone());
+                }
+                self.store_cache().await;
+
+                Ok(access_token)
+            } else {
+                Ok(token.access_token.to_owned())
+            }
+        } else {
+            Err(Error::Auth(AuthError::NoLogin))
+        }
+    }
 }
 
 impl RustyPipeQuery {
@@ -1070,6 +1352,20 @@ impl RustyPipeQuery {
     #[must_use]
     pub fn strict(mut self) -> Self {
         self.opts.strict = true;
+        self
+    }
+
+    /// Enable authentication for this request
+    #[must_use]
+    pub fn authenticated(mut self) -> Self {
+        self.opts.auth = Some(true);
+        self
+    }
+
+    /// Disable authentication for this request
+    #[must_use]
+    pub fn unauthenticated(mut self) -> Self {
+        self.opts.auth = Some(false);
         self
     }
 
@@ -1121,6 +1417,15 @@ impl RustyPipeQuery {
             )
             .into(),
         }
+    }
+
+    /// Return `true` if the client has stored login credentials and authentication has not been disabled
+    pub fn auth_enabled(&self) -> bool {
+        if self.opts.auth == Some(false) {
+            return false;
+        }
+        let cache_token = self.client.inner.cache.oauth_token.read().unwrap();
+        cache_token.is_some()
     }
 
     /// Create a new context object, which is included in every request to
@@ -1473,11 +1778,15 @@ impl RustyPipeQuery {
             artist: ctx_src.artist,
         };
 
-        let request = self
+        let mut r = self
             .request_builder(ctype, endpoint, ctx.visitor_data)
-            .await
-            .json(&req_body)
-            .build()?;
+            .await;
+
+        if self.opts.auth == Some(true) {
+            let access_token = self.client.user_auth_access_token().await?;
+            r = r.header(header::AUTHORIZATION, format!("Bearer {}", access_token));
+        }
+        let request = r.json(&req_body).build()?;
 
         let req_res = self.yt_request::<R, M>(&request, &ctx).await?;
 

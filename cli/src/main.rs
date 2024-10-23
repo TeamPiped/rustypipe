@@ -191,6 +191,8 @@ enum Commands {
     },
     /// Get a YouTube visitor data cookie
     Vdata,
+    /// Log in using your Google account
+    Login,
 }
 
 #[derive(Default, Copy, Clone, ValueEnum)]
@@ -1207,6 +1209,22 @@ async fn run() -> anyhow::Result<()> {
         Commands::Vdata => {
             let vd = rp.query().get_visitor_data().await?;
             println!("{vd}");
+        }
+        Commands::Login => {
+            match rp.user_auth_check_login().await {
+                Ok(_) => {}
+                Err(rustypipe::error::Error::Auth(_)) => {
+                    let device_code = rp.user_auth_get_code().await?;
+                    println!(
+                        "Open {} and enter the following code:",
+                        device_code.verification_url
+                    );
+                    anstream::println!("{}", device_code.user_code.blue());
+                    rp.user_auth_wait_for_login(&device_code).await?;
+                }
+                Err(e) => return Err(e.into()),
+            }
+            anstream::println!("{}", "Logged in.".green());
         }
     };
     Ok(())
