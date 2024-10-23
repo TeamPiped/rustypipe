@@ -244,9 +244,10 @@ async fn get_player_videos(
     #[case] views: u64,
     #[case] is_live: bool,
     #[case] is_live_content: bool,
+    auth_enabled: bool,
     rp: RustyPipe,
 ) {
-    if id == "ZDKQmBWTRnw" && !rp.query().auth_enabled() {
+    if id == "ZDKQmBWTRnw" && !auth_enabled {
         eprintln!("unauthenticated; age-limited video cannot be tested");
         return;
     }
@@ -2677,8 +2678,9 @@ async fn isrc_search_languages(rp: RustyPipe) {
 
 #[rstest]
 #[tokio::test]
-async fn user_auth_check_login(rp: RustyPipe) {
-    if rp.query().auth_enabled() {
+async fn user_auth_check_login(rp: RustyPipe, auth_enabled: bool) {
+    if auth_enabled {
+        assert!(rp.query().auth_enabled());
         rp.user_auth_check_login().await.unwrap();
     }
 }
@@ -2710,6 +2712,12 @@ fn rp(lang: Language) -> RustyPipe {
 #[fixture]
 fn unlocalized(lang: Language) -> bool {
     lang == Language::En
+}
+
+/// Get a flag signaling if an authenticated user is expected
+#[fixture]
+fn auth_enabled(rp: RustyPipe) -> bool {
+    std::env::var("YT_AUTHENTICATED").is_ok() || rp.query().auth_enabled()
 }
 
 /*

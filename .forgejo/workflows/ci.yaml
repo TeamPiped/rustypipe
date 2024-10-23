@@ -34,6 +34,7 @@ jobs:
         env:
           ALL_PROXY: "http://warpproxy:8124"
           RUSTYPIPE_CACHE: "${{ secrets.RUSTYPIPE_CACHE }}"
+          YT_AUTHENTICATED: "1"
 
       - name: 💌 Upload test report
         if: always()
