@@ -234,7 +234,7 @@ async fn check_video_stream(s: impl YtStream) {
 )]
 #[tokio::test]
 #[allow(clippy::too_many_arguments)]
-async fn get_player(
+async fn get_player_videos(
     #[case] id: &str,
     #[case] name: &str,
     #[case] description: &str,
@@ -247,7 +247,7 @@ async fn get_player(
     rp: RustyPipe,
 ) {
     if id == "ZDKQmBWTRnw" && !rp.query().auth_enabled() {
-        tracing::warn!("unauthenticated; age-limited video cannot be tested");
+        eprintln!("unauthenticated; age-limited video cannot be tested");
         return;
     }
 
@@ -2672,6 +2672,14 @@ async fn isrc_search_languages(rp: RustyPipe) {
             !matches!(lang, Language::En | Language::EnGb | Language::EnIn),
             "lang: {lang}"
         );
+    }
+}
+
+#[rstest]
+#[tokio::test]
+async fn user_auth_check_login(rp: RustyPipe) {
+    if rp.query().auth_enabled() {
+        rp.user_auth_check_login().await.unwrap();
     }
 }
 

@@ -605,17 +605,17 @@ impl RustyPipeBuilder {
             Box::new(FileStorage::new(cache_file))
         });
 
-        let mut cdata = storage
-            .as_ref()
-            .and_then(|storage| storage.read())
-            .and_then(|data| match serde_json::from_str::<CacheData>(&data) {
-                Ok(data) => Some(data),
+        let mut cdata = if let Some(data) = storage.as_ref().and_then(|storage| storage.read()) {
+            match serde_json::from_str::<CacheData>(&data) {
+                Ok(data) => data,
                 Err(e) => {
                     tracing::error!("Could not deserialize cache. Error: {}", e);
-                    None
+                    CacheData::default()
                 }
-            })
-            .unwrap_or_default();
+            }
+        } else {
+            CacheData::default()
+        };
 
         let cache_clients = [
             ClientType::Desktop,
