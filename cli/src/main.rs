@@ -193,6 +193,8 @@ enum Commands {
     Vdata,
     /// Log in using your Google account
     Login,
+    /// Log out from your Google account
+    Logout,
 }
 
 #[derive(Default, Copy, Clone, ValueEnum)]
@@ -1225,6 +1227,10 @@ async fn run() -> anyhow::Result<()> {
                 Err(e) => return Err(e.into()),
             }
             anstream::println!("{}", "Logged in.".green());
+        }
+        Commands::Logout => {
+            rp.user_auth_logout().await?;
+            anstream::println!("{}", "Logged out.".red());
         }
     };
     Ok(())

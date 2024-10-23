@@ -1233,7 +1233,7 @@ impl RustyPipe {
     pub async fn user_auth_check_login(&self) -> Result<(), Error> {
         let cache_token = self.inner.cache.oauth_token.read().unwrap().clone();
         if let Some(token) = cache_token {
-            let token = self.refresh_token(&token.refresh_token).await?;
+            let token = self.user_auth_refresh_token(&token.refresh_token).await?;
             {
                 let mut cache_token = self.inner.cache.oauth_token.write().unwrap();
                 *cache_token = Some(token.clone());
@@ -1256,7 +1256,57 @@ impl RustyPipe {
     }
 
     /// Log out the user and remove the OAuth token from the cache
-    pub async fn user_auth_logout(&self) {
+    pub async fn user_auth_logout(&self) -> Result<(), Error> {
+        #[derive(Serialize)]
+        struct RevokeRequest<'a> {
+            token: &'a str,
+        }
+
+        let cache_token = self
+            .inner
+            .cache
+            .oauth_token
+            .read()
+            .unwrap()
+            .clone()
+            .ok_or(Error::Auth(AuthError::NoLogin))?;
+        let revoke_request = RevokeRequest {
+            token: &cache_token.refresh_token,
+        };
+
+        let resp = self
+            .inner
+            .http
+            .post("https://www.youtube.com/o/oauth2/revoke")
+            .header(header::USER_AGENT, TV_UA)
+            .header(header::ORIGIN, YOUTUBE_HOME_URL)
+            .header(header::REFERER, YOUTUBE_TV_URL)
+            .json(&revoke_request)
+            .send()
+            .await?;
+
+        if let Err(estatus) = resp.error_for_status_ref().map(|_| ()) {
+            if let Ok(OauthTokenResponse::Error {
+                error,
+                error_description,
+            }) = resp.json::<OauthTokenResponse>().await
+            {
+                // User is already logged out
+                if error == "invalid_token" {
+                    tracing::info!("user already logged out ({error}: {error_description})");
+                } else {
+                    return Err(Error::Other(format!("{error}: {error_description}").into()));
+                }
+            } else {
+                return Err(estatus.into());
+            }
+        }
+        self.user_auth_remove_token().await;
+        Ok(())
+    }
+
+    /// Remove the stored OAuth token from the cache
+    async fn user_auth_remove_token(&self) {
         {
             let mut cache_token = self.inner.cache.oauth_token.write().unwrap();
             *cache_token = None;
@@ -1264,7 +1314,8 @@ impl RustyPipe {
         self.store_cache().await;
     }
 
-    async fn refresh_token(&self, refresh_token: &str) -> Result<OauthToken, Error> {
+    /// Obtain a new OAuth token using the given refresh token
+    async fn user_auth_refresh_token(&self, refresh_token: &str) -> Result<OauthToken, Error> {
         tracing::debug!("refreshing OAuth token");
 
         let token_request = OauthTokenRequest {
@@ -1296,9 +1347,15 @@ impl RustyPipe {
             OauthTokenResponse::Error {
                 error,
                 error_description,
-            } => Err(Error::Auth(AuthError::Refresh(format!(
-                "{error}: {error_description}"
-            )))),
+            } => {
+                // If the token is expired or revoked, remove it from the client
+                if error == "invalid_grant" {
+                    self.user_auth_remove_token().await;
+                }
+                Err(Error::Auth(AuthError::Refresh(format!(
+                    "{error}: {error_description}"
+                ))))
+            }
         }
     }
 
@@ -1307,7 +1364,7 @@ impl RustyPipe {
         let cache_token = self.inner.cache.oauth_token.read().unwrap().clone();
         if let Some(token) = cache_token {
             if token.expires_at < (OffsetDateTime::now_utc() + Duration::from_secs(60)) {
-                let token = self.refresh_token(&token.refresh_token).await?;
+                let token = self.user_auth_refresh_token(&token.refresh_token).await?;
                 let access_token = token.access_token.to_owned();
 
                 {
