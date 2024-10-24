@@ -111,6 +111,7 @@ impl RustyPipeQuery {
                     &request_body,
                     MapRespCtxSource {
                         artist: Some(first_page.artist.clone()),
+                        visitor_data: first_page.visitor_data.as_deref(),
                         ..Default::default()
                     },
                 )
@@ -319,6 +320,7 @@ struct FirstAlbumPage {
     albums: Vec<AlbumItem>,
     ctoken: Option<String>,
     artist: ArtistId,
+    visitor_data: Option<String>,
 }
 
 impl MapResponse<FirstAlbumPage> for response::MusicArtistAlbums {
@@ -372,6 +374,7 @@ impl MapResponse<FirstAlbumPage> for response::MusicArtistAlbums {
                 albums: mapped.c.albums,
                 ctoken,
                 artist: artist_id,
+                visitor_data: ctx.visitor_data.map(str::to_owned),
             },
             warnings: mapped.warnings,
         })
