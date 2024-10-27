@@ -34,7 +34,7 @@ jobs:
         env:
           ALL_PROXY: "http://warpproxy:8124"
           RUSTYPIPE_CACHE: "${{ secrets.RUSTYPIPE_CACHE }}"
-          YT_AUTHENTICATED: "1"
+          YT_AUTHENTICATED: "${{ github.event_name != 'pull_request' }}" # no access to secrets for PRs
 
       - name: 💌 Upload test report
         if: always()

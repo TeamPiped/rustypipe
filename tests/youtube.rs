@@ -1750,6 +1750,27 @@ async fn music_artist(
 
 #[rstest]
 #[tokio::test]
+async fn music_artist_albums_recency(rp: RustyPipe) {
+    let albums = rp
+        .query()
+        .music_artist_albums("UCPC0L1d253x-KuMNwa05TpA", None, Some(AlbumOrder::Recency))
+        .await
+        .unwrap();
+
+    assert_gte(albums.len(), 110, "albums");
+
+    let mut latest_items = albums.iter().peekable();
+    while let (Some(b), Some(next_b)) = (latest_items.next(), latest_items.peek()) {
+        assert_gte(
+            b.year.expect("year"),
+            next_b.year.expect("year"),
+            "latest album year",
+        );
+    }
+}
+
+#[rstest]
+#[tokio::test]
 async fn music_artist_not_found(rp: RustyPipe) {
     let err = rp
         .query()
@@ -2717,7 +2738,10 @@ fn unlocalized(lang: Language) -> bool {
 /// Get a flag signaling if an authenticated user is expected
 #[fixture]
 fn auth_enabled(rp: RustyPipe) -> bool {
-    std::env::var("YT_AUTHENTICATED").is_ok() || rp.query().auth_enabled()
+    std::env::var("YT_AUTHENTICATED")
+        .map(|v| !v.is_empty() && v.to_ascii_lowercase() != "false")
+        .unwrap_or_default()
+        || rp.query().auth_enabled()
 }
 
 /*
