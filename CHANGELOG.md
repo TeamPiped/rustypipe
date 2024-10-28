@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 
 
+## [v0.6.0](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe/v0.5.0..rustypipe/v0.6.0) - 2024-10-28
+
+### 🚀 Features
+
+- [**breaking**] Remove TvHtml5Embed client as it got disabled - ([9e835c8](https://codeberg.org/ThetaDev/rustypipe/commit/9e835c8f38a3dd28c65561b2f9bb7a0f530c24f1))
+- [**breaking**] Generate random visitorData, remove `RustyPipeQuery::get_context` and `YTContext<'a>` from public API - ([7c4f44d](https://codeberg.org/ThetaDev/rustypipe/commit/7c4f44d09c4d813efff9e7d1059ddacd226b9e9d))
+- Add OAuth user login to access age-restricted videos - ([1cc3f9a](https://codeberg.org/ThetaDev/rustypipe/commit/1cc3f9ad74908d33e247ba6243103bfc22540164))
+- Add user_auth_logout method - ([9e2fe61](https://codeberg.org/ThetaDev/rustypipe/commit/9e2fe61267846ce216e0c498d8fa9ee672e03cbf))
+- Revoke OAuth token when logging out - ([62f8a92](https://codeberg.org/ThetaDev/rustypipe/commit/62f8a9210c23e1f02c711a2294af8766ca6b70e2))
+
+### 🐛 Bug Fixes
+
+- Skip serializing empty cache entries - ([be18d89](https://codeberg.org/ThetaDev/rustypipe/commit/be18d89ea65e35ddcf0f31bea3360e5db209fb9f))
+- Fetch artist albums continuation - ([b589061](https://codeberg.org/ThetaDev/rustypipe/commit/b589061a40245637b4fe619a26892291d87d25e6))
+- Update channel order tokens - ([79a6281](https://codeberg.org/ThetaDev/rustypipe/commit/79a62816ff62d94e5c706f45b1ce5971e5e58a81))
+- Handle auth errors - ([512223f](https://codeberg.org/ThetaDev/rustypipe/commit/512223fd83fb1ba2ba7ad96ed050a70bb7ec294d))
+- Use same visitor data for fetching artist album continuations - ([7b0499f](https://codeberg.org/ThetaDev/rustypipe/commit/7b0499f6b7cbf6ac4b83695adadfebb3f30349c7))
+
+### ⚙️ Miscellaneous Tasks
+
+- *(deps)* Update rust crate fancy-regex to 0.14.0 (#14) - ([94194e0](https://codeberg.org/ThetaDev/rustypipe/commit/94194e019c46ca49c343086e80e8eb75c52f4bc6))
+- *(deps)* Update rust crate quick-xml to 0.37.0 (#15) - ([0662b5c](https://codeberg.org/ThetaDev/rustypipe/commit/0662b5ccfccc922b28629f11ea52c3eb35f9efd2))
+
+
 ## [v0.5.0](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe/v0.4.0..rustypipe/v0.5.0) - 2024-10-13
 
 ### 🚀 Features
