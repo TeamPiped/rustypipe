@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 
 
+## [v0.2.3](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe-downloader/v0.2.2..rustypipe-downloader/v0.2.3) - 2024-10-28
+
+### 🐛 Bug Fixes
+
+- Remove unnecessary image.rs dependencies - ([1b08166](https://codeberg.org/ThetaDev/rustypipe/commit/1b08166399cccb8394d2fdd82d54162c1a9e01be))
+
+
 ## [v0.2.2](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe-downloader/v0.2.1..rustypipe-downloader/v0.2.2) - 2024-10-13
 
 ### ⚙️ Miscellaneous Tasks
