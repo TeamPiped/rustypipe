@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 
 
+## [v0.3.0](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe-cli/v0.2.2..rustypipe-cli/v0.3.0) - 2024-10-28
+
+### 🚀 Features
+
+- [**breaking**] Remove TvHtml5Embed client as it got disabled - ([9e835c8](https://codeberg.org/ThetaDev/rustypipe/commit/9e835c8f38a3dd28c65561b2f9bb7a0f530c24f1))
+- Add OAuth user login to access age-restricted videos - ([1cc3f9a](https://codeberg.org/ThetaDev/rustypipe/commit/1cc3f9ad74908d33e247ba6243103bfc22540164))
+- Revoke OAuth token when logging out - ([62f8a92](https://codeberg.org/ThetaDev/rustypipe/commit/62f8a9210c23e1f02c711a2294af8766ca6b70e2))
+
+
 ## [v0.2.2](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe-cli/v0.2.1..rustypipe-cli/v0.2.2) - 2024-10-13
 
 ### 🚀 Features
