@@ -4,7 +4,7 @@ expression: map_res.c
 ---
 MusicSearchResult(
   items: Paginator(
-    count: Some(24),
+    count: Some(27),
     items: [
       Playlist(MusicPlaylistItem(
         id: "RDATficG9wIHJhZGlv",
@@ -649,6 +649,57 @@ MusicSearchResult(
         is_video: true,
         track_nr: None,
         by_va: false,
+      )),
+      User(UserItem(
+        id: "UCdQrWgvHD9f-caMSn3SS-WQ",
+        name: "Pop Hist Radio",
+        handle: Some("@PopHistRadio"),
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.googleusercontent.com/2Py1-HUmfdmgxE3PEL-EdCE4lgGktuklnIOPdBy0N1_51Ne65bW5gJnxcc-eJB9vxhbU4-JQCg=w60-c-h60-k-c0x00ffffff-no-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://yt3.googleusercontent.com/2Py1-HUmfdmgxE3PEL-EdCE4lgGktuklnIOPdBy0N1_51Ne65bW5gJnxcc-eJB9vxhbU4-JQCg=w120-c-h120-k-c0x00ffffff-no-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+      )),
+      User(UserItem(
+        id: "UC-j25R4eGB_pjsaRxF5WOoQ",
+        name: "HMD RADIO POP",
+        handle: Some("@hmdradiopop5581"),
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.googleusercontent.com/ytc/AIdro_kuTfeNrt95jHhzzMfQoqFSGWo2cCfUsZ_OHH5zpeM=w60-c-h60-k-c0x00ffffff-no-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://yt3.googleusercontent.com/ytc/AIdro_kuTfeNrt95jHhzzMfQoqFSGWo2cCfUsZ_OHH5zpeM=w120-c-h120-k-c0x00ffffff-no-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+      )),
+      User(UserItem(
+        id: "UCRkEipin-M9fQ12UWxc9UGQ",
+        name: "MUSIC RADIO",
+        handle: Some("@musicradio8514"),
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.googleusercontent.com/evLHWABaoAFyXkfnSH95NZ7Fj96AmPW4iHp7pQckNn48PBmKeIvrkgnMtSdwQCOuqLx3tpQIuA=w60-c-h60-k-c0x00ffffff-no-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://yt3.googleusercontent.com/evLHWABaoAFyXkfnSH95NZ7Fj96AmPW4iHp7pQckNn48PBmKeIvrkgnMtSdwQCOuqLx3tpQIuA=w120-c-h120-k-c0x00ffffff-no-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
       )),
     ],
     ctoken: None,

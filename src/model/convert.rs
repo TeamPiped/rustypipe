@@ -1,7 +1,7 @@
 use super::{
     AlbumItem, ArtistId, ArtistItem, Channel, ChannelId, ChannelItem, ChannelRssVideo, ChannelTag,
-    MusicArtist, MusicItem, MusicPlaylistItem, PlaylistItem, TrackItem, VideoId, VideoItem,
-    YouTubeItem,
+    MusicArtist, MusicItem, MusicPlaylistItem, PlaylistItem, TrackItem, UserItem, VideoId,
+    VideoItem, YouTubeItem,
 };
 
 /// Trait for casting generic YouTube/YouTube music items to a specific kind.
@@ -136,6 +136,21 @@ impl FromYtItem for MusicPlaylistItem {
 impl From<MusicPlaylistItem> for MusicItem {
     fn from(value: MusicPlaylistItem) -> Self {
         Self::Playlist(value)
+    }
+}
+
+impl FromYtItem for UserItem {
+    fn from_ytm_item(item: MusicItem) -> Option<Self> {
+        match item {
+            MusicItem::User(user) => Some(user),
+            _ => None,
+        }
+    }
+}
+
+impl From<UserItem> for MusicItem {
+    fn from(value: UserItem) -> Self {
+        Self::User(value)
     }
 }
 

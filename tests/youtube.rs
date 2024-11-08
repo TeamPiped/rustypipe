@@ -1902,6 +1902,7 @@ fn check_search_result(items: &[MusicItem]) {
     let mut has_albums = false;
     let mut has_artists = false;
     let mut has_playlists = false;
+    let mut has_users = false;
 
     for itm in items {
         match itm {
@@ -1915,6 +1916,7 @@ fn check_search_result(items: &[MusicItem]) {
             MusicItem::Album(_) => has_albums = true,
             MusicItem::Artist(_) => has_artists = true,
             MusicItem::Playlist(_) => has_playlists = true,
+            MusicItem::User(_) => has_users = true,
         }
     }
 
@@ -1923,6 +1925,7 @@ fn check_search_result(items: &[MusicItem]) {
     assert!(has_albums, "no albums");
     assert!(has_artists, "no artists");
     assert!(has_playlists, "no playlists");
+    assert!(has_users, "no users");
 }
 
 #[rstest]
@@ -2202,6 +2205,30 @@ async fn music_search_playlists_community(rp: RustyPipe) {
     assert_eq!(channel.id, "UCsXOMpqp3_ZPOmk-HGKEPRg");
     assert_eq!(channel.name, "Beanie Bean");
     assert!(!playlist.from_ytm);
+}
+
+#[rstest]
+#[tokio::test]
+async fn music_search_users(rp: RustyPipe) {
+    let res = rp
+        .query()
+        .music_search_users("amyprincesspink")
+        .await
+        .unwrap();
+
+    assert_eq!(res.corrected_query, None);
+    let user = res
+        .items
+        .items
+        .iter()
+        .find(|u| u.id == "UC-CeCRHc8D47hh8P_9MR5Vg")
+        .unwrap_or_else(|| {
+            panic!("could not find user, got {:#?}", &res.items.items);
+        });
+
+    assert_eq!(user.name, "amyprincesspink");
+    assert_eq!(user.handle.as_deref().unwrap(), "@amyprincesspink");
+    assert!(!user.avatar.is_empty(), "got no avatar");
 }
 
 /// The YouTube Music search sometimes shows genre radio items. They should be skipped.

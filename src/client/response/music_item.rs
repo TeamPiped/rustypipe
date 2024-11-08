@@ -4,7 +4,7 @@ use serde_with::{rust::deserialize_ignore_any, serde_as, DefaultOnError, VecSkip
 use crate::{
     model::{
         self, traits::FromYtItem, AlbumId, AlbumItem, AlbumType, ArtistId, ArtistItem, ChannelId,
-        MusicItem, MusicItemType, MusicPlaylistItem, TrackItem,
+        MusicItem, MusicItemType, MusicPlaylistItem, TrackItem, UserItem,
     },
     param::Language,
     serializer::{
@@ -535,7 +535,7 @@ impl MusicListMapper {
         etype
     }
 
-    /// Map a ListMusicItem (album/playlist tile)
+    /// Map a ListMusicItem (album/playlist item, search result)
     fn map_list_item(&mut self, item: ListMusicItem) -> Result<Option<MusicItemType>, String> {
         let mut columns = item.flex_columns.into_iter();
         let c1 = columns.next();
@@ -858,6 +858,19 @@ impl MusicListMapper {
                         }));
                         Ok(Some(MusicItemType::Playlist))
                     }
+                    MusicPageType::User => {
+                        // Part 1 may be the "Profile" label
+                        let handle = map_channel_handle(subtitle_p2.as_ref())
+                            .or_else(|| map_channel_handle(subtitle_p1.as_ref()));
+
+                        self.items.push(MusicItem::User(UserItem {
+                            id,
+                            name: title,
+                            handle,
+                            avatar: item.thumbnail.into(),
+                        }));
+                        Ok(Some(MusicItemType::User))
+                    }
                     MusicPageType::None => {
                         // There may be broken YT channels from the artist search. They can be skipped.
                         Ok(None)
@@ -1009,7 +1022,7 @@ impl MusicListMapper {
                     }));
                     Ok(Some(MusicItemType::Playlist))
                 }
-                MusicPageType::None => Ok(None),
+                MusicPageType::None | MusicPageType::User => Ok(None),
             },
             None => Err("could not determine item type".to_owned()),
         }
@@ -1144,6 +1157,19 @@ impl MusicListMapper {
                     }));
                     Some(MusicItemType::Playlist)
                 }
+                MusicPageType::User => {
+                    // Part 1 may be the "Profile" label
+                    let handle = map_channel_handle(subtitle_p2.as_ref())
+                        .or_else(|| map_channel_handle(subtitle_p1.as_ref()));
+
+                    self.items.push(MusicItem::User(UserItem {
+                        id: music_page.id,
+                        name: card.title,
+                        handle,
+                        avatar: card.thumbnail.into(),
+                    }));
+                    Some(MusicItemType::User)
+                }
                 MusicPageType::None => None,
             },
             None => {
@@ -1206,6 +1232,7 @@ impl MusicListMapper {
                 MusicItem::Album(album) => albums.push(album),
                 MusicItem::Artist(artist) => artists.push(artist),
                 MusicItem::Playlist(playlist) => playlists.push(playlist),
+                MusicItem::User(_) => {}
             }
         }
 
@@ -1254,6 +1281,12 @@ fn map_artist_id_fallback(
 ) -> Option<String> {
     menu.and_then(|m| map_artist_id(m.menu_renderer.contents))
         .or_else(|| fallback_artist.and_then(|a| a.id.clone()))
+}
+
+fn map_channel_handle(st: Option<&TextComponents>) -> Option<String> {
+    st.map(|t| t.first_str())
+        .filter(|t| t.starts_with('@'))
+        .map(str::to_owned)
 }
 
 pub(crate) fn map_artist_id(entries: Vec<MusicItemMenuEntry>) -> Option<String> {

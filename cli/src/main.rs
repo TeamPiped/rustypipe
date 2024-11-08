@@ -269,6 +269,7 @@ enum MusicSearchCategory {
     Albums,
     PlaylistsYtm,
     PlaylistsCommunity,
+    Users,
 }
 
 #[derive(Copy, Clone, PartialEq, Eq, ValueEnum)]
@@ -348,8 +349,13 @@ fn print_data<T: Serialize>(data: &T, format: Format, pretty: bool) {
     };
 }
 
-fn print_entities(items: &[impl YtEntity]) {
+fn print_entities(items: &[impl YtEntity], with_type: bool) {
     for e in items {
+        if with_type {
+            if let Some(t) = e.music_item_type() {
+                anstream::print!("{: >8} ", format!("{t:?}").dimmed());
+            }
+        }
         anstream::print!("[{}] {}", e.id(), e.name().bold());
         if let Some(n) = e.channel_name() {
             anstream::print!(" - {}", n.cyan());
@@ -399,6 +405,7 @@ fn print_music_search<T: Serialize + YtEntity>(
     data: &MusicSearchResult<T>,
     format: Option<Format>,
     pretty: bool,
+    with_type: bool,
 ) {
     match format {
         Some(format) => print_data(data, format, pretty),
@@ -406,7 +413,7 @@ fn print_music_search<T: Serialize + YtEntity>(
             if let Some(corr) = &data.corrected_query {
                 anstream::println!("Did you mean `{}`?", corr.magenta());
             }
-            print_entities(&data.items.items);
+            print_entities(&data.items.items, with_type);
         }
     }
 }
@@ -788,7 +795,7 @@ async fn run() -> anyhow::Result<()> {
                                 print_description(Some(details.description.to_plaintext()));
                                 if !details.recommended.is_empty() {
                                     print_h2("Recommended");
-                                    print_entities(&details.recommended.items);
+                                    print_entities(&details.recommended.items, false);
                                 }
                                 let comment_list = comments.map(|c| match c {
                                     CommentsOrder::Top => &details.top_comments.items,
@@ -872,11 +879,11 @@ async fn run() -> anyhow::Result<()> {
                                 }
                                 if !artist.playlists.is_empty() {
                                     print_h2("Playlists");
-                                    print_entities(&artist.playlists);
+                                    print_entities(&artist.playlists, false);
                                 }
                                 if !artist.similar_artists.is_empty() {
                                     print_h2("Similar artists");
-                                    print_entities(&artist.similar_artists);
+                                    print_entities(&artist.similar_artists, false);
                                 }
                             }
                         }
@@ -903,7 +910,7 @@ async fn run() -> anyhow::Result<()> {
                                     );
                                 }
                                 println!();
-                                print_entities(&rss.videos);
+                                print_entities(&rss.videos, false);
                             }
                         }
                     } else {
@@ -944,7 +951,7 @@ async fn run() -> anyhow::Result<()> {
                                         }
                                         print_description(Some(channel.description));
                                         println!();
-                                        print_entities(&channel.content.items);
+                                        print_entities(&channel.content.items, false);
                                     }
                                 }
                             }
@@ -973,7 +980,7 @@ async fn run() -> anyhow::Result<()> {
                                             anstream::println!("{} {}", "Videos:".blue(), vids);
                                         }
                                         println!();
-                                        print_entities(&channel.content.items);
+                                        print_entities(&channel.content.items, false);
                                     }
                                 }
                             }
@@ -1077,7 +1084,7 @@ async fn run() -> anyhow::Result<()> {
                                 }
                                 print_description(playlist.description.map(|d| d.to_plaintext()));
                                 println!();
-                                print_entities(&playlist.videos.items);
+                                print_entities(&playlist.videos.items, false);
                             }
                         }
                     }
@@ -1145,7 +1152,7 @@ async fn run() -> anyhow::Result<()> {
                             }
                             print_description(Some(channel.description));
                             println!();
-                            print_entities(&channel.content.items);
+                            print_entities(&channel.content.items, false);
                         }
                     }
                 }
@@ -1167,34 +1174,34 @@ async fn run() -> anyhow::Result<()> {
                             if let Some(corr) = res.corrected_query {
                                 anstream::println!("Did you mean `{}`?", corr.magenta());
                             }
-                            print_entities(&res.items.items);
+                            print_entities(&res.items.items, false);
                         }
                     }
                 }
             },
             Some(MusicSearchCategory::All) => {
                 let res = rp.query().music_search_main(&query).await?;
-                print_music_search(&res, format, pretty);
+                print_music_search(&res, format, pretty, true);
             }
             Some(MusicSearchCategory::Tracks) => {
                 let mut res = rp.query().music_search_tracks(&query).await?;
                 res.items.extend_limit(rp.query(), limit).await?;
-                print_music_search(&res, format, pretty);
+                print_music_search(&res, format, pretty, false);
             }
             Some(MusicSearchCategory::Videos) => {
                 let mut res = rp.query().music_search_videos(&query).await?;
                 res.items.extend_limit(rp.query(), limit).await?;
-                print_music_search(&res, format, pretty);
+                print_music_search(&res, format, pretty, false);
             }
             Some(MusicSearchCategory::Artists) => {
                 let mut res = rp.query().music_search_artists(&query).await?;
                 res.items.extend_limit(rp.query(), limit).await?;
-                print_music_search(&res, format, pretty);
+                print_music_search(&res, format, pretty, false);
             }
             Some(MusicSearchCategory::Albums) => {
                 let mut res = rp.query().music_search_albums(&query).await?;
                 res.items.extend_limit(rp.query(), limit).await?;
-                print_music_search(&res, format, pretty);
+                print_music_search(&res, format, pretty, false);
             }
             Some(MusicSearchCategory::PlaylistsYtm | MusicSearchCategory::PlaylistsCommunity) => {
                 let mut res = rp
@@ -1205,7 +1212,12 @@ async fn run() -> anyhow::Result<()> {
                     )
                     .await?;
                 res.items.extend_limit(rp.query(), limit).await?;
-                print_music_search(&res, format, pretty);
+                print_music_search(&res, format, pretty, false);
+            }
+            Some(MusicSearchCategory::Users) => {
+                let mut res = rp.query().music_search_users(&query).await?;
+                res.items.extend_limit(rp.query(), limit).await?;
+                print_music_search(&res, format, pretty, false);
             }
         },
         Commands::Vdata => {

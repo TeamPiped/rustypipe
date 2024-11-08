@@ -964,6 +964,19 @@ pub struct ArtistItem {
     pub subscriber_count: Option<u64>,
 }
 
+/// YouTube Music user item
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+pub struct UserItem {
+    /// Unique YouTube user ID
+    pub id: String,
+    /// User name
+    pub name: String,
+    /// YouTube channel handle (e.g. `@EEVblog`)
+    pub handle: Option<String>,
+    /// User avatar/profile picture
+    pub avatar: Vec<Thumbnail>,
+}
+
 /// YouTube Music artist identifier
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[non_exhaustive]
@@ -1140,6 +1153,7 @@ pub enum MusicItem {
     Album(AlbumItem),
     Artist(ArtistItem),
     Playlist(MusicPlaylistItem),
+    User(UserItem),
 }
 
 /// YouTube Music item type
@@ -1150,6 +1164,7 @@ pub enum MusicItemType {
     Album,
     Artist,
     Playlist,
+    User,
 }
 
 /// YouTube Music search result

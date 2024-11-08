@@ -143,10 +143,12 @@ pub trait YtEntity {
     ///
     /// `None` if the entity does not belong to a channel
     fn channel_name(&self) -> Option<&str>;
+    /// YTM item type
+    fn music_item_type(&self) -> Option<MusicItemType>;
 }
 
 macro_rules! yt_entity {
-    ($entity_type:ty) => {
+    ($entity_type:ty, $music_item_type:expr) => {
         impl YtEntity for $entity_type {
             fn id(&self) -> &str {
                 &self.id
@@ -163,12 +165,16 @@ macro_rules! yt_entity {
             fn channel_name(&self) -> Option<&str> {
                 None
             }
+
+            fn music_item_type(&self) -> Option<MusicItemType> {
+                $music_item_type
+            }
         }
     };
 }
 
 macro_rules! yt_entity_owner {
-    ($entity_type:ty) => {
+    ($entity_type:ty, $music_item_type:expr) => {
         impl YtEntity for $entity_type {
             fn id(&self) -> &str {
                 &self.id
@@ -185,12 +191,16 @@ macro_rules! yt_entity_owner {
             fn channel_name(&self) -> Option<&str> {
                 Some(&self.channel.name)
             }
+
+            fn music_item_type(&self) -> Option<MusicItemType> {
+                Some($music_item_type)
+            }
         }
     };
 }
 
 macro_rules! yt_entity_owner_opt {
-    ($entity_type:ty) => {
+    ($entity_type:ty, $music_item_type:expr) => {
         impl YtEntity for $entity_type {
             fn id(&self) -> &str {
                 &self.id
@@ -207,12 +217,16 @@ macro_rules! yt_entity_owner_opt {
             fn channel_name(&self) -> Option<&str> {
                 self.channel.as_ref().map(|c| c.name.as_str())
             }
+
+            fn music_item_type(&self) -> Option<MusicItemType> {
+                Some($music_item_type)
+            }
         }
     };
 }
 
 macro_rules! yt_entity_owner_music {
-    ($entity_type:ty) => {
+    ($entity_type:ty, $music_item_type:expr) => {
         impl YtEntity for $entity_type {
             fn id(&self) -> &str {
                 &self.id
@@ -233,6 +247,10 @@ macro_rules! yt_entity_owner_music {
                     self.artists.first().map(|a| a.name.as_str())
                 }
             }
+
+            fn music_item_type(&self) -> Option<MusicItemType> {
+                Some($music_item_type)
+            }
         }
     };
 }
@@ -252,6 +270,10 @@ impl<T> YtEntity for Channel<T> {
 
     fn channel_name(&self) -> Option<&str> {
         None
+    }
+
+    fn music_item_type(&self) -> Option<MusicItemType> {
+        Some(MusicItemType::User)
     }
 }
 
@@ -287,6 +309,14 @@ impl YtEntity for YouTubeItem {
             YouTubeItem::Channel(_) => None,
         }
     }
+
+    fn music_item_type(&self) -> Option<MusicItemType> {
+        Some(match self {
+            YouTubeItem::Video(_) => MusicItemType::Track,
+            YouTubeItem::Playlist(_) => MusicItemType::Playlist,
+            YouTubeItem::Channel(_) => MusicItemType::User,
+        })
+    }
 }
 
 impl YtEntity for MusicItem {
@@ -296,6 +326,7 @@ impl YtEntity for MusicItem {
             MusicItem::Album(b) => &b.id,
             MusicItem::Artist(a) => &a.id,
             MusicItem::Playlist(p) => &p.id,
+            MusicItem::User(u) => &u.id,
         }
     }
 
@@ -305,6 +336,7 @@ impl YtEntity for MusicItem {
             MusicItem::Album(b) => &b.name,
             MusicItem::Artist(a) => &a.name,
             MusicItem::Playlist(p) => &p.name,
+            MusicItem::User(u) => &u.name,
         }
     }
 
@@ -312,7 +344,7 @@ impl YtEntity for MusicItem {
         match self {
             MusicItem::Track(t) => t.channel_id(),
             MusicItem::Album(b) => b.channel_id(),
-            MusicItem::Artist(_) => None,
+            MusicItem::Artist(_) | MusicItem::User(_) => None,
             MusicItem::Playlist(p) => p.channel_id(),
         }
     }
@@ -321,29 +353,40 @@ impl YtEntity for MusicItem {
         match self {
             MusicItem::Track(t) => t.channel_name(),
             MusicItem::Album(b) => b.channel_name(),
-            MusicItem::Artist(_) => None,
-            MusicItem::Playlist(p) => p.channel_id(),
+            MusicItem::Artist(_) | MusicItem::User(_) => None,
+            MusicItem::Playlist(p) => p.channel_name(),
         }
+    }
+
+    fn music_item_type(&self) -> Option<MusicItemType> {
+        Some(match self {
+            MusicItem::Track(_) => MusicItemType::Track,
+            MusicItem::Album(_) => MusicItemType::Album,
+            MusicItem::Artist(_) => MusicItemType::Artist,
+            MusicItem::Playlist(_) => MusicItemType::Playlist,
+            MusicItem::User(_) => MusicItemType::User,
+        })
     }
 }
 
-yt_entity_owner_opt! {Playlist}
-yt_entity! {ChannelId}
-yt_entity_owner! {VideoDetails}
-yt_entity! {ChannelTag}
-yt_entity! {ChannelRss}
-yt_entity! {ChannelRssVideo}
-yt_entity_owner_opt! {VideoItem}
-yt_entity! {ChannelItem}
-yt_entity_owner_opt! {PlaylistItem}
-yt_entity! {VideoId}
-yt_entity_owner_music! {TrackItem}
-yt_entity! {ArtistItem}
-yt_entity_owner_music! {AlbumItem}
-yt_entity_owner_opt! {MusicPlaylistItem}
-yt_entity! {AlbumId}
-yt_entity_owner_opt! {MusicPlaylist}
-yt_entity_owner_music! {MusicAlbum}
-yt_entity! {MusicArtist}
-yt_entity! {MusicGenreItem}
-yt_entity! {MusicGenre}
+yt_entity_owner_opt! {Playlist, MusicItemType::Playlist}
+yt_entity! {ChannelId, Some(MusicItemType::User)}
+yt_entity_owner! {VideoDetails, MusicItemType::Track}
+yt_entity! {ChannelTag, Some(MusicItemType::User)}
+yt_entity! {ChannelRss, Some(MusicItemType::User)}
+yt_entity! {ChannelRssVideo, Some(MusicItemType::Track)}
+yt_entity_owner_opt! {VideoItem, MusicItemType::Track}
+yt_entity! {ChannelItem, Some(MusicItemType::User)}
+yt_entity_owner_opt! {PlaylistItem, MusicItemType::Playlist}
+yt_entity! {VideoId, Some(MusicItemType::Track)}
+yt_entity_owner_music! {TrackItem, MusicItemType::Track}
+yt_entity! {ArtistItem, Some(MusicItemType::Artist)}
+yt_entity_owner_music! {AlbumItem, MusicItemType::Album}
+yt_entity_owner_opt! {MusicPlaylistItem, MusicItemType::Playlist}
+yt_entity! {AlbumId, Some(MusicItemType::Album)}
+yt_entity_owner_opt! {MusicPlaylist, MusicItemType::Playlist}
+yt_entity_owner_music! {MusicAlbum, MusicItemType::Album}
+yt_entity! {MusicArtist, Some(MusicItemType::Artist)}
+yt_entity! {UserItem, Some(MusicItemType::User)}
+yt_entity! {MusicGenreItem, None}
+yt_entity! {MusicGenre, None}

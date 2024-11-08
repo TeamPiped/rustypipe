@@ -9,7 +9,7 @@ use crate::{
         paginator::{ContinuationEndpoint, Paginator},
         traits::FromYtItem,
         AlbumItem, ArtistItem, MusicItem, MusicPlaylistItem, MusicSearchResult,
-        MusicSearchSuggestion, TrackItem,
+        MusicSearchSuggestion, TrackItem, UserItem,
     },
     param::search_filter::MusicSearchFilter,
     serializer::MapResult,
@@ -119,6 +119,15 @@ impl RustyPipeQuery {
             }),
         )
         .await
+    }
+
+    /// Search YouTube Music users
+    pub async fn music_search_users<S: AsRef<str>>(
+        &self,
+        query: S,
+    ) -> Result<MusicSearchResult<UserItem>, Error> {
+        self.music_search(query, Some(MusicSearchFilter::Users))
+            .await
     }
 
     /// Get YouTube Music search suggestions

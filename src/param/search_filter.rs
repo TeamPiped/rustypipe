@@ -236,17 +236,20 @@ pub enum MusicSearchFilter {
     YtmPlaylists,
     /// Playlists created by YouTube users
     CommunityPlaylists,
+    /// Users
+    Users,
 }
 
 impl MusicSearchFilter {
     pub(crate) fn params(self) -> &'static str {
         match self {
-            MusicSearchFilter::Tracks => "EgWKAQIIAWoMEAMQBBAJEA4QChAF",
-            MusicSearchFilter::Videos => "EgWKAQIQAWoMEAMQBBAJEA4QChAF",
-            MusicSearchFilter::Albums => "EgWKAQIYAWoMEAMQBBAJEA4QChAF",
-            MusicSearchFilter::Artists => "EgWKAQIgAWoMEAMQBBAJEA4QChAF",
-            MusicSearchFilter::YtmPlaylists => "EgeKAQQoADgBagwQAxAEEAkQDhAKEAU%3D",
-            MusicSearchFilter::CommunityPlaylists => "EgeKAQQoAEABagwQAxAEEAkQDhAKEAU%3D",
+            MusicSearchFilter::Tracks => "EgWKAQIIAWoQEAMQBBAJEAoQBRAREBAQFQ%3D%3D",
+            MusicSearchFilter::Videos => "EgWKAQIQAWoQEAMQBBAJEAoQBRAREBAQFQ%3D%3D",
+            MusicSearchFilter::Albums => "EgWKAQIYAWoQEAMQBBAJEAoQBRAREBAQFQ%3D%3D",
+            MusicSearchFilter::Artists => "EgWKAQIgAWoQEAMQBBAJEAoQBRAREBAQFQ%3D%3D",
+            MusicSearchFilter::YtmPlaylists => "EgeKAQQoADgBahIQAxAEEAkQDhAKEAUQERAQEBU%3D",
+            MusicSearchFilter::CommunityPlaylists => "EgeKAQQoAEABahAQAxAEEAkQChAFEBEQEBAV",
+            MusicSearchFilter::Users => "EgWKAQJYAWoQEAMQBBAJEAoQBRAREBAQFQ%3D%3D",
         }
     }
 }

@@ -227,6 +227,7 @@ pub(crate) enum MusicPageType {
     Album,
     Playlist,
     Track { vtype: MusicVideoType },
+    User,
     None,
 }
 
@@ -236,10 +237,11 @@ impl From<PageType> for MusicPageType {
             PageType::Artist => MusicPageType::Artist,
             PageType::Album => MusicPageType::Album,
             PageType::Playlist | PageType::Podcast => MusicPageType::Playlist,
-            PageType::Channel | PageType::Unknown => MusicPageType::None,
+            PageType::Channel => MusicPageType::User,
             PageType::Episode => MusicPageType::Track {
                 vtype: MusicVideoType::Episode,
             },
+            PageType::Unknown => MusicPageType::None,
         }
     }
 }
