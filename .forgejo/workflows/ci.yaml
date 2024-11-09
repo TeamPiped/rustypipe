@@ -43,6 +43,14 @@ jobs:
           name: test
           path: target/nextest/ci/junit.xml
 
+      - name: 💌 Upload RustyPipe report
+        if: always()
+        uses: https://code.forgejo.org/forgejo/upload-artifact@v4
+        with:
+          name: test
+          path: rustypipe_reports
+          if-no-files-found: ignore
+
       - name: 🔗 Artifactview PR comment
         if: ${{ always() && github.event_name == 'pull_request' }}
         run: |
