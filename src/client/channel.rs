@@ -16,7 +16,9 @@ use crate::{
     util::{self, timeago, ProtoBuilder},
 };
 
-use super::{response, ClientType, MapRespCtx, MapResponse, QContinuation, RustyPipeQuery};
+use super::{
+    response, ClientType, MapRespCtx, MapRespOptions, MapResponse, QContinuation, RustyPipeQuery,
+};
 
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
@@ -178,12 +180,16 @@ impl RustyPipeQuery {
             continuation: &channel_info_ctoken(channel_id, &random_target()),
         };
 
-        self.execute_request::<response::ChannelAbout, _, _>(
+        self.execute_request_ctx::<response::ChannelAbout, _, _>(
             ClientType::Desktop,
             "channel_info",
             channel_id,
             "browse",
             &request_body,
+            MapRespOptions {
+                unlocalized: true,
+                ..Default::default()
+            },
         )
         .await
     }

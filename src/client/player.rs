@@ -24,7 +24,7 @@ use super::{
         self,
         player::{self, Format},
     },
-    ClientType, MapRespCtx, MapRespCtxSource, MapResponse, MapResult, RustyPipeQuery,
+    ClientType, MapRespCtx, MapRespOptions, MapResponse, MapResult, RustyPipeQuery,
     DEFAULT_PLAYER_CLIENT_ORDER,
 };
 
@@ -159,8 +159,9 @@ impl RustyPipeQuery {
             video_id,
             "player",
             &request_body,
-            MapRespCtxSource {
+            MapRespOptions {
                 deobf: Some(&deobf),
+                unlocalized: true,
                 ..Default::default()
             },
         )

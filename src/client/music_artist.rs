@@ -5,7 +5,7 @@ use regex::Regex;
 use tracing::debug;
 
 use crate::{
-    client::{response::url_endpoint::NavigationEndpoint, MapRespCtxSource, QContinuation},
+    client::{response::url_endpoint::NavigationEndpoint, MapRespOptions, QContinuation},
     error::{Error, ExtractionError},
     model::{
         paginator::Paginator, traits::FromYtItem, AlbumItem, ArtistId, MusicArtist, MusicItem,
@@ -109,7 +109,7 @@ impl RustyPipeQuery {
                     artist_id,
                     "browse",
                     &request_body,
-                    MapRespCtxSource {
+                    MapRespOptions {
                         artist: Some(first_page.artist.clone()),
                         visitor_data: first_page.visitor_data.as_deref(),
                         ..Default::default()

@@ -1820,7 +1820,7 @@ impl RustyPipeQuery {
         id: &str,
         endpoint: &str,
         body: &B,
-        ctx_src: MapRespCtxSource<'_>,
+        ctx_src: MapRespOptions<'_>,
     ) -> Result<M, Error> {
         tracing::debug!("getting {}({})", operation, id);
 
@@ -1946,7 +1946,7 @@ impl RustyPipeQuery {
             id,
             endpoint,
             body,
-            MapRespCtxSource::default(),
+            MapRespOptions::default(),
         )
         .await
     }
@@ -1989,6 +1989,7 @@ impl AsRef<RustyPipeQuery> for RustyPipeQuery {
     }
 }
 
+/// Additional data needed for mapping YouTube responses
 struct MapRespCtx<'a> {
     id: &'a str,
     lang: Language,
@@ -1998,8 +1999,10 @@ struct MapRespCtx<'a> {
     artist: Option<ArtistId>,
 }
 
+/// Options to give to the mapper when making requests;
+/// used to construct the [`MapRespCtx`]
 #[derive(Default)]
-struct MapRespCtxSource<'a> {
+struct MapRespOptions<'a> {
     visitor_data: Option<&'a str>,
     deobf: Option<&'a DeobfData>,
     artist: Option<ArtistId>,

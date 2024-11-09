@@ -10,7 +10,7 @@ use crate::serializer::MapResult;
 
 use super::response::music_item::{map_queue_item, MusicListMapper, PlaylistPanelVideo};
 use super::{
-    response, ClientType, MapRespCtx, MapRespCtxSource, MapResponse, QContinuation, RustyPipeQuery,
+    response, ClientType, MapRespCtx, MapRespOptions, MapResponse, QContinuation, RustyPipeQuery,
 };
 
 impl RustyPipeQuery {
@@ -35,7 +35,7 @@ impl RustyPipeQuery {
                     ctoken,
                     endpoint.as_str(),
                     &request_body,
-                    MapRespCtxSource {
+                    MapRespOptions {
                         visitor_data,
                         ..Default::default()
                     },
@@ -55,7 +55,7 @@ impl RustyPipeQuery {
                     ctoken,
                     endpoint.as_str(),
                     &request_body,
-                    MapRespCtxSource {
+                    MapRespOptions {
                         visitor_data,
                         ..Default::default()
                     },
