@@ -4,9 +4,9 @@ use serde_with::{serde_as, DefaultOnError, VecSkipError};
 use crate::serializer::text::{AttributedText, Text, TextComponent, TextComponents};
 
 use super::{
-    url_endpoint::NavigationEndpoint, video_item::YouTubeListRenderer, Alert, ContentRenderer,
-    ContentsRenderer, ImageView, PageHeaderRendererContent, PhMetadataView, ResponseContext,
-    SectionList, Tab, ThumbnailsWrap, TwoColumnBrowseResults,
+    url_endpoint::OnTap, video_item::YouTubeListRenderer, Alert, ContentRenderer, ContentsRenderer,
+    ImageView, PageHeaderRendererContent, PhMetadataView, ResponseContext, SectionList, Tab,
+    TextBox, ThumbnailsWrap, TwoColumnBrowseResults,
 };
 
 #[serde_as]
@@ -70,15 +70,7 @@ pub(crate) struct PlaylistHeaderBanner {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct Byline {
-    pub playlist_byline_renderer: BylineRenderer,
-}
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct BylineRenderer {
-    #[serde_as(as = "Text")]
-    pub text: String,
+    pub playlist_byline_renderer: TextBox,
 }
 
 #[derive(Debug, Deserialize)]
@@ -187,11 +179,5 @@ pub(crate) struct ButtonAction {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct ButtonViewModel {
-    pub on_tap: ActionOnTap,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct ActionOnTap {
-    pub innertube_command: NavigationEndpoint,
+    pub on_tap: OnTap,
 }

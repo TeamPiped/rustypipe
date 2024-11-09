@@ -3,8 +3,8 @@ use serde_with::{serde_as, DefaultOnError, VecSkipError};
 
 use crate::serializer::text::Text;
 
-use super::AlertRenderer;
 use super::ContentsRenderer;
+use super::TextBox;
 use super::{
     music_item::{ItemSection, PlaylistPanelRenderer},
     ContentRenderer,
@@ -115,7 +115,7 @@ pub(crate) struct MusicLyrics {
 #[serde(rename_all = "camelCase")]
 pub(crate) enum ListOrMessage<T> {
     SectionListRenderer(ContentsRenderer<T>),
-    MessageRenderer(AlertRenderer),
+    MessageRenderer(TextBox),
 }
 
 #[derive(Debug, Deserialize)]

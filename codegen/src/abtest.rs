@@ -36,6 +36,7 @@ pub enum ABTest {
     CommentsFrameworkUpdate = 14,
     ChannelShortsLockup = 15,
     PlaylistPageHeader = 16,
+    ChannelPlaylistsLockup = 17,
 }
 
 /// List of active A/B tests that are run when none is manually specified
@@ -112,6 +113,7 @@ pub async fn run_test(
                     ABTest::CommentsFrameworkUpdate => comments_framework_update(&query).await,
                     ABTest::ChannelShortsLockup => channel_shorts_lockup(&query).await,
                     ABTest::PlaylistPageHeader => playlist_page_header_renderer(&query).await,
+                    ABTest::ChannelPlaylistsLockup => channel_playlists_lockup(&query).await,
                 }
                 .unwrap();
                 pb.inc(1);
@@ -156,7 +158,7 @@ pub async fn attributed_text_description(rp: &RustyPipeQuery) -> Result<bool> {
         content_check_ok: false,
         racy_check_ok: false,
     };
-    let response_txt = rp.raw(ClientType::Desktop, "next", &q).await.unwrap();
+    let response_txt = rp.raw(ClientType::Desktop, "next", &q).await?;
 
     if !response_txt.contains("\"Black Mamba\"") {
         bail!("invalid response data");
@@ -166,7 +168,7 @@ pub async fn attributed_text_description(rp: &RustyPipeQuery) -> Result<bool> {
 }
 
 pub async fn three_tab_channel_layout(rp: &RustyPipeQuery) -> Result<bool> {
-    let channel = rp.channel_videos("UCR-DXc1voovS8nhAvccRZhg").await.unwrap();
+    let channel = rp.channel_videos("UCR-DXc1voovS8nhAvccRZhg").await?;
     Ok(channel.has_live || channel.has_shorts)
 }
 
@@ -233,8 +235,7 @@ pub async fn discography_page(rp: &RustyPipeQuery) -> Result<bool> {
                 params: None,
             },
         )
-        .await
-        .unwrap();
+        .await?;
     Ok(res.contains(&format!("\"MPAD{id}\"")))
 }
 
@@ -296,8 +297,7 @@ pub async fn channel_about_modal(rp: &RustyPipeQuery) -> Result<bool> {
                 params: None,
             },
         )
-        .await
-        .unwrap();
+        .await?;
     Ok(!res.contains("\"EgVhYm91dPIGBAoCEgA%3D\""))
 }
 
@@ -334,8 +334,7 @@ pub async fn music_playlist_two_column(rp: &RustyPipeQuery) -> Result<bool> {
                 params: None,
             },
         )
-        .await
-        .unwrap();
+        .await?;
     Ok(res.contains("\"musicResponsiveHeaderRenderer\""))
 }
 
@@ -344,8 +343,7 @@ pub async fn comments_framework_update(rp: &RustyPipeQuery) -> Result<bool> {
         "Eg0SC3dMZHBSN2d1S3k4GAYyJSIRIgt3TGRwUjdndUt5ODAAeAJCEGNvbW1lbnRzLXNlY3Rpb24%3D";
     let res = rp
         .raw(ClientType::Desktop, "next", &QCont { continuation })
-        .await
-        .unwrap();
+        .await?;
     Ok(res.contains("\"frameworkUpdates\""))
 }
 
@@ -360,8 +358,7 @@ pub async fn channel_shorts_lockup(rp: &RustyPipeQuery) -> Result<bool> {
                 params: Some("EgZzaG9ydHPyBgUKA5oBAA%3D%3D"),
             },
         )
-        .await
-        .unwrap();
+        .await?;
     Ok(res.contains("\"shortsLockupViewModel\""))
 }
 
@@ -376,7 +373,21 @@ pub async fn playlist_page_header_renderer(rp: &RustyPipeQuery) -> Result<bool> 
                 params: None,
             },
         )
-        .await
-        .unwrap();
+        .await?;
     Ok(res.contains("\"pageHeaderRenderer\""))
+}
+
+pub async fn channel_playlists_lockup(rp: &RustyPipeQuery) -> Result<bool> {
+    let id = "UC2DjFE7Xf11URZqWBigcVOQ";
+    let res = rp
+        .raw(
+            ClientType::Desktop,
+            "browse",
+            &QBrowse {
+                browse_id: id,
+                params: Some("EglwbGF5bGlzdHMgAQ%3D%3D"),
+            },
+        )
+        .await?;
+    Ok(res.contains("\"lockupViewModel\""))
 }

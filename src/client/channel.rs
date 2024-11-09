@@ -776,8 +776,10 @@ mod tests {
     }
 
     #[rstest]
-    fn map_channel_playlists() {
-        let json_path = path!(*TESTFILES / "channel" / "channel_playlists.json");
+    #[case::base("base")]
+    #[case::lockup("20241109_lockup")]
+    fn map_channel_playlists(#[case] name: &str) {
+        let json_path = path!(*TESTFILES / "channel" / format!("channel_playlists_{name}.json"));
         let json_file = File::open(json_path).unwrap();
 
         let channel: response::Channel =
@@ -791,7 +793,7 @@ mod tests {
             "deserialization/mapping warnings: {:?}",
             map_res.warnings
         );
-        insta::assert_ron_snapshot!("map_channel_playlists", map_res.c);
+        insta::assert_ron_snapshot!(format!("map_channel_playlists_{name}"), map_res.c);
     }
 
     #[rstest]

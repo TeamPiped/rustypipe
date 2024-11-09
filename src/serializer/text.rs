@@ -5,7 +5,7 @@ use serde_with::{serde_as, DefaultOnError, DeserializeAs, VecSkipError};
 
 use crate::{
     client::response::url_endpoint::{
-        MusicPage, MusicPageType, MusicVideoType, NavigationEndpoint, PageType,
+        MusicPage, MusicPageType, MusicVideoType, NavigationEndpoint, OnTap, PageType,
     },
     model::{richtext::Style, UrlTarget},
     util,
@@ -159,7 +159,7 @@ pub(crate) struct AttributedText {
 struct CommandRun {
     start_index: usize,
     length: usize,
-    on_tap: AttributedTextOnTap,
+    on_tap: OnTap,
     #[serde(default)]
     #[serde_as(as = "DefaultOnError<_>")]
     on_tap_options: Option<AttributedTextOnTapOptions>,
@@ -194,12 +194,6 @@ enum Strikethrough {
     #[default]
     #[serde(other)]
     None,
-}
-
-#[derive(Deserialize)]
-#[serde(rename_all = "camelCase")]
-struct AttributedTextOnTap {
-    innertube_command: NavigationEndpoint,
 }
 
 #[derive(Deserialize)]

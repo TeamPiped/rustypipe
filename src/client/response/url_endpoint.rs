@@ -157,6 +157,12 @@ pub(crate) struct WatchEndpointConfig {
     pub music_video_type: MusicVideoType,
 }
 
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct OnTap {
+    pub innertube_command: NavigationEndpoint,
+}
+
 #[derive(Default, Debug, Clone, Copy, Deserialize, PartialEq, Eq)]
 pub(crate) enum MusicVideoType {
     #[default]

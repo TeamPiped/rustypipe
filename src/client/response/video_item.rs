@@ -4,7 +4,7 @@ use serde_with::{
 };
 use time::OffsetDateTime;
 
-use super::{ChannelBadge, ContinuationEndpoint, Thumbnails};
+use super::{ChannelBadge, ContentImage, ContinuationEndpoint, Thumbnails};
 use crate::{
     model::{
         Channel, ChannelId, ChannelItem, ChannelTag, PlaylistItem, Verification, VideoItem,
@@ -32,6 +32,8 @@ pub(crate) enum YouTubeListItem {
     PlaylistRenderer(PlaylistRenderer),
 
     ChannelRenderer(ChannelRenderer),
+
+    LockupViewModel(LockupViewModel),
 
     /// Continauation items are located at the end of a list
     /// and contain the continuation token for progressive loading
@@ -163,6 +165,41 @@ pub(crate) struct ShortsOverlayMetadata {
     /// View count
     #[serde_as(as = "Option<AttributedText>")]
     pub secondary_text: Option<String>,
+}
+
+/// Generalized list item, currently only used for playlists
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct LockupViewModel {
+    pub content_image: ContentImage,
+    pub metadata: LockupViewModelMetadata,
+    pub content_id: String,
+    #[serde(default)]
+    #[serde_as(deserialize_as = "DefaultOnError")]
+    pub content_type: LockupContentType,
+}
+
+#[derive(Default, Debug, Deserialize)]
+#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+pub(crate) enum LockupContentType {
+    LockupContentTypePlaylist,
+    #[default]
+    Unknown,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct LockupViewModelMetadata {
+    pub lockup_metadata_view_model: LockupViewModelMetadataInner,
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct LockupViewModelMetadataInner {
+    #[serde_as(as = "AttributedText")]
+    pub title: String,
 }
 
 /// Video displayed in a playlist
@@ -681,6 +718,38 @@ impl<T> YouTubeListMapper<T> {
             short_description: channel.description_snippet,
         }
     }
+
+    fn map_lockup(&mut self, lockup: LockupViewModel) -> Option<PlaylistItem> {
+        let md = lockup.metadata.lockup_metadata_view_model;
+        let tn = lockup
+            .content_image
+            .collection_thumbnail_view_model
+            .primary_thumbnail
+            .thumbnail_view_model;
+        match lockup.content_type {
+            LockupContentType::LockupContentTypePlaylist => Some(PlaylistItem {
+                id: lockup.content_id,
+                name: md.title,
+                thumbnail: tn.image.into(),
+                channel: self.channel.clone(),
+                video_count: tn
+                    .overlays
+                    .first()
+                    .and_then(|ol| {
+                        ol.thumbnail_overlay_badge_view_model
+                            .thumbnail_badges
+                            .first()
+                    })
+                    .and_then(|badge| {
+                        util::parse_numeric_or_warn(
+                            &badge.thumbnail_badge_view_model.text,
+                            &mut self.warnings,
+                        )
+                    }),
+            }),
+            LockupContentType::Unknown => None,
+        }
+    }
 }
 
 impl YouTubeListMapper<YouTubeItem> {
@@ -710,6 +779,11 @@ impl YouTubeListMapper<YouTubeItem> {
             YouTubeListItem::ChannelRenderer(channel) => {
                 let mapped = YouTubeItem::Channel(self.map_channel(channel));
                 self.items.push(mapped);
+            }
+            YouTubeListItem::LockupViewModel(lockup) => {
+                if let Some(mapped) = self.map_lockup(lockup) {
+                    self.items.push(YouTubeItem::Playlist(mapped));
+                }
             }
             YouTubeListItem::ContinuationItemRenderer {
                 continuation_endpoint,
@@ -783,6 +857,11 @@ impl YouTubeListMapper<PlaylistItem> {
             YouTubeListItem::PlaylistRenderer(playlist) => {
                 let mapped = self.map_playlist(playlist);
                 self.items.push(mapped);
+            }
+            YouTubeListItem::LockupViewModel(lockup) => {
+                if let Some(mapped) = self.map_lockup(lockup) {
+                    self.items.push(mapped);
+                }
             }
             YouTubeListItem::ContinuationItemRenderer {
                 continuation_endpoint,

@@ -188,13 +188,13 @@ pub(crate) enum ChannelBadgeStyle {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct Alert {
-    pub alert_renderer: AlertRenderer,
+    pub alert_renderer: TextBox,
 }
 
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub(crate) struct AlertRenderer {
+pub(crate) struct TextBox {
     #[serde_as(as = "Text")]
     pub text: String,
 }
@@ -522,4 +522,51 @@ impl MetadataPart {
 pub(crate) struct AvatarStackViewModel {
     #[serde_as(deserialize_as = "AttributedText")]
     pub text: TextComponent,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ContentImage {
+    pub collection_thumbnail_view_model: CollectionThumbnailViewModel,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct CollectionThumbnailViewModel {
+    pub primary_thumbnail: ThumbnailViewModelWrap,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ThumbnailViewModelWrap {
+    pub thumbnail_view_model: ImageViewOl,
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ImageViewOl {
+    pub image: Thumbnails,
+    #[serde_as(as = "VecSkipError<_>")]
+    pub overlays: Vec<ImageViewOverlay>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ImageViewOverlay {
+    pub thumbnail_overlay_badge_view_model: ThumbnailOverlayBadgeViewModel,
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ThumbnailOverlayBadgeViewModel {
+    #[serde_as(as = "VecSkipError<_>")]
+    pub thumbnail_badges: Vec<ThumbnailBadges>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ThumbnailBadges {
+    pub thumbnail_badge_view_model: TextBox,
 }

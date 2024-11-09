@@ -899,3 +899,73 @@ YouTube changed the data model for the channel shorts tab
   }
 }
 ```
+
+## [17] Channel playlists: lockupViewModel
+
+- **Encountered on:** 09.11.2024
+- **Impact:** 🟢 Low
+- **Endpoint:** browse
+- **Status:** Common (50%)
+
+YouTube changed the data model for the channel playlists / podcasts / albums tab
+
+```json
+{
+  "lockupViewModel": {
+    "contentImage": {
+      "collectionThumbnailViewModel": {
+        "primaryThumbnail": {
+          "thumbnailViewModel": {
+            "image": {
+              "sources": [
+                {
+                  "url": "https://i.ytimg.com/vi/XYdmX8w8xwI/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&rs=AOn4CLCqmf6TGfDinNXhgU29ZxOkv2u9sQ",
+                  "width": 480,
+                  "height": 270
+                }
+              ]
+            },
+            "overlays": [
+              {
+                "thumbnailOverlayBadgeViewModel": {
+                  "thumbnailBadges": [
+                    {
+                      "thumbnailBadgeViewModel": {
+                        "icon": {
+                          "sources": [
+                            {
+                              "clientResource": {
+                                "imageName": "PLAYLISTS"
+                              }
+                            }
+                          ]
+                        },
+                        "text": "5 videos",
+                        "badgeStyle": "THUMBNAIL_OVERLAY_BADGE_STYLE_DEFAULT",
+                        "backgroundColor": {
+                          "lightTheme": 2370867,
+                          "darkTheme": 2370867
+                        }
+                      }
+                    }
+                  ],
+                  "position": "THUMBNAIL_OVERLAY_BADGE_POSITION_BOTTOM_END"
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "metadata": {
+      "lockupMetadataViewModel": {
+        "title": {
+          "content": "Jellybean Components Series"
+        }
+      }
+    },
+    "contentId": "PLvOlSehNtuHv268f0mW5m1t_hq_RVGRSA",
+    "contentType": "LOCKUP_CONTENT_TYPE_PLAYLIST"
+  }
+}
+```
