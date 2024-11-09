@@ -56,7 +56,7 @@ MusicPlaylist(
           name: "Der Himmel reißt auf",
         )),
         view_count: None,
-        is_video: false,
+        track_type: track,
         track_nr: None,
         by_va: false,
       ),

@@ -5,6 +5,7 @@ use std::fmt::Display;
 use std::str::FromStr;
 
 use rstest::{fixture, rstest};
+use rustypipe::model::TrackType;
 use rustypipe::param::{AlbumOrder, LANGUAGES};
 use time::{macros::date, OffsetDateTime};
 
@@ -1673,7 +1674,7 @@ async fn music_artist(
 
     artist.tracks.iter().for_each(|t| {
         assert!(!t.cover.is_empty());
-        if t.is_video {
+        if t.track_type.is_video() {
             assert!(t.view_count.is_some());
         } else {
             assert!(t.album.is_some());
@@ -1859,7 +1860,7 @@ async fn music_search_main(#[case] typo: bool, rp: RustyPipe, unlocalized: bool)
     assert_eq!(track_album.id, "MPREb_RXHxrUFfrvQ");
     assert_eq!(track_album.name, "Lieblingsmensch");
 
-    assert!(!track.is_video, "got mv");
+    assert_eq!(track.track_type, TrackType::Track);
     assert_eq!(track.track_nr, None);
 }
 
@@ -1907,9 +1908,9 @@ fn check_search_result(items: &[MusicItem]) {
     for itm in items {
         match itm {
             MusicItem::Track(t) => {
-                if t.is_video {
+                if t.track_type == TrackType::Video {
                     has_videos = true
-                } else {
+                } else if t.track_type == TrackType::Track {
                     has_tracks = true
                 }
             }
@@ -1944,7 +1945,7 @@ async fn music_search_tracks(rp: RustyPipe, unlocalized: bool) {
 
     assert_eq!(track.name, "Black Mamba");
     assert!(!track.cover.is_empty(), "got no cover");
-    assert!(!track.is_video);
+    assert_eq!(track.track_type, TrackType::Track);
     assert_eq!(track.track_nr, None);
 
     assert_eq!(track.artists.len(), 1);
@@ -1979,7 +1980,7 @@ async fn music_search_videos(rp: RustyPipe, unlocalized: bool) {
 
     assert_eq!(track.name, "Black Mamba");
     assert!(!track.cover.is_empty(), "got no cover");
-    assert!(track.is_video);
+    assert_eq!(track.track_type, TrackType::Video);
     assert_eq!(track.track_nr, None);
 
     assert_eq!(track.artists.len(), 1);
@@ -2035,7 +2036,7 @@ async fn music_search_episode(rp: RustyPipe) {
     assert_eq!(track_artist.id.as_deref(), None);
     assert_eq!(track.artist_id.as_deref(), None);
     assert!(!track.cover.is_empty(), "got no cover");
-    assert!(track.is_video);
+    assert_eq!(track.track_type, TrackType::Episode);
 }
 
 #[rstest]
@@ -2360,7 +2361,7 @@ async fn music_related(#[case] id: &str, #[case] full: bool, rp: RustyPipe) {
             track_artists += 1;
         }
 
-        if track.is_video {
+        if track.track_type.is_video() {
             assert!(track.album.is_none());
             assert_gteo(track.view_count, 10_000, "views")
         } else {
@@ -2578,7 +2579,7 @@ async fn music_new_videos(rp: RustyPipe) {
             // Podcast episode: shows duration instead of view count
             assert!(video.duration.is_some(), "no view count or duration");
         }
-        assert!(video.is_video);
+        assert!(video.track_type.is_video());
     }
 }
 

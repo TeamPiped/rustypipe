@@ -16,8 +16,8 @@ use owo_colors::OwoColorize;
 use rustypipe::{
     client::{ClientType, RustyPipe},
     model::{
-        richtext::ToPlaintext, traits::YtEntity, ArtistId, MusicSearchResult, TrackItem, UrlTarget,
-        Verification, YouTubeItem,
+        richtext::ToPlaintext, traits::YtEntity, ArtistId, MusicSearchResult, TrackItem, TrackType,
+        UrlTarget, Verification, YouTubeItem,
     },
     param::{search_filter, ChannelVideoTab, Country, Language, StreamFilter},
     report::FileReporter,
@@ -700,11 +700,12 @@ async fn run() -> anyhow::Result<()> {
                         match format {
                             Some(format) => print_data(&details, format, pretty),
                             None => {
-                                if details.track.is_video {
-                                    anstream::println!("{}", "[MV]".on_green().black());
-                                } else {
-                                    anstream::println!("{}", "[Track]".on_green().black());
-                                }
+                                let typ_str = match details.track.track_type {
+                                    TrackType::Track => "[Track]",
+                                    TrackType::Video => "[MV]",
+                                    TrackType::Episode => "[Episode]",
+                                };
+                                anstream::println!("{}", typ_str.on_green().black());
                                 anstream::print!(
                                     "{} [{}]",
                                     details.track.name.green().bold(),
@@ -714,7 +715,7 @@ async fn run() -> anyhow::Result<()> {
                                 println!();
                                 print_artists(&details.track.artists);
                                 println!();
-                                if !details.track.is_video {
+                                if details.track.track_type.is_track() {
                                     anstream::println!(
                                         "{} {}",
                                         "Album:".blue(),

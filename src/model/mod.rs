@@ -938,8 +938,8 @@ pub struct TrackItem {
     ///
     /// [`None`] if it is a not a video or the view count could not be extracted.
     pub view_count: Option<u64>,
-    /// True if the track is a music video
-    pub is_video: bool,
+    /// Type of the track (YTM track / music video / podcast episode)
+    pub track_type: TrackType,
     /// Album track number
     ///
     /// [`None`] if the track is not fetched from an album.
@@ -1025,12 +1025,15 @@ pub struct MusicPlaylistItem {
     pub track_count: Option<u64>,
     /// True if the playlist is from YouTube Music
     pub from_ytm: bool,
+    /// True if the playlist is a podcast
+    pub is_podcast: bool,
 }
 
 /// YouTube Music album type
 #[derive(
     Default, Debug, Copy, Clone, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash,
 )]
+#[serde(rename_all = "snake_case")]
 #[non_exhaustive]
 pub enum AlbumType {
     /// Regular album (default)
@@ -1044,6 +1047,30 @@ pub enum AlbumType {
     Audiobook,
     /// Show (audio drama)
     Show,
+}
+
+/// YouTube Music track type
+#[derive(Debug, Copy, Clone, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[serde(rename_all = "snake_case")]
+pub enum TrackType {
+    /// Official YouTube Music track without video
+    Track,
+    /// Music video
+    Video,
+    /// Podcast episode
+    Episode,
+}
+
+impl TrackType {
+    /// Return true if the track is an official YouTube Music track without video
+    pub fn is_track(&self) -> bool {
+        self == &Self::Track
+    }
+
+    /// Return true if the track is a YouTube video
+    pub fn is_video(&self) -> bool {
+        self != &Self::Track
+    }
 }
 
 /// Album identifier
@@ -1158,6 +1185,7 @@ pub enum MusicItem {
 
 /// YouTube Music item type
 #[derive(Debug, Copy, Clone, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[serde(rename_all = "snake_case")]
 #[allow(missing_docs)]
 pub enum MusicItemType {
     Track,

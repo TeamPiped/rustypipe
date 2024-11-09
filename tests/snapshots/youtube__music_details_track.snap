@@ -24,7 +24,7 @@ TrackDetails(
       name: "Ein Gutes Schlechtes Vorbild",
     )),
     view_count: "[view_count]",
-    is_video: false,
+    track_type: track,
     track_nr: None,
     by_va: false,
   ),

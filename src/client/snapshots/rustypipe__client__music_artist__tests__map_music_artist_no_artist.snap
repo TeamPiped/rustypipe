@@ -59,6 +59,7 @@ MusicArtist(
       )),
       track_count: None,
       from_ytm: false,
+      is_podcast: false,
     ),
     MusicPlaylistItem(
       id: "PLwkM1QxaP343YqeP6g5VPGsgJdO1_SV4I",
@@ -81,6 +82,7 @@ MusicArtist(
       )),
       track_count: None,
       from_ytm: false,
+      is_podcast: false,
     ),
     MusicPlaylistItem(
       id: "PLwkM1QxaP340xbkARIPpiD1aHuzJVuZUg",
@@ -103,6 +105,7 @@ MusicArtist(
       )),
       track_count: None,
       from_ytm: false,
+      is_podcast: false,
     ),
     MusicPlaylistItem(
       id: "PLwkM1QxaP342hjju64dtqG5wKqx2hNgjr",
@@ -125,6 +128,7 @@ MusicArtist(
       )),
       track_count: None,
       from_ytm: false,
+      is_podcast: false,
     ),
     MusicPlaylistItem(
       id: "PLwkM1QxaP342v1hhoB3XLiruSQOzmdmBt",
@@ -147,6 +151,7 @@ MusicArtist(
       )),
       track_count: None,
       from_ytm: false,
+      is_podcast: false,
     ),
     MusicPlaylistItem(
       id: "PLwkM1QxaP342EBMza0AG10nB3oDD65RPY",
@@ -169,6 +174,7 @@ MusicArtist(
       )),
       track_count: None,
       from_ytm: false,
+      is_podcast: false,
     ),
     MusicPlaylistItem(
       id: "PLwkM1QxaP342nVAeBVL6_Q8gbbAD8l4wb",
@@ -191,6 +197,7 @@ MusicArtist(
       )),
       track_count: None,
       from_ytm: false,
+      is_podcast: false,
     ),
     MusicPlaylistItem(
       id: "PLwkM1QxaP3438x6ta8VJZlJSlDn43FueA",
@@ -213,6 +220,7 @@ MusicArtist(
       )),
       track_count: None,
       from_ytm: false,
+      is_podcast: false,
     ),
   ],
   similar_artists: [],

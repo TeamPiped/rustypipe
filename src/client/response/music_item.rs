@@ -759,7 +759,7 @@ impl MusicListMapper {
                     artist_id,
                     album,
                     view_count,
-                    is_video: vtype.is_video(),
+                    track_type: vtype.into(),
                     track_nr,
                     by_va,
                 }));
@@ -829,7 +829,7 @@ impl MusicListMapper {
                         }));
                         Ok(Some(MusicItemType::Album))
                     }
-                    MusicPageType::Playlist => {
+                    MusicPageType::Playlist { is_podcast } => {
                         // Part 1 may be the "Playlist" label
                         let (channel_p, tcount_p) = match subtitle_p3 {
                             Some(_) => (subtitle_p2, subtitle_p3),
@@ -855,6 +855,7 @@ impl MusicListMapper {
                             channel,
                             track_count,
                             from_ytm,
+                            is_podcast,
                         }));
                         Ok(Some(MusicItemType::Playlist))
                     }
@@ -930,7 +931,7 @@ impl MusicListMapper {
                         artists,
                         album: None,
                         view_count,
-                        is_video: vtype.is_video(),
+                        track_type: vtype.into(),
                         track_nr: None,
                         by_va,
                     }));
@@ -1002,7 +1003,7 @@ impl MusicListMapper {
                     }));
                     Ok(Some(MusicItemType::Album))
                 }
-                MusicPageType::Playlist => {
+                MusicPageType::Playlist { is_podcast } => {
                     // When the playlist subtitle has only 1 part, it is a playlist from YT Music
                     // (featured on the startpage or in genres)
                     let from_ytm = subtitle_p2
@@ -1019,6 +1020,7 @@ impl MusicListMapper {
                         channel,
                         track_count: None,
                         from_ytm,
+                        is_podcast,
                     }));
                     Ok(Some(MusicItemType::Playlist))
                 }
@@ -1093,7 +1095,7 @@ impl MusicListMapper {
                             artists,
                             album: None,
                             view_count: None,
-                            is_video: vtype.is_video(),
+                            track_type: vtype.into(),
                             track_nr: None,
                             by_va,
                         }));
@@ -1130,14 +1132,14 @@ impl MusicListMapper {
                             artists,
                             album,
                             view_count,
-                            is_video: vtype.is_video(),
+                            track_type: vtype.into(),
                             track_nr: None,
                             by_va,
                         }));
                     }
                     Some(MusicItemType::Track)
                 }
-                MusicPageType::Playlist => {
+                MusicPageType::Playlist { is_podcast } => {
                     let from_ytm = subtitle_p2
                         .as_ref()
                         .and_then(|p| p.0.first())
@@ -1154,6 +1156,7 @@ impl MusicListMapper {
                         channel,
                         track_count,
                         from_ytm,
+                        is_podcast,
                     }));
                     Some(MusicItemType::Playlist)
                 }
@@ -1359,7 +1362,7 @@ pub(crate) fn map_queue_item(item: QueueMusicItem, lang: Language) -> MapResult<
             artist_id,
             album,
             view_count,
-            is_video,
+            track_type: MusicVideoType::from_is_video(is_video).into(),
             track_nr: None,
             by_va,
         },

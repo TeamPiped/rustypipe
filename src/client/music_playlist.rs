@@ -6,7 +6,7 @@ use crate::{
     model::{
         paginator::{ContinuationEndpoint, Paginator},
         richtext::RichText,
-        AlbumId, ChannelId, MusicAlbum, MusicPlaylist, TrackItem,
+        AlbumId, ChannelId, MusicAlbum, MusicPlaylist, TrackItem, TrackType,
     },
     serializer::{text::TextComponents, MapResult},
     util::{self, TryRemove, DOT_SEPARATOR},
@@ -85,7 +85,7 @@ impl RustyPipeQuery {
                 .iter()
                 .enumerate()
                 .filter_map(|(i, track)| {
-                    if track.is_video {
+                    if track.track_type.is_video() {
                         Some((i, track.name.clone()))
                     } else {
                         None
@@ -102,7 +102,7 @@ impl RustyPipeQuery {
 
                 for (i, title) in to_replace {
                     let found_track = playlist.tracks.items.iter().find_map(|track| {
-                        if track.name == title && !track.is_video {
+                        if track.name == title && track.track_type.is_track() {
                             Some((track.id.clone(), track.duration))
                         } else {
                             None
@@ -113,7 +113,7 @@ impl RustyPipeQuery {
                         if let Some(duration) = duration {
                             album.tracks[i].duration = Some(duration);
                         }
-                        album.tracks[i].is_video = false;
+                        album.tracks[i].track_type = TrackType::Track;
                     }
                 }
             }

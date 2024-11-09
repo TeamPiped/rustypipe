@@ -34,6 +34,7 @@ MusicSearchResult(
         channel: None,
         track_count: Some(225),
         from_ytm: true,
+        is_podcast: false,
       ),
       MusicPlaylistItem(
         id: "RDCLAK5uy_nfs_t4FUu00E5ED6lveEBBX1VMYe1mFjk",
@@ -63,6 +64,7 @@ MusicSearchResult(
         channel: None,
         track_count: Some(100),
         from_ytm: true,
+        is_podcast: false,
       ),
       MusicPlaylistItem(
         id: "RDCLAK5uy_nH_fdBVCcbNaVwi_tmZajZRq-ekddiuFY",
@@ -92,6 +94,7 @@ MusicSearchResult(
         channel: None,
         track_count: Some(92),
         from_ytm: true,
+        is_podcast: false,
       ),
       MusicPlaylistItem(
         id: "RDCLAK5uy_lb6CVU6S4uVugLVNTU9WhqfaomWAgnho4",
@@ -121,6 +124,7 @@ MusicSearchResult(
         channel: None,
         track_count: Some(50),
         from_ytm: true,
+        is_podcast: false,
       ),
       MusicPlaylistItem(
         id: "RDCLAK5uy_mfdqvCAl8wodlx2P2_Ai2gNkiRDAufkkI",
@@ -150,6 +154,7 @@ MusicSearchResult(
         channel: None,
         track_count: Some(59),
         from_ytm: true,
+        is_podcast: false,
       ),
       MusicPlaylistItem(
         id: "RDCLAK5uy_nHSqCJjDrW9HBhCNdF6tWPdnOMngOv0wA",
@@ -179,6 +184,7 @@ MusicSearchResult(
         channel: None,
         track_count: Some(100),
         from_ytm: true,
+        is_podcast: false,
       ),
       MusicPlaylistItem(
         id: "RDCLAK5uy_kLB769E3eFSzgy4fbpu6-1YPLh90b0JAY",
@@ -208,6 +214,7 @@ MusicSearchResult(
         channel: None,
         track_count: Some(54),
         from_ytm: true,
+        is_podcast: false,
       ),
       MusicPlaylistItem(
         id: "RDCLAK5uy_m_0U5VQNyyzwwH1lRi7cPAAGXqNQnAOqY",
@@ -237,6 +244,7 @@ MusicSearchResult(
         channel: None,
         track_count: Some(67),
         from_ytm: true,
+        is_podcast: false,
       ),
       MusicPlaylistItem(
         id: "RDCLAK5uy_mHW5bcduhjB-PkTePAe6EoRMj1xNT8gzY",
@@ -266,6 +274,7 @@ MusicSearchResult(
         channel: None,
         track_count: Some(88),
         from_ytm: true,
+        is_podcast: false,
       ),
       MusicPlaylistItem(
         id: "RDCLAK5uy_nWFLXjO1mIJnP4wAmxjfDS40Zmu6nF9DU",
@@ -295,6 +304,7 @@ MusicSearchResult(
         channel: None,
         track_count: Some(61),
         from_ytm: true,
+        is_podcast: false,
       ),
       MusicPlaylistItem(
         id: "RDCLAK5uy_lHu_HYAQ0A-OfCwhuky240HOdM1UduuyA",
@@ -324,6 +334,7 @@ MusicSearchResult(
         channel: None,
         track_count: Some(48),
         from_ytm: true,
+        is_podcast: false,
       ),
       MusicPlaylistItem(
         id: "RDCLAK5uy_lw21MuKaqFsDBIPZSbRmZcoDrHmV_c6uY",
@@ -353,6 +364,7 @@ MusicSearchResult(
         channel: None,
         track_count: Some(53),
         from_ytm: true,
+        is_podcast: false,
       ),
       MusicPlaylistItem(
         id: "RDCLAK5uy_lY6JFrs7W9yIhFjUN_yxQ_ubkjcrqQaVs",
@@ -382,6 +394,7 @@ MusicSearchResult(
         channel: None,
         track_count: Some(176),
         from_ytm: true,
+        is_podcast: false,
       ),
       MusicPlaylistItem(
         id: "RDCLAK5uy_nbK9qSkqYZvtMXH1fLCMmC1yn8HEm0W90",
@@ -411,6 +424,7 @@ MusicSearchResult(
         channel: None,
         track_count: Some(50),
         from_ytm: true,
+        is_podcast: false,
       ),
       MusicPlaylistItem(
         id: "RDCLAK5uy_kIcfhFcnJ9fdkKHw96Gvr6Q0_bAyWiZbM",
@@ -440,6 +454,7 @@ MusicSearchResult(
         channel: None,
         track_count: Some(78),
         from_ytm: true,
+        is_podcast: false,
       ),
       MusicPlaylistItem(
         id: "RDCLAK5uy_nDL8KeBrUagwyISwNmyEiSfYgz1gVCesg",
@@ -469,6 +484,7 @@ MusicSearchResult(
         channel: None,
         track_count: Some(50),
         from_ytm: true,
+        is_podcast: false,
       ),
       MusicPlaylistItem(
         id: "RDCLAK5uy_l7K78k4EkjcFojhd1617rmUjY-aet6-t0",
@@ -498,6 +514,7 @@ MusicSearchResult(
         channel: None,
         track_count: Some(106),
         from_ytm: true,
+        is_podcast: false,
       ),
       MusicPlaylistItem(
         id: "RDCLAK5uy_nCVF_zUZizzRcojIUuYmaXxMoPgg2WMDo",
@@ -527,6 +544,7 @@ MusicSearchResult(
         channel: None,
         track_count: Some(55),
         from_ytm: true,
+        is_podcast: false,
       ),
       MusicPlaylistItem(
         id: "RDCLAK5uy_nGKsW16ocmP8l8wL1oMIyR53cu4N5fyKI",
@@ -556,6 +574,7 @@ MusicSearchResult(
         channel: None,
         track_count: Some(50),
         from_ytm: true,
+        is_podcast: false,
       ),
       MusicPlaylistItem(
         id: "RDCLAK5uy_mVJ3RRi_YBfUJnZnQxLAedQQcXHujbUcg",
@@ -585,6 +604,7 @@ MusicSearchResult(
         channel: None,
         track_count: Some(100),
         from_ytm: true,
+        is_podcast: false,
       ),
     ],
     ctoken: Some("EvQJEgNwb3Aa7AlFZ2VLQVFRb0FEZ0JTQlJxREJBREVBUVFDUkFPRUFvUUJZSUJLMUpFUTB4QlN6VjFlVjl1YlZNeldXOTRVM2RXVmxGck9XeEZVVW93VlZnMFdrTnFXSE5YWDNCelZUaUNBU3RTUkVOTVFVczFkWGxmYm1aelgzUTBSbFYxTURCRk5VVkVObXgyWlVWQ1FsZ3hWazFaWlRGdFJtcHJnZ0VyVWtSRFRFRkxOWFY1WDI1SVgyWmtRbFpEWTJKT1lWWjNhVjkwYlZwaGFscFNjUzFsYTJSa2FYVkdXWUlCSzFKRVEweEJTelYxZVY5c1lqWkRWbFUyVXpSMVZuVm5URlpPVkZVNVYyaHhabUZ2YlZkQloyNW9ielNDQVN0U1JFTk1RVXMxZFhsZmJXWmtjWFpEUVd3NGQyOWtiSGd5VURKZlFXa3laMDVyYVZKRVFYVm1hMnRKZ2dFclVrUkRURUZMTlhWNVgyNUlVM0ZEU21wRWNsYzVTRUpvUTA1a1JqWjBWMUJrYms5TmJtZFBkakIzUVlJQksxSkVRMHhCU3pWMWVWOXJURUkzTmpsRk0yVkdVM3BuZVRSbVluQjFOaTB4V1ZCTWFEa3dZakJLUVZtQ0FTdFNSRU5NUVVzMWRYbGZiVjh3VlRWV1VVNTVlWHAzZDBneGJGSnBOMk5RUVVGSFdIRk9VVzVCVDNGWmdnRXJVa1JEVEVGTE5YVjVYMjFJVnpWaVkyUjFhR3BDTFZCclZHVlFRV1UyUlc5U1RXb3hlRTVVT0dkNldZSUJLMUpFUTB4QlN6VjFlVjl1VjBaTVdHcFBNVzFKU201UU5IZEJiWGhxWmtSVE5EQmFiWFUyYmtZNVJGV0NBU3RTUkVOTVFVczFkWGxmYkVoMVgwaFpRVkV3UVMxUFprTjNhSFZyZVRJME1FaFBaRTB4VldSMWRYbEJnZ0VyVWtSRFRFRkxOWFY1WDJ4M01qRk5kVXRoY1VaelJFSkpVRnBUWWxKdFdtTnZSSEpJYlZaZll6WjFXWUlCSzFKRVEweEJTelYxZVY5c1dUWktSbkp6TjFjNWVVbG9SbXBWVGw5NWVGRmZkV0pyYW1OeWNWRmhWbk9DQVN0U1JFTk1RVXMxZFhsZmJtSkxPWEZUYTNGWlduWjBUVmhJTVdaTVEwMXRRekY1YmpoSVJXMHdWemt3Z2dFclVrUkRURUZMTlhWNVgydEpZMlpvUm1OdVNqbG1aR3RMU0hjNU5rZDJjalpSTUY5aVFYbFhhVnBpVFlJQksxSkVRMHhCU3pWMWVWOXVSRXc0UzJWQ2NsVmhaM2Q1U1ZOM1RtMTVSV2xUWmxsbmVqRm5Wa05sYzJlQ0FTdFNSRU5NUVVzMWRYbGZiRGRMTnpock5FVnJhbU5HYjJwb1pERTJNVGR5YlZWcVdTMWhaWFEyTFhRd2dnRXJVa1JEVEVGTE5YVjVYMjVEVmtaZmVsVmFhWHA2VW1OdmFrbFZkVmx0WVZoNFRXOVFaMmN5VjAxRWI0SUJLMUpFUTB4QlN6VjFlVjl1UjB0elZ6RTJiMk50VURoc09IZE1NVzlOU1hsU05UTmpkVFJPTldaNVMwbUNBU3RTUkVOTVFVczFkWGxmYlZaS00xSlNhVjlaUW1aVlNtNWFibEY0VEVGbFpGRlJZMWhJZFdwaVZXTm4Y8erQLg%3D%3D"),

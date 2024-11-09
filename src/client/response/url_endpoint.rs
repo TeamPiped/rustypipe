@@ -1,7 +1,10 @@
 use serde::Deserialize;
 use serde_with::{serde_as, DefaultOnError};
 
-use crate::{model::UrlTarget, util};
+use crate::{
+    model::{TrackType, UrlTarget},
+    util,
+};
 
 /// navigation/resolve_url response model
 #[derive(Debug, Deserialize)]
@@ -179,6 +182,16 @@ impl MusicVideoType {
     }
 }
 
+impl From<MusicVideoType> for TrackType {
+    fn from(value: MusicVideoType) -> Self {
+        match value {
+            MusicVideoType::Video => Self::Video,
+            MusicVideoType::Track => Self::Track,
+            MusicVideoType::Episode => Self::Episode,
+        }
+    }
+}
+
 #[derive(Default, Debug, Clone, Copy, Deserialize, PartialEq, Eq)]
 pub(crate) enum PageType {
     #[serde(
@@ -225,7 +238,7 @@ impl PageType {
 pub(crate) enum MusicPageType {
     Artist,
     Album,
-    Playlist,
+    Playlist { is_podcast: bool },
     Track { vtype: MusicVideoType },
     User,
     None,
@@ -236,7 +249,8 @@ impl From<PageType> for MusicPageType {
         match t {
             PageType::Artist => MusicPageType::Artist,
             PageType::Album => MusicPageType::Album,
-            PageType::Playlist | PageType::Podcast => MusicPageType::Playlist,
+            PageType::Playlist => MusicPageType::Playlist { is_podcast: false },
+            PageType::Podcast => MusicPageType::Playlist { is_podcast: true },
             PageType::Channel => MusicPageType::User,
             PageType::Episode => MusicPageType::Track {
                 vtype: MusicVideoType::Episode,
@@ -310,7 +324,7 @@ impl NavigationEndpoint {
                 watch_playlist_endpoint,
             } => Some(MusicPage {
                 id: watch_playlist_endpoint.playlist_id,
-                typ: MusicPageType::Playlist,
+                typ: MusicPageType::Playlist { is_podcast: false },
             }),
         }
     }

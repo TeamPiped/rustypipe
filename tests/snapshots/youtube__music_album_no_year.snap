@@ -23,7 +23,7 @@ MusicAlbum(
   ],
   artist_id: Some("UCAJwa_1l4rHzBJyWbeBtGZw"),
   description: None,
-  album_type: Single,
+  album_type: single,
   year: None,
   by_va: false,
   tracks: [
@@ -52,7 +52,7 @@ MusicAlbum(
         name: "La Ultima Vez (Remix)",
       )),
       view_count: "[view_count]",
-      is_video: false,
+      track_type: track,
       track_nr: Some(1),
       by_va: false,
     ),

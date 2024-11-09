@@ -1,583 +1,583 @@
 {
   "af": {
-    "Album": "Album",
-    "Ep": "EP",
-    "Single": "Enkelsnit",
-    "Audiobook": "Oudioboek",
-    "Show": "Drama"
+    "album": "Album",
+    "ep": "EP",
+    "single": "Enkelsnit",
+    "audiobook": "Oudioboek",
+    "show": "Drama"
   },
   "am": {
-    "Album": "አልበም",
-    "Ep": "የተራዘመ አልበም",
-    "Single": "ነጠላ",
-    "Audiobook": "ኦዲዮ መጽሐፍ",
-    "Show": "ትዕይንት"
+    "album": "አልበም",
+    "ep": "የተራዘመ አልበም",
+    "single": "ነጠላ",
+    "audiobook": "ኦዲዮ መጽሐፍ",
+    "show": "ትዕይንት"
   },
   "ar": {
-    "Album": "ألبوم",
-    "Ep": "ألبوم قصير",
-    "Single": "أغنية منفردة",
-    "Audiobook": "الكتب المسموعة",
-    "Show": "عرض"
+    "album": "ألبوم",
+    "ep": "ألبوم قصير",
+    "single": "أغنية منفردة",
+    "audiobook": "الكتب المسموعة",
+    "show": "عرض"
   },
   "as": {
-    "Album": "এলবাম",
-    "Ep": "EP",
-    "Single": "একক",
-    "Audiobook": "অডিঅ’বুক",
-    "Show": "শ্ব’"
+    "album": "এলবাম",
+    "ep": "EP",
+    "single": "একক",
+    "audiobook": "অডিঅ’বুক",
+    "show": "শ্ব’"
   },
   "az": {
-    "Album": "Albom",
-    "Ep": "EP",
-    "Single": "Tək",
-    "Audiobook": "Audio kitab",
-    "Show": "Şou"
+    "album": "Albom",
+    "ep": "EP",
+    "single": "Tək",
+    "audiobook": "Audio kitab",
+    "show": "Şou"
   },
   "be": {
-    "Album": "Альбом",
-    "Ep": "Міні-альбом",
-    "Single": "Сінгл",
-    "Audiobook": "Аўдыякніга",
-    "Show": "Шоу"
+    "album": "Альбом",
+    "ep": "Міні-альбом",
+    "single": "Сінгл",
+    "audiobook": "Аўдыякніга",
+    "show": "Шоу"
   },
   "bg": {
-    "Album": "Албум",
-    "Ep": "Миниалбум",
-    "Single": "Сингъл",
-    "Audiobook": "Аудиокнига",
-    "Show": "Предаване"
+    "album": "Албум",
+    "ep": "Миниалбум",
+    "single": "Сингъл",
+    "audiobook": "Аудиокнига",
+    "show": "Предаване"
   },
   "bn": {
-    "Album": "অ্যালবাম",
-    "Ep": "ইপি",
-    "Single": "সিঙ্গেল",
-    "Audiobook": "অডিওবুক",
-    "Show": "শো"
+    "album": "অ্যালবাম",
+    "ep": "ইপি",
+    "single": "সিঙ্গেল",
+    "audiobook": "অডিওবুক",
+    "show": "শো"
   },
   "bs": {
-    "Album": "Album",
-    "Ep": "EP",
-    "Single": "Singl",
-    "Audiobook": "Audio knjiga",
-    "Show": "Serija"
+    "album": "Album",
+    "ep": "EP",
+    "single": "Singl",
+    "audiobook": "Audio knjiga",
+    "show": "Serija"
   },
   "ca": {
-    "Album": "Àlbum",
-    "Ep": "EP",
-    "Single": "Single",
-    "Audiobook": "Audiollibre",
-    "Show": "Programa"
+    "album": "Àlbum",
+    "ep": "EP",
+    "single": "Single",
+    "audiobook": "Audiollibre",
+    "show": "Programa"
   },
   "cs": {
-    "Album": "Album",
-    "Ep": "EP",
-    "Single": "Singl",
-    "Audiobook": "Audiokniha",
-    "Show": "Zobrazit"
+    "album": "Album",
+    "ep": "EP",
+    "single": "Singl",
+    "audiobook": "Audiokniha",
+    "show": "Zobrazit"
   },
   "da": {
-    "Album": "Album",
-    "Ep": "EP",
-    "Single": "Single",
-    "Audiobook": "Lydbog",
-    "Show": "Lyddrama"
+    "album": "Album",
+    "ep": "EP",
+    "single": "Single",
+    "audiobook": "Lydbog",
+    "show": "Lyddrama"
   },
   "de": {
-    "Album": "Album",
-    "Ep": "EP",
-    "Single": "Single",
-    "Audiobook": "Hörbuch",
-    "Show": "Hörspiel"
+    "album": "Album",
+    "ep": "EP",
+    "single": "Single",
+    "audiobook": "Hörbuch",
+    "show": "Hörspiel"
   },
   "el": {
-    "Album": "Άλμπουμ",
-    "Ep": "EP",
-    "Single": "Single",
-    "Audiobook": "Ηχητικό βιβλίο",
-    "Show": "Εκπομπή"
+    "album": "Άλμπουμ",
+    "ep": "EP",
+    "single": "Single",
+    "audiobook": "Ηχητικό βιβλίο",
+    "show": "Εκπομπή"
   },
   "en": {
-    "Album": "Album",
-    "Ep": "EP",
-    "Single": "Single",
-    "Audiobook": "Audiobook",
-    "Show": "Show"
+    "album": "Album",
+    "ep": "EP",
+    "single": "Single",
+    "audiobook": "Audiobook",
+    "show": "Show"
   },
   "en-GB": {
-    "Album": "Album",
-    "Ep": "EP",
-    "Single": "Single",
-    "Audiobook": "Audiobook",
-    "Show": "Show"
+    "album": "Album",
+    "ep": "EP",
+    "single": "Single",
+    "audiobook": "Audiobook",
+    "show": "Show"
   },
   "en-IN": {
-    "Album": "Album",
-    "Ep": "EP",
-    "Single": "Single",
-    "Audiobook": "Audiobook",
-    "Show": "Show"
+    "album": "Album",
+    "ep": "EP",
+    "single": "Single",
+    "audiobook": "Audiobook",
+    "show": "Show"
   },
   "es": {
-    "Album": "Álbum",
-    "Ep": "EP",
-    "Single": "Single",
-    "Audiobook": "Audiolibro",
-    "Show": "Audiodrama"
+    "album": "Álbum",
+    "ep": "EP",
+    "single": "Single",
+    "audiobook": "Audiolibro",
+    "show": "Audiodrama"
   },
   "es-419": {
-    "Album": "Álbum",
-    "Ep": "EP",
-    "Single": "Sencillo",
-    "Audiobook": "Audiolibro",
-    "Show": "Programa"
+    "album": "Álbum",
+    "ep": "EP",
+    "single": "Sencillo",
+    "audiobook": "Audiolibro",
+    "show": "Programa"
   },
   "es-US": {
-    "Album": "Álbum",
-    "Ep": "EP",
-    "Single": "Sencillo",
-    "Audiobook": "Audiolibro",
-    "Show": "Programa"
+    "album": "Álbum",
+    "ep": "EP",
+    "single": "Sencillo",
+    "audiobook": "Audiolibro",
+    "show": "Programa"
   },
   "et": {
-    "Album": "Album",
-    "Ep": "EP",
-    "Single": "Singel",
-    "Audiobook": "Audioraamat",
-    "Show": "Sari"
+    "album": "Album",
+    "ep": "EP",
+    "single": "Singel",
+    "audiobook": "Audioraamat",
+    "show": "Sari"
   },
   "eu": {
-    "Album": "Albuma",
-    "Ep": "EP",
-    "Single": "Singlea",
-    "Audiobook": "Audio-liburua",
-    "Show": "Saioa"
+    "album": "Albuma",
+    "ep": "EP",
+    "single": "Singlea",
+    "audiobook": "Audio-liburua",
+    "show": "Saioa"
   },
   "fa": {
-    "Album": "آلبوم",
-    "Ep": "پخش فوق‌العاده",
-    "Single": "تک آهنگ",
-    "Audiobook": "کتاب صوتی",
-    "Show": "نمایش"
+    "album": "آلبوم",
+    "ep": "پخش فوق‌العاده",
+    "single": "تک آهنگ",
+    "audiobook": "کتاب صوتی",
+    "show": "نمایش"
   },
   "fi": {
-    "Album": "Albumi",
-    "Ep": "EP",
-    "Single": "Single",
-    "Audiobook": "Äänikirja",
-    "Show": "Näytä"
+    "album": "Albumi",
+    "ep": "EP",
+    "single": "Single",
+    "audiobook": "Äänikirja",
+    "show": "Näytä"
   },
   "fil": {
-    "Album": "Album",
-    "Ep": "EP",
-    "Single": "Single",
-    "Audiobook": "Audiobook",
-    "Show": "Palabas"
+    "album": "Album",
+    "ep": "EP",
+    "single": "Single",
+    "audiobook": "Audiobook",
+    "show": "Palabas"
   },
   "fr": {
-    "Album": "Album",
-    "Ep": "EP",
-    "Single": "Single",
-    "Audiobook": "Livre audio",
-    "Show": "Émission"
+    "album": "Album",
+    "ep": "EP",
+    "single": "Single",
+    "audiobook": "Livre audio",
+    "show": "Émission"
   },
   "fr-CA": {
-    "Album": "Album",
-    "Ep": "Microalbum",
-    "Single": "Simple",
-    "Audiobook": "Livre audio",
-    "Show": "Émission"
+    "album": "Album",
+    "ep": "Microalbum",
+    "single": "Simple",
+    "audiobook": "Livre audio",
+    "show": "Émission"
   },
   "gl": {
-    "Album": "Álbum",
-    "Ep": "EP",
-    "Single": "Single",
-    "Audiobook": "Audiolibro",
-    "Show": "Programa"
+    "album": "Álbum",
+    "ep": "EP",
+    "single": "Single",
+    "audiobook": "Audiolibro",
+    "show": "Programa"
   },
   "gu": {
-    "Album": "આલ્બમ",
-    "Ep": "EP",
-    "Single": "સિંગલ",
-    "Audiobook": "ઑડિયોબુક",
-    "Show": "શો"
+    "album": "આલ્બમ",
+    "ep": "EP",
+    "single": "સિંગલ",
+    "audiobook": "ઑડિયોબુક",
+    "show": "શો"
   },
   "hi": {
-    "Album": "एल्‍बम",
-    "Ep": "ईपी",
-    "Single": "सिंगल",
-    "Audiobook": "ऑडियो बुक",
-    "Show": "शो"
+    "album": "एल्‍बम",
+    "ep": "ईपी",
+    "single": "सिंगल",
+    "audiobook": "ऑडियो बुक",
+    "show": "शो"
   },
   "hr": {
-    "Album": "Album",
-    "Ep": "EP",
-    "Single": "Singl",
-    "Audiobook": "Audioknjiga",
-    "Show": "Serija"
+    "album": "Album",
+    "ep": "EP",
+    "single": "Singl",
+    "audiobook": "Audioknjiga",
+    "show": "Serija"
   },
   "hu": {
-    "Album": "Album",
-    "Ep": "EP",
-    "Single": "Kislemez",
-    "Audiobook": "Hangoskönyv",
-    "Show": "Műsor"
+    "album": "Album",
+    "ep": "EP",
+    "single": "Kislemez",
+    "audiobook": "Hangoskönyv",
+    "show": "Műsor"
   },
   "hy": {
-    "Album": "Ալբոմ",
-    "Ep": "EP",
-    "Single": "Սինգլ",
-    "Audiobook": "Աուդիոգիրք",
-    "Show": "Աուդիոդրամա"
+    "album": "Ալբոմ",
+    "ep": "EP",
+    "single": "Սինգլ",
+    "audiobook": "Աուդիոգիրք",
+    "show": "Աուդիոդրամա"
   },
   "id": {
-    "Album": "Album",
-    "Ep": "EP",
-    "Single": "Single",
-    "Audiobook": "Buku audio",
-    "Show": "Acara"
+    "album": "Album",
+    "ep": "EP",
+    "single": "Single",
+    "audiobook": "Buku audio",
+    "show": "Acara"
   },
   "is": {
-    "Album": "Plata",
-    "Ep": "EP",
-    "Single": "Smáskífa",
-    "Audiobook": "Hljóðbók",
-    "Show": "Þáttur"
+    "album": "Plata",
+    "ep": "EP",
+    "single": "Smáskífa",
+    "audiobook": "Hljóðbók",
+    "show": "Þáttur"
   },
   "it": {
-    "Album": "Album",
-    "Ep": "EP",
-    "Single": "Singolo",
-    "Audiobook": "Audiolibro",
-    "Show": "Programma"
+    "album": "Album",
+    "ep": "EP",
+    "single": "Singolo",
+    "audiobook": "Audiolibro",
+    "show": "Programma"
   },
   "iw": {
-    "Album": "אלבום",
-    "Ep": "מיני-אלבום",
-    "Single": "סינגל",
-    "Audiobook": "ספר אודיו",
-    "Show": "תסכית"
+    "album": "אלבום",
+    "ep": "מיני-אלבום",
+    "single": "סינגל",
+    "audiobook": "ספר אודיו",
+    "show": "תסכית"
   },
   "ja": {
-    "Album": "アルバム",
-    "Ep": "EP",
-    "Single": "シングル",
-    "Audiobook": "オーディオブック",
-    "Show": "表示"
+    "album": "アルバム",
+    "ep": "EP",
+    "single": "シングル",
+    "audiobook": "オーディオブック",
+    "show": "表示"
   },
   "ka": {
-    "Album": "ალბომი",
-    "Ep": "მინი-ალბომი",
-    "Single": "სინგლი",
-    "Audiobook": "აუდიოწიგნი",
-    "Show": "ჩვენება"
+    "album": "ალბომი",
+    "ep": "მინი-ალბომი",
+    "single": "სინგლი",
+    "audiobook": "აუდიოწიგნი",
+    "show": "ჩვენება"
   },
   "kk": {
-    "Album": "Альбом",
-    "Ep": "EP",
-    "Single": "Сингл",
-    "Audiobook": "Аудиокітап",
-    "Show": "Шоу"
+    "album": "Альбом",
+    "ep": "EP",
+    "single": "Сингл",
+    "audiobook": "Аудиокітап",
+    "show": "Шоу"
   },
   "km": {
-    "Album": "អាល់ប៊ុម",
-    "Ep": "EP",
-    "Single": "ចម្រៀងទោល",
-    "Audiobook": "សៀវភៅ​ជា​សំឡេង",
-    "Show": "កម្មវិធីទូរទស្សន៍"
+    "album": "អាល់ប៊ុម",
+    "ep": "EP",
+    "single": "ចម្រៀងទោល",
+    "audiobook": "សៀវភៅ​ជា​សំឡេង",
+    "show": "កម្មវិធីទូរទស្សន៍"
   },
   "kn": {
-    "Album": "ಆಲ್ಬಮ್",
-    "Ep": "EP",
-    "Single": "ಒಂದೇ",
-    "Audiobook": "ಆಡಿಯೋಬುಕ್",
-    "Show": "ಶೋ"
+    "album": "ಆಲ್ಬಮ್",
+    "ep": "EP",
+    "single": "ಒಂದೇ",
+    "audiobook": "ಆಡಿಯೋಬುಕ್",
+    "show": "ಶೋ"
   },
   "ko": {
-    "Album": "앨범",
-    "Ep": "EP",
-    "Single": "싱글",
-    "Audiobook": "오디오북",
-    "Show": "표시"
+    "album": "앨범",
+    "ep": "EP",
+    "single": "싱글",
+    "audiobook": "오디오북",
+    "show": "표시"
   },
   "ky": {
-    "Album": "Альбом",
-    "Ep": "Чакан альбом",
-    "Single": "Сингл",
-    "Audiobook": "Аудиокитеп",
-    "Show": "Шоу"
+    "album": "Альбом",
+    "ep": "Чакан альбом",
+    "single": "Сингл",
+    "audiobook": "Аудиокитеп",
+    "show": "Шоу"
   },
   "lo": {
-    "Album": "ອະລະບໍ້າ",
-    "Ep": "EP",
-    "Single": "ຊິງເກິນ",
-    "Audiobook": "ປຶ້ມສຽງ",
-    "Show": "ສະແດງ"
+    "album": "ອະລະບໍ້າ",
+    "ep": "EP",
+    "single": "ຊິງເກິນ",
+    "audiobook": "ປຶ້ມສຽງ",
+    "show": "ສະແດງ"
   },
   "lt": {
-    "Album": "Albumas",
-    "Ep": "Mini albumas",
-    "Single": "Singlas",
-    "Audiobook": "Garsinė knyga",
-    "Show": "Serialas"
+    "album": "Albumas",
+    "ep": "Mini albumas",
+    "single": "Singlas",
+    "audiobook": "Garsinė knyga",
+    "show": "Serialas"
   },
   "lv": {
-    "Album": "Albums",
-    "Ep": "EP ieraksts",
-    "Single": "Singls",
-    "Audiobook": "Audiogrāmata",
-    "Show": "Pārraide"
+    "album": "Albums",
+    "ep": "EP ieraksts",
+    "single": "Singls",
+    "audiobook": "Audiogrāmata",
+    "show": "Pārraide"
   },
   "mk": {
-    "Album": "Албум",
-    "Ep": "EP",
-    "Single": "Сингл",
-    "Audiobook": "Аудиокнига",
-    "Show": "Серија"
+    "album": "Албум",
+    "ep": "EP",
+    "single": "Сингл",
+    "audiobook": "Аудиокнига",
+    "show": "Серија"
   },
   "ml": {
-    "Album": "ആല്‍‌ബം",
-    "Ep": "EP",
-    "Single": "സിംഗിൾ",
-    "Audiobook": "ഓഡിയോ ബുക്ക്",
-    "Show": "ഷോ"
+    "album": "ആല്‍‌ബം",
+    "ep": "EP",
+    "single": "സിംഗിൾ",
+    "audiobook": "ഓഡിയോ ബുക്ക്",
+    "show": "ഷോ"
   },
   "mn": {
-    "Album": "Цомог",
-    "Ep": "EP",
-    "Single": "Сингл",
-    "Audiobook": "Аудио ном",
-    "Show": "Жүжиг"
+    "album": "Цомог",
+    "ep": "EP",
+    "single": "Сингл",
+    "audiobook": "Аудио ном",
+    "show": "Жүжиг"
   },
   "mr": {
-    "Album": "अल्बम",
-    "Ep": "भाग",
-    "Single": "सिंगल",
-    "Audiobook": "ऑडिओबुक",
-    "Show": "शो"
+    "album": "अल्बम",
+    "ep": "भाग",
+    "single": "सिंगल",
+    "audiobook": "ऑडिओबुक",
+    "show": "शो"
   },
   "ms": {
-    "Album": "Album",
-    "Ep": "EP",
-    "Single": "Rekod single",
-    "Audiobook": "Buku audio",
-    "Show": "Rancangan"
+    "album": "Album",
+    "ep": "EP",
+    "single": "Rekod single",
+    "audiobook": "Buku audio",
+    "show": "Rancangan"
   },
   "my": {
-    "Album": "အယ်လ်ဘမ်",
-    "Ep": "EP",
-    "Single": "တစ်ကိုယ်တော်",
-    "Audiobook": "အော်ဒီယိုစာအုပ်",
-    "Show": "ရှိုး"
+    "album": "အယ်လ်ဘမ်",
+    "ep": "EP",
+    "single": "တစ်ကိုယ်တော်",
+    "audiobook": "အော်ဒီယိုစာအုပ်",
+    "show": "ရှိုး"
   },
   "ne": {
-    "Album": "एल्बम",
-    "Ep": "EP",
-    "Single": "एकल एल्बम",
-    "Audiobook": "अडियोबुक",
-    "Show": "टिभी सो"
+    "album": "एल्बम",
+    "ep": "EP",
+    "single": "एकल एल्बम",
+    "audiobook": "अडियोबुक",
+    "show": "टिभी सो"
   },
   "nl": {
-    "Album": "Album",
-    "Ep": "Ep",
-    "Single": "Single",
-    "Audiobook": "Audioboek",
-    "Show": "Aflevering"
+    "album": "Album",
+    "ep": "Ep",
+    "single": "Single",
+    "audiobook": "Audioboek",
+    "show": "Aflevering"
   },
   "no": {
-    "Album": "Album",
-    "Ep": "EP",
-    "Single": "Singel",
-    "Audiobook": "Lydbok",
-    "Show": "Hørespill"
+    "album": "Album",
+    "ep": "EP",
+    "single": "Singel",
+    "audiobook": "Lydbok",
+    "show": "Hørespill"
   },
   "or": {
-    "Album": "ଆଲବମ୍",
-    "Ep": "EP",
-    "Single": "ସିଙ୍ଗଲ୍",
-    "Audiobook": "ଅଡିଓବୁକ୍",
-    "Show": "ଶୋ"
+    "album": "ଆଲବମ୍",
+    "ep": "EP",
+    "single": "ସିଙ୍ଗଲ୍",
+    "audiobook": "ଅଡିଓବୁକ୍",
+    "show": "ଶୋ"
   },
   "pa": {
-    "Album": "ਐਲਬਮ",
-    "Ep": "EP",
-    "Single": "ਸਿੰਗਲ",
-    "Audiobook": "ਆਡੀਓ-ਕਿਤਾਬ",
-    "Show": "ਸ਼ੋਅ"
+    "album": "ਐਲਬਮ",
+    "ep": "EP",
+    "single": "ਸਿੰਗਲ",
+    "audiobook": "ਆਡੀਓ-ਕਿਤਾਬ",
+    "show": "ਸ਼ੋਅ"
   },
   "pl": {
-    "Album": "Album",
-    "Ep": "EP",
-    "Single": "Singiel",
-    "Audiobook": "Audiobook",
-    "Show": "Słuchowisko"
+    "album": "Album",
+    "ep": "EP",
+    "single": "Singiel",
+    "audiobook": "Audiobook",
+    "show": "Słuchowisko"
   },
   "pt": {
-    "Album": "Álbum",
-    "Ep": "EP",
-    "Single": "Single",
-    "Audiobook": "Audiolivro",
-    "Show": "Programa"
+    "album": "Álbum",
+    "ep": "EP",
+    "single": "Single",
+    "audiobook": "Audiolivro",
+    "show": "Programa"
   },
   "pt-PT": {
-    "Album": "Álbum",
-    "Ep": "EP",
-    "Single": "Single",
-    "Audiobook": "Audiolivro",
-    "Show": "Programa"
+    "album": "Álbum",
+    "ep": "EP",
+    "single": "Single",
+    "audiobook": "Audiolivro",
+    "show": "Programa"
   },
   "ro": {
-    "Album": "Album",
-    "Ep": "EP",
-    "Single": "Single",
-    "Audiobook": "Carte audio",
-    "Show": "Emisiune"
+    "album": "Album",
+    "ep": "EP",
+    "single": "Single",
+    "audiobook": "Carte audio",
+    "show": "Emisiune"
   },
   "ru": {
-    "Album": "Альбом",
-    "Ep": "EP",
-    "Single": "Сингл",
-    "Audiobook": "Аудиокнига",
-    "Show": "Аудиошоу"
+    "album": "Альбом",
+    "ep": "EP",
+    "single": "Сингл",
+    "audiobook": "Аудиокнига",
+    "show": "Аудиошоу"
   },
   "si": {
-    "Album": "ඇල්බමය",
-    "Ep": "දීවා",
-    "Single": "තනි",
-    "Audiobook": "ශ්‍රව්‍යපොත",
-    "Show": "සංදර්ශනය"
+    "album": "ඇල්බමය",
+    "ep": "දීවා",
+    "single": "තනි",
+    "audiobook": "ශ්‍රව්‍යපොත",
+    "show": "සංදර්ශනය"
   },
   "sk": {
-    "Album": "Album",
-    "Ep": "EP",
-    "Single": "Singel",
-    "Audiobook": "Audiokniha",
-    "Show": "Relácia"
+    "album": "Album",
+    "ep": "EP",
+    "single": "Singel",
+    "audiobook": "Audiokniha",
+    "show": "Relácia"
   },
   "sl": {
-    "Album": "Album",
-    "Ep": "EP",
-    "Single": "Singel",
-    "Audiobook": "Zvočna knjiga",
-    "Show": "Oddaja"
+    "album": "Album",
+    "ep": "EP",
+    "single": "Singel",
+    "audiobook": "Zvočna knjiga",
+    "show": "Oddaja"
   },
   "sq": {
-    "Album": "Album",
-    "Ep": "EP",
-    "Single": "Single",
-    "Audiobook": "Libër me audio",
-    "Show": "Shfaq"
+    "album": "Album",
+    "ep": "EP",
+    "single": "Single",
+    "audiobook": "Libër me audio",
+    "show": "Shfaq"
   },
   "sr": {
-    "Album": "Албум",
-    "Ep": "EP",
-    "Single": "Сингл",
-    "Audiobook": "Аудио-књига",
-    "Show": "Серија"
+    "album": "Албум",
+    "ep": "EP",
+    "single": "Сингл",
+    "audiobook": "Аудио-књига",
+    "show": "Серија"
   },
   "sr-Latn": {
-    "Album": "Album",
-    "Ep": "EP",
-    "Single": "Singl",
-    "Audiobook": "Audio-knjiga",
-    "Show": "Serija"
+    "album": "Album",
+    "ep": "EP",
+    "single": "Singl",
+    "audiobook": "Audio-knjiga",
+    "show": "Serija"
   },
   "sv": {
-    "Album": "Album",
-    "Ep": "EP",
-    "Single": "Singel",
-    "Audiobook": "Ljudbok",
-    "Show": "Ljuddrama"
+    "album": "Album",
+    "ep": "EP",
+    "single": "Singel",
+    "audiobook": "Ljudbok",
+    "show": "Ljuddrama"
   },
   "sw": {
-    "Album": "Albamu",
-    "Ep": "EP",
-    "Single": "Singo",
-    "Audiobook": "Kitabu cha kusikiliza",
-    "Show": "Kipindi"
+    "album": "Albamu",
+    "ep": "EP",
+    "single": "Singo",
+    "audiobook": "Kitabu cha kusikiliza",
+    "show": "Kipindi"
   },
   "ta": {
-    "Album": "ஆல்பம்",
-    "Ep": "EP",
-    "Single": "சிங்கிள்",
-    "Audiobook": "ஆடியோ புத்தகம்",
-    "Show": "ஆடியோ ஷோ"
+    "album": "ஆல்பம்",
+    "ep": "EP",
+    "single": "சிங்கிள்",
+    "audiobook": "ஆடியோ புத்தகம்",
+    "show": "ஆடியோ ஷோ"
   },
   "te": {
-    "Album": "ఆల్బమ్",
-    "Ep": "EP",
-    "Single": "సింగిల్",
-    "Audiobook": "ఆడియోబుక్",
-    "Show": "చూపించు"
+    "album": "ఆల్బమ్",
+    "ep": "EP",
+    "single": "సింగిల్",
+    "audiobook": "ఆడియోబుక్",
+    "show": "చూపించు"
   },
   "th": {
-    "Album": "อัลบั้ม",
-    "Ep": "EP",
-    "Single": "ซิงเกิล",
-    "Audiobook": "หนังสือเสียง",
-    "Show": "รายการ"
+    "album": "อัลบั้ม",
+    "ep": "EP",
+    "single": "ซิงเกิล",
+    "audiobook": "หนังสือเสียง",
+    "show": "รายการ"
   },
   "tr": {
-    "Album": "Albüm",
-    "Ep": "EP",
-    "Single": "Single",
-    "Audiobook": "Sesli kitap",
-    "Show": "Program"
+    "album": "Albüm",
+    "ep": "EP",
+    "single": "Single",
+    "audiobook": "Sesli kitap",
+    "show": "Program"
   },
   "uk": {
-    "Album": "Альбом",
-    "Ep": "Мініальбом",
-    "Single": "Сингл",
-    "Audiobook": "Аудіокнига",
-    "Show": "Аудіодрама"
+    "album": "Альбом",
+    "ep": "Мініальбом",
+    "single": "Сингл",
+    "audiobook": "Аудіокнига",
+    "show": "Аудіодрама"
   },
   "ur": {
-    "Album": "البم",
-    "Ep": "EP",
-    "Single": "واحد",
-    "Audiobook": "آڈیو بک",
-    "Show": "شو"
+    "album": "البم",
+    "ep": "EP",
+    "single": "واحد",
+    "audiobook": "آڈیو بک",
+    "show": "شو"
   },
   "uz": {
-    "Album": "Albom",
-    "Ep": "EP",
-    "Single": "Singl",
-    "Audiobook": "Audiokitob",
-    "Show": "Shou"
+    "album": "Albom",
+    "ep": "EP",
+    "single": "Singl",
+    "audiobook": "Audiokitob",
+    "show": "Shou"
   },
   "vi": {
-    "Album": "Đĩa nhạc",
-    "Ep": "Đĩa nhạc mở rộng (EP)",
-    "Single": "Đĩa đơn",
-    "Audiobook": "Sách nói",
-    "Show": "Chương trình"
+    "album": "Đĩa nhạc",
+    "ep": "Đĩa nhạc mở rộng (EP)",
+    "single": "Đĩa đơn",
+    "audiobook": "Sách nói",
+    "show": "Chương trình"
   },
   "zh-CN": {
-    "Album": "专辑",
-    "Ep": "迷你专辑",
-    "Single": "单曲",
-    "Audiobook": "有声读物",
-    "Show": "广播剧"
+    "album": "专辑",
+    "ep": "迷你专辑",
+    "single": "单曲",
+    "audiobook": "有声读物",
+    "show": "广播剧"
   },
   "zh-HK": {
-    "Album": "專輯",
-    "Ep": "EP",
-    "Single": "單曲",
-    "Audiobook": "有聲書",
-    "Show": "節目"
+    "album": "專輯",
+    "ep": "EP",
+    "single": "單曲",
+    "audiobook": "有聲書",
+    "show": "節目"
   },
   "zh-TW": {
-    "Album": "專輯",
-    "Ep": "EP",
-    "Single": "單曲",
-    "Audiobook": "有聲書",
-    "Show": "節目"
+    "album": "專輯",
+    "ep": "EP",
+    "single": "單曲",
+    "audiobook": "有聲書",
+    "show": "節目"
   },
   "zu": {
-    "Album": "I-albhamu",
-    "Ep": "I-EP",
-    "Single": "I-Single",
-    "Audiobook": "I-audiobook",
-    "Show": "Bonisa"
+    "album": "I-albhamu",
+    "ep": "I-EP",
+    "single": "I-Single",
+    "audiobook": "I-audiobook",
+    "show": "Bonisa"
   }
 }

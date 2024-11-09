@@ -50,11 +50,11 @@
       "nie": 0
     },
     "album_types": {
-      "album": "Album",
-      "oudioboek": "Audiobook",
-      "ep": "Ep",
-      "drama": "Show",
-      "enkelsnit": "Single"
+      "album": "album",
+      "oudioboek": "audiobook",
+      "ep": "ep",
+      "drama": "show",
+      "enkelsnit": "single"
     },
     "chan_prefix": "deur",
     "chan_suffix": ""
@@ -114,11 +114,11 @@
       "የለዉም": 0
     },
     "album_types": {
-      "አልበም": "Album",
-      "ኦዲዮ መጽሐፍ": "Audiobook",
-      "የተራዘመ አልበም": "Ep",
-      "ትዕይንት": "Show",
-      "ነጠላ": "Single"
+      "አልበም": "album",
+      "ኦዲዮ መጽሐፍ": "audiobook",
+      "የተራዘመ አልበም": "ep",
+      "ትዕይንት": "show",
+      "ነጠላ": "single"
     },
     "chan_prefix": "በ",
     "chan_suffix": ""
@@ -179,11 +179,11 @@
       "واحد": 1
     },
     "album_types": {
-      "ألبوم": "Album",
-      "الكتب المسموعة": "Audiobook",
-      "ألبوم قصير": "Ep",
-      "عرض": "Show",
-      "أغنية منفردة": "Single"
+      "ألبوم": "album",
+      "الكتب المسموعة": "audiobook",
+      "ألبوم قصير": "ep",
+      "عرض": "show",
+      "أغنية منفردة": "single"
     },
     "chan_prefix": "بواسطة",
     "chan_suffix": ""
@@ -227,11 +227,11 @@
       "১টা": 1
     },
     "album_types": {
-      "এলবাম": "Album",
-      "অডিঅ’বুক": "Audiobook",
-      "ep": "Ep",
-      "শ্ব’": "Show",
-      "একক": "Single"
+      "এলবাম": "album",
+      "অডিঅ’বুক": "audiobook",
+      "ep": "ep",
+      "শ্ব’": "show",
+      "একক": "single"
     },
     "chan_prefix": "",
     "chan_suffix": "ৰ দ্বাৰা"
@@ -278,11 +278,11 @@
       "yoxdur": 0
     },
     "album_types": {
-      "albom": "Album",
-      "audio kitab": "Audiobook",
-      "ep": "Ep",
-      "şou": "Show",
-      "tək": "Single"
+      "albom": "album",
+      "audio kitab": "audiobook",
+      "ep": "ep",
+      "şou": "show",
+      "tək": "single"
     },
     "chan_prefix": "by",
     "chan_suffix": ""
@@ -354,11 +354,11 @@
       "няма": 0
     },
     "album_types": {
-      "альбом": "Album",
-      "аўдыякніга": "Audiobook",
-      "міні-альбом": "Ep",
-      "шоу": "Show",
-      "сінгл": "Single"
+      "альбом": "album",
+      "аўдыякніга": "audiobook",
+      "міні-альбом": "ep",
+      "шоу": "show",
+      "сінгл": "single"
     },
     "chan_prefix": "ад",
     "chan_suffix": ""
@@ -404,11 +404,11 @@
       "няма": 0
     },
     "album_types": {
-      "албум": "Album",
-      "аудиокнига": "Audiobook",
-      "миниалбум": "Ep",
-      "предаване": "Show",
-      "сингъл": "Single"
+      "албум": "album",
+      "аудиокнига": "audiobook",
+      "миниалбум": "ep",
+      "предаване": "show",
+      "сингъл": "single"
     },
     "chan_prefix": "от",
     "chan_suffix": ""
@@ -459,11 +459,11 @@
       "১": 1
     },
     "album_types": {
-      "অ্যালবাম": "Album",
-      "অডিওবুক": "Audiobook",
-      "ইপি": "Ep",
-      "শো": "Show",
-      "সিঙ্গেল": "Single"
+      "অ্যালবাম": "album",
+      "অডিওবুক": "audiobook",
+      "ইপি": "ep",
+      "শো": "show",
+      "সিঙ্গেল": "single"
     },
     "chan_prefix": ",",
     "chan_suffix": "দ্বারা"
@@ -530,11 +530,11 @@
       "nema": 0
     },
     "album_types": {
-      "album": "Album",
-      "audio knjiga": "Audiobook",
-      "ep": "Ep",
-      "serija": "Show",
-      "singl": "Single"
+      "album": "album",
+      "audio knjiga": "audiobook",
+      "ep": "ep",
+      "serija": "show",
+      "singl": "single"
     },
     "chan_prefix": "od",
     "chan_suffix": ""
@@ -590,11 +590,11 @@
       "sense": 0
     },
     "album_types": {
-      "àlbum": "Album",
-      "audiollibre": "Audiobook",
-      "ep": "Ep",
-      "programa": "Show",
-      "single": "Single"
+      "àlbum": "album",
+      "audiollibre": "audiobook",
+      "ep": "ep",
+      "programa": "show",
+      "single": "single"
     },
     "chan_prefix": "de:",
     "chan_suffix": ""
@@ -651,11 +651,11 @@
     },
     "number_nd_tokens": {},
     "album_types": {
-      "album": "Album",
-      "audiokniha": "Audiobook",
-      "ep": "Ep",
-      "zobrazit": "Show",
-      "singl": "Single"
+      "album": "album",
+      "audiokniha": "audiobook",
+      "ep": "ep",
+      "zobrazit": "show",
+      "singl": "single"
     },
     "chan_prefix": "autor:",
     "chan_suffix": ""
@@ -710,11 +710,11 @@
       "ingen": 0
     },
     "album_types": {
-      "album": "Album",
-      "lydbog": "Audiobook",
-      "ep": "Ep",
-      "lyddrama": "Show",
-      "single": "Single"
+      "album": "album",
+      "lydbog": "audiobook",
+      "ep": "ep",
+      "lyddrama": "show",
+      "single": "single"
     },
     "chan_prefix": "af",
     "chan_suffix": ""
@@ -756,11 +756,11 @@
       "keine": 0
     },
     "album_types": {
-      "album": "Album",
-      "hörbuch": "Audiobook",
-      "ep": "Ep",
-      "hörspiel": "Show",
-      "single": "Single"
+      "album": "album",
+      "hörbuch": "audiobook",
+      "ep": "ep",
+      "hörspiel": "show",
+      "single": "single"
     },
     "chan_prefix": "von",
     "chan_suffix": ""
@@ -819,11 +819,11 @@
       "καμία": 0
     },
     "album_types": {
-      "άλμπουμ": "Album",
-      "ηχητικό βιβλίο": "Audiobook",
-      "ep": "Ep",
-      "εκπομπή": "Show",
-      "single": "Single"
+      "άλμπουμ": "album",
+      "ηχητικό βιβλίο": "audiobook",
+      "ep": "ep",
+      "εκπομπή": "show",
+      "single": "single"
     },
     "chan_prefix": "από το χρήστη",
     "chan_suffix": ""
@@ -895,11 +895,11 @@
       "no": 0
     },
     "album_types": {
-      "album": "Album",
-      "audiobook": "Audiobook",
-      "ep": "Ep",
-      "show": "Show",
-      "single": "Single"
+      "album": "album",
+      "audiobook": "audiobook",
+      "ep": "ep",
+      "show": "show",
+      "single": "single"
     },
     "chan_prefix": "by",
     "chan_suffix": ""
@@ -955,11 +955,11 @@
     },
     "number_nd_tokens": {},
     "album_types": {
-      "álbum": "Album",
-      "audiolibro": "Audiobook",
-      "ep": "Ep",
-      "audiodrama": "Show",
-      "single": "Single"
+      "álbum": "album",
+      "audiolibro": "audiobook",
+      "ep": "ep",
+      "audiodrama": "show",
+      "single": "single"
     },
     "chan_prefix": "de",
     "chan_suffix": ""
@@ -1018,11 +1018,11 @@
       "sin": 0
     },
     "album_types": {
-      "álbum": "Album",
-      "audiolibro": "Audiobook",
-      "ep": "Ep",
-      "programa": "Show",
-      "sencillo": "Single"
+      "álbum": "album",
+      "audiolibro": "audiobook",
+      "ep": "ep",
+      "programa": "show",
+      "sencillo": "single"
     },
     "chan_prefix": "de",
     "chan_suffix": ""
@@ -1081,11 +1081,11 @@
       "pole": 0
     },
     "album_types": {
-      "album": "Album",
-      "audioraamat": "Audiobook",
-      "ep": "Ep",
-      "sari": "Show",
-      "singel": "Single"
+      "album": "album",
+      "audioraamat": "audiobook",
+      "ep": "ep",
+      "sari": "show",
+      "singel": "single"
     },
     "chan_prefix": "kanalilt",
     "chan_suffix": ""
@@ -1132,11 +1132,11 @@
       "ez": 0
     },
     "album_types": {
-      "albuma": "Album",
-      "audio-liburua": "Audiobook",
-      "ep": "Ep",
-      "saioa": "Show",
-      "singlea": "Single"
+      "albuma": "album",
+      "audio-liburua": "audiobook",
+      "ep": "ep",
+      "saioa": "show",
+      "singlea": "single"
     },
     "chan_prefix": "egilea:",
     "chan_suffix": ""
@@ -1183,11 +1183,11 @@
       "۱": 1
     },
     "album_types": {
-      "آلبوم": "Album",
-      "کتاب صوتی": "Audiobook",
-      "پخش فوق‌العاده": "Ep",
-      "نمایش": "Show",
-      "تک آهنگ": "Single"
+      "آلبوم": "album",
+      "کتاب صوتی": "audiobook",
+      "پخش فوق‌العاده": "ep",
+      "نمایش": "show",
+      "تک آهنگ": "single"
     },
     "chan_prefix": "توسط",
     "chan_suffix": ""
@@ -1235,11 +1235,11 @@
       "katselukertoja": 0
     },
     "album_types": {
-      "albumi": "Album",
-      "äänikirja": "Audiobook",
-      "ep": "Ep",
-      "näytä": "Show",
-      "single": "Single"
+      "albumi": "album",
+      "äänikirja": "audiobook",
+      "ep": "ep",
+      "näytä": "show",
+      "single": "single"
     },
     "chan_prefix": "tekijä:",
     "chan_suffix": ""
@@ -1286,11 +1286,11 @@
       "walang": 0
     },
     "album_types": {
-      "album": "Album",
-      "audiobook": "Audiobook",
-      "ep": "Ep",
-      "palabas": "Show",
-      "single": "Single"
+      "album": "album",
+      "audiobook": "audiobook",
+      "ep": "ep",
+      "palabas": "show",
+      "single": "single"
     },
     "chan_prefix": "ni/ng",
     "chan_suffix": ""
@@ -1352,13 +1352,13 @@
       "aucune": 0
     },
     "album_types": {
-      "album": "Album",
-      "livre audio": "Audiobook",
-      "ep": "Ep",
-      "microalbum": "Ep",
-      "émission": "Show",
-      "simple": "Single",
-      "single": "Single"
+      "album": "album",
+      "livre audio": "audiobook",
+      "ep": "ep",
+      "microalbum": "ep",
+      "émission": "show",
+      "simple": "single",
+      "single": "single"
     },
     "chan_prefix": "de",
     "chan_suffix": ""
@@ -1413,11 +1413,11 @@
       "ningunha": 0
     },
     "album_types": {
-      "álbum": "Album",
-      "audiolibro": "Audiobook",
-      "ep": "Ep",
-      "programa": "Show",
-      "single": "Single"
+      "álbum": "album",
+      "audiolibro": "audiobook",
+      "ep": "ep",
+      "programa": "show",
+      "single": "single"
     },
     "chan_prefix": "de",
     "chan_suffix": ""
@@ -1463,11 +1463,11 @@
     },
     "number_nd_tokens": {},
     "album_types": {
-      "આલ્બમ": "Album",
-      "ઑડિયોબુક": "Audiobook",
-      "ep": "Ep",
-      "શો": "Show",
-      "સિંગલ": "Single"
+      "આલ્બમ": "album",
+      "ઑડિયોબુક": "audiobook",
+      "ep": "ep",
+      "શો": "show",
+      "સિંગલ": "single"
     },
     "chan_prefix": "",
     "chan_suffix": "દ્વારા"
@@ -1517,11 +1517,11 @@
       "नहीं": 0
     },
     "album_types": {
-      "एल्‍बम": "Album",
-      "ऑडियो बुक": "Audiobook",
-      "ईपी": "Ep",
-      "शो": "Show",
-      "सिंगल": "Single"
+      "एल्‍बम": "album",
+      "ऑडियो बुक": "audiobook",
+      "ईपी": "ep",
+      "शो": "show",
+      "सिंगल": "single"
     },
     "chan_prefix": "",
     "chan_suffix": "के ज़रिए"
@@ -1587,11 +1587,11 @@
       "nema": 0
     },
     "album_types": {
-      "album": "Album",
-      "audioknjiga": "Audiobook",
-      "ep": "Ep",
-      "serija": "Show",
-      "singl": "Single"
+      "album": "album",
+      "audioknjiga": "audiobook",
+      "ep": "ep",
+      "serija": "show",
+      "singl": "single"
     },
     "chan_prefix": "omogućio kanal",
     "chan_suffix": ""
@@ -1649,11 +1649,11 @@
       "nincs": 0
     },
     "album_types": {
-      "album": "Album",
-      "hangoskönyv": "Audiobook",
-      "ep": "Ep",
-      "műsor": "Show",
-      "kislemez": "Single"
+      "album": "album",
+      "hangoskönyv": "audiobook",
+      "ep": "ep",
+      "műsor": "show",
+      "kislemez": "single"
     },
     "chan_prefix": "",
     "chan_suffix": "csatornától"
@@ -1705,11 +1705,11 @@
       "չկան": 0
     },
     "album_types": {
-      "ալբոմ": "Album",
-      "աուդիոգիրք": "Audiobook",
-      "ep": "Ep",
-      "աուդիոդրամա": "Show",
-      "սինգլ": "Single"
+      "ալբոմ": "album",
+      "աուդիոգիրք": "audiobook",
+      "ep": "ep",
+      "աուդիոդրամա": "show",
+      "սինգլ": "single"
     },
     "chan_prefix": "հեղինակ՝",
     "chan_suffix": ""
@@ -1761,11 +1761,11 @@
       "belum": 0
     },
     "album_types": {
-      "album": "Album",
-      "buku audio": "Audiobook",
-      "ep": "Ep",
-      "acara": "Show",
-      "single": "Single"
+      "album": "album",
+      "buku audio": "audiobook",
+      "ep": "ep",
+      "acara": "show",
+      "single": "single"
     },
     "chan_prefix": "oleh",
     "chan_suffix": ""
@@ -1828,11 +1828,11 @@
       "eitt": 1
     },
     "album_types": {
-      "plata": "Album",
-      "hljóðbók": "Audiobook",
-      "ep": "Ep",
-      "þáttur": "Show",
-      "smáskífa": "Single"
+      "plata": "album",
+      "hljóðbók": "audiobook",
+      "ep": "ep",
+      "þáttur": "show",
+      "smáskífa": "single"
     },
     "chan_prefix": "eftir",
     "chan_suffix": ""
@@ -1892,11 +1892,11 @@
       "nessuna": 0
     },
     "album_types": {
-      "album": "Album",
-      "audiolibro": "Audiobook",
-      "ep": "Ep",
-      "programma": "Show",
-      "singolo": "Single"
+      "album": "album",
+      "audiolibro": "audiobook",
+      "ep": "ep",
+      "programma": "show",
+      "singolo": "single"
     },
     "chan_prefix": "di",
     "chan_suffix": ""
@@ -1961,11 +1961,11 @@
       "אחד": 1
     },
     "album_types": {
-      "אלבום": "Album",
-      "ספר אודיו": "Audiobook",
-      "מיני-אלבום": "Ep",
-      "תסכית": "Show",
-      "סינגל": "Single"
+      "אלבום": "album",
+      "ספר אודיו": "audiobook",
+      "מיני-אלבום": "ep",
+      "תסכית": "show",
+      "סינגל": "single"
     },
     "chan_prefix": "מאת",
     "chan_suffix": ""
@@ -1995,11 +1995,11 @@
     },
     "number_nd_tokens": {},
     "album_types": {
-      "アルバム": "Album",
-      "オーディオブック": "Audiobook",
-      "ep": "Ep",
-      "表示": "Show",
-      "シングル": "Single"
+      "アルバム": "album",
+      "オーディオブック": "audiobook",
+      "ep": "ep",
+      "表示": "show",
+      "シングル": "single"
     },
     "chan_prefix": "作成者:",
     "chan_suffix": ""
@@ -2051,11 +2051,11 @@
       "არ": 0
     },
     "album_types": {
-      "ალბომი": "Album",
-      "აუდიოწიგნი": "Audiobook",
-      "მინი-ალბომი": "Ep",
-      "ჩვენება": "Show",
-      "სინგლი": "Single"
+      "ალბომი": "album",
+      "აუდიოწიგნი": "audiobook",
+      "მინი-ალბომი": "ep",
+      "ჩვენება": "show",
+      "სინგლი": "single"
     },
     "chan_prefix": "",
     "chan_suffix": "-ის მიერ"
@@ -2108,11 +2108,11 @@
       "ешкім": 0
     },
     "album_types": {
-      "альбом": "Album",
-      "аудиокітап": "Audiobook",
-      "ep": "Ep",
-      "шоу": "Show",
-      "сингл": "Single"
+      "альбом": "album",
+      "аудиокітап": "audiobook",
+      "ep": "ep",
+      "шоу": "show",
+      "сингл": "single"
     },
     "chan_prefix": "қосқан",
     "chan_suffix": ""
@@ -2158,11 +2158,11 @@
     },
     "number_nd_tokens": {},
     "album_types": {
-      "អាល់ប៊ុម": "Album",
-      "សៀវភៅ​ជា​សំឡេង": "Audiobook",
-      "ep": "Ep",
-      "កម្មវិធីទូរទស្សន៍": "Show",
-      "ចម្រៀងទោល": "Single"
+      "អាល់ប៊ុម": "album",
+      "សៀវភៅ​ជា​សំឡេង": "audiobook",
+      "ep": "ep",
+      "កម្មវិធីទូរទស្សន៍": "show",
+      "ចម្រៀងទោល": "single"
     },
     "chan_prefix": "ដោយ",
     "chan_suffix": ""
@@ -2221,11 +2221,11 @@
       "ವೀಕ್ಷಣೆಗಳಿಲ್ಲ": 0
     },
     "album_types": {
-      "ಆಲ್ಬಮ್": "Album",
-      "ಆಡಿಯೋಬುಕ್": "Audiobook",
-      "ep": "Ep",
-      "ಶೋ": "Show",
-      "ಒಂದೇ": "Single"
+      "ಆಲ್ಬಮ್": "album",
+      "ಆಡಿಯೋಬುಕ್": "audiobook",
+      "ep": "ep",
+      "ಶೋ": "show",
+      "ಒಂದೇ": "single"
     },
     "chan_prefix": "",
     "chan_suffix": "ಚಾನಲ್‌ನಿಂದ"
@@ -2258,11 +2258,11 @@
       "없": 0
     },
     "album_types": {
-      "앨범": "Album",
-      "오디오북": "Audiobook",
-      "ep": "Ep",
-      "표시": "Show",
-      "싱글": "Single"
+      "앨범": "album",
+      "오디오북": "audiobook",
+      "ep": "ep",
+      "표시": "show",
+      "싱글": "single"
     },
     "chan_prefix": "게시자:",
     "chan_suffix": ""
@@ -2311,11 +2311,11 @@
       "эч": 0
     },
     "album_types": {
-      "альбом": "Album",
-      "аудиокитеп": "Audiobook",
-      "чакан альбом": "Ep",
-      "шоу": "Show",
-      "сингл": "Single"
+      "альбом": "album",
+      "аудиокитеп": "audiobook",
+      "чакан альбом": "ep",
+      "шоу": "show",
+      "сингл": "single"
     },
     "chan_prefix": "",
     "chan_suffix": "каналы аркылуу"
@@ -2369,11 +2369,11 @@
       "ຍັງບໍ່ມີຄົນເບິ່ງເທື່ອ": 0
     },
     "album_types": {
-      "ອະລະບໍ້າ": "Album",
-      "ປຶ້ມສຽງ": "Audiobook",
-      "ep": "Ep",
-      "ສະແດງ": "Show",
-      "ຊິງເກິນ": "Single"
+      "ອະລະບໍ້າ": "album",
+      "ປຶ້ມສຽງ": "audiobook",
+      "ep": "ep",
+      "ສະແດງ": "show",
+      "ຊິງເກິນ": "single"
     },
     "chan_prefix": "ໂດຍ",
     "chan_suffix": ""
@@ -2434,11 +2434,11 @@
       "nėra": 0
     },
     "album_types": {
-      "albumas": "Album",
-      "garsinė knyga": "Audiobook",
-      "mini albumas": "Ep",
-      "serialas": "Show",
-      "singlas": "Single"
+      "albumas": "album",
+      "garsinė knyga": "audiobook",
+      "mini albumas": "ep",
+      "serialas": "show",
+      "singlas": "single"
     },
     "chan_prefix": "pridėjo",
     "chan_suffix": ""
@@ -2502,11 +2502,11 @@
       "nav": 0
     },
     "album_types": {
-      "albums": "Album",
-      "audiogrāmata": "Audiobook",
-      "ep ieraksts": "Ep",
-      "pārraide": "Show",
-      "singls": "Single"
+      "albums": "album",
+      "audiogrāmata": "audiobook",
+      "ep ieraksts": "ep",
+      "pārraide": "show",
+      "singls": "single"
     },
     "chan_prefix": "autors:",
     "chan_suffix": ""
@@ -2550,11 +2550,11 @@
       "нема": 0
     },
     "album_types": {
-      "албум": "Album",
-      "аудиокнига": "Audiobook",
-      "ep": "Ep",
-      "серија": "Show",
-      "сингл": "Single"
+      "албум": "album",
+      "аудиокнига": "audiobook",
+      "ep": "ep",
+      "серија": "show",
+      "сингл": "single"
     },
     "chan_prefix": "од",
     "chan_suffix": ""
@@ -2602,11 +2602,11 @@
       "ഇല്ല": 0
     },
     "album_types": {
-      "ആല്‍‌ബം": "Album",
-      "ഓഡിയോ ബുക്ക്": "Audiobook",
-      "ep": "Ep",
-      "ഷോ": "Show",
-      "സിംഗിൾ": "Single"
+      "ആല്‍‌ബം": "album",
+      "ഓഡിയോ ബുക്ക്": "audiobook",
+      "ep": "ep",
+      "ഷോ": "show",
+      "സിംഗിൾ": "single"
     },
     "chan_prefix": "",
     "chan_suffix": "മുഖേന"
@@ -2645,11 +2645,11 @@
       "үзэлтгүй": 0
     },
     "album_types": {
-      "цомог": "Album",
-      "аудио ном": "Audiobook",
-      "ep": "Ep",
-      "жүжиг": "Show",
-      "сингл": "Single"
+      "цомог": "album",
+      "аудио ном": "audiobook",
+      "ep": "ep",
+      "жүжиг": "show",
+      "сингл": "single"
     },
     "chan_prefix": "сувгийн нэр:",
     "chan_suffix": ""
@@ -2710,11 +2710,11 @@
       "नाहीत": 0
     },
     "album_types": {
-      "अल्बम": "Album",
-      "ऑडिओबुक": "Audiobook",
-      "भाग": "Ep",
-      "शो": "Show",
-      "सिंगल": "Single"
+      "अल्बम": "album",
+      "ऑडिओबुक": "audiobook",
+      "भाग": "ep",
+      "शो": "show",
+      "सिंगल": "single"
     },
     "chan_prefix": "",
     "chan_suffix": "द्वारे"
@@ -2763,11 +2763,11 @@
       "tiada": 0
     },
     "album_types": {
-      "album": "Album",
-      "buku audio": "Audiobook",
-      "ep": "Ep",
-      "rancangan": "Show",
-      "rekod single": "Single"
+      "album": "album",
+      "buku audio": "audiobook",
+      "ep": "ep",
+      "rancangan": "show",
+      "rekod single": "single"
     },
     "chan_prefix": "oleh",
     "chan_suffix": ""
@@ -2820,11 +2820,11 @@
       "၁": 1
     },
     "album_types": {
-      "အယ်လ်ဘမ်": "Album",
-      "အော်ဒီယိုစာအုပ်": "Audiobook",
-      "ep": "Ep",
-      "ရှိုး": "Show",
-      "တစ်ကိုယ်တော်": "Single"
+      "အယ်လ်ဘမ်": "album",
+      "အော်ဒီယိုစာအုပ်": "audiobook",
+      "ep": "ep",
+      "ရှိုး": "show",
+      "တစ်ကိုယ်တော်": "single"
     },
     "chan_prefix": "",
     "chan_suffix": "မှ"
@@ -2872,11 +2872,11 @@
       "छैन": 0
     },
     "album_types": {
-      "एल्बम": "Album",
-      "अडियोबुक": "Audiobook",
-      "ep": "Ep",
-      "टिभी सो": "Show",
-      "एकल एल्बम": "Single"
+      "एल्बम": "album",
+      "अडियोबुक": "audiobook",
+      "ep": "ep",
+      "टिभी सो": "show",
+      "एकल एल्बम": "single"
     },
     "chan_prefix": "",
     "chan_suffix": "द्वारा"
@@ -2929,11 +2929,11 @@
       "geen": 0
     },
     "album_types": {
-      "album": "Album",
-      "audioboek": "Audiobook",
-      "ep": "Ep",
-      "aflevering": "Show",
-      "single": "Single"
+      "album": "album",
+      "audioboek": "audiobook",
+      "ep": "ep",
+      "aflevering": "show",
+      "single": "single"
     },
     "chan_prefix": "door",
     "chan_suffix": ""
@@ -2995,11 +2995,11 @@
       "én": 1
     },
     "album_types": {
-      "album": "Album",
-      "lydbok": "Audiobook",
-      "ep": "Ep",
-      "hørespill": "Show",
-      "singel": "Single"
+      "album": "album",
+      "lydbok": "audiobook",
+      "ep": "ep",
+      "hørespill": "show",
+      "singel": "single"
     },
     "chan_prefix": "av",
     "chan_suffix": ""
@@ -3058,11 +3058,11 @@
       "ନାହିଁ": 0
     },
     "album_types": {
-      "ଆଲବମ୍": "Album",
-      "ଅଡିଓବୁକ୍": "Audiobook",
-      "ep": "Ep",
-      "ଶୋ": "Show",
-      "ସିଙ୍ଗଲ୍": "Single"
+      "ଆଲବମ୍": "album",
+      "ଅଡିଓବୁକ୍": "audiobook",
+      "ep": "ep",
+      "ଶୋ": "show",
+      "ସିଙ୍ଗଲ୍": "single"
     },
     "chan_prefix": "",
     "chan_suffix": "ଦ୍ଵାରା"
@@ -3112,11 +3112,11 @@
       "ਨਹੀਂ": 0
     },
     "album_types": {
-      "ਐਲਬਮ": "Album",
-      "ਆਡੀਓ-ਕਿਤਾਬ": "Audiobook",
-      "ep": "Ep",
-      "ਸ਼ੋਅ": "Show",
-      "ਸਿੰਗਲ": "Single"
+      "ਐਲਬਮ": "album",
+      "ਆਡੀਓ-ਕਿਤਾਬ": "audiobook",
+      "ep": "ep",
+      "ਸ਼ੋਅ": "show",
+      "ਸਿੰਗਲ": "single"
     },
     "chan_prefix": "",
     "chan_suffix": "ਵੱਲੋਂ"
@@ -3187,11 +3187,11 @@
       "brak": 0
     },
     "album_types": {
-      "album": "Album",
-      "audiobook": "Audiobook",
-      "ep": "Ep",
-      "słuchowisko": "Show",
-      "singiel": "Single"
+      "album": "album",
+      "audiobook": "audiobook",
+      "ep": "ep",
+      "słuchowisko": "show",
+      "singiel": "single"
     },
     "chan_prefix": "autor:",
     "chan_suffix": ""
@@ -3249,11 +3249,11 @@
       "um": 1
     },
     "album_types": {
-      "álbum": "Album",
-      "audiolivro": "Audiobook",
-      "ep": "Ep",
-      "programa": "Show",
-      "single": "Single"
+      "álbum": "album",
+      "audiolivro": "audiobook",
+      "ep": "ep",
+      "programa": "show",
+      "single": "single"
     },
     "chan_prefix": "por",
     "chan_suffix": ""
@@ -3295,11 +3295,11 @@
     },
     "number_nd_tokens": {},
     "album_types": {
-      "álbum": "Album",
-      "audiolivro": "Audiobook",
-      "ep": "Ep",
-      "programa": "Show",
-      "single": "Single"
+      "álbum": "album",
+      "audiolivro": "audiobook",
+      "ep": "ep",
+      "programa": "show",
+      "single": "single"
     },
     "chan_prefix": "de",
     "chan_suffix": ""
@@ -3357,11 +3357,11 @@
       "un": 1
     },
     "album_types": {
-      "album": "Album",
-      "carte audio": "Audiobook",
-      "ep": "Ep",
-      "emisiune": "Show",
-      "single": "Single"
+      "album": "album",
+      "carte audio": "audiobook",
+      "ep": "ep",
+      "emisiune": "show",
+      "single": "single"
     },
     "chan_prefix": "de",
     "chan_suffix": ""
@@ -3430,11 +3430,11 @@
     },
     "number_nd_tokens": {},
     "album_types": {
-      "альбом": "Album",
-      "аудиокнига": "Audiobook",
-      "ep": "Ep",
-      "аудиошоу": "Show",
-      "сингл": "Single"
+      "альбом": "album",
+      "аудиокнига": "audiobook",
+      "ep": "ep",
+      "аудиошоу": "show",
+      "сингл": "single"
     },
     "chan_prefix": "",
     "chan_suffix": ""
@@ -3482,11 +3482,11 @@
       "නැත": 0
     },
     "album_types": {
-      "ඇල්බමය": "Album",
-      "ශ්‍රව්‍යපොත": "Audiobook",
-      "දීවා": "Ep",
-      "සංදර්ශනය": "Show",
-      "තනි": "Single"
+      "ඇල්බමය": "album",
+      "ශ්‍රව්‍යපොත": "audiobook",
+      "දීවා": "ep",
+      "සංදර්ශනය": "show",
+      "තනි": "single"
     },
     "chan_prefix": "",
     "chan_suffix": "විසින්"
@@ -3543,11 +3543,11 @@
       "žiadne": 0
     },
     "album_types": {
-      "album": "Album",
-      "audiokniha": "Audiobook",
-      "ep": "Ep",
-      "relácia": "Show",
-      "singel": "Single"
+      "album": "album",
+      "audiokniha": "audiobook",
+      "ep": "ep",
+      "relácia": "show",
+      "singel": "single"
     },
     "chan_prefix": "Autori:",
     "chan_suffix": ""
@@ -3622,11 +3622,11 @@
       "brez": 0
     },
     "album_types": {
-      "album": "Album",
-      "zvočna knjiga": "Audiobook",
-      "ep": "Ep",
-      "oddaja": "Show",
-      "singel": "Single"
+      "album": "album",
+      "zvočna knjiga": "audiobook",
+      "ep": "ep",
+      "oddaja": "show",
+      "singel": "single"
     },
     "chan_prefix": "kanal",
     "chan_suffix": ""
@@ -3677,11 +3677,11 @@
       "nuk": 0
     },
     "album_types": {
-      "album": "Album",
-      "libër me audio": "Audiobook",
-      "ep": "Ep",
-      "shfaq": "Show",
-      "single": "Single"
+      "album": "album",
+      "libër me audio": "audiobook",
+      "ep": "ep",
+      "shfaq": "show",
+      "single": "single"
     },
     "chan_prefix": "nga",
     "chan_suffix": ""
@@ -3729,11 +3729,11 @@
       "нема": 0
     },
     "album_types": {
-      "албум": "Album",
-      "аудио-књига": "Audiobook",
-      "ep": "Ep",
-      "серија": "Show",
-      "сингл": "Single"
+      "албум": "album",
+      "аудио-књига": "audiobook",
+      "ep": "ep",
+      "серија": "show",
+      "сингл": "single"
     },
     "chan_prefix": "са канала",
     "chan_suffix": ""
@@ -3781,11 +3781,11 @@
       "nema": 0
     },
     "album_types": {
-      "album": "Album",
-      "audio-knjiga": "Audiobook",
-      "ep": "Ep",
-      "serija": "Show",
-      "singl": "Single"
+      "album": "album",
+      "audio-knjiga": "audiobook",
+      "ep": "ep",
+      "serija": "show",
+      "singl": "single"
     },
     "chan_prefix": "sa kanala",
     "chan_suffix": ""
@@ -3842,11 +3842,11 @@
       "inga": 0
     },
     "album_types": {
-      "album": "Album",
-      "ljudbok": "Audiobook",
-      "ep": "Ep",
-      "ljuddrama": "Show",
-      "singel": "Single"
+      "album": "album",
+      "ljudbok": "audiobook",
+      "ep": "ep",
+      "ljuddrama": "show",
+      "singel": "single"
     },
     "chan_prefix": "från",
     "chan_suffix": ""
@@ -3894,11 +3894,11 @@
       "haijatazamwa": 0
     },
     "album_types": {
-      "albamu": "Album",
-      "kitabu cha kusikiliza": "Audiobook",
-      "ep": "Ep",
-      "kipindi": "Show",
-      "singo": "Single"
+      "albamu": "album",
+      "kitabu cha kusikiliza": "audiobook",
+      "ep": "ep",
+      "kipindi": "show",
+      "singo": "single"
     },
     "chan_prefix": "kutoka",
     "chan_suffix": ""
@@ -3959,11 +3959,11 @@
       "இல்லை": 0
     },
     "album_types": {
-      "ஆல்பம்": "Album",
-      "ஆடியோ புத்தகம்": "Audiobook",
-      "ep": "Ep",
-      "ஆடியோ ஷோ": "Show",
-      "சிங்கிள்": "Single"
+      "ஆல்பம்": "album",
+      "ஆடியோ புத்தகம்": "audiobook",
+      "ep": "ep",
+      "ஆடியோ ஷோ": "show",
+      "சிங்கிள்": "single"
     },
     "chan_prefix": "வழங்கியவர்:",
     "chan_suffix": ""
@@ -4022,11 +4022,11 @@
       "లేవు": 0
     },
     "album_types": {
-      "ఆల్బమ్": "Album",
-      "ఆడియోబుక్": "Audiobook",
-      "ep": "Ep",
-      "చూపించు": "Show",
-      "సింగిల్": "Single"
+      "ఆల్బమ్": "album",
+      "ఆడియోబుక్": "audiobook",
+      "ep": "ep",
+      "చూపించు": "show",
+      "సింగిల్": "single"
     },
     "chan_prefix": "",
     "chan_suffix": "ఛానెల్ ద్వారా"
@@ -4085,11 +4085,11 @@
       "ไม่มีการดู": 0
     },
     "album_types": {
-      "อัลบั้ม": "Album",
-      "หนังสือเสียง": "Audiobook",
-      "ep": "Ep",
-      "รายการ": "Show",
-      "ซิงเกิล": "Single"
+      "อัลบั้ม": "album",
+      "หนังสือเสียง": "audiobook",
+      "ep": "ep",
+      "รายการ": "show",
+      "ซิงเกิล": "single"
     },
     "chan_prefix": "โดย",
     "chan_suffix": ""
@@ -4139,11 +4139,11 @@
       "yok": 0
     },
     "album_types": {
-      "albüm": "Album",
-      "sesli kitap": "Audiobook",
-      "ep": "Ep",
-      "program": "Show",
-      "single": "Single"
+      "albüm": "album",
+      "sesli kitap": "audiobook",
+      "ep": "ep",
+      "program": "show",
+      "single": "single"
     },
     "chan_prefix": "",
     "chan_suffix": "tarafından"
@@ -4216,11 +4216,11 @@
       "жодного": 0
     },
     "album_types": {
-      "альбом": "Album",
-      "аудіокнига": "Audiobook",
-      "мініальбом": "Ep",
-      "аудіодрама": "Show",
-      "сингл": "Single"
+      "альбом": "album",
+      "аудіокнига": "audiobook",
+      "мініальбом": "ep",
+      "аудіодрама": "show",
+      "сингл": "single"
     },
     "chan_prefix": "власник:",
     "chan_suffix": ""
@@ -4275,11 +4275,11 @@
       "نہیں": 0
     },
     "album_types": {
-      "البم": "Album",
-      "آڈیو بک": "Audiobook",
-      "ep": "Ep",
-      "شو": "Show",
-      "واحد": "Single"
+      "البم": "album",
+      "آڈیو بک": "audiobook",
+      "ep": "ep",
+      "شو": "show",
+      "واحد": "single"
     },
     "chan_prefix": "منجانب",
     "chan_suffix": ""
@@ -4325,11 +4325,11 @@
     },
     "number_nd_tokens": {},
     "album_types": {
-      "albom": "Album",
-      "audiokitob": "Audiobook",
-      "ep": "Ep",
-      "shou": "Show",
-      "singl": "Single"
+      "albom": "album",
+      "audiokitob": "audiobook",
+      "ep": "ep",
+      "shou": "show",
+      "singl": "single"
     },
     "chan_prefix": "muallif:",
     "chan_suffix": ""
@@ -4360,11 +4360,11 @@
     },
     "number_nd_tokens": {},
     "album_types": {
-      "đĩa nhạc": "Album",
-      "sách nói": "Audiobook",
-      "đĩa nhạc mở rộng (ep)": "Ep",
-      "chương trình": "Show",
-      "đĩa đơn": "Single"
+      "đĩa nhạc": "album",
+      "sách nói": "audiobook",
+      "đĩa nhạc mở rộng (ep)": "ep",
+      "chương trình": "show",
+      "đĩa đơn": "single"
     },
     "chan_prefix": "của",
     "chan_suffix": ""
@@ -4396,11 +4396,11 @@
       "无": 0
     },
     "album_types": {
-      "专辑": "Album",
-      "有声读物": "Audiobook",
-      "迷你专辑": "Ep",
-      "广播剧": "Show",
-      "单曲": "Single"
+      "专辑": "album",
+      "有声读物": "audiobook",
+      "迷你专辑": "ep",
+      "广播剧": "show",
+      "单曲": "single"
     },
     "chan_prefix": "创建者：",
     "chan_suffix": ""
@@ -4431,11 +4431,11 @@
     },
     "number_nd_tokens": {},
     "album_types": {
-      "專輯": "Album",
-      "有聲書": "Audiobook",
-      "ep": "Ep",
-      "節目": "Show",
-      "單曲": "Single"
+      "專輯": "album",
+      "有聲書": "audiobook",
+      "ep": "ep",
+      "節目": "show",
+      "單曲": "single"
     },
     "chan_prefix": "來自",
     "chan_suffix": ""
@@ -4465,11 +4465,11 @@
     },
     "number_nd_tokens": {},
     "album_types": {
-      "專輯": "Album",
-      "有聲書": "Audiobook",
-      "ep": "Ep",
-      "節目": "Show",
-      "單曲": "Single"
+      "專輯": "album",
+      "有聲書": "audiobook",
+      "ep": "ep",
+      "節目": "show",
+      "單曲": "single"
     },
     "chan_prefix": "由",
     "chan_suffix": "建立"
@@ -4531,11 +4531,11 @@
       "akukho": 0
     },
     "album_types": {
-      "i-albhamu": "Album",
-      "i-audiobook": "Audiobook",
-      "i-ep": "Ep",
-      "bonisa": "Show",
-      "i-single": "Single"
+      "i-albhamu": "album",
+      "i-audiobook": "audiobook",
+      "i-ep": "ep",
+      "bonisa": "show",
+      "i-single": "single"
     },
     "chan_prefix": "ka-",
     "chan_suffix": ""

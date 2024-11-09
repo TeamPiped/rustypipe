@@ -40,7 +40,7 @@ MusicAlbum(
   ],
   artist_id: Some("UCXGYZ-OhdOpPBamHX3K9YRg"),
   description: None,
-  album_type: Single,
+  album_type: single,
   year: Some(2020),
   by_va: false,
   tracks: [
@@ -65,7 +65,7 @@ MusicAlbum(
         name: "Der Himmel reißt auf",
       )),
       view_count: None,
-      is_video: true,
+      track_type: video,
       track_nr: Some(1),
       by_va: false,
     ),

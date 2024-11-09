@@ -91,7 +91,7 @@ impl MapResponse<MusicCharts> for response::MusicCharts {
                             .and_then(|btn| btn.button_renderer.navigation_endpoint.music_page())
                             .map(|mp| (mp.typ, mp.id))
                     }) {
-                        Some((MusicPageType::Playlist, id)) => {
+                        Some((MusicPageType::Playlist { .. }, id)) => {
                             // Top music videos (first shelf with associated playlist)
                             if top_playlist_id.is_none() {
                                 mapper_top.map_response(shelf.contents);

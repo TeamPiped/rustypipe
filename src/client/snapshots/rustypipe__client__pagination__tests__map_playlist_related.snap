@@ -23,6 +23,7 @@ Paginator(
       channel: None,
       track_count: None,
       from_ytm: true,
+      is_podcast: false,
     ),
     MusicPlaylistItem(
       id: "RDCLAK5uy_nCUL5fa0G5mSAxmXU9tu4uGM1SoZ44OPA",
@@ -42,6 +43,7 @@ Paginator(
       channel: None,
       track_count: None,
       from_ytm: true,
+      is_podcast: false,
     ),
     MusicPlaylistItem(
       id: "RDCLAK5uy_ksgASdLdWz-NAd_rDVowAxqT6xAEN5JAA",
@@ -61,6 +63,7 @@ Paginator(
       channel: None,
       track_count: None,
       from_ytm: true,
+      is_podcast: false,
     ),
     MusicPlaylistItem(
       id: "RDCLAK5uy_lEt1yX7jdZ0dcr4e8N5Y8pUYsaO8nUc2E",
@@ -80,6 +83,7 @@ Paginator(
       channel: None,
       track_count: None,
       from_ytm: true,
+      is_podcast: false,
     ),
     MusicPlaylistItem(
       id: "RDCLAK5uy_kn1IcNFwwz5N_qekUFnvxYzPYHHRQ9_mY",
@@ -99,6 +103,7 @@ Paginator(
       channel: None,
       track_count: None,
       from_ytm: true,
+      is_podcast: false,
     ),
     MusicPlaylistItem(
       id: "RDCLAK5uy_kvH_VWOl1tx0Ad4H2F_4jaTMnImcuCFXc",
@@ -118,6 +123,7 @@ Paginator(
       channel: None,
       track_count: None,
       from_ytm: true,
+      is_podcast: false,
     ),
     MusicPlaylistItem(
       id: "RDCLAK5uy_kSJ30ym-GRlGJvlZsM9xnK9dAZdonBoB0",
@@ -137,6 +143,7 @@ Paginator(
       channel: None,
       track_count: None,
       from_ytm: true,
+      is_podcast: false,
     ),
     MusicPlaylistItem(
       id: "PLW4r_btbY6e3p8RuogQM9F8S3dFNgsMqn",
@@ -159,6 +166,7 @@ Paginator(
       )),
       track_count: None,
       from_ytm: false,
+      is_podcast: false,
     ),
     MusicPlaylistItem(
       id: "RDCLAK5uy_m55iAnFa25l8bl7m8vsTsmGph3-_yVBW0",
@@ -178,6 +186,7 @@ Paginator(
       channel: None,
       track_count: None,
       from_ytm: true,
+      is_podcast: false,
     ),
     MusicPlaylistItem(
       id: "RDCLAK5uy_nLm6_mnMdOQD1vZypJ0yPpzJPuzfPN4d4",
@@ -197,6 +206,7 @@ Paginator(
       channel: None,
       track_count: None,
       from_ytm: true,
+      is_podcast: false,
     ),
   ],
   ctoken: None,

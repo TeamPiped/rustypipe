@@ -33,7 +33,7 @@ TrackDetails(
     artist_id: Some("UCEdZAdnnKqbaHOlv8nM6OtA"),
     album: None,
     view_count: Some(235000000),
-    is_video: true,
+    track_type: video,
     track_nr: None,
     by_va: false,
   ),

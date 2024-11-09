@@ -28,6 +28,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_kjbesFvpAjQl3z_xUxMArIfRpubFn791o",
@@ -47,6 +48,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_mwJztsnautpobBg-95AVJ_xd5Gnb5DV-w",
@@ -66,6 +68,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_ldLj_raotpFCQGWiQ7L-Ag5GTbGOyjgRY",
@@ -85,6 +88,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_mkG6Cj4VqXPmlYf3xbLQQhhAZHGI8vJHo",
@@ -104,6 +108,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_mS5x3haS3YiflmBHa8rK0rOZHgn0lhG0w",
@@ -123,6 +128,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_m6-fOiMxDip-4p9uD4lhzm3I9WMCSTy_Y",
@@ -142,6 +148,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_kM1mWVww71EGtfZYJFhqoT7gYHbWFT8ok",
@@ -161,6 +168,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_kXvJt59314AsVv6QdJnFqHL7W75HkqtB4",
@@ -180,6 +188,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_mTrr21OCLdb2dJgl_BJ-6MdJDXWqB-1gc",
@@ -199,6 +208,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_n7sTcaLpQClN41GSmP1jFn2pZs2uPeSw4",
@@ -218,6 +228,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_nmyiTFaD-osoI95yEMuRjaSMQiTDRJz6E",
@@ -237,6 +248,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_kmK1aMjb7sJ6eWV95Co02JwJJmdi0z05M",
@@ -256,6 +268,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_kb7EBi6y3GrtJri4_ZH56Ms786DFEimbM",
@@ -275,6 +288,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_ldooV6iHaoPy6VKyVuHDq0DT4lh-3tRqQ",
@@ -294,6 +308,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_n9hGvSNdO2TpX8jJuiThvnfrfIi1qNRnY",
@@ -313,6 +328,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_mPQwZcd20eT41GybtQa1bSvG9I2C_5044",
@@ -332,6 +348,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
       ],
     ),
@@ -357,6 +374,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_nyKVppE-RpLkeCcwLct4rvN9e8AAsS_qw",
@@ -376,6 +394,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_n0BEng8y9HmKm6-moud8jAQ9RkE7Ie1G4",
@@ -395,6 +414,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_nm4NA8cldZNPqj1D0ayZxfySeY89qedRs",
@@ -414,6 +434,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_neriXH6JbZPr7Pf4LOi5bGQP-_lWRZXs4",
@@ -433,6 +454,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_lbcexX19-ShfMgzXpxayVFh_9l4Dml-kg",
@@ -452,6 +474,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_nRr0zn4n0C5AGQqZKdSaSzs2zmbImOIwU",
@@ -471,6 +494,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_kXvJt59314AsVv6QdJnFqHL7W75HkqtB4",
@@ -490,6 +514,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_m0X_CFV7sbR3EKDoP_FvqyK5faV7xorUY",
@@ -509,6 +534,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_l3jcyafhPprVNoFpQZL02ofimw9WsO6mE",
@@ -528,6 +554,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_n2cq0PxECLzVblC6NOorWjaCtF5NwXJT4",
@@ -547,6 +574,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_m2p5A1NXN8SInEzfsxzFEvQ6zws-V-wBo",
@@ -566,6 +594,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_kQmVjdr90p2onIIAnijgU8u9iUUAOXM2I",
@@ -585,6 +614,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_km8j1Msn0n8FTLRIw0krI9k2sf-t1Z4hg",
@@ -604,6 +634,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_kmK1aMjb7sJ6eWV95Co02JwJJmdi0z05M",
@@ -623,6 +654,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_m5EyAGTathBjwdrXC6D2G9AR-YmJrAkpw",
@@ -642,6 +674,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_ldooV6iHaoPy6VKyVuHDq0DT4lh-3tRqQ",
@@ -661,6 +694,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_lsl0WiIp96sJajCIcHkUnOWtsU29tDSNg",
@@ -680,6 +714,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_l3Iir9QZmCUPLjUqyR9PmYIKkkY7YEJZA",
@@ -699,6 +734,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_n7sTcaLpQClN41GSmP1jFn2pZs2uPeSw4",
@@ -718,6 +754,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_nBOvRANXhyfsK6oGe_wTHNwOW-0kSMB8w",
@@ -737,6 +774,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_kSv4K98sYykBnvkZ59z1jVocVmQDigHII",
@@ -756,6 +794,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_kfocULaE1ZmVD0lO2WZS1iTkDyo0SpxVw",
@@ -775,6 +814,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_l8gRf-W7IZq0qHUkIiTiMvztkfkR-Q1lU",
@@ -794,6 +834,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_kTjUwIUwKmNgaGW1YDq7JxCGB6vMGA1q4",
@@ -813,6 +854,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_lWfuEE9muOjxNxKnvVL_KZOhsMG7-FxMI",
@@ -832,6 +874,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_m8ULgAe9Lkf7wIsoguU3IqZ8ZePk1ndMc",
@@ -851,6 +894,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_ktkqrgIqlP46yBkUsZp4go2j59McnSsYY",
@@ -870,6 +914,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_kKKdVO7GqGfPlsZKfScel-ourJ_WHUn1Q",
@@ -889,6 +934,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_kL7seJinYAVpulQQbre887jeaIDkrnAg0",
@@ -908,6 +954,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_nlJdxcHTlQmkhdN48_-8CjPKyja3x86tQ",
@@ -927,6 +974,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_nSOL68i5YjTpuaCX0BlTL1pMzg2uAmmq0",
@@ -946,6 +994,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_lR4t8saWkusw6pH2MegxK-8lxB-fNWP2I",
@@ -965,6 +1014,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_n_goavyhecaj4JOjSN-fWLxKmgZli6kj4",
@@ -984,6 +1034,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_kYbdnA_dQD1WGAj0jvmEdm8cduRDmHKXw",
@@ -1003,6 +1054,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
       ],
     ),
@@ -1028,6 +1080,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_mkPdnadBmgXk28mbGxm_5uGeKvHrec208",
@@ -1047,6 +1100,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_kIlyUNKFS6Z7rgWOhrPzqohetabYwby08",
@@ -1066,6 +1120,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_lsl0WiIp96sJajCIcHkUnOWtsU29tDSNg",
@@ -1085,6 +1140,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_kIMj6ScYWghk2sQarkFf0gLcAYL7bFKNs",
@@ -1104,6 +1160,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_m6XXtQxtjnB5lr_FhgBANwp7mHKY5Yoik",
@@ -1123,6 +1180,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_m2p5A1NXN8SInEzfsxzFEvQ6zws-V-wBo",
@@ -1142,6 +1200,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_mPmYbqPIJ2C20lzdy9hyRU1ThPlZIDdog",
@@ -1161,6 +1220,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_liwwwIG8z4P25AWeLZ2Nvydx1GwbvndEI",
@@ -1180,6 +1240,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_lXWhlJsihey6xq1b50d7Uv93NLqle8TSc",
@@ -1199,6 +1260,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_nZexkv7Z-x6_aS9MlGSpmnXZceVKEsBms",
@@ -1218,6 +1280,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_m8ULgAe9Lkf7wIsoguU3IqZ8ZePk1ndMc",
@@ -1237,6 +1300,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_lBXJA3sbgAXtfFc9gIKWF4U4gKku-XAqk",
@@ -1256,6 +1320,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_kVkMotNBbFuy4Ky2M1yxjFjYs4Ll7VXIw",
@@ -1275,6 +1340,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_lgVCG10ZBWEcJ_acmecScmSbeEfO9BoR0",
@@ -1294,6 +1360,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_n_goavyhecaj4JOjSN-fWLxKmgZli6kj4",
@@ -1313,6 +1380,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_n2cB9bcNdoboeec971YTzpvg3XUI0hyQg",
@@ -1332,6 +1400,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_nuMpvdFFPBATWGBB1IQEokh8u3jELKnSc",
@@ -1351,6 +1420,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_kGHYAi69KWgIEaGH9-sYOJKbvhuUovJUM",
@@ -1370,6 +1440,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_nqJYWLG-6JPxCiMl10it5PbHU7cc-K4OQ",
@@ -1389,6 +1460,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_mfut9V_o1n9nVG_m5yZ3ztCif29AHUffI",
@@ -1408,6 +1480,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
       ],
     ),
@@ -1433,6 +1506,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_m_0U5VQNyyzwwH1lRi7cPAAGXqNQnAOqY",
@@ -1452,6 +1526,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_mSaYvcoVvag_GrAc593WX3MoxTLvUXYT8",
@@ -1471,6 +1546,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_nDL8KeBrUagwyISwNmyEiSfYgz1gVCesg",
@@ -1490,6 +1566,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_mkPdnadBmgXk28mbGxm_5uGeKvHrec208",
@@ -1509,6 +1586,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_m0X_CFV7sbR3EKDoP_FvqyK5faV7xorUY",
@@ -1528,6 +1606,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_mkG6Cj4VqXPmlYf3xbLQQhhAZHGI8vJHo",
@@ -1547,6 +1626,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_m7I7OhxMQp4dAK2AKvrEoiNmrIDnAX5Z8",
@@ -1566,6 +1646,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_mdwsZFtQhJyGQPuQA612VoRPXp-OJfzx8",
@@ -1585,6 +1666,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_n_0vMGj-9WtHuj2fbdwMGsSxL_7qglBCI",
@@ -1604,6 +1686,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_m6XXtQxtjnB5lr_FhgBANwp7mHKY5Yoik",
@@ -1623,6 +1706,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_k3dazOzqqDagSIBhGET4VrDKHS9dEjXPA",
@@ -1642,6 +1726,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_m6-fOiMxDip-4p9uD4lhzm3I9WMCSTy_Y",
@@ -1661,6 +1746,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_njvsGKIUycy_a4h7zTS8upbKhHcMVzHFM",
@@ -1680,6 +1766,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_mwJztsnautpobBg-95AVJ_xd5Gnb5DV-w",
@@ -1699,6 +1786,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_mwxGoOtv8258D3gdLZ0i0clri0O1-MhKU",
@@ -1718,6 +1806,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_kZV9OCuNPSp11tslT5Qu0NVG3WR8xGo_A",
@@ -1737,6 +1826,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_kM1mWVww71EGtfZYJFhqoT7gYHbWFT8ok",
@@ -1756,6 +1846,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_k5psGic7w1Z8Udh8rwqpoKxqznjhq8p54",
@@ -1775,6 +1866,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_lzZ2FTtItPTnWXpdiYpNyiH5_xIXf17q8",
@@ -1794,6 +1886,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk",
@@ -1813,6 +1906,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_n8Hg9csbDQCPDH-PKmWZmKVG_oMgvrozY",
@@ -1832,6 +1926,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_n_goavyhecaj4JOjSN-fWLxKmgZli6kj4",
@@ -1851,6 +1946,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_kYbdnA_dQD1WGAj0jvmEdm8cduRDmHKXw",
@@ -1870,6 +1966,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_nOQfhuQ-yKUIAFqFyxJ-M7vGfwcEg257U",
@@ -1889,6 +1986,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_lp8LtelM9GiSwRFGGQjctKaGoHcrgQVEU",
@@ -1908,6 +2006,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_n6KBAnIl1BQJyOFJURESNO3BgsVttpwZM",
@@ -1927,6 +2026,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_nuMpvdFFPBATWGBB1IQEokh8u3jELKnSc",
@@ -1946,6 +2046,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
       ],
     ),
@@ -1971,6 +2072,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_mSaYvcoVvag_GrAc593WX3MoxTLvUXYT8",
@@ -1990,6 +2092,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_k2csipDOuQwX6-GGZd4ys5MM5bueEqkrE",
@@ -2009,6 +2112,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_kIMj6ScYWghk2sQarkFf0gLcAYL7bFKNs",
@@ -2028,6 +2132,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_l2OjbOL4oVkkHE86UT6oQCNufuv8d0luQ",
@@ -2047,6 +2152,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_nNaRgDdtxqig84vFR4hHMYsCXRZpUbfNE",
@@ -2066,6 +2172,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_ntOL7kXTRxvIvmIsrYzKQ_MEpBdIywpQc",
@@ -2085,6 +2192,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_kABC3nlv35ioOf0D9mih-37tNip6SWre8",
@@ -2104,6 +2212,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_ldooV6iHaoPy6VKyVuHDq0DT4lh-3tRqQ",
@@ -2123,6 +2232,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_neriXH6JbZPr7Pf4LOi5bGQP-_lWRZXs4",
@@ -2142,6 +2252,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_ldLj_raotpFCQGWiQ7L-Ag5GTbGOyjgRY",
@@ -2161,6 +2272,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_kL57PLcOmExjhzqGfGhvA82ZWe4fPH2c4",
@@ -2180,6 +2292,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_lbcexX19-ShfMgzXpxayVFh_9l4Dml-kg",
@@ -2199,6 +2312,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_lQ2iiRFCsEvoxLRfTCOyVd6-tdZ75Gw-E",
@@ -2218,6 +2332,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_k0oJ5JQqsSSQQvYS8xzcAh29CFryqs0mc",
@@ -2237,6 +2352,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_nZJzoZEBYRptA2XXskbxGTvKkevapT_F4",
@@ -2256,6 +2372,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_mS5x3haS3YiflmBHa8rK0rOZHgn0lhG0w",
@@ -2275,6 +2392,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_m9YprJ504SUVUWr1oygQy6p-lV8N11BZw",
@@ -2294,6 +2412,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_l7nE3iR6eJpMdU08uxoNBJ7QenxwqfY0E",
@@ -2313,6 +2432,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_nBOvRANXhyfsK6oGe_wTHNwOW-0kSMB8w",
@@ -2332,6 +2452,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_kGcITlIUh14Xy7FgqGiLtEJtKoDax4TkI",
@@ -2351,6 +2472,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_nA42_0IX0YmeKb7pLRjm_J8e2ja445Urc",
@@ -2370,6 +2492,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_li40oRtkZfR06nf8rRzgRMraDx764TEN0",
@@ -2389,6 +2512,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_n8797v38N8JhZdT2JJtlM0OfIpgkJ3Mkk",
@@ -2408,6 +2532,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_kL7seJinYAVpulQQbre887jeaIDkrnAg0",
@@ -2427,6 +2552,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_nPaBlmfKLPFyzWF0NeUzb9XhJwpWT5p1I",
@@ -2446,6 +2572,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_n925kJbsm33edgD15CyXEfRTo55todVsA",
@@ -2465,6 +2592,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_mbiV5Yf70rsze2fxgIqK9k2Gi1sl-MOGM",
@@ -2484,6 +2612,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_np_soSTj6w3-N7Dh_xmdDpQINJ8LsVpa8",
@@ -2503,6 +2632,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_ndAJusuZt_EEyDuPpzowQuzA8Nxa8znjg",
@@ -2522,6 +2652,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
       ],
     ),
@@ -2547,6 +2678,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_lUrzaYWnJvQv7UqkwbYLo9K_Qbui6WDgo",
@@ -2566,6 +2698,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_numlg5dOsSbU-usYF_TV8qVNFoqpmH9JQ",
@@ -2585,6 +2718,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_mPolD_J22gS1SKxufARWcTZd1UrAH_0ZI",
@@ -2604,6 +2738,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_nzABe7CwJJ6FpItwp1LJHEejR40FtA_Q4",
@@ -2623,6 +2758,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_k6B0CcfHO04oWPAyUVlO96Vvmg_pB62JM",
@@ -2642,6 +2778,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_nxZ3Bp0gO6_Wkb3bp9jESFoOz6bANXw4s",
@@ -2661,6 +2798,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_md9QGmtE2Pn3CLaFPcx9AhVuY7CmE2yes",
@@ -2680,6 +2818,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_l7nE3iR6eJpMdU08uxoNBJ7QenxwqfY0E",
@@ -2699,6 +2838,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_lRr2S1Nmk-a4qeSFpU0WoLuVETphGyBP8",
@@ -2718,6 +2858,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_n2MRgJm8KVbRLo9wpqSGGX8CQ8rLCRsWg",
@@ -2737,6 +2878,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_nzmeshclfyjDbrCByeUO-eUMHkJXhng24",
@@ -2756,6 +2898,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_lXqRFBeZCG_1Ad3Ft-xMG1a9FtKQ8cRPw",
@@ -2775,6 +2918,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_l8gRf-W7IZq0qHUkIiTiMvztkfkR-Q1lU",
@@ -2794,6 +2938,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_ktzVJ8SgCbgResFgUTEh-O1fdH6I1rxpc",
@@ -2813,6 +2958,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_kZV9OCuNPSp11tslT5Qu0NVG3WR8xGo_A",
@@ -2832,6 +2978,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_k5psGic7w1Z8Udh8rwqpoKxqznjhq8p54",
@@ -2851,6 +2998,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_lWfuEE9muOjxNxKnvVL_KZOhsMG7-FxMI",
@@ -2870,6 +3018,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_ktkqrgIqlP46yBkUsZp4go2j59McnSsYY",
@@ -2889,6 +3038,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_lj8WgXzQp-w_OOYhMJa-uiJguZ0Ns24T8",
@@ -2908,6 +3058,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_mNQPs8vK3N-dqpxN_F70pJ9d49yySQlGo",
@@ -2927,6 +3078,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_lI3mWWg29472FBEmVBs_hT8-nsZ7_xHGk",
@@ -2946,6 +3098,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_lxBOrv0RrMMVEmV0Gl9gDBPH0JYC1_j24",
@@ -2965,6 +3118,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_lDmrvWsJapdRC-uQzUdJmc1tPWB-jkzRM",
@@ -2984,6 +3138,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_nEDPWN4j2CGw8jzkzrTmVdBNaWgmkNnXU",
@@ -3003,6 +3158,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
         MusicPlaylistItem(
           id: "RDCLAK5uy_mzqnNfqauo3uVsMNcIJ8lAezCl85zJqds",
@@ -3022,6 +3178,7 @@ MusicGenre(
           channel: None,
           track_count: None,
           from_ytm: true,
+          is_podcast: false,
         ),
       ],
     ),
