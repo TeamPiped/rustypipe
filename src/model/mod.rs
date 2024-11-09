@@ -634,6 +634,7 @@ pub struct ChannelTag {
 #[derive(
     Default, Copy, Clone, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash,
 )]
+#[serde(rename_all = "snake_case")]
 pub enum Verification {
     #[default]
     /// Unverified channel (default)

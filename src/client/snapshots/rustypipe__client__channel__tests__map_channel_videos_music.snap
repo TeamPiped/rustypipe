@@ -25,7 +25,7 @@ Channel(
       height: 176,
     ),
   ],
-  verification: None,
+  verification: none,
   description: "",
   tags: [],
   banner: [
