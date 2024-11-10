@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 
 
+## [v0.7.0](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe/v0.6.0..rustypipe/v0.7.0) - 2024-11-10
+
+### 🚀 Features
+
+- Allow searching for YTM users - ([50010b7](https://codeberg.org/ThetaDev/rustypipe/commit/50010b7b0856d3ce05fe7a9d5989e526089bc2ef))
+- [**breaking**] Replace `TrackItem::is_video` attr with TrackType enum; serde lowercase AlbumType enum for consistency - ([044094a](https://codeberg.org/ThetaDev/rustypipe/commit/044094a4b70f05c46a459fa1597e23f4224b7b0b))
+
+### 🐛 Bug Fixes
+
+- Fetch unlocalized player data to interpret errors correctly; regression introduced with v0.6.0 - ([0919cbd](https://codeberg.org/ThetaDev/rustypipe/commit/0919cbd0dfe28ea00610c67a694e5f319e80635f))
+- A/B test 17: channel playlists lockupViewModel - ([342119d](https://codeberg.org/ThetaDev/rustypipe/commit/342119dba6f3dc2152eef1fc9841264a9e56b9f0))
+- [**breaking**] Serde: lowercase Verification enum - ([badb3ae](https://codeberg.org/ThetaDev/rustypipe/commit/badb3aef8249315909160b8ff73df3019f07cf97))
+- Parsing videos using LockupViewModel (Music video recommendations) - ([870ff79](https://codeberg.org/ThetaDev/rustypipe/commit/870ff79ee07dfab1f4f2be3a401cd5320ed587da))
+- Parsing lockup playlists with "MIX" instead of view count - ([ac8fbc3](https://codeberg.org/ThetaDev/rustypipe/commit/ac8fbc3e679819189e2791c323975acaf1b43035))
+
+### ⚙️ Miscellaneous Tasks
+
+- *(deps)* Update rust crate thiserror to v2 (#16) - ([e1e1687](https://codeberg.org/ThetaDev/rustypipe/commit/e1e1687605603686ac5fd5deeb6aa8fecaf92494))
+
+
 ## [v0.6.0](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe/v0.5.0..rustypipe/v0.6.0) - 2024-10-28
 
 ### 🚀 Features
