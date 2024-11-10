@@ -139,6 +139,7 @@ SAttributed {
                 text: "#aespa",
                 page_type: Unknown,
                 browse_id: "FEhashtag",
+                verification: None,
             },
             Text {
                 text: " ",
@@ -152,6 +153,7 @@ SAttributed {
                 text: "#æspa",
                 page_type: Unknown,
                 browse_id: "FEhashtag",
+                verification: None,
             },
             Text {
                 text: " ",
@@ -165,6 +167,7 @@ SAttributed {
                 text: "#BlackMamba",
                 page_type: Unknown,
                 browse_id: "FEhashtag",
+                verification: None,
             },
             Text {
                 text: " ",
@@ -178,6 +181,7 @@ SAttributed {
                 text: "#블랙맘바",
                 page_type: Unknown,
                 browse_id: "FEhashtag",
+                verification: None,
             },
             Text {
                 text: " ",
@@ -191,6 +195,7 @@ SAttributed {
                 text: "#에스파",
                 page_type: Unknown,
                 browse_id: "FEhashtag",
+                verification: None,
             },
             Text {
                 text: "\naespa 에스파 'Black Mamba' MV ℗ SM Entertainment",

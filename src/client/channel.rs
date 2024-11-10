@@ -9,7 +9,7 @@ use crate::{
     error::{Error, ExtractionError},
     model::{
         paginator::{ContinuationEndpoint, Paginator},
-        Channel, ChannelInfo, PlaylistItem, VideoItem,
+        Channel, ChannelInfo, PlaylistItem, Verification, VideoItem,
     },
     param::{ChannelOrder, ChannelVideoTab, Language},
     serializer::{text::TextComponent, MapResult},
@@ -489,7 +489,7 @@ fn map_channel(
                         .avatar_view_model
                         .image
                         .into(),
-                    verification: hdata.title.into(),
+                    verification: hdata.title.map(Verification::from).unwrap_or_default(),
                     description: metadata.description,
                     tags: microformat.microformat_data_renderer.tags,
                     banner: hdata.banner.image_banner_view_model.image.into(),

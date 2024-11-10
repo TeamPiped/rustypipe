@@ -4,10 +4,13 @@ use serde::{Deserialize, Deserializer};
 use serde_with::{serde_as, DefaultOnError, DeserializeAs, VecSkipError};
 
 use crate::{
-    client::response::url_endpoint::{
-        MusicPage, MusicPageType, MusicVideoType, NavigationEndpoint, OnTap, PageType,
+    client::response::{
+        url_endpoint::{
+            MusicPage, MusicPageType, MusicVideoType, NavigationEndpoint, OnTap, PageType,
+        },
+        AttachmentRun,
     },
-    model::{richtext::Style, UrlTarget},
+    model::{richtext::Style, UrlTarget, Verification},
     util,
 };
 
@@ -101,6 +104,7 @@ pub(crate) enum TextComponent {
         text: String,
         page_type: PageType,
         browse_id: String,
+        verification: Verification,
     },
     Web {
         text: String,
@@ -151,6 +155,9 @@ pub(crate) struct AttributedText {
     #[serde(default)]
     #[serde_as(as = "VecSkipError<_>")]
     style_runs: Vec<StyleRun>,
+    #[serde(default)]
+    #[serde_as(as = "VecSkipError<_>")]
+    attachment_runs: Vec<AttachmentRun>,
 }
 
 #[serde_as]
@@ -229,6 +236,7 @@ impl From<RichTextRun> for TextComponent {
                 strikethrough: run.strikethrough,
             },
             run.navigation_endpoint,
+            Verification::None,
         )
     }
 }
@@ -272,6 +280,7 @@ fn map_text_component(
     text: String,
     style: Style,
     nav: Option<NavigationEndpoint>,
+    verification: Verification,
 ) -> TextComponent {
     match nav {
         Some(NavigationEndpoint::Watch { watch_endpoint }) => TextComponent::Video {
@@ -296,6 +305,7 @@ fn map_text_component(
             },
             text,
             browse_id: browse_endpoint.browse_id,
+            verification,
         },
         Some(NavigationEndpoint::Url { url_endpoint }) => TextComponent::Web {
             text,
@@ -307,6 +317,7 @@ fn map_text_component(
             text,
             page_type: PageType::Playlist,
             browse_id: watch_playlist_endpoint.playlist_id,
+            verification,
         },
         None => TextComponent::Text { text, style },
     }
@@ -385,6 +396,13 @@ impl<'de> DeserializeAs<'de, TextComponents> for AttributedText {
         );
         runs.sort_by_key(|run| run.start_index);
 
+        let verification = text
+            .attachment_runs
+            .into_iter()
+            .next()
+            .map(Verification::from)
+            .unwrap_or_default();
+
         let mut components = Vec::with_capacity(runs.len() + 1);
         for run in runs {
             let txt_before = take_chars(run.start_index);
@@ -415,12 +433,14 @@ impl<'de> DeserializeAs<'de, TextComponents> for AttributedText {
                                         format!("{first_word}: {txt_link}"),
                                         Style::default(),
                                         Some(link),
+                                        verification,
                                     )
                                 } else {
                                     map_text_component(
                                         txt_link.to_owned(),
                                         Style::default(),
                                         Some(link),
+                                        verification,
                                     )
                                 }
                             }
@@ -428,14 +448,15 @@ impl<'de> DeserializeAs<'de, TextComponents> for AttributedText {
                                 txt_link.to_owned(),
                                 Style::default(),
                                 Some(link),
+                                verification,
                             ),
                         }
                     } else {
-                        map_text_component(txt_link, Style::default(), Some(link))
+                        map_text_component(txt_link, Style::default(), Some(link), verification)
                     }
                 }
                 AttributedTextRunContent::Style(style) => {
-                    map_text_component(txt_run.to_string(), style, None)
+                    map_text_component(txt_run.to_string(), style, None, verification)
                 }
             })
         }
@@ -485,9 +506,32 @@ impl TryFrom<TextComponent> for crate::model::ChannelId {
                 text,
                 page_type: PageType::Channel | PageType::Artist,
                 browse_id,
+                ..
             } => Ok(crate::model::ChannelId {
                 id: browse_id,
                 name: text,
+            }),
+            _ => Err(()),
+        }
+    }
+}
+
+impl TryFrom<TextComponent> for crate::model::ChannelTag {
+    type Error = ();
+
+    fn try_from(value: TextComponent) -> Result<Self, Self::Error> {
+        match value {
+            TextComponent::Browse {
+                text,
+                page_type: PageType::Channel | PageType::Artist,
+                browse_id,
+                verification,
+            } => Ok(crate::model::ChannelTag {
+                id: browse_id,
+                name: text,
+                avatar: Vec::new(),
+                verification,
+                subscriber_count: None,
             }),
             _ => Err(()),
         }
@@ -503,6 +547,7 @@ impl TryFrom<TextComponent> for crate::model::AlbumId {
                 text,
                 page_type: PageType::Album,
                 browse_id,
+                ..
             } => Ok(Self {
                 id: browse_id,
                 name: text,
@@ -519,6 +564,7 @@ impl From<TextComponent> for crate::model::ArtistId {
                 text,
                 page_type,
                 browse_id,
+                ..
             } => match page_type {
                 PageType::Channel | PageType::Artist => Self {
                     id: Some(browse_id),
@@ -558,6 +604,7 @@ impl From<TextComponent> for crate::model::richtext::TextComponent {
                 text,
                 page_type,
                 browse_id,
+                ..
             } => match page_type.to_url_target(browse_id) {
                 Some(target) => Self::YouTube { text, target },
                 None => Self::Text {
@@ -589,6 +636,15 @@ impl TextComponent {
     }
 
     pub fn as_str(&self) -> &str {
+        match self {
+            TextComponent::Video { text, .. }
+            | TextComponent::Browse { text, .. }
+            | TextComponent::Web { text, .. }
+            | TextComponent::Text { text, .. } => text,
+        }
+    }
+
+    pub fn into_string(self) -> String {
         match self {
             TextComponent::Video { text, .. }
             | TextComponent::Browse { text, .. }
@@ -844,6 +900,7 @@ mod tests {
                 text: "DEEP - The 1st Mini Album",
                 page_type: Album,
                 browse_id: "MPREb_TKV2ccxsj5i",
+                verification: None,
             },
         }
         "###);
@@ -878,6 +935,7 @@ mod tests {
                 text: "laserluca",
                 page_type: Channel,
                 browse_id: "UCmxc6kXbU1J-0pR2F3wIx9A",
+                verification: None,
             },
         }
         "###);
@@ -993,6 +1051,7 @@ mod tests {
                         text: "Roland Kaiser",
                         page_type: Artist,
                         browse_id: "UCtqi0viP-suK-okUQfaw8Ew",
+                        verification: None,
                     },
                     Text {
                         text: " & ",
@@ -1006,6 +1065,7 @@ mod tests {
                         text: "Maite Kelly",
                         page_type: Artist,
                         browse_id: "UCY06CayCwdaOd1CnDgjy6uw",
+                        verification: None,
                     },
                 ],
             ),

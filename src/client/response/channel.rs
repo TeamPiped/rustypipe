@@ -2,11 +2,14 @@ use serde::Deserialize;
 use serde_with::{rust::deserialize_ignore_any, serde_as, DefaultOnError, VecSkipError};
 
 use super::{
-    video_item::YouTubeListRenderer, Alert, ChannelBadge, ContentRenderer, ContentsRenderer,
-    ContinuationActionWrap, ImageView, PageHeaderRendererContent, PhMetadataView, ResponseContext,
-    Thumbnails, TwoColumnBrowseResults,
+    video_item::YouTubeListRenderer, Alert, AttachmentRun, ChannelBadge, ContentRenderer,
+    ContentsRenderer, ContinuationActionWrap, ImageView, PageHeaderRendererContent, PhMetadataView,
+    ResponseContext, Thumbnails, TwoColumnBrowseResults,
 };
-use crate::serializer::text::{AttributedText, Text, TextComponent};
+use crate::{
+    model::Verification,
+    serializer::text::{AttributedText, Text, TextComponent},
+};
 
 #[serde_as]
 #[derive(Debug, Deserialize)]
@@ -121,7 +124,7 @@ pub(crate) enum CarouselHeaderRendererItem {
 pub(crate) struct PageHeaderRendererInner {
     /// Channel title (only used to extract verification badges)
     #[serde_as(as = "DefaultOnError")]
-    pub title: PhTitleView,
+    pub title: Option<PhTitleView>,
     /// Channel avatar
     pub image: PhAvatarView,
     /// Channel metadata (subscribers, video count)
@@ -130,7 +133,7 @@ pub(crate) struct PageHeaderRendererInner {
     pub banner: PhBannerView,
 }
 
-#[derive(Default, Debug, Deserialize)]
+#[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct PhTitleView {
     pub dynamic_text_view_model: PhTitleView2,
@@ -148,58 +151,6 @@ pub(crate) struct PhTitleView2 {
 pub(crate) struct PhTitleView3 {
     #[serde_as(as = "VecSkipError<_>")]
     pub attachment_runs: Vec<AttachmentRun>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct AttachmentRun {
-    pub element: AttachmentRunElement,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct AttachmentRunElement {
-    #[serde(rename = "type")]
-    pub typ: AttachmentRunElementType,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct AttachmentRunElementType {
-    pub image_type: AttachmentRunElementImageType,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct AttachmentRunElementImageType {
-    pub image: AttachmentRunElementImage,
-}
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct AttachmentRunElementImage {
-    #[serde_as(as = "VecSkipError<_>")]
-    pub sources: Vec<AttachmentRunElementImageSource>,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct AttachmentRunElementImageSource {
-    pub client_resource: ClientResource,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct ClientResource {
-    pub image_name: IconName,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
-pub(crate) enum IconName {
-    CheckCircleFilled,
-    MusicFilled,
 }
 
 #[derive(Debug, Deserialize)]
@@ -330,15 +281,9 @@ impl From<PhTitleView> for crate::model::Verification {
             .dynamic_text_view_model
             .text
             .attachment_runs
-            .iter()
-            .find_map(|r| {
-                r.element.typ.image_type.image.sources.first().map(|s| {
-                    match s.client_resource.image_name {
-                        IconName::CheckCircleFilled => crate::model::Verification::Verified,
-                        IconName::MusicFilled => crate::model::Verification::Artist,
-                    }
-                })
-            })
+            .into_iter()
+            .next()
+            .map(Verification::from)
             .unwrap_or_default()
     }
 }

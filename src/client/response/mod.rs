@@ -199,10 +199,71 @@ pub(crate) struct TextBox {
     pub text: String,
 }
 
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct TextComponentBox {
+    #[serde_as(deserialize_as = "AttributedText")]
+    pub text: TextComponent,
+}
+
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct ResponseContext {
     pub visitor_data: Option<String>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct AttachmentRun {
+    pub element: AttachmentRunElement,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct AttachmentRunElement {
+    #[serde(rename = "type")]
+    pub typ: AttachmentRunElementType,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct AttachmentRunElementType {
+    pub image_type: AttachmentRunElementImageType,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct AttachmentRunElementImageType {
+    pub image: AttachmentRunElementImage,
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct AttachmentRunElementImage {
+    #[serde_as(as = "VecSkipError<_>")]
+    pub sources: Vec<AttachmentRunElementImageSource>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct AttachmentRunElementImageSource {
+    pub client_resource: ClientResource,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ClientResource {
+    pub image_name: IconName,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+pub enum IconName {
+    CheckCircleFilled,
+    #[serde(alias = "AUDIO_BADGE")]
+    MusicFilled,
 }
 
 // CONTINUATION
@@ -343,6 +404,17 @@ impl From<Thumbnails> for Vec<crate::model::Thumbnail> {
     }
 }
 
+impl ContentImage {
+    pub(crate) fn into_image(self) -> ImageViewOl {
+        match self {
+            ContentImage::ThumbnailViewModel(image) => image,
+            ContentImage::CollectionThumbnailViewModel { primary_thumbnail } => {
+                primary_thumbnail.thumbnail_view_model
+            }
+        }
+    }
+}
+
 impl From<Vec<ChannelBadge>> for crate::model::Verification {
     fn from(badges: Vec<ChannelBadge>) -> Self {
         badges
@@ -362,6 +434,25 @@ impl From<Icon> for crate::model::Verification {
             IconType::Check => Self::Verified,
             IconType::OfficialArtistBadge => Self::Artist,
             IconType::Like => Self::None,
+        }
+    }
+}
+
+impl From<AttachmentRun> for crate::model::Verification {
+    fn from(value: AttachmentRun) -> Self {
+        match value
+            .element
+            .typ
+            .image_type
+            .image
+            .sources
+            .into_iter()
+            .next()
+            .map(|s| s.client_resource.image_name)
+        {
+            Some(IconName::CheckCircleFilled) => Self::Verified,
+            Some(IconName::MusicFilled) => Self::Artist,
+            None => Self::None,
         }
     }
 }
@@ -480,9 +571,11 @@ pub(crate) struct PhMetadataView {
     pub content_metadata_view_model: PhMetadataView2,
 }
 
+#[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct PhMetadataView2 {
+    #[serde_as(as = "VecSkipError<_>")]
     pub metadata_rows: Vec<PhMetadataRow>,
 }
 
@@ -498,17 +591,26 @@ pub(crate) struct PhMetadataRow {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) enum MetadataPart {
-    Text(#[serde_as(deserialize_as = "AttributedText")] String),
+    Text(#[serde_as(deserialize_as = "AttributedText")] TextComponent),
     #[serde(rename_all = "camelCase")]
     AvatarStack {
-        avatar_stack_view_model: AvatarStackViewModel,
+        avatar_stack_view_model: TextComponentBox,
     },
 }
 
 impl MetadataPart {
+    pub fn into_text_component(self) -> TextComponent {
+        match self {
+            MetadataPart::Text(text_component) => text_component,
+            MetadataPart::AvatarStack {
+                avatar_stack_view_model,
+            } => avatar_stack_view_model.text,
+        }
+    }
+
     pub fn as_str(&self) -> &str {
         match self {
-            MetadataPart::Text(s) => s,
+            MetadataPart::Text(s) => s.as_str(),
             MetadataPart::AvatarStack {
                 avatar_stack_view_model,
             } => avatar_stack_view_model.text.as_str(),
@@ -516,24 +618,14 @@ impl MetadataPart {
     }
 }
 
-#[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub(crate) struct AvatarStackViewModel {
-    #[serde_as(deserialize_as = "AttributedText")]
-    pub text: TextComponent,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct ContentImage {
-    pub collection_thumbnail_view_model: CollectionThumbnailViewModel,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct CollectionThumbnailViewModel {
-    pub primary_thumbnail: ThumbnailViewModelWrap,
+pub(crate) enum ContentImage {
+    ThumbnailViewModel(ImageViewOl),
+    #[serde(rename_all = "camelCase")]
+    CollectionThumbnailViewModel {
+        primary_thumbnail: ThumbnailViewModelWrap,
+    },
 }
 
 #[derive(Debug, Deserialize)]

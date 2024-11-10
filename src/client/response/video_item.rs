@@ -4,12 +4,9 @@ use serde_with::{
 };
 use time::OffsetDateTime;
 
-use super::{ChannelBadge, ContentImage, ContinuationEndpoint, Thumbnails};
+use super::{ChannelBadge, ContentImage, ContinuationEndpoint, PhMetadataView, Thumbnails};
 use crate::{
-    model::{
-        Channel, ChannelId, ChannelItem, ChannelTag, PlaylistItem, Verification, VideoItem,
-        YouTubeItem,
-    },
+    model::{Channel, ChannelItem, ChannelTag, PlaylistItem, VideoItem, YouTubeItem},
     param::Language,
     serializer::{
         text::{AttributedText, Text, TextComponent},
@@ -167,23 +164,25 @@ pub(crate) struct ShortsOverlayMetadata {
     pub secondary_text: Option<String>,
 }
 
-/// Generalized list item, currently only used for playlists
+/// Generalized list item, currently only used for channel playlists and YTM items
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct LockupViewModel {
-    pub content_image: ContentImage,
-    pub metadata: LockupViewModelMetadata,
     pub content_id: String,
     #[serde(default)]
     #[serde_as(deserialize_as = "DefaultOnError")]
     pub content_type: LockupContentType,
+    pub content_image: ContentImage,
+    pub metadata: LockupViewModelMetadata,
 }
 
 #[derive(Default, Debug, Deserialize)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+#[allow(clippy::enum_variant_names)]
 pub(crate) enum LockupContentType {
     LockupContentTypePlaylist,
+    LockupContentTypeVideo,
     #[default]
     Unknown,
 }
@@ -200,6 +199,7 @@ pub(crate) struct LockupViewModelMetadata {
 pub(crate) struct LockupViewModelMetadataInner {
     #[serde_as(as = "AttributedText")]
     pub title: String,
+    pub metadata: PhMetadataView,
 }
 
 /// Video displayed in a playlist
@@ -509,19 +509,18 @@ impl<T> YouTubeListMapper<T> {
             thumbnail: video.thumbnail.into(),
             channel: video
                 .channel
-                .and_then(|c| {
-                    ChannelId::try_from(c).ok().map(|c| ChannelTag {
-                        id: c.id,
-                        name: c.name,
-                        avatar: video
-                            .channel_thumbnail_supported_renderers
-                            .map(|tn| tn.channel_thumbnail_with_link_renderer.thumbnail)
-                            .or(video.channel_thumbnail)
-                            .unwrap_or_default()
-                            .into(),
-                        verification: video.owner_badges.into(),
-                        subscriber_count: None,
-                    })
+                .and_then(|c| ChannelTag::try_from(c).ok())
+                .map(|mut c| {
+                    c.avatar = video
+                        .channel_thumbnail_supported_renderers
+                        .map(|tn| tn.channel_thumbnail_with_link_renderer.thumbnail)
+                        .or(video.channel_thumbnail)
+                        .unwrap_or_default()
+                        .into();
+                    if !c.verification.verified() {
+                        c.verification = video.owner_badges.into();
+                    }
+                    c
                 })
                 .or_else(|| self.channel.clone()),
             publish_date: video
@@ -603,16 +602,7 @@ impl<T> YouTubeListMapper<T> {
     }
 
     fn map_playlist_video(&mut self, video: PlaylistVideoRenderer) -> VideoItem {
-        let channel = ChannelId::try_from(video.channel)
-            .ok()
-            .map(|ch| ChannelTag {
-                id: ch.id,
-                name: ch.name,
-                avatar: Vec::new(),
-                verification: Verification::None,
-                subscriber_count: None,
-            });
-
+        let channel = ChannelTag::try_from(video.channel).ok();
         let mut video_info = video.video_info.into_iter();
         let video_info1 = video_info
             .next()
@@ -675,14 +665,12 @@ impl<T> YouTubeListMapper<T> {
                 .into(),
             channel: playlist
                 .channel
-                .and_then(|c| {
-                    ChannelId::try_from(c).ok().map(|c| ChannelTag {
-                        id: c.id,
-                        name: c.name,
-                        avatar: Vec::new(),
-                        verification: playlist.owner_badges.into(),
-                        subscriber_count: None,
-                    })
+                .and_then(|c| ChannelTag::try_from(c).ok())
+                .map(|mut c| {
+                    if !c.verification.verified() {
+                        c.verification = playlist.owner_badges.into();
+                    }
+                    c
                 })
                 .or_else(|| self.channel.clone()),
             video_count: playlist.video_count.or_else(|| {
@@ -719,34 +707,88 @@ impl<T> YouTubeListMapper<T> {
         }
     }
 
-    fn map_lockup(&mut self, lockup: LockupViewModel) -> Option<PlaylistItem> {
+    fn map_lockup(&mut self, lockup: LockupViewModel) -> Option<YouTubeItem> {
         let md = lockup.metadata.lockup_metadata_view_model;
-        let tn = lockup
-            .content_image
-            .collection_thumbnail_view_model
-            .primary_thumbnail
-            .thumbnail_view_model;
+        let tn = lockup.content_image.into_image();
         match lockup.content_type {
-            LockupContentType::LockupContentTypePlaylist => Some(PlaylistItem {
-                id: lockup.content_id,
-                name: md.title,
-                thumbnail: tn.image.into(),
-                channel: self.channel.clone(),
-                video_count: tn
-                    .overlays
-                    .first()
-                    .and_then(|ol| {
-                        ol.thumbnail_overlay_badge_view_model
-                            .thumbnail_badges
-                            .first()
-                    })
-                    .and_then(|badge| {
-                        util::parse_numeric_or_warn(
-                            &badge.thumbnail_badge_view_model.text,
-                            &mut self.warnings,
+            LockupContentType::LockupContentTypePlaylist => {
+                Some(YouTubeItem::Playlist(PlaylistItem {
+                    id: lockup.content_id,
+                    name: md.title,
+                    thumbnail: tn.image.into(),
+                    channel: self.channel.clone(),
+                    video_count: tn
+                        .overlays
+                        .first()
+                        .and_then(|ol| {
+                            ol.thumbnail_overlay_badge_view_model
+                                .thumbnail_badges
+                                .first()
+                        })
+                        .and_then(|badge| {
+                            util::parse_numeric_or_warn(
+                                &badge.thumbnail_badge_view_model.text,
+                                &mut self.warnings,
+                            )
+                        }),
+                }))
+            }
+            LockupContentType::LockupContentTypeVideo => {
+                let mut mdr = md
+                    .metadata
+                    .content_metadata_view_model
+                    .metadata_rows
+                    .into_iter();
+                let channel = mdr
+                    .next()
+                    .and_then(|r| r.metadata_parts.into_iter().next())
+                    .and_then(|p| ChannelTag::try_from(p.into_text_component()).ok());
+                let (view_count, publish_date_txt) = mdr
+                    .next()
+                    .map(|metadata_row| {
+                        let mut parts = metadata_row.metadata_parts.into_iter();
+                        let p1 = parts.next();
+                        let p2 = parts.next();
+                        (
+                            p1.and_then(|p| {
+                                util::parse_large_numstr_or_warn(
+                                    p.as_str(),
+                                    self.lang,
+                                    &mut self.warnings,
+                                )
+                            }),
+                            p2.map(|p2| p2.into_text_component().into_string()),
                         )
+                    })
+                    .unwrap_or_default();
+
+                Some(YouTubeItem::Video(VideoItem {
+                    id: lockup.content_id,
+                    name: md.title,
+                    duration: tn
+                        .overlays
+                        .first()
+                        .and_then(|ol| {
+                            ol.thumbnail_overlay_badge_view_model
+                                .thumbnail_badges
+                                .first()
+                        })
+                        .and_then(|badge| {
+                            util::parse_video_length(&badge.thumbnail_badge_view_model.text)
+                        }),
+                    thumbnail: tn.image.into(),
+                    channel,
+                    publish_date: publish_date_txt.as_deref().and_then(|t| {
+                        timeago::parse_textual_date_or_warn(self.lang, t, &mut self.warnings)
                     }),
-            }),
+                    publish_date_txt,
+                    view_count,
+                    is_live: false,
+                    is_short: false,
+                    is_upcoming: false,
+                    short_description: None,
+                }))
+            }
             LockupContentType::Unknown => None,
         }
     }
@@ -782,7 +824,7 @@ impl YouTubeListMapper<YouTubeItem> {
             }
             YouTubeListItem::LockupViewModel(lockup) => {
                 if let Some(mapped) = self.map_lockup(lockup) {
-                    self.items.push(YouTubeItem::Playlist(mapped));
+                    self.items.push(mapped);
                 }
             }
             YouTubeListItem::ContinuationItemRenderer {
@@ -828,6 +870,11 @@ impl YouTubeListMapper<VideoItem> {
                 let mapped = self.map_playlist_video(video);
                 self.items.push(mapped);
             }
+            YouTubeListItem::LockupViewModel(lockup) => {
+                if let Some(YouTubeItem::Video(mapped)) = self.map_lockup(lockup) {
+                    self.items.push(mapped);
+                }
+            }
             YouTubeListItem::ContinuationItemRenderer {
                 continuation_endpoint,
             } => self.ctoken = Some(continuation_endpoint.continuation_command.token),
@@ -859,7 +906,7 @@ impl YouTubeListMapper<PlaylistItem> {
                 self.items.push(mapped);
             }
             YouTubeListItem::LockupViewModel(lockup) => {
-                if let Some(mapped) = self.map_lockup(lockup) {
+                if let Some(YouTubeItem::Playlist(mapped)) = self.map_lockup(lockup) {
                     self.items.push(mapped);
                 }
             }

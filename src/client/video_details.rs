@@ -252,6 +252,7 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                 text,
                 page_type,
                 browse_id,
+                ..
             } => match page_type {
                 response::url_endpoint::PageType::Channel => (browse_id, text),
                 _ => {
