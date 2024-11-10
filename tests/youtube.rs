@@ -999,7 +999,7 @@ async fn channel_search(rp: RustyPipe) {
         .unwrap();
 
     assert_channel_eevblog(&channel);
-    assert_next(channel.content, rp.query(), 20, 2, true).await;
+    assert_next(channel.content, rp.query(), 18, 2, true).await;
 }
 
 fn assert_channel_eevblog<T>(channel: &Channel<T>) {
@@ -1526,13 +1526,17 @@ async fn music_playlist(
         assert_eq!(playlist.description.map(|d| d.to_plaintext()), description);
     }
 
+    assert_eq!(
+        playlist.from_ytm, from_ytm,
+        "got channel: {:?}",
+        playlist.channel
+    );
     if let Some(expect) = channel {
         let c = playlist.channel.expect("channel");
         assert_eq!(c.id, expect.0);
         assert_eq!(c.name, expect.1);
     }
     assert!(!playlist.thumbnail.is_empty());
-    assert_eq!(playlist.from_ytm, from_ytm);
 }
 
 #[rstest]

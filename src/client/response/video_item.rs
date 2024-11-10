@@ -726,10 +726,7 @@ impl<T> YouTubeListMapper<T> {
                                 .first()
                         })
                         .and_then(|badge| {
-                            util::parse_numeric_or_warn(
-                                &badge.thumbnail_badge_view_model.text,
-                                &mut self.warnings,
-                            )
+                            util::parse_numeric(&badge.thumbnail_badge_view_model.text).ok()
                         }),
                 }))
             }

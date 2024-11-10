@@ -658,6 +658,7 @@ mod tests {
     #[case::ab_new_cont("20221011_new_continuation", "ZeerrnuLi5E")]
     #[case::ab_no_recommends("20221011_rec_isr", "nFDBxBUfE74")]
     #[case::ab_new_likes("20231103_likes", "ZeerrnuLi5E")]
+    #[case::mix("20241109_mix", "XuM2onMGvTI")]
     fn map_video_details(#[case] name: &str, #[case] id: &str) {
         let json_path = path!(*TESTFILES / "video_details" / format!("video_details_{name}.json"));
         let json_file = File::open(json_path).unwrap();
