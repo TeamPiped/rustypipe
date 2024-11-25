@@ -1,7 +1,8 @@
 # ![RustyPipe](https://codeberg.org/ThetaDev/rustypipe/raw/branch/main/notes/logo.svg) Downloader
 
 [![Current crates.io version](https://img.shields.io/crates/v/rustypipe-downloader.svg)](https://crates.io/crates/rustypipe-downloader)
-[![License](https://img.shields.io/badge/License-GPL--3-blue.svg?style=flat)](http://opensource.org/licenses/GPL-3.0)
+[![License](https://img.shields.io/badge/License-GPL--3-blue.svg?style=flat)](https://opensource.org/licenses/GPL-3.0)
+[![Docs](https://img.shields.io/docsrs/rustypipe-downloader/latest?style=flat)](https://docs.rs/rustypipe-downloader)
 [![CI status](https://codeberg.org/ThetaDev/rustypipe/actions/workflows/ci.yaml/badge.svg?style=flat&label=CI)](https://codeberg.org/ThetaDev/rustypipe/actions/?workflow=ci.yaml)
 
 The downloader is a companion crate for RustyPipe that allows for easy and fast
