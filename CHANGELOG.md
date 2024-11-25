@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 
 
+## [v0.7.1](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe/v0.7.0..rustypipe/v0.7.1) - 2024-11-25
+
+### 🐛 Bug Fixes
+
+- Disable Android client - ([a846b72](https://codeberg.org/ThetaDev/rustypipe/commit/a846b729e3519e3d5e62bdf028d9b48a7f8ea2ce))
+- A/B test 18: music playlist facepile avatar model - ([6c8108c](https://codeberg.org/ThetaDev/rustypipe/commit/6c8108c94acf9ca2336381bdca7c97b24a809521))
+
+### ⚙️ Miscellaneous Tasks
+
+- Add docs badge to README - ([706e881](https://codeberg.org/ThetaDev/rustypipe/commit/706e88134c0e94ce7d880735e9d31b3ff531a4f9))
+
+
 ## [v0.7.0](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe/v0.6.0..rustypipe/v0.7.0) - 2024-11-10
 
 ### 🚀 Features
