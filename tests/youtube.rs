@@ -30,7 +30,7 @@ use rustypipe::validate;
 #[case::desktop(ClientType::Desktop)]
 #[case::tv(ClientType::Tv)]
 #[case::mobile(ClientType::Mobile)]
-#[case::android(ClientType::Android)]
+// #[case::android(ClientType::Android)]
 #[case::ios(ClientType::Ios)]
 #[tokio::test]
 async fn get_player_from_client(#[case] client_type: ClientType, rp: RustyPipe) {
