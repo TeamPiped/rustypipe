@@ -2,9 +2,9 @@ use serde::Deserialize;
 use serde_with::{rust::deserialize_ignore_any, serde_as, DefaultOnError, VecSkipError};
 
 use super::{
-    video_item::YouTubeListRenderer, Alert, AttachmentRun, ChannelBadge, ContentRenderer,
-    ContentsRenderer, ContinuationActionWrap, ImageView, PageHeaderRendererContent, PhMetadataView,
-    ResponseContext, Thumbnails, TwoColumnBrowseResults,
+    video_item::YouTubeListRenderer, Alert, AttachmentRun, AvatarViewModel, ChannelBadge,
+    ContentRenderer, ContentsRenderer, ContinuationActionWrap, ImageView,
+    PageHeaderRendererContent, PhMetadataView, ResponseContext, Thumbnails, TwoColumnBrowseResults,
 };
 use crate::{
     model::Verification,
@@ -162,13 +162,7 @@ pub(crate) struct PhAvatarView {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct PhAvatarView2 {
-    pub avatar: PhAvatarView3,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct PhAvatarView3 {
-    pub avatar_view_model: ImageView,
+    pub avatar: AvatarViewModel,
 }
 
 #[derive(Default, Debug, Deserialize)]

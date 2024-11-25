@@ -1,12 +1,13 @@
 use serde::Deserialize;
 use serde_with::{serde_as, DefaultOnError, VecSkipError};
 
-use crate::serializer::text::{Text, TextComponents};
+use crate::serializer::text::{AttributedText, Text, TextComponents};
 
 use super::{
     music_item::{
         Button, ItemSection, MusicContentsRenderer, MusicItemMenuEntry, MusicThumbnailRenderer,
     },
+    url_endpoint::OnTapWrap,
     ContentsRenderer, SectionList, Tab,
 };
 
@@ -83,6 +84,10 @@ pub(crate) struct HeaderRenderer {
     #[serde(default)]
     #[serde_as(as = "Text")]
     pub second_subtitle: Vec<String>,
+    /// Channel (newer data model)
+    #[serde(default)]
+    #[serde_as(as = "DefaultOnError")]
+    pub facepile: Option<AvatarStackViewModelWrap>,
     #[serde(default)]
     #[serde_as(as = "DefaultOnError")]
     pub menu: Option<HeaderMenu>,
@@ -133,6 +138,29 @@ impl From<Description> for TextComponents {
             } => music_description_shelf_renderer.description,
         }
     }
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct AvatarStackViewModelWrap {
+    pub avatar_stack_view_model: AvatarStackViewModel,
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct AvatarStackViewModel {
+    // #[serde(default)]
+    // pub avatars: Vec<AvatarViewModel>,
+    #[serde_as(as = "AttributedText")]
+    pub text: String,
+    pub renderer_context: AvatarStackRendererContext,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct AvatarStackRendererContext {
+    pub command_context: Option<OnTapWrap>,
 }
 
 #[derive(Debug, Deserialize)]

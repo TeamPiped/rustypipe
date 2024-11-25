@@ -12,6 +12,8 @@ use crate::{
     util::{self, TryRemove, DOT_SEPARATOR},
 };
 
+use self::response::url_endpoint::MusicPageType;
+
 use super::{
     response::{
         self,
@@ -213,13 +215,38 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
             Some(header) => {
                 let h = header.music_detail_header_renderer;
 
-                let st = match h.strapline_text_one {
-                    Some(s) => s,
-                    None => h.subtitle,
-                };
+                let (from_ytm, channel) = match h.facepile {
+                    Some(facepile) => {
+                        let from_ytm = facepile.avatar_stack_view_model.text.starts_with("YouTube");
+                        let channel = facepile
+                            .avatar_stack_view_model
+                            .renderer_context
+                            .command_context
+                            .and_then(|c| {
+                                c.on_tap
+                                    .innertube_command
+                                    .music_page()
+                                    .filter(|p| p.typ == MusicPageType::User)
+                                    .map(|p| p.id)
+                            })
+                            .map(|id| ChannelId {
+                                id,
+                                name: facepile.avatar_stack_view_model.text,
+                            });
 
-                let from_ytm = st.0.iter().any(util::is_ytm);
-                let channel = st.0.into_iter().find_map(|c| ChannelId::try_from(c).ok());
+                        (from_ytm && channel.is_none(), channel)
+                    }
+                    None => {
+                        let st = match h.strapline_text_one {
+                            Some(s) => s,
+                            None => h.subtitle,
+                        };
+
+                        let from_ytm = st.0.iter().any(util::is_ytm);
+                        let channel = st.0.into_iter().find_map(|c| ChannelId::try_from(c).ok());
+                        (from_ytm, channel)
+                    }
+                };
 
                 (
                     from_ytm,
@@ -484,6 +511,7 @@ mod tests {
     #[case::nomusic("nomusic", "PL1J-6JOckZtE_P9Xx8D3b2O6w0idhuKBe")]
     #[case::two_columns("20240228_twoColumns", "RDCLAK5uy_kb7EBi6y3GrtJri4_ZH56Ms786DFEimbM")]
     #[case::n_album("20240228_album", "OLAK5uy_kdSWBZ-9AZDkYkuy0QCc3p0KO9DEHVNH0")]
+    #[case::facepile("20241125_facepile", "PL1J-6JOckZtE_P9Xx8D3b2O6w0idhuKBe")]
     fn map_music_playlist(#[case] name: &str, #[case] id: &str) {
         let json_path = path!(*TESTFILES / "music_playlist" / format!("playlist_{name}.json"));
         let json_file = File::open(json_path).unwrap();

@@ -4,9 +4,9 @@ use serde_with::{serde_as, DefaultOnError, VecSkipError};
 use crate::serializer::text::{AttributedText, Text, TextComponent, TextComponents};
 
 use super::{
-    url_endpoint::OnTap, video_item::YouTubeListRenderer, Alert, ContentRenderer, ContentsRenderer,
-    ImageView, PageHeaderRendererContent, PhMetadataView, ResponseContext, SectionList, Tab,
-    TextBox, ThumbnailsWrap, TwoColumnBrowseResults,
+    url_endpoint::OnTapWrap, video_item::YouTubeListRenderer, Alert, ContentRenderer,
+    ContentsRenderer, ImageView, PageHeaderRendererContent, PhMetadataView, ResponseContext,
+    SectionList, Tab, TextBox, ThumbnailsWrap, TwoColumnBrowseResults,
 };
 
 #[serde_as]
@@ -173,11 +173,5 @@ pub(crate) struct ActionsRow {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct ButtonAction {
-    pub button_view_model: ButtonViewModel,
-}
-
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct ButtonViewModel {
-    pub on_tap: OnTap,
+    pub button_view_model: OnTapWrap,
 }

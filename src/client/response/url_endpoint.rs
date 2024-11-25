@@ -163,6 +163,12 @@ pub(crate) struct OnTap {
     pub innertube_command: NavigationEndpoint,
 }
 
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct OnTapWrap {
+    pub on_tap: OnTap,
+}
+
 #[derive(Default, Debug, Clone, Copy, Deserialize, PartialEq, Eq)]
 pub(crate) enum MusicVideoType {
     #[default]

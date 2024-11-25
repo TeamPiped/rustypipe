@@ -793,7 +793,7 @@ YouTube changed the data model for the channel shorts tab
 - **Encountered on:** 11.10.2024
 - **Impact:** 🟢 Low
 - **Endpoint:** browse
-- **Status:** Common (99%)
+- **Status:** Stabilized
 
 ```json
 {
@@ -905,7 +905,7 @@ YouTube changed the data model for the channel shorts tab
 - **Encountered on:** 09.11.2024
 - **Impact:** 🟢 Low
 - **Endpoint:** browse
-- **Status:** Common (50%)
+- **Status:** Stabilized
 
 YouTube changed the data model for the channel playlists / podcasts / albums tab
 
@@ -966,6 +966,61 @@ YouTube changed the data model for the channel playlists / podcasts / albums tab
     },
     "contentId": "PLvOlSehNtuHv268f0mW5m1t_hq_RVGRSA",
     "contentType": "LOCKUP_CONTENT_TYPE_PLAYLIST"
+  }
+}
+```
+
+## [18] Music playlists facepile avatar
+
+- **Encountered on:** 25.11.2024
+- **Impact:** 🟢 Low
+- **Endpoint:** browse (YTM)
+- **Status:** Stabilized
+
+YouTube changed the data model for the channel playlist owner avatar into a `facepile`
+object. It now also contains the channel avatar.
+
+The model is also used for playlists owned by YouTube Music (with the avatar and
+commandContext missing).
+
+```json
+{
+  "facepile": {
+    "avatarStackViewModel": {
+      "avatars": [
+        {
+          "avatarViewModel": {
+            "image": {
+              "sources": [
+                {
+                  "url": "https://yt3.ggpht.com/ytc/AIdro_n9ALaLETwQH6_2WlXitIaIKV-IqBDWWquvyI2jucNAZaQ=s48-c-k-c0x00000000-no-cc-rj-rp"
+                }
+              ]
+            },
+            "avatarImageSize": "AVATAR_SIZE_XS"
+          }
+        }
+      ],
+      "text": {
+        "content": "Chaosflo44"
+      },
+      "rendererContext": {
+        "commandContext": {
+          "onTap": {
+            "innertubeCommand": {
+              "browseEndpoint": {
+                "browseId": "UCQM0bS4_04-Y4JuYrgmnpZQ",
+                "browseEndpointContextSupportedConfigs": {
+                  "browseEndpointContextMusicConfig": {
+                    "pageType": "MUSIC_PAGE_TYPE_USER_CHANNEL"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
 ```

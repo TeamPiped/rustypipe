@@ -37,6 +37,7 @@ pub enum ABTest {
     ChannelShortsLockup = 15,
     PlaylistPageHeader = 16,
     ChannelPlaylistsLockup = 17,
+    MusicPlaylistFacepile = 18,
 }
 
 /// List of active A/B tests that are run when none is manually specified
@@ -114,6 +115,7 @@ pub async fn run_test(
                     ABTest::ChannelShortsLockup => channel_shorts_lockup(&query).await,
                     ABTest::PlaylistPageHeader => playlist_page_header_renderer(&query).await,
                     ABTest::ChannelPlaylistsLockup => channel_playlists_lockup(&query).await,
+                    ABTest::MusicPlaylistFacepile => music_playlist_facepile(&query).await,
                 }
                 .unwrap();
                 pb.inc(1);
@@ -390,4 +392,19 @@ pub async fn channel_playlists_lockup(rp: &RustyPipeQuery) -> Result<bool> {
         )
         .await?;
     Ok(res.contains("\"lockupViewModel\""))
+}
+
+pub async fn music_playlist_facepile(rp: &RustyPipeQuery) -> Result<bool> {
+    let id = "VLPL1J-6JOckZtE_P9Xx8D3b2O6w0idhuKBe";
+    let res = rp
+        .raw(
+            ClientType::DesktopMusic,
+            "browse",
+            &QBrowse {
+                browse_id: id,
+                params: None,
+            },
+        )
+        .await?;
+    Ok(res.contains("\"facepile\""))
 }

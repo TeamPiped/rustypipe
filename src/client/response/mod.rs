@@ -113,6 +113,12 @@ pub(crate) struct ImageView {
     pub image: Thumbnails,
 }
 
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct AvatarViewModel {
+    pub avatar_view_model: ImageView,
+}
+
 /// List of images in different resolutions.
 /// Not only used for thumbnails, but also for avatars and banners.
 #[derive(Default, Debug, Deserialize)]
@@ -203,7 +209,7 @@ pub(crate) struct TextBox {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct TextComponentBox {
-    #[serde_as(deserialize_as = "AttributedText")]
+    #[serde_as(as = "AttributedText")]
     pub text: TextComponent,
 }
 
@@ -591,7 +597,7 @@ pub(crate) struct PhMetadataRow {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) enum MetadataPart {
-    Text(#[serde_as(deserialize_as = "AttributedText")] TextComponent),
+    Text(#[serde_as(as = "AttributedText")] TextComponent),
     #[serde(rename_all = "camelCase")]
     AvatarStack {
         avatar_stack_view_model: TextComponentBox,
