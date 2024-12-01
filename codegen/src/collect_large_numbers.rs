@@ -6,7 +6,7 @@ use std::{
 };
 
 use anyhow::{Context, Result};
-use futures::{stream, StreamExt};
+use futures_util::{stream, StreamExt};
 use once_cell::sync::Lazy;
 use path_macro::path;
 use regex::Regex;

@@ -3,7 +3,7 @@ use std::{
     fs::File,
 };
 
-use futures::{stream, StreamExt};
+use futures_util::{stream, StreamExt};
 use path_macro::path;
 use rustypipe::{
     client::{RustyPipe, RustyPipeQuery},

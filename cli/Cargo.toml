@@ -45,7 +45,7 @@ rustypipe = { workspace = true, features = ["rss"] }
 rustypipe-downloader.workspace = true
 reqwest.workspace = true
 tokio = { workspace = true, features = ["macros", "rt-multi-thread"] }
-futures.workspace = true
+futures-util.workspace = true
 serde.workspace = true
 serde_json.workspace = true
 

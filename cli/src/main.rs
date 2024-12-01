@@ -10,7 +10,7 @@ use std::{
 
 use clap::{Parser, Subcommand, ValueEnum};
 use const_format::formatcp;
-use futures::stream::{self, StreamExt};
+use futures_util::stream::{self, StreamExt};
 use indicatif::{MultiProgress, ProgressBar, ProgressStyle};
 use owo_colors::OwoColorize;
 use rustypipe::{

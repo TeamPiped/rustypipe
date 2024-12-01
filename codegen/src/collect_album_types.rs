@@ -1,6 +1,6 @@
 use std::{collections::BTreeMap, fs::File, io::BufReader};
 
-use futures::stream::{self, StreamExt};
+use futures_util::stream::{self, StreamExt};
 use path_macro::path;
 use rustypipe::{
     client::{ClientType, RustyPipe, RustyPipeQuery},

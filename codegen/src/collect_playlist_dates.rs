@@ -5,7 +5,7 @@ use std::{
     io::BufReader,
 };
 
-use futures::{stream, StreamExt};
+use futures_util::{stream, StreamExt};
 use ordered_hash_map::OrderedHashMap;
 use path_macro::path;
 use rustypipe::{

@@ -1,7 +1,7 @@
 use std::collections::BTreeMap;
 
 use anyhow::{bail, Result};
-use futures::{stream, StreamExt};
+use futures_util::{stream, StreamExt};
 use indicatif::{ProgressBar, ProgressStyle};
 use num_enum::TryFromPrimitive;
 use once_cell::sync::Lazy;

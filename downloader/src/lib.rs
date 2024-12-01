@@ -15,7 +15,7 @@ use std::{
     time::Duration,
 };
 
-use futures::stream::{self, StreamExt};
+use futures_util::stream::{self, StreamExt};
 use once_cell::sync::Lazy;
 use rand::Rng;
 use regex::Regex;

@@ -5,7 +5,7 @@ use std::{
 };
 
 use anyhow::Result;
-use futures::{stream, StreamExt};
+use futures_util::{stream, StreamExt};
 use path_macro::path;
 use rustypipe::{
     client::{ClientType, RustyPipe, RustyPipeQuery},
