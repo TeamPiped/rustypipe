@@ -1503,7 +1503,7 @@ impl RustyPipeQuery {
         ctype: ClientType,
         localized: bool,
         visitor_data: &'a str,
-    ) -> YTContext {
+    ) -> YTContext<'a> {
         let (hl, gl) = if localized {
             (self.opts.lang, self.opts.country)
         } else {
@@ -2008,6 +2008,7 @@ struct MapRespOptions<'a> {
     unlocalized: bool,
 }
 
+#[allow(clippy::needless_lifetimes)]
 impl<'a> MapRespCtx<'a> {
     /// Create a [`MapRespCtx`] for testing
     #[cfg(test)]

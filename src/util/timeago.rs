@@ -169,7 +169,7 @@ impl<'a> TaTokenParser<'a> {
     }
 }
 
-impl<'a> Iterator for TaTokenParser<'a> {
+impl Iterator for TaTokenParser<'_> {
     type Item = TimeAgo;
 
     fn next(&mut self) -> Option<Self::Item> {
