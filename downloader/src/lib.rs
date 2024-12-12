@@ -10,6 +10,7 @@ use std::{
     cmp::Ordering,
     ffi::OsString,
     ops::Range,
+    os::unix::fs::MetadataExt,
     path::{Path, PathBuf},
     sync::Arc,
     time::Duration,
@@ -1214,7 +1215,7 @@ async fn download_single_file(
         .open(&output_path_tmp)
         .await?;
 
-    if is_gvideo && size.is_some() {
+    let res = if is_gvideo && size.is_some() {
         download_chunks_by_param(
             http,
             &mut file,
@@ -1226,7 +1227,7 @@ async fn download_single_file(
             #[cfg(feature = "indicatif")]
             pb,
         )
-        .await?;
+        .await
     } else {
         download_chunks_by_header(
             http,
@@ -1238,7 +1239,19 @@ async fn download_single_file(
             #[cfg(feature = "indicatif")]
             pb,
         )
-        .await?;
+        .await
+    };
+
+    drop(file);
+    if let Err(e) = res {
+        // Remove temporary file if nothing was downloaded (e.g. 403 error)
+        if std::fs::metadata(&output_path_tmp)
+            .map(|md| md.size() == 0)
+            .unwrap_or_default()
+        {
+            _ = std::fs::remove_file(&output_path_tmp);
+        }
+        return Err(e);
     }
 
     fs::rename(&output_path_tmp, &output_path).await?;
