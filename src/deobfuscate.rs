@@ -206,6 +206,11 @@ fn extract_js_fn(js: &str, offset: usize, name: &str) -> Result<String, DeobfErr
     let mut last_ident = None;
     let mut idents: HashMap<String, usize> = HashMap::new();
 
+    let global_objects = [
+        "NaN", "Infinity", "Object", "Function", "Boolean", "Symbol", "Error", "Number", "BigInt",
+        "Math", "Date", "String", "RegExp", "Array", "Map", "Set",
+    ];
+
     for item in scan {
         let it = item?;
         let token = it.token;
@@ -240,12 +245,14 @@ fn extract_js_fn(js: &str, offset: usize, name: &str) -> Result<String, DeobfErr
                 }
 
                 if let Token::Ident(id) = &token {
-                    if !period_before && *id != "NaN".into() {
-                        last_ident = Some(id.to_string());
+                    if !period_before {
+                        let id_str = id.to_string();
+                        if !global_objects.contains(&id_str.as_str()) {
+                            last_ident = Some(id.to_string());
+                        }
                     }
                 } else if last_ident.is_some()
                     && !token.matches_punct(ress::tokens::Punct::OpenParen)
-                    && !token.matches_punct(ress::tokens::Punct::Period)
                 {
                     let n = idents.entry(last_ident.unwrap()).or_default();
                     *n += 1;
@@ -274,13 +281,20 @@ fn extract_js_fn(js: &str, offset: usize, name: &str) -> Result<String, DeobfErr
             .filter(|m| !fn_range.contains(&m.start()) && !fn_range.contains(&m.end()))
             .find_map(|m| extract_js_var(&js[m.start()..]));
         if let Some(var_code) = found_variable {
-            code = format!("var {var_code}; {code}");
+            let ctx = quick_js::Context::new()
+                .or(Err(DeobfError::Other("could not create QuickJS rt")))?;
+            if let Err(e) = ctx.eval(var_code) {
+                tracing::warn!("invalid var ({e}): {var_code}");
+                code = format!("var {ident}={{}}; {code}");
+            } else {
+                code = format!("var {var_code}; {code}");
+            }
         }
     }
     Ok(code)
 }
 
-fn extract_js_var(js: &str) -> Option<String> {
+fn extract_js_var(js: &str) -> Option<&str> {
     let scan = ress::Scanner::new(js);
     let mut braces: Vec<u8> = Vec::new();
     let mut end = 0;
@@ -299,17 +313,29 @@ fn extract_js_var(js: &str) -> Option<String> {
     };
 
     for item in scan {
-        let it = item.ok()?;
+        let it = match item {
+            Ok(it) => it,
+            Err(e) => {
+                // If the variable definition is the last statement in a closure and followed by a }
+                // the scanner thinks the code is invalid
+                if e.msg == "unmatched close brace" && braces.is_empty() {
+                    end = e.idx;
+                    break;
+                } else {
+                    return None;
+                }
+            }
+        };
         let token = it.token;
 
         if let Token::Punct(p) = &token {
             match p {
-                ress::tokens::Punct::OpenBrace => braces.push(b'}'),
+                ress::tokens::Punct::OpenBrace => braces.push(b'{'),
                 ress::tokens::Punct::OpenBracket => braces.push(b'['),
                 ress::tokens::Punct::OpenParen => braces.push(b'('),
-                ress::tokens::Punct::CloseBrace => close_brace(&mut braces, b'}')?,
-                ress::tokens::Punct::CloseBracket => close_brace(&mut braces, b']')?,
-                ress::tokens::Punct::CloseParen => close_brace(&mut braces, b')')?,
+                ress::tokens::Punct::CloseBrace => close_brace(&mut braces, b'{')?,
+                ress::tokens::Punct::CloseBracket => close_brace(&mut braces, b'[')?,
+                ress::tokens::Punct::CloseParen => close_brace(&mut braces, b'(')?,
                 ress::tokens::Punct::Comma | ress::tokens::Punct::SemiColon => {
                     if braces.is_empty() {
                         end = it.span.start;
@@ -320,7 +346,13 @@ fn extract_js_var(js: &str) -> Option<String> {
             }
         }
     }
-    Some(js[0..end].to_owned())
+    if end > 0 {
+        Some(&js[0..end])
+    } else if braces.is_empty() {
+        Some(js)
+    } else {
+        None
+    }
 }
 
 /// Verify if the deobfuscation function successfully processes a random input string
@@ -496,6 +528,28 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
             res == "var a = 42; var b=11; var Wka = function(d){var x=1+2+a*b;return x;};"
                 || res == "var b=11; var a = 42; var Wka = function(d){var x=1+2+a*b;return x;};",
             "got {res}"
+        );
+    }
+
+    #[test]
+    fn t_extract_js_fn_outside_vars2() {
+        // Function depending on outside variables
+        let base_js = "{let a = {v1:1,v2:2}}foo();Wka = function(d){var x=1+2+a.v1;return x;}";
+        let res = extract_js_fn(base_js, 0, "Wka").unwrap();
+        assert_eq!(
+            res,
+            "var a = {v1:1,v2:2}; var Wka = function(d){var x=1+2+a.v1;return x;};"
+        );
+    }
+
+    #[test]
+    fn t_extract_js_fn_outside_vars3() {
+        // Function depending on outside variables
+        let base_js = "Wka = function(d){var x=1+2+a[0];return x;};let a=[1,2,3]";
+        let res = extract_js_fn(base_js, 0, "Wka").unwrap();
+        assert_eq!(
+            res,
+            "var a=[1,2,3]; var Wka = function(d){var x=1+2+a[0];return x;};"
         );
     }
 
