@@ -13,7 +13,7 @@ use std::{
 };
 
 use base64::Engine;
-use fancy_regex::Regex as FancyRegex;
+use fancy_regex::RegexBuilder;
 use once_cell::sync::Lazy;
 use rand::Rng;
 use regex::Regex;
@@ -56,13 +56,17 @@ pub fn get_cg_from_regex(regex: &Regex, text: &str, cg: usize) -> Option<String>
 }
 
 /// Return the given capture group that matches first in a list of fancy regexes
-pub fn get_cg_from_fancy_regexes<'a, I>(mut regexes: I, text: &str, cg: usize) -> Option<String>
-where
-    I: Iterator<Item = &'a FancyRegex>,
-{
+pub fn get_cg_from_fancy_regexes(regexes: &[&str], text: &str, cg_name: &str) -> Option<String> {
     regexes
-        .find_map(|pattern| pattern.captures(text).ok().flatten())
-        .and_then(|c| c.get(cg).map(|c| c.as_str().to_owned()))
+        .iter()
+        .find_map(|pattern| {
+            let re = RegexBuilder::new(pattern)
+                .backtrack_limit(10_000_000)
+                .build()
+                .unwrap();
+            re.captures(text).ok().flatten()
+        })
+        .and_then(|c| c.name(cg_name).map(|c| c.as_str().to_owned()))
 }
 
 /// Generate a random string with given length and byte charset.

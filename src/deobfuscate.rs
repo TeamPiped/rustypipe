@@ -1,7 +1,9 @@
-use fancy_regex::Regex as FancyRegex;
+use std::collections::HashMap;
+
 use once_cell::sync::Lazy;
 use regex::Regex;
 use reqwest::Client;
+use ress::tokens::Token;
 use serde::{Deserialize, Serialize};
 
 use crate::{
@@ -93,10 +95,14 @@ impl Deobfuscator {
     /// Deobfuscate the `n` stream URL parameter to circumvent throttling
     pub fn deobfuscate_nsig(&self, nsig: &str) -> Result<String, DeobfError> {
         let res = self.ctx.call_function(DEOBF_NSIG_FUNC_NAME, [nsig])?;
-
-        res.into_string().ok_or(DeobfError::Other(
+        let res = res.into_string().ok_or(DeobfError::Other(
             "nsig deobfuscation fn returned no string",
-        ))
+        ))?;
+        tracing::debug!("deobf nsig: {nsig} -> {res}");
+        if res.starts_with("enhanced_except_") || res.ends_with(nsig) {
+            return Err(DeobfError::Other("nsig fn returned an exception"));
+        }
+        Ok(res)
     }
 }
 
@@ -104,18 +110,16 @@ const DEOBF_SIG_FUNC_NAME: &str = "deobf_sig";
 const DEOBF_NSIG_FUNC_NAME: &str = "deobf_nsig";
 
 fn get_sig_fn_name(player_js: &str) -> Result<String, DeobfError> {
-    static FUNCTION_REGEXES: Lazy<[FancyRegex; 6]> = Lazy::new(|| {
-        [
-        FancyRegex::new(r#"(?:\b|[^a-zA-Z0-9$])([a-zA-Z0-9$]{2,})\s*=\s*function\(\s*a\s*\)\s*\{\s*a\s*=\s*a\.split\(\s*""\s*\)"#).unwrap(),
-        FancyRegex::new(r"\bm=([a-zA-Z0-9$]{2,})\(decodeURIComponent\(h\.s\)\)").unwrap(),
-        FancyRegex::new(r"\bc&&\(c=([a-zA-Z0-9$]{2,})\(decodeURIComponent\(c\)\)").unwrap(),
-        FancyRegex::new(r#"([\w$]+)\s*=\s*function\((\w+)\)\{\s*\2=\s*\2\.split\(""\)\s*;"#).unwrap(),
-        FancyRegex::new(r#"\b([\w$]{2,})\s*=\s*function\((\w+)\)\{\s*\2=\s*\2\.split\(""\)\s*;"#).unwrap(),
-        FancyRegex::new(r"\bc\s*&&\s*d\.set\([^,]+\s*,\s*(:encodeURIComponent\s*\()([a-zA-Z0-9$]+)\(").unwrap(),
-    ]
-    });
+    let pattern = [
+        r#"\b(?P<var>[a-zA-Z0-9$]+)&&\((?P=var)=(?P<sig>[a-zA-Z0-9$]{2,})\(decodeURIComponent\((?P=var)\)\)"#,
+        r#"(?P<sig>[a-zA-Z0-9$]+)\s*=\s*function\(\s*(?P<arg>[a-zA-Z0-9$]+)\s*\)\s*{\s*(?P=arg)\s*=\s*(?P=arg)\.split\(\s*""\s*\)\s*;\s*[^}]+;\s*return\s+(?P=arg)\.join\(\s*""\s*\)"#,
+        r#"(?:\b|[^a-zA-Z0-9$])(?P<sig>[a-zA-Z0-9$]{2,})\s*=\s*function\(\s*a\s*\)\s*{\s*a\s*=\s*a\.split\(\s*""\s*\)(?:;[a-zA-Z0-9$]{2}\.[a-zA-Z0-9$]{2}\(a,\d+\))?"#,
+        r#"\b[cs]\s*&&\s*[adf]\.set\([^,]+\s*,\s*encodeURIComponent\s*\(\s*(?P<sig>[a-zA-Z0-9$]+)\("#,
+        r#"\b[a-zA-Z0-9]+\s*&&\s*[a-zA-Z0-9]+\.set\([^,]+\s*,\s*encodeURIComponent\s*\(\s*(?P<sig>[a-zA-Z0-9$]+)\("#,
+        r#"\bm=(?P<sig>[a-zA-Z0-9$]{2,})\(decodeURIComponent\(h\.s\)\)"#,
+    ];
 
-    util::get_cg_from_fancy_regexes(FUNCTION_REGEXES.iter(), player_js, 1)
+    util::get_cg_from_fancy_regexes(&pattern, player_js, "sig")
         .ok_or(DeobfError::Extraction("deobf function name"))
 }
 
@@ -190,13 +194,17 @@ fn get_nsig_fn_names(player_js: &str) -> impl Iterator<Item = String> + '_ {
         })
 }
 
-fn extract_js_fn(js: &str, name: &str) -> Result<String, DeobfError> {
-    let scan = ress::Scanner::new(js);
+fn extract_js_fn(js: &str, offset: usize, name: &str) -> Result<String, DeobfError> {
+    let scan = ress::Scanner::new(&js[offset..]);
     let mut state = 0;
     let mut level = 0;
 
     let mut start = 0;
     let mut end = 0;
+
+    let mut period_before = false;
+    let mut last_ident = None;
+    let mut idents: HashMap<String, usize> = HashMap::new();
 
     for item in scan {
         let it = item?;
@@ -217,8 +225,8 @@ fn extract_js_fn(js: &str, name: &str) -> Result<String, DeobfError> {
                     state = 0;
                 }
             }
-            // Looking for begin/end braces
             2 => {
+                // Looking for begin/end braces
                 if token.matches_punct(ress::tokens::Punct::OpenBrace) {
                     level += 1;
                 } else if token.matches_punct(ress::tokens::Punct::CloseBrace) {
@@ -230,28 +238,105 @@ fn extract_js_fn(js: &str, name: &str) -> Result<String, DeobfError> {
                         break;
                     }
                 }
+
+                if let Token::Ident(id) = &token {
+                    if !period_before && *id != "NaN".into() {
+                        last_ident = Some(id.to_string());
+                    }
+                } else if last_ident.is_some()
+                    && !token.matches_punct(ress::tokens::Punct::OpenParen)
+                    && !token.matches_punct(ress::tokens::Punct::Period)
+                {
+                    let n = idents.entry(last_ident.unwrap()).or_default();
+                    *n += 1;
+                    last_ident = None;
+                } else {
+                    last_ident = None;
+                }
             }
             _ => break,
         };
+        period_before = token.matches_punct(ress::tokens::Punct::Period);
     }
 
     if state != 3 {
         return Err(DeobfError::Extraction("javascript function"));
     }
 
-    Ok(js[start..end].to_owned())
+    let fn_range = (offset + start)..(offset + end);
+    let mut code = format!("var {};", &js[fn_range.clone()]);
+
+    for (ident, _) in idents.into_iter().filter(|(_, v)| *v == 1) {
+        let var_pattern_str = format!(r#"\b{}\b\s*=[^=]"#, regex::escape(&ident));
+        let re = Regex::new(&var_pattern_str).unwrap();
+        let found_variable = re
+            .find_iter(js)
+            .filter(|m| !fn_range.contains(&m.start()) && !fn_range.contains(&m.end()))
+            .find_map(|m| extract_js_var(&js[m.start()..]));
+        if let Some(var_code) = found_variable {
+            code = format!("var {var_code}; {code}");
+        }
+    }
+    Ok(code)
+}
+
+fn extract_js_var(js: &str) -> Option<String> {
+    let scan = ress::Scanner::new(js);
+    let mut braces: Vec<u8> = Vec::new();
+    let mut end = 0;
+
+    let close_brace = |braces: &mut Vec<u8>, c: u8| -> Option<()> {
+        if let Some(brace) = braces.last() {
+            if *brace == c {
+                braces.pop();
+                Some(())
+            } else {
+                None
+            }
+        } else {
+            None
+        }
+    };
+
+    for item in scan {
+        let it = item.ok()?;
+        let token = it.token;
+
+        if let Token::Punct(p) = &token {
+            match p {
+                ress::tokens::Punct::OpenBrace => braces.push(b'}'),
+                ress::tokens::Punct::OpenBracket => braces.push(b'['),
+                ress::tokens::Punct::OpenParen => braces.push(b'('),
+                ress::tokens::Punct::CloseBrace => close_brace(&mut braces, b'}')?,
+                ress::tokens::Punct::CloseBracket => close_brace(&mut braces, b']')?,
+                ress::tokens::Punct::CloseParen => close_brace(&mut braces, b')')?,
+                ress::tokens::Punct::Comma | ress::tokens::Punct::SemiColon => {
+                    if braces.is_empty() {
+                        end = it.span.start;
+                        break;
+                    }
+                }
+                _ => {}
+            }
+        }
+    }
+    Some(js[0..end].to_owned())
 }
 
 /// Verify if the deobfuscation function successfully processes a random input string
 fn verify_fn(js_fn: &str, fn_name: &str) -> Result<(), DeobfError> {
     let ctx = quick_js::Context::new().or(Err(DeobfError::Other("could not create QuickJS rt")))?;
     ctx.eval(js_fn)?;
+    let testinp = util::generate_content_playback_nonce();
     let res = ctx
-        .call_function(fn_name, [util::generate_content_playback_nonce()])?
+        .call_function(fn_name, [testinp.to_owned()])?
         .into_string()
         .ok_or(DeobfError::Other("deobfuscation fn returned no string"))?;
     if res.is_empty() {
         return Err(DeobfError::Other("deobfuscation fn returned empty string"));
+    }
+    if res.starts_with("enhanced_except_") || res.ends_with(&testinp) {
+        return Err(DeobfError::Other("nsig fn returned an exception"));
     }
     Ok(())
 }
@@ -263,8 +348,9 @@ fn get_nsig_fn(player_js: &str) -> Result<String, DeobfError> {
             .find(&function_base)
             .ok_or(DeobfError::Extraction("could not find function base"))?;
 
-        let js_fn = extract_js_fn(&player_js[offset..], name)
-            .map(|s| format!("var {};{}", s, caller_function(DEOBF_NSIG_FUNC_NAME, name)))?;
+        let code = extract_js_fn(player_js, offset, name)?;
+
+        let js_fn = format!("{}{}", code, caller_function(DEOBF_NSIG_FUNC_NAME, name));
         verify_fn(&js_fn, DEOBF_NSIG_FUNC_NAME)?;
         tracing::debug!("successfully extracted nsig fn `{name}`");
         Ok(js_fn)
@@ -383,10 +469,10 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
     #[test]
     fn t_extract_js_fn() {
         let base_js = "Wka = function(d){let x=10/2;return /,,[/,913,/](,)}/}let a = 42;";
-        let res = extract_js_fn(base_js, "Wka").unwrap();
+        let res = extract_js_fn(base_js, 0, "Wka").unwrap();
         assert_eq!(
             res,
-            "Wka = function(d){let x=10/2;return /,,[/,913,/](,)}/}"
+            "var Wka = function(d){let x=10/2;return /,,[/,913,/](,)}/};"
         );
     }
 
@@ -394,10 +480,22 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
     fn t_extract_js_fn_eviljs() {
         // Evil JavaScript code containing braces within strings and regular expressions
         let base_js = "Wka = function(d){var x = [/,,/,913,/(,)}/,\"abcdef}\\\"\",];var y = 10/2/1;return x[1][y];}//some={}random-padding+;";
-        let res = extract_js_fn(base_js, "Wka").unwrap();
+        let res = extract_js_fn(base_js, 0, "Wka").unwrap();
         assert_eq!(
             res,
-            "Wka = function(d){var x = [/,,/,913,/(,)}/,\"abcdef}\\\"\",];var y = 10/2/1;return x[1][y];}"
+            "var Wka = function(d){var x = [/,,/,913,/(,)}/,\"abcdef}\\\"\",];var y = 10/2/1;return x[1][y];};"
+        );
+    }
+
+    #[test]
+    fn t_extract_js_fn_outside_vars() {
+        // Function depending on outside variables
+        let base_js = "let a = 42;foo();var b=11;bar();Wka = function(d){var x=1+2+a*b;return x;}";
+        let res = extract_js_fn(base_js, 0, "Wka").unwrap();
+        assert!(
+            res == "var a = 42; var b=11; var Wka = function(d){var x=1+2+a*b;return x;};"
+                || res == "var b=11; var a = 42; var Wka = function(d){var x=1+2+a*b;return x;};",
+            "got {res}"
         );
     }
 
