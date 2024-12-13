@@ -1,6 +1,6 @@
 [package]
 name = "rustypipe"
-version = "0.7.1"
+version = "0.7.2"
 rust-version = "1.67.1"
 edition.workspace = true
 authors.workspace = true

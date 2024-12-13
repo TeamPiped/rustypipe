@@ -3,6 +3,16 @@
 All notable changes to this project will be documented in this file.
 
 
+## [v0.7.2](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe/v0.7.1..rustypipe/v0.7.2) - 2024-12-13
+
+### 🐛 Bug Fixes
+
+- Replace futures dependency with futures-util - ([5c39bf4](https://codeberg.org/ThetaDev/rustypipe/commit/5c39bf4842b13d37a4277ea5506e15c179892ce5))
+- Lifetime-related lints - ([c4feff3](https://codeberg.org/ThetaDev/rustypipe/commit/c4feff37a5989097b575c43d89c26427d92d77b9))
+- Limit retry attempts to fetch client versions and deobf data - ([44ae456](https://codeberg.org/ThetaDev/rustypipe/commit/44ae456d2c654679837da8ec44932c44b1b01195))
+- Deobfuscation function extraction - ([f5437aa](https://codeberg.org/ThetaDev/rustypipe/commit/f5437aa127b2b7c5a08839643e30ea1ec989d30b))
+
+
 ## [v0.7.1](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe/v0.7.0..rustypipe/v0.7.1) - 2024-11-25
 
 ### 🐛 Bug Fixes
