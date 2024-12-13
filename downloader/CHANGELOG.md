@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 
 
+## [v0.2.5](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe-downloader/v0.2.4..rustypipe-downloader/v0.2.5) - 2024-12-13
+
+### 🐛 Bug Fixes
+
+- Replace futures dependency with futures-util - ([5c39bf4](https://codeberg.org/ThetaDev/rustypipe/commit/5c39bf4842b13d37a4277ea5506e15c179892ce5))
+- Remove empty tempfile after unsuccessful download - ([5262bec](https://codeberg.org/ThetaDev/rustypipe/commit/5262becca1e9e3e8262833764ef18c23bc401172))
+
+### ⚙️ Miscellaneous Tasks
+
+- Add docs badge to README - ([706e881](https://codeberg.org/ThetaDev/rustypipe/commit/706e88134c0e94ce7d880735e9d31b3ff531a4f9))
+
+
 ## [v0.2.4](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe-downloader/v0.2.3..rustypipe-downloader/v0.2.4) - 2024-11-10
 
 ### ⚙️ Miscellaneous Tasks

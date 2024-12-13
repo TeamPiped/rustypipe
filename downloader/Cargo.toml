@@ -1,6 +1,6 @@
 [package]
 name = "rustypipe-downloader"
-version = "0.2.4"
+version = "0.2.5"
 rust-version = "1.67.1"
 edition.workspace = true
 authors.workspace = true
