@@ -470,7 +470,7 @@ impl Default for RustyPipeOpts {
     }
 }
 
-#[derive(Default, Debug)]
+#[derive(Debug)]
 struct CacheHolder {
     clients: HashMap<ClientType, AsyncRwLock<CacheEntry<ClientData>>>,
     deobf: AsyncRwLock<CacheEntry<DeobfData>>,
@@ -488,15 +488,20 @@ struct CacheData {
 }
 
 #[derive(Default, Debug, Clone, Serialize, Deserialize)]
-#[serde(untagged)]
-enum CacheEntry<T> {
-    #[default]
-    None,
-    Some {
-        #[serde(with = "time::serde::rfc3339")]
-        last_update: OffsetDateTime,
-        data: T,
-    },
+#[serde(default)]
+struct CacheEntry<T> {
+    #[serde(
+        with = "time::serde::rfc3339::option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    last_update: Option<OffsetDateTime>,
+    /// If the entry failed to update, wait until this time before retrying
+    #[serde(
+        with = "time::serde::rfc3339::option",
+        skip_serializing_if = "Option::is_none"
+    )]
+    retry_at: Option<OffsetDateTime>,
+    data: Option<T>,
 }
 
 #[derive(Debug, Default, Clone, Serialize, Deserialize, PartialEq, Eq)]
@@ -515,36 +520,34 @@ struct RequestResult<T> {
 impl<T> CacheEntry<T> {
     /// Get the content of the cache if it is still fresh
     fn get(&self) -> Option<&T> {
-        match self {
-            CacheEntry::Some { last_update, data } => {
-                if last_update < &(OffsetDateTime::now_utc() - time::Duration::hours(24)) {
-                    None
-                } else {
-                    Some(data)
-                }
-            }
-            CacheEntry::None => None,
-        }
+        self.data.as_ref().filter(|_| {
+            self.last_update.unwrap_or(OffsetDateTime::UNIX_EPOCH)
+                > (OffsetDateTime::now_utc() - time::Duration::days(1))
+        })
     }
 
     /// Get the content of the cache, even if it is expired
     fn get_expired(&self) -> Option<&T> {
-        match self {
-            CacheEntry::Some { data, .. } => Some(data),
-            CacheEntry::None => None,
-        }
+        self.data.as_ref()
     }
 
     fn is_none(&self) -> bool {
-        matches!(self, Self::None)
+        self.data.is_none()
+    }
+
+    fn should_retry(&self) -> bool {
+        self.retry_at
+            .map(|d| OffsetDateTime::now_utc() > d)
+            .unwrap_or(true)
     }
 }
 
 impl<T> From<T> for CacheEntry<T> {
     fn from(f: T) -> Self {
-        Self::Some {
-            last_update: util::now_sec(),
-            data: f,
+        Self {
+            last_update: Some(util::now_sec()),
+            retry_at: None,
+            data: Some(f),
         }
     }
 }
@@ -1004,30 +1007,38 @@ impl RustyPipe {
         match client.get() {
             Some(cdata) => cdata.version.clone().into(),
             None => {
-                tracing::debug!("getting {client_type:?} client version");
-                match self.extract_client_version(client_type).await {
-                    Ok(version) => {
-                        *client = CacheEntry::from(ClientData {
-                            version: version.clone(),
-                        });
-                        drop(client);
-                        self.store_cache().await;
-                        version.into()
-                    }
-                    Err(e) => {
-                        tracing::warn!(
-                            "{e}, falling back to hardcoded {client_type:?} client version"
-                        );
-                        match client_type {
-                            ClientType::Desktop => DESKTOP_CLIENT_VERSION,
-                            ClientType::DesktopMusic => DESKTOP_MUSIC_CLIENT_VERSION,
-                            ClientType::Mobile => MOBILE_CLIENT_VERSION,
-                            ClientType::Tv => TV_CLIENT_VERSION,
-                            _ => unreachable!(),
+                if client.should_retry() {
+                    tracing::debug!("getting {client_type:?} client version");
+                    match self.extract_client_version(client_type).await {
+                        Ok(version) => {
+                            *client = CacheEntry::from(ClientData {
+                                version: version.clone(),
+                            });
+                            drop(client);
+                            self.store_cache().await;
+                            return version.into();
                         }
-                        .into()
+                        Err(e) => {
+                            client.retry_at = Some(util::now_sec() + time::Duration::hours(1));
+                            drop(client);
+                            self.store_cache().await;
+                            tracing::warn!(
+                                "{e}, falling back to hardcoded {client_type:?} client version"
+                            );
+                        }
                     }
+                } else {
+                    tracing::warn!("falling back to hardcoded {client_type:?} client version")
                 }
+
+                match client_type {
+                    ClientType::Desktop => DESKTOP_CLIENT_VERSION,
+                    ClientType::DesktopMusic => DESKTOP_MUSIC_CLIENT_VERSION,
+                    ClientType::Mobile => MOBILE_CLIENT_VERSION,
+                    ClientType::Tv => TV_CLIENT_VERSION,
+                    _ => unreachable!(),
+                }
+                .into()
             }
         }
     }
@@ -1040,27 +1051,50 @@ impl RustyPipe {
         match deobf_data.get() {
             Some(deobf_data) => Ok(deobf_data.clone()),
             None => {
-                tracing::debug!("getting deobf data");
+                // Only attempt to fetch deobf data every 24 hours to avoid a flood of error reports
+                // if the client JS cannot be parsed
+                if deobf_data.should_retry() {
+                    tracing::debug!("getting deobf data");
 
-                match DeobfData::extract(self.inner.http.clone(), self.inner.reporter.as_deref())
+                    match DeobfData::extract(
+                        self.inner.http.clone(),
+                        self.inner.reporter.as_deref(),
+                    )
                     .await
-                {
-                    Ok(new_data) => {
-                        // Write new data to the cache
-                        *deobf_data = CacheEntry::from(new_data.clone());
-                        drop(deobf_data);
-                        self.store_cache().await;
-                        Ok(new_data)
-                    }
-                    Err(e) => {
-                        // Try to fall back to expired cache data if available, otherwise return error
-                        match deobf_data.get_expired() {
-                            Some(d) => {
-                                tracing::warn!("could not get new deobf data ({e}), falling back to expired cache");
-                                Ok(d.clone())
-                            }
-                            None => Err(e),
+                    {
+                        Ok(new_data) => {
+                            // Write new data to the cache
+                            *deobf_data = CacheEntry::from(new_data.clone());
+                            drop(deobf_data);
+                            self.store_cache().await;
+                            Ok(new_data)
                         }
+                        Err(e) => {
+                            // Try to fall back to expired cache data if available, otherwise return error
+                            deobf_data.retry_at = Some(util::now_sec() + time::Duration::days(1));
+                            let res = match deobf_data.get_expired() {
+                                Some(d) => {
+                                    tracing::warn!("could not get new deobf data ({e}), falling back to expired cache");
+                                    Ok(d.clone())
+                                }
+                                None => Err(e),
+                            };
+                            drop(deobf_data);
+                            self.store_cache().await;
+                            res
+                        }
+                    }
+                } else {
+                    match deobf_data.get_expired() {
+                        Some(d) => {
+                            tracing::warn!(
+                                "could not get new deobf data, falling back to expired cache"
+                            );
+                            Ok(d.clone())
+                        }
+                        None => Err(Error::Extraction(ExtractionError::Deobfuscation(
+                            "could not get deobf data".into(),
+                        ))),
                     }
                 }
             }

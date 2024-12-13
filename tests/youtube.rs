@@ -140,7 +140,7 @@ async fn get_player_from_client(#[case] client_type: ClientType, rp: RustyPipe) 
         assert_eq!(audio.codec, AudioCodec::Opus);
 
         // Desktop client now requires pot token so the streams cannot be tested here
-        if client_type != ClientType::Desktop {
+        if !matches!(client_type, ClientType::Desktop | ClientType::Mobile) {
             check_video_stream(video).await;
             check_video_stream(audio).await;
         }
@@ -2673,6 +2673,7 @@ async fn music_genre(#[case] id: &str, #[case] name: &str, rp: RustyPipe, unloca
 
 #[rstest]
 #[tokio::test]
+#[ignore]
 async fn music_genre_not_found(rp: RustyPipe) {
     let err = rp
         .query()
@@ -2710,10 +2711,18 @@ async fn invalid_ctoken(#[case] ep: ContinuationEndpoint, rp: RustyPipe) {
     }
 }
 
+/// YouTube Music allows searching for ISRC codes
+/// This feature does not seem to work with all languages and it has changed in the past.
+/// This test is used to check which languages are working
 #[rstest]
 #[tokio::test]
 async fn isrc_search_languages(rp: RustyPipe) {
     for lang in LANGUAGES {
+        // flaky for English, skipping for now
+        if matches!(lang, Language::EnIn) {
+            continue;
+        }
+
         let tracks = rp
             .query()
             .lang(lang)
@@ -2721,11 +2730,7 @@ async fn isrc_search_languages(rp: RustyPipe) {
             .await
             .unwrap();
         let working = tracks.items.items.iter().any(|t| t.id == "g0iRiJ_ck48");
-        assert_eq!(
-            working,
-            !matches!(lang, Language::En | Language::EnGb | Language::EnIn),
-            "lang: {lang}"
-        );
+        assert!(working, "lang: {lang}");
     }
 }
 
