@@ -13,7 +13,7 @@ pub fn shift_months(date: Date, months: i32) -> Date {
     }
 
     let month = Month::try_from(month as u8).unwrap();
-    let month_days = time::util::days_in_year_month(year, month);
+    let month_days = month.length(year);
 
     day = day.min(month_days);
     Date::from_calendar_date(year, month, day).unwrap()
