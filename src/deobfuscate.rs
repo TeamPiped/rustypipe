@@ -111,16 +111,16 @@ const DEOBF_NSIG_FUNC_NAME: &str = "deobf_nsig";
 
 fn get_sig_fn_name(player_js: &str) -> Result<String, DeobfError> {
     let pattern = [
-        r#"\b(?P<var>[a-zA-Z0-9$]+)&&\((?P=var)=(?P<sig>[a-zA-Z0-9$]{2,})\(decodeURIComponent\((?P=var)\)\)"#,
-        r#"(?P<sig>[a-zA-Z0-9$]+)\s*=\s*function\(\s*(?P<arg>[a-zA-Z0-9$]+)\s*\)\s*{\s*(?P=arg)\s*=\s*(?P=arg)\.split\(\s*""\s*\)\s*;\s*[^}]+;\s*return\s+(?P=arg)\.join\(\s*""\s*\)"#,
-        r#"(?:\b|[^a-zA-Z0-9$])(?P<sig>[a-zA-Z0-9$]{2,})\s*=\s*function\(\s*a\s*\)\s*{\s*a\s*=\s*a\.split\(\s*""\s*\)(?:;[a-zA-Z0-9$]{2}\.[a-zA-Z0-9$]{2}\(a,\d+\))?"#,
-        r#"\b[cs]\s*&&\s*[adf]\.set\([^,]+\s*,\s*encodeURIComponent\s*\(\s*(?P<sig>[a-zA-Z0-9$]+)\("#,
-        r#"\b[a-zA-Z0-9]+\s*&&\s*[a-zA-Z0-9]+\.set\([^,]+\s*,\s*encodeURIComponent\s*\(\s*(?P<sig>[a-zA-Z0-9$]+)\("#,
-        r#"\bm=(?P<sig>[a-zA-Z0-9$]{2,})\(decodeURIComponent\(h\.s\)\)"#,
+        r#"\b(?P<var>[a-zA-Z0-9_$]+)&&\((?P=var)=(?P<sig>[a-zA-Z0-9_$]{2,})\(decodeURIComponent\((?P=var)\)\)"#,
+        r#"(?P<sig>[a-zA-Z0-9_$]+)\s*=\s*function\(\s*(?P<arg>[a-zA-Z0-9_$]+)\s*\)\s*{\s*(?P=arg)\s*=\s*(?P=arg)\.split\(\s*""\s*\)\s*;\s*[^}]+;\s*return\s+(?P=arg)\.join\(\s*""\s*\)"#,
+        r#"(?:\b|[^a-zA-Z0-9_$])(?P<sig>[a-zA-Z0-9_$]{2,})\s*=\s*function\(\s*a\s*\)\s*{\s*a\s*=\s*a\.split\(\s*""\s*\)(?:;[a-zA-Z0-9_$]{2}\.[a-zA-Z0-9_$]{2}\(a,\d+\))?"#,
+        r#"\b[cs]\s*&&\s*[adf]\.set\([^,]+\s*,\s*encodeURIComponent\s*\(\s*(?P<sig>[a-zA-Z0-9_$]+)\("#,
+        r#"\b[a-zA-Z0-9]+\s*&&\s*[a-zA-Z0-9]+\.set\([^,]+\s*,\s*encodeURIComponent\s*\(\s*(?P<sig>[a-zA-Z0-9_$]+)\("#,
+        r#"\bm=(?P<sig>[a-zA-Z0-9_$]{2,})\(decodeURIComponent\(h\.s\)\)"#,
     ];
 
     util::get_cg_from_fancy_regexes(&pattern, player_js, "sig")
-        .ok_or(DeobfError::Extraction("deobf function name"))
+        .ok_or(DeobfError::Extraction("sig fn name"))
 }
 
 fn caller_function(mapped_name: &str, fn_name: &str) -> String {
@@ -135,20 +135,19 @@ fn get_sig_fn(player_js: &str) -> Result<String, DeobfError> {
         dfunc_name.replace('$', "\\$")
     );
     let function_pattern = Regex::new(&function_pattern_str)
-        .map_err(|_| DeobfError::Other("could not parse function pattern regex"))?;
+        .map_err(|_| DeobfError::Other("could not parse sig fn pattern regex"))?;
 
     let deobfuscate_function = format!(
         "var {};",
         &function_pattern
             .captures(player_js)
-            .ok_or(DeobfError::Extraction("deobf function"))?[1]
+            .ok_or(DeobfError::Extraction("sig fn"))?[1]
     );
 
-    static HELPER_OBJECT_NAME_REGEX: Lazy<Regex> =
-        Lazy::new(|| Regex::new(r";([A-Za-z0-9_\$]{2,3})\...\(").unwrap());
-    let helper_object_name = HELPER_OBJECT_NAME_REGEX
+    let helper_object_name_pattern = Regex::new(r";([A-Za-z0-9_\$]{2,3})\...\(").unwrap();
+    let helper_object_name = helper_object_name_pattern
         .captures(&deobfuscate_function)
-        .ok_or(DeobfError::Extraction("helper object name"))?
+        .ok_or(DeobfError::Extraction("sig fn helper object name"))?
         .get(1)
         .unwrap()
         .as_str();
@@ -162,11 +161,12 @@ fn get_sig_fn(player_js: &str) -> Result<String, DeobfError> {
     let player_js_nonl = player_js.replace('\n', "");
     let helper_object = &helper_pattern
         .captures(&player_js_nonl)
-        .ok_or(DeobfError::Extraction("helper object"))?[1];
+        .ok_or(DeobfError::Extraction("sig fn helper object"))?[1];
 
     let js_fn = helper_object.to_owned()
         + &deobfuscate_function
         + &caller_function(DEOBF_SIG_FUNC_NAME, &dfunc_name);
+    tracing::trace!("sig_fn: {js_fn}");
     verify_fn(&js_fn, DEOBF_SIG_FUNC_NAME)?;
     tracing::debug!("successfully extracted sig fn `{dfunc_name}`");
 
@@ -176,7 +176,8 @@ fn get_sig_fn(player_js: &str) -> Result<String, DeobfError> {
 fn get_nsig_fn_names(player_js: &str) -> impl Iterator<Item = String> + '_ {
     static FUNCTION_NAME_REGEX: Lazy<Regex> = Lazy::new(|| {
         // x.get( .. y=functionName[array_num](z) .. x.set(
-        Regex::new(r#"(?:\w\.get\(|index\.m3u8).+\w=(\w{2,})\[(\d+)\]\(\w\).+\w\.set\("#).unwrap()
+        Regex::new(r#"(?:[a-zA-Z0-9_$]\.get\(|index\.m3u8).+[a-zA-Z]=([a-zA-Z0-9_$]{2,})(?:\[(\d+)\])?\([a-zA-Z0-9]\).+[a-zA-Z0-9]\.set\("#)
+            .unwrap()
     });
 
     FUNCTION_NAME_REGEX
@@ -184,13 +185,18 @@ fn get_nsig_fn_names(player_js: &str) -> impl Iterator<Item = String> + '_ {
         .filter_map(|fname_match| {
             let function_name = &fname_match[1];
 
-            let array_num = fname_match[2].parse::<usize>().ok()?;
-            let array_pattern_str =
-                format!(r#"var {}\s*=\s*\[(.+?)]"#, regex::escape(function_name));
-            let array_pattern = Regex::new(&array_pattern_str).ok()?;
+            match fname_match.get(2) {
+                Some(array_num) => {
+                    let array_num = array_num.as_str().parse::<usize>().ok()?;
+                    let array_pattern_str =
+                        format!(r#"var {}\s*=\s*\[(.+?)]"#, regex::escape(function_name));
+                    let array_pattern = Regex::new(&array_pattern_str).ok()?;
 
-            let array_str = &array_pattern.captures(player_js)?[1];
-            array_str.split(',').nth(array_num).map(str::to_owned)
+                    let array_str = &array_pattern.captures(player_js)?[1];
+                    array_str.split(',').nth(array_num).map(str::to_owned)
+                }
+                None => Some(function_name.to_owned()),
+            }
         })
 }
 
@@ -383,6 +389,7 @@ fn get_nsig_fn(player_js: &str) -> Result<String, DeobfError> {
         let code = extract_js_fn(player_js, offset, name)?;
 
         let js_fn = format!("{}{}", code, caller_function(DEOBF_NSIG_FUNC_NAME, name));
+        tracing::trace!("sig_fn: {js_fn}");
         verify_fn(&js_fn, DEOBF_NSIG_FUNC_NAME)?;
         tracing::debug!("successfully extracted nsig fn `{name}`");
         Ok(js_fn)
@@ -408,10 +415,9 @@ async fn get_player_js_url(http: &Client) -> Result<String, Error> {
         .error_for_status()?;
     let text = resp.text().await?;
 
-    static PLAYER_HASH_PATTERN: Lazy<Regex> = Lazy::new(|| {
-        Regex::new(r"https:\\/\\/www\.youtube\.com\\/s\\/player\\/([a-z0-9]{8})\\/").unwrap()
-    });
-    let player_hash = &PLAYER_HASH_PATTERN
+    let player_hash_pattern =
+        Regex::new(r"https:\\/\\/www\.youtube\.com\\/s\\/player\\/([a-z0-9]{8})\\/").unwrap();
+    let player_hash = &player_hash_pattern
         .captures(&text)
         .ok_or(DeobfError::Extraction("player hash"))?[1];
 
@@ -426,10 +432,9 @@ async fn get_response(http: &Client, url: &str) -> Result<String, Error> {
 }
 
 fn get_sts(player_js: &str) -> Result<String, DeobfError> {
-    static STS_PATTERN: Lazy<Regex> =
-        Lazy::new(|| Regex::new("signatureTimestamp[=:](\\d+)").unwrap());
+    let sts_pattern = Regex::new("signatureTimestamp[=:](\\d+)").unwrap();
 
-    Ok(STS_PATTERN
+    Ok(sts_pattern
         .captures(player_js)
         .ok_or(DeobfError::Extraction("sts"))?[1]
         .to_owned())
@@ -437,6 +442,8 @@ fn get_sts(player_js: &str) -> Result<String, DeobfError> {
 
 #[cfg(test)]
 mod tests {
+    use std::path::PathBuf;
+
     use super::*;
     use crate::util::tests::TESTFILES;
     use path_macro::path;
@@ -577,6 +584,90 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
         let url = get_player_js_url(&client).await.unwrap();
         assert!(url.starts_with("https://www.youtube.com/s/player"));
         assert_eq!(url.len(), 73);
+    }
+
+    async fn player_js_file(js_hash: &str) -> (String, PathBuf) {
+        let url =
+            format!("https://www.youtube.com/s/player/{js_hash}/player_ias.vflset/en_US/base.js");
+        let mut js_path = path!(*TESTFILES / "deobf" / "player_js");
+        std::fs::create_dir_all(&js_path).unwrap();
+        js_path.push(format!("{js_hash}.js"));
+        if !js_path.is_file() {
+            let http = reqwest::Client::new();
+            let res = http
+                .get(&url)
+                .send()
+                .await
+                .unwrap()
+                .error_for_status()
+                .unwrap();
+            let content = res.text().await.unwrap();
+            let js_path_tmp = js_path.with_extension("tmp");
+            std::fs::write(&js_path_tmp, &content).unwrap();
+            std::fs::rename(&js_path_tmp, &js_path).unwrap();
+        }
+        (url, js_path)
+    }
+
+    // Test cases from https://github.com/yt-dlp/yt-dlp/blob/master/test/test_youtube_signature.py
+
+    #[rstest]
+    #[case("6ed0d907", "AOq0QJ8wRAIgXmPlOPSBkkUs1bYFYlJCfe29xx8j7v1pDL2QwbdV96sCIEzpWqMGkFR20CFOg51Tp-7vj_EMu-m37KtXJoOySqa0")]
+    #[case("3bb1f723", "MyOSJXtKI3m-uME_jv7-pT12gOFC02RFkGoqWpzE0Cs69VdbwQ0LDp1v7j8xx92efCJlYFYb1sUkkBSPOlPmXgIARw8JQ0qOAOAA")]
+    #[case("2f1832d2", "0QJ8wRAIgXmPlOPSBkkUs1bYFYlJCfe29xxAj7v1pDL0QwbdV96sCIEzpWqMGkFR20CFOg51Tp-7vj_EMu-m37KtXJ2OySqa0q")]
+    #[tokio::test]
+    #[traced_test]
+    async fn sig_tests(#[case] js_hash: &str, #[case] exp_sig: &str) {
+        let (js_url, js_path) = player_js_file(js_hash).await;
+        let player_js = std::fs::read_to_string(js_path).unwrap();
+        let deobf_data = DeobfData::extract_fns(&js_url, &player_js).unwrap();
+        let deobf = Deobfuscator::new(&deobf_data).unwrap();
+
+        let deobf_sig = deobf.deobfuscate_sig("2aq0aqSyOoJXtK73m-uME_jv7-pT15gOFC02RFkGMqWpzEICs69VdbwQ0LDp1v7j8xx92efCJlYFYb1sUkkBSPOlPmXgIARw8JQ0qOAOAA").unwrap();
+        assert_eq!(deobf_sig, exp_sig, "js: {js_hash}");
+    }
+
+    #[rstest]
+    #[case("7862ca1f", "X_LCxVDjAavgE5t", "yxJ1dM6iz5ogUg")]
+    #[case("9216d1f7", "SLp9F5bwjAdhE9F-", "gWnb9IK2DJ8Q1w")]
+    #[case("f8cb7a3b", "oBo2h5euWy6osrUt", "ivXHpm7qJjJN")]
+    #[case("2dfe380c", "oBo2h5euWy6osrUt", "3DIBbn3qdQ")]
+    #[case("f1ca6900", "cu3wyu6LQn2hse", "jvxetvmlI9AN9Q")]
+    #[case("8040e515", "wvOFaY-yjgDuIEg5", "HkfBFDHmgw4rsw")]
+    #[case("e06dea74", "AiuodmaDDYw8d3y4bf", "ankd8eza2T6Qmw")]
+    #[case("5dd88d1d", "kSxKFLeqzv_ZyHSAt", "n8gS8oRlHOxPFA")]
+    #[case("324f67b9", "xdftNy7dh9QGnhW", "22qLGxrmX8F1rA")]
+    #[case("4c3f79c5", "TDCstCG66tEAO5pR9o", "dbxNtZ14c-yWyw")]
+    #[case("c81bbb4a", "gre3EcLurNY2vqp94", "Z9DfGxWP115WTg")]
+    #[case("1f7d5369", "batNX7sYqIJdkJ", "IhOkL_zxbkOZBw")]
+    #[case("009f1d77", "5dwFHw8aFWQUQtffRq", "audescmLUzI3jw")]
+    #[case("dc0c6770", "5EHDMgYLV6HPGk_Mu-kk", "n9lUJLHbxUI0GQ")]
+    #[case("113ca41c", "cgYl-tlYkhjT7A", "hI7BBr2zUgcmMg")]
+    #[case("c57c113c", "M92UUMHa8PdvPd3wyM", "3hPqLJsiNZx7yA")]
+    #[case("5a3b6271", "B2j7f_UPT4rfje85Lu_e", "m5DmNymaGQ5RdQ")]
+    #[case("7a062b77", "NRcE3y3mVtm_cV-W", "VbsCYUATvqlt5w")]
+    #[case("dac945fd", "o8BkRxXhuYsBCWi6RplPdP", "3Lx32v_hmzTm6A")]
+    #[case("6f20102c", "lE8DhoDmKqnmJJ", "pJTTX6XyJP2BYw")]
+    #[case("cfa9e7cb", "aCi3iElgd2kq0bxVbQ", "QX1y8jGb2IbZ0w")]
+    #[case("8c7583ff", "1wWCVpRR96eAmMI87L", "KSkWAVv1ZQxC3A")]
+    #[case("b7910ca8", "_hXMCwMt9qE310D", "LoZMgkkofRMCZQ")]
+    #[case("590f65a6", "1tm7-g_A9zsI8_Lay_", "xI4Vem4Put_rOg")]
+    #[case("b22ef6e7", "b6HcntHGkvBLk_FRf", "kNPW6A7FyP2l8A")]
+    #[case("3400486c", "lL46g3XifCKUZn1Xfw", "z767lhet6V2Skl")]
+    #[case("20dfca59", "-fLCxedkAk4LUTK2", "O8kfRq1y1eyHGw")]
+    #[case("b12cc44b", "keLa5R2U00sR9SQK", "N1OGyujjEwMnLw")]
+    #[case("3bb1f723", "gK15nzVyaXE9RsMP3z", "ZFFWFLPWx9DEgQ")]
+    #[case("2f1832d2", "YWt1qdbe8SAfkoPHW5d", "RrRjWQOJmBiP")]
+    #[tokio::test]
+    #[traced_test]
+    async fn nsig_tests(#[case] js_hash: &str, #[case] nsig_in: &str, #[case] expect: &str) {
+        let (js_url, js_path) = player_js_file(js_hash).await;
+        let player_js = std::fs::read_to_string(js_path).unwrap();
+        let deobf_data = DeobfData::extract_fns(&js_url, &player_js).unwrap();
+        let deobf = Deobfuscator::new(&deobf_data).unwrap();
+
+        let deobf_nsig = deobf.deobfuscate_nsig(nsig_in).unwrap();
+        assert_eq!(deobf_nsig, expect, "js: {js_hash}");
     }
 
     #[tokio::test]
