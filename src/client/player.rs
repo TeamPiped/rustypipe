@@ -10,7 +10,7 @@ use serde::Serialize;
 use url::Url;
 
 use crate::{
-    deobfuscate::Deobfuscator,
+    deobfuscate::{DeobfData, Deobfuscator},
     error::{internal::DeobfError, Error, ExtractionError, UnavailabilityReason},
     model::{
         traits::QualityOrd, AudioCodec, AudioFormat, AudioStream, AudioTrack, Frameset, Subtitle,
@@ -34,17 +34,12 @@ struct QPlayer<'a> {
     /// Website playback context
     #[serde(skip_serializing_if = "Option::is_none")]
     playback_context: Option<QPlaybackContext<'a>>,
-    /// Content playback nonce (mobile only, 16 random chars)
-    #[serde(skip_serializing_if = "Option::is_none")]
-    cpn: Option<String>,
     /// YouTube video ID
     video_id: &'a str,
     /// Set to true to allow extraction of streams with sensitive content
     content_check_ok: bool,
     /// Probably refers to allowing sensitive content, too
     racy_check_ok: bool,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    params: Option<&'a str>,
 }
 
 #[derive(Debug, Serialize)]
@@ -125,31 +120,27 @@ impl RustyPipeQuery {
         client_type: ClientType,
     ) -> Result<VideoPlayer, Error> {
         let video_id = video_id.as_ref();
-        let deobf = self.client.get_deobf_data().await?;
+        let mut deobf = None;
 
-        let request_body = if client_type.is_web() {
+        let request_body = if client_type.needs_deobf() {
+            deobf = Some(self.client.get_deobf_data().await?);
             QPlayer {
                 playback_context: Some(QPlaybackContext {
                     content_playback_context: QContentPlaybackContext {
-                        signature_timestamp: &deobf.sts,
+                        signature_timestamp: &deobf.as_ref().unwrap().sts,
                         referer: format!("https://www.youtube.com/watch?v={video_id}"),
                     },
                 }),
-                cpn: None,
                 video_id,
                 content_check_ok: true,
                 racy_check_ok: true,
-                params: None,
             }
         } else {
             QPlayer {
                 playback_context: None,
-                cpn: Some(util::generate_content_playback_nonce()),
                 video_id,
                 content_check_ok: true,
                 racy_check_ok: true,
-                // Source: https://github.com/TeamNewPipe/NewPipeExtractor/pull/1168
-                params: Some("CgIIAQ%3D%3D").filter(|_| client_type == ClientType::Android),
             }
         };
 
@@ -160,7 +151,7 @@ impl RustyPipeQuery {
             "player",
             &request_body,
             MapRespOptions {
-                deobf: Some(&deobf),
+                deobf: deobf.as_ref(),
                 unlocalized: true,
                 ..Default::default()
             },
@@ -277,7 +268,7 @@ impl MapResponse<VideoPlayer> for response::Player {
         };
 
         let streams = if !is_live {
-            let mut mapper = StreamsMapper::new(Deobfuscator::new(ctx.deobf.unwrap())?);
+            let mut mapper = StreamsMapper::new(ctx.deobf)?;
             mapper.map_streams(streaming_data.formats);
             mapper.map_streams(streaming_data.adaptive_formats);
             let mut res = mapper.output()?;
@@ -374,7 +365,7 @@ impl MapResponse<VideoPlayer> for response::Player {
 }
 
 struct StreamsMapper {
-    deobf: Deobfuscator,
+    deobf: Option<Deobfuscator>,
     streams: Streams,
     warnings: Vec<String>,
     /// First stream mapping error
@@ -393,15 +384,20 @@ struct Streams {
 }
 
 impl StreamsMapper {
-    fn new(deobf: Deobfuscator) -> Self {
-        Self {
+    fn new(deobf_data: Option<&DeobfData>) -> Result<Self, DeobfError> {
+        let deobf = match deobf_data {
+            Some(deobf_data) => Some(Deobfuscator::new(deobf_data)?),
+            None => None,
+        };
+
+        Ok(Self {
             deobf,
             streams: Streams::default(),
             warnings: Vec::new(),
             first_err: None,
             last_nsig: String::new(),
             last_nsig_deobf: String::new(),
-        }
+        })
     }
 
     fn map_streams(&mut self, mut streams: MapResult<Vec<Format>>) {
@@ -461,6 +457,12 @@ impl StreamsMapper {
         })
     }
 
+    fn deobf(&self) -> Result<&Deobfuscator, DeobfError> {
+        self.deobf
+            .as_ref()
+            .ok_or(DeobfError::Other("no deobfuscator"))
+    }
+
     fn cipher_to_url_params(
         &self,
         signature_cipher: &str,
@@ -481,7 +483,7 @@ impl StreamsMapper {
         let (url_base, mut url_params) =
             util::url_to_params(raw_url).or(Err(DeobfError::Extraction("url params")))?;
 
-        let deobf_sig = self.deobf.deobfuscate_sig(sig)?;
+        let deobf_sig = self.deobf()?.deobfuscate_sig(sig)?;
         url_params.insert(sp.to_string(), deobf_sig);
 
         Ok((url_base, url_params))
@@ -492,7 +494,7 @@ impl StreamsMapper {
             let nsig = if n == &self.last_nsig {
                 self.last_nsig_deobf.to_owned()
             } else {
-                let nsig = self.deobf.deobfuscate_nsig(n)?;
+                let nsig = self.deobf()?.deobfuscate_nsig(n)?;
                 self.last_nsig.clone_from(n);
                 self.last_nsig_deobf.clone_from(&nsig);
                 nsig
@@ -782,7 +784,7 @@ mod tests {
     #[test]
     fn cipher_to_url() {
         let signature_cipher = "s=w%3DAe%3DA6aDNQLkViKS7LOm9QtxZJHKwb53riq9qEFw-ecBWJCAiA%3DcEg0tn3dty9jEHszfzh4Ud__bg9CEHVx4ix-7dKsIPAhIQRw8JQ0qOA&sp=sig&url=https://rr5---sn-h0jelnez.googlevideo.com/videoplayback%3Fexpire%3D1659376413%26ei%3Dvb7nYvH5BMK8gAfBj7ToBQ%26ip%3D2003%253Ade%253Aaf06%253A6300%253Ac750%253A1b77%253Ac74a%253A80e3%26id%3Do-AB_BABwrXZJN428ZwDxq5ScPn2AbcGODnRlTVhCQ3mj2%26itag%3D251%26source%3Dyoutube%26requiressl%3Dyes%26mh%3DhH%26mm%3D31%252C26%26mn%3Dsn-h0jelnez%252Csn-4g5ednsl%26ms%3Dau%252Conr%26mv%3Dm%26mvi%3D5%26pl%3D37%26initcwndbps%3D1588750%26spc%3DlT-Khi831z8dTejFIRCvCEwx_6romtM%26vprv%3D1%26mime%3Daudio%252Fwebm%26ns%3Db_Mq_qlTFcSGlG9RpwpM9xQH%26gir%3Dyes%26clen%3D3781277%26dur%3D229.301%26lmt%3D1655510291473933%26mt%3D1659354538%26fvip%3D5%26keepalive%3Dyes%26fexp%3D24001373%252C24007246%26c%3DWEB%26rbqsm%3Dfr%26txp%3D4532434%26n%3Dd2g6G2hVqWIXxedQ%26sparams%3Dexpire%252Cei%252Cip%252Cid%252Citag%252Csource%252Crequiressl%252Cspc%252Cvprv%252Cmime%252Cns%252Cgir%252Cclen%252Cdur%252Clmt%26lsparams%3Dmh%252Cmm%252Cmn%252Cms%252Cmv%252Cmvi%252Cpl%252Cinitcwndbps%26lsig%3DAG3C_xAwRQIgCKCGJ1iu4wlaGXy3jcJyU3inh9dr1FIfqYOZEG_MdmACIQCbungkQYFk7EhD6K2YvLaHFMjKOFWjw001_tLb0lPDtg%253D%253D";
-        let mut mapper = StreamsMapper::new(Deobfuscator::new(&DEOBF_DATA).unwrap());
+        let mut mapper = StreamsMapper::new(Some(&DEOBF_DATA)).unwrap();
         let url = mapper
             .map_url(&None, &Some(signature_cipher.to_owned()))
             .unwrap()

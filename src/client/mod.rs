@@ -83,14 +83,8 @@ pub enum ClientType {
 }
 
 impl ClientType {
-    fn is_web(self) -> bool {
-        match self {
-            ClientType::Desktop
-            | ClientType::DesktopMusic
-            | ClientType::Mobile
-            | ClientType::Tv => true,
-            ClientType::Android | ClientType::Ios => false,
-        }
+    fn needs_deobf(self) -> bool {
+        !matches!(self, ClientType::Ios)
     }
 }
 
@@ -113,13 +107,19 @@ struct YTContext<'a> {
 struct ClientInfo<'a> {
     client_name: &'a str,
     client_version: Cow<'a, str>,
+    #[serde(skip_serializing_if = "str::is_empty")]
+    client_screen: &'a str,
+    #[serde(skip_serializing_if = "str::is_empty")]
+    device_model: &'a str,
+    #[serde(skip_serializing_if = "str::is_empty")]
+    os_name: &'a str,
+    #[serde(skip_serializing_if = "str::is_empty")]
+    os_version: &'a str,
     #[serde(skip_serializing_if = "Option::is_none")]
-    client_screen: Option<&'a str>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    device_model: Option<&'a str>,
+    android_sdk_version: Option<u8>,
     platform: &'a str,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    original_url: Option<&'a str>,
+    #[serde(skip_serializing_if = "str::is_empty")]
+    original_url: &'a str,
     visitor_data: &'a str,
     hl: Language,
     gl: Country,
@@ -132,10 +132,13 @@ impl Default for ClientInfo<'_> {
         Self {
             client_name: "",
             client_version: Cow::default(),
-            client_screen: None,
-            device_model: None,
+            client_screen: "",
+            device_model: "",
+            os_name: "",
+            os_version: "",
+            android_sdk_version: None,
             platform: "",
-            original_url: None,
+            original_url: "",
             visitor_data: "",
             hl: Language::En,
             gl: Country::Us,
@@ -298,14 +301,14 @@ const YOUTUBE_TV_URL: &str = "https://www.youtube.com/tv";
 const DISABLE_PRETTY_PRINT_PARAMETER: &str = "prettyPrint=false";
 
 // Web client
-const DESKTOP_CLIENT_VERSION: &str = "2.20241010.09.00";
-const DESKTOP_MUSIC_CLIENT_VERSION: &str = "1.20241007.00.00";
-const MOBILE_CLIENT_VERSION: &str = "2.20241011.01.00";
-const TV_CLIENT_VERSION: &str = "7.20241008.14.02";
+const DESKTOP_CLIENT_VERSION: &str = "2.20241216.05.00";
+const DESKTOP_MUSIC_CLIENT_VERSION: &str = "1.20241216.01.00";
+const MOBILE_CLIENT_VERSION: &str = "2.20241217.07.00";
+const TV_CLIENT_VERSION: &str = "7.20241211.14.00";
 
 // Mobile app client
-const APP_CLIENT_VERSION: &str = "18.03.33";
-const IOS_DEVICE_MODEL: &str = "iPhone14,5";
+const APP_CLIENT_VERSION: &str = "19.44.38";
+const IOS_DEVICE_MODEL: &str = "iPhone16,2";
 
 const OAUTH_CLIENT_ID: &str =
     "861556708454-d6dlm3lh05idd8npek18k6be8ba3oc68.apps.googleusercontent.com";
@@ -321,7 +324,8 @@ static VISITOR_DATA_REGEX: Lazy<Regex> =
 ///
 /// The order may change in the future in case YouTube applies changes to their
 /// platform that disable a client or make it less reliable.
-pub const DEFAULT_PLAYER_CLIENT_ORDER: &[ClientType] = &[ClientType::Tv, ClientType::Ios];
+pub const DEFAULT_PLAYER_CLIENT_ORDER: &[ClientType] =
+    &[ClientType::Ios, ClientType::Tv, ClientType::Android];
 
 /// The RustyPipe client used to access YouTube's API
 ///
@@ -1505,13 +1509,13 @@ impl RustyPipeQuery {
             ClientType::Mobile => MOBILE_UA.into(),
             ClientType::Tv => TV_UA.into(),
             ClientType::Android => format!(
-                "com.google.android.youtube/{} (Linux; U; Android 12; {}) gzip",
-                APP_CLIENT_VERSION, self.opts.country
+                "com.google.android.youtube/{} (Linux; U; Android 11) gzip",
+                APP_CLIENT_VERSION
             )
             .into(),
             ClientType::Ios => format!(
-                "com.google.ios.youtube/{} ({}; U; CPU iOS 15_4 like Mac OS X; {})",
-                APP_CLIENT_VERSION, IOS_DEVICE_MODEL, self.opts.country
+                "com.google.ios.youtube/{} ({}; U; CPU iOS 18_1_0 like Mac OS X)",
+                APP_CLIENT_VERSION, IOS_DEVICE_MODEL
             )
             .into(),
         }
@@ -1550,7 +1554,7 @@ impl RustyPipeQuery {
                     client_name: "WEB",
                     client_version: self.client.get_client_version(ctype).await,
                     platform: "DESKTOP",
-                    original_url: Some(YOUTUBE_HOME_URL),
+                    original_url: YOUTUBE_HOME_URL,
                     visitor_data,
                     hl,
                     gl,
@@ -1565,7 +1569,7 @@ impl RustyPipeQuery {
                     client_name: "WEB_REMIX",
                     client_version: self.client.get_client_version(ctype).await,
                     platform: "DESKTOP",
-                    original_url: Some(YOUTUBE_MUSIC_HOME_URL),
+                    original_url: YOUTUBE_MUSIC_HOME_URL,
                     visitor_data,
                     hl,
                     gl,
@@ -1580,7 +1584,7 @@ impl RustyPipeQuery {
                     client_name: "MWEB",
                     client_version: self.client.get_client_version(ctype).await,
                     platform: "MOBILE",
-                    original_url: Some(YOUTUBE_MOBILE_HOME_URL),
+                    original_url: YOUTUBE_MOBILE_HOME_URL,
                     visitor_data,
                     hl,
                     gl,
@@ -1594,9 +1598,9 @@ impl RustyPipeQuery {
                 client: ClientInfo {
                     client_name: "TVHTML5",
                     client_version: self.client.get_client_version(ctype).await,
-                    client_screen: Some("WATCH"),
+                    client_screen: "WATCH",
                     platform: "TV",
-                    device_model: Some("SmartTV"),
+                    device_model: "SmartTV",
                     visitor_data,
                     hl,
                     gl,
@@ -1612,6 +1616,9 @@ impl RustyPipeQuery {
                 client: ClientInfo {
                     client_name: "ANDROID",
                     client_version: APP_CLIENT_VERSION.into(),
+                    os_name: "Android",
+                    os_version: "11",
+                    android_sdk_version: Some(30),
                     platform: "MOBILE",
                     visitor_data,
                     hl,
@@ -1626,7 +1633,9 @@ impl RustyPipeQuery {
                 client: ClientInfo {
                     client_name: "IOS",
                     client_version: APP_CLIENT_VERSION.into(),
-                    device_model: Some(IOS_DEVICE_MODEL),
+                    device_model: IOS_DEVICE_MODEL,
+                    os_name: "iPhone",
+                    os_version: "18.1.0.22B83",
                     platform: "MOBILE",
                     visitor_data,
                     hl,
@@ -1721,6 +1730,7 @@ impl RustyPipeQuery {
                 .post(format!(
                     "{YOUTUBEI_V1_GAPIS_URL}{endpoint}?{DISABLE_PRETTY_PRINT_PARAMETER}"
                 ))
+                .header("X-YouTube-Client-Name", "3")
                 .header("X-Goog-Api-Format-Version", "2"),
             ClientType::Ios => self
                 .client
@@ -1729,9 +1739,12 @@ impl RustyPipeQuery {
                 .post(format!(
                     "{YOUTUBEI_V1_GAPIS_URL}{endpoint}?{DISABLE_PRETTY_PRINT_PARAMETER}"
                 ))
+                .header("X-YouTube-Client-Name", "5")
                 .header("X-Goog-Api-Format-Version", "2"),
         };
-        r = r.header(header::USER_AGENT, self.user_agent(ctype).as_ref());
+        r = r
+            .header(header::CONTENT_TYPE, "application/json")
+            .header(header::USER_AGENT, self.user_agent(ctype).as_ref());
         if let Some(vdata) = self.opts.visitor_data.as_deref().or(visitor_data) {
             r = r.header("X-Goog-EOM-Visitor-Id", vdata);
         }
