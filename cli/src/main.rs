@@ -16,8 +16,10 @@ use owo_colors::OwoColorize;
 use rustypipe::{
     client::{ClientType, RustyPipe},
     model::{
-        richtext::ToPlaintext, traits::YtEntity, ArtistId, MusicSearchResult, TrackItem, TrackType,
-        UrlTarget, Verification, YouTubeItem,
+        richtext::{RichText, ToPlaintext},
+        traits::YtEntity,
+        ArtistId, Comment, MusicSearchResult, TrackItem, TrackType, UrlTarget, Verification,
+        YouTubeItem,
     },
     param::{search_filter, ChannelVideoTab, Country, Language, StreamFilter},
     report::FileReporter,
@@ -439,6 +441,67 @@ fn print_verification(verification: Verification) {
     }
 }
 
+fn print_comments(comments: &[Comment]) {
+    print_h2("Comments");
+    for c in comments {
+        if let Some(author) = &c.author {
+            anstream::print!("{} [{}]", author.name.cyan(), author.id);
+            print_verification(author.verification);
+        } else {
+            anstream::print!("{}", "Unknown author".magenta());
+        }
+        if c.by_owner {
+            print!(" (Owner)");
+        }
+        println!();
+        print_richtext(&c.text);
+        anstream::print!("{} {}", "Likes:".blue(), c.like_count.unwrap_or_default());
+        if c.hearted {
+            anstream::print!(" {}", "♥".red());
+        }
+        println!();
+        if let Some(ctoken) = &c.replies.ctoken {
+            println!("replies:{ctoken}");
+        }
+        println!();
+    }
+}
+
+fn print_richtext(text: &RichText) {
+    for c in &text.0 {
+        match c {
+            rustypipe::model::richtext::TextComponent::Text { text, style } => {
+                if !text.is_empty() {
+                    let mut tstyle = owo_colors::Style::new();
+
+                    if style.bold {
+                        tstyle = tstyle.bold();
+                    }
+                    if style.italic {
+                        tstyle = tstyle.italic();
+                    }
+                    if style.strikethrough {
+                        tstyle = tstyle.strikethrough();
+                    }
+                    anstream::print!("{}", text.style(tstyle));
+                }
+            }
+            rustypipe::model::richtext::TextComponent::Web { url, .. } => {
+                anstream::print!("{}", url.underline());
+            }
+            rustypipe::model::richtext::TextComponent::YouTube { text, target } => {
+                if matches!(target, UrlTarget::Channel { .. }) {
+                    anstream::print!("{}", text.cyan());
+                } else {
+                    anstream::print!("{}", target.to_url().underline());
+                }
+            }
+            _ => {}
+        }
+    }
+    println!();
+}
+
 async fn download_video(
     dl: &Downloader,
     id: &str,
@@ -679,6 +742,16 @@ async fn run() -> anyhow::Result<()> {
             player,
             client_type,
         } => {
+            if let Some(ctoken) = id.strip_prefix("replies:") {
+                let mut replies = rp.query().video_comments(ctoken, None).await?;
+                replies.extend_limit(&rp.query(), limit).await?;
+                match format {
+                    Some(format) => print_data(&replies.items, format, pretty),
+                    None => print_comments(&replies.items),
+                }
+                return Ok(());
+            }
+
             let target = rp.query().resolve_string(&id, false).await?;
 
             match target {
@@ -793,7 +866,7 @@ async fn run() -> anyhow::Result<()> {
                                 if details.is_live {
                                     anstream::println!("{}", "Livestream".red());
                                 }
-                                print_description(Some(details.description.to_plaintext()));
+                                print_richtext(&details.description);
                                 if !details.recommended.is_empty() {
                                     print_h2("Recommended");
                                     print_entities(&details.recommended.items, false);
@@ -803,33 +876,7 @@ async fn run() -> anyhow::Result<()> {
                                     CommentsOrder::Latest => &details.latest_comments.items,
                                 });
                                 if let Some(comment_list) = comment_list {
-                                    print_h2("Comments");
-                                    for c in comment_list {
-                                        if let Some(author) = &c.author {
-                                            anstream::print!(
-                                                "{} [{}]",
-                                                author.name.cyan(),
-                                                author.id
-                                            );
-                                            print_verification(author.verification);
-                                        } else {
-                                            anstream::print!("{}", "Unknown author".magenta());
-                                        }
-                                        if c.by_owner {
-                                            print!(" (Owner)");
-                                        }
-                                        println!();
-                                        println!("{}", c.text.to_plaintext());
-                                        anstream::print!(
-                                            "{} {}",
-                                            "Likes:".blue(),
-                                            c.like_count.unwrap_or_default()
-                                        );
-                                        if c.hearted {
-                                            anstream::print!(" {}", "♥".red());
-                                        }
-                                        println!("\n");
-                                    }
+                                    print_comments(comment_list)
                                 }
                             }
                         }
