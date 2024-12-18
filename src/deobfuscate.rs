@@ -250,6 +250,7 @@ fn extract_js_fn(js: &str, offset: usize, name: &str) -> Result<String, DeobfErr
                     }
                 }
 
+                // Looking for variable names
                 if let Token::Ident(id) = &token {
                     if !period_before {
                         let id_str = id.to_string();

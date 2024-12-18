@@ -1,4 +1,4 @@
-use std::convert::TryFrom;
+use std::{borrow::Cow, convert::TryFrom};
 
 use serde::{Deserialize, Deserializer};
 use serde_with::{serde_as, DefaultOnError, DeserializeAs, VecSkipError};
@@ -402,10 +402,41 @@ impl<'de> DeserializeAs<'de, TextComponents> for AttributedText {
             .next()
             .map(Verification::from)
             .unwrap_or_default();
+        let mut components: Vec<TextComponent> = Vec::with_capacity(runs.len() + 1);
 
-        let mut components = Vec::with_capacity(runs.len() + 1);
+        fn process_txt_before(components: &[TextComponent], txt_before: Cow<'_, str>) -> String {
+            // YouTube sometimes inserts zero-width spaces at the start of comments
+            let txt_before = match txt_before.strip_prefix('\u{200b}') {
+                Some(t) => Cow::Borrowed(t),
+                None => txt_before,
+            };
+            // Ensure that text after link components always begins with a space
+            if !txt_before
+                .chars()
+                .next()
+                .map(|c| c.is_whitespace())
+                .unwrap_or_default()
+                && components
+                    .last()
+                    .map(|c| {
+                        !matches!(c, TextComponent::Text { .. })
+                            && !c
+                                .as_str()
+                                .chars()
+                                .last()
+                                .map(|c| c.is_whitespace())
+                                .unwrap_or_default()
+                    })
+                    .unwrap_or_default()
+            {
+                format!(" {txt_before}")
+            } else {
+                txt_before.into_owned()
+            }
+        }
+
         for run in runs {
-            let txt_before = take_chars(run.start_index);
+            let txt_before = process_txt_before(&components, take_chars(run.start_index).into());
             let txt_run = take_chars(run.start_index + run.length);
 
             if !txt_before.is_empty() {
@@ -461,7 +492,7 @@ impl<'de> DeserializeAs<'de, TextComponents> for AttributedText {
             })
         }
 
-        let end = chars.as_str();
+        let end = process_txt_before(&components, chars.as_str().into());
         if !end.is_empty() {
             components.push(TextComponent::new(end));
         }
@@ -683,6 +714,10 @@ impl From<TextComponent> for String {
 }
 
 impl TextComponents {
+    pub fn is_empty(&self) -> bool {
+        self.0.iter().all(|c| c.as_str().is_empty())
+    }
+
     /// Return the string representation of the first text component
     pub fn first_str(&self) -> &str {
         self.0
