@@ -624,6 +624,7 @@ pub(crate) struct CommentViewModelWrap {
 pub(crate) struct CommentViewModel {
     pub comment_id: String,
     pub comment_key: String,
+    pub comment_surface_key: String,
     pub toolbar_state_key: String,
 }
 
@@ -695,6 +696,7 @@ pub(crate) struct AuthorCommentBadgeRenderer {
 #[serde(rename_all = "camelCase")]
 pub(crate) enum Payload {
     CommentEntityPayload(CommentEntityPayload),
+    CommentSurfaceEntityPayload(CommentSurfaceEntityPayload),
     #[serde(rename_all = "camelCase")]
     EngagementToolbarStateEntityPayload {
         heart_state: HeartState,
@@ -714,6 +716,13 @@ pub(crate) struct CommentEntityPayload {
     pub toolbar: CommentToolbar,
     #[serde(default)]
     pub avatar: ImageView,
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct CommentSurfaceEntityPayload {
+    pub voice_reply_container_view_model: Option<VoiceReplyContainer>,
 }
 
 #[serde_as]
@@ -771,4 +780,18 @@ pub(crate) struct ContinuationButton {
 #[serde(rename_all = "camelCase")]
 pub(crate) struct ContinuationButtonRenderer {
     pub command: ContinuationEndpoint,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct VoiceReplyContainer {
+    pub voice_reply_container_view_model: VoiceReplyContainer2,
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct VoiceReplyContainer2 {
+    #[serde_as(as = "AttributedText")]
+    pub transcript_text: TextComponents,
 }

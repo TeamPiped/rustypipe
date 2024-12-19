@@ -593,6 +593,14 @@ fn map_comment_vm(
     } else {
         false
     };
+    let voice_reply = if let Some(Payload::CommentSurfaceEntityPayload(sf)) =
+        mutations.remove(&vm.comment_surface_key)
+    {
+        sf.voice_reply_container_view_model
+            .map(|vr| vr.voice_reply_container_view_model.transcript_text)
+    } else {
+        None
+    };
 
     let mut parse_num = |s: &str| -> Option<u32> {
         if s.is_empty() || s == " " {
@@ -606,7 +614,10 @@ fn map_comment_vm(
 
     Some(Comment {
         id: vm.comment_id,
-        text: ce.properties.content.into(),
+        text: voice_reply
+            .filter(|_| ce.properties.content.is_empty())
+            .unwrap_or(ce.properties.content)
+            .into(),
         by_owner: ce.author.as_ref().map(|a| a.is_creator).unwrap_or_default(),
         author: ce.author.map(|a| ChannelTag {
             id: a.channel_id,
@@ -697,6 +708,7 @@ mod tests {
     #[case::latest("latest")]
     #[case::frameworkupd("20240401_frameworkupd")]
     #[case::frameworkupd_reply("20240401_frameworkupd_reply")]
+    #[case::voice_reply("20241218_voice_reply")]
     fn map_comments(#[case] name: &str) {
         let json_path = path!(*TESTFILES / "video_details" / format!("comments_{name}.json"));
         let json_file = File::open(json_path).unwrap();

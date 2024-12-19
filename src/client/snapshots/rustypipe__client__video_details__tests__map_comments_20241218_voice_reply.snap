@@ -1,0 +1,356 @@
+---
+source: src/client/video_details.rs
+expression: map_res.c
+---
+Paginator(
+  count: None,
+  items: [
+    Comment(
+      id: "Ugw4wdQ25m4lN301Rol4AaABAg.AC1r0Q9vExEAC1rR-OMlS-",
+      text: RichText([
+        Text(
+          text: "Transcribed voice reply:",
+          style: Style(
+            bold: true,
+          ),
+        ),
+        Text(
+          text: " \"oh you\'re right I made a mistake whoops\"",
+        ),
+      ]),
+      author: Some(ChannelTag(
+        id: "UCQSpnDG3YsFNf5-qHocF-WQ",
+        name: "@ThioJoe",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/ytc/AIdro_nlxlwCvy3lBTSpqObahldOpRO3LpeOZFmFCJ7vW2i2ZNQ=s88-c-k-c0x00ffffff-no-rj",
+            width: 88,
+            height: 88,
+          ),
+        ],
+        verification: verified,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: "3 days ago",
+      like_count: Some(2100),
+      reply_count: 0,
+      replies: Paginator(
+        count: Some(0),
+        items: [],
+        ctoken: None,
+        endpoint: browse,
+      ),
+      by_owner: true,
+      pinned: false,
+      hearted: false,
+    ),
+    Comment(
+      id: "Ugw4wdQ25m4lN301Rol4AaABAg.AC1r0Q9vExEAC1rXfHrZv_",
+      text: RichText([
+        Text(
+          text: "that was a K like the old windows which represents Kilobytes not Megabytes",
+        ),
+      ]),
+      author: Some(ChannelTag(
+        id: "UCWSUHd0FSYNF6cjkMCC8Y9w",
+        name: "@Pls2M",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/A493Oz1QwDx8Fa93HfAieUdYe-HFKlvzQimUpCySjCbOAPcgHQQgQ3PM-MNjxdmdk9ogpOTZ_Y0=s88-c-k-c0x00ffffff-no-rj",
+            width: 88,
+            height: 88,
+          ),
+        ],
+        verification: none,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: "3 days ago",
+      like_count: Some(41),
+      reply_count: 0,
+      replies: Paginator(
+        count: Some(0),
+        items: [],
+        ctoken: None,
+        endpoint: browse,
+      ),
+      by_owner: false,
+      pinned: false,
+      hearted: false,
+    ),
+    Comment(
+      id: "Ugw4wdQ25m4lN301Rol4AaABAg.AC1r0Q9vExEAC1rZObfQ9y",
+      text: RichText([
+        Text(
+          text: "so yes",
+        ),
+      ]),
+      author: Some(ChannelTag(
+        id: "UCWSUHd0FSYNF6cjkMCC8Y9w",
+        name: "@Pls2M",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/A493Oz1QwDx8Fa93HfAieUdYe-HFKlvzQimUpCySjCbOAPcgHQQgQ3PM-MNjxdmdk9ogpOTZ_Y0=s88-c-k-c0x00ffffff-no-rj",
+            width: 88,
+            height: 88,
+          ),
+        ],
+        verification: none,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: "3 days ago",
+      like_count: Some(18),
+      reply_count: 0,
+      replies: Paginator(
+        count: Some(0),
+        items: [],
+        ctoken: None,
+        endpoint: browse,
+      ),
+      by_owner: false,
+      pinned: false,
+      hearted: false,
+    ),
+    Comment(
+      id: "Ugw4wdQ25m4lN301Rol4AaABAg.AC1r0Q9vExEAC1rnkWZoH7",
+      text: RichText([
+        YouTube(
+          text: "@ThioJoe",
+          target: Channel(
+            id: "UCQSpnDG3YsFNf5-qHocF-WQ",
+          ),
+        ),
+        Text(
+          text: " wow voice note reply. since when was that a thing",
+        ),
+      ]),
+      author: Some(ChannelTag(
+        id: "UCSNxfsFLRzIZ-99aIGZ_dIg",
+        name: "@N1r4",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/gpEcInEquxyAqzFxVmv6m83DSI3OHXXbQr1HgTZaySg-sbpdj6nOp-W-NYdmq8jDa2-Pf8nk134=s88-c-k-c0x00ffffff-no-rj",
+            width: 88,
+            height: 88,
+          ),
+        ],
+        verification: none,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: "3 days ago",
+      like_count: Some(569),
+      reply_count: 0,
+      replies: Paginator(
+        count: Some(0),
+        items: [],
+        ctoken: None,
+        endpoint: browse,
+      ),
+      by_owner: false,
+      pinned: false,
+      hearted: false,
+    ),
+    Comment(
+      id: "Ugw4wdQ25m4lN301Rol4AaABAg.AC1r0Q9vExEAC1sTNcHMYN",
+      text: RichText([
+        YouTube(
+          text: "@N1r4",
+          target: Channel(
+            id: "UCSNxfsFLRzIZ-99aIGZ_dIg",
+          ),
+        ),
+        Text(
+          text: " is it supported for you? for me it has a transcription and says voice reply is not supported",
+        ),
+      ]),
+      author: Some(ChannelTag(
+        id: "UCCCvp1-zqEQetYuZduIdd7A",
+        name: "@xapplezapple3453",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/ytc/AIdro_lfpjOSUn38QauvP05T14pFJ2vGX_wDkuh0E9M6_qOO=s88-c-k-c0x00ffffff-no-rj",
+            width: 88,
+            height: 88,
+          ),
+        ],
+        verification: none,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: "3 days ago",
+      like_count: Some(141),
+      reply_count: 0,
+      replies: Paginator(
+        count: Some(0),
+        items: [],
+        ctoken: None,
+        endpoint: browse,
+      ),
+      by_owner: false,
+      pinned: false,
+      hearted: false,
+    ),
+    Comment(
+      id: "Ugw4wdQ25m4lN301Rol4AaABAg.AC1r0Q9vExEAC1tu_pIsg4",
+      text: RichText([
+        Text(
+          text: "\u{200b}",
+        ),
+        YouTube(
+          text: "@ThioJoe",
+          target: Channel(
+            id: "UCQSpnDG3YsFNf5-qHocF-WQ",
+          ),
+        ),
+        Text(
+          text: " since when can you reply with audio\nnever seen this",
+        ),
+      ]),
+      author: Some(ChannelTag(
+        id: "UCTR5xEDXSi92_GQPONLU_vw",
+        name: "@Moshiur_Rahman",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/NLBULvx76jIqiPmRaJD0OWYXs644vyEahh6S4TsMRRSG_PsM3B0rYMsctP8jNMHM7iWTBRz2Sw=s88-c-k-c0x00ffffff-no-rj",
+            width: 88,
+            height: 88,
+          ),
+        ],
+        verification: none,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: "3 days ago (edited)",
+      like_count: Some(106),
+      reply_count: 0,
+      replies: Paginator(
+        count: Some(0),
+        items: [],
+        ctoken: None,
+        endpoint: browse,
+      ),
+      by_owner: false,
+      pinned: false,
+      hearted: false,
+    ),
+    Comment(
+      id: "Ugw4wdQ25m4lN301Rol4AaABAg.AC1r0Q9vExEAC1virGMTo7",
+      text: RichText([
+        YouTube(
+          text: "@xapplezapple3453",
+          target: Channel(
+            id: "UCCCvp1-zqEQetYuZduIdd7A",
+          ),
+        ),
+        Text(
+          text: " I believe you have to view it in the YouTube iOS or Android app, not desktop",
+        ),
+      ]),
+      author: Some(ChannelTag(
+        id: "UCQSpnDG3YsFNf5-qHocF-WQ",
+        name: "@ThioJoe",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/ytc/AIdro_nlxlwCvy3lBTSpqObahldOpRO3LpeOZFmFCJ7vW2i2ZNQ=s88-c-k-c0x00ffffff-no-rj",
+            width: 88,
+            height: 88,
+          ),
+        ],
+        verification: verified,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: "3 days ago (edited)",
+      like_count: Some(236),
+      reply_count: 0,
+      replies: Paginator(
+        count: Some(0),
+        items: [],
+        ctoken: None,
+        endpoint: browse,
+      ),
+      by_owner: true,
+      pinned: false,
+      hearted: false,
+    ),
+    Comment(
+      id: "Ugw4wdQ25m4lN301Rol4AaABAg.AC1r0Q9vExEAC27uYKqxUy",
+      text: RichText([
+        YouTube(
+          text: "@ThioJoe",
+          target: Channel(
+            id: "UCQSpnDG3YsFNf5-qHocF-WQ",
+          ),
+        ),
+        Text(
+          text: " Insane new YouTube feature spotted",
+        ),
+      ]),
+      author: Some(ChannelTag(
+        id: "UC8TLX4SSKMpXl3yuZeQbLDQ",
+        name: "@RippleXRPcorp-2024",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/2FTo9EkfZUvYfpxs-kzbjmKl8SG0pesUxVkUMQAc4yejxPt0qbCU2Bwway6gWR3syeXDmUN7dw=s88-c-k-c0x00ffffff-no-rj",
+            width: 88,
+            height: 88,
+          ),
+        ],
+        verification: none,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: "3 days ago",
+      like_count: Some(136),
+      reply_count: 0,
+      replies: Paginator(
+        count: Some(0),
+        items: [],
+        ctoken: None,
+        endpoint: browse,
+      ),
+      by_owner: false,
+      pinned: false,
+      hearted: false,
+    ),
+    Comment(
+      id: "Ugw4wdQ25m4lN301Rol4AaABAg.AC1r0Q9vExEAC28KAyUNVu",
+      text: RichText([
+        Text(
+          text: "Voice Replies?? Seems a lil unnecessary imo but i dont mind",
+        ),
+      ]),
+      author: Some(ChannelTag(
+        id: "UC3ODAuviniQtvaq47mTZyVA",
+        name: "@RealZerenaFan",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/Lzs-ycGJPuNL2Ag7oB-z0FGWup5yfv76Y2AnPxdjrDbREAmX44029LhobUkwTkZ5MDudvSVJgg=s88-c-k-c0x00ffffff-no-rj",
+            width: 88,
+            height: 88,
+          ),
+        ],
+        verification: none,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: "3 days ago",
+      like_count: Some(84),
+      reply_count: 0,
+      replies: Paginator(
+        count: Some(0),
+        items: [],
+        ctoken: None,
+        endpoint: browse,
+      ),
+      by_owner: false,
+      pinned: false,
+      hearted: false,
+    ),
+  ],
+  ctoken: Some("Eg0SC04yWElmX1RVbU1ZGAYy0wEKTGdldF9jb21tZW50X3dpdGhfcmVwbGllc19zdHJlYW0tLUNnZ0lnQVFWRjdmUk9CSUZDS0FnR0FFaURRb0xDUGZYOTdvR0VQaWVfRDQaUBIaVWd3NHdkUTI1bTRsTjMwMVJvbDRBYUFCQWciAggAKhhVQ1FTcG5ERzNZc0ZOZjUtcUhvY0YtV1EyC04yWElmX1RVbU1ZQAFIMoIBAggBKAlCL2NvbW1lbnQtcmVwbGllcy1pdGVtLVVndzR3ZFEyNW00bE4zMDFSb2w0QWFBQkFn"),
+  endpoint: browse,
+)
