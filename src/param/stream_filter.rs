@@ -3,8 +3,8 @@
 use std::cmp::Ordering;
 
 use crate::model::{
-    traits::QualityOrd, AudioCodec, AudioFormat, AudioStream, VideoCodec, VideoFormat, VideoPlayer,
-    VideoStream,
+    traits::QualityOrd, AudioCodec, AudioFormat, AudioStream, AudioTrackType, VideoCodec,
+    VideoFormat, VideoPlayer, VideoStream,
 };
 
 /// The StreamFilter is used for selecting audio/video streams from an extracted video
@@ -13,7 +13,9 @@ pub struct StreamFilter {
     audio_max_bitrate: Option<u32>,
     audio_formats: Option<Vec<AudioFormat>>,
     audio_codecs: Option<Vec<AudioCodec>>,
-    audio_language: Option<String>,
+    audio_languages: Vec<String>,
+    audio_autodub: bool,
+    audio_descriptive: bool,
     video_max_res: Option<u32>,
     video_max_fps: Option<u8>,
     video_formats: Option<Vec<VideoFormat>>,
@@ -22,47 +24,10 @@ pub struct StreamFilter {
     video_none: bool,
 }
 
-#[derive(Debug, PartialEq, Eq, PartialOrd, Ord)]
-enum FilterResult {
-    Deny,
-    AllowLowest,
-    Allow,
-    Match,
-}
-
-impl FilterResult {
-    fn hard(val: bool) -> Self {
-        if val {
-            Self::Match
-        } else {
-            Self::Deny
-        }
-    }
-
-    fn soft(val: bool) -> Self {
-        if val {
-            Self::Match
-        } else {
-            Self::AllowLowest
-        }
-    }
-
-    fn allow(val: bool) -> Self {
-        if val {
-            Self::Allow
-        } else {
-            Self::Deny
-        }
-    }
-
-    fn join(self, other: Self) -> Self {
-        if self == Self::Deny {
-            Self::Deny
-        } else {
-            self.min(other)
-        }
-    }
-}
+const N_RES_AUDIO: usize = 4;
+const N_RES_VIDEO: usize = 5;
+type AudioRes = Option<[i64; N_RES_AUDIO]>;
+type VideoRes = Option<[i64; N_RES_VIDEO]>;
 
 impl StreamFilter {
     /// Create a new [`StreamFilter`]
@@ -81,25 +46,11 @@ impl StreamFilter {
         self
     }
 
-    fn apply_audio_max_bitrate(&self, stream: &AudioStream) -> FilterResult {
-        match self.audio_max_bitrate {
-            Some(max_bitrate) => FilterResult::soft(stream.average_bitrate <= max_bitrate),
-            None => FilterResult::Match,
-        }
-    }
-
     /// Set the supported audio container formats
     #[must_use]
     pub fn audio_formats<F: Into<Vec<AudioFormat>>>(mut self, formats: F) -> Self {
         self.audio_formats = Some(formats.into());
         self
-    }
-
-    fn apply_audio_formats(&self, stream: &AudioStream) -> FilterResult {
-        match &self.audio_formats {
-            Some(formats) => FilterResult::hard(formats.contains(&stream.format)),
-            None => FilterResult::Match,
-        }
     }
 
     /// Set the supported audio codecs
@@ -109,14 +60,18 @@ impl StreamFilter {
         self
     }
 
-    fn apply_audio_codecs(&self, stream: &AudioStream) -> FilterResult {
-        match &self.audio_codecs {
-            Some(codecs) => FilterResult::hard(codecs.contains(&stream.codec)),
-            None => FilterResult::Match,
-        }
+    /// Set the preferred audio languages
+    /// Some YouTube videos feature multiple audio streams in
+    /// different languages (e.g. <https://www.youtube.com/watch?v=tVWWp1PqDus>).
+    ///
+    /// If this filter is unset or no stream matches,
+    /// the filter returns the default audio stream.
+    #[must_use]
+    pub fn audio_languages<S: Into<Vec<String>>>(mut self, languages: S) -> Self {
+        self.audio_languages = languages.into();
+        self
     }
-
-    /// Set the preferred audio language (2 letter ISO 639-1 code, e.g. `en`, `fr`).
+    /// Set the preferred audio language
     /// Some YouTube videos feature multiple audio streams in
     /// different languages (e.g. <https://www.youtube.com/watch?v=tVWWp1PqDus>).
     ///
@@ -124,27 +79,24 @@ impl StreamFilter {
     /// the filter returns the default audio stream.
     #[must_use]
     pub fn audio_language<S: Into<String>>(mut self, language: S) -> Self {
-        self.audio_language = Some(language.into());
+        self.audio_languages = vec![language.into()];
         self
     }
 
-    fn apply_audio_language(&self, stream: &AudioStream) -> FilterResult {
-        match &self.audio_language {
-            Some(language) => match &stream.track {
-                Some(track) => match &track.lang {
-                    Some(track_lang) => {
-                        if track_lang == language {
-                            FilterResult::Match
-                        } else {
-                            FilterResult::allow(track.is_default)
-                        }
-                    }
-                    None => FilterResult::allow(track.is_default),
-                },
-                None => FilterResult::Match,
-            },
-            None => FilterResult::hard(stream.track.as_ref().map_or(true, |t| t.is_default)),
-        }
+    /// Select the descriptive audio track for visually impaired people if available
+    #[must_use]
+    pub fn audio_descriptive(mut self) -> Self {
+        self.audio_descriptive = true;
+        self
+    }
+
+    /// Allow audio tracks that are AI-dubbed by YouTube
+    ///
+    /// By default these are never selected.
+    #[must_use]
+    pub fn audio_autodub(mut self) -> Self {
+        self.audio_autodub = true;
+        self
     }
 
     /// Set the maximum video resolution. Resolution is determined by the
@@ -158,13 +110,6 @@ impl StreamFilter {
         self
     }
 
-    fn apply_video_max_res(&self, stream: &VideoStream) -> FilterResult {
-        match self.video_max_res {
-            Some(max_res) => FilterResult::soft(stream.height.min(stream.width) <= max_res),
-            None => FilterResult::Match,
-        }
-    }
-
     /// Set the maximum video framerate.
     ///
     /// This is a soft filter, so if there is no stream with a framerate
@@ -175,25 +120,11 @@ impl StreamFilter {
         self
     }
 
-    fn apply_video_max_fps(&self, stream: &VideoStream) -> FilterResult {
-        match self.video_max_fps {
-            Some(max_fps) => FilterResult::soft(stream.fps <= max_fps),
-            None => FilterResult::Match,
-        }
-    }
-
     /// Set the supported video container formats
     #[must_use]
     pub fn video_formats<F: Into<Vec<VideoFormat>>>(mut self, formats: F) -> Self {
         self.video_formats = Some(formats.into());
         self
-    }
-
-    fn apply_video_formats(&self, stream: &VideoStream) -> FilterResult {
-        match &self.video_formats {
-            Some(formats) => FilterResult::hard(formats.contains(&stream.format)),
-            None => FilterResult::Match,
-        }
     }
 
     /// Set the supported video codecs
@@ -203,25 +134,11 @@ impl StreamFilter {
         self
     }
 
-    fn apply_video_codecs(&self, stream: &VideoStream) -> FilterResult {
-        match &self.video_codecs {
-            Some(codecs) => FilterResult::hard(codecs.contains(&stream.codec)),
-            None => FilterResult::Match,
-        }
-    }
-
     /// Allow HDR videos
     #[must_use]
     pub fn video_hdr(mut self) -> Self {
         self.video_hdr = true;
         self
-    }
-
-    fn apply_video_hdr(&self, stream: &VideoStream) -> FilterResult {
-        match &self.video_hdr {
-            true => FilterResult::Match,
-            false => FilterResult::hard(!&stream.hdr),
-        }
     }
 
     /// Output no video stream (audio only)
@@ -231,24 +148,123 @@ impl StreamFilter {
         self
     }
 
-    fn apply_audio(&self, stream: &AudioStream) -> FilterResult {
-        self.apply_audio_max_bitrate(stream).join(
-            self.apply_audio_formats(stream).join(
-                self.apply_audio_codecs(stream)
-                    .join(self.apply_audio_language(stream)),
-            ),
-        )
+    fn apply_audio(&self, stream: &AudioStream) -> AudioRes {
+        let bitrate = match self.audio_max_bitrate {
+            Some(max) => filter_max(stream.average_bitrate, max),
+            None => stream.average_bitrate.into(),
+        };
+
+        if let Some(formats) = &self.audio_formats {
+            if !formats.contains(&stream.format) {
+                return None;
+            }
+        }
+
+        if let Some(codecs) = &self.audio_codecs {
+            if !codecs.contains(&stream.codec) {
+                return None;
+            }
+        }
+        let codecs = match stream.codec {
+            AudioCodec::Unknown => -10,
+            AudioCodec::Mp4a => 0,
+            AudioCodec::Opus => 10,
+        };
+
+        let language = if self.audio_languages.is_empty() {
+            0
+        } else {
+            match &stream.track {
+                Some(track) => match &track.lang {
+                    Some(lang) => {
+                        if self.audio_languages.contains(lang) {
+                            10
+                        } else if let Some((lang, _)) = lang.split_once('-') {
+                            if self.audio_languages.contains(&lang.to_owned()) {
+                                5
+                            } else {
+                                -1
+                            }
+                        } else {
+                            -10
+                        }
+                    }
+                    None => 0,
+                },
+                None => 0,
+            }
+        };
+
+        let track_type = match &stream.track {
+            Some(track) => match track.track_type {
+                Some(AudioTrackType::Original) => 5,
+                Some(AudioTrackType::Descriptive) => {
+                    if self.audio_descriptive {
+                        10
+                    } else {
+                        return None;
+                    }
+                }
+                Some(AudioTrackType::Dubbed) => 0,
+                Some(AudioTrackType::DubbedAuto) => {
+                    if self.audio_autodub {
+                        -1
+                    } else {
+                        return None;
+                    }
+                }
+                None => 0,
+            },
+            None => 0,
+        };
+
+        Some([language, track_type, codecs, bitrate])
     }
 
-    fn apply_video(&self, stream: &VideoStream) -> FilterResult {
-        self.apply_video_max_res(stream).join(
-            self.apply_video_formats(stream).join(
-                self.apply_video_codecs(stream).join(
-                    self.apply_video_hdr(stream)
-                        .join(self.apply_video_max_fps(stream)),
-                ),
-            ),
-        )
+    fn apply_video(&self, stream: &VideoStream) -> VideoRes {
+        let vres = stream.height.min(stream.width);
+        let res = match self.video_max_res {
+            Some(max) => filter_max(vres, max),
+            None => vres.into(),
+        };
+
+        let fps = match self.video_max_fps {
+            Some(max) => filter_max(stream.fps.into(), max.into()),
+            None => i64::from(stream.fps),
+        };
+
+        if let Some(formats) = &self.video_formats {
+            if !formats.contains(&stream.format) {
+                return None;
+            }
+        }
+
+        if let Some(codecs) = &self.video_codecs {
+            if !codecs.contains(&stream.codec) {
+                return None;
+            }
+        }
+        let codecs = match stream.codec {
+            VideoCodec::Unknown => -1,
+            VideoCodec::Mp4v => 1,
+            VideoCodec::Avc1 => 2,
+            VideoCodec::Vp9 => 3,
+            VideoCodec::Av01 => 4,
+        };
+
+        let hdr = if self.video_hdr {
+            if stream.hdr {
+                10
+            } else {
+                0
+            }
+        } else if stream.hdr {
+            return None;
+        } else {
+            0
+        };
+
+        Some([hdr, res, fps, codecs, stream.average_bitrate.into()])
     }
 
     /// Return true if no video stream should be selected
@@ -257,30 +273,23 @@ impl StreamFilter {
     }
 }
 
+fn filter_max(val: u32, max: u32) -> i64 {
+    if val > max {
+        i64::from(max).wrapping_sub(val.into())
+    } else {
+        val.into()
+    }
+}
+
 impl VideoPlayer {
     /// Select the audio stream which is the best match for the given [`StreamFilter`]
     #[must_use]
     pub fn select_audio_stream(&self, filter: &StreamFilter) -> Option<&AudioStream> {
-        let mut fallback: Option<&AudioStream> = None;
-
         self.audio_streams
             .iter()
-            .rev()
-            .find(|s| match filter.apply_audio(s) {
-                FilterResult::Deny => false,
-                FilterResult::AllowLowest => {
-                    fallback = Some(s);
-                    false
-                }
-                FilterResult::Allow => {
-                    if fallback.is_none() {
-                        fallback = Some(s);
-                    }
-                    false
-                }
-                FilterResult::Match => true,
-            })
-            .or(fallback)
+            .filter_map(|s| filter.apply_audio(s).map(|r| (s, r)))
+            .max_by_key(|(_, r)| *r)
+            .map(|(s, _)| s)
     }
 
     fn _select_video_stream<'a>(
@@ -291,26 +300,11 @@ impl VideoPlayer {
             return None;
         }
 
-        let mut fallback: Option<&VideoStream> = None;
-
         streams
             .iter()
-            .rev()
-            .find(|s| match filter.apply_video(s) {
-                FilterResult::Deny => false,
-                FilterResult::AllowLowest => {
-                    fallback = Some(s);
-                    false
-                }
-                FilterResult::Allow => {
-                    if fallback.is_none() {
-                        fallback = Some(s);
-                    }
-                    false
-                }
-                FilterResult::Match => true,
-            })
-            .or(fallback)
+            .filter_map(|s| filter.apply_video(s).map(|r| (s, r)))
+            .max_by_key(|(_, r)| *r)
+            .map(|(s, _)| s)
     }
 
     /// Select the video stream which is the best match for the given [`StreamFilter`]
@@ -399,7 +393,7 @@ mod tests {
     #[case::hdr(StreamFilter::default().video_hdr().clone(), Some("https://rr5---sn-h0jelne7.googlevideo.com/videoplayback?aitags=133%2C134%2C135%2C136%2C160%2C242%2C243%2C244%2C247%2C278%2C298%2C299%2C302%2C303%2C308%2C315%2C330%2C331%2C332%2C333%2C334%2C335%2C336%2C337%2C394%2C395%2C396%2C397%2C398%2C399%2C400%2C401%2C694%2C695%2C696%2C697%2C698%2C699%2C700%2C701&c=WEB&clen=976824147&dur=313.780&ei=eckIY72IKcGZ8gOMt6CwDg&expire=1661541849&fexp=24001373%2C24007246&fvip=2&gir=yes&id=o-AOqXE9lVS424yszv6LN5V_gaevdHxenJl-tYNy3Drs6g&initcwndbps=1428750&ip=2003%3Ade%3Aaf05%3A2500%3A5dad%3A319b%3Aca30%3Ae212&itag=701&keepalive=yes&lmt=1647469891607029&lsig=AG3C_xAwRQIhAMioKyc-dqs-6uvAwLViCcCTXKHn9sIbo0cbSSBXGG4kAiBQNsRBAvQrbWdOjZIsQXYrfPEb1KDpE_AlSEGQZXB9uA%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=NH&mime=video%2Fmp4&mm=31%2C29&mn=sn-h0jelne7%2Csn-h0jeenl6&ms=au%2Crdu&mt=1661519833&mv=m&mvi=5&n=Zd7nrOM1B2C6PA&ns=426LxLap5MonJD_YWdS4lSYH&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRgIhAOax_lAWCW5ENOYxe3gZfBHgHA5oZJPyMlYQFy73t7-pAiEA46J7dsT-1pv9smuoP3Kx5T7c_IJ6cEZN4U9UkSNuT7o%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cspc%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&spc=lT-KhuPtxVzL5-QbZ7S9zNeOHsWTdms&txp=4532434&vprv=1"))]
     #[case::resolution(StreamFilter::default().video_max_res(720).clone(), Some("https://rr5---sn-h0jelne7.googlevideo.com/videoplayback?aitags=133%2C134%2C135%2C136%2C160%2C242%2C243%2C244%2C247%2C278%2C298%2C299%2C302%2C303%2C308%2C315%2C330%2C331%2C332%2C333%2C334%2C335%2C336%2C337%2C394%2C395%2C396%2C397%2C398%2C399%2C400%2C401%2C694%2C695%2C696%2C697%2C698%2C699%2C700%2C701&c=WEB&clen=76313586&dur=313.780&ei=eckIY72IKcGZ8gOMt6CwDg&expire=1661541849&fexp=24001373%2C24007246&fvip=2&gir=yes&id=o-AOqXE9lVS424yszv6LN5V_gaevdHxenJl-tYNy3Drs6g&initcwndbps=1428750&ip=2003%3Ade%3Aaf05%3A2500%3A5dad%3A319b%3Aca30%3Ae212&itag=302&keepalive=yes&lmt=1647455155369524&lsig=AG3C_xAwRQIhAMioKyc-dqs-6uvAwLViCcCTXKHn9sIbo0cbSSBXGG4kAiBQNsRBAvQrbWdOjZIsQXYrfPEb1KDpE_AlSEGQZXB9uA%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=NH&mime=video%2Fwebm&mm=31%2C29&mn=sn-h0jelne7%2Csn-h0jeenl6&ms=au%2Crdu&mt=1661519833&mv=m&mvi=5&n=Zd7nrOM1B2C6PA&ns=426LxLap5MonJD_YWdS4lSYH&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRAIgW0H1434eh9Axw6zw95qezJB0D2aVd2bxEIs4T5bcfFACIDOjha9WLycp0L188FZyFGa1RBkLPoGrrJOppsaXqwDR&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cspc%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&spc=lT-KhuPtxVzL5-QbZ7S9zNeOHsWTdms&txp=4532434&vprv=1"))]
     #[case::resolution_fps(StreamFilter::default().video_max_res(720).video_max_fps(30).clone(), Some("https://rr5---sn-h0jelne7.googlevideo.com/videoplayback?aitags=133%2C134%2C135%2C136%2C160%2C242%2C243%2C244%2C247%2C278%2C298%2C299%2C302%2C303%2C308%2C315%2C330%2C331%2C332%2C333%2C334%2C335%2C336%2C337%2C394%2C395%2C396%2C397%2C398%2C399%2C400%2C401%2C694%2C695%2C696%2C697%2C698%2C699%2C700%2C701&c=WEB&clen=47531179&dur=313.780&ei=eckIY72IKcGZ8gOMt6CwDg&expire=1661541849&fexp=24001373%2C24007246&fvip=2&gir=yes&id=o-AOqXE9lVS424yszv6LN5V_gaevdHxenJl-tYNy3Drs6g&initcwndbps=1428750&ip=2003%3Ade%3Aaf05%3A2500%3A5dad%3A319b%3Aca30%3Ae212&itag=247&keepalive=yes&lmt=1647458657499381&lsig=AG3C_xAwRQIhAMioKyc-dqs-6uvAwLViCcCTXKHn9sIbo0cbSSBXGG4kAiBQNsRBAvQrbWdOjZIsQXYrfPEb1KDpE_AlSEGQZXB9uA%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=NH&mime=video%2Fwebm&mm=31%2C29&mn=sn-h0jelne7%2Csn-h0jeenl6&ms=au%2Crdu&mt=1661519833&mv=m&mvi=5&n=Zd7nrOM1B2C6PA&ns=426LxLap5MonJD_YWdS4lSYH&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRgIhAMUsmcl1zgbr3YQranPWNV1kcxT5IdEoLL7FTFEDdHHPAiEAhQnrfYMU0A9xZ69MfBujWA4pXtCOQCg2Jn6ve9J_vBQ%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cspc%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&spc=lT-KhuPtxVzL5-QbZ7S9zNeOHsWTdms&txp=4532434&vprv=1"))]
-    #[case::res_fallback(StreamFilter::default().video_max_res(100).clone(), Some("https://rr5---sn-h0jelne7.googlevideo.com/videoplayback?aitags=133%2C134%2C135%2C136%2C160%2C242%2C243%2C244%2C247%2C278%2C298%2C299%2C302%2C303%2C308%2C315%2C330%2C331%2C332%2C333%2C334%2C335%2C336%2C337%2C394%2C395%2C396%2C397%2C398%2C399%2C400%2C401%2C694%2C695%2C696%2C697%2C698%2C699%2C700%2C701&c=WEB&clen=2763284&dur=313.780&ei=eckIY72IKcGZ8gOMt6CwDg&expire=1661541849&fexp=24001373%2C24007246&fvip=2&gir=yes&id=o-AOqXE9lVS424yszv6LN5V_gaevdHxenJl-tYNy3Drs6g&initcwndbps=1428750&ip=2003%3Ade%3Aaf05%3A2500%3A5dad%3A319b%3Aca30%3Ae212&itag=160&keepalive=yes&lmt=1647456833049253&lsig=AG3C_xAwRQIhAMioKyc-dqs-6uvAwLViCcCTXKHn9sIbo0cbSSBXGG4kAiBQNsRBAvQrbWdOjZIsQXYrfPEb1KDpE_AlSEGQZXB9uA%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=NH&mime=video%2Fmp4&mm=31%2C29&mn=sn-h0jelne7%2Csn-h0jeenl6&ms=au%2Crdu&mt=1661519833&mv=m&mvi=5&n=Zd7nrOM1B2C6PA&ns=426LxLap5MonJD_YWdS4lSYH&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRQIgLPNxzLxppSSpnDEHxVblrQ38890NMbGnLXlmxljprfQCIQDn4Ir_sjYh7S3ms-Rynm-K0nJpHpQGYsz1nv4TiqeELQ%3D%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cspc%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&spc=lT-KhuPtxVzL5-QbZ7S9zNeOHsWTdms&txp=4532434&vprv=1"))]
+    #[case::res_fallback(StreamFilter::default().video_max_res(100).clone(), Some("https://rr5---sn-h0jelne7.googlevideo.com/videoplayback?aitags=133%2C134%2C135%2C136%2C160%2C242%2C243%2C244%2C247%2C278%2C298%2C299%2C302%2C303%2C308%2C315%2C330%2C331%2C332%2C333%2C334%2C335%2C336%2C337%2C394%2C395%2C396%2C397%2C398%2C399%2C400%2C401%2C694%2C695%2C696%2C697%2C698%2C699%2C700%2C701&c=WEB&clen=3182932&dur=313.780&ei=eckIY72IKcGZ8gOMt6CwDg&expire=1661541849&fexp=24001373%2C24007246&fvip=2&gir=yes&id=o-AOqXE9lVS424yszv6LN5V_gaevdHxenJl-tYNy3Drs6g&initcwndbps=1428750&ip=2003%3Ade%3Aaf05%3A2500%3A5dad%3A319b%3Aca30%3Ae212&itag=278&keepalive=yes&lmt=1647458650479323&lsig=AG3C_xAwRQIhAMioKyc-dqs-6uvAwLViCcCTXKHn9sIbo0cbSSBXGG4kAiBQNsRBAvQrbWdOjZIsQXYrfPEb1KDpE_AlSEGQZXB9uA%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=NH&mime=video%2Fwebm&mm=31%2C29&mn=sn-h0jelne7%2Csn-h0jeenl6&ms=au%2Crdu&mt=1661519833&mv=m&mvi=5&n=Zd7nrOM1B2C6PA&ns=426LxLap5MonJD_YWdS4lSYH&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRQIhAKcXzSIMQGA4R_rvoVg3ONpXOjpbaNZ5y9WJHLiQDTTVAiA6ePO9vuh5_zYE3Dw-QoRfqhT0CBDkg6w4dIo0MEfWnA%3D%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cspc%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&spc=lT-KhuPtxVzL5-QbZ7S9zNeOHsWTdms&txp=4532434&vprv=1"))]
     #[case::webm_format(StreamFilter::default().video_formats([VideoFormat::Webm]).clone(), Some("https://rr5---sn-h0jelne7.googlevideo.com/videoplayback?aitags=133%2C134%2C135%2C136%2C160%2C242%2C243%2C244%2C247%2C278%2C298%2C299%2C302%2C303%2C308%2C315%2C330%2C331%2C332%2C333%2C334%2C335%2C336%2C337%2C394%2C395%2C396%2C397%2C398%2C399%2C400%2C401%2C694%2C695%2C696%2C697%2C698%2C699%2C700%2C701&c=WEB&clen=998696577&dur=313.780&ei=eckIY72IKcGZ8gOMt6CwDg&expire=1661541849&fexp=24001373%2C24007246&fvip=2&gir=yes&id=o-AOqXE9lVS424yszv6LN5V_gaevdHxenJl-tYNy3Drs6g&initcwndbps=1428750&ip=2003%3Ade%3Aaf05%3A2500%3A5dad%3A319b%3Aca30%3Ae212&itag=315&keepalive=yes&lmt=1647476955807851&lsig=AG3C_xAwRQIhAMioKyc-dqs-6uvAwLViCcCTXKHn9sIbo0cbSSBXGG4kAiBQNsRBAvQrbWdOjZIsQXYrfPEb1KDpE_AlSEGQZXB9uA%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=NH&mime=video%2Fwebm&mm=31%2C29&mn=sn-h0jelne7%2Csn-h0jeenl6&ms=au%2Crdu&mt=1661519833&mv=m&mvi=5&n=Zd7nrOM1B2C6PA&ns=426LxLap5MonJD_YWdS4lSYH&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRAIfP4IVSo-00_kq_JIkuh032hcLoJzNEhYjvwgLiDpEzQIhALPVrvDBjRwiFddXiAyADmRtYygte4HvlJ3XOrkOf_TR&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cspc%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&spc=lT-KhuPtxVzL5-QbZ7S9zNeOHsWTdms&txp=4532434&vprv=1"))]
     #[case::vp9_codec(StreamFilter::default().video_codecs([VideoCodec::Vp9]).clone(), Some("https://rr5---sn-h0jelne7.googlevideo.com/videoplayback?aitags=133%2C134%2C135%2C136%2C160%2C242%2C243%2C244%2C247%2C278%2C298%2C299%2C302%2C303%2C308%2C315%2C330%2C331%2C332%2C333%2C334%2C335%2C336%2C337%2C394%2C395%2C396%2C397%2C398%2C399%2C400%2C401%2C694%2C695%2C696%2C697%2C698%2C699%2C700%2C701&c=WEB&clen=998696577&dur=313.780&ei=eckIY72IKcGZ8gOMt6CwDg&expire=1661541849&fexp=24001373%2C24007246&fvip=2&gir=yes&id=o-AOqXE9lVS424yszv6LN5V_gaevdHxenJl-tYNy3Drs6g&initcwndbps=1428750&ip=2003%3Ade%3Aaf05%3A2500%3A5dad%3A319b%3Aca30%3Ae212&itag=315&keepalive=yes&lmt=1647476955807851&lsig=AG3C_xAwRQIhAMioKyc-dqs-6uvAwLViCcCTXKHn9sIbo0cbSSBXGG4kAiBQNsRBAvQrbWdOjZIsQXYrfPEb1KDpE_AlSEGQZXB9uA%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=NH&mime=video%2Fwebm&mm=31%2C29&mn=sn-h0jelne7%2Csn-h0jeenl6&ms=au%2Crdu&mt=1661519833&mv=m&mvi=5&n=Zd7nrOM1B2C6PA&ns=426LxLap5MonJD_YWdS4lSYH&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRAIfP4IVSo-00_kq_JIkuh032hcLoJzNEhYjvwgLiDpEzQIhALPVrvDBjRwiFddXiAyADmRtYygte4HvlJ3XOrkOf_TR&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cspc%2Cvprv%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&spc=lT-KhuPtxVzL5-QbZ7S9zNeOHsWTdms&txp=4532434&vprv=1"))]
     #[case::noformat(StreamFilter::default().video_formats([]).clone(), None)]

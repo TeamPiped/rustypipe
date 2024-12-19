@@ -332,7 +332,10 @@ pub struct AudioTrack {
     pub lang: Option<String>,
     /// Language name (e.g. "English")
     pub lang_name: String,
-    /// True if this is the default audio track
+    /// True if this is the default audio track chosen by YouTube
+    ///
+    /// Note that YouTube's selection depends on the client type used to fetch the player.
+    /// Some players
     pub is_default: bool,
     /// Audio track type (e.g. *Original*, *Dubbed*)
     pub track_type: Option<AudioTrackType>,
@@ -351,13 +354,15 @@ pub enum AudioFormat {
 
 /// Audio track type
 #[derive(Copy, Clone, Debug, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
-#[serde(rename_all = "snake_case")]
+#[serde(rename_all = "kebab-case")]
 #[non_exhaustive]
 pub enum AudioTrackType {
     /// An original audio track of the video
     Original,
     /// An audio track with the original voices replaced, typically in a different language
     Dubbed,
+    /// An audio track dubbed using YouTube's AI powered AutoDub feature
+    DubbedAuto,
     /// A descriptive audio track
     ///
     /// A descriptive audio track is an audio track in which descriptions of visual elements of
