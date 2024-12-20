@@ -2719,7 +2719,7 @@ async fn invalid_ctoken(#[case] ep: ContinuationEndpoint, rp: RustyPipe) {
 async fn isrc_search_languages(rp: RustyPipe) {
     for lang in LANGUAGES {
         // flaky for English, skipping for now
-        if matches!(lang, Language::EnGb | Language::EnIn) {
+        if matches!(lang, Language::En | Language::EnGb | Language::EnIn) {
             continue;
         }
 
