@@ -90,7 +90,7 @@ impl RustyPipeQuery {
                         match self
                             .clone()
                             .authenticated()
-                            .player_from_client(video_id, *client)
+                            .player_from_client(video_id, ClientType::Tv)
                             .await
                         {
                             Ok(res) => return Ok(res),

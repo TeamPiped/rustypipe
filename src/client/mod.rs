@@ -1458,6 +1458,10 @@ impl RustyPipeQuery {
     }
 
     /// Enable authentication for this request
+    ///
+    /// RustyPipe uses YouTube TV's OAuth authentication. This means that authentication
+    /// only works when using the TV client. Enabling authentication for other clients
+    /// results in a 400 error.
     #[must_use]
     pub fn authenticated(mut self) -> Self {
         self.opts.auth = Some(true);

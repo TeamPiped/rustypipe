@@ -14,6 +14,7 @@ use futures_util::stream::{self, StreamExt};
 use indicatif::{MultiProgress, ProgressBar, ProgressStyle};
 use owo_colors::OwoColorize;
 use rustypipe::{
+    cache::FileStorage,
     client::{ClientType, RustyPipe},
     model::{
         richtext::{RichText, ToPlaintext},
@@ -53,6 +54,12 @@ struct Cli {
     /// YouTube content country
     #[clap(long, global = true)]
     country: Option<String>,
+    #[clap(long, global = true)]
+    /// RustyPipe cache file
+    cache_file: Option<PathBuf>,
+    /// RustyPipe report folder
+    #[clap(long, global = true)]
+    report_dir: Option<PathBuf>,
 }
 
 #[derive(Parser)]
@@ -618,12 +625,23 @@ async fn run() -> anyhow::Result<()> {
 
     let mut storage_dir = dirs::data_dir().expect("no data dir");
     storage_dir.push("rustypipe");
-    std::fs::create_dir_all(&storage_dir).expect("could not create data dir");
+
+    if cli.cache_file.is_none() || cli.report_dir.is_none() {
+        std::fs::create_dir_all(&storage_dir).expect("could not create data dir");
+    }
 
     let mut rp = RustyPipe::builder()
         .storage_dir(storage_dir)
         .visitor_data_opt(cli.vdata)
         .timeout(Duration::from_secs(15));
+
+    if let Some(cache_file) = cli.cache_file {
+        rp = rp.storage(Box::new(FileStorage::new(cache_file)));
+    }
+    if let Some(report_dir) = cli.report_dir {
+        rp = rp.reporter(Box::new(FileReporter::new(report_dir)));
+    }
+
     if cli.report {
         rp = rp
             .report()
