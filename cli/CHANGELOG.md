@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 
 
+## [v0.5.0](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe-cli/v0.4.0..rustypipe-cli/v0.5.0) - 2024-12-20
+
+### 🚀 Features
+
+- Get comment replies, rich text formatting - ([dceba44](https://codeberg.org/ThetaDev/rustypipe/commit/dceba442fe1a1d5d8d2a6d9422ff699593131f6d))
+
+### 🐛 Bug Fixes
+
+- Replace futures dependency with futures-util - ([5c39bf4](https://codeberg.org/ThetaDev/rustypipe/commit/5c39bf4842b13d37a4277ea5506e15c179892ce5))
+- Error 400 when fetching player with login - ([5ce84c4](https://codeberg.org/ThetaDev/rustypipe/commit/5ce84c44a6844f692258066c83e04df875e0aa91))
+
+### ⚙️ Miscellaneous Tasks
+
+- Add docs badge to README - ([706e881](https://codeberg.org/ThetaDev/rustypipe/commit/706e88134c0e94ce7d880735e9d31b3ff531a4f9))
+- *(deps)* Update rustypipe to 0.8.0
+
+
 ## [v0.4.0](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe-cli/v0.3.0..rustypipe-cli/v0.4.0) - 2024-11-10
 
 ### 🚀 Features
