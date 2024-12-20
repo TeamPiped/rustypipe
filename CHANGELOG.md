@@ -3,6 +3,28 @@
 All notable changes to this project will be documented in this file.
 
 
+## [v0.8.0](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe/v0.7.2..rustypipe/v0.8.0) - 2024-12-20
+
+### 🚀 Features
+
+- Log warning when generating report - ([258f18a](https://codeberg.org/ThetaDev/rustypipe/commit/258f18a99d848ae7e6808beddad054037a3b3799))
+- Add auto-dubbed audio tracks, improved StreamFilter - ([1d1ae17](https://codeberg.org/ThetaDev/rustypipe/commit/1d1ae17ffc16724667d43142aa57abda2e6468e4))
+
+### 🐛 Bug Fixes
+
+- Replace deprecated call to `time::util::days_in_year_month` - ([69ef6ae](https://codeberg.org/ThetaDev/rustypipe/commit/69ef6ae51e9b09a9b9c06057e717bf6f054c9803))
+- Nsig fn extra variable extraction - ([8014741](https://codeberg.org/ThetaDev/rustypipe/commit/80147413ee3190bb530f8f6b02738bcc787a6444))
+- Deobf function extraction, allow $ in variable names - ([8cadbc1](https://codeberg.org/ThetaDev/rustypipe/commit/8cadbc1a4c865d085e30249dba0f353472456a32))
+- Remove leading zero-width-space from comments, ensure space after links - ([162959c](https://codeberg.org/ThetaDev/rustypipe/commit/162959ca4513a03496776fae905b4bf20c79899c))
+- Update client versions, enable Opus audio with iOS client - ([1b60c97](https://codeberg.org/ThetaDev/rustypipe/commit/1b60c97a183b9d74b92df14b5b113c61aba1be7f))
+- Extract transcript from comment voice replies - ([30f60c3](https://codeberg.org/ThetaDev/rustypipe/commit/30f60c30f9d87d39585db93c1c9e274f48d688ba))
+- Error 400 when fetching player with login - ([5ce84c4](https://codeberg.org/ThetaDev/rustypipe/commit/5ce84c44a6844f692258066c83e04df875e0aa91))
+
+### ⚙️ Miscellaneous Tasks
+
+- Update user agent - ([53e5846](https://codeberg.org/ThetaDev/rustypipe/commit/53e5846286e8db920622152c2a0a57ddc7c41d25))
+
+
 ## [v0.7.2](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe/v0.7.1..rustypipe/v0.7.2) - 2024-12-13
 
 ### 🐛 Bug Fixes
