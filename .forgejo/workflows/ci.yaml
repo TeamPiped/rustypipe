@@ -31,6 +31,7 @@ jobs:
         run: |
           printf '%s\n' "$RUSTYPIPE_CACHE" > rustypipe_cache.json
           echo "authenticated=$YT_AUTHENTICATED"
+          wc -c rustypipe_cache.json
           cargo nextest run --config-file ~/.config/nextest.toml --profile ci --retries 2 --features rss --workspace
         env:
           ALL_PROXY: "http://warpproxy:8124"
