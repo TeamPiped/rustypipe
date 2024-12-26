@@ -2738,9 +2738,141 @@ async fn isrc_search_languages(rp: RustyPipe) {
 #[tokio::test]
 async fn user_auth_check_login(rp: RustyPipe, auth_enabled: bool) {
     if auth_enabled {
-        assert!(rp.query().auth_enabled());
+        assert!(rp.query().auth_enabled(ClientType::Tv));
         rp.user_auth_check_login().await.unwrap();
     }
+}
+
+#[rstest]
+#[tokio::test]
+async fn history(rp: RustyPipe, cookie_auth_enabled: bool) {
+    if !cookie_auth_enabled {
+        return;
+    }
+
+    let videos = rp.query().history().await.unwrap();
+    assert_next_items(videos, rp.query(), 100).await;
+}
+
+#[rstest]
+#[tokio::test]
+async fn history_search(rp: RustyPipe, cookie_auth_enabled: bool) {
+    if !cookie_auth_enabled {
+        return;
+    }
+
+    let videos = rp.query().history_search("a").await.unwrap();
+    assert_next_items(videos, rp.query(), 5).await;
+}
+
+#[rstest]
+#[tokio::test]
+async fn subscriptions(rp: RustyPipe, cookie_auth_enabled: bool) {
+    if !cookie_auth_enabled {
+        return;
+    }
+
+    let channels = rp.query().subscriptions().await.unwrap();
+    assert_next_items(channels, rp.query(), 5).await;
+}
+
+#[rstest]
+#[tokio::test]
+async fn subscription_feed(rp: RustyPipe, cookie_auth_enabled: bool) {
+    if !cookie_auth_enabled {
+        return;
+    }
+
+    let videos = rp.query().subscription_feed().await.unwrap();
+    assert_next_items(videos, rp.query(), 50).await;
+}
+
+#[rstest]
+#[tokio::test]
+async fn liked_videos(rp: RustyPipe, cookie_auth_enabled: bool) {
+    if !cookie_auth_enabled {
+        return;
+    }
+
+    let videos = rp.query().liked_videos().await.unwrap();
+    assert_next_items(videos.videos, rp.query(), 5).await;
+}
+
+#[rstest]
+#[tokio::test]
+async fn watch_later(rp: RustyPipe, cookie_auth_enabled: bool) {
+    if !cookie_auth_enabled {
+        return;
+    }
+
+    let videos = rp.query().watch_later().await.unwrap();
+    assert_next_items(videos.videos, rp.query(), 5).await;
+}
+
+#[rstest]
+#[tokio::test]
+async fn music_history(rp: RustyPipe, cookie_auth_enabled: bool) {
+    if !cookie_auth_enabled {
+        return;
+    }
+
+    let tracks = rp.query().music_history().await.unwrap();
+    assert_next_items(tracks, rp.query(), 150).await;
+}
+
+#[rstest]
+#[tokio::test]
+async fn music_saved_artists(rp: RustyPipe, cookie_auth_enabled: bool) {
+    if !cookie_auth_enabled {
+        return;
+    }
+
+    let artists = rp.query().music_saved_artists().await.unwrap();
+    assert_next_items(artists, rp.query(), 5).await;
+}
+
+#[rstest]
+#[tokio::test]
+async fn music_saved_albums(rp: RustyPipe, cookie_auth_enabled: bool) {
+    if !cookie_auth_enabled {
+        return;
+    }
+
+    let albums = rp.query().music_saved_albums().await.unwrap();
+    assert_next_items(albums, rp.query(), 5).await;
+}
+
+#[rstest]
+#[tokio::test]
+async fn music_saved_tracks(rp: RustyPipe, cookie_auth_enabled: bool) {
+    if !cookie_auth_enabled {
+        return;
+    }
+
+    let tracks = rp.query().music_saved_tracks().await.unwrap();
+    assert_next_items(tracks, rp.query(), 50).await;
+}
+
+#[rstest]
+#[tokio::test]
+async fn music_saved_playlists(rp: RustyPipe, cookie_auth_enabled: bool) {
+    if !cookie_auth_enabled {
+        return;
+    }
+
+    let playlists = rp.query().music_saved_playlists().await.unwrap();
+    assert_next_items(playlists, rp.query(), 5).await;
+}
+
+#[rstest]
+#[tokio::test]
+async fn music_liked_tracks(rp: RustyPipe, cookie_auth_enabled: bool) {
+    if !cookie_auth_enabled {
+        return;
+    }
+
+    let tracks = rp.query().music_liked_tracks().await.unwrap();
+    assert_next_items(tracks.tracks, rp.query(), 5).await;
 }
 
 //#TESTUTIL
@@ -2778,7 +2910,17 @@ fn auth_enabled(rp: RustyPipe) -> bool {
     std::env::var("YT_AUTHENTICATED")
         .map(|v| !v.is_empty() && v.to_ascii_lowercase() != "false")
         .unwrap_or_default()
-        || rp.query().auth_enabled()
+        || rp.query().auth_enabled(ClientType::Desktop)
+        || rp.query().auth_enabled(ClientType::Tv)
+}
+
+/// Get a flag signaling if an authenticated user is expected
+#[fixture]
+fn cookie_auth_enabled(rp: RustyPipe) -> bool {
+    std::env::var("YT_AUTHENTICATED")
+        .map(|v| !v.is_empty() && v.to_ascii_lowercase() != "false")
+        .unwrap_or_default()
+        || rp.query().auth_enabled(ClientType::Desktop)
 }
 
 /*

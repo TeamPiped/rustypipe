@@ -77,6 +77,7 @@ fn map_yt_paginator<T: FromYtItem>(
         ctoken: p.ctoken,
         visitor_data: p.visitor_data,
         endpoint,
+        authenticated: p.authenticated,
     }
 }
 
@@ -90,6 +91,7 @@ fn map_ytm_paginator<T: FromYtItem>(
         ctoken: p.ctoken,
         visitor_data: p.visitor_data,
         endpoint,
+        authenticated: p.authenticated,
     }
 }
 
@@ -120,7 +122,14 @@ impl MapResponse<Paginator<YouTubeItem>> for response::Continuation {
         mapper.map_response(items);
 
         Ok(MapResult {
-            c: Paginator::new(self.estimated_results, mapper.items, mapper.ctoken),
+            c: Paginator::new_ext(
+                self.estimated_results,
+                mapper.items,
+                mapper.ctoken,
+                None,
+                ContinuationEndpoint::Browse,
+                ctx.authenticated,
+            ),
             warnings: mapper.warnings,
         })
     }
@@ -188,7 +197,14 @@ impl MapResponse<Paginator<MusicItem>> for response::MusicContinuation {
             .map(|cont| cont.next_continuation_data.continuation);
 
         Ok(MapResult {
-            c: Paginator::new(None, map_res.c, ctoken),
+            c: Paginator::new_ext(
+                None,
+                map_res.c,
+                ctoken,
+                None,
+                ContinuationEndpoint::MusicBrowse,
+                ctx.authenticated,
+            ),
             warnings: map_res.warnings,
         })
     }
@@ -197,13 +213,24 @@ impl MapResponse<Paginator<MusicItem>> for response::MusicContinuation {
 impl<T: FromYtItem> Paginator<T> {
     /// Get the next page from the paginator (or `None` if the paginator is exhausted)
     pub async fn next<Q: AsRef<RustyPipeQuery>>(&self, query: Q) -> Result<Option<Self>, Error> {
+        // let mut q = query.as_ref().clone();
+        // if self.authenticated {
+        //     q = q.authenticated();
+        // }
+
         Ok(match &self.ctoken {
-            Some(ctoken) => Some(
-                query
-                    .as_ref()
-                    .continuation(ctoken, self.endpoint, self.visitor_data.as_deref())
-                    .await?,
-            ),
+            Some(ctoken) => {
+                let q = if self.authenticated {
+                    &query.as_ref().clone().authenticated()
+                } else {
+                    query.as_ref()
+                };
+
+                Some(
+                    q.continuation(ctoken, self.endpoint, self.visitor_data.as_deref())
+                        .await?,
+                )
+            }
             _ => None,
         })
     }
@@ -383,7 +410,10 @@ mod tests {
 
     use super::*;
     use crate::{
-        model::{MusicPlaylistItem, PlaylistItem, TrackItem, VideoItem},
+        model::{
+            AlbumItem, ArtistItem, ChannelItem, MusicPlaylistItem, PlaylistItem, TrackItem,
+            VideoItem,
+        },
         util::tests::TESTFILES,
     };
 
@@ -455,9 +485,31 @@ mod tests {
     }
 
     #[rstest]
+    #[case::subscriptions("subscriptions", path!("history" / "subscriptions.json"))]
+    fn map_continuation_channels(#[case] name: &str, #[case] path: PathBuf) {
+        let json_path = path!(*TESTFILES / path);
+        let json_file = File::open(json_path).unwrap();
+
+        let items: response::Continuation =
+            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let map_res: MapResult<Paginator<YouTubeItem>> =
+            items.map_response(&MapRespCtx::test("")).unwrap();
+        let paginator: Paginator<ChannelItem> =
+            map_yt_paginator(map_res.c, ContinuationEndpoint::Browse);
+
+        assert!(
+            map_res.warnings.is_empty(),
+            "deserialization/mapping warnings: {:?}",
+            map_res.warnings
+        );
+        insta::assert_ron_snapshot!(format!("map_{name}"), paginator);
+    }
+
+    #[rstest]
     #[case::playlist_tracks("playlist_tracks", path!("music_playlist" / "playlist_cont.json"))]
     #[case::search_tracks("search_tracks", path!("music_search" / "tracks_cont.json"))]
     #[case::radio_tracks("radio_tracks", path!("music_details" / "radio_cont.json"))]
+    #[case::saved_tracks("saved_tracks", path!("music_history" / "saved_tracks.json"))]
     fn map_continuation_tracks(#[case] name: &str, #[case] path: PathBuf) {
         let json_path = path!(*TESTFILES / path);
         let json_file = File::open(json_path).unwrap();
@@ -478,7 +530,50 @@ mod tests {
     }
 
     #[rstest]
+    #[case::saved_artists("saved_artists", path!("music_history" / "saved_artists.json"))]
+    fn map_continuation_artists(#[case] name: &str, #[case] path: PathBuf) {
+        let json_path = path!(*TESTFILES / path);
+        let json_file = File::open(json_path).unwrap();
+
+        let items: response::MusicContinuation =
+            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let map_res: MapResult<Paginator<MusicItem>> =
+            items.map_response(&MapRespCtx::test("")).unwrap();
+        let paginator: Paginator<ArtistItem> =
+            map_ytm_paginator(map_res.c, ContinuationEndpoint::MusicBrowse);
+
+        assert!(
+            map_res.warnings.is_empty(),
+            "deserialization/mapping warnings: {:?}",
+            map_res.warnings
+        );
+        insta::assert_ron_snapshot!(format!("map_{name}"), paginator);
+    }
+
+    #[rstest]
+    #[case::saved_albums("saved_albums", path!("music_history" / "saved_albums.json"))]
+    fn map_continuation_albums(#[case] name: &str, #[case] path: PathBuf) {
+        let json_path = path!(*TESTFILES / path);
+        let json_file = File::open(json_path).unwrap();
+
+        let items: response::MusicContinuation =
+            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let map_res: MapResult<Paginator<MusicItem>> =
+            items.map_response(&MapRespCtx::test("")).unwrap();
+        let paginator: Paginator<AlbumItem> =
+            map_ytm_paginator(map_res.c, ContinuationEndpoint::MusicBrowse);
+
+        assert!(
+            map_res.warnings.is_empty(),
+            "deserialization/mapping warnings: {:?}",
+            map_res.warnings
+        );
+        insta::assert_ron_snapshot!(format!("map_{name}"), paginator);
+    }
+
+    #[rstest]
     #[case::playlist_related("playlist_related", path!("music_playlist" / "playlist_related.json"))]
+    #[case::saved_playlists("saved_playlists", path!("music_history" / "saved_playlists.json"))]
     fn map_continuation_music_playlists(#[case] name: &str, #[case] path: PathBuf) {
         let json_path = path!(*TESTFILES / path);
         let json_file = File::open(json_path).unwrap();

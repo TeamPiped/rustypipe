@@ -12,7 +12,6 @@ use std::{
     str::{FromStr, SplitWhitespace},
 };
 
-use base64::Engine;
 use fancy_regex::RegexBuilder;
 use once_cell::sync::Lazy;
 use rand::Rng;
@@ -20,7 +19,7 @@ use regex::Regex;
 use url::Url;
 
 use crate::{
-    error::Error,
+    error::{AuthError, Error, ExtractionError},
     param::{Country, Language, COUNTRIES},
     serializer::text::TextComponent,
 };
@@ -502,11 +501,11 @@ pub fn video_id_from_thumbnail_url(url: &str) -> Option<String> {
 }
 
 pub fn b64_encode<T: AsRef<[u8]>>(input: T) -> String {
-    base64::engine::general_purpose::URL_SAFE.encode(input)
+    data_encoding::BASE64URL.encode(input.as_ref())
 }
 
-pub fn b64_decode<T: AsRef<[u8]>>(input: T) -> Result<Vec<u8>, base64::DecodeError> {
-    base64::engine::general_purpose::URL_SAFE.decode(input)
+pub fn b64_decode<T: AsRef<[u8]>>(input: T) -> Result<Vec<u8>, data_encoding::DecodeError> {
+    data_encoding::BASE64URL.decode(input.as_ref())
 }
 
 /// Get the country from its English name
@@ -594,6 +593,18 @@ where
     match res {
         Ok(e) => Err(e),
         Err(o) => Ok(o),
+    }
+}
+
+/// Map error when fetching an internal playlist
+///
+/// If no user is logged in, YouTube returns a "NotFound" error. This has to be corrected
+/// into a NoLogin error.
+pub fn map_internal_playlist_err(e: Error) -> Error {
+    if let Error::Extraction(ExtractionError::NotFound { .. }) = e {
+        Error::Auth(AuthError::NoLogin)
+    } else {
+        e
     }
 }
 

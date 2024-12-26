@@ -319,7 +319,9 @@ fn map_text_component(
             browse_id: watch_playlist_endpoint.playlist_id,
             verification,
         },
-        None => TextComponent::Text { text, style },
+        None | Some(NavigationEndpoint::CreatePlaylist { .. }) => {
+            TextComponent::Text { text, style }
+        }
     }
 }
 

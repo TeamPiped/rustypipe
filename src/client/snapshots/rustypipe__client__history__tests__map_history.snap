@@ -1,0 +1,247 @@
+---
+source: src/client/history.rs
+expression: map_res.c
+---
+Paginator(
+  count: None,
+  items: [
+    VideoItem(
+      id: "mPshy_DWxfo",
+      name: "trying TWEENING everything! (FAILED) PLEASE GIVE ME SOME ADVICEEE",
+      duration: Some(6),
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/mPshy_DWxfo/hqdefault.jpg?sqp=-oaymwFACKgBEF5IWvKriqkDMwgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAHwAQH4Af4JgALOBYoCDAgAEAEYfyAyKEAwDw==&rs=AOn4CLBfBVk2IGdGGGmpqOir2RbC8cY1xw",
+          width: 168,
+          height: 94,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/mPshy_DWxfo/hqdefault.jpg?sqp=-oaymwFACMQBEG5IWvKriqkDMwgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAHwAQH4Af4JgALOBYoCDAgAEAEYfyAyKEAwDw==&rs=AOn4CLDnRYKBX4qMlA54i-q3W7w1WvGApg",
+          width: 196,
+          height: 110,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/mPshy_DWxfo/hqdefault.jpg?sqp=-oaymwFBCPYBEIoBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYACzgWKAgwIABABGH8gMihAMA8=&rs=AOn4CLDza_6r3345q6SBZvGm292mOobNPg",
+          width: 246,
+          height: 138,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/mPshy_DWxfo/hqdefault.jpg?sqp=-oaymwFBCNACELwBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AH-CYACzgWKAgwIABABGH8gMihAMA8=&rs=AOn4CLDySwxxAy2hfw2YcAKs6ERLhzPTkQ",
+          width: 336,
+          height: 188,
+        ),
+      ],
+      channel: Some(ChannelTag(
+        id: "UCM7OXM6t80a3e3tzQDWxwEA",
+        name: "Ari",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/TpeTKFR6QWu4Cjam4PcpQwCPMnammWnSg93CdBvgFFLhkGm4nbQkUFKaAIYJ1ChUy9IgmJIQMRg=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: none,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: None,
+      view_count: Some(15),
+      is_live: false,
+      is_short: false,
+      is_upcoming: false,
+      short_description: None,
+    ),
+    VideoItem(
+      id: "SRWatgS077k",
+      name: "My Time at \"Camp Operetta\"",
+      duration: Some(578),
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/SRWatgS077k/hqdefault.jpg?sqp=-oaymwEmCKgBEF5IWvKriqkDGQgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAE=&rs=AOn4CLAN8mzi3fbrJgqJiEeqpMZXRa7AuQ",
+          width: 168,
+          height: 94,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/SRWatgS077k/hqdefault.jpg?sqp=-oaymwEmCMQBEG5IWvKriqkDGQgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAE=&rs=AOn4CLBgxonLRY-4QQ1-jR3Xen-fAZcHHQ",
+          width: 196,
+          height: 110,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/SRWatgS077k/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBOk1abznwO5Bm0_m5YXMFkU0JSog",
+          width: 246,
+          height: 138,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/SRWatgS077k/hqdefault.jpg?sqp=-oaymwEnCNACELwBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLCQt7cAJuE-W8t1TnQnSe5EVbsw8A",
+          width: 336,
+          height: 188,
+        ),
+      ],
+      channel: Some(ChannelTag(
+        id: "UCGwu0nbY2wSkW8N-cghnLpA",
+        name: "JaidenAnimations",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/gopbHeiDtEB932rIFqLlR4D_hFtd-BcdGrQgGeyDpkD3guskkbT74DsJYPGo3x7MqkyqtgL-=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: verified,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: None,
+      view_count: Some(23907328),
+      is_live: false,
+      is_short: false,
+      is_upcoming: false,
+      short_description: Some("What can I say other than that was one heck of a time\n\nScribble Showdown Tickets: https://www.scribbleshowdown.com/\n\n\n♥ The Team ♥\nDenny: https://www.instagram.com/90percentknuckles/\nAtrox:..."),
+    ),
+    VideoItem(
+      id: "kTxlkDoqArA",
+      name: "Wie Cartoons Früher gemacht wurden!",
+      duration: Some(283),
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/kTxlkDoqArA/hqdefault.jpg?sqp=-oaymwEmCKgBEF5IWvKriqkDGQgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAE=&rs=AOn4CLBYdDA06ekKDlhB0PSlTwf6Ih1cMg",
+          width: 168,
+          height: 94,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/kTxlkDoqArA/hqdefault.jpg?sqp=-oaymwEmCMQBEG5IWvKriqkDGQgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAE=&rs=AOn4CLAgu_Ad1pFCsa3jINV1ocaVOQWOXg",
+          width: 196,
+          height: 110,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/kTxlkDoqArA/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDkOVQbyZlrZ_jbdkSzUd5RiobObA",
+          width: 246,
+          height: 138,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/kTxlkDoqArA/hqdefault.jpg?sqp=-oaymwEnCNACELwBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLA5cnUH03I2lg1-FOJ01njh8UOJEw",
+          width: 336,
+          height: 188,
+        ),
+      ],
+      channel: Some(ChannelTag(
+        id: "UCxTHCMaxURhapisCMBv8y0A",
+        name: "Plankton",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/Cdlsy3IXgis5hNYRwvohPB9AIxH8tNdEo9CwxXK1i3QEUO7YN3p4YJ_cd5ruGsmNhvoX7803=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: verified,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: None,
+      view_count: Some(390010),
+      is_live: false,
+      is_short: false,
+      is_upcoming: false,
+      short_description: Some("Folgt mir auf Instagram!\nhttps://instagram.com/plankton.gif  \n\nÜBER DEN KANAL:\nRede viel wenn der Tag lang ist"),
+    ),
+    VideoItem(
+      id: "oIVSKQ8NMqk",
+      name: "What I learned on highschool swim",
+      duration: Some(620),
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/oIVSKQ8NMqk/hqdefault.jpg?sqp=-oaymwEmCKgBEF5IWvKriqkDGQgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAE=&rs=AOn4CLAeTbOz6FlrH1x3jA4AwYcTGmUwxg",
+          width: 168,
+          height: 94,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/oIVSKQ8NMqk/hqdefault.jpg?sqp=-oaymwEmCMQBEG5IWvKriqkDGQgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAE=&rs=AOn4CLAEzpr1xBI-8jJwZz72NHj9VKyefA",
+          width: 196,
+          height: 110,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/oIVSKQ8NMqk/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLBNzC8nvKtO7fmqzavWemou7QOLOg",
+          width: 246,
+          height: 138,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/oIVSKQ8NMqk/hqdefault.jpg?sqp=-oaymwEnCNACELwBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLA1_VgkVeq4ELmrQ8a4vhtJhg6TMA",
+          width: 336,
+          height: 188,
+        ),
+      ],
+      channel: Some(ChannelTag(
+        id: "UCsKVP_4zQ877TEiH_Ih5yDQ",
+        name: "illymation",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/ytc/AIdro_n3doafn2qRRawkYet_KQdH2Jl1ugSQnjnd0Ham12C9MYI=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: verified,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: None,
+      view_count: Some(6491367),
+      is_live: false,
+      is_short: false,
+      is_upcoming: false,
+      short_description: Some("okay, so I wasn\'t the BEST ... but I tried my best!\n▶ Black Friday Merch sale: https://www.hereforthechaos.com\n▶ SNEAK PEEKS ON PATREON! http://patreon.com/illymation\n\n▶ BG ARTIST: Ingrid..."),
+    ),
+    VideoItem(
+      id: "X30eFeqrHJo",
+      name: "My Last Week of University!",
+      duration: Some(659),
+      thumbnail: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/X30eFeqrHJo/hqdefault.jpg?sqp=-oaymwEmCKgBEF5IWvKriqkDGQgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAE=&rs=AOn4CLAc6-vKGjlwODu5rDSHK2tz4sRzYQ",
+          width: 168,
+          height: 94,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/X30eFeqrHJo/hqdefault.jpg?sqp=-oaymwEmCMQBEG5IWvKriqkDGQgBFQAAiEIYAdgBAeIBCggYEAIYBjgBQAE=&rs=AOn4CLAE7jwC0MudkKK-I1nyGvCheljvtQ",
+          width: 196,
+          height: 110,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/X30eFeqrHJo/hqdefault.jpg?sqp=-oaymwEnCPYBEIoBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLAfIZ4htcNHP3RWahpR4XM7U-UTFQ",
+          width: 246,
+          height: 138,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/X30eFeqrHJo/hqdefault.jpg?sqp=-oaymwEnCNACELwBSFryq4qpAxkIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB&rs=AOn4CLDYMLObTeyxHK_PewK4Rwk3V-2KGw",
+          width: 336,
+          height: 188,
+        ),
+      ],
+      channel: Some(ChannelTag(
+        id: "UC6a8lp6vaCMhUVXPyynhjUA",
+        name: "Ruby Granger",
+        avatar: [
+          Thumbnail(
+            url: "https://yt3.ggpht.com/u9qrR3ceVkt7yen48Rd1WWV_w-OdE5iejCNI2y-PyG0tpd7xlqWFDahsaZa02cMk7O-0WkCL=s68-c-k-c0x00ffffff-no-rj",
+            width: 68,
+            height: 68,
+          ),
+        ],
+        verification: verified,
+        subscriber_count: None,
+      )),
+      publish_date: "[date]",
+      publish_date_txt: None,
+      view_count: Some(132844),
+      is_live: false,
+      is_short: false,
+      is_upcoming: false,
+      short_description: Some("This first year has been somewhat hectic, and certainly was tricky in the first semester; however, I have enjoyed it immensely and, as I said, am sad that this term has now ended. I am returning..."),
+    ),
+  ],
+  ctoken: Some("4qmFsgJMEglGRWhpc3RvcnkaKENBSjZHbmx5WVRWb2QyOU9RMmR6U1RSaGNXMTFkMWxSTms4M05WcFKaAhRicm93c2UtZmVlZEZFaGlzdG9yeQ%3D%3D"),
+  endpoint: browse,
+  authenticated: true,
+)

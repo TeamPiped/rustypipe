@@ -1,0 +1,811 @@
+---
+source: src/client/pagination.rs
+expression: paginator
+---
+Paginator(
+  count: None,
+  items: [
+    TrackItem(
+      id: "02UC3iagcJQ",
+      name: "Brüder, lasst uns gehen (Instrumental)",
+      duration: Some(148),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+          name: "dArtagnan",
+        ),
+      ],
+      artist_id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+      album: Some(AlbumId(
+        id: "MPREb_yYq4IkZhG9j",
+        name: "Felsenfest",
+      )),
+      view_count: None,
+      track_type: track,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "0uSu-jHdDd4",
+      name: "Westwind",
+      duration: Some(188),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+          name: "dArtagnan",
+        ),
+      ],
+      artist_id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+      album: Some(AlbumId(
+        id: "MPREb_yYq4IkZhG9j",
+        name: "Felsenfest",
+      )),
+      view_count: None,
+      track_type: track,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "11pkE_azpBQ",
+      name: "Leave her, Johnny (feat. The O\'Reillys and the Paddyhats)",
+      duration: Some(173),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+          name: "dArtagnan",
+        ),
+      ],
+      artist_id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+      album: Some(AlbumId(
+        id: "MPREb_yYq4IkZhG9j",
+        name: "Felsenfest",
+      )),
+      view_count: None,
+      track_type: track,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "1tJPy7XlfCQ",
+      name: "Felsenfest",
+      duration: Some(180),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+          name: "dArtagnan",
+        ),
+      ],
+      artist_id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+      album: Some(AlbumId(
+        id: "MPREb_yYq4IkZhG9j",
+        name: "Felsenfest",
+      )),
+      view_count: None,
+      track_type: track,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "2JpUBTLjfPA",
+      name: "Dreht sich der Wind (Instrumental)",
+      duration: Some(178),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+          name: "dArtagnan",
+        ),
+      ],
+      artist_id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+      album: Some(AlbumId(
+        id: "MPREb_yYq4IkZhG9j",
+        name: "Felsenfest",
+      )),
+      view_count: None,
+      track_type: track,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "6WiuMIp9B6Y",
+      name: "Westwind (Instrumental)",
+      duration: Some(189),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+          name: "dArtagnan",
+        ),
+      ],
+      artist_id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+      album: Some(AlbumId(
+        id: "MPREb_yYq4IkZhG9j",
+        name: "Felsenfest",
+      )),
+      view_count: None,
+      track_type: track,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "8nfNNAlsTTA",
+      name: "My Love\'s in Germany (Instrumental)",
+      duration: Some(195),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+          name: "dArtagnan",
+        ),
+      ],
+      artist_id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+      album: Some(AlbumId(
+        id: "MPREb_yYq4IkZhG9j",
+        name: "Felsenfest",
+      )),
+      view_count: None,
+      track_type: track,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "C1U6oXpz4As",
+      name: "Wein & Wahrheit",
+      duration: Some(190),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+          name: "dArtagnan",
+        ),
+      ],
+      artist_id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+      album: Some(AlbumId(
+        id: "MPREb_yYq4IkZhG9j",
+        name: "Felsenfest",
+      )),
+      view_count: None,
+      track_type: track,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "DvKw0jTUN-s",
+      name: "Teufelsgeiger",
+      duration: Some(206),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+          name: "dArtagnan",
+        ),
+      ],
+      artist_id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+      album: Some(AlbumId(
+        id: "MPREb_yYq4IkZhG9j",
+        name: "Felsenfest",
+      )),
+      view_count: None,
+      track_type: track,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "GDSVX--bsRU",
+      name: "Korobeiniki\u{a0}\u{a0}\u{a0}\u{a0}\u{a0}\u{a0}",
+      duration: Some(174),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+          name: "dArtagnan",
+        ),
+      ],
+      artist_id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+      album: Some(AlbumId(
+        id: "MPREb_yYq4IkZhG9j",
+        name: "Felsenfest",
+      )),
+      view_count: None,
+      track_type: track,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "I-ArzgPbNx8",
+      name: "Merseburger Zauberspruch (feat. Luc Arbogast)",
+      duration: Some(225),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+          name: "dArtagnan",
+        ),
+      ],
+      artist_id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+      album: Some(AlbumId(
+        id: "MPREb_yYq4IkZhG9j",
+        name: "Felsenfest",
+      )),
+      view_count: None,
+      track_type: track,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "OElgvIuT8TY",
+      name: "Trink mein Freund",
+      duration: Some(172),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+          name: "dArtagnan",
+        ),
+      ],
+      artist_id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+      album: Some(AlbumId(
+        id: "MPREb_yYq4IkZhG9j",
+        name: "Felsenfest",
+      )),
+      view_count: None,
+      track_type: track,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "RGlOEBJyhrc",
+      name: "Drei schwarze Reiter (Instrumental)",
+      duration: Some(189),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+          name: "dArtagnan",
+        ),
+      ],
+      artist_id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+      album: Some(AlbumId(
+        id: "MPREb_yYq4IkZhG9j",
+        name: "Felsenfest",
+      )),
+      view_count: None,
+      track_type: track,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "UUCM1WR611g",
+      name: "Tanz in den Mai",
+      duration: Some(199),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+          name: "dArtagnan",
+        ),
+      ],
+      artist_id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+      album: Some(AlbumId(
+        id: "MPREb_yYq4IkZhG9j",
+        name: "Felsenfest",
+      )),
+      view_count: None,
+      track_type: track,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "WlzrZsEtWbs",
+      name: "Tanz in den Mai (Instrumental)",
+      duration: Some(199),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+          name: "dArtagnan",
+        ),
+      ],
+      artist_id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+      album: Some(AlbumId(
+        id: "MPREb_yYq4IkZhG9j",
+        name: "Felsenfest",
+      )),
+      view_count: None,
+      track_type: track,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "apY7iYoYtD8",
+      name: "Dreht sich der Wind",
+      duration: Some(177),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+          name: "dArtagnan",
+        ),
+      ],
+      artist_id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+      album: Some(AlbumId(
+        id: "MPREb_yYq4IkZhG9j",
+        name: "Felsenfest",
+      )),
+      view_count: None,
+      track_type: track,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "azSEPwrxG2c",
+      name: "Bella Ciao (Versione italiana - Instrumental)",
+      duration: Some(188),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+          name: "dArtagnan",
+        ),
+      ],
+      artist_id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+      album: Some(AlbumId(
+        id: "MPREb_yYq4IkZhG9j",
+        name: "Felsenfest",
+      )),
+      view_count: None,
+      track_type: track,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "b9FNHTk-tAM",
+      name: "Merseburger Zauberspruch (Instrumental)",
+      duration: Some(224),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+          name: "dArtagnan",
+        ),
+      ],
+      artist_id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+      album: Some(AlbumId(
+        id: "MPREb_yYq4IkZhG9j",
+        name: "Felsenfest",
+      )),
+      view_count: None,
+      track_type: track,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "eAeGr78VYxM",
+      name: "Auld Lang Syne\u{a0}\u{a0}\u{a0}\u{a0} (Instrumental)",
+      duration: Some(175),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+          name: "dArtagnan",
+        ),
+      ],
+      artist_id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+      album: Some(AlbumId(
+        id: "MPREb_yYq4IkZhG9j",
+        name: "Felsenfest",
+      )),
+      view_count: None,
+      track_type: track,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "efCzrXOWM0Q",
+      name: "Freiheit & Tod\u{a0}",
+      duration: Some(195),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+          name: "dArtagnan",
+        ),
+      ],
+      artist_id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+      album: Some(AlbumId(
+        id: "MPREb_yYq4IkZhG9j",
+        name: "Felsenfest",
+      )),
+      view_count: None,
+      track_type: track,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "fbmHQLiF1qs",
+      name: "Vino griego",
+      duration: Some(209),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+          name: "dArtagnan",
+        ),
+      ],
+      artist_id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+      album: Some(AlbumId(
+        id: "MPREb_yYq4IkZhG9j",
+        name: "Felsenfest",
+      )),
+      view_count: None,
+      track_type: track,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "h0qhAXLom-Y",
+      name: "C\'est la vie (English Version - Instrumental)",
+      duration: Some(198),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+          name: "dArtagnan",
+        ),
+      ],
+      artist_id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+      album: Some(AlbumId(
+        id: "MPREb_yYq4IkZhG9j",
+        name: "Felsenfest",
+      )),
+      view_count: None,
+      track_type: track,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "hTL2vAvAbNM",
+      name: "Teufelsgeiger (Instrumental)",
+      duration: Some(206),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+          name: "dArtagnan",
+        ),
+      ],
+      artist_id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+      album: Some(AlbumId(
+        id: "MPREb_yYq4IkZhG9j",
+        name: "Felsenfest",
+      )),
+      view_count: None,
+      track_type: track,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "hptOG4EVgMs",
+      name: "Wein & Wahrheit (Instrumental)",
+      duration: Some(190),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+          name: "dArtagnan",
+        ),
+      ],
+      artist_id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+      album: Some(AlbumId(
+        id: "MPREb_yYq4IkZhG9j",
+        name: "Felsenfest",
+      )),
+      view_count: None,
+      track_type: track,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "iRIlHsC8xL8",
+      name: "Pulverdampf & Donnergroll\'n",
+      duration: Some(202),
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+          name: "dArtagnan",
+        ),
+      ],
+      artist_id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+      album: Some(AlbumId(
+        id: "MPREb_yYq4IkZhG9j",
+        name: "Felsenfest",
+      )),
+      view_count: None,
+      track_type: track,
+      track_nr: None,
+      by_va: false,
+    ),
+  ],
+  ctoken: Some("4qmFsgJcEhRGRW11c2ljX2xpa2VkX3ZpZGVvcxpEQ0JwNkprTkNhMUZIVW05SlEwRkZVVUZvYjBOYVZ6UnBSRUZxWXpsaVF6ZENhRU4yT1ZwdFRVRjNnZ01HS2dRSUFCQUI%3D"),
+  endpoint: music_browse,
+)

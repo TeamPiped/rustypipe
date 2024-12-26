@@ -269,7 +269,14 @@ impl MapResponse<Paginator<TrackItem>> for response::MusicDetails {
             .map(|c| c.next_continuation_data.continuation);
 
         Ok(MapResult {
-            c: Paginator::new_ext(None, tracks, ctoken, None, ContinuationEndpoint::MusicNext),
+            c: Paginator::new_ext(
+                None,
+                tracks,
+                ctoken,
+                None,
+                ContinuationEndpoint::MusicNext,
+                false,
+            ),
             warnings,
         })
     }

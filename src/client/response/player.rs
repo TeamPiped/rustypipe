@@ -4,7 +4,7 @@ use serde::Deserialize;
 use serde_with::serde_as;
 use serde_with::{DefaultOnError, DisplayFromStr};
 
-use super::{ResponseContext, Thumbnails};
+use super::{Empty, ResponseContext, Thumbnails};
 use crate::serializer::{text::Text, MapResult};
 
 #[serde_as]
@@ -56,9 +56,6 @@ pub(crate) enum PlayabilityStatus {
         reason: String,
     },
 }
-
-#[derive(Debug, Deserialize)]
-pub(crate) struct Empty {}
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]

@@ -230,6 +230,7 @@ impl MapResponse<Channel<Paginator<VideoItem>>> for response::Channel {
             mapper.ctoken,
             visitor_data,
             ContinuationEndpoint::Browse,
+            false,
         );
 
         Ok(MapResult {

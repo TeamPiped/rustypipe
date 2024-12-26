@@ -359,6 +359,7 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                     comment_ctoken,
                     visitor_data.clone(),
                     ContinuationEndpoint::Next,
+                    false,
                 ),
                 latest_comments: Paginator::new_ext(
                     comment_count,
@@ -366,6 +367,7 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                     latest_comments_ctoken,
                     visitor_data.clone(),
                     ContinuationEndpoint::Next,
+                    false,
                 ),
                 visitor_data,
             },
@@ -484,6 +486,7 @@ fn map_recommendations(
             mapper.ctoken,
             visitor_data,
             ContinuationEndpoint::Next,
+            false,
         ),
         warnings: mapper.warnings,
     }

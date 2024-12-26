@@ -272,7 +272,7 @@ pub(crate) struct QueueMusicItem {
 #[derive(Default, Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct MusicThumbnailRenderer {
-    #[serde(alias = "croppedSquareThumbnailRenderer")]
+    #[serde(default, alias = "croppedSquareThumbnailRenderer")]
     pub music_thumbnail_renderer: ThumbnailsWrap,
 }
 
@@ -767,8 +767,16 @@ impl MusicListMapper {
             }
             // Artist / Album / Playlist
             Some((page_type, id)) => {
+                // Ignore "Shuffle all" button and builtin "Liked music" and "Saved episodes" playlists
+                if page_type == MusicPageType::None
+                    || (page_type == (MusicPageType::Playlist { is_podcast: false })
+                        && matches!(id.as_str(), "MLCT" | "LM" | "SE"))
+                {
+                    return Ok(None);
+                }
+
                 let mut subtitle_parts = c2
-                    .ok_or_else(|| "could not get subtitle".to_owned())?
+                    .ok_or_else(|| format!("{id}: could not get subtitle"))?
                     .renderer
                     .text
                     .split(util::DOT_SEPARATOR)

@@ -1,5 +1,7 @@
 //! Wrapper model for progressively fetched items
 
+use std::ops::Not;
+
 use serde::{Deserialize, Serialize};
 
 /// Wrapper around progressively fetched items
@@ -33,6 +35,9 @@ pub struct Paginator<T> {
     pub visitor_data: Option<String>,
     /// YouTube API endpoint to fetch continuations from
     pub endpoint: ContinuationEndpoint,
+    /// True if the paginator should be fetched with YouTube credentials
+    #[serde(default, skip_serializing_if = "<&bool>::not")]
+    pub authenticated: bool,
 }
 
 impl<T> Default for Paginator<T> {
@@ -43,6 +48,7 @@ impl<T> Default for Paginator<T> {
             ctoken: None,
             visitor_data: None,
             endpoint: ContinuationEndpoint::Browse,
+            authenticated: false,
         }
     }
 }
@@ -82,7 +88,14 @@ impl ContinuationEndpoint {
 
 impl<T> Paginator<T> {
     pub(crate) fn new(count: Option<u64>, items: Vec<T>, ctoken: Option<String>) -> Self {
-        Self::new_ext(count, items, ctoken, None, ContinuationEndpoint::Browse)
+        Self::new_ext(
+            count,
+            items,
+            ctoken,
+            None,
+            ContinuationEndpoint::Browse,
+            false,
+        )
     }
 
     pub(crate) fn new_ext(
@@ -91,6 +104,7 @@ impl<T> Paginator<T> {
         ctoken: Option<String>,
         visitor_data: Option<String>,
         endpoint: ContinuationEndpoint,
+        authenticated: bool,
     ) -> Self {
         Self {
             count: match ctoken {
@@ -101,6 +115,7 @@ impl<T> Paginator<T> {
             ctoken,
             visitor_data,
             endpoint,
+            authenticated,
         }
     }
 

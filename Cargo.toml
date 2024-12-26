@@ -41,6 +41,7 @@ serde_with = { version = "3.0.0", default-features = false, features = [
     "macros",
 ] }
 serde_plain = "1.0.0"
+sha1 = "0.10.0"
 rand = "0.8.0"
 time = { version = "0.3.37", features = [
     "macros",
@@ -51,7 +52,7 @@ futures-util = "0.3.31"
 ress = "0.11.0"
 phf = "0.11.0"
 phf_codegen = "0.11.0"
-base64 = "0.22.0"
+data-encoding = "2.0.0"
 urlencoding = "2.1.0"
 quick-xml = { version = "0.37.0", features = ["serialize"] }
 tracing = { version = "0.1.0", features = ["log"] }
@@ -105,11 +106,12 @@ serde.workspace = true
 serde_json.workspace = true
 serde_with.workspace = true
 serde_plain.workspace = true
+sha1.workspace = true
 rand.workspace = true
 time.workspace = true
 ress.workspace = true
 phf.workspace = true
-base64.workspace = true
+data-encoding.workspace = true
 urlencoding.workspace = true
 tracing.workspace = true
 quick-xml = { workspace = true, optional = true }

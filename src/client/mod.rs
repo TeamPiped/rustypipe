@@ -3,10 +3,12 @@
 pub(crate) mod response;
 
 mod channel;
+mod history;
 mod music_artist;
 mod music_charts;
 mod music_details;
 mod music_genres;
+mod music_history;
 mod music_new;
 mod music_playlist;
 mod music_search;
@@ -31,6 +33,7 @@ use once_cell::sync::Lazy;
 use regex::Regex;
 use reqwest::{header, Client, ClientBuilder, Request, RequestBuilder, Response, StatusCode};
 use serde::{de::DeserializeOwned, Deserialize, Serialize};
+use sha1::{Digest, Sha1};
 use time::OffsetDateTime;
 use tokio::sync::RwLock as AsyncRwLock;
 
@@ -83,6 +86,13 @@ pub enum ClientType {
 }
 
 impl ClientType {
+    fn is_web(self) -> bool {
+        matches!(
+            self,
+            ClientType::Desktop | ClientType::DesktopMusic | ClientType::Mobile
+        )
+    }
+
     fn needs_deobf(self) -> bool {
         !matches!(self, ClientType::Ios)
     }
@@ -293,9 +303,9 @@ const YOUTUBEI_V1_URL: &str = "https://www.youtube.com/youtubei/v1/";
 const YOUTUBEI_V1_GAPIS_URL: &str = "https://youtubei.googleapis.com/youtubei/v1/";
 const YOUTUBE_MUSIC_V1_URL: &str = "https://music.youtube.com/youtubei/v1/";
 const YOUTUBEI_MOBILE_V1_URL: &str = "https://m.youtube.com/youtubei/v1/";
-const YOUTUBE_HOME_URL: &str = "https://www.youtube.com/";
-const YOUTUBE_MUSIC_HOME_URL: &str = "https://music.youtube.com/";
-const YOUTUBE_MOBILE_HOME_URL: &str = "https://m.youtube.com/";
+const YOUTUBE_HOME_URL: &str = "https://www.youtube.com";
+const YOUTUBE_MUSIC_HOME_URL: &str = "https://music.youtube.com";
+const YOUTUBE_MOBILE_HOME_URL: &str = "https://m.youtube.com";
 const YOUTUBE_TV_URL: &str = "https://www.youtube.com/tv";
 
 const DISABLE_PRETTY_PRINT_PARAMETER: &str = "prettyPrint=false";
@@ -479,6 +489,7 @@ struct CacheHolder {
     clients: HashMap<ClientType, AsyncRwLock<CacheEntry<ClientData>>>,
     deobf: AsyncRwLock<CacheEntry<DeobfData>>,
     oauth_token: RwLock<Option<OauthToken>>,
+    auth_cookie: RwLock<Option<String>>,
 }
 
 #[derive(Default, Debug, Clone, Serialize, Deserialize)]
@@ -489,6 +500,8 @@ struct CacheData {
     deobf: CacheEntry<DeobfData>,
     #[serde(skip_serializing_if = "Option::is_none")]
     oauth_token: Option<OauthToken>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    auth_cookie: Option<String>,
 }
 
 #[derive(Default, Debug, Clone, Serialize, Deserialize)]
@@ -652,6 +665,7 @@ impl RustyPipeBuilder {
                     clients: cache_clients,
                     deobf: AsyncRwLock::new(cdata.deobf),
                     oauth_token: RwLock::new(cdata.oauth_token),
+                    auth_cookie: RwLock::new(cdata.auth_cookie),
                 },
                 default_opts: self.default_opts,
                 user_agent,
@@ -797,13 +811,6 @@ impl RustyPipeBuilder {
         self
     }
 
-    /// Enable authentication for all requests
-    #[must_use]
-    pub fn authenticated(mut self) -> Self {
-        self.default_opts.auth = Some(true);
-        self
-    }
-
     /// Disable authentication for all requests
     #[must_use]
     pub fn unauthenticated(mut self) -> Self {
@@ -926,7 +933,15 @@ impl RustyPipe {
         let status = res.status();
 
         if status.is_client_error() || status.is_server_error() {
-            Err(Error::HttpStatus(status.into(), "none".into()))
+            let error_msg = if let Ok(body) = res.text().await {
+                serde_json::from_str::<response::ErrorResponse>(&body)
+                    .map(|r| Cow::from(r.error.message))
+                    .ok()
+            } else {
+                None
+            }
+            .unwrap_or_default();
+            Err(Error::HttpStatus(status.into(), error_msg))
         } else {
             Ok(res)
         }
@@ -1120,6 +1135,7 @@ impl RustyPipe {
                 clients: cache_clients,
                 deobf: self.inner.cache.deobf.read().await.clone(),
                 oauth_token: self.inner.cache.oauth_token.read().unwrap().clone(),
+                auth_cookie: self.inner.cache.auth_cookie.read().unwrap().clone(),
             };
 
             match serde_json::to_string(&cdata) {
@@ -1417,6 +1433,22 @@ impl RustyPipe {
             Err(Error::Auth(AuthError::NoLogin))
         }
     }
+
+    /// Set the user authentication cookie
+    ///
+    /// The cookie is used for authenticated requests with browser-based clients
+    /// (Desktop, DesktopMusic, Mobile).
+    ///
+    /// **Note:** YouTube rotates cookies every few minutes when using the web applications.
+    /// So you should not use the session you obtained cookies from afterwards or it will
+    /// become invalid.
+    ///
+    /// I recommend to log in using Incognito mode, get the cookies from the devtools
+    /// and then close the page.
+    pub async fn set_auth_cookie<S: Into<String>>(&self, cookie: S) {
+        let mut c = self.inner.cache.auth_cookie.write().unwrap();
+        *c = Some(cookie.into());
+    }
 }
 
 impl RustyPipeQuery {
@@ -1459,9 +1491,8 @@ impl RustyPipeQuery {
 
     /// Enable authentication for this request
     ///
-    /// RustyPipe uses YouTube TV's OAuth authentication. This means that authentication
-    /// only works when using the TV client. Enabling authentication for other clients
-    /// results in a 400 error.
+    /// Depending on the client type RustyPipe uses either the authentication cookie or the
+    /// OAuth token to authenticate requests.
     #[must_use]
     pub fn authenticated(mut self) -> Self {
         self.opts.auth = Some(true);
@@ -1525,13 +1556,48 @@ impl RustyPipeQuery {
         }
     }
 
-    /// Return `true` if the client has stored login credentials and authentication has not been disabled
-    pub fn auth_enabled(&self) -> bool {
+    /// Return `true` if the client has stored login credentials for the given client type
+    /// and authentication has not been disabled
+    pub fn auth_enabled(&self, ctype: ClientType) -> bool {
         if self.opts.auth == Some(false) {
             return false;
         }
-        let cache_token = self.client.inner.cache.oauth_token.read().unwrap();
-        cache_token.is_some()
+        if ctype.is_web() {
+            let auth_cookie = self.client.inner.cache.auth_cookie.read().unwrap();
+            auth_cookie.is_some()
+        } else if ctype == ClientType::Tv {
+            let cache_token = self.client.inner.cache.oauth_token.read().unwrap();
+            cache_token.is_some()
+        } else {
+            false
+        }
+    }
+
+    /// Return the first client type from the given list which has login credentials available.
+    ///
+    /// Returns [`None`] if authentication has been disabled or there are no available client types.
+    pub fn auth_enabled_client(&self, clients: &[ClientType]) -> Option<ClientType> {
+        if self.opts.auth == Some(false) {
+            return None;
+        }
+        let (has_cookie, has_token) = {
+            let auth_cookie = self.client.inner.cache.auth_cookie.read().unwrap();
+            let oauth_token = self.client.inner.cache.oauth_token.read().unwrap();
+            (auth_cookie.is_some(), oauth_token.is_some())
+        };
+
+        clients
+            .iter()
+            .find(|c| {
+                if c.is_web() {
+                    has_cookie
+                } else if **c == ClientType::Tv {
+                    has_token
+                } else {
+                    false
+                }
+            })
+            .copied()
     }
 
     /// Create a new context object, which is included in every request to
@@ -1666,7 +1732,7 @@ impl RustyPipeQuery {
         ctype: ClientType,
         endpoint: &str,
         visitor_data: Option<&str>,
-    ) -> RequestBuilder {
+    ) -> Result<RequestBuilder, Error> {
         let mut r = match ctype {
             ClientType::Desktop => self
                 .client
@@ -1752,7 +1818,55 @@ impl RustyPipeQuery {
         if let Some(vdata) = self.opts.visitor_data.as_deref().or(visitor_data) {
             r = r.header("X-Goog-EOM-Visitor-Id", vdata);
         }
-        r
+
+        let mut cookie = None;
+
+        if self.opts.auth == Some(true) {
+            if ctype.is_web() {
+                let auth_cookie = self
+                    .client
+                    .inner
+                    .cache
+                    .auth_cookie
+                    .read()
+                    .unwrap()
+                    .clone()
+                    .ok_or(Error::Auth(AuthError::NoLogin))?;
+                if let Some(auth_header) = Self::sapisidhash_header(&auth_cookie, ctype) {
+                    r = r.header(header::AUTHORIZATION, auth_header);
+                }
+                cookie = Some(auth_cookie);
+            } else if ctype == ClientType::Tv {
+                let access_token = self.client.user_auth_access_token().await?;
+                r = r.header(header::AUTHORIZATION, format!("Bearer {}", access_token));
+            }
+        }
+
+        if ctype.is_web() {
+            r = r.header(header::COOKIE, cookie.as_deref().unwrap_or(CONSENT_COOKIE));
+        }
+
+        Ok(r)
+    }
+
+    fn sapisidhash_header(cookie: &str, ctype: ClientType) -> Option<String> {
+        let sapisid = cookie
+            .split(';')
+            .find_map(|c| c.trim().strip_prefix("SAPISID="))?;
+        let time_now = OffsetDateTime::now_utc().unix_timestamp();
+        let mut sapisidhash = Sha1::new();
+        sapisidhash.update(time_now.to_string());
+        sapisidhash.update(" ");
+        sapisidhash.update(sapisid);
+        sapisidhash.update(" ");
+        sapisidhash.update(match ctype {
+            ClientType::DesktopMusic => YOUTUBE_MUSIC_HOME_URL,
+            ClientType::Mobile => YOUTUBE_MOBILE_HOME_URL,
+            _ => YOUTUBE_HOME_URL,
+        });
+
+        let sapisidhash_hex = data_encoding::HEXLOWER.encode(&sapisidhash.finalize());
+        Some(format!("SAPISIDHASH {time_now}_{sapisidhash_hex}"))
     }
 
     /// Get a YouTube visitor data cookie, which is necessary for certain requests
@@ -1892,17 +2006,14 @@ impl RustyPipeQuery {
             visitor_data: Some(&visitor_data),
             client_type: ctype,
             artist: ctx_src.artist,
+            authenticated: self.opts.auth.unwrap_or_default(),
         };
 
-        let mut r = self
+        let request = self
             .request_builder(ctype, endpoint, ctx.visitor_data)
-            .await;
-
-        if self.opts.auth == Some(true) {
-            let access_token = self.client.user_auth_access_token().await?;
-            r = r.header(header::AUTHORIZATION, format!("Bearer {}", access_token));
-        }
-        let request = r.json(&req_body).build()?;
+            .await?
+            .json(&req_body)
+            .build()?;
 
         let req_res = self.yt_request::<R, M>(&request, &ctx).await?;
 
@@ -2031,7 +2142,7 @@ impl RustyPipeQuery {
 
         let request = self
             .request_builder(ctype, endpoint, None)
-            .await
+            .await?
             .json(&req_body)
             .build()?;
 
@@ -2053,6 +2164,7 @@ struct MapRespCtx<'a> {
     visitor_data: Option<&'a str>,
     client_type: ClientType,
     artist: Option<ArtistId>,
+    authenticated: bool,
 }
 
 /// Options to give to the mapper when making requests;
@@ -2077,6 +2189,7 @@ impl<'a> MapRespCtx<'a> {
             visitor_data: None,
             client_type: ClientType::Desktop,
             artist: None,
+            authenticated: false,
         }
     }
 }

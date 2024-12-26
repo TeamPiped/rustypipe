@@ -39,6 +39,9 @@ pub async fn download_testfiles() {
     search_playlists().await;
     search_empty().await;
     trending().await;
+    history().await;
+    subscriptions().await;
+    subscription_feed().await;
 
     music_playlist().await;
     music_playlist_cont().await;
@@ -62,6 +65,11 @@ pub async fn download_testfiles() {
     music_charts().await;
     music_genres().await;
     music_genre().await;
+    music_history().await;
+    music_saved_artists().await;
+    music_saved_albums().await;
+    music_saved_tracks().await;
+    music_saved_playlists().await;
 }
 
 const CLIENT_TYPES: [ClientType; 5] = [
@@ -455,6 +463,36 @@ async fn trending() {
     rp.query().trending().await.unwrap();
 }
 
+async fn history() {
+    let json_path = path!(*TESTFILES_DIR / "history" / "history.json");
+    if json_path.exists() {
+        return;
+    }
+
+    let rp = rp_testfile(&json_path);
+    rp.query().history().await.unwrap();
+}
+
+async fn subscriptions() {
+    let json_path = path!(*TESTFILES_DIR / "history" / "subscriptions.json");
+    if json_path.exists() {
+        return;
+    }
+
+    let rp = rp_testfile(&json_path);
+    rp.query().subscriptions().await.unwrap();
+}
+
+async fn subscription_feed() {
+    let json_path = path!(*TESTFILES_DIR / "history" / "subscription_feed.json");
+    if json_path.exists() {
+        return;
+    }
+
+    let rp = rp_testfile(&json_path);
+    rp.query().subscription_feed().await.unwrap();
+}
+
 async fn music_playlist() {
     for (name, id) in [
         ("short", "RDCLAK5uy_kFQXdnqMaQCVx2wpUM4ZfbsGCDibZtkJk"),
@@ -775,4 +813,54 @@ async fn music_genre() {
         let rp = rp_testfile(&json_path);
         rp.query().music_genre(id).await.unwrap();
     }
+}
+
+async fn music_history() {
+    let json_path = path!(*TESTFILES_DIR / "music_history" / "music_history.json");
+    if json_path.exists() {
+        return;
+    }
+
+    let rp = rp_testfile(&json_path);
+    rp.query().music_history().await.unwrap();
+}
+
+async fn music_saved_artists() {
+    let json_path = path!(*TESTFILES_DIR / "music_history" / "saved_artists.json");
+    if json_path.exists() {
+        return;
+    }
+
+    let rp = rp_testfile(&json_path);
+    rp.query().music_saved_artists().await.unwrap();
+}
+
+async fn music_saved_albums() {
+    let json_path = path!(*TESTFILES_DIR / "music_history" / "saved_albums.json");
+    if json_path.exists() {
+        return;
+    }
+
+    let rp = rp_testfile(&json_path);
+    rp.query().music_saved_albums().await.unwrap();
+}
+
+async fn music_saved_tracks() {
+    let json_path = path!(*TESTFILES_DIR / "music_history" / "saved_tracks.json");
+    if json_path.exists() {
+        return;
+    }
+
+    let rp = rp_testfile(&json_path);
+    rp.query().music_saved_tracks().await.unwrap();
+}
+
+async fn music_saved_playlists() {
+    let json_path = path!(*TESTFILES_DIR / "music_history" / "saved_playlists.json");
+    if json_path.exists() {
+        return;
+    }
+
+    let rp = rp_testfile(&json_path);
+    rp.query().music_saved_playlists().await.unwrap();
 }

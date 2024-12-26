@@ -84,24 +84,28 @@ impl RustyPipeQuery {
             match res {
                 Ok(res) => return Ok(res),
                 Err(Error::Extraction(e)) => {
-                    if e.use_login() && self.auth_enabled() {
-                        tracing::info!("{e}; fetching player with login");
+                    if e.use_login() {
+                        if let Some(c) = self.auth_enabled_client(clients) {
+                            tracing::info!("{e}; fetching player with login");
 
-                        match self
-                            .clone()
-                            .authenticated()
-                            .player_from_client(video_id, ClientType::Tv)
-                            .await
-                        {
-                            Ok(res) => return Ok(res),
-                            Err(Error::Extraction(e)) => {
-                                if !e.switch_client() {
-                                    return Err(Error::Extraction(e));
+                            match self
+                                .clone()
+                                .authenticated()
+                                .player_from_client(video_id, c)
+                                .await
+                            {
+                                Ok(res) => return Ok(res),
+                                Err(Error::Extraction(e)) => {
+                                    if !e.switch_client() {
+                                        return Err(Error::Extraction(e));
+                                    }
                                 }
+                                Err(e) => return Err(e),
                             }
-                            Err(e) => return Err(e),
+                            last_e = Error::Extraction(e);
+                        } else {
+                            return Err(Error::Extraction(e));
                         }
-                        last_e = Error::Extraction(e);
                     } else if !e.switch_client() {
                         return Err(Error::Extraction(e));
                     }
@@ -759,6 +763,7 @@ mod tests {
                 visitor_data: None,
                 client_type,
                 artist: None,
+                authenticated: false,
             })
             .unwrap();
 

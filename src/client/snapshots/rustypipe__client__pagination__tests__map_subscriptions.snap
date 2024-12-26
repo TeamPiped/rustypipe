@@ -1,0 +1,1751 @@
+---
+source: src/client/pagination.rs
+expression: paginator
+---
+Paginator(
+  count: Some(87),
+  items: [
+    ChannelItem(
+      id: "UCpOlOeQjj7EsVnDh3zuCgsA",
+      name: "Adafruit Industries",
+      handle: Some("@adafruit"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/0YN2yoXmT1yyzoOY2Kf6kZmUnLYyAJvmXVweJBuWdB5QvNofX7DTQq44kfZeIf4seQGiwfRkaA=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/0YN2yoXmT1yyzoOY2Kf6kZmUnLYyAJvmXVweJBuWdB5QvNofX7DTQq44kfZeIf4seQGiwfRkaA=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: verified,
+      subscriber_count: Some(454000),
+      short_description: "Adafruit was founded in 2005 by MIT engineer, Limor \"Ladyada\" Fried. Her goal was to create the best place online for learning electronics and making the best designed products for makers of all ages and skill levels. In the last 10 years, Adafruit has grown to over 100+ employees in the heart of NYC with a 50,000+ sq ft. factory. Adafruit has expanded offerings to include tools, equipment, and electronics that Limor personally selects, tests, and approves before going in to the Adafruit store. Adafruit is a 100% woman owned manufacturing company, a certified Minority and Woman-owned Business Enterprise (M/WBE), a certified Women’s Business Enterprise (WBE), and WOSB.\n\nDuring the COVID-19 outbreak Adafruit Industries is operating as an essential service and manufacturing business: NYC – Executive Order 202.6 making PPE and medical device components. In 2020 Adafruit was appointed to the Small Business Sector Advisory Council by the City of New York.\n",
+    ),
+    ChannelItem(
+      id: "UCSRCm4zHuETCS7jHWMiWNog",
+      name: "Adel Tawil",
+      handle: Some("@adeltawil"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/gP4biZPhz7HcfAs2QH5PEumEOkCAToYuFuWrt-xVSO205o51I8vVMPwMANhVWHcFw3WXZAHT=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/gP4biZPhz7HcfAs2QH5PEumEOkCAToYuFuWrt-xVSO205o51I8vVMPwMANhVWHcFw3WXZAHT=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(576000),
+      short_description: "This is the official YouTube Channel of Adel Tawil. ",
+    ),
+    ChannelItem(
+      id: "UCsRM0YB_dabtEPGPTKo-gcw",
+      name: "Adele",
+      handle: Some("@adele"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/YuRHl_4murHobFsrHDkpJANVHzXYTgP68zysfrsNPIRMr8fKSzEP_4y6cFeE5WfpWOdxVH4sO-8=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/YuRHl_4murHobFsrHDkpJANVHzXYTgP68zysfrsNPIRMr8fKSzEP_4y6cFeE5WfpWOdxVH4sO-8=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(32000000),
+      short_description: "The official YouTube channel of ADELE.",
+    ),
+    ChannelItem(
+      id: "UC9GtSLeksfK4yuJ_g1lgQbg",
+      name: "aespa",
+      handle: Some("@aespa"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/6CGtw27YRSZesaZSxp2fpT_KhH_Px_OOTWSq4igylqyibV1xpIZeazWBtepjhw1qeUkXDOVF=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/6CGtw27YRSZesaZSxp2fpT_KhH_Px_OOTWSq4igylqyibV1xpIZeazWBtepjhw1qeUkXDOVF=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(6770000),
+      short_description: "aespa 에스파 The 5th Mini Album 〖Whiplash〗\n\nWelcome to aespa Official YouTube Channel!\nYou can enjoy aespa\'s latest videos on aespa Official YouTube Channel.\n",
+    ),
+    ChannelItem(
+      id: "UC_1HVMnw-610qx54iEiWk7A",
+      name: "akidearest",
+      handle: Some("@akidearest"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ytc/AIdro_ktld7JEURejIWXjEKhRjbiZGxX3TKPnRLUB5lbtltJvek=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ytc/AIdro_ktld7JEURejIWXjEKhRjbiZGxX3TKPnRLUB5lbtltJvek=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: verified,
+      subscriber_count: Some(2860000),
+      short_description: "\n\nFor Business Inquiries or Conventions, please email me: akidearest.business@gmail.com",
+    ),
+    ChannelItem(
+      id: "UCxAS_aK7sS2x_bqnlJHDSHw",
+      name: "America\'s Test Kitchen",
+      handle: Some("@AmericasTestKitchen"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/6pPZQkBWoQ-UAu5sT-Z47ID6vhPr-nnfziSpR84unn9vsDUzz5_iNS3WkuXSdKUKhkVGQerE=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/6pPZQkBWoQ-UAu5sT-Z47ID6vhPr-nnfziSpR84unn9vsDUzz5_iNS3WkuXSdKUKhkVGQerE=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: verified,
+      subscriber_count: Some(2500000),
+      short_description: "The mission of America’s Test Kitchen (ATK) is to empower and inspire confidence, community, and creativity in the kitchen. Founded in 1992, the company is the leading multimedia cooking resource serving millions of fans with TV shows (America’s Test Kitchen, Cook\'s Country, and America’s Test Kitchen: The Next Generation), magazines (Cook’s Illustrated and Cook’s Country), cookbooks, a podcast (Proof), FAST channels, short-form video series, and the ATK All-Access subscription for digital content. Based in a state-of-the-art 15,000-square-foot test kitchen in Boston’s Seaport District, ATK has earned the trust of home cooks and culinary experts alike thanks to its one-of-a-kind processes and best-in-class techniques. Fifty full-time (admittedly very meticulous) test cooks, editors, and product testers spend their days tweaking every variable to find the very best recipes, equipment, ingredients, and techniques. Learn more at https://www.americastestkitchen.com/.\n",
+    ),
+    ChannelItem(
+      id: "UCn4NWJa3ZCVolXXUO7AZ_Zw",
+      name: "Andreas Bourani",
+      handle: Some("@andreasbourani"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ytc/AIdro_nMl-wh8tx00hvGxYTRs83SnjSZXqbAjC4mO8SEbYVVgpU=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ytc/AIdro_nMl-wh8tx00hvGxYTRs83SnjSZXqbAjC4mO8SEbYVVgpU=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(49000),
+      short_description: "Der offizielle Andreas Bourani YouTube Kanal\n\n☆ Ich bin eine Idee",
+    ),
+    ChannelItem(
+      id: "UCBL7ZxVX4GvW4CFiES_-0YA",
+      name: "Anne-Marie",
+      handle: Some("@annemarie"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/KRCIz_ERiPPmVzl6AQygt0QLhY3l92AUM3fGlnZ3LCN6uMT2HGRyO36vXvGMns65cchWTbuO=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/KRCIz_ERiPPmVzl6AQygt0QLhY3l92AUM3fGlnZ3LCN6uMT2HGRyO36vXvGMns65cchWTbuO=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(11500000),
+      short_description: "Anne-Marie has proved to be one of the UK’s most exciting and successful British breakthrough popstars of recent years. A former 3x world karate champion and West End child star-turned 9x BRIT Award nominee, A-M’s rise has been nothing short of meteoric. In 2018 Anne-Marie released her debut album, ‘Speak Your Mind’ which featured the hit singles \'Alarm\', \'Ciao Adios\', \'Heavy\', \'Friends\', \'2002\' and \'Perfect to Me\'. She subsequently ended that year as as the UK’s biggest-selling debut artist, selling out headline shows and playing stadium dates supporting long-time friend and champion Ed Sheeran in the process.\n\nShe has also sang on and co-written many other hits such as Birthday, Rockabye, Don\'t Leave Me Alone,  To Be Young, f*ck, i\'m lonely and Don\'t Play, collaborating with the likes of Clean Bandit, Marshmello, David Guetta, Lauv, Rudimental, Doja Cat and KSI, as well as starring on The Greatest Showman: Reimagined soundtrack performing Rewrite the stars alongside James Arthur.\n",
+    ),
+    ChannelItem(
+      id: "UCoGJ6tHb493zmR2yZaPszcQ",
+      name: "Au/Ra",
+      handle: Some("@HeyItsAuRa"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ytc/AIdro_mHye5peDSnqTLakApIUK14vGbYV8mVeA5XfkE0lWNinbY=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ytc/AIdro_mHye5peDSnqTLakApIUK14vGbYV8mVeA5XfkE0lWNinbY=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(568000),
+      short_description: "A dork who writes songs and sometimes makes things you can watch. ^_–✩",
+    ),
+    ChannelItem(
+      id: "UChWv6Pn_zP0rI6lgGt3MyfA",
+      name: "AvE",
+      handle: Some("@arduinoversusevil2025"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ytc/AIdro_lULtOnu9GTe8zM4UIp96v1Fsljkb22nyt0ze3BZEQJHQ=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ytc/AIdro_lULtOnu9GTe8zM4UIp96v1Fsljkb22nyt0ze3BZEQJHQ=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: none,
+      subscriber_count: Some(1440000),
+      short_description: "Err\nand err\nand err again\nbut less\nand less\nand less.\n\n-Piet Hein\n\n\n",
+    ),
+    ChannelItem(
+      id: "UCrj6DZ5z6dyAvJadLRcM7vA",
+      name: "bartlebeats - Topic",
+      handle: None,
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/o5aoJHWhJa7GNje1lx_9j3n6p7ak7Mj_dmQhPE-56DpOv2MRtlgeKZnOMAi0MBnYVLDDj9w9yg=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/o5aoJHWhJa7GNje1lx_9j3n6p7ak7Mj_dmQhPE-56DpOv2MRtlgeKZnOMAi0MBnYVLDDj9w9yg=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: none,
+      subscriber_count: Some(70),
+      short_description: "",
+    ),
+    ChannelItem(
+      id: "UCJl-cGDSoGlB86vB_3scwAQ",
+      name: "bausashaus",
+      handle: Some("@BausashausDe"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/in43p8oqmcxvsiLuIj3hJZwU-ToArJZg-jdzfF534h5hmKNHO7e2JPN_r7g0y2Fp2xSJ_HnOrN0=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/in43p8oqmcxvsiLuIj3hJZwU-ToArJZg-jdzfF534h5hmKNHO7e2JPN_r7g0y2Fp2xSJ_HnOrN0=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(579000),
+      short_description: "Willkommen im offiziellen Channel von BAUSA!",
+    ),
+    ChannelItem(
+      id: "UCtOcDBKgyr-f50SgbMErFkQ",
+      name: "BINI Official",
+      handle: Some("@BINIPH"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/JUvHJvdoccdG9aX_h9gOovEoMOT9gDquwjWpN_zEwv75ENRJns35kLZuUsr-Ft3oXdh8ciG6TQ=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/JUvHJvdoccdG9aX_h9gOovEoMOT9gDquwjWpN_zEwv75ENRJns35kLZuUsr-Ft3oXdh8ciG6TQ=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(2730000),
+      short_description: "BINI is an 8-member girl group composed of young, modern Filipinas who aspire to share their talent & passion with the world.\n\nIf you like our videos, don\'t forget to subscribe to our channel - http://bit.ly/BINIPH\n\nConnect, follow, and have a conversation with us on our social media accounts:\nFacebook: https://www.fb.com/biniph.official\nInstagram: https://www.instagram.com/bini_ph/\nTwitter: https://www.twitter.com/bini_ph\nTiktok: https://www.tiktok.com/@bini_ph\nKumu: bini_ph\n",
+    ),
+    ChannelItem(
+      id: "UCOmHUn--16B90oW2L6FRR3A",
+      name: "BLACKPINK",
+      handle: Some("@BLACKPINK"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/U3VrCkKjzTpQ3VYv4SCPjNfDHeJV-swGNnhLYhr0nV4lZz_GVUNzK4EB-HFRfKv9S5VNh14uAg=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/U3VrCkKjzTpQ3VYv4SCPjNfDHeJV-swGNnhLYhr0nV4lZz_GVUNzK4EB-HFRfKv9S5VNh14uAg=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(95400000),
+      short_description: "BLACKPINK Official YouTube Channel\n블랙핑크 공식 유튜브 채널입니다.\n\nJISOO, JENNIE, ROSÉ, LISA\n지수, 제니, 로제, 리사",
+    ),
+    ChannelItem(
+      id: "UCtHoTrH0GgJ9fBrzmTqk7Pg",
+      name: "CARYS",
+      handle: Some("@CARYSOfficial"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/CJjKNo35VgpL1-uM2-6fkzrf608yKIzbfBxC4wLcrvii-n8oLBri69PkjEswoMlcRoLvoDsLug=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/CJjKNo35VgpL1-uM2-6fkzrf608yKIzbfBxC4wLcrvii-n8oLBri69PkjEswoMlcRoLvoDsLug=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(307000),
+      short_description: "Official YouTube channel of CARYS.\n\nLinktree: https://linktr.ee/xcarysx\n\nConnect with CARYS: \nSubscribe on YouTube: https://www.youtube.com/carysofficial?sub_confirmation=1\nGaming Youtube Channel: https://www.youtube.com/channel/UCu9vHZwJWpfoDozFDjMW9fg\nWebsite: https://www.carysofficial.com/\nInstagram: https://www.instagram.com/carysofficial/ \nFacebook: https://www.facebook.com/carysofficial/ \nTwitter: https://twitter.com/carysofficial\nTikTok: https://www.tiktok.com/@carysofficial\n\n",
+    ),
+    ChannelItem(
+      id: "UCOvEMf00DnwdkpOCRWdc6uA",
+      name: "Charli xcx",
+      handle: Some("@officialcharlixcx"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ct7MWGDuGe3sko82M14qN6eOH7fW5wLh2xxBhnTiDMzVELeKHtCz8gJ_HA_GpxwlwDE2v13rPg=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ct7MWGDuGe3sko82M14qN6eOH7fW5wLh2xxBhnTiDMzVELeKHtCz8gJ_HA_GpxwlwDE2v13rPg=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(3490000),
+      short_description: "The official YouTube Channel of Charli xcx\n\nCharli xcx is an iconic figure in the arts, having helped expand the landscape of popular music over the last decade by seamlessly traversing the underground and the mainstream with her artistic output. A singer, songwriter, documentary maker, radio host and record label boss, Charli’s story is one of an artist who continues to succeed without compromise, earning critical acclaim for her forward-thinking music style and entrepreneurial spirit.\n\nHer incredible catalogue includes the studio albums True Romance, SUCKER, Charli, how i\'m feeling now, CRASH, and BRAT. These have spawned hit singles such as Boom Clap, Break The Rules, Doing It, After The Afterparty, 1999, Blame It On Your Love , Gone, Good Ones and has seen Charli collaborate with global superstars such as BTS, Lizzo, Troye Sivan and HAIM as well as future game changers such as Kim Petras, Christine and the Queens, Yaeji and Clairo.\n",
+    ),
+    ChannelItem(
+      id: "UCpvCJWgUNwZArGtJ00kDS1A",
+      name: "CHASE ATLANTIC",
+      handle: Some("@chaseatlantic"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/f9FCKd7XMHVUQ_zxhspIwoyUCEk986YiXm-0NuvmGeD3oD-9uRM91_rOvn1HGVptCQklWvUfB1U=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/f9FCKd7XMHVUQ_zxhspIwoyUCEk986YiXm-0NuvmGeD3oD-9uRM91_rOvn1HGVptCQklWvUfB1U=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(2460000),
+      short_description: "LOST IN HEAVEN OUT NOW",
+    ),
+    ChannelItem(
+      id: "UChCWmgEgUXwS5QEZZ-iWN-Q",
+      name: "Cheat Codes",
+      handle: Some("@CheatCodes"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/m8NTmy6jGdmct02X6EM3Lf_Q5uSzF4BkXn-5IJ5q7pWuHX-28HemhElO3ynyHQm60OzYT90M=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/m8NTmy6jGdmct02X6EM3Lf_Q5uSzF4BkXn-5IJ5q7pWuHX-28HemhElO3ynyHQm60OzYT90M=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(753000),
+      short_description: "TYSM 🗡\u{fe0f} w/ @salemilese out 11/22 🖤\n",
+    ),
+    ChannelItem(
+      id: "UCz1mQ-4_wui83UfT3ylqmpw",
+      name: "CRO",
+      handle: Some("@cro"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/X8cpJTOX9am0tmIlD6dwsiqQV6uwlNlRgX6R7WzIpkf688EbjD6lFfkPtAkCyGIQjgumIvYXJQ=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/X8cpJTOX9am0tmIlD6dwsiqQV6uwlNlRgX6R7WzIpkf688EbjD6lFfkPtAkCyGIQjgumIvYXJQ=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(561000),
+      short_description: "Offizieller YouTube-Kanal von CRO\n\nKanal abonnieren: http://bit.ly/CroYouTube\n\nCheck CRO im Netz:\n►TikTok: https://cromusik.lnk.to/socialsAY/tiktok\n►Instagram: https://cromusik.lnk.to/socialsAY/instagram\n►Facebook: https://cromusik.lnk.to/socialsAY/facebook\n►X: https://cromusik.lnk.to/socialsAY/twitter\n► 🤖: https://t.me/r2dcro_bot",
+    ),
+    ChannelItem(
+      id: "UC_x8HoD18XJkILQBreVENUQ",
+      name: "DJ Snake",
+      handle: Some("@DJSnake"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/uTXyQUSez8rz1TYr6F_S6o8x-4lebrWy_ioSR7R9m_OhpXvpSnwiZb4ritKWkP_9uBNkFgvJbQ=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/uTXyQUSez8rz1TYr6F_S6o8x-4lebrWy_ioSR7R9m_OhpXvpSnwiZb4ritKWkP_9uBNkFgvJbQ=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(24600000),
+      short_description: "Official YouTube Channel of DJ Snake. \n\nOfficial Store: https://djsnake.store/\n\nFollow DJ Snake\nWebsite: http://djsnake.com/ \nInstagram: http://www.instagram.com/djsnake\nTiktok: https://www.tiktok.com/@djsnake\nFacebook: http://www.facebook.com/djsnake.fr\nTwitter: http://www.twitter.com/djsnake\nSoundcloud: http://www.soundcloud.com/djsnake",
+    ),
+    ChannelItem(
+      id: "UC0C-w0YjGpqDXGB8IHb662A",
+      name: "Ed Sheeran",
+      handle: Some("@EdSheeran"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/emA0C_i9tUyJgxrfVpJ31e0QCU2MlovjYvQkAC9mDuSJyhl6h8PkFj5-ozRzz2vFtpbnls8s1W4=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/emA0C_i9tUyJgxrfVpJ31e0QCU2MlovjYvQkAC9mDuSJyhl6h8PkFj5-ozRzz2vFtpbnls8s1W4=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(55600000),
+      short_description: "Ed Sheeran x\n\n+-=÷× (Tour Collection: Live) | 27th Dec - Pre-order now\n",
+    ),
+    ChannelItem(
+      id: "UC7VSImgZ4Ar_eIxLMMR9S9w",
+      name: "Emiliana Torrini",
+      handle: Some("@EmilianaTorrini1"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/FybHfKRd27YCtT3qrcwPR3KeNKhMq56CnTlGfQHG_yt2Hvdq-pvCqjgvHLMeLRnt3oAqyddnlQ=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/FybHfKRd27YCtT3qrcwPR3KeNKhMq56CnTlGfQHG_yt2Hvdq-pvCqjgvHLMeLRnt3oAqyddnlQ=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(23900),
+      short_description: "Emilíana\'s Official Youtube Channel",
+    ),
+    ChannelItem(
+      id: "UCFeqAfEuKm7lIg2ddQzh61A",
+      name: "Emirichu",
+      handle: Some("@Emirichu"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/7n_8uX4SlhW8lOmV1GjnOg70WnT5fOipvILzN8BA-fzAtsNZyUVCSBwSN8XHRd1PPinE6GdL=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/7n_8uX4SlhW8lOmV1GjnOg70WnT5fOipvILzN8BA-fzAtsNZyUVCSBwSN8XHRd1PPinE6GdL=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: verified,
+      subscriber_count: Some(3500000),
+      short_description: "Hi, I like drawing and I\'m using this channel to be more active with my hobby.\nI\'m not an animator. (I occasionally make animatics, but those arent the same as animations.)\n\nThanks for stopping by!~ I don\'t really know what I\'m doing but I\'m trying. \n\nMerch!: https://emirichu.store/\nInstagram: https://www.instagram.com/emirichuu/\nTwitter: https://twitter.com/EmirichuYT\n\nBusiness Inquiries: emirichu@geexplus.co.jp",
+    ),
+    ChannelItem(
+      id: "UC3eP48LEsxo4moTFYrOrG9A",
+      name: "FiNCH",
+      handle: Some("@FiNCHOFFiCiAL"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/IULEyFRoo6GfzTo2EvW-bwNbA4s9lcY7ru1vd_931Fy3d-1rxwy4egj5Z0pWCyv6UUWTKsMaozo=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/IULEyFRoo6GfzTo2EvW-bwNbA4s9lcY7ru1vd_931Fy3d-1rxwy4egj5Z0pWCyv6UUWTKsMaozo=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(531000),
+      short_description: "Offizieller YouTube Account von FiNCH\nFiNCH Kanal abonnieren: https://ytb.li/Finch\nFiNCH auf Social Media folgen: https://www.instagram.com/finch\n\n\n",
+    ),
+    ChannelItem(
+      id: "UCRLR2Jo3YiRwwTp0eWdG8nA",
+      name: "FOURTY",
+      handle: Some("@fourty6748"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/xAzcB2ZsuLeLTP9-lHvVWzVe01DhMMH8r9xH-3vHd_11GfQAaG0_Hd5Ek6vUJSBq7_qLBVdjFQ=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/xAzcB2ZsuLeLTP9-lHvVWzVe01DhMMH8r9xH-3vHd_11GfQAaG0_Hd5Ek6vUJSBq7_qLBVdjFQ=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(12400),
+      short_description: "",
+    ),
+    ChannelItem(
+      id: "UC9Kl5Xy-kDY_z9CD9epW63g",
+      name: "HE/RO",
+      handle: Some("@YouAreHero"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/cJrddNdqCNkj9No1bG_9zOYjs9nRitBTaGw_69P6dgKIAZa6JpDgFEA-P0EN5JCF-j8VfxYHJA=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/cJrddNdqCNkj9No1bG_9zOYjs9nRitBTaGw_69P6dgKIAZa6JpDgFEA-P0EN5JCF-j8VfxYHJA=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(299000),
+      short_description: "YOU ARE HE/RO. \n\n\n\n",
+    ),
+    ChannelItem(
+      id: "UCn3yU2bHX_8HMCfXOBTkXCg",
+      name: "Helene Fischer (Official)",
+      handle: Some("@helenefischer"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/CHqviE7of-sFlBxamsxFId6RHNEV_p-DMQJvC-bfdFtEXNYxpi-D7BF74nhm46RXEZjbhbAHJg=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/CHqviE7of-sFlBxamsxFId6RHNEV_p-DMQJvC-bfdFtEXNYxpi-D7BF74nhm46RXEZjbhbAHJg=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(1090000),
+      short_description: "Der offizielle Helene Fischer YouTube Channel\n\n#helenefischer | Mehr Infos: https://www.helene-fischer.de\n\nKanal abonnieren http://bitly.com/HeleneFischerOfficial",
+    ),
+    ChannelItem(
+      id: "UCT9zcQNlyht7fRlcjmflRSA",
+      name: "ImagineDragons",
+      handle: Some("@ImagineDragons"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/1DTGWKanZjHTM_N9ieyxm2np0Dtk7gTDOXBKHuGlMEbvgmi5Mv-A47rJApN1dRBC_JEyXazBkQ=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/1DTGWKanZjHTM_N9ieyxm2np0Dtk7gTDOXBKHuGlMEbvgmi5Mv-A47rJApN1dRBC_JEyXazBkQ=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(32300000),
+      short_description: "LOOM. our sixth studio album. Listen and purchase now: https://imaginedragons.lnk.to/loom \nShop LOOM merch & music products: https://imaginedragons.lnk.to/loomstore \nGet the target exclusive orange vinyl: https://imaginedragons.lnk.to/loom/target \nGet the walmart exclusive pink vinyl: https://imaginedragons.lnk.to/loom/walmart \nGet the indie exclusive curacao vinyl: https://imaginedragons.lnk.to/LOOM/recordstoreday\n",
+    ),
+    ChannelItem(
+      id: "UC-Fnix71vRP64WXeo0ikd0Q",
+      name: "IVE",
+      handle: Some("@IVEstarship"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/Fg5o4LNedtb4kLRjRZ2waWSG_xnAU-IvdO8_HyNGoxC7a1OPYwDFkxFLjpDmb35dPgdhkaYGoVE=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/Fg5o4LNedtb4kLRjRZ2waWSG_xnAU-IvdO8_HyNGoxC7a1OPYwDFkxFLjpDmb35dPgdhkaYGoVE=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(3940000),
+      short_description: "아이브(IVE) Official Youtube Channel\n아이브(IVE) 공식 유튜브 채널\n",
+    ),
+    ChannelItem(
+      id: "UCWFKCr40YwOZQx8FHU_ZqqQ",
+      name: "JerryRigEverything",
+      handle: Some("@JerryRigEverything"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ytc/AIdro_lgA3xMKNY0-d05dSmj3zt7CeTS1QSS5jVgOWqD03VsSm4=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ytc/AIdro_lgA3xMKNY0-d05dSmj3zt7CeTS1QSS5jVgOWqD03VsSm4=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: verified,
+      subscriber_count: Some(9040000),
+      short_description: "I review technology from the inside. \nEcoFlow Global Ambassador.\nAnker is the Official Charging Partner of JerryRigEverything!\n\nI review technology from the inside. \n\nSEND ME STUFF: \n125 E Main St. Suite 335\nAmerican Fork, Ut. \n84003\n\nANYTHING SENT TO THE ABOVE ADDRESS will not be returned. \nContact: JerryRigEverything at gmail dot com\n\nVideos are for Entertainment Purposes only.  Attempt any repairs at your own risk. \n\nJerryRigEverything is a participant in the Amazon Services LLC Associates Program, an affiliate advertising program designed to provide a means for sites to earn advertising fees by advertising and linking to amazon.com.\n",
+    ),
+    ChannelItem(
+      id: "UCVZlxkKqlvVqzRJXhAGq42Q",
+      name: "JoergSprave",
+      handle: Some("@Slingshotchannel"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ytc/AIdro_kKQv93ELRWu1XsqlnRBDswoC56a8lQEbBWtQrbJR02w18=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ytc/AIdro_kKQv93ELRWu1XsqlnRBDswoC56a8lQEbBWtQrbJR02w18=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: verified,
+      subscriber_count: Some(3070000),
+      short_description: "This channel is all about launchers. \n\nMost of them are powered by rubber, a fascinating material that converts muscle energy into kinetic energy! But we also present bladed weapons and launchers powered by other energy sources. \n\nInventions, reviews, stunts and destruction - if that is what you want, you came to the right place for sure!\n\nI am also the CEO and part owner of the GoGun GmbH, a distributor and online sales organization specialized in archery equipment, airguns and knives. Therefore all my videos are marked as \"Werbung\" (advertizement) throughout the whole runtime.  \n\nLegal Disclosure\nInformation in accordance with Section 5 TMG and § 55 section 2 RStV\nJörg Sprave\nc/o GoGun GmbH\nKrablerstraße 127/Hall 9 \n45326 Essen\nGermany\n\nContact Information\nTelephone: 015156342943\nemail: jsprave@macrosystem.de\nVAT identification number in accordance with Section 27 a of the German VAT act DE305798007",
+    ),
+    ChannelItem(
+      id: "UCX3IrV7uIir6yzMM9kOtH1Q",
+      name: "Kenya Grace",
+      handle: Some("@kenyagracebaby"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/p4ekeRYzj_6n6LnMJGqGW3m7cH3H1Kyx73MJhck3ibFdPPGXcEXqR6QPTJOnT6EngxdD9rlaQO4=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/p4ekeRYzj_6n6LnMJGqGW3m7cH3H1Kyx73MJhck3ibFdPPGXcEXqR6QPTJOnT6EngxdD9rlaQO4=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(262000),
+      short_description: "I like making songs✨ Insta: kenyagrace Tiktok: kenyagracebaby",
+    ),
+    ChannelItem(
+      id: "UCv2M31TPUGjbrfjrOYp7ShQ",
+      name: "Kim Wilde",
+      handle: Some("@OfficialKimWilde"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/IPJmQSBRlYFTgP7nVAthn-zdyPXO7vhmYgnHZHJuq8APh0jUTRGCvyKG53Pd9734Q3VU1iST=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/IPJmQSBRlYFTgP7nVAthn-zdyPXO7vhmYgnHZHJuq8APh0jUTRGCvyKG53Pd9734Q3VU1iST=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(228000),
+      short_description: "Kim Wilde needs no introduction, having registered a staggering 30 hits on the UK charts since 1981, and selling over 30 million records globally.\n\n2024 - The Kim Wilde European Tour\nFrance - Belgium - Holland - Sweden - Denmark - Portugal - Slovakia and more...\n",
+    ),
+    ChannelItem(
+      id: "UC436PxqEZc_vN-w-Op9aokw",
+      name: "Körner - Topic",
+      handle: None,
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/IlfVAE1TEZ4No2fke8xH2llEJ2Y18GFlgXvyncuHdT_oDfPEESkEGfqGWv7Yzaah4Icj5-FaoQ=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/IlfVAE1TEZ4No2fke8xH2llEJ2Y18GFlgXvyncuHdT_oDfPEESkEGfqGWv7Yzaah4Icj5-FaoQ=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: none,
+      subscriber_count: Some(223),
+      short_description: "",
+    ),
+    ChannelItem(
+      id: "UCNL1ZadSjHpjm4q9j2sVtOA",
+      name: "Lady Gaga",
+      handle: Some("@LadyGaga"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/GItB-g3kPf6WOCfcSaHwuiNFsdJRNu5EeuQfhbwKNnNWIOS2Nhwx4g-JeARQLtrhO6uAnjq2=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/GItB-g3kPf6WOCfcSaHwuiNFsdJRNu5EeuQfhbwKNnNWIOS2Nhwx4g-JeARQLtrhO6uAnjq2=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(25600000),
+      short_description: "ladygaga.com\nhauslabs.com",
+    ),
+    ChannelItem(
+      id: "UCs-QBT4qkj_YiQw1ZntDO3g",
+      name: "LE SSERAFIM",
+      handle: Some("@LESSERAFIM_official"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/4qrLd3kEQp0HKI5kKfewXXHxR_WxBAb7r2-Dp_V4ZHp9XVvLfDQ9OpBa3Nhr1lgkOQuodZzymyU=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/4qrLd3kEQp0HKI5kKfewXXHxR_WxBAb7r2-Dp_V4ZHp9XVvLfDQ9OpBa3Nhr1lgkOQuodZzymyU=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(5670000),
+      short_description: "LE SSERAFIM Official Youtube\n르세라핌 공식 유튜브\n",
+    ),
+    ChannelItem(
+      id: "UCLQNVUIJXJ2ejVHuSlBtmGQ",
+      name: "LEA",
+      handle: Some("@thisislealea"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/lAhFqB2fZcOq0Xv4v5FZRSTqx5y4jYbDU5cce2dDAmBuK2CgOzgx6Y2vHcynL3vSDq4rkR_7iQ=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/lAhFqB2fZcOq0Xv4v5FZRSTqx5y4jYbDU5cce2dDAmBuK2CgOzgx6Y2vHcynL3vSDq4rkR_7iQ=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(674000),
+      short_description: "LEA: Singer Songwriterin",
+    ),
+    ChannelItem(
+      id: "UC1S-Nw10RYc9H0AH6iV_81g",
+      name: "Lena",
+      handle: Some("@Lenameyerlandrut"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/GGzSkYic__-Wx8uyECHpfTfDG8uZshjaHvCF5v45GwWbyVxaZ1v6n6XCNxKWYcToqcWZCXy5QA=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/GGzSkYic__-Wx8uyECHpfTfDG8uZshjaHvCF5v45GwWbyVxaZ1v6n6XCNxKWYcToqcWZCXy5QA=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(815000),
+      short_description: "Loyal to myself - new album - out now 💕: \n► https://shop.lena-meyer-landrut.de \n\nKanal abonnieren: http://bit.ly/LenaYouTube\n\nExklusive Inhalte von Lena gibt\'s hier: \n►The Lenaverse: https://www.thelenaverse.de/\n\nLENA LIVE 2024: \n► https://www.ticketmaster.de/artist/lena-tickets/964725?camefrom=BTA\n\nLena Merch bekommt ihr hier:\n► Website: https://www.thelenashop.com/\n► Instagram: https://www.instagram.com/thelenashop/\n\nImpressum: http://www.universal-music.de/service/rechtliche-hinweise/impressum",
+    ),
+    ChannelItem(
+      id: "UCwTpSCdRCT_zpJtNgo1P4PQ",
+      name: "lenkatv",
+      handle: Some("@lenkatv"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ytc/AIdro_kz89gxfVz-P2lK71j8ubMe-SP58OAPbNTN_rbVEVolbg=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ytc/AIdro_kz89gxfVz-P2lK71j8ubMe-SP58OAPbNTN_rbVEVolbg=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(741000),
+      short_description: "",
+    ),
+    ChannelItem(
+      id: "UCTMD22pIImmgGSxddcxXPcg",
+      name: "Leony",
+      handle: Some("@leony"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ejz5OKmWMub0qjYjWRrC8awK5VhBjEY0RtDqzBZ-9hILM73Cmm37eCtU-F6cn_XiGrfD-CEynQ=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ejz5OKmWMub0qjYjWRrC8awK5VhBjEY0RtDqzBZ-9hILM73Cmm37eCtU-F6cn_XiGrfD-CEynQ=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(182000),
+      short_description: "",
+    ),
+    ChannelItem(
+      id: "UCaz5LK4WvEsga60uaq0ixtA",
+      name: "LINA",
+      handle: Some("@lina_official"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/CUPvAefhDSOoeZCiJON6Pu3G3yABXadjJqOTSBLqwhAu55nPBwI4dCo5Tf5GsWNhRiH6Iy75rA=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/CUPvAefhDSOoeZCiJON6Pu3G3yABXadjJqOTSBLqwhAu55nPBwI4dCo5Tf5GsWNhRiH6Iy75rA=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(427000),
+      short_description: "Meine neue neues Album \"24/1\" Out now! ☀\u{fe0f}\n\nLina Larissa Strahl ist Singer-Songwriterin und Schauspielerin (u.a. Bibi und Tina, The Lodge, Alle für Ella). Ihr gesangliches Talent begeistert seit Anbeginn ihre Fans mit Alben und Songs wie “Egoist”, “Egal”, “Hype”. Die besondere Bindung die über die Jahre zwischen Sängerin und Fans entstanden ist, zeigt sich besonders bei LINAs Konzerten. Jedes Mal entsteht vom ersten Ton an eine Welle der Begeisterung, die alle trägt. Pure Euphorie! Alles gut! Alles rosa!\n\nFolgt mir auf: \n💎 INSTAGRAM: https://www.instagram.com/_lina_official_\n💎 TIKTOK: https://www.tiktok.com/@_lina_official_tiktok\n💎 FACEBOOK: https://www.facebook.com/lina.offiziell \n💎 SNAPCHAT: @okitsreallyme",
+    ),
+    ChannelItem(
+      id: "UCXuqSBlHAE6Xw-yeJA0Tunw",
+      name: "Linus Tech Tips",
+      handle: Some("@LinusTechTips"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/Vy6KL7EM_apxPSxF0pPy5w_c87YDTOlBQo3MADDF0Wl51kwxmt9wmRotnt2xQXwlrcyO0Xe56w=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/Vy6KL7EM_apxPSxF0pPy5w_c87YDTOlBQo3MADDF0Wl51kwxmt9wmRotnt2xQXwlrcyO0Xe56w=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: verified,
+      subscriber_count: Some(16100000),
+      short_description: "Linus Tech Tips is a passionate team of \"professionally curious\" experts in consumer technology and video production who aim to educate and entertain.\n\nSponsorship Inquiries: sales@linusmediagroup.com\n",
+    ),
+    ChannelItem(
+      id: "UCIvqWqjC4aLvp7zI8hzARrA",
+      name: "Little Mix",
+      handle: Some("@LittleMix"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/1xIQVcPpPQG-MU_tkfA9FU8jlWf5KG1RxJKm3YGAm0g3MTlG7NsMgNk4GTd1aO2-NZPLoo7PRw=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/1xIQVcPpPQG-MU_tkfA9FU8jlWf5KG1RxJKm3YGAm0g3MTlG7NsMgNk4GTd1aO2-NZPLoo7PRw=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(16400000),
+      short_description: "Our new album Between Us is out now 🤍\n",
+    ),
+    ChannelItem(
+      id: "UCSJ4gkVC6NrvII8umztf0Ow",
+      name: "Lofi Girl",
+      handle: Some("@LofiGirl"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/3vLpU5nkaTB3w9YYB_FD6PWbqJX3TZsEr4uWsBcOUSotELT0-6L5KPeoc-FEJ977HhA1p8wRvKo=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/3vLpU5nkaTB3w9YYB_FD6PWbqJX3TZsEr4uWsBcOUSotELT0-6L5KPeoc-FEJ977HhA1p8wRvKo=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: verified,
+      subscriber_count: Some(14700000),
+      short_description: "Connecting people through music 🌎\n\n🎧 | Listen on Spotify, Apple music and more\n→   https://fanlink.tv/lofigirl-music\n\n💬 | Join the Lofi Girl community \n→   https://bit.ly/lofigirl-discord\n→   https://bit.ly/lofigirl-reddit\n\n🌐 | Lofi Girl on all social media\n→   https://bit.ly/lofigirl-sociaI\n",
+    ),
+    ChannelItem(
+      id: "UCv011hIm-QqpgDGt32xrIRA",
+      name: "Maggie Lindemann",
+      handle: Some("@maggielindemann"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/8_MhK1SfsgjtlkybondRLggXbimGOFg_5kxkfDm-Q201hl1fl48QPHuhb78bBKYLQEChdbsf=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/8_MhK1SfsgjtlkybondRLggXbimGOFg_5kxkfDm-Q201hl1fl48QPHuhb78bBKYLQEChdbsf=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(2360000),
+      short_description: "HEADSPLIT as a title came to Maggie late in the process. “On the one hand, and in the eyes of so many people out there, I\'m so happy and everything\'s perfect,” she says. “And then there\'s like this other part of me that\'s self-sabotaging, saying, ‘Everything\'s not perfect and you ruin everything and you\'re always wrong.’ But then again, getting older and being actually proud of myself has definitely helped me soften up a little bit. So my head is always split like that, so that concept lent itself really neatly to what I was trying to do with the music itself.”\n\n",
+    ),
+    ChannelItem(
+      id: "UCvEB_-xM91PBJURpVBvVXrA",
+      name: "Marina Marx",
+      handle: Some("@marina_marx"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/hjQvYoBGTHnzQaO_JTRkzUvxd61jyDYzLragjUyH84dYQiUIKxX7_RYTkzEW2tMInFoiI6TAsA=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/hjQvYoBGTHnzQaO_JTRkzUvxd61jyDYzLragjUyH84dYQiUIKxX7_RYTkzEW2tMInFoiI6TAsA=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(14300),
+      short_description: "Offizieller Kanal von MARINA MARX\n______________________________________________________________________\n\nVertreten durch: \n\nManagement & Booking:\nAME.Media GmbH\nSchloss Zweibrüggen \n52531 Übach-Palenberg \n",
+    ),
+    ChannelItem(
+      id: "UCLyAYe-pk6HGmfyT94ouBcA",
+      name: "Mark Forster",
+      handle: Some("@MarkForsterOfficial"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/JN2rIU-am-ll0hZ-rmpt9G-nKsxycb8RBJoteE0IhgYCc92e3sguzEx7A7SLcyaCwxXvEbmdmAs=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/JN2rIU-am-ll0hZ-rmpt9G-nKsxycb8RBJoteE0IhgYCc92e3sguzEx7A7SLcyaCwxXvEbmdmAs=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(876000),
+      short_description: "Willkommen auf dem offiziellen YouTube Kanal von Mark Forster!\n",
+    ),
+    ChannelItem(
+      id: "UCEdvpU2pFRCVqU6yIPyTpMQ",
+      name: "Marshmello",
+      handle: Some("@marshmello"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/yJlMNr2TRPPNCkijsPlW_urjXKEXg44NBhZhz5j3jy4OCJTg5WPhnEQKamrd6bNTqh48-_rtZ7E=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/yJlMNr2TRPPNCkijsPlW_urjXKEXg44NBhZhz5j3jy4OCJTg5WPhnEQKamrd6bNTqh48-_rtZ7E=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(57600000),
+      short_description: "Marshmello\'s Official YouTube Channel",
+    ),
+    ChannelItem(
+      id: "UCZygMGbIE8JNE1_qqtmIXhA",
+      name: "Max Giesinger",
+      handle: Some("@MaxGiesingerOfficial"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/yvEiUbbyIiK22ieCfmxo3u8LTFe5WTQTKfSnU4RYXjMzSQ0BgRSscv_dolgezovOogo7EN8m=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/yvEiUbbyIiK22ieCfmxo3u8LTFe5WTQTKfSnU4RYXjMzSQ0BgRSscv_dolgezovOogo7EN8m=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(351000),
+      short_description: "Das ist der offizielle YouTube Kanal von Max Giesinger.\n\nEs ist gute acht Jahre her, als Max Giesinger sich als „Der Junge, der rennt“ in das Gedächtnis der Musikwelt gebrannt hat. Der Albumtitel ist immer noch programmatisch, der Mann ist deutlich mehr unterwegs als zu Hause – zu Fuß auf dem Weg durch Hamburg, allein auf fremden Kontinenten u.a. für das TV Format „Sing meinen Song - das Tauschkonzert“ und mit seinen Jungs auf großen Bühnen auf Tour. Über 800 Konzerte hat Max im vergangenen Jahrzehnt gespielt, hat Deutschland und die Welt in all seinen Facetten kennengelernt. \n \nDie neuen Songs „Menschen“ und „Flugangst“ sind der Auftakt für ein neues Album, das im Mai 2025 kommen wird. Mit frischer Musik, die an einen Roadtrip erinnert. Ein Trip, der nicht geradlinig ist, ungeplant, mit Zwischenstopps. Mit von Max ungehörten Sounds und Texten, die tief gehen. Max ist der Reiseführer dieses Trips. Begleite ihn unbedingt: hier, auf Tour und auf seinen Socials!\n",
+    ),
+    ChannelItem(
+      id: "UChsDCPpjdh6L7rNr1b7s1BQ",
+      name: "MoTrip",
+      handle: Some("@OfficialMoTripTV"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ytc/AIdro_mJeEtvS5npnE7GWsxbZjvWm6OiLV22sVnJIJrOcjzdGQ=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ytc/AIdro_mJeEtvS5npnE7GWsxbZjvWm6OiLV22sVnJIJrOcjzdGQ=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(115000),
+      short_description: "Offizieller Kanal von MoTrip\n\nMehr zu MoTrip\n► Instagram: https://www.instagram.com/motrip/\n► Facebook: https://www.facebook.com/OfficialMoTrip/\n► Twitter: https://twitter.com/OfficialMoTrip\n► Website: https://www.motrip.de/",
+    ),
+    ChannelItem(
+      id: "UCX6OQ3DkcsbYNE6H8uQQuVA",
+      name: "MrBeast",
+      handle: Some("@MrBeast"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/fxGKYucJAVme-Yz4fsdCroCFCrANWqw0ql4GYuvx8Uq4l_euNJHgE-w9MTkLQA805vWCi-kE0g=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/fxGKYucJAVme-Yz4fsdCroCFCrANWqw0ql4GYuvx8Uq4l_euNJHgE-w9MTkLQA805vWCi-kE0g=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: verified,
+      subscriber_count: Some(338000000),
+      short_description: "Go Watch Beast Games! https://unfur.ly/BeastGames\nSUBSCRIBE FOR A COOKIE!\n\nAccomplishments:\n- Raised $20,000,000 To Plant 20,000,000 Trees\n- Removed 30,000,000 pounds of trash from the ocean\n- Helped 2,000 people walk again\n- Helped 1,000 blind people see\n- Helped 1,000 deaf people hear\n- Built wells in Africa\n- Built and gave away 100 houses\n- Adopted every dog in a shelter (twice)\n- Given millions to charity\n- Started my own snack company Feastables\n- Started my own software company Viewstats\n- Started Lunchly, a tasty, better-for-you lunch option\n- Gave away a private island (twice)\n- Gave away 1 million meals\n- Gave away a chocolate factory\n- I counted to 100k\n- Ran a marathon in the world\'s largest shoes\n- Survived 50 hours in Antarctica\n- Recreated Squid Game in real life\n- Created the largest competition show with 1000 people (Beast Games)\n- Gave $5,000,000 to one person\n- Passed T-Series to become most subscribed YouTube channel 🥹\nyou get it, I appreciate all of you so much :)\n",
+    ),
+    ChannelItem(
+      id: "UCMiJRAwDNSNzuYeN2uWa0pA",
+      name: "Mrwhosetheboss",
+      handle: Some("@Mrwhosetheboss"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/enyLBm1Sy8mVRXJJLWHT2z64nqxJGt2g61A9xnxpUjO2YAUovHaY_JT3rnAg0j6Qij9iaHQlAg=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/enyLBm1Sy8mVRXJJLWHT2z64nqxJGt2g61A9xnxpUjO2YAUovHaY_JT3rnAg0j6Qij9iaHQlAg=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: verified,
+      subscriber_count: Some(20300000),
+      short_description: "Let\'s become the Greatest Tech Community on the Planet 🌍\n\nI\'m Arun Maini, I\'m a 28 year old Economics graduate whose life\'s passion is Technology, and I\'m on a mission to make the most FUN and USEFUL Tech videos on the Planet! 🙏\n\n\n\n",
+    ),
+    ChannelItem(
+      id: "UCRrLWhcrm7jrOMiuU0HmNRA",
+      name: "Namika",
+      handle: Some("@Namikamusik"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/klATX6VRYvvYsLAO0s5D89FqLpVMwbQpNj-LVKjOnNfUlGB92c79DDx3G2Qh7V-Aj3zv1vVI_g=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/klATX6VRYvvYsLAO0s5D89FqLpVMwbQpNj-LVKjOnNfUlGB92c79DDx3G2Qh7V-Aj3zv1vVI_g=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(772000),
+      short_description: "Namika steht für einen ganz eigenen Stil, der seinesgleichen sucht. Nach ihrem 2015 erschienen Debüt „Nador“ mit der Nummer 1 Single „Lieblingsmensch“ sowie ihrem Nachfolger-Album „Que Walou“, welches ebenfalls zahlreiche Preise erhielt und Platz 1 der Charts erreichte, erscheint 2023 mit „Wie geht’s dir?“ ihr neues Album. Entstanden sind die Songs in den letzten drei Jahren. Nicht nur eine intensive Zeit für Namika sondern auch eine weltweite Pandemie, die das Leben aller Menschen gehörig durcheinanderbringt. „Ich bin in dieser Zeit oft von Außenstehenden gefragt worden, wie es mir geht und ich mich öfters dabei ertappt habe, wie ich einfach nur ‚Alles gut‘ entgegnet habe“, erinnert sich Namika „Und so wurde mir erst klar, dass die Artund Weise wie wir diese Frage im Alltag verwenden, nicht mal annähernd ihrer Tiefgründigkeit gerecht wird\". Auf „Wie geht’s dir?“ hat NAMIKA genau das getan, sich auf die Suche nach Antworten gemacht – und diese fallen ganz unterschiedlich aus.\n\n",
+    ),
+    ChannelItem(
+      id: "UCWOA1ZGywLbqmigxE4Qlvuw",
+      name: "Netflix",
+      handle: Some("@Netflix"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/c5D1xS3wEG2XDLhBaW_4VCJ081qcT5rxo7X3DO-0zabsBntw_D58KwiTXThWZaizcYNmpSMhRQ=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/c5D1xS3wEG2XDLhBaW_4VCJ081qcT5rxo7X3DO-0zabsBntw_D58KwiTXThWZaizcYNmpSMhRQ=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: verified,
+      subscriber_count: Some(29500000),
+      short_description: "COBRA KAI NEVER DIES\n\n\n\nNetflix is one of the world\'s leading entertainment services, with 283 million paid memberships in over 190 countries enjoying TV series, films and games across a wide variety of genres and languages. Members can play, pause and resume watching as much as they want, anytime, anywhere, and can change their plans at any time.\n",
+    ),
+    ChannelItem(
+      id: "UC2y0t3AAHuZxb8IgNm-A-yA",
+      name: "Nina Chuba",
+      handle: Some("@NinaChuba"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/IHPUf1xe9NV2R0TArNaIxCtmeTJz4MZ1D_c9FrohPe2I_NsEl0_e3CgkQzoA3-1sX0bBqFlpEQ=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/IHPUf1xe9NV2R0TArNaIxCtmeTJz4MZ1D_c9FrohPe2I_NsEl0_e3CgkQzoA3-1sX0bBqFlpEQ=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(297000),
+      short_description: "Official Nina Chuba YouTube Channel 🖤\n\n\n",
+    ),
+    ChannelItem(
+      id: "UCi4EDAgjULwwNBHOg1aaCig",
+      name: "OneRepublic",
+      handle: Some("@OneRepublic"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/9nEm0mi6FUORmK_tFVZ9OKdeLC_WB8Oa4pvTK1tIxGVpDPCbtmLGVHfBjwaD7lU0yoCMQXDYpg=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/9nEm0mi6FUORmK_tFVZ9OKdeLC_WB8Oa4pvTK1tIxGVpDPCbtmLGVHfBjwaD7lU0yoCMQXDYpg=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(10900000),
+      short_description: "🌹🪩👁\u{fe0f}🌵 Artificial Paradise Super Deluxe Out Now! 🌵👁\u{fe0f}🪩🌹\n\nOneRepublic is Ryan Tedder, Zach Filkins, Drew Brown, Brent Kutzle, and Eddie Fisher",
+    ),
+    ChannelItem(
+      id: "UCE5yTn9ljzSnC_oMp9Jnckg",
+      name: "P!NK",
+      handle: Some("@PinkVideoVault"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/Ls0xL7cdFhQaptfwj_iWSuzrbjoCpzG51upcwTFdS_twic6gVyNnx9mEo8YtJMinnGoOSUVmzQ=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/Ls0xL7cdFhQaptfwj_iWSuzrbjoCpzG51upcwTFdS_twic6gVyNnx9mEo8YtJMinnGoOSUVmzQ=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(12700000),
+      short_description: "It\'s all happening",
+    ),
+    ChannelItem(
+      id: "UCRuODyyCo2YSQhJea9FAFLw",
+      name: "Pfulsk X Die Akademie",
+      handle: Some("@Pfulsk"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/_hZEaH2GeEhTzIZRXSv-vJDufdxZs_q53li8n1394by0Jx0Y1nc172Gaqz36JkqXt4OS6m00J0A=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/_hZEaH2GeEhTzIZRXSv-vJDufdxZs_q53li8n1394by0Jx0Y1nc172Gaqz36JkqXt4OS6m00J0A=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: none,
+      subscriber_count: Some(7420),
+      short_description: "Ich stelle hier meine Covers und Lieder vor. \nAußerdem könnt Ihr hier die Beiträge der Mitglieder der Akademie hören, solange diese noch keinen eigenen YouTube-Kanal haben. \nDie mp3-Downloads meiner Lieder findet Ihr auf https://t.me/Pfulsk ",
+    ),
+    ChannelItem(
+      id: "UCRiy7IsqFucvH3Ilj7qf5Rg",
+      name: "Phoebe Ryan",
+      handle: Some("@phoeberyanmusic"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/tx-jmIypBNNBQIFS3OqTVJ6YJgjNdDZiwb5ZHH7qcERptxYSdrExOgygogc6KcJdexTW3utKwlg=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/tx-jmIypBNNBQIFS3OqTVJ6YJgjNdDZiwb5ZHH7qcERptxYSdrExOgygogc6KcJdexTW3utKwlg=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(199000),
+      short_description: "All things Phoebe Ryan~*",
+    ),
+    ChannelItem(
+      id: "UCxTHCMaxURhapisCMBv8y0A",
+      name: "Plankton",
+      handle: Some("@plankton.mp4"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/Cdlsy3IXgis5hNYRwvohPB9AIxH8tNdEo9CwxXK1i3QEUO7YN3p4YJ_cd5ruGsmNhvoX7803=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/Cdlsy3IXgis5hNYRwvohPB9AIxH8tNdEo9CwxXK1i3QEUO7YN3p4YJ_cd5ruGsmNhvoX7803=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: verified,
+      subscriber_count: Some(1050000),
+      short_description: "Meine Mama sagt meine Videos sind ganz nett.\n\n✉\u{fe0f} plankton@enkime.de\n\nImpressum ⬇\u{fe0f}\nhttps://beacons.ai/plankton.gif\n",
+    ),
+    ChannelItem(
+      id: "UCaJ84U5xsjX9KT1mIF3B22w",
+      name: "Rev says desu",
+      handle: Some("@Revsaysdesu"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ytc/AIdro_ktXW3O-_bRFhI1O1MgjfS-pvUNOK5KD5RBNY1RPXgIBR4=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ytc/AIdro_ktXW3O-_bRFhI1O1MgjfS-pvUNOK5KD5RBNY1RPXgIBR4=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: none,
+      subscriber_count: Some(711000),
+      short_description: "Hey what\'s up guys, Rev here. On this channel I cover a wide range of topics including anime news, vtuber news, drama, bad social media takes, memes, and much more!\n\nMake sure to subscribe and turn on notifications for daily uploads!\n\nMostly satire, don\'t take things too seriously. Come chill and have a relaxing time with this great community.\n",
+    ),
+    ChannelItem(
+      id: "UCfSAqqftdc7FM1SY5vJjKfA",
+      name: "Rita Ora",
+      handle: Some("@ritaora"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ErY96sZoGCbxiHXArPUrRfYb0EPifFGEebw7ccLW3NoFK4LCpoJO2ALU9rKN1BU-JKFLITOloA=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ErY96sZoGCbxiHXArPUrRfYb0EPifFGEebw7ccLW3NoFK4LCpoJO2ALU9rKN1BU-JKFLITOloA=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(4200000),
+      short_description: "The Official Rita Ora YouTube channel!\n\nMy new album ‘YOU & I’ is OUT NOW 🔒❤\u{fe0f}\nBuy now ⬇\u{fe0f}\nritaora.lnk.to/YouAndIID\n",
+    ),
+    ChannelItem(
+      id: "UCw5J0_EUnV5iXKVMUGHsQ0A",
+      name: "Rosa Linn",
+      handle: Some("@rosalinn"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/kB4pK4zqUP5Ta8gxolb1_-tGmw9ocyJOb8YURWzMTzDdwI3cTNNRkNNJi-MHOTZlz5W93au_wA=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/kB4pK4zqUP5Ta8gxolb1_-tGmw9ocyJOb8YURWzMTzDdwI3cTNNRkNNJi-MHOTZlz5W93au_wA=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(484000),
+      short_description: "The official Youtube channel of Rosa Linn.\nDebut EP “Lay Your Hands Upon My Heart” is out everywhere! \n",
+    ),
+    ChannelItem(
+      id: "UCkdc7gHpavxpgGalxKbgSHA",
+      name: "Sean Paul",
+      handle: Some("@AllSeanPaul"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/aNFqe9rfndkFjS-bS0wO8wmy1kR679MMKOYTe10YsL8s8275b1326BtUbiLkwf9vyVa766rtIQ=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/aNFqe9rfndkFjS-bS0wO8wmy1kR679MMKOYTe10YsL8s8275b1326BtUbiLkwf9vyVa766rtIQ=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(4930000),
+      short_description: "Welcome to the official Sean Paul YouTube channel. Sean Paul began his musical career in 1996 and has attracted international attention that has seen him releasing six studio albums. The international dancehall artiste and producer has been given the nod of approval by numerous international musical governing bodies and boasts 7 Grammy nominations as well as the 2006 American Music Award for favorite Pop/Rock Male Artiste.",
+    ),
+    ChannelItem(
+      id: "UCf1jBHk4oofSwXzoWG8lgWg",
+      name: "Stereoact Official",
+      handle: Some("@StereoactOfficial"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/SKio4KZErvVJI7S27CiJzHXGaFVoWZXbMI7KZF3SMg1cRaFZyC82wEu17DHwjL-YkMA39lz8=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/SKio4KZErvVJI7S27CiJzHXGaFVoWZXbMI7KZF3SMg1cRaFZyC82wEu17DHwjL-YkMA39lz8=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(58100),
+      short_description: "Das mit 7-fach Gold & 3-fach Platin ausgezeichnete und für 3 Echos nominierte Duo Stereoact sind das erfolgreicheste deutsche DJ-Duo des Jahres. Die Produzenten und DJ`s aus dem Erzgebirge landen seit etwa drei Jahren regelmäßig auf den vorderen Plätzen der Bestenlisten.\nIhr gemeinsam mit der Singer-Songwriterin Kerstin Ott produzierter Hit „Die immer lacht“ avancierte zur erfolgreichsten deutschsprachigen Single des Jahres 2016 und das Video dazu wurde das erfolgreichste in deutscher Sprache ÜBERHAUPT mit 200 Millionen.\n\nManagement & Booking: info@13th-sounds.ch\n\nHomepage:   http://www.stereoact.de/\nFan-Shop:      https://kappenschmiede.de/merchandise/stereoact/\nFacebook:     https://www.facebook.com/stereoactmusic/\nSoundcloud: https://soundcloud.com/stereoact\nSpotify:          https://goo.gl/CYmkVs\nYou Tube:      https://www.youtube.com/c/StereoactOfficial\nImpressum: https://www.stereoact.de/impressum/",
+    ),
+    ChannelItem(
+      id: "UCOiG4UoE0-CBZKlDVgw1eTA",
+      name: "Stonedeafproduction",
+      handle: Some("@Stonedeafproduction"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ytc/AIdro_nyArqKRzgfxSX1WApFPtYr59H2ILATvZiOZl4N-SCtoqg=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ytc/AIdro_nyArqKRzgfxSX1WApFPtYr59H2ILATvZiOZl4N-SCtoqg=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(714000),
+      short_description: "SDP ist eine Zwei-Mann-Band aus Spandau, Berlin. Die beiden Allround-Musiker bedienen sich vieler verschiedener Stile, die sie miteinander kombinieren. In ihren deutschsprachigen Texten verarbeiten SDP Alltäglichkeiten und weltpolitische Fragen nebeneinander, allerdings oft mit einem satirischen und ironischen Unterton.",
+    ),
+    ChannelItem(
+      id: "UC9rMiEjNaCSsebs31MRDCRA",
+      name: "Stray Kids",
+      handle: Some("@StrayKids"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/1kpobT9zD53HTtykMegGW-Fi-fKTFu0mHsgg6XlBDbTUVLx75VfMzfEaM9dSRx9KX6Zh7qotIw=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/1kpobT9zD53HTtykMegGW-Fi-fKTFu0mHsgg6XlBDbTUVLx75VfMzfEaM9dSRx9KX6Zh7qotIw=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(18800000),
+      short_description: "Stray Kids Official YouTube",
+    ),
+    ChannelItem(
+      id: "UCj1VqrHhDte54oLgPG4xpuQ",
+      name: "Stuff Made Here",
+      handle: Some("@StuffMadeHere"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ytc/AIdro_mzfzJ9E1WEzyt1YlPXemHOwGBBnVCKzXva_mzmS5qqMg=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ytc/AIdro_mzfzJ9E1WEzyt1YlPXemHOwGBBnVCKzXva_mzmS5qqMg=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: verified,
+      subscriber_count: Some(4600000),
+      short_description: "I\'ve been building things for as long as I can remember. It all started when my dad exposed me to plastic model building and soldering when I was around 4 years old. That set me on a path to building increasingly complex things and becoming an engineer. My goal is to do the same for as many people as possible by exposing them to the joy of engineering, fabricating and creating things out of nothing. If I\'m lucky a few people may become engineers, which would be great for the world. Engineering is awesome.\n\nIf you\'re interested in sending me something:\n\nP.O. Box 78470\nCharlotte, NC 28271\n",
+    ),
+    ChannelItem(
+      id: "UCWH4JkQWioU3vTAritHDnAA",
+      name: "sydsnap",
+      handle: Some("@sydsnap"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ytc/AIdro_ltVeBIuP0YJIFSzAiI6f30nf882OfAdV_CeD-h0mVasLU=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ytc/AIdro_ltVeBIuP0YJIFSzAiI6f30nf882OfAdV_CeD-h0mVasLU=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: none,
+      subscriber_count: Some(811000),
+      short_description: "Anime/ manga / visual+light novel addicted youtuber. My quirk is yelling loudly.",
+    ),
+    ChannelItem(
+      id: "UCi3H2bHgaTFwrfwx_GOJyZw",
+      name: "t-low - Topic",
+      handle: None,
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/Eu_Ek1vTScAtdhB5OCAP67sRRfsAjN74BEVmPO3NcDQjBbmsLzJtSxBAbwNwrrG5ih0ywpAY4fk=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/Eu_Ek1vTScAtdhB5OCAP67sRRfsAjN74BEVmPO3NcDQjBbmsLzJtSxBAbwNwrrG5ih0ywpAY4fk=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: none,
+      subscriber_count: Some(65500),
+      short_description: "T-Low ist ein deutscher Rapper. Sein Stil ist eine Mischung aus autotunelastigem Trap, Punk Rap und Cloud Rap mit Einflüssen aus Dream Pop. Mit den Songs Sehnsucht und We Made It erreichte er im März bzw. April 2022 jeweils die Spitze der Singlecharts in Deutschland.",
+    ),
+    ChannelItem(
+      id: "UCqECaJ8Gagnn7YCbPEzWH6g",
+      name: "Taylor Swift",
+      handle: Some("@TaylorSwift"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/PFmecESWwRnrbIFZ04vG6UbdXKzjyC3vQkufqqEYEHpXlwHFRMDN8RuvG7A1WRnbGKVZTcyFYQ=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/PFmecESWwRnrbIFZ04vG6UbdXKzjyC3vQkufqqEYEHpXlwHFRMDN8RuvG7A1WRnbGKVZTcyFYQ=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(60500000),
+      short_description: "All’s fair in love and poetry... New album THE TORTURED POETS DEPARTMENT. \nOut April 19 🤍\n\n",
+    ),
+    ChannelItem(
+      id: "UCEy_Fzl4jE1AF_a2R98yKsw",
+      name: "Test with Sanjaa",
+      handle: Some("@TestwithSanjaa"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ytc/AIdro_lbopSbgcvTQ8376dROCfVnF3WSndiYxJc7WEnsWskRB6Q=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ytc/AIdro_lbopSbgcvTQ8376dROCfVnF3WSndiYxJc7WEnsWskRB6Q=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: none,
+      subscriber_count: Some(77500),
+      short_description: "Test and Taste with Sanjaa",
+    ),
+    ChannelItem(
+      id: "UC5UAwBUum7CPN5buc-_N1Fw",
+      name: "The Linux Experiment",
+      handle: Some("@TheLinuxEXP"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ytc/AIdro_lAKf-vZLoTI-gZUoP5Y3gbdGd07E4eDHUhTee6aOzDCnU=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ytc/AIdro_lAKf-vZLoTI-gZUoP5Y3gbdGd07E4eDHUhTee6aOzDCnU=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: verified,
+      subscriber_count: Some(373000),
+      short_description: "Making Linux accessible: no techno babble, no super technical content. Just Linux desktop news, simple tutorials, application spotlights, and opinion pieces trying to stay positive, without gatekeeping.\n\n👏 SUPPORT THE CHANNEL:\nGet access to a weekly podcast, vote on the next topics I cover, and get your name in the credits:\n\nYouTube: https://www.youtube.com/channel/UC5UAwBUum7CPN5buc-_N1Fw/join\nPatreon: https://www.patreon.com/thelinuxexperiment\n\nOr, you can donate whatever you want: https://paypal.me/thelinuxexp?locale.x=fr_FR\n\n🏆 FOLLOW ME ELSEWHERE:\nMastodon: https://mastodon.social/web/@thelinuxEXP\nPixelfed: https://pixelfed.social/TLENick\nDiscord: https://discord.gg/xK7ukavWmQ\n",
+    ),
+    ChannelItem(
+      id: "UC0WP5P-ufpRfjbNrmOWwLBQ",
+      name: "The Weeknd",
+      handle: Some("@TheWeeknd"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/WHvw1ak1FcJaHeEiTmG2iN0dqEjjPxAtT_tA8ruJ3MlNr9I-RHsAur1iAenYeQN_d6LNPH2Z8Ic=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/WHvw1ak1FcJaHeEiTmG2iN0dqEjjPxAtT_tA8ruJ3MlNr9I-RHsAur1iAenYeQN_d6LNPH2Z8Ic=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(36700000),
+      short_description: "Official YouTube channel for The Weeknd.\nwww.theweeknd.com",
+    ),
+    ChannelItem(
+      id: "UCWu-IOxbeSD-MRM2Q87ZF0A",
+      name: "Think Before You Sleep",
+      handle: Some("@ThinkBeforeYouSleepYT"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/fN1RADbsG5oWViWlVyqto0Xn37kXN3O7l7FWfxaflsyRF-tzdDncV4i4g46jySCR6SZSzEOZ=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/fN1RADbsG5oWViWlVyqto0Xn37kXN3O7l7FWfxaflsyRF-tzdDncV4i4g46jySCR6SZSzEOZ=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: verified,
+      subscriber_count: Some(905000),
+      short_description: "\n\n\nIf you would like to make a topic request, then send an email to thinkbeforeyousleeprequests@gmail.com\n\nTopic requests should include an article, TV show, Movie, or Twitch Streamer, YouTube video/channel. Please be as specific as possible as to where the source material is. For example, if it\'s a TV show, I need to know what season and what episode.  If you are requesting a video that is longer than 10 minutes, please include relevant time stamps to interesting things that were said during the video.\n\nThank you for your help.\n\nIf you have business dealings with me please use the business e-mail provided in the \"Details\" section below. Do not use the request e-mail because your message might not be seen. Any e-mails sent to the business e-mail that have nothing to do with business will be ignored.\n\n",
+    ),
+    ChannelItem(
+      id: "UCGexINHKQhnkwmMaympciYQ",
+      name: "Tim Bendzko",
+      handle: Some("@timbendzko"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/h3pJv5qBDKSjjNo8H998cZAdnXsF0S6vzf-MF9D8YZQoeOaMHrhON01TFrb0EcDcuhZgGfKjQw=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/h3pJv5qBDKSjjNo8H998cZAdnXsF0S6vzf-MF9D8YZQoeOaMHrhON01TFrb0EcDcuhZgGfKjQw=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(297000),
+      short_description: "Jetzt hast du lang genug gewartet...\n",
+    ),
+    ChannelItem(
+      id: "UCtiObj3CsEAdNU6ZPWDsddQ",
+      name: "TOMORROW X TOGETHER OFFICIAL",
+      handle: Some("@TXT_bighit"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/qhmEoqhG9u8lCm3NgdJc1hJ4yZYBPCZ8l2J-ia6cf_gSsnuFLo1sM_NUmFn48oPRAiJIkNUo=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/qhmEoqhG9u8lCm3NgdJc1hJ4yZYBPCZ8l2J-ia6cf_gSsnuFLo1sM_NUmFn48oPRAiJIkNUo=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(12400000),
+      short_description: "#투모로우바이투게더 공식 유튜브 입니다.\nThis is the official YouTube for #TOMORROW_X_TOGETHER",
+    ),
+    ChannelItem(
+      id: "UCZem9C5rWjSb0B8tV3k2EZg",
+      name: "Torque Test Channel",
+      handle: Some("@TorqueTestChannel"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ytc/AIdro_n3V8UR7V7bO4lbA8IhEYHO_sYqEwV3eByDzoB0RF8B_Q=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ytc/AIdro_n3V8UR7V7bO4lbA8IhEYHO_sYqEwV3eByDzoB0RF8B_Q=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: verified,
+      subscriber_count: Some(467000),
+      short_description: "On the Torque Test Channel our aim is to test old-school to modern tools on a level playing field to compare or reveal performance figures in understandable terms in order to shine some light on recent marketing trends.\n\nFAQ:\nYou should use ($120-250) battery on (X) brand! \nIf they package their kit that way. For now, they rate the tool\'s specs with the battery they provide so we test vs that. \n\nWhat air set-up do you have?\nIR 80gal compressor - 20ft 1\" cast iron pipe to 3ft 3/4\" pipe threaded into wall regulator (48 CFM max), 3/8\" NPT out to  3/8\" 25ft hose. 1/4\" Milton V Hi-Flo Pro fittings and Milton 5in1 hi-flo coupler (67 CFM max)\n\nWhy do you test up to 15 seconds (that\'s too long, too short): \nSee ep1, there\'s a standard for impact testing. \n\nCan I send you a tool and you send back?\nYes! TorqueTestChannel at gmail.com\n\nWhy not use a torque wrench?\nSee ep3 on nut-busting. \n\nIt\'s technically \"pounds-foot\" though\nWe tried saying it that way, it\'s pretty laborsome after awhile. \n\n\n\n",
+    ),
+    ChannelItem(
+      id: "UCC9192yGQD25eBZgFZ84MPw",
+      name: "Trailerpark",
+      handle: Some("@trailerpark"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ytc/AIdro_lYwM_1_M7MxhF_wY2lAem2tZM-P_cVA9JgaQeYewaeyw=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ytc/AIdro_lYwM_1_M7MxhF_wY2lAem2tZM-P_cVA9JgaQeYewaeyw=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(270000),
+      short_description: "Trailerpark ist das Sprachrohr für eine Jugend geprägt von Komasaufen, Youporn-Clips und exzessivem Nihilismus. Musik für Hartz4-Empfänger, Kinder mit Kindern und Minderbemittelte mit RTL-Realityshow-Erfahrung.",
+    ),
+    ChannelItem(
+      id: "UCcmxOGYGF51T1XsqQLewGtQ",
+      name: "Trash Taste",
+      handle: Some("@TrashTaste"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ytc/AIdro_kMwLH77YtyKHVCbKrQfzYYFSc4IQ5e5mILkvgvXSP0UpA=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ytc/AIdro_kMwLH77YtyKHVCbKrQfzYYFSc4IQ5e5mILkvgvXSP0UpA=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: verified,
+      subscriber_count: Some(1660000),
+      short_description: "A podcast with attitude that hits different.",
+    ),
+    ChannelItem(
+      id: "UCsQBsZJltmLzlsJNG7HevBg",
+      name: "Tyler, The Creator",
+      handle: Some("@TylerTheCreator"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/-1Bt8eufq601KzmA0Rk1yrIzz372UDDeBkIpWytlztkcAyh1w6g2bNfXVnR6hadnezvUCq0XICA=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/-1Bt8eufq601KzmA0Rk1yrIzz372UDDeBkIpWytlztkcAyh1w6g2bNfXVnR6hadnezvUCq0XICA=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(6550000),
+      short_description: "CHROMAKOPIA is out now: https://tylerthecreator.lnk.to/chromakopia \n",
+    ),
+    ChannelItem(
+      id: "UC_7HfGUn1OVNlu0p8F2Cmwg",
+      name: "Wincent Weiss",
+      handle: Some("@WincentWeissMusic"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ZRbrlo_XK-wxrLumtq8gcBrhDCBDoqg2VgEVjHC4iNnPtXBk3o_kGGorlom_tXgmPwqmkzOVgw=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ZRbrlo_XK-wxrLumtq8gcBrhDCBDoqg2VgEVjHC4iNnPtXBk3o_kGGorlom_tXgmPwqmkzOVgw=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(450000),
+      short_description: "Wir würden uns sehr freuen, wenn ihr uns bei unserer Tour besucht :)\nhttps://www.ticketmaster.de/artist/wincent-weiss-tickets/977408?camefrom=BTA\n\nEventim:\nhttps://www.eventim.de/artist/wincent-weiss/wincent-weiss-tour-2025-3471325/\n\nHier geht es zu unserem Merchshop:\nhttps://shop.wincentweiss.de\n\nKanal abonnieren: http://bit.ly/WincentWeissYT\n\nFolgt mir auch hier:\nInstagram: https://www.instagram.com/wincentweiss/\nFacebook: http://www.facebook.com/WincentWeissOfficial\nSpotify: https://play.spotify.com/artist/12xme1fwd3iGEW7rF9b6tp\nTwitter: https://twitter.com/Wincent_Weiss\nSnapchat: Wincenweiss\n\n#Wlog #Wincent Weiss \n",
+    ),
+    ChannelItem(
+      id: "UC7QteRlErpm27bkZ6izFwKg",
+      name: "World Friends",
+      handle: Some("@worldfriends77"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/Oj_xuNQlHyzkKYA24quOadUj_jMlGVBQ43LCLt6Nk8gFFcFMPKZnxQASsXI6CX_n10he4Tc09A=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/Oj_xuNQlHyzkKYA24quOadUj_jMlGVBQ43LCLt6Nk8gFFcFMPKZnxQASsXI6CX_n10he4Tc09A=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: verified,
+      subscriber_count: Some(1540000),
+      short_description: "Hello! This is World Friends :)\n\nSponsor a video: worldfriends.kr@gmail.com\n\n제작 : 어썸엔터테인먼트 (주)\nⓒ2024. Awesome Entertainment All rights reserved.\n\n",
+    ),
+    ChannelItem(
+      id: "UCiSj5lGGYhpIxoWrwotQBEA",
+      name: "X-Plane. Org Videos and Reviews",
+      handle: Some("@x-plane"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ytc/AIdro_m0XEcsPovACCjGbdOfwwtsd03OWAxzFKMIa8xrHONFSw=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ytc/AIdro_m0XEcsPovACCjGbdOfwwtsd03OWAxzFKMIa8xrHONFSw=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: none,
+      subscriber_count: Some(8130),
+      short_description: "Official Channel for X-Plane.org \n\n\n\n\n\n\n",
+    ),
+    ChannelItem(
+      id: "UC0sytTpk1adR_cfjHhiJ08Q",
+      name: "ZacksJerryRig",
+      handle: Some("@ZacksJerryRig"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ytc/AIdro_mYOtq_5qxOdFfAH-RIOtdUIj7Sfuak--6Ir2FKWZ2FUA=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/ytc/AIdro_mYOtq_5qxOdFfAH-RIOtdUIj7Sfuak--6Ir2FKWZ2FUA=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: verified,
+      subscriber_count: Some(234000),
+      short_description: "Primary Channel: YouTube.com/user/JerryRigEverything\n\nMy primary channel is for my projects.  ZacksJerryRig, is for my travels, vlogs, and things that I just find interesting.",
+    ),
+    ChannelItem(
+      id: "UC3PdiRW5dUA4V70ueeR1eHA",
+      name: "zayn",
+      handle: Some("@Zayn"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/pv17akWLCW5NxKTbRyBNIJo9K6i0aXk0_vHUU1pIj5H73Q_UgYquVVB2-p0GoAxFMBnW9-Ij6w=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/pv17akWLCW5NxKTbRyBNIJo9K6i0aXk0_vHUU1pIj5H73Q_UgYquVVB2-p0GoAxFMBnW9-Ij6w=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(15900000),
+      short_description: "ROOM UNDER THE STAIRS\nOUT NOW\n\n",
+    ),
+    ChannelItem(
+      id: "UCQam2rlpwMx1YlvBN8PSS2A",
+      name: "Zoe Wees",
+      handle: Some("@zoewees"),
+      avatar: [
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/Jo4JxTnN7Pa_rA5-BBEHEPVAtNw9eqJVGdCNH9c6DNmzl5EJZIcg9048X-BYmqEJlSJo8Zjg=s88-c-k-c0x00ffffff-no-rj-mo",
+          width: 88,
+          height: 88,
+        ),
+        Thumbnail(
+          url: "//yt3.googleusercontent.com/Jo4JxTnN7Pa_rA5-BBEHEPVAtNw9eqJVGdCNH9c6DNmzl5EJZIcg9048X-BYmqEJlSJo8Zjg=s176-c-k-c0x00ffffff-no-rj-mo",
+          width: 176,
+          height: 176,
+        ),
+      ],
+      verification: artist,
+      subscriber_count: Some(731000),
+      short_description: "\'Therapy’ the debut album out now 🤍\nhttps://bio.to/zoewees\n",
+    ),
+  ],
+  ctoken: None,
+  endpoint: browse,
+)

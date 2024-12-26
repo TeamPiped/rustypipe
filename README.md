@@ -21,6 +21,8 @@ RustyPipe is a fully featured Rust client for the public YouTube / YouTube Music
 - **Search suggestions**
 - **Trending**
 - **URL resolver**
+- **Subscriptions**
+- **Playback history**
 
 ### YouTube Music
 
@@ -34,6 +36,8 @@ RustyPipe is a fully featured Rust client for the public YouTube / YouTube Music
 - **Moods/Genres**
 - **Charts**
 - **New** (albums, music videos)
+- **Saved items**
+- **Playback history**
 
 ## Getting started
 

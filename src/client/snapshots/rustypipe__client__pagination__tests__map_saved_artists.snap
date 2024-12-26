@@ -1,0 +1,436 @@
+---
+source: src/client/pagination.rs
+expression: paginator
+---
+Paginator(
+  count: None,
+  items: [
+    ArtistItem(
+      id: "UCbUG4bsuazynh4cqGUs4oOA",
+      name: "Tom Twers",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/BTkzjLKIpmDl6cqtfHtIpJfywBSc7Rl_ttA1Np6gBqnZv1F5wh0bvZ-7DESc55qgBMKX3jjD-SacdMk8xQ=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/BTkzjLKIpmDl6cqtfHtIpJfywBSc7Rl_ttA1Np6gBqnZv1F5wh0bvZ-7DESc55qgBMKX3jjD-SacdMk8xQ=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCAhzIe-pG3XuZzGzoF3X0YA",
+      name: "KATI K",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/a-/ALV-UjWIQp0M5CuQM_KurfNoyLdT20hSRlTnoNs8x-9LRLVQy2TOKRjr=w60-h60-l90-rj-dcpWWY7KUI",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/a-/ALV-UjWIQp0M5CuQM_KurfNoyLdT20hSRlTnoNs8x-9LRLVQy2TOKRjr=w120-h120-l90-rj-dcpWWY7KUI",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCXJkrGR8Pq2PsrpAKzmGnLA",
+      name: "TOBIAS",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/MxIerzIwMIzXl-K6VkcJyeZFFZ9CrJOjOEL5kkQescyaLxIhI2sh44GBhnisDifYzHabuKGtQbmRJOJFlQ=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/MxIerzIwMIzXl-K6VkcJyeZFFZ9CrJOjOEL5kkQescyaLxIhI2sh44GBhnisDifYzHabuKGtQbmRJOJFlQ=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCp1Rxq0nIVoeljRfJn8yKbg",
+      name: "KAYEF",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/p_S4WXz6nJaC6yj7GkVHB3jCMV7at_9kfnAYmE3BfHpcmqUfmdYiA9xqs4tmrHfcjplPMWpy4IXvY9Y=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/p_S4WXz6nJaC6yj7GkVHB3jCMV7at_9kfnAYmE3BfHpcmqUfmdYiA9xqs4tmrHfcjplPMWpy4IXvY9Y=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UC7e8YXFjQLnKmxqRBZ7IwWw",
+      name: "Monet192",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/W1PqoAb7rcFIVlAdFMRV97gQ42yXnvKnO8M4-RKkiI486MPO7Yfrt-SMRDruclBAMpzK35GF6Gk5RaU=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/W1PqoAb7rcFIVlAdFMRV97gQ42yXnvKnO8M4-RKkiI486MPO7Yfrt-SMRDruclBAMpzK35GF6Gk5RaU=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCCLOqu8H6HeY3iShcAPn-qA",
+      name: "Mathea",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/yHpC193aCbr41gj0YZXiEjbgqFMuQTByVAORuBHr9bF9SahUy3UlMcIFLUY1Aw2PBCenM2uM50Zqbg=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/yHpC193aCbr41gj0YZXiEjbgqFMuQTByVAORuBHr9bF9SahUy3UlMcIFLUY1Aw2PBCenM2uM50Zqbg=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCDC9A-NGJwoEMyzULQWf4kw",
+      name: "Pantha",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/SLaGBWrx951kbmc5pPN_Z1x0rjPJP1ViOyMphH0bM1XAXPOBtPAYHnw7qOTThNPy2QL4wWwBGW2Xq2o=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/SLaGBWrx951kbmc5pPN_Z1x0rjPJP1ViOyMphH0bM1XAXPOBtPAYHnw7qOTThNPy2QL4wWwBGW2Xq2o=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCgosMU69MpoCqhuS1JZj6Cw",
+      name: "Sido",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/HZpnexwxNS5FkIrpz6hdHZuNhBS-GKjs0C9NU8nDSTmHFlPaviqxV-dDLS_ubSEbpEvu0m2P2WT3kaQ=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/HZpnexwxNS5FkIrpz6hdHZuNhBS-GKjs0C9NU8nDSTmHFlPaviqxV-dDLS_ubSEbpEvu0m2P2WT3kaQ=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCK2ZLsY9Mb_dxZiZfKE3lGg",
+      name: "AnnenMayKantereit",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/UIiP1HBod3H5OsOTyhPZPdfuU5-eslS9Wr8vy8aBphF1g22bk3QNK7O5vX5wjm3iZXQtZc-sYyw3BbM=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/UIiP1HBod3H5OsOTyhPZPdfuU5-eslS9Wr8vy8aBphF1g22bk3QNK7O5vX5wjm3iZXQtZc-sYyw3BbM=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCA-uIWGyE0n9YvJ-titY8zA",
+      name: "LOTTE",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/l_pq6m1w2cJiBfmK7Vqzv5rYJOrG_4IAaZFmQg4AogonohFXbTVfDTvXcc0h8IBc351ccbZ-QtwDnSU=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/l_pq6m1w2cJiBfmK7Vqzv5rYJOrG_4IAaZFmQg4AogonohFXbTVfDTvXcc0h8IBc351ccbZ-QtwDnSU=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCZwxolUWIeUty9Ru39pKNIw",
+      name: "Revolverheld",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/cTkCPvR4t9FpuODFJpRYKn1YHq_wfTRIWwRCKZze5snlrC_9DZ6GNFL5P4i4UypIRjFiTqEDiSc3NW0=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/cTkCPvR4t9FpuODFJpRYKn1YHq_wfTRIWwRCKZze5snlrC_9DZ6GNFL5P4i4UypIRjFiTqEDiSc3NW0=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCgM_Xg_Fmud497MdTPA3vTQ",
+      name: "Civo",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/a-/ALV-UjUxmCuTsP_JsJVV9c8lymt9auPNUk0QA1F1uXi7kA41JH4_O2U=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/a-/ALV-UjUxmCuTsP_JsJVV9c8lymt9auPNUk0QA1F1uXi7kA41JH4_O2U=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UC47yhBXrBIM5glZahA2nHqA",
+      name: "ENNIO",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/QXs3QaafSYpgbZtO-HHuiGJUq9Q66l6r3TwrKxantR1JNGV9rLNyoL75D6U7C1ctPHruYrGtOn0AXQzh=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/QXs3QaafSYpgbZtO-HHuiGJUq9Q66l6r3TwrKxantR1JNGV9rLNyoL75D6U7C1ctPHruYrGtOn0AXQzh=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCtKjWSYT3K5Kapp8ijffdqg",
+      name: "Esther Graf",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/IJuCGSYAWOqH5n6YnQ3SnyKelJklN3zfowm7Av9tKEXwWuBQ326HPhURvqXO5vDV9dHaWfBu-J_8aZM=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/IJuCGSYAWOqH5n6YnQ3SnyKelJklN3zfowm7Av9tKEXwWuBQ326HPhURvqXO5vDV9dHaWfBu-J_8aZM=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UC4OHFyfFMFfJAVDwPhgWPQg",
+      name: "AYLIVA",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/a-/ALV-UjVX1hMbTYzmBtTWYR728KdQ3H-_Q8FUWFzpW6YT7wajtbyHBz0=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/a-/ALV-UjVX1hMbTYzmBtTWYR728KdQ3H-_Q8FUWFzpW6YT7wajtbyHBz0=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCKvQnv9ldMbsIQcv1nEd8hw",
+      name: "TeeageBeatz",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/msZATojvcifqpwJYwA3OhiCqGx3bEQ3QT3c22myd8vtCOwNRE3XTc4vhYVaOUA4_E5xL3ZaXCtjDX_4=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/msZATojvcifqpwJYwA3OhiCqGx3bEQ3QT3c22myd8vtCOwNRE3XTc4vhYVaOUA4_E5xL3ZaXCtjDX_4=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UC6w-5zGi-f14mEqaZ1ELNSg",
+      name: "H1",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/zoiAmwuTz4s9G852ylrpFP83yPFvmAM0QkQO1SlvYS4RSBifC2pzSJ6kOomFW6VhgDrbNC3KAEmbH9k=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/zoiAmwuTz4s9G852ylrpFP83yPFvmAM0QkQO1SlvYS4RSBifC2pzSJ6kOomFW6VhgDrbNC3KAEmbH9k=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCBNkQnYHkB48rIsYc2E05KA",
+      name: "Emilio",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/aLlAoBcb_LgKaj6FowCIpnAXp6UWtSya1mHNQSBTheXi_yy-TrWi6cULoF5j1yyJfHKDzkpWontLz_bP=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/aLlAoBcb_LgKaj6FowCIpnAXp6UWtSya1mHNQSBTheXi_yy-TrWi6cULoF5j1yyJfHKDzkpWontLz_bP=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCe84h-P4fPif21lyK5vLcww",
+      name: "Georg Stengel",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/C7QW5VlGgogqLMT2idOC5DG4FVITp9Twfakxp30jw0Q3oFoGMRh-uzvilDy8VwmvSl9YxRIMhwxtrQP8=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/C7QW5VlGgogqLMT2idOC5DG4FVITp9Twfakxp30jw0Q3oFoGMRh-uzvilDy8VwmvSl9YxRIMhwxtrQP8=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UC4olRzWJj1o2mgbyTBmeaBw",
+      name: "Gregor Hägele",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/4srE8F_wmdCpoSLTtp2Tz2uBWA6bEqRwx4aVbbyhMrqJXuU8XD0An1vcntKZT2YvVy1aXU064iqGRZZb=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/4srE8F_wmdCpoSLTtp2Tz2uBWA6bEqRwx4aVbbyhMrqJXuU8XD0An1vcntKZT2YvVy1aXU064iqGRZZb=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCvxPDEZ_Mn0UVKgGrQ-4ZFQ",
+      name: "DUEJA",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/ShIWzUmvGOdfHZINYLVaZ0MsGLQJx0BIjVNY7Ao_GQIkYmWmWVlWoxV4MDrFRB-QR3GN7vvDcRC0Ug=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/ShIWzUmvGOdfHZINYLVaZ0MsGLQJx0BIjVNY7Ao_GQIkYmWmWVlWoxV4MDrFRB-QR3GN7vvDcRC0Ug=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCxO_-oK9EPp4hXj42aY1aVQ",
+      name: "Julia Meladin",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/WXPOsPYwCCFA-sMCmV7gXlJqSUrR70odOeHbYt9ACCLXWsU8lhPcFDRd8qtFnD7rqUZ9x5aHjcfazNQ=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/WXPOsPYwCCFA-sMCmV7gXlJqSUrR70odOeHbYt9ACCLXWsU8lhPcFDRd8qtFnD7rqUZ9x5aHjcfazNQ=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UClWYTAbTNH9p80shT8yPHqg",
+      name: "Alexander Eder",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/WCv6cD-rwjI2gYRwYjAskLaNK0kVJgzypcLOV-7nSfPwwYCzruldKpcnGDRbz8UQm6XzLx6MZqPor80=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/WCv6cD-rwjI2gYRwYjAskLaNK0kVJgzypcLOV-7nSfPwwYCzruldKpcnGDRbz8UQm6XzLx6MZqPor80=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCE7_p3lcXA-YXRZp2PjrgYw",
+      name: "Helene Fischer",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/mwiYuHAa4o3m8FELdQ1PTIXzXo3F34BR5QBIIVdpqbWGjRriygOZ7yTSg5v40W-gZvxLry0nrwmAkw=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/mwiYuHAa4o3m8FELdQ1PTIXzXo3F34BR5QBIIVdpqbWGjRriygOZ7yTSg5v40W-gZvxLry0nrwmAkw=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+    ArtistItem(
+      id: "UCLnMizH28AmXN6mqbAKwfgQ",
+      name: "Marina Marx",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/Zbq4nSO176iOzElPCIU3jfjhS5ybKugXrODxWTZIEyzDcLquFUeS-aFDTc_r3xBP1rwYwZbW9-rBJFqv=w60-h60-p-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/Zbq4nSO176iOzElPCIU3jfjhS5ybKugXrODxWTZIEyzDcLquFUeS-aFDTc_r3xBP1rwYwZbW9-rBJFqv=w120-h120-p-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      subscriber_count: None,
+    ),
+  ],
+  ctoken: Some("4qmFsgJiEh5GRW11c2ljX2xpYnJhcnlfY29ycHVzX2FydGlzdHMaQENCbDZJME5vWjB0R1FXOUZRMEZCVVVGU1NVMURUM3BHYjNKelIwVk5RMjU2Y1ZWRVIwRkJnZ01HS2dRSUFCQUI%3D"),
+  endpoint: music_browse,
+)

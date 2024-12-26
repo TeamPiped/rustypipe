@@ -33,6 +33,28 @@ impl RustyPipeQuery {
         )
         .await
     }
+
+    /// Get all liked videos of the logged-in user
+    ///
+    /// Requires authentication cookies.
+    pub async fn liked_videos(&self) -> Result<Playlist, Error> {
+        self.clone()
+            .authenticated()
+            .playlist("LL")
+            .await
+            .map_err(util::map_internal_playlist_err)
+    }
+
+    /// Get the "Watch later" playlist of the logged-in user
+    ///
+    /// Requires authentication cookies.
+    pub async fn watch_later(&self) -> Result<Playlist, Error> {
+        self.clone()
+            .authenticated()
+            .playlist("WL")
+            .await
+            .map_err(util::map_internal_playlist_err)
+    }
 }
 
 impl MapResponse<Playlist> for response::Playlist {
@@ -217,6 +239,7 @@ impl MapResponse<Playlist> for response::Playlist {
                     mapper.ctoken,
                     ctx.visitor_data.map(str::to_owned),
                     ContinuationEndpoint::Browse,
+                    ctx.authenticated,
                 ),
                 video_count: n_videos,
                 thumbnail: thumbnails.into(),

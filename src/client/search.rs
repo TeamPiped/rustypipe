@@ -122,6 +122,7 @@ impl<T: FromYtItem> MapResponse<SearchResult<T>> for response::Search {
                     mapper.ctoken,
                     None,
                     ContinuationEndpoint::Search,
+                    false,
                 ),
                 corrected_query: mapper.corrected_query,
                 visitor_data: self

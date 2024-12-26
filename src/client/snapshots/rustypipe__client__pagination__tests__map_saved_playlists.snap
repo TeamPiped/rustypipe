@@ -1,0 +1,71 @@
+---
+source: src/client/pagination.rs
+expression: paginator
+---
+Paginator(
+  count: Some(3),
+  items: [
+    MusicPlaylistItem(
+      id: "LM",
+      name: "Liked Music",
+      thumbnail: [
+        Thumbnail(
+          url: "https://www.gstatic.com/youtube/media/ytm/images/pbg/liked-music-@192.png",
+          width: 192,
+          height: 192,
+        ),
+        Thumbnail(
+          url: "https://www.gstatic.com/youtube/media/ytm/images/pbg/liked-music-@576.png",
+          width: 576,
+          height: 576,
+        ),
+      ],
+      channel: None,
+      track_count: None,
+      from_ytm: true,
+      is_podcast: false,
+    ),
+    MusicPlaylistItem(
+      id: "RDCLAK5uy_k8X5cgTG2AnXbnkwEV7uQFptEKvSRmkjU",
+      name: "Lautstark: German Indie & Rock Hits",
+      thumbnail: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/NTyTuhySZTQhdmlh19HQBI7hg_PtS1bLATodAepPXjyF1et8SXiqLtJxmVRszGdpXOwkQSIUsMOWgSo=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/NTyTuhySZTQhdmlh19HQBI7hg_PtS1bLATodAepPXjyF1et8SXiqLtJxmVRszGdpXOwkQSIUsMOWgSo=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      channel: None,
+      track_count: None,
+      from_ytm: false,
+      is_podcast: false,
+    ),
+    MusicPlaylistItem(
+      id: "SE",
+      name: "Episodes for Later",
+      thumbnail: [
+        Thumbnail(
+          url: "https://www.gstatic.com/youtube/media/ytm/images/pbg/saved-episodes-@192.png",
+          width: 192,
+          height: 192,
+        ),
+        Thumbnail(
+          url: "https://www.gstatic.com/youtube/media/ytm/images/pbg/saved-episodes-@576.png",
+          width: 576,
+          height: 576,
+        ),
+      ],
+      channel: None,
+      track_count: None,
+      from_ytm: true,
+      is_podcast: false,
+    ),
+  ],
+  ctoken: None,
+  endpoint: music_browse,
+)

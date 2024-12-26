@@ -122,6 +122,17 @@ impl RustyPipeQuery {
         }
         Ok(album)
     }
+
+    /// Get all liked tracks of the logged-in user
+    ///
+    /// Requires authentication cookies.
+    pub async fn music_liked_tracks(&self) -> Result<MusicPlaylist, Error> {
+        self.clone()
+            .authenticated()
+            .music_playlist("LM")
+            .await
+            .map_err(util::map_internal_playlist_err)
+    }
 }
 
 impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
@@ -298,6 +309,7 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
                     ctoken,
                     ctx.visitor_data.map(str::to_owned),
                     ContinuationEndpoint::MusicBrowse,
+                    ctx.authenticated,
                 ),
                 related_playlists: Paginator::new_ext(
                     None,
@@ -305,6 +317,7 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
                     related_ctoken,
                     ctx.visitor_data.map(str::to_owned),
                     ContinuationEndpoint::MusicBrowse,
+                    ctx.authenticated,
                 ),
             },
             warnings: map_res.warnings,

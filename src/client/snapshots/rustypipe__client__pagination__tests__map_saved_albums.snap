@@ -1,0 +1,63 @@
+---
+source: src/client/pagination.rs
+expression: paginator
+---
+Paginator(
+  count: Some(2),
+  items: [
+    AlbumItem(
+      id: "MPREb_yYq4IkZhG9j",
+      name: "Felsenfest",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/68I8CkjpCfwrRy1JXyS5tvo_R0hm3DlEE0pXNnLpuihH10pIRNlNVZEoqsEFOzPeCAKMEjsJKQ5kfHVW=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+          name: "dArtagnan",
+        ),
+      ],
+      artist_id: Some("UCWOw75Vmryv3D_WdzE2DbKA"),
+      album_type: album,
+      year: None,
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_IRSjexVmMMl",
+      name: "21",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/y6b4yT6dCKEVmzBvATUWodOFLYc81vwxuK0nTgE-scZ3BvyuY9639NL_UyGc6zc_ASoELG67fDUNta0=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/y6b4yT6dCKEVmzBvATUWodOFLYc81vwxuK0nTgE-scZ3BvyuY9639NL_UyGc6zc_ASoELG67fDUNta0=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCRw0x9_EfawqmgDI2IgQLLg"),
+          name: "Adele",
+        ),
+      ],
+      artist_id: Some("UCRw0x9_EfawqmgDI2IgQLLg"),
+      album_type: album,
+      year: None,
+      by_va: false,
+    ),
+  ],
+  ctoken: None,
+  endpoint: music_browse,
+)

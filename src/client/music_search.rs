@@ -199,6 +199,7 @@ impl<T: FromYtItem> MapResponse<MusicSearchResult<T>> for response::MusicSearch 
                     ctoken,
                     ctx.visitor_data.map(str::to_owned),
                     ContinuationEndpoint::MusicSearch,
+                    false,
                 ),
                 corrected_query,
             },

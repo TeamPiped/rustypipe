@@ -6,6 +6,8 @@ use crate::{
     util,
 };
 
+use super::Empty;
+
 /// navigation/resolve_url response model
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -35,6 +37,9 @@ pub(crate) enum NavigationEndpoint {
     WatchPlaylist {
         watch_playlist_endpoint: WatchPlaylistEndpoint,
     },
+    #[serde(rename_all = "camelCase")]
+    #[allow(unused)]
+    CreatePlaylist { create_playlist_endpoint: Empty },
 }
 
 #[derive(Debug, Deserialize)]
@@ -338,6 +343,10 @@ impl NavigationEndpoint {
                 id: watch_playlist_endpoint.playlist_id,
                 typ: MusicPageType::Playlist { is_podcast: false },
             }),
+            NavigationEndpoint::CreatePlaylist { .. } => Some(MusicPage {
+                id: String::new(),
+                typ: MusicPageType::None,
+            }),
         }
     }
 
@@ -381,6 +390,7 @@ impl NavigationEndpoint {
             NavigationEndpoint::WatchPlaylist {
                 watch_playlist_endpoint,
             } => Some(watch_playlist_endpoint.playlist_id),
+            NavigationEndpoint::CreatePlaylist { .. } => None,
         }
     }
 }
