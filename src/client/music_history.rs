@@ -68,6 +68,8 @@ impl RustyPipeQuery {
 
     /// Get a list of YouTube Music tracks which the current user has added to their collection
     ///
+    /// Contains both liked tracks and tracks from saved albums.
+    ///
     /// Requires authentication cookies.
     #[tracing::instrument(skip(self), level = "error")]
     pub async fn music_saved_tracks(&self) -> Result<Paginator<TrackItem>, Error> {
