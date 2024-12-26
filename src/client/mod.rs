@@ -1944,8 +1944,14 @@ impl RustyPipeQuery {
                             request
                                 .headers()
                                 .iter()
+                                .filter(|(k, _)| k != &header::COOKIE)
                                 .map(|(k, v)| {
-                                    (k.as_str(), v.to_str().unwrap_or_default().to_owned())
+                                    let vstr = if k == header::AUTHORIZATION {
+                                        "[redacted]"
+                                    } else {
+                                        v.to_str().unwrap_or_default()
+                                    };
+                                    (k.as_str(), vstr.to_owned())
                                 })
                                 .collect(),
                         ),
