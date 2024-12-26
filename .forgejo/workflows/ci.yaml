@@ -29,7 +29,7 @@ jobs:
 
       - name: 🧪 Test
         run: |
-          printf "$RUSTYPIPE_CACHE" > rustypipe_cache.json
+          printf '%s\n' "$RUSTYPIPE_CACHE" > rustypipe_cache.json
           echo "authenticated=$YT_AUTHENTICATED"
           cargo nextest run --config-file ~/.config/nextest.toml --profile ci --retries 2 --features rss --workspace
         env:
