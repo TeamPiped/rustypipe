@@ -77,7 +77,7 @@ pub fn filter_datestr(string: &str) -> String {
         .to_lowercase()
         .chars()
         .filter_map(|c| {
-            if c == '\u{200b}' || c.is_ascii_digit() {
+            if matches!(c, '\u{200b}' | '.' | ',') || c.is_ascii_digit() {
                 None
             } else if c == '-' {
                 Some(' ')

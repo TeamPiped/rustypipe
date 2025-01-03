@@ -6,7 +6,10 @@ use crate::model::{
     traits::FromYtItem,
     Comment, MusicItem, YouTubeItem,
 };
+use crate::model::{HistoryItem, TrackItem, VideoItem};
 use crate::serializer::MapResult;
+
+use self::response::YouTubeListItem;
 
 use super::response::music_item::{map_queue_item, MusicListMapper, PlaylistPanelVideo};
 use super::{
@@ -95,38 +98,44 @@ fn map_ytm_paginator<T: FromYtItem>(
     }
 }
 
+fn continuation_items(response: response::Continuation) -> MapResult<Vec<YouTubeListItem>> {
+    response
+        .on_response_received_actions
+        .and_then(|actions| {
+            actions
+                .into_iter()
+                .map(|action| action.append_continuation_items_action.continuation_items)
+                .reduce(|mut acc, mut items| {
+                    acc.c.append(&mut items.c);
+                    acc.warnings.append(&mut items.warnings);
+                    acc
+                })
+        })
+        .or_else(|| {
+            response
+                .continuation_contents
+                .map(|contents| contents.rich_grid_continuation.contents)
+        })
+        .unwrap_or_default()
+}
+
 impl MapResponse<Paginator<YouTubeItem>> for response::Continuation {
     fn map_response(
         self,
         ctx: &MapRespCtx<'_>,
     ) -> Result<MapResult<Paginator<YouTubeItem>>, ExtractionError> {
-        let items = self
-            .on_response_received_actions
-            .and_then(|actions| {
-                actions
-                    .into_iter()
-                    .map(|action| action.append_continuation_items_action.continuation_items)
-                    .reduce(|mut acc, mut items| {
-                        acc.c.append(&mut items.c);
-                        acc.warnings.append(&mut items.warnings);
-                        acc
-                    })
-            })
-            .or_else(|| {
-                self.continuation_contents
-                    .map(|contents| contents.rich_grid_continuation.contents)
-            })
-            .unwrap_or_default();
+        let estimated_results = self.estimated_results;
+        let items = continuation_items(self);
 
         let mut mapper = response::YouTubeListMapper::<YouTubeItem>::new(ctx.lang);
         mapper.map_response(items);
 
         Ok(MapResult {
             c: Paginator::new_ext(
-                self.estimated_results,
+                estimated_results,
                 mapper.items,
                 mapper.ctoken,
-                None,
+                ctx.visitor_data.map(str::to_owned),
                 ContinuationEndpoint::Browse,
                 ctx.authenticated,
             ),
@@ -201,7 +210,99 @@ impl MapResponse<Paginator<MusicItem>> for response::MusicContinuation {
                 None,
                 map_res.c,
                 ctoken,
+                ctx.visitor_data.map(str::to_owned),
+                ContinuationEndpoint::MusicBrowse,
+                ctx.authenticated,
+            ),
+            warnings: map_res.warnings,
+        })
+    }
+}
+
+impl MapResponse<Paginator<HistoryItem<VideoItem>>> for response::Continuation {
+    fn map_response(
+        self,
+        ctx: &MapRespCtx<'_>,
+    ) -> Result<MapResult<Paginator<HistoryItem<VideoItem>>>, ExtractionError> {
+        let mut map_res = MapResult::default();
+        let mut ctoken = None;
+
+        let items = continuation_items(self);
+        for item in items.c {
+            match item {
+                response::YouTubeListItem::ItemSectionRenderer { header, contents } => {
+                    let mut mapper = response::YouTubeListMapper::<VideoItem>::new(ctx.lang);
+                    mapper.map_response(contents);
+                    mapper.conv_history_items(
+                        header.map(|h| h.item_section_header_renderer.title),
+                        &mut map_res,
+                    );
+                }
+                response::YouTubeListItem::ContinuationItemRenderer {
+                    continuation_endpoint,
+                } => {
+                    if ctoken.is_none() {
+                        ctoken = Some(continuation_endpoint.continuation_command.token);
+                    }
+                }
+                _ => {}
+            }
+        }
+
+        Ok(MapResult {
+            c: Paginator::new_ext(
                 None,
+                map_res.c,
+                ctoken,
+                ctx.visitor_data.map(str::to_owned),
+                ContinuationEndpoint::Browse,
+                ctx.authenticated,
+            ),
+            warnings: map_res.warnings,
+        })
+    }
+}
+
+impl MapResponse<Paginator<HistoryItem<TrackItem>>> for response::MusicContinuation {
+    fn map_response(
+        self,
+        ctx: &MapRespCtx<'_>,
+    ) -> Result<MapResult<Paginator<HistoryItem<TrackItem>>>, ExtractionError> {
+        let mut map_res = MapResult::default();
+        let mut continuations = Vec::new();
+
+        let mut map_shelf = |shelf: response::music_item::MusicShelf| {
+            let mut mapper = MusicListMapper::new(ctx.lang);
+            mapper.map_response(shelf.contents);
+            mapper.conv_history_items(shelf.title, &mut map_res);
+            continuations.extend(shelf.continuations);
+        };
+
+        match self.continuation_contents {
+            Some(response::music_item::ContinuationContents::MusicShelfContinuation(shelf)) => {
+                map_shelf(shelf);
+            }
+            Some(response::music_item::ContinuationContents::SectionListContinuation(contents)) => {
+                for c in contents.contents {
+                    if let response::music_item::ItemSection::MusicShelfRenderer(shelf) = c {
+                        map_shelf(shelf);
+                    }
+                }
+            }
+            _ => {}
+        }
+
+        let ctoken = continuations
+            .into_iter()
+            .next()
+            .map(|cont| cont.next_continuation_data.continuation);
+
+        Ok(MapResult {
+            c: Paginator::new_ext(
+                None,
+                map_res.c,
+                ctoken,
+                ctx.visitor_data.map(str::to_owned),
                 ContinuationEndpoint::MusicBrowse,
                 ctx.authenticated,
             ),
@@ -213,11 +314,6 @@ impl MapResponse<Paginator<MusicItem>> for response::MusicContinuation {
 impl<T: FromYtItem> Paginator<T> {
     /// Get the next page from the paginator (or `None` if the paginator is exhausted)
     pub async fn next<Q: AsRef<RustyPipeQuery>>(&self, query: Q) -> Result<Option<Self>, Error> {
-        // let mut q = query.as_ref().clone();
-        // if self.authenticated {
-        //     q = q.authenticated();
-        // }
-
         Ok(match &self.ctoken {
             Some(ctoken) => {
                 let q = if self.authenticated {
@@ -319,6 +415,36 @@ impl Paginator<Comment> {
     }
 }
 
+impl Paginator<HistoryItem<VideoItem>> {
+    /// Get the next page from the paginator (or `None` if the paginator is exhausted)
+    pub async fn next<Q: AsRef<RustyPipeQuery>>(&self, query: Q) -> Result<Option<Self>, Error> {
+        Ok(match &self.ctoken {
+            Some(ctoken) => Some(
+                query
+                    .as_ref()
+                    .history_continuation(ctoken, self.visitor_data.as_deref())
+                    .await?,
+            ),
+            _ => None,
+        })
+    }
+}
+
+impl Paginator<HistoryItem<TrackItem>> {
+    /// Get the next page from the paginator (or `None` if the paginator is exhausted)
+    pub async fn next<Q: AsRef<RustyPipeQuery>>(&self, query: Q) -> Result<Option<Self>, Error> {
+        Ok(match &self.ctoken {
+            Some(ctoken) => Some(
+                query
+                    .as_ref()
+                    .music_history_continuation(ctoken, self.visitor_data.as_deref())
+                    .await?,
+            ),
+            _ => None,
+        })
+    }
+}
+
 macro_rules! paginator {
     ($entity_type:ty) => {
         impl Paginator<$entity_type> {
@@ -400,6 +526,8 @@ macro_rules! paginator {
 }
 
 paginator!(Comment);
+paginator!(HistoryItem<VideoItem>);
+paginator!(HistoryItem<TrackItem>);
 
 #[cfg(test)]
 mod tests {

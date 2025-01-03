@@ -4,4 +4,4 @@
 *.snap.new
 
 rustypipe_reports
-rustypipe_cache.json
+rustypipe_cache*.json

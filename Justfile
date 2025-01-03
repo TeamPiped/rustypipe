@@ -28,7 +28,7 @@ testintl:
     for YT_LANG in "${LANGUAGES[@]}"; do
         echo "---TESTS FOR $YT_LANG ---"
 
-        if YT_LANG="$YT_LANG" cargo nextest run --no-fail-fast ---retries 1 --test-threads 4 --test youtube -E 'not test(/^resolve/)'; then
+        if YT_LANG="$YT_LANG" cargo nextest run --no-fail-fast --retries 1 --test-threads 4 --test youtube -E 'not test(/^resolve/)'; then
             echo "--- $YT_LANG COMPLETED ---"
         else
             echo "--- $YT_LANG FAILED ---"

@@ -5,741 +5,833 @@ expression: map_res.c
 Paginator(
   count: Some(23),
   items: [
-    TrackItem(
-      id: "-gBtW4GhF3Y",
-      name: "O Du fröhliche",
-      duration: Some(214),
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/xH15w12BHaphTUcf1ivgy4Q6sZh1m3ZSklFqL6O9H5hixdtpzHHEDF48uSy3VDJJjaqf-SQurQmcPnhaCw=w60-h60-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/xH15w12BHaphTUcf1ivgy4Q6sZh1m3ZSklFqL6O9H5hixdtpzHHEDF48uSy3VDJJjaqf-SQurQmcPnhaCw=w120-h120-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCE7_p3lcXA-YXRZp2PjrgYw"),
-          name: "Helene Fischer",
-        ),
-      ],
-      artist_id: Some("UCE7_p3lcXA-YXRZp2PjrgYw"),
-      album: Some(AlbumId(
-        id: "MPREb_IBxM8XVyrqh",
-        name: "Weihnachten",
-      )),
-      view_count: None,
-      track_type: track,
-      track_nr: None,
-      by_va: false,
+    HistoryItem(
+      item: TrackItem(
+        id: "-gBtW4GhF3Y",
+        name: "O Du fröhliche",
+        duration: Some(214),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/xH15w12BHaphTUcf1ivgy4Q6sZh1m3ZSklFqL6O9H5hixdtpzHHEDF48uSy3VDJJjaqf-SQurQmcPnhaCw=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/xH15w12BHaphTUcf1ivgy4Q6sZh1m3ZSklFqL6O9H5hixdtpzHHEDF48uSy3VDJJjaqf-SQurQmcPnhaCw=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCE7_p3lcXA-YXRZp2PjrgYw"),
+            name: "Helene Fischer",
+          ),
+        ],
+        artist_id: Some("UCE7_p3lcXA-YXRZp2PjrgYw"),
+        album: Some(AlbumId(
+          id: "MPREb_IBxM8XVyrqh",
+          name: "Weihnachten",
+        )),
+        view_count: None,
+        track_type: track,
+        track_nr: None,
+        by_va: false,
+      ),
+      playback_date: "[date]",
+      playback_date_txt: Some("Today"),
     ),
-    TrackItem(
-      id: "nsV9bCW3sLM",
-      name: "Stille Nacht",
-      duration: Some(264),
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/xH15w12BHaphTUcf1ivgy4Q6sZh1m3ZSklFqL6O9H5hixdtpzHHEDF48uSy3VDJJjaqf-SQurQmcPnhaCw=w60-h60-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/xH15w12BHaphTUcf1ivgy4Q6sZh1m3ZSklFqL6O9H5hixdtpzHHEDF48uSy3VDJJjaqf-SQurQmcPnhaCw=w120-h120-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCE7_p3lcXA-YXRZp2PjrgYw"),
-          name: "Helene Fischer",
-        ),
-      ],
-      artist_id: Some("UCE7_p3lcXA-YXRZp2PjrgYw"),
-      album: Some(AlbumId(
-        id: "MPREb_IBxM8XVyrqh",
-        name: "Weihnachten",
-      )),
-      view_count: None,
-      track_type: track,
-      track_nr: None,
-      by_va: false,
+    HistoryItem(
+      item: TrackItem(
+        id: "nsV9bCW3sLM",
+        name: "Stille Nacht",
+        duration: Some(264),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/xH15w12BHaphTUcf1ivgy4Q6sZh1m3ZSklFqL6O9H5hixdtpzHHEDF48uSy3VDJJjaqf-SQurQmcPnhaCw=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/xH15w12BHaphTUcf1ivgy4Q6sZh1m3ZSklFqL6O9H5hixdtpzHHEDF48uSy3VDJJjaqf-SQurQmcPnhaCw=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCE7_p3lcXA-YXRZp2PjrgYw"),
+            name: "Helene Fischer",
+          ),
+        ],
+        artist_id: Some("UCE7_p3lcXA-YXRZp2PjrgYw"),
+        album: Some(AlbumId(
+          id: "MPREb_IBxM8XVyrqh",
+          name: "Weihnachten",
+        )),
+        view_count: None,
+        track_type: track,
+        track_nr: None,
+        by_va: false,
+      ),
+      playback_date: "[date]",
+      playback_date_txt: Some("Today"),
     ),
-    TrackItem(
-      id: "3-oqGxnJTrA",
-      name: "Ihr Kinderlein kommet",
-      duration: Some(195),
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/xH15w12BHaphTUcf1ivgy4Q6sZh1m3ZSklFqL6O9H5hixdtpzHHEDF48uSy3VDJJjaqf-SQurQmcPnhaCw=w60-h60-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/xH15w12BHaphTUcf1ivgy4Q6sZh1m3ZSklFqL6O9H5hixdtpzHHEDF48uSy3VDJJjaqf-SQurQmcPnhaCw=w120-h120-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCE7_p3lcXA-YXRZp2PjrgYw"),
-          name: "Helene Fischer",
-        ),
-      ],
-      artist_id: Some("UCE7_p3lcXA-YXRZp2PjrgYw"),
-      album: Some(AlbumId(
-        id: "MPREb_IBxM8XVyrqh",
-        name: "Weihnachten",
-      )),
-      view_count: None,
-      track_type: track,
-      track_nr: None,
-      by_va: false,
+    HistoryItem(
+      item: TrackItem(
+        id: "3-oqGxnJTrA",
+        name: "Ihr Kinderlein kommet",
+        duration: Some(195),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/xH15w12BHaphTUcf1ivgy4Q6sZh1m3ZSklFqL6O9H5hixdtpzHHEDF48uSy3VDJJjaqf-SQurQmcPnhaCw=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/xH15w12BHaphTUcf1ivgy4Q6sZh1m3ZSklFqL6O9H5hixdtpzHHEDF48uSy3VDJJjaqf-SQurQmcPnhaCw=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCE7_p3lcXA-YXRZp2PjrgYw"),
+            name: "Helene Fischer",
+          ),
+        ],
+        artist_id: Some("UCE7_p3lcXA-YXRZp2PjrgYw"),
+        album: Some(AlbumId(
+          id: "MPREb_IBxM8XVyrqh",
+          name: "Weihnachten",
+        )),
+        view_count: None,
+        track_type: track,
+        track_nr: None,
+        by_va: false,
+      ),
+      playback_date: "[date]",
+      playback_date_txt: Some("Today"),
     ),
-    TrackItem(
-      id: "xBby89eXe1g",
-      name: "Tochter Zion",
-      duration: Some(186),
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/xH15w12BHaphTUcf1ivgy4Q6sZh1m3ZSklFqL6O9H5hixdtpzHHEDF48uSy3VDJJjaqf-SQurQmcPnhaCw=w60-h60-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/xH15w12BHaphTUcf1ivgy4Q6sZh1m3ZSklFqL6O9H5hixdtpzHHEDF48uSy3VDJJjaqf-SQurQmcPnhaCw=w120-h120-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCE7_p3lcXA-YXRZp2PjrgYw"),
-          name: "Helene Fischer",
-        ),
-      ],
-      artist_id: Some("UCE7_p3lcXA-YXRZp2PjrgYw"),
-      album: Some(AlbumId(
-        id: "MPREb_IBxM8XVyrqh",
-        name: "Weihnachten",
-      )),
-      view_count: None,
-      track_type: track,
-      track_nr: None,
-      by_va: false,
+    HistoryItem(
+      item: TrackItem(
+        id: "xBby89eXe1g",
+        name: "Tochter Zion",
+        duration: Some(186),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/xH15w12BHaphTUcf1ivgy4Q6sZh1m3ZSklFqL6O9H5hixdtpzHHEDF48uSy3VDJJjaqf-SQurQmcPnhaCw=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/xH15w12BHaphTUcf1ivgy4Q6sZh1m3ZSklFqL6O9H5hixdtpzHHEDF48uSy3VDJJjaqf-SQurQmcPnhaCw=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCE7_p3lcXA-YXRZp2PjrgYw"),
+            name: "Helene Fischer",
+          ),
+        ],
+        artist_id: Some("UCE7_p3lcXA-YXRZp2PjrgYw"),
+        album: Some(AlbumId(
+          id: "MPREb_IBxM8XVyrqh",
+          name: "Weihnachten",
+        )),
+        view_count: None,
+        track_type: track,
+        track_nr: None,
+        by_va: false,
+      ),
+      playback_date: "[date]",
+      playback_date_txt: Some("Today"),
     ),
-    TrackItem(
-      id: "ikyIeWgP6i4",
-      name: "Adeste Fideles",
-      duration: Some(236),
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/xH15w12BHaphTUcf1ivgy4Q6sZh1m3ZSklFqL6O9H5hixdtpzHHEDF48uSy3VDJJjaqf-SQurQmcPnhaCw=w60-h60-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/xH15w12BHaphTUcf1ivgy4Q6sZh1m3ZSklFqL6O9H5hixdtpzHHEDF48uSy3VDJJjaqf-SQurQmcPnhaCw=w120-h120-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCE7_p3lcXA-YXRZp2PjrgYw"),
-          name: "Helene Fischer",
-        ),
-      ],
-      artist_id: Some("UCE7_p3lcXA-YXRZp2PjrgYw"),
-      album: Some(AlbumId(
-        id: "MPREb_IBxM8XVyrqh",
-        name: "Weihnachten",
-      )),
-      view_count: None,
-      track_type: track,
-      track_nr: None,
-      by_va: false,
+    HistoryItem(
+      item: TrackItem(
+        id: "ikyIeWgP6i4",
+        name: "Adeste Fideles",
+        duration: Some(236),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/xH15w12BHaphTUcf1ivgy4Q6sZh1m3ZSklFqL6O9H5hixdtpzHHEDF48uSy3VDJJjaqf-SQurQmcPnhaCw=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/xH15w12BHaphTUcf1ivgy4Q6sZh1m3ZSklFqL6O9H5hixdtpzHHEDF48uSy3VDJJjaqf-SQurQmcPnhaCw=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCE7_p3lcXA-YXRZp2PjrgYw"),
+            name: "Helene Fischer",
+          ),
+        ],
+        artist_id: Some("UCE7_p3lcXA-YXRZp2PjrgYw"),
+        album: Some(AlbumId(
+          id: "MPREb_IBxM8XVyrqh",
+          name: "Weihnachten",
+        )),
+        view_count: None,
+        track_type: track,
+        track_nr: None,
+        by_va: false,
+      ),
+      playback_date: "[date]",
+      playback_date_txt: Some("Today"),
     ),
-    TrackItem(
-      id: "u54XYn1nCZ8",
-      name: "Das Polizeiboot",
-      duration: Some(187),
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/-IzX3AN3btJwzM7YzUtDRu8-40B_qNcQlckN26aHVFNopjA4wiRGLuDfiTPrSx8X-ULA-GdkcbGU57M=w60-h60-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/-IzX3AN3btJwzM7YzUtDRu8-40B_qNcQlckN26aHVFNopjA4wiRGLuDfiTPrSx8X-ULA-GdkcbGU57M=w120-h120-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UC_WzOax81EduoCiIrWQCrTw"),
-          name: "SpongeBob Schwammkopf",
-        ),
-      ],
-      artist_id: Some("UC_WzOax81EduoCiIrWQCrTw"),
-      album: Some(AlbumId(
-        id: "MPREb_M2trHaS2Z39",
-        name: "Quallendisco",
-      )),
-      view_count: None,
-      track_type: track,
-      track_nr: None,
-      by_va: false,
+    HistoryItem(
+      item: TrackItem(
+        id: "u54XYn1nCZ8",
+        name: "Das Polizeiboot",
+        duration: Some(187),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/-IzX3AN3btJwzM7YzUtDRu8-40B_qNcQlckN26aHVFNopjA4wiRGLuDfiTPrSx8X-ULA-GdkcbGU57M=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/-IzX3AN3btJwzM7YzUtDRu8-40B_qNcQlckN26aHVFNopjA4wiRGLuDfiTPrSx8X-ULA-GdkcbGU57M=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UC_WzOax81EduoCiIrWQCrTw"),
+            name: "SpongeBob Schwammkopf",
+          ),
+        ],
+        artist_id: Some("UC_WzOax81EduoCiIrWQCrTw"),
+        album: Some(AlbumId(
+          id: "MPREb_M2trHaS2Z39",
+          name: "Quallendisco",
+        )),
+        view_count: None,
+        track_type: track,
+        track_nr: None,
+        by_va: false,
+      ),
+      playback_date: "[date]",
+      playback_date_txt: Some("Today"),
     ),
-    TrackItem(
-      id: "acOEjiOH2v8",
-      name: "We Made It",
-      duration: Some(212),
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/kpuoWhUjjFS0CR_Bz7OY4JSHXIYzbYTa9FWalcXudTAETr1EioLtSa5ua5vNcla0_aAbVjUe0zv-OQxWsw=w60-h60-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/kpuoWhUjjFS0CR_Bz7OY4JSHXIYzbYTa9FWalcXudTAETr1EioLtSa5ua5vNcla0_aAbVjUe0zv-OQxWsw=w120-h120-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCi3H2bHgaTFwrfwx_GOJyZw"),
-          name: "t-low",
-        ),
-        ArtistId(
-          id: Some("UCrWB2JlLx3-q8CUUiVXgedg"),
-          name: "Miksu / Macloud",
-        ),
-      ],
-      artist_id: Some("UCi3H2bHgaTFwrfwx_GOJyZw"),
-      album: Some(AlbumId(
-        id: "MPREb_fkur1VEwyKR",
-        name: "Percocet Party",
-      )),
-      view_count: None,
-      track_type: track,
-      track_nr: None,
-      by_va: false,
+    HistoryItem(
+      item: TrackItem(
+        id: "acOEjiOH2v8",
+        name: "We Made It",
+        duration: Some(212),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/kpuoWhUjjFS0CR_Bz7OY4JSHXIYzbYTa9FWalcXudTAETr1EioLtSa5ua5vNcla0_aAbVjUe0zv-OQxWsw=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/kpuoWhUjjFS0CR_Bz7OY4JSHXIYzbYTa9FWalcXudTAETr1EioLtSa5ua5vNcla0_aAbVjUe0zv-OQxWsw=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCi3H2bHgaTFwrfwx_GOJyZw"),
+            name: "t-low",
+          ),
+          ArtistId(
+            id: Some("UCrWB2JlLx3-q8CUUiVXgedg"),
+            name: "Miksu / Macloud",
+          ),
+        ],
+        artist_id: Some("UCi3H2bHgaTFwrfwx_GOJyZw"),
+        album: Some(AlbumId(
+          id: "MPREb_fkur1VEwyKR",
+          name: "Percocet Party",
+        )),
+        view_count: None,
+        track_type: track,
+        track_nr: None,
+        by_va: false,
+      ),
+      playback_date: "[date]",
+      playback_date_txt: Some("Today"),
     ),
-    TrackItem(
-      id: "Xg5dn6o-mME",
-      name: "Misfit Toys",
-      duration: Some(190),
-      cover: [
-        Thumbnail(
-          url: "https://i.ytimg.com/vi/Xg5dn6o-mME/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3n1aZ8j7_o-eQbVtcbLCm2KSK2I6A",
-          width: 400,
-          height: 225,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCr4IKNkUPPmkwE_LAjtho0g"),
-          name: "Pusha T",
-        ),
-      ],
-      artist_id: Some("UCr4IKNkUPPmkwE_LAjtho0g"),
-      album: None,
-      view_count: None,
-      track_type: episode,
-      track_nr: None,
-      by_va: false,
+    HistoryItem(
+      item: TrackItem(
+        id: "Xg5dn6o-mME",
+        name: "Misfit Toys",
+        duration: Some(190),
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/Xg5dn6o-mME/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3n1aZ8j7_o-eQbVtcbLCm2KSK2I6A",
+            width: 400,
+            height: 225,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCr4IKNkUPPmkwE_LAjtho0g"),
+            name: "Pusha T",
+          ),
+        ],
+        artist_id: Some("UCr4IKNkUPPmkwE_LAjtho0g"),
+        album: None,
+        view_count: None,
+        track_type: episode,
+        track_nr: None,
+        by_va: false,
+      ),
+      playback_date: "[date]",
+      playback_date_txt: Some("Today"),
     ),
-    TrackItem(
-      id: "Smy4qcyPMEc",
-      name: "Remember Me (Intro)",
-      duration: Some(101),
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/AYcl_X1V-eF8utaaVUlgmY-ibcQwE2BsY0RW6TdbZ5qAK8UNUfA5xaNiERyCHv2PpsXNh_L3hPZkmdM=w60-h60-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/AYcl_X1V-eF8utaaVUlgmY-ibcQwE2BsY0RW6TdbZ5qAK8UNUfA5xaNiERyCHv2PpsXNh_L3hPZkmdM=w120-h120-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCGr1UQ4CwzRMmYoQfHQQWTg"),
-          name: "d4vd",
-        ),
-      ],
-      artist_id: Some("UCGr1UQ4CwzRMmYoQfHQQWTg"),
-      album: Some(AlbumId(
-        id: "MPREb_muqZ7sOFHBp",
-        name: "Arcane League of Legends: Season 2 (Soundtrack from the Animated Series)",
-      )),
-      view_count: None,
-      track_type: track,
-      track_nr: None,
-      by_va: false,
+    HistoryItem(
+      item: TrackItem(
+        id: "Smy4qcyPMEc",
+        name: "Remember Me (Intro)",
+        duration: Some(101),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/AYcl_X1V-eF8utaaVUlgmY-ibcQwE2BsY0RW6TdbZ5qAK8UNUfA5xaNiERyCHv2PpsXNh_L3hPZkmdM=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/AYcl_X1V-eF8utaaVUlgmY-ibcQwE2BsY0RW6TdbZ5qAK8UNUfA5xaNiERyCHv2PpsXNh_L3hPZkmdM=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCGr1UQ4CwzRMmYoQfHQQWTg"),
+            name: "d4vd",
+          ),
+        ],
+        artist_id: Some("UCGr1UQ4CwzRMmYoQfHQQWTg"),
+        album: Some(AlbumId(
+          id: "MPREb_muqZ7sOFHBp",
+          name: "Arcane League of Legends: Season 2 (Soundtrack from the Animated Series)",
+        )),
+        view_count: None,
+        track_type: track,
+        track_nr: None,
+        by_va: false,
+      ),
+      playback_date: "[date]",
+      playback_date_txt: Some("Last week"),
     ),
-    TrackItem(
-      id: "cmEIneYW2yk",
-      name: "Paint The Town Blue (from the series Arcane League of Legends)",
-      duration: Some(115),
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/AYcl_X1V-eF8utaaVUlgmY-ibcQwE2BsY0RW6TdbZ5qAK8UNUfA5xaNiERyCHv2PpsXNh_L3hPZkmdM=w60-h60-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/AYcl_X1V-eF8utaaVUlgmY-ibcQwE2BsY0RW6TdbZ5qAK8UNUfA5xaNiERyCHv2PpsXNh_L3hPZkmdM=w120-h120-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCn3fPGV_gVYAmpgb1APyQug"),
-          name: "Ashnikko",
-        ),
-      ],
-      artist_id: Some("UCn3fPGV_gVYAmpgb1APyQug"),
-      album: Some(AlbumId(
-        id: "MPREb_muqZ7sOFHBp",
-        name: "Arcane League of Legends: Season 2 (Soundtrack from the Animated Series)",
-      )),
-      view_count: None,
-      track_type: track,
-      track_nr: None,
-      by_va: false,
+    HistoryItem(
+      item: TrackItem(
+        id: "cmEIneYW2yk",
+        name: "Paint The Town Blue (from the series Arcane League of Legends)",
+        duration: Some(115),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/AYcl_X1V-eF8utaaVUlgmY-ibcQwE2BsY0RW6TdbZ5qAK8UNUfA5xaNiERyCHv2PpsXNh_L3hPZkmdM=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/AYcl_X1V-eF8utaaVUlgmY-ibcQwE2BsY0RW6TdbZ5qAK8UNUfA5xaNiERyCHv2PpsXNh_L3hPZkmdM=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCn3fPGV_gVYAmpgb1APyQug"),
+            name: "Ashnikko",
+          ),
+        ],
+        artist_id: Some("UCn3fPGV_gVYAmpgb1APyQug"),
+        album: Some(AlbumId(
+          id: "MPREb_muqZ7sOFHBp",
+          name: "Arcane League of Legends: Season 2 (Soundtrack from the Animated Series)",
+        )),
+        view_count: None,
+        track_type: track,
+        track_nr: None,
+        by_va: false,
+      ),
+      playback_date: "[date]",
+      playback_date_txt: Some("Last week"),
     ),
-    TrackItem(
-      id: "HFVM4QE1qBA",
-      name: "To Ashes and Blood (from the series Arcane League of Legends)",
-      duration: Some(246),
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/AYcl_X1V-eF8utaaVUlgmY-ibcQwE2BsY0RW6TdbZ5qAK8UNUfA5xaNiERyCHv2PpsXNh_L3hPZkmdM=w60-h60-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/AYcl_X1V-eF8utaaVUlgmY-ibcQwE2BsY0RW6TdbZ5qAK8UNUfA5xaNiERyCHv2PpsXNh_L3hPZkmdM=w120-h120-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCqishLHg7u5voH0sEmR-l6Q"),
-          name: "Woodkid",
-        ),
-      ],
-      artist_id: Some("UCqishLHg7u5voH0sEmR-l6Q"),
-      album: Some(AlbumId(
-        id: "MPREb_muqZ7sOFHBp",
-        name: "Arcane League of Legends: Season 2 (Soundtrack from the Animated Series)",
-      )),
-      view_count: None,
-      track_type: track,
-      track_nr: None,
-      by_va: false,
+    HistoryItem(
+      item: TrackItem(
+        id: "HFVM4QE1qBA",
+        name: "To Ashes and Blood (from the series Arcane League of Legends)",
+        duration: Some(246),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/AYcl_X1V-eF8utaaVUlgmY-ibcQwE2BsY0RW6TdbZ5qAK8UNUfA5xaNiERyCHv2PpsXNh_L3hPZkmdM=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/AYcl_X1V-eF8utaaVUlgmY-ibcQwE2BsY0RW6TdbZ5qAK8UNUfA5xaNiERyCHv2PpsXNh_L3hPZkmdM=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCqishLHg7u5voH0sEmR-l6Q"),
+            name: "Woodkid",
+          ),
+        ],
+        artist_id: Some("UCqishLHg7u5voH0sEmR-l6Q"),
+        album: Some(AlbumId(
+          id: "MPREb_muqZ7sOFHBp",
+          name: "Arcane League of Legends: Season 2 (Soundtrack from the Animated Series)",
+        )),
+        view_count: None,
+        track_type: track,
+        track_nr: None,
+        by_va: false,
+      ),
+      playback_date: "[date]",
+      playback_date_txt: Some("Last week"),
     ),
-    TrackItem(
-      id: "O0qHqHt3JiY",
-      name: "Hellfire (from the series Arcane League of Legends)",
-      duration: Some(165),
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/AYcl_X1V-eF8utaaVUlgmY-ibcQwE2BsY0RW6TdbZ5qAK8UNUfA5xaNiERyCHv2PpsXNh_L3hPZkmdM=w60-h60-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/AYcl_X1V-eF8utaaVUlgmY-ibcQwE2BsY0RW6TdbZ5qAK8UNUfA5xaNiERyCHv2PpsXNh_L3hPZkmdM=w120-h120-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCqRcnDXGwIt_mCXNuzKVqqg"),
-          name: "Fever 333",
-        ),
-      ],
-      artist_id: Some("UCqRcnDXGwIt_mCXNuzKVqqg"),
-      album: Some(AlbumId(
-        id: "MPREb_muqZ7sOFHBp",
-        name: "Arcane League of Legends: Season 2 (Soundtrack from the Animated Series)",
-      )),
-      view_count: None,
-      track_type: track,
-      track_nr: None,
-      by_va: false,
+    HistoryItem(
+      item: TrackItem(
+        id: "O0qHqHt3JiY",
+        name: "Hellfire (from the series Arcane League of Legends)",
+        duration: Some(165),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/AYcl_X1V-eF8utaaVUlgmY-ibcQwE2BsY0RW6TdbZ5qAK8UNUfA5xaNiERyCHv2PpsXNh_L3hPZkmdM=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/AYcl_X1V-eF8utaaVUlgmY-ibcQwE2BsY0RW6TdbZ5qAK8UNUfA5xaNiERyCHv2PpsXNh_L3hPZkmdM=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCqRcnDXGwIt_mCXNuzKVqqg"),
+            name: "Fever 333",
+          ),
+        ],
+        artist_id: Some("UCqRcnDXGwIt_mCXNuzKVqqg"),
+        album: Some(AlbumId(
+          id: "MPREb_muqZ7sOFHBp",
+          name: "Arcane League of Legends: Season 2 (Soundtrack from the Animated Series)",
+        )),
+        view_count: None,
+        track_type: track,
+        track_nr: None,
+        by_va: false,
+      ),
+      playback_date: "[date]",
+      playback_date_txt: Some("Last week"),
     ),
-    TrackItem(
-      id: "rfDBTQNdj-M",
-      name: "Renegade (We Never Run) (from the series Arcane League of Legends) (feat. Jarina De Marco)",
-      duration: Some(162),
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/AYcl_X1V-eF8utaaVUlgmY-ibcQwE2BsY0RW6TdbZ5qAK8UNUfA5xaNiERyCHv2PpsXNh_L3hPZkmdM=w60-h60-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/AYcl_X1V-eF8utaaVUlgmY-ibcQwE2BsY0RW6TdbZ5qAK8UNUfA5xaNiERyCHv2PpsXNh_L3hPZkmdM=w120-h120-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCm9GDfNgJCv-FJkWTIaiFIg"),
-          name: "Raja Kumari",
-        ),
-        ArtistId(
-          id: Some("UCfW0_9uspt55KDtOZNPcSFg"),
-          name: "Stefflon Don",
-        ),
-      ],
-      artist_id: Some("UCm9GDfNgJCv-FJkWTIaiFIg"),
-      album: Some(AlbumId(
-        id: "MPREb_muqZ7sOFHBp",
-        name: "Arcane League of Legends: Season 2 (Soundtrack from the Animated Series)",
-      )),
-      view_count: None,
-      track_type: track,
-      track_nr: None,
-      by_va: false,
+    HistoryItem(
+      item: TrackItem(
+        id: "rfDBTQNdj-M",
+        name: "Renegade (We Never Run) (from the series Arcane League of Legends) (feat. Jarina De Marco)",
+        duration: Some(162),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/AYcl_X1V-eF8utaaVUlgmY-ibcQwE2BsY0RW6TdbZ5qAK8UNUfA5xaNiERyCHv2PpsXNh_L3hPZkmdM=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/AYcl_X1V-eF8utaaVUlgmY-ibcQwE2BsY0RW6TdbZ5qAK8UNUfA5xaNiERyCHv2PpsXNh_L3hPZkmdM=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCm9GDfNgJCv-FJkWTIaiFIg"),
+            name: "Raja Kumari",
+          ),
+          ArtistId(
+            id: Some("UCfW0_9uspt55KDtOZNPcSFg"),
+            name: "Stefflon Don",
+          ),
+        ],
+        artist_id: Some("UCm9GDfNgJCv-FJkWTIaiFIg"),
+        album: Some(AlbumId(
+          id: "MPREb_muqZ7sOFHBp",
+          name: "Arcane League of Legends: Season 2 (Soundtrack from the Animated Series)",
+        )),
+        view_count: None,
+        track_type: track,
+        track_nr: None,
+        by_va: false,
+      ),
+      playback_date: "[date]",
+      playback_date_txt: Some("Last week"),
     ),
-    TrackItem(
-      id: "_M409k9cOcg",
-      name: "특 S-Class",
-      duration: Some(196),
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/MiN4KEyFzPNKECd0md-d4FtMpzbpVChSp_lWmh4w14CTfcLix05BOgS3TD5nQlrllMvp2_6T_e3lIJaD=w60-h60-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/MiN4KEyFzPNKECd0md-d4FtMpzbpVChSp_lWmh4w14CTfcLix05BOgS3TD5nQlrllMvp2_6T_e3lIJaD=w120-h120-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCIMmuidNJdncfMEelOU08Fg"),
-          name: "Stray Kids",
-        ),
-      ],
-      artist_id: Some("UCIMmuidNJdncfMEelOU08Fg"),
-      album: Some(AlbumId(
-        id: "MPREb_zR25p24PqIC",
-        name: "5-STAR",
-      )),
-      view_count: None,
-      track_type: track,
-      track_nr: None,
-      by_va: false,
+    HistoryItem(
+      item: TrackItem(
+        id: "_M409k9cOcg",
+        name: "특 S-Class",
+        duration: Some(196),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/MiN4KEyFzPNKECd0md-d4FtMpzbpVChSp_lWmh4w14CTfcLix05BOgS3TD5nQlrllMvp2_6T_e3lIJaD=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/MiN4KEyFzPNKECd0md-d4FtMpzbpVChSp_lWmh4w14CTfcLix05BOgS3TD5nQlrllMvp2_6T_e3lIJaD=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCIMmuidNJdncfMEelOU08Fg"),
+            name: "Stray Kids",
+          ),
+        ],
+        artist_id: Some("UCIMmuidNJdncfMEelOU08Fg"),
+        album: Some(AlbumId(
+          id: "MPREb_zR25p24PqIC",
+          name: "5-STAR",
+        )),
+        view_count: None,
+        track_type: track,
+        track_nr: None,
+        by_va: false,
+      ),
+      playback_date: "[date]",
+      playback_date_txt: Some("Last week"),
     ),
-    TrackItem(
-      id: "MpG_ft84IoE",
-      name: "Sucker (from the series Arcane League of Legends)",
-      duration: Some(225),
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/AYcl_X1V-eF8utaaVUlgmY-ibcQwE2BsY0RW6TdbZ5qAK8UNUfA5xaNiERyCHv2PpsXNh_L3hPZkmdM=w60-h60-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/AYcl_X1V-eF8utaaVUlgmY-ibcQwE2BsY0RW6TdbZ5qAK8UNUfA5xaNiERyCHv2PpsXNh_L3hPZkmdM=w120-h120-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UC5xpuW4UI520aDhKXGaJYgQ"),
-          name: "Marcus King",
-        ),
-      ],
-      artist_id: Some("UC5xpuW4UI520aDhKXGaJYgQ"),
-      album: Some(AlbumId(
-        id: "MPREb_muqZ7sOFHBp",
-        name: "Arcane League of Legends: Season 2 (Soundtrack from the Animated Series)",
-      )),
-      view_count: None,
-      track_type: track,
-      track_nr: None,
-      by_va: false,
+    HistoryItem(
+      item: TrackItem(
+        id: "MpG_ft84IoE",
+        name: "Sucker (from the series Arcane League of Legends)",
+        duration: Some(225),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/AYcl_X1V-eF8utaaVUlgmY-ibcQwE2BsY0RW6TdbZ5qAK8UNUfA5xaNiERyCHv2PpsXNh_L3hPZkmdM=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/AYcl_X1V-eF8utaaVUlgmY-ibcQwE2BsY0RW6TdbZ5qAK8UNUfA5xaNiERyCHv2PpsXNh_L3hPZkmdM=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UC5xpuW4UI520aDhKXGaJYgQ"),
+            name: "Marcus King",
+          ),
+        ],
+        artist_id: Some("UC5xpuW4UI520aDhKXGaJYgQ"),
+        album: Some(AlbumId(
+          id: "MPREb_muqZ7sOFHBp",
+          name: "Arcane League of Legends: Season 2 (Soundtrack from the Animated Series)",
+        )),
+        view_count: None,
+        track_type: track,
+        track_nr: None,
+        by_va: false,
+      ),
+      playback_date: "[date]",
+      playback_date_txt: Some("Last week"),
     ),
-    TrackItem(
-      id: "g7W7MisCKWk",
-      name: "I Can\'t Hear It Now (from the series Arcane League of Legends)",
-      duration: Some(162),
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/AYcl_X1V-eF8utaaVUlgmY-ibcQwE2BsY0RW6TdbZ5qAK8UNUfA5xaNiERyCHv2PpsXNh_L3hPZkmdM=w60-h60-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/AYcl_X1V-eF8utaaVUlgmY-ibcQwE2BsY0RW6TdbZ5qAK8UNUfA5xaNiERyCHv2PpsXNh_L3hPZkmdM=w120-h120-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCw5G4AVjJ_YI9BOTjj-v1iw"),
-          name: "Freya Ridings",
-        ),
-      ],
-      artist_id: Some("UCw5G4AVjJ_YI9BOTjj-v1iw"),
-      album: Some(AlbumId(
-        id: "MPREb_muqZ7sOFHBp",
-        name: "Arcane League of Legends: Season 2 (Soundtrack from the Animated Series)",
-      )),
-      view_count: None,
-      track_type: track,
-      track_nr: None,
-      by_va: false,
+    HistoryItem(
+      item: TrackItem(
+        id: "g7W7MisCKWk",
+        name: "I Can\'t Hear It Now (from the series Arcane League of Legends)",
+        duration: Some(162),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/AYcl_X1V-eF8utaaVUlgmY-ibcQwE2BsY0RW6TdbZ5qAK8UNUfA5xaNiERyCHv2PpsXNh_L3hPZkmdM=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/AYcl_X1V-eF8utaaVUlgmY-ibcQwE2BsY0RW6TdbZ5qAK8UNUfA5xaNiERyCHv2PpsXNh_L3hPZkmdM=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCw5G4AVjJ_YI9BOTjj-v1iw"),
+            name: "Freya Ridings",
+          ),
+        ],
+        artist_id: Some("UCw5G4AVjJ_YI9BOTjj-v1iw"),
+        album: Some(AlbumId(
+          id: "MPREb_muqZ7sOFHBp",
+          name: "Arcane League of Legends: Season 2 (Soundtrack from the Animated Series)",
+        )),
+        view_count: None,
+        track_type: track,
+        track_nr: None,
+        by_va: false,
+      ),
+      playback_date: "[date]",
+      playback_date_txt: Some("Last week"),
     ),
-    TrackItem(
-      id: "B-XivnZunVM",
-      name: "Heavy Is The Crown (Original Score)",
-      duration: Some(102),
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/AYcl_X1V-eF8utaaVUlgmY-ibcQwE2BsY0RW6TdbZ5qAK8UNUfA5xaNiERyCHv2PpsXNh_L3hPZkmdM=w60-h60-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/AYcl_X1V-eF8utaaVUlgmY-ibcQwE2BsY0RW6TdbZ5qAK8UNUfA5xaNiERyCHv2PpsXNh_L3hPZkmdM=w120-h120-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCjZCpUyBTuYRQhkYKZR_mdg"),
-          name: "Mike Shinoda",
-        ),
-        ArtistId(
-          id: Some("UCCDcGPkq3rOACsM5_j5QiHg"),
-          name: "Emily Armstrong",
-        ),
-      ],
-      artist_id: Some("UCjZCpUyBTuYRQhkYKZR_mdg"),
-      album: Some(AlbumId(
-        id: "MPREb_muqZ7sOFHBp",
-        name: "Arcane League of Legends: Season 2 (Soundtrack from the Animated Series)",
-      )),
-      view_count: None,
-      track_type: track,
-      track_nr: None,
-      by_va: false,
+    HistoryItem(
+      item: TrackItem(
+        id: "B-XivnZunVM",
+        name: "Heavy Is The Crown (Original Score)",
+        duration: Some(102),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/AYcl_X1V-eF8utaaVUlgmY-ibcQwE2BsY0RW6TdbZ5qAK8UNUfA5xaNiERyCHv2PpsXNh_L3hPZkmdM=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/AYcl_X1V-eF8utaaVUlgmY-ibcQwE2BsY0RW6TdbZ5qAK8UNUfA5xaNiERyCHv2PpsXNh_L3hPZkmdM=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCjZCpUyBTuYRQhkYKZR_mdg"),
+            name: "Mike Shinoda",
+          ),
+          ArtistId(
+            id: Some("UCCDcGPkq3rOACsM5_j5QiHg"),
+            name: "Emily Armstrong",
+          ),
+        ],
+        artist_id: Some("UCjZCpUyBTuYRQhkYKZR_mdg"),
+        album: Some(AlbumId(
+          id: "MPREb_muqZ7sOFHBp",
+          name: "Arcane League of Legends: Season 2 (Soundtrack from the Animated Series)",
+        )),
+        view_count: None,
+        track_type: track,
+        track_nr: None,
+        by_va: false,
+      ),
+      playback_date: "[date]",
+      playback_date_txt: Some("Last week"),
     ),
-    TrackItem(
-      id: "ZeIneYtQ1rw",
-      name: "CASE 143",
-      duration: Some(192),
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/gHEirg29K3Qf3JREf5nXADzhEsWvG60jF3qzOBTZ-ZLGRdNp64_lcj-pI5GMrkhy1JPU5EIDE4WgmpU=w60-h60-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/gHEirg29K3Qf3JREf5nXADzhEsWvG60jF3qzOBTZ-ZLGRdNp64_lcj-pI5GMrkhy1JPU5EIDE4WgmpU=w120-h120-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCIMmuidNJdncfMEelOU08Fg"),
-          name: "Stray Kids",
-        ),
-      ],
-      artist_id: Some("UCIMmuidNJdncfMEelOU08Fg"),
-      album: Some(AlbumId(
-        id: "MPREb_NuxPbSpDTkj",
-        name: "MAXIDENT",
-      )),
-      view_count: None,
-      track_type: track,
-      track_nr: None,
-      by_va: false,
+    HistoryItem(
+      item: TrackItem(
+        id: "ZeIneYtQ1rw",
+        name: "CASE 143",
+        duration: Some(192),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/gHEirg29K3Qf3JREf5nXADzhEsWvG60jF3qzOBTZ-ZLGRdNp64_lcj-pI5GMrkhy1JPU5EIDE4WgmpU=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/gHEirg29K3Qf3JREf5nXADzhEsWvG60jF3qzOBTZ-ZLGRdNp64_lcj-pI5GMrkhy1JPU5EIDE4WgmpU=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCIMmuidNJdncfMEelOU08Fg"),
+            name: "Stray Kids",
+          ),
+        ],
+        artist_id: Some("UCIMmuidNJdncfMEelOU08Fg"),
+        album: Some(AlbumId(
+          id: "MPREb_NuxPbSpDTkj",
+          name: "MAXIDENT",
+        )),
+        view_count: None,
+        track_type: track,
+        track_nr: None,
+        by_va: false,
+      ),
+      playback_date: "[date]",
+      playback_date_txt: Some("Last week"),
     ),
-    TrackItem(
-      id: "8Go0B7mNcsU",
-      name: "Railway (방찬) Railway (Bang Chan)",
-      duration: Some(174),
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/FV8clXeLy7dam8rYixnT7x-6nuTyb6qkusqgW4emZJYaU0XgKf95oIozIHvgB9BtETuneDd0XJauH3lO=w60-h60-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/FV8clXeLy7dam8rYixnT7x-6nuTyb6qkusqgW4emZJYaU0XgKf95oIozIHvgB9BtETuneDd0XJauH3lO=w120-h120-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCIMmuidNJdncfMEelOU08Fg"),
-          name: "Stray Kids",
-        ),
-      ],
-      artist_id: Some("UCIMmuidNJdncfMEelOU08Fg"),
-      album: Some(AlbumId(
-        id: "MPREb_hVsLiyk7ZIe",
-        name: "合 (HOP) HOP",
-      )),
-      view_count: None,
-      track_type: track,
-      track_nr: None,
-      by_va: false,
+    HistoryItem(
+      item: TrackItem(
+        id: "8Go0B7mNcsU",
+        name: "Railway (방찬) Railway (Bang Chan)",
+        duration: Some(174),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/FV8clXeLy7dam8rYixnT7x-6nuTyb6qkusqgW4emZJYaU0XgKf95oIozIHvgB9BtETuneDd0XJauH3lO=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/FV8clXeLy7dam8rYixnT7x-6nuTyb6qkusqgW4emZJYaU0XgKf95oIozIHvgB9BtETuneDd0XJauH3lO=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCIMmuidNJdncfMEelOU08Fg"),
+            name: "Stray Kids",
+          ),
+        ],
+        artist_id: Some("UCIMmuidNJdncfMEelOU08Fg"),
+        album: Some(AlbumId(
+          id: "MPREb_hVsLiyk7ZIe",
+          name: "合 (HOP) HOP",
+        )),
+        view_count: None,
+        track_type: track,
+        track_nr: None,
+        by_va: false,
+      ),
+      playback_date: "[date]",
+      playback_date_txt: Some("Last week"),
     ),
-    TrackItem(
-      id: "of7yhvIadWo",
-      name: "Walkin On Water (HIP Ver.)",
-      duration: Some(176),
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/FV8clXeLy7dam8rYixnT7x-6nuTyb6qkusqgW4emZJYaU0XgKf95oIozIHvgB9BtETuneDd0XJauH3lO=w60-h60-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/FV8clXeLy7dam8rYixnT7x-6nuTyb6qkusqgW4emZJYaU0XgKf95oIozIHvgB9BtETuneDd0XJauH3lO=w120-h120-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCIMmuidNJdncfMEelOU08Fg"),
-          name: "Stray Kids",
-        ),
-      ],
-      artist_id: Some("UCIMmuidNJdncfMEelOU08Fg"),
-      album: Some(AlbumId(
-        id: "MPREb_hVsLiyk7ZIe",
-        name: "合 (HOP) HOP",
-      )),
-      view_count: None,
-      track_type: track,
-      track_nr: None,
-      by_va: false,
+    HistoryItem(
+      item: TrackItem(
+        id: "of7yhvIadWo",
+        name: "Walkin On Water (HIP Ver.)",
+        duration: Some(176),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/FV8clXeLy7dam8rYixnT7x-6nuTyb6qkusqgW4emZJYaU0XgKf95oIozIHvgB9BtETuneDd0XJauH3lO=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/FV8clXeLy7dam8rYixnT7x-6nuTyb6qkusqgW4emZJYaU0XgKf95oIozIHvgB9BtETuneDd0XJauH3lO=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCIMmuidNJdncfMEelOU08Fg"),
+            name: "Stray Kids",
+          ),
+        ],
+        artist_id: Some("UCIMmuidNJdncfMEelOU08Fg"),
+        album: Some(AlbumId(
+          id: "MPREb_hVsLiyk7ZIe",
+          name: "合 (HOP) HOP",
+        )),
+        view_count: None,
+        track_type: track,
+        track_nr: None,
+        by_va: false,
+      ),
+      playback_date: "[date]",
+      playback_date_txt: Some("Last week"),
     ),
-    TrackItem(
-      id: "iqeY3sz8ldk",
-      name: "U (feat. TABLO)",
-      duration: Some(164),
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/FV8clXeLy7dam8rYixnT7x-6nuTyb6qkusqgW4emZJYaU0XgKf95oIozIHvgB9BtETuneDd0XJauH3lO=w60-h60-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/FV8clXeLy7dam8rYixnT7x-6nuTyb6qkusqgW4emZJYaU0XgKf95oIozIHvgB9BtETuneDd0XJauH3lO=w120-h120-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCIMmuidNJdncfMEelOU08Fg"),
-          name: "Stray Kids",
-        ),
-      ],
-      artist_id: Some("UCIMmuidNJdncfMEelOU08Fg"),
-      album: Some(AlbumId(
-        id: "MPREb_hVsLiyk7ZIe",
-        name: "合 (HOP) HOP",
-      )),
-      view_count: None,
-      track_type: track,
-      track_nr: None,
-      by_va: false,
+    HistoryItem(
+      item: TrackItem(
+        id: "iqeY3sz8ldk",
+        name: "U (feat. TABLO)",
+        duration: Some(164),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/FV8clXeLy7dam8rYixnT7x-6nuTyb6qkusqgW4emZJYaU0XgKf95oIozIHvgB9BtETuneDd0XJauH3lO=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/FV8clXeLy7dam8rYixnT7x-6nuTyb6qkusqgW4emZJYaU0XgKf95oIozIHvgB9BtETuneDd0XJauH3lO=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCIMmuidNJdncfMEelOU08Fg"),
+            name: "Stray Kids",
+          ),
+        ],
+        artist_id: Some("UCIMmuidNJdncfMEelOU08Fg"),
+        album: Some(AlbumId(
+          id: "MPREb_hVsLiyk7ZIe",
+          name: "合 (HOP) HOP",
+        )),
+        view_count: None,
+        track_type: track,
+        track_nr: None,
+        by_va: false,
+      ),
+      playback_date: "[date]",
+      playback_date_txt: Some("Last week"),
     ),
-    TrackItem(
-      id: "vRmkqYlH-nA",
-      name: "Bounce Back",
-      duration: Some(184),
-      cover: [
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/FV8clXeLy7dam8rYixnT7x-6nuTyb6qkusqgW4emZJYaU0XgKf95oIozIHvgB9BtETuneDd0XJauH3lO=w60-h60-l90-rj",
-          width: 60,
-          height: 60,
-        ),
-        Thumbnail(
-          url: "https://lh3.googleusercontent.com/FV8clXeLy7dam8rYixnT7x-6nuTyb6qkusqgW4emZJYaU0XgKf95oIozIHvgB9BtETuneDd0XJauH3lO=w120-h120-l90-rj",
-          width: 120,
-          height: 120,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCIMmuidNJdncfMEelOU08Fg"),
-          name: "Stray Kids",
-        ),
-      ],
-      artist_id: Some("UCIMmuidNJdncfMEelOU08Fg"),
-      album: Some(AlbumId(
-        id: "MPREb_hVsLiyk7ZIe",
-        name: "合 (HOP) HOP",
-      )),
-      view_count: None,
-      track_type: track,
-      track_nr: None,
-      by_va: false,
+    HistoryItem(
+      item: TrackItem(
+        id: "vRmkqYlH-nA",
+        name: "Bounce Back",
+        duration: Some(184),
+        cover: [
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/FV8clXeLy7dam8rYixnT7x-6nuTyb6qkusqgW4emZJYaU0XgKf95oIozIHvgB9BtETuneDd0XJauH3lO=w60-h60-l90-rj",
+            width: 60,
+            height: 60,
+          ),
+          Thumbnail(
+            url: "https://lh3.googleusercontent.com/FV8clXeLy7dam8rYixnT7x-6nuTyb6qkusqgW4emZJYaU0XgKf95oIozIHvgB9BtETuneDd0XJauH3lO=w120-h120-l90-rj",
+            width: 120,
+            height: 120,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCIMmuidNJdncfMEelOU08Fg"),
+            name: "Stray Kids",
+          ),
+        ],
+        artist_id: Some("UCIMmuidNJdncfMEelOU08Fg"),
+        album: Some(AlbumId(
+          id: "MPREb_hVsLiyk7ZIe",
+          name: "合 (HOP) HOP",
+        )),
+        view_count: None,
+        track_type: track,
+        track_nr: None,
+        by_va: false,
+      ),
+      playback_date: "[date]",
+      playback_date_txt: Some("Last week"),
     ),
-    TrackItem(
-      id: "ovHoY8UBIu8",
-      name: "Walkin On Water",
-      duration: Some(172),
-      cover: [
-        Thumbnail(
-          url: "https://i.ytimg.com/vi/ovHoY8UBIu8/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nT3hLBjoOobwzYb9uspvK59B2j7A",
-          width: 400,
-          height: 225,
-        ),
-      ],
-      artists: [
-        ArtistId(
-          id: Some("UCIMmuidNJdncfMEelOU08Fg"),
-          name: "Stray Kids",
-        ),
-        ArtistId(
-          id: None,
-          name: "26M views",
-        ),
-      ],
-      artist_id: Some("UCIMmuidNJdncfMEelOU08Fg"),
-      album: None,
-      view_count: None,
-      track_type: video,
-      track_nr: None,
-      by_va: false,
+    HistoryItem(
+      item: TrackItem(
+        id: "ovHoY8UBIu8",
+        name: "Walkin On Water",
+        duration: Some(172),
+        cover: [
+          Thumbnail(
+            url: "https://i.ytimg.com/vi/ovHoY8UBIu8/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nT3hLBjoOobwzYb9uspvK59B2j7A",
+            width: 400,
+            height: 225,
+          ),
+        ],
+        artists: [
+          ArtistId(
+            id: Some("UCIMmuidNJdncfMEelOU08Fg"),
+            name: "Stray Kids",
+          ),
+          ArtistId(
+            id: None,
+            name: "26M views",
+          ),
+        ],
+        artist_id: Some("UCIMmuidNJdncfMEelOU08Fg"),
+        album: None,
+        view_count: None,
+        track_type: video,
+        track_nr: None,
+        by_va: false,
+      ),
+      playback_date: "[date]",
+      playback_date_txt: Some("Last week"),
     ),
   ],
   ctoken: None,

@@ -113,12 +113,12 @@ impl MapResponse<MusicCharts> for response::MusicCharts {
             });
 
         let mapped_top = mapper_top.conv_items::<TrackItem>();
-        let mut mapped_trending = mapper_trending.conv_items::<TrackItem>();
-        let mut mapped_other = mapper_other.group_items();
+        let mapped_trending = mapper_trending.conv_items::<TrackItem>();
+        let mapped_other = mapper_other.group_items();
 
         let mut warnings = mapped_top.warnings;
-        warnings.append(&mut mapped_trending.warnings);
-        warnings.append(&mut mapped_other.warnings);
+        warnings.extend(mapped_trending.warnings);
+        warnings.extend(mapped_other.warnings);
 
         Ok(MapResult {
             c: MusicCharts {

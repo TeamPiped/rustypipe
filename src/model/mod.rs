@@ -1331,3 +1331,15 @@ pub struct MusicSearchSuggestion {
     /// Suggested music items
     pub items: Vec<MusicItem>,
 }
+
+/// YouTube playback history entry
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
+#[non_exhaustive]
+pub struct HistoryItem<T> {
+    /// History item
+    pub item: T,
+    /// Playback date
+    pub playback_date: Option<Date>,
+    /// Textual playback date
+    pub playback_date_txt: Option<String>,
+}

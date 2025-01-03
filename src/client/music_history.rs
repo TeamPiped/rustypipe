@@ -1,3 +1,5 @@
+use std::fmt::Debug;
+
 use crate::{
     client::{
         response::{self, music_item::MusicListMapper},
@@ -6,19 +8,19 @@ use crate::{
     error::{Error, ExtractionError},
     model::{
         paginator::{ContinuationEndpoint, Paginator},
-        AlbumItem, ArtistItem, MusicPlaylistItem, TrackItem,
+        AlbumItem, ArtistItem, HistoryItem, MusicPlaylistItem, TrackItem,
     },
     serializer::MapResult,
 };
 
-use super::MapRespCtx;
+use super::{MapRespCtx, MapRespOptions, QContinuation};
 
 impl RustyPipeQuery {
     /// Get a list of tracks from YouTube Music which the current user recently played
     ///
     /// Requires authentication cookies.
     #[tracing::instrument(skip(self), level = "error")]
-    pub async fn music_history(&self) -> Result<Paginator<TrackItem>, Error> {
+    pub async fn music_history(&self) -> Result<Paginator<HistoryItem<TrackItem>>, Error> {
         let request_body = QBrowseParams {
             browse_id: "FEmusic_history",
             params: "oggECgIIAQ%3D%3D",
@@ -32,6 +34,34 @@ impl RustyPipeQuery {
                 "",
                 "browse",
                 &request_body,
+            )
+            .await
+    }
+
+    /// Get more YouTube Music history items from the given continuation token
+    #[tracing::instrument(skip(self), level = "error")]
+    pub async fn music_history_continuation<S: AsRef<str> + Debug>(
+        &self,
+        ctoken: S,
+        visitor_data: Option<&str>,
+    ) -> Result<Paginator<HistoryItem<TrackItem>>, Error> {
+        let ctoken = ctoken.as_ref();
+        let request_body = QContinuation {
+            continuation: ctoken,
+        };
+
+        self.clone()
+            .authenticated()
+            .execute_request_ctx::<response::MusicContinuation, _, _>(
+                ClientType::Desktop,
+                "history_continuation",
+                ctoken,
+                "browse",
+                &request_body,
+                MapRespOptions {
+                    visitor_data,
+                    ..Default::default()
+                },
             )
             .await
     }
@@ -99,11 +129,11 @@ impl RustyPipeQuery {
     }
 }
 
-impl MapResponse<Paginator<TrackItem>> for response::MusicHistory {
+impl MapResponse<Paginator<HistoryItem<TrackItem>>> for response::MusicHistory {
     fn map_response(
         self,
         ctx: &MapRespCtx<'_>,
-    ) -> Result<MapResult<Paginator<TrackItem>>, ExtractionError> {
+    ) -> Result<MapResult<Paginator<HistoryItem<TrackItem>>>, ExtractionError> {
         let contents = match self.contents {
             response::music_playlist::Contents::SingleColumnBrowseResultsRenderer(c) => {
                 c.contents
@@ -120,7 +150,7 @@ impl MapResponse<Paginator<TrackItem>> for response::MusicHistory {
             } => secondary_contents.section_list_renderer,
         };
 
-        let mut mapper = MusicListMapper::new(ctx.lang);
+        let mut map_res = MapResult::default();
 
         for shelf in contents.contents {
             let shelf = if let response::music_item::ItemSection::MusicShelfRenderer(s) = shelf {
@@ -128,10 +158,10 @@ impl MapResponse<Paginator<TrackItem>> for response::MusicHistory {
             } else {
                 continue;
             };
+            let mut mapper = MusicListMapper::new(ctx.lang);
             mapper.map_response(shelf.contents);
+            mapper.conv_history_items(shelf.title, &mut map_res);
         }
-
-        let map_res = mapper.conv_items();
 
         let ctoken = contents
             .continuations
@@ -144,7 +174,7 @@ impl MapResponse<Paginator<TrackItem>> for response::MusicHistory {
                 None,
                 map_res.c,
                 ctoken,
-                None,
+                ctx.visitor_data.map(str::to_owned),
                 ContinuationEndpoint::MusicBrowse,
                 true,
             ),
@@ -177,6 +207,8 @@ mod tests {
             "deserialization/mapping warnings: {:?}",
             map_res.warnings
         );
-        insta::assert_ron_snapshot!(map_res.c);
+        insta::assert_ron_snapshot!(map_res.c, {
+            ".items[].playback_date" => "[date]",
+        });
     }
 }

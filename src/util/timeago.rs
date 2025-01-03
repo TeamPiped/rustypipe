@@ -61,6 +61,8 @@ pub enum TimeUnit {
     Week,
     Month,
     Year,
+    LastWeek,
+    LastWeekday,
 }
 
 /// Value of a parsed TimeAgo token, used in the dictionary
@@ -86,7 +88,14 @@ impl TimeUnit {
             TimeUnit::Week => 7 * 24 * 3600,
             TimeUnit::Month => 30 * 24 * 3600,
             TimeUnit::Year => 365 * 24 * 3600,
+            TimeUnit::LastWeekday | TimeUnit::LastWeek => 0,
         }
+    }
+}
+
+impl TaToken {
+    fn into_timeago(self) -> Option<TimeAgo> {
+        self.unit.map(|unit| TimeAgo { n: self.n, unit })
     }
 }
 
@@ -119,6 +128,17 @@ impl From<TimeAgo> for OffsetDateTime {
         match ta.unit {
             TimeUnit::Month => ts.replace_date(util::shift_months(ts.date(), -i32::from(ta.n))),
             TimeUnit::Year => ts.replace_date(util::shift_years(ts.date(), -i32::from(ta.n))),
+            TimeUnit::LastWeek => {
+                ts.replace_date(util::shift_weeks_mo(ts.date(), -i32::from(ta.n)))
+            }
+            TimeUnit::LastWeekday => ts.replace_date(
+                Date::from_iso_week_date(
+                    ts.year(),
+                    ts.iso_week(),
+                    time::Weekday::Monday.nth_next(ta.n),
+                )
+                .unwrap(),
+            ),
             _ => ts - Duration::from(ta),
         }
     }
@@ -139,7 +159,7 @@ fn filter_datestr(string: &str) -> String {
         .to_lowercase()
         .chars()
         .filter_map(|c| {
-            if matches!(c, '\u{200b}' | '.') || c.is_ascii_digit() {
+            if matches!(c, '\u{200b}' | '.' | ',') || c.is_ascii_digit() {
                 None
             } else if c == '-' {
                 Some(' ')
@@ -249,55 +269,84 @@ pub fn parse_textual_date(lang: Language, textual_date: &str) -> Option<ParsedDa
 
     let nums = util::parse_numeric_vec::<u16>(textual_date);
 
-    match nums.len() {
-        0 => match TaTokenParser::new(&entry, by_char, true, &filtered_str).next() {
-            Some(timeago) => Some(ParsedDate::Relative(timeago)),
-            None => TaTokenParser::new(&entry, by_char, false, &filtered_str)
-                .next()
-                .map(ParsedDate::Relative),
-        },
-        1 => TaTokenParser::new(&entry, by_char, false, &filtered_str)
-            .next()
-            .map(|timeago| ParsedDate::Relative(timeago * nums[0] as u8)),
-        2..=3 => {
-            if nums.len() == entry.date_order.len() {
-                let mut y: Option<u16> = None;
-                let mut m: Option<u16> = None;
-                let mut d: Option<u16> = None;
-
-                nums.iter()
-                    .enumerate()
-                    .for_each(|(i, n)| match entry.date_order[i] {
-                        DateCmp::Y => y = Some(*n),
-                        DateCmp::M => m = Some(*n),
-                        DateCmp::D => d = Some(*n),
-                    });
-
-                // Chinese/Japanese dont use textual months
-                if m.is_none() && !by_char {
-                    m = parse_textual_month(&entry, &filtered_str).map(u16::from);
-                }
-
-                match (y, m, d) {
-                    (Some(y), Some(m), Some(d)) => Month::try_from(m as u8)
-                        .ok()
-                        .and_then(|m| Date::from_calendar_date(y.into(), m, d as u8).ok())
-                        .map(ParsedDate::Absolute),
-                    _ => None,
-                }
-            } else {
-                None
+    if nums.is_empty() {
+        entry
+            .timeago_nd_tokens
+            .get(&filtered_str)
+            .and_then(|t| t.into_timeago())
+            .or_else(|| TaTokenParser::new(&entry, by_char, true, &filtered_str).next())
+            .or_else(|| TaTokenParser::new(&entry, by_char, false, &filtered_str).next())
+            .map(ParsedDate::Relative)
+    } else {
+        if nums.len() == 1 {
+            if let Some(timeago) = TaTokenParser::new(&entry, by_char, false, &filtered_str).next()
+            {
+                return Some(ParsedDate::Relative(timeago * nums[0] as u8));
             }
         }
-        _ => None,
+
+        let mut date_order = entry.date_order;
+        let with_day = if entry.date_order.len() == nums.len() {
+            true
+        } else if entry.date_order.len() - 1 == nums.len() {
+            false
+        } else if nums.len() == 1 {
+            date_order = &[DateCmp::Y];
+            false
+        } else {
+            return None;
+        };
+
+        let mut y: Option<u16> = None;
+        let mut m: Option<u16> = None;
+        let mut d: Option<u16> = None;
+
+        let mut i = 0;
+        for dc in date_order.iter() {
+            match dc {
+                DateCmp::Y => y = Some(nums[i]),
+                DateCmp::M => m = Some(nums[i]),
+                DateCmp::D => {
+                    if with_day {
+                        d = Some(nums[i]);
+                    } else {
+                        continue;
+                    }
+                }
+            }
+            i += 1;
+        }
+
+        if m.is_none() {
+            m = parse_textual_month(&entry, &filtered_str).map(u16::from);
+        }
+
+        match (y, m, d) {
+            (Some(y), Some(m), d) => Month::try_from(m as u8)
+                .ok()
+                .and_then(|m| Date::from_calendar_date(y.into(), m, d.unwrap_or(1) as u8).ok())
+                .map(ParsedDate::Absolute),
+            _ => None,
+        }
     }
 }
 
-/// Parse a textual date (e.g. "29 minutes ago" or "Jul 2, 2014") into a Chrono DateTime object.
+/// Parse a textual date (e.g. "29 minutes ago" or "Jul 2, 2014") into a OffsetDateTime object.
 ///
 /// Returns None if the date could not be parsed.
 pub fn parse_textual_date_to_dt(lang: Language, textual_date: &str) -> Option<OffsetDateTime> {
     parse_textual_date(lang, textual_date).map(OffsetDateTime::from)
+}
+
+/// Parse a textual date (e.g. "29 minutes ago" "Jul 2, 2014") into a Date object.
+///
+/// Returns None if the date could not be parsed.
+pub fn parse_textual_date_to_d(
+    lang: Language,
+    textual_date: &str,
+    warnings: &mut Vec<String>,
+) -> Option<Date> {
+    parse_textual_date_or_warn(lang, textual_date, warnings).map(OffsetDateTime::date)
 }
 
 pub fn parse_textual_date_or_warn(
@@ -845,6 +894,8 @@ mod tests {
         "যোগ দিয়েছেন 24 সেপ, 2013",
         Some(ParsedDate::Absolute(date!(2013-9-24)))
     )]
+    #[case(Language::Ja, "2023年7月", Some(ParsedDate::Absolute(date!(2023-07-01))))]
+    #[case(Language::De, "Juli 2023", Some(ParsedDate::Absolute(date!(2023-07-01))))]
     fn t_parse_date(
         #[case] lang: Language,
         #[case] textual_date: &str,
@@ -944,6 +995,39 @@ mod tests {
             assert_eq!(
                 parse_textual_date(*lang, samples.get("Dec").unwrap()),
                 Some(ParsedDate::Absolute(date!(2021 - 12 - 24))),
+                "lang: {lang}"
+            );
+        }
+    }
+
+    #[test]
+    fn t_parse_history_date_samples() {
+        #[derive(Deserialize)]
+        struct HistoryDates {
+            this_week: String,
+            last_week: String,
+        }
+
+        let json_path = path!(*TESTFILES / "dict" / "history_date_samples.json");
+        let json_file = File::open(json_path).unwrap();
+        let date_samples: BTreeMap<Language, HistoryDates> =
+            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+
+        for (lang, samples) in date_samples {
+            assert_eq!(
+                parse_textual_date(lang, &samples.this_week),
+                Some(ParsedDate::Relative(TimeAgo {
+                    n: 0,
+                    unit: TimeUnit::LastWeek
+                })),
+                "lang: {lang}"
+            );
+            assert_eq!(
+                parse_textual_date(lang, &samples.last_week),
+                Some(ParsedDate::Relative(TimeAgo {
+                    n: 1,
+                    unit: TimeUnit::LastWeek
+                })),
                 "lang: {lang}"
             );
         }

@@ -5,7 +5,7 @@ use std::fmt::Display;
 use std::str::FromStr;
 
 use rstest::{fixture, rstest};
-use rustypipe::model::TrackType;
+use rustypipe::model::{HistoryItem, TrackItem, TrackType, VideoItem};
 use rustypipe::param::{AlbumOrder, LANGUAGES};
 use time::{macros::date, OffsetDateTime};
 
@@ -2751,7 +2751,7 @@ async fn history(rp: RustyPipe, cookie_auth_enabled: bool) {
     }
 
     let videos = rp.query().history().await.unwrap();
-    assert_next_items(videos, rp.query(), 100).await;
+    assert_next_history(videos, rp.query(), 100).await;
 }
 
 #[rstest]
@@ -2762,7 +2762,7 @@ async fn history_search(rp: RustyPipe, cookie_auth_enabled: bool) {
     }
 
     let videos = rp.query().history_search("a").await.unwrap();
-    assert_next_items(videos, rp.query(), 5).await;
+    assert_next_history(videos, rp.query(), 5).await;
 }
 
 #[rstest]
@@ -2817,7 +2817,7 @@ async fn music_history(rp: RustyPipe, cookie_auth_enabled: bool) {
     }
 
     let tracks = rp.query().music_history().await.unwrap();
-    assert_next_items(tracks, rp.query(), 150).await;
+    assert_next_music_history(tracks, rp.query(), 150).await;
 }
 
 #[rstest]
@@ -2989,6 +2989,30 @@ async fn assert_next<T: FromYtItem, Q: AsRef<RustyPipeQuery>>(
 /// Assert that the paginator produces at least n items
 async fn assert_next_items<T: FromYtItem, Q: AsRef<RustyPipeQuery>>(
     paginator: Paginator<T>,
+    query: Q,
+    n_items: usize,
+) {
+    let mut p = paginator;
+    let query = query.as_ref();
+    p.extend_limit(query, n_items).await.unwrap();
+    assert_gte(p.items.len(), n_items, "items");
+}
+
+/// Assert that the history paginator produces at least n items
+async fn assert_next_history<Q: AsRef<RustyPipeQuery>>(
+    paginator: Paginator<HistoryItem<VideoItem>>,
+    query: Q,
+    n_items: usize,
+) {
+    let mut p = paginator;
+    let query = query.as_ref();
+    p.extend_limit(query, n_items).await.unwrap();
+    assert_gte(p.items.len(), n_items, "items");
+}
+
+/// Assert that the music history paginator produces at least n items
+async fn assert_next_music_history<Q: AsRef<RustyPipeQuery>>(
+    paginator: Paginator<HistoryItem<TrackItem>>,
     query: Q,
     n_items: usize,
 ) {

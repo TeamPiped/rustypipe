@@ -88,6 +88,8 @@ pub enum TimeUnit {
     Week,
     Month,
     Year,
+    LastWeek,
+    LastWeekday,
 }
 
 impl TimeUnit {
@@ -100,6 +102,8 @@ impl TimeUnit {
             TimeUnit::Week => "W",
             TimeUnit::Month => "M",
             TimeUnit::Year => "Y",
+            TimeUnit::LastWeek => "Wl",
+            TimeUnit::LastWeekday => "Wd",
         }
     }
 }

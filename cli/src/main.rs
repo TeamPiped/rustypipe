@@ -54,6 +54,9 @@ struct Cli {
     /// YouTube content country
     #[clap(long, global = true)]
     country: Option<String>,
+    /// Use authentication
+    #[clap(long, global = true)]
+    auth: bool,
     #[clap(long, global = true)]
     /// RustyPipe cache file
     cache_file: Option<PathBuf>,
@@ -652,6 +655,9 @@ async fn run() -> anyhow::Result<()> {
     }
     if let Some(country) = cli.country {
         rp = rp.country(Country::from_str(&country.to_ascii_uppercase()).expect("invalid country"));
+    }
+    if cli.auth {
+        rp = rp.authenticated();
     }
     let rp = rp.build()?;
 

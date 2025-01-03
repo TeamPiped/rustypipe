@@ -10,7 +10,7 @@ use crate::{
 };
 
 fn parse_tu(tu: &str) -> (u8, Option<TimeUnit>) {
-    static TU_PATTERN: Lazy<Regex> = Lazy::new(|| Regex::new(r"^(\d*)(\w?)$").unwrap());
+    static TU_PATTERN: Lazy<Regex> = Lazy::new(|| Regex::new(r"^(\d*)(\w*)$").unwrap());
     match TU_PATTERN.captures(tu) {
         Some(cap) => (
             cap.get(1).unwrap().as_str().parse().unwrap_or(1),
@@ -22,6 +22,8 @@ fn parse_tu(tu: &str) -> (u8, Option<TimeUnit>) {
                 "W" => Some(TimeUnit::Week),
                 "M" => Some(TimeUnit::Month),
                 "Y" => Some(TimeUnit::Year),
+                "Wl" => Some(TimeUnit::LastWeek),
+                "Wd" => Some(TimeUnit::LastWeekday),
                 "" => None,
                 _ => panic!("invalid time unit: {tu}"),
             },

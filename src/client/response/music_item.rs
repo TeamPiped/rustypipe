@@ -4,7 +4,7 @@ use serde_with::{rust::deserialize_ignore_any, serde_as, DefaultOnError, VecSkip
 use crate::{
     model::{
         self, traits::FromYtItem, AlbumId, AlbumItem, AlbumType, ArtistId, ArtistItem, ChannelId,
-        MusicItem, MusicItemType, MusicPlaylistItem, TrackItem, UserItem,
+        HistoryItem, MusicItem, MusicItemType, MusicPlaylistItem, TrackItem, UserItem,
     },
     param::Language,
     serializer::{
@@ -18,7 +18,7 @@ use super::{
     url_endpoint::{
         BrowseEndpointWrap, MusicPage, MusicPageType, MusicVideoType, NavigationEndpoint, PageType,
     },
-    ContentsRenderer, MusicContinuationData, Thumbnails, ThumbnailsWrap,
+    ContentsRenderer, MusicContinuationData, SimpleHeaderRenderer, Thumbnails, ThumbnailsWrap,
 };
 
 #[serde_as]
@@ -39,6 +39,8 @@ pub(crate) enum ItemSection {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct MusicShelf {
+    #[serde_as(as = "Option<Text>")]
+    pub title: Option<String>,
     /// Playlist ID (only for playlists)
     pub playlist_id: Option<String>,
     pub contents: MapResult<Vec<MusicResponseItem>>,
@@ -396,15 +398,7 @@ pub(crate) struct GridRenderer {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct GridHeader {
-    pub grid_header_renderer: GridHeaderRenderer,
-}
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct GridHeaderRenderer {
-    #[serde_as(as = "Text")]
-    pub title: String,
+    pub grid_header_renderer: SimpleHeaderRenderer,
 }
 
 #[derive(Debug, Deserialize)]
@@ -417,14 +411,6 @@ pub(crate) struct SingleColumnBrowseResult<T> {
 #[serde(rename_all = "camelCase")]
 pub(crate) struct SimpleHeader {
     pub music_header_renderer: SimpleHeaderRenderer,
-}
-
-#[serde_as]
-#[derive(Debug, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub(crate) struct SimpleHeaderRenderer {
-    #[serde_as(as = "Text")]
-    pub title: String,
 }
 
 #[derive(Debug, Deserialize)]
@@ -1256,6 +1242,26 @@ impl MusicListMapper {
             },
             warnings: self.warnings,
         }
+    }
+
+    pub fn conv_history_items(
+        self,
+        date_txt: Option<String>,
+        res: &mut MapResult<Vec<HistoryItem<TrackItem>>>,
+    ) {
+        res.warnings.extend(self.warnings);
+        res.c.extend(
+            self.items
+                .into_iter()
+                .filter_map(TrackItem::from_ytm_item)
+                .map(|item| HistoryItem {
+                    item,
+                    playback_date: date_txt.as_deref().and_then(|s| {
+                        timeago::parse_textual_date_to_d(self.lang, s, &mut res.warnings)
+                    }),
+                    playback_date_txt: date_txt.clone(),
+                }),
+        );
     }
 }
 

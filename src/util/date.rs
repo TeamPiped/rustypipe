@@ -1,4 +1,4 @@
-use time::{Date, Month, OffsetDateTime};
+use time::{Date, Duration, Month, OffsetDateTime};
 
 /// Shift a date by the given number of months.
 /// Ambiguous month-ends are shifted backwards as necessary.
@@ -23,6 +23,11 @@ pub fn shift_months(date: Date, months: i32) -> Date {
 /// Ambiguous month-ends are shifted backwards as necessary.
 pub fn shift_years(date: Date, years: i32) -> Date {
     shift_months(date, years * 12)
+}
+
+pub fn shift_weeks_mo(date: Date, weeks: i32) -> Date {
+    let d = date + Duration::weeks(weeks.into());
+    Date::from_iso_week_date(d.year(), d.iso_week(), time::Weekday::Monday).unwrap()
 }
 
 /// Get the current datetime without milli/micro/nanoseconds

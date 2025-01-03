@@ -4,9 +4,12 @@ use serde_with::{
 };
 use time::OffsetDateTime;
 
-use super::{ChannelBadge, ContentImage, ContinuationEndpoint, PhMetadataView, Thumbnails};
+use super::{
+    ChannelBadge, ContentImage, ContinuationEndpoint, PhMetadataView, SimpleHeaderRenderer,
+    Thumbnails,
+};
 use crate::{
-    model::{Channel, ChannelItem, ChannelTag, PlaylistItem, VideoItem, YouTubeItem},
+    model::{Channel, ChannelItem, ChannelTag, HistoryItem, PlaylistItem, VideoItem, YouTubeItem},
     param::Language,
     serializer::{
         text::{AttributedText, Text, TextComponent},
@@ -63,6 +66,7 @@ pub(crate) enum YouTubeListItem {
     /// GridRenderer: contains videos on channel page
     #[serde(alias = "expandedShelfContentsRenderer", alias = "gridRenderer")]
     ItemSectionRenderer {
+        header: Option<ItemSectionHeader>,
         #[serde(alias = "items")]
         contents: MapResult<Vec<YouTubeListItem>>,
     },
@@ -292,6 +296,12 @@ pub(crate) struct YouTubeListRendererWrap {
 #[serde(rename_all = "camelCase")]
 pub(crate) struct YouTubeListRenderer {
     pub contents: MapResult<Vec<YouTubeListItem>>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct ItemSectionHeader {
+    pub item_section_header_renderer: SimpleHeaderRenderer,
 }
 
 #[serde_as]
@@ -833,7 +843,7 @@ impl YouTubeListMapper<YouTubeItem> {
             YouTubeListItem::RichItemRenderer { content } => {
                 self.map_item(*content);
             }
-            YouTubeListItem::ItemSectionRenderer { mut contents } => {
+            YouTubeListItem::ItemSectionRenderer { mut contents, .. } => {
                 self.warnings.append(&mut contents.warnings);
                 contents.c.into_iter().for_each(|it| self.map_item(it));
             }
@@ -881,7 +891,7 @@ impl YouTubeListMapper<VideoItem> {
             YouTubeListItem::RichItemRenderer { content } => {
                 self.map_item(*content);
             }
-            YouTubeListItem::ItemSectionRenderer { mut contents } => {
+            YouTubeListItem::ItemSectionRenderer { mut contents, .. } => {
                 self.warnings.append(&mut contents.warnings);
                 contents.c.into_iter().for_each(|it| self.map_item(it));
             }
@@ -892,6 +902,23 @@ impl YouTubeListMapper<VideoItem> {
     pub(crate) fn map_response(&mut self, mut res: MapResult<Vec<YouTubeListItem>>) {
         self.warnings.append(&mut res.warnings);
         res.c.into_iter().for_each(|item| self.map_item(item));
+    }
+
+    pub(crate) fn conv_history_items(
+        self,
+        date_txt: Option<String>,
+        res: &mut MapResult<Vec<HistoryItem<VideoItem>>>,
+    ) {
+        res.warnings.extend(self.warnings);
+        res.c.extend(self.items.into_iter().map(|item| {
+            HistoryItem {
+                item,
+                playback_date: date_txt.as_deref().and_then(|s| {
+                    timeago::parse_textual_date_to_d(self.lang, s, &mut res.warnings)
+                }),
+                playback_date_txt: date_txt.clone(),
+            }
+        }));
     }
 }
 
@@ -916,7 +943,7 @@ impl YouTubeListMapper<PlaylistItem> {
             YouTubeListItem::RichItemRenderer { content } => {
                 self.map_item(*content);
             }
-            YouTubeListItem::ItemSectionRenderer { mut contents } => {
+            YouTubeListItem::ItemSectionRenderer { mut contents, .. } => {
                 self.warnings.append(&mut contents.warnings);
                 contents.c.into_iter().for_each(|it| self.map_item(it));
             }

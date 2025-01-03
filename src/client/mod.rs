@@ -811,6 +811,16 @@ impl RustyPipeBuilder {
         self
     }
 
+    /// Enable authentication for all requests
+    ///
+    /// Depending on the client type RustyPipe uses either the authentication cookie or the
+    /// OAuth token to authenticate requests.
+    #[must_use]
+    pub fn authenticated(mut self) -> Self {
+        self.default_opts.auth = Some(true);
+        self
+    }
+
     /// Disable authentication for all requests
     #[must_use]
     pub fn unauthenticated(mut self) -> Self {

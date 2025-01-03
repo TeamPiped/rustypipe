@@ -7,10 +7,14 @@ use crate::{
     error::{Error, ExtractionError},
     model::{
         paginator::{ContinuationEndpoint, Paginator},
-        ChannelItem, VideoItem,
+        ChannelItem, HistoryItem, VideoItem,
     },
     serializer::MapResult,
 };
+
+use self::response::YouTubeListMapper;
+
+use super::{MapRespOptions, QContinuation};
 
 #[derive(Debug, Serialize)]
 #[serde(rename_all = "camelCase")]
@@ -24,7 +28,7 @@ impl RustyPipeQuery {
     ///
     /// Requires authentication cookies.
     #[tracing::instrument(skip(self), level = "error")]
-    pub async fn history(&self) -> Result<Paginator<VideoItem>, Error> {
+    pub async fn history(&self) -> Result<Paginator<HistoryItem<VideoItem>>, Error> {
         let request_body = QBrowse {
             browse_id: "FEhistory",
         };
@@ -41,6 +45,34 @@ impl RustyPipeQuery {
             .await
     }
 
+    /// Get more YouTube history items from the given continuation token
+    #[tracing::instrument(skip(self), level = "error")]
+    pub async fn history_continuation<S: AsRef<str> + Debug>(
+        &self,
+        ctoken: S,
+        visitor_data: Option<&str>,
+    ) -> Result<Paginator<HistoryItem<VideoItem>>, Error> {
+        let ctoken = ctoken.as_ref();
+        let request_body = QContinuation {
+            continuation: ctoken,
+        };
+
+        self.clone()
+            .authenticated()
+            .execute_request_ctx::<response::Continuation, _, _>(
+                ClientType::Desktop,
+                "history_continuation",
+                ctoken,
+                "browse",
+                &request_body,
+                MapRespOptions {
+                    visitor_data,
+                    ..Default::default()
+                },
+            )
+            .await
+    }
+
     /// Search the YouTube playback history of the current user
     ///
     /// Requires authentication cookies.
@@ -48,7 +80,7 @@ impl RustyPipeQuery {
     pub async fn history_search<S: AsRef<str> + Debug>(
         &self,
         query: S,
-    ) -> Result<Paginator<VideoItem>, Error> {
+    ) -> Result<Paginator<HistoryItem<VideoItem>>, Error> {
         let query = query.as_ref();
         let request_body = QHistorySearch {
             browse_id: "FEhistory",
@@ -104,6 +136,65 @@ impl RustyPipeQuery {
     }
 }
 
+impl MapResponse<Paginator<HistoryItem<VideoItem>>> for response::History {
+    fn map_response(
+        self,
+        ctx: &MapRespCtx<'_>,
+    ) -> Result<MapResult<Paginator<HistoryItem<VideoItem>>>, ExtractionError> {
+        let items = self
+            .contents
+            .two_column_browse_results_renderer
+            .contents
+            .into_iter()
+            .next()
+            .ok_or(ExtractionError::InvalidData(
+                "twoColumnBrowseResultsRenderer empty".into(),
+            ))?
+            .tab_renderer
+            .content
+            .section_list_renderer
+            .contents;
+
+        let mut map_res = MapResult {
+            warnings: items.warnings,
+            ..Default::default()
+        };
+        let mut ctoken = None;
+        for item in items.c {
+            match item {
+                response::YouTubeListItem::ItemSectionRenderer { header, contents } => {
+                    let mut mapper = YouTubeListMapper::<VideoItem>::new(ctx.lang);
+                    mapper.map_response(contents);
+                    mapper.conv_history_items(
+                        header.map(|h| h.item_section_header_renderer.title),
+                        &mut map_res,
+                    );
+                }
+                response::YouTubeListItem::ContinuationItemRenderer {
+                    continuation_endpoint,
+                } => {
+                    if ctoken.is_none() {
+                        ctoken = Some(continuation_endpoint.continuation_command.token);
+                    }
+                }
+                _ => {}
+            }
+        }
+
+        Ok(MapResult {
+            c: Paginator::new_ext(
+                None,
+                map_res.c,
+                ctoken,
+                ctx.visitor_data.map(str::to_owned),
+                crate::model::paginator::ContinuationEndpoint::Browse,
+                true,
+            ),
+            warnings: map_res.warnings,
+        })
+    }
+}
+
 impl MapResponse<Paginator<VideoItem>> for response::History {
     fn map_response(
         self,
@@ -131,7 +222,7 @@ impl MapResponse<Paginator<VideoItem>> for response::History {
                 None,
                 mapper.items,
                 mapper.ctoken,
-                None,
+                ctx.visitor_data.map(str::to_owned),
                 crate::model::paginator::ContinuationEndpoint::Browse,
                 true,
             ),
@@ -145,29 +236,47 @@ mod tests {
     use std::{fs::File, io::BufReader};
 
     use path_macro::path;
-    use rstest::rstest;
 
     use crate::util::tests::TESTFILES;
 
     use super::*;
 
-    #[rstest]
-    #[case::history("history")]
-    #[case::subscription_feed("subscription_feed")]
-    fn map_history(#[case] name: &str) {
-        let json_path = path!(*TESTFILES / "history" / format!("{name}.json"));
+    #[test]
+    fn map_history() {
+        let json_path = path!(*TESTFILES / "history" / "history.json");
         let json_file = File::open(json_path).unwrap();
 
         let history: response::History =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
-        let map_res = history.map_response(&MapRespCtx::test("")).unwrap();
+        let map_res: MapResult<Paginator<HistoryItem<VideoItem>>> =
+            history.map_response(&MapRespCtx::test("")).unwrap();
 
         assert!(
             map_res.warnings.is_empty(),
             "deserialization/mapping warnings: {:?}",
             map_res.warnings
         );
-        insta::assert_ron_snapshot!(format!("map_{name}"), map_res.c, {
+        insta::assert_ron_snapshot!(map_res.c, {
+            ".items[].playback_date" => "[date]",
+        });
+    }
+
+    #[test]
+    fn map_subscription_feed() {
+        let json_path = path!(*TESTFILES / "history" / "subscription_feed.json");
+        let json_file = File::open(json_path).unwrap();
+
+        let history: response::History =
+            serde_json::from_reader(BufReader::new(json_file)).unwrap();
+        let map_res: MapResult<Paginator<VideoItem>> =
+            history.map_response(&MapRespCtx::test("")).unwrap();
+
+        assert!(
+            map_res.warnings.is_empty(),
+            "deserialization/mapping warnings: {:?}",
+            map_res.warnings
+        );
+        insta::assert_ron_snapshot!(map_res.c, {
             ".items[].publish_date" => "[date]",
         });
     }

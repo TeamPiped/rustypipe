@@ -1,0 +1,334 @@
+{
+  "af": {
+    "this_week": "Vandeesweek",
+    "last_week": "Verlede week"
+  },
+  "am": {
+    "this_week": "በዚህ ሳምንት",
+    "last_week": "ያለፈው ሳምንት"
+  },
+  "ar": {
+    "this_week": "هذا الأسبوع",
+    "last_week": "الأسبوع الماضي"
+  },
+  "as": {
+    "this_week": "এই সপ্তাহৰ",
+    "last_week": "যোৱা সপ্তাহৰ"
+  },
+  "az": {
+    "this_week": "Bu həftə",
+    "last_week": "Ötən həftə"
+  },
+  "be": {
+    "this_week": "На гэтым тыдні",
+    "last_week": "На мінулым тыдні"
+  },
+  "bg": {
+    "this_week": "Тази седмица",
+    "last_week": "Последната седмица"
+  },
+  "bn": {
+    "this_week": "এই সপ্তাহে",
+    "last_week": "গত সপ্তাহ"
+  },
+  "bs": {
+    "this_week": "Ova sedmica",
+    "last_week": "Prošla sedmica"
+  },
+  "ca": {
+    "this_week": "Aquesta setmana",
+    "last_week": "La setmana passada"
+  },
+  "cs": {
+    "this_week": "Tento týden",
+    "last_week": "Minulý týden"
+  },
+  "da": {
+    "this_week": "Denne uge",
+    "last_week": "Sidste uge"
+  },
+  "de": {
+    "this_week": "Diese Woche",
+    "last_week": "Letzte Woche"
+  },
+  "el": {
+    "this_week": "Αυτήν την εβδομάδα",
+    "last_week": "Τελευταία εβδομάδα"
+  },
+  "en": {
+    "this_week": "This week",
+    "last_week": "Last week"
+  },
+  "en-GB": {
+    "this_week": "This week",
+    "last_week": "Last week"
+  },
+  "en-IN": {
+    "this_week": "This week",
+    "last_week": "Last week"
+  },
+  "es": {
+    "this_week": "Esta semana",
+    "last_week": "La semana pasada"
+  },
+  "es-419": {
+    "this_week": "Esta semana",
+    "last_week": "La semana pasada"
+  },
+  "es-US": {
+    "this_week": "Esta semana",
+    "last_week": "La semana pasada"
+  },
+  "et": {
+    "this_week": "Sellel nädalal",
+    "last_week": "Eelmisel nädalal"
+  },
+  "eu": {
+    "this_week": "Aste hau",
+    "last_week": "Joan den astea"
+  },
+  "fa": {
+    "this_week": "این هفته",
+    "last_week": "هفته قبل"
+  },
+  "fi": {
+    "this_week": "Tällä viikolla",
+    "last_week": "Viime viikolla"
+  },
+  "fil": {
+    "this_week": "Ngayong linggo",
+    "last_week": "Nakaraang linggo"
+  },
+  "fr": {
+    "this_week": "Cette semaine",
+    "last_week": "La semaine dernière"
+  },
+  "fr-CA": {
+    "this_week": "Cette semaine",
+    "last_week": "La semaine dernière"
+  },
+  "gl": {
+    "this_week": "Esta semana",
+    "last_week": "A semana pasada"
+  },
+  "gu": {
+    "this_week": "આ અઠવાડિયે",
+    "last_week": "છેલ્લું અઠવાડિયું"
+  },
+  "hi": {
+    "this_week": "इस हफ़्ते",
+    "last_week": "पिछले हफ़्ते"
+  },
+  "hr": {
+    "this_week": "Ovaj tjedan",
+    "last_week": "Prošli tjedan"
+  },
+  "hu": {
+    "this_week": "Ezen a héten",
+    "last_week": "Múlt héten"
+  },
+  "hy": {
+    "this_week": "Այս շաբաթ",
+    "last_week": "Անցյալ շաբաթ"
+  },
+  "id": {
+    "this_week": "Minggu ini",
+    "last_week": "Minggu lalu"
+  },
+  "is": {
+    "this_week": "Í vikunni",
+    "last_week": "Í síðustu viku"
+  },
+  "it": {
+    "this_week": "Questa settimana",
+    "last_week": "Ultima settimana"
+  },
+  "iw": {
+    "this_week": "השבוע",
+    "last_week": "בשבוע שעבר"
+  },
+  "ja": {
+    "this_week": "今週",
+    "last_week": "先週"
+  },
+  "ka": {
+    "this_week": "ამ კვირაში",
+    "last_week": "გასულ კვირაში"
+  },
+  "kk": {
+    "this_week": "Осы аптада",
+    "last_week": "Өткен аптада"
+  },
+  "km": {
+    "this_week": "សប្ដាហ៍​នេះ",
+    "last_week": "សប្ដាហ៍​មុន"
+  },
+  "kn": {
+    "this_week": "ಈ ವಾರ",
+    "last_week": "ಕಳೆದ ವಾರ"
+  },
+  "ko": {
+    "this_week": "이번 주",
+    "last_week": "지난주"
+  },
+  "ky": {
+    "this_week": "Ушул аптадагы",
+    "last_week": "Өткөн аптадагы"
+  },
+  "lo": {
+    "this_week": "ອາທິດນີ້",
+    "last_week": "ອາທິດຜ່ານ​ມາ"
+  },
+  "lt": {
+    "this_week": "Šią savaitę",
+    "last_week": "Praėjusią savaitę"
+  },
+  "lv": {
+    "this_week": "Šajā nedēļā",
+    "last_week": "Iepriekšējā nedēļā"
+  },
+  "mk": {
+    "this_week": "Оваа седмица",
+    "last_week": "Минатата недела"
+  },
+  "ml": {
+    "this_week": "ഈ ആഴ്‌ച",
+    "last_week": "കഴിഞ്ഞ ആഴ്ച"
+  },
+  "mn": {
+    "this_week": "Энэ долоо хоног",
+    "last_week": "Өнгөрсөн долоо хоног"
+  },
+  "mr": {
+    "this_week": "या आठवड्यात",
+    "last_week": "मागील आठवड्यात"
+  },
+  "ms": {
+    "this_week": "Minggu ini",
+    "last_week": "Minggu lepas"
+  },
+  "my": {
+    "this_week": "ယခုအပတ်",
+    "last_week": "ယခင်အပတ်"
+  },
+  "ne": {
+    "this_week": "यस हप्ता",
+    "last_week": "पछिल्लो हप्ता"
+  },
+  "nl": {
+    "this_week": "Deze week",
+    "last_week": "Afgelopen week"
+  },
+  "no": {
+    "this_week": "Denne uken",
+    "last_week": "Forrige uke"
+  },
+  "or": {
+    "this_week": "ଏହି ସପ୍ତାହ",
+    "last_week": "ଗତ ସପ୍ତାହ"
+  },
+  "pa": {
+    "this_week": "ਇਸ ਹਫ਼ਤੇ",
+    "last_week": "ਪਿਛਲੇ ਹਫ਼ਤੇ"
+  },
+  "pl": {
+    "this_week": "W tym tygodniu",
+    "last_week": "W zeszłym tygodniu"
+  },
+  "pt": {
+    "this_week": "Esta semana",
+    "last_week": "Semana passada"
+  },
+  "pt-PT": {
+    "this_week": "Esta semana",
+    "last_week": "A semana passada"
+  },
+  "ro": {
+    "this_week": "Săptămâna aceasta",
+    "last_week": "Săptămâna trecută"
+  },
+  "ru": {
+    "this_week": "На этой неделе",
+    "last_week": "На прошлой неделе"
+  },
+  "si": {
+    "this_week": "මෙම සතිය",
+    "last_week": "පසුගිය සතිය"
+  },
+  "sk": {
+    "this_week": "Tento týždeň",
+    "last_week": "Minulý týždeň"
+  },
+  "sl": {
+    "this_week": "Ta teden",
+    "last_week": "Prejšnji teden"
+  },
+  "sq": {
+    "this_week": "Këtë javë",
+    "last_week": "Javën e kaluar"
+  },
+  "sr": {
+    "this_week": "Ове недеље",
+    "last_week": "Прошле недеље"
+  },
+  "sr-Latn": {
+    "this_week": "Ove nedelje",
+    "last_week": "Prošle nedelje"
+  },
+  "sv": {
+    "this_week": "Den här veckan",
+    "last_week": "Förra veckan"
+  },
+  "sw": {
+    "this_week": "Wiki hii",
+    "last_week": "Wiki iliyopita"
+  },
+  "ta": {
+    "this_week": "இந்த வாரம்",
+    "last_week": "கடந்த வாரம்"
+  },
+  "te": {
+    "this_week": "ఈ వారం",
+    "last_week": "గత వారం"
+  },
+  "th": {
+    "this_week": "สัปดาห์นี้",
+    "last_week": "สัปดาห์ที่แล้ว"
+  },
+  "tr": {
+    "this_week": "Bu hafta",
+    "last_week": "Geçen hafta"
+  },
+  "uk": {
+    "this_week": "Цього тижня",
+    "last_week": "Минулого тижня"
+  },
+  "ur": {
+    "this_week": "اس ہفتے",
+    "last_week": "گزشتہ ہفتہ"
+  },
+  "uz": {
+    "this_week": "Shu haftada",
+    "last_week": "O‘tgan hafta"
+  },
+  "vi": {
+    "this_week": "Tuần này",
+    "last_week": "Tuần trước"
+  },
+  "zh-CN": {
+    "this_week": "本周",
+    "last_week": "上周"
+  },
+  "zh-HK": {
+    "this_week": "本星期",
+    "last_week": "上星期"
+  },
+  "zh-TW": {
+    "this_week": "本週",
+    "last_week": "上週"
+  },
+  "zu": {
+    "this_week": "Leli viki",
+    "last_week": "Iviki eledlule"
+  }
+}

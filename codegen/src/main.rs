@@ -3,6 +3,7 @@
 mod abtest;
 mod collect_album_types;
 mod collect_chan_prefixes;
+mod collect_history_dates;
 mod collect_large_numbers;
 mod collect_playlist_dates;
 mod collect_video_dates;
@@ -30,8 +31,10 @@ enum Commands {
     CollectAlbumTypes,
     CollectVideoDurations,
     CollectVideoDates,
+    CollectHistoryDates,
     CollectChanPrefixes,
     ParsePlaylistDates,
+    ParseHistoryDates,
     ParseLargeNumbers,
     ParseAlbumTypes,
     ParseVideoDurations,
@@ -68,10 +71,14 @@ async fn main() {
         Commands::CollectVideoDates => {
             collect_video_dates::collect_video_dates(cli.concurrency).await;
         }
+        Commands::CollectHistoryDates => {
+            collect_history_dates::collect_dates().await;
+        }
         Commands::CollectChanPrefixes => {
             collect_chan_prefixes::collect_chan_prefixes().await;
         }
         Commands::ParsePlaylistDates => collect_playlist_dates::write_samples_to_dict(),
+        Commands::ParseHistoryDates => collect_history_dates::write_samples_to_dict(),
         Commands::ParseLargeNumbers => collect_large_numbers::write_samples_to_dict(),
         Commands::ParseAlbumTypes => collect_album_types::write_samples_to_dict(),
         Commands::ParseVideoDurations => collect_video_durations::parse_video_durations(),

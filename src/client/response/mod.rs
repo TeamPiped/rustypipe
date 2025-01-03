@@ -212,6 +212,14 @@ pub(crate) struct TextBox {
 #[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
+pub(crate) struct SimpleHeaderRenderer {
+    #[serde_as(as = "Text")]
+    pub title: String,
+}
+
+#[serde_as]
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
 pub(crate) struct TextComponentBox {
     #[serde_as(as = "AttributedText")]
     pub text: TextComponent,
