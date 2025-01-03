@@ -865,10 +865,16 @@ mod tests {
             for (t, entry) in entries {
                 entry.cases.iter().for_each(|(txt, n)| {
                     let timeago = parse_timeago(*lang, txt);
+                    let textual_date = parse_textual_date(*lang, txt);
                     assert_eq!(
                         timeago,
                         Some(TimeAgo { n: *n, unit: *t }),
                         "lang: {lang}, txt: {txt}"
+                    );
+                    assert_eq!(
+                        textual_date,
+                        Some(ParsedDate::Relative(TimeAgo { n: *n, unit: *t })),
+                        "textual_date lang: {lang}, txt: {txt}"
                     );
 
                     n_cases += 1;
