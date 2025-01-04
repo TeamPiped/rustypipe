@@ -277,6 +277,15 @@ struct OauthToken {
     expires_at: OffsetDateTime,
 }
 
+#[derive(Debug, Clone, Serialize, Deserialize)]
+struct AuthCookie {
+    cookie: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    account_syncid: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    session_index: Option<String>,
+}
+
 impl OauthToken {
     fn from_response(
         value: OauthTokenResponseInner,
@@ -290,6 +299,16 @@ impl OauthToken {
                 .ok_or(Error::Other("missing refresh token".into()))?,
             expires_at: util::now_sec() + Duration::from_secs(value.expires_in.into()),
         })
+    }
+}
+
+impl AuthCookie {
+    fn new(cookie: String) -> Self {
+        Self {
+            cookie,
+            account_syncid: None,
+            session_index: None,
+        }
     }
 }
 
@@ -489,7 +508,7 @@ struct CacheHolder {
     clients: HashMap<ClientType, AsyncRwLock<CacheEntry<ClientData>>>,
     deobf: AsyncRwLock<CacheEntry<DeobfData>>,
     oauth_token: RwLock<Option<OauthToken>>,
-    auth_cookie: RwLock<Option<String>>,
+    auth_cookie: RwLock<Option<AuthCookie>>,
 }
 
 #[derive(Default, Debug, Clone, Serialize, Deserialize)]
@@ -501,7 +520,7 @@ struct CacheData {
     #[serde(skip_serializing_if = "Option::is_none")]
     oauth_token: Option<OauthToken>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    auth_cookie: Option<String>,
+    auth_cookie: Option<AuthCookie>,
 }
 
 #[derive(Default, Debug, Clone, Serialize, Deserialize)]
@@ -1455,9 +1474,61 @@ impl RustyPipe {
     ///
     /// I recommend to log in using Incognito mode, get the cookies from the devtools
     /// and then close the page.
-    pub async fn set_auth_cookie<S: Into<String>>(&self, cookie: S) {
+    pub async fn set_auth_cookie<S: Into<String>>(&self, cookie: S) -> Result<(), Error> {
+        let mut auth_cookie = AuthCookie::new(cookie.into());
+        self.extract_session_headers(&mut auth_cookie).await?;
+
         let mut c = self.inner.cache.auth_cookie.write().unwrap();
-        *c = Some(cookie.into());
+        *c = Some(auth_cookie);
+        Ok(())
+    }
+
+    /// Since YouTube allows multiple channels/profiles per account, cookie-authenticated requests must include
+    /// the X-Goog-AuthUser and X-Goog-PageId headers to specify which account should be used.
+    ///
+    /// The header values are included in the ytcfg object which is embedded in the html code.
+    async fn extract_session_headers(&self, auth_cookie: &mut AuthCookie) -> Result<(), Error> {
+        let re_session_id = Regex::new(r#"""USER_SESSION_ID"":"[\d]+?""#).unwrap();
+        let re_sync_id = Regex::new(r#""datasyncId":"([\w|]+?)""#).unwrap();
+        let re_session_index = Regex::new(r#""SESSION_INDEX":"([\d]+?)""#).unwrap();
+
+        let req = self
+            .inner
+            .http
+            .get("https://www.youtube.com/results?search_query=")
+            .header(header::COOKIE, &auth_cookie.cookie)
+            .build()?;
+        let html = self.http_request_txt(&req).await?;
+
+        if !re_session_id.is_match(&html) {
+            return Err(Error::Auth(AuthError::NoLogin));
+        }
+
+        let datasync_id =
+            util::get_cg_from_regex(&re_sync_id, &html, 1).ok_or(Error::Extraction(
+                ExtractionError::InvalidData("could not find datasyncId on html page".into()),
+            ))?;
+
+        // datasyncid is of the form "channel_syncid||user_syncid" for secondary channel
+        // and just "user_syncid||" for primary channel. We only want the channel_syncid
+        let (channel_syncid, user_syncid) =
+            datasync_id
+                .split_once("||")
+                .ok_or(Error::Extraction(ExtractionError::InvalidData(
+                    "datasyncId does not contain || seperator".into(),
+                )))?;
+        auth_cookie.account_syncid = if user_syncid.is_empty() {
+            None
+        } else {
+            Some(channel_syncid.to_owned())
+        };
+
+        auth_cookie.session_index = Some(
+            util::get_cg_from_regex(&re_session_index, &html, 1).ok_or(Error::Extraction(
+                ExtractionError::InvalidData("could not find SESSION_INDEX on html page".into()),
+            ))?,
+        );
+        Ok(())
     }
 }
 
@@ -1842,10 +1913,17 @@ impl RustyPipeQuery {
                     .unwrap()
                     .clone()
                     .ok_or(Error::Auth(AuthError::NoLogin))?;
-                if let Some(auth_header) = Self::sapisidhash_header(&auth_cookie, ctype) {
+
+                if let Some(auth_header) = Self::sapisidhash_header(&auth_cookie.cookie, ctype) {
                     r = r.header(header::AUTHORIZATION, auth_header);
                 }
-                cookie = Some(auth_cookie);
+                if let Some(session_index) = auth_cookie.session_index {
+                    r = r.header("X-Goog-AuthUser", session_index);
+                }
+                if let Some(account_syncid) = auth_cookie.account_syncid {
+                    r = r.header("X-Goog-PageId", account_syncid);
+                }
+                cookie = Some(auth_cookie.cookie);
             } else if ctype == ClientType::Tv {
                 let access_token = self.client.user_auth_access_token().await?;
                 r = r.header(header::AUTHORIZATION, format!("Bearer {}", access_token));
