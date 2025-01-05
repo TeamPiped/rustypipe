@@ -7,7 +7,7 @@ use crate::{
     error::{Error, ExtractionError},
     model::{
         paginator::{ContinuationEndpoint, Paginator},
-        ChannelItem, HistoryItem, VideoItem,
+        ChannelItem, HistoryItem, PlaylistItem, VideoItem,
     },
     serializer::MapResult,
 };
@@ -131,6 +131,18 @@ impl RustyPipeQuery {
                 "",
                 "browse",
                 &request_body,
+            )
+            .await
+    }
+
+    /// Get a list of YouTube playlists the current user added to their library
+    pub async fn saved_playlists(&self) -> Result<Paginator<PlaylistItem>, Error> {
+        self.clone()
+            .authenticated()
+            .continuation(
+                "4qmFsgJFEhZGRXBsYXlsaXN0X2FnZ3JlZ2F0aW9uGgRxQUlDmgIkNjc5MjVhZTYtMDAwMC0yYzQyLWFjMjItM2MyODZkNDI1MTQy",
+                ContinuationEndpoint::Browse,
+                None,
             )
             .await
     }
