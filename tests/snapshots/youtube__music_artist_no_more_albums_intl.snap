@@ -12,6 +12,21 @@ MusicArtist(
   tracks: "[tracks]",
   albums: [
     AlbumItem(
+      id: "MPREb_5gkbwhqC4AJ",
+      name: "[name]",
+      cover: "[cover]",
+      artists: [
+        ArtistId(
+          id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+          name: "[name]",
+        ),
+      ],
+      artist_id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+      album_type: album,
+      year: Some(2024),
+      by_va: false,
+    ),
+    AlbumItem(
       id: "MPREb_8PsIyll0LFV",
       name: "[name]",
       cover: "[cover]",
