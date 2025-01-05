@@ -43,6 +43,8 @@ pub const PLAYLIST_ID_ALBUM_PREFIX: &str = "OLAK";
 pub const ARTIST_DISCOGRAPHY_PREFIX: &str = "MPAD";
 pub const PODCAST_PLAYLIST_PREFIX: &str = "MPSP";
 pub const PODCAST_EPISODE_PREFIX: &str = "MPED";
+/// Builtin user-specific playlists (Watch later, Liked videos, Liked tracks, Episodes for later)
+pub static USER_PLAYLIST_IDS: [&str; 4] = ["WL", "LL", "LM", "SE"];
 
 const CONTENT_PLAYBACK_NONCE_ALPHABET: &[u8; 64] =
     b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_";

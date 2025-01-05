@@ -71,8 +71,9 @@ pub fn channel_id<S: AsRef<str>>(channel_id: S) -> Result<(), Error> {
 /// assert!(validate::playlist_id("Abcd").is_err());
 /// ```
 pub fn playlist_id<S: AsRef<str>>(playlist_id: S) -> Result<(), Error> {
+    let id = playlist_id.as_ref();
     check(
-        util::PLAYLIST_ID_REGEX.is_match(playlist_id.as_ref()),
+        util::PLAYLIST_ID_REGEX.is_match(id) || util::USER_PLAYLIST_IDS.contains(&id),
         "invalid playlist id",
     )
 }

@@ -260,7 +260,7 @@ impl RustyPipeQuery {
             })
         } else if util::CHANNEL_ID_REGEX.is_match(s) {
             Ok(UrlTarget::Channel { id: s.to_owned() })
-        } else if util::PLAYLIST_ID_REGEX.is_match(s) {
+        } else if util::PLAYLIST_ID_REGEX.is_match(s) || util::USER_PLAYLIST_IDS.contains(&s) {
             if resolve_albums && s.starts_with(util::PLAYLIST_ID_ALBUM_PREFIX) {
                 self._navigation_resolve_url(
                     &format!("/playlist?list={s}"),
