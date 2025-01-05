@@ -1463,23 +1463,80 @@ impl RustyPipe {
         }
     }
 
+    /// Get a copy of the authentication cookie from the cache
+    fn user_auth_cookie(&self) -> Result<AuthCookie, Error> {
+        self.inner
+            .cache
+            .auth_cookie
+            .read()
+            .unwrap()
+            .clone()
+            .ok_or(Error::Auth(AuthError::NoLogin))
+    }
+
     /// Set the user authentication cookie
     ///
     /// The cookie is used for authenticated requests with browser-based clients
     /// (Desktop, DesktopMusic, Mobile).
     ///
-    /// **Note:** YouTube rotates cookies every few minutes when using the web applications.
-    /// So you should not use the session you obtained cookies from afterwards or it will
+    /// **Note:** YouTube rotates cookies every few minutes when using the web application.
+    /// Do not use the session you obtained cookies from afterwards or it will
     /// become invalid.
     ///
     /// I recommend to log in using Incognito mode, get the cookies from the devtools
     /// and then close the page.
-    pub async fn set_auth_cookie<S: Into<String>>(&self, cookie: S) -> Result<(), Error> {
-        let mut auth_cookie = AuthCookie::new(cookie.into());
+    pub async fn user_auth_set_cookie<S: Into<String>>(&self, cookie: S) -> Result<(), Error> {
+        let cookie = cookie.into();
+        if cookie.is_empty() {
+            return Err(Error::Auth(AuthError::NoLogin));
+        }
+        let mut auth_cookie = AuthCookie::new(cookie);
         self.extract_session_headers(&mut auth_cookie).await?;
+        {
+            let mut c = self.inner.cache.auth_cookie.write().unwrap();
+            *c = Some(auth_cookie);
+        }
+        self.store_cache().await;
+        Ok(())
+    }
 
-        let mut c = self.inner.cache.auth_cookie.write().unwrap();
-        *c = Some(auth_cookie);
+    /// Parse the user authentication cookie from a Netscape HTTP Cookie File
+    ///
+    /// The cookie is used for authenticated requests with browser-based clients
+    /// (Desktop, DesktopMusic, Mobile).
+    ///
+    /// cookie.txt files can be extracted using browser plugins like
+    /// "Get cookies.txt LOCALLY" ([Firefox](https://addons.mozilla.org/de/firefox/addon/get-cookies-txt-locally/))
+    /// ([Chromium](https://chromewebstore.google.com/detail/get-cookiestxt-locally/cclelndahbckbenkjhflpdbgdldlbecc)).
+    ///
+    /// **Note:** YouTube rotates cookies every few minutes when using the web application.
+    /// Do not use the session you obtained cookies from afterwards or it will
+    /// become invalid.
+    ///
+    /// I recommend to log in using Incognito mode, obtain the cookies and then close the page.
+    pub async fn user_auth_set_cookie_txt(&self, cookies: &str) -> Result<(), Error> {
+        let cookie = util::parse_netscape_cookies(cookies, ".youtube.com")?;
+        self.user_auth_set_cookie(cookie).await
+    }
+
+    /// Remove the user authentication cookie from cache storage
+    pub async fn user_auth_remove_cookie(&self) -> Result<(), Error> {
+        {
+            let mut cookie = self.inner.cache.auth_cookie.write().unwrap();
+            if cookie.is_none() {
+                return Err(Error::Auth(AuthError::NoLogin));
+            }
+            *cookie = None;
+        }
+        self.store_cache().await;
+        Ok(())
+    }
+
+    /// Attempt to fetch the YouTube website with login cookies to check if the user is successfully logged in
+    /// and the session is still valid.
+    pub async fn user_auth_check_cookie(&self) -> Result<(), Error> {
+        let mut cookie = self.user_auth_cookie()?;
+        self.extract_session_headers(&mut cookie).await?;
         Ok(())
     }
 
@@ -1488,7 +1545,7 @@ impl RustyPipe {
     ///
     /// The header values are included in the ytcfg object which is embedded in the html code.
     async fn extract_session_headers(&self, auth_cookie: &mut AuthCookie) -> Result<(), Error> {
-        let re_session_id = Regex::new(r#"""USER_SESSION_ID"":"[\d]+?""#).unwrap();
+        let re_session_id = Regex::new(r#""USER_SESSION_ID":"[\d]+?""#).unwrap();
         let re_sync_id = Regex::new(r#""datasyncId":"([\w|]+?)""#).unwrap();
         let re_session_index = Regex::new(r#""SESSION_INDEX":"([\d]+?)""#).unwrap();
 
@@ -1501,6 +1558,7 @@ impl RustyPipe {
         let html = self.http_request_txt(&req).await?;
 
         if !re_session_id.is_match(&html) {
+            tracing::debug!("session check failed: USER_SESSION_ID not found in reponse");
             return Err(Error::Auth(AuthError::NoLogin));
         }
 
@@ -1904,15 +1962,7 @@ impl RustyPipeQuery {
 
         if self.opts.auth == Some(true) {
             if ctype.is_web() {
-                let auth_cookie = self
-                    .client
-                    .inner
-                    .cache
-                    .auth_cookie
-                    .read()
-                    .unwrap()
-                    .clone()
-                    .ok_or(Error::Auth(AuthError::NoLogin))?;
+                let auth_cookie = self.client.user_auth_cookie()?;
 
                 if let Some(auth_header) = Self::sapisidhash_header(&auth_cookie.cookie, ctype) {
                     r = r.header(header::AUTHORIZATION, auth_header);

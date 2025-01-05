@@ -201,12 +201,41 @@ enum Commands {
         #[clap(short, long)]
         music: Option<MusicSearchCategory>,
     },
+    /// Get your playback history
+    History {
+        /// Output format
+        #[clap(short, long, value_parser)]
+        format: Option<Format>,
+        /// Pretty-print output
+        #[clap(long)]
+        pretty: bool,
+        /// Limit the number of items to fetch
+        #[clap(short, long, default_value_t = 20)]
+        limit: usize,
+        /// Use YouTube Music
+        #[clap(short, long)]
+        music: bool,
+        /// Search YouTube playback history
+        #[clap(long)]
+        search: Option<String>,
+    },
     /// Get a YouTube visitor data cookie
     Vdata,
     /// Log in using your Google account
-    Login,
+    Login {
+        /// Log in using YouTube cookies (otherwise OAuth is used)
+        #[clap(long)]
+        cookie: bool,
+        /// Path to cookie.txt
+        #[clap(long)]
+        cookies_txt: Option<PathBuf>,
+    },
     /// Log out from your Google account
-    Logout,
+    Logout {
+        /// Remove stored YouTube cookies (otherwise OAuth is used)
+        #[clap(long)]
+        cookie: bool,
+    },
 }
 
 #[derive(Default, Copy, Clone, ValueEnum)]
@@ -363,17 +392,21 @@ fn print_data<T: Serialize>(data: &T, format: Format, pretty: bool) {
 
 fn print_entities(items: &[impl YtEntity], with_type: bool) {
     for e in items {
-        if with_type {
-            if let Some(t) = e.music_item_type() {
-                anstream::print!("{: >8} ", format!("{t:?}").dimmed());
-            }
-        }
-        anstream::print!("[{}] {}", e.id(), e.name().bold());
-        if let Some(n) = e.channel_name() {
-            anstream::print!(" - {}", n.cyan());
-        }
-        println!();
+        print_entity(e, with_type);
     }
+}
+
+fn print_entity(e: &impl YtEntity, with_type: bool) {
+    if with_type {
+        if let Some(t) = e.music_item_type() {
+            anstream::print!("{: >8} ", format!("{t:?}").dimmed());
+        }
+    }
+    anstream::print!("[{}] {}", e.id(), e.name().bold());
+    if let Some(n) = e.channel_name() {
+        anstream::print!(" - {}", n.cyan());
+    }
+    println!();
 }
 
 fn print_tracks(tracks: &[TrackItem]) {
@@ -1292,28 +1325,136 @@ async fn run() -> anyhow::Result<()> {
                 print_music_search(&res, format, pretty, false);
             }
         },
+        Commands::History {
+            format,
+            pretty,
+            limit,
+            music,
+            search,
+        } => {
+            if music {
+                let mut history = rp.query().music_history().await?;
+                history.extend_limit(rp.query(), limit).await?;
+
+                match format {
+                    Some(format) => print_data(&history, format, pretty),
+                    None => {
+                        anstream::println!("{}", "[Music history]".on_green().black());
+
+                        let mut last_date = None;
+                        for item in history.items {
+                            if last_date != item.playback_date {
+                                println!();
+                                if let Some(dt) = item.playback_date {
+                                    anstream::println!("{}", dt.green().underline());
+                                }
+                                last_date = item.playback_date;
+                            }
+
+                            let t = item.item;
+                            anstream::print!("[{}] {} - ", t.id, t.name.bold());
+                            print_artists(&t.artists);
+                            print_duration(t.duration);
+                            println!();
+                        }
+                    }
+                }
+            } else {
+                let mut history = match search {
+                    Some(query) => rp.query().history_search(query).await?,
+                    None => rp.query().history().await?,
+                };
+                history.extend_limit(rp.query(), limit).await?;
+
+                match format {
+                    Some(format) => print_data(&history, format, pretty),
+                    None => {
+                        anstream::println!("{}", "[History]".on_green().black());
+
+                        let mut last_date = None;
+                        for item in history.items {
+                            if last_date != item.playback_date {
+                                println!();
+                                if let Some(dt) = item.playback_date {
+                                    anstream::println!("{}", dt.green().underline());
+                                }
+                                last_date = item.playback_date;
+                            }
+                            print_entity(&item.item, false);
+                        }
+                    }
+                }
+            }
+        }
         Commands::Vdata => {
             let vd = rp.query().get_visitor_data().await?;
             println!("{vd}");
         }
-        Commands::Login => {
-            match rp.user_auth_check_login().await {
-                Ok(_) => {}
-                Err(rustypipe::error::Error::Auth(_)) => {
-                    let device_code = rp.user_auth_get_code().await?;
-                    println!(
-                        "Open {} and enter the following code:",
-                        device_code.verification_url
-                    );
-                    anstream::println!("{}", device_code.user_code.blue());
-                    rp.user_auth_wait_for_login(&device_code).await?;
+        Commands::Login {
+            cookie,
+            cookies_txt,
+        } => {
+            if cookie || cookies_txt.is_some() {
+                match rp.user_auth_check_cookie().await {
+                    Ok(_) => {
+                        println!("Already logged in.");
+                    }
+                    Err(rustypipe::error::Error::Auth(_)) => {
+                        let cookie_raw = if let Some(cookie_txt) = cookies_txt {
+                            std::fs::read_to_string(cookie_txt)?
+                        } else {
+                            println!("Enter cookie header or cookies.txt:");
+
+                            // Read until 2 consecutive newlines
+                            let mut line = String::new();
+                            let mut last_len = 0;
+                            let mut stop = 0;
+                            while stop < 2 {
+                                std::io::stdin().read_line(&mut line)?;
+                                if line.len() <= last_len + 1 {
+                                    stop += 1;
+                                } else {
+                                    stop = 0;
+                                }
+                                last_len = line.len();
+                            }
+                            line
+                        };
+
+                        if cookie_raw.contains('\t') {
+                            rp.user_auth_set_cookie_txt(&cookie_raw).await?;
+                        } else {
+                            rp.user_auth_set_cookie(cookie_raw.trim()).await?;
+                        }
+                        anstream::println!("{}", "Logged in.".green());
+                    }
+                    Err(e) => return Err(e.into()),
                 }
-                Err(e) => return Err(e.into()),
+            } else {
+                match rp.user_auth_check_login().await {
+                    Ok(_) => {
+                        println!("Already logged in.");
+                    }
+                    Err(rustypipe::error::Error::Auth(_)) => {
+                        let device_code = rp.user_auth_get_code().await?;
+                        println!(
+                            "Open {} and enter the following code:",
+                            device_code.verification_url
+                        );
+                        anstream::println!("{}", device_code.user_code.blue());
+                        rp.user_auth_wait_for_login(&device_code).await?;
+                        anstream::println!("{}", "Logged in.".green());
+                    }
+                    Err(e) => return Err(e.into()),
+                }
             }
-            anstream::println!("{}", "Logged in.".green());
         }
-        Commands::Logout => {
-            rp.user_auth_logout().await?;
+        Commands::Logout { cookie } => {
+            if cookie {
+                rp.user_auth_remove_cookie().await?;
+            } else {
+                rp.user_auth_logout().await?;
+            }
             anstream::println!("{}", "Logged out.".red());
         }
     };

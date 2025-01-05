@@ -608,6 +608,69 @@ pub fn map_internal_playlist_err(e: Error) -> Error {
     }
 }
 
+/// Parse cookies from a Netscape HTTP Cookie File and return a cookie header value
+pub fn parse_netscape_cookies(cookies: &str, filter_domain: &str) -> Result<String, Error> {
+    let mut res = cookies
+        .lines()
+        .enumerate()
+        .map(|(line_n, line)| parse_netscape_cookie_line(line, line_n + 1, filter_domain))
+        .try_fold(String::new(), |mut acc, itm| {
+            if let Some((k, v)) = itm? {
+                acc += k;
+                acc.push('=');
+                acc += v;
+                acc += "; ";
+            }
+            Ok::<_, Error>(acc)
+        })?;
+
+    if !res.is_empty() {
+        res.truncate(res.len() - 2);
+    }
+    Ok(res)
+}
+
+fn parse_netscape_cookie_line<'a>(
+    line: &'a str,
+    line_n: usize,
+    filter_domain: &str,
+) -> Result<Option<(&'a str, &'a str)>, Error> {
+    let mut line = line.trim();
+
+    if let Some(s) = line.strip_prefix("#HttpOnly_") {
+        line = s;
+    } else if line.is_empty() || line.starts_with('#') {
+        return Ok(None);
+    }
+
+    let mkerr = || Error::Other(format!("line {line_n}: too few fields, expected 7").into());
+
+    let mut cols = line.split('\t');
+    let domain = cols.next().ok_or_else(mkerr)?;
+    if domain != filter_domain {
+        return Ok(None);
+    }
+    let include_subdomains = cols.next().ok_or_else(mkerr)?.to_ascii_lowercase() == "true";
+    if !include_subdomains {
+        return Ok(None);
+    }
+    let path = cols.next().ok_or_else(mkerr)?;
+    if path != "/" {
+        return Ok(None);
+    }
+    // skip secure, expire
+    let name = cols.nth(2).ok_or_else(mkerr)?;
+    let value = cols.next().ok_or_else(mkerr)?;
+
+    if cols.next().is_some() {
+        return Err(Error::Other(
+            format!("line {line_n}: too many fields, expected 7").into(),
+        ));
+    }
+
+    Ok(Some((name, value)))
+}
+
 #[cfg(test)]
 pub(crate) mod tests {
     use std::{fs::File, io::BufReader, path::PathBuf};
@@ -808,6 +871,37 @@ pub(crate) mod tests {
         assert_eq!(
             find_map_or_last_err(std::iter::empty(), 0, |_: i32| Ok(true)),
             Err(0)
+        );
+    }
+
+    #[test]
+    fn t_parse_netscape_cookies() {
+        let cookies = r#"# Netscape HTTP Cookie File
+# http://curl.haxx.se/rfc/cookie_spec.html
+# This is a generated file! Do not edit.
+
+# Domain	Subdomain	Path	Secure	Expire	Name	Value
+.www.youtube.com	TRUE	/	FALSE	1769704561	yt-dev.storage-integrity	true
+.youtube.com	TRUE	/	TRUE	1763481937	SOCS	Abcdefg
+.youtube.com	TRUE	/	TRUE	1744905937	__Secure-BUCKET	IE7E
+"#;
+        let filter_domain = ".youtube.com";
+        let parsed = parse_netscape_cookies(cookies, filter_domain).unwrap();
+        assert_eq!(&parsed, "SOCS=Abcdefg; __Secure-BUCKET=IE7E");
+
+        let cookies_too_few_cols = r#".youtube.com	TRUE	/	TRUE	1763481937	SOCS"#;
+        let cookies_too_many_cols = r#".youtube.com	TRUE	/	TRUE	1763481937	SOCS	Abcdefg	foo"#;
+        assert_eq!(
+            parse_netscape_cookies(cookies_too_few_cols, filter_domain)
+                .unwrap_err()
+                .to_string(),
+            "error: line 1: too few fields, expected 7"
+        );
+        assert_eq!(
+            parse_netscape_cookies(cookies_too_many_cols, filter_domain)
+                .unwrap_err()
+                .to_string(),
+            "error: line 1: too many fields, expected 7"
         );
     }
 }
