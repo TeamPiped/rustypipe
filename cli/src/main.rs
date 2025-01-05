@@ -223,7 +223,7 @@ enum Commands {
     Subscriptions {
         /// Output format
         #[clap(short, long, value_parser)]
-        format: Option<Format>,
+        format: Option<SubscriptionFormat>,
         /// Pretty-print output
         #[clap(long)]
         pretty: bool,
@@ -325,6 +325,15 @@ enum Format {
     Yaml,
 }
 
+#[derive(Debug, Default, Copy, Clone, ValueEnum)]
+enum SubscriptionFormat {
+    #[default]
+    Json,
+    Yaml,
+    Newpipe,
+    Opml,
+}
+
 #[derive(Debug, Copy, Clone, ValueEnum)]
 enum ChannelTab {
     Videos,
@@ -402,6 +411,20 @@ enum ClientTypeArg {
     Ios,
 }
 
+#[derive(Serialize)]
+struct NewpipeSubscriptions {
+    app_version: &'static str,
+    app_version_int: u16,
+    subscriptions: Vec<NewpipeSubscription>,
+}
+
+#[derive(Serialize)]
+struct NewpipeSubscription {
+    service_id: u16,
+    url: String,
+    name: String,
+}
+
 impl From<SearchItemType> for search_filter::ItemType {
     fn from(value: SearchItemType) -> Self {
         match value {
@@ -452,6 +475,16 @@ impl From<ClientTypeArg> for ClientType {
             ClientTypeArg::Tv => Self::Tv,
             ClientTypeArg::Android => Self::Android,
             ClientTypeArg::Ios => Self::Ios,
+        }
+    }
+}
+
+impl From<SubscriptionFormat> for Format {
+    fn from(value: SubscriptionFormat) -> Self {
+        match value {
+            SubscriptionFormat::Json => Self::Json,
+            SubscriptionFormat::Yaml => Self::Yaml,
+            _ => Self::default(),
         }
     }
 }
@@ -510,6 +543,77 @@ fn fmt_print_tracks(tracks: &[TrackItem], format: Option<Format>, pretty: bool, 
         None => {
             print_h1(title);
             print_tracks(tracks);
+        }
+    }
+}
+
+fn fmt_print_subscriptions<T: YtEntity + Serialize>(
+    items: &[T],
+    format: Option<SubscriptionFormat>,
+    pretty: bool,
+    title: &str,
+) {
+    match format {
+        Some(SubscriptionFormat::Newpipe) => {
+            let subscriptions = items
+                .iter()
+                .map(|itm| NewpipeSubscription {
+                    service_id: 0,
+                    url: format!("https://www.youtube.com/channel/{}", itm.id()),
+                    name: itm.name().to_owned(),
+                })
+                .collect();
+            let data = NewpipeSubscriptions {
+                app_version: "0.24.1",
+                app_version_int: 991,
+                subscriptions,
+            };
+            print_data(&data, Format::Json, pretty);
+        }
+        Some(SubscriptionFormat::Opml) => {
+            let mut writer = if pretty {
+                quick_xml::Writer::new_with_indent(std::io::stdout(), b' ', 2)
+            } else {
+                quick_xml::Writer::new(std::io::stdout())
+            };
+            writer
+                .create_element("opml")
+                .with_attribute(("version", "1.1"))
+                .write_inner_content(|writer| {
+                    writer
+                        .create_element("body")
+                        .write_inner_content(|writer| {
+                            writer
+                                .create_element("outline")
+                                .with_attributes([
+                                    ("text", title),
+                                    ("title", title),
+                                ])
+                                .write_inner_content(|writer| {
+                                    for itm in items {
+                                        writer
+                                            .create_element("outline")
+                                            .with_attributes([
+                                                ("text", itm.name()),
+                                                ("title", itm.name()),
+                                                ("type", "rss"),
+                                                ("xmlUrl", &format!("https://www.youtube.com/feeds/videos.xml?channel_id={}", itm.id())),
+                                            ])
+                                            .write_empty()?;
+                                    }
+                                    Ok(())
+                                })?;
+                            Ok(())
+                        })?;
+                    Ok(())
+                })
+                .unwrap();
+            println!();
+        }
+        Some(format) => print_data(&items, format.into(), pretty),
+        None => {
+            print_h1(title);
+            print_entities(items, false);
         }
     }
 }
@@ -1507,15 +1611,25 @@ async fn run() -> anyhow::Result<()> {
             if music {
                 let mut subscriptions = rp.query().music_saved_artists().await?;
                 subscriptions.extend_limit(rp.query(), limit).await?;
-                fmt_print_entities(&subscriptions.items, format, pretty, "Music artists");
+                fmt_print_subscriptions(
+                    &subscriptions.items,
+                    format,
+                    pretty,
+                    "YouTube Music artists",
+                );
             } else if feed {
                 let mut feed = rp.query().subscription_feed().await?;
                 feed.extend_limit(rp.query(), limit).await?;
-                fmt_print_entities(&feed.items, format, pretty, "Feed");
+                fmt_print_entities(&feed.items, format.map(Format::from), pretty, "Feed");
             } else {
                 let mut subscriptions = rp.query().subscriptions().await?;
                 subscriptions.extend_limit(rp.query(), limit).await?;
-                fmt_print_entities(&subscriptions.items, format, pretty, "Subscriptions");
+                fmt_print_subscriptions(
+                    &subscriptions.items,
+                    format,
+                    pretty,
+                    "YouTube subscriptions",
+                );
             }
         }
         Commands::Playlists {
