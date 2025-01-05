@@ -2186,7 +2186,7 @@ async fn music_search_playlists(rp: RustyPipe, unlocalized: bool) {
 async fn music_search_playlists_community(rp: RustyPipe) {
     let res = rp
         .query()
-        .music_search_playlists("Miku my beloved (Jaiden Animation Miku Playlist)", true)
+        .music_search_playlists("PLgAAMoX4rK3KhSGmIsN0LEoC3qowEr2Lz", true)
         .await
         .unwrap();
 
