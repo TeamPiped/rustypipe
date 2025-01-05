@@ -219,6 +219,86 @@ enum Commands {
         #[clap(long)]
         search: Option<String>,
     },
+    /// Get the channels you subscribed to
+    Subscriptions {
+        /// Output format
+        #[clap(short, long, value_parser)]
+        format: Option<Format>,
+        /// Pretty-print output
+        #[clap(long)]
+        pretty: bool,
+        /// Limit the number of items to fetch
+        #[clap(short, long, default_value_t = 20)]
+        limit: usize,
+        /// Use YouTube Music
+        #[clap(short, long)]
+        music: bool,
+        /// Output YouTube subscription feed
+        #[clap(long)]
+        feed: bool,
+    },
+    /// Get the playlists from your library
+    Playlists {
+        /// Output format
+        #[clap(short, long, value_parser)]
+        format: Option<Format>,
+        /// Pretty-print output
+        #[clap(long)]
+        pretty: bool,
+        /// Limit the number of items to fetch
+        #[clap(short, long, default_value_t = 20)]
+        limit: usize,
+        /// Use YouTube Music
+        #[clap(short, long)]
+        music: bool,
+    },
+    /// Get the albums from your library
+    Albums {
+        /// Output format
+        #[clap(short, long, value_parser)]
+        format: Option<Format>,
+        /// Pretty-print output
+        #[clap(long)]
+        pretty: bool,
+        /// Limit the number of items to fetch
+        #[clap(short, long, default_value_t = 20)]
+        limit: usize,
+    },
+    /// Get the tracks from your library
+    Tracks {
+        /// Output format
+        #[clap(short, long, value_parser)]
+        format: Option<Format>,
+        /// Pretty-print output
+        #[clap(long)]
+        pretty: bool,
+        /// Limit the number of items to fetch
+        #[clap(short, long, default_value_t = 20)]
+        limit: usize,
+    },
+    /// Get the latest music releases
+    Releases {
+        /// Get latest music videos
+        #[clap(long)]
+        videos: bool,
+        /// Output format
+        #[clap(short, long, value_parser)]
+        format: Option<Format>,
+        /// Pretty-print output
+        #[clap(long)]
+        pretty: bool,
+    },
+    /// Get YouTube music charts
+    Charts {
+        /// Chart country
+        country: Option<String>,
+        /// Output format
+        #[clap(short, long, value_parser)]
+        format: Option<Format>,
+        /// Pretty-print output
+        #[clap(long)]
+        pretty: bool,
+    },
     /// Get a YouTube visitor data cookie
     Vdata,
     /// Log in using your Google account
@@ -409,6 +489,31 @@ fn print_entity(e: &impl YtEntity, with_type: bool) {
     println!();
 }
 
+fn fmt_print_entities<T: YtEntity + Serialize>(
+    items: &[T],
+    format: Option<Format>,
+    pretty: bool,
+    title: &str,
+) {
+    match format {
+        Some(format) => print_data(&items, format, pretty),
+        None => {
+            print_h1(title);
+            print_entities(items, false);
+        }
+    }
+}
+
+fn fmt_print_tracks(tracks: &[TrackItem], format: Option<Format>, pretty: bool, title: &str) {
+    match format {
+        Some(format) => print_data(&tracks, format, pretty),
+        None => {
+            print_h1(title);
+            print_tracks(tracks);
+        }
+    }
+}
+
 fn print_tracks(tracks: &[TrackItem]) {
     for t in tracks {
         if let Some(n) = t.track_nr {
@@ -455,6 +560,7 @@ fn print_music_search<T: Serialize + YtEntity>(
     match format {
         Some(format) => print_data(data, format, pretty),
         None => {
+            print_h1("Music search");
             if let Some(corr) = &data.corrected_query {
                 anstream::println!("Did you mean `{}`?", corr.magenta());
             }
@@ -470,6 +576,10 @@ fn print_description(desc: Option<String>) {
             println!("{}", desc.trim());
         }
     }
+}
+
+fn print_h1(title: &str) {
+    anstream::println!("{}", format!("{title}:").on_green().black());
 }
 
 fn print_h2(title: &str) {
@@ -1276,6 +1386,7 @@ async fn run() -> anyhow::Result<()> {
                     match format {
                         Some(format) => print_data(&res, format, pretty),
                         None => {
+                            print_h1("Search");
                             if let Some(corr) = res.corrected_query {
                                 anstream::println!("Did you mean `{}`?", corr.magenta());
                             }
@@ -1382,6 +1493,110 @@ async fn run() -> anyhow::Result<()> {
                             }
                             print_entity(&item.item, false);
                         }
+                    }
+                }
+            }
+        }
+        Commands::Subscriptions {
+            format,
+            pretty,
+            limit,
+            music,
+            feed,
+        } => {
+            if music {
+                let mut subscriptions = rp.query().music_saved_artists().await?;
+                subscriptions.extend_limit(rp.query(), limit).await?;
+                fmt_print_entities(&subscriptions.items, format, pretty, "Music artists");
+            } else if feed {
+                let mut feed = rp.query().subscription_feed().await?;
+                feed.extend_limit(rp.query(), limit).await?;
+                fmt_print_entities(&feed.items, format, pretty, "Feed");
+            } else {
+                let mut subscriptions = rp.query().subscriptions().await?;
+                subscriptions.extend_limit(rp.query(), limit).await?;
+                fmt_print_entities(&subscriptions.items, format, pretty, "Subscriptions");
+            }
+        }
+        Commands::Playlists {
+            format,
+            pretty,
+            limit,
+            music,
+        } => {
+            if music {
+                let mut playlists = rp.query().music_saved_playlists().await?;
+                playlists.extend_limit(rp.query(), limit).await?;
+                fmt_print_entities(&playlists.items, format, pretty, "Music playlists");
+            } else {
+                let mut playlists = rp.query().saved_playlists().await?;
+                playlists.extend_limit(rp.query(), limit).await?;
+                fmt_print_entities(&playlists.items, format, pretty, "Saved playlists");
+            }
+        }
+        Commands::Albums {
+            format,
+            pretty,
+            limit,
+        } => {
+            let mut albums = rp.query().music_saved_albums().await?;
+            albums.extend_limit(rp.query(), limit).await?;
+            fmt_print_entities(&albums.items, format, pretty, "Saved albums");
+        }
+        Commands::Tracks {
+            format,
+            pretty,
+            limit,
+        } => {
+            let mut tracks = rp.query().music_saved_tracks().await?;
+            tracks.extend_limit(rp.query(), limit).await?;
+            fmt_print_tracks(&tracks.items, format, pretty, "Saved tracks");
+        }
+        Commands::Releases {
+            videos,
+            format,
+            pretty,
+        } => {
+            if videos {
+                let releases = rp.query().music_new_videos().await?;
+                fmt_print_tracks(&releases, format, pretty, "New music videos");
+            } else {
+                let releases = rp.query().music_new_albums().await?;
+                fmt_print_entities(&releases, format, pretty, "New albums");
+            }
+        }
+        Commands::Charts {
+            country,
+            format,
+            pretty,
+        } => {
+            let country = match country {
+                Some(c) => Some(Country::from_str(&c)?),
+                None => None,
+            };
+            let charts = rp.query().music_charts(country).await?;
+            match format {
+                Some(format) => print_data(&charts, format, pretty),
+                None => {
+                    print_h1("Music charts");
+                    if let Some(plid) = &charts.top_playlist_id {
+                        print_h2(&format!("Top tracks [{plid}]"));
+                    } else {
+                        print_h2("Top tracks");
+                    }
+                    print_tracks(&charts.top_tracks);
+                    if let Some(plid) = &charts.trending_playlist_id {
+                        print_h2(&format!("Trending [{plid}]"));
+                    } else {
+                        print_h2("Trending");
+                    }
+                    print_tracks(&charts.trending_tracks);
+                    print_h2("Artists");
+                    print_entities(&charts.artists, false);
+
+                    if !charts.playlists.is_empty() {
+                        print_h2("Playlists");
+                        print_entities(&charts.playlists, false);
                     }
                 }
             }
