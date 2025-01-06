@@ -79,8 +79,14 @@ impl RustyPipeQuery {
         let video_id = video_id.as_ref();
         let mut last_e = Error::Other("no clients".into());
 
-        for client in clients {
-            let res = self.player_from_client(video_id, *client).await;
+        let clients_iter: Box<dyn Iterator<Item = ClientType>> = if self.opts.auth == Some(true) {
+            Box::new(self.auth_enabled_clients(clients))
+        } else {
+            Box::new(clients.iter().cloned())
+        };
+
+        for client in clients_iter {
+            let res = self.player_from_client(video_id, client).await;
             match res {
                 Ok(res) => return Ok(res),
                 Err(Error::Extraction(e)) => {

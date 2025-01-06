@@ -1712,14 +1712,14 @@ impl RustyPipeQuery {
         }
     }
 
-    /// Return the first client type from the given list which has login credentials available.
-    ///
-    /// Returns [`None`] if authentication has been disabled or there are no available client types.
-    pub fn auth_enabled_client(&self, clients: &[ClientType]) -> Option<ClientType> {
-        if self.opts.auth == Some(false) {
-            return None;
-        }
-        let (has_cookie, has_token) = {
+    /// Filter the given list of client types and iterate over those which have login credentials available.
+    pub fn auth_enabled_clients<'a>(
+        &self,
+        clients: &'a [ClientType],
+    ) -> impl Iterator<Item = ClientType> + 'a {
+        let (has_cookie, has_token) = if self.opts.auth == Some(false) {
+            (false, false)
+        } else {
             let auth_cookie = self.client.inner.cache.auth_cookie.read().unwrap();
             let oauth_token = self.client.inner.cache.oauth_token.read().unwrap();
             (auth_cookie.is_some(), oauth_token.is_some())
@@ -1727,7 +1727,7 @@ impl RustyPipeQuery {
 
         clients
             .iter()
-            .find(|c| {
+            .filter(move |c| {
                 if c.is_web() {
                     has_cookie
                 } else if **c == ClientType::Tv {
@@ -1737,6 +1737,13 @@ impl RustyPipeQuery {
                 }
             })
             .copied()
+    }
+
+    /// Return the first client type from the given list which has login credentials available.
+    ///
+    /// Returns [`None`] if authentication has been disabled or there are no available client types.
+    pub fn auth_enabled_client(&self, clients: &[ClientType]) -> Option<ClientType> {
+        self.auth_enabled_clients(clients).next()
     }
 
     /// Create a new context object, which is included in every request to
