@@ -343,6 +343,12 @@ pub enum AudioCodec {
     Mp4a,
     /// Opus: <https://en.wikipedia.org/wiki/Opus_(audio_format)>
     Opus,
+    /// Dolby Digital / AC-3: <https://en.wikipedia.org/wiki/Dolby_Digital>
+    #[serde(rename = "ac-3")]
+    Ac3,
+    /// Dolby Digital Plus / EC-3: <https://en.wikipedia.org/wiki/Dolby_Digital_Plus>
+    #[serde(rename = "ec-3")]
+    Ec3,
 }
 
 /// Video file type

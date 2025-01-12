@@ -169,6 +169,8 @@ impl StreamFilter {
             AudioCodec::Unknown => -10,
             AudioCodec::Mp4a => 0,
             AudioCodec::Opus => 10,
+            AudioCodec::Ac3 => 20,
+            AudioCodec::Ec3 => 25,
         };
 
         let language = if self.audio_languages.is_empty() {
