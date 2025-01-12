@@ -1020,14 +1020,37 @@ impl DownloadQuery {
         };
 
         if let Some(thumbnail) = thumbnail {
-            let resp = self
-                .dl
-                .i
-                .http
-                .get(thumbnail.url)
-                .send()
-                .await?
-                .error_for_status()?;
+            // Attempt to get the higher resolution, uncropped maxresdefault.jpg thumbnail if available
+            let mut resp = None;
+            if thumbnail.height != thumbnail.width {
+                if let Ok(x) = self
+                    .dl
+                    .i
+                    .http
+                    .get(format!(
+                        "https://i.ytimg.com/vi/{}/maxresdefault.jpg",
+                        track.id
+                    ))
+                    .send()
+                    .await?
+                    .error_for_status()
+                {
+                    resp = Some(x);
+                }
+            }
+
+            let resp = match resp {
+                Some(resp) => resp,
+                None => self
+                    .dl
+                    .i
+                    .http
+                    .get(thumbnail.url)
+                    .send()
+                    .await?
+                    .error_for_status()?,
+            };
+
             let img_type = resp
                 .headers()
                 .get(header::CONTENT_TYPE)
