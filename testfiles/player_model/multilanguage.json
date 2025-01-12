@@ -56,7 +56,8 @@
       "mime": "video/mp4; codecs=\"avc1.42001E, mp4a.40.2\"",
       "format": "mp4",
       "codec": "avc1",
-      "throttled": false
+      "drm_track_type": null,
+      "drm_systems": []
     }
   ],
   "video_only_streams": [
@@ -83,7 +84,8 @@
       "mime": "video/mp4; codecs=\"avc1.4d400c\"",
       "format": "mp4",
       "codec": "avc1",
-      "throttled": false
+      "drm_track_type": null,
+      "drm_systems": []
     },
     {
       "url": "https://rr4---sn-h0jeener.googlevideo.com/videoplayback?aitags=133%2C134%2C135%2C136%2C137%2C160%2C242%2C243%2C244%2C247%2C248%2C278%2C394%2C395%2C396%2C397%2C398%2C399&c=WEB&clen=10710406&dur=1012.644&ei=6OtcZNqtBdOi7gP1upHYCQ&expire=1683832904&fexp=24007246&fvip=2&gir=yes&id=o-ABVtPh3j24hkJeXp8igjvreyODn-oV0CacOqb7pDjJoG&initcwndbps=1720000&ip=2003%3Ade%3Aaf31%3A5200%3A791a%3A897%3Ac15c%3Aae59&itag=278&keepalive=yes&lmt=1683793966364433&lsig=AG3C_xAwRQIgC7HZtYuc6dI92m6wCcoXYpdzSpVtPTIbO7jBKGpUrYMCIQCc0WNtFvN8Awqx9uuRVp5SUSe3rOt2D7M-rCKpgVv_0A%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=wB&mime=video%2Fwebm&mm=31%2C29&mn=sn-h0jeener%2Csn-h0jeln7l&ms=au%2Crdu&mt=1683811031&mv=m&mvi=4&n=U8mCOo4eYD4n0A&ns=LToEdXWVFHcH53e3aTe1N7kN&pl=37&requiressl=yes&sig=AOq0QJ8wRgIhAKJxQWqLK5DpZ7CkkavrjkrlaX5126Y49pV9wggc8Yx8AiEAoYc7_9O-wzI3G3xdFHh9qFwZEh1vrBrlA5p1glWK8uU%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cspc%2Cvprv%2Csvpuc%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&spc=qEK7B81AP536F3aOi5JzMyLCUDiktWigtEpf9nI2xg&svpuc=1&txp=453D434&vprv=1",
@@ -108,7 +110,8 @@
       "mime": "video/webm; codecs=\"vp9\"",
       "format": "webm",
       "codec": "vp9",
-      "throttled": false
+      "drm_track_type": null,
+      "drm_systems": []
     },
     {
       "url": "https://rr4---sn-h0jeener.googlevideo.com/videoplayback?aitags=133%2C134%2C135%2C136%2C137%2C160%2C242%2C243%2C244%2C247%2C248%2C278%2C394%2C395%2C396%2C397%2C398%2C399&c=WEB&clen=10296353&dur=1012.644&ei=6OtcZNqtBdOi7gP1upHYCQ&expire=1683832904&fexp=24007246&fvip=2&gir=yes&id=o-ABVtPh3j24hkJeXp8igjvreyODn-oV0CacOqb7pDjJoG&initcwndbps=1720000&ip=2003%3Ade%3Aaf31%3A5200%3A791a%3A897%3Ac15c%3Aae59&itag=394&keepalive=yes&lmt=1683783301275775&lsig=AG3C_xAwRQIgC7HZtYuc6dI92m6wCcoXYpdzSpVtPTIbO7jBKGpUrYMCIQCc0WNtFvN8Awqx9uuRVp5SUSe3rOt2D7M-rCKpgVv_0A%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=wB&mime=video%2Fmp4&mm=31%2C29&mn=sn-h0jeener%2Csn-h0jeln7l&ms=au%2Crdu&mt=1683811031&mv=m&mvi=4&n=U8mCOo4eYD4n0A&ns=LToEdXWVFHcH53e3aTe1N7kN&pl=37&requiressl=yes&sig=AOq0QJ8wRgIhAJSOvRY1MzTPGwVWuDAmFWxErp_WALzhgwKBex876BIMAiEAmK0nGArmm_YuQbYrOYtCtJMjJw2XrrzcnaPIzp51whk%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cspc%2Cvprv%2Csvpuc%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&spc=qEK7B81AP536F3aOi5JzMyLCUDiktWigtEpf9nI2xg&svpuc=1&txp=4537434&vprv=1",
@@ -133,7 +136,8 @@
       "mime": "video/mp4; codecs=\"av01.0.00M.08\"",
       "format": "mp4",
       "codec": "av01",
-      "throttled": false
+      "drm_track_type": null,
+      "drm_systems": []
     },
     {
       "url": "https://rr4---sn-h0jeener.googlevideo.com/videoplayback?aitags=133%2C134%2C135%2C136%2C137%2C160%2C242%2C243%2C244%2C247%2C248%2C278%2C394%2C395%2C396%2C397%2C398%2C399&c=WEB&clen=23098224&dur=1012.644&ei=6OtcZNqtBdOi7gP1upHYCQ&expire=1683832904&fexp=24007246&fvip=2&gir=yes&id=o-ABVtPh3j24hkJeXp8igjvreyODn-oV0CacOqb7pDjJoG&initcwndbps=1720000&ip=2003%3Ade%3Aaf31%3A5200%3A791a%3A897%3Ac15c%3Aae59&itag=133&keepalive=yes&lmt=1683787941592756&lsig=AG3C_xAwRQIgC7HZtYuc6dI92m6wCcoXYpdzSpVtPTIbO7jBKGpUrYMCIQCc0WNtFvN8Awqx9uuRVp5SUSe3rOt2D7M-rCKpgVv_0A%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=wB&mime=video%2Fmp4&mm=31%2C29&mn=sn-h0jeener%2Csn-h0jeln7l&ms=au%2Crdu&mt=1683811031&mv=m&mvi=4&n=U8mCOo4eYD4n0A&ns=LToEdXWVFHcH53e3aTe1N7kN&pl=37&requiressl=yes&sig=AOq0QJ8wRAIgQSTbFEkh8LbH19nUQp92miSQSPzxLlddDOjrE72yGZkCICktF-HUzbZMeZYYXehhBapY55R5XNOn0mY-EWPq6iEl&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cspc%2Cvprv%2Csvpuc%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&spc=qEK7B81AP536F3aOi5JzMyLCUDiktWigtEpf9nI2xg&svpuc=1&txp=453D434&vprv=1",
@@ -158,7 +162,8 @@
       "mime": "video/mp4; codecs=\"avc1.4d4015\"",
       "format": "mp4",
       "codec": "avc1",
-      "throttled": false
+      "drm_track_type": null,
+      "drm_systems": []
     },
     {
       "url": "https://rr4---sn-h0jeener.googlevideo.com/videoplayback?aitags=133%2C134%2C135%2C136%2C137%2C160%2C242%2C243%2C244%2C247%2C248%2C278%2C394%2C395%2C396%2C397%2C398%2C399&c=WEB&clen=23380710&dur=1012.644&ei=6OtcZNqtBdOi7gP1upHYCQ&expire=1683832904&fexp=24007246&fvip=2&gir=yes&id=o-ABVtPh3j24hkJeXp8igjvreyODn-oV0CacOqb7pDjJoG&initcwndbps=1720000&ip=2003%3Ade%3Aaf31%3A5200%3A791a%3A897%3Ac15c%3Aae59&itag=242&keepalive=yes&lmt=1683793909671501&lsig=AG3C_xAwRQIgC7HZtYuc6dI92m6wCcoXYpdzSpVtPTIbO7jBKGpUrYMCIQCc0WNtFvN8Awqx9uuRVp5SUSe3rOt2D7M-rCKpgVv_0A%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=wB&mime=video%2Fwebm&mm=31%2C29&mn=sn-h0jeener%2Csn-h0jeln7l&ms=au%2Crdu&mt=1683811031&mv=m&mvi=4&n=U8mCOo4eYD4n0A&ns=LToEdXWVFHcH53e3aTe1N7kN&pl=37&requiressl=yes&sig=AOq0QJ8wRQIgZbtufwU0g0-jFUoBrq7n1Ne09mkHjGN23Po34rndi24CIQCljHIB53OmtP27ul3cvsWVw4RFEi_Nl7qOBmWL4jZpFA%3D%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cspc%2Cvprv%2Csvpuc%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&spc=qEK7B81AP536F3aOi5JzMyLCUDiktWigtEpf9nI2xg&svpuc=1&txp=453D434&vprv=1",
@@ -183,7 +188,8 @@
       "mime": "video/webm; codecs=\"vp9\"",
       "format": "webm",
       "codec": "vp9",
-      "throttled": false
+      "drm_track_type": null,
+      "drm_systems": []
     },
     {
       "url": "https://rr4---sn-h0jeener.googlevideo.com/videoplayback?aitags=133%2C134%2C135%2C136%2C137%2C160%2C242%2C243%2C244%2C247%2C248%2C278%2C394%2C395%2C396%2C397%2C398%2C399&c=WEB&clen=19803140&dur=1012.644&ei=6OtcZNqtBdOi7gP1upHYCQ&expire=1683832904&fexp=24007246&fvip=2&gir=yes&id=o-ABVtPh3j24hkJeXp8igjvreyODn-oV0CacOqb7pDjJoG&initcwndbps=1720000&ip=2003%3Ade%3Aaf31%3A5200%3A791a%3A897%3Ac15c%3Aae59&itag=395&keepalive=yes&lmt=1683783381398973&lsig=AG3C_xAwRQIgC7HZtYuc6dI92m6wCcoXYpdzSpVtPTIbO7jBKGpUrYMCIQCc0WNtFvN8Awqx9uuRVp5SUSe3rOt2D7M-rCKpgVv_0A%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=wB&mime=video%2Fmp4&mm=31%2C29&mn=sn-h0jeener%2Csn-h0jeln7l&ms=au%2Crdu&mt=1683811031&mv=m&mvi=4&n=U8mCOo4eYD4n0A&ns=LToEdXWVFHcH53e3aTe1N7kN&pl=37&requiressl=yes&sig=AOq0QJ8wRQIhAIUO10ENWskvvAu024zvKn0b3bRWX0EyRsVabzrL9v8KAiBSccc8iPXX_g_N2q40A5Bi7mmvnwWK63c-mzFAi_89Pw%3D%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cspc%2Cvprv%2Csvpuc%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&spc=qEK7B81AP536F3aOi5JzMyLCUDiktWigtEpf9nI2xg&svpuc=1&txp=4537434&vprv=1",
@@ -208,7 +214,8 @@
       "mime": "video/mp4; codecs=\"av01.0.00M.08\"",
       "format": "mp4",
       "codec": "av01",
-      "throttled": false
+      "drm_track_type": null,
+      "drm_systems": []
     },
     {
       "url": "https://rr4---sn-h0jeener.googlevideo.com/videoplayback?aitags=133%2C134%2C135%2C136%2C137%2C160%2C242%2C243%2C244%2C247%2C248%2C278%2C394%2C395%2C396%2C397%2C398%2C399&c=WEB&clen=44703914&dur=1012.644&ei=6OtcZNqtBdOi7gP1upHYCQ&expire=1683832904&fexp=24007246&fvip=2&gir=yes&id=o-ABVtPh3j24hkJeXp8igjvreyODn-oV0CacOqb7pDjJoG&initcwndbps=1720000&ip=2003%3Ade%3Aaf31%3A5200%3A791a%3A897%3Ac15c%3Aae59&itag=134&keepalive=yes&lmt=1683787942654377&lsig=AG3C_xAwRQIgC7HZtYuc6dI92m6wCcoXYpdzSpVtPTIbO7jBKGpUrYMCIQCc0WNtFvN8Awqx9uuRVp5SUSe3rOt2D7M-rCKpgVv_0A%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=wB&mime=video%2Fmp4&mm=31%2C29&mn=sn-h0jeener%2Csn-h0jeln7l&ms=au%2Crdu&mt=1683811031&mv=m&mvi=4&n=U8mCOo4eYD4n0A&ns=LToEdXWVFHcH53e3aTe1N7kN&pl=37&requiressl=yes&sig=AOq0QJ8wRAIgOWdv9KlCWVAv6jFEBK-6h3l1QOn1HDHjGdKfJBYtOBkCIBdi9P_YU9UX4GdGzuk2SSu_cgaUHJOXUJ9P4qf3K0z0&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cspc%2Cvprv%2Csvpuc%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&spc=qEK7B81AP536F3aOi5JzMyLCUDiktWigtEpf9nI2xg&svpuc=1&txp=453D434&vprv=1",
@@ -233,7 +240,8 @@
       "mime": "video/mp4; codecs=\"avc1.4d401e\"",
       "format": "mp4",
       "codec": "avc1",
-      "throttled": false
+      "drm_track_type": null,
+      "drm_systems": []
     },
     {
       "url": "https://rr4---sn-h0jeener.googlevideo.com/videoplayback?aitags=133%2C134%2C135%2C136%2C137%2C160%2C242%2C243%2C244%2C247%2C248%2C278%2C394%2C395%2C396%2C397%2C398%2C399&c=WEB&clen=48610243&dur=1012.644&ei=6OtcZNqtBdOi7gP1upHYCQ&expire=1683832904&fexp=24007246&fvip=2&gir=yes&id=o-ABVtPh3j24hkJeXp8igjvreyODn-oV0CacOqb7pDjJoG&initcwndbps=1720000&ip=2003%3Ade%3Aaf31%3A5200%3A791a%3A897%3Ac15c%3Aae59&itag=243&keepalive=yes&lmt=1683793911055215&lsig=AG3C_xAwRQIgC7HZtYuc6dI92m6wCcoXYpdzSpVtPTIbO7jBKGpUrYMCIQCc0WNtFvN8Awqx9uuRVp5SUSe3rOt2D7M-rCKpgVv_0A%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=wB&mime=video%2Fwebm&mm=31%2C29&mn=sn-h0jeener%2Csn-h0jeln7l&ms=au%2Crdu&mt=1683811031&mv=m&mvi=4&n=U8mCOo4eYD4n0A&ns=LToEdXWVFHcH53e3aTe1N7kN&pl=37&requiressl=yes&sig=AOq0QJ8wRAIgNCvf4z47PxtAp-P4KRhzwb7WTjrnkmOYZ1mHJY4LmsQCIAI9fPaqklLUj6Qg6WV4Gq4-r8vs1BOn1v6tu06JGk9A&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cspc%2Cvprv%2Csvpuc%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&spc=qEK7B81AP536F3aOi5JzMyLCUDiktWigtEpf9nI2xg&svpuc=1&txp=453D434&vprv=1",
@@ -258,7 +266,8 @@
       "mime": "video/webm; codecs=\"vp9\"",
       "format": "webm",
       "codec": "vp9",
-      "throttled": false
+      "drm_track_type": null,
+      "drm_systems": []
     },
     {
       "url": "https://rr4---sn-h0jeener.googlevideo.com/videoplayback?aitags=133%2C134%2C135%2C136%2C137%2C160%2C242%2C243%2C244%2C247%2C248%2C278%2C394%2C395%2C396%2C397%2C398%2C399&c=WEB&clen=41498925&dur=1012.644&ei=6OtcZNqtBdOi7gP1upHYCQ&expire=1683832904&fexp=24007246&fvip=2&gir=yes&id=o-ABVtPh3j24hkJeXp8igjvreyODn-oV0CacOqb7pDjJoG&initcwndbps=1720000&ip=2003%3Ade%3Aaf31%3A5200%3A791a%3A897%3Ac15c%3Aae59&itag=396&keepalive=yes&lmt=1683782484149627&lsig=AG3C_xAwRQIgC7HZtYuc6dI92m6wCcoXYpdzSpVtPTIbO7jBKGpUrYMCIQCc0WNtFvN8Awqx9uuRVp5SUSe3rOt2D7M-rCKpgVv_0A%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=wB&mime=video%2Fmp4&mm=31%2C29&mn=sn-h0jeener%2Csn-h0jeln7l&ms=au%2Crdu&mt=1683811031&mv=m&mvi=4&n=U8mCOo4eYD4n0A&ns=LToEdXWVFHcH53e3aTe1N7kN&pl=37&requiressl=yes&sig=AOq0QJ8wRgIhAJFg52NOZ7bbUwef3Krl7MfVtDuXdZXLrQv_SILY62VeAiEAgR-3tu2TBXyAIV0WILNi0jNknvbjMUxhYaCUsyz2LVw%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cspc%2Cvprv%2Csvpuc%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&spc=qEK7B81AP536F3aOi5JzMyLCUDiktWigtEpf9nI2xg&svpuc=1&txp=4537434&vprv=1",
@@ -283,7 +292,8 @@
       "mime": "video/mp4; codecs=\"av01.0.01M.08\"",
       "format": "mp4",
       "codec": "av01",
-      "throttled": false
+      "drm_track_type": null,
+      "drm_systems": []
     },
     {
       "url": "https://rr4---sn-h0jeener.googlevideo.com/videoplayback?aitags=133%2C134%2C135%2C136%2C137%2C160%2C242%2C243%2C244%2C247%2C248%2C278%2C394%2C395%2C396%2C397%2C398%2C399&c=WEB&clen=68212637&dur=1012.644&ei=6OtcZNqtBdOi7gP1upHYCQ&expire=1683832904&fexp=24007246&fvip=2&gir=yes&id=o-ABVtPh3j24hkJeXp8igjvreyODn-oV0CacOqb7pDjJoG&initcwndbps=1720000&ip=2003%3Ade%3Aaf31%3A5200%3A791a%3A897%3Ac15c%3Aae59&itag=135&keepalive=yes&lmt=1683787944411475&lsig=AG3C_xAwRQIgC7HZtYuc6dI92m6wCcoXYpdzSpVtPTIbO7jBKGpUrYMCIQCc0WNtFvN8Awqx9uuRVp5SUSe3rOt2D7M-rCKpgVv_0A%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=wB&mime=video%2Fmp4&mm=31%2C29&mn=sn-h0jeener%2Csn-h0jeln7l&ms=au%2Crdu&mt=1683811031&mv=m&mvi=4&n=U8mCOo4eYD4n0A&ns=LToEdXWVFHcH53e3aTe1N7kN&pl=37&requiressl=yes&sig=AOq0QJ8wRQIhAMZguS_4aJFCjWsvXkyxWxGa1DknMOlsP1vgrTK-VOKOAiAnJpIvttgWKmJrMW3rBocawXZMnqbjgWRqj5KJo53GGg%3D%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cspc%2Cvprv%2Csvpuc%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&spc=qEK7B81AP536F3aOi5JzMyLCUDiktWigtEpf9nI2xg&svpuc=1&txp=453D434&vprv=1",
@@ -308,7 +318,8 @@
       "mime": "video/mp4; codecs=\"avc1.4d401f\"",
       "format": "mp4",
       "codec": "avc1",
-      "throttled": false
+      "drm_track_type": null,
+      "drm_systems": []
     },
     {
       "url": "https://rr4---sn-h0jeener.googlevideo.com/videoplayback?aitags=133%2C134%2C135%2C136%2C137%2C160%2C242%2C243%2C244%2C247%2C248%2C278%2C394%2C395%2C396%2C397%2C398%2C399&c=WEB&clen=77648932&dur=1012.644&ei=6OtcZNqtBdOi7gP1upHYCQ&expire=1683832904&fexp=24007246&fvip=2&gir=yes&id=o-ABVtPh3j24hkJeXp8igjvreyODn-oV0CacOqb7pDjJoG&initcwndbps=1720000&ip=2003%3Ade%3Aaf31%3A5200%3A791a%3A897%3Ac15c%3Aae59&itag=244&keepalive=yes&lmt=1683793912300747&lsig=AG3C_xAwRQIgC7HZtYuc6dI92m6wCcoXYpdzSpVtPTIbO7jBKGpUrYMCIQCc0WNtFvN8Awqx9uuRVp5SUSe3rOt2D7M-rCKpgVv_0A%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=wB&mime=video%2Fwebm&mm=31%2C29&mn=sn-h0jeener%2Csn-h0jeln7l&ms=au%2Crdu&mt=1683811031&mv=m&mvi=4&n=U8mCOo4eYD4n0A&ns=LToEdXWVFHcH53e3aTe1N7kN&pl=37&requiressl=yes&sig=AOq0QJ8wRAIgT4fTt5I6BOTj8YHa7D4ZbiW5Kj1CXHwBAyMUEraGTu8CIEdpGzSiV9og54IsSFSsYapJcg8DLDxYZbu0dYcPGTaa&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cspc%2Cvprv%2Csvpuc%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&spc=qEK7B81AP536F3aOi5JzMyLCUDiktWigtEpf9nI2xg&svpuc=1&txp=453D434&vprv=1",
@@ -333,7 +344,8 @@
       "mime": "video/webm; codecs=\"vp9\"",
       "format": "webm",
       "codec": "vp9",
-      "throttled": false
+      "drm_track_type": null,
+      "drm_systems": []
     },
     {
       "url": "https://rr4---sn-h0jeener.googlevideo.com/videoplayback?aitags=133%2C134%2C135%2C136%2C137%2C160%2C242%2C243%2C244%2C247%2C248%2C278%2C394%2C395%2C396%2C397%2C398%2C399&c=WEB&clen=72485445&dur=1012.644&ei=6OtcZNqtBdOi7gP1upHYCQ&expire=1683832904&fexp=24007246&fvip=2&gir=yes&id=o-ABVtPh3j24hkJeXp8igjvreyODn-oV0CacOqb7pDjJoG&initcwndbps=1720000&ip=2003%3Ade%3Aaf31%3A5200%3A791a%3A897%3Ac15c%3Aae59&itag=397&keepalive=yes&lmt=1683783766846749&lsig=AG3C_xAwRQIgC7HZtYuc6dI92m6wCcoXYpdzSpVtPTIbO7jBKGpUrYMCIQCc0WNtFvN8Awqx9uuRVp5SUSe3rOt2D7M-rCKpgVv_0A%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=wB&mime=video%2Fmp4&mm=31%2C29&mn=sn-h0jeener%2Csn-h0jeln7l&ms=au%2Crdu&mt=1683811031&mv=m&mvi=4&n=U8mCOo4eYD4n0A&ns=LToEdXWVFHcH53e3aTe1N7kN&pl=37&requiressl=yes&sig=AOq0QJ8wRAIgYUgo4QrIA6zcIMHuF_l4XiLaMPH7KGDwarzwgMUW2owCIF5entcVXfEtjug0b15rA6vub0BV0j5JMofS30BE7Eh9&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cspc%2Cvprv%2Csvpuc%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&spc=qEK7B81AP536F3aOi5JzMyLCUDiktWigtEpf9nI2xg&svpuc=1&txp=4537434&vprv=1",
@@ -358,7 +370,8 @@
       "mime": "video/mp4; codecs=\"av01.0.04M.08\"",
       "format": "mp4",
       "codec": "av01",
-      "throttled": false
+      "drm_track_type": null,
+      "drm_systems": []
     },
     {
       "url": "https://rr4---sn-h0jeener.googlevideo.com/videoplayback?aitags=133%2C134%2C135%2C136%2C137%2C160%2C242%2C243%2C244%2C247%2C248%2C278%2C394%2C395%2C396%2C397%2C398%2C399&c=WEB&clen=123652442&dur=1012.644&ei=6OtcZNqtBdOi7gP1upHYCQ&expire=1683832904&fexp=24007246&fvip=2&gir=yes&id=o-ABVtPh3j24hkJeXp8igjvreyODn-oV0CacOqb7pDjJoG&initcwndbps=1720000&ip=2003%3Ade%3Aaf31%3A5200%3A791a%3A897%3Ac15c%3Aae59&itag=136&keepalive=yes&lmt=1683787959744367&lsig=AG3C_xAwRQIgC7HZtYuc6dI92m6wCcoXYpdzSpVtPTIbO7jBKGpUrYMCIQCc0WNtFvN8Awqx9uuRVp5SUSe3rOt2D7M-rCKpgVv_0A%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=wB&mime=video%2Fmp4&mm=31%2C29&mn=sn-h0jeener%2Csn-h0jeln7l&ms=au%2Crdu&mt=1683811031&mv=m&mvi=4&n=U8mCOo4eYD4n0A&ns=LToEdXWVFHcH53e3aTe1N7kN&pl=37&requiressl=yes&sig=AOq0QJ8wRAIgSvkoYKKZ-SEFRi_AZ2pQYzBOxHk4SgBruVIhW5Ui1EMCIHdvlJp8KwIh1UiJO00EmRUj8a03mtBxxWikecOl0Jk1&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cspc%2Cvprv%2Csvpuc%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&spc=qEK7B81AP536F3aOi5JzMyLCUDiktWigtEpf9nI2xg&svpuc=1&txp=453D434&vprv=1",
@@ -383,7 +396,8 @@
       "mime": "video/mp4; codecs=\"avc1.4d401f\"",
       "format": "mp4",
       "codec": "avc1",
-      "throttled": false
+      "drm_track_type": null,
+      "drm_systems": []
     },
     {
       "url": "https://rr4---sn-h0jeener.googlevideo.com/videoplayback?c=WEB&dur=1012.691&ei=6OtcZNqtBdOi7gP1upHYCQ&expire=1683832904&fexp=24007246&fvip=2&id=o-ABVtPh3j24hkJeXp8igjvreyODn-oV0CacOqb7pDjJoG&initcwndbps=1720000&ip=2003%3Ade%3Aaf31%3A5200%3A791a%3A897%3Ac15c%3Aae59&itag=22&lmt=1683783214350373&lsig=AG3C_xAwRQIgC7HZtYuc6dI92m6wCcoXYpdzSpVtPTIbO7jBKGpUrYMCIQCc0WNtFvN8Awqx9uuRVp5SUSe3rOt2D7M-rCKpgVv_0A%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=wB&mime=video%2Fmp4&mm=31%2C29&mn=sn-h0jeener%2Csn-h0jeln7l&ms=au%2Crdu&mt=1683811031&mv=m&mvi=4&n=jcptwbVfjmUWxQ&ns=1WzgXR-YoajDJVHVaMTvU9MN&pl=37&ratebypass=yes&requiressl=yes&sig=AOq0QJ8wRQIhAKXn58k9q93HQFc68FF38guHL4SR95x72rAWp1rWFFv9AiAeSn8CY1vqf57ElYJs1m5ruVT5bO4rKLOwYhwYhnn11w%3D%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cspc%2Cvprv%2Csvpuc%2Cmime%2Cns%2Cratebypass%2Cdur%2Clmt&spc=qEK7B81AP536F3aOi5JzMyLCUDiktWigtEpf9nI2xg&svpuc=1&txp=4532434&vprv=1",
@@ -402,7 +416,8 @@
       "mime": "video/mp4; codecs=\"avc1.64001F, mp4a.40.2\"",
       "format": "mp4",
       "codec": "avc1",
-      "throttled": false
+      "drm_track_type": null,
+      "drm_systems": []
     },
     {
       "url": "https://rr4---sn-h0jeener.googlevideo.com/videoplayback?aitags=133%2C134%2C135%2C136%2C137%2C160%2C242%2C243%2C244%2C247%2C248%2C278%2C394%2C395%2C396%2C397%2C398%2C399&c=WEB&clen=147601285&dur=1012.644&ei=6OtcZNqtBdOi7gP1upHYCQ&expire=1683832904&fexp=24007246&fvip=2&gir=yes&id=o-ABVtPh3j24hkJeXp8igjvreyODn-oV0CacOqb7pDjJoG&initcwndbps=1720000&ip=2003%3Ade%3Aaf31%3A5200%3A791a%3A897%3Ac15c%3Aae59&itag=247&keepalive=yes&lmt=1683793917158272&lsig=AG3C_xAwRQIgC7HZtYuc6dI92m6wCcoXYpdzSpVtPTIbO7jBKGpUrYMCIQCc0WNtFvN8Awqx9uuRVp5SUSe3rOt2D7M-rCKpgVv_0A%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=wB&mime=video%2Fwebm&mm=31%2C29&mn=sn-h0jeener%2Csn-h0jeln7l&ms=au%2Crdu&mt=1683811031&mv=m&mvi=4&n=U8mCOo4eYD4n0A&ns=LToEdXWVFHcH53e3aTe1N7kN&pl=37&requiressl=yes&sig=AOq0QJ8wRQIhAJoFxlPhUMgIWaVBgvZj4wN-0AToP6LcpSE-9qU0aP6WAiBMVWP8RB023ja7aalg5EDWjSwSl8ZuFTyabKAd5fFisQ%3D%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cspc%2Cvprv%2Csvpuc%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&spc=qEK7B81AP536F3aOi5JzMyLCUDiktWigtEpf9nI2xg&svpuc=1&txp=453D434&vprv=1",
@@ -427,7 +442,8 @@
       "mime": "video/webm; codecs=\"vp9\"",
       "format": "webm",
       "codec": "vp9",
-      "throttled": false
+      "drm_track_type": null,
+      "drm_systems": []
     },
     {
       "url": "https://rr4---sn-h0jeener.googlevideo.com/videoplayback?aitags=133%2C134%2C135%2C136%2C137%2C160%2C242%2C243%2C244%2C247%2C248%2C278%2C394%2C395%2C396%2C397%2C398%2C399&c=WEB&clen=131590322&dur=1012.644&ei=6OtcZNqtBdOi7gP1upHYCQ&expire=1683832904&fexp=24007246&fvip=2&gir=yes&id=o-ABVtPh3j24hkJeXp8igjvreyODn-oV0CacOqb7pDjJoG&initcwndbps=1720000&ip=2003%3Ade%3Aaf31%3A5200%3A791a%3A897%3Ac15c%3Aae59&itag=398&keepalive=yes&lmt=1683783412184763&lsig=AG3C_xAwRQIgC7HZtYuc6dI92m6wCcoXYpdzSpVtPTIbO7jBKGpUrYMCIQCc0WNtFvN8Awqx9uuRVp5SUSe3rOt2D7M-rCKpgVv_0A%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=wB&mime=video%2Fmp4&mm=31%2C29&mn=sn-h0jeener%2Csn-h0jeln7l&ms=au%2Crdu&mt=1683811031&mv=m&mvi=4&n=U8mCOo4eYD4n0A&ns=LToEdXWVFHcH53e3aTe1N7kN&pl=37&requiressl=yes&sig=AOq0QJ8wRgIhAKPN8cLBkmuJxznCLh99bmrvR21hfSCGjwiTsu3K7ZeBAiEAlt0ZoiED2fyoJXIiUwmUhz17TYJcKYpOOweXkbQjrt0%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cspc%2Cvprv%2Csvpuc%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&spc=qEK7B81AP536F3aOi5JzMyLCUDiktWigtEpf9nI2xg&svpuc=1&txp=4537434&vprv=1",
@@ -452,7 +468,8 @@
       "mime": "video/mp4; codecs=\"av01.0.05M.08\"",
       "format": "mp4",
       "codec": "av01",
-      "throttled": false
+      "drm_track_type": null,
+      "drm_systems": []
     },
     {
       "url": "https://rr4---sn-h0jeener.googlevideo.com/videoplayback?aitags=133%2C134%2C135%2C136%2C137%2C160%2C242%2C243%2C244%2C247%2C248%2C278%2C394%2C395%2C396%2C397%2C398%2C399&c=WEB&clen=421285879&dur=1012.644&ei=6OtcZNqtBdOi7gP1upHYCQ&expire=1683832904&fexp=24007246&fvip=2&gir=yes&id=o-ABVtPh3j24hkJeXp8igjvreyODn-oV0CacOqb7pDjJoG&initcwndbps=1720000&ip=2003%3Ade%3Aaf31%3A5200%3A791a%3A897%3Ac15c%3Aae59&itag=137&keepalive=yes&lmt=1683787778380517&lsig=AG3C_xAwRQIgC7HZtYuc6dI92m6wCcoXYpdzSpVtPTIbO7jBKGpUrYMCIQCc0WNtFvN8Awqx9uuRVp5SUSe3rOt2D7M-rCKpgVv_0A%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=wB&mime=video%2Fmp4&mm=31%2C29&mn=sn-h0jeener%2Csn-h0jeln7l&ms=au%2Crdu&mt=1683811031&mv=m&mvi=4&n=U8mCOo4eYD4n0A&ns=LToEdXWVFHcH53e3aTe1N7kN&pl=37&requiressl=yes&sig=AOq0QJ8wRAIgUO_KUVLUJNKgDHpJeZ5F1D9c4IOSqqU89cuWCgDpUoQCICiphHalGNgp7vzIyzb_fpBM_NNdLsytk-YSveq55I9R&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cspc%2Cvprv%2Csvpuc%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&spc=qEK7B81AP536F3aOi5JzMyLCUDiktWigtEpf9nI2xg&svpuc=1&txp=453D434&vprv=1",
@@ -477,7 +494,8 @@
       "mime": "video/mp4; codecs=\"avc1.640028\"",
       "format": "mp4",
       "codec": "avc1",
-      "throttled": false
+      "drm_track_type": null,
+      "drm_systems": []
     },
     {
       "url": "https://rr4---sn-h0jeener.googlevideo.com/videoplayback?aitags=133%2C134%2C135%2C136%2C137%2C160%2C242%2C243%2C244%2C247%2C248%2C278%2C394%2C395%2C396%2C397%2C398%2C399&c=WEB&clen=302252313&dur=1012.644&ei=6OtcZNqtBdOi7gP1upHYCQ&expire=1683832904&fexp=24007246&fvip=2&gir=yes&id=o-ABVtPh3j24hkJeXp8igjvreyODn-oV0CacOqb7pDjJoG&initcwndbps=1720000&ip=2003%3Ade%3Aaf31%3A5200%3A791a%3A897%3Ac15c%3Aae59&itag=248&keepalive=yes&lmt=1683792273928810&lsig=AG3C_xAwRQIgC7HZtYuc6dI92m6wCcoXYpdzSpVtPTIbO7jBKGpUrYMCIQCc0WNtFvN8Awqx9uuRVp5SUSe3rOt2D7M-rCKpgVv_0A%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=wB&mime=video%2Fwebm&mm=31%2C29&mn=sn-h0jeener%2Csn-h0jeln7l&ms=au%2Crdu&mt=1683811031&mv=m&mvi=4&n=U8mCOo4eYD4n0A&ns=LToEdXWVFHcH53e3aTe1N7kN&pl=37&requiressl=yes&sig=AOq0QJ8wRgIhAO-yj9R-smK4_LceGBhpxxZ2m8gJ8eg3yAZ3B5-TxJ26AiEAvnKJZ1VCwqe0o8a5cds2SIxiw0XmIiEsFDD2JQVLudo%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cspc%2Cvprv%2Csvpuc%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&spc=qEK7B81AP536F3aOi5JzMyLCUDiktWigtEpf9nI2xg&svpuc=1&txp=453D434&vprv=1",
@@ -502,7 +520,8 @@
       "mime": "video/webm; codecs=\"vp9\"",
       "format": "webm",
       "codec": "vp9",
-      "throttled": false
+      "drm_track_type": null,
+      "drm_systems": []
     },
     {
       "url": "https://rr4---sn-h0jeener.googlevideo.com/videoplayback?aitags=133%2C134%2C135%2C136%2C137%2C160%2C242%2C243%2C244%2C247%2C248%2C278%2C394%2C395%2C396%2C397%2C398%2C399&c=WEB&clen=252581029&dur=1012.644&ei=6OtcZNqtBdOi7gP1upHYCQ&expire=1683832904&fexp=24007246&fvip=2&gir=yes&id=o-ABVtPh3j24hkJeXp8igjvreyODn-oV0CacOqb7pDjJoG&initcwndbps=1720000&ip=2003%3Ade%3Aaf31%3A5200%3A791a%3A897%3Ac15c%3Aae59&itag=399&keepalive=yes&lmt=1683783754163506&lsig=AG3C_xAwRQIgC7HZtYuc6dI92m6wCcoXYpdzSpVtPTIbO7jBKGpUrYMCIQCc0WNtFvN8Awqx9uuRVp5SUSe3rOt2D7M-rCKpgVv_0A%3D%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=wB&mime=video%2Fmp4&mm=31%2C29&mn=sn-h0jeener%2Csn-h0jeln7l&ms=au%2Crdu&mt=1683811031&mv=m&mvi=4&n=U8mCOo4eYD4n0A&ns=LToEdXWVFHcH53e3aTe1N7kN&pl=37&requiressl=yes&sig=AOq0QJ8wRQIhANEV52WgnUwjh73umAJne0nV9N6sUNAMAfGcRcWdUttVAiB-MrgcOJkl47rpmM_wDIx1RKbgIwfpPYhgQm02VE_3tA%3D%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Caitags%2Csource%2Crequiressl%2Cspc%2Cvprv%2Csvpuc%2Cmime%2Cns%2Cgir%2Cclen%2Cdur%2Clmt&spc=qEK7B81AP536F3aOi5JzMyLCUDiktWigtEpf9nI2xg&svpuc=1&txp=4537434&vprv=1",
@@ -527,7 +546,8 @@
       "mime": "video/mp4; codecs=\"av01.0.08M.08\"",
       "format": "mp4",
       "codec": "av01",
-      "throttled": false
+      "drm_track_type": null,
+      "drm_systems": []
     }
   ],
   "audio_streams": [
@@ -551,7 +571,8 @@
       "codec": "opus",
       "channels": 2,
       "loudness_db": 0.46000004,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "fr.3",
         "lang": "fr",
@@ -580,7 +601,8 @@
       "codec": "opus",
       "channels": 2,
       "loudness_db": 2.8500004,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "en-US.4",
         "lang": "en-US",
@@ -609,7 +631,8 @@
       "codec": "opus",
       "channels": 2,
       "loudness_db": 0.0,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "pt.3",
         "lang": "pt",
@@ -638,7 +661,8 @@
       "codec": "opus",
       "channels": 2,
       "loudness_db": 0.0,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "ru.3",
         "lang": "ru",
@@ -667,7 +691,8 @@
       "codec": "opus",
       "channels": 2,
       "loudness_db": 0.19999981,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "ko.3",
         "lang": "ko",
@@ -696,7 +721,8 @@
       "codec": "opus",
       "channels": 2,
       "loudness_db": 0.0,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "es.3",
         "lang": "es",
@@ -725,7 +751,8 @@
       "codec": "opus",
       "channels": 2,
       "loudness_db": 0.0,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "ja.3",
         "lang": "ja",
@@ -754,7 +781,8 @@
       "codec": "opus",
       "channels": 2,
       "loudness_db": 0.23999977,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "vi.3",
         "lang": "vi",
@@ -783,7 +811,8 @@
       "codec": "opus",
       "channels": 2,
       "loudness_db": -2.3899994,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "ar.3",
         "lang": "ar",
@@ -812,7 +841,8 @@
       "codec": "opus",
       "channels": 2,
       "loudness_db": 0.32999992,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "tr.3",
         "lang": "tr",
@@ -841,7 +871,8 @@
       "codec": "opus",
       "channels": 2,
       "loudness_db": -0.029999733,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "hi.3",
         "lang": "hi",
@@ -870,7 +901,8 @@
       "codec": "opus",
       "channels": 2,
       "loudness_db": 0.03999996,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "id.3",
         "lang": "id",
@@ -899,7 +931,8 @@
       "codec": "opus",
       "channels": 2,
       "loudness_db": -0.22000027,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "th.3",
         "lang": "th",
@@ -928,7 +961,8 @@
       "codec": "opus",
       "channels": 2,
       "loudness_db": 0.46000004,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "fr.3",
         "lang": "fr",
@@ -957,7 +991,8 @@
       "codec": "opus",
       "channels": 2,
       "loudness_db": 2.8500004,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "en-US.4",
         "lang": "en-US",
@@ -986,7 +1021,8 @@
       "codec": "opus",
       "channels": 2,
       "loudness_db": 0.0,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "pt.3",
         "lang": "pt",
@@ -1015,7 +1051,8 @@
       "codec": "opus",
       "channels": 2,
       "loudness_db": 0.0,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "es.3",
         "lang": "es",
@@ -1044,7 +1081,8 @@
       "codec": "opus",
       "channels": 2,
       "loudness_db": 0.0,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "ja.3",
         "lang": "ja",
@@ -1073,7 +1111,8 @@
       "codec": "opus",
       "channels": 2,
       "loudness_db": 0.0,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "ru.3",
         "lang": "ru",
@@ -1102,7 +1141,8 @@
       "codec": "opus",
       "channels": 2,
       "loudness_db": 0.23999977,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "vi.3",
         "lang": "vi",
@@ -1131,7 +1171,8 @@
       "codec": "opus",
       "channels": 2,
       "loudness_db": 0.19999981,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "ko.3",
         "lang": "ko",
@@ -1160,7 +1201,8 @@
       "codec": "opus",
       "channels": 2,
       "loudness_db": 0.32999992,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "tr.3",
         "lang": "tr",
@@ -1189,7 +1231,8 @@
       "codec": "opus",
       "channels": 2,
       "loudness_db": -2.3899994,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "ar.3",
         "lang": "ar",
@@ -1218,7 +1261,8 @@
       "codec": "opus",
       "channels": 2,
       "loudness_db": 0.03999996,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "id.3",
         "lang": "id",
@@ -1247,7 +1291,8 @@
       "codec": "opus",
       "channels": 2,
       "loudness_db": -0.22000027,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "th.3",
         "lang": "th",
@@ -1276,7 +1321,8 @@
       "codec": "opus",
       "channels": 2,
       "loudness_db": -0.029999733,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "hi.3",
         "lang": "hi",
@@ -1305,7 +1351,8 @@
       "codec": "mp4a",
       "channels": 2,
       "loudness_db": -2.3899994,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "ar.3",
         "lang": "ar",
@@ -1334,7 +1381,8 @@
       "codec": "mp4a",
       "channels": 2,
       "loudness_db": 0.0,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "ru.3",
         "lang": "ru",
@@ -1363,7 +1411,8 @@
       "codec": "mp4a",
       "channels": 2,
       "loudness_db": 0.32999992,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "tr.3",
         "lang": "tr",
@@ -1392,7 +1441,8 @@
       "codec": "mp4a",
       "channels": 2,
       "loudness_db": 0.23999977,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "vi.3",
         "lang": "vi",
@@ -1421,7 +1471,8 @@
       "codec": "mp4a",
       "channels": 2,
       "loudness_db": 0.05000019,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "id.3",
         "lang": "id",
@@ -1450,7 +1501,8 @@
       "codec": "mp4a",
       "channels": 2,
       "loudness_db": -0.22000027,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "th.3",
         "lang": "th",
@@ -1479,7 +1531,8 @@
       "codec": "mp4a",
       "channels": 2,
       "loudness_db": 0.0,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "es.3",
         "lang": "es",
@@ -1508,7 +1561,8 @@
       "codec": "mp4a",
       "channels": 2,
       "loudness_db": 0.010000229,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "ja.3",
         "lang": "ja",
@@ -1537,7 +1591,8 @@
       "codec": "mp4a",
       "channels": 2,
       "loudness_db": 0.19999981,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "ko.3",
         "lang": "ko",
@@ -1566,7 +1621,8 @@
       "codec": "mp4a",
       "channels": 2,
       "loudness_db": 0.0,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "pt.3",
         "lang": "pt",
@@ -1595,7 +1651,8 @@
       "codec": "mp4a",
       "channels": 2,
       "loudness_db": -0.029999733,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "hi.3",
         "lang": "hi",
@@ -1624,7 +1681,8 @@
       "codec": "mp4a",
       "channels": 2,
       "loudness_db": 2.8500004,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "en-US.4",
         "lang": "en-US",
@@ -1653,7 +1711,8 @@
       "codec": "mp4a",
       "channels": 2,
       "loudness_db": 0.47000027,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "fr.3",
         "lang": "fr",
@@ -1682,7 +1741,8 @@
       "codec": "opus",
       "channels": 2,
       "loudness_db": 0.46000004,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "fr.3",
         "lang": "fr",
@@ -1711,7 +1771,8 @@
       "codec": "opus",
       "channels": 2,
       "loudness_db": 2.8500004,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "en-US.4",
         "lang": "en-US",
@@ -1740,7 +1801,8 @@
       "codec": "opus",
       "channels": 2,
       "loudness_db": 0.0,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "es.3",
         "lang": "es",
@@ -1769,7 +1831,8 @@
       "codec": "opus",
       "channels": 2,
       "loudness_db": 0.0,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "pt.3",
         "lang": "pt",
@@ -1798,7 +1861,8 @@
       "codec": "opus",
       "channels": 2,
       "loudness_db": 0.0,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "ja.3",
         "lang": "ja",
@@ -1827,7 +1891,8 @@
       "codec": "opus",
       "channels": 2,
       "loudness_db": 0.0,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "ru.3",
         "lang": "ru",
@@ -1856,7 +1921,8 @@
       "codec": "opus",
       "channels": 2,
       "loudness_db": 0.19999981,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "ko.3",
         "lang": "ko",
@@ -1885,7 +1951,8 @@
       "codec": "opus",
       "channels": 2,
       "loudness_db": 0.23999977,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "vi.3",
         "lang": "vi",
@@ -1914,7 +1981,8 @@
       "codec": "opus",
       "channels": 2,
       "loudness_db": 0.32999992,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "tr.3",
         "lang": "tr",
@@ -1943,7 +2011,8 @@
       "codec": "opus",
       "channels": 2,
       "loudness_db": -0.22000027,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "th.3",
         "lang": "th",
@@ -1972,7 +2041,8 @@
       "codec": "opus",
       "channels": 2,
       "loudness_db": -2.3899994,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "ar.3",
         "lang": "ar",
@@ -2001,7 +2071,8 @@
       "codec": "opus",
       "channels": 2,
       "loudness_db": -0.029999733,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "hi.3",
         "lang": "hi",
@@ -2030,7 +2101,8 @@
       "codec": "opus",
       "channels": 2,
       "loudness_db": 0.03999996,
-      "throttled": false,
+      "drm_track_type": null,
+      "drm_systems": [],
       "track": {
         "id": "id.3",
         "lang": "id",

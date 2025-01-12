@@ -75,7 +75,7 @@ async fn download_music(rp: RustyPipe) {
     assert_audio_meta(
         &res.dest,
         "Lord of the Riffs",
-        "Alexander Nakarada - CreatorChords",
+        "Alexander Nakarada",
         "Lord of the Riffs",
         "2022-02-05",
     );

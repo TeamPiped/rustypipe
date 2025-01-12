@@ -2,7 +2,7 @@ use std::ops::Range;
 
 use serde::Deserialize;
 use serde_with::serde_as;
-use serde_with::{DefaultOnError, DisplayFromStr};
+use serde_with::{DefaultOnError, DisplayFromStr, VecSkipError};
 
 use super::{Empty, ResponseContext, Thumbnails};
 use crate::serializer::{text::Text, MapResult};
@@ -19,6 +19,10 @@ pub(crate) struct Player {
     #[serde_as(deserialize_as = "DefaultOnError")]
     pub storyboards: Option<Storyboards>,
     pub response_context: ResponseContext,
+    #[serde(default)]
+    pub player_config: PlayerConfig,
+    #[serde(default)]
+    pub heartbeat_params: HeartbeatParams,
 }
 
 #[serde_as]
@@ -85,6 +89,10 @@ pub(crate) struct StreamingData {
     pub dash_manifest_url: Option<String>,
     /// Only on livestreams
     pub hls_manifest_url: Option<String>,
+    pub drm_params: Option<String>,
+    #[serde(default)]
+    #[serde_as(deserialize_as = "VecSkipError<_>")]
+    pub initial_authorized_drm_track_types: Vec<DrmTrackType>,
 }
 
 #[serde_as]
@@ -133,6 +141,11 @@ pub(crate) struct Format {
     pub audio_track: Option<AudioTrack>,
 
     pub signature_cipher: Option<String>,
+
+    #[serde(default)]
+    #[serde_as(deserialize_as = "VecSkipError<_>")]
+    pub drm_families: Vec<DrmFamily>,
+    pub drm_track_type: Option<DrmTrackType>,
 }
 
 impl Format {
@@ -151,7 +164,7 @@ impl Format {
     }
 }
 
-#[derive(Clone, Copy, Debug, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(Clone, Copy, Debug, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
 #[serde(rename_all = "lowercase")]
 pub(crate) enum Quality {
     Tiny,
@@ -165,7 +178,7 @@ pub(crate) enum Quality {
     Hd2160,
 }
 
-#[derive(Clone, Copy, Debug, Deserialize, PartialEq, Eq, PartialOrd, Ord, Hash)]
+#[derive(Clone, Copy, Debug, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
 pub(crate) enum AudioQuality {
     #[serde(rename = "AUDIO_QUALITY_ULTRALOW")]
     UltraLow,
@@ -177,7 +190,7 @@ pub(crate) enum AudioQuality {
     High,
 }
 
-#[derive(Default, Clone, Copy, Debug, Deserialize, PartialEq, Eq, Hash)]
+#[derive(Default, Clone, Copy, Debug, Deserialize, PartialEq, Eq)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub(crate) enum FormatType {
     #[default]
@@ -192,12 +205,30 @@ pub(crate) struct ColorInfo {
     pub primaries: Primaries,
 }
 
-#[derive(Default, Clone, Copy, Debug, Deserialize, PartialEq, Eq, Hash)]
+#[derive(Default, Clone, Copy, Debug, Deserialize, PartialEq, Eq)]
 #[serde(rename_all = "SCREAMING_SNAKE_CASE")]
 pub(crate) enum Primaries {
     #[default]
     ColorPrimariesBt709,
     ColorPrimariesBt2020,
+}
+
+#[derive(Clone, Copy, Debug, Deserialize, PartialEq, Eq)]
+#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+#[allow(clippy::enum_variant_names)]
+pub(crate) enum DrmTrackType {
+    DrmTrackTypeAudio,
+    DrmTrackTypeSd,
+    DrmTrackTypeHd,
+    DrmTrackTypeUhd1,
+}
+
+#[derive(Clone, Copy, Debug, Deserialize, PartialEq, Eq)]
+#[serde(rename_all = "SCREAMING_SNAKE_CASE")]
+pub(crate) enum DrmFamily {
+    Widevine,
+    Playready,
+    Fairplay,
 }
 
 #[derive(Default, Debug, Deserialize)]
@@ -260,4 +291,58 @@ pub(crate) struct Storyboards {
 #[serde(rename_all = "camelCase")]
 pub(crate) struct StoryboardRenderer {
     pub spec: String,
+}
+
+#[derive(Default, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct PlayerConfig {
+    pub web_drm_config: Option<WebDrmConfig>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct WebDrmConfig {
+    pub widevine_service_cert: Option<String>,
+}
+
+#[derive(Default, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct HeartbeatParams {
+    pub drm_session_id: Option<String>,
+}
+
+impl From<DrmTrackType> for crate::model::DrmTrackType {
+    fn from(value: DrmTrackType) -> Self {
+        match value {
+            DrmTrackType::DrmTrackTypeAudio => Self::Audio,
+            DrmTrackType::DrmTrackTypeSd => Self::Sd,
+            DrmTrackType::DrmTrackTypeHd => Self::Hd,
+            DrmTrackType::DrmTrackTypeUhd1 => Self::Uhd1,
+        }
+    }
+}
+
+impl From<DrmFamily> for crate::model::DrmSystem {
+    fn from(value: DrmFamily) -> Self {
+        match value {
+            DrmFamily::Widevine => Self::Widevine,
+            DrmFamily::Playready => Self::Playready,
+            DrmFamily::Fairplay => Self::Fairplay,
+        }
+    }
+}
+
+#[derive(Default, Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct DrmLicense {
+    pub status: String,
+    pub license: String,
+    pub authorized_formats: Vec<AuthorizedFormat>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct AuthorizedFormat {
+    pub track_type: DrmTrackType,
+    pub key_id: String,
 }

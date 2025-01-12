@@ -652,7 +652,7 @@ fn parse_netscape_cookie_line<'a>(
     if domain != filter_domain {
         return Ok(None);
     }
-    let include_subdomains = cols.next().ok_or_else(mkerr)?.to_ascii_lowercase() == "true";
+    let include_subdomains = cols.next().ok_or_else(mkerr)?.eq_ignore_ascii_case("true");
     if !include_subdomains {
         return Ok(None);
     }

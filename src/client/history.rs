@@ -136,6 +136,8 @@ impl RustyPipeQuery {
     }
 
     /// Get a list of YouTube playlists the current user added to their library
+    ///
+    /// Requires authentication cookies.
     pub async fn saved_playlists(&self) -> Result<Paginator<PlaylistItem>, Error> {
         self.clone()
             .authenticated()

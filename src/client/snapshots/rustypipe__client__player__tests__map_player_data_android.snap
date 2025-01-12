@@ -77,6 +77,8 @@ VideoPlayer(
       mime: "video/3gpp; codecs=\"mp4v.20.3, mp4a.40.2\"",
       format: r#3gp,
       codec: mp4v,
+      drm_track_type: None,
+      drm_systems: [],
     ),
     VideoStream(
       url: "https://rr5---sn-h0jeenek.googlevideo.com/videoplayback?c=ANDROID&clen=11439331&dur=163.096&ei=q1jpYtOPEYSBgQeHmqbwAQ&expire=1659481355&fexp=24001373%2C24007246&fvip=4&gir=yes&id=o-AEDMTCojVtwpIKOdhBaxEHE5s322qnAJHGqa2r1F46BM&initcwndbps=1527500&ip=2003%3Ade%3Aaf0e%3A2f00%3Ade47%3A297%3Aa6db%3A774e&itag=18&lmt=1580005476071743&lsig=AG3C_xAwRgIhAOiL-qJ04sA8FSOkEJfOYl3gFe4SzwYu_rAf3DMLHYigAiEA0Upi1HqqIu7NH_LTDL0jT1R5TTozQypL5FiSP9RoqtU%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=mQ&mime=video%2Fmp4&mm=31%2C29&mn=sn-h0jeenek%2Csn-h0jelnez&ms=au%2Crdu&mt=1659459429&mv=m&mvi=5&pl=37&ratebypass=yes&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRQIhAJAH-tWof01vrs8phEoz51XkWwdMzQ77k1UTrdY5XiuTAiA38z-qANX0jtfCiAl4EVMZaKo1ncrzJFRrCffZ6LagrA%3D%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cgir%2Cclen%2Cratebypass%2Cdur%2Clmt&txp=2211222&vprv=1",
@@ -95,6 +97,8 @@ VideoPlayer(
       mime: "video/mp4; codecs=\"avc1.42001E, mp4a.40.2\"",
       format: mp4,
       codec: avc1,
+      drm_track_type: None,
+      drm_systems: [],
     ),
   ],
   video_only_streams: [
@@ -121,6 +125,8 @@ VideoPlayer(
       mime: "video/mp4; codecs=\"av01.0.00M.08\"",
       format: mp4,
       codec: av01,
+      drm_track_type: None,
+      drm_systems: [],
     ),
     VideoStream(
       url: "https://rr5---sn-h0jeenek.googlevideo.com/videoplayback?c=ANDROID&clen=2238952&dur=163.029&ei=q1jpYtOPEYSBgQeHmqbwAQ&expire=1659481355&fexp=24001373%2C24007246&fvip=4&gir=yes&id=o-AEDMTCojVtwpIKOdhBaxEHE5s322qnAJHGqa2r1F46BM&initcwndbps=1527500&ip=2003%3Ade%3Aaf0e%3A2f00%3Ade47%3A297%3Aa6db%3A774e&itag=395&keepalive=yes&lmt=1608045728968690&lsig=AG3C_xAwRgIhAOiL-qJ04sA8FSOkEJfOYl3gFe4SzwYu_rAf3DMLHYigAiEA0Upi1HqqIu7NH_LTDL0jT1R5TTozQypL5FiSP9RoqtU%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=mQ&mime=video%2Fmp4&mm=31%2C29&mn=sn-h0jeenek%2Csn-h0jelnez&ms=au%2Crdu&mt=1659459429&mv=m&mvi=5&otfp=1&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRQIhAKCXHOCh_P3VlNWebTeWw0WdSln-zYe3BjZeEm2QiltCAiAQNcJBI4G-8dK5z1IUoqBZctk6ddjkl_QYKRFAKXyOcw%3D%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cgir%2Cclen%2Cotfp%2Cdur%2Clmt&txp=1311222&vprv=1",
@@ -145,6 +151,8 @@ VideoPlayer(
       mime: "video/mp4; codecs=\"av01.0.00M.08\"",
       format: mp4,
       codec: av01,
+      drm_track_type: None,
+      drm_systems: [],
     ),
     VideoStream(
       url: "https://rr5---sn-h0jeenek.googlevideo.com/videoplayback?c=ANDROID&clen=7808990&dur=163.029&ei=q1jpYtOPEYSBgQeHmqbwAQ&expire=1659481355&fexp=24001373%2C24007246&fvip=4&gir=yes&id=o-AEDMTCojVtwpIKOdhBaxEHE5s322qnAJHGqa2r1F46BM&initcwndbps=1527500&ip=2003%3Ade%3Aaf0e%3A2f00%3Ade47%3A297%3Aa6db%3A774e&itag=134&keepalive=yes&lmt=1580005649163759&lsig=AG3C_xAwRgIhAOiL-qJ04sA8FSOkEJfOYl3gFe4SzwYu_rAf3DMLHYigAiEA0Upi1HqqIu7NH_LTDL0jT1R5TTozQypL5FiSP9RoqtU%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=mQ&mime=video%2Fmp4&mm=31%2C29&mn=sn-h0jeenek%2Csn-h0jelnez&ms=au%2Crdu&mt=1659459429&mv=m&mvi=5&otfp=1&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRQIhAIjjrMvCEzSLlbvbrjItT4V9JdpggnO5IHye9i4PxTyzAiAmbaFCB2hH7evf9JX3JUx-tU9S6zv2IzSKz8ObGSVRjw%3D%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cgir%2Cclen%2Cotfp%2Cdur%2Clmt&txp=2211222&vprv=1",
@@ -169,6 +177,8 @@ VideoPlayer(
       mime: "video/mp4; codecs=\"avc1.4d401e\"",
       format: mp4,
       codec: avc1,
+      drm_track_type: None,
+      drm_systems: [],
     ),
     VideoStream(
       url: "https://rr5---sn-h0jeenek.googlevideo.com/videoplayback?c=ANDROID&clen=4130385&dur=163.029&ei=q1jpYtOPEYSBgQeHmqbwAQ&expire=1659481355&fexp=24001373%2C24007246&fvip=4&gir=yes&id=o-AEDMTCojVtwpIKOdhBaxEHE5s322qnAJHGqa2r1F46BM&initcwndbps=1527500&ip=2003%3Ade%3Aaf0e%3A2f00%3Ade47%3A297%3Aa6db%3A774e&itag=396&keepalive=yes&lmt=1608045761576250&lsig=AG3C_xAwRgIhAOiL-qJ04sA8FSOkEJfOYl3gFe4SzwYu_rAf3DMLHYigAiEA0Upi1HqqIu7NH_LTDL0jT1R5TTozQypL5FiSP9RoqtU%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=mQ&mime=video%2Fmp4&mm=31%2C29&mn=sn-h0jeenek%2Csn-h0jelnez&ms=au%2Crdu&mt=1659459429&mv=m&mvi=5&otfp=1&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRQIgBrQhbygTP6RGjUk0lGbxBI5e3NdeR6C_SW8R_ckZ2PkCIQDaBg5cJxYVWfwRrrELQFgRMOJ4xS3oOOROayoQMjxaCA%3D%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cgir%2Cclen%2Cotfp%2Cdur%2Clmt&txp=1311222&vprv=1",
@@ -193,6 +203,8 @@ VideoPlayer(
       mime: "video/mp4; codecs=\"av01.0.01M.08\"",
       format: mp4,
       codec: av01,
+      drm_track_type: None,
+      drm_systems: [],
     ),
     VideoStream(
       url: "https://rr5---sn-h0jeenek.googlevideo.com/videoplayback?c=ANDROID&clen=6873325&dur=163.029&ei=q1jpYtOPEYSBgQeHmqbwAQ&expire=1659481355&fexp=24001373%2C24007246&fvip=4&gir=yes&id=o-AEDMTCojVtwpIKOdhBaxEHE5s322qnAJHGqa2r1F46BM&initcwndbps=1527500&ip=2003%3Ade%3Aaf0e%3A2f00%3Ade47%3A297%3Aa6db%3A774e&itag=397&keepalive=yes&lmt=1608045990917419&lsig=AG3C_xAwRgIhAOiL-qJ04sA8FSOkEJfOYl3gFe4SzwYu_rAf3DMLHYigAiEA0Upi1HqqIu7NH_LTDL0jT1R5TTozQypL5FiSP9RoqtU%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=mQ&mime=video%2Fmp4&mm=31%2C29&mn=sn-h0jeenek%2Csn-h0jelnez&ms=au%2Crdu&mt=1659459429&mv=m&mvi=5&otfp=1&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRQIhAMqBb1hKVVzWl3Awrh1T8GQG9IrSWF84zW_ZfjgbAN5QAiAaP3jYyI4ox2aclcOCzYFzqWgByWCxj_FgTN-SfsARXw%3D%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cgir%2Cclen%2Cotfp%2Cdur%2Clmt&txp=1311222&vprv=1",
@@ -217,6 +229,8 @@ VideoPlayer(
       mime: "video/mp4; codecs=\"av01.0.04M.08\"",
       format: mp4,
       codec: av01,
+      drm_track_type: None,
+      drm_systems: [],
     ),
     VideoStream(
       url: "https://rr5---sn-h0jeenek.googlevideo.com/videoplayback?c=ANDROID&dur=163.096&ei=q1jpYtOPEYSBgQeHmqbwAQ&expire=1659481355&fexp=24001373%2C24007246&fvip=4&id=o-AEDMTCojVtwpIKOdhBaxEHE5s322qnAJHGqa2r1F46BM&initcwndbps=1527500&ip=2003%3Ade%3Aaf0e%3A2f00%3Ade47%3A297%3Aa6db%3A774e&itag=22&lmt=1580005750956837&lsig=AG3C_xAwRgIhAOiL-qJ04sA8FSOkEJfOYl3gFe4SzwYu_rAf3DMLHYigAiEA0Upi1HqqIu7NH_LTDL0jT1R5TTozQypL5FiSP9RoqtU%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=mQ&mime=video%2Fmp4&mm=31%2C29&mn=sn-h0jeenek%2Csn-h0jelnez&ms=au%2Crdu&mt=1659459429&mv=m&mvi=5&pl=37&ratebypass=yes&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRAIgFlQZgR63Yz9UgY9gVqiyGDVkZmSmACRP3-MmKN7CRzQCIAMHAwZbHmWL1qNH4Nu3A0pXZwErXMVPzMIt-PyxeZqa&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cratebypass%2Cdur%2Clmt&txp=2211222&vprv=1",
@@ -235,6 +249,8 @@ VideoPlayer(
       mime: "video/mp4; codecs=\"avc1.64001F, mp4a.40.2\"",
       format: mp4,
       codec: avc1,
+      drm_track_type: None,
+      drm_systems: [],
     ),
     VideoStream(
       url: "https://rr5---sn-h0jeenek.googlevideo.com/videoplayback?c=ANDROID&clen=22365208&dur=163.046&ei=q1jpYtOPEYSBgQeHmqbwAQ&expire=1659481355&fexp=24001373%2C24007246&fvip=4&gir=yes&id=o-AEDMTCojVtwpIKOdhBaxEHE5s322qnAJHGqa2r1F46BM&initcwndbps=1527500&ip=2003%3Ade%3Aaf0e%3A2f00%3Ade47%3A297%3Aa6db%3A774e&itag=398&keepalive=yes&lmt=1608048380553749&lsig=AG3C_xAwRgIhAOiL-qJ04sA8FSOkEJfOYl3gFe4SzwYu_rAf3DMLHYigAiEA0Upi1HqqIu7NH_LTDL0jT1R5TTozQypL5FiSP9RoqtU%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=mQ&mime=video%2Fmp4&mm=31%2C29&mn=sn-h0jeenek%2Csn-h0jelnez&ms=au%2Crdu&mt=1659459429&mv=m&mvi=5&otfp=1&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRAIgR6KqCOoig_FMl2tWKa7qHSmCjIZa9S7ABzEI16qdO2sCIFXccwql4bqV9CHlqXY4tgxyMFUsp7vW4XUjxs3AyG6H&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cgir%2Cclen%2Cotfp%2Cdur%2Clmt&txp=1311222&vprv=1",
@@ -259,6 +275,8 @@ VideoPlayer(
       mime: "video/mp4; codecs=\"av01.0.08M.08\"",
       format: mp4,
       codec: av01,
+      drm_track_type: None,
+      drm_systems: [],
     ),
     VideoStream(
       url: "https://rr5---sn-h0jeenek.googlevideo.com/videoplayback?c=ANDROID&clen=65400181&dur=163.046&ei=q1jpYtOPEYSBgQeHmqbwAQ&expire=1659481355&fexp=24001373%2C24007246&fvip=4&gir=yes&id=o-AEDMTCojVtwpIKOdhBaxEHE5s322qnAJHGqa2r1F46BM&initcwndbps=1527500&ip=2003%3Ade%3Aaf0e%3A2f00%3Ade47%3A297%3Aa6db%3A774e&itag=299&keepalive=yes&lmt=1580005649161486&lsig=AG3C_xAwRgIhAOiL-qJ04sA8FSOkEJfOYl3gFe4SzwYu_rAf3DMLHYigAiEA0Upi1HqqIu7NH_LTDL0jT1R5TTozQypL5FiSP9RoqtU%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=mQ&mime=video%2Fmp4&mm=31%2C29&mn=sn-h0jeenek%2Csn-h0jelnez&ms=au%2Crdu&mt=1659459429&mv=m&mvi=5&otfp=1&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRgIhAPjxbuzkozPDc1Nd_0q5X8x8H2SiDvAUFuqqMadtz3SNAiEA_3kXCeePb2kci-WB2779tzI56E6E0iKwoHnUSkKCzwU%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cgir%2Cclen%2Cotfp%2Cdur%2Clmt&txp=2211222&vprv=1",
@@ -283,6 +301,8 @@ VideoPlayer(
       mime: "video/mp4; codecs=\"avc1.64002a\"",
       format: mp4,
       codec: avc1,
+      drm_track_type: None,
+      drm_systems: [],
     ),
     VideoStream(
       url: "https://rr5---sn-h0jeenek.googlevideo.com/videoplayback?c=ANDROID&clen=42567727&dur=163.046&ei=q1jpYtOPEYSBgQeHmqbwAQ&expire=1659481355&fexp=24001373%2C24007246&fvip=4&gir=yes&id=o-AEDMTCojVtwpIKOdhBaxEHE5s322qnAJHGqa2r1F46BM&initcwndbps=1527500&ip=2003%3Ade%3Aaf0e%3A2f00%3Ade47%3A297%3Aa6db%3A774e&itag=399&keepalive=yes&lmt=1608052932785283&lsig=AG3C_xAwRgIhAOiL-qJ04sA8FSOkEJfOYl3gFe4SzwYu_rAf3DMLHYigAiEA0Upi1HqqIu7NH_LTDL0jT1R5TTozQypL5FiSP9RoqtU%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=mQ&mime=video%2Fmp4&mm=31%2C29&mn=sn-h0jeenek%2Csn-h0jelnez&ms=au%2Crdu&mt=1659459429&mv=m&mvi=5&otfp=1&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRAIgFguw-cmBNOQegpyRRzcCScp2WaSnq_o7FB1-AiBgFpICIAGlMj9-kzNCWb3nhpg98Mc239ls6YYyoL8z1QpM8VmL&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cgir%2Cclen%2Cotfp%2Cdur%2Clmt&txp=1311222&vprv=1",
@@ -307,6 +327,8 @@ VideoPlayer(
       mime: "video/mp4; codecs=\"av01.0.09M.08\"",
       format: mp4,
       codec: av01,
+      drm_track_type: None,
+      drm_systems: [],
     ),
   ],
   audio_streams: [
@@ -331,6 +353,8 @@ VideoPlayer(
       channels: Some(2),
       loudness_db: None,
       track: None,
+      drm_track_type: None,
+      drm_systems: [],
     ),
     AudioStream(
       url: "https://rr5---sn-h0jeenek.googlevideo.com/videoplayback?c=ANDROID&clen=934449&dur=163.061&ei=q1jpYtOPEYSBgQeHmqbwAQ&expire=1659481355&fexp=24001373%2C24007246&fvip=4&gir=yes&id=o-AEDMTCojVtwpIKOdhBaxEHE5s322qnAJHGqa2r1F46BM&initcwndbps=1527500&ip=2003%3Ade%3Aaf0e%3A2f00%3Ade47%3A297%3Aa6db%3A774e&itag=249&keepalive=yes&lmt=1608509101590706&lsig=AG3C_xAwRgIhAOiL-qJ04sA8FSOkEJfOYl3gFe4SzwYu_rAf3DMLHYigAiEA0Upi1HqqIu7NH_LTDL0jT1R5TTozQypL5FiSP9RoqtU%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=mQ&mime=audio%2Fwebm&mm=31%2C29&mn=sn-h0jeenek%2Csn-h0jelnez&ms=au%2Crdu&mt=1659459429&mv=m&mvi=5&otfp=1&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRAIgPmadKd9As393GMRmu1Ow4RfQkDQhY6SbPRnkLMYyZOoCIE9AIgMMJ7n5HD2gKv3c8-HrnkMeakq_uWUOivnWquJX&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cgir%2Cclen%2Cotfp%2Cdur%2Clmt&txp=1311222&vprv=1",
@@ -353,6 +377,8 @@ VideoPlayer(
       channels: Some(2),
       loudness_db: None,
       track: None,
+      drm_track_type: None,
+      drm_systems: [],
     ),
     AudioStream(
       url: "https://rr5---sn-h0jeenek.googlevideo.com/videoplayback?c=ANDROID&clen=1245866&dur=163.061&ei=q1jpYtOPEYSBgQeHmqbwAQ&expire=1659481355&fexp=24001373%2C24007246&fvip=4&gir=yes&id=o-AEDMTCojVtwpIKOdhBaxEHE5s322qnAJHGqa2r1F46BM&initcwndbps=1527500&ip=2003%3Ade%3Aaf0e%3A2f00%3Ade47%3A297%3Aa6db%3A774e&itag=250&keepalive=yes&lmt=1608509101111096&lsig=AG3C_xAwRgIhAOiL-qJ04sA8FSOkEJfOYl3gFe4SzwYu_rAf3DMLHYigAiEA0Upi1HqqIu7NH_LTDL0jT1R5TTozQypL5FiSP9RoqtU%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=mQ&mime=audio%2Fwebm&mm=31%2C29&mn=sn-h0jeenek%2Csn-h0jelnez&ms=au%2Crdu&mt=1659459429&mv=m&mvi=5&otfp=1&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRQIge8uetzhejNg3DegY9EQkpvVam1gp8Jm-q6oqtb6Rn9wCIQD_VeQle7Z2H1uXB6qsYMGDU4OWA4h6YTTwMDmw5DDvuA%3D%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cgir%2Cclen%2Cotfp%2Cdur%2Clmt&txp=1311222&vprv=1",
@@ -375,6 +401,8 @@ VideoPlayer(
       channels: Some(2),
       loudness_db: None,
       track: None,
+      drm_track_type: None,
+      drm_systems: [],
     ),
     AudioStream(
       url: "https://rr5---sn-h0jeenek.googlevideo.com/videoplayback?c=ANDROID&clen=2640283&dur=163.096&ei=q1jpYtOPEYSBgQeHmqbwAQ&expire=1659481355&fexp=24001373%2C24007246&fvip=4&gir=yes&id=o-AEDMTCojVtwpIKOdhBaxEHE5s322qnAJHGqa2r1F46BM&initcwndbps=1527500&ip=2003%3Ade%3Aaf0e%3A2f00%3Ade47%3A297%3Aa6db%3A774e&itag=140&keepalive=yes&lmt=1580005579712232&lsig=AG3C_xAwRgIhAOiL-qJ04sA8FSOkEJfOYl3gFe4SzwYu_rAf3DMLHYigAiEA0Upi1HqqIu7NH_LTDL0jT1R5TTozQypL5FiSP9RoqtU%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=mQ&mime=audio%2Fmp4&mm=31%2C29&mn=sn-h0jeenek%2Csn-h0jelnez&ms=au%2Crdu&mt=1659459429&mv=m&mvi=5&otfp=1&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRQIhAI8YylDImOPxxRo251u_RX6ir_j0p-gP_yQPcI6SxareAiArCxOcgrF9pxYS5bNYEnLGEQxRiEFJ0sT2Ydpa1G7x5A%3D%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cgir%2Cclen%2Cotfp%2Cdur%2Clmt&txp=2211222&vprv=1",
@@ -397,6 +425,8 @@ VideoPlayer(
       channels: Some(2),
       loudness_db: None,
       track: None,
+      drm_track_type: None,
+      drm_systems: [],
     ),
     AudioStream(
       url: "https://rr5---sn-h0jeenek.googlevideo.com/videoplayback?c=ANDROID&clen=2476314&dur=163.061&ei=q1jpYtOPEYSBgQeHmqbwAQ&expire=1659481355&fexp=24001373%2C24007246&fvip=4&gir=yes&id=o-AEDMTCojVtwpIKOdhBaxEHE5s322qnAJHGqa2r1F46BM&initcwndbps=1527500&ip=2003%3Ade%3Aaf0e%3A2f00%3Ade47%3A297%3Aa6db%3A774e&itag=251&keepalive=yes&lmt=1608509101894140&lsig=AG3C_xAwRgIhAOiL-qJ04sA8FSOkEJfOYl3gFe4SzwYu_rAf3DMLHYigAiEA0Upi1HqqIu7NH_LTDL0jT1R5TTozQypL5FiSP9RoqtU%3D&lsparams=mh%2Cmm%2Cmn%2Cms%2Cmv%2Cmvi%2Cpl%2Cinitcwndbps&mh=mQ&mime=audio%2Fwebm&mm=31%2C29&mn=sn-h0jeenek%2Csn-h0jelnez&ms=au%2Crdu&mt=1659459429&mv=m&mvi=5&otfp=1&pl=37&rbqsm=fr&requiressl=yes&sig=AOq0QJ8wRQIgErpt4HOgIybMGrMD2qg9JB4O53n0jsCxkiI9JBxbz8ECIQDixyFJ54m4NsxhyFtIYPscMVp_G6RyvwrfKzdoya-62Q%3D%3D&source=youtube&sparams=expire%2Cei%2Cip%2Cid%2Citag%2Csource%2Crequiressl%2Cvprv%2Cmime%2Cgir%2Cclen%2Cotfp%2Cdur%2Clmt&txp=1311222&vprv=1",
@@ -419,6 +449,8 @@ VideoPlayer(
       channels: Some(2),
       loudness_db: None,
       track: None,
+      drm_track_type: None,
+      drm_systems: [],
     ),
   ],
   subtitles: [
@@ -464,6 +496,7 @@ VideoPlayer(
       frames_per_page_y: 5,
     ),
   ],
+  drm: None,
   client_type: android,
   visitor_data: Some("Cgt2aHFtQU5YZFBvYyirsaWXBg%3D%3D"),
 )

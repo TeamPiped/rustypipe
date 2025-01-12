@@ -13,8 +13,9 @@ use crate::{
     deobfuscate::{DeobfData, Deobfuscator},
     error::{internal::DeobfError, Error, ExtractionError, UnavailabilityReason},
     model::{
-        traits::QualityOrd, AudioCodec, AudioFormat, AudioStream, AudioTrack, Frameset, Subtitle,
-        VideoCodec, VideoFormat, VideoPlayer, VideoPlayerDetails, VideoStream,
+        traits::QualityOrd, AudioCodec, AudioFormat, AudioStream, AudioTrack, DrmLicense,
+        DrmSystem, Frameset, Subtitle, VideoCodec, VideoFormat, VideoPlayer, VideoPlayerDetails,
+        VideoPlayerDrm, VideoStream,
     },
     util,
 };
@@ -55,6 +56,18 @@ struct QContentPlaybackContext<'a> {
     signature_timestamp: &'a str,
     /// Referer URL from website
     referer: String,
+}
+
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+struct QDrmLicense<'a> {
+    drm_system: &'a str,
+    video_id: &'a str,
+    cpn: &'a str,
+    session_id: &'a str,
+    license_request: &'a str,
+    drm_params: &'a str,
+    drm_video_feature: &'a str,
 }
 
 impl RustyPipeQuery {
@@ -167,6 +180,43 @@ impl RustyPipeQuery {
             },
         )
         .await
+    }
+
+    /// Get a license to play back DRM protected videos
+    ///
+    /// Requires authentication (either via OAuth or cookies).
+    #[tracing::instrument(skip(self), level = "error")]
+    pub async fn drm_license(
+        &self,
+        video_id: &str,
+        drm_system: DrmSystem,
+        session_id: &str,
+        drm_params: &str,
+        license_request: &[u8],
+    ) -> Result<DrmLicense, Error> {
+        let client_type = self
+            .auth_enabled_client(&[ClientType::Desktop, ClientType::Tv])
+            .ok_or(Error::Auth(crate::error::AuthError::NoLogin))?;
+        let request_body = QDrmLicense {
+            drm_system: drm_system.req_param(),
+            video_id,
+            cpn: &util::generate_content_playback_nonce(),
+            session_id,
+            license_request: &data_encoding::BASE64.encode(license_request),
+            drm_params,
+            drm_video_feature: "DRM_VIDEO_FEATURE_SDR",
+        };
+
+        self.clone()
+            .authenticated()
+            .execute_request::<response::DrmLicense, _, _>(
+                client_type,
+                "drm_license",
+                video_id,
+                "player/get_drm_license",
+                &request_body,
+            )
+            .await
     }
 }
 
@@ -352,6 +402,24 @@ impl MapResponse<VideoPlayer> for response::Player {
             })
             .unwrap_or_default();
 
+        let drm = streaming_data
+            .drm_params
+            .zip(self.heartbeat_params.drm_session_id)
+            .map(|(drm_params, drm_session_id)| VideoPlayerDrm {
+                widevine_service_cert: self
+                    .player_config
+                    .web_drm_config
+                    .and_then(|c| c.widevine_service_cert)
+                    .and_then(|c| data_encoding::BASE64URL.decode(c.as_bytes()).ok()),
+                drm_params,
+                authorized_track_types: streaming_data
+                    .initial_authorized_drm_track_types
+                    .into_iter()
+                    .map(|t| t.into())
+                    .collect(),
+                drm_session_id,
+            });
+
         Ok(MapResult {
             c: VideoPlayer {
                 details: video_info,
@@ -363,6 +431,7 @@ impl MapResponse<VideoPlayer> for response::Player {
                 hls_manifest_url: streaming_data.hls_manifest_url,
                 dash_manifest_url: streaming_data.dash_manifest_url,
                 preview_frames,
+                drm,
                 client_type: ctx.client_type,
                 visitor_data: self
                     .response_context
@@ -587,6 +656,8 @@ impl StreamsMapper {
             format,
             codec: get_video_codec(codecs),
             mime: f.mime_type,
+            drm_track_type: f.drm_track_type.map(|t| t.into()),
+            drm_systems: f.drm_families.into_iter().map(|t| t.into()).collect(),
         })
     }
 
@@ -622,6 +693,8 @@ impl StreamsMapper {
             track: f
                 .audio_track
                 .map(|t| self.map_audio_track(t, map_res.xtags)),
+            drm_track_type: f.drm_track_type.map(|t| t.into()),
+            drm_systems: f.drm_families.into_iter().map(|t| t.into()).collect(),
         })
     }
 
@@ -726,6 +799,36 @@ fn get_audio_codec(codecs: Vec<&str>) -> AudioCodec {
         }
     }
     AudioCodec::Unknown
+}
+
+impl MapResponse<DrmLicense> for response::DrmLicense {
+    fn map_response(self, _ctx: &MapRespCtx<'_>) -> Result<MapResult<DrmLicense>, ExtractionError> {
+        if self.status != "LICENSE_STATUS_OK" {
+            return Err(ExtractionError::InvalidData(self.status.into()));
+        }
+
+        let license = DrmLicense {
+            license: data_encoding::BASE64URL
+                .decode(self.license.as_bytes())
+                .map_err(|_| ExtractionError::InvalidData("license: invalid b64".into()))?,
+            authorized_formats: self
+                .authorized_formats
+                .into_iter()
+                .filter_map(|f| {
+                    let key: Option<[u8; 16]> = data_encoding::BASE64URL
+                        .decode(f.key_id.as_bytes())
+                        .ok()
+                        .and_then(|k| k.try_into().ok());
+                    key.map(|k| (f.track_type.into(), k))
+                })
+                .collect(),
+        };
+
+        Ok(MapResult {
+            c: license,
+            warnings: Vec::new(),
+        })
+    }
 }
 
 #[cfg(test)]

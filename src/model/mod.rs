@@ -143,6 +143,10 @@ pub struct VideoPlayer {
     pub dash_manifest_url: Option<String>,
     /// Video frames for seek preview
     pub preview_frames: Vec<Frameset>,
+    /// Video player DRM config
+    ///
+    /// [`None`] if the video is not DRM-protected
+    pub drm: Option<VideoPlayerDrm>,
     /// Client type with which the player was fetched
     pub client_type: ClientType,
     /// YouTube visitor data cookie
@@ -215,6 +219,12 @@ pub struct VideoStream {
     pub format: VideoFormat,
     /// Video codec
     pub codec: VideoCodec,
+    /// DRM track type
+    ///
+    /// [`None`] if the track is not DRM-protected
+    pub drm_track_type: Option<DrmTrackType>,
+    /// List of DRM systems that can decrypt this track
+    pub drm_systems: Vec<DrmSystem>,
 }
 
 /// Audio stream
@@ -267,6 +277,36 @@ pub struct AudioStream {
     ///
     /// This is None if the video contains only 1 audio track.
     pub track: Option<AudioTrack>,
+    /// DRM track type
+    ///
+    /// [`None`] if the track is not DRM-protected
+    pub drm_track_type: Option<DrmTrackType>,
+    /// List of DRM systems that can decrypt this track
+    pub drm_systems: Vec<DrmSystem>,
+}
+
+/// Video player DRM parameters
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
+#[serde(rename_all = "snake_case")]
+pub struct VideoPlayerDrm {
+    /// Widevine service certificate
+    pub widevine_service_cert: Option<Vec<u8>>,
+    /// DRM parameters for the license API
+    pub drm_params: String,
+    /// DRM session id parameter for the license API
+    pub drm_session_id: String,
+    /// List of track types available for playback
+    pub authorized_track_types: Vec<DrmTrackType>,
+}
+
+/// Video player DRM parameters
+#[derive(Clone, Debug, Serialize, Deserialize, PartialEq, Eq)]
+#[serde(rename_all = "snake_case")]
+pub struct DrmLicense {
+    /// DRM license
+    pub license: Vec<u8>,
+    /// List of authorized formats with track type and 16-byte key ID
+    pub authorized_formats: Vec<(DrmTrackType, [u8; 16])>,
 }
 
 /// Video codec
@@ -317,6 +357,51 @@ pub enum VideoFormat {
     Mp4,
     /// `*.webm`
     Webm,
+}
+
+/// DRM track type
+///
+/// Depending on the purchased video and the device's DRM capabilites, only a subset of track
+/// types may be available for playback.
+#[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq, Eq, Hash)]
+#[serde(rename_all = "snake_case")]
+pub enum DrmTrackType {
+    /// Audio track
+    Audio,
+    /// Standard definition video (max. 480p)
+    Sd,
+    /// High definition video (max. 1080p)
+    Hd,
+    /// Ultra high definition video (2160p)
+    Uhd1,
+}
+
+/// DRM system used to protect tracks
+#[derive(Clone, Copy, Debug, Serialize, Deserialize, PartialEq, Eq, Hash)]
+#[serde(rename_all = "snake_case")]
+pub enum DrmSystem {
+    /// Google Widevine
+    ///
+    /// <https://en.wikipedia.org/wiki/Widevine>
+    Widevine,
+    /// Microsoft PlayReady
+    ///
+    /// <https://en.wikipedia.org/wiki/PlayReady>
+    Playready,
+    /// Apple FairPlay
+    ///
+    /// <https://en.wikipedia.org/wiki/FairPlay>
+    Fairplay,
+}
+
+impl DrmSystem {
+    pub(crate) fn req_param(self) -> &'static str {
+        match self {
+            DrmSystem::Widevine => "DRM_SYSTEM_WIDEVINE",
+            DrmSystem::Playready => "DRM_SYSTEM_PLAYREADY",
+            DrmSystem::Fairplay => "DRM_SYSTEM_FAIRPLAY",
+        }
+    }
 }
 
 /// Audio track information

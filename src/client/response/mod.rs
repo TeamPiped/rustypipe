@@ -34,6 +34,7 @@ pub(crate) use music_new::MusicNew;
 pub(crate) use music_playlist::MusicPlaylist;
 pub(crate) use music_search::MusicSearch;
 pub(crate) use music_search::MusicSearchSuggestion;
+pub(crate) use player::DrmLicense;
 pub(crate) use player::Player;
 pub(crate) use playlist::Playlist;
 pub(crate) use search::Search;

@@ -2908,7 +2908,7 @@ fn unlocalized(lang: Language) -> bool {
 #[fixture]
 fn auth_enabled(rp: RustyPipe) -> bool {
     std::env::var("YT_AUTHENTICATED")
-        .map(|v| !v.is_empty() && v.to_ascii_lowercase() != "false")
+        .map(|v| !v.is_empty() && !v.eq_ignore_ascii_case("false"))
         .unwrap_or_default()
         || rp.query().auth_enabled(ClientType::Desktop)
         || rp.query().auth_enabled(ClientType::Tv)
@@ -2918,7 +2918,7 @@ fn auth_enabled(rp: RustyPipe) -> bool {
 #[fixture]
 fn cookie_auth_enabled(rp: RustyPipe) -> bool {
     std::env::var("YT_AUTHENTICATED")
-        .map(|v| !v.is_empty() && v.to_ascii_lowercase() != "false")
+        .map(|v| !v.is_empty() && !v.eq_ignore_ascii_case("false"))
         .unwrap_or_default()
         || rp.query().auth_enabled(ClientType::Desktop)
 }
