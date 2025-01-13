@@ -28,15 +28,9 @@ jobs:
         run: cargo clippy --all --tests --features=rss,indicatif,audiotag -- -D warnings
 
       - name: 🧪 Test
-        run: |
-          printf '%s\n' "$RUSTYPIPE_CACHE" > rustypipe_cache.json
-          echo "authenticated=$YT_AUTHENTICATED"
-          wc -c rustypipe_cache.json
-          cargo nextest run --config-file ~/.config/nextest.toml --profile ci --retries 2 --features rss --workspace
+        run: cargo nextest run --config-file ~/.config/nextest.toml --profile ci --retries 2 --features rss --workspace -- --skip 'cookie_auth::'
         env:
           ALL_PROXY: "http://warpproxy:8124"
-          RUSTYPIPE_CACHE: "${{ secrets.RUSTYPIPE_CACHE }}"
-          YT_AUTHENTICATED: "${{ secrets.RUSTYPIPE_CACHE != '' }}"
 
       - name: Move test report
         if: always()

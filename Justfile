@@ -1,15 +1,19 @@
 test:
     # cargo test --features=rss
-    cargo nextest run --workspace --features=rss --no-fail-fast --retries 1
+    cargo nextest run --workspace --features=rss --no-fail-fast --retries 1 -- --skip 'cookie_auth::'
 
 unittest:
     cargo nextest run --features=rss --no-fail-fast --lib
 
 testyt:
+    cargo nextest run --features=rss --no-fail-fast --retries 1 --test youtube -- --skip 'cookie_auth::'
+
+testyt-cookie:
     cargo nextest run --features=rss --no-fail-fast --retries 1 --test youtube
 
 testyt-localized:
-    YT_LANG=th cargo nextest run --features=rss --no-fail-fast ---retries 1 --test youtube
+    YT_LANG=th cargo nextest run --features=rss --no-fail-fast --retries 1 --test youtube -- \
+        --skip 'cookie_auth::' --skip 'search_suggestion' --skip 'isrc_search_languages'
 
 testintl:
     #!/usr/bin/env bash
@@ -28,7 +32,8 @@ testintl:
     for YT_LANG in "${LANGUAGES[@]}"; do
         echo "---TESTS FOR $YT_LANG ---"
 
-        if YT_LANG="$YT_LANG" cargo nextest run --no-fail-fast --retries 1 --test-threads 4 --test youtube -E 'not test(/^resolve/)'; then
+        if YT_LANG="$YT_LANG" cargo nextest run --no-fail-fast --retries 1 --test-threads 4 --test youtube -- \
+            --skip 'cookie_auth::' --skip 'search_suggestion' --skip 'isrc_search_languages' --skip 'resolve_'; then
             echo "--- $YT_LANG COMPLETED ---"
         else
             echo "--- $YT_LANG FAILED ---"
