@@ -156,7 +156,7 @@ pub(crate) mod internal {
     pub enum DeobfError {
         /// Error during JavaScript execution
         #[error("js execution error: {0}")]
-        JavaScript(#[from] quick_js::ExecutionError),
+        JavaScript(#[from] rquickjs::Error),
         /// Error during JavaScript parsing
         #[error("js parsing: {0}")]
         JsParser(#[from] ress::error::Error),

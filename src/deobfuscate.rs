@@ -4,6 +4,7 @@ use once_cell::sync::Lazy;
 use regex::Regex;
 use reqwest::Client;
 use ress::tokens::Token;
+use rquickjs::{Context, Runtime};
 use serde::{Deserialize, Serialize};
 
 use crate::{
@@ -13,7 +14,7 @@ use crate::{
 };
 
 pub struct Deobfuscator {
-    ctx: quick_js::Context,
+    ctx: Context,
 }
 
 #[derive(Debug, Default, Clone, Serialize, Deserialize, PartialEq, Eq)]
@@ -76,29 +77,34 @@ impl DeobfData {
 impl Deobfuscator {
     /// Instantiate a new deobfuscator with the given data
     pub fn new(data: &DeobfData) -> Result<Self, DeobfError> {
-        let ctx =
-            quick_js::Context::new().or(Err(DeobfError::Other("could not create QuickJS rt")))?;
-        ctx.eval(&data.sig_fn)?;
-        ctx.eval(&data.nsig_fn)?;
-
+        let rt = Runtime::new()?;
+        let ctx = Context::full(&rt)?;
+        ctx.with(|ctx| {
+            let mut opts = rquickjs::context::EvalOptions::default();
+            opts.strict = false;
+            ctx.eval_with_options::<(), _>(data.sig_fn.as_bytes(), opts)?;
+            let mut opts = rquickjs::context::EvalOptions::default();
+            opts.strict = false;
+            ctx.eval_with_options::<(), _>(data.nsig_fn.as_bytes(), opts)
+        })?;
         Ok(Self { ctx })
     }
 
     /// Deobfuscate the `s` parameter from the `signature_cipher` field
     pub fn deobfuscate_sig(&self, sig: &str) -> Result<String, DeobfError> {
-        let res = self.ctx.call_function(DEOBF_SIG_FUNC_NAME, [sig])?;
-
-        res.into_string()
-            .ok_or(DeobfError::Other("sig deobfuscation fn returned no string"))
+        let res = self
+            .ctx
+            .with(|ctx| call_fn(&ctx, DEOBF_SIG_FUNC_NAME, sig))?;
+        tracing::trace!("deobf sig: {sig} -> {res}");
+        Ok(res)
     }
 
     /// Deobfuscate the `n` stream URL parameter to circumvent throttling
     pub fn deobfuscate_nsig(&self, nsig: &str) -> Result<String, DeobfError> {
-        let res = self.ctx.call_function(DEOBF_NSIG_FUNC_NAME, [nsig])?;
-        let res = res.into_string().ok_or(DeobfError::Other(
-            "nsig deobfuscation fn returned no string",
-        ))?;
-        tracing::debug!("deobf nsig: {nsig} -> {res}");
+        let res = self
+            .ctx
+            .with(|ctx| call_fn(&ctx, DEOBF_NSIG_FUNC_NAME, nsig))?;
+        tracing::trace!("deobf nsig: {nsig} -> {res}");
         if res.starts_with("enhanced_except_") || res.ends_with(nsig) {
             return Err(DeobfError::Other("nsig fn returned an exception"));
         }
@@ -279,6 +285,7 @@ fn extract_js_fn(js: &str, offset: usize, name: &str) -> Result<String, DeobfErr
 
     let fn_range = (offset + start)..(offset + end);
     let mut code = format!("var {};", &js[fn_range.clone()]);
+    let rt = rquickjs::Runtime::new()?;
 
     for (ident, _) in idents.into_iter().filter(|(_, v)| *v == 1) {
         let var_pattern_str = format!(r#"\b{}\b\s*=[^=]"#, regex::escape(&ident));
@@ -288,13 +295,13 @@ fn extract_js_fn(js: &str, offset: usize, name: &str) -> Result<String, DeobfErr
             .filter(|m| !fn_range.contains(&m.start()) && !fn_range.contains(&m.end()))
             .find_map(|m| extract_js_var(&js[m.start()..]));
         if let Some(var_code) = found_variable {
-            let ctx = quick_js::Context::new()
-                .or(Err(DeobfError::Other("could not create QuickJS rt")))?;
-            if let Err(e) = ctx.eval(var_code) {
+            let ctx = Context::full(&rt)?;
+            let var_code = format!("var {var_code};");
+            if let Err(e) = ctx.with(|ctx| ctx.eval::<(), _>(var_code.as_bytes())) {
                 tracing::warn!("invalid var ({e}): {var_code}");
                 code = format!("var {ident}={{}}; {code}");
             } else {
-                code = format!("var {var_code}; {code}");
+                code = format!("{var_code} {code}");
             }
         }
     }
@@ -362,15 +369,21 @@ fn extract_js_var(js: &str) -> Option<&str> {
     }
 }
 
+fn call_fn(ctx: &rquickjs::Ctx, fn_name: &str, arg: &str) -> Result<String, rquickjs::Error> {
+    let f: rquickjs::Function = ctx.globals().get(fn_name)?;
+    f.call((arg,))
+}
+
 /// Verify if the deobfuscation function successfully processes a random input string
 fn verify_fn(js_fn: &str, fn_name: &str) -> Result<(), DeobfError> {
-    let ctx = quick_js::Context::new().or(Err(DeobfError::Other("could not create QuickJS rt")))?;
-    ctx.eval(js_fn)?;
+    let rt = Runtime::new()?;
+    let ctx = Context::full(&rt)?;
     let testinp = util::generate_content_playback_nonce();
-    let res = ctx
-        .call_function(fn_name, [testinp.to_owned()])?
-        .into_string()
-        .ok_or(DeobfError::Other("deobfuscation fn returned no string"))?;
+    let res = ctx.with(|ctx| {
+        ctx.eval::<(), _>(js_fn)?;
+        call_fn(&ctx, fn_name, &testinp)
+    })?;
+
     if res.is_empty() {
         return Err(DeobfError::Other("deobfuscation fn returned empty string"));
     }
