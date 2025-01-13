@@ -10,7 +10,6 @@ use std::{
     cmp::Ordering,
     ffi::OsString,
     ops::Range,
-    os::unix::fs::MetadataExt,
     path::{Path, PathBuf},
     sync::Arc,
     time::Duration,
@@ -1269,7 +1268,7 @@ async fn download_single_file(
     if let Err(e) = res {
         // Remove temporary file if nothing was downloaded (e.g. 403 error)
         if std::fs::metadata(&output_path_tmp)
-            .map(|md| md.size() == 0)
+            .map(|md| md.len() == 0)
             .unwrap_or_default()
         {
             _ = std::fs::remove_file(&output_path_tmp);
