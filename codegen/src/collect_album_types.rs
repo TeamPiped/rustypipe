@@ -7,22 +7,35 @@ use rustypipe::{
     model::AlbumType,
     param::{Language, LANGUAGES},
 };
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
+use serde_with::rust::deserialize_ignore_any;
 
 use crate::{
-    model::{QBrowse, TextRuns},
+    model::{ContentsRenderer, QBrowse, SectionList, Tab, TextRuns},
     util::{self, DICT_DIR},
 };
+
+#[derive(Debug, Copy, Clone, Serialize, Deserialize, PartialEq, Eq, PartialOrd, Ord)]
+#[serde(rename_all = "snake_case")]
+enum AlbumTypeX {
+    Album,
+    Ep,
+    Single,
+    Audiobook,
+    Show,
+    AlbumRow,
+    SingleRow,
+}
 
 pub async fn collect_album_types(concurrency: usize) {
     let json_path = path!(*DICT_DIR / "album_type_samples.json");
 
     let album_types = [
-        (AlbumType::Album, "MPREb_nlBWQROfvjo"),
-        (AlbumType::Single, "MPREb_bHfHGoy7vuv"),
-        (AlbumType::Ep, "MPREb_u1I69lSAe5v"),
-        (AlbumType::Audiobook, "MPREb_gaoNzsQHedo"),
-        (AlbumType::Show, "MPREb_cwzk8EUwypZ"),
+        (AlbumTypeX::Album, "MPREb_nlBWQROfvjo"),
+        (AlbumTypeX::Single, "MPREb_bHfHGoy7vuv"),
+        (AlbumTypeX::Ep, "MPREb_u1I69lSAe5v"),
+        (AlbumTypeX::Audiobook, "MPREb_gaoNzsQHedo"),
+        (AlbumTypeX::Show, "MPREb_cwzk8EUwypZ"),
     ];
 
     let rp = RustyPipe::new();
@@ -32,13 +45,29 @@ pub async fn collect_album_types(concurrency: usize) {
             let rp = rp.clone();
             async move {
                 let query = rp.query().lang(lang);
-                let mut data: BTreeMap<AlbumType, String> = BTreeMap::new();
+                let mut data: BTreeMap<AlbumTypeX, String> = BTreeMap::new();
 
                 for (album_type, id) in album_types {
                     let atype_txt = get_album_type(&query, id).await;
                     println!("collected {}-{:?} ({})", lang, album_type, &atype_txt);
                     data.insert(album_type, atype_txt);
                 }
+
+                let (albums_txt, singles_txt) = get_album_groups(&query).await;
+                println!(
+                    "collected {}-{:?} ({})",
+                    lang,
+                    AlbumTypeX::AlbumRow,
+                    &albums_txt
+                );
+                println!(
+                    "collected {}-{:?} ({})",
+                    lang,
+                    AlbumTypeX::SingleRow,
+                    &singles_txt
+                );
+                data.insert(AlbumTypeX::AlbumRow, albums_txt);
+                data.insert(AlbumTypeX::SingleRow, singles_txt);
 
                 (lang, data)
             }
@@ -55,7 +84,7 @@ pub fn write_samples_to_dict() {
     let json_path = path!(*DICT_DIR / "album_type_samples.json");
 
     let json_file = File::open(json_path).unwrap();
-    let collected: BTreeMap<Language, BTreeMap<AlbumType, String>> =
+    let collected: BTreeMap<Language, BTreeMap<String, String>> =
         serde_json::from_reader(BufReader::new(json_file)).unwrap();
     let mut dict = util::read_dict();
     let langs = dict.keys().copied().collect::<Vec<_>>();
@@ -67,10 +96,12 @@ pub fn write_samples_to_dict() {
         e_langs.push(lang);
 
         for lang in &e_langs {
-            collected.get(lang).unwrap().iter().for_each(|(t, v)| {
+            collected.get(lang).unwrap().iter().for_each(|(t_str, v)| {
+                let t =
+                    serde_plain::from_str::<AlbumType>(t_str.split('_').next().unwrap()).unwrap();
                 dict_entry
                     .album_types
-                    .insert(v.to_lowercase().trim().to_owned(), *t);
+                    .insert(v.to_lowercase().trim().to_owned(), t);
             });
         }
     }
@@ -80,13 +111,19 @@ pub fn write_samples_to_dict() {
 
 #[derive(Debug, Deserialize)]
 struct AlbumData {
-    header: Header,
+    contents: AlbumContents,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-struct Header {
-    music_detail_header_renderer: HeaderRenderer,
+struct AlbumContents {
+    two_column_browse_results_renderer: ContentsRenderer<Tab<SectionList<AlbumHeader>>>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct AlbumHeader {
+    music_responsive_header_renderer: HeaderRenderer,
 }
 
 #[derive(Debug, Deserialize)]
@@ -106,12 +143,105 @@ async fn get_album_type(query: &RustyPipeQuery, id: &str) -> String {
     let album = serde_json::from_str::<AlbumData>(&response_txt).unwrap();
 
     album
-        .header
-        .music_detail_header_renderer
+        .contents
+        .two_column_browse_results_renderer
+        .contents
+        .into_iter()
+        .next()
+        .unwrap()
+        .tab_renderer
+        .content
+        .section_list_renderer
+        .contents
+        .into_iter()
+        .next()
+        .unwrap()
+        .music_responsive_header_renderer
         .subtitle
         .runs
         .into_iter()
         .next()
         .unwrap()
         .text
+}
+
+async fn get_album_groups(query: &RustyPipeQuery) -> (String, String) {
+    let body = QBrowse {
+        browse_id: "UCOR4_bSVIXPsGa4BbCSt60Q",
+        params: None,
+    };
+    let response_txt = query
+        .clone()
+        .visitor_data("CgtwbzJZcS1XZWc1QSjM2JG8BjIKCgJERRIEEgAgCw%3D%3D")
+        .raw(ClientType::DesktopMusic, "browse", &body)
+        .await
+        .unwrap();
+    let artist = serde_json::from_str::<ArtistData>(&response_txt).unwrap();
+
+    let sections = artist
+        .contents
+        .single_column_browse_results_renderer
+        .contents
+        .into_iter()
+        .next()
+        .map(|c| c.tab_renderer.content.section_list_renderer.contents)
+        .unwrap();
+    let titles = sections
+        .into_iter()
+        .filter_map(|s| {
+            if let ItemSection::MusicCarouselShelfRenderer(r) = s {
+                r.header
+            } else {
+                None
+            }
+        })
+        .map(|h| {
+            h.music_carousel_shelf_basic_header_renderer
+                .title
+                .runs
+                .into_iter()
+                .next()
+                .unwrap()
+                .text
+        })
+        .collect::<Vec<_>>();
+    assert!(titles.len() >= 2, "too few sections");
+
+    let mut titles_it = titles.into_iter();
+    (titles_it.next().unwrap(), titles_it.next().unwrap())
+}
+
+#[derive(Debug, Deserialize)]
+struct ArtistData {
+    contents: ArtistDataContents,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct ArtistDataContents {
+    single_column_browse_results_renderer: ContentsRenderer<Tab<SectionList<ItemSection>>>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+enum ItemSection {
+    MusicCarouselShelfRenderer(MusicCarouselShelf),
+    #[serde(other, deserialize_with = "deserialize_ignore_any")]
+    None,
+}
+
+#[derive(Debug, Deserialize)]
+struct MusicCarouselShelf {
+    header: Option<MusicCarouselShelfHeader>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+struct MusicCarouselShelfHeader {
+    music_carousel_shelf_basic_header_renderer: MusicCarouselShelfHeaderRenderer,
+}
+
+#[derive(Debug, Deserialize)]
+struct MusicCarouselShelfHeaderRenderer {
+    title: TextRuns,
 }

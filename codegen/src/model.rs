@@ -145,7 +145,7 @@ pub struct Text {
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Channel {
-    pub contents: Contents,
+    pub contents: TwoColumnBrowseResults,
     pub header: ChannelHeader,
 }
 
@@ -163,7 +163,7 @@ pub struct HeaderRenderer {
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct Contents {
+pub struct TwoColumnBrowseResults {
     pub two_column_browse_results_renderer: TabsRenderer,
 }
 
@@ -172,24 +172,37 @@ pub struct Contents {
 #[serde(rename_all = "camelCase")]
 pub struct TabsRenderer {
     #[serde_as(as = "VecSkipError<_>")]
-    pub tabs: Vec<TabRendererWrap>,
+    pub tabs: Vec<Tab<RichGrid>>,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct TabRendererWrap {
-    pub tab_renderer: TabRenderer,
+pub struct ContentsRenderer<T> {
+    #[serde(alias = "tabs")]
+    pub contents: Vec<T>,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct TabRenderer {
-    pub content: RichGridRendererWrap,
+pub struct Tab<T> {
+    pub tab_renderer: TabRenderer<T>,
 }
 
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct RichGridRendererWrap {
+pub struct TabRenderer<T> {
+    pub content: T,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub(crate) struct SectionList<T> {
+    pub section_list_renderer: ContentsRenderer<T>,
+}
+
+#[derive(Debug, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct RichGrid {
     pub rich_grid_renderer: RichGridRenderer,
 }
 

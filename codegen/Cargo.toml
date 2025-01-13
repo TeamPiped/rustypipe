@@ -15,6 +15,7 @@ tokio = { workspace = true, features = ["rt-multi-thread"] }
 futures-util.workspace = true
 serde.workspace = true
 serde_json.workspace = true
+serde_plain.workspace = true
 serde_with.workspace = true
 once_cell.workspace = true
 regex.workspace = true

@@ -21,7 +21,6 @@ use super::{
     ContentsRenderer, MusicContinuationData, SimpleHeaderRenderer, Thumbnails, ThumbnailsWrap,
 };
 
-#[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) enum ItemSection {
@@ -429,6 +428,8 @@ pub(crate) struct MusicListMapper {
     /// Artists list + various artists flag
     artists: Option<(Vec<ArtistId>, bool)>,
     album: Option<AlbumId>,
+    /// Default album type in case an album is unlabeled
+    pub album_type: AlbumType,
     artist_page: bool,
     search_suggestion: bool,
     items: Vec<MusicItem>,
@@ -449,6 +450,7 @@ impl MusicListMapper {
             lang,
             artists: None,
             album: None,
+            album_type: AlbumType::Single,
             artist_page: false,
             search_suggestion: false,
             items: Vec::new(),
@@ -461,6 +463,7 @@ impl MusicListMapper {
             lang,
             artists: None,
             album: None,
+            album_type: AlbumType::Single,
             artist_page: false,
             search_suggestion: true,
             items: Vec::new(),
@@ -474,6 +477,7 @@ impl MusicListMapper {
             lang,
             artists: Some((vec![artist], false)),
             album: None,
+            album_type: AlbumType::Single,
             artist_page: true,
             search_suggestion: false,
             items: Vec::new(),
@@ -487,6 +491,7 @@ impl MusicListMapper {
             lang,
             artists: Some((artists, by_va)),
             album: Some(album),
+            album_type: AlbumType::Single,
             artist_page: false,
             search_suggestion: false,
             items: Vec::new(),
@@ -950,7 +955,7 @@ impl MusicListMapper {
                 }
                 MusicPageType::Album => {
                     let mut year = None;
-                    let mut album_type = AlbumType::Single;
+                    let mut album_type = self.album_type;
 
                     let (artists, by_va) =
                         match (subtitle_p1, subtitle_p2, &self.artists, self.artist_page) {
@@ -1397,13 +1402,18 @@ mod tests {
     fn map_album_type_samples() {
         let json_path = path!(*TESTFILES / "dict" / "album_type_samples.json");
         let json_file = File::open(json_path).unwrap();
-        let atype_samples: BTreeMap<Language, BTreeMap<AlbumType, String>> =
+        let atype_samples: BTreeMap<Language, BTreeMap<String, String>> =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
 
         for (lang, entry) in &atype_samples {
-            for (album_type, txt) in entry {
+            for (album_type_str, txt) in entry {
+                let album_type_n = album_type_str.split('_').next().unwrap();
+                let album_type = serde_plain::from_str::<AlbumType>(album_type_n).unwrap();
                 let res = map_album_type(txt, *lang);
-                assert_eq!(res, *album_type, "lang: {lang}, txt: {txt}");
+                assert_eq!(
+                    res, album_type,
+                    "{album_type_str}: lang: {lang}, txt: {txt}"
+                );
             }
         }
     }

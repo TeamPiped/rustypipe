@@ -1,0 +1,943 @@
+---
+source: src/client/music_artist.rs
+expression: artist
+---
+MusicArtist(
+  id: "UCOR4_bSVIXPsGa4BbCSt60Q",
+  name: "Trailerpark",
+  header_image: [
+    Thumbnail(
+      url: "https://lh3.googleusercontent.com/II101BviJo-tGcGg1KKWSU8D3EZjALHQMbQ4v-7-hP4Zfk1pBESaTCLcz8eQb-hggzxq4Z1MuFkBeRE=w540-h225-p-l90-rj",
+      width: 540,
+      height: 225,
+    ),
+    Thumbnail(
+      url: "https://lh3.googleusercontent.com/II101BviJo-tGcGg1KKWSU8D3EZjALHQMbQ4v-7-hP4Zfk1pBESaTCLcz8eQb-hggzxq4Z1MuFkBeRE=w721-h300-p-l90-rj",
+      width: 721,
+      height: 300,
+    ),
+  ],
+  description: None,
+  wikipedia_url: None,
+  subscriber_count: Some(270000),
+  tracks: [
+    TrackItem(
+      id: "YvidasjVLXk",
+      name: "Bleib in der Schule",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/V_tvMqbuXgDgoAKuYZ-VFRru3cUb2WQvwO6vVBKY8pdFYAl1dkuIv_W2afjMUNN6uVNxet6r7mHISh0s=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/V_tvMqbuXgDgoAKuYZ-VFRru3cUb2WQvwO6vVBKY8pdFYAl1dkuIv_W2afjMUNN6uVNxet6r7mHISh0s=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+          name: "Trailerpark",
+        ),
+      ],
+      artist_id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+      album: Some(AlbumId(
+        id: "MPREb_8PsIyll0LFV",
+        name: "Bleib in der Schule",
+      )),
+      view_count: Some(71000000),
+      track_type: track,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "h3T_NXRUUjM",
+      name: "Fledermausland",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/1fPBoTszY4e6Nf8egSwBTHWsQT8hotwhDnjArd1SHS8gZc5asCoo_3Z2WhN1IO2KMqyYly0xm7mMZ43d=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/1fPBoTszY4e6Nf8egSwBTHWsQT8hotwhDnjArd1SHS8gZc5asCoo_3Z2WhN1IO2KMqyYly0xm7mMZ43d=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+          name: "Trailerpark",
+        ),
+      ],
+      artist_id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+      album: Some(AlbumId(
+        id: "MPREb_POeT6m0bw9q",
+        name: "Crackstreet Boys II X Version",
+      )),
+      view_count: Some(30000000),
+      track_type: track,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "XZfoFwWvkGQ",
+      name: "Sterben kannst du überall",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/eQCwnR4YLYnizEhQKeSDDE3rulSTo64cTfs8fxR1K-3iWUfC477SHV0ZOOoQa2vJuvr_9i_WDYI-wbo=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/eQCwnR4YLYnizEhQKeSDDE3rulSTo64cTfs8fxR1K-3iWUfC477SHV0ZOOoQa2vJuvr_9i_WDYI-wbo=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+          name: "Trailerpark",
+        ),
+      ],
+      artist_id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+      album: Some(AlbumId(
+        id: "MPREb_UYdRV1nnK2J",
+        name: "TP4L",
+      )),
+      view_count: Some(40000000),
+      track_type: track,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "LOuVxwVFJhs",
+      name: "Selbstbefriedigung",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/1fPBoTszY4e6Nf8egSwBTHWsQT8hotwhDnjArd1SHS8gZc5asCoo_3Z2WhN1IO2KMqyYly0xm7mMZ43d=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/1fPBoTszY4e6Nf8egSwBTHWsQT8hotwhDnjArd1SHS8gZc5asCoo_3Z2WhN1IO2KMqyYly0xm7mMZ43d=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+          name: "Trailerpark",
+        ),
+      ],
+      artist_id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+      album: Some(AlbumId(
+        id: "MPREb_POeT6m0bw9q",
+        name: "Crackstreet Boys II X Version",
+      )),
+      view_count: Some(13000000),
+      track_type: track,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "GePZUYeIQQQ",
+      name: "Falsche Band",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/MIuap-H2LxqP5O7Dry1LdShBFBbg5YTjIPjuXOHWyrKlmnOogsO5cTk6yXH97DhI3WjZg0z3y-jkQxaM=w60-h60-l90-rj",
+          width: 60,
+          height: 60,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/MIuap-H2LxqP5O7Dry1LdShBFBbg5YTjIPjuXOHWyrKlmnOogsO5cTk6yXH97DhI3WjZg0z3y-jkQxaM=w120-h120-l90-rj",
+          width: 120,
+          height: 120,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+          name: "Trailerpark",
+        ),
+      ],
+      artist_id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+      album: Some(AlbumId(
+        id: "MPREb_bi34SGT1xlc",
+        name: "Crackstreet Boys 3 (Bonus Tracks Version)",
+      )),
+      view_count: Some(13000000),
+      track_type: track,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "0mcING0Zdis",
+      name: "Trailerpark - TP4L (Live Abschiedskonzert)",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/0mcING0Zdis/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3k5JY0WRBeKNaotfUYrpbObz1mceA",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/0mcING0Zdis/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3kinVfBJUF-SDFagYKazKmS_ad75w",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+          name: "Trailerpark",
+        ),
+      ],
+      artist_id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+      album: None,
+      view_count: Some(13000),
+      track_type: video,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "EAC-2ttHCyk",
+      name: "Fledermausland (Bonus Track)",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/EAC-2ttHCyk/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nlrgFTz_pwbBwXFbaASgklpX78vA",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/EAC-2ttHCyk/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3nHzhiahqhmIkZ0eUXD09BGak2MHQ",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+          name: "Trailerpark",
+        ),
+      ],
+      artist_id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+      album: None,
+      view_count: Some(25000000),
+      track_type: video,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "Bret5VaVzJk",
+      name: "New Kids on the Blech (Bonus Track)",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/Bret5VaVzJk/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nFa4qUxqJzCtxr-zPdzP15Ixvu-A",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/Bret5VaVzJk/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3l1hGZVAWUwaJQbZXmbRpcbsMdTeQ",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+          name: "Trailerpark",
+        ),
+      ],
+      artist_id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+      album: None,
+      view_count: Some(6900000),
+      track_type: video,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "EqP1_IcjW-s",
+      name: "Pimpulsiv  feat. DNP, Sudden & Dana - Wohnwagensiedlung",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/EqP1_IcjW-s/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3lIeltSLpA_XwwZzdJfHnNZ0vqBzA",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/EqP1_IcjW-s/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3nfiByY3RfcFYGfg92C5Vlkar0GJA",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+          name: "Trailerpark",
+        ),
+      ],
+      artist_id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+      album: None,
+      view_count: Some(7100000),
+      track_type: video,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "3EoF9Of98e4",
+      name: "Armut treibt Jugendliche in die Popmusik",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/3EoF9Of98e4/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3kvWHX-5mYREKEkf-CM3TLfjrLjlw",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/3EoF9Of98e4/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3lItzsg6wamh_xSdpoZxTWOHHLS-g",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+          name: "Trailerpark",
+        ),
+      ],
+      artist_id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+      album: None,
+      view_count: Some(5400000),
+      track_type: video,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "qr0eN_uIcTs",
+      name: "Bleib in der Schule (Live in Berlin)",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/qr0eN_uIcTs/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nspTbohIYzDFOjTg90KEmKecVVvg",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/qr0eN_uIcTs/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3n0SIeq4dPTPvbGv4STsTWNt24cig",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+          name: "Trailerpark",
+        ),
+      ],
+      artist_id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+      album: None,
+      view_count: Some(56000),
+      track_type: video,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "McgSyiug6XE",
+      name: "We Are Family",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/McgSyiug6XE/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3nxe3Xz99BVFg-VOra20J682me5JQ",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/McgSyiug6XE/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3lSGwKx_hnqYA-CkoLHapr1PiyX6w",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+          name: "Trailerpark",
+        ),
+        ArtistId(
+          id: Some("UC5HSrFHr6lMzwAyGjlClm0A"),
+          name: "Timi Hendrix",
+        ),
+      ],
+      artist_id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+      album: None,
+      view_count: Some(1800000),
+      track_type: video,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "ioZxvVhjFs8",
+      name: "Schlechter Tag",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/ioZxvVhjFs8/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3ltQmZbH1DF9nmho5HLGehqLSGzTw",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/ioZxvVhjFs8/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3lsluKPeCNxP7QoOCc24tZy4jsn7Q",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+          name: "Trailerpark",
+        ),
+      ],
+      artist_id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+      album: None,
+      view_count: Some(7100000),
+      track_type: video,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "3jyZJEcomkw",
+      name: "Timi Hendrix feat.  Alligatoah -  Schlaflos in Guantanamo ► prod. by Mantra",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/3jyZJEcomkw/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3k46-OFTCnpEJry_PNst1C11FPA1A",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/3jyZJEcomkw/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3kN1ryaQSy4M_Y9bQGh9S-tbYGqdg",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+          name: "Trailerpark",
+        ),
+      ],
+      artist_id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+      album: None,
+      view_count: Some(1500000),
+      track_type: video,
+      track_nr: None,
+      by_va: false,
+    ),
+    TrackItem(
+      id: "9oM-cflYhGk",
+      name: "Timi Hendrix - Kaiser von China (Official Video) 🐲",
+      duration: None,
+      cover: [
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/9oM-cflYhGk/sddefault.jpg?sqp=-oaymwEWCJADEOEBIAQqCghqEJQEGHgg6AJIWg&rs=AMzJL3m6MksfA1NWyIMv6cTk03J21pA0NQ",
+          width: 400,
+          height: 225,
+        ),
+        Thumbnail(
+          url: "https://i.ytimg.com/vi/9oM-cflYhGk/hq720.jpg?sqp=-oaymwEXCKAGEMIDIAQqCwjVARCqCBh4INgESFo&rs=AMzJL3n7oy_XobzQBkUVxEx08iSKNPIB0Q",
+          width: 800,
+          height: 450,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+          name: "Trailerpark",
+        ),
+      ],
+      artist_id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+      album: None,
+      view_count: Some(1100000),
+      track_type: video,
+      track_nr: None,
+      by_va: false,
+    ),
+  ],
+  albums: [
+    AlbumItem(
+      id: "MPREb_UYdRV1nnK2J",
+      name: "TP4L",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/eQCwnR4YLYnizEhQKeSDDE3rulSTo64cTfs8fxR1K-3iWUfC477SHV0ZOOoQa2vJuvr_9i_WDYI-wbo=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/eQCwnR4YLYnizEhQKeSDDE3rulSTo64cTfs8fxR1K-3iWUfC477SHV0ZOOoQa2vJuvr_9i_WDYI-wbo=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+          name: "Trailerpark",
+        ),
+      ],
+      artist_id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+      album_type: album,
+      year: Some(2017),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_bi34SGT1xlc",
+      name: "Crackstreet Boys 3 (Bonus Tracks Version)",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/MIuap-H2LxqP5O7Dry1LdShBFBbg5YTjIPjuXOHWyrKlmnOogsO5cTk6yXH97DhI3WjZg0z3y-jkQxaM=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/MIuap-H2LxqP5O7Dry1LdShBFBbg5YTjIPjuXOHWyrKlmnOogsO5cTk6yXH97DhI3WjZg0z3y-jkQxaM=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+          name: "Trailerpark",
+        ),
+      ],
+      artist_id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+      album_type: album,
+      year: Some(2014),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_5gkbwhqC4AJ",
+      name: "Goldener Schluss (Live in Berlin)",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/ilzR9UxpZFwHZnYOL0L504H6a0Y8k_zPk0AYOhBiBqIjq4TGnX-B1uKcNah56dmjPZoDvp9vGWyfgY8=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/ilzR9UxpZFwHZnYOL0L504H6a0Y8k_zPk0AYOhBiBqIjq4TGnX-B1uKcNah56dmjPZoDvp9vGWyfgY8=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+          name: "Trailerpark",
+        ),
+      ],
+      artist_id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+      album_type: album,
+      year: Some(2024),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_HPXN9BBzFpV",
+      name: "TP4L",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/8Ftr5oIt1q6RbGkdiW7cefw-XGUplUXcjXXN7QntI1Nzh_6oR0euh7Lj2Ner3yXV--U-hVxJewkeq8A=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/8Ftr5oIt1q6RbGkdiW7cefw-XGUplUXcjXXN7QntI1Nzh_6oR0euh7Lj2Ner3yXV--U-hVxJewkeq8A=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+          name: "Trailerpark",
+        ),
+      ],
+      artist_id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+      album_type: single,
+      year: Some(2017),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_hcK0fXETEf9",
+      name: "Endlich normale Leute",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/MW37LppS1rjDQIl5GaG0BxKeWk5fs4xphr6rU0z-KmJiHbvMbA3K5ZzrA9avinP2LjNrDGwB5tSLLsqe=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/MW37LppS1rjDQIl5GaG0BxKeWk5fs4xphr6rU0z-KmJiHbvMbA3K5ZzrA9avinP2LjNrDGwB5tSLLsqe=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+          name: "Trailerpark",
+        ),
+      ],
+      artist_id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+      album_type: single,
+      year: Some(2017),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_R6EV2L1q0oc",
+      name: "Armut treibt Jugendliche in die Popmusik",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/kqKBF4JPQhKY1099AzRpJFGc2P7TFuFa2GeM7z8GGfTJ_DkfAzKTdV8gPtfVkyA5HQ0uZn3XG-VtMVj0=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/kqKBF4JPQhKY1099AzRpJFGc2P7TFuFa2GeM7z8GGfTJ_DkfAzKTdV8gPtfVkyA5HQ0uZn3XG-VtMVj0=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+          name: "Trailerpark",
+        ),
+      ],
+      artist_id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+      album_type: single,
+      year: Some(2017),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_oHieBHkXn3A",
+      name: "Dicks Sucken",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/IVvdOUgbTECe2cVKrwhhCYmhHuipV6p0t5cLqMYWm3E_23zBEABxodGiSuX3H_AxRcEZk2-4V-k3RZw6=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/IVvdOUgbTECe2cVKrwhhCYmhHuipV6p0t5cLqMYWm3E_23zBEABxodGiSuX3H_AxRcEZk2-4V-k3RZw6=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+          name: "Trailerpark",
+        ),
+      ],
+      artist_id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+      album_type: single,
+      year: Some(2014),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_8PsIyll0LFV",
+      name: "Bleib in der Schule",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/V_tvMqbuXgDgoAKuYZ-VFRru3cUb2WQvwO6vVBKY8pdFYAl1dkuIv_W2afjMUNN6uVNxet6r7mHISh0s=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/V_tvMqbuXgDgoAKuYZ-VFRru3cUb2WQvwO6vVBKY8pdFYAl1dkuIv_W2afjMUNN6uVNxet6r7mHISh0s=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+          name: "Trailerpark",
+        ),
+      ],
+      artist_id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+      album_type: single,
+      year: Some(2014),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_POeT6m0bw9q",
+      name: "Crackstreet Boys II X Version",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/1fPBoTszY4e6Nf8egSwBTHWsQT8hotwhDnjArd1SHS8gZc5asCoo_3Z2WhN1IO2KMqyYly0xm7mMZ43d=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/1fPBoTszY4e6Nf8egSwBTHWsQT8hotwhDnjArd1SHS8gZc5asCoo_3Z2WhN1IO2KMqyYly0xm7mMZ43d=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+          name: "Trailerpark",
+        ),
+      ],
+      artist_id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+      album_type: ep,
+      year: Some(2014),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_tdFqP579jQz",
+      name: "Bleib in der Schule (Live in Berlin)",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/VNjspSA1Fm0yFJEKUCuetOziiET6sQG9QXQCiydknEny98Lc_MEmUp8e37FtCbDz1bQ6yvM6AqpsvL0=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/VNjspSA1Fm0yFJEKUCuetOziiET6sQG9QXQCiydknEny98Lc_MEmUp8e37FtCbDz1bQ6yvM6AqpsvL0=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+          name: "Trailerpark",
+        ),
+      ],
+      artist_id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+      album_type: single,
+      year: Some(2024),
+      by_va: false,
+    ),
+    AlbumItem(
+      id: "MPREb_kLvmX2AzYBL",
+      name: "Bleib in der Schule (Live at Wacken 2019)",
+      cover: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/dV3PCeAdRQgLOuSUdIfA4q8jVgNwSoTceeK085ZOCzEe6YBm5c9gNIvO8wGM_K2NKpip-8-PxJtWEPJo=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/dV3PCeAdRQgLOuSUdIfA4q8jVgNwSoTceeK085ZOCzEe6YBm5c9gNIvO8wGM_K2NKpip-8-PxJtWEPJo=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      artists: [
+        ArtistId(
+          id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+          name: "Trailerpark",
+        ),
+      ],
+      artist_id: Some("UCOR4_bSVIXPsGa4BbCSt60Q"),
+      album_type: single,
+      year: Some(2014),
+      by_va: false,
+    ),
+  ],
+  playlists: [],
+  similar_artists: [
+    ArtistItem(
+      id: "UCVRREKn7V1Cb8qvf43dwZ6w",
+      name: "257ers",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/yPjiQ4ZVblOXbft1Yo2jd3uJXKJDuSWOP1MCAG6kTIwYqTWsOKRbZBnPhW4gjzvvVll7yVtjbu3e3Q=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/yPjiQ4ZVblOXbft1Yo2jd3uJXKJDuSWOP1MCAG6kTIwYqTWsOKRbZBnPhW4gjzvvVll7yVtjbu3e3Q=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(67300),
+    ),
+    ArtistItem(
+      id: "UCuNyvmBfTzQZmWI2rsVX3QQ",
+      name: "Alligatoah",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/ffIVPiIldrcfp9UEoAbDid6fnAOajn_kgI4OisFoFhK28rk3HVdpYfe2h27T3d_hHfNR943PPSOhHw=w226-h226-p-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/ffIVPiIldrcfp9UEoAbDid6fnAOajn_kgI4OisFoFhK28rk3HVdpYfe2h27T3d_hHfNR943PPSOhHw=w544-h544-p-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(779000),
+    ),
+    ArtistItem(
+      id: "UCO04sIqN7F4ff2-1ycVZSgQ",
+      name: "Sudden",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/TEdMt2cE-UCbnjm6AJtyasWv9-a3LFpdmh2X6w3iBwIMATHUtYIQ_F0cJ30vL5m6uJkqL3qFvNYLpYrN=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/TEdMt2cE-UCbnjm6AJtyasWv9-a3LFpdmh2X6w3iBwIMATHUtYIQ_F0cJ30vL5m6uJkqL3qFvNYLpYrN=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(3660),
+    ),
+    ArtistItem(
+      id: "UC5k_3LEPSGchsGEGpqoF6dg",
+      name: "K.I.Z",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/PVaIRDAgRRyLMuFp7OTS7h3HEMoY9ejKxt7GLgfgi6aFt3bP-Edb1YU5t1IlGN0Z-qcrb86qspETNoI=w226-h226-p-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/PVaIRDAgRRyLMuFp7OTS7h3HEMoY9ejKxt7GLgfgi6aFt3bP-Edb1YU5t1IlGN0Z-qcrb86qspETNoI=w544-h544-p-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(522000),
+    ),
+    ArtistItem(
+      id: "UCG8K_22LRSRwqhoJXBWGmbA",
+      name: "FiNCH",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/cofqKPsHr5dzuLexkKAYQF3vVMkKTT2FuZgIMXs6XIO3J8diK29qqfKQkqrga8NOCmwVl7x-w4z3mQ=w226-h226-p-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/cofqKPsHr5dzuLexkKAYQF3vVMkKTT2FuZgIMXs6XIO3J8diK29qqfKQkqrga8NOCmwVl7x-w4z3mQ=w544-h544-p-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(533000),
+    ),
+    ArtistItem(
+      id: "UC5HSrFHr6lMzwAyGjlClm0A",
+      name: "Timi Hendrix",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/1yi83YgKDBSQ0rgsA2GuZRa0rBABPR2BH41DsuCfGMRmLdF9oR7vv7T6QGLbhNP8FfX6qVHUQci4YM8=w226-h226-p-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/1yi83YgKDBSQ0rgsA2GuZRa0rBABPR2BH41DsuCfGMRmLdF9oR7vv7T6QGLbhNP8FfX6qVHUQci4YM8=w544-h544-p-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(6410),
+    ),
+    ArtistItem(
+      id: "UC9izv9vxcTVKA1IibcGTrNA",
+      name: "Pimpulsiv",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/QXuirXSQsdO1KUZCz-ZX-kRVSorZxIUC4YrxQD0IeSr1mY-42VwvAjf4TTownRVzm-02-U8kLM3VuETf9w=w226-h226-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/QXuirXSQsdO1KUZCz-ZX-kRVSorZxIUC4YrxQD0IeSr1mY-42VwvAjf4TTownRVzm-02-U8kLM3VuETf9w=w544-h544-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(985),
+    ),
+    ArtistItem(
+      id: "UCgosMU69MpoCqhuS1JZj6Cw",
+      name: "Sido",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/HZpnexwxNS5FkIrpz6hdHZuNhBS-GKjs0C9NU8nDSTmHFlPaviqxV-dDLS_ubSEbpEvu0m2P2WT3kaQ=w226-h226-p-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/HZpnexwxNS5FkIrpz6hdHZuNhBS-GKjs0C9NU8nDSTmHFlPaviqxV-dDLS_ubSEbpEvu0m2P2WT3kaQ=w544-h544-p-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(1550000),
+    ),
+    ArtistItem(
+      id: "UCAiLb3B6iCjxv7HhPf1S4ag",
+      name: "Marteria",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/Ms5gYOttabL03qfFYx7SNhRsx-K_Y7hxMN0WXgc7iquYAfLV5cgYZfTBn3nsi0_sN5BaqAaIr1z5iGc=w226-h226-p-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/Ms5gYOttabL03qfFYx7SNhRsx-K_Y7hxMN0WXgc7iquYAfLV5cgYZfTBn3nsi0_sN5BaqAaIr1z5iGc=w544-h544-p-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(422000),
+    ),
+    ArtistItem(
+      id: "UCtoec88rzlhABHeo_4d-H8g",
+      name: "Dame",
+      avatar: [
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/lkbE9cB4qTxtRmzkjAaLEHrpIgeCOzeBXaL4BpBRq6wp4PlCoSIFej3ita3du8lqniIA67NRYfsVwuFj=w226-h226-p-l90-rj",
+          width: 226,
+          height: 226,
+        ),
+        Thumbnail(
+          url: "https://lh3.googleusercontent.com/lkbE9cB4qTxtRmzkjAaLEHrpIgeCOzeBXaL4BpBRq6wp4PlCoSIFej3ita3du8lqniIA67NRYfsVwuFj=w544-h544-p-l90-rj",
+          width: 544,
+          height: 544,
+        ),
+      ],
+      subscriber_count: Some(37700),
+    ),
+  ],
+  tracks_playlist_id: Some("OLAK5uy_miHesZCUQY5S9EwqfoNP2tZR9nZ0NBAeU"),
+  videos_playlist_id: Some("OLAK5uy_mqbgE6T9uvusUWrAxJGiImf4_P4dM7IvQ"),
+  radio_id: Some("RDEM7AbogW0cCnElSU0WYm1GqA"),
+)

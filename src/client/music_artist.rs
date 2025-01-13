@@ -5,10 +5,14 @@ use regex::Regex;
 use tracing::debug;
 
 use crate::{
-    client::{response::url_endpoint::NavigationEndpoint, MapRespOptions, QContinuation},
+    client::{
+        response::{music_item::map_album_type, url_endpoint::NavigationEndpoint},
+        MapRespOptions, QContinuation,
+    },
     error::{Error, ExtractionError},
     model::{
-        paginator::Paginator, traits::FromYtItem, AlbumItem, ArtistId, MusicArtist, MusicItem,
+        paginator::Paginator, traits::FromYtItem, AlbumItem, AlbumType, ArtistId, MusicArtist,
+        MusicItem,
     },
     param::{AlbumFilter, AlbumOrder},
     serializer::MapResult,
@@ -175,8 +179,7 @@ fn map_artist_page(
         .contents
         .into_iter()
         .next()
-        .and_then(|tab| tab.tab_renderer.content)
-        .map(|c| c.section_list_renderer.contents)
+        .map(|c| c.tab_renderer.content.section_list_renderer.contents)
         .unwrap_or_default();
 
     let mut mapper = MusicListMapper::with_artist(
@@ -207,11 +210,12 @@ fn map_artist_page(
                         }
                     }
                 }
-
+                mapper.album_type = AlbumType::Single;
                 mapper.map_response(shelf.contents);
             }
             response::music_item::ItemSection::MusicCarouselShelfRenderer(shelf) => {
                 let mut extendable_albums = false;
+                mapper.album_type = AlbumType::Single;
                 if let Some(h) = shelf.header {
                     if let Some(button) = h
                         .music_carousel_shelf_basic_header_renderer
@@ -250,6 +254,12 @@ fn map_artist_page(
                             }
                         }
                     }
+                    mapper.album_type = map_album_type(
+                        h.music_carousel_shelf_basic_header_renderer
+                            .title
+                            .first_str(),
+                        ctx.lang,
+                    );
                 }
 
                 if !skip_extendables || !extendable_albums {
@@ -415,6 +425,7 @@ mod tests {
     #[case::only_singles("only_singles", "UCfwCE5VhPMGxNPFxtVv7lRw")]
     #[case::no_artist("no_artist", "UCh8gHdtzO2tXd593_bjErWg")]
     #[case::only_more_singles("only_more_singles", "UC0aXrjVxG5pZr99v77wZdPQ")]
+    #[case::grouped_albums("20250113_grouped_albums", "UCOR4_bSVIXPsGa4BbCSt60Q")]
     fn map_music_artist(#[case] name: &str, #[case] id: &str) {
         let json_path = path!(*TESTFILES / "music_artist" / format!("artist_{name}.json"));
         let json_file = File::open(json_path).unwrap();

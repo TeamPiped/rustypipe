@@ -1024,3 +1024,15 @@ commandContext missing).
   }
 }
 ```
+
+## [19] Music artist album groups reordered
+
+- **Encountered on:** 13.01.2025
+- **Impact:** 🟢 Low
+- **Endpoint:** browse (YTM)
+- **Status:** Common (10%)
+
+YouTube Music used to group artist albums into 2 rows: "Albums" and "Singles".
+
+These groups were changed into "Albums" and "Singles & EPs". Now the "Album" label is omitted
+for albums in their group, while singles and EPs have a label with their type.

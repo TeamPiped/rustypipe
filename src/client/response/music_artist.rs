@@ -14,7 +14,7 @@ use super::{
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct MusicArtist {
-    pub contents: SingleColumnBrowseResult<Tab<Option<SectionList<ItemSection>>>>,
+    pub contents: SingleColumnBrowseResult<Tab<SectionList<ItemSection>>>,
     pub header: Header,
 }
 
