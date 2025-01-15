@@ -9,6 +9,7 @@ mod stream_filter;
 pub mod search_filter;
 
 pub use locale::{Country, Language, COUNTRIES, LANGUAGES};
+pub(crate) use stream_filter::cmp_bitrate;
 pub use stream_filter::StreamFilter;
 
 /// Channel video tab

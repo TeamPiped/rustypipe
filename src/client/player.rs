@@ -796,6 +796,10 @@ fn get_audio_codec(codecs: Vec<&str>) -> AudioCodec {
             return AudioCodec::Mp4a;
         } else if codec.starts_with("opus") {
             return AudioCodec::Opus;
+        } else if codec.starts_with("ac-3") {
+            return AudioCodec::Ac3;
+        } else if codec.starts_with("ec-3") {
+            return AudioCodec::Ec3;
         }
     }
     AudioCodec::Unknown

@@ -1,8 +1,7 @@
 use std::cmp::Ordering;
 
-use crate::model::AudioCodec;
-
-use super::{AudioStream, VideoStream};
+use super::{AudioStream, AudioTrackType, VideoStream};
+use crate::param::cmp_bitrate;
 
 /// Trait for ordering YouTube video/audio streams by quality
 ///
@@ -16,28 +15,39 @@ pub trait QualityOrd {
 
 impl QualityOrd for VideoStream {
     fn quality_cmp(&self, other: &Self) -> Ordering {
-        match (self.width * self.height).cmp(&(other.width * other.height)) {
-            Ordering::Less => Ordering::Less,
-            Ordering::Greater => Ordering::Greater,
-            Ordering::Equal => match self.codec.cmp(&other.codec) {
-                Ordering::Less => Ordering::Less,
-                Ordering::Greater => Ordering::Greater,
-                Ordering::Equal => self.average_bitrate.cmp(&other.average_bitrate),
-            },
-        }
+        self.width
+            .min(self.height)
+            .cmp(&(other.width.min(other.height)))
+            .then_with(|| self.hdr.cmp(&other.hdr))
+            .then_with(|| self.fps.cmp(&other.fps))
+            .then_with(|| self.codec.cmp(&other.codec))
+            .then_with(|| self.average_bitrate.cmp(&other.average_bitrate))
     }
 }
 
 impl QualityOrd for AudioStream {
     fn quality_cmp(&self, other: &Self) -> Ordering {
-        fn cmp_bitrate(s: &AudioStream) -> u32 {
-            match s.codec {
-                // Opus is more efficient
-                AudioCodec::Opus => (s.average_bitrate as f32 * 1.3) as u32,
-                _ => s.average_bitrate,
-            }
-        }
-
-        cmp_bitrate(self).cmp(&cmp_bitrate(other))
+        self.track
+            .as_ref()
+            .map(|t| track_type_rating(t.track_type))
+            .cmp(
+                &other
+                    .track
+                    .as_ref()
+                    .map(|t| track_type_rating(t.track_type)),
+            )
+            .then_with(|| self.channels.cmp(&other.channels))
+            .then_with(|| cmp_bitrate(self).cmp(&cmp_bitrate(other)))
     }
+}
+
+fn track_type_rating(track_type: Option<AudioTrackType>) -> i8 {
+    track_type
+        .map(|t| match t {
+            AudioTrackType::Original => 2,
+            AudioTrackType::Dubbed => 1,
+            AudioTrackType::DubbedAuto => -1,
+            AudioTrackType::Descriptive => -2,
+        })
+        .unwrap_or_default()
 }

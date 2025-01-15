@@ -800,6 +800,9 @@ impl DownloadQuery {
         let (video, audio) = player_data.select_video_audio_stream(filter);
 
         if video.is_none() && audio.is_none() {
+            if player_data.drm.is_some() {
+                return Err(DownloadError::Input("video is DRM-protected".into()));
+            }
             return Err(DownloadError::Input("no stream found".into()));
         }
 
