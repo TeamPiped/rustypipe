@@ -999,7 +999,7 @@ async fn channel_search(rp: RustyPipe) {
         .unwrap();
 
     assert_channel_eevblog(&channel);
-    assert_next(channel.content, rp.query(), 18, 2, true).await;
+    assert_next(channel.content, rp.query(), 15, 2, true).await;
 }
 
 fn assert_channel_eevblog<T>(channel: &Channel<T>) {
