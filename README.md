@@ -215,13 +215,14 @@ RustyPipe reports come in 3 severity levels:
 
 ## Authentication
 
-RustyPipe supports authentication in with your YouTube account. There are 2 supported
-authentication methods: OAuth and cookies.
+RustyPipe supports authenticating with your YouTube account to access
+age-restricted/private videos and user information. There are 2 supported authentication
+methods: OAuth and cookies.
 
 To execute a query with authentication, use the `.authenticated()` query option. This
-option is enabled by default for methods that require authentication like the user data
-methods. RustyPipe may automatically use authentication if available in case a video is
-age-restricted or the user is IP-banned by YouTube. If you absolutely dont want to use
+option is enabled by default for queries that always require authentication like
+fetching user data. RustyPipe may automatically use authentication in case a video is
+age-restricted or your IP address is banned by YouTube. If you never want to use
 authentication, set the `.unauthenticated()` query option.
 
 ### OAuth
@@ -232,7 +233,7 @@ means that you can only fetch videos and not access any user data.
 
 To login using OAuth, you first have to get a new device code using the
 `rp.user_auth_get_code()` function. You can then enter the code on
-https://google.com/device and log in with your Google account. After generating the
+<https://google.com/device> and log in with your Google account. After generating the
 code, you can call the `rp.user_auth_wait_for_login()` function which waits until the
 user has logged in and stores the authentication token in the cache.
 
@@ -248,7 +249,9 @@ To authenticate with cookies you have to log into YouTube in a fresh browser ses
 using browser plugins like "Get cookies.txt LOCALLY"
 ([Firefox](https://addons.mozilla.org/de/firefox/addon/get-cookies-txt-locally/))
 ([Chromium](https://chromewebstore.google.com/detail/get-cookiestxt-locally/cclelndahbckbenkjhflpdbgdldlbecc)).
+Close the browser window after extracting the cookies to prevent YouTube from rotating
+the cookies.
 
-You can then add the cookies to your RustyPipe client using the
-`rp.()user_auth_set_cookie` or `user_auth_set_cookie_txt` function. The cookies are
-stored in the cache. To log out, use the function `user_auth_remove_cookie`.
+You can then add the cookies to your RustyPipe client using the `user_auth_set_cookie`
+or `user_auth_set_cookie_txt` function. The cookies are stored in the cache file. To log
+out, use the function `user_auth_remove_cookie`.

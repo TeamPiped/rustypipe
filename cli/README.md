@@ -117,7 +117,7 @@ subscription feed instead.
 
 ## `playlists`, `albums`, `tracks`: Get your YouTube library
 
-Fetch a list of all the items you stored in your YouTube/YouTube Music profile.
+Fetch a list of all the items saved in your YouTube/YouTube Music profile.
 
 ### Options
 
