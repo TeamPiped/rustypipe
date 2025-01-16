@@ -3,6 +3,31 @@
 All notable changes to this project will be documented in this file.
 
 
+## [v0.2.7](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe-downloader/v0.2.6..rustypipe-downloader/v0.2.7) - 2025-01-16
+
+### 🚀 Features
+
+- Extract player DRM data - ([2af4001](https://codeberg.org/ThetaDev/rustypipe/commit/2af4001c75f2ff4f7c891aa59ac22c2c6b7902a2))
+- Prefer maxresdefault.jpg thumbnail if available - ([a8e97f4](https://codeberg.org/ThetaDev/rustypipe/commit/a8e97f411a1e769e52d8cbde11f0a4ca1535f7ef))
+- Add DRM and audio channel number filtering to StreamFilter - ([d5abee2](https://codeberg.org/ThetaDev/rustypipe/commit/d5abee275300ab1bc10fc8d6c35a4e3813fd2bd4))
+
+### 🐛 Bug Fixes
+
+- Remove Unix file metadata usage (Windows compatibility) - ([5c6d992](https://codeberg.org/ThetaDev/rustypipe/commit/5c6d992939f55a203ac1784f1e9175ac1d498ce8))
+
+### 📚 Documentation
+
+- Update README - ([0432477](https://codeberg.org/ThetaDev/rustypipe/commit/0432477451ecd5f64145d65239c721f4e44826c0))
+- Fix README - ([11442df](https://codeberg.org/ThetaDev/rustypipe/commit/11442dfd369599396357f5b7a7a4268a7b537f57))
+
+### ⚙️ Miscellaneous Tasks
+
+- *(deps)* Update rustypipe to 0.9.0
+- *(deps)* Update rust crate rstest to 0.24.0 (#20) - ([ab19034](https://codeberg.org/ThetaDev/rustypipe/commit/ab19034ab19baf090e83eada056559676ffdadce))
+- *(deps)* Update rust crate lofty to 0.22.0 - ([addeb82](https://codeberg.org/ThetaDev/rustypipe/commit/addeb821101aa968b95455604bc13bd24f50328f))
+- *(deps)* Update rust crate dirs to v6 (#24) - ([6a60425](https://codeberg.org/ThetaDev/rustypipe/commit/6a604252b1af7a9388db5dc170f737069cc31051))
+
+
 ## [v0.2.6](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe-downloader/v0.2.5..rustypipe-downloader/v0.2.6) - 2024-12-20
 
 ### ⚙️ Miscellaneous Tasks
