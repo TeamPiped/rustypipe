@@ -16,7 +16,8 @@
 //! the cache as a JSON file.
 
 use std::{
-    fs,
+    fs::File,
+    io::Write,
     path::{Path, PathBuf},
 };
 
@@ -68,7 +69,21 @@ impl Default for FileStorage {
 
 impl CacheStorage for FileStorage {
     fn write(&self, data: &str) {
-        fs::write(&self.path, data).unwrap_or_else(|e| {
+        fn _write(path: &Path, data: &str) -> Result<(), std::io::Error> {
+            let mut f = File::create(path)?;
+            // Set cache file permissions to 0600 on Unix-based systems
+            #[cfg(target_family = "unix")]
+            {
+                use std::os::unix::fs::PermissionsExt;
+                let metadata = f.metadata()?;
+                let mut permissions = metadata.permissions();
+                permissions.set_mode(0o600);
+                std::fs::set_permissions(path, permissions)?;
+            }
+            f.write_all(data.as_bytes())
+        }
+
+        _write(&self.path, data).unwrap_or_else(|e| {
             error!(
                 "Could not write cache to file `{}`. Error: {}",
                 self.path.to_string_lossy(),
@@ -82,7 +97,7 @@ impl CacheStorage for FileStorage {
             return None;
         }
 
-        match fs::read_to_string(&self.path) {
+        match std::fs::read_to_string(&self.path) {
             Ok(data) => Some(data),
             Err(e) => {
                 error!(
