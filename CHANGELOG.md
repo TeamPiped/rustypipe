@@ -3,6 +3,43 @@
 All notable changes to this project will be documented in this file.
 
 
+## [v0.9.0](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe/v0.8.0..rustypipe/v0.9.0) - 2025-01-16
+
+### 🚀 Features
+
+- Add functions to fetch a user's history and subscriptions - ([14e3995](https://codeberg.org/ThetaDev/rustypipe/commit/14e399594f97a1228a8c2991a14dd8745af1beb7))
+- Add history item dates, extend timeago parser - ([320a8c2](https://codeberg.org/ThetaDev/rustypipe/commit/320a8c2c24217ad5697f0424c4f994bbbe31f3aa))
+- Add session headers when using cookie auth - ([3c95b52](https://codeberg.org/ThetaDev/rustypipe/commit/3c95b52ceaf0df2d67ee0d2f2ac658f666f29836))
+- Add cookies.txt parser, add cookie auth + history cmds to CLI - ([cf498e4](https://codeberg.org/ThetaDev/rustypipe/commit/cf498e4a8f9318b0197bc3f0cbaf7043c53adb9d))
+- Add method to get saved_playlists - ([27f64fc](https://codeberg.org/ThetaDev/rustypipe/commit/27f64fc412e833d5bd19ad72913aae19358e98b9))
+- Extract player DRM data - ([2af4001](https://codeberg.org/ThetaDev/rustypipe/commit/2af4001c75f2ff4f7c891aa59ac22c2c6b7902a2))
+- Add Dolby audio codecs (ac-3, ec-3) - ([a7f8c78](https://codeberg.org/ThetaDev/rustypipe/commit/a7f8c789b1a34710274c4630e027ef868397aea2))
+- Add DRM and audio channel number filtering to StreamFilter - ([d5abee2](https://codeberg.org/ThetaDev/rustypipe/commit/d5abee275300ab1bc10fc8d6c35a4e3813fd2bd4))
+- Set cache file permissions to 600 - ([dee8a99](https://codeberg.org/ThetaDev/rustypipe/commit/dee8a99e7a8d071c987709a01f02ee8fecf2d776))
+
+### 🐛 Bug Fixes
+
+- Dont leak authorization and cookie header in reports - ([75fce91](https://codeberg.org/ThetaDev/rustypipe/commit/75fce91353c02cd498f27d21b08261c23ea03d70))
+- Require new time crate version which added Month::length - ([ec7a195](https://codeberg.org/ThetaDev/rustypipe/commit/ec7a195c98f39346c4c8db875212c3843580450e))
+- Parsing numbers (it), dates (kn) - ([63f86b6](https://codeberg.org/ThetaDev/rustypipe/commit/63f86b6e186aa1d2dcaf7e9169ccebb2265e5905))
+- Accept user-specific playlist ids (LL, WL) - ([97c3f30](https://codeberg.org/ThetaDev/rustypipe/commit/97c3f30d180d3e62b7e19f22d191d7fd7614daca))
+- Only use auth-enabled clients for fetching player with auth option enabled - ([2b2b4af](https://codeberg.org/ThetaDev/rustypipe/commit/2b2b4af0b26cdd0d4bf2218d3f527abd88658abf))
+- A/B test 19: Music artist album groups reordered - ([5daad1b](https://codeberg.org/ThetaDev/rustypipe/commit/5daad1b700e8dcf1f3e803db1685f08f27794898))
+- Switch to rquickjs crate for deobfuscator - ([75c3746](https://codeberg.org/ThetaDev/rustypipe/commit/75c3746890f3428f3314b7b10c9ec816ad275836))
+- Player_from_clients method not send/sync - ([9c512c3](https://codeberg.org/ThetaDev/rustypipe/commit/9c512c3c4dbec0fc3b973536733d61ba61125a92))
+
+### 📚 Documentation
+
+- Update README - ([0432477](https://codeberg.org/ThetaDev/rustypipe/commit/0432477451ecd5f64145d65239c721f4e44826c0))
+- Fix README - ([11442df](https://codeberg.org/ThetaDev/rustypipe/commit/11442dfd369599396357f5b7a7a4268a7b537f57))
+
+### ⚙️ Miscellaneous Tasks
+
+- *(deps)* Update rust crate rstest to 0.24.0 (#20) - ([ab19034](https://codeberg.org/ThetaDev/rustypipe/commit/ab19034ab19baf090e83eada056559676ffdadce))
+- *(deps)* Update rust crate dirs to v6 (#24) - ([6a60425](https://codeberg.org/ThetaDev/rustypipe/commit/6a604252b1af7a9388db5dc170f737069cc31051))
+- Update pre-commit hooks - ([7cd9246](https://codeberg.org/ThetaDev/rustypipe/commit/7cd9246260493d7839018cb39a2dfb4dded8b343))
+
+
 ## [v0.8.0](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe/v0.7.2..rustypipe/v0.8.0) - 2024-12-20
 
 ### 🚀 Features
