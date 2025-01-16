@@ -11,7 +11,7 @@ use url::Url;
 
 use crate::{
     deobfuscate::{DeobfData, Deobfuscator},
-    error::{internal::DeobfError, Error, ExtractionError, UnavailabilityReason},
+    error::{internal::DeobfError, AuthError, Error, ExtractionError, UnavailabilityReason},
     model::{
         traits::QualityOrd, AudioCodec, AudioFormat, AudioStream, AudioTrack, DrmLicense,
         DrmSystem, Frameset, Subtitle, VideoCodec, VideoFormat, VideoPlayer, VideoPlayerDetails,
@@ -87,16 +87,18 @@ impl RustyPipeQuery {
         clients: &[ClientType],
     ) -> Result<VideoPlayer, Error> {
         let video_id = video_id.as_ref();
-        let mut last_e = Error::Other("no clients".into());
+        let mut last_e = None;
 
-        let clients_iter: Box<dyn Iterator<Item = ClientType>> = if self.opts.auth == Some(true) {
-            Box::new(self.auth_enabled_clients(clients))
-        } else {
-            Box::new(clients.iter().cloned())
-        };
+        for client in clients {
+            if self.opts.auth == Some(true) && !self.auth_enabled(*client) {
+                // If no client has auth enabled, return NoLogin error instead of "no clients"
+                if last_e.is_none() {
+                    last_e = Some(Error::Auth(AuthError::NoLogin));
+                }
+                continue;
+            }
 
-        for client in clients_iter {
-            let res = self.player_from_client(video_id, client).await;
+            let res = self.player_from_client(video_id, *client).await;
             match res {
                 Ok(res) => return Ok(res),
                 Err(Error::Extraction(e)) => {
@@ -118,7 +120,7 @@ impl RustyPipeQuery {
                                 }
                                 Err(e) => return Err(e),
                             }
-                            last_e = Error::Extraction(e);
+                            last_e = Some(Error::Extraction(e));
                         } else {
                             return Err(Error::Extraction(e));
                         }
@@ -129,7 +131,7 @@ impl RustyPipeQuery {
                 Err(e) => return Err(e),
             }
         }
-        Err(last_e)
+        Err(last_e.unwrap_or(Error::Other("no clients".into())))
     }
 
     /// Get YouTube player data (video/audio streams + basic metadata) using the specified client
@@ -193,7 +195,7 @@ impl RustyPipeQuery {
     ) -> Result<DrmLicense, Error> {
         let client_type = self
             .auth_enabled_client(&[ClientType::Desktop, ClientType::Tv])
-            .ok_or(Error::Auth(crate::error::AuthError::NoLogin))?;
+            .ok_or(Error::Auth(AuthError::NoLogin))?;
         let request_body = QDrmLicense {
             drm_system: drm_system.req_param(),
             video_id,

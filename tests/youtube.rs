@@ -2990,3 +2990,100 @@ fn check_duplicates<T: Clone + Into<VideoId>>(items: &[T]) {
         .collect::<HashSet<String>>();
     assert_eq!(ids.len(), items.len(), "duplicate items");
 }
+
+/// This is just a static check to make sure all RustyPipe futures can be sent
+/// between threads safely.
+/// Otherwise this may cause issues when integrating RustyPipe into async projects.
+#[allow(unused)]
+async fn all_send_and_sync() {
+    fn send_and_sync<T: Send + Sync>(t: T) {}
+
+    let rp = RustyPipe::new();
+    send_and_sync(&rp);
+    send_and_sync(rp.query());
+    send_and_sync(rp.user_auth_access_token());
+    send_and_sync(rp.user_auth_check_cookie());
+    send_and_sync(rp.user_auth_check_login());
+    let dc = rp.user_auth_get_code().await.unwrap();
+    send_and_sync(rp.user_auth_get_code());
+    send_and_sync(rp.user_auth_login(&dc));
+    send_and_sync(rp.user_auth_logout());
+    send_and_sync(rp.user_auth_remove_cookie());
+    send_and_sync(rp.user_auth_set_cookie(""));
+    send_and_sync(rp.user_auth_set_cookie_txt(""));
+    send_and_sync(rp.user_auth_wait_for_login(&dc));
+
+    send_and_sync(rp.query().channel_info(""));
+    send_and_sync(rp.query().channel_playlists(""));
+    #[cfg(feature = "rss")]
+    send_and_sync(rp.query().channel_rss(""));
+    send_and_sync(rp.query().channel_search("", ""));
+    send_and_sync(rp.query().channel_videos(""));
+    send_and_sync(rp.query().channel_videos_order("", ChannelOrder::Latest));
+    send_and_sync(rp.query().channel_videos_tab("", ChannelVideoTab::Live));
+    send_and_sync(rp.query().channel_videos_tab_order(
+        "",
+        ChannelVideoTab::Live,
+        ChannelOrder::Latest,
+    ));
+    send_and_sync(
+        rp.query()
+            .drm_license("", rustypipe::model::DrmSystem::Widevine, "", "", &[]),
+    );
+    send_and_sync(rp.query().history());
+    send_and_sync(rp.query().history_continuation("", None));
+    send_and_sync(rp.query().history_search(""));
+    send_and_sync(rp.query().liked_videos());
+    send_and_sync(rp.query().music_album(""));
+    send_and_sync(rp.query().music_artist("", false));
+    send_and_sync(rp.query().music_artist_albums("", None, None));
+    send_and_sync(rp.query().music_new_albums());
+    send_and_sync(rp.query().music_charts(None));
+    send_and_sync(rp.query().music_details(""));
+    send_and_sync(rp.query().music_genre(""));
+    send_and_sync(rp.query().music_genres());
+    send_and_sync(rp.query().music_history());
+    send_and_sync(rp.query().music_history_continuation("", None));
+    send_and_sync(rp.query().music_liked_tracks());
+    send_and_sync(rp.query().music_lyrics(""));
+    send_and_sync(rp.query().music_new_albums());
+    send_and_sync(rp.query().music_new_videos());
+    send_and_sync(rp.query().music_playlist(""));
+    send_and_sync(rp.query().music_radio(""));
+    send_and_sync(rp.query().music_radio_playlist(""));
+    send_and_sync(rp.query().music_radio_track(""));
+    send_and_sync(rp.query().music_related(""));
+    send_and_sync(rp.query().music_saved_albums());
+    send_and_sync(rp.query().music_saved_artists());
+    send_and_sync(rp.query().music_saved_playlists());
+    send_and_sync(rp.query().music_saved_tracks());
+    send_and_sync(rp.query().music_search::<MusicItem, _>("", None));
+    send_and_sync(rp.query().music_search_albums(""));
+    send_and_sync(rp.query().music_search_artists(""));
+    send_and_sync(rp.query().music_search_albums(""));
+    send_and_sync(rp.query().music_search_main(""));
+    send_and_sync(rp.query().music_search_playlists("", false));
+    send_and_sync(rp.query().music_search_suggestion(""));
+    send_and_sync(rp.query().music_search_tracks(""));
+    send_and_sync(rp.query().music_search_users(""));
+    send_and_sync(rp.query().music_search_videos(""));
+    send_and_sync(rp.query().player(""));
+    send_and_sync(rp.query().player_from_client("", ClientType::Desktop));
+    send_and_sync(rp.query().player_from_clients("", &[]));
+    send_and_sync(rp.query().raw(ClientType::Desktop, "", ""));
+    send_and_sync(rp.query().resolve_string("", false));
+    send_and_sync(rp.query().resolve_url("", false));
+    send_and_sync(rp.query().saved_playlists());
+    send_and_sync(rp.query().search::<YouTubeItem, _>(""));
+    send_and_sync(
+        rp.query()
+            .search_filter::<YouTubeItem, _>("", &SearchFilter::default()),
+    );
+    send_and_sync(rp.query().search_suggestion(""));
+    send_and_sync(rp.query().subscription_feed());
+    send_and_sync(rp.query().subscriptions());
+    send_and_sync(rp.query().trending());
+    send_and_sync(rp.query().video_comments("", None));
+    send_and_sync(rp.query().video_details(""));
+    send_and_sync(rp.query().watch_later());
+}
