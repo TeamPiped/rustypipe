@@ -1180,7 +1180,7 @@ pub struct AlbumId {
     pub name: String,
 }
 
-/// YouTube music playlist object
+/// YouTube Music playlist object
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[non_exhaustive]
 pub struct MusicPlaylist {
@@ -1204,7 +1204,7 @@ pub struct MusicPlaylist {
     pub related_playlists: Paginator<MusicPlaylistItem>,
 }
 
-/// YouTube music album object
+/// YouTube Music album object
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[non_exhaustive]
 pub struct MusicAlbum {
@@ -1234,7 +1234,7 @@ pub struct MusicAlbum {
     pub variants: Vec<AlbumItem>,
 }
 
-/// YouTube music artist object
+/// YouTube Music artist object
 #[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 #[non_exhaustive]
 pub struct MusicArtist {

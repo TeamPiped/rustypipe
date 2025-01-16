@@ -81,7 +81,7 @@ rustypipe-downloader = { path = "./downloader", version = "0.2.1", default-featu
 [features]
 default = ["default-tls"]
 
-rss = ["quick-xml"]
+rss = ["dep:quick-xml"]
 
 # Reqwest TLS options
 default-tls = ["reqwest/default-tls"]

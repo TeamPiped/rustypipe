@@ -37,7 +37,7 @@ struct QRadio<'a> {
 }
 
 impl RustyPipeQuery {
-    /// Get the metadata of a YouTube music track
+    /// Get the metadata of a YouTube Music track
     #[tracing::instrument(skip(self), level = "error")]
     pub async fn music_details<S: AsRef<str> + Debug>(
         &self,
@@ -61,7 +61,7 @@ impl RustyPipeQuery {
         .await
     }
 
-    /// Get the lyrics of a YouTube music track
+    /// Get the lyrics of a YouTube Music track
     ///
     /// The `lyrics_id` has to be obtained using [`RustyPipeQuery::music_details`].
     #[tracing::instrument(skip(self), level = "error")]

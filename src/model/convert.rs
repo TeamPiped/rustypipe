@@ -4,7 +4,7 @@ use super::{
     VideoItem, YouTubeItem,
 };
 
-/// Trait for casting generic YouTube/YouTube music items to a specific kind.
+/// Trait for casting generic YouTube/YouTube Music items to a specific kind.
 ///
 /// Returns [`None`] if the item does not match.
 pub trait FromYtItem: Sized {

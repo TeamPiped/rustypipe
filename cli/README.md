@@ -18,13 +18,13 @@ the associated metadata. It can fetch channels, playlists, albums and videos.
 **Usage:** `rustypipe get UC2TXq_t06Hjdr2g_KdKpHQg`
 
 - `-l`, `--limit` Limit the number of list items to fetch
-- ``-t, --tab` Channel tab (options: **videos**, shorts, live, playlists, info)
+- `-t`, `--tab` Channel tab (options: **videos**, shorts, live, playlists, info)
 - `-m, --music` Use the YouTube Music API
 - `--rss`Fetch the RSS feed of a channel
 - `--comments` Get comments (options: top, latest)
 - `--lyrics` Get the lyrics for YTM tracks
 - `--player` Get the player data instead of the video details when fetching videos
-- `-c, --client-type` YT clients used to fetch player data (options: desktop, tv,
+- `-c`, `--client-type` YT clients used to fetch player data (options: desktop, tv,
   tv-embed, android, ios; if multiple clients are specified, they are attempted in
   order)
 
@@ -47,7 +47,7 @@ when searching YTM or individual channels.
 - `--date` Filter results by upload date (options: hour, day, week, month, year)
 - `--order` Sort search results (options: rating, date, views)
 - `--channel` Channel ID for searching channel videos
-- `-m, --music` Search YouTube Music in the given category (options: all, tracks,
+- `-m`, `--music` Search YouTube Music in the given category (options: all, tracks,
   videos, artists, albums, playlists-ytm, playlists-community)
 
 ## `dl`: Download videos
@@ -66,7 +66,7 @@ videos can be downloaded in parallel for improved performance.
 - `-r`, `--resolution` Video resolution (e.g. 720, 1080). Set to 0 for audio-only
 - `-a`, `--audio` Download only the audio track and write track metadata + album cover
 - `-p`, `--parallel` Number of videos downloaded in parallel (default: 8)
-- `-m, --music` Use YouTube Music for downloading playlists
+- `-m`, `--music` Use YouTube Music for downloading playlists
 - `-l`, `--limit` Limit the number of videos to download (default: 1000)
 - `-c`, `--client-type` YT clients used to fetch player data (options: desktop, tv,
   tv-embed, android, ios; if multiple clients are specified, they are attempted in
@@ -78,6 +78,52 @@ videos can be downloaded in parallel for improved performance.
 You can use the vdata command to get a new visitor data cookie. This feature may come in
 handy for testing and reproducing A/B tests.
 
+## `releases` Get YouTube Music new releases
+
+Get a list of new albums or music videos on YouTube Music
+
+**Usage:** `rustypipe releases` or `rustypipe releases --videos`
+
+## `charts`: Get YouTube Music charts
+
+Get a list of the most popular tracks and artists for a given country
+
+**Usage:** `rustypipe charts DE`
+
+## `history`: Get YouTube playback history
+
+Get a list of recently played videos or tracks
+
+### Options
+
+- `-l`, `--limit` Limit the number of list items to fetch
+- `--search` Search the playback history (unavailable on YouTube Music)
+- `-m`, `--music` Get the YouTube Music playback history
+
+## `subscriptions`: Get subscribed channels
+
+You can use the RustyPipe CLI to get a list of the channels you subscribed to. With the
+`--format` flag you can export then in different formats, including OPML and NewPipe
+JSON.
+
+With the `--feed` option you can output a list of the latest videos from your
+subscription feed instead.
+
+### Options
+
+- `-l`, `--limit` Limit the number of list items to fetch
+- `-m`, `--music` Get a list of subscribed YouTube Music artists
+- `--feed` Output YouTube Music subscription feed
+
+## `playlists`, `albums`, `tracks`: Get your YouTube library
+
+Fetch a list of all the items you stored in your YouTube/YouTube Music profile.
+
+### Options
+
+- `-l`, `--limit` Limit the number of list items to fetch
+- `-m`, `--music` (only for playlists): Get your YouTube Music playlists
+
 ## Global options
 
 - **Proxy:** RustyPipe respects the environment variables `HTTP_PROXY`, `HTTPS_PROXY`
@@ -85,7 +131,17 @@ handy for testing and reproducing A/B tests.
 - **Logging:** You can change the log level with the `RUST_LOG` environment variable, it
   is set to `info` by default
 - **Visitor data:** A custom visitor data cookie can be used with the `--vdata` flag
-- `--report`
+- **Authentication:** Use the commands `rustypipe login` and `rustypipe login --cookie`
+  to log into your Google account using either OAuth or YouTube cookies. With the
+  `--auth` flag you can use authentication for any request.
+- `--lang` Change the YouTube content language
+- `--country` Change the YouTube content country
+- `--report` Generate a report on every request and store it in a `rustypipe_reports`
+  folder in the current directory
+- `--cache-file` Change the RustyPipe cache file location (Default:
+  `~/.local/share/rustypipe/rustypipe_cache.json`)
+- `--report-dir` Change the RustyPipe report directory location (Default:
+  `~/.local/share/rustypipe/rustypipe_reports`)
 
 ### Output format
 

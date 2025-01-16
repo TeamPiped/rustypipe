@@ -225,7 +225,7 @@ struct OauthCodeRequest {
 /// The login process works as follows:
 /// 1. Obtain a user code and show it to the user
 /// 2. The user opens the login page under <https://google.com/device>, enters the code and logs in with his account
-/// 3. The application has to check periodically if the login has succeeded using [`RustyPipe::oauth_login`] or [`RustyPipe::oauth_wait_for_login`]
+/// 3. The application has to check periodically if the login has succeeded using [`RustyPipe::user_auth_login`] or [`RustyPipe::user_auth_wait_for_login`]
 /// 4. If the login is successful, the application receives a valid access/refresh token pair which can be used to access YouTube
 #[derive(Debug, Deserialize)]
 pub struct OauthDeviceCode {
@@ -1261,7 +1261,7 @@ impl RustyPipe {
     ///
     /// Returns `false` if the user has not logged in yet, in this case repeat
     /// the login attempt after a few seconds.
-    /// The function [`RustyPipe::oauth_wait_for_login`] does this automatically.
+    /// The function [`RustyPipe::user_auth_wait_for_login`] does this automatically.
     pub async fn user_auth_login(&self, code: &OauthDeviceCode) -> Result<bool, Error> {
         tracing::debug!("OAuth login attempt (user_code: {})", code.user_code);
 

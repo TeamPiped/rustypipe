@@ -355,7 +355,7 @@ impl<T> TryRemove<T> for Vec<T> {
 }
 
 /// Check if a channel name equals "YouTube Music"
-/// (the author of original YouTube music playlists)
+/// (the author of original YouTube Music playlists)
 pub(crate) fn is_ytm(text: &TextComponent) -> bool {
     if let TextComponent::Text { text, .. } = text {
         text.starts_with("YouTube")

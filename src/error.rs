@@ -82,9 +82,6 @@ pub enum ExtractionError {
 #[non_exhaustive]
 pub enum UnavailabilityReason {
     /// Video/Channel is age restricted.
-    ///
-    /// Video age restriction may be circumvented with the
-    /// [`ClientType::TvHtml5Embed`](crate::client::ClientType::TvHtml5Embed) client.
     AgeRestricted,
     /// Video was deleted or censored
     Deleted,

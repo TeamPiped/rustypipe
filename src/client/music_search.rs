@@ -57,7 +57,7 @@ impl RustyPipeQuery {
         .await
     }
 
-    /// Search YouTube music and return items of all types
+    /// Search YouTube Music and return items of all types
     pub async fn music_search_main<S: AsRef<str>>(
         &self,
         query: S,

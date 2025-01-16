@@ -41,6 +41,25 @@ RustyPipe is a fully featured Rust client for the public YouTube / YouTube Music
 
 ## Getting started
 
+The RustyPipe library works as follows: at first you have to instantiate a RustyPipe
+client. You can either create it with default options or use the `RustyPipe::builder()`
+to customize it.
+
+For fetching data you have to start with a new RustyPipe query object (`rp.query()`).
+The query object holds options for an individual query (e.g. content language or
+country). You can adjust these options with setter methods. Finally call your query
+method to fetch the data you need.
+
+All query methods are async, you need the tokio runtime to execute them.
+
+```rust ignore
+let rp = RustyPipe::new();
+let rp = RustyPipe::builder().storage_dir("/app/data").build().unwrap();
+let channel = rp.query().lang(Language::De).channel_videos("UCl2mFZoRqjw_ELax4Yisf6w").await.unwrap();
+```
+
+Here are a few examples to get you started:
+
 ### Cargo.toml
 
 ```toml
@@ -162,29 +181,74 @@ Subscribers: 1780000
 ...
 ```
 
-## Development
+## Cache storage
 
-**Requirements:**
+The RustyPipe cache holds the current version numbers for all clients, the JavaScript
+code used to deobfuscate video URLs and the authentication token/cookies. Never share
+the contents of the cache if you are using authentication.
 
-- Current version of stable Rust
-- [`just`](https://github.com/casey/just) task runner
-- [`nextest`](https://nexte.st) test runner
-- [`pre-commit`](https://pre-commit.com/)
-- yq (YAML processor)
+By default the cache is written to a JSON file named `rustypipe_cache.json` in the
+current working directory. This path can be changed with the `storage_dir` option of the
+RustyPipeBuilder. The RustyPipe CLI stores its cache in the userdata folder. The full
+path on Linux is `~/.local/share/rustypipe/rustypipe_cache.json`.
 
-### Tasks
+You can integrate your own cache storage backend (e.g. database storage) by implementing
+the `CacheStorage` trait.
 
-**Testing**
+## Reports
 
-- `just test` Run unit+integration tests
-- `just unittest` Run unit tests
-- `just testyt` Run YouTube integration tests
-- `just testintl` Run YouTube integration tests for all supported languages (this takes
-  a long time and is therefore not run in CI)
-- `YT_LANG=de just testyt` Run YouTube integration tests for a specific language
+RustyPipe has a builtin error reporting system. If a YouTube response cannot be
+deserialized or parsed, the original response data along with some request metadata is
+written to a JSON file in the folder `rustypipe_reports`, located in RustyPipe's storage
+directory (current folder by default, `~/.local/share/rustypipe` for the CLI).
 
-**Tools**
+When submitting a bug report to the RustyPipe project, you can share this report to help
+resolve the issue.
 
-- `just testfiles` Download missing testfiles for unit tests
-- `just report2yaml` Convert RustyPipe reports into a more readable yaml format
-  (requires `yq`)
+RustyPipe reports come in 3 severity levels:
+
+- DBG (no error occurred, report creation was enabled by the `RustyPipeQuery::report`
+  query option)
+- WRN (parts of the response could not be deserialized/parsed, response data may be
+  incomplete)
+- ERR (entire response could not be deserialized/parsed, RustyPipe returned an error)
+
+## Authentication
+
+RustyPipe supports authentication in with your YouTube account. There are 2 supported
+authentication methods: OAuth and cookies.
+
+To execute a query with authentication, use the `.authenticated()` query option. This
+option is enabled by default for methods that require authentication like the user data
+methods. RustyPipe may automatically use authentication if available in case a video is
+age-restricted or the user is IP-banned by YouTube. If you absolutely dont want to use
+authentication, set the `.unauthenticated()` query option.
+
+### OAuth
+
+OAuth is the authentication method used by the YouTube TV client. It is more
+user-friendly than extracting cookies, however it only works with the TV client. This
+means that you can only fetch videos and not access any user data.
+
+To login using OAuth, you first have to get a new device code using the
+`rp.user_auth_get_code()` function. You can then enter the code on
+https://google.com/device and log in with your Google account. After generating the
+code, you can call the `rp.user_auth_wait_for_login()` function which waits until the
+user has logged in and stores the authentication token in the cache.
+
+### Cookies
+
+Authenticating with cookies allows you to use the functionality of the YouTube/YouTube
+Music Desktop client. You can fetch your subscribed channels, playlists and your music
+collection. You can also fetch videos using the Desktop client, including private
+videos, as long as you have access to them.
+
+To authenticate with cookies you have to log into YouTube in a fresh browser session
+(open Incognito/Private mode). Then extract the cookies from the developer tools or by
+using browser plugins like "Get cookies.txt LOCALLY"
+([Firefox](https://addons.mozilla.org/de/firefox/addon/get-cookies-txt-locally/))
+([Chromium](https://chromewebstore.google.com/detail/get-cookiestxt-locally/cclelndahbckbenkjhflpdbgdldlbecc)).
+
+You can then add the cookies to your RustyPipe client using the
+`rp.()user_auth_set_cookie` or `user_auth_set_cookie_txt` function. The cookies are
+stored in the cache. To log out, use the function `user_auth_remove_cookie`.

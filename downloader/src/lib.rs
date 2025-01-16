@@ -529,7 +529,7 @@ impl Downloader {
         self.query(DownloadVideo::from_entity(video))
     }
 
-    /// Download a video from a [`TrackItem`] (YouTube music album/playlist item)
+    /// Download a video from a [`TrackItem`] (YouTube Music album/playlist item)
     ///
     /// Providing an entity has the advantage that the download path can be determined before the video
     /// is fetched, so already downloaded videos get skipped right away.

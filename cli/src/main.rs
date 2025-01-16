@@ -288,7 +288,7 @@ enum Commands {
         #[clap(long)]
         pretty: bool,
     },
-    /// Get YouTube music charts
+    /// Get YouTube Music charts
     Charts {
         /// Chart country
         country: Option<String>,

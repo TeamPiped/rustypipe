@@ -81,9 +81,6 @@ impl RustyPipeQuery {
     ///
     /// The clients are used in the given order. If a client cannot fetch the requested video,
     /// an attempt is made with the next one.
-    ///
-    /// If an age-restricted video is detected, it will automatically use the [`ClientType::TvHtml5Embed`]
-    /// since it is the only one that can circumvent age restrictions.
     pub async fn player_from_clients<S: AsRef<str> + Debug>(
         &self,
         video_id: S,
