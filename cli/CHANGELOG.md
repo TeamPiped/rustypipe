@@ -3,6 +3,27 @@
 All notable changes to this project will be documented in this file.
 
 
+## [v0.6.0](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe-cli/v0.5.0..rustypipe-cli/v0.6.0) - 2025-01-16
+
+### 🚀 Features
+
+- Add functions to fetch a user's history and subscriptions - ([14e3995](https://codeberg.org/ThetaDev/rustypipe/commit/14e399594f97a1228a8c2991a14dd8745af1beb7))
+- Add history item dates, extend timeago parser - ([320a8c2](https://codeberg.org/ThetaDev/rustypipe/commit/320a8c2c24217ad5697f0424c4f994bbbe31f3aa))
+- Add cookies.txt parser, add cookie auth + history cmds to CLI - ([cf498e4](https://codeberg.org/ThetaDev/rustypipe/commit/cf498e4a8f9318b0197bc3f0cbaf7043c53adb9d))
+- Add CLI commands to fetch user library and YTM releases/charts - ([a1b43ad](https://codeberg.org/ThetaDev/rustypipe/commit/a1b43ad70a66cfcbaba8ef302ac8699f243e56e7))
+- Export subscriptions as OPML / NewPipe JSON - ([c90d966](https://codeberg.org/ThetaDev/rustypipe/commit/c90d966b17eab24e957d980695888a459707055c))
+
+### 📚 Documentation
+
+- Update README - ([0432477](https://codeberg.org/ThetaDev/rustypipe/commit/0432477451ecd5f64145d65239c721f4e44826c0))
+- Fix README - ([11442df](https://codeberg.org/ThetaDev/rustypipe/commit/11442dfd369599396357f5b7a7a4268a7b537f57))
+
+### ⚙️ Miscellaneous Tasks
+
+- *(deps)* Update rust crate rstest to 0.24.0 (#20) - ([ab19034](https://codeberg.org/ThetaDev/rustypipe/commit/ab19034ab19baf090e83eada056559676ffdadce))
+- *(deps)* Update rust crate dirs to v6 (#24) - ([6a60425](https://codeberg.org/ThetaDev/rustypipe/commit/6a604252b1af7a9388db5dc170f737069cc31051))
+
+
 ## [v0.5.0](https://codeberg.org/ThetaDev/rustypipe/compare/rustypipe-cli/v0.4.0..rustypipe-cli/v0.5.0) - 2024-12-20
 
 ### 🚀 Features
