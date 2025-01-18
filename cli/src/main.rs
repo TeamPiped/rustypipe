@@ -898,7 +898,7 @@ async fn run() -> anyhow::Result<()> {
             .reporter(Box::new(FileReporter::new("rustypipe_reports")));
     }
     if let Some(lang) = cli.lang {
-        rp = rp.lang(Language::from_str(&lang.to_ascii_lowercase()).expect("invalid language"));
+        rp = rp.lang(Language::from_str(&lang).expect("invalid language"));
     }
     if let Some(country) = cli.country {
         rp = rp.country(Country::from_str(&country.to_ascii_uppercase()).expect("invalid country"));
