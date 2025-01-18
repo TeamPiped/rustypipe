@@ -107,7 +107,7 @@ impl<T: FromYtItem> MapResponse<SearchResult<T>> for response::Search {
             .section_list_renderer
             .contents;
 
-        let mut mapper = response::YouTubeListMapper::<YouTubeItem>::new(ctx.lang);
+        let mut mapper = response::YouTubeListMapper::<YouTubeItem>::new(ctx.lang, ctx.utc_offset);
         mapper.map_response(items);
 
         Ok(MapResult {

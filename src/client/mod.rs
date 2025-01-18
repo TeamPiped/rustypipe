@@ -35,7 +35,7 @@ use regex::Regex;
 use reqwest::{header, Client, ClientBuilder, Request, RequestBuilder, Response, StatusCode};
 use serde::{de::DeserializeOwned, Deserialize, Serialize};
 use sha1::{Digest, Sha1};
-use time::OffsetDateTime;
+use time::{OffsetDateTime, UtcOffset};
 use tokio::sync::RwLock as AsyncRwLock;
 
 use crate::error::AuthError;
@@ -386,6 +386,8 @@ struct RustyPipeRef {
 struct RustyPipeOpts {
     lang: Language,
     country: Country,
+    timezone: Option<String>,
+    utc_offset_minutes: i16,
     report: bool,
     strict: bool,
     auth: Option<bool>,
@@ -525,6 +527,8 @@ impl Default for RustyPipeOpts {
         Self {
             lang: Language::En,
             country: Country::Us,
+            timezone: None,
+            utc_offset_minutes: 0,
             report: false,
             strict: false,
             auth: None,
@@ -887,6 +891,21 @@ impl RustyPipeBuilder {
     #[must_use]
     pub fn country(mut self, country: Country) -> Self {
         self.default_opts.country = validate_country(country);
+        self
+    }
+
+    /// Set the timezone and its associated UTC offset in minutes used
+    /// when accessing the YouTube API.
+    ///
+    /// This will also change the UTC offset of the returned dates.
+    ///
+    /// **Default value**: `0` (UTC)
+    ///
+    /// **Info**: you can set this option for individual queries, too
+    #[must_use]
+    pub fn timezone<S: Into<String>>(mut self, timezone: S, utc_offset_minutes: i16) -> Self {
+        self.default_opts.timezone = Some(timezone.into());
+        self.default_opts.utc_offset_minutes = utc_offset_minutes;
         self
     }
 
@@ -1668,6 +1687,17 @@ impl RustyPipeQuery {
         self
     }
 
+    /// Set the timezone and its associated UTC offset in minutes used
+    /// when accessing the YouTube API.
+    ///
+    /// This will also change the UTC offset of the returned dates.
+    #[must_use]
+    pub fn timezone<S: Into<String>>(mut self, timezone: S, utc_offset_minutes: i16) -> Self {
+        self.opts.timezone = Some(timezone.into());
+        self.opts.utc_offset_minutes = utc_offset_minutes;
+        self
+    }
+
     /// Generate a report on every operation.
     ///
     /// This should only be used for debugging.
@@ -1822,6 +1852,8 @@ impl RustyPipeQuery {
         } else {
             (Language::En, Country::Us)
         };
+        let utc_offset_minutes = self.opts.utc_offset_minutes;
+        let time_zone = self.opts.timezone.as_deref().unwrap_or("UTC");
 
         match ctype {
             ClientType::Desktop => YTContext {
@@ -1833,6 +1865,8 @@ impl RustyPipeQuery {
                     visitor_data,
                     hl,
                     gl,
+                    time_zone,
+                    utc_offset_minutes,
                     ..Default::default()
                 },
                 request: Some(RequestYT::default()),
@@ -1848,6 +1882,8 @@ impl RustyPipeQuery {
                     visitor_data,
                     hl,
                     gl,
+                    time_zone,
+                    utc_offset_minutes,
                     ..Default::default()
                 },
                 request: Some(RequestYT::default()),
@@ -1863,6 +1899,8 @@ impl RustyPipeQuery {
                     visitor_data,
                     hl,
                     gl,
+                    time_zone,
+                    utc_offset_minutes,
                     ..Default::default()
                 },
                 request: Some(RequestYT::default()),
@@ -1879,6 +1917,8 @@ impl RustyPipeQuery {
                     visitor_data,
                     hl,
                     gl,
+                    time_zone,
+                    utc_offset_minutes,
                     ..Default::default()
                 },
                 request: Some(RequestYT::default()),
@@ -1898,6 +1938,8 @@ impl RustyPipeQuery {
                     visitor_data,
                     hl,
                     gl,
+                    time_zone,
+                    utc_offset_minutes,
                     ..Default::default()
                 },
                 request: None,
@@ -1915,6 +1957,8 @@ impl RustyPipeQuery {
                     visitor_data,
                     hl,
                     gl,
+                    time_zone,
+                    utc_offset_minutes,
                     ..Default::default()
                 },
                 request: None,
@@ -2212,6 +2256,8 @@ impl RustyPipeQuery {
         let ctx = MapRespCtx {
             id,
             lang: self.opts.lang,
+            utc_offset: UtcOffset::from_whole_seconds(i32::from(self.opts.utc_offset_minutes) * 60)
+                .map_err(|_| Error::Other("utc_offset overflow".into()))?,
             deobf: ctx_src.deobf,
             visitor_data: Some(&visitor_data),
             client_type: ctype,
@@ -2498,6 +2544,7 @@ impl AsRef<RustyPipeQuery> for RustyPipeQuery {
 struct MapRespCtx<'a> {
     id: &'a str,
     lang: Language,
+    utc_offset: UtcOffset,
     deobf: Option<&'a DeobfData>,
     visitor_data: Option<&'a str>,
     client_type: ClientType,
@@ -2525,6 +2572,7 @@ impl<'a> MapRespCtx<'a> {
         Self {
             id,
             lang: Language::En,
+            utc_offset: UtcOffset::UTC,
             deobf: None,
             visitor_data: None,
             client_type: ClientType::Desktop,

@@ -12,6 +12,7 @@ description = "CLI for RustyPipe - download videos and extract data from YouTube
 
 [features]
 default = ["native-tls"]
+timezone = ["dep:time", "dep:time-tz"]
 
 # Reqwest TLS options
 native-tls = [
@@ -49,6 +50,8 @@ futures-util.workspace = true
 serde.workspace = true
 serde_json.workspace = true
 quick-xml.workspace = true
+time = { workspace = true, optional = true }
+time-tz = { workspace = true, optional = true }
 
 indicatif.workspace = true
 anyhow.workspace = true

@@ -220,6 +220,7 @@ impl MapResponse<Channel<Paginator<VideoItem>>> for response::Channel {
 
         let mut mapper = response::YouTubeListMapper::<VideoItem>::with_channel(
             ctx.lang,
+            ctx.utc_offset,
             &channel_data.c,
             channel_data.warnings,
         );
@@ -265,6 +266,7 @@ impl MapResponse<Channel<Paginator<PlaylistItem>>> for response::Channel {
 
         let mut mapper = response::YouTubeListMapper::<PlaylistItem>::with_channel(
             ctx.lang,
+            ctx.utc_offset,
             &channel_data.c,
             channel_data.warnings,
         );
@@ -280,7 +282,7 @@ impl MapResponse<Channel<Paginator<PlaylistItem>>> for response::Channel {
 
 impl MapResponse<ChannelInfo> for response::ChannelAbout {
     fn map_response(self, ctx: &MapRespCtx<'_>) -> Result<MapResult<ChannelInfo>, ExtractionError> {
-        // Channel info is always fetched in English. There is no localized data there
+        // Channel info is always fetched in English. There is no localized data
         // and it allows parsing the country name.
         let lang = Language::En;
 
@@ -335,7 +337,7 @@ impl MapResponse<ChannelInfo> for response::ChannelAbout {
                     .video_count_text
                     .and_then(|txt| util::parse_numeric_or_warn(&txt, &mut warnings)),
                 create_date: about.joined_date_text.and_then(|txt| {
-                    timeago::parse_textual_date_or_warn(lang, &txt, &mut warnings)
+                    timeago::parse_textual_date_or_warn(lang, ctx.utc_offset, &txt, &mut warnings)
                         .map(OffsetDateTime::date)
                 }),
                 view_count: about

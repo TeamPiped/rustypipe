@@ -55,6 +55,10 @@ struct Cli {
     /// YouTube content country
     #[clap(long, global = true)]
     country: Option<String>,
+    /// UTC offset in minutes
+    #[cfg(feature = "timezone")]
+    #[clap(long, global = true)]
+    timezone: Option<String>,
     /// Use authentication
     #[clap(long, global = true)]
     auth: bool,
@@ -913,6 +917,20 @@ async fn run() -> anyhow::Result<()> {
     if let Some(botguard_bin) = cli.botguard_bin {
         rp = rp.botguard_bin(botguard_bin);
     }
+
+    #[cfg(feature = "timezone")]
+    if let Some(timezone) = cli.timezone {
+        use time::OffsetDateTime;
+        use time_tz::{Offset, TimeZone};
+
+        let tz = time_tz::timezones::get_by_name(&timezone).expect("invalid timezone");
+        let offset = tz
+            .get_offset_utc(&OffsetDateTime::now_utc())
+            .to_utc()
+            .whole_minutes();
+        rp = rp.timezone(tz.name(), offset);
+    }
+
     if cli.no_botguard {
         rp = rp.no_botguard();
     }

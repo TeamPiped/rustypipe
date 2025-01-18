@@ -46,6 +46,7 @@ time = { version = "0.3.37", features = [
     "serde-human-readable",
     "serde-well-known",
 ] }
+time-tz = { version = "2.0.0" }
 futures-util = "0.3.31"
 ress = "0.11.0"
 phf = "0.11.0"

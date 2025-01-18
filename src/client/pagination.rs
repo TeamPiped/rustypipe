@@ -127,7 +127,7 @@ impl MapResponse<Paginator<YouTubeItem>> for response::Continuation {
         let estimated_results = self.estimated_results;
         let items = continuation_items(self);
 
-        let mut mapper = response::YouTubeListMapper::<YouTubeItem>::new(ctx.lang);
+        let mut mapper = response::YouTubeListMapper::<YouTubeItem>::new(ctx.lang, ctx.utc_offset);
         mapper.map_response(items);
 
         Ok(MapResult {
@@ -237,7 +237,8 @@ impl MapResponse<Paginator<HistoryItem<VideoItem>>> for response::Continuation {
         for item in items.c {
             match item {
                 response::YouTubeListItem::ItemSectionRenderer { header, contents } => {
-                    let mut mapper = response::YouTubeListMapper::<VideoItem>::new(ctx.lang);
+                    let mut mapper =
+                        response::YouTubeListMapper::<VideoItem>::new(ctx.lang, ctx.utc_offset);
                     mapper.map_response(contents);
                     mapper.conv_history_items(
                         header.map(|h| h.item_section_header_renderer.title),

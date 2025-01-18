@@ -90,7 +90,7 @@ impl MapResponse<Playlist> for response::Playlist {
             .playlist_video_list_renderer
             .contents;
 
-        let mut mapper = response::YouTubeListMapper::<VideoItem>::new(ctx.lang);
+        let mut mapper = response::YouTubeListMapper::<VideoItem>::new(ctx.lang, ctx.utc_offset);
         mapper.map_response(video_items);
 
         let (description, thumbnails, last_update_txt) = match self.sidebar {
@@ -225,8 +225,13 @@ impl MapResponse<Playlist> for response::Playlist {
             .as_deref()
             .or(last_update_txt2.as_deref())
             .and_then(|txt| {
-                timeago::parse_textual_date_or_warn(ctx.lang, txt, &mut mapper.warnings)
-                    .map(OffsetDateTime::date)
+                timeago::parse_textual_date_or_warn(
+                    ctx.lang,
+                    ctx.utc_offset,
+                    txt,
+                    &mut mapper.warnings,
+                )
+                .map(OffsetDateTime::date)
             });
 
         Ok(MapResult {

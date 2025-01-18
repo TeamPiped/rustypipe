@@ -180,7 +180,12 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                         // so we ignore parse errors here for now
                         like_text.and_then(|txt| util::parse_numeric(&txt).ok()),
                         date_text.as_deref().and_then(|txt| {
-                            timeago::parse_textual_date_or_warn(ctx.lang, txt, &mut warnings)
+                            timeago::parse_textual_date_or_warn(
+                                ctx.lang,
+                                ctx.utc_offset,
+                                txt,
+                                &mut warnings,
+                            )
                         }),
                         date_text,
                         view_count
@@ -470,7 +475,7 @@ fn map_recommendations(
     visitor_data: Option<String>,
     ctx: &MapRespCtx<'_>,
 ) -> MapResult<Paginator<VideoItem>> {
-    let mut mapper = response::YouTubeListMapper::<VideoItem>::new(ctx.lang);
+    let mut mapper = response::YouTubeListMapper::<VideoItem>::new(ctx.lang, ctx.utc_offset);
     mapper.map_response(r);
 
     mapper.ctoken = mapper.ctoken.or_else(|| {

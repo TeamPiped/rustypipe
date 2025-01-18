@@ -2,7 +2,7 @@ use serde::Deserialize;
 use serde_with::{
     rust::deserialize_ignore_any, serde_as, DefaultOnError, DisplayFromStr, VecSkipError,
 };
-use time::OffsetDateTime;
+use time::{OffsetDateTime, UtcOffset};
 
 use super::{
     ChannelBadge, ContentImage, ContinuationEndpoint, PhMetadataView, SimpleHeaderRenderer,
@@ -461,6 +461,7 @@ impl IsShort for Vec<TimeOverlay> {
 #[derive(Debug)]
 pub(crate) struct YouTubeListMapper<T> {
     lang: Language,
+    utc_offset: UtcOffset,
     channel: Option<ChannelTag>,
 
     pub items: Vec<T>,
@@ -470,9 +471,10 @@ pub(crate) struct YouTubeListMapper<T> {
 }
 
 impl<T> YouTubeListMapper<T> {
-    pub fn new(lang: Language) -> Self {
+    pub fn new(lang: Language, utc_offset: UtcOffset) -> Self {
         Self {
             lang,
+            utc_offset,
             channel: None,
             items: Vec::new(),
             warnings: Vec::new(),
@@ -481,9 +483,15 @@ impl<T> YouTubeListMapper<T> {
         }
     }
 
-    pub fn with_channel<C>(lang: Language, channel: &Channel<C>, warnings: Vec<String>) -> Self {
+    pub fn with_channel<C>(
+        lang: Language,
+        utc_offset: UtcOffset,
+        channel: &Channel<C>,
+        warnings: Vec<String>,
+    ) -> Self {
         Self {
             lang,
+            utc_offset,
             channel: Some(ChannelTag {
                 id: channel.id.clone(),
                 name: channel.name.clone(),
@@ -786,7 +794,12 @@ impl<T> YouTubeListMapper<T> {
                     thumbnail: tn.image.into(),
                     channel,
                     publish_date: publish_date_txt.as_deref().and_then(|t| {
-                        timeago::parse_textual_date_or_warn(self.lang, t, &mut self.warnings)
+                        timeago::parse_textual_date_or_warn(
+                            self.lang,
+                            self.utc_offset,
+                            t,
+                            &mut self.warnings,
+                        )
                     }),
                     publish_date_txt,
                     view_count,

@@ -13,7 +13,7 @@
 use std::ops::Mul;
 
 use serde::{Deserialize, Serialize};
-use time::{Date, Duration, Month, OffsetDateTime};
+use time::{Date, Duration, Month, OffsetDateTime, UtcOffset};
 
 use crate::{
     param::Language,
@@ -333,8 +333,13 @@ pub fn parse_textual_date(lang: Language, textual_date: &str) -> Option<ParsedDa
 /// Parse a textual date (e.g. "29 minutes ago" or "Jul 2, 2014") into a OffsetDateTime object.
 ///
 /// Returns None if the date could not be parsed.
-pub fn parse_textual_date_to_dt(lang: Language, textual_date: &str) -> Option<OffsetDateTime> {
-    parse_textual_date(lang, textual_date).map(OffsetDateTime::from)
+pub fn parse_textual_date_to_dt(
+    lang: Language,
+    utc_offset: UtcOffset,
+    textual_date: &str,
+) -> Option<OffsetDateTime> {
+    parse_textual_date(lang, textual_date)
+        .map(|parsed| OffsetDateTime::from(parsed).replace_offset(utc_offset))
 }
 
 /// Parse a textual date (e.g. "29 minutes ago" "Jul 2, 2014") into a Date object.
@@ -345,15 +350,17 @@ pub fn parse_textual_date_to_d(
     textual_date: &str,
     warnings: &mut Vec<String>,
 ) -> Option<Date> {
-    parse_textual_date_or_warn(lang, textual_date, warnings).map(OffsetDateTime::date)
+    parse_textual_date_or_warn(lang, UtcOffset::UTC, textual_date, warnings)
+        .map(OffsetDateTime::date)
 }
 
 pub fn parse_textual_date_or_warn(
     lang: Language,
+    utc_offset: UtcOffset,
     textual_date: &str,
     warnings: &mut Vec<String>,
 ) -> Option<OffsetDateTime> {
-    let res = parse_textual_date_to_dt(lang, textual_date);
+    let res = parse_textual_date_to_dt(lang, utc_offset, textual_date);
     if res.is_none() {
         warnings.push(format!("could not parse textual date `{textual_date}`"));
     }
@@ -1101,11 +1108,13 @@ mod tests {
     #[test]
     fn t_to_datetime() {
         // Absolute date
-        let date = parse_textual_date_to_dt(Language::En, "Last updated on Jan 3, 2020").unwrap();
+        let date =
+            parse_textual_date_to_dt(Language::En, UtcOffset::UTC, "Last updated on Jan 3, 2020")
+                .unwrap();
         assert_eq!(date, datetime!(2020-1-3 0:00 +0));
 
         // Relative date
-        let date = parse_textual_date_to_dt(Language::En, "1 year ago").unwrap();
+        let date = parse_textual_date_to_dt(Language::En, UtcOffset::UTC, "1 year ago").unwrap();
         let now = OffsetDateTime::now_utc();
         assert_eq!(date.year(), now.year() - 1);
     }

@@ -937,6 +937,7 @@ mod tests {
 
     use path_macro::path;
     use rstest::rstest;
+    use time::UtcOffset;
 
     use super::*;
     use crate::{deobfuscate::DeobfData, param::Language, util::tests::TESTFILES};
@@ -968,6 +969,7 @@ mod tests {
             .map_response(&MapRespCtx {
                 id: "pPvd8UxmSbQ",
                 lang: Language::En,
+                utc_offset: UtcOffset::UTC,
                 deobf: Some(&DEOBF_DATA),
                 visitor_data: None,
                 client_type,
