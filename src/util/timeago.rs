@@ -72,12 +72,6 @@ pub struct TaToken {
     pub unit: Option<TimeUnit>,
 }
 
-pub enum DateCmp {
-    Y,
-    M,
-    D,
-}
-
 impl TimeUnit {
     pub fn secs(self) -> u32 {
         match self {
@@ -207,10 +201,19 @@ impl Iterator for TaTokenParser<'_> {
     }
 }
 
-fn parse_textual_month(entry: &dictionary::Entry, filtered_str: &str) -> Option<u8> {
+fn parse_textual_month(lang: Language, filtered_str: &str) -> Option<u8> {
+    let entry = dictionary::entry(lang);
     filtered_str
         .split_whitespace()
         .find_map(|word| entry.months.get(word).copied())
+        .map(|mon| {
+            // Mongolian has an extra number word that adds 10 to a month
+            if lang == Language::Mn && filtered_str.split_whitespace().any(|s| s == "арван") {
+                mon + 10
+            } else {
+                mon
+            }
+        })
 }
 
 /// Parse a TimeAgo string (e.g. "29 minutes ago") into a TimeAgo object.
@@ -278,53 +281,49 @@ pub fn parse_textual_date(lang: Language, textual_date: &str) -> Option<ParsedDa
             .or_else(|| TaTokenParser::new(&entry, by_char, false, &filtered_str).next())
             .map(ParsedDate::Relative)
     } else {
-        if nums.len() == 1 {
+        if nums.len() == 1 && nums[0] < 2000 {
             if let Some(timeago) = TaTokenParser::new(&entry, by_char, false, &filtered_str).next()
             {
                 return Some(ParsedDate::Relative(timeago * nums[0] as u8));
             }
         }
 
-        let mut date_order = entry.date_order;
-        let with_day = if entry.date_order.len() == nums.len() {
-            true
-        } else if entry.date_order.len() - 1 == nums.len() {
-            false
-        } else if nums.len() == 1 {
-            date_order = &[DateCmp::Y];
-            false
-        } else {
-            return None;
-        };
-
         let mut y: Option<u16> = None;
-        let mut m: Option<u16> = None;
+        let mut m = parse_textual_month(lang, &filtered_str).map(u16::from);
         let mut d: Option<u16> = None;
 
-        let mut i = 0;
-        for dc in date_order.iter() {
-            match dc {
-                DateCmp::Y => y = Some(nums[i]),
-                DateCmp::M => m = Some(nums[i]),
-                DateCmp::D => {
-                    if with_day {
-                        d = Some(nums[i]);
-                    } else {
-                        continue;
-                    }
+        for num in nums {
+            if num > 31 {
+                if y.is_none() {
+                    y = Some(num);
+                } else {
+                    return None;
                 }
+            } else if m.is_none() && (entry.month_before_day || d.is_some()) {
+                m = Some(num);
+            } else if d.is_none() {
+                d = Some(num);
+            } else {
+                return None;
             }
-            i += 1;
         }
-
-        if m.is_none() {
-            m = parse_textual_month(&entry, &filtered_str).map(u16::from);
+        if m.is_none() && d.is_some() {
+            m = d;
+            d = None;
         }
 
         match (y, m, d) {
-            (Some(y), Some(m), d) => Month::try_from(m as u8)
+            (y, Some(m), d) => Month::try_from(m as u8)
                 .ok()
-                .and_then(|m| Date::from_calendar_date(y.into(), m, d.unwrap_or(1) as u8).ok())
+                .and_then(|m| {
+                    Date::from_calendar_date(
+                        y.map(i32::from)
+                            .unwrap_or_else(|| OffsetDateTime::now_utc().year()),
+                        m,
+                        d.unwrap_or(1) as u8,
+                    )
+                    .ok()
+                })
                 .map(ParsedDate::Absolute),
             _ => None,
         }
@@ -460,7 +459,7 @@ fn split_duration_txt(txt: &str, start_word: bool) -> Vec<DurationTxtSegment> {
 
 #[cfg(test)]
 mod tests {
-    use std::{collections::BTreeMap, fs::File, io::BufReader};
+    use std::{collections::BTreeMap, fs::File, io::BufReader, str::FromStr};
 
     use path_macro::path;
     use rstest::rstest;
@@ -911,6 +910,20 @@ mod tests {
         assert_eq!(parsed_date, expect);
     }
 
+    #[rstest]
+    #[case(Language::En, "Jan 5", date!(0000-01-05))]
+    fn t_parse_date_this_year(
+        #[case] lang: Language,
+        #[case] textual_date: &str,
+        #[case] expect: Date,
+    ) {
+        let parsed_date = parse_textual_date(lang, textual_date);
+        let expected_date = expect
+            .replace_year(OffsetDateTime::now_utc().year())
+            .unwrap();
+        assert_eq!(parsed_date, Some(ParsedDate::Absolute(expected_date)));
+    }
+
     #[test]
     fn t_parse_date_samples() {
         let json_path = path!(*TESTFILES / "dict" / "playlist_samples.json");
@@ -1008,34 +1021,48 @@ mod tests {
 
     #[test]
     fn t_parse_history_date_samples() {
-        #[derive(Deserialize)]
-        struct HistoryDates {
-            this_week: String,
-            last_week: String,
-        }
-
         let json_path = path!(*TESTFILES / "dict" / "history_date_samples.json");
         let json_file = File::open(json_path).unwrap();
-        let date_samples: BTreeMap<Language, HistoryDates> =
+        let date_samples: BTreeMap<Language, BTreeMap<String, String>> =
             serde_json::from_reader(BufReader::new(json_file)).unwrap();
 
         for (lang, samples) in date_samples {
-            assert_eq!(
-                parse_textual_date(lang, &samples.this_week),
-                Some(ParsedDate::Relative(TimeAgo {
-                    n: 0,
-                    unit: TimeUnit::LastWeek
-                })),
-                "lang: {lang}"
-            );
-            assert_eq!(
-                parse_textual_date(lang, &samples.last_week),
-                Some(ParsedDate::Relative(TimeAgo {
-                    n: 1,
-                    unit: TimeUnit::LastWeek
-                })),
-                "lang: {lang}"
-            );
+            for (k, v) in samples {
+                let expected = match k.as_str() {
+                    "this_week" => ParsedDate::Relative(TimeAgo {
+                        n: 0,
+                        unit: TimeUnit::LastWeek,
+                    }),
+                    "last_week" => ParsedDate::Relative(TimeAgo {
+                        n: 1,
+                        unit: TimeUnit::LastWeek,
+                    }),
+                    _ => {
+                        if let Ok(wd) = time::Weekday::from_str(&k) {
+                            ParsedDate::Relative(TimeAgo {
+                                n: wd.number_days_from_monday(),
+                                unit: TimeUnit::LastWeekday,
+                            })
+                        } else {
+                            let mut date_nums = k.split('-');
+                            let mut y = date_nums.next().unwrap().parse::<i32>().unwrap();
+                            if y == 0 {
+                                y = OffsetDateTime::now_utc().date().year();
+                            }
+                            let m = date_nums.next().unwrap().parse::<u8>().unwrap();
+                            let d = date_nums.next().unwrap().parse::<u8>().unwrap();
+                            ParsedDate::Absolute(
+                                Date::from_calendar_date(y, m.try_into().unwrap(), d).unwrap(),
+                            )
+                        }
+                    }
+                };
+                assert_eq!(
+                    parse_textual_date(lang, &v),
+                    Some(expected),
+                    "lang={lang}; {k}"
+                );
+            }
         }
     }
 

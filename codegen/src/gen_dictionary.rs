@@ -45,7 +45,7 @@ pub fn generate_dictionary() {
 use crate::{
     model::AlbumType,
     param::Language,
-    util::timeago::{DateCmp, TaToken, TimeUnit},
+    util::timeago::{TaToken, TimeUnit},
 };
 
 /// Dictionary entry containing language-specific parsing information
@@ -57,14 +57,13 @@ pub(crate) struct Entry {
     /// Identifiers: `Y`(ear), `M`(month), `W`(eek), `D`(ay),
     /// `h`(our), `m`(inute), `s`(econd)
     pub timeago_tokens: phf::Map<&'static str, TaToken>,
-    /// Order in which to parse numeric date components. Formatted as
-    /// a string of date identifiers (Y, M, D).
+    /// True if the month has to be parsed before the day
     ///
     /// Examples:
     ///
-    /// - 03.01.2020 => `"DMY"`
-    /// - Jan 3, 2020 => `"DY"`
-    pub date_order: &'static [DateCmp],
+    /// - 03.01.2020 => DMY => false
+    /// - 01/03/2020 => MDY => true
+    pub month_before_day: bool,
     /// Tokens for parsing month names.
     ///
     /// Format: Parsed token -> Month number (starting from 1)
@@ -139,13 +138,6 @@ pub(crate) fn entry(lang: Language) -> Entry {
             };
         });
 
-        // Date order
-        let mut date_order = "&[".to_owned();
-        entry.date_order.chars().for_each(|c| {
-            write!(date_order, "DateCmp::{c}, ").unwrap();
-        });
-        date_order = date_order.trim_end_matches([' ', ',']).to_owned() + "]";
-
         // Number tokens
         let mut number_tokens = phf_codegen::Map::<&str>::new();
         entry.number_tokens.iter().for_each(|(txt, mag)| {
@@ -186,8 +178,8 @@ pub(crate) fn entry(lang: Language) -> Entry {
             .to_string()
             .replace('\n', "\n            ");
 
-        write!(code_timeago_tokens, "{} => Entry {{\n            timeago_tokens: {},\n            date_order: {},\n            months: {},\n            timeago_nd_tokens: {},\n            comma_decimal: {:?},\n            number_tokens: {},\n            number_nd_tokens: {},\n            album_types: {},\n            chan_prefix: {:?},\n            chan_suffix: {:?},\n        }},\n        ",
-        selector, code_ta_tokens, date_order, code_months, code_ta_nd_tokens, entry.comma_decimal, code_number_tokens, code_number_nd_tokens, code_album_types, entry.chan_prefix, entry.chan_suffix).unwrap();
+        write!(code_timeago_tokens, "{} => Entry {{\n            timeago_tokens: {},\n            month_before_day: {:?},\n            months: {},\n            timeago_nd_tokens: {},\n            comma_decimal: {:?},\n            number_tokens: {},\n            number_nd_tokens: {},\n            album_types: {},\n            chan_prefix: {:?},\n            chan_suffix: {:?},\n        }},\n        ",
+        selector, code_ta_tokens, entry.month_before_day, code_months, code_ta_nd_tokens, entry.comma_decimal, code_number_tokens, code_number_nd_tokens, code_album_types, entry.chan_prefix, entry.chan_suffix).unwrap();
     }
 
     code_timeago_tokens = code_timeago_tokens.trim_end().to_owned() + "\n    }\n}\n";

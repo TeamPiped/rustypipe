@@ -32,6 +32,7 @@ enum Commands {
     CollectVideoDurations,
     CollectVideoDates,
     CollectHistoryDates,
+    CollectMusicHistoryDates,
     CollectChanPrefixes,
     ParsePlaylistDates,
     ParseHistoryDates,
@@ -73,6 +74,9 @@ async fn main() {
         }
         Commands::CollectHistoryDates => {
             collect_history_dates::collect_dates().await;
+        }
+        Commands::CollectMusicHistoryDates => {
+            collect_history_dates::collect_dates_music().await;
         }
         Commands::CollectChanPrefixes => {
             collect_chan_prefixes::collect_chan_prefixes().await;

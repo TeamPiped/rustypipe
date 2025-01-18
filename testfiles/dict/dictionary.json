@@ -79,7 +79,8 @@
       "enkelsnitte": "single"
     },
     "chan_prefix": "deur",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": true
   },
   "am": {
     "equivalent": [],
@@ -162,7 +163,8 @@
       "ነጠላዎች": "single"
     },
     "chan_prefix": "በ",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "ar": {
     "equivalent": [],
@@ -252,7 +254,8 @@
       "أغنية منفردة": "single"
     },
     "chan_prefix": "بواسطة",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "as": {
     "equivalent": [],
@@ -268,17 +271,24 @@
     },
     "date_order": "DMY",
     "months": {
+      "জানু": 1,
       "জানুৱাৰী": 1,
+      "ফেব্ৰু": 2,
       "ফেব্ৰুৱাৰী": 2,
       "মাৰ্চ": 3,
       "এপ্ৰিল": 4,
       "মে’": 5,
       "জুন": 6,
       "জুলাই": 7,
+      "আগ": 8,
       "আগষ্ট": 8,
+      "ছেপ্তে": 9,
       "ছেপ্তেম্বৰ": 9,
+      "অক্টো": 10,
       "অক্টোবৰ": 10,
+      "নৱে": 11,
       "নৱেম্বৰ": 11,
+      "ডিচে": 12,
       "ডিচেম্বৰ": 12
     },
     "timeago_nd_tokens": {
@@ -324,7 +334,8 @@
       "এককসমূহ": "single"
     },
     "chan_prefix": "",
-    "chan_suffix": "ৰ দ্বাৰা"
+    "chan_suffix": "ৰ দ্বাৰা",
+    "month_before_day": false
   },
   "az": {
     "equivalent": [],
@@ -397,7 +408,8 @@
       "tək": "single"
     },
     "chan_prefix": "by",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "be": {
     "equivalent": [],
@@ -497,7 +509,8 @@
       "сінглы": "single"
     },
     "chan_prefix": "ад",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "bg": {
     "equivalent": [],
@@ -571,7 +584,8 @@
       "сингъл": "single"
     },
     "chan_prefix": "от",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "bn": {
     "equivalent": [],
@@ -645,7 +659,8 @@
       "সিঙ্গেলস": "single"
     },
     "chan_prefix": ",",
-    "chan_suffix": "দ্বারা"
+    "chan_suffix": "দ্বারা",
+    "month_before_day": false
   },
   "bs": {
     "equivalent": [],
@@ -738,7 +753,8 @@
       "singlovi": "single"
     },
     "chan_prefix": "od",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "ca": {
     "equivalent": [],
@@ -818,7 +834,8 @@
       "singles": "single"
     },
     "chan_prefix": "de:",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "cs": {
     "equivalent": [],
@@ -903,7 +920,8 @@
       "singly": "single"
     },
     "chan_prefix": "autor:",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "da": {
     "equivalent": [],
@@ -983,7 +1001,8 @@
       "singler": "single"
     },
     "chan_prefix": "af",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "de": {
     "equivalent": [],
@@ -1009,17 +1028,25 @@
     },
     "date_order": "DMY",
     "months": {
+      "jan": 1,
       "januar": 1,
+      "feb": 2,
       "februar": 2,
       "märz": 3,
+      "apr": 4,
       "april": 4,
       "mai": 5,
       "juni": 6,
       "juli": 7,
+      "aug": 8,
       "august": 8,
+      "sept": 9,
       "september": 9,
+      "okt": 10,
       "oktober": 10,
+      "nov": 11,
       "november": 11,
+      "dez": 12,
       "dezember": 12
     },
     "timeago_nd_tokens": {
@@ -1053,7 +1080,8 @@
       "singles": "single"
     },
     "chan_prefix": "von",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "el": {
     "equivalent": [],
@@ -1139,13 +1167,11 @@
       "σινγκλ": "single"
     },
     "chan_prefix": "από το χρήστη",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "en": {
-    "equivalent": [
-      "en-GB",
-      "en-IN"
-    ],
+    "equivalent": ["en-GB", "en-IN"],
     "by_char": false,
     "timeago_tokens": {
       "s": "s",
@@ -1237,7 +1263,8 @@
       "singles": "single"
     },
     "chan_prefix": "by",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": true
   },
   "es": {
     "equivalent": [],
@@ -1320,12 +1347,11 @@
       "single": "single"
     },
     "chan_prefix": "de",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "es-US": {
-    "equivalent": [
-      "es-419"
-    ],
+    "equivalent": ["es-419"],
     "by_char": false,
     "timeago_tokens": {
       "s": "s",
@@ -1406,7 +1432,8 @@
       "sencillos": "single"
     },
     "chan_prefix": "de",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "et": {
     "equivalent": [],
@@ -1488,7 +1515,8 @@
       "singlid": "single"
     },
     "chan_prefix": "kanalilt",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "eu": {
     "equivalent": [],
@@ -1562,7 +1590,8 @@
       "singleak": "single"
     },
     "chan_prefix": "egilea:",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": true
   },
   "fa": {
     "equivalent": [],
@@ -1628,7 +1657,8 @@
       "تک‌آهنگ‌ها": "single"
     },
     "chan_prefix": "توسط",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": true
   },
   "fi": {
     "equivalent": [],
@@ -1704,7 +1734,8 @@
       "singlet": "single"
     },
     "chan_prefix": "tekijä:",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "fil": {
     "equivalent": [],
@@ -1779,12 +1810,11 @@
       "single": "single"
     },
     "chan_prefix": "ni/ng",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": true
   },
   "fr": {
-    "equivalent": [
-      "fr-CA"
-    ],
+    "equivalent": ["fr-CA"],
     "by_char": false,
     "timeago_tokens": {
       "s": "s",
@@ -1868,7 +1898,8 @@
       "singles": "single"
     },
     "chan_prefix": "de",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "gl": {
     "equivalent": [],
@@ -1948,7 +1979,8 @@
       "singles": "single"
     },
     "chan_prefix": "de",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "gu": {
     "equivalent": [],
@@ -2013,7 +2045,8 @@
       "સિંગલ": "single"
     },
     "chan_prefix": "",
-    "chan_suffix": "દ્વારા"
+    "chan_suffix": "દ્વારા",
+    "month_before_day": false
   },
   "hi": {
     "equivalent": [],
@@ -2087,7 +2120,8 @@
       "सिंगल": "single"
     },
     "chan_prefix": "",
-    "chan_suffix": "के ज़रिए"
+    "chan_suffix": "के ज़रिए",
+    "month_before_day": false
   },
   "hr": {
     "equivalent": [],
@@ -2180,7 +2214,8 @@
       "singlovi": "single"
     },
     "chan_prefix": "omogućio kanal",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "hu": {
     "equivalent": [],
@@ -2265,7 +2300,8 @@
       "kislemezek": "single"
     },
     "chan_prefix": "",
-    "chan_suffix": "csatornától"
+    "chan_suffix": "csatornától",
+    "month_before_day": true
   },
   "hy": {
     "equivalent": [],
@@ -2344,7 +2380,8 @@
       "սինգլներ": "single"
     },
     "chan_prefix": "հեղինակ՝",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "id": {
     "equivalent": [],
@@ -2420,7 +2457,8 @@
       "single": "single"
     },
     "chan_prefix": "oleh",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "is": {
     "equivalent": [],
@@ -2509,7 +2547,8 @@
       "smáskífur": "single"
     },
     "chan_prefix": "eftir",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "it": {
     "equivalent": [],
@@ -2596,7 +2635,8 @@
       "singolo": "single"
     },
     "chan_prefix": "di",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "iw": {
     "equivalent": [],
@@ -2688,7 +2728,8 @@
       "סינגלים": "single"
     },
     "chan_prefix": "מאת",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "ja": {
     "equivalent": [],
@@ -2731,7 +2772,8 @@
       "シングル": "single"
     },
     "chan_prefix": "作成者:",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": true
   },
   "ka": {
     "equivalent": [],
@@ -2810,7 +2852,8 @@
       "სინგლი": "single"
     },
     "chan_prefix": "",
-    "chan_suffix": "-ის მიერ"
+    "chan_suffix": "-ის მიერ",
+    "month_before_day": false
   },
   "kk": {
     "equivalent": [],
@@ -2890,7 +2933,8 @@
       "синглдер": "single"
     },
     "chan_prefix": "қосқан",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "km": {
     "equivalent": [],
@@ -2951,7 +2995,8 @@
       "ចម្រៀងទោល": "single"
     },
     "chan_prefix": "ដោយ",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "kn": {
     "equivalent": [],
@@ -3033,7 +3078,8 @@
       "ಸಿಂಗಲ್ಸ್": "single"
     },
     "chan_prefix": "",
-    "chan_suffix": "ಚಾನಲ್‌ನಿಂದ"
+    "chan_suffix": "ಚಾನಲ್‌ನಿಂದ",
+    "month_before_day": false
   },
   "ko": {
     "equivalent": [],
@@ -3079,7 +3125,8 @@
       "싱글": "single"
     },
     "chan_prefix": "게시자:",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": true
   },
   "ky": {
     "equivalent": [],
@@ -3155,7 +3202,8 @@
       "синглдар": "single"
     },
     "chan_prefix": "",
-    "chan_suffix": "каналы аркылуу"
+    "chan_suffix": "каналы аркылуу",
+    "month_before_day": false
   },
   "lo": {
     "equivalent": [],
@@ -3238,7 +3286,8 @@
       "ຜົນງານເພງ": "single"
     },
     "chan_prefix": "ໂດຍ",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "lt": {
     "equivalent": [],
@@ -3327,7 +3376,8 @@
       "singlas": "single"
     },
     "chan_prefix": "pridėjo",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": true
   },
   "lv": {
     "equivalent": [],
@@ -3416,7 +3466,8 @@
       "singls": "single"
     },
     "chan_prefix": "autors:",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "mk": {
     "equivalent": [],
@@ -3442,17 +3493,28 @@
     },
     "date_order": "DMY",
     "months": {
+      "јан": 1,
       "јануари": 1,
+      "фев": 2,
       "февруари": 2,
+      "мар": 3,
       "март": 3,
+      "апр": 4,
       "април": 4,
       "мај": 5,
+      "јун": 6,
       "јуни": 6,
+      "јул": 7,
       "јули": 7,
+      "авг": 8,
       "август": 8,
+      "сеп": 9,
       "септември": 9,
+      "окт": 10,
       "октомври": 10,
+      "ное": 11,
       "ноември": 11,
+      "дек": 12,
       "декември": 12
     },
     "timeago_nd_tokens": {
@@ -3488,7 +3550,8 @@
       "синглови": "single"
     },
     "chan_prefix": "од",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "ml": {
     "equivalent": [],
@@ -3560,7 +3623,8 @@
       "സിംഗിൾസ്": "single"
     },
     "chan_prefix": "",
-    "chan_suffix": "മുഖേന"
+    "chan_suffix": "മുഖേന",
+    "month_before_day": false
   },
   "mn": {
     "equivalent": [],
@@ -3582,6 +3646,8 @@
     },
     "date_order": "YMD",
     "months": {
+      "нэгдүгээр": 1,
+      "хоёрдугаар": 2,
       "гуравдугаар": 3,
       "дөрөвдүгээр": 4,
       "тавдугаар": 5,
@@ -3589,9 +3655,7 @@
       "долоодугаар": 7,
       "наймдугаар": 8,
       "есдүгээр": 9,
-      "аравдугаар": 10,
-      "нэгдүгээр": 11,
-      "хоёрдугаар": 12
+      "аравдугаар": 10
     },
     "timeago_nd_tokens": {
       "өнөөдөр": "0D",
@@ -3624,7 +3688,8 @@
       "синглүүд": "single"
     },
     "chan_prefix": "сувгийн нэр:",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": true
   },
   "mr": {
     "equivalent": [],
@@ -3706,7 +3771,8 @@
       "सिंगल": "single"
     },
     "chan_prefix": "",
-    "chan_suffix": "द्वारे"
+    "chan_suffix": "द्वारे",
+    "month_before_day": false
   },
   "ms": {
     "equivalent": [],
@@ -3777,7 +3843,8 @@
       "rekod single": "single"
     },
     "chan_prefix": "oleh",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "my": {
     "equivalent": [],
@@ -3854,7 +3921,8 @@
       "တစ်ပုဒ်ချင်းများ": "single"
     },
     "chan_prefix": "",
-    "chan_suffix": "မှ"
+    "chan_suffix": "မှ",
+    "month_before_day": false
   },
   "ne": {
     "equivalent": [],
@@ -3917,7 +3985,8 @@
       "एकल एल्बमहरू": "single"
     },
     "chan_prefix": "",
-    "chan_suffix": "द्वारा"
+    "chan_suffix": "द्वारा",
+    "month_before_day": true
   },
   "nl": {
     "equivalent": [],
@@ -3996,7 +4065,8 @@
       "singles": "single"
     },
     "chan_prefix": "door",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "no": {
     "equivalent": [],
@@ -4080,7 +4150,8 @@
       "singler": "single"
     },
     "chan_prefix": "av",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "or": {
     "equivalent": [],
@@ -4153,7 +4224,8 @@
       "ସିଙ୍ଗଲ୍": "single"
     },
     "chan_prefix": "",
-    "chan_suffix": "ଦ୍ଵାରା"
+    "chan_suffix": "ଦ୍ଵାରା",
+    "month_before_day": true
   },
   "pa": {
     "equivalent": [],
@@ -4226,7 +4298,8 @@
       "ਸਿੰਗਲ": "single"
     },
     "chan_prefix": "",
-    "chan_suffix": "ਵੱਲੋਂ"
+    "chan_suffix": "ਵੱਲੋਂ",
+    "month_before_day": false
   },
   "pl": {
     "equivalent": [],
@@ -4324,7 +4397,8 @@
       "single": "single"
     },
     "chan_prefix": "autor:",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "pt": {
     "equivalent": [],
@@ -4409,7 +4483,8 @@
       "singles": "single"
     },
     "chan_prefix": "por",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "pt-PT": {
     "equivalent": [],
@@ -4479,7 +4554,8 @@
       "singles": "single"
     },
     "chan_prefix": "de",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "ro": {
     "equivalent": [],
@@ -4563,7 +4639,8 @@
       "single-uri": "single"
     },
     "chan_prefix": "de",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "ru": {
     "equivalent": [],
@@ -4659,7 +4736,8 @@
       "синглы": "single"
     },
     "chan_prefix": "",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "si": {
     "equivalent": [],
@@ -4729,7 +4807,8 @@
       "තනි": "single"
     },
     "chan_prefix": "",
-    "chan_suffix": "විසින්"
+    "chan_suffix": "විසින්",
+    "month_before_day": true
   },
   "sk": {
     "equivalent": [],
@@ -4814,7 +4893,8 @@
       "single": "single"
     },
     "chan_prefix": "Autori:",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "sl": {
     "equivalent": [],
@@ -4915,7 +4995,8 @@
       "singli": "single"
     },
     "chan_prefix": "kanal",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "sq": {
     "equivalent": [],
@@ -4992,7 +5073,8 @@
       "single": "single"
     },
     "chan_prefix": "nga",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "sr": {
     "equivalent": [],
@@ -5023,17 +5105,26 @@
     },
     "date_order": "DMY",
     "months": {
+      "јан": 1,
       "јануар": 1,
+      "феб": 2,
       "фебруар": 2,
+      "мар": 3,
       "март": 3,
+      "апр": 4,
       "април": 4,
       "мај": 5,
       "јун": 6,
       "јул": 7,
+      "авг": 8,
       "август": 8,
+      "сеп": 9,
       "септембар": 9,
+      "окт": 10,
       "октобар": 10,
+      "нов": 11,
       "новембар": 11,
+      "дец": 12,
       "децембар": 12
     },
     "timeago_nd_tokens": {
@@ -5068,7 +5159,8 @@
       "синглови": "single"
     },
     "chan_prefix": "са канала",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "sr-Latn": {
     "equivalent": [],
@@ -5099,17 +5191,26 @@
     },
     "date_order": "DMY",
     "months": {
+      "jan": 1,
       "januar": 1,
+      "feb": 2,
       "februar": 2,
+      "mar": 3,
       "mart": 3,
+      "apr": 4,
       "april": 4,
       "maj": 5,
       "jun": 6,
       "jul": 7,
+      "avg": 8,
       "avgust": 8,
+      "sep": 9,
       "septembar": 9,
+      "okt": 10,
       "oktobar": 10,
+      "nov": 11,
       "novembar": 11,
+      "dec": 12,
       "decembar": 12
     },
     "timeago_nd_tokens": {
@@ -5144,7 +5245,8 @@
       "singlovi": "single"
     },
     "chan_prefix": "sa kanala",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "sv": {
     "equivalent": [],
@@ -5223,7 +5325,8 @@
       "singlar": "single"
     },
     "chan_prefix": "från",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": true
   },
   "sw": {
     "equivalent": [],
@@ -5295,7 +5398,8 @@
       "singo": "single"
     },
     "chan_prefix": "kutoka",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "ta": {
     "equivalent": [],
@@ -5380,7 +5484,8 @@
       "சிங்கிள்ஸ்": "single"
     },
     "chan_prefix": "வழங்கியவர்:",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "te": {
     "equivalent": [],
@@ -5463,7 +5568,8 @@
       "సింగిల్స్": "single"
     },
     "chan_prefix": "",
-    "chan_suffix": "ఛానెల్ ద్వారా"
+    "chan_suffix": "ఛానెల్ ద్వారా",
+    "month_before_day": false
   },
   "th": {
     "equivalent": [],
@@ -5549,7 +5655,8 @@
       "ซิงเกิล": "single"
     },
     "chan_prefix": "โดย",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "tr": {
     "equivalent": [],
@@ -5626,7 +5733,8 @@
       "single'lar": "single"
     },
     "chan_prefix": "",
-    "chan_suffix": "tarafından"
+    "chan_suffix": "tarafından",
+    "month_before_day": false
   },
   "uk": {
     "equivalent": [],
@@ -5727,7 +5835,8 @@
       "сингли": "single"
     },
     "chan_prefix": "власник:",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "ur": {
     "equivalent": [],
@@ -5809,7 +5918,8 @@
       "واحد": "single"
     },
     "chan_prefix": "منجانب",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "uz": {
     "equivalent": [],
@@ -5881,7 +5991,8 @@
       "singllar": "single"
     },
     "chan_prefix": "muallif:",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "vi": {
     "equivalent": [],
@@ -5925,7 +6036,8 @@
       "đĩa đơn": "single"
     },
     "chan_prefix": "của",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": false
   },
   "zh-CN": {
     "equivalent": [],
@@ -5983,7 +6095,8 @@
       "单曲": "single"
     },
     "chan_prefix": "创建者：",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": true
   },
   "zh-HK": {
     "equivalent": [],
@@ -6027,7 +6140,8 @@
       "單曲": "single"
     },
     "chan_prefix": "來自",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": true
   },
   "zh-TW": {
     "equivalent": [],
@@ -6070,7 +6184,8 @@
       "單曲": "single"
     },
     "chan_prefix": "由",
-    "chan_suffix": "建立"
+    "chan_suffix": "建立",
+    "month_before_day": true
   },
   "zu": {
     "equivalent": [],
@@ -6160,6 +6275,7 @@
       "i-single": "single"
     },
     "chan_prefix": "ka-",
-    "chan_suffix": ""
+    "chan_suffix": "",
+    "month_before_day": true
   }
 }

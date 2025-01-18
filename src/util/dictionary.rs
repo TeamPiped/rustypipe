@@ -8,7 +8,7 @@
 use crate::{
     model::AlbumType,
     param::Language,
-    util::timeago::{DateCmp, TaToken, TimeUnit},
+    util::timeago::{TaToken, TimeUnit},
 };
 
 /// Dictionary entry containing language-specific parsing information
@@ -20,14 +20,13 @@ pub(crate) struct Entry {
     /// Identifiers: `Y`(ear), `M`(month), `W`(eek), `D`(ay),
     /// `h`(our), `m`(inute), `s`(econd)
     pub timeago_tokens: phf::Map<&'static str, TaToken>,
-    /// Order in which to parse numeric date components. Formatted as
-    /// a string of date identifiers (Y, M, D).
+    /// True if the month has to be parsed before the day
     ///
     /// Examples:
     ///
-    /// - 03.01.2020 => `"DMY"`
-    /// - Jan 3, 2020 => `"DY"`
-    pub date_order: &'static [DateCmp],
+    /// - 03.01.2020 => DMY => false
+    /// - 01/03/2020 => MDY => true
+    pub month_before_day: bool,
     /// Tokens for parsing month names.
     ///
     /// Format: Parsed token -> Month number (starting from 1)
@@ -89,7 +88,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("jaar", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: true,
             months: ::phf::Map {
                 key: 12213676231523076107,
                 disps: &[
@@ -216,7 +215,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("ቀናት", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -360,7 +359,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("دقائق", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::M, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -464,27 +463,35 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("মিনিট", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::M, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
-                    (3, 11),
-                    (2, 2),
-                    (0, 0),
+                    (1, 0),
+                    (13, 15),
+                    (3, 15),
+                    (0, 15),
                 ],
                 entries: &[
-                    ("ছেপ\u{9cd}তেম\u{9cd}বৰ", 9),
-                    ("জ\u{9be}ন\u{9c1}ৱ\u{9be}ৰী", 1),
-                    ("আগষ\u{9cd}ট", 8),
-                    ("মে’", 5),
-                    ("অক\u{9cd}টোবৰ", 10),
-                    ("এপ\u{9cd}ৰিল", 4),
-                    ("ডিচেম\u{9cd}বৰ", 12),
-                    ("ফেব\u{9cd}ৰ\u{9c1}ৱ\u{9be}ৰী", 2),
-                    ("জ\u{9c1}ন", 6),
+                    ("ফেব\u{9cd}ৰ\u{9c1}", 2),
                     ("ম\u{9be}ৰ\u{9cd}চ", 3),
-                    ("জ\u{9c1}ল\u{9be}ই", 7),
+                    ("ডিচেম\u{9cd}বৰ", 12),
                     ("নৱেম\u{9cd}বৰ", 11),
+                    ("ডিচে", 12),
+                    ("নৱে", 11),
+                    ("এপ\u{9cd}ৰিল", 4),
+                    ("জ\u{9c1}ল\u{9be}ই", 7),
+                    ("ফেব\u{9cd}ৰ\u{9c1}ৱ\u{9be}ৰী", 2),
+                    ("মে’", 5),
+                    ("জ\u{9be}ন\u{9c1}ৱ\u{9be}ৰী", 1),
+                    ("ছেপ\u{9cd}তে", 9),
+                    ("আগ", 8),
+                    ("আগষ\u{9cd}ট", 8),
+                    ("ছেপ\u{9cd}তেম\u{9cd}বৰ", 9),
+                    ("জ\u{9c1}ন", 6),
+                    ("অক\u{9cd}টো", 10),
+                    ("জ\u{9be}ন\u{9c1}", 1),
+                    ("অক\u{9cd}টোবৰ", 10),
                 ],
             },
             timeago_nd_tokens: ::phf::Map {
@@ -580,7 +587,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("ay", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -724,7 +731,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("хвіліна", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -855,7 +862,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("седмици", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::M, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -956,7 +963,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("সেকেন\u{9cd}ড", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -1097,7 +1104,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("sedmice", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -1225,7 +1232,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("setmana", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -1367,7 +1374,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("minuta", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::M, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -1478,7 +1485,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("dage", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -1602,27 +1609,36 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("sek", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::M, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
-                key: 7485420634051515786,
+                key: 12913932095322966823,
                 disps: &[
                     (0, 0),
-                    (1, 8),
-                    (0, 3),
+                    (17, 15),
+                    (3, 6),
+                    (5, 10),
                 ],
                 entries: &[
-                    ("januar", 1),
-                    ("august", 8),
-                    ("februar", 2),
-                    ("dezember", 12),
-                    ("oktober", 10),
-                    ("september", 9),
-                    ("november", 11),
-                    ("juli", 7),
-                    ("juni", 6),
-                    ("april", 4),
-                    ("mai", 5),
+                    ("sept", 9),
                     ("märz", 3),
+                    ("mai", 5),
+                    ("september", 9),
+                    ("dez", 12),
+                    ("apr", 4),
+                    ("august", 8),
+                    ("april", 4),
+                    ("oktober", 10),
+                    ("aug", 8),
+                    ("februar", 2),
+                    ("juli", 7),
+                    ("dezember", 12),
+                    ("nov", 11),
+                    ("feb", 2),
+                    ("okt", 10),
+                    ("juni", 6),
+                    ("november", 11),
+                    ("januar", 1),
+                    ("jan", 1),
                 ],
             },
             timeago_nd_tokens: ::phf::Map {
@@ -1717,7 +1733,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("λεπτά", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -1857,7 +1873,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("second", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: true,
             months: ::phf::Map {
                 key: 351906021642186605,
                 disps: &[
@@ -1988,7 +2004,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("meses", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 8602556344903797927,
                 disps: &[
@@ -2114,7 +2130,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("sem", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 8602556344903797927,
                 disps: &[
@@ -2243,7 +2259,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("päeva", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 11210181029210336526,
                 disps: &[
@@ -2356,7 +2372,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("s", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                 ],
             },
-            date_order: &[DateCmp::Y, DateCmp::D],
+            month_before_day: true,
             months: ::phf::Map {
                 key: 4594751852016600049,
                 disps: &[
@@ -2469,7 +2485,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("دقیقه", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: true,
             months: ::phf::Map {
                 key: 7485420634051515786,
                 disps: &[
@@ -2593,7 +2609,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("viikko", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::M, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 7485420634051515786,
                 disps: &[
@@ -2697,7 +2713,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("linggo", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: true,
             months: ::phf::Map {
                 key: 345707026197253659,
                 disps: &[
@@ -2826,7 +2842,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("jour", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -2956,7 +2972,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("semana", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -3068,7 +3084,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("કલાક", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -3175,7 +3191,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("स\u{947}क\u{902}ड", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -3312,7 +3328,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("g", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 8694567506910003252,
                 disps: &[
@@ -3441,7 +3457,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("órával", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
                 ],
             },
-            date_order: &[DateCmp::Y, DateCmp::D],
+            month_before_day: true,
             months: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -3562,7 +3578,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("ամիս", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 8694567506910003252,
                 disps: &[
@@ -3685,7 +3701,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("menit", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -3814,7 +3830,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("mán", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -3947,7 +3963,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("secondo", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 5516568623150984925,
                 disps: &[
@@ -4085,7 +4101,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("דקות", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 7485420634051515786,
                 disps: &[
@@ -4200,7 +4216,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("分", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                 ],
             },
-            date_order: &[DateCmp::Y, DateCmp::M, DateCmp::D],
+            month_before_day: true,
             months: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -4287,7 +4303,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("წმ", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 14108922650502679131,
                 disps: &[
@@ -4409,7 +4425,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("мин", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                 ],
             },
-            date_order: &[DateCmp::Y, DateCmp::D],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 42584678569483946,
                 disps: &[
@@ -4527,7 +4543,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("នាទ\u{17b8}", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 7485420634051515786,
                 disps: &[
@@ -4642,7 +4658,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("ಸ\u{cc6}ಕ\u{cc6}ಂಡ\u{ccd}", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 8602556344903797927,
                 disps: &[
@@ -4751,7 +4767,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("주", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
                 ],
             },
-            date_order: &[DateCmp::Y, DateCmp::M, DateCmp::D],
+            month_before_day: true,
             months: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -4837,7 +4853,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("ай", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
                 ],
             },
-            date_order: &[DateCmp::Y, DateCmp::D],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 8694567506910003252,
                 disps: &[
@@ -4960,7 +4976,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("ຊມ", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 7485420634051515786,
                 disps: &[
@@ -5111,7 +5127,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("dieną", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                 ],
             },
-            date_order: &[DateCmp::Y, DateCmp::M, DateCmp::D],
+            month_before_day: true,
             months: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -5233,7 +5249,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("ned", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
                 ],
             },
-            date_order: &[DateCmp::Y, DateCmp::D],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -5358,27 +5374,40 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("секунди", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::M, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
-                    (5, 0),
                     (4, 10),
-                    (0, 10),
+                    (1, 0),
+                    (5, 1),
+                    (2, 0),
+                    (20, 19),
                 ],
                 entries: &[
+                    ("јул", 7),
+                    ("апр", 4),
+                    ("февруари", 2),
+                    ("јануари", 1),
+                    ("мар", 3),
+                    ("јан", 1),
+                    ("септември", 9),
+                    ("јун", 6),
+                    ("август", 8),
+                    ("сеп", 9),
+                    ("фев", 2),
+                    ("јули", 7),
+                    ("април", 4),
+                    ("ное", 11),
+                    ("окт", 10),
                     ("ноември", 11),
                     ("март", 3),
-                    ("декември", 12),
-                    ("октомври", 10),
+                    ("авг", 8),
                     ("мај", 5),
+                    ("октомври", 10),
                     ("јуни", 6),
-                    ("август", 8),
-                    ("април", 4),
-                    ("јануари", 1),
-                    ("јули", 7),
-                    ("септември", 9),
-                    ("февруари", 2),
+                    ("дек", 12),
+                    ("декември", 12),
                 ],
             },
             timeago_nd_tokens: ::phf::Map {
@@ -5463,7 +5492,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("സെക\u{d4d}കൻഡ\u{d4d}", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                 ],
             },
-            date_order: &[DateCmp::Y, DateCmp::D],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -5581,7 +5610,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("секундын", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                 ],
             },
-            date_order: &[DateCmp::Y, DateCmp::M, DateCmp::D],
+            month_before_day: true,
             months: ::phf::Map {
                 key: 14108922650502679131,
                 disps: &[
@@ -5594,10 +5623,10 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("долоодугаар", 7),
                     ("тавдугаар", 5),
                     ("аравдугаар", 10),
-                    ("хоёрдугаар", 12),
+                    ("хоёрдугаар", 2),
                     ("дөрөвдүгээр", 4),
                     ("зургаадугаар", 6),
-                    ("нэгдүгээр", 11),
+                    ("нэгдүгээр", 1),
                     ("гуравдугаар", 3),
                 ],
             },
@@ -5693,7 +5722,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("स\u{947}", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -5807,7 +5836,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("hari", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -5918,7 +5947,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("န\u{103e}စ\u{103a}", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
                 ],
             },
-            date_order: &[DateCmp::Y, DateCmp::D],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 7485420634051515786,
                 disps: &[
@@ -6036,7 +6065,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("स\u{947}क\u{947}न\u{94d}ड", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                 ],
             },
-            date_order: &[DateCmp::Y, DateCmp::D],
+            month_before_day: true,
             months: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -6147,7 +6176,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("dagen", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 7485420634051515786,
                 disps: &[
@@ -6275,7 +6304,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("d", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -6396,7 +6425,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("ସେ", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: true,
             months: ::phf::Map {
                 key: 7485420634051515786,
                 disps: &[
@@ -6506,7 +6535,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("ਘ\u{a70}ਟਾ", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 7485420634051515786,
                 disps: &[
@@ -6648,7 +6677,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("roku", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -6777,7 +6806,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("s", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 7485420634051515786,
                 disps: &[
@@ -6905,7 +6934,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("dia", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::M, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -7018,7 +7047,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("ani", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -7162,7 +7191,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("секунда", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -7277,7 +7306,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("ද\u{dd2}න", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                 ],
             },
-            date_order: &[DateCmp::Y, DateCmp::D],
+            month_before_day: true,
             months: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -7415,7 +7444,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("dňa", TaToken { n: 1, unit: Some(TimeUnit::Day) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::M, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -7551,7 +7580,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("meseci", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 15467950696543387533,
                 disps: &[
@@ -7671,7 +7700,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("orë", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -7803,27 +7832,38 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("сек", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::M, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
-                key: 10121458955350035957,
+                key: 15467950696543387533,
                 disps: &[
-                    (2, 8),
-                    (1, 0),
-                    (0, 0),
+                    (0, 18),
+                    (0, 4),
+                    (2, 0),
+                    (2, 0),
+                    (3, 16),
                 ],
                 entries: &[
                     ("мај", 5),
+                    ("феб", 2),
+                    ("мар", 3),
                     ("јануар", 1),
+                    ("окт", 10),
+                    ("дец", 12),
                     ("август", 8),
                     ("март", 3),
-                    ("фебруар", 2),
-                    ("новембар", 11),
                     ("јун", 6),
-                    ("октобар", 10),
-                    ("април", 4),
-                    ("децембар", 12),
                     ("јул", 7),
+                    ("нов", 11),
+                    ("сеп", 9),
+                    ("април", 4),
+                    ("јан", 1),
+                    ("октобар", 10),
                     ("септембар", 9),
+                    ("апр", 4),
+                    ("авг", 8),
+                    ("новембар", 11),
+                    ("децембар", 12),
+                    ("фебруар", 2),
                 ],
             },
             timeago_nd_tokens: ::phf::Map {
@@ -7922,27 +7962,38 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("sati", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::M, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
-                key: 15467950696543387533,
+                key: 10121458955350035957,
                 disps: &[
-                    (1, 3),
-                    (5, 11),
+                    (9, 16),
+                    (0, 6),
+                    (5, 10),
+                    (2, 5),
                     (0, 0),
                 ],
                 entries: &[
-                    ("decembar", 12),
-                    ("april", 4),
-                    ("februar", 2),
-                    ("jul", 7),
+                    ("jan", 1),
+                    ("okt", 10),
                     ("novembar", 11),
-                    ("maj", 5),
-                    ("jun", 6),
                     ("avgust", 8),
-                    ("januar", 1),
-                    ("septembar", 9),
+                    ("feb", 2),
+                    ("februar", 2),
+                    ("decembar", 12),
+                    ("sep", 9),
+                    ("april", 4),
+                    ("jul", 7),
+                    ("dec", 12),
+                    ("mar", 3),
+                    ("jun", 6),
+                    ("nov", 11),
                     ("oktobar", 10),
+                    ("avg", 8),
+                    ("apr", 4),
+                    ("septembar", 9),
                     ("mart", 3),
+                    ("maj", 5),
+                    ("januar", 1),
                 ],
             },
             timeago_nd_tokens: ::phf::Map {
@@ -8037,7 +8088,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("sekund", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: true,
             months: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -8147,7 +8198,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("miaka", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -8277,7 +8328,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("நிமிடத\u{bcd}திற\u{bcd}கு", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -8403,7 +8454,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("సంవత\u{c4d}సర\u{c3e}ల", TaToken { n: 1, unit: Some(TimeUnit::Year) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 7485420634051515786,
                 disps: &[
@@ -8526,7 +8577,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("เด\u{e37}อนท\u{e35}\u{e48}แล\u{e49}ว", TaToken { n: 1, unit: Some(TimeUnit::Month) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -8649,7 +8700,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("sa", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 3599879742736855518,
                 disps: &[
@@ -8796,7 +8847,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("хвилина", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 7485420634051515786,
                 disps: &[
@@ -8921,7 +8972,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("سیکنڈز", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 10121458955350035957,
                 disps: &[
@@ -9039,7 +9090,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("son", TaToken { n: 1, unit: Some(TimeUnit::Second) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -9151,7 +9202,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("tuần", TaToken { n: 1, unit: Some(TimeUnit::Week) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::M, DateCmp::Y],
+            month_before_day: false,
             months: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -9232,7 +9283,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("小", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
                 ],
             },
-            date_order: &[DateCmp::Y, DateCmp::M, DateCmp::D],
+            month_before_day: true,
             months: ::phf::Map {
                 key: 106375038446233661,
                 disps: &[
@@ -9330,7 +9381,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("分", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                 ],
             },
-            date_order: &[DateCmp::Y, DateCmp::M, DateCmp::D],
+            month_before_day: true,
             months: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -9410,7 +9461,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("分", TaToken { n: 1, unit: Some(TimeUnit::Minute) }),
                 ],
             },
-            date_order: &[DateCmp::Y, DateCmp::M, DateCmp::D],
+            month_before_day: true,
             months: ::phf::Map {
                 key: 12913932095322966823,
                 disps: &[
@@ -9510,7 +9561,7 @@ pub(crate) fn entry(lang: Language) -> Entry {
                     ("emahoreni", TaToken { n: 1, unit: Some(TimeUnit::Hour) }),
                 ],
             },
-            date_order: &[DateCmp::D, DateCmp::Y],
+            month_before_day: true,
             months: ::phf::Map {
                 key: 2126027241312876569,
                 disps: &[

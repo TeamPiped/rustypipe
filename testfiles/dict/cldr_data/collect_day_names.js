@@ -17,27 +17,46 @@ function translateLang(lang) {
   }
 }
 
-function collectMonthNames(lang, by_char, monthNames, weekdayNames) {
+function collectMonthNames(lang, by_char, monthNames, monthShortNames, weekdayNames) {
   const cldrLang = translateLang(lang);
   const dates = require(`cldr-dates-modern/main/${cldrLang}/ca-gregorian.json`);
   const dateFields = dates.main[cldrLang].dates.calendars.gregorian;
 
   const months = dateFields.months["stand-alone"].wide;
 
-  for (const [n, name] of Object.entries(months)) {
-    let name2 = name.toLowerCase();
-    if (name2.includes(n)) {
-      // Some languages dont have named months
-      console.log(`${lang}: month name '${name2}' includes number; skipped`);
-      continue;
+  // Mongolian dates have the extra numbe арван and have to be handled manually
+  if (!["mn"].includes(lang)) {
+    for (const [n, name] of Object.entries(months)) {
+      let name2 = name.toLowerCase();
+      if (name2.includes(n)) {
+        // Some languages dont have named months
+        console.log(`${lang}: month name '${name2}' includes number; skipped`);
+        continue;
+      }
+      if (/\s/g.test(name2)) {
+        throw new Error(`${lang}: month name '${name2}' contains whitespace`);
+      }
+      monthNames[name2] = parseInt(n);
     }
-    if (lang === "mn") {
-      name2 = name2.replace(" сар", "").replace("арван ", "");
+  }
+
+  if (!["bg", "fi", "cs", "iw", "lt", "pt-PT", "sk"].includes(lang)) {
+    const monthsShort = dateFields.months.format.abbreviated;
+    for (const [n, name] of Object.entries(monthsShort)) {
+      let name2 = name.toLowerCase().replaceAll(".", "");
+      if (name2.includes(n)) {
+        // Some languages dont have named months
+        console.log(`${lang}: month name '${name2}' includes number; skipped`);
+        continue;
+      }
+      if (lang === "ca") {
+        name2 = name2.replace("de ", "");
+      }
+      if (/\s/g.test(name2)) {
+        throw new Error(`${lang}: month name '${name2}' contains whitespace`);
+      }
+      monthShortNames[name2] = parseInt(n);
     }
-    if (/\s/g.test(name2)) {
-      throw new Error(`${lang}: month name '${name2}' contains whitespace`);
-    }
-    monthNames[name2.toLowerCase()] = parseInt(n);
   }
 
   const weekdays = dateFields.days["stand-alone"].wide;
@@ -72,12 +91,23 @@ const dict = JSON.parse(fs.readFileSync(DICT_PATH));
 for (const [mainLang, entry] of Object.entries(dict)) {
   const langs = [mainLang, ...entry["equivalent"]];
   let monthNames = {};
+  let monthShortNames = {};
   let weekdayNames = {};
 
   for (lang of langs) {
-    collectMonthNames(lang, entry["by_char"], monthNames, weekdayNames);
+    collectMonthNames(
+      lang,
+      entry["by_char"],
+      monthNames,
+      monthShortNames,
+      weekdayNames
+    );
   }
-  dict[mainLang]["months"] = { ...dict[mainLang]["months"], ...monthNames };
+  dict[mainLang]["months"] = {
+    ...dict[mainLang]["months"],
+    ...monthNames,
+    ...monthShortNames,
+  };
   dict[mainLang]["timeago_nd_tokens"] = {
     ...dict[mainLang]["timeago_nd_tokens"],
     ...weekdayNames,

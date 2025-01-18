@@ -13,6 +13,13 @@ pub struct DictEntry {
     /// Should the language be parsed by character instead of by word?
     /// (e.g. Chinese/Japanese)
     pub by_char: bool,
+    /// True if the month has to be parsed before the day
+    ///
+    /// Examples:
+    ///
+    /// - 03.01.2020 => DMY => false
+    /// - 01/03/2020 => MDY => true
+    pub month_before_day: bool,
     /// Tokens for parsing timeago strings.
     ///
     /// Format: Parsed token -> \[Quantity\] Identifier
