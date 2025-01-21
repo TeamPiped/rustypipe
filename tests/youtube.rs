@@ -887,11 +887,8 @@ async fn channel_videos(rp: RustyPipe) {
 #[rstest]
 #[tokio::test]
 async fn channel_shorts(rp: RustyPipe) {
-    let vd = rp.query().get_visitor_data().await.unwrap();
-
     let channel = rp
         .query()
-        .visitor_data(vd)
         .channel_videos_tab("UCh8gHdtzO2tXd593_bjErWg", ChannelVideoTab::Shorts)
         .await
         .unwrap();

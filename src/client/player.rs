@@ -680,7 +680,11 @@ impl StreamsMapper {
             itag: f.itag,
             bitrate: f.bitrate,
             average_bitrate: f.average_bitrate.unwrap_or(f.bitrate),
-            size: f.content_length.unwrap(),
+            size: f.content_length.ok_or_else(|| {
+                ExtractionError::InvalidData(
+                    format!("no audio content length. itag: {}", f.itag).into(),
+                )
+            })?,
             index_range: f.index_range,
             init_range: f.init_range,
             duration_ms: f.approx_duration_ms,

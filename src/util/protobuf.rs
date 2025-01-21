@@ -149,6 +149,20 @@ mod tests {
     use super::*;
 
     #[test]
+    fn t_protobuilder() {
+        let mut pb = ProtoBuilder::new();
+        pb.varint(1, 128);
+        pb.varint(2, 1234567890);
+        pb.varint(3, 1234567890123456789);
+        pb.string(4, "Hello");
+        pb.bytes(5, &[1, 2, 3]);
+        assert_eq!(
+            pb.to_base64(),
+            "CIABENKF2MwEGJWCpu_HnoSRESIFSGVsbG8qAwECAw%3D%3D"
+        );
+    }
+
+    #[test]
     fn t_parse_proto() {
         let p = "GhhVQzl2cnZOU0wzeGNXR1NrVjg2UkVCU2c%3D";
         let p_bytes = util::b64_decode(urlencoding::decode(p).unwrap().as_bytes()).unwrap();

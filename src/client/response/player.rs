@@ -150,9 +150,7 @@ pub(crate) struct Format {
 
 impl Format {
     pub fn is_audio(&self) -> bool {
-        self.content_length.is_some()
-            && self.audio_quality.is_some()
-            && self.audio_sample_rate.is_some()
+        self.audio_quality.is_some() && self.audio_sample_rate.is_some()
     }
 
     pub fn is_video(&self) -> bool {
