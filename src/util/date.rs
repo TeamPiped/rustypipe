@@ -1,7 +1,5 @@
 use time::{Date, Duration, Month, OffsetDateTime};
 
-use crate::error::Error;
-
 /// Shift a date by the given number of months.
 /// Ambiguous month-ends are shifted backwards as necessary.
 pub fn shift_months(date: Date, months: i32) -> Date {
@@ -44,57 +42,6 @@ pub fn now_sec() -> OffsetDateTime {
         .unwrap()
 }
 
-/// Gets the current timezone from the system.
-///
-/// Currently only supported for Windows, Unix, and WASM targets.
-///
-/// # Errors
-/// Returns an [Error](enum@Error) if the timezone cannot be determined.
-pub fn local_timezone_name() -> Result<String, Error> {
-    #[cfg(unix)]
-    {
-        use std::path::Path;
-        let path = Path::new("/etc/localtime");
-        let realpath = std::fs::read_link(path)
-            .map_err(|_| Error::Other("could not read localtime".into()))?;
-        // The part of the path we're interested in cannot contain non unicode characters.
-        return realpath
-            .to_str()
-            .and_then(|s| s.split("/zoneinfo/").last())
-            .map(str::to_owned)
-            .ok_or_else(|| {
-                Error::Other(format!("could not parse zoneinfo path: {realpath:?}").into())
-            });
-    }
-
-    #[cfg(windows)]
-    {
-        unsafe {
-            use windows_sys::Win32::System::Time::GetDynamicTimeZoneInformation;
-            use windows_sys::Win32::System::Time::DYNAMIC_TIME_ZONE_INFORMATION;
-            let mut data: DYNAMIC_TIME_ZONE_INFORMATION = std::mem::zeroed();
-            let res = GetDynamicTimeZoneInformation(&mut data as _);
-            if res > 2 {
-                return Err(Error::Other("local timezone could not be read".into()));
-            } else {
-                let win_name_utf16 = &data.TimeZoneKeyName;
-                let mut len: usize = 0;
-                while win_name_utf16[len] != 0x0 {
-                    len += 1;
-                }
-                if len == 0 {
-                    return Err(Error::Other("local timezone could not be read".into()));
-                }
-                return String::from_utf16(&win_name_utf16[..len])
-                    .map_err(|_| Error::Other("local timezone is invalid UTF16".into()));
-            }
-        }
-    }
-
-    #[allow(unreachable_code)]
-    Err(Error::Other("local timezone unsupported".into()))
-}
-
 #[cfg(test)]
 mod tests {
     use rstest::rstest;
@@ -107,10 +54,5 @@ mod tests {
     fn shift_weeks_monday(#[case] date: Date, #[case] weeks: i32, #[case] expect: Date) {
         let res = super::shift_weeks_monday(date, weeks);
         assert_eq!(res, expect);
-    }
-
-    #[test]
-    fn local_timezone_name() {
-        super::local_timezone_name().unwrap();
     }
 }

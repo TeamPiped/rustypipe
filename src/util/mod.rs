@@ -5,7 +5,7 @@ mod visitor_data;
 pub mod dictionary;
 pub mod timeago;
 
-pub use date::{local_timezone_name, now_sec, shift_months, shift_weeks_monday, shift_years};
+pub use date::{now_sec, shift_months, shift_weeks_monday, shift_years};
 pub use protobuf::{string_from_pb, ProtoBuilder};
 pub use visitor_data::VisitorDataCache;
 

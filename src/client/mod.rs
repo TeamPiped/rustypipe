@@ -2626,7 +2626,7 @@ fn validate_country(country: Country) -> Country {
 
 fn local_tz_offset() -> (String, i16) {
     match (
-        util::local_timezone_name(),
+        localzone::get_local_zone().ok_or(Error::Other("could not get local timezone".into())),
         UtcOffset::current_local_offset().map_err(|_| Error::Other("indeterminate offset".into())),
     ) {
         (Ok(timezone), Ok(offset)) => (timezone, offset.whole_minutes()),
