@@ -336,8 +336,12 @@ const MOBILE_CLIENT_VERSION: &str = "2.20241217.07.00";
 const TV_CLIENT_VERSION: &str = "7.20241211.14.00";
 
 // Mobile app client
-const APP_CLIENT_VERSION: &str = "19.44.38";
+const IOS_CLIENT_VERSION: &str = "20.03.02";
+const IOS_VERSION: &str = "18_2_1";
+const IOS_VERSION_BUILD: &str = "18.2.1.22C161";
 const IOS_DEVICE_MODEL: &str = "iPhone16,2";
+const ANDROID_CLIENT_VERSION: &str = "19.44.38";
+const ANDROID_VERSION: &str = "11";
 
 const OAUTH_CLIENT_ID: &str =
     "861556708454-d6dlm3lh05idd8npek18k6be8ba3oc68.apps.googleusercontent.com";
@@ -1683,13 +1687,13 @@ impl RustyPipeQuery {
             ClientType::Mobile => MOBILE_UA.into(),
             ClientType::Tv => TV_UA.into(),
             ClientType::Android => format!(
-                "com.google.android.youtube/{} (Linux; U; Android 11) gzip",
-                APP_CLIENT_VERSION
+                "com.google.android.youtube/{} (Linux; U; Android {}) gzip",
+                ANDROID_CLIENT_VERSION, ANDROID_VERSION
             )
             .into(),
             ClientType::Ios => format!(
-                "com.google.ios.youtube/{} ({}; U; CPU iOS 18_1_0 like Mac OS X)",
-                APP_CLIENT_VERSION, IOS_DEVICE_MODEL
+                "com.google.ios.youtube/{} ({}; U; CPU iOS {} like Mac OS X)",
+                IOS_CLIENT_VERSION, IOS_DEVICE_MODEL, IOS_VERSION
             )
             .into(),
         }
@@ -1831,9 +1835,9 @@ impl RustyPipeQuery {
             ClientType::Android => YTContext {
                 client: ClientInfo {
                     client_name: "ANDROID",
-                    client_version: APP_CLIENT_VERSION.into(),
+                    client_version: ANDROID_CLIENT_VERSION.into(),
                     os_name: "Android",
-                    os_version: "11",
+                    os_version: ANDROID_VERSION,
                     android_sdk_version: Some(30),
                     platform: "MOBILE",
                     visitor_data,
@@ -1848,10 +1852,10 @@ impl RustyPipeQuery {
             ClientType::Ios => YTContext {
                 client: ClientInfo {
                     client_name: "IOS",
-                    client_version: APP_CLIENT_VERSION.into(),
+                    client_version: IOS_CLIENT_VERSION.into(),
                     device_model: IOS_DEVICE_MODEL,
                     os_name: "iPhone",
-                    os_version: "18.1.0.22B83",
+                    os_version: IOS_VERSION_BUILD,
                     platform: "MOBILE",
                     visitor_data,
                     hl,
