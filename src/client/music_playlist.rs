@@ -196,13 +196,15 @@ impl MapResponse<MusicPlaylist> for response::MusicPlaylist {
 
         let mut mapper = MusicListMapper::new(ctx.lang);
         mapper.map_response(shelf.contents);
-        let map_res = mapper.conv_items();
 
-        let ctoken = shelf
-            .continuations
-            .into_iter()
-            .next()
-            .map(|cont| cont.next_continuation_data.continuation);
+        let ctoken = mapper.ctoken.clone().or_else(|| {
+            shelf
+                .continuations
+                .into_iter()
+                .next()
+                .map(|cont| cont.next_continuation_data.continuation)
+        });
+        let map_res = mapper.conv_items();
 
         let track_count = if ctoken.is_some() {
             header.as_ref().and_then(|h| {

@@ -120,7 +120,7 @@ impl<T: FromYtItem> MapResponse<SearchResult<T>> for response::Search {
                         .filter_map(T::from_yt_item)
                         .collect(),
                     mapper.ctoken,
-                    None,
+                    ctx.visitor_data.map(str::to_owned),
                     ContinuationEndpoint::Search,
                     false,
                 ),

@@ -1034,5 +1034,21 @@ commandContext missing).
 
 YouTube Music used to group artist albums into 2 rows: "Albums" and "Singles".
 
-These groups were changed into "Albums" and "Singles & EPs". Now the "Album" label is omitted
-for albums in their group, while singles and EPs have a label with their type.
+These groups were changed into "Albums" and "Singles & EPs". Now the "Album" label is
+omitted for albums in their group, while singles and EPs have a label with their type.
+
+## [20] Music continuation item renderer
+
+- **Encountered on:** 25.01.2025
+- **Impact:** 🟢 Low
+- **Endpoint:** browse (YTM)
+- **Status:** Common (4%)
+
+YouTube Music now uses a `continuationItemRenderer` for music playlists instead of
+putting the continuations in a separate attribute of the MusicShelf.
+
+The continuation response now uses a `onResponseReceivedActions` field for its music
+items.
+
+YouTube Music now also sends a random 16-character string as a `clientScreenNonce` in
+the request context. This is not mandatory though.

@@ -18,7 +18,8 @@ use super::{
     url_endpoint::{
         BrowseEndpointWrap, MusicPage, MusicPageType, MusicVideoType, NavigationEndpoint, PageType,
     },
-    ContentsRenderer, MusicContinuationData, SimpleHeaderRenderer, Thumbnails, ThumbnailsWrap,
+    ContentsRenderer, ContinuationActionWrap, ContinuationEndpoint, MusicContinuationData,
+    SimpleHeaderRenderer, Thumbnails, ThumbnailsWrap,
 };
 
 #[derive(Debug, Deserialize)]
@@ -86,6 +87,10 @@ pub(crate) enum MusicResponseItem {
     MusicResponsiveListItemRenderer(ListMusicItem),
     MusicTwoRowItemRenderer(CoverMusicItem),
     MessageRenderer(serde::de::IgnoredAny),
+    #[serde(rename_all = "camelCase")]
+    ContinuationItemRenderer {
+        continuation_endpoint: ContinuationEndpoint,
+    },
 }
 
 #[serde_as]
@@ -322,10 +327,14 @@ impl From<MusicThumbnailRenderer> for Vec<model::Thumbnail> {
 }
 
 /// Music list continuation response model
+#[serde_as]
 #[derive(Debug, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub(crate) struct MusicContinuation {
     pub continuation_contents: Option<ContinuationContents>,
+    #[serde(default)]
+    #[serde_as(as = "VecSkipError<_>")]
+    pub on_response_received_actions: Vec<ContinuationActionWrap<MusicResponseItem>>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -434,6 +443,7 @@ pub(crate) struct MusicListMapper {
     search_suggestion: bool,
     items: Vec<MusicItem>,
     warnings: Vec<String>,
+    pub ctoken: Option<String>,
 }
 
 #[derive(Debug)]
@@ -455,6 +465,7 @@ impl MusicListMapper {
             search_suggestion: false,
             items: Vec::new(),
             warnings: Vec::new(),
+            ctoken: None,
         }
     }
 
@@ -468,6 +479,7 @@ impl MusicListMapper {
             search_suggestion: true,
             items: Vec::new(),
             warnings: Vec::new(),
+            ctoken: None,
         }
     }
 
@@ -482,6 +494,7 @@ impl MusicListMapper {
             search_suggestion: false,
             items: Vec::new(),
             warnings: Vec::new(),
+            ctoken: None,
         }
     }
 
@@ -496,6 +509,7 @@ impl MusicListMapper {
             search_suggestion: false,
             items: Vec::new(),
             warnings: Vec::new(),
+            ctoken: None,
         }
     }
 
@@ -507,6 +521,12 @@ impl MusicListMapper {
             // Tile
             MusicResponseItem::MusicTwoRowItemRenderer(item) => self.map_tile(item),
             MusicResponseItem::MessageRenderer(_) => Ok(None),
+            MusicResponseItem::ContinuationItemRenderer {
+                continuation_endpoint,
+            } => {
+                self.ctoken = Some(continuation_endpoint.continuation_command.token);
+                Ok(None)
+            }
         }
     }
 

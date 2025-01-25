@@ -277,7 +277,7 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                         r,
                         sr.secondary_results.continuations,
                         visitor_data.clone(),
-                        ctx.lang,
+                        ctx,
                     );
                     warnings.append(&mut res.warnings);
                     res.c
@@ -359,7 +359,7 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                     comment_ctoken,
                     visitor_data.clone(),
                     ContinuationEndpoint::Next,
-                    false,
+                    ctx.authenticated,
                 ),
                 latest_comments: Paginator::new_ext(
                     comment_count,
@@ -367,7 +367,7 @@ impl MapResponse<VideoDetails> for response::VideoDetails {
                     latest_comments_ctoken,
                     visitor_data.clone(),
                     ContinuationEndpoint::Next,
-                    false,
+                    ctx.authenticated,
                 ),
                 visitor_data,
             },
@@ -468,9 +468,9 @@ fn map_recommendations(
     r: MapResult<Vec<response::YouTubeListItem>>,
     continuations: Option<Vec<response::MusicContinuationData>>,
     visitor_data: Option<String>,
-    lang: Language,
+    ctx: &MapRespCtx<'_>,
 ) -> MapResult<Paginator<VideoItem>> {
-    let mut mapper = response::YouTubeListMapper::<VideoItem>::new(lang);
+    let mut mapper = response::YouTubeListMapper::<VideoItem>::new(ctx.lang);
     mapper.map_response(r);
 
     mapper.ctoken = mapper.ctoken.or_else(|| {
@@ -486,7 +486,7 @@ fn map_recommendations(
             mapper.ctoken,
             visitor_data,
             ContinuationEndpoint::Next,
-            false,
+            ctx.authenticated,
         ),
         warnings: mapper.warnings,
     }

@@ -199,11 +199,17 @@ impl MapResponse<Paginator<MusicItem>> for response::MusicContinuation {
             None => {}
         }
 
+        for a in self.on_response_received_actions {
+            mapper.map_response(a.append_continuation_items_action.continuation_items);
+        }
+
+        let ctoken = mapper.ctoken.clone().or_else(|| {
+            continuations
+                .into_iter()
+                .next()
+                .map(|cont| cont.next_continuation_data.continuation)
+        });
         let map_res = mapper.items();
-        let ctoken = continuations
-            .into_iter()
-            .next()
-            .map(|cont| cont.next_continuation_data.continuation);
 
         Ok(MapResult {
             c: Paginator::new_ext(

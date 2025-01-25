@@ -39,10 +39,14 @@ pub enum ABTest {
     ChannelPlaylistsLockup = 17,
     MusicPlaylistFacepile = 18,
     MusicAlbumGroupsReordered = 19,
+    MusicContinuationItemRenderer = 20,
 }
 
 /// List of active A/B tests that are run when none is manually specified
-const TESTS_TO_RUN: &[ABTest] = &[ABTest::MusicAlbumGroupsReordered];
+const TESTS_TO_RUN: &[ABTest] = &[
+    ABTest::MusicAlbumGroupsReordered,
+    ABTest::MusicContinuationItemRenderer,
+];
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct ABTestRes {
@@ -114,6 +118,9 @@ pub async fn run_test(
                     ABTest::ChannelPlaylistsLockup => channel_playlists_lockup(&query).await,
                     ABTest::MusicPlaylistFacepile => music_playlist_facepile(&query).await,
                     ABTest::MusicAlbumGroupsReordered => music_album_groups_reordered(&query).await,
+                    ABTest::MusicContinuationItemRenderer => {
+                        music_continuation_item_renderer(&query).await
+                    }
                 }
                 .unwrap();
                 pb.inc(1);
@@ -420,4 +427,19 @@ pub async fn music_album_groups_reordered(rp: &RustyPipeQuery) -> Result<bool> {
         )
         .await?;
     Ok(res.contains("\"Singles & EPs\""))
+}
+
+pub async fn music_continuation_item_renderer(rp: &RustyPipeQuery) -> Result<bool> {
+    let id = "VLPLbZIPy20-1pN7mqjckepWF78ndb6ci_qi";
+    let res = rp
+        .raw(
+            ClientType::DesktopMusic,
+            "browse",
+            &QBrowse {
+                browse_id: id,
+                params: None,
+            },
+        )
+        .await?;
+    Ok(res.contains("\"continuationItemRenderer\""))
 }

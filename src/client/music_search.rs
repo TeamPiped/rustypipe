@@ -189,6 +189,7 @@ impl<T: FromYtItem> MapResponse<MusicSearchResult<T>> for response::MusicSearch 
             response::music_search::ItemSection::None => {}
         });
 
+        let ctoken = ctoken.or(mapper.ctoken.clone());
         let map_res = mapper.conv_items();
 
         Ok(MapResult {
