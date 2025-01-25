@@ -68,7 +68,6 @@ pub fn local_timezone_name() -> Result<String, Error> {
     }
 
     #[cfg(windows)]
-    #[allow(unsafe_code)]
     {
         unsafe {
             use windows_sys::Win32::System::Time::GetDynamicTimeZoneInformation;
@@ -87,7 +86,7 @@ pub fn local_timezone_name() -> Result<String, Error> {
                     return Err(Error::Other("local timezone could not be read".into()));
                 }
                 return String::from_utf16(&win_name_utf16[..len])
-                    .map_err(|_| "local timezone is invalid UTF16".into())?;
+                    .map_err(|_| Error::Other("local timezone is invalid UTF16".into()));
             }
         }
     }
