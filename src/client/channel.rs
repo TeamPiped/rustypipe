@@ -220,7 +220,6 @@ impl MapResponse<Channel<Paginator<VideoItem>>> for response::Channel {
 
         let mut mapper = response::YouTubeListMapper::<VideoItem>::with_channel(
             ctx.lang,
-            ctx.utc_offset,
             &channel_data.c,
             channel_data.warnings,
         );
@@ -266,7 +265,6 @@ impl MapResponse<Channel<Paginator<PlaylistItem>>> for response::Channel {
 
         let mut mapper = response::YouTubeListMapper::<PlaylistItem>::with_channel(
             ctx.lang,
-            ctx.utc_offset,
             &channel_data.c,
             channel_data.warnings,
         );

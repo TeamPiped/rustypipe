@@ -97,6 +97,26 @@ impl TimeAgo {
     fn secs(self) -> u32 {
         u32::from(self.n) * self.unit.secs()
     }
+
+    fn into_datetime(self, utc_offset: UtcOffset) -> OffsetDateTime {
+        let ts = util::now_sec().to_offset(utc_offset);
+        match self.unit {
+            TimeUnit::Month => ts.replace_date(util::shift_months(ts.date(), -i32::from(self.n))),
+            TimeUnit::Year => ts.replace_date(util::shift_years(ts.date(), -i32::from(self.n))),
+            TimeUnit::LastWeek => {
+                ts.replace_date(util::shift_weeks_monday(ts.date(), -i32::from(self.n)))
+            }
+            TimeUnit::LastWeekday => ts.replace_date(
+                Date::from_iso_week_date(
+                    ts.year(),
+                    ts.iso_week(),
+                    time::Weekday::Monday.nth_next(self.n),
+                )
+                .unwrap(),
+            ),
+            _ => ts - Duration::from(self),
+        }
+    }
 }
 
 impl Mul<u8> for TimeAgo {
@@ -116,33 +136,11 @@ impl From<TimeAgo> for Duration {
     }
 }
 
-impl From<TimeAgo> for OffsetDateTime {
-    fn from(ta: TimeAgo) -> Self {
-        let ts = util::now_sec();
-        match ta.unit {
-            TimeUnit::Month => ts.replace_date(util::shift_months(ts.date(), -i32::from(ta.n))),
-            TimeUnit::Year => ts.replace_date(util::shift_years(ts.date(), -i32::from(ta.n))),
-            TimeUnit::LastWeek => {
-                ts.replace_date(util::shift_weeks_mo(ts.date(), -i32::from(ta.n)))
-            }
-            TimeUnit::LastWeekday => ts.replace_date(
-                Date::from_iso_week_date(
-                    ts.year(),
-                    ts.iso_week(),
-                    time::Weekday::Monday.nth_next(ta.n),
-                )
-                .unwrap(),
-            ),
-            _ => ts - Duration::from(ta),
-        }
-    }
-}
-
-impl From<ParsedDate> for OffsetDateTime {
-    fn from(date: ParsedDate) -> Self {
-        match date {
-            ParsedDate::Absolute(date) => date.with_hms(0, 0, 0).unwrap().assume_utc(),
-            ParsedDate::Relative(timeago) => timeago.into(),
+impl ParsedDate {
+    fn into_datetime(self, utc_offset: UtcOffset) -> OffsetDateTime {
+        match self {
+            ParsedDate::Absolute(date) => date.with_hms(0, 0, 0).unwrap().assume_offset(utc_offset),
+            ParsedDate::Relative(timeago) => timeago.into_datetime(utc_offset),
         }
     }
 }
@@ -247,7 +245,7 @@ pub fn parse_timeago(lang: Language, textual_date: &str) -> Option<TimeAgo> {
 ///
 /// Returns [`None`] if the date could not be parsed.
 pub fn parse_timeago_dt(lang: Language, textual_date: &str) -> Option<OffsetDateTime> {
-    parse_timeago(lang, textual_date).map(OffsetDateTime::from)
+    parse_timeago(lang, textual_date).map(|t| t.into_datetime(UtcOffset::UTC))
 }
 
 pub fn parse_timeago_dt_or_warn(
@@ -265,7 +263,11 @@ pub fn parse_timeago_dt_or_warn(
 /// Parse a textual date (e.g. "29 minutes ago" or "Jul 2, 2014") into a ParsedDate object.
 ///
 /// Returns [`None`] if the date could not be parsed.
-pub fn parse_textual_date(lang: Language, textual_date: &str) -> Option<ParsedDate> {
+pub fn parse_textual_date(
+    lang: Language,
+    utc_offset: UtcOffset,
+    textual_date: &str,
+) -> Option<ParsedDate> {
     let entry = dictionary::entry(lang);
     let by_char = util::lang_by_char(lang);
     let filtered_str = filter_datestr(textual_date);
@@ -317,8 +319,9 @@ pub fn parse_textual_date(lang: Language, textual_date: &str) -> Option<ParsedDa
                 .ok()
                 .and_then(|m| {
                     Date::from_calendar_date(
-                        y.map(i32::from)
-                            .unwrap_or_else(|| OffsetDateTime::now_utc().year()),
+                        y.map(i32::from).unwrap_or_else(|| {
+                            OffsetDateTime::now_utc().to_offset(utc_offset).year()
+                        }),
                         m,
                         d.unwrap_or(1) as u8,
                     )
@@ -338,8 +341,7 @@ pub fn parse_textual_date_to_dt(
     utc_offset: UtcOffset,
     textual_date: &str,
 ) -> Option<OffsetDateTime> {
-    parse_textual_date(lang, textual_date)
-        .map(|parsed| OffsetDateTime::from(parsed).replace_offset(utc_offset))
+    parse_textual_date(lang, utc_offset, textual_date).map(|t| t.into_datetime(utc_offset))
 }
 
 /// Parse a textual date (e.g. "29 minutes ago" "Jul 2, 2014") into a Date object.
@@ -347,11 +349,12 @@ pub fn parse_textual_date_to_dt(
 /// Returns None if the date could not be parsed.
 pub fn parse_textual_date_to_d(
     lang: Language,
+    utc_offset: UtcOffset,
     textual_date: &str,
     warnings: &mut Vec<String>,
 ) -> Option<Date> {
-    parse_textual_date_or_warn(lang, UtcOffset::UTC, textual_date, warnings)
-        .map(OffsetDateTime::date)
+    parse_textual_date_or_warn(lang, utc_offset, textual_date, warnings)
+        .map(|d| d.to_offset(utc_offset).date())
 }
 
 pub fn parse_textual_date_or_warn(
@@ -871,7 +874,7 @@ mod tests {
             for (t, entry) in entries {
                 entry.cases.iter().for_each(|(txt, n)| {
                     let timeago = parse_timeago(*lang, txt);
-                    let textual_date = parse_textual_date(*lang, txt);
+                    let textual_date = parse_textual_date(*lang, UtcOffset::UTC, txt);
                     assert_eq!(
                         timeago,
                         Some(TimeAgo { n: *n, unit: *t }),
@@ -913,7 +916,7 @@ mod tests {
         #[case] textual_date: &str,
         #[case] expect: Option<ParsedDate>,
     ) {
-        let parsed_date = parse_textual_date(lang, textual_date);
+        let parsed_date = parse_textual_date(lang, UtcOffset::UTC, textual_date);
         assert_eq!(parsed_date, expect);
     }
 
@@ -924,7 +927,7 @@ mod tests {
         #[case] textual_date: &str,
         #[case] expect: Date,
     ) {
-        let parsed_date = parse_textual_date(lang, textual_date);
+        let parsed_date = parse_textual_date(lang, UtcOffset::UTC, textual_date);
         let expected_date = expect
             .replace_year(OffsetDateTime::now_utc().year())
             .unwrap();
@@ -940,7 +943,7 @@ mod tests {
 
         for (lang, samples) in &date_samples {
             assert_eq!(
-                parse_textual_date(*lang, samples.get("Today").unwrap()),
+                parse_textual_date(*lang, UtcOffset::UTC, samples.get("Today").unwrap()),
                 Some(ParsedDate::Relative(TimeAgo {
                     n: 0,
                     unit: TimeUnit::Day
@@ -948,7 +951,7 @@ mod tests {
                 "lang: {lang}"
             );
             assert_eq!(
-                parse_textual_date(*lang, samples.get("Yesterday").unwrap()),
+                parse_textual_date(*lang, UtcOffset::UTC, samples.get("Yesterday").unwrap()),
                 Some(ParsedDate::Relative(TimeAgo {
                     n: 1,
                     unit: TimeUnit::Day
@@ -956,7 +959,7 @@ mod tests {
                 "lang: {lang}"
             );
             assert_eq!(
-                parse_textual_date(*lang, samples.get("Ago").unwrap()),
+                parse_textual_date(*lang, UtcOffset::UTC, samples.get("Ago").unwrap()),
                 Some(ParsedDate::Relative(TimeAgo {
                     n: 5,
                     unit: TimeUnit::Day
@@ -964,62 +967,62 @@ mod tests {
                 "lang: {lang}"
             );
             assert_eq!(
-                parse_textual_date(*lang, samples.get("Jan").unwrap()),
+                parse_textual_date(*lang, UtcOffset::UTC, samples.get("Jan").unwrap()),
                 Some(ParsedDate::Absolute(date!(2020 - 1 - 3))),
                 "lang: {lang}"
             );
             assert_eq!(
-                parse_textual_date(*lang, samples.get("Feb").unwrap()),
+                parse_textual_date(*lang, UtcOffset::UTC, samples.get("Feb").unwrap()),
                 Some(ParsedDate::Absolute(date!(2016 - 2 - 7))),
                 "lang: {lang}"
             );
             assert_eq!(
-                parse_textual_date(*lang, samples.get("Mar").unwrap()),
+                parse_textual_date(*lang, UtcOffset::UTC, samples.get("Mar").unwrap()),
                 Some(ParsedDate::Absolute(date!(2015 - 3 - 9))),
                 "lang: {lang}"
             );
             assert_eq!(
-                parse_textual_date(*lang, samples.get("Apr").unwrap()),
+                parse_textual_date(*lang, UtcOffset::UTC, samples.get("Apr").unwrap()),
                 Some(ParsedDate::Absolute(date!(2017 - 4 - 2))),
                 "lang: {lang}"
             );
             assert_eq!(
-                parse_textual_date(*lang, samples.get("May").unwrap()),
+                parse_textual_date(*lang, UtcOffset::UTC, samples.get("May").unwrap()),
                 Some(ParsedDate::Absolute(date!(2014 - 5 - 22))),
                 "lang: {lang}"
             );
             assert_eq!(
-                parse_textual_date(*lang, samples.get("Jun").unwrap()),
+                parse_textual_date(*lang, UtcOffset::UTC, samples.get("Jun").unwrap()),
                 Some(ParsedDate::Absolute(date!(2014 - 6 - 28))),
                 "lang: {lang}"
             );
             assert_eq!(
-                parse_textual_date(*lang, samples.get("Jul").unwrap()),
+                parse_textual_date(*lang, UtcOffset::UTC, samples.get("Jul").unwrap()),
                 Some(ParsedDate::Absolute(date!(2014 - 7 - 2))),
                 "lang: {lang}"
             );
             assert_eq!(
-                parse_textual_date(*lang, samples.get("Aug").unwrap()),
+                parse_textual_date(*lang, UtcOffset::UTC, samples.get("Aug").unwrap()),
                 Some(ParsedDate::Absolute(date!(2015 - 8 - 23))),
                 "lang: {lang}"
             );
             assert_eq!(
-                parse_textual_date(*lang, samples.get("Sep").unwrap()),
+                parse_textual_date(*lang, UtcOffset::UTC, samples.get("Sep").unwrap()),
                 Some(ParsedDate::Absolute(date!(2018 - 9 - 16))),
                 "lang: {lang}"
             );
             assert_eq!(
-                parse_textual_date(*lang, samples.get("Oct").unwrap()),
+                parse_textual_date(*lang, UtcOffset::UTC, samples.get("Oct").unwrap()),
                 Some(ParsedDate::Absolute(date!(2014 - 10 - 31))),
                 "lang: {lang}"
             );
             assert_eq!(
-                parse_textual_date(*lang, samples.get("Nov").unwrap()),
+                parse_textual_date(*lang, UtcOffset::UTC, samples.get("Nov").unwrap()),
                 Some(ParsedDate::Absolute(date!(2016 - 11 - 3))),
                 "lang: {lang}"
             );
             assert_eq!(
-                parse_textual_date(*lang, samples.get("Dec").unwrap()),
+                parse_textual_date(*lang, UtcOffset::UTC, samples.get("Dec").unwrap()),
                 Some(ParsedDate::Absolute(date!(2021 - 12 - 24))),
                 "lang: {lang}"
             );
@@ -1065,7 +1068,7 @@ mod tests {
                     }
                 };
                 assert_eq!(
-                    parse_textual_date(lang, &v),
+                    parse_textual_date(lang, UtcOffset::UTC, &v),
                     Some(expected),
                     "lang={lang}; {k}"
                 );

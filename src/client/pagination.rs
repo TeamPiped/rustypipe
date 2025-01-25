@@ -127,7 +127,7 @@ impl MapResponse<Paginator<YouTubeItem>> for response::Continuation {
         let estimated_results = self.estimated_results;
         let items = continuation_items(self);
 
-        let mut mapper = response::YouTubeListMapper::<YouTubeItem>::new(ctx.lang, ctx.utc_offset);
+        let mut mapper = response::YouTubeListMapper::<YouTubeItem>::new(ctx.lang);
         mapper.map_response(items);
 
         Ok(MapResult {
@@ -237,11 +237,11 @@ impl MapResponse<Paginator<HistoryItem<VideoItem>>> for response::Continuation {
         for item in items.c {
             match item {
                 response::YouTubeListItem::ItemSectionRenderer { header, contents } => {
-                    let mut mapper =
-                        response::YouTubeListMapper::<VideoItem>::new(ctx.lang, ctx.utc_offset);
+                    let mut mapper = response::YouTubeListMapper::<VideoItem>::new(ctx.lang);
                     mapper.map_response(contents);
                     mapper.conv_history_items(
                         header.map(|h| h.item_section_header_renderer.title),
+                        ctx.utc_offset,
                         &mut map_res,
                     );
                 }
@@ -281,7 +281,7 @@ impl MapResponse<Paginator<HistoryItem<TrackItem>>> for response::MusicContinuat
         let mut map_shelf = |shelf: response::music_item::MusicShelf| {
             let mut mapper = MusicListMapper::new(ctx.lang);
             mapper.map_response(shelf.contents);
-            mapper.conv_history_items(shelf.title, &mut map_res);
+            mapper.conv_history_items(shelf.title, ctx.utc_offset, &mut map_res);
             continuations.extend(shelf.continuations);
         };
 

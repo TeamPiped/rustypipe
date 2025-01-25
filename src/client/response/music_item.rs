@@ -1,5 +1,6 @@
 use serde::Deserialize;
 use serde_with::{rust::deserialize_ignore_any, serde_as, DefaultOnError, VecSkipError};
+use time::UtcOffset;
 
 use crate::{
     model::{
@@ -1272,6 +1273,7 @@ impl MusicListMapper {
     pub fn conv_history_items(
         self,
         date_txt: Option<String>,
+        utc_offset: UtcOffset,
         res: &mut MapResult<Vec<HistoryItem<TrackItem>>>,
     ) {
         res.warnings.extend(self.warnings);
@@ -1282,7 +1284,12 @@ impl MusicListMapper {
                 .map(|item| HistoryItem {
                     item,
                     playback_date: date_txt.as_deref().and_then(|s| {
-                        timeago::parse_textual_date_to_d(self.lang, s, &mut res.warnings)
+                        timeago::parse_textual_date_to_d(
+                            self.lang,
+                            utc_offset,
+                            s,
+                            &mut res.warnings,
+                        )
                     }),
                     playback_date_txt: date_txt.clone(),
                 }),

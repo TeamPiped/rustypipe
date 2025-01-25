@@ -45,6 +45,7 @@ time = { version = "0.3.37", features = [
     "macros",
     "serde-human-readable",
     "serde-well-known",
+    "local-offset",
 ] }
 time-tz = { version = "2.0.0" }
 futures-util = "0.3.31"
@@ -55,6 +56,10 @@ data-encoding = "2.0.0"
 urlencoding = "2.1.0"
 quick-xml = { version = "0.37.0", features = ["serialize"] }
 tracing = { version = "0.1.0", features = ["log"] }
+windows-sys = { version = "0.59.0", features = [
+    "Win32_System_Time",
+    "Win32_Foundation",
+] }
 
 # CLI
 indicatif = "0.17.0"
@@ -114,6 +119,9 @@ data-encoding.workspace = true
 urlencoding.workspace = true
 tracing.workspace = true
 quick-xml = { workspace = true, optional = true }
+
+[target.'cfg(windows)'.dependencies]
+windows-sys.workspace = true
 
 [dev-dependencies]
 rstest.workspace = true

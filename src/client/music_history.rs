@@ -160,7 +160,7 @@ impl MapResponse<Paginator<HistoryItem<TrackItem>>> for response::MusicHistory {
             };
             let mut mapper = MusicListMapper::new(ctx.lang);
             mapper.map_response(shelf.contents);
-            mapper.conv_history_items(shelf.title, &mut map_res);
+            mapper.conv_history_items(shelf.title, ctx.utc_offset, &mut map_res);
         }
 
         let ctoken = contents

@@ -897,8 +897,6 @@ impl RustyPipeBuilder {
     /// Set the timezone and its associated UTC offset in minutes used
     /// when accessing the YouTube API.
     ///
-    /// This will also change the UTC offset of the returned dates.
-    ///
     /// **Default value**: `0` (UTC)
     ///
     /// **Info**: you can set this option for individual queries, too
@@ -907,6 +905,16 @@ impl RustyPipeBuilder {
         self.default_opts.timezone = Some(timezone.into());
         self.default_opts.utc_offset_minutes = utc_offset_minutes;
         self
+    }
+
+    /// Access the YouTube API using the local system timezone
+    ///
+    /// If the local timezone could not be determined, an error is logged and RustyPipe falls
+    /// back to UTC.
+    #[must_use]
+    pub fn timezone_local(self) -> Self {
+        let (timezone, utc_offset_minutes) = local_tz_offset();
+        self.timezone(timezone, utc_offset_minutes)
     }
 
     /// Generate a report on every operation.
@@ -1689,13 +1697,18 @@ impl RustyPipeQuery {
 
     /// Set the timezone and its associated UTC offset in minutes used
     /// when accessing the YouTube API.
-    ///
-    /// This will also change the UTC offset of the returned dates.
     #[must_use]
     pub fn timezone<S: Into<String>>(mut self, timezone: S, utc_offset_minutes: i16) -> Self {
         self.opts.timezone = Some(timezone.into());
         self.opts.utc_offset_minutes = utc_offset_minutes;
         self
+    }
+
+    /// Access the YouTube API using the local system timezone
+    #[must_use]
+    pub fn timezone_local(self) -> Self {
+        let (timezone, utc_offset_minutes) = local_tz_offset();
+        self.timezone(timezone, utc_offset_minutes)
     }
 
     /// Generate a report on every operation.
@@ -2608,6 +2621,19 @@ fn validate_country(country: Country) -> Country {
         Country::Us
     } else {
         country
+    }
+}
+
+fn local_tz_offset() -> (String, i16) {
+    match (
+        util::local_timezone_name(),
+        UtcOffset::current_local_offset().map_err(|_| Error::Other("indeterminate offset".into())),
+    ) {
+        (Ok(timezone), Ok(offset)) => (timezone, offset.whole_minutes()),
+        (Err(e), _) | (_, Err(e)) => {
+            tracing::error!("{e}");
+            ("UTC".to_owned(), 0)
+        }
     }
 }
 

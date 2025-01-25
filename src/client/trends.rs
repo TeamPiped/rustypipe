@@ -45,7 +45,7 @@ impl MapResponse<Vec<VideoItem>> for response::Trending {
             .section_list_renderer
             .contents;
 
-        let mut mapper = response::YouTubeListMapper::<VideoItem>::new(ctx.lang, ctx.utc_offset);
+        let mut mapper = response::YouTubeListMapper::<VideoItem>::new(ctx.lang);
         mapper.map_response(items);
 
         Ok(MapResult {

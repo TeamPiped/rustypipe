@@ -90,7 +90,7 @@ impl MapResponse<Playlist> for response::Playlist {
             .playlist_video_list_renderer
             .contents;
 
-        let mut mapper = response::YouTubeListMapper::<VideoItem>::new(ctx.lang, ctx.utc_offset);
+        let mut mapper = response::YouTubeListMapper::<VideoItem>::new(ctx.lang);
         mapper.map_response(video_items);
 
         let (description, thumbnails, last_update_txt) = match self.sidebar {

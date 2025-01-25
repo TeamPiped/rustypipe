@@ -475,7 +475,7 @@ fn map_recommendations(
     visitor_data: Option<String>,
     ctx: &MapRespCtx<'_>,
 ) -> MapResult<Paginator<VideoItem>> {
-    let mut mapper = response::YouTubeListMapper::<VideoItem>::new(ctx.lang, ctx.utc_offset);
+    let mut mapper = response::YouTubeListMapper::<VideoItem>::new(ctx.lang);
     mapper.map_response(r);
 
     mapper.ctoken = mapper.ctoken.or_else(|| {

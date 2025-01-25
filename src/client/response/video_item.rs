@@ -461,7 +461,6 @@ impl IsShort for Vec<TimeOverlay> {
 #[derive(Debug)]
 pub(crate) struct YouTubeListMapper<T> {
     lang: Language,
-    utc_offset: UtcOffset,
     channel: Option<ChannelTag>,
 
     pub items: Vec<T>,
@@ -471,10 +470,9 @@ pub(crate) struct YouTubeListMapper<T> {
 }
 
 impl<T> YouTubeListMapper<T> {
-    pub fn new(lang: Language, utc_offset: UtcOffset) -> Self {
+    pub fn new(lang: Language) -> Self {
         Self {
             lang,
-            utc_offset,
             channel: None,
             items: Vec::new(),
             warnings: Vec::new(),
@@ -483,15 +481,9 @@ impl<T> YouTubeListMapper<T> {
         }
     }
 
-    pub fn with_channel<C>(
-        lang: Language,
-        utc_offset: UtcOffset,
-        channel: &Channel<C>,
-        warnings: Vec<String>,
-    ) -> Self {
+    pub fn with_channel<C>(lang: Language, channel: &Channel<C>, warnings: Vec<String>) -> Self {
         Self {
             lang,
-            utc_offset,
             channel: Some(ChannelTag {
                 id: channel.id.clone(),
                 name: channel.name.clone(),
@@ -794,12 +786,7 @@ impl<T> YouTubeListMapper<T> {
                     thumbnail: tn.image.into(),
                     channel,
                     publish_date: publish_date_txt.as_deref().and_then(|t| {
-                        timeago::parse_textual_date_or_warn(
-                            self.lang,
-                            self.utc_offset,
-                            t,
-                            &mut self.warnings,
-                        )
+                        timeago::parse_timeago_dt_or_warn(self.lang, t, &mut self.warnings)
                     }),
                     publish_date_txt,
                     view_count,
@@ -920,17 +907,16 @@ impl YouTubeListMapper<VideoItem> {
     pub(crate) fn conv_history_items(
         self,
         date_txt: Option<String>,
+        utc_offset: UtcOffset,
         res: &mut MapResult<Vec<HistoryItem<VideoItem>>>,
     ) {
         res.warnings.extend(self.warnings);
-        res.c.extend(self.items.into_iter().map(|item| {
-            HistoryItem {
-                item,
-                playback_date: date_txt.as_deref().and_then(|s| {
-                    timeago::parse_textual_date_to_d(self.lang, s, &mut res.warnings)
-                }),
-                playback_date_txt: date_txt.clone(),
-            }
+        res.c.extend(self.items.into_iter().map(|item| HistoryItem {
+            item,
+            playback_date: date_txt.as_deref().and_then(|s| {
+                timeago::parse_textual_date_to_d(self.lang, utc_offset, s, &mut res.warnings)
+            }),
+            playback_date_txt: date_txt.clone(),
         }));
     }
 }
