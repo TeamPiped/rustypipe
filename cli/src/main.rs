@@ -59,6 +59,9 @@ struct Cli {
     #[cfg(feature = "timezone")]
     #[clap(long, global = true)]
     timezone: Option<String>,
+    /// Use local timezone
+    #[clap(long, global = true)]
+    timezone_local: bool,
     /// Use authentication
     #[clap(long, global = true)]
     auth: bool,
@@ -916,6 +919,9 @@ async fn run() -> anyhow::Result<()> {
     }
     if let Some(botguard_bin) = cli.botguard_bin {
         rp = rp.botguard_bin(botguard_bin);
+    }
+    if cli.timezone_local {
+        rp = rp.timezone_local();
     }
 
     #[cfg(feature = "timezone")]
