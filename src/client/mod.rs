@@ -2215,7 +2215,7 @@ impl RustyPipeQuery {
                                 })
                                 .collect(),
                         ),
-                        req_body: serde_json::to_string(body).ok(),
+                        req_body: serde_json::to_string(&req_body).ok(),
                         status: req_res.status.into(),
                         resp_body: req_res.body,
                     },
