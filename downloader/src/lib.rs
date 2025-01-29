@@ -15,7 +15,7 @@ use std::{
     time::Duration,
 };
 
-use futures_util::stream::{self, StreamExt};
+use futures_util::stream::{self, StreamExt, TryStreamExt};
 use once_cell::sync::Lazy;
 use rand::Rng;
 use regex::Regex;
@@ -871,8 +871,8 @@ impl DownloadQuery {
         if let Some(pb) = pb {
             pb.set_message(format!("Downloading {name}{attempt_suffix}"))
         }
-        download_streams(
-            &downloads,
+        let downloads = download_streams(
+            downloads,
             &self.dl.i.http,
             &user_agent,
             pot,
@@ -930,13 +930,9 @@ impl DownloadQuery {
         }
 
         // Delete original files
-        stream::iter(&downloads)
-            .map(|d| fs::remove_file(d.file.clone()))
-            .buffer_unordered(downloads.len())
-            .collect::<Vec<_>>()
-            .await
-            .into_iter()
-            .collect::<core::result::Result<(), _>>()?;
+        for d in &downloads {
+            fs::remove_file(&d.file).await?;
+        }
 
         #[cfg(feature = "indicatif")]
         if let Some(pb) = pb {
@@ -1442,33 +1438,32 @@ struct StreamDownload {
 }
 
 async fn download_streams(
-    downloads: &Vec<StreamDownload>,
+    downloads: Vec<StreamDownload>,
     http: &Client,
     user_agent: &str,
     pot: Option<&str>,
     #[cfg(feature = "indicatif")] pb: Option<ProgressBar>,
-) -> Result<()> {
-    let n = downloads.len();
-
-    stream::iter(downloads)
-        .map(|d| {
-            download_single_file(
-                &d.url,
-                &d.file,
-                http,
-                user_agent,
-                pot,
-                #[cfg(feature = "indicatif")]
-                pb.clone(),
-            )
+) -> Result<Vec<StreamDownload>> {
+    stream::iter(downloads.iter().map(Ok))
+        .try_for_each_concurrent(2, |d| {
+            #[cfg(feature = "indicatif")]
+            let pb = pb.clone();
+            async move {
+                download_single_file(
+                    &d.url,
+                    &d.file,
+                    http,
+                    user_agent,
+                    pot,
+                    #[cfg(feature = "indicatif")]
+                    pb,
+                )
+                .await
+            }
         })
-        .buffer_unordered(n)
-        .collect::<Vec<_>>()
-        .await
-        .into_iter()
-        .collect::<Result<Vec<_>>>()?;
+        .await?;
 
-    Ok(())
+    Ok(downloads)
 }
 
 async fn convert_streams(

@@ -47,11 +47,13 @@ async fn download_music(rp: RustyPipe) {
     let td = TempDir::default();
     let td_path = td.to_path_buf();
 
-    let dl = Downloader::builder()
-        .audio_tag()
-        .crop_cover()
-        .rustypipe(&rp)
-        .build();
+    #[allow(unused_mut)]
+    let mut dl = Downloader::builder().rustypipe(&rp);
+    #[cfg(feature = "audiotag")]
+    {
+        dl = dl.audio_tag().crop_cover();
+    }
+    let dl = dl.build();
 
     let res = dl
         .id("bVtv3st8bgc")
@@ -110,4 +112,16 @@ fn assert_audio_meta(p: &Path, title: &str, artist: &str, album: &str, date: &st
     assert_eq!(tags["ARTIST"].as_str(), Some(artist));
     assert_eq!(tags["ALBUM"].as_str(), Some(album));
     assert_eq!(tags["DATE"].as_str(), Some(date));
+}
+
+/// This is just a static check to make sure all RustyPipe futures can be sent
+/// between threads safely.
+/// Otherwise this may cause issues when integrating RustyPipe into async projects.
+#[allow(unused)]
+async fn all_send_and_sync() {
+    fn send_and_sync<T: Send + Sync>(t: T) {}
+
+    let dl = Downloader::default();
+    let dlq = dl.id("");
+    send_and_sync(dlq.download());
 }
