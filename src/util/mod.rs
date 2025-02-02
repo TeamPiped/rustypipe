@@ -1,11 +1,13 @@
 mod date;
 mod protobuf;
+mod visitor_data;
 
 pub mod dictionary;
 pub mod timeago;
 
 pub use date::{now_sec, shift_months, shift_weeks_mo, shift_years};
 pub use protobuf::{string_from_pb, ProtoBuilder};
+pub use visitor_data::VisitorDataCache;
 
 use std::{
     collections::BTreeMap,
@@ -97,29 +99,6 @@ pub fn random_uuid() -> String {
         rng.gen::<u16>(),
         rng.gen::<u64>() & 0xffff_ffff_ffff,
     )
-}
-
-/// Generate a random visitor data cookie
-pub fn random_visitor_data(country: Country) -> String {
-    let mut rng = rand::thread_rng();
-
-    let mut pb_e2 = ProtoBuilder::new();
-    pb_e2.string(2, "");
-    pb_e2.varint(4, rng.gen_range(1..256));
-
-    let mut pb_e = ProtoBuilder::new();
-    pb_e.string(1, &country.to_string());
-    pb_e.embedded(2, pb_e2);
-
-    let mut pb = ProtoBuilder::new();
-    pb.string(1, &random_string(CONTENT_PLAYBACK_NONCE_ALPHABET, 11));
-    pb.varint(
-        5,
-        (time::OffsetDateTime::now_utc().unix_timestamp() as u64)
-            .saturating_sub(rng.gen_range(0..600_000)),
-    );
-    pb.embedded(6, pb_e);
-    pb.to_base64()
 }
 
 /// Split an URL into its base string and parameter map

@@ -38,6 +38,7 @@ use time::OffsetDateTime;
 use tokio::sync::RwLock as AsyncRwLock;
 
 use crate::error::AuthError;
+use crate::util::VisitorDataCache;
 use crate::{
     cache::{CacheStorage, FileStorage, DEFAULT_CACHE_FILE},
     deobfuscate::DeobfData,
@@ -312,9 +313,9 @@ impl AuthCookie {
     }
 }
 
-const DEFAULT_UA: &str = "Mozilla/5.0 (X11; Linux x86_64; rv:128.0) Gecko/20100101 Firefox/128.0";
-const MOBILE_UA: &str = "Mozilla/5.0 (Android 14; Mobile; rv:129.0) Gecko/129.0 Firefox/129.0";
-const TV_UA: &str = "Mozilla/5.0 (SMART-TV; Linux; Tizen 5.0) AppleWebKit/538.1 (KHTML, like Gecko) Version/5.0 NativeTVAds Safari/538.1";
+pub(crate) const DEFAULT_UA: &str = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36";
+pub(crate) const MOBILE_UA: &str = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.6778.135 Mobile Safari/537.36";
+pub(crate) const TV_UA: &str = "Mozilla/5.0 (SMART-TV; Linux; Tizen 5.0) AppleWebKit/538.1 (KHTML, like Gecko) Version/5.0 NativeTVAds Safari/538.1";
 
 const CONSENT_COOKIE: &str = "SOCS=CAISAiAD";
 
@@ -323,7 +324,7 @@ const YOUTUBEI_V1_GAPIS_URL: &str = "https://youtubei.googleapis.com/youtubei/v1
 const YOUTUBE_MUSIC_V1_URL: &str = "https://music.youtube.com/youtubei/v1/";
 const YOUTUBEI_MOBILE_V1_URL: &str = "https://m.youtube.com/youtubei/v1/";
 const YOUTUBE_HOME_URL: &str = "https://www.youtube.com";
-const YOUTUBE_MUSIC_HOME_URL: &str = "https://music.youtube.com";
+pub(crate) const YOUTUBE_MUSIC_HOME_URL: &str = "https://music.youtube.com";
 const YOUTUBE_MOBILE_HOME_URL: &str = "https://m.youtube.com";
 const YOUTUBE_TV_URL: &str = "https://www.youtube.com/tv";
 
@@ -350,8 +351,6 @@ const OAUTH_SCOPES: &str = "http://gdata.youtube.com https://www.googleapis.com/
 
 static CLIENT_VERSION_REGEX: Lazy<Regex> =
     Lazy::new(|| Regex::new(r#""INNERTUBE_CONTEXT_CLIENT_VERSION":"([\w\d\._-]+?)""#).unwrap());
-static VISITOR_DATA_REGEX: Lazy<Regex> =
-    Lazy::new(|| Regex::new(r#""visitorData":"([\w\d_\-%]+?)""#).unwrap());
 
 /// Default order of client types when fetching player data
 ///
@@ -378,6 +377,7 @@ struct RustyPipeRef {
     cache: CacheHolder,
     default_opts: RustyPipeOpts,
     user_agent: Cow<'static, str>,
+    visitor_data_cache: VisitorDataCache,
 }
 
 #[derive(Clone)]
@@ -688,6 +688,8 @@ impl RustyPipeBuilder {
         })
         .collect::<HashMap<_, _>>();
 
+        let visitor_data_cache = VisitorDataCache::new(http.clone());
+
         Ok(RustyPipe {
             inner: Arc::new(RustyPipeRef {
                 http,
@@ -706,6 +708,7 @@ impl RustyPipeBuilder {
                 },
                 default_opts: self.default_opts,
                 user_agent,
+                visitor_data_cache,
             }),
         })
     }
@@ -1196,51 +1199,7 @@ impl RustyPipe {
     /// Sometimes YouTube does not set the `__Secure-YEC` cookie. In this case, the
     /// visitor data is extracted from the html page.
     async fn get_visitor_data(&self) -> Result<String, Error> {
-        tracing::debug!("getting YT visitor data");
-        let resp = self
-            .inner
-            .http
-            .get(YOUTUBE_MUSIC_HOME_URL)
-            .header(header::ORIGIN, YOUTUBE_MUSIC_HOME_URL)
-            .header(header::REFERER, YOUTUBE_MUSIC_HOME_URL)
-            .send()
-            .await?;
-
-        let vdata = resp
-            .headers()
-            .get_all(header::SET_COOKIE)
-            .iter()
-            .find_map(|c| {
-                if let Ok(cookie) = c.to_str() {
-                    if let Some(after) = cookie.strip_prefix("__Secure-YEC=") {
-                        return after
-                            .split_once(';')
-                            .map(|s| s.0.to_owned())
-                            .filter(|s| !s.is_empty());
-                    }
-                }
-                None
-            });
-
-        match vdata {
-            Some(vdata) => Ok(vdata),
-            None => {
-                if resp.status().is_success() {
-                    // Extract visitor data from html
-                    let html = resp.text().await?;
-
-                    util::get_cg_from_regex(&VISITOR_DATA_REGEX, &html, 1).ok_or(Error::Extraction(
-                        ExtractionError::InvalidData(
-                            "Could not find visitor data on html page".into(),
-                        ),
-                    ))
-                } else {
-                    Err(Error::Extraction(ExtractionError::InvalidData(
-                        format!("Could not get visitor data, status: {}", resp.status()).into(),
-                    )))
-                }
-            }
-        }
+        self.inner.visitor_data_cache.new_visitor_data().await
     }
 
     /// Get a new device code for logging into YouTube
@@ -2147,11 +2106,14 @@ impl RustyPipeQuery {
     ) -> Result<M, Error> {
         tracing::debug!("getting {}({})", operation, id);
 
-        let visitor_data = ctx_src
+        let visitor_data = match ctx_src
             .visitor_data
             .or(self.opts.visitor_data.as_deref())
             .map(Cow::Borrowed)
-            .unwrap_or_else(|| util::random_visitor_data(self.opts.country).into());
+        {
+            Some(vd) => vd,
+            None => self.client.inner.visitor_data_cache.get().await?.into(),
+        };
 
         let context = self
             .get_context(ctype, !ctx_src.unlocalized, &visitor_data)
@@ -2289,12 +2251,10 @@ impl RustyPipeQuery {
         endpoint: &str,
         body: &B,
     ) -> Result<String, Error> {
-        let visitor_data = self
-            .opts
-            .visitor_data
-            .as_deref()
-            .map(Cow::Borrowed)
-            .unwrap_or_else(|| util::random_visitor_data(self.opts.country).into());
+        let visitor_data = match self.opts.visitor_data.as_deref().map(Cow::Borrowed) {
+            Some(vd) => vd,
+            None => self.client.inner.visitor_data_cache.get().await?.into(),
+        };
 
         let context = self.get_context(ctype, true, &visitor_data).await;
         let req_body = QBody { context, body };
