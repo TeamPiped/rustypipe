@@ -801,9 +801,9 @@ impl DownloadQuery {
 
         if video.is_none() && audio.is_none() {
             if player_data.drm.is_some() {
-                return Err(DownloadError::Input("video is DRM-protected".into()));
+                return Err(DownloadError::Source("video is DRM-protected".into()));
             }
-            return Err(DownloadError::Input("no stream found".into()));
+            return Err(DownloadError::Source("no stream found".into()));
         }
 
         let extension = match video {
@@ -812,7 +812,9 @@ impl DownloadQuery {
                 Some(audio) => match audio.codec {
                     AudioCodec::Mp4a => "m4a",
                     AudioCodec::Opus => "opus",
-                    _ => return Err(DownloadError::Input("unknown audio codec".into())),
+                    AudioCodec::Ac3 => "ac3",
+                    AudioCodec::Ec3 => "eac3",
+                    _ => return Err(DownloadError::Source("unknown audio codec".into())),
                 },
                 None => unreachable!(),
             },
@@ -903,7 +905,7 @@ impl DownloadQuery {
 
         // Tag audio file
         #[cfg(feature = "audiotag")]
-        if self.dl.i.audio_tag && video.is_none() {
+        if self.dl.i.audio_tag && video.is_none() && matches!(extension, "m4a" | "opus") {
             let (details, track) = match details {
                 Some(d) => (d, self.dl.i.rp.query().music_details(&self.video.id).await?),
                 None => {

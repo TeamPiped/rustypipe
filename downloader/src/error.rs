@@ -25,8 +25,8 @@ pub enum DownloadError {
     #[error("Progressive download error: {0}")]
     Progressive(Cow<'static, str>),
     /// Video could not be downloaded because of invalid player data
-    #[error("input error: {0}")]
-    Input(Cow<'static, str>),
+    #[error("source error: {0}")]
+    Source(Cow<'static, str>),
     /// Download target already exists
     #[error("file {0} already exists")]
     Exists(PathBuf),
