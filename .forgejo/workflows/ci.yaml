@@ -24,6 +24,13 @@ jobs:
         with:
           cache-on-failure: "true"
 
+      - name: Download rustypipe-botguard
+        run: |
+          TARGET=$(rustc --version --verbose | grep "host:" | sed -e 's/^host: //')
+          curl -SsL -o rustypipe-botguard.gz "https://thetadev.de/dl/rustypipe-botguard-${TARGET}.gz"
+          sudo gunzip -c rustypipe-botguard.gz > /usr/local/bin/rustypipe-botguard
+          sudo chmod +x /usr/local/bin/rustypipe-botguard
+
       - name: 📎 Clippy
         run: cargo clippy --all --tests --features=rss,indicatif,audiotag -- -D warnings
 

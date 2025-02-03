@@ -19,8 +19,8 @@ use rustypipe::{
     model::{
         richtext::{RichText, ToPlaintext},
         traits::YtEntity,
-        ArtistId, Comment, MusicSearchResult, TrackItem, TrackType, UrlTarget, Verification,
-        YouTubeItem,
+        ArtistId, AudioCodec, Comment, MusicSearchResult, TrackItem, TrackType, UrlTarget,
+        Verification, YouTubeItem,
     },
     param::{search_filter, ChannelVideoTab, Country, Language, StreamFilter},
     report::FileReporter,
@@ -45,7 +45,7 @@ struct Cli {
     /// Always generate a report (used for debugging)
     #[clap(long, global = true)]
     report: bool,
-    /// YouTube visitor data cookie
+    /// YouTube visitor data ID
     #[clap(long, global = true)]
     vdata: Option<String>,
     /// YouTube content language
@@ -299,7 +299,7 @@ enum Commands {
         #[clap(long)]
         pretty: bool,
     },
-    /// Get a YouTube visitor data cookie
+    /// Get a YouTube visitor data ID
     Vdata,
     /// Log in using your Google account
     Login {
@@ -925,7 +925,9 @@ async fn run() -> anyhow::Result<()> {
             let mut filter = StreamFilter::new();
             if let Some(res) = resolution {
                 if res == 0 {
-                    filter = filter.no_video();
+                    filter = filter
+                        .no_video()
+                        .audio_codecs([AudioCodec::Mp4a, AudioCodec::Opus]);
                 } else {
                     filter = filter.video_max_res(res);
                 }
@@ -1716,7 +1718,7 @@ async fn run() -> anyhow::Result<()> {
             }
         }
         Commands::Vdata => {
-            let vd = rp.query().get_visitor_data().await?;
+            let vd = rp.query().get_visitor_data(true).await?;
             println!("{vd}");
         }
         Commands::Login {

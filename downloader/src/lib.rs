@@ -21,7 +21,7 @@ use rand::Rng;
 use regex::Regex;
 use reqwest::{header, Client, StatusCode, Url};
 use rustypipe::{
-    client::{ClientType, RustyPipe, DEFAULT_PLAYER_CLIENT_ORDER},
+    client::{ClientType, RustyPipe},
     model::{
         traits::{FileFormat, YtEntity},
         AudioCodec, TrackItem, VideoCodec, VideoPlayer,
@@ -698,9 +698,9 @@ impl DownloadQuery {
                 .await
             {
                 Ok(res) => return Ok(res),
-                Err(DownloadError::Forbidden(c)) => {
+                Err(DownloadError::Forbidden(c, vd)) => {
                     failed_client = Some(c);
-                    DownloadError::Forbidden(c)
+                    DownloadError::Forbidden(c, vd)
                 }
                 Err(DownloadError::Http(e)) => {
                     if !e.is_timeout() {
@@ -770,7 +770,7 @@ impl DownloadQuery {
                 .as_ref()
                 .or(self.dl.i.client_types.as_ref())
                 .map(Vec::as_slice)
-                .unwrap_or(DEFAULT_PLAYER_CLIENT_ORDER),
+                .unwrap_or(q.player_client_order()),
         );
 
         // If the last download failed, try another client if possible
@@ -885,7 +885,14 @@ impl DownloadQuery {
         .map_err(|e| {
             if let DownloadError::Http(e) = &e {
                 if e.status() == Some(StatusCode::FORBIDDEN) {
-                    return DownloadError::Forbidden(player_data.client_type);
+                    // 403 errors may occur due to bad visitor data IDs
+                    if let Some(vd) = &player_data.visitor_data {
+                        q.remove_visitor_data(vd);
+                    }
+                    return DownloadError::Forbidden(
+                        player_data.client_type,
+                        player_data.visitor_data.clone(),
+                    );
                 }
             }
             e
@@ -1410,7 +1417,6 @@ async fn download_chunks_by_param(
             ));
         }
 
-        tracing::debug!("Retrieving chunks...");
         let mut stream = res.bytes_stream();
         while let Some(item) = stream.next().await {
             // Retrieve chunk.

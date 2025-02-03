@@ -3,12 +3,12 @@
 When YouTube introduces a new feature, it does so gradually. When a user creates a new
 session, YouTube decided randomly which new features should be enabled.
 
-YouTube sessions are identified by the visitor data cookie. This cookie is sent with
+YouTube sessions are identified by the visitor data ID. This cookie is sent with
 every API request using the `context.client.visitor_data` JSON parameter. It is also
 returned in the `responseContext.visitorData` response parameter and stored as the
 `__SECURE-YEC` cookie.
 
-By sending the same visitor data cookie, A/B tests can be reproduced, which is important
+By sending the same visitor data ID, A/B tests can be reproduced, which is important
 for testing alternative YouTube clients.
 
 This page lists all A/B tests that were encountered while maintaining the RustyPipe
@@ -381,7 +381,7 @@ YouTube also changed the way the full discography page is fetched, surprisingly 
 it easier for alternative clients. The discography page now has its own content ID in
 the format of `MPAD<channel id>` (Music Page Artist Discography). This page can be
 fetched with a regular browse request without requiring parameters to be parsed or a
-visitor data cookie to be set, as it was the case with the old system.
+visitor data ID to be set, as it was the case with the old system.
 
 **OLD**
 

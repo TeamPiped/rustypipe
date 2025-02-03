@@ -6,7 +6,7 @@ use regex::Regex;
 use reqwest::{header, Client};
 
 use crate::{
-    client::YOUTUBE_MUSIC_HOME_URL,
+    client::{CONSENT_COOKIE, YOUTUBE_MUSIC_HOME_URL},
     error::{Error, ExtractionError},
     util,
 };
@@ -35,9 +35,9 @@ struct VisitorDataCacheRef {
 static VISITOR_DATA_REGEX: Lazy<Regex> =
     Lazy::new(|| Regex::new(r#""visitorData":"([\w\d_\-%]+?)""#).unwrap());
 /// Number of requests after which a new token is requested
-const REQ_LIMIT: u32 = 10;
-/// Maximum size of the cache (-1)
-const MAX_SIZE: usize = 99;
+const REQ_LIMIT: u32 = 50;
+/// Maximum size of the cache
+const MAX_SIZE: usize = 20;
 
 impl VisitorDataCache {
     pub fn new(http: Client) -> Self {
@@ -59,6 +59,7 @@ impl VisitorDataCache {
             .get(YOUTUBE_MUSIC_HOME_URL)
             .header(header::ORIGIN, YOUTUBE_MUSIC_HOME_URL)
             .header(header::REFERER, YOUTUBE_MUSIC_HOME_URL)
+            .header(header::COOKIE, CONSENT_COOKIE)
             .send()
             .await?;
 
@@ -100,10 +101,11 @@ impl VisitorDataCache {
     }
 
     pub async fn new_visitor_data(&self) -> Result<String, Error> {
+        let vd = self.get_visitor_data().await.unwrap();
+
         self.inner
             .req_counter
-            .store(0, std::sync::atomic::Ordering::SeqCst);
-        let vd = self.get_visitor_data().await.unwrap();
+            .store(0, std::sync::atomic::Ordering::Relaxed);
         let mut vds = self.inner.visitor_data.write().unwrap();
         for _ in 0..(vds.len().saturating_sub(MAX_SIZE)) {
             let rem = vds.remove(0);
@@ -119,9 +121,12 @@ impl VisitorDataCache {
         if self
             .inner
             .req_counter
-            .fetch_add(1, std::sync::atomic::Ordering::SeqCst)
+            .fetch_add(1, std::sync::atomic::Ordering::Relaxed)
             >= REQ_LIMIT
         {
+            self.inner
+                .req_counter
+                .store(0, std::sync::atomic::Ordering::Relaxed);
             let nc = self.clone();
             tokio::spawn(async move { nc.new_visitor_data().await });
         }
@@ -137,6 +142,14 @@ impl VisitorDataCache {
         }
         // Fetch new visitor data if the cache is empty
         self.new_visitor_data().await
+    }
+
+    pub fn remove(&self, visitor_data: &str) {
+        let mut vds = self.inner.visitor_data.write().unwrap();
+        if let Some(i) = vds.iter().position(|x| x == visitor_data) {
+            vds.remove(i);
+            tracing::debug!("visitor data {visitor_data} removed from cache");
+        }
     }
 }
 

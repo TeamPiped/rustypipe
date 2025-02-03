@@ -94,7 +94,7 @@ pub async fn run_test(
             let rp = rp.clone();
             let pb = pb.clone();
             async move {
-                let visitor_data = rp.query().get_visitor_data().await.unwrap();
+                let visitor_data = rp.query().get_visitor_data(true).await.unwrap();
                 let query = rp.query().visitor_data(&visitor_data);
                 let is_present = match ab {
                     ABTest::AttributedTextDescription => attributed_text_description(&query).await,

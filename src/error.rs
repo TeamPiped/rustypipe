@@ -58,6 +58,9 @@ pub enum ExtractionError {
     /// Error deobfuscating YouTube's URL signatures
     #[error("deobfuscation error: {0}")]
     Deobfuscation(Cow<'static, str>),
+    /// Error generating Botguard tokens
+    #[error("botguard error: {0}")]
+    Botguard(Cow<'static, str>),
     /// YouTube returned data that does not match the queried ID
     ///
     /// Specifically YouTube may return this video <https://www.youtube.com/watch?v=aQvGIIdgFDM>,
@@ -102,6 +105,8 @@ pub enum UnavailabilityReason {
     OfflineLivestream,
     /// YouTube banned your IP address from accessing the platform without an account
     IpBan,
+    /// Video temporarily unavailable (rate limit)
+    TryAgain,
     /// Video cant be played for other reasons
     #[default]
     Unplayable,
@@ -120,6 +125,7 @@ impl Display for UnavailabilityReason {
             UnavailabilityReason::MembersOnly => f.write_str("members-only"),
             UnavailabilityReason::OfflineLivestream => f.write_str("offline stream"),
             UnavailabilityReason::IpBan => f.write_str("ip-ban"),
+            UnavailabilityReason::TryAgain => f.write_str("try again"),
             UnavailabilityReason::Unplayable => f.write_str("unplayable"),
         }
     }
@@ -220,7 +226,13 @@ impl Error {
                 Ok(status) => status.is_server_error() || status == StatusCode::TOO_MANY_REQUESTS,
                 Err(_) => false,
             },
-            Self::Extraction(ExtractionError::InvalidData(_)) => true,
+            Self::Extraction(
+                ExtractionError::InvalidData(_)
+                | ExtractionError::Unavailable {
+                    reason: UnavailabilityReason::TryAgain,
+                    ..
+                },
+            ) => true,
             _ => false,
         }
     }
@@ -232,9 +244,10 @@ impl ExtractionError {
         matches!(
             self,
             ExtractionError::Unavailable {
-                reason: UnavailabilityReason::UnsupportedClient,
+                reason: UnavailabilityReason::UnsupportedClient | UnavailabilityReason::TryAgain,
                 ..
             } | ExtractionError::WrongResult(_)
+                | ExtractionError::Botguard(_)
         )
     }
 

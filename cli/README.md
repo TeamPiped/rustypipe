@@ -75,7 +75,7 @@ videos can be downloaded in parallel for improved performance.
 
 ## `vdata`: Get visitor data
 
-You can use the vdata command to get a new visitor data cookie. This feature may come in
+You can use the vdata command to get a new visitor data ID. This feature may come in
 handy for testing and reproducing A/B tests.
 
 ## `releases` Get YouTube Music new releases
@@ -130,7 +130,7 @@ Fetch a list of all the items saved in your YouTube/YouTube Music profile.
   and `ALL_PROXY`
 - **Logging:** You can change the log level with the `RUST_LOG` environment variable, it
   is set to `info` by default
-- **Visitor data:** A custom visitor data cookie can be used with the `--vdata` flag
+- **Visitor data:** A custom visitor data ID can be used with the `--vdata` flag
 - **Authentication:** Use the commands `rustypipe login` and `rustypipe login --cookie`
   to log into your Google account using either OAuth or YouTube cookies. With the
   `--auth` flag you can use authentication for any request.

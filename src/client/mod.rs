@@ -25,6 +25,7 @@ mod video_details;
 mod channel_rss;
 
 use std::collections::HashMap;
+use std::ffi::OsString;
 use std::path::PathBuf;
 use std::sync::{Arc, RwLock};
 use std::{borrow::Cow, fmt::Debug, time::Duration};
@@ -96,6 +97,13 @@ impl ClientType {
 
     fn needs_deobf(self) -> bool {
         !matches!(self, ClientType::Ios)
+    }
+
+    fn needs_po_token(self) -> bool {
+        matches!(
+            self,
+            ClientType::Desktop | ClientType::DesktopMusic | ClientType::Mobile
+        )
     }
 }
 
@@ -317,7 +325,7 @@ pub(crate) const DEFAULT_UA: &str = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit
 pub(crate) const MOBILE_UA: &str = "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.6778.135 Mobile Safari/537.36";
 pub(crate) const TV_UA: &str = "Mozilla/5.0 (SMART-TV; Linux; Tizen 5.0) AppleWebKit/538.1 (KHTML, like Gecko) Version/5.0 NativeTVAds Safari/538.1";
 
-const CONSENT_COOKIE: &str = "SOCS=CAISAiAD";
+pub(crate) const CONSENT_COOKIE: &str = "SOCS=CAISAiAD";
 
 const YOUTUBEI_V1_URL: &str = "https://www.youtube.com/youtubei/v1/";
 const YOUTUBEI_V1_GAPIS_URL: &str = "https://youtubei.googleapis.com/youtubei/v1/";
@@ -352,13 +360,6 @@ const OAUTH_SCOPES: &str = "http://gdata.youtube.com https://www.googleapis.com/
 static CLIENT_VERSION_REGEX: Lazy<Regex> =
     Lazy::new(|| Regex::new(r#""INNERTUBE_CONTEXT_CLIENT_VERSION":"([\w\d\._-]+?)""#).unwrap());
 
-/// Default order of client types when fetching player data
-///
-/// The order may change in the future in case YouTube applies changes to their
-/// platform that disable a client or make it less reliable.
-pub const DEFAULT_PLAYER_CLIENT_ORDER: &[ClientType] =
-    &[ClientType::Ios, ClientType::Tv, ClientType::Android];
-
 /// The RustyPipe client used to access YouTube's API
 ///
 /// RustyPipe uses an [`Arc`] internally, so if you are using the client
@@ -378,6 +379,7 @@ struct RustyPipeRef {
     default_opts: RustyPipeOpts,
     user_agent: Cow<'static, str>,
     visitor_data_cache: VisitorDataCache,
+    botguard: Option<BotguardCfg>,
 }
 
 #[derive(Clone)]
@@ -399,6 +401,12 @@ pub struct RustyPipeBuilder {
     user_agent: Option<String>,
     default_opts: RustyPipeOpts,
     storage_dir: Option<PathBuf>,
+    botguard_bin: DefaultOpt<OsString>,
+}
+
+struct BotguardCfg {
+    program: OsString,
+    snapshot_file: PathBuf,
 }
 
 enum DefaultOpt<T> {
@@ -413,6 +421,13 @@ impl<T> DefaultOpt<T> {
             DefaultOpt::Some(x) => Some(x),
             DefaultOpt::None => None,
             DefaultOpt::Default => Some(f()),
+        }
+    }
+    fn or_default_opt<F: FnOnce() -> Option<T>>(self, f: F) -> Option<T> {
+        match self {
+            DefaultOpt::Some(x) => Some(x),
+            DefaultOpt::None => None,
+            DefaultOpt::Default => f(),
         }
     }
 }
@@ -477,7 +492,7 @@ impl<T> DefaultOpt<T> {
 ///
 /// ## Options
 ///
-/// You can set the language, country and visitor data cookie for individual requests.
+/// You can set the language, country and visitor data ID for individual requests.
 ///
 /// ```
 /// # use rustypipe::client::RustyPipe;
@@ -626,6 +641,7 @@ impl RustyPipeBuilder {
             n_http_retries: 2,
             user_agent: None,
             storage_dir: None,
+            botguard_bin: DefaultOpt::Default,
         }
     }
 
@@ -690,12 +706,25 @@ impl RustyPipeBuilder {
 
         let visitor_data_cache = VisitorDataCache::new(http.clone());
 
+        let botguard_bin = self.botguard_bin.or_default_opt(|| {
+            let n = OsString::from("rustypipe-botguard");
+            let out = std::process::Command::new(&n)
+                .arg("--version")
+                .output()
+                .ok()?;
+            if out.status.success() {
+                Some(n)
+            } else {
+                None
+            }
+        });
+
         Ok(RustyPipe {
             inner: Arc::new(RustyPipeRef {
                 http,
                 storage,
                 reporter: self.reporter.or_default(|| {
-                    let mut report_dir = storage_dir;
+                    let mut report_dir = storage_dir.clone();
                     report_dir.push(DEFAULT_REPORT_DIR);
                     Box::new(FileReporter::new(report_dir))
                 }),
@@ -709,6 +738,14 @@ impl RustyPipeBuilder {
                 default_opts: self.default_opts,
                 user_agent,
                 visitor_data_cache,
+                botguard: botguard_bin.map(|program| {
+                    let mut snapshot_file = storage_dir;
+                    snapshot_file.push("bg_snapshot.bin");
+                    BotguardCfg {
+                        program,
+                        snapshot_file,
+                    }
+                }),
             }),
         })
     }
@@ -868,14 +905,14 @@ impl RustyPipeBuilder {
         self
     }
 
-    /// Set the YouTube visitor data cookie
+    /// Set the YouTube visitor data ID
     ///
     /// YouTube assigns a session cookie to each user which is used for personalized
     /// recommendations. By default, RustyPipe does not send this cookie to preserve
     /// user privacy. For requests that mandatate the cookie, a new one is requested
     /// for every query.
     ///
-    /// This option allows you to manually set the visitor data cookie of your client,
+    /// This option allows you to manually set the visitor data ID of your client,
     /// allowing you to get personalized recommendations or reproduce A/B tests.
     ///
     /// Note that YouTube has a rate limit on the number of requests from a single
@@ -888,7 +925,7 @@ impl RustyPipeBuilder {
         self
     }
 
-    /// Set the YouTube visitor data cookie to an optional value
+    /// Set the YouTube visitor data ID to an optional value
     ///
     /// see also [`RustyPipeBuilder::visitor_data`]
     ///
@@ -896,6 +933,26 @@ impl RustyPipeBuilder {
     #[must_use]
     pub fn visitor_data_opt<S: Into<String>>(mut self, visitor_data: Option<S>) -> Self {
         self.default_opts.visitor_data = visitor_data.map(S::into);
+        self
+    }
+
+    /// Disable RustyPipe Botguard
+    ///
+    /// By default, RustyPipe uses the `rustypipe-botguard` binary if it is available. If you want to
+    /// use RustyPipe without Botguard, you can disable it.
+    pub fn no_botguard(mut self) -> Self {
+        self.botguard_bin = DefaultOpt::None;
+        self
+    }
+
+    /// Enable RustyPipe Botguard using the given binary
+    ///
+    /// Botguard is required to generate PO tokens for accessing streams on browser-based clients.
+    /// By default, RustyPipe uses the `rustypipe-botguard` binary if it is available.
+    ///
+    /// More information: <https://codeberg.org/ThetaDev/rustypipe-botguard>
+    pub fn botguard_bin<S: Into<OsString>>(mut self, botguard_bin: S) -> Self {
+        self.botguard_bin = DefaultOpt::Some(botguard_bin.into());
         self
     }
 }
@@ -1189,17 +1246,6 @@ impl RustyPipe {
                 Err(e) => tracing::error!("Could not serialize cache. Error: {}", e),
             }
         }
-    }
-
-    /// Request a new visitor data cookie from YouTube
-    ///
-    /// Since the cookie is shared between YT and YTM and the YTM page loads faster,
-    /// we request that.
-    ///
-    /// Sometimes YouTube does not set the `__Secure-YEC` cookie. In this case, the
-    /// visitor data is extracted from the html page.
-    async fn get_visitor_data(&self) -> Result<String, Error> {
-        self.inner.visitor_data_cache.new_visitor_data().await
     }
 
     /// Get a new device code for logging into YouTube
@@ -1618,14 +1664,14 @@ impl RustyPipeQuery {
         self
     }
 
-    /// Set the YouTube visitor data cookie
+    /// Set the YouTube visitor data ID
     ///
     /// YouTube assigns a session cookie to each user which is used for personalized
     /// recommendations. By default, RustyPipe does not send this cookie to preserve
     /// user privacy. For requests that mandatate the cookie, a new one is requested
     /// for every query.
     ///
-    /// This option allows you to manually set the visitor data cookie of your query,
+    /// This option allows you to manually set the visitor data ID of your query,
     /// allowing you to get personalized recommendations or reproduce A/B tests.
     ///
     /// Note that YouTube has a rate limit on the number of requests from a single
@@ -1636,7 +1682,7 @@ impl RustyPipeQuery {
         self
     }
 
-    /// Set the YouTube visitor data cookie to an optional value
+    /// Set the YouTube visitor data ID to an optional value
     ///
     /// see also [`RustyPipeQuery::visitor_data`]
     #[must_use]
@@ -1845,7 +1891,7 @@ impl RustyPipeQuery {
     /// - `ctype`: Client type (`Desktop`, `DesktopMusic`, `Android`, ...)
     /// - `method`: HTTP method
     /// - `endpoint`: YouTube API endpoint (`https://www.youtube.com/youtubei/v1/<XYZ>?key=...`)
-    /// - `visitor_data`: YouTube visitor data cookie
+    /// - `visitor_data`: YouTube visitor data ID
     async fn request_builder(
         &self,
         ctype: ClientType,
@@ -1987,12 +2033,73 @@ impl RustyPipeQuery {
         Some(format!("SAPISIDHASH {time_now}_{sapisidhash_hex}"))
     }
 
-    /// Get a YouTube visitor data cookie, which is necessary for certain requests
-    pub async fn get_visitor_data(&self) -> Result<String, Error> {
+    /// Get a YouTube visitor data ID, which is necessary for certain requests
+    pub async fn get_visitor_data(&self, force_new: bool) -> Result<String, Error> {
+        if force_new {
+            return self
+                .client
+                .inner
+                .visitor_data_cache
+                .new_visitor_data()
+                .await;
+        }
+
         match &self.opts.visitor_data {
             Some(vd) => Ok(vd.clone()),
-            None => self.client.get_visitor_data().await,
+            None => self.client.inner.visitor_data_cache.get().await,
         }
+    }
+
+    /// Remove a YouTube visitor data ID from the cache so it is not used again
+    pub fn remove_visitor_data(&self, visitor_data: &str) {
+        self.client.inner.visitor_data_cache.remove(visitor_data);
+    }
+
+    /// Get PO tokens
+    async fn get_po_tokens(&self, idents: &[&str]) -> Result<Vec<String>, Error> {
+        let bg = self
+            .client
+            .inner
+            .botguard
+            .as_ref()
+            .ok_or(Error::Extraction(ExtractionError::Botguard(
+                "not enabled".into(),
+            )))?;
+        let cmd = tokio::process::Command::new(&bg.program)
+            .arg("--snapshot-file")
+            .arg(&bg.snapshot_file)
+            .arg("--")
+            .args(idents)
+            .output()
+            .await
+            .map_err(|e| Error::Extraction(ExtractionError::Botguard(e.to_string().into())))?;
+        if !cmd.status.success() {
+            return Err(Error::Extraction(ExtractionError::Botguard(
+                String::from_utf8_lossy(&cmd.stderr).into_owned().into(),
+            )));
+        }
+
+        let output = String::from_utf8(cmd.stdout)
+            .map_err(|e| Error::Extraction(ExtractionError::Botguard(e.to_string().into())))?;
+        let tokens = output
+            .split_whitespace()
+            .take(idents.len())
+            .map(str::to_owned)
+            .collect::<Vec<_>>();
+        if tokens.len() != idents.len() {
+            return Err(Error::Extraction(ExtractionError::Botguard(
+                "too few tokens returned".into(),
+            )));
+        }
+        tracing::debug!("generated PO token");
+        Ok(tokens)
+    }
+
+    /// Get a PO token
+    pub async fn get_po_token<S: AsRef<str>>(self, ident: S) -> Result<String, Error> {
+        self.get_po_tokens(&[ident.as_ref()])
+            .await
+            .map(|res| res.into_iter().next().unwrap())
     }
 
     async fn yt_request_attempt<R: DeserializeOwned + MapResponse<M> + Debug, M>(
@@ -2128,6 +2235,7 @@ impl RustyPipeQuery {
             client_type: ctype,
             artist: ctx_src.artist,
             authenticated: self.opts.auth.unwrap_or_default(),
+            session_po_token: ctx_src.session_po_token,
         };
 
         let request = self
@@ -2284,6 +2392,7 @@ struct MapRespCtx<'a> {
     client_type: ClientType,
     artist: Option<ArtistId>,
     authenticated: bool,
+    session_po_token: Option<&'a str>,
 }
 
 /// Options to give to the mapper when making requests;
@@ -2294,6 +2403,7 @@ struct MapRespOptions<'a> {
     deobf: Option<&'a DeobfData>,
     artist: Option<ArtistId>,
     unlocalized: bool,
+    session_po_token: Option<&'a str>,
 }
 
 #[allow(clippy::needless_lifetimes)]
@@ -2309,6 +2419,7 @@ impl<'a> MapRespCtx<'a> {
             client_type: ClientType::Desktop,
             artist: None,
             authenticated: false,
+            session_po_token: None,
         }
     }
 }
@@ -2370,11 +2481,23 @@ mod tests {
     #[tokio::test]
     async fn get_visitor_data() {
         let rp = RustyPipe::new();
-        let visitor_data = rp.get_visitor_data().await.unwrap();
+        let visitor_data = rp.query().get_visitor_data(true).await.unwrap();
 
         assert!(
             visitor_data.starts_with("Cg") && visitor_data.len() > 23,
             "invalid visitor data: {visitor_data}"
         );
+    }
+
+    #[tokio::test]
+    async fn get_po_token() {
+        let rp = RustyPipe::builder().build().unwrap();
+        let ident = "Cgt4eDYyVVJveGQtbyiLyvu8BjIKCgJERRIEEgAgKw==";
+        let po_token = rp.query().get_po_token(ident).await.unwrap();
+
+        let token_bts = data_encoding::BASE64URL
+            .decode(po_token.as_bytes())
+            .unwrap();
+        assert_eq!(token_bts.len(), ident.len() + 74);
     }
 }

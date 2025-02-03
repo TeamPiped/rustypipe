@@ -16,7 +16,7 @@ The pot token is base64-formatted and usually starts with a M
 
 `MnToZ2brHmyo0ehfKtK_EWUq60dPYDXksNX_UsaniM_Uj6zbtiIZujCHY02hr7opxB_n3XHetJQCBV9cnNHovuhvDqrjfxsKR-sjn-eIxqv3qOZKphvyDpQzlYBnT2AXK41R-ti6iPonrvlvKIASNmYX2lhsEg==`
 
-The token is generated from YouTubes Botguard script. The token is bound to the visitor data cookie
+The token is generated from YouTubes Botguard script. The token is bound to the visitor data ID
 used to fetch the player data.
 
 This feature has been A/B-tested for a few weeks. During that time, refetching the player in case

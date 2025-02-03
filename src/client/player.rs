@@ -26,7 +26,6 @@ use super::{
         player::{self, Format},
     },
     ClientType, MapRespCtx, MapRespOptions, MapResponse, MapResult, RustyPipeQuery,
-    DEFAULT_PLAYER_CLIENT_ORDER,
 };
 
 #[derive(Debug, Serialize)]
@@ -41,6 +40,9 @@ struct QPlayer<'a> {
     content_check_ok: bool,
     /// Probably refers to allowing sensitive content, too
     racy_check_ok: bool,
+    /// Botguard data
+    #[serde(skip_serializing_if = "Option::is_none")]
+    service_integrity_dimensions: Option<ServiceIntegrity>,
 }
 
 #[derive(Debug, Serialize)]
@@ -70,10 +72,16 @@ struct QDrmLicense<'a> {
     drm_video_feature: &'a str,
 }
 
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+struct ServiceIntegrity {
+    po_token: String,
+}
+
 impl RustyPipeQuery {
     /// Get YouTube player data (video/audio streams + basic metadata)
     pub async fn player<S: AsRef<str> + Debug>(&self, video_id: S) -> Result<VideoPlayer, Error> {
-        self.player_from_clients(video_id, DEFAULT_PLAYER_CLIENT_ORDER)
+        self.player_from_clients(video_id, self.player_client_order())
             .await
     }
 
@@ -142,28 +150,46 @@ impl RustyPipeQuery {
         client_type: ClientType,
     ) -> Result<VideoPlayer, Error> {
         let video_id = video_id.as_ref();
-        let mut deobf = None;
 
-        let request_body = if client_type.needs_deobf() {
-            deobf = Some(self.client.get_deobf_data().await?);
-            QPlayer {
-                playback_context: Some(QPlaybackContext {
-                    content_playback_context: QContentPlaybackContext {
-                        signature_timestamp: &deobf.as_ref().unwrap().sts,
-                        referer: format!("https://www.youtube.com/watch?v={video_id}"),
-                    },
-                }),
-                video_id,
-                content_check_ok: true,
-                racy_check_ok: true,
+        let visitor_data = self.get_visitor_data(false).await?;
+
+        let (deobf, (service_integrity_dimensions, session_po_token)) = tokio::try_join!(
+            async {
+                if client_type.needs_deobf() {
+                    Ok::<_, Error>(Some(self.client.get_deobf_data().await?))
+                } else {
+                    Ok(None)
+                }
+            },
+            async {
+                if client_type.needs_po_token() {
+                    let mut po_tokens = self
+                        .get_po_tokens(&[video_id, &visitor_data])
+                        .await?
+                        .into_iter();
+                    let po_token = po_tokens.next().unwrap();
+                    let session_po_token = po_tokens.next().unwrap();
+
+                    Ok((Some(ServiceIntegrity { po_token }), Some(session_po_token)))
+                } else {
+                    Ok((None, None))
+                }
             }
-        } else {
-            QPlayer {
-                playback_context: None,
-                video_id,
-                content_check_ok: true,
-                racy_check_ok: true,
-            }
+        )?;
+
+        let playback_context = deobf.as_ref().map(|deobf| QPlaybackContext {
+            content_playback_context: QContentPlaybackContext {
+                signature_timestamp: &deobf.sts,
+                referer: format!("https://www.youtube.com/watch?v={video_id}"),
+            },
+        });
+
+        let request_body = QPlayer {
+            playback_context,
+            video_id,
+            content_check_ok: true,
+            racy_check_ok: true,
+            service_integrity_dimensions,
         };
 
         self.execute_request_ctx::<response::Player, _, _>(
@@ -173,12 +199,26 @@ impl RustyPipeQuery {
             "player",
             &request_body,
             MapRespOptions {
+                visitor_data: Some(&visitor_data),
                 deobf: deobf.as_ref(),
                 unlocalized: true,
+                session_po_token: session_po_token.as_deref(),
                 ..Default::default()
             },
         )
         .await
+    }
+
+    /// Get the default order of client types when fetching player data
+    ///
+    /// The order may change in the future in case YouTube applies changes to their
+    /// platform that disable a client or make it less reliable.
+    pub fn player_client_order(&self) -> &'static [ClientType] {
+        if self.client.inner.botguard.is_some() {
+            &[ClientType::Desktop, ClientType::Ios, ClientType::Tv]
+        } else {
+            &[ClientType::Ios, ClientType::Tv]
+        }
     }
 
     /// Get a license to play back DRM protected videos
@@ -250,6 +290,7 @@ impl MapResponse<VideoPlayer> for response::Player {
                         "country" => Some(UnavailabilityReason::Geoblocked),
                         "version" | "websites" => Some(UnavailabilityReason::UnsupportedClient),
                         "bot" => Some(UnavailabilityReason::IpBan),
+                        "later." => Some(UnavailabilityReason::TryAgain),
                         _ => None,
                     })
                     .unwrap_or_default();
@@ -327,7 +368,7 @@ impl MapResponse<VideoPlayer> for response::Player {
         };
 
         let streams = if !is_live {
-            let mut mapper = StreamsMapper::new(ctx.deobf)?;
+            let mut mapper = StreamsMapper::new(ctx.deobf, ctx.session_po_token)?;
             mapper.map_streams(streaming_data.formats);
             mapper.map_streams(streaming_data.adaptive_formats);
             let mut res = mapper.output()?;
@@ -442,8 +483,9 @@ impl MapResponse<VideoPlayer> for response::Player {
     }
 }
 
-struct StreamsMapper {
+struct StreamsMapper<'a> {
     deobf: Option<Deobfuscator>,
+    session_po_token: Option<&'a str>,
     streams: Streams,
     warnings: Vec<String>,
     /// First stream mapping error
@@ -461,8 +503,11 @@ struct Streams {
     audio_streams: Vec<AudioStream>,
 }
 
-impl StreamsMapper {
-    fn new(deobf_data: Option<&DeobfData>) -> Result<Self, DeobfError> {
+impl<'a> StreamsMapper<'a> {
+    fn new(
+        deobf_data: Option<&DeobfData>,
+        session_po_token: Option<&'a str>,
+    ) -> Result<Self, DeobfError> {
         let deobf = match deobf_data {
             Some(deobf_data) => Some(Deobfuscator::new(deobf_data)?),
             None => None,
@@ -470,6 +515,7 @@ impl StreamsMapper {
 
         Ok(Self {
             deobf,
+            session_po_token,
             streams: Streams::default(),
             warnings: Vec::new(),
             first_err: None,
@@ -609,6 +655,10 @@ impl StreamsMapper {
             }?;
 
         self.deobf_nsig(&mut url_params)?;
+        if let Some(pot) = self.session_po_token {
+            url_params.insert("pot".to_owned(), pot.to_owned());
+        }
+
         let url = Url::parse_with_params(url_base.as_str(), url_params.iter())
             .map_err(|_| ExtractionError::InvalidData("could not combine URL".into()))?;
 
@@ -880,6 +930,7 @@ mod tests {
                 client_type,
                 artist: None,
                 authenticated: false,
+                session_po_token: None,
             })
             .unwrap();
 
@@ -905,7 +956,7 @@ mod tests {
     #[test]
     fn cipher_to_url() {
         let signature_cipher = "s=w%3DAe%3DA6aDNQLkViKS7LOm9QtxZJHKwb53riq9qEFw-ecBWJCAiA%3DcEg0tn3dty9jEHszfzh4Ud__bg9CEHVx4ix-7dKsIPAhIQRw8JQ0qOA&sp=sig&url=https://rr5---sn-h0jelnez.googlevideo.com/videoplayback%3Fexpire%3D1659376413%26ei%3Dvb7nYvH5BMK8gAfBj7ToBQ%26ip%3D2003%253Ade%253Aaf06%253A6300%253Ac750%253A1b77%253Ac74a%253A80e3%26id%3Do-AB_BABwrXZJN428ZwDxq5ScPn2AbcGODnRlTVhCQ3mj2%26itag%3D251%26source%3Dyoutube%26requiressl%3Dyes%26mh%3DhH%26mm%3D31%252C26%26mn%3Dsn-h0jelnez%252Csn-4g5ednsl%26ms%3Dau%252Conr%26mv%3Dm%26mvi%3D5%26pl%3D37%26initcwndbps%3D1588750%26spc%3DlT-Khi831z8dTejFIRCvCEwx_6romtM%26vprv%3D1%26mime%3Daudio%252Fwebm%26ns%3Db_Mq_qlTFcSGlG9RpwpM9xQH%26gir%3Dyes%26clen%3D3781277%26dur%3D229.301%26lmt%3D1655510291473933%26mt%3D1659354538%26fvip%3D5%26keepalive%3Dyes%26fexp%3D24001373%252C24007246%26c%3DWEB%26rbqsm%3Dfr%26txp%3D4532434%26n%3Dd2g6G2hVqWIXxedQ%26sparams%3Dexpire%252Cei%252Cip%252Cid%252Citag%252Csource%252Crequiressl%252Cspc%252Cvprv%252Cmime%252Cns%252Cgir%252Cclen%252Cdur%252Clmt%26lsparams%3Dmh%252Cmm%252Cmn%252Cms%252Cmv%252Cmvi%252Cpl%252Cinitcwndbps%26lsig%3DAG3C_xAwRQIgCKCGJ1iu4wlaGXy3jcJyU3inh9dr1FIfqYOZEG_MdmACIQCbungkQYFk7EhD6K2YvLaHFMjKOFWjw001_tLb0lPDtg%253D%253D";
-        let mut mapper = StreamsMapper::new(Some(&DEOBF_DATA)).unwrap();
+        let mut mapper = StreamsMapper::new(Some(&DEOBF_DATA), None).unwrap();
         let url = mapper
             .map_url(&None, &Some(signature_cipher.to_owned()))
             .unwrap()

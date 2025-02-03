@@ -149,7 +149,7 @@ pub struct VideoPlayer {
     pub drm: Option<VideoPlayerDrm>,
     /// Client type with which the player was fetched
     pub client_type: ClientType,
-    /// YouTube visitor data cookie
+    /// YouTube visitor data ID
     pub visitor_data: Option<String>,
 }
 
@@ -615,7 +615,7 @@ pub struct Playlist {
     pub last_update: Option<Date>,
     /// Textual last update date
     pub last_update_txt: Option<String>,
-    /// YouTube visitor data cookie
+    /// YouTube visitor data ID
     pub visitor_data: Option<String>,
 }
 
@@ -683,7 +683,7 @@ pub struct VideoDetails {
     ///
     /// Is initially empty.
     pub latest_comments: Paginator<Comment>,
-    /// YouTube visitor data cookie
+    /// YouTube visitor data ID
     pub visitor_data: Option<String>,
 }
 
@@ -820,7 +820,7 @@ pub struct Channel<T> {
     pub has_shorts: bool,
     /// Does the channel have a *Live* tab?
     pub has_live: bool,
-    /// YouTube visitor data cookie
+    /// YouTube visitor data ID
     pub visitor_data: Option<String>,
     /// Content fetched from the channel
     pub content: T,
@@ -905,7 +905,7 @@ pub struct SearchResult<T> {
     /// for the corrected search term and displays it on top of the
     /// search results page.
     pub corrected_query: Option<String>,
-    /// YouTube visitor data cookie
+    /// YouTube visitor data ID
     pub visitor_data: Option<String>,
 }
 

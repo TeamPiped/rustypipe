@@ -99,7 +99,7 @@ fancy-regex.workspace = true
 thiserror.workspace = true
 url.workspace = true
 reqwest = { workspace = true, features = ["json", "gzip", "brotli"] }
-tokio = { workspace = true, features = ["macros", "time"] }
+tokio = { workspace = true, features = ["macros", "time", "process"] }
 serde.workspace = true
 serde_json.workspace = true
 serde_with.workspace = true

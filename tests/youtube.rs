@@ -139,11 +139,8 @@ async fn get_player_from_client(#[case] client_type: ClientType, rp: RustyPipe) 
         assert_eq!(audio.format, AudioFormat::Webm);
         assert_eq!(audio.codec, AudioCodec::Opus);
 
-        // Desktop client now requires pot token so the streams cannot be tested here
-        if !matches!(client_type, ClientType::Desktop | ClientType::Mobile) {
-            check_video_stream(video).await;
-            check_video_stream(audio).await;
-        }
+        check_video_stream(video).await;
+        check_video_stream(audio).await;
     }
 
     assert!(player_data.expires_in_seconds > 10000);
