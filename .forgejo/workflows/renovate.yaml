@@ -17,7 +17,7 @@ jobs:
   renovate:
     runs-on: docker
     container:
-      image: renovate/renovate:latest
+      image: renovate/renovate:39
 
     steps:
       - name: Load renovate repo cache
