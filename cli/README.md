@@ -71,7 +71,6 @@ videos can be downloaded in parallel for improved performance.
 - `-c`, `--client-type` YT clients used to fetch player data (options: desktop, tv,
   tv-embed, android, ios; if multiple clients are specified, they are attempted in
   order)
-- `--pot` token to circumvent bot detection
 
 ## `vdata`: Get visitor data
 
@@ -142,6 +141,11 @@ Fetch a list of all the items saved in your YouTube/YouTube Music profile.
   `~/.local/share/rustypipe/rustypipe_cache.json`)
 - `--report-dir` Change the RustyPipe report directory location (Default:
   `~/.local/share/rustypipe/rustypipe_reports`)
+- `--botguard-bin` Use a
+  [rustypipe-botguard](https://codeberg.org/ThetaDev/rustypipe-botguard) binary from the
+  given path for generating PO tokens
+- `--no-botguard` Disable Botguard, only download videos using clients that dont require
+  it
 
 ### Output format
 

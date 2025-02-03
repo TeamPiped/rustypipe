@@ -77,7 +77,6 @@ pub struct DownloaderBuilder {
     #[cfg(feature = "audiotag")]
     crop_cover: bool,
     client_types: Option<Vec<ClientType>>,
-    pot: Option<String>,
 }
 
 struct DownloaderInner {
@@ -109,8 +108,6 @@ struct DownloaderInner {
     crop_cover: bool,
     /// Client types for fetching videos
     client_types: Option<Vec<ClientType>>,
-    /// Pot token to circumvent bot detection
-    pot: Option<String>,
 }
 
 /// Download query
@@ -130,8 +127,6 @@ pub struct DownloadQuery {
     video_format: Option<DownloadVideoFormat>,
     /// Client types for fetching videos
     client_types: Option<Vec<ClientType>>,
-    /// Pot token to circumvent bot detection
-    pot: Option<String>,
 }
 
 /// Video to be downloaded
@@ -298,7 +293,6 @@ impl Default for DownloaderBuilder {
             #[cfg(feature = "audiotag")]
             crop_cover: false,
             client_types: None,
-            pot: None,
         }
     }
 }
@@ -417,21 +411,6 @@ impl DownloaderBuilder {
         self
     }
 
-    /// Set the `pot` token to circumvent bot detection
-    ///
-    /// YouTube has implemented the token to prevent other clients from downloading YouTube videos.
-    /// The token is generated using YouTube's botguard. Therefore you need a full browser environment
-    /// to obtain one.
-    ///
-    /// The Invidious project has created a script to extract this token: <https://github.com/iv-org/youtube-trusted-session-generator>
-    ///
-    /// The `pot` token is only used for the [`ClientType::Desktop`] and [`ClientType::DesktopMusic`] clients.
-    #[must_use]
-    pub fn pot<S: Into<String>>(mut self, pot: S) -> Self {
-        self.pot = Some(pot.into());
-        self
-    }
-
     /// Create a new, configured [`Downloader`] instance
     pub fn build(self) -> Downloader {
         self.build_with_client(
@@ -466,7 +445,6 @@ impl DownloaderBuilder {
                 #[cfg(feature = "audiotag")]
                 crop_cover: self.crop_cover,
                 client_types: self.client_types,
-                pot: self.pot,
             }),
         }
     }
@@ -501,7 +479,6 @@ impl Downloader {
             filter: None,
             video_format: None,
             client_types: None,
-            pot: None,
         }
     }
 
@@ -652,21 +629,6 @@ impl DownloadQuery {
         self
     }
 
-    /// Set the `pot` token to circumvent bot detection
-    ///
-    /// YouTube has implemented the token to prevent other clients from downloading YouTube videos.
-    /// The token is generated using YouTube's botguard. Therefore you need a full browser environment
-    /// to obtain one.
-    ///
-    /// The Invidious project has created a script to extract this token: <https://github.com/iv-org/youtube-trusted-session-generator>
-    ///
-    /// The `pot` token is only used for the [`ClientType::Desktop`] and [`ClientType::DesktopMusic`] clients.
-    #[must_use]
-    pub fn pot<S: Into<String>>(mut self, pot: S) -> Self {
-        self.pot = Some(pot.into());
-        self
-    }
-
     /// Download the video
     ///
     /// If no download path is set, the video is downloaded to the current directory
@@ -787,14 +749,6 @@ impl DownloadQuery {
 
         let player_data = q.player_from_clients(&self.video.id, &client_types).await?;
         let user_agent = q.user_agent(player_data.client_type);
-        let pot = if matches!(
-            player_data.client_type,
-            ClientType::Desktop | ClientType::DesktopMusic
-        ) {
-            self.pot.as_deref().or(self.dl.i.pot.as_deref())
-        } else {
-            None
-        };
 
         // Select streams to download
         let (video, audio) = player_data.select_video_audio_stream(filter);
@@ -877,7 +831,6 @@ impl DownloadQuery {
             downloads,
             &self.dl.i.http,
             &user_agent,
-            pot,
             #[cfg(feature = "indicatif")]
             pb.clone(),
         )
@@ -1156,7 +1109,6 @@ async fn download_single_file(
     output: &Path,
     http: &Client,
     user_agent: &str,
-    pot: Option<&str>,
     #[cfg(feature = "indicatif")] pb: Option<ProgressBar>,
 ) -> Result<()> {
     // Check if file is already downloaded
@@ -1253,7 +1205,6 @@ async fn download_single_file(
             size.unwrap(),
             offset,
             user_agent,
-            pot,
             #[cfg(feature = "indicatif")]
             pb,
         )
@@ -1381,7 +1332,6 @@ async fn download_chunks_by_param(
     size: u64,
     offset: u64,
     user_agent: &str,
-    pot: Option<&str>,
     #[cfg(feature = "indicatif")] pb: Option<ProgressBar>,
 ) -> Result<()> {
     let mut offset = offset;
@@ -1394,12 +1344,9 @@ async fn download_chunks_by_param(
         let range = get_download_range(offset, Some(size));
         tracing::debug!("Fetching range {}-{}", range.start, range.end);
 
-        let mut urlp =
+        let urlp =
             Url::parse_with_params(url, [("range", &format!("{}-{}", range.start, range.end))])
                 .map_err(|e| DownloadError::Progressive(format!("url parsing: {e}").into()))?;
-        if let Some(pot) = pot {
-            urlp.query_pairs_mut().append_pair("pot", pot);
-        }
 
         let res = http
             .get(urlp)
@@ -1449,7 +1396,6 @@ async fn download_streams(
     downloads: Vec<StreamDownload>,
     http: &Client,
     user_agent: &str,
-    pot: Option<&str>,
     #[cfg(feature = "indicatif")] pb: Option<ProgressBar>,
 ) -> Result<Vec<StreamDownload>> {
     stream::iter(downloads.iter().map(Ok))
@@ -1462,7 +1408,6 @@ async fn download_streams(
                     &d.file,
                     http,
                     user_agent,
-                    pot,
                     #[cfg(feature = "indicatif")]
                     pb,
                 )

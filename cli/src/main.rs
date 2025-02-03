@@ -2,6 +2,7 @@
 #![warn(clippy::todo, clippy::dbg_macro)]
 
 use std::{
+    ffi::OsString,
     path::PathBuf,
     str::FromStr,
     sync::{atomic::AtomicUsize, Arc},
@@ -63,6 +64,12 @@ struct Cli {
     /// RustyPipe report folder
     #[clap(long, global = true)]
     report_dir: Option<PathBuf>,
+    /// Path to rustypipe-botguard binary
+    #[clap(long, global = true)]
+    botguard_bin: Option<OsString>,
+    /// Disable Botguard
+    #[clap(long, global = true)]
+    no_botguard: bool,
 }
 
 #[derive(Parser)]
@@ -130,9 +137,6 @@ enum Commands {
         /// YT Client used to fetch player data
         #[clap(short, long)]
         client_type: Option<Vec<ClientTypeArg>>,
-        /// `pot` token to circumvent bot detection
-        #[clap(long)]
-        pot: Option<String>,
     },
     /// Extract video, playlist, album or channel data
     Get {
@@ -903,6 +907,12 @@ async fn run() -> anyhow::Result<()> {
     if let Some(country) = cli.country {
         rp = rp.country(Country::from_str(&country.to_ascii_uppercase()).expect("invalid country"));
     }
+    if let Some(botguard_bin) = cli.botguard_bin {
+        rp = rp.botguard_bin(botguard_bin);
+    }
+    if cli.no_botguard {
+        rp = rp.no_botguard();
+    }
     if cli.auth {
         rp = rp.authenticated();
     }
@@ -918,7 +928,6 @@ async fn run() -> anyhow::Result<()> {
             music,
             limit,
             client_type,
-            pot,
         } => {
             let url_target = rp.query().resolve_string(&id, false).await?;
 
@@ -939,9 +948,6 @@ async fn run() -> anyhow::Result<()> {
             if audio {
                 dl = dl.audio_tag().crop_cover();
                 filter = filter.no_video();
-            }
-            if let Some(pot) = pot {
-                dl = dl.pot(pot);
             }
             let dl = dl.stream_filter(filter).build();
 
