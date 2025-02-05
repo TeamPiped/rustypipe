@@ -128,13 +128,13 @@ impl RustyPipeQuery {
                                 }
                                 Err(e) => return Err(e),
                             }
-                            last_e = Some(Error::Extraction(e));
                         } else {
                             return Err(Error::Extraction(e));
                         }
                     } else if !e.switch_client() {
                         return Err(Error::Extraction(e));
                     }
+                    last_e = Some(Error::Extraction(e));
                 }
                 Err(e) => return Err(e),
             }
@@ -163,14 +163,15 @@ impl RustyPipeQuery {
             },
             async {
                 if client_type.needs_po_token() {
-                    let mut po_tokens = self
-                        .get_po_tokens(&[video_id, &visitor_data])
-                        .await?
-                        .into_iter();
-                    let po_token = po_tokens.next().unwrap();
-                    let session_po_token = po_tokens.next().unwrap();
+                    if let Some(po_tokens) = self.get_po_tokens(&[video_id, &visitor_data]).await? {
+                        let mut po_tokens = po_tokens.into_iter();
+                        let po_token = po_tokens.next().unwrap();
+                        let session_po_token = po_tokens.next().unwrap();
 
-                    Ok((Some(ServiceIntegrity { po_token }), Some(session_po_token)))
+                        Ok((Some(ServiceIntegrity { po_token }), Some(session_po_token)))
+                    } else {
+                        Ok((None, None))
+                    }
                 } else {
                     Ok((None, None))
                 }

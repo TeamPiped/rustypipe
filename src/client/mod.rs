@@ -2057,15 +2057,12 @@ impl RustyPipeQuery {
     }
 
     /// Get PO tokens
-    async fn get_po_tokens(&self, idents: &[&str]) -> Result<Vec<String>, Error> {
-        let bg = self
-            .client
-            .inner
-            .botguard
-            .as_ref()
-            .ok_or(Error::Extraction(ExtractionError::Botguard(
-                "not enabled".into(),
-            )))?;
+    async fn get_po_tokens(&self, idents: &[&str]) -> Result<Option<Vec<String>>, Error> {
+        let bg = match self.client.inner.botguard.as_ref() {
+            Some(bg) => bg,
+            None => return Ok(None),
+        };
+        let start = std::time::Instant::now();
         let cmd = tokio::process::Command::new(&bg.program)
             .arg("--snapshot-file")
             .arg(&bg.snapshot_file)
@@ -2092,14 +2089,17 @@ impl RustyPipeQuery {
                 "too few tokens returned".into(),
             )));
         }
-        tracing::debug!("generated PO token");
-        Ok(tokens)
+        tracing::debug!("generated PO token (took {:?})", start.elapsed());
+        Ok(Some(tokens))
     }
 
     /// Get a PO token
     pub async fn get_po_token<S: AsRef<str>>(self, ident: S) -> Result<String, Error> {
         self.get_po_tokens(&[ident.as_ref()])
-            .await
+            .await?
+            .ok_or(Error::Extraction(ExtractionError::Botguard(
+                "not enabled".into(),
+            )))
             .map(|res| res.into_iter().next().unwrap())
     }
 
