@@ -117,12 +117,12 @@ const DEOBF_NSIG_FUNC_NAME: &str = "deobf_nsig";
 
 fn get_sig_fn_name(player_js: &str) -> Result<String, DeobfError> {
     let pattern = [
-        r#"\b(?P<var>[a-zA-Z0-9_$]+)&&\((?P=var)=(?P<sig>[a-zA-Z0-9_$]{2,})\(decodeURIComponent\((?P=var)\)\)"#,
-        r#"(?P<sig>[a-zA-Z0-9_$]+)\s*=\s*function\(\s*(?P<arg>[a-zA-Z0-9_$]+)\s*\)\s*{\s*(?P=arg)\s*=\s*(?P=arg)\.split\(\s*""\s*\)\s*;\s*[^}]+;\s*return\s+(?P=arg)\.join\(\s*""\s*\)"#,
-        r#"(?:\b|[^a-zA-Z0-9_$])(?P<sig>[a-zA-Z0-9_$]{2,})\s*=\s*function\(\s*a\s*\)\s*{\s*a\s*=\s*a\.split\(\s*""\s*\)(?:;[a-zA-Z0-9_$]{2}\.[a-zA-Z0-9_$]{2}\(a,\d+\))?"#,
-        r#"\b[cs]\s*&&\s*[adf]\.set\([^,]+\s*,\s*encodeURIComponent\s*\(\s*(?P<sig>[a-zA-Z0-9_$]+)\("#,
-        r#"\b[a-zA-Z0-9]+\s*&&\s*[a-zA-Z0-9]+\.set\([^,]+\s*,\s*encodeURIComponent\s*\(\s*(?P<sig>[a-zA-Z0-9_$]+)\("#,
-        r#"\bm=(?P<sig>[a-zA-Z0-9_$]{2,})\(decodeURIComponent\(h\.s\)\)"#,
+        r#"\b(?P<var>[\w$]+)&&\((?P=var)=(?P<sig>[\w$]{2,})\(decodeURIComponent\((?P=var)\)\)"#,
+        r#"(?P<sig>[\w$]+)\s*=\s*function\(\s*(?P<arg>[\w$]+)\s*\)\s*{\s*(?P=arg)\s*=\s*(?P=arg)\.split\(\s*""\s*\)\s*;\s*[^}]+;\s*return\s+(?P=arg)\.join\(\s*""\s*\)"#,
+        r#"(?:\b|[^\w$])(?P<sig>[\w$]{2,})\s*=\s*function\(\s*a\s*\)\s*{\s*a\s*=\s*a\.split\(\s*""\s*\)(?:;[\w$]{2}\.[\w$]{2}\(a,\d+\))?"#,
+        r#"\b[cs]\s*&&\s*[adf]\.set\([^,]+\s*,\s*encodeURIComponent\s*\(\s*(?P<sig>[\w$]+)\("#,
+        r#"\b[a-zA-Z0-9]+\s*&&\s*[a-zA-Z0-9]+\.set\([^,]+\s*,\s*encodeURIComponent\s*\(\s*(?P<sig>[\w$]+)\("#,
+        r#"\bm=(?P<sig>[\w$]{2,})\(decodeURIComponent\(h\.s\)\)"#,
     ];
 
     util::get_cg_from_fancy_regexes(&pattern, player_js, "sig")
@@ -137,7 +137,7 @@ fn get_sig_fn(player_js: &str) -> Result<String, DeobfError> {
     let dfunc_name = get_sig_fn_name(player_js)?;
 
     let function_pattern_str = format!(
-        r#"({}=function\([a-zA-Z0-9_]+\)\{{.+?\}})"#,
+        r#"({}=function\([\w]+\)\{{.+?\}})"#,
         dfunc_name.replace('$', "\\$")
     );
     let function_pattern = Regex::new(&function_pattern_str)
@@ -150,7 +150,7 @@ fn get_sig_fn(player_js: &str) -> Result<String, DeobfError> {
             .ok_or(DeobfError::Extraction("sig fn"))?[1]
     );
 
-    let helper_object_name_pattern = Regex::new(r";([A-Za-z0-9_\$]{2,3})\...\(").unwrap();
+    let helper_object_name_pattern = Regex::new(r";([\w\$]{2,3})\...\(").unwrap();
     let helper_object_name = helper_object_name_pattern
         .captures(&deobfuscate_function)
         .ok_or(DeobfError::Extraction("sig fn helper object name"))?
@@ -182,7 +182,7 @@ fn get_sig_fn(player_js: &str) -> Result<String, DeobfError> {
 fn get_nsig_fn_names(player_js: &str) -> impl Iterator<Item = String> + '_ {
     static FUNCTION_NAME_REGEX: Lazy<Regex> = Lazy::new(|| {
         // x.get( .. y=functionName[array_num](z) .. x.set(
-        Regex::new(r#"(?:[a-zA-Z0-9_$]\.get\(|index\.m3u8).+[a-zA-Z]=([a-zA-Z0-9_$]{2,})(?:\[(\d+)\])?\([a-zA-Z0-9]\).+[a-zA-Z0-9]\.set\("#)
+        Regex::new(r#"(?:[\w$]\.get\(|index\.m3u8).+[a-zA-Z]=([\w$]{2,})(?:\[(\d+)\])?\([a-zA-Z0-9]\).+[a-zA-Z0-9]\.set\("#)
             .unwrap()
     });
 
@@ -288,12 +288,15 @@ fn extract_js_fn(js: &str, offset: usize, name: &str) -> Result<String, DeobfErr
     let rt = rquickjs::Runtime::new()?;
 
     for (ident, _) in idents.into_iter().filter(|(_, v)| *v == 1) {
-        let var_pattern_str = format!(r#"\b{}\b\s*=[^=]"#, regex::escape(&ident));
+        let var_pattern_str = format!(r#"(^|[^\w$]){}\s*=[^=]"#, regex::escape(&ident));
         let re = Regex::new(&var_pattern_str).unwrap();
         let found_variable = re
-            .find_iter(js)
-            .filter(|m| !fn_range.contains(&m.start()) && !fn_range.contains(&m.end()))
-            .find_map(|m| extract_js_var(&js[m.start()..]));
+            .captures_iter(js)
+            .filter(|cap| {
+                let m = cap.get(0).unwrap();
+                !fn_range.contains(&m.start()) && !fn_range.contains(&m.end())
+            })
+            .find_map(|cap| extract_js_var(&js[cap.get(1).unwrap().end()..]));
         if let Some(var_code) = found_variable {
             let ctx = Context::full(&rt)?;
             let var_code = format!("var {var_code};");
@@ -403,7 +406,7 @@ fn get_nsig_fn(player_js: &str) -> Result<String, DeobfError> {
         let code = extract_js_fn(player_js, offset, name)?;
 
         let js_fn = format!("{}{}", code, caller_function(DEOBF_NSIG_FUNC_NAME, name));
-        tracing::trace!("sig_fn: {js_fn}");
+        tracing::trace!("nsig_fn: {js_fn}");
         verify_fn(&js_fn, DEOBF_NSIG_FUNC_NAME)?;
         tracing::debug!("successfully extracted nsig fn `{name}`");
         Ok(js_fn)
@@ -542,9 +545,9 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
 
     #[test]
     fn t_extract_js_fn_outside_vars() {
-        // Function depending on outside variables
         let base_js = "let a = 42;foo();var b=11;bar();Wka = function(d){var x=1+2+a*b;return x;}";
         let res = extract_js_fn(base_js, 0, "Wka").unwrap();
+        // order of variables is non-reproducible
         assert!(
             res == "var a = 42; var b=11; var Wka = function(d){var x=1+2+a*b;return x;};"
                 || res == "var b=11; var a = 42; var Wka = function(d){var x=1+2+a*b;return x;};",
@@ -554,7 +557,6 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
 
     #[test]
     fn t_extract_js_fn_outside_vars2() {
-        // Function depending on outside variables
         let base_js = "{let a = {v1:1,v2:2}}foo();Wka = function(d){var x=1+2+a.v1;return x;}";
         let res = extract_js_fn(base_js, 0, "Wka").unwrap();
         assert_eq!(
@@ -565,7 +567,6 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
 
     #[test]
     fn t_extract_js_fn_outside_vars3() {
-        // Function depending on outside variables
         let base_js = "Wka = function(d){var x=1+2+a[0];return x;};let a=[1,2,3]";
         let res = extract_js_fn(base_js, 0, "Wka").unwrap();
         assert_eq!(
@@ -672,6 +673,7 @@ c[36](c[8],c[32]),c[20](c[25],c[10]),c[2](c[22],c[8]),c[32](c[20],c[16]),c[32](c
     #[case("b12cc44b", "keLa5R2U00sR9SQK", "N1OGyujjEwMnLw")]
     #[case("3bb1f723", "gK15nzVyaXE9RsMP3z", "ZFFWFLPWx9DEgQ")]
     #[case("2f1832d2", "YWt1qdbe8SAfkoPHW5d", "RrRjWQOJmBiP")]
+    #[case("19d2ae9d", "YWt1qdbe8SAfkoPHW5d", "CS6dVTYzpZrAZ5TD")]
     #[tokio::test]
     #[traced_test]
     async fn nsig_tests(#[case] js_hash: &str, #[case] nsig_in: &str, #[case] expect: &str) {
