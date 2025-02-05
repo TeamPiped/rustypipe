@@ -83,7 +83,6 @@ pub enum ClientType {
     /// Client used by the iOS app
     ///
     /// - no obfuscated stream URLs
-    /// - does not include opus audio streams
     Ios,
 }
 
