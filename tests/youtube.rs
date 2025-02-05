@@ -1483,7 +1483,7 @@ async fn trending(rp: RustyPipe) {
 )]
 #[case::short(
     "RDCLAK5uy_nLNY4ReQKH2kx5U23cyGMHql9ciHD9RSM",
-    "Presenting BLACKPINK (블랙핑크)",
+    "Presenting BLACKPINK",
     false,
     Some("The most played hits and essential tracks. #blackpink #best #kpop".to_owned()),
     None,
